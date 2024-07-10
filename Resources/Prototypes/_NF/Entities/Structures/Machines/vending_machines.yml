@@ -236,6 +236,39 @@
       color: "#ff033e"
 
 - type: entity
+  parent: VendingMachine
+  id: NonLethalVendingMachine
+  name: NonLethalVend
+  description: Try not to aim for the eyes!
+  components:
+    - type: VendingMachine
+      pack: NonLethalVendInventory
+      dispenseOnHitChance: 0.25
+      dispenseOnHitThreshold: 2
+      offState: off
+      brokenState: broken
+      normalState: normal-unshaded
+      ejectState: eject-unshaded
+      denyState: deny-unshaded
+      ejectDelay: 3
+    - type: Advertise
+      pack: LessLethalVendAds
+    - type: Sprite
+      sprite: _NF/Structures/Machines/VendingMachines/nonlethalvend.rsi
+      layers:
+      - state: "off"
+        map: ["enum.VendingMachineVisualLayers.Base"]
+      - state: "off"
+        map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+        shader: unshaded
+      - state: panel
+        map: ["enum.WiresVisualLayers.MaintenancePanel"]
+    - type: PointLight
+      radius: 1.5
+      energy: 1.6
+      color: "#ff033e"
+
+- type: entity
   parent: [BaseStructureUnanchorable, VendingMachine]
   id: VendingMachineAutoTuneVend
   name: AutoTune
@@ -348,6 +381,30 @@
 
 - type: entity
   parent: [BaseStructureUnanchorable, VendingMachine]
+  id: VendingMachineYarrrDrobe
+  name: YarrrDrobe
+  description: A vending machine for skallywags and booty lovers!
+  components:
+  - type: VendingMachine
+    pack: YarrrDrobeInventory
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+  - type: Advertise
+    pack: YarrrDrobeAds
+  - type: Sprite
+    sprite: _NF/Structures/Machines/VendingMachines/yarrrdrobe.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+
+- type: entity
+  parent: [BaseStructureUnanchorable, VendingMachine]
   id: VendingMachineNfsdTech
   name: NFSDTech
   description: A vending machine for NFSD and NFSD tech!
@@ -396,3 +453,120 @@
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: AccessReader
     access: [["HeadOfSecurity"]]
+
+# Punk stuff
+- type: entity
+  parent: VendingMachineClothing
+  id: VendingMachineClothingPunk
+  name: ThreadsChoom
+  description: A vandalized ClothesMate.
+  components:
+  - type: VendingMachine
+    pack: VendingMachineClothingPunkInventory
+    offState: broken
+    brokenState: broken
+    normalState: clothing-vandalized-unshaded
+    denyState: clothing-vandalized-deny-unshaded
+  - type: Advertise
+    pack: VandalizedClothesMateAds
+  - type: SpeakOnUIClosed
+    pack: GenericVendGoodbyes
+  - type: Sprite
+    sprite: Structures/Machines/VendingMachines/clothing.rsi
+    layers:
+    - state: "broken"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - sprite: _NF/Structures/Machines/VendingMachines/vandalized.rsi
+      state: clothing-vandalized-unshaded
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+    - sprite: _NF/Structures/Holo/graffiti/simple.rsi
+      state: holograffiti01
+      map: [ "graffiti" ]
+      shader: unshaded
+      scale: 0.7, 0.7
+  - type: RandomSprite
+    available:
+    - graffiti:
+        holograffiti01: Cyberpunk
+        holograffiti02: Cyberpunk
+        holograffiti03: Cyberpunk
+        holograffiti04: Cyberpunk
+        holograffiti05: Cyberpunk
+        holograffiti06: Cyberpunk
+        holograffiti07: Cyberpunk
+        holograffiti08: Cyberpunk
+        holograffiti09: Cyberpunk
+        holograffiti10: Cyberpunk
+        holograffiti11: Cyberpunk
+        holograffiti12: Cyberpunk
+        holograffiti13: Cyberpunk
+        holograffiti14: Cyberpunk
+        holograffiti15: Cyberpunk
+        holograffiti16: Cyberpunk
+        holograffiti17: Cyberpunk
+        holograffiti18: Cyberpunk
+        holograffiti19: Cyberpunk
+        holograffiti20: Cyberpunk
+        holograffiti21: Cyberpunk
+        holograffiti22: Cyberpunk
+
+- type: entity
+  parent: VendingMachineBountyVend
+  id: VendingMachineBountyVendPunk
+  name: BonanzaMatic
+  description: A vandalised BountyVend.
+  components:
+  - type: VendingMachine
+    pack: VendingMachineBountyVendPunkInventory
+    offState: broken
+    brokenState: broken
+    normalState: normal-unshaded
+  - type: Advertise
+    pack: VandalizedBountyVendAds
+  - type: Sprite
+    sprite: _NF/Structures/Machines/VendingMachines/bountyvend.rsi
+    layers:
+    - state: "broken"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "broken"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+    - sprite: _NF/Structures/Holo/graffiti/simple.rsi
+      state: holograffiti01
+      map: [ "graffiti" ]
+      shader: unshaded
+      scale: 0.7, 0.7
+  - type: RandomSprite
+    available:
+    - graffiti:
+        holograffiti01: Cyberpunk
+        holograffiti02: Cyberpunk
+        holograffiti03: Cyberpunk
+        holograffiti04: Cyberpunk
+        holograffiti05: Cyberpunk
+        holograffiti06: Cyberpunk
+        holograffiti07: Cyberpunk
+        holograffiti08: Cyberpunk
+        holograffiti09: Cyberpunk
+        holograffiti10: Cyberpunk
+        holograffiti11: Cyberpunk
+        holograffiti12: Cyberpunk
+        holograffiti13: Cyberpunk
+        holograffiti14: Cyberpunk
+        holograffiti15: Cyberpunk
+        holograffiti16: Cyberpunk
+        holograffiti17: Cyberpunk
+        holograffiti18: Cyberpunk
+        holograffiti19: Cyberpunk
+        holograffiti20: Cyberpunk
+        holograffiti21: Cyberpunk
+        holograffiti22: Cyberpunk
+  - type: PointLight
+    radius: 1.1
+    energy: 1.2
+    color: "#4b93ad"

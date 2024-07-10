@@ -106,34 +106,6 @@
   - type: Clothing
     sprite: _NF/Clothing/OuterClothing/Misc/nfsd_long.rsi
 
-# Bloodcult Robes
-- type: entity
-  parent: [ ClothingOuterStorageBase, ClothingOuterArmorBulletproof ]
-  id: ClothingOuterCoatCultJanitor
-  name: cult leader armored robes
-  description: Regal robes fitting for a cult leader.
-  components:
-  - type: Sprite
-    sprite: _NF/Clothing/OuterClothing/Coats/cult_janitor_robe.rsi
-  - type: Clothing
-    sprite: _NF/Clothing/OuterClothing/Coats/cult_janitor_robe.rsi
-  - type: Contraband
-
-- type: entity
-  parent: [ ClothingOuterStorageToggleableBase, ClothingOuterArmorBasic ]
-  id: ClothingOuterCoatBloodCultRobes
-  name: cult robes
-  description: There's no cult without classic red/crimson cult robes with bulletproof vests.
-  suffix: Frontier
-  components:
-  - type: Sprite
-    sprite: _NF/Clothing/OuterClothing/Coats/cult_robes.rsi
-  - type: Clothing
-    sprite: _NF/Clothing/OuterClothing/Coats/cult_robes.rsi
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHatHoodBloodCulthood
-  - type: Contraband
-
 - type: entity
   parent: ClothingOuterWinterHoP
   id: ClothingOuterJacketSr
@@ -144,3 +116,14 @@
     sprite: _NF/Clothing/OuterClothing/Misc/sr_jacket.rsi
   - type: Clothing
     sprite: _NF/Clothing/OuterClothing/Misc/sr_jacket.rsi
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterCoatPirateCaptain
+  name: pirate captain's coat
+  description: Y'arrgh har fiddle di dee.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Misc/pirate_captain.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Misc/pirate_captain.rsi

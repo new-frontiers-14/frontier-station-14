@@ -1,7 +1,18 @@
 - type: loadout
+  id: ContractorClothingBeltPlant
+  equipment: ContractorClothingBeltPlant
+  price: 500
+
+- type: startingGear
+  id: ContractorClothingBeltPlant
+  equipment:
+    belt: ClothingBeltPlant
+
+- type: loadout
   id: ContractorClothingBeltPlantFilled
   equipment: ContractorClothingBeltPlantFilled
-  price: 500
+  name: botanical belt (filled)
+  price: 1500
 
 - type: startingGear
   id: ContractorClothingBeltPlantFilled
@@ -9,9 +20,20 @@
     belt: ClothingBeltPlantFilled
 
 - type: loadout
+  id: ContractorClothingBeltChef
+  equipment: ContractorClothingBeltChef
+  price: 500
+
+- type: startingGear
+  id: ContractorClothingBeltChef
+  equipment:
+    belt: ClothingBeltChef
+
+- type: loadout
   id: ContractorClothingBeltChefFilled
   equipment: ContractorClothingBeltChefFilled
-  price: 500
+  name: chef belt (filled)
+  price: 1500
 
 - type: startingGear
   id: ContractorClothingBeltChefFilled
@@ -39,9 +61,52 @@
     belt: ClothingBeltMedical
 
 - type: loadout
+  id: ContractorClothingBeltMedicalFilled
+  equipment: ContractorClothingBeltMedicalFilled
+  name: medical belt (filled)
+  price: 2000
+
+- type: startingGear
+  id: ContractorClothingBeltMedicalFilled
+  equipment:
+    belt: ClothingBeltMedicalFilled
+
+- type: loadout
+  id: ContractorClothingBeltMedicalEMT
+  equipment: ContractorClothingBeltMedicalEMT
+  price: 500
+
+- type: startingGear
+  id: ContractorClothingBeltMedicalEMT
+  equipment:
+    belt: ClothingBeltMedicalEMT
+
+- type: loadout
+  id: ContractorClothingBeltMedicalEMTFilled
+  equipment: ContractorClothingBeltMedicalEMTFilled
+  name: EMT belt (filled)
+  price: 2000
+
+- type: startingGear
+  id: ContractorClothingBeltMedicalEMTFilled
+  equipment:
+    belt: ClothingBeltMedicalEMTFilled
+
+- type: loadout
+  id: ContractorClothingBeltUtility
+  equipment: ContractorClothingBeltUtility
+  price: 500
+
+- type: startingGear
+  id: ContractorClothingBeltUtility
+  equipment:
+    belt: ClothingBeltUtility
+
+- type: loadout
   id: ContractorClothingBeltUtilityFilled
   equipment: ContractorClothingBeltUtilityFilled
-  price: 750
+  name: utility belt (filled)
+  price: 1500
 
 - type: startingGear
   id: ContractorClothingBeltUtilityFilled
@@ -58,6 +123,17 @@
   equipment:
     belt: ClothingBeltSalvageWebbing
 
+- type: loadout
+  id: ContractorClothingBeltSalvageWebbingFilledNF
+  equipment: ContractorClothingBeltSalvageWebbingFilledNF
+  name: salvage rig (filled)
+  price: 1500
+
+- type: startingGear
+  id: ContractorClothingBeltSalvageWebbingFilledNF
+  equipment:
+    belt: ClothingBeltSalvageWebbingFilledNF
+
 #T1
 - type: loadout
   id: ContractorBoxFolderClipboard
@@ -73,8 +149,22 @@
     belt: BoxFolderClipboard
 
 - type: loadout
+  id: ContractorClothingBeltPilot
+  equipment: ContractorClothingBeltPilot
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT1
+  price: 750
+
+- type: startingGear
+  id: ContractorClothingBeltPilot
+  equipment:
+    belt: ClothingBeltPilot
+
+- type: loadout
   id: ContractorClothingBeltPilotFilled
   equipment: ContractorClothingBeltPilotFilled
+  name: pilot webbing (filled)
   effects:
   - !type:GroupLoadoutEffect
     proto: ContractorT1
@@ -123,6 +213,20 @@
   id: ContractorClothingBeltChaplainSash
   equipment:
     belt: ClothingBeltChaplainSash
+
+- type: loadout
+  id: ContractorClothingBeltChaplainSashFilled
+  equipment: ContractorClothingBeltChaplainSashFilled
+  name: chaplain sash (filled)
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT1
+  price: 1500
+
+- type: startingGear
+  id: ContractorClothingBeltChaplainSashFilled
+  equipment:
+    belt: ClothingBeltChaplainSashFilled
 
 - type: loadout
   id: ContractorBooksBag
@@ -176,6 +280,19 @@
   equipment:
     belt: PlantBag
 
+- type: loadout
+  id: ContractorConstructionBag
+  equipment: ContractorConstructionBag
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT1
+  price: 750
+
+- type: startingGear
+  id: ContractorConstructionBag
+  equipment:
+    belt: ConstructionBag
+
 #T2
 - type: loadout
   id: ContractorClothingBeltMartialBlack
@@ -189,6 +306,34 @@
   id: ContractorClothingBeltMartialBlack
   equipment:
     belt: ClothingBeltMartialBlack
+
+- type: loadout
+  id: ContractorClothingBeltPunkRandomized
+  equipment: ContractorClothingBeltPunkRandomized
+  name: punk belt (random)
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT2
+  price: 1000
+
+- type: startingGear
+  id: ContractorClothingBeltPunkRandomized
+  equipment:
+    belt: ClothingBeltPunkRandomized
+
+- type: loadout
+  id: ContractorClothingBeltPunkRandomizedFilled
+  equipment: ContractorClothingBeltPunkRandomizedFilled
+  name: punk belt (random, filled)
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT2
+  price: 1500
+
+- type: startingGear
+  id: ContractorClothingBeltPunkRandomizedFilled
+  equipment:
+    belt: ClothingBeltPunkRandomizedFilled
 
 #T3 for lols
 - type: loadout

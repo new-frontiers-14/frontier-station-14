@@ -4,9 +4,18 @@
   loadouts: #First Section: Role specific freebies/discounts/rewards
   - MercenaryClothingUniformJumpsuitMercenary
   - MercenaryClothingUniformJumpskirtMercenary
+  - MercenaryClothingUniformJumpsuitPrivateSec
+  - MercenaryClothingUniformJumpskirtPrivateSec
+  - MercenaryClothingUniformJumpsuitMilitaryTurtleneckMercenary
+  - MercenaryClothingUniformJumpsuitMilitaryTurtleneckMercenaryMedic
+  - MercenaryClothingUniformJumpsuitMilitaryTurtleneckMercenaryCaptain
+  - MercenaryClothingUniformJumpsuitMilitaryTurtleneckBlueMercenary
+  - MercenaryClothingUniformJumpsuitMilitaryTurtleneckBlueMercenaryMedic
+  - MercenaryClothingUniformJumpsuitMilitaryTurtleneckBlueMercenaryCaptain
 #Second Section: Contractor list
   - ContractorClothingUniformJumpsuitColorGrey
   - ContractorClothingUniformJumpskirtColorGrey
+  - PilotClothingUniformJumpsuitPilot
   - ContractorClothingUniformJumpsuitAtmos
   - ContractorClothingUniformJumpskirtAtmos
   - ContractorClothingUniformJumpsuitBartender
@@ -44,7 +53,7 @@
   - ContractorClothingUniformJumpskirtColorPink
   - ContractorClothingUniformJumpsuitColorDarkBlue
   - ContractorClothingUniformJumpskirtColorDarkBlue
-  - ContractorClothingUniformJumpskirtColorDarkBlue
+  - ContractorClothingUniformJumpsuitColorDarkGreen
   - ContractorClothingUniformJumpskirtColorDarkGreen
   - ContractorClothingUniformJumpsuitColorTeal
   - ContractorClothingUniformJumpskirtColorTeal
@@ -89,6 +98,11 @@
   - ContractorClothingUniformJumpsuitScientistFormal
   - ContractorClothingUniformJumpsuitRoboticist
   - ContractorClothingUniformJumpskirtRoboticist
+  - ContractorClothingUniformRandomPunkCroptop # Punkish (Randomized visuals)
+  - ContractorClothingUniformRandomPunkTanktop # Punkish (Randomized visuals)
+  - ContractorClothingUniformRandomArmlessNoSkirt # Punkish (Randomized visuals)
+  - ContractorClothingUniformRandomPunkCroptopShorts # Punkish (Randomized visuals)
+  - ContractorClothingUniformRandomPunkTanktopShorts # Punkish (Randomized visuals)
   - ContractorClothingUniformJumpsuitMonasticRobeDark
   - ContractorClothingUniformJumpsuitMonasticRobeLight
   - ContractorClothingUniformJumpsuitChaplainPilgrimVest
@@ -126,47 +140,90 @@
   - ContractorClothingUniformJumpsuitTshirtJeans
   - ContractorClothingUniformJumpsuitTshirtJeansGray
   - ContractorClothingUniformJumpsuitTshirtJeansPeach
+  - PilotClothingUniformJumpsuitMilitaryContractor
+  - PilotClothingUniformJumpsuitMilitaryContractorTac
+  - ContractorClothingUniformJumpsuitMilitaryCaptain
+  - ContractorClothingUniformJumpsuitMilitaryAtmospherics
+  - ContractorClothingUniformJumpsuitMilitaryEngineering
+  - ContractorClothingUniformJumpsuitMilitaryEngineeringChief
+  - ContractorClothingUniformJumpsuitMilitarySalvageSpecialist
+  - ContractorClothingUniformJumpsuitMilitaryCargo
+  - ContractorClothingUniformJumpsuitMilitaryQM
+  - ContractorClothingUniformJumpsuitMilitaryMedicalDoctor
+  - ContractorClothingUniformJumpsuitMilitaryParamedic
+  - ContractorClothingUniformJumpsuitMilitaryChemistry
+  - ContractorClothingUniformJumpsuitMilitaryVirology
+  - ContractorClothingUniformJumpsuitMilitaryGenetics
+  - ContractorClothingUniformJumpsuitMilitaryCMO
+  - ContractorClothingUniformJumpsuitMilitaryScientist
+  - ContractorClothingUniformJumpsuitMilitaryResearchDirector
+  - ContractorClothingUniformJumpsuitMilitaryService
+  - ContractorClothingUniformJumpsuitMilitaryHydroponics
+  - MercenaryClothingUniformJumpsuitMilitaryPilot
+  - ContractorClothingUniformJumpsuitMilitaryColorGrey
+  - ContractorClothingUniformJumpsuitMilitaryColorBlack
+  - ContractorClothingUniformJumpsuitMilitaryColorBlue
+  - ContractorClothingUniformJumpsuitMilitaryColorDarkBlue
+  - ContractorClothingUniformJumpsuitMilitaryColorTeal
+  - ContractorClothingUniformJumpsuitMilitaryColorGreen
+  - ContractorClothingUniformJumpsuitMilitaryColorDarkGreen
+  - ContractorClothingUniformJumpsuitMilitaryColorOrange
+  - ContractorClothingUniformJumpsuitMilitaryColorPink
+  - ContractorClothingUniformJumpsuitMilitaryColorRed
+  - ContractorClothingUniformJumpsuitMilitaryColorYellow
+  - ContractorClothingUniformJumpsuitMilitaryColorPurple
+  - ContractorClothingUniformJumpsuitMilitaryColorLightBrown
+  - ContractorClothingUniformJumpsuitMilitaryColorBrown
+  fallbacks:
+  - MercenaryClothingUniformJumpsuitMercenary
 
 - type: loadoutGroup
   id: MercenaryBackpack
   name: loadout-group-contractor-backpack
   loadouts:
-  - MercenaryClothingBackpackMercenaryFilled
-  - MercenaryClothingBackpackDuffelMercenaryFilled
-  - MercenaryClothingBackpackSatchelMercenaryFilled
-  - MercenaryClothingBackpackMessengerMercenaryFilled
-  - ContractorClothingBackpackFilled
-  - ContractorClothingBackpackDuffelFilled
-  - ContractorClothingBackpackSatchelFilled
-  - ContractorClothingBackpackMessengerFilled
-  - ContractorClothingBackpackCaptainFilled
-  - ContractorClothingBackpackDuffelCaptainFilled
-  - ContractorClothingBackpackSatchelCaptainFilled
-  - ContractorClothingBackpackMessengerCaptainFilled
-  - ContractorClothingBackpackSalvageFilled
-  - ContractorClothingBackpackDuffelSalvageFilled
-  - ContractorClothingBackpackSatchelSalvageFilled
-  - ContractorClothingBackpackMessengerSalvageFilled
-  - ContractorClothingBackpackCargoFilled
-  - ContractorClothingBackpackDuffelCargoFilled
-  - ContractorClothingBackpackSatchelCargoFilled
-  - ContractorClothingBackpackMessengerCargoFilled
-  - ContractorClothingBackpackHydroponicsFilled
-  - ContractorClothingBackpackDuffelHydroponicsFilled
-  - ContractorClothingBackpackSatchelHydroponicsFilled
-  - ContractorClothingBackpackMessengerHydroponicsFilled
-  - ContractorClothingBackpackScienceFilled
-  - ContractorClothingBackpackDuffelScienceFilled
-  - ContractorClothingBackpackSatchelScienceFilled
-  - ContractorClothingBackpackMessengerScienceFilled
-  - ContractorClothingBackpackMedicalFilled
-  - ContractorClothingBackpackDuffelMedicalFilled
-  - ContractorClothingBackpackSatchelMedicalFilled
-  - ContractorClothingBackpackMessengerMedicalFilled
-  - ContractorClothingBackpackChemistryFilled
-  - ContractorClothingBackpackDuffelChemistryFilled
-  - ContractorClothingBackpackSatchelChemistryFilled
-  - ContractorClothingBackpackMessengerChemistryFilled
+  - MercenaryClothingBackpackMercenary
+  - MercenaryClothingBackpackDuffelMercenary
+  - MercenaryClothingBackpackSatchelMercenary
+  - MercenaryClothingBackpackMessengerMercenary
+  - SecurityBackpack
+  - SecuritySatchel
+  - SecurityDuffel
+  - ContractorClothingBackpack
+  - ContractorClothingBackpackDuffel
+  - ContractorClothingBackpackSatchel
+  - ContractorClothingBackpackMessenger
+  - PilotClothingBackpackPilot
+  - PilotClothingBackpackDuffelPilot
+  - PilotClothingBackpackSatchelPilot
+  - PilotClothingBackpackMessengerPilot
+  - ContractorClothingBackpackCaptain
+  - ContractorClothingBackpackDuffelCaptain
+  - ContractorClothingBackpackSatchelCaptain
+  - ContractorClothingBackpackMessengerCaptain
+  - ContractorClothingBackpackSalvage
+  - ContractorClothingBackpackDuffelSalvage
+  - ContractorClothingBackpackSatchelSalvage
+  - ContractorClothingBackpackMessengerSalvage
+  - ContractorClothingBackpackCargo
+  - ContractorClothingBackpackDuffelCargo
+  - ContractorClothingBackpackSatchelCargo
+  - ContractorClothingBackpackMessengerCargo
+  - ContractorClothingBackpackHydroponics
+  - ContractorClothingBackpackDuffelHydroponics
+  - ContractorClothingBackpackSatchelHydroponics
+  - ContractorClothingBackpackMessengerHydroponics
+  - ContractorClothingBackpackScience
+  - ContractorClothingBackpackDuffelScience
+  - ContractorClothingBackpackSatchelScience
+  - ContractorClothingBackpackMessengerScience
+  - ContractorClothingBackpackMedical
+  - ContractorClothingBackpackDuffelMedical
+  - ContractorClothingBackpackSatchelMedical
+  - ContractorClothingBackpackMessengerMedical
+  - ContractorClothingBackpackChemistry
+  - ContractorClothingBackpackDuffelChemistry
+  - ContractorClothingBackpackSatchelChemistry
+  - ContractorClothingBackpackMessengerChemistry
   - ContractorClothingBackpackGenetics
   - ContractorClothingBackpackDuffelGenetics
   - ContractorClothingBackpackSatchelGenetics
@@ -175,22 +232,35 @@
   - ContractorClothingBackpackDuffelVirology
   - ContractorClothingBackpackSatchelVirology
   - ContractorClothingBackpackMessengerVirology
-  - ContractorClothingBackpackEngineeringFilled
-  - ContractorClothingBackpackDuffelEngineeringFilled
-  - ContractorClothingBackpackSatchelEngineeringFilled
-  - ContractorClothingBackpackMessengerEngineeringFilled
-  - ContractorClothingBackpackAtmosphericsFilled
-  - ContractorClothingBackpackDuffelAtmosphericsFilled
-  - ContractorClothingBackpackSatchelAtmosphericsFilled
-  - ContractorClothingBackpackMessengerAtmosphericsFilled
-  - ContractorClothingBackpackClownFilled
-  - ContractorClothingBackpackDuffelClownFilled
-  - ContractorClothingBackpackSatchelClownFilled
-  - ContractorClothingBackpackMessengerClownFilled
-  - ContractorClothingBackpackMimeFilled
-  - ContractorClothingBackpackDuffelMimeFilled
-  - ContractorClothingBackpackSatchelMimeFilled
-  - ContractorClothingBackpackMessengerMimeFilled
+  - ContractorClothingBackpackEngineering
+  - ContractorClothingBackpackDuffelEngineering
+  - ContractorClothingBackpackSatchelEngineering
+  - ContractorClothingBackpackMessengerEngineering
+  - ContractorClothingBackpackMessengerChiefEngineer
+  - ContractorClothingBackpackAtmospherics
+  - ContractorClothingBackpackDuffelAtmospherics
+  - ContractorClothingBackpackSatchelAtmospherics
+  - ContractorClothingBackpackMessengerAtmospherics
+  - ContractorClothingBackpackMessengerChaplain
+  - ContractorClothingBackpackMessengerColorBlack
+  - ContractorClothingBackpackMessengerColorWhite
+  - ContractorClothingBackpackMessengerColorBlue
+  - ContractorClothingBackpackMessengerColorGreen
+  - ContractorClothingBackpackMessengerColorOrange
+  - ContractorClothingBackpackMessengerColorRed
+  - ContractorClothingBackpackMessengerColorPurple
+  - ContractorClothingBackpackMessengerColorBrownLight
+  - ContractorClothingBackpackMessengerColorBrown
+  - ContractorClothingBackpackClown
+  - ContractorClothingBackpackDuffelClown
+  - ContractorClothingBackpackSatchelClown
+  - ContractorClothingBackpackMessengerClown
+  - ContractorClothingBackpackMime
+  - ContractorClothingBackpackDuffelMime
+  - ContractorClothingBackpackSatchelMime
+  - ContractorClothingBackpackMessengerMime
+  fallbacks:
+  - MercenaryClothingBackpackMercenary
   
 - type: loadoutGroup
   id: MercenaryOuterClothing
@@ -198,6 +268,11 @@
   minLimit: 0
   loadouts:
   - MercenaryClothingOuterVestWebMercenary
+  - MercenaryClothingOuterVestWebMercenaryBlack
+  - MercenaryClothingOuterArmorPunkGreen # Punkish (Static visuals)
+  - MercenaryClothingOuterArmorPunkOrange # Punkish (Static visuals)
+  - MercenaryClothingOuterArmorPunkRed # Punkish (Static visuals)
+  - MercenaryClothingOuterArmorPunkRandomized # Punkish (Randomized visuals)
   - ContractorClothingOuterSuitEmergency
   - ContractorClothingOuterHardsuitEVA
   - ContractorClothingOuterHardsuitBasic
@@ -250,7 +325,6 @@
   - ContractorClothingOuterCoatLabSeniorPhysician
   - ContractorClothingOuterCoatRD
   - ContractorClothingOuterCoatLabSeniorResearcher
-  - ContractorClothingOuterCoatCardinal
   - ContractorClothingOuterFlannelRed
   - ContractorClothingOuterFlannelBlue
   - ContractorClothingOuterFlannelGreen
@@ -260,6 +334,27 @@
   - ContractorClothingOuterDameDane
   - ContractorClothingOuterWinterCoatPlaid
   - ContractorClothingOuterCoatBomber
+  - ContractorClothingOuterCoatBomberPunkRed # Punkish (Static visuals)
+  - ContractorClothingOuterCoatJacketLeather # Punkish (Static visuals)
+  - ContractorClothingOuterCoatJacketBiker # Punkish (Static visuals)
+  - ContractorClothingOuterCoatJacketJamrock # Punkish (Static visuals)
+  - ContractorClothingOuterCoatBomberAerostatic # Punkish (Static visuals)
+  - ContractorClothingOuterCoatJacketLettermanBlue # Punkish (Static visuals)
+  - ContractorClothingOuterCoatJacketLettermanBrown # Punkish (Static visuals)
+  - ContractorClothingOuterCoatJacketLettermanRed # Punkish (Static visuals)
+  - ContractorClothingOuterCoatJacketLettermanMagenta # Punkish (Static visuals)
+  - ContractorClothingOuterCoatBomberPinkSleeves # Punkish (Static visuals)
+  - ContractorClothingOuterCoatBomberRandomized # Punkish (Randomized visuals)
+  - ContractorClothingOuterCoatAcidRaincoat # Punkish (Static visuals)
+  - ContractorClothingOuterCoatAcidRaincoatBlue # Punkish (Static visuals)
+  - ContractorClothingOuterCoatAcidRaincoatGreen # Punkish (Static visuals)
+  - ContractorClothingOuterCoatAcidRaincoatYellow # Punkish (Static visuals)
+  - ContractorClothingOuterCoatAcidRaincoatMagenta # Punkish (Static visuals)
+  - ContractorClothingOuterCoatBishop
+  - ContractorClothingOuterCoatWitchHunter
+  - ContractorClothingOuterCoatCardinal
+  - ContractorClothingOuterPlagueSuit
+  - ContractorWetFloorSign
   - ContractorClothingOuterCoatExpensive
   - ContractorClothingOuterCoatSpaceAsshole
 
@@ -268,6 +363,8 @@
   name: loadout-group-contractor-shoes
   loadouts:
   - MercenaryClothingShoesBootsMercenary
+  - MercenaryClothingShoesBootsJack
+  - MercenaryClothingShoesBootsCombat
   - ContractorClothingShoesColorBlack
   - ContractorClothingShoesClothwarp
   - ContractorClothingShoesTourist
@@ -296,12 +393,12 @@
   - ContractorClothingShoesBootsWinterRobo
   - ContractorClothingShoesBootsWinterSci
   - ContractorClothingShoesBootsWinterViro
-  - ContractorClothingShoesBootsJack
   - ContractorClothingShoesLeather
   - ContractorClothingShoesBootsLaceup
   - ContractorClothingShoesSlippers
   - ContractorClothingShoeSlippersDuck
   - ContractorClothingShoesFlippers
+  - ContractorClothingShoesBootsPunkRandomized # Punkish (Randomized visuals)
   - ContractorClothingShoesDameDane
   - ContractorClothingShoesBootsWork
   - ContractorClothingShoesBootsCowboyBlack
@@ -322,6 +419,8 @@
   - ContractorClothingShoesSkates
   - ContractorClothingShoesClownLarge
   - ContractorClothingShoesBling
+  fallbacks:
+  - MercenaryClothingShoesBootsMercenary
 
 - type: loadoutGroup
   id: MercenaryHead
@@ -331,6 +430,8 @@
   - MercenaryClothingHeadHelmetMercenary
   - MercenaryClothingHeadBandMercenary
   - MercenaryClothingHeadHatBeretMercenary
+  - SecurityHelmet
+  - SecurityBeret
   - ContractorClothingHeadHelmetEVALarge
   - ContractorClothingHeadBandBlack
   - ContractorClothingHeadBandBlue
@@ -360,6 +461,7 @@
   - ContractorClothingHeadHatCasa
   - ContractorClothingHeadHatBowlerHat
   - ContractorClothingHeadHatGreyFlatcap
+  - ContractorClothingHeadHatBrownFlatcap
   - ContractorClothingHeadHatCapcap
   - ContractorClothingHeadHatParamedicsoft
   - ContractorClothingHeadNurseHat
@@ -367,6 +469,8 @@
   - ContractorClothingHeadHatSurgcapGreen
   - ContractorClothingHeadHatSurgcapBlue
   - ContractorClothingHeadHatSurgcapPurple
+  - ContractorClothingHeadHatFedoraGrey
+  - ContractorClothingHeadHatFedoraBrown
   - ContractorClothingHeadTinfoil
   - ContractorClothingHeadHatBeretRND
   - ContractorClothingHeadHatBeretEngineering
@@ -392,6 +496,12 @@
   - ContractorClothingHeadHatCowboyRed
   - ContractorClothingHeadHatCowboyWhite
   - ContractorClothingHeadHatWideBrimmed
+  - ContractorClothingHeadHatWitchhunter
+  - ContractorClothingHeadHatBishopMitre
+  - ContractorClothingHeadHatKippah
+  - ContractorClothingHeadHatPlaguedoctor
+  - ContractorPlunger
+  - ContractorClothingHeadHatCone
   - ContractorClothingHeadBandGold
   - ContractorClothingHeadHatTophat
   
@@ -402,6 +512,7 @@
   loadouts:
   - MercenaryClothingHandsGlovesMercFingerless
   - MercenaryClothingHandsMercenaryGlovesCombat
+  - MercenaryClothingHandsGlovesCombat
   - ContractorClothingHandsGlovesColorYellow
   - ContractorClothingHandsGlovesLeather
   - ContractorClothingHandsGlovesFingerless
@@ -428,7 +539,7 @@
   name: loadout-group-contractor-id
   loadouts:
   - MercenaryMercenaryPDA
-  - ContractorClearPDA
+  - ContractorClearNFPDA
   - ContractorSalvagePDA
   - ContractorResearchAssistantPDA
   - ContractorCargoPDA
@@ -461,6 +572,8 @@
   - ContractorMusicianPDA
   - ContractorClownPDA
   - ContractorMimePDA
+  fallbacks:
+  - MercenaryMercenaryPDA
   
 - type: loadoutGroup
   id: MercenaryGlasses
@@ -468,6 +581,7 @@
   minLimit: 0
   loadouts:
   - MercenaryClothingEyesGlassesMercenary
+  - MercenaryClothingEyesGlassesSunglasses
   - ContractorClothingEyesGlasses
   - ContractorClothingEyesGlassesCheapSunglasses
   - ContractorClothingEyesBlindfold
@@ -477,6 +591,8 @@
   - ContractorClothingEyesHudDiagnostic
   - ContractorClothingEyesGlassesMeson
   - ContractorClothingEyesHudMedical
+  - ContractorClothingEyesPunkGoggles # Punkish (Randomized visuals)
+  - ContractorClothingEyesPunkInfoShades # Punkish (Randomized visuals)
   - ContractorClothingEyesEyepatchHudDiag
   - ContractorClothingEyesEyepatchHudMedical
 
@@ -486,8 +602,12 @@
   minLimit: 0
   loadouts:
   - MercenaryClothingMaskGasMercenary
+  - MercenaryClothingMaskGasSecurity
+  - ContractorClothingMaskBreath
+  - ContractorClothingMaskBreathMedical
   - ContractorClothingMaskSterile
   - ContractorClothingMaskGas
+  - ContractorClothingMaskPunkHalf # Punkish (Randomized visuals)
   - ContractorClothingMaskGasExplorer
   - ContractorClothingMaskGasCaptain
   - ContractorClothingMaskGasAtmos
@@ -503,20 +623,34 @@
   minLimit: 0
   loadouts:
   - MercenaryClothingBeltMercenaryWebbing
+  - MercenaryClothingBeltMilitaryWebbing
+  - MercenaryClothingBeltSecurity
+  - ContractorClothingBeltPlant
   - ContractorClothingBeltPlantFilled
+  - ContractorClothingBeltChef
   - ContractorClothingBeltChefFilled
   - ContractorClothingBeltStorageWaistbag
   - ContractorClothingBeltMedical
+  - ContractorClothingBeltMedicalFilled
+  - ContractorClothingBeltMedicalEMT
+  - ContractorClothingBeltMedicalEMTFilled
+  - ContractorClothingBeltUtility
   - ContractorClothingBeltUtilityFilled
   - ContractorClothingBeltSalvageWebbing
+  - ContractorClothingBeltSalvageWebbingFilledNF
   - ContractorBoxFolderClipboard
+  - ContractorClothingBeltPilot
   - ContractorClothingBeltPilotFilled
   - ContractorClothingBeltBandolier
   - ContractorClothingBeltHolster
   - ContractorClothingBeltChaplainSash
+  - ContractorClothingBeltChaplainSashFilled
   - ContractorBooksBag
   - ContractorChemBag
   - ContractorOreBag
   - ContractorPlantBag
+  - ContractorConstructionBag
   - ContractorClothingBeltMartialBlack
+  - ContractorClothingBeltPunkRandomized # Punkish (Randomized visuals)
+  - ContractorClothingBeltPunkRandomizedFilled # Punkish (Randomized visuals)
   - ContractorClothingBeltChampion

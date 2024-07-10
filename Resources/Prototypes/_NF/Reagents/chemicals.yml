@@ -1,22 +1,6 @@
 - type: reagent
-  id: RawArtifexium
-  name: reagent-name-rawartifexium
-  desc: reagent-desc-rawartifexium
-  flavor: metallic
-  physicalDesc: reagent-physical-desc-crystalline
-  color: "#776291"
-  metabolisms:
-    Poison:
-      effects:
-      - !type:HealthChange
-        damage:
-          types:
-            Caustic: 2
-  reactiveEffects:
-    Acidic:
-      methods: [ Touch ]
-      effects:
-      - !type:ActivateArtifact
-        conditions:
-        - !type:ReagentThreshold
-          min: 5
+  id: SalicylicAcid
+  name: reagent-name-salicylicacid
+  desc: reagent-desc-salicylicacid
+  physicalDesc: reagent-physical-desc-powdery
+  color: "#EEEEEE"

@@ -23,6 +23,9 @@
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant, TrackingImplant ]
+  - !type:GiveItemOnHolidaySpecial
+    holiday: FrontierBirthday
+    prototype: FrontierBirthdayGift
 
 - type: startingGear
   id: SecurityGuardGear
@@ -30,3 +33,9 @@
     eyes: ClothingEyesGlassesSunglasses #ClothingEyesGlassesSecurity
     ears: ClothingHeadsetSecurity
     pocket1: WeaponPistolMk58 #WeaponPistolMk58Nonlethal
+    pocket2: MagazinePistol
+  storage:
+    back:
+    - Flash
+    - MagazinePistol
+    - MagazinePistolRubber

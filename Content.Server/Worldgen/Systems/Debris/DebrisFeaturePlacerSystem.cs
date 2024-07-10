@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using System.Numerics;
 using Content.Server.Worldgen.Components;
 using Content.Server.Worldgen.Components.Debris;
@@ -10,6 +10,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
+using Content.Server._NF.Worldgen.Components.Debris; // Frontier
 
 namespace Content.Server.Worldgen.Systems.Debris;
 
@@ -227,6 +228,8 @@ public sealed class DebrisFeaturePlacerSystem : BaseWorldSystem
             var owned = EnsureComp<OwnedDebrisComponent>(ent);
             owned.OwningController = uid;
             owned.LastKey = point;
+
+            EnsureComp<SpaceDebrisComponent>(ent); // Frontier
         }
 
         if (failures > 0)

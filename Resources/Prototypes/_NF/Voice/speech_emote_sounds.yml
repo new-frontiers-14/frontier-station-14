@@ -12,8 +12,8 @@
       collection: MaleSneezes
     Cough:
       collection: MaleCoughs
-    CatHisses:
-      collection: CatHisses
+    Hiss:
+      collection: GoblinHiss
     MonkeyScreeches:
       collection: MonkeyScreeches
     Yawn:
@@ -30,6 +30,16 @@
       collection: Whistles
     Weh:
       collection: Weh
+    Belch:
+      collection: Belch
+    Gasp:
+      collection: GoblinGasp
+    DefaultDeathgasp:
+      collection: GoblinDeathGasp
+    GoblinMutter:
+      collection: GoblinMutterCollection
+    GoblinThroatSinging:
+      collection: GoblinThroatSingingCollection
 
 - type: emoteSounds
   id: FemaleGoblin
@@ -44,8 +54,8 @@
       collection: FemaleSneezes
     Cough:
       collection: FemaleCoughs
-    CatHisses:
-      collection: CatHisses
+    Hiss:
+      collection: GoblinHiss
     MonkeyScreeches:
       collection: MonkeyScreeches
     Yawn:
@@ -62,11 +72,28 @@
       collection: Whistles
     Weh:
       collection: Weh
+    Belch:
+      collection: Belch
+    Gasp:
+      collection: GoblinGasp
+    DefaultDeathgasp:
+      collection: GoblinDeathGasp
+    GoblinMutter:
+      collection: GoblinMutterCollection
+    GoblinThroatSinging:
+      collection: GoblinThroatSingingCollection
 
 - type: emoteSounds
   id: Cat
   sound:
     path: /Audio/Animals/cat_meow.ogg
+    params:
+      variation: 0.125
+
+- type: emoteSounds
+  id: NfsdCat
+  sound:
+    path: /Audio/_NF/Animals/nfsdcat_meow.ogg
     params:
       variation: 0.125
 
