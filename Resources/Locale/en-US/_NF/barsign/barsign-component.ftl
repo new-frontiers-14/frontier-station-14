@@ -13,3 +13,7 @@ barsign-prototype-description-neon-flamingos = You doubt you'll be able to stand
 ## The Rune
 barsign-prototype-name-the-rune = The Rune
 barsign-prototype-description-the-rune = Reality-shifting drinks.
+
+## Whiskey Echoes
+barsign-prototype-name-whiskey-echoes = Whiskey Echoes
+barsign-prototype-description-whiskey-echoes = Wew lad! Sit down and have a drink! No matter your affiliation, the slogan here is 'Death to sobriety!'
