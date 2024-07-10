@@ -5,7 +5,7 @@
   description: Hope this doesn't have any... JUNK MAIL.
   components:
   - type: Pda
-    id: MailCarrierIDCard
+    id: MailCarrierNFIDCard # Frontier: MailCarrierIDCard<MailCarrierNFIDCard
     state: pda-mailcarrier
   - type: Icon
     state: pda-mailcarrier
@@ -23,24 +23,32 @@
     state: pda-clear
 
 - type: entity
-  parent: PrisonerPDA
-  id: GladiatorPDA
-  name: gladiator PDA
-  components:
-  - type: Pda
-    id: GladiatorIDCard
-
-- type: entity
   parent: BasePDA
   id: ValetPDA
   name: valet PDA
   description: Why isn't it gray?
   components:
   - type: Pda
-    id: ValetIDCard
-    state: pda-internservice
+    id: ValetNFIDCard # Frontier: ValetIDCard<ValetNFIDCard
+    state: pda-valet
+  - type: PdaBorderColor
+    borderColor: "#860000"
+    accentVColor: "#F2F2F2"
+  - type: Sprite
+    sprite: _NF/Objects/Devices/pda.rsi
+    layers:
+    - map: [ "enum.PdaVisualLayers.Base" ]
+    - state: "light_overlay"
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+      shader: "unshaded"
+      visible: false
+    - state: "id_overlay"
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+      shader: "unshaded"
+      visible: false
   - type: Icon
-    state: pda-internservice
+    sprite: _NF/Objects/Devices/pda.rsi
+    state: pda-valet
 
 - type: entity
   parent: BasePDA
@@ -53,12 +61,3 @@
     state: pda-security
   - type: Icon
     state: pda-guard
-
-- type: entity
-  parent: BoxerPDA
-  id: MartialArtistPDA
-  name: martial artist PDA
-  components:
-  - type: Pda
-    id: MartialArtistIDCard
-    state: pda-boxer

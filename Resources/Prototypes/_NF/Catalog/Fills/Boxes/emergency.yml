@@ -1,0 +1,71 @@
+- type: entity
+  parent: BoxSurvival
+  id: BoxSurvivalNFOxygen
+  suffix: Oxygen
+  components:
+  - type: StorageFill
+    contents:
+      - id: EmergencyOxygenTankFilled
+      - id: SpaceMedipen
+      - id: EmergencyMedipen
+      - id: FoodPSB
+      - id: DrinkWaterBottleFull
+      - id: Flare
+  - type: Sprite
+    layers:
+      - state: internals
+      - state: emergencytank
+
+- type: entity
+  parent: BoxSurvival
+  id: BoxSurvivalNFNitrogen
+  suffix: Nitrogen
+  components:
+  - type: StorageFill
+    contents:
+      - id: EmergencyNitrogenTankFilled
+      - id: SpaceMedipen
+      - id: EmergencyMedipen
+      - id: FoodPSB
+      - id: DrinkWaterBottleFull
+      - id: Flare
+  - type: Sprite
+    layers:
+      - state: internals
+      - state: emergencytank
+
+- type: entity
+  parent: BoxSurvivalEngineering
+  id: BoxSurvivalNFOxygenExtended
+  suffix: Oxygen
+  components:
+  - type: StorageFill
+    contents:
+      - id: DoubleEmergencyOxygenTankFilled
+      - id: SpaceMedipen
+      - id: EmergencyMedipen
+      - id: FoodPSB
+      - id: DrinkWaterBottleFull
+      - id: CrowbarRed
+  - type: Sprite
+    layers:
+      - state: internals
+      - state: extendedtank
+
+- type: entity
+  parent: BoxSurvivalEngineering
+  id: BoxSurvivalNFNitrogenExtended
+  suffix: Nitrogen
+  components:
+  - type: StorageFill
+    contents:
+      - id: DoubleEmergencyNitrogenTankFilled
+      - id: SpaceMedipen
+      - id: EmergencyMedipen
+      - id: FoodPSB
+      - id: DrinkWaterBottleFull
+      - id: CrowbarRed
+  - type: Sprite
+    layers:
+      - state: internals
+      - state: extendedtank

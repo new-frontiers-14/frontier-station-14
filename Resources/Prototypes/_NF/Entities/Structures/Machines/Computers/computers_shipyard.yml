@@ -1,0 +1,243 @@
+- type: entity
+  name: shipyard console
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseStructureComputer]
+  id: ComputerShipyardBase
+  description: Used to purchase and sell shuttles
+  placement:
+    mode: SnapgridCenter
+  abstract: true
+  components:
+  - type: MeleeSound
+    soundGroups:
+      Brute:
+        collection: MetalGlassBreak
+  - type: Computer
+  - type: ApcPowerReceiver
+    powerLoad: 200
+  - type: ExtensionCableReceiver
+  - type: ActivatableUIRequiresPower
+  - type: Sprite
+    netsync: false
+    noRot: true
+    sprite: _NF/Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: shipyard
+    - map: ["computerLayerKeys"]
+      state: telesci_key
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ComputerVisuals.Powered:
+        computerLayerScreen:
+          True: { visible: true, shader: unshaded }
+          False: { visible: false }
+        computerLayerKeys:
+          True: { visible: true, shader: unshaded }
+          False: { visible: true, shader: shaded }
+  - type: LitOnPowered
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#b89f25"
+    enabled: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    autoRot: true
+    offset: "0, 0.4" # shine from the top, not bottom of the computer
+    castShadows: false
+  - type: EmitSoundOnUIOpen
+    sound:
+      collection: Keyboard
+  - type: ShipyardConsole
+    targetIdSlot:
+      name: id-card-console-target-id
+      ejectSound: /Audio/Machines/id_swipe.ogg
+      insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+      ejectOnBreak: true
+      swap: true
+      whitelist:
+        components:
+        - IdCard
+    newAccessLevels: [Captain]
+  - type: ActivatableUI
+    singleUser: true
+    key: enum.ShipyardConsoleUiKey.Shipyard
+  - type: UserInterface
+    interfaces:
+      enum.ShipyardConsoleUiKey.Shipyard:
+        type: ShipyardConsoleBoundUserInterface
+  - type: ItemSlots
+  - type: ContainerContainer
+    containers:
+      ShipyardConsole-targetId: !type:ContainerSlot {}
+
+# Hardcoded consoles
+- type: entity
+  name: shipyard console
+  parent: ComputerShipyardBase
+  id: ComputerShipyard
+  components:
+  - type: ShipyardConsole
+    newJobTitle: Captain
+
+- type: entity
+  id: ComputerShipyardSecurity
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerShipyardBase]
+  name: security shipyard console
+  description: Used to enlist into Nanotrasen Security Forces
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: shipyard_security
+    - map: ["computerLayerKeys"]
+      state: telesci_key
+  - type: ActivatableUI
+    key: enum.ShipyardConsoleUiKey.Security
+  - type: UserInterface
+    interfaces:
+      enum.ShipyardConsoleUiKey.Security:
+        type: ShipyardConsoleBoundUserInterface
+  - type: ShipyardConsole
+    shipyardChannel: Nfsd
+    newAccessLevels: [Captain, Security, Brig]
+
+- type: entity
+  id: ComputerShipyardNfsd
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerShipyardBase]
+  name: nfsd shipyard console
+  description: Used to buy nfsd patrol vessels
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: shipyard_nfsd
+    - map: ["computerLayerKeys"]
+      state: telesci_key
+  - type: ActivatableUI
+    key: enum.ShipyardConsoleUiKey.Security
+  - type: UserInterface
+    interfaces:
+      enum.ShipyardConsoleUiKey.Security:
+        type: ShipyardConsoleBoundUserInterface
+  - type: ShipyardConsole
+    shipyardChannel: Nfsd
+    newAccessLevels: [Captain, Security, Brig]
+
+- type: entity
+  id: ComputerShipyardSyndicate
+  parent: [BaseStructureDisableToolUse, BaseStructureDestructible, ComputerShipyard]
+  name: syndicate shipyard console
+  description: Used to buy ships not available through other means. Has a sticker that says SALES TAX 30%
+  components:
+  - type: ActivatableUI
+    key: enum.ShipyardConsoleUiKey.Syndicate
+  - type: UserInterface
+    interfaces:
+      enum.ShipyardConsoleUiKey.Syndicate:
+        type: ShipyardConsoleBoundUserInterface
+  - type: Sprite
+    sprite: _NF/Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer_blackmarket
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: shipyard_blackmarket
+    - map: ["computerLayerKeys"]
+      state: blackmarket_key
+  - type: ShipyardConsole
+    shipyardChannel: Syndicate
+    secretShipyardChannel: Nfsd
+    salesTax: 0.3
+
+- type: entity
+  id: ComputerShipyardBlackMarket
+  parent: [BaseStructureDisableToolUse, BaseStructureDestructible, ComputerShipyard]
+  name: black market shipyard console
+  description: Used to buy ships not available through other means. Has a sticker that says SALES TAX 30%
+  components:
+  - type: ActivatableUI
+    key: enum.ShipyardConsoleUiKey.BlackMarket
+  - type: UserInterface
+    interfaces:
+      enum.ShipyardConsoleUiKey.BlackMarket:
+        type: ShipyardConsoleBoundUserInterface
+  - type: Sprite
+    sprite: _NF/Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer_blackmarket
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: shipyard_blackmarket
+    - map: ["computerLayerKeys"]
+      state: blackmarket_key
+  - type: ShipyardConsole
+    shipyardChannel: Freelance
+    secretShipyardChannel: Nfsd
+    salesTax: 0.3
+
+- type: entity
+  id: ComputerShipyardExpedition
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerShipyard]
+  name: expedition shipyard console
+  description: Used to buy ships outfitted for planetary expeditions
+  components:
+  - type: ActivatableUI
+    key: enum.ShipyardConsoleUiKey.Expedition
+  - type: UserInterface
+    interfaces:
+      enum.ShipyardConsoleUiKey.Expedition:
+       type: ShipyardConsoleBoundUserInterface
+  - type: Sprite
+    sprite: _NF/Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer_blackmarket
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: shipyard_blackmarket
+    - map: ["computerLayerKeys"]
+      state: blackmarket_key
+
+- type: entity
+  id: ComputerShipyardScrap
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerShipyard]
+  name: scrapyard console
+  description: Used to purchase and sell "shuttles"
+  components:
+  - type: ActivatableUI
+    key: enum.ShipyardConsoleUiKey.Scrap
+  - type: UserInterface
+    interfaces:
+      enum.ShipyardConsoleUiKey.Scrap:
+        type: ShipyardConsoleBoundUserInterface
+  - type: Sprite
+    sprite: _NF/Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer_blackmarket
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: shipyard_blackmarket
+    - map: ["computerLayerKeys"]
+      state: blackmarket_key

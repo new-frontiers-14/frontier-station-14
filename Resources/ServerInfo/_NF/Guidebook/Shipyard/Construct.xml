@@ -1,0 +1,67 @@
+<Document>
+  # CONSTRUCT-CLASS SHUTTLE
+  <Box>
+  <GuideEntityEmbed Entity="Wrench"/>
+  <GuideEntityEmbed Entity="ClothingHeadHelmetEVALarge"/>
+  <GuideEntityEmbed Entity="ClothingOuterHardsuitEVA"/>
+  <GuideEntityEmbed Entity="SheetSteel"/>
+  </Box>  
+  <Box>
+  <GuideEntityEmbed Entity="ShuttleMapConstruct" Caption=""/>
+  </Box>
+    [color=#a4885c]Ship Size:[/color] Small (Micro)
+	
+	[color=#a4885c]Recommended Crew:[/color] 1+
+	
+	[color=#a4885c]Power Gen Type:[/color] Plasma
+	
+	[color=#a4885c]Expeditions:[/color] None
+	
+	[color=#a4885c]IFF Console:[/color] None
+	
+  "Technically a spacefaring vessel. No livery. Perfect for engineers wishing to build theirown shuttle*."
+    
+  # PREFLIGHT CHECKLIST
+  
+  ## 1. Power supply
+  
+  ## 1.1. Battery units
+  <Box>
+  <GuideEntityEmbed Entity="SubstationWallBasic"/>
+  <GuideEntityEmbed Entity="APCBasic"/>
+  </Box>
+  
+  - Check that the substation unit is anchored to the floor.
+  - Check that the APC unit's Main Breaker is toggled on.
+  - Check the APC unit's current Load** (W).
+  
+  ## 1.2. P.A.C.M.A.N. generator unit
+  <Box>
+  <GuideEntityEmbed Entity="PortableGeneratorPacmanShuttle"/>
+  <GuideEntityEmbed Entity="SheetPlasma"/>
+  </Box>
+  
+  - Check that the P.A.C.M.A.N. generator unit is anchored to the floor.
+  - Check that the P.A.C.M.A.N. generator unit has fuel. For extended flights make sure that you have enough fuel stockpiled to sustain prolonged power generation during flight.
+  - Check that the P.A.C.M.A.N. generator unit is set to HV output.
+  - Set Target Power to 9-10*** [bold]kW[/bold].
+  - Start the P.A.C.M.A.N. generator unit.
+  
+  ## 2. Other checks
+  <Box>
+  <GuideEntityEmbed Entity="SmallGyroscope"/>
+  <GuideEntityEmbed Entity="GravityGeneratorMini"/>
+  </Box>
+  
+  - Check that the gyroscope is anchored, powered, and enabled.
+  - Check that the mini gravity generator is anchored, powered, and enabled.
+  
+  ## Sidenotes
+  
+  * - Construct-class ships are intended to be a versatile platform to build and test shuttle designs for experienced shuttle engineers.
+  
+  ** - Construct-class ships are equipped with two APC unit that can be used to appraise the ship's total power consumption (8.4 kW). One can check the ship's total power consumption against the P.A.C.M.A.N. generator unit Target Power output: to keep substation and APC fully charged, P.A.C.M.A.N. generator unit Target Power output should exceed APC's Load. Remember to check APC Load and adjust the generator unit Target Power after connecting new power-consuming machines.
+  
+  *** - Construct-class ships have low power demand meaning that standard P.A.C.M.A.N. generator unit's Target Power value can be lowered as low as 9 kW. Please note, that recommended Target Power value to avoid blackouts during Gravity Generator charging sequence is 10 kW.
+
+</Document>

@@ -1,5 +1,4 @@
 using Content.Server.Actions;
-using Content.Server.Bed.Sleep;
 using Content.Server.Carrying;
 using Content.Server.DoAfter;
 using Content.Server.Popups;
@@ -187,8 +186,7 @@ public sealed class PseudoItemSystem : EntitySystem
         var ev = new PseudoItemInsertDoAfterEvent();
         var args = new DoAfterArgs(EntityManager, inserter, 5f, ev, toInsert, toInsert, storageEntity)
         {
-            BreakOnTargetMove = true,
-            BreakOnUserMove = true,
+            BreakOnMove = true,
             NeedHand = true
         };
 

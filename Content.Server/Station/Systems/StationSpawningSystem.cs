@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Server.Access.Systems;
 using Content.Server.DetailExaminable;
 using Content.Server.Humanoid;
@@ -10,10 +11,12 @@ using Content.Server.Station.Components;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
 using Content.Shared.CCVar;
+using Content.Shared.Clothing;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.PDA;
 using Content.Shared.Preferences;
+using Content.Shared.Preferences.Loadouts;
 using Content.Shared.Random;
 using Content.Shared.Random.Helpers;
 using Content.Shared.Roles;
@@ -23,10 +26,12 @@ using Content.Shared.StatusIcon;
 using JetBrains.Annotations;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
-using Content.Server.Spawners.Components; // DeltaV
+using Content.Server.Spawners.Components;
+using Content.Shared.Bank.Components; // DeltaV
 
 namespace Content.Server.Station.Systems;
 
@@ -37,18 +42,19 @@ namespace Content.Server.Station.Systems;
 [PublicAPI]
 public sealed class StationSpawningSystem : SharedStationSpawningSystem
 {
+    [Dependency] private readonly IConfigurationManager _configurationManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IConfigurationManager _configurationManager = default!;
-    [Dependency] private readonly HumanoidAppearanceSystem _humanoidSystem = default!;
-    [Dependency] private readonly IdCardSystem _cardSystem = default!;
-    [Dependency] private readonly PdaSystem _pdaSystem = default!;
-    [Dependency] private readonly SharedAccessSystem _accessSystem = default!;
-    [Dependency] private readonly IdentitySystem _identity = default!;
-    [Dependency] private readonly MetaDataSystem _metaSystem = default!;
-
+    [Dependency] private readonly ActorSystem _actors = default!;
     [Dependency] private readonly ArrivalsSystem _arrivalsSystem = default!;
     [Dependency] private readonly ContainerSpawnPointSystem _containerSpawnPointSystem = default!;
+    [Dependency] private readonly HumanoidAppearanceSystem _humanoidSystem = default!;
+    [Dependency] private readonly IdCardSystem _cardSystem = default!;
+    [Dependency] private readonly IdentitySystem _identity = default!;
+    [Dependency] private readonly MetaDataSystem _metaSystem = default!;
+    [Dependency] private readonly PdaSystem _pdaSystem = default!;
+    [Dependency] private readonly SharedAccessSystem _accessSystem = default!;
+    [Dependency] private readonly IDependencyCollection _dependencyCollection = default!; // Frontier
 
     private bool _randomizeCharacters;
 
@@ -57,12 +63,21 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
     /// <inheritdoc/>
     public override void Initialize()
     {
+        base.Initialize();
         Subs.CVar(_configurationManager, CCVars.ICRandomCharacters, e => _randomizeCharacters = e, true);
 
         _spawnerCallbacks = new Dictionary<SpawnPriorityPreference, Action<PlayerSpawningEvent>>()
         {
             { SpawnPriorityPreference.Arrivals, _arrivalsSystem.HandlePlayerSpawning },
-            { SpawnPriorityPreference.Cryosleep, _containerSpawnPointSystem.HandlePlayerSpawning }
+            {
+                SpawnPriorityPreference.Cryosleep, ev =>
+                {
+                    if (_arrivalsSystem.Forced)
+                        _arrivalsSystem.HandlePlayerSpawning(ev);
+                    else
+                        _containerSpawnPointSystem.HandlePlayerSpawning(ev);
+                }
+            }
         };
     }
 
@@ -89,7 +104,7 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
 
         if (station != null && profile != null)
         {
-            /// Try to call the character's preferred spawner first.
+            // Try to call the character's preferred spawner first.
             if (_spawnerCallbacks.TryGetValue(profile.SpawnPriority, out var preferredSpawner))
             {
                 preferredSpawner(ev);
@@ -104,9 +119,11 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
             }
             else
             {
-                /// Call all of them in the typical order.
+                // Call all of them in the typical order.
                 foreach (var typicalSpawner in _spawnerCallbacks.Values)
+                {
                     typicalSpawner(ev);
+                }
             }
         }
 
@@ -137,7 +154,7 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
         EntityUid? station,
         EntityUid? entity = null)
     {
-        _prototypeManager.TryIndex(job?.Prototype ?? string.Empty, out JobPrototype? prototype);
+        _prototypeManager.TryIndex(job?.Prototype ?? string.Empty, out var prototype);
 
         // If we're not spawning a humanoid, we're gonna exit early without doing all the humanoid stuff.
         if (prototype?.JobEntity != null)
@@ -176,16 +193,109 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
             profile = HumanoidCharacterProfile.RandomWithSpecies(speciesId);
         }
 
-        if (prototype?.StartingGear != null)
+        var jobLoadout = LoadoutSystem.GetJobPrototype(prototype?.ID);
+        var bankBalance = profile!.BankBalance; //Frontier
+
+        if (_prototypeManager.TryIndex(jobLoadout, out RoleLoadoutPrototype? roleProto))
         {
-            var startingGear = _prototypeManager.Index<StartingGearPrototype>(prototype.StartingGear);
-            EquipStartingGear(entity.Value, startingGear, profile);
-            if (profile != null)
-                EquipIdCard(entity.Value, profile.Name, prototype, station);
+            RoleLoadout? loadout = null;
+
+            profile?.Loadouts.TryGetValue(jobLoadout, out loadout);
+
+            // Set to default if not present
+            if (loadout == null)
+            {
+                loadout = new RoleLoadout(jobLoadout);
+                loadout.SetDefault(profile, _actors.GetSession(entity), _prototypeManager);
+            }
+
+            // Order loadout selections by the order they appear on the prototype.
+            foreach (var group in loadout.SelectedLoadouts.OrderBy(x => roleProto.Groups.FindIndex(e => e == x.Key)))
+            {
+                List<ProtoId<LoadoutPrototype>> equippedItems = new(); //Frontier - track purchased items (list: few items)
+                foreach (var items in group.Value)
+                {
+                    if (!_prototypeManager.TryIndex(items.Prototype, out var loadoutProto))
+                    {
+                        Log.Error($"Unable to find loadout prototype for {items.Prototype}");
+                        continue;
+                    }
+                    if (!_prototypeManager.TryIndex(loadoutProto.Equipment, out var startingGear))
+                    {
+                        Log.Error($"Unable to find starting gear {loadoutProto.Equipment} for loadout {loadoutProto}");
+                        continue;
+                    }
+
+                    // Handle any extra data here.
+
+                    //Frontier - we handle bank stuff so we are wrapping each item spawn inside our own cached check.
+                    //This way, we will spawn every item we can afford in the order that they were originally sorted.
+                    if (loadoutProto.Price <= bankBalance)
+                    {
+                        bankBalance -= loadoutProto.Price;
+                        EquipStartingGear(entity.Value, startingGear, raiseEvent: false);
+                        equippedItems.Add(loadoutProto.ID);
+                    }
+                }
+
+                // New Frontiers - Loadout Fallbacks - if a character cannot afford their current job loadout, ensure they have fallback items for mandatory categories.
+                // This code is licensed under AGPLv3. See AGPLv3.txt
+                if (_prototypeManager.TryIndex(group.Key, out var groupPrototype) &&
+                    equippedItems.Count < groupPrototype.MinLimit)
+                {
+                    foreach (var fallback in groupPrototype.Fallbacks)
+                    {
+                        // Do not duplicate items in loadout
+                        if (equippedItems.Contains(fallback))
+                        {
+                            continue;
+                        }
+
+                        if (!_prototypeManager.TryIndex(fallback, out var loadoutProto))
+                        {
+                            Log.Error($"Unable to find loadout prototype for fallback {fallback}");
+                            continue;
+                        }
+
+                        // Validate effects against the current character.
+                        if (!loadout.IsValid(profile!, _actors.GetSession(entity!), fallback, _dependencyCollection, out var _))
+                        {
+                            continue;
+                        }
+
+                        if (!_prototypeManager.TryIndex(loadoutProto.Equipment, out var startingGear))
+                        {
+                            Log.Error($"Unable to find starting gear {loadoutProto.Equipment} for fallback loadout {loadoutProto}");
+                            continue;
+                        }
+
+                        EquipStartingGear(entity.Value, startingGear, raiseEvent: false);
+                        equippedItems.Add(fallback);
+                        // Minimum number of items equipped, no need to load more prototypes.
+                        if (equippedItems.Count >= groupPrototype.MinLimit)
+                            break;
+                    }
+                }
+                // End of modified code.
+            }
+
+            // Frontier: do not re-equip roleLoadout.
+            // Frontier: DO equip job startingGear.
+            if (prototype?.StartingGear is not null)
+                EquipStartingGear(entity.Value, prototype.StartingGear, raiseEvent: false);
+
+            var bank = EnsureComp<BankAccountComponent>(entity.Value);
+            bank.Balance = bankBalance;
         }
+
+        var gearEquippedEv = new StartingGearEquippedEvent(entity.Value);
+        RaiseLocalEvent(entity.Value, ref gearEquippedEv);
 
         if (profile != null)
         {
+            if (prototype != null)
+                SetPdaAndIdCardData(entity.Value, profile.Name, prototype, station);
+
             _humanoidSystem.LoadProfile(entity.Value, profile);
             _metaSystem.SetEntityName(entity.Value, profile.Name);
             if (profile.FlavorText != "" && _configurationManager.GetCVar(CCVars.FlavorText))
@@ -211,13 +321,13 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
     }
 
     /// <summary>
-    /// Equips an ID card and PDA onto the given entity.
+    /// Sets the ID card and PDA name, job, and access data.
     /// </summary>
     /// <param name="entity">Entity to load out.</param>
     /// <param name="characterName">Character name to use for the ID.</param>
     /// <param name="jobPrototype">Job prototype to use for the PDA and ID.</param>
     /// <param name="station">The station this player is being spawned on.</param>
-    public void EquipIdCard(EntityUid entity, string characterName, JobPrototype jobPrototype, EntityUid? station)
+    public void SetPdaAndIdCardData(EntityUid entity, string characterName, JobPrototype jobPrototype, EntityUid? station)
     {
         if (!InventorySystem.TryGetSlotEntity(entity, "id", out var idUid))
             return;
@@ -232,10 +342,8 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
         _cardSystem.TryChangeFullName(cardId, characterName, card);
         _cardSystem.TryChangeJobTitle(cardId, jobPrototype.LocalizedName, card);
 
-        if (_prototypeManager.TryIndex<StatusIconPrototype>(jobPrototype.Icon, out var jobIcon))
-        {
+        if (_prototypeManager.TryIndex(jobPrototype.Icon, out var jobIcon))
             _cardSystem.TryChangeJobIcon(cardId, jobIcon, card);
-        }
 
         var extendedAccess = false;
         if (station != null)

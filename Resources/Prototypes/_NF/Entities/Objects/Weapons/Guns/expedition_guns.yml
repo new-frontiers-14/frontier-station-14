@@ -1,0 +1,106 @@
+# The list contains only the guns that were previously obtainable as expedition reward
+# or as a loose guns on the expedition
+- type: entity
+  id: UnregisteredFirearmBase
+  suffix: Unregistered
+  abstract: true
+  components:
+  - type: Contraband
+
+# Pistols
+- type: entity
+  parent: [ WeaponPistolMk58, UnregisteredFirearmBase ]
+  noSpawn: true
+  id: WeaponPistolMk58Expedition
+
+# Revolvers
+- type: entity
+  parent: [ WeaponRevolverArgenti, UnregisteredFirearmBase ]
+  noSpawn: true
+  id: WeaponRevolverArgentiExpedition
+
+- type: entity
+  parent: [ WeaponRevolverDeckard, UnregisteredFirearmBase ]
+  noSpawn: true
+  id: WeaponRevolverDeckardExpedition
+
+# Shotguns
+- type: entity
+  parent: [ WeaponShotgunDoubleBarreled, UnregisteredFirearmBase ]
+  noSpawn: true
+  id: WeaponShotgunDoubleBarreledExpedition
+
+- type: entity
+  parent: [ WeaponShotgunSawn, UnregisteredFirearmBase ]
+  noSpawn: true
+  id: WeaponShotgunSawnExpedition
+
+- type: entity
+  parent: [ WeaponShotgunHandmade, UnregisteredFirearmBase ]
+  noSpawn: true
+  id: WeaponShotgunHandmadeExpedition
+
+- type: entity
+  parent: [ WeaponShotgunKammerer, UnregisteredFirearmBase ]
+  noSpawn: true
+  id: WeaponShotgunKammererExpedition
+
+# Rifles
+- type: entity
+  parent: [ WeaponRifleGestio, UnregisteredFirearmBase ]
+  noSpawn: true
+  id: WeaponRifleGestioExpedition
+
+# SMGs
+- type: entity
+  parent: [ WeaponSubMachineGunWt550, UnregisteredFirearmBase ]
+  noSpawn: true
+  id: WeaponSubMachineGunWt550Expedition
+
+- type: entity
+  parent: [ WeaponSubMachineGunAtreides, UnregisteredFirearmBase ]
+  noSpawn: true
+  id: WeaponSubMachineGunAtreidesExpedition
+
+- type: entity
+  parent: [ WeaponSubMachineGunDrozd, UnregisteredFirearmBase ]
+  noSpawn: true
+  id: WeaponSubMachineGunDrozdExpedition
+
+# Energy
+- type: entity
+  parent: [ WeaponLaserPistolNF, UnregisteredFirearmBase ]
+  noSpawn: true
+  id: WeaponLaserGunExpedition
+
+- type: entity
+  parent: [ WeaponLaserSvalinn, UnregisteredFirearmBase ]
+  noSpawn: true
+  id: WeaponLaserSvalinnExpedition
+
+- type: entity
+  parent: [ WeaponEnergyGun, UnregisteredFirearmBase ]
+  noSpawn: true
+  id: WeaponEnergyGunExpedition
+
+- type: entity
+  name: laser carbine
+  parent: [ WeaponLaserCarbine, UnregisteredFirearmBase ]
+  noSpawn: true
+  id: WeaponLaserCarbineExpedition
+
+- type: entity
+  parent: [ WeaponAdvancedLaser, UnregisteredFirearmBase ]
+  noSpawn: true
+  id: WeaponAdvancedLaserExpedition
+
+# Sniper
+- type: entity
+  parent: [ WeaponSniperMosin, UnregisteredFirearmBase ]
+  noSpawn: true
+  id: WeaponSniperMosinExpedition
+
+- type: entity
+  parent: [ WeaponSniperRepeater, UnregisteredFirearmBase ]
+  noSpawn: true
+  id: WeaponSniperRepeaterExpedition

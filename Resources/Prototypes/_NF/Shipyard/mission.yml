@@ -24,7 +24,7 @@
   minPlayers: 0
   stations: 
     Mission:
-      stationProto: StandardFrontierExpeditionVessel
+      stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
           mapNameTemplate: 'Mission {1}'
@@ -32,8 +32,7 @@
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
         - type: StationJobs
-          overflowJobs: []
           availableJobs:
-            Chaplain: [ 0, 0 ]
-            Janitor: [ 0, 0 ]
+            Contractor: [ 0, 0 ]
             Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]

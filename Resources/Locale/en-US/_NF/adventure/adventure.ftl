@@ -1,5 +1,4 @@
 ## UI
-playtime-deny-reason-not-whitelisted = You need to be whitelisted.
 adventure-list-start = NT Galactic Bank
 adventure-mode-profit-text = made a total profit of: {" "}
 adventure-mode-loss-text = lost a total of: {" "}
@@ -8,10 +7,6 @@ adventure-list-low = Today's Biggest Spenders:
 adventure-title = New Frontier Adventure Mode
 adventure-description = Join a ship crew or buy your own and explore, research, salvage, or haul your way to riches!
 currency = Spesos
-
-guide-entry-adventure = New Frontiers Program
-guide-entry-bank = NT Galactic Bank
-guide-entry-shipyard = Frontier Shipyards
 
 shipyard-rules-default1 =
     Thank you for your interest in Nanotrasen Security Forces.
@@ -25,6 +20,7 @@ shipyard-rules-default2 =
 shuttle-ftl-proximity = Nearby objects too massive for FTL!
 
 changelog-tab-title-Upstream = Upstream Changelog
+multiauth-already-connected = Already connected to Frontier Official servers.
 
 public-transit-departure = Now departing for {$destination}. Estimated travel time: {$flytime} seconds.
 public-transit-arrival = Thank you for choosing NT Public Transit. Next transfer to {$destination} departs in {$waittime} seconds.

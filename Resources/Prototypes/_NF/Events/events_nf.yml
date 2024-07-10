@@ -1,0 +1,34 @@
+- type: entity
+  id: BaseStationEventNFModerateDelay
+  parent: BaseGameRule
+  abstract: true
+  components:
+    - type: GameRule
+      delay:
+        min:  30
+        max:  40
+
+- type: entity
+  id: BluespaceCargo
+  parent: BaseStationEventNFModerateDelay
+  noSpawn: true
+  components:
+  - type: StationEvent
+    weight: 5
+    duration: 35
+  - type: BluespaceCargoRule
+
+- type: entity
+  id: BluespaceSyndicateCrate
+  parent: BaseStationEventNFModerateDelay
+  noSpawn: true
+  components:
+  - type: StationEvent
+    startAudio:
+      path: /Audio/Announcements/attention.ogg
+    weight: 1
+    duration: 35
+    earliestStart: 90
+    minimumPlayers: 20
+    maxOccurrences: 1 # Only once per shift possible
+  - type: BluespaceSyndicateCrateRule

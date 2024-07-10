@@ -2,6 +2,7 @@ using System.Numerics;
 using Content.Shared.Construction.Components;
 using Content.Shared.Weapons.Melee.Components;
 using Content.Shared.Weapons.Melee.Events;
+using Content.Shared.Whitelist;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
@@ -18,6 +19,7 @@ public sealed class MeleeThrowOnHitSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
+    [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -47,7 +49,13 @@ public sealed class MeleeThrowOnHitSystem : EntitySystem
 
             if (comp.UnanchorOnHit && HasComp<AnchorableComponent>(hit))
             {
-                _transform.Unanchor(hit, Transform(hit));
+                if (comp.Whitelist != null) // Frontier
+                {
+                    if (_whitelist.IsWhitelistPass(comp.Whitelist, hit))
+                        _transform.Unanchor(hit, Transform(hit));
+                }
+                else // Frontier
+                    _transform.Unanchor(hit, Transform(hit));
             }
 
             RemComp<MeleeThrownComponent>(hit);
@@ -74,7 +82,7 @@ public sealed class MeleeThrowOnHitSystem : EntitySystem
         comp.PreviousStatus = body.BodyStatus;
         comp.ThrownEndTime = _timing.CurTime + TimeSpan.FromSeconds(comp.Lifetime);
         comp.MinLifetimeTime = _timing.CurTime + TimeSpan.FromSeconds(comp.MinLifetime);
-        _physics.SetBodyStatus(body, BodyStatus.InAir);
+        _physics.SetBodyStatus(ent, body, BodyStatus.InAir);
         _physics.SetLinearVelocity(ent, Vector2.Zero, body: body);
         _physics.ApplyLinearImpulse(ent, comp.Velocity * body.Mass, body: body);
         Dirty(ent, ent.Comp);
@@ -83,7 +91,7 @@ public sealed class MeleeThrowOnHitSystem : EntitySystem
     private void OnThrownShutdown(Entity<MeleeThrownComponent> ent, ref ComponentShutdown args)
     {
         if (TryComp<PhysicsComponent>(ent, out var body))
-            _physics.SetBodyStatus(body,ent.Comp.PreviousStatus);
+            _physics.SetBodyStatus(ent, body, ent.Comp.PreviousStatus);
         var ev = new MeleeThrowOnHitEndEvent();
         RaiseLocalEvent(ent, ref ev);
     }

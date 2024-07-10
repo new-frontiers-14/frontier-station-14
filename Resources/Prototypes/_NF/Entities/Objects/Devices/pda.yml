@@ -72,12 +72,25 @@
   components:
   - type: Pda
     id: StcIDCard
-    state: pda
+    state: pda-stc
   - type: PdaBorderColor
-    borderColor: "#717059"
-    accentVColor: "#A32D26"
+    borderColor: "#F2F2F2"
+    accentVColor: "#FE4900"
+  - type: Sprite
+    sprite: _NF/Objects/Devices/pda.rsi
+    layers:
+    - map: [ "enum.PdaVisualLayers.Base" ]
+    - state: "light_overlay"
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+      shader: "unshaded"
+      visible: false
+    - state: "id_overlay"
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+      shader: "unshaded"
+      visible: false
   - type: Icon
-    state: pda
+    sprite: _NF/Objects/Devices/pda.rsi
+    state: pda-stc
 
 - type: entity
   parent: SecurityPDA
@@ -103,13 +116,20 @@
 
 - type: entity
   parent: BasePDA
-  id: NfsdSheriff
+  id: SheriffPDA
   name: sheriff PDA
   description: Whosoever bears this PDA is the law.
   components:
   - type: Pda
-    id: nfsdsheriffID
+    id: ShriffIDCard
     state: pda-sheriff
+    bookSlot: # Frontier
+      startingItem: HyperlinkBookNfsdSop
+      priority: -2
+      whitelist:
+        tags:
+        - BookSpaceLaw
+        - BookNfsdSop
   - type: PdaBorderColor
     borderColor: "#FFFDD0"
     accentHColor: "#896b49"
@@ -131,13 +151,20 @@
 
 - type: entity
   parent: BasePDA
-  id: NfsdCadet
+  id: CadetPDA
   name: cadet PDA
   description: Whosoever bears this PDA could be the law.
   components:
   - type: Pda
-    id: nfsdcadetID
+    id: CadetIDCard
     state: pda-cadet
+    bookSlot: # Frontier
+      startingItem: HyperlinkBookNfsdSop
+      priority: -2
+      whitelist:
+        tags:
+        - BookSpaceLaw
+        - BookNfsdSop
   - type: PdaBorderColor
     borderColor: "#FFFDD0"
     accentHColor: "#896b49"
@@ -159,13 +186,20 @@
 
 - type: entity
   parent: BasePDA
-  id: NfsdDeputy
+  id: DeputyPDA
   name: deputy PDA
   description: Whosoever bears this PDA is close to being the law.
   components:
   - type: Pda
-    id: nfsddeputyID
+    id: DeputyIDCard
     state: pda-deputy
+    bookSlot: # Frontier
+      startingItem: HyperlinkBookNfsdSop
+      priority: -2
+      whitelist:
+        tags:
+        - BookSpaceLaw
+        - BookNfsdSop
   - type: PdaBorderColor
     borderColor: "#FFFDD0"
     accentHColor: "#896b49"
@@ -186,14 +220,21 @@
     state: pda-deputy
 
 - type: entity
-  parent: BasePDA
-  id: NfsdBrigmedic
+  parent: BaseMedicalPDA
+  id: BrigmedicNFPDA
   name: brigmedic PDA
   description: Whosoever bears this PDA heals the law.
   components:
   - type: Pda
-    id: nfsdbrigmedicID
+    id: BrigmedicNFIDCard
     state: pda-brigmed
+    bookSlot: # Frontier
+      startingItem: HyperlinkBookNfsdSop
+      priority: -2
+      whitelist:
+        tags:
+        - BookSpaceLaw
+        - BookNfsdSop
   - type: PdaBorderColor
     borderColor: "#FFFDD0"
     accentHColor: "#896b49"
@@ -215,13 +256,20 @@
 
 - type: entity
   parent: BasePDA
-  id: NfsdSergeant
+  id: SergeantPDA
   name: sergeant PDA
   description: Whosoever bears this PDA puts the law on their back.
   components:
   - type: Pda
-    id: nfsdsergeantID
+    id: SergeantIDCard
     state: pda-sergeant
+    bookSlot: # Frontier
+      startingItem: HyperlinkBookNfsdSop
+      priority: -2
+      whitelist:
+        tags:
+        - BookSpaceLaw
+        - BookNfsdSop
   - type: PdaBorderColor
     borderColor: "#FFFDD0"
     accentHColor: "#896b49"
@@ -243,13 +291,20 @@
 
 - type: entity
   parent: BasePDA
-  id: NfsdBailiff
+  id: BailiffPDA
   name: bailiff PDA
   description: Whosoever bears this PDA puts the law on their back.
   components:
   - type: Pda
-    id: nfsdbailiffID
+    id: BailiffIDCard
     state: pda-bailiff
+    bookSlot: # Frontier
+      startingItem: HyperlinkBookNfsdSop
+      priority: -2
+      whitelist:
+        tags:
+        - BookSpaceLaw
+        - BookNfsdSop
   - type: PdaBorderColor
     borderColor: "#FFFDD0"
     accentHColor: "#896b49"
@@ -268,3 +323,103 @@
   - type: Icon
     sprite: _NF/Objects/Devices/pda.rsi
     state: pda-bailiff
+
+- type: entity
+  parent: BasePDA
+  id: DetectiveNFPDA
+  name: detective PDA
+  noSpawn: false
+  description: Smells like rain... pouring down the rooftops...
+  components:
+  - type: Pda
+    id: DetectiveNFIDCard
+    state: pda-detective
+    bookSlot: # Frontier
+      startingItem: HyperlinkBookNfsdSop
+      priority: -2
+      whitelist:
+        tags:
+        - BookSpaceLaw
+        - BookNfsdSop
+  - type: PdaBorderColor
+    borderColor: "#774705"
+  - type: Icon
+    state: pda-detective
+
+- type: entity
+  parent: HoPPDA
+  id: SrPDA
+  name: station representative PDA
+  description: Looks like it's been clawed on.
+  components:
+  - type: Pda
+    id: SrIDCard
+    state: pda-sr
+    penSlot:
+      startingItem: PenCentcom
+      priority: -1
+      whitelist:
+        tags:
+        - Write
+  - type: PdaBorderColor
+    borderColor: "#789876"
+    accentHColor: "#447987"
+  - type: Sprite
+    sprite: _NF/Objects/Devices/pda.rsi
+    layers:
+    - map: [ "enum.PdaVisualLayers.Base" ]
+    - state: "light_overlay"
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+      shader: "unshaded"
+      visible: false
+    - state: "id_overlay"
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+      shader: "unshaded"
+      visible: false
+  - type: Icon
+    sprite: _NF/Objects/Devices/pda.rsi
+    state: pda-sr
+
+- type: entity
+  parent: PiratePDA
+  id: PirateNFPDA
+  name: pirate PDA
+  components:
+  - type: Pda
+    id: PirateNFIDCard
+    state: pda-pirate
+
+- type: entity
+  parent: PiratePDA
+  id: PirateCaptainNFPDA
+  name: pirate captain PDA
+  components:
+  - type: Pda
+    id: PirateCaptainNFIDCard
+    state: pda-pirate
+
+- type: entity
+  parent: PiratePDA
+  id: PirateFirstMateNFPDA
+  name: pirate first mate PDA
+  components:
+  - type: Pda
+    id: PirateFirstMateNFIDCard
+    state: pda-pirate
+
+- type: entity
+  parent: PassengerPDA
+  id: ContractorPDA
+  name: contractor PDA
+  components:
+  - type: Pda
+    id: ContractorIDCard
+    state: pda
+
+- type: entity
+  parent: ClearPDA
+  id: ClearNFPDA
+  components:
+  - type: Pda
+    id: ContractorIDCard
+    state: pda-clear

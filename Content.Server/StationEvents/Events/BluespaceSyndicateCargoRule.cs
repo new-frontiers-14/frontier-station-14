@@ -8,6 +8,7 @@ using Robust.Shared.Physics;
 using Robust.Shared.Random;
 using Robust.Shared.Configuration;
 using Content.Server.Atmos.EntitySystems;
+using Content.Shared.GameTicking.Components;
 using Content.Shared.CCVar;
 
 namespace Content.Server.StationEvents.Events;
@@ -66,7 +67,7 @@ public sealed class BluespaceCrateRule : StationEventSystem<BluespaceSyndicateCr
             var tile = new Vector2i(randomX, randomY);
 
             // no air-blocked areas.
-            if (_atmosphere.IsTileSpace(grid, xform.MapUid, tile, mapGridComp: gridComp) ||
+            if (_atmosphere.IsTileSpace(grid, xform.MapUid, tile) ||
                 _atmosphere.IsTileAirBlocked(grid, tile, mapGridComp: gridComp))
             {
                 continue;

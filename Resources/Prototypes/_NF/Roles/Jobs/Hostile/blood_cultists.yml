@@ -7,8 +7,9 @@
     gloves: ClothingHandsGlovesCombat
     neck: BedsheetCult
     outerClothing: ClothingOuterArmorCult
+    belt: ClothingBeltCultWebbing
+    back: ClothingBackpackBloodCultLootA
   inhand:
-#    - UnholyHalberd
     - WizardStaffMeleeBlood
 
 # Acolyte
@@ -19,42 +20,63 @@
     shoes: ClothingShoesCult
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterArmorCult
+    back: ClothingBackpackBloodCultLootB
+    belt: ClothingBeltCultWebbing
   inhand:
-    - EldritchBlade
-#    - RitualDagger
+    - SpawnInhandMeleeWeaponBloodCultHigh
 
 # Cultist (Melee)
 - type: startingGear
   id: BloodCultistZealotMeleeGear
   equipment:
-    head: ClothingHeadHatHoodCulthood
+    head: ClothingHeadHatHoodBloodCulthoodUnremoveable
     shoes: ClothingShoesCult
     gloves: ClothingHandsGlovesCombat
     mask: ClothingMaskJackal
-    outerClothing: ClothingOuterRobesCult
+    outerClothing: ClothingOuterCoatBloodCultRobes
+    belt: ClothingBeltCultWebbing
+    back: ClothingBackpackBloodCultLootD
   inhand:
-    - RitualDagger
+    - SpawnInhandMeleeWeaponBloodCultLow
 
 # Cultist (Ranged)
 - type: startingGear
   id: BloodCultistZealotRangedGear
   equipment:
-    head: ClothingHeadHatHoodCulthood
+    head: ClothingHeadHatHoodBloodCulthoodUnremoveable
     shoes: ClothingShoesCult
     mask: ClothingMaskRaven
     gloves: ClothingHandsGlovesColorBlackCrossbow
-    outerClothing: ClothingOuterRobesCult
+    outerClothing: ClothingOuterCoatBloodCultRobes
     back: ClothingBackpackBloodCultZealotLootA
     belt: ClothingBeltQuiverCrossbowFilledBolt
+  inhand:
+    - SpawnInhandMeleeWeaponBloodCultLow
 
 # Cultist (Caster)
 - type: startingGear
   id: BloodCultistCasterGear
   equipment:
-    head: ClothingHeadHatHoodCulthood
+    head: ClothingHeadHatHoodBloodCulthoodUnremoveable
     shoes: ClothingShoesCult
     mask: ClothingMaskRaven
     gloves: ClothingHandsGlovesCombat
-    outerClothing: ClothingOuterRobesCult
+    outerClothing: ClothingOuterCoatBloodCultRobes
+    back: ClothingBackpackBloodCultLootC
+    belt: ClothingBeltCultWebbing
   inhand:
     - WizardStaffMeleeBlood
+
+# Janitor (Caster)
+- type: startingGear
+  id: BloodCultistJanitorGear
+  equipment:
+    head: ClothingHeadHelmetCultJanitor
+    shoes: ClothingShoesCult
+    mask: ClothingMaskCultJanitor
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterCoatCultJanitor
+    belt: ClothingBeltCultForceField
+    back: ClothingBackpackBloodCultLootA
+  inhand:
+    - SpawnInhandMeleeWeaponBloodCultHigh

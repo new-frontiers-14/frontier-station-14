@@ -1,0 +1,28 @@
+- type: vessel
+  id: Gourd
+  name: SLI Gourd
+  description: The Gourd is a Science/Salvo-Expo vessel with a dedicated blast chamber, and a proper bar/grill.
+  price: 225000
+  category: Large
+  group: Expedition
+  shuttlePath: /Maps/_NF/Shuttles/Expedition/gourd.yml
+
+- type: gameMap
+  id: Gourd
+  mapName: 'SLI Gourd'
+  mapPath: /Maps/_NF/Shuttles/Expedition/gourd.yml
+  minPlayers: 0
+  stations:
+    Gourd:
+      stationProto: StandardFrontierExpeditionVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Gourd {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]

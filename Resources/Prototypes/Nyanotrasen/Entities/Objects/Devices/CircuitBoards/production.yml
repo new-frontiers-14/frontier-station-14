@@ -8,14 +8,13 @@
       state: engineering
     - type: MachineBoard
       prototype: EngineeringTechFab
-      requirements:
-        MatterBin: 2
-        Manipulator: 2
+      requirements: # Frontier
+        MatterBin: 2 # Frontier stackRequirements<requirements
+        Manipulator: 2 # Frontier stackRequirements<requirements
       tagRequirements:
         GlassBeaker:
-          Amount: 2
-          DefaultPrototype: Beaker
-          ExamineName: Glass Beaker
+          amount: 2
+          defaultPrototype: Beaker
 
 - type: entity
   id: ServiceTechFabCircuitboard
@@ -27,14 +26,13 @@
       state: service
     - type: MachineBoard
       prototype: ServiceTechFab
-      requirements:
-        MatterBin: 2
-        Manipulator: 2
+      requirements: # Frontier
+        MatterBin: 2 # Frontier stackRequirements<requirements
+        Manipulator: 2 # Frontier stackRequirements<requirements
       tagRequirements:
         GlassBeaker:
-          Amount: 2
-          DefaultPrototype: Beaker
-          ExamineName: Glass Beaker
+          amount: 2
+          defaultPrototype: Beaker
 
 - type: entity
   id: ScienceTechFabCircuitboard
@@ -46,14 +44,13 @@
       state: science
     - type: MachineBoard
       prototype: ScienceTechFab
-      requirements:
-        MatterBin: 2
-        Manipulator: 2
+      requirements: # Frontier
+        MatterBin: 2 # Frontier stackRequirements<requirements
+        Manipulator: 2 # Frontier stackRequirements<requirements
       tagRequirements:
         GlassBeaker:
-          Amount: 2
-          DefaultPrototype: Beaker
-          ExamineName: Glass Beaker
+          amount: 2
+          defaultPrototype: Beaker
 
 - type: entity
   id: DeepFryerMachineCircuitboard
@@ -64,10 +61,10 @@
       state: service
     - type: MachineBoard
       prototype: KitchenDeepFryer
-      requirements:
-        Capacitor: 1
-        MatterBin: 1
-      materialRequirements:
+      requirements: # Frontier
+        Capacitor: 1 # Frontier stackRequirements<requirements
+        MatterBin: 1 # Frontier stackRequirements<requirements
+      stackRequirements:
         Steel: 4
         Glass: 2
-        Cable: 4
+        Cable: 5

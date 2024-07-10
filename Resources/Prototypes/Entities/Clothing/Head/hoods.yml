@@ -13,8 +13,11 @@
   - type: IngestionBlocker
   - type: Tag
     tags:
-    - HidesHair
     - WhitelistChameleon
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - Snout
 
 - type: entity
   parent: ClothingHeadHatHoodBioGeneral
@@ -94,9 +97,11 @@
     sprite: Clothing/Head/Hoods/chaplain.rsi
   - type: Tag
     tags:
-    - HidesHair
     - HamsterWearable
     - WhitelistChameleon
+  - type: HideLayerClothing
+    slots:
+    - Hair
 
 - type: entity
   parent: ClothingHeadBase
@@ -110,9 +115,13 @@
     sprite: Clothing/Head/Hoods/cult.rsi
   - type: Tag
     tags:
-    - HidesHair
     - WhitelistChameleon
+  - type: HideLayerClothing
+    slots:
+    - Hair
   - type: Contraband #frontier
+  - type: FactionClothing # frontier
+    faction: ContrabandClothing # frontier
 
 - type: entity
   parent: ClothingHeadBase
@@ -126,9 +135,11 @@
     sprite: Clothing/Head/Hoods/nun.rsi
   - type: Tag
     tags:
-    - HidesHair
     - HamsterWearable
     - WhitelistChameleon
+  - type: HideLayerClothing
+    slots:
+    - Hair
 
 - type: entity
   parent: ClothingHeadBase
@@ -146,9 +157,10 @@
         Heat: 0.95
         Radiation: 0.65
   - type: BreathMask
-  - type: Tag
-    tags:
-    - HidesHair
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - Snout
 
 - type: entity
   parent: ClothingHeadBase
@@ -162,8 +174,10 @@
     sprite: Clothing/Head/Hoods/goliathcloak.rsi
   - type: Tag
     tags:
-    - HidesHair
     - WhitelistChameleon
+  - type: HideLayerClothing
+    slots:
+    - Hair
 
 - type: entity
   parent: ClothingHeadBase
@@ -176,9 +190,9 @@
     sprite: Clothing/Head/Hoods/iansuit.rsi
   - type: Clothing
     sprite: Clothing/Head/Hoods/iansuit.rsi
-  - type: Tag
-    tags:
-    - HidesHair
+  - type: HideLayerClothing
+    slots:
+    - Hair
 
 - type: entity
   parent: ClothingHeadBase
@@ -191,9 +205,25 @@
     sprite: Clothing/Head/Hoods/carpsuit.rsi
   - type: Clothing
     sprite: Clothing/Head/Hoods/carpsuit.rsi
-  - type: Tag
-    tags:
-    - HidesHair
+  - type: HideLayerClothing
+    slots:
+    - Hair
+
+- type: entity
+  parent: ClothingHeadHatHoodCarp
+  id: ClothingHeadHelmetHardsuitCarp
+  noSpawn: true
+  components:
+  - type: PressureProtection
+    highPressureMultiplier: 0.6
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    coefficient: 0.2
+  - type: BreathMask
+  # this is on the hood so you only fool the fish if you wear the whole set
+  # wear carp suit and security helmet, they'll know you are fake
+  - type: FactionClothing
+    faction: Dragon
 
 - type: entity
   parent: ClothingHeadBase
@@ -208,8 +238,11 @@
   - type: IdentityBlocker
   - type: Tag
     tags:
-    - HidesHair
     - WhitelistChameleon
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - Snout
 
 #Winter Coat Hoods
 - type: entity
@@ -317,7 +350,7 @@
   parent: ClothingHeadHatHoodWinterBase
   id: ClothingHeadHatHoodWinterHOP
   noSpawn: true
-  name: station representative's winter coat hood
+  name: head of personnel's winter coat hood
   components:
   - type: Sprite
     sprite: Clothing/Head/Hoods/Coat/hoodhop.rsi

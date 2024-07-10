@@ -3,6 +3,7 @@ using Content.Server.Speech.Components;
 using Content.Server.UserInterface;
 using Content.Shared.Instruments;
 using Content.Shared.ActionBlocker;
+using Content.Shared.Bed.Sleep;
 using Content.Shared.Damage;
 using Content.Shared.Damage.ForceSay;
 using Content.Shared.DeltaV.Harpy;
@@ -130,9 +131,10 @@ namespace Content.Server.DeltaV.Harpy
         private void CloseMidiUi(EntityUid uid)
         {
             if (HasComp<ActiveInstrumentComponent>(uid) &&
-                TryComp<ActorComponent>(uid, out var actor))
+                TryComp<ActorComponent>(uid, out var actor) &&
+                actor.PlayerSession.AttachedEntity is {} player)
             {
-                _instrument.ToggleInstrumentUi(uid, actor.PlayerSession);
+                _instrument.ToggleInstrumentUi(uid, player);
             }
         }
 

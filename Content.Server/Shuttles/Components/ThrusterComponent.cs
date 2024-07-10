@@ -66,19 +66,12 @@ namespace Content.Server.Shuttles.Components
         public string MachinePartThrust = "Capacitor";
 
         [DataField("partRatingThrustMultiplier")]
-        public float PartRatingThrustMultiplier = 1.5f;
-
-        [DataField("thrusterIgnoreEmp")]
-        public bool ThrusterIgnoreEmp = false;
+        public float PartRatingThrustMultiplier = 1.15f; // Frontier - PR #1292 1.5f<1.15f
 
         /// <summary>
-        ///     While disabled by EMP
+        ///     Frontier - Amount of charge this needs from an APC per second to function.
         /// </summary>
-        [DataField("timeoutFromEmp", customTypeSerializer: typeof(TimeOffsetSerializer))]
-        public TimeSpan TimeoutFromEmp = TimeSpan.Zero;
-
-        [DataField("disableDuration"), ViewVariables(VVAccess.ReadWrite)]
-        public float DisableDuration = 60f;
+        public float OriginalLoad { get; set; } = 0;
     }
 
     public enum ThrusterType

@@ -34,7 +34,7 @@
   suffix: EMP
   parent: BaseWeaponLauncher
   id: WeaponLauncherRocketEmp
-  description: A modified ancient rocket-propelled grenade launcher.
+  description: A modified ancient rocket-propelled grenade launcher. On the handle is a label that says 'for authorized use only.'
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Launchers/rocket.rsi
@@ -86,6 +86,33 @@
     whitelist:
       tags:
         - MailCapsule
+    capacity: 4
+  - type: StaticPrice
+    price: 50
+
+- type: entity
+  name: nfsd grenade launcher
+  parent: WeaponLauncherChinaLake
+  id: WeaponLauncherNfsdLake
+  description: nfsd rapid grenade delivery system
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Launchers/nfsd_lake.rsi
+    layers:
+      - state: icon
+        map: ["enum.GunVisualLayers.Base"]
+  - type: Clothing
+    sprite: _NF/Objects/Weapons/Guns/Launchers/nfsd_lake.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: BallisticAmmoProvider
+    proto: null
+    whitelist:
+      tags:
+        - TrackingDart
+        - Grenade
     capacity: 4
   - type: StaticPrice
     price: 50

@@ -8,26 +8,22 @@
       time: 21600
   startingGear: LawyerGear
   icon: "JobIconLawyer"
-  supervisors: job-supervisors-hop
-  access:
-  - Service
-  - Lawyer
-  - Brig
-  - Maintenance
-  - External # Frontier
+  supervisors: job-supervisors-hire # Frontier
+  canBeAntag: false
+  accessGroups: # Frontier
+  - GeneralNfsdBrigAccess # Frontier
+  special: # Frontier
+  - !type:GiveItemOnHolidaySpecial # Frontier
+    holiday: FrontierBirthday # Frontier
+    prototype: FrontierBirthdayGift # Frontier
 
 - type: startingGear
   id: LawyerGear
   equipment:
-    jumpsuit: ClothingUniformJumpsuitLawyerBlack  # TODO change jumpsuit to randomiser of the 4 variants
-    back: ClothingBackpackLawyerFilled # Frontier
     shoes: ClothingShoesBootsLaceup
     id: LawyerPDA
-    ears: ClothingHeadsetSecurity
-    pocket1: HyperlinkBookSpaceLaw # Frontier
+    ears: ClothingHeadsetNfsdGreen # Frontier ClothingHeadsetSecurity<ClothingHeadsetNfsdGreen
+    # TODO add copy of space law
+    pocket1: RubberStampLawyer # Frontier
   inhand:
     - BriefcaseBrownFilled
-  innerClothingSkirt: ClothingUniformJumpskirtLawyerBlack
-  satchel: ClothingBackpackSatchelLawyerFilled # Frontier
-  duffelbag: ClothingBackpackDuffelLawyerFilled # Frontier
-  messenger: ClothingBackpackMessengerLawyerFilled # Frontier

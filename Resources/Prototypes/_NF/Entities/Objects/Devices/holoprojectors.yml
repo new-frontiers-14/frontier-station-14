@@ -1,0 +1,54 @@
+- type: entity
+  parent: HoloprojectorSecurity
+  id: HoloprojectorNfsd
+  name: nfsd holobarrier projector
+  description: Creates a solid but fragile holographic barrier.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Devices/Holoprojectors/nfsd.rsi
+    state: icon
+  - type: HolosignProjector
+    signProto: HolosignNfsd
+
+- type: entity
+  parent: HoloprojectorSecurityEmpty
+  id: HoloprojectorNfsdEmpty
+  suffix: Empty
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Devices/Holoprojectors/nfsd.rsi
+    state: icon
+  - type: HolosignProjector
+    signProto: HolosignNfsd
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+
+- type: entity
+  parent: Holoprojector
+  id: HoloGraffitiProjector
+  name: holograffiti projector
+  description: Tag up the sharp end, let 'em know you were here.
+  components:
+  - type: HolosignProjector
+    signProto: SpawnerHoloGraffitiRandom
+    chargeUse: 60
+  - type: Sprite
+    sprite: _NF/Objects/Devices/Holoprojectors/graffiti.rsi
+    state: icon
+  - type: Tag
+    tags:
+    - HolofanProjector
+  - type: StaticPrice
+    price: 80
+
+- type: entity
+  parent: HoloGraffitiProjector
+  id: HoloGraffitiProjectorEmpty
+  suffix: Empty
+  components:
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default

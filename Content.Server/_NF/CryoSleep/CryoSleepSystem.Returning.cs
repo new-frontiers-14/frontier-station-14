@@ -63,14 +63,14 @@ public sealed partial class CryoSleepSystem
             return ReturnToBodyStatus.CryopodMissing;
 
         var body = storedBody.Value.Body;
-        if (IsOccupied(cryoComp) || !cryoComp.BodyContainer.Insert(body, EntityManager))
+        if (IsOccupied(cryoComp) || !_container.Insert(body, cryoComp.BodyContainer))
             return ReturnToBodyStatus.Occupied;
 
         _storedBodies.Remove(id.Value);
         _mind.ControlMob(id.Value, body);
         // Force the mob to sleep
         var sleep = EnsureComp<SleepingComponent>(body);
-        sleep.CoolDownEnd = TimeSpan.FromSeconds(5);
+        sleep.CooldownEnd = TimeSpan.FromSeconds(5);
 
         _popup.PopupEntity(Loc.GetString("cryopod-wake-up", ("entity", body)), body);
 
