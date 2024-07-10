@@ -1,0 +1,43 @@
+
+- type: entity
+  parent: ClothingShoesBaseButcherable
+  id: ClothingShoesBootsPunkRandomized
+  name: punk boots
+  description: Deez boots were made for stompin', an' stompin' on ya bucket dey'll do.
+  suffix: Random visuals
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Shoes/Boots/punk.rsi
+    layers:
+    - state: base_boots_01
+      map: [ "boots_main" ]
+      scale: 2, 2
+      offset: 0,0.6
+    - state: decor_base_boots_01
+      map: [ "boots_decor" ]
+      scale: 2, 2
+      offset: 0,0.6
+    - state: mask_null
+      map: [ "boots_overlay" ]
+      scale: 2, 2
+      offset: 0,0.6
+  - type: Clothing
+    sprite: _NF/Clothing/Shoes/Boots/punk.rsi
+    clothingVisuals:
+      shoes:
+      - state: base_boots_01
+        map: [ "boots_main" ]
+      - state: mask_null
+        map: [ "boots_decor" ]
+      - state: mask_null
+        map: [ "boots_overlay" ]
+  - type: RandomSprite
+    available:
+    - boots_main:
+        base_boots_01: Cyberpunk
+      boots_decor:
+        decor_base_boots_01: Cyberpunk
+        mask_null: ""
+      boots_overlay:
+        decor_base_boots_02: Cyberpunk
+        mask_null: ""

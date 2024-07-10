@@ -29,7 +29,6 @@
                 SheetSteel1:
                   min: 2
                   max: 4
-    - type: MobState # Frontier (otherwise NPCs won't attack the entity)
 
 - type: entity
   parent: BaseStructure
@@ -119,6 +118,7 @@
     - type: NoRotateOnMove
     - type: Input
       context: "human"
+    - type: MobState # Frontier (otherwise NPCs won't attack the entity)
 
 - type: entity
   parent: BaseWeaponTurret

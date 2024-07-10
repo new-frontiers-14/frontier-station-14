@@ -11,3 +11,10 @@ trait-goblin-accent-desc = You speak in secret language many find annoying and n
 
 trait-pious-name = Pious
 trait-pious-desc = You are in touch with the gods, but your vows keep you from striking in anger.
+
+trait-streetpunk-accent-name = Streetpunk Accent
+trait-streetpunk-accent-desc = Ya were born in a sprawlin' megacity an' never went to school. An' it shows, choom.
+
+# These traits are bound to be replaced with a slider, but they live here for now.
+trait-tall-name = Tall
+trait-short-name = Short

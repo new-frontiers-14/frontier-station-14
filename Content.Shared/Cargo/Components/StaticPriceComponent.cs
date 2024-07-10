@@ -11,4 +11,10 @@ public sealed partial class StaticPriceComponent : Component
     /// </summary>
     [DataField("price", required: true)]
     public double Price;
+
+    /// <summary>
+    /// Frontier - The price of the object this component is on when buying from a vending machine.
+    /// </summary>
+    [DataField]
+    public double VendPrice;
 }
