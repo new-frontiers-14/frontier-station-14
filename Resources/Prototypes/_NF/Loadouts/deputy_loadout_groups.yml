@@ -4,15 +4,8 @@
   loadouts:
   - DeputyClothingUniformJumpsuitDeputy
   - DeputyClothingUniformJumpskirtDeputy
-
-- type: loadoutGroup
-  id: DeputyBackpack
-  name: loadout-group-contractor-backpack
-  loadouts:
-  - DeputyClothingBackpackDeputyFilled
-  - DeputyClothingBackpackDuffelDeputyFilled
-  - DeputyClothingBackpackSatchelDeputyFilled
-  - DeputyClothingBackpackMessengerFilled
+  fallbacks:
+  - DeputyClothingUniformJumpsuitDeputy
   
 - type: loadoutGroup
   id: DeputyOuterClothing
@@ -25,6 +18,8 @@
   id: DeputyShoes
   name: loadout-group-contractor-shoes
   loadouts:
+  - NfsdClothingShoesBootsBrown
+  fallbacks:
   - NfsdClothingShoesBootsBrown
 
 - type: loadoutGroup
@@ -39,6 +34,8 @@
   name: loadout-group-contractor-gloves
   loadouts:
   - DeputyClothingHandsGlovesDeputy
+  fallbacks:
+  - DeputyClothingHandsGlovesDeputy
 
 - type: loadoutGroup
   id: DeputyNeck
@@ -52,9 +49,13 @@
   name: loadout-group-contractor-id
   loadouts:
   - DeputyDeputyPDA
+  fallbacks:
+  - DeputyDeputyPDA
   
 - type: loadoutGroup
   id: DeputyGlasses
   name: loadout-group-contractor-glasses
   loadouts:
+  - NfsdClothingEyesGlasses
+  fallbacks:
   - NfsdClothingEyesGlasses

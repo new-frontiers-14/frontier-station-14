@@ -48,6 +48,7 @@ public sealed partial class IdCardConsoleComponent : Component
     {
         "Armory",
         //"Atmospherics",
+        "Bailiff", // Frontier
         //"Bar",
         "Brig",
         "Detective",
@@ -72,12 +73,12 @@ public sealed partial class IdCardConsoleComponent : Component
         "Maintenance",
         "Medical",
         "Mercenary", // Frontier
-        "Pilot", // Frontier
         //"Quartermaster",
         //"Research",
         //"ResearchDirector",
         //"Salvage",
         "Security",
+        "Sergeant", // Frontier
         "Service",
         "StationTrafficController", // Frontier
         //"Theatre",

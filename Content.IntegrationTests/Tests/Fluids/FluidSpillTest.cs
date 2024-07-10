@@ -73,7 +73,7 @@ public sealed class FluidSpill
         await server.WaitAssertion(() =>
         {
             var grid = entityManager.GetComponent<MapGridComponent>(gridId);
-            var solution = new Solution("Blood", FixedPoint2.New(100));
+            var solution = new Solution("Wine", FixedPoint2.New(100)); // Frontier - Blood to wine so test pass
             var tileRef = grid.GetTileRef(puddleOrigin);
 #pragma warning disable NUnit2045 // Interdependent tests
             Assert.That(puddleSystem.TrySpillAt(tileRef, solution, out _), Is.True);

@@ -249,52 +249,65 @@ entities:
       data:
         tiles:
           0,0:
-            0: 13175
+            0: 275
           0,-1:
-            0: 30719
+            0: 13079
             1: 2048
-          -1,-1:
-            0: 52462
-            1: 1
           -1,0:
-            0: 35020
+            0: 8
           0,1:
-            0: 1
-            1: 16
+            2: 16
           1,0:
             1: 13107
+          1,-1:
+            1: 14080
+            0: 3
           1,1:
             1: 4371
           -1,-3:
-            0: 65516
+            0: 60552
             1: 2
           -1,-2:
-            0: 65535
+            0: 52974
+          -1,-1:
+            1: 1
+            0: 34828
           -1,-4:
-            0: 49152
-          0,-4:
-            0: 28672
+            0: 32768
           0,-3:
-            0: 30711
-            2: 34816
+            0: 29475
             1: 8
+            3: 34816
           0,-2:
-            0: 65535
+            0: 32755
+          0,-4:
+            0: 8192
           1,-3:
-            0: 8976
-            2: 4096
+            3: 4096
             1: 16384
           1,-2:
-            0: 30583
-          1,-1:
-            0: 119
-            1: 14080
+            0: 13104
         uniqueMixes:
         - volume: 2500
           temperature: 293.15
           moles:
           - 21.824879
           - 82.10312
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          immutable: True
+          moles:
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -358,8 +371,10 @@ entities:
       - 279
       - 272
       - 271
-    - type: AtmosDevice
-      joinedGrid: 1
+      - 325
+      - 236
+      - 180
+      - 219
     - type: AccessReader
       enabled: False
     - type: Emagged
@@ -374,8 +389,6 @@ entities:
       - 243
       - 245
       - 280
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AccessReader
       enabled: False
     - type: Emagged
@@ -389,8 +402,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-    - type: AtmosDevice
-      joinedGrid: 1
 - proto: AirlockCommandGlass
   entities:
   - uid: 113
@@ -1222,8 +1233,6 @@ entities:
     - type: Transform
       pos: 4.5,-1.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#990000FF'
 - proto: GasPipeBend
@@ -1442,8 +1451,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -2.5,-5.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#0000CCFF'
 - proto: GasPressurePump
@@ -1456,8 +1463,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -1.5,-5.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#0000CCFF'
   - uid: 179
@@ -1468,8 +1473,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 4.5,-3.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#990000FF'
 - proto: GasVentPump
@@ -1480,8 +1483,9 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -0.5,-0.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
+    - type: DeviceNetwork
+      configurators:
+      - invalid
     - type: AtmosPipeColor
       color: '#0000CCFF'
   - uid: 325
@@ -1490,8 +1494,11 @@ entities:
       rot: 3.141592653589793 rad
       pos: 0.5,-8.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
+    - type: DeviceNetwork
+      configurators:
+      - invalid
+      deviceLists:
+      - 270
     - type: AtmosPipeColor
       color: '#0000CCFF'
 - proto: GasVentScrubber
@@ -1502,8 +1509,11 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 2.5,-3.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
+    - type: DeviceNetwork
+      configurators:
+      - invalid
+      deviceLists:
+      - 270
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 219
@@ -1512,8 +1522,11 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 2.5,-4.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
+    - type: DeviceNetwork
+      configurators:
+      - invalid
+      deviceLists:
+      - 270
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 236
@@ -1522,8 +1535,11 @@ entities:
       rot: 3.141592653589793 rad
       pos: 1.5,-8.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
+    - type: DeviceNetwork
+      configurators:
+      - invalid
+      deviceLists:
+      - 270
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 243
@@ -1531,8 +1547,9 @@ entities:
     - type: Transform
       pos: 1.5,-0.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
+    - type: DeviceNetwork
+      configurators:
+      - invalid
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 261
@@ -1541,8 +1558,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 3.5,-8.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 319
@@ -1551,8 +1566,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -2.5,-6.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#990000FF'
 - proto: GravityGeneratorMini
@@ -1696,6 +1709,8 @@ entities:
     - type: Transform
       pos: 1.5,-1.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 1500
 - proto: HandheldHealthAnalyzer
   entities:
   - uid: 257
@@ -1736,101 +1751,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 3.5,-9.5
       parent: 1
-- proto: Paper
-  entities:
-  - uid: 181
-    components:
-    - type: Transform
-      pos: -2.2371995,-6.3594403
-      parent: 1
-    - type: Paper
-      stampState: paper_stamp-ce
-      stampedBy:
-      - stampedBorderless: False
-        stampedColor: '#C69B17FF'
-        stampedName: stamp-component-stamped-name-ce
-      - stampedBorderless: False
-        stampedColor: '#00BE00FF'
-        stampedName: stamp-component-stamped-name-approved
-      content: >-
-        [color=#1b67a5]█░░█░███[/color][color=#5b97bc]░███░█░█░█░██░░█░█░██░░██░░██░[/color]
-
-        [color=#1b67a5]██░█░░█░[/color][color=#5b97bc]██░░░█░█░█░█░█░█░█░█░█░█░█░█░█[/color]
-
-        [color=#1b67a5]█░██░░█░[/color][color=#5b97bc]░░██░███░█░██░░░█░░███░██░░█░█[/color]
-
-        [color=#1b67a5]█░░█░░█░[/color][color=#5b97bc]███░░█░█░█░█░░░░█░░█░█░█░█░██░[/color]
-
-
-        [head=1]=========================[/head]
-
-        [head=1]             Searchlight-class[/head]
-
-        [head=1]                  medical ship[/head]
-
-        [head=1] [/head]
-
-        [head=1]         PREFLIGHT CHECKLIST[/head]
-
-        [head=1]=========================[/head]
-
-
-        [head=2]1. Power supply.[/head]
-
-        [head=3]1.1. Battery units.[/head]
-
-        [bullet/][ ] Check if the SMES unit is anchored to the floor.
-
-        [bullet/][ ] Check if the APC unit's Main Breaker is toggled on.
-
-        [bullet/][ ] Check the APC unit's current Load[bold]*[/bold] (W).
-
-        [head=3]1.2. P.A.C.M.A.N. generator unit.[/head]
-
-        [bullet/][ ] Check if the P.A.C.M.A.N. generator unit is anchored to the floor.
-
-        [bullet/][ ] Check if the P.A.C.M.A.N. generator unit has fuel. For extended flights make sure that you have enough fuel stockpiled to sustain prolonged power generation.
-
-        [bullet/][ ] Check if the P.A.C.M.A.N. generator unit is set to HV output.
-
-        [bullet/][ ] Set Target Power for 15-16[bold]**[/bold] [bold]k[/bold]W.
-
-        [bullet/][ ] Start the P.A.C.M.A.N. generator unit.
-
-
-        [head=2]2. Atmospherics.[/head]
-
-        [head=3]2.1. Distribution Loop.[/head]
-
-        [bullet/][ ] Check if the air canister is anchored to connector port.
-
-        [bullet/][ ] Check if the distribution pump is set to normal pressure.
-
-        [bullet/][ ] Enable the distribution pump.
-
-        [head=3]2.2. Waste Loop.[/head]
-
-        [bullet/][ ] Enable the waste loop pump.
-
-        [bullet/][ ] Disable Auto Mode on the Air Alarm in the Engine Room.
-
-        [bullet/][ ] Set the Air Alarm in the Engine Room to Filtering (Wide).
-
-
-        [head=2]3. Other checks.[/head]
-
-        [bullet/][ ] Check if the gyroscope is anchored, powered, and enabled.
-
-        [bullet/][ ] Check if the mini gravity generator is anchored, powered, and enabled.
-
-        [bullet/][ ] Check if the bow blastdoors are closed.
-
-
-        __________________________________________________________________
-
-        [bold]*[/bold] - Searchlight-class medical ship are equipped with a single APC unit that can be used to appraise the ship's total power consumption (which for the unmodified ship is 14.7 kW). One can check the ship's total power consumption against the P.A.C.M.A.N. generator unit Target Power output: to keep substation and APC fully charged, P.A.C.M.A.N. generator unit Target Power output should exceed APC's Load. Remember to check APC Load and adjust the generator unit Target Power after connecting new power-consuming machines.
-
-        [bold]**[/bold] - Searchlight-class medical ship have average power demand meaning that standard P.A.C.M.A.N. generator unit's Target Power value can be put at 15 kW. Please note, that recommended Target Power value to avoid blackouts during Gravity Generator charging sequence is 16 kW.
 - proto: PortableGeneratorPacmanShuttle
   entities:
   - uid: 140
@@ -1903,6 +1823,12 @@ entities:
       parent: 1
 - proto: PoweredSmallLight
   entities:
+  - uid: 186
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 4.5,-3.5
+      parent: 1
   - uid: 265
     components:
     - type: Transform
@@ -2103,6 +2029,13 @@ entities:
       count: 15
     - type: Item
       size: 15
+- proto: ShipyardSearchlightInfo
+  entities:
+  - uid: 54
+    components:
+    - type: Transform
+      pos: -2.2648783,-6.364795
+      parent: 1
 - proto: SignalButton
   entities:
   - uid: 191
@@ -2199,31 +2132,10 @@ entities:
       parent: 1
 - proto: SpawnPointLatejoin
   entities:
-  - uid: 258
+  - uid: 181
     components:
     - type: Transform
-      pos: 3.5,-8.5
-      parent: 1
-- proto: SpawnPointParamedic
-  entities:
-  - uid: 224
-    components:
-    - type: Transform
-      pos: 5.5,-6.5
-      parent: 1
-- proto: SpawnPointPilot
-  entities:
-  - uid: 186
-    components:
-    - type: Transform
-      pos: 0.5,-0.5
-      parent: 1
-- proto: SpawnPointStationEngineer
-  entities:
-  - uid: 54
-    components:
-    - type: Transform
-      pos: -0.5,-9.5
+      pos: 0.5,-6.5
       parent: 1
 - proto: StasisBed
   entities:
@@ -2288,34 +2200,46 @@ entities:
       rot: 3.141592653589793 rad
       pos: -2.5,-11.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 1500
   - uid: 51
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 3.5,-11.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 1500
   - uid: 99
     components:
     - type: Transform
       pos: 3.5,-1.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 1500
   - uid: 100
     components:
     - type: Transform
       pos: 6.5,-1.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 1500
   - uid: 115
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 6.5,-8.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 1500
   - uid: 118
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -3.5,-3.5
       parent: 1
+    - type: Thruster
+      originalPowerLoad: 1500
 - proto: TintedWindow
   entities:
   - uid: 200

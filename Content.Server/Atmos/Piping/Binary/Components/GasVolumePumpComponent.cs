@@ -46,5 +46,11 @@ namespace Content.Server.Atmos.Piping.Binary.Components
 
         [DataField("lastMolesTransferred")]
         public float LastMolesTransferred;
+
+        /// <summary>
+        /// Frontier - Start the pump with the map.
+        /// </summary>
+        [DataField]
+        public bool StartOnMapInit { get; set; } = false;
     }
 }

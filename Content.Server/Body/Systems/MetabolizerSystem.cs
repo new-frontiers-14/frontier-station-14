@@ -159,9 +159,10 @@ namespace Content.Server.Body.Systems
                     continue;
                 }
 
-                // we're done here entirely if this is true
-                if (reagents >= ent.Comp1.MaxReagentsProcessable)
-                    return;
+                // Frontier: all cryogenic reagents in the solution should be processed, others should be limited (buff cryo meds)
+                if (reagents >= ent.Comp1.MaxReagentsProcessable && !proto.Metabolisms.ContainsKey("Cryogenic"))
+                    continue;
+                // End Frontier
 
 
                 // loop over all our groups and see which ones apply
@@ -219,9 +220,10 @@ namespace Content.Server.Body.Systems
                 if (mostToRemove > FixedPoint2.Zero)
                 {
                     solution.RemoveReagent(reagent, mostToRemove);
-
-                    // We have processed a reagant, so count it towards the cap
-                    reagents += 1;
+                    // Frontier: do not count cryogenics chems against the reagent limit (to buff cryo meds)
+                    if (!proto.Metabolisms.ContainsKey("Cryogenic"))
+                        reagents++;
+                    // End Frontier
                 }
             }
 

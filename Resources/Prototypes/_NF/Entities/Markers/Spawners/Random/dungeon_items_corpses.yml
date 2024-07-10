@@ -1,0 +1,25 @@
+- type: entity
+  name: random corpse
+  id: SpawnDungeonRandomHumanCorpse
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Corpse"
+  components:
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+    - state: green
+    - sprite: Structures/Storage/Crates/coffin.rsi
+      state: base
+    - sprite: _NF/Markers/general.rsi
+      state: questionmark
+      color: red
+  - type: RandomSpawner
+    prototypes:
+    - MobRandomServiceCorpse
+    - MobRandomEngineerCorpse
+    - MobRandomEngineerCorpse
+    - MobRandomCargoCorpse
+    - MobRandomMedicCorpse
+    - MobRandomScienceCorpse
+    chance: 0.9
+    offset: 0.0
