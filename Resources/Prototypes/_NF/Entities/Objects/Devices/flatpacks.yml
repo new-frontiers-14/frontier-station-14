@@ -229,6 +229,42 @@
   - type: Flatpack
     entity: ScienceTechFab
 
+- type: entity
+  parent: ExosuitFabricatorFlatpack
+  id: MachineArtifactCrusherFlatpack
+  name: artifact crusher flatpack
+  description: A flatpack used for constructing an artifact crusher.
+  components:
+  - type: Flatpack
+    entity: MachineArtifactCrusher
+
+- type: entity
+  parent: ExosuitFabricatorFlatpack
+  id: MachineAnomalySynchronizerFlatpack
+  name: anomaly synchronizer flatpack
+  description: A flatpack used for constructing an anomaly synchronizer.
+  components:
+  - type: Flatpack
+    entity: MachineAnomalySynchronizer
+
+- type: entity
+  parent: ExosuitFabricatorFlatpack
+  id: MachineAnomalyVesselExperimentalFlatpack
+  name: experimental anomaly vessel flatpack
+  description: A flatpack used for constructing an experimental anomaly vessel.
+  components:
+  - type: Flatpack
+    entity: MachineAnomalyVesselExperimental
+
+- type: entity
+  parent: ExosuitFabricatorFlatpack
+  id: MachineAnomalyGeneratorFlatpack
+  name: anomaly generator flatpack
+  description: A flatpack used for constructing an anomaly generator.
+  components:
+  - type: Flatpack
+    entity: MachineAnomalyGenerator
+
 # Service
 - type: entity
   parent: BaseNFFlatpack
@@ -283,6 +319,24 @@
   - type: Flatpack
     entity: TilePrinterNF
 
+- type: entity
+  parent: UniformPrinterFlatpack
+  id: KitchenElectricGrillFlatpack
+  name: electric grill flatpack
+  description: A flatpack used for constructing an electric grill.
+  components:
+  - type: Flatpack
+    entity: KitchenElectricGrill
+
+- type: entity
+  parent: UniformPrinterFlatpack
+  id: KitchenMicrowaveFlatpack
+  name: microwave flatpack
+  description: A flatpack used for constructing a microwave.
+  components:
+  - type: Flatpack
+    entity: KitchenMicrowave
+
 # Medical
 - type: entity
   parent: BaseNFFlatpack
@@ -297,6 +351,69 @@
   - type: Sprite
     layers:
     - state: medical_lathe
+
+- type: entity
+  parent: MedicalTechFabFlatpack
+  id: StasisBedFlatpack
+  name: stasis bed flatpack
+  description: A flatpack used for constructing a stasis bed.
+  components:
+  - type: Flatpack
+    entity: StasisBed
+
+- type: entity
+  parent: MedicalTechFabFlatpack
+  id: ChemMasterFlatpack
+  name: chemmaster flatpack
+  description: A flatpack used for constructing a chemmaster.
+  components:
+  - type: Flatpack
+    entity: ChemMaster
+
+- type: entity
+  parent: MedicalTechFabFlatpack
+  id: MachineElectrolysisUnitFlatpack
+  name: electrolysis unit flatpack
+  description: A flatpack used for constructing an electrolysis unit.
+  components:
+  - type: Flatpack
+    entity: MachineElectrolysisUnit
+
+- type: entity
+  parent: MedicalTechFabFlatpack
+  id: BaseGasCondenserFlatpack
+  name: gas condenser flatpack
+  description: A flatpack used for constructing a gas condenser.
+  components:
+  - type: Flatpack
+    entity: BaseGasCondenser
+
+- type: entity
+  parent: MedicalTechFabFlatpack
+  id: MachineCentrifugeFlatpack
+  name: tabletop centrifuge flatpack
+  description: A flatpack used for constructing a tabletop centrifuge.
+  components:
+  - type: Flatpack
+    entity: MachineCentrifuge
+
+- type: entity
+  parent: MedicalTechFabFlatpack
+  id: ChemistryHotplateFlatpack
+  name: hotplate flatpack
+  description: A flatpack used for constructing a hotplate.
+  components:
+  - type: Flatpack
+    entity: ChemistryHotplate
+
+- type: entity
+  parent: MedicalTechFabFlatpack
+  id: KitchenReagentGrinderFlatpack
+  name: reagent grinder flatpack
+  description: A flatpack used for constructing a reagent grinder.
+  components:
+  - type: Flatpack
+    entity: KitchenReagentGrinder
 
 # Supply
 - type: entity
@@ -333,6 +450,24 @@
   components:
   - type: Flatpack
     entity: SalvageTechfabNF
+
+- type: entity
+  parent: OreProcessorFlatpack
+  id: OreProcessorIndustrialFlatpack
+  name: industrial ore processor flatpack
+  description: A flatpack used for constructing an industrial ore processor.
+  components:
+  - type: Flatpack
+    entity: OreProcessorIndustrial
+
+- type: entity
+  parent: OreProcessorFlatpack
+  id: AmmoTechFabFlatpack
+  name: ammo techfab flatpack
+  description: A flatpack used for constructing an ammo techfab.
+  components:
+  - type: Flatpack
+    entity: AmmoTechFab
 
 # Consoles
 - type: entity
@@ -595,6 +730,17 @@
   - type: StaticPrice
     price: 250
 
+- type: entity
+  parent: UniformPrinterFlatpack
+  id: JukeboxFlatpack
+  name: jukebox flatpack
+  description: A flatpack used for constructing a jukebox.
+  components:
+  - type: Flatpack
+    entity: Jukebox
+  - type: StaticPrice
+    price: 250
+
 # Hoverbikes
 - type: entity
   parent: BaseNFFlatpack
@@ -642,3 +788,59 @@
     entity: VehicleHoverbikeSyndicateKey
   - type: StaticPrice
     price: 750
+
+# Vendomats
+- type: entity
+  parent: UniformPrinterFlatpack
+  id: VendingMachineBoozeFlatpack
+  name: booze-o-mat flatpack
+  description: A flatpack used for constructing a booze-o-mat vendomat.
+  components:
+  - type: Flatpack
+    entity: VendingMachineBooze
+  - type: StaticPrice
+    price: 250
+
+- type: entity
+  parent: UniformPrinterFlatpack
+  id: VendingMachineCigsFlatpack
+  name: shadycigs delux flatpack
+  description: A flatpack used for constructing a shadycigs delux vendomat.
+  components:
+  - type: Flatpack
+    entity: VendingMachineCigs
+  - type: StaticPrice
+    price: 250
+
+- type: entity
+  parent: UniformPrinterFlatpack
+  id: VendingMachineSyndieContrabandFlatpack
+  name: contravend flatpack
+  description: A flatpack used for constructing a contravend vendomat.
+  components:
+  - type: Flatpack
+    entity: VendingMachineSyndieContraband
+  - type: StaticPrice
+    price: 250
+
+- type: entity
+  parent: UniformPrinterFlatpack
+  id: VendingMachineClothingPunkFlatpack
+  name: threadschoom vendomat flatpack
+  description: A flatpack used for constructing a threadschoom vendomat.
+  components:
+  - type: Flatpack
+    entity: VendingMachineClothingPunk
+  - type: StaticPrice
+    price: 250
+
+- type: entity
+  parent: UniformPrinterFlatpack
+  id: VendingMachineBountyVendPunkFlatpack
+  name: bonanzamatic vendomat flatpack
+  description: A flatpack used for constructing a bonanzamatic vendomat.
+  components:
+  - type: Flatpack
+    entity: VendingMachineBountyVendPunk
+  - type: StaticPrice
+    price: 250
