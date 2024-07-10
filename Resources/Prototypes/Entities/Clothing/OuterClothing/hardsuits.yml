@@ -330,7 +330,7 @@
         Slash: 0.8
         Piercing: 0.8
         Heat: 0.4
-        Radiation: 0.0
+        Radiation: 0.05 # Frontier - 0<0.05
         Caustic: 0.7
   - type: ClothingSpeedModifier
     walkModifier: 0.75
@@ -510,6 +510,8 @@
     - Hardsuit
     - WhitelistChameleon
   - type: Contraband #frontier
+  - type: FactionClothing # frontier
+    faction: ContrabandClothing # frontier
 
 # Syndicate Medic Hardsuit
 - type: entity
@@ -529,6 +531,8 @@
     - Hardsuit
     - WhitelistChameleon
   - type: Contraband #frontier
+  - type: FactionClothing # frontier
+    faction: ContrabandClothing # frontier
 
 #Syndicate Elite Hardsuit
 - type: entity
@@ -548,8 +552,8 @@
     coefficient: 0.001
   - type: ExplosionResistance
     damageCoefficient: 0.2
-#  - type: FireProtection # Frontier - Return after we update
-#    reduction: 0.8 # perfect protection like atmos firesuit for pyro tf2 ops
+  - type: FireProtection
+    reduction: 0.8 # perfect protection like atmos firesuit for pyro tf2 ops
   - type: Armor
     modifiers:
       coefficients:
@@ -568,6 +572,8 @@
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSyndieElite
   - type: Contraband #frontier
+  - type: FactionClothing # frontier
+    faction: ContrabandClothing # frontier
 
 #Syndicate Commander Hardsuit
 - type: entity
@@ -601,6 +607,8 @@
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSyndieCommander
   - type: Contraband #frontier
+  - type: FactionClothing # frontier
+    faction: ContrabandClothing # frontier
 
 #Cybersun Juggernaut Hardsuit
 - type: entity
@@ -634,6 +642,8 @@
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitCybersun
   - type: Contraband #frontier
+  - type: FactionClothing # frontier
+    faction: ContrabandClothing # frontier
 
 #Wizard Hardsuit
 - type: entity
@@ -667,6 +677,8 @@
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitWizard
   - type: Contraband #frontier
+  - type: FactionClothing # frontier
+    faction: ContrabandClothing # frontier
 
 #Ling Space Suit
 - type: entity
@@ -698,6 +710,8 @@
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitLing
   - type: Contraband #frontier
+  - type: FactionClothing # frontier
+    faction: ContrabandClothing # frontier
 
 #Pirate EVA Suit (Deep Space EVA Suit)
 #Despite visually appearing like a softsuit, it functions exactly like a hardsuit would (parents off of base hardsuit, has resistances and toggleable clothing, etc.) so it goes here.
@@ -731,6 +745,8 @@
   - type: StaticPrice
     price: 0
   - type: Contraband #frontier
+  - type: FactionClothing # frontier
+    faction: ContrabandClothing # frontier
 
 #Pirate Captain Hardsuit
 - type: entity
@@ -747,13 +763,13 @@
     highPressureMultiplier: 0.02
     lowPressureMultiplier: 1000
   - type: ExplosionResistance
-    damageCoefficient: 0.6
+    damageCoefficient: 0.5
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.7
-        Slash: 0.8
-        Piercing: 0.85
+        Blunt: 0.6
+        Slash: 0.7
+        Piercing: 0.75
         Heat: 0.4
         Caustic: 0.75
   - type: ClothingSpeedModifier
@@ -765,6 +781,8 @@
   - type: StaticPrice
     price: 0
   - type: Contraband #frontier
+  - type: FactionClothing # frontier
+    faction: ContrabandClothing # frontier
 
 #CENTCOMM / ERT HARDSUITS
 #ERT Leader Hardsuit

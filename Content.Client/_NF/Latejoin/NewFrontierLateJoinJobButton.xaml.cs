@@ -36,7 +36,7 @@ public sealed partial class NewFrontierLateJoinJobButton : Button
         _gameTicker.LobbyJobsAvailableUpdated -= UpdateButton;
     }
 
-    private void UpdateButton(IReadOnlyDictionary<NetEntity, Dictionary<string, uint?>> obj)
+    private void UpdateButton(IReadOnlyDictionary<NetEntity, Dictionary<ProtoId<JobPrototype>, int?>> obj)
     {
         if (!obj.ContainsKey(_station) || !obj[_station].ContainsKey(_jobId))
         {
@@ -46,9 +46,8 @@ public sealed partial class NewFrontierLateJoinJobButton : Button
 
         var prototype = _prototypeManager.Index<JobPrototype>(_jobId);
 
-        if (prototype.Icon != null)
+        if (_prototypeManager.TryIndex<StatusIconPrototype>(prototype.Icon, out var jobIcon))
         {
-            var jobIcon = _prototypeManager.Index<StatusIconPrototype>(prototype.Icon);
             JobIcon.Texture = jobIcon.Icon.Frame0();
         }
 

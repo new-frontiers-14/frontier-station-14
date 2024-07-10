@@ -89,6 +89,11 @@
   - ContractorClothingUniformJumpsuitScientistFormal
   - ContractorClothingUniformJumpsuitRoboticist
   - ContractorClothingUniformJumpskirtRoboticist
+  - ContractorClothingUniformRandomPunkCroptop # Punkish (Randomized visuals)
+  - ContractorClothingUniformRandomPunkTanktop # Punkish (Randomized visuals)
+  - ContractorClothingUniformRandomArmlessNoSkirt # Punkish (Randomized visuals)
+  - ContractorClothingUniformRandomPunkCroptopShorts # Punkish (Randomized visuals)
+  - ContractorClothingUniformRandomPunkTanktopShorts # Punkish (Randomized visuals)
   - ContractorClothingUniformJumpsuitMonasticRobeDark
   - ContractorClothingUniformJumpsuitMonasticRobeLight
   - ContractorClothingUniformJumpsuitChaplainPilgrimVest
@@ -159,6 +164,8 @@
   - ContractorClothingUniformJumpsuitMilitaryColorPurple
   - ContractorClothingUniformJumpsuitMilitaryColorLightBrown
   - ContractorClothingUniformJumpsuitMilitaryColorBrown
+  fallbacks:
+  - PilotClothingUniformJumpsuitPilot
 
 - type: loadoutGroup
   id: PilotBackpack
@@ -235,6 +242,8 @@
   - ContractorClothingBackpackDuffelMime
   - ContractorClothingBackpackSatchelMime
   - ContractorClothingBackpackMessengerMime
+  fallbacks:
+  - PilotClothingBackpackPilot
   
 - type: loadoutGroup
   id: PilotOuterClothing
@@ -303,10 +312,27 @@
   - ContractorClothingOuterCoatTrench
   - ContractorClothingOuterDameDane
   - ContractorClothingOuterWinterCoatPlaid
+  - ContractorClothingOuterCoatBomberPunkRed # Punkish (Static visuals)
+  - ContractorClothingOuterCoatJacketLeather # Punkish (Static visuals)
+  - ContractorClothingOuterCoatJacketBiker # Punkish (Static visuals)
+  - ContractorClothingOuterCoatJacketJamrock # Punkish (Static visuals)
+  - ContractorClothingOuterCoatBomberAerostatic # Punkish (Static visuals)
+  - ContractorClothingOuterCoatJacketLettermanBlue # Punkish (Static visuals)
+  - ContractorClothingOuterCoatJacketLettermanBrown # Punkish (Static visuals)
+  - ContractorClothingOuterCoatJacketLettermanRed # Punkish (Static visuals)
+  - ContractorClothingOuterCoatJacketLettermanMagenta # Punkish (Static visuals)
+  - ContractorClothingOuterCoatBomberPinkSleeves # Punkish (Static visuals)
+  - ContractorClothingOuterCoatBomberRandomized # Punkish (Randomized visuals)
+  - ContractorClothingOuterCoatAcidRaincoat # Punkish (Static visuals)
+  - ContractorClothingOuterCoatAcidRaincoatBlue # Punkish (Static visuals)
+  - ContractorClothingOuterCoatAcidRaincoatGreen # Punkish (Static visuals)
+  - ContractorClothingOuterCoatAcidRaincoatYellow # Punkish (Static visuals)
+  - ContractorClothingOuterCoatAcidRaincoatMagenta # Punkish (Static visuals)
   - ContractorClothingOuterCoatBishop
   - ContractorClothingOuterCoatWitchHunter
   - ContractorClothingOuterCoatCardinal
   - ContractorClothingOuterPlagueSuit
+  - ContractorWetFloorSign
   - ContractorClothingOuterCoatExpensive
   - ContractorClothingOuterCoatSpaceAsshole
 
@@ -349,6 +375,7 @@
   - ContractorClothingShoesSlippers
   - ContractorClothingShoeSlippersDuck
   - ContractorClothingShoesFlippers
+  - ContractorClothingShoesBootsPunkRandomized # Punkish (Randomized visuals)
   - ContractorClothingShoesDameDane
   - ContractorClothingShoesBootsWork
   - ContractorClothingShoesBootsCowboyBlack
@@ -369,6 +396,8 @@
   - ContractorClothingShoesSkates
   - ContractorClothingShoesClownLarge
   - ContractorClothingShoesBling
+  fallbacks:
+  - PilotClothingShoesBootsPilot
 
 - type: loadoutGroup
   id: PilotHead
@@ -444,6 +473,8 @@
   - ContractorClothingHeadHatBishopMitre
   - ContractorClothingHeadHatKippah
   - ContractorClothingHeadHatPlaguedoctor
+  - ContractorPlunger
+  - ContractorClothingHeadHatCone
   - ContractorClothingHeadBandGold
   - ContractorClothingHeadHatTophat
   
@@ -526,7 +557,7 @@
   name: loadout-group-contractor-id
   loadouts:
   - PilotPilotPDA
-  - ContractorClearPDA
+  - ContractorClearNFPDA
   - ContractorSalvagePDA
   - ContractorResearchAssistantPDA
   - ContractorCargoPDA
@@ -559,6 +590,8 @@
   - ContractorMusicianPDA
   - ContractorClownPDA
   - ContractorMimePDA
+  fallbacks:
+  - PilotPilotPDA
   
 - type: loadoutGroup
   id: PilotGlasses
@@ -575,6 +608,8 @@
   - ContractorClothingEyesHudDiagnostic
   - ContractorClothingEyesGlassesMeson
   - ContractorClothingEyesHudMedical
+  - ContractorClothingEyesPunkGoggles # Punkish (Randomized visuals)
+  - ContractorClothingEyesPunkInfoShades # Punkish (Randomized visuals)
   - ContractorClothingEyesEyepatchHudDiag
   - ContractorClothingEyesEyepatchHudMedical
 
@@ -588,6 +623,7 @@
   - ContractorClothingMaskBreathMedical
   - ContractorClothingMaskSterile
   - ContractorClothingMaskGas
+  - ContractorClothingMaskPunkHalf # Punkish (Randomized visuals)
   - ContractorClothingMaskGasExplorer
   - ContractorClothingMaskGasCaptain
   - ContractorClothingMaskGasAtmos
@@ -626,5 +662,8 @@
   - ContractorChemBag
   - ContractorOreBag
   - ContractorPlantBag
+  - ContractorConstructionBag
   - ContractorClothingBeltMartialBlack
+  - ContractorClothingBeltPunkRandomized # Punkish (Randomized visuals)
+  - ContractorClothingBeltPunkRandomizedFilled # Punkish (Randomized visuals)
   - ContractorClothingBeltChampion

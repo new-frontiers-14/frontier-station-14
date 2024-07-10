@@ -3,16 +3,180 @@
   id: FaxMachineShip
   suffix: Ship
   components:
-    - type: FaxMachine
-      useStationName: true
-    - type: PowerSwitch
+  - type: FaxMachine
+    useStationName: true
+  - type: PowerSwitch
 
 - type: entity
   parent: FaxMachineShip
   id: FaxMachineShipAntag
   suffix: Ship, Antag
   components:
-    - type: FaxMachine
-      useStationName: true
-    - type: ApcPowerReceiver
-      powerDisabled: true #starts off
+  - type: FaxMachine
+    useStationName: true
+  - type: ApcPowerReceiver
+    powerDisabled: true #starts off
+
+# Outpost
+- type: entity
+  parent: [BaseStructureDisableToolUse, BaseStructureUnanchorable, FaxMachineBase]
+  id: FaxMachineNFOutpostSTC
+  suffix: Outpost, STC
+  noSpawn: true
+  components:
+  - type: FaxMachine
+    name: "Frontier Outpost STC"
+
+- type: entity
+  parent: [BaseStructureDisableToolUse, BaseStructureUnanchorable, FaxMachineBase]
+  id: FaxMachineNFOutpostSR
+  suffix: Outpost, SR
+  noSpawn: true
+  components:
+  - type: FaxMachine
+    name: "Frontier Outpost SR"
+
+- type: entity
+  parent: [BaseStructureDisableToolUse, BaseStructureUnanchorable, FaxMachineBase]
+  id: FaxMachineNFOutpostGuard
+  suffix: Outpost, Guard
+  noSpawn: true
+  components:
+  - type: FaxMachine
+    name: "Frontier Outpost Guard"
+
+- type: entity
+  parent: [BaseStructureDisableToolUse, BaseStructureUnanchorable, FaxMachineBase]
+  id: FaxMachineNFOutpostReception
+  suffix: Outpost, Reception
+  noSpawn: true
+  components:
+  - type: FaxMachine
+    name: "Frontier Outpost Reception"
+
+- type: entity
+  parent: [BaseStructureDisableToolUse, BaseStructureUnanchorable, FaxMachineCaptain]
+  id: FaxMachineNFOutpostAdministration
+  suffix: Outpost, Administration
+  noSpawn: true
+  components:
+  - type: FaxMachine
+    name: "Frontier Outpost Administration"
+
+# POI
+- type: entity
+  parent: [BaseStructureDisableToolUse, BaseStructureUnanchorable, FaxMachineBase]
+  id: FaxMachineNFBeacon
+  suffix: POI, Omnichurch Beacon
+  noSpawn: true
+  components:
+  - type: FaxMachine
+    name: "Omnichurch Beacon"
+
+- type: entity
+  parent: [BaseStructureDisableToolUse, BaseStructureUnanchorable, FaxMachineSyndie]
+  id: FaxMachineNFLPBravo
+  suffix: POI, LP Bravo
+  noSpawn: true
+  components:
+  - type: FaxMachine
+    name: "Listening Point: Bravo"
+
+- type: entity
+  parent: [BaseStructureDisableToolUse, BaseStructureUnanchorable, FaxMachineBase]
+  id: FaxMachineNFLodge
+  suffix: POI, Lodge
+  noSpawn: true
+  components:
+  - type: FaxMachine
+    name: "The Lodge"
+
+- type: entity
+  parent: [BaseStructureDisableToolUse, BaseStructureUnanchorable, FaxMachineBase]
+  id: FaxMachineNFPole
+  suffix: POI, Pole
+  noSpawn: true
+  components:
+  - type: FaxMachine
+    name: "The North Pole"
+
+- type: entity
+  parent: [BaseStructureDisableToolUse, BaseStructureUnanchorable, FaxMachineBase]
+  id: FaxMachineNFTinnia
+  suffix: POI, Tinnia
+  noSpawn: true
+  components:
+  - type: FaxMachine
+    name: "Tinnia's Rest"
+
+- type: entity
+  parent: [BaseStructureDisableToolUse, BaseStructureUnanchorable, FaxMachineBase]
+  id: FaxMachineNFTrade
+  suffix: POI, Trade
+  noSpawn: true
+  components:
+  - type: FaxMachine
+    name: "Trade Outpost"
+
+- type: entity
+  parent: [BaseStructureDisableToolUse, BaseStructureUnanchorable, FaxMachineBase]
+  id: FaxMachineNFLab
+  suffix: POI, Lab
+  noSpawn: true
+  components:
+  - type: FaxMachine
+    name: "Anomalous Lab"
+
+- type: entity
+  parent: [BaseStructureDisableToolUse, BaseStructureUnanchorable, FaxMachineBase]
+  id: FaxMachineNFArena
+  suffix: POI, Arena
+  noSpawn: true
+  components:
+  - type: FaxMachine
+    name: "The Pit"
+
+- type: entity
+  parent: [BaseStructureDisableToolUse, BaseStructureUnanchorable, FaxMachineBase]
+  id: FaxMachineNFCasino
+  suffix: POI, Casino
+  noSpawn: true
+  components:
+  - type: FaxMachine
+    name: "Casey's Casino"
+
+- type: entity
+  parent: [BaseStructureDisableToolUse, BaseStructureUnanchorable, FaxMachineBase]
+  id: FaxMachineNFCourthouse
+  suffix: POI, Courthouse
+  noSpawn: true
+  components:
+  - type: FaxMachine
+    name: "Courthouse"
+
+- type: entity
+  parent: [BaseStructureDisableToolUse, BaseStructureUnanchorable, FaxMachineShipAntag]
+  id: FaxMachineNFCove
+  suffix: POI, Cove
+  noSpawn: true
+  components:
+  - type: FaxMachine
+    name: "Pirate's Cove"
+
+- type: entity
+  parent: [BaseStructureDisableToolUse, BaseStructureUnanchorable, FaxMachineBase]
+  id: FaxMachineNFNfsd
+  suffix: POI, NFSD
+  noSpawn: true
+  components:
+  - type: FaxMachine
+    name: "NFSD Outpost Sheriff"
+
+- type: entity
+  parent: [BaseStructureDisableToolUse, BaseStructureUnanchorable, FaxMachineBase]
+  id: FaxMachineNFNfsdLawyer
+  suffix: POI, NFSD Lawyer
+  noSpawn: true
+  components:
+  - type: FaxMachine
+    name: "NFSD Outpost Lawyer"

@@ -5,6 +5,8 @@
   description: A reinforced casing for storing long weapons and accessories.
   suffix: Long
   components:
+  - type: ExplosionResistance
+    damageCoefficient: 0.3
   - type: Sprite
     sprite: _NF/Objects/Tools/guncaselong.rsi
     layers:
@@ -32,10 +34,8 @@
       - CartridgeAmmo
       - PowerCell
       - MeleeWeapon
-      - DisarmMalus
-      - EnergySword
-      - ItemToggleDisarmMalus
       - Blocking
+      - WeaponCaseInsertable
       tags:
       - Cartridge
 
@@ -46,6 +46,8 @@
   description: A reinforced casing for storing side arms and weapon accessories.
   suffix: Short
   components:
+  - type: ExplosionResistance
+    damageCoefficient: 0.3
   - type: Sprite
     sprite: _NF/Objects/Tools/guncaseshort.rsi
     layers:
@@ -68,9 +70,7 @@
       - CartridgeAmmo
       - PowerCell
       - MeleeWeapon
-      - DisarmMalus
-      - EnergySword
-      - ItemToggleDisarmMalus
       - Blocking
+      - WeaponCaseInsertable
       tags:
       - Cartridge

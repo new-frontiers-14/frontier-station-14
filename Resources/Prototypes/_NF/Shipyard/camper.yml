@@ -1,0 +1,38 @@
+# Author Info
+# GitHub: https://github.com/AF-Buyrcsp2
+# Discord:
+
+# Maintainer Info
+#
+
+# Shuttle Notes:
+#
+
+- type: vessel
+  id: Camper
+  name: SSS Camper
+  description: A personal camper shuttle for those who prefer to live in emptiness of space.
+  price: 12000
+  category: Small
+  group: Civilian
+  shuttlePath: /Maps/_NF/Shuttles/camper.yml
+
+- type: gameMap
+  id: Camper
+  mapName: 'SSS Camper'
+  mapPath: /Maps/_NF/Shuttles/camper.yml
+  minPlayers: 0
+  stations:
+    Camper:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Camper {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]

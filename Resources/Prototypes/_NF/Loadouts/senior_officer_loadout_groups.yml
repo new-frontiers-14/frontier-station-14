@@ -4,15 +4,8 @@
   loadouts:
   - SeniorOfficerClothingUniformJumpsuitSeniorOfficer
   - SeniorOfficerClothingUniformJumpskirtSeniorOfficer
-
-- type: loadoutGroup
-  id: SeniorOfficerBackpack
-  name: loadout-group-contractor-backpack
-  loadouts:
-  - SeniorOfficerClothingBackpackSeniorOfficerFilled
-  - SeniorOfficerClothingBackpackDuffelSeniorOfficerFilled
-  - SeniorOfficerClothingBackpackSatchelSeniorOfficerFilled
-  - SeniorOfficerClothingBackpackMessengerFilled
+  fallbacks:
+  - SeniorOfficerClothingUniformJumpsuitSeniorOfficer
   
 - type: loadoutGroup
   id: SeniorOfficerOuterClothing
@@ -25,6 +18,8 @@
   id: SeniorOfficerShoes
   name: loadout-group-contractor-shoes
   loadouts:
+  - NfsdClothingShoesBootsBrown
+  fallbacks:
   - NfsdClothingShoesBootsBrown
 
 - type: loadoutGroup
@@ -39,6 +34,8 @@
   name: loadout-group-contractor-gloves
   loadouts:
   - SeniorOfficerClothingHandsGlovesSeniorOfficer
+  fallbacks:
+  - SeniorOfficerClothingHandsGlovesSeniorOfficer
 
 - type: loadoutGroup
   id: SeniorOfficerNeck
@@ -52,9 +49,13 @@
   name: loadout-group-contractor-id
   loadouts:
   - SeniorOfficerSeniorOfficerPDA
+  fallbacks:
+  - SeniorOfficerSeniorOfficerPDA
   
 - type: loadoutGroup
   id: SeniorOfficerGlasses
   name: loadout-group-contractor-glasses
   loadouts:
+  - NfsdClothingEyesGlasses
+  fallbacks:
   - NfsdClothingEyesGlasses
