@@ -151,6 +151,8 @@ uplink-security-emp-ammo-name = EMP Projectile Ammo
 uplink-security-emp-ammo-desc = A a box containing 4 EMP projectile grenades.
 uplink-security-trackingdart-ammo-name = Tracking Darts Ammo
 uplink-security-trackingdart-ammo-desc = A a box containing 4 tracking darts.
+uplink-security-spaceblade-sec-name = Security SpaceBlade
+uplink-security-spaceblade-sec-desc = Latest stun tech
 
 store-category-piratehardsuits = EVA Suits
 store-category-pirateweapons = Weapons
