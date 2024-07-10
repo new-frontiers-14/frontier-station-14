@@ -78,15 +78,24 @@ public sealed partial class FoodComponent : Component
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public bool RequireDead = true;
 
+    // New Frontiers - Digestion Rework - Add quality to add species-specific digestion
+    // This code is licensed under AGPLv3. See AGPLv3.txt
     /// <summary>
-    ///     Frontier - Nasty food, used for goblins to know if they can eat it or not
+    /// The quality of this food, for species-specific digestion.
     /// </summary>
-    [DataField, ViewVariables] // Frontier
-    public string[] Quality = { "Normal" };
-
-    /// <summary>
-    ///     Frontier - Edited by the system to find the final quility results
-    /// </summary>
-    [DataField, ViewVariables] // Frontier
-    public string FinalQuality = "Normal";
+    [DataField, ViewVariables]
+    public FoodQuality Quality = FoodQuality.Normal;
 }
+
+/// <summary>
+/// An enumeration of the quality of given pieces of food.
+/// </summary>
+public enum FoodQuality : byte
+{
+    Toxin,
+    Nasty,
+    Junk,
+    Normal,
+    High,
+}
+// End of modified code

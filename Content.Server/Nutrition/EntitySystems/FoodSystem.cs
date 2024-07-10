@@ -33,19 +33,12 @@ using Robust.Shared.Utility;
 using System.Linq;
 using Robust.Server.GameObjects;
 using Content.Shared.Whitelist;
-using Content.Server.Medical; // Frontier
-using Content.Shared.Speech.EntitySystems; // Frontier
-using Robust.Shared.Random; // Frontier
-using Content.Shared.Jittering; // Frontier
-using Content.Server.Chat.Systems; // Frontier
-using Content.Shared.Tag; // Frontier
-
 namespace Content.Server.Nutrition.EntitySystems;
 
 /// <summary>
 /// Handles feeding attempts both on yourself and on the target.
 /// </summary>
-public sealed class FoodSystem : EntitySystem
+public partial class FoodSystem : EntitySystem // Frontier: sealed<partial
 {
     [Dependency] private readonly BodySystem _body = default!;
     [Dependency] private readonly FlavorProfileSystem _flavorProfile = default!;
@@ -65,12 +58,6 @@ public sealed class FoodSystem : EntitySystem
     [Dependency] private readonly StomachSystem _stomach = default!;
     [Dependency] private readonly UtensilSystem _utensil = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
-    [Dependency] private readonly VomitSystem _vomit = default!; // Frontier
-    [Dependency] private readonly SharedStutteringSystem _stuttering = default!; // Frontier
-    [Dependency] protected readonly IRobustRandom RobustRandom = default!; // Frontier
-    [Dependency] private readonly SharedJitteringSystem _jittering = default!; // Frontier
-    [Dependency] private readonly ChatSystem _chat = default!; // Frontier
-    [Dependency] private readonly TagSystem _tag = default!; // Frontier
 
     public const float MaxFeedDistance = 1.0f;
 
@@ -210,18 +197,6 @@ public sealed class FoodSystem : EntitySystem
         return (true, true);
     }
 
-    public enum Quality // Frontier
-    {
-        Toxin,
-        Nasty,
-        Normal,
-        High,
-        Junk,
-        Mail,
-        Fiber,
-        Trash
-    }
-
     private void OnDoAfter(Entity<FoodComponent> entity, ref ConsumeDoAfterEvent args)
     {
         if (args.Cancelled || args.Handled || entity.Comp.Deleted || args.Target == null)
@@ -258,10 +233,12 @@ public sealed class FoodSystem : EntitySystem
         // Get the stomach with the highest available solution volume
         var highestAvailable = FixedPoint2.Zero;
         StomachComponent? stomachToUse = null;
-        var reverseFoodQuality = false; // Frontier
         foreach (var (stomach, _) in stomachs)
         {
             var owner = stomach.Owner;
+            // Frontier: check specific-stomach digestion
+            if (!_stomach.CanStomachDigestFood(stomach, ))
+
             if (!_stomach.CanTransferSolution(owner, split, stomach))
                 continue;
 
@@ -273,7 +250,6 @@ public sealed class FoodSystem : EntitySystem
 
             stomachToUse = stomach;
             highestAvailable = stomachSol.AvailableVolume;
-            reverseFoodQuality = stomachToUse.ReverseFoodQuality; // Frontier
         }
 
         // No stomach so just popup a message that they can't eat.
@@ -287,131 +263,9 @@ public sealed class FoodSystem : EntitySystem
         _reaction.DoEntityReaction(args.Target.Value, solution, ReactionMethod.Ingestion);
         _stomach.TryTransferSolution(stomachToUse.Owner, split, stomachToUse);
 
-        /// Frontier - Food quality system
-        var foodQuality = entity.Comp.Quality;
-        var showFlavors = true;
-
-        foreach (var quality in foodQuality)
-        {
-            if (quality == null)
-                continue;
-            else
-                entity.Comp.FinalQuality = quality;
-
-            if (reverseFoodQuality)
-            {
-                if (quality == "High")
-                    entity.Comp.FinalQuality = "Toxin";
-                else if (quality == "Normal")
-                    entity.Comp.FinalQuality = "Nasty";
-                else if (quality == "Nasty")
-                    entity.Comp.FinalQuality = "Normal";
-                else if (quality == "Toxin")
-                    entity.Comp.FinalQuality = "High";
-            }
-
-            // TODO: Add detection for fried food on nasty to update it to toxin for goblins.
-            // TODO: Add inspect food but only for goblin eyes to see, goblins can tell food quality.
-
-            string[] toxinsRegent = { "Toxin", "CarpoToxin", "Mold", "Amatoxin", "SulfuricAcid" };
-            var speedRegent = "Stimulants";
-            var damagingRegent = "Toxin";
-            var emoteId = "Laugh";
-
-            var msgNasty = Loc.GetString("food-system-nasty", ("used", args.Used), ("target", args.Target));
-            var msgToxin = Loc.GetString("food-system-toxin", ("used", args.Used), ("target", args.Target));
-
-            TryComp<BloodstreamComponent>(args.Target.Value, out var bloodStream);
-
-            if (entity.Comp.FinalQuality == "High")
-            {
-                if (reverseFoodQuality)
-                {
-                    if (_solutionContainer.ResolveSolution(stomachToUse.Owner, stomachToUse.BodySolutionName, ref stomachToUse.Solution))
-                    {
-                        foreach (var reagent in toxinsRegent)
-                            _solutionContainer.RemoveReagent(stomachToUse.Solution.Value, reagent, FixedPoint2.New((int) transferAmount)); // Remove from body before it goes to blood
-                        _solutionContainer.RemoveReagent(stomachToUse.Solution.Value, "Flavorol", FixedPoint2.New((int) transferAmount)); // Remove from body before it goes to blood
-                    }
-                    if (_solutionContainer.ResolveSolution(args.Target.Value, bloodStream!.ChemicalSolutionName, ref bloodStream.ChemicalSolution))
-                        _solutionContainer.TryAddReagent(bloodStream.ChemicalSolution.Value, speedRegent, FixedPoint2.New((int) transferAmount / 3), out _); // Add to blood
-                }
-            }
-            else if (entity.Comp.FinalQuality == "Normal")
-            {
-                if (reverseFoodQuality)
-                {
-                    if (_solutionContainer.ResolveSolution(stomachToUse.Owner, stomachToUse.BodySolutionName, ref stomachToUse.Solution))
-                    {
-                        foreach (var reagent in toxinsRegent)
-                            _solutionContainer.RemoveReagent(stomachToUse.Solution.Value, reagent, FixedPoint2.New((int) transferAmount)); // Remove from body before it goes to blood
-                        _solutionContainer.RemoveReagent(stomachToUse.Solution.Value, "Flavorol", FixedPoint2.New((int) transferAmount)); // Remove from body before it goes to blood
-                    }
-                    if (_solutionContainer.ResolveSolution(args.Target.Value, bloodStream!.ChemicalSolutionName, ref bloodStream.ChemicalSolution))
-                        _solutionContainer.TryAddReagent(bloodStream.ChemicalSolution.Value, speedRegent, FixedPoint2.New((int) transferAmount / 5), out _); // Add to blood
-                }
-            }
-            else if (entity.Comp.FinalQuality == "Junk")
-            {
-                if (reverseFoodQuality)
-                {
-                    if (_solutionContainer.ResolveSolution(stomachToUse.Owner, stomachToUse.BodySolutionName, ref stomachToUse.Solution))
-                    {
-                        foreach (var reagent in toxinsRegent)
-                            _solutionContainer.RemoveReagent(stomachToUse.Solution.Value, reagent, FixedPoint2.New((int) transferAmount)); // Remove from body before it goes to blood
-                        _solutionContainer.RemoveReagent(stomachToUse.Solution.Value, "Flavorol", FixedPoint2.New((int) transferAmount)); // Remove from body before it goes to blood
-                    }
-                    if (_solutionContainer.ResolveSolution(args.Target.Value, bloodStream!.ChemicalSolutionName, ref bloodStream.ChemicalSolution))
-                        _solutionContainer.TryAddReagent(bloodStream.ChemicalSolution.Value, speedRegent, FixedPoint2.New((int) transferAmount / 7), out _); // Add to blood
-                }
-            }
-            else if (entity.Comp.FinalQuality == "Nasty")
-            {
-                if (reverseFoodQuality)
-                {
-                    showFlavors = false;
-                    _popup.PopupEntity(msgNasty, args.Target.Value, args.User);
-
-                    if (_solutionContainer.ResolveSolution(stomachToUse.Owner, stomachToUse.BodySolutionName, ref stomachToUse.Solution))
-                        _solutionContainer.RemoveReagent(stomachToUse.Solution.Value, "Flavorol", FixedPoint2.New((int) transferAmount)); // Remove from body before it goes to blood
-                    if (_solutionContainer.ResolveSolution(args.Target.Value, bloodStream!.ChemicalSolutionName, ref bloodStream.ChemicalSolution))
-                        _solutionContainer.TryAddReagent(bloodStream.ChemicalSolution.Value, damagingRegent, FixedPoint2.New((int) transferAmount / 5), out _); // Add to blood
-                    _stuttering.DoStutter(args.Target.Value, TimeSpan.FromSeconds(5), false); // Gives stuttering
-                    _jittering.DoJitter(args.Target.Value, TimeSpan.FromSeconds(5), true, 40f, 4f, true, null);
-                }
-            }
-            else if (entity.Comp.FinalQuality == "Toxin")
-            {
-                if (reverseFoodQuality)
-                {
-                    showFlavors = false;
-                    _popup.PopupEntity(msgToxin, args.Target.Value, args.User);
-
-                    if (_solutionContainer.ResolveSolution(stomachToUse.Owner, stomachToUse.BodySolutionName, ref stomachToUse.Solution))
-                        _solutionContainer.RemoveReagent(stomachToUse.Solution.Value, "Flavorol", FixedPoint2.New((int) transferAmount)); // Remove from body before it goes to blood
-                    if (_solutionContainer.ResolveSolution(args.Target.Value, bloodStream!.ChemicalSolutionName, ref bloodStream.ChemicalSolution))
-                        _solutionContainer.TryAddReagent(bloodStream.ChemicalSolution.Value, damagingRegent, FixedPoint2.New((int) transferAmount / 3), out _); // Add to blood
-                    _stuttering.DoStutter(args.Target.Value, TimeSpan.FromSeconds(5), false); // Gives stuttering
-                    _jittering.DoJitter(args.Target.Value, TimeSpan.FromSeconds(5), true, 80f, 8f, true, null);
-                    _chat.TryEmoteWithoutChat(args.Target.Value, emoteId);
-
-                    if (RobustRandom.Prob(.05f)) // 5% to puke
-                        _vomit.Vomit(args.Target.Value);
-                }
-            }
-            else if (entity.Comp.FinalQuality == "Trash" || entity.Comp.FinalQuality == "Mail" || entity.Comp.FinalQuality == "Fiber")
-            {
-                if (_solutionContainer.ResolveSolution(stomachToUse.Owner, stomachToUse.BodySolutionName, ref stomachToUse.Solution))
-                {
-                    foreach (var reagent in toxinsRegent)
-                        _solutionContainer.RemoveReagent(stomachToUse!.Solution.Value, reagent, FixedPoint2.New((int) transferAmount)); // Remove from body before it goes to blood
-                    _solutionContainer.RemoveReagent(stomachToUse!.Solution.Value, "Flavorol", FixedPoint2.New((int) transferAmount)); // Remove from body before it goes to blood
-                }
-                if (_solutionContainer.ResolveSolution(args.Target.Value, bloodStream!.ChemicalSolutionName, ref bloodStream.ChemicalSolution))
-                    _solutionContainer.TryAddReagent(bloodStream.ChemicalSolution.Value, speedRegent, FixedPoint2.New((int) transferAmount), out _); // Add to blood
-            }
-        }
-        /// Frontier - Food quality system end
+        // New Frontiers - Digestion Rework - Allows species-specific digestion.
+        // This code is licensed under AGPLv3. See AGPLv3.txt
+        var digestion = DigestFood(entity, stomachToUse, transferAmount, args);
 
         var flavors = args.FlavorMessage;
 
@@ -419,7 +273,7 @@ public sealed class FoodSystem : EntitySystem
         {
             var targetName = Identity.Entity(args.Target.Value, EntityManager);
             var userName = Identity.Entity(args.User, EntityManager);
-            if (showFlavors) // Frontier
+            if (digestion.ShowFlavors) // Frontier
                 _popup.PopupEntity(Loc.GetString("food-system-force-feed-success", ("user", userName), ("flavors", flavors)), entity.Owner, entity.Owner);
 
             _popup.PopupEntity(Loc.GetString("food-system-force-feed-success-user", ("target", targetName)), args.User, args.User);
@@ -429,7 +283,7 @@ public sealed class FoodSystem : EntitySystem
         }
         else
         {
-            if (showFlavors) // Frontier
+            if (digestion.ShowFlavors) // Frontier
                 _popup.PopupEntity(Loc.GetString(entity.Comp.EatMessage, ("food", entity.Owner), ("flavors", flavors)), args.User, args.User);
 
             // log successful voluntary eating
@@ -562,40 +416,6 @@ public sealed class FoodSystem : EntitySystem
         // Run through the mobs' stomachs
         foreach (var (comp, _) in stomachs)
         {
-            // Frontier - Food System
-            var foodQuality = component.Quality;
-            bool foodQualityBlock = false;
-
-            // Map each quality to the corresponding component property for digestion capability
-            var digestionMap = new Dictionary<string, bool>
-            {
-                {"Mail", comp.MailDigestion},
-                {"Fiber", comp.FiberDigestion},
-                {"Trash", comp.TrashDigestion}
-            };
-
-            foreach (var quality in foodQuality)
-            {
-                if (digestionMap.ContainsKey(quality))
-                {
-                    // Set foodQualityBlock based on whether the specific digestion capability is true
-                    // If the component can digest this type of quality, set to false and break out of the loop
-                    if (digestionMap[quality])
-                    {
-                        foodQualityBlock = false;
-                        break;
-                    }
-                    else
-                    {
-                        // If the component cannot digest this quality, set to true
-                        foodQualityBlock = true;
-                    }
-                }
-            }
-            if (foodQualityBlock)
-                return false;
-            // Frontier - Food System
-
             // Find a stomach with a SpecialDigestible
             if (comp.SpecialDigestible == null)
                 continue;
