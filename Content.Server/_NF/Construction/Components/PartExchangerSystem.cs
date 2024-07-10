@@ -1,4 +1,3 @@
-using System.Linq;
 using Content.Server._NF.Construction.Components;
 using Content.Server.Construction;
 using Content.Server.Construction.Components;
@@ -13,7 +12,6 @@ using Content.Shared.Storage;
 using Robust.Shared.Containers;
 using Robust.Shared.Utility;
 using Content.Shared.Wires;
-using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Collections;
 using Robust.Shared.Prototypes;
@@ -40,6 +38,13 @@ public sealed class PartExchangerSystem : EntitySystem
         SubscribeLocalEvent<PartExchangerComponent, ExchangerDoAfterEvent>(OnDoAfter);
     }
 
+    private struct UpgradePartState
+    {
+        public MachinePartComponent Part;
+        public StackComponent? Stack;
+        public bool InContainer;
+    }
+
     private void OnDoAfter(EntityUid uid, PartExchangerComponent component, DoAfterEvent args)
     {
         if (args.Cancelled)
@@ -52,40 +57,39 @@ public sealed class PartExchangerSystem : EntitySystem
             return;
 
         if (!TryComp<StorageComponent>(uid, out var storage) || storage.Container == null)
-            return; //the parts are stored in here
+            return;
 
-        var machinePartQuery = GetEntityQuery<MachinePartComponent>();
-        var stackQuery = GetEntityQuery<StackComponent>();
-        var partsByType = new Dictionary<ProtoId<MachinePartPrototype>, List<(EntityUid, MachinePartState)>>();
+        var partsByType = new Dictionary<ProtoId<MachinePartPrototype>, List<(EntityUid, UpgradePartState)>>();
 
-        foreach (var item in storage.Container.ContainedEntities) //get parts in RPED
+        // Insert the contained parts into a dictionary for indexing.
+        // Note: these parts remain in the starting container.
+        foreach (var item in storage.Container.ContainedEntities)
         {
-            if (machinePartQuery.TryGetComponent(item, out var part))
+            if (_construction.GetMachinePartState(item, out var partState))
             {
-                MachinePartState partState = new MachinePartState
-                {
-                    Part = part
-                };
-                stackQuery.TryGetComponent(item, out partState.Stack);
-                if (!partsByType.ContainsKey(part.PartType))
-                    partsByType[part.PartType] = new List<(EntityUid, MachinePartState)>();
-                partsByType[part.PartType].Add((item, partState));
+                UpgradePartState upgrade;
+                upgrade.Part = partState.Part;
+                upgrade.Stack = partState.Stack;
+                upgrade.InContainer = true;
+
+                var partType = upgrade.Part.PartType;
+                if (!partsByType.ContainsKey(partType))
+                    partsByType[partType] = new List<(EntityUid, UpgradePartState)>();
+                partsByType[partType].Add((item, upgrade));
             }
         }
 
-        TryExchangeMachineParts(args.Args.Target.Value, uid, partsByType);
-        TryConstructMachineParts(args.Args.Target.Value, uid, partsByType);
+        // Exchange machine parts with the machine or frame.
+        if (TryComp<MachineComponent>(args.Args.Target.Value, out var machine))
+            TryExchangeMachineParts(machine, args.Args.Target.Value, uid, partsByType);
+        else if (TryComp<MachineFrameComponent>(args.Args.Target.Value, out var machineFrame))
+            TryConstructMachineParts(machineFrame, args.Args.Target.Value, uid, partsByType);
 
         args.Handled = true;
     }
 
-    private void TryExchangeMachineParts(EntityUid uid, EntityUid storageUid, Dictionary<ProtoId<MachinePartPrototype>, List<(EntityUid part, MachinePartState state)>> partsByType)
+    private void TryExchangeMachineParts(MachineComponent machine, EntityUid uid, EntityUid storageUid, Dictionary<ProtoId<MachinePartPrototype>, List<(EntityUid part, UpgradePartState state)>> partsByType)
     {
-        if (!TryComp<MachineComponent>(uid, out var machine))
-            return;
-
-        var machinePartQuery = GetEntityQuery<MachinePartComponent>();
-        var stackQuery = GetEntityQuery<StackComponent>();
         var board = machine.BoardContainer.ContainedEntities.FirstOrNull();
 
         if (board == null || !TryComp<MachineBoardComponent>(board, out var macBoardComp))
@@ -94,98 +98,108 @@ public sealed class PartExchangerSystem : EntitySystem
         // Add all components in the machine to form a complete set of available components.
         foreach (var item in new ValueList<EntityUid>(machine.PartContainer.ContainedEntities)) //clone so don't modify during enumeration
         {
-            if (machinePartQuery.TryGetComponent(item, out var part))
+            if (_construction.GetMachinePartState(item, out var partState))
             {
-                MachinePartState partState = new MachinePartState
-                {
-                    Part = part
-                };
-                stackQuery.TryGetComponent(item, out partState.Stack);
+                UpgradePartState upgrade;
+                upgrade.Part = partState.Part;
+                upgrade.Stack = partState.Stack;
+                upgrade.InContainer = false;
 
-                if (!partsByType.ContainsKey(part.PartType))
-                    partsByType[part.PartType] = new List<(EntityUid, MachinePartState)>();
-                partsByType[part.PartType].Add((item, partState));
+                var partType = upgrade.Part.PartType;
+                if (!partsByType.ContainsKey(partType))
+                    partsByType[partType] = new List<(EntityUid, UpgradePartState)>();
+                partsByType[partType].Add((item, upgrade));
 
                 _container.RemoveEntity(uid, item);
             }
         }
 
-        foreach (var partList in partsByType.Values)
+        // Sort by rating in descending order (highest rated parts first)
+        foreach (var (partKey, partList) in partsByType)
             partList.Sort((x, y) => y.state.Part.Rating.CompareTo(x.state.Part.Rating));
 
-        var updatedParts = new List<(EntityUid id, MachinePartState state)>();
+        var updatedParts = new List<(EntityUid id, MachinePartState state, int index)>();
         foreach (var (type, amount) in macBoardComp.Requirements)
         {
             if (partsByType.ContainsKey(type))
             {
                 var partsNeeded = amount;
+                int index = 0;
                 foreach ((var part, var state) in partsByType[type])
                 {
                     // No more space for components
                     if (partsNeeded <= 0)
                         break;
 
-                    // This part is stackable - either split off what we need, or add it entirely to the set to be moved.
                     if (state.Stack is not null)
                     {
                         var count = state.Stack.Count;
+                        // Entire stack is needed, add it to the things to bring over.
                         if (count <= partsNeeded)
                         {
-                            updatedParts.Add((part, state));
+                            MachinePartState partState;
+                            partState.Part = state.Part;
+                            partState.Stack = state.Stack;
+
+                            updatedParts.Add((part, partState, index));
                             partsNeeded -= count;
                         }
                         else
                         {
+                            // Partial stack is needed, split off what we need, ensure the new entry is moved.
                             EntityUid splitStack = _stack.Split(part, partsNeeded, Transform(uid).Coordinates, state.Stack) ?? EntityUid.Invalid;
 
-                            // TODO: better error handling?  Why would this fail?
                             if (splitStack == EntityUid.Invalid)
                                 continue;
 
                             // Create a new MachinePartState out of our new entity
-                            MachinePartState splitState = new MachinePartState();
-                            if (TryComp(splitStack, out MachinePartComponent? splitPart) && splitPart is not null) // Nullable type - fix this.
-                                splitState.Part = splitPart;
-                            TryComp(splitStack, out splitState.Stack);
-
-                            updatedParts.Add((splitStack, splitState));
-                            partsNeeded = 0;
+                            if (_construction.GetMachinePartState(splitStack, out var splitState))
+                            {
+                                updatedParts.Add((splitStack, splitState, -1)); // Use -1 for index, nothing to remove
+                                partsNeeded = 0;
+                            }
                         }
                     }
                     else
                     {
-                        updatedParts.Add((part, state));
+                        // Not a stack, move the single part.
+                        MachinePartState partState;
+                        partState.Part = state.Part;
+                        partState.Stack = state.Stack;
+
+                        updatedParts.Add((part, partState, index));
                         partsNeeded--;
                     }
+                    // Adjust the index for parts being removed from the container.
+                    index++;
                 }
             }
         }
 
-        foreach (var part in updatedParts)
+        // Move selected parts to the machine, removing them from the dictionary of contained parts.
+        // Iterate through list backwards, remove later entries first (maintain validity of earlier indices).
+        for (int i = updatedParts.Count - 1; i >= 0; i--)
         {
-            _container.Insert(part.id, machine.PartContainer);
-            partsByType[part.state.Part.PartType].Remove(part);
+            var part = updatedParts[i];
+            bool inserted = _container.Insert(part.id, machine.PartContainer);
+            if (part.index >= 0)
+                partsByType[part.state.Part.PartType].RemoveAt(part.index);
         }
 
-        //put the unused parts back into rped. (this also does the "swapping")
-        //NOTE: this may destroy removed parts if there is not enough space in the RPED (due to stacking issues)
-        foreach (var partSet in partsByType.Values)
+        //Put the unused parts back into the container (if they aren't already there)
+        foreach (var (partType, partSet) in partsByType)
         {
             foreach (var partState in partSet)
             {
-                _storage.Insert(storageUid, partState.part, out _, playSound: false);
+                if (!partState.state.InContainer)
+                    _storage.Insert(storageUid, partState.part, out _, playSound: false);
             }
         }
         _construction.RefreshParts(uid, machine);
     }
 
-    private void TryConstructMachineParts(EntityUid uid, EntityUid storageEnt, Dictionary<ProtoId<MachinePartPrototype>, List<(EntityUid part, MachinePartState state)>> partsByType)
+    private void TryConstructMachineParts(MachineFrameComponent machine, EntityUid uid, EntityUid storageEnt, Dictionary<ProtoId<MachinePartPrototype>, List<(EntityUid part, UpgradePartState state)>> partsByType)
     {
-        if (!TryComp<MachineFrameComponent>(uid, out var machine))
-            return;
-
-        var machinePartQuery = GetEntityQuery<MachinePartComponent>();
-        var stackQuery = GetEntityQuery<StackComponent>();
         var board = machine.BoardContainer.ContainedEntities.FirstOrNull();
 
         if (!machine.HasBoard || !TryComp<MachineBoardComponent>(board, out var macBoardComp))
@@ -194,90 +208,108 @@ public sealed class PartExchangerSystem : EntitySystem
         // Add all components in the machine to form a complete set of available components.
         foreach (var item in new ValueList<EntityUid>(machine.PartContainer.ContainedEntities)) //clone so don't modify during enumeration
         {
-            if (machinePartQuery.TryGetComponent(item, out var part))
+            if (_construction.GetMachinePartState(item, out var partState))
             {
-                MachinePartState partState = new MachinePartState
-                {
-                    Part = part
-                };
-                stackQuery.TryGetComponent(item, out partState.Stack);
+                // Construct our entry
+                UpgradePartState upgrade;
+                upgrade.Part = partState.Part;
+                upgrade.Stack = partState.Stack;
+                upgrade.InContainer = false;
 
-                if (!partsByType.ContainsKey(part.PartType))
-                    partsByType[part.PartType] = new List<(EntityUid, MachinePartState)>();
-                partsByType[part.PartType].Add((item, partState));
+                // Add it to the table
+                var partType = upgrade.Part.PartType;
+                if (!partsByType.ContainsKey(partType))
+                    partsByType[partType] = new List<(EntityUid, UpgradePartState)>();
+                partsByType[partType].Add((item, upgrade));
 
-                machine.Progress[part.PartType] -= partState.Quantity();
-                machine.Progress[part.PartType] = int.Max(0, machine.Progress[part.PartType]); // Ensure progress isn't negative.
+                // Make sure the construction status is consistent with the removed parts.
+                machine.Progress[partType] -= partState.Quantity();
+                machine.Progress[partType] = int.Max(0, machine.Progress[partType]); // Ensure progress isn't negative.
 
                 _container.RemoveEntity(uid, item);
             }
         }
 
+        // Sort parts in descending order of rating (highest rated parts first)
         foreach (var partList in partsByType.Values)
             partList.Sort((x, y) => y.state.Part.Rating.CompareTo(x.state.Part.Rating));
 
-        var updatedParts = new List<(EntityUid id, MachinePartState state)>();
+        var updatedParts = new List<(EntityUid id, MachinePartState state, int index)>();
         foreach (var (type, amount) in macBoardComp.Requirements)
         {
             if (partsByType.ContainsKey(type))
             {
                 var partsNeeded = amount;
+                var index = 0;
                 foreach ((var part, var state) in partsByType[type])
                 {
                     // No more space for components
                     if (partsNeeded <= 0)
                         break;
 
-                    // This part is stackable - either split off what we need, or add it entirely to the set to be moved.
                     if (state.Stack is not null)
                     {
                         var count = state.Stack.Count;
+                        // Entire stack is needed, add it to the things to bring over.
                         if (count <= partsNeeded)
                         {
-                            updatedParts.Add((part, state));
+                            MachinePartState partState;
+                            partState.Part = state.Part;
+                            partState.Stack = state.Stack;
+
+                            updatedParts.Add((part, partState, index));
                             partsNeeded -= count;
                         }
                         else
                         {
+                            // Partial stack is needed, split off what we need, ensure the new entry is moved.
                             EntityUid splitStack = _stack.Split(part, partsNeeded, Transform(uid).Coordinates, state.Stack) ?? EntityUid.Invalid;
 
-                            // TODO: better error handling?  Why would this fail?
                             if (splitStack == EntityUid.Invalid)
                                 continue;
 
                             // Create a new MachinePartState out of our new entity
-                            MachinePartState splitState = new MachinePartState();
-                            if (TryComp(splitStack, out MachinePartComponent? splitPart) && splitPart is not null) // Nullable type - fix this.
-                                splitState.Part = splitPart;
-                            TryComp(splitStack, out splitState.Stack);
-
-                            updatedParts.Add((splitStack, splitState));
-                            partsNeeded = 0;
+                            if (_construction.GetMachinePartState(splitStack, out var splitState))
+                            {
+                                updatedParts.Add((splitStack, splitState, -1)); // New entity, nothing to remove, set index to -1 to flag this.
+                                partsNeeded = 0;
+                            }
                         }
                     }
                     else
                     {
-                        updatedParts.Add((part, state));
+                        // Not a stack, move the single part.
+                        MachinePartState partState;
+                        partState.Part = state.Part;
+                        partState.Stack = state.Stack;
+
+                        updatedParts.Add((part, partState, index));
                         partsNeeded--;
                     }
+                    // Adjust the index for parts being removed from the container.
+                    index++;
                 }
             }
         }
 
-        foreach (var element in updatedParts)
+        // Move selected parts to the machine, removing them from the dictionary of contained parts.
+        // Iterate through list backwards, remove later entries first (maintain validity of earlier indices).
+        for (int i = updatedParts.Count - 1; i >= 0; i--)
         {
-            _container.Insert(element.id, machine.PartContainer);
-            partsByType[element.state.Part.PartType].Remove(element); // Frontier: 
-            machine.Progress[element.state.Part.PartType] += element.state.Quantity();
+            var part = updatedParts[i];
+            _container.Insert(part.id, machine.PartContainer, force: true);
+            if (part.index >= 0)
+                partsByType[part.state.Part.PartType].RemoveAt(part.index);
+            machine.Progress[part.state.Part.PartType] += part.state.Quantity();
         }
 
-        //put the unused parts back into rped. (this also does the "swapping")
-        //NOTE: this may destroy removed parts if there is not enough space in the RPED (due to stacking issues)
-        foreach (var partSet in partsByType.Values)
+        //Put the unused parts back into the container (if they aren't already there)
+        foreach (var (partType, partSet) in partsByType)
         {
             foreach (var partState in partSet)
             {
-                _storage.Insert(storageEnt, partState.part, out _, playSound: false);
+                if (!partState.state.InContainer)
+                    _storage.Insert(uid, partState.part, out _, playSound: false);
             }
         }
     }
