@@ -45,6 +45,9 @@
     - SpawnDungeonLootBureaucracyPen
     chance: 1
     offset: 0.0
+    rarePrototypes:
+    - SpawnDungeonLootVendingRestocks
+    rareChance: 0.01
 
 # Tools
 - type: entity
@@ -58,7 +61,7 @@
     layers:
       - state: green
         scale: 0.7, 0.7
-      - sprite: Objects/Misc/bureaucracy.rsi
+      - sprite: Objects/Misc/pens.rsi
         state: luxury_pen
       - sprite: _NF/Markers/general.rsi
         state: questionmark
@@ -521,6 +524,7 @@
 #    - GasRecyclerMachineCircuitboard
     - BodyScannerComputerCircuitboard
     - CloningConsoleComputerCircuitboard
+    - SpawnDungeonLootFlatpacks
     rareChance: 0.01
 
 - type: entity
@@ -553,7 +557,7 @@
     - SpaceCash10000
     - SpaceCash20000
     - SpaceCash30000
-    rareChance: 0.01
+    rareChance: 0.05
 
 - type: entity
   name: random materials
@@ -838,3 +842,93 @@
     - BriefcaseThiefBribingBundleFilled
     - BriefcaseSyndieSniperBundleFilled
     rareChance: 0.01
+
+- type: entity
+  name: random flatpack
+  id: SpawnDungeonLootFlatpacks
+  parent: MarkerBasePlaceFree
+  suffix: Dungeon
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _NF/Objects/Devices/flatpack.rsi
+        state: engineering_lathe
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - SpawnDungeonLootFlatpacksMed
+    - SpawnDungeonLootFlatpacksEngi
+    - SpawnDungeonLootFlatpacksSuppl
+    - SpawnDungeonLootFlatpacksScience
+    - SpawnDungeonLootFlatpacksService
+    - HoverbikeFlatpack
+    - DawInstrumentFlatpack
+    - MinimoogInstrumentFlatpack
+    - ComputerIFFFlatpack
+    - JukeboxFlatpack
+    - VendingMachineBoozeFlatpack
+    - VendingMachineCigsFlatpack
+    - VendingMachineClothingPunkFlatpack
+    - VendingMachineBountyVendPunkFlatpack
+    - ComputerResearchAndDevelopmentFlatpack
+    - ResearchAndDevelopmentServerFlatpack
+    - AmmoTechFabFlatpack
+    chance: 0.95
+    offset: 0.0
+    rarePrototypes:
+    - VendingMachineSyndieContrabandFlatpack
+    rareChance: 0.001
+
+- type: entity
+  name: random restock box
+  id: SpawnDungeonLootVendingRestocks
+  parent: MarkerBasePlaceFree
+  suffix: Dungeon
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Objects/Specific/Service/vending_machine_restock.rsi
+        state: base
+      - sprite: Objects/Specific/Service/vending_machine_restock.rsi
+        state: green_bit
+        shader: unshaded
+      - sprite: Objects/Specific/Service/vending_machine_restock.rsi
+        state: refill_booze
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - VendingMachineRestockBooze
+    - VendingMachineRestockChefvend
+    - VendingMachineRestockCondimentStation
+    - VendingMachineRestockClothes
+    - VendingMachineRestockCostumes
+    - VendingMachineRestockDinnerware
+    - VendingMachineRestockEngineering
+    - VendingMachineRestockGames
+    - VendingMachineRestockMedical
+    - VendingMachineRestockNutriMax
+    - VendingMachineRestockSalvageEquipment
+    - VendingMachineRestockSeeds
+    - VendingMachineRestockSmokes
+    - VendingMachineRestockTankDispenser
+    - VendingMachineRestockVendomat
+    - VendingMachineRestockRobotics
+    - VendingMachineRestockChemVend
+    - VendingMachineRestockAstroVend
+    - VendingMachineRestockAmmo
+    - VendingMachineRestockFlatpackVend
+    - VendingMachineRestockLessLethalVend
+    - VendingMachineRestockNonLethalVend
+    - VendingMachineRestockAutoTuneVend
+    - VendingMachineRestockPottedPlantVend
+    chance: 0.95
+    offset: 0.0
+    rarePrototypes:
+    - VendingMachineRestockSyndieContraband
+    rareChance: 0.001

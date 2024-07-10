@@ -235,6 +235,9 @@
     stripTimeReduction: 1
     stealthy: true
   - type: NinjaGloves
+  - type: Contraband #frontier
+  - type: FactionClothing #frontier
+    faction: ContrabandClothing #frontier
 
 - type: entity
   parent: ClothingHandsGlovesColorBlack
@@ -242,6 +245,12 @@
   name: combat gloves
   description: These tactical gloves are fireproof and shock resistant.
   components:
+  - type: Sprite
+    sprite: Clothing/Hands/Gloves/combat.rsi
+  - type: Clothing
+    sprite: Clothing/Hands/Gloves/combat.rsi
+  - type: GloveHeatResistance
+    heatResistance: 1400
   - type: Insulated
   - type: Fiber
     fiberMaterial: fibers-insulative
@@ -336,7 +345,9 @@
     stripTimeReduction: 1.5
     stealthy: true
   - type: FingerprintMask # Frontier
-  - type: Contraband # Frontier
+  - type: Contraband #frontier
+  - type: FactionClothing #frontier
+    faction: ContrabandClothing #frontier
 
 - type: entity
   parent: ClothingHandsGlovesColorWhite
@@ -383,6 +394,8 @@
   - type: StaticPrice
     price: 0
   - type: Contraband #frontier
+  - type: FactionClothing #frontier
+    faction: ContrabandClothing #frontier
 
 - type: entity
   parent: ClothingHandsBase

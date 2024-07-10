@@ -48,7 +48,7 @@
 
 # Uplinks
 - type: entity
-  parent: BaseItem
+  parent: [ BaseItem, StorePresetSecurityUplink ]
   id: BaseSecurityUplinkRadio
   name: nfsd uplink
   description: Retro looking old radio...
@@ -68,10 +68,6 @@
         type: StoreBoundUserInterface
   - type: ActivatableUI
     key: enum.StoreUiKey.Key
-  - type: Store
-    preset: StorePresetSecurityUplink
-    balance:
-      FrontierUplinkCoin: 0
   - type: Tag
     tags:
     - SecurityUplink
@@ -82,7 +78,6 @@
   suffix: Security, DEBUG
   components:
   - type: Store
-    preset: StorePresetSecurityUplink
     balance:
       FrontierUplinkCoin: 99999
 
@@ -92,7 +87,6 @@
   suffix: Sheriff 20
   components:
   - type: Store
-    preset: StorePresetSecurityUplink
     balance:
       FrontierUplinkCoin: 20
 
@@ -102,7 +96,6 @@
   suffix: Officer 15
   components:
   - type: Store
-    preset: StorePresetSecurityUplink
     balance:
       FrontierUplinkCoin: 15
 
