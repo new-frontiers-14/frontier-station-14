@@ -73,25 +73,30 @@ namespace Content.Server.Body.Components
         /// <summary>
         ///     Frontier - Used by goblin for fliping the food quility effects
         /// </summary>
-        [DataField]
-        public bool ReverseFoodQuality = false;
+        [DataField(customTypeSerializer: typeof(FlagSerializer<DigestionTypes>))]
+        public DigestionTypes Digestion = DigestionTypes.None;
 
         /// <summary>
-        ///     Frontier - Allow eating mail TODO: Move this to a switch before fully added.
+        ///     Frontier - Used by goblin for fliping the food quility effects
         /// </summary>
-        [DataField]
-        public bool MailDigestion = false;
+        [DataField("digestionFunction")]
+        public DigestionFunction DigestionFunc = DigestionFunction.Normal;
+    }
 
-        /// <summary>
-        ///     Frontier - Allow eating fiber like food (Moth food)
-        /// </summary>
-        [DataField]
-        public bool FiberDigestion = false;
+    // Special types of food that this stomach can digest.
+    [Flags]
+    public enum DigestionTypes : byte
+    {
+        None = 0,
+        Mail = 1 << 0,
+        Fiber = 1 << 1,
+        Trash = 1 << 2,
+    }
 
-        /// <summary>
-        ///     Frontier - Allow eating trash
-        /// </summary>
-        [DataField]
-        public bool TrashDigestion = false;
+    // Digestion functions. Expand this enum if adding species-specific digestion functions.
+    public enum DigestionFunction : byte
+    {
+        Normal,
+        Goblin
     }
 }
