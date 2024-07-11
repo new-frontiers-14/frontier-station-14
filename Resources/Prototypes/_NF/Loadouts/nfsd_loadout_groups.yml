@@ -11,6 +11,8 @@
   - NfsdClothingBackpackSatchelNfsdCream
   - NfsdClothingBackpackDuffelNfsdCream
   - NfsdClothingBackpackMessengerNfsdCream
+  fallbacks:
+  - NfsdClothingBackpackNfsdBrown
 
 - type: loadoutGroup
   id: NfsdBackpackCream
@@ -25,6 +27,8 @@
   - NfsdClothingBackpackSatchelNfsdBrown
   - NfsdClothingBackpackDuffelNfsdBrown
   - NfsdClothingBackpackMessengerNfsdBrown
+  fallbacks:
+  - NfsdClothingBackpackNfsdCream
 
 - type: loadoutGroup
   id: NfsdBelt
@@ -33,12 +37,17 @@
   loadouts:
   - NfsdWebbing
   - NfsdBelt
+  fallbacks:
+  - NfsdWebbing
 
 - type: loadoutGroup
   id: NfsdBoxSurvival
   name: loadout-group-contractor-survival-box
   minLimit: 1
   loadouts:
+  - NfsdBoxSurvivalNfsdOxygen
+  - NfsdBoxSurvivalNfsdNitrogen
+  fallbacks:
   - NfsdBoxSurvivalNfsdOxygen
   - NfsdBoxSurvivalNfsdNitrogen
 

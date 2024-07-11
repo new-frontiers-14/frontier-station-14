@@ -1275,3 +1275,19 @@
       whitelist:
         tags:
           - SecurityUplink
+
+- type: listing
+  id: UplinkSecuritySpaceBladeSec
+  name:  uplink-security-spaceblade-sec-name
+  description: uplink-security-spaceblade-sec-desc
+  productEntity: SpaceBladeSec
+  icon: { sprite: _NF/Objects/Fun/spaceblade.rsi, state: secblade }
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+    - UplinkSecurityUtility
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
