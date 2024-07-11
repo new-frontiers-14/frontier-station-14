@@ -1448,7 +1448,7 @@
     grindableSolutionName: food
   - type: BadFood
   - type: Food # Frontier
-    quality: [ "Toxin" ] # Frontier, New Food Quality System
+    quality: Toxin # Frontier, New Food Quality System
 
 - type: entity
   name: gatfruit
@@ -1878,8 +1878,8 @@
     flavors:
       - cotton
   - type: Food
-#    requiresSpecialDigestion: true # Frontier
-    quality: [ "Normal", "Fiber" ] # Frontier, New Food Quality System
+    requiresSpecialDigestion: true
+    quality: Normal # Frontier, New Food Quality System
   - type: SolutionContainerManager
     solutions:
       food:

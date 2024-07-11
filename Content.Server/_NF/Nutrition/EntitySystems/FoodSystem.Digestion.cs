@@ -7,8 +7,8 @@ using Content.Shared.Speech.EntitySystems;
 using Robust.Shared.Random;
 using Content.Shared.Jittering;
 using Content.Server.Chat.Systems;
+using Content.Shared.Chemistry.Components;
 using Content.Shared.Tag;
-using Content.Shared.Nutrition;
 using Content.Server.Body.Components;
 using Content.Shared.FixedPoint;
 
@@ -29,16 +29,18 @@ public partial class FoodSystem : EntitySystem // Frontier: sealed<partial
         public bool ShowFlavors;
     }
 
-    DigestionResult DigestFood(Entity<FoodComponent> entity, StomachComponent stomach, FixedPoint2 foodAmount, ref ConsumeDoAfterEvent args)
+    DigestionResult DigestFood(Entity<FoodComponent> entity, StomachComponent stomach, FixedPoint2 foodAmount, EntityUid target, EntityUid user)
     {
         /// Frontier - Food quality system
-        switch (stomach.DigestionFunc)
+        switch (stomach.Digestion)
         {
-            case DigestionFunction.Normal:
+            case DigestionType.Normal:
             default:
                 break;
-            case DigestionFunction.Goblin:
-                return GoblinDigestion(entity, stomach, foodAmount, ref args);
+            case DigestionType.Goblin:
+                return GoblinDigestion(entity, stomach, foodAmount, target, user);
+            case DigestionType.Felinid:
+                return FelinidDigestion(entity, stomach, foodAmount, target, user);
         }
         return new DigestionResult
         {
@@ -46,7 +48,7 @@ public partial class FoodSystem : EntitySystem // Frontier: sealed<partial
         };
     }
 
-    DigestionResult GoblinDigestion(Entity<FoodComponent> entity, StomachComponent stomach, FixedPoint2 foodAmount, ref ConsumeDoAfterEvent args)
+    DigestionResult GoblinDigestion(Entity<FoodComponent> entity, StomachComponent stomach, FixedPoint2 foodAmount, EntityUid target, EntityUid user)
     {
         DigestionResult result;
         result.ShowFlavors = true;
@@ -56,8 +58,7 @@ public partial class FoodSystem : EntitySystem // Frontier: sealed<partial
 
         string[] toxinsRegent = { "Toxin", "CarpoToxin", "Mold", "Amatoxin", "SulfuricAcid", "Bungotoxin" };
 
-        EntityUid eater = args?.Target ?? EntityUid.Invalid;
-        TryComp<BloodstreamComponent>(eater, out var bloodStream);
+        TryComp<BloodstreamComponent>(target, out var bloodStream);
 
         string? print = null;
         float jitterStrength = 0.0f;
@@ -68,7 +69,7 @@ public partial class FoodSystem : EntitySystem // Frontier: sealed<partial
         int damageDivisor = 0;
 
         // Assign parameters based on food quality
-        if (_tag.HasAnyTag(entity, "Mail", "Trash", "Fiber"))
+        if (_tag.HasAnyTag(entity, "Trash"))
         {
             speedDivisor = 1;
         }
@@ -103,31 +104,52 @@ public partial class FoodSystem : EntitySystem // Frontier: sealed<partial
             }
 
         // Run goblin food behaviour
-        if (_solutionContainer.ResolveSolution(eater, stomach.BodySolutionName, ref stomach.Solution))
+        if (_solutionContainer.ResolveSolution(target, stomach.BodySolutionName, ref stomach.Solution))
         {
             foreach (var reagent in toxinsRegent)
                 _solutionContainer.RemoveReagent(stomach.Solution.Value, reagent, FixedPoint2.New((int) foodAmount)); // Remove from body before it goes to blood
             _solutionContainer.RemoveReagent(stomach.Solution.Value, "Flavorol", FixedPoint2.New((int) foodAmount)); // Remove from body before it goes to blood
         }
         if ((speedDivisor > 0 || damageDivisor > 0) &&
-            _solutionContainer.ResolveSolution(eater, bloodStream!.ChemicalSolutionName, ref bloodStream.ChemicalSolution))
+            _solutionContainer.ResolveSolution(target, bloodStream!.ChemicalSolutionName, ref bloodStream.ChemicalSolution))
         {
             if (speedDivisor > 0)
                 _solutionContainer.TryAddReagent(bloodStream.ChemicalSolution.Value, "Stimulants", FixedPoint2.New((int) foodAmount / speedDivisor), out _); // Add to blood
             if (damageDivisor > 0)
                 _solutionContainer.TryAddReagent(bloodStream.ChemicalSolution.Value, "Toxin", FixedPoint2.New((int) foodAmount / damageDivisor), out _); // Add to blood
         }
+        if (print is not null)
+            _popup.PopupEntity(print, target, user);
         if (stutter)
-            _stuttering.DoStutter(eater, TimeSpan.FromSeconds(5), false); // Gives stuttering
+            _stuttering.DoStutter(target, TimeSpan.FromSeconds(5), false); // Gives stuttering
         if (jitterStrength > 0.0f)
-            _jittering.DoJitter(eater, TimeSpan.FromSeconds(5), true, jitterStrength * 10f, jitterStrength, true, null);
+            _jittering.DoJitter(target, TimeSpan.FromSeconds(5), true, jitterStrength * 10f, jitterStrength, true, null);
         if (emote)
-            _chat.TryEmoteWithoutChat(eater, "Laugh");
+            _chat.TryEmoteWithoutChat(target, "Laugh");
 
         if (vomit && RobustRandom.Prob(.05f)) // 5% to puke
-            _vomit.Vomit(eater);
+            _vomit.Vomit(target);
 
         return result;
+    }
+
+    DigestionResult FelinidDigestion(Entity<FoodComponent> entity, StomachComponent stomach, FixedPoint2 foodAmount, EntityUid target, EntityUid user)
+    {
+        TryComp<BloodstreamComponent>(target, out var bloodStream);
+
+        // Run goblin food behaviour
+        if (_solutionContainer.ResolveSolution(target, stomach.BodySolutionName, ref stomach.Solution) &&
+            TryComp<SolutionComponent>(stomach.Solution, out var solutionComp))
+        {
+            var carpotoxinAmount = solutionComp.Solution.GetTotalPrototypeQuantity("CarpoToxin");
+            solutionComp.Solution.RemoveReagent("CarpoToxin", carpotoxinAmount);
+            solutionComp.Solution.AddReagent("Nutriment", 0.4f * carpotoxinAmount);
+            solutionComp.Solution.AddReagent("Protein", 0.2f * carpotoxinAmount);
+            solutionComp.Solution.AddReagent("Vitamin", 0.2f * carpotoxinAmount);
+            solutionComp.Solution.AddReagent("Water", 0.2f * carpotoxinAmount);
+        }
+
+        return new DigestionResult { ShowFlavors = true };
     }
 
 }

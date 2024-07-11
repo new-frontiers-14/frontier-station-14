@@ -270,13 +270,13 @@ public partial class FoodSystem : EntitySystem // Frontier: sealed<partial
 
         // New Frontiers - Digestion Rework - Allows species-specific digestion.
         // This code is licensed under AGPLv3. See AGPLv3.txt
-        var digestion = DigestFood(entity, stomachToUse, transferAmount, ref args);
+        var digestion = DigestFood(entity, stomachToUse, transferAmount, args.Target ?? EntityUid.Invalid, args.User);
 
         var flavors = args.FlavorMessage;
 
         if (forceFeed)
         {
-            var targetName = Identity.Entity(args.Target.Value, EntityManager);
+            var targetName = Identity.Entity(args.Target!.Value, EntityManager);
             var userName = Identity.Entity(args.User, EntityManager);
             if (digestion.ShowFlavors) // Frontier
                 _popup.PopupEntity(Loc.GetString("food-system-force-feed-success", ("user", userName), ("flavors", flavors)), entity.Owner, entity.Owner);
@@ -295,7 +295,7 @@ public partial class FoodSystem : EntitySystem // Frontier: sealed<partial
             _adminLogger.Add(LogType.Ingestion, LogImpact.Low, $"{ToPrettyString(args.User):target} ate {ToPrettyString(entity.Owner):food}");
         }
 
-        _audio.PlayPvs(entity.Comp.UseSound, args.Target.Value, AudioParams.Default.WithVolume(-1f));
+        _audio.PlayPvs(entity.Comp.UseSound, args.Target!.Value, AudioParams.Default.WithVolume(-1f));
 
         // Try to break all used utensils
         foreach (var utensil in utensils)

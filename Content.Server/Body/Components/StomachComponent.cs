@@ -73,30 +73,14 @@ namespace Content.Server.Body.Components
         /// <summary>
         ///     Frontier - Used by goblin for fliping the food quility effects
         /// </summary>
-        [DataField(customTypeSerializer: typeof(FlagSerializer<DigestionTypes>))]
-        public DigestionTypes Digestion = DigestionTypes.None;
-
-        /// <summary>
-        ///     Frontier - Used by goblin for fliping the food quility effects
-        /// </summary>
-        [DataField("digestionFunction")]
-        public DigestionFunction DigestionFunc = DigestionFunction.Normal;
+        [DataField]
+        public DigestionType Digestion = DigestionType.Normal;
     }
-
-    // Special types of food that this stomach can digest.
-    [Flags]
-    public enum DigestionTypes : byte
-    {
-        None = 0,
-        Mail = 1 << 0,
-        Fiber = 1 << 1,
-        Trash = 1 << 2,
-    }
-
     // Digestion functions. Expand this enum if adding species-specific digestion functions.
-    public enum DigestionFunction : byte
+    public enum DigestionType : byte
     {
         Normal,
-        Goblin
+        Goblin,
+        Felinid,
     }
 }

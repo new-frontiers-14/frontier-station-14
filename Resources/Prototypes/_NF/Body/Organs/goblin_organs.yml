@@ -5,7 +5,7 @@
   components:
   - type: Gibbable
   - type: Food
-    quality: [ "Toxin" ]
+    quality: Toxin
 
 - type: entity
   parent: [ OrganHumanBrain, BaseGoblinOrgan ]
@@ -143,8 +143,15 @@
         - ReagentId: UncookedAnimalProteins
           Quantity: 5
   - type: Stomach
-    reverseFoodQuality: true
-    trashDigestion: true
+    digestion: Goblin
+    specialDigestible:
+      component:
+      - Food
+      tags:
+      - Pill
+      - Crayon
+      - Trash
+      - Paper
   - type: Metabolizer
     maxReagents: 3
     metabolizerTypes: [ Animal ] # [ Goblin ]
