@@ -106,6 +106,24 @@
     value: 5
 
 - type: entity
+  parent: CrateBaseSecure
+  id: CrateBrokerSurplus
+  name: Syndicate broker surplus
+  noSpawn: true
+  components:
+  - type: Icon
+    sprite: _NF/Structures/Storage/Crates/contraband_crate.rsi
+  - type: Sprite
+    sprite: _NF/Structures/Storage/Crates/contraband_crate.rsi
+  - type: EntityStorage
+    deleteContentsOnDestruction: true
+  - type: Contraband
+    value: 5
+  - type: AccessReader
+    access: [["SyndicateAgent"]]
+    immunteToEmag: true
+
+- type: entity
   parent: CrateTradeBaseSecure
   id: CrateTradeContrabandSecureDonk
   name: Donk Co. contraband crate

@@ -17,6 +17,15 @@
   - type: ApcPowerReceiver
     powerDisabled: true #starts off
 
+- type: entity
+  parent: FaxMachineShip
+  id: FaxMachineBroker
+  suffix: Broker, Antag
+  components:
+  - type: FaxMachine
+    name: "The Broker"
+  - type: DeadDrop
+
 # Outpost
 - type: entity
   parent: [BaseStructureDisableToolUse, BaseStructureUnanchorable, FaxMachineBase]

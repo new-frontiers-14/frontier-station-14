@@ -26,7 +26,7 @@ public sealed partial class DeadDropComponent : Component
     ///     Max wait time in seconds to wait for the next dead drop.
     /// </summary>
     [DataField("maximumCoolDown")]
-    public int MaximumCoolDown = 5400; // 5400 / 60 = 90 minutes
+    public int MaximumCoolDown = 1500; // 1500 / 60 = 25 minutes
 
     /// <summary>
     ///     Minimum distance to spawn the drop.
