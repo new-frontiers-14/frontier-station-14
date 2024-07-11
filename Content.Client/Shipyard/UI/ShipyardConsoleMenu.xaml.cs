@@ -132,8 +132,12 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
 
     public void UpdateState(ShipyardConsoleInterfaceState state)
     {
-        BalanceLabel.Text = Loc.GetString("cargo-console-menu-points-amount", ("amount", state.Balance.ToString()));
-        ShipAppraisalLabel.Text = Loc.GetString("cargo-console-menu-points-amount", ("amount", state.ShipSellValue.ToString()));
+        BalanceLabel.Text = Loc.GetString("shipyard-console-menu-listing-amount", ("amount", state.Balance.ToString()));
+        int shipPrice = 0;
+        if (!state.FreeListings)
+            shipPrice = state.ShipSellValue;
+
+        ShipAppraisalLabel.Text = Loc.GetString("shipyard-console-menu-listing-amount", ("amount", shipPrice.ToString()));
         SellShipButton.Disabled = state.ShipDeedTitle == null;
         TargetIdButton.Text = state.IsTargetIdPresent
             ? Loc.GetString("id-card-console-window-eject-button")
