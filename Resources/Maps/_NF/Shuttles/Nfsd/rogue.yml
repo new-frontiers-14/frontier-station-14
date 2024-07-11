@@ -690,30 +690,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 0.5,3.5
       parent: 1
-- proto: ShuttleGunSvalinnMachineGun
-  entities:
-  - uid: 68
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 0.5,4.5
-      parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 121
-- proto: SignalButtonDirectional
-  entities:
-  - uid: 121
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 0.5,1.5
-      parent: 1
-    - type: DeviceLinkSource
-      linkedPorts:
-        68:
-        - Pressed: Toggle
-        - Pressed: Trigger
 - proto: SignSecureSmallRed
   entities:
   - uid: 120

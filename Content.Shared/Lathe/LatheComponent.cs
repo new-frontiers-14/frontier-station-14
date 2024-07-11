@@ -60,7 +60,7 @@ namespace Content.Shared.Lathe
         [DataField, ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
         public float MaterialUseMultiplier = 1;
 
-        public const float DefaultPartRatingMaterialUseMultiplier = 0.85f;
+        public const float DefaultPartRatingMaterialUseMultiplier = 0.85f; // Frontier: restored for machine parts
         #endregion
 
         //Frontier Upgrade Code Restore
@@ -82,11 +82,13 @@ namespace Content.Shared.Lathe
         [DataField]
         public ProtoId<MachinePartPrototype> MachinePartMaterialUse = "MatterBin";
 
+        // Frontier: restored for machine part upgrades
         /// <summary>
         /// The value that is used to calculate the modifier <see cref="MaterialUseMultiplier"/>
         /// </summary>
         [DataField]
         public float PartRatingMaterialUseMultiplier = DefaultPartRatingMaterialUseMultiplier;
+        // End Frontier
     }
 
     public sealed class LatheGetRecipesEvent : EntityEventArgs

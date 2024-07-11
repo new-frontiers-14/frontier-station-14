@@ -23,6 +23,9 @@
     prototype: WeaponRevolverInspector
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
+  - !type:GiveItemOnHolidaySpecial # Frontier
+    holiday: FrontierBirthday # Frontier
+    prototype: FrontierBirthdayGift # Frontier
 
 - type: startingGear
   id: JanitorGear
@@ -31,6 +34,9 @@
     id: JanitorPDA
     ears: ClothingHeadsetService
     belt: ClothingBeltJanitorFilled
+  storage:
+    back:
+    - BoxSurvival
 
 - type: startingGear
   id: JanitorMaidGear

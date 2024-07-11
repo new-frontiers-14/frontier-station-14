@@ -23,6 +23,8 @@
     rarePrototypes:
     - SpawnDungeonLootClothesKitchen
     - SpawnDungeonLootFood
+    - SpawnDungeonLootFlatpacksService
+    - SpawnDungeonLootVendingRestocks
     rareChance: 0.05
 
 # Tools
@@ -110,6 +112,7 @@
     - DrinkLithiumFlask
     - DrinkShinyFlask
     - DrinkVacuumFlask
+    - SpawnDungeonLootVendingRestocks
     rareChance: 0.01
 
 # Clothes
@@ -195,6 +198,8 @@
     - VendingMachineCondiments
     - BoozeDispenserEmpty
     - SodaDispenserEmpty
+    - SyndicateMicrowave # For real
+    - SpawnDungeonLootFlatpacksService
     rareChance: 0.40
 
 # Other
@@ -239,3 +244,38 @@
     - FoodBreadMoldy
     - FoodPizzaMoldySlice
     rareChance: 0.05
+
+- type: entity
+  name: random flatpack
+  id: SpawnDungeonLootFlatpacksService
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Service"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _NF/Objects/Devices/flatpack.rsi
+        state: engineering_lathe
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - UniformPrinterFlatpack
+    - ServiceTechFabFlatpack
+    - KitchenElectricGrillFlatpack
+    - KitchenMicrowaveFlatpack
+    - KitchenReagentGrinderFlatpack
+    - MaterialReclaimerFlatpack
+    - HydroponicsTrayEmptyFlatpack
+    - TilePrinterNFFlatpack
+    - DawInstrumentFlatpack
+    - MinimoogInstrumentFlatpack
+    - ComputerIFFFlatpack
+    - JukeboxFlatpack
+    - VendingMachineBoozeFlatpack
+    - VendingMachineCigsFlatpack
+    - VendingMachineClothingPunkFlatpack
+    - VendingMachineBountyVendPunkFlatpack
+    chance: 0.95
+    offset: 0.0

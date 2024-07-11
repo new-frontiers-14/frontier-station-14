@@ -4,15 +4,8 @@
   loadouts:
   - BrigmedicClothingUniformJumpsuitBrigmedic
   - BrigmedicClothingUniformJumpskirtBrigmedic
-
-- type: loadoutGroup
-  id: BrigmedicBackpack
-  name: loadout-group-contractor-backpack
-  loadouts:
-  - BrigmedicClothingBackpackBrigmedicFilled
-  - BrigmedicClothingBackpackDuffelBrigmedicFilled
-  - BrigmedicClothingBackpackSatchelBrigmedicFilled
-  - BrigmedicClothingBackpackMessengerFilled
+  fallbacks:
+  - BrigmedicClothingUniformJumpsuitBrigmedic
 
 - type: loadoutGroup
   id: BrigmedicOuterClothing
@@ -25,6 +18,8 @@
   id: BrigmedicShoes
   name: loadout-group-contractor-shoes
   loadouts:
+  - NfsdClothingShoesBootsCream
+  fallbacks:
   - NfsdClothingShoesBootsCream
 
 - type: loadoutGroup
@@ -39,6 +34,8 @@
   name: loadout-group-contractor-gloves
   loadouts:
   - NitrileGloves
+  fallbacks:
+  - NitrileGloves
 
 - type: loadoutGroup
   id: BrigmedicNeck
@@ -52,11 +49,15 @@
   name: loadout-group-contractor-id
   loadouts:
   - BrigmedicBrigmedicPDA
+  fallbacks:
+  - BrigmedicBrigmedicPDA
   
 - type: loadoutGroup
   id: BrigmedicGlasses
   name: loadout-group-contractor-glasses
   loadouts:
+  - BrigmedicClothingEyesGlasses
+  fallbacks:
   - BrigmedicClothingEyesGlasses
 
 - type: loadoutGroup
@@ -71,4 +72,6 @@
   minLimit: 1
   name: loadout-group-contractor-belt
   loadouts:
+  - BrigmedicClothingBeltBrigmedicWebbing
+  fallbacks:
   - BrigmedicClothingBeltBrigmedicWebbing
