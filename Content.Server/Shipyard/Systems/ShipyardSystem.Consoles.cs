@@ -271,7 +271,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         else
             _adminLogger.Add(LogType.ShipYardUsage, LogImpact.Low, $"{ToPrettyString(player):actor} purchased shuttle {ToPrettyString(shuttle.Owner)} for {vessel.Price} credits via {ToPrettyString(component.Owner)}");
 
-        RefreshState(uid, bank.Balance, true, name, sellValue, targetId, (ShipyardConsoleUiKey) args.UiKey);
+        RefreshState(uid, bank.Balance, true, name, sellValue, targetId, (ShipyardConsoleUiKey) args.UiKey, voucherUsed);
     }
 
     private void TryParseShuttleName(ShuttleDeedComponent deed, string name)
@@ -400,17 +400,17 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             if (voucher!.RedemptionsLeft <= 0 && voucher!.DestroyOnEmpty)
             {
                 _entityManager.DeleteEntity(targetId);
-                RefreshState(uid, bank.Balance, true, null, 0, null, (ShipyardConsoleUiKey) args.UiKey);
+                RefreshState(uid, bank.Balance, true, null, 0, null, (ShipyardConsoleUiKey) args.UiKey, voucherUsed);
             }
             else
             {
-                RefreshState(uid, bank.Balance, true, null, 0, targetId, (ShipyardConsoleUiKey) args.UiKey);
+                RefreshState(uid, bank.Balance, true, null, 0, targetId, (ShipyardConsoleUiKey) args.UiKey, voucherUsed);
             }
         }
         else
         {
             _adminLogger.Add(LogType.ShipYardUsage, LogImpact.Low, $"{ToPrettyString(player):actor} sold {shuttleName} for {bill} credits via {ToPrettyString(component.Owner)}");
-            RefreshState(uid, bank.Balance, true, null, 0, targetId, (ShipyardConsoleUiKey) args.UiKey);
+            RefreshState(uid, bank.Balance, true, null, 0, targetId, (ShipyardConsoleUiKey) args.UiKey, voucherUsed);
         }
     }
 
@@ -443,6 +443,8 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             }
         }
 
+        var voucherUsed = HasComp<ShipyardVoucherComponent>(targetId);
+
         int sellValue = 0;
         if (deed?.ShuttleUid != null)
             sellValue = (int) _pricing.AppraiseGrid((EntityUid) (deed?.ShuttleUid!));
@@ -450,7 +452,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         sellValue -= CalculateSalesTax(component, sellValue);
 
         var fullName = deed != null ? GetFullName(deed) : null;
-        RefreshState(uid, bank.Balance, true, fullName, sellValue, targetId, (ShipyardConsoleUiKey) args.UiKey);
+        RefreshState(uid, bank.Balance, true, fullName, sellValue, targetId, (ShipyardConsoleUiKey) args.UiKey, voucherUsed);
     }
 
     private void ConsolePopup(EntityUid uid, string text)
@@ -533,6 +535,8 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
                 }
             }
 
+            var voucherUsed = HasComp<ShipyardVoucherComponent>(targetId);
+
             int sellValue = 0;
             if (deed?.ShuttleUid != null)
                 sellValue = (int) _pricing.AppraiseGrid((EntityUid) (deed?.ShuttleUid!));
@@ -546,7 +550,8 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
                 fullName,
                 sellValue,
                 targetId,
-                (ShipyardConsoleUiKey) uiComp.Key);
+                (ShipyardConsoleUiKey) uiComp.Key,
+                voucherUsed);
 
         }
     }
@@ -675,7 +680,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         return availableShuttles;
     }
 
-    private void RefreshState(EntityUid uid, int balance, bool access, string? shipDeed, int shipSellValue, EntityUid? targetId, ShipyardConsoleUiKey uiKey)
+    private void RefreshState(EntityUid uid, int balance, bool access, string? shipDeed, int shipSellValue, EntityUid? targetId, ShipyardConsoleUiKey uiKey, bool freeListings)
     {
         var newState = new ShipyardConsoleInterfaceState(
             balance,
@@ -685,7 +690,8 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             targetId.HasValue,
             ((byte)uiKey),
             GetAvailableShuttles(uid, uiKey, targetId: targetId),
-            uiKey.ToString());
+            uiKey.ToString(),
+            freeListings);
 
         _ui.SetUiState(uid, uiKey, newState);
     }

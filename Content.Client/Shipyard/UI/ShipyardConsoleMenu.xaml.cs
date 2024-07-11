@@ -25,6 +25,7 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
 
     private List<string> _lastProtos = new();
     private string _lastType = "";
+    private bool _freeListings = false;
 
     public ShipyardConsoleMenu(ShipyardConsoleBoundUserInterface owner)
     {
@@ -58,7 +59,7 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
     /// <summary>
     ///     Populates the list of products that will actually be shown, using the current filters.
     /// </summary>
-    public void PopulateProducts(List<string> prototypes, string type)
+    public void PopulateProducts(List<string> prototypes, string type, bool free)
     {
         Vessels.RemoveAllChildren();
 
@@ -80,12 +81,18 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
                 search.Length != 0 && prototype!.Name.ToLowerInvariant().Contains(search) ||
                 search.Length == 0 && _category != null && prototype!.Category.Equals(_category))
             {
+                string priceText;
+                if (_isVoucher)
+                    priceText = Loc.GetString("shipyard-console-menu-listing-free");
+                else
+                    priceText = Loc.GetString("shipyard-console-menu-listing-amount", ("amount", prototype.Price.ToString()))
+
                 var vesselEntry = new VesselRow
                 {
                     Vessel = prototype,
                     VesselName = { Text = prototype!.Name },
                     Purchase = { ToolTip = prototype.Description, TooltipDelay = 0.2f },
-                    Price = { Text = Loc.GetString("cargo-console-menu-points-amount", ("amount", prototype.Price.ToString())) },
+                    Price = { Text = priceText },
                 };
                 vesselEntry.Purchase.OnPressed += (args) => { OnOrderApproved?.Invoke(args); };
                 Vessels.AddChild(vesselEntry);
@@ -139,5 +146,7 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
         {
             DeedTitle.Text = $"None";
         }
+        _freeListings = state.FreeListings;
+        PopulateProducts(_lastProtos, _lastType, _freeListings);
     }
 }
