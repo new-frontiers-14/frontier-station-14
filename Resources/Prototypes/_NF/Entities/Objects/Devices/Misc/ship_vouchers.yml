@@ -1,0 +1,54 @@
+# Placeholder entity for ship voucher card
+# Not ID cards, these should be somewhere else
+- type: entity
+  abstract: true
+  id: BaseShipVoucher
+  name: ship voucher
+  description: Used for free shuttle rentals from a shipyard.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/id_cards.rsi
+  - type: Item
+    size: Small
+    heldPrefix: default
+    storedRotation: -90
+  - type: StationRecordKeyStorage # Do we need this?
+  - type: StaticPrice
+    price: 0 # THIS VOUCHER IS NOT LEGAL TENDER. THIS VOUCHER IS NT PROPERTY, AND MAY BE CONFISCATED UPON MISUSE OF PROPERTY.
+  - type: CargoSellBlacklist
+
+- type: entity
+  parent: BaseShipVoucher
+  id: NfsdSergeantShipVoucher
+  name: nfsd sergeant ship voucher
+  description: Allows for one free small to medium NFSD ship purchase.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Misc/id_cards.rsi
+    layers:
+    - state: nfsd
+  - type: Item
+    heldPrefix: nfsd
+  - type: Clothing
+    sprite: _NF/Objects/Misc/id_cards.rsi
+  - type: ShipyardVoucher
+    destroyOnEmpty: true
+    access:
+    - Sergeant # Frontier
+    accessGroups: # Frontier
+    - GeneralNfsdAccess # Frontier
+
+- type: entity
+  parent: NfsdSergeantShipVoucher
+  id: NfsdBailiffShipVoucher
+  name: nfsd bailiff ship voucher
+  description: Allows for one free small to capital NFSD ship purchase.
+  components:
+  - type: ShipyardVoucher
+    destroyOnEmpty: true
+    access:
+    - Armory
+    - Sergeant # Frontier
+    - Bailiff # Frontier
+    accessGroups: # Frontier
+    - GeneralNfsdAccess # Frontier

@@ -617,7 +617,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         // Construct access set from input type (voucher or ID card)
         IDShipAccesses accesses;
-        if (TryComp<ShipyardVoucherComponent>(uid, out var voucher))
+        if (TryComp<ShipyardVoucherComponent>(targetId, out var voucher))
         {
             accesses.Tags = voucher.Access;
             accesses.Groups = voucher.AccessGroups;
