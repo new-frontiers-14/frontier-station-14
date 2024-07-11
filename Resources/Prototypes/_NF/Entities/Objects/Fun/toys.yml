@@ -528,3 +528,40 @@
       sprite: Objects/Weapons/Melee/Throngler-in-hand.rsi
     - type: DisarmMalus
       malus: 0
+
+- type: entity
+  name: Emotional support RPG
+  parent: WeaponLauncherRocket
+  id: WeaponLauncherRocketToy
+  suffix: Toy
+  description: A deactived RPG modified to only allow foam RPG warheads. "When in times of trouble and stressed out as can be, DON'T worry now because S.E.S.W.C has what you need!"
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Launchers/rocket.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Launchers/rocket.rsi
+  - type: Gun
+    fireRate: 0.5
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/rpgfire.ogg
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+        - BulletFoam
+    proto: BulletFoamRPG
+    capacity: 1
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+  - type: EmitSoundOnCollide
+    sound:
+      path: /Audio/DeltaV/Voice/Vulpkanin/dog_bark1.ogg
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance

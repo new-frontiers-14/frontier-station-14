@@ -543,6 +543,10 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             }
         }
 
+        // No listing provided, try to get the current one from the console being used as a default.
+        if (listing is null)
+            TryComp(uid, out listing);
+
         TryComp<AccessComponent>(targetId, out var accessComponent);
         foreach (var vessel in _prototypeManager.EnumeratePrototypes<VesselPrototype>())
         {
@@ -592,8 +596,6 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
     private void RefreshState(EntityUid uid, int balance, bool access, string? shipDeed, int shipSellValue, EntityUid? targetId, ShipyardConsoleUiKey uiKey)
     {
-        var listing = TryComp<ShipyardListingComponent>(uid, out var comp) ? comp : null;
-
         var newState = new ShipyardConsoleInterfaceState(
             balance,
             access,
@@ -601,7 +603,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             shipSellValue,
             targetId.HasValue,
             ((byte)uiKey),
-            GetAvailableShuttles(uid, uiKey, listing, targetId),
+            GetAvailableShuttles(uid, uiKey, targetId: targetId),
             uiKey.ToString());
 
         _ui.SetUiState(uid, uiKey, newState);
