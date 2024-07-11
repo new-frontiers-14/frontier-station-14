@@ -22,12 +22,13 @@
   parent: BaseShipVoucher
   id: NfsdSergeantShipVoucher
   name: nfsd sergeant ship voucher
-  description: Allows for one free small to medium NFSD ship purchase.
+  description: Allows for one free small to medium NFSD ship purchase. Destroyed on sale.
   components:
   - type: Sprite
     sprite: _NF/Objects/Misc/id_cards.rsi
     layers:
-    - state: nfsd
+    - state: nfsdvoucher
+    - state: vouchernfsdsergeant
   - type: Item
     heldPrefix: nfsd
   - type: ShipyardVoucher
@@ -41,8 +42,13 @@
   parent: NfsdSergeantShipVoucher
   id: NfsdBailiffShipVoucher
   name: nfsd bailiff ship voucher
-  description: Allows for one free small to capital NFSD ship purchase.
+  description: Allows for one free small to capital NFSD ship purchase. Destroyed on sale.
   components:
+  - type: Sprite
+    sprite: _NF/Objects/Misc/id_cards.rsi
+    layers:
+    - state: nfsdvoucher
+    - state: vouchernfsdbailiff
   - type: ShipyardVoucher
     destroyOnEmpty: true
     access:
