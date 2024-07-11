@@ -29,6 +29,8 @@
     rarePrototypes:
     - SpawnDungeonLootCircuitBoard
     - SpawnDungeonLootToolbox
+    - SpawnDungeonLootFlatpacksEngi
+    - SpawnDungeonLootFlatpacks
     rareChance: 0.05
 
 # Engineering Tools
@@ -66,6 +68,7 @@
     - ClothingHandsGlovesColorYellow
     - GeigerCounter
     - Lantern
+    - SpawnDungeonLootVendingRestocks
     chance: 0.95
     offset: 0.0
     rarePrototypes:
@@ -430,3 +433,40 @@
     - ProtolatheHyperConvectionMachineCircuitboard
     - ComputerIFFCircuitboard
     rareChance: 0.05
+
+- type: entity
+  name: random flatpack
+  id: SpawnDungeonLootFlatpacksEngi
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Engineering"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _NF/Objects/Devices/flatpack.rsi
+        state: engineering_lathe
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - AutolatheFlatpack
+    - ExosuitFabricatorFlatpack
+    - ProtolatheFlatpack
+    - CircuitImprinterFlatpack
+    - EngineeringTechFabFlatpack
+    - MaterialReclaimerFlatpack
+    - TilePrinterNFFlatpack
+    - PowerCellRechargerFlatpack
+    - WeaponCapacitorRechargerFlatpack
+    - BorgChargerFlatpack
+    - MachineFlatpackerFlatpack
+    chance: 0.95
+    offset: 0.0
+    rarePrototypes:
+    - PortableGeneratorJrPacmanFlatpack
+    - PortableGeneratorPacmanFlatpack
+    - PortableGeneratorSuperPacmanFlatpack
+    - AmeControllerUnanchoredFlatpack
+    - RadiationCollectorFullTankFlatpack
+    rareChance: 0.01
