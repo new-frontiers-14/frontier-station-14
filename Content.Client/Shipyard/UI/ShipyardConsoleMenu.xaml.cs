@@ -42,12 +42,12 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
     private void OnCategoryItemSelected(OptionButton.ItemSelectedEventArgs args)
     {
         SetCategoryText(args.Id);
-        PopulateProducts(_lastProtos, _lastType);
+        PopulateProducts(_lastProtos, _lastType, _freeListings);
     }
 
     private void OnSearchBarTextChanged(LineEdit.LineEditEventArgs args)
     {
-        PopulateProducts(_lastProtos, _lastType);
+        PopulateProducts(_lastProtos, _lastType, _freeListings);
     }
 
     private void SetCategoryText(int id)
@@ -82,10 +82,10 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
                 search.Length == 0 && _category != null && prototype!.Category.Equals(_category))
             {
                 string priceText;
-                if (_isVoucher)
+                if (_freeListings)
                     priceText = Loc.GetString("shipyard-console-menu-listing-free");
                 else
-                    priceText = Loc.GetString("shipyard-console-menu-listing-amount", ("amount", prototype.Price.ToString()));
+                    priceText = Loc.GetString("shipyard-console-menu-listing-amount", ("amount", prototype!.Price.ToString()));
 
                 var vesselEntry = new VesselRow
                 {
