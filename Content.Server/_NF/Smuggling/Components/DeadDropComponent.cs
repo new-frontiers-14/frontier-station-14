@@ -32,13 +32,13 @@ public sealed partial class DeadDropComponent : Component
     ///     Minimum distance to spawn the drop.
     /// </summary>
     [DataField]
-    public int MinimumDistance = 2500;
+    public int MinimumDistance = 4500;
 
     /// <summary>
     ///     Max distance to spawn the drop.
     /// </summary>
     [DataField]
-    public int MaximumDistance = 4500;
+    public int MaximumDistance = 6500;
 
     /// <summary>
     ///     The paper prototype to spawn.
