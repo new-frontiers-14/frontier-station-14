@@ -253,3 +253,39 @@
     layers:
     - state: pirate
     - state: idpiratefirstmate
+
+# Placeholder entity for ship voucher card
+# Not ID cards, these should be somewhere else
+- type: entity
+  parent: IDCardStandard # This probably needs reparenting
+  id: NfsdSergeantShipVoucher
+  name: nfsd sergeant ship voucher
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Misc/id_cards.rsi
+    layers:
+    - state: nfsd
+  - type: Item
+    heldPrefix: nfsd
+  - type: Clothing
+    sprite: _NF/Objects/Misc/id_cards.rsi
+  - type: ShipyardVoucher
+    destroyOnEmpty: true
+    access:
+    - Sergeant # Frontier
+    accessGroups: # Frontier
+    - GeneralNfsdAccess # Frontier
+
+- type: entity
+  parent: NfsdSergeantShipVoucher
+  id: NfsdBailiffShipVoucher
+  name: nfsd bailiff ship voucher
+  components:
+  - type: ShipyardVoucher
+    destroyOnEmpty: true
+    access:
+    - Armory
+    - Sergeant # Frontier
+    - Bailiff # Frontier
+    accessGroups: # Frontier
+    - GeneralNfsdAccess # Frontier
