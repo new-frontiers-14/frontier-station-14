@@ -2,12 +2,15 @@
 using Content.Server._NF.Smuggling.Components;
 using Content.Server.Administration.Logs;
 using Content.Server.Fax;
-using Content.Shared.Fax.Components;
+using Content.Server.Paper;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Radio.EntitySystems;
 using Content.Server.Shipyard.Systems;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
+using Content.Shared.Hands.Components;
+using Content.Shared.Hands.EntitySystems;
+using Content.Shared.Fax.Components;
 using Content.Shared.Database;
 using Content.Shared.Radio;
 using Content.Shared.Shuttles.Components;
@@ -24,9 +27,12 @@ namespace Content.Server._NF.Smuggling;
 public sealed class DeadDropSystem : EntitySystem
 {
     [Dependency] private readonly IAdminLogManager _adminLogger = default!;
+    [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly FaxSystem _faxSystem = default!;
     [Dependency] private readonly MapLoaderSystem _map = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly MetaDataSystem _meta = default!;
+    [Dependency] private readonly PaperSystem _paper = default!;
     [Dependency] private readonly RadioSystem _radio = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly ShipyardSystem _shipyard = default!;
@@ -42,23 +48,34 @@ public sealed class DeadDropSystem : EntitySystem
         SubscribeLocalEvent<DeadDropComponent, GetVerbsEvent<InteractionVerb>>(AddSearchVerb);
     }
 
-    private void OnStartup(EntityUid paintingUid, DeadDropComponent component, ComponentStartup _)
+    private void OnStartup(EntityUid uid, DeadDropComponent component, ComponentStartup _)
     {
         //set up the timing of the first activation
         component.NextDrop = _timing.CurTime + TimeSpan.FromSeconds(_random.Next(component.MinimumCoolDown, component.MaximumCoolDown));
+        if (!HasComp<FaxMachineComponent>(uid))
+            component.NextDrop = component.NextDrop * 3;
+        //Poster drops take longer
     }
 
     private void AddSearchVerb(EntityUid uid, DeadDropComponent component, GetVerbsEvent<InteractionVerb> args)
     {
-        if (!args.CanInteract || !args.CanAccess || args.Hands == null || _timing.CurTime < component.NextDrop || _power.IsPowered(uid, EntityManager)== false)
+        if (!args.CanInteract || !args.CanAccess || args.Hands == null || _timing.CurTime < component.NextDrop)
+            return;
+        var isFax = HasComp<FaxMachineComponent>(uid);
+        if (isFax == true && _power.IsPowered(uid, EntityManager)== false)
             return;
 
         //here we build our dynamic verb. Using the object's sprite for now to make it more dynamic for the moment.
+        var usedVerb = "";
+        if (isFax == true)
+            usedVerb = Loc.GetString("deaddrop-print-text");
+        else
+            usedVerb = Loc.GetString("deaddrop-search-text");
         InteractionVerb searchVerb = new()
         {
             IconEntity = GetNetEntity(uid),
-            Act = () => SendDeadDrop(uid, component),
-            Text = Loc.GetString("deaddrop-search-text"),
+            Act = () => SendDeadDrop(uid, component, args.User, args.Hands),
+            Text = usedVerb,
             Priority = 3
         };
 
@@ -66,7 +83,7 @@ public sealed class DeadDropSystem : EntitySystem
     }
 
     //spawning the dead drop.
-    private void SendDeadDrop(EntityUid uid, DeadDropComponent component)
+    private void SendDeadDrop(EntityUid uid, DeadDropComponent component, EntityUid user, HandsComponent hands)
     {
         //simple check to make sure we dont allow multiple activations from a desynced verb window.
         if (_timing.CurTime < component.NextDrop)
@@ -105,7 +122,6 @@ public sealed class DeadDropSystem : EntitySystem
         var sender = Transform(uid).GridUid ?? uid;
 
         _radio.SendRadioMessage(sender, Loc.GetString("deaddrop-security-report"), channel, uid);
-        _adminLogger.Add(LogType.Action, LogImpact.Medium, $"sent a dead drop to {dropLocation.ToString()} from {ToPrettyString(uid)} at {Transform(uid).Coordinates.ToString()}");
 
         // here we are just building a string for the hint paper so that it looks pretty and RP-like on the paper itself.
         var dropHint = new StringBuilder();
@@ -115,9 +131,23 @@ public sealed class DeadDropSystem : EntitySystem
         dropHint.AppendLine();
         dropHint.AppendLine(Loc.GetString("deaddrop-hint-posttext"));
         var printout = new FaxPrintout(dropHint.ToString(),Loc.GetString("deaddrop-hint-name"),null,null);
+        var isFax = HasComp<FaxMachineComponent>(uid);
+        if (isFax == true)
+        {
+            _faxSystem.Receive(uid,printout,null,null);
+            _adminLogger.Add(LogType.Action, LogImpact.Medium, $"sent a dead drop to {dropLocation.ToString()} from {ToPrettyString(uid)} at {Transform(uid).Coordinates.ToString()}");
+        }
+        else
+        {
+            var paper = EntityManager.SpawnEntity(component.HintPaper, Transform(uid).Coordinates);
 
-        _faxSystem.Receive(uid,printout,null,null);
+            _paper.SetContent(paper, dropHint.ToString());
+            _meta.SetEntityName(paper, Loc.GetString("deaddrop-hint-name"));
+            _meta.SetEntityDescription(paper, Loc.GetString("deaddrop-hint-desc"));
+            _hands.PickupOrDrop(user, paper, handsComp: hands);
+            _adminLogger.Add(LogType.Action, LogImpact.Medium, $"{ToPrettyString(user)} sent a dead drop to {dropLocation.ToString()} from {ToPrettyString(uid)} at {Transform(uid).Coordinates.ToString()}");
 
+        }
         //reset the timer
         component.NextDrop = _timing.CurTime + TimeSpan.FromSeconds(_random.Next(component.MinimumCoolDown, component.MaximumCoolDown));
     }
