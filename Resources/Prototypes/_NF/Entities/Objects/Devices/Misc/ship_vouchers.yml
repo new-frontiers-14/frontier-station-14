@@ -1,5 +1,8 @@
-# Placeholder entity for ship voucher card
-# Not ID cards, these should be somewhere else
+# New Frontiers - This file is licensed under AGPLv3
+# Copyright (c) 2024 New Frontiers Contributors
+# See AGPLv3.txt for details.
+
+# Ship vouchers, used to redeem for free ships!
 - type: entity
   abstract: true
   parent: BaseItem
@@ -13,9 +16,9 @@
     size: Small
     heldPrefix: default
     storedRotation: -90
-  - type: StationRecordKeyStorage # Do we need this?
+  - type: StationRecordKeyStorage # Assuming ships purchased on vouchers still need recordkeeping.
   - type: StaticPrice
-    price: 0 # THIS VOUCHER IS NOT LEGAL TENDER. THIS VOUCHER IS NT PROPERTY, AND MAY BE CONFISCATED UPON MISUSE OF PROPERTY.
+    price: 0
   - type: CargoSellBlacklist
 
 - type: entity

@@ -39,7 +39,6 @@ using Content.Shared.UserInterface;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Content.Shared.Access;
-using Content.Server.Construction.Completions;
 
 namespace Content.Server.Shipyard.Systems;
 
@@ -391,7 +390,8 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         if (component.SecretShipyardChannel is { } secretChannel)
             SendSellMessage(uid, deed.ShuttleOwner!, name, secretChannel, player, secret: true);
 
-        // good lord rewrite this
+        EntityUid? refreshId = targetId;
+
         if (voucherUsed)
         {
             _adminLogger.Add(LogType.ShipYardUsage, LogImpact.Low, $"{ToPrettyString(player):actor} sold {shuttleName} (purchased with voucher) via {ToPrettyString(component.Owner)}");
@@ -400,18 +400,13 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             if (voucher!.RedemptionsLeft <= 0 && voucher!.DestroyOnEmpty)
             {
                 _entityManager.DeleteEntity(targetId);
-                RefreshState(uid, bank.Balance, true, null, 0, null, (ShipyardConsoleUiKey) args.UiKey, voucherUsed);
-            }
-            else
-            {
-                RefreshState(uid, bank.Balance, true, null, 0, targetId, (ShipyardConsoleUiKey) args.UiKey, voucherUsed);
+                refreshId = null;
             }
         }
         else
-        {
             _adminLogger.Add(LogType.ShipYardUsage, LogImpact.Low, $"{ToPrettyString(player):actor} sold {shuttleName} for {bill} credits via {ToPrettyString(component.Owner)}");
-            RefreshState(uid, bank.Balance, true, null, 0, targetId, (ShipyardConsoleUiKey) args.UiKey, voucherUsed);
-        }
+
+        RefreshState(uid, bank.Balance, true, null, 0, refreshId, (ShipyardConsoleUiKey) args.UiKey, voucherUsed);
     }
 
     private void OnConsoleUIOpened(EntityUid uid, ShipyardConsoleComponent component, BoundUIOpenedEvent args)
