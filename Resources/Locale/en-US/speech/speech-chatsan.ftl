@@ -133,5 +133,6 @@ chatsan-replacement-47 = see ya
 chatsan-word-48 = rn
 chatsan-replacement-48 = right now
 
-chatsan-word-49 = atm
-chatsan-replacement-49 = at the moment
+# Frontier: we use ATMs, replace this with some inane garbage to keep the entry
+chatsan-word-49 = lfg
+chatsan-replacement-49 = let's fucking go

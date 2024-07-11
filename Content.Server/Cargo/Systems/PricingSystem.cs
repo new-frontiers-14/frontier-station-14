@@ -6,7 +6,6 @@ using Content.Server.Chemistry.Containers.EntitySystems;
 using Content.Shared.Administration;
 using Content.Shared.Body.Components;
 using Content.Shared.Cargo.Components;
-using Content.Shared._NF.Cargo.Components;
 using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Materials;
@@ -385,10 +384,10 @@ public sealed class PricingSystem : EntitySystem
     {
         var price = 0.0;
 
-        if (prototype.Components.TryGetValue(_factory.GetComponentName(typeof(VendPriceComponent)), out var vendProto))
+        if (prototype.Components.TryGetValue(_factory.GetComponentName(typeof(StaticPriceComponent)), out var vendProto))
         {
-            var vendPrice = (VendPriceComponent) vendProto.Component;
-            price += vendPrice.Price;
+            var vendPrice = (StaticPriceComponent) vendProto.Component;
+            price += vendPrice.VendPrice;
         }
 
         return price;
