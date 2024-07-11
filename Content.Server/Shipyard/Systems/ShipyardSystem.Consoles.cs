@@ -307,6 +307,8 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             return;
         }
 
+        bool voucherUsed = voucher is not null;
+
         if (!TryComp<ShuttleDeedComponent>(targetId, out var deed) || deed.ShuttleUid is not { Valid: true } shuttleUid)
         {
             ConsolePopup(args.Actor, Loc.GetString("shipyard-console-no-deed"));
@@ -365,13 +367,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         RemComp<ShuttleDeedComponent>(targetId);
 
-        // If this is a ship voucher component
-        bool voucherUsed = false;
-        if (TryComp<ShipyardVoucherComponent>(targetId, out var voucher))
-        {
-            voucherUsed = true;
-        }
-        else
+        if (!voucherUsed)
         {
             var tax = CalculateSalesTax(component, bill);
             if (tax != 0)
