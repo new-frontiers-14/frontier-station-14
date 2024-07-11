@@ -13,48 +13,48 @@ public sealed partial class DeadDropComponent : Component
     /// <summary>
     ///     When the next drop will occur. Used internally.
     /// </summary>
-    [DataField("nextDrop")]
+    [DataField]
     public TimeSpan? NextDrop;
 
     /// <summary>
     ///     Minimum wait time in seconds to wait for the next dead drop.
     /// </summary>
-    [DataField("minimumCoolDown")]
+    [DataField]
     public int MinimumCoolDown = 600; // 600 / 60 = 10 minutes
 
     /// <summary>
     ///     Max wait time in seconds to wait for the next dead drop.
     /// </summary>
-    [DataField("maximumCoolDown")]
+    [DataField]
     public int MaximumCoolDown = 3000; // 3000 / 60 = 50 minutes
 
     /// <summary>
     ///     Minimum distance to spawn the drop.
     /// </summary>
-    [DataField("minimumDistance")]
+    [DataField]
     public int MinimumDistance = 4500;
 
     /// <summary>
     ///     Max distance to spawn the drop.
     /// </summary>
-    [DataField("maximumDistance")]
+    [DataField]
     public int MaximumDistance = 6500;
 
     /// <summary>
     ///     The paper prototype to spawn.
     /// </summary>
-    [DataField("hintPaper", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
+    [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
     public string HintPaper = "PaperCargoInvoice";
 
     /// <summary>
     ///     Location of the grid to spawn in as the dead drop.
     /// </summary>
-    [DataField("dropGrid")]
+    [DataField]
     public string DropGrid = "/Maps/deaddrop.yml";
 
     /// <summary>
     ///     The color of your grid. the name should be set by the mapper when mapping.
     /// </summary>
-    [DataField("color")]
-    public Color Color = new Color(225, 15, 155);
+    [DataField]
+    public Color Color = new(225, 15, 155);
 }
