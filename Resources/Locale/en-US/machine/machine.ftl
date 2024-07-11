@@ -1,4 +1,4 @@
-machine-insert-item = {THE($user)} inserted {THE($item)} into {THE($machine)}.
+machine-insert-item = {CAPITALIZE(THE($user))} inserted {THE($item)} into {THE($machine)}.
 
 machine-upgrade-examinable-verb-text = Upgrades
 machine-upgrade-examinable-verb-message = Examine the machine upgrades.
@@ -8,10 +8,12 @@ machine-upgrade-increased-by-amount = [color=yellow]{CAPITALIZE($upgraded)}[/col
 machine-upgrade-decreased-by-amount = [color=yellow]{CAPITALIZE($upgraded)}[/color] decreased by {$difference}.
 machine-upgrade-not-upgraded = [color=yellow]{CAPITALIZE($upgraded)}[/color] not upgraded.
 
-machine-part-name-capacitor = Capacitor
-machine-part-name-manipulator = Manipulator
-machine-part-name-matter-bin = Matter Bin
-machine-part-name-power-cell = Power Cell
+# Frontier: lowercase names for machine frame UI consistency
+machine-part-name-capacitor = capacitor
+machine-part-name-manipulator = manipulator
+machine-part-name-matter-bin = matter bin
+machine-part-name-power-cell = power cell
+# End Frontier
 
 upgrade-power-draw = power draw
 upgrade-max-charge = max charge

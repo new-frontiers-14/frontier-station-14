@@ -6,7 +6,6 @@ using Content.Server.Chemistry.Containers.EntitySystems;
 using Content.Shared.Administration;
 using Content.Shared.Body.Components;
 using Content.Shared.Cargo.Components;
-using Content.Shared._NF.Cargo.Components;
 using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Materials;
@@ -18,7 +17,7 @@ using Robust.Shared.Containers;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
-using Content.Shared.Tag;
+using Content.Server.Materials.Components; // Frontier
 
 namespace Content.Server.Cargo.Systems;
 
@@ -33,8 +32,6 @@ public sealed class PricingSystem : EntitySystem
     [Dependency] private readonly BodySystem _bodySystem = default!;
     [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
     [Dependency] private readonly SolutionContainerSystem _solutionContainerSystem = default!;
-
-    [Dependency] private readonly TagSystem _tagSystem = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -108,7 +105,7 @@ public sealed class PricingSystem : EntitySystem
         var partRatio = totalPartsPresent / (double) totalParts;
         var partPenalty = component.Price * (1 - partRatio) * component.MissingBodyPartPenalty;
 
-        args.Price += (component.Price - partPenalty) * (_mobStateSystem.IsAlive(uid, state) ? 1.0 : component.DeathPenalty) * (!_tagSystem.HasTag(uid, "LabGrown") ? 1.0 : component.LabGrownPenalty);
+        args.Price += (component.Price - partPenalty) * (_mobStateSystem.IsAlive(uid, state) ? 1.0 : component.DeathPenalty) * (HasComp<LabGrownComponent>(uid) ? 1.0 : component.LabGrownPenalty); // Frontier - LabGrown
     }
 
     private double GetSolutionPrice(Entity<SolutionContainerManagerComponent> entity)
@@ -387,10 +384,10 @@ public sealed class PricingSystem : EntitySystem
     {
         var price = 0.0;
 
-        if (prototype.Components.TryGetValue(_factory.GetComponentName(typeof(VendPriceComponent)), out var vendProto))
+        if (prototype.Components.TryGetValue(_factory.GetComponentName(typeof(StaticPriceComponent)), out var vendProto))
         {
-            var vendPrice = (VendPriceComponent) vendProto.Component;
-            price += vendPrice.Price;
+            var vendPrice = (StaticPriceComponent) vendProto.Component;
+            price += vendPrice.VendPrice;
         }
 
         return price;
