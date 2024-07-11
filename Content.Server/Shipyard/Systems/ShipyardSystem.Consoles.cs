@@ -12,7 +12,6 @@ using Content.Shared.Access.Components;
 using Content.Shared.Shipyard;
 using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
-using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Content.Shared.Radio;
 using System.Linq;
@@ -21,7 +20,6 @@ using Content.Server.Cargo.Components;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Server.Maps;
-using Content.Server.UserInterface;
 using Content.Shared.StationRecords;
 using Content.Server.Chat.Systems;
 using Content.Server.Forensics;
@@ -39,6 +37,7 @@ using System.Text.RegularExpressions;
 using Content.Shared.UserInterface;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
+using Content.Shared.Access;
 
 namespace Content.Server.Shipyard.Systems;
 
@@ -106,7 +105,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             return;
         }
 
-        if (!GetAvailableShuttles(uid).Contains(vessel.ID))
+        if (!GetAvailableShuttles(uid, targetId: targetId).Contains(vessel.ID))
         {
             PlayDenySound(uid, component);
             _adminLogger.Add(LogType.Action, LogImpact.Medium, $"{ToPrettyString(player):player} tried to purchase a vessel that was never available.");
@@ -239,7 +238,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         PlayConfirmSound(uid, component);
         _adminLogger.Add(LogType.ShipYardUsage, LogImpact.Low, $"{ToPrettyString(player):actor} purchased shuttle {ToPrettyString(shuttle.Owner)} for {vessel.Price} credits via {ToPrettyString(component.Owner)}");
-        RefreshState(uid, bank.Balance, true, name, sellValue, true, (ShipyardConsoleUiKey) args.UiKey);
+        RefreshState(uid, bank.Balance, true, name, sellValue, targetId, (ShipyardConsoleUiKey) args.UiKey);
     }
 
     private void TryParseShuttleName(ShuttleDeedComponent deed, string name)
@@ -353,7 +352,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             SendSellMessage(uid, deed.ShuttleOwner!, name, secretChannel, player, secret: true);
 
         _adminLogger.Add(LogType.ShipYardUsage, LogImpact.Low, $"{ToPrettyString(player):actor} sold {shuttleName} for {bill} credits via {ToPrettyString(component.Owner)}");
-        RefreshState(uid, bank.Balance, true, null, 0, true, (ShipyardConsoleUiKey) args.UiKey);
+        RefreshState(uid, bank.Balance, true, null, 0, targetId, (ShipyardConsoleUiKey) args.UiKey);
     }
 
     private void OnConsoleUIOpened(EntityUid uid, ShipyardConsoleComponent component, BoundUIOpenedEvent args)
@@ -392,7 +391,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         sellValue -= CalculateSalesTax(component, sellValue);
 
         var fullName = deed != null ? GetFullName(deed) : null;
-        RefreshState(uid, bank.Balance, true, fullName, sellValue, targetId.HasValue, (ShipyardConsoleUiKey) args.UiKey);
+        RefreshState(uid, bank.Balance, true, fullName, sellValue, targetId, (ShipyardConsoleUiKey) args.UiKey);
     }
 
     private void ConsolePopup(EntityUid uid, string text)
@@ -482,7 +481,14 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             sellValue -= CalculateSalesTax(component, sellValue);
 
             var fullName = deed != null ? GetFullName(deed) : null;
-            RefreshState(uid, bank.Balance, true, fullName, sellValue, targetId.HasValue, (ShipyardConsoleUiKey) uiComp.Key);
+            RefreshState(uid,
+                bank.Balance,
+                true,
+                fullName,
+                sellValue,
+                targetId,
+                (ShipyardConsoleUiKey) uiComp.Key);
+
         }
     }
 
@@ -519,7 +525,8 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     /// <summary>
     ///   Returns all shuttle prototype IDs the given shipyard console can offer.
     /// </summary>
-    public List<string> GetAvailableShuttles(EntityUid uid, ShipyardConsoleUiKey? key = null, ShipyardListingComponent? listing = null)
+    public List<string> GetAvailableShuttles(EntityUid uid, ShipyardConsoleUiKey? key = null,
+        ShipyardListingComponent? listing = null, EntityUid? targetId = null)
     {
         var availableShuttles = new List<string>();
 
@@ -536,41 +543,67 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             }
         }
 
-        // Add all prototypes matching the ui key
-        if (key != null && key != ShipyardConsoleUiKey.Custom && ShipyardGroupMapping.TryGetValue(key.Value, out var group))
-        {
-            var protos = _prototypeManager.EnumeratePrototypes<VesselPrototype>();
-            foreach (var proto in protos)
-            {
-                if (proto.Group == group)
-                    availableShuttles.Add(proto.ID);
-            }
-        }
+        // No listing provided, try to get the current one from the console being used as a default.
+        if (listing is null)
+            TryComp(uid, out listing);
 
-        // Add all prototypes specified in ShipyardListing
-        if (listing != null || TryComp(uid, out listing))
+        TryComp<AccessComponent>(targetId, out var accessComponent);
+        foreach (var vessel in _prototypeManager.EnumeratePrototypes<VesselPrototype>())
         {
-            foreach (var shuttle in listing.Shuttles)
+            // If the vessel needs access to be bought, check the user's access.
+            if (!string.IsNullOrEmpty(vessel.Access))
             {
-                availableShuttles.Add(shuttle);
+                bool hasAccess = false;
+                // Check tags
+                if (accessComponent?.Tags.Contains(vessel.Access) ?? false)
+                    hasAccess = true;
+
+                // Check each group if we haven't found access already.
+                if (!hasAccess)
+                {
+                    var groupIds = accessComponent?.Groups ?? new HashSet<ProtoId<AccessGroupPrototype>>();
+                    foreach (var groupId in groupIds)
+                    {
+                        var groupProto = _prototypeManager.Index(groupId);
+                        if (groupProto?.Tags.Contains(vessel.Access) ?? false)
+                        {
+                            hasAccess = true;
+                            break;
+                        }
+                    }
+                }
+
+                // No access to this vessel, skip to the next one.
+                if (!hasAccess)
+                    continue;
             }
+
+            // Check that the listing contains the shuttle or that the shuttle is in the group that the console is looking for
+            if ((listing?.Shuttles.Contains(vessel.ID) ?? false) ||
+                // if the listing contains the shuttle, add it to the list or
+
+                // if the shuttle is in the group that the console is looking for
+                (key != null && key != ShipyardConsoleUiKey.Custom &&
+                 ShipyardGroupMapping.TryGetValue(key.Value, out var group) && vessel.Group == group))
+            {
+                availableShuttles.Add(vessel.ID);
+            }
+
         }
 
         return availableShuttles;
     }
 
-    private void RefreshState(EntityUid uid, int balance, bool access, string? shipDeed, int shipSellValue, bool isTargetIdPresent, ShipyardConsoleUiKey uiKey)
+    private void RefreshState(EntityUid uid, int balance, bool access, string? shipDeed, int shipSellValue, EntityUid? targetId, ShipyardConsoleUiKey uiKey)
     {
-        var listing = TryComp<ShipyardListingComponent>(uid, out var comp) ? comp : null;
-
         var newState = new ShipyardConsoleInterfaceState(
             balance,
             access,
             shipDeed,
             shipSellValue,
-            isTargetIdPresent,
+            targetId.HasValue,
             ((byte)uiKey),
-            GetAvailableShuttles(uid, uiKey, listing),
+            GetAvailableShuttles(uid, uiKey, targetId: targetId),
             uiKey.ToString());
 
         _ui.SetUiState(uid, uiKey, newState);
