@@ -298,7 +298,9 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             return;
         }
 
-        if (!TryComp<IdCardComponent>(targetId, out var idCard))
+        TryComp<IdCardComponent>(targetId, out var idCard);
+        TryComp<ShipyardVoucherComponent>(targetId, out var voucher);
+        if (idCard is null && voucher is null)
         {
             ConsolePopup(args.Actor, Loc.GetString("shipyard-console-no-idcard"));
             PlayDenySound(uid, component);
