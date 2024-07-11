@@ -9,7 +9,7 @@ marking-GoblinEarsLong01 = Long Ears (Tips Down)
 marking-GoblinEarsLong01-goblin_ears_long_01 = Long Ears (Tips Down)
 
 marking-GoblinEarsLong02 = Long Ears (Tips Up)
-marking-GoblinEarsLong02-goblin_ears_long_02 = Long Ears (Tips Down)
+marking-GoblinEarsLong02-goblin_ears_long_02 = Long Ears (Tips Up)
 
 # goblin noses
 marking-GoblinNoseBasic = Basic Nose
@@ -29,4 +29,4 @@ marking-GoblinTusksSmall = Small Tusks
 marking-GoblinTusksSmall-goblin_tusks_small = Small Tusks
 
 marking-GoblinTusksBig = Long Tusks
-marking-GoblinTusksBig-goblin_tusks_big = No Tusks
+marking-GoblinTusksBig-goblin_tusks_big = Long Tusks
