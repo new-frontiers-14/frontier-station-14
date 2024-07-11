@@ -85,7 +85,7 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
                 if (_isVoucher)
                     priceText = Loc.GetString("shipyard-console-menu-listing-free");
                 else
-                    priceText = Loc.GetString("shipyard-console-menu-listing-amount", ("amount", prototype.Price.ToString()))
+                    priceText = Loc.GetString("shipyard-console-menu-listing-amount", ("amount", prototype.Price.ToString()));
 
                 var vesselEntry = new VesselRow
                 {
