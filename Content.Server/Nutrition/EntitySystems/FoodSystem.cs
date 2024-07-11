@@ -229,16 +229,21 @@ public partial class FoodSystem : EntitySystem // Frontier: sealed<partial
 
         var split = _solutionContainer.SplitSolution(soln.Value, transferAmount);
 
+        if (!CheckDigestablePrereqs(entity, entity.Comp, stomachs)) {
+            return;
+        }
+
         //TODO: Get the stomach UID somehow without nabbing owner
         // Get the stomach with the highest available solution volume
         var highestAvailable = FixedPoint2.Zero;
         StomachComponent? stomachToUse = null;
-        foreach (var (stomach, _) in stomachs)
+        foreach ((var stomach, var _) in stomachs)
         {
-            var owner = stomach.Owner;
             // Frontier: check specific-stomach digestion
-            if (!_stomach.CanStomachDigestFood(stomach, ))
+            if (!IsFoodDigestibleByStomach(entity, entity.Comp, stomach)) // Frontier: make sure food is processed by a stomach that can digest it
+                continue;
 
+            var owner = stomach.Owner;
             if (!_stomach.CanTransferSolution(owner, split, stomach))
                 continue;
 
@@ -265,7 +270,7 @@ public partial class FoodSystem : EntitySystem // Frontier: sealed<partial
 
         // New Frontiers - Digestion Rework - Allows species-specific digestion.
         // This code is licensed under AGPLv3. See AGPLv3.txt
-        var digestion = DigestFood(entity, stomachToUse, transferAmount, args);
+        var digestion = DigestFood(entity, stomachToUse, transferAmount, ref args);
 
         var flavors = args.FlavorMessage;
 
@@ -299,8 +304,6 @@ public partial class FoodSystem : EntitySystem // Frontier: sealed<partial
         }
 
         args.Repeat = !forceFeed;
-
-        _solutionContainer.SetCapacity(soln.Value, soln.Value.Comp.Solution.MaxVolume - transferAmount); // Frontier - You cannot eat a cake and leave it whole
 
         if (TryComp<StackComponent>(entity, out var stack))
         {
@@ -407,29 +410,43 @@ public partial class FoodSystem : EntitySystem // Frontier: sealed<partial
     /// </summary>
     private bool IsDigestibleBy(EntityUid food, FoodComponent component, List<(StomachComponent, OrganComponent)> stomachs)
     {
-        var digestible = true;
+        return GetDigestableStomach(food, component, stomachs) is not null; // Frontier: removed
+    }
 
-        // Does the mob have enough stomachs?
-        if (stomachs.Count < component.RequiredStomachs)
+    private bool CheckDigestablePrereqs(EntityUid food, FoodComponent component, List<(StomachComponent, OrganComponent)> stomachs)
+    {
+        return stomachs.Count >= component.RequiredStomachs;
+    }
+
+    private bool IsFoodDigestibleByStomach(EntityUid food, FoodComponent component, StomachComponent stomach)
+    {
+        if (!component.RequiresSpecialDigestion)
+            return true;
+
+        // Find a stomach with a SpecialDigestible
+        if (stomach.SpecialDigestible == null)
             return false;
+        // Check if the food is in the whitelist
+        if (_whitelistSystem.IsWhitelistPass(stomach.SpecialDigestible, food))
+            return true;
+        else
+            return false;
+    }
 
+    private StomachComponent? GetDigestableStomach(EntityUid food, FoodComponent component, List<(StomachComponent, OrganComponent)> stomachs)
+    {
+        if (!CheckDigestablePrereqs(food, component, stomachs)) {
+            return null;
+        }
         // Run through the mobs' stomachs
         foreach (var (comp, _) in stomachs)
         {
-            // Find a stomach with a SpecialDigestible
-            if (comp.SpecialDigestible == null)
-                continue;
-            // Check if the food is in the whitelist
-            if (_whitelistSystem.IsWhitelistPass(comp.SpecialDigestible, food))
-                return true;
-            // They can only eat whitelist food and the food isn't in the whitelist. It's not edible.
-            return false;
+            if (IsFoodDigestibleByStomach(food, component, comp)) {
+                return comp;
+            }
         }
 
-        if (component.RequiresSpecialDigestion)
-            return false;
-
-        return digestible;
+        return null;
     }
 
     private bool TryGetRequiredUtensils(EntityUid user, FoodComponent component,
