@@ -35,7 +35,7 @@ public sealed class DeadDropSystem : EntitySystem
     [Dependency] private readonly ShipyardSystem _shipyard = default!;
     [Dependency] private readonly ShuttleSystem _shuttle = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IMapManager _mapManager = default!;
+    [Dependency] private readonly SharedMapSystem _mapManager = default!;
 
     public override void Initialize()
     {
@@ -95,11 +95,23 @@ public sealed class DeadDropSystem : EntitySystem
         //dont ask me im just fulfilling FTL requirements.
         var dropLocation = _random.NextVector2(component.MinimumDistance, component.MaximumDistance);
         var mapId = Transform(user).MapID;
-        var mapUid = _mapManager.GetMapEntityId(mapId);
 
-        if (TryComp<ShuttleComponent>(gridUids[0], out var shuttle))
+        // Tries to get the map uid, if it fails, it will return which I would assume will make the component try again.
+        if (!_mapManager.TryGetMap(mapId, out var mapUid))
         {
-            _shuttle.FTLToCoordinates(gridUids[0], shuttle, new EntityCoordinates(mapUid, dropLocation), 0f, 0f, 35f);
+            return;
+        }
+        else
+        {
+            // Tries to get the nullable value out
+            if (mapUid.HasValue)
+            {
+                if (TryComp<ShuttleComponent>(gridUids[0], out var shuttle))
+                {
+                    // The previous command
+                    _shuttle.FTLToCoordinates(gridUids[0], shuttle, new EntityCoordinates(mapUid.Value, dropLocation), 0f, 0f, 35f);
+                }
+            }
         }
 
         //tattle on the smuggler here, but obfuscate it a bit if possible to just the grid it was summoned from.
