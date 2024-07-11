@@ -20,7 +20,7 @@
       organs:
         heart: OrganAnimalHeart
         lungs: OrganHumanLungs
-        stomach: OrganAnimalStomach # Frontier
+        stomach: OrganFelinidStomach # Frontier
         liver:  OrganAnimalLiver
         kidneys: OrganHumanKidneys
     right arm:
@@ -47,3 +47,12 @@
       part: RightFootHuman
     left foot:
       part: LeftFootHuman
+
+# Frontier: move this hack out of here
+- type: entity
+  id: OrganFelinidStomach
+  parent: OrganAnimalStomach
+  noSpawn: true
+  components:
+  - type: Stomach
+    digestion: Felinid
