@@ -1,3 +1,6 @@
+// New Frontiers - This file is licensed under AGPLv3
+// Copyright (c) 2024 New Frontiers Contributors
+// See AGPLv3.txt for details.
 using Content.Server.Shuttles.Components;
 using Content.Shared._NF.Shuttles.Events;
 using Content.Shared._NF.Station.Components;
@@ -21,7 +24,7 @@ public sealed partial class ShuttleSystem
             !transform.GridUid.HasValue ||
             !EntityManager.TryGetComponent(transform.GridUid, out PhysicsComponent? physicsComponent) ||
             !EntityManager.TryGetComponent(transform.GridUid, out ShuttleComponent? shuttleComponent) ||
-            EntityManager.HasComponent<StationDampeningComponent>(transform.GridUid))
+            EntityManager.HasComponent<StationDampeningComponent>(_station.GetOwningStation(transform.GridUid)))
         {
             return;
         }
@@ -30,16 +33,16 @@ public sealed partial class ShuttleSystem
         {
             InertiaDampeningMode.Off => 0,
             InertiaDampeningMode.Dampen => shuttleComponent.LinearDamping,
-            InertiaDampeningMode.Anchored => 1,
-            _ => 0, // other values: default to some sane behaviour (assume the ship is unanchored)
+            InertiaDampeningMode.Anchor => 1,
+            _ => 0, // other values: default to some sane behaviour (assume all dampening is off)
         };
 
         var angularDampeningStrength = args.Mode switch
         {
             InertiaDampeningMode.Off => 0,
             InertiaDampeningMode.Dampen => shuttleComponent.AngularDamping,
-            InertiaDampeningMode.Anchored => 1,
-            _ => 0, // other values: default to some sane behaviour (assume the ship is unanchored)
+            InertiaDampeningMode.Anchor => 1,
+            _ => 0, // other values: default to some sane behaviour (assume all dampening is off)
         };
 
         _physics.SetLinearDamping(transform.GridUid.Value, physicsComponent, linearDampeningStrength);

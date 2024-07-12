@@ -21,7 +21,7 @@ shuttle-console-exclusion = Exclusion area
 shuttle-console-iff-search = Search IFF
 shuttle-console-inertia-dampener-off = Off
 shuttle-console-inertia-dampener-dampen = Dampen
-shuttle-console-inertia-dampener-anchored = Anchored
+shuttle-console-inertia-dampener-anchor = Anchor
 
 # Buttons
 shuttle-console-strafing = Strafing mode

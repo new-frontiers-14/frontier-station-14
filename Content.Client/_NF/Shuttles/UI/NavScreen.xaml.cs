@@ -19,7 +19,7 @@ namespace Content.Client.Shuttles.UI
 
             DampenerOff.OnPressed += _ => SwitchDampenerMode(InertiaDampeningMode.Off);
             DampenerOn.OnPressed += _ => SwitchDampenerMode(InertiaDampeningMode.Dampen);
-            AnchorOn.OnPressed += _ => SwitchDampenerMode(InertiaDampeningMode.Anchored);
+            AnchorOn.OnPressed += _ => SwitchDampenerMode(InertiaDampeningMode.Anchor);
 
             DampenerOff.Group = _buttonGroup;
             DampenerOn.Group = _buttonGroup;
@@ -44,7 +44,7 @@ namespace Content.Client.Shuttles.UI
                 DampenerModeButtons.Visible = true;
                 DampenerOff.Pressed = NavRadar.DampenerState == InertiaDampeningMode.Off;
                 DampenerOn.Pressed = NavRadar.DampenerState == InertiaDampeningMode.Dampen;
-                AnchorOn.Pressed = NavRadar.DampenerState == InertiaDampeningMode.Anchored;
+                AnchorOn.Pressed = NavRadar.DampenerState == InertiaDampeningMode.Anchor;
             }
         }
 

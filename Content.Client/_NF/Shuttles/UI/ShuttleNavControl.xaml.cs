@@ -1,4 +1,5 @@
 
+using Content.Client.Station;
 using Content.Shared._NF.Shuttles.Events;
 using Content.Shared._NF.Station.Components;
 using Content.Shared.Shuttles.BUIStates;
@@ -27,9 +28,9 @@ namespace Content.Client.Shuttles.UI
 
             DampenerState =
                 isStation ? InertiaDampeningMode.Station :
-                physicsComponent.LinearDamping == 0 ? InertiaDampeningMode.Off :
-                physicsComponent.AngularDamping < .1 ? InertiaDampeningMode.Dampen :
-                InertiaDampeningMode.Anchored;
+                physicsComponent.LinearDamping == 0.0f ? InertiaDampeningMode.Off :
+                physicsComponent.LinearDamping < 1.0f ? InertiaDampeningMode.Dampen :
+                InertiaDampeningMode.Anchor;
 
         }
 
