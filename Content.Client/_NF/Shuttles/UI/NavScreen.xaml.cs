@@ -6,7 +6,7 @@ namespace Content.Client.Shuttles.UI
     public sealed partial class NavScreen
     {
         private readonly ButtonGroup _buttonGroup = new();
-        public event Action<NetEntity?, InertiaDampeningMode>? OnChangeInertiaDampeningTypeRequest;
+        public event Action<NetEntity?, InertiaDampeningMode>? OnInertiaDampeningModeChanged;
 
         private void NfInitialize()
         {
@@ -17,20 +17,20 @@ namespace Content.Client.Shuttles.UI
             MaximumIFFDistanceValue.GetChild(0).GetChild(1).Margin = new Thickness(8, 0, 0, 0);
             MaximumIFFDistanceValue.OnValueChanged += args => OnRangeFilterChanged(args);
 
-            DampenerOff.OnPressed += _ => SwitchDampenerMode(InertiaDampeningMode.Off);
-            DampenerOn.OnPressed += _ => SwitchDampenerMode(InertiaDampeningMode.Dampen);
-            AnchorOn.OnPressed += _ => SwitchDampenerMode(InertiaDampeningMode.Anchor);
+            DampenerOff.OnPressed += _ => SetDampenerMode(InertiaDampeningMode.Off);
+            DampenerOn.OnPressed += _ => SetDampenerMode(InertiaDampeningMode.Dampen);
+            AnchorOn.OnPressed += _ => SetDampenerMode(InertiaDampeningMode.Anchor);
 
             DampenerOff.Group = _buttonGroup;
             DampenerOn.Group = _buttonGroup;
             AnchorOn.Group = _buttonGroup;
         }
 
-        private void SwitchDampenerMode(InertiaDampeningMode mode)
+        private void SetDampenerMode(InertiaDampeningMode mode)
         {
             NavRadar.DampeningMode = mode;
             _entManager.TryGetNetEntity(_shuttleEntity, out var shuttle);
-            OnChangeInertiaDampeningTypeRequest?.Invoke(shuttle, mode);
+            OnInertiaDampeningModeChanged?.Invoke(shuttle, mode);
         }
 
         private void NfUpdateState()
