@@ -37,7 +37,9 @@ public sealed class DeadDropSystem : EntitySystem
     [Dependency] private readonly ShuttleSystem _shuttle = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedMapSystem _mapManager = default!;
+
     [Dependency] private readonly EntityLookupSystem _entityLookup = default!;
+    [Dependency] private readonly IEntityManager _entManager = default!;
 
     public override void Initialize()
     {
@@ -62,9 +64,12 @@ public sealed class DeadDropSystem : EntitySystem
         var deadDrops = new HashSet<Entity<DeadDropComponent>>();
         _entityLookup.GetEntitiesInRange(Transform(uid).Coordinates, 100, deadDrops);
 
-        //if we detect that there's more than 1 or 2 dead drop components then we will have a smaller chance for them to drop anything
-        if (deadDrops.Count >= 2) {
-            if (_random.Next(1,4) != 1)
+        var verbSystem = _entManager.System<SharedVerbSystem>();
+
+        //checks how many already have a verb attached, if any do, then don't add the searchVerb 
+        foreach (var ent in deadDrops) 
+        {
+            if (verbSystem.GetLocalVerbs(ent.Owner, args.User, typeof(InteractionVerb)).Count >= 1)
                 return;
         }
 
