@@ -1,21 +1,16 @@
 <Document>
-  # LIQUIDATOR-CLASS SERVICE SHUTTLE
+  # BAZAAR-CLASS SERVICE SHUTTLE
   <Box>
-  <GuideEntityEmbed Entity="JanitorialTrolley"/>
-  <GuideEntityEmbed Entity="MopItem"/>
-  <GuideEntityEmbed Entity="TrashBag"/>
-  </Box>  
-  <Box>
-  <GuideEntityEmbed Entity="SprayBottleSpaceCleaner"/>
-  <GuideEntityEmbed Entity="LightReplacer"/>
-  <GuideEntityEmbed Entity="ClothingShoeSlippersDuck"/>
+  <GuideEntityEmbed Entity="CrateAirlockKit" Caption="crate"/>
+  <GuideEntityEmbed Entity="ComputerWallmountWithdrawBankATM" Caption="ATM"/>
+  <GuideEntityEmbed Entity="Rack"/>
   </Box>
   <Box>
-  <GuideEntityEmbed Entity="ShuttleMapLiquidator" Caption=""/>
+  <GuideEntityEmbed Entity="ShuttleMapBazaar" Caption=""/>
   </Box>
-    [color=#a4885c]Ship Size:[/color] Small
+    [color=#a4885c]Ship Size:[/color] Medium
 	
-	[color=#a4885c]Recommended Crew:[/color] 1+
+	[color=#a4885c]Recommended Crew:[/color] 4+
 	
 	[color=#a4885c]Power Gen Type:[/color] Uranium
 	
@@ -23,7 +18,7 @@
 	
 	[color=#a4885c]IFF Console:[/color] None
 	
-  "A small vessel equipped with everything you need to make even the dirtiest ship squeaky clean (ducky slippers included)."
+  "The Bazaar is a personal service vessel designed to provide a platform for merchants to sell their goods. It features two locking cargo docks, a spacious cargo hold, and a mercenary post for shop security."
     
   # PREFLIGHT CHECKLIST
   
@@ -48,11 +43,11 @@
   <GuideEntityEmbed Entity="SignRadiationMed"/>
   </Box>
   
-  - Check that the S.U.P.E.R.P.A.C.M.A.N. generator unit is anchored to the floor.
-  - Check that the S.U.P.E.R.P.A.C.M.A.N. generator unit has fuel. For extended flights make sure that you have enough fuel stockpiled to sustain prolonged power generation during flight.
-  - Check that the S.U.P.E.R.P.A.C.M.A.N. generator unit is set to HV output.
-  - Set Target Power for 21-22** [bold]kW[/bold].
-  - Start the S.U.P.E.R.P.A.C.M.A.N. generator unit.
+  - Check that the S.U.P.E.R.P.A.C.M.A.N. generator units are anchored to the floor.
+  - Check that the S.U.P.E.R.P.A.C.M.A.N. generator units have fuel. For extended flights make sure that you have enough fuel stockpiled to sustain prolonged power generation during flight.
+  - Check that the S.U.P.E.R.P.A.C.M.A.N. generator units are set to HV output.
+  - Set Target Power for 40-41** [bold]kW[/bold].
+  - Start S.U.P.E.R.P.A.C.M.A.N. generator units.
   
   ## 2. Atmospherics
   
@@ -66,16 +61,10 @@
   </Box>
   
   - Check that the O2 canister is anchored to connector port.
-  - Check that the O2 output pump is set to 101kPa.
-  - Enable the O2 output pump.
   - Check that the N2 canister is anchored to connector port.
-  - Check that the N2 output pump is set to 101kPa.
-  - Enable N2 output pump.
   - Check that the gas mixer is set to the correct mixing ratio (21% Oxygen, 79% Nitrogen).
   - Check that the gas mixer is set to 101kPa.
   - Enable gas mixer.
-  - Check that the distribution pump is set to 101kPa.
-  - Enable distribution pump.
   
   ## 2.2. Waste Loop
   <Box>
@@ -100,10 +89,10 @@
   
   ## Sidenotes
   
-  * - Liquidator-class service ships are equipped with a single APC unit that can be used to appraise the ship's total power consumption. One can check the ship's total power consumption against the S.U.P.E.R.P.A.C.M.A.N. generator unit Target Power output: to keep SMES, substation, and APC fully charged, S.U.P.E.R.P.A.C.M.A.N. generator unit Target Power output should exceed APC's Load. Remember to check APC Load and adjust the generator unit Target Power after connecting new power-consuming machines.
+  * - Bazaar-class service ships are equipped with nine APC units that can be used to appraise the ship's total power consumption. One can check the ship's total power consumption against the S.U.P.E.R.P.A.C.M.A.N. generator unit Target Power output: to keep SMES, substation, and APC fully charged, S.U.P.E.R.P.A.C.M.A.N. generator unit Target Power output should exceed APC's Load. Remember to check APC Load and adjust the generator unit Target Power after connecting new power-consuming machines.
   
-  ** - Liquidator-class service ships have higher power demand than a standard P.A.C.M.A.N. can provide at optimal settings, and come equipped with a S.U.P.E.R.P.A.C.M.A.N. instead. Please note that the recommended Target Power value to avoid blackouts during Gravity Generator charging sequence is 22 kW.
-  
+  ** - Bazaar-class service ships have higher power demand than standard P.A.C.M.A.N. generator unit can provide at optimal settings, so the standard P.A.C.M.A.N. was replaced with two S.U.P.E.R.P.A.C.M.A.N.: recommended Target Power value to avoid blackouts during Gravity Generator charging sequence is 41 kW.
+
   <Box>
   <GuideEntityEmbed Entity="SignRadiationMed"/>
   <GuideEntityEmbed Entity="ClothingOuterSuitRad"/>
