@@ -28,23 +28,23 @@ namespace Content.Client.Shuttles.UI
 
         private void SwitchDampenerMode(InertiaDampeningMode mode)
         {
-            NavRadar.DampenerState = mode;
+            NavRadar.DampeningMode = mode;
             _entManager.TryGetNetEntity(_shuttleEntity, out var shuttle);
             OnChangeInertiaDampeningTypeRequest?.Invoke(shuttle, mode);
         }
 
         private void NfUpdateState()
         {
-            if (NavRadar.DampenerState == InertiaDampeningMode.Station)
+            if (NavRadar.DampeningMode == InertiaDampeningMode.Station)
             {
                 DampenerModeButtons.Visible = false;
             }
             else
             {
                 DampenerModeButtons.Visible = true;
-                DampenerOff.Pressed = NavRadar.DampenerState == InertiaDampeningMode.Off;
-                DampenerOn.Pressed = NavRadar.DampenerState == InertiaDampeningMode.Dampen;
-                AnchorOn.Pressed = NavRadar.DampenerState == InertiaDampeningMode.Anchor;
+                DampenerOff.Pressed = NavRadar.DampeningMode == InertiaDampeningMode.Off;
+                DampenerOn.Pressed = NavRadar.DampeningMode == InertiaDampeningMode.Dampen;
+                AnchorOn.Pressed = NavRadar.DampeningMode == InertiaDampeningMode.Anchor;
             }
         }
 

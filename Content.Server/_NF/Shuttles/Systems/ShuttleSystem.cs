@@ -1,17 +1,16 @@
 // New Frontiers - This file is licensed under AGPLv3
 // Copyright (c) 2024 New Frontiers Contributors
 // See AGPLv3.txt for details.
+using Content.Server._NF.Station.Components;
 using Content.Server.Shuttles.Components;
 using Content.Shared._NF.Shuttles.Events;
-using Content.Shared._NF.Station.Components;
-using Content.Shared.Shuttles.Systems;
 using Robust.Shared.Physics.Components;
-using SixLabors.ImageSharp.ColorSpaces;
 
 namespace Content.Server.Shuttles.Systems;
 
 public sealed partial class ShuttleSystem
 {
+    private const float AnchorDampeningStrength = 1.0f;
     private void NfInitialize()
     {
         SubscribeLocalEvent<ShuttleConsoleComponent, ToggleStabilizerRequest>(OnToggleStabilizer);
@@ -33,7 +32,7 @@ public sealed partial class ShuttleSystem
         {
             InertiaDampeningMode.Off => 0,
             InertiaDampeningMode.Dampen => shuttleComponent.LinearDamping,
-            InertiaDampeningMode.Anchor => 1,
+            InertiaDampeningMode.Anchor => AnchorDampeningStrength,
             _ => 0, // other values: default to some sane behaviour (assume all dampening is off)
         };
 
@@ -41,12 +40,30 @@ public sealed partial class ShuttleSystem
         {
             InertiaDampeningMode.Off => 0,
             InertiaDampeningMode.Dampen => shuttleComponent.AngularDamping,
-            InertiaDampeningMode.Anchor => 1,
+            InertiaDampeningMode.Anchor => AnchorDampeningStrength,
             _ => 0, // other values: default to some sane behaviour (assume all dampening is off)
         };
 
         _physics.SetLinearDamping(transform.GridUid.Value, physicsComponent, linearDampeningStrength);
         _physics.SetAngularDamping(transform.GridUid.Value, physicsComponent, angularDampeningStrength);
+        _console.RefreshShuttleConsoles(transform.GridUid.Value);
+    }
+
+    public InertiaDampeningMode NfGetInertiaDampeningMode(EntityUid entity)
+    {
+        if (EntityManager.TryGetComponent<TransformComponent>(entity, out var xform) &&
+            EntityManager.HasComponent<StationDampeningComponent>(_station.GetOwningStation(xform.GridUid)))
+            return InertiaDampeningMode.Station;
+
+        if (!EntityManager.TryGetComponent(entity, out PhysicsComponent? physicsComponent))
+            return InertiaDampeningMode.Off;
+
+        if (physicsComponent.LinearDamping >= AnchorDampeningStrength)
+            return InertiaDampeningMode.Anchor;
+        else if (MathHelper.CloseTo(physicsComponent.LinearDamping, 0.0f))
+            return InertiaDampeningMode.Off;
+        else
+            return InertiaDampeningMode.Dampen;
     }
 
 }

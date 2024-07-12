@@ -1,7 +1,7 @@
-
-using Content.Client.Station;
+// New Frontiers - This file is licensed under AGPLv3
+// Copyright (c) 2024 New Frontiers Contributors
+// See AGPLv3.txt for details.
 using Content.Shared._NF.Shuttles.Events;
-using Content.Shared._NF.Station.Components;
 using Content.Shared.Shuttles.BUIStates;
 using Robust.Shared.Physics.Components;
 using System.Numerics;
@@ -12,7 +12,7 @@ namespace Content.Client.Shuttles.UI
 {
     public sealed partial class ShuttleNavControl
     {
-        public InertiaDampeningMode DampenerState { get; set; }
+        public InertiaDampeningMode DampeningMode { get; set; }
 
         private void NfUpdateState(NavInterfaceState state)
         {
@@ -24,14 +24,7 @@ namespace Content.Client.Shuttles.UI
                 return;
             }
 
-            var isStation = EntManager.HasComponent<StationDampeningComponent>(transform.GridUid);
-
-            DampenerState =
-                isStation ? InertiaDampeningMode.Station :
-                physicsComponent.LinearDamping == 0.0f ? InertiaDampeningMode.Off :
-                physicsComponent.LinearDamping < 1.0f ? InertiaDampeningMode.Dampen :
-                InertiaDampeningMode.Anchor;
-
+            DampeningMode = state.DampeningMode;
         }
 
         // New Frontiers - Maximum IFF Distance - checks distance to object, draws if closer than max range
