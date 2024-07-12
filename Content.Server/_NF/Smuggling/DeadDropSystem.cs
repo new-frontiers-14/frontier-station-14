@@ -39,7 +39,6 @@ public sealed class DeadDropSystem : EntitySystem
     [Dependency] private readonly SharedMapSystem _mapManager = default!;
 
     [Dependency] private readonly EntityLookupSystem _entityLookup = default!;
-    [Dependency] private readonly IEntityManager _entManager = default!;
 
     public override void Initialize()
     {
@@ -60,16 +59,17 @@ public sealed class DeadDropSystem : EntitySystem
         if (!args.CanInteract || !args.CanAccess || args.Hands == null || _timing.CurTime < component.NextDrop)
             return;
 
+        var xform = Transform(uid);
+        var targetCoordinates = xform.Coordinates;
+
         //counts how many dead drop posters are nearby
         var deadDrops = new HashSet<Entity<DeadDropComponent>>();
-        _entityLookup.GetEntitiesInRange(Transform(uid).Coordinates, 100, deadDrops);
+        _entityLookup.GetEntitiesInRange(targetCoordinates, 300, deadDrops);
 
-        var verbSystem = _entManager.System<SharedVerbSystem>();
-
-        //checks how many already have a verb attached, if any do, then don't add the searchVerb 
-        foreach (var ent in deadDrops) 
+        //checks if any of them are already active and if so don't do anything.
+        foreach (var ent in deadDrops)
         {
-            if (verbSystem.GetLocalVerbs(ent.Owner, args.User, typeof(InteractionVerb)).Count >= 1)
+            if (ent.Comp.DeadDropActivated == true && ent.Owner != uid) 
                 return;
         }
 
@@ -83,6 +83,8 @@ public sealed class DeadDropSystem : EntitySystem
         };
 
         args.Verbs.Add(searchVerb);
+
+        component.DeadDropActivated = true;
     }
 
     //spawning the dead drop.
@@ -156,5 +158,6 @@ public sealed class DeadDropSystem : EntitySystem
 
         //reset the timer
         component.NextDrop = _timing.CurTime + TimeSpan.FromSeconds(_random.Next(component.MinimumCoolDown, component.MaximumCoolDown));
+        component.DeadDropActivated = false;
     }
 }

@@ -41,6 +41,12 @@ public sealed partial class DeadDropComponent : Component
     public int MaximumDistance = 6500;
 
     /// <summary>
+    ///     Boolean which confirms whether a poster is activated
+    /// </summary>
+    [DataField]
+    public bool DeadDropActivated = false;
+
+    /// <summary>
     ///     The paper prototype to spawn.
     /// </summary>
     [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
