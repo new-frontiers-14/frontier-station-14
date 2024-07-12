@@ -13,10 +13,10 @@ public sealed partial class ShuttleSystem
     private const float AnchorDampeningStrength = 1.0f;
     private void NfInitialize()
     {
-        SubscribeLocalEvent<ShuttleConsoleComponent, ToggleStabilizerRequest>(OnToggleStabilizer);
+        SubscribeLocalEvent<ShuttleConsoleComponent, SetInertiaDampeningRequest>(OnSetInertiaDampening);
     }
 
-    private void OnToggleStabilizer(EntityUid uid, ShuttleConsoleComponent component, ToggleStabilizerRequest args)
+    private void OnSetInertiaDampening(EntityUid uid, ShuttleConsoleComponent component, SetInertiaDampeningRequest args)
     {
         // Ensure that the entity requested is a valid shuttle (stations should not be togglable)
         if (!EntityManager.TryGetComponent(uid, out TransformComponent? transform) ||

@@ -15,7 +15,7 @@ namespace Content.Client.Shuttles.BUI
         }
         private void OnInertiaDampeningModeChanged(NetEntity? entityUid, InertiaDampeningMode mode)
         {
-            SendMessage(new ToggleStabilizerRequest
+            SendMessage(new SetInertiaDampeningRequest
             {
                 ShuttleEntityUid = entityUid,
                 Mode = mode,
