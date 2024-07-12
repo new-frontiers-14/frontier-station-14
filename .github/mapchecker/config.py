@@ -42,10 +42,12 @@ CONDITIONALLY_ILLEGAL_MATCHES = {
     ],
     "Syndicate": [
         "Plastitanium",  # And also on blackmarket ships cause syndicate.
-	"ButtonFrameCautionSecurity",  # Decal.
+		"ButtonFrameCautionSecurity",  # Decal.
+		"ShuttleGun",
     ],
 	"BlackMarket": [
         "Plastitanium",  # And also on blackmarket ships cause syndicate.
         "ButtonFrameCautionSecurity",  # Decal.
+		"ShuttleGun",
 	]
 }
