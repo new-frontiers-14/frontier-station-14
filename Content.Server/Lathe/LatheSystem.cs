@@ -173,7 +173,7 @@ namespace Content.Server.Lathe
             foreach (var (mat, amount) in recipe.RequiredMaterials)
             {
                 var adjustedAmount = recipe.ApplyMaterialDiscount
-                    ? (int) (-amount * component.MaterialUseMultiplier)
+                    ? (int) (-amount * component.FinalMaterialUseMultiplier) // Frontier: MaterialUseMultiplier<FinalMaterialUseMultiplier
                     : -amount;
 
                 _materialStorage.TryChangeMaterialAmount(uid, mat, adjustedAmount);
@@ -197,7 +197,7 @@ namespace Content.Server.Lathe
 
             var lathe = EnsureComp<LatheProducingComponent>(uid);
             lathe.StartTime = _timing.CurTime;
-            lathe.ProductionLength = time * component.TimeMultiplier;
+            lathe.ProductionLength = time * component.FinalTimeMultiplier; // Frontier: TimeMultiplier<FinalTimeMultiplier
             component.CurrentRecipe = recipe;
 
             var ev = new LatheStartPrintingEvent(recipe);
