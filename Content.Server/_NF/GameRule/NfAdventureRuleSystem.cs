@@ -4,6 +4,7 @@ using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using Content._NF.Shared.GameRule;
 using Content.Server.Procedural;
 using Content.Shared.Bank.Components;
 using Content.Server.GameTicking.Events;
@@ -23,6 +24,7 @@ using Content.Server.Cargo.Components;
 using Content.Server.Maps;
 using Content.Server.Station.Systems;
 using Content.Shared.CCVar;
+using Content.Shared.NF14.CCVar;
 using Robust.Shared.Configuration;
 
 namespace Content.Server.GameTicking.Rules;
@@ -47,6 +49,8 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
 
     [ViewVariables]
     private List<(EntityUid, int)> _players = new();
+
+    private MapId _mapId;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -110,6 +114,33 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
 
     private void OnStartup(RoundStartingEvent ev)
     {
+        _mapId = GameTicker.DefaultMap;
+        var allLocationList = _prototypeManager.EnumeratePrototypes<PointOfInterestPrototype>().ToList();
+        var depotList = allLocationList.Where(w => w.SpawnGroup == "CargoDepot");
+        foreach (var proto in depotList)
+        {
+            allLocationList.Remove(proto);
+        }
+        var marketList = allLocationList.Where(w => w.SpawnGroup == "MarketStation");
+        foreach (var proto in marketList)
+        {
+            allLocationList.Remove(proto);
+        }
+        var optionalList = allLocationList.Where(w => w.SpawnGroup == "Optional");
+        foreach (var proto in optionalList)
+        {
+            allLocationList.Remove(proto);
+        }
+        var requiredList = allLocationList.Where(w => w.AlwaysSpawn == true);
+        foreach (var proto in requiredList)
+        {
+            allLocationList.Remove(proto);
+        }
+        // the remainder are done on a per-group basis
+        var uniqueLocations = allLocationList;
+
+
+
         var depotMap = "/Maps/_NF/POI/cargodepot.yml";
         var tinnia = "/Maps/_NF/POI/tinnia.yml";
         var caseys = "/Maps/_NF/POI/caseyscasino.yml";
@@ -335,6 +366,76 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             //because they are all offset. confirmed good size grid, just need to fix all the offsets.
             _dunGen.GenerateDungeon(dunGen, grids[0], mapGrid, (Vector2i) offset, seed);
         }
+    }
+
+    private void GenerateDepots(IEnumerable<PointOfInterestPrototype> depotPrototypes)
+    {
+        //For depots, we want them to fill a circular type dystance formula to try to keep them as far apart as possible
+        //Therefore, we will be taking our range properties and treating them as magnitudes of a direction vector divided
+        //by the number of depots set in our corresponding cvar
+        var protoList = depotPrototypes.ToList();
+        var depotCount = _configurationManager.GetCVar(NF14CVars.CargoDepots);
+        var rotation = Math.PI / depotCount;
+        var rotationOffset = 0d;
+
+        for (int i = 0; i < depotCount; i++)
+        {
+            var proto = _random.Pick(protoList);
+            Vector2i offset = new Vector2i(_random.Next(proto.RangeMin, proto.RangeMax), 0);
+            offset.Rotate(rotationOffset);
+            rotationOffset += rotation;
+        }
+
+    }
+
+    private void GenerateMarkets(IEnumerable<PointOfInterestPrototype> marketPrototypes)
+    {
+
+    }
+
+    private void GenerateOptionals(IEnumerable<PointOfInterestPrototype> optionalPrototypes)
+    {
+
+    }
+
+    private void GenerateRequireds(IEnumerable<PointOfInterestPrototype> requiredPrototypes)
+    {
+
+    }
+
+    private void GenerateUniques(IEnumerable<PointOfInterestPrototype> uniquePrototypes)
+    {
+
+    }
+
+    private bool TrySpawnPoiGrid(PointOfInterestPrototype proto, Vector2i offset, out EntityUid? gridUid)
+    {
+        gridUid = null;
+        if (_map.TryLoad(_mapId, proto.GridPath.ToString(), out var mapUids, new MapLoadOptions
+            {
+                Offset = offset
+            }))
+        {
+            if (_prototypeManager.TryIndex<GameMapPrototype>(proto.ID, out var stationProto))
+            {
+                _station.InitializeNewStation(stationProto.Stations[proto.ID], mapUids, proto.Name);
+            }
+
+            foreach (var grid in mapUids)
+            {
+                var meta = EnsureComp<MetaDataComponent>(grid);
+                _meta.SetEntityName(grid, proto.Name, meta);
+                _shuttle.SetIFFColor(grid, proto.IffColor);
+                if (proto.IsHidden)
+                {
+                    _shuttle.AddIFFFlag(grid, IFFFlags.HideLabel);
+                }
+            }
+            gridUid = mapUids[0];
+            return true;
+        }
+
+        return false;
     }
 
     private async Task ReportRound(String message,  int color = 0x77DDE7)
