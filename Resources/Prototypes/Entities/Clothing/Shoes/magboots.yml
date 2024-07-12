@@ -81,7 +81,7 @@
     price: 3000
 
 - type: entity
-  parent: [ClothingShoesBootsMag, BaseJetpack]
+  parent: [ClothingShoesBootsMag, BaseJetpack, ContrabandClothing] # Frontier: added ContrabandClothing as parent
   id: ClothingShoesBootsMagSyndie
   name: blood-red magboots
   description: Reverse-engineered magnetic boots that have a heavy magnetic pull and integrated thrusters.
@@ -106,9 +106,6 @@
       moles:
         - 0.153853429 # oxygen
         - 0.153853429 # nitrogen
-  - type: Contraband #frontier
-  - type: FactionClothing # frontier
-    faction: ContrabandClothing # frontier
   - type: Item
     sprite: null
     size: Normal
