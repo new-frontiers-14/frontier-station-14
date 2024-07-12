@@ -1,6 +1,8 @@
 # Syndicate Bomb Suit Helmet
 - type: entity
-  parent: ClothingHeadHelmetBombSuit
+  parent:
+  - ClothingHeadHelmetBombSuit
+  - ContrabandClothing
   id: ClothingHeadHelmetBombSuitSyndie
   name: syndicate bombsuit helmet
   components:
@@ -11,13 +13,12 @@
     sprite: _NF/Clothing/Head/Helmets/syndicate_bombsuit.rsi
   - type: Clothing
     sprite: _NF/Clothing/Head/Helmets/syndicate_bombsuit.rsi
-  - type: Contraband
-  - type: FactionClothing
-    faction: ContrabandClothing
 
 # Syndicate armored bio suit hood
 - type: entity
-  parent: ClothingHeadHatHoodBioGeneral
+  parent:
+  - ClothingHeadHatHoodBioGeneral
+  - ContrabandClothing
   id: ClothingHeadHatHoodBioArmoredSyndicate
   name: bio hood
   suffix: Syndicate
@@ -31,44 +32,48 @@
     sprite: _NF/Clothing/Head/Hoods/Bio/syndicate.rsi
   - type: Clothing
     sprite: _NF/Clothing/Head/Hoods/Bio/syndicate.rsi
-  - type: Contraband
-  - type: FactionClothing
-    faction: ContrabandClothing
 
 # Syndicate NPC unremoveable headwear for looks only
 - type: entity
-  parent: ClothingHeadHelmetHardsuitSyndieElite
+  parent:
+  - ClothingHeadHelmetHardsuitSyndie
+  - ContrabandClothing
   id: ClothingHeadHelmetHardsuitSyndieEliteUnremoveable
   noSpawn: true
   components:
   - type: Unremoveable
+  - type: Sprite
+    sprite: Clothing/Head/Hardsuits/syndieelite.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Hardsuits/syndieelite.rsi
   - type: FactionClothing
     faction: ContrabandClothing
 
 - type: entity
-  parent: ClothingHeadHelmetHardsuitSyndie
+  parent:
+  - ClothingHeadHelmetHardsuitSyndie
+  - ContrabandClothing
   id: ClothingHeadHelmetHardsuitSyndieUnremoveable
   noSpawn: true
-  components:
-  - type: Unremoveable
+  - type: Sprite
+    sprite: Clothing/Head/Hardsuits/syndiecommander.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Hardsuits/syndiecommander.rsi
   - type: FactionClothing
-    faction: ContrabandClothing
-
-- type: entity
-  parent: ClothingHeadHelmetHardsuitSyndieMedic
-  id: ClothingHeadHelmetHardsuitSyndieMedicUnremoveable
-  noSpawn: true
-  components:
-  - type: Unremoveable
-  - type: FactionClothing
-    faction: ContrabandClothing
-
-- type: entity
-  parent: ClothingHeadHatHoodWinterSyndie
+- type: entity # for looks only
+  parent:
+  - ClothingHeadHatHoodWinterBase
+  - ContrabandClothing
+- type: entity # for looks only
+  parent: ClothingHeadHatHoodWinterBase
   id: ClothingHeadHatHoodWinterSyndieUnremoveable
   noSpawn: true
   name: syndicate coat hood
-  components:
-  - type: Unremoveable
+  - type: Sprite
+    sprite: Clothing/Head/Hoods/Coat/hoodsyndicate.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Hoods/Coat/hoodsyndicate.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Hoods/Coat/hoodsyndicate.rsi
   - type: FactionClothing
     faction: ContrabandClothing
