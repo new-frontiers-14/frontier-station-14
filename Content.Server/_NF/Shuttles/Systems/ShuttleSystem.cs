@@ -16,11 +16,12 @@ public sealed partial class ShuttleSystem
 
     private void OnToggleStabilizer(EntityUid uid, ShuttleConsoleComponent component, ToggleStabilizerRequest args)
     {
+        // Ensure that the entity requested is a valid shuttle (stations should not be togglable)
         if (!EntityManager.TryGetComponent(uid, out TransformComponent? transform) ||
             !transform.GridUid.HasValue ||
             !EntityManager.TryGetComponent(transform.GridUid, out PhysicsComponent? physicsComponent) ||
             !EntityManager.TryGetComponent(transform.GridUid, out ShuttleComponent? shuttleComponent) ||
-            EntityManager.HasComponent<StationComponent>(transform.GridUid))
+            EntityManager.HasComponent<StationDampeningComponent>(transform.GridUid))
         {
             return;
         }
@@ -30,7 +31,7 @@ public sealed partial class ShuttleSystem
             InertiaDampeningMode.Off => 0,
             InertiaDampeningMode.Dampen => shuttleComponent.LinearDamping,
             InertiaDampeningMode.Anchored => 1,
-            _ => 999999,// if it's not the above it's a station, they shouldn't be able to change the dampening, should we alert the admin?
+            _ => 0, // other values: default to some sane behaviour (assume the ship is unanchored)
         };
 
         var angularDampeningStrength = args.Mode switch
@@ -38,7 +39,7 @@ public sealed partial class ShuttleSystem
             InertiaDampeningMode.Off => 0,
             InertiaDampeningMode.Dampen => shuttleComponent.AngularDamping,
             InertiaDampeningMode.Anchored => 1,
-            _ => 999999,// if it's not the above it's a station, they shouldn't be able to change the dampening, should we alert the admin?
+            _ => 0, // other values: default to some sane behaviour (assume the ship is unanchored)
         };
 
         _physics.SetLinearDamping(transform.GridUid.Value, physicsComponent, linearDampeningStrength);

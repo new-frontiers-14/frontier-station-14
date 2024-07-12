@@ -23,7 +23,7 @@ namespace Content.Client.Shuttles.UI
                 return;
             }
 
-            var isStation = EntManager.HasComponent<StationComponent>(transform.GridUid);
+            var isStation = EntManager.HasComponent<StationDampeningComponent>(transform.GridUid);
 
             DampenerState =
                 isStation ? InertiaDampeningMode.Station :

@@ -5,6 +5,7 @@ namespace Content.Client.Shuttles.UI
 {
     public sealed partial class NavScreen
     {
+        private readonly ButtonGroup _buttonGroup = new();
         public event Action<NetEntity?, InertiaDampeningMode>? OnChangeInertiaDampeningTypeRequest;
 
         private void NfInitialize()
@@ -20,10 +21,9 @@ namespace Content.Client.Shuttles.UI
             DampenerOn.OnPressed += _ => SwitchDampenerMode(InertiaDampeningMode.Dampen);
             AnchorOn.OnPressed += _ => SwitchDampenerMode(InertiaDampeningMode.Anchored);
 
-            var group = new ButtonGroup();
-            DampenerOff.Group = group;
-            DampenerOn.Group = group;
-            AnchorOn.Group = group;
+            DampenerOff.Group = _buttonGroup;
+            DampenerOn.Group = _buttonGroup;
+            AnchorOn.Group = _buttonGroup;
         }
 
         private void SwitchDampenerMode(InertiaDampeningMode mode)
