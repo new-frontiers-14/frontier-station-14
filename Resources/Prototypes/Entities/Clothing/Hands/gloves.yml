@@ -206,7 +206,7 @@
   - type: FingerprintMask
 
 - type: entity
-  parent: ClothingHandsBase
+  parent: [ClothingHandsBase, ContrabandClothing] # Frontier: added ContrabandClothing as parent
   id: ClothingHandsGlovesSpaceNinja
   name: space ninja gloves
   description: These black nano-enhanced gloves insulate from electricity and provide fire resistance.
@@ -235,9 +235,6 @@
     stripTimeReduction: 1
     stealthy: true
   - type: NinjaGloves
-  - type: Contraband #frontier
-  - type: FactionClothing #frontier
-    faction: ContrabandClothing #frontier
 
 - type: entity
   parent: ClothingHandsGlovesColorBlack
@@ -335,7 +332,7 @@
 - type: entity
   # Intentionally named after regular gloves, they're meant to be sneaky.
   # This means they can also be butchered if you need to look un-sus before a very thorough search...
-  parent: ClothingHandsGlovesColorBlack
+  parent: [ClothingHandsGlovesColorBlack, ContrabandClothing] # Frontier: added ContrabandClothing as parent
   id: ThievingGloves
   suffix: Thieving
   components:
@@ -345,9 +342,6 @@
     stripTimeReduction: 1.5
     stealthy: true
   - type: FingerprintMask # Frontier
-  - type: Contraband #frontier
-  - type: FactionClothing #frontier
-    faction: ContrabandClothing #frontier
 
 - type: entity
   parent: ClothingHandsGlovesColorWhite
@@ -359,7 +353,7 @@
   - type: Unremoveable
 
 - type: entity
-  parent: ClothingHandsButcherable
+  parent: [ClothingHandsButcherable, ContrabandClothing] # Frontier: added ContrabandClothing as parent
   id: ClothingHandsGlovesNorthStar
   name: gloves of the north star
   description: These gloves allow you to punch incredibly fast.
@@ -393,9 +387,6 @@
         type: MeleeSpeechBoundUserInterface
   - type: StaticPrice
     price: 0
-  - type: Contraband #frontier
-  - type: FactionClothing #frontier
-    faction: ContrabandClothing #frontier
 
 - type: entity
   parent: ClothingHandsBase
