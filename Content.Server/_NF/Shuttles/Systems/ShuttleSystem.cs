@@ -51,11 +51,13 @@ public sealed partial class ShuttleSystem
 
     public InertiaDampeningMode NfGetInertiaDampeningMode(EntityUid entity)
     {
-        if (EntityManager.TryGetComponent<TransformComponent>(entity, out var xform) &&
-            EntityManager.HasComponent<StationDampeningComponent>(_station.GetOwningStation(xform.GridUid)))
+        if (!EntityManager.TryGetComponent<TransformComponent>(entity, out var xform))
+            return InertiaDampeningMode.Off;
+
+        if (EntityManager.HasComponent<StationDampeningComponent>(_station.GetOwningStation(xform.GridUid)))
             return InertiaDampeningMode.Station;
 
-        if (!EntityManager.TryGetComponent(entity, out PhysicsComponent? physicsComponent))
+        if (!EntityManager.TryGetComponent(xform.GridUid, out PhysicsComponent? physicsComponent))
             return InertiaDampeningMode.Off;
 
         if (physicsComponent.LinearDamping >= AnchorDampeningStrength)
