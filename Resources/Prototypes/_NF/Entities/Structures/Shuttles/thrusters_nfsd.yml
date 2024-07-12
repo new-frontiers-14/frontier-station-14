@@ -42,20 +42,11 @@
 
 - type: entity
   id: SmallGyroscopeNfsd
-  parent: GyroscopeSecurity
+  parent: SmallGyroscopeSecurity
   name: small gyroscope
   suffix: NFSD
   components:
-  - type: Thruster
-    thrusterType: Angular
-    requireSpace: false
-    baseThrust: 550
-    thrust: 550
-  - type: ApcPowerReceiver
-    powerLoad: 200
   - type: Sprite
-    scale: 0.8, 0.8
     sprite: _NF/Structures/Shuttles/nfsdgyroscope.rsi
-    snapCardinals: true
   - type: Machine
     board: SmallGyroscopeNfsdMachineCircuitboard
