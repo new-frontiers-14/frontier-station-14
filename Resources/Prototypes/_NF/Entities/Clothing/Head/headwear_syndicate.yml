@@ -36,16 +36,12 @@
 # Syndicate NPC unremoveable headwear for looks only
 - type: entity
   parent:
-  - ClothingHeadHelmetHardsuitSyndie
+  - ClothingHeadHelmetHardsuitSyndieElite
   - ContrabandClothing
   id: ClothingHeadHelmetHardsuitSyndieEliteUnremoveable
   noSpawn: true
   components:
   - type: Unremoveable
-  - type: Sprite
-    sprite: Clothing/Head/Hardsuits/syndieelite.rsi
-  - type: Clothing
-    sprite: Clothing/Head/Hardsuits/syndieelite.rsi
 
 - type: entity
   parent:
@@ -55,21 +51,22 @@
   noSpawn: true
   components:
   - type: Unremoveable
-  - type: Sprite
-    sprite: Clothing/Head/Hardsuits/syndiecommander.rsi
-  - type: Clothing
-    sprite: Clothing/Head/Hardsuits/syndiecommander.rsi
 
-- type: entity # for looks only
+- type: entity
   parent:
-  - ClothingHeadHatHoodWinterBase
+  - ClothingHeadHelmetHardsuitSyndieMedic
+  - ContrabandClothing
+  id: ClothingHeadHelmetHardsuitSyndieMedicUnremoveable
+  noSpawn: true
+  components:
+  - type: Unremoveable
+
+- type: entity
+  parent:
+  - ClothingHeadHatHoodWinterSyndie
   - ContrabandClothing
   id: ClothingHeadHatHoodWinterSyndieUnremoveable
   noSpawn: true
   name: syndicate coat hood
   components:
   - type: Unremoveable
-  - type: Sprite
-    sprite: Clothing/Head/Hoods/Coat/hoodsyndicate.rsi
-  - type: Clothing
-    sprite: Clothing/Head/Hoods/Coat/hoodsyndicate.rsi
