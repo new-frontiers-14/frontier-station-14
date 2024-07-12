@@ -4,6 +4,7 @@
 using Content.Server._NF.Station.Components;
 using Content.Server.Shuttles.Components;
 using Content.Shared._NF.Shuttles.Events;
+using Content.Shared.Shipyard.Components;
 using Robust.Shared.Physics.Components;
 
 namespace Content.Server.Shuttles.Systems;
@@ -23,6 +24,7 @@ public sealed partial class ShuttleSystem
             !transform.GridUid.HasValue ||
             !EntityManager.TryGetComponent(transform.GridUid, out PhysicsComponent? physicsComponent) ||
             !EntityManager.TryGetComponent(transform.GridUid, out ShuttleComponent? shuttleComponent) ||
+            !EntityManager.HasComponent<ShuttleDeedComponent>(transform.GridUid) ||
             EntityManager.HasComponent<StationDampeningComponent>(_station.GetOwningStation(transform.GridUid)))
         {
             return;
@@ -54,7 +56,9 @@ public sealed partial class ShuttleSystem
         if (!EntityManager.TryGetComponent<TransformComponent>(entity, out var xform))
             return InertiaDampeningMode.Off;
 
-        if (EntityManager.HasComponent<StationDampeningComponent>(_station.GetOwningStation(xform.GridUid)))
+        // Not a shuttle, shouldn't be togglable
+        if (EntityManager.HasComponent<StationDampeningComponent>(_station.GetOwningStation(xform.GridUid)) ||
+            !EntityManager.HasComponent<ShuttleDeedComponent>(_station.GetOwningStation(xform.GridUid)))
             return InertiaDampeningMode.Station;
 
         if (!EntityManager.TryGetComponent(xform.GridUid, out PhysicsComponent? physicsComponent))
