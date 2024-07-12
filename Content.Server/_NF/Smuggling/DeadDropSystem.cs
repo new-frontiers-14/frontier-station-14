@@ -14,6 +14,7 @@ using Content.Shared.Radio;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Verbs;
 using Robust.Server.GameObjects;
+using Robust.Shared.GameObjects;
 using Robust.Server.Maps;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
@@ -36,10 +37,12 @@ public sealed class DeadDropSystem : EntitySystem
     [Dependency] private readonly ShuttleSystem _shuttle = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedMapSystem _mapManager = default!;
+    [Dependency] private readonly EntityLookupSystem _entityLookup = default!;
 
     public override void Initialize()
     {
         base.Initialize();
+
         SubscribeLocalEvent<DeadDropComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<DeadDropComponent, GetVerbsEvent<InteractionVerb>>(AddSearchVerb);
     }
@@ -54,6 +57,16 @@ public sealed class DeadDropSystem : EntitySystem
     {
         if (!args.CanInteract || !args.CanAccess || args.Hands == null || _timing.CurTime < component.NextDrop)
             return;
+
+        //counts how many dead drop posters are nearby
+        var deadDrops = new HashSet<Entity<DeadDropComponent>>();
+        _entityLookup.GetEntitiesInRange(Transform(uid).Coordinates, 100, deadDrops);
+
+        //if we detect that there's more than 1 or 2 dead drop components then we will have a smaller chance for them to drop anything
+        if (deadDrops.Count >= 2) {
+            if (_random.Next(1,4) != 1)
+                return;
+        }
 
         //here we build our dynamic verb. Using the object's sprite for now to make it more dynamic for the moment.
         InteractionVerb searchVerb = new()
