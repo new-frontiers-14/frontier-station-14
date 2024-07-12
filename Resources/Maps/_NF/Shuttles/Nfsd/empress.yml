@@ -1125,8 +1125,7 @@ entities:
             4: 1
             0: 8
           -6,-1:
-            0: 64184
-            6: 1
+            0: 64185
           -5,-1:
             0: 63539
             1: 8
@@ -1271,7 +1270,7 @@ entities:
           temperature: 293.15
           moles:
           - 0
-          - 6666.982
+          - 2500
           - 0
           - 0
           - 0
@@ -1285,7 +1284,7 @@ entities:
         - volume: 2500
           temperature: 293.15
           moles:
-          - 6666.982
+          - 2500
           - 0
           - 0
           - 0
@@ -1317,21 +1316,6 @@ entities:
           moles:
           - 21.824879
           - 82.10312
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-        - volume: 2500
-          temperature: 293.14993
-          moles:
-          - 21.6852
-          - 81.57766
           - 0
           - 0
           - 0
@@ -5740,6 +5724,11 @@ entities:
     - type: Transform
       pos: -30.5,-0.5
       parent: 1
+  - uid: 318
+    components:
+    - type: Transform
+      pos: -23.5,-0.5
+      parent: 1
   - uid: 405
     components:
     - type: Transform
@@ -5766,6 +5755,11 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -18.5,-10.5
+      parent: 1
+  - uid: 720
+    components:
+    - type: Transform
+      pos: -23.5,0.5
       parent: 1
   - uid: 752
     components:
@@ -5874,11 +5868,6 @@ entities:
     components:
     - type: Transform
       pos: -26.5,0.5
-      parent: 1
-  - uid: 778
-    components:
-    - type: Transform
-      pos: -23.5,-0.5
       parent: 1
   - uid: 779
     components:
@@ -6059,11 +6048,6 @@ entities:
     components:
     - type: Transform
       pos: -24.5,2.5
-      parent: 1
-  - uid: 1744
-    components:
-    - type: Transform
-      pos: -23.5,0.5
       parent: 1
   - uid: 1745
     components:
@@ -7806,8 +7790,7 @@ entities:
   - uid: 437
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -20.5,0.5
+      pos: -23.5,0.5
       parent: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
@@ -7862,8 +7845,7 @@ entities:
   - uid: 486
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -20.5,1.5
+      pos: -20.5,-0.5
       parent: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
@@ -7902,28 +7884,15 @@ entities:
   - uid: 718
     components:
     - type: Transform
-      anchored: False
-      rot: 3.141592653589793 rad
       pos: -20.5,1.5
       parent: 1
     - type: AtmosPipeColor
-      color: '#0000AAFF'
-    - type: Physics
-      canCollide: True
-      bodyType: Dynamic
+      color: '#0055CCFF'
   - uid: 719
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -18.5,3.5
-      parent: 1
-    - type: AtmosPipeColor
-      color: '#0055CCFF'
-  - uid: 720
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -20.5,-0.5
       parent: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
@@ -8002,8 +7971,7 @@ entities:
   - uid: 731
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -23.5,0.5
+      pos: -20.5,0.5
       parent: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
@@ -9411,18 +9379,6 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#990000FF'
-  - uid: 1438
-    components:
-    - type: Transform
-      anchored: False
-      rot: 1.5707963267948966 rad
-      pos: 22.5,-0.5
-      parent: 1
-    - type: AtmosPipeColor
-      color: '#AA0000FF'
-    - type: Physics
-      canCollide: True
-      bodyType: Dynamic
   - uid: 1439
     components:
     - type: Transform
@@ -16437,12 +16393,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -19.5,1.5
       parent: 1
-  - uid: 318
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -20.5,1.5
-      parent: 1
   - uid: 319
     components:
     - type: Transform
@@ -17091,6 +17041,11 @@ entities:
     components:
     - type: Transform
       pos: 26.5,-4.5
+      parent: 1
+  - uid: 778
+    components:
+    - type: Transform
+      pos: -20.5,1.5
       parent: 1
   - uid: 814
     components:
