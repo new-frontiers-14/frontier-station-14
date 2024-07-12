@@ -26,7 +26,13 @@ public sealed partial class DeadDropComponent : Component
     ///     Max wait time in seconds to wait for the next dead drop.
     /// </summary>
     [DataField]
-    public int MaximumCoolDown = 3000; // 3000 / 60 = 50 minutes
+    public int MaximumCoolDown = 1800; // 1800 / 60 = 30 minutes
+
+    /// <summary>
+    ///     Wait time for NSFD to get coordinates of the drop pod location.
+    /// </summary>
+    [DataField]
+    public int NSFDCoolDown = 900; // 900 / 60 = 15 minutes
 
     /// <summary>
     ///     Minimum distance to spawn the drop.

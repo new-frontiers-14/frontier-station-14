@@ -159,5 +159,11 @@ public sealed class DeadDropSystem : EntitySystem
         //reset the timer
         component.NextDrop = _timing.CurTime + TimeSpan.FromSeconds(_random.Next(component.MinimumCoolDown, component.MaximumCoolDown));
         component.DeadDropActivated = false;
+
+        Timer.Spawn(TimeSpan.FromSeconds(component.NSFDCoolDown), () =>
+        {
+            _radio.SendRadioMessage(sender, $"Triangulating possible drop pod location: {dropLocation.ToString()}", channel, uid);
+        });
+
     }
 }
