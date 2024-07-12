@@ -293,6 +293,11 @@ namespace Content.Server.Lathe
             _appearance.SetData(uid, LatheVisuals.IsRunning, false);
 
             _materialStorage.UpdateMaterialWhitelist(uid);
+            // New Frontiers - Lathe Upgrades - initialization of upgrade coefficients
+            // This code is licensed under AGPLv3. See AGPLv3.txt
+            component.FinalTimeMultiplier = component.TimeMultiplier;
+            component.FinalMaterialUseMultiplier = component.MaterialUseMultiplier;
+            // End of modified code
         }
 
         /// <summary>
@@ -362,22 +367,24 @@ namespace Content.Server.Lathe
         }
         #endregion
 
-        // Frontier: Restore machine part upgrades
+
+        // New Frontiers - Lathe Upgrades - upgrading lathe speed through machine parts
+        // This code is licensed under AGPLv3. See AGPLv3.txt
         private void OnPartsRefresh(EntityUid uid, LatheComponent component, RefreshPartsEvent args)
         {
             var printTimeRating = args.PartRatings[component.MachinePartPrintSpeed];
             var materialUseRating = args.PartRatings[component.MachinePartMaterialUse];
 
-            component.TimeMultiplier = MathF.Pow(component.PartRatingPrintTimeMultiplier, printTimeRating - 1);
-            component.MaterialUseMultiplier = MathF.Pow(component.PartRatingMaterialUseMultiplier, materialUseRating - 1);
+            component.FinalTimeMultiplier = component.TimeMultiplier * MathF.Pow(component.PartRatingPrintTimeMultiplier, printTimeRating - 1);
+            component.FinalMaterialUseMultiplier = component.MaterialUseMultiplier * MathF.Pow(component.PartRatingMaterialUseMultiplier, materialUseRating - 1);
             Dirty(component);
         }
 
         private void OnUpgradeExamine(EntityUid uid, LatheComponent component, UpgradeExamineEvent args)
         {
-            args.AddPercentageUpgrade("lathe-component-upgrade-speed", 1 / component.TimeMultiplier);
-            args.AddPercentageUpgrade("lathe-component-upgrade-material-use", component.MaterialUseMultiplier);
+            args.AddPercentageUpgrade("lathe-component-upgrade-speed", 1 / component.FinalTimeMultiplier);
+            args.AddPercentageUpgrade("lathe-component-upgrade-material-use", component.FinalMaterialUseMultiplier);
         }
-        // End Frontier: restore machine part upgrades
+        // End of modified code
     }
 }
