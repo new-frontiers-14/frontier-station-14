@@ -87,7 +87,7 @@ entities:
           decals:
             42: 0,1
             43: 2,-5
-            57: 3,-1
+            54: 3,-1
         - node:
             color: '#FFFFFFFF'
             id: BrickTileDarkCornerNe
@@ -189,7 +189,7 @@ entities:
           decals:
             30: 5,-2
             31: 5,-3
-            58: 0,0
+            55: 0,0
         - node:
             color: '#9FED5896'
             id: HalfTileOverlayGreyscale
@@ -1188,13 +1188,12 @@ entities:
       rot: 3.141592653589793 rad
       pos: -2.5,1.5
       parent: 1
-- proto: CleanerDispenser
+- proto: CleanerGrenade
   entities:
-  - uid: 145
+  - uid: 236
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -3.5,-5.5
+      pos: -3.7238417,-4.438796
       parent: 1
 - proto: ClosetRadiationSuitFilled
   entities:
@@ -1265,6 +1264,13 @@ entities:
     - type: DeviceLinkSink
       links:
       - 319
+- proto: CrateSpaceCleaner
+  entities:
+  - uid: 97
+    components:
+    - type: Transform
+      pos: -3.5,-3.5
+      parent: 1
 - proto: DefibrillatorCabinetFilled
   entities:
   - uid: 26
@@ -1616,7 +1622,7 @@ entities:
       parent: 1
     - type: Fixtures
       fixtures: {}
-- proto: GasMixer
+- proto: GasMixerOn
   entities:
   - uid: 213
     components:
@@ -1625,8 +1631,8 @@ entities:
       pos: 2.5,-4.5
       parent: 1
     - type: GasMixer
-      inletTwoConcentration: 0.22000003
-      inletOneConcentration: 0.78
+      inletTwoConcentration: 0.20999998
+      inletOneConcentration: 0.79
     - type: AtmosPipeColor
       color: '#0055CCFF'
 - proto: GasPassiveVent
@@ -1923,7 +1929,7 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
-- proto: GasPressurePump
+- proto: GasPressurePumpOn
   entities:
   - uid: 192
     components:
@@ -2168,8 +2174,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -1.5,0.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
 - proto: JanitorialTrolley
   entities:
   - uid: 284
@@ -2177,6 +2181,13 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 0.5,-0.5
+      parent: 1
+- proto: Jug
+  entities:
+  - uid: 357
+    components:
+    - type: Transform
+      pos: -3.4069247,-4.011713
       parent: 1
 - proto: Lamp
   entities:
@@ -2255,10 +2266,10 @@ entities:
       parent: 1
 - proto: PottedPlantRandom
   entities:
-  - uid: 23
+  - uid: 345
     components:
     - type: Transform
-      pos: -2.5,0.5
+      pos: -2.5,-1.5
       parent: 1
 - proto: PowerCellRecharger
   entities:
@@ -2424,42 +2435,6 @@ entities:
     components:
     - type: Transform
       pos: -1.5,-0.5
-      parent: 1
-- proto: RandomSpawner100
-  entities:
-  - uid: 97
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -2.5,-3.5
-      parent: 1
-  - uid: 120
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -2.5,5.5
-      parent: 1
-  - uid: 236
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -3.5,-2.5
-      parent: 1
-  - uid: 371
-    components:
-    - type: Transform
-      pos: 1.5,1.5
-      parent: 1
-  - uid: 374
-    components:
-    - type: Transform
-      pos: 2.5,4.5
-      parent: 1
-  - uid: 393
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 2.5,-1.5
       parent: 1
 - proto: ReinforcedWindow
   entities:
@@ -2797,6 +2772,23 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 1.5,-0.5
       parent: 1
+- proto: SprayBottleSpaceCleaner
+  entities:
+  - uid: 120
+    components:
+    - type: Transform
+      pos: -3.4173415,-4.345046
+      parent: 1
+  - uid: 145
+    components:
+    - type: Transform
+      pos: -3.4485915,-4.4596295
+      parent: 1
+  - uid: 358
+    components:
+    - type: Transform
+      pos: -3.2819247,-4.3971295
+      parent: 1
 - proto: SubstationBasic
   entities:
   - uid: 43
@@ -2816,6 +2808,11 @@ entities:
       canCollide: False
 - proto: Table
   entities:
+  - uid: 23
+    components:
+    - type: Transform
+      pos: -3.5,-4.5
+      parent: 1
   - uid: 72
     components:
     - type: Transform
@@ -2857,70 +2854,52 @@ entities:
       rot: 3.141592653589793 rad
       pos: 3.5,-7.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
   - uid: 81
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -5.5,3.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
   - uid: 85
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 7.5,3.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
   - uid: 106
     components:
     - type: Transform
       pos: 2.5,5.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
   - uid: 149
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 1.5,-7.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
   - uid: 276
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 2.5,-7.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
   - uid: 282
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 5.5,-4.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
   - uid: 325
     components:
     - type: Transform
       pos: 3.5,5.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
   - uid: 348
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -5.5,2.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
 - proto: TwoWayLever
   entities:
   - uid: 319
