@@ -17,14 +17,11 @@
   supervisors: job-supervisors-sheriff
   canBeAntag: false
   access:
-  - Maintenance
-  - External
-  - Command
-  - Brig
-  - Security
-  - Mercenary # Frontier
-  - Captain # Frontier
   - Armory
+  - Sergeant # Frontier
+  - Bailiff # Frontier
+  accessGroups: # Frontier
+  - GeneralNfsdAccess # Frontier
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant, TrackingImplant ] # Frontier
@@ -35,4 +32,10 @@
     ears: ClothingHeadsetAltNfsdGreen # Frontier
     pocket1: WeaponPistolEnforser # Corvax-Frontier
     pocket2: HoloprojectorNfsd # Frontier
-    neck: ClothingNeckStarGoldBadge # Corvax-Frontier
+  storage:
+    back:
+    - Flash
+    - MagazinePistol
+    - MagazinePistolRubber
+    - BaseSecurityUplinkRadioOfficer
+    - NfsdBailiffShipVoucher

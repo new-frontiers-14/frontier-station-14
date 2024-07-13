@@ -177,3 +177,20 @@
     - state: green_bit
       shader: unshaded
     - state: refill_pottedplant
+
+- type: entity
+  parent: SecuredVendingMachineRestock
+  id: VendingMachineRestockSyndieContraband
+  name: contravend restock box
+  description: A box containing best ilegal tools for the ContraVend machine. A label reads THE BOX IS TAMPER PROOF AND WILL DESTROY IT'S CONTENT ON HARM.
+  components:
+  - type: VendingMachineRestock
+    canRestock:
+    - ContraVendInventory
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Service/vending_machine_restock.rsi
+    layers:
+    - state: base
+    - state: green_bit
+      shader: unshaded
+    - state: refill_contravend
