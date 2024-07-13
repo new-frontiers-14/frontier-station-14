@@ -1,5 +1,7 @@
 - type: entity
-  parent: ClothingHeadHelmetBasic
+  parent:
+  - ClothingHeadHelmetBasic
+  - ContrabandClothing
   id: ClothingHeadHelmetCultJanitor
   name: cult janitor helmet
   components:
@@ -15,7 +17,9 @@
     - WhitelistChameleon
 
 - type: entity
-  parent: ClothingHeadBase
+  parent:
+  - ClothingHeadBase
+  - ContrabandClothing
   id: ClothingHeadHatHoodBloodCulthood
   name: cult hood
   noSpawn: true
@@ -31,7 +35,7 @@
   - type: Contraband
 
 - type: entity # for looks only
-  parent: [ ClothingHeadHatHoodBloodCulthood, ClothingHeadHelmetBasic ]
+  parent: [ ClothingHeadHatHoodBloodCulthood, ClothingHeadHelmetBasic, ContrabandClothing ]
   id: ClothingHeadHatHoodBloodCulthoodUnremoveable
   noSpawn: true
   name: cult hood
