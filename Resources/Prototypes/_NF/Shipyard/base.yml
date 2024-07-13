@@ -40,6 +40,19 @@
     - type: Transform
 
 - type: entity
+  id: PirateFrontierOutpost
+  parent:
+    - BaseStation
+    - BaseStationJobsSpawning
+    - BaseStationCargo
+    - BaseStationSiliconLawFrontierShips
+    - BaseStationDampening
+    - BaseStationRecords
+  noSpawn: true
+  components:
+    - type: Transform
+
+- type: entity
   id: StandardFrontierVessel
   parent:
     - BaseStation
