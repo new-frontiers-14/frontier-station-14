@@ -21,6 +21,7 @@ guide-entry-expedition-syndicate-naval-forces = Syndicate Naval Forces
 guide-entry-expedition-xenos = Xenos
 
 # Shipyard entries
+guide-entry-shipyard-akupara = Akupara
 guide-entry-shipyard-ambition = Ambition
 guide-entry-shipyard-apothecary = Apothecary
 guide-entry-shipyard-bazaar = Bazaar
