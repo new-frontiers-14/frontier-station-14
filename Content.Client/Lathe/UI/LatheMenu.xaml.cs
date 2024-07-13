@@ -142,7 +142,7 @@ public sealed partial class LatheMenu : DefaultWindow
             if (!_prototypeManager.TryIndex<MaterialPrototype>(id, out var proto))
                 continue;
 
-            var adjustedAmount = SharedLatheSystem.AdjustMaterial(amount, prototype.ApplyMaterialDiscount, _entityManager.GetComponent<LatheComponent>(_owner).MaterialUseMultiplier);
+            var adjustedAmount = SharedLatheSystem.AdjustMaterial(amount, prototype.ApplyMaterialDiscount, _entityManager.GetComponent<LatheComponent>(_owner).FinalMaterialUseMultiplier); // Frontier: MaterialUseMultiplier<FinalMaterialUseMultiplier
             var sheetVolume = _materialStorage.GetSheetVolume(proto);
 
             var unit = Loc.GetString(proto.Unit);
