@@ -39,6 +39,21 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     private ISawmill _sawmill = default!;
     private bool _enabled;
 
+    // The type of error from the attempted sale of a ship.
+    public enum ShipyardSaleError
+    {
+        Success, // Ship can be sold.
+        Undocked, // Ship is not docked with the station.
+        OrganicsAboard, // Sapient intelligence is aboard, cannot sell, would delete the organics
+        InvalidShip, // Ship is invalid
+    }
+
+    public struct ShipyardSaleResult
+    {
+        public ShipyardSaleError Error; // Whether or not the ship can be sold.
+        public string? OrganicName; // In case an organic is aboard, this will be set to the first that's aboard.
+    }
+
     public override void Initialize()
     {
         base.Initialize();
@@ -174,17 +189,24 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     /// </summary>
     /// <param name="stationUid">The ID of the station that the shuttle is docked to</param>
     /// <param name="shuttleUid">The grid ID of the shuttle to be appraised and sold</param>
-    public bool TrySellShuttle(EntityUid stationUid, EntityUid shuttleUid, out int bill)
+    public ShipyardSaleResult TrySellShuttle(EntityUid stationUid, EntityUid shuttleUid, out int bill)
     {
+        ShipyardSaleResult result = new ShipyardSaleResult();
         bill = 0;
 
         if (!TryComp<StationDataComponent>(stationUid, out var stationGrid) || !HasComp<ShuttleComponent>(shuttleUid) || !TryComp<TransformComponent>(shuttleUid, out var xform) || ShipyardMap == null)
-            return false;
+        {
+            result.Error = ShipyardSaleError.InvalidShip;
+            return result;
+        }
 
         var targetGrid = _station.GetLargestGrid(stationGrid);
 
         if (targetGrid == null)
-            return false;
+        {
+            result.Error = ShipyardSaleError.InvalidShip;
+            return result;
+        }
 
         var gridDocks = _docking.GetDocks((EntityUid) targetGrid);
         var shuttleDocks = _docking.GetDocks(shuttleUid);
@@ -207,16 +229,20 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         if (!isDocked)
         {
             _sawmill.Warning($"shuttle is not docked to that station");
-            return false;
+            result.Error = ShipyardSaleError.Undocked;
+            return result;
         }
 
         var mobQuery = GetEntityQuery<MobStateComponent>();
         var xformQuery = GetEntityQuery<TransformComponent>();
 
-        if (FoundOrganics(shuttleUid, mobQuery, xformQuery))
+        var charName = FoundOrganics(shuttleUid, mobQuery, xformQuery);
+        if (charName is not null)
         {
             _sawmill.Warning($"organics on board");
-            return false;
+            result.Error = ShipyardSaleError.OrganicsAboard;
+            result.OrganicName = charName;
+            return result;
         }
 
         //just yeet and delete for now. Might want to split it into another function later to send back to the shipyard map first to pause for something
@@ -229,7 +255,8 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         bill = (int) _pricing.AppraiseGrid(shuttleUid);
         _mapManager.DeleteGrid(shuttleUid);
         _sawmill.Info($"Sold shuttle {shuttleUid} for {bill}");
-        return true;
+        result.Error = ShipyardSaleError.Success;
+        return result;
     }
 
     private void CleanupShipyard()

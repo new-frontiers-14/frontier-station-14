@@ -1,15 +1,21 @@
+# Pirate loadouts
+
 - type: loadoutGroup
   id: PirateJumpsuit
   name: loadout-group-contractor-jumpsuit
   loadouts:
   - PirateJumpsuit
   - PirateJumpskirt
+  fallbacks:
+  - PirateJumpsuit
 
 - type: loadoutGroup
   id: PiratePDA
   name: loadout-group-contractor-id
   loadouts:
-  - PiratePiratePDA
+  - PiratePirateNFPDA
+  fallbacks:
+  - PiratePirateNFPDA
 
 - type: loadoutGroup
   id: PirateFace
@@ -19,3 +25,23 @@
   - ContractorClothingMaskBreath
   - ContractorClothingMaskBreathMedical
   - ContractorClothingMaskGas
+
+# Pirate Captain loadouts
+
+- type: loadoutGroup
+  id: PirateCaptainPDA
+  name: loadout-group-contractor-id
+  loadouts:
+  - PirateCaptainPirateCaptainNFPDA
+  fallbacks:
+  - PirateCaptainPirateCaptainNFPDA
+
+# Pirate First Mate loadouts
+
+- type: loadoutGroup
+  id: PirateFirstMatePDA
+  name: loadout-group-contractor-id
+  loadouts:
+  - PirateFirstMatePirateFirstMateNFPDA
+  fallbacks:
+  - PirateFirstMatePirateFirstMateNFPDA

@@ -1,21 +1,17 @@
 using System.Numerics;
 using Content.Server.Cargo.Components;
 using Content.Server.Cargo.Systems;
-using Content.Server.GameTicking.Components;
 using Robust.Server.GameObjects;
 using Robust.Server.Maps;
 using Robust.Shared.Map;
-using Content.Server.GameTicking.Rules.Components;
-using Content.Server.Salvage;
-using Content.Server.Salvage.Magnet;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Server.StationEvents.Components;
-using Content.Shared.Coordinates;
+using Content.Shared.GameTicking.Components;
 using Content.Shared.Humanoid;
 using Content.Shared.Mobs.Components;
-using Robust.Shared.Player;
 using Robust.Shared.Random;
+using Content.Server._NF.Salvage;
 
 namespace Content.Server.StationEvents.Events;
 
@@ -80,6 +76,17 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
 
         var gridValue = _pricing.AppraiseGrid(gridUid, null);
 
+        // Handle mobrestrictions getting deleted
+        var query = AllEntityQuery<SalvageMobRestrictionsNFComponent>();
+
+        while (query.MoveNext(out var salvUid, out var salvMob))
+        {
+            if (gridTransform.GridUid == salvMob.LinkedGridEntity)
+            {
+                QueueDel(salvUid);
+            }
+        }
+
         var mobQuery = AllEntityQuery<HumanoidAppearanceComponent, MobStateComponent, TransformComponent>();
         _playerMobs.Clear();
 
@@ -101,8 +108,8 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
             _transform.SetCoordinates(mob.Entity.Owner, new EntityCoordinates(mob.MapUid, mob.LocalPosition));
         }
 
-        var query = EntityQuery<StationBankAccountComponent>();
-        foreach (var account in query)
+        var queryBank = EntityQuery<StationBankAccountComponent>();
+        foreach (var account in queryBank)
         {
             _cargo.DeductFunds(account, (int)-(gridValue * component.RewardFactor));
         }

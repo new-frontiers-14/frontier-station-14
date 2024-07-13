@@ -15,6 +15,9 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Network;
 using Robust.Shared.Timing;
 
+/*
+ * TODO: Remove baby jail code once a more mature gateway process is established. This code is only being issued as a stopgap to help with potential tiding in the immediate future.
+ */
 
 namespace Content.Server.Connection
 {
@@ -130,6 +133,10 @@ namespace Content.Server.Connection
             }
         }
 
+        /*
+         * TODO: Jesus H Christ what is this utter mess of a function
+         * TODO: Break this apart into is constituent steps.
+         */
         private async Task<(ConnectionDenyReason, string, List<ServerBanDef>? bansHit)?> ShouldDeny(
             NetConnectingArgs e)
         {
@@ -159,8 +166,12 @@ namespace Content.Server.Connection
             }
 
             var adminData = await _dbManager.GetAdminDataForAsync(e.UserId);
+            // New Frontiers - Session Respector - Checks that a player was connected before applying panic bunker/baby jail/no whitelist on low pop checks
+            // This code is licensed under AGPLv3. See AGPLv3.txt
+            var wasInGame = EntitySystem.TryGet<GameTicker>(out var ticker) &&
+                            ticker.PlayerGameStatuses.ContainsKey(userId); // Frontier: remove status.JoinedGame check, TryGetValue<ContainsKey
 
-            if (_cfg.GetCVar(CCVars.PanicBunkerEnabled) && adminData == null)
+            if (_cfg.GetCVar(CCVars.PanicBunkerEnabled) && adminData == null && !wasInGame) // Frontier: allow users who joined before panic bunker was enforced to reconnect
             {
                 var showReason = _cfg.GetCVar(CCVars.PanicBunkerShowReason);
                 var customReason = _cfg.GetCVar(CCVars.PanicBunkerCustomReason);
@@ -184,9 +195,9 @@ namespace Content.Server.Connection
                             ("reason", Loc.GetString("panic-bunker-account-reason-account", ("minutes", minMinutesAge)))), null);
                 }
 
-                var minOverallHours = _cfg.GetCVar(CCVars.PanicBunkerMinOverallHours);
+                var minOverallMinutes = _cfg.GetCVar(CCVars.PanicBunkerMinOverallMinutes);
                 var overallTime = ( await _db.GetPlayTimes(e.UserId)).Find(p => p.Tracker == PlayTimeTrackingShared.TrackerOverall);
-                var haveMinOverallTime = overallTime != null && overallTime.TimeSpent.TotalHours > minOverallHours;
+                var haveMinOverallTime = overallTime != null && overallTime.TimeSpent.TotalMinutes > minOverallMinutes;
 
                 // Use the custom reason if it exists & they don't have the minimum time
                 if (customReason != string.Empty && !haveMinOverallTime && !bypassAllowed)
@@ -198,7 +209,7 @@ namespace Content.Server.Connection
                 {
                     return (ConnectionDenyReason.Panic,
                         Loc.GetString("panic-bunker-account-denied-reason",
-                            ("reason", Loc.GetString("panic-bunker-account-reason-overall", ("hours", minOverallHours)))), null);
+                            ("reason", Loc.GetString("panic-bunker-account-reason-overall", ("minutes", minOverallMinutes)))), null);
                 }
 
                 if (!validAccountAge || !haveMinOverallTime && !bypassAllowed)
@@ -207,16 +218,22 @@ namespace Content.Server.Connection
                 }
             }
 
-            var wasInGame = EntitySystem.TryGet<GameTicker>(out var ticker) &&
-                            ticker.PlayerGameStatuses.TryGetValue(userId, out var status) &&
-                            status == PlayerGameStatus.JoinedGame;
+            if (_cfg.GetCVar(CCVars.BabyJailEnabled) && adminData == null && !wasInGame) // Frontier: allow users who joined before panic bunker was enforced to reconnect
+            {
+                var result = await IsInvalidConnectionDueToBabyJail(userId, e);
+
+                if (result.IsInvalid)
+                    return (ConnectionDenyReason.BabyJail, result.Reason, null);
+            }
+
+            // Frontier: wasInGame previously calculated here.
             var adminBypass = _cfg.GetCVar(CCVars.AdminBypassMaxPlayers) && adminData != null;
             if ((_plyMgr.PlayerCount >= _cfg.GetCVar(CCVars.SoftMaxPlayers) && !adminBypass) && !wasInGame)
             {
                 return (ConnectionDenyReason.Full, Loc.GetString("soft-player-cap-full"), null);
             }
 
-            if (_cfg.GetCVar(CCVars.WhitelistEnabled))
+            if (_cfg.GetCVar(CCVars.WhitelistEnabled) && !wasInGame) // Frontier: allow users who joined before panic bunker was enforced to reconnect
             {
                 var min = _cfg.GetCVar(CCVars.WhitelistMinPlayers);
                 var max = _cfg.GetCVar(CCVars.WhitelistMaxPlayers);
@@ -232,6 +249,7 @@ namespace Content.Server.Connection
                     return (ConnectionDenyReason.Whitelist, msg, null);
                 }
             }
+            // End of modified code
 
             //Frontier
             //This is our little chunk that serves as a dAuth. It takes in a comma seperated list of IP:PORT, and chekcs
@@ -249,6 +267,57 @@ namespace Content.Server.Connection
             }
             // end Frontier
             return null;
+        }
+
+        private async Task<(bool IsInvalid, string Reason)> IsInvalidConnectionDueToBabyJail(NetUserId userId, NetConnectingArgs e)
+        {
+            // If you're whitelisted then bypass this whole thing
+            if (await _db.GetWhitelistStatusAsync(userId))
+                return (false, "");
+
+            // Initial cvar retrieval
+            var showReason = _cfg.GetCVar(CCVars.BabyJailShowReason);
+            var reason = _cfg.GetCVar(CCVars.BabyJailCustomReason);
+            var maxAccountAgeMinutes = _cfg.GetCVar(CCVars.BabyJailMaxAccountAge);
+            var maxPlaytimeMinutes = _cfg.GetCVar(CCVars.BabyJailMaxOverallMinutes);
+
+            // Wait some time to lookup data
+            var record = await _dbManager.GetPlayerRecordByUserId(userId);
+
+            var isAccountAgeInvalid = record == null || record.FirstSeenTime.CompareTo(DateTimeOffset.Now - TimeSpan.FromMinutes(maxAccountAgeMinutes)) <= 0;
+            if (isAccountAgeInvalid && showReason)
+            {
+                var locAccountReason = reason != string.Empty
+                    ? reason
+                    : Loc.GetString("baby-jail-account-denied-reason",
+                        ("reason",
+                            Loc.GetString(
+                                "baby-jail-account-reason-account",
+                                ("minutes", maxAccountAgeMinutes))));
+
+                return (true, locAccountReason);
+            }
+
+            var overallTime = ( await _db.GetPlayTimes(e.UserId)).Find(p => p.Tracker == PlayTimeTrackingShared.TrackerOverall);
+            var isTotalPlaytimeInvalid = overallTime == null || overallTime.TimeSpent.TotalMinutes >= maxPlaytimeMinutes;
+
+            if (isTotalPlaytimeInvalid && showReason)
+            {
+                var locPlaytimeReason = reason != string.Empty
+                    ? reason
+                    : Loc.GetString("baby-jail-account-denied-reason",
+                        ("reason",
+                            Loc.GetString(
+                                "baby-jail-account-reason-overall",
+                                ("minutes", maxPlaytimeMinutes))));
+
+                return (true, locPlaytimeReason);
+            }
+
+            if (!showReason && isTotalPlaytimeInvalid || isAccountAgeInvalid)
+                return (true, Loc.GetString("baby-jail-account-denied"));
+
+            return (false, "");
         }
 
         private bool HasTemporaryBypass(NetUserId user)
