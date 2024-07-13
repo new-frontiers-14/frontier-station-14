@@ -60,7 +60,7 @@ public sealed class DeadDropSystem : EntitySystem
         var xform = Transform(uid);
         var targetCoordinates = xform.Coordinates;
 
-        //counts how many dead drop posters are nearby
+        //gets any dead drop posters that are nearby
         var deadDrops = new HashSet<Entity<DeadDropComponent>>();
         _entityLookup.GetEntitiesInRange(targetCoordinates, 300, deadDrops);
 
@@ -68,7 +68,11 @@ public sealed class DeadDropSystem : EntitySystem
         foreach (var ent in deadDrops)
         {
             if (ent.Comp.DeadDropActivated == true && ent.Owner != uid)
+            {
+                //reset the timer
+                component.NextDrop = _timing.CurTime + TimeSpan.FromSeconds(_random.Next(component.MinimumCoolDown, component.MaximumCoolDown));
                 return;
+            }
         }
 
         //here we build our dynamic verb. Using the object's sprite for now to make it more dynamic for the moment.
@@ -86,7 +90,8 @@ public sealed class DeadDropSystem : EntitySystem
     }
 
     //toggles the scanned boolean from ForensicScannerSystem.cs
-    public static void ToggleScanned(DeadDropComponent component) {
+    public static void ToggleScanned(DeadDropComponent component)
+    {
         component.PosterScanned = true;
     }
 
@@ -172,7 +177,7 @@ public sealed class DeadDropSystem : EntitySystem
             {
                 Timer.Spawn(TimeSpan.FromSeconds(component.NFSDCoolDown), () =>
                 {
-                    _radio.SendRadioMessage(ent.Owner, $"Triangulated possible drop pod location: {dropLocation.ToString()}", channel, uid);
+                    _radio.SendRadioMessage(ent.Owner, $"Triangulated possible drop pod location: {dropLocation}", channel, uid);
                 });
             }
         }
