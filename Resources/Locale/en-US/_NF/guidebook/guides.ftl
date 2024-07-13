@@ -22,9 +22,12 @@ guide-entry-expedition-xenos = Xenos
 
 # Shipyard entries
 guide-entry-shipyard-ambition = Ambition
+guide-entry-shipyard-bazaar = Bazaar
 guide-entry-shipyard-bocadillo = Bocadillo
+guide-entry-shipyard-bookworm = Bookworm
 guide-entry-shipyard-brigand = Brigand
 guide-entry-shipyard-bulker = Bulker
+guide-entry-shipyard-camper = Camper
 guide-entry-shipyard-ceres = Ceres
 guide-entry-shipyard-chisel = Chisel
 guide-entry-shipyard-comet = Comet

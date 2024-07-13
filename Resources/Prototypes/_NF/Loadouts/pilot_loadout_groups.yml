@@ -164,6 +164,8 @@
   - ContractorClothingUniformJumpsuitMilitaryColorPurple
   - ContractorClothingUniformJumpsuitMilitaryColorLightBrown
   - ContractorClothingUniformJumpsuitMilitaryColorBrown
+  fallbacks:
+  - PilotClothingUniformJumpsuitPilot
 
 - type: loadoutGroup
   id: PilotBackpack
@@ -240,6 +242,8 @@
   - ContractorClothingBackpackDuffelMime
   - ContractorClothingBackpackSatchelMime
   - ContractorClothingBackpackMessengerMime
+  fallbacks:
+  - PilotClothingBackpackPilot
   
 - type: loadoutGroup
   id: PilotOuterClothing
@@ -328,6 +332,7 @@
   - ContractorClothingOuterCoatWitchHunter
   - ContractorClothingOuterCoatCardinal
   - ContractorClothingOuterPlagueSuit
+  - ContractorWetFloorSign
   - ContractorClothingOuterCoatExpensive
   - ContractorClothingOuterCoatSpaceAsshole
 
@@ -391,6 +396,8 @@
   - ContractorClothingShoesSkates
   - ContractorClothingShoesClownLarge
   - ContractorClothingShoesBling
+  fallbacks:
+  - PilotClothingShoesBootsPilot
 
 - type: loadoutGroup
   id: PilotHead
@@ -466,6 +473,8 @@
   - ContractorClothingHeadHatBishopMitre
   - ContractorClothingHeadHatKippah
   - ContractorClothingHeadHatPlaguedoctor
+  - ContractorPlunger
+  - ContractorClothingHeadHatCone
   - ContractorClothingHeadBandGold
   - ContractorClothingHeadHatTophat
   
@@ -548,7 +557,7 @@
   name: loadout-group-contractor-id
   loadouts:
   - PilotPilotPDA
-  - ContractorClearPDA
+  - ContractorClearNFPDA
   - ContractorSalvagePDA
   - ContractorResearchAssistantPDA
   - ContractorCargoPDA
@@ -581,6 +590,8 @@
   - ContractorMusicianPDA
   - ContractorClownPDA
   - ContractorMimePDA
+  fallbacks:
+  - PilotPilotPDA
   
 - type: loadoutGroup
   id: PilotGlasses
