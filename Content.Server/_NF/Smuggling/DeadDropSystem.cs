@@ -6,7 +6,6 @@ using Content.Server.Radio.EntitySystems;
 using Content.Server.Shipyard.Systems;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
-using Content.Shared.Coordinates;
 using Content.Shared.Database;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
@@ -14,9 +13,9 @@ using Content.Shared.Radio;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Verbs;
 using Robust.Server.GameObjects;
-using Robust.Shared.GameObjects;
 using Robust.Server.Maps;
 using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
@@ -37,8 +36,8 @@ public sealed class DeadDropSystem : EntitySystem
     [Dependency] private readonly ShuttleSystem _shuttle = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedMapSystem _mapManager = default!;
-
     [Dependency] private readonly EntityLookupSystem _entityLookup = default!;
+    [Dependency] private readonly IServerEntityManager _entityManager = default!;
 
     public override void Initialize()
     {
@@ -87,6 +86,11 @@ public sealed class DeadDropSystem : EntitySystem
         component.DeadDropActivated = true;
     }
 
+    //toggles the scanned boolean from ForensicScannerSystem.cs
+    public static void ToggleScanned(DeadDropComponent component) {
+        component.PosterScanned = true;
+    }
+
     //spawning the dead drop.
     private void SendDeadDrop(EntityUid uid, DeadDropComponent component, EntityUid user, HandsComponent hands)
     {
@@ -123,14 +127,10 @@ public sealed class DeadDropSystem : EntitySystem
         }
         else
         {
-            // Tries to get the nullable value out
-            if (mapUid.HasValue)
+            if (TryComp<ShuttleComponent>(gridUids[0], out var shuttle))
             {
-                if (TryComp<ShuttleComponent>(gridUids[0], out var shuttle))
-                {
-                    // The previous command
-                    _shuttle.FTLToCoordinates(gridUids[0], shuttle, new EntityCoordinates(mapUid.Value, dropLocation), 0f, 0f, 35f);
-                }
+                // The previous command
+                _shuttle.FTLToCoordinates(gridUids[0], shuttle, new EntityCoordinates(mapUid.Value, dropLocation), 0f, 0f, 35f);
             }
         }
 
@@ -155,15 +155,33 @@ public sealed class DeadDropSystem : EntitySystem
         _meta.SetEntityName(paper, Loc.GetString("deaddrop-hint-name"));
         _meta.SetEntityDescription(paper, Loc.GetString("deaddrop-hint-desc"));
         _hands.PickupOrDrop(user, paper, handsComp: hands);
-
+        
         //reset the timer
         component.NextDrop = _timing.CurTime + TimeSpan.FromSeconds(_random.Next(component.MinimumCoolDown, component.MaximumCoolDown));
         component.DeadDropActivated = false;
 
-        Timer.Spawn(TimeSpan.FromSeconds(component.NSFDCoolDown), () =>
+        component.DeadDropCalled = true;
+
+        //grabs NFSD Outpost to say the announcement
+        var nfsdOutpost = new HashSet<Entity<MapGridComponent>>();
+        _entityLookup.GetEntitiesOnMap(mapId, nfsdOutpost);
+
+        //checks if any of them are named NFSD Outpost
+        foreach (var ent in nfsdOutpost)
         {
-            _radio.SendRadioMessage(sender, $"Triangulating possible drop pod location: {dropLocation.ToString()}", channel, uid);
-        });
+            if (MetaData(ent.Owner).EntityName.Equals("NFSD Outpost"))
+            {
+                Timer.Spawn(TimeSpan.FromSeconds(component.NFSDCoolDown), () =>
+                {
+                    _radio.SendRadioMessage(ent.Owner, $"Triangulated possible drop pod location: {dropLocation.ToString()}", channel, uid);
+                });
+            }
+        }
 
     }
 }
+
+// Exception has occurred: CLR/System.Collections.Generic.KeyNotFoundException
+// An unhandled exception of type 'System.Collections.Generic.KeyNotFoundException' occurred in Robust.Shared.dll: 'Entity 0 does not have a component of type Robust.Shared.GameObjects.MetaDataComponent'
+//    at Content.Server.Radio.EntitySystems.RadioSystem.SendRadioMessage(EntityUid messageSource, String message, RadioChannelPrototype channel, EntityUid radioSource, Boolean escapeMarkup) in /home/alexander/Documents/Code/frontier-station-14/Content.Server/Radio/EntitySystems/RadioSystem.cs:line 79
+//    at Content.Server._NF.Smuggling.DeadDropSystem.<>c__DisplayClass16_0.<SendDeadDrop>b__0() in /home/alexander/Documents/Code/frontier-station-14/Content.Server/_NF/Smuggling/DeadDropSystem.cs:line 167

@@ -20,19 +20,22 @@ public sealed partial class DeadDropComponent : Component
     ///     Minimum wait time in seconds to wait for the next dead drop.
     /// </summary>
     [DataField]
+    //Use 10 seconds for testing
     public int MinimumCoolDown = 600; // 600 / 60 = 10 minutes
 
     /// <summary>
     ///     Max wait time in seconds to wait for the next dead drop.
     /// </summary>
     [DataField]
+    //Use 15 seconds for testing
     public int MaximumCoolDown = 1800; // 1800 / 60 = 30 minutes
 
     /// <summary>
     ///     Wait time for NSFD to get coordinates of the drop pod location.
     /// </summary>
     [DataField]
-    public int NSFDCoolDown = 900; // 900 / 60 = 15 minutes
+    //Use 15 seconds for testing
+    public int NFSDCoolDown = 900; // 900 / 60 = 15 minutes
 
     /// <summary>
     ///     Minimum distance to spawn the drop.
@@ -47,7 +50,7 @@ public sealed partial class DeadDropComponent : Component
     public int MaximumDistance = 6500;
 
     /// <summary>
-    ///     Boolean which confirms whether a poster is activated
+    ///     Boolean which confirms whether a poster can spawn a dead drop and has the verb to do so
     /// </summary>
     [DataField]
     public bool DeadDropActivated = false;
@@ -57,6 +60,18 @@ public sealed partial class DeadDropComponent : Component
     /// </summary>
     [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
     public string HintPaper = "PaperCargoInvoice";
+
+    /// <summary>
+    ///     Boolean which determines if the dead drop has ever been spawned by this component
+    /// </summary>
+    [DataField]
+    public bool DeadDropCalled = false;
+
+    /// <summary>
+    ///     Boolean which determines if the dead drop poster has ever been scanned
+    /// </summary>
+    [DataField]
+    public bool PosterScanned = false;
 
     /// <summary>
     ///     Location of the grid to spawn in as the dead drop.

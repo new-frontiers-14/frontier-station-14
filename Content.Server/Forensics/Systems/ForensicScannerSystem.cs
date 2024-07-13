@@ -2,12 +2,19 @@ using System.Linq;
 using System.Text;
 using Content.Server.Paper;
 using Content.Server.Popups;
+using Content.Server.Stack;
+using Content.Server._NF.Smuggling;
+using Content.Server._NF.Smuggling.Components;
+using Content.Server.Radio.EntitySystems;
 using Content.Shared.UserInterface;
 using Content.Shared.DoAfter;
 using Content.Shared.Forensics;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
 using Content.Shared.Verbs;
+using Content.Shared.Stacks;
+using Content.Shared.Radio;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Audio.Systems;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
@@ -27,6 +34,10 @@ namespace Content.Server.Forensics
         [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
         [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
         [Dependency] private readonly MetaDataSystem _metaData = default!;
+        [Dependency] private readonly StackSystem _stackSystem = default!;
+        [Dependency] private readonly SharedAudioSystem _audio = default!;
+        [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+        [Dependency] private readonly RadioSystem _radio = default!;
 
         public override void Initialize()
         {
@@ -79,6 +90,28 @@ namespace Content.Server.Forensics
                     scanner.Fibers = forensics.Fibers.ToList();
                     scanner.DNAs = forensics.DNAs.ToList();
                     scanner.Residues = forensics.Residues.ToList();
+                }
+
+                // Prints money if you've successfully scanned a dead drop poster that has spawned a dead drop at least once
+                if (HasComp<DeadDropComponent>(args.Args.Target))
+                {
+                    if (TryComp<DeadDropComponent>(args.Args.Target, out var deadDropComponent) &&
+                        deadDropComponent.DeadDropCalled && !deadDropComponent.PosterScanned)
+                    {
+                        var amount = 30000;
+
+                        SoundSpecifier confirmSound = new SoundPathSpecifier("/Audio/Effects/Cargo/ping.ogg");
+                        _audio.PlayPvs(_audio.GetSound(confirmSound), uid);
+
+                        var stackPrototype = _prototypeManager.Index<StackPrototype>("Credit");
+                        _stackSystem.Spawn(amount, stackPrototype, Transform(args.Args.Target.Value).Coordinates);
+
+                        var channel = _prototypeManager.Index<RadioChannelPrototype>("Nfsd");
+                        _radio.SendRadioMessage(uid, $"Contraband dead drop poster found! Sending {amount} worth of credits for the investigative work!", channel, uid);
+
+                        // Makes the boolean true so you can't just keep scanning the same poster over and over again
+                        DeadDropSystem.ToggleScanned(deadDropComponent);
+                    }
                 }
 
                 scanner.LastScannedName = MetaData(args.Args.Target.Value).EntityName;
