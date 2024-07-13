@@ -1,8 +1,12 @@
+# New Frontiers - This file is licensed under AGPLv3
+# Copyright (c) 2024 New Frontiers Contributors
+# See AGPLv3.txt for details.
+
 - type: entity
-  id: BasePortalAdmin
+  id: PortalAdmin
   parent: BasePortal
-  abstract: true
-  description: This one looks more like a special bluespace portal.
+  name: mystical portal
+  description: "A mystical portal to realms unknown. Adventure awaits!"
   components:
   - type: Sprite
     layers:
@@ -14,11 +18,4 @@
     netsync: false
   - type: Portal
     canTeleportToOtherMaps: true
-
-- type: entity
-  id: PortalAdminStart
-  parent: BasePortalAdmin
-
-- type: entity
-  id: PortalAdminEnd
-  parent: BasePortalAdmin
+    randomTeleport: false

@@ -1,9 +1,24 @@
+# Registered (legal) weapon crates
+- type: entity
+  id: CrateArmoryRifleGestio
+  parent: CrateWeaponSecure
+  name: gestio rifle crate
+  description: Contains two old prototype, burst-fire rifles with six low capacity mags. Requires Armory access to open.
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponRifleGestio
+        amount: 2
+      - id: MagazineRifleLowCapacity
+        amount: 6
+
 # Contraband (unregistered) weaponry crates for expeditions
 - type: entity
   id: CrateArmorySMGExpedition
   parent: [ CrateWeaponSecure, UnregisteredFirearmBase ]
   name: SMG crate
   description: Contains two high-powered, SMGs with four mags. Requires Armory access to open. Unregistered.
+  noSpawn: true
   components:
   - type: StorageFill
     contents:
@@ -17,6 +32,7 @@
   parent: [ CrateWeaponSecure, UnregisteredFirearmBase ]
   name: shotgun crate
   description: For when the enemy absolutely needs to be replaced with lead. Contains two Enforcer Combat Shotguns, and some standard shotgun shells. Requires Armory access to open. Unregistered.
+  noSpawn: true
   components:
   - type: StorageFill
     contents:
@@ -30,6 +46,7 @@
   parent: [ CrateWeaponSecure, UnregisteredFirearmBase ]
   name: lasers crate
   description: Contains three standard-issue laser carbines. Requires Armory access to open. Unregistered.
+  noSpawn: true
   components:
   - type: StorageFill
     contents:
@@ -41,6 +58,7 @@
   parent: [ CrateWeaponSecure, UnregisteredFirearmBase ]
   name: energy guns crate
   description: Contains three energy guns. Requires Armory access to open. Unregistered.
+  noSpawn: true
   components:
   - type: StorageFill
     contents:
@@ -52,6 +70,7 @@
   parent: [ CrateWeaponSecure, UnregisteredFirearmBase ]
   name: pistols crate
   description: Contains two standard NT pistols with four mags. Requires Armory access to open. Unregistered.
+  noSpawn: true
   components:
   - type: StorageFill
     contents:
@@ -59,3 +78,17 @@
       amount: 2
     - id: MagazinePistol
       amount: 4
+
+- type: entity
+  id: CrateArmoryRifleGestioExpedition
+  parent: [ CrateWeaponSecure, UnregisteredFirearmBase ]
+  name: gestio rifle crate
+  description: Contains two old prototype, burst-fire rifles with six low capacity mags. Requires Armory access to open. Unregistered.
+  noSpawn: true
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponRifleGestioExpedition
+        amount: 2
+      - id: MagazineRifleLowCapacity
+        amount: 6
