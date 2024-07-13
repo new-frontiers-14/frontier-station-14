@@ -67,8 +67,8 @@ public sealed partial class ShuttleSystem
             return InertiaDampeningMode.Dampen;
 
         // Not a shuttle, shouldn't be togglable
-        if (EntityManager.HasComponent<StationDampeningComponent>(_station.GetOwningStation(xform.GridUid)) ||
-            !EntityManager.HasComponent<ShuttleDeedComponent>(_station.GetOwningStation(xform.GridUid)))
+        if (!EntityManager.HasComponent<ShuttleDeedComponent>(xform.GridUid) ||
+            EntityManager.HasComponent<StationDampeningComponent>(_station.GetOwningStation(xform.GridUid)))
             return InertiaDampeningMode.Station;
 
         if (!EntityManager.TryGetComponent(xform.GridUid, out PhysicsComponent? physicsComponent))
