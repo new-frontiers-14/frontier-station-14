@@ -59,7 +59,7 @@ namespace Content.Server.Forensics
             SoundSpecifier confirmSound = new SoundPathSpecifier("/Audio/Effects/Cargo/ping.ogg");
             _audio.PlayPvs(_audio.GetSound(confirmSound), uidOrigin);
 
-            var stackPrototype = _prototypeManager.Index<StackPrototype>("Credit");
+            var stackPrototype = _prototypeManager.Index<StackPrototype>("FrontierUplinkCoin");
             _stackSystem.Spawn(amount, stackPrototype, Transform(target).Coordinates);
 
             var channel = _prototypeManager.Index<RadioChannelPrototype>("Nfsd");
@@ -106,14 +106,14 @@ namespace Content.Server.Forensics
                     scanner.Residues = forensics.Residues.ToList();
                 }
 
-                // Prints money if you've successfully scanned a dead drop poster that has spawned a dead drop at least once
+                // Prints FUC if you've successfully scanned a dead drop poster that has spawned a dead drop at least once
                 if (HasComp<DeadDropComponent>(args.Args.Target))
                 {
                     if (TryComp<DeadDropComponent>(args.Args.Target, out var deadDropComponent) &&
                         deadDropComponent.DeadDropCalled && !deadDropComponent.PosterScanned)
                     {
-                        var amount = 3000;
-                        var msg = $"Contraband dead drop poster found! Sending {amount} worth of credits for the investigative work!";
+                        var amount = 3;
+                        var msg = $"Contraband dead drop poster found! Sending {amount} FUC for the investigative work!";
 
                         GiveReward(uid, args.Args.Target.Value, amount, msg);
 
@@ -124,8 +124,8 @@ namespace Content.Server.Forensics
                 else if (MetaData(Transform(args.Args.Target.Value).ParentUid).EntityName.Equals("Syndicate Supply Drop") &&
                         !_scannedDeadDrops.Contains(Transform(args.Args.Target.Value).ParentUid))
                 {
-                    var amount = 6000;
-                    var msg = $"Dead drop found! Sending {amount} worth of credits for the investigative work!";
+                    var amount = 6;
+                    var msg = $"Dead drop found! Sending {amount} FUC for the investigative work!";
 
                     GiveReward(uid, args.Args.Target.Value, amount, msg);
 
