@@ -15,3 +15,5 @@ shipyard-console-no-deed = Отсутствует шаттл для продаж
 shipyard-console-sale-reqs = Весь экипаж должен покинуть пристыкованный шаттл
 shipyard-console-deed-label = Зарегистрированный шаттл:
 shipyard-console-appraisal-label = Примерная стоимость шаттла:{ " " }
+shipyard-console-sell = Продать
+shipyard-console-purchase = Купить
