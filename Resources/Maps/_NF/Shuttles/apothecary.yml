@@ -660,23 +660,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-- proto: Airlock
-  entities:
-  - uid: 61
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 6.5,-1.5
-      parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 296
-  - uid: 283
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -5.5,-1.5
-      parent: 1
 - proto: AirlockCargo
   entities:
   - uid: 141
@@ -710,16 +693,26 @@ entities:
       pos: 1.5,-2.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -15900.513
+      secondsUntilStateChange: -16030.429
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
+  - uid: 61
+    components:
+    - type: Transform
+      pos: 6.5,-1.5
+      parent: 1
   - uid: 65
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -0.5,-2.5
+      parent: 1
+  - uid: 283
+    components:
+    - type: Transform
+      pos: -5.5,-1.5
       parent: 1
 - proto: AirlockGlassShuttle
   entities:
@@ -2618,7 +2611,7 @@ entities:
         - Pressed: Toggle
         28:
         - Pressed: Toggle
-        61: []
+        invalid: []
   - uid: 331
     components:
     - type: Transform
@@ -2709,8 +2702,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -2.5,-0.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 200
 - proto: SmallThruster
   entities:
   - uid: 158
@@ -2719,8 +2710,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -5.5,-4.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 500
     - type: ApcPowerReceiver
       powerLoad: 1
   - uid: 213
@@ -2729,16 +2718,12 @@ entities:
       rot: 3.141592653589793 rad
       pos: 6.5,-4.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 500
   - uid: 336
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -6.5,-2.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 500
     - type: ApcPowerReceiver
       powerLoad: 1
   - uid: 339
@@ -2747,24 +2732,18 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -6.5,-0.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 500
   - uid: 355
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 7.5,-0.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 500
   - uid: 358
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 7.5,-2.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 500
 - proto: SMESBasic
   entities:
   - uid: 157
@@ -2880,30 +2859,22 @@ entities:
       rot: 3.141592653589793 rad
       pos: -4.5,-4.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
   - uid: 270
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 5.5,-4.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
   - uid: 277
     components:
     - type: Transform
       pos: 6.5,1.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
   - uid: 293
     components:
     - type: Transform
       pos: -5.5,1.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
 - proto: ToyFigurineChemist
   entities:
   - uid: 338
