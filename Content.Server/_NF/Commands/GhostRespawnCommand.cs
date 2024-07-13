@@ -60,7 +60,7 @@ public sealed class GhostRespawnCommand : IConsoleCommand
             return;
         }
 
-        var respawnResetTime = _entity.GetEntitySystem<RespawnSystem>().GetRespawnResetTime(shell.Player.UserId);
+        var respawnResetTime = _entity.GetEntitySystem<RespawnSystem>().GetRespawnResetTime(shell.Player);
 
         if (respawnResetTime is not null)
         {
