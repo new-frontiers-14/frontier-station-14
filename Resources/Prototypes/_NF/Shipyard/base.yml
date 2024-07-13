@@ -10,6 +10,7 @@
     - BaseStationSiliconLawFrontierStation
     - BaseStationEmpImmune
     - BaseStationSectorNews
+    - BaseStationDampening
   noSpawn: true
   components:
     - type: Transform
@@ -21,6 +22,7 @@
     - BaseStationJobsSpawning
     - BaseStationCargo
     - BaseStationSiliconLawFrontierShips
+    - BaseStationDampening
   noSpawn: true
   components:
     - type: Transform
@@ -35,6 +37,7 @@
     - BaseStationShuttles # Can spawn shuttles via shipyard consoles
     - BaseStationAlertLevels # Has a comms console
     - BaseStationSiliconLawFrontierStation # No funny borg laws
+    - BaseStationDampening
   noSpawn: true
   components:
     - type: Transform
@@ -139,3 +142,9 @@
   abstract: true
   components:
     - type: SectorNews
+
+- type: entity
+  id: BaseStationDampening
+  abstract: true
+  components:
+    - type: StationDampening
