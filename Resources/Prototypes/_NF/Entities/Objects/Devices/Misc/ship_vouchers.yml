@@ -60,3 +60,19 @@
     - Bailiff # Frontier
     accessGroups: # Frontier
     - GeneralNfsdAccess # Frontier
+
+- type: entity
+  parent: BaseShipVoucher
+  id: SyndicateBrokerShipVoucher
+  name: Syndicate broker ship voucher
+  description: Allows for one free small to medium Syndicate ship purchase. Destroyed on sale.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/id_cards.rsi
+    state: syndie
+  - type: Item
+    heldPrefix: broker
+  - type: ShipyardVoucher
+    destroyOnEmpty: true
+    access:
+    - SyndicateAgent
