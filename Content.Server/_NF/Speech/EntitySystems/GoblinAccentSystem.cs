@@ -10,8 +10,9 @@ public sealed class GoblinAccentSystem : EntitySystem
 {
     private static readonly Regex RegexIng = new(@"ing\b");
     private static readonly Regex RegexAnd = new(@"\band\b");
-    private static readonly Regex RegexEr = new(@"er\b");
-    private static readonly Regex RegexErs = new(@"ers\b");
+    private static readonly Regex RegexEr = new(@"([^\WpP])er\b"); // Keep "er" and "per"
+    private static readonly Regex RegexTwoLetterEr = new(@"(\w\w)er\b"); // Replace "..XXer", e.g. "super"->"supah"
+    private static readonly Regex RegexErs = new(@"(\w)ers\b"); // Replace "..XXers", e.g. "fixers"->"fixas"
     private static readonly Regex RegexTt = new(@"tt");
     private static readonly Regex RegexOf = new(@"\bof\b");
     private static readonly Regex RegexThe = new(@"\bthe\b");
@@ -34,8 +35,9 @@ public sealed class GoblinAccentSystem : EntitySystem
 
         message = RegexIng.Replace(message, "in'");
         message = RegexAnd.Replace(message, "an'");
-        message = RegexEr.Replace(message, "ah");
-        message = RegexErs.Replace(message, "as");
+        message = RegexEr.Replace(message, "$1ah");
+        message = RegexTwoLetterEr.Replace(message, "$1ah");
+        message = RegexErs.Replace(message, "$1as");
         message = RegexTt.Replace(message, "'");
         message = RegexH.Replace(message, "'");
         message = RegexSelf.Replace(message, "sewf");
