@@ -17,6 +17,12 @@ shipyard-record-paper-content =  l[color=blue]◥█▄  █  ®[/color]        
       l__________________________________________________________________
       l
       l[bold]Ship ID:[/bold] {$vessel_name}
+      l                [italic]Category:[/italic] {$vessel_category}
+      l                [italic]Class:[/italic] {$vessel_class}
+      l                [italic]Shipyard:[/italic] {$vessel_group}
+      l                [italic]Price:[/italic] {$vessel_price}
+      l
+      l                [italic]Description:[/italic] {$vessel_description}
       l
       l[bold]Time Deployed:[/bold] {$time}
       l

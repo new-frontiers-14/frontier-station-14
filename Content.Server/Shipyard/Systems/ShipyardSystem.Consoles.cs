@@ -265,7 +265,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
             while (faxQuery.MoveNext(out var faxUid, out var recordPaperComp))
             {
-                var ev = new ShipyardRecordPaperTransmitEvent(name, _profile.Name, _profile.Species, _profile.Gender, _profile.Age, _fingerprintComponent!.Fingerprint!, _dnaComponent!.DNA!);
+                var ev = new ShipyardRecordPaperTransmitEvent(name, _profile.Name, _profile.Species, _profile.Gender, _profile.Age, _fingerprintComponent!.Fingerprint!, _dnaComponent!.DNA!, vessel.Category, vessel.Class, vessel.Group, vessel.Price, vessel.Description);
                 RaiseLocalEvent(faxUid, ref ev);
             }
         }

@@ -53,7 +53,7 @@ public sealed class ShipyardRecordPaperSystem : EntitySystem
 
         TryComp<FaxMachineComponent>(faxEnt, out var fax);
         var printout = new FaxPrintout(
-        Loc.GetString("shipyard-record-paper-content", ("vessel_name", args.VesselName), ("vessel_owner_name", args.VesselOwnerName), ("vessel_owner_species", args.VesselOwnerSpecies), ("vessel_owner_gender", args.VesselOwnerGender), ("vessel_owner_age", args.VesselOwnerAge), ("vessel_owner_fingerprints", args.VesselOwnerFingerprints), ("vessel_owner_dna", args.VesselOwnerDNA), ("time", currentTime)),
+        Loc.GetString("shipyard-record-paper-content", ("vessel_name", args.VesselName), ("vessel_owner_name", args.VesselOwnerName), ("vessel_owner_species", args.VesselOwnerSpecies), ("vessel_owner_gender", args.VesselOwnerGender), ("vessel_owner_age", args.VesselOwnerAge), ("vessel_owner_fingerprints", args.VesselOwnerFingerprints), ("vessel_owner_dna", args.VesselOwnerDNA), ("time", currentTime), ("vessel_category", args.VesselCategory), ("vessel_class", args.VesselClass), ("vessel_group", args.VesselGroup), ("vessel_price", args.VesselPrice), ("vessel_description", args.VesselDescription) ),
         Loc.GetString("shipyard-record-paper-name", ("vessel_name", args.VesselName), ("time", currentTime)),
         null,
         "PaperShipyardRecordBase",
@@ -64,4 +64,4 @@ public sealed class ShipyardRecordPaperSystem : EntitySystem
 }
 
 [ByRefEvent]
-public readonly record struct ShipyardRecordPaperTransmitEvent(string VesselName, string VesselOwnerName, string VesselOwnerSpecies, Gender VesselOwnerGender, int VesselOwnerAge, string VesselOwnerFingerprints, string VesselOwnerDNA);
+public readonly record struct ShipyardRecordPaperTransmitEvent(string VesselName, string VesselOwnerName, string VesselOwnerSpecies, Gender VesselOwnerGender, int VesselOwnerAge, string VesselOwnerFingerprints, string VesselOwnerDNA, string VesselCategory, string VesselClass, string VesselGroup, int VesselPrice, string VesselDescription);

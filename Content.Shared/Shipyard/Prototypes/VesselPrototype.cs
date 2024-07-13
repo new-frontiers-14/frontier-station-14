@@ -35,6 +35,12 @@ public sealed class VesselPrototype : IPrototype
     public string Category = string.Empty;
 
     /// <summary>
+    ///     The specific class of the product. (Civilian, Cargo, Service, Engineering, Science, Salvage, Medical, NFSD, Blackmarket, Syndicate, Scrap, Undetermined)
+    /// </summary>
+    [DataField("class")]
+    public string Class = "Undetermined";
+
+    /// <summary>
     ///     The group of the product. (e.g. Civilian, Syndicate, Contraband etc.)
     /// </summary>
     [DataField("group")]
