@@ -1,0 +1,288 @@
+- type: entity
+  id: ShuttleShotgun
+  parent: [ShuttleGunBase, ConstructibleMachine]
+  name: Trophy-50
+  description: A stationary shuttle gun that fires a .50 caliber. Designed to suppress the enemy.
+  components:
+  - type: Sprite
+    sprite: Corvax/Objects/Weapons/Guns/Shuttles/shotgunrifle.rsi
+    layers:
+    - state: shotgun
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      gun_magazine: !type:ContainerSlot
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 230
+      behaviors:
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+  - type: Gun
+    projectileSpeed: 35
+    fireRate: 4.5
+    angleDecay: 45
+    minAngle: 0
+    maxAngle: 17
+    selectedMode: FullAuto
+    soundGunshot:
+      path: /Audio/Corvax/Weapons/Guns/Gunshots/shuttleshotgun.ogg
+      params:
+        pitch: 0.5
+    soundEmpty:
+      path: /Audio/Corvax/Weapons/Guns/Empty/EmptySHR.ogg
+  - type: MagazineAmmoProvider
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        priority: 2
+        whitelist:
+          tags:
+          - ShuttleShotgunShellsBox
+        insertSound:
+          path: /Audio/Corvax/Weapons/Guns/MagIn/MagInSHR.ogg
+          params:
+            pitch: 1
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+  - type: Machine
+    board: ShuttleShotgunMachineCircuitboard
+
+- type: entity
+  id: ShuttleGunAntiMaterial
+  parent: [ShuttleGunBase, ConstructibleMachine]
+  name: BOFROG-60/B
+  description: An impressive - sized shuttle weapon, firing a large caliber .60. Breaks through most types of armored walls.
+  components:
+  - type: Sprite
+    sprite: Corvax/Objects/Weapons/Guns/Shuttles/amrifle.rsi
+    layers:
+    - state: amrifle
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      ballistic-ammo: !type:Container
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 430
+      behaviors:
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+  - type: Gun
+    projectileSpeed: 35
+    fireRate: 1.3
+    minAngle: 0
+    maxAngle: 6
+    soundGunshot:
+      path: /Audio/Corvax/Weapons/Guns/Gunshots/amrifle.ogg
+      params:
+        pitch: 0.5
+    soundEmpty:
+      path: /Audio/Corvax/Weapons/Guns/Empty/EmptySHR.ogg
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+        - CartridgeAntiMateriel
+    capacity: 16
+    soundInsert:
+      path: /Audio/Corvax/Weapons/Guns/MagIn/Reload60Cartridge.ogg
+      params:
+        pitch: 0.91
+  - type: Machine
+    board: ShuttleGunAntiMaterialMachineCircuitboard
+
+- type: entity
+  id: ShuttleLightRifleGun
+  parent: [ShuttleGunBase, ConstructibleMachine]
+  name: АК-6.30
+  description: A stationary shuttle rifle on .30 rifle cartridges with a VERY large supply of ammunition.
+  components:
+  - type: Sprite
+    sprite: Corvax/Objects/Weapons/Guns/Shuttles/arifle.rsi
+    layers:
+    - state: arifle
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      ballistic-ammo: !type:Container
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 260
+      behaviors:
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+  - type: Gun
+    projectileSpeed: 35
+    fireRate: 8
+    angleDecay: 18
+    minAngle: 0
+    maxAngle: 11
+    soundGunshot:
+      path: /Audio/Corvax/Weapons/Guns/Gunshots/LightSHR.ogg
+      params:
+        pitch: 0.5
+    soundEmpty:
+      path: /Audio/Corvax/Weapons/Guns/Empty/EmptySHR.ogg
+  - type: MagazineAmmoProvider
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        priority: 2
+        whitelist:
+          tags:
+          - ShuttleRifleAmmoBox
+        insertSound:
+          path: /Audio/Corvax/Weapons/Guns/MagIn/MagInSHR.ogg
+          params:
+            pitch: 1
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+  - type: Machine
+    board: ShuttleLightRifleGunMachineCircuitboard
+
+- type: entity
+  id: ShuttleSMGRifle
+  parent: [ShuttleGunBase, ConstructibleMachine]
+  name: NVT-35
+  description: A stationary small-caliber weapon with an increased rate of fire, unlike other shuttle`s weapons.
+  components:
+  - type: Sprite
+    sprite: Corvax/Objects/Weapons/Guns/Shuttles/smgrifle.rsi
+    layers:
+    - state: smgrifle
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      ballistic-ammo: !type:Container
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+  - type: Gun
+    projectileSpeed: 35
+    fireRate: 11
+    angleDecay: 13
+    minAngle: 0
+    maxAngle: 12
+    soundGunshot:
+      path: /Audio/Corvax/Weapons/Guns/Gunshots/35SHR.ogg
+      params:
+        pitch: 0.5
+    soundEmpty:
+      path: /Audio/Corvax/Weapons/Guns/Empty/EmptySHR.ogg
+  - type: MagazineAmmoProvider
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        priority: 2
+        whitelist:
+          tags:
+          - ShuttleSmgRifleAmmoBox
+        insertSound:
+          path: /Audio/Corvax/Weapons/Guns/MagIn/MagInSHR.ogg
+          params:
+            pitch: 1
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+  - type: Machine
+    board: ShuttleSMGRifleMachineCircuitboard
+
+- type: entity
+  id: ShuttleMagnumRifle
+  parent: [ShuttleGunBase, ConstructibleMachine]
+  name: 2А42-45
+  description: The nightmare of the syndicate that liked to hide behind doors. Double-barreled .45 caliber gun.
+  components:
+  - type: Sprite
+    sprite: Corvax/Objects/Weapons/Guns/Shuttles/magnumrifle.rsi
+    layers:
+    - state: magnumrifle
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      ballistic-ammo: !type:Container
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 280
+      behaviors:
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+  - type: Gun
+    projectileSpeed: 45
+    fireRate: 4.5
+    angleDecay: 20
+    minAngle: 1
+    maxAngle: 10
+    soundGunshot:
+      path: /Audio/Corvax/Weapons/Guns/Gunshots/45SHR.ogg
+      params:
+        pitch: 0.5
+    soundEmpty:
+      path: /Audio/Corvax/Weapons/Guns/Empty/EmptySHR.ogg
+  - type: MagazineAmmoProvider
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        priority: 2
+        whitelist:
+          tags:
+          - ShuttleMagnumRifleAmmoBox
+        insertSound:
+          path: /Audio/Corvax/Weapons/Guns/MagIn/MagInSHR.ogg
+          params:
+            pitch: 1
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+  - type: Machine
+    board: ShuttleMagnumRifleMachineCircuitboard

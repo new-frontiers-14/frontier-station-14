@@ -7,3 +7,4 @@ research-technology-hardsuits-experimental-industrial = Эксперимента
 research-technology-hardsuits-armored = Бронированные скафандры
 research-technology-hardsuits-armored-advanced = Продвинутый бронированные скафандры
 research-technology-hardsuits-experimental-rd = Экспериментальные исследовательские скафандры
+research-technology-various-shuttle-weapons = Калиберное вооружение
