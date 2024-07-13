@@ -1,0 +1,85 @@
+<Document>
+  # BULKER-CLASS SALVAGE SHUTTLE
+  <Box>
+  <GuideEntityEmbed Entity="MiningDrill"/>
+  <GuideEntityEmbed Entity="OreBag"/>
+  <GuideEntityEmbed Entity="OreProcessor"/>
+  </Box>  
+  <Box>
+  <GuideEntityEmbed Entity="ShuttleMapBulker" Caption=""/>
+  </Box>
+    [color=#a4885c]Ship Size:[/color] Medium
+	
+	[color=#a4885c]Recommended Crew:[/color] 2-4
+	
+	[color=#a4885c]Power Gen Type:[/color] Plasma
+	
+	[color=#a4885c]Expeditions:[/color] None
+	
+	[color=#a4885c]IFF Console:[/color] None
+	
+  "A medium mining vessel designed for deep space missions."
+  
+  # PREFLIGHT CHECKLIST
+  
+  ## 1. Power supply
+  
+  ## 1.1. Battery units
+  <Box>
+  <GuideEntityEmbed Entity="SMESBasic"/>
+  <GuideEntityEmbed Entity="SubstationWallBasic"/>
+  <GuideEntityEmbed Entity="APCBasic"/>
+  </Box>
+  
+  - Check that the SMES unit is anchored to the floor.
+  - Check that the substation unit is anchored to the floor.
+  - Check that the APC unit's Main Breaker is toggled on.
+  - Check the APC unit's current Load* (W).
+  
+  ## 1.2. AME generator unit.
+  <Box>
+  <GuideEntityEmbed Entity="AmeController"/>
+  <GuideEntityEmbed Entity="AmeJar"/>
+  </Box>
+  
+  - Check that the AME core is properly shielded.
+  - Check that the AME controller unit is anchored to the floor.
+  - Check the AME controller unit Fuel Status.
+  - Check the AME controller unit Injection Amount.
+  - Toggle Injection.
+  
+  ## 2. Atmospherics
+  
+  ## 2.1. Distribution Loop
+  <Box>
+  <GuideEntityEmbed Entity="AirCanister"/>
+  <GuideEntityEmbed Entity="GasPort"/>
+  <GuideEntityEmbed Entity="GasPressurePump"/>
+  </Box>
+  
+  - Check that the air canister is anchored to connector port.
+  - Check that the distribution pump is set to 101kPa.
+  - Enable the distribution pump.
+  
+  ## 2.2. Waste Loop
+  <Box>
+  <GuideEntityEmbed Entity="GasPressurePump"/>
+  </Box>
+    
+  - Enable waste loop pump (located at salvage Bay).
+  
+  ## 3. Other checks
+  <Box>
+  <GuideEntityEmbed Entity="Gyroscope"/>
+  <GuideEntityEmbed Entity="GravityGeneratorMini"/>
+  <GuideEntityEmbed Entity="BlastDoor"/>
+  </Box>
+  
+  - Check that the gyroscope is anchored, powered, and enabled.
+  - Check that the mini gravity generator is anchored, powered, and enabled.
+  - Check that the blast doors are closed.
+  
+  ## Sidenotes
+  
+  * - Bulker-class salvage ships are equipped with two APC units that can be used to appraise the ship's total power consumption. Unmodifued Bulker-class ship requires 24.9 kW of power to remain operational.
+</Document>

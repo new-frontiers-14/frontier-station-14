@@ -6,7 +6,6 @@ cmd-mapping-success-load = Created uninitialized map from file {$path} with id {
 cmd-mapping-success = Created uninitialized map with id {$mapId}.
 cmd-mapping-warning = WARNING: The server is using a debug build. You are risking losing your changes.
 
-
 # duplicate text from engine load/save map commands.
 # I CBF making this PR depend on that one.
 cmd-mapping-failure-integer = {$arg} is not a valid integer.

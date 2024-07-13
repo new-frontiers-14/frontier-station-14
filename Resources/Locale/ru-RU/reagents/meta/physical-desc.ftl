@@ -69,7 +69,6 @@ reagent-physical-desc-citric = цитрусовое
 reagent-physical-desc-acidic = кислотное
 reagent-physical-desc-buzzy = жужжащее
 reagent-physical-desc-fibrous = волокнистое
-reagent-physical-desc-strong-smelling = сильно пахнущее
 reagent-physical-desc-fizzy-and-creamy = шипучее и кремовое
 reagent-physical-desc-overpowering = очень мощное
 reagent-physical-desc-sour = кислое

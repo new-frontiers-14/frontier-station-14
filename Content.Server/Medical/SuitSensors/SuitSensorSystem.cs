@@ -326,7 +326,7 @@ public sealed class SuitSensorSystem : EntitySystem
 
         // check if sensor is enabled and worn by user
 		// Frontier modification, made sensor work with grid being null
-        if (sensor.Mode == SuitSensorMode.SensorOff || sensor.User == null ) // || transform.GridUid == null
+        if (sensor.Mode == SuitSensorMode.SensorOff || sensor.User == null || !HasComp<MobStateComponent>(sensor.User) ) // || transform.GridUid == null
             return null;
 
         // try to get mobs id from ID slot
@@ -345,8 +345,6 @@ public sealed class SuitSensorSystem : EntitySystem
                 userJob = card.Comp.JobTitle;
             if (card.Comp.JobIcon != null)
                 userJobIcon = card.Comp.JobIcon;
-            if (card.Comp.JobPrototype is not null)
-                userJobPrototype = card.Comp.JobPrototype;
 
             foreach (var department in card.Comp.JobDepartments)
                 userJobDepartments.Add(Loc.GetString(department));
@@ -391,26 +389,26 @@ public sealed class SuitSensorSystem : EntitySystem
                 if (transform.GridUid != null)
                 {
 
-					coordinates = new EntityCoordinates(transform.GridUid.Value,
-                        _transform.GetInvWorldMatrix(xformQuery.GetComponent(transform.GridUid.Value), xformQuery)
-                        .Transform(_transform.GetWorldPosition(transform, xformQuery)));
+                    coordinates = new EntityCoordinates(transform.GridUid.Value,
+                        Vector2.Transform(_transform.GetWorldPosition(transform, xformQuery),
+                            _transform.GetInvWorldMatrix(xformQuery.GetComponent(transform.GridUid.Value), xformQuery)));
 					/*
                     coordinates = new EntityCoordinates(uid,
                        new Vector2(transform.WorldPosition.X, transform.WorldPosition.Y)); //Frontier modification
 					   */
 
-					// Frontier modification
-					/// Checks if sensor is present on expedition grid
-					if(TryComp<SalvageExpeditionComponent>(transform.GridUid.Value, out var salvageComp))
-					{
-						locationName = Loc.GetString("suit-sensor-location-expedition");
-					}
-					else
-					{
-						var meta = MetaData(transform.GridUid.Value);
+                    // Frontier modification
+                    /// Checks if sensor is present on expedition grid
+                    if(TryComp<SalvageExpeditionComponent>(transform.GridUid.Value, out var salvageComp))
+                    {
+                        locationName = Loc.GetString("suit-sensor-location-expedition");
+                    }
+                    else
+                    {
+                        var meta = MetaData(transform.GridUid.Value);
 
-						locationName = meta.EntityName;
-					}
+                        locationName = meta.EntityName;
+                    }
                 }
                 else if (transform.MapUid != null)
                 {

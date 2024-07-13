@@ -1,6 +1,6 @@
+ent-WeaponMagmiteCrusher = магмитовый крушитель
+    .desc = Крушитель, выкованный из сплава магмита. Обладает очень мощной убойной силой.
+ent-WeaponMagmiteCrusherGlaive = магмитовая глефа-крушитель
+    .desc = Глефа, выкованная из сплава магмита. Обладает очень мощной убойной силой.
 ent-BulletMagmaCharge = магмитовый снаряд
     .desc = Помечает цели для нанесения повышенного урона.
-ent-WeaponMagmiteCrusher = магмитовый крушитель
-    .desc = { ent-WeaponCrusher.desc }
-ent-WeaponMagmiteCrusherGlaive = магмитовая глефа
-    .desc = Ранняя версия протокинетического ускорителя в виде глефы.

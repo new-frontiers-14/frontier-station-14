@@ -410,7 +410,6 @@
     layers:
     - state: chronobolt
       shader: unshaded
-  - type: GatheringProjectile
   - type: Projectile
     impactEffect: BulletImpactEffectKinetic
     damage:
@@ -420,6 +419,7 @@
   # Short lifespan
   - type: TimedDespawn
     lifetime: 0.4
+  - type: GatheringProjectile
 
 - type: entity
   id: BulletKineticShuttle

@@ -58,7 +58,6 @@ reagent-name-pilk = пилк
 reagent-desc-pilk = Тошнотворная смесь молока и колы.
 reagent-name-posca = поска
 reagent-desc-posca = Напиток бедных воинов из забытой эпохи.
-reagent-name-the-martinez = Мартинес
 reagent-desc-the-martinez = Легенда среди киберпанков. Вспоминается по напитку, забывается по пьяни.
 reagent-name-white-gilgamesh = белый Гильгамеш
 reagent-desc-white-gilgamesh = Тошнотворная смесь молока и пива. Вызывает ощущение одеревенелости.

@@ -1,6 +1,5 @@
 # Referenced a lot of sites and used my own intuition to determine which fits well compared to our modern day speech patterns. Predominantly old modern english and other miscellaneous archaic terms. Sources I used includes shakespeare text and google searches, along with terms from the original version of the PR for this accent.
 
-
 # I also included a lot of changes to formality and word choice to fit better with the accent.
 
 accent-archaic-replaced-1 = tell
@@ -9,8 +8,6 @@ accent-archaic-replaced-2 = so far
 accent-archaic-replacement-2 = as of this date
 accent-archaic-replaced-3 = let me know
 accent-archaic-replacement-3 = awaiting your reply
-accent-archaic-replaced-4 = get
-accent-archaic-replacement-4 = secure
 accent-archaic-replaced-4 = use
 accent-archaic-replacement-4 = utilize
 accent-archaic-replaced-5 = consider
@@ -125,8 +122,6 @@ accent-archaic-replaced-59 = madenning
 accent-archaic-replacement-59 = bemadding
 accent-archaic-replaced-60 = suggest
 accent-archaic-replacement-60 = bespeak
-accent-archaic-replaced-53 = request
-accent-archaic-replacement-53 = bespeak
 accent-archaic-replaced-61 = indicate
 accent-archaic-replacement-61 = bespeak
 accent-archaic-replaced-62 = immediately
