@@ -1,6 +1,5 @@
 # Referenced a lot of sites and used my own intuition to determine which fits well compared to our modern day speech patterns. Predominantly old modern english and other miscellaneous archaic terms. Sources I used includes shakespeare text and google searches, along with terms from the original version of the PR for this accent.
 
-
 # I also included a lot of changes to formality and word choice to fit better with the accent.
 
 accent-archaic-replaced-1 = tell

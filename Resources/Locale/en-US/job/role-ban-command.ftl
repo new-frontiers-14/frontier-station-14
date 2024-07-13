@@ -17,7 +17,6 @@ cmd-roleban-hint-duration-4 = 1 week
 cmd-roleban-hint-duration-5 = 2 week
 cmd-roleban-hint-duration-6 = 1 month
 
-
 ### Localization for role unban command
 
 cmd-roleunban-desc = Pardons a player's role ban
@@ -25,7 +24,6 @@ cmd-roleunban-help = Usage: roleunban <role ban id>
 
 ## Completion result hints
 cmd-roleunban-hint-1 = <role ban id>
-
 
 ### Localization for roleban list command
 
@@ -35,7 +33,6 @@ cmd-rolebanlist-help = Usage: <name or user ID> [include unbanned]
 ## Completion result hints
 cmd-rolebanlist-hint-1 = <name or user ID>
 cmd-rolebanlist-hint-2 = [include unbanned]
-
 
 cmd-roleban-minutes-parse = {$time} is not a valid amount of minutes.\n{$help}
 cmd-roleban-severity-parse = ${severity} is not a valid severity\n{$help}.

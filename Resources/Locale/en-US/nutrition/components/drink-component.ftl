@@ -21,5 +21,4 @@ drink-component-force-feed = {CAPITALIZE(THE($user))} is trying to make you drin
 drink-component-force-feed-success = {CAPITALIZE(THE($user))} forced you to drink something! {$flavors}
 drink-component-force-feed-success-user = You successfully feed {THE($target)}
 
-
 drink-system-verb-drink = Drink

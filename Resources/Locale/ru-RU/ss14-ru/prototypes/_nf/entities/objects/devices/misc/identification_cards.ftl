@@ -1,7 +1,6 @@
 ent-MercenaryIDCard = ID карта наёмника
     .desc = { ent-IDCardStandard.desc }
-ent-PilotIDCard = ID карта пилота
-    .desc = { ent-IDCardStandard.desc }
+
 ent-StcIDCard = ID карта диспетчера
     .desc = { ent-IDCardStandard.desc }
 ent-CadetIDCard = ID карта кадета ДСБФ

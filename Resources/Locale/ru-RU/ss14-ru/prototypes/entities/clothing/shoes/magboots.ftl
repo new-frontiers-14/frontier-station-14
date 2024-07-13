@@ -8,8 +8,7 @@ ent-ClothingShoesBootsMagBlinding = магнитные сапоги ослепл
     .desc = Они будут отлично смотреться на ловкаче вроде вас.
 ent-ClothingShoesBootsMagSyndie = кроваво-красные магнитные сапоги
     .desc = Созданные по технологии реверс-инжиниринга магнитные ботинки с встроенными ускорителями.
-ent-ClothingShoesBootsJetBoots = реактивные ботинки
-    .desc = Позволяют быстро перемещаться по космосу, в связи с чем очень популярен у исследователей.
+
 ent-ActionBaseToggleMagboots = Переключить магнитные ботинки
     .desc = Включает или выключает магнитные ботинки.
 ent-ActionToggleMagboots = { ent-ActionBaseToggleMagboots }

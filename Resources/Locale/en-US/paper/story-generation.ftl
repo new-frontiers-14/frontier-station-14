@@ -231,14 +231,3 @@ story-gen-book-element-trait11 = inadequate
 story-gen-book-element-trait12 = sad
 story-gen-book-element-trait13 = rather depressing
 
-
-
-
-
-
-
-
-
-
-
-

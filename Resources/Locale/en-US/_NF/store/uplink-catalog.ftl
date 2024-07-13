@@ -8,7 +8,6 @@ store-category-secammo = Ammunition
 store-category-secexplosives = Explosives
 store-category-secbundles = Bundles
 
-
 uplink-security-hardsuit-name = Security HardSuit
 uplink-security-hardsuit-desc = Standard issue armored EVA suit. Bulky armor plating slightly limits movement speed.
 uplink-security-hardsuit-patrol-name = Security Patrol HardSuit

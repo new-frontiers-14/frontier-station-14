@@ -46,7 +46,6 @@ marking-VulpEarCoyote = Vulpkanin Coyote
 marking-VulpEarDalmatian-dalmatian = Dalmatian ears
 marking-VulpEarDalmatian = Vulpkanin Dalmatian
 
-
 marking-VulpSnoutAlt-muzzle_alt = Muzzle
 marking-VulpSnoutAlt-nose = Nose
 marking-VulpSnoutAlt = Vulpkanin Muzzle 2
@@ -83,7 +82,6 @@ marking-VulpSnoutBlaze = Vulpkanin Blaze
 marking-VulpSnoutPatch-patch = Patch
 marking-VulpSnoutPatch = Vulpkanin Patch
 
-
 marking-VulpHeadTiger-tiger_head = Tiger stripes
 marking-VulpHeadTiger = Vulpkanin Tiger stripes (head)
 
@@ -92,7 +90,6 @@ marking-VulpHeadTigerFace = Vulpkanin Tiger stripes (face)
 
 marking-VulpHeadSlash-slash = Slash
 marking-VulpHeadSlash = Vulpkanin Slash
-
 
 marking-VulpTail-vulp = Vulpkanin tail (base)
 marking-VulpTail-vulp-fade = Vulpkanin tail (fade)
@@ -179,7 +176,6 @@ marking-VulpTailFluffy = Vulpkanin Fluffy
 marking-VulpTailDalmatianWag-dalmatian_wag = Dalmatian tail
 marking-VulpTailDalmatianWag = Vulpkanin Dalmatian (wag)
 
-
 marking-VulpBellyCrest-belly_crest = Belly
 marking-VulpBellyCrest = Vulpkanin Belly Crest
 
@@ -189,7 +185,6 @@ marking-VulpBellyFull = Vulpkanin Belly 1
 marking-VulpBellyFox-belly_fox = Belly
 marking-VulpBellyFox = Vulpkanin Belly 2
 
-
 marking-VulpBodyPointsCrest-points_crest = Points (crest)
 marking-VulpBodyPointsCrest = Vulpkanin Points (crest)
 
@@ -198,7 +193,6 @@ marking-VulpBodyPointsFade = Vulpkanin Points (fade)
 
 marking-VulpBodyPointsSharp-points_sharp = Vulpkanin Points (sharp)
 marking-VulpBodyPointsSharp = Vulpkanin Points (sharp)
-
 
 marking-VulpPointsFeet-points_feet = Points Feet
 marking-VulpPointsFeet = Vulpkanin Points Feet
@@ -212,7 +206,6 @@ marking-VulpPointsFadeLegs = Vulpkanin Points Legs (fade)
 marking-VulpPointsSharpLegs-points_sharp-legs = Points (sharp)
 marking-VulpPointsSharpLegs = Vulpkanin Points Legs (sharp)
 
-
 marking-VulpPointsHands-points_hands = Points Hands
 marking-VulpPointsHands = Vulpkanin Points Hands
 
@@ -224,7 +217,6 @@ marking-VulpPointsFadeArms = Vulpkanin Points Arms (fade)
 
 marking-VulpPointsSharpArms-points_sharp-arms = Points (sharp)
 marking-VulpPointsSharpArms = Vulpkanin Points Arms (sharp)
-
 
 marking-VulpHairAdhara = Adhara
 marking-VulpHairAnita = Anita

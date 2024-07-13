@@ -1,6 +1,5 @@
 ### for technical and/or system messages
 
-
 ## General
 
 shell-server-cannot = Сервер не может выполнить это.

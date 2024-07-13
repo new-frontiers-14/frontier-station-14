@@ -1,5 +1,4 @@
-ent-BaseGenerator = generator
-    .desc = A high efficiency thermoelectric generator.
+
 ent-BaseGeneratorWallmount = wallmount generator
     .desc = A high efficiency thermoelectric generator stuffed in a wall cabinet.
 ent-BaseGeneratorWallmountFrame = wallmount generator frame

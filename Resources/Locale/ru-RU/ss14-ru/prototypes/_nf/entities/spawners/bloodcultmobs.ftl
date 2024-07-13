@@ -1,21 +1,2 @@
-ent-SpawnMobBloodCultistPriest = Кровавый Жрец
-    .suffix = AI, Заклинатель
-    .desc = { ent-MarkerBase.desc }
-ent-SpawnMobBloodCultistAcolyte = Кровавый Псаломщик
-    .suffix = AI, Ближний
-    .desc = { ent-MarkerBase.desc }
-ent-SpawnMobBloodCultistZealotMelee = Кровавый Фанатик
-    .suffix = AI, Ближний
-    .desc = { ent-MarkerBase.desc }
-ent-SpawnMobBloodCultistZealotRanged = Кровавый Фанатик
-    .suffix = AI, Дальний
-    .desc = { ent-MarkerBase.desc }
-ent-SpawnMobBloodCultistCaster = Кровавый Фанатик
-    .suffix = AI, Заклинатель
-    .desc = { ent-MarkerBase.desc }
-ent-SpawnMobBloodCultLeech = Кровавая Пиявка
-    .suffix = AI, Ближний, Быстрый
-    .desc = { ent-MarkerBase.desc }
-ent-SpawnMobBloodCultistAscended = Кровавый Вознесённый
-    .suffix = AI, Заклинатель, Мегафауна
-    .desc = { ent-MarkerBase.desc }
+
+

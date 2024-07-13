@@ -1,2 +1,1 @@
-ent-BaseMob = BaseMob
-    .desc = { "" }
+

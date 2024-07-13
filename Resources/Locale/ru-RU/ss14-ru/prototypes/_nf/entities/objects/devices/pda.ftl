@@ -2,8 +2,7 @@ ent-MusicBasePDA = { "" }
     .desc = { "" }
 ent-MercenaryPDA = КПК наёмника
     .desc = Пахнет войной.
-ent-PilotPDA = КПК пилота
-    .desc = Пахнет отработанным топливом.
+
 ent-StcPDA = КПК диспетчера станции
     .desc = Оповещайте о происшествиях со стилем!
 ent-SecurityGuardPDA = КПК службы безоопасности
