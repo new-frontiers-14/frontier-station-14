@@ -16,11 +16,12 @@ namespace Content.Shared._NF.Shuttles.Events
     }
 
     [Serializable, NetSerializable]
-    public enum InertiaDampeningMode
+    public enum InertiaDampeningMode : byte
     {
         Off = 0,
         Dampen = 1,
         Anchor = 2,
         Station = 3, // Reserved for station status, should not be used in requests.
+        Query = 255 // Reserved for requests - does not set the mode, only returns its state.
     }
 }

@@ -23,8 +23,18 @@ public sealed partial class ShuttleSystem
         if (!EntityManager.TryGetComponent(uid, out TransformComponent? transform) ||
             !transform.GridUid.HasValue ||
             !EntityManager.TryGetComponent(transform.GridUid, out PhysicsComponent? physicsComponent) ||
-            !EntityManager.TryGetComponent(transform.GridUid, out ShuttleComponent? shuttleComponent) ||
-            !EntityManager.HasComponent<ShuttleDeedComponent>(transform.GridUid) ||
+            !EntityManager.TryGetComponent(transform.GridUid, out ShuttleComponent? shuttleComponent))
+        {
+            return;
+        }
+
+        if (args.Mode == InertiaDampeningMode.Query)
+        {
+            _console.RefreshShuttleConsoles(transform.GridUid.Value);
+            return;
+        }
+
+        if (!EntityManager.HasComponent<ShuttleDeedComponent>(transform.GridUid) ||
             EntityManager.HasComponent<StationDampeningComponent>(_station.GetOwningStation(transform.GridUid)))
         {
             return;

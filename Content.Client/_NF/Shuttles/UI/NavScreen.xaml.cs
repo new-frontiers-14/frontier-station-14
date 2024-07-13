@@ -27,6 +27,10 @@ namespace Content.Client.Shuttles.UI
             DampenerOff.Group = _buttonGroup;
             DampenerOn.Group = _buttonGroup;
             AnchorOn.Group = _buttonGroup;
+
+            // Send off a request to get the current dampening mode.
+            _entManager.TryGetNetEntity(_shuttleEntity, out var shuttle);
+            OnInertiaDampeningModeChanged?.Invoke(shuttle, InertiaDampeningMode.Query);
         }
 
         private void SetDampenerMode(InertiaDampeningMode mode)
