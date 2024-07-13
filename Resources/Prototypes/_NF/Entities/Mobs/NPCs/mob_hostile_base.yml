@@ -3,6 +3,17 @@
   id: MobAtmosNF
   abstract: true
   components:
+  - type: Temperature
+    heatDamageThreshold: 2000 # Should prevent mobs from taking damage on planets with extreme head 
+    coldDamageThreshold: -250 # Should make mobs immune to cold planets
+    currentTemperature: 310.15
+    coldDamage: #per second, scales with temperature & other constants
+      types:
+        Cold : 0.1
+    specificHeat: 42
+    heatDamage: #per second, scales with temperature & other constants
+      types:
+        Heat : 1.5
   - type: ThermalRegulator
     metabolismHeat: 800
     radiatedHeat: 100
