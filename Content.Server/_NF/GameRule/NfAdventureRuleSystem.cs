@@ -124,6 +124,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         var grifty = "Maps/_NF/POI/grifty.yml";
         var nfsdStation = "/Maps/_NF/POI/nfsd.yml";
         var trade = "/Maps/_NF/POI/trade.yml";
+        var medical = "/Maps/_NF/POI/medical.yml";
         var depotColor = new Color(55, 200, 55);
         var civilianColor = new Color(55, 55, 200);
         var lpbravoColor = new Color(200, 55, 55);
@@ -308,6 +309,16 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             var meta = EnsureComp<MetaDataComponent>(tradeUids[0]);
             _meta.SetEntityName(tradeUids[0], "Trade Outpost", meta);
             _shuttle.SetIFFColor(tradeUids[0], depotColor);
+        }
+
+        if (_map.TryLoad(mapId, medical, out var medicalUids, new MapLoadOptions
+        {
+            Offset = _random.NextVector2(1150f, 2050f)
+        }))
+        {
+            var meta = EnsureComp<MetaDataComponent>(medicalUids[0]);
+            _meta.SetEntityName(medicalUids[0], "NFMS Medical Center", meta);
+            _shuttle.SetIFFColor(medicalUids[0], civilianColor);            
         }
 
         var dungenTypes = _prototypeManager.EnumeratePrototypes<DungeonConfigPrototype>();
