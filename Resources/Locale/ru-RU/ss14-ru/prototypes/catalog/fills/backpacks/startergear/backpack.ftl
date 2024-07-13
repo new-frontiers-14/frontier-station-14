@@ -1,17 +1,11 @@
-ent-ClothingBackpackFilled = { ent-ClothingBackpack }
-    .desc = { ent-ClothingBackpack.desc }
-ent-ClothingBackpackClownFilled = { ent-ClothingBackpackClown }
-    .desc = { ent-ClothingBackpackClown.desc }
-ent-ClothingBackpackSecurityFilled = { ent-ClothingBackpackSecurity }
-    .desc = { ent-ClothingBackpackSecurity.desc }
+
+
 ent-ClothingBackpackSecurityFilledDetective = { ent-ClothingBackpackSecurity }
     .desc = { ent-ClothingBackpackSecurity.desc }
-ent-ClothingBackpackMedicalFilled = { ent-ClothingBackpackMedical }
-    .desc = { ent-ClothingBackpackMedical.desc }
+
 ent-ClothingBackpackParamedicFilled = { ent-ClothingBackpackMedical }
     .desc = { ent-ClothingBackpackMedical.desc }
-ent-ClothingBackpackCaptainFilled = { ent-ClothingBackpackCaptain }
-    .desc = { ent-ClothingBackpackCaptain.desc }
+
 ent-ClothingBackpackChiefEngineerFilled = { ent-ClothingBackpackCE }
     .desc = { ent-ClothingBackpackCE.desc }
 ent-ClothingBackpackResearchDirectorFilled = { ent-ClothingBackpackScience }
@@ -26,18 +20,10 @@ ent-ClothingBackpackQuartermasterFilled = { ent-ClothingBackpackCargo }
     .desc = { ent-ClothingBackpackCargo.desc }
 ent-ClothingBackpackHOSFilled = { ent-ClothingBackpackSecurity }
     .desc = { ent-ClothingBackpackSecurity.desc }
-ent-ClothingBackpackEngineeringFilled = { ent-ClothingBackpackEngineering }
-    .desc = { ent-ClothingBackpackEngineering.desc }
+
 ent-ClothingBackpackAtmosphericsFilled = { ent-ClothingBackpackAtmospherics }
     .desc = { ent-ClothingBackpackAtmospherics.desc }
-ent-ClothingBackpackScienceFilled = { ent-ClothingBackpackScience }
-    .desc = { ent-ClothingBackpackScience.desc }
-ent-ClothingBackpackHydroponicsFilled = { ent-ClothingBackpackHydroponics }
-    .desc = { ent-ClothingBackpackHydroponics.desc }
-ent-ClothingBackpackMimeFilled = { ent-ClothingBackpackMime }
-    .desc = { ent-ClothingBackpackMime.desc }
-ent-ClothingBackpackChemistryFilled = { ent-ClothingBackpackChemistry }
-    .desc = { ent-ClothingBackpackChemistry.desc }
+
 ent-ClothingBackpackChaplainFilled = { ent-ClothingBackpack }
     .desc = { ent-ClothingBackpack.desc }
 ent-ClothingBackpackLawyerFilled = { ent-ClothingBackpack }

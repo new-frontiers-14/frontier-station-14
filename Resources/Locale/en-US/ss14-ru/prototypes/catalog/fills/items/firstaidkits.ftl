@@ -1,12 +1,5 @@
-ent-MedkitFilled = { ent-Medkit }
-    .suffix = Filled
-    .desc = { ent-Medkit.desc }
-ent-MedkitBurnFilled = { ent-MedkitBurn }
-    .suffix = Filled
-    .desc = { ent-MedkitBurn.desc }
-ent-MedkitBruteFilled = { ent-MedkitBrute }
-    .suffix = Filled
-    .desc = { ent-MedkitBrute.desc }
+
+
 ent-MedkitToxinFilled = { ent-MedkitToxin }
     .suffix = Filled
     .desc = { ent-MedkitToxin.desc }

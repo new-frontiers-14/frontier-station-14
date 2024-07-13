@@ -20,7 +20,6 @@ loadout-group-contractor-implanter = имплантеры
 
 # Security
 
-loadout-group-security-guard-jumpsuit = шлемы
 loadout-group-security-guard-jumpsuit = комбинезоны
 loadout-group-security-guard-gloves = перчатки
 loadout-group-security-guard-head = головные уборы

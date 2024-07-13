@@ -1,21 +1,2 @@
-ent-SpawnMobBloodCultistPriest = Blood Cult Priest Spawner
-    .suffix = AI, Caster
-    .desc = { ent-MarkerBase.desc }
-ent-SpawnMobBloodCultistAcolyte = Blood Cult Acolyte
-    .suffix = AI, Melee
-    .desc = { ent-MarkerBase.desc }
-ent-SpawnMobBloodCultistZealotMelee = Blood Cult Zealot
-    .suffix = AI, Melee
-    .desc = { ent-MarkerBase.desc }
-ent-SpawnMobBloodCultistZealotRanged = Blood Cult Zealot
-    .suffix = AI, Ranged
-    .desc = { ent-MarkerBase.desc }
-ent-SpawnMobBloodCultistCaster = Blood Cult Zealot
-    .suffix = AI, Caster
-    .desc = { ent-MarkerBase.desc }
-ent-SpawnMobBloodCultLeech = Blood Cult Leech
-    .suffix = AI, Melee, Fast
-    .desc = { ent-MarkerBase.desc }
-ent-SpawnMobBloodCultistAscended = Ascended Cultist
-    .suffix = AI, Caster, Megafauna
-    .desc = { ent-MarkerBase.desc }
+
+

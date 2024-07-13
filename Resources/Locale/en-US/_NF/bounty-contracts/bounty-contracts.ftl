@@ -46,4 +46,3 @@ bounty-contracts-ui-create-error-invalid-price = Error: Invalid price!
 bounty-contracts-ui-create-error-no-name = Error: Invalid bounty name!
 bounty-contracts-ui-create-ready = Your contract is ready to be published!
 
-

@@ -1,5 +1,4 @@
-ent-MobTomatoKiller = killer tomato
-    .desc = This is really going to let you own some vegans in your next online debate.
+
 ent-MobXenoPraetorianNPC = Praetorian
     .desc = { ent-MobXeno.desc }
 ent-MobXenoDroneNPC = Drone

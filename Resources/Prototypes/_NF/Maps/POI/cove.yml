@@ -5,12 +5,12 @@
   minPlayers: 0
   stations:
     Cove:
-      stationProto: StandardFrontierOutpost
+      stationProto: PirateFrontierOutpost
       components:
         - type: StationNameSetup
           mapNameTemplate: 'Пиратская Бухта'
         - type: StationJobs
-          overflowJobs: []
           availableJobs:
-            PirateCaptain: [ 1, 1 ] # сломано
-            PirateFirstMate: [ 0, 0 ] # нет спавнера у парней
+            PirateCaptain: [ 1, 1 ]
+            PirateFirstMate: [ 1, 1 ]
+            Pirate: [ 0, 0 ]

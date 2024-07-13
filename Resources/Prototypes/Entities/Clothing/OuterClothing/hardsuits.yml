@@ -487,7 +487,7 @@
 #ANTAG HARDSUITS
 #Blood-red Hardsuit
 - type: entity
-  parent: ClothingOuterHardsuitBase
+  parent: [ClothingOuterHardsuitBase, ContrabandClothing] # Frontier: added ContrabandClothing as parent
   id: ClothingOuterHardsuitSyndie
   name: blood-red hardsuit
   description: A heavily armored hardsuit designed for work in special operations. Property of Gorlex Marauders.
@@ -523,11 +523,10 @@
     - MonkeyWearable
     - Hardsuit
     - WhitelistChameleon
-  - type: Contraband #frontier
 
 # Syndicate Medic Hardsuit
 - type: entity
-  parent: ClothingOuterHardsuitSyndie
+  parent: [ClothingOuterHardsuitSyndie, ContrabandClothing] # Frontier: added ContrabandClothing as parent
   id: ClothingOuterHardsuitSyndieMedic
   name: blood-red medic hardsuit
   description: A heavily armored and agile advanced hardsuit specifically designed for field medic operations.
@@ -542,11 +541,10 @@
     tags:
     - Hardsuit
     - WhitelistChameleon
-  - type: Contraband #frontier
 
 #Syndicate Elite Hardsuit
 - type: entity
-  parent: ClothingOuterHardsuitBase
+  parent: [ClothingOuterHardsuitBase, ContrabandClothing] # Frontier: added ContrabandClothing as parent
   id: ClothingOuterHardsuitSyndieElite
   name: syndicate elite hardsuit
   description: An elite version of the blood-red hardsuit, with improved mobility and fireproofing. Property of Gorlex Marauders.
@@ -562,8 +560,8 @@
     coefficient: 0.001
   - type: ExplosionResistance
     damageCoefficient: 0.2
-#  - type: FireProtection # Frontier - Return after we update
-#    reduction: 0.8 # perfect protection like atmos firesuit for pyro tf2 ops
+  - type: FireProtection
+    reduction: 0.8 # perfect protection like atmos firesuit for pyro tf2 ops
   - type: Armor
     modifiers:
       coefficients:
@@ -581,11 +579,10 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSyndieElite
-  - type: Contraband #frontier
 
 #Syndicate Commander Hardsuit
 - type: entity
-  parent: ClothingOuterHardsuitBase
+  parent: [ClothingOuterHardsuitBase, ContrabandClothing] # Frontier: added ContrabandClothing as parent
   id: ClothingOuterHardsuitSyndieCommander
   name: syndicate commander hardsuit
   description: A bulked up version of the blood-red hardsuit, purpose-built for the commander of a syndicate operative squad. Has significantly improved armor for those deadly front-lines firefights.
@@ -614,11 +611,10 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSyndieCommander
-  - type: Contraband #frontier
 
 #Cybersun Juggernaut Hardsuit
 - type: entity
-  parent: ClothingOuterHardsuitBase
+  parent: [ClothingOuterHardsuitBase, ContrabandClothing] # Frontier: added ContrabandClothing as parent
   id: ClothingOuterHardsuitJuggernaut
   name: cybersun juggernaut suit
   description: A suit made by the cutting edge R&D department at cybersun to be hyper resilient.
@@ -647,11 +643,10 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitCybersun
-  - type: Contraband #frontier
 
 #Wizard Hardsuit
 - type: entity
-  parent: ClothingOuterHardsuitBase
+  parent: [ClothingOuterHardsuitBase, ContrabandClothing] # Frontier: added ContrabandClothing as parent
   id: ClothingOuterHardsuitWizard
   name: wizard hardsuit
   description: A bizarre gem-encrusted suit that radiates magical energies.
@@ -680,11 +675,10 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitWizard
-  - type: Contraband #frontier
 
 #Ling Space Suit
 - type: entity
-  parent: ClothingOuterHardsuitBase
+  parent: [ClothingOuterHardsuitBase, ContrabandClothing] # Frontier: added ContrabandClothing as parent
   id: ClothingOuterHardsuitLing
   name: organic space suit
   description: A spaceworthy biomass of pressure and temperature resistant tissue.
@@ -711,12 +705,11 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitLing
-  - type: Contraband #frontier
 
 #Pirate EVA Suit (Deep Space EVA Suit)
 #Despite visually appearing like a softsuit, it functions exactly like a hardsuit would (parents off of base hardsuit, has resistances and toggleable clothing, etc.) so it goes here.
 - type: entity
-  parent:  ClothingOuterHardsuitBase
+  parent: [ClothingOuterHardsuitBase, ContrabandClothing] # Frontier: added ContrabandClothing as parent
   id:  ClothingOuterHardsuitPirateEVA
   name: deep space EVA suit
   suffix: Pirate
@@ -744,11 +737,10 @@
     clothingPrototype: ClothingHeadHelmetHardsuitPirateEVA
   - type: StaticPrice
     price: 0
-  - type: Contraband #frontier
 
 #Pirate Captain Hardsuit
 - type: entity
-  parent: ClothingOuterHardsuitBase
+  parent: [ClothingOuterHardsuitBase, ContrabandClothing] # Frontier: added ContrabandClothing as parent
   id: ClothingOuterHardsuitPirateCap
   name: pirate captain's hardsuit
   description: An ancient armored hardsuit, perfect for defending against space scurvy and toolbox-wielding scallywags.
@@ -778,7 +770,6 @@
     clothingPrototype: ClothingHeadHelmetHardsuitPirateCap
   - type: StaticPrice
     price: 0
-  - type: Contraband #frontier
 
 #CENTCOMM / ERT HARDSUITS
 #ERT Leader Hardsuit

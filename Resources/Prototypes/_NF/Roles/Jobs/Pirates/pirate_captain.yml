@@ -4,14 +4,14 @@
   description: job-description-pirate-captain
   playTimeTracker: JobPirateCaptain
   requirements:
-    - !type:WhitelistRequirement
     - !type:OverallPlaytimeRequirement
       time: 172800 # Frontier - 48 hours
+  whitelisted: true
   startingGear: PirateCaptainNFGear
   alwaysUseSpawner: true
   hideConsoleVisibility: true
   canBeAntag: true
-  icon: "JobIconPiratecaptain" # Corvax-Frontier
+  icon: "JobIconPirateCaptain"
   supervisors: job-supervisors-hire
   setPreference: true
   accessGroups:
@@ -30,8 +30,9 @@
     ears: ClothingHeadsetAltFreelancer
     shoes: ClothingShoesBootsLaceup
     belt: ClothingBeltUtility
-    pocket1: AppraisalTool
+    pocket1: BasePirateUplinkRadioPirateCaptain
     pocket2: EnergyCutlass
     outerClothing: ClothingOuterCoatPirate
-  inhand:
-    - BaseSecurityUplinkRadioPirateCaptain
+  storage:
+    back:
+    - AppraisalTool

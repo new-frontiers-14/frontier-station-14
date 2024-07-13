@@ -1,2 +1,3 @@
-ent-CrateMaterials = { ent-CrateGenericSteel }
-    .desc = { ent-CrateGenericSteel.desc }
+ent-CrateMaterials = ящик материалов
+    .desc = 1 лист стекла, пластика, стали, плазмы и пластали.
+

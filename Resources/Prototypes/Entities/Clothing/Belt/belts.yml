@@ -589,7 +589,7 @@
     - 0,0,3,1
 
 - type: entity
-  parent: ClothingBeltStorageBase
+  parent: [ClothingBeltStorageBase, ContrabandClothing] # Frontier: added ContrabandClothing as parent
   id: ClothingBeltSyndieHolster
   name: syndicate shoulder holster
   description: A deep shoulder holster capable of holding many types of ballistics.
@@ -609,7 +609,6 @@
         - Gun
         - BallisticAmmoProvider
         - CartridgeAmmo
-  - type: Contraband #frontier
 
 - type: entity
   parent: ClothingBeltStorageBase #Frontier - ClothingBeltSecurity<ClothingBeltStorageBase
@@ -689,7 +688,7 @@
     quickEquip: true
 
 - type: entity
-  parent: ClothingBeltStorageBase
+  parent: [ClothingBeltStorageBase, ContrabandClothing] # Frontier: added ContrabandClothing as parent
   id: ClothingBeltWand
   name: wand belt
   description: A belt designed to hold various rods of power. A veritable fanny pack of exotic magic.
@@ -704,4 +703,3 @@
     whitelist:
       tags:
       - WizardWand
-  - type: Contraband #frontier

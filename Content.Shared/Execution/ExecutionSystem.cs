@@ -1,6 +1,7 @@
 using Content.Shared.Weapons.Ranged.Systems;
 using Content.Shared.ActionBlocker;
 using Content.Shared.CombatMode;
+using Content.Shared.Coordinates;
 using Content.Shared.Damage;
 using Content.Shared.Database;
 using Content.Shared.DoAfter;
@@ -14,6 +15,7 @@ using Content.Shared.Weapons.Ranged.Components;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Content.Shared.Projectiles;
+using Robust.Shared.Map;
 
 namespace Content.Shared.Execution;
 
@@ -170,16 +172,16 @@ public sealed class ExecutionSystem : EntitySystem
 
             // TODO: This should just be an event or something instead to get this.
             // TODO: Handle clumsy.
-            if (!_gunSystem.AttemptDirectShoot(args.User, uid, args.Target.Value, gun))
-            {
-                internalMsg = null;
-                externalMsg = null;
-            }
-            else
-            {
-                internalMsg = DefaultCompleteInternalGunExecutionMessage;
-                externalMsg = DefaultCompleteExternalGunExecutionMessage;
-            }
+            var toCoordinates = gun.ShootCoordinates;
+
+            if (toCoordinates == null)
+                return;
+
+            _gunSystem.AttemptShoot(args.User, weapon, gun, toCoordinates.Value);
+
+            internalMsg = DefaultCompleteInternalGunExecutionMessage;
+            externalMsg = DefaultCompleteExternalGunExecutionMessage;
+
             args.Handled = true;
         }
 

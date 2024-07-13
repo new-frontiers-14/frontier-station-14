@@ -1,15 +1,2 @@
-ent-BaseMothershipComputer = { ent-ComputerShipyard }
-    .desc = Используется на авианосцах для покупки дополнительных шаттлов, не возвращаясь на станцию.
-    .suffix = Mothership
-ent-EmpressMothershipComputer = консоль авианосца "Императрица"
-    .desc = { ent-BaseMothershipComputer.desc }
-ent-McCargoMothershipComputer = консоль авианосца "Каргония"
-    .desc = { ent-BaseMothershipComputer.desc }
-ent-CaduceusMothershipComputer = консоль авианосца "Кадуцей"
-    .desc = { ent-BaseMothershipComputer.desc }
-ent-GasbenderMothershipComputer = консоль авианосца "Газовый Гигант"
-    .desc = { ent-BaseMothershipComputer.desc }
-ent-CrescentMothershipComputer = консоль авианосца "Полумесяц"
-    .desc = { ent-BaseMothershipComputer.desc }
-ent-MailCarrierMothershipComputer = консоль почтового авианосца
-    .desc = { ent-BaseMothershipComputer.desc }
+
+

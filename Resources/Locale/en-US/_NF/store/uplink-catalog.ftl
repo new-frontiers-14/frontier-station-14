@@ -8,7 +8,6 @@ store-category-secammo = Ammunition
 store-category-secexplosives = Explosives
 store-category-secbundles = Bundles
 
-
 uplink-security-hardsuit-name = Security HardSuit
 uplink-security-hardsuit-desc = Standard issue armored EVA suit. Bulky armor plating slightly limits movement speed.
 uplink-security-hardsuit-patrol-name = Security Patrol HardSuit
@@ -151,6 +150,8 @@ uplink-security-emp-ammo-name = EMP Projectile Ammo
 uplink-security-emp-ammo-desc = A a box containing 4 EMP projectile grenades.
 uplink-security-trackingdart-ammo-name = Tracking Darts Ammo
 uplink-security-trackingdart-ammo-desc = A a box containing 4 tracking darts.
+uplink-security-spaceblade-sec-name = Security SpaceBlade
+uplink-security-spaceblade-sec-desc = Latest stun tech
 
 store-category-piratehardsuits = EVA Suits
 store-category-pirateweapons = Weapons

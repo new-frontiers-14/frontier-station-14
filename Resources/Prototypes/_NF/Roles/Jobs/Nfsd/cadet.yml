@@ -15,7 +15,7 @@
   supervisors: job-supervisors-cadet
   canBeAntag: false
   accessGroups: # Frontier
-  - GeneralNfsdAccess # Frontier
+  - CadetNfsdAccess # Frontier
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant, TrackingImplant ]
@@ -24,6 +24,11 @@
   id: CadetGear
   equipment:
     ears: ClothingHeadsetNfsdBrown # Frontier
-    pocket1: WeaponPistolEnforser # Corvax-Frontier
+    pocket1: WeaponPistolMk58 #WeaponPistolMk58Nonlethal
     pocket2: BookSecurity
-    neck: ClothingNeckStarBronzeBadge # Corvax-Frontier
+  storage:
+    back:
+    - Flash
+    - MagazinePistol
+    - MagazinePistolRubber
+    - FrontierUplinkCoin10

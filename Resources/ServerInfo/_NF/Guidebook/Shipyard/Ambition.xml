@@ -7,47 +7,47 @@
   <GuideEntityEmbed Entity="HolofanProjector"/>
   </Box>
     [color=#a4885c]Размер шаттла:[/color] Большой
-	
+
 	[color=#a4885c]Рекомендованное количество экипажа:[/color] 4-8
-	
+
 	[color=#a4885c]Power Gen Type:[/color] AME
-	
+
 	[color=#a4885c]Expeditions:[/color] Yes
-	
+
 	[color=#a4885c]IFF Console:[/color] None
-	
+
   "Declassified gas production and distribution platform seized in a hostile takeover of an Atmosian conglomerate. For the ultimate insurgent."
-    
+
   # PREFLIGHT CHECKLIST
-  
+
   ## 1. Power supply
-  
+
   ## 1.1. Battery units
   <Box>
   <GuideEntityEmbed Entity="SMESBasic"/>
   <GuideEntityEmbed Entity="SubstationBasic"/>
   <GuideEntityEmbed Entity="APCBasic"/>
   </Box>
-  
+
   - Check that the SMES unit is anchored to the floor.
   - Check that the substation unit is anchored to the floor.
   - Check that the APC unit's Main Breaker is toggled on.
   - Check the APC unit's current Load* (W).
-  
+
   ## 1.2. AME generator unit.
   <Box>
   <GuideEntityEmbed Entity="AmeController"/>
   <GuideEntityEmbed Entity="AmeJar"/>
   </Box>
-  
+
   - Check that the AME core is properly shielded.
   - Check that the AME controller unit is anchored to the floor.
   - Check the AME controller unit Fuel Status.
   - Check the AME controller unit Injection Amount.
   - Toggle Injection.
-  
+
   ## 2. Atmospherics
-  
+
   ## 2.1. Distribution Loop
   <Box>
   <GuideEntityEmbed Entity="OxygenCanister"/>
@@ -55,7 +55,7 @@
   <GuideEntityEmbed Entity="GasMixer"/>
   <GuideEntityEmbed Entity="GasPressurePump"/>
   </Box>
-  
+
   - Check that the O2 output pump is set to 101kPa.
   - Enable the O2 output pump.
   - Check that the N2 output pump is set to 101kPa.
@@ -65,42 +65,42 @@
   - Enable gas mixer.
   - Check that the distribution pump is set to 101kPa.
   - Enable distribution pump.
-  
+
   ## 2.2. Waste Loop
   <Box>
   <GuideEntityEmbed Entity="GasValve"/>
   <GuideEntityEmbed Entity="GasFilter"/>
   </Box>
-    
+
   - Enable waste loop pump and valve(s).
   - Enable waste loop filters.
   - Set appropriate gases for each storage chamber as needed.
-  
+
   ## 2.3. Mix Loop
   <Box>
   <GuideEntityEmbed Entity="AirAlarm"/>
   <GuideEntityEmbed Entity="GasVentPump"/>
   <GuideEntityEmbed Entity="GasPort"/>
   </Box>
-  
+
   - Enable mix loop pumps.
   - Disable Auto Mode on the air alarm in the Mix Room.
   - Set the four air vents on the air alarm to Siphoning Mode and set Pressure Bounds to NoBound.
   - Anchor gas canisters to Connector Ports as needed.
-  
+
   ## 3. Other checks
   <Box>
   <GuideEntityEmbed Entity="Gyroscope"/>
   <GuideEntityEmbed Entity="GravityGeneratorMini"/>
   <GuideEntityEmbed Entity="BlastDoor"/>
   </Box>
-  
+
   - Check that the gyroscope is anchored, powered, and enabled.
   - Check that the mini gravity generator is anchored, powered, and enabled.
   - Check that the blast doors are closed.
-  
+
   ## Sidenotes
-  
+
   * - Ambition-class atmospheric platforms are equipped with eight APC units that can be used to appraise the ship's total power consumption. Unmodified Ambition-class ship requires 71 kW of power to remain operational.
 
 </Document>

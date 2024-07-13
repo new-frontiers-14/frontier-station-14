@@ -6,5 +6,4 @@ ent-ClothingUniformJumpsuitCentcomOfficerBlack = униформа офицера
     .desc = Чёрная униформа Офицера Специальных Операций, ничего такого. Хотя... Если у вас есть время читать это, то уже поздно...
 ent-ClothingUniformJumpsuitCentcomAdmiral = униформа адмирала
     .desc = Униформа, которую носят офицеры в звании адмирала флота Nanotrasen.
-ent-ClothingUniformJumpskirtElegantMaid = элегантная форма горничной
-    .desc = Называй меня хозяином и принеси мне пивчанского.
+

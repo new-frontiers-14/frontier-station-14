@@ -38,6 +38,8 @@
     - SpawnDungeonLootToolsSurgeryAdvanced
     - SpawnDungeonLootClothesMed
     - PillCanisterRandom
+    - SpawnDungeonLootFlatpacksMed
+    - SpawnDungeonLootVendingRestocks
     chance: 0.95
     offset: 0.0
     rarePrototypes:
@@ -647,3 +649,31 @@
     rarePrototypes:
     - ComputerIFFCircuitboard
     rareChance: 0.03
+
+- type: entity
+  name: random flatpack
+  id: SpawnDungeonLootFlatpacksMed
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Engineering"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _NF/Objects/Devices/flatpack.rsi
+        state: engineering_lathe
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - MedicalTechFabFlatpack
+    - StasisBedFlatpack
+    - ChemMasterFlatpack
+    - MachineElectrolysisUnitFlatpack
+    - BaseGasCondenserFlatpack
+    - MachineCentrifugeFlatpack
+    - ChemistryHotplateFlatpack
+    - KitchenReagentGrinderFlatpack
+    - ComputerCrewMonitoringFlatpack
+    chance: 0.95
+    offset: 0.0

@@ -4,8 +4,6 @@ using System.Text;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
 using Content.Server.Chat.Managers;
-using Content.Server.Corvax.Language;
-using Content.Server.Corvax.Language.EntitySystems;
 using Content.Server.GameTicking;
 using Content.Server.Speech.Components;
 using Content.Server.Speech.EntitySystems;
@@ -14,9 +12,11 @@ using Content.Server.Station.Systems;
 using Content.Shared.ActionBlocker;
 using Content.Shared.CCVar;
 using Content.Shared.Chat;
+using Content.Shared.Administration;
 using Content.Shared.Database;
 using Content.Shared.Ghost;
 using Content.Shared.Humanoid;
+using Content.Shared.Examine;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Mind;
@@ -24,6 +24,7 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.Players;
 using Content.Shared.Radio;
 using Content.Shared.Speech;
+using Content.Shared.Whitelist;
 using Robust.Server.Player;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
@@ -35,6 +36,8 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Replays;
 using Robust.Shared.Utility;
+using Content.Server.Corvax.Language;
+using Content.Server.Corvax.Language.EntitySystems;
 
 namespace Content.Server.Chat.Systems;
 
@@ -60,6 +63,8 @@ public sealed partial class ChatSystem : SharedChatSystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
     [Dependency] private readonly ReplacementAccentSystem _wordreplacement = default!;
+    [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private readonly ExamineSystemShared _examineSystem = default!;
     [Dependency] private readonly LanguageSystem _language = default!;
 
     public const int VoiceRange = 10; // how far voice goes in world units
@@ -167,7 +172,6 @@ public sealed partial class ChatSystem : SharedChatSystem
     {
         TrySendInGameICMessage(source, new Message(message, null, null), desiredType, range, hideLog, shell, player, nameOverride, checkRadioPrefix, ignoreActionBlocker);
     }*/
-
     /// <summary>
     ///     Sends an in-character chat message to relevant clients.
     /// </summary>
@@ -300,9 +304,13 @@ public sealed partial class ChatSystem : SharedChatSystem
         message = SanitizeInGameOOCMessage(message);
 
         var sendType = type;
-        // If dead player LOOC is disabled, unless you are an aghost, send dead messages to dead chat
-        if (!_adminManager.IsAdmin(player) && !_deadLoocEnabled &&
-            (HasComp<GhostComponent>(source) || _mobStateSystem.IsDead(source)))
+        // If dead player LOOC is disabled, unless you are an admin with Moderator perms, send dead messages to dead chat
+        if ((_adminManager.IsAdmin(player) && _adminManager.HasAdminFlag(player, AdminFlags.Moderator)) // Override if admin
+            || _deadLoocEnabled
+            || (!HasComp<GhostComponent>(source) && !_mobStateSystem.IsDead(source))) // Check that player is not dead
+        {
+        }
+        else
             sendType = InGameOOCChatType.Dead;
 
         // If crit player LOOC is disabled, don't send the message at all.
@@ -398,12 +406,12 @@ public sealed partial class ChatSystem : SharedChatSystem
         string? nameOverride,
         bool hideLog = false,
         bool ignoreActionBlocker = false
-        )
+    )
     {
         if (!_actionBlocker.CanSpeak(source) && !ignoreActionBlocker)
             return;
 
-        var message = FormattedMessage.RemoveMarkup(originalMessage);
+        var message = TransformSpeech(source, FormattedMessage.RemoveMarkup(originalMessage));
 
         var msg = _language.GetLanguageMessage(source, message, language, TransformSpeech(source, message));
 
@@ -424,13 +432,15 @@ public sealed partial class ChatSystem : SharedChatSystem
             RaiseLocalEvent(source, nameEv);
             name = nameEv.Name;
             // Check for a speech verb override
-            if (nameEv.SpeechVerb != null && _prototypeManager.TryIndex<SpeechVerbPrototype>(nameEv.SpeechVerb, out var proto))
+            if (nameEv.SpeechVerb != null &&
+                _prototypeManager.TryIndex<SpeechVerbPrototype>(nameEv.SpeechVerb, out var proto))
                 speech = proto;
         }
 
         name = FormattedMessage.EscapeText(name);
 
-        var wrappedMessage = Loc.GetString(speech.Bold ? "chat-manager-entity-say-bold-wrap-message" : "chat-manager-entity-say-wrap-message",
+        var wrappedMessage = Loc.GetString(
+            speech.Bold ? "chat-manager-entity-say-bold-wrap-message" : "chat-manager-entity-say-wrap-message",
             ("entityName", name),
             ("verb", Loc.GetString(_random.Pick(speech.SpeechVerbStrings))),
             ("fontType", speech.FontId),
@@ -442,7 +452,8 @@ public sealed partial class ChatSystem : SharedChatSystem
         if (color is not null)
             wrappedMessage = InjectTagInsideTag(wrappedMessage, "Message", "color", color.Value.ToHex());
 
-        var wrappedLanguageMessage = Loc.GetString(speech.Bold ? "chat-manager-entity-say-bold-wrap-message" : "chat-manager-entity-say-wrap-message",
+        var wrappedLanguageMessage = Loc.GetString(
+            speech.Bold ? "chat-manager-entity-say-bold-wrap-message" : "chat-manager-entity-say-wrap-message",
             ("entityName", name),
             ("verb", Loc.GetString(_random.Pick(speech.SpeechVerbStrings))),
             ("fontType", speech.FontId),
@@ -458,38 +469,46 @@ public sealed partial class ChatSystem : SharedChatSystem
 
             var understand = _language.IsUnderstandLanguage(session, msg);
 
-            _chatManager.ChatMessageToOne(ChatChannel.Local, understand ? msg.OriginalMessage : msg.Message, understand ? wrappedMessage : wrappedLanguageMessage, source, entRange == MessageRangeCheckResult.HideChat, session.Channel);
-        }
+            SendInVoiceRange(ChatChannel.Local,
+                understand ? msg.OriginalMessage : msg.Message,
+                wrappedMessage: wrappedLanguageMessage,
+                source,
+                range);
 
-        _replay.RecordServerMessage(new ChatMessage(ChatChannel.Local, msg.OriginalMessage, wrappedMessage, GetNetEntity(source), null, MessageRangeHideChatForReplay(range)));
+            var ev = new EntitySpokeEvent(source, message, null, null);
+            RaiseLocalEvent(source, ev, true);
 
-        var ev = new EntitySpokeEvent(source, msg, null, null);
-        RaiseLocalEvent(source, ev, true);
+            // To avoid logging any messages sent by entities that are not players, like vendors, cloning, etc.
+            // Also doesn't log if hideLog is true.
+            if (!HasComp<ActorComponent>(source) || hideLog == true)
+                return;
 
-        // To avoid logging any messages sent by entities that are not players, like vendors, cloning, etc.
-        // Also doesn't log if hideLog is true.
-        if (!HasComp<ActorComponent>(source) || hideLog == true)
-            return;
-
-        if (originalMessage == msg.OriginalMessage)
-        {
-            if (name != Name(source))
-                _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Say from {ToPrettyString(source):user} as {name}: {originalMessage}.");
+            if (originalMessage == msg.OriginalMessage)
+            {
+                if (name != Name(source))
+                    _adminLogger.Add(LogType.Chat,
+                        LogImpact.Low,
+                        $"Say from {ToPrettyString(source):user} as {name}: {originalMessage}.");
+                else
+                    _adminLogger.Add(LogType.Chat,
+                        LogImpact.Low,
+                        $"Say from {ToPrettyString(source):user}: {originalMessage}.");
+            }
             else
-                _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Say from {ToPrettyString(source):user}: {originalMessage}.");
-        }
-        else
-        {
-            if (name != Name(source))
-                _adminLogger.Add(LogType.Chat, LogImpact.Low,
-                    $"Say from {ToPrettyString(source):user} as {name}, original: {originalMessage}, transformed: {msg.OriginalMessage}.");
-            else
-                _adminLogger.Add(LogType.Chat, LogImpact.Low,
-                    $"Say from {ToPrettyString(source):user}, original: {originalMessage}, transformed: {msg.OriginalMessage}.");
+            {
+                if (name != Name(source))
+                    _adminLogger.Add(LogType.Chat,
+                        LogImpact.Low,
+                        $"Say from {ToPrettyString(source):user} as {name}, original: {originalMessage}, transformed: {message}.");
+                else
+                    _adminLogger.Add(LogType.Chat,
+                        LogImpact.Low,
+                        $"Say from {ToPrettyString(source):user}, original: {originalMessage}, transformed: {message}.");
+            }
         }
     }
 
-    private void SendEntityWhisper(
+    void SendEntityWhisper(
         EntityUid source,
         string originalMessage,
         string? language,
@@ -503,7 +522,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         if (!_actionBlocker.CanSpeak(source) && !ignoreActionBlocker)
             return;
 
-        var message = FormattedMessage.RemoveMarkup(originalMessage);
+        var message = TransformSpeech(source, FormattedMessage.RemoveMarkup(originalMessage));
 
         var msg = _language.GetLanguageMessage(source, message, language, TransformSpeech(source, message));
 
@@ -511,7 +530,6 @@ public sealed partial class ChatSystem : SharedChatSystem
             return;
 
         var obfuscatedMessage = ObfuscateMessageReadability(msg.OriginalMessage, 0.2f);
-
         var obfuscatedLanguageMessage = ObfuscateMessageReadability(msg.Message, 0.2f);
 
         // get the entity's name by visual identity (if no override provided).
@@ -531,7 +549,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         name = FormattedMessage.EscapeText(name);
 
         var wrappedMessage = Loc.GetString("chat-manager-entity-whisper-wrap-message",
-            ("entityName", name), ("message", FormattedMessage.EscapeText(msg.OriginalMessage)));
+            ("entityName", name), ("message", FormattedMessage.EscapeText(message)));
 
         var wrappedObfuscatedMessage = Loc.GetString("chat-manager-entity-whisper-wrap-message",
             ("entityName", nameIdentity), ("message", FormattedMessage.EscapeText(obfuscatedMessage)));
@@ -556,7 +574,6 @@ public sealed partial class ChatSystem : SharedChatSystem
 
         var wrappedUnknownLanguageMessage = Loc.GetString("chat-manager-entity-whisper-unknown-wrap-message",
             ("message", FormattedMessage.EscapeText(obfuscatedLanguageMessage)));
-
 
         foreach (var (session, data) in GetRecipients(source, WhisperMuffledRange))
         {
@@ -587,7 +604,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         var ev = new EntitySpokeEvent(source, msg, channel, new(obfuscatedMessage, language, obfuscatedLanguageMessage));
         RaiseLocalEvent(source, ev, true);
         if (!hideLog)
-            if (originalMessage == msg.OriginalMessage)
+            if (originalMessage == message)
             {
                 if (name != Name(source))
                     _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Whisper from {ToPrettyString(source):user} as {name}: {originalMessage}.");
@@ -598,10 +615,10 @@ public sealed partial class ChatSystem : SharedChatSystem
             {
                 if (name != Name(source))
                     _adminLogger.Add(LogType.Chat, LogImpact.Low,
-                    $"Whisper from {ToPrettyString(source):user} as {name}, original: {originalMessage}, transformed: {msg.OriginalMessage}.");
+                    $"Whisper from {ToPrettyString(source):user} as {name}, original: {originalMessage}, transformed: {message}.");
                 else
                     _adminLogger.Add(LogType.Chat, LogImpact.Low,
-                    $"Whisper from {ToPrettyString(source):user}, original: {originalMessage}, transformed: {msg.OriginalMessage}.");
+                    $"Whisper from {ToPrettyString(source):user}, original: {originalMessage}, transformed: {message}.");
             }
     }
 
@@ -998,7 +1015,6 @@ public sealed class EntitySpokeEvent : EntityEventArgs
     public readonly EntityUid Source;
     public readonly LanguageMessage Message;
     public readonly LanguageMessage? ObfuscatedMessage; // not null if this was a whisper
-
     /// <summary>
     ///     If the entity was trying to speak into a radio, this was the channel they were trying to access. If a radio
     ///     message gets sent on this channel, this should be set to null to prevent duplicate messages.

@@ -56,8 +56,6 @@ marking-MothAntennasUnderwing-underwing_primary = Primary
 marking-MothAntennasUnderwing-underwing_secondary = Secondary
 marking-MothAntennasUnderwing = Antennae (Underwing)
 
-
-
 marking-MothWingsDefault-default = Wing
 marking-MothWingsDefault = Wings (Default)
 
@@ -134,9 +132,6 @@ marking-MothWingsUnderwing-underwing_primary = Primary
 marking-MothWingsUnderwing-underwing_secondary = Secondary
 marking-MothWingsUnderwing = Wings (Underwing)
 
-
-
-
 marking-MothChestCharred-charred_chest = Chest
 marking-MothChestCharred = Moth Chest (Charred)
 
@@ -154,8 +149,6 @@ marking-MothLArmCharred = Moth Left Arm (Charred)
 
 marking-MothRArmCharred-charred_r_arm = Right Arm
 marking-MothRArmCharred = Moth Right Arm (Charred)
-
-
 
 marking-MothChestDeathhead-deathhead_chest = Chest
 marking-MothChestDeathhead = Moth Chest (Death's-Head)
@@ -175,8 +168,6 @@ marking-MothLArmDeathhead = Moth Left Arm (Death's-Head)
 marking-MothRArmDeathhead-deathhead_r_arm = Right Arm
 marking-MothRArmDeathhead = Moth Right Arm (Death's-Head)
 
-
-
 marking-MothChestFan-fan_chest = Chest
 marking-MothChestFan = Moth Chest (Fan)
 
@@ -194,8 +185,6 @@ marking-MothLArmFan = Moth Left Arm (Fan)
 
 marking-MothRArmFan-fan_r_arm = Right Arm
 marking-MothRArmFan = Moth Right Arm (Fan)
-
-
 
 marking-MothChestFirewatch-firewatch_chest = Chest
 marking-MothChestFirewatch = Moth Chest (Firewatch)
@@ -215,8 +204,6 @@ marking-MothLArmFirewatch = Moth Left Arm (Firewatch)
 marking-MothRArmFirewatch-firewatch_r_arm = Right Arm
 marking-MothRArmFirewatch = Moth Right Arm (Firewatch)
 
-
-
 marking-MothChestGothic-gothic_chest = Chest
 marking-MothChestGothic = Moth Chest (Gothic)
 
@@ -234,8 +221,6 @@ marking-MothLArmGothic = Moth Left Arm (Gothic)
 
 marking-MothRArmGothic-gothic_r_arm = Right Arm
 marking-MothRArmGothic = Moth Right Arm (Gothic)
-
-
 
 marking-MothChestJungle-jungle_chest = Chest
 marking-MothChestJungle = Moth Chest (Jungle)
@@ -255,8 +240,6 @@ marking-MothLArmJungle = Moth Left Arm (Jungle)
 marking-MothRArmJungle-jungle_r_arm = Right Arm
 marking-MothRArmJungle = Moth Right Arm (Jungle)
 
-
-
 marking-MothChestMoonfly-moonfly_chest = Chest
 marking-MothChestMoonfly = Moth Chest (Moonfly)
 
@@ -274,8 +257,6 @@ marking-MothLArmMoonfly = Moth Left Arm (Moonfly)
 
 marking-MothRArmMoonfly-moonfly_r_arm = Right Arm
 marking-MothRArmMoonfly = Moth Right Arm (Moonfly)
-
-
 
 marking-MothChestOakworm-oakworm_chest = Chest
 marking-MothChestOakworm = Moth Chest (Oak Worm)
@@ -295,8 +276,6 @@ marking-MothLArmOakworm = Moth Left Arm (Oak Worm)
 marking-MothRArmOakworm-oakworm_r_arm = Right Arm
 marking-MothRArmOakworm = Moth Right Arm (Oak Worm)
 
-
-
 marking-MothChestPointy-pointy_chest = Chest
 marking-MothChestPointy = Moth Chest (Pointy)
 
@@ -314,8 +293,6 @@ marking-MothLArmPointy = Moth Left Arm (Pointy)
 
 marking-MothRArmPointy-pointy_r_arm = Right Arm
 marking-MothRArmPointy = Moth Right Arm (Pointy)
-
-
 
 marking-MothChestRagged-ragged_chest = Chest
 marking-MothChestRagged = Moth Chest (Ragged)
@@ -335,8 +312,6 @@ marking-MothLArmRagged = Moth Left Arm (Ragged)
 marking-MothRArmRagged-ragged_r_arm = Right Arm
 marking-MothRArmRagged = Moth Right Arm (Ragged)
 
-
-
 marking-MothChestRoyal-royal_chest = Chest
 marking-MothChestRoyal = Moth Chest (Royal)
 
@@ -355,8 +330,6 @@ marking-MothLArmRoyal = Moth Left Arm (Royal)
 marking-MothRArmRoyal-royal_r_arm = Right Arm
 marking-MothRArmRoyal = Moth Right Arm (Royal)
 
-
-
 marking-MothChestWhitefly-whitefly_chest = Chest
 marking-MothChestWhitefly = Moth Chest (White Fly)
 
@@ -374,8 +347,6 @@ marking-MothLArmWhitefly = Moth Left Arm (White Fly)
 
 marking-MothRArmWhitefly-whitefly_r_arm = Right Arm
 marking-MothRArmWhitefly = Moth Right Arm (White Fly)
-
-
 
 marking-MothChestWitchwing-witchwing_chest = Chest
 marking-MothChestWitchwing = Moth Chest (Witch Wing)

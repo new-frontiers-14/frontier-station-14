@@ -2,8 +2,7 @@ ent-SpawnPointContractor = авантюрист
     .desc = { ent-SpawnPointJobBase.desc }
 ent-SpawnPointMercenary = наёмник
     .desc = { ent-SpawnPointJobBase.desc }
-ent-SpawnPointPilot = пилот
-    .desc = { ent-SpawnPointJobBase.desc }
+
 ent-SpawnPointPirate = пират
     .desc = { ent-SpawnPointJobBase.desc }
 ent-SpawnPointPirateCaptain = пиратский капитан

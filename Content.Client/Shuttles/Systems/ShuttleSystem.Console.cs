@@ -30,7 +30,7 @@ public sealed partial class ShuttleSystem
     /// <summary>
     /// Gets the map coordinates of a map object.
     /// </summary>
-    public MapCoordinates? GetMapCoordinates(IMapObject mapObj)
+    public MapCoordinates GetMapCoordinates(IMapObject mapObj)
     {
         switch (mapObj)
         {
@@ -39,8 +39,7 @@ public sealed partial class ShuttleSystem
             case ShuttleExclusionObject exclusion:
                 return GetCoordinates(exclusion.Coordinates).ToMap(EntityManager, XformSystem);
             case GridMapObject grid:
-                if (!TryComp<TransformComponent>(grid.Entity, out var gridXform))
-                    return null;
+                var gridXform = Transform(grid.Entity);
 
                 if (HasComp<MapComponent>(grid.Entity))
                 {

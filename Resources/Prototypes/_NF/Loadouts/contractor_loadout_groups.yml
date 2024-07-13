@@ -161,6 +161,8 @@
   - ContractorClothingUniformJumpsuitMilitaryColorPurple
   - ContractorClothingUniformJumpsuitMilitaryColorLightBrown
   - ContractorClothingUniformJumpsuitMilitaryColorBrown
+  fallbacks:
+  - ContractorClothingUniformJumpsuitColorGrey
 
 - type: loadoutGroup
   id: ContractorBackpack
@@ -233,6 +235,8 @@
   - ContractorClothingBackpackDuffelMime
   - ContractorClothingBackpackSatchelMime
   - ContractorClothingBackpackMessengerMime
+  fallbacks:
+  - ContractorClothingBackpack
   
 - type: loadoutGroup
   id: ContractorOuterClothing
@@ -320,6 +324,7 @@
   - ContractorClothingOuterCoatWitchHunter
   - ContractorClothingOuterCoatCardinal
   - ContractorClothingOuterPlagueSuit
+  - ContractorWetFloorSign
   - ContractorClothingOuterCoatExpensive
   - ContractorClothingOuterCoatSpaceAsshole
 
@@ -417,6 +422,8 @@
   - ContractorClothingShoesSkates
   - ContractorClothingShoesClownLarge
   - ContractorClothingShoesBling
+  fallbacks:
+  - ContractorClothingShoesColorBlack
 
 - type: loadoutGroup
   id: ContractorHead
@@ -491,6 +498,8 @@
   - ContractorClothingHeadHatBishopMitre
   - ContractorClothingHeadHatKippah
   - ContractorClothingHeadHatPlaguedoctor
+  - ContractorPlunger
+  - ContractorClothingHeadHatCone
   - ContractorClothingHeadBandGold
   - ContractorClothingHeadHatTophat
   
@@ -553,6 +562,13 @@
   - ContractorClothingNeckCloakGay
   - ContractorClothingNeckCloakLesbian
   - ContractorBedsheetRainbow
+  - ContractorClothingNeckIFFNeutral
+  - ContractorClothingNeckIFFGreen
+  - ContractorClothingNeckIFFRed
+  - ContractorClothingNeckIFFBlue
+  - ContractorClothingNeckIFFCyan
+  - ContractorClothingNeckIFFOrange
+  - ContractorClothingNeckIFFPurple
   - ContractorClothingNeckCloakCapFormal
   - ContractorClothingNeckMantleCap
   - ContractorClothingNeckCloakQm
@@ -570,7 +586,7 @@
   id: ContractorPDA
   name: loadout-group-contractor-id
   loadouts:
-  - ContractorClearPDA
+  - ContractorClearNFPDA
   - ContractorSalvagePDA
   - ContractorResearchAssistantPDA
   - ContractorCargoPDA
@@ -603,6 +619,8 @@
   - ContractorMusicianPDA
   - ContractorClownPDA
   - ContractorMimePDA
+  fallbacks:
+  - ContractorClearNFPDA
   
 - type: loadoutGroup
   id: ContractorGlasses
@@ -664,6 +682,7 @@
   - ContractorBalloonNT
   - ContractorPonderingOrb
   - ContractorPlushieRGBee
+  - ContractorMysterySpaceBladeBox
   - ContractorHoloGraffitiProjector # Punkish (might be annoying)
   - ContractorFlashlightUmbrella
   - ContractorDawInstrumentFlatpack
@@ -744,6 +763,9 @@
   - ContractorBoxSurvivalNFNitrogen
   - ContractorBoxSurvivalNFOxygenExtended
   - ContractorBoxSurvivalNFNitrogenExtended
+  fallbacks:
+  - ContractorBoxSurvivalNFOxygen
+  - ContractorBoxSurvivalNFNitrogen
 
 - type: loadoutGroup
   id: ContractorEncryptionKey
@@ -756,6 +778,8 @@
   - ContractorEncryptionKeyCargo
   - ContractorEncryptionKeyEngineering
   - ContractorEncryptionKeyScience
+  fallbacks:
+  - ContractorEncryptionKeyTraffic
 
 - type: loadoutGroup
   id: ContractorImplanter

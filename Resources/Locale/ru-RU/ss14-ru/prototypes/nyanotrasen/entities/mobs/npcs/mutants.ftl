@@ -1,5 +1,4 @@
-ent-MobTomatoKiller = томат убийца
-    .desc = Это действительно позволит вам одержать верх над веганами во время следующего онлайн-спора.
+
 ent-MobXenoPraetorianNPC = Преторианец
     .desc = { ent-MobXeno.desc }
 ent-MobXenoDroneNPC = Дрон

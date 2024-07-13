@@ -1,18 +1,2 @@
-ent-CrateVendingMachineRestockAstroVendFilled = ящик для пополнения запасов АстроВенд
-    .desc = Содержит две коробки для пополнения запасов для торгового автомата АстроВенд.
-ent-CrateVendingMachineRestockAmmoFilled = ящик для пополнения запасов Пулемат
-    .desc = Содержит две коробки для пополнения запасов в торговом автомате Пулемат.
-ent-CrateVendingMachineRestockFlatpackVendFilled = ящик для пополнения запасов Упак-О-Мат
-    .desc = Содержит две коробки для пополнения запасов в автомате Упак-О-Мат.
-ent-CrateVendingMachineRestockCuddlyCritterVendFilled = ящик для пополнения запасов ПлюшкоВенд
-    .desc = Содержит две коробки для пополнения запасов в торговом автомате ПлюшкоВенд.
-ent-CrateVendingMachineRestockChefvendFilled = ящик для пополнения запасов Шефвенд
-    .desc = Содержит две коробки для пополнения запасов в торговом автомате Шефвенд.
-ent-CrateVendingMachineRestockCondimentStationFilled = ящик для пополнения Островок соусов
-    .desc = Содержит две коробки для пополнения Островок соусов.
-ent-CrateVendingMachineRestockLessLethalVendFilled = ящик для пополнения запасов ТравМаг
-    .desc = Содержит две коробки для пополнения запасов в торговом автомате НеЛеталВенд.
-ent-CrateVendingMachineRestockAutoTuneVendFilled = ящик для пополнения запасов МузВенд
-    .desc = Содержит две коробки для пополнения запасов в торговом автомате МузВенд.
-ent-CrateVendingMachineRestockPottedPlantVendFilled = ящик для пополнения запасов Трав-О-Маг
-    .desc = Содержит две коробки для пополнения запасов в торговом автомате Трав-О-Маг.
+
+
