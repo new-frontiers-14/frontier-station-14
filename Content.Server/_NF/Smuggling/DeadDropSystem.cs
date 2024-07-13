@@ -37,7 +37,6 @@ public sealed class DeadDropSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedMapSystem _mapManager = default!;
     [Dependency] private readonly EntityLookupSystem _entityLookup = default!;
-    [Dependency] private readonly IServerEntityManager _entityManager = default!;
 
     public override void Initialize()
     {
@@ -68,7 +67,7 @@ public sealed class DeadDropSystem : EntitySystem
         //checks if any of them are already active and if so don't do anything.
         foreach (var ent in deadDrops)
         {
-            if (ent.Comp.DeadDropActivated == true && ent.Owner != uid) 
+            if (ent.Comp.DeadDropActivated == true && ent.Owner != uid)
                 return;
         }
 
@@ -155,7 +154,7 @@ public sealed class DeadDropSystem : EntitySystem
         _meta.SetEntityName(paper, Loc.GetString("deaddrop-hint-name"));
         _meta.SetEntityDescription(paper, Loc.GetString("deaddrop-hint-desc"));
         _hands.PickupOrDrop(user, paper, handsComp: hands);
-        
+
         //reset the timer
         component.NextDrop = _timing.CurTime + TimeSpan.FromSeconds(_random.Next(component.MinimumCoolDown, component.MaximumCoolDown));
         component.DeadDropActivated = false;
@@ -180,8 +179,3 @@ public sealed class DeadDropSystem : EntitySystem
 
     }
 }
-
-// Exception has occurred: CLR/System.Collections.Generic.KeyNotFoundException
-// An unhandled exception of type 'System.Collections.Generic.KeyNotFoundException' occurred in Robust.Shared.dll: 'Entity 0 does not have a component of type Robust.Shared.GameObjects.MetaDataComponent'
-//    at Content.Server.Radio.EntitySystems.RadioSystem.SendRadioMessage(EntityUid messageSource, String message, RadioChannelPrototype channel, EntityUid radioSource, Boolean escapeMarkup) in /home/alexander/Documents/Code/frontier-station-14/Content.Server/Radio/EntitySystems/RadioSystem.cs:line 79
-//    at Content.Server._NF.Smuggling.DeadDropSystem.<>c__DisplayClass16_0.<SendDeadDrop>b__0() in /home/alexander/Documents/Code/frontier-station-14/Content.Server/_NF/Smuggling/DeadDropSystem.cs:line 167

@@ -39,6 +39,8 @@ namespace Content.Server.Forensics
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
         [Dependency] private readonly RadioSystem _radio = default!;
 
+
+        private List<EntityUid> _scannedDeadDrops = new List<EntityUid>();
         public override void Initialize()
         {
             base.Initialize();
@@ -50,6 +52,18 @@ namespace Content.Server.Forensics
             SubscribeLocalEvent<ForensicScannerComponent, ForensicScannerPrintMessage>(OnPrint);
             SubscribeLocalEvent<ForensicScannerComponent, ForensicScannerClearMessage>(OnClear);
             SubscribeLocalEvent<ForensicScannerComponent, ForensicScannerDoAfterEvent>(OnDoAfter);
+        }
+
+        private void GiveReward(EntityUid uidOrigin, EntityUid target, int amount, string msg)
+        {
+            SoundSpecifier confirmSound = new SoundPathSpecifier("/Audio/Effects/Cargo/ping.ogg");
+            _audio.PlayPvs(_audio.GetSound(confirmSound), uidOrigin);
+
+            var stackPrototype = _prototypeManager.Index<StackPrototype>("Credit");
+            _stackSystem.Spawn(amount, stackPrototype, Transform(target).Coordinates);
+
+            var channel = _prototypeManager.Index<RadioChannelPrototype>("Nfsd");
+            _radio.SendRadioMessage(uidOrigin, msg, channel, uidOrigin);
         }
 
         private void UpdateUserInterface(EntityUid uid, ForensicScannerComponent component)
@@ -98,20 +112,24 @@ namespace Content.Server.Forensics
                     if (TryComp<DeadDropComponent>(args.Args.Target, out var deadDropComponent) &&
                         deadDropComponent.DeadDropCalled && !deadDropComponent.PosterScanned)
                     {
-                        var amount = 30000;
+                        var amount = 3000;
+                        var msg = $"Contraband dead drop poster found! Sending {amount} worth of credits for the investigative work!";
 
-                        SoundSpecifier confirmSound = new SoundPathSpecifier("/Audio/Effects/Cargo/ping.ogg");
-                        _audio.PlayPvs(_audio.GetSound(confirmSound), uid);
-
-                        var stackPrototype = _prototypeManager.Index<StackPrototype>("Credit");
-                        _stackSystem.Spawn(amount, stackPrototype, Transform(args.Args.Target.Value).Coordinates);
-
-                        var channel = _prototypeManager.Index<RadioChannelPrototype>("Nfsd");
-                        _radio.SendRadioMessage(uid, $"Contraband dead drop poster found! Sending {amount} worth of credits for the investigative work!", channel, uid);
+                        GiveReward(uid, args.Args.Target.Value, amount, msg);
 
                         // Makes the boolean true so you can't just keep scanning the same poster over and over again
                         DeadDropSystem.ToggleScanned(deadDropComponent);
                     }
+                }
+                else if (MetaData(Transform(args.Args.Target.Value).ParentUid).EntityName.Equals("Syndicate Supply Drop") &&
+                        !_scannedDeadDrops.Contains(Transform(args.Args.Target.Value).ParentUid))
+                {
+                    var amount = 6000;
+                    var msg = $"Dead drop found! Sending {amount} worth of credits for the investigative work!";
+
+                    GiveReward(uid, args.Args.Target.Value, amount, msg);
+
+                    _scannedDeadDrops.Add(Transform(args.Args.Target.Value).ParentUid);
                 }
 
                 scanner.LastScannedName = MetaData(args.Args.Target.Value).EntityName;
