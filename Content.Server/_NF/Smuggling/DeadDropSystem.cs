@@ -21,6 +21,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Content.Shared.Emag.Systems;
 
 namespace Content.Server._NF.Smuggling;
 
@@ -46,36 +47,26 @@ public sealed class DeadDropSystem : EntitySystem
         base.Initialize();
         SubscribeLocalEvent<DeadDropComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<DeadDropComponent, GetVerbsEvent<InteractionVerb>>(AddSearchVerb);
+        SubscribeLocalEvent<DeadDropComponent, GotDropPrintedEvent>(OnDeadDropPrinterUsed);
     }
 
     private void OnStartup(EntityUid uid, DeadDropComponent component, ComponentStartup _)
     {
         //set up the timing of the first activation
         component.NextDrop = _timing.CurTime + TimeSpan.FromSeconds(_random.Next(component.MinimumCoolDown, component.MaximumCoolDown));
-        if (!HasComp<FaxMachineComponent>(uid))
-            component.NextDrop = component.NextDrop * 3;
-        //Poster drops take longer
     }
 
     private void AddSearchVerb(EntityUid uid, DeadDropComponent component, GetVerbsEvent<InteractionVerb> args)
     {
-        if (!args.CanInteract || !args.CanAccess || args.Hands == null || _timing.CurTime < component.NextDrop)
-            return;
-        var isFax = HasComp<FaxMachineComponent>(uid);
-        if (isFax == true && _power.IsPowered(uid, EntityManager)== false)
+        if (!args.CanInteract || !args.CanAccess || args.Hands == null || _timing.CurTime < component.NextDrop || HasComp<FaxMachineComponent>(uid))
             return;
 
         //here we build our dynamic verb. Using the object's sprite for now to make it more dynamic for the moment.
-        var usedVerb = "";
-        if (isFax == true)
-            usedVerb = Loc.GetString("deaddrop-print-text");
-        else
-            usedVerb = Loc.GetString("deaddrop-search-text");
         InteractionVerb searchVerb = new()
         {
             IconEntity = GetNetEntity(uid),
             Act = () => SendDeadDrop(uid, component, args.User, args.Hands),
-            Text = usedVerb,
+            Text = Loc.GetString("deaddrop-search-text"),
             Priority = 3
         };
 
@@ -83,15 +74,15 @@ public sealed class DeadDropSystem : EntitySystem
     }
 
     //spawning the dead drop.
-    private void SendDeadDrop(EntityUid uid, DeadDropComponent component, EntityUid user, HandsComponent hands)
+    private bool SendDeadDrop(EntityUid uid, DeadDropComponent component, EntityUid user, HandsComponent hands)
     {
         //simple check to make sure we dont allow multiple activations from a desynced verb window.
-        if (_timing.CurTime < component.NextDrop)
-            return;
+        if (_timing.CurTime < component.NextDrop && HasComp<FaxMachineComponent>(uid) == false)
+            return false;
 
         //relying entirely on shipyard capabilities, including using the shipyard map to spawn the items and ftl to bring em in
         if (_shipyard.ShipyardMap is not MapId shipyardMap)
-            return;
+            return false;
 
         var options = new MapLoadOptions
         {
@@ -100,7 +91,7 @@ public sealed class DeadDropSystem : EntitySystem
 
         //load whatever grid was specified on the component, either a special dead drop or default
         if (!_map.TryLoad(shipyardMap, component.DropGrid, out var gridUids, options))
-            return;
+            return false;
 
         //setup the radar properties
         _shuttle.SetIFFColor(gridUids[0], component.Color);
@@ -150,5 +141,16 @@ public sealed class DeadDropSystem : EntitySystem
         }
         //reset the timer
         component.NextDrop = _timing.CurTime + TimeSpan.FromSeconds(_random.Next(component.MinimumCoolDown, component.MaximumCoolDown));
+        return true;
     }
+
+    private void OnDeadDropPrinterUsed(EntityUid uid, DeadDropComponent comp, ref GotDropPrintedEvent args)
+    {   TryComp<HandsComponent>(args.UserUid, out var hands);
+        if (hands == null || HasComp<FaxMachineComponent>(args.TargetUid) == false)
+        {
+            return;
+        }
+        args.Handled = SendDeadDrop(args.TargetUid, comp, uid, hands);
+    }
+
 }

@@ -1,0 +1,17 @@
+- type: entity
+  parent: ClothingBackpackDuffelSyndicate
+  id: ClothingBackpackDuffelSyndicateTelecrystalLoot
+  name: Telecrystal Package
+  description: A package containing a random amount of telecrystals.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+      - id: Telecrystal5
+      - id: Telecrystal5
+        prob: 0.4
+      - id: Telecrystal5
+        prob: 0.2
+      - id: Telecrystal5
+        prob: 0.01
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg

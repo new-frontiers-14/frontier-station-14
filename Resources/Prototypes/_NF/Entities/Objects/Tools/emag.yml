@@ -28,3 +28,22 @@
     state: icon
   - type: Item
     sprite: _NF/Objects/Tools/demag.rsi
+
+- type: entity
+  parent: BaseItem
+  id: DeadDropSignaller
+  name: Drop Signaller
+  suffix: Broker
+  description: A tool that prints dead drops from fax machines on POIs. If this falls into enemy hands the operation is pretty much over.
+  components:
+  - type: Emag
+    dropprinter: true
+  - type: LimitedCharges
+    maxCharges: 1
+  - type: AutoRecharge
+    rechargeDuration: 720
+  - type: Sprite
+    sprite: Objects/Misc/id_cards.rsi
+    state: syndie
+  - type: Item
+    sprite: Objects/Misc/id_cards.rsi
