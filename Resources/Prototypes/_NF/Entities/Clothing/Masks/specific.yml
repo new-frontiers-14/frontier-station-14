@@ -1,17 +1,19 @@
 ﻿- type: entity
-  parent: ClothingMaskGasVoiceChameleon
+  parent:
+  - ClothingMaskGasVoiceChameleon
+  - ContrabandClothing
   id: ClothingMaskGasVoiceChameleonFakeName
   suffix: Voice Mask, Chameleon, Radio Fake Name
   components:
     - type: VoiceMasker
       radioMode: Fake
-    - type: Contraband #frontier
 
 - type: entity
-  parent: ClothingMaskGasVoiceChameleon
+  parent:
+  - ClothingMaskGasVoiceChameleon
+  - ContrabandClothing
   id: ClothingMaskGasVoiceChameleonRealName
   suffix: Voice Mask, Chameleon, Radio Real Name
   components:
     - type: VoiceMasker
       radioMode: Real
-    - type: Contraband #frontier

@@ -24,6 +24,18 @@
 
 - type: entity
   parent: PosterBase
+  id: ShuttleMapBazaar
+  name: "SLI Bazaar"
+  description: "Detailed map of a Bazaar shuttle."
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
+    state: bazaar
+    scale: 1.2, 1.2
+
+- type: entity
+  parent: PosterBase
   id: ShuttleMapBocadillo
   name: "NC Bocadillo"
   description: "Detailed map of a Bocadillo shuttle."
@@ -272,4 +284,15 @@
   - type: Sprite
     sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
     state: vagabond
+    scale: 1.2, 1.2
+
+- type: entity
+  parent: PosterBase
+  id: ShuttleMapSpirit
+  name: "NM Spirit"
+  description: "Detailed map of a Spirit shuttle."
+  components:
+  - type: Sprite
+    sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
+    state: spirit
     scale: 1.2, 1.2
