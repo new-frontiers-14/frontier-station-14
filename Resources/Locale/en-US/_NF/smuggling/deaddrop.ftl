@@ -1,3 +1,4 @@
+deaddrop-print-text = Print Drop
 deaddrop-search-text = Search closer
 deaddrop-security-report = Syndicate smuggling activities detected in your sector
 deaddrop-hint-pretext = A Syndicate drop pod will be dispatched to the following coordinates:

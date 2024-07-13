@@ -83,3 +83,20 @@
       collection: storageRustle
   - type: StaticPrice # Require since you can still sell a ship that have it on it
     price: 25000
+
+- type: entity
+  parent: BriefcaseSyndie
+  id: BriefcaseSyndicateBrokerBundleFilled
+  suffix: Syndicate, Broker Bundle
+  components:
+  - type: Item
+    size: Ginormous
+  - type: Storage
+    maxItemSize: Huge
+  - type: StorageFill
+    contents:
+    - id: PinpointerUniversal
+    - id: SpaceCash25000
+      amount: 2
+    - id: DeadDropSignaller
+    - id: Telecrystal25

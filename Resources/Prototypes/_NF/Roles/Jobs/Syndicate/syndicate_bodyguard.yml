@@ -1,0 +1,55 @@
+- type: job
+  id: SyndicateBodyguard
+  name: job-name-syndicate-bodyguard
+  description: job-description-syndicate-bodyguard
+  playTimeTracker: JobSyndicateBodyguard
+  requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 129600 # Frontier - 36 hours
+  whitelisted: true
+  startingGear: SyndicateBodyguardNFGear
+  alwaysUseSpawner: true
+  hideConsoleVisibility: true
+  canBeAntag: true
+  icon: "JobIconMercenary"
+  supervisors: job-supervisors-syndicate-bodyguard
+  setPreference: true
+  accessGroups:
+  - GeneralAccess
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: MailDisabled
+    - type: NpcFactionMember
+      factions: [Syndicate]
+    - type: Access
+      tags:
+      - SyndicateAgent
+
+  - !type:AddImplantSpecial
+    implants: [ DeathRattleImplant ]
+  - !type:GiveItemOnHolidaySpecial
+    holiday: FrontierBirthday
+    prototype: FrontierBirthdayGift
+
+- type: startingGear
+  id: SyndicateBodyguardNFGear
+  equipment:
+    head: ClothingHeadHelmetSwatSyndicate
+    eyes: ClothingEyesHudSyndicate
+    mask: ClothingMaskGasSyndicate
+    ears: ClothingHeadsetAltSyndicate
+    shoes: ClothingShoesBootsCombatFilled
+    belt: ClothingBeltMilitaryWebbing
+    pocket1: MagazinePistol
+    pocket2: WeaponPistolViper
+    outerClothing: ClothingOuterCoatSyndieCapArmored
+    back: ClothingBackpackSyndicate
+    jumpsuit: ClothingUniformJumpsuitOperative
+    gloves: ClothingHandsGlovesCombat
+  storage:
+    back:
+    - MagazinePistol
+    - MedkitCombatFilled
+    - PinpointerUniversal
+    - Telecrystal5

@@ -189,3 +189,35 @@
         type: IFFConsoleBoundUserInterface
   - type: Computer
     board: Null
+
+- type: entity
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseStructureComputer,StorePresetBrokerUplink]
+  id: ComputerContrabandCargoOrders
+  name: Syndicate cargo request computer
+  suffix: Syndicate, Broker
+  description: A nefarious shopping list for syndicate agents and their crooked pals. Takes telecrystals.
+  components:
+  - type: Sprite
+    drawdepth: SmallObjects
+    layers:
+    - map: ["computerLayerBody"]
+      sprite: _NF/Structures/Machines/computer_tabletop.rsi
+      state: computer_tabletop
+    - map: ["computerLayerKeyboard"]
+      sprite: _NF/Structures/Machines/computer_tabletop.rsi
+      state: generic_keyboard_tabletop
+    - map: ["computerLayerScreen"]
+      sprite: Structures/Machines/computers.rsi
+      state: syndishuttle
+    - map: ["computerLayerKeys"]
+      sprite: Structures/Machines/computers.rsi
+      state: syndie_key
+  - type: UserInterface
+    interfaces:
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+  - type: ActivatableUI
+    key: enum.StoreUiKey.Key
+  - type: Store
+    balance:
+      Telecrystal: 0
