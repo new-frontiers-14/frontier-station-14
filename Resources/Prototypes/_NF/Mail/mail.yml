@@ -1333,6 +1333,18 @@
 - type: entity
   noSpawn: true
   parent: BaseMailLarge
+  id: MailNFEmotionalRPG
+  suffix: Emotional
+  components:
+  - type: Mail
+    contents:
+    - id: WeaponLauncherRocketToy
+    - id: BulletFoamRPG
+      amount: 1
+
+- type: entity
+  noSpawn: true
+  parent: BaseMailLarge
   id: MailNFDAW
   suffix: DAW
   components:
@@ -1817,7 +1829,7 @@
 
 - type: entity
   noSpawn: true
-  parent: BaseMail
+  parent: BaseMailLarge
   id: MailNFTacticalMaid
   suffix: tactical maid
   components:
@@ -1827,6 +1839,7 @@
       - id: ClothingHeadHatTacticalMaidHeadband
       - id: MegaSprayBottle
       - id: ClothingHandsTacticalMaidGloves
+      - id: ClothingOuterHardsuitTacticalMaid
 
 # These could use separate sprites.  That would be a nice touch.
 - type: entity

@@ -38,6 +38,8 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
     public bool ShowIFFShuttles { get; set; } = true;
     public bool ShowDocks { get; set; } = true;
 
+    public float MaximumIFFDistance { get; set; } = -1f; // Frontier
+
     /// <summary>
     ///   If present, called for every IFF. Must determine if it should or should not be shown.
     /// </summary>
@@ -223,6 +225,20 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
             {
                 shouldDrawIFF &= ShowIFFShuttles;
             }
+
+            // New Frontiers - Maximum IFF Distance - checks distance to object, draws if closer than max range
+            // This code is licensed under AGPLv3. See AGPLv3.txt
+            if (shouldDrawIFF && MaximumIFFDistance >= 0.0f)
+            {
+                var gridCentre = Vector2.Transform(gridBody.LocalCenter, matty);
+                var distance = gridCentre.Length();
+
+                if (distance > MaximumIFFDistance)
+                {
+                    shouldDrawIFF = false;
+                }
+            }
+            // End of modified code
 
             if (shouldDrawIFF)
             {

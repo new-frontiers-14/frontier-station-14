@@ -10,18 +10,13 @@
     - !type:OverallPlaytimeRequirement
       time: 36000 # Frontier - 10 hrs
   startingGear: DetectiveNFGear
-  icon: "JobIconDetective"
+  icon: "JobIconNFDetective"
   supervisors: job-supervisors-bailiff
   canBeAntag: false
   access:
-  - Maintenance
-  - External
-  - Command
-  - Brig
-  - Security
-  - Mercenary # Frontier
-  - Captain # Frontier
   - Detective
+  accessGroups: # Frontier
+  - GeneralNfsdAccess # Frontier
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant, TrackingImplant ]

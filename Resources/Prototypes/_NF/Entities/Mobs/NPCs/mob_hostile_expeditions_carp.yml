@@ -3,8 +3,8 @@
   parent:
   - MobNonHumanHostileBase
   id: BaseMobCarpExpeditions
-  name: planetary space carp
-  description: It's a planetary space carp.
+  name: carp
+  description: A variant of the common space carp, evolved to "swim" through gravity. Equally dangerous.
   abstract: true
   components:
   - type: HTN
@@ -28,15 +28,22 @@
     layers:
     - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: alive
+    - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+      state: mouth
+      shader: unshaded
   - type: Butcherable
     spawned:
     - id: FoodMeatFish
       amount: 2
   - type: MobState
-  - type: MobThresholds
+  - type: MobThresholds # Base value to fall back to
     thresholds:
       0: Alive
       50: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      30: 0.7
+      40: 0.5
   - type: Stamina
     critThreshold: 100
   - type: DamageStateVisuals
@@ -99,10 +106,10 @@
   parent: BaseMobCarpExpeditions
   id: MobCarpMagicExpeditions
   name: magicarp
-  description: Looks like some kind of fish. Might be magical.
+  description: A lesser version of spaceproof giant carp believed to have magic powers. Contrary to popular belief, does not possess magical abilities.
   components:
   - type: Sprite
-    sprite: Mobs/Aliens/Carps/magic.rsi
+    sprite: _NF/Mobs/Aliens/Carps/magic.rsi
   - type: TypingIndicator
     proto: guardian
 
@@ -113,7 +120,7 @@
   description: Carp made out of holographic energies. Sadly for you, it is very much real.
   components:
   - type: Sprite
-    sprite: Mobs/Aliens/Carps/holo.rsi
+    sprite: _NF/Mobs/Aliens/Carps/holo.rsi
   - type: Physics
   - type: Fixtures
     fixtures:
@@ -133,7 +140,8 @@
   parent: BaseMobCarpExpeditions
   id: MobCarpRainbowExpeditions
   name: rainbow carp
-  description: Wow such a shiny fishie!
+  description: |- 
+   "Wow such a shiny fishie!" you might say. Reasonable, but these are deadly nonetheless.
   components:
   - type: PointLight
     radius: 1.5
@@ -159,6 +167,10 @@
     thresholds:
       0: Alive
       80: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      48: 0.7
+      64: 0.5
   - type: Stamina
     critThreshold: 150
   - type: Body
