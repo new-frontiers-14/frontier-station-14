@@ -1,0 +1,48 @@
+# Empty mags
+- type: entity
+  parent: BaseMagazineRifle
+  id: MagazineNovaliteC1Empty
+  name: "clip (.20 rifle any)"
+  suffix: empty
+  components:
+  - type: Tag
+    tags:
+      - MagazineNovaliteC1
+  - type: Item
+    size: Small
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeRifle
+    capacity: 15
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Rifle/novalite_clip.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 16
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  parent: MagazineNovaliteC1Empty
+  id: MagazineNovaliteC1
+  name: "clip (.20 rifle)"
+  suffix: full
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifle
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
