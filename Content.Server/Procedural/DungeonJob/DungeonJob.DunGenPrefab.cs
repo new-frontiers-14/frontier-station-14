@@ -29,7 +29,6 @@ public sealed partial class DungeonJob
         var dungeonRotation = _dungeon.GetDungeonRotation(random.Next());
         var dungeonTransform = Matrix3Helpers.CreateTransform(position, dungeonRotation);
         var roomPackProtos = new Dictionary<Vector2i, List<DungeonRoomPackPrototype>>();
-        var fallbackTile = new Tile(_tileDefManager[prefab.Tile].TileId);
 
         foreach (var pack in _prototype.EnumeratePrototypes<DungeonRoomPackPrototype>())
         {
@@ -170,7 +169,6 @@ public sealed partial class DungeonJob
         {
             var pack = chosenPacks[i]!;
             var packTransform = packTransforms[i];
-            var packRotation = packRotations[i];
 
             // Actual spawn cud here.
             // Pickout the room pack template to get the room dimensions we need.
@@ -206,13 +204,15 @@ public sealed partial class DungeonJob
 
                         _maps.SetTiles(_gridUid, _grid, tiles);
                         tiles.Clear();
-                        Logger.Error($"Unable to find room variant for {roomDimensions}, leaving empty.");
+                        _sawmill.Error($"Unable to find room variant for {roomDimensions}, leaving empty.");
                         continue;
                     }
 
                     roomRotation = new Angle(Math.PI / 2);
-                    Logger.Debug($"Using rotated variant for room");
+                    _sawmill.Debug($"Using rotated variant for room");
                 }
+
+                var room = roomProto[random.Next(roomProto.Count)];
 
                 if (roomDimensions.X == roomDimensions.Y)
                 {
@@ -238,25 +238,6 @@ public sealed partial class DungeonJob
                 var tileOffset = -roomCenter + _grid.TileSizeHalfVector;
                 Box2i? mapBounds = null;
 
-                // Load tiles
-                for (var x = 0; x < room.Size.X; x++)
-                {
-                    for (var y = 0; y < room.Size.Y; y++)
-                    {
-                        var indices = new Vector2i(x + room.Offset.X, y + room.Offset.Y);
-                        var tileRef = templateGrid.GetTileRef(indices);
-
-                        var tilePos = Vector2.Transform(indices + tileOffset, dungeonMatty);
-                        var rounded = tilePos.Floored();
-                        tiles.Add((rounded, tileRef.Tile));
-                        roomTiles.Add(rounded);
-
-                        // If this were a Box2 we'd add tilesize although here I think that's undesirable as
-                        // for example, a box2i of 0,0,1,1 is assumed to also include the tile at 1,1
-                        mapBounds = mapBounds?.Union(new Box2i(rounded, rounded)) ?? new Box2i(rounded, rounded);
-                    }
-                }
-
                 for (var x = -1; x <= room.Size.X; x++)
                 {
                     for (var y = -1; y <= room.Size.Y; y++)
@@ -275,7 +256,6 @@ public sealed partial class DungeonJob
                     }
                 }
 
-                var bounds = new Box2(room.Offset, room.Offset + room.Size);
                 var center = Vector2.Zero;
 
                 for (var x = 0; x < room.Size.X; x++)
