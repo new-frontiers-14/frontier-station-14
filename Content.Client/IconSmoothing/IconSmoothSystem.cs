@@ -331,13 +331,13 @@ namespace Content.Client.IconSmoothing
             // both walls checked, check the corner
             if (value == 3)
             {
-                var neighbor = (Vector2i) rotation.RotateVec((1, -1));
+                var neighbor = (Vector2i) rotation.RotateVec(new(1, -1));
                 if(MatchingEntity(smooth, grid.GetAnchoredEntitiesEnumerator(pos + neighbor), smoothQuery)) {
                     value = 4;
                 }
             }
 
-            sprite.Comp.LayerSetState(0, $"{smooth.StateBase}{value}}");
+            sprite.Comp.LayerSetState(0, $"{smooth.StateBase}{value}");
         }
         // End Frontier
 
