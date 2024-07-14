@@ -1,5 +1,8 @@
 - type: entity
-  parent: [ ClothingOuterStorageBase, ClothingOuterArmorBulletproof ]
+  parent:
+  - ClothingOuterStorageBase
+  - ClothingOuterArmorBulletproof
+  - ContrabandClothing
   id: ClothingOuterCoatCultJanitor
   name: cult janitor robes
   description: An unholy custodian's garb. Surprisingly comfortable.
@@ -8,12 +11,12 @@
     sprite: _NF/Clothing/OuterClothing/Coats/cult_janitor_robe.rsi
   - type: Clothing
     sprite: _NF/Clothing/OuterClothing/Coats/cult_janitor_robe.rsi
-  - type: Contraband
-  - type: FactionClothing
-    faction: ContrabandClothing
 
 - type: entity
-  parent: [ ClothingOuterStorageToggleableBase, ClothingOuterArmorBasic ]
+  parent:
+  - ClothingOuterStorageToggleableBase
+  - ClothingOuterArmorBasic
+  - ContrabandClothing
   id: ClothingOuterCoatBloodCultRobes
   name: cult robes
   description: There's no cult without classic red/crimson cult robes with bulletproof vests.
@@ -25,6 +28,3 @@
     sprite: _NF/Clothing/OuterClothing/Coats/cult_robes.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodBloodCulthood
-  - type: Contraband
-  - type: FactionClothing
-    faction: ContrabandClothing
