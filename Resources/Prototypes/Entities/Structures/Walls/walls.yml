@@ -26,7 +26,7 @@
   - type: Icon
     state: full
   - type: PlacementReplacement
-    #key: walls # Frontier: commented
+    key: walls
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: StructuralMetallic
@@ -82,7 +82,7 @@
         acts: [ "Destruction" ]
 
   - type: IconSmooth
-    #key: bricks # Frontier: commented
+    key: bricks
     base: brick
 
 - type: entity
@@ -114,7 +114,7 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: IconSmooth
-    #key: walls # Frontier: commented
+    key: walls
     base: clock
 
 - type: entity
@@ -150,7 +150,7 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: IconSmooth
-    #key: walls # Frontier: commented
+    key: walls
     base: clown
 
 - type: entity
@@ -184,7 +184,7 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: IconSmooth
-    #key: walls # Frontier: commented
+    key: walls
     base: meat
 
 - type: entity
@@ -213,7 +213,7 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: IconSmooth
-    #key: walls # Frontier: commented
+    key: walls
     base: cult
 
 - type: entity
@@ -244,7 +244,7 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: IconSmooth
-    #key: walls # Frontier: commented
+    key: walls
     base: debug
 
 - type: entity
@@ -277,7 +277,7 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: IconSmooth
-    #key: walls # Frontier: commented
+    key: walls
     base: diamond
 
 - type: entity
@@ -322,7 +322,7 @@
       - !type:DoActsBehavior
         acts: ["Destruction"]
   - type: IconSmooth
-    #key: walls # Frontier: commented
+    key: walls
     base: gold
 
 - type: entity
@@ -351,7 +351,7 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: IconSmooth
-    #key: walls # Frontier: commented
+    key: walls
     base: ice
 
 - type: entity
@@ -396,7 +396,7 @@
       - !type:DoActsBehavior
         acts: ["Destruction"]
   - type: IconSmooth
-    #key: walls # Frontier: commented
+    key: walls
     base: plasma
   - type: RadiationBlocker
     resistance: 5
@@ -443,7 +443,7 @@
       - !type:DoActsBehavior
         acts: ["Destruction"]
   - type: IconSmooth
-    #key: walls # Frontier: commented
+    key: walls
     base: plastic
 
 - type: entity
@@ -460,7 +460,7 @@
     - type: Icon
       sprite: Structures/Walls/plastitanium.rsi
     - type: IconSmooth
-      #key: walls # Frontier: commented
+      key: walls
       base: plastitanium
 #    - type: Reflect # Frontier
 #      reflectProb: 0.75 # Frontier
@@ -506,7 +506,7 @@
     state: state0
   - type: IconSmooth
     mode: Diagonal
-    #key: walls # Frontier: commented
+    key: walls
     base: state
   - type: Icon
     sprite: Structures/Walls/plastitanium_diagonal.rsi
@@ -553,7 +553,7 @@
       - !type:DoActsBehavior
         acts: ["Destruction"]
   - type: IconSmooth
-    #key: walls # Frontier: commented
+    key: walls
     base: reinf_over
   - type: Appearance
   - type: GenericVisualizer
@@ -588,7 +588,7 @@
     graph: Girder
     node: reinforcedWallRust
   - type: IconSmooth
-    #key: walls # Frontier: commented
+    key: walls
     base: reinf_over
 
 # - type: entity
@@ -607,7 +607,7 @@
     # state: state0
   # - type: IconSmooth
     # mode: Diagonal
-    # #key: walls # Frontier: commented
+    # key: walls
     # base: state
   # - type: Icon
     # sprite: Structures/Walls/reinforced_diagonal.rsi
@@ -643,7 +643,7 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: IconSmooth
-    #key: walls # Frontier: commented
+    key: walls
     base: riveted
   - type: StaticPrice
     price: 50
@@ -678,7 +678,7 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: IconSmooth
-    #key: walls # Frontier: commented
+    key: walls
     base: sandstone
 
 - type: entity
@@ -723,7 +723,7 @@
       - !type:DoActsBehavior
         acts: ["Destruction"]
   - type: IconSmooth
-    #key: walls # Frontier: commented
+    key: walls
     base: silver
 
 #shuttle walls
@@ -749,7 +749,7 @@
     state: state0
   - type: IconSmooth
     mode: Diagonal
-    #key: walls # Frontier: commented
+    key: walls
     base: state
   - type: Icon
     sprite: Structures/Walls/shuttle_diagonal.rsi
@@ -821,7 +821,7 @@
     graph: Girder
     node: shuttleWall
   - type: IconSmooth
-    #key: walls # Frontier: commented
+    key: walls
     base: state
   - type: Appearance
   - type: GenericVisualizer
@@ -852,7 +852,7 @@
     graph: Girder
     node: shuttleInteriorWall
   - type: IconSmooth
-    #key: walls # Frontier: commented
+    key: walls
     base: state
 #  - type: Reflect # Frontier
 #    reflectProb: 0.1 # Frontier
@@ -900,7 +900,7 @@
       - !type:DoActsBehavior
         acts: ["Destruction"]
   - type: IconSmooth
-    #key: walls # Frontier: commented
+    key: walls
     base: solid
 
 - type: entity
@@ -919,7 +919,7 @@
     state: state0
   - type: IconSmooth
     mode: Diagonal
-    #key: walls # Frontier: commented
+    key: walls
     base: state
   - type: Icon
     sprite: Structures/Walls/solid_diagonal.rsi
@@ -940,7 +940,7 @@
     graph: Girder
     node: wallrust
   - type: IconSmooth
-    #key: walls # Frontier: commented
+    key: walls
     base: solid
 
 - type: entity
@@ -978,7 +978,7 @@
       - !type:DoActsBehavior
         acts: ["Destruction"]
   - type: IconSmooth
-    #key: walls # Frontier: commented
+    key: walls
     base: uranium
   - type: RadiationBlocker
     resistance: 6
@@ -1018,7 +1018,7 @@
       - !type:DoActsBehavior
         acts: ["Destruction"]
   - type: IconSmooth
-    # key: woods # Frontier: commented
+    key: woods
     base: wood
 
 - type: entity
@@ -1059,7 +1059,7 @@
         sound:
           collection: WoodDestroy
   - type: IconSmooth
-    #key: webs # Frontier: commented
+    key: webs
     base: wall
   - type: Construction
     graph: WebStructures
@@ -1089,7 +1089,7 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: IconSmooth
-    #key: walls # Frontier: commented
+    key: walls
     base: necropolis
 
 - type: entity
@@ -1113,7 +1113,7 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: IconSmooth
-    #key: walls # Frontier: commented
+    key: walls
     base: mining
 
 - type: entity
@@ -1132,7 +1132,7 @@
     state: state0
   - type: IconSmooth
     mode: Diagonal
-    #key: walls # Frontier: commented
+    key: walls
     base: state
   - type: Icon
     sprite: Structures/Walls/mining_diagonal.rsi
