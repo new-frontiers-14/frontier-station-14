@@ -9,33 +9,33 @@ shipyard-record-paper-name = {$vessel_name} {$time}
 #
 #      Additional notes:
 
-shipyard-record-paper-content =  l[color=blue]◥█▄  █  ®[/color]                                                               [color= #009100][italic]Frontier Automated[/italic][/color]
-      l[color=blue]   █  ▀█◣[/color]                                                          [color= #009100][italic]Vessel Reporting System[/italic][/color]
-      l__________________________________________________________________
-      l
-      l[head=2]               Ship Deployment Report[/head]
-      l__________________________________________________________________
-      l
-      l[bold]Ship ID:[/bold] {$vessel_name}
-      l                [italic]Category:[/italic] {$vessel_category}
-      l                [italic]Class:[/italic] {$vessel_class}
-      l                [italic]Shipyard:[/italic] {$vessel_group}
-      l                [italic]Price:[/italic] {$vessel_price}
-      l
-      l                [italic]Description:[/italic] {$vessel_description}
-      l
-      l[bold]Time Deployed:[/bold] {$time}
-      l
-      l[bold]Captain Name:[/bold] {$vessel_owner_name}
-      l                [italic]Species:[/italic] {$vessel_owner_species}
-      l                [italic]Gender:[/italic] {$vessel_owner_gender}
-      l                   [italic]Age:[/italic] {$vessel_owner_age}
-      l
-      l                [italic]Fingerprints:[/italic] {$vessel_owner_fingerprints}
-      l                [italic]DNA:[/italic] {$vessel_owner_dna}
-      l__________________________________________________________________
-      l
-      l[color=grey][italic]         This automated report is accurate at the time of reciept.[/italic][/color]
-      l
-      l[color=grey][italic] The above information may change during the course of the shift.[/italic][/color]
-      l__________________________________________________________________
+shipyard-record-paper-content =  {"["}color=blue]◥█▄  █  ®[/color]                                                               [color= #009100][italic]Frontier Automated[/italic][/color]
+      {"["}color=blue]   █  ▀█◣[/color]                                                          [color= #009100][italic]Vessel Reporting System[/italic][/color]
+      __________________________________________________________________
+
+      {"["}head=2]               Ship Deployment Report[/head]
+      __________________________________________________________________
+
+      {"["}italic]Ship ID:[/italic] [bold]{$vessel_name}[/bold]
+                      {"["}italic]Category:[/italic] [bold]{$vessel_category}[/bold]
+                      {"["}italic]Class:[/italic] [bold]{$vessel_class}[/bold]
+                      {"["}italic]Shipyard:[/italic] [bold]{$vessel_group}[/bold]
+                      {"["}italic]Price:[/italic] [bold]{$vessel_price}[/bold]
+
+                      {"["}italic]Description:[/italic] [bold]{$vessel_description}[/bold]
+
+      {"["}italic]Time Deployed:[/italic] [bold]{$time}[/bold]
+
+      {"["}italic]Captain Name:[/italic] [bold]{$vessel_owner_name}[/bold]
+                      {"["}italic]Species:[/italic] [bold]{$vessel_owner_species}[/bold]
+                      {"["}italic]Gender:[/italic] [bold]{$vessel_owner_gender}[/bold]
+                         {"["}italic]Age:[/italic] [bold]{$vessel_owner_age}[/bold]
+
+                      {"["}italic]Fingerprints:[/italic] [bold]{$vessel_owner_fingerprints}[/bold]
+                      {"["}italic]DNA:[/italic] [bold]{$vessel_owner_dna}[/bold]
+      __________________________________________________________________
+
+      {"["}color=grey][italic]         END OF REPORT[/italic][/color]
+
+      {"["}color=grey][italic] The below section is dedicated for noting additional information.[/italic][/color]
+      __________________________________________________________________

@@ -4,8 +4,254 @@
   id: PaperShipyardRecordBase
   description: 'A plain sheet of paper with details regarding purchased vessel.'
   components:
+  - type: Sprite
+    sprite: _NF/Objects/Misc/shipyard_record_fax_paper.rsi
+    layers:
+    - state: paper_record_undetermined
+    - state: writing
+      map: ["enum.PaperVisualLayers.Writing"]
   - type: PaperVisuals
     backgroundImagePath: "/Textures/_NF/Interface/Misc/Paper/shipyard_record_paper_undetermined.png"
+    #contentImagePath: "/Textures/Interface/Paper/paper_content_lined.svg.96dpi.png"
+    backgroundPatchMargin: 16.0, 16.0, 16.0, 16.0
+    #contentMargin: 16.0, 16.0, 16.0, 16.0
+    headerImagePath: "/Textures/Interface/Paper/paper_heading_artifact_analyzer.svg.96dpi.png"
+    headerMargin: 0.0, 0.0, 0.0, 16.0
+
+- type: entity
+  name: Civilian shipyard record paper
+  parent: Paper
+  id: PaperShipyardRecordCivilian
+  description: 'A formal sheet of paper with details regarding purchased civilian vessel.'
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Misc/shipyard_record_fax_paper.rsi
+    layers:
+    - state: paper_record_civilian
+    - state: writing
+      map: ["enum.PaperVisualLayers.Writing"]
+  - type: PaperVisuals
+    backgroundImagePath: "/Textures/_NF/Interface/Misc/Paper/shipyard_record_paper_civilian.png"
+    #contentImagePath: "/Textures/Interface/Paper/paper_content_lined.svg.96dpi.png"
+    backgroundPatchMargin: 16.0, 16.0, 16.0, 16.0
+    #contentMargin: 16.0, 16.0, 16.0, 16.0
+    headerImagePath: "/Textures/Interface/Paper/paper_heading_artifact_analyzer.svg.96dpi.png"
+    headerMargin: 0.0, 0.0, 0.0, 16.0
+
+- type: entity
+  name: Expedition shipyard record paper
+  parent: Paper
+  id: PaperShipyardRecordExpedition
+  description: 'A sturdy sheet of paper with details regarding purchased expeditionary vessel.'
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Misc/shipyard_record_fax_paper.rsi
+    layers:
+    - state: paper_record_expedition
+    - state: writing
+      map: ["enum.PaperVisualLayers.Writing"]
+  - type: PaperVisuals
+    backgroundImagePath: "/Textures/_NF/Interface/Misc/Paper/shipyard_record_paper_expedition.png"
+    #contentImagePath: "/Textures/Interface/Paper/paper_content_lined.svg.96dpi.png"
+    backgroundPatchMargin: 16.0, 16.0, 16.0, 16.0
+    #contentMargin: 16.0, 16.0, 16.0, 16.0
+    headerImagePath: "/Textures/Interface/Paper/paper_heading_artifact_analyzer.svg.96dpi.png"
+    headerMargin: 0.0, 0.0, 0.0, 16.0
+
+- type: entity
+  name: Medical shipyard record paper
+  parent: Paper
+  id: PaperShipyardRecordMedical
+  description: 'A sterile sheet of paper with details regarding purchased medical vessel.'
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Misc/shipyard_record_fax_paper.rsi
+    layers:
+    - state: paper_record_medical
+    - state: writing
+      map: ["enum.PaperVisualLayers.Writing"]
+  - type: PaperVisuals
+    backgroundImagePath: "/Textures/_NF/Interface/Misc/Paper/shipyard_record_paper_medical.png"
+    #contentImagePath: "/Textures/Interface/Paper/paper_content_lined.svg.96dpi.png"
+    backgroundPatchMargin: 16.0, 16.0, 16.0, 16.0
+    #contentMargin: 16.0, 16.0, 16.0, 16.0
+    headerImagePath: "/Textures/Interface/Paper/paper_heading_artifact_analyzer.svg.96dpi.png"
+    headerMargin: 0.0, 0.0, 0.0, 16.0
+
+- type: entity
+  name: Blackmarket shipyard record paper
+  parent: Paper
+  id: PaperShipyardRecordBlackmarket
+  description: 'A rough sheet of paper with details regarding illegally purchased vessel.'
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Misc/shipyard_record_fax_paper.rsi
+    layers:
+    - state: paper_record_blackmarket
+    - state: writing
+      map: ["enum.PaperVisualLayers.Writing"]
+  - type: PaperVisuals
+    backgroundImagePath: "/Textures/_NF/Interface/Misc/Paper/shipyard_record_paper_blackmarket.png"
+    #contentImagePath: "/Textures/Interface/Paper/paper_content_lined.svg.96dpi.png"
+    backgroundPatchMargin: 16.0, 16.0, 16.0, 16.0
+    #contentMargin: 16.0, 16.0, 16.0, 16.0
+    headerImagePath: "/Textures/Interface/Paper/paper_heading_artifact_analyzer.svg.96dpi.png"
+    headerMargin: 0.0, 0.0, 0.0, 16.0
+
+- type: entity
+  name: NFSD shipyard record paper
+  parent: Paper
+  id: PaperShipyardRecordNFSD
+  description: 'A lawful sheet of paper with details regarding purchased vessel for NFSD fleet.'
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Misc/shipyard_record_fax_paper.rsi
+    layers:
+    - state: paper_record_nfsd
+    - state: writing
+      map: ["enum.PaperVisualLayers.Writing"]
+  - type: PaperVisuals
+    backgroundImagePath: "/Textures/_NF/Interface/Misc/Paper/shipyard_record_paper_nfsd.png"
+    #contentImagePath: "/Textures/Interface/Paper/paper_content_lined.svg.96dpi.png"
+    backgroundPatchMargin: 16.0, 16.0, 16.0, 16.0
+    #contentMargin: 16.0, 16.0, 16.0, 16.0
+    headerImagePath: "/Textures/Interface/Paper/paper_heading_artifact_analyzer.svg.96dpi.png"
+    headerMargin: 0.0, 0.0, 0.0, 16.0
+
+- type: entity
+  name: Scrap shipyard record paper
+  parent: Paper
+  id: PaperShipyardRecordScrap
+  description: 'A torn sheet of paper with details regarding purchased second hand vessel.'
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Misc/shipyard_record_fax_paper.rsi
+    layers:
+    - state: paper_record_scrap
+    - state: writing
+      map: ["enum.PaperVisualLayers.Writing"]
+  - type: PaperVisuals
+    backgroundImagePath: "/Textures/_NF/Interface/Misc/Paper/shipyard_record_paper_scrap.png"
+    #contentImagePath: "/Textures/Interface/Paper/paper_content_lined.svg.96dpi.png"
+    backgroundPatchMargin: 16.0, 16.0, 16.0, 16.0
+    #contentMargin: 16.0, 16.0, 16.0, 16.0
+    headerImagePath: "/Textures/Interface/Paper/paper_heading_artifact_analyzer.svg.96dpi.png"
+    headerMargin: 0.0, 0.0, 0.0, 16.0
+
+- type: entity
+  name: Science shipyard record paper
+  parent: Paper
+  id: PaperShipyardRecordScience
+  description: 'A dimly glowing sheet of paper with details regarding purchased research vessel.'
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Misc/shipyard_record_fax_paper.rsi
+    layers:
+    - state: paper_record_science
+    - state: writing
+      map: ["enum.PaperVisualLayers.Writing"]
+  - type: PaperVisuals
+    backgroundImagePath: "/Textures/_NF/Interface/Misc/Paper/shipyard_record_paper_science.png"
+    #contentImagePath: "/Textures/Interface/Paper/paper_content_lined.svg.96dpi.png"
+    backgroundPatchMargin: 16.0, 16.0, 16.0, 16.0
+    #contentMargin: 16.0, 16.0, 16.0, 16.0
+    headerImagePath: "/Textures/Interface/Paper/paper_heading_artifact_analyzer.svg.96dpi.png"
+    headerMargin: 0.0, 0.0, 0.0, 16.0
+
+- type: entity
+  name: Service shipyard record paper
+  parent: Paper
+  id: PaperShipyardRecordService
+  description: 'A traditional sheet of paper with details regarding purchased service vessel.'
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Misc/shipyard_record_fax_paper.rsi
+    layers:
+    - state: paper_record_service
+    - state: writing
+      map: ["enum.PaperVisualLayers.Writing"]
+  - type: PaperVisuals
+    backgroundImagePath: "/Textures/_NF/Interface/Misc/Paper/shipyard_record_paper_service.png"
+    #contentImagePath: "/Textures/Interface/Paper/paper_content_lined.svg.96dpi.png"
+    backgroundPatchMargin: 16.0, 16.0, 16.0, 16.0
+    #contentMargin: 16.0, 16.0, 16.0, 16.0
+    headerImagePath: "/Textures/Interface/Paper/paper_heading_artifact_analyzer.svg.96dpi.png"
+    headerMargin: 0.0, 0.0, 0.0, 16.0
+
+- type: entity
+  name: Engineering shipyard record paper
+  parent: Paper
+  id: PaperShipyardRecordEngineering
+  description: 'A durable sheet of paper with details regarding purchased engineering vessel.'
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Misc/shipyard_record_fax_paper.rsi
+    layers:
+    - state: paper_record_engineering
+    - state: writing
+      map: ["enum.PaperVisualLayers.Writing"]
+  - type: PaperVisuals
+    backgroundImagePath: "/Textures/_NF/Interface/Misc/Paper/shipyard_record_paper_engineering.png"
+    #contentImagePath: "/Textures/Interface/Paper/paper_content_lined.svg.96dpi.png"
+    backgroundPatchMargin: 16.0, 16.0, 16.0, 16.0
+    #contentMargin: 16.0, 16.0, 16.0, 16.0
+    headerImagePath: "/Textures/Interface/Paper/paper_heading_artifact_analyzer.svg.96dpi.png"
+    headerMargin: 0.0, 0.0, 0.0, 16.0
+
+- type: entity
+  name: Syndicate shipyard record paper
+  parent: Paper
+  id: PaperShipyardRecordSyndicate
+  description: 'An evil sheet of paper with details regarding purchased syndicate vessel. Often means no good...'
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Misc/shipyard_record_fax_paper.rsi
+    layers:
+    - state: paper_record_syndicate
+    - state: writing
+      map: ["enum.PaperVisualLayers.Writing"]
+  - type: PaperVisuals
+    backgroundImagePath: "/Textures/_NF/Interface/Misc/Paper/shipyard_record_paper_syndicate.png"
+    #contentImagePath: "/Textures/Interface/Paper/paper_content_lined.svg.96dpi.png"
+    backgroundPatchMargin: 16.0, 16.0, 16.0, 16.0
+    #contentMargin: 16.0, 16.0, 16.0, 16.0
+    headerImagePath: "/Textures/Interface/Paper/paper_heading_artifact_analyzer.svg.96dpi.png"
+    headerMargin: 0.0, 0.0, 0.0, 16.0
+
+- type: entity
+  name: Cargo shipyard record paper
+  parent: Paper
+  id: PaperShipyardRecordCargo
+  description: 'A cheap sheet of paper with details regarding purchased cargo vessel.'
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Misc/shipyard_record_fax_paper.rsi
+    layers:
+    - state: paper_record_cargo
+    - state: writing
+      map: ["enum.PaperVisualLayers.Writing"]
+  - type: PaperVisuals
+    backgroundImagePath: "/Textures/_NF/Interface/Misc/Paper/shipyard_record_paper_cargo.png"
+    #contentImagePath: "/Textures/Interface/Paper/paper_content_lined.svg.96dpi.png"
+    backgroundPatchMargin: 16.0, 16.0, 16.0, 16.0
+    #contentMargin: 16.0, 16.0, 16.0, 16.0
+    headerImagePath: "/Textures/Interface/Paper/paper_heading_artifact_analyzer.svg.96dpi.png"
+    headerMargin: 0.0, 0.0, 0.0, 16.0
+
+- type: entity
+  name: Salvage shipyard record paper
+  parent: Paper
+  id: PaperShipyardRecordSalvage
+  description: 'A simple sheet of paper with details regarding purchased salvage vessel.'
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Misc/shipyard_record_fax_paper.rsi
+    layers:
+    - state: paper_record_salvage
+    - state: writing
+      map: ["enum.PaperVisualLayers.Writing"]
+  - type: PaperVisuals
+    backgroundImagePath: "/Textures/_NF/Interface/Misc/Paper/shipyard_record_paper_salvage.png"
     #contentImagePath: "/Textures/Interface/Paper/paper_content_lined.svg.96dpi.png"
     backgroundPatchMargin: 16.0, 16.0, 16.0, 16.0
     #contentMargin: 16.0, 16.0, 16.0, 16.0
