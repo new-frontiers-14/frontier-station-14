@@ -1,0 +1,29 @@
+- type: vessel
+  id: Discovery
+  name: NT Discovery
+  description: Multifunctional carrier ship. Almost universal. Almost autonomous. Almost whole. Almost flies. Almost yours.
+  price: 105105
+  category: Large
+  group: Scrap
+  shuttlePath: /Maps/_NF/Shuttles/Scrap/discovery.yml
+
+- type: gameMap
+  id: Discovery
+  mapName: 'NT Discovery'
+  mapPath: /Maps/_NF/Shuttles/Scrap/discovery.yml
+  minPlayers: 0
+  stations: 
+    Discovery:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Discovery {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]
