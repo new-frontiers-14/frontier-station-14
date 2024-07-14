@@ -352,7 +352,10 @@ namespace Content.Client.IconSmoothing
             if (targetComp.Mode is IconSmoothingMode.Diagonal or IconSmoothingMode.DiagonalNF)
             {
                 var rot = -xform.LocalRotation;
-                var dir = new Angle(rot.RotateVec(sourceDir)).GetCardinalDir();
+                var angle = new Angle(rot.RotateVec(-sourceDir));
+                angle += Math.PI / 2; // Cardinal direction
+                var dir = angle.GetCardinalDir();
+                Log.Error($"Checking diagonal! local rot: {xform.LocalRotation} dir: {sourceDir} resulting edge: {dir}");
                 return dir is Direction.South or Direction.SouthEast or Direction.East;
             }
             return true;
