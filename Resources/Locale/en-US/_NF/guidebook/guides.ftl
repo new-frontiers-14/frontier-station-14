@@ -37,6 +37,7 @@ guide-entry-shipyard-garden = Garden
 guide-entry-shipyard-gasbender = Gasbender
 guide-entry-shipyard-hammer = Hammer
 guide-entry-shipyard-harbormaster = Harbormaster
+guide-entry-shipyard-investigator = Investigator
 guide-entry-shipyard-kestrel = Kestrel
 guide-entry-shipyard-kilderkin = Kilderkin
 guide-entry-shipyard-lantern = Lantern
