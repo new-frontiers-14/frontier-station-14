@@ -1,0 +1,30 @@
+- type: entity
+  name: Chocolate Pocky
+  parent: FoodBakedBase
+  id: chocopocky
+  description: Don't forget to play the game with your date...
+  components:
+  - type: Item
+    storedRotation: -90
+  - type: Food
+  - type: Sprite
+    sprite: Corvax/Objects/Consumable/Food/japanfood.rsi
+    state: chocopocky
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 15
+        reagents:
+          - ReagentId: Nutriment
+            Quantity: 10
+          - ReagentId: Theobromine
+            Quantity: 3
+          - ReagentId: CocoaPowder
+            Quantity: 1
+  - type: Tag
+    tags:
+    - Cigarette
+  - type: Clothing
+    sprite: Corvax\Objects\Consumable\Food\pockypacks.rsi
+    slots: [ mask ]
+    equippedPrefix: unlit
