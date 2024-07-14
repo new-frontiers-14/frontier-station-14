@@ -214,6 +214,31 @@ public abstract partial class SharedGunSystem : EntitySystem
     }
 
     /// <summary>
+    /// Attempts to shoot the specified target directly.
+    /// This may bypass projectiles firing etc.
+    /// </summary>
+    public bool AttemptDirectShoot(EntityUid user, EntityUid gunUid, EntityUid target, GunComponent gun)
+    {
+        // Unique name so people don't think it's "shoot towards" and not "I will teleport a bullet into them".
+        gun.ShootCoordinates = Transform(target).Coordinates;
+
+        if (!TryTakeAmmo(user, gunUid, gun, out _, out _, out var args))
+        {
+            gun.ShootCoordinates = null;
+            return false;
+        }
+
+        var result = ShootDirect(gunUid, gun, target, args.Ammo, user: user);
+        gun.ShootCoordinates = null;
+        return result;
+    }
+
+    protected virtual bool ShootDirect(EntityUid gunUid, GunComponent gun, EntityUid target, List<(EntityUid? Entity, IShootable Shootable)> ammo, EntityUid user)
+    {
+        return false;
+    }
+
+    /// <summary>
     /// Attempts to shoot at the target coordinates. Resets the shot counter after every shot.
     /// </summary>
     public void AttemptShoot(EntityUid user, EntityUid gunUid, GunComponent gun, EntityCoordinates toCoordinates)
@@ -372,6 +397,128 @@ public abstract partial class SharedGunSystem : EntitySystem
         }
 
         Dirty(gunUid, gun);
+    }
+
+    /// <summary>
+    /// Tries to return ammo prepped for shooting if a gun is available to shoot.
+    /// </summary>
+    private bool TryTakeAmmo(
+        EntityUid user,
+        EntityUid gunUid, GunComponent gun,
+        out EntityCoordinates fromCoordinates,
+        out EntityCoordinates toCoordinates,
+        [NotNullWhen(true)] out TakeAmmoEvent? args)
+    {
+        toCoordinates = EntityCoordinates.Invalid;
+        fromCoordinates = EntityCoordinates.Invalid;
+        args = null;
+
+        if (!CanShoot(gun))
+            return false;
+
+        if (gun.ShootCoordinates == null)
+            return false;
+
+        toCoordinates = gun.ShootCoordinates.Value;
+        var curTime = Timing.CurTime;
+        var fireRate = TimeSpan.FromSeconds(1f / gun.FireRateModified);
+
+        // First shot
+        // Previously we checked shotcounter but in some cases all the bullets got dumped at once
+        // curTime - fireRate is insufficient because if you time it just right you can get a 3rd shot out slightly quicker.
+        if (gun.NextFire < curTime - fireRate || gun.ShotCounter == 0 && gun.NextFire < curTime)
+            gun.NextFire = curTime;
+
+        var shots = 0;
+        var lastFire = gun.NextFire;
+
+        while (gun.NextFire <= curTime)
+        {
+            gun.NextFire += fireRate;
+            shots++;
+        }
+
+        // NextFire has been touched regardless so need to dirty the gun.
+        Dirty(gunUid, gun);
+
+        // Get how many shots we're actually allowed to make, due to clip size or otherwise.
+        // Don't do this in the loop so we still reset NextFire.
+        switch (gun.SelectedMode)
+        {
+            case SelectiveFire.SemiAuto:
+                shots = Math.Min(shots, 1 - gun.ShotCounter);
+                break;
+            case SelectiveFire.Burst:
+                shots = Math.Min(shots, gun.ShotsPerBurstModified - gun.ShotCounter);
+                break;
+            case SelectiveFire.FullAuto:
+                break;
+            default:
+                throw new ArgumentOutOfRangeException($"No implemented shooting behavior for {gun.SelectedMode}!");
+        }
+
+        var attemptEv = new AttemptShootEvent(user, null);
+        RaiseLocalEvent(gunUid, ref attemptEv);
+
+        if (attemptEv.Cancelled)
+        {
+            if (attemptEv.Message != null)
+            {
+                PopupSystem.PopupClient(attemptEv.Message, gunUid, user);
+            }
+
+            gun.NextFire = TimeSpan.FromSeconds(Math.Max(lastFire.TotalSeconds + SafetyNextFire, gun.NextFire.TotalSeconds));
+            return false;
+        }
+
+        fromCoordinates = Transform(user).Coordinates;
+
+        // Remove ammo
+        var ev = new TakeAmmoEvent(shots, new List<(EntityUid? Entity, IShootable Shootable)>(), fromCoordinates, user, true); // Frontier: add intent to fire
+
+        // Listen it just makes the other code around it easier if shots == 0 to do this.
+        if (shots > 0)
+            RaiseLocalEvent(gunUid, ev);
+
+        DebugTools.Assert(ev.Ammo.Count <= shots);
+        DebugTools.Assert(shots >= 0);
+        UpdateAmmoCount(gunUid);
+
+        // Even if we don't actually shoot update the ShotCounter. This is to avoid spamming empty sounds
+        // where the gun may be SemiAuto or Burst.
+        gun.ShotCounter += shots;
+
+        if (ev.Ammo.Count <= 0)
+        {
+            // triggers effects on the gun if it's empty
+            var emptyGunShotEvent = new OnEmptyGunShotEvent();
+            RaiseLocalEvent(gunUid, ref emptyGunShotEvent);
+
+            // Play empty gun sounds if relevant
+            // If they're firing an existing clip then don't play anything.
+            if (shots > 0)
+            {
+                if (ev.Reason != null && Timing.IsFirstTimePredicted)
+                {
+                    PopupSystem.PopupCursor(ev.Reason);
+                }
+
+                // Don't spam safety sounds at gun fire rate, play it at a reduced rate.
+                // May cause prediction issues? Needs more tweaking
+                gun.NextFire = TimeSpan.FromSeconds(Math.Max(lastFire.TotalSeconds + SafetyNextFire, gun.NextFire.TotalSeconds));
+                Audio.PlayPredicted(gun.SoundEmpty, gunUid, user);
+                return false;
+            }
+
+            return false;
+        }
+
+        // Shoot confirmed - sounds also played here in case it's invalid (e.g. cartridge already spent).
+        var shotEv = new GunShotEvent(user, ev.Ammo);
+        RaiseLocalEvent(gunUid, ref shotEv);
+
+        args = ev;
+        return true;
     }
 
     public void Shoot(
