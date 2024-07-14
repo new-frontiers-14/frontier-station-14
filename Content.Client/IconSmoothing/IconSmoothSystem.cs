@@ -154,7 +154,7 @@ namespace Content.Client.IconSmoothing
             DirtyEntities(grid.GetAnchoredEntitiesEnumerator(pos + new Vector2i(0, 1)));
             DirtyEntities(grid.GetAnchoredEntitiesEnumerator(pos + new Vector2i(0, -1)));
 
-            if (comp.Mode is IconSmoothingMode.Corners or IconSmoothingMode.NoSprite or IconSmoothingMode.Diagonal)
+            if (comp.Mode is IconSmoothingMode.Corners or IconSmoothingMode.NoSprite or IconSmoothingMode.Diagonal or IconSmoothingMode.DiagonalNF)
             {
                 DirtyEntities(grid.GetAnchoredEntitiesEnumerator(pos + new Vector2i(1, 1)));
                 DirtyEntities(grid.GetAnchoredEntitiesEnumerator(pos + new Vector2i(-1, -1)));
@@ -256,6 +256,9 @@ namespace Content.Client.IconSmoothing
                 case IconSmoothingMode.Diagonal:
                     CalculateNewSpriteDiagonal(grid, smooth, spriteEnt, xform, smoothQuery);
                     break;
+                case IconSmoothingMode.DiagonalNF: // Frontier
+                    CalculateNewSpriteDiagonalNF(grid, smooth, spriteEnt, xform, smoothQuery); // Frontier
+                    break; // Frontier
                 default:
                     throw new ArgumentOutOfRangeException();
             }
@@ -296,6 +299,47 @@ namespace Content.Client.IconSmoothing
                 sprite.Comp.LayerSetState(0, $"{smooth.StateBase}0");
             }
         }
+
+        // Frontier: 5-state diagonal windows
+        private void CalculateNewSpriteDiagonalNF(MapGridComponent? grid, IconSmoothComponent smooth,
+            Entity<SpriteComponent> sprite, TransformComponent xform, EntityQuery<IconSmoothComponent> smoothQuery)
+        {
+            if (grid == null)
+            {
+                sprite.Comp.LayerSetState(0, $"{smooth.StateBase}0");
+                return;
+            }
+
+            var neighbors = new Vector2[]
+            {
+                new(1, 0),
+                new(0, -1),
+            };
+
+            var pos = grid.TileIndicesFor(xform.Coordinates);
+            var rotation = xform.LocalRotation;
+            int value = 0;
+
+            for (var i = 0; i < neighbors.Length; i++)
+            {
+                var neighbor = (Vector2i) rotation.RotateVec(neighbors[i]);
+                if(MatchingEntity(smooth, grid.GetAnchoredEntitiesEnumerator(pos + neighbor), smoothQuery)) {
+                    value |= 1 << i;
+                }
+            }
+
+            // both walls checked, check the corner
+            if (value == 3)
+            {
+                var neighbor = (Vector2i) rotation.RotateVec((1, -1));
+                if(MatchingEntity(smooth, grid.GetAnchoredEntitiesEnumerator(pos + neighbor), smoothQuery)) {
+                    value = 4;
+                }
+            }
+
+            sprite.Comp.LayerSetState(0, $"{smooth.StateBase}{value}}");
+        }
+        // End Frontier
 
         private void CalculateNewSpriteCardinal(MapGridComponent? grid, IconSmoothComponent smooth, Entity<SpriteComponent> sprite, TransformComponent xform, EntityQuery<IconSmoothComponent> smoothQuery)
         {
