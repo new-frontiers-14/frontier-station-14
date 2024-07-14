@@ -1,0 +1,40 @@
+# Author Info
+# GitHub: SrLupinotuum
+# Discord: Lupino
+
+# Maintainer Info
+# GitHub: ???
+# Discord: ???
+
+# Shuttle Notes:
+# 
+- type: vessel
+  id: kaufman
+  name: KM kaufman
+  description: A Kaufman cab, compact and stylish, become a certified Kaufman driver on purchase of the smoothest ride for hire in the sector.
+  price: 7950
+  category: Small
+  group: Civilian
+  shuttlePath: /Maps/_NF/Shuttles/kaufman.yml
+
+- type: gameMap
+  id: kaufman
+  mapName: 'KM kaufman'
+  mapPath: /Maps/_NF/Shuttles/kaufman.yml
+  minPlayers: 0
+  stations:
+    kaufman:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'kaufman {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]
+            Clown: [ 0, 0 ]
