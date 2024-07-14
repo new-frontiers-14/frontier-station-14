@@ -452,14 +452,6 @@ public sealed partial class ChatSystem : SharedChatSystem
         if (color is not null)
             wrappedMessage = InjectTagInsideTag(wrappedMessage, "Message", "color", color.Value.ToHex());
 
-        var wrappedLanguageMessage = Loc.GetString(
-            speech.Bold ? "chat-manager-entity-say-bold-wrap-message" : "chat-manager-entity-say-wrap-message",
-            ("entityName", name),
-            ("verb", Loc.GetString(_random.Pick(speech.SpeechVerbStrings))),
-            ("fontType", speech.FontId),
-            ("fontSize", speech.FontSize),
-            ("message", FormattedMessage.EscapeText(msg.Message)));
-
         foreach (var (session, data) in GetRecipients(source, VoiceRange))
         {
             var entRange = MessageRangeCheck(session, data, range);
@@ -469,11 +461,21 @@ public sealed partial class ChatSystem : SharedChatSystem
 
             var understand = _language.IsUnderstandLanguage(session, msg);
 
+            var wrappedLanguageMessage = Loc.GetString(
+                speech.Bold ? "chat-manager-entity-say-bold-wrap-message" : "chat-manager-entity-say-wrap-message",
+                ("entityName", name),
+                ("verb", Loc.GetString(_random.Pick(speech.SpeechVerbStrings))),
+                ("fontType", speech.FontId),
+                ("fontSize", speech.FontSize),
+                ("message", FormattedMessage.EscapeText(understand ? msg.OriginalMessage : msg.Message)));
+
             SendInVoiceRange(ChatChannel.Local,
                 understand ? msg.OriginalMessage : msg.Message,
                 wrappedMessage: wrappedLanguageMessage,
                 source,
-                range);
+                range,
+                session,
+                data);
 
             var ev = new EntitySpokeEvent(source, message, null, null);
             RaiseLocalEvent(source, ev, true);
@@ -648,7 +650,10 @@ public sealed partial class ChatSystem : SharedChatSystem
 
         if (checkEmote)
             TryEmoteChatInput(source, action);
-        SendInVoiceRange(ChatChannel.Emotes, action, wrappedMessage, source, range, author);
+        foreach (var (session, data) in GetRecipients(source, VoiceRange))
+        {
+            SendInVoiceRange(ChatChannel.Emotes, action, wrappedMessage, source, range, session, data, author);
+        }
         if (!hideLog)
             if (name != Name(source))
                 _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Emote from {ToPrettyString(source):user} as {name}: {action}");
@@ -674,8 +679,10 @@ public sealed partial class ChatSystem : SharedChatSystem
         var wrappedMessage = Loc.GetString("chat-manager-entity-looc-wrap-message",
             ("entityName", name),
             ("message", FormattedMessage.EscapeText(message)));
-
-        SendInVoiceRange(ChatChannel.LOOC, message, wrappedMessage, source, hideChat ? ChatTransmitRange.HideChat : ChatTransmitRange.Normal, player.UserId);
+        foreach (var (session, data) in GetRecipients(source, VoiceRange))
+        {
+            SendInVoiceRange(ChatChannel.LOOC, message, wrappedMessage, source, hideChat ? ChatTransmitRange.HideChat : ChatTransmitRange.Normal, session, data, player.UserId);
+        }
         _adminLogger.Add(LogType.Chat, LogImpact.Low, $"LOOC from {player:Player}: {message}");
     }
 
@@ -761,18 +768,17 @@ public sealed partial class ChatSystem : SharedChatSystem
     /// <summary>
     ///     Sends a chat message to the given players in range of the source entity.
     /// </summary>
-    private void SendInVoiceRange(ChatChannel channel, string message, string wrappedMessage, EntityUid source, ChatTransmitRange range, NetUserId? author = null)
+    private void SendInVoiceRange(ChatChannel channel, LanguageMessage message, string wrappedMessage, EntityUid source, ChatTransmitRange range, ICommonSession session, ICChatRecipientData data, NetUserId? author = null)
     {
-        foreach (var (session, data) in GetRecipients(source, VoiceRange))
-        {
-            var entRange = MessageRangeCheck(session, data, range);
-            if (entRange == MessageRangeCheckResult.Disallowed)
-                continue;
-            var entHideChat = entRange == MessageRangeCheckResult.HideChat;
-            _chatManager.ChatMessageToOne(channel, message, wrappedMessage, source, entHideChat, session.Channel, author: author);
-        }
+        var entRange = MessageRangeCheck(session, data, range);
+        if (entRange == MessageRangeCheckResult.Disallowed)
+            return;
 
-        _replay.RecordServerMessage(new ChatMessage(channel, message, wrappedMessage, GetNetEntity(source), null, MessageRangeHideChatForReplay(range)));
+        var understand = _language.IsUnderstandLanguage(session, message);
+        var entHideChat = entRange == MessageRangeCheckResult.HideChat;
+        _chatManager.ChatMessageToOne(channel, understand ? message.OriginalMessage : message.Message, wrappedMessage, source, entHideChat, session.Channel, author: author);
+
+        _replay.RecordServerMessage(new ChatMessage(channel, message.OriginalMessage, wrappedMessage, GetNetEntity(source), null, MessageRangeHideChatForReplay(range)));
     }
 
     /// <summary>
