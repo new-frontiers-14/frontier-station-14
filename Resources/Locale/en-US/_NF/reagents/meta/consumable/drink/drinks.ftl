@@ -6,3 +6,6 @@ reagent-desc-gin-and-sonic = Why did the hedgehog go to Saturn? To collect its r
 
 reagent-name-golden-cat = golden cat
 reagent-desc-golden-cat = Legends say the golden cat sold a burger for 100000 spesos. Has a metallic smell.
+
+reagent-name-pineapple-blast = pineapple blast
+reagent-desc-pineapple-blast = When the trees start talking... Smells tropical with a sulfuric note.

@@ -72,3 +72,33 @@
   metamorphicMaxFillLevels: 3
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
+
+- type: reagent
+  id: PineappleBlast
+  name: reagent-name-pineapple-blast
+  parent: BaseAlcohol
+  desc: reagent-desc-pineapple-blast
+  physicalDesc: reagent-physical-desc-aromatic
+  flavor: blast
+  color: "#8c934c"
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.4
+      - !type:ExplosionReactionEffect
+        explosionType: Default
+        maxIntensity: 0.1
+        intensityPerUnit: 0.05
+        intensitySlope: 1
+        maxTotalIntensity: 0.1
+        probability: 0.1
+  metamorphicSprite:
+    sprite: _NF/Objects/Consumable/Drinks/pineappleblast.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 3
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
