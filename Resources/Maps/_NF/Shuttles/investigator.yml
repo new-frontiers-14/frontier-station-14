@@ -252,6 +252,11 @@ entities:
             197: -3,2
             198: -2,2
             199: -1,2
+            201: -1,0
+            202: -1,1
+            203: -2,-5
+            204: -1,-6
+            205: -2,-7
         - node:
             cleanable: True
             color: '#FFFFFFFF'
@@ -2660,6 +2665,45 @@ entities:
     - type: Transform
       pos: 10.471153,-1.6616642
       parent: 2
+- proto: ComputerPowerMonitoring
+  entities:
+  - uid: 111
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -0.5,0.5
+      parent: 2
+- proto: ComputerRadar
+  entities:
+  - uid: 20
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -0.5,-5.5
+      parent: 2
+- proto: ComputerShuttle
+  entities:
+  - uid: 107
+    components:
+    - type: Transform
+      pos: -1.5,-4.5
+      parent: 2
+- proto: ComputerSolarControl
+  entities:
+  - uid: 28
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -0.5,1.5
+      parent: 2
+- proto: ComputerStationRecords
+  entities:
+  - uid: 37
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -1.5,-6.5
+      parent: 2
 - proto: ComputerTabletopAnalysisConsole
   entities:
   - uid: 283
@@ -2668,22 +2712,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 10.5,-3.5
       parent: 2
-- proto: ComputerTabletopPowerMonitoring
-  entities:
-  - uid: 111
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -0.5,0.5
-      parent: 2
-- proto: ComputerTabletopRadar
-  entities:
-  - uid: 20
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -0.5,-5.5
-      parent: 2
 - proto: ComputerTabletopResearchAndDevelopment
   entities:
   - uid: 219
@@ -2691,29 +2719,6 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 11.5,-2.5
-      parent: 2
-- proto: ComputerTabletopShuttle
-  entities:
-  - uid: 163
-    components:
-    - type: Transform
-      pos: -1.5,-4.5
-      parent: 2
-- proto: ComputerTabletopSolarControl
-  entities:
-  - uid: 107
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -0.5,1.5
-      parent: 2
-- proto: ComputerTabletopStationRecords
-  entities:
-  - uid: 222
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -1.5,-6.5
       parent: 2
 - proto: ComputerWallmountWithdrawBankATM
   entities:
@@ -4268,14 +4273,6 @@ entities:
     - type: DeviceLinkSink
       links:
       - 787
-  - uid: 793
-    components:
-    - type: Transform
-      pos: -3.5,-3.5
-      parent: 2
-    - type: DeviceLinkSink
-      links:
-      - 787
   - uid: 794
     components:
     - type: Transform
@@ -4365,8 +4362,6 @@ entities:
         799:
         - Pressed: Toggle
         798:
-        - Pressed: Toggle
-        793:
         - Pressed: Toggle
         794:
         - Pressed: Toggle
@@ -4858,20 +4853,10 @@ entities:
     - type: Transform
       pos: -0.5,-4.5
       parent: 2
-  - uid: 28
-    components:
-    - type: Transform
-      pos: -0.5,-5.5
-      parent: 2
   - uid: 29
     components:
     - type: Transform
       pos: -2.5,-4.5
-      parent: 2
-  - uid: 37
-    components:
-    - type: Transform
-      pos: -1.5,-4.5
       parent: 2
   - uid: 114
     components:
@@ -4900,24 +4885,6 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -0.5,-6.5
-      parent: 2
-  - uid: 366
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -0.5,0.5
-      parent: 2
-  - uid: 486
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -0.5,1.5
-      parent: 2
-  - uid: 495
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -1.5,-6.5
       parent: 2
 - proto: TableWoodReinforced
   entities:
