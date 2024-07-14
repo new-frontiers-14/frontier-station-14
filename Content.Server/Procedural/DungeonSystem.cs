@@ -11,6 +11,7 @@ using Content.Shared.Physics;
 using Content.Shared.Procedural;
 using Content.Shared.Tag;
 using Robust.Server.GameObjects;
+using Robust.Shared.Collections;
 using Robust.Shared.Configuration;
 using Robust.Shared.Console;
 using Robust.Shared.Map;
@@ -29,12 +30,9 @@ public sealed partial class DungeonSystem : SharedDungeonSystem
     [Dependency] private readonly AnchorableSystem _anchorable = default!;
     [Dependency] private readonly DecalSystem _decals = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly TagSystem _tag = default!;
     [Dependency] private readonly TileSystem _tile = default!;
     [Dependency] private readonly MapLoaderSystem _loader = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
-
-    private ISawmill _sawmill = default!;
 
     private const double DungeonJobTime = 0.005;
 
@@ -42,12 +40,11 @@ public sealed partial class DungeonSystem : SharedDungeonSystem
     public const int CollisionLayer = (int) CollisionGroup.Impassable;
 
     private readonly JobQueue _dungeonJobQueue = new(DungeonJobTime);
-    private readonly Dictionary<DungeonJob, CancellationTokenSource> _dungeonJobs = new();
+    private readonly Dictionary<DungeonJob.DungeonJob, CancellationTokenSource> _dungeonJobs = new();
 
     public override void Initialize()
     {
         base.Initialize();
-        _sawmill = Logger.GetSawmill("dungen");
         _console.RegisterCommand("dungen", Loc.GetString("cmd-dungen-desc"), Loc.GetString("cmd-dungen-help"), GenerateDungeon, CompletionCallback);
         _console.RegisterCommand("dungen_preset_vis", Loc.GetString("cmd-dungen_preset_vis-desc"), Loc.GetString("cmd-dungen_preset_vis-help"), DungeonPresetVis, PresetCallback);
         _console.RegisterCommand("dungen_pack_vis", Loc.GetString("cmd-dungen_pack_vis-desc"), Loc.GetString("cmd-dungen_pack_vis-help"), DungeonPackVis, PackCallback);
@@ -175,18 +172,16 @@ public sealed partial class DungeonSystem : SharedDungeonSystem
         int seed)
     {
         var cancelToken = new CancellationTokenSource();
-        var job = new DungeonJob(
-            _sawmill,
+        var job = new DungeonJob.DungeonJob(
+            Log,
             DungeonJobTime,
             EntityManager,
-            _mapManager,
             _prototype,
             _tileDefManager,
             _anchorable,
             _decals,
             this,
             _lookup,
-            _tag,
             _tile,
             _transform,
             gen,
@@ -201,7 +196,7 @@ public sealed partial class DungeonSystem : SharedDungeonSystem
         job.Run();
     }
 
-    public async Task<Dungeon> GenerateDungeonAsync(
+    public async Task<List<Dungeon>> GenerateDungeonAsync(
         DungeonConfigPrototype gen,
         EntityUid gridUid,
         MapGridComponent grid,
@@ -209,18 +204,16 @@ public sealed partial class DungeonSystem : SharedDungeonSystem
         int seed)
     {
         var cancelToken = new CancellationTokenSource();
-        var job = new DungeonJob(
-            _sawmill,
+        var job = new DungeonJob.DungeonJob(
+            Log,
             DungeonJobTime,
             EntityManager,
-            _mapManager,
             _prototype,
             _tileDefManager,
             _anchorable,
             _decals,
             this,
             _lookup,
-            _tag,
             _tile,
             _transform,
             gen,

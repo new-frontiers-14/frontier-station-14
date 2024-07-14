@@ -1,6 +1,6 @@
 - type: entity
   name: handheld mass scanner
-  parent: [ BaseItem, PowerCellSlotSmallItem]
+  parent: BaseHandheldComputer
   id: HandHeldMassScanner
   description: A hand-held mass scanner.
   components:
@@ -17,6 +17,7 @@
         map: [ "enum.PowerDeviceVisualLayers.Powered" ]
   - type: RadarConsole
     maxRange: 64
+    followEntity: true
   - type: Appearance
   - type: GenericVisualizer
     visuals:

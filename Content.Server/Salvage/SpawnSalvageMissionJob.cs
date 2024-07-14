@@ -191,7 +191,7 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
         // We'll use the dungeon rotation as the spawn angle
         var dungeonRotation = _dungeon.GetDungeonRotation(_missionParams.Seed);
 
-        Dungeon dungeon = default!;
+        var dungeon = dungeons.First();
 
         if (config != SalvageMissionType.Mining)
         {
