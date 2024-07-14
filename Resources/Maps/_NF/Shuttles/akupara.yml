@@ -1744,7 +1744,9 @@ entities:
       color: '#FFAA00FF'
     - type: Label
       currentLabel: Waste
-- proto: GasFilterFlipped
+    - type: NameModifier
+      baseName: gas filter
+- proto: GasFilterNitrogenOnFlipped
   entities:
   - uid: 219
     components:
@@ -1758,6 +1760,10 @@ entities:
       color: '#FFAA00FF'
     - type: Label
       currentLabel: Nitrogen
+    - type: NameModifier
+      baseName: gas filter
+- proto: GasFilterOxygenOnFlipped
+  entities:
   - uid: 220
     components:
     - type: MetaData
@@ -1770,6 +1776,8 @@ entities:
       color: '#FFAA00FF'
     - type: Label
       currentLabel: Oxygen
+    - type: NameModifier
+      baseName: gas filter
 - proto: GasMixerOn
   entities:
   - uid: 221
@@ -1780,13 +1788,12 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 4.5,3.5
       parent: 1
-    - type: GasMixer
-      inletTwoConcentration: 0.78
-      inletOneConcentration: 0.22
     - type: AtmosPipeColor
       color: '#66FFFFFF'
     - type: Label
       currentLabel: Air
+    - type: NameModifier
+      baseName: gas mixer
 - proto: GasPassiveVent
   entities:
   - uid: 222
@@ -2437,13 +2444,14 @@ entities:
     - type: MetaData
       name: manual valve (Waste)
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: 7.5,-0.5
       parent: 1
     - type: AtmosPipeColor
       color: '#FFAA00FF'
     - type: Label
       currentLabel: Waste
+    - type: NameModifier
+      baseName: manual valve
 - proto: GasVentPump
   entities:
   - uid: 304
@@ -2602,6 +2610,8 @@ entities:
       color: '#FFAA00FF'
     - type: Label
       currentLabel: Waste
+    - type: NameModifier
+      baseName: volumetric gas pump
 - proto: GravityGeneratorMini
   entities:
   - uid: 317
