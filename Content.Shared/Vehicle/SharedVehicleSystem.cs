@@ -55,6 +55,7 @@ public abstract partial class SharedVehicleSystem : EntitySystem
         SubscribeLocalEvent<VehicleComponent, ComponentStartup>(OnVehicleStartup);
         SubscribeLocalEvent<VehicleComponent, StrapAttemptEvent>(OnStrapAttempt); // Umbra
         SubscribeLocalEvent<VehicleComponent, StrappedEvent>(OnStrapped); // Umbra
+        SubscribeLocalEvent<VehicleComponent, UnstrappedEvent>(OnUnstrapped); // Umbra
         SubscribeLocalEvent<VehicleComponent, HonkActionEvent>(OnHonkAction);
         SubscribeLocalEvent<VehicleComponent, EntInsertedIntoContainerMessage>(OnEntInserted);
         SubscribeLocalEvent<VehicleComponent, EntRemovedFromContainerMessage>(OnEntRemoved);
