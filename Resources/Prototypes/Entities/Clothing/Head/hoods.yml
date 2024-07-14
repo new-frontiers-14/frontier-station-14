@@ -104,7 +104,7 @@
     - Hair
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: [ClothingHeadBase, ContrabandClothing] # Frontier: added ContrabandClothing as parent
   id: ClothingHeadHatHoodCulthood
   name: cult hood
   description: There's no cult without cult hoods.
@@ -119,9 +119,6 @@
   - type: HideLayerClothing
     slots:
     - Hair
-  - type: Contraband #frontier
-  - type: FactionClothing # frontier
-    faction: ContrabandClothing # frontier
 
 - type: entity
   parent: ClothingHeadBase
