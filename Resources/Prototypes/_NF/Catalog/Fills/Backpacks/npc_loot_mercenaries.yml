@@ -97,7 +97,7 @@
 
 - type: entity
   parent: MercenaryDuffelGiftBox
-  id: ClothingBackpackDuffelMecranaryTier1Mosin
+  id: ClothingBackpackDuffelMecranaryTier1Novalite
   noSpawn: true
   components:
   - type: SpawnItemsOnUse
@@ -110,7 +110,7 @@
     - id: SpaceCash500
       prob: 0.45
     # Weapons
-    - id: WeaponSniperMosin
+    - id: WeaponRifleNovaliteC1
       prob: 0.9
     # Armor
     - id: ClothingOuterVestWebMercenary
@@ -137,14 +137,20 @@
 
 - type: entity
   parent: MercenaryWebbingBox
-  id: ClothingBeltWebbingMecranaryTier1Mosin
+  id: ClothingBeltWebbingMecranaryTier1Novalite
   noSpawn: true
   components:
   - type: SpawnItemsOnUse
     items:
-    - id: MagazineBoxLightRifle
+    - id: MagazineBoxRifle
       prob: 0.9
-    - id: MagazineBoxLightRifleBig
+    - id: MagazineNovaliteC1Empty
+      prob: 0.9
+    - id: MagazineNovaliteC1Empty
+      prob: 0.9
+    - id: MagazineNovaliteC1
+      prob: 0.2
+    - id: MagazineBoxRifleBig
       prob: 0.2
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg

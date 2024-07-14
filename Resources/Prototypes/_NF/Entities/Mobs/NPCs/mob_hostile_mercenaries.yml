@@ -151,7 +151,7 @@
 - type: entity
   name: mercenary soldier
   parent: MobMercenaryBase
-  id: MobMercenarySoldierMosin
+  id: MobMercenarySoldierNovalite # No mosin: novalite rifle now
   description: Low-ranking soldiers armed with a variety of surplus weapons.
   noSpawn: true
   components:
@@ -179,18 +179,18 @@
       color: "#a9b6bd"
       shader: unshaded
   - type: BasicEntityAmmoProvider
-    proto: CartridgeLightRifle
+    proto: CartridgeRifle
     capacity: 10
     count: 10
   - type: Gun
     showExamineText: false
-    fireRate: 0.65
+    fireRate: 0.85
     minAngle: 1
     maxAngle: 10
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
-    soundGunshot: /Audio/Weapons/Guns/Gunshots/sniper.ogg
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/ltrifle.ogg
 
 ## Tier 2
 - type: entity
