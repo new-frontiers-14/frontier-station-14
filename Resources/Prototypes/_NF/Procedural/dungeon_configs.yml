@@ -34,9 +34,7 @@
   - !type:AutoCablingDunGen
 
   - !type:CornerClutterDunGen
-    contents:
-      - id: PottedPlantRandom
-        amount: 1
+
   data:
     entities:
       Cabling: CableApcExtension
@@ -141,28 +139,11 @@
     - id: RandomPainting
       prob: 0.05
       orGroup: content
-    - id: DefibrillatorCabinetFilled
-      prob: 0.1
-      orGroup: content
-
-    - !type:WallMountPostGen
-      spawns:
-        # Posters
-        - id: RandomPosterLegit
-          orGroup: content
-        - id: ExtinguisherCabinetFilled
-          prob: 0.2
-          orGroup: content
-        - id: RandomPainting
-          prob: 0.05
-          orGroup: content
 
 # MedSci prototypes
 - type: dungeonConfig
   id: MedSci
   data:
-    colors:
-      Decals: "#ffa64d96"
     spawnGroups:
       WallMounts: MedSciWallMounts
     whitelists:
@@ -192,306 +173,154 @@
 # FactoryDorms prototypes
 - type: dungeonConfig
   id: FactoryDorms
-  generator: !type:PrefabDunGen
-    roomWhitelist:
-      - CaveFactory
-    presets:
-      - Bucket
-      - Wow
-      - SpaceShip
-      - Tall
-  postGeneration:
-    - !type:CorridorPostGen
-      width: 3
+  data:
+    whitelists:
+      Rooms:
+        tags:
+          - CaveFactory
+  layers:
+  - !type:PrototypeDunGen
+    proto: Everything
 
-    - !type:DungeonEntrancePostGen
-      count: 2
-
-    - !type:RoomEntrancePostGen
-      entities:
-        - CableApcExtension
-        - AirlockGlass
-
-    - !type:EntranceFlankPostGen
-      entities:
-        - Grille
-        - Window
-
-    - !type:ExternalWindowPostGen
-      entities:
-        - Grille
-        - Window
-
-    - !type:WallMountPostGen
-      spawns:
-        # Posters
-        - id: RandomPosterLegit
-          orGroup: content
-        - id: ExtinguisherCabinetFilled
-          prob: 0.2
-          orGroup: content
-        - id: RandomPainting
-          prob: 0.05
-          orGroup: content
-        - id: DefibrillatorCabinetFilled
-          prob: 0.1
-          orGroup: content
-          
-    - !type:BoundaryWallPostGen
-      tile: FloorSteel
-      wall: WallSolid
-      cornerWall: WallReinforced
-
-    - !type:JunctionPostGen
-      width: 1
-
-    - !type:JunctionPostGen
-
-    - !type:AutoCablingPostGen
-
-    - !type:CornerClutterPostGen
-      contents:
-        - id: PottedPlantRandom
-          amount: 1
-
+# LavaMercenary prototypes
 - type: dungeonConfig
   id: LavaMercenary
-  generator: !type:PrefabDunGen
-    roomWhitelist:
-      - LavaMercenary
-    presets:
-      - Bucket
-      - Wow
-      - SpaceShip
-      - Tall
-  postGeneration:
-    - !type:CorridorPostGen
-      width: 3
+  data:
+    colors:
+      Decals: "#5E7C16"
+    spawnGroups:
+      Entrance: MercenaryAirlock
+      WallMounts: LavaMercenaryWallMount
+    whitelists:
+      Rooms:
+        tags:
+          - LavaMercenary
+  layers:
+  - !type:PrototypeDunGen
+    proto: Everything
 
-    - !type:DungeonEntrancePostGen
-      count: 2
+  - !type:CorridorDecalSkirtingPostGen
+    cardinalDecals:
+      South: BrickTileWhiteLineS
+      East: BrickTileWhiteLineE
+      North: BrickTileWhiteLineN
+      West: BrickTileWhiteLineW
+    cornerDecals:
+      SouthEast: BrickTileWhiteCornerSe
+      SouthWest: BrickTileWhiteCornerSw
+      NorthEast: BrickTileWhiteCornerNe
+      NorthWest: BrickTileWhiteCornerNw
+    pocketDecals:
+      SouthWest: BrickTileWhiteInnerSw
+      SouthEast: BrickTileWhiteInnerSe
+      NorthWest: BrickTileWhiteInnerNw
+      NorthEast: BrickTileWhiteInnerNe
 
-    - !type:RoomEntrancePostGen
-      entities:
-        - CableApcExtension
-        - AirlockMercenaryGlass
-    - !type:EntranceFlankPostGen
-      entities:
-        - Grille
-        - Window
+- type: entitySpawnEntry
+  id: MercenaryAirlock
+  entries:
+    - id: CableApcExtension
+    - id: AirlockMercenaryGlass
 
-    - !type:ExternalWindowPostGen
-      entities:
-        - Grille
-        - Window
+- type: entitySpawnEntry
+  id: LavaMercenaryWallMount
+  entries:
+    # Posters
+    - id: RandomPosterContraband
+      orGroup: content
+    - id: ExtinguisherCabinetFilled
+      prob: 0.2
+      orGroup: content
+    - id: RandomPainting
+      prob: 0.05
+      orGroup: content
 
-    - !type:WallMountPostGen
-      spawns:
-        # Posters
-        - id: RandomPosterContraband
-          orGroup: content
-        - id: ExtinguisherCabinetFilled
-          prob: 0.2
-          orGroup: content
-        - id: RandomPainting
-          prob: 0.05
-          orGroup: content
-
-    - !type:BoundaryWallPostGen
-      tile: FloorSteel
-      wall: WallSolid
-      cornerWall: WallReinforced
-
-    - !type:JunctionPostGen
-      width: 1
-
-    - !type:JunctionPostGen
-
-    - !type:AutoCablingPostGen
-
-    - !type:CornerClutterPostGen
-      contents:
-        - id: PottedPlantRandom
-          amount: 1
-
-    - !type:CorridorDecalSkirtingPostGen
-      color: "#5E7C16"
-      cardinalDecals:
-        South: BrickTileWhiteLineS
-        East: BrickTileWhiteLineE
-        North: BrickTileWhiteLineN
-        West: BrickTileWhiteLineW
-      cornerDecals:
-        SouthEast: BrickTileWhiteCornerSe
-        SouthWest: BrickTileWhiteCornerSw
-        NorthEast: BrickTileWhiteCornerNe
-        NorthWest: BrickTileWhiteCornerNw
-      pocketDecals:
-        SouthWest: BrickTileWhiteInnerSw
-        SouthEast: BrickTileWhiteInnerSe
-        NorthWest: BrickTileWhiteInnerNw
-        NorthEast: BrickTileWhiteInnerNe
-
+# VirologyLab prototypes
 - type: dungeonConfig
   id: VirologyLab
-  generator: !type:PrefabDunGen
-    roomWhitelist:
-      - VirologyLab
-    presets:
-      - Bucket
-      - Wow
-      - SpaceShip
-      - Tall
-  postGeneration:
-    - !type:CorridorPostGen
-      width: 3
+  data:
+    colors:
+      Decals: "#467b41"
+    spawnGroups:
+      Entrance: VirologyAirlock
+    whitelists:
+      Rooms:
+        tags:
+          - VirologyLab
 
-    - !type:DungeonEntrancePostGen
-      count: 2
+  layers:
+  - !type:PrototypeDunGen
+    proto: Everything
 
-    - !type:RoomEntrancePostGen
-      entities:
-        - CableApcExtension
-        - AirlockVirologyGlass
+  - !type:CorridorDecalSkirtingPostGen
+    cardinalDecals:
+      South: BrickTileWhiteLineS
+      East: BrickTileWhiteLineE
+      North: BrickTileWhiteLineN
+      West: BrickTileWhiteLineW
+    cornerDecals:
+      SouthEast: BrickTileWhiteCornerSe
+      SouthWest: BrickTileWhiteCornerSw
+      NorthEast: BrickTileWhiteCornerNe
+      NorthWest: BrickTileWhiteCornerNw
+    pocketDecals:
+      SouthWest: BrickTileWhiteInnerSw
+      SouthEast: BrickTileWhiteInnerSe
+      NorthWest: BrickTileWhiteInnerNw
+      NorthEast: BrickTileWhiteInnerNe
 
-    - !type:EntranceFlankPostGen
-      entities:
-        - Grille
-        - Window
+- type: entitySpawnEntry
+  id: VirologyAirlock
+  entries:
+    - CableApcExtension
+    - AirlockVirologyGlass
 
-    - !type:ExternalWindowPostGen
-      entities:
-        - Grille
-        - Window
-
-    - !type:WallMountPostGen
-      spawns:
-        # Posters
-        - id: RandomPosterLegit
-          orGroup: content
-        - id: ExtinguisherCabinetFilled
-          prob: 0.2
-          orGroup: content
-        - id: RandomPainting
-          prob: 0.05
-          orGroup: content
-        - id: DefibrillatorCabinetFilled
-          prob: 0.1
-          orGroup: content
-
-    - !type:BoundaryWallPostGen
-      tile: FloorSteel
-      wall: WallSolid
-      cornerWall: WallReinforced
-
-    - !type:JunctionPostGen
-      width: 1
-
-    - !type:JunctionPostGen
-
-    - !type:AutoCablingPostGen
-
-    - !type:CornerClutterPostGen
-      contents:
-        - id: PottedPlantRandom
-          amount: 1
-
-    - !type:CorridorDecalSkirtingPostGen
-      color: "#467b41"
-      cardinalDecals:
-        South: BrickTileWhiteLineS
-        East: BrickTileWhiteLineE
-        North: BrickTileWhiteLineN
-        West: BrickTileWhiteLineW
-      cornerDecals:
-        SouthEast: BrickTileWhiteCornerSe
-        SouthWest: BrickTileWhiteCornerSw
-        NorthEast: BrickTileWhiteCornerNe
-        NorthWest: BrickTileWhiteCornerNw
-      pocketDecals:
-        SouthWest: BrickTileWhiteInnerSw
-        SouthEast: BrickTileWhiteInnerSe
-        NorthWest: BrickTileWhiteInnerNw
-        NorthEast: BrickTileWhiteInnerNe
-
+# SalvageOutpost prototypes
 - type: dungeonConfig
   id: SalvageOutpost
-  generator: !type:PrefabDunGen
-    roomWhitelist:
-      - SalvageOutpost
-    presets:
-      - Bucket
-      - Wow
-      - SpaceShip
-      - Tall
-  postGeneration:
-    - !type:CorridorPostGen
-      width: 3
+  data:
+    colors:
+      Decals: "#9A54BF"
+    entities:
+      CornerWalls: WallMining
+      Walls: WallMining
+    spawnGroups:
+      Entrance: MiningAirlock
+      EntranceFlank: MiningWindow
+      Window: MiningWindow
+    whitelists:
+      Rooms:
+        tags:
+          - SalvageOutpost
+  layers:
+  - !type:PrototypeDunGen
+    proto: Everything
 
-    - !type:DungeonEntrancePostGen
-      count: 2
+  - !type:CorridorDecalSkirtingPostGen
+    cardinalDecals:
+      South: BrickTileWhiteLineS
+      East: BrickTileWhiteLineE
+      North: BrickTileWhiteLineN
+      West: BrickTileWhiteLineW
+    cornerDecals:
+      SouthEast: BrickTileWhiteCornerSe
+      SouthWest: BrickTileWhiteCornerSw
+      NorthEast: BrickTileWhiteCornerNe
+      NorthWest: BrickTileWhiteCornerNw
+    pocketDecals:
+      SouthWest: BrickTileWhiteInnerSw
+      SouthEast: BrickTileWhiteInnerSe
+      NorthWest: BrickTileWhiteInnerNw
+      NorthEast: BrickTileWhiteInnerNe
 
-    - !type:RoomEntrancePostGen
-      entities:
-        - CableApcExtension
-        - AirlockMiningGlass
+- type: entitySpawnEntry
+  id: MiningAirlock
+  entries:
+    - CableApcExtension
+    - AirlockMiningGlass
 
-    - !type:EntranceFlankPostGen
-      entities:
-        - Grille
-        - MiningWindow
-
-    - !type:ExternalWindowPostGen
-      entities:
-        - Grille
-        - MiningWindow
-
-    - !type:WallMountPostGen
-      spawns:
-        # Posters
-        - id: RandomPosterLegit
-          orGroup: content
-        - id: ExtinguisherCabinetFilled
-          prob: 0.2
-          orGroup: content
-        - id: RandomPainting
-          prob: 0.05
-          orGroup: content
-        - id: DefibrillatorCabinetFilled
-          prob: 0.1
-          orGroup: content
-
-    - !type:BoundaryWallPostGen
-      tile: FloorSteel
-      wall: WallMining
-      cornerWall: WallMining
-
-    - !type:JunctionPostGen
-      width: 1
-
-    - !type:JunctionPostGen
-
-    - !type:AutoCablingPostGen
-
-    - !type:CornerClutterPostGen
-      contents:
-        - id: PottedPlantRandom
-          amount: 1
-
-    - !type:CorridorDecalSkirtingPostGen
-      color: "#9A54BF"
-      cardinalDecals:
-        South: BrickTileWhiteLineS
-        East: BrickTileWhiteLineE
-        North: BrickTileWhiteLineN
-        West: BrickTileWhiteLineW
-      cornerDecals:
-        SouthEast: BrickTileWhiteCornerSe
-        SouthWest: BrickTileWhiteCornerSw
-        NorthEast: BrickTileWhiteCornerNe
-        NorthWest: BrickTileWhiteCornerNw
-      pocketDecals:
-        SouthWest: BrickTileWhiteInnerSw
-        SouthEast: BrickTileWhiteInnerSe
-        NorthWest: BrickTileWhiteInnerNw
-        NorthEast: BrickTileWhiteInnerNe
+- type: entitySpawnEntry
+  id: MiningWindow
+  entries:
+    - Grille
+    - MiningWindow
