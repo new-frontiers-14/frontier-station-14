@@ -1,5 +1,7 @@
 - type: entity
-  parent: ClothingMaskGasExplorer
+  parent:
+  - ClothingMaskGasExplorer
+  - ContrabandClothing
   id: ClothingMaskArcadia
   name: arcadia battle mask
   description: A close-fitting high tech mask designed by Arcadia Industries for space faring battlers.
@@ -73,28 +75,3 @@
         Slash: 0.95
         Piercing: 0.95
         Heat: 0.95
-
-- type: entity
-  parent: ClothingMaskPullableBase
-  id: ClothingMaskCultJanitor
-  name: cult leader mask
-  description: A close-fitting imposing breathing mask designed for cult leaders who value style.
-  components:
-  - type: Sprite
-    sprite: _NF/Clothing/Mask/cult_janitor_mask.rsi
-  - type: Clothing
-    sprite: _NF/Clothing/Mask/cult_janitor_mask.rsi
-  - type: BreathMask
-  - type: IdentityBlocker
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.90
-        Slash: 0.90
-        Piercing: 0.90
-        Heat: 0.90
-  - type: Contraband
-  - type: Tag
-    tags:
-    - ClothMade
-    - HidesHair

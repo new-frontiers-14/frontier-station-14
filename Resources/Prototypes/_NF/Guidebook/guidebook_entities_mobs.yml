@@ -1,0 +1,80 @@
+# GUIDEBOOK ENTITIES
+# The memes
+- type: entity
+  parent:
+  - BaseMobHuman
+  id: GuidebookMemeNpcGood
+  name: "the good"
+  noSpawn: true
+  components:
+  - type: Loadout
+    prototypes:
+    - GuidebookMemeNpcGoodLoadout
+
+- type: entity
+  parent:
+  - BaseMobReptilian
+  id: GuidebookMemeNpcBad
+  name: "the bad"
+  noSpawn: true
+  components:
+  - type: Loadout
+    prototypes:
+    - GuidebookMemeNpcBadLoadout
+
+- type: entity
+  parent:
+  - MobFelinid
+  id: GuidebookMemeNpcUgly
+  name: "the ugly"
+  noSpawn: true
+  components:
+  - type: Loadout
+    prototypes:
+    - GuidebookMemeNpcUglyLoadout
+
+- type: entity
+  parent:
+  - MobGoblin
+  id: GuidebookMemeNpcThatGuy
+  name: "and that guy"
+  noSpawn: true
+  components:
+  - type: Loadout
+    prototypes:
+    - GuidebookMemeNpcThatGuyLoadout
+
+# Mobs (original has despawn timers)
+- type: entity
+  parent: BaseItem
+  id: MobMawExpeditionsGuidebook
+  name: aberrant flesh maw
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: _NF/Mobs/Aliens/flesh.rsi
+    state: maw
+
+- type: entity
+  parent: BaseItem
+  id: MobBloodCultDrainedOneGuidebook
+  name: drained one
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: _NF/Mobs/BloodCult/drainedone.rsi
+    state: drained
+
+- type: entity
+  parent: BaseItem
+  id: MobBloodCultShadeGuidebook
+  name: shade
+  noSpawn: true
+  components:
+  - type: Sprite
+    layers:
+    - sprite: _NF/Mobs/BloodCult/shade.rsi
+      state: shade
+    - sprite: _NF/Mobs/BloodCult/shade.rsi
+      state: unshaded
+      shader: unshaded

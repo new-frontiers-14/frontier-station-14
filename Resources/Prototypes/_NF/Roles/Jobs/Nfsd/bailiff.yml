@@ -17,14 +17,11 @@
   supervisors: job-supervisors-sheriff
   canBeAntag: false
   access:
-  - Maintenance
-  - External
-  - Command
-  - Brig
-  - Security
-  - Mercenary # Frontier
-  - Captain # Frontier
   - Armory
+  - Sergeant # Frontier
+  - Bailiff # Frontier
+  accessGroups: # Frontier
+  - GeneralNfsdAccess # Frontier
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant, TrackingImplant ] # Frontier
@@ -44,3 +41,4 @@
     - MagazinePistol
     - MagazinePistolRubber
     - BaseSecurityUplinkRadioOfficer
+    - NfsdBailiffShipVoucher

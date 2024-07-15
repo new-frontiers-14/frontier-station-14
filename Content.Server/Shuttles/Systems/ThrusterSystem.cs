@@ -20,8 +20,6 @@ using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Content.Shared.Localizations;
 using Content.Server.Construction; // Frontier
-using Content.Server.Popups; // Frontier
-using Content.Server.Emp; // Frontier
 
 namespace Content.Server.Shuttles.Systems;
 
@@ -59,7 +57,6 @@ public sealed class ThrusterSystem : EntitySystem
 
         SubscribeLocalEvent<ThrusterComponent, RefreshPartsEvent>(OnRefreshParts);
         SubscribeLocalEvent<ThrusterComponent, UpgradeExamineEvent>(OnUpgradeExamine);
-        //SubscribeLocalEvent<ThrusterComponent, EmpPulseEvent>(OnEmpPulse);
     }
 
     private void OnThrusterExamine(EntityUid uid, ThrusterComponent component, ExaminedEvent args)
@@ -288,13 +285,6 @@ public sealed class ThrusterSystem : EntitySystem
             return;
         }
 
-        // Frontier: Why?  This does nothing.
-        if (TryComp<ApcPowerReceiverComponent>(uid, out var apcPower)) 
-        {
-            //apcPower.NeedsPower = true;
-        }
-        // End Frontier
-
         component.IsOn = true;
 
         if (!EntityManager.TryGetComponent(xform.GridUid, out ShuttleComponent? shuttleComponent))
@@ -397,13 +387,6 @@ public sealed class ThrusterSystem : EntitySystem
 
         if (!EntityManager.TryGetComponent(gridId, out ShuttleComponent? shuttleComponent))
             return;
-
-        // Frontier: Why?  This does nothing.
-        if (TryComp<ApcPowerReceiverComponent>(uid, out var apcPower))
-        {
-            //apcPower.NeedsPower = false;
-        }
-        // End Frontier
 
         // Logger.DebugS("thruster", $"Disabled thruster {uid}");
 

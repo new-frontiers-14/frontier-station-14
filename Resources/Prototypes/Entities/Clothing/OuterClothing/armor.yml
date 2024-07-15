@@ -101,7 +101,7 @@
       - Energy
 
 - type: entity
-  parent: ClothingOuterBaseLarge
+  parent: [ClothingOuterBaseLarge, ContrabandClothing] # Frontier: added ContrabandClothing as parent
   id: ClothingOuterArmorCult
   name: acolyte armor
   description: An evil-looking piece of cult armor, made of bones.
@@ -118,9 +118,6 @@
         Piercing: 0.6
         Heat: 0.5
   - type: GroupExamine
-  - type: Contraband # frontier
-  - type: FactionClothing # frontier
-    faction: ContrabandClothing # frontier
 
 - type: entity
   parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing]
@@ -169,7 +166,7 @@
     sprite: Clothing/OuterClothing/Armor/heavyred.rsi
 
 - type: entity
-  parent: ClothingOuterArmorHeavy
+  parent: [ClothingOuterArmorHeavy, ContrabandClothing] # Frontier: added ContrabandClothing as parent
   id: ClothingOuterArmorMagusblue
   name: blue magus armor
   description: An blue armored suit that provides good protection.
@@ -178,12 +175,9 @@
     sprite: Clothing/OuterClothing/Armor/magusblue.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Armor/magusblue.rsi
-  - type: Contraband # frontier
-  - type: FactionClothing # frontier
-    faction: ContrabandClothing # frontier
 
 - type: entity
-  parent: ClothingOuterArmorHeavy
+  parent: [ClothingOuterArmorHeavy, ContrabandClothing] # Frontier: added ContrabandClothing as parent
   id: ClothingOuterArmorMagusred
   name: red magus armor
   description: A red armored suit that provides good protection.
@@ -192,9 +186,6 @@
     sprite: Clothing/OuterClothing/Armor/magusred.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Armor/magusred.rsi
-  - type: Contraband # frontier
-  - type: FactionClothing # frontier
-    faction: ContrabandClothing # frontier
 
 - type: entity
   parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing]
