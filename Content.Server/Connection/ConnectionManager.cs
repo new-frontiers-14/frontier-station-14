@@ -1,4 +1,5 @@
 using System.Collections.Immutable;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text.Json.Nodes;
 using System.Threading.Tasks;
@@ -6,14 +7,19 @@ using Content.Server._NF.Auth;
 using Content.Server.Administration;
 using Content.Server.Database;
 using Content.Corvax.Interfaces.Server;
+using Content.Corvax.Interfaces.Shared;
+using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
 using Content.Server.Preferences.Managers;
 using Content.Shared.CCVar;
+using Content.Shared.Corvax.CCCVars;
 using Content.Shared.GameTicking;
 using Content.Shared.Players.PlayTimeTracking;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
+using Robust.Shared.Enums;
 using Robust.Shared.Network;
+using Robust.Shared.Player;
 using Robust.Shared.Timing;
 
 
@@ -52,10 +58,12 @@ namespace Content.Server.Connection
         [Dependency] private readonly ServerDbEntryManager _serverDbEntry = default!;
         [Dependency] private readonly IGameTiming _gameTiming = default!;
         [Dependency] private readonly ILogManager _logManager = default!;
+        [Dependency] private readonly IChatManager _chatManager = default!;
 
-        private IServerSponsorsManager? _sponsorsMgr; //
         //frontier
         [Dependency] private readonly MiniAuthManager _authManager = default!;
+
+        private IServerVPNGuardManager? _vpnGuardMgr; // Corvax-VPNGuard
 
         private readonly Dictionary<NetUserId, TimeSpan> _temporaryBypasses = [];
         private ISawmill _sawmill = default!;
@@ -64,9 +72,9 @@ namespace Content.Server.Connection
         {
             _sawmill = _logManager.GetSawmill("connections");
 
-            IoCManager.Instance!.TryResolveType(out _sponsorsMgr); // Corvax-Sponsors
             _netMgr.Connecting += NetMgrOnConnecting;
             _netMgr.AssignUserIdCallback = AssignUserIdCallback;
+            _plyMgr.PlayerStatusChanged += PlayerStatusChanged;
             // Approval-based IP bans disabled because they don't play well with Happy Eyeballs.
             // _netMgr.HandleApprovalCallback = HandleApproval;
         }
@@ -135,6 +143,42 @@ namespace Content.Server.Connection
             }
         }
 
+        private async void PlayerStatusChanged(object? sender, SessionStatusEventArgs args)
+        {
+            if (args.NewStatus == SessionStatus.Connected)
+            {
+                AdminAlertIfSharedConnection(args.Session);
+            }
+        }
+
+        private void AdminAlertIfSharedConnection(ICommonSession newSession)
+        {
+            var playerThreshold = _cfg.GetCVar(CCVars.AdminAlertMinPlayersSharingConnection);
+            if (playerThreshold < 0)
+                return;
+
+            var addr = newSession.Channel.RemoteEndPoint.Address;
+
+            var otherConnectionsFromAddress = _plyMgr.Sessions.Where(session =>
+                    session.Status is SessionStatus.Connected or SessionStatus.InGame
+                    && session.Channel.RemoteEndPoint.Address.Equals(addr)
+                    && session.UserId != newSession.UserId)
+                .ToList();
+
+            var otherConnectionCount = otherConnectionsFromAddress.Count;
+            if (otherConnectionCount + 1 < playerThreshold) // Add one for the total, not just others, using the address
+                return;
+
+            var username = newSession.Name;
+            var otherUsernames = string.Join(", ",
+                otherConnectionsFromAddress.Select(session => session.Name));
+
+            _chatManager.SendAdminAlert(Loc.GetString("admin-alert-shared-connection",
+                ("player", username),
+                ("otherCount", otherConnectionCount),
+                ("otherList", otherUsernames)));
+        }
+
         private async Task<(ConnectionDenyReason, string, List<ServerBanDef>? bansHit)?> ShouldDeny(
             NetConnectingArgs e)
         {
@@ -197,8 +241,8 @@ namespace Content.Server.Connection
                 }
 
                 var minOverallMinutes = _cfg.GetCVar(CCVars.PanicBunkerMinOverallMinutes);
-                var overallTime = ( await _db.GetPlayTimes(e.UserId)).Find(p => p.Tracker == PlayTimeTrackingShared.TrackerOverall);
-                var haveMinOverallTime = overallTime != null && overallTime.TimeSpent.TotalHours > minOverallMinutes;
+                var overallTime = (await _db.GetPlayTimes(e.UserId)).Find(p => p.Tracker == PlayTimeTrackingShared.TrackerOverall);
+                var haveMinOverallTime = overallTime != null && overallTime.TimeSpent.TotalMinutes > minOverallMinutes;
 
                 // Use the custom reason if it exists & they don't have the minimum time
                 if (customReason != string.Empty && !haveMinOverallTime && !bypassAllowed)
@@ -210,10 +254,27 @@ namespace Content.Server.Connection
                 {
                     return (ConnectionDenyReason.Panic,
                         Loc.GetString("panic-bunker-account-denied-reason",
-                            ("reason", Loc.GetString("panic-bunker-account-reason-overall", ("hours", minOverallMinutes)))), null);
+                            ("reason", Loc.GetString("panic-bunker-account-reason-overall", ("minutes", minOverallMinutes)))), null);
                 }
 
-                if (!validAccountAge || !haveMinOverallTime && !bypassAllowed)
+                // Corvax-VPNGuard-Start
+                if (_vpnGuardMgr == null) // "lazyload" because of problems with dependency resolve order
+                    IoCManager.Instance!.TryResolveType(out _vpnGuardMgr);
+
+                var denyVpn = false;
+                if (_cfg.GetCVar(CCCVars.PanicBunkerDenyVPN) && _vpnGuardMgr != null)
+                {
+                    denyVpn = await _vpnGuardMgr.IsConnectionVpn(e.IP.Address);
+                    if (denyVpn)
+                    {
+                        return (ConnectionDenyReason.Panic,
+                            Loc.GetString("panic-bunker-account-denied-reason",
+                                ("reason", Loc.GetString("panic-bunker-account-reason-vpn"))), null);
+                    }
+                }
+                // Corvax-VPNGuard-End
+
+                if ((!validAccountAge || !haveMinOverallTime || denyVpn) && !bypassAllowed) // Corvax-VPNGuard
                 {
                     return (ConnectionDenyReason.Panic, Loc.GetString("panic-bunker-account-denied"), null);
                 }
@@ -231,8 +292,8 @@ namespace Content.Server.Connection
             var adminBypass = _cfg.GetCVar(CCVars.AdminBypassMaxPlayers) && adminData != null;
             // Corvax-Queue-Start
             var isQueueEnabled = IoCManager.Instance!.TryResolveType<IServerJoinQueueManager>(out var mgr) && mgr.IsEnabled;
-            if (_plyMgr.PlayerCount >= _cfg.GetCVar(CCVars.SoftMaxPlayers) && !isPrivileged && !isQueueEnabled)
-                // Corvax-Queue-End
+            if ((_plyMgr.PlayerCount >= _cfg.GetCVar(CCVars.SoftMaxPlayers) && !adminBypass) && !wasInGame && !isQueueEnabled)
+            // Corvax-Queue-End
             {
                 return (ConnectionDenyReason.Full, Loc.GetString("soft-player-cap-full"), null);
             }
@@ -349,13 +410,11 @@ namespace Content.Server.Connection
         // Corvax-Queue-Start: Make these conditions in one place, for checks in the connection and in the queue
         public async Task<bool> HavePrivilegedJoin(NetUserId userId)
         {
-            var adminBypass = await _dbManager.GetAdminDataForAsync(userId) != null;
-            var havePriorityJoin = _sponsorsMgr != null && _sponsorsMgr.HavePriorityJoin(userId); // Corvax-Sponsors
+            var adminBypass = _cfg.GetCVar(CCVars.AdminBypassMaxPlayers) && await _dbManager.GetAdminDataForAsync(userId) != null;
             var wasInGame = EntitySystem.TryGet<GameTicker>(out var ticker) &&
                             ticker.PlayerGameStatuses.TryGetValue(userId, out var status) &&
                             status == PlayerGameStatus.JoinedGame;
             return adminBypass ||
-                   havePriorityJoin || // Corvax-Sponsors
                    wasInGame;
         }
         // Corvax-Queue-End

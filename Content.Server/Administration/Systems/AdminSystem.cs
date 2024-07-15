@@ -14,6 +14,7 @@ using Content.Shared.Administration.Events;
 using Content.Shared.Bank.Components;
 using Content.Shared.Bank.Events;
 using Content.Shared.CCVar;
+using Content.Shared.Corvax.CCCVars;
 using Content.Shared.GameTicking;
 using Content.Shared.Hands.Components;
 using Content.Shared.IdentityManagement;
@@ -82,6 +83,7 @@ namespace Content.Server.Administration.Systems
             Subs.CVar(_config, CCVars.PanicBunkerShowReason, OnPanicBunkerShowReasonChanged, true);
             Subs.CVar(_config, CCVars.PanicBunkerMinAccountAge, OnPanicBunkerMinAccountAgeChanged, true);
             Subs.CVar(_config, CCVars.PanicBunkerMinOverallMinutes, OnPanicBunkerMinOverallMinutesChanged, true);
+            Subs.CVar(_config, CCCVars.PanicBunkerDenyVPN, OnPanicBunkerDenyVpnChanged, true); // Corvax-VPNGuard
 
             /*
              * TODO: Remove baby jail code once a more mature gateway process is established. This code is only being issued as a stopgap to help with potential tiding in the immediate future.
@@ -346,6 +348,14 @@ namespace Content.Server.Administration.Systems
             BabyJail.MaxOverallMinutes = minutes;
             SendBabyJailStatusAll();
         }
+
+        // Corvax-VPNGuard-Start
+        private void OnPanicBunkerDenyVpnChanged(bool deny)
+        {
+            PanicBunker.DenyVpn = deny;
+            SendPanicBunkerStatusAll();
+        }
+        // Corvax-VPNGuard-End
 
         private void UpdatePanicBunker()
         {
