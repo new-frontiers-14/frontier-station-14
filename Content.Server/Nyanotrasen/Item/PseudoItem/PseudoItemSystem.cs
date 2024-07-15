@@ -152,7 +152,7 @@ public sealed class PseudoItemSystem : EntitySystem
             return false;
 
         var item = EnsureComp<ItemComponent>(toInsert);
-        _tagSystem.TryAddTag(toInsert, PreventTag);
+        //_tagSystem.TryAddTag(toInsert, PreventTag); // FRONTIER: removed for now
         _itemSystem.SetSize(toInsert, component.Size, item);
         _itemSystem.VisualsChanged(toInsert);
 
