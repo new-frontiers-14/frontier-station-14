@@ -21,6 +21,26 @@
             },
             "problemMatcher": "$msCompile"
         },
+        // Frontier begin
+        {
+            "label": "build-release",
+            "command": "dotnet",
+            "type": "shell",
+            "args": [
+                "build",
+                "--configuration=Release", // Build in release mode. Note: --, not /. /configuration doesn't work, because Microsoft.
+                "/property:GenerateFullPaths=true", // Ask dotnet build to generate full paths for file names.
+                "/consoleloggerparameters:NoSummary" // Do not generate summary otherwise it leads to duplicate errors in Problems panel
+            ],
+            "group": {
+                "kind": "build"
+            },
+            "presentation": {
+                "reveal": "silent"
+            },
+            "problemMatcher": "$msCompile"
+        },
+        // Frontier end
         {
             "label": "build-yaml-linter",
             "command": "dotnet",
