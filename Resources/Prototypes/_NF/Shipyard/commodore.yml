@@ -1,0 +1,37 @@
+# Author Info
+# GitHub: crysoskis
+# Discord: crysoskis
+
+# Maintainer Info
+# GitHub: ???
+# Discord: ???
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: commodore
+  name: NT Commodore
+  description: A small but spacious cargo vessel designed to allow cargo to pass though itself from stern to bow.
+  price: 22000
+  category: Small
+  group: Civilian
+  shuttlePath: /Maps/_NF/Shuttles/commodore.yml
+
+- type: gameMap
+  id: commodore
+  mapName: 'NT Commodore'
+  mapPath: /Maps/_NF/Shuttles/commodore.yml
+  minPlayers: 0
+  stations:
+    commodore:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Commodore {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
