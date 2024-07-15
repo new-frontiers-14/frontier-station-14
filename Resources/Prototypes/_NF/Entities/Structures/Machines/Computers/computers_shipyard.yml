@@ -62,6 +62,7 @@
       whitelist:
         components:
         - IdCard
+        - ShipyardVoucher
     newAccessLevels: [Captain]
   - type: ActivatableUI
     singleUser: true
@@ -241,3 +242,27 @@
       state: shipyard_blackmarket
     - map: ["computerLayerKeys"]
       state: blackmarket_key
+
+- type: entity
+  id: ComputerShipyardSr
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerShipyard]
+  name: sr shipyard console
+  description: Used to buy vessels exclusive to the station representative
+  components:
+  - type: ActivatableUI
+    key: enum.ShipyardConsoleUiKey.Sr
+  - type: UserInterface
+    interfaces:
+      enum.ShipyardConsoleUiKey.Sr:
+        type: ShipyardConsoleBoundUserInterface
+  - type: Sprite
+    sprite: _NF/Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer_sr
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: shipyard_sr
+    - map: ["computerLayerKeys"]
+      state: telesci_key

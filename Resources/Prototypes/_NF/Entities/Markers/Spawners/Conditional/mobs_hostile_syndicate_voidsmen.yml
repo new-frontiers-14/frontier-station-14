@@ -45,6 +45,30 @@
       - MobSyndicateNavalEngineerVoid
 
 - type: entity
+  name: syndicate naval medic spawner
+  suffix: AI, Hostile, Voidsman
+  id: SpawnMobSyndicateNavalMedicVoid
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+      - sprite: _NF/Mobs/Species/Templates/human.rsi
+        state: human
+      - sprite: Clothing/Head/Hardsuits/syndieelite.rsi
+        state: off-equipped-HELMET
+      - sprite: Clothing/OuterClothing/Hardsuits/syndiemedic.rsi
+        state: equipped-OUTERCLOTHING
+      - sprite: Objects/Specific/Medical/Surgery/scalpel.rsi
+        state: inhand-left
+      - sprite: Objects/Specific/Medical/Surgery/saw.rsi
+        state: advanced-inhand-right
+  - type: ConditionalSpawner
+    prototypes:
+      - MobSyndicateNavalMedicVoid
+
+- type: entity
   name: syndicate naval operator spawner
   id: SpawnMobSyndicateNavalOperatorVoid
   parent: MarkerBase
