@@ -36,7 +36,7 @@
     Drink:
       effects:
       - !type:SatiateThirst
-        factor: 2
+        factor: 0.5
       - !type:AdjustReagent
         reagent: Ethanol
         amount: 0.3
@@ -62,7 +62,7 @@
     Drink:
       effects:
       - !type:SatiateThirst
-        factor: 2
+        factor: 0.2
       - !type:AdjustReagent
         reagent: Ethanol
         amount: 0.4
@@ -85,7 +85,7 @@
     Drink:
       effects:
       - !type:SatiateThirst
-        factor: 2
+        factor: 1
       - !type:AdjustReagent
         reagent: Ethanol
         amount: 0.4
@@ -98,6 +98,29 @@
         probability: 0.1
   metamorphicSprite:
     sprite: _NF/Objects/Consumable/Drinks/pineappleblast.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 3
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
+
+- type: reagent
+  id: TorpedoJuice
+  name: reagent-name-torpedo-juice
+  parent: BaseAlcohol
+  desc: reagent-desc-torpedo-juice
+  physicalDesc: reagent-physical-desc-aromatic
+  flavor: torpedo
+  color: "#d4db9a"
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 0.8
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.6
+  metamorphicSprite:
+    sprite: _NF/Objects/Consumable/Drinks/torpedojuice.rsi
     state: icon_empty
   metamorphicMaxFillLevels: 3
   metamorphicFillBaseName: fill-

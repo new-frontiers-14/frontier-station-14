@@ -9,3 +9,6 @@ reagent-desc-golden-cat = Legends say the golden cat sold a burger for 100000 sp
 
 reagent-name-pineapple-blast = pineapple blast
 reagent-desc-pineapple-blast = When the trees start talking... Smells tropical with a sulfuric note.
+
+reagent-name-torpedo-juice = torpedo juice
+reagent-desc-torpedo-juice = The joys of drinking and unristricted submarine warfare combined! Has a strong alcoholic smell.
