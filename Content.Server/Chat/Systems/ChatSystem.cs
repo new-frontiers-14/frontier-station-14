@@ -462,7 +462,7 @@ public sealed partial class ChatSystem : SharedChatSystem
 
         SendInVoiceRange(ChatChannel.Local, msg, wrappedMessage, wrappedLanguageMessage, source, range);
 
-        var ev = new EntitySpokeEvent(source, originalMessage, null, null);
+        var ev = new EntitySpokeEvent(source, msg, null, null);
         RaiseLocalEvent(source, ev, true);
 
         // To avoid logging any messages sent by entities that are not players, like vendors, cloning, etc.
