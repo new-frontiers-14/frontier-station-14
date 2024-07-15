@@ -35,7 +35,7 @@ public sealed partial class DeadDropComponent : Component
     /// </summary>
     [DataField]
     //Use 15 seconds for testing
-    public int NFSDCoolDown = 900; // 900 / 60 = 15 minutes
+    public int RadioCoolDown = 900; // 900 / 60 = 15 minutes
 
     /// <summary>
     ///     Minimum distance to spawn the drop.

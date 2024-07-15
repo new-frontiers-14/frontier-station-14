@@ -170,14 +170,27 @@ public sealed class DeadDropSystem : EntitySystem
         var nfsdOutpost = new HashSet<Entity<MapGridComponent>>();
         _entityLookup.GetEntitiesOnMap(mapId, nfsdOutpost);
 
+
+        var pirateChannel = _prototypeManager.Index<RadioChannelPrototype>("Freelance");
+
         //checks if any of them are named NFSD Outpost
         foreach (var ent in nfsdOutpost)
         {
             if (MetaData(ent.Owner).EntityName.Equals("NFSD Outpost"))
             {
-                Timer.Spawn(TimeSpan.FromSeconds(component.NFSDCoolDown), () =>
+                Timer.Spawn(TimeSpan.FromSeconds(component.RadioCoolDown), () =>
                 {
                     _radio.SendRadioMessage(ent.Owner, $"Triangulated possible drop pod location: {dropLocation}", channel, uid);
+                });
+            }
+
+            //add a 1/3 chance for pirates to see the location of the smuggler after 15 minutes
+            if (MetaData(ent.Owner).EntityName.Equals("Pirate's Cove") && _random.Next(1, 3) == 1)
+            {
+                Timer.Spawn(TimeSpan.FromSeconds(component.RadioCoolDown), () =>
+                {
+                    var sender = Transform(user).GridUid ?? uid;
+                    _radio.SendRadioMessage(ent.Owner, $"Smuggler with possible booty detected at: {MetaData(sender).EntityName}", pirateChannel, uid);
                 });
             }
         }
