@@ -41,12 +41,12 @@
       CornerWalls: WallReinforced
       Walls: WallSolid
     spawnGroups:
-      CornerClutter: BaseClutter
-      Entrance: BaseAirlock
-      EntranceFlank: BaseWindow
-      Junction: BaseAirlock
-      WallMounts: BaseWallMounts
-      Window: BaseWindow
+      CornerClutter: BaseClutterNF
+      Entrance: BaseAirlockNF
+      EntranceFlank: BaseWindowNF
+      Junction: BaseAirlockNF
+      WallMounts: BaseWallMountsNF
+      Window: BaseWindowNF
     tiles:
       FallbackTile: FloorSteel
     whitelists:
@@ -60,25 +60,25 @@
         - SalvageOutpost
 
 - type: entitySpawnEntry
-  id: BaseClutter
+  id: BaseClutterNF
   entries:
   - id: PottedPlantRandom
     amount: 1
 
 - type: entitySpawnEntry
-  id: BaseAirlock
+  id: BaseAirlockNF
   entries:
   - id: CableApcExtension
   - id: AirlockGlass
 
 - type: entitySpawnEntry
-  id: BaseWindow
+  id: BaseWindowNF
   entries:
   - id: Grille
   - id: Window
 
 - type: entitySpawnEntry
-  id: BaseWallMounts
+  id: BaseWallMountsNF
   entries:
     # Posters
     - id: RandomPosterLegit
@@ -128,7 +128,7 @@
       NorthEast: BrickTileWhiteInnerNe
 
 - type: entitySpawnEntry
-  id: CaveFactoryWallMounts
+  id: CaveFactoryWallMountsNF
   entries:
     # Posters
     - id: RandomPosterLegit
@@ -145,7 +145,7 @@
   id: MedSci
   data:
     spawnGroups:
-      WallMounts: MedSciWallMounts
+      WallMounts: MedSciWallMountsNF
     whitelists:
       Rooms:
         tags:
@@ -156,7 +156,7 @@
     proto: Everything
 
 - type: entitySpawnEntry
-  id: MedSciWallMounts
+  id: MedSciWallMountsNF
   entries:
     - id: RandomPosterLegit
       orGroup: content
@@ -189,8 +189,8 @@
     colors:
       Decals: "#5E7C16"
     spawnGroups:
-      Entrance: MercenaryAirlock
-      WallMounts: LavaMercenaryWallMount
+      Entrance: MercenaryAirlockNF
+      WallMounts: LavaMercenaryWallMountsNF
     whitelists:
       Rooms:
         tags:
@@ -217,13 +217,13 @@
       NorthEast: BrickTileWhiteInnerNe
 
 - type: entitySpawnEntry
-  id: MercenaryAirlock
+  id: MercenaryAirlockNF
   entries:
     - id: CableApcExtension
     - id: AirlockMercenaryGlass
 
 - type: entitySpawnEntry
-  id: LavaMercenaryWallMount
+  id: LavaMercenaryWallMountsNF
   entries:
     # Posters
     - id: RandomPosterContraband
@@ -270,7 +270,7 @@
       NorthEast: BrickTileWhiteInnerNe
 
 - type: entitySpawnEntry
-  id: VirologyAirlock
+  id: VirologyAirlockNF
   entries:
     - CableApcExtension
     - AirlockVirologyGlass
@@ -285,9 +285,9 @@
       CornerWalls: WallMining
       Walls: WallMining
     spawnGroups:
-      Entrance: MiningAirlock
-      EntranceFlank: MiningWindow
-      Window: MiningWindow
+      Entrance: MiningAirlockNF
+      EntranceFlank: MiningWindowNF
+      Window: MiningWindowNF
     whitelists:
       Rooms:
         tags:
@@ -314,13 +314,13 @@
       NorthEast: BrickTileWhiteInnerNe
 
 - type: entitySpawnEntry
-  id: MiningAirlock
+  id: MiningAirlockNF
   entries:
     - CableApcExtension
     - AirlockMiningGlass
 
 - type: entitySpawnEntry
-  id: MiningWindow
+  id: MiningWindowNF
   entries:
     - Grille
     - MiningWindow
