@@ -411,7 +411,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         if (!_actionBlocker.CanSpeak(source) && !ignoreActionBlocker)
             return;
 
-        var message = TransformSpeech(source, FormattedMessage.RemoveMarkup(originalMessage));
+        var message = FormattedMessage.RemoveMarkupOrThrow(originalMessage);
 
         var msg = _language.GetLanguageMessage(source, message, language, TransformSpeech(source, message));
 
@@ -452,61 +452,37 @@ public sealed partial class ChatSystem : SharedChatSystem
         if (color is not null)
             wrappedMessage = InjectTagInsideTag(wrappedMessage, "Message", "color", color.Value.ToHex());
 
-        foreach (var (session, data) in GetRecipients(source, VoiceRange))
+        var wrappedLanguageMessage = Loc.GetString(
+            speech.Bold ? "chat-manager-entity-say-bold-wrap-message" : "chat-manager-entity-say-wrap-message",
+            ("entityName", name),
+            ("verb", Loc.GetString(_random.Pick(speech.SpeechVerbStrings))),
+            ("fontType", speech.FontId),
+            ("fontSize", speech.FontSize),
+            ("message", FormattedMessage.EscapeText(msg.Message)));
+
+        SendInVoiceRange(ChatChannel.Local, msg, wrappedMessage, wrappedLanguageMessage, source, range);
+
+        var ev = new EntitySpokeEvent(source, msg, null, null);
+        RaiseLocalEvent(source, ev, true);
+
+        // To avoid logging any messages sent by entities that are not players, like vendors, cloning, etc.
+        // Also doesn't log if hideLog is true.
+        if (!HasComp<ActorComponent>(source) || hideLog == true)
+            return;
+
+        if (originalMessage == msg.OriginalMessage)
         {
-            var entRange = MessageRangeCheck(session, data, range);
-
-            if (entRange == MessageRangeCheckResult.Disallowed)
-                continue;
-
-            var understand = _language.IsUnderstandLanguage(session, msg);
-
-            var wrappedLanguageMessage = Loc.GetString(
-                speech.Bold ? "chat-manager-entity-say-bold-wrap-message" : "chat-manager-entity-say-wrap-message",
-                ("entityName", name),
-                ("verb", Loc.GetString(_random.Pick(speech.SpeechVerbStrings))),
-                ("fontType", speech.FontId),
-                ("fontSize", speech.FontSize),
-                ("message", FormattedMessage.EscapeText(understand ? msg.OriginalMessage : msg.Message)));
-
-            SendInVoiceRange(ChatChannel.Local,
-                understand ? msg.OriginalMessage : msg.Message,
-                wrappedMessage: wrappedLanguageMessage,
-                source,
-                range,
-                session,
-                data);
-
-            var ev = new EntitySpokeEvent(source, message, null, null);
-            RaiseLocalEvent(source, ev, true);
-
-            // To avoid logging any messages sent by entities that are not players, like vendors, cloning, etc.
-            // Also doesn't log if hideLog is true.
-            if (!HasComp<ActorComponent>(source) || hideLog == true)
-                return;
-
-            if (originalMessage == msg.OriginalMessage)
-            {
-                if (name != Name(source))
-                    _adminLogger.Add(LogType.Chat,
-                        LogImpact.Low,
-                        $"Say from {ToPrettyString(source):user} as {name}: {originalMessage}.");
-                else
-                    _adminLogger.Add(LogType.Chat,
-                        LogImpact.Low,
-                        $"Say from {ToPrettyString(source):user}: {originalMessage}.");
-            }
+            if (name != Name(source))
+                _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Say from {ToPrettyString(source):user} as {name}: {originalMessage}.");
             else
-            {
-                if (name != Name(source))
-                    _adminLogger.Add(LogType.Chat,
-                        LogImpact.Low,
-                        $"Say from {ToPrettyString(source):user} as {name}, original: {originalMessage}, transformed: {message}.");
-                else
-                    _adminLogger.Add(LogType.Chat,
-                        LogImpact.Low,
-                        $"Say from {ToPrettyString(source):user}, original: {originalMessage}, transformed: {message}.");
-            }
+                _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Say from {ToPrettyString(source):user}: {originalMessage}.");
+        }
+        else
+        {
+            if (name != Name(source))
+                _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Say from {ToPrettyString(source):user} as {name}, original: {originalMessage}, transformed: {msg.OriginalMessage}.");
+            else
+                _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Say from {ToPrettyString(source):user}, original: {originalMessage}, transformed: {msg.OriginalMessage}.");
         }
     }
 
@@ -524,7 +500,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         if (!_actionBlocker.CanSpeak(source) && !ignoreActionBlocker)
             return;
 
-        var message = TransformSpeech(source, FormattedMessage.RemoveMarkup(originalMessage));
+        var message = FormattedMessage.RemoveMarkupOrThrow(originalMessage);
 
         var msg = _language.GetLanguageMessage(source, message, language, TransformSpeech(source, message));
 
@@ -551,7 +527,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         name = FormattedMessage.EscapeText(name);
 
         var wrappedMessage = Loc.GetString("chat-manager-entity-whisper-wrap-message",
-            ("entityName", name), ("message", FormattedMessage.EscapeText(message)));
+            ("entityName", name), ("message", FormattedMessage.EscapeText(msg.OriginalMessage)));
 
         var wrappedObfuscatedMessage = Loc.GetString("chat-manager-entity-whisper-wrap-message",
             ("entityName", nameIdentity), ("message", FormattedMessage.EscapeText(obfuscatedMessage)));
@@ -606,7 +582,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         var ev = new EntitySpokeEvent(source, msg, channel, new(obfuscatedMessage, language, obfuscatedLanguageMessage));
         RaiseLocalEvent(source, ev, true);
         if (!hideLog)
-            if (originalMessage == message)
+            if (originalMessage == msg.OriginalMessage)
             {
                 if (name != Name(source))
                     _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Whisper from {ToPrettyString(source):user} as {name}: {originalMessage}.");
@@ -617,10 +593,10 @@ public sealed partial class ChatSystem : SharedChatSystem
             {
                 if (name != Name(source))
                     _adminLogger.Add(LogType.Chat, LogImpact.Low,
-                    $"Whisper from {ToPrettyString(source):user} as {name}, original: {originalMessage}, transformed: {message}.");
+                    $"Whisper from {ToPrettyString(source):user} as {name}, original: {originalMessage}, transformed: {msg.OriginalMessage}.");
                 else
                     _adminLogger.Add(LogType.Chat, LogImpact.Low,
-                    $"Whisper from {ToPrettyString(source):user}, original: {originalMessage}, transformed: {message}.");
+                    $"Whisper from {ToPrettyString(source):user}, original: {originalMessage}, transformed: {msg.OriginalMessage}.");
             }
     }
 
@@ -646,14 +622,11 @@ public sealed partial class ChatSystem : SharedChatSystem
         var wrappedMessage = Loc.GetString("chat-manager-entity-me-wrap-message",
             ("entityName", name),
             ("entity", ent),
-            ("message", FormattedMessage.RemoveMarkup(action)));
+            ("message", FormattedMessage.RemoveMarkupOrThrow(action)));
 
         if (checkEmote)
             TryEmoteChatInput(source, action);
-        foreach (var (session, data) in GetRecipients(source, VoiceRange))
-        {
-            SendInVoiceRange(ChatChannel.Emotes, action, wrappedMessage, source, range, session, data, author);
-        }
+        SendInVoiceRange(ChatChannel.Emotes, action, wrappedMessage, wrappedMessage, source, range, author);
         if (!hideLog)
             if (name != Name(source))
                 _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Emote from {ToPrettyString(source):user} as {name}: {action}");
@@ -679,10 +652,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         var wrappedMessage = Loc.GetString("chat-manager-entity-looc-wrap-message",
             ("entityName", name),
             ("message", FormattedMessage.EscapeText(message)));
-        foreach (var (session, data) in GetRecipients(source, VoiceRange))
-        {
-            SendInVoiceRange(ChatChannel.LOOC, message, wrappedMessage, source, hideChat ? ChatTransmitRange.HideChat : ChatTransmitRange.Normal, session, data, player.UserId);
-        }
+        SendInVoiceRange(ChatChannel.LOOC, message, wrappedMessage, wrappedMessage, source, hideChat ? ChatTransmitRange.HideChat : ChatTransmitRange.Normal, player.UserId);
         _adminLogger.Add(LogType.Chat, LogImpact.Low, $"LOOC from {player:Player}: {message}");
     }
 
@@ -768,15 +738,17 @@ public sealed partial class ChatSystem : SharedChatSystem
     /// <summary>
     ///     Sends a chat message to the given players in range of the source entity.
     /// </summary>
-    private void SendInVoiceRange(ChatChannel channel, LanguageMessage message, string wrappedMessage, EntityUid source, ChatTransmitRange range, ICommonSession session, ICChatRecipientData data, NetUserId? author = null)
+    private void SendInVoiceRange(ChatChannel channel, LanguageMessage message, string wrappedMessage, string wrappedLanguageMessage, EntityUid source, ChatTransmitRange range, NetUserId? author = null)
     {
-        var entRange = MessageRangeCheck(session, data, range);
-        if (entRange == MessageRangeCheckResult.Disallowed)
-            return;
-
-        var understand = _language.IsUnderstandLanguage(session, message);
-        var entHideChat = entRange == MessageRangeCheckResult.HideChat;
-        _chatManager.ChatMessageToOne(channel, understand ? message.OriginalMessage : message.Message, wrappedMessage, source, entHideChat, session.Channel, author: author);
+        foreach (var (session, data) in GetRecipients(source, VoiceRange))
+        {
+            var entRange = MessageRangeCheck(session, data, range);
+            if (entRange == MessageRangeCheckResult.Disallowed)
+                continue;
+            var understand = _language.IsUnderstandLanguage(session, message);
+            var entHideChat = entRange == MessageRangeCheckResult.HideChat;
+            _chatManager.ChatMessageToOne(channel, understand ? message.OriginalMessage : message.Message, understand ? wrappedMessage : wrappedLanguageMessage, source, entHideChat, session.Channel, author: author);
+        }
 
         _replay.RecordServerMessage(new ChatMessage(channel, message.OriginalMessage, wrappedMessage, GetNetEntity(source), null, MessageRangeHideChatForReplay(range)));
     }

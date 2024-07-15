@@ -345,6 +345,8 @@ public sealed class SuitSensorSystem : EntitySystem
                 userJob = card.Comp.JobTitle;
             if (card.Comp.JobIcon != null)
                 userJobIcon = card.Comp.JobIcon;
+            if (card.Comp.JobPrototype is not null)
+                userJobPrototype = card.Comp.JobPrototype;
 
             foreach (var department in card.Comp.JobDepartments)
                 userJobDepartments.Add(Loc.GetString(department));
