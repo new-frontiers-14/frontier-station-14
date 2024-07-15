@@ -172,15 +172,16 @@ public sealed class ExecutionSystem : EntitySystem
 
             // TODO: This should just be an event or something instead to get this.
             // TODO: Handle clumsy.
-            var toCoordinates = gun.ShootCoordinates;
-
-            if (toCoordinates == null)
-                return;
-
-            _gunSystem.AttemptShoot(args.User, weapon, gun, toCoordinates.Value);
-
-            internalMsg = DefaultCompleteInternalGunExecutionMessage;
-            externalMsg = DefaultCompleteExternalGunExecutionMessage;
+            if (!_gunSystem.AttemptDirectShoot(args.User, uid, args.Target.Value, gun))
+            {
+                internalMsg = null;
+                externalMsg = null;
+            }
+            else
+            {
+                internalMsg = DefaultCompleteInternalGunExecutionMessage;
+                externalMsg = DefaultCompleteExternalGunExecutionMessage;
+            }
 
             args.Handled = true;
         }
