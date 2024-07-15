@@ -26,9 +26,6 @@ public sealed class PseudoItemSystem : EntitySystem
     [Dependency] private readonly ActionsSystem _actions = default!; // Frontier
     [Dependency] private readonly PopupSystem _popup = default!; // Frontier
 
-    [ValidatePrototypeId<TagPrototype>]
-    private const string PreventTag = "PreventLabel";
-
     public override void Initialize()
     {
         base.Initialize();

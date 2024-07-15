@@ -21,8 +21,6 @@ namespace Content.Server.Labels
         [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
 
         public const string ContainerName = "paper_label";
-        [ValidatePrototypeId<TagPrototype>]
-        private const string PreventTag = "PreventLabel";
 
         public override void Initialize()
         {
