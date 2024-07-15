@@ -47,10 +47,10 @@ public sealed class ExecutionSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<ExecutionComponent, GetVerbsEvent<UtilityVerb>>(OnGetInteractionsVerbs);
-        SubscribeLocalEvent<ExecutionComponent, ExecutionDoAfterEvent>(OnExecutionDoAfter);
+        //SubscribeLocalEvent<ExecutionComponent, GetVerbsEvent<UtilityVerb>>(OnGetInteractionsVerbs);
+        //SubscribeLocalEvent<ExecutionComponent, ExecutionDoAfterEvent>(OnExecutionDoAfter);
         //SubscribeLocalEvent<ExecutionComponent, GetMeleeDamageEvent>(OnGetMeleeDamage);
-        SubscribeLocalEvent<ProjectileComponent, ProjectileHitEvent>(OnProjectileHit);
+        //SubscribeLocalEvent<ProjectileComponent, ProjectileHitEvent>(OnProjectileHit);
     }
 
     private void OnGetInteractionsVerbs(EntityUid uid, ExecutionComponent comp, GetVerbsEvent<UtilityVerb> args)
