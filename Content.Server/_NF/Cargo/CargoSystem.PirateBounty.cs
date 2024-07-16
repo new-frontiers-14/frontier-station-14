@@ -56,7 +56,7 @@ public sealed partial class CargoSystem
     {
         if (_timing.CurTime < component.NextPrintTime)
             return;
-        
+
         var service = _sectorService.GetServiceEntity();
 
         if (!TryGetBountyFromId(service, args.BountyId, out var bounty))
@@ -71,7 +71,7 @@ public sealed partial class CargoSystem
     private void OnSkipPirateBountyMessage(EntityUid uid, PirateBountyConsoleComponent component, BountySkipMessage args)
     {
         var service = _sectorService.GetServiceEntity();
-        if (!TryComp<SectorPirateBountyDatabaseComponent>(serviceEnt, out var db))
+        if (!TryComp<SectorPirateBountyDatabaseComponent>(service, out var db))
             return;
 
         if (_timing.CurTime < db.NextSkipTime)
@@ -114,10 +114,10 @@ public sealed partial class CargoSystem
         msg.PushNewline();
         foreach (var entry in prototype.Entries)
         {
-            msg.AddMarkup($"- {Loc.GetString("bounty-console-manifest-entry",
+            if (msg.TryAddMarkup($"- {Loc.GetString("bounty-console-manifest-entry",
                 ("amount", entry.Amount),
-                ("item", Loc.GetString(entry.Name)))}");
-            msg.PushNewline();
+                ("item", Loc.GetString(entry.Name)))}", out var _))
+                msg.PushNewline();
         }
         _paperSystem.SetContent(uid, msg.ToMarkup(), paper);
     }
@@ -309,7 +309,7 @@ public sealed partial class CargoSystem
             var temp = new HashSet<EntityUid>();
             foreach (var entity in entities)
             {
-                if (!entry.Whitelist.IsValid(entity, EntityManager))
+                if (_whitelistSystem.IsWhitelistFailOrNull(entry.Whitelist, entity))
                     continue;
 
                 count += _stackQuery.CompOrNull(entity)?.Count ?? 1;
@@ -458,7 +458,7 @@ public sealed partial class CargoSystem
         var query = EntityQueryEnumerator<PirateBountyConsoleComponent, UserInterfaceComponent>();
         var service = _sectorService.GetServiceEntity();
         if (!TryComp<SectorPirateBountyDatabaseComponent>(service, out var db))
-            continue;
+            return;
         while (query.MoveNext(out var uid, out _, out var ui))
         {
             var untilNextSkip = db.NextSkipTime - _timing.CurTime;
