@@ -9,21 +9,21 @@
 # Shuttle Notes:
 #
 - type: vessel
-  id: commodore
+  id: Commodore
   name: NT Commodore
   description: A small but spacious cargo vessel designed to allow cargo to pass though itself from stern to bow.
-  price: 22000
+  price: 24500
   category: Small
   group: Civilian
   shuttlePath: /Maps/_NF/Shuttles/commodore.yml
 
 - type: gameMap
-  id: commodore
+  id: Commodore
   mapName: 'NT Commodore'
   mapPath: /Maps/_NF/Shuttles/commodore.yml
   minPlayers: 0
   stations:
-    commodore:
+    Commodore:
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
@@ -35,3 +35,4 @@
           availableJobs:
             Contractor: [ 0, 0 ]
             Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]
