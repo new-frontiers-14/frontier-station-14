@@ -19,7 +19,7 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Random;
-using Content.Shared._NF.SectorServices; // Frontier
+using Content.Server._NF.SectorServices; // Frontier
 using Content.Shared._NF.Trade.Components; // Frontier
 using Content.Shared.Whitelist; // Frontier
 

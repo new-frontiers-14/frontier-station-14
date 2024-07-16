@@ -8,7 +8,7 @@ namespace Content.Shared._NF.SectorServices.Prototypes;
 /// Prototype that represents game entities.
 /// </summary>
 // Do we need the NetSerializable attribute?
-[Prototype, Serializable, NetSerializable]
+[Prototype]
 public sealed partial class SectorServicePrototype : IPrototype
 {
     /// <summary>

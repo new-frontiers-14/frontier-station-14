@@ -13,7 +13,7 @@ pirate-bounty-item-vendingmachine = Vending Machine
 pirate-bounty-item-mercSuit = Mercenary Hardsuit
 pirate-bounty-item-cappy = Cappy
 pirate-bounty-item-cultistNeck = Cultist Necklace
-pirate-bounty-item-nfsdCampaign = Nfsd Small Campaign Hat
+pirate-bounty-item-nfsdCampaign = NFSD Small Campaign Hat
 pirate-bounty-item-scafsuit = SCAF Suit
 pirate-bounty-item-rtg = RTG
 pirate-bounty-item-mercgas = Mercenary Gas Mask
@@ -30,5 +30,6 @@ pirate-bounty-item-gold = Gold
 pirate-bounty-item-plasmacanister = Plasma Canister
 pirate-bounty-item-contracrate = Contraband Crate
 pirate-bounty-item-hydrotray = Hydroponics Tray
+pirate-bounty-item-hypo = Hypospray
 
-bounty-description-pirate = Go now, ye goon! Plunder me this!
+pirate-bounty-description-generic = Go now, ye goon! Plunder me this!
