@@ -2091,6 +2091,21 @@ entities:
     - type: Transform
       pos: 3.5,-28.5
       parent: 1
+  - uid: 443
+    components:
+    - type: Transform
+      pos: 17.5,-14.5
+      parent: 1
+  - uid: 506
+    components:
+    - type: Transform
+      pos: 17.5,-16.5
+      parent: 1
+  - uid: 693
+    components:
+    - type: Transform
+      pos: 17.5,-15.5
+      parent: 1
   - uid: 728
     components:
     - type: Transform
@@ -4349,6 +4364,7 @@ entities:
   - uid: 722
     components:
     - type: Transform
+      rot: -1.5707963267948966 rad
       pos: 2.5,-1.5
       parent: 1
 - proto: ClothingHandsGlovesBoxingRed
@@ -4360,9 +4376,10 @@ entities:
       parent: 1
 - proto: ClothingHandsGlovesBoxingYellow
   entities:
-  - uid: 808
+  - uid: 1184
     components:
     - type: Transform
+      rot: -1.5707963267948966 rad
       pos: 5.5,-4.5
       parent: 1
 - proto: ClothingHeadBandMercenary
@@ -9171,30 +9188,6 @@ entities:
     - type: Transform
       pos: -18.5,-20.5
       parent: 1
-- proto: MedicalBed
-  entities:
-  - uid: 443
-    components:
-    - type: Transform
-      pos: 17.5,-14.5
-      parent: 1
-  - uid: 506
-    components:
-    - type: Transform
-      pos: 17.5,-16.5
-      parent: 1
-  - uid: 1097
-    components:
-    - type: Transform
-      pos: 17.5,-15.5
-      parent: 1
-- proto: MedkitFilled
-  entities:
-  - uid: 693
-    components:
-    - type: Transform
-      pos: 17.5,-18.5
-      parent: 1
 - proto: Mirror
   entities:
   - uid: 1106
@@ -9312,6 +9305,13 @@ entities:
     - type: Transform
       pos: -17.5,-21.5
       parent: 1
+- proto: PlushieMoffRandom
+  entities:
+  - uid: 808
+    components:
+    - type: Transform
+      pos: 0.5,-17.5
+      parent: 1
 - proto: PortableScrubber
   entities:
   - uid: 255
@@ -9367,6 +9367,11 @@ entities:
     components:
     - type: Transform
       pos: 14.5,-20.5
+      parent: 1
+  - uid: 1097
+    components:
+    - type: Transform
+      pos: -15.5,-14.5
       parent: 1
   - uid: 1122
     components:
@@ -9826,13 +9831,6 @@ entities:
     components:
     - type: Transform
       pos: -3.5,-13.5
-      parent: 1
-- proto: RandomFoodSingle
-  entities:
-  - uid: 1184
-    components:
-    - type: Transform
-      pos: 0.5,-17.5
       parent: 1
 - proto: RandomInstruments
   entities:
