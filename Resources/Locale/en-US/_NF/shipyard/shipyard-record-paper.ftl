@@ -9,9 +9,7 @@ shipyard-record-paper-name = {$vessel_name} {$time}
 #
 #      Additional notes:
 
-shipyard-record-paper-content =  {"["}color=blue]◥█▄  █  ®[/color]                                                               [color= #009100][italic]Frontier Automated[/italic][/color]
-      {"["}color=blue]   █  ▀█◣[/color]                                                          [color= #009100][italic]Vessel Reporting System[/italic][/color]
-      __________________________________________________________________
+shipyard-record-paper-content = __________________________________________________________________
 
       {"["}head=2]               Ship Deployment Report[/head]
       __________________________________________________________________

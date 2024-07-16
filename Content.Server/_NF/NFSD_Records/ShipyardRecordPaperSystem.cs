@@ -15,7 +15,6 @@ using Content.Shared.Preferences;
 using Content.Shared.Shipyard.Prototypes;
 using Robust.Shared.Prototypes;
 using System.Net.NetworkInformation;
-using Robust.Shared.Random;
 
 namespace Content.Server.Fax;
 

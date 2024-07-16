@@ -4,7 +4,7 @@ namespace Content.Server.StationRecords;
 
 [Access(typeof(StationRecordsSystem))]
 [RegisterComponent]
-public sealed partial class AdditionalStationRecordsComponent : Component
+public sealed partial class SectorStationRecordComponent : Component
 {
     // Determines if station should receive additional copy of records
     // Mainly used for places which require accurate records of every single player

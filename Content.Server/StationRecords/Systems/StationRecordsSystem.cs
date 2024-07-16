@@ -9,6 +9,7 @@ using Content.Shared.Roles;
 using Content.Shared.StationRecords;
 using Robust.Shared.Enums;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Random; //Frontier modification
 
 namespace Content.Server.StationRecords.Systems;
 
@@ -36,6 +37,7 @@ public sealed class StationRecordsSystem : SharedStationRecordsSystem
     [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly StationRecordKeyStorageSystem _keyStorage = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly IRobustRandom _robustRandom = default!;
 
     public override void Initialize()
     {
@@ -51,7 +53,7 @@ public sealed class StationRecordsSystem : SharedStationRecordsSystem
 
         CreateGeneralRecord(args.Station, args.Mob, args.Profile, args.JobId, stationRecords);
 
-        /*var query = EntityQueryEnumerator<AdditionalStationRecordsComponent>();
+        /*var query = EntityQueryEnumerator<SectorStationRecordComponent>();
 
         while (query.MoveNext(out var stationGridUid, out var comp))
         {
@@ -90,11 +92,11 @@ public sealed class StationRecordsSystem : SharedStationRecordsSystem
 
         CreateGeneralRecord(station, idUid.Value, profile.Name, profile.Age, profile.Species, profile.Gender, jobId, fingerprintComponent?.Fingerprint, dnaComponent?.DNA, profile, records);
 
-        var query = EntityQueryEnumerator<AdditionalStationRecordsComponent>();
+        var query = EntityQueryEnumerator<SectorStationRecordComponent>();
 
         while (query.MoveNext(out var stationGridUid, out var comp))
         {
-            if (TryComp<StationMemberComponent>(stationGridUid, out var stationMemberComponent))
+            if (TryComp<StationMemberComponent>(stationGridUid, out var stationMemberComponent) && !TryComp<IgnoreSectorStationRecordComponent>(player, out var playerComp))
             {
                 var stationEntityUid = stationMemberComponent.Station;
 
@@ -116,7 +118,30 @@ public sealed class StationRecordsSystem : SharedStationRecordsSystem
 
                 TryComp<StationRecordsComponent>(stationEntityUid, out var stationRec);
 
-                CreateGeneralRecord(stationEntityUid, idUid.Value, profile.Name, profile.Age, profile.Species, profile.Gender, jobId, fingerprintComponent?.Fingerprint, dnaComponent?.DNA, profile, stationRec!);
+                //Checks if certain information should be faked, is yes then will randomise it
+                string playerJob = jobId;
+                if(TryComp<FakeSectorStationRecordComponent>(player, out var playerComponent))
+                {
+                    // Randomises job
+                    var random = _robustRandom.Next(1, 3);
+
+                    switch(random)
+                    {
+                        case 1:
+                            playerJob = "Contractor";
+                        break;
+                        case 2:
+                            playerJob = "Pilot";
+                        break;
+                        case 3:
+                            playerJob = "Mercenary";
+                        break;
+                        default:
+                            //Do nothing, when real job is visible that means something bad happened
+                        break;
+                    }
+                }
+                CreateGeneralRecord(stationEntityUid, idUid.Value, profile.Name, profile.Age, profile.Species, profile.Gender, playerJob, fingerprintComponent?.Fingerprint, dnaComponent?.DNA, profile, stationRec!);
             }
 
         }
