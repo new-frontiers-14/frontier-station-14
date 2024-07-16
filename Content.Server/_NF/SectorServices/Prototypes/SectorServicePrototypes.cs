@@ -1,18 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using Robust.Shared.GameObjects;
-using Robust.Shared.IoC;
-using Robust.Shared.Localization;
-using Robust.Shared.Map;
-using Robust.Shared.Maths;
-using Robust.Shared.Serialization;
-using Robust.Shared.Serialization.Manager;
-using Robust.Shared.Serialization.Manager.Attributes;
-using Robust.Shared.Serialization.Markdown.Mapping;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Array;
-using Robust.Shared.Utility;
-using Robust.Shared.ViewVariables;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server._NF.SectorServices.Prototypes;
 
