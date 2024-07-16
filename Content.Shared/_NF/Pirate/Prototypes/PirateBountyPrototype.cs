@@ -47,14 +47,20 @@ public readonly partial record struct PirateBountyItemEntry()
     /// <summary>
     /// A whitelist for determining what items satisfy the entry by tag, component, etc.
     /// </summary>
-    [DataField(required: true)]
+    [DataField]
     public EntityWhitelist Whitelist { get; init; } = default!;
 
     /// <summary>
     /// A whitelist for determining what items satisfy the entry by entity prototype ID
     /// </summary>
-    [DataField(required: true)]
+    [DataField]
     public EntProtoIdWhitelist IdWhitelist { get; init; } = default!;
+
+    /// <summary>
+    /// A blacklist that can be used to exclude items in the whitelist.
+    /// </summary>
+    [DataField]
+    public EntityWhitelist? Blacklist { get; init; } = null;
 
     /// <summary>
     /// How much of the item must be present to satisfy the entry

@@ -20,9 +20,10 @@
   entries:
   - name: pirate-bounty-item-pda
     amount: 8
-    whitelist:
+    idWhitelist:
       id:
       - BasePDA
+      matchParents: true
 
 - type: pirateBounty
   id: PirateBountyExtinguisher
@@ -31,9 +32,10 @@
   entries:
   - name: pirate-bounty-item-extinguisher
     amount: 5
-    whitelist:
+    idWhitelist:
       id:
       - FireExtinguisher
+      matchParents: true # Do we need this?
 
 - type: pirateBounty
   id: PirateBountyCaptainGloves
@@ -42,7 +44,7 @@
   entries:
   - name: pirate-bounty-item-captainGloves
     amount: 5
-    whitelist:
+    idWhitelist:
       id:
       - ClothingHandsGlovesCaptain
 
@@ -53,9 +55,10 @@
   entries:
   - name: pirate-bounty-item-gyro
     amount: 4
-    whitelist:
+    idWhitelist:
       id:
       - ShuttleGyroscope
+      matchParents: true
 
 - type: pirateBounty
   id: PirateBountyDefib
@@ -64,9 +67,10 @@
   entries:
   - name: pirate-bounty-item-defib
     amount: 5
-    whitelist:
+    idWhitelist:
       id:
       - BaseDefibrillator
+      matchParents: true
 
 - type: pirateBounty
   id: PirateBountyResearchDisk
@@ -75,9 +79,10 @@
   entries:
   - name: pirate-bounty-item-researchDisk
     amount: 7
-    whitelist:
+    idWhitelist:
       id:
       - ResearchDisk
+      matchParents: true
 
 - type: pirateBounty
   id: PirateBountyAlcohol
@@ -86,7 +91,7 @@
   entries:
   - name: pirate-bounty-item-alcohol
     amount: 4
-    whitelist:
+    idWhitelist:
       id:
       - BoozeDispenser
 
@@ -97,9 +102,10 @@
   entries:
   - name: pirate-bounty-item-thruster
     amount: 4
-    whitelist:
+    idWhitelist:
       id:
       - BaseThruster
+      matchParents: true
 
 - type: pirateBounty
   id: PirateBountyGravGen
@@ -108,7 +114,7 @@
   entries:
   - name: pirate-bounty-item-gravGen
     amount: 2
-    whitelist:
+    idWhitelist:
       id:
       - GravityGenerator
 
@@ -119,7 +125,7 @@
   entries:
   - name: pirate-bounty-item-chemVend
     amount: 1
-    whitelist:
+    idWhitelist:
       id:
       - VendingMachineChemicals
 
@@ -130,9 +136,10 @@
   entries:
   - name: pirate-bounty-item-vendingmachine
     amount: 3
-    whitelist:
+    idWhitelist:
       id:
       - VendingMachine
+      matchParents: true
 
 - type: pirateBounty
   id: PirateBountyMercSuit
@@ -141,9 +148,10 @@
   entries:
   - name: pirate-bounty-item-mercSuit
     amount: 2
-    whitelist:
+    idWhitelist:
       id:
       - ClothingOuterHardsuitMercenary
+      matchParents: true # Do we need this?
 
 - type: pirateBounty
   id: PirateBountyCappy
@@ -152,7 +160,7 @@
   entries:
   - name: pirate-bounty-item-cappy
     amount: 1
-    whitelist:
+    idWhitelist:
       id:
       - MobCatCappy
 
@@ -163,7 +171,7 @@
   entries:
   - name: pirate-bounty-item-cultistNeck
     amount: 1
-    whitelist:
+    idWhitelist:
       id:
       - ClothingNeckAmuletBloodCult
 
@@ -174,7 +182,7 @@
   entries:
   - name: pirate-bounty-item-nfsdCampaign
     amount: 4
-    whitelist:
+    idWhitelist:
       id:
       - ClothingHeadHatNfsdSmallCampaign
       - ClothingHeadHatNfsdCampaign
@@ -186,7 +194,7 @@
   entries:
   - name: pirate-bounty-item-scafsuit
     amount: 3
-    whitelist:
+    idWhitelist:
       id:
       - ClothingOuterHardsuitScaf
 
@@ -197,7 +205,7 @@
   entries:
   - name: pirate-bounty-item-rtg
     amount: 2
-    whitelist:
+    idWhitelist:
       id:
       - GeneratorRTG
 
@@ -208,18 +216,18 @@
   entries:
   - name: pirate-bounty-item-mercgas
     amount: 4
-    whitelist:
+    idWhitelist:
       id:
       - ClothingMaskGasMercenary
 
 - type: pirateBounty
   id: PirateBountyRDHardsuit
-  reward: 1
+  reward: 3
   description: pirate-bounty-description-pirate
   entries:
   - name: pirate-bounty-item-rdhardsuit
-    amount: 3
-    whitelist:
+    amount: 1
+    idWhitelist:
       id:
       - ClothingOuterHardsuitRd
 
@@ -230,29 +238,29 @@
   entries:
   - name: pirate-bounty-item-mk58
     amount: 2
-    whitelist:
+    idWhitelist:
       id:
       - WeaponPistolMk58
 
 - type: pirateBounty
   id: PirateBountyArtifactAnalyzer
-  reward: 2
+  reward: 4
   description: pirate-bounty-description-pirate
   entries:
   - name: pirate-bounty-item-artifactanalyzer
-    amount: 4
-    whitelist:
+    amount: 2
+    idWhitelist:
       id:
       - MachineArtifactAnalyzer
 
 - type: pirateBounty
   id: PirateBountyHotplate
-  reward: 1
+  reward: 5
   description: pirate-bounty-description-pirate
   entries:
   - name: pirate-bounty-item-hotplate
-    amount: 5
-    whitelist:
+    amount: 1
+    idWhitelist:
       id:
       - ChemistryHotplate
 
@@ -263,7 +271,7 @@
   entries:
   - name: pirate-bounty-item-deepfryer
     amount: 2
-    whitelist:
+    idWhitelist:
       id:
       - KitchenDeepFryer
 
@@ -274,7 +282,7 @@
   entries:
   - name: pirate-bounty-item-keycommon
     amount: 5
-    whitelist:
+    idWhitelist:
       id:
       - EncryptionKeyCommon
 
@@ -285,7 +293,7 @@
   entries:
   - name: pirate-bounty-item-medicalfabboard
     amount: 2
-    whitelist:
+    idWhitelist:
       id:
       - MedicalTechFabCircuitboard
 
@@ -296,7 +304,7 @@
   entries:
   - name: pirate-bounty-item-hypo
     amount: 1
-    whitelist:
+    idWhitelist:
       id:
       - Hypospray
 
@@ -307,7 +315,7 @@
   entries:
   - name: pirate-bounty-item-orebox
     amount: 3
-    whitelist:
+    idWhitelist:
       id:
       - OreBox
 
@@ -318,20 +326,21 @@
   entries:
   - name: pirate-bounty-item-autolathe
     amount: 3
-    whitelist:
+    idWhitelist:
       id:
       - Autolathe
 
-- type: pirateBounty
-  id: PirateBountyDiamond
-  reward: 4
-  description: pirate-bounty-description-pirate
-  entries:
-  - name: pirate-bounty-item-diamond
-    amount: 5
-    whitelist:
-      id:
-      - MaterialDiamond
+# needs work
+# - type: pirateBounty
+#   id: PirateBountyDiamond
+#   reward: 4
+#   description: pirate-bounty-description-pirate
+#   entries:
+#   - name: pirate-bounty-item-diamond
+#     amount: 5
+#     idWhitelist:
+#       id:
+#       - MaterialDiamond
 
 - type: pirateBounty
   id: PirateBountyGold
@@ -340,7 +349,7 @@
   entries:
   - name: pirate-bounty-item-gold
     amount: 5
-    whitelist:
+    idWhitelist:
       id:
       - OreGold
       - IngotGold
@@ -352,7 +361,7 @@
   entries:
   - name: pirate-bounty-item-plasmacanister
     amount: 5
-    whitelist:
+    idWhitelist:
       id:
       - PlasmaCanister
 
@@ -363,7 +372,7 @@
   entries:
   - name: pirate-bounty-item-contracrate
     amount: 1
-    whitelist:
+    idWhitelist:
       id:
       - CrateTradeContrabandSecureNormal
 
@@ -374,6 +383,6 @@
   entries:
   - name: pirate-bounty-item-hydrotray
     amount: 2
-    whitelist:
+    idWhitelist:
       id:
       - hydroponicsTray
