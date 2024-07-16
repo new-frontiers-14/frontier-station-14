@@ -38,6 +38,7 @@ public sealed class DeadDropSystem : EntitySystem
     [Dependency] private readonly SharedMapSystem _mapManager = default!;
     [Dependency] private readonly EntityLookupSystem _entityLookup = default!;
 
+    private List<EntityUid> _poi = new List<EntityUid>();
     public override void Initialize()
     {
         base.Initialize();
@@ -142,7 +143,6 @@ public sealed class DeadDropSystem : EntitySystem
         var channel = _prototypeManager.Index<RadioChannelPrototype>("Nfsd");
         var sender = Transform(user).GridUid ?? uid;
 
-        _radio.SendRadioMessage(sender, Loc.GetString("deaddrop-security-report"), channel, uid);
         _adminLogger.Add(LogType.Action, LogImpact.Medium, $"{ToPrettyString(user)} sent a dead drop to {dropLocation.ToString()} from {ToPrettyString(uid)} at {Transform(uid).Coordinates.ToString()}");
 
         // here we are just building a string for the hint paper so that it looks pretty and RP-like on the paper itself.
@@ -170,6 +170,7 @@ public sealed class DeadDropSystem : EntitySystem
         var nfsdOutpost = new HashSet<Entity<MapGridComponent>>();
         _entityLookup.GetEntitiesOnMap(mapId, nfsdOutpost);
 
+        string[] deadDropPossibleLocations = ["Tinnia's Rest", "Crazy Casey's Casino", "Grifty's Gas and Grub", "Expeditionary Lodge", "The Pit"];
 
         var pirateChannel = _prototypeManager.Index<RadioChannelPrototype>("Freelance");
 
@@ -178,6 +179,51 @@ public sealed class DeadDropSystem : EntitySystem
         {
             if (MetaData(ent.Owner).EntityName.Equals("NFSD Outpost"))
             {
+                _poi.Add(sender);
+                var count = 0;
+
+                foreach (var poi in _poi) {
+                    if (poi == sender) 
+                    {
+                        count++;
+                    }
+                }
+
+                if (count == 1)
+                {
+                    _radio.SendRadioMessage(ent.Owner, Loc.GetString("deaddrop-security-report"), channel, uid);
+                }
+                else if (count == 2)
+                {
+                    var location1 = "";
+                    var location2 = "";
+
+                    if (_random.Next(0, 2) == 0) // 50/50 chance
+                    {
+                        location1 = MetaData(sender).EntityName;
+                        location2 = deadDropPossibleLocations[_random.Next(0, deadDropPossibleLocations.Length)];
+                        while (location1.Equals(location2))
+                        {
+                            location2 = deadDropPossibleLocations[_random.Next(0, deadDropPossibleLocations.Length)];
+                        }
+                    }
+                    else
+                    {
+                        location2 = MetaData(sender).EntityName;
+                        location1 = deadDropPossibleLocations[_random.Next(0, deadDropPossibleLocations.Length)];
+                        while (location2.Equals(location1))
+                        {
+                            location1 = deadDropPossibleLocations[_random.Next(0, deadDropPossibleLocations.Length)];
+                        }
+                    }
+
+                    _radio.SendRadioMessage(ent.Owner, $"Found two possible locations where a dead drop has been called from: {location1} or {location2} ", channel, uid);
+                }
+                else if (count > 2)
+                {
+                    _radio.SendRadioMessage(ent.Owner, $"Dead drop activities detected at: {MetaData(sender).EntityName}", channel, uid);
+                }
+
                 Timer.Spawn(TimeSpan.FromSeconds(component.RadioCoolDown), () =>
                 {
                     _radio.SendRadioMessage(ent.Owner, $"Triangulated possible drop pod location: {dropLocation}", channel, uid);
@@ -185,7 +231,7 @@ public sealed class DeadDropSystem : EntitySystem
             }
 
             //add a 1/3 chance for pirates to see the location of the smuggler after 15 minutes
-            if (MetaData(ent.Owner).EntityName.Equals("Pirate's Cove") && _random.Next(1, 3) == 1)
+            if (MetaData(ent.Owner).EntityName.Equals("Pirate's Cove") && _random.Next(1, 4) == 1)
             {
                 Timer.Spawn(TimeSpan.FromSeconds(component.RadioCoolDown), () =>
                 {

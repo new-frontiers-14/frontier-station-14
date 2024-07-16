@@ -21,7 +21,7 @@ public sealed partial class DeadDropComponent : Component
     /// </summary>
     [DataField]
     //Use 10 seconds for testing
-    public int MinimumCoolDown = 600; // 600 / 60 = 10 minutes
+    public int MinimumCoolDown = 900; // 900 / 60 = 15 minutes
 
     /// <summary>
     ///     Max wait time in seconds to wait for the next dead drop.
