@@ -189,3 +189,75 @@
         type: IFFConsoleBoundUserInterface
   - type: Computer
     board: Null
+
+- type: entity
+  id: ComputerPirateBounty
+  parent: BaseComputer
+  name: pirate bounty computer
+  description: Avast, get ye pirate bounties here.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: bounty
+    - map: ["computerLayerKeys"]
+      state: tech_key
+  - type: PirateBountyConsole
+  - type: ActivatableUI
+    key: enum.PirateConsoleUiKey.Bounty
+  - type: UserInterface
+    interfaces:
+      enum.PirateConsoleUiKey.Bounty:
+        type: PirateBountyConsoleBoundUserInterface
+  - type: Computer
+    board: Null # I dunno man
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#b89f25"
+  # - type: GuideHelp # Frontier
+  #   guides: # Frontier
+  #   - Pirate # Frontier: eventually?  maybe?
+
+# FRONTIER - TODO: ADD COMPUTER FOR REDEEMING BOUNTIES
+
+# - type: entity
+#   name: pirate bounty redemption computer
+#   parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseStructureComputer]
+#   parent: BaseComputer
+#   id: ComputerContrabandPalletConsole
+#   description: Fence yer ill-gotten plunder for doubloons.
+#   placement:
+#     mode: SnapgridCenter
+#   components:
+#   - type: Sprite
+#     netsync: false
+#     noRot: true
+#     sprite: _NF/Structures/Machines/computers.rsi
+#     layers:
+#     - map: ["computerLayerBody"]
+#       state: computer
+#     - map: ["computerLayerKeyboard"]
+#       state: generic_keyboard
+#     - map: ["computerLayerScreen"]
+#       state: contraband
+#     - map: ["computerLayerKeys"]
+#       state: telesci_key
+#     - type: Appearance
+#   - type: PointLight
+#     radius: 1.5
+#     energy: 1.6
+#     color: "#b89f25"
+#   - type: PiratePalletConsole
+#   - type: ActivatableUI
+#     key: enum.PirateConsoleUiKey.Pallet
+#   - type: UserInterface
+#     interfaces:
+#       enum.PirateConsoleUiKey.Pallet:
+#         type: PiratePalletConsoleBoundUserInterface
+#   - type: Computer
+#     board: Null
