@@ -341,7 +341,7 @@ public sealed partial class MapScreen : BoxContainer
 
                 // If we can show it then add it to pending.
                 else if (!_shuttles.IsBeaconMap(mapUid) && (iffComp == null ||
-                         (iffComp.Flags & IFFFlags.Hide | iffComp.Flags & IFFFlags.HideLabel) == 0x0) &&
+                         (iffComp.Flags & (IFFFlags.Hide | IFFFlags.HideLabel) == 0x0)) && // Frontier: add HideLabel check
                          !gridObj.HideButton)
                 {
                     _pendingMapObjects.Add((mapComp.MapId, gridObj));
