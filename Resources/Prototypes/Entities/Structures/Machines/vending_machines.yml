@@ -97,11 +97,11 @@
   - type: SentienceTarget
     flavorKind: station-event-random-sentience-flavor-mechanical
   - type: StaticPrice
-    price: 1000
+    price: 1000 # Frontier: 100<1000
   - type: Appearance
   - type: WiresVisuals
-  - type: MarketModifier
-    mod: 10
+  - type: MarketModifier # Frontier
+    mod: 10 # Frontier
 
 - type: entity
   parent: VendingMachine
@@ -166,8 +166,8 @@
       shader: unshaded
     - state: panel
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
-  - type: MarketModifier
-    mod: 11.132
+  - type: MarketModifier # Frontier
+    mod: 11.132 # Frontier
 
 - type: entity
   parent: VendingMachine
@@ -197,8 +197,8 @@
       shader: unshaded
     - state: panel
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
-  - type: MarketModifier
-    mod: 5
+  - type: MarketModifier # Frontier
+    mod: 5 # Frontier
   - type: GuideHelp
     guides:
     - Bartender
@@ -232,8 +232,8 @@
     color: "#ffb0b0"
   - type: AccessReader
     access: [["HeadOfPersonnel"]]
-  - type: MarketModifier
-    mod: 5
+  - type: MarketModifier # Frontier
+    mod: 5 # Frontier
 
 - type: entity
   parent: VendingMachine
@@ -265,8 +265,8 @@
     radius: 1.5
     energy: 1.6
     color: "#4b93ad"
-  - type: MarketModifier
-    mod: 5
+  - type: MarketModifier # Frontier
+    mod: 5 # Frontier
 
 - type: entity
   parent: VendingMachine
@@ -690,8 +690,8 @@
     radius: 1.5
     energy: 1.6
     color: "#4b93ad"
-  - type: MarketModifier
-    mod: 5
+  - type: MarketModifier # Frontier
+    mod: 5 # Frontier
 
 - type: entity
   parent: VendingMachine
@@ -784,8 +784,8 @@
     radius: 1.5
     energy: 1.6
     color: "#b89e2a"
-  - type: MarketModifier
-    mod: 10
+  - type: MarketModifier # Frontier
+    mod: 10 # Frontier
 
 - type: entity
   parent: VendingMachine
@@ -815,8 +815,8 @@
       shader: unshaded
     - state: panel
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
-  - type: MarketModifier
-    mod: 5
+  - type: MarketModifier # Frontier
+    mod: 5 # Frontier
   - type: PointLight
     radius: 1.5
     energy: 1.6
@@ -852,8 +852,8 @@
       shader: unshaded
     - state: panel
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
-  - type: MarketModifier
-    mod: 5
+  - type: MarketModifier # Frontier
+    mod: 5 # Frontier
   - type: PointLight
     radius: 1.5
     energy: 1.6
@@ -888,8 +888,8 @@
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: AccessReader
     access: [["Security"]]
-  - type: MarketModifier
-    mod: 5
+  - type: MarketModifier # Frontier
+    mod: 5 # Frontier
   - type: PointLight
     radius: 1
     energy: 1.2
@@ -930,16 +930,16 @@
     radius: 1.5
     energy: 1.6
     color: "#326e3f"
-  - type: MarketModifier
-    mod: 5
+  - type: MarketModifier # Frontier
+    mod: 5 # Frontier
 
 - type: entity
   parent: VendingMachineSeedsUnlocked
   id: VendingMachineSeeds
   suffix: Hydroponics
   components:
-  - type: MarketModifier
-    mod: 5
+  - type: MarketModifier # Frontier
+    mod: 5 # Frontier
 
 - type: entity
   parent: VendingMachine
@@ -1122,8 +1122,8 @@
     radius: 1.5
     energy: 1.6
     color: "#389690"
-  - type: MarketModifier
-    mod: 9.64
+  - type: MarketModifier # Frontier
+    mod: 9.64 # Frontier
 
 - type: entity
   parent: VendingMachine
@@ -1223,8 +1223,8 @@
       shader: unshaded
     - state: panel
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
-  - type: MarketModifier
-    mod: 5
+  - type: MarketModifier # Frontier
+    mod: 5 # Frontier
   - type: PointLight
     radius: 1.5
     energy: 1.6
@@ -1394,8 +1394,8 @@
     radius: 1.5
     energy: 1.6
     color: "#d4ab33"
-  - type: MarketModifier
-    mod: 5
+  - type: MarketModifier # Frontier
+    mod: 5 # Frontier
 
 # wallmounted machines
 
@@ -1737,8 +1737,8 @@
     radius: 1.5
     energy: 1.6
     color: "#b89e2a"
-  # - type: AccessReader
-  #   access: [["Engineering"]]
+  # - type: AccessReader # Frontier
+  #   access: [["Engineering"]] # Frontier
 
 - type: entity
   parent: VendingMachine
@@ -1911,7 +1911,7 @@
     radius: 1.5
     energy: 1.6
     color: "#d82929"
-  - type: AccessReader
+#  - type: AccessReader # Frontier
 #    access: [["NuclearOperative"], ["SyndicateAgent"]]
 
 - type: entity
@@ -2057,8 +2057,8 @@
     pack: HappyHonkGoodbyes
 #  - type: AccessReader # Frontier
 #    access: [["Kitchen"], ["Theatre"]] # Frontier
-  - type: MarketModifier
-    mod: 5
+  - type: MarketModifier # Frontier
+    mod: 5 # Frontier
 
 # Gas Tank Dispenser
 
@@ -2074,8 +2074,8 @@
   - type: Sprite
     sprite: Structures/Machines/VendingMachines/tankdispenser.rsi #TODO add visualiser for remaining tanks as layers
     state: dispenser
-  - type: MarketModifier
-    mod: 5
+  - type: MarketModifier # Frontier
+    mod: 5 # Frontier
 
 - type: entity
   parent: VendingMachine
