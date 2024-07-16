@@ -58,3 +58,26 @@ public sealed class PirateBountyConsoleState : BoundUserInterfaceState
         UntilNextSkip = untilNextSkip;
     }
 }
+
+//TODO: inherit this from the base message
+[Serializable, NetSerializable]
+public sealed class PirateBountyPrintLabelMessage : BoundUserInterfaceMessage
+{
+    public string BountyId;
+
+    public PirateBountyPrintLabelMessage(string bountyId)
+    {
+        BountyId = bountyId;
+    }
+}
+
+[Serializable, NetSerializable]
+public sealed class PirateBountySkipMessage : BoundUserInterfaceMessage
+{
+    public string BountyId;
+
+    public PirateBountySkipMessage(string bountyId)
+    {
+        BountyId = bountyId;
+    }
+}
