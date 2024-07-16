@@ -1,4 +1,11 @@
 - type: entity
+  abstract: true
+  id: MobSyndicateNavalTimedDespawn
+  components:
+  - type: TimedDespawn
+    lifetime: 3000 # 50 mins (max blue space event duration involving these mobs - 40 mins)
+
+- type: entity
   name: syndicate naval agent
   abstract: true
   noSpawn: true
@@ -6,6 +13,7 @@
   - MobHumanoidHostileBase
   - MobHumanoidInvetory
   - MobHumanoidHostileAISimpleRanged
+  #- MobSyndicateNavalTimedDespawn
   id: MobSyndicateNavalBase
   components:
   - type: Body
@@ -37,6 +45,7 @@
   name: syndicate captain
   parent: MobSyndicateNavalBase
   id: MobSyndicateNavalCaptainA
+  description: The executive officer in lieu of the commander, syndicate captains ensure operations onboard go smoothly. Equipped with a magnum revolver.
   noSpawn: true
   components:
     - type: Loadout
@@ -102,6 +111,7 @@
   name: syndicate engineer
   parent: MobSyndicateNavalBase
   id: MobSyndicateNavalEngineerA
+  description: On a shuttle, the engineer has the annoying job of making sure absolutely everything is running correctly. Syndicate shuttles are no different.
   noSpawn: true
   components:
     - type: Loadout
@@ -164,6 +174,7 @@
   name: syndicate medic
   parent: MobSyndicateNavalBase
   id: MobSyndicateNavalMedicA
+  description: Medical specialist. Knows how to treat patients humanely and how to treat prisoners inhumanely. Uses darts laced with harmful chemicals - impedrezene or chloral hydrate.
   noSpawn: true
   components:
     - type: Loadout
@@ -226,6 +237,7 @@
   name: syndicate second officer
   parent: MobSyndicateNavalBase
   id: MobSyndicateNavalSecondOfficerA
+  description: The captain's right hand is entrusted with relaying the captain's orders to the crew and ensuring they are carried out promptly. Carries a laser pistol for self-defense.
   noSpawn: true
   components:
     - type: Loadout
@@ -283,6 +295,8 @@
   name: syndicate operative
   parent: MobSyndicateNavalBase
   id: MobSyndicateNavalOperatorA
+  description: |-
+   "Everything is a nail if you have a hammer." In this case, everything is a target because he has an SMG and an itchy trigger finger.
   noSpawn: true
   components:
     - type: Loadout
@@ -340,6 +354,8 @@
   name: syndicate grenadier
   parent: MobSyndicateNavalBase
   id: MobSyndicateNavalGrenadierA
+  description: |-
+   "Huh? Say it louder! I can't hear you!" Equipped with the infamous China Lake, grenadiers have immense destructive capability, and should be priority targets.
   noSpawn: true
   components:
     - type: Loadout
@@ -408,6 +424,7 @@
   name: syndicate saboteur
   parent: MobSyndicateNavalBase
   id: MobSyndicateNavalSaboteurA
+  description: Specialist trained in the art of sabotaging NT shuttles and facilities. Equipped with EMP rounds, take caution.
   noSpawn: true
   components:
     - type: Loadout
@@ -484,6 +501,7 @@
   name: syndicate commander # Mega Fauna for Dungeons
   parent: MobSyndicateNavalBase
   id: MobSyndicateNavalCommanderA
+  description: A regional commander of Syndicate operations, this officer holds ultimate local command and responsibility. Armed with an assault rifle and heavily armored.
   noSpawn: true
   components:
     - type: Loadout
@@ -554,6 +572,7 @@
   name: syndicate deckhand
   parent: MobSyndicateNavalBase
   id: MobSyndicateNavalDeckhandA
+  description: Lowest ranking member of the Syndicate Naval Forces. Your regular "Johnny-on-the-spot" when it comes to menial tasks.
   noSpawn: true
   components:
     - type: Loadout
@@ -631,6 +650,7 @@
   name: syndicate chemwarrior
   parent: MobSyndicateNavalBase
   id: MobSyndicateNavalChemwarriorA
+  description: Carrying tanks filled with dangerous chemicals, chemwarriors attack their enemies with a noxious spray.
   noSpawn: true
   components:
   - type: Loadout
@@ -690,3 +710,77 @@
     proto: SplatterChemWeh
     capacity: 1
     count: 1
+
+# Void Troopers
+# Syndicate Captain, "armed" with Python
+- type: entity
+  name: syndicate captain
+  parent: MobSyndicateNavalCaptainA
+  id: MobSyndicateNavalCaptainVoid
+  noSpawn: true
+  components:
+    - type: Loadout
+      prototypes:
+        - SyndicateNavalCaptainVoidGear
+    - type: BasicEntityAmmoProvider
+      proto: BulletMagnum
+      capacity: 1
+      count: 1
+
+# Second Officer, "armed" with Advanced Laser Pistol
+- type: entity
+  parent: MobSyndicateNavalSecondOfficerA
+  id: MobSyndicateNavalSecondOfficerVoid
+  noSpawn: true
+  components:
+    - type: Loadout
+      prototypes:
+        - SyndicateNavalSecondOfficerVoidGear
+
+# Syndicate Security Operative, "armed" with Atreides SMG
+- type: entity
+  parent: MobSyndicateNavalOperatorA
+  id: MobSyndicateNavalOperatorVoid
+  noSpawn: true
+  components:
+    - type: Loadout
+      prototypes:
+        - SyndicateNavalOperatorVoidGear
+
+# Syndicate Engineer, "armed" with shotgun
+- type: entity
+  parent: MobSyndicateNavalEngineerA
+  id: MobSyndicateNavalEngineerVoid
+  noSpawn: true
+  components:
+    - type: Damageable
+      damageModifierSet: MobMercenaryDamageModifierSet
+    - type: Loadout
+      prototypes:
+        - SyndicateNavalEngineerVoidGear
+    - type: BasicEntityAmmoProvider
+      proto: ShellShotgun
+      capacity: 1
+      count: 1
+
+# Syndicate Deckhand, "armed" with Viper
+- type: entity
+  parent: MobSyndicateNavalDeckhandA
+  id: MobSyndicateNavalDeckhandVoid
+  noSpawn: true
+  components:
+    - type: Damageable
+      damageModifierSet: MobMercenaryDamageModifierSet
+    - type: Loadout
+      prototypes:
+        - SyndicateNavalDeckhandVoidGear
+
+# Syndicate Medic, "armed" poisoned darts
+- type: entity
+  parent: MobSyndicateNavalMedicA
+  id: MobSyndicateNavalMedicVoid
+  noSpawn: true
+  components:
+    - type: Loadout
+      prototypes:
+        - SyndicateNavalMedicVoidGear

@@ -13,8 +13,10 @@ namespace Content.Server.Kitchen.Components
     {
         [DataField("cookTimeMultiplier"), ViewVariables(VVAccess.ReadWrite)]
         public float CookTimeMultiplier = 1;
-        [DataField("machinePartCookTimeMultiplier", customTypeSerializer: typeof(PrototypeIdSerializer<MachinePartPrototype>))]
-        public string MachinePartCookTimeMultiplier = "Capacitor";
+        [DataField("machinePartCookTimeMultiplier")] // Frontier: machine parts
+        public ProtoId<MachinePartPrototype> MachinePartCookTimeMultiplier = "Capacitor"; // Frontier: machine parts
+        [ViewVariables(VVAccess.ReadOnly)]
+        public float FinalCookTimeMultiplier = 1.0f; // Frontier: machine parts
         [DataField("cookTimeScalingConstant")]
         public float CookTimeScalingConstant = 0.5f;
         [DataField("baseHeatMultiplier"), ViewVariables(VVAccess.ReadWrite)]
@@ -104,6 +106,12 @@ namespace Content.Server.Kitchen.Components
         /// Chance of lightning occurring when we microwave a metallic object
         [DataField, ViewVariables(VVAccess.ReadWrite)]
         public float LightningChance = .75f;
+
+        /// <summary>
+        /// If this microwave can give ids accesses without exploding
+        /// </summary>
+        [DataField, ViewVariables(VVAccess.ReadWrite)]
+        public bool CanMicrowaveIdsSafely = true;
     }
 
     public sealed class BeingMicrowavedEvent : HandledEntityEventArgs

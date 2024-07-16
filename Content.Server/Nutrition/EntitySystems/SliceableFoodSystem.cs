@@ -62,6 +62,8 @@ namespace Content.Server.Nutrition.EntitySystems
 
             var lostSolution = _solutionContainerSystem.SplitSolution(soln.Value, solution.Volume / FixedPoint2.New(component.Count));
 
+            _solutionContainerSystem.SetCapacity(soln.Value, soln.Value.Comp.Solution.MaxVolume - solution.MaxVolume / FixedPoint2.New(component.Count)); // Frontier: remove food capacity after taking a slice.
+
             // Fill new slice
             FillSlice(sliceUid, lostSolution);
 
@@ -111,15 +113,8 @@ namespace Content.Server.Nutrition.EntitySystems
 
             // try putting the slice into the container if the food being sliced is in a container!
             // this lets you do things like slice a pizza up inside of a hot food cart without making a food-everywhere mess
-            if (_containerSystem.TryGetContainingContainer(uid, out var container) && _containerSystem.CanInsert(sliceUid, container))
-            {
-                _containerSystem.Insert(sliceUid, container);
-            }
-            else // puts it down "right-side up"
-            {
-                _xformSystem.AttachToGridOrMap(sliceUid);
-                _xformSystem.SetLocalRotation(sliceUid, 0);
-            }
+            _xformSystem.DropNextTo(sliceUid, (uid, transform));
+            _xformSystem.SetLocalRotation(sliceUid, 0);
 
             // DeltaV - Begin deep frier related code
             var sliceEvent = new SliceFoodEvent(user, uid, sliceUid);
@@ -149,15 +144,8 @@ namespace Content.Server.Nutrition.EntitySystems
             var trashUid = Spawn(foodComp.Trash, _xformSystem.GetMapCoordinates(uid));
 
             // try putting the trash in the food's container too, to be consistent with slice spawning?
-            if (_containerSystem.TryGetContainingContainer(uid, out var container) && _containerSystem.CanInsert(trashUid, container))
-            {
-                _containerSystem.Insert(trashUid, container);
-            }
-            else // puts it down "right-side up"
-            {
-                _xformSystem.AttachToGridOrMap(trashUid);
-                _xformSystem.SetLocalRotation(trashUid, 0);
-            }
+            _xformSystem.DropNextTo(trashUid, uid);
+            _xformSystem.SetLocalRotation(trashUid, 0);
 
             QueueDel(uid);
         }
