@@ -1,19 +1,21 @@
 using Robust.Shared.GameObjects;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization;
 
 namespace Content.Server._NF.SectorServices.Prototypes;
 
 /// <summary>
 /// Prototype that represents game entities.
 /// </summary>
-[Prototype("sectorService")]
+// Do we need the NetSerializable attribute?
+[Prototype("sectorService"), Serializable, NetSerializable]
 public sealed partial class SectorServicePrototype : IPrototype
 {
     /// <summary>
     /// The "in code name" of the object. Must be unique.
     /// </summary>
     [ViewVariables]
-    [IdDataFieldAttribute]
+    [IdDataField]
     public string ID { get; private set; } = default!;
 
     /// <summary>
