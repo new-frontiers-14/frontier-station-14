@@ -2,7 +2,7 @@ using Robust.Shared.GameObjects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
-namespace Content.Server._NF.SectorServices.Prototypes;
+namespace Content.Shared._NF.SectorServices.Prototypes;
 
 /// <summary>
 /// Prototype that represents game entities.

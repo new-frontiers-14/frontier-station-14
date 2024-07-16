@@ -1,4 +1,4 @@
-using Content.Server._NF.SectorServices.Prototypes;
+using Content.Shared._NF.SectorServices.Prototypes;
 using Content.Server.GameTicking;
 using JetBrains.Annotations;
 using Robust.Shared.Map;
