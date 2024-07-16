@@ -94,12 +94,10 @@ public sealed class StationRecordsSystem : SharedStationRecordsSystem
 
         var query = EntityQueryEnumerator<SectorStationRecordComponent>();
 
-        while (query.MoveNext(out var stationGridUid, out var comp))
+        while (query.MoveNext(out var stationEntityUid, out var comp))
         {
-            if (TryComp<StationMemberComponent>(stationGridUid, out var stationMemberComponent) && !TryComp<IgnoreSectorStationRecordComponent>(player, out var playerComp))
+            if (!TryComp<IgnoreSectorStationRecordComponent>(player, out var playerComp))
             {
-                var stationEntityUid = stationMemberComponent.Station;
-
                 var stationList = EntityQueryEnumerator<StationRecordsComponent>();
 
                 while (stationList.MoveNext(out var stationUid, out var stationRecComp))

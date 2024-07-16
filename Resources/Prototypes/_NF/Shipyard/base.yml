@@ -35,6 +35,7 @@
     - BaseStationShuttles # Can spawn shuttles via shipyard consoles
     - BaseStationAlertLevels # Has a comms console
     - BaseStationSiliconLawFrontierStation # No funny borg laws
+    - BaseStationSectorRecords # Allows the NFSD criminal records to properly function
   noSpawn: true
   components:
     - type: Transform
@@ -151,3 +152,10 @@
   abstract: true
   components:
     - type: SectorNews
+
+# Gives this station copy of player records from Sector-wide
+- type: entity
+  id: BaseStationSectorRecords
+  abstract: true
+  components:
+    - type: SectorStationRecord
