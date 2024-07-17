@@ -63,7 +63,7 @@ public sealed partial class CargoSystem
 
         var label = Spawn(component.BountyLabelId, Transform(uid).Coordinates);
         component.NextPrintTime = _timing.CurTime + component.PrintDelay;
-        SetupPirateBountyLabel(label, service, bounty.Value);
+        SetupPirateBountyLabel(label, bounty.Value);
         _audio.PlayPvs(component.PrintSound, uid);
     }
 
@@ -76,7 +76,7 @@ public sealed partial class CargoSystem
         if (_timing.CurTime < db.NextSkipTime)
             return;
 
-        if (!TryGetPirateBountyFromId(args.BountyId, service, out var bounty))
+        if (!TryGetPirateBountyFromId(service, args.BountyId, out var bounty))
             return;
 
         if (args.Actor is not { Valid: true } mob)
@@ -89,7 +89,7 @@ public sealed partial class CargoSystem
             return;
         }
 
-        if (!TryRemovePirateBounty(service, bounty.Value))
+        if (!TryRemovePirateBounty(service, bounty.Value.Id))
             return;
 
         FillPirateBountyDatabase(service);
@@ -163,7 +163,7 @@ public sealed partial class CargoSystem
             return false;
 
         var serviceId = _sectorService.GetServiceEntity();
-        if (TryGetPirateBountyFromId(serviceId, component.Id, out var bounty))
+        if (!TryGetPirateBountyFromId(serviceId, component.Id, out var bounty))
         {
             return false;
         }
@@ -173,7 +173,7 @@ public sealed partial class CargoSystem
             return false;
         }
 
-        TryRemovePirateBounty(serviceId, bounty.Value);
+        TryRemovePirateBounty(serviceId, bounty.Value.Id);
         FillPirateBountyDatabase(serviceId);
         _adminLogger.Add(LogType.Action, LogImpact.Low, $"Bounty \"{bounty.Value.Bounty}\" (id:{bounty.Value.Id}) was fulfilled");
         return false;
@@ -395,23 +395,23 @@ public sealed partial class CargoSystem
 
         _nameIdentifier.GenerateUniqueName(serviceId, PirateBountyNameIdentifierGroup, out var randomVal); // Need a string ID for internal name, probably doesn't need to be outward facing.
         component.Bounties.Add(new PirateBountyData(bounty, randomVal));
-        _adminLogger.Add(LogType.Action, LogImpact.Low, $"Added bounty \"{bounty.ID}\" (id:{component.TotalBounties}) to station {ToPrettyString(uid)}");
+        _adminLogger.Add(LogType.Action, LogImpact.Low, $"Added pirate bounty \"{bounty.ID}\" (id:{component.TotalBounties}) to service {ToPrettyString(serviceId)}");
         component.TotalBounties++;
         return true;
     }
 
     [PublicAPI]
-    public bool TryRemovePirateBounty(string dataId, SectorPirateBountyDatabaseComponent? component = null)
+    public bool TryRemovePirateBounty(EntityUid serviceId, string dataId, SectorPirateBountyDatabaseComponent? component = null)
     {
-        if (!TryGetPirateBountyFromId(dataId, out var data, component))
+        if (!TryGetPirateBountyFromId(serviceId, dataId, out var data, component))
             return false;
 
-        return TryRemovePirateBounty(data.Value, component);
+        return TryRemovePirateBounty(serviceId, data.Value, component);
     }
 
-    public bool TryRemovePirateBounty(PirateBountyData data, SectorPirateBountyDatabaseComponent? component = null)
+    public bool TryRemovePirateBounty(EntityUid serviceId, PirateBountyData data, SectorPirateBountyDatabaseComponent? component = null)
     {
-        if (!Resolve(uid, ref component))
+        if (!Resolve(serviceId, ref component))
             return false;
 
         for (var i = 0; i < component.Bounties.Count; i++)
