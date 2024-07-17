@@ -4023,6 +4023,13 @@ entities:
       parent: 2
     - type: Fixtures
       fixtures: {}
+- proto: FoodPlateTin
+  entities:
+  - uid: 1165
+    components:
+    - type: Transform
+      pos: 8.734971,-6.4458947
+      parent: 2
 - proto: GasFilter
   entities:
   - uid: 1291
@@ -6203,6 +6210,13 @@ entities:
     - type: Transform
       pos: -0.5,2.5
       parent: 2
+- proto: GunSafeShuttleT2Spawner
+  entities:
+  - uid: 523
+    components:
+    - type: Transform
+      pos: -5.5,11.5
+      parent: 2
 - proto: Gyroscope
   entities:
   - uid: 1342
@@ -6254,6 +6268,38 @@ entities:
     - type: Transform
       pos: 8.84056,-6.600532
       parent: 2
+- proto: KitchenMicrowave
+  entities:
+  - uid: 122
+    components:
+    - type: Transform
+      pos: 9.5,-6.5
+      parent: 2
+- proto: KitchenReagentGrinder
+  entities:
+  - uid: 121
+    components:
+    - type: Transform
+      pos: 8.5,-8.5
+      parent: 2
+    - type: ContainerContainer
+      containers:
+        beakerSlot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: 99
+        inputContainer: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        machine_board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        machine_parts: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
 - proto: KitchenSpike
   entities:
   - uid: 417
@@ -6595,6 +6641,13 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 9.5,-0.5
+      parent: 2
+- proto: MaintenanceWeaponSpawner
+  entities:
+  - uid: 407
+    components:
+    - type: Transform
+      pos: -12.5,-2.5
       parent: 2
 - proto: MaterialBiomass
   entities:
@@ -7315,6 +7368,33 @@ entities:
     - type: Transform
       pos: 6.5,9.5
       parent: 2
+- proto: RandomSpawner
+  entities:
+  - uid: 1220
+    components:
+    - type: Transform
+      pos: -5.5,-6.5
+      parent: 2
+  - uid: 1307
+    components:
+    - type: Transform
+      pos: 7.5,-0.5
+      parent: 2
+  - uid: 1308
+    components:
+    - type: Transform
+      pos: -12.5,0.5
+      parent: 2
+  - uid: 1327
+    components:
+    - type: Transform
+      pos: -12.5,-1.5
+      parent: 2
+  - uid: 1353
+    components:
+    - type: Transform
+      pos: 12.5,-3.5
+      parent: 2
 - proto: ReinforcedPlasmaWindow
   entities:
   - uid: 243
@@ -7842,6 +7922,27 @@ entities:
     - type: Transform
       pos: 8.5,-7.5
       parent: 2
+- proto: SpawnPointBorg
+  entities:
+  - uid: 1454
+    components:
+    - type: Transform
+      pos: -6.5,-3.5
+      parent: 2
+- proto: SpawnPointChef
+  entities:
+  - uid: 1452
+    components:
+    - type: Transform
+      pos: 7.5,-5.5
+      parent: 2
+- proto: SpawnPointChemist
+  entities:
+  - uid: 1453
+    components:
+    - type: Transform
+      pos: 0.5,-9.5
+      parent: 2
 - proto: SpawnPointLatejoin
   entities:
   - uid: 1509
@@ -7849,6 +7950,41 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 3.5,-4.5
+      parent: 2
+- proto: SpawnPointMedicalDoctor
+  entities:
+  - uid: 1455
+    components:
+    - type: Transform
+      pos: -2.5,-9.5
+      parent: 2
+- proto: SpawnPointMercenary
+  entities:
+  - uid: 522
+    components:
+    - type: Transform
+      pos: -3.5,8.5
+      parent: 2
+- proto: SpawnPointPilot
+  entities:
+  - uid: 526
+    components:
+    - type: Transform
+      pos: 0.5,-0.5
+      parent: 2
+- proto: SpawnPointScientist
+  entities:
+  - uid: 1457
+    components:
+    - type: Transform
+      pos: -8.5,-1.5
+      parent: 2
+- proto: SpawnPointStationEngineer
+  entities:
+  - uid: 1458
+    components:
+    - type: Transform
+      pos: 7.5,2.5
       parent: 2
 - proto: SprayBottle
   entities:
@@ -8130,6 +8266,55 @@ entities:
     components:
     - type: Transform
       pos: 11.458923,-1.5594192
+      parent: 2
+- proto: VendingMachineChefDrobe
+  entities:
+  - uid: 199
+    components:
+    - type: Transform
+      pos: 1.5,-3.5
+      parent: 2
+- proto: VendingMachineChefvend
+  entities:
+  - uid: 528
+    components:
+    - type: Transform
+      pos: 6.5,-6.5
+      parent: 2
+- proto: VendingMachineChemicals
+  entities:
+  - uid: 385
+    components:
+    - type: Transform
+      pos: 0.5,-10.5
+      parent: 2
+- proto: VendingMachineEngiDrobe
+  entities:
+  - uid: 466
+    components:
+    - type: Transform
+      pos: -1.5,-3.5
+      parent: 2
+- proto: VendingMachineHydrobe
+  entities:
+  - uid: 190
+    components:
+    - type: Transform
+      pos: 2.5,-3.5
+      parent: 2
+- proto: VendingMachineMediDrobe
+  entities:
+  - uid: 462
+    components:
+    - type: Transform
+      pos: -0.5,-3.5
+      parent: 2
+- proto: VendingMachineSciDrobe
+  entities:
+  - uid: 465
+    components:
+    - type: Transform
+      pos: 0.5,-3.5
       parent: 2
 - proto: WallReinforced
   entities:

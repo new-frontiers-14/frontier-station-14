@@ -4767,6 +4767,13 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 6.483588,2.141698
       parent: 1
+- proto: chem_master
+  entities:
+  - uid: 26
+    components:
+    - type: Transform
+      pos: -8.5,10.5
+      parent: 1
 - proto: CigPackGreen
   entities:
   - uid: 613
@@ -5412,6 +5419,13 @@ entities:
     - type: DeviceLinkSink
       links:
       - 154
+- proto: CrateChemistrySupplies
+  entities:
+  - uid: 436
+    components:
+    - type: Transform
+      pos: -8.5,7.5
+      parent: 1
 - proto: DefibrillatorCabinetFilled
   entities:
   - uid: 793
@@ -6041,6 +6055,30 @@ entities:
       parent: 1
     - type: Fixtures
       fixtures: {}
+- proto: FoodBakedCookie
+  entities:
+  - uid: 161
+    components:
+    - type: Transform
+      pos: 6.3913617,2.0044975
+      parent: 1
+  - uid: 609
+    components:
+    - type: Transform
+      pos: 6.6257367,1.934185
+      parent: 1
+  - uid: 808
+    components:
+    - type: Transform
+      pos: 6.4499555,1.88731
+      parent: 1
+- proto: FoodPlate
+  entities:
+  - uid: 608
+    components:
+    - type: Transform
+      pos: 6.5352583,2.1099663
+      parent: 1
 - proto: GasMixer
   entities:
   - uid: 584
@@ -7439,13 +7477,38 @@ entities:
         - 0
         - 0
         - 0
-- proto: LockerMedical
+- proto: LockerMedicalFilled
   entities:
   - uid: 239
     components:
     - type: Transform
       pos: -7.5,0.5
       parent: 1
+- proto: LockerParamedicFilled
+  entities:
+  - uid: 486
+    components:
+    - type: Transform
+      pos: -12.5,2.5
+      parent: 1
+    - type: EntityStorage
+      air:
+        volume: 200
+        immutable: False
+        temperature: 293.1496
+        moles:
+        - 1.7459903
+        - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
 - proto: LockerSalvageSpecialistFilled
   entities:
   - uid: 358
@@ -7478,7 +7541,7 @@ entities:
     - type: Transform
       pos: 12.5,-13.5
       parent: 1
-- proto: Bed
+- proto: MedicalBed
   entities:
   - uid: 206
     components:
@@ -7489,6 +7552,20 @@ entities:
     components:
     - type: Transform
       pos: -5.5,0.5
+      parent: 1
+- proto: MedkitFilled
+  entities:
+  - uid: 435
+    components:
+    - type: Transform
+      pos: -8.446656,3.6739035
+      parent: 1
+- proto: MedkitToxinFilled
+  entities:
+  - uid: 976
+    components:
+    - type: Transform
+      pos: -8.642134,3.4433465
       parent: 1
 - proto: Morgue
   entities:
@@ -9736,12 +9813,47 @@ entities:
     - type: Transform
       pos: 4.5,-1.5
       parent: 1
+- proto: SpawnPointChemist
+  entities:
+  - uid: 586
+    components:
+    - type: Transform
+      pos: -6.5,9.5
+      parent: 1
+- proto: SpawnPointChiefEngineer
+  entities:
+  - uid: 629
+    components:
+    - type: Transform
+      pos: 12.5,7.5
+      parent: 1
 - proto: SpawnPointLatejoin
   entities:
   - uid: 1731
     components:
     - type: Transform
       pos: 2.5,3.5
+      parent: 1
+- proto: SpawnPointMedicalDoctor
+  entities:
+  - uid: 1216
+    components:
+    - type: Transform
+      pos: -6.5,2.5
+      parent: 1
+- proto: SpawnPointParamedic
+  entities:
+  - uid: 478
+    components:
+    - type: Transform
+      pos: -7.5,2.5
+      parent: 1
+- proto: SpawnPointSalvageSpecialist
+  entities:
+  - uid: 645
+    components:
+    - type: Transform
+      pos: 12.5,3.5
       parent: 1
 - proto: SubstationBasic
   entities:
@@ -10339,6 +10451,62 @@ entities:
         - Left: Forward
         - Right: Reverse
         - Middle: Off
+- proto: VendingMachineChemDrobe
+  entities:
+  - uid: 532
+    components:
+    - type: Transform
+      pos: -5.5,7.5
+      parent: 1
+- proto: VendingMachineChemicals
+  entities:
+  - uid: 1716
+    components:
+    - type: Transform
+      pos: -5.5,8.5
+      parent: 1
+- proto: VendingMachineEngiDrobe
+  entities:
+  - uid: 122
+    components:
+    - type: Transform
+      pos: 9.5,8.5
+      parent: 1
+- proto: VendingMachineEngivend
+  entities:
+  - uid: 452
+    components:
+    - type: Transform
+      pos: 9.5,10.5
+      parent: 1
+- proto: VendingMachineMediDrobe
+  entities:
+  - uid: 231
+    components:
+    - type: Transform
+      pos: -8.5,1.5
+      parent: 1
+- proto: VendingMachineSalvage
+  entities:
+  - uid: 500
+    components:
+    - type: Transform
+      pos: 13.5,8.5
+      parent: 1
+- proto: VendingMachineWallMedical
+  entities:
+  - uid: 461
+    components:
+    - type: Transform
+      pos: -8.5,4.5
+      parent: 1
+- proto: VendingMachineYouTool
+  entities:
+  - uid: 126
+    components:
+    - type: Transform
+      pos: 6.5,10.5
+      parent: 1
 - proto: WallReinforced
   entities:
   - uid: 39

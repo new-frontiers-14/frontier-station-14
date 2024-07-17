@@ -2289,6 +2289,25 @@ entities:
       rot: 3.141592653589793 rad
       pos: 8.5,8.5
       parent: 1
+- proto: chem_master
+  entities:
+  - uid: 143
+    components:
+    - type: Transform
+      pos: -9.5,-7.5
+      parent: 1
+- proto: ChemistryHotplate
+  entities:
+  - uid: 477
+    components:
+    - type: Transform
+      pos: -9.5,-9.5
+      parent: 1
+    - type: ItemPlacer
+      placedEntities:
+      - 531
+    - type: PlaceableSurface
+      isPlaceable: False
 - proto: ClosetJanitorFilled
   entities:
   - uid: 665
@@ -2493,6 +2512,27 @@ entities:
     - type: DeviceLinkSink
       links:
       - 787
+- proto: CrateChemistryD
+  entities:
+  - uid: 480
+    components:
+    - type: Transform
+      pos: -7.5,-9.5
+      parent: 1
+- proto: CrateChemistryP
+  entities:
+  - uid: 481
+    components:
+    - type: Transform
+      pos: -7.5,-10.5
+      parent: 1
+- proto: CrateChemistryS
+  entities:
+  - uid: 448
+    components:
+    - type: Transform
+      pos: -7.5,-8.5
+      parent: 1
 - proto: CrateEmptySpawner
   entities:
   - uid: 669
@@ -2555,6 +2595,13 @@ entities:
     components:
     - type: Transform
       pos: 2.1275525,-6.444022
+      parent: 1
+- proto: DonkpocketBoxSpawner
+  entities:
+  - uid: 829
+    components:
+    - type: Transform
+      pos: 3.5,2.5
       parent: 1
 - proto: DrinkDoctorsDelightGlass
   entities:
@@ -2820,6 +2867,13 @@ entities:
     components:
     - type: Transform
       pos: 2.5,-12.5
+      parent: 1
+- proto: FoodBoxPizzaFilled
+  entities:
+  - uid: 857
+    components:
+    - type: Transform
+      pos: -0.43316364,-0.30815744
       parent: 1
 - proto: GasCanisterBrokenBase
   entities:
@@ -3829,7 +3883,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: -10.5,-10.5
       parent: 1
-- proto: GunSafeShuttleCaptain
+- proto: GunSafeShuttleT1Spawner
   entities:
   - uid: 244
     components:
@@ -3912,6 +3966,20 @@ entities:
     components:
     - type: Transform
       pos: -9.347732,-10.388437
+      parent: 1
+- proto: KitchenMicrowave
+  entities:
+  - uid: 828
+    components:
+    - type: Transform
+      pos: 3.5,1.5
+      parent: 1
+- proto: KitchenReagentGrinder
+  entities:
+  - uid: 484
+    components:
+    - type: Transform
+      pos: -9.5,-11.5
       parent: 1
 - proto: KnifePlastic
   entities:
@@ -4560,6 +4628,110 @@ entities:
     - type: Transform
       pos: -0.5,3.5
       parent: 1
+- proto: RandomSpawner
+  entities:
+  - uid: 716
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -0.5,-10.5
+      parent: 1
+  - uid: 718
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 0.5,-9.5
+      parent: 1
+  - uid: 719
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 2.5,-7.5
+      parent: 1
+  - uid: 720
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -7.5,8.5
+      parent: 1
+  - uid: 721
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -7.5,5.5
+      parent: 1
+  - uid: 722
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -1.5,7.5
+      parent: 1
+  - uid: 723
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 0.5,8.5
+      parent: 1
+  - uid: 724
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 1.5,7.5
+      parent: 1
+  - uid: 862
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 1.5,2.5
+      parent: 1
+  - uid: 863
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 3.5,3.5
+      parent: 1
+  - uid: 876
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 1.5,1.5
+      parent: 1
+  - uid: 877
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -1.5,0.5
+      parent: 1
+  - uid: 878
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 0.5,-2.5
+      parent: 1
+  - uid: 879
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -1.5,-5.5
+      parent: 1
+  - uid: 880
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 1.5,-11.5
+      parent: 1
+  - uid: 881
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -8.5,-9.5
+      parent: 1
+  - uid: 882
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -6.5,-7.5
+      parent: 1
 - proto: RemoteSignaller
   entities:
   - uid: 790
@@ -5151,12 +5323,47 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -2.5,3.5
       parent: 1
+- proto: SpawnPointCargoTechnician
+  entities:
+  - uid: 662
+    components:
+    - type: Transform
+      pos: 0.5,-6.5
+      parent: 1
+- proto: SpawnPointChemist
+  entities:
+  - uid: 352
+    components:
+    - type: Transform
+      pos: -8.5,-7.5
+      parent: 1
 - proto: SpawnPointLatejoin
   entities:
   - uid: 663
     components:
     - type: Transform
       pos: 0.5,0.5
+      parent: 1
+- proto: SpawnPointSalvageSpecialist
+  entities:
+  - uid: 703
+    components:
+    - type: Transform
+      pos: 0.5,7.5
+      parent: 1
+- proto: SpawnPointServiceWorker
+  entities:
+  - uid: 702
+    components:
+    - type: Transform
+      pos: 0.5,0.5
+      parent: 1
+- proto: SpawnPointStationEngineer
+  entities:
+  - uid: 664
+    components:
+    - type: Transform
+      pos: 9.5,-7.5
       parent: 1
 - proto: StoolBar
   entities:
@@ -5586,6 +5793,48 @@ entities:
     components:
     - type: Transform
       pos: -2.5,1.5
+      parent: 1
+- proto: VendingMachineCargoDrobe
+  entities:
+  - uid: 576
+    components:
+    - type: Transform
+      pos: -6.5,7.5
+      parent: 1
+- proto: VendingMachineChemDrobe
+  entities:
+  - uid: 464
+    components:
+    - type: Transform
+      pos: -6.5,6.5
+      parent: 1
+- proto: VendingMachineChemicals
+  entities:
+  - uid: 236
+    components:
+    - type: Transform
+      pos: -9.5,-8.5
+      parent: 1
+- proto: VendingMachineCuddlyCritterVend
+  entities:
+  - uid: 524
+    components:
+    - type: Transform
+      pos: -7.5,10.5
+      parent: 1
+- proto: VendingMachineEngiDrobe
+  entities:
+  - uid: 463
+    components:
+    - type: Transform
+      pos: -6.5,8.5
+      parent: 1
+- proto: VendingMachineSalvage
+  entities:
+  - uid: 233
+    components:
+    - type: Transform
+      pos: -2.5,6.5
       parent: 1
 - proto: VendingMachineTankDispenserEVA
   entities:

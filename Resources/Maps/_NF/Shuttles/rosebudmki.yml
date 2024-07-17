@@ -4436,6 +4436,30 @@ entities:
       type: Transform
     - fixtures: {}
       type: Fixtures
+- proto: FoodBakedCookie
+  entities:
+  - uid: 60
+    components:
+    - pos: 6.3913617,2.0044975
+      parent: 1
+      type: Transform
+  - uid: 65
+    components:
+    - pos: 6.6257367,1.934185
+      parent: 1
+      type: Transform
+  - uid: 75
+    components:
+    - pos: 6.4499555,1.88731
+      parent: 1
+      type: Transform
+- proto: FoodPlate
+  entities:
+  - uid: 61
+    components:
+    - pos: 6.5352583,2.1099663
+      parent: 1
+      type: Transform
 - proto: GasMixer
   entities:
   - uid: 584
@@ -5609,6 +5633,20 @@ entities:
   - uid: 391
     components:
     - pos: -5.5,0.5
+      parent: 1
+      type: Transform
+- proto: MedkitAdvancedFilled
+  entities:
+  - uid: 1351
+    components:
+    - pos: -8.571821,3.8535028
+      parent: 1
+      type: Transform
+- proto: MedkitToxinFilled
+  entities:
+  - uid: 976
+    components:
+    - pos: -8.642134,3.4433465
       parent: 1
       type: Transform
 - proto: Morgue
@@ -7435,12 +7473,47 @@ entities:
     - pos: 4.5,-1.5
       parent: 1
       type: Transform
+- proto: SpawnPointChemist
+  entities:
+  - uid: 586
+    components:
+    - pos: -6.5,9.5
+      parent: 1
+      type: Transform
 - proto: SpawnPointLatejoin
   entities:
   - uid: 737
     components:
     - rot: -1.5707963267948966 rad
       pos: 0.5,8.5
+      parent: 1
+      type: Transform
+- proto: SpawnPointMedicalDoctor
+  entities:
+  - uid: 1216
+    components:
+    - pos: -6.5,2.5
+      parent: 1
+      type: Transform
+- proto: SpawnPointPilot
+  entities:
+  - uid: 729
+    components:
+    - pos: 0.5,2.5
+      parent: 1
+      type: Transform
+- proto: SpawnPointSalvageSpecialist
+  entities:
+  - uid: 645
+    components:
+    - pos: 12.5,3.5
+      parent: 1
+      type: Transform
+- proto: SpawnPointStationEngineer
+  entities:
+  - uid: 115
+    components:
+    - pos: 12.5,7.5
       parent: 1
       type: Transform
 - proto: SubstationBasic
@@ -7841,6 +7914,56 @@ entities:
         - Right: Reverse
         - Middle: Off
       type: DeviceLinkSource
+- proto: VendingMachineChemicals
+  entities:
+  - uid: 1354
+    components:
+    - flags: SessionSpecific
+      type: MetaData
+    - pos: -5.5,10.5
+      parent: 1
+      type: Transform
+- proto: VendingMachineEngiDrobe
+  entities:
+  - uid: 52
+    components:
+    - pos: 9.5,8.5
+      parent: 1
+      type: Transform
+- proto: VendingMachineEngivend
+  entities:
+  - uid: 452
+    components:
+    - flags: SessionSpecific
+      type: MetaData
+    - pos: 9.5,10.5
+      parent: 1
+      type: Transform
+- proto: VendingMachineMediDrobe
+  entities:
+  - uid: 119
+    components:
+    - pos: -8.5,8.5
+      parent: 1
+      type: Transform
+- proto: VendingMachineSalvage
+  entities:
+  - uid: 500
+    components:
+    - flags: SessionSpecific
+      type: MetaData
+    - pos: 13.5,8.5
+      parent: 1
+      type: Transform
+- proto: VendingMachineYouTool
+  entities:
+  - uid: 126
+    components:
+    - flags: SessionSpecific
+      type: MetaData
+    - pos: 6.5,10.5
+      parent: 1
+      type: Transform
 - proto: WallReinforced
   entities:
   - uid: 18
