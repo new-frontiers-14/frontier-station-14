@@ -56,9 +56,7 @@ public sealed partial class CargoSystem
         if (_timing.CurTime < component.NextPrintTime)
             return;
 
-        var service = _sectorService.GetServiceEntity();
-
-        if (!TryGetBountyFromId(service, args.BountyId, out var bounty))
+        if (!TryGetPirateBountyFromId(args.BountyId, out var bounty))
             return;
 
         var label = Spawn(component.BountyLabelId, Transform(uid).Coordinates);
@@ -69,14 +67,13 @@ public sealed partial class CargoSystem
 
     private void OnSkipPirateBountyMessage(EntityUid uid, PirateBountyConsoleComponent component, BountySkipMessage args)
     {
-        var service = _sectorService.GetServiceEntity();
-        if (!TryComp<SectorPirateBountyDatabaseComponent>(service, out var db))
+        if (!_sectorService.TryComp<SectorPirateBountyDatabaseComponent>(out var db))
             return;
 
         if (_timing.CurTime < db.NextSkipTime)
             return;
 
-        if (!TryGetBountyFromId(service, args.BountyId, out var bounty))
+        if (!TryGetPirateBountyFromId(args.BountyId, out var bounty))
             return;
 
         if (args.Actor is not { Valid: true } mob)

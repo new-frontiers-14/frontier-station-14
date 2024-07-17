@@ -62,7 +62,7 @@ public sealed class SectorServiceSystem : EntitySystem
 
     // Component access (mirroring EntityManager without entity ID)
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public bool TryGetComponent<T>([NotNullWhen(true)] out T? component) where T : IComponent?
+    public bool TryGetComponent<T>([NotNullWhen(true)] out T? component) where T : IComponent
     {
         return _entityManager.TryGetComponent(_entity, typeof(T), out component);
     }
@@ -84,19 +84,19 @@ public sealed class SectorServiceSystem : EntitySystem
     public bool TryGetComponent([NotNullWhen(true)] EntityUid? uid, Type type,
         [NotNullWhen(true)] out IComponent? component)
     {
-        return _entityManager.TryGetComponent(_entity, netId, out component, meta);
+        return _entityManager.TryGetComponent(_entity, type, out component);
     }
 
     /// <inheritdoc />
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public bool TryGetComponent(ushort netId, [MaybeNullWhen(false)] out IComponent component, MetaDataComponent? meta = null)
     {
-        return _entityManager.TryGetComponent(_entity, netId, component, meta);
+        return _entityManager.TryGetComponent(_entity, netId, out component, meta);
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [Pure]
-    public bool TryComp<T>([NotNullWhen(true)] out T? component) where T : IComponent?
+    public bool TryComp<T>([NotNullWhen(true)] out T? component) where T : IComponent
         => TryGetComponent(out component);
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
