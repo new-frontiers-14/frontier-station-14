@@ -44,7 +44,8 @@ public sealed partial class CargoSystem
 
     private void OnPirateBountyConsoleOpened(EntityUid uid, PirateBountyConsoleComponent component, BoundUIOpenedEvent args)
     {
-        if (!_sectorService.TryComp<SectorPirateBountyDatabaseComponent>(out var bountyDb))
+        var service = _sectorService.GetServiceEntity();
+        if (!TryComp<SectorPirateBountyDatabaseComponent>(service, out var bountyDb))
             return;
 
         var untilNextSkip = bountyDb.NextSkipTime - _timing.CurTime;
@@ -56,24 +57,26 @@ public sealed partial class CargoSystem
         if (_timing.CurTime < component.NextPrintTime)
             return;
 
-        if (!TryGetPirateBountyFromId(args.BountyId, out var bounty))
+        var service = _sectorService.GetServiceEntity();
+        if (!TryGetPirateBountyFromId(service, args.BountyId, out var bounty))
             return;
 
         var label = Spawn(component.BountyLabelId, Transform(uid).Coordinates);
         component.NextPrintTime = _timing.CurTime + component.PrintDelay;
-        SetupPirateBountyLabel(label, bounty.Value);
+        SetupPirateBountyLabel(label, service, bounty.Value);
         _audio.PlayPvs(component.PrintSound, uid);
     }
 
     private void OnSkipPirateBountyMessage(EntityUid uid, PirateBountyConsoleComponent component, BountySkipMessage args)
     {
-        if (!_sectorService.TryComp<SectorPirateBountyDatabaseComponent>(out var db))
+        var service = _sectorService.GetServiceEntity();
+        if (!TryComp<SectorPirateBountyDatabaseComponent>(service, out var db))
             return;
 
         if (_timing.CurTime < db.NextSkipTime)
             return;
 
-        if (!TryGetPirateBountyFromId(args.BountyId, out var bounty))
+        if (!TryGetPirateBountyFromId(args.BountyId, service, out var bounty))
             return;
 
         if (args.Actor is not { Valid: true } mob)
@@ -86,10 +89,10 @@ public sealed partial class CargoSystem
             return;
         }
 
-        if (!TryRemovePirateBounty(bounty.Value))
+        if (!TryRemovePirateBounty(service, bounty.Value))
             return;
 
-        FillPirateBountyDatabase();
+        FillPirateBountyDatabase(service);
         db.NextSkipTime = _timing.CurTime + db.SkipDelay;
         var untilNextSkip = db.NextSkipTime - _timing.CurTime;
         _uiSystem.SetUiState(uid, CargoConsoleUiKey.Bounty, new PirateBountyConsoleState(db.Bounties, untilNextSkip));
@@ -130,13 +133,14 @@ public sealed partial class CargoSystem
         if (!_container.TryGetContainingContainer(uid, out var container) || container.ID != LabelSystem.ContainerName)
             return;
 
-        if (!_sectorService.TryComp<SectorPirateBountyDatabaseComponent>(out var database))
+        var serviceId = _sectorService.GetServiceEntity();
+        if (!TryComp<SectorPirateBountyDatabaseComponent>(serviceId, out var database))
             return;
 
         if (database.CheckedBounties.Contains(component.Id))
             return;
 
-        if (!TryGetPirateBountyFromId(component.Id, out var bounty, database))
+        if (!TryGetPirateBountyFromId(serviceId, component.Id, out var bounty, database))
             return;
 
         if (!_protoMan.TryIndex(bounty.Value.Bounty, out var bountyPrototype) ||
@@ -158,7 +162,8 @@ public sealed partial class CargoSystem
         if (!TryGetPirateBountyLabel(uid, out _, out var component))
             return false;
 
-        if (!_sectorService.TryGetPirateBountyFromId(component.Id, out var bounty))
+        var serviceId = _sectorService.GetServiceEntity();
+        if (TryGetPirateBountyFromId(serviceId, component.Id, out var bounty))
         {
             return false;
         }
@@ -168,8 +173,8 @@ public sealed partial class CargoSystem
             return false;
         }
 
-        TryRemovePirateBounty(bounty.Value);
-        FillPirateBountyDatabase();
+        TryRemovePirateBounty(serviceId, bounty.Value);
+        FillPirateBountyDatabase(serviceId);
         _adminLogger.Add(LogType.Action, LogImpact.Low, $"Bounty \"{bounty.Value.Bounty}\" (id:{bounty.Value.Id}) was fulfilled");
         return false;
     }
@@ -205,11 +210,14 @@ public sealed partial class CargoSystem
     /// <summary>
     /// Fills up the bounty database with random bounties.
     /// </summary>
-    public void FillPirateBountyDatabase(SectorPirateBountyDatabaseComponent? component = null)
+    public void FillPirateBountyDatabase(EntityUid serviceId, SectorPirateBountyDatabaseComponent? component = null)
     {
+        if (!Resolve(serviceId, ref component))
+            return;
+
         while (component?.Bounties.Count < component?.MaxBounties)
         {
-            if (!TryAddPirateBounty(component))
+            if (!TryAddPirateBounty(serviceId, component))
                 break;
         }
 
@@ -233,7 +241,8 @@ public sealed partial class CargoSystem
             return false;
         }
 
-        if (!TryGetPirateBountyFromId(component.Id, out var bounty))
+        var service = _sectorService.GetServiceEntity();
+        if (!TryGetPirateBountyFromId(service, component.Id, out var bounty))
         {
             bountyEntities = new();
             return false;
@@ -345,40 +354,46 @@ public sealed partial class CargoSystem
     }
 
     [PublicAPI]
-    public bool TryAddPirateBounty(SectorPirateBountyDatabaseComponent? component = null)
+    public bool TryAddPirateBounty(EntityUid serviceId, SectorPirateBountyDatabaseComponent? component = null)
     {
+        if (!Resolve(serviceId, ref component))
+            return false;
+
         // todo: consider making the cargo bounties weighted.
         var allBounties = _protoMan.EnumeratePrototypes<PirateBountyPrototype>().ToList();
         var filteredBounties = new List<PirateBountyPrototype>();
         foreach (var proto in allBounties)
         {
-            if (component?.Bounties.Any(b => b.Bounty == proto.ID))
+            if (component.Bounties.Any(b => b.Bounty == proto.ID))
                 continue;
             filteredBounties.Add(proto);
         }
 
         var pool = filteredBounties.Count == 0 ? allBounties : filteredBounties;
         var bounty = _random.Pick(pool);
-        return TryAddPirateBounty(bounty, component);
+        return TryAddPirateBounty(serviceId, bounty, component);
     }
 
     [PublicAPI]
-    public bool TryAddPirateBounty(string bountyId, SectorPirateBountyDatabaseComponent? component = null)
+    public bool TryAddPirateBounty(EntityUid serviceId, string bountyId, SectorPirateBountyDatabaseComponent? component = null)
     {
         if (!_protoMan.TryIndex<PirateBountyPrototype>(bountyId, out var bounty))
         {
             return false;
         }
 
-        return TryAddPirateBounty(bounty, component);
+        return TryAddPirateBounty(serviceId, bounty, component);
     }
 
-    public bool TryAddPirateBounty(PirateBountyPrototype bounty, SectorPirateBountyDatabaseComponent? component = null)
+    public bool TryAddPirateBounty(EntityUid serviceId, PirateBountyPrototype bounty, SectorPirateBountyDatabaseComponent? component = null)
     {
+        if (!Resolve(serviceId, ref component))
+            return false;
+
         if (component.Bounties.Count >= component.MaxBounties)
             return false;
 
-        _nameIdentifier.GenerateUniqueName(uid, BountyNameIdentifierGroup, out var randomVal); // Need a string ID for internal name, probably doesn't need to be outward facing.
+        _nameIdentifier.GenerateUniqueName(serviceId, PirateBountyNameIdentifierGroup, out var randomVal); // Need a string ID for internal name, probably doesn't need to be outward facing.
         component.Bounties.Add(new PirateBountyData(bounty, randomVal));
         _adminLogger.Add(LogType.Action, LogImpact.Low, $"Added bounty \"{bounty.ID}\" (id:{component.TotalBounties}) to station {ToPrettyString(uid)}");
         component.TotalBounties++;
@@ -386,15 +401,15 @@ public sealed partial class CargoSystem
     }
 
     [PublicAPI]
-    public bool TryRemovePirateBounty(EntityUid uid, string dataId, SectorPirateBountyDatabaseComponent? component = null)
+    public bool TryRemovePirateBounty(string dataId, SectorPirateBountyDatabaseComponent? component = null)
     {
-        if (!TryGetPirateBountyFromId(uid, dataId, out var data, component))
+        if (!TryGetPirateBountyFromId(dataId, out var data, component))
             return false;
 
-        return TryRemovePirateBounty(uid, data.Value, component);
+        return TryRemovePirateBounty(data.Value, component);
     }
 
-    public bool TryRemovePirateBounty(EntityUid uid, PirateBountyData data, SectorPirateBountyDatabaseComponent? component = null)
+    public bool TryRemovePirateBounty(PirateBountyData data, SectorPirateBountyDatabaseComponent? component = null)
     {
         if (!Resolve(uid, ref component))
             return false;
@@ -418,8 +433,10 @@ public sealed partial class CargoSystem
         SectorPirateBountyDatabaseComponent? component = null)
     {
         bounty = null;
+        if (!Resolve(uid, ref component))
+            return false;
 
-        foreach (var bountyData in component?.Bounties)
+        foreach (var bountyData in component.Bounties)
         {
             if (bountyData.Id != id)
                 continue;
@@ -433,8 +450,11 @@ public sealed partial class CargoSystem
     public void UpdatePirateBountyConsoles()
     {
         var query = EntityQueryEnumerator<PirateBountyConsoleComponent, UserInterfaceComponent>();
-        if (!_sectorService.TryComp<SectorPirateBountyDatabaseComponent>(out var db))
+
+        var serviceId = _sectorService.GetServiceEntity();
+        if (!TryComp<SectorPirateBountyDatabaseComponent>(serviceId, out var db))
             return;
+
         while (query.MoveNext(out var uid, out _, out var ui))
         {
             var untilNextSkip = db.NextSkipTime - _timing.CurTime;
@@ -444,28 +464,9 @@ public sealed partial class CargoSystem
 
     private void UpdatePirateBounty()
     {
-        if (_sectorService.TryComp<SectorPirateBountyDatabaseComponent>(out var bountyDatabase))
-        {
-            bountyDatabase.CheckedBounties.Clear();
-        }
-    }
-
-    public bool TryGetPirateBountyFromId(
-    string id,
-    [NotNullWhen(true)] out PirateBountyData? bounty)
-    {
-        bounty = null;
-        if (!_sectorService.TryComp<SectorPirateBountyDatabaseComponent>(out var component))
-            return false;
-
-        foreach (var bountyData in component.Bounties)
-        {
-            if (bountyData.Id != id)
-                continue;
-            bounty = bountyData;
-            break;
-        }
-
-        return bounty != null;
+        var serviceId = _sectorService.GetServiceEntity();
+        if (!TryComp<SectorPirateBountyDatabaseComponent>(serviceId, out var bountyDatabase))
+            return;
+        bountyDatabase.CheckedBounties.Clear();
     }
 }
