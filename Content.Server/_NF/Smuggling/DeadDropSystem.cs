@@ -134,6 +134,7 @@ public sealed class DeadDropSystem : EntitySystem
         }
         else
         {
+            //this will spawn in the latest ship, and delete the oldest one available if the amount of ships exceeds 5.
             if (TryComp<ShuttleComponent>(gridUids[0], out var shuttle))
             {
 
@@ -213,7 +214,8 @@ public sealed class DeadDropSystem : EntitySystem
                     var location1 = "";
                     var location2 = "";
 
-                    if (_random.Next(0, 2) == 0) // 50/50 chance
+                    //rolls a 50/50 chance to see whether the real location would be on the left or right
+                    if (_random.Next(0, 2) == 0)
                     {
                         location1 = MetaData(sender).EntityName;
                         location2 = deadDropPossibleLocations[_random.Next(0, deadDropPossibleLocations.Length)];
@@ -232,40 +234,32 @@ public sealed class DeadDropSystem : EntitySystem
                         }
                     }
 
-                    _radio.SendRadioMessage(ent.Owner, $"Found two possible locations where a dead drop has been called from: {location1} or {location2} ", channel, uid);
+                    //then sends a radio message telling a fake location and a real one
+                    _radio.SendRadioMessage(ent.Owner, Loc.GetString("deaddrop-fifty-fifty", ("location1", location1), ("location2", location2)), channel, uid);
                 }
                 else if (count > 2)
                 {
-                    _radio.SendRadioMessage(ent.Owner, $"Dead drop activities detected at: {MetaData(sender).EntityName}", channel, uid);
+                    //tells the full location like it did earlier but only after the 3rd time a POI inovked a dead drop
+                    _radio.SendRadioMessage(ent.Owner, Loc.GetString("deaddrop-correct-location", ("name", MetaData(sender).EntityName)), channel, uid);
                 }
 
+                //tells the NFSD about the location of the dead drop after 15 minutes of it being active
                 Timer.Spawn(TimeSpan.FromSeconds(component.RadioCoolDown), () =>
                 {
-                    _radio.SendRadioMessage(ent.Owner, $"Triangulated possible drop pod location: {dropLocation}", channel, uid);
+                    _radio.SendRadioMessage(ent.Owner, Loc.GetString("deaddrop-nfsd", ("dropLocation", dropLocation)), channel, uid);
                 });
             }
 
             //add a 1/3 chance for pirates to see the location of the smuggler after 15 minutes
-            if (MetaData(ent.Owner).EntityName.Equals("Pirate's Cove") && _random.Next(1, 4) == 1)
+            if (MetaData(ent.Owner).EntityName.Equals("Pirate's Cove") && _random.Next(0, 3) == 0)
             {
                 Timer.Spawn(TimeSpan.FromSeconds(component.RadioCoolDown), () =>
                 {
                     var sender = Transform(user).GridUid ?? uid;
-                    _radio.SendRadioMessage(ent.Owner, $"Smuggler with possible booty detected at: {MetaData(sender).EntityName}", pirateChannel, uid);
+                    _radio.SendRadioMessage(ent.Owner, Loc.GetString("deaddrop-nfsd", ("ship", MetaData(sender).EntityName)), pirateChannel, uid);
                 });
             }
         }
 
-    }
-
-    public override bool Equals(object? obj)
-    {
-        return obj is DeadDropSystem system &&
-               EqualityComparer<List<EntityUid>>.Default.Equals(_poi, system._poi);
-    }
-
-    public override int GetHashCode()
-    {
-        throw new NotImplementedException();
     }
 }

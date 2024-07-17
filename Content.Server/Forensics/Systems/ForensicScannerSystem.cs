@@ -57,6 +57,9 @@ namespace Content.Server.Forensics
             SubscribeLocalEvent<ForensicScannerComponent, ForensicScannerDoAfterEvent>(OnDoAfter);
         }
 
+        /// <summary>
+        ///     Gives rewards in form of FUC to the detective for interacting with the dead drop system
+        /// </summary>
         private void GiveReward(EntityUid uidOrigin, EntityUid target, int amount, string msg)
         {
             SoundSpecifier confirmSound = new SoundPathSpecifier("/Audio/Effects/Cargo/ping.ogg");
@@ -109,6 +112,7 @@ namespace Content.Server.Forensics
                     scanner.Residues = forensics.Residues.ToList();
                 }
 
+                // Will only give FUC rewards to someone with the detective ID.
                 if (_idCardSystem.TryFindIdCard(args.Args.User, out var jobID))
                 {
                     if (jobID.Comp.JobTitle != null && jobID.Comp.JobTitle == "Detective")
@@ -120,7 +124,7 @@ namespace Content.Server.Forensics
                                 deadDropComponent.DeadDropCalled && !deadDropComponent.PosterScanned)
                             {
                                 var amount = 3;
-                                var msg = $"Contraband dead drop poster found! Sending {amount} FUC for the investigative work!";
+                                var msg = Loc.GetString("forensic-reward-poster", ("amount", amount));
 
                                 GiveReward(uid, args.Args.Target.Value, amount, msg);
 
@@ -132,9 +136,8 @@ namespace Content.Server.Forensics
                                 !_scannedDeadDrops.Contains(Transform(args.Args.Target.Value).ParentUid) && _amountScanned <= 5)
                         {
                             // Only works if you scan anything on the Syndicate Supply Drop and have scanned less than 5 times total
-
                             var amount = 6;
-                            var msg = $"Dead drop found! Sending {amount} FUC for the investigative work!";
+                            var msg = Loc.GetString("forensic-reward-drop", ("amount", amount));
 
                             GiveReward(uid, args.Args.Target.Value, amount, msg);
 
