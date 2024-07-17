@@ -1,9 +1,12 @@
+using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
 using Content.Shared._NF.SectorServices.Prototypes;
 using Content.Server.GameTicking;
 using JetBrains.Annotations;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Content.Server.Administration.Logs.Converters;
+
 
 namespace Content.Server._NF.SectorServices;
 
@@ -14,8 +17,8 @@ namespace Content.Server._NF.SectorServices;
 [PublicAPI]
 public sealed class SectorServiceSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IEntityManager _entityManager = default!;
+    [Robust.Shared.IoC.Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Robust.Shared.IoC.Dependency] private readonly IEntityManager _entityManager = default!;
 
     [ViewVariables(VVAccess.ReadOnly)]
     private EntityUid _entity = EntityUid.Invalid; // The station entity that's storing our services.
@@ -51,7 +54,7 @@ public sealed class SectorServiceSystem : EntitySystem
             foreach (var servicePrototype in _prototypeManager.EnumeratePrototypes<SectorServicePrototype>())
             {
                 Log.Error($"Removing component: {servicePrototype.Components}");
-                _entityManager.RemoveComponents(_entity, servicePrototype.Components, false); // removeExisting false - do not override existing components.
+                _entityManager.RemoveComponents(_entity, servicePrototype.Components);
             }
             _entity = EntityUid.Invalid;
         }
@@ -61,19 +64,19 @@ public sealed class SectorServiceSystem : EntitySystem
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public bool TryGetComponent<T>([NotNullWhen(true)] out T? component) where T : IComponent?
     {
-        return _entityManager.TryGetComponent(_entity, typeof(T), component);
+        return _entityManager.TryGetComponent(_entity, typeof(T), out component);
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public bool TryGetComponent(Type type, [NotNullWhen(true)] out IComponent? component)
     {
-        return _entityManager.TryGetComponent(_entity, type, component);
+        return _entityManager.TryGetComponent(_entity, type, out component);
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public bool TryGetComponent(CompIdx type, [NotNullWhen(true)] out IComponent? component)
     {
-        return _entityManager.TryGetComponent(_entity, type, component);
+        return _entityManager.TryGetComponent(_entity, type, out component);
     }
 
     /// <inheritdoc />
@@ -81,7 +84,7 @@ public sealed class SectorServiceSystem : EntitySystem
     public bool TryGetComponent([NotNullWhen(true)] EntityUid? uid, Type type,
         [NotNullWhen(true)] out IComponent? component)
     {
-        return _entityManager.TryGetComponent(_entity, netId, component, meta);
+        return _entityManager.TryGetComponent(_entity, netId, out component, meta);
     }
 
     /// <inheritdoc />
@@ -98,12 +101,7 @@ public sealed class SectorServiceSystem : EntitySystem
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [Pure]
-    public bool TryComp<T>([NotNullWhen(true)] out T? component) where T : IComponent?
-        => TryGetComponent(out component);
-
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    [Pure]
-    public T? CompOrNull() where T : IComponent
+    public T? CompOrNull<T>() where T : IComponent
     {
         if (TryGetComponent(_entity, out var comp))
             return comp;
@@ -112,7 +110,7 @@ public sealed class SectorServiceSystem : EntitySystem
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [Pure]
-    public T Comp() where T : IComponent
+    public T Comp<T>() where T : IComponent
     {
         return GetComponent(_entity);
     }

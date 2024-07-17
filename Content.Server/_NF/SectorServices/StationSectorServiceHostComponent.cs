@@ -6,4 +6,6 @@ namespace Content.Server._NF.SectorServices;
 /// A station with this component will host all sector-wide services.
 /// </summary>
 [RegisterComponent]
-public sealed class StationSectorServiceHostComponent : IComponent;
+public sealed class StationSectorServiceHostComponent : Component
+{
+}
