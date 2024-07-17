@@ -44,8 +44,7 @@ public sealed partial class CargoSystem
 
     private void OnPirateBountyConsoleOpened(EntityUid uid, PirateBountyConsoleComponent component, BoundUIOpenedEvent args)
     {
-        var serviceEnt = _sectorService.GetServiceEntity();
-        if (!TryComp<SectorPirateBountyDatabaseComponent>(serviceEnt, out var bountyDb))
+        if (!_sectorService.TryComp<SectorPirateBountyDatabaseComponent>(out var bountyDb))
             return;
 
         var untilNextSkip = bountyDb.NextSkipTime - _timing.CurTime;
@@ -160,7 +159,7 @@ public sealed partial class CargoSystem
     // Returns true if the bounty has been handled, false otherwise.
     private bool HandlePirateBounty(EntityUid uid)
     {
-        if (!TryGetBountyLabel(uid, out _, out var component))
+        if (!TryGetPirateBountyLabel(uid, out _, out var component))
             return false;
 
         if (component.AssociatedStationId is not { } station || !TryGetPirateBountyFromId(station, component.Id, out var bounty))
@@ -456,8 +455,7 @@ public sealed partial class CargoSystem
     public void UpdatePirateBountyConsoles()
     {
         var query = EntityQueryEnumerator<PirateBountyConsoleComponent, UserInterfaceComponent>();
-        var service = _sectorService.GetServiceEntity();
-        if (!TryComp<SectorPirateBountyDatabaseComponent>(service, out var db))
+        if (!_sectorService.TryComp<SectorPirateBountyDatabaseComponent>(out var db))
             return;
         while (query.MoveNext(out var uid, out _, out var ui))
         {
@@ -468,10 +466,49 @@ public sealed partial class CargoSystem
 
     private void UpdatePirateBounty()
     {
-        var query = EntityQueryEnumerator<SectorPirateBountyDatabaseComponent>();
-        while (query.MoveNext(out var bountyDatabase))
+        if (!_sectorService.TryComp<SectorPirateBountyDatabaseComponent>(out var bountyDatabase))
         {
             bountyDatabase.CheckedBounties.Clear();
         }
+    }
+
+    public bool TryGetPirateBountyFromId(
+    string id,
+    [NotNullWhen(true)] out PirateBountyData? bounty)
+    {
+        if (!_sectorService.TryComp<SectorPirateBountyDatabaseComponent>(out var component))
+            return false;
+
+        foreach (var bountyData in component.Bounties)
+        {
+            if (bountyData.Id != id)
+                continue;
+            bounty = bountyData;
+            break;
+        }
+
+        return bounty != null;
+    }
+    
+    private bool TryGetPirateBountyLabel(EntityUid uid,
+        [NotNullWhen(true)] out EntityUid? labelEnt,
+        [NotNullWhen(true)] out PirateBountyLabelComponent? labelComp)
+    {
+        labelEnt = null;
+        labelComp = null;
+        if (!_containerQuery.TryGetComponent(uid, out var containerMan))
+            return false;
+
+        // make sure this label was actually applied to a crate.
+        if (!_container.TryGetContainer(uid, LabelSystem.ContainerName, out var container, containerMan))
+            return false;
+
+        if (container.ContainedEntities.FirstOrNull() is not { } label ||
+            !_bountyLabelQuery.TryGetComponent(label, out var component))
+            return false;
+
+        labelEnt = label;
+        labelComp = component;
+        return true;
     }
 }
