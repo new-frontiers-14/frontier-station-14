@@ -7,7 +7,7 @@ namespace Content.Server._NF.Pirate.Components;
 /// Stores all active cargo bounties for a particular station.
 /// </summary>
 [RegisterComponent]
-public sealed partial class StationPirateBountyDatabaseComponent : Component
+public sealed partial class SectorPirateBountyDatabaseComponent : Component
 {
     /// <summary>
     /// Maximum amount of bounties a station can have.

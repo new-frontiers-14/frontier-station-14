@@ -1,20 +1,20 @@
-﻿bounty-console-menu-title = Pirate bounty console
-bounty-console-label-button-text = Print label
-bounty-console-skip-button-text = Skip
-bounty-console-time-label = Time: [color=orange]{$time}[/color]
-bounty-console-reward-label = Reward: [color=limegreen]${$reward}[/color]
-bounty-console-manifest-label = Manifest: [color=orange]{$item}[/color]
-bounty-console-manifest-entry =
+pirate-bounty-console-menu-title = Pirate bounty console
+pirate-bounty-console-label-button-text = Print label
+pirate-bounty-console-skip-button-text = Skip
+pirate-bounty-console-time-label = Time: [color=orange]{$time}[/color]
+pirate-bounty-console-reward-label = Reward: [color=limegreen]${$reward}[/color]
+pirate-bounty-console-manifest-label = Manifest: [color=orange]{$item}[/color]
+pirate-bounty-console-manifest-entry =
     { $amount ->
         [1] {$item}
         *[other] {$item} x{$amount}
     }
-bounty-console-manifest-reward = Reward: ${$reward}
-bounty-console-description-label = [color=gray]{$description}[/color]
-bounty-console-id-label = ID#{$id}
+pirate-bounty-console-manifest-reward = Reward: {$reward} DB
+pirate-bounty-console-description-label = [color=gray]{$description}[/color]
+pirate-bounty-console-id-label = YAR-{$id}
 
-bounty-console-flavor-left = Bounties sourced from local plunder pits.
-bounty-console-flavor-right = v1.4
+pirate-bounty-console-flavor-left = Go and plunder, me hearties! Down with NT!
+pirate-bounty-console-flavor-right = v0.0.1a
 
-bounty-manifest-header = [font size=14][bold]Official pirate bounty manifest[/bold] (ID#{$id})[/font]
-bounty-manifest-list-start = Item manifest:
+pirate-bounty-manifest-header = [font size=14][bold]Official cargo bounty manifest[/bold] (ID#{$id})[/font]
+pirate-bounty-manifest-list-start = Item manifest:
