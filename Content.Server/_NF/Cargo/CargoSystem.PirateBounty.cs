@@ -489,26 +489,4 @@ public sealed partial class CargoSystem
 
         return bounty != null;
     }
-    
-    private bool TryGetPirateBountyLabel(EntityUid uid,
-        [NotNullWhen(true)] out EntityUid? labelEnt,
-        [NotNullWhen(true)] out PirateBountyLabelComponent? labelComp)
-    {
-        labelEnt = null;
-        labelComp = null;
-        if (!_containerQuery.TryGetComponent(uid, out var containerMan))
-            return false;
-
-        // make sure this label was actually applied to a crate.
-        if (!_container.TryGetContainer(uid, LabelSystem.ContainerName, out var container, containerMan))
-            return false;
-
-        if (container.ContainedEntities.FirstOrNull() is not { } label ||
-            !_bountyLabelQuery.TryGetComponent(label, out var component))
-            return false;
-
-        labelEnt = label;
-        labelComp = component;
-        return true;
-    }
 }

@@ -93,17 +93,17 @@ public sealed class SectorServiceSystem : EntitySystem
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [Pure]
-    public bool TryComp([NotNullWhen(true)] out TComp1? component)
+    public bool TryComp<T>([NotNullWhen(true)] out T? component) where T : IComponent?
         => TryGetComponent(out component);
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [Pure]
-    public bool TryComp([NotNullWhen(true)] out TComp1? component)
+    public bool TryComp<T>([NotNullWhen(true)] out T? component) where T : IComponent?
         => TryGetComponent(out component);
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [Pure]
-    public TComp1? CompOrNull()
+    public T? CompOrNull() where T : IComponent
     {
         if (TryGetComponent(_entity, out var comp))
             return comp;
@@ -112,7 +112,7 @@ public sealed class SectorServiceSystem : EntitySystem
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [Pure]
-    public TComp1 Comp()
+    public T Comp() where T : IComponent
     {
         return GetComponent(_entity);
     }
