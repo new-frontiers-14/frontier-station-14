@@ -1,7 +1,7 @@
 
-#Pirate Exchange Console
-pirate-pallet-console-menu-title = Pirate Bounty Exchange
-pirate-console-menu-points-amount = {$amount} FUC
+# Pirate Exchange Console
+pirate-pallet-console-menu-title = Pirate bounty exchange
+pirate-console-menu-points-amount = {$amount} DB
 pirate-pallet-menu-no-goods-text = No Bounty goods detected
 pirate-pallet-menu-appraisal-label = Estimated Value:{" "}
 pirate-pallet-menu-count-label = Number of items:{" "}

@@ -33,7 +33,7 @@ public sealed partial class CargoSystem
     private void InitializePirateBounty()
     {
         SubscribeLocalEvent<PirateBountyConsoleComponent, BoundUIOpenedEvent>(OnPirateBountyConsoleOpened);
-        SubscribeLocalEvent<PirateBountyConsoleComponent, PirateBountyPrintLabelMessage>(OnPiratePrintLabelMessage);
+        SubscribeLocalEvent<PirateBountyConsoleComponent, PirateBountyAcceptMessage>(OnPirateBountyAccept);
         SubscribeLocalEvent<PirateBountyConsoleComponent, PirateBountySkipMessage>(OnSkipPirateBountyMessage);
         SubscribeLocalEvent<PirateBountyLabelComponent, PriceCalculationEvent>(OnGetPirateBountyPrice); // TODO: figure out how these labels interact with the chest (does the chest RECEIVE the label component?)
         //SubscribeLocalEvent<EntitySoldEvent>(OnPirateSold); // FIXME: figure this out
@@ -56,7 +56,7 @@ public sealed partial class CargoSystem
         _uiSystem.SetUiState(uid, PirateConsoleUiKey.Bounty, new PirateBountyConsoleState(bountyDb.Bounties, untilNextSkip));
     }
 
-    private void OnPiratePrintLabelMessage(EntityUid uid, PirateBountyConsoleComponent component, PirateBountyPrintLabelMessage args)
+    private void OnPirateBountyAccept(EntityUid uid, PirateBountyConsoleComponent component, PirateBountyAcceptMessage args)
     {
         if (_timing.CurTime < component.NextPrintTime)
             return;
@@ -65,9 +65,21 @@ public sealed partial class CargoSystem
         if (!TryGetPirateBountyFromId(service, args.BountyId, out var bounty))
             return;
 
-        var label = Spawn(component.BountyLabelId, Transform(uid).Coordinates);
+        var bountyObj = bounty.Value;
+
+        // Check if the crate for this bounty has already been summoned.  If not, create a new one.
+        if (bountyObj.Accepted)
+            return;
+        _protoMan.TryIndex(bountyObj.Bounty, out var bountyPrototype);
+        PirateBountyData bountyData = new PirateBountyData(bountyPrototype.Value, bountyObj.Id, true);
+
+        TryOverwritePirateBountyFromId(service, bountyData);
+
+        if (bountyData.Bounty.SummonChest)
+            Spawn(component.BountyChestId, Transform(uid).Coordinates);
+        else
+            Spawn(component.BountyLabelId, Transform(uid).Coordinates);
         component.NextPrintTime = _timing.CurTime + component.PrintDelay;
-        SetupPirateBountyLabel(label, bounty.Value);
         _audio.PlayPvs(component.PrintSound, uid);
     }
 
@@ -101,27 +113,6 @@ public sealed partial class CargoSystem
         var untilNextSkip = db.NextSkipTime - _timing.CurTime;
         _uiSystem.SetUiState(uid, PirateConsoleUiKey.Bounty, new PirateBountyConsoleState(db.Bounties, untilNextSkip));
         _audio.PlayPvs(component.SkipSound, uid);
-    }
-
-    public void SetupPirateBountyLabel(EntityUid uid, PirateBountyData bounty, PaperComponent? paper = null, PirateBountyLabelComponent? label = null)
-    {
-        if (!Resolve(uid, ref paper, ref label) || !_protoMan.TryIndex<PirateBountyPrototype>(bounty.Bounty, out var prototype))
-            return;
-
-        label.Id = bounty.Id;
-        var msg = new FormattedMessage();
-        msg.AddText(Loc.GetString("pirate-bounty-manifest-header", ("id", bounty.Id)));
-        msg.PushNewline();
-        msg.AddText(Loc.GetString("pirate-bounty-manifest-list-start"));
-        msg.PushNewline();
-        foreach (var entry in prototype.Entries)
-        {
-            if (msg.TryAddMarkup($"- {Loc.GetString("pirate-bounty-console-manifest-entry",
-                ("amount", entry.Amount),
-                ("item", Loc.GetString(entry.Name)))}", out var _))
-                msg.PushNewline();
-        }
-        _paperSystem.SetContent(uid, msg.ToMarkup(), paper);
     }
 
     /// <summary>
@@ -397,7 +388,7 @@ public sealed partial class CargoSystem
             return false;
 
         _nameIdentifier.GenerateUniqueName(serviceId, PirateBountyNameIdentifierGroup, out var randomVal); // Need a string ID for internal name, probably doesn't need to be outward facing.
-        component.Bounties.Add(new PirateBountyData(bounty, randomVal));
+        component.Bounties.Add(new PirateBountyData(bounty, randomVal, false));
         _adminLogger.Add(LogType.Action, LogImpact.Low, $"Added pirate bounty \"{bounty.ID}\" (id:{component.TotalBounties}) to service {ToPrettyString(serviceId)}");
         component.TotalBounties++;
         return true;
@@ -448,6 +439,25 @@ public sealed partial class CargoSystem
         }
 
         return bounty != null;
+    }
+
+    private bool TryOverwritePirateBountyFromId(
+        EntityUid uid,
+        PirateBountyData bounty,
+        SectorPirateBountyDatabaseComponent? component = null)
+    {
+        if (!Resolve(uid, ref component))
+            return false;
+
+        for (int i=0; i < component.Bounties.Count; i++)
+        {
+            if (bounty.Id == component.Bounties[i].Id)
+            {
+                component.Bounties[i] = bounty;
+                return true;
+            }
+        }
+        return false;
     }
 
     public void UpdatePirateBountyConsoles()

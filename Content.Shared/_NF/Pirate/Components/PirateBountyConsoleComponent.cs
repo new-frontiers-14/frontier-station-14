@@ -61,11 +61,11 @@ public sealed class PirateBountyConsoleState : BoundUserInterfaceState
 
 //TODO: inherit this from the base message
 [Serializable, NetSerializable]
-public sealed class PirateBountyPrintLabelMessage : BoundUserInterfaceMessage
+public sealed class PirateBountyAcceptMessage : BoundUserInterfaceMessage
 {
     public string BountyId;
 
-    public PirateBountyPrintLabelMessage(string bountyId)
+    public PirateBountyAcceptMessage(string bountyId)
     {
         BountyId = bountyId;
     }
