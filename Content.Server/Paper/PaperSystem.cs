@@ -256,6 +256,7 @@ namespace Content.Server.Paper
             args.Verbs.Add(verb);
         }
 
+        // FRONTIER - Make sure the pens are updates always to the user name
         private void OnHandPickUp(EntityUid uid, StampComponent stampComp, GotEquippedHandEvent args)
         {
             if (!_tagSystem.HasTag(uid, "Write") || HasComp<GhostComponent>(args.User))
