@@ -41,7 +41,7 @@
         Heat: 0.95
 
 - type: entity
-  parent: ClothingMaskGas
+  parent: [ClothingMaskGas, ContrabandClothing] # Frontier: added ContrabandClothing as parent
   id: ClothingMaskGasSyndicate
   name: syndicate gas mask
   description: A close-fitting tactical mask that can be connected to an air supply.
@@ -59,7 +59,6 @@
         Slash: 0.95
         Piercing: 0.95
         Heat: 0.95
-  - type: Contraband #frontier
 
 - type: entity
   parent: ClothingMaskGas

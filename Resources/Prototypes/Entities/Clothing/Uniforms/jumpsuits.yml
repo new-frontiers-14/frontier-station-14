@@ -266,6 +266,17 @@
 
 - type: entity
   parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitCMOTurtle
+  name: chief medical officer's turtleneck jumpsuit
+  description: It's a turtleneck worn by those with the experience to be Chief Medical Officer. It provides minor biological protection.
+  components:
+  - type: Sprite
+    sprite: Clothing/Uniforms/Jumpsuit/cmo_turtle.rsi
+  - type: Clothing
+    sprite: Clothing/Uniforms/Jumpsuit/cmo_turtle.rsi
+
+- type: entity
+  parent: ClothingUniformBase
   id: ClothingUniformJumpsuitDetective
   name: detective hard-worn suit # Frontier - Added detective to name
   description: Someone who wears this means business.
@@ -700,7 +711,7 @@
       sprite: Clothing/Uniforms/Jumpsuit/lawyergood.rsi
 
 - type: entity
-  parent: UnsensoredClothingUniformBase
+  parent: [UnsensoredClothingUniformBase, ContrabandClothing] # Frontier: added ContrabandClothing as parent
   id: ClothingUniformJumpsuitPyjamaSyndicateBlack
   name: black syndicate pyjamas
   description: For those long nights in perma.
@@ -709,10 +720,9 @@
     sprite: Clothing/Uniforms/Jumpsuit/pyjamasyndicateblack.rsi
   - type: Clothing
     sprite: Clothing/Uniforms/Jumpsuit/pyjamasyndicateblack.rsi
-  - type: Contraband #frontier
 
 - type: entity
-  parent: UnsensoredClothingUniformBase
+  parent: [UnsensoredClothingUniformBase, ContrabandClothing] # Frontier: added ContrabandClothing as parent
   id: ClothingUniformJumpsuitPyjamaSyndicatePink
   name: pink syndicate pyjamas
   description: For those long nights in perma.
@@ -721,10 +731,9 @@
     sprite: Clothing/Uniforms/Jumpsuit/pyjamasyndicatepink.rsi
   - type: Clothing
     sprite: Clothing/Uniforms/Jumpsuit/pyjamasyndicatepink.rsi
-  - type: Contraband #frontier
 
 - type: entity
-  parent: UnsensoredClothingUniformBase
+  parent: [UnsensoredClothingUniformBase, ContrabandClothing] # Frontier: added ContrabandClothing as parent
   id: ClothingUniformJumpsuitPyjamaSyndicateRed
   name: red syndicate pyjamas
   description: For those long nights in perma.
@@ -733,7 +742,6 @@
     sprite: Clothing/Uniforms/Jumpsuit/pyjamasyndicatered.rsi
   - type: Clothing
     sprite: Clothing/Uniforms/Jumpsuit/pyjamasyndicatered.rsi
-  - type: Contraband #frontier
 
 - type: entity
   parent: ClothingUniformBase
@@ -780,7 +788,7 @@
     sprite: Clothing/Uniforms/Jumpsuit/hosformal.rsi
 
 - type: entity
-  parent: UnsensoredClothingUniformBase
+  parent: [UnsensoredClothingUniformBase, ContrabandClothing] # Frontier: added ContrabandClothing as parent
   id: ClothingUniformJumpsuitOperative
   name: operative jumpsuit
   description: Uniform for elite syndicate operatives performing tactical operations in deep space.
@@ -789,7 +797,6 @@
     sprite: Clothing/Uniforms/Jumpsuit/operative.rsi
   - type: Clothing
     sprite: Clothing/Uniforms/Jumpsuit/operative.rsi
-  - type: Contraband #frontier
 
 - type: entity
   parent: ClothingUniformBase

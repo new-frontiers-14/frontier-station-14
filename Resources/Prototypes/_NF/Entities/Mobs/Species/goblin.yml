@@ -34,6 +34,11 @@
 #        Poison: 1 # Too Stinky
   - type: Speech
     speechSounds: Alto
+    speechVerb: Goblin
+    allowedEmotes:
+    - GoblinMutter
+    - GoblinThroatSinging
+    - Hiss
   - type: DamageOnHighSpeedImpact
     damage:
       types:
@@ -59,8 +64,7 @@
 #    tall: true
 #    tallscale: 1
 #    tallDensity: 185
-  - type: ReplacementAccent
-    accent: goblin_accent
+  - type: GoblinAccent
   - type: TypingIndicator
     proto: goblin
   - type: SlowOnDamage

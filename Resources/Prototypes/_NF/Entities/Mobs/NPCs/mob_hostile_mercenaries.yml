@@ -7,6 +7,7 @@
   - MobHumanoidInvetorySimplified
   - MobHumanoidHostileAISimpleRanged
   id: MobMercenaryBase
+  description: A mercenary, merc, soldier of fortune, hired gun, dog of war.
   components:
   - type: Damageable
     damageModifierSet: MobMercenaryDamageModifierSet
@@ -18,6 +19,10 @@
       0: Alive
       100: Critical
       130: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      60: 0.7
+      80: 0.5
   - type: Stamina
     critThreshold: 100
   - type: DamageStateVisuals
@@ -45,6 +50,8 @@
         Structural: 20
     soundHit:
       path: /Audio/Weapons/bladeslice.ogg
+      params:
+        variation: 0.125
   - type: Advertise
     pack: mercenaryhumanoidchatter
     minimumWait: 30
@@ -60,6 +67,7 @@
   - MobMercenaryBase
   - MobHumanoidHostileAISimpleMelee
   id: MobMercenarySoldierKnife
+  description: Low-ranking soldiers armed with a variety of surplus weapons.
   noSpawn: true
   components:
   - type: Loadout
@@ -85,11 +93,24 @@
       state: equipped-NECK-on
       color: "#a9b6bd"
       shader: unshaded
+  - type: MeleeWeapon
+    attackRate: 1.0
+    altDisarm: false
+    angle: 0
+    animation: WeaponArcPunch
+    damage:
+      types:
+        Slash: 8
+        Piercing: 2
+        Structural: 20
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
 
 - type: entity
   name: mercenary soldier
   parent: MobMercenaryBase
   id: MobMercenarySoldierPistol
+  description: Low-ranking soldiers armed with a variety of surplus weapons.
   noSpawn: true
   components:
   - type: Loadout
@@ -130,7 +151,8 @@
 - type: entity
   name: mercenary soldier
   parent: MobMercenaryBase
-  id: MobMercenarySoldierMosin
+  id: MobMercenarySoldierNovalite # No mosin: novalite rifle now
+  description: Low-ranking soldiers armed with a variety of surplus weapons.
   noSpawn: true
   components:
   - type: Loadout
@@ -157,18 +179,18 @@
       color: "#a9b6bd"
       shader: unshaded
   - type: BasicEntityAmmoProvider
-    proto: CartridgeLightRifle
+    proto: CartridgeRifle
     capacity: 10
     count: 10
   - type: Gun
     showExamineText: false
-    fireRate: 0.75
+    fireRate: 0.85
     minAngle: 1
     maxAngle: 10
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
-    soundGunshot: /Audio/Weapons/Guns/Gunshots/sniper.ogg
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/ltrifle.ogg
 
 ## Tier 2
 - type: entity
@@ -177,6 +199,7 @@
   - MobMercenaryBase
   - MobHumanoidHostileAISimpleMelee
   id: MobMercenaryBreacherMachete
+  description: Shock troopers that specialize in using the element of surprise and swift, aggressive action to achieve their objectives.
   noSpawn: true
   components:
   - type: Loadout
@@ -204,11 +227,23 @@
       state: equipped-NECK-on
       color: "#a9b6bd"
       shader: unshaded
+  - type: MeleeWeapon
+    attackRate: 1.0
+    altDisarm: false
+    angle: 0
+    animation: WeaponArcPunch
+    damage:
+      types:
+        Slash: 15
+        Structural: 20
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
 
 - type: entity
   name: mercenary breacher
   parent: MobMercenaryBase
   id: MobMercenarySoldierRevolver
+  description: Shock troopers that specialize in using the element of surprise and swift, aggressive action to achieve their objectives.
   noSpawn: true
   components:
   - type: Loadout
@@ -242,9 +277,9 @@
     count: 8
   - type: Gun
     showExamineText: false
-    fireRate: 2.5
+    fireRate: 2.0
     minAngle: 1
-    maxAngle: 10
+    maxAngle: 15
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
@@ -254,6 +289,7 @@
   name: mercenary breacher
   parent: MobMercenaryBase
   id: MobMercenaryBreacherShotgun
+  description: Shock troopers that specialize in using the element of surprise and swift, aggressive action to achieve their objectives.
   noSpawn: true
   components:
   - type: Loadout
@@ -299,9 +335,10 @@
 
 ## Tier 3
 - type: entity
-  name: mercenary specialist
+  name: mercenary paramedic
   parent: MobMercenaryBase
   id: MobMercenarySpecialistMedic
+  description: Experienced mercenaries, specialists are practised and proficient in combat or support roles, possibly both.
   noSpawn: true
   components:
   - type: Loadout
@@ -345,12 +382,76 @@
     availableModes:
     - SemiAuto
     soundGunshot: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
+  - type: MeleeWeapon
+    attackRate: 2.0
+    altDisarm: false
+    angle: 0
+    animation: WeaponArcPunch
+    damage:
+      types:
+        Blunt: 5
+        Slash: 5
+        Piercing: 5
+        Structural: 20
+    soundHit:
+      path: /Audio/Items/drill_hit.ogg
+
+- type: entity
+  name: mercenary ranger
+  parent: MobMercenaryBase
+  id: MobMercenarySpecialistAssault
+  noSpawn: true
+  components:
+  - type: Loadout
+    prototypes:
+    - MobHumanoidMercenaryGearRangedT3Alt
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - sprite: _NF/Mobs/Species/Templates/human.rsi
+      state: human
+    - sprite: _NF/Clothing/Uniforms/Jumpsuit/military.rsi
+      state: equipped-base-top-jumpsuit
+      color: "#2e687a"
+    - sprite: _NF/Clothing/Uniforms/Jumpsuit/military.rsi
+      state: equipped-base-bottom
+      color: "#2e687a"
+    - sprite: Clothing/OuterClothing/Armor/security_slim.rsi
+      state: equipped-OUTERCLOTHING
+    - sprite: Clothing/Mask/gassecurity.rsi
+      state: equipped-MASK
+    - sprite: _NF/Clothing/Head/Hats/nfsd_beret_green.rsi
+      state: equipped-HELMET
+    - sprite: _NF/Clothing/Neck/Misc/mercenary_iff.rsi
+      state: equipped-NECK-off
+    - sprite: _NF/Clothing/Neck/Misc/mercenary_iff.rsi
+      state: equipped-NECK-on
+      color: "#a9b6bd"
+      shader: unshaded
+  - type: BasicEntityAmmoProvider
+    proto: CartridgeRifle
+    capacity: 2
+    count: 2
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 2
+    rechargeSound:
+      path: /Audio/_NF/Effects/silence.ogg
+  - type: Gun
+    showExamineText: false
+    fireRate: 4
+    minAngle: 5
+    maxAngle: 20
+    selectedMode: Burst
+    availableModes:
+    - Burst
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/rifle3.ogg
 
 ## Tier 4 - Boss
 - type: entity
   name: mercenary captain
   parent: MobMercenaryBase
   id: MobMercenaryCaptain
+  description: The leaders of these bands of brigands, a mercenary captain is both cruel and lethally effective. Exercise caution.
   noSpawn: true
   components:
   - type: Loadout
@@ -388,7 +489,7 @@
     showExamineText: false
     fireRate: 0.6
     minAngle: 1
-    maxAngle: 10
+    maxAngle: 15
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto

@@ -10,7 +10,7 @@
   alwaysUseSpawner: true
   hideConsoleVisibility: true
   canBeAntag: true
-  icon: "JobIconMercenary" 
+  icon: "JobIconPirate"
   supervisors: job-supervisors-hire
   setPreference: true
   accessGroups:
@@ -21,6 +21,9 @@
     - type: MailDisabled
   - !type:AddImplantSpecial
     implants: [ FreelanceTrackingImplant ]
+  - !type:GiveItemOnHolidaySpecial # Even pirates get a piece of cake.
+    holiday: FrontierBirthday
+    prototype: FrontierBirthdayGift
 
 - type: startingGear
   id: PirateNFGear
@@ -29,5 +32,5 @@
     ears: ClothingHeadsetAltFreelancer
     shoes: ClothingShoesBootsLaceup
     belt: ClothingBeltUtility
-    pocket1: AppraisalTool
-    pocket2: BasePirateUplinkPirateCrew
+    pocket1: BasePirateUplinkPirateCrew
+    pocket2: AppraisalTool

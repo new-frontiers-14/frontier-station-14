@@ -29,6 +29,20 @@ public sealed partial class LoadoutGroupPrototype : IPrototype
     [DataField]
     public int MaxLimit = 1;
 
+    /// <summary>
+    /// Hides the loadout group from the player.
+    /// </summary>
+    [DataField]
+    public bool Hidden;
+
     [DataField(required: true)]
     public List<ProtoId<LoadoutPrototype>> Loadouts = new();
+
+    // Frontier: handle unaffordable loadouts
+    /// <summary>
+    /// Fallback loadouts to be selected in case a character cannot afford them.
+    /// </summary>
+    [DataField]
+    public List<ProtoId<LoadoutPrototype>> Fallbacks = new();
+    // End Frontier
 }

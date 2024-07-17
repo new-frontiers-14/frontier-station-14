@@ -1,16 +1,53 @@
 - type: loadoutGroup
+  id: NfsdBackpackBrown
+  name: loadout-group-contractor-backpack
+  minLimit: 1
+  loadouts:
+  - NfsdClothingBackpackNfsdBrown
+  - NfsdClothingBackpackSatchelNfsdBrown
+  - NfsdClothingBackpackDuffelNfsdBrown
+  - NfsdClothingBackpackMessengerNfsdBrown
+  - NfsdClothingBackpackNfsdCream
+  - NfsdClothingBackpackSatchelNfsdCream
+  - NfsdClothingBackpackDuffelNfsdCream
+  - NfsdClothingBackpackMessengerNfsdCream
+  fallbacks:
+  - NfsdClothingBackpackNfsdBrown
+
+- type: loadoutGroup
+  id: NfsdBackpackCream
+  name: loadout-group-contractor-backpack
+  minLimit: 1
+  loadouts:
+  - NfsdClothingBackpackNfsdCream
+  - NfsdClothingBackpackSatchelNfsdCream
+  - NfsdClothingBackpackDuffelNfsdCream
+  - NfsdClothingBackpackMessengerNfsdCream
+  - NfsdClothingBackpackNfsdBrown
+  - NfsdClothingBackpackSatchelNfsdBrown
+  - NfsdClothingBackpackDuffelNfsdBrown
+  - NfsdClothingBackpackMessengerNfsdBrown
+  fallbacks:
+  - NfsdClothingBackpackNfsdCream
+
+- type: loadoutGroup
   id: NfsdBelt
   name: loadout-group-contractor-belt
   minLimit: 1
   loadouts:
   - NfsdWebbing
   - NfsdBelt
+  fallbacks:
+  - NfsdWebbing
 
 - type: loadoutGroup
   id: NfsdBoxSurvival
   name: loadout-group-contractor-survival-box
   minLimit: 1
   loadouts:
+  - NfsdBoxSurvivalNfsdOxygen
+  - NfsdBoxSurvivalNfsdNitrogen
+  fallbacks:
   - NfsdBoxSurvivalNfsdOxygen
   - NfsdBoxSurvivalNfsdNitrogen
 

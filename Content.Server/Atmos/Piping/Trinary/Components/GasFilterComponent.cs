@@ -29,7 +29,13 @@ namespace Content.Server.Atmos.Piping.Trinary.Components
         [DataField("maxTransferRate")]
         public float MaxTransferRate { get; set; } = Atmospherics.MaxTransferRate;
 
-        [ViewVariables(VVAccess.ReadWrite)]
+        [DataField, ViewVariables(VVAccess.ReadWrite)] // Frontier - Added DataField
         public Gas? FilteredGas { get; set; }
+
+        /// <summary>
+        /// Frontier - Start the filter with the map.
+        /// </summary>
+        [DataField]
+        public bool StartOnMapInit { get; set; } = false;
     }
 }

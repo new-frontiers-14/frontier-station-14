@@ -1,3 +1,24 @@
+- type: entity
+  parent: BaseItem
+  id: ShipyardBookwormInfo
+  name: bookworm user manual
+  description: preflight checklist
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/books.rsi
+    layers:
+    - state: paper
+    - state: cover_base
+      color: "#6c4718"
+    - state: decor_wingette
+      color: "#b5913c"
+    - state: icon_wrench
+    - state: icon_corner
+      color: gold
+  - type: GuideHelp
+    openOnActivation: true
+    guides:
+    - ShipyardBookworm
 
 - type: entity
   parent: BaseItem
@@ -23,6 +44,28 @@
 
 - type: entity
   parent: BaseItem
+  id: ShipyardCamperInfo
+  name: camper user manual
+  description: preflight checklist
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/books.rsi
+    layers:
+    - state: paper
+    - state: cover_base
+      color: "#6c4718"
+    - state: decor_wingette
+      color: "#b5913c"
+    - state: icon_wrench
+    - state: icon_corner
+      color: gold
+  - type: GuideHelp
+    openOnActivation: true
+    guides:
+    - ShipyardCamper
+  
+- type: entity
+  parent: BaseItem
   id: ShipyardGasbenderInfo
   name: gasbender user manual
   description: preflight checklist
@@ -42,6 +85,28 @@
     openOnActivation: true
     guides:
     - ShipyardGasbender
+
+- type: entity
+  parent: BaseItem
+  id: ShipyardHammerInfo
+  name: hammer user manual
+  description: preflight checklist
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/books.rsi
+    layers:
+    - state: paper
+    - state: cover_base
+      color: "#6c4718"
+    - state: decor_wingette
+      color: "#b5913c"
+    - state: icon_wrench
+    - state: icon_corner
+      color: gold
+  - type: GuideHelp
+    openOnActivation: true
+    guides:
+    - ShipyardHammer
 
 - type: entity
   parent: BaseItem

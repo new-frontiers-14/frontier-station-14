@@ -13,6 +13,8 @@
       makeSentient: true
       name: ghost-role-information-guardian-name
       description: ghost-role-information-guardian-description
+      raffle:
+        settings: default
     - type: GhostTakeoverAvailable
     - type: Input
       context: "human"
@@ -121,6 +123,8 @@
       makeSentient: true
       name: ghost-role-information-holoparasite-name
       description: ghost-role-information-holoparasite-description
+      raffle:
+        settings: default
     - type: GhostTakeoverAvailable
     - type: NameIdentifier
       group: Holoparasite
@@ -152,6 +156,8 @@
       makeSentient: true
       name: ghost-role-information-ifrit-name
       description: ghost-role-information-ifrit-description
+      raffle:
+        settings: default
     - type: GhostTakeoverAvailable
     - type: RandomSprite
       available:
@@ -179,6 +185,8 @@
       makeSentient: true
       name: ghost-role-information-holoclown-name
       description: ghost-role-information-holoclown-description
+      raffle:
+        settings: default
     - type: GhostTakeoverAvailable
     - type: NameIdentifier
       group: Holoparasite
@@ -220,6 +228,7 @@
     - type: Inventory
       templateId: holoclown
     - type: Hands
+    - type: ComplexInteraction
     - type: Clumsy
       clumsyDamage:
         types:
@@ -253,7 +262,6 @@
   id: ActionToggleGuardian
   name: Toggle Guardian
   description: Either manifests the guardian or recalls it back into your body
-  noSpawn: true
   components:
   - type: InstantAction
     icon: Interface/Actions/manifest.png

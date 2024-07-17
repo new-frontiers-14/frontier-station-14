@@ -1,0 +1,94 @@
+<Document>
+    # APOTHECARY-CLASS MEDICAL SHUTTLE
+    <Box>
+      <GuideEntityEmbed Entity="ComputerCrewMonitoring"/>
+      <GuideEntityEmbed Entity="HandheldHealthAnalyzer"/>
+      <GuideEntityEmbed Entity="RollerBed"/>
+      <GuideEntityEmbed Entity="BodyBag"/>
+	  <GuideEntityEmbed Entity="ChemMaster"/>
+    </Box>
+    <Box>
+    <GuideEntityEmbed Entity="ShuttleMapApothecary" Caption=""/>
+    </Box>
+  
+    [color=#a4885c]Ship Size:[/color] Small
+
+    [color=#a4885c]Recommended Crew:[/color] 1-3
+
+    [color=#a4885c]Power Gen Type:[/color] Plasma
+
+    [color=#a4885c]Expeditions:[/color] None
+
+    [color=#a4885c]IFF Console:[/color] None
+
+    "A modest medical response center and chemical lab to ensure MINERS DO NOT DIE."
+
+    # PREFLIGHT CHECKLIST
+
+    ## 1. Power supply
+
+    ## 1.1. Battery units
+    <Box>
+        <GuideEntityEmbed Entity="SMESBasic"/>
+        <GuideEntityEmbed Entity="SubstationWallBasic"/>
+        <GuideEntityEmbed Entity="APCBasic"/>
+    </Box>
+
+    - Check that the SMES unit is anchored to the floor.
+    - Check the substation unit.
+    - Check that the APC unit's Main Breaker is toggled on.
+    - Check the APC unit's current Load* (W).
+
+    ## 1.2. P.A.C.M.A.N. generator unit
+    <Box>
+        <GuideEntityEmbed Entity="PortableGeneratorPacmanShuttle"/>
+        <GuideEntityEmbed Entity="SheetPlasma"/>
+    </Box>
+
+    - Check that the P.A.C.M.A.N. generator unit is anchored to the floor.
+    - Check that the P.A.C.M.A.N. generator unit has fuel. For extended flights make sure that you have enough fuel stockpiled to sustain prolonged power generation during flight.
+    - Check that the P.A.C.M.A.N. generator unit is set to HV output.
+    - Set Target Power for 15-16** [bold]kW[/bold].
+    - Start the P.A.C.M.A.N. generator unit.
+
+    ## 2. Atmospherics
+
+    ## 2.1. Distribution Loop
+    <Box>
+        <GuideEntityEmbed Entity="AirCanister"/>
+        <GuideEntityEmbed Entity="GasPort"/>
+        <GuideEntityEmbed Entity="GasPressurePump"/>
+    </Box>
+
+    - Check that the air canister is anchored to connector port.
+    - Check that the distribution pump is set to 101kPa (101kPa).
+    - Check the distribution pump. Located on the deck of the engineering nacelle.
+
+    ## 2.2. Waste Loop
+    <Box>
+        <GuideEntityEmbed Entity="GasPressurePump"/>
+        <GuideEntityEmbed Entity="AirAlarm"/>
+    </Box>
+
+    - Check waste loop pump. Located on the deck of the cargo nacelle.
+    - Set the Air Alarm in the Engine Room to Filtering (Wide).
+
+    ## 3. Other checks
+    <Box>
+        <GuideEntityEmbed Entity="Gyroscope"/>
+        <GuideEntityEmbed Entity="GravityGeneratorMini"/>
+        <GuideEntityEmbed Entity="BlastDoor"/>
+    </Box>
+
+    - Check that the gyroscope is anchored, powered, and enabled.
+    - Check that the mini gravity generator is anchored, powered, and enabled.
+    - Check that blast doors are closed.
+    - Check to ensure that figurines are comfortable.
+
+    ## Sidenotes
+
+    * - Apothecary-class medical response ships are equipped with a single APC unit that can be used to appraise the ship's total power consumption (which for the unmodified ship is 15.3 kW). To keep the substation and APC fully charged, the generator target power should exceed APC's Load, but by as little as possible to achieve maximum fuel efficiency. Remember to check the APC Load and adjust the generator unit's target power after adding or removing power-consuming machines.
+
+    ** - Apothecary-class ships have a slightly above average power demand. A standard P.A.C.M.A.N. generator's target power value can be set to 15-16 kW to modulate between drain and charge. As much of the powerdraw is to sustain the chemistry lab powering down those machines can dramatically reduce the ship's overall draw.
+
+</Document>

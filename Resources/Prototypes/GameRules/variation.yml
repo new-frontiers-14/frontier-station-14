@@ -4,7 +4,6 @@
   id: BaseVariationPass
   parent: BaseGameRule
   abstract: true
-  noSpawn: true
   components:
   - type: StationVariationPassRule
 
@@ -13,14 +12,12 @@
 - type: entity
   id: BasicPoweredLightVariationPass
   parent: BaseVariationPass
-  noSpawn: true
   components:
   - type: PoweredLightVariationPass
 
 - type: entity
   id: SolidWallRustingVariationPass
   parent: BaseVariationPass
-  noSpawn: true
   components:
   - type: WallReplaceVariationPass
   - type: EntityReplaceVariationPass
@@ -32,7 +29,6 @@
 - type: entity
   id: ReinforcedWallRustingVariationPass
   parent: BaseVariationPass
-  noSpawn: true
   components:
   - type: ReinforcedWallReplaceVariationPass
   - type: EntityReplaceVariationPass
@@ -44,7 +40,6 @@
 - type: entity
   id: BasicTrashVariationPass
   parent: BaseVariationPass
-  noSpawn: true
   components:
   - type: EntitySpawnVariationPass
     tilesPerEntityAverage: 35
@@ -58,8 +53,8 @@
   - quantity: 80
     weight: 5
     reagents:
-    - Vomit
-    - InsectBlood
+#    - Vomit # Frontier
+#    - InsectBlood # Frontier
     - WeldingFuel
     - Mold
   - quantity: 55
@@ -70,18 +65,21 @@
     - VentCrud
     - Carbon
     - Hydrogen
-    - Fat
-    - SpaceLube
-    - SpaceGlue
+#    - Fat # Frontier
+#    - SpaceLube # Frontier
+#    - SpaceGlue # Frontier
     - Sulfur
     - Acetone
     - Bleach
   - quantity: 40
     weight: 3
     reagents:
-    - Blood
-    - CopperBlood
-    - Slime
+#    - Blood # Frontier
+#    - CopperBlood # Frontier
+#    - Slime # Frontier
+    - Fat # Frontier
+    - SpaceLube # Frontier
+    - SpaceGlue # Frontier
   - quantity: 25
     weight: 1
     reagents:
@@ -105,7 +103,6 @@
 - type: entity
   id: BasicPuddleMessVariationPass
   parent: BaseVariationPass
-  noSpawn: true
   components:
   - type: PuddleMessVariationPass
     randomPuddleSolutionFill: RandomFillTrashPuddle
@@ -113,7 +110,6 @@
 - type: entity
   id: BloodbathPuddleMessVariationPass
   parent: BaseVariationPass
-  noSpawn: true
   components:
   - type: PuddleMessVariationPass
     tilesPerSpillAverage: 150
@@ -123,7 +119,6 @@
 - type: entity
   id: CutWireVariationPass
   parent: BaseVariationPass
-  noSpawn: true
   components:
   - type: CutWireVariationPass
     wireCutChance: 0.01
