@@ -44,12 +44,16 @@ public sealed partial class CargoSystem
 
     private void OnPirateBountyConsoleOpened(EntityUid uid, PirateBountyConsoleComponent component, BoundUIOpenedEvent args)
     {
+        Log.Error("OnPirateBountyConsoleOpened!");
         var service = _sectorService.GetServiceEntity();
         if (!TryComp<SectorPirateBountyDatabaseComponent>(service, out var bountyDb))
+        {
+            Log.Error("ConsoleOpened: no DB!");
             return;
+        }
 
         var untilNextSkip = bountyDb.NextSkipTime - _timing.CurTime;
-        _uiSystem.SetUiState(uid, CargoConsoleUiKey.Bounty, new PirateBountyConsoleState(bountyDb.Bounties, untilNextSkip));
+        _uiSystem.SetUiState(uid, PirateConsoleUiKey.Bounty, new PirateBountyConsoleState(bountyDb.Bounties, untilNextSkip));
     }
 
     private void OnPiratePrintLabelMessage(EntityUid uid, PirateBountyConsoleComponent component, BountyPrintLabelMessage args)
@@ -95,7 +99,7 @@ public sealed partial class CargoSystem
         FillPirateBountyDatabase(service);
         db.NextSkipTime = _timing.CurTime + db.SkipDelay;
         var untilNextSkip = db.NextSkipTime - _timing.CurTime;
-        _uiSystem.SetUiState(uid, CargoConsoleUiKey.Bounty, new PirateBountyConsoleState(db.Bounties, untilNextSkip));
+        _uiSystem.SetUiState(uid, PirateConsoleUiKey.Bounty, new PirateBountyConsoleState(db.Bounties, untilNextSkip));
         _audio.PlayPvs(component.SkipSound, uid);
     }
 
@@ -175,7 +179,7 @@ public sealed partial class CargoSystem
 
         TryRemovePirateBounty(serviceId, bounty.Value.Id);
         FillPirateBountyDatabase(serviceId);
-        _adminLogger.Add(LogType.Action, LogImpact.Low, $"Bounty \"{bounty.Value.Bounty}\" (id:{bounty.Value.Id}) was fulfilled");
+        _adminLogger.Add(LogType.Action, LogImpact.Low, $"Pirate bounty \"{bounty.Value.Bounty}\" (id:{bounty.Value.Id}) was fulfilled");
         return false;
     }
 
@@ -201,7 +205,6 @@ public sealed partial class CargoSystem
         return true;
     }
 
-    // TODO: Fix this stupid name
     private void OnPirateMapInit(EntityUid uid, SectorPirateBountyDatabaseComponent component, MapInitEvent args)
     {
         FillPirateBountyDatabase(uid, component);
@@ -359,7 +362,7 @@ public sealed partial class CargoSystem
         if (!Resolve(serviceId, ref component))
             return false;
 
-        // todo: consider making the cargo bounties weighted.
+        // todo: consider making the pirate bounties weighted.
         var allBounties = _protoMan.EnumeratePrototypes<PirateBountyPrototype>().ToList();
         var filteredBounties = new List<PirateBountyPrototype>();
         foreach (var proto in allBounties)
