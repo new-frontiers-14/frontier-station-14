@@ -1,5 +1,6 @@
 pirate-bounty-console-menu-title = Pirate bounty console
-pirate-bounty-console-label-button-text = Summon chest
+pirate-bounty-console-accept-button-chest = Accept (crate)
+pirate-bounty-console-accept-button-label = Accept
 pirate-bounty-console-skip-button-text = Skip
 pirate-bounty-console-time-label = Time: [color=orange]{$time}[/color]
 pirate-bounty-console-reward-label = Reward: [color=limegreen]${$reward}[/color]
@@ -12,6 +13,7 @@ pirate-bounty-console-manifest-entry =
 pirate-bounty-console-manifest-reward = Reward: {$reward} DB
 pirate-bounty-console-description-label = [color=gray]{$description}[/color]
 pirate-bounty-console-id-label = {$id}
+
 
 pirate-bounty-console-flavor-left = Go and plunder, me hearties! Down with NT!
 pirate-bounty-console-flavor-right = v0.0.1a

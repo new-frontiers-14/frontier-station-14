@@ -38,7 +38,7 @@ public sealed partial class PirateBountyPrototype : IPrototype
     /// Whether or not to spawn a chest for this item.
     /// </summary>
     [DataField]
-    public bool SummonChest = true;
+    public bool SpawnChest = true;
 
     /// <summary>
     /// A prefix appended to the beginning of a bounty's ID.

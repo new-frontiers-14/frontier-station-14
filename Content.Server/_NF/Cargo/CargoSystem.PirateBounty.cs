@@ -68,17 +68,19 @@ public sealed partial class CargoSystem
         var bountyObj = bounty.Value;
 
         // Check if the crate for this bounty has already been summoned.  If not, create a new one.
-        if (bountyObj.Accepted)
+        if (bountyObj.Accepted || !_protoMan.TryIndex(bountyObj.Bounty, out var bountyPrototype))
             return;
-        _protoMan.TryIndex(bountyObj.Bounty, out var bountyPrototype);
-        PirateBountyData bountyData = new PirateBountyData(bountyPrototype.Value, bountyObj.Id, true);
+
+        PirateBountyData bountyData = new PirateBountyData(bountyPrototype!, bountyObj.Id, true);
 
         TryOverwritePirateBountyFromId(service, bountyData);
 
-        if (bountyData.Bounty.SummonChest)
+        if (bountyData.Bounty.SpawnChest)
             Spawn(component.BountyChestId, Transform(uid).Coordinates);
         else
+        {
             Spawn(component.BountyLabelId, Transform(uid).Coordinates);
+        }
         component.NextPrintTime = _timing.CurTime + component.PrintDelay;
         _audio.PlayPvs(component.PrintSound, uid);
     }
