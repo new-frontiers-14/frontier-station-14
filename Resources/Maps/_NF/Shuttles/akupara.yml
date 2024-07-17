@@ -242,7 +242,8 @@ entities:
           1,0:
             0: 32767
           1,1:
-            0: 62256
+            0: 54064
+            2: 8192
           1,2:
             0: 12799
             1: 32768
@@ -314,6 +315,21 @@ entities:
           moles:
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          temperature: 293.14996
+          moles:
+          - 20.078888
+          - 75.53487
           - 0
           - 0
           - 0
@@ -1331,6 +1347,24 @@ entities:
     - type: Transform
       pos: 5.5,7.5
       parent: 1
+    - type: EntityStorage
+      air:
+        volume: 200
+        immutable: False
+        temperature: 293.14923
+        moles:
+        - 1.7459903
+        - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
 - proto: CrateTrashCart
   entities:
   - uid: 163
@@ -3030,12 +3064,17 @@ entities:
       rot: 3.141592653589793 rad
       pos: -4.5,2.5
       parent: 1
-- proto: KitchenMicrowave
+- proto: Jug
   entities:
   - uid: 392
     components:
     - type: Transform
-      pos: 3.5,7.5
+      pos: 3.3385148,7.995407
+      parent: 1
+  - uid: 639
+    components:
+    - type: Transform
+      pos: 3.6041398,7.698532
       parent: 1
 - proto: KitchenReagentGrinder
   entities:
