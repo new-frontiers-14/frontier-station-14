@@ -110,13 +110,13 @@ public sealed partial class CargoSystem
 
         label.Id = bounty.Id;
         var msg = new FormattedMessage();
-        msg.AddText(Loc.GetString("bounty-manifest-header", ("id", bounty.Id)));
+        msg.AddText(Loc.GetString("pirate-bounty-manifest-header", ("id", bounty.Id)));
         msg.PushNewline();
-        msg.AddText(Loc.GetString("bounty-manifest-list-start"));
+        msg.AddText(Loc.GetString("pirate-bounty-manifest-list-start"));
         msg.PushNewline();
         foreach (var entry in prototype.Entries)
         {
-            if (msg.TryAddMarkup($"- {Loc.GetString("bounty-console-manifest-entry",
+            if (msg.TryAddMarkup($"- {Loc.GetString("pirate-bounty-console-manifest-entry",
                 ("amount", entry.Amount),
                 ("item", Loc.GetString(entry.Name)))}", out var _))
                 msg.PushNewline();
