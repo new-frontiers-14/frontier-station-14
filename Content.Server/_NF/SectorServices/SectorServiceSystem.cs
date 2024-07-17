@@ -33,7 +33,7 @@ public sealed class SectorServiceSystem : EntitySystem
 
     private void OnComponentStartup(EntityUid uid, StationSectorServiceHostComponent component, ComponentStartup args)
     {
-            Log.Error($"OnComponentStartup! Entity: {uid} internal: {_entity}");
+        Log.Error($"OnComponentStartup! Entity: {uid} internal: {_entity}");
         if (_entity == EntityUid.Invalid)
         {
             _entity = uid;
@@ -64,7 +64,7 @@ public sealed class SectorServiceSystem : EntitySystem
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public bool TryGetComponent<T>([NotNullWhen(true)] out T? component) where T : IComponent
     {
-        return _entityManager.TryGetComponent(_entity, typeof(T), out component);
+        return _entityManager.TryGetComponent(_entity, out component);
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -101,18 +101,9 @@ public sealed class SectorServiceSystem : EntitySystem
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [Pure]
-    public T? CompOrNull<T>() where T : IComponent
-    {
-        if (TryGetComponent(_entity, out var comp))
-            return comp;
-        return default;
-    }
-
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    [Pure]
     public T Comp<T>() where T : IComponent
     {
-        return GetComponent(_entity);
+        return GetComponent<T>();
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -132,21 +123,6 @@ public sealed class SectorServiceSystem : EntitySystem
     public IComponent GetComponent(Type type)
     {
         return _entityManager.GetComponent(_entity, type);
-    }
-
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    [Pure]
-    public bool HasComp() => _entityManager.HasComponent(_entity);
-
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    [Pure]
-    public bool HasComp(EntityUid? uid) => HasComponent(uid);
-
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    [Pure]
-    public bool HasComponent(EntityUid uid)
-    {
-        return _traitDict.TryGetValue(uid, out var comp) && !comp.Deleted;
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]

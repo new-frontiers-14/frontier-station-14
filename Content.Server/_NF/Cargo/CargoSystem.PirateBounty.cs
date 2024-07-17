@@ -205,14 +205,11 @@ public sealed partial class CargoSystem
     /// <summary>
     /// Fills up the bounty database with random bounties.
     /// </summary>
-    public void FillPirateBountyDatabase(EntityUid uid, SectorPirateBountyDatabaseComponent? component = null)
+    public void FillPirateBountyDatabase(SectorPirateBountyDatabaseComponent? component = null)
     {
-        if (!Resolve(uid, ref component))
-            return;
-
-        while (component.Bounties.Count < component.MaxBounties)
+        while (component?.Bounties.Count < component?.MaxBounties)
         {
-            if (!TryAddPirateBounty(uid, component))
+            if (!TryAddPirateBounty(component))
                 break;
         }
 
@@ -348,42 +345,36 @@ public sealed partial class CargoSystem
     }
 
     [PublicAPI]
-    public bool TryAddPirateBounty(EntityUid uid, SectorPirateBountyDatabaseComponent? component = null)
+    public bool TryAddPirateBounty(SectorPirateBountyDatabaseComponent? component = null)
     {
-        if (!Resolve(uid, ref component))
-            return false;
-
         // todo: consider making the cargo bounties weighted.
         var allBounties = _protoMan.EnumeratePrototypes<PirateBountyPrototype>().ToList();
         var filteredBounties = new List<PirateBountyPrototype>();
         foreach (var proto in allBounties)
         {
-            if (component.Bounties.Any(b => b.Bounty == proto.ID))
+            if (component?.Bounties.Any(b => b.Bounty == proto.ID))
                 continue;
             filteredBounties.Add(proto);
         }
 
         var pool = filteredBounties.Count == 0 ? allBounties : filteredBounties;
         var bounty = _random.Pick(pool);
-        return TryAddPirateBounty(uid, bounty, component);
+        return TryAddPirateBounty(bounty, component);
     }
 
     [PublicAPI]
-    public bool TryAddPirateBounty(EntityUid uid, string bountyId, SectorPirateBountyDatabaseComponent? component = null)
+    public bool TryAddPirateBounty(string bountyId, SectorPirateBountyDatabaseComponent? component = null)
     {
         if (!_protoMan.TryIndex<PirateBountyPrototype>(bountyId, out var bounty))
         {
             return false;
         }
 
-        return TryAddPirateBounty(uid, bounty, component);
+        return TryAddPirateBounty(bounty, component);
     }
 
-    public bool TryAddPirateBounty(EntityUid uid, PirateBountyPrototype bounty, SectorPirateBountyDatabaseComponent? component = null)
+    public bool TryAddPirateBounty(PirateBountyPrototype bounty, SectorPirateBountyDatabaseComponent? component = null)
     {
-        if (!Resolve(uid, ref component))
-            return false;
-
         if (component.Bounties.Count >= component.MaxBounties)
             return false;
 
@@ -427,10 +418,8 @@ public sealed partial class CargoSystem
         SectorPirateBountyDatabaseComponent? component = null)
     {
         bounty = null;
-        if (!Resolve(uid, ref component))
-            return false;
 
-        foreach (var bountyData in component.Bounties)
+        foreach (var bountyData in component?.Bounties)
         {
             if (bountyData.Id != id)
                 continue;
