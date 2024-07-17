@@ -17,6 +17,7 @@ using Content.Shared.Hands;
 using Robust.Shared.Audio.Systems;
 using static Content.Shared.Paper.SharedPaperComponent;
 using Content.Shared.Verbs;
+using Content.Shared.Ghost;
 
 namespace Content.Server.Paper
 {
@@ -46,8 +47,8 @@ namespace Content.Server.Paper
 
             SubscribeLocalEvent<PaperComponent, MapInitEvent>(OnMapInit);
 
-            // FRONTIER - Sign verb hook
-            SubscribeLocalEvent<PaperComponent, GetVerbsEvent<AlternativeVerb>>(AddSignVerb);
+            SubscribeLocalEvent<PaperComponent, GetVerbsEvent<AlternativeVerb>>(AddSignVerb); // Frontier - Sign verb hook
+            SubscribeLocalEvent<StampComponent, GotEquippedHandEvent>(OnHandPickUp);  // Frontier - On pen pickup update name
         }
 
         private void OnMapInit(EntityUid uid, PaperComponent paperComp, MapInitEvent args)
@@ -236,7 +237,7 @@ namespace Content.Server.Paper
                 return;
 
             // Sanity check
-            if (uid != args.Target)
+            if (uid != args.Target || HasComp<GhostComponent>(args.User))
                 return;
 
             // Pens have a `Write` tag.
@@ -255,14 +256,27 @@ namespace Content.Server.Paper
             args.Verbs.Add(verb);
         }
 
-        // FRONTIER - TrySign method, attempts to place a signature
-        public bool TrySign(EntityUid paper, EntityUid signer, EntityUid pen, PaperComponent paperComp)
+        private void OnHandPickUp(EntityUid uid, StampComponent stampComp, GotEquippedHandEvent args)
         {
+            if (!_tagSystem.HasTag(uid, "Write") || HasComp<GhostComponent>(args.User))
+                return;
 
             // Generate display information.
             StampDisplayInfo info = new StampDisplayInfo
             {
-                StampedName = Name(signer),
+                StampedName = Name(args.User).Trim(),
+                StampedColor = Color.FromHex("#333333"),
+                Type = StampType.Signature
+            };
+        }
+
+        // FRONTIER - TrySign method, attempts to place a signature
+        public bool TrySign(EntityUid paper, EntityUid signer, EntityUid pen, PaperComponent paperComp)
+        {
+            // Generate display information.
+            StampDisplayInfo info = new StampDisplayInfo
+            {
+                StampedName = Name(signer).Trim(),
                 StampedColor = Color.FromHex("#333333"),
                 Type = StampType.Signature
             };
