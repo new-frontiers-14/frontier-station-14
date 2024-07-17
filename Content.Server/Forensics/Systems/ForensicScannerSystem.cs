@@ -6,6 +6,7 @@ using Content.Server.Stack;
 using Content.Server._NF.Smuggling;
 using Content.Server._NF.Smuggling.Components;
 using Content.Server.Radio.EntitySystems;
+using Content.Server.Access.Systems;
 using Content.Shared.UserInterface;
 using Content.Shared.DoAfter;
 using Content.Shared.Forensics;
@@ -18,8 +19,8 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Audio.Systems;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
-using Robust.Shared.Player;
 using Robust.Shared.Timing;
+
 // todo: remove this stinky LINQy
 
 namespace Content.Server.Forensics
@@ -38,9 +39,11 @@ namespace Content.Server.Forensics
         [Dependency] private readonly SharedAudioSystem _audio = default!;
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
         [Dependency] private readonly RadioSystem _radio = default!;
+        [Dependency] private readonly IdCardSystem _idCardSystem = default!;
 
+        private readonly List<EntityUid> _scannedDeadDrops = [];
+        private int _amountScanned = 0;
 
-        private List<EntityUid> _scannedDeadDrops = new List<EntityUid>();
         public override void Initialize()
         {
             base.Initialize();
@@ -106,30 +109,39 @@ namespace Content.Server.Forensics
                     scanner.Residues = forensics.Residues.ToList();
                 }
 
-                // Prints FUC if you've successfully scanned a dead drop poster that has spawned a dead drop at least once
-                if (HasComp<DeadDropComponent>(args.Args.Target))
+                if (_idCardSystem.TryFindIdCard(args.Args.User, out var jobID))
                 {
-                    if (TryComp<DeadDropComponent>(args.Args.Target, out var deadDropComponent) &&
-                        deadDropComponent.DeadDropCalled && !deadDropComponent.PosterScanned)
+                    if (jobID.Comp.JobTitle != null && jobID.Comp.JobTitle == "Detective")
                     {
-                        var amount = 3;
-                        var msg = $"Contraband dead drop poster found! Sending {amount} FUC for the investigative work!";
+                        // Prints FUC if you've successfully scanned a dead drop poster that has spawned a dead drop at least once
+                        if (HasComp<DeadDropComponent>(args.Args.Target))
+                        {
+                            if (TryComp<DeadDropComponent>(args.Args.Target, out var deadDropComponent) &&
+                                deadDropComponent.DeadDropCalled && !deadDropComponent.PosterScanned)
+                            {
+                                var amount = 3;
+                                var msg = $"Contraband dead drop poster found! Sending {amount} FUC for the investigative work!";
 
-                        GiveReward(uid, args.Args.Target.Value, amount, msg);
+                                GiveReward(uid, args.Args.Target.Value, amount, msg);
 
-                        // Makes the boolean true so you can't just keep scanning the same poster over and over again
-                        DeadDropSystem.ToggleScanned(deadDropComponent);
+                                // Makes the boolean true so you can't just keep scanning the same poster over and over again
+                                DeadDropSystem.ToggleScanned(deadDropComponent);
+                            }
+                        }
+                        else if (MetaData(Transform(args.Args.Target.Value).ParentUid).EntityName.Equals("Syndicate Supply Drop") &&
+                                !_scannedDeadDrops.Contains(Transform(args.Args.Target.Value).ParentUid) && _amountScanned <= 5)
+                        {
+                            // Only works if you scan anything on the Syndicate Supply Drop and have scanned less than 5 times total
+
+                            var amount = 6;
+                            var msg = $"Dead drop found! Sending {amount} FUC for the investigative work!";
+
+                            GiveReward(uid, args.Args.Target.Value, amount, msg);
+
+                            _scannedDeadDrops.Add(Transform(args.Args.Target.Value).ParentUid);
+                            _amountScanned++;
+                        }
                     }
-                }
-                else if (MetaData(Transform(args.Args.Target.Value).ParentUid).EntityName.Equals("Syndicate Supply Drop") &&
-                        !_scannedDeadDrops.Contains(Transform(args.Args.Target.Value).ParentUid))
-                {
-                    var amount = 6;
-                    var msg = $"Dead drop found! Sending {amount} FUC for the investigative work!";
-
-                    GiveReward(uid, args.Args.Target.Value, amount, msg);
-
-                    _scannedDeadDrops.Add(Transform(args.Args.Target.Value).ParentUid);
                 }
 
                 scanner.LastScannedName = MetaData(args.Args.Target.Value).EntityName;

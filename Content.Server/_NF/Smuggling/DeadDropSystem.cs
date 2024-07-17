@@ -38,7 +38,9 @@ public sealed class DeadDropSystem : EntitySystem
     [Dependency] private readonly SharedMapSystem _mapManager = default!;
     [Dependency] private readonly EntityLookupSystem _entityLookup = default!;
 
-    private List<EntityUid> _poi = new List<EntityUid>();
+    private readonly List<EntityUid> _poi = [];
+    private readonly Queue<EntityUid> _drops = [];
+
     public override void Initialize()
     {
         base.Initialize();
@@ -125,7 +127,7 @@ public sealed class DeadDropSystem : EntitySystem
         var dropLocation = _random.NextVector2(component.MinimumDistance, component.MaximumDistance);
         var mapId = Transform(user).MapID;
 
-        // Tries to get the map uid, if it fails, it will return which I would assume will make the component try again.
+        //tries to get the map uid, if it fails, it will return which I would assume will make the component try again.
         if (!_mapManager.TryGetMap(mapId, out var mapUid))
         {
             return;
@@ -134,8 +136,17 @@ public sealed class DeadDropSystem : EntitySystem
         {
             if (TryComp<ShuttleComponent>(gridUids[0], out var shuttle))
             {
-                // The previous command
+
                 _shuttle.FTLToCoordinates(gridUids[0], shuttle, new EntityCoordinates(mapUid.Value, dropLocation), 0f, 0f, 35f);
+                _drops.Enqueue(gridUids[0]);
+
+                if (_drops.Count > 5)
+                {
+                    //removes the first element of the queue
+                    var entityToRemove = _drops.Dequeue();
+                    _adminLogger.Add(LogType.Action, LogImpact.Medium, $"{entityToRemove} queued for deletion");
+                    EntityManager.QueueDeleteEntity(entityToRemove);
+                }
             }
         }
 
@@ -170,6 +181,7 @@ public sealed class DeadDropSystem : EntitySystem
         var nfsdOutpost = new HashSet<Entity<MapGridComponent>>();
         _entityLookup.GetEntitiesOnMap(mapId, nfsdOutpost);
 
+        //all possible locations which have dead drop posters
         string[] deadDropPossibleLocations = ["Tinnia's Rest", "Crazy Casey's Casino", "Grifty's Gas and Grub", "Expeditionary Lodge", "The Pit"];
 
         var pirateChannel = _prototypeManager.Index<RadioChannelPrototype>("Freelance");
@@ -179,16 +191,19 @@ public sealed class DeadDropSystem : EntitySystem
         {
             if (MetaData(ent.Owner).EntityName.Equals("NFSD Outpost"))
             {
+                //adds the poi to a list to count for the hints
                 _poi.Add(sender);
                 var count = 0;
 
-                foreach (var poi in _poi) {
-                    if (poi == sender) 
+                foreach (var poi in _poi)
+                {
+                    if (poi == sender)
                     {
                         count++;
                     }
                 }
 
+                //sends hints at the location depending on how many times a dead drop posters were activated in a POI
                 if (count == 1)
                 {
                     _radio.SendRadioMessage(ent.Owner, Loc.GetString("deaddrop-security-report"), channel, uid);
@@ -241,5 +256,16 @@ public sealed class DeadDropSystem : EntitySystem
             }
         }
 
+    }
+
+    public override bool Equals(object? obj)
+    {
+        return obj is DeadDropSystem system &&
+               EqualityComparer<List<EntityUid>>.Default.Equals(_poi, system._poi);
+    }
+
+    public override int GetHashCode()
+    {
+        throw new NotImplementedException();
     }
 }
