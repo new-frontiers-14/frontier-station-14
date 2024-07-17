@@ -1,0 +1,63 @@
+- type: entity
+  name: ancient terminal
+  id: AncientComputer
+  parent: BaseStructureDynamic
+  description: A very old looking terminal, not much left of it. Contains valuable salvage.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: Rotatable
+  - type: Sprite
+    sprite: _NF/Objects/Decoration/Scrap/scrap-ancientmachine.rsi
+    state: ancientcomputer
+  - type: Physics
+    bodyType: Static
+  - type: StaticPrice
+    price: 300
+
+- type: entity
+  name: ancient machine
+  id: AncientImprinter
+  parent: BaseStructureDynamic
+  description: A old, destroyed machine. You cant tell what it was used for. Contains valuable salvage.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+    noRot: true
+  - type: Rotatable
+  - type: Sprite
+    sprite: _NF/Objects/Decoration/Scrap/scrap-ancientmachine.rsi
+    state: ancientimprinter
+  - type: Physics
+    bodyType: Static
+  - type: StaticPrice
+    price: 300
+
+- type: entity
+  name: ancient machine
+  id: AncientLathe
+  parent: AncientImprinter
+  components:
+  - type: Sprite
+    sprite: _NF\Objects\Decoration\Scrap\scrap-ancientmachine.rsi
+    state: ancientlathe
+
+- type: entity
+  name: ancient machine
+  id: AncientProto
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Decoration/Scrap/scrap-ancientmachine.rsi
+    state: ancientproto
+
+- type: entity
+  name: ancient machine
+  id: AncientServer
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Decoration/Scrap/scrap-ancientmachine.rsi
+    state: ancientserver
