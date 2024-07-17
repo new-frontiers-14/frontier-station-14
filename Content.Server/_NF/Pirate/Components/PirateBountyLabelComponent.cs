@@ -19,10 +19,4 @@ public sealed partial class PirateBountyLabelComponent : Component
     /// Used to prevent recursion in calculating the price.
     /// </summary>
     public bool Calculating;
-
-    /// <summary>
-    /// The Station System to check and remove bounties from
-    /// </summary>
-    [DataField]
-    public EntityUid? AssociatedStationId;
 }

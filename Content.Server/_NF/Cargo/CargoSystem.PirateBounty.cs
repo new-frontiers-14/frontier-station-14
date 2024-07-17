@@ -61,7 +61,7 @@ public sealed partial class CargoSystem
 
         var label = Spawn(component.BountyLabelId, Transform(uid).Coordinates);
         component.NextPrintTime = _timing.CurTime + component.PrintDelay;
-        SetupBountyLabel(label, service, bounty.Value);
+        SetupPirateBountyLabel(label, bounty.Value);
         _audio.PlayPvs(component.PrintSound, uid);
     }
 
@@ -86,23 +86,22 @@ public sealed partial class CargoSystem
             return;
         }
 
-        if (!TryRemoveBounty(service, bounty.Value))
+        if (!TryRemovePirateBounty(bounty.Value))
             return;
 
-        FillBountyDatabase(service);
+        FillPirateBountyDatabase();
         db.NextSkipTime = _timing.CurTime + db.SkipDelay;
         var untilNextSkip = db.NextSkipTime - _timing.CurTime;
         _uiSystem.SetUiState(uid, CargoConsoleUiKey.Bounty, new PirateBountyConsoleState(db.Bounties, untilNextSkip));
         _audio.PlayPvs(component.SkipSound, uid);
     }
 
-    public void SetupPirateBountyLabel(EntityUid uid, EntityUid serviceId, PirateBountyData bounty, PaperComponent? paper = null, PirateBountyLabelComponent? label = null)
+    public void SetupPirateBountyLabel(EntityUid uid, PirateBountyData bounty, PaperComponent? paper = null, PirateBountyLabelComponent? label = null)
     {
         if (!Resolve(uid, ref paper, ref label) || !_protoMan.TryIndex<PirateBountyPrototype>(bounty.Bounty, out var prototype))
             return;
 
         label.Id = bounty.Id;
-        label.AssociatedStationId = serviceId;
         var msg = new FormattedMessage();
         msg.AddText(Loc.GetString("bounty-manifest-header", ("id", bounty.Id)));
         msg.PushNewline();
@@ -131,13 +130,13 @@ public sealed partial class CargoSystem
         if (!_container.TryGetContainingContainer(uid, out var container) || container.ID != LabelSystem.ContainerName)
             return;
 
-        if (component.AssociatedStationId is not { } station || !TryComp<SectorPirateBountyDatabaseComponent>(station, out var database))
+        if (!_sectorService.TryComp<SectorPirateBountyDatabaseComponent>(out var database))
             return;
 
         if (database.CheckedBounties.Contains(component.Id))
             return;
 
-        if (!TryGetPirateBountyFromId(station, component.Id, out var bounty, database))
+        if (!TryGetPirateBountyFromId(component.Id, out var bounty, database))
             return;
 
         if (!_protoMan.TryIndex(bounty.Value.Bounty, out var bountyPrototype) ||
@@ -159,7 +158,7 @@ public sealed partial class CargoSystem
         if (!TryGetPirateBountyLabel(uid, out _, out var component))
             return false;
 
-        if (component.AssociatedStationId is not { } station || !TryGetPirateBountyFromId(station, component.Id, out var bounty))
+        if (!_sectorService.TryGetPirateBountyFromId(component.Id, out var bounty))
         {
             return false;
         }
@@ -169,8 +168,8 @@ public sealed partial class CargoSystem
             return false;
         }
 
-        TryRemovePirateBounty(station, bounty.Value);
-        FillPirateBountyDatabase(station);
+        TryRemovePirateBounty(bounty.Value);
+        FillPirateBountyDatabase();
         _adminLogger.Add(LogType.Action, LogImpact.Low, $"Bounty \"{bounty.Value.Bounty}\" (id:{bounty.Value.Id}) was fulfilled");
         return false;
     }
@@ -237,14 +236,7 @@ public sealed partial class CargoSystem
             return false;
         }
 
-        var sector = component.AssociatedStationId;
-        if (sector == null)
-        {
-            bountyEntities = new();
-            return false;
-        }
-
-        if (!TryGetPirateBountyFromId(sector.Value, component.Id, out var bounty))
+        if (!TryGetPirateBountyFromId(component.Id, out var bounty))
         {
             bountyEntities = new();
             return false;
@@ -463,7 +455,7 @@ public sealed partial class CargoSystem
 
     private void UpdatePirateBounty()
     {
-        if (!_sectorService.TryComp<SectorPirateBountyDatabaseComponent>(out var bountyDatabase))
+        if (_sectorService.TryComp<SectorPirateBountyDatabaseComponent>(out var bountyDatabase))
         {
             bountyDatabase.CheckedBounties.Clear();
         }
@@ -473,6 +465,7 @@ public sealed partial class CargoSystem
     string id,
     [NotNullWhen(true)] out PirateBountyData? bounty)
     {
+        bounty = null;
         if (!_sectorService.TryComp<SectorPirateBountyDatabaseComponent>(out var component))
             return false;
 
