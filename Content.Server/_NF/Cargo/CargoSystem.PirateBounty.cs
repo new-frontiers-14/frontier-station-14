@@ -32,9 +32,9 @@ public sealed partial class CargoSystem
     // GROSS.
     private void InitializePirateBounty()
     {
-        SubscribeLocalEvent<PirateBountyConsoleComponent, BoundUIOpenedEvent>(OnPirateBountyConsoleOpened);
-        SubscribeLocalEvent<PirateBountyConsoleComponent, BountyPrintLabelMessage>(OnPiratePrintLabelMessage);
-        SubscribeLocalEvent<PirateBountyConsoleComponent, BountySkipMessage>(OnSkipPirateBountyMessage);
+        SubscribeLocalEvent<PirateBountyConsoleComponent, PirateBoundUIOpenedEvent>(OnPirateBountyConsoleOpened);
+        SubscribeLocalEvent<PirateBountyConsoleComponent, PirateBountyPrintLabelMessage>(OnPiratePrintLabelMessage);
+        SubscribeLocalEvent<PirateBountyConsoleComponent, PirateBountySkipMessage>(OnSkipPirateBountyMessage);
         SubscribeLocalEvent<PirateBountyLabelComponent, PriceCalculationEvent>(OnGetPirateBountyPrice); // TODO: figure out how these labels interact with the chest (does the chest RECEIVE the label component?)
         //SubscribeLocalEvent<EntitySoldEvent>(OnPirateSold); // FIXME: figure this out
         SubscribeLocalEvent<SectorPirateBountyDatabaseComponent, MapInitEvent>(OnPirateMapInit);

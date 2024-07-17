@@ -9,12 +9,12 @@ pirate-bounty-console-manifest-entry =
         [1] {$item}
         *[other] {$item} x{$amount}
     }
-pirate-bounty-console-manifest-reward = Reward: ${$reward}
+pirate-bounty-console-manifest-reward = Reward: {$reward} DB
 pirate-bounty-console-description-label = [color=gray]{$description}[/color]
-pirate-bounty-console-id-label = ID#{$id}
+pirate-bounty-console-id-label = YAR-{$id}
 
-pirate-bounty-console-flavor-left = Bounties sourced from local unscrupulous dealers.
-pirate-bounty-console-flavor-right = v1.4
+pirate-bounty-console-flavor-left = Go and plunder, me hearties! Down with NT!
+pirate-bounty-console-flavor-right = v0.0.1a
 
 pirate-bounty-manifest-header = [font size=14][bold]Official cargo bounty manifest[/bold] (ID#{$id})[/font]
 pirate-bounty-manifest-list-start = Item manifest:
