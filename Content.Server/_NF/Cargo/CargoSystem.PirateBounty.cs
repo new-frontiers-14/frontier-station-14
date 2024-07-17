@@ -32,7 +32,7 @@ public sealed partial class CargoSystem
     // GROSS.
     private void InitializePirateBounty()
     {
-        SubscribeLocalEvent<PirateBountyConsoleComponent, PirateBoundUIOpenedEvent>(OnPirateBountyConsoleOpened);
+        SubscribeLocalEvent<PirateBountyConsoleComponent, BoundUIOpenedEvent>(OnPirateBountyConsoleOpened);
         SubscribeLocalEvent<PirateBountyConsoleComponent, PirateBountyPrintLabelMessage>(OnPiratePrintLabelMessage);
         SubscribeLocalEvent<PirateBountyConsoleComponent, PirateBountySkipMessage>(OnSkipPirateBountyMessage);
         SubscribeLocalEvent<PirateBountyLabelComponent, PriceCalculationEvent>(OnGetPirateBountyPrice); // TODO: figure out how these labels interact with the chest (does the chest RECEIVE the label component?)
@@ -56,7 +56,7 @@ public sealed partial class CargoSystem
         _uiSystem.SetUiState(uid, PirateConsoleUiKey.Bounty, new PirateBountyConsoleState(bountyDb.Bounties, untilNextSkip));
     }
 
-    private void OnPiratePrintLabelMessage(EntityUid uid, PirateBountyConsoleComponent component, BountyPrintLabelMessage args)
+    private void OnPiratePrintLabelMessage(EntityUid uid, PirateBountyConsoleComponent component, PirateBountyPrintLabelMessage args)
     {
         if (_timing.CurTime < component.NextPrintTime)
             return;
@@ -71,7 +71,7 @@ public sealed partial class CargoSystem
         _audio.PlayPvs(component.PrintSound, uid);
     }
 
-    private void OnSkipPirateBountyMessage(EntityUid uid, PirateBountyConsoleComponent component, BountySkipMessage args)
+    private void OnSkipPirateBountyMessage(EntityUid uid, PirateBountyConsoleComponent component, PirateBountySkipMessage args)
     {
         var service = _sectorService.GetServiceEntity();
         if (!TryComp<SectorPirateBountyDatabaseComponent>(service, out var db))
