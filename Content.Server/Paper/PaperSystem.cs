@@ -269,28 +269,23 @@ namespace Content.Server.Paper
                 StampedColor = Color.FromHex("#333333"),
                 Type = StampType.Signature
             };
+
+            if (TryComp<CrayonComponent>(uid, out var crayon))
+                info.StampedColor = crayon.Color;
         }
 
         // FRONTIER - TrySign method, attempts to place a signature
         public bool TrySign(EntityUid paper, EntityUid signer, EntityUid pen, PaperComponent paperComp)
         {
-            // Generate display information.
-            StampDisplayInfo info = new StampDisplayInfo
-            {
-                StampedName = Name(signer).Trim(),
-                StampedColor = Color.FromHex("#333333"),
-                Type = StampType.Signature
-            };
+            if (!TryComp<StampComponent>(pen, out var stampComp))
+                return false;
 
             // Get Crayon component, and if present set custom color from crayon
             if (TryComp<CrayonComponent>(pen, out var crayon))
-            {
-                info.StampedColor = crayon.Color;
                 crayon.Charges -= 1;
-            }
 
             // Try stamp with the info, return false if failed.
-            if (TryStamp(paper, info, "paper_stamp-generic", paperComp))
+            if (TryStamp(paper, GetStampInfo(stampComp), "paper_stamp-generic", paperComp))
             {
                 // Signing successful, popup time.
 
