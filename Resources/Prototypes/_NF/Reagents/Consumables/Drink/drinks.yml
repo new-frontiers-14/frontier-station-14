@@ -125,3 +125,41 @@
   metamorphicMaxFillLevels: 3
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
+
+- type: reagent
+  id: BeesKnees
+  name: reagent-name-bees-knees
+  parent: BaseAlcohol
+  desc: reagent-desc-bees-knees
+  physicalDesc: reagent-physical-desc-aromatic
+  flavor: bees
+  color: "#f1d25f"
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 0.5
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.2
+      - !type:SatiateHunger
+        factor: 0.1
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: -0.05
+            Radiation: -0.05
+      - !type:ModifyBloodLevel
+        amount: 0.2
+        conditions:
+        - !type:ReagentThreshold
+          min: 35
+        damage:
+          types:
+            Airloss: 1
+  metamorphicSprite:
+    sprite: _NF/Objects/Consumable/Drinks/beesknees.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 3
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
