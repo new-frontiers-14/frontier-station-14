@@ -350,7 +350,7 @@ public sealed class NPCUtilitySystem : EntitySystem
             }
             case TargetIsStunnedCon:
             {
-                return _statusEffectsSystem.HasStatusEffect(targetUid, "Stun") ? 0f : 1f;
+                return _statusEffectsSystem.HasStatusEffect(targetUid, "Stun") ? 1f : 0f;
             }
             // End Frontier
             default:
