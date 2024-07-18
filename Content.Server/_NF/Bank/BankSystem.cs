@@ -1,4 +1,5 @@
 using System.Threading;
+using System.Threading.Tasks;
 using Content.Server.Database;
 using Content.Server.Preferences.Managers;
 using Content.Server.GameTicking;
@@ -8,7 +9,6 @@ using Robust.Shared.GameStates;
 using Robust.Shared.Network;
 using Content.Shared._NF.Bank.Events;
 using Robust.Server.Player;
-using Content.Server.Cargo.Components;
 using Content.Shared.Preferences.Loadouts;
 using Robust.Shared.Prototypes;
 using Content.Shared.Roles;
@@ -22,6 +22,9 @@ public sealed partial class BankSystem : EntitySystem
     [Dependency] private readonly IServerPreferencesManager _prefsManager = default!;
     [Dependency] private readonly IServerDbManager _dbManager = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
+
+    [Dependency] private readonly IDependencyCollection _dependencies = default!; // Corvax-Frontier-Changes
+
     private ISawmill _log = default!;
 
     public override void Initialize()
@@ -39,6 +42,9 @@ public sealed partial class BankSystem : EntitySystem
     // TODO: stop it from running 5 times every time
     private void OnBankAccountChanged(EntityUid mobUid, BankAccountComponent bank, ref ComponentGetState args)
     {
+        if (args.Player is null)
+            return;
+
         var user = args.Player?.UserId;
 
         if (user == null || args.Player?.AttachedEntity != mobUid)
@@ -71,15 +77,29 @@ public sealed partial class BankSystem : EntitySystem
             new HashSet<ProtoId<TraitPrototype>>(profile.TraitPreferences), // Frontier Merge
             new Dictionary<string, RoleLoadout>(profile.Loadouts));
 
+        newProfile.EnsureValid(args.Player, _dependencies, []);
+
         args.State = new BankAccountComponentState
         {
             Balance = bank.Balance,
         };
-
-        _dbManager.SaveCharacterSlotAsync((NetUserId) user, newProfile, index);
+        // idk if it works as i want
+        Task.Run(() => SaveCharSlot((NetUserId) user, profile, index)).Wait(300); // Corvax-Frontier-Changes
         _log.Info($"Character {profile.Name} saved");
     }
-
+    // Corvax-Frontier-Changes-Start
+    private async Task SaveCharSlot(NetUserId userId, HumanoidCharacterProfile profile, int index)
+    {
+        try
+        {
+            await _dbManager.SaveCharacterSlotAsync(userId, profile, index);
+        }
+        catch (Exception ex)
+        {
+            _log.Error($"Caught exception while saving bank account to database: {ex.Message}. Stack Trace: {ex.StackTrace}");
+        }
+    }
+    // Corvax-Frontier-Changes-End
     /// <summary>
     /// Attempts to remove money from a character's bank account. This should always be used instead of attempting to modify the bankaccountcomponent directly
     /// </summary>
