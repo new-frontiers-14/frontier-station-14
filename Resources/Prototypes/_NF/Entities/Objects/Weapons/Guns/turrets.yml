@@ -63,7 +63,7 @@
       - !type:DeleteEntity {}
       steps:
         - tool: Screwing
-          doAfter: 10
+          doAfter: 14
 
 # Basic laser turrets
 - type: entity
@@ -132,7 +132,7 @@
       - !type:DeleteEntity {}
       steps:
         - tool: Screwing
-          doAfter: 10
+          doAfter: 14
 
 - type: entity
   parent: BaseWeaponTurretEnergyNF
@@ -250,13 +250,15 @@
       - !type:DeleteEntity {}
       steps:
         - tool: Screwing
-          doAfter: 10
+          doAfter: 14
 
 ## Magazine fed, deployable punk turret
 - type: entity # deployed turret
-  parent: WeaponTurretAsmgtNtDeployed
-  id: WeaponTurretAsmgtPunkDeployed
-  suffix: Punk
+  parent:
+  - WeaponTurretAsmgtNtDeployed
+  - UnregisteredFirearmBase
+  id: WeaponTurretAsmgtHostileUniversallyDeployed
+  suffix: Universally Hostile
   components:
   - type: NPCImprintingOnSpawnBehaviour
     whitelist:
@@ -264,38 +266,40 @@
       - HumanoidAppearance
   - type: NpcFactionMember
     factions:
-    - StreetGangNF
+    - HostileUniversally
   - type: Construction
     deconstructionTarget: null
-    graph: WeaponTurretAsmgtPunkPackingGraph
-    node: WeaponTurretAsmgtPunkPacked
+    graph: WeaponTurretAsmgtHostileUniversallyPackingGraph
+    node: WeaponTurretAsmgtHostileUniversallyPacked
 
 - type: entity # folded turret
-  parent: WeaponTurretAsmgtNtPacked
-  id: WeaponTurretAsmgtPunkPacked
+  parent:
+  - WeaponTurretAsmgtNtPacked
+  - UnregisteredFirearmBase
+  id: WeaponTurretAsmgtHostileUniversallyPacked
   suffix: Punk, Packed
   components:
   - type: WeaponCaseInsertable
   - type: MultiHandedItem
   - type: SpawnAfterInteract
-    prototype: WeaponTurretAsmgtPunkDeployed
+    prototype: WeaponTurretAsmgtHostileUniversallyDeployed
     doAfter: 5
     removeOnInteract: true
 
 - type: constructionGraph # deconstruction graph
-  id: WeaponTurretAsmgtPunkPackingGraph
-  start: WeaponTurretAsmgtPunkPacked
+  id: WeaponTurretAsmgtHostileUniversallyPackingGraph
+  start: WeaponTurretAsmgtHostileUniversallyPacked
   graph:
-  - node: WeaponTurretAsmgtPunkPacked
-    entity: WeaponTurretAsmgtPunkDeployed
+  - node: WeaponTurretAsmgtHostileUniversallyPacked
+    entity: WeaponTurretAsmgtHostileUniversallyDeployed
     edges:
-    - to: WeaponTurretAsmgtPunkPacked
+    - to: WeaponTurretAsmgtHostileUniversallyPacked
       completed:
       - !type:SpawnPrototype
-            prototype: WeaponTurretAsmgtPunkPacked
+            prototype: WeaponTurretAsmgtHostileUniversallyPacked
             amount: 1
       - !type:EmptyAllContainers
       - !type:DeleteEntity {}
       steps:
         - tool: Screwing
-          doAfter: 10
+          doAfter: 14
