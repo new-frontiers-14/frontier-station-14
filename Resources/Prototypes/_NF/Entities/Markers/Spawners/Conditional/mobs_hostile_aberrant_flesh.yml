@@ -1,0 +1,18 @@
+- type: entity
+  name: aberrant flesh miner spawner
+  id: SpawnMobAberrantFleshMinerExpeditions
+  parent: MarkerBase
+  noSpawn: true
+  suffix: AI, Hostile, RND
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: _NF/Mobs/Aliens/flesh.rsi
+      state: lover
+    - state: ai
+  - type: RandomSpawner
+    prototypes:
+    - MobFleshAssimilatedMiner
+    chance: 1
+    offset: 0.0

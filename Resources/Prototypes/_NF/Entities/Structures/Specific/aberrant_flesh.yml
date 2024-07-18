@@ -72,3 +72,18 @@
           FoodMeat:
             min: 1
             max: 2
+
+- type: entity
+  parent: AberrantFleshDigestiveSack
+  id: AberrantFleshDigestiveSackTest
+  name: assimilation sack
+  suffix: DO NOT MAP
+  components:
+  - type: Timer
+  - type: TimedSpawner
+    prototypes:
+    - SpawnMobAberrantFleshMinerExpeditions
+    chance: 1.0
+    intervalSeconds: 4
+    minimumEntitiesSpawned: 1
+    maximumEntitiesSpawned: 1

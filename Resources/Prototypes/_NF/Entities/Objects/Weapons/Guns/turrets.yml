@@ -32,6 +32,8 @@
    A disassembled and packed CDET. The "CDET" stands for Contraband Denying Energy Turret.
   suffix: NT, Packed
   components:
+  - type: WeaponCaseInsertable
+  - type: MultiHandedItem
   - type: SpawnAfterInteract
     prototype: WeaponTurretContrabandDenyingDeployed
     doAfter: 5
@@ -40,7 +42,9 @@
     sprite: _NF/Objects/Weapons/Guns/Turrets/disabler.rsi
     state: packed
   - type: Item
-    size: Huge
+    size: Ginormous
+    shape:
+    - 0,0,3,3
     sprite: _NF/Objects/Weapons/Guns/Turrets/disabler.rsi
 
 - type: constructionGraph # deconstruction graph
@@ -92,11 +96,13 @@
 - type: entity # folded turret
   parent: BaseItem
   id: WeaponTurretLaserNanoTrasenPacked
-  name: packed laser turret
+  name: packed SLAT
   description: |-
    A disassembled and packed SLAT. The "SLAT" stands for Self-Recharging Laser Auto Turret.
   suffix: NT, Packed
   components:
+  - type: WeaponCaseInsertable
+  - type: MultiHandedItem
   - type: SpawnAfterInteract
     prototype: WeaponTurretLaserNanoTrasenDeployed
     doAfter: 5
@@ -105,7 +111,9 @@
     sprite: _NF/Objects/Weapons/Guns/Turrets/laser.rsi
     state: packed
   - type: Item
-    size: Huge
+    size: Ginormous
+    shape:
+    - 0,0,3,3
     sprite: _NF/Objects/Weapons/Guns/Turrets/laser.rsi
 
 - type: constructionGraph # deconstruction graph
@@ -161,11 +169,11 @@
 - type: entity # deployed turret
   parent:
   - BaseWeaponTurretMagazineFed
-  id: WeaponTurretAsmgt35NtDeployed
-  name: ASMGT 35-C
+  id: WeaponTurretAsmgtNtDeployed
+  name: ASMGT
   description: |-
-   A magazine fed ballistic machine gun auto-turret chambered in .35 pistol cartriges. The "ASMGT" stands for Autonomous Sentry Machine Gun Turret. Use screwdriver to disassemble.
-  suffix: NT, .35 pistol
+   A magazine fed ballistic machine gun auto-turret compatible with .20, .25, .30 and .35 cartriges. The "ASMGT" stands for Autonomous Sentry Machine Gun Turret. Use screwdriver to disassemble.
+  suffix: NT
   components:
   - type: NPCImprintingOnSpawnBehaviour
     whitelist:
@@ -200,38 +208,43 @@
           - MagazineAsmgt
   - type: Construction
     deconstructionTarget: null
-    graph: WeaponTurretAsmgt35NtPackingGraph
-    node: WeaponTurretAsmgt35NtPacked
+    graph: WeaponTurretAsmgtNtPackingGraph
+    node: WeaponTurretAsmgtNtPacked
 
 - type: entity # folded turret
   parent: BaseItem
-  id: WeaponTurretAsmgt35NtPacked
-  name: packed ASMGT 35-C
-  description: A disassembled and packed ASMGT 35-C.
+  id: WeaponTurretAsmgtNtPacked
+  name: packed ASMGT
+  description: |-
+   A disassembled and packed ASMGT. The "ASMGT" stands for Autonomous Sentry Machine Gun Turret.
   suffix: NT, Packed
   components:
+  - type: WeaponCaseInsertable
+  - type: MultiHandedItem
   - type: SpawnAfterInteract
-    prototype: WeaponTurretAsmgt35NtDeployed
+    prototype: WeaponTurretAsmgtNtDeployed
     doAfter: 5
     removeOnInteract: true
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Turrets/magazinefed.rsi
     state: packed
   - type: Item
-    size: Huge
+    size: Ginormous
+    shape:
+    - 0,0,3,3
     sprite: _NF/Objects/Weapons/Guns/Turrets/magazinefed.rsi
 
 - type: constructionGraph # deconstruction graph
-  id: WeaponTurretAsmgt35NtPackingGraph
-  start: WeaponTurretAsmgt35NtPacked
+  id: WeaponTurretAsmgtNtPackingGraph
+  start: WeaponTurretAsmgtNtPacked
   graph:
-  - node: WeaponTurretAsmgt35NtPacked
-    entity: WeaponTurretAsmgt35NtDeployed
+  - node: WeaponTurretAsmgtNtPacked
+    entity: WeaponTurretAsmgtNtDeployed
     edges:
-    - to: WeaponTurretAsmgt35NtPacked
+    - to: WeaponTurretAsmgtNtPacked
       completed:
       - !type:SpawnPrototype
-            prototype: WeaponTurretAsmgt35NtPacked
+            prototype: WeaponTurretAsmgtNtPacked
             amount: 1
       - !type:EmptyAllContainers
       - !type:DeleteEntity {}
@@ -241,9 +254,9 @@
 
 ## Magazine fed, deployable punk turret
 - type: entity # deployed turret
-  parent: WeaponTurretAsmgt35NtDeployed
-  id: WeaponTurretAsmgt35PunkDeployed
-  suffix: Punk, .35 round
+  parent: WeaponTurretAsmgtNtDeployed
+  id: WeaponTurretAsmgtPunkDeployed
+  suffix: Punk
   components:
   - type: NPCImprintingOnSpawnBehaviour
     whitelist:
@@ -254,30 +267,32 @@
     - StreetGangNF
   - type: Construction
     deconstructionTarget: null
-    graph: WeaponTurretAsmgt35PunkPackingGraph
-    node: WeaponTurretAsmgt35PunkPacked
+    graph: WeaponTurretAsmgtPunkPackingGraph
+    node: WeaponTurretAsmgtPunkPacked
 
 - type: entity # folded turret
-  parent: WeaponTurretAsmgt35NtPacked
-  id: WeaponTurretAsmgt35PunkPacked
+  parent: WeaponTurretAsmgtNtPacked
+  id: WeaponTurretAsmgtPunkPacked
   suffix: Punk, Packed
   components:
+  - type: WeaponCaseInsertable
+  - type: MultiHandedItem
   - type: SpawnAfterInteract
-    prototype: WeaponTurretAsmgt35PunkDeployed
+    prototype: WeaponTurretAsmgtPunkDeployed
     doAfter: 5
     removeOnInteract: true
 
 - type: constructionGraph # deconstruction graph
-  id: WeaponTurretAsmgt35PunkPackingGraph
-  start: WeaponTurretAsmgt35PunkPacked
+  id: WeaponTurretAsmgtPunkPackingGraph
+  start: WeaponTurretAsmgtPunkPacked
   graph:
-  - node: WeaponTurretAsmgt35PunkPacked
-    entity: WeaponTurretAsmgt35PunkDeployed
+  - node: WeaponTurretAsmgtPunkPacked
+    entity: WeaponTurretAsmgtPunkDeployed
     edges:
-    - to: WeaponTurretAsmgt35PunkPacked
+    - to: WeaponTurretAsmgtPunkPacked
       completed:
       - !type:SpawnPrototype
-            prototype: WeaponTurretAsmgt35PunkPacked
+            prototype: WeaponTurretAsmgtPunkPacked
             amount: 1
       - !type:EmptyAllContainers
       - !type:DeleteEntity {}
