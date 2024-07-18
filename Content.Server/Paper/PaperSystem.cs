@@ -307,7 +307,7 @@ namespace Content.Server.Paper
             }
 
             // Try stamp with the info, return false if failed.
-            if (!StampDelayed(pen) && TryStamp(paper, info, "paper_stamp-generic", paperComp))
+            if (!StampDelayed(pen) && TryStamp(paper, info, "paper_stamp-generic", paperComp)) // Frontier: add !StampDelayed(pen)
             {
                 // Signing successful, popup time.
 
