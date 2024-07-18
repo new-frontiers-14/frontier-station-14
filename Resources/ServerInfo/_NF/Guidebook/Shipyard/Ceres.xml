@@ -12,7 +12,7 @@
 
   [color=#a4885c]Recommended Crew:[/color] 2-4
 
-  [color=#a4885c]Power Gen Type:[/color] Plasma
+  [color=#a4885c]Power Gen Type:[/color] Uranium
 
   [color=#a4885c]Expeditions:[/color] None
 
@@ -29,39 +29,39 @@
   ## 1.1. Battery units
   <Box>
   <GuideEntityEmbed Entity="SMESBasic"/>
-  <GuideEntityEmbed Entity="SubstationBasic"/>
+  <GuideEntityEmbed Entity="SubstationWallBasic"/>
   <GuideEntityEmbed Entity="APCBasic"/>
   </Box>
 
   - Check that the SMES unit is anchored to the floor.
-  - Check that the substation unit is anchored to the floor.
-  - Check that the APC unit's Main Breaker is toggled on.
-  - Check the APC unit's current Load (W).
+  - Check that the APC units' Main Breakers are toggled on.
+  - Check the APC units' current Load (W).
 
-  ## 1.2. P.A.C.M.A.N. generator unit
+  ## 1.2. S.U.P.E.R.P.A.C.M.A.N. generator unit
   <Box>
-  <GuideEntityEmbed Entity="PortableGeneratorPacmanShuttle"/>
+  <GuideEntityEmbed Entity="PortableGeneratorSuperPacmanShuttle"/>
   <GuideEntityEmbed Entity="SheetPlasma"/>
   </Box>
 
-  - Check that P.A.C.M.A.N. generator units are anchored to the floor.
-  - Check that P.A.C.M.A.N. generator units are fueled. For extended flights make sure that you have enough fuel stockpiled to sustain prolonged power generation.
-  - Check that P.A.C.M.A.N. generator units are set to HV output.
-  - Set Target Power to 12 [bold]kW[/bold] on each  generator unit.
-  - Start P.A.C.M.A.N. generator units.
+  - Check that S.U.P.E.R.P.A.C.M.A.N. generator unit is anchored to the floor.
+  - Check that S.U.P.E.R.P.A.C.M.A.N. generator unit is fueled. For extended flights make sure that you have enough fuel stockpiled to sustain prolonged power generation.
+  - Check that S.U.P.E.R.P.A.C.M.A.N. generator unit is set to HV output.
+  - Set Target Power to 24 [bold]kW[/bold] on the generator unit.
+  - Start S.U.P.E.R.P.A.C.M.A.N. generator unit.
 
   ## 2. Atmospherics
 
   ## 2.1. Distribution Loop
   <Box>
-  <GuideEntityEmbed Entity="AirCanister"/>
+  <GuideEntityEmbed Entity="OxygenCanister"/>
+  <GuideEntityEmbed Entity="NitrogenCanister"/>
   <GuideEntityEmbed Entity="GasPort"/>
   <GuideEntityEmbed Entity="GasPressurePump"/>
   </Box>
 
-  - Check that the air canister is anchored to connector port.
-  - Check that the distribution pump is set to 101kPa.
-  - Enable the distribution pump.
+  - Check that the oxygen and nitrogen canisters are anchored to the connector port.
+  - Check that the distribution mixer is set to 101kPa.
+  - Enable the distribution mixer.
 
   ## 2.2. Waste Loop
   <Box>
