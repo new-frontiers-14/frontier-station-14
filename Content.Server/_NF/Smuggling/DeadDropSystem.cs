@@ -256,7 +256,7 @@ public sealed class DeadDropSystem : EntitySystem
                 Timer.Spawn(TimeSpan.FromSeconds(component.RadioCoolDown), () =>
                 {
                     var sender = Transform(user).GridUid ?? uid;
-                    _radio.SendRadioMessage(ent.Owner, Loc.GetString("deaddrop-nfsd", ("ship", MetaData(sender).EntityName)), pirateChannel, uid);
+                    _radio.SendRadioMessage(ent.Owner, Loc.GetString("deaddrop-pirate", ("ship", MetaData(sender).EntityName)), pirateChannel, uid);
                 });
             }
         }

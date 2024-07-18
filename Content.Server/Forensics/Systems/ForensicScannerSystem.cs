@@ -6,7 +6,7 @@ using Content.Server.Stack;
 using Content.Server._NF.Smuggling;
 using Content.Server._NF.Smuggling.Components;
 using Content.Server.Radio.EntitySystems;
-using Content.Server.Access.Systems;
+using Content.Shared.Access.Components;
 using Content.Shared.UserInterface;
 using Content.Shared.DoAfter;
 using Content.Shared.Forensics;
@@ -15,6 +15,8 @@ using Content.Shared.Interaction;
 using Content.Shared.Verbs;
 using Content.Shared.Stacks;
 using Content.Shared.Radio;
+using Content.Shared.Access;
+using Content.Shared.Access.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Audio.Systems;
 using Robust.Server.GameObjects;
@@ -39,7 +41,7 @@ namespace Content.Server.Forensics
         [Dependency] private readonly SharedAudioSystem _audio = default!;
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
         [Dependency] private readonly RadioSystem _radio = default!;
-        [Dependency] private readonly IdCardSystem _idCardSystem = default!;
+        [Dependency] private readonly AccessReaderSystem _accessReader = default!;
 
         private readonly List<EntityUid> _scannedDeadDrops = [];
         private int _amountScanned = 0;
@@ -112,40 +114,56 @@ namespace Content.Server.Forensics
                     scanner.Residues = forensics.Residues.ToList();
                 }
 
+                var detective = false;
+
                 // Will only give FUC rewards to someone with the detective ID.
-                if (_idCardSystem.TryFindIdCard(args.Args.User, out var jobID))
+                var accessSources = _accessReader.FindPotentialAccessItems(args.Args.User);
+                var access = _accessReader.FindAccessTags(args.Args.User, accessSources);
+
+                foreach (var tag in access)
                 {
-                    if (jobID.Comp.JobTitle != null && jobID.Comp.JobTitle == "Detective")
+                    if (!_prototypeManager.TryIndex(tag, out var accessLevel))
                     {
-                        // Prints FUC if you've successfully scanned a dead drop poster that has spawned a dead drop at least once
-                        if (HasComp<DeadDropComponent>(args.Args.Target))
-                        {
-                            if (TryComp<DeadDropComponent>(args.Args.Target, out var deadDropComponent) &&
-                                deadDropComponent.DeadDropCalled && !deadDropComponent.PosterScanned)
-                            {
-                                var amount = 3;
-                                var msg = Loc.GetString("forensic-reward-poster", ("amount", amount));
+                        continue;
+                    }
 
-                                GiveReward(uid, args.Args.Target.Value, amount, msg);
+                    if (accessLevel.GetAccessLevelName() == "Detective")
+                    {
+                        detective = true;
+                    }
+                }
 
-                                // Makes the boolean true so you can't just keep scanning the same poster over and over again
-                                DeadDropSystem.ToggleScanned(deadDropComponent);
-                            }
-                        }
-                        else if (MetaData(Transform(args.Args.Target.Value).ParentUid).EntityName.Equals("Syndicate Supply Drop") &&
-                                !_scannedDeadDrops.Contains(Transform(args.Args.Target.Value).ParentUid) && _amountScanned <= 5)
+                if (detective == true)
+                {
+                    // Prints FUC if you've successfully scanned a dead drop poster that has spawned a dead drop at least once
+                    if (HasComp<DeadDropComponent>(args.Args.Target))
+                    {
+                        if (TryComp<DeadDropComponent>(args.Args.Target, out var deadDropComponent) &&
+                            deadDropComponent.DeadDropCalled && !deadDropComponent.PosterScanned)
                         {
-                            // Only works if you scan anything on the Syndicate Supply Drop and have scanned less than 5 times total
-                            var amount = 6;
-                            var msg = Loc.GetString("forensic-reward-drop", ("amount", amount));
+                            var amount = 3;
+                            var msg = Loc.GetString("forensic-reward-poster", ("amount", amount));
 
                             GiveReward(uid, args.Args.Target.Value, amount, msg);
 
-                            _scannedDeadDrops.Add(Transform(args.Args.Target.Value).ParentUid);
-                            _amountScanned++;
+                            // Makes the boolean true so you can't just keep scanning the same poster over and over again
+                            DeadDropSystem.ToggleScanned(deadDropComponent);
                         }
                     }
+                    else if (MetaData(Transform(args.Args.Target.Value).ParentUid).EntityName.Equals("Syndicate Supply Drop") &&
+                            !_scannedDeadDrops.Contains(Transform(args.Args.Target.Value).ParentUid) && _amountScanned <= 5)
+                    {
+                        // Only works if you scan anything on the Syndicate Supply Drop and have scanned less than 5 times total
+                        var amount = 6;
+                        var msg = Loc.GetString("forensic-reward-drop", ("amount", amount));
+
+                        GiveReward(uid, args.Args.Target.Value, amount, msg);
+
+                        _scannedDeadDrops.Add(Transform(args.Args.Target.Value).ParentUid);
+                        _amountScanned++;
+                    }
                 }
+            
 
                 scanner.LastScannedName = MetaData(args.Args.Target.Value).EntityName;
             }
