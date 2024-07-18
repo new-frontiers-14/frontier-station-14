@@ -1,8 +1,9 @@
 - type: entity
   name: ancient terminal
   id: AncientComputer
+  suffix: Salvage
   parent: BaseStructureDynamic
-  description: A very old looking terminal, not much left of it. Contains valuable salvage.
+  description: A very old looking terminal, not much left of it.
   placement:
     mode: SnapgridCenter
   components:
@@ -20,8 +21,9 @@
 - type: entity
   name: ancient machine
   id: AncientImprinter
+  suffix: Salvage
   parent: BaseStructureDynamic
-  description: A old, destroyed machine. You cant tell what it was used for. Contains valuable salvage.
+  description: A old, destroyed machine. You cant tell what it was used for.
   placement:
     mode: SnapgridCenter
   components:
@@ -43,12 +45,13 @@
   parent: AncientImprinter
   components:
   - type: Sprite
-    sprite: _NF\Objects\Decoration\Scrap\scrap-ancientmachine.rsi
+    sprite: _NF/Objects/Decoration/Scrap/scrap-ancientmachine.rsi
     state: ancientlathe
 
 - type: entity
   name: ancient machine
   id: AncientProto
+  parent: AncientImprinter
   components:
   - type: Sprite
     sprite: _NF/Objects/Decoration/Scrap/scrap-ancientmachine.rsi
@@ -57,7 +60,149 @@
 - type: entity
   name: ancient machine
   id: AncientServer
+  parent: AncientImprinter
   components:
   - type: Sprite
     sprite: _NF/Objects/Decoration/Scrap/scrap-ancientmachine.rsi
     state: ancientserver
+
+- type: entity
+  name: perserved terminal
+  id: PerservedTerminal
+  suffix: Salvage
+  parent: BaseStructureDynamic
+  description: A very old computer terminal, in very good shape. Doesnt seem to turn on, though.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: Rotatable
+  - type: Sprite
+    sprite: _NF/Objects/Decoration/Scrap/scrap-perservedmachine.rsi
+    state: perservedcomputer
+  - type: Physics
+    bodyType: Static
+  - type: StaticPrice
+    price: 2000
+
+- type: entity
+  name: perserved circuit imprinter
+  id: PerservedImprinter
+  suffix: Salvage
+  parent: BaseStructureDynamic
+  description: A very early version of the circuit imprinter. It doesnt seem to turn on.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+    noRot: true
+  - type: Rotatable
+  - type: Sprite
+    sprite: _NF/Objects/Decoration/Scrap/scrap-perservedmachine.rsi
+    state: perservedimprinter
+  - type: Physics
+    bodyType: Static
+  - type: StaticPrice
+    price: 2000
+
+- type: entity
+  name: perserved autolathe
+  id: PerservedLathe
+  parent: PerservedImprinter
+  description: A rudimentary autolathe, similar to ones seen today. It doesnt seem to work.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Decoration/Scrap/scrap-perservedmachine.rsi
+    state: perservedlathe
+
+- type: entity
+  name: perserved protolathe
+  id: PerservedProto
+  parent: PerservedImprinter
+  description: An early protolathe. It looks well used, and wont turn on.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Decoration/Scrap/scrap-perservedmachine.rsi
+    state: perservedproto
+
+- type: entity
+  name: perserved server
+  id: PerservedServer
+  parent: PerservedImprinter
+  description: A very old looking server. There is zero chance this is going to turn on again.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Decoration/Scrap/scrap-perservedmachine.rsi
+    state: perservedserver
+
+- type: entity
+  name: perserved computer
+  id: PerservedComputer
+  parent: PerservedImprinter
+  description: A very old looking computer. Indecipherable text is burned into its display.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Decoration/Scrap/scrap-perservedmachine.rsi
+    state: perservedserver-2
+
+- type: entity
+  name: broken air alarm
+  id: BrokenAirAlarm
+  parent: AncientImprinter
+  description: A smashed air alarm. It wont be alarming any air anytime soon.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Decoration/Scrap/scrap-brokenmachine.rsi
+    state: airalarm
+
+- type: entity
+  name: dismantled thruster
+  id: BrokenThruster
+  parent: AncientImprinter
+  description: A thruster, devoid of most of the parts needed for it to function.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Decoration/Scrap/scrap-brokenmachine.rsi
+    state: thruster
+
+- type: entity
+  name: scrapped gyroscope
+  id: BrokenGyroscope
+  parent: AncientImprinter
+  description: A chassis for a gyroscope. Most of its functional parts have been removed.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Decoration/Scrap/scrap-brokenmachine.rsi
+    state: gyroscope
+
+- type: entity
+  name: destroyed RTG
+  id: BrokenRTG
+  parent: AncientImprinter
+  description: A destroyed radioisotope thermoelectric generator. Its plutonium core is missing...
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Decoration/Scrap/scrap-brokenmachine.rsi
+    state: rtg
+
+- type: entity
+  name: burnt SMES
+  id: BrokenSMES
+  parent: AncientImprinter
+  description: This SMES appears to have had a fire within it, fusing its internal components.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Decoration/Scrap/scrap-brokenmachine.rsi
+    state: smes
+
+- type: entity
+  name: scrapped substation
+  id: BrokenSubstation
+  parent: AncientImprinter
+  description: This substation has had some parts robbed from it.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Decoration/Scrap/scrap-brokenmachine.rsi
+    state: substation
