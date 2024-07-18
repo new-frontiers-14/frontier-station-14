@@ -125,39 +125,6 @@
     maxCharge: 500
     startingCharge: 500
 
-- type: entity # Magazine fed turret
-  parent:
-  - WeaponTurretSearchBeam
-  - WeaponTurretBaseNF
-  id: WeaponTurretMagazineBase
-  name: ballistic turret (magazine fed)
-  description: A ballistic machine gun auto-turret with replaceable magazine.
-  abstract: true
-  components:
-  - type: Gun
-    fireRate: 4
-    selectedMode: FullAuto
-    availableModes:
-    - FullAuto
-    soundGunshot: /Audio/Weapons/Guns/Gunshots/gun_sentry.ogg
-  - type: MagazineAmmoProvider
-    boltClosed: null
-    autoEject: false
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        name: Magazine
-        startingItem: MagazinePistolSubMachineGun
-        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
-        priority: 1
-        whitelist:
-          tags:
-          - MagazinePistolSubMachineGun
-  - type: ContainerContainer
-    containers:
-      gun_magazine: !type:ContainerSlot
-
 # TURRETS
 ## Improved base game turret
 - type: entity # deployed turret
@@ -204,7 +171,7 @@
   - type: Appearance
   - type: MagazineVisuals
     magState: mag
-    steps: 1
+    steps: 11
     zeroVisible: true
   - type: ItemSlots
     slots:
