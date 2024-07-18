@@ -13,5 +13,5 @@ reagent-desc-pineapple-blast = When the trees start talking... Smells tropical w
 reagent-name-torpedo-juice = torpedo juice
 reagent-desc-torpedo-juice = The joys of drinking and unristricted submarine warfare combined! Has a strong alcoholic smell.
 
-reagent-name-bees-knees = bees knees
+reagent-name-bees-knees = bee’s knees
 reagent-desc-bees-knees = BEEEEEEEEEEEEEEES!!! Has a stingy smell.
