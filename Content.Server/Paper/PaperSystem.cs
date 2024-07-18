@@ -17,7 +17,7 @@ using Content.Shared.Hands;
 using Robust.Shared.Audio.Systems;
 using static Content.Shared.Paper.SharedPaperComponent;
 using Content.Shared.Verbs;
-using Content.Shared.Ghost;
+using Content.Shared.Ghost; // Frontier: avoid ghost interaction
 
 namespace Content.Server.Paper
 {
@@ -48,7 +48,6 @@ namespace Content.Server.Paper
             SubscribeLocalEvent<PaperComponent, MapInitEvent>(OnMapInit);
 
             SubscribeLocalEvent<PaperComponent, GetVerbsEvent<AlternativeVerb>>(AddSignVerb); // Frontier - Sign verb hook
-            SubscribeLocalEvent<StampComponent, GotEquippedHandEvent>(OnHandPickUp);  // Frontier - On pen pickup update name
         }
 
         private void OnMapInit(EntityUid uid, PaperComponent paperComp, MapInitEvent args)
@@ -152,30 +151,36 @@ namespace Content.Server.Paper
             }
 
             // If a stamp, attempt to stamp paper
-            if (TryComp<StampComponent>(args.Used, out var stampComp) &&
-                TryStamp(uid, GetStampInfo(stampComp), stampComp.StampState, paperComp))
+            // Frontier: assign DisplayStampInfo before stamp
+            if (TryComp<StampComponent>(args.Used, out var stampComp)) // Frontier: do not stamp as a pen
             {
-                // successfully stamped, play popup
-                var stampPaperOtherMessage = Loc.GetString("paper-component-action-stamp-paper-other",
-                    ("user", args.User), ("target", args.Target), ("stamp", args.Used));
+                var stampInfo = GetStampInfo(stampComp);
+                if (_tagSystem.HasTag(args.Used, "Write"))
+                    stampInfo.Type = StampType.Signature;
+                if (TryStamp(uid, stampInfo, stampComp.StampState, paperComp))
+                {
+                    // End of Frontier modifications
+                    // successfully stamped, play popup
+                    var stampPaperOtherMessage = Loc.GetString("paper-component-action-stamp-paper-other",
+                        ("user", args.User), ("target", args.Target), ("stamp", args.Used));
 
-                _popupSystem.PopupEntity(stampPaperOtherMessage, args.User,
-                    Filter.PvsExcept(args.User, entityManager: EntityManager), true);
-                var stampPaperSelfMessage = Loc.GetString("paper-component-action-stamp-paper-self",
-                    ("target", args.Target), ("stamp", args.Used));
-                _popupSystem.PopupEntity(stampPaperSelfMessage, args.User, args.User);
+                    _popupSystem.PopupEntity(stampPaperOtherMessage, args.User,
+                        Filter.PvsExcept(args.User, entityManager: EntityManager), true);
+                    var stampPaperSelfMessage = Loc.GetString("paper-component-action-stamp-paper-self",
+                        ("target", args.Target), ("stamp", args.Used));
+                    _popupSystem.PopupEntity(stampPaperSelfMessage, args.User, args.User);
 
-                _audio.PlayPvs(stampComp.Sound, uid);
+                    _audio.PlayPvs(stampComp.Sound, uid);
 
-                UpdateUserInterface(uid, paperComp);
-            }
+                    UpdateUserInterface(uid, paperComp);
+                }
+            } // Frontier: added an indent level
         }
 
         private static StampDisplayInfo GetStampInfo(StampComponent stamp)
         {
             return new StampDisplayInfo
             {
-                Type = stamp.Type, // Frontier
                 StampedName = stamp.StampedName,
                 StampedColor = stamp.StampedColor
             };
@@ -257,27 +262,23 @@ namespace Content.Server.Paper
             args.Verbs.Add(verb);
         }
 
-        // FRONTIER - Make sure the pens are updates always to the user name
-        private void OnHandPickUp(EntityUid uid, StampComponent stampComp, GotEquippedHandEvent args)
-        {
-            if (!_tagSystem.HasTag(uid, "Write") || HasComp<GhostComponent>(args.User))
-                return;
-
-            stampComp.StampedName = Name(args.User).Trim();
-            stampComp.StampedColor = Color.FromHex("#333333");
-
-            if (TryComp<CrayonComponent>(uid, out var crayon))
-                stampComp.StampedColor = crayon.Color;
-        }
-
         // FRONTIER - TrySign method, attempts to place a signature
         public bool TrySign(EntityUid paper, EntityUid signer, EntityUid pen, PaperComponent paperComp)
         {
-            if (!TryComp<StampComponent>(pen, out var stampComp))
-                return false;
+            // Generate display information.
+            StampDisplayInfo info = new StampDisplayInfo
+            {
+                StampedName = Name(signer),
+                StampedColor = Color.FromHex("#333333"),
+                Type = StampType.Signature
+            };
+
+            // Get Crayon component, and if present set custom color from crayon
+            if (TryComp<CrayonComponent>(pen, out var crayon))
+                info.StampedColor = crayon.Color;
 
             // Try stamp with the info, return false if failed.
-            if (TryStamp(paper, GetStampInfo(stampComp), "paper_stamp-generic", paperComp))
+            if (TryStamp(paper, info, "paper_stamp-generic", paperComp))
             {
                 // Signing successful, popup time.
                 _popupSystem.PopupEntity(
@@ -307,8 +308,8 @@ namespace Content.Server.Paper
 
                 UpdateUserInterface(paper, paperComp);
 
-                // Get Crayon component, and if present set custom color from crayon
-                if (TryComp<CrayonComponent>(pen, out var crayon))
+                // If this is a crayon, decrease # charges when actually used
+                if (crayon is not null)
                     crayon.Charges -= 1;
 
                 return true;
