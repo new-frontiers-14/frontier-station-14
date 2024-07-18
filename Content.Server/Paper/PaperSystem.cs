@@ -174,6 +174,7 @@ namespace Content.Server.Paper
         {
             return new StampDisplayInfo
             {
+                Reapply = stamp.Reapply, // Frontier
                 StampedName = stamp.StampedName,
                 StampedColor = stamp.StampedColor
             };
@@ -214,7 +215,7 @@ namespace Content.Server.Paper
             if (!Resolve(uid, ref paperComp))
                 return false;
 
-            if (!paperComp.StampedBy.Contains(stampInfo))
+            if (stampInfo.Reapply || !paperComp.StampedBy.Contains(stampInfo)) // Frontier: add paperComp.Reapply
             {
                 paperComp.StampedBy.Add(stampInfo);
                 if (paperComp.StampState == null && TryComp<AppearanceComponent>(uid, out var appearance))
@@ -262,6 +263,7 @@ namespace Content.Server.Paper
             // Generate display information.
             StampDisplayInfo info = new StampDisplayInfo
             {
+                Reapply = false,
                 StampedName = Name(signer),
                 StampedColor = Color.FromHex("#333333"),
                 Type = StampType.Signature
