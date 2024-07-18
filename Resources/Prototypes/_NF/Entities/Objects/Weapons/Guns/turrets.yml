@@ -127,17 +127,28 @@
           doAfter: 10
 
 - type: entity
-  parent: WeaponTurretLaserNanoTrasen
+  parent: BaseWeaponTurretEnergyNF
   id: WeaponTurretLaserSyndicateNF
   name: laser turret
   suffix: Frontier, Syndicate
   components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Turrets/laser.rsi
+  - type: Gun
+    fireRate: 2
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser.ogg
+      params:
+        variation: 0.125
+  - type: HitscanBatteryAmmoProvider
+    proto: RedLightLaser
+    fireCost: 10
   - type: NpcFactionMember
     factions:
     - Syndicate
 
 - type: entity
-  parent: WeaponTurretLaserNanoTrasen
+  parent: WeaponTurretLaserSyndicateNF
   id: WeaponTurretLaserHostileNF
   name: laser turret
   suffix: Frontier, Hostile
