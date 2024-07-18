@@ -16,6 +16,7 @@ cards-verb-split = Dividir
 
 ent-CardBase = Carta
 ent-CardDeck = Pilha de cartas
+ent-CardDeckBlack = pilha de cartas
 
 card-sc-2-clubs-black = carta de 2 de Paus (Conjunto Mão do Povo)
 card-sc-3-clubs-black = carta de 3 de Paus (Conjunto Mão do Povo)
