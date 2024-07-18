@@ -149,14 +149,14 @@
           types:
             Poison: -0.05
             Radiation: -0.05
-      - !type:ModifyBloodLevel
-        amount: 0.2
         conditions:
         - !type:ReagentThreshold
           min: 35
         damage:
           types:
             Airloss: 1
+      - !type:ModifyBloodLevel
+        amount: 0.2
   metamorphicSprite:
     sprite: _NF/Objects/Consumable/Drinks/beesknees.rsi
     state: icon_empty
