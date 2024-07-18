@@ -17,7 +17,7 @@ using Content.Shared.Hands;
 using Robust.Shared.Audio.Systems;
 using static Content.Shared.Paper.SharedPaperComponent;
 using Content.Shared.Verbs;
-using Content.Shared.Timing;
+using Content.Shared.Timing; // Frontier
 
 namespace Content.Server.Paper
 {
@@ -246,12 +246,14 @@ namespace Content.Server.Paper
                 return !paperComp.StampedBy.Contains(stampInfo); // Original precondition
         }
 
+        // FRONTIER - stamp reapplication: checks if a given stamp is delayed
         private bool StampDelayed(EntityUid stampUid)
         {
             return TryComp<UseDelayComponent>(stampUid, out var delay) &&
                 _useDelay.IsDelayed((stampUid, delay));
         }
 
+        // FRONTIER - stamp reapplication: resets the delay on a given stamp
         private void DelayStamp(EntityUid stampUid)
         {
             if (TryComp<UseDelayComponent>(stampUid, out var delay))
