@@ -7,6 +7,14 @@
   description: |-
    A Contraband Denying Energy Turret (CDET). A disabler turret with built-in microreactor. Use screwdriver to disassemble.
   components:
+  - type: HTN
+    rootTask:
+      task: StunTurretCompound
+    blackboard:
+      RotateSpeed: !type:Single
+        3.141
+      SoundTargetInLOS: !type:SoundPathSpecifier
+        path: /Audio/Effects/double_beep.ogg
   - type: Gun
     fireRate: 2
     soundGunshot:
