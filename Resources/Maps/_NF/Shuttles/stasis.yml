@@ -95,10 +95,10 @@ entities:
             191: 12,-6
             192: 12,-7
             193: 14,-7
-            221: 20,-7
-            222: 20,-8
-            223: 22,-8
-            224: 22,-7
+            219: 20,-7
+            220: 20,-8
+            221: 22,-8
+            222: 22,-7
         - node:
             color: '#FFFFFFFF'
             id: BotGreyscale
@@ -628,7 +628,7 @@ entities:
           decals:
             198: 14,3
             199: 13,3
-            225: 21,7
+            228: 21,7
         - node:
             angle: 3.141592653589793 rad
             color: '#FFFFFFFF'
@@ -636,8 +636,8 @@ entities:
           decals:
             200: 13,-1
             201: 20,-1
-            215: 17,-3
-            216: 21,-6
+            213: 17,-3
+            214: 21,-6
         - node:
             angle: 4.71238898038469 rad
             color: '#FFFFFFFF'
@@ -648,34 +648,34 @@ entities:
             color: '#FFFFFFFF'
             id: WarnLineGreyscaleE
           decals:
-            214: 19,5
+            212: 19,5
         - node:
             color: '#FFFFFFFF'
             id: WarnLineGreyscaleN
           decals:
-            209: 13,3
-            210: 14,3
-            211: 13,-1
-            212: 20,-1
-            219: 17,-3
-            220: 21,-6
-            226: 21,7
-        - node:
-            color: '#FFFFFFFF'
-            id: WarnLineGreyscaleS
-          decals:
-            204: 14,3
-            205: 13,3
-            207: 13,-1
-            208: 20,-1
+            207: 13,3
+            208: 14,3
+            209: 13,-1
+            210: 20,-1
             217: 17,-3
             218: 21,-6
             227: 21,7
         - node:
             color: '#FFFFFFFF'
+            id: WarnLineGreyscaleS
+          decals:
+            203: 14,3
+            204: 13,3
+            205: 13,-1
+            206: 20,-1
+            215: 17,-3
+            216: 21,-6
+            226: 21,7
+        - node:
+            color: '#FFFFFFFF'
             id: WarnLineGreyscaleW
           decals:
-            213: 19,5
+            211: 19,5
         - node:
             color: '#FFFFFFFF'
             id: WarnLineN
@@ -3166,8 +3166,15 @@ entities:
   - uid: 111
     components:
     - type: Transform
-      rot: 56.54866776461632 rad
-      pos: 23.471832,-3.2374568
+      rot: -1.5707965016404586 rad
+      pos: 23.620869,-3.0022926
+      parent: 1
+- proto: KitchenMicrowave
+  entities:
+  - uid: 307
+    components:
+    - type: Transform
+      pos: 23.5,-3.5
       parent: 1
 - proto: KitchenReagentGrinder
   entities:
@@ -3175,13 +3182,6 @@ entities:
     components:
     - type: Transform
       pos: 22.5,-1.5
-      parent: 1
-- proto: LockerChemistryFilled
-  entities:
-  - uid: 307
-    components:
-    - type: Transform
-      pos: 21.5,-1.5
       parent: 1
 - proto: LockerMedicalFilled
   entities:
@@ -3202,7 +3202,7 @@ entities:
     - type: Transform
       pos: 21.5,1.5
       parent: 1
-- proto: LockerWallMedical
+- proto: LockerWallChemistryFilled
   entities:
   - uid: 380
     components:
@@ -3210,6 +3210,16 @@ entities:
       rot: 3.141592653589793 rad
       pos: 22.5,-5.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        entity_storage: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        paper_label: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
 - proto: LockerWallMedicalFilled
   entities:
   - uid: 560
@@ -3530,21 +3540,13 @@ entities:
   - uid: 516
     components:
     - type: Transform
-      rot: 23.561944901923454 rad
-      pos: 14.571567,-7.5969143
+      pos: 14.480137,-5.46427
       parent: 1
-    - type: Stack
-      count: 15
-- proto: SheetPlasma1
-  entities:
   - uid: 518
     components:
     - type: Transform
-      rot: 23.561944901923454 rad
-      pos: 14.581984,-5.534415
+      pos: 14.527012,-7.386145
       parent: 1
-    - type: Stack
-      count: 15
 - proto: ShuttersNormalOpen
   entities:
   - uid: 128
@@ -4162,6 +4164,12 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 23.5,-2.5
+      parent: 1
+  - uid: 578
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 21.5,-1.5
       parent: 1
 - proto: Thruster
   entities:
