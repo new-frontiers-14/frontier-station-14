@@ -150,7 +150,7 @@
 - type: entity
   name: broken air alarm
   id: BrokenAirAlarm
-  parent: AncientImprinter
+  parent: AncientComputer
   description: A smashed air alarm. It wont be alarming any air anytime soon.
   components:
   - type: Sprite
@@ -160,7 +160,7 @@
 - type: entity
   name: dismantled thruster
   id: BrokenThruster
-  parent: AncientImprinter
+  parent: AncientComputer
   description: A thruster, devoid of most of the parts needed for it to function.
   components:
   - type: Sprite
@@ -206,3 +206,13 @@
   - type: Sprite
     sprite: _NF/Objects/Decoration/Scrap/scrap-brokenmachine.rsi
     state: substation
+
+- type: entity
+  name: broken APC
+  id: BrokenAPC
+  parent: AncientComputer
+  description: This APC has seen better days.
+  components:
+  - type: Sprite
+    sprite: Structures/Power/apc.rsi
+    state: broken
