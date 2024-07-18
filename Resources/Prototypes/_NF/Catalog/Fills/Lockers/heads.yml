@@ -45,3 +45,19 @@
       - id: CommsComputerCircuitboard # Frontier
       - id: MedalCase # Frontier
       - id: Demag # Frontier
+
+- type: entity
+  parent: GunSafe
+  id: GunSafeSr
+  name: SR gun safe
+  suffix: Filled
+  components:
+  - type: AccessReader
+    access: [["HeadOfPersonnel"]]
+  - type: StorageFill
+    contents:
+    - id: WeaponPistolMk58
+      amount: 1
+    - id: MagazinePistol
+      amount: 2
+    - id: WeaponCaseHeavyCdet
