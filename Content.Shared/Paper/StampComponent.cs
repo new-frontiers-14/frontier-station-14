@@ -55,6 +55,9 @@ public sealed partial class StampComponent : Component
     [DataField("stampedColor")]
     public Color StampedColor = Color.FromHex("#BB3232"); // StyleNano.DangerousRedFore
 
+    [DataField("stampType")]
+    public StampType Type { get; set; } = StampType.RubberStamp; // Frontier
+
     /// <summary>
     /// The sound when stamp stamped
     /// </summary>

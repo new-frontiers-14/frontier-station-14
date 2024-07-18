@@ -175,6 +175,7 @@ namespace Content.Server.Paper
         {
             return new StampDisplayInfo
             {
+                Type = stamp.Type, // Frontier
                 StampedName = stamp.StampedName,
                 StampedColor = stamp.StampedColor
             };
@@ -262,16 +263,11 @@ namespace Content.Server.Paper
             if (!_tagSystem.HasTag(uid, "Write") || HasComp<GhostComponent>(args.User))
                 return;
 
-            // Generate display information.
-            StampDisplayInfo info = new StampDisplayInfo
-            {
-                StampedName = Name(args.User).Trim(),
-                StampedColor = Color.FromHex("#333333"),
-                Type = StampType.Signature
-            };
+            stampComp.StampedName = Name(args.User).Trim();
+            stampComp.StampedColor = Color.FromHex("#333333");
 
             if (TryComp<CrayonComponent>(uid, out var crayon))
-                info.StampedColor = crayon.Color;
+                stampComp.StampedColor = crayon.Color;
         }
 
         // FRONTIER - TrySign method, attempts to place a signature
@@ -280,15 +276,10 @@ namespace Content.Server.Paper
             if (!TryComp<StampComponent>(pen, out var stampComp))
                 return false;
 
-            // Get Crayon component, and if present set custom color from crayon
-            if (TryComp<CrayonComponent>(pen, out var crayon))
-                crayon.Charges -= 1;
-
             // Try stamp with the info, return false if failed.
             if (TryStamp(paper, GetStampInfo(stampComp), "paper_stamp-generic", paperComp))
             {
                 // Signing successful, popup time.
-
                 _popupSystem.PopupEntity(
                     Loc.GetString(
                         "paper-component-action-signed-other",
@@ -315,6 +306,10 @@ namespace Content.Server.Paper
                     $"{ToPrettyString(signer):player} has signed {ToPrettyString(paper):paper}.");
 
                 UpdateUserInterface(paper, paperComp);
+
+                // Get Crayon component, and if present set custom color from crayon
+                if (TryComp<CrayonComponent>(pen, out var crayon))
+                    crayon.Charges -= 1;
 
                 return true;
             }
