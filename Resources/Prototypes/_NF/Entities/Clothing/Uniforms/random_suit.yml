@@ -1,7 +1,21 @@
 - type: entity
   parent: ClothingUniformRandom
-  id: ClothingUniformRandomArmlessSkirt
+  id: ClothingSkirtRandomSpawner
+  name: random colorful skirt costume
+  components:
+  - type: RandomSpawner
+    offset: 0
+    prototypes:
+    - ClothingSkirtUniformRandomArmless
+    - ClothingSkirtUniformRandomStandard
+    - ClothingSkirtUniformRandomBra
+    - ClothingSkirtUniformRandomShorts
+
+- type: entity
+  parent: ClothingUniformRandom
+  id: ClothingSkirtUniformRandomArmless
   name: colorful hands-free costume
+  suffix: Skirt
   components:
   - type: HarpyClothing # Frontier - Harpy
   - type: RandomSprite
@@ -28,8 +42,9 @@
 
 - type: entity
   parent: ClothingUniformRandom
-  id: ClothingUniformRandomStandardSkirt
+  id: ClothingSkirtUniformRandomStandard
   name: colorful costume
+  suffix: Skirt
   components:
   - type: HarpyClothing # Frontier - Harpy
   - type: RandomSprite
@@ -66,8 +81,9 @@
 
 - type: entity
   parent: ClothingUniformRandom
-  id: ClothingUniformRandomBraSkirt
+  id: ClothingSkirtUniformRandomBra
   name: colorful bra
+  suffix: Skirt
   components:
   - type: HarpyClothing # Frontier - Harpy
   - type: RandomSprite
@@ -89,8 +105,9 @@
 
 - type: entity
   parent: ClothingUniformRandom
-  id: ClothingUniformRandomShortsSkirt
+  id: ClothingSkirtUniformRandomShorts
   name: colorful pants
+  suffix: Skirt
   components:
   - type: HarpyClothing # Frontier - Harpy
   - type: RandomSprite
