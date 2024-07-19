@@ -14,6 +14,7 @@ using Content.Shared.Cargo.Prototypes;
 using Content.Shared.Database;
 using Content.Shared.NameIdentifier;
 using Content.Shared.Stacks;
+using FastAccessors;
 using JetBrains.Annotations;
 using Robust.Server.Containers;
 using Robust.Shared.Containers;
@@ -75,12 +76,11 @@ public sealed partial class CargoSystem
 
         TryOverwritePirateBountyFromId(service, bountyData);
 
-        if (bountyData.Bounty.SpawnChest)
-            Spawn(component.BountyChestId, Transform(uid).Coordinates);
+        if (bountyPrototype.SpawnChest)
+            Spawn(component.BountyCrateId, Transform(uid).Coordinates);
         else
-        {
             Spawn(component.BountyLabelId, Transform(uid).Coordinates);
-        }
+
         component.NextPrintTime = _timing.CurTime + component.PrintDelay;
         _audio.PlayPvs(component.PrintSound, uid);
     }
@@ -111,7 +111,11 @@ public sealed partial class CargoSystem
             return;
 
         FillPirateBountyDatabase(service);
-        db.NextSkipTime = _timing.CurTime + db.SkipDelay;
+        if (bounty.Value.Accepted)
+            db.NextSkipTime = _timing.CurTime + db.SkipDelay;
+        else
+            db.NextSkipTime = _timing.CurTime + db.CancelDelay;
+
         var untilNextSkip = db.NextSkipTime - _timing.CurTime;
         _uiSystem.SetUiState(uid, PirateConsoleUiKey.Bounty, new PirateBountyConsoleState(db.Bounties, untilNextSkip));
         _audio.PlayPvs(component.SkipSound, uid);
@@ -451,7 +455,7 @@ public sealed partial class CargoSystem
         if (!Resolve(uid, ref component))
             return false;
 
-        for (int i=0; i < component.Bounties.Count; i++)
+        for (int i = 0; i < component.Bounties.Count; i++)
         {
             if (bounty.Id == component.Bounties[i].Id)
             {

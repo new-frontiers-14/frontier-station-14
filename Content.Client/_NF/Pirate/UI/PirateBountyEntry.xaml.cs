@@ -22,13 +22,13 @@ public sealed partial class PirateBountyEntry : BoxContainer
 
     public bool Accepted;
 
-    public PirateBountyEntry(PirateBountyData bounty, bool accepted, TimeSpan untilNextSkip)
+    public PirateBountyEntry(PirateBountyData bounty, TimeSpan untilNextSkip)
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
 
         UntilNextSkip = untilNextSkip;
-        Accepted = accepted;
+        Accepted = bounty.Accepted;
 
         if (!_prototype.TryIndex<PirateBountyPrototype>(bounty.Bounty, out var bountyPrototype))
             return;
@@ -59,7 +59,7 @@ public sealed partial class PirateBountyEntry : BoxContainer
         if (Accepted)
         {
             SkipButton.Label.Text = Loc.GetString("pirate-bounty-console-skip-button-accepted");
-            SkipButton.Disabled = true;
+            SkipButton.Disabled = false;
             return;
         }
 
