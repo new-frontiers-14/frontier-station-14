@@ -113,6 +113,24 @@
     entity: PortableGeneratorSuperPacman
 
 - type: entity
+  parent: PortableGeneratorJrPacmanFlatpack
+  id: GeneratorRTGFlatpack
+  name: RTG generator flatpack
+  description: A flatpack used for constructing a Radioisotope Thermoelectric Generator.
+  components:
+  - type: Flatpack
+    entity: GeneratorRTG
+
+- type: entity
+  parent: PortableGeneratorJrPacmanFlatpack
+  id: GeneratorRTGDamagedFlatpack
+  name: RTG generator flatpack
+  description: A flatpack used for constructing a Radioisotope Thermoelectric Generator. The packaging seems to be somewhat damaged.
+  components:
+  - type: Flatpack
+    entity: GeneratorRTGDamaged
+
+- type: entity
   parent: BaseNFFlatpack
   id: AmeControllerUnanchoredFlatpack
   name: AME controller flatpack
@@ -799,21 +817,19 @@
   - type: Flatpack
     entity: VendingMachineBooze
   - type: StaticPrice
-    price: 250
+    price: 1500
 
 - type: entity
-  parent: UniformPrinterFlatpack
+  parent: VendingMachineBoozeFlatpack
   id: VendingMachineCigsFlatpack
   name: shadycigs delux flatpack
   description: A flatpack used for constructing a shadycigs delux vendomat.
   components:
   - type: Flatpack
     entity: VendingMachineCigs
-  - type: StaticPrice
-    price: 250
 
 - type: entity
-  parent: UniformPrinterFlatpack
+  parent: VendingMachineBoozeFlatpack
   id: VendingMachineSyndieContrabandFlatpack
   name: contravend flatpack
   description: A flatpack used for constructing a contravend vendomat.
@@ -821,26 +837,55 @@
   - type: Flatpack
     entity: VendingMachineSyndieContraband
   - type: StaticPrice
-    price: 250
+    price: 2500
 
 - type: entity
-  parent: UniformPrinterFlatpack
+  parent: VendingMachineBoozeFlatpack
   id: VendingMachineClothingPunkFlatpack
   name: threadschoom vendomat flatpack
   description: A flatpack used for constructing a threadschoom vendomat.
   components:
   - type: Flatpack
     entity: VendingMachineClothingPunk
-  - type: StaticPrice
-    price: 250
 
 - type: entity
-  parent: UniformPrinterFlatpack
+  parent: VendingMachineBoozeFlatpack
   id: VendingMachineBountyVendPunkFlatpack
   name: bonanzamatic vendomat flatpack
   description: A flatpack used for constructing a bonanzamatic vendomat.
   components:
   - type: Flatpack
     entity: VendingMachineBountyVendPunk
+
+- type: entity
+  parent: VendingMachineBoozeFlatpack
+  id: VendingMachineMedicalFlatpack
+  name: nanomed plus flatpack
+  description: A flatpack used for constructing a nanomed plus vendomat.
+  components:
+  - type: Flatpack
+    entity: VendingMachineMedical
   - type: StaticPrice
-    price: 250
+    price: 2000
+
+- type: entity
+  parent: VendingMachineBoozeFlatpack
+  id: VendingMachineWallMedicalFlatpack
+  name: nanomed flatpack
+  description: A flatpack used for constructing a nanomed vendomat.
+  components:
+  - type: Flatpack
+    entity: VendingMachineWallMedical
+  - type: StaticPrice
+    price: 2000
+
+- type: entity
+  parent: VendingMachineBoozeFlatpack
+  id: VendingMachineChemicalsFlatpack
+  name: chemvend flatpack
+  description: A flatpack used for constructing a chemvend.
+  components:
+  - type: Flatpack
+    entity: VendingMachineChemicals
+  - type: StaticPrice
+    price: 2000

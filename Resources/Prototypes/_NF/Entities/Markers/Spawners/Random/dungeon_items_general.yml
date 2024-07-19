@@ -238,6 +238,53 @@
     - SpawnDungeonLootLockersGeneral
     rareChance: 0.1
 
+- type: entity
+  name: random restock crate
+  id: SpawnDungeonLootCrateRestock
+  suffix: Dungeon
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - sprite: Structures/Storage/Crates/generic.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - CrateVendingMachineRestockBoozeFilled
+    - CrateVendingMachineRestockChefvendFilled
+    - CrateVendingMachineRestockClothesFilled
+    - CrateVendingMachineRestockAutoDrobeFilled
+    - CrateVendingMachineRestockCondimentStationFilled
+    - CrateVendingMachineRestockDinnerwareFilled
+    - CrateVendingMachineRestockEngineeringFilled
+    - CrateVendingMachineRestockGamesFilled
+    - CrateVendingMachineRestockMedicalFilled
+    - CrateVendingMachineRestockChemVendFilled
+    - CrateVendingMachineRestockNutriMaxFilled
+    - CrateVendingMachineRestockSalvageEquipmentFilled
+    - CrateVendingMachineRestockSecTechFilled
+    - CrateVendingMachineRestockSeedsFilled
+    - CrateVendingMachineRestockSmokesFilled
+    - CrateVendingMachineRestockVendomatFilled
+    - CrateVendingMachineRestockRoboticsFilled
+    - CrateVendingMachineRestockTankDispenserFilled
+    - CrateVendingMachineRestockHappyHonkFilled
+    - CrateVendingMachineRestockAstroVendFilled
+    - CrateVendingMachineRestockAmmoFilled
+    - CrateVendingMachineRestockFlatpackVendFilled
+    - CrateVendingMachineRestockCuddlyCritterVendFilled
+    - CrateVendingMachineRestockLessLethalVendFilled
+    - CrateVendingMachineRestockNonLethalVendFilled
+    - CrateVendingMachineRestockAutoTuneVendFilled
+    - CrateVendingMachineRestockPottedPlantVendFilled
+    - CrateVendingMachineRestockPrideFilled
+    chance: 1
+    offset: 0.0
+
 # Machines
 - type: entity
   name: random machine techfab
@@ -880,7 +927,7 @@
     offset: 0.0
     rarePrototypes:
     - VendingMachineSyndieContrabandFlatpack
-    rareChance: 0.001
+    rareChance: 0.01
 
 - type: entity
   name: random restock box
