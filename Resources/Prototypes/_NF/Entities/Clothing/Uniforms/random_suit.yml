@@ -1,0 +1,121 @@
+- type: entity
+  parent: ClothingUniformRandom
+  id: ClothingSkirtRandomSpawner
+  name: random colorful skirt costume
+  components:
+  - type: RandomSpawner
+    offset: 0
+    prototypes:
+    - ClothingSkirtUniformRandomArmless
+    - ClothingSkirtUniformRandomStandard
+    - ClothingSkirtUniformRandomBra
+    - ClothingSkirtUniformRandomShorts
+
+- type: entity
+  parent: ClothingUniformRandom
+  id: ClothingSkirtUniformRandomArmless
+  name: colorful hands-free costume
+  suffix: Skirt
+  components:
+  - type: HarpyClothing # Frontier - Harpy
+  - type: RandomSprite
+    available:
+      - torso:
+          base_torso_armless: Sixteen
+        leg:
+#          base_leg_standard: Sixteen # Frontier - Splited out for Harpy
+#          base_leg_short: Sixteen # Frontier - Splited out for Harpy
+          base_leg_skirt: Sixteen
+          base_leg_skirt_long: Sixteen
+        decor:
+          decor_torso_armless1: Sixteen
+          decor_torso_armless2: Sixteen
+          decor_torso_armless3: Sixteen
+          decor_torso_armless4: Sixteen
+          decor_torso_armless5: Sixteen
+          decor_torso_armless6: Sixteen
+          decor_torso_armless7: Sixteen
+          decor_torso_armless8: Sixteen
+          decor_torso_armless9: Sixteen
+          decor_torso_armless10: Sixteen
+          mask_null: ""
+
+- type: entity
+  parent: ClothingUniformRandom
+  id: ClothingSkirtUniformRandomStandard
+  name: colorful costume
+  suffix: Skirt
+  components:
+  - type: HarpyClothing # Frontier - Harpy
+  - type: RandomSprite
+    available:
+      - torso:
+          base_torso_standard: Sixteen
+          base_torso_standard2: Sixteen
+        leg:
+#          base_leg_standard: Sixteen # Frontier - Splited out for Harpy
+#          base_leg_short: Sixteen # Frontier - Splited out for Harpy
+          base_leg_skirt: Sixteen
+          base_leg_skirt_long: Sixteen
+        decor:
+          decor_torso_armless1: Sixteen
+          decor_torso_armless2: Sixteen
+          decor_torso_armless3: Sixteen
+          decor_torso_armless4: Sixteen
+          decor_torso_armless5: Sixteen
+          decor_torso_armless6: Sixteen
+          decor_torso_armless7: Sixteen
+          decor_torso_armless8: Sixteen
+          decor_torso_armless9: Sixteen
+          decor_torso_armless10: Sixteen
+          decor_torso_standard1: Sixteen
+          decor_torso_standard2: Sixteen
+          decor_torso_standard3: Sixteen
+          decor_torso_standard4: Sixteen
+          decor_torso_standard5: Sixteen
+          decor_torso_standard6: Sixteen
+          decor_torso_standard7: Sixteen
+          decor_torso_standard8: Sixteen
+          decor_torso_standard9: Sixteen
+          mask_null: ""
+
+- type: entity
+  parent: ClothingUniformRandom
+  id: ClothingSkirtUniformRandomBra
+  name: colorful bra
+  suffix: Skirt
+  components:
+  - type: HarpyClothing # Frontier - Harpy
+  - type: RandomSprite
+    available:
+      - torso:
+          base_torso_bra: Sixteen
+        leg:
+#          base_leg_standard: Sixteen # Frontier - Splited out for Harpy
+#          base_leg_short: Sixteen # Frontier - Splited out for Harpy
+          base_leg_skirt: Sixteen
+          base_leg_skirt_long: Sixteen
+        decor:
+          decor_torso_bra1: Sixteen
+          decor_torso_bra2: Sixteen
+          decor_torso_bra3: Sixteen
+          decor_torso_bra4: Sixteen
+          decor_torso_bra5: Sixteen
+          mask_null: ""
+
+- type: entity
+  parent: ClothingUniformRandom
+  id: ClothingSkirtUniformRandomShorts
+  name: colorful skirt
+  suffix: Skirt
+  components:
+  - type: HarpyClothing # Frontier - Harpy
+  - type: RandomSprite
+    available:
+      - torso:
+          mask_null: ""
+        leg:
+#          base_leg_standard: Sixteen # Frontier - Splited out for Harpy
+#          base_leg_short: Sixteen # Frontier - Splited out for Harpy
+          base_leg_skirt: Sixteen
+          base_leg_skirt_long: Sixteen
