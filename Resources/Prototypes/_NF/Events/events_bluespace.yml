@@ -205,3 +205,23 @@
     gridPaths:
       - /Maps/_NF/Bluespace/bloodmoon.yml
     rewardFactor: 0.5 # Filler to make the bank go up
+
+- type: entity
+  id: BluespaceMcEvent
+  parent: BaseStationEventShortDelay
+  noSpawn: true
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-bluespace-generic-ftl-start-announcement
+    startAudio:
+      path: /Audio/Misc/notice1.ogg
+    endAnnouncement: station-event-bluespace-generic-ftl-end-announcement
+    earliestStart: 20
+    maximumPlayers: 20
+    weight: 5
+    duration: 900
+    maxDuration: 1800
+    maxOccurrences: 2 # Only twice per shift possible
+  - type: BluespaceErrorRule
+    gridPaths:
+      - /Maps/_NF/Bluespace/mcevent.yml
