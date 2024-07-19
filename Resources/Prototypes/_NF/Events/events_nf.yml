@@ -20,9 +20,11 @@
   - type: BluespaceCargoRule
     spawnerPrototype: RandomCargoSpawner
     requireSafeAtmosphere: true
+    minimum: 2
+    maximum: 5
 
 - type: entity
-  id: BluespaceCargo
+  id: BluespaceMcCargo
   parent: BaseStationEventNFModerateDelay
   noSpawn: true
   components:
@@ -32,7 +34,7 @@
     duration: 35
     maximumPlayers: 20
   - type: BluespaceCargoRule
-    spawnerPrototype: McCargoCargoSpawner
+    spawnerPrototype: CrateFoodMcCargo
     requireSafeAtmosphere: true
 
 - type: entity
@@ -51,3 +53,4 @@
     maxOccurrences: 1 # Only once per shift possible
   - type: BluespaceCargoRule
     spawnerPrototype: CrateSyndicateLightSurplusBundle
+    maximum: 2

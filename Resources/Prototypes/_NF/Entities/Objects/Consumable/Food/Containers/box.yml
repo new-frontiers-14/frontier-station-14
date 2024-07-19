@@ -11,14 +11,142 @@
     heldPrefix: box
   - type: StorageFill
     contents:
-      - id: MysteryFigureBox
-        orGroup: GiftPool
-        prob: 0.80
-      - id: ClothingHeadHatMcCrown
-        orGroup: GiftPool
-        prob: 0.15
-      - id: SpaceBladeMc
-        orGroup: GiftPool
-        prob: 0.05
+    - id: MysteryFigureBox
+      orGroup: GiftPool
+      prob: 0.80
+    - id: ClothingHeadHatMcCrown
+      orGroup: GiftPool
+      prob: 0.15
+    - id: SpaceBladeMc
+      orGroup: GiftPool
+      prob: 0.05
   - type: StaticPrice
     price: 40
+
+- type: entity
+  id: HappyHonkCargoFood
+  parent: HappyHonkCargo
+  components:
+  - type: StorageFill
+    contents:
+    # Burger
+    - id: FoodBurgerPlain
+      orGroup: BurgerPool
+      prob: 0.40
+    - id: FoodBurgerMcrib
+      orGroup: BurgerPool
+      prob: 0.10
+    - id: FoodBurgerBacon
+      orGroup: BurgerPool
+      prob: 0.10
+    - id: FoodBurgerCheese
+      orGroup: BurgerPool
+      prob: 0.10
+    - id: FoodBurgerMcguffin
+      orGroup: BurgerPool
+      prob: 0.10
+    - id: FoodBurgerDuck
+      orGroup: BurgerPool
+      prob: 0.10
+    - id: FoodBurgerChicken
+      orGroup: BurgerPool
+      prob: 0.10
+    # Fries
+    - id: FoodMealFries
+      orGroup: FriesPool
+      prob: 0.80
+    - id: FoodMealFriesCheesy
+      orGroup: FriesPool
+      prob: 0.10
+    - id: FoodMealFriesCarrot
+      orGroup: FriesPool
+      prob: 0.10
+    # Drinks
+    - id: DrinkColaCan
+      orGroup: DrinkPool
+      prob: 0.10
+    - id: DrinkGrapeCan
+      orGroup: DrinkPool
+      prob: 0.10
+    - id: DrinkPwrGameCan
+      orGroup: DrinkPool
+      prob: 0.10
+    - id: DrinkEnergyDrinkCan
+      orGroup: DrinkPool
+      prob: 0.10
+    - id: DrinkSpaceMountainWindCan
+      orGroup: DrinkPool
+      prob: 0.10
+    - id: DrinkStarkistCan
+      orGroup: DrinkPool
+      prob: 0.10
+    - id: DrinkSpaceUpCan
+      orGroup: DrinkPool
+      prob: 0.10
+    - id: DrinkLemonLimeCan
+      orGroup: DrinkPool
+      prob: 0.10
+    - id: DrinkDrGibbCan
+      orGroup: DrinkPool
+      prob: 0.10
+    - id: DrinkSolDryCan
+      orGroup: DrinkPool
+      prob: 0.10
+    # Cake
+    - id: FoodCakeLemonSlice
+      orGroup: CakePool
+      prob: 0.10
+    - id: FoodCakeLimeSlice
+      orGroup: CakePool
+      prob: 0.10
+    - id: FoodCakeChocolateSlice
+      orGroup: CakePool
+      prob: 0.10
+    - id: FoodCakeCheeseSlice
+      orGroup: CakePool
+      prob: 0.10
+    - id: FoodCakeOrangeSlice
+      orGroup: CakePool
+      prob: 0.10
+    - id: FoodCakeLemoonSlice
+      orGroup: CakePool
+      prob: 0.10
+    - id: FoodCakeBlueberrySlice
+      orGroup: CakePool
+      prob: 0.10
+    - id: FoodCakeCarrotSlice
+      orGroup: CakePool
+      prob: 0.10
+    - id: FoodCakeBirthdaySlice
+      orGroup: CakePool
+      prob: 0.10
+    - id: FoodCakeAppleSlice
+      orGroup: CakePool
+      prob: 0.10
+    # Condiment
+    - id: FoodCondimentPacketBbq
+      orGroup: CondimentPool
+      prob: 0.25
+    - id: FoodCondimentPacketMustard
+      orGroup: CondimentPool
+      prob: 0.25
+    - id: FoodCondimentPacketHotsauce
+      orGroup: CondimentPool
+      prob: 0.25
+    - id: FoodCondimentPacketKetchup
+      orGroup: CondimentPool
+      prob: 0.25
+    # Others
+    - id: FoodOnionRings
+    - id: FoodCondimentPacketPepper
+    - id: FoodCondimentPacketSalt
+    # Gifts
+    - id: MysteryFigureBox
+      orGroup: GiftPool
+      prob: 0.80
+    - id: ClothingHeadHatMcCrown
+      orGroup: GiftPool
+      prob: 0.15
+    - id: SpaceBladeMc
+      orGroup: GiftPool
+      prob: 0.05

@@ -19,4 +19,10 @@ public sealed partial class BluespaceCargoRuleComponent : Component
 
     [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
     public string FlashPrototype = "EffectFlashBluespace";
+
+    [DataField]
+    public int Minimum = 1;
+
+    [DataField]
+    public int Maximum = 3;
 }
