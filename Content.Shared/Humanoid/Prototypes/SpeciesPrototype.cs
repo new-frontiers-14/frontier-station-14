@@ -127,5 +127,6 @@ public enum SpeciesNaming : byte
     First,
     FirstLast,
     FirstDashFirst,
+    LastNoFirst, // Nyano - Summary: for Oni naming
     TheFirstofLast,
 }
