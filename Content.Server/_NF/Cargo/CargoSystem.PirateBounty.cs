@@ -83,6 +83,7 @@ public sealed partial class CargoSystem
 
         component.NextPrintTime = _timing.CurTime + component.PrintDelay;
         _audio.PlayPvs(component.PrintSound, uid);
+        UpdateBountyConsoles();
     }
 
     private void OnSkipPirateBountyMessage(EntityUid uid, PirateBountyConsoleComponent component, PirateBountySkipMessage args)
@@ -121,6 +122,7 @@ public sealed partial class CargoSystem
         _audio.PlayPvs(component.SkipSound, uid);
     }
 
+    // TODO: rework this to include loose items off of a pallet
     /// <summary>
     /// Bounties do not sell for any currency. The reward for a bounty is
     /// calculated after it is sold separately from the selling system.
