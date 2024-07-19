@@ -36,12 +36,7 @@
   - type: Clothing
     slots: [innerclothing]
     femaleMask: UniformTop
-  - type: Tag
-    tags:
-    - ClothMade
-    - WhitelistChameleon
-    - Skirt #Frontier, needed for Harpies
-
+  - type: HarpyClothing # Frontier - Harpy
 
 - type: entity
   abstract: true
@@ -52,9 +47,9 @@
   - type: DeviceNetwork
     deviceNetId: Wireless
     transmitFrequencyId: SuitSensor
-#  - type: WirelessNetworkConnection
-#    range: 1200
-#  - type: StationLimitedNetwork
+#  - type: WirelessNetworkConnection # Frontier - Remove range for long space sensors
+#    range: 1200 # Frontier - Remove range for long space sensors
+#  - type: StationLimitedNetwork # Frontier - Remove range for long space sensors
 
 - type: entity
   abstract: true
@@ -64,8 +59,4 @@
   - type: Clothing
     slots: [innerclothing]
     femaleMask: UniformTop
-  - type: Tag
-    tags:
-    - ClothMade
-    - WhitelistChameleon
-    - Skirt #Frontier, needed for Harpies
+  - type: HarpyClothing # Frontier - Harpy
