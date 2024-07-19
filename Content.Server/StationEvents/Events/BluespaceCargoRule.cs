@@ -38,7 +38,7 @@ public sealed class BluespaceCargoRule : StationEventSystem<BluespaceCargoRuleCo
         if (grid is null)
             return;
 
-        var amountToSpawn = _random.Next(component.Minimum, component.Maximum + 1); // +1 required so 5 is 5
+        var amountToSpawn = _random.Next(component.MinimumSpawns, component.MaximumSpawns + 1); // +1 required: [min, max)
         for (var i = 0; i < amountToSpawn; i++)
         {
             SpawnOnRandomGridLocation(grid.Value, component.SpawnerPrototype, component.FlashPrototype, component.RequireSafeAtmosphere);
