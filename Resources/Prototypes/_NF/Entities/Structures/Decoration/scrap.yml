@@ -67,6 +67,15 @@
     state: ancientserver
 
 - type: entity
+  name: ancient machine
+  id: AncientAnalyzer
+  parent: AncientImprinter
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Decoration/Scrap/scrap-ancientmachine.rsi
+    state: ancientanalyzer
+
+- type: entity
   name: perserved terminal
   id: PerservedTerminal
   suffix: Salvage
@@ -148,6 +157,16 @@
     state: perservedserver-2
 
 - type: entity
+  name: perserved destructive analyzer
+  id: PerservedAnalyzer
+  parent: PerservedImprinter
+  description: Relic of a more primative era of science. It doesnt seem to function anymore.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Decoration/Scrap/scrap-perservedmachine.rsi
+    state: perservedanalyzer
+
+- type: entity
   name: broken air alarm
   id: BrokenAirAlarm
   parent: AncientComputer
@@ -216,3 +235,43 @@
   - type: Sprite
     sprite: Structures/Power/apc.rsi
     state: broken
+
+- type: entity
+  name: blown up microwave
+  id: BrokenMicrowavbe
+  parent: AncientImprinter
+  description: My god, what are you doing?!
+  components:
+  - type: Sprite
+    sprite: Structures/Machines/microwave.rsi
+    state: mwb
+
+- type: entity
+  name: scrapped autolathe
+  id: BrokenAutolathe
+  parent: AncientImprinter
+  description: A husk of an autolathe, useful parts removed.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Decoration/Scrap/scrap-brokenmachine.rsi
+    state: autolathe
+
+- type: entity
+  name: scrapped protolathe
+  id: BrokenProtolathe
+  parent: AncientImprinter
+  description: A dismantled protolathe, with the science-y bits removed.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Decoration/Scrap/scrap-brokenmachine.rsi
+    state: protolathe
+
+- type: entity
+  name: scrapped circuit imprinter
+  id: BrokenImprinter
+  parent: AncientImprinter
+  description: A scrapped circuit imprinter. The print head is jammed.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Decoration/Scrap/scrap-brokenmachine.rsi
+    state: imprinter
