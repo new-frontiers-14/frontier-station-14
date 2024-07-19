@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitChameleon
   name: black jumpsuit
@@ -6,7 +6,8 @@
   suffix: Chameleon
   components:
     - type: Tag
-      tags: [] # ignore "WhitelistChameleon" tag
+      tags:
+      - Skirt # Frontier : Needed for Harpies
     - type: Sprite
       sprite: Clothing/Uniforms/Jumpsuit/color.rsi
       layers:
