@@ -21,8 +21,8 @@ public sealed partial class BluespaceCargoRuleComponent : Component
     public string FlashPrototype = "EffectFlashBluespace";
 
     [DataField]
-    public int Minimum = 1;
+    public int MinimumSpawns = 1;
 
     [DataField]
-    public int Maximum = 3;
+    public int MaximumSpawns = 3;
 }
