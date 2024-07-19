@@ -286,7 +286,7 @@
       layers:
       - state: red
       - sprite: Structures\Machines\autolathe.rsi
-      - state: icon
+        state: icon
     - type: RandomSpawner
       rarePrototypes:
         - Autolathe
@@ -305,7 +305,7 @@
       layers:
       - state: red
       - sprite: Structures/Machines/circuit_imprinter.rsi
-      - state: icon
+        state: icon
     - type: RandomSpawner
       rarePrototypes:
         - CircuitImprinter
@@ -324,7 +324,7 @@
       layers:
       - state: red
       - sprite: Structures/Machines/protolathe.rsi
-      - state: icon
+        state: icon
     - type: RandomSpawner
       rarePrototypes:
         - Protolathe
@@ -343,7 +343,7 @@
       layers:
       - state: red
       - sprite: Structures/Shuttles/thruster.rsi
-      - state: base
+        state: base
     - type: RandomSpawner
       rarePrototypes:
         - BaseThruster
@@ -363,7 +363,7 @@
       layers:
       - state: red
       - sprite: Structures/Shuttles/gyroscope.rsi
-      - state: base
+        state: base
     - type: RandomSpawner
       rarePrototypes:
         - Gyroscope
@@ -382,7 +382,7 @@
       layers:
       - state: red
       - sprite: Structures/Power/Substation.rsi
-      - state: substation_static
+        state: substation_static
     - type: RandomSpawner
       rarePrototypes:
         - SubstationBasic
@@ -401,7 +401,7 @@
       layers:
       - state: red
       - sprite: Structures/Power/apc.rsi
-      - state: static
+        state: static
     - type: RandomSpawner
       rarePrototypes:
         - BaseAPC
@@ -421,13 +421,13 @@
       layers:
       - state: red
       - sprite: Structures/Power/smes.rsi
-      - state: smes_static
+        state: static
     - type: RandomSpawner
       rarePrototypes:
         - SMESBasic
       rareChance: 0.3
       prototypes:
-        - BrokenSubstation
+        - BrokenSMES
       chance: 0.8
 
 - type: entity
@@ -440,7 +440,7 @@
       layers:
       - state: red
       - sprite: Structures/Power/Generation/rtg.rsi
-      - state: rtg
+        state: rtg
     - type: RandomSpawner
       rarePrototypes:
         - GeneratorRTG
