@@ -429,3 +429,31 @@
       prototypes:
         - BrokenRTG
       chance: 0.8
+
+- type: entity
+  name: Salvage Ancient Machine Spawner
+  id: SalvageAncientMachineSpawner
+  suffix: Salvage
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+      - state: red
+      - sprite: _NF/Objects/Decoration/Scrap/scrap-perservedmachine.rsi
+        state: perservedlathe
+    - type: RandomSpawner
+      rarePrototypes:
+        - PerservedLathe
+        - PerservedProto
+        - PerservedImprinter
+        - PerservedAnalyzer
+        - PerservedServer
+        - PerservedComputer
+      rareChance: 0.3
+      prototypes:
+        - AncientLathe
+        - AncientProto
+        - AncientImprinter
+        - AncientAnalyzer
+        - AncientServer
+      chance: 0.8
