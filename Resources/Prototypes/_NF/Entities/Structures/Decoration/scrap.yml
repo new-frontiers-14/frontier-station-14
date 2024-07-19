@@ -334,26 +334,6 @@
       chance: 0.8
 
 - type: entity
-  name: Salvage Thruster Spawner
-  id: SalvageThrusterSpawner
-  suffix: Salvage
-  parent: MarkerBase
-  components:
-    - type: Sprite
-      layers:
-      - state: red
-      - sprite: Structures/Shuttles/thruster.rsi
-        state: base
-    - type: RandomSpawner
-      rarePrototypes:
-        - BaseThruster
-      rareChance: 0.3
-      prototypes:
-        - BrokenThruster
-      chance: 0.8
-    - type: Rotatable
-
-- type: entity
   name: Salvage Gyroscope Spawner
   id: SalvageGyroscopeSpawner
   suffix: Salvage
