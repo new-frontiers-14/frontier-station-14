@@ -9,7 +9,7 @@
         max:  40
 
 - type: entity
-  id: BluespaceCargo
+  id: BluespaceCargoCrate
   parent: BaseStationEventNFModerateDelay
   noSpawn: true
   components:
@@ -20,11 +20,11 @@
   - type: BluespaceCargoRule
     spawnerPrototype: RandomCargoSpawner
     requireSafeAtmosphere: true
-    minimumSpawns: 2
-    maximumSpawns: 5
+    minimum: 2
+    maximum: 5
 
 - type: entity
-  id: BluespaceMcCargo
+  id: BluespaceMcCargoCrate
   parent: BaseStationEventNFModerateDelay
   noSpawn: true
   components:
@@ -54,4 +54,4 @@
     maxOccurrences: 1 # Only once per shift possible
   - type: BluespaceCargoRule
     spawnerPrototype: CrateSyndicateLightSurplusBundle
-    maximumSpawns: 2
+    maximum: 2
