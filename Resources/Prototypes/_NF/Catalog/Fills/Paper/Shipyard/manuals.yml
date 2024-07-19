@@ -1,8 +1,9 @@
 - type: entity
   parent: BaseItem
-  id: ShipyardBookwormInfo
-  name: bookworm user manual
-  description: preflight checklist
+  id: ShipyardInfoBase
+  name: shuttle user manual
+  description: The preflight checklist for a shuttle. Check it for power settings!
+  abstract: true
   components:
   - type: Sprite
     sprite: Objects/Misc/books.rsi
@@ -17,204 +18,120 @@
       color: gold
   - type: GuideHelp
     openOnActivation: true
+
+- type: entity
+  parent: ShipyardInfoBase
+  id: ShipyardBookwormInfo
+  name: Bookworm user manual
+  components:
+  - type: GuideHelp
     guides:
     - ShipyardBookworm
 
 - type: entity
-  parent: BaseItem
+  parent: ShipyardInfoBase
   id: ShipyardBrigandInfo
-  name: brigand user manual
-  description: preflight checklist
+  name: Brigand user manual
   components:
-  - type: Sprite
-    sprite: Objects/Misc/books.rsi
-    layers:
-    - state: paper
-    - state: cover_base
-      color: "#6c4718"
-    - state: decor_wingette
-      color: "#b5913c"
-    - state: icon_wrench
-    - state: icon_corner
-      color: gold
   - type: GuideHelp
-    openOnActivation: true
     guides:
     - ShipyardBrigand
 
 - type: entity
-  parent: BaseItem
-  id: ShipyardGasbenderInfo
-  name: gasbender user manual
-  description: preflight checklist
+  parent: ShipyardInfoBase
+  id: ShipyardCamperInfo
+  name: Camper user manual
   components:
-  - type: Sprite
-    sprite: Objects/Misc/books.rsi
-    layers:
-    - state: paper
-    - state: cover_base
-      color: "#6c4718"
-    - state: decor_wingette
-      color: "#b5913c"
-    - state: icon_wrench
-    - state: icon_corner
-      color: gold
   - type: GuideHelp
-    openOnActivation: true
+    guides:
+    - ShipyardCamper
+
+- type: entity
+  parent: ShipyardInfoBase
+  id: ShipyardCeresInfo
+  name: Ceres user manual
+  components:
+  - type: GuideHelp
+    guides:
+    - ShipyardCeres
+
+- type: entity
+  parent: ShipyardInfoBase
+  id: ShipyardGasbenderInfo
+  name: Gasbender user manual
+  components:
+  - type: GuideHelp
     guides:
     - ShipyardGasbender
 
 - type: entity
-  parent: BaseItem
-  id: ShipyardHarbormasterInfo
-  name: harbormaster user manual
-  description: preflight checklist
+  parent: ShipyardInfoBase
+  id: ShipyardHammerInfo
+  name: Hammer user manual
   components:
-  - type: Sprite
-    sprite: Objects/Misc/books.rsi
-    layers:
-    - state: paper
-    - state: cover_base
-      color: "#6c4718"
-    - state: decor_wingette
-      color: "#b5913c"
-    - state: icon_wrench
-    - state: icon_corner
-      color: gold
   - type: GuideHelp
-    openOnActivation: true
+    guides:
+    - ShipyardHammer
+
+- type: entity
+  parent: ShipyardInfoBase
+  id: ShipyardHarbormasterInfo
+  name: Harbormaster user manual
+  components:
+  - type: GuideHelp
     guides:
     - ShipyardHarbormaster
 
 - type: entity
-  parent: BaseItem
+  parent: ShipyardInfoBase
   id: ShipyardKilderkinInfo
-  name: kilderkin user manual
-  description: preflight checklist
+  name: Kilderkin user manual
   components:
-  - type: Sprite
-    sprite: Objects/Misc/books.rsi
-    layers:
-    - state: paper
-    - state: cover_base
-      color: "#6c4718"
-    - state: decor_wingette
-      color: "#b5913c"
-    - state: icon_wrench
-    - state: icon_corner
-      color: gold
   - type: GuideHelp
-    openOnActivation: true
     guides:
     - ShipyardKilderkin
 
 - type: entity
-  parent: BaseItem
+  parent: ShipyardInfoBase
   id: ShipyardLanternInfo
-  name: lantern user manual
-  description: preflight checklist
+  name: Lantern user manual
   components:
-  - type: Sprite
-    sprite: Objects/Misc/books.rsi
-    layers:
-    - state: paper
-    - state: cover_strong
-      color: "#606060"
-    - state: icon_temple
-      color: gold
-    - state: decor_spine
-      color: gold
-    - sprite: Objects/Misc/bureaucracy.rsi
-      state: paper_stamp-chaplain
   - type: GuideHelp
-    openOnActivation: true
     guides:
     - ShipyardLantern
 
 - type: entity
-  parent: BaseItem
+  parent: ShipyardInfoBase
   id: ShipyardLegmanInfo
-  name: legman user manual
-  description: preflight checklist
+  name: Legman user manual
   components:
-  - type: Sprite
-    sprite: Objects/Misc/books.rsi
-    layers:
-    - state: paper
-    - state: cover_base
-      color: "#6c4718"
-    - state: decor_wingette
-      color: "#b5913c"
-    - state: icon_wrench
-    - state: icon_corner
-      color: gold
   - type: GuideHelp
-    openOnActivation: true
     guides:
     - ShipyardLegman
 
 - type: entity
-  parent: BaseItem
+  parent: ShipyardInfoBase
   id: ShipyardLiquidatorInfo
-  name: liquidator user manual
-  description: preflight checklist
+  name: Liquidator user manual
   components:
-  - type: Sprite
-    sprite: Objects/Misc/books.rsi
-    layers:
-    - state: paper
-    - state: cover_base
-      color: "#6c4718"
-    - state: decor_wingette
-      color: "#b5913c"
-    - state: icon_wrench
-    - state: icon_corner
-      color: gold
   - type: GuideHelp
-    openOnActivation: true
     guides:
     - ShipyardLiquidator
 
 - type: entity
-  parent: BaseItem
+  parent: ShipyardInfoBase
   id: ShipyardPioneerInfo
-  name: pioneer user manual
-  description: preflight checklist
+  name: Pioneer user manual
   components:
-  - type: Sprite
-    sprite: Objects/Misc/books.rsi
-    layers:
-    - state: paper
-    - state: cover_base
-      color: "#6c4718"
-    - state: decor_wingette
-      color: "#b5913c"
-    - state: icon_wrench
-    - state: icon_corner
-      color: gold
   - type: GuideHelp
-    openOnActivation: true
     guides:
     - ShipyardPioneer
 
 - type: entity
-  parent: BaseItem
+  parent: ShipyardInfoBase
   id: ShipyardSearchlightInfo
-  name: searchlight user manual
-  description: preflight checklist
+  name: Searchlight user manual
   components:
-  - type: Sprite
-    sprite: Objects/Misc/books.rsi
-    layers:
-    - state: paper
-    - state: cover_base
-      color: "#6c4718"
-    - state: decor_wingette
-      color: "#b5913c"
-    - state: icon_wrench
-    - state: icon_corner
-      color: gold
   - type: GuideHelp
-    openOnActivation: true
     guides:
     - ShipyardSearchlight

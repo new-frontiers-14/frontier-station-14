@@ -113,6 +113,12 @@
   components:
   - type: Pda
     id: ERTMailCarrierIDCard
+    penSlot:
+      startingItem: PenCentcom
+      priority: -1
+      whitelist:
+        tags:
+        - Write
 
 - type: entity
   parent: BasePDA
@@ -328,6 +334,7 @@
   parent: BasePDA
   id: DetectiveNFPDA
   name: detective PDA
+  noSpawn: false
   description: Smells like rain... pouring down the rooftops...
   components:
   - type: Pda
@@ -378,3 +385,47 @@
   - type: Icon
     sprite: _NF/Objects/Devices/pda.rsi
     state: pda-sr
+
+- type: entity
+  parent: PiratePDA
+  id: PirateNFPDA
+  name: pirate PDA
+  components:
+  - type: Pda
+    id: PirateNFIDCard
+    state: pda-pirate
+
+- type: entity
+  parent: PiratePDA
+  id: PirateCaptainNFPDA
+  name: pirate captain PDA
+  components:
+  - type: Pda
+    id: PirateCaptainNFIDCard
+    state: pda-pirate
+
+- type: entity
+  parent: PiratePDA
+  id: PirateFirstMateNFPDA
+  name: pirate first mate PDA
+  components:
+  - type: Pda
+    id: PirateFirstMateNFIDCard
+    state: pda-pirate
+
+- type: entity
+  parent: PassengerPDA
+  id: ContractorPDA
+  name: contractor PDA
+  components:
+  - type: Pda
+    id: ContractorIDCard
+    state: pda
+
+- type: entity
+  parent: ClearPDA
+  id: ClearNFPDA
+  components:
+  - type: Pda
+    id: ContractorIDCard
+    state: pda-clear
