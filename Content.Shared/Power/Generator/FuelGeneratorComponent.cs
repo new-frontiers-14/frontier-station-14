@@ -62,7 +62,7 @@ public sealed partial class FuelGeneratorComponent : Component
     /// <summary>
     /// Frontier - How strong are the radiation, this is based on TargetPower
     /// </summary>
-    [DataField, ViewVariables(VVAccess.Read)]
+    [DataField, ViewVariables(VVAccess.ReadOnly)]
     public float RadiationIntensity = 0.0001f;
 
     /// <summary>
