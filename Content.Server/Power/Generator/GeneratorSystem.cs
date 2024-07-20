@@ -205,7 +205,7 @@ public sealed class GeneratorSystem : SharedGeneratorSystem
         if (on)
         {
             float radiationIntensity = component.RadiationIntensity * component.TargetPower;
-            float radiationSlope = radiationIntensity / 5;
+            float radiationSlope = radiationIntensity / 6;
             float visualRadius = 1f + (component.RadiationIntensity * component.TargetPower / 4);
 
             radiation.Intensity = radiationIntensity;
