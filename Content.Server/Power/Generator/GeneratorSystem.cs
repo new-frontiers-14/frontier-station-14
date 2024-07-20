@@ -204,8 +204,12 @@ public sealed class GeneratorSystem : SharedGeneratorSystem
 
         if (on)
         {
-            radiation.Intensity = component.RadiationIntensity * component.TargetPower;
+            float radiationIntensity = component.RadiationIntensity * component.TargetPower;
+            float radiationSlope = radiationIntensity / 5;
             float visualRadius = 1f + (component.RadiationIntensity * component.TargetPower / 4);
+
+            radiation.Intensity = radiationIntensity;
+            radiation.Slope = Math.Max(0.5f, radiationSlope);
 
             EnsureComp<PointLightComponent>(uid, out var light);
             _pointLight.SetColor(uid, component.RadiationColor, light); // Add glow - on

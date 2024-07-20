@@ -87,6 +87,7 @@
       optimalBurnRate: 0.0111111
       # still decent power curve
       fuelEfficiencyConstant: 0.75
+      radiationColor: "#00bfff"
     - type: SolidFuelGeneratorAdapter
       fuelMaterial: Bananium
     - type: MaterialStorage
@@ -96,7 +97,6 @@
       state: portgen1
     - type: RadiationSource
       enabled: false
-      radiationColor: "#00bfff"
     - type: AmbientSound
       volume: 1
       enabled: false
@@ -104,10 +104,10 @@
         path: /Audio/Items/Geiger/ext.ogg
 
 - type: entity
-  parent: PortableGeneratorSuperPacman
+  parent: PortableGeneratorHyperPacman
   id: PortableGeneratorHyperPacmanShuttle
   suffix: Bananium, 60 kW, Ship
-  noSpawn: true
+#  noSpawn: true
   components:
     - type: FuelGenerator
       on: true
