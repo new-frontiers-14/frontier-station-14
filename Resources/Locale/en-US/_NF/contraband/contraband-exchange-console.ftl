@@ -17,4 +17,4 @@ pirate-contraband-pallet-menu-appraisal-label = Estimated Value:{" "}
 pirate-contraband-pallet-menu-count-label = Number of items:{" "}
 pirate-contraband-pallet-appraise-button = Appraise
 pirate-contraband-pallet-sell-button = Sell
-pirate-contraband-pallet-disclaimer = Place yer plunder on the the scanner. Be sure ye it isn't in a chest, ye goon.
+pirate-contraband-pallet-disclaimer = Place yer plunder on the the scanner. Be sure it isn't in a chest, ye goon.
