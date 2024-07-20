@@ -11,6 +11,7 @@ using Content.Shared.Popups;
 using Content.Shared.Power.Generator;
 using Robust.Server.GameObjects;
 using Content.Shared.Radiation.Components; // Frontier
+using Content.Shared.Audio; // Frontier
 
 namespace Content.Server.Power.Generator;
 
@@ -28,6 +29,7 @@ public sealed class GeneratorSystem : SharedGeneratorSystem
     [Dependency] private readonly PuddleSystem _puddle = default!;
 
     [Dependency] private readonly PointLightSystem _pointLight = default!; // Frontier - Rads glow
+    [Dependency] private readonly SharedAmbientSoundSystem _ambientSoundSystem = default!; // Frontier - Rads sound
 
     private EntityQuery<UpgradePowerSupplierComponent> _upgradeQuery;
 
@@ -202,14 +204,27 @@ public sealed class GeneratorSystem : SharedGeneratorSystem
 
         if (on)
         {
-            radiation.Intensity = component.RadiationSource * component.TargetPower;
+            radiation.Intensity = component.RadiationIntensity * component.TargetPower;
+            float visualRadius = 1f + (component.RadiationIntensity * component.TargetPower / 4);
+
             EnsureComp<PointLightComponent>(uid, out var light);
-            _pointLight.SetColor(uid, Color.FromHex("#5fe276"), light); // Add glow - on
-            _pointLight.SetRadius(uid, 1f + component.RadiationSource * component.TargetPower);
-            _pointLight.SetEnergy(uid, 10f * component.TargetPower * component.RadiationSource);
+            _pointLight.SetColor(uid, component.RadiationColor, light); // Add glow - on
+            _pointLight.SetRadius(uid, Math.Min(visualRadius, 3.5f));
+            _pointLight.SetEnergy(uid, component.RadiationIntensity * component.TargetPower / 2);
+
+            //var sound = _audio.GetSound(sounds);
+            //var param = sounds.Params.WithLoop(true).WithVolume(-4f);
+            //_audio.PlayGlobal(sound, session, param)?.Entity;
+
+            _ambientSoundSystem.SetAmbience(uid, true);
+            _ambientSoundSystem.SetRange(uid, visualRadius);
+
         }
         else
+        {
             RemComp<PointLightComponent>(uid); // Remove glow - off
+            _ambientSoundSystem.SetAmbience(uid, false);
+        }
     }
 
     public void SetFuelGeneratorOn(EntityUid uid, bool on, FuelGeneratorComponent? generator = null)

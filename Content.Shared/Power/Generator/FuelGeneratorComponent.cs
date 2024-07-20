@@ -60,8 +60,14 @@ public sealed partial class FuelGeneratorComponent : Component
     public float FuelEfficiencyConstant = 1.3f;
 
     /// <summary>
-    /// A constant used to calculate fuel efficiency in relation to target power output and optimal power output
+    /// 
     /// </summary>
     [DataField]
-    public float RadiationSource = 0.0001f;
+    public float RadiationIntensity = 0.0001f;
+
+    /// <summary>
+    /// 
+    /// </summary>
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public Color RadiationColor { get; set; } = Color.LimeGreen;
 }
