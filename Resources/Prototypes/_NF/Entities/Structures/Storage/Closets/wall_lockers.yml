@@ -1,11 +1,27 @@
 - type: entity
+  parent: BaseStructureUnanchorable
+  id: LockerWallBase
+  abstract: true
+  components:
+  - type: Physics # Mimicing existing wall lockers
+    bodyType: Static # Unmoveable
+    canCollide: false # Passthrough
+  - type: Fixtures
+    fixtures: {}
+
+- type: entity
   id: LockerWallChemistry
-  parent: LockerWallMedical
+  parent: [LockerWallMedical, LockerWallBase]
   name: chemistry wall locker
   components:
   - type: Sprite
     sprite: _NF/Structures/Storage/wall_locker.rsi
+  - type: Appearance
   - type: EntityStorageVisuals
     stateBaseClosed: med
     stateDoorOpen: med_open
     stateDoorClosed: chem_door
+
+- type: entity
+  id: LockerWallChemistryFilled
+  parent: [LockerWallChemistry, LockerChemistryFilled]
