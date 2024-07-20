@@ -109,11 +109,12 @@ public sealed partial class VesselListControl : BoxContainer
 
     private void UpdateUi(IReadOnlyDictionary<NetEntity, Dictionary<ProtoId<JobPrototype>, int?>> obj)
     {
+        NetEntity? oldSelected = Selected;
         VesselItemList.Clear();
 
         foreach (var (key, name) in _gameTicker.StationNames)
         {
-            if (VesselItemList.Any(x => ((NetEntity) x.Metadata!) == key))
+            if (VesselItemList.Any(x => (NetEntity) x.Metadata! == key))
                 continue;
 
             var jobsAvailable = _gameTicker.JobsAvailable[key].Values.Sum(a => a ?? 0);
@@ -133,6 +134,18 @@ public sealed partial class VesselListControl : BoxContainer
 
         _lastJobState = obj;
         Sort();
+
+        if (oldSelected != null)
+        {
+            foreach (var item in VesselItemList)
+            {
+                if ((NetEntity) item.Metadata! == oldSelected)
+                {
+                    item.Selected = true;
+                    return;
+                }
+            }
+        }
 
         if (Selected == null && VesselItemList.Count > 0)
         {
