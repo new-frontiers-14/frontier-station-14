@@ -199,7 +199,7 @@ public sealed class GeneratorSystem : SharedGeneratorSystem
         {
             radComp.Intensity = component.RadiationSource * component.TargetPower;
             _pointLight.SetRadius(uid, component.RadiationSource * component.TargetPower);
-            _pointLight.SetEnergy(uid, component.TargetPower * 10f * component.TargetPower);
+            _pointLight.SetEnergy(uid, component.TargetPower * 10f * component.RadiationSource);
         }
     }
 
