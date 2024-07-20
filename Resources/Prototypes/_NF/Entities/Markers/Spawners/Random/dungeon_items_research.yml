@@ -99,6 +99,37 @@
     - LockerResearchDirectorFilled
     rareChance: 0.01
 
+- type: entity
+  name: random crate
+  id: SpawnDungeonLootCrateScience
+  parent: MarkerBase
+  suffix: "Dungeon, Science"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Storage/Crates/scicrate_secure.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    # Empty crates
+    - SpawnDungeonLootCrateEmptyEngi
+    # Restocks
+    - SpawnDungeonLootCrateRestockEngi
+    # Mats
+    - SpawnDungeonLootCrateMaterials
+    # Filled crates
+    - SpawnDungeonLootCrateEngi
+    - SpawnDungeonLootCrateMed
+    chance: 0.95
+    offset: 0.0
+    rarePrototypes:
+    - CrateScienceLabBundle
+    rareChance: 0.03
+
 # Other
 - type: entity
   name: random disk
