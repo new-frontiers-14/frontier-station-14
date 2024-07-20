@@ -63,5 +63,5 @@ public sealed partial class FuelGeneratorComponent : Component
     /// A constant used to calculate fuel efficiency in relation to target power output and optimal power output
     /// </summary>
     [DataField]
-    public float RadiationSource = 0.1f;
+    public float RadiationSource = 0.0001f;
 }
