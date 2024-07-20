@@ -258,6 +258,8 @@
     - SpawnDungeonLootCrateEmptyEngi
     # Restocks
     - SpawnDungeonLootCrateRestockEngi
+    # Mats
+    - SpawnDungeonLootCrateMaterials
     # Filled crates
     - CrateEngineeringGear
     - CrateEngineeringElectricalSupplies
@@ -276,7 +278,7 @@
     rareChance: 0.1
 
 - type: entity
-  name: random empty crate
+  name: random crate (empty)
   id: SpawnDungeonLootCrateEmptyEngi
   parent: MarkerBase
   suffix: "Dungeon, Engineering"
@@ -300,7 +302,7 @@
     offset: 0.0
 
 - type: entity
-  name: random restock crate
+  name: random crate (restock)
   id: SpawnDungeonLootCrateRestockEngi
   parent: MarkerBase
   suffix: "Dungeon, Engineering"

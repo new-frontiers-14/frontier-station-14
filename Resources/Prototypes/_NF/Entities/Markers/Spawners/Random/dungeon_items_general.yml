@@ -261,7 +261,43 @@
     - SpawnDungeonLootCrateRestockService
     - SpawnDungeonLootCrateRestockEngi
     - SpawnDungeonLootCrateRestockMed
+    - SpawnDungeonLootCrateRestockArmory
     # Mats
+    - SpawnDungeonLootCrateMaterials
+    # Departmental
+    - SpawnDungeonLootCrateEngi
+    - SpawnDungeonLootCrateService
+    - SpawnDungeonLootCrateMed
+    - SpawnDungeonLootCrateHydro
+    - SpawnDungeonLootCrateScience
+    # Generic stuff
+    - CrateEmergencyInternals
+    - CrateEvaKit
+    - CrateSalvageAssortedGoodies
+    - CrateSalvageAssortedGoodies
+    - CrateEmergencyFire
+    chance: 1.0
+    offset: 0.0
+    rarePrototypes:
+    - SpawnDungeonLootCrateArmoryWeapon
+    rareChance: 0.1
+
+- type: entity
+  name: random crate
+  id: SpawnDungeonLootCrateMaterials
+  suffix: "Dungeon, Materials"
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - sprite: Structures/Storage/Crates/generic.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
     - CrateMaterialGlass
     - CrateMaterialSteel
     - CrateMaterialPlastic
@@ -272,26 +308,11 @@
     - CrateMaterialTextiles
     - CrateMaterials
     - CrateMaterialBrass
-    # Departmental
-    - SpawnDungeonLootCrateEngi
-    - SpawnDungeonLootCrateService
-    - SpawnDungeonLootCrateMed
-    - SpawnDungeonLootCrateHydro
-    - CrateScienceLabBundle
-    # Generic stuff
-    - CrateEmergencyInternals
-    - CrateEvaKit
-    - CrateSalvageAssortedGoodies
-    - CrateSalvageAssortedGoodies
-    - CrateEmergencyFire
-    chance: 1
+    chance: 1.0
     offset: 0.0
-    rarePrototypes:
-    - SpawnDungeonLootCrateArmoryWeapon
-    rareChance: 0.1
-
+    
 - type: entity
-  name: random restock crate
+  name: random crate (restock)
   id: SpawnDungeonLootCrateRestockGeneral
   parent: MarkerBase
   suffix: "Dungeon, General"

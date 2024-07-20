@@ -420,10 +420,28 @@
     - CrateSecurityBiosuit
     rareChance: 0.05
 
-
+- type: entity
+  name: random crate (restock)
+  id: SpawnDungeonLootCrateRestockArmory
+  parent: MarkerBase
+  suffix: "Dungeon, Armory"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Storage/Crates/weapon.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
     - CrateVendingMachineRestockAmmoFilled
     - CrateVendingMachineRestockLessLethalVendFilled
     - CrateVendingMachineRestockNonLethalVendFilled
+    chance: 1.0
+    offset: 0.0
+
 # Machines
 - type: entity
   name: random vendomat
