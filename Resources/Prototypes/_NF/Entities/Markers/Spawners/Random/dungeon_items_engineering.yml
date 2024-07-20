@@ -238,6 +238,92 @@
     - SuitStorageCE
     rareChance: 0.05
 
+- type: entity
+  name: random crate
+  id: SpawnDungeonLootCrateEngi
+  parent: MarkerBase
+  suffix: "Dungeon, Engineering"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Storage/Crates/engineering.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    # Empty crates
+    - SpawnDungeonLootCrateEmptyEngi
+    # Restocks
+    - SpawnDungeonLootCrateRestockEngi
+    # Filled crates
+    - CrateEngineeringGear
+    - CrateEngineeringElectricalSupplies
+    - CrateEngineeringCableLV
+    - CrateEngineeringCableMV
+    - CrateEngineeringCableHV
+    - CrateEngineeringCableBulk
+    - CrateEngineeringToolbox
+    - CrateEngineeringKitShipyardRcd
+    - CrateEngineeringShuttle
+    chance: 0.95
+    offset: 0.0
+    rarePrototypes:
+    - CrateEngineeringKitRtg
+    - CrateEngineeringKitFabrication
+    rareChance: 0.1
+
+- type: entity
+  name: random empty crate
+  id: SpawnDungeonLootCrateEmptyEngi
+  parent: MarkerBase
+  suffix: "Dungeon, Engineering"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Storage/Crates/engineering.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - CratePlasma
+    - CrateEngineering
+    - CrateElectrical
+    - CrateRadiation
+    - CrateUranium
+    chance: 1.0
+    offset: 0.0
+
+- type: entity
+  name: random restock crate
+  id: SpawnDungeonLootCrateRestockEngi
+  parent: MarkerBase
+  suffix: "Dungeon, Engineering"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Storage/Crates/engineering.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - CrateVendingMachineRestockEngineeringFilled
+    - CrateVendingMachineRestockVendomatFilled
+    - CrateVendingMachineRestockRoboticsFilled
+    - CrateVendingMachineRestockAstroVendFilled
+    - CrateVendingMachineRestockTankDispenserFilled
+    - CrateVendingMachineRestockFlatpackVendFilled
+    chance: 1.0
+    offset: 0.0
+
 # Machines
 - type: entity
   name: random machine techfab

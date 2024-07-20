@@ -1,7 +1,7 @@
 # Engineering
 - type: entity
-  id: CrateEngineeringKitRtg
   parent: CrateEngineering
+  id: CrateEngineeringKitRtg
   name: RTG toolkit
   description: Contains a full kit to build RTG power plant.
   components:
@@ -11,8 +11,8 @@
       amount: 4
 
 - type: entity
-  id: CrateEngineeringKitFabrication
   parent: CrateEngineering
+  id: CrateEngineeringKitFabrication
   name: fabrication kit
   description: Contains a full kit to build engineering fabrication facility.
   components:
@@ -31,4 +31,98 @@
     - id: MachineFlatpackerFlatpack
       amount: 1
 
+- type: entity
+  parent: CrateEngineering
+  id: CrateEngineeringKitShipyardRcd
+  name: shipyard RCD toolkit
+  description: Contains a full shipyard RCD kit.
+  components:
+  - type: StorageFill
+    contents:
+    - id: ShipyardRCD
+    - id: ShipyardRCDAmmo
+      amount: 4
+
 # Science
+
+# Service
+- type: entity
+  parent: CratePlastic
+  id: CrateServiceKitKitchen
+  name: kitchen toolkit
+  description: Contains a full kit to build a kitchen.
+  components:
+  - type: StorageFill
+    contents:
+    - id: KitchenMicrowaveFlatpack
+    - id: KitchenElectricGrillFlatpack
+    - id: KitchenReagentGrinderFlatpack
+    - id: VendingMachineBoozeFlatpack
+    - id: VendingMachineChefvendFlatpack
+    - id: VendingMachineDinnerwareFlatpack
+    - id: ServiceTechFabFlatpack
+    - id: VendingMachineRestockChefvend
+    - id: VendingMachineRestockDinnerware
+
+- type: entity
+  parent: CrateHydroponics
+  id: CrateServiceKitHydroponics
+  name: hydroponics toolkit
+  description: Contains a full kit to build a hydroponical instalation.
+  components:
+  - type: StorageFill
+    contents:
+    - id: HydroponicsTrayEmptyFlatpack
+      amount: 3
+    - id: VendingMachineNutriFlatpack
+    - id: VendingMachineSeedsUnlockedFlatpack
+    - id: ServiceTechFabFlatpack
+
+# Medical
+- type: entity
+  parent: CrateMedicalSecure
+  id: CrateServiceKitMedbay
+  name: medbay toolkit
+  description: Contains a full kit to build a functional basic medbay.
+  components:
+  - type: StorageFill
+    contents:
+    - id: VendingMachineMedicalFlatpack
+    - id: VendingMachineRestockMedical
+    - id: MedicalTechFabFlatpack
+    - id: StasisBedFlatpack
+      amount: 2
+
+- type: entity
+  parent: CrateMedicalSecure
+  id: CrateServiceKitMedbayCryo
+  name: cryo medbay toolkit
+  description: Contains a full kit to build a functional cryo medbay.
+  components:
+  - type: StorageFill
+    contents:
+    - id: ChemMasterFlatpack
+    - id: VendingMachineChemicalsFlatpack
+    - id: VendingMachineRestockChemVend
+    - id: MedicalTechFabFlatpack
+    - id: CryoPodFlatpack
+      amount: 1
+    - id: GasThermoMachineFreezerFlatpack
+    - id: SheetSteel
+
+- type: entity
+  parent: CrateChemistrySecure
+  id: CrateServiceKitChemLab
+  name: chemistry lab toolkit
+  description: Contains a full kit to build a chemistry lab.
+  components:
+  - type: StorageFill
+    contents:
+    - id: ChemMasterFlatpack
+    - id: MachineElectrolysisUnitFlatpack
+    - id: BaseGasCondenserFlatpack
+    - id: MachineCentrifugeFlatpack
+    - id: ChemistryHotplateFlatpack
+    - id: KitchenReagentGrinderFlatpack
+    - id: VendingMachineChemicalsFlatpack
+    - id: VendingMachineRestockChemVend

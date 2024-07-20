@@ -34,6 +34,17 @@
 
 - type: entity
   parent: BaseNFFlatpack
+  id: GasThermoMachineFreezerFlatpack
+  name: freezer flatpack
+  description: A flatpack used for constructing a freezer.
+  components:
+  - type: Flatpack
+    entity: GasThermoMachineFreezer
+  - type: StaticPrice
+    price: 250
+
+- type: entity
+  parent: BaseNFFlatpack
   id: MachineFlatpackerFlatpack
   name: flatpacker 1001 flatpack
   description: A flatpack used for constructing a flatpacker 1001.
@@ -378,6 +389,15 @@
   components:
   - type: Flatpack
     entity: StasisBed
+
+- type: entity
+  parent: MedicalTechFabFlatpack
+  id: CryoPodFlatpack
+  name: cryo pod flatpack
+  description: A flatpack used for constructing a cryo pod.
+  components:
+  - type: Flatpack
+    entity: CryoPod
 
 - type: entity
   parent: MedicalTechFabFlatpack
@@ -827,6 +847,53 @@
   components:
   - type: Flatpack
     entity: VendingMachineCigs
+
+- type: entity
+  parent: VendingMachineBoozeFlatpack
+  id: VendingMachineChefvendFlatpack
+  name: chefvend flatpack
+  description: A flatpack used for constructing a chefvend.
+  components:
+  - type: Flatpack
+    entity: VendingMachineChefvend
+
+- type: entity
+  parent: VendingMachineBoozeFlatpack
+  id: VendingMachineDinnerwareFlatpack
+  name: plasteel chef's dinnerware vendor flatpack
+  description: A flatpack used for constructing a plasteel chef's dinnerware vendor.
+  components:
+  - type: Flatpack
+    entity: VendingMachineDinnerware
+
+- type: entity
+  parent: VendingMachineBoozeFlatpack
+  id: VendingMachineNutriFlatpack
+  name: nutrimax flatpack
+  description: A flatpack used for constructing a nutrimax vendomat.
+  components:
+  - type: Flatpack
+    entity: VendingMachineNutri
+
+- type: entity
+  parent: VendingMachineBoozeFlatpack
+  id: VendingMachineSeedsUnlockedFlatpack
+  name: megaseed servitor flatpack
+  description: A flatpack used for constructing a megaseed servitor vendomat.
+  components:
+  - type: Flatpack
+    entity: VendingMachineSeedsUnlocked
+
+- type: entity
+  parent: VendingMachineBoozeFlatpack
+  id: LockerBotanistFilledFlatpack
+  name: botanist's locker flatpack
+  description: A flatpack used for constructing a botanist's locker.
+  components:
+  - type: Flatpack
+    entity: LockerBotanistFilled
+  - type: StaticPrice
+    price: 500
 
 - type: entity
   parent: VendingMachineBoozeFlatpack
