@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Server.Audio;
 using Content.Server.Chemistry.Containers.EntitySystems;
 using Content.Server.Fluids.EntitySystems;
@@ -10,6 +10,7 @@ using Content.Shared.FixedPoint;
 using Content.Shared.Popups;
 using Content.Shared.Power.Generator;
 using Robust.Server.GameObjects;
+using Content.Shared.Radiation.Components; // Frontier
 
 namespace Content.Server.Power.Generator;
 
@@ -186,6 +187,11 @@ public sealed class GeneratorSystem : SharedGeneratorSystem
             args.TargetPower,
             component.MinTargetPower / 1000,
             component.MaxTargetPower / 1000) * 1000;
+
+        if (TryComp<RadiationSourceComponent>(uid, out var radiation)) // Frontier
+        {
+            radiation.Intensity = args.TargetPower / 10;
+        }
     }
 
     public void SetFuelGeneratorOn(EntityUid uid, bool on, FuelGeneratorComponent? generator = null)
@@ -197,6 +203,11 @@ public sealed class GeneratorSystem : SharedGeneratorSystem
         {
             // Generator must be anchored to start.
             return;
+        }
+
+        if (TryComp<RadiationSourceComponent>(uid, out var radiation)) // Frontier
+        {
+            radiation.Enabled = on;
         }
 
         generator.On = on;
