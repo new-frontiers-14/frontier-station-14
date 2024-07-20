@@ -189,9 +189,7 @@ public sealed class GeneratorSystem : SharedGeneratorSystem
             component.MaxTargetPower / 1000) * 1000;
 
         if (TryComp<RadiationSourceComponent>(uid, out var radiation)) // Frontier
-        {
-            radiation.Intensity = args.TargetPower / 10;
-        }
+            radiation.Intensity = args.TargetPower / 10; // Frontier
     }
 
     public void SetFuelGeneratorOn(EntityUid uid, bool on, FuelGeneratorComponent? generator = null)
@@ -206,9 +204,7 @@ public sealed class GeneratorSystem : SharedGeneratorSystem
         }
 
         if (TryComp<RadiationSourceComponent>(uid, out var radiation)) // Frontier
-        {
-            radiation.Enabled = on;
-        }
+            radiation.Enabled = on; // Frontier
 
         generator.On = on;
         UpdateState(uid, generator);
