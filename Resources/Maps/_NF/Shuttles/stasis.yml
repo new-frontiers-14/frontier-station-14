@@ -1098,6 +1098,13 @@ entities:
     - type: Transform
       pos: 13.5,10.5
       parent: 1
+- proto: BaseChemistryEmptyVial
+  entities:
+  - uid: 594
+    components:
+    - type: Transform
+      pos: 23.710564,-3.4716706
+      parent: 1
 - proto: Bed
   entities:
   - uid: 205
@@ -1672,13 +1679,12 @@ entities:
     - type: Transform
       pos: 14.5,-5.5
       parent: 1
-- proto: Carpet
+- proto: CarpetBlack
   entities:
-  - uid: 212
+  - uid: 595
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 20.5,4.5
+      pos: 20.5,8.5
       parent: 1
 - proto: CarpetBlue
   entities:
@@ -1706,13 +1712,19 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 17.5,-3.5
       parent: 1
-- proto: CarpetSBlue
+- proto: CarpetCyan
   entities:
-  - uid: 211
+  - uid: 111
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
       pos: 22.5,4.5
+      parent: 1
+- proto: CarpetPurple
+  entities:
+  - uid: 12
+    components:
+    - type: Transform
+      pos: 20.5,4.5
       parent: 1
 - proto: Catwalk
   entities:
@@ -1920,12 +1932,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 12.5,-4.5
       parent: 1
-  - uid: 385
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 20.5,8.5
-      parent: 1
 - proto: CurtainsBlueOpen
   entities:
   - uid: 86
@@ -1941,6 +1947,13 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 20.5,4.5
+      parent: 1
+- proto: CurtainsPurpleOpen
+  entities:
+  - uid: 211
+    components:
+    - type: Transform
+      pos: 20.5,8.5
       parent: 1
 - proto: Defibrillator
   entities:
@@ -3251,18 +3264,17 @@ entities:
       powerLoad: 1
 - proto: HandLabeler
   entities:
-  - uid: 111
+  - uid: 212
     components:
     - type: Transform
-      rot: -1.5707965016404586 rad
-      pos: 23.620869,-3.0022926
+      pos: 23.491814,-2.8622956
       parent: 1
 - proto: KitchenMicrowave
   entities:
-  - uid: 307
+  - uid: 593
     components:
     - type: Transform
-      pos: 23.5,-3.5
+      pos: 21.5,-1.5
       parent: 1
 - proto: KitchenReagentGrinder
   entities:
@@ -4109,13 +4121,13 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 11.5,8.5
       parent: 1
-- proto: Sink
+- proto: SinkStemlessWater
   entities:
-  - uid: 12
+  - uid: 307
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 22.5,-4.5
+      rot: 1.5707963267948966 rad
+      pos: 20.5,-2.5
       parent: 1
 - proto: SMESBasic
   entities:
@@ -4254,6 +4266,11 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 23.5,-2.5
+      parent: 1
+  - uid: 385
+    components:
+    - type: Transform
+      pos: 22.5,-4.5
       parent: 1
   - uid: 578
     components:
