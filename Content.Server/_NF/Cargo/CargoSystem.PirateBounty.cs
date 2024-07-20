@@ -132,7 +132,7 @@ public sealed partial class CargoSystem
 
     private void SetupPirateBountyChest(EntityUid uid, PirateBountyData bounty, PirateBountyPrototype prototype)
     {
-        _metaSystem.SetEntityName(chest, Loc.GetString("pirate-bounty-chest-name", ("id", bountyObj.Id)));
+        _metaSystem.SetEntityName(uid, Loc.GetString("pirate-bounty-chest-name", ("id", bounty.Id)));
 
         FormattedMessage message = new FormattedMessage();
         message.AddMarkup(Loc.GetString("pirate-bounty-chest-description-start"));
@@ -151,7 +151,7 @@ public sealed partial class CargoSystem
 
     private void SetupPirateBountyManifest(EntityUid uid, PirateBountyData bounty, PirateBountyPrototype prototype, PaperComponent? paper = null)
     {
-        _metaSystem.SetEntityName(label, Loc.GetString("pirate-bounty-manifest-name", ("id", bountyObj.Id)));
+        _metaSystem.SetEntityName(uid, Loc.GetString("pirate-bounty-manifest-name", ("id", bounty.Id)));
 
         if (!Resolve(uid, ref paper))
             return;
