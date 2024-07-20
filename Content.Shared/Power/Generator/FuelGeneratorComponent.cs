@@ -58,4 +58,10 @@ public sealed partial class FuelGeneratorComponent : Component
     /// </summary>
     [DataField("fuelEfficiencyConstant")]
     public float FuelEfficiencyConstant = 1.3f;
+
+    /// <summary>
+    /// A constant used to calculate fuel efficiency in relation to target power output and optimal power output
+    /// </summary>
+    [DataField]
+    public float RadiationSource = 0.1f;
 }

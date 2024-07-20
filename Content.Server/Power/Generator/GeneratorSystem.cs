@@ -27,6 +27,8 @@ public sealed class GeneratorSystem : SharedGeneratorSystem
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly PuddleSystem _puddle = default!;
 
+    [Dependency] private readonly PointLightSystem _pointLight = default!; // Frontier - Rads glow
+
     private EntityQuery<UpgradePowerSupplierComponent> _upgradeQuery;
 
     public override void Initialize()
@@ -188,8 +190,17 @@ public sealed class GeneratorSystem : SharedGeneratorSystem
             component.MinTargetPower / 1000,
             component.MaxTargetPower / 1000) * 1000;
 
-        if (TryComp<RadiationSourceComponent>(uid, out var radiation)) // Frontier
-            radiation.Intensity = args.TargetPower / 10; // Frontier
+        TryUpdateGeneratorRadiation(uid, component); // Frontier
+    }
+
+    public void TryUpdateGeneratorRadiation(EntityUid uid, FuelGeneratorComponent component) // Frontier
+    {
+        if (TryComp<RadiationSourceComponent>(uid, out var radComp))
+        {
+            radComp.Intensity = component.RadiationSource * component.TargetPower;
+            _pointLight.SetRadius(uid, component.RadiationSource * component.TargetPower);
+            _pointLight.SetEnergy(uid, component.TargetPower);
+        }
     }
 
     public void SetFuelGeneratorOn(EntityUid uid, bool on, FuelGeneratorComponent? generator = null)
@@ -204,7 +215,16 @@ public sealed class GeneratorSystem : SharedGeneratorSystem
         }
 
         if (TryComp<RadiationSourceComponent>(uid, out var radiation)) // Frontier
-            radiation.Enabled = on; // Frontier
+        {
+            radiation.Enabled = on;
+            if (on)
+            {
+                EnsureComp<PointLightComponent>(uid, out var light);
+                _pointLight.SetColor(uid, Color.FromHex("#5fe276"), light); // Add glow - on
+            }
+            else
+                RemComp<PointLightComponent>(uid); // Remove glow - off
+        }
 
         generator.On = on;
         UpdateState(uid, generator);

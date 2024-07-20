@@ -1,4 +1,4 @@
-﻿using Content.Server.DoAfter;
+using Content.Server.DoAfter;
 using Content.Server.Popups;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
@@ -51,7 +51,12 @@ public sealed class PortableGeneratorSystem : SharedPortableGeneratorSystem
     private void GeneratorMapInit(EntityUid uid, PortableGeneratorComponent component, MapInitEvent args) // Frontier - Init on map generator
     {
         if (component.StartOnMapInit)
+        {
+            if (TryComp<FuelGeneratorComponent>(uid, out var generator))
+                _generator.TryUpdateGeneratorRadiation(uid, generator);
+
             _generator.SetFuelGeneratorOn(uid, true);
+        }
     }
 
     private void GeneratorSwitchOutputMessage(EntityUid uid, PortableGeneratorComponent component, PortableGeneratorSwitchOutputMessage args)
