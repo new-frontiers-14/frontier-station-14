@@ -60,13 +60,13 @@ public sealed partial class FuelGeneratorComponent : Component
     public float FuelEfficiencyConstant = 1.3f;
 
     /// <summary>
-    /// 
+    /// Frontier - How strong are the radiation, this is based on TargetPower
     /// </summary>
-    [DataField]
+    [DataField, ViewVariables(VVAccess.Read)]
     public float RadiationIntensity = 0.0001f;
 
     /// <summary>
-    /// 
+    /// Frontier - What radiation color to use
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public Color RadiationColor { get; set; } = Color.LimeGreen;
