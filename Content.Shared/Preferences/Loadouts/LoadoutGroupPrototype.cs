@@ -41,6 +41,7 @@ public sealed partial class LoadoutGroupPrototype : IPrototype
     // Frontier: handle unaffordable loadouts
     /// <summary>
     /// Fallback loadouts to be selected in case a character cannot afford them.
+    /// Also serves as a default loadout options (up to the maxLimit for a set) for a new character.
     /// </summary>
     [DataField]
     public List<ProtoId<LoadoutPrototype>> Fallbacks = new();

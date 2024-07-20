@@ -190,11 +190,39 @@ public sealed partial class RoleLoadout : IEquatable<RoleLoadout>
             var loadouts = new List<Loadout>();
             SelectedLoadouts[group] = loadouts;
 
+            // Frontier: apply fallbacks as default items for a role
+            if (groupProto.Fallbacks.Count > 0)
+            {
+                // Apply default loadouts from fallbacks up to the maximum limit
+                // Must respect maximum limit to be legal
+                for (var j = 0; j < Math.Min(groupProto.MaxLimit, groupProto.Loadouts.Count); j++)
+                {
+                    if (!protoManager.TryIndex(groupProto.Fallbacks[j], out var loadoutProto))
+                        continue;
+
+                    var defaultLoadout = new Loadout()
+                    {
+                        Prototype = loadoutProto.ID,
+                    };
+
+                    // Not valid so don't default to it anyway.
+                    if (!IsValid(profile, session, defaultLoadout.Prototype, collection, out _))
+                        continue;
+
+                    loadouts.Add(defaultLoadout);
+                    Apply(loadoutProto);
+                }
+            }
+            // End Frontier
+
             if (groupProto.MinLimit > 0)
             {
                 // Apply any loadouts we can.
                 for (var j = 0; j < Math.Min(groupProto.MinLimit, groupProto.Loadouts.Count); j++)
                 {
+                    if (loadouts.Count >= groupProto.MinLimit) // Frontier
+                        break; // Frontier
+
                     if (!protoManager.TryIndex(groupProto.Loadouts[j], out var loadoutProto))
                         continue;
 
