@@ -44,7 +44,7 @@ public sealed partial class PirateBountyPrototype : IPrototype
     /// A prefix appended to the beginning of a bounty's ID.
     /// </summary>
     [DataField]
-    public string IdPrefix = "YAR-";
+    public string IdPrefix = "ARR-";
 }
 
 [DataDefinition, Serializable, NetSerializable]

@@ -1,6 +1,8 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Server._NF.Pirate.Components;
+using Content.Server.Botany.Components;
+using Content.Server.Chat.V2;
 using Content.Server.Labels;
 using Content.Server.NameIdentifier;
 using Content.Server.Paper;
@@ -77,9 +79,15 @@ public sealed partial class CargoSystem
         TryOverwritePirateBountyFromId(service, bountyData);
 
         if (bountyPrototype.SpawnChest)
-            Spawn(component.BountyCrateId, Transform(uid).Coordinates);
+        {
+            var chest = Spawn(component.BountyCrateId, Transform(uid).Coordinates);
+            SetupPirateBountyChest(chest, bountyData, bountyPrototype);
+        }
         else
-            Spawn(component.BountyLabelId, Transform(uid).Coordinates);
+        {
+            var label = Spawn(component.BountyLabelId, Transform(uid).Coordinates);
+            SetupPirateBountyManifest(label, bountyData, bountyPrototype);
+        }
 
         component.NextPrintTime = _timing.CurTime + component.PrintDelay;
         _audio.PlayPvs(component.PrintSound, uid);
@@ -120,6 +128,48 @@ public sealed partial class CargoSystem
         var untilNextSkip = db.NextSkipTime - _timing.CurTime;
         _uiSystem.SetUiState(uid, PirateConsoleUiKey.Bounty, new PirateBountyConsoleState(db.Bounties, untilNextSkip));
         _audio.PlayPvs(component.SkipSound, uid);
+    }
+
+    private void SetupPirateBountyChest(EntityUid uid, PirateBountyData bounty, PirateBountyPrototype prototype)
+    {
+        _metaSystem.SetEntityName(chest, Loc.GetString("pirate-bounty-chest-name", ("id", bountyObj.Id)));
+
+        FormattedMessage message = new FormattedMessage();
+        message.AddMarkup(Loc.GetString("pirate-bounty-chest-description-start"));
+        foreach (var entry in prototype.Entries)
+        {
+            message.PushNewline();
+            message.AddMarkup($"- {Loc.GetString("pirate-bounty-console-manifest-entry",
+                ("amount", entry.Amount),
+                ("item", Loc.GetString(entry.Name)))}");
+        }
+        message.PushNewline();
+        message.AddMarkup(Loc.GetString("pirate-bounty-console-manifest-reward", ("reward", prototype.Reward)));
+
+        _metaSystem.SetEntityDescription(uid, message.ToMarkup());
+    }
+
+    private void SetupPirateBountyManifest(EntityUid uid, PirateBountyData bounty, PirateBountyPrototype prototype, PaperComponent? paper = null)
+    {
+        _metaSystem.SetEntityName(label, Loc.GetString("pirate-bounty-manifest-name", ("id", bountyObj.Id)));
+
+        if (!Resolve(uid, ref paper))
+            return;
+
+        var msg = new FormattedMessage();
+        msg.AddText(Loc.GetString("pirate-bounty-manifest-header", ("id", bounty.Id)));
+        msg.PushNewline();
+        msg.AddText(Loc.GetString("pirate-bounty-manifest-list-start"));
+        msg.PushNewline();
+        foreach (var entry in prototype.Entries)
+        {
+            msg.AddMarkup($"- {Loc.GetString("pirate-bounty-console-manifest-entry",
+                ("amount", entry.Amount),
+                ("item", Loc.GetString(entry.Name)))}");
+            msg.PushNewline();
+        }
+        msg.AddMarkup(Loc.GetString("pirate-bounty-console-manifest-reward", ("reward", prototype.Reward)));
+        _paperSystem.SetContent(uid, msg.ToMarkup(), paper);
     }
 
     // TODO: rework this to include loose items off of a pallet
