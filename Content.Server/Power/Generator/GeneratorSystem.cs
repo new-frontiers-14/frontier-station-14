@@ -190,17 +190,26 @@ public sealed class GeneratorSystem : SharedGeneratorSystem
             component.MinTargetPower / 1000,
             component.MaxTargetPower / 1000) * 1000;
 
-        TryUpdateGeneratorRadiation(uid, component); // Frontier
+        TryUpdateGeneratorRadiation(uid, component.On, component); // Frontier
     }
 
-    public void TryUpdateGeneratorRadiation(EntityUid uid, FuelGeneratorComponent component) // Frontier
+    public void TryUpdateGeneratorRadiation(EntityUid uid, bool on, FuelGeneratorComponent component) // Frontier
     {
-        if (TryComp<RadiationSourceComponent>(uid, out var radComp))
+        if (!TryComp<RadiationSourceComponent>(uid, out var radiation)) // Frontier
+            return;
+
+        radiation.Enabled = on;
+
+        if (on)
         {
-            radComp.Intensity = component.RadiationSource * component.TargetPower;
-            _pointLight.SetRadius(uid, component.RadiationSource * component.TargetPower);
-            _pointLight.SetEnergy(uid, component.TargetPower * 10f * component.RadiationSource);
+            radiation.Intensity = component.RadiationSource * component.TargetPower;
+            EnsureComp<PointLightComponent>(uid, out var light);
+            _pointLight.SetColor(uid, Color.FromHex("#5fe276"), light); // Add glow - on
+            _pointLight.SetRadius(uid, 1f + component.RadiationSource * component.TargetPower);
+            _pointLight.SetEnergy(uid, 10f * component.TargetPower * component.RadiationSource);
         }
+        else
+            RemComp<PointLightComponent>(uid); // Remove glow - off
     }
 
     public void SetFuelGeneratorOn(EntityUid uid, bool on, FuelGeneratorComponent? generator = null)
@@ -214,18 +223,7 @@ public sealed class GeneratorSystem : SharedGeneratorSystem
             return;
         }
 
-        if (TryComp<RadiationSourceComponent>(uid, out var radiation)) // Frontier
-        {
-            radiation.Enabled = on;
-            if (on)
-            {
-                EnsureComp<PointLightComponent>(uid, out var light);
-                _pointLight.SetColor(uid, Color.FromHex("#5fe276"), light); // Add glow - on
-            }
-            else
-                RemComp<PointLightComponent>(uid); // Remove glow - off
-        }
-
+        TryUpdateGeneratorRadiation(uid, on, generator); // Frontier
         generator.On = on;
         UpdateState(uid, generator);
     }
