@@ -212,10 +212,6 @@ public sealed class GeneratorSystem : SharedGeneratorSystem
             _pointLight.SetRadius(uid, Math.Min(visualRadius, 3.5f));
             _pointLight.SetEnergy(uid, component.RadiationIntensity * component.TargetPower / 2);
 
-            //var sound = _audio.GetSound(sounds);
-            //var param = sounds.Params.WithLoop(true).WithVolume(-4f);
-            //_audio.PlayGlobal(sound, session, param)?.Entity;
-
             _ambientSoundSystem.SetAmbience(uid, true);
             _ambientSoundSystem.SetRange(uid, visualRadius);
 
