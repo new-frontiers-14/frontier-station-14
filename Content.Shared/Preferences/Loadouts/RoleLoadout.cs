@@ -124,18 +124,47 @@ public sealed partial class RoleLoadout : IEquatable<RoleLoadout>
             // If you put invalid ones first but that's your fault for not using sensible defaults
             if (loadouts.Count < groupProto.MinLimit)
             {
-                for (var i = 0; i < Math.Min(groupProto.MinLimit, groupProto.Loadouts.Count); i++)
+                // Frontier: apply fallbacks first as default items for a role
+                if (groupProto.Fallbacks.Count > 0)
                 {
-                    if (!protoManager.TryIndex(groupProto.Loadouts[i], out var loadoutProto))
+                    foreach (var protoId in groupProto.Fallbacks)
+                    {
+                        // Apply default loadouts from fallbacks up to the minimum limit (bare minimum)
+                        if (loadouts.Count >= groupProto.MinLimit)
+                            break;
+
+                        if (!protoManager.TryIndex(protoId, out var loadoutProto))
+                            continue;
+
+                        var defaultLoadout = new Loadout()
+                        {
+                            Prototype = loadoutProto.ID,
+                        };
+
+                        // Not valid so don't default to it anyway.
+                        if (!IsValid(profile, session, defaultLoadout.Prototype, collection, out _))
+                            continue;
+
+                        loadouts.Add(defaultLoadout);
+                        Apply(loadoutProto);
+                    }
+                }
+                // End Frontier
+
+                // Apply any loadouts we can.
+                foreach (var protoId in groupProto.Loadouts) // Frontier: foreach (a la #29264)
+                {
+                    // Reached the limit, time to stop
+                    if (loadouts.Count >= groupProto.MinLimit) // Frontier: groupProto.Loadouts[i]<groupProto - foreach (a la #29264)
+                        break;
+
+                    if (!protoManager.TryIndex(protoId, out var loadoutProto))
                         continue;
 
                     var defaultLoadout = new Loadout()
                     {
                         Prototype = loadoutProto.ID,
                     };
-
-                    if (loadouts.Contains(defaultLoadout))
-                        continue;
 
                     // Not valid so don't default to it anyway.
                     if (!IsValid(profile, session, defaultLoadout.Prototype, collection, out _))
@@ -193,11 +222,14 @@ public sealed partial class RoleLoadout : IEquatable<RoleLoadout>
             // Frontier: apply fallbacks as default items for a role
             if (groupProto.Fallbacks.Count > 0)
             {
-                // Apply default loadouts from fallbacks up to the maximum limit
-                // Must respect maximum limit to be legal
-                for (var j = 0; j < Math.Min(groupProto.MaxLimit, groupProto.Loadouts.Count); j++)
+                foreach (var protoId in groupProto.Fallbacks)
                 {
-                    if (!protoManager.TryIndex(groupProto.Fallbacks[j], out var loadoutProto))
+                    // Apply default loadouts from fallbacks up to the *maximum* limit
+                    // Must respect maximum limit to be legal
+                    if (loadouts.Count >= groupProto.MaxLimit)
+                        break;
+
+                    if (!protoManager.TryIndex(protoId, out var loadoutProto))
                         continue;
 
                     var defaultLoadout = new Loadout()
@@ -218,12 +250,13 @@ public sealed partial class RoleLoadout : IEquatable<RoleLoadout>
             if (groupProto.MinLimit > 0)
             {
                 // Apply any loadouts we can.
-                for (var j = 0; j < Math.Min(groupProto.MinLimit, groupProto.Loadouts.Count); j++)
+                foreach (var protoId in groupProto.Loadouts)
                 {
-                    if (loadouts.Count >= groupProto.MinLimit) // Frontier
-                        break; // Frontier
+                    // Reached the limit, time to stop
+                    if (loadouts.Count >= groupProto.MinLimit)
+                        break;
 
-                    if (!protoManager.TryIndex(groupProto.Loadouts[j], out var loadoutProto))
+                    if (!protoManager.TryIndex(protoId, out var loadoutProto))
                         continue;
 
                     var defaultLoadout = new Loadout()
