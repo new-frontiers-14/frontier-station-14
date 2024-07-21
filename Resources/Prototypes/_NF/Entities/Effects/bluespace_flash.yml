@@ -1,0 +1,16 @@
+- type: entity
+  parent: EffectFlashBluespace
+  id: EffectFlashMcBluespace
+  noSpawn: true
+  components:
+  - type: PointLight
+    color: "#9e561b"
+  - type: TimedDespawn
+    lifetime: 2
+  - type: EmitSoundOnSpawn
+    sound:
+      path: /Audio/Nyanotrasen/Machines/deepfryer_basket_add_item.ogg
+      params:
+        variation: 0.65
+        volume: 10
+        loop: true
