@@ -21,9 +21,6 @@ public sealed class BluespaceCargoRule : StationEventSystem<BluespaceCargoRuleCo
     protected override void Added(EntityUid uid, BluespaceCargoRuleComponent component, GameRuleComponent gameRule, GameRuleAddedEvent args)
     {
         base.Added(uid, component, gameRule, args);
-
-        var str = Loc.GetString("bluespace-cargo-event-announcement");
-        ChatSystem.DispatchGlobalAnnouncement(str, colorOverride: Color.FromHex("#18abf5"));
     }
 
     protected override void Started(EntityUid uid, BluespaceCargoRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
@@ -41,21 +38,20 @@ public sealed class BluespaceCargoRule : StationEventSystem<BluespaceCargoRuleCo
         if (grid is null)
             return;
 
-        var amountToSpawn = Math.Max(1, (int) MathF.Round(5 / 1.5f));
+        var amountToSpawn = _random.Next(component.MinimumSpawns, component.MaximumSpawns + 1); // +1 required: [min, max)
         for (var i = 0; i < amountToSpawn; i++)
         {
-            SpawnOnRandomGridLocation(grid.Value, component.CargoSpawnerPrototype, component.CargoGenericSpawnerPrototype, component.CargoFlashPrototype);
+            SpawnOnRandomGridLocation(grid.Value, component.SpawnerPrototype, component.FlashPrototype, component.RequireSafeAtmosphere);
         }
     }
 
-    public void SpawnOnRandomGridLocation(EntityUid grid, string toSpawn, string toSpawnGeneric, string toSpawnFlash)
+    public void SpawnOnRandomGridLocation(EntityUid grid, string toSpawn, string toSpawnFlash, bool safeAtmosphere)
     {
         if (!TryComp<MapGridComponent>(grid, out var gridComp))
             return;
 
         var xform = Transform(grid);
 
-        var toSpawnCrate = toSpawn;
         var targetCoords = xform.Coordinates;
         var gridBounds = gridComp.LocalAABB.Scale(_configuration.GetCVar(CCVars.CargoGenerationGridBoundsScale));
 
@@ -71,15 +67,6 @@ public sealed class BluespaceCargoRule : StationEventSystem<BluespaceCargoRuleCo
                 _atmosphere.IsTileAirBlocked(grid, tile, mapGridComp: gridComp))
             {
                 continue;
-            }
-
-            if (_atmosphere.IsTileMixtureProbablySafe(grid, grid, tile))
-            {
-                toSpawnCrate = toSpawn;
-            }
-            else
-            {
-                toSpawnCrate = toSpawnGeneric; // Dont let an animal die!
             }
 
             // don't spawn inside of solid objects
@@ -100,11 +87,16 @@ public sealed class BluespaceCargoRule : StationEventSystem<BluespaceCargoRuleCo
             if (!valid)
                 continue;
 
+            if (safeAtmosphere && !_atmosphere.IsTileMixtureProbablySafe(grid, grid, tile))
+            {
+                continue;
+            }
+
             targetCoords = gridComp.GridTileToLocal(tile);
             break;
         }
 
-        Spawn(toSpawnCrate, targetCoords);
+        Spawn(toSpawn, targetCoords);
         Spawn(toSpawnFlash, targetCoords);
 
         Sawmill.Info($"Spawning random cargo at {targetCoords}");
