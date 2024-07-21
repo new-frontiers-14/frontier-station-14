@@ -540,4 +540,232 @@ public sealed partial class CargoSystem
             return;
         bountyDatabase.CheckedBounties.Clear();
     }
+
+    private void OnPalletAppraise(EntityUid uid, ContrabandPalletConsoleComponent component, ContrabandPalletAppraiseMessage args)
+    {
+        if (args.Actor is null)
+            return;
+
+        UpdatePalletConsoleInterface(uid, component);
+    }
+
+    private List<(EntityUid Entity, ContrabandPalletComponent Component)> GetContrabandPallets(EntityUid gridUid)
+    {
+        var pads = new List<(EntityUid, ContrabandPalletComponent)>();
+        var query = AllEntityQuery<ContrabandPalletComponent, TransformComponent>();
+
+        while (query.MoveNext(out var uid, out var comp, out var compXform))
+        {
+            if (compXform.ParentUid != gridUid ||
+                !compXform.Anchored)
+            {
+                continue;
+            }
+
+            pads.Add((uid, comp));
+        }
+
+        return pads;
+    }
+
+    // TODO: REMOVE ALL ITEMS FROM COMPLETED BOUNTIES
+    private void SellPallets(EntityUid gridUid, ContrabandPalletConsoleComponent component, EntityUid? station, out int amount)
+    {
+        station ??= _station.GetOwningStation(gridUid);
+        GetPalletGoods(gridUid, component, out var toSell, out amount);
+
+        Log.Debug($"{component.Faction} sold {toSell.Count} contraband items for {amount}");
+
+        if (station != null)
+        {
+            var ev = new EntitySoldEvent(toSell);
+            RaiseLocalEvent(ref ev);
+        }
+
+        foreach (var ent in toSell)
+        {
+            Del(ent);
+        }
+    }
+
+    private void GetPalletGoods(EntityUid gridUid, ContrabandPalletConsoleComponent console, out int amount)
+    {
+        amount = 0;
+
+        // 1. Separate out accepted crate and non-crate bounties.  Create a tracker for non-crate bounties.
+        if (!TryComp<SectorPirateBountyDatabaseComponent>(_sectorService.GetServiceEntity(), out var bountyDb))
+            return;
+
+        HashSet<PirateBountyPrototype> openCrateBounties = new HashSet<PirateBountyPrototype>();
+        HashSet<PirateBountyPrototype> openLooseObjectBounties = new HashSet<PirateBountyPrototype>();
+
+        foreach (var bounty in bountyDb.Bounties)
+        {
+            if (bounty.Accepted)
+            {
+                if (!_protoMan.TryIndex(bounty.Bounty, out var bountyPrototype))
+                    continue;
+                if (bountyPrototype.SpawnChest)
+                    openCrateBounties.Add(bountyPrototype);
+                else
+                    openLooseObjectBounties.Add(bountyPrototype);
+            }
+        }
+
+        // 2. Iterate over bounty pads, find all tagged, non-tagged items.
+        var handledEntities = new HashSet<EntityUid>();
+        var entitiesToRemove = new HashSet<EntityUid>();
+        HashSet<PirateBountyPrototype> completedBounties = new HashSet<PirateBountyPrototype>();
+
+        foreach (var (palletUid, _) in GetContrabandPallets(gridUid))
+        {
+            foreach (var ent in _lookup.GetEntitiesIntersecting(palletUid,
+                         LookupFlags.Dynamic | LookupFlags.Sundries | LookupFlags.Approximate))
+            {
+                // Dont match:
+                // - anything already being sold
+                // - anything anchored (e.g. light fixtures)
+                if (handledEntities.Contains(ent) ||
+                    _xformQuery.TryGetComponent(ent, out var xform) &&
+                    xform.Anchored)
+                {
+                    continue;
+                }
+
+                if (TryComp<PirateBountyLabelComponent>(ent, out var label))
+                {
+                    // 3a. If tagged as labelled, check contents against crate bounties.  If it satisfies any of them, note it as solved.
+                    if (TryComp<ContainerManagerComponent>(ent, out var containers))
+                    {
+                        var entities = new HashSet<EntityUid>
+                        {
+                            ent
+                        };
+
+                        foreach (var container in containers.Containers.Values)
+                        {
+                            foreach (var item in container.ContainedEntities)
+                            {
+                                if (_bountyLabelQuery.HasComponent(item))
+                                    continue;
+
+                                var children = GetBountyEntities(item);
+                                foreach (var child in children)
+                                {
+                                    entities.Add(child);
+                                }
+                            }
+                        }
+
+                    }
+                    // if (!_containerQuery.TryGetComponent(uid, out var containerMan))
+                    //     return false;
+
+                    // // make sure this label was actually applied to a crate.
+                    // if (!_container.TryGetContainer(uid, LabelSystem.ContainerName, out var container, containerMan))
+                    //     return false;
+                }
+                else
+                {
+                    // 3b. If not tagged as labelled, check contents against non-create bounties.  If it satisfies any of them, increase the quantity.
+                }
+            }
+        }
+
+        // 4. When done, note all completed bounties.  Remove them from the list of accepted bounties, and spawn the rewards.
+
+
+
+
+
+
+        // make sure this label was actually applied to a crate.
+        // if (!_container.TryGetContainingContainer(uid, out var container) || container.ID != LabelSystem.ContainerName)
+        //     return;
+
+        if (component.AssociatedStationId is not { } station || !TryComp<StationCargoBountyDatabaseComponent>(station, out var database))
+            return;
+
+        if (database.CheckedBounties.Contains(component.Id))
+            return;
+
+        // if (!TryGetBountyFromId(station, component.Id, out var bounty, database))
+        //     return;
+
+        // if (!_protoMan.TryIndex(bounty.Value.Bounty, out var bountyPrototype) ||
+        //     !IsBountyComplete(container.Owner, bountyPrototype))
+        //     return;
+
+        database.CheckedBounties.Add(component.Id);
+        args.Handled = true;
+
+        component.Calculating = true;
+        args.Price = bountyPrototype.Reward - _pricing.GetPrice(container.Owner);
+        component.Calculating = false;
+
+        foreach (var (palletUid, _) in GetContrabandPallets(gridUid))
+        {
+            foreach (var ent in _lookup.GetEntitiesIntersecting(palletUid,
+                         LookupFlags.Dynamic | LookupFlags.Sundries | LookupFlags.Approximate))
+            {
+                // Dont sell:
+                // - anything already being sold
+                // - anything anchored (e.g. light fixtures)
+                // - anything blacklisted (e.g. players).
+                if (toSell.Contains(ent) ||
+                    _xformQuery.TryGetComponent(ent, out var xform) &&
+                    (xform.Anchored || !CanSell(ent, xform)))
+                {
+                    continue;
+                }
+
+                if (_blacklistQuery.HasComponent(ent))
+                    continue;
+
+                if (TryComp<ContrabandComponent>(ent, out var comp) && comp.Currency == console.RewardType)
+                {
+                    if (comp.Value == 0)
+                        continue;
+                    toSell.Add(ent);
+                    amount += comp.Value;
+                }
+            }
+        }
+    }
+
+    private void OnPalletSale(EntityUid uid, ContrabandPalletConsoleComponent component, ContrabandPalletSellMessage args)
+    {
+        var player = args.Actor;
+
+        if (player == null)
+            return;
+
+        if (Transform(uid).GridUid is not EntityUid gridUid)
+        {
+            _uiSystem.SetUiState(uid, ContrabandPalletConsoleUiKey.Contraband,
+                new ContrabandPalletConsoleInterfaceState(0, 0, false));
+            return;
+        }
+
+        SellPallets(gridUid, component, null, out var price);
+
+        var stackPrototype = _protoMan.Index<StackPrototype>(component.RewardType);
+        _stack.Spawn(price, stackPrototype, uid.ToCoordinates());
+        UpdatePalletConsoleInterface(uid, component);
+    }
+    private void UpdatePalletConsoleInterface(EntityUid uid, ContrabandPalletConsoleComponent comp)
+    {
+        var bui = _uiSystem.HasUi(uid, ContrabandPalletConsoleUiKey.Contraband);
+        if (Transform(uid).GridUid is not EntityUid gridUid)
+        {
+            _uiSystem.SetUiState(uid, ContrabandPalletConsoleUiKey.Contraband,
+                new ContrabandPalletConsoleInterfaceState(0, 0, false));
+            return;
+        }
+
+        GetPalletGoods(gridUid, comp, out var toSell, out var amount);
+
+        _uiSystem.SetUiState(uid, ContrabandPalletConsoleUiKey.Contraband,
+            new ContrabandPalletConsoleInterfaceState((int) amount, toSell.Count, true));
+    }
 }
