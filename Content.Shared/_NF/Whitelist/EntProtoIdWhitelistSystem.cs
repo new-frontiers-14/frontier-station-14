@@ -26,25 +26,26 @@ public sealed class EntProtoIdWhitelistSystem : EntitySystem
         // All of the information we need is in EntityPrototype (ID, parents).
         NetEntity netEntity = _entMan.GetNetEntity(uid);
         MetaDataComponent? metadata = _entMan.GetComponentOrNull<MetaDataComponent>(_entMan.GetEntity(netEntity));
-        EntityPrototype? prototype = metadata?.EntityPrototype;
+        EntityPrototype? nullableProto = metadata?.EntityPrototype;
 
-        if (list.Ids is null || prototype is null)
+        if (list.Ids is null || nullableProto is null)
             return false;
+
+        EntityPrototype proto = nullableProto!;
 
         // Check our prototype's ID against our desired list.  Any match is good (no duplicate IDs).
         foreach (var id in list.Ids)
         {
-            if (prototype?.ID?.Equals(id) ?? false)
+            if (proto.ID.Equals(id))
                 return true;
         }
 
         // If we haven't matched, check the parents if needed: recurse through each ancestor of this entity.
         if (list.MatchParents)
         {
-            string[] parents = prototype?.Parents ?? new string[] {};
-            foreach (var parent in parents)
+            foreach (var (parentId, _) in _protoMan.EnumerateAllParents<EntityPrototype>(proto.ID))
             {
-                if (IsValidRecursive(list, parent))
+                if (IsValidRecursive(list, parentId))
                     return true;
             }
         }
@@ -52,28 +53,25 @@ public sealed class EntProtoIdWhitelistSystem : EntitySystem
         return false;
     }
 
+    // Recurse through parents: trust the list that the PrototypeManager returns.
+    // Parents may be abstract, don't try to get an EntityPrototype from them.
     private bool IsValidRecursive(EntProtoIdWhitelist list, string prototypeId)
     {
-        // Check 
-        if (!_protoMan.TryIndex(prototypeId, out var prototype))
-            return false;
-
-        if (list.Ids is null || prototype is null)
+        if (list.Ids is null)
             return false;
 
         foreach (var id in list.Ids)
         {
-            if (prototype?.ID?.Equals(id) ?? false)
+            if (prototypeId.Equals(id))
                 return true;
         }
 
         // Nothing found here, recurse to the next set of parents.
         if (list.MatchParents)
         {
-            string [] parents = prototype?.Parents ?? new string[] {};
-            foreach (var parent in parents)
+            foreach (var (parentId, _) in _protoMan.EnumerateAllParents<EntityPrototype>(prototypeId))
             {
-                if (IsValidRecursive(list, parent))
+                if (IsValidRecursive(list, parentId))
                     return true;
             }
         }

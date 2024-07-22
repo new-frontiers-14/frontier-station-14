@@ -722,10 +722,10 @@ public sealed partial class CargoSystem
         var bounty = state.CrateBounties[id]; // store the particular bounty we're looking up.
         if (bounty.Calculating) // Bounty check is already happening in a parent, return.
             return;
-        bounty.Entities.Add(uid);
 
         if (TryComp<ContainerManagerComponent>(uid, out var containers))
         {
+            bounty.Entities.Add(uid);
             bounty.Calculating = true;
 
             foreach (var container in containers.Containers.Values)
