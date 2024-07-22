@@ -92,3 +92,17 @@
         amount: 2
       - id: MagazineRifleLowCapacity
         amount: 6
+
+- type: entity
+  id: CrateArmoryRifleNovaliteC1Expedition
+  parent: [ CrateWeaponSecure, UnregisteredFirearmBase ]
+  name: novalite rifle crate
+  description: Contains two civilian grade rifles with six low capacity clips. Requires Armory access to open. Unregistered.
+  noSpawn: true
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponRifleNovaliteC1Expedition
+        amount: 2
+      - id: MagazineNovaliteC1
+        amount: 6
