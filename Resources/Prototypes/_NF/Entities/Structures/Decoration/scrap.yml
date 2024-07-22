@@ -277,6 +277,58 @@
     state: imprinter
 
 - type: entity
+  name: sealed shipping container
+  id: ShippingContainerBlue
+  parent: BaseStructureDynamic
+  description: A sealed shipping container, full of fragile and valuable goods.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+    noRot: true
+  - type: Rotatable
+  - type: Sprite
+    sprite: _NF/Objects/Decoration/Scrap/scrap-containers.rsi
+    state: blue
+  - type: Physics
+    bodyType: Static
+  - type: StaticPrice
+    price: 12000
+
+- type: entity
+  name: sealed shipping container
+  id: ShippingContainerGreen
+  parent: ShippingContainerBlue
+  - type: Sprite
+    sprite: _NF/Objects/Decoration/Scrap/scrap-containers.rsi
+    state: green
+
+- type: entity
+  name: sealed shipping container
+  id: ShippingContainerPurple
+  parent: ShippingContainerBlue
+  - type: Sprite
+    sprite: _NF/Objects/Decoration/Scrap/scrap-containers.rsi
+    state: purple
+
+- type: entity
+  name: sealed shipping container
+  id: ShippingContainerRed
+  parent: ShippingContainerBlue
+  - type: Sprite
+    sprite: _NF/Objects/Decoration/Scrap/scrap-containers.rsi
+    state: red
+
+- type: entity
+  name: sealed shipping container
+  id: ShippingContainerYellow
+  parent: ShippingContainerBlue
+  - type: Sprite
+    sprite: _NF/Objects/Decoration/Scrap/scrap-containers.rsi
+    state: yellow
+
+- type: entity
   name: Salvage Autolathe Spawner
   id: SalvageAutolatheSpawner
   suffix: Salvage
@@ -457,3 +509,23 @@
         - AncientAnalyzer
         - AncientServer
       chance: 0.8
+
+- type: entity
+  name: Salvage Shipping Container Spawner
+  id: SalvageShippingContainerSpawner
+  suffix: Salvage
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+      - state: red
+      - sprite: _NF/Objects/Decoration/Scrap/scrap-containers.rsi
+        state: blue
+    - type: RandomSpawner
+      prototypes:
+        - ShippingContainerBlue
+        - ShippingContainerGreen
+        - ShippingContainerPurple
+        - ShippingContainerRed
+        - ShippingContainerYellow
+      chance: 0.6
