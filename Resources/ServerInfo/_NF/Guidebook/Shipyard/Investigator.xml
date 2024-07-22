@@ -1,0 +1,107 @@
+<Document>
+  # INVESTIGATOR-CLASS RESEARCH SHUTTLE
+  <Box>
+  <GuideEntityEmbed Entity="VariedXenoArtifactItem"/>
+  <GuideEntityEmbed Entity="MachineArtifactAnalyzer"/>
+  <GuideEntityEmbed Entity="ComputerTabletopAnalysisConsole"/>
+  <GuideEntityEmbed Entity="ResearchAndDevelopmentServer"/>
+  <GuideEntityEmbed Entity="TechnologyDisk" Caption="tech disk"/>
+  </Box>
+  <Box>
+  <GuideEntityEmbed Entity="ShuttleMapInvestigator" Caption=""/>
+  </Box>
+    [color=#a4885c]Ship Size:[/color] Medium
+	
+	[color=#a4885c]Recommended Crew:[/color] 2-3
+	
+	[color=#a4885c]Power Gen Type:[/color] Solar/Plasma
+	
+	[color=#a4885c]Expeditions:[/color] None
+	
+	[color=#a4885c]IFF Console:[/color] None
+	
+  "A medium research shuttle designed for xenoarcheological studies."
+    
+  # PREFLIGHT CHECKLIST
+  
+  ## 1. Power supply
+  
+  ## 1.1. Battery units
+  <Box>
+  <GuideEntityEmbed Entity="SMESBasic"/>
+  <GuideEntityEmbed Entity="SubstationBasic"/>
+  <GuideEntityEmbed Entity="APCBasic"/>
+  </Box>
+  
+  - Check that the SMES unit is anchored to the floor.
+  - Check that the substation unit is anchored to the floor.
+  - Check that the APC unit's Main Breaker is toggled on.
+  - Check the APC unit's current Load* (W).
+  
+  ## 1.2. P.A.C.M.A.N. generator units
+  <Box>
+  <GuideEntityEmbed Entity="PortableGeneratorPacmanShuttle"/>
+  <GuideEntityEmbed Entity="SheetPlasma"/>
+  </Box>
+  
+  - Check that the P.A.C.M.A.N. generator units are anchored to the floor.
+  - Check that the P.A.C.M.A.N. generator units have fuel. For extended flights make sure that you have enough fuel stockpiled to sustain prolonged power generation during flight.
+  - Check that the P.A.C.M.A.N. generator units are set to HV output.
+  - Set Target Power for 15-20** [bold]kW[/bold].
+  - Ensure that P.A.C.M.A.N. generator units are enabled.
+  
+  ## 1.3. Solar panels
+  <Box>
+  <GuideEntityEmbed Entity="ComputerSolarControl"/>
+  <GuideEntityEmbed Entity="SolarTracker"/>
+  <GuideEntityEmbed Entity="SolarPanel"/>
+  </Box>
+  - Inspect solar control computer (located at shuttle cockpit).
+  - Adjust panel angular velocity.
+  - Adjust panel angle.
+  
+  ## 2. Atmospherics
+  
+  ## 2.1. Distribution Loop
+  <Box>
+  <GuideEntityEmbed Entity="OxygenCanister"/>
+  <GuideEntityEmbed Entity="NitrogenCanister"/>
+  <GuideEntityEmbed Entity="GasPort"/>
+  <GuideEntityEmbed Entity="GasMixer"/>
+  <GuideEntityEmbed Entity="GasPressurePump"/>
+  </Box>
+  
+  - Check that the O2 canister is anchored to connector port.
+  - Check that the N2 canister is anchored to connector port.
+  - Check that the gas mixer is set to the correct mixing ratio (21% Oxygen, 79% Nitrogen).
+  - Check that the gas mixer is set to 101kPa.
+  - Ensure that the gas mixer is enabled.
+  
+  ## 2.2. Waste Loop
+  <Box>
+  <GuideEntityEmbed Entity="GasPressurePump"/>
+  <GuideEntityEmbed Entity="AirAlarm"/>
+  </Box>
+    
+  - Ensure that the waste loop pump is enabled.
+  - Disable Auto Mode on the Air Alarm in the Engine Room.
+  - Set the Air Alarm in the Engine Room to Filtering (Wide).
+  
+  ## 3. Other checks
+  <Box>
+  <GuideEntityEmbed Entity="Gyroscope"/>
+  <GuideEntityEmbed Entity="GravityGeneratorMini"/>
+  <GuideEntityEmbed Entity="BlastDoor"/>
+  </Box>
+  
+  - Check that the gyroscope is anchored, powered, and enabled.
+  - Check that the mini gravity generator is anchored, powered, and enabled.
+  - Check that the blast doors are closed.
+  
+  ## Sidenotes
+  
+  * - Investigator-class research ships are equipped with two APC units that can be used to appraise the ship's total power consumption. An unmodified Investigator-class ship requires 39.6 kW of power to remain operational.
+  
+  ** - Investigator-class research ships have higher power demand than standard P.A.C.M.A.N. generator unit can provide at optimal settings, however the ship comes equipped with additional P.A.C.M.A.N. generator unit and 67 solar panels that can provide up to 33.5 kW of power under ideal circumstances. Assuming that the solar array will provide a third of its maximum output power, recommended target power output for each P.A.C.M.A.N. generator unit is 15 kW.
+
+</Document>
