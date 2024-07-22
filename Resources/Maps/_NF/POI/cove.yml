@@ -3145,6 +3145,11 @@ entities:
     - type: Transform
       pos: -16.5,31.5
       parent: 1
+  - uid: 1425
+    components:
+    - type: Transform
+      pos: 5.5,29.5
+      parent: 1
   - uid: 1494
     components:
     - type: Transform
@@ -3750,6 +3755,11 @@ entities:
     - type: Transform
       pos: 5.5,31.5
       parent: 1
+  - uid: 2095
+    components:
+    - type: Transform
+      pos: 5.5,28.5
+      parent: 1
 - proto: CableHV
   entities:
   - uid: 27
@@ -4092,42 +4102,6 @@ entities:
     components:
     - type: Transform
       pos: 5.5,-1.5
-      parent: 1
-  - uid: 229
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -6.5,-2.5
-      parent: 1
-  - uid: 230
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -5.5,-2.5
-      parent: 1
-  - uid: 231
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -5.5,-1.5
-      parent: 1
-  - uid: 237
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -4.5,-2.5
-      parent: 1
-  - uid: 247
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -6.5,-1.5
-      parent: 1
-  - uid: 258
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -4.5,-1.5
       parent: 1
   - uid: 265
     components:
@@ -5013,16 +4987,6 @@ entities:
       parent: 1
 - proto: ComputerPalletConsoleNFLowMarket
   entities:
-  - uid: 559
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -3.5,-4.5
-      parent: 1
-    - type: ContainerContainer
-      containers:
-        board: !type:Container
-          ents: []
   - uid: 560
     components:
     - type: Transform
@@ -5033,6 +4997,22 @@ entities:
       containers:
         board: !type:Container
           ents: []
+- proto: ComputerPirateBounty
+  entities:
+  - uid: 1562
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -8.5,-4.5
+      parent: 1
+- proto: ComputerPirateBountyRedemption
+  entities:
+  - uid: 268
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -3.5,-4.5
+      parent: 1
 - proto: ComputerPowerMonitoring
   entities:
   - uid: 76
@@ -5120,6 +5100,38 @@ entities:
           ents: []
     - type: Physics
       canCollide: False
+- proto: ContrabandPallet
+  entities:
+  - uid: 229
+    components:
+    - type: Transform
+      pos: -5.5,-2.5
+      parent: 1
+  - uid: 230
+    components:
+    - type: Transform
+      pos: -4.5,-2.5
+      parent: 1
+  - uid: 231
+    components:
+    - type: Transform
+      pos: -6.5,-1.5
+      parent: 1
+  - uid: 237
+    components:
+    - type: Transform
+      pos: -4.5,-1.5
+      parent: 1
+  - uid: 247
+    components:
+    - type: Transform
+      pos: -5.5,-1.5
+      parent: 1
+  - uid: 258
+    components:
+    - type: Transform
+      pos: -6.5,-2.5
+      parent: 1
 - proto: CrateFreezer
   entities:
   - uid: 858
@@ -5937,7 +5949,7 @@ entities:
       pos: 7.5,28.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -4571.74
+      secondsUntilStateChange: -5189.5713
       state: Opening
 - proto: FenceWoodSmallCorner
   entities:
@@ -7935,6 +7947,18 @@ entities:
     - type: Transform
       pos: -14.5940075,21.832407
       parent: 1
+- proto: MagazineNovaliteC1Empty
+  entities:
+  - uid: 1605
+    components:
+    - type: Transform
+      pos: -14.644278,22.508741
+      parent: 1
+  - uid: 2072
+    components:
+    - type: Transform
+      pos: -14.446361,22.404573
+      parent: 1
 - proto: Mattress
   entities:
   - uid: 2023
@@ -7955,6 +7979,13 @@ entities:
     components:
     - type: Transform
       pos: -13.997746,14.697974
+      parent: 1
+- proto: MedkitRadiationFilled
+  entities:
+  - uid: 2093
+    components:
+    - type: Transform
+      pos: -13.697711,14.87669
       parent: 1
 - proto: MedkitToxinFilled
   entities:
@@ -8223,11 +8254,6 @@ entities:
     - type: Transform
       pos: 19.5,24.5
       parent: 1
-  - uid: 1425
-    components:
-    - type: Transform
-      pos: 9.5,27.5
-      parent: 1
   - uid: 1539
     components:
     - type: Transform
@@ -8256,6 +8282,11 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 14.5,31.5
+      parent: 1
+  - uid: 2094
+    components:
+    - type: Transform
+      pos: 6.5,27.5
       parent: 1
 - proto: Poweredlight
   entities:
@@ -8975,11 +9006,6 @@ entities:
     - type: Transform
       pos: -5.5,18.5
       parent: 1
-  - uid: 1562
-    components:
-    - type: Transform
-      pos: 9.5,26.5
-      parent: 1
   - uid: 1597
     components:
     - type: Transform
@@ -9004,6 +9030,11 @@ entities:
     components:
     - type: Transform
       pos: 3.5,18.5
+      parent: 1
+  - uid: 2096
+    components:
+    - type: Transform
+      pos: 6.5,25.5
       parent: 1
 - proto: ReagentContainerFlour
   entities:
@@ -9551,16 +9582,6 @@ entities:
     - type: Transform
       pos: 8.5,12.5
       parent: 1
-- proto: SpaceVillainArcadeFilled
-  entities:
-  - uid: 268
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -8.5,-4.5
-      parent: 1
-    - type: SpamEmitSound
-      enabled: False
 - proto: SpawnMobCatClarpy
   entities:
   - uid: 68
@@ -9596,29 +9617,17 @@ entities:
     - type: Transform
       pos: -7.5,9.5
       parent: 1
-- proto: SpeedLoaderRifleHeavy
+- proto: SpeedLoaderRifleHeavyEmpty
   entities:
-  - uid: 2075
-    components:
-    - type: Transform
-      pos: -14.530999,22.55163
-      parent: 1
-  - uid: 2076
-    components:
-    - type: Transform
-      pos: -14.426833,22.67663
-      parent: 1
-- proto: SpeedLoaderRifleHeavyRubber
-  entities:
-  - uid: 2072
-    components:
-    - type: Transform
-      pos: -14.318903,23.622427
-      parent: 1
   - uid: 2073
     components:
     - type: Transform
-      pos: -14.48557,23.487011
+      pos: -14.488028,23.446241
+      parent: 1
+  - uid: 2074
+    components:
+    - type: Transform
+      pos: -14.321361,23.612907
       parent: 1
 - proto: StairStageWood
   entities:
@@ -10186,6 +10195,13 @@ entities:
     components:
     - type: Transform
       pos: -5.323082,7.791107
+      parent: 1
+- proto: VendingMachineYarrrDrobe
+  entities:
+  - uid: 559
+    components:
+    - type: Transform
+      pos: 9.5,27.5
       parent: 1
 - proto: WallmountTelevisionFrame
   entities:
@@ -11842,11 +11858,6 @@ entities:
     - type: Transform
       pos: -9.5,29.5
       parent: 1
-  - uid: 1605
-    components:
-    - type: Transform
-      pos: 9.5,25.5
-      parent: 1
   - uid: 1609
     components:
     - type: Transform
@@ -12860,6 +12871,11 @@ entities:
     - type: Transform
       pos: 4.5,30.5
       parent: 1
+  - uid: 2075
+    components:
+    - type: Transform
+      pos: 9.5,25.5
+      parent: 1
 - proto: WallWoodDiagonal
   entities:
   - uid: 1711
@@ -12965,13 +12981,6 @@ entities:
           showEnts: False
           occludes: True
           ent: null
-- proto: WeaponRevolverArgenti
-  entities:
-  - uid: 2074
-    components:
-    - type: Transform
-      pos: -14.541416,22.73913
-      parent: 1
 - proto: WeaponRevolverArgentiNonlethal
   entities:
   - uid: 2071
@@ -12985,6 +12994,13 @@ entities:
     components:
     - type: Transform
       pos: 23.56418,24.946178
+      parent: 1
+- proto: WeaponRifleNovaliteC1
+  entities:
+  - uid: 2076
+    components:
+    - type: Transform
+      pos: -14.374117,22.654573
       parent: 1
 - proto: WeaponShotgunDoubleBarreledRubber
   entities:
