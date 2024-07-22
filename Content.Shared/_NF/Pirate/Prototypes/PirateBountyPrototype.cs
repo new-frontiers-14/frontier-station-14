@@ -35,10 +35,16 @@ public sealed partial class PirateBountyPrototype : IPrototype
     public List<PirateBountyItemEntry> Entries = new();
 
     /// <summary>
+    /// Whether or not to spawn a chest for this item.
+    /// </summary>
+    [DataField]
+    public bool SpawnChest = true;
+
+    /// <summary>
     /// A prefix appended to the beginning of a bounty's ID.
     /// </summary>
     [DataField]
-    public string IdPrefix = "ARR";
+    public string IdPrefix = "ARR-";
 }
 
 [DataDefinition, Serializable, NetSerializable]

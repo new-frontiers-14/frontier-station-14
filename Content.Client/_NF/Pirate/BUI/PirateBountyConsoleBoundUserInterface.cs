@@ -24,7 +24,7 @@ public sealed class PirateBountyConsoleBoundUserInterface : BoundUserInterface
 
         _menu.OnLabelButtonPressed += id =>
         {
-            SendMessage(new PirateBountyPrintLabelMessage(id));
+            SendMessage(new PirateBountyAcceptMessage(id));
         };
 
         _menu.OnSkipButtonPressed += id =>

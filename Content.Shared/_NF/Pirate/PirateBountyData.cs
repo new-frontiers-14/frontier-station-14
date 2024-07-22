@@ -23,9 +23,23 @@ public readonly partial record struct PirateBountyData
     [DataField(required: true)]
     public ProtoId<PirateBountyPrototype> Bounty { get; init; } = string.Empty;
 
-    public PirateBountyData(PirateBountyPrototype bounty, int uniqueIdentifier)
+    /// <summary>
+    /// Whether or not this bounty has been accepted. Accepted bounties cannot be skipped.
+    /// </summary>
+    [DataField, ViewVariables(VVAccess.ReadOnly)]
+    public bool Accepted { get; init; } = false;
+
+    public PirateBountyData(PirateBountyPrototype bounty, int uniqueIdentifier, bool accepted)
     {
         Bounty = bounty.ID;
         Id = $"{bounty.IdPrefix}{uniqueIdentifier:D3}";
+        Accepted = accepted;
+    }
+
+    public PirateBountyData(PirateBountyPrototype bounty, string id, bool accepted)
+    {
+        Bounty = bounty.ID;
+        Id = id;
+        Accepted = accepted;
     }
 }

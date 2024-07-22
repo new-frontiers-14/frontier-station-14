@@ -20,9 +20,9 @@ namespace Content.Shared.Whitelist;
 public sealed partial class EntProtoIdWhitelist
 {
     /// <summary>
-    ///     Component names that are allowed in the whitelist.
+    ///     Entity IDs that are allowed in the whitelist.
     /// </summary>
-    [DataField("id")] public List<EntProtoId>? Ids;
+    [DataField("id")] public List<string>? Ids;
 
     /// <summary>
     ///     If false, an entity must be a direct match.  If true, check against the entity's parents.

@@ -6,7 +6,9 @@ namespace Content.Shared._NF.Pirate.Events;
 /// Raised on a client request pallet sale
 /// </summary>
 [Serializable, NetSerializable]
-public sealed class PiratePalletSellMessage : BoundUserInterfaceMessage
+public sealed class PirateBountyRedemptionMessage : BoundUserInterfaceMessage
 {
-
+    public PirateBountyRedemptionMessage()
+    {
+    }
 }

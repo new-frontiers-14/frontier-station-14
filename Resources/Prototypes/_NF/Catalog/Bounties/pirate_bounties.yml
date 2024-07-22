@@ -1,11 +1,11 @@
 
 - type: pirateBounty
   id: PirateBountyMail
-  reward: 2
+  reward: 3
   description: pirate-bounty-description-generic
   entries:
   - name: pirate-bounty-item-mail
-    amount: 4
+    amount: 3
     whitelist:
       tags:
       - Mail
@@ -15,11 +15,11 @@
 
 - type: pirateBounty
   id: PirateBountyPDA
-  reward: 3
+  reward: 5
   description: pirate-bounty-description-generic
   entries:
   - name: pirate-bounty-item-pda
-    amount: 5
+    amount: 3
     idWhitelist:
       id:
       - BasePDA
@@ -31,7 +31,7 @@
   description: pirate-bounty-description-generic
   entries:
   - name: pirate-bounty-item-extinguisher
-    amount: 5
+    amount: 4
     idWhitelist:
       id:
       - FireExtinguisher
@@ -39,11 +39,11 @@
 
 - type: pirateBounty
   id: PirateBountyCaptainGloves
-  reward: 2
+  reward: 5
   description: pirate-bounty-description-generic
   entries:
   - name: pirate-bounty-item-captainGloves
-    amount: 5
+    amount: 2
     idWhitelist:
       id:
       - ClothingHandsGlovesCaptain
@@ -52,6 +52,7 @@
   id: PirateBountyGyro
   reward: 4
   description: pirate-bounty-description-generic
+  spawnChest: false
   entries:
   - name: pirate-bounty-item-gyro
     amount: 2
@@ -81,27 +82,30 @@
     amount: 7
     idWhitelist:
       id:
-      - ResearchDisk
+      - TechnologyDisk
       matchParents: true
 
 - type: pirateBounty
   id: PirateBountyAlcohol
   reward: 4
   description: pirate-bounty-description-generic
+  spawnChest: false
   entries:
   - name: pirate-bounty-item-alcohol
     amount: 2
     idWhitelist:
       id:
       - BoozeDispenser
+      matchParents: true # Empty variant
 
 - type: pirateBounty
   id: PirateBountyThruster
   reward: 4
   description: pirate-bounty-description-generic
+  spawnChest: false
   entries:
   - name: pirate-bounty-item-thruster
-    amount: 4
+    amount: 3
     idWhitelist:
       id:
       - BaseThruster
@@ -111,17 +115,19 @@
   id: PirateBountyGravGen
   reward: 5
   description: pirate-bounty-description-generic
+  spawnChest: false
   entries:
   - name: pirate-bounty-item-gravGen
     amount: 2
     idWhitelist:
       id:
-      - GravityGenerator
+      - GravityGeneratorMini
 
 - type: pirateBounty
   id: PirateBountyChemVend
   reward: 3
   description: pirate-bounty-description-generic
+  spawnChest: false
   entries:
   - name: pirate-bounty-item-chemVend
     amount: 1
@@ -133,6 +139,7 @@
   id: PirateBountyVendingMachine
   reward: 6
   description: pirate-bounty-description-generic
+  spawnChest: false
   entries:
   - name: pirate-bounty-item-vendingmachine
     amount: 3
@@ -151,7 +158,6 @@
     idWhitelist:
       id:
       - ClothingOuterHardsuitMercenary
-      matchParents: true # Do we need this?
 
 - type: pirateBounty
   id: PirateBountyCappy
@@ -202,6 +208,7 @@
   id: PirateBountyRTG
   reward: 4
   description: pirate-bounty-description-generic
+  spawnChest: false
   entries:
   - name: pirate-bounty-item-rtg
     amount: 2
@@ -241,6 +248,7 @@
     idWhitelist:
       id:
       - WeaponPistolMk58
+      matchParents: true # Non-lethal version fine
 
 - type: pirateBounty
   id: PirateBountyArtifactAnalyzer
@@ -251,12 +259,13 @@
     amount: 2
     idWhitelist:
       id:
-      - MachineArtifactAnalyzer
+      - ArtifactAnalyzerMachineCircuitboard
 
 - type: pirateBounty
   id: PirateBountyHotplate
   reward: 5
   description: pirate-bounty-description-generic
+  spawnChest: false
   entries:
   - name: pirate-bounty-item-hotplate
     amount: 1
@@ -268,6 +277,7 @@
   id: PirateBountyDeepFryer
   reward: 5
   description: pirate-bounty-description-generic
+  spawnChest: false
   entries:
   - name: pirate-bounty-item-deepfryer
     amount: 2
@@ -307,11 +317,13 @@
     idWhitelist:
       id:
       - Hypospray
+      matchParents: true # NFSD/Limited Edition versions fine
 
 - type: pirateBounty
   id: PirateBountyOreBox
   reward: 3
   description: pirate-bounty-description-generic
+  spawnChest: false
   entries:
   - name: pirate-bounty-item-orebox
     amount: 2
@@ -323,6 +335,7 @@
   id: PirateBountyAutolathe
   reward: 3
   description: pirate-bounty-description-generic
+  spawnChest: false
   entries:
   - name: pirate-bounty-item-autolathe
     amount: 2
@@ -358,6 +371,7 @@
   id: PirateBountyPlasmaCanister
   reward: 5
   description: pirate-bounty-description-generic
+  spawnChest: false
   entries:
   - name: pirate-bounty-item-plasmacanister
     amount: 4
@@ -369,20 +383,26 @@
   id: PirateBountyContraCrate
   reward: 3
   description: pirate-bounty-description-generic
+  spawnChest: false
   entries:
   - name: pirate-bounty-item-contracrate
     amount: 1
     idWhitelist:
       id:
       - CrateTradeContrabandSecureNormal
+      - CrateTradeContrabandSecureDonk
+      - CrateTradeContrabandSecureCyberSun
+      matchParents: true # Filled variants and non-filled ones
 
 - type: pirateBounty
   id: PirateBountyHydroTray
   reward: 4
   description: pirate-bounty-description-generic
+  spawnChest: false
   entries:
   - name: pirate-bounty-item-hydrotray
     amount: 2
     idWhitelist:
       id:
       - hydroponicsTray
+      matchParents: true

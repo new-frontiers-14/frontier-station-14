@@ -13,7 +13,12 @@ public sealed partial class PirateBountyConsoleComponent : Component
     /// The id of the label entity spawned by the print label button.
     /// </summary>
     [DataField("bountyLabelId", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
-    public string BountyLabelId = "PaperCargoBountyManifest"; // TODO: make some paper 
+    public string BountyLabelId = "PaperPirateBountyManifest"; // TODO: make some paper 
+    /// <summary>
+    /// The id of the label entity spawned by the print label button.
+    /// </summary>
+    [DataField("bountyCrateId", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
+    public string BountyCrateId = "CratePirateBounty"; // TODO: make some paper 
 
     /// <summary>
     /// The time at which the console will be able to print a label again.
@@ -61,11 +66,11 @@ public sealed class PirateBountyConsoleState : BoundUserInterfaceState
 
 //TODO: inherit this from the base message
 [Serializable, NetSerializable]
-public sealed class PirateBountyPrintLabelMessage : BoundUserInterfaceMessage
+public sealed class PirateBountyAcceptMessage : BoundUserInterfaceMessage
 {
     public string BountyId;
 
-    public PirateBountyPrintLabelMessage(string bountyId)
+    public PirateBountyAcceptMessage(string bountyId)
     {
         BountyId = bountyId;
     }

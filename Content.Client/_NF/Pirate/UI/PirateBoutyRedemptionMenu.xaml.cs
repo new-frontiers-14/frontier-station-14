@@ -7,11 +7,11 @@ using Robust.Client.UserInterface.XAML;
 namespace Content.Client._NF.Pirate.UI;
 
 [GenerateTypedNameReferences]
-public sealed partial class PiratePalletMenu : FancyWindow
+public sealed partial class PirateBountyRedemptionMenu : FancyWindow
 {
     public Action? SellRequested;
 
-    public PiratePalletMenu()
+    public PirateBountyRedemptionMenu()
     {
         RobustXamlLoader.Load(this);
         SellButton.OnPressed += OnSellPressed;
