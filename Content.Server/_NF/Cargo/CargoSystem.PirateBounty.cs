@@ -1,5 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Server._NF.Cargo;
+using Content.Server._NF.Contraband.Components;
 using Content.Server._NF.Pirate.Components;
 using Content.Server.Botany.Components;
 using Content.Server.Chat.V2;
@@ -16,6 +18,7 @@ using Content.Shared.Cargo.Prototypes;
 using Content.Shared.Database;
 using Content.Shared.NameIdentifier;
 using Content.Shared.Stacks;
+using Content.Shared.Whitelist;
 using FastAccessors;
 using JetBrains.Annotations;
 using Robust.Server.Containers;
@@ -31,8 +34,7 @@ public sealed partial class CargoSystem
     private const string PirateBountyNameIdentifierGroup = "Bounty"; // Use the bounty name ID group (0-999) for now.
 
     private EntityQuery<PirateBountyLabelComponent> _pirateBountyLabelQuery;
-    [Dependency] private EntityIdWhitelistSystem _entityIdWhitelist = default!;
-    [Dependency] private StackSystem _stack = default!;
+    [Dependency] private EntProtoIdWhitelistSystem _entProtoIdWhitelist = default!;
 
     // GROSS.
     private void InitializePirateBounty()
@@ -516,13 +518,13 @@ public sealed partial class CargoSystem
         bountyDatabase.CheckedBounties.Clear();
     }
 
-    private void OnPalletAppraise(EntityUid uid, ContrabandPalletConsoleComponent component, ContrabandPalletAppraiseMessage args)
+    /*private void OnPalletAppraise(EntityUid uid, PirateBountyRedemptionConsoleComponent component, ContrabandPalletAppraiseMessage args)
     {
         if (args.Actor is null)
             return;
 
         UpdatePalletConsoleInterface(uid, component);
-    }
+    }*/
 
     private List<(EntityUid Entity, ContrabandPalletComponent Component)> GetContrabandPallets(EntityUid gridUid)
     {
@@ -544,7 +546,7 @@ public sealed partial class CargoSystem
     }
 
     // TODO: REMOVE ALL ITEMS FROM COMPLETED BOUNTIES
-    private void SellPallets(EntityUid gridUid, ContrabandPalletConsoleComponent component, EntityUid? station, out int amount)
+    private void SellPallets(EntityUid gridUid, PirateBountyRedemptionConsoleComponent component, EntityUid? station, out int amount)
     {
         amount = 0;
 
@@ -694,7 +696,7 @@ public sealed partial class CargoSystem
 
                             // Check whitelists for the pirate bounty.
                             if ((_whitelist.IsWhitelistPassOrNull(entry.Whitelist) ||
-                                _entityIdWhitelist.IsWhitelistPassOrNull(entry.IdWhitelist)) &&
+                                _entProtoIdWhitelist.IsWhitelistPassOrNull(entry.IdWhitelist)) &&
                                 _blacklist.IsWhitelistFailOrNull(entry.Blacklist))
                             {
                                 bounty.entries[entry.Name]++;
@@ -733,7 +735,7 @@ public sealed partial class CargoSystem
 
                     // Check whitelists for the pirate bounty.
                     if ((_whitelist.IsWhitelistPassOrNull(entry.Whitelist) ||
-                        _entityIdWhitelist.IsWhitelistPassOrNull(entry.IdWhitelist)) &&
+                        _entProtoIdWhitelist.IsWhitelistPassOrNull(entry.IdWhitelist)) &&
                         _blacklist.IsWhitelistFailOrNull(entry.Blacklist))
                     {
                         bounty.entries[entry.Name]++;
