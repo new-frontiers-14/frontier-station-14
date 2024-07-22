@@ -721,7 +721,10 @@ public sealed partial class CargoSystem
         // Add this container to the list of entities to remove.
         var bounty = state.CrateBounties[id]; // store the particular bounty we're looking up.
         if (bounty.Calculating) // Bounty check is already happening in a parent, return.
+        {
+            state.HandledEntities.Add(uid);
             return;
+        }
 
         if (TryComp<ContainerManagerComponent>(uid, out var containers))
         {
@@ -762,11 +765,12 @@ public sealed partial class CargoSystem
                                 break;
                             }
                         }
+                        state.HandledEntities.Add(ent);
                     }
-                    state.HandledEntities.Add(ent);
                 }
             }
         }
+        state.HandledEntities.Add(uid);
     }
 
     // Return two lists: a list of non-labelled entities (nodes), and a list of labelled entities (subtrees)

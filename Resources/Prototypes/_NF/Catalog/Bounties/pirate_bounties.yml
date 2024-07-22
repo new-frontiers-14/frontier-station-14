@@ -39,11 +39,11 @@
 
 - type: pirateBounty
   id: PirateBountyCaptainGloves
-  reward: 2
+  reward: 5
   description: pirate-bounty-description-generic
   entries:
   - name: pirate-bounty-item-captainGloves
-    amount: 5
+    amount: 2
     idWhitelist:
       id:
       - ClothingHandsGlovesCaptain
@@ -157,7 +157,6 @@
     idWhitelist:
       id:
       - ClothingOuterHardsuitMercenary
-      matchParents: true # Do we need this?
 
 - type: pirateBounty
   id: PirateBountyCappy
@@ -208,6 +207,7 @@
   id: PirateBountyRTG
   reward: 4
   description: pirate-bounty-description-generic
+  spawnChest: false
   entries:
   - name: pirate-bounty-item-rtg
     amount: 2
@@ -247,11 +247,13 @@
     idWhitelist:
       id:
       - WeaponPistolMk58
+      matchParents: true # Non-lethal version fine
 
 - type: pirateBounty
   id: PirateBountyArtifactAnalyzer
   reward: 4
   description: pirate-bounty-description-generic
+  spawnChest: false
   entries:
   - name: pirate-bounty-item-artifactanalyzer
     amount: 2
@@ -315,6 +317,7 @@
     idWhitelist:
       id:
       - Hypospray
+      matchParents: true # NFSD/Limited Edition versions fine
 
 - type: pirateBounty
   id: PirateBountyOreBox
@@ -387,6 +390,8 @@
     idWhitelist:
       id:
       - CrateTradeContrabandSecureNormal
+      - CrateTradeContrabandSecureDonk
+      - CrateTradeContrabandSecureCyberSun
 
 - type: pirateBounty
   id: PirateBountyHydroTray
@@ -399,3 +404,4 @@
     idWhitelist:
       id:
       - hydroponicsTray
+      matchParents: true
