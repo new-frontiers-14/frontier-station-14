@@ -5,14 +5,14 @@
   description: An old prototype burst-fire NanoTrasen marksman rifle. Manufactured by Silver Industries. It hasn't ever left the trials. Given it's antiquity it is considered a civilian grade weapon.   Uses .20 rifle ammo.
   components:
   - type: Sprite
-    sprite: _NF/Objects/Weapons/Gestio-Rifle.rsi
+    sprite: _NF/Objects/Weapons/Guns/Rifles/gestio.rsi
     layers:
       - state: base
         map: ["enum.GunVisualLayers.Base"]
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: _NF/Objects/Weapons/Gestio-Rifle.rsi
+    sprite: _NF/Objects/Weapons/Guns/Rifles/gestio.rsi
   - type: Gun
     fireRate: 3.75
     projectileSpeed: 30
@@ -25,6 +25,8 @@
       - Burst
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/rifle3.ogg
+      params:
+        volume: -5
   - type: Wieldable
   - type: GunWieldBonus
     minAngle: -2
