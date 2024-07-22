@@ -8,10 +8,7 @@ namespace Content.Shared._NF.Pirate.Events;
 [Serializable, NetSerializable]
 public sealed class PirateBountyRedemptionMessage : BoundUserInterfaceMessage
 {
-    public EntityUid Console;
-
-    public PirateBountyRedemptionMessage(EntityUid console)
+    public PirateBountyRedemptionMessage()
     {
-        Console = console;
     }
 }

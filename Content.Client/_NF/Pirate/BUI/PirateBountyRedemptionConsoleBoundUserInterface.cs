@@ -40,7 +40,7 @@ public sealed class PirateBountyRedemptionConsoleBoundUserInterface : BoundUserI
 
     private void OnSell()
     {
-        SendMessage(new PirateBountyRedemptionMessage(uid));
+        SendMessage(new PirateBountyRedemptionMessage());
     }
 
     // TODO: remove this, nothing to update

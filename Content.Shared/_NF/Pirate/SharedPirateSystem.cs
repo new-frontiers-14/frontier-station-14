@@ -6,7 +6,7 @@ namespace Content.Shared._NF.Pirate;
 public enum PirateConsoleUiKey : byte
 {
     Bounty,
-    Telepad
+    BountyRedemption
 }
 
 [NetSerializable, Serializable]
