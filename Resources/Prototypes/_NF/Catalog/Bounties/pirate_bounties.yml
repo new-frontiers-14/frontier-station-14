@@ -1,11 +1,11 @@
 
 - type: pirateBounty
   id: PirateBountyMail
-  reward: 2
+  reward: 3
   description: pirate-bounty-description-generic
   entries:
   - name: pirate-bounty-item-mail
-    amount: 4
+    amount: 3
     whitelist:
       tags:
       - Mail
@@ -15,11 +15,11 @@
 
 - type: pirateBounty
   id: PirateBountyPDA
-  reward: 3
+  reward: 5
   description: pirate-bounty-description-generic
   entries:
   - name: pirate-bounty-item-pda
-    amount: 5
+    amount: 3
     idWhitelist:
       id:
       - BasePDA
@@ -31,7 +31,7 @@
   description: pirate-bounty-description-generic
   entries:
   - name: pirate-bounty-item-extinguisher
-    amount: 5
+    amount: 4
     idWhitelist:
       id:
       - FireExtinguisher
@@ -96,6 +96,7 @@
     idWhitelist:
       id:
       - BoozeDispenser
+      matchParents: true # Empty variant
 
 - type: pirateBounty
   id: PirateBountyThruster
@@ -104,7 +105,7 @@
   spawnChest: false
   entries:
   - name: pirate-bounty-item-thruster
-    amount: 4
+    amount: 3
     idWhitelist:
       id:
       - BaseThruster
@@ -120,7 +121,7 @@
     amount: 2
     idWhitelist:
       id:
-      - GravityGenerator
+      - GravityGeneratorMini
 
 - type: pirateBounty
   id: PirateBountyChemVend
@@ -253,13 +254,12 @@
   id: PirateBountyArtifactAnalyzer
   reward: 4
   description: pirate-bounty-description-generic
-  spawnChest: false
   entries:
   - name: pirate-bounty-item-artifactanalyzer
     amount: 2
     idWhitelist:
       id:
-      - MachineArtifactAnalyzer
+      - ArtifactAnalyzerMachineCircuitboard
 
 - type: pirateBounty
   id: PirateBountyHotplate
@@ -392,6 +392,7 @@
       - CrateTradeContrabandSecureNormal
       - CrateTradeContrabandSecureDonk
       - CrateTradeContrabandSecureCyberSun
+      matchParents: true # Filled variants and non-filled ones
 
 - type: pirateBounty
   id: PirateBountyHydroTray
