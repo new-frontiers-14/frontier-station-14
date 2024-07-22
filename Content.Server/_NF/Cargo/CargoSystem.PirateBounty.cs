@@ -32,6 +32,7 @@ public sealed partial class CargoSystem
 
     private EntityQuery<PirateBountyLabelComponent> _pirateBountyLabelQuery;
     [Dependency] private EntityIdWhitelistSystem _entityIdWhitelist = default!;
+    [Dependency] private StackSystem _stack = default!;
 
     // GROSS.
     private void InitializePirateBounty()
@@ -545,25 +546,6 @@ public sealed partial class CargoSystem
     // TODO: REMOVE ALL ITEMS FROM COMPLETED BOUNTIES
     private void SellPallets(EntityUid gridUid, ContrabandPalletConsoleComponent component, EntityUid? station, out int amount)
     {
-        station ??= _station.GetOwningStation(gridUid);
-        GetPalletGoods(gridUid, component, out var toSell, out amount);
-
-        Log.Debug($"{component.Faction} sold {toSell.Count} contraband items for {amount}");
-
-        if (station != null)
-        {
-            var ev = new EntitySoldEvent(toSell);
-            RaiseLocalEvent(ref ev);
-        }
-
-        foreach (var ent in toSell)
-        {
-            Del(ent);
-        }
-    }
-
-    private void GetPalletGoods(EntityUid gridUid, ContrabandPalletConsoleComponent console, out int amount)
-    {
         amount = 0;
 
         // 1. Separate out accepted crate and non-crate bounties.  Create a tracker for non-crate bounties.
@@ -617,64 +599,50 @@ public sealed partial class CargoSystem
         }
 
         // 4. When done, note all completed bounties.  Remove them from the list of accepted bounties, and spawn the rewards.
-
-        foreach (var )
-
-
-
-
-        // make sure this label was actually applied to a crate.
-        // if (!_container.TryGetContainingContainer(uid, out var container) || container.ID != LabelSystem.ContainerName)
-        //     return;
-
-        if (component.AssociatedStationId is not { } station || !TryComp<StationCargoBountyDatabaseComponent>(station, out var database))
-            return;
-
-        if (database.CheckedBounties.Contains(component.Id))
-            return;
-
-        // if (!TryGetBountyFromId(station, component.Id, out var bounty, database))
-        //     return;
-
-        // if (!_protoMan.TryIndex(bounty.Value.Bounty, out var bountyPrototype) ||
-        //     !IsBountyComplete(container.Owner, bountyPrototype))
-        //     return;
-
-        database.CheckedBounties.Add(component.Id);
-        args.Handled = true;
-
-        component.Calculating = true;
-        args.Price = bountyPrototype.Reward - _pricing.GetPrice(container.Owner);
-        component.Calculating = false;
-
-        foreach (var (palletUid, _) in GetContrabandPallets(gridUid))
+        int reward = 0;
+        foreach (var (id, bounty) in bountySearchState.crateBounties)
         {
-            foreach (var ent in _lookup.GetEntitiesIntersecting(palletUid,
-                         LookupFlags.Dynamic | LookupFlags.Sundries | LookupFlags.Approximate))
+            bool bountyMet = true;
+            var prototype = bounty.prototype;
+            foreach (var (name, amount) in bounty.entries)
             {
-                // Dont sell:
-                // - anything already being sold
-                // - anything anchored (e.g. light fixtures)
-                // - anything blacklisted (e.g. players).
-                if (toSell.Contains(ent) ||
-                    _xformQuery.TryGetComponent(ent, out var xform) &&
-                    (xform.Anchored || !CanSell(ent, xform)))
-                {
-                    continue;
+                if (prototype.Entries[name].Amount > amount) {
+                    bountyMet = false;
+                    break;
                 }
+            }
 
-                if (_blacklistQuery.HasComponent(ent))
-                    continue;
-
-                if (TryComp<ContrabandComponent>(ent, out var comp) && comp.Currency == console.RewardType)
+            if (bountyMet) {
+                reward += prototype.Reward;
+                foreach (var entity in bounty.entities)
                 {
-                    if (comp.Value == 0)
-                        continue;
-                    toSell.Add(ent);
-                    amount += comp.Value;
+                    Del(entity);
                 }
             }
         }
+        
+        foreach (var (id, bounty) in bountySearchState.looseObjectBounties)
+        {
+            bool bountyMet = true;
+            var prototype = bounty.prototype;
+            foreach (var (name, amount) in bounty.entries)
+            {
+                if (prototype.Entries[name].Amount > amount) {
+                    bountyMet = false;
+                    break;
+                }
+            }
+
+            if (bountyMet) {
+                reward += prototype.Reward;
+                foreach (var entity in bounty.entities)
+                {
+                    Del(entity);
+                }
+            }
+        }
+
+        _stack.SpawnMultiple("Doubloon", reward, Transform(gridUid).Coordinates);
     }
 
     class PirateBountyState
