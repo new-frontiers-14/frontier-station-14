@@ -238,6 +238,94 @@
     - SuitStorageCE
     rareChance: 0.05
 
+- type: entity
+  name: random crate
+  id: SpawnDungeonLootCrateEngi
+  parent: MarkerBase
+  suffix: "Dungeon, Engineering"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Storage/Crates/engineering.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    # Empty crates
+    - SpawnDungeonLootCrateEmptyEngi
+    # Restocks
+    - SpawnDungeonLootCrateRestockEngi
+    # Mats
+    - SpawnDungeonLootCrateMaterials
+    # Filled crates
+    - CrateEngineeringGear
+    - CrateEngineeringElectricalSupplies
+    - CrateEngineeringCableLV
+    - CrateEngineeringCableMV
+    - CrateEngineeringCableHV
+    - CrateEngineeringCableBulk
+    - CrateEngineeringToolbox
+    - CrateEngineeringKitShipyardRcd
+    - CrateEngineeringShuttle
+    chance: 0.95
+    offset: 0.0
+    rarePrototypes:
+    - CrateEngineeringKitRtg
+    - CrateEngineeringKitFabrication
+    rareChance: 0.1
+
+- type: entity
+  name: random crate (empty)
+  id: SpawnDungeonLootCrateEmptyEngi
+  parent: MarkerBase
+  suffix: "Dungeon, Engineering"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Storage/Crates/engineering.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - CratePlasma
+    - CrateEngineering
+    - CrateElectrical
+    - CrateRadiation
+    - CrateUranium
+    chance: 1.0
+    offset: 0.0
+
+- type: entity
+  name: random crate (restock)
+  id: SpawnDungeonLootCrateRestockEngi
+  parent: MarkerBase
+  suffix: "Dungeon, Engineering"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Storage/Crates/engineering.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - CrateVendingMachineRestockEngineeringFilled
+    - CrateVendingMachineRestockVendomatFilled
+    - CrateVendingMachineRestockRoboticsFilled
+    - CrateVendingMachineRestockAstroVendFilled
+    - CrateVendingMachineRestockTankDispenserFilled
+    - CrateVendingMachineRestockFlatpackVendFilled
+    chance: 1.0
+    offset: 0.0
+
 # Machines
 - type: entity
   name: random machine techfab
@@ -262,10 +350,10 @@
     - EngineeringTechFab
     - EngineeringTechFab
     - EngineeringTechFab
-    - EngineeringTechFab
     - CircuitImprinter
     - MachineFlatpacker
     - SpawnDungeonMachineFrame
+    - SpawnDungeonLootFlatpacksEngi
     chance: 1
     offset: 0.0
     rarePrototypes:
@@ -461,12 +549,14 @@
     - WeaponCapacitorRechargerFlatpack
     - BorgChargerFlatpack
     - MachineFlatpackerFlatpack
-    chance: 0.95
-    offset: 0.0
-    rarePrototypes:
     - PortableGeneratorJrPacmanFlatpack
     - PortableGeneratorPacmanFlatpack
     - PortableGeneratorSuperPacmanFlatpack
+    - GeneratorRTGFlatpack
+    chance: 0.95
+    offset: 0.0
+    rarePrototypes:
+    - GeneratorRTGDamagedFlatpack
     - AmeControllerUnanchoredFlatpack
     - RadiationCollectorFullTankFlatpack
-    rareChance: 0.01
+    rareChance: 0.05
