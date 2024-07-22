@@ -153,6 +153,9 @@ public sealed partial class CargoSystem
         message.TryAddMarkup(Loc.GetString("pirate-bounty-console-manifest-reward", ("reward", prototype.Reward)), out var _);
 
         _metaSystem.SetEntityDescription(uid, message.ToMarkup());
+
+        if (TryComp<PirateBountyLabelComponent>(uid, out var label))
+            label.Id = bounty.Id;
     }
 
     private void SetupPirateBountyManifest(EntityUid uid, PirateBountyData bounty, PirateBountyPrototype prototype, PaperComponent? paper = null)
@@ -552,8 +555,8 @@ public sealed partial class CargoSystem
         Log.Error($"OnRedeemBounty! {uid}");
         var amount = 0;
 
-        EntityUid? gridUid = Transform(uid).GridUid;
-        if (gridUid is null)
+        EntityUid gridUid = Transform(uid).GridUid ?? EntityUid.Invalid;
+        if (gridUid == EntityUid.Invalid)
         {
             return;
         }
@@ -617,6 +620,7 @@ public sealed partial class CargoSystem
         }
 
         // 4. When done, note all completed bounties.  Remove them from the list of accepted bounties, and spawn the rewards.
+        bool bountiesRemoved = false;
         foreach (var (id, bounty) in bountySearchState.CrateBounties)
         {
             bool bountyMet = true;
@@ -633,6 +637,8 @@ public sealed partial class CargoSystem
 
             if (bountyMet)
             {
+                bountiesRemoved = true;
+                TryRemovePirateBounty(_sectorService.GetServiceEntity(), id);
                 Log.Error($"SellPallets: crate bounty {id} complete, adding {prototype.Reward} doubloons.");
                 amount += prototype.Reward;
                 foreach (var entity in bounty.Entities)
@@ -658,6 +664,8 @@ public sealed partial class CargoSystem
 
             if (bountyMet)
             {
+                bountiesRemoved = true;
+                TryRemovePirateBounty(_sectorService.GetServiceEntity(), id);
                 Log.Error($"SellPallets: loose object bounty {id} complete, adding {prototype.Reward} doubloons.");
                 amount += prototype.Reward;
                 foreach (var entity in bounty.Entities)
@@ -670,7 +678,14 @@ public sealed partial class CargoSystem
         Log.Error($"SellPallets: finished!  {amount} doubloons from completed bounties.");
         if (amount > 0)
         {
+            // TODO: play a sound here, ideally the "deposit money" chime used on ATMs
             _stack.SpawnMultiple("Doubloon", amount, Transform(uid).Coordinates);
+        }
+
+        // Bounties removed, restore database list
+        if (bountiesRemoved)
+        {
+            FillPirateBountyDatabase(_sectorService.GetServiceEntity());
         }
     }
 
@@ -703,11 +718,14 @@ public sealed partial class CargoSystem
             return;
         Log.Error($"CheckEntityForPirateCrateBounty: {uid}!");
 
+        // Add this container to the list of entities to remove.
+        var bounty = state.CrateBounties[id]; // store the particular bounty we're looking up.
+        if (bounty.Calculating) // Bounty check is already happening in a parent, return.
+            return;
+        bounty.Entities.Add(uid);
+
         if (TryComp<ContainerManagerComponent>(uid, out var containers))
         {
-            var bounty = state.CrateBounties[id]; // store the particular bounty we're looking up.
-            if (bounty.Calculating) // Bounty check is already happening in a parent, return.
-                return;
             bounty.Calculating = true;
 
             foreach (var container in containers.Containers.Values)
@@ -734,9 +752,9 @@ public sealed partial class CargoSystem
                             }
 
                             // Check whitelists for the pirate bounty.
-                            if ((_whitelistSys.IsWhitelistPassOrNull(entry.Whitelist, uid) ||
-                                _entProtoIdWhitelist.IsWhitelistPassOrNull(entry.IdWhitelist, uid)) &&
-                                _whitelistSys.IsWhitelistFailOrNull(entry.Blacklist, uid))
+                            if ((_whitelistSys.IsWhitelistPass(entry.Whitelist, uid) ||
+                                _entProtoIdWhitelist.IsWhitelistPass(entry.IdWhitelist, uid)) &&
+                                _whitelistSys.IsBlacklistFailOrNull(entry.Blacklist, uid))
                             {
                                 bounty.Entries[entry.Name]++;
                                 bounty.Entities.Add(ent);
@@ -777,9 +795,9 @@ public sealed partial class CargoSystem
                     }
 
                     // Check whitelists for the pirate bounty.
-                    if ((_whitelistSys.IsWhitelistPassOrNull(entry.Whitelist, uid) ||
-                        _entProtoIdWhitelist.IsWhitelistPassOrNull(entry.IdWhitelist, uid)) &&
-                        _whitelistSys.IsWhitelistFailOrNull(entry.Blacklist, uid))
+                    if ((_whitelistSys.IsWhitelistPass(entry.Whitelist, uid) ||
+                        _entProtoIdWhitelist.IsWhitelistPass(entry.IdWhitelist, uid)) &&
+                        _whitelistSys.IsBlacklistFailOrNull(entry.Blacklist, uid))
                     {
                         bounty.Entries[entry.Name]++;
                         bounty.Entities.Add(uid);
