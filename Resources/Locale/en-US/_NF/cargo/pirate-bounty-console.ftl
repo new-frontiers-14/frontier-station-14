@@ -4,7 +4,7 @@ pirate-bounty-console-accept-button-label = Accept
 pirate-bounty-console-skip-button-text = Skip
 pirate-bounty-console-skip-button-accepted = Cancel
 pirate-bounty-console-time-label = Time: [color=orange]{$time}[/color]
-pirate-bounty-console-reward-label = Reward: [color=limegreen]${$reward}[/color]
+pirate-bounty-console-reward-label = Reward: [color=limegreen]{$reward} DB[/color]
 pirate-bounty-console-manifest-label = Manifest: [color=orange]{$item}[/color]
 pirate-bounty-console-manifest-entry =
     { $amount ->

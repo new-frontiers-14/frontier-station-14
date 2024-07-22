@@ -227,8 +227,36 @@
   name: plunder exchange computer
   parent: ComputerContrabandPalletConsole
   id: ComputerContrabandPalletConsolePirate
+  description: Fence yer ill-gotten goods here! And keep yer pile orderly.
   components:
+  - type: Computer
+    board: Null # Really shouldn't spawn anything on destruction
   - type: ContrabandPalletConsole
     cashType: Doubloon
     faction: Pirates
     locStringPrefix: pirate-
+
+- type: entity
+  name: pirate bounty redemption computer
+  parent: ComputerPirateBounty
+  id: ComputerContrabandPalletConsolePirate
+  description: Back from a voyage? Redeem yer bounties here, matey.
+  components:
+  - type: PirateBountyRedemptionConsole
+  - type: ActivatableUI
+    key: enum.PirateConsoleUiKey.BountyRedemption
+  - type: UserInterface
+    interfaces:
+      enum.PirateConsoleUiKey.BountyRedemption:
+        type: PirateBountyRedemptionConsoleBoundUserInterface
+  - type: Computer
+    board: Null
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#b89f25"
+  - type: AccessReader
+    access: [["Quartermaster"]]
+  # - type: GuideHelp # Frontier
+  #   guides: # Frontier
+  #   - CargoBounties # Frontier

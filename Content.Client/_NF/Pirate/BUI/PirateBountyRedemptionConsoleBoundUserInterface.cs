@@ -1,24 +1,28 @@
 using Content.Client._NF.Pirate.UI;
 using Content.Shared._NF.Pirate.BUI;
+using Content.Shared._NF.Pirate.Components;
 using Content.Shared._NF.Pirate.Events;
-using Robust.Client.GameObjects;
 
 namespace Content.Client._NF.Pirate.BUI;
 
-public sealed class PiratePalletConsoleBoundUserInterface : BoundUserInterface
+public sealed class PirateBountyRedemptionConsoleBoundUserInterface : BoundUserInterface
 {
     [ViewVariables]
-    private PiratePalletMenu? _menu;
+    private PirateBountyRedemptionMenu? _menu;
+    [ViewVariables]
+    private EntityUid uid;
 
-    public PiratePalletConsoleBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
+    public PirateBountyRedemptionConsoleBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
     {
+        if (EntMan.TryGetComponent<PirateBountyRedemptionConsoleComponent>(owner, out var console))
+            uid = owner;
     }
 
     protected override void Open()
     {
         base.Open();
 
-        _menu = new PiratePalletMenu();
+        _menu = new PirateBountyRedemptionMenu();
         _menu.SellRequested += OnSell;
         _menu.OnClose += Close;
 
@@ -36,7 +40,7 @@ public sealed class PiratePalletConsoleBoundUserInterface : BoundUserInterface
 
     private void OnSell()
     {
-        SendMessage(new PiratePalletSellMessage());
+        SendMessage(new PirateBountyRedemptionMessage(uid));
     }
 
     // TODO: remove this, nothing to update
@@ -44,7 +48,7 @@ public sealed class PiratePalletConsoleBoundUserInterface : BoundUserInterface
     {
         base.UpdateState(state);
 
-        if (state is not PiratePalletConsoleInterfaceState palletState)
+        if (state is not PirateBountyRedemptionConsoleInterfaceState palletState)
             return;
     }
 }

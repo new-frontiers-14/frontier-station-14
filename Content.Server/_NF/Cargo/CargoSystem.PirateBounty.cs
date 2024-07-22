@@ -1,6 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using Content.Server._NF.Cargo;
 using Content.Server._NF.Contraband.Components;
 using Content.Server._NF.Pirate.Components;
 using Content.Server.Botany.Components;

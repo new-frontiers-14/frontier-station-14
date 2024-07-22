@@ -1,4 +1,4 @@
-namespace Content.Server._NF.Cargo;
+namespace Content.Shared._NF.Pirate.Components;
 
 /// <summary>
 /// Any entities intersecting when a shuttle is recalled will be sold.
