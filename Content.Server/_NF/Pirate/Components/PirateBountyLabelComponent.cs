@@ -14,4 +14,9 @@ public sealed partial class PirateBountyLabelComponent : Component
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public string Id = string.Empty;
+
+    /// <summary>
+    /// Used to prevent recursion in calculating the price.
+    /// </summary>
+    public bool Calculating;
 }

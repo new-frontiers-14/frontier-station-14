@@ -359,7 +359,7 @@ public sealed partial class CargoSystem
             var temp = new HashSet<EntityUid>();
             foreach (var entity in entities)
             {
-                if (_whitelistSystem.IsWhitelistFailOrNull(entry.Whitelist, entity))
+                if (_whitelistSys.IsWhitelistFailOrNull(entry.Whitelist, entity))
                     continue;
 
                 count += _stackQuery.CompOrNull(entity)?.Count ?? 1;
@@ -606,9 +606,15 @@ public sealed partial class CargoSystem
         {
             bool bountyMet = true;
             var prototype = bounty.prototype;
-            foreach (var (name, amount) in bounty.entries)
+            foreach (var entry in prototype.Entries)
             {
-                if (prototype.Entries[name].Amount > amount) {
+                if (!bounty.entries.ContainsKey(entry.Name))
+                {
+                    bountyMet = false;
+                    break;
+                }
+
+                if (entry.Amount > bounty.entries[entry.Name]) {
                     bountyMet = false;
                     break;
                 }
@@ -627,9 +633,15 @@ public sealed partial class CargoSystem
         {
             bool bountyMet = true;
             var prototype = bounty.prototype;
-            foreach (var (name, amount) in bounty.entries)
+            foreach (var entry in prototype.Entries)
             {
-                if (prototype.Entries[name].Amount > amount) {
+                if (!bounty.entries.ContainsKey(entry.Name))
+                {
+                    bountyMet = false;
+                    break;
+                }
+
+                if (entry.Amount > bounty.entries[entry.Name]) {
                     bountyMet = false;
                     break;
                 }
@@ -649,17 +661,17 @@ public sealed partial class CargoSystem
 
     class PirateBountyState
     {
-        PirateBountyPrototype prototype = default!;
-        HashSet<EntityUid> entities = new();
-        Dictionary<string, int> entries = new();
-        bool calculating = false; // Relevant only for crate bounties (due to tree traversal)
+        public PirateBountyPrototype prototype = default!;
+        public HashSet<EntityUid> entities = new();
+        public Dictionary<string, int> entries = new();
+        public bool calculating = false; // Relevant only for crate bounties (due to tree traversal)
     }
 
     class PirateBountyEntitySearchState
     {
-        HashSet<EntityUid> handledEntities = new();
-        Dictionary<string, PirateBountyState> looseObjectBounties = new();
-        Dictionary<string, PirateBountyState> crateBounties = new();
+        public HashSet<EntityUid> handledEntities = new();
+        public Dictionary<string, PirateBountyState> looseObjectBounties = new();
+        public Dictionary<string, PirateBountyState> crateBounties = new();
     }
 
     private void CheckEntityForPirateCrateBounty(EntityUid uid, ref PirateBountyEntitySearchState state, string id)
@@ -668,9 +680,9 @@ public sealed partial class CargoSystem
         if (state.handledEntities.Contains(uid))
             return;
 
-        if (TryComp<ContainerManagerComponent>(ent, out var containers))
+        if (TryComp<ContainerManagerComponent>(uid, out var containers))
         {
-            var bounty = state.crateObjectBounties[id]; // store the particular bounty we're looking up.
+            var bounty = state.crateBounties[id]; // store the particular bounty we're looking up.
             if (bounty.calculating) // Bounty check is already happening in a parent, return.
                 return;
             bounty.calculating = true;
@@ -682,7 +694,7 @@ public sealed partial class CargoSystem
                     // Subtree has a separate label, run check on that label
                     if (TryComp<PirateBountyLabelComponent>(ent, out var label))
                     {
-                        CheckEntityForPirateCrateBounty(ent, state, label.Id);
+                        CheckEntityForPirateCrateBounty(ent, ref state, label.Id);
                     }
                     else
                     {
@@ -695,12 +707,12 @@ public sealed partial class CargoSystem
                                 continue;
 
                             // Check whitelists for the pirate bounty.
-                            if ((_whitelist.IsWhitelistPassOrNull(entry.Whitelist) ||
-                                _entProtoIdWhitelist.IsWhitelistPassOrNull(entry.IdWhitelist)) &&
-                                _blacklist.IsWhitelistFailOrNull(entry.Blacklist))
+                            if ((_whitelistSys.IsWhitelistPassOrNull(entry.Whitelist, uid) ||
+                                _entProtoIdWhitelist.IsWhitelistPassOrNull(entry.IdWhitelist, uid)) &&
+                                _whitelistSys.IsWhitelistFailOrNull(entry.Blacklist, uid))
                             {
                                 bounty.entries[entry.Name]++;
-                                bounty.entities.add(ent);
+                                bounty.entities.Add(ent);
                                 break;
                             }
                         }
@@ -734,13 +746,13 @@ public sealed partial class CargoSystem
                         continue;
 
                     // Check whitelists for the pirate bounty.
-                    if ((_whitelist.IsWhitelistPassOrNull(entry.Whitelist) ||
-                        _entProtoIdWhitelist.IsWhitelistPassOrNull(entry.IdWhitelist)) &&
-                        _blacklist.IsWhitelistFailOrNull(entry.Blacklist))
+                    if ((_whitelistSys.IsWhitelistPassOrNull(entry.Whitelist, uid) ||
+                        _entProtoIdWhitelist.IsWhitelistPassOrNull(entry.IdWhitelist, uid)) &&
+                        _whitelistSys.IsWhitelistFailOrNull(entry.Blacklist, uid))
                     {
                         bounty.entries[entry.Name]++;
                         bounty.entities.Add(uid);
-                        bounty.handledEntities.Add(uid);
+                        state.handledEntities.Add(uid);
                         return;
                     }
                 }

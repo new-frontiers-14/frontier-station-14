@@ -80,4 +80,89 @@ public sealed class EntProtoIdWhitelistSystem : EntitySystem
 
         return false;
     }
+
+    /// The following are a list of "helper functions" that are basically the same as each other
+    /// to help make code that uses EntProtoIdWhitelist a bit more readable because at the moment
+    /// it is quite clunky having to write out component.Whitelist == null ? true : _whitelist.IsValid(component.Whitelist, uid)
+    /// several times in a row and makes comparisons easier to read
+
+    /// <summary>
+    /// Helper function to determine if Whitelist is not null and entity is on list
+    /// </summary>
+    public bool IsWhitelistPass(EntProtoIdWhitelist? whitelist, EntityUid uid)
+    {
+        if (whitelist == null)
+            return false;
+
+        return IsValid(whitelist, uid);
+    }
+
+    /// <summary>
+    /// Helper function to determine if Whitelist is not null and entity is not on the list
+    /// </summary>
+    public bool IsWhitelistFail(EntProtoIdWhitelist? whitelist, EntityUid uid)
+    {
+        if (whitelist == null)
+            return false;
+
+        return !IsValid(whitelist, uid);
+    }
+
+    /// <summary>
+    /// Helper function to determine if Whitelist is either null or the entity is on the list
+    /// </summary>
+    public bool IsWhitelistPassOrNull(EntProtoIdWhitelist? whitelist, EntityUid uid)
+    {
+        if (whitelist == null)
+            return true;
+
+        return IsValid(whitelist, uid);
+    }
+
+    /// <summary>
+    /// Helper function to determine if Whitelist is either null or the entity is not on the list
+    /// </summary>
+    public bool IsWhitelistFailOrNull(EntProtoIdWhitelist? whitelist, EntityUid uid)
+    {
+        if (whitelist == null)
+            return true;
+
+        return !IsValid(whitelist, uid);
+    }
+
+    /// <summary>
+    /// Helper function to determine if Blacklist is not null and entity is on list
+    /// Duplicate of equivalent Whitelist function
+    /// </summary>
+    public bool IsBlacklistPass(EntProtoIdWhitelist? blacklist, EntityUid uid)
+    {
+        return IsWhitelistPass(blacklist, uid);
+    }
+
+    /// <summary>
+    /// Helper function to determine if Blacklist is not null and entity is not on the list
+    /// Duplicate of equivalent Whitelist function
+    /// </summary>
+    public bool IsBlacklistFail(EntProtoIdWhitelist? blacklist, EntityUid uid)
+    {
+        return IsWhitelistFail(blacklist, uid);
+    }
+
+    /// <summary>
+    /// Helper function to determine if Blacklist is either null or the entity is on the list
+    /// Duplicate of equivalent Whitelist function
+    /// </summary>
+    public bool IsBlacklistPassOrNull(EntProtoIdWhitelist? blacklist, EntityUid uid)
+    {
+        return IsWhitelistPassOrNull(blacklist, uid);
+    }
+
+    /// <summary>                                        
+    /// Helper function to determine if Blacklist is either null or the entity is not on the list
+    /// Duplicate of equivalent Whitelist function
+    /// </summary>
+    public bool IsBlacklistFailOrNull(EntProtoIdWhitelist? blacklist, EntityUid uid)
+    {
+        return IsWhitelistFailOrNull(blacklist, uid);
+    }
 }
