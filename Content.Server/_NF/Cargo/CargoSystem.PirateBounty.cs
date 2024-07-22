@@ -31,6 +31,7 @@ public sealed partial class CargoSystem
     private const string PirateBountyNameIdentifierGroup = "Bounty"; // Use the bounty name ID group (0-999) for now.
 
     private EntityQuery<PirateBountyLabelComponent> _pirateBountyLabelQuery;
+    [Dependency] private EntityIdWhitelistSystem _entityIdWhitelist = default!;
 
     // GROSS.
     private void InitializePirateBounty()
@@ -378,33 +379,6 @@ public sealed partial class CargoSystem
         return true;
     }
 
-    private HashSet<EntityUid> GetPirateBountyEntities(EntityUid uid)
-    {
-        var entities = new HashSet<EntityUid>
-        {
-            uid
-        };
-        if (!TryComp<ContainerManagerComponent>(uid, out var containers))
-            return entities;
-
-        foreach (var container in containers.Containers.Values)
-        {
-            foreach (var ent in container.ContainedEntities)
-            {
-                if (_bountyLabelQuery.HasComponent(ent))
-                    continue;
-
-                var children = GetPirateBountyEntities(ent);
-                foreach (var child in children)
-                {
-                    entities.Add(child);
-                }
-            }
-        }
-
-        return entities;
-    }
-
     [PublicAPI]
     public bool TryAddPirateBounty(EntityUid serviceId, SectorPirateBountyDatabaseComponent? component = null)
     {
@@ -596,8 +570,7 @@ public sealed partial class CargoSystem
         if (!TryComp<SectorPirateBountyDatabaseComponent>(_sectorService.GetServiceEntity(), out var bountyDb))
             return;
 
-        HashSet<PirateBountyPrototype> openCrateBounties = new HashSet<PirateBountyPrototype>();
-        HashSet<PirateBountyPrototype> openLooseObjectBounties = new HashSet<PirateBountyPrototype>();
+        PirateBountyEntitySearchState bountySearchState = new PirateBountyEntitySearchState();
 
         foreach (var bounty in bountyDb.Bounties)
         {
@@ -606,75 +579,46 @@ public sealed partial class CargoSystem
                 if (!_protoMan.TryIndex(bounty.Bounty, out var bountyPrototype))
                     continue;
                 if (bountyPrototype.SpawnChest)
-                    openCrateBounties.Add(bountyPrototype);
+                {
+                    var newState = new PirateBountyState()
+                    {
+                        prototype = bountyPrototype
+                    };
+                    bountySearchState.crateBounties[bounty.Bounty] = newState;
+                }
                 else
-                    openLooseObjectBounties.Add(bountyPrototype);
+                {
+                    var newState = new PirateBountyState()
+                    {
+                        prototype = bountyPrototype
+                    };
+                    bountySearchState.looseObjectBounties[bounty.Bounty] = newState;
+                }
             }
         }
 
         // 2. Iterate over bounty pads, find all tagged, non-tagged items.
-        var handledEntities = new HashSet<EntityUid>();
-        var entitiesToRemove = new HashSet<EntityUid>();
-        HashSet<PirateBountyPrototype> completedBounties = new HashSet<PirateBountyPrototype>();
-
         foreach (var (palletUid, _) in GetContrabandPallets(gridUid))
         {
             foreach (var ent in _lookup.GetEntitiesIntersecting(palletUid,
                          LookupFlags.Dynamic | LookupFlags.Sundries | LookupFlags.Approximate))
             {
                 // Dont match:
-                // - anything already being sold
                 // - anything anchored (e.g. light fixtures)
-                if (handledEntities.Contains(ent) ||
-                    _xformQuery.TryGetComponent(ent, out var xform) &&
+                // Checks against already handled set done by CheckEntityForPirateBounties
+                if (_xformQuery.TryGetComponent(ent, out var xform) &&
                     xform.Anchored)
                 {
                     continue;
                 }
 
-                if (TryComp<PirateBountyLabelComponent>(ent, out var label))
-                {
-                    // 3a. If tagged as labelled, check contents against crate bounties.  If it satisfies any of them, note it as solved.
-                    if (TryComp<ContainerManagerComponent>(ent, out var containers))
-                    {
-                        var entities = new HashSet<EntityUid>
-                        {
-                            ent
-                        };
-
-                        foreach (var container in containers.Containers.Values)
-                        {
-                            foreach (var item in container.ContainedEntities)
-                            {
-                                if (_bountyLabelQuery.HasComponent(item))
-                                    continue;
-
-                                var children = GetBountyEntities(item);
-                                foreach (var child in children)
-                                {
-                                    entities.Add(child);
-                                }
-                            }
-                        }
-
-                    }
-                    // if (!_containerQuery.TryGetComponent(uid, out var containerMan))
-                    //     return false;
-
-                    // // make sure this label was actually applied to a crate.
-                    // if (!_container.TryGetContainer(uid, LabelSystem.ContainerName, out var container, containerMan))
-                    //     return false;
-                }
-                else
-                {
-                    // 3b. If not tagged as labelled, check contents against non-create bounties.  If it satisfies any of them, increase the quantity.
-                }
+                CheckEntityForPirateBounties(ent, ref bountySearchState);
             }
         }
 
         // 4. When done, note all completed bounties.  Remove them from the list of accepted bounties, and spawn the rewards.
 
-
+        foreach (var )
 
 
 
@@ -733,39 +677,105 @@ public sealed partial class CargoSystem
         }
     }
 
-    private void OnPalletSale(EntityUid uid, ContrabandPalletConsoleComponent component, ContrabandPalletSellMessage args)
+    class PirateBountyState
     {
-        var player = args.Actor;
-
-        if (player == null)
-            return;
-
-        if (Transform(uid).GridUid is not EntityUid gridUid)
-        {
-            _uiSystem.SetUiState(uid, ContrabandPalletConsoleUiKey.Contraband,
-                new ContrabandPalletConsoleInterfaceState(0, 0, false));
-            return;
-        }
-
-        SellPallets(gridUid, component, null, out var price);
-
-        var stackPrototype = _protoMan.Index<StackPrototype>(component.RewardType);
-        _stack.Spawn(price, stackPrototype, uid.ToCoordinates());
-        UpdatePalletConsoleInterface(uid, component);
+        PirateBountyPrototype prototype = default!;
+        HashSet<EntityUid> entities = new();
+        Dictionary<string, int> entries = new();
+        bool calculating = false; // Relevant only for crate bounties (due to tree traversal)
     }
-    private void UpdatePalletConsoleInterface(EntityUid uid, ContrabandPalletConsoleComponent comp)
+
+    class PirateBountyEntitySearchState
     {
-        var bui = _uiSystem.HasUi(uid, ContrabandPalletConsoleUiKey.Contraband);
-        if (Transform(uid).GridUid is not EntityUid gridUid)
-        {
-            _uiSystem.SetUiState(uid, ContrabandPalletConsoleUiKey.Contraband,
-                new ContrabandPalletConsoleInterfaceState(0, 0, false));
+        HashSet<EntityUid> handledEntities = new();
+        Dictionary<string, PirateBountyState> looseObjectBounties = new();
+        Dictionary<string, PirateBountyState> crateBounties = new();
+    }
+
+    private void CheckEntityForPirateCrateBounty(EntityUid uid, ref PirateBountyEntitySearchState state, string id)
+    {
+        // Sanity check: entity previously handled, this subtree is done.
+        if (state.handledEntities.Contains(uid))
             return;
+
+        if (TryComp<ContainerManagerComponent>(ent, out var containers))
+        {
+            var bounty = state.crateObjectBounties[id]; // store the particular bounty we're looking up.
+            if (bounty.calculating) // Bounty check is already happening in a parent, return.
+                return;
+            bounty.calculating = true;
+
+            foreach (var container in containers.Containers.Values)
+            {
+                foreach (var ent in container.ContainedEntities)
+                {
+                    // Subtree has a separate label, run check on that label
+                    if (TryComp<PirateBountyLabelComponent>(ent, out var label))
+                    {
+                        CheckEntityForPirateCrateBounty(ent, state, label.Id);
+                    }
+                    else
+                    {
+                        // Check entry against bounties
+                        foreach (var entry in bounty.prototype.Entries)
+                        {
+                            // Should add an assertion here, entry.Name should exist.
+                            // Entry already fulfilled, skip this entity.
+                            if (bounty.entries[entry.Name] >= entry.Amount)
+                                continue;
+
+                            // Check whitelists for the pirate bounty.
+                            if ((_whitelist.IsWhitelistPassOrNull(entry.Whitelist) ||
+                                _entityIdWhitelist.IsWhitelistPassOrNull(entry.IdWhitelist)) &&
+                                _blacklist.IsWhitelistFailOrNull(entry.Blacklist))
+                            {
+                                bounty.entries[entry.Name]++;
+                                bounty.entities.add(ent);
+                                break;
+                            }
+                        }
+                    }
+                    state.handledEntities.Add(ent);
+                }
+            }
         }
+    }
 
-        GetPalletGoods(gridUid, comp, out var toSell, out var amount);
+    // Return two lists: a list of non-labelled entities (nodes), and a list of labelled entities (subtrees)
+    private void CheckEntityForPirateBounties(EntityUid uid, ref PirateBountyEntitySearchState state)
+    {
+        // Entity previously handled, this subtree is done.
+        if (state.handledEntities.Contains(uid))
+            return;
 
-        _uiSystem.SetUiState(uid, ContrabandPalletConsoleUiKey.Contraband,
-            new ContrabandPalletConsoleInterfaceState((int) amount, toSell.Count, true));
+        // 3a. If tagged as labelled, check contents against crate bounties.  If it satisfies any of them, note it as solved.
+        if (TryComp<PirateBountyLabelComponent>(uid, out var label))
+            CheckEntityForPirateCrateBounty(uid, ref state, label.Id);
+        else
+        {
+            // 3b. If not tagged as labelled, check contents against non-create bounties.  If it satisfies any of them, increase the quantity.
+            foreach (var (id, bounty) in state.looseObjectBounties)
+            {
+                foreach (var entry in bounty.prototype.Entries)
+                {
+                    // Should add an assertion here, entry.Name should exist.
+                    // Entry already fulfilled, skip this entity.
+                    if (bounty.entries[entry.Name] >= entry.Amount)
+                        continue;
+
+                    // Check whitelists for the pirate bounty.
+                    if ((_whitelist.IsWhitelistPassOrNull(entry.Whitelist) ||
+                        _entityIdWhitelist.IsWhitelistPassOrNull(entry.IdWhitelist)) &&
+                        _blacklist.IsWhitelistFailOrNull(entry.Blacklist))
+                    {
+                        bounty.entries[entry.Name]++;
+                        bounty.entities.Add(uid);
+                        bounty.handledEntities.Add(uid);
+                        return;
+                    }
+                }
+            }
+        }
+        state.handledEntities.Add(uid);
     }
 }
