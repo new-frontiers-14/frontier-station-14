@@ -739,7 +739,7 @@ public sealed partial class CargoSystem
                     }
                     else
                     {
-                        Log.Error($"CheckEntityForPirateCrateBounty: checking entries for {uid}!");
+                        Log.Error($"CheckEntityForPirateCrateBounty: checking entries for {ent}!");
                         // Check entry against bounties
                         foreach (var entry in bounty.Prototype.Entries)
                         {
@@ -752,13 +752,13 @@ public sealed partial class CargoSystem
                             }
 
                             // Check whitelists for the pirate bounty.
-                            if ((_whitelistSys.IsWhitelistPass(entry.Whitelist, uid) ||
-                                _entProtoIdWhitelist.IsWhitelistPass(entry.IdWhitelist, uid)) &&
-                                _whitelistSys.IsBlacklistFailOrNull(entry.Blacklist, uid))
+                            if ((_whitelistSys.IsWhitelistPass(entry.Whitelist, ent) ||
+                                _entProtoIdWhitelist.IsWhitelistPass(entry.IdWhitelist, ent)) &&
+                                _whitelistSys.IsBlacklistFailOrNull(entry.Blacklist, ent))
                             {
                                 bounty.Entries[entry.Name]++;
                                 bounty.Entities.Add(ent);
-                                Log.Error($"CheckEntityForPirateCrateBounty: item {uid} added to bounty {entry.Name}");
+                                Log.Error($"CheckEntityForPirateCrateBounty: item {ent} added to bounty {entry.Name}");
                                 break;
                             }
                         }
