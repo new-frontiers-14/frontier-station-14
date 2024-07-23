@@ -197,15 +197,16 @@
   description: Avast, get ye pirate bounties here.
   components:
   - type: Sprite
+    sprite: _NF/Structures/Machines/computers.rsi
     layers:
     - map: ["computerLayerBody"]
-      state: computer
+      state: computer_blackmarket
     - map: ["computerLayerKeyboard"]
       state: generic_keyboard
     - map: ["computerLayerScreen"]
-      state: bounty
+      state: piratebounty
     - map: ["computerLayerKeys"]
-      state: tech_key
+      state: blackmarket_key
   - type: PirateBountyConsole
   - type: ActivatableUI
     key: enum.PirateConsoleUiKey.Bounty
@@ -229,6 +230,17 @@
   id: ComputerContrabandPalletConsolePirate
   description: Fence yer ill-gotten goods here! And keep yer pile orderly.
   components:
+  - type: Sprite
+    sprite: _NF/Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer_blackmarket
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: contraband # TODO: replace this
+    - map: ["computerLayerKeys"]
+      state: blackmarket_key
   - type: Computer
     board: Null # Really shouldn't spawn anything on destruction
   - type: ContrabandPalletConsole
@@ -242,6 +254,17 @@
   id: ComputerPirateBountyRedemption
   description: Back from a voyage? Redeem yer bounties here, matey.
   components:
+  - type: Sprite
+    sprite: _NF/Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer_blackmarket
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: piratebounty_pad
+    - map: ["computerLayerKeys"]
+      state: blackmarket_key
   - type: PirateBountyRedemptionConsole
   - type: ActivatableUI
     key: enum.PirateConsoleUiKey.BountyRedemption
