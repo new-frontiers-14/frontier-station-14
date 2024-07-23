@@ -570,3 +570,32 @@
     radius: 1.1
     energy: 1.2
     color: "#4b93ad"
+
+- type: entity
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, VendingMachine]
+  id: VendingMachineFuelVend
+  name: FuelVend
+  description: A vendor selling fuel for ship engines. Smells like ozone.
+  components:
+  - type: VendingMachine
+    pack: VendingMachineFuelVendInventory
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    ejectState: eject-unshaded
+    denyState: deny-unshaded
+    ejectDelay: 2.1
+  - type: Advertise
+    pack: FuelVendAds
+  - type: SpeakOnUIClosed
+    pack: FuelVendGoodbyes
+  - type: Sprite
+    sprite: _NF/Structures/Machines/VendingMachines/fuelvend.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
