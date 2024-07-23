@@ -24,7 +24,7 @@
   - type: Item
     size: Normal
     shape:
-    - 0,0,4,0
+    - 0,0,3,1
     inhandVisuals:
       left:
       - state: change-inhand-left
@@ -63,9 +63,6 @@
     proto: WizardHitscanLightning
     fireCost: 40
   - type: Item
-    size: Normal
-    shape:
-    - 0,0,3,1
     inhandVisuals:
       left:
       - state: change-inhand-left
@@ -91,9 +88,6 @@
     proto: BulletIceGlobe
     fireCost: 40
   - type: Item
-    size: Normal
-    shape:
-    - 0,0,3,1
     inhandVisuals:
       left:
       - state: staff-inhand-left
@@ -105,6 +99,107 @@
       - state: staff-inhand-right-unshaded
         shader: unshaded
         color: "cyan"
+  - type: StaticPrice
+    price: 190
+
+- type: entity
+  parent:
+  - WeaponChargedStaffBase
+  - WeaponStaffRechargeableWizard
+  id: WeaponChargedStaffWizardElemental
+  name: wizard blue curacao elemental staff
+  description: An acolyte-grade battle staff.
+  components:
+  - type: Sprite
+    layers:
+    - state: nothing
+    - state: nothing-unshaded
+      shader: unshaded
+      color: "#75b1f0"
+  - type: ProjectileBatteryAmmoProvider
+    proto: WaterElementalConjuredStaff
+    fireCost: 500
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: staff-inhand-left
+      - state: staff-inhand-left-unshaded
+        shader: unshaded
+        color: "#75b1f0"
+      right:
+      - state: staff-inhand-right
+      - state: staff-inhand-right-unshaded
+        shader: unshaded
+        color: "#75b1f0"
+  - type: StaticPrice
+    price: 190
+
+- type: entity
+  parent:
+  - WeaponChargedStaffBase
+  - WeaponStaffRechargeableWizard
+  id: WeaponChargedStaffWizardSoap
+  name: wizard soap staff
+  description: An acolyte-grade battle staff.
+  components:
+  - type: Sprite
+    layers:
+    - state: healing
+  - type: ProjectileBatteryAmmoProvider
+    proto: SoapConjured
+    fireCost: 40
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: healing-inhand-left
+      right:
+      - state: healing-inhand-right
+  - type: StaticPrice
+    price: 190
+
+- type: entity
+  parent:
+  - WeaponChargedStaffBase
+  - WeaponStaffRechargeableWizard
+  id: WeaponChargedStaffWizardBoltFire
+  name: wizard fire bolt staff
+  description: An acolyte-grade battle staff.
+  components:
+  - type: Sprite
+    layers:
+    - state: animation
+  - type: ProjectileBatteryAmmoProvider
+    proto: BulletFireBolt
+    fireCost: 40
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: animation-inhand-left
+      right:
+      - state: animation-inhand-right
+  - type: StaticPrice
+    price: 190
+
+- type: entity
+  parent:
+  - WeaponChargedStaffBase
+  - WeaponStaffRechargeableWizard
+  id: WeaponChargedStaffWizardBoltMagic
+  name: wizard magic bolt staff
+  description: An acolyte-grade battle staff.
+  components:
+  - type: Sprite
+    layers:
+    - state: chaos
+  - type: ProjectileBatteryAmmoProvider
+    proto: BulletMagicBolt
+    fireCost: 40
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: chaos-inhand-left
+      right:
+      - state: chaos-inhand-right
   - type: StaticPrice
     price: 190
 
@@ -125,9 +220,6 @@
     proto: BulletBloodCultDarkBolt
     fireCost: 40
   - type: Item
-    size: Normal
-    shape:
-    - 0,0,3,1
     inhandVisuals:
       left:
       - state: animation-inhand-left
@@ -152,9 +244,6 @@
     proto: BulletBloodCultHand
     fireCost: 40
   - type: Item
-    size: Normal
-    shape:
-    - 0,0,3,1
     inhandVisuals:
       left:
       - state: animation-inhand-left
@@ -179,9 +268,6 @@
     proto: BloodCultLaser
     fireCost: 40
   - type: Item
-    size: Normal
-    shape:
-    - 0,0,3,1
     inhandVisuals:
       left:
       - state: animation-inhand-left
