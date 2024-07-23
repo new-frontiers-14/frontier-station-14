@@ -56,13 +56,6 @@ public sealed partial class PirateBountyEntry : BoxContainer
 
     private void UpdateSkipButton(float deltaSeconds)
     {
-        if (Accepted)
-        {
-            SkipButton.Label.Text = Loc.GetString("pirate-bounty-console-skip-button-accepted");
-            SkipButton.Disabled = false;
-            return;
-        }
-
         UntilNextSkip -= TimeSpan.FromSeconds(deltaSeconds);
         if (UntilNextSkip > TimeSpan.Zero)
         {
@@ -71,8 +64,11 @@ public sealed partial class PirateBountyEntry : BoxContainer
             return;
         }
 
-        SkipButton.Label.Text = Loc.GetString("pirate-bounty-console-skip-button-text");
         SkipButton.Disabled = false;
+        if (Accepted)
+            SkipButton.Label.Text = Loc.GetString("pirate-bounty-console-skip-button-accepted");
+        else
+            SkipButton.Label.Text = Loc.GetString("pirate-bounty-console-skip-button-text");
     }
 
     private void UpdateAcceptButton()

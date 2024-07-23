@@ -19,7 +19,6 @@ using Content.Shared.Database;
 using Content.Shared.NameIdentifier;
 using Content.Shared.Stacks;
 using Content.Shared.Whitelist;
-using FastAccessors;
 using JetBrains.Annotations;
 using Robust.Server.Containers;
 using Robust.Shared.Containers;
@@ -36,7 +35,6 @@ public sealed partial class CargoSystem
     private EntityQuery<PirateBountyLabelComponent> _pirateBountyLabelQuery;
     [Dependency] private EntProtoIdWhitelistSystem _entProtoIdWhitelist = default!;
 
-    // GROSS.
     private void InitializePirateBounty()
     {
         SubscribeLocalEvent<PirateBountyConsoleComponent, BoundUIOpenedEvent>(OnPirateBountyConsoleOpened);
@@ -85,16 +83,17 @@ public sealed partial class CargoSystem
         {
             var chest = Spawn(component.BountyCrateId, Transform(uid).Coordinates);
             SetupPirateBountyChest(chest, bountyData, bountyPrototype);
+            _audio.PlayPvs(component.SummonChestSound, uid);
         }
         else
         {
             var label = Spawn(component.BountyLabelId, Transform(uid).Coordinates);
             SetupPirateBountyManifest(label, bountyData, bountyPrototype);
+            _audio.PlayPvs(component.PrintSound, uid);
         }
 
         component.NextPrintTime = _timing.CurTime + component.PrintDelay;
-        _audio.PlayPvs(component.PrintSound, uid);
-        UpdateBountyConsoles();
+        UpdatePirateBountyConsoles();
     }
 
     private void OnSkipPirateBountyMessage(EntityUid uid, PirateBountyConsoleComponent component, PirateBountySkipMessage args)
@@ -178,30 +177,6 @@ public sealed partial class CargoSystem
         _paperSystem.SetContent(uid, msg.ToMarkup(), paper);
     }
 
-    // Receives a bounty that's been sold.
-    // Returns true if the bounty has been handled, false otherwise.
-    private bool HandlePirateBounty(EntityUid uid)
-    {
-        if (!TryGetPirateBountyLabel(uid, out _, out var component))
-            return false;
-
-        var serviceId = _sectorService.GetServiceEntity();
-        if (!TryGetPirateBountyFromId(serviceId, component.Id, out var bounty))
-        {
-            return false;
-        }
-
-        if (!IsPirateBountyComplete(uid, bounty.Value))
-        {
-            return false;
-        }
-
-        TryRemovePirateBounty(serviceId, bounty.Value.Id);
-        FillPirateBountyDatabase(serviceId);
-        _adminLogger.Add(LogType.Action, LogImpact.Low, $"Pirate bounty \"{bounty.Value.Bounty}\" (id:{bounty.Value.Id}) was fulfilled");
-        return false;
-    }
-
     private bool TryGetPirateBountyLabel(EntityUid uid,
         [NotNullWhen(true)] out EntityUid? labelEnt,
         [NotNullWhen(true)] out PirateBountyLabelComponent? labelComp)
@@ -243,109 +218,7 @@ public sealed partial class CargoSystem
                 break;
         }
 
-        UpdateBountyConsoles();
-    }
-
-    public void RerollPirateBountyDatabase(Entity<SectorPirateBountyDatabaseComponent?> entity)
-    {
-        if (!Resolve(entity, ref entity.Comp))
-            return;
-
-        entity.Comp.Bounties.Clear();
-        FillPirateBountyDatabase(entity);
-    }
-
-    public bool IsPirateBountyComplete(EntityUid container, out HashSet<EntityUid> bountyEntities)
-    {
-        if (!TryGetPirateBountyLabel(container, out _, out var component))
-        {
-            bountyEntities = new();
-            return false;
-        }
-
-        var service = _sectorService.GetServiceEntity();
-        if (!TryGetPirateBountyFromId(service, component.Id, out var bounty))
-        {
-            bountyEntities = new();
-            return false;
-        }
-
-        return IsPirateBountyComplete(container, bounty.Value, out bountyEntities);
-    }
-
-    public bool IsPirateBountyComplete(EntityUid container, PirateBountyData data)
-    {
-        return IsPirateBountyComplete(container, data, out _);
-    }
-
-    public bool IsPirateBountyComplete(EntityUid container, PirateBountyData data, out HashSet<EntityUid> bountyEntities)
-    {
-        if (!_protoMan.TryIndex(data.Bounty, out var proto))
-        {
-            bountyEntities = new();
-            return false;
-        }
-
-        return IsPirateBountyComplete(container, proto.Entries, out bountyEntities);
-    }
-
-    public bool IsPirateBountyComplete(EntityUid container, string id)
-    {
-        if (!_protoMan.TryIndex<PirateBountyPrototype>(id, out var proto))
-            return false;
-
-        return IsPirateBountyComplete(container, proto.Entries);
-    }
-
-    public bool IsPirateBountyComplete(EntityUid container, PirateBountyPrototype prototype)
-    {
-        return IsPirateBountyComplete(container, prototype.Entries);
-    }
-
-    public bool IsPirateBountyComplete(EntityUid container, IEnumerable<PirateBountyItemEntry> entries)
-    {
-        return IsPirateBountyComplete(container, entries, out _);
-    }
-
-    public bool IsPirateBountyComplete(EntityUid container, IEnumerable<PirateBountyItemEntry> entries, out HashSet<EntityUid> bountyEntities)
-    {
-        return IsPirateBountyComplete(GetBountyEntities(container), entries, out bountyEntities);
-    }
-
-    public bool IsPirateBountyComplete(HashSet<EntityUid> entities, IEnumerable<PirateBountyItemEntry> entries, out HashSet<EntityUid> bountyEntities)
-    {
-        bountyEntities = new();
-
-        foreach (var entry in entries)
-        {
-            var count = 0;
-
-            // store entities that already satisfied an
-            // entry so we don't double-count them.
-            var temp = new HashSet<EntityUid>();
-            foreach (var entity in entities)
-            {
-                if (_whitelistSys.IsWhitelistFailOrNull(entry.Whitelist, entity))
-                    continue;
-
-                count += _stackQuery.CompOrNull(entity)?.Count ?? 1;
-                temp.Add(entity);
-
-                if (count >= entry.Amount)
-                    break;
-            }
-
-            if (count < entry.Amount)
-                return false;
-
-            foreach (var ent in temp)
-            {
-                entities.Remove(ent);
-                bountyEntities.Add(ent);
-            }
-        }
-
-        return true;
+        UpdatePirateBountyConsoles();
     }
 
     [PublicAPI]
@@ -616,6 +489,11 @@ public sealed partial class CargoSystem
         {
             // TODO: play a sound here, ideally the "deposit money" chime used on ATMs
             _stack.SpawnMultiple("Doubloon", amount, Transform(uid).Coordinates);
+            _audio.PlayPvs(component.AcceptSound, uid);
+        }
+        else
+        {
+            _audio.PlayPvs(component.DenySound, uid);
         }
 
         // Bounties removed, restore database list
