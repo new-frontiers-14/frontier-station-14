@@ -38,13 +38,16 @@ CONDITIONALLY_ILLEGAL_MATCHES = {
         "Plastitanium",  # Plastitanium walls should only be appearing on security ships.
         "Kammerer", # Opportunity
         "HighSecDoor",
+		"ShuttleGun",
     ],
     "Syndicate": [
         "Plastitanium",  # And also on blackmarket ships cause syndicate.
-	"ButtonFrameCautionSecurity",  # Decal.
+		"ButtonFrameCautionSecurity",  # Decal.
+		"ShuttleGun",
     ],
 	"BlackMarket": [
         "Plastitanium",  # And also on blackmarket ships cause syndicate.
         "ButtonFrameCautionSecurity",  # Decal.
+		"ShuttleGun",
 	]
 }

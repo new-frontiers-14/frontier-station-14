@@ -1,11 +1,14 @@
 <Document>
   # SPIRIT-CLASS SEARCH AND RESCUE SHUTTLE
   <Box>
-  <GuideEntityEmbed Entity="ComputerCrewMonitoring"/>
-  <GuideEntityEmbed Entity="HandheldHealthAnalyzer"/>
+  <GuideEntityEmbed Entity="ComputerCrewMonitoring" Caption="crew monitor"/>
   <GuideEntityEmbed Entity="RollerBed"/>
+  <GuideEntityEmbed Entity="HandheldHealthAnalyzer" Caption="health scan"/>
   <GuideEntityEmbed Entity="BodyBag"/>
   </Box>  
+  <Box>
+  <GuideEntityEmbed Entity="ShuttleMapSpirit" Caption=""/>
+  </Box>
     [color=#a4885c]Ship Size:[/color] Small (micro)
 	
 	[color=#a4885c]Recommended Crew:[/color] 1
@@ -16,7 +19,32 @@
 	
 	[color=#a4885c]IFF Console:[/color] None
 	
-  "An absolutely tiny shuttle designed for rapid response search and rescue operations on a budget."
+	[color=#a4885c]Available Roles:[/color] Contractor, Pilot, Mercenary
+	
+  An absolutely tiny shuttle designed for rapid response search and rescue operations on a budget.
+  
+  Much of the production cost for the spirit was reduced by repurposing the hull from an obsolete model of 
+  bomber, stripping out armor, weapons, and ancilliary equipment to make room for a medbay.
+  
+  The shuttle retains its original thrusters but the lower mass results in improved manuvarability. 
+  Unfortunately the Mod 6 thruster is several decades out of date, their performance on par with modern civillian thrusters, but some captains still prefer them due to the abundance of surplus parts.
+  
+  # Piloting
+  <Box>
+    <GuideEntityEmbed Entity="ComputerShuttle"/>
+  </Box>
+  After clicking the shuttle console, you should see a radar view of the shuttle. Here are the steps for piloting the shuttle back and forth:
+
+  - First, disconnect any airlocks that are connected to the dock.
+  - Then, you actually get to pilot the shuttle. The controls are fairly simple, with [color=#028ed9]"W"[/color] and [color=#028ed9]"S"[/color] being forward and backward, [color=#028ed9]"A"[/color] and [color=#028ed9]"D"[/color] being left and right, and [color=#028ed9]"Q"[/color] and [color=#028ed9]"E"[/color] being rotating left and right; and [color=#028ed9]"spacebar"[/color] being the brake and moving precicely by holding the [color=#028ed9]"spacebar"[/color] while doing other inputs.
+  
+  # Hiring crew
+  <Box>
+    <GuideEntityEmbed Entity="ComputerStationRecords"/>
+    <GuideEntityEmbed Entity="ClothingHeadsetGrey"/>
+    <GuideEntityEmbed Entity="IntercomCommon"/>
+  </Box>
+  As a Captain of a Nanotrasen vessel, you have the authority to hire, fire, demote, or promote crew members at will. There are two ways you as a Captain can go about hiring crew: you can either use the [color=#a4885c]station records computer[/color] on your ship to open crew slots (jobs available vary from ship to ship) or invite through in-game communications other players to your crew.
   
   # PREFLIGHT CHECKLIST
   
@@ -28,7 +56,7 @@
   <GuideEntityEmbed Entity="APCBasic"/>
   </Box>
   
-    - Check that the APC unit's Main Breaker is toggled on.
+    - Check if the APC unit's Main Breaker is toggled on.
     - Check the APC unit's current Load* (W).
   
   ## 1.2. P.A.C.M.A.N. generator unit
@@ -37,10 +65,10 @@
   <GuideEntityEmbed Entity="SheetPlasma"/>
   </Box>
   
-  - Check that the P.A.C.M.A.N. generator unit is anchored to the floor.
-  - Check that the P.A.C.M.A.N. generator unit has fuel. For extended flights make sure that you have enough fuel stockpiled to sustain prolonged power generation during flight.
-  - Check that the P.A.C.M.A.N. generator unit is set to HV output.
-  - Set Target Power for 8** [bold]kW[/bold].
+  - Check if the P.A.C.M.A.N. generator unit is anchored to the floor.
+  - Check if the P.A.C.M.A.N. generator unit has fuel. For extended flights make sure that you have enough fuel stockpiled to sustain prolonged power generation during flight.
+  - Check if the P.A.C.M.A.N. generator unit is set to HV output.
+  - Set Target Power for 8** [bold]k[/bold]W.
   - Start the P.A.C.M.A.N. generator unit.
   
   ## 2. Atmospherics
@@ -52,8 +80,8 @@
   <GuideEntityEmbed Entity="GasPressurePump"/>
   </Box>
   
-  - Check that the air canister is anchored to connector port.
-  - Check that the distribution pump is set to 101kPa (101kPa).
+  - Check if the air canister is anchored to connector port.
+  - Check if the distribution pump is set to normal pressure (101kPa).
   - Enable the distribution pump.
   
   ## 2.2. Waste Loop
@@ -65,10 +93,19 @@
   - Enable waste loop pump.
   - Disable Auto Mode on the Air Alarm in the Engine Room.
   - Set the Air Alarm in the Engine Room to Filtering (Wide).
-    
+  
+  ## 3. Other checks
+  <Box>
+  <GuideEntityEmbed Entity="Gyroscope"/>
+  <GuideEntityEmbed Entity="GravityGeneratorMini"/>
+  </Box>
+  
+  - Check if the gyroscope is anchored, powered, and enabled.
+  - Check if the mini gravity generator is anchored, powered, and enabled.
+  
   ## Sidenotes
   
-  * - Spirit-class SAR ships are equipped with a single APC unit that can be used to appraise the ship's total power consumption (which for the unmodified ship is 7.7 kW). To keep the substation and APC fully charged, the generator target power should exceed APC's Load, but by as little as possible to achieve maximum fuel efficiency. Remember to check the APC Load and adjust the generator unit's target power after adding or removing power-consuming machines.
+  * - Spirit-class SAR ships are equipped with a single APC unit that can be used to appraise the ship's total power consumption (which for the unmodified ship is 7.7 kW). One can check the ship's total power consumption against the P.A.C.M.A.N. generator target power output: to keep substation and APC fully charged,  the P.A.C.M.A.N. generator target power should exceed APC's Load. Remember to check the APC Load and adjust the generator unit's target power after connecting new power-consuming machines.
   
   ** - Spirit-class S.A.R. ships have low power demand. A standard P.A.C.M.A.N. generator's target power value can be set to 8 kW. Due to the low mass of the shuttle less power is needed to maintain inertial dampening and the artificial gravity field, 8kW is sufficient even when the gravity generator is spooling.
 
