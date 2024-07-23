@@ -11,6 +11,8 @@ using Content.Shared.Examine;
 using Content.Shared.Interaction;
 using Content.Shared.Radio;
 using Content.Shared.Radio.Components;
+using Content.Shared._NC.Radio; // Nuclear-14
+using Robust.Server.GameObjects; // Nuclear-14
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Radio.EntitySystems;
