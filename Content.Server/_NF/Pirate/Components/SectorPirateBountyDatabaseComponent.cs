@@ -28,13 +28,6 @@ public sealed partial class SectorPirateBountyDatabaseComponent : Component
     public int TotalBounties;
 
     /// <summary>
-    /// A list of bounty IDs that have been checked this tick.
-    /// Used to prevent multiplying bounty prices.
-    /// </summary>
-    [DataField]
-    public HashSet<string> CheckedBounties = new();
-
-    /// <summary>
     /// The time at which players will be able to skip the next bounty.
     /// </summary>
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
