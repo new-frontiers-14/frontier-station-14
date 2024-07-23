@@ -166,10 +166,6 @@ public sealed partial class CargoSystem
     {
         foreach (var sold in args.Sold)
         {
-            // Frontier: check if this bounty's one of ours first.
-            if (HandlePirateBounty(sold))
-                continue;
-            // End Frontier
             if (!TryGetBountyLabel(sold, out _, out var component))
                 continue;
 

@@ -42,7 +42,6 @@ public sealed partial class CargoSystem
         SubscribeLocalEvent<PirateBountyConsoleComponent, BoundUIOpenedEvent>(OnPirateBountyConsoleOpened);
         SubscribeLocalEvent<PirateBountyConsoleComponent, PirateBountyAcceptMessage>(OnPirateBountyAccept);
         SubscribeLocalEvent<PirateBountyConsoleComponent, PirateBountySkipMessage>(OnSkipPirateBountyMessage);
-        SubscribeLocalEvent<PirateBountyLabelComponent, PriceCalculationEvent>(OnGetPirateBountyPrice); // TODO: figure out how these labels interact with the chest (does the chest RECEIVE the label component?)
 
         SubscribeLocalEvent<PirateBountyRedemptionConsoleComponent, PirateBountyRedemptionMessage>(OnRedeemBounty);
 
@@ -53,11 +52,9 @@ public sealed partial class CargoSystem
 
     private void OnPirateBountyConsoleOpened(EntityUid uid, PirateBountyConsoleComponent component, BoundUIOpenedEvent args)
     {
-        Log.Error("OnPirateBountyConsoleOpened!");
         var service = _sectorService.GetServiceEntity();
         if (!TryComp<SectorPirateBountyDatabaseComponent>(service, out var bountyDb))
         {
-            Log.Error("ConsoleOpened: no DB!");
             return;
         }
 
@@ -179,42 +176,6 @@ public sealed partial class CargoSystem
         }
         msg.TryAddMarkup(Loc.GetString("pirate-bounty-console-manifest-reward", ("reward", prototype.Reward)), out var _);
         _paperSystem.SetContent(uid, msg.ToMarkup(), paper);
-    }
-
-    // TODO: rework this to include loose items off of a pallet
-    /// <summary>
-    /// Bounties do not sell for any currency. The reward for a bounty is
-    /// calculated after it is sold separately from the selling system.
-    /// </summary>
-    private void OnGetPirateBountyPrice(EntityUid uid, PirateBountyLabelComponent component, ref PriceCalculationEvent args)
-    {
-        if (args.Handled || component.Calculating)
-            return;
-
-        // make sure this label was actually applied to a crate.
-        if (!_container.TryGetContainingContainer(uid, out var container) || container.ID != LabelSystem.ContainerName)
-            return;
-
-        var serviceId = _sectorService.GetServiceEntity();
-        if (!TryComp<SectorPirateBountyDatabaseComponent>(serviceId, out var database))
-            return;
-
-        if (database.CheckedBounties.Contains(component.Id))
-            return;
-
-        if (!TryGetPirateBountyFromId(serviceId, component.Id, out var bounty, database))
-            return;
-
-        if (!_protoMan.TryIndex(bounty.Value.Bounty, out var bountyPrototype) ||
-            !IsPirateBountyComplete(container.Owner, bountyPrototype))
-            return;
-
-        database.CheckedBounties.Add(component.Id);
-        args.Handled = true;
-
-        component.Calculating = true;
-        args.Price = bountyPrototype.Reward - _pricing.GetPrice(container.Owner);
-        component.Calculating = false;
     }
 
     // Receives a bounty that's been sold.
@@ -515,22 +476,6 @@ public sealed partial class CargoSystem
         }
     }
 
-    private void UpdatePirateBounty()
-    {
-        var serviceId = _sectorService.GetServiceEntity();
-        if (!TryComp<SectorPirateBountyDatabaseComponent>(serviceId, out var bountyDatabase))
-            return;
-        bountyDatabase.CheckedBounties.Clear();
-    }
-
-    /*private void OnPalletAppraise(EntityUid uid, PirateBountyRedemptionConsoleComponent component, ContrabandPalletAppraiseMessage args)
-    {
-        if (args.Actor is null)
-            return;
-
-        UpdatePalletConsoleInterface(uid, component);
-    }*/
-
     private List<(EntityUid Entity, ContrabandPalletComponent Component)> GetContrabandPallets(EntityUid gridUid)
     {
         var pads = new List<(EntityUid, ContrabandPalletComponent)>();
@@ -552,7 +497,6 @@ public sealed partial class CargoSystem
 
     private void OnRedeemBounty(EntityUid uid, PirateBountyRedemptionConsoleComponent component, PirateBountyRedemptionMessage args)
     {
-        Log.Error($"OnRedeemBounty! {uid}");
         var amount = 0;
 
         EntityUid gridUid = Transform(uid).GridUid ?? EntityUid.Invalid;
@@ -569,7 +513,6 @@ public sealed partial class CargoSystem
 
         foreach (var bounty in bountyDb.Bounties)
         {
-            Log.Error($"SellPallets: {bounty.Id} - accepted? {bounty.Accepted}");
             if (bounty.Accepted)
             {
                 if (!_protoMan.TryIndex(bounty.Bounty, out var bountyPrototype))
@@ -582,7 +525,6 @@ public sealed partial class CargoSystem
                         newState.Entries[entry.Name] = 0;
                     }
                     bountySearchState.CrateBounties[bounty.Id] = newState;
-                    Log.Error($"SellPallets: adding {bounty.Id} as a crate bounty!");
                 }
                 else
                 {
@@ -592,20 +534,17 @@ public sealed partial class CargoSystem
                         newState.Entries[entry.Name] = 0;
                     }
                     bountySearchState.LooseObjectBounties[bounty.Id] = newState;
-                    Log.Error($"SellPallets: {bounty.Id} as a loose object bounty!");
                 }
             }
         }
 
         // 2. Iterate over bounty pads, find all tagged, non-tagged items.
-        Log.Error($"SellPallets: checking pallets!");
         foreach (var (palletUid, _) in GetContrabandPallets(gridUid))
         {
             Log.Error($"SellPallets: checking pallet {palletUid}");
             foreach (var ent in _lookup.GetEntitiesIntersecting(palletUid,
                          LookupFlags.Dynamic | LookupFlags.Sundries | LookupFlags.Approximate))
             {
-                Log.Error($"SellPallets: checking item {ent} on pallet {palletUid}");
                 // Dont match:
                 // - anything anchored (e.g. light fixtures)
                 // Checks against already handled set done by CheckEntityForPirateBounties
@@ -639,7 +578,6 @@ public sealed partial class CargoSystem
             {
                 bountiesRemoved = true;
                 TryRemovePirateBounty(_sectorService.GetServiceEntity(), id);
-                Log.Error($"SellPallets: crate bounty {id} complete, adding {prototype.Reward} doubloons.");
                 amount += prototype.Reward;
                 foreach (var entity in bounty.Entities)
                 {
@@ -666,7 +604,6 @@ public sealed partial class CargoSystem
             {
                 bountiesRemoved = true;
                 TryRemovePirateBounty(_sectorService.GetServiceEntity(), id);
-                Log.Error($"SellPallets: loose object bounty {id} complete, adding {prototype.Reward} doubloons.");
                 amount += prototype.Reward;
                 foreach (var entity in bounty.Entities)
                 {
@@ -675,7 +612,6 @@ public sealed partial class CargoSystem
             }
         }
 
-        Log.Error($"SellPallets: finished!  {amount} doubloons from completed bounties.");
         if (amount > 0)
         {
             // TODO: play a sound here, ideally the "deposit money" chime used on ATMs
@@ -716,7 +652,6 @@ public sealed partial class CargoSystem
         // Sanity check: entity previously handled, this subtree is done.
         if (state.HandledEntities.Contains(uid))
             return;
-        Log.Error($"CheckEntityForPirateCrateBounty: {uid}!");
 
         // Add this container to the list of entities to remove.
         var bounty = state.CrateBounties[id]; // store the particular bounty we're looking up.
@@ -742,7 +677,6 @@ public sealed partial class CargoSystem
                     }
                     else
                     {
-                        Log.Error($"CheckEntityForPirateCrateBounty: checking entries for {ent}!");
                         // Check entry against bounties
                         foreach (var entry in bounty.Prototype.Entries)
                         {
@@ -750,7 +684,6 @@ public sealed partial class CargoSystem
                             // Entry already fulfilled, skip this entity.
                             if (bounty.Entries[entry.Name] >= entry.Amount)
                             {
-                                Log.Error($"CheckEntityForPirateCrateBounty: {entry.Name} full!");
                                 continue;
                             }
 
@@ -761,7 +694,6 @@ public sealed partial class CargoSystem
                             {
                                 bounty.Entries[entry.Name]++;
                                 bounty.Entities.Add(ent);
-                                Log.Error($"CheckEntityForPirateCrateBounty: item {ent} added to bounty {entry.Name}");
                                 break;
                             }
                         }
@@ -794,7 +726,6 @@ public sealed partial class CargoSystem
                     // Entry already fulfilled, skip this entity.
                     if (bounty.Entries[entry.Name] >= entry.Amount)
                     {
-                        Log.Error($"CheckEntityForPirateBounties: {entry.Name} full!");
                         continue;
                     }
 
@@ -806,7 +737,6 @@ public sealed partial class CargoSystem
                         bounty.Entries[entry.Name]++;
                         bounty.Entities.Add(uid);
                         state.HandledEntities.Add(uid);
-                        Log.Error($"CheckEntityForPirateBounties: item {uid} added to bounty {entry.Name}");
                         return;
                     }
                 }

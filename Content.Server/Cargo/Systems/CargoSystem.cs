@@ -85,9 +85,6 @@ public sealed partial class CargoSystem : SharedCargoSystem
         UpdateConsole(frameTime);
         UpdateTelepad(frameTime);
         UpdateBounty();
-        // Frontier: add specific initialization calls here.
-        UpdatePirateBounty();
-        // End Frontier
     }
 
     [PublicAPI]
