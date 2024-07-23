@@ -66,7 +66,7 @@ public sealed class RadioSystem : EntitySystem
             return radioMicrophone.Frequency;
 
         return channel.Frequency;
-    } // Corvax-Frontier
+    }
 
     private void OnIntrinsicReceive(EntityUid uid, IntrinsicRadioReceiverComponent component, ref RadioReceiveEvent args)
     {
