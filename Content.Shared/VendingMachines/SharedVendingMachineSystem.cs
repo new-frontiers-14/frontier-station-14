@@ -118,7 +118,14 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
                     restock = (uint) Math.Floor(amount * result / chanceOfMissingStock);
                 }
 
+                // New Frontiers - Unlimited vending - support items with unlimited vending stock.
+                // This code is licensed under AGPLv3. See AGPLv3.txt
                 if (inventory.TryGetValue(id, out var entry))
+                {
+                    // Frontier: Max value is reserved for unlimited items, this should not be restocked.
+                    if (entry.Amount == uint.MaxValue)
+                        continue;
+
                     // Prevent a machine's stock from going over three times
                     // the prototype's normal amount. This is an arbitrary
                     // number and meant to be a convenience for someone
@@ -126,8 +133,10 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
                     // all the items just to restock one empty slot without
                     // losing the rest of the restock.
                     entry.Amount = Math.Min(entry.Amount + amount, 3 * restock);
+                }
                 else
                     inventory.Add(id, new VendingMachineInventoryEntry(type, id, restock));
+                // End of modified code
             }
         }
     }
