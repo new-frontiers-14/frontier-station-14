@@ -2,27 +2,20 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Server._NF.Contraband.Components;
 using Content.Server._NF.Pirate.Components;
-using Content.Server.Botany.Components;
-using Content.Server.Chat.V2;
 using Content.Server.Labels;
-using Content.Server.NameIdentifier;
 using Content.Server.Paper;
 using Content.Shared._NF.Pirate;
 using Content.Shared._NF.Pirate.Components;
 using Content.Shared._NF.Pirate.Prototypes;
 using Content.Shared._NF.Pirate.Events;
 using Content.Shared.Access.Components;
-using Content.Shared.Cargo;
-using Content.Shared.Cargo.Components;
-using Content.Shared.Cargo.Prototypes;
 using Content.Shared.Database;
 using Content.Shared.NameIdentifier;
-using Content.Shared.Stacks;
 using Content.Shared.Whitelist;
 using JetBrains.Annotations;
-using Robust.Server.Containers;
 using Robust.Shared.Containers;
 using Robust.Shared.Random;
+using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
 namespace Content.Server.Cargo.Systems; // Needs to collide with base namespace
@@ -34,6 +27,8 @@ public sealed partial class CargoSystem
 
     private EntityQuery<PirateBountyLabelComponent> _pirateBountyLabelQuery;
     [Dependency] private EntProtoIdWhitelistSystem _entProtoIdWhitelist = default!;
+
+    private readonly TimeSpan _redemptionDelay = TimeSpan.FromSeconds(2);
 
     private void InitializePirateBounty()
     {
@@ -372,11 +367,13 @@ public sealed partial class CargoSystem
     {
         var amount = 0;
 
+        // Component still cooling down.
+        if (component.LastRedeemAttempt + _redemptionDelay > _timing.CurTime)
+            return;
+
         EntityUid gridUid = Transform(uid).GridUid ?? EntityUid.Invalid;
         if (gridUid == EntityUid.Invalid)
-        {
             return;
-        }
 
         // 1. Separate out accepted crate and non-crate bounties.  Create a tracker for non-crate bounties.
         if (!TryComp<SectorPirateBountyDatabaseComponent>(_sectorService.GetServiceEntity(), out var bountyDb))
@@ -414,7 +411,6 @@ public sealed partial class CargoSystem
         // 2. Iterate over bounty pads, find all tagged, non-tagged items.
         foreach (var (palletUid, _) in GetContrabandPallets(gridUid))
         {
-            Log.Error($"SellPallets: checking pallet {palletUid}");
             foreach (var ent in _lookup.GetEntitiesIntersecting(palletUid,
                          LookupFlags.Dynamic | LookupFlags.Sundries | LookupFlags.Approximate))
             {
@@ -433,6 +429,7 @@ public sealed partial class CargoSystem
 
         // 4. When done, note all completed bounties.  Remove them from the list of accepted bounties, and spawn the rewards.
         bool bountiesRemoved = false;
+        string redeemedBounties = string.Empty;
         foreach (var (id, bounty) in bountySearchState.CrateBounties)
         {
             bool bountyMet = true;
@@ -450,6 +447,8 @@ public sealed partial class CargoSystem
             if (bountyMet)
             {
                 bountiesRemoved = true;
+                redeemedBounties = Loc.GetString("pirate-bounty-redemption-append", ("bounty", id), ("empty", string.IsNullOrEmpty(redeemedBounties) ? 0 : 1), ("prev", redeemedBounties));
+
                 TryRemovePirateBounty(_sectorService.GetServiceEntity(), id);
                 amount += prototype.Reward;
                 foreach (var entity in bounty.Entities)
@@ -476,6 +475,8 @@ public sealed partial class CargoSystem
             if (bountyMet)
             {
                 bountiesRemoved = true;
+                redeemedBounties = Loc.GetString("pirate-bounty-redemption-append", ("bounty", id), ("empty", string.IsNullOrEmpty(redeemedBounties) ? 0 : 1), ("prev", redeemedBounties));
+
                 TryRemovePirateBounty(_sectorService.GetServiceEntity(), id);
                 amount += prototype.Reward;
                 foreach (var entity in bounty.Entities)
@@ -490,10 +491,12 @@ public sealed partial class CargoSystem
             // TODO: play a sound here, ideally the "deposit money" chime used on ATMs
             _stack.SpawnMultiple("Doubloon", amount, Transform(uid).Coordinates);
             _audio.PlayPvs(component.AcceptSound, uid);
+            _popup.PopupEntity(Loc.GetString("pirate-bounty-redemption-success", ("bounties", redeemedBounties), ("amount", amount)), args.Actor);
         }
         else
         {
             _audio.PlayPvs(component.DenySound, uid);
+            _popup.PopupEntity(Loc.GetString("pirate-bounty-redemption-deny"), args.Actor);
         }
 
         // Bounties removed, restore database list
@@ -501,6 +504,7 @@ public sealed partial class CargoSystem
         {
             FillPirateBountyDatabase(_sectorService.GetServiceEntity());
         }
+        component.LastRedeemAttempt = _timing.CurTime;
     }
 
     class PirateBountyState

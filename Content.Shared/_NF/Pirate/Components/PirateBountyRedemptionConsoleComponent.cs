@@ -20,4 +20,9 @@ public sealed partial class PirateBountyRedemptionConsoleComponent : Component
     [DataField]
     public SoundSpecifier DenySound = new SoundPathSpecifier("/Audio/Effects/Cargo/buzz_two.ogg");
 
+    /// <summary>
+    /// The last time a bounty redemption was attemped.
+    /// </summary>
+    [DataField(serverOnly: true)]
+    public TimeSpan LastRedeemAttempt = TimeSpan.Zero;
 }
