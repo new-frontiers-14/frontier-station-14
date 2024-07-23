@@ -78,7 +78,7 @@ public sealed partial class CargoSystem
         {
             var chest = Spawn(component.BountyCrateId, Transform(uid).Coordinates);
             SetupPirateBountyChest(chest, bountyData, bountyPrototype);
-            _audio.PlayPvs(component.SummonChestSound, uid);
+            _audio.PlayPvs(component.SpawnChestSound, uid);
         }
         else
         {

@@ -42,7 +42,7 @@ public sealed partial class PirateBountyConsoleComponent : Component
     /// The sound made when bounty skipping is denied due to lacking access.
     /// </summary>
     [DataField]
-    public SoundSpecifier SummonChestSound = new SoundPathSpecifier("/Audio/Effects/Lightning/lightningbolt.ogg");
+    public SoundSpecifier SpawnChestSound = new SoundPathSpecifier("/Audio/Effects/Lightning/lightningbolt.ogg");
 
     /// <summary>
     /// The sound made when the bounty is skipped.
