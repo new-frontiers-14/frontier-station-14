@@ -7,9 +7,12 @@
   - type: TelecomExempt
   - type: RadioMicrophone
     broadcastChannel: Handheld
+    toggleOnInteract: false
+    frequency: 1330
   - type: RadioSpeaker
     channels:
     - Handheld
+    toggleOnInteract: false
   - type: Speech
     speechVerb: Robotic
   - type: Sprite
@@ -26,6 +29,12 @@
     - Radio
   - type: StaticPrice
     price: 55
+  - type: ActivatableUI # Corvax-Frontier
+    key: enum.HandheldRadioUiKey.Key # Corvax-Frontier
+  - type: UserInterface # Corvax-Frontier
+    interfaces: # Corvax-Frontier
+      - key: enum.HandheldRadioUiKey.Key # Corvax-Frontier
+        type: HandheldRadioBoundUserInterface # Corvax-Frontier
 
 - type: entity
   name: security radio

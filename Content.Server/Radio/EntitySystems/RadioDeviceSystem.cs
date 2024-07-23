@@ -48,6 +48,12 @@ public sealed class RadioDeviceSystem : EntitySystem
         SubscribeLocalEvent<IntercomComponent, ToggleIntercomMicMessage>(OnToggleIntercomMic);
         SubscribeLocalEvent<IntercomComponent, ToggleIntercomSpeakerMessage>(OnToggleIntercomSpeaker);
         SubscribeLocalEvent<IntercomComponent, SelectIntercomChannelMessage>(OnSelectIntercomChannel);
+        // Corvax-Frontier-Start
+        SubscribeLocalEvent<RadioMicrophoneComponent, BeforeActivatableUIOpenEvent>(OnBeforeHandheldRadioUiOpen);
+        SubscribeLocalEvent<RadioMicrophoneComponent, ToggleHandheldRadioMicMessage>(OnToggleHandheldRadioMic);
+        SubscribeLocalEvent<RadioMicrophoneComponent, ToggleHandheldRadioSpeakerMessage>(OnToggleHandheldRadioSpeaker);
+        SubscribeLocalEvent<RadioMicrophoneComponent, SelectHandheldRadioFrequencyMessage>(OnChangeHandheldRadioFrequency);
+        // Corvax-Frontier-End
     }
 
     public override void Update(float frameTime)
@@ -178,7 +184,7 @@ public sealed class RadioDeviceSystem : EntitySystem
 
         using (args.PushGroup(nameof(RadioMicrophoneComponent)))
         {
-            args.PushMarkup(Loc.GetString("handheld-radio-component-on-examine", ("frequency", proto.Frequency)));
+            args.PushMarkup(Loc.GetString("handheld-radio-component-on-examine", ("frequency", component.Frequency)));
             args.PushMarkup(Loc.GetString("handheld-radio-component-chennel-examine",
                 ("channel", proto.LocalizedName)));
         }
@@ -190,7 +196,7 @@ public sealed class RadioDeviceSystem : EntitySystem
             return; // no feedback loops please.
 
         if (_recentlySent.Add((args.Message, args.Source)))
-            _radio.SendRadioMessage(args.Source, args.Message, _protoMan.Index<RadioChannelPrototype>(component.BroadcastChannel), uid);
+            _radio.SendRadioMessage(args.Source, args.Message, _protoMan.Index<RadioChannelPrototype>(component.BroadcastChannel), uid, frequency: component.Frequency);
     }
 
     private void OnAttemptListen(EntityUid uid, RadioMicrophoneComponent component, ListenAttemptEvent args)
@@ -275,9 +281,61 @@ public sealed class RadioDeviceSystem : EntitySystem
         }
 
         if (TryComp<RadioMicrophoneComponent>(ent, out var mic))
+        {
             mic.BroadcastChannel = channel;
+            mic.Frequency = _radio.GetFrequency(uid, channel); // Corvax-Frontier
+        }
         if (TryComp<RadioSpeakerComponent>(ent, out var speaker))
             speaker.Channels = new(){ channel };
         Dirty(ent);
     }
+
+    // Corvax-Frontier-Start
+    #region Handheld Radio
+
+    private void OnBeforeHandheldRadioUiOpen(Entity<RadioMicrophoneComponent> microphone, ref BeforeActivatableUIOpenEvent args)
+    {
+        UpdateHandheldRadioUi(microphone);
+    }
+
+    private void OnToggleHandheldRadioMic(Entity<RadioMicrophoneComponent> microphone, ref ToggleHandheldRadioMicMessage args)
+    {
+        if (args.Session.AttachedEntity is not { } user)
+            return;
+
+        SetMicrophoneEnabled(microphone, user, args.Enabled, true);
+        UpdateHandheldRadioUi(microphone);
+    }
+
+    private void OnToggleHandheldRadioSpeaker(Entity<RadioMicrophoneComponent> microphone, ref ToggleHandheldRadioSpeakerMessage args)
+    {
+        if (args.Session.AttachedEntity is not { } user)
+            return;
+
+        SetSpeakerEnabled(microphone, user, args.Enabled, true);
+        UpdateHandheldRadioUi(microphone);
+    }
+
+    private void OnChangeHandheldRadioFrequency(Entity<RadioMicrophoneComponent> microphone, ref SelectHandheldRadioFrequencyMessage args)
+    {
+        if (args.Session.AttachedEntity is not { })
+            return;
+
+        microphone.Comp.Frequency = args.Frequency;
+        UpdateHandheldRadioUi(microphone);
+    }
+
+    private void UpdateHandheldRadioUi(Entity<RadioMicrophoneComponent> radio)
+    {
+        var speakerComp = CompOrNull<RadioSpeakerComponent>(radio);
+        var frequency = radio.Comp.Frequency;
+
+        var micEnabled = radio.Comp.Enabled;
+        var speakerEnabled = speakerComp?.Enabled ?? false;
+        var state = new HandheldRadioBoundUIState(micEnabled, speakerEnabled, frequency);
+        _ui.TrySetUiState(radio, HandheldRadioUiKey.Key, state);
+    }
+
+    #endregion
+    // Corvax-Frontier-End
 }
