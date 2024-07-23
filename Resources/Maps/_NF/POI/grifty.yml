@@ -1563,11 +1563,6 @@ entities:
       enabled: False
 - proto: BookshelfFilled
   entities:
-  - uid: 672
-    components:
-    - type: Transform
-      pos: 9.5,4.5
-      parent: 1
   - uid: 674
     components:
     - type: Transform
@@ -4343,7 +4338,7 @@ entities:
       pos: -8.5,7.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -5460.6416
+      secondsUntilStateChange: -5908.0503
       state: Opening
 - proto: Lamp
   entities:
@@ -4471,8 +4466,8 @@ entities:
         immutable: False
         temperature: 293.1497
         moles:
-        - 1.8856695
-        - 7.0937095
+        - 1.8968438
+        - 7.1357465
         - 0
         - 0
         - 0
@@ -4489,13 +4484,13 @@ entities:
           showEnts: False
           occludes: True
           ents:
-          - 519
-          - 518
-          - 517
-          - 516
-          - 515
-          - 514
           - 513
+          - 514
+          - 515
+          - 516
+          - 517
+          - 518
+          - 519
         paper_label: !type:ContainerSlot
           showEnts: False
           occludes: True
@@ -4721,7 +4716,7 @@ entities:
       parent: 1
 - proto: PosterLegitSMFires
   entities:
-  - uid: 562
+  - uid: 6
     components:
     - type: Transform
       pos: -5.5,7.5
@@ -5486,15 +5481,16 @@ entities:
       parent: 1
 - proto: SpawnMobArgocyteSmall
   entities:
+  - uid: 507
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -0.5,3.5
+      parent: 1
   - uid: 682
     components:
     - type: Transform
       pos: 6.5,4.5
-      parent: 1
-  - uid: 683
-    components:
-    - type: Transform
-      pos: -0.5,3.5
       parent: 1
   - uid: 684
     components:
@@ -5642,6 +5638,13 @@ entities:
     components:
     - type: Transform
       pos: -1.5,3.5
+      parent: 1
+- proto: VendingMachineFuelVend
+  entities:
+  - uid: 5
+    components:
+    - type: Transform
+      pos: 9.5,4.5
       parent: 1
 - proto: VendingMachineRestockBooze
   entities:
@@ -6013,6 +6016,31 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -4.5,-6.5
       parent: 1
+- proto: WallReinforcedDiagonal
+  entities:
+  - uid: 508
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 10.5,0.5
+      parent: 1
+  - uid: 562
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 10.5,7.5
+      parent: 1
+  - uid: 605
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -10.5,0.5
+      parent: 1
+  - uid: 634
+    components:
+    - type: Transform
+      pos: -10.5,7.5
+      parent: 1
 - proto: WallSolid
   entities:
   - uid: 67
@@ -6111,31 +6139,6 @@ entities:
     components:
     - type: Transform
       pos: -7.5,5.5
-      parent: 1
-- proto: WallSolidDiagonal
-  entities:
-  - uid: 5
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 10.5,0.5
-      parent: 1
-  - uid: 6
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 10.5,7.5
-      parent: 1
-  - uid: 791
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -10.5,0.5
-      parent: 1
-  - uid: 792
-    components:
-    - type: Transform
-      pos: -10.5,7.5
       parent: 1
 - proto: WarningAir
   entities:
