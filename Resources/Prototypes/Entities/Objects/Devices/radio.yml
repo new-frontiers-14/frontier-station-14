@@ -7,12 +7,12 @@
   - type: TelecomExempt
   - type: RadioMicrophone
     broadcastChannel: Handheld
-    toggleOnInteract: false
-    frequency: 1330
+    toggleOnInteract: false # Nuclear-14
+    frequency: 1330 # Nuclear-14
   - type: RadioSpeaker
     channels:
     - Handheld
-    toggleOnInteract: false
+    toggleOnInteract: false # Nuclear-14
   - type: Speech
     speechVerb: Robotic
   - type: Sprite
@@ -29,12 +29,14 @@
     - Radio
   - type: StaticPrice
     price: 55
-  - type: ActivatableUI # Corvax-Frontier
-    key: enum.HandheldRadioUiKey.Key # Corvax-Frontier
-  - type: UserInterface # Corvax-Frontier
-    interfaces: # Corvax-Frontier
-      - key: enum.HandheldRadioUiKey.Key # Corvax-Frontier
-        type: HandheldRadioBoundUserInterface # Corvax-Frontier
+  # Nuclear-14-Start
+  - type: ActivatableUI
+    key: enum.HandheldRadioUiKey.Key
+  - type: UserInterface
+    interfaces:
+      - key: enum.HandheldRadioUiKey.Key
+        type: HandheldRadioBoundUserInterface
+  # Nuclear-14-End
 
 - type: entity
   name: security radio

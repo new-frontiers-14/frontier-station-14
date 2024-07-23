@@ -5,9 +5,11 @@ handheld-radio-component-off-state = off
 handheld-radio-component-channel-set = Channel set to {$channel}
 handheld-radio-component-chennel-examine = The current channel is {$channel}.
 
+# Nuclear-14-Start
 handheld-radio-menu-title = Handheld radio.
 handheld-radio-current-text-frequency = Broadcast frequency
 handheld-radio-button-text-mic = Mic.
 handheld-radio-button-text-speaker = Speak
 handheld-radio-flavor-text-left = Wiretapping of closed frequencies
                                 is punishable by law.
+# Nuclear-14-End

@@ -9,7 +9,7 @@ using Content.Shared.Radio;
 using Content.Shared.Radio.Components;
 using Robust.Server.GameObjects;
 using Content.Shared.Speech;
-using Content.Shared.Ghost; // Corvax-Frontier
+using Content.Shared.Ghost; // Nuclear-14
 using Robust.Shared.Map;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
@@ -56,6 +56,7 @@ public sealed class RadioSystem : EntitySystem
         }
     }
 
+    //Nuclear-14
     /// <summary>
     /// Gets the message frequency, if there is no such frequency, returns the standard channel frequency.
     /// </summary>
@@ -86,7 +87,7 @@ public sealed class RadioSystem : EntitySystem
     /// </summary>
     /// <param name="messageSource">Entity that spoke the message</param>
     /// <param name="radioSource">Entity that picked up the message and will send it, e.g. headset</param>
-    public void SendRadioMessage(EntityUid messageSource, string message, RadioChannelPrototype channel, EntityUid radioSource, int? frequency = null, bool escapeMarkup = true) // Corvax-Frontier: add frequency
+    public void SendRadioMessage(EntityUid messageSource, string message, RadioChannelPrototype channel, EntityUid radioSource, int? frequency = null, bool escapeMarkup = true) // Nuclear-14: add frequency
     {
         // TODO if radios ever garble / modify messages, feedback-prevention needs to be handled better than this.
         if (!_messages.Add(message))
@@ -160,8 +161,10 @@ public sealed class RadioSystem : EntitySystem
 
         var radioQuery = EntityQueryEnumerator<ActiveRadioComponent, TransformComponent>();
 
+        /*Nuclear-14-Start*/
         if (frequency == null)
             frequency = GetFrequency(messageSource, channel);
+        /*Nuclear-14-End*/
 
         while (canSend && radioQuery.MoveNext(out var receiver, out var radio, out var transform))
         {
@@ -172,7 +175,7 @@ public sealed class RadioSystem : EntitySystem
                     continue;
             }
 
-            // Corvax-Frontier
+            // Nuclear-14
             if (!HasComp<GhostComponent>(receiver) && GetFrequency(receiver, channel) != frequency)
                 continue;
 

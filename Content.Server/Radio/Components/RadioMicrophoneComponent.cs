@@ -41,7 +41,7 @@ public sealed partial class RadioMicrophoneComponent : Component
     [DataField("unobstructedRequired")]
     public bool UnobstructedRequired = false;
 
-    // Corvax-Frontier
+    // Nuclear-14
     /// <summary>
     // The radio frequency on which the message will be transmitted
     /// </summary>
