@@ -1424,7 +1424,7 @@ namespace Content.Client.Stylesheets
                     .Prop(Control.StylePropertyModulateSelf, Color.FromHex("#757575")),
 
                 Element<TextureRect>().Class("PirateLogoDark") // Frontier
-                    .Prop(TextureRect.StylePropertyTexture, resCache.GetTexture("/Textures/_NF/Interface/Nano/piratelogo.svg.png")) // Frontier
+                    .Prop(TextureRect.StylePropertyTexture, resCache.GetTexture("/Textures/_NF/Interface/Pirate/piratelogo.png")) // Frontier
                     .Prop(Control.StylePropertyModulateSelf, Color.FromHex("#757575")), // Frontier
 
                 Element<Label>().Class("WindowFooterText")
