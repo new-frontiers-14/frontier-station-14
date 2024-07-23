@@ -17,7 +17,8 @@ using Robust.Shared.Containers;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
-using Content.Server.Materials.Components; // Frontier
+using Content.Server.Materials.Components;
+using System.Security.AccessControl; // Frontier
 
 namespace Content.Server.Cargo.Systems;
 
@@ -380,18 +381,29 @@ public sealed class PricingSystem : EntitySystem
         return price;
     }
 
+    // New Frontiers - Stack Vendor Prices - Gets overwrite values for vendor prices.
+    // This code is licensed under AGPLv3. See AGPLv3.txt
     private double GetVendPrice(EntityPrototype prototype)
     {
         var price = 0.0;
 
-        if (prototype.Components.TryGetValue(_factory.GetComponentName(typeof(StaticPriceComponent)), out var vendProto))
+        // Prefer static price to stack price component, take the first positive value read.
+        if (prototype.Components.TryGetValue(_factory.GetComponentName(typeof(StaticPriceComponent)), out var staticProto))
         {
-            var vendPrice = (StaticPriceComponent) vendProto.Component;
-            price += vendPrice.VendPrice;
+            var staticComp = (StaticPriceComponent) staticProto.Component;
+            if (staticComp.VendPrice > 0.0)
+                price += staticComp.VendPrice;
+        }
+        if (price == 0.0 && prototype.Components.TryGetValue(_factory.GetComponentName(typeof(StackPriceComponent)), out var stackProto))
+        {
+            var stackComp = (StackPriceComponent) stackProto.Component;
+            if (stackComp.VendPrice > 0.0)
+                price += stackComp.VendPrice;
         }
 
         return price;
     }
+    // End of modified code
 
     /// <summary>
     /// Appraises a grid, this is mainly meant to be used by yarrs.
