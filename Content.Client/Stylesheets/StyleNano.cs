@@ -1423,6 +1423,10 @@ namespace Content.Client.Stylesheets
                     .Prop(TextureRect.StylePropertyTexture, resCache.GetTexture("/Textures/Interface/Nano/ntlogo.svg.png"))
                     .Prop(Control.StylePropertyModulateSelf, Color.FromHex("#757575")),
 
+                Element<TextureRect>().Class("PirateLogoDark") // Frontier
+                    .Prop(TextureRect.StylePropertyTexture, resCache.GetTexture("/Textures/_NF/Interface/Pirate/piratelogo.png")) // Frontier
+                    .Prop(Control.StylePropertyModulateSelf, Color.FromHex("#757575")), // Frontier
+
                 Element<Label>().Class("WindowFooterText")
                     .Prop(Label.StylePropertyFont, notoSans8)
                     .Prop(Label.StylePropertyFontColor, Color.FromHex("#757575")),
