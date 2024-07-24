@@ -195,6 +195,7 @@ public sealed class GeneratorSystem : SharedGeneratorSystem
         TryUpdateGeneratorRadiation(uid, component.On, component); // Frontier
     }
 
+    // Frontier: radioactive generators
     public void TryUpdateGeneratorRadiation(EntityUid uid, bool on, FuelGeneratorComponent component) // Frontier
     {
         if (!TryComp<RadiationSourceComponent>(uid, out var radiation)) // Frontier
@@ -204,16 +205,17 @@ public sealed class GeneratorSystem : SharedGeneratorSystem
 
         if (on)
         {
+            // Radioactive generator: light, radiation, and sound should all share the same bounds.
             float radiationIntensity = component.RadiationIntensity * component.TargetPower;
             float radiationSlope = radiationIntensity / 3;
             float visualRadius = 1f + (component.RadiationIntensity * component.TargetPower / 4);
 
             radiation.Intensity = radiationIntensity;
-            radiation.Slope = Math.Max(0.5f, radiationSlope);
+            radiation.Slope = Math.Max(0.5f, radiationSlope); // Slope should always be at least 0.5 (typical for bananium)
 
             EnsureComp<PointLightComponent>(uid, out var light);
             _pointLight.SetColor(uid, component.RadiationColor, light); // Add glow - on
-            _pointLight.SetRadius(uid, Math.Min(visualRadius, 3.5f));
+            _pointLight.SetRadius(uid, Math.Min(visualRadius, 3.5f)); // Radius should be capped at 3.5 m
             _pointLight.SetEnergy(uid, component.RadiationIntensity * component.TargetPower / 2);
 
             _ambientSoundSystem.SetAmbience(uid, true);
@@ -225,6 +227,7 @@ public sealed class GeneratorSystem : SharedGeneratorSystem
             _ambientSoundSystem.SetAmbience(uid, false);
         }
     }
+    // End Frontier
 
     public void SetFuelGeneratorOn(EntityUid uid, bool on, FuelGeneratorComponent? generator = null)
     {
