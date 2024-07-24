@@ -1,47 +1,16 @@
 - type: entity
   id: ComputerBankATMBase
+  parent: BaseComputer
   abstract: true
-  placement:
-    mode: SnapgridCenter
   components:
-  - type: GenericVisualizer
-    visuals:
-      enum.ComputerVisuals.Powered:
-        computerLayerScreen:
-          True: { visible: true, shader: unshaded }
-          False: { visible: false }
-        computerLayerKeys:
-          True: { visible: true, shader: unshaded }
-          False: { visible: true, shader: shaded }
-  - type: MeleeSound
-    soundGroups:
-      Brute:
-        collection: MetalGlassBreak
-  - type: Computer
-  - type: ApcPowerReceiver
-    powerLoad: 200
-  - type: ExtensionCableReceiver
   - type: ActivatableUIRequiresPower
   - type: ActivatableUI
     singleUser: true
-  - type: LitOnPowered
-  - type: PointLight
-    radius: 1.5
-    energy: 1.6
-    color: "#b89f25"
-    enabled: false
-    mask: /Textures/Effects/LightMasks/cone.png
-    autoRot: true
-    offset: "0, 0.4" # shine from the top, not bottom of the computer
-    castShadows: false
-  - type: EmitSoundOnUIOpen
-    sound:
-      collection: Keyboard
-  - type: Appearance
 
 - type: entity
-  name: bank atm
+  name: bank ATM
   id: ComputerBankATMDeposit
+  parent: ComputerBankATMBase
   description: Used to deposit and withdraw funds from a personal bank account.
   abstract: true
   components:
@@ -67,8 +36,9 @@
       bank-ATM-cashSlot: !type:ContainerSlot {}
 
 - type: entity
-  name: bank atm withdraw-only
+  name: withdraw-only bank ATM
   id: ComputerBankATMWithdraw
+  parent: ComputerBankATMBase
   description: Used to withdraw funds from a personal bank account, unable to deposit.
   abstract: true
   components:
@@ -88,12 +58,10 @@
         type: WithdrawBankATMMenuBoundUserInterface
 
 - type: entity
-  parent: [ComputerBankATMBase, ComputerBankATMDeposit, BaseStructureDisableToolUse, BaseStructureIndestructible, BaseStructureComputer]
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerBankATMDeposit]
   id: ComputerBankATM
   components:
   - type: Sprite
-    netsync: false
-    noRot: true
     sprite: _NF/Structures/Machines/atm/atm.rsi
     layers:
     - map: ["computerLayerBody"]
@@ -102,12 +70,10 @@
       state: unshaded
 
 - type: entity
-  parent: [ComputerBankATMBase, ComputerBankATMWithdraw, BaseStructureDisableToolUse, BaseStructureIndestructible, BaseStructureComputer]
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerBankATMWithdraw]
   id: ComputerWithdrawBankATM
   components:
   - type: Sprite
-    netsync: false
-    noRot: true
     sprite: _NF/Structures/Machines/atm/atm.rsi
     layers:
     - map: ["computerLayerBody"]
@@ -117,12 +83,10 @@
 
 - type: entity
   suffix: Wallmount
-  parent: [ComputerBankATMBase, ComputerBankATMDeposit, BaseStructureDisableToolUse, BaseStructureIndestructible, BaseStructureWallmount, BaseStructureComputer]
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseStructureWallmount, ComputerBankATMDeposit]
   id: ComputerWallmountBankATM
   components:
   - type: Sprite
-    netsync: false
-    noRot: false
     sprite: _NF/Structures/Machines/atm/wall_atm.rsi
     layers:
       - map: ["computerLayerBody"]
@@ -132,12 +96,10 @@
 
 - type: entity
   suffix: Wallmount
-  parent: [ComputerBankATMBase, ComputerBankATMWithdraw, BaseStructureDisableToolUse, BaseStructureIndestructible, BaseStructureWallmount, BaseStructureComputer]
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseStructureWallmount, ComputerBankATMWithdraw]
   id: ComputerWallmountWithdrawBankATM
   components:
   - type: Sprite
-    netsync: false
-    noRot: false
     sprite: _NF/Structures/Machines/atm/wall_atm.rsi
     layers:
       - map: ["computerLayerBody"]
@@ -147,13 +109,11 @@
 
 - type: entity
   suffix: BlackMarket
-  parent: [ComputerBankATMBase, ComputerBankATMDeposit, BaseStructureDisableToolUse, BaseStructureDestructible, BaseStructureComputer]
+  parent: [BaseStructureDisableToolUse, BaseStructureDestructible, ComputerBankATMDeposit]
   id: ComputerBlackMarketBankATM
   description: Has some sketchy looking modifications and a sticker that says DEPOSIT FEE 30%
   components:
   - type: Sprite
-    netsync: false
-    noRot: true
     sprite: _NF/Structures/Machines/atm/illegal_atm.rsi
     layers:
     - map: ["computerLayerBody"]
@@ -169,7 +129,7 @@
 
 - type: entity
   suffix: Wallmount, BlackMarket
-  parent: [ComputerBankATMBase, ComputerBankATMDeposit, BaseStructureDisableToolUse, BaseStructureDestructible, BaseStructureWallmount, BaseStructureComputer]
+  parent: [BaseStructureDisableToolUse, BaseStructureDestructible, BaseStructureWallmount, ComputerBankATMDeposit]
   id: ComputerWallmountBlackMarketBankATM
   description: Has some sketchy looking modifications and a sticker that says DEPOSIT FEE 30%
   components:
@@ -191,13 +151,11 @@
 
 - type: entity
   name: station administration console
-  parent: [ComputerBankATMBase, BaseStructureDisableToolUse, BaseStructureIndestructible, BaseStructureAccessReaderImmuneToEmag, BaseStructureComputer]
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseStructureAccessReaderImmuneToEmag, ComputerBankATMBase]
   id: StationAdminBankATM
   description: Used to pay out from the station's bank account
   components:
   - type: Sprite
-    netsync: false
-    noRot: true
     sprite: Structures/Machines/computers.rsi
     layers:
     - map: ["computerLayerBody"]
