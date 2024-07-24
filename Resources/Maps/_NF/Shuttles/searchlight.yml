@@ -252,31 +252,31 @@ entities:
             0: 275
           0,-1:
             0: 13079
-            1: 2048
+            2: 2048
           -1,0:
             0: 8
           0,1:
-            2: 16
+            1: 16
           1,0:
-            1: 13107
+            2: 13107
           1,-1:
-            1: 14080
+            2: 14080
             0: 3
           1,1:
-            1: 4371
+            2: 4371
           -1,-3:
             0: 60552
-            1: 2
+            2: 2
           -1,-2:
             0: 52974
           -1,-1:
-            1: 1
+            2: 1
             0: 34828
           -1,-4:
             0: 32768
           0,-3:
             0: 29475
-            1: 8
+            2: 8
             3: 34816
           0,-2:
             0: 32755
@@ -284,7 +284,7 @@ entities:
             0: 8192
           1,-3:
             3: 4096
-            1: 16384
+            2: 16384
           1,-2:
             0: 13104
         uniqueMixes:
@@ -304,7 +304,7 @@ entities:
           - 0
           - 0
         - volume: 2500
-          immutable: True
+          temperature: 293.15
           moles:
           - 0
           - 0
@@ -319,7 +319,7 @@ entities:
           - 0
           - 0
         - volume: 2500
-          temperature: 293.15
+          immutable: True
           moles:
           - 0
           - 0
@@ -662,6 +662,13 @@ entities:
     - type: DeviceLinkSink
       links:
       - 191
+- proto: BoxFolderMedicalDoctor
+  entities:
+  - uid: 224
+    components:
+    - type: Transform
+      pos: -0.7187424,0.32356358
+      parent: 1
 - proto: CableApcExtension
   entities:
   - uid: 132
@@ -1243,7 +1250,7 @@ entities:
       pos: 0.5,-0.5
       parent: 1
     - type: AtmosPipeColor
-      color: '#0000CCFF'
+      color: '#0055CCFF'
   - uid: 232
     components:
     - type: Transform
@@ -1261,7 +1268,7 @@ entities:
       pos: -0.5,-5.5
       parent: 1
     - type: AtmosPipeColor
-      color: '#0000CCFF'
+      color: '#0055CCFF'
   - uid: 226
     components:
     - type: Transform
@@ -1269,7 +1276,7 @@ entities:
       pos: 0.5,-4.5
       parent: 1
     - type: AtmosPipeColor
-      color: '#0000CCFF'
+      color: '#0055CCFF'
   - uid: 227
     components:
     - type: Transform
@@ -1277,7 +1284,7 @@ entities:
       pos: 0.5,-3.5
       parent: 1
     - type: AtmosPipeColor
-      color: '#0000CCFF'
+      color: '#0055CCFF'
   - uid: 228
     components:
     - type: Transform
@@ -1285,7 +1292,7 @@ entities:
       pos: 0.5,-2.5
       parent: 1
     - type: AtmosPipeColor
-      color: '#0000CCFF'
+      color: '#0055CCFF'
   - uid: 229
     components:
     - type: Transform
@@ -1293,7 +1300,7 @@ entities:
       pos: 0.5,-1.5
       parent: 1
     - type: AtmosPipeColor
-      color: '#0000CCFF'
+      color: '#0055CCFF'
   - uid: 234
     components:
     - type: Transform
@@ -1372,7 +1379,7 @@ entities:
       pos: 0.5,-7.5
       parent: 1
     - type: AtmosPipeColor
-      color: '#0000CCFF'
+      color: '#0055CCFF'
   - uid: 259
     components:
     - type: Transform
@@ -1393,7 +1400,7 @@ entities:
       pos: 0.5,-6.5
       parent: 1
     - type: AtmosPipeColor
-      color: '#0000CCFF'
+      color: '#0055CCFF'
 - proto: GasPipeTJunction
   entities:
   - uid: 144
@@ -1419,7 +1426,7 @@ entities:
       pos: 0.5,-5.5
       parent: 1
     - type: AtmosPipeColor
-      color: '#0000CCFF'
+      color: '#0055CCFF'
   - uid: 231
     components:
     - type: Transform
@@ -1453,22 +1460,20 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#0000CCFF'
-- proto: GasPressurePump
+- proto: GasPressurePumpOn
   entities:
   - uid: 35
     components:
-    - type: MetaData
-      name: distribution pump
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -1.5,-5.5
       parent: 1
     - type: AtmosPipeColor
-      color: '#0000CCFF'
+      color: '#0055CCFF'
+- proto: GasPressurePumpOnMax
+  entities:
   - uid: 179
     components:
-    - type: MetaData
-      name: waste loop pump
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 4.5,-3.5
@@ -1487,7 +1492,7 @@ entities:
       configurators:
       - invalid
     - type: AtmosPipeColor
-      color: '#0000CCFF'
+      color: '#0055CCFF'
   - uid: 325
     components:
     - type: Transform
@@ -1500,7 +1505,7 @@ entities:
       deviceLists:
       - 270
     - type: AtmosPipeColor
-      color: '#0000CCFF'
+      color: '#0055CCFF'
 - proto: GasVentScrubber
   entities:
   - uid: 180
@@ -1709,8 +1714,6 @@ entities:
     - type: Transform
       pos: 1.5,-1.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
 - proto: HandheldHealthAnalyzer
   entities:
   - uid: 257
@@ -2200,46 +2203,34 @@ entities:
       rot: 3.141592653589793 rad
       pos: -2.5,-11.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
   - uid: 51
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 3.5,-11.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
   - uid: 99
     components:
     - type: Transform
       pos: 3.5,-1.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
   - uid: 100
     components:
     - type: Transform
       pos: 6.5,-1.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
   - uid: 115
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 6.5,-8.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
   - uid: 118
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -3.5,-3.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
 - proto: TintedWindow
   entities:
   - uid: 200
