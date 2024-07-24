@@ -490,7 +490,7 @@ entities:
       fixtures: {}
 - proto: BenchSofaCorpLeft
   entities:
-  - uid: 278
+  - uid: 279
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
@@ -905,24 +905,23 @@ entities:
     - type: Transform
       pos: 3.5,0.5
       parent: 1
-  - uid: 277
+  - uid: 278
     components:
     - type: Transform
       pos: 0.5,9.5
       parent: 1
 - proto: CurtainsOrangeOpen
   entities:
-  - uid: 138
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 1.5,3.5
-      parent: 1
   - uid: 139
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 2.5,3.5
+      parent: 1
+  - uid: 198
+    components:
+    - type: Transform
+      pos: 1.5,3.5
       parent: 1
 - proto: CurtainsRedOpen
   entities:
@@ -1039,18 +1038,22 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#990000FF'
-  - uid: 271
+  - uid: 272
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 0.5,4.5
       parent: 1
-  - uid: 272
+    - type: AtmosPipeColor
+      color: '#990000FF'
+  - uid: 276
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 0.5,3.5
       parent: 1
+    - type: AtmosPipeColor
+      color: '#990000FF'
 - proto: GasPipeStraight
   entities:
   - uid: 106
@@ -1081,6 +1084,8 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 1.5,4.5
       parent: 1
+    - type: AtmosPipeColor
+      color: '#990000FF'
   - uid: 197
     components:
     - type: Transform
@@ -1088,12 +1093,6 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
-  - uid: 198
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -0.5,2.5
-      parent: 1
   - uid: 211
     components:
     - type: Transform
@@ -1122,8 +1121,18 @@ entities:
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
+      pos: -0.5,2.5
+      parent: 1
+    - type: AtmosPipeColor
+      color: '#0055CCFF'
+  - uid: 271
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
       pos: 0.5,2.5
       parent: 1
+    - type: AtmosPipeColor
+      color: '#0055CCFF'
 - proto: GasPipeTJunction
   entities:
   - uid: 105
@@ -1149,11 +1158,13 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#990000FF'
-  - uid: 123
+  - uid: 135
     components:
     - type: Transform
       pos: 2.5,4.5
       parent: 1
+    - type: AtmosPipeColor
+      color: '#990000FF'
 - proto: GasPort
   entities:
   - uid: 101
@@ -1180,12 +1191,14 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
-  - uid: 137
+  - uid: 138
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -1.5,2.5
       parent: 1
+    - type: AtmosPipeColor
+      color: '#0055CCFF'
   - uid: 196
     components:
     - type: Transform
@@ -1211,12 +1224,14 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#990000FF'
-  - uid: 276
+  - uid: 277
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -0.5,3.5
       parent: 1
+    - type: AtmosPipeColor
+      color: '#990000FF'
 - proto: GrassBattlemap
   entities:
   - uid: 231
@@ -1631,7 +1646,7 @@ entities:
       parent: 1
 - proto: SmallGyroscope
   entities:
-  - uid: 135
+  - uid: 137
     components:
     - type: Transform
       pos: 3.5,-1.5
@@ -1642,6 +1657,18 @@ entities:
     components:
     - type: Transform
       pos: 2.5,1.5
+      parent: 1
+- proto: StairWood
+  entities:
+  - uid: 123
+    components:
+    - type: Transform
+      pos: 1.5,4.5
+      parent: 1
+  - uid: 280
+    components:
+    - type: Transform
+      pos: 2.5,4.5
       parent: 1
 - proto: StoolBar
   entities:
