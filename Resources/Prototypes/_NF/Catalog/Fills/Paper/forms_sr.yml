@@ -24,6 +24,7 @@
     - id: PaperWrittenFrontierFormShuttleTitleChange
     - id: PaperWrittenFrontierFormAuthorization
     - id: PaperWrittenFrontierFormShuttleDerelict
+    - id: PaperWrittenFrontierFormContrabandAmnesty
     - id: PaperWrittenFrontierFormContrabandTurnover
     - id: PaperWrittenFrontierFormContrabandPermit
     - id: Paper
@@ -40,26 +41,25 @@
   components:
   - type: Paper
     content: |2
-        [color=#2e9935ff]◥[bold]N[/bold]◣ [bold]Frontier Outpost Command[/bold][/color]
-        [color=#2e9935ff]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
-        [head=2]Employment Contract[/head]
+      [color=#2e9935ff]◥[bold]N[/bold]◣ [bold]Frontier Outpost Command[/bold][/color]
+      [color=#2e9935ff]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
+      [head=2]Employment Contract[/head]
+
+      [bold]Name:[/bold]
+      [bold]Species:[/bold]
+      [bold]Position Title:[/bold]
+      [bold]Position Responsibilities:[/bold]
+          [bullet/]
+          [bullet/]
+          [bullet/]
+
+      [bold]Hourly Wage:[/bold]
+
+      [bold]Shift Time:[/bold]
 
 
-        [bold]Name:[/bold]
-        [bold]Species:[/bold]
-        [bold]Position Title:[/bold]
-        [bold]Position Responsibilities:[/bold]
-        [bullet/]
-        [bullet/]
-        [bullet/]
 
-        [bold]Hourly Wage:[/bold]
-
-        [bold]Shift Time:[/bold]
-
-
-
-        [color=#AAAAAA]This Form is void without the signatures of both Parties and a stamp of Frontier Command (Sheriff or Station Representative)[/color]
+      [color=#AAAAAA]This Form is void without the signatures of both Parties and a stamp of Frontier Command (Sheriff or Station Representative)[/color]
 
 - type: entity
   id: PaperWrittenFrontierFormEmployeePayHistory
@@ -69,25 +69,24 @@
   components:
   - type: Paper
     content: |2
-        [color=#2e9935ff]◥[bold]N[/bold]◣ [bold]Frontier Outpost Command[/bold][/color]
-        [color=#2e9935ff]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
-        [head=2]Employee Pay History[/head]
+      [color=#2e9935ff]◥[bold]N[/bold]◣ [bold]Frontier Outpost Command[/bold][/color]
+      [color=#2e9935ff]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
+      [head=2]Employee Pay History[/head]
+
+      [bold]Name:[/bold]
+      [bold]Position Title:[/bold]
+      [bold]Hourly Wage:[/bold]
+      [bold]Pay history (Shift time / Wage recieved):[/bold]
+          [bullet/]
+          [bullet/]
+          [bullet/]
+          [bullet/]
+          [bullet/]
+          [bullet/]
 
 
-        [bold]Name:[/bold]
-        [bold]Position Title:[/bold]
-        [bold]Hourly Wage:[/bold]
-        [bold]Pay history (Shift time / Wage recieved):[/bold]
-        [bullet/]
-        [bullet/]
-        [bullet/]
-        [bullet/]
-        [bullet/]
-        [bullet/]
 
-
-
-        [color=#AAAAAA]This Form is void without the signature and stamp of Frontier Command (Sheriff or Station Representative)[/color]
+      [color=#AAAAAA]This Form is void without the signature and stamp of Frontier Command (Sheriff or Station Representative)[/color]
 
 - type: entity # Based on form made by Willzile1 (Jon-Gah)
   id: PaperWrittenFrontierFormFundRequisition
@@ -97,19 +96,18 @@
   components:
   - type: Paper
     content: |2
-        [color=#2e9935ff]◥[bold]N[/bold]◣ [bold]Frontier Outpost Command[/bold][/color]
-        [color=#2e9935ff]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
-        [head=2]Fund Requisition[/head]
+      [color=#2e9935ff]◥[bold]N[/bold]◣ [bold]Frontier Outpost Command[/bold][/color]
+      [color=#2e9935ff]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
+      [head=2]Fund Requisition[/head]
+
+      [bold]Name:[/bold] 
+      [bold]Amount:[/bold] 
+      [bold]Reason:[/bold] 
+      [bold]Shift Time:[/bold] 
 
 
-        [bold]Name:[/bold] 
-        [bold]Amount:[/bold] 
-        [bold]Reason:[/bold] 
-        [bold]Shift Time:[/bold] 
 
-
-
-        [color=#AAAAAA]This Form is void without the signature and stamp of Frontier Command (Sheriff or Station Representative)[/color]
+      [color=#AAAAAA]This Form is void without the signature and stamp of Frontier Command (Sheriff or Station Representative)[/color]
 
 - type: entity # Based on form made by Starly (Shaw Clifflower)
   id: PaperWrittenFrontierFormAuthorization
@@ -119,34 +117,35 @@
   components:
   - type: Paper
     content: |2
-        [color=#2e9935ff]◥[bold]N[/bold]◣ [bold]Frontier Outpost Command[/bold][/color]
-        [color=#2e9935ff]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
-        [head=2]Authorization for Bluespace Threats[/head]
+      [color=#2e9935ff]◥[bold]N[/bold]◣ [bold]Frontier Outpost Command[/bold][/color]
+      [color=#2e9935ff]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
+      [head=2]Authorization for Bluespace Threats[/head]
 
+      [bold]Vessel Captain:[/bold]
+      [bold]Vessel IFF:[/bold]
+      [bold]Shift Time:[/bold]
 
-        [bold]Vessel Captain:[/bold]
-        [bold]Vessel IFF:[/bold]
-        [bold]Shift Time:[/bold]
+      [bold]Issuing Frontier Command:[/bold]
+          [bullet]XXXXXXXX, Station Representative
+          [bullet]XXXXXXXX, Sheriff
 
-        Issuing Frontier Command:
-        [bullet]XXXXXXXX, Station Representative
-        [bullet]XXXXXXXX, Sheriff
+      This document authorizes the above vessel and its captain to assist and cooperate with the NFSD and Frontier authorities in neutralizing hostile bluespace threats to Frontier. These include, but are not limited to:
+          [bullet] Cultist vessels
+          [bullet] Syndicate vessels
+          [bullet] Wizard Federation vessels
+          [bullet] Arcadia Industries vessels
 
-        This document authorizes the above vessel and its captain to assist and cooperate with NFSD and Frontier authorities in neutralizing hostile bluespace threats to Frontier. These include, but are not limited to:
-        [bullet] Cultist vessels
-        [bullet] Syndicate vessels
-        [bullet] Wizard Federation vessels
-        [bullet] Arcadia Industries vessels
+      This document does NOT deputize the authorized party. The authorized party is not granted special privileges to arrest, detain, and prosecute individuals associated with Nanotrasen.
 
-        This document does NOT deputize the authorized party. The authorized party is not granted special privileges to arrest, detain, and prosecute individuals associated with Nanotrasen. [bold]Any contraband seized during operations aboard hostile vessels must be surrendered, either to the NFSD or the Station Representative, for a cash bounty. Failure to surrender contraband will lead to the forfeiture of this agreement, and the authorized party may be liable for criminal charges.[/bold]
+      [bold]Any contraband seized during operations aboard hostile vessels must be surrendered, either to the NFSD or the Station Representative, for a cash bounty. Failure to surrender contraband will lead to the forfeiture of this agreement, and the authorized party may be liable for criminal charges.[/bold]
         
-        The authorized party is to keep a copy of this document for inspection. The authorized party is expected to maintain contact with NFSD command and/or the Station Representative to minimize casualties.
+      The authorized party is to keep a copy of this document for inspection. The authorized party is expected to maintain contact with NFSD command and/or the Station Representative to minimize casualties.
 
-        Before engaging with hostile vessels, the authorized party is expected to follow any instructions given by the NFSD for staging or other preparation prior to boarding.
+      Before engaging with hostile vessels, the authorized party is expected to follow any instructions given by the NFSD for staging or other preparation prior to boarding.
 
 
 
-        [color=#AAAAAA]This Form is void without the signatures of both Parties and a stamp of Frontier Command (Sheriff or Station Representative)[/color]
+      [color=#AAAAAA]This Form is void without the signatures of both Parties and a stamp of Frontier Command (Sheriff or Station Representative)[/color]
 
 - type: entity # Based on form made by Willzile1 (Jon-Gah)
   id: PaperWrittenFrontierFormShuttleTitleChange
@@ -156,112 +155,134 @@
   components:
   - type: Paper
     content: |2
-        [color=#2e9935ff]◥[bold]N[/bold]◣ [bold]Frontier Outpost Command[/bold][/color]
-        [color=#2e9935ff]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
-        [head=2]Shuttle Title Change[/head]
+      [color=#2e9935ff]◥[bold]N[/bold]◣ [bold]Frontier Outpost Command[/bold][/color]
+      [color=#2e9935ff]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
+      [head=2]Shuttle Title Change[/head]
+
+      [bold]Name of Captain:[/bold]
+      [bold]Old Ship Title:[/bold]
+      [bold]New Ship Title:[/bold]
+      [bold]Shift Time:[/bold]
 
 
-        [bold]Name of Captain:[/bold]
-        [bold]Old Ship Title:[/bold]
-        [bold]New Ship Title:[/bold]
-        [bold]Shift Time:[/bold]
 
-
-
-        [color=#AAAAAA]This Form is void without the signatures of both Parties and a stamp of Frontier Command (Sheriff or Station Representative)[/color]
+      [color=#AAAAAA]This Form is void without the signatures of both Parties and a stamp of Frontier Command (Sheriff or Station Representative)[/color]
 
 - type: entity # Based on form made by Blumbee (Aki Suboshi)
   id: PaperWrittenFrontierFormShuttleDerelict
-  name: Notice of Derelict Ship
+  name: Declaration of Salvage
   suffix: MappedPaper
   parent: Paper
   components:
   - type: Paper
     content: |2
-        [color=#2e9935ff]◥[bold]N[/bold]◣ [bold]Frontier Outpost Command[/bold][/color]
-        [color=#2e9935ff]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
-        [head=2]Notice of Derelict Ship and Declaration of Salvage[/head]
+      [color=#2e9935ff]◥[bold]N[/bold]◣ [bold]Frontier Outpost Command[/bold][/color]
+      [color=#2e9935ff]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
+      [head=2]Declaration of Salvage[/head]
+
+      [bold]Vessel IFF:[/bold] [color=#2200BD][/color]
+      [bold]Time of First Hail:[/bold] [color=#2200BD][/color]
+      [bold]Shift Time:[/bold] [color=#2200BD][/color]
+
+      This is a formal declaration from Frontier's Station Traffic Controller, hereby declaring the above vessel to be abandoned by its captain, and recognized as salvage. This vessel has been unresponsive on both radio and fax for over twenty (20) minutes.
+
+      Pursuant to Space Law §9.3, this vessel will be moved out to three hundred (300) meters from Frontier Station by an agent representing Frontier Station or the NFSD, and will be salvageable by any other vessel operating within the sector.
+
+      Neither Frontier Station nor the Nanotrasen Corporation will reimburse any party affiliated with this vessel for losses incurred.
 
 
-        [bold]Ship IFF:[/bold] [color=#2200BD][/color]
-        [bold]Time of First Hail:[/bold] [color=#2200BD][/color]
-        [bold]Shift Time:[/bold] [color=#2200BD][/color]
 
-        This is a formal declaration from Frontier's Station Traffic Controller, hereby declaring the above vessel to be abandoned by its captain, and recognized as salvage. Your vessel has been unresponsive on the radio for over twenty (20) minutes and has either not responded to written faxes, or is unable to receive faxes from Frontier. Henceforth, this office deems it fit to declare it as salvage.
+      [color=#AAAAAA]This Form is void without the signatures of both Parties and a stamp of Frontier Command (Sheriff or Station Representative)[/color]
 
-        Pursuant to Space Law §9.3, this vessel will be moved out to three hundred (300) meters from Frontier Station by a Valet or NFSD, and will be salvageable by any other vessel operating within Frontier's space.
+- type: entity # Based on form made by Blumbee (Aki Suboshi)
+  id: PaperWrittenFrontierFormContrabandAmnesty
+  name: Contraband Amnesty Agreement
+  suffix: MappedPaper
+  parent: Paper
+  components:
+  - type: Paper
+    content: |2
+      [color=#2e9935ff]◥[bold]N[/bold]◣ [bold]Frontier Outpost Command[/bold][/color]
+      [color=#2e9935ff]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
+      [head=2]Contraband Amnesty Agreement[/head]
 
-        Neither Frontier Station nor the Nanotrasen Corporation will reimburse any party affiliated with this vessel for losses incurred.
+      [head=3]Contraband Holder[/head]
+          [bold]Name:[/bold] 
+          [bold]Species:[/bold] 
+          [bold]Vessel IFF:[/bold] 
+
+      [bold]Payout per F.U.C.:[/bold] [color=#ff0000]2 000 spesos[/color]
+      [bold]Shift Time:[/bold] 
+
+      This document is a contract between the above Contraband Holder and Frontier Command.
+
+      Any crimes of contraband possession for the Contraband Holder will be waived so long as all Class 3 contraband items, and any Class 2 contraband items not subject to a Class 2 Contraband Permit are turned in within reasonable time (subject to the clause below), and not used for malicious purposes. Noncompliance with this document results in voiding any standing Class 2 Contraband Permits.
+
+      If the Contraband Holder is not paid in full at the above rate for any contraband turned in, they may remain in possession of the contraband without penalty at their discretion.
 
 
 
-        [color=#AAAAAA]This Form is void without the signatures of both Parties and a stamp of Frontier Command (Sheriff or Station Representative)[/color]
+      [color=#AAAAAA]This Form is void without the signatures of both Parties and the stamp of the Sheriff[/color]
+
 
 - type: entity # Based on form made by Blumbee (Aki Suboshi)
   id: PaperWrittenFrontierFormContrabandTurnover
-  name: Contraband Turnover Form
+  name: Contraband Turnover Receipt
   suffix: MappedPaper
   parent: Paper
   components:
   - type: Paper
     content: |2
-        [color=#2e9935ff]◥[bold]N[/bold]◣ [bold]Frontier Outpost Command[/bold][/color]
-        [color=#2e9935ff]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
-        [head=2]Contraband Turnover Form[/head]
+      [color=#2e9935ff]◥[bold]N[/bold]◣ [bold]Frontier Outpost Command[/bold][/color]
+      [color=#2e9935ff]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
+      [head=2]Contraband Turnover Receipt[/head]
 
+      [bold]Contraband Holder:[/bold] 
+      [bold]Contraband F.U.C. Value:[/bold] 
+      [bold]Payout per F.U.C.:[/bold] [color=#ff0000]2 000 spesos[/color]
+      [bold]Payout Total:[/bold] 
 
-        [bold]Contraband Holder:[/bold] 
-        [bold]Contraband F.U.C Value:[/bold] 
-        [bold]Payout per F.U.C.:[/bold] [color=#ff0000]2 000 spesos[/color]
-        [bold]Payout Total:[/bold] 
+      [bold]C2 Contraband:[/bold]
+          [bullet/] 
+          [bullet/] 
+          [bullet/] 
 
-        [bold]C2 Contraband:[/bold]
-        [bullet/] 
-        [bullet/] 
-        [bullet/] 
+      [bold]C3 Contraband:[/bold]
+          [bullet/] 
+          [bullet/] 
+          [bullet/] 
 
-        [bold]C3 Contraband:[/bold]
-        [bullet/] 
-        [bullet/] 
-        [bullet/] 
-
-        [bold]Shift Time:[/bold] 
-
-        This document is a contract between [bold][italic]Contraband Holder[/italic][/bold] and [bold][italic]Frontier Command[/italic][/bold].
-        Any and all Contraband class [color=red]2[/color] and [color=red]3[/color] must be turned over to [bold][italic]Frontier Command[/italic][/bold], unless otherwise contracted with a C2 holding permit.
-        Noncompliance with this document results in voiding of any standing C2 permits.
-        [bold][italic]Contraband Holder[/italic][/bold] must be paid out in full by [bold][italic]Frontier Command[/italic][/bold] or this contract is void.
+      [bold]Shift Time:[/bold] 
 
 
 
-        [color=#AAAAAA]This Form is void without the signatures of both Parties and a stamp of Frontier Command (Sheriff or Station Representative)[/color]
+      [color=#AAAAAA]This Form is void without the signatures of both Parties and a stamp of Frontier Command (Sheriff or Station Representative)[/color]
 
 - type: entity # Based on form made by Blumbee (Aki Suboshi)
   id: PaperWrittenFrontierFormContrabandPermit
-  name: Tier 2 Contraband Permit
+  name: Class 2 Contraband Permit
   suffix: MappedPaper
   parent: Paper
   components:
   - type: Paper
     content: |2
-        [color=#2e9935ff]◥[bold]N[/bold]◣ [bold]Frontier Outpost Command[/bold][/color]
-        [color=#2e9935ff]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
-        [head=2]Tier 2 Contraband Permit[/head]
+      [color=#2e9935ff]◥[bold]N[/bold]◣ [bold]Frontier Outpost Command[/bold][/color]
+      [color=#2e9935ff]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
+      [head=2]Class 2 Contraband Permit[/head]
+
+      [bold]Permit Holder:[/bold] 
+      [bold]Holder Crew:
+      [bullet/] 
+      [bullet/] 
+      [bullet/] 
+
+      [bold]Shift Time:[/bold] 
 
 
-        [bold]Permit Holder:[/bold] 
-        [bold]Holder Crew:
-        [bullet/] 
-        [bullet/] 
-        [bullet/] 
-
-        [bold]Shift Time:[/bold] 
-
-
-        This Permit allows the Holder and crew, [italic]as listed above[/italic], to possess and use C2 Contraband.
-        Non-compliance with Contraband Turnover orders void this Permit.
-        [bold]Class 2 Contraband contains:[/bold] [color=red]all explosive devices not otherwise covered by higher classifications; objects which can be used to non-destructively or non-invasively gain unauthorized access to Nanotrasen secured areas; exclusively restricted and/or authorized use weapons or equipment, uniforms and EMPs; and, security vessels.[/color]
+      This Permit allows the Holder and crew, as listed above, to possess and use Class 2 contraband.
+      Non-compliance with a Contraband Amnesty agreement void this Permit.
+      Refer to §6.1.4 of Space Law for a full definition of Class 2 contraband.
 
 
 
-        [color=#AAAAAA]This Form is void without the signature of the Holder and the signature and stamp of the Sheriff[/color]
+      [color=#AAAAAA]This Permit is void without the signature of the Holder and the signature and stamp of the Sheriff[/color]
