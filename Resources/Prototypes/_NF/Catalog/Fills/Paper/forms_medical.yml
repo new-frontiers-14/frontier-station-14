@@ -16,9 +16,10 @@
     - state: folder-base
   - type: StorageFill
     contents:
-    - id: PaperWrittenFrontierFormPatientInfo
-    - id: PaperWrittenFrontierFormPrescription
-    - id: PaperWrittenFrontierFormHealthInsurance
+    - id: PaperWrittenMedicalFormPatientInfo
+    - id: PaperWrittenMedicalFormPrescription
+    - id: PaperWrittenMedicalFormHealthInsurance
+    - id: PaperWrittenMedicalFormServiceInvoice
     - id: Paper
       prob: 0.5
     - id: Paper
@@ -26,109 +27,151 @@
 
 # Forms
 - type: entity # Loosely based on form made by Scratchie (Nova Howe) for Formal Complaint
-  id: PaperWrittenFrontierFormPatientInfo
+  id: PaperWrittenMedicalFormPatientInfo
   name: Medical Patient Record
   suffix: MappedPaper
   parent: Paper
   components:
   - type: Paper
     content: |2
-        [color=#52B4E9]◥[bold]N[/bold]◣ [bold]Medical Patient Record[/bold][/color]
-        [color=#52B4E9]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
-        [head=2]Section A: General Information[/head]
+      [color=#52B4E9]◥[bold]N[/bold]◣ [bold]Medical Contractor Standards[/bold][/color]
+      [color=#52B4E9]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
+      [head=2]Medical Patient Record[/head]
 
-        [bold]Patient's Name:[/bold] 
-        [bold]Patient's Species:[/bold] 
-        [bold]Patient's Gender:[/bold] 
-        [bold]Patient's Occupation:[/bold] 
+      [head=3]Patient Information[/head]
+          [bold]Name:[/bold] 
+          [bold]Species:[/bold] 
+          [bold]Gender:[/bold] 
+          [bold]Occupation:[/bold] 
 
-        [bold]Responder's Name:[/bold] 
-        [bold]Responder's Shuttle:[/bold] 
-        [bold]Shift Time (upon arrival):[/bold] 
+      [head=3]Responder Information[/head]
+          [bold]Name:[/bold] 
+          [bold]Vessel IFF:[/bold] 
+          [bold]Shift Time (upon arrival):[/bold] 
 
-        [head=2]Section B: Sustained  Injuries[/head]
-        [bold]Brute injuries:[/bold]
-        \[  ] Blunt     \[  ] Slash     \[  ] Piercing
+      [head=3]Sustained Injuries[/head]
+          [bold]Brute Injuries:[/bold]
+          \[  ] Blunt     \[  ] Slash     \[  ] Piercing
 
-        [bold]Burn injuries:[/bold]
-        \[  ] Heat     \[  ] Shock     \[  ] Cold     \[  ] Caustic
+          [bold]Burn Injuries:[/bold]
+          \[  ] Heat     \[  ] Shock     \[  ] Cold     \[  ] Caustic
 
-        [bold]Toxin injuries:[/bold]
-        \[  ] Poison     \[  ] Radiation
+          [bold]Toxin Injuries:[/bold]
+          \[  ] Poison     \[  ] Radiation
 
-        [bold]Asphyxiation injuries:[/bold]
-        \[  ] Bloodloss     \[  ] Airloss
+          [bold]Asphyxiation Injuries:[/bold]
+          \[  ] Bloodloss     \[  ] Airloss
 
-        [head=2]Section C: Administered Treatment[/head]
-        [bold]Applied Topicals:[/bold]
-        \[  ] Bruise pack     \[  ] Ointment     \[  ] Gauze     \[  ] Blood pack
-        \[  ] Sutures     \[  ] Regenerative mesh
+      [head=3]Administered Treatment[/head]
+          [bold]Applied Topicals:[/bold]
+          \[  ] Bruise pack     \[  ] Ointment     \[  ] Gauze     \[  ] Blood pack
+          \[  ] Sutures     \[  ] Regenerative mesh
 
-        [bold]Injected Chemicals:[/bold]
-        [bullet/] Chemical, dosage: XX u
+          [bold]Injected Chemicals:[/bold]
+          [bullet/] Chemical, dosage: XX u
+          [bullet/] Chemical, dosage: XX u
 
 
 
-        [color=#AAAAAA]This Form is void without the signature and a stamp of medical specialist[/color]
+      [color=#AAAAAA]This Form is void without the signature and stamp of a medical specialist[/color]
 
 - type: entity
-  id: PaperWrittenFrontierFormPrescription
+  id: PaperWrittenMedicalFormPrescription
   name: Medical Prescription
   suffix: MappedPaper
   parent: Paper
   components:
   - type: Paper
     content: |2
-        [color=#52B4E9]◥[bold]RX[/bold]◣ [bold]Prescription[/bold][/color]
-        [color=#52B4E9]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
-        [head=2]Patient Information[/head]
+      [color=#52B4E9]◥[bold]N[/bold]◣ [bold]Medical Contractor Standards[/bold][/color]
+      [color=#52B4E9]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
+      [head=2]Medical Prescription[/head]
 
-        [bold]Name:[/bold] 
-        [bold]Species:[/bold] 
-        [bold]Gender:[/bold] 
-        [bold]Position Title:[/bold] 
-        [bold]Shuttle:[/bold] 
+      [head=3]Patient Information[/head]
+          [bold]Name:[/bold] 
+          [bold]Species:[/bold] 
+          [bold]Gender:[/bold] 
+          [bold]Position Title:[/bold] 
+          [bold]Vessel IFF:[/bold] 
 
-        [head=2]Prescription[/head]
-        [bullet/] Chemical, dosage: XX u
+      [head=3]Prescription[/head]
+          [bullet/] CHEMICAL, dosage: XX u
+          [bullet/] CHEMICAL, dosage: XX u
+
+          [bold]WRITE ANY INSTRUCTIONS HERE.[/bold]
 
 
 
-        [color=#AAAAAA]This Form is void without the signature and a stamp of medical specialist[/color]
+      [color=#AAAAAA]This Form is void without the signature and stamp of a medical specialist[/color]
 
 - type: entity # Based on form made by Radiantflash (Lykaon Rahmer)
-  id: PaperWrittenFrontierFormHealthInsurance
+  id: PaperWrittenMedicalFormHealthInsurance
   name: Health Insurance Contract
   suffix: MappedPaper
   parent: Paper
   components:
   - type: Paper
     content: |2
-        [color=#52B4E9]◥[bold]MD[/bold]◣ [bold]Health Insurance Contract[/bold][/color]
-        [color=#52B4E9]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
-        [head=2]Section A: General Information[/head]
+      [color=#52B4E9]◥[bold]N[/bold]◣ [bold]Medical Contractor Standards[/bold][/color]
+      [color=#52B4E9]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
+      [head=2]Health Insurance Contract[/head]
 
-        [bold]Patient's Name:[/bold] 
-        [bold]Patient's Species:[/bold] 
-        [bold]Patient's Gender:[/bold] 
-        [bold]Patient's Occupation:[/bold] 
+      [head=3]Policy Holder Information[/head]
+          [bold]Name:[/bold] 
+          [bold]Species:[/bold] 
+          [bold]Gender:[/bold] 
+          [bold]Occupation:[/bold] 
 
-        [bold]Responder's Name:[/bold] 
-        [bold]Responder's Shuttle:[/bold] 
-        [bold]Shift Time:[/bold] 
+      [head=3]Plan Coverage[/head]
+          [bold]Medical Coverage:[/bold]
+          \[  ] Treatment: Coverage up to $5 000. ($2 000 premium)
+          \[  ] Revival: Coverage up to $10 000. ($2 000 premium)
+          \[  ] Cloning Fee: Coverage up to $25 000. ($5 000 premium)
 
-        [head=2]Section B: Services and costs[/head]
-
-        Initial Contract Cost: $2,000 Spesos.
-
-        [bold]Medical services:[/bold]
-        \[  ] Treatment: Up to $5,000 Spesos. Minium $2,000.
-        \[  ] Revival: Up to $10,000 Spesos. Minium $2,000.
-        \[  ] Cloning Fee: $10,000 Spesos.
-
-        [bold]Additional services:[/bold]
-        \[  ] Towing: $2,000 Spesos for every 1km. Minimum $2,000. Small shuttles only.
+          [bold]Additional Coverage:[/bold]
+          \[  ] Towing: Coverage up to $10 000. Small shuttles only. ($2 000 premium)
 
 
 
-        [color=#AAAAAA]This Form is void without the signatures of both Parties and a stamp of medical specialist[/color]
+      [color=#AAAAAA]This Form is void without the signatures of borth Parties and the stamp of a medical specialist[/color]
+
+- type: entity
+  id: PaperWrittenMedicalFormServiceInvoice
+  name: Medical Service Invoice
+  suffix: MappedPaper
+  parent: Paper
+  components:
+  - type: Paper
+    content: |2
+      [color=#52B4E9]◥[bold]N[/bold]◣ [bold]Medical Contractor Standards[/bold][/color]
+      [color=#52B4E9]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
+      [head=2]Medical Service Invoice[/head]
+
+      [head=3]Patient Information[/head]
+            [bold]Name:[/bold] 
+            [bold]Species:[/bold] 
+            [bold]Gender:[/bold] 
+            [bold]Occupation:[/bold] 
+
+      [head=3]Responder Information[/head]
+            [bold]Name:[/bold] 
+            [bold]Vessel IFF:[/bold] 
+            [bold]Shift Time:[/bold] 
+
+      [head=3]Invoice[/head]
+        $XX XXX - Treatment
+        $XX XXX - Revival
+        $XX XXX - Cloning
+        $XX XXX - Towing
+      - $XX XXX - Treatment Plan Coverage
+      - $XX XXX - Revival Plan Coverage
+      - $XX XXX - Cloning Plan Coverage
+      - $XX XXX - Towing Plan Coverage
+      ___________
+      $XXX XXX - Grand Total
+
+
+
+      [color=#AAAAAA]This Form is void without the signature and stamp of a medical specialist[/color]
+
+
