@@ -25,6 +25,7 @@ guide-entry-shipyard-ambition = Ambition
 guide-entry-shipyard-apothecary = Apothecary
 guide-entry-shipyard-bazaar = Bazaar
 guide-entry-shipyard-bocadillo = Bocadillo
+guide-entry-shipyard-bonfire = Bonfire
 guide-entry-shipyard-bookworm = Bookworm
 guide-entry-shipyard-brigand = Brigand
 guide-entry-shipyard-bulker = Bulker
