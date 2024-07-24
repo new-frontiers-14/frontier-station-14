@@ -1,0 +1,62 @@
+# New Frontiers - This file is licensed under AGPLv3
+# Copyright (c) 2024 New Frontiers Contributors
+# See AGPLv3.txt for details.
+
+# Ship vouchers, used to redeem for free ships!
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: BaseShipVoucher
+  name: ship voucher
+  description: Used for free shuttle rentals from a shipyard.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/id_cards.rsi
+  - type: Item
+    size: Small
+    heldPrefix: default
+    storedRotation: -90
+  - type: StationRecordKeyStorage # Assuming ships purchased on vouchers still need recordkeeping.
+  - type: StaticPrice
+    price: 0
+  - type: CargoSellBlacklist
+
+- type: entity
+  parent: BaseShipVoucher
+  id: NfsdSergeantShipVoucher
+  name: nfsd sergeant ship voucher
+  description: Allows for one free small to medium NFSD ship purchase. Destroyed on sale.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Misc/id_cards.rsi
+    layers:
+    - state: nfsdvoucher
+    - state: vouchernfsdsergeant
+  - type: Item
+    heldPrefix: nfsd
+  - type: ShipyardVoucher
+    destroyOnEmpty: true
+    access:
+    - Sergeant # Frontier
+    accessGroups: # Frontier
+    - GeneralNfsdAccess # Frontier
+
+- type: entity
+  parent: NfsdSergeantShipVoucher
+  id: NfsdBailiffShipVoucher
+  name: nfsd bailiff ship voucher
+  description: Allows for one free small to capital NFSD ship purchase. Destroyed on sale.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Misc/id_cards.rsi
+    layers:
+    - state: nfsdvoucher
+    - state: vouchernfsdbailiff
+  - type: ShipyardVoucher
+    destroyOnEmpty: true
+    access:
+    - Armory
+    - Sergeant # Frontier
+    - Bailiff # Frontier
+    accessGroups: # Frontier
+    - GeneralNfsdAccess # Frontier

@@ -40,6 +40,18 @@
     - type: Transform
 
 - type: entity
+  id: PirateFrontierOutpost
+  parent:
+    - BaseStation
+    - BaseStationJobsSpawning
+    - BaseStationCargo
+    - BaseStationSiliconLawFrontierShips # TODO: change this with pirate borgs?
+    - BaseStationRecords
+  noSpawn: true
+  components:
+    - type: Transform
+
+- type: entity
   id: StandardFrontierVessel
   parent:
     - BaseStation

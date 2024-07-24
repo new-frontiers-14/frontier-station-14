@@ -1,0 +1,38 @@
+# Author Info
+# GitHub: dustylens (https://github.com/dustylens)
+# Discord: dustylens
+
+# Maintainer Info
+# GitHub: dustylens (https://github.com/dustylens)
+# Discord: dustylens
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Apothecary
+  name: NM Apothecary
+  description: A small medical and chemistry support vessel.
+  price: 30000 #Appraise value 17782 with markup for chemistry equipment and rounding. Feel free to adjust on the backend. Medics are always poor.
+  category: Small
+  group: Civilian
+  shuttlePath: /Maps/_NF/Shuttles/apothecary.yml
+
+- type: gameMap
+  id: Apothecary
+  mapName: 'NM Apothecary'
+  mapPath: /Maps/_NF/Shuttles/apothecary.yml
+  minPlayers: 0
+  stations: 
+    Apothecary:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Apothecary {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]
