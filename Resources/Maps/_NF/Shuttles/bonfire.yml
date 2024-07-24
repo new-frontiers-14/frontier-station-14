@@ -5,10 +5,12 @@ tilemap:
   0: Space
   3: FloorGrass
   2: FloorGrayConcrete
+  9: FloorGrayConcreteMono
   5: FloorMetalDiamond
   7: FloorMining
   6: FloorMiningDark
   1: FloorMiningLight
+  10: FloorRockVault
   8: FloorShuttleGrey
   112: FloorTechMaint
   113: FloorTechMaint2
@@ -32,7 +34,7 @@ entities:
       chunks:
         0,0:
           ind: 0,0
-          tiles: ggAAAAAAcQAAAAAAcQAAAAAAcQAAAAAAggAAAAAAgQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAggAAAAAACAAAAAABCAAAAAAAggAAAAAAggAAAAAAggAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAACAAAAAAACAAAAAAAAQAAAAAABQAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAgAAAAAAAgAAAAAAACAAAAAADggAAAAAAggAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAggAAAAAABAAAAAACBAAAAAAABAAAAAAAggAAAAAAgQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcAAAAAAAcAAAAAAAcAAAAAAABAAAAAABggAAAAAAgQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcAAAAAAAcAAAAAAAcAAAAAAABAAAAAADggAAAAAAgQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcAAAAAAAcAAAAAAAcAAAAAAABAAAAAABggAAAAAAgQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcAAAAAAAcAAAAAAAcAAAAAAABAAAAAACggAAAAAAgQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcAAAAAAAcAAAAAAAcAAAAAAABAAAAAACggAAAAAAgQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAACBAAAAAAABAAAAAAABAAAAAADggAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAggAAAAAAggAAAAAAggAAAAAAggAAAAAAgQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+          tiles: ggAAAAAAcQAAAAAAcQAAAAAAcQAAAAAAggAAAAAAgQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAggAAAAAACAAAAAABCAAAAAAAggAAAAAAggAAAAAAggAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAACAAAAAAACAAAAAAAAQAAAAAABQAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAgAAAAAAAgAAAAAAACAAAAAADggAAAAAAggAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAggAAAAAABAAAAAACBAAAAAAABAAAAAAAggAAAAAAgQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcAAAAAAAcAAAAAAAcAAAAAAABAAAAAABggAAAAAAgQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcAAAAAAAcAAAAAAAcAAAAAAABAAAAAADggAAAAAAgQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcAAAAAAAcAAAAAAAcAAAAAAABAAAAAABggAAAAAAgQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcAAAAAAAcAAAAAAAcAAAAAAABAAAAAACggAAAAAAgQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACQAAAAAAcAAAAAAAcAAAAAAABAAAAAACggAAAAAAgQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACgAAAAAACQAAAAAABAAAAAAABAAAAAADggAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAggAAAAAAggAAAAAAggAAAAAAggAAAAAAgQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
           version: 6
         -1,0:
           ind: -1,0
@@ -83,6 +85,21 @@ entities:
           decals:
             17: 2,0
             18: 1,0
+        - node:
+            color: '#FFFFFFFF'
+            id: ConcreteTrimInnerNw
+          decals:
+            40: 1,9
+        - node:
+            color: '#FFFFFFFF'
+            id: ConcreteTrimLineN
+          decals:
+            38: 0,9
+        - node:
+            color: '#FFFFFFFF'
+            id: ConcreteTrimLineW
+          decals:
+            39: 1,10
         - node:
             color: '#966438FF'
             id: MiniTileDarkInnerNw
@@ -141,6 +158,21 @@ entities:
           decals:
             12: 1,1
             16: 2,1
+        - node:
+            color: '#FFFFFFFF'
+            id: WarnCornerSmallGreyscaleNW
+          decals:
+            37: 1,9
+        - node:
+            color: '#FFFFFFFF'
+            id: WarnLineGreyscaleN
+          decals:
+            35: 0,9
+        - node:
+            color: '#FFFFFFFF'
+            id: WarnLineGreyscaleW
+          decals:
+            36: 1,10
         - node:
             color: '#FFFFFF6B'
             id: WarnLineN
@@ -445,21 +477,33 @@ entities:
     - type: Transform
       pos: -0.5,1.5
       parent: 1
-- proto: BenchSofaCorpLeft
+- proto: BenchSofaCorpCorner
   entities:
-  - uid: 123
+  - uid: 97
     components:
     - type: Transform
-      pos: 2.5,10.5
+      pos: 3.5,10.5
+      parent: 1
+    - type: Physics
+      canCollide: False
+    - type: Fixtures
+      fixtures: {}
+- proto: BenchSofaCorpLeft
+  entities:
+  - uid: 278
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 3.5,9.5
       parent: 1
     - type: Physics
       bodyType: Static
 - proto: BenchSofaCorpRight
   entities:
-  - uid: 97
+  - uid: 112
     components:
     - type: Transform
-      pos: 1.5,10.5
+      pos: 2.5,10.5
       parent: 1
     - type: Physics
       bodyType: Static
@@ -861,6 +905,11 @@ entities:
     - type: Transform
       pos: 3.5,0.5
       parent: 1
+  - uid: 277
+    components:
+    - type: Transform
+      pos: 0.5,9.5
+      parent: 1
 - proto: CurtainsOrangeOpen
   entities:
   - uid: 138
@@ -895,7 +944,7 @@ entities:
   - uid: 230
     components:
     - type: Transform
-      pos: 1.4819355,9.533066
+      pos: 2.5226803,9.610505
       parent: 1
 - proto: DrinkMugRed
   entities:
@@ -921,7 +970,7 @@ entities:
       parent: 1
 - proto: Fireplace
   entities:
-  - uid: 135
+  - uid: 177
     components:
     - type: Transform
       pos: 0.5,10.5
@@ -937,6 +986,7 @@ entities:
     - type: GasMixer
       inletTwoConcentration: 0.20999998
       inletOneConcentration: 0.79
+      enabled: True
     - type: AtmosPipeColor
       color: '#0055CCFF'
 - proto: GasPassiveVent
@@ -958,14 +1008,6 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
-  - uid: 112
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 2.5,4.5
-      parent: 1
-    - type: AtmosPipeColor
-      color: '#990000FF'
   - uid: 213
     components:
     - type: Transform
@@ -997,6 +1039,18 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#990000FF'
+  - uid: 271
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 0.5,4.5
+      parent: 1
+  - uid: 272
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 0.5,3.5
+      parent: 1
 - proto: GasPipeStraight
   entities:
   - uid: 106
@@ -1021,6 +1075,12 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#990000FF'
+  - uid: 147
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 1.5,4.5
+      parent: 1
   - uid: 197
     components:
     - type: Transform
@@ -1028,6 +1088,12 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
+  - uid: 198
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -0.5,2.5
+      parent: 1
   - uid: 211
     components:
     - type: Transform
@@ -1052,6 +1118,12 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#990000FF'
+  - uid: 259
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 0.5,2.5
+      parent: 1
 - proto: GasPipeTJunction
   entities:
   - uid: 105
@@ -1077,6 +1149,11 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#990000FF'
+  - uid: 123
+    components:
+    - type: Transform
+      pos: 2.5,4.5
+      parent: 1
 - proto: GasPort
   entities:
   - uid: 101
@@ -1103,6 +1180,12 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
+  - uid: 137
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -1.5,2.5
+      parent: 1
   - uid: 196
     components:
     - type: Transform
@@ -1128,6 +1211,12 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#990000FF'
+  - uid: 276
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -0.5,3.5
+      parent: 1
 - proto: GrassBattlemap
   entities:
   - uid: 231
@@ -1230,13 +1319,6 @@ entities:
     - type: Transform
       pos: -3.5,5.5
       parent: 1
-- proto: Gyroscope
-  entities:
-  - uid: 259
-    components:
-    - type: Transform
-      pos: 3.5,-1.5
-      parent: 1
 - proto: LockerBooze
   entities:
   - uid: 129
@@ -1244,39 +1326,38 @@ entities:
     - type: Transform
       pos: 0.5,5.5
       parent: 1
-- proto: LockerCaptainFilled
-  entities:
-  - uid: 147
-    components:
-    - type: Transform
-      pos: -0.5,3.5
-      parent: 1
 - proto: MysteryFigureBox
   entities:
   - uid: 228
     components:
     - type: Transform
-      pos: 0.47002977,9.493154
+      pos: 1.4730392,9.544641
       parent: 1
   - uid: 229
     components:
     - type: Transform
-      pos: 0.4105065,9.671725
+      pos: 1.2648678,9.571443
       parent: 1
 - proto: NitrogenCanister
   entities:
   - uid: 99
     components:
     - type: Transform
+      anchored: True
       pos: 2.5,-3.5
       parent: 1
+    - type: Physics
+      bodyType: Static
 - proto: OxygenCanister
   entities:
   - uid: 100
     components:
     - type: Transform
+      anchored: True
       pos: 1.5,-3.5
       parent: 1
+    - type: Physics
+      bodyType: Static
 - proto: PaperBin10
   entities:
   - uid: 157
@@ -1292,17 +1373,17 @@ entities:
   - uid: 225
     components:
     - type: Transform
-      pos: 0.7914587,9.66688
+      pos: 1.4679928,9.633943
       parent: 1
   - uid: 226
     components:
     - type: Transform
-      pos: 0.85098326,9.5478325
+      pos: 1.8246017,9.622766
       parent: 1
   - uid: 227
     components:
     - type: Transform
-      pos: 1.0771732,9.654975
+      pos: 1.7464767,9.482141
       parent: 1
 - proto: PortableGeneratorPacmanShuttle
   entities:
@@ -1548,24 +1629,19 @@ entities:
       rot: 3.141592653589793 rad
       pos: 4.5,3.5
       parent: 1
+- proto: SmallGyroscope
+  entities:
+  - uid: 135
+    components:
+    - type: Transform
+      pos: 3.5,-1.5
+      parent: 1
 - proto: SpawnPointLatejoin
   entities:
   - uid: 260
     components:
     - type: Transform
       pos: 2.5,1.5
-      parent: 1
-- proto: StairWood
-  entities:
-  - uid: 137
-    components:
-    - type: Transform
-      pos: 1.5,4.5
-      parent: 1
-  - uid: 198
-    components:
-    - type: Transform
-      pos: 2.5,4.5
       parent: 1
 - proto: StoolBar
   entities:
@@ -1615,11 +1691,6 @@ entities:
     components:
     - type: Transform
       pos: 2.5,7.5
-      parent: 1
-  - uid: 177
-    components:
-    - type: Transform
-      pos: 0.5,9.5
       parent: 1
   - uid: 178
     components:
