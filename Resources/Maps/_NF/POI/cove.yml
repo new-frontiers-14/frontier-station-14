@@ -2590,10 +2590,20 @@ entities:
     - type: Transform
       pos: 0.5,7.5
       parent: 1
+  - uid: 201
+    components:
+    - type: Transform
+      pos: 10.5,17.5
+      parent: 1
   - uid: 208
     components:
     - type: Transform
       pos: 5.5,8.5
+      parent: 1
+  - uid: 209
+    components:
+    - type: Transform
+      pos: 9.5,17.5
       parent: 1
   - uid: 211
     components:
@@ -2614,6 +2624,11 @@ entities:
     components:
     - type: Transform
       pos: -4.5,12.5
+      parent: 1
+  - uid: 265
+    components:
+    - type: Transform
+      pos: 10.5,16.5
       parent: 1
   - uid: 285
     components:
@@ -2910,6 +2925,11 @@ entities:
     - type: Transform
       pos: 7.5,-6.5
       parent: 1
+  - uid: 563
+    components:
+    - type: Transform
+      pos: 10.5,15.5
+      parent: 1
   - uid: 579
     components:
     - type: Transform
@@ -2924,6 +2944,11 @@ entities:
     components:
     - type: Transform
       pos: 9.5,2.5
+      parent: 1
+  - uid: 603
+    components:
+    - type: Transform
+      pos: 10.5,14.5
       parent: 1
   - uid: 612
     components:
@@ -3710,31 +3735,6 @@ entities:
     - type: Transform
       pos: -10.5,12.5
       parent: 1
-  - uid: 1910
-    components:
-    - type: Transform
-      pos: 10.5,17.5
-      parent: 1
-  - uid: 1998
-    components:
-    - type: Transform
-      pos: 9.5,17.5
-      parent: 1
-  - uid: 1999
-    components:
-    - type: Transform
-      pos: 10.5,16.5
-      parent: 1
-  - uid: 2000
-    components:
-    - type: Transform
-      pos: 10.5,15.5
-      parent: 1
-  - uid: 2001
-    components:
-    - type: Transform
-      pos: 10.5,14.5
-      parent: 1
   - uid: 2032
     components:
     - type: Transform
@@ -4091,37 +4091,43 @@ entities:
     - type: Transform
       pos: -2.3606322,11.673861
       parent: 1
-- proto: CargoPallet
+- proto: CargoPalletSell
   entities:
-  - uid: 201
-    components:
-    - type: Transform
-      pos: 5.5,-2.5
-      parent: 1
-  - uid: 209
-    components:
-    - type: Transform
-      pos: 5.5,-1.5
-      parent: 1
-  - uid: 265
-    components:
-    - type: Transform
-      pos: 6.5,-1.5
-      parent: 1
-  - uid: 563
-    components:
-    - type: Transform
-      pos: 7.5,-2.5
-      parent: 1
-  - uid: 603
-    components:
-    - type: Transform
-      pos: 6.5,-2.5
-      parent: 1
   - uid: 626
     components:
     - type: Transform
+      rot: 1.5707963267948966 rad
       pos: 7.5,-1.5
+      parent: 1
+  - uid: 1910
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 7.5,-2.5
+      parent: 1
+  - uid: 1998
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 6.5,-2.5
+      parent: 1
+  - uid: 1999
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 5.5,-1.5
+      parent: 1
+  - uid: 2000
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 6.5,-1.5
+      parent: 1
+  - uid: 2001
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 5.5,-2.5
       parent: 1
 - proto: CarpetBlack
   entities:
@@ -5945,7 +5951,7 @@ entities:
       pos: 7.5,28.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -5546.4033
+      secondsUntilStateChange: -5703.0693
       state: Opening
 - proto: FenceWoodSmallCorner
   entities:
