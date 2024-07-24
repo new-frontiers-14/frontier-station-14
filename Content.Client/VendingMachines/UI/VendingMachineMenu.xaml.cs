@@ -174,15 +174,34 @@ namespace Content.Client.VendingMachines.UI
                     }
                 }
 
-                // This block exists to allow the VendPrice flag to set a vending machine item price.
-                if (prototype != null && prototype.TryGetComponent<StaticPriceComponent>(out var vendPriceComponent) && vendPriceComponent.VendPrice != 0 && cost <= (float) vendPriceComponent.VendPrice)
+                // Frontier: calculate vending price (this duplicates Content.Server.PricingSystem.GetVendPrice - this should be moved to Content.Shared if possible)
+                if (prototype != null)
                 {
-                    var price = (float) vendPriceComponent.VendPrice;
-                    cost = (int) price;
-                }
-                // This block exists to allow the VendPrice flag to set a vending machine item price.
+                    var price = 0.0;
 
-                vendingItem.Text = $"[${cost}] {itemName} [{entry.Amount}]";
+                    if (prototype.TryGetComponent<StaticPriceComponent>(out var staticComp) && staticComp.VendPrice > 0.0)
+                    {
+                        price += staticComp.VendPrice;
+                    }
+                    else if (prototype.TryGetComponent<StackPriceComponent>(out var stackComp) && stackComp.VendPrice > 0.0)
+                    {
+                        price += stackComp.VendPrice;
+                    }
+
+                    // If there is anything that explicitly sets vending price - higher OR lower, override the base.
+                    if (price > 0.0) {
+                        cost = (int) price;
+                    }
+                }
+                // End Frontier
+
+                // New Frontiers - Unlimited vending - support items with unlimited vending stock.
+                // This code is licensed under AGPLv3. See AGPLv3.txt
+                if (entry.Amount != uint.MaxValue)
+                    vendingItem.Text = $"[${cost}] {itemName} [{entry.Amount}]";
+                else
+                    vendingItem.Text = $"[${cost}] {itemName}";
+                // End of modified code
                 vendingItem.Icon = icon;
                 filteredInventory.Add(i);
             }
