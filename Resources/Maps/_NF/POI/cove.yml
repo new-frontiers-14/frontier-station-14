@@ -3710,6 +3710,31 @@ entities:
     - type: Transform
       pos: -10.5,12.5
       parent: 1
+  - uid: 1910
+    components:
+    - type: Transform
+      pos: 10.5,17.5
+      parent: 1
+  - uid: 1998
+    components:
+    - type: Transform
+      pos: 9.5,17.5
+      parent: 1
+  - uid: 1999
+    components:
+    - type: Transform
+      pos: 10.5,16.5
+      parent: 1
+  - uid: 2000
+    components:
+    - type: Transform
+      pos: 10.5,15.5
+      parent: 1
+  - uid: 2001
+    components:
+    - type: Transform
+      pos: 10.5,14.5
+      parent: 1
   - uid: 2032
     components:
     - type: Transform
@@ -3988,31 +4013,6 @@ entities:
     components:
     - type: Transform
       pos: -5.5,10.5
-      parent: 1
-  - uid: 1998
-    components:
-    - type: Transform
-      pos: 9.5,17.5
-      parent: 1
-  - uid: 1999
-    components:
-    - type: Transform
-      pos: 9.5,16.5
-      parent: 1
-  - uid: 2000
-    components:
-    - type: Transform
-      pos: 10.5,16.5
-      parent: 1
-  - uid: 2001
-    components:
-    - type: Transform
-      pos: 10.5,15.5
-      parent: 1
-  - uid: 2002
-    components:
-    - type: Transform
-      pos: 10.5,14.5
       parent: 1
 - proto: CableTerminal
   entities:
@@ -4993,10 +4993,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 4.5,-4.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        board: !type:Container
-          ents: []
 - proto: ComputerPirateBounty
   entities:
   - uid: 1562
@@ -5949,7 +5945,7 @@ entities:
       pos: 7.5,28.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -5189.5713
+      secondsUntilStateChange: -5546.4033
       state: Opening
 - proto: FenceWoodSmallCorner
   entities:
@@ -7863,6 +7859,11 @@ entities:
     - type: Transform
       pos: -0.73063827,13.09
       parent: 1
+  - uid: 2002
+    components:
+    - type: Transform
+      pos: 9.503801,17.030228
+      parent: 1
 - proto: KitchenDeepFryer
   entities:
   - uid: 334
@@ -8201,17 +8202,17 @@ entities:
     - type: Transform
       pos: 15.417093,25.484812
       parent: 1
-- proto: PortableGeneratorPacman
+- proto: PortableGeneratorJrPacmanShuttle
   entities:
-  - uid: 1910
+  - uid: 2053
     components:
     - type: Transform
       pos: 9.5,17.5
       parent: 1
-    - type: MaterialStorage
-      storage:
-        Plasma: 1500
-    - type: InsertingMaterialStorage
+    - type: FuelGenerator
+      on: False
+    - type: Physics
+      bodyType: Static
 - proto: PortableScrubber
   entities:
   - uid: 9
@@ -9258,13 +9259,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -2.3394558,13.652866
       parent: 1
-  - uid: 2053
-    components:
-    - type: Transform
-      pos: 9.503929,17.419426
-      parent: 1
-    - type: Stack
-      count: 15
 - proto: SheetUranium
   entities:
   - uid: 670
@@ -10156,6 +10150,12 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -10.5,29.5
+      parent: 1
+  - uid: 2097
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -10.5,28.5
       parent: 1
 - proto: TargetStrange
   entities:
