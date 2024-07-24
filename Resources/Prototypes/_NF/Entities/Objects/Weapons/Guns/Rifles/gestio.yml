@@ -2,7 +2,7 @@
   name: Gestio
   parent: BaseWeaponRifle
   id: WeaponRifleGestio
-  description: An old prototype burst-fire NanoTrasen marksman rifle. Manufactured by Silver Industries. It hasn't ever left the trials. Given it's antiquity it is considered a civilian grade weapon.   Uses .20 rifle ammo.
+  description: An old prototype burst-fire NanoTrasen marksman rifle. Manufactured by Silver Industries. It hasn't ever left the trials. Given it's antiquity it is considered a civilian grade weapon.   Uses .30 rifle ammo.
   components:
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Rifles/gestio.rsi
@@ -30,27 +30,27 @@
   - type: Wieldable
   - type: GunWieldBonus
     minAngle: -2
-    maxAngle: -10
+    maxAngle: -25 # buffed bonus
     angleDecay: 4 #in testing 3 was more balanced
     angleIncrease: -3
   - type: ItemSlots
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineRifleLowCapacity
+        startingItem: MagazineLightRifleLowCapacity
         insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
         priority: 2
         whitelist:
           tags:
-            - MagazineRifle
+            - MagazineLightRifle
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeRifle
+        startingItem: CartridgeLightRifle
         priority: 1
         whitelist:
           tags:
-            - CartridgeRifle
+            - CartridgeLightRifle
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
@@ -71,17 +71,17 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineRifleLowCapacityRubber
+        startingItem: MagazineLightRifleLowCapacityRubber
         insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
         priority: 2
         whitelist:
           tags:
-            - MagazineRifle
+            - MagazineLightRifle
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeRifleRubber
+        startingItem: CartridgeLightRifleRubber
         priority: 1
         whitelist:
           tags:
-            - CartridgeRifle
+            - CartridgeLightRifle
