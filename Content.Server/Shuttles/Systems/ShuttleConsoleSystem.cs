@@ -76,6 +76,8 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         SubscribeLocalEvent<FTLDestinationComponent, ComponentShutdown>(OnFtlDestShutdown);
 
         InitializeFTL();
+
+        InitializeNFDrone(); // Frontier: add our drone subscriptions
     }
 
     private void OnFtlDestStartup(EntityUid uid, FTLDestinationComponent component, ComponentStartup args)

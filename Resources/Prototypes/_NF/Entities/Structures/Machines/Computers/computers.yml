@@ -219,3 +219,81 @@
   # - type: GuideHelp # Frontier
   #   guides: # Frontier
   #   - CargoBounties # Frontier
+
+- type: entity
+  name: Frontier Outpost traffic console
+  parent: Computer
+  id: ComputerContrabandPalletConsolePirate
+  description: Fence yer ill-gotten goods here! And keep yer pile orderly.
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer_blackmarket
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: contraband # TODO: replace this
+    - map: ["computerLayerKeys"]
+      state: blackmarket_key
+  - type: Computer
+    board: Null # Really shouldn't spawn anything on destruction
+  - type: ContrabandPalletConsole
+    cashType: Doubloon
+    faction: Pirates
+    locStringPrefix: pirate-
+
+# Station Traffic Controller consoles
+- type: entity
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerShuttle]
+  id: BaseComputerTraffic
+  abstract: true
+  components:
+  - type: RadarConsole
+    maxRange: 350
+  - type: Computer
+    board: Null
+
+- type: entity
+  parent: BaseComputerTraffic
+  id: ComputerShuttleFrontierOutpostLocal
+  name: Frontier Outpost traffic console
+  description: Monitors the traffic around Frontier Outpost.
+  suffix: Local
+  noSpawn: true
+  components:
+  - type: NFDroneConsoleTarget
+    id: Frontier
+
+- type: entity
+  parent: BaseComputerTraffic
+  id: ComputerShuttleFrontierOutpostRemote
+  name: Frontier Outpost traffic console
+  description: Monitors the traffic around Frontier Outpost.
+  suffix: Remote
+  noSpawn: true
+  components:
+  - type: NFDroneConsole
+    id: Frontier
+
+- type: entity
+  parent: BaseComputerTraffic
+  id: ComputerShuttleTradeOutpostLocal
+  name: Trade Outpost traffic console
+  suffix: Local
+  description: Monitors the traffic around the Trade Outpost.
+  components:
+  - type: NFDroneConsoleTarget
+    id: Trade
+
+- type: entity
+  parent: BaseComputerTraffic
+  id: ComputerShuttleTradeOutpostRemote
+  name: Trade Outpost traffic console
+  suffix: Remote
+  description: Monitors the traffic around the Trade Outpost.
+  noSpawn: true
+  components:
+  - type: NFDroneConsole
+    id: Trade

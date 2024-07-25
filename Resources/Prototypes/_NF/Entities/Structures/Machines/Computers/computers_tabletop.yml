@@ -796,6 +796,7 @@
 - type: entity
   parent: [BaseStructureComputerTabletop, ComputerPirateBounty]
   id: ComputerTabletopPirateBounty
+  suffix: Tabletop
   components:
   - type: Sprite
     drawdepth: SmallObjects
@@ -816,6 +817,7 @@
 - type: entity
   parent: [BaseStructureComputerTabletop, ComputerContrabandPalletConsolePirate]
   id: ComputerTabletopContrabandPalletConsolePirate
+  suffix: Tabletop
   components:
   - type: Sprite
     drawdepth: SmallObjects
@@ -836,6 +838,7 @@
 - type: entity
   parent: [BaseStructureComputerTabletop, ComputerPirateBountyRedemption]
   id: ComputerTabletopPirateBountyRedemption
+  suffix: Tabletop
   components:
   - type: Sprite
     drawdepth: SmallObjects
@@ -852,3 +855,27 @@
     - map: ["computerLayerKeys"]
       sprite: _NF/Structures/Machines/computers.rsi
       state: blackmarket_key
+
+- type: entity
+  parent: [BaseStructureComputerTabletop, ComputerShuttleFrontierOutpostLocal, ComputerTabletopShuttle]
+  id: ComputerTabletopShuttleFrontierOutpostLocal
+  description: Monitors the traffic around Frontier Outpost.
+  noSpawn: true
+
+- type: entity
+  parent: [BaseStructureComputerTabletop, ComputerShuttleFrontierOutpostRemote, ComputerTabletopShuttle]
+  id: ComputerTabletopShuttleFrontierOutpostRemote
+  suffix: Remote, Tabletop
+  noSpawn: true
+
+- type: entity
+  parent: [BaseStructureComputerTabletop, ComputerShuttleTradeOutpostLocal, ComputerTabletopShuttle]
+  id: ComputerTabletopShuttleTradeOutpostLocal
+  suffix: Local, Tabletop
+  noSpawn: true
+
+- type: entity
+  parent: [BaseStructureComputerTabletop, ComputerShuttleTradeOutpostLocal]
+  id: ComputerShuttleTradeOutpostOutpostRemote
+  suffix: Remote, Tabletop
+  noSpawn: true
