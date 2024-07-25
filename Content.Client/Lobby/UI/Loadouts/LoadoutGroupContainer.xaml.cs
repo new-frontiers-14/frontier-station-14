@@ -72,6 +72,11 @@ public sealed partial class LoadoutGroupContainer : BoxContainer
             if (!protoMan.TryIndex(loadoutProto, out var loadProto))
                 continue;
 
+            // Frontier: hide loadout effects
+            if (loadout.IsHidden(profile, session, loadoutProto, collection))
+                continue;
+            // End Frontier: hide loadout effects
+
             var matchingLoadout = selected.FirstOrDefault(e => e.Prototype == loadoutProto);
             var pressed = matchingLoadout != null;
 
@@ -100,6 +105,9 @@ public sealed partial class LoadoutGroupContainer : BoxContainer
             foreach (var loadoutProto in loadoutGroupProto.Loadouts)
             {
                 if (!protoMan.TryIndex(loadoutProto, out var loadProto))
+                    continue;
+
+                if (loadout.IsHidden(profile, session, loadoutProto, collection))
                     continue;
 
                 var matchingLoadout = selected.FirstOrDefault(e => e.Prototype == loadoutProto);

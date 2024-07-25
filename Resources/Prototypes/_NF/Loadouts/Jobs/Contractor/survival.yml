@@ -3,7 +3,7 @@
   id: ContractorBoxSurvivalNFOxygen
   equipment: ContractorBoxSurvivalNFOxygen
   name: oxygen survival box
-  effects:
+  hideEffects:
   - !type:GroupLoadoutEffect
     proto: OxygenBreatherNF
 
@@ -17,7 +17,7 @@
   id: ContractorBoxSurvivalNFNitrogen
   equipment: ContractorBoxSurvivalNFNitrogen
   name: nitrogen survival box
-  effects:
+  hideEffects:
   - !type:GroupLoadoutEffect
     proto: NitrogenBreatherNF
 
@@ -34,9 +34,10 @@
   name: extended-oxygen survival box
   effects:
   - !type:GroupLoadoutEffect
-    proto: OxygenBreatherNF
-  - !type:GroupLoadoutEffect
     proto: ContractorT1
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: OxygenBreatherNF
   price: 1000
 
 - type: startingGear
@@ -51,9 +52,10 @@
   name: extended-nitrogen survival box
   effects:
   - !type:GroupLoadoutEffect
-    proto: NitrogenBreatherNF
-  - !type:GroupLoadoutEffect
     proto: ContractorT1
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: NitrogenBreatherNF
   price: 1000
 
 - type: startingGear

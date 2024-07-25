@@ -304,8 +304,45 @@ public sealed partial class RoleLoadout : IEquatable<RoleLoadout>
             valid = valid && effect.Validate(profile, this, session, collection, out reason);
         }
 
+        // Frontier: add hide effects
+        foreach (var effect in loadoutProto.HideEffects)
+        {
+            valid = valid && effect.Validate(profile, this, session, collection, out reason);
+        }
+        // End Frontier
+
         return valid;
     }
+
+    // Frontier: hidden loadouts
+    /// <summary>
+    /// Returns whether a loadout should be hidden or not
+    /// </summary>
+    public bool IsHidden(HumanoidCharacterProfile profile, ICommonSession? session, ProtoId<LoadoutPrototype> loadout, IDependencyCollection collection)
+    {
+        var protoManager = collection.Resolve<IPrototypeManager>();
+
+        if (!protoManager.TryIndex(loadout, out var loadoutProto))
+        {
+            return true;
+        }
+
+        if (!protoManager.HasIndex(Role))
+        {
+            return true;
+        }
+
+        // Frontier: add hide effects
+        foreach (var effect in loadoutProto.HideEffects)
+        {
+            if (!effect.Validate(profile, this, session, collection, out var _)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+    // End Frontier: hidden loadouts
 
     /// <summary>
     /// Applies the specified loadout to this group.
