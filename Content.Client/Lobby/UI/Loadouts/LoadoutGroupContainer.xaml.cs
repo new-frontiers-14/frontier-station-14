@@ -90,5 +90,37 @@ public sealed partial class LoadoutGroupContainer : BoxContainer
 
             LoadoutsContainer.AddChild(loadoutContainer);
         }
+
+        // Frontier: loadoutGroup subgroups
+        foreach (var subgroupProto in _groupProto.Subgroups)
+        {
+            if (!protoMan.TryIndex(subgroupProto, out var loadoutGroupProto))
+                continue;
+
+            foreach (var loadoutProto in loadoutGroupProto.Loadouts)
+            {
+                if (!protoMan.TryIndex(loadoutProto, out var loadProto))
+                    continue;
+
+                var matchingLoadout = selected.FirstOrDefault(e => e.Prototype == loadoutProto);
+                var pressed = matchingLoadout != null;
+
+                var enabled = loadout.IsValid(profile, session, loadoutProto, collection, out var reason);
+                var loadoutContainer = new LoadoutContainer(loadoutProto, !enabled, reason);
+                loadoutContainer.Select.Pressed = pressed;
+                loadoutContainer.Text = string.IsNullOrEmpty(loadProto.Name) ? loadoutSystem.GetName(loadProto) : loadProto.Name; // Frontier: allow overriding loadout names
+
+                loadoutContainer.Select.OnPressed += args =>
+                {
+                    if (args.Button.Pressed)
+                        OnLoadoutPressed?.Invoke(loadoutProto);
+                    else
+                        OnLoadoutUnpressed?.Invoke(loadoutProto);
+                };
+
+                LoadoutsContainer.AddChild(loadoutContainer);
+            }
+        }
+        // End Frontier
     }
 }

@@ -41,3 +41,35 @@
     - Oni
     - Felinid
     - Vulpkanin
+
+- type: loadoutEffectGroup
+  id: ShoesCapableNF
+  effects:
+  - !type:SpeciesLoadoutEffect
+    species:
+    - Arachnid
+    - Dwarf
+    - Human
+    - Moth
+    - Reptilian
+    - SlimePerson
+    - Vox
+    - Goblin
+    - Oni
+    - Felinid
+    - Vulpkanin
+    - Harpy
+
+- type: loadoutEffectGroup
+  id: NotStationRep
+  effects:
+  - !type:RoleBlacklistLoadoutEffect
+    blacklist:
+      - JobStationRepresentative
+
+- type: loadoutEffectGroup
+  id: NotStc
+  effects:
+  - !type:RoleBlacklistLoadoutEffect
+    blacklist:
+      - JobStc

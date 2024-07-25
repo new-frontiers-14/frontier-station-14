@@ -38,6 +38,14 @@ public sealed partial class LoadoutGroupPrototype : IPrototype
     [DataField(required: true)]
     public List<ProtoId<LoadoutPrototype>> Loadouts = new();
 
+    // Frontier: loadout redundancy
+    /// <summary>
+    /// Loadout subgroups - will be appended to loadout list.
+    /// </summary>
+    [DataField]
+    public List<ProtoId<LoadoutGroupPrototype>> Subgroups = new();
+    // End Frontier
+
     // Frontier: handle unaffordable loadouts
     /// <summary>
     /// Fallback loadouts to be selected in case a character cannot afford them.
