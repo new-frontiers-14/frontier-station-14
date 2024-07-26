@@ -903,7 +903,7 @@ entities:
       pos: 13.5,9.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -733.5978
+      secondsUntilStateChange: -1864.7898
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -961,7 +961,7 @@ entities:
       pos: 17.5,5.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -31384.102
+      secondsUntilStateChange: -32515.293
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -1986,8 +1986,11 @@ entities:
   - uid: 445
     components:
     - type: Transform
+      anchored: True
       pos: 18.5,-2.5
       parent: 1
+    - type: Physics
+      bodyType: Static
 - proto: CrateMaterials
   entities:
   - uid: 64
@@ -3248,11 +3251,14 @@ entities:
       parent: 1
 - proto: LockerMedicineFilled
   entities:
-  - uid: 417
+  - uid: 415
     components:
     - type: Transform
+      anchored: True
       pos: 21.5,1.5
       parent: 1
+    - type: Physics
+      bodyType: Static
 - proto: LockerWallChemistryFilled
   entities:
   - uid: 380
@@ -3408,8 +3414,7 @@ entities:
   - uid: 418
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 21.5,3.5
+      pos: 20.5,3.5
       parent: 1
 - proto: PosterLegitBlessThisSpess
   entities:
@@ -3490,16 +3495,16 @@ entities:
       parent: 1
 - proto: PowerCellRecharger
   entities:
-  - uid: 415
-    components:
-    - type: Transform
-      pos: 16.5,4.5
-      parent: 1
   - uid: 559
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 18.5,4.5
+      parent: 1
+  - uid: 577
+    components:
+    - type: Transform
+      pos: 16.5,-1.5
       parent: 1
 - proto: Poweredlight
   entities:
@@ -4103,10 +4108,10 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 22.5,4.5
       parent: 1
-  - uid: 577
+  - uid: 549
     components:
     - type: Transform
-      pos: 16.5,4.5
+      pos: 16.5,-1.5
       parent: 1
 - proto: TableReinforced
   entities:
@@ -4267,19 +4272,19 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 16.30378,-2.3302982
       parent: 1
+- proto: VendingMachineMedical
+  entities:
+  - uid: 417
+    components:
+    - type: Transform
+      pos: 16.5,4.5
+      parent: 1
 - proto: VendingMachineTankDispenserEVA
   entities:
   - uid: 55
     components:
     - type: Transform
       pos: 12.5,4.5
-      parent: 1
-- proto: VendingMachineWallMedical
-  entities:
-  - uid: 549
-    components:
-    - type: Transform
-      pos: 20.5,3.5
       parent: 1
 - proto: WallmountTelevision
   entities:
