@@ -8,10 +8,10 @@ public sealed partial class TriggerSystem
 {
     private void InitializeBeingGibbed()
     {
-        SubscribeLocalEvent<TriggerOnBeingGibbedComponent, ImplantRelayEvent<BeingGibbedEvent>>(OnBeingGibbedRelay);
+        SubscribeLocalEvent<TriggerOnBeingGibbedComponent, ImplantRelayEvent<BeforeGibbedEvent>>(OnBeingGibbedRelay);
     }
 
-    private void OnBeingGibbedRelay(EntityUid uid, TriggerOnBeingGibbedComponent component, ImplantRelayEvent<BeingGibbedEvent> args)
+    private void OnBeingGibbedRelay(EntityUid uid, TriggerOnBeingGibbedComponent component, ImplantRelayEvent<BeforeGibbedEvent> args)
     {
         Trigger(uid);
     }
