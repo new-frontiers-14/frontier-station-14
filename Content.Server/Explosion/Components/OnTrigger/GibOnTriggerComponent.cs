@@ -17,7 +17,6 @@ public sealed partial class GibOnTriggerComponent : Component
     /// <summary>
     /// Frontier - Should gibbing also delete the owners organs?
     /// </summary>
-    [ViewVariables(VVAccess.ReadWrite)]
-    [DataField("deleteOrgans")]
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
     public bool DeleteOrgans = false;
 }
