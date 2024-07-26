@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Numerics;
@@ -133,33 +134,38 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
 
         //First, we need to grab the list and sort it into its respective spawning logics
         var allLocationList = _prototypeManager.EnumeratePrototypes<PointOfInterestPrototype>().ToList();
-        var depotList = allLocationList.Where(w => w.SpawnGroup == "CargoDepot");
-        foreach (var proto in depotList.ToList())
+        Logger.Info("all locations contains " + allLocationList.Count.ToString());
+        var depotList = allLocationList.Where(w => w.SpawnGroup == "CargoDepot").ToList();
+        foreach (var proto in depotList)
         {
             allLocationList.Remove(proto);
         }
-        var marketList = allLocationList.Where(w => w.SpawnGroup == "MarketStation");
-        foreach (var proto in marketList.ToList())
+        GenerateDepots(depotList);
+
+        var marketList = allLocationList.Where(w => w.SpawnGroup == "MarketStation").ToList();
+        foreach (var proto in marketList)
         {
             allLocationList.Remove(proto);
         }
-        var requiredList = allLocationList.Where(w => w.AlwaysSpawn == true);
-        foreach (var proto in requiredList.ToList())
+        GenerateMarkets(marketList);
+
+        var requiredList = allLocationList.Where(w => w.AlwaysSpawn == true).ToList();
+        foreach (var proto in requiredList)
         {
             allLocationList.Remove(proto);
         }
-        var optionalList = allLocationList.Where(w => w.SpawnGroup == "Optional");
-        foreach (var proto in optionalList.ToList())
+        GenerateRequireds(requiredList);
+
+        var optionalList = allLocationList.Where(w => w.SpawnGroup == "Optional").ToList();
+        foreach (var proto in optionalList)
         {
             allLocationList.Remove(proto);
         }
+        GenerateOptionals(optionalList);
+
         // the remainder are done on a per-group basis
         var uniqueList = allLocationList;
 
-        GenerateDepots(depotList);
-        GenerateMarkets(marketList);
-        GenerateRequireds(requiredList);
-        GenerateOptionals(optionalList);
         GenerateUniques(uniqueList);
 
 
@@ -345,7 +351,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         var rotation = Math.PI / depotCount;
         var rotationOffset = 0d;
 
-        for (int i = 0; i < depotCount; i++)
+        for (int i = 0; i < depotCount && protoList.Count > 0; i++)
         {
             var proto = _random.Pick(protoList);
             Vector2i offset = new Vector2i(_random.Next(proto.RangeMin, proto.RangeMax), 0);
