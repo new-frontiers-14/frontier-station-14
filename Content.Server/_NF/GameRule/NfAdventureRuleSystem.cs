@@ -134,22 +134,22 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         //First, we need to grab the list and sort it into its respective spawning logics
         var allLocationList = _prototypeManager.EnumeratePrototypes<PointOfInterestPrototype>().ToList();
         var depotList = allLocationList.Where(w => w.SpawnGroup == "CargoDepot");
-        foreach (var proto in depotList)
+        foreach (var proto in depotList.ToList())
         {
             allLocationList.Remove(proto);
         }
         var marketList = allLocationList.Where(w => w.SpawnGroup == "MarketStation");
-        foreach (var proto in marketList)
+        foreach (var proto in marketList.ToList())
         {
             allLocationList.Remove(proto);
         }
         var requiredList = allLocationList.Where(w => w.AlwaysSpawn == true);
-        foreach (var proto in requiredList)
+        foreach (var proto in requiredList.ToList())
         {
             allLocationList.Remove(proto);
         }
         var optionalList = allLocationList.Where(w => w.SpawnGroup == "Optional");
-        foreach (var proto in optionalList)
+        foreach (var proto in optionalList.ToList())
         {
             allLocationList.Remove(proto);
         }
