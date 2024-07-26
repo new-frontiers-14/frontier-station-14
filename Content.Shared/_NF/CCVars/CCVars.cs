@@ -74,11 +74,11 @@ public sealed class NF14CVars
     /// <summary>
     /// The number of Optional Points Of Interest to spawn in every round
     /// </summary>
-    public static readonly CVarDef<int> OptionalPOIs =
-        CVarDef.Create("nf14.worldgen.optional_pois", 8, CVar.SERVERONLY);
+    public static readonly CVarDef<int> OptionalStations =
+        CVarDef.Create("nf14.worldgen.optional_stations", 8, CVar.SERVERONLY);
 
     /// <summary>
-    /// The multiplier to add to distance spawning calculations
+    /// The multiplier to add to distance spawning calculations for a smidge of server setting variance
     /// </summary>
     public static readonly CVarDef<float> POIDistanceModifier =
         CVarDef.Create("nf14.worldgen.distance_modifier", 1f, CVar.SERVERONLY);

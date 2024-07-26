@@ -52,10 +52,11 @@ public sealed partial class PointOfInterestPrototype : IPrototype
     ///     it will be excluded from any kind of random lists, for places like the sheriff's department etc.
     /// </summary>
     [DataField("alwaysSpawn")]
-    public bool AlwaysSpawn { get; private set; } = true;
+    public bool AlwaysSpawn { get; private set; }
 
     /// <summary>
-    ///     When there are more available objects to spawn in the particular group, start using this as a weight for an rng system
+    ///     If the POI does not belong to a pre-defined group, it will default to the "unique" internal category and will
+    ///     use this float from 0-1 as a raw chance to spawn each round.
     /// </summary>
     [DataField("spawnChance")]
     public float SpawnChance { get; private set; } = 1;
@@ -67,7 +68,8 @@ public sealed partial class PointOfInterestPrototype : IPrototype
     ///     "Optional"
     ///     These three have corresponding CVARS by default, that set an optional # of this group to spawn.
     ///     Traditionally, it is 2 cargo depots, 1 trade station, and 8 optional POIs.
-    ///     Dynamically added groups will default to 1 option chosen in this group, using the SpawnChance as a weight.
+    ///     Dynamically added groups will default to 1 option chosen in that group, using the SpawnChance as a weighted chance
+    ///     for the entire group to spawn on a per-POI basis.
     /// </summary>
     [DataField("spawnGroup")]
     public string SpawnGroup { get; private set; } = "Optional";

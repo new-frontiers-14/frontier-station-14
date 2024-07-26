@@ -1,5 +1,6 @@
 using System.Linq;
 using System.Net.Http;
+using System.Numerics;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -49,6 +50,13 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
 
     [ViewVariables]
     private List<(EntityUid, int)> _players = new();
+
+    private float _distanceOffset = 1f;
+    private List<EntityUid> _depotStations = new();
+    private List<EntityUid> _marketStations = new();
+    private List<EntityUid> _optionalStations = new();
+    private List<EntityUid> _requiredStations = new();
+    private List<EntityUid> _uniqueStations = new();
 
     private MapId _mapId;
 
@@ -115,6 +123,15 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
     private void OnStartup(RoundStartingEvent ev)
     {
         _mapId = GameTicker.DefaultMap;
+        _depotStations.Clear();
+        _marketStations.Clear();
+        _optionalStations.Clear();
+        _requiredStations.Clear();
+        _uniqueStations.Clear();
+
+        _distanceOffset = _configurationManager.GetCVar(NF14CVars.POIDistanceModifier);
+
+        //First, we need to grab the list and sort it into its respective spawning logics
         var allLocationList = _prototypeManager.EnumeratePrototypes<PointOfInterestPrototype>().ToList();
         var depotList = allLocationList.Where(w => w.SpawnGroup == "CargoDepot");
         foreach (var proto in depotList)
@@ -126,18 +143,24 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         {
             allLocationList.Remove(proto);
         }
-        var optionalList = allLocationList.Where(w => w.SpawnGroup == "Optional");
-        foreach (var proto in optionalList)
-        {
-            allLocationList.Remove(proto);
-        }
         var requiredList = allLocationList.Where(w => w.AlwaysSpawn == true);
         foreach (var proto in requiredList)
         {
             allLocationList.Remove(proto);
         }
+        var optionalList = allLocationList.Where(w => w.SpawnGroup == "Optional");
+        foreach (var proto in optionalList)
+        {
+            allLocationList.Remove(proto);
+        }
         // the remainder are done on a per-group basis
-        var uniqueLocations = allLocationList;
+        var uniqueList = allLocationList;
+
+        GenerateDepots(depotList);
+        GenerateMarkets(marketList);
+        GenerateRequireds(requiredList);
+        GenerateOptionals(optionalList);
+        GenerateUniques(uniqueList);
 
 
 
@@ -384,39 +407,120 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             Vector2i offset = new Vector2i(_random.Next(proto.RangeMin, proto.RangeMax), 0);
             offset.Rotate(rotationOffset);
             rotationOffset += rotation;
-            if (TrySpawnPoiGrid(proto, offset, out var depotUid))
+            if (TrySpawnPoiGrid(proto, offset, out var depotUid) && depotUid is {Valid: true} depot)
             {
+                _depotStations.Add(depot);
             }
         }
-
     }
 
     private void GenerateMarkets(IEnumerable<PointOfInterestPrototype> marketPrototypes)
     {
+        //For market stations, we are going to allow for a bit of randomness and a different offset configuration. We dont
+        //want copies of this one, since these can be more themed and duplicate names, for instance, can make for a less
+        //ideal world
 
+        var protoList = marketPrototypes.ToList();
+        var marketCount = _configurationManager.GetCVar(NF14CVars.MarketStations);
+        for (int i = 0; i < marketCount; i++)
+        {
+            if (protoList.Count < 1)
+                break;
+
+            var proto = _random.PickAndTake(protoList);
+            var offset = _random.NextVector2(proto.RangeMin, proto.RangeMax);
+
+            if (TrySpawnPoiGrid(proto, offset, out var marketUid) && marketUid is {Valid: true} market)
+            {
+                _marketStations.Add(market);
+            }
+        }
     }
 
     private void GenerateOptionals(IEnumerable<PointOfInterestPrototype> optionalPrototypes)
     {
+        //Stations that do not have a defined grouping in their prototype get a default of "Optional" and get put into the
+        //generic random rotation of POIs. This should include traditional places like Tinnia's rest, the Science Lab, The Pit,
+        //and most RP places. This will essentially put them all into a pool to pull from, and still does not use the RNG function.
 
+        var protoList = optionalPrototypes.ToList();
+        var optionalCount = _configurationManager.GetCVar(NF14CVars.OptionalStations);
+        for (int i = 0; i < optionalCount; i++)
+        {
+            if (protoList.Count < 1)
+                break;
+
+            var proto = _random.PickAndTake(protoList);
+            var offset = _random.NextVector2(proto.RangeMin, proto.RangeMax);
+
+            if (TrySpawnPoiGrid(proto, offset, out var optionalUid) && optionalUid is {Valid: true} uid)
+            {
+                _optionalStations.Add(uid);
+            }
+        }
     }
 
     private void GenerateRequireds(IEnumerable<PointOfInterestPrototype> requiredPrototypes)
     {
+        //Stations are required are ones that are vital to function but otherwise still follow a generic random spawn logic
+        //Traditionally these would be stations like Expedition Lodge, NFSD station, Prison/Courthouse POI, etc.
+        //There are no limit to these, and any prototype marked alwaysSpawn = true will get pulled out of any list that isnt Markets/Depots
+        //And will always appear every time, and also will not be included in other optional/dynamic lists
 
+        var protoList = requiredPrototypes.ToList();
+
+        foreach (var proto in protoList)
+        {
+            var offset = _random.NextVector2(proto.RangeMin, proto.RangeMax);
+
+            if (TrySpawnPoiGrid(proto, offset, out var requiredUid) && requiredUid is {Valid: true} uid)
+            {
+                _requiredStations.Add(uid);
+            }
+        }
     }
 
     private void GenerateUniques(IEnumerable<PointOfInterestPrototype> uniquePrototypes)
     {
+        //Unique locations are semi-dynamic groupings of POIs that rely each independantly on the SpawnChance per POI prototype
+        //Since these are the remainder, and logically must have custom-designated groupings, we can then know to subdivide
+        //our random pool into these found groups.
+        //To do this with an equal distribution on a per-POI, per-round percentage basis, we are going to ensure a random
+        //pick order of which we analyze our weighted chances to spawn, and if successful, remove every entry of that group
+        //entirely.
 
+        var protoList = uniquePrototypes.ToList();
+
+        while (protoList.Count >= 1)
+        {
+            var proto = _random.PickAndTake(protoList);
+
+            var chance = _random.NextFloat(0, 1);
+            if (chance <= proto.SpawnChance)
+            {
+                var offset = _random.NextVector2(proto.RangeMin, proto.RangeMax);
+
+                if (TrySpawnPoiGrid(proto, offset, out var optionalUid) && optionalUid is {Valid: true} uid)
+                {
+                    _uniqueStations.Add(uid);
+
+                    var groupList = protoList.Where(w => w.SpawnGroup == proto.SpawnGroup);
+
+                    foreach (var groupItem in groupList)
+                    {
+                        protoList.Remove(groupItem);
+                    }
+                }
+            }
+        }
     }
 
-    private bool TrySpawnPoiGrid(PointOfInterestPrototype proto, Vector2i offset, out EntityUid? gridUid)
+    private bool TrySpawnPoiGrid(PointOfInterestPrototype proto, Vector2 offset, out EntityUid? gridUid)
     {
         gridUid = null;
         if (_map.TryLoad(_mapId, proto.GridPath.ToString(), out var mapUids, new MapLoadOptions
             {
-                Offset = offset
+                Offset = offset * _distanceOffset
             }))
         {
             if (_prototypeManager.TryIndex<GameMapPrototype>(proto.ID, out var stationProto))
