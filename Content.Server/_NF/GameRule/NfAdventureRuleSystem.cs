@@ -163,157 +163,13 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         }
         GenerateOptionals(optionalList);
 
-        // the remainder are done on a per-group basis
+        // the remainder are done on a per-poi-per-group basis
         var uniqueList = allLocationList;
 
         GenerateUniques(uniqueList);
 
 
-        var tinnia = "/Maps/_NF/POI/tinnia.yml";
-        var caseys = "/Maps/_NF/POI/caseyscasino.yml";
-        var lpbravo = "/Maps/_NF/POI/lpbravo.yml";
-        // var northpole = "/Maps/_NF/POI/northpole.yml";
-        var arena = "/Maps/_NF/POI/arena.yml";
-        var courthouse = "/Maps/_NF/POI/courthouse.yml";
-        var lodge = "/Maps/_NF/POI/lodge.yml";
-        var lab = "/Maps/_NF/POI/anomalouslab.yml";
-        var church = "Maps/_NF/POI/beacon.yml";
-        var grifty = "Maps/_NF/POI/grifty.yml";
-        var nfsdStation = "/Maps/_NF/POI/nfsd.yml";
-        var depotColor = new Color(55, 200, 55);
-        var civilianColor = new Color(55, 55, 200);
-        var lpbravoColor = new Color(200, 55, 55);
-        var factionColor = new Color(255, 165, 0);
         var mapId = GameTicker.DefaultMap;
-        var tinniaOffset = _random.NextVector2(1100f, 2800f);
-        var caseysOffset = _random.NextVector2(2250f, 4600f);
-
-        if (_map.TryLoad(mapId, nfsdStation, out var nfsdUids, new MapLoadOptions
-            {
-                Offset = _random.NextVector2(500f, 700f)
-            }))
-        {
-            // We should figure out if it is possible to add this grid to the latejoin listing.
-            // Hey turns out we can! (This is kinda copypasted from the lodge with some values filled in.)
-            if (_prototypeManager.TryIndex<GameMapPrototype>("Nfsd", out var stationProto))
-            {
-                _station.InitializeNewStation(stationProto.Stations["Nfsd"], nfsdUids);
-            }
-
-            var meta = EnsureComp<MetaDataComponent>(nfsdUids[0]);
-            _meta.SetEntityName(nfsdUids[0], "NFSD Outpost", meta);
-            _shuttle.SetIFFColor(nfsdUids[0], new Color(1f, 0.2f, 0.2f));
-        }
-
-        if (_map.TryLoad(mapId, tinnia, out var depotUid2s, new MapLoadOptions
-            {
-                Offset = tinniaOffset
-            }))
-        {
-            var meta = EnsureComp<MetaDataComponent>(depotUid2s[0]);
-            _meta.SetEntityName(depotUid2s[0], "Tinnia's Rest", meta);
-            _shuttle.SetIFFColor(depotUid2s[0], factionColor);
-        }
-
-        if (_map.TryLoad(mapId, church, out var churchUids, new MapLoadOptions
-            {
-                Offset = -tinniaOffset
-            }))
-        {
-            var meta = EnsureComp<MetaDataComponent>(churchUids[0]);
-            _meta.SetEntityName(churchUids[0], "Omnichurch Beacon", meta);
-            _shuttle.SetIFFColor(churchUids[0], factionColor);
-        }
-
-        if (_map.TryLoad(mapId, lpbravo, out var lpbravoUids, new MapLoadOptions
-            {
-                Offset = _random.NextVector2(2150f, 4850f)
-            }))
-        {
-            if (_prototypeManager.TryIndex<GameMapPrototype>("LPBravo", out var stationProto))
-            {
-                _station.InitializeNewStation(stationProto.Stations["LPBravo"], lpbravoUids);
-            }
-
-            var meta = EnsureComp<MetaDataComponent>(lpbravoUids[0]);
-            _meta.SetEntityName(lpbravoUids[0], "Listening Point Bravo", meta);
-            _shuttle.SetIFFColor(lpbravoUids[0], lpbravoColor);
-            _shuttle.AddIFFFlag(lpbravoUids[0], IFFFlags.HideLabel);
-        }
-
-        // if (_map.TryLoad(mapId, northpole, out var northpoleUids, new MapLoadOptions
-        //     {
-        //         Offset = _random.NextVector2(2150f, 3900f)
-        //     }))
-        // {
-        //     var meta = EnsureComp<MetaDataComponent>(northpoleUids[0]);
-        //     _shuttle.SetIFFColor(northpoleUids[0], lpbravoColor);
-        //     _shuttle.AddIFFFlag(northpoleUids[0], IFFFlags.HideLabel);
-        // }
-
-        if (_map.TryLoad(mapId, arena, out var depotUid5s, new MapLoadOptions
-            {
-                Offset = _random.NextVector2(2200f, 4200f)
-            }))
-        {
-            var meta = EnsureComp<MetaDataComponent>(depotUid5s[0]);
-            _meta.SetEntityName(depotUid5s[0], "The Pit", meta);
-            _shuttle.SetIFFColor(depotUid5s[0], civilianColor);
-        }
-
-        if (_map.TryLoad(mapId, lodge, out var lodgeUids, new MapLoadOptions
-            {
-                Offset = _random.NextVector2(1650f, 3400f)
-            }))
-        {
-            if (_prototypeManager.TryIndex<GameMapPrototype>("Lodge", out var stationProto))
-            {
-                _station.InitializeNewStation(stationProto.Stations["Lodge"], lodgeUids);
-            }
-
-            var meta = EnsureComp<MetaDataComponent>(lodgeUids[0]);
-            _meta.SetEntityName(lodgeUids[0], "Expeditionary Lodge", meta);
-            _shuttle.SetIFFColor(lodgeUids[0], civilianColor);
-        }
-
-        if (_map.TryLoad(mapId, caseys, out var caseyUids, new MapLoadOptions
-            {
-                Offset = caseysOffset
-            }))
-        {
-            var meta = EnsureComp<MetaDataComponent>(caseyUids[0]);
-            _meta.SetEntityName(caseyUids[0], "Crazy Casey's Casino", meta);
-            _shuttle.SetIFFColor(caseyUids[0], factionColor);
-        }
-
-        if (_map.TryLoad(mapId, grifty, out var griftyUids, new MapLoadOptions
-            {
-                Offset = -caseysOffset
-            }))
-        {
-            var meta = EnsureComp<MetaDataComponent>(griftyUids[0]);
-            _meta.SetEntityName(griftyUids[0], "Grifty's Gas and Grub", meta);
-            _shuttle.SetIFFColor(griftyUids[0], factionColor);
-        }
-
-        if (_map.TryLoad(mapId, courthouse, out var depotUid8s, new MapLoadOptions
-            {
-                Offset = _random.NextVector2(1150f, 2050f)
-            }))
-        {
-            _shuttle.SetIFFColor(depotUid8s[0], civilianColor);
-        }
-
-        if (_map.TryLoad(mapId, lab, out var labUids, new MapLoadOptions
-            {
-                Offset = _random.NextVector2(2100f, 3800f)
-            }))
-        {
-            var meta = EnsureComp<MetaDataComponent>(labUids[0]);
-            _meta.SetEntityName(labUids[0], "Anomalous Laboratory", meta);
-            _shuttle.SetIFFColor(labUids[0], factionColor);
-        }
-
         var dungenTypes = _prototypeManager.EnumeratePrototypes<DungeonConfigPrototype>();
 
         foreach (var dunGen in dungenTypes)
@@ -372,11 +228,8 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
 
         var protoList = marketPrototypes.ToList();
         var marketCount = _configurationManager.GetCVar(NF14CVars.MarketStations);
-        for (int i = 0; i < marketCount; i++)
+        for (int i = 0; i < marketCount && protoList.Count > 0; i++)
         {
-            if (protoList.Count < 1)
-                break;
-
             var proto = _random.PickAndTake(protoList);
             var offset = _random.NextVector2(proto.RangeMin, proto.RangeMax);
 
@@ -395,10 +248,8 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
 
         var protoList = optionalPrototypes.ToList();
         var optionalCount = _configurationManager.GetCVar(NF14CVars.OptionalStations);
-        for (int i = 0; i < optionalCount; i++)
+        for (int i = 0; i < optionalCount && protoList.Count > 0; i++)
         {
-            if (protoList.Count < 1)
-                break;
 
             var proto = _random.PickAndTake(protoList);
             var offset = _random.NextVector2(proto.RangeMin, proto.RangeMax);
@@ -454,7 +305,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
                 {
                     _uniqueStations.Add(uid);
 
-                    var groupList = protoList.Where(w => w.SpawnGroup == proto.SpawnGroup);
+                    var groupList = protoList.Where(w => w.SpawnGroup == proto.SpawnGroup).ToList();
 
                     foreach (var groupItem in groupList)
                     {
