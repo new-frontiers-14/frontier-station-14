@@ -26,6 +26,9 @@ public sealed class PseudoItemSystem : EntitySystem
     [Dependency] private readonly ActionsSystem _actions = default!; // Frontier
     [Dependency] private readonly PopupSystem _popup = default!; // Frontier
 
+    [ValidatePrototypeId<TagPrototype>]
+    private const string PreventTag = "PreventLabel";
+
     public override void Initialize()
     {
         base.Initialize();
@@ -152,7 +155,7 @@ public sealed class PseudoItemSystem : EntitySystem
             return false;
 
         var item = EnsureComp<ItemComponent>(toInsert);
-        //_tagSystem.TryAddTag(toInsert, PreventTag); // FRONTIER: removed for now
+        _tagSystem.TryAddTag(toInsert, PreventTag);
         _itemSystem.SetSize(toInsert, component.Size, item);
         _itemSystem.VisualsChanged(toInsert);
 
