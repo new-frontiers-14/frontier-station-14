@@ -31,6 +31,46 @@
   - NfsdClothingBackpackNfsdCream
 
 - type: loadoutGroup
+  id: NfsdShoesBrown
+  name: loadout-group-contractor-backpack
+  minLimit: 1
+  loadouts:
+  - NfsdClothingShoesBootsBrown
+  - NfsdClothingShoesBootsCream
+  fallbacks:
+  - NfsdClothingShoesBootsBrown
+
+- type: loadoutGroup
+  id: NfsdShoesCream
+  name: loadout-group-contractor-backpack
+  minLimit: 1
+  loadouts:
+  - NfsdClothingShoesBootsCream
+  - NfsdClothingShoesBootsBrown
+  fallbacks:
+  - NfsdClothingShoesBootsCream
+
+- type: loadoutGroup
+  id: NfsdGlovesBrown
+  name: loadout-group-contractor-backpack
+  minLimit: 1
+  loadouts:
+  - ClothingHandsGlovesCombatNfsdBrown
+  - ClothingHandsGlovesCombatNfsdCream
+  fallbacks:
+  - ClothingHandsGlovesCombatNfsdBrown
+
+- type: loadoutGroup
+  id: NfsdGlovesCream
+  name: loadout-group-contractor-backpack
+  minLimit: 1
+  loadouts:
+  - ClothingHandsGlovesCombatNfsdCream
+  - ClothingHandsGlovesCombatNfsdBrown
+  fallbacks:
+  - ClothingHandsGlovesCombatNfsdCream
+
+- type: loadoutGroup
   id: NfsdBelt
   name: loadout-group-contractor-belt
   minLimit: 1
@@ -58,3 +98,12 @@
   minLimit: 0
   loadouts:
   - NfsdClothingMaskGasNfsd
+
+- type: loadoutGroup
+  id: NfsdGlasses
+  name: loadout-group-contractor-glasses
+  hidden: true # No point in showing this, it gets auto-selected.
+  loadouts:
+  - NfsdClothingEyesGlasses
+  fallbacks:
+  - NfsdClothingEyesGlasses
