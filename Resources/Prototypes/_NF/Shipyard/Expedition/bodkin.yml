@@ -1,0 +1,38 @@
+# Author Info
+# GitHub: Tych0theSynth
+# Discord: tych0
+
+# Maintainer Info
+# GitHub: Tych0theSynth
+# Discord: Tych0
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Bodkin
+  name: SBB Bodkin
+  description: A compact civilian-grade scout ship designed for short-term planetary surveying and exploration. The Broadhead's smaller sibling.
+  price: 54000 #Shuttle values at approx 28000. 54000 puts it in between the Pathfinder and Brigand, which is where it should sit.
+  category: Small
+  group: Expedition
+  shuttlePath: /Maps/_NF/Shuttles/Expedition/bodkin.yml
+
+- type: gameMap
+  id: Bodkin
+  mapName: 'SBB Bodkin'
+  mapPath: /Maps/_NF/Shuttles/Expedition/bodkin.yml
+  minPlayers: 0
+  stations:
+    Bodkin:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Bodkin {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]
