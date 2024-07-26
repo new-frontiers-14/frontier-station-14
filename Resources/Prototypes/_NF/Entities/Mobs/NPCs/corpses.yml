@@ -18,10 +18,9 @@
     spawned:
     - id: FoodMeatRotten
       amount: 5
-  - type: TriggerOnBeingGibbed
-  - type: GibOnTrigger
-    deleteItems: true
-    deleteOrgans: true
+  - type: AutoImplant
+    implants:
+    - GibAcidifierImplantNF
 
 # Corpses with gear
 - type: entity
