@@ -24,12 +24,6 @@ public sealed partial class PointOfInterestPrototype : IPrototype
     public string Name { get; private set; } = "";
 
     /// <summary>
-    ///     Whether or not the POI is shown on IFF.
-    /// </summary>
-    [DataField("isHidden")]
-    public bool IsHidden { get; private set; }
-
-    /// <summary>
     ///     Minimum range to spawn this POI at
     /// </summary>
     [DataField("rangeMin")]
@@ -46,6 +40,12 @@ public sealed partial class PointOfInterestPrototype : IPrototype
     /// </summary>
     [DataField("iffColor")]
     public Color IffColor { get; private set; } = (100, 100, 100, 100);
+
+    /// <summary>
+    ///     Whether or not the POI is shown on IFF.
+    /// </summary>
+    [DataField("isHidden")]
+    public bool IsHidden { get; private set; }
 
     /// <summary>
     ///     Must this POI always spawn? This is independent of spawn chance. If it always spawns,

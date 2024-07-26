@@ -163,50 +163,24 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         GenerateUniques(uniqueList);
 
 
-
-        var depotMap = "/Maps/_NF/POI/cargodepot.yml";
         var tinnia = "/Maps/_NF/POI/tinnia.yml";
         var caseys = "/Maps/_NF/POI/caseyscasino.yml";
         var lpbravo = "/Maps/_NF/POI/lpbravo.yml";
         // var northpole = "/Maps/_NF/POI/northpole.yml";
         var arena = "/Maps/_NF/POI/arena.yml";
-        var cove = "/Maps/_NF/POI/cove.yml";
         var courthouse = "/Maps/_NF/POI/courthouse.yml";
         var lodge = "/Maps/_NF/POI/lodge.yml";
         var lab = "/Maps/_NF/POI/anomalouslab.yml";
         var church = "Maps/_NF/POI/beacon.yml";
         var grifty = "Maps/_NF/POI/grifty.yml";
         var nfsdStation = "/Maps/_NF/POI/nfsd.yml";
-        var trade = "/Maps/_NF/POI/trade.yml";
         var depotColor = new Color(55, 200, 55);
         var civilianColor = new Color(55, 55, 200);
         var lpbravoColor = new Color(200, 55, 55);
         var factionColor = new Color(255, 165, 0);
         var mapId = GameTicker.DefaultMap;
-        var depotOffset = _random.NextVector2(4500f, 6000f);
         var tinniaOffset = _random.NextVector2(1100f, 2800f);
         var caseysOffset = _random.NextVector2(2250f, 4600f);
-        var tradeOffset = _random.NextVector2(1500f, 2500f);
-
-        if (_map.TryLoad(mapId, depotMap, out var depotUids, new MapLoadOptions
-            {
-                Offset = depotOffset
-            }))
-        {
-            var meta = EnsureComp<MetaDataComponent>(depotUids[0]);
-            _meta.SetEntityName(depotUids[0], "Cargo Depot A", meta);
-            _shuttle.SetIFFColor(depotUids[0], depotColor);
-        }
-
-        if (_map.TryLoad(mapId, depotMap, out var depotUid3s, new MapLoadOptions
-            {
-                Offset = -depotOffset
-            }))
-        {
-            var meta = EnsureComp<MetaDataComponent>(depotUid3s[0]);
-            _meta.SetEntityName(depotUid3s[0], "Cargo Depot B", meta);
-            _shuttle.SetIFFColor(depotUid3s[0], depotColor);
-        }
 
         if (_map.TryLoad(mapId, nfsdStation, out var nfsdUids, new MapLoadOptions
             {
@@ -281,22 +255,6 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             _shuttle.SetIFFColor(depotUid5s[0], civilianColor);
         }
 
-        if (_map.TryLoad(mapId, cove, out var depotUid6s, new MapLoadOptions
-            {
-                Offset = _random.NextVector2(10000f, 15000f)
-            }))
-        {
-            if (_prototypeManager.TryIndex<GameMapPrototype>("Cove", out var stationProto))
-            {
-                _station.InitializeNewStation(stationProto.Stations["Cove"], depotUid6s);
-            }
-
-            var meta = EnsureComp<MetaDataComponent>(depotUid6s[0]);
-            _meta.SetEntityName(depotUid6s[0], "Pirate's Cove", meta);
-            _shuttle.SetIFFColor(depotUid6s[0], lpbravoColor);
-            _shuttle.AddIFFFlag(depotUid6s[0], IFFFlags.HideLabel);
-        }
-
         if (_map.TryLoad(mapId, lodge, out var lodgeUids, new MapLoadOptions
             {
                 Offset = _random.NextVector2(1650f, 3400f)
@@ -348,20 +306,6 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             var meta = EnsureComp<MetaDataComponent>(labUids[0]);
             _meta.SetEntityName(labUids[0], "Anomalous Laboratory", meta);
             _shuttle.SetIFFColor(labUids[0], factionColor);
-        }
-
-        if (_map.TryLoad(mapId, trade, out var tradeUids, new MapLoadOptions
-        {
-            Offset = -tradeOffset
-        }))
-        {
-            if (_prototypeManager.TryIndex<GameMapPrototype>("Trade", out var stationProto))
-            {
-                _station.InitializeNewStation(stationProto.Stations["Trade"], tradeUids);
-            }
-            var meta = EnsureComp<MetaDataComponent>(tradeUids[0]);
-            _meta.SetEntityName(tradeUids[0], "Trade Outpost", meta);
-            _shuttle.SetIFFColor(tradeUids[0], depotColor);
         }
 
         var dungenTypes = _prototypeManager.EnumeratePrototypes<DungeonConfigPrototype>();
