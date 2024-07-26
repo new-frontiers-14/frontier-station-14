@@ -9,7 +9,7 @@ public sealed partial class TriggerSystem
     private void InitializeBeingGibbed()
     {
         SubscribeLocalEvent<TriggerOnBeingGibbedComponent, BeforeGibbedEvent>(OnBeingGibbed);
-        SubscribeLocalEvent<TriggerOnBeingGibbedComponent, ImplantRelayEvent<BeingGibbedEvent>>(OnBeingGibbedRelay);
+        SubscribeLocalEvent<TriggerOnBeingGibbedComponent, ImplantRelayEvent<BeforeGibbedEvent>>(OnBeingGibbedRelay);
     }
 
     private void OnBeingGibbed(EntityUid uid, TriggerOnBeingGibbedComponent component, BeforeGibbedEvent args)
