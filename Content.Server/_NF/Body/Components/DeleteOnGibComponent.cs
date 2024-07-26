@@ -1,0 +1,21 @@
+namespace Content.Server.Explosion.Components;
+
+/// <summary>
+/// Gibs on trigger, self explanatory.
+/// Also in case of an implant using this, gibs the implant user instead.
+/// </summary>
+[RegisterComponent]
+public sealed partial class DeleteOnGibComponent : Component
+{
+    /// <summary>
+    /// Should gibbing also delete the owners items?
+    /// </summary>
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public bool DeleteItems = false;
+
+    /// <summary>
+    /// Frontier - Should gibbing also delete the owners organs?
+    /// </summary>
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public bool DeleteOrgans = false;
+}
