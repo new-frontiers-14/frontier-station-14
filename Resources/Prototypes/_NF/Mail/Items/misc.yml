@@ -159,3 +159,19 @@
     solutions:
       smokable:
         maxVol: 20
+
+- type: entity
+  name: lil vulp cannon
+  parent: WeaponImprovisedPneumaticCannon
+  id: WeaponVulpCannon
+  description: With a widened barrel, this friend launcher can huck your little buddies further than you ever could.
+  components:
+  - type: Storage
+    maxItemSize: Ginormous
+    grid:
+    - 0,0,3,3
+    whitelist:
+      components:
+        - HumanoidAppearance
+  - type: PneumaticCannon
+    baseProjectileSpeed: 25.0 # zoom
