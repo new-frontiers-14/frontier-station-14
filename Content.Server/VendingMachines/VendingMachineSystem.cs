@@ -357,7 +357,13 @@ namespace Content.Server.VendingMachines
             if (TryComp(uid, out SpeakOnUIClosedComponent? speakComponent))
                 _speakOnUIClosed.TrySetFlag((uid, speakComponent));
 
-            entry.Amount--;
+            // New Frontiers - Unlimited vending - support items with unlimited vending stock.
+            // This code is licensed under AGPLv3. See AGPLv3.txt
+
+            // Infinite supplies must stay infinite.
+            if (entry.Amount != uint.MaxValue)
+                entry.Amount--;
+            // End of modified code
             UpdateVendingMachineInterfaceState(uid, vendComponent, balance);
             TryUpdateVisualState(uid, vendComponent);
             Audio.PlayPvs(vendComponent.SoundVend, uid);
@@ -394,11 +400,11 @@ namespace Content.Server.VendingMachines
 
             var totalPrice = (int) price;
 
-            // This block exists to allow the VendPrice flag to set a vending machine item price.
+            // Frontier: if any price has a vendor price, explicitly use its value - higher OR lower, over others.
             var priceVend = _pricing.GetEstimatedVendPrice(proto);
-            if (priceVend != null && totalPrice <= (int) priceVend)
+            if (priceVend > 0.0) // if vending price exists, overwrite it.
                 totalPrice = (int) priceVend;
-            // This block exists to allow the VendPrice flag to set a vending machine item price.
+            // End Frontier
 
             if (IsAuthorized(uid, sender, component))
             {

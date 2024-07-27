@@ -6,6 +6,7 @@
   - SeniorOfficerClothingUniformJumpskirtSeniorOfficer
   fallbacks:
   - SeniorOfficerClothingUniformJumpsuitSeniorOfficer
+  - SeniorOfficerClothingUniformJumpskirtSeniorOfficer
   
 - type: loadoutGroup
   id: SeniorOfficerOuterClothing
@@ -15,27 +16,11 @@
   - SeniorOfficerOuterClothing
 
 - type: loadoutGroup
-  id: SeniorOfficerShoes
-  name: loadout-group-contractor-shoes
-  loadouts:
-  - NfsdClothingShoesBootsBrown
-  fallbacks:
-  - NfsdClothingShoesBootsBrown
-
-- type: loadoutGroup
   id: SeniorOfficerHead
   name: loadout-group-contractor-head
   minLimit: 0
   loadouts:
   - SeniorOfficerClothingHeadHatSeniorOfficer
-  
-- type: loadoutGroup
-  id: SeniorOfficerGloves
-  name: loadout-group-contractor-gloves
-  loadouts:
-  - SeniorOfficerClothingHandsGlovesSeniorOfficer
-  fallbacks:
-  - SeniorOfficerClothingHandsGlovesSeniorOfficer
 
 - type: loadoutGroup
   id: SeniorOfficerNeck
@@ -47,15 +32,8 @@
 - type: loadoutGroup
   id: SeniorOfficerPDA
   name: loadout-group-contractor-id
+  hidden: true # No point in showing this, it gets auto-selected.
   loadouts:
   - SeniorOfficerSeniorOfficerPDA
   fallbacks:
   - SeniorOfficerSeniorOfficerPDA
-  
-- type: loadoutGroup
-  id: SeniorOfficerGlasses
-  name: loadout-group-contractor-glasses
-  loadouts:
-  - NfsdClothingEyesGlasses
-  fallbacks:
-  - NfsdClothingEyesGlasses
