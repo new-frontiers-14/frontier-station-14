@@ -209,6 +209,18 @@
     sprite: _NF/Structures/Storage/Crates/piratechestgrey.rsi
 
 - type: entity
+  parent: CratePirate
+  id: CratePirateBounty
+  name: pirate bounty chest
+  description: A chest for storing looted goods. Huh, this one's blank.
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Storage/Crates/pirate_bounty.rsi
+  - type: Icon
+    sprite: _NF/Structures/Storage/Crates/pirate_bounty.rsi
+  - type: PirateBountyLabel # Needs to be filled out.
+
+- type: entity
   parent: CrateFreezer
   id: CrateFreezerMcCargo
   name: mccargo freezer
