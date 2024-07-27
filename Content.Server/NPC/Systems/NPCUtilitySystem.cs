@@ -25,6 +25,7 @@ using Robust.Server.Containers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using System.Linq;
+using Content.Shared.StatusEffect; // Frontier
 
 namespace Content.Server.NPC.Systems;
 
@@ -48,6 +49,7 @@ public sealed class NPCUtilitySystem : EntitySystem
     [Dependency] private readonly WeldableSystem _weldable = default!;
     [Dependency] private readonly ExamineSystemShared _examine = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private readonly StatusEffectsSystem _statusEffectsSystem = default!; // Frontier
 
     private EntityQuery<PuddleComponent> _puddleQuery;
     private EntityQuery<TransformComponent> _xformQuery;
@@ -341,6 +343,16 @@ public sealed class NPCUtilitySystem : EntitySystem
 
                 return 0f;
             }
+            // Frontier: stun conditions
+            case TargetIsNotStunnedCon:
+            {
+                return _statusEffectsSystem.HasStatusEffect(targetUid, "Stun") ? 0f : 1f;
+            }
+            case TargetIsStunnedCon:
+            {
+                return _statusEffectsSystem.HasStatusEffect(targetUid, "Stun") ? 1f : 0f;
+            }
+            // End Frontier
             default:
                 throw new NotImplementedException();
         }
