@@ -1,8 +1,8 @@
 - type: entity
-  id: MagazineRifleLowCapacityEmpty
-  name: "low cap magazine (.20 rifle any)"
+  id: MagazineLightRifleLowCapacityEmpty
+  name: "low cap magazine (.30 rifle any)"
   suffix: empty
-  parent: MagazineRifle
+  parent: MagazineLightRifle
   components:
   - type: BallisticAmmoProvider
     proto: null
@@ -10,23 +10,25 @@
   - type: Item
     size: Tiny
   - type: Sprite
-    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Rifle/rifle_cap_mag.rsi
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_cap_mag.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
-  id: MagazineRifleLowCapacity
-  name: "low cap magazine (.20 rifle)"
-  parent: BaseMagazineRifle
+  id: MagazineLightRifleLowCapacity
+  name: "low cap magazine (.30 rifle)"
+  parent: BaseMagazineLightRifle
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeRifle
+    proto: CartridgeLightRifle
     capacity: 15
   - type: Item
     size: Tiny
   - type: Sprite
-    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Rifle/rifle_cap_mag.rsi
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_cap_mag.rsi
     layers:
     - state: red
       map: ["enum.GunVisualLayers.Base"]
@@ -34,12 +36,12 @@
       map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
-  id: MagazineRifleLowCapacityPractice
-  name: "low cap magazine (.20 rifle practice)"
-  parent: MagazineRifleLowCapacity
+  id: MagazineLightRifleLowCapacityPractice
+  name: "low cap magazine (.30 rifle practice)"
+  parent: MagazineLightRifleLowCapacity
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeRiflePractice
+    proto: CartridgeLightRiflePractice
     capacity: 15
   - type: Item
     size: Tiny
@@ -51,12 +53,12 @@
       map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
-  id: MagazineRifleLowCapacityRubber
-  name: "low cap magazine (.20 rifle rubber)"
-  parent: MagazineRifleLowCapacity
+  id: MagazineLightRifleLowCapacityRubber
+  name: "low cap magazine (.30 rifle rubber)"
+  parent: MagazineLightRifleLowCapacity
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeRifleRubber
+    proto: CartridgeLightRifleRubber
     capacity: 15
   - type: Item
     size: Tiny
@@ -68,12 +70,12 @@
       map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
-  id: MagazineRifleLowCapacityUranium
-  name: "low cap magazine (.20 rifle uranium)"
-  parent: MagazineRifleLowCapacity
+  id: MagazineLightRifleLowCapacityUranium
+  name: "low cap magazine (.30 rifle uranium)"
+  parent: MagazineLightRifleLowCapacity
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeRifleUranium
+    proto: CartridgeLightRifleUranium
     capacity: 15
   - type: Item
     size: Tiny

@@ -51,4 +51,10 @@ public sealed partial class LoadoutPrototype : IPrototype
     /// </remarks>
     [DataField]
     public EntProtoId? PreviewEntity = default!;
+
+    /// <summary>
+    /// Frontier - effects to both validate and hide layout options in the menu
+    /// </summary>
+    [DataField]
+    public List<LoadoutEffect> HideEffects = new();
 }
