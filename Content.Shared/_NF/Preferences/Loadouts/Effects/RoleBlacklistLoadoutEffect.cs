@@ -1,6 +1,4 @@
 using System.Diagnostics.CodeAnalysis;
-using Content.Shared.Players.PlayTimeTracking;
-using Content.Shared.Roles;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
@@ -8,7 +6,7 @@ using Robust.Shared.Utility;
 namespace Content.Shared.Preferences.Loadouts.Effects;
 
 /// <summary>
-/// Checks for a job requirement to be met such as playtime.
+/// Validates a loadout against a set of blocked roles.
 /// </summary>
 public sealed partial class RoleBlacklistLoadoutEffect : LoadoutEffect
 {

@@ -61,8 +61,16 @@
     - Harpy
 
 - type: loadoutEffectGroup
-  id: NotStc
+  id: NotStcNF
   effects:
   - !type:RoleBlacklistLoadoutEffect
     blacklist:
       - JobStationTrafficController
+
+- type: loadoutEffectGroup
+  id: NotFemaleNF
+  effects:
+  - !type:SexLoadoutEffect
+    sex:
+      - Male
+      - Unsexed
