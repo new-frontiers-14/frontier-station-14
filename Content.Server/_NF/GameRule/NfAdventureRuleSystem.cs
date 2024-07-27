@@ -27,7 +27,6 @@ using Content.Server.Station.Systems;
 using Content.Shared.CCVar;
 using Content.Shared.NF14.CCVar;
 using Robust.Shared.Configuration;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.List;
 
 namespace Content.Server.GameTicking.Rules;
 
@@ -169,7 +168,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         {
 
             var seed = _random.Next();
-            var offset = _random.NextVector2(3000f, 8500f);
+            var offset = _random.NextVector2(3000f, 8500f) * _distanceOffset;
             if (!_map.TryLoad(mapId, "/Maps/_NF/Dungeon/spaceplatform.yml", out var grids,
                 new MapLoadOptions
                 {
