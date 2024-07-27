@@ -1,0 +1,409 @@
+
+- type: pirateBounty
+  id: PirateBountyMail
+  reward: 3
+  description: pirate-bounty-description-generic
+  entries:
+  - name: pirate-bounty-item-mail
+    amount: 3
+    whitelist:
+      tags:
+      - Mail
+    blacklist:
+      tags:
+      - Trash
+
+- type: pirateBounty
+  id: PirateBountyPDA
+  reward: 5
+  description: pirate-bounty-description-generic
+  entries:
+  - name: pirate-bounty-item-pda
+    amount: 3
+    idWhitelist:
+      id:
+      - BasePDA
+      matchParents: true
+
+- type: pirateBounty
+  id: PirateBountyExtinguisher
+  reward: 2
+  description: pirate-bounty-description-generic
+  entries:
+  - name: pirate-bounty-item-extinguisher
+    amount: 4
+    idWhitelist:
+      id:
+      - FireExtinguisher
+      matchParents: true # Do we need this?
+
+- type: pirateBounty
+  id: PirateBountyCaptainGloves
+  reward: 5
+  description: pirate-bounty-description-generic
+  entries:
+  - name: pirate-bounty-item-captainGloves
+    amount: 2
+    idWhitelist:
+      id:
+      - ClothingHandsGlovesCaptain
+
+- type: pirateBounty
+  id: PirateBountyGyro
+  reward: 4
+  description: pirate-bounty-description-generic
+  spawnChest: false
+  entries:
+  - name: pirate-bounty-item-gyro
+    amount: 2
+    idWhitelist:
+      id:
+      - Gyroscope # Security, small gyro inherit
+      matchParents: true
+
+- type: pirateBounty
+  id: PirateBountyDefib
+  reward: 5
+  description: pirate-bounty-description-generic
+  entries:
+  - name: pirate-bounty-item-defib
+    amount: 3
+    idWhitelist:
+      id:
+      - BaseDefibrillator
+      matchParents: true
+
+- type: pirateBounty
+  id: PirateBountyResearchDisk
+  reward: 5
+  description: pirate-bounty-description-generic
+  entries:
+  - name: pirate-bounty-item-researchDisk
+    amount: 7
+    idWhitelist:
+      id:
+      - TechnologyDisk
+      matchParents: true
+
+- type: pirateBounty
+  id: PirateBountyAlcohol
+  reward: 4
+  description: pirate-bounty-description-generic
+  spawnChest: false
+  entries:
+  - name: pirate-bounty-item-alcohol
+    amount: 2
+    idWhitelist:
+      id:
+      - BoozeDispenser
+      matchParents: true # Empty variant
+
+- type: pirateBounty
+  id: PirateBountyThruster
+  reward: 4
+  description: pirate-bounty-description-generic
+  spawnChest: false
+  entries:
+  - name: pirate-bounty-item-thruster
+    amount: 3
+    idWhitelist:
+      id:
+      - BaseThruster
+      matchParents: true
+
+- type: pirateBounty
+  id: PirateBountyGravGen
+  reward: 5
+  description: pirate-bounty-description-generic
+  spawnChest: false
+  entries:
+  - name: pirate-bounty-item-gravGen
+    amount: 2
+    idWhitelist:
+      id:
+      - GravityGeneratorMini
+
+- type: pirateBounty
+  id: PirateBountyChemVend
+  reward: 3
+  description: pirate-bounty-description-generic
+  spawnChest: false
+  entries:
+  - name: pirate-bounty-item-chemVend
+    amount: 1
+    idWhitelist:
+      id:
+      - VendingMachineChemicals
+
+- type: pirateBounty
+  id: PirateBountyVendingMachine
+  reward: 6
+  description: pirate-bounty-description-generic
+  spawnChest: false
+  entries:
+  - name: pirate-bounty-item-vendingmachine
+    amount: 3
+    idWhitelist:
+      id:
+      - VendingMachine
+      matchParents: true
+
+- type: pirateBounty
+  id: PirateBountyMercSuit
+  reward: 3
+  description: pirate-bounty-description-generic
+  entries:
+  - name: pirate-bounty-item-mercSuit
+    amount: 2
+    idWhitelist:
+      id:
+      - ClothingOuterHardsuitMercenary
+
+- type: pirateBounty
+  id: PirateBountyCappy
+  reward: 10
+  description: pirate-bounty-description-generic
+  entries:
+  - name: pirate-bounty-item-cappy
+    amount: 1
+    idWhitelist:
+      id:
+      - MobCatCappy
+
+- type: pirateBounty
+  id: PirateBountyCultistNecklace
+  reward: 4
+  description: pirate-bounty-description-generic
+  entries:
+  - name: pirate-bounty-item-cultistNeck
+    amount: 1
+    idWhitelist:
+      id:
+      - ClothingNeckAmuletBloodCult
+
+- type: pirateBounty
+  id: PirateBountyNfsdCampaign
+  reward: 4
+  description: pirate-bounty-description-generic
+  entries:
+  - name: pirate-bounty-item-nfsdCampaign
+    amount: 2
+    idWhitelist:
+      id:
+      - ClothingHeadHatNfsdSmallCampaign
+      - ClothingHeadHatNfsdCampaign
+
+- type: pirateBounty
+  id: PirateBountyScafSuit
+  reward: 5
+  description: pirate-bounty-description-generic
+  entries:
+  - name: pirate-bounty-item-scafsuit
+    amount: 3
+    idWhitelist:
+      id:
+      - ClothingOuterHardsuitScaf
+
+- type: pirateBounty
+  id: PirateBountyRTG
+  reward: 4
+  description: pirate-bounty-description-generic
+  spawnChest: false
+  entries:
+  - name: pirate-bounty-item-rtg
+    amount: 2
+    idWhitelist:
+      id:
+      - GeneratorRTG
+      matchParents: true
+
+- type: pirateBounty
+  id: PirateBountyMercGas
+  reward: 3
+  description: pirate-bounty-description-generic
+  entries:
+  - name: pirate-bounty-item-mercgas
+    amount: 4
+    idWhitelist:
+      id:
+      - ClothingMaskGasMercenary
+
+- type: pirateBounty
+  id: PirateBountyRDHardsuit
+  reward: 3
+  description: pirate-bounty-description-generic
+  entries:
+  - name: pirate-bounty-item-rdhardsuit
+    amount: 1
+    idWhitelist:
+      id:
+      - ClothingOuterHardsuitRd
+
+- type: pirateBounty
+  id: PirateBountyMK58
+  reward: 5
+  description: pirate-bounty-description-generic
+  entries:
+  - name: pirate-bounty-item-mk58
+    amount: 2
+    idWhitelist:
+      id:
+      - WeaponPistolMk58
+      matchParents: true # Non-lethal version fine
+
+- type: pirateBounty
+  id: PirateBountyArtifactAnalyzer
+  reward: 4
+  description: pirate-bounty-description-generic
+  entries:
+  - name: pirate-bounty-item-artifactanalyzer
+    amount: 2
+    idWhitelist:
+      id:
+      - ArtifactAnalyzerMachineCircuitboard
+
+- type: pirateBounty
+  id: PirateBountyHotplate
+  reward: 5
+  description: pirate-bounty-description-generic
+  spawnChest: false
+  entries:
+  - name: pirate-bounty-item-hotplate
+    amount: 1
+    idWhitelist:
+      id:
+      - ChemistryHotplate
+
+- type: pirateBounty
+  id: PirateBountyDeepFryer
+  reward: 5
+  description: pirate-bounty-description-generic
+  spawnChest: false
+  entries:
+  - name: pirate-bounty-item-deepfryer
+    amount: 2
+    idWhitelist:
+      id:
+      - KitchenDeepFryer
+
+- type: pirateBounty
+  id: PirateBountyKeyCommon
+  reward: 5
+  description: pirate-bounty-description-generic
+  entries:
+  - name: pirate-bounty-item-keycommon
+    amount: 3
+    idWhitelist:
+      id:
+      - EncryptionKeyCommon
+
+- type: pirateBounty
+  id: PirateBountyMedicalFabBoard
+  reward: 4
+  description: pirate-bounty-description-generic
+  entries:
+  - name: pirate-bounty-item-medicalfabboard
+    amount: 2
+    idWhitelist:
+      id:
+      - MedicalTechFabCircuitboard
+
+- type: pirateBounty
+  id: PirateBountyHypo
+  reward: 2
+  description: pirate-bounty-description-generic
+  entries:
+  - name: pirate-bounty-item-hypo
+    amount: 1
+    idWhitelist:
+      id:
+      - Hypospray
+      matchParents: true # NFSD/Limited Edition versions fine
+
+- type: pirateBounty
+  id: PirateBountyOreBox
+  reward: 3
+  description: pirate-bounty-description-generic
+  spawnChest: false
+  entries:
+  - name: pirate-bounty-item-orebox
+    amount: 2
+    idWhitelist:
+      id:
+      - OreBox
+
+- type: pirateBounty
+  id: PirateBountyAutolathe
+  reward: 3
+  description: pirate-bounty-description-generic
+  spawnChest: false
+  entries:
+  - name: pirate-bounty-item-autolathe
+    amount: 2
+    idWhitelist:
+      id:
+      - Autolathe
+
+# needs work
+# - type: pirateBounty
+#   id: PirateBountyDiamond
+#   reward: 4
+#   description: pirate-bounty-description-generic
+#   entries:
+#   - name: pirate-bounty-item-diamond
+#     amount: 5
+#     idWhitelist:
+#       id:
+#       - MaterialDiamond
+
+- type: pirateBounty
+  id: PirateBountyGold
+  reward: 4
+  description: pirate-bounty-description-generic
+  entries:
+  - name: pirate-bounty-item-gold
+    amount: 5
+    idWhitelist:
+      id:
+      - GoldOre1
+      - IngotGold
+
+- type: pirateBounty
+  id: PirateBountyPlasmaCanister
+  reward: 5
+  description: pirate-bounty-description-generic
+  spawnChest: false
+  entries:
+  - name: pirate-bounty-item-plasmacanister
+    amount: 4
+    idWhitelist:
+      id:
+      - PlasmaCanister
+
+- type: pirateBounty
+  id: PirateBountyContraCrate
+  reward: 3
+  description: pirate-bounty-description-generic
+  spawnChest: false
+  entries:
+  - name: pirate-bounty-item-contracrate
+    amount: 1
+    idWhitelist:
+      id:
+      - CrateTradeContrabandSecureNormal
+      - CrateTradeContrabandSecureDonk
+      - CrateTradeContrabandSecureCyberSun
+      matchParents: true # Filled variants and non-filled ones
+
+- type: pirateBounty
+  id: PirateBountyHydroTray
+  reward: 4
+  description: pirate-bounty-description-generic
+  spawnChest: false
+  entries:
+  - name: pirate-bounty-item-hydrotray
+    amount: 2
+    idWhitelist:
+      id:
+      - hydroponicsTray
+      matchParents: true
