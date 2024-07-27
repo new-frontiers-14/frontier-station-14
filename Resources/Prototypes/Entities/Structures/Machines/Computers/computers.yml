@@ -751,25 +751,11 @@
 
 - type: entity
   id: ComputerCargoOrders
-  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseStructureComputer] # Frontier
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseComputer] # Frontier: add BaseStructureDisableToolUse, BaseStructureIndestructible
   name: cargo request computer
   description: Used to order supplies and approve requests.
-  placement:
-    mode: SnapgridCenter
   components:
-  - type: MeleeSound
-    soundGroups:
-      Brute:
-        collection: MetalGlassBreak
-  - type: Computer
-  - type: ApcPowerReceiver
-    powerLoad: 200
-  - type: ExtensionCableReceiver
-  - type: ActivatableUIRequiresPower
   - type: Sprite
-    netsync: false
-    noRot: true
-    sprite: Structures/Machines/computers.rsi
     layers:
     - map: ["computerLayerBody"]
       state: computer
@@ -789,23 +775,19 @@
     interfaces:
       enum.CargoConsoleUiKey.Orders:
         type: CargoOrderConsoleBoundUserInterface
-  - type: LitOnPowered
+  - type: Computer
+    board: Null # Frontier: CargoRequestComputerCircuitboard<Null
   - type: PointLight
     radius: 1.5
     energy: 1.6
     color: "#b89f25"
-    enabled: false
-    mask: /Textures/Effects/LightMasks/cone.png
-    autoRot: true
-    offset: "0, 0.4" # shine from the top, not bottom of the computer
-    castShadows: false
   - type: AccessReader
-    #access: [["Cargo"]]
+    #access: [["Cargo"]] # Frontier
   - type: DeviceNetwork
     deviceNetId: Wireless
     receiveFrequencyId: BasicDevice
-#  - type: WirelessNetworkConnection
-#    range: 200
+#  - type: WirelessNetworkConnection # Frontier
+#    range: 200 # Frontier
   - type: DeviceLinkSource
     range: 200
     ports:
