@@ -10,6 +10,7 @@
     - BaseStationSiliconLawFrontierStation
     - BaseStationEmpImmune
     - BaseStationSectorNews
+    - BaseStationSectorServices # Hosts all sector-wide services
   noSpawn: true
   components:
     - type: Transform
@@ -35,6 +36,18 @@
     - BaseStationShuttles # Can spawn shuttles via shipyard consoles
     - BaseStationAlertLevels # Has a comms console
     - BaseStationSiliconLawFrontierStation # No funny borg laws
+  noSpawn: true
+  components:
+    - type: Transform
+
+- type: entity
+  id: PirateFrontierOutpost
+  parent:
+    - BaseStation
+    - BaseStationJobsSpawning
+    - BaseStationCargo
+    - BaseStationSiliconLawFrontierShips # TODO: change this with pirate borgs?
+    - BaseStationRecords
   noSpawn: true
   components:
     - type: Transform
@@ -134,8 +147,16 @@
     - type: StationEmpImmune
 
 # Sector-wide news access, should be on stations with comms (radio station, telecomms)
+# TODO: move SectorNewsComponent to a SectorService
 - type: entity
   id: BaseStationSectorNews
   abstract: true
   components:
     - type: SectorNews
+
+# Uses this station ID to host singleton-esque services to avoid station references (e.g. for PDA apps)
+- type: entity
+  id: BaseStationSectorServices
+  abstract: true
+  components:
+    - type: StationSectorServiceHost

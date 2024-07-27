@@ -774,7 +774,7 @@
 
 - type: entity
   parent: [BaseStructureIndestructible, BaseStructureComputerTabletop, ComputerIFFPOI]
-  id: ComputerTabletopComputerIFFPOI
+  id: ComputerTabletopIFFPOI
   suffix: POI, Tabletop
   components:
   - type: Sprite
@@ -792,3 +792,63 @@
     - map: ["computerLayerKeys"]
       sprite: Structures/Machines/computers.rsi
       state: generic_keys
+
+- type: entity
+  parent: [BaseStructureComputerTabletop, ComputerPirateBounty]
+  id: ComputerTabletopPirateBounty
+  components:
+  - type: Sprite
+    drawdepth: SmallObjects
+    layers:
+    - map: ["computerLayerBody"]
+      sprite: _NF/Structures/Machines/computer_tabletop.rsi
+      state: computer_tabletop
+    - map: ["computerLayerKeyboard"]
+      sprite: _NF/Structures/Machines/computer_tabletop.rsi
+      state: generic_keyboard_tabletop
+    - map: ["computerLayerScreen"]
+      sprite: _NF/Structures/Machines/computers.rsi
+      state: piratebounty
+    - map: ["computerLayerKeys"]
+      sprite: _NF/Structures/Machines/computers.rsi
+      state: blackmarket_key
+
+- type: entity
+  parent: [BaseStructureComputerTabletop, ComputerContrabandPalletConsolePirate]
+  id: ComputerTabletopContrabandPalletConsolePirate
+  components:
+  - type: Sprite
+    drawdepth: SmallObjects
+    layers:
+    - map: ["computerLayerBody"]
+      sprite: _NF/Structures/Machines/computer_tabletop.rsi
+      state: computer_tabletop
+    - map: ["computerLayerKeyboard"]
+      sprite: _NF/Structures/Machines/computer_tabletop.rsi
+      state: generic_keyboard_tabletop
+    - map: ["computerLayerScreen"]
+      sprite: _NF/Structures/Machines/computers.rsi
+      state: contraband # TODO: replace this
+    - map: ["computerLayerKeys"]
+      sprite: _NF/Structures/Machines/computers.rsi
+      state: blackmarket_key
+
+- type: entity
+  parent: [BaseStructureComputerTabletop, ComputerPirateBountyRedemption]
+  id: ComputerTabletopPirateBountyRedemption
+  components:
+  - type: Sprite
+    drawdepth: SmallObjects
+    layers:
+    - map: ["computerLayerBody"]
+      sprite: _NF/Structures/Machines/computer_tabletop.rsi
+      state: computer_tabletop
+    - map: ["computerLayerKeyboard"]
+      sprite: _NF/Structures/Machines/computer_tabletop.rsi
+      state: generic_keyboard_tabletop
+    - map: ["computerLayerScreen"]
+      sprite: _NF/Structures/Machines/computers.rsi
+      state: piratebounty_pad # TODO: replace this
+    - map: ["computerLayerKeys"]
+      sprite: _NF/Structures/Machines/computers.rsi
+      state: blackmarket_key

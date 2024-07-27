@@ -14,6 +14,7 @@ public sealed class ShipyardConsoleInterfaceState : BoundUserInterfaceState
 
     public readonly List<string> ShipyardPrototypes;
     public readonly string ShipyardName;
+    public readonly bool FreeListings;
 
     public ShipyardConsoleInterfaceState(
         int balance,
@@ -23,7 +24,8 @@ public sealed class ShipyardConsoleInterfaceState : BoundUserInterfaceState
         bool isTargetIdPresent,
         byte uiKey,
         List<string> shipyardPrototypes,
-        string shipyardName)
+        string shipyardName,
+        bool freeListings)
     {
         Balance = balance;
         AccessGranted = accessGranted;
@@ -33,5 +35,6 @@ public sealed class ShipyardConsoleInterfaceState : BoundUserInterfaceState
         UiKey = uiKey;
         ShipyardPrototypes = shipyardPrototypes;
         ShipyardName = shipyardName;
+        FreeListings = freeListings;
     }
 }

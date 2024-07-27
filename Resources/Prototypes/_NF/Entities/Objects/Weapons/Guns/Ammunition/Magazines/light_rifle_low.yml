@@ -1,0 +1,87 @@
+- type: entity
+  id: MagazineLightRifleLowCapacityEmpty
+  name: "low cap magazine (.30 rifle any)"
+  suffix: empty
+  parent: MagazineLightRifle
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+    capacity: 15
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_cap_mag.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: MagazineLightRifleLowCapacity
+  name: "low cap magazine (.30 rifle)"
+  parent: BaseMagazineLightRifle
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeLightRifle
+    capacity: 15
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_cap_mag.rsi
+    layers:
+    - state: red
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: MagazineLightRifleLowCapacityPractice
+  name: "low cap magazine (.30 rifle practice)"
+  parent: MagazineLightRifleLowCapacity
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeLightRiflePractice
+    capacity: 15
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    layers:
+    - state: practice
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: MagazineLightRifleLowCapacityRubber
+  name: "low cap magazine (.30 rifle rubber)"
+  parent: MagazineLightRifleLowCapacity
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeLightRifleRubber
+    capacity: 15
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    layers:
+    - state: rubber
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: MagazineLightRifleLowCapacityUranium
+  name: "low cap magazine (.30 rifle uranium)"
+  parent: MagazineLightRifleLowCapacity
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeLightRifleUranium
+    capacity: 15
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    layers:
+    - state: uranium
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]

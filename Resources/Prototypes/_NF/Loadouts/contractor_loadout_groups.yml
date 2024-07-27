@@ -163,6 +163,7 @@
   - ContractorClothingUniformJumpsuitMilitaryColorBrown
   fallbacks:
   - ContractorClothingUniformJumpsuitColorGrey
+  - ContractorClothingUniformJumpskirtColorGrey
 
 - type: loadoutGroup
   id: ContractorBackpack
@@ -707,6 +708,8 @@
   - ContractorClothingMaskScaredMime
   - ContractorClothingMaskSadMime
   - ContractorClothingMaskClown
+  fallbacks:
+  - ContractorClothingMaskBreath
 
 - type: loadoutGroup
   id: ContractorTrinkets
@@ -767,7 +770,7 @@
 - type: loadoutGroup
   id: ContractorEncryptionKey
   name: loadout-group-contractor-encryption-key
-  minLimit: 1
+  minLimit: 0
   maxLimit: 3
   loadouts:
   - ContractorEncryptionKeyTraffic
@@ -788,3 +791,5 @@
   - ContractorLightImplanter
   - ContractorBikeHornImplanter
   - ContractorSadTromboneImplanter
+  fallbacks:
+  - ContractorMedicalTrackingImplanter
