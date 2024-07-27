@@ -1089,18 +1089,6 @@ entities:
     - type: DeviceLinkSink
       links:
       - 185
-- proto: BodyBagFolded
-  entities:
-  - uid: 661
-    components:
-    - type: Transform
-      pos: 4.579235,0.56650823
-      parent: 1
-  - uid: 662
-    components:
-    - type: Transform
-      pos: 4.40736,0.86338323
-      parent: 1
 - proto: CableApcExtension
   entities:
   - uid: 49
@@ -2055,13 +2043,18 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -4.5,-2.5
       parent: 1
-    - type: Physics
-      canCollide: False
     - type: ContainerContainer
       containers:
         board: !type:Container
+          showEnts: False
+          occludes: True
           ents: []
-        bank-ATM-cashSlot: !type:ContainerSlot {}
+        bank-ATM-cashSlot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+    - type: Physics
+      canCollide: False
     - type: ItemSlots
 - proto: DefaultStationBeaconAME
   entities:
@@ -3619,13 +3612,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 2.5,-1.5
       parent: 1
-- proto: HandheldHealthAnalyzer
-  entities:
-  - uid: 220
-    components:
-    - type: Transform
-      pos: 4.5374136,1.0828397
-      parent: 1
 - proto: HighSecCaptainLocked
   entities:
   - uid: 326
@@ -3889,14 +3875,6 @@ entities:
     components:
     - type: Transform
       pos: 2.5,-2.5
-      parent: 1
-- proto: Saw
-  entities:
-  - uid: 698
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 4.54243,0.6934414
       parent: 1
 - proto: ShipyardBrigandInfo
   entities:
@@ -4186,14 +4164,14 @@ entities:
       rot: 3.141592653589793 rad
       pos: -1.5,-12.5
       parent: 1
-- proto: SpawnShuttleGearSuitStorageUnitsMercenary
+- proto: SpawnDungeonLootSuitStorageUnitsMercenary
   entities:
   - uid: 234
     components:
     - type: Transform
       pos: 4.5,7.5
       parent: 1
-- proto: SpawnShuttleVendomatsClothes
+- proto: SpawnDungeonVendomatsClothes
   entities:
   - uid: 43
     components:
