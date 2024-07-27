@@ -96,7 +96,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
 
         for (var i = 0; i < 10 && i < highScore.Count; i++)
         {
-            relayText += $"{highScore.First().Item1} {profitText} {highScore.First().Item2.ToString()} Spesos";
+            relayText += $"{highScore.First().Item1} {profitText} {highScore.First().Item2} Spesos";
             relayText += '\n';
             highScore.Remove(highScore.First());
         }
@@ -105,7 +105,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         highScore.Reverse();
         for (var i = 0; i < 10 && i < highScore.Count; i++)
         {
-            relayText += $"{highScore.First().Item1} {lossText} {highScore.First().Item2.ToString()} Spesos";
+            relayText += $"{highScore.First().Item1} {lossText} {highScore.First().Item2} Spesos";
             relayText += '\n';
             highScore.Remove(highScore.First());
         }
@@ -134,33 +134,17 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
 
         //First, we need to grab the list and sort it into its respective spawning logics
         var allLocationList = _prototypeManager.EnumeratePrototypes<PointOfInterestPrototype>().ToList();
-        Logger.Info("all locations contains " + allLocationList.Count.ToString());
-        var depotList = allLocationList.Where(w => w.SpawnGroup == "CargoDepot").ToList();
-        foreach (var proto in depotList)
-        {
-            allLocationList.Remove(proto);
-        }
+        Log.Info($"all locations contains {allLocationList.Count} items");
+        var depotList = allLocationList.TakeWhile(w => w.SpawnGroup == "CargoDepot");
         GenerateDepots(depotList);
 
-        var marketList = allLocationList.Where(w => w.SpawnGroup == "MarketStation").ToList();
-        foreach (var proto in marketList)
-        {
-            allLocationList.Remove(proto);
-        }
+        var marketList = allLocationList.TakeWhile(w => w.SpawnGroup == "MarketStation");
         GenerateMarkets(marketList);
 
-        var requiredList = allLocationList.Where(w => w.AlwaysSpawn == true).ToList();
-        foreach (var proto in requiredList)
-        {
-            allLocationList.Remove(proto);
-        }
+        var requiredList = allLocationList.TakeWhile(w => w.AlwaysSpawn == true);
         GenerateRequireds(requiredList);
 
-        var optionalList = allLocationList.Where(w => w.SpawnGroup == "Optional").ToList();
-        foreach (var proto in optionalList)
-        {
-            allLocationList.Remove(proto);
-        }
+        var optionalList = allLocationList.TakeWhile(w => w.SpawnGroup == "Optional");
         GenerateOptionals(optionalList);
 
         // the remainder are done on a per-poi-per-group basis
@@ -177,7 +161,8 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
 
             var seed = _random.Next();
             var offset = _random.NextVector2(3000f, 8500f);
-            if (!_map.TryLoad(mapId, "/Maps/_NF/Dungeon/spaceplatform.yml", out var grids, new MapLoadOptions
+            if (!_map.TryLoad(mapId, "/Maps/_NF/Dungeon/spaceplatform.yml", out var grids,
+                new MapLoadOptions
                 {
                     Offset = offset
                 }))
@@ -213,7 +198,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             Vector2i offset = new Vector2i(_random.Next(proto.RangeMin, proto.RangeMax), 0);
             offset.Rotate(rotationOffset);
             rotationOffset += rotation;
-            if (TrySpawnPoiGrid(proto, offset, out var depotUid) && depotUid is {Valid: true} depot)
+            if (TrySpawnPoiGrid(proto, offset, out var depotUid) && depotUid is { Valid: true } depot)
             {
                 _depotStations.Add(depot);
             }
@@ -233,7 +218,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             var proto = _random.PickAndTake(protoList);
             var offset = _random.NextVector2(proto.RangeMin, proto.RangeMax);
 
-            if (TrySpawnPoiGrid(proto, offset, out var marketUid) && marketUid is {Valid: true} market)
+            if (TrySpawnPoiGrid(proto, offset, out var marketUid) && marketUid is { Valid: true } market)
             {
                 _marketStations.Add(market);
             }
@@ -254,7 +239,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             var proto = _random.PickAndTake(protoList);
             var offset = _random.NextVector2(proto.RangeMin, proto.RangeMax);
 
-            if (TrySpawnPoiGrid(proto, offset, out var optionalUid) && optionalUid is {Valid: true} uid)
+            if (TrySpawnPoiGrid(proto, offset, out var optionalUid) && optionalUid is { Valid: true } uid)
             {
                 _optionalStations.Add(uid);
             }
@@ -274,7 +259,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         {
             var offset = _random.NextVector2(proto.RangeMin, proto.RangeMax);
 
-            if (TrySpawnPoiGrid(proto, offset, out var requiredUid) && requiredUid is {Valid: true} uid)
+            if (TrySpawnPoiGrid(proto, offset, out var requiredUid) && requiredUid is { Valid: true } uid)
             {
                 _requiredStations.Add(uid);
             }
@@ -301,7 +286,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             {
                 var offset = _random.NextVector2(proto.RangeMin, proto.RangeMax);
 
-                if (TrySpawnPoiGrid(proto, offset, out var optionalUid) && optionalUid is {Valid: true} uid)
+                if (TrySpawnPoiGrid(proto, offset, out var optionalUid) && optionalUid is { Valid: true } uid)
                 {
                     _uniqueStations.Add(uid);
 
@@ -319,7 +304,8 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
     private bool TrySpawnPoiGrid(PointOfInterestPrototype proto, Vector2 offset, out EntityUid? gridUid)
     {
         gridUid = null;
-        if (_map.TryLoad(_mapId, proto.GridPath.ToString(), out var mapUids, new MapLoadOptions
+        if (_map.TryLoad(_mapId, proto.GridPath.ToString(), out var mapUids,
+            new MapLoadOptions
             {
                 Offset = offset * _distanceOffset
             }))
@@ -349,8 +335,8 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
     private async Task ReportRound(String message,  int color = 0x77DDE7)
     {
         Logger.InfoS("discord", message);
-        String _webhookUrl = _configurationManager.GetCVar(CCVars.DiscordLeaderboardWebhook);
-        if (_webhookUrl == string.Empty)
+        String webhookUrl = _configurationManager.GetCVar(CCVars.DiscordLeaderboardWebhook);
+        if (webhookUrl == string.Empty)
             return;
 
         var payload = new WebhookPayload
@@ -368,7 +354,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
 
         var ser_payload = JsonSerializer.Serialize(payload);
         var content = new StringContent(ser_payload, Encoding.UTF8, "application/json");
-        var request = await _httpClient.PostAsync($"{_webhookUrl}?wait=true", content);
+        var request = await _httpClient.PostAsync($"{webhookUrl}?wait=true", content);
         var reply = await request.Content.ReadAsStringAsync();
         if (!request.IsSuccessStatusCode)
         {
@@ -376,7 +362,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         }
     }
 
-// https://discord.com/developers/docs/resources/channel#message-object-message-structure
+    // https://discord.com/developers/docs/resources/channel#message-object-message-structure
     private struct WebhookPayload
     {
         [JsonPropertyName("username")] public string? Username { get; set; } = null;
@@ -399,7 +385,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         }
     }
 
-// https://discord.com/developers/docs/resources/channel#embed-object-embed-structure
+    // https://discord.com/developers/docs/resources/channel#embed-object-embed-structure
     private struct Embed
     {
         [JsonPropertyName("title")] public string Title { get; set; } = "";
@@ -415,7 +401,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         }
     }
 
-// https://discord.com/developers/docs/resources/channel#embed-object-embed-footer-structure
+    // https://discord.com/developers/docs/resources/channel#embed-object-embed-footer-structure
     private struct EmbedFooter
     {
         [JsonPropertyName("text")] public string Text { get; set; } = "";
