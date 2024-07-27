@@ -430,6 +430,45 @@
       - ReagentId: TearGas
         Quantity: 50
 
+- type: entity
+  parent: GrenadeBase
+  id: TestGasGrenade
+  name: test gas grenade
+  description: PP
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Grenades/tear_gas.rsi
+  - type: Spillable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1
+      behaviors:
+      - !type:TriggerBehavior
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:DumpCanisterBehavior
+  - type: GasCanister
+    gasMixture:
+        volume: 10
+        moles: # List of gasses for easy reference
+          - 1 # oxygen
+          - 0 # nitrogen
+          - 0 # CO2
+          - 9 # Plasma
+          - 0 # Tritium
+          - 0 # Water vapor
+          - 0 # Ammonia
+          - 0 # N2O
+          - 0 # Frezon
+        temperature: 6000
+  - type: IgnitionSource
+    ignited: true
+    temperature: 1
+
 # Non-explosive "dummy" grenades to use as a distraction.
 
 - type: entity

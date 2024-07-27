@@ -1,0 +1,46 @@
+- type: entity
+  parent: GrenadeBase
+  id: PirateRadiationGrenade
+  name: green pirate grenade
+  description: A rather hazy grenade that makes you feel fuzzy.
+  components:
+  - type: WeaponCaseInsertable # Frontier
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Bombs/pirate_caustic.rsi
+    layers:
+    - state: icon
+      map: ["enum.TriggerVisualLayers.Base"]
+    - state: wires
+  - type: OnUseTimerTrigger
+    delay: 5
+    examinable: false
+    initialBeepDelay: 0
+    beepSound:
+      path: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+      params:
+        volume: 1
+  - type: RandomTimerTrigger
+    min: 0
+    max: 8
+  - type: Explosive # Weak explosion in a very small radius. Ignites surrounding entities.
+    explosionType: Radioactive
+    totalIntensity: 25
+    intensitySlope: 5
+    maxIntensity: 5
+    canCreateVacuum: false
+  - type: ExplodeOnTrigger
+  - type: Appearance
+  - type: AnimationPlayer
+  - type: TimerTriggerVisuals
+    unprimedSprite: primed
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:ExplodeBehavior
