@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Numerics;
@@ -28,6 +27,7 @@ using Content.Server.Station.Systems;
 using Content.Shared.CCVar;
 using Content.Shared.NF14.CCVar;
 using Robust.Shared.Configuration;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.List;
 
 namespace Content.Server.GameTicking.Rules;
 
@@ -133,25 +133,34 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         _distanceOffset = _configurationManager.GetCVar(NF14CVars.POIDistanceModifier);
 
         //First, we need to grab the list and sort it into its respective spawning logics
-        var allLocationList = _prototypeManager.EnumeratePrototypes<PointOfInterestPrototype>().ToList();
-        Log.Info($"all locations contains {allLocationList.Count} items");
-        var depotList = allLocationList.TakeWhile(w => w.SpawnGroup == "CargoDepot");
+        List<PointOfInterestPrototype> depotList = new();
+        List<PointOfInterestPrototype> marketList = new();
+        List<PointOfInterestPrototype> requiredList = new();
+        List<PointOfInterestPrototype> optionalList = new();
+        Dictionary<string, List<PointOfInterestPrototype>> remainingPOIsBySpawnGroup = new();
+
+        foreach (var location in _prototypeManager.EnumeratePrototypes<PointOfInterestPrototype>())
+        {
+            if (location.SpawnGroup == "CargoDepot")
+                depotList.Add(location);
+            else if (location.SpawnGroup == "MarketStation")
+                marketList.Add(location);
+            else if (location.AlwaysSpawn == true)
+                requiredList.Add(location);
+            else if (location.SpawnGroup == "Optional")
+                optionalList.Add(location);
+            else // the remainder are done on a per-poi-per-group basis
+            {
+                if (!remainingPOIsBySpawnGroup.ContainsKey(location.SpawnGroup))
+                    remainingPOIsBySpawnGroup[location.SpawnGroup] = new();
+                remainingPOIsBySpawnGroup[location.SpawnGroup].Add(location);
+            }
+        }
         GenerateDepots(depotList);
-
-        var marketList = allLocationList.TakeWhile(w => w.SpawnGroup == "MarketStation");
         GenerateMarkets(marketList);
-
-        var requiredList = allLocationList.TakeWhile(w => w.AlwaysSpawn == true);
         GenerateRequireds(requiredList);
-
-        var optionalList = allLocationList.TakeWhile(w => w.SpawnGroup == "Optional");
         GenerateOptionals(optionalList);
-
-        // the remainder are done on a per-poi-per-group basis
-        var uniqueList = allLocationList;
-
-        GenerateUniques(uniqueList);
-
+        GenerateUniques(remainingPOIsBySpawnGroup);
 
         var mapId = GameTicker.DefaultMap;
         var dungenTypes = _prototypeManager.EnumeratePrototypes<DungeonConfigPrototype>();
@@ -213,14 +222,19 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
 
         var protoList = marketPrototypes.ToList();
         var marketCount = _configurationManager.GetCVar(NF14CVars.MarketStations);
-        for (int i = 0; i < marketCount && protoList.Count > 0; i++)
+        _random.Shuffle(protoList);
+        int marketsAdded = 0;
+        foreach (var proto in protoList)
         {
-            var proto = _random.PickAndTake(protoList);
+            if (marketsAdded >= marketCount)
+                break;
+
             var offset = _random.NextVector2(proto.RangeMin, proto.RangeMax);
 
             if (TrySpawnPoiGrid(proto, offset, out var marketUid) && marketUid is { Valid: true } market)
             {
                 _marketStations.Add(market);
+                marketsAdded++;
             }
         }
     }
@@ -233,10 +247,13 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
 
         var protoList = optionalPrototypes.ToList();
         var optionalCount = _configurationManager.GetCVar(NF14CVars.OptionalStations);
-        for (int i = 0; i < optionalCount && protoList.Count > 0; i++)
+        _random.Shuffle(protoList);
+        int optionalsAdded = 0;
+        foreach (var proto in protoList)
         {
+            if (optionalsAdded >= optionalCount)
+                break;
 
-            var proto = _random.PickAndTake(protoList);
             var offset = _random.NextVector2(proto.RangeMin, proto.RangeMax);
 
             if (TrySpawnPoiGrid(proto, offset, out var optionalUid) && optionalUid is { Valid: true } uid)
@@ -266,7 +283,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         }
     }
 
-    private void GenerateUniques(IEnumerable<PointOfInterestPrototype> uniquePrototypes)
+    private void GenerateUniques(Dictionary<string, List<PointOfInterestPrototype>> uniquePrototypes)
     {
         //Unique locations are semi-dynamic groupings of POIs that rely each independantly on the SpawnChance per POI prototype
         //Since these are the remainder, and logically must have custom-designated groupings, we can then know to subdivide
@@ -275,26 +292,21 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         //pick order of which we analyze our weighted chances to spawn, and if successful, remove every entry of that group
         //entirely.
 
-        var protoList = uniquePrototypes.ToList();
-
-        while (protoList.Count >= 1)
+        foreach (var prototypeList in uniquePrototypes.Values)
         {
-            var proto = _random.PickAndTake(protoList);
-
-            var chance = _random.NextFloat(0, 1);
-            if (chance <= proto.SpawnChance)
+            // Try to spawn 
+            _random.Shuffle(prototypeList);
+            foreach (var proto in prototypeList)
             {
-                var offset = _random.NextVector2(proto.RangeMin, proto.RangeMax);
-
-                if (TrySpawnPoiGrid(proto, offset, out var optionalUid) && optionalUid is { Valid: true } uid)
+                var chance = _random.NextFloat(0, 1);
+                if (chance <= proto.SpawnChance)
                 {
-                    _uniqueStations.Add(uid);
+                    var offset = _random.NextVector2(proto.RangeMin, proto.RangeMax);
 
-                    var groupList = protoList.Where(w => w.SpawnGroup == proto.SpawnGroup).ToList();
-
-                    foreach (var groupItem in groupList)
+                    if (TrySpawnPoiGrid(proto, offset, out var optionalUid) && optionalUid is { Valid: true } uid)
                     {
-                        protoList.Remove(groupItem);
+                        _uniqueStations.Add(uid);
+                        break;
                     }
                 }
             }
