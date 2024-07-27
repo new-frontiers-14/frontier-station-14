@@ -35,7 +35,8 @@ namespace Content.Server.Paper
         [Dependency] private readonly IdCardSystem _idCardSystem = default!;
         [Dependency] private readonly UseDelaySystem _useDelay = default!; // Frontier
 
-        private const int ReapplyLimit = 10; // Frontier
+        private const int ReapplyLimit = 10; // Frontier: limits on reapplied stamps
+        private const int StampLimit = 100; // Frontier: limits on total stamps on a page (should be able to get a signature from everybody on the server on a page)
 
         public override void Initialize()
         {
@@ -246,6 +247,8 @@ namespace Content.Server.Paper
         // FRONTIER - stamp precondition
         private bool CanStamp(StampDisplayInfo stampInfo, PaperComponent paperComp)
         {
+            if (paperComp.StampedBy.Count >= StampLimit)
+                return false;
             if (stampInfo.Reapply)
                 return paperComp.StampedBy.FindAll(x => x.Equals(stampInfo)).Count < ReapplyLimit;
             else
@@ -356,7 +359,7 @@ namespace Content.Server.Paper
             if (!Resolve(uid, ref paperComp))
                 return;
 
-            paperComp.Content = content + '\n';
+            paperComp.Content = content.Trim() + '\n'; // Frontier: content<content.Trim()
             UpdateUserInterface(uid, paperComp);
 
             if (!TryComp<AppearanceComponent>(uid, out var appearance))
