@@ -94,6 +94,32 @@
     - id: SpeedLoaderMagnum
       amount: 2
 
+- type: entity
+  parent: WeaponCaseShort
+  id: WeaponCaseShortMateba
+  suffix: Dungeon, Mateba
+  noSpawn: true
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponRevolverMatebaExpedition
+      amount: 1
+    - id: SpeedLoaderMagnum
+      amount: 2
+
+- type: entity
+  parent: WeaponCaseShort
+  id: WeaponCaseShortRevolverPirate
+  suffix: Dungeon, Pirate Revolver
+  noSpawn: true
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponRevolverPirateExpedition
+      amount: 1
+    - id: SpeedLoaderMagnum
+      amount: 2
+
 # Shotguns
 - type: entity
   parent: WeaponCaseShort
@@ -143,6 +169,19 @@
   - type: StorageFill
     contents:
     - id: WeaponShotgunKammererExpedition
+      amount: 1
+    - id: BoxLethalshot
+      amount: 2
+
+- type: entity
+  parent: WeaponCaseLong
+  id: WeaponCaseLongEnforcerExpedition
+  suffix: Dungeon, Enforcer
+  noSpawn: true
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponShotgunEnforcerExpedition
       amount: 1
     - id: BoxLethalshot
       amount: 2
@@ -234,7 +273,7 @@
     contents:
     - id: WeaponRifleGestio
       amount: 1
-    - id: MagazineRifleLowCapacity
+    - id: MagazineLightRifleLowCapacity
       amount: 3
 
 - type: entity
@@ -301,8 +340,6 @@
       amount: 1
     - id: 10roundmagazine
       amount: 2 
-   
-
 
 # Energy
 - type: entity
@@ -362,6 +399,28 @@
     - id: WeaponAdvancedLaserExpedition
       amount: 1
 
+- type: entity
+  parent: WeaponCaseShort
+  id: WeaponCaseLongLaserCannonExpedition
+  suffix: Dungeon, Laser Cannon
+  noSpawn: true
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponLaserCannonExpedition
+      amount: 1
+
+- type: entity
+  parent: WeaponCaseShort
+  id: WeaponCaseLongXrayCannonExpedition
+  suffix: Dungeon, Xray Cannon
+  noSpawn: true
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponXrayCannonExpedition
+      amount: 1
+
 # Sniper
 - type: entity
   parent: WeaponCaseLong
@@ -400,6 +459,19 @@
     - id: WeaponSniperRepeater
       amount: 1
     - id: MagazineBoxMagnum
+      amount: 2
+
+- type: entity
+  parent: WeaponCaseLong
+  id: WeaponCaseLongMusketExpedition
+  suffix: Dungeon, Musket
+  noSpawn: true
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponMusketExpedition
+      amount: 1
+    - id: MagazineBoxAntiMateriel
       amount: 2
 
 # Launchers

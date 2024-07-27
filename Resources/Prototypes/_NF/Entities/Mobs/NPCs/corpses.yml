@@ -1,0 +1,114 @@
+# Base
+- type: entity
+  parent: SalvageHumanCorpse
+  id: DungeonHumanCorpse
+  suffix: Dead, Frontier
+  save: false
+  name: unidentified corpse
+  description: I think they're dead.
+  components:
+  - type: StinkyTrait
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: Carriable # Carrying system from nyanotrasen.
+  #- type: SalvageMobRestrictionsNF
+  - type: Butcherable
+    butcheringType: Spike
+    spawned:
+    - id: FoodMeatRotten
+      amount: 5
+  - type: TriggerOnBeingGibbed
+  - type: GibOnTrigger
+    deleteItems: true
+    deleteOrgans: true
+    gib: false
+    useArgumentEntity: true
+
+# Corpses with gear
+- type: entity
+  parent: DungeonHumanCorpse
+  id: DungeonHumanCorpseRandomService
+  suffix: Dead, Frontier, Service
+  components:
+  - type: Loadout
+    prototypes:
+      - ClownGear
+      - MimeGear
+      - JanitorGear
+      - ServiceWorkerGear
+      - MusicianGear
+      - BotanistGear
+      - ChefGear
+      - ChaplainGear
+      - PassengerGear
+      - PilotGear
+
+- type: entity
+  parent: DungeonHumanCorpse
+  id: DungeonHumanCorpseRandomEngineer
+  suffix: Dead, Frontier, Engineer
+  components:
+  - type: Loadout
+    prototypes:
+    - TechnicalAssistantGear
+    - AtmosphericTechnicianGear
+    - StationEngineerGear
+
+- type: entity
+  parent: DungeonHumanCorpse
+  id: DungeonHumanCorpseRandomCargo
+  suffix: Dead, Frontier, Cargo
+  components:
+  - type: Loadout
+    prototypes:
+    - CargoTechGear
+    - SalvageSpecialistGear
+
+- type: entity
+  parent: DungeonHumanCorpse
+  id: DungeonHumanCorpseRandomMedic
+  suffix: Dead, Frontier, Medic
+  components:
+  - type: Loadout
+    prototypes:
+    - MedicalInternGear
+    - PsychologistGear
+    - ChemistGear
+    - DoctorGear
+
+- type: entity
+  parent: DungeonHumanCorpse
+  id: DungeonHumanCorpseRandomScience
+  suffix: Dead, Frontier, Science
+  components:
+  - type: Loadout
+    prototypes:
+    - ResearchAssistantGear
+    - ScientistGear
+
+- type: entity
+  parent: DungeonHumanCorpse
+  id: DungeonHumanCorpseRandomSecurity
+  suffix: Dead, Frontier, Security
+  components:
+  - type: Loadout
+    prototypes:
+    - SecurityCadetGear
+    - SecurityOfficerGear
+    - DetectiveGear
+    - WardenGear
+    - MercenaryGear
+
+- type: entity
+  parent: DungeonHumanCorpse
+  id: DungeonHumanCorpseRandomCommand
+  suffix: Dead, Frontier, Command
+  components:
+  - type: Loadout
+    prototypes:
+    - CaptainGear
+    - ResearchDirectorGear
+    - CMOGear
+    - ChiefEngineerGear
+    - QuartermasterGear
