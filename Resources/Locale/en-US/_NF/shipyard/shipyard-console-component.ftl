@@ -3,6 +3,7 @@ shipyard-console-invalid-vessel = Cannot purchase vessel:
 shipyard-console-menu-title = Shipyard Menu
 shipyard-console-menu-listing-free = Free
 shipyard-console-menu-listing-amount = ${$amount}
+shipyard-console-menu-listing-unavailable = Unavailable
 shipyard-console-docking = Captain {$owner} shuttle {$vessel} en route, eta 10 seconds.
 shipyard-console-leaving = Captain {$owner} shuttle {$vessel} sold by {$player}.
 shipyard-console-docking-secret = Unregistered vessel detected entering your sector.
@@ -22,3 +23,7 @@ shipyard-console-sale-unknown-reason = Ship cannot be sold: {reason}
 shipyard-console-deed-label = Registered Ship:
 shipyard-console-appraisal-label = Shuttle Estimated Value:{" "}
 shipyard-console-no-voucher-redemptions = All voucher redemptions have been used.
+
+shipyard-console-purchase-available = Purchase
+shipyard-console-purchase-unavailable = N/A
+shipyard-console-guidebook = ?

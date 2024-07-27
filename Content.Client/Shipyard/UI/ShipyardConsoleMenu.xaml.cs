@@ -9,6 +9,7 @@ using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Prototypes;
 using static Robust.Client.UserInterface.Controls.BaseButton;
 using Content.Shared.Shipyard;
+using Content.Shared.Emp;
 
 namespace Content.Client.Shipyard.UI;
 
@@ -23,7 +24,8 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
     private readonly List<string> _categoryStrings = new();
     private string? _category;
 
-    private List<string> _lastProtos = new();
+    private List<string> _lastAvailableProtos = new();
+    private List<string> _lastUnavailableProtos = new();
     private string _lastType = "";
     private bool _freeListings = false;
 
@@ -42,12 +44,12 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
     private void OnCategoryItemSelected(OptionButton.ItemSelectedEventArgs args)
     {
         SetCategoryText(args.Id);
-        PopulateProducts(_lastProtos, _lastType, _freeListings);
+        PopulateProducts(_lastAvailableProtos, _lastUnavailableProtos, _lastType, _freeListings);
     }
 
     private void OnSearchBarTextChanged(LineEdit.LineEditEventArgs args)
     {
-        PopulateProducts(_lastProtos, _lastType, _freeListings);
+        PopulateProducts(_lastAvailableProtos, _lastUnavailableProtos, _lastType, _freeListings);
     }
 
     private void SetCategoryText(int id)
@@ -59,11 +61,11 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
     /// <summary>
     ///     Populates the list of products that will actually be shown, using the current filters.
     /// </summary>
-    public void PopulateProducts(List<string> prototypes, string type, bool free)
+    public void PopulateProducts(List<string> availablePrototypes, List<string> unavailablePrototypes, string type, bool free)
     {
         Vessels.RemoveAllChildren();
 
-        var newVessels = prototypes.Select(it => _protoManager.TryIndex<VesselPrototype>(it, out var proto) ? proto : null)
+        var newVessels = availablePrototypes.Select(it => _protoManager.TryIndex<VesselPrototype>(it, out var proto) ? proto : null)
             .Where(it => it != null)
             .ToList();
 
@@ -99,7 +101,40 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
             }
         }
 
-        _lastProtos = prototypes;
+        // Extremely gross, fix please
+
+        var newUnavailableVessels = unavailablePrototypes.Select(it => _protoManager.TryIndex<VesselPrototype>(it, out var proto) ? proto : null)
+            .Where(it => it != null)
+            .ToList();
+
+        newUnavailableVessels.Sort((x, y) =>
+            string.Compare(x!.Name, y!.Name, StringComparison.CurrentCultureIgnoreCase));
+
+        foreach (var prototype in newUnavailableVessels)
+        {
+            // if no search or category
+            // else if search
+            // else if category and not search
+            if (search.Length == 0 && _category == null ||
+                search.Length != 0 && prototype!.Name.ToLowerInvariant().Contains(search) ||
+                search.Length == 0 && _category != null && prototype!.Category.Equals(_category))
+            {
+                string priceText = Loc.GetString("shipyard-console-menu-listing-unavailable");
+
+                var vesselEntry = new VesselRow
+                {
+                    Vessel = prototype,
+                    VesselName = { Text = prototype!.Name },
+                    Purchase = { ToolTip = prototype.Description, TooltipDelay = 0.2f, Disabled = true },
+                    Price = { Text = priceText },
+                };
+                vesselEntry.Purchase.OnPressed += (args) => { OnOrderApproved?.Invoke(args); };
+                Vessels.AddChild(vesselEntry);
+            }
+        }
+
+        _lastAvailableProtos = availablePrototypes;
+        _lastUnavailableProtos = unavailablePrototypes;
         _lastType = type;
     }
 
@@ -151,6 +186,6 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
             DeedTitle.Text = $"None";
         }
         _freeListings = state.FreeListings;
-        PopulateProducts(_lastProtos, _lastType, _freeListings);
+        PopulateProducts(_lastAvailableProtos, _lastUnavailableProtos, _lastType, _freeListings);
     }
 }

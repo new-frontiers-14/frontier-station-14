@@ -1,7 +1,5 @@
-using Content.Shared.Store;
+using Content.Shared.Guidebook;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 using Robust.Shared.Utility;
 
 namespace Content.Shared.Shipyard.Prototypes;
@@ -59,4 +57,9 @@ public sealed class VesselPrototype : IPrototype
     [DataField("shuttlePath", required: true)]
     public ResPath ShuttlePath = default!;
 
+    /// <summary>
+    ///     Guidebook page associated with a shuttle
+    /// </summary>
+    [DataField]
+    public ProtoId<GuideEntryPrototype>? GuidebookPage = default!;
 }
