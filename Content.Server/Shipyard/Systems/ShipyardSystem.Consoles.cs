@@ -75,7 +75,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         if (component.TargetIdSlot.ContainerSlot?.ContainedEntity is not { Valid: true } targetId)
         {
             ConsolePopup(args.Actor, Loc.GetString("shipyard-console-no-idcard"));
-            PlayDenySound(uid, component);
+            PlayDenySound(args.Actor, uid, component);
             return;
         }
 
@@ -84,34 +84,34 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         if (idCard is null && voucher is null)
         {
             ConsolePopup(args.Actor, Loc.GetString("shipyard-console-no-idcard"));
-            PlayDenySound(uid, component);
+            PlayDenySound(args.Actor, uid, component);
             return;
         }
 
         if (HasComp<ShuttleDeedComponent>(targetId))
         {
             ConsolePopup(args.Actor, Loc.GetString("shipyard-console-already-deeded"));
-            PlayDenySound(uid, component);
+            PlayDenySound(args.Actor, uid, component);
             return;
         }
 
         if (TryComp<AccessReaderComponent>(uid, out var accessReaderComponent) && !_access.IsAllowed(player, uid, accessReaderComponent))
         {
             ConsolePopup(args.Actor, Loc.GetString("comms-console-permission-denied"));
-            PlayDenySound(uid, component);
+            PlayDenySound(args.Actor, uid, component);
             return;
         }
 
         if (!_prototypeManager.TryIndex<VesselPrototype>(args.Vessel, out var vessel))
         {
             ConsolePopup(args.Actor, Loc.GetString("shipyard-console-invalid-vessel", ("vessel", args.Vessel)));
-            PlayDenySound(uid, component);
+            PlayDenySound(args.Actor, uid, component);
             return;
         }
 
         if (!GetAvailableShuttles(uid, targetId: targetId).Contains(vessel.ID))
         {
-            PlayDenySound(uid, component);
+            PlayDenySound(args.Actor, uid, component);
             _adminLogger.Add(LogType.Action, LogImpact.Medium, $"{ToPrettyString(player):player} tried to purchase a vessel that was never available.");
             return;
         }
@@ -123,14 +123,14 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         if (_station.GetOwningStation(uid) is not { Valid: true } station)
         {
             ConsolePopup(args.Actor, Loc.GetString("shipyard-console-invalid-station"));
-            PlayDenySound(uid, component);
+            PlayDenySound(args.Actor, uid, component);
             return;
         }
 
         if (!TryComp<BankAccountComponent>(player, out var bank))
         {
             ConsolePopup(args.Actor, Loc.GetString("shipyard-console-no-bank"));
-            PlayDenySound(uid, component);
+            PlayDenySound(args.Actor, uid, component);
             return;
         }
 
@@ -142,7 +142,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             if (voucher!.RedemptionsLeft <= 0)
             {
                 ConsolePopup(args.Actor, Loc.GetString("shipyard-console-no-voucher-redemptions"));
-                PlayDenySound(uid, component);
+                PlayDenySound(args.Actor, uid, component);
                 return;
             }
             voucher.RedemptionsLeft--;
@@ -153,14 +153,14 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             if (bank.Balance <= vessel.Price)
             {
                 ConsolePopup(args.Actor, Loc.GetString("cargo-console-insufficient-funds", ("cost", vessel.Price)));
-                PlayDenySound(uid, component);
+                PlayDenySound(args.Actor, uid, component);
                 return;
             }
 
             if (!_bank.TryBankWithdraw(player, vessel.Price))
             {
                 ConsolePopup(args.Actor, Loc.GetString("cargo-console-insufficient-funds", ("cost", vessel.Price)));
-                PlayDenySound(uid, component);
+                PlayDenySound(args.Actor, uid, component);
                 return;
             }
         }
@@ -168,7 +168,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         if (!TryPurchaseShuttle((EntityUid) station, vessel.ShuttlePath.ToString(), out var shuttle))
         {
-            PlayDenySound(uid, component);
+            PlayDenySound(args.Actor, uid, component);
             return;
         }
         EntityUid? shuttleStation = null;
@@ -264,7 +264,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         if (component.SecretShipyardChannel is { } secretChannel)
             SendPurchaseMessage(uid, player, name, secretChannel, secret: true);
 
-        PlayConfirmSound(uid, component);
+        PlayConfirmSound(args.Actor, uid, component);
         if (voucherUsed)
             _adminLogger.Add(LogType.ShipYardUsage, LogImpact.Low, $"{ToPrettyString(player):actor} purchased shuttle {ToPrettyString(shuttle.Owner)} with a voucher via {ToPrettyString(component.Owner)}");
         else
@@ -293,7 +293,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         if (component.TargetIdSlot.ContainerSlot?.ContainedEntity is not { Valid: true } targetId)
         {
             ConsolePopup(args.Actor, Loc.GetString("shipyard-console-no-idcard"));
-            PlayDenySound(uid, component);
+            PlayDenySound(args.Actor, uid, component);
             return;
         }
 
@@ -302,7 +302,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         if (idCard is null && voucher is null)
         {
             ConsolePopup(args.Actor, Loc.GetString("shipyard-console-no-idcard"));
-            PlayDenySound(uid, component);
+            PlayDenySound(args.Actor, uid, component);
             return;
         }
 
@@ -311,21 +311,21 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         if (!TryComp<ShuttleDeedComponent>(targetId, out var deed) || deed.ShuttleUid is not { Valid: true } shuttleUid)
         {
             ConsolePopup(args.Actor, Loc.GetString("shipyard-console-no-deed"));
-            PlayDenySound(uid, component);
+            PlayDenySound(args.Actor, uid, component);
             return;
         }
 
         if (!TryComp<BankAccountComponent>(player, out var bank))
         {
             ConsolePopup(args.Actor, Loc.GetString("shipyard-console-no-bank"));
-            PlayDenySound(uid, component);
+            PlayDenySound(args.Actor, uid, component);
             return;
         }
 
         if (_station.GetOwningStation(uid) is not { Valid: true } stationUid)
         {
             ConsolePopup(args.Actor, Loc.GetString("shipyard-console-invalid-station"));
-            PlayDenySound(uid, component);
+            PlayDenySound(args.Actor, uid, component);
             return;
         }
 
@@ -360,7 +360,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
                     ConsolePopup(args.Actor, Loc.GetString("shipyard-console-sale-unknown-reason", ("reason", saleResult.Error.ToString())));
                     break;
             }
-            PlayDenySound(uid, component);
+            PlayDenySound(args.Actor, uid, component);
             return;
         }
 
@@ -382,7 +382,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             }
 
             _bank.TryBankDeposit(player, bill);
-            PlayConfirmSound(uid, component);
+            PlayConfirmSound(args.Actor, uid, component);
         }
 
         var name = GetFullName(deed);
@@ -487,14 +487,14 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         }
     }
 
-    private void PlayDenySound(EntityUid uid, ShipyardConsoleComponent component)
+    private void PlayDenySound(EntityUid playerUid, EntityUid consoleUid, ShipyardConsoleComponent component)
     {
-        _audio.PlayPvs(_audio.GetSound(component.ErrorSound), uid, AudioParams.Default.WithMaxDistance(0.01f));
+        _audio.PlayEntity(component.ErrorSound, playerUid, consoleUid);
     }
 
-    private void PlayConfirmSound(EntityUid uid, ShipyardConsoleComponent component)
+    private void PlayConfirmSound(EntityUid playerUid, EntityUid consoleUid, ShipyardConsoleComponent component)
     {
-        _audio.PlayPvs(_audio.GetSound(component.ConfirmSound), uid, AudioParams.Default.WithMaxDistance(0.01f));
+        _audio.PlayEntity(component.ConfirmSound, playerUid, consoleUid);
     }
 
     private void OnItemSlotChanged(EntityUid uid, ShipyardConsoleComponent component, ContainerModifiedMessage args)
