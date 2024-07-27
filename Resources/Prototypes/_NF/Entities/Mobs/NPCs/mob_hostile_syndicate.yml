@@ -22,6 +22,13 @@
   - type: NpcFactionMember
     factions:
     - Syndicate
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+  - type: RandomMetadata
+    nameSegments:
+    - SyndicateNamesPrefix
+    - SyndicateNamesNormal
+    - SyndicateNamesElite
   #- type: AutoImplant
     #implants:
     #- DeathRattleImplant
@@ -38,6 +45,12 @@
     maximumWait: 120
     nextAdvertisementTime: 10
   - type: AutoWakeUp
+  - type: TriggerOnBeingGibbed
+  - type: GibOnTrigger
+    deleteItems: true
+    deleteOrgans: true
+    gib: false
+    useArgumentEntity: true
 
 # Humans
 # Syndicate Captain, "armed" with AP Python
@@ -753,6 +766,8 @@
   id: MobSyndicateNavalEngineerVoid
   noSpawn: true
   components:
+    - type: Damageable
+      damageModifierSet: MobMercenaryDamageModifierSet
     - type: Loadout
       prototypes:
         - SyndicateNavalEngineerVoidGear
@@ -767,6 +782,18 @@
   id: MobSyndicateNavalDeckhandVoid
   noSpawn: true
   components:
+    - type: Damageable
+      damageModifierSet: MobMercenaryDamageModifierSet
     - type: Loadout
       prototypes:
         - SyndicateNavalDeckhandVoidGear
+
+# Syndicate Medic, "armed" poisoned darts
+- type: entity
+  parent: MobSyndicateNavalMedicA
+  id: MobSyndicateNavalMedicVoid
+  noSpawn: true
+  components:
+    - type: Loadout
+      prototypes:
+        - SyndicateNavalMedicVoidGear

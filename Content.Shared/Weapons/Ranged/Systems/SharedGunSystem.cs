@@ -206,6 +206,14 @@ public abstract partial class SharedGunSystem : EntitySystem
     }
 
     /// <summary>
+    /// Frontier - Sets the targeted entity of the gun. Should be called before attempting to shoot to avoid shooting over the target.
+    /// </summary>
+    public void SetTarget(GunComponent gun, EntityUid target)
+    {
+        gun.Target = target;
+    }
+
+    /// <summary>
     /// Attempts to shoot at the target coordinates. Resets the shot counter after every shot.
     /// </summary>
     public void AttemptShoot(EntityUid user, EntityUid gunUid, GunComponent gun, EntityCoordinates toCoordinates)

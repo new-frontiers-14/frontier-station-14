@@ -2,6 +2,7 @@ using Content.Shared.Clothing.Components;
 using Content.Shared.Inventory.Events;
 using Content.Shared.NPC.Components;
 using Content.Shared.NPC.Systems;
+using Robust.Shared.Player; // Frontier - Dont edit AI factions
 
 namespace Content.Shared.Clothing.EntitySystems;
 
@@ -22,6 +23,9 @@ public sealed class FactionClothingSystem : EntitySystem
 
     private void OnEquipped(Entity<FactionClothingComponent> ent, ref GotEquippedEvent args)
     {
+        if (!HasComp<ActorComponent>(args.Equipee)) // Frontier - Dont edit AI factions
+            return; // Frontier - Dont edit AI factions
+
         TryComp<NpcFactionMemberComponent>(args.Equipee, out var factionComp);
         var faction = (args.Equipee, factionComp);
         ent.Comp.AlreadyMember = _faction.IsMember(faction, ent.Comp.Faction);
@@ -31,6 +35,9 @@ public sealed class FactionClothingSystem : EntitySystem
 
     private void OnUnequipped(Entity<FactionClothingComponent> ent, ref GotUnequippedEvent args)
     {
+        if (!HasComp<ActorComponent>(args.Equipee)) // Frontier - Dont edit AI factions
+            return; // Frontier - Dont edit AI factions
+
         if (ent.Comp.AlreadyMember)
         {
             ent.Comp.AlreadyMember = false;
