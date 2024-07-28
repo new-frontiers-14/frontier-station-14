@@ -22,12 +22,15 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
     public event Action<ButtonEventArgs>? OnOrderApproved;
     private readonly ShipyardConsoleBoundUserInterface _menu;
     private readonly List<string> _categoryStrings = new();
+    private readonly List<string> _classStrings = new();
     private string? _category;
+    private string? _class;
 
     private List<string> _lastAvailableProtos = new();
     private List<string> _lastUnavailableProtos = new();
     private string _lastType = "";
     private bool _freeListings = false;
+    private bool _validId = false;
 
     public ShipyardConsoleMenu(ShipyardConsoleBoundUserInterface owner)
     {
@@ -37,6 +40,7 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
         Title = Loc.GetString("shipyard-console-menu-title");
         SearchBar.OnTextChanged += OnSearchBarTextChanged;
         Categories.OnItemSelected += OnCategoryItemSelected;
+        Classes.OnItemSelected += OnClassItemSelected;
         SellShipButton.OnPressed += (args) => { OnSellShip?.Invoke(args); };
     }
 
@@ -44,12 +48,18 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
     private void OnCategoryItemSelected(OptionButton.ItemSelectedEventArgs args)
     {
         SetCategoryText(args.Id);
-        PopulateProducts(_lastAvailableProtos, _lastUnavailableProtos, _lastType, _freeListings);
+        PopulateProducts(_lastAvailableProtos, _lastUnavailableProtos, _lastType, _freeListings, _validId);
+    }
+
+    private void OnClassItemSelected(OptionButton.ItemSelectedEventArgs args)
+    {
+        SetClassText(args.Id);
+        PopulateProducts(_lastAvailableProtos, _lastUnavailableProtos, _lastType, _freeListings, _validId);
     }
 
     private void OnSearchBarTextChanged(LineEdit.LineEditEventArgs args)
     {
-        PopulateProducts(_lastAvailableProtos, _lastUnavailableProtos, _lastType, _freeListings);
+        PopulateProducts(_lastAvailableProtos, _lastUnavailableProtos, _lastType, _freeListings, _validId);
     }
 
     private void SetCategoryText(int id)
@@ -57,11 +67,15 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
         _category = id == 0 ? null : _categoryStrings[id];
         Categories.SelectId(id);
     }
-
+    private void SetClassText(int id)
+    {
+        _class = id == 0 ? null : _classStrings[id];
+        Classes.SelectId(id);
+    }
     /// <summary>
     ///     Populates the list of products that will actually be shown, using the current filters.
     /// </summary>
-    public void PopulateProducts(List<string> availablePrototypes, List<string> unavailablePrototypes, string type, bool free)
+    public void PopulateProducts(List<string> availablePrototypes, List<string> unavailablePrototypes, string type, bool free, bool canPurchase)
     {
         Vessels.RemoveAllChildren();
 
@@ -79,21 +93,29 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
             // if no search or category
             // else if search
             // else if category and not search
-            if (search.Length == 0 && _category == null ||
+            if (search.Length == 0 && _category == null && _class == null ||
                 search.Length != 0 && prototype!.Name.ToLowerInvariant().Contains(search) ||
-                search.Length == 0 && _category != null && prototype!.Category.Equals(_category))
+                search.Length == 0 && _category != null && prototype!.Category.Equals(_category) ||
+                search.Length == 0 && _class != null && prototype!.Group.Equals(_class))
             {
                 string priceText;
-                if (_freeListings)
+                if (free)
                     priceText = Loc.GetString("shipyard-console-menu-listing-free");
                 else
                     priceText = Loc.GetString("shipyard-console-menu-listing-amount", ("amount", prototype!.Price.ToString()));
+
+                string purchaseText;
+                if (canPurchase)
+                    purchaseText = Loc.GetString("shipyard-console-purchase-available");
+                else
+                    purchaseText = Loc.GetString("shipyard-console-purchase-unavailable");
 
                 var vesselEntry = new VesselRow
                 {
                     Vessel = prototype,
                     VesselName = { Text = prototype!.Name },
-                    Purchase = { ToolTip = prototype.Description, TooltipDelay = 0.2f },
+                    Purchase = { Text = purchaseText, ToolTip = prototype.Description, TooltipDelay = 0.2f, Disabled = !canPurchase },
+                    Guidebook = { Disabled = prototype.GuidebookPage is null },
                     Price = { Text = priceText },
                 };
                 vesselEntry.Purchase.OnPressed += (args) => { OnOrderApproved?.Invoke(args); };
@@ -115,17 +137,24 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
             // if no search or category
             // else if search
             // else if category and not search
-            if (search.Length == 0 && _category == null ||
+            if (search.Length == 0 && _category == null && _class == null ||
                 search.Length != 0 && prototype!.Name.ToLowerInvariant().Contains(search) ||
-                search.Length == 0 && _category != null && prototype!.Category.Equals(_category))
+                search.Length == 0 && _category != null && prototype!.Category.Equals(_category) ||
+                search.Length == 0 && _class != null && prototype!.Group.Equals(_class))
             {
-                string priceText = Loc.GetString("shipyard-console-menu-listing-unavailable");
+                string priceText;
+                if (free)
+                    priceText = Loc.GetString("shipyard-console-menu-listing-free");
+                else
+                    priceText = Loc.GetString("shipyard-console-menu-listing-amount", ("amount", prototype!.Price.ToString()));
+                string purchaseText = Loc.GetString("shipyard-console-purchase-unavailable");
 
                 var vesselEntry = new VesselRow
                 {
                     Vessel = prototype,
                     VesselName = { Text = prototype!.Name },
-                    Purchase = { ToolTip = prototype.Description, TooltipDelay = 0.2f, Disabled = true },
+                    Purchase = { Text = purchaseText, ToolTip = prototype.Description, TooltipDelay = 0.2f, Disabled = true },
+                    Guidebook = { Disabled = prototype.GuidebookPage is null },
                     Price = { Text = priceText },
                 };
                 vesselEntry.Purchase.OnPressed += (args) => { OnOrderApproved?.Invoke(args); };
@@ -165,6 +194,30 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
         }
     }
 
+    public void PopulateClasses()
+    {
+        _classStrings.Clear();
+        Classes.Clear();
+        var vessels = _protoManager.EnumeratePrototypes<VesselPrototype>();
+        foreach (var prototype in vessels)
+        {
+            if (!_classStrings.Contains(prototype.Group))
+            {
+                _classStrings.Add(Loc.GetString(prototype.Group));
+            }
+        }
+
+        _classStrings.Sort();
+
+        // Add "All" category at the top of the list
+        _classStrings.Insert(0, Loc.GetString("cargo-console-menu-populate-categories-all-text"));
+
+        foreach (var str in _classStrings)
+        {
+            Classes.AddItem(str);
+        }
+    }
+
     public void UpdateState(ShipyardConsoleInterfaceState state)
     {
         BalanceLabel.Text = Loc.GetString("shipyard-console-menu-listing-amount", ("amount", state.Balance.ToString()));
@@ -186,6 +239,7 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
             DeedTitle.Text = $"None";
         }
         _freeListings = state.FreeListings;
-        PopulateProducts(_lastAvailableProtos, _lastUnavailableProtos, _lastType, _freeListings);
+        _validId = state.IsTargetIdPresent;
+        PopulateProducts(_lastAvailableProtos, _lastUnavailableProtos, _lastType, _freeListings, _validId);
     }
 }

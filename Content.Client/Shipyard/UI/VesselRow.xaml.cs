@@ -13,5 +13,7 @@ public sealed partial class VesselRow : PanelContainer
     public VesselRow()
     {
         RobustXamlLoader.Load(this);
+
+        Guidebook.OnPressed += 
     }
 }
