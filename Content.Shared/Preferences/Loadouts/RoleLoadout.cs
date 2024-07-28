@@ -105,8 +105,24 @@ public sealed partial class RoleLoadout : IEquatable<RoleLoadout>
                 // Malicious client maybe, check the group even has it.
                 if (!groupProto.Loadouts.Contains(loadout.Prototype))
                 {
-                    loadouts.RemoveAt(i);
-                    continue;
+                    // Frontier: check subgroups
+                    bool subGroupEntryFound = false;
+                    foreach (var subgroup in groupProto.Subgroups)
+                    {
+                        if (protoManager.TryIndex(subgroup, out var subgroupProto) &&
+                            subgroupProto.Loadouts.Contains(loadout.Prototype))
+                        {
+                            subGroupEntryFound = true;
+                            break;
+                        }
+                    }
+                    if (!subGroupEntryFound)
+                    {
+                        loadouts.RemoveAt(i);
+                        continue;
+                    }
+                    // End Frontier: check subgroups
+                    // loadouts.RemoveAt(i); // Frontier: old implementation
                 }
 
                 // Validate the loadout can be applied (e.g. points).
