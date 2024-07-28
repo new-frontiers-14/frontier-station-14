@@ -393,7 +393,7 @@ public sealed partial class DeepFryerSystem : SharedDeepfryerSystem
                 1f);
             foreach (var effect in component.UnsafeOilVolumeEffects)
             {
-                if (!EntityEffectExt.ShouldApply(effect, effectsArgs, _random)) // Frontier
+                if (!EntityEffectExt.ShouldApply(effect, effectsArgs, _random)) // Frontier: effect.ShouldApply<EntityEffectExt.ShouldApply
                     continue;
                 effect.Effect(effectsArgs);
             }
