@@ -122,7 +122,8 @@ public sealed partial class RoleLoadout : IEquatable<RoleLoadout>
                         continue;
                     }
                     // End Frontier: check subgroups
-                    // loadouts.RemoveAt(i); // Frontier: old implementation
+                    // loadouts.RemoveAt(i); // Frontier: commented out old implementation
+                    // continue; // Frontier: commented out old implementation
                 }
 
                 // Validate the loadout can be applied (e.g. points).
