@@ -3,7 +3,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Procedural;
 
-[Prototype("dungeonConfig")] // FRONTIER MERGE: kept "dungeonConfig"
+[Prototype]
 public sealed partial class DungeonConfigPrototype : IPrototype
 {
     [IdDataField]

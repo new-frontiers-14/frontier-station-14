@@ -325,9 +325,6 @@ public abstract partial class SharedBuckleSystem
         if (strapAttempt.Cancelled)
             return false;
 
-        // if (buckleComp.Disable) // Frontier (FRONTIER MERGE: commented out)
-        //    return false; // Frontier (FRONTIER MERGE: commented out)
-
         return true;
     }
 
