@@ -8,10 +8,12 @@
   - PirateJumpskirt
   fallbacks:
   - PirateJumpsuit
+  - PirateJumpskirt
 
 - type: loadoutGroup
   id: PiratePDA
   name: loadout-group-contractor-id
+  hidden: true # No point in showing this, it gets auto-selected.
   loadouts:
   - PiratePirateNFPDA
   fallbacks:
@@ -25,12 +27,15 @@
   - ContractorClothingMaskBreath
   - ContractorClothingMaskBreathMedical
   - ContractorClothingMaskGas
+  fallbacks:
+  - ContractorClothingMaskBreath
 
 # Pirate Captain loadouts
 
 - type: loadoutGroup
   id: PirateCaptainPDA
   name: loadout-group-contractor-id
+  hidden: true # No point in showing this, it gets auto-selected.
   loadouts:
   - PirateCaptainPirateCaptainNFPDA
   fallbacks:
@@ -41,6 +46,7 @@
 - type: loadoutGroup
   id: PirateFirstMatePDA
   name: loadout-group-contractor-id
+  hidden: true # No point in showing this, it gets auto-selected.
   loadouts:
   - PirateFirstMatePirateFirstMateNFPDA
   fallbacks:

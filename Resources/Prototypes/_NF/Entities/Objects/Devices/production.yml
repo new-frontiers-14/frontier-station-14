@@ -181,3 +181,24 @@
     stackRequirements:
       Steel: 5
       Cable: 2
+
+- type: entity
+  id: PortableGeneratorHyperPacmanMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: H.Y.P.E.R.P.A.C.M.A.N.-type portable generator machine board
+  components:
+    - type: Sprite
+      state: engineering
+    - type: MachineBoard
+      prototype: PortableGeneratorHyperPacman
+      requirements:
+        Capacitor: 2
+      stackRequirements:
+        CableHV: 10
+    - type: PhysicalComposition
+      materialComposition:
+        Glass: 200
+      chemicalComposition:
+        Silicon: 20
+    - type: StaticPrice
+      price: 40

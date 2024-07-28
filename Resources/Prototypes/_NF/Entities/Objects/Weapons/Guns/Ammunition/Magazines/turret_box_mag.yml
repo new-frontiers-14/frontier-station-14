@@ -1,0 +1,53 @@
+# Empty mags
+- type: entity
+  parent: BaseMagazinePistolHighCapacity
+  id: MagazineAsmgtUniversalEmpty
+  name: "ASMGT-compatible ammo box"
+  description: |-
+   Universal ASMGT-compatible ammo box capable of accepting .20, .25, .30 and .35 cartridges.
+  suffix: empty
+  components:
+  - type: Tag
+    tags:
+      - MagazineAsmgt
+  - type: Item
+    size: Small
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgePistol
+        - CartridgeRifle
+        - CartridgeLightRifle
+        - CartridgeCaselessRifle
+    capacity: 50
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Turret/box_mag.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 11
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  parent: MagazineAsmgtUniversalEmpty
+  id: MagazineAsmgtUniversalPistol
+  name: "ASMGT-compatible ammo box"
+  suffix: loaded .35 pistol
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgePistol
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
