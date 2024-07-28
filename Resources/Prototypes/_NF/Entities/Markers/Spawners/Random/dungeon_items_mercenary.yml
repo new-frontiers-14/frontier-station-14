@@ -99,13 +99,13 @@
     - SpawnDungeonLootGunT1
     - SpawnDungeonLootGunT1
     - SpawnDungeonLootMeleeT1
-    chance: 0.5
+    chance: 0.8
     offset: 0.0
     rarePrototypes:
     - SpawnDungeonLootMeleeT2
     - SpawnDungeonLootGunT2
     - SpawnDungeonLootExplosivesT1
-    rareChance: 0.05
+    rareChance: 0.1
 
 - type: entity
   name: random weapon
@@ -127,13 +127,13 @@
     - SpawnDungeonLootGunT2
     - SpawnDungeonLootGunT2
     - SpawnDungeonLootMeleeT2
-    chance: 0.7
+    chance: 0.85
     offset: 0.0
     rarePrototypes:
     - SpawnDungeonLootMeleeT3
     - SpawnDungeonLootGunT3
     - SpawnDungeonLootExplosivesT2
-    rareChance: 0.05
+    rareChance: 0.1
 
 - type: entity
   name: random weapon
@@ -154,11 +154,11 @@
     prototypes:
     - SpawnDungeonLootMeleeT1
     - SpawnDungeonLootMeleeT2
-    chance: 0.9
+    chance: 0.85
     offset: 0.0
     rarePrototypes:
     - SpawnDungeonLootMeleeT3
-    rareChance: 0.05
+    rareChance: 0.1
 
 - type: entity
   name: random weapon
@@ -180,13 +180,13 @@
     - SpawnDungeonLootGunT3
     - SpawnDungeonLootGunT3
     - SpawnDungeonLootMeleeT3
-    chance: 0.9
+    chance: 0.95
     offset: 0.0
     rarePrototypes:
     - SpawnDungeonLootMeleeT4
     - SpawnDungeonLootGunT4
     - SpawnDungeonLootExplosivesT3
-    rareChance: 0.025
+    rareChance: 0.1
 
 - type: entity
   name: random weapon
@@ -207,14 +207,14 @@
     prototypes:
     - SpawnDungeonLootExplosivesT1
     - SpawnDungeonLootExplosivesT2
-    chance: 0.95
+    chance: 0.85
     offset: 0.0
     rarePrototypes:
     - SpawnDungeonLootExplosivesT3
     - SpawnDungeonLootExplosivesT3
     - SpawnDungeonLootExplosivesT3
     - SpawnDungeonLootExplosivesT4
-    rareChance: 0.05
+    rareChance: 0.1
 
 - type: entity
   name: random shields
@@ -383,14 +383,17 @@
     - CrateArmoryShotgunExpedition
     - CrateArmoryPistolsExpedition
     - CrateArmoryRifleGestioExpedition
-    chance: 0.55
+    - CrateArmoryRifleNovaliteC1Expedition
+    - CrateArmoryEnergyGunExpedition
+    chance: 0.85
     offset: 0.0
     rarePrototypes:
     - CrateArmorySMGExpedition
     - CrateArmoryLaserExpedition
-    - CrateArmoryEnergyGunExpedition
+    - CrateArmorySMGExpedition
+    - CrateArmoryLaserExpedition
     - CrateSecurityNonlethal
-    rareChance: 0.05
+    rareChance: 0.1
 
 - type: entity
   name: random crate
@@ -410,12 +413,34 @@
     prototypes:
     - CrateSecurityArmor
     - CrateSecurityHelmet
-    chance: 0.65
+    chance: 0.85
     offset: 0.0
     rarePrototypes:
     - CrateSecurityRiot
     - CrateSecurityBiosuit
     rareChance: 0.05
+
+- type: entity
+  name: random crate (restock)
+  id: SpawnDungeonLootCrateRestockArmory
+  parent: MarkerBase
+  suffix: "Dungeon, Armory"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Storage/Crates/weapon.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - CrateVendingMachineRestockAmmoFilled
+    - CrateVendingMachineRestockLessLethalVendFilled
+    - CrateVendingMachineRestockNonLethalVendFilled
+    chance: 1.0
+    offset: 0.0
 
 # Machines
 - type: entity
