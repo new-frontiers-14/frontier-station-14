@@ -1496,7 +1496,8 @@ namespace Content.Client.Lobby.UI
 
         private void RandomizeEverything()
         {
-            Profile = HumanoidCharacterProfile.Random();
+            var oldBank = Profile?.BankBalance ?? HumanoidCharacterProfile.DefaultBalance; // Frontier
+            Profile = HumanoidCharacterProfile.Random().WithBankBalance(oldBank); // Frontier: add WithBankBalance(oldBank)
             SetProfile(Profile, CharacterSlot);
             SetDirty();
         }
