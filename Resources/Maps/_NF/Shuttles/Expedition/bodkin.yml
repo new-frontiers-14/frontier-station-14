@@ -80,6 +80,12 @@ entities:
           decals:
             61: 5,-2
         - node:
+            angle: -1.5707963267948966 rad
+            color: '#FFFFFFFF'
+            id: BotGreyscale
+          decals:
+            170: 2,-7
+        - node:
             color: '#FFFFFFFF'
             id: BotGreyscale
           decals:
@@ -92,6 +98,7 @@ entities:
             6: -1,-9
             9: -2,-9
             10: 2,-9
+            166: -2,-7
         - node:
             cleanable: True
             color: '#FFFFFFFF'
@@ -372,18 +379,16 @@ entities:
             107: -2,-1
             108: 2,-1
         - node:
+            angle: -1.5707963267948966 rad
             color: '#FFFF00FF'
             id: WarnFullGreyscale
           decals:
-            113: -2,-7
-            114: -1,-7
+            169: 1,-7
         - node:
-            angle: 1.5707963267948966 rad
             color: '#FFFF00FF'
             id: WarnFullGreyscale
           decals:
-            115: 1,-7
-            116: 2,-7
+            114: -1,-7
         - node:
             color: '#FFFFFFFF'
             id: WarnLineE
@@ -1183,7 +1188,7 @@ entities:
     - type: Transform
       pos: 6.5,-7.5
       parent: 2
-  - uid: 414
+  - uid: 415
     components:
     - type: Transform
       pos: -1.5,-0.5
@@ -1291,25 +1296,15 @@ entities:
       parent: 2
 - proto: CargoPallet
   entities:
-  - uid: 343
+  - uid: 203
     components:
     - type: Transform
-      pos: -1.5,-6.5
+      pos: 1.5,-6.5
       parent: 2
   - uid: 344
     components:
     - type: Transform
       pos: -0.5,-6.5
-      parent: 2
-  - uid: 345
-    components:
-    - type: Transform
-      pos: 1.5,-6.5
-      parent: 2
-  - uid: 346
-    components:
-    - type: Transform
-      pos: 2.5,-6.5
       parent: 2
 - proto: Catwalk
   entities:
@@ -1368,10 +1363,10 @@ entities:
       parent: 2
 - proto: ClosetWallEmergencyFilledRandom
   entities:
-  - uid: 280
+  - uid: 223
     components:
     - type: Transform
-      pos: -1.5,-4.5
+      pos: -3.5,-4.5
       parent: 2
 - proto: ComputerSalvageExpedition
   entities:
@@ -1471,65 +1466,65 @@ entities:
       - 123
 - proto: DefibrillatorCabinetFilled
   entities:
-  - uid: 1
+  - uid: 301
     components:
     - type: Transform
       pos: 2.5,-4.5
       parent: 2
 - proto: EmergencyLight
   entities:
-  - uid: 404
+  - uid: 405
     components:
     - type: Transform
       pos: -3.5,-5.5
       parent: 2
-  - uid: 405
+  - uid: 406
     components:
     - type: Transform
       pos: 4.5,-5.5
       parent: 2
-  - uid: 406
+  - uid: 407
     components:
     - type: Transform
       pos: -0.5,-4.5
       parent: 2
-  - uid: 407
+  - uid: 408
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -0.5,-2.5
       parent: 2
-  - uid: 408
+  - uid: 409
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -0.5,0.5
       parent: 2
-  - uid: 409
+  - uid: 410
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -3.5,-0.5
       parent: 2
-  - uid: 410
+  - uid: 411
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 4.5,-0.5
       parent: 2
-  - uid: 411
+  - uid: 412
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -0.5,2.5
       parent: 2
-  - uid: 412
+  - uid: 413
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -5.5,-6.5
       parent: 2
-  - uid: 413
+  - uid: 414
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
@@ -2236,16 +2231,16 @@ entities:
     - type: Transform
       pos: 5.5,-2.5
       parent: 2
-- proto: LockerCaptain
+- proto: LockerCaptainFilled
   entities:
-  - uid: 203
+  - uid: 343
     components:
     - type: Transform
       pos: -0.5,0.5
       parent: 2
 - proto: LockerSalvageSpecialistFilled
   entities:
-  - uid: 223
+  - uid: 305
     components:
     - type: Transform
       pos: 1.5,-1.5
@@ -2413,11 +2408,6 @@ entities:
       parent: 2
 - proto: RandomPosterLegit
   entities:
-  - uid: 301
-    components:
-    - type: Transform
-      pos: 2.5,4.5
-      parent: 2
   - uid: 310
     components:
     - type: Transform
@@ -2426,7 +2416,19 @@ entities:
   - uid: 331
     components:
     - type: Transform
+      pos: 2.5,4.5
+      parent: 2
+  - uid: 404
+    components:
+    - type: Transform
       pos: -1.5,-2.5
+      parent: 2
+- proto: Saw
+  entities:
+  - uid: 1
+    components:
+    - type: Transform
+      pos: 1.5272883,-4.5321774
       parent: 2
 - proto: ShuttleWindow
   entities:
@@ -2648,14 +2650,14 @@ entities:
       parent: 2
 - proto: SuitStorageCaptain
   entities:
-  - uid: 305
+  - uid: 306
     components:
     - type: Transform
       pos: 1.5,0.5
       parent: 2
 - proto: SuitStorageSalv
   entities:
-  - uid: 306
+  - uid: 345
     components:
     - type: Transform
       pos: 1.5,-2.5
@@ -3201,6 +3203,11 @@ entities:
       parent: 2
 - proto: WallWeaponCapacitorRechargerOmnidirectional
   entities:
+  - uid: 280
+    components:
+    - type: Transform
+      pos: -1.5,-4.5
+      parent: 2
   - uid: 313
     components:
     - type: Transform
