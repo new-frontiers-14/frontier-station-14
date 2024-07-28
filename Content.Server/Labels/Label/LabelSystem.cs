@@ -19,8 +19,11 @@ namespace Content.Server.Labels
     {
         [Dependency] private readonly ItemSlotsSystem _itemSlotsSystem = default!;
         [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+        [Dependency] private readonly TagSystem _tagSystem = default!; // Frontier
 
         public const string ContainerName = "paper_label";
+        [ValidatePrototypeId<TagPrototype>] // Frontier: label prevention
+        private const string PreventTag = "PreventLabel"; // Frontier: label prevention
 
         public override void Initialize()
         {
@@ -44,6 +47,8 @@ namespace Content.Server.Labels
         {
             if (!Resolve(uid, ref label, false))
                 label = EnsureComp<LabelComponent>(uid);
+            if (_tagSystem.HasTag(uid, PreventTag)) // DeltaV - Prevent labels on certain items // Frontier: currently unused - TODO: remove
+                return; // DeltaV
 
             label.CurrentLabel = text;
             NameMod.RefreshNameModifiers(uid);
