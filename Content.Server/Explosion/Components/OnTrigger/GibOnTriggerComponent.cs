@@ -18,6 +18,22 @@ public sealed partial class GibOnTriggerComponent : Component
     /// Frontier - Should gibbing also delete the owners organs?
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite)]
-    [DataField("deleteOrgans")]
+    [DataField]
     public bool DeleteOrgans = false;
+
+    /// <summary>
+    /// Frontier - Do we want to go through with the gibbing?
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite)]
+    [DataField]
+    public bool Gib = true;
+
+    /// <summary>
+    /// Frontier - Should the argument entity be used?
+    /// False: default existing behaviour, uses transform parent
+    /// True: uses entity passed in
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite)]
+    [DataField]
+    public bool UseArgumentEntity = false;
 }
