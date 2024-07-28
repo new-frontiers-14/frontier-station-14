@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Server.Audio;
 using Content.Server.Chemistry.Containers.EntitySystems;
 using Content.Server.Fluids.EntitySystems;
@@ -10,6 +10,8 @@ using Content.Shared.FixedPoint;
 using Content.Shared.Popups;
 using Content.Shared.Power.Generator;
 using Robust.Server.GameObjects;
+using Content.Shared.Radiation.Components; // Frontier
+using Content.Shared.Audio; // Frontier
 
 namespace Content.Server.Power.Generator;
 
@@ -25,6 +27,9 @@ public sealed class GeneratorSystem : SharedGeneratorSystem
     [Dependency] private readonly SolutionContainerSystem _solutionContainer = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly PuddleSystem _puddle = default!;
+
+    [Dependency] private readonly PointLightSystem _pointLight = default!; // Frontier - Rads glow
+    [Dependency] private readonly SharedAmbientSoundSystem _ambientSoundSystem = default!; // Frontier - Rads sound
 
     private EntityQuery<UpgradePowerSupplierComponent> _upgradeQuery;
 
@@ -186,7 +191,43 @@ public sealed class GeneratorSystem : SharedGeneratorSystem
             args.TargetPower,
             component.MinTargetPower / 1000,
             component.MaxTargetPower / 1000) * 1000;
+
+        TryUpdateGeneratorRadiation(uid, component.On, component); // Frontier
     }
+
+    // Frontier: radioactive generators
+    public void TryUpdateGeneratorRadiation(EntityUid uid, bool on, FuelGeneratorComponent component) // Frontier
+    {
+        if (!TryComp<RadiationSourceComponent>(uid, out var radiation)) // Frontier
+            return;
+
+        radiation.Enabled = on;
+
+        if (on)
+        {
+            // Radioactive generator: light, radiation, and sound should all share the same bounds.
+            float radiationIntensity = component.RadiationIntensity * component.TargetPower;
+            float radiationSlope = radiationIntensity / 3;
+            float visualRadius = 1f + (component.RadiationIntensity * component.TargetPower / 4);
+
+            radiation.Intensity = radiationIntensity;
+            radiation.Slope = Math.Max(0.5f, radiationSlope); // Slope should always be at least 0.5 (typical for bananium)
+
+            EnsureComp<PointLightComponent>(uid, out var light);
+            _pointLight.SetColor(uid, component.RadiationColor, light); // Add glow - on
+            _pointLight.SetRadius(uid, Math.Min(visualRadius, 3.5f)); // Radius should be capped at 3.5 m
+            _pointLight.SetEnergy(uid, component.RadiationIntensity * component.TargetPower / 2);
+
+            _ambientSoundSystem.SetAmbience(uid, true);
+            _ambientSoundSystem.SetRange(uid, visualRadius); // Sound based on glow ranage
+        }
+        else
+        {
+            RemComp<PointLightComponent>(uid); // Remove glow - off
+            _ambientSoundSystem.SetAmbience(uid, false);
+        }
+    }
+    // End Frontier
 
     public void SetFuelGeneratorOn(EntityUid uid, bool on, FuelGeneratorComponent? generator = null)
     {
@@ -199,6 +240,7 @@ public sealed class GeneratorSystem : SharedGeneratorSystem
             return;
         }
 
+        TryUpdateGeneratorRadiation(uid, on, generator); // Frontier
         generator.On = on;
         UpdateState(uid, generator);
     }
