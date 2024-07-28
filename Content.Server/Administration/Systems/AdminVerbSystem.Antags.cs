@@ -21,8 +21,8 @@ public sealed partial class AdminVerbSystem
     [ValidatePrototypeId<EntityPrototype>]
     private const string DefaultTraitorRule = "Traitor";
 
-    // [ValidatePrototypeId<EntityPrototype>] // Frontier: no zombie verb
-    // private const string DefaultInitialInfectedRule = "Zombie"; // Frontier: no zombie verb
+    // [ValidatePrototypeId<EntityPrototype>] // Frontier: no initial infected verb
+    // private const string DefaultInitialInfectedRule = "Zombie"; // Frontier: no initial infected verb
 
     // [ValidatePrototypeId<EntityPrototype>] // Frontier: no nuke op verb
     // private const string DefaultNukeOpRule = "LoneOpsSpawn"; // Frontier: no nuke op verb
@@ -66,7 +66,7 @@ public sealed partial class AdminVerbSystem
         };
         args.Verbs.Add(traitor);
 
-        // Frontier: comment this out, no nuke op verb
+        // Frontier: comment this out, no initial infected verb
         // Verb initialInfected = new()
         // {
         //     Text = Loc.GetString("admin-verb-text-make-initial-infected"),
