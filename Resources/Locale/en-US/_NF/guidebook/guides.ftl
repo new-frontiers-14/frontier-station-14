@@ -22,6 +22,7 @@ guide-entry-expedition-xenos = Xenos
 
 # Shipyard entries
 guide-entry-shipyard-ambition = Ambition
+guide-entry-shipyard-apothecary = Apothecary
 guide-entry-shipyard-bazaar = Bazaar
 guide-entry-shipyard-bocadillo = Bocadillo
 guide-entry-shipyard-bookworm = Bookworm
@@ -34,7 +35,10 @@ guide-entry-shipyard-comet = Comet
 guide-entry-shipyard-construct = Construct
 guide-entry-shipyard-garden = Garden
 guide-entry-shipyard-gasbender = Gasbender
+guide-entry-shipyard-gourd = Gourd
+guide-entry-shipyard-hammer = Hammer
 guide-entry-shipyard-harbormaster = Harbormaster
+guide-entry-shipyard-investigator = Investigator
 guide-entry-shipyard-kestrel = Kestrel
 guide-entry-shipyard-kilderkin = Kilderkin
 guide-entry-shipyard-lantern = Lantern
