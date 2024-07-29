@@ -24,7 +24,7 @@
     proto: CartridgeLightRifle
     capacity: 10
   - type: Sprite
-    sprite: _NF/Objects/Weapons/Ammunition/svt40.rsi
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Rifle/svt40.rsi
 
 - type: entity
   id: 10roundmagazineempty
@@ -49,19 +49,19 @@
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
 
-# type: entity  to be added back when Rubber rounds are added. 
- # id: 10roundmagazineRubber
-  #name: "10 round magazine(.30 rifle rubber)"
-  #parent: 10roundmagazine
-  #components:
-  # type: BallisticAmmoProvider
-  # proto: CartridgeLightRifleRubber
-  #type: Sprite
-   #layers:
-    # state: rubber
-     #map: ["enum.GunVisualLayers.Base"]
-    #state: mag-1
-    #map: ["enum.GunVisualLayers.Mag"]
+- type: entity
+  id: 10roundmagazineRubber
+  name: "10 round magazine(.30 rifle rubber)"
+  parent: 10roundmagazine
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeLightRifleRubber
+  - type: Sprite
+    layers:
+    - state: rubber
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
   id: 10roundmagazinePractice
@@ -85,4 +85,4 @@
   - type: BallisticAmmoProvider
     proto: CartridgeLightRifleIncendiary
   - type: Sprite
-    sprite: _NF/Objects/Weapons/Ammunition/svt40.rsi
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Rifle/svt40.rsi

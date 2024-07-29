@@ -238,6 +238,140 @@
     - SpawnDungeonLootLockersGeneral
     rareChance: 0.1
 
+- type: entity
+  name: random crate
+  id: SpawnDungeonLootCrateGeneral
+  suffix: "Dungeon, General"
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - sprite: Structures/Storage/Crates/generic.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    # Empty Crates
+    - CrateEmptySpawner
+    # Restocks
+    - SpawnDungeonLootCrateRestockGeneral
+    - SpawnDungeonLootCrateRestockService
+    - SpawnDungeonLootCrateRestockEngi
+    - SpawnDungeonLootCrateRestockMed
+    - SpawnDungeonLootCrateRestockArmory
+    # Mats
+    - SpawnDungeonLootCrateMaterials
+    # Departmental
+    - SpawnDungeonLootCrateEngi
+    - SpawnDungeonLootCrateService
+    - SpawnDungeonLootCrateMed
+    - SpawnDungeonLootCrateHydro
+    - SpawnDungeonLootCrateScience
+    # Generic stuff
+    - CrateEmergencyInternals
+    - CrateEmergencyFire
+    - CrateEvaKit
+    # Spawners from base game
+    - CrateSalvageAssortedGoodies
+    - SalvageMaterialCrateSpawner
+    - CrateFilledSpawner
+    chance: 0.9
+    offset: 0.0
+    rarePrototypes:
+    - SpawnDungeonLootCrateArmoryWeapon
+    rareChance: 0.05
+
+- type: entity
+  name: random crate
+  id: SpawnDungeonLootCrateMaterials
+  suffix: "Dungeon, Materials"
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - sprite: Structures/Storage/Crates/generic.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    # Empty Crates
+    - CrateEmptySpawner
+    # Mats
+    - CrateMaterialGlass
+    - CrateMaterialSteel
+    - CrateMaterialPlastic
+    - CrateMaterialWood
+    - CrateMaterialPlasteel
+    - CrateMaterialPlasma
+    - CrateMaterialUranium
+    - CrateMaterialTextiles
+    - CrateMaterials
+    - CrateMaterialBrass
+    chance: 1.0
+    offset: 0.0
+
+- type: entity
+  name: random crate (restock)
+  id: SpawnDungeonLootCrateRestockGeneral
+  parent: MarkerBase
+  suffix: "Dungeon, General"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Storage/Crates/plastic.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    # Empty Crates
+    - CrateEmptySpawner
+    # Restocks
+    - SpawnDungeonLootCrateRestockClothes
+    - SpawnDungeonLootCrateRestockArmory
+    - SpawnDungeonLootCrateRestockEngi
+    - SpawnDungeonLootCrateRestockMed
+    - SpawnDungeonLootCrateRestockHydro
+    - SpawnDungeonLootCrateRestockService
+    chance: 1.0
+    offset: 0.0
+
+- type: entity
+  name: random crate (restock)
+  id: SpawnDungeonLootCrateRestockClothes
+  parent: MarkerBase
+  suffix: "Dungeon, Clothes"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Storage/Crates/plastic.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - CrateVendingMachineRestockClothesFilled
+    - CrateVendingMachineRestockAutoDrobeFilled
+    - CrateVendingMachineRestockGamesFilled
+    - CrateVendingMachineRestockCuddlyCritterVendFilled
+    - CrateVendingMachineRestockAutoTuneVendFilled
+    - CrateVendingMachineRestockPottedPlantVendFilled
+    - CrateVendingMachineRestockPrideFilled
+    - CrateVendingMachineRestockSalvageEquipmentFilled
+    - CrateVendingMachineRestockSecTechFilled
+    chance: 1.0
+    offset: 0.0
+
 # Machines
 - type: entity
   name: random machine techfab
@@ -270,6 +404,7 @@
     - UniformPrinter
     - MachineFlatpacker
     - SpawnDungeonMachineFrame
+    - SpawnDungeonLootFlatpacks
     chance: 1
     offset: 0.0
     rarePrototypes:
@@ -515,6 +650,7 @@
     - OreProcessorIndustrialMachineCircuitboard
     - DawInstrumentMachineCircuitboard
     - ComputerIFFCircuitboard
+    - SpawnDungeonLootFlatpacks
     chance: 1
     offset: 0.0
     rarePrototypes:
@@ -524,7 +660,6 @@
 #    - GasRecyclerMachineCircuitboard
     - BodyScannerComputerCircuitboard
     - CloningConsoleComputerCircuitboard
-    - SpawnDungeonLootFlatpacks
     rareChance: 0.01
 
 - type: entity
@@ -880,7 +1015,7 @@
     offset: 0.0
     rarePrototypes:
     - VendingMachineSyndieContrabandFlatpack
-    rareChance: 0.001
+    rareChance: 0.01
 
 - type: entity
   name: random restock box
@@ -912,6 +1047,7 @@
     - VendingMachineRestockEngineering
     - VendingMachineRestockGames
     - VendingMachineRestockMedical
+    - VendingMachineRestockCiviMedVend
     - VendingMachineRestockNutriMax
     - VendingMachineRestockSalvageEquipment
     - VendingMachineRestockSeeds

@@ -38,11 +38,11 @@ public sealed class ContrabandPriceGunSystem : EntitySystem
         {
             Act = () =>
             {
-                _popupSystem.PopupEntity(Loc.GetString("contraband-price-gun-pricing-result", ("object", Identity.Entity(args.Target, EntityManager)), ("price", contraband.Value)), args.User, args.User);
+                _popupSystem.PopupEntity(Loc.GetString($"{component.LocStringPrefix}contraband-price-gun-pricing-result", ("object", Identity.Entity(args.Target, EntityManager)), ("price", contraband.Value)), args.User, args.User);
                 _useDelay.TryResetDelay((uid, useDelay));
             },
-            Text = Loc.GetString("contraband-price-gun-verb-text"),
-            Message = Loc.GetString("contraband-price-gun-verb-message", ("object", Identity.Entity(args.Target, EntityManager)))
+            Text = Loc.GetString($"{component.LocStringPrefix}contraband-price-gun-verb-text"),
+            Message = Loc.GetString($"{component.LocStringPrefix}contraband-price-gun-verb-message", ("object", Identity.Entity(args.Target, EntityManager)))
         };
 
         args.Verbs.Add(verb);
@@ -56,10 +56,10 @@ public sealed class ContrabandPriceGunSystem : EntitySystem
         if (!TryComp(uid, out UseDelayComponent? useDelay) || _useDelay.IsDelayed((uid, useDelay)))
             return;
 
-        if (TryComp<ContrabandComponent>(args.Target, out var contraband))
-            _popupSystem.PopupEntity(Loc.GetString("contraband-price-gun-pricing-result", ("object", Identity.Entity(args.Target.Value, EntityManager)), ("price", contraband.Value)), args.User, args.User);
+        if (TryComp<ContrabandComponent>(args.Target, out var contraband) && contraband.Currency == component.Currency)
+            _popupSystem.PopupEntity(Loc.GetString($"{component.LocStringPrefix}contraband-price-gun-pricing-result", ("object", Identity.Entity(args.Target.Value, EntityManager)), ("price", contraband.Value)), args.User, args.User);
         else
-            _popupSystem.PopupEntity(Loc.GetString("contraband-price-gun-pricing-result-none", ("object", Identity.Entity(args.Target.Value, EntityManager))), args.User, args.User);
+            _popupSystem.PopupEntity(Loc.GetString($"{component.LocStringPrefix}contraband-price-gun-pricing-result-none", ("object", Identity.Entity(args.Target.Value, EntityManager))), args.User, args.User);
 
         _useDelay.TryResetDelay((uid, useDelay));
         args.Handled = true;
