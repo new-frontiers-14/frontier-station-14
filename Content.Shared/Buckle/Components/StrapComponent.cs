@@ -85,6 +85,12 @@ public sealed partial class StrapComponent : Component
     /// </summary>
     [DataField]
     public ProtoId<AlertPrototype> BuckledAlertType = "Buckled";
+
+    /// <summary>
+    /// Amount of tolerable distance before unbuckling a user
+    /// </summary>
+    [DataField, Access(typeof(SharedBuckleSystem))]
+    public double UnbuckleDistanceSquared = 1e-5;
 }
 
 public enum StrapPosition

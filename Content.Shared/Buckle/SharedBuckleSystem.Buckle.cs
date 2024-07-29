@@ -132,7 +132,7 @@ public abstract partial class SharedBuckleSystem
         }
 
         var delta = (xform.LocalPosition - strapComp.BuckleOffset).LengthSquared();
-        if (delta > 1e-5)
+        if (delta > strapComp.UnbuckleDistanceSquared) // Frontier: 1e-5<strapComp.UnbuckleDistanceSquared
             Unbuckle(buckle, (strapUid, strapComp), null);
     }
 
