@@ -151,10 +151,16 @@ public sealed class NewsSystem : SharedNewsSystem
         ent.Comp.NextPublish = _timing.CurTime + TimeSpan.FromSeconds(ent.Comp.PublishCooldown);
 
         if (!TryGetArticles(ent, out var articles))
+        {
+            Log.Error("OnWriteUiPublishMessage: no articles!");
             return;
+        }
 
         if (!_accessReader.FindStationRecordKeys(msg.Actor, out _))
+        {
+            Log.Error("OnWriteUiPublishMessage: FindStationRecordKeys failed!");
             return;
+        }
 
         string? authorName = null;
         if (_idCardSystem.TryFindIdCard(msg.Actor, out var idCard))
