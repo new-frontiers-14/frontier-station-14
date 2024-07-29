@@ -166,8 +166,12 @@ namespace Content.Server.Connection
             }
 
             var adminData = await _dbManager.GetAdminDataForAsync(e.UserId);
+            // New Frontiers - Session Respector - Checks that a player was connected before applying panic bunker/baby jail/no whitelist on low pop checks
+            // This code is licensed under AGPLv3. See AGPLv3.txt
+            var wasInGame = EntitySystem.TryGet<GameTicker>(out var ticker) &&
+                            ticker.PlayerGameStatuses.ContainsKey(userId); // Frontier: remove status.JoinedGame check, TryGetValue<ContainsKey
 
-            if (_cfg.GetCVar(CCVars.PanicBunkerEnabled) && adminData == null)
+            if (_cfg.GetCVar(CCVars.PanicBunkerEnabled) && adminData == null && !wasInGame) // Frontier: allow users who joined before panic bunker was enforced to reconnect
             {
                 var showReason = _cfg.GetCVar(CCVars.PanicBunkerShowReason);
                 var customReason = _cfg.GetCVar(CCVars.PanicBunkerCustomReason);
@@ -214,7 +218,7 @@ namespace Content.Server.Connection
                 }
             }
 
-            if (_cfg.GetCVar(CCVars.BabyJailEnabled) && adminData == null)
+            if (_cfg.GetCVar(CCVars.BabyJailEnabled) && adminData == null && !wasInGame) // Frontier: allow users who joined before panic bunker was enforced to reconnect
             {
                 var result = await IsInvalidConnectionDueToBabyJail(userId, e);
 
@@ -222,16 +226,14 @@ namespace Content.Server.Connection
                     return (ConnectionDenyReason.BabyJail, result.Reason, null);
             }
 
-            var wasInGame = EntitySystem.TryGet<GameTicker>(out var ticker) &&
-                            ticker.PlayerGameStatuses.TryGetValue(userId, out var status) &&
-                            status == PlayerGameStatus.JoinedGame;
+            // Frontier: wasInGame previously calculated here.
             var adminBypass = _cfg.GetCVar(CCVars.AdminBypassMaxPlayers) && adminData != null;
             if ((_plyMgr.PlayerCount >= _cfg.GetCVar(CCVars.SoftMaxPlayers) && !adminBypass) && !wasInGame)
             {
                 return (ConnectionDenyReason.Full, Loc.GetString("soft-player-cap-full"), null);
             }
 
-            if (_cfg.GetCVar(CCVars.WhitelistEnabled))
+            if (_cfg.GetCVar(CCVars.WhitelistEnabled) && !wasInGame) // Frontier: allow users who joined before panic bunker was enforced to reconnect
             {
                 var min = _cfg.GetCVar(CCVars.WhitelistMinPlayers);
                 var max = _cfg.GetCVar(CCVars.WhitelistMaxPlayers);
@@ -247,6 +249,7 @@ namespace Content.Server.Connection
                     return (ConnectionDenyReason.Whitelist, msg, null);
                 }
             }
+            // End of modified code
 
             //Frontier
             //This is our little chunk that serves as a dAuth. It takes in a comma seperated list of IP:PORT, and chekcs
