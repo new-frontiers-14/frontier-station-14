@@ -205,7 +205,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         var protoList = depotPrototypes.ToList();
         var depotCount = _configurationManager.GetCVar(NF14CVars.CargoDepots);
         var rotation = 2 * Math.PI / depotCount;
-        var rotationOffset = 0d;
+        var rotationOffset = _random.NextAngle() / depotCount;
 
         for (int i = 0; i < depotCount && protoList.Count > 0; i++)
         {
