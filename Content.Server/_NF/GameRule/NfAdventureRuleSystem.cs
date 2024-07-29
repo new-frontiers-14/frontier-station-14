@@ -57,6 +57,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
     private List<EntityUid> _optionalStations = new();
     private List<EntityUid> _requiredStations = new();
     private List<EntityUid> _uniqueStations = new();
+    private List<Vector2> _stationCoords = new();
 
     private MapId _mapId;
 
@@ -128,6 +129,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         _optionalStations.Clear();
         _requiredStations.Clear();
         _uniqueStations.Clear();
+        _stationCoords.Clear();
 
         _distanceOffset = _configurationManager.GetCVar(NF14CVars.POIDistanceModifier);
 
@@ -168,7 +170,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         {
 
             var seed = _random.Next();
-            var offset = _random.NextVector2(3000f, 8500f) * _distanceOffset;
+            var offset = GetRandomPOICoord(3000f, 8500f, true);
             if (!_map.TryLoad(mapId, "/Maps/_NF/Dungeon/spaceplatform.yml", out var grids,
                 new MapLoadOptions
                 {
@@ -187,6 +189,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             //its better now but i think i need to do a normalization pass on the dungeon configs
             //because they are all offset. confirmed good size grid, just need to fix all the offsets.
             _dunGen.GenerateDungeon(dunGen, grids[0], mapGrid, (Vector2i) offset, seed);
+            AddStationCoordsToSet(offset);
         }
     }
 
@@ -203,12 +206,13 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         for (int i = 0; i < depotCount && protoList.Count > 0; i++)
         {
             var proto = _random.Pick(protoList);
-            Vector2i offset = new Vector2i(_random.Next(proto.RangeMin, proto.RangeMax), 0);
+            Vector2i offset = new Vector2i((int) (_random.Next(proto.RangeMin, proto.RangeMax) * _distanceOffset), 0);
             offset.Rotate(rotationOffset);
             rotationOffset += rotation;
             if (TrySpawnPoiGrid(proto, offset, out var depotUid) && depotUid is { Valid: true } depot)
             {
                 _depotStations.Add(depot);
+                AddStationCoordsToSet(offset); // adjust list of actual station coords
             }
         }
     }
@@ -228,12 +232,13 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             if (marketsAdded >= marketCount)
                 break;
 
-            var offset = _random.NextVector2(proto.RangeMin, proto.RangeMax);
+            var offset = GetRandomPOICoord(proto.RangeMin, proto.RangeMax, true);
 
             if (TrySpawnPoiGrid(proto, offset, out var marketUid) && marketUid is { Valid: true } market)
             {
                 _marketStations.Add(market);
                 marketsAdded++;
+                AddStationCoordsToSet(offset);
             }
         }
     }
@@ -253,11 +258,12 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             if (optionalsAdded >= optionalCount)
                 break;
 
-            var offset = _random.NextVector2(proto.RangeMin, proto.RangeMax);
+            var offset = GetRandomPOICoord(proto.RangeMin, proto.RangeMax, true);
 
             if (TrySpawnPoiGrid(proto, offset, out var optionalUid) && optionalUid is { Valid: true } uid)
             {
                 _optionalStations.Add(uid);
+                AddStationCoordsToSet(offset);
             }
         }
     }
@@ -273,11 +279,12 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
 
         foreach (var proto in protoList)
         {
-            var offset = _random.NextVector2(proto.RangeMin, proto.RangeMax);
+            var offset = GetRandomPOICoord(proto.RangeMin, proto.RangeMax, true);
 
             if (TrySpawnPoiGrid(proto, offset, out var requiredUid) && requiredUid is { Valid: true } uid)
             {
                 _requiredStations.Add(uid);
+                AddStationCoordsToSet(offset);
             }
         }
     }
@@ -300,11 +307,12 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
                 var chance = _random.NextFloat(0, 1);
                 if (chance <= proto.SpawnChance)
                 {
-                    var offset = _random.NextVector2(proto.RangeMin, proto.RangeMax);
+                    var offset = GetRandomPOICoord(proto.RangeMin, proto.RangeMax, true);
 
                     if (TrySpawnPoiGrid(proto, offset, out var optionalUid) && optionalUid is { Valid: true } uid)
                     {
                         _uniqueStations.Add(uid);
+                        AddStationCoordsToSet(offset);
                         break;
                     }
                 }
@@ -318,7 +326,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         if (_map.TryLoad(_mapId, proto.GridPath.ToString(), out var mapUids,
             new MapLoadOptions
             {
-                Offset = offset * _distanceOffset
+                Offset = offset
             }))
         {
             if (_prototypeManager.TryIndex<GameMapPrototype>(proto.ID, out var stationProto))
@@ -341,6 +349,44 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         }
 
         return false;
+    }
+
+    private Vector2 GetRandomPOICoord(float unscaledMinRange, float unscaledMaxRange, bool scaleRange)
+    {
+        int numRetries = int.Max(_configurationManager.GetCVar(NF14CVars.POIPlacementRetries), 0);
+        float minDistance = float.Max(_configurationManager.GetCVar(NF14CVars.MinPOIDistance), 0); // Constant at the end to avoid NaN weirdness
+
+        Vector2 coords = _random.NextVector2(unscaledMinRange, unscaledMaxRange);
+        if (scaleRange)
+            coords *= _distanceOffset;
+        for (int i = 0; i < numRetries; i++)
+        {
+            bool positionIsValid = true;
+            foreach (var station in _stationCoords)
+            {
+                if (Vector2.Distance(station, coords) < minDistance)
+                {
+                    positionIsValid = false;
+                    break;
+                }
+            }
+
+            // We have a valid position
+            if (positionIsValid)
+                break;
+
+            // No vector yet, get next value.
+            coords = _random.NextVector2(unscaledMinRange, unscaledMaxRange);
+            if (scaleRange)
+                coords *= _distanceOffset;
+        }
+
+        return coords;
+    }
+
+    private void AddStationCoordsToSet(Vector2 coords)
+    {
+        _stationCoords.Add(coords);
     }
 
     private async Task ReportRound(String message,  int color = 0x77DDE7)

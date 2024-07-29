@@ -82,4 +82,16 @@ public sealed class NF14CVars
     /// </summary>
     public static readonly CVarDef<float> POIDistanceModifier =
         CVarDef.Create("nf14.worldgen.distance_modifier", 1f, CVar.SERVERONLY);
+
+    /// <summary>
+    /// The rough minimum distance between POIs in meters.
+    /// </summary>
+    public static readonly CVarDef<float> MinPOIDistance =
+        CVarDef.Create("nf14.worldgen.min_poi_distance", 400f, CVar.SERVERONLY);
+
+    /// <summary>
+    /// The maximum number of times to retry POI placement during world generation.
+    /// </summary>
+    public static readonly CVarDef<int> POIPlacementRetries =
+        CVarDef.Create("nf14.worldgen.poi_placement_retries", 10, CVar.SERVERONLY);
 }
