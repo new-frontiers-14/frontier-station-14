@@ -1,4 +1,8 @@
-using System.Diagnostics;
+/*
+ * New Frontiers - This file is licensed under AGPLv3
+ * Copyright (c) 2024 New Frontiers
+ * See AGPLv3.txt for details.
+ */
 using System.Linq;
 using System.Net.Http;
 using System.Numerics;
@@ -9,8 +13,6 @@ using System.Threading.Tasks;
 using Content._NF.Shared.GameRule;
 using Content.Server.Procedural;
 using Content.Shared.Bank.Components;
-using Content.Server.GameTicking.Events;
-using Content.Server.GameTicking.Rules.Components;
 using Content.Shared.Procedural;
 using Robust.Server.GameObjects;
 using Robust.Server.Maps;
@@ -23,13 +25,15 @@ using Robust.Shared.Map.Components;
 using Content.Shared.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Cargo.Components;
+using Content.Server.GameTicking;
+using Content.Server.GameTicking.Rules;
 using Content.Server.Maps;
 using Content.Server.Station.Systems;
 using Content.Shared.CCVar;
 using Content.Shared.NF14.CCVar;
 using Robust.Shared.Configuration;
 
-namespace Content.Server.GameTicking.Rules;
+namespace Content.Server._NF.GameRule;
 
 /// <summary>
 /// This handles the dungeon and trading post spawning, as well as round end capitalism summary
@@ -38,7 +42,6 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
 {
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly IConfigurationManager _configurationManager = default!;
     [Dependency] private readonly MapLoaderSystem _map = default!;
     [Dependency] private readonly MetaDataSystem _meta = default!;
@@ -65,8 +68,6 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
     public override void Initialize()
     {
         base.Initialize();
-
-        SubscribeLocalEvent<RoundStartingEvent>(OnStartup);
         SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnPlayerSpawningEvent);
     }
 
@@ -121,7 +122,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         }
     }
 
-    private void OnStartup(RoundStartingEvent ev)
+    protected override void Started(EntityUid uid, AdventureRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {
         _mapId = GameTicker.DefaultMap;
         _depotStations.Clear();
@@ -134,7 +135,6 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
 
         //First, we need to grab the list and sort it into its respective spawning logics
         var allLocationList = _prototypeManager.EnumeratePrototypes<PointOfInterestPrototype>().ToList();
-        Logger.Info("all locations contains " + allLocationList.Count.ToString());
         var depotList = allLocationList.Where(w => w.SpawnGroup == "CargoDepot").ToList();
         foreach (var proto in depotList)
         {
@@ -168,19 +168,25 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
 
         GenerateUniques(uniqueList);
 
+        component.CargoDepots = _depotStations;
+        component.MarketStations = _marketStations;
+        component.RequiredPois = _requiredStations;
+        component.OptionalPois = _optionalStations;
+        component.UniquePois = _uniqueStations;
 
-        var mapId = GameTicker.DefaultMap;
+        base.Started(uid, component, gameRule, args);
+
         var dungenTypes = _prototypeManager.EnumeratePrototypes<DungeonConfigPrototype>();
 
         foreach (var dunGen in dungenTypes)
         {
-
             var seed = _random.Next();
             var offset = _random.NextVector2(3000f, 8500f) * _distanceOffset;
-            if (!_map.TryLoad(mapId, "/Maps/_NF/Dungeon/spaceplatform.yml", out var grids, new MapLoadOptions
-                {
-                    Offset = offset
-                }))
+            if (!_map.TryLoad(_mapId, "/Maps/_NF/Dungeon/spaceplatform.yml", out var grids,
+                    new MapLoadOptions
+                    {
+                        Offset = offset
+                    }))
             {
                 continue;
             }
