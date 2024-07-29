@@ -1,0 +1,51 @@
+- type: entity
+  parent: Welder
+  id: WelderEmpty
+  suffix: Empty
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      Welder:
+        reagents:
+        - ReagentId: WeldingFuel
+          Quantity: 0
+        maxVol: 100
+
+- type: entity
+  parent: WelderIndustrial
+  id: WelderIndustrialEmpty
+  suffix: Empty
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      Welder:
+        reagents:
+        - ReagentId: WeldingFuel
+          Quantity: 0
+        maxVol: 250
+
+- type: entity
+  parent: WelderIndustrialAdvanced
+  id: WelderIndustrialAdvancedEmpty
+  suffix: Empty
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      Welder:
+        reagents:
+        - ReagentId: WeldingFuel
+          Quantity: 0
+        maxVol: 250
+
+- type: entity
+  parent: WelderExperimental
+  id: WelderExperimentalEmpty
+  suffix: Empty
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      Welder:
+        reagents:
+        - ReagentId: WeldingFuel
+          Quantity: 0
+        maxVol: 1000
