@@ -10,6 +10,7 @@ using Content.Shared.Bank.Components;
 using Content.Shared.Cargo.Components;
 using Content.Shared.Stacks;
 using Robust.Server.GameObjects;
+using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server._NF.Market.Systems;
@@ -78,12 +79,15 @@ public sealed partial class MarketSystem : SharedMarketSystem
             marketMultiplier = priceMod.Mod;
         }
 
-        if (!(_station.GetOwningStation(consoleUid) is { Valid: true } station))
+        // Get the console computer's transform so we can get it's GridUid that is used to distinct market data.
+        // If we don't have a grid, we shouldn't allow anything to happen.
+        if (!_entityManager.TryGetComponent<TransformComponent>(consoleUid, out var transformComponent) || transformComponent.GridUid == null)
             return;
+        var gridUid = transformComponent.GridUid!.Value;
 
-        if (TryUpdateMarketData(args.ItemPrototype!, args.Amount, station))
+        if (TryUpdateMarketData(args.ItemPrototype!, args.Amount, gridUid))
         {
-            var stationNetEntity = GetNetEntity(station);
+            var stationNetEntity = GetNetEntity(gridUid);
             var itemProto = args.ItemPrototype;
             // Find the MarketData for the given EntityPrototype
             var marketData =
