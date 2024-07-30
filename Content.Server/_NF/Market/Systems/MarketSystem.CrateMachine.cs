@@ -143,8 +143,7 @@ public sealed partial class MarketSystem
             }
         }
         // Withdraw spesos from player
-        //_bankSystem.TryBankWithdraw(player, );
-        var spawnCost = GetMarketSelectionValue(spawnList, marketMod);
+        var spawnCost = int.Abs(GetMarketSelectionValue(spawnList, marketMod));
         if (!_bankSystem.TryBankWithdraw(player, spawnCost))
             return;
 
