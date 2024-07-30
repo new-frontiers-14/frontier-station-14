@@ -198,8 +198,7 @@
     allowMovement: true
     allowSpeech: true
     makeSentient: true
-    requirements:
-    - !type:WhitelistRequirement
+    prototype: SentientArtifact
     name: ghost-role-information-artifact-name
     description: ghost-role-information-artifact-description
   - type: GhostTakeoverAvailable
@@ -223,7 +222,7 @@
   - type: Tool
     qualities:
     - Screwing
-    speed: 2 # Very powerful multitool to balance out the desire to sell or scrap for points
+    speedModifier: 2 # Very powerful multitool to balance out the desire to sell or scrap for points
     useSound: /Audio/Items/drill_use.ogg
   - type: Tag
     tags:

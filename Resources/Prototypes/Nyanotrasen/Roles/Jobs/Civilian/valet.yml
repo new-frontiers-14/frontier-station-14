@@ -8,7 +8,7 @@
       time: 10800
   startingGear: ValetGear
   alwaysUseSpawner: true
-  icon: "JobIconServiceWorker"
+  icon: "JobIconValet" # Frontier: JobIconServiceWorker<JobIconValet
   supervisors: job-supervisors-sr
   canBeAntag: false
   access:
@@ -19,6 +19,9 @@
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
+  - !type:GiveItemOnHolidaySpecial # Frontier
+    holiday: FrontierBirthday # Frontier
+    prototype: FrontierBirthdayGift # Frontier
 
 - type: startingGear
   id: ValetGear

@@ -40,7 +40,7 @@ namespace Content.Server.Atmos.Piping.Trinary.Components
         public float InletTwoConcentration = 0.5f;
 
         /// <summary>
-        /// Frontier - Start the pump with the map.
+        /// Frontier - Start the mixer with the map.
         /// </summary>
         [DataField]
         public bool StartOnMapInit { get; set; } = false;

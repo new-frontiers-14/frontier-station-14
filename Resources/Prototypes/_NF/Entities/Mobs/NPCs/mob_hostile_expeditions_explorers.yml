@@ -16,6 +16,10 @@
       0: Alive
       100: Critical
       130: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      60: 0.7
+      80: 0.5
   - type: Stamina
     critThreshold: 100
   - type: DamageStateVisuals
@@ -60,11 +64,12 @@
 # Variations
 ## Tier 1
 - type: entity
-  name: explorer
+  name: looter
   parent:
   - MobExplorerBase
   - MobHumanoidHostileAISimpleMelee
   id: MobExplorerMeleeT1
+  description: Armed with a trusty pickaxe and greed, every group needs its grunts.
   noSpawn: true
   components:
   - type: Loadout
@@ -84,12 +89,25 @@
     - sprite: Objects/Tools/lantern.rsi
       state: on-equipped-BELT
       shader: unshaded
+  - type: MeleeWeapon
+    attackRate: 1.0
+    altDisarm: false
+    animation: WeaponArcPunch
+    angle: 0
+    damage:
+      types:
+        Blunt: 7.5
+        Piercing: 7.5
+        Structural: 30
+    soundHit:
+      collection: MetalThud
 
 - type: entity
-  name: explorer
+  name: scrapper
   parent:
   - MobExplorerBase
   id: MobExplorerRangedT1
+  description: Proto-kinetic accelerator in one hand, flashlight in the other, beer in the belly. That's how you explore.
   noSpawn: true
   components:
   - type: Loadout
@@ -136,16 +154,19 @@
 
 ## Tier 2
 - type: entity
-  name: explorer
+  name: scavenger
   parent:
   - MobExplorerBase
   - MobHumanoidHostileAISimpleMelee
   id: MobExplorerMeleeT2
+  description: A looter that scavenged enough coins to afford some decent equipment.
   noSpawn: true
   components:
   - type: Loadout
     prototypes:
     - MobHumanoidExplorerGearMeleeT2
+  - type: Damageable
+    damageModifierSet: MobHostileDamageModifierSetLow
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -168,17 +189,32 @@
     energy: 1
     mask: /Textures/Effects/LightMasks/cone.png
     color: "#47f8ff"
+  - type: MeleeWeapon
+    attackRate: 1.0
+    altDisarm: false
+    animation: WeaponArcPunch
+    angle: 0
+    damage:
+      types:
+        Blunt: 7.5
+        Slash: 5.5
+        Structural: 30
+    soundHit:
+      collection: MetalThud
 
 - type: entity
-  name: explorer
+  name: salvager
   parent:
   - MobExplorerBase
   id: MobExplorerRangedT2
+  description: Sawn-off proto-kinetic accelerator in one hand, crusher dagger in the other, magm-ale both in the belly and in the hardsuit's boots.
   noSpawn: true
   components:
   - type: Loadout
     prototypes:
     - MobHumanoidExplorerGearRangedT2
+  - type: Damageable
+    damageModifierSet: MobHostileDamageModifierSetLow
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -203,7 +239,7 @@
     count: 1
   - type: Gun
     showExamineText: false
-    fireRate: 8
+    fireRate: 6
     selectedMode: FullAuto
     minAngle: 31
     maxAngle: 45
@@ -221,16 +257,19 @@
 
 # Tier 3
 - type: entity
-  name: explorer
+  name: miner
   parent:
   - MobExplorerBase
   - MobHumanoidHostileAISimpleMelee
   id: MobExplorerMeleeT3
+  description: Drilling in the name of... drilling. No rock formation can withstand the power of dual-wielded mining drills - good thing you aren't a rock.
   noSpawn: true
   components:
   - type: Loadout
     prototypes:
     - MobHumanoidExplorerGearMeleeT3
+  - type: Damageable
+    damageModifierSet: MobHostileDamageModifierSetMedium
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -248,11 +287,12 @@
     wideAnimationRotation: -90
     soundHit:
       path: "/Audio/Items/drill_hit.ogg"
-    attackRate: 3.5
+    attackRate: 4
     damage:
-      groups:
-        Brute: 3
       types:
+        Blunt: 2
+        Slash: 1
+        Piercing: 2
         Structural: 25
   - type: PointLight
     enabled: true
@@ -268,11 +308,14 @@
   parent:
   - MobExplorerBase
   id: MobExplorerRangedT3
+  description: Veteran scrappers, these salvagers are wealthy enough to explore abandoned ruins for the adrenaline rush and adventure alone.
   noSpawn: true
   components:
   - type: Loadout
     prototypes:
     - MobHumanoidExplorerGearRangedT3
+  - type: Damageable
+    damageModifierSet: MobHostileDamageModifierSetMedium
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -316,12 +359,14 @@
   parent:
   - MobExplorerBase
   id: MobExplorerHauler
+  description: |- 
+   Loaded with heavy equipment for industrial-scale looting. Pardon me, "asset recovery".
   components:
   - type: Loadout
     prototypes:
     - MobHumanoidExplorerGearMechT3
   - type: Damageable
-    damageModifierSet: MobMercenaryDamageModifierSet
+    damageModifierSet: MobRogueSiliconDamageModifierSet
   - type: Sprite
     drawdepth: Mobs
     sprite: Objects/Specific/Mech/mecha.rsi
@@ -343,6 +388,10 @@
     thresholds:
       0: Alive
       200: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      120: 0.7
+      160: 0.5
   - type: Stamina
     critThreshold: 600
   - type: MovementSpeedModifier
@@ -374,15 +423,18 @@
 
 # Tier 4 - Boss
 - type: entity
-  name: explorer
+  name: explorer captain
   parent:
   - MobExplorerBase
   id: MobExplorerBoss
+  description: Fearless and battle-hardened salvage team leaders, it takes years picking through the darkest corners of space and navigating the galaxy's criminal underbelly of the galaxy before you can become a captain. Not to be underestimated.
   noSpawn: true
   components:
   - type: Loadout
     prototypes:
     - MobHumanoidExplorerGearBoss
+  - type: Damageable
+    damageModifierSet: MobHostileDamageModifierSetHigh
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -404,7 +456,7 @@
     count: 2
   - type: Gun
     showExamineText: false
-    fireRate: 8
+    fireRate: 5
     selectedMode: FullAuto
     minAngle: 41
     maxAngle: 55

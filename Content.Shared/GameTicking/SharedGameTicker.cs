@@ -1,5 +1,6 @@
 using Content.Shared.Roles;
 using Robust.Shared.Network;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Replays;
 using Robust.Shared.Serialization;
 using Robust.Shared.Serialization.Markdown.Mapping;
@@ -15,9 +16,9 @@ namespace Content.Shared.GameTicking
         // But this is easier, and at least it isn't hardcoded.
         //TODO: Move these, they really belong in StationJobsSystem or a cvar.
         [ValidatePrototypeId<JobPrototype>]
-        public const string FallbackOverflowJob = "Passenger";
+        public const string FallbackOverflowJob = "Contractor"; // Frontier: Passenger<Contractor
 
-        public const string FallbackOverflowJobName = "job-name-passenger";
+        public const string FallbackOverflowJobName = "job-name-contractor"; // Frontier: job-name-passenger<job-name-contractor
 
         // TODO network.
         // Probably most useful for replays, round end info, and probably things like lobby menus.
@@ -128,19 +129,17 @@ namespace Content.Shared.GameTicking
     }
 
     [Serializable, NetSerializable]
-    public sealed class TickerJobsAvailableEvent : EntityEventArgs
+    public sealed class TickerJobsAvailableEvent(
+        Dictionary<NetEntity, string> stationNames,
+        Dictionary<NetEntity, Dictionary<ProtoId<JobPrototype>, int?>> jobsAvailableByStation)
+        : EntityEventArgs
     {
         /// <summary>
         /// The Status of the Player in the lobby (ready, observer, ...)
         /// </summary>
-        public Dictionary<NetEntity, Dictionary<string, uint?>> JobsAvailableByStation { get; }
-        public Dictionary<NetEntity, string> StationNames { get; }
+        public Dictionary<NetEntity, Dictionary<ProtoId<JobPrototype>, int?>> JobsAvailableByStation { get; } = jobsAvailableByStation;
 
-        public TickerJobsAvailableEvent(Dictionary<NetEntity, string> stationNames, Dictionary<NetEntity, Dictionary<string, uint?>> jobsAvailableByStation)
-        {
-            StationNames = stationNames;
-            JobsAvailableByStation = jobsAvailableByStation;
-        }
+        public Dictionary<NetEntity, string> StationNames { get; } = stationNames;
     }
 
     [Serializable, NetSerializable, DataDefinition]

@@ -25,6 +25,9 @@
           Quantity: 20
   - type: Item
     size: Normal
+  - type: Tag
+    tags:
+    - Cake
 
 - type: entity
   parent: FoodCakeBase
@@ -49,6 +52,10 @@
           Quantity: 4
   - type: Item
     size: Tiny
+  - type: Tag
+    tags:
+    - Cake
+    - Slice
 
 # Custom Cake Example
 
@@ -67,6 +74,7 @@
     slice: FoodCakeBlueberrySlice
   - type: Tag
     tags:
+    - Cake
     - Fruit
 
 - type: entity
@@ -82,7 +90,9 @@
       color: blue
   - type: Tag
     tags:
+    - Cake
     - Fruit
+    - Slice
 
 # Cake
 
@@ -210,6 +220,7 @@
     slice: FoodCakeOrangeSlice
   - type: Tag
     tags:
+    - Cake
     - Fruit
 
 - type: entity
@@ -221,7 +232,9 @@
     state: orange-slice
   - type: Tag
     tags:
+    - Cake
     - Fruit
+    - Slice
 # Tastes like sweetness, cake, oranges.
 
 - type: entity
@@ -236,6 +249,7 @@
     slice: FoodCakeLimeSlice
   - type: Tag
     tags:
+    - Cake
     - Fruit
 
 - type: entity
@@ -247,7 +261,9 @@
     state: lime-slice
   - type: Tag
     tags:
+    - Cake
     - Fruit
+    - Slice
 # Tastes like sweetness, cake, limes.
 
 - type: entity
@@ -262,6 +278,7 @@
     slice: FoodCakeLemonSlice
   - type: Tag
     tags:
+    - Cake
     - Fruit
 
 - type: entity
@@ -273,7 +290,9 @@
     state: lemon-slice
   - type: Tag
     tags:
+    - Cake
     - Fruit
+    - Slice
 # Tastes like sweetness, cake, lemons.
 
 - type: entity
@@ -303,6 +322,7 @@
           Quantity: 5
   - type: Tag
     tags:
+    - Cake
     - Fruit
 
 - type: entity
@@ -330,7 +350,9 @@
           Quantity: 1
   - type: Tag
     tags:
+    - Cake
     - Fruit
+    - Slice
 
 - type: entity
   name: chocolate cake
@@ -390,6 +412,7 @@
     slice: FoodCakeAppleSlice
   - type: Tag
     tags:
+    - Cake
     - Fruit
 
 - type: entity
@@ -402,7 +425,9 @@
     state: apple-slice
   - type: Tag
     tags:
+    - Cake
     - Fruit
+    - Slice
 # Tastes like sweetness, cake, slime.
 
 - type: entity
@@ -449,6 +474,7 @@
           Quantity: 20
   - type: Tag
     tags:
+    - Cake
     - Fruit
 
 - type: entity
@@ -472,7 +498,9 @@
           Quantity: 4
   - type: Tag
     tags:
+    - Cake
     - Fruit
+    - Slice
 # Tastes like sweetness, cake, pumpkin.
 
 - type: entity
@@ -695,6 +723,8 @@
     allowMovement: true
     description: ghost-role-information-Cak-description
     rules: ghost-role-information-Cak-rules
+    raffle:
+      settings: short
   - type: GhostTakeoverAvailable
   - type: OwOAccent
   - type: Speech
@@ -707,11 +737,13 @@
     tags:
     - VimPilot
     - DoorBumpOpener
+    - Cake
   - type: CanEscapeInventory
     baseResistTime: 2
   - type: Puller
     needsHands: false
   - type: Examiner
+  - type: DoAfter
   - type: CombatMode
   - type: MeleeWeapon
     soundHit:
@@ -772,3 +804,6 @@
     color: "#FFFF00"
     radius: 1.4
     energy: 1.4
+  - type: Tag
+    tags:
+    - Slice

@@ -1,0 +1,21 @@
+- type: entity
+  parent: BaseStorageItem
+  id: RPED
+  name: RPED
+  description: A Rapid Part Exchange Device, perfect for quickly upgrading machines.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Research/rped.rsi
+    state: icon
+  - type: Item
+    sprite: Objects/Specific/Research/rped.rsi
+    size: Normal
+  - type: PartExchanger
+  - type: Storage
+    grid:
+    - 0,0,3,3 # Upstream (when it existed): 0,0,15,5 - area: 144 < 16
+    quickInsert: true
+    areaInsert: true
+    whitelist:
+      components:
+      - MachinePart

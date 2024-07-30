@@ -1,13 +1,13 @@
-﻿- type: entity
+- type: entity
   id: KitchenMicrowave
-  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  parent: [ BaseMachinePowered, SmallConstructibleMachine ]
   name: microwave
   description: It's magic.
   components:
   - type: Microwave
     capacity: 10
-    canMicrowaveIdsSafely: false # Frontier
-    explosionChance: 1 # Frontier
+    canMicrowaveIdsSafely: false # Frontier: true<false
+    explosionChance: 1 # Frontier: 0.3<1
   - type: Appearance
   - type: GenericVisualizer
     visuals:

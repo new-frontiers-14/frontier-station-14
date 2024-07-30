@@ -60,8 +60,19 @@ namespace Content.Shared.Lathe
         [DataField, ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
         public float MaterialUseMultiplier = 1;
 
-        public const float DefaultPartRatingMaterialUseMultiplier = 0.85f;
-        #endregion
+        /// <summary>
+        /// A modifier that changes how long it takes to print a recipe
+        /// </summary>
+        [DataField, ViewVariables(VVAccess.ReadOnly), AutoNetworkedField]
+        public float FinalTimeMultiplier = 1;
+
+        /// <summary>
+        /// A modifier that changes how much of a material is needed to print a recipe
+        /// </summary>
+        [DataField, ViewVariables(VVAccess.ReadOnly), AutoNetworkedField]
+        public float FinalMaterialUseMultiplier = 1;
+
+        public const float DefaultPartRatingMaterialUseMultiplier = 0.85f; // Frontier: restored for machine parts
 
         //Frontier Upgrade Code Restore
         /// <summary>
@@ -82,11 +93,14 @@ namespace Content.Shared.Lathe
         [DataField]
         public ProtoId<MachinePartPrototype> MachinePartMaterialUse = "MatterBin";
 
+        // Frontier: restored for machine part upgrades
         /// <summary>
         /// The value that is used to calculate the modifier <see cref="MaterialUseMultiplier"/>
         /// </summary>
         [DataField]
         public float PartRatingMaterialUseMultiplier = DefaultPartRatingMaterialUseMultiplier;
+        // End Frontier
+        #endregion
     }
 
     public sealed class LatheGetRecipesEvent : EntityEventArgs

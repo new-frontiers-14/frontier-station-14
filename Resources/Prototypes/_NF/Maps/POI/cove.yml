@@ -5,12 +5,12 @@
   minPlayers: 0
   stations:
     Cove:
-      stationProto: StandardFrontierOutpost
+      stationProto: PirateFrontierOutpost
       components:
         - type: StationNameSetup
           mapNameTemplate: 'Pirate Cove'
         - type: StationJobs
-          overflowJobs: []
           availableJobs:
-            PirateCaptain: [ 0, 0 ]
-            PirateFirstMate: [ 0, 0 ]
+            PirateCaptain: [ 1, 1 ]
+            PirateFirstMate: [ 1, 1 ]
+            Pirate: [ 0, 0 ]

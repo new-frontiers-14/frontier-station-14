@@ -1,29 +1,28 @@
-- type: vessel
-  id: Anchor
-  name: KC Anchor
-  description: A large luxury cruiser capable of long ranged travel acrossed the sector, expedition capable.
-  price: 135020
-  category: Large
-  group: Expedition
-  shuttlePath: /Maps/_NF/Shuttles/Expedition/anchor.yml
+# - type: vessel
+  # id: Anchor
+  # name: KC Anchor
+  # description: A large luxury cruiser capable of long ranged travel acrossed the sector, expedition capable.
+  # price: 135020
+  # category: Large
+  # group: Expedition
+  # shuttlePath: /Maps/_NF/Shuttles/Expedition/anchor.yml
   
-- type: gameMap
-  id: Anchor
-  mapName: 'KC Anchor'
-  mapPath: /Maps/_NF/Shuttles/Expedition/anchor.yml
-  minPlayers: 0
-  stations: 
-    Anchor:
-      stationProto: StandardFrontierExpeditionVessel
-      components:
-        - type: StationNameSetup
-          mapNameTemplate: 'Anchor {1}'
-          nameGenerator:
-            !type:NanotrasenNameGenerator
-            prefixCreator: '14'
-        - type: StationJobs
-          overflowJobs: []
-          availableJobs:
-            Contractor: [ 0, 0 ]
-            Pilot: [ 0, 0 ]
-            Mercenary: [ 0, 0 ]
+# - type: gameMap
+  # id: Anchor
+  # mapName: 'KC Anchor'
+  # mapPath: /Maps/_NF/Shuttles/Expedition/anchor.yml
+  # minPlayers: 0
+  # stations: 
+    # Anchor:
+      # stationProto: StandardFrontierExpeditionVessel
+      # components:
+        # - type: StationNameSetup
+          # mapNameTemplate: 'Anchor {1}'
+          # nameGenerator:
+            # !type:NanotrasenNameGenerator
+            # prefixCreator: '14'
+        # - type: StationJobs
+          # availableJobs:
+            # Contractor: [ 0, 0 ]
+            # Pilot: [ 0, 0 ]
+            # Mercenary: [ 0, 0 ]

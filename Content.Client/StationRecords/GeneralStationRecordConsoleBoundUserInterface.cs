@@ -25,6 +25,7 @@ public sealed class GeneralStationRecordConsoleBoundUserInterface : BoundUserInt
             SendMessage(new SetStationRecordFilter(type, filterValue));
         _window.OnJobAdd += OnJobsAdd;
         _window.OnJobSubtract += OnJobsSubtract;
+        _window.OnDeleted += id => SendMessage(new DeleteStationRecord(id));
         _window.OnClose += Close;
 
         _window.OpenCentered();

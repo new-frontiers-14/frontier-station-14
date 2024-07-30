@@ -1,0 +1,74 @@
+- type: entity
+  parent: CarpStatue
+  id: AberrantFleshDigestiveSack
+  name: assimilation sack
+  description: Huh, an assimilation sack? How do I even know this?
+  components:
+  - type: Timer
+  - type: TimedSpawner
+    prototypes:
+    - SpawnMobAberrantFleshExpeditions
+    chance: 0.85
+    intervalSeconds: 240
+    minimumEntitiesSpawned: 1
+    maximumEntitiesSpawned: 3
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.45
+        density: 500
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: Sprite
+    sprite: _NF/Structures/Specific/AberrantFlesh/digestivesack.rsi
+    drawdepth: Mobs
+    snapCardinals: true
+    layers:
+    - state: base
+    - state: unshaded
+      shader: unshaded
+  - type: AmbientSound
+    volume: -9
+    range: 5
+    sound:
+      collection: blood #eating
+      params:
+        variation: 0.250
+  - type: RangedDamageSound
+    soundGroups:
+      Brute:
+        collection:
+          MeatBulletImpact
+    soundTypes:
+      Heat:
+        collection:
+          MeatLaserImpact
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 60
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: gib
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 30
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: gib
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          FoodMeat:
+            min: 1
+            max: 2

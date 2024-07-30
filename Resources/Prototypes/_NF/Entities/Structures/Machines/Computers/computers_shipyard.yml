@@ -1,23 +1,11 @@
 - type: entity
   name: shipyard console
-  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseStructureComputer]
-  id: ComputerShipyard
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseComputer]
+  id: ComputerShipyardBase
   description: Used to purchase and sell shuttles
-  placement:
-    mode: SnapgridCenter
+  abstract: true
   components:
-  - type: MeleeSound
-    soundGroups:
-      Brute:
-        collection: MetalGlassBreak
-  - type: Computer
-  - type: ApcPowerReceiver
-    powerLoad: 200
-  - type: ExtensionCableReceiver
-  - type: ActivatableUIRequiresPower
   - type: Sprite
-    netsync: false
-    noRot: true
     sprite: _NF/Structures/Machines/computers.rsi
     layers:
     - map: ["computerLayerBody"]
@@ -28,29 +16,6 @@
       state: shipyard
     - map: ["computerLayerKeys"]
       state: telesci_key
-  - type: Appearance
-  - type: GenericVisualizer
-    visuals:
-      enum.ComputerVisuals.Powered:
-        computerLayerScreen:
-          True: { visible: true, shader: unshaded }
-          False: { visible: false }
-        computerLayerKeys:
-          True: { visible: true, shader: unshaded }
-          False: { visible: true, shader: shaded }
-  - type: LitOnPowered
-  - type: PointLight
-    radius: 1.5
-    energy: 1.6
-    color: "#b89f25"
-    enabled: false
-    mask: /Textures/Effects/LightMasks/cone.png
-    autoRot: true
-    offset: "0, 0.4" # shine from the top, not bottom of the computer
-    castShadows: false
-  - type: EmitSoundOnUIOpen
-    sound:
-      collection: Keyboard
   - type: ShipyardConsole
     targetIdSlot:
       name: id-card-console-target-id
@@ -61,6 +26,8 @@
       whitelist:
         components:
         - IdCard
+        - ShipyardVoucher
+    newAccessLevels: [Captain]
   - type: ActivatableUI
     singleUser: true
     key: enum.ShipyardConsoleUiKey.Shipyard
@@ -75,8 +42,15 @@
 
 # Hardcoded consoles
 - type: entity
+  parent: ComputerShipyardBase
+  id: ComputerShipyard
+  components:
+  - type: ShipyardConsole
+    newJobTitle: Captain
+
+- type: entity
   id: ComputerShipyardSecurity
-  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerShipyard]
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerShipyardBase]
   name: security shipyard console
   description: Used to enlist into Nanotrasen Security Forces
   components:
@@ -97,10 +71,13 @@
     interfaces:
       enum.ShipyardConsoleUiKey.Security:
         type: ShipyardConsoleBoundUserInterface
+  - type: ShipyardConsole
+    shipyardChannel: Nfsd
+    newAccessLevels: [Captain, Security, Brig]
 
 - type: entity
   id: ComputerShipyardNfsd
-  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerShipyard]
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerShipyardBase]
   name: nfsd shipyard console
   description: Used to buy nfsd patrol vessels
   components:
@@ -121,6 +98,9 @@
     interfaces:
       enum.ShipyardConsoleUiKey.Security:
         type: ShipyardConsoleBoundUserInterface
+  - type: ShipyardConsole
+    shipyardChannel: Nfsd
+    newAccessLevels: [Captain, Security, Brig]
 
 - type: entity
   id: ComputerShipyardSyndicate
@@ -147,6 +127,8 @@
       state: blackmarket_key
   - type: ShipyardConsole
     shipyardChannel: Syndicate
+    secretShipyardChannel: Nfsd
+    salesTax: 0.3
 
 - type: entity
   id: ComputerShipyardBlackMarket
@@ -173,6 +155,8 @@
       state: blackmarket_key
   - type: ShipyardConsole
     shipyardChannel: Freelance
+    secretShipyardChannel: Nfsd
+    salesTax: 0.3
 
 - type: entity
   id: ComputerShipyardExpedition
@@ -221,3 +205,27 @@
       state: shipyard_blackmarket
     - map: ["computerLayerKeys"]
       state: blackmarket_key
+
+- type: entity
+  id: ComputerShipyardSr
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerShipyard]
+  name: sr shipyard console
+  description: Used to buy vessels exclusive to the station representative
+  components:
+  - type: ActivatableUI
+    key: enum.ShipyardConsoleUiKey.Sr
+  - type: UserInterface
+    interfaces:
+      enum.ShipyardConsoleUiKey.Sr:
+        type: ShipyardConsoleBoundUserInterface
+  - type: Sprite
+    sprite: _NF/Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer_sr
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: shipyard_sr
+    - map: ["computerLayerKeys"]
+      state: telesci_key

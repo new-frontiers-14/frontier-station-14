@@ -20,6 +20,9 @@
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
+  - !type:GiveItemOnHolidaySpecial # Frontier
+    holiday: FrontierBirthday # Frontier
+    prototype: FrontierBirthdayGift # Frontier
 
 - type: startingGear
   id: MailCarrierGear
@@ -29,3 +32,6 @@
     id: MailCarrierPDA
     ears: ClothingHeadsetService # Frontier - ClothingHeadsetCargo<ClothingHeadsetService
     belt: MailBag
+  storage:
+    back:
+    - HandheldCrewMonitor

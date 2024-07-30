@@ -379,7 +379,7 @@
     sprite: Clothing/OuterClothing/Coats/windbreaker_paramedic.rsi
 
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: [ClothingOuterStorageBase, ContrabandClothing] # Frontier: added ContrabandClothing as parent
   id: ClothingOuterCoatSyndieCap
   name: syndicate's coat
   description: The syndicate's coat is made of durable fabric, with gilded patterns.
@@ -388,10 +388,9 @@
     sprite: Clothing/OuterClothing/Coats/syndicate/coatsyndiecap.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Coats/syndicate/coatsyndiecap.rsi
-  - type: Contraband #frontier
 
 - type: entity
-  parent: ClothingOuterCoatHoSTrench
+  parent: [ClothingOuterCoatHoSTrench, ContrabandClothing] # Frontier: added ContrabandClothing as parent
   id: ClothingOuterCoatSyndieCapArmored
   name: syndicate's armored coat
   description: The syndicate's armored coat is made of durable fabric, with gilded patterns.
@@ -400,7 +399,6 @@
     sprite: Clothing/OuterClothing/Coats/syndicate/coatsyndiecaparmored.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Coats/syndicate/coatsyndiecaparmored.rsi
-  - type: Contraband #frontier
 
 - type: entity
   parent: ClothingOuterStorageBase

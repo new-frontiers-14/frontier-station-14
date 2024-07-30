@@ -6,6 +6,7 @@ using Content.Shared.Labels;
 using Content.Shared.Tag;
 using Content.Shared.Labels.Components;
 using Content.Shared.Labels.EntitySystems;
+using Content.Shared.NameModifier.EntitySystems;
 using JetBrains.Annotations;
 using Robust.Shared.Containers;
 
@@ -19,7 +20,7 @@ namespace Content.Server.Labels
     {
         [Dependency] private readonly ItemSlotsSystem _itemSlotsSystem = default!;
         [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-        [Dependency] private readonly MetaDataSystem _metaData = default!;
+        [Dependency] private readonly NameModifierSystem _nameMod = default!;
         [Dependency] private readonly TagSystem _tagSystem = default!;
 
         public const string ContainerName = "paper_label";
@@ -45,6 +46,8 @@ namespace Content.Server.Labels
                 component.CurrentLabel = Loc.GetString(component.CurrentLabel);
                 Dirty(uid, component);
             }
+
+            _nameMod.RefreshNameModifiers(uid);
         }
 
         /// <summary>
@@ -56,32 +59,13 @@ namespace Content.Server.Labels
         /// <param name="metadata">metadata component for resolve</param>
         public override void Label(EntityUid uid, string? text, MetaDataComponent? metadata = null, LabelComponent? label = null)
         {
-            if (!Resolve(uid, ref metadata))
-                return;
-            if (_tagSystem.HasTag(uid, PreventTag)) // DeltaV - Prevent labels on certain items
-                return;
             if (!Resolve(uid, ref label, false))
                 label = EnsureComp<LabelComponent>(uid);
+            if (_tagSystem.HasTag(uid, PreventTag)) // DeltaV - Prevent labels on certain items // Frontier: currently unused - TODO: remove
+                return; // Frontier: currently unused - TODO: remove
 
-            if (string.IsNullOrEmpty(text))
-            {
-                if (label.OriginalName is null)
-                    return;
-
-                // Remove label
-                _metaData.SetEntityName(uid, label.OriginalName, metadata);
-                label.CurrentLabel = null;
-                label.OriginalName = null;
-
-                Dirty(uid, label);
-
-                return;
-            }
-
-            // Update label
-            label.OriginalName ??= metadata.EntityName;
             label.CurrentLabel = text;
-            _metaData.SetEntityName(uid, $"{label.OriginalName} ({text})", metadata);
+            _nameMod.RefreshNameModifiers(uid);
 
             Dirty(uid, label);
         }

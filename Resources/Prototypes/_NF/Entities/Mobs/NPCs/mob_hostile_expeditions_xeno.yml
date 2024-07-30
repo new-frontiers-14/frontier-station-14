@@ -40,6 +40,10 @@
     thresholds:
       0: Alive
       50: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      30: 0.7
+      40: 0.5
   - type: Stamina
     critThreshold: 200
   - type: Bloodstream
@@ -93,30 +97,13 @@
   parent: BaseMobXenoExpeditions
   id: MobXenoBurrowerExpeditions
   name: Burrower
-
-- type: entity
-  parent: BaseMobXenoExpeditions
-  id: MobXenoPraetorianExpeditions
-  name: Praetorian
-  components:
-  - type: Sprite
-    drawdepth: Mobs
-    sprite: Mobs/Aliens/Xenos/praetorian.rsi
-    offset: 0,0.4
-    layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
-      state: running
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      75: Dead
-  - type: Stamina
-    critThreshold: 300
+  description: A young stage of development, burrowers stay close to their nests and dig underground to stay in relative safety.
 
 - type: entity
   parent: BaseMobXenoExpeditions
   id: MobXenoDroneExpeditions
   name: Drone
+  description: The backbone of any xeno hive, drones serve as workers and nurses. They shape the environment to suit the hive's needs and care for unhatched eggs.
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -128,19 +115,52 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      80: Dead
+      70: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      48: 0.7
+      64: 0.5
   - type: MeleeWeapon
     damage:
       groups:
         Brute: 5
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2.0
-    baseSprintSpeed: 2.5
+    baseWalkSpeed: 3.0
+    baseSprintSpeed: 3.5
+
+- type: entity
+  parent: BaseMobXenoExpeditions
+  id: MobXenoPraetorianExpeditions
+  name: Praetorian
+  description: Praetorians are larger than the smaller drones, with their robust body designed for protection and strength. Their impressive size also enables them to efficiently transport large prey back to the hive.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Mobs/Aliens/Xenos/praetorian.rsi
+    offset: 0,0.4
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: running
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      60: 0.7
+      80: 0.5
+  - type: MeleeWeapon
+    damage:
+      groups:
+        Brute: 10
+  - type: Stamina
+    critThreshold: 300
 
 - type: entity
   parent: BaseMobXenoExpeditions
   id: MobXenoRavagerExpeditions
   name: Ravager
+  description: Ravagers are large, vicious killers that specialize in brutal, high-damage hit-and-run attacks.
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -153,6 +173,10 @@
     thresholds:
       0: Alive
       150: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      90: 0.7
+      120: 0.5
   - type: Stamina
     critThreshold: 550
   - type: MovementSpeedModifier
@@ -161,12 +185,13 @@
   - type: MeleeWeapon
     damage:
      groups:
-       Brute: 10
+       Brute: 14
 
 - type: entity
   parent: BaseMobXenoExpeditions
   id: MobXenoRunnerExpeditions
   name: Runner
+  description: Built for speed, the Runner is a very fast caste that excels at hit and run tactics and individual combat. Its lightweight frame leaves it vulnerable, though.
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -183,12 +208,13 @@
   - type: MeleeWeapon
     damage:
      groups:
-       Brute: 3
+       Brute: 4
 
 - type: entity
   parent: BaseMobXenoExpeditions
   id: MobXenoSpitterExpeditions
   name: Spitter
+  description: The Spitter, a master of ranged combat among Xenos, spits globs of caustic saliva that can incapacitate foes with ease. With a quick flick of its elongated tongue, the Spitter unleashes a stream of corrosive goo that can burn through armor and sizzle flesh.
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -201,6 +227,10 @@
     thresholds:
       0: Alive
       75: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      45: 0.7
+      60: 0.5
   - type: HTN
     rootTask:
       task: SimpleRangedHostileCompound
@@ -226,6 +256,7 @@
   parent: BaseMobXenoExpeditions
   id: MobXenoQueenDungeon
   name: Queen
+  description: Responsible for both laying eggs and providing direction to her children, the Queen is the most important member of a Xeno hive. If she dies, the hive will lose all direction.
   suffix: AI/Ghost, Hostile
   components:
   - type: Sprite
@@ -239,6 +270,10 @@
     thresholds:
       0: Alive
       250: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      150: 0.7
+      200: 0.5
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.8
     baseSprintSpeed: 3.8

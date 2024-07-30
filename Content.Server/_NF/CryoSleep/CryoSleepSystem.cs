@@ -199,9 +199,10 @@ public sealed partial class CryoSleepSystem : SharedCryoSleepSystem
         var mobQuery = GetEntityQuery<MobStateComponent>();
         var xformQuery = GetEntityQuery<TransformComponent>();
         // Refuse to accept "passengers" (e.g. pet felinids in bags)
-        if (_shipyard.FoundOrganics(toInsert.Value, mobQuery, xformQuery))
+        string? name = _shipyard.FoundOrganics(toInsert.Value, mobQuery, xformQuery);
+        if (name is not null)
         {
-            _popup.PopupEntity(Loc.GetString("cryopod-refuse-organic", ("cryopod", cryopod)), cryopod, PopupType.SmallCaution);
+            _popup.PopupEntity(Loc.GetString("cryopod-refuse-organic", ("cryopod", cryopod), ("name", name)), cryopod, PopupType.SmallCaution);
             return false;
         }
 

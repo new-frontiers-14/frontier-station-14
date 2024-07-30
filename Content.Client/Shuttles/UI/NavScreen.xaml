@@ -80,5 +80,16 @@
                         <controls:Label Text="{controls:Loc 'shuttle-console-iff-search'}"></controls:Label>
                         <controls:LineEdit Name="IffSearchCriteria" Access="Public" HorizontalExpand="True"></controls:LineEdit>
                     </controls:BoxContainer>
+                    
+                    <!-- Frontier - Maximum IFF Distance -->
+                    <controls:BoxContainer Orientation="Vertical" HorizontalExpand="True" Name="MaximumIFFDistanceBox">
+                        <controls:Label Text="{controls:Loc 'shuttle-console-maximum-iff-distance'}"/>
+                        <controls:SliderIntInput Name="MaximumIFFDistanceValue"
+                                         Access="Public"
+                                         MinValue="0"
+                                         MaxValue="3000"
+                                         Value="3000"
+                                         HorizontalExpand="True"/>
+                    </controls:BoxContainer>
                 </controls:BoxContainer>
             </controls:BoxContainer>

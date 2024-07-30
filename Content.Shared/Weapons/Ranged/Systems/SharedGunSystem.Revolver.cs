@@ -51,7 +51,7 @@ public partial class SharedGunSystem
 
     private void OnRevolverInteractUsing(EntityUid uid, RevolverAmmoProviderComponent component, InteractUsingEvent args)
     {
-        if (args.Handled || component?.Whitelist?.IsValid(args.Used, EntityManager) != true) // Frontier: better revolver reloading
+        if (args.Handled || _whitelistSystem.IsWhitelistFailOrNull(component.Whitelist, args.Used)) // Frontier: better revolver reloading
             return; // Frontier: better revolver reloading
 
         if (TryRevolverInsert(uid, component, args.Used, args.User))
@@ -154,8 +154,8 @@ public partial class SharedGunSystem
             if (ent == null)
                 continue;
 
-            if (ballisticTarget is not null && ballisticTarget.Whitelist?.IsValid(ent.Value) != true ||
-                revolverTarget is not null && revolverTarget.Whitelist?.IsValid(ent.Value) != true)
+            if (ballisticTarget is not null && _whitelistSystem.IsWhitelistFailOrNull(ballisticTarget.Whitelist, ent.Value) ||
+                revolverTarget is not null && _whitelistSystem.IsWhitelistFailOrNull(revolverTarget.Whitelist, ent.Value))
             {
                 Popup(
                     Loc.GetString("gun-ballistic-transfer-invalid",
@@ -225,7 +225,7 @@ public partial class SharedGunSystem
 
     public bool TryRevolverInsert(EntityUid revolverUid, RevolverAmmoProviderComponent component, EntityUid uid, EntityUid? user)
     {
-        if (component.Whitelist?.IsValid(uid, EntityManager) != true) // Frontier: no null, consistency with BallisticAmmoProvider
+        if (_whitelistSystem.IsWhitelistFailOrNull(component.Whitelist, uid)) // Frontier: no null, consistency with BallisticAmmoProvider
             return false;
 
         // If it's a speedloader try to get ammo from it.

@@ -6,7 +6,7 @@
   requirements:
     - !type:OverallPlaytimeRequirement
       time: 36000
-    - !type:WhitelistRequirement
+  whitelisted: true
   weight: 20
   startingGear: SrGear
   alwaysUseSpawner: true
@@ -22,6 +22,9 @@
   - !type:AddComponentSpecial
     components:
       - type: CommandStaff
+  - !type:GiveItemOnHolidaySpecial
+    holiday: FrontierBirthday
+    prototype: FrontierBirthdayGift
 
 - type: startingGear
   id: SrGear
@@ -29,3 +32,10 @@
     id: SrPDA
     ears: ClothingHeadsetAltCentCom
     pocket1: WeaponDisabler
+  storage:
+    back:
+    - Flash
+    - RubberStampHop
+    - DoorRemoteCommand
+    - AccessConfigurator
+    - PhoneInstrument

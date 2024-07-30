@@ -4,9 +4,15 @@
   loadouts:
   - PrisonerJumpsuit
   - PrisonerJumpskirt
+  fallbacks:
+  - PrisonerJumpsuit
+  - PrisonerJumpskirt
 
 - type: loadoutGroup
   id: PrisonerPDA
   name: loadout-group-contractor-id
+  hidden: true # No point in showing this, it gets auto-selected.
   loadouts:
+  - PrisonerPrisonerPDA
+  fallbacks:
   - PrisonerPrisonerPDA

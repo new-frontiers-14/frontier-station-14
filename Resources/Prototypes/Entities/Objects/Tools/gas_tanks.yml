@@ -25,7 +25,7 @@
     outputPressure: 21.3
     air:
       # If gas tank volume is changed, adjust MinimumTritiumOxyburnEnergy in Atmospherics.cs by the same proportions
-      volume: 10
+      volume: 5
       temperature: 293.15
     tankLowPressure: 30.0
   - type: Explosive
@@ -51,7 +51,7 @@
   - type: Tool
     qualities:
     - Rolling
-    speed: 0.6 # fairly unwieldly but nice round surface
+    speedModifier: 0.6 # fairly unwieldly but nice round surface
 
 - type: entity
   parent: GasTankRoundBase
@@ -92,7 +92,7 @@
     sprite: Objects/Tanks/emergency.rsi
   - type: GasTank
     air:
-      volume: 1.33
+      volume: 0.66
       temperature: 293.15
   - type: Clothing
     sprite: Objects/Tanks/emergency.rsi
@@ -110,6 +110,19 @@
 
 - type: entity
   parent: EmergencyOxygenTank
+  id: EmergencyNitrogenTank
+  name: emergency nitrogen tank
+  description: An easily portable tank for emergencies. Contains very little nitrogen, rated for survival use only.
+  components:
+  - type: Sprite
+    sprite: Objects/Tanks/emergency_red.rsi
+  - type: Item
+    sprite: Objects/Tanks/emergency_red.rsi
+  - type: Clothing
+    sprite: Objects/Tanks/emergency_red.rsi
+
+- type: entity
+  parent: EmergencyOxygenTank
   id: ExtendedEmergencyOxygenTank
   name: extended-capacity emergency oxygen tank
   description: An emergency tank with extended capacity. Technically rated for prolonged use.
@@ -120,10 +133,23 @@
     sprite: Objects/Tanks/emergency_extended.rsi
   - type: GasTank
     air:
-      volume: 3
+      volume: 1.5
       temperature: 293.15
   - type: Clothing
     sprite: Objects/Tanks/emergency_extended.rsi
+
+- type: entity
+  parent: ExtendedEmergencyOxygenTank
+  id: ExtendedEmergencyNitrogenTank
+  name: extended-capacity emergency nitrogen tank
+  description: An emergency tank with extended capacity. Technically rated for prolonged use.
+  components:
+  - type: Sprite
+    sprite: Objects/Tanks/emergency_extended_red.rsi
+  - type: Item
+    sprite: Objects/Tanks/emergency_extended_red.rsi
+  - type: Clothing
+    sprite: Objects/Tanks/emergency_extended_red.rsi
 
 - type: entity
   parent: ExtendedEmergencyOxygenTank
@@ -137,7 +163,7 @@
     sprite: Objects/Tanks/emergency_double.rsi
   - type: GasTank
     air:
-      volume: 5
+      volume: 2.5
       temperature: 293.15
   - type: Clothing
     sprite: Objects/Tanks/emergency_double.rsi
@@ -148,6 +174,32 @@
         Blunt: 7.5
 
 - type: entity
+  parent: DoubleEmergencyOxygenTank
+  id: DoubleEmergencyNitrogenTank
+  name: double emergency nitrogen tank
+  description: A high-grade dual-tank emergency life support container. It holds a decent amount of nitrogen for its small size.
+  components:
+  - type: Sprite
+    sprite: Objects/Tanks/emergency_double_red.rsi
+  - type: Item
+    sprite: Objects/Tanks/emergency_double_red.rsi
+  - type: Clothing
+    sprite: Objects/Tanks/emergency_double_red.rsi
+
+- type: entity
+  parent: EmergencyOxygenTank
+  id: EmergencyFunnyOxygenTank
+  name: funny emergency oxygen tank
+  description: An easily portable tank for emergencies. Contains very little oxygen with an extra of funny gas, rated for survival use only.
+  components:
+  - type: Sprite
+    sprite: Objects/Tanks/emergency_clown.rsi
+  - type: Item
+    sprite: Objects/Tanks/emergency_clown.rsi
+  - type: Clothing
+    sprite: Objects/Tanks/emergency_clown.rsi
+
+- type: entity
   parent: GasTankRoundBase
   id: AirTank
   name: air tank
@@ -155,13 +207,6 @@
   components:
   - type: GasTank
     outputPressure: 101.3
-    air:
-      volume: 10
-      temperature: 293.15
-  - type: Clothing
-    sprite: Objects/Tanks/generic.rsi
-  - type: StaticPrice
-    price: 32.5
 
 - type: entity
   parent: GasTankRoundBase
@@ -175,9 +220,6 @@
     sprite: Objects/Tanks/anesthetic.rsi
   - type: GasTank
     outputPressure: 30.4
-    air:
-      volume: 10
-      temperature: 293.15
   - type: Clothing
     sprite: Objects/Tanks/anesthetic.rsi
 
@@ -199,81 +241,3 @@
     slots:
     - Belt
     - suitStorage
-
-- type: entity
-  parent: OxygenTank
-  id: EmergencyNitrogenTank
-  name: emergency nitrogen tank
-  description: An easily portable tank for emergencies. Contains very little nitrogen, rated for survival use only.
-  components:
-  - type: Sprite
-    sprite: Objects/Tanks/emergency_red.rsi
-  - type: GasTank
-    outputPressure: 101.325
-    air:
-      volume: 2
-      temperature: 293.15
-  - type: Item
-    size: Small
-  - type: Clothing
-    sprite: Objects/Tanks/emergency_red.rsi
-    slots:
-    - Pocket
-    - Belt
-    - suitStorage
-  - type: MeleeWeapon
-    damage:
-      types:
-        Blunt: 5
-  - type: PhysicalComposition
-    materialComposition:
-      Steel: 100
-
-- type: entity
-  parent: EmergencyNitrogenTank
-  id: ExtendedEmergencyNitrogenTank
-  name: extended-capacity emergency nitrogen tank
-  description: An emergency tank with extended capacity. Technically rated for prolonged use.
-  components:
-  - type: Sprite
-    sprite: Objects/Tanks/emergency_red_extended.rsi
-  - type: GasTank
-    outputPressure: 101.325
-    air:
-      volume: 3
-      temperature: 293.15
-  - type: Item
-    size: Small
-  - type: Clothing
-    sprite: Objects/Tanks/emergency_red_extended.rsi
-    slots:
-    - Pocket
-    - Belt
-    - suitStorage
-
-- type: entity
-  parent: ExtendedEmergencyNitrogenTank
-  id: DoubleEmergencyNitrogenTank
-  name: double emergency nitrogen tank
-  description: A high-grade dual-tank emergency life support container. It holds a decent amount of oxygen for it's small size.
-  components:
-  - type: Sprite
-    sprite: Objects/Tanks/emergency_red_double.rsi
-  - type: GasTank
-    outputPressure: 101.325
-    air:
-      volume: 5
-      temperature: 293.15
-  - type: Item
-    size: Small
-  - type: Clothing
-    sprite: Objects/Tanks/emergency_red_double.rsi
-    slots:
-    - Pocket
-    - Belt
-    - suitStorage
-  - type: MeleeWeapon
-    attackRate: 0.9
-    damage:
-      types:
-        Blunt: 7.5

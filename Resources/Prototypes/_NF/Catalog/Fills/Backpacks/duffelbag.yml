@@ -69,3 +69,16 @@
       - id: WeaponLauncherNfsdLake
       - id: GrenadeEmp
         amount: 12
+
+# Not a duffelbag, but stored with other uplink-related backpacks
+- type: entity
+  parent: ClothingBackpackSatchelLeather
+  id: ClothingBackpackPirateBundle
+  suffix: Filled, Pirate
+  components:
+    - type: StorageFill
+      contents:
+        - id: BoxSurvival
+        - id: Cutlass
+        - id: WeaponRevolverPirate
+        - id: ClothingEyesEyepatch

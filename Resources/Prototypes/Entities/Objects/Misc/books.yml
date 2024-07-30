@@ -57,10 +57,10 @@
   - type: Tag
     tags:
     - Book
-  - type: GuideHelp
-    openOnActivation: true
-    guides:
-    - SS14
+  # - type: GuideHelp # Frontier: guidebook entry removed
+  #   openOnActivation: true # Frontier: guidebook entry removed
+  #   guides: # Frontier: guidebook entry removed
+  #   - SS14 # Frontier: guidebook entry removed
 
 - type: entity
   id: BookTheBookOfControl
@@ -277,10 +277,10 @@
   - type: Tag
     tags:
     - Book
-  - type: GuideHelp
-    openOnActivation: true
-    guides:
-    - Salvage
+  # - type: GuideHelp # Frontier: removed guidebook entries (needs rework)
+  #   openOnActivation: true # Frontier: removed guidebook entries (needs rework)
+  #   guides: # Frontier: removed guidebook entries (needs rework)
+  #   - Salvage # Frontier: removed guidebook entries (needs rework)
 
 - type: entity
   id: BookMedicalReferenceBook
@@ -363,8 +363,8 @@
   components:
   - type: RandomMetadata
     nameSegments:
-    - book_hint_appearance
-    - book_type
+    - BookHintAppearances
+    - BookTypes
   - type: RandomSprite
     available:
       - cover:
@@ -425,33 +425,7 @@
   suffix: random visual, random story
   components:
   - type: PaperRandomStory
-    storySegments:
-    - "This is a "
-    - book_genre
-    - " about a "
-    - book_character_trait
-    - " "
-    - book_character
-    - " and "
-    - book_character_trait
-    - " "
-    - book_character
-    - ". Due to "
-    - book_event
-    - ", they "
-    - book_action_trait
-    - " "
-    - book_action
-    - " "
-    - book_character
-    - " "
-    - book_location
-    - ". \n\n"
-    - book_story_element
-    - " is "
-    - book_story_element_trait
-    - "."
-    storySeparator: ""
+    template: GenericStory
 
 - type: entity
   parent: BookBase

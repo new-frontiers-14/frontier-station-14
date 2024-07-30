@@ -73,19 +73,6 @@
 
 - type: entity
   parent: BaseComputerCircuitboard
-  id: NFSDCriminalRecordsComputerCircuitboard
-  name: nfsd criminal records computer board
-  description: A computer printed circuit board for a criminal records computer.
-  components:
-    - type: Sprite
-      state: cpu_nfsd
-    - type: ComputerBoard
-      prototype: ComputerCriminalRecords
-    - type: ComputerTabletopBoard # Frontier
-      prototype: ComputerTabletopCriminalRecords # Frontier
-
-- type: entity
-  parent: BaseComputerCircuitboard
   id: StationRecordsComputerCircuitboard
   name: station records computer board
   description: A computer printed circuit board for a station records computer.
@@ -114,6 +101,17 @@
       - DroneUsable
     - type: ComputerTabletopBoard # Frontier
       prototype: ComputerTabletopCargoOrders # Frontier
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: CargoSaleComputerCircuitboard
+  name: cargo sale computer board
+  description: A computer printed circuit board for a cargo sale computer.
+  components:
+    - type: Sprite
+      state: cpu_supply
+    - type: ComputerBoard
+      prototype: ComputerPalletConsole
 
 - type: entity
   id: CargoBountyComputerCircuitboard
@@ -357,18 +355,6 @@
 
 - type: entity
   parent: BaseComputerCircuitboard
-  id: NFSDAdvancedRadarConsoleCircuitboard # Frontier
-  name: nfsd advanced radar console computer board
-  components:
-  - type: Sprite
-    state: cpu_nfsd
-  - type: ComputerBoard
-    prototype: ComputerAdvancedRadar
-  - type: ComputerTabletopBoard # Frontier
-    prototype: ComputerTabletopAdvancedRadar # Frontier
-
-- type: entity
-  parent: BaseComputerCircuitboard
   id: SolarControlComputerCircuitboard
   name: solar control computer board
   description: A computer printed circuit board for a solar control console.
@@ -514,3 +500,14 @@
       prototype: ComputerSensorMonitoring
     - type: ComputerTabletopBoard # Frontier
       prototype: ComputerTabletopSensorMonitoring # Frontier
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: RoboticsConsoleCircuitboard
+  name: robotics control console board
+  description: A computer printed circuit board for a robotics control console.
+  components:
+    - type: Sprite
+      state: cpu_science
+    - type: ComputerBoard
+      prototype: ComputerRoboticsControl

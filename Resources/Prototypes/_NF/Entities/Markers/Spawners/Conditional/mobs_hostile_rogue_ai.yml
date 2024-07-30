@@ -1,0 +1,17 @@
+- type: entity
+  name: viscerator unit spawner
+  suffix: AI, Hostile
+  id: SpawnMobViscerator
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+      - sprite: _NF/Mobs/RogueSilicons/viscerator.rsi
+        state: base
+      - sprite: _NF/Mobs/RogueSilicons/viscerator.rsi
+        state: base_lights
+  - type: ConditionalSpawner
+    prototypes:
+    - MobRogueSiliconViscerator

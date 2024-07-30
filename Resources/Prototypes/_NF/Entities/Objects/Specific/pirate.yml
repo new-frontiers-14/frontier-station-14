@@ -48,7 +48,7 @@
 
 # Uplinks
 - type: entity
-  parent: BaseItem
+  parent: [ BaseItem, StorePresetPirateUplink ]
   id: BasePirateUplink
   name: pirate uplink
   description: A coconut with an antenna?
@@ -72,10 +72,6 @@
         type: StoreBoundUserInterface
   - type: ActivatableUI
     key: enum.StoreUiKey.Key
-  - type: Store
-    preset: StorePresetPirateUplink
-    balance:
-      Doubloon: 0
   - type: Tag
     tags:
     - PirateUplink
@@ -86,7 +82,6 @@
   suffix: Pirate, DEBUG
   components:
   - type: Store
-    preset: StorePresetPirateUplink
     balance:
       Doubloon: 99999
 
@@ -96,7 +91,6 @@
   suffix: P. Captain 20
   components:
   - type: Store
-    preset: StorePresetPirateUplink
     balance:
       Doubloon: 20
 
@@ -106,6 +100,5 @@
   suffix: Crew 15
   components:
   - type: Store
-    preset: StorePresetPirateUplink
     balance:
       Doubloon: 15

@@ -5,7 +5,7 @@
   description: Releases electromagnetic pulses that disrupt or damage many electronic devices or drain power cells, has a slow self charging nuclear powered battery.
   components:
   - type: Sprite
-    sprite: _NF/Objects/Weapons/EMP-Gun.rsi
+    sprite: _NF/Objects/Weapons/Guns/Projectiles/emp.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -13,7 +13,7 @@
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
   - type: Clothing
-    sprite: _NF/Objects/Weapons/EMP-Gun.rsi
+    sprite: _NF/Objects/Weapons/Guns/Projectiles/emp.rsi
   - type: Gun
     fireRate: 1
     selectedMode: SemiAuto
@@ -102,3 +102,30 @@
     magState: charge-level
     steps: 6
     zeroVisible: true
+
+- type: entity
+  parent: WeaponLaserGun
+  id: WeaponLaserPistolNF
+  name: laser pistol
+  suffix: Frontier
+  description: Slightly outdated design of civilian-grade laser pistol.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Battery/laser_pistol.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Item
+    size: Small
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - state: inhand-left-unshaded
+        shader: unshaded
+      right:
+      - state: inhand-right
+      - state: inhand-right-unshaded
+        shader: unshaded

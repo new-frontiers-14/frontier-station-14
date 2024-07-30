@@ -22,7 +22,7 @@
   components:
   - type: StorageFill
     contents:
-      - id: WeaponLaserGun
+      - id: WeaponLaserPistolNF
 
 # WeaponDisabler
 - type: entity
@@ -166,6 +166,29 @@
     contents:
       - id: WeaponShotgunSawnNonlethal
       - id: BoxBeanbag
+
+# WeaponSVT
+- type: entity  #made By VividPups added in with PR 1770
+  parent: WeaponCaseLongShuttle
+  id: ShuttleWeaponSVT
+  noSpawn: true
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponSVT
+      - id: 10roundmagazine
+
+# WeaponSVTNonlethal # Frontier - TODO: Restore this later
+# - type: entity
+  # parent: WeaponCaseLongShuttle
+  # id: ShuttleWeaponSVTNonlethal
+  # noSpawn: true
+  # components:
+  # - type: StorageFill
+    # contents:
+      # - id: WeaponSVTNonlethal
+      # - id: MagazineSVTRubber
+
 
 # T3:
 # WeaponEnergyGun

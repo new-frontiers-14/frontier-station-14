@@ -112,7 +112,7 @@ public sealed partial class ContrabandSystem : SharedContrabandSystem
         station ??= _station.GetOwningStation(gridUid);
         GetPalletGoods(gridUid, component, out var toSell, out amount);
 
-        Log.Debug($"NFSD sold {toSell.Count} contraband items for {amount}");
+        Log.Debug($"{component.Faction} sold {toSell.Count} contraband items for {amount}");
 
         if (station != null)
         {

@@ -90,6 +90,7 @@ namespace Content.Server.Explosion.EntitySystems
             InitializeTimedCollide();
             InitializeVoice();
             InitializeMobstate();
+            InitializeBeingGibbed(); // Frontier
 
             SubscribeLocalEvent<TriggerOnSpawnComponent, MapInitEvent>(OnSpawnTriggered);
             SubscribeLocalEvent<TriggerOnCollideComponent, StartCollideEvent>(OnTriggerCollide);
@@ -168,13 +169,24 @@ namespace Content.Server.Explosion.EntitySystems
             args.Handled = true;
         }
 
+        // Frontier: more configurable gib triggers
         private void HandleGibTrigger(EntityUid uid, GibOnTriggerComponent component, TriggerEvent args)
         {
-            if (!TryComp<TransformComponent>(uid, out var xform))
-                return;
+            EntityUid ent;
+            if (component.UseArgumentEntity)
+            {
+                ent = uid;
+            }
+            else
+            {
+                if (!TryComp(uid, out TransformComponent? xform))
+                    return;
+                ent = xform.ParentUid;
+            }
+
             if (component.DeleteItems)
             {
-                var items = _inventory.GetHandOrInventoryEntities(xform.ParentUid);
+                var items = _inventory.GetHandOrInventoryEntities(ent);
                 foreach (var item in items)
                 {
                     Del(item);
@@ -183,9 +195,9 @@ namespace Content.Server.Explosion.EntitySystems
 
             if (component.DeleteOrgans) // Frontier - Gib organs
             {
-                if (TryComp<BodyComponent>(xform.ParentUid, out var body))
+                if (TryComp<BodyComponent>(ent, out var body))
                 {
-                    var organs = _body.GetBodyOrganComponents<TransformComponent>(xform.ParentUid, body);
+                    var organs = _body.GetBodyOrganComponents<TransformComponent>(ent, body);
                     foreach (var (_, organ) in organs)
                     {
                         Del(organ.Owner);
@@ -193,9 +205,11 @@ namespace Content.Server.Explosion.EntitySystems
                 }
             } // Frontier
 
-            _body.GibBody(xform.ParentUid, true);
+            if (component.Gib)
+                _body.GibBody(ent, true);
             args.Handled = true;
         }
+        // End Frontier
 
         private void HandleRattleTrigger(EntityUid uid, RattleComponent component, TriggerEvent args)
         {
@@ -255,6 +269,9 @@ namespace Content.Server.Explosion.EntitySystems
 
         private void OnActivate(EntityUid uid, TriggerOnActivateComponent component, ActivateInWorldEvent args)
         {
+            if (args.Handled || !args.Complex)
+                return;
+
             Trigger(uid, args.User);
             args.Handled = true;
         }
@@ -297,6 +314,18 @@ namespace Content.Server.Explosion.EntitySystems
                 return;
 
             comp.TimeRemaining += amount;
+        }
+
+        /// <summary>
+        /// Start the timer for triggering the device.
+        /// </summary>
+        public void StartTimer(Entity<OnUseTimerTriggerComponent?> ent, EntityUid? user)
+        {
+            if (!Resolve(ent, ref ent.Comp, false))
+                return;
+
+            var comp = ent.Comp;
+            HandleTimerTrigger(ent, user, comp.Delay, comp.BeepInterval, comp.InitialBeepDelay, comp.BeepSound);
         }
 
         public void HandleTimerTrigger(EntityUid uid, EntityUid? user, float delay, float beepInterval, float? initialBeepDelay, SoundSpecifier? beepSound)

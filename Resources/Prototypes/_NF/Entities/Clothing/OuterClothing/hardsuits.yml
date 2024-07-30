@@ -29,7 +29,7 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitMercenary
-    
+
 - type: entity
   parent: ClothingOuterHardsuitMercenary
   id: ClothingOuterHardsuitPrivateSecurity # stats are of merc hardsuit
@@ -119,7 +119,9 @@
 
 # Syndicate NPC hard suit, unremoveable
 - type: entity
-  parent: ClothingOuterHardsuitSyndie
+  parent:
+  - ClothingOuterHardsuitSyndie
+  - ContrabandClothing
   id: ClothingOuterHardsuitSyndieEliteUnremoveable
   name: syndicate hardsuit
   noSpawn: true
@@ -129,10 +131,11 @@
     sprite: Clothing/OuterClothing/Hardsuits/syndieelite.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Hardsuits/syndieelite.rsi
-  - type: Contraband
 
 - type: entity
-  parent: ClothingOuterHardsuitSyndie
+  parent:
+  - ClothingOuterHardsuitSyndie
+  - ContrabandClothing
   id: ClothingOuterHardsuitSyndieBloodRedUnremoveable
   name: syndicate hardsuit
   noSpawn: true
@@ -142,7 +145,6 @@
     sprite: Clothing/OuterClothing/Hardsuits/syndicate.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Hardsuits/syndicate.rsi
-  - type: Contraband
 
 # Security
 - type: entity
@@ -340,3 +342,37 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitScaf
+
+# Tactical Maid Hardsuit
+
+- type: entity
+  parent: ClothingOuterHardsuitBase
+  id: ClothingOuterHardsuitTacticalMaid
+  name: tactical maid hardsuit
+  description: Layers of stain resistant alloys built into a single suit. It even comes with a reinforced apron!
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/tactical_hardsuit.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/tactical_hardsuit.rsi
+  - type: Armor # Remains perfectly clean of stains
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Caustic: 0.05
+  - type: ExplosionResistance
+    damageCoefficient: 0.8
+  - type: PressureProtection
+    highPressureMultiplier: 0.5
+    lowPressureMultiplier: 1000
+  - type: ClothingSpeedModifier # So many layers of stain protection makes it very heavy
+    walkModifier: 0.55
+    sprintModifier: 0.55
+  - type: HeldSpeedModifier
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitTacticalMaid
