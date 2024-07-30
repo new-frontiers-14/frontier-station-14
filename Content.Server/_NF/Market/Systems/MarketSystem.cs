@@ -62,8 +62,11 @@ public sealed partial class MarketSystem : SharedMarketSystem
         }
     }
 
-    private void OnCartMessage(EntityUid consoleUid, MarketConsoleComponent consoleComponent,
-        ref CrateMachineCartMessage args)
+    private void OnCartMessage(
+        EntityUid consoleUid,
+        MarketConsoleComponent consoleComponent,
+        ref CrateMachineCartMessage args
+    )
     {
         if (args.Actor is not { Valid: true } player)
             return;
@@ -75,7 +78,7 @@ public sealed partial class MarketSystem : SharedMarketSystem
             marketMultiplier = priceMod.Mod;
         }
 
-        if (!(_station.GetOwningStation(consoleUid) is {Valid: true} station))
+        if (!(_station.GetOwningStation(consoleUid) is { Valid: true } station))
             return;
 
         if (TryUpdateMarketData(args.ItemPrototype!, args.Amount, station))
@@ -83,7 +86,9 @@ public sealed partial class MarketSystem : SharedMarketSystem
             var stationNetEntity = GetNetEntity(station);
             var itemProto = args.ItemPrototype;
             // Find the MarketData for the given EntityPrototype
-            var marketData = consoleComponent.CartData.FirstOrDefault(md => md.Prototype == itemProto && md.StationUid == stationNetEntity);
+            var marketData =
+                consoleComponent.CartData.FirstOrDefault(md =>
+                    md.Prototype == itemProto && md.StationUid == stationNetEntity);
             if (marketData != null && (marketData.Quantity - args.Amount) >= 0)
             {
                 // If it exists, change the count
@@ -98,9 +103,15 @@ public sealed partial class MarketSystem : SharedMarketSystem
                 consoleComponent.CartData.Add(new MarketData(args.ItemPrototype!, args.Amount, stationNetEntity));
             }
         }
-        RefreshState(consoleUid, bank.Balance, marketMultiplier, _marketDataList, consoleComponent.CartData, MarketConsoleUiKey.Default);
-    }
 
+        RefreshState(consoleUid,
+            bank.Balance,
+            marketMultiplier,
+            _marketDataList,
+            consoleComponent.CartData,
+            MarketConsoleUiKey.Default,
+            consoleComponent);
+    }
 
     /// <summary>
     /// Updates the market data list or adds it new if it doesnt exist in there yet.
@@ -111,7 +122,9 @@ public sealed partial class MarketSystem : SharedMarketSystem
     {
         var stationNetEntity = GetNetEntity(station);
         // Find the MarketData for the given EntityPrototype
-        var marketData = _marketDataList.FirstOrDefault(md => md.Prototype == entityPrototypeId && md.StationUid == stationNetEntity);
+        var marketData =
+            _marketDataList.FirstOrDefault(md =>
+                md.Prototype == entityPrototypeId && md.StationUid == stationNetEntity);
 
         if (marketData != null && (marketData.Quantity + increaseAmount) >= 0)
         {
@@ -121,14 +134,17 @@ public sealed partial class MarketSystem : SharedMarketSystem
             {
                 _marketDataList.Remove(marketData);
             }
+
             return true;
         }
+
         // If it doesn't exist, create a new MarketData and add it to the list
         if (increaseAmount > 0)
         {
             _marketDataList.Add(new MarketData(entityPrototypeId, increaseAmount, stationNetEntity));
             return true;
         }
+
         return false;
     }
 
@@ -144,13 +160,19 @@ public sealed partial class MarketSystem : SharedMarketSystem
             marketMultiplier = priceMod.Mod;
         }
 
-        RefreshState(uid, bank.Balance, marketMultiplier, _marketDataList, component.CartData, MarketConsoleUiKey.Default);
+        RefreshState(uid,
+            bank.Balance,
+            marketMultiplier,
+            _marketDataList,
+            component.CartData,
+            MarketConsoleUiKey.Default,
+            component);
     }
 
     private int GetMarketSelectionValue(List<MarketData> dataList, float marketModifier)
     {
         var cartBalance = 0;
-        
+
         if (!(dataList.Count >= 1))
             return cartBalance;
 
@@ -161,6 +183,7 @@ public sealed partial class MarketSystem : SharedMarketSystem
             {
                 continue; // Skip this iteration if the prototype was not found
             }
+
             var price = 0f;
             if (prototype.TryGetComponent<StaticPriceComponent>(out var staticPrice))
             {
@@ -170,6 +193,7 @@ public sealed partial class MarketSystem : SharedMarketSystem
             var subTotal = (int) Math.Round(price * marketData.Quantity);
             cartBalance += subTotal;
         }
+
         return cartBalance;
     }
 
@@ -179,9 +203,13 @@ public sealed partial class MarketSystem : SharedMarketSystem
         float marketMultiplier,
         List<MarketData> data,
         List<MarketData> cartData,
-        MarketConsoleUiKey uiKey
+        MarketConsoleUiKey uiKey,
+        MarketConsoleComponent? component
     )
     {
+        if (!Resolve(uid, ref component))
+            return;
+
         var cartBalance = GetMarketSelectionValue(cartData, marketMultiplier);
 
         var newState = new MarketConsoleInterfaceState(

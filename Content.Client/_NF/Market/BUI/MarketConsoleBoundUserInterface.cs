@@ -7,7 +7,6 @@ namespace Content.Client._NF.Market.BUI;
 
 public sealed class MarketConsoleBoundUserInterface : BoundUserInterface
 {
-    [ViewVariables]
     private MarketMenu? _menu;
 
     [ViewVariables]
@@ -33,6 +32,9 @@ public sealed class MarketConsoleBoundUserInterface : BoundUserInterface
         base.UpdateState(state);
 
         if (state is not MarketConsoleInterfaceState uiState)
+            return;
+
+        if (_menu == null)
             return;
 
         BankBalance = uiState.Balance;
@@ -64,5 +66,13 @@ public sealed class MarketConsoleBoundUserInterface : BoundUserInterface
     private void PurchaseCrate(ButtonEventArgs args)
     {
         SendMessage(new CrateMachinePurchaseMessage());
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        base.Dispose(disposing);
+        if (!disposing)
+            return;
+        _menu?.Dispose();
     }
 }
