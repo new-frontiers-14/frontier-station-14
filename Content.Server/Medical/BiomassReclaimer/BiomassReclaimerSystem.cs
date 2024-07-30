@@ -33,6 +33,7 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Content.Shared._NF.Contraband.Components; // Frontier
 
 namespace Content.Server.Medical.BiomassReclaimer
 {
@@ -251,7 +252,10 @@ namespace Content.Server.Medical.BiomassReclaimer
             var inventory = _inventory.GetHandOrInventoryEntities(toProcess);
             foreach (var item in inventory)
             {
-                _transform.DropNextTo(item, ent.Owner);
+                if (!HasComp<ContrabandComponent>(item)) // Frontier - delete contraband
+                {
+                    _transform.DropNextTo(item, ent.Owner);
+                }
             }
 
             QueueDel(toProcess);
