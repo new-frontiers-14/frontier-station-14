@@ -37,6 +37,7 @@ guide-entry-shipyard-harbormaster = Harbormaster
 guide-entry-shipyard-kestrel = Kestrel
 guide-entry-shipyard-kilderkin = Kilderkin
 guide-entry-shipyard-lantern = Lantern
+guide-entry-shipyard-lawndart = Lawndart
 guide-entry-shipyard-legman = Legman
 guide-entry-shipyard-liquidator = Liquidator
 guide-entry-shipyard-loader = Loader

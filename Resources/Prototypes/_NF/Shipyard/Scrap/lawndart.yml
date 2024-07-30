@@ -1,0 +1,38 @@
+# Author Info
+# GitHub: Cu1r (https://github.com/DasIrrlicht/)
+# Discord: DasIrrlicht
+
+# Maintainer Info
+# GitHub: ???
+# Discord: ???
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Lawndart
+  name: SV Lawndart
+  description: Minimalistic Ship that runs on Welding Fuel, no accidents since last shift. Bring your own Canister.
+  price: 7500
+  category: Small
+  group: Scrap
+  shuttlePath: /Maps/_NF/Shuttles/Scrap/lawndart.yml
+
+- type: gameMap
+  id: Lawndart
+  mapName: 'SV Lawndart'
+  mapPath: /Maps/_NF/Shuttles/Scrap/lawndart.yml
+  minPlayers: 0
+  stations:
+    Lawndart:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Lawndart {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]
