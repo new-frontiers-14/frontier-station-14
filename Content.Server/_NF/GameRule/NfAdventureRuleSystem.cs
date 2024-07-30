@@ -200,7 +200,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         {
             var proto = _random.Pick(depotPrototypes);
             Vector2i offset = new Vector2i((int) (_random.Next(proto.RangeMin, proto.RangeMax) * _distanceOffset), 0);
-            offset.Rotate(rotationOffset);
+            offset = offset.Rotate(rotationOffset);
             rotationOffset += rotation;
             if (TrySpawnPoiGrid(proto, offset, out var depotUid) && depotUid is { Valid: true } depot)
             {
