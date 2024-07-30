@@ -16,5 +16,5 @@ public sealed partial class MarketConsoleComponent : Component
     [DataField]
     public int MaxCrateMachineDistance = 16;
 
-    public List<MarketData> CartData = new();
+    public List<MarketData> CartDataList = [];
 }

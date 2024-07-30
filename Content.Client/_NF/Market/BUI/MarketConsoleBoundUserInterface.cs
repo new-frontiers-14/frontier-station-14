@@ -1,10 +1,12 @@
 ﻿using Content.Client._NF.Market.UI;
 using Content.Shared._NF.Market.BUI;
 using Content.Shared._NF.Market.Events;
+using JetBrains.Annotations;
 using static Robust.Client.UserInterface.Controls.BaseButton;
 
 namespace Content.Client._NF.Market.BUI;
 
+[UsedImplicitly]
 public sealed class MarketConsoleBoundUserInterface : BoundUserInterface
 {
     private MarketMenu? _menu;
@@ -20,7 +22,7 @@ public sealed class MarketConsoleBoundUserInterface : BoundUserInterface
 
         _menu = new MarketMenu();
         //_menu.OnClose += Close;
-        _menu.OnPurchase += Purchase;
+        _menu.OnAddToCart += AddToCart;
         _menu.OnReturn += Return;
         _menu.OnPurchaseCrate += PurchaseCrate;
 
@@ -43,22 +45,20 @@ public sealed class MarketConsoleBoundUserInterface : BoundUserInterface
         _menu?.UpdateState(uiState);
     }
 
-    private void Purchase(ButtonEventArgs args)
+    private void AddToCart(ButtonEventArgs args)
     {
-        // Do stuff
         if (args.Button.Parent?.Parent is not MarketProductRow product)
             return;
-        var purchaseMessage = new CrateMachineCartMessage(-1, product.PrototypeId);
+        var addToCartMessage = new MarketConsoleCartMessage(1, product.PrototypeId);
 
-        SendMessage(purchaseMessage);
+        SendMessage(addToCartMessage);
     }
 
     private void Return(ButtonEventArgs args)
     {
-        // Do stuff
         if (args.Button.Parent?.Parent is not MarketCartProductRow product)
             return;
-        var purchaseMessage = new CrateMachineCartMessage(1, product.PrototypeId);
+        var purchaseMessage = new MarketConsoleCartMessage(-1, product.PrototypeId);
 
         SendMessage(purchaseMessage);
     }

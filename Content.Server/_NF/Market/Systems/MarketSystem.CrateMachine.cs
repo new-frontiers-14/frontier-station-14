@@ -122,24 +122,24 @@ public sealed partial class MarketSystem
             }
         }
 
-        var cartBalance = GetMarketSelectionValue(consoleComponent.CartData, marketMod);
+        var cartBalance = GetMarketSelectionValue(consoleComponent.CartDataList, marketMod);
         if (!(playerBank.Balance >= cartBalance))
             return;
 
         var spawnList = new List<MarketData>();
-        for (int i = 0; i < 30 && consoleComponent.CartData.Count > 0; i++)
+        for (int i = 0; i < 30 && consoleComponent.CartDataList.Count > 0; i++)
         {
-            var marketData = consoleComponent.CartData.First();
+            var marketData = consoleComponent.CartDataList.First();
 
             spawnList.Add(marketData);
 
             if (marketData.Quantity > 1)
             {
-                consoleComponent.CartData.First().Quantity -= 1;
+                consoleComponent.CartDataList.First().Quantity -= 1;
             }
             else
             {
-                consoleComponent.CartData.Remove(marketData);
+                consoleComponent.CartDataList.Remove(marketData);
             }
         }
         // Withdraw spesos from player
