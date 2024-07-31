@@ -3496,6 +3496,17 @@ entities:
     - type: Transform
       pos: 4.5,10.5
       parent: 10
+- proto: ComputerMarketConsoleNFNormalMarket
+  entities:
+  - uid: 465
+    components:
+    - type: Transform
+      pos: 0.5,6.5
+      parent: 10
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          ents: []
 - proto: ComputerPalletConsoleNFHighMarket
   entities:
   - uid: 7
@@ -3506,10 +3517,6 @@ entities:
       parent: 10
     - type: CargoPalletConsole
       palletDistance: 4
-    - type: ContainerContainer
-      containers:
-        board: !type:Container
-          ents: []
   - uid: 42
     components:
     - type: Transform
@@ -3518,10 +3525,6 @@ entities:
       parent: 10
     - type: CargoPalletConsole
       palletDistance: 4
-    - type: ContainerContainer
-      containers:
-        board: !type:Container
-          ents: []
   - uid: 43
     components:
     - type: Transform
@@ -3530,10 +3533,6 @@ entities:
       parent: 10
     - type: CargoPalletConsole
       palletDistance: 4
-    - type: ContainerContainer
-      containers:
-        board: !type:Container
-          ents: []
   - uid: 46
     components:
     - type: Transform
@@ -3542,10 +3541,6 @@ entities:
       parent: 10
     - type: CargoPalletConsole
       palletDistance: 4
-    - type: ContainerContainer
-      containers:
-        board: !type:Container
-          ents: []
 - proto: ComputerTabletopAlert
   entities:
   - uid: 289
@@ -3749,6 +3744,13 @@ entities:
     - type: DeviceLinkSink
       links:
       - 240
+- proto: CrateMachine
+  entities:
+  - uid: 466
+    components:
+    - type: Transform
+      pos: -0.5,6.5
+      parent: 10
 - proto: d6Dice
   entities:
   - uid: 1056
