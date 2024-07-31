@@ -24,7 +24,7 @@ public sealed class MarketConsoleBoundUserInterface : BoundUserInterface
         //_menu.OnClose += Close;
         _menu.OnAddToCart += AddToCart;
         _menu.OnReturn += Return;
-        _menu.OnPurchaseCrate += PurchaseCrate;
+        _menu.OnPurchaseCart += PurchaseCrate;
 
         _menu.OpenCentered();
     }
@@ -47,7 +47,7 @@ public sealed class MarketConsoleBoundUserInterface : BoundUserInterface
 
     private void AddToCart(ButtonEventArgs args)
     {
-        if (args.Button.Parent?.Parent is not MarketProductRow product)
+        if (args.Button.Parent?.Parent?.Parent is not MarketProductRow product)
             return;
         var addToCartMessage = new MarketConsoleCartMessage(1, product.PrototypeId);
 
@@ -56,7 +56,7 @@ public sealed class MarketConsoleBoundUserInterface : BoundUserInterface
 
     private void Return(ButtonEventArgs args)
     {
-        if (args.Button.Parent?.Parent is not MarketCartProductRow product)
+        if (args.Button.Parent?.Parent?.Parent is not MarketCartProductRow product)
             return;
         var purchaseMessage = new MarketConsoleCartMessage(-1, product.PrototypeId);
 

@@ -14,17 +14,18 @@ namespace Content.Client._NF.Market.UI;
 public sealed partial class MarketMenu : FancyWindow
 {
     [Dependency] private readonly IPrototypeManager _protoManager = default!;
+    [Dependency] private readonly ILocalizationManager _loc = default!;
 
     public event Action<BaseButton.ButtonEventArgs>? OnAddToCart;
     public event Action<BaseButton.ButtonEventArgs>? OnReturn;
-    public event Action<BaseButton.ButtonEventArgs>? OnPurchaseCrate;
+    public event Action<BaseButton.ButtonEventArgs>? OnPurchaseCart;
 
     public MarketMenu()
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
 
-        PurchaseCrate.OnPressed += args => OnPurchaseCrate?.Invoke(args);
+        PurchaseCart.OnPressed += args => OnPurchaseCart?.Invoke(args);
     }
 
     public void SetEnabled(bool enabled)
@@ -86,10 +87,22 @@ public sealed partial class MarketMenu : FancyWindow
             }
             else
             {
+                var quantityText = "";
+                if (marketData.Quantity > 1)
+                {
+                    quantityText = _loc.GetString("market-quantity-units-available-plural")
+                        .Replace("$1", marketData.Quantity.ToString());
+                }
+                else
+                {
+                    quantityText = _loc.GetString("market-quantity-units-available")
+                        .Replace("$1", marketData.Quantity.ToString());
+                }
+
                 var productRow = new MarketProductRow(marketData.Prototype)
                 {
                     Title = { Text = prototype.Name },
-                    Quantity = { Text = marketData.Quantity.ToString() },
+                    Quantity = { Text = quantityText },
                     Price = { Text = $"${roundedPrice}" },
                     Icon = { Texture = sprite.Icon?.Default }
                 };

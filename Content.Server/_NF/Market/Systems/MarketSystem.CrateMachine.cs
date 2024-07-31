@@ -26,7 +26,7 @@ public sealed partial class MarketSystem
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly IMapManager _mapManager = default!;
-    [Dependency] private readonly SharedStorageSystem _storage = default!;
+    [Dependency] private readonly SharedEntityStorageSystem _storage = default!;
 
 
     private const int MaxCrateMachineDistance = 16;
@@ -61,8 +61,19 @@ public sealed partial class MarketSystem
             marketMod = marketModComponent.Mod;
         }
 
+        // Stop here if we dont have a grid.
+        if (Transform(consoleUid).GridUid == null)
+            return;
+
+        var consoleGridUid = Transform(consoleUid).GridUid!.Value;
         while (crateMachineQuery.MoveNext(out var crateMachineUid, out var comp, out var compXform))
         {
+            // Skip crate machines that aren't mounted on a grid.
+            if (Transform(crateMachineUid).GridUid == null)
+                continue;
+            // Skip crate machines that are not on the same grid.
+            if (Transform(crateMachineUid).GridUid!.Value != consoleGridUid)
+                continue;
             var distance = CalculateDistance(compXform.Coordinates, Transform(consoleUid).Coordinates);
             var maxCrateMachineDistance = MaxCrateMachineDistance;
 
@@ -153,10 +164,7 @@ public sealed partial class MarketSystem
 
         Task.Run(async () =>
         {
-            UpdateVisualState(crateMachineUid, component, true);
-            Dirty(crateMachineUid, component);
-            await Task.Delay(3000);
-            UpdateVisualState(crateMachineUid, component, true);
+            UpdateVisualState(crateMachineUid, component);
             Dirty(crateMachineUid, component);
             await Task.Delay(3000);
             var targetCrate = Spawn(component.CratePrototype, xform.Coordinates);
@@ -172,7 +180,7 @@ public sealed partial class MarketSystem
         foreach (var data in spawnList)
         {
             var spawn = Spawn(data.Prototype, Transform(targetCrate).Coordinates);
-            _storage.Insert(targetCrate, spawn, out _, playSound: false, stackAutomatically: true);
+            _storage.Insert( spawn, targetCrate);
         }
     }
 
