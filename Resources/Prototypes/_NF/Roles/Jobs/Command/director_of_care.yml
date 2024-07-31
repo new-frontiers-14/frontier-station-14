@@ -1,0 +1,56 @@
+- type: job
+  id: DirectorOfCare
+  name: job-name-director-of-care
+  description: job-description-director-of-care
+  playTimeTracker: JobDirectorOfCare
+  startingGear: DirectorOfCareGear
+  alwaysUseSpawner: true
+  requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 72000 # 20 hrs
+  whitelisted: true
+  weight: 10
+  canBeAntag: false
+  icon: "JobIconChiefMedicalOfficer"
+  supervisors: job-supervisors-sr
+  requireAdminNotify: true
+  setPreference: true
+  access: # This _more than likely_ needs review - removed all security accesses for now
+  - Captain
+  - HeadOfPersonnel
+  - ChiefEngineer
+  - ChiefMedicalOfficer
+  - Frontier # Frontier
+  - Engineering
+  - Mail # Frontier
+  - Medical
+  - Mercenary # Frontier
+  - Quartermaster
+  - Salvage
+  - Cargo
+  - Research
+  - Service
+  - Security # Frontier
+  - StationTrafficController # Frontier
+  - Maintenance
+  - External
+  - Janitor
+  - Theatre
+  - Bar
+  - Chemistry
+  - Kitchen
+  - Chapel
+  - Hydroponics
+  - Atmospherics
+  special:
+  - !type:GiveItemOnHolidaySpecial
+    holiday: FrontierBirthday
+    prototype: FrontierBirthdayGift
+
+- type: startingGear
+  id: DirectorOfCareGear
+  equipment:
+    id: CMOPDA # TODO: rename
+    ears: ClothingHeadsetCMO
+    pocket1: RubberStampCMO # TODO: rename
+    pocket2: Hypospray # TODO: rename

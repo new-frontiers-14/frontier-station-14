@@ -6,6 +6,7 @@ job-name-contractor = Contractor
 job-name-deputy = Deputy
 job-name-detective-nf = Detective
 job-name-ertmailcarrier = ERT Mail Carrier
+job-name-medic = Medic
 job-name-mercenary = Mercenary
 job-name-pilot = Pilot
 job-name-pirate = Pirate
@@ -17,8 +18,12 @@ job-name-stc = Station Traffic Controller
 job-name-sr = Station Representative
 
 # Role timers - Make these alphabetical or I cut you
+JobChemistNF = Chemist
+JobDirectorOfCare = Director of Care
 JobERTMailCarrier = ERT Mail Carrier
+JobMedicalDoctorNF = Medical Doctor
 JobMercenary = Mercenary
+JobParamedicNF = Chemist
 JobPilot = Pilot
 JobPirate = Pirate
 JobPirateCaptain = Pirate Captain

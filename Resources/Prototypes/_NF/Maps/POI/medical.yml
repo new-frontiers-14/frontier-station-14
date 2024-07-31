@@ -4,10 +4,14 @@
   mapPath: /Maps/_NF/POI/medical.yml
   minPlayers: 0
   stations:
-    Trade:
-      stationProto: StandardFrontierOutpost
+    Medical:
+      stationProto: PirateFrontierOutpost # TODO: swap over to SpawnableFrontierOutpost pending #1737
       components:
         - type: StationNameSetup
           mapNameTemplate: 'Medical Outpost'
         - type: StationJobs
-          availableJobs: {}
+          availableJobs:
+            CMO: [ 1, 1 ]
+            MedicalDoctorNF: [ 2, 2 ]
+            ChemistNF: [ 1, 1 ]
+            ParamedicNF: [ 1, 1 ]
