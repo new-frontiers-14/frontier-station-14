@@ -1,3 +1,6 @@
+using Content.Shared.Store;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
+
 namespace Content.Server._NF.Security.Components;
 
 /// <summary>
@@ -6,5 +9,8 @@ namespace Content.Server._NF.Security.Components;
 [RegisterComponent]
 public sealed partial class ContrabandPriceGunComponent : Component
 {
-
+    [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<CurrencyPrototype>))]
+    public string Currency = "FrontierUplinkCoin";
+    [DataField]
+    public string LocStringPrefix = string.Empty;
 }

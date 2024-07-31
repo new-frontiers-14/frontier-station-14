@@ -1,5 +1,7 @@
 - type: entity
-  parent: ClothingMaskGasExplorer
+  parent:
+  - ClothingMaskGasExplorer
+  - ContrabandClothing
   id: ClothingMaskArcadia
   name: arcadia battle mask
   description: A close-fitting high tech mask designed by Arcadia Industries for space faring battlers.
@@ -57,7 +59,7 @@
     - CatWearable # Frontier
 
 - type: entity
-  parent: ClothingMaskGasSecurity
+  parent: ClothingMaskGasSwat
   id: ClothingMaskGasSheriff
   name: nfsd sheriff gas mask
   description: A gas mask worthy of a sheriff.
@@ -66,10 +68,3 @@
     sprite: _NF/Clothing/Mask/nfsd_sheriff.rsi
   - type: Clothing
     sprite: _NF/Clothing/Mask/nfsd_sheriff.rsi
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.95
-        Slash: 0.95
-        Piercing: 0.95
-        Heat: 0.95

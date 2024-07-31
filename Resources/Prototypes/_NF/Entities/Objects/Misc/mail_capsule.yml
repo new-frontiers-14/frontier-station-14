@@ -123,3 +123,14 @@
   - type: Sprite
     layers:
       - state: box
+
+# A bag full of mail capsules, for the ERT mail carrier
+- type: entity
+  parent: MailBag
+  suffix: Capsules
+  id: MailBagCapsulePrimed
+  components:
+  - type: StorageFill
+    contents:
+      - id: MailCapsulePrimed
+        amount: 10
