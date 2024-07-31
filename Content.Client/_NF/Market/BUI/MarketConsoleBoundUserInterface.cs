@@ -66,6 +66,7 @@ public sealed class MarketConsoleBoundUserInterface : BoundUserInterface
     private void PurchaseCrate(ButtonEventArgs args)
     {
         SendMessage(new CrateMachinePurchaseMessage());
+        Close();
     }
 
     protected override void Dispose(bool disposing)
