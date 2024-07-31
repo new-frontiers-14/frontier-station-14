@@ -56,11 +56,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
     private List<(EntityUid, int)> _players = new();
 
     private float _distanceOffset = 1f;
-    private List<EntityUid> _depotStations = new();
-    private List<EntityUid> _marketStations = new();
-    private List<EntityUid> _optionalStations = new();
-    private List<EntityUid> _requiredStations = new();
-    private List<EntityUid> _uniqueStations = new();
+    private List<Vector2> _stationCoords = new();
 
     private MapId _mapId;
 
@@ -97,7 +93,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
 
         for (var i = 0; i < 10 && i < highScore.Count; i++)
         {
-            relayText += $"{highScore.First().Item1} {profitText} {highScore.First().Item2.ToString()} Spesos";
+            relayText += $"{highScore.First().Item1} {profitText} {highScore.First().Item2} Spesos";
             relayText += '\n';
             highScore.Remove(highScore.First());
         }
@@ -106,7 +102,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         highScore.Reverse();
         for (var i = 0; i < 10 && i < highScore.Count; i++)
         {
-            relayText += $"{highScore.First().Item1} {lossText} {highScore.First().Item2.ToString()} Spesos";
+            relayText += $"{highScore.First().Item1} {lossText} {highScore.First().Item2} Spesos";
             relayText += '\n';
             highScore.Remove(highScore.First());
         }
@@ -125,54 +121,39 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
     protected override void Started(EntityUid uid, AdventureRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {
         _mapId = GameTicker.DefaultMap;
-        _depotStations.Clear();
-        _marketStations.Clear();
-        _optionalStations.Clear();
-        _requiredStations.Clear();
-        _uniqueStations.Clear();
 
         _distanceOffset = _configurationManager.GetCVar(NF14CVars.POIDistanceModifier);
+        _stationCoords = new List<Vector2>();
 
         //First, we need to grab the list and sort it into its respective spawning logics
-        var allLocationList = _prototypeManager.EnumeratePrototypes<PointOfInterestPrototype>().ToList();
-        var depotList = allLocationList.Where(w => w.SpawnGroup == "CargoDepot").ToList();
-        foreach (var proto in depotList)
+        List<PointOfInterestPrototype> depotProtos = new();
+        List<PointOfInterestPrototype> marketProtos = new();
+        List<PointOfInterestPrototype> requiredProtos = new();
+        List<PointOfInterestPrototype> optionalProtos = new();
+        Dictionary<string, List<PointOfInterestPrototype>> remainingUniqueProtosBySpawnGroup = new();
+
+        foreach (var location in _prototypeManager.EnumeratePrototypes<PointOfInterestPrototype>())
         {
-            allLocationList.Remove(proto);
+            if (location.SpawnGroup == "CargoDepot")
+                depotProtos.Add(location);
+            else if (location.SpawnGroup == "MarketStation")
+                marketProtos.Add(location);
+            else if (location.AlwaysSpawn == true)
+                requiredProtos.Add(location);
+            else if (location.SpawnGroup == "Optional")
+                optionalProtos.Add(location);
+            else // the remainder are done on a per-poi-per-group basis
+            {
+                if (!remainingUniqueProtosBySpawnGroup.ContainsKey(location.SpawnGroup))
+                    remainingUniqueProtosBySpawnGroup[location.SpawnGroup] = new();
+                remainingUniqueProtosBySpawnGroup[location.SpawnGroup].Add(location);
+            }
         }
-        GenerateDepots(depotList);
-
-        var marketList = allLocationList.Where(w => w.SpawnGroup == "MarketStation").ToList();
-        foreach (var proto in marketList)
-        {
-            allLocationList.Remove(proto);
-        }
-        GenerateMarkets(marketList);
-
-        var requiredList = allLocationList.Where(w => w.AlwaysSpawn == true).ToList();
-        foreach (var proto in requiredList)
-        {
-            allLocationList.Remove(proto);
-        }
-        GenerateRequireds(requiredList);
-
-        var optionalList = allLocationList.Where(w => w.SpawnGroup == "Optional").ToList();
-        foreach (var proto in optionalList)
-        {
-            allLocationList.Remove(proto);
-        }
-        GenerateOptionals(optionalList);
-
-        // the remainder are done on a per-poi-per-group basis
-        var uniqueList = allLocationList;
-
-        GenerateUniques(uniqueList);
-
-        component.CargoDepots = _depotStations;
-        component.MarketStations = _marketStations;
-        component.RequiredPois = _requiredStations;
-        component.OptionalPois = _optionalStations;
-        component.UniquePois = _uniqueStations;
+        GenerateDepots(depotProtos, out component.CargoDepots);
+        GenerateMarkets(marketProtos, out component.MarketStations);
+        GenerateRequireds(requiredProtos, out component.RequiredPois);
+        GenerateOptionals(optionalProtos, out component.OptionalPois);
+        GenerateUniques(remainingUniqueProtosBySpawnGroup, out component.UniquePois);
 
         base.Started(uid, component, gameRule, args);
 
@@ -181,7 +162,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         foreach (var dunGen in dungenTypes)
         {
             var seed = _random.Next();
-            var offset = _random.NextVector2(3000f, 8500f) * _distanceOffset;
+            var offset = GetRandomPOICoord(3000f, 8500f, true);
             if (!_map.TryLoad(_mapId, "/Maps/_NF/Dungeon/spaceplatform.yml", out var grids,
                     new MapLoadOptions
                     {
@@ -200,94 +181,107 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             //its better now but i think i need to do a normalization pass on the dungeon configs
             //because they are all offset. confirmed good size grid, just need to fix all the offsets.
             _dunGen.GenerateDungeon(dunGen, grids[0], mapGrid, (Vector2i) offset, seed);
+            AddStationCoordsToSet(offset);
         }
     }
 
-    private void GenerateDepots(IEnumerable<PointOfInterestPrototype> depotPrototypes)
+    private void GenerateDepots(List<PointOfInterestPrototype> depotPrototypes, out List<EntityUid> depotStations)
     {
         //For depots, we want them to fill a circular type dystance formula to try to keep them as far apart as possible
         //Therefore, we will be taking our range properties and treating them as magnitudes of a direction vector divided
         //by the number of depots set in our corresponding cvar
-        var protoList = depotPrototypes.ToList();
+
+        depotStations = new List<EntityUid>();
         var depotCount = _configurationManager.GetCVar(NF14CVars.CargoDepots);
         var rotation = 2 * Math.PI / depotCount;
         var rotationOffset = _random.NextAngle() / depotCount;
 
-        for (int i = 0; i < depotCount && protoList.Count > 0; i++)
+        for (int i = 0; i < depotCount && depotPrototypes.Count > 0; i++)
         {
-            var proto = _random.Pick(protoList);
-            Vector2i offset = new Vector2i(_random.Next(proto.RangeMin, proto.RangeMax), 0);
+            var proto = _random.Pick(depotPrototypes);
+            Vector2i offset = new Vector2i((int) (_random.Next(proto.RangeMin, proto.RangeMax) * _distanceOffset), 0);
             offset = offset.Rotate(rotationOffset);
             rotationOffset += rotation;
-            if (TrySpawnPoiGrid(proto, offset, out var depotUid) && depotUid is {Valid: true} depot)
+            if (TrySpawnPoiGrid(proto, offset, out var depotUid) && depotUid is { Valid: true } depot)
             {
-                _depotStations.Add(depot);
+                depotStations.Add(depot);
+                AddStationCoordsToSet(offset); // adjust list of actual station coords
             }
         }
     }
 
-    private void GenerateMarkets(IEnumerable<PointOfInterestPrototype> marketPrototypes)
+    private void GenerateMarkets(List<PointOfInterestPrototype> marketPrototypes, out List<EntityUid> marketStations)
     {
         //For market stations, we are going to allow for a bit of randomness and a different offset configuration. We dont
         //want copies of this one, since these can be more themed and duplicate names, for instance, can make for a less
         //ideal world
 
-        var protoList = marketPrototypes.ToList();
+        marketStations = new List<EntityUid>();
         var marketCount = _configurationManager.GetCVar(NF14CVars.MarketStations);
-        for (int i = 0; i < marketCount && protoList.Count > 0; i++)
+        _random.Shuffle(marketPrototypes);
+        int marketsAdded = 0;
+        foreach (var proto in marketPrototypes)
         {
-            var proto = _random.PickAndTake(protoList);
-            var offset = _random.NextVector2(proto.RangeMin, proto.RangeMax);
+            if (marketsAdded >= marketCount)
+                break;
 
-            if (TrySpawnPoiGrid(proto, offset, out var marketUid) && marketUid is {Valid: true} market)
+            var offset = GetRandomPOICoord(proto.RangeMin, proto.RangeMax, true);
+
+            if (TrySpawnPoiGrid(proto, offset, out var marketUid) && marketUid is { Valid: true } market)
             {
-                _marketStations.Add(market);
+                marketStations.Add(market);
+                marketsAdded++;
+                AddStationCoordsToSet(offset);
             }
         }
     }
 
-    private void GenerateOptionals(IEnumerable<PointOfInterestPrototype> optionalPrototypes)
+    private void GenerateOptionals(List<PointOfInterestPrototype> optionalPrototypes, out List<EntityUid> optionalStations)
     {
         //Stations that do not have a defined grouping in their prototype get a default of "Optional" and get put into the
         //generic random rotation of POIs. This should include traditional places like Tinnia's rest, the Science Lab, The Pit,
         //and most RP places. This will essentially put them all into a pool to pull from, and still does not use the RNG function.
 
-        var protoList = optionalPrototypes.ToList();
+        optionalStations = new List<EntityUid>();
         var optionalCount = _configurationManager.GetCVar(NF14CVars.OptionalStations);
-        for (int i = 0; i < optionalCount && protoList.Count > 0; i++)
+        _random.Shuffle(optionalPrototypes);
+        int optionalsAdded = 0;
+        foreach (var proto in optionalPrototypes)
         {
+            if (optionalsAdded >= optionalCount)
+                break;
 
-            var proto = _random.PickAndTake(protoList);
-            var offset = _random.NextVector2(proto.RangeMin, proto.RangeMax);
+            var offset = GetRandomPOICoord(proto.RangeMin, proto.RangeMax, true);
 
-            if (TrySpawnPoiGrid(proto, offset, out var optionalUid) && optionalUid is {Valid: true} uid)
+            if (TrySpawnPoiGrid(proto, offset, out var optionalUid) && optionalUid is { Valid: true } uid)
             {
-                _optionalStations.Add(uid);
+                optionalStations.Add(uid);
+                AddStationCoordsToSet(offset);
             }
         }
     }
 
-    private void GenerateRequireds(IEnumerable<PointOfInterestPrototype> requiredPrototypes)
+    private void GenerateRequireds(List<PointOfInterestPrototype> requiredPrototypes, out List<EntityUid> requiredStations)
     {
         //Stations are required are ones that are vital to function but otherwise still follow a generic random spawn logic
         //Traditionally these would be stations like Expedition Lodge, NFSD station, Prison/Courthouse POI, etc.
         //There are no limit to these, and any prototype marked alwaysSpawn = true will get pulled out of any list that isnt Markets/Depots
         //And will always appear every time, and also will not be included in other optional/dynamic lists
 
-        var protoList = requiredPrototypes.ToList();
-
-        foreach (var proto in protoList)
+        requiredStations = new List<EntityUid>();
+        foreach (var proto in requiredPrototypes)
         {
-            var offset = _random.NextVector2(proto.RangeMin, proto.RangeMax);
+            var offset = GetRandomPOICoord(proto.RangeMin, proto.RangeMax, true);
 
-            if (TrySpawnPoiGrid(proto, offset, out var requiredUid) && requiredUid is {Valid: true} uid)
+            if (TrySpawnPoiGrid(proto, offset, out var requiredUid) && requiredUid is { Valid: true } uid)
             {
-                _requiredStations.Add(uid);
+                requiredStations.Add(uid);
+                AddStationCoordsToSet(offset);
             }
         }
     }
 
-    private void GenerateUniques(IEnumerable<PointOfInterestPrototype> uniquePrototypes)
+    private void GenerateUniques(Dictionary<string, List<PointOfInterestPrototype>> uniquePrototypes, out List<EntityUid> uniqueStations)
     {
         //Unique locations are semi-dynamic groupings of POIs that rely each independantly on the SpawnChance per POI prototype
         //Since these are the remainder, and logically must have custom-designated groupings, we can then know to subdivide
@@ -296,26 +290,23 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         //pick order of which we analyze our weighted chances to spawn, and if successful, remove every entry of that group
         //entirely.
 
-        var protoList = uniquePrototypes.ToList();
-
-        while (protoList.Count >= 1)
+        uniqueStations = new List<EntityUid>();
+        foreach (var prototypeList in uniquePrototypes.Values)
         {
-            var proto = _random.PickAndTake(protoList);
-
-            var chance = _random.NextFloat(0, 1);
-            if (chance <= proto.SpawnChance)
+            // Try to spawn 
+            _random.Shuffle(prototypeList);
+            foreach (var proto in prototypeList)
             {
-                var offset = _random.NextVector2(proto.RangeMin, proto.RangeMax);
-
-                if (TrySpawnPoiGrid(proto, offset, out var optionalUid) && optionalUid is {Valid: true} uid)
+                var chance = _random.NextFloat(0, 1);
+                if (chance <= proto.SpawnChance)
                 {
-                    _uniqueStations.Add(uid);
+                    var offset = GetRandomPOICoord(proto.RangeMin, proto.RangeMax, true);
 
-                    var groupList = protoList.Where(w => w.SpawnGroup == proto.SpawnGroup).ToList();
-
-                    foreach (var groupItem in groupList)
+                    if (TrySpawnPoiGrid(proto, offset, out var optionalUid) && optionalUid is { Valid: true } uid)
                     {
-                        protoList.Remove(groupItem);
+                        uniqueStations.Add(uid);
+                        AddStationCoordsToSet(offset);
+                        break;
                     }
                 }
             }
@@ -325,10 +316,11 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
     private bool TrySpawnPoiGrid(PointOfInterestPrototype proto, Vector2 offset, out EntityUid? gridUid)
     {
         gridUid = null;
-        if (_map.TryLoad(_mapId, proto.GridPath.ToString(), out var mapUids, new MapLoadOptions
-            {
-                Offset = offset * _distanceOffset
-            }))
+        if (_map.TryLoad(_mapId, proto.GridPath.ToString(), out var mapUids,
+                new MapLoadOptions
+                {
+                    Offset = offset
+                }))
         {
             if (_prototypeManager.TryIndex<GameMapPrototype>(proto.ID, out var stationProto))
             {
@@ -352,11 +344,49 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         return false;
     }
 
+    private Vector2 GetRandomPOICoord(float unscaledMinRange, float unscaledMaxRange, bool scaleRange)
+    {
+        int numRetries = int.Max(_configurationManager.GetCVar(NF14CVars.POIPlacementRetries), 0);
+        float minDistance = float.Max(_configurationManager.GetCVar(NF14CVars.MinPOIDistance), 0); // Constant at the end to avoid NaN weirdness
+
+        Vector2 coords = _random.NextVector2(unscaledMinRange, unscaledMaxRange);
+        if (scaleRange)
+            coords *= _distanceOffset;
+        for (int i = 0; i < numRetries; i++)
+        {
+            bool positionIsValid = true;
+            foreach (var station in _stationCoords)
+            {
+                if (Vector2.Distance(station, coords) < minDistance)
+                {
+                    positionIsValid = false;
+                    break;
+                }
+            }
+
+            // We have a valid position
+            if (positionIsValid)
+                break;
+
+            // No vector yet, get next value.
+            coords = _random.NextVector2(unscaledMinRange, unscaledMaxRange);
+            if (scaleRange)
+                coords *= _distanceOffset;
+        }
+
+        return coords;
+    }
+
+    private void AddStationCoordsToSet(Vector2 coords)
+    {
+        _stationCoords.Add(coords);
+    }
+
     private async Task ReportRound(String message,  int color = 0x77DDE7)
     {
         Logger.InfoS("discord", message);
-        String _webhookUrl = _configurationManager.GetCVar(CCVars.DiscordLeaderboardWebhook);
-        if (_webhookUrl == string.Empty)
+        String webhookUrl = _configurationManager.GetCVar(CCVars.DiscordLeaderboardWebhook);
+        if (webhookUrl == string.Empty)
             return;
 
         var payload = new WebhookPayload
@@ -374,7 +404,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
 
         var ser_payload = JsonSerializer.Serialize(payload);
         var content = new StringContent(ser_payload, Encoding.UTF8, "application/json");
-        var request = await _httpClient.PostAsync($"{_webhookUrl}?wait=true", content);
+        var request = await _httpClient.PostAsync($"{webhookUrl}?wait=true", content);
         var reply = await request.Content.ReadAsStringAsync();
         if (!request.IsSuccessStatusCode)
         {
@@ -382,7 +412,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         }
     }
 
-// https://discord.com/developers/docs/resources/channel#message-object-message-structure
+    // https://discord.com/developers/docs/resources/channel#message-object-message-structure
     private struct WebhookPayload
     {
         [JsonPropertyName("username")] public string? Username { get; set; } = null;
@@ -405,7 +435,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         }
     }
 
-// https://discord.com/developers/docs/resources/channel#embed-object-embed-structure
+    // https://discord.com/developers/docs/resources/channel#embed-object-embed-structure
     private struct Embed
     {
         [JsonPropertyName("title")] public string Title { get; set; } = "";
@@ -421,7 +451,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         }
     }
 
-// https://discord.com/developers/docs/resources/channel#embed-object-embed-footer-structure
+    // https://discord.com/developers/docs/resources/channel#embed-object-embed-footer-structure
     private struct EmbedFooter
     {
         [JsonPropertyName("text")] public string Text { get; set; } = "";
