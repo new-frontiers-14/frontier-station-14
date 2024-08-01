@@ -41,7 +41,7 @@ public sealed class MarketConsoleBoundUserInterface : BoundUserInterface
 
         BankBalance = uiState.Balance;
 
-        _menu?.SetEnabled(uiState.Enabled);
+        _menu?.SetUiEnabled(uiState.Enabled);
         _menu?.UpdateState(uiState);
     }
 
