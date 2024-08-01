@@ -42,22 +42,60 @@
         <BoxContainer Orientation="Vertical"
                       Align="Center"
                       MinWidth="60"
-                      MaxWidth="80"
+                      MaxWidth="250"
                       SeparationOverride="5">
-            <Label Name="Price"
-                   Access="Public"
-                   Align="Center"
-                   MaxWidth="80"
-                   HorizontalExpand="True" />
-            <Button Name="AddToCart"
-                    Access="Public"
-                    ToolTip=""
-                    HorizontalExpand="True"
-                    MaxWidth="80"
-                    Text="{Loc 'market-add-to-cart-button'}"
-                    StyleClasses="LabelSubText" />
+            <BoxContainer Orientation="Horizontal"
+                          Align="Center"
+                          MaxWidth="250"
+                          HorizontalExpand="True">
+                <Label Access="Public"
+                       Align="Center"
+                       MaxWidth="250"
+                       StyleClasses="LabelSubText"
+                       Text="{Loc 'market-price'}"
+                       Margin="5 0 5 0"
+                       HorizontalExpand="True" />
+                <Label Name="Price"
+                       Access="Public"
+                       Align="Center"
+                       MaxWidth="250"
+                       HorizontalExpand="True" />
+            </BoxContainer>
+            <BoxContainer Orientation="Horizontal"
+                          Align="Center"
+                          MinWidth="60"
+                          SeparationOverride="1">
+                <Button Name="AddToCart1"
+                        Access="Public"
+                        ToolTip=""
+                        HorizontalExpand="True"
+                        Text="1"
+                        StyleClasses="LabelSubText" />
+                <Button Name="AddToCart5"
+                        Access="Public"
+                        ToolTip=""
+                        HorizontalExpand="True"
+                        Text="5"
+                        StyleClasses="LabelSubText" />
+                <Button Name="AddToCart10"
+                        Access="Public"
+                        ToolTip=""
+                        HorizontalExpand="True"
+                        Text="10"
+                        StyleClasses="LabelSubText" />
+                <Button Name="AddToCart30"
+                        Access="Public"
+                        ToolTip=""
+                        HorizontalExpand="True"
+                        Text="30"
+                        StyleClasses="LabelSubText" />
+                <Button Name="AddToCartAll"
+                        Access="Public"
+                        ToolTip=""
+                        HorizontalExpand="True"
+                        Text="{Loc 'market-all'}"
+                        StyleClasses="LabelSubText" />
+            </BoxContainer>
         </BoxContainer>
-
     </BoxContainer>
-
 </PanelContainer>

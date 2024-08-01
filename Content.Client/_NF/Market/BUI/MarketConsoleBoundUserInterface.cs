@@ -22,7 +22,11 @@ public sealed class MarketConsoleBoundUserInterface : BoundUserInterface
 
         _menu = new MarketMenu();
         //_menu.OnClose += Close;
-        _menu.OnAddToCart += AddToCart;
+        _menu.OnAddToCart1 += args => AddToCart(args, 1);
+        _menu.OnAddToCart5 += args => AddToCart(args, 5);
+        _menu.OnAddToCart10 += args => AddToCart(args, 10);
+        _menu.OnAddToCart30 += args => AddToCart(args, 30);
+        _menu.OnAddToCartAll += args => AddToCart(args, int.MaxValue);
         _menu.OnReturn += Return;
         _menu.OnPurchaseCart += PurchaseCrate;
 
@@ -45,11 +49,11 @@ public sealed class MarketConsoleBoundUserInterface : BoundUserInterface
         _menu?.UpdateState(uiState);
     }
 
-    private void AddToCart(ButtonEventArgs args)
+    private void AddToCart(ButtonEventArgs args, int amount)
     {
-        if (args.Button.Parent?.Parent?.Parent is not MarketProductRow product)
+        if (args.Button.Parent?.Parent?.Parent?.Parent is not MarketProductRow product)
             return;
-        var addToCartMessage = new MarketConsoleCartMessage(1, product.PrototypeId);
+        var addToCartMessage = new MarketConsoleCartMessage(amount, product.Prototype.ID);
 
         SendMessage(addToCartMessage);
     }
@@ -58,7 +62,7 @@ public sealed class MarketConsoleBoundUserInterface : BoundUserInterface
     {
         if (args.Button.Parent?.Parent?.Parent is not MarketCartProductRow product)
             return;
-        var purchaseMessage = new MarketConsoleCartMessage(-1, product.PrototypeId);
+        var purchaseMessage = new MarketConsoleCartMessage(-1, product.Prototype.ID);
 
         SendMessage(purchaseMessage);
     }

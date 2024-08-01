@@ -1,13 +1,11 @@
 ﻿using System.Linq;
 using Content.Server._NF.Market.Components;
 using Content.Server._NF.Market.Extensions;
-using Content.Server.Bank;
 using Content.Server.Cargo.Systems;
 using Content.Shared._NF.Market;
 using Content.Shared._NF.Market.BUI;
 using Content.Shared._NF.Market.Events;
 using Content.Shared.Bank.Components;
-using Content.Shared.Cargo.Components;
 using Content.Shared.Stacks;
 using Content.Shared.Whitelist;
 using Robust.Server.GameObjects;
@@ -17,11 +15,11 @@ namespace Content.Server._NF.Market.Systems;
 
 public sealed partial class MarketSystem : SharedMarketSystem
 {
-    [Dependency] private readonly BankSystem _bank = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private readonly PricingSystem _pricingSystem = default!;
 
     public override void Initialize()
     {
@@ -47,9 +45,8 @@ public sealed partial class MarketSystem : SharedMarketSystem
                 continue;
 
             // Get the prototype ID of the sold entity
-            var entityPrototypeId = metaData.EntityPrototype?.ID;
-            if (entityPrototypeId == null)
-                continue; // Skip items without prototype id
+            if (metaData.EntityPrototype == null)
+                continue;
 
             var count = 1;
 
@@ -59,14 +56,18 @@ public sealed partial class MarketSystem : SharedMarketSystem
                 count = stackComponent.Count;
             }
 
+            var estimatedPrice = _pricingSystem.GetEstimatedPrice(metaData.EntityPrototype) / count;
+
             // Increase the count in the MarketData for this entity
             // Assuming the quantity to increase is 1 for each sold entity
-            marketDataComponent.MarketDataList.Upsert(entityPrototypeId, count);
+            marketDataComponent.MarketDataList.Upsert(metaData.EntityPrototype, count, estimatedPrice);
         }
     }
 
     /// <summary>
     /// Occurs whenever something is added to the cart.
+    /// If args.Amount is too high it will automatically be clamped to the maximum amount possible.
+    /// This also prevents desync if there are two different consoles.
     /// </summary>
     /// <param name="consoleUid">The uuid of the console where it was added.</param>
     /// <param name="consoleComponent">The console component</param>
@@ -88,8 +89,24 @@ public sealed partial class MarketSystem : SharedMarketSystem
         }
 
         var gridUid = Transform(consoleUid).GridUid!.Value;
-        _entityManager.EnsureComponent<MarketDataComponent>(gridUid).MarketDataList.Upsert(args.ItemPrototype!, -args.Amount);
-        consoleComponent.CartDataList.Upsert(args.ItemPrototype!, args.Amount);
+
+        // Try to get the EntityPrototype that matches marketData.Prototype
+        if (!_prototypeManager.TryIndex<EntityPrototype>(args.ItemPrototype!, out var prototype))
+        {
+            return; // Skip this iteration if the prototype was not found
+        }
+        var estimatedPrice = _pricingSystem.GetEstimatedPrice(prototype);
+
+        var marketData = _entityManager.EnsureComponent<MarketDataComponent>(gridUid).MarketDataList;
+        var maxQuantityToWithdraw = marketData.GetMaxQuantityToWithdraw(prototype);
+        var toWithdraw = args.Amount;
+        if (args.Amount > maxQuantityToWithdraw)
+        {
+            toWithdraw = maxQuantityToWithdraw;
+        }
+
+        marketData.Upsert(prototype, -toWithdraw, estimatedPrice);
+        consoleComponent.CartDataList.Upsert(prototype, toWithdraw, estimatedPrice);
 
         RefreshState(
             consoleUid,
@@ -119,7 +136,7 @@ public sealed partial class MarketSystem : SharedMarketSystem
             component);
     }
 
-    private int GetMarketSelectionValue(List<MarketData> dataList, float marketModifier)
+    private static int GetMarketSelectionValue(List<MarketData> dataList, float marketModifier)
     {
         var cartBalance = 0;
 
@@ -128,20 +145,7 @@ public sealed partial class MarketSystem : SharedMarketSystem
 
         foreach (var marketData in dataList)
         {
-            // Try to get the EntityPrototype that matches marketData.Prototype
-            if (!_prototypeManager.TryIndex<EntityPrototype>(marketData.Prototype, out var prototype))
-            {
-                continue; // Skip this iteration if the prototype was not found
-            }
-
-            var price = 0f;
-            if (prototype.TryGetComponent<StaticPriceComponent>(out var staticPrice))
-            {
-                price = (float) (staticPrice.Price * marketModifier);
-            }
-
-            var subTotal = (int) Math.Round(price * marketData.Quantity);
-            cartBalance += subTotal;
+            cartBalance += (int) Math.Round(marketData.Price * marketData.Quantity * marketModifier);
         }
 
         return cartBalance;

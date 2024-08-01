@@ -8,9 +8,12 @@ public class MarketData
     public string Prototype { get; set; }
     public int Quantity { get; set; }
 
-    public MarketData(string prototype, int quantity)
+    public double Price { get; set; }
+
+    public MarketData(string prototype, int quantity, double price)
     {
         Prototype = prototype;
         Quantity = quantity;
+        Price = price;
     }
 }
