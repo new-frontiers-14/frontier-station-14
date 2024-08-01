@@ -34,6 +34,7 @@ namespace Content.Client.PDA
         private string _instructions = Loc.GetString("comp-pda-ui-unknown");
 
         private string _balance = Loc.GetString("comp-pda-ui-unknown"); // Frontier
+        private string _shuttleDeed = Loc.GetString("comp-pda-ui-unknown"); // Frontier
 
         private int _currentView;
 
@@ -120,6 +121,10 @@ namespace Content.Client.PDA
             {
                 _clipboard.SetText(_balance);
             };
+            ShuttleDeedButton.OnPressed += _ => // Frontier
+            {
+                _clipboard.SetText(_shuttleDeed);
+            };
 
             StationTimeButton.OnPressed += _ =>
             {
@@ -170,6 +175,10 @@ namespace Content.Client.PDA
 
             _balance = state.Balance.ToString(); // Frontier
             BalanceLabel.SetMarkup(Loc.GetString("comp-pda-ui-balance", ("balance", _balance))); // Frontier
+
+            _shuttleDeed = state.OwnedShipName ?? ""; // Frontier
+            ShuttleDeedLabel.SetMarkup(Loc.GetString("comp-pda-ui-shuttle-deed", ("shipname", _shuttleDeed))); // Frontier
+            ShuttleDeedLabel.Visible = !string.IsNullOrEmpty(state.OwnedShipName); // Frontier
 
             var stationTime = _gameTiming.CurTime.Subtract(_gameTicker.RoundStartTimeSpan);
 
