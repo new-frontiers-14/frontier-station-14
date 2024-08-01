@@ -7,13 +7,10 @@ using Content.Shared._NF.Market.Components;
 using Content.Shared._NF.Market.Events;
 using Content.Shared.Bank.Components;
 using Content.Shared.Maps;
-using Content.Shared.Placeable;
 using Content.Shared.Storage.EntitySystems;
-using Microsoft.CodeAnalysis;
 using Robust.Server.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
-using Robust.Shared.Physics;
 using Robust.Shared.Prototypes;
 using static Content.Shared._NF.Market.Components.SharedCrateMachineComponent;
 

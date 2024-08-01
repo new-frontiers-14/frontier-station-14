@@ -1,4 +1,5 @@
-﻿using Content.Server._NF.Market.Components;
+﻿using System.Linq;
+using Content.Server._NF.Market.Components;
 using Content.Server._NF.Market.Extensions;
 using Content.Server.Bank;
 using Content.Server.Cargo.Systems;
@@ -8,6 +9,7 @@ using Content.Shared._NF.Market.Events;
 using Content.Shared.Bank.Components;
 using Content.Shared.Cargo.Components;
 using Content.Shared.Stacks;
+using Content.Shared.Whitelist;
 using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
 
@@ -19,6 +21,7 @@ public sealed partial class MarketSystem : SharedMarketSystem
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
 
     public override void Initialize()
     {
@@ -45,7 +48,6 @@ public sealed partial class MarketSystem : SharedMarketSystem
 
             // Get the prototype ID of the sold entity
             var entityPrototypeId = metaData.EntityPrototype?.ID;
-
             if (entityPrototypeId == null)
                 continue; // Skip items without prototype id
 
@@ -165,6 +167,15 @@ public sealed partial class MarketSystem : SharedMarketSystem
         var cartData = component.CartDataList;
         var marketData = _entityManager.EnsureComponent<MarketDataComponent>(consoleGridUid).MarketDataList;
         var cartBalance = GetMarketSelectionValue(cartData, marketMultiplier);
+
+        if (component.Whitelist != null)
+        {
+            marketData = marketData
+                .Where(item => _prototypeManager.TryIndex(item.Prototype, out var entityPrototype, false) &&
+                    _whitelistSystem.IsPrototypeWhitelistPass(component.Whitelist!, entityPrototype))
+                .ToList();
+        }
+
 
         var newState = new MarketConsoleInterfaceState(
             balance,

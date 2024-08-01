@@ -1,5 +1,6 @@
 ﻿using Content.Server._NF.Market.Systems;
 using Content.Shared._NF.Market;
+using Content.Shared.Whitelist;
 
 namespace Content.Server._NF.Market.Components;
 
@@ -17,4 +18,10 @@ public sealed partial class MarketConsoleComponent : Component
     public int MaxCrateMachineDistance = 16;
 
     public List<MarketData> CartDataList = [];
+
+    /// <summary>
+    /// Whitelist for this console, will only show items described in the whitelist.
+    /// </summary>
+    [DataField]
+    public EntityWhitelist? Whitelist;
 }
