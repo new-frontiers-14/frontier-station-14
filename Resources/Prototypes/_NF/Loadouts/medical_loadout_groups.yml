@@ -1,0 +1,93 @@
+- type: loadoutGroup
+  id: MedicalGlovesLatex
+  name: loadout-group-contractor-gloves
+  loadouts:
+  - MedicalClothingHandsGlovesLatex
+  - MedicalClothingHandsGlovesNitrile
+  fallbacks:
+  - MedicalClothingHandsGlovesLatex
+
+- type: loadoutGroup
+  id: MedicalGlovesNitrile
+  name: loadout-group-contractor-gloves
+  subgroups:
+  - MedicalGlovesLatex
+  fallbacks:
+  - MedicalClothingHandsGlovesNitrile
+
+- type: loadoutGroup
+  id: MedicalBackpack
+  name: loadout-group-contractor-backpack
+  loadouts:
+  - MedicalClothingBackpackMedical
+  - MedicalClothingBackpackDuffelMedical
+  - MedicalClothingBackpackSatchelMedical
+  - MedicalClothingBackpackMessengerMedical
+  - MedicalClothingBackpackChemistry
+  - MedicalClothingBackpackDuffelChemistry
+  - MedicalClothingBackpackSatchelChemistry
+  - MedicalClothingBackpackMessengerChemistry
+  - MedicalClothingBackpackGenetics
+  - MedicalClothingBackpackDuffelGenetics
+  - MedicalClothingBackpackSatchelGenetics
+  - MedicalClothingBackpackMessengerGenetics
+  - MedicalClothingBackpackVirology
+  - MedicalClothingBackpackDuffelVirology
+  - MedicalClothingBackpackSatchelVirology
+  - MedicalClothingBackpackMessengerVirology
+  fallbacks:
+  - MedicalClothingBackpackMedical
+
+- type: loadoutGroup
+  id: MedicalFace
+  name: loadout-group-contractor-backpack
+  loadouts:
+  - MedicalClothingMaskBreathMedical
+  - MedicalClothingMaskSterile
+  fallbacks:
+  - MedicalClothingMaskBreathMedical
+
+- type: loadoutGroup
+  id: MedicalShoesWhite
+  name: loadout-group-contractor-backpack
+  loadouts:
+  - MedicalClothingShoesColorWhite
+  - MedicalClothingShoesLeather
+  - MedicalClothingShoesBootsLaceup
+  fallbacks:
+  - MedicalClothingShoesColorWhite
+
+- type: loadoutGroup
+  id: MedicalShoesLaceup
+  name: loadout-group-contractor-backpack
+  subgroups:
+  - MedicalShoesWhite
+  fallbacks:
+  - MedicalClothingShoesBootsLaceup
+
+- type: loadoutGroup
+  id: MedicalGlassesHudMedical
+  name: loadout-group-contractor-eyes
+  loadouts:
+  - MedicalClothingEyesHudMedical
+  - MedicalClothingEyesEyepatchHudMedical
+  - MedicalClothingEyesGlassesChemical
+  fallbacks:
+  - MedicalClothingEyesHudMedical
+
+- type: loadoutGroup
+  id: MedicalGlassesChemical
+  name: loadout-group-contractor-eyes
+  subgroups:
+  - MedicalGlassesHudMedical
+  fallbacks:
+  - MedicalClothingEyesGlassesChemical
+
+- type: loadoutGroup
+  id: MedicalNFBelt
+  hidden: true
+  name: loadout-group-contractor-belt
+  subgroups:
+  - MedicalGlassesHudMedical
+  fallbacks:
+  - MedicalClothingEyesGlassesChemical

@@ -1,0 +1,33 @@
+- type: job
+  id: Medic
+  name: job-name-medic
+  description: job-description-medic
+  playTimeTracker: JobMedic
+  startingGear: MedicGear
+  alwaysUseSpawner: true
+  requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 72000 # 20 hrs
+  canBeAntag: false
+  icon: "JobIconMedicalDoctor"
+  supervisors: job-supervisors-director-of-care
+  setPreference: true
+  access: # This _more than likely_ needs review
+  - Medical
+  - Maintenance
+  - External
+  - Chemistry
+  - Atmospherics
+  special:
+  - !type:GiveItemOnHolidaySpecial
+    holiday: FrontierBirthday
+    prototype: FrontierBirthdayGift
+
+# FIXME
+- type: startingGear
+  id: MedicGear
+  equipment:
+    id: CMOPDA # TODO: rename
+    ears: ClothingHeadsetAltCommand # Restrict to medical?
+    pocket1: RubberStampCMO # TODO: rename
+    pocket2: Hypospray # TODO: rename

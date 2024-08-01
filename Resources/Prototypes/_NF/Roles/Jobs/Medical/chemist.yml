@@ -1,0 +1,33 @@
+- type: job
+  id: ChemistNF
+  name: job-name-chemist
+  description: job-description-chemist-nf
+  playTimeTracker: JobChemistNF
+  startingGear: ChemistNFGear
+  alwaysUseSpawner: true
+  requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 72000 # 20 hrs
+  canBeAntag: false
+  icon: "JobIconChemist"
+  supervisors: job-supervisors-director-of-care
+  setPreference: true
+  access: # This _more than likely_ needs review - removed all security accesses for now
+  - Medical
+  - StationTrafficController # Frontier
+  - Maintenance
+  - External
+  - Chemistry
+  - Atmospherics
+  special:
+  - !type:GiveItemOnHolidaySpecial
+    holiday: FrontierBirthday
+    prototype: FrontierBirthdayGift
+
+- type: startingGear
+  id: ChemistNFGear
+  equipment:
+    id: CMOPDA # TODO: rename
+    ears: ClothingHeadsetAltCommand # Restrict to medical?
+    pocket1: RubberStampCMO # TODO: rename
+    pocket2: Hypospray # TODO: rename
