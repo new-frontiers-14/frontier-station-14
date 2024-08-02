@@ -117,14 +117,16 @@ namespace Content.Client.PDA
                 _clipboard.SetText(_alertLevel);
             };
 
-            BalanceButton.OnPressed += _ => // Frontier
+            // Frontier
+            BalanceButton.OnPressed += _ =>
             {
                 _clipboard.SetText(_balance);
             };
-            ShuttleDeedButton.OnPressed += _ => // Frontier
+            ShuttleDeedButton.OnPressed += _ =>
             {
                 _clipboard.SetText(_shuttleDeed);
             };
+            // End Frontier
 
             StationTimeButton.OnPressed += _ =>
             {

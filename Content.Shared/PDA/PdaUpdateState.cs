@@ -18,7 +18,7 @@ namespace Content.Shared.PDA
         public bool CanPlayMusic;
         public string? Address;
         public int Balance; // Frontier
-        public string? OwnedShipName;
+        public string? OwnedShipName; // Frontier
 
         public PdaUpdateState(
             List<NetEntity> programs,
