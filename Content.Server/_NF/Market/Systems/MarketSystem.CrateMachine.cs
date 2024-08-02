@@ -15,7 +15,6 @@ namespace Content.Server._NF.Market.Systems;
 
 public sealed partial class MarketSystem
 {
-
     private void InitializeCrateMachine()
     {
         SubscribeLocalEvent<MarketConsoleComponent, CrateMachinePurchaseMessage>(OnMarketConsolePurchaseCrateMessage);
@@ -99,6 +98,28 @@ public sealed partial class MarketSystem
         TrySpawnCrate(crateMachineUid, player, component, consoleComponent, marketMod, bankAccount);
     }
 
+    /// <summary>
+    /// Checks if there is a crate on the crate machine
+    /// </summary>
+    /// <param name="crateMachineUid">The Uid of the crate machine</param>
+    /// <param name="cratePrototype">The prototype of the crate being spawned by the crate machine</param>
+    /// <returns>False if not occupied, true if it is.</returns>
+    private bool IsCrateMachineOccupied(EntityUid crateMachineUid, string cratePrototype)
+    {
+        if (!TryComp<TransformComponent>(crateMachineUid, out var crateMachineTransform))
+            return true;
+        var tileRef = crateMachineTransform.Coordinates.GetTileRef(EntityManager, _mapManager);
+        if (tileRef == null)
+        {
+            return true;
+        }
+
+        // Finally check if there is a crate intersecting the crate machine.
+        return _lookup.GetLocalEntitiesIntersecting(tileRef.Value, flags: LookupFlags.All | LookupFlags.Approximate)
+            .Any(entity => _entityManager.GetComponent<MetaDataComponent>(entity).EntityPrototype?.ID ==
+                           cratePrototype);
+    }
+
     private bool _isAnimationRunning = false;
 
     private void TrySpawnCrate(EntityUid crateMachineUid,
@@ -108,31 +129,15 @@ public sealed partial class MarketSystem
         float marketMod,
         BankAccountComponent playerBank)
     {
-        if (_isAnimationRunning)
+        if (_isAnimationRunning || IsCrateMachineOccupied(crateMachineUid, component.CratePrototype))
             return;
-        if (!TryComp<TransformComponent>(crateMachineUid, out var crateMachineTransform) ||
-            !TryComp<MapGridComponent>(crateMachineTransform.GridUid, out var grid))
-            return;
-
-        var tileRef = crateMachineTransform.Coordinates.GetTileRef(EntityManager, _mapManager);
-        if (tileRef == null)
-        {
-            return;
-        }
-
-        if (_lookup.GetLocalEntitiesIntersecting(tileRef.Value, flags: LookupFlags.All | LookupFlags.Approximate)
-            .Any(entity => _entityManager.GetComponent<MetaDataComponent>(entity).EntityPrototype?.ID ==
-                           component.CratePrototype))
-        {
-            return;
-        }
 
         var cartBalance = MarketDataExtensions.GetMarketValue(consoleComponent.CartDataList, marketMod);
-        if (!(playerBank.Balance >= cartBalance))
+        if (playerBank.Balance < cartBalance)
             return;
 
         var spawnList = new List<MarketData>();
-        for (int i = 0; i < 30 && consoleComponent.CartDataList.Count > 0; i++)
+        for (var i = 0; i < 30 && consoleComponent.CartDataList.Count > 0; i++)
         {
             var marketData = consoleComponent.CartDataList.First();
 
