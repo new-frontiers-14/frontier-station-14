@@ -79,6 +79,6 @@ public sealed partial class FoodComponent : Component
     /// Frontier - Show eating popup.
     /// </summary>
     [DataField]
-    public bool ShowEatPopup = true;
+    public bool ShowEatPopup;
 
 }
