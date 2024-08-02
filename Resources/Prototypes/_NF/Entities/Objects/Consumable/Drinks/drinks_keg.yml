@@ -8,6 +8,10 @@
   - type: Sprite
     sprite: _NF/Objects/Consumable/Drinks/keg_steel.rsi
     state: icon
+    layers:
+    - state: icon
+    - state: paper
+      map: ["enum.PaperLabelVisuals.Layer"]
   - type: Item
     size: Huge
   - type: Clothing
@@ -22,9 +26,6 @@
       drink:
         maxVol: 600
   - type: Drink
-#  - type: Openable
-#    sound:
-#      collection: bottleOpenSounds
   - type: DrawableSolution
     solution: drink
   - type: RefillableSolution
@@ -36,30 +37,43 @@
     maxTransferAmount: 100
     minTransferAmount: 10
     canChangeTransferAmount: true
-#  - type: Spillable
-#    solution: drink
+  - type: Spillable
+    solution: drink
   - type: UserInterface
     interfaces:
       enum.TransferAmountUiKey.Key:
         type: TransferAmountBoundUserInterface
-  - type: ItemSlots
-    slots:
-      label_slot:
-        insertVerbText: Attach Label
-        ejectVerbText: Remove Label
-        name: Keg Label
-        startingItem: null
-        whitelist:
-          tags:
-          - Document
-        insertOnInteract: true
-        priority: 5
-  - type: ContainerContainer
-    containers:
-      storagebase: !type:Container
-        ents: []
-      label_slot: !type:ContainerSlot {}
+  - type: GenericVisualizer
+    visuals:
+      enum.PaperLabelVisuals.HasLabel:
+        enum.PaperLabelVisuals.Layer:
+          True: { visible: true }
+          False: { visible: false }
+      enum.PaperLabelVisuals.LabelType:
+        enum.PaperLabelVisuals.Layer:
+          Paper: { state: paper }
+          Bounty: { state: paper }
+          CaptainsPaper: { state: paper }
+          Invoice: { state: paper }
+      enum.OpenableVisuals.Opened:
+        enum.OpenableVisuals.Layer:
+          True: {state: "icon_open"}
+          False: {state: "icon"}
+  - type: PaperLabel
+    labelSlot:
+      insertVerbText: Attach Label
+      ejectVerbText: Remove Label
+      whitelist:
+        components:
+        - Paper
   - type: Appearance
+  - type: Openable
+    sound:
+      collection: bottleOpenSounds
+    closeable: true
+    closeSound:
+      collection: bottleCloseSounds
+  - type: Sealable
 
 - type: entity
   parent: DrinkKegBase
@@ -68,19 +82,11 @@
   components:
   - type: Sprite
     sprite: _NF/Objects/Consumable/Drinks/keg_steel.rsi
-    state: icon
   - type: Clothing
     sprite: _NF/Objects/Consumable/Drinks/keg_steel.rsi
   - type: PhysicalComposition
     materialComposition:
       Steel: 150
-  - type: ItemMapper
-    mapLayers:
-      label:
-        whitelist:
-          tags:
-          - Document
-    sprite: _NF/Objects/Consumable/Drinks/keg_steel.rsi
 
 - type: entity
   parent: DrinkKegBase
@@ -89,19 +95,11 @@
   components:
   - type: Sprite
     sprite: _NF/Objects/Consumable/Drinks/keg_wood.rsi
-    state: icon
   - type: Clothing
     sprite: _NF/Objects/Consumable/Drinks/keg_wood.rsi
   - type: PhysicalComposition
     materialComposition:
       Wood: 150
-  - type: ItemMapper
-    mapLayers:
-      label:
-        whitelist:
-          tags:
-          - Document
-    sprite: _NF/Objects/Consumable/Drinks/keg_wood.rsi
 
 - type: entity
   parent: DrinkKegBase
@@ -114,6 +112,8 @@
     - state: keg-empty
     - state: keg-alpha-6
       map: ["enum.SolutionContainerLayers.Fill"]
+    - state: paper
+      map: ["enum.PaperLabelVisuals.Layer"]
       visible: true
   - type: Clothing
     sprite: _NF/Objects/Consumable/Drinks/keg_plastic.rsi
@@ -123,10 +123,3 @@
   - type: SolutionContainerVisuals
     maxFillLevels: 6
     fillBaseName: keg-alpha-
-  - type: ItemMapper
-    mapLayers:
-      label:
-        whitelist:
-          tags:
-          - Document
-    sprite: _NF/Objects/Consumable/Drinks/keg_wood.rsi
