@@ -24,4 +24,10 @@ public sealed partial class MarketConsoleComponent : Component
     /// </summary>
     [DataField]
     public EntityWhitelist? Whitelist;
+
+    /// <summary>
+    /// Blacklist for this console, will never show items described in the blacklist.
+    /// </summary>
+    [DataField]
+    public EntityWhitelist? Blacklist;
 }

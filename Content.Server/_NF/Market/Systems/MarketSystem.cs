@@ -180,6 +180,14 @@ public sealed partial class MarketSystem : SharedMarketSystem
                 .ToList();
         }
 
+        if (component.Blacklist != null)
+        {
+            marketData = marketData
+                .Where(item => _prototypeManager.TryIndex(item.Prototype, out var entityPrototype, false) &&
+                               _whitelistSystem.IsPrototypeBlacklistFail(component.Blacklist!, entityPrototype))
+                .ToList();
+        }
+
 
         var newState = new MarketConsoleInterfaceState(
             balance,

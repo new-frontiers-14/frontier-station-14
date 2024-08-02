@@ -118,10 +118,43 @@ public sealed class EntityWhitelistSystem : EntitySystem
     /// <returns></returns>
     public bool IsPrototypeWhitelistPass(EntityWhitelist? whitelist, EntityPrototype prototype)
     {
-        if (whitelist == null)
-            return false;
+        return whitelist != null && isPrototypeValid(whitelist, prototype);
+    }
 
-        return isPrototypeValid(whitelist, prototype);
+    /// <summary>
+    /// FRONTIER ADDITION
+    /// Checks if a given EntityPrototype passes the given whitelist
+    /// </summary>
+    /// <param name="whitelist">The whitelist to check</param>
+    /// <param name="prototype">The prototype to check</param>
+    /// <returns></returns>
+    public bool IsPrototypeWhitelistFail(EntityWhitelist? whitelist, EntityPrototype prototype)
+    {
+        return whitelist != null && !isPrototypeValid(whitelist, prototype);
+    }
+
+    /// <summary>
+    /// FRONTIER ADDITION
+    /// Checks if a given EntityPrototype passes the given blacklist
+    /// </summary>
+    /// <param name="blacklist">The whitelist to check</param>
+    /// <param name="prototype">The prototype to check</param>
+    /// <returns></returns>
+    public bool IsPrototypeBlacklistPass(EntityWhitelist? blacklist, EntityPrototype prototype)
+    {
+        return IsPrototypeWhitelistPass(blacklist, prototype);
+    }
+
+    /// <summary>
+    /// FRONTIER ADDITION
+    /// Checks if a given EntityPrototype fails the given blacklist
+    /// </summary>
+    /// <param name="blacklist">The whitelist to check</param>
+    /// <param name="prototype">The prototype to check</param>
+    /// <returns></returns>
+    public bool IsPrototypeBlacklistFail(EntityWhitelist? blacklist, EntityPrototype prototype)
+    {
+        return IsPrototypeWhitelistFail(blacklist, prototype);
     }
 
     /// The following are a list of "helper functions" that are basically the same as each other
