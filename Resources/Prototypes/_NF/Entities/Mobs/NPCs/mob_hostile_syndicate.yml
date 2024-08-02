@@ -21,7 +21,7 @@
     requiredLegs: 2
   - type: NpcFactionMember
     factions:
-    - Syndicate
+    - SyndicateNF
   - type: RandomHumanoidAppearance
     randomizeName: false
   - type: RandomMetadata
@@ -45,6 +45,12 @@
     maximumWait: 120
     nextAdvertisementTime: 10
   - type: AutoWakeUp
+  - type: TriggerOnBeingGibbed
+  - type: GibOnTrigger
+    deleteItems: true
+    deleteOrgans: true
+    gib: false
+    useArgumentEntity: true
 
 # Humans
 # Syndicate Captain, "armed" with AP Python

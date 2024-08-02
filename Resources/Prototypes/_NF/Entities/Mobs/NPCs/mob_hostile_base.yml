@@ -191,6 +191,8 @@
   - MobHumanoidHostileAIComplex
   id: MobHumanoidHostileBase
   components:
+  - type: NPCRetaliation
+    attackMemoryLength: 10
   - type: MobMover
   - type: StandingState
   - type: RandomHumanoidAppearance
@@ -243,6 +245,8 @@
   - MobHumanoidHostileAIComplex
   id: MobNonHumanHostileBase
   components:
+  - type: NPCRetaliation
+    attackMemoryLength: 10
   - type: Reactive
     groups:
       Flammable: [Touch]
