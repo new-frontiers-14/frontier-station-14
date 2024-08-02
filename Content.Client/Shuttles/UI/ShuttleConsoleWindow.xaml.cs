@@ -22,7 +22,7 @@ public sealed partial class ShuttleConsoleWindow : FancyWindow,
 
     public event Action<NetEntity, NetEntity>? DockRequest;
     public event Action<NetEntity>? UndockRequest;
-    
+
     public ShuttleConsoleWindow()
     {
         RobustXamlLoader.Load(this);

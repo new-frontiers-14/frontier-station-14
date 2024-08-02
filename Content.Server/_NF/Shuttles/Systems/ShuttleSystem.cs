@@ -54,7 +54,7 @@ public sealed partial class ShuttleSystem
             InertiaDampeningMode.Off => SpaceFrictionStrength,
             InertiaDampeningMode.Dampen => shuttleComponent.AngularDamping,
             InertiaDampeningMode.Anchor => AnchorDampeningStrength,
-            _ => shuttleComponent.LinearDamping, // other values: default to some sane behaviour (assume normal dampening)
+            _ => shuttleComponent.AngularDamping, // other values: default to some sane behaviour (assume normal dampening)
         };
 
         _physics.SetLinearDamping(transform.GridUid.Value, physicsComponent, linearDampeningStrength);
@@ -77,7 +77,7 @@ public sealed partial class ShuttleSystem
 
         if (physicsComponent.LinearDamping >= AnchorDampeningStrength)
             return InertiaDampeningMode.Anchor;
-        else if (MathHelper.CloseTo(physicsComponent.LinearDamping, 0.0f))
+        else if (physicsComponent.LinearDamping <= SpaceFrictionStrength)
             return InertiaDampeningMode.Off;
         else
             return InertiaDampeningMode.Dampen;
