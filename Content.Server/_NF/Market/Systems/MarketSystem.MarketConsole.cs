@@ -170,7 +170,8 @@ public sealed partial class MarketSystem
             marketData,
             cartData,
             cartBalance,
-            true // TODO add enable/disable functionality
+            true, // TODO add enable/disable functionality
+            component.TransactionCost
         );
         _ui.SetUiState(consoleUid, uiKey, newState);
     }

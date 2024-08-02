@@ -27,4 +27,10 @@ public sealed partial class MarketConsoleComponent : Component
     /// </summary>
     [DataField]
     public EntityWhitelist? Blacklist;
+
+    /// <summary>
+    /// The cost of one transaction.
+    /// </summary>
+    [DataField]
+    public int TransactionCost = 600;
 }

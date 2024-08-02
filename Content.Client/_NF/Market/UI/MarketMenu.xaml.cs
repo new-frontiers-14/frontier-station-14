@@ -68,7 +68,9 @@ public sealed partial class MarketMenu : FancyWindow
         _lastStateUpdate = uiState;
         Populate(uiState.MarketDataList, uiState.CartDataList, uiState.MarketModifier, uiState.Enabled);
         BalanceLabel.Text = $" ${uiState.Balance}";
-        CartBalanceLabel.Text = $" ${uiState.CartBalance}";
+        CartBalanceLabel.Text = _loc.GetString("market-cart-balance", ("cost", uiState.CartBalance), ("cratecost", uiState.TransactionCost));
+        PurchaseCart.Text = _loc.GetString("market-purchase-cart-button") +
+                            (uiState.CartBalance + uiState.TransactionCost);
         SetUiEnabled(uiState.Enabled);
     }
 
