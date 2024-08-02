@@ -46,4 +46,18 @@ public static class MarketDataExtensions
         return marketData == null ? 0 : marketData.Quantity;
     }
 
+    /// <summary>
+    /// Get the total value of the dataList
+    /// </summary>
+    /// <param name="dataList">The list to get the value of</param>
+    /// <param name="marketModifier">The market modifier to apply</param>
+    /// <returns>The total value</returns>
+    public static int GetMarketValue(List<MarketData> dataList, float marketModifier)
+    {
+        if (!(dataList.Count >= 1))
+            return 0;
+
+        return dataList.Sum(marketData => (int) Math.Round(marketData.Price * marketData.Quantity * marketModifier));
+    }
+
 }

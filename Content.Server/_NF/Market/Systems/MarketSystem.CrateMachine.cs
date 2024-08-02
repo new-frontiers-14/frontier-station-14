@@ -1,32 +1,20 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 using Content.Server._NF.Market.Components;
-using Content.Server.Bank;
+using Content.Server._NF.Market.Extensions;
 using Content.Shared._NF.Market;
 using Content.Shared._NF.Market.Components;
 using Content.Shared._NF.Market.Events;
 using Content.Shared.Bank.Components;
 using Content.Shared.Maps;
-using Content.Shared.Storage.EntitySystems;
-using Robust.Server.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
-using Robust.Shared.Prototypes;
 using static Content.Shared._NF.Market.Components.SharedCrateMachineComponent;
 
 namespace Content.Server._NF.Market.Systems;
 
 public sealed partial class MarketSystem
 {
-    [Dependency] private readonly AppearanceSystem _appearanceSystem = default!;
-    [Dependency] private readonly BankSystem _bankSystem = default!;
-    [Dependency] private readonly IPrototypeManager _prototypes = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly IMapManager _mapManager = default!;
-    [Dependency] private readonly SharedEntityStorageSystem _storage = default!;
-
-
-    private const int MaxCrateMachineDistance = 16;
 
     private void InitializeCrateMachine()
     {
@@ -34,13 +22,13 @@ public sealed partial class MarketSystem
     }
 
     /// <summary>
-    /// Calculates distance between two EntityCoordinates
+    /// Calculates distance between two EntityCoordinates on the same grid.
     /// Used to check for cargo pallets around the console instead of on the grid.
     /// </summary>
-    /// <param name="point1">first point to get distance between</param>
-    /// <param name="point2">second point to get distance between</param>
+    /// <param name="point1">the first point</param>
+    /// <param name="point2">the second point</param>
     /// <returns></returns>
-    public static double CalculateDistance(EntityCoordinates point1, EntityCoordinates point2)
+    private static double CalculateDistance(EntityCoordinates point1, EntityCoordinates point2)
     {
         var xDifference = point2.X - point1.X;
         var yDifference = point2.Y - point1.Y;
@@ -48,7 +36,9 @@ public sealed partial class MarketSystem
         return Math.Sqrt(xDifference * xDifference + yDifference * yDifference);
     }
 
-    private void OnMarketConsolePurchaseCrateMessage(EntityUid consoleUid, MarketConsoleComponent component, ref CrateMachinePurchaseMessage args)
+    private void OnMarketConsolePurchaseCrateMessage(EntityUid consoleUid,
+        MarketConsoleComponent component,
+        ref CrateMachinePurchaseMessage args)
     {
         var crateMachineQuery = AllEntityQuery<CrateMachineComponent, TransformComponent>();
 
@@ -72,13 +62,14 @@ public sealed partial class MarketSystem
             if (Transform(crateMachineUid).GridUid!.Value != consoleGridUid)
                 continue;
             var distance = CalculateDistance(compXform.Coordinates, Transform(consoleUid).Coordinates);
-            var maxCrateMachineDistance = MaxCrateMachineDistance;
+            var maxCrateMachineDistance = component.MaxCrateMachineDistance;
 
             // Get the mapped checking distance from the console
             if (TryComp<MarketConsoleComponent>(consoleUid, out var cargoShuttleComponent))
             {
                 maxCrateMachineDistance = cargoShuttleComponent.MaxCrateMachineDistance;
             }
+
             var isTooFarAway = distance > maxCrateMachineDistance;
 
             if (!compXform.Anchored || isTooFarAway)
@@ -91,12 +82,14 @@ public sealed partial class MarketSystem
 
             break;
         }
-
     }
 
-    private void OnPurchaseCrateMessage(EntityUid crateMachineUid, SharedCrateMachineComponent component, MarketConsoleComponent consoleComponent, float marketMod, CrateMachinePurchaseMessage args)
+    private void OnPurchaseCrateMessage(EntityUid crateMachineUid,
+        SharedCrateMachineComponent component,
+        MarketConsoleComponent consoleComponent,
+        float marketMod,
+        CrateMachinePurchaseMessage args)
     {
-
         if (args.Actor is not { Valid: true } player)
             return;
 
@@ -106,10 +99,16 @@ public sealed partial class MarketSystem
         TrySpawnCrate(crateMachineUid, player, component, consoleComponent, marketMod, bankAccount);
     }
 
-    private bool isAnimationRunning = false;
-    public void TrySpawnCrate(EntityUid crateMachineUid, EntityUid player, SharedCrateMachineComponent component, MarketConsoleComponent consoleComponent, float marketMod, BankAccountComponent playerBank)
+    private bool _isAnimationRunning = false;
+
+    private void TrySpawnCrate(EntityUid crateMachineUid,
+        EntityUid player,
+        SharedCrateMachineComponent component,
+        MarketConsoleComponent consoleComponent,
+        float marketMod,
+        BankAccountComponent playerBank)
     {
-        if (isAnimationRunning)
+        if (_isAnimationRunning)
             return;
         if (!TryComp<TransformComponent>(crateMachineUid, out var crateMachineTransform) ||
             !TryComp<MapGridComponent>(crateMachineTransform.GridUid, out var grid))
@@ -121,16 +120,14 @@ public sealed partial class MarketSystem
             return;
         }
 
-        foreach (var entity in _lookup.GetLocalEntitiesIntersecting(tileRef.Value, flags: LookupFlags.All | LookupFlags.Approximate))
+        if (_lookup.GetLocalEntitiesIntersecting(tileRef.Value, flags: LookupFlags.All | LookupFlags.Approximate)
+            .Any(entity => _entityManager.GetComponent<MetaDataComponent>(entity).EntityPrototype?.ID ==
+                           component.CratePrototype))
         {
-            if (_entityManager.GetComponent<MetaDataComponent>(entity).EntityPrototype?.ID == component.CratePrototype)
-            {
-                // Don't spawn a crate if theres already one on the platform.
-                return;
-            }
+            return;
         }
 
-        var cartBalance = GetMarketSelectionValue(consoleComponent.CartDataList, marketMod);
+        var cartBalance = MarketDataExtensions.GetMarketValue(consoleComponent.CartDataList, marketMod);
         if (!(playerBank.Balance >= cartBalance))
             return;
 
@@ -150,14 +147,15 @@ public sealed partial class MarketSystem
                 consoleComponent.CartDataList.Remove(marketData);
             }
         }
+
         // Withdraw spesos from player
-        var spawnCost = int.Abs(GetMarketSelectionValue(spawnList, marketMod));
+        var spawnCost = int.Abs(MarketDataExtensions.GetMarketValue(spawnList, marketMod));
         if (!_bankSystem.TryBankWithdraw(player, spawnCost))
             return;
 
         var xform = Transform(crateMachineUid);
 
-        isAnimationRunning = true;
+        _isAnimationRunning = true;
 
         Task.Run(async () =>
         {
@@ -167,7 +165,7 @@ public sealed partial class MarketSystem
             var targetCrate = Spawn(component.CratePrototype, xform.Coordinates);
             UpdateVisualState(crateMachineUid, component, false);
             Dirty(crateMachineUid, component);
-            isAnimationRunning = false;
+            _isAnimationRunning = false;
             SpawnCrateItems(spawnList, targetCrate);
         });
     }
@@ -177,11 +175,11 @@ public sealed partial class MarketSystem
         foreach (var data in spawnList)
         {
             var spawn = Spawn(data.Prototype, Transform(targetCrate).Coordinates);
-            _storage.Insert( spawn, targetCrate);
+            _storage.Insert(spawn, targetCrate);
         }
     }
 
-    public void UpdateVisualState(EntityUid uid, SharedCrateMachineComponent component, bool isOpening = true)
+    private void UpdateVisualState(EntityUid uid, SharedCrateMachineComponent component, bool isOpening = true)
     {
         if (!TryComp(uid, out AppearanceComponent? appearance))
         {
@@ -196,12 +194,17 @@ public sealed partial class MarketSystem
 
         if (isOpening)
         {
-            _appearanceSystem.SetData(uid, CrateMachineVisuals.VisualState, CrateMachineVisualState.Opening, appearance);
+            _appearanceSystem.SetData(uid,
+                CrateMachineVisuals.VisualState,
+                CrateMachineVisualState.Opening,
+                appearance);
         }
         else
         {
-            _appearanceSystem.SetData(uid, CrateMachineVisuals.VisualState, CrateMachineVisualState.Closing, appearance);
+            _appearanceSystem.SetData(uid,
+                CrateMachineVisuals.VisualState,
+                CrateMachineVisualState.Closing,
+                appearance);
         }
     }
-
 }
