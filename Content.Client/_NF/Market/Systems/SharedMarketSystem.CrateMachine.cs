@@ -1,11 +1,10 @@
-﻿using Content.Client._NF.Market.Components;
-using Content.Shared._NF.Market;
-using Content.Shared._NF.Market.Components;
+﻿using Content.Shared._NF.Market;
 using Robust.Client.Animations;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Shared.Audio.Systems;
-using static Content.Shared._NF.Market.Components.SharedCrateMachineComponent;
+using static Content.Shared._NF.Market.Components.CrateMachineComponent;
+using CrateMachineComponent = Content.Shared._NF.Market.Components.CrateMachineComponent;
 
 namespace Content.Client._NF.Market.Systems;
 
@@ -25,18 +24,18 @@ public sealed class MarketSystem : SharedMarketSystem
         SubscribeLocalEvent<CrateMachineComponent, AppearanceChangeEvent>(OnAppearanceChange);
     }
 
-    private void OnComponentInit(EntityUid uid, SharedCrateMachineComponent sharedDisposalUnit, ComponentInit args)
+    private void OnComponentInit(EntityUid uid, CrateMachineComponent crateMachine, ComponentInit args)
     {
         if (!TryComp<SpriteComponent>(uid, out var sprite) || !TryComp<AppearanceComponent>(uid, out var appearance))
             return;
 
-        UpdateState(uid, sharedDisposalUnit, sprite, appearance);
+        UpdateState(uid, crateMachine, sprite, appearance);
     }
 
     /// <summary>
     /// Update visuals and tick animation
     /// </summary>
-    private void UpdateState(EntityUid uid, SharedCrateMachineComponent component, SpriteComponent sprite, AppearanceComponent appearance)
+    private void UpdateState(EntityUid uid, CrateMachineComponent component, SpriteComponent sprite, AppearanceComponent appearance)
     {
         if (!_appearanceSystem.TryGetData<CrateMachineVisualState>(uid, CrateMachineVisuals.VisualState, out var state, appearance))
         {
@@ -56,7 +55,7 @@ public sealed class MarketSystem : SharedMarketSystem
             // Setup the opening animation to play
             var anim = new Animation
             {
-                Length = component.OpenCloseTime,
+                Length = TimeSpan.FromSeconds(component.OpeningTime),
                 AnimationTracks =
                 {
                     new AnimationTrackSpriteFlick
@@ -93,7 +92,7 @@ public sealed class MarketSystem : SharedMarketSystem
             // Setup the opening animation to play
             var anim = new Animation
             {
-                Length = component.OpenCloseTime,
+                Length = TimeSpan.FromSeconds(component.ClosingTime),
                 AnimationTracks =
                 {
                     new AnimationTrackSpriteFlick
@@ -125,7 +124,7 @@ public sealed class MarketSystem : SharedMarketSystem
         }
     }
 
-    private void OnAppearanceChange(EntityUid uid, SharedCrateMachineComponent component, ref AppearanceChangeEvent args)
+    private void OnAppearanceChange(EntityUid uid, CrateMachineComponent component, ref AppearanceChangeEvent args)
     {
         if (args.Sprite == null)
             return;

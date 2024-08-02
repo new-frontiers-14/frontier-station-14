@@ -5,7 +5,7 @@ using Robust.Shared.Serialization;
 namespace Content.Shared._NF.Market.Components;
 
 [NetworkedComponent]
-public abstract partial class SharedCrateMachineComponent: Component
+public abstract partial class CrateMachineComponent: Component
 {
     [ViewVariables, DataField]
     public bool Powered;
@@ -26,10 +26,28 @@ public abstract partial class SharedCrateMachineComponent: Component
     public string CratePrototype = "CrateGenericSteel";
 
     /// <summary>
-    /// How long the opening or closing animation will play
+    /// How long the opening animation will play
+    /// </summary>
+    [ViewVariables]
+    public float OpeningTime = 1.88f;
+
+    /// <summary>
+    /// How long the closing animation will play
+    /// </summary>
+    [ViewVariables]
+    public float ClosingTime = 1.88f;
+
+    /// <summary>
+    /// Remaining time of opening animation
     /// </summary>
     [DataField]
-    public TimeSpan OpenCloseTime = TimeSpan.FromSeconds(3f);
+    public float OpeningTimeRemaining;
+
+    /// <summary>
+    /// Remaining time of closing animation
+    /// </summary>
+    [DataField]
+    public float ClosingTimeRemaining;
 
     #region Graphics
 

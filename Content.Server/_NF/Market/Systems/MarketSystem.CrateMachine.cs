@@ -2,14 +2,14 @@
 using System.Threading.Tasks;
 using Content.Server._NF.Market.Components;
 using Content.Server._NF.Market.Extensions;
+using Content.Server.Power.Components;
 using Content.Shared._NF.Market;
 using Content.Shared._NF.Market.Components;
 using Content.Shared._NF.Market.Events;
 using Content.Shared.Bank.Components;
 using Content.Shared.Maps;
 using Robust.Shared.Map;
-using Robust.Shared.Map.Components;
-using static Content.Shared._NF.Market.Components.SharedCrateMachineComponent;
+using static Content.Shared._NF.Market.Components.CrateMachineComponent;
 
 namespace Content.Server._NF.Market.Systems;
 
@@ -18,6 +18,28 @@ public sealed partial class MarketSystem
     private void InitializeCrateMachine()
     {
         SubscribeLocalEvent<MarketConsoleComponent, CrateMachinePurchaseMessage>(OnMarketConsolePurchaseCrateMessage);
+    }
+
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        var query = EntityQueryEnumerator<CrateMachineComponent, ApcPowerReceiverComponent>();
+        while (query.MoveNext(out var uid, out var crateMachine, out var receiver))
+        {
+            if (!receiver.Powered)
+                continue;
+
+        }
+    }
+
+    private void ProcessOpeningAnimation(EntityUid uid, float frameTime, CrateMachineComponent comp)
+    {
+        if (comp.OpeningTimeRemaining <= 0)
+            return;
+
+        comp.OpeningTimeRemaining -= frameTime;
+
     }
 
     /// <summary>
@@ -84,7 +106,7 @@ public sealed partial class MarketSystem
     }
 
     private void OnPurchaseCrateMessage(EntityUid crateMachineUid,
-        SharedCrateMachineComponent component,
+        CrateMachineComponent component,
         MarketConsoleComponent consoleComponent,
         float marketMod,
         CrateMachinePurchaseMessage args)
@@ -124,7 +146,7 @@ public sealed partial class MarketSystem
 
     private void TrySpawnCrate(EntityUid crateMachineUid,
         EntityUid player,
-        SharedCrateMachineComponent component,
+        CrateMachineComponent component,
         MarketConsoleComponent consoleComponent,
         float marketMod,
         BankAccountComponent playerBank)
@@ -184,7 +206,7 @@ public sealed partial class MarketSystem
         }
     }
 
-    private void UpdateVisualState(EntityUid uid, SharedCrateMachineComponent component, bool isOpening = true)
+    private void UpdateVisualState(EntityUid uid, CrateMachineComponent component, bool isOpening = true)
     {
         if (!TryComp(uid, out AppearanceComponent? appearance))
         {
