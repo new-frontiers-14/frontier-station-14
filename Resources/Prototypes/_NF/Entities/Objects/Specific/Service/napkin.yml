@@ -15,6 +15,17 @@
           tags:
           - Paper
   - type: Bin
+    whitelist:
+      tags:
+      - Paper
+
+- type: entity
+  name: napkin drum
+  description: Holds napkins.
+  id: NapkinDrum5
+  parent: [NapkinDrum, PaperBin5]
+  components:
+  - type: Bin
     initialContents:
     - Napkin
     - Napkin
@@ -29,7 +40,7 @@
   name: napkin
   parent: Paper
   id: Napkin
-  description: 'A plain napkin.'
+  description: A small napkin.
   components:
   - type: Sprite
     layers:
@@ -43,3 +54,26 @@
     backgroundPatchMargin: 16.0, 16.0, 16.0, 16.0
     contentMargin: 16.0, 16.0, 16.0, 16.0
     headerMargin: 0.0, 12.0, 0.0, 0.0
+  - type: Paper
+    contentSize: 280 # Tweet
+  - type: Food
+    solution: food
+    delay: 1
+    forceFeedDelay: 3
+    trash: TrashNapkin
+    showEatPopup: false
+    useSound:
+      path: /Audio/_NF/Items/Napkin/wipe.ogg
+
+- type: entity
+  name: crumpled napkin
+  parent: BaseItem
+  id: TrashNapkin
+  description: A crumpled napkin.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Service/napkin.rsi
+    state: napkin
+  - type: Tag
+    tags:
+    - Trash

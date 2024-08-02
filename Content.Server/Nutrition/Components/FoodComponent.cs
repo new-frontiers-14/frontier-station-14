@@ -74,4 +74,11 @@ public sealed partial class FoodComponent : Component
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public bool RequireDead = true;
+
+    /// <summary>
+    /// Frontier - Show eating popup.
+    /// </summary>
+    [DataField]
+    public bool ShowEatPopup = true;
+
 }
