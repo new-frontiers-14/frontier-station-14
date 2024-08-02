@@ -63,7 +63,7 @@
     solutions:
       tank:
         maxVol: 500
-        canMix: true
+        canReact: true
   - type: ExaminableSolution
     solution: tank
   - type: UserInterface
@@ -109,96 +109,87 @@
   - type: Transform
     noRot: false
 
-# - type: entity
-  # id: MetalBarrelGrey
-  # name: metal barrel
-  # parent: WoodenKeg
-  # description: A metal keg. It can be filled with liquid.
-  # components:
-  # - type: Sprite
-    # sprite: Objects/Storage/barrel.rsi
-    # layers:
-    # - state: metal_grey
-  # - type: Damageable
-    # damageContainer: StructuralInorganic
-    # damageModifierSet: Metallic
-  # - type: Transform
-    # noRot: true
+- type: entity
+  id: MetalBarrelGrey
+  name: metal barrel
+  parent: WoodenBarrel
+  description: A metal keg. It can be filled with liquid.
+  components:
+  - type: Sprite
+    layers:
+    - state: metal_grey
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
 
-# - type: entity
-  # id: MetalBarrelBlue
-  # parent: MetalBarrelGrey
-  # components:
-  # - type: Sprite
-    # sprite: Objects/Storage/barrel.rsi
-    # layers:
-    # - state: metal_blue
+- type: entity
+  id: MetalBarrelBlue
+  parent: MetalBarrelGrey
+  components:
+  - type: Sprite
+    layers:
+    - state: metal_blue
 
-# - type: entity
-  # id: MetalBarrelRed
-  # parent: MetalBarrelGrey
-  # components:
-  # - type: Sprite
-    # sprite: Objects/Storage/barrel.rsi
-    # layers:
-    # - state: metal_red
+- type: entity
+  id: MetalBarrelRed
+  parent: MetalBarrelGrey
+  components:
+  - type: Sprite
+    layers:
+    - state: metal_red
 
-# - type: entity
-  # id: MetalBarrelYellow
-  # parent: MetalBarrelGrey
-  # components:
-  # - type: Sprite
-    # sprite: Objects/Storage/barrel.rsi
-    # layers:
-    # - state: metal_yellow
+- type: entity
+  id: MetalBarrelYellow
+  parent: MetalBarrelGrey
+  components:
+  - type: Sprite
+    layers:
+    - state: metal_yellow
 
-# - type: entity
-  # id: MetalBarrelGreen
-  # parent: MetalBarrelGrey
-  # components:
-  # - type: Sprite
-    # sprite: Objects/Storage/barrel.rsi
-    # layers:
-    # - state: metal_green
+- type: entity
+  id: MetalBarrelGreen
+  parent: MetalBarrelGrey
+  components:
+  - type: Sprite
+    layers:
+    - state: metal_green
 
-# - type: entity
-  # id: ChemicalBarrelExplosiveEmpty
-  # parent: MetalBarrelGrey
-  # name: explosive barrel
-  # suffix: Empty
-  # description: The ancient and mysterious symbol on the front is believed to have once meant 'Use me as cover!' in days of yore.
-  # components:
-  # - type: Sprite
-    # sprite: Objects/Storage/barrel.rsi
-    # layers:
-    # - state: metal_red
-    # - state: metal_explosive_label
+- type: entity
+  id: ChemicalBarrelExplosiveEmpty
+  parent: MetalBarrelGrey
+  name: explosive barrel
+  suffix: Empty
+  description: The ancient and mysterious symbol on the front is believed to have once meant 'Use me as cover!' in days of yore.
+  components:
+  - type: Sprite
+    layers:
+    - state: metal_red
+    - state: metal_explosive_label
 
-# - type: entity
-  # id: ChemicalBarrelExplosiveFilled
-  # parent: ChemicalBarrelExplosiveEmpty
-  # suffix: Filled
-  # components:
-  # - type: StaticPrice
-    # price: 300
-  # - type: Label
-    # currentLabel: reagent-name-welding-fuel
-  # - type: SolutionContainerManager
-    # solutions:
-      # tank:
-        # reagents:
-          # - ReagentId: WeldingFuel
-            # Quantity: 500
-  # - type: DamageOnToolInteract
-    # tools:
-    # - Welding
-    # weldingDamage:
-      # types:
-        # Heat: 10
-  # - type: PacifismDangerousAttack
-  # - type: Explosive
-    # explosionType: Default
-    # totalIntensity: 80
+- type: entity
+  id: ChemicalBarrelExplosiveFilled
+  parent: ChemicalBarrelExplosiveEmpty
+  suffix: Filled
+  components:
+  - type: StaticPrice
+    price: 300
+  - type: Label
+    currentLabel: reagent-name-welding-fuel
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+          - ReagentId: WeldingFuel
+            Quantity: 500
+  - type: DamageOnToolInteract
+    tools: Welding
+    weldingDamage:
+      types:
+        Heat: 10
+  - type: PacifismDangerousAttack
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 80
 
 # - type: entity
   # parent: MetalBarrelGrey
