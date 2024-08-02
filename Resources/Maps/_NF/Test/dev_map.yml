@@ -2559,6 +2559,16 @@ entities:
     - type: Transform
       pos: 20.5,10.5
       parent: 179
+  - uid: 1358
+    components:
+    - type: Transform
+      pos: 3.5,3.5
+      parent: 179
+  - uid: 1359
+    components:
+    - type: Transform
+      pos: 2.5,3.5
+      parent: 179
   - uid: 1369
     components:
     - type: Transform
@@ -2664,6 +2674,11 @@ entities:
     - type: Transform
       pos: -12.5,-5.5
       parent: 179
+  - uid: 1434
+    components:
+    - type: Transform
+      pos: 1.5,3.5
+      parent: 179
   - uid: 1435
     components:
     - type: Transform
@@ -2678,6 +2693,21 @@ entities:
     components:
     - type: Transform
       pos: -14.5,-6.5
+      parent: 179
+  - uid: 1447
+    components:
+    - type: Transform
+      pos: 0.5,3.5
+      parent: 179
+  - uid: 1448
+    components:
+    - type: Transform
+      pos: -0.5,3.5
+      parent: 179
+  - uid: 1449
+    components:
+    - type: Transform
+      pos: -1.5,3.5
       parent: 179
 - proto: CableApcStack
   entities:
@@ -4272,19 +4302,19 @@ entities:
       parent: 179
 - proto: DeathAcidifierImplanter
   entities:
-  - uid: 1353
+  - uid: 1450
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
-      pos: 0.58464336,7.519468
+      pos: 0.6328665,7.4945216
       parent: 179
 - proto: DeathAcidifierImplanterNF
   entities:
-  - uid: 1355
+  - uid: 1451
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
-      pos: 0.39714336,7.5090513
+      pos: 0.48703322,7.5049386
       parent: 179
 - proto: DebugBatteryDischarger
   entities:
@@ -4831,11 +4861,11 @@ entities:
       parent: 179
 - proto: GibAcidifierImplanterNF
   entities:
-  - uid: 1358
+  - uid: 1452
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
-      pos: 0.20964336,7.5090513
+      pos: 0.34119985,7.5049386
       parent: 179
 - proto: GravityGenerator
   entities:
@@ -5044,6 +5074,13 @@ entities:
     components:
     - type: Transform
       pos: 2.5,-10.5
+      parent: 179
+- proto: KitchenDeepFryer
+  entities:
+  - uid: 1355
+    components:
+    - type: Transform
+      pos: -0.5,7.5
       parent: 179
 - proto: KitchenReagentGrinder
   entities:
@@ -5598,11 +5635,11 @@ entities:
       parent: 179
 - proto: MedicalTrackingImplanter
   entities:
-  - uid: 1359
+  - uid: 1453
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
-      pos: -0.009106636,7.5298843
+      pos: 0.122449845,7.5361886
       parent: 179
 - proto: MedkitFilled
   entities:
@@ -5716,6 +5753,27 @@ entities:
     components:
     - type: Transform
       pos: 7.5,-1.5
+      parent: 179
+- proto: OilJarCorn
+  entities:
+  - uid: 1353
+    components:
+    - type: Transform
+      pos: -0.6162162,8.954414
+      parent: 179
+- proto: OilJarGhee
+  entities:
+  - uid: 361
+    components:
+    - type: Transform
+      pos: -0.30371618,8.943997
+      parent: 179
+- proto: OilJarOlive
+  entities:
+  - uid: 468
+    components:
+    - type: Transform
+      pos: -0.51204944,8.673164
       parent: 179
 - proto: Ointment
   entities:
@@ -6819,12 +6877,33 @@ entities:
     - type: Transform
       pos: 3.5,8.5
       parent: 179
+- proto: SpawnPointContractor
+  entities:
+  - uid: 1462
+    components:
+    - type: Transform
+      pos: -3.5,2.5
+      parent: 179
 - proto: SpawnPointLatejoin
   entities:
   - uid: 961
     components:
     - type: Transform
       pos: -3.5,3.5
+      parent: 179
+- proto: SpawnPointMailCarrier
+  entities:
+  - uid: 1461
+    components:
+    - type: Transform
+      pos: -3.5,2.5
+      parent: 179
+- proto: SpawnPointMercenary
+  entities:
+  - uid: 1460
+    components:
+    - type: Transform
+      pos: -3.5,2.5
       parent: 179
 - proto: SpawnPointObserver
   entities:
@@ -6833,26 +6912,89 @@ entities:
     - type: Transform
       pos: -3.5,4.5
       parent: 179
-- proto: SpawnPointPirate
+- proto: SpawnPointPilot
   entities:
-  - uid: 1347
+  - uid: 1463
     components:
     - type: Transform
-      pos: -3.5,5.5
+      pos: -3.5,2.5
+      parent: 179
+- proto: SpawnPointPirate
+  entities:
+  - uid: 1466
+    components:
+    - type: Transform
+      pos: -3.5,2.5
       parent: 179
 - proto: SpawnPointPirateCaptain
   entities:
-  - uid: 1346
+  - uid: 1465
     components:
     - type: Transform
-      pos: -4.5,5.5
+      pos: -3.5,2.5
       parent: 179
 - proto: SpawnPointPirateFirstMate
+  entities:
+  - uid: 1464
+    components:
+    - type: Transform
+      pos: -3.5,2.5
+      parent: 179
+- proto: SpawnPointPrisoner
+  entities:
+  - uid: 1459
+    components:
+    - type: Transform
+      pos: -3.5,2.5
+      parent: 179
+- proto: SpawnPointSecurityCadet
+  entities:
+  - uid: 1458
+    components:
+    - type: Transform
+      pos: -3.5,2.5
+      parent: 179
+- proto: SpawnPointSecurityGuard
+  entities:
+  - uid: 1457
+    components:
+    - type: Transform
+      pos: -3.5,2.5
+      parent: 179
+- proto: SpawnPointSecurityOfficer
+  entities:
+  - uid: 1456
+    components:
+    - type: Transform
+      pos: -3.5,2.5
+      parent: 179
+- proto: SpawnPointSheriff
+  entities:
+  - uid: 1455
+    components:
+    - type: Transform
+      pos: -3.5,2.5
+      parent: 179
+- proto: SpawnPointStationRepresentative
+  entities:
+  - uid: 1454
+    components:
+    - type: Transform
+      pos: -3.5,2.5
+      parent: 179
+- proto: SpawnPointStc
   entities:
   - uid: 486
     components:
     - type: Transform
-      pos: -4.5,4.5
+      pos: -3.5,2.5
+      parent: 179
+- proto: SpawnPointValet
+  entities:
+  - uid: 1346
+    components:
+    - type: Transform
+      pos: -3.5,2.5
       parent: 179
 - proto: SpawnVehicleATV
   entities:
@@ -7128,11 +7270,6 @@ entities:
     - type: Transform
       pos: -3.5,7.5
       parent: 179
-  - uid: 361
-    components:
-    - type: Transform
-      pos: -0.5,7.5
-      parent: 179
   - uid: 362
     components:
     - type: Transform
@@ -7202,11 +7339,6 @@ entities:
     components:
     - type: Transform
       pos: -3.5,8.5
-      parent: 179
-  - uid: 468
-    components:
-    - type: Transform
-      pos: -0.5,8.5
       parent: 179
   - uid: 470
     components:
@@ -7338,6 +7470,12 @@ entities:
     - type: Transform
       pos: 0.5,-3.5
       parent: 179
+  - uid: 1347
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -0.5,8.5
+      parent: 179
 - proto: TableGlass
   entities:
   - uid: 964
@@ -7403,11 +7541,6 @@ entities:
     components:
     - type: Transform
       pos: -16.5,-5.5
-      parent: 179
-  - uid: 1434
-    components:
-    - type: Transform
-      pos: -0.5,6.5
       parent: 179
 - proto: TimerTrigger
   entities:
