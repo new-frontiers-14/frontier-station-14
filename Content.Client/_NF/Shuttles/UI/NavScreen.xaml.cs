@@ -68,7 +68,7 @@ namespace Content.Client.Shuttles.UI
             {
                 var shipNameParts = metadata.EntityName.Split(' ');
                 var designation = shipNameParts[^1];
-                if (designation[2] == '-')
+                if (designation.Length > 2 && designation[2] == '-')
                 {
                     NavDisplayLabel.Text = string.Join(' ', shipNameParts[..^1]);
                     ShuttleDesignation.Text = designation;
