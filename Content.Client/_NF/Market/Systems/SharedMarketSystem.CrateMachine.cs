@@ -44,14 +44,19 @@ public sealed class MarketSystem : SharedMarketSystem
 
         sprite.LayerSetVisible(CrateMachineVisualLayers.Base, true);
         sprite.LayerSetVisible(CrateMachineVisualLayers.Closed, state == CrateMachineVisualState.Closed);
-        sprite.LayerSetVisible(CrateMachineVisualLayers.Open, state == CrateMachineVisualState.Open);
-        sprite.LayerSetVisible(CrateMachineVisualLayers.BaseDoors, state is CrateMachineVisualState.Opening or CrateMachineVisualState.Closing);
-        sprite.LayerSetVisible(CrateMachineVisualLayers.Crate, state is CrateMachineVisualState.Opening);
+        sprite.LayerSetVisible(CrateMachineVisualLayers.Opening, state == CrateMachineVisualState.Opening);
+        sprite.LayerSetVisible(CrateMachineVisualLayers.Closing, state == CrateMachineVisualState.Closing);
+        sprite.LayerSetVisible(CrateMachineVisualLayers.Crate, state == CrateMachineVisualState.Opening);
 
         if (state == CrateMachineVisualState.Opening && !_animationSystem.HasRunningAnimation(uid, AnimationKey))
         {
-            var openingState = new RSI.StateId(component.OpeningSpriteState);
-            var crateState = new RSI.StateId(component.CrateSpriteState);
+            var openingState = sprite.LayerMapTryGet(CrateMachineVisualLayers.Opening, out var flushLayer)
+                ? sprite.LayerGetState(flushLayer)
+                : new RSI.StateId(component.OpeningSpriteState);
+            var crateState = sprite.LayerMapTryGet(CrateMachineVisualLayers.Crate, out var crateFlushLayer)
+                ? sprite.LayerGetState(crateFlushLayer)
+                : new RSI.StateId(component.CrateSpriteState);
+
             // Setup the opening animation to play
             var anim = new Animation
             {
@@ -60,13 +65,13 @@ public sealed class MarketSystem : SharedMarketSystem
                 {
                     new AnimationTrackSpriteFlick
                     {
-                        LayerKey = CrateMachineVisualLayers.BaseDoors,
-                        KeyFrames =
-                        {
-                            // Play the opening & crate animation making the crate appear going up.
-                            new AnimationTrackSpriteFlick.KeyFrame(openingState, 0),
-                            new AnimationTrackSpriteFlick.KeyFrame(crateState, 0),
-                        }
+                        LayerKey = CrateMachineVisualLayers.Opening,
+                        KeyFrames = { new AnimationTrackSpriteFlick.KeyFrame(openingState, 0) },
+                    },
+                    new AnimationTrackSpriteFlick
+                    {
+                        LayerKey = CrateMachineVisualLayers.Crate,
+                        KeyFrames = { new AnimationTrackSpriteFlick.KeyFrame(crateState, 0) },
                     },
                 }
             };
@@ -78,7 +83,7 @@ public sealed class MarketSystem : SharedMarketSystem
                     {
                         KeyFrames =
                         {
-                            new AnimationTrackPlaySound.KeyFrame(_audioSystem.GetSound(component.OpeningSound), 0)
+                            new AnimationTrackPlaySound.KeyFrame(_audioSystem.GetSound(component.OpeningSound), 0),
                         }
                     }
                 );
@@ -88,7 +93,9 @@ public sealed class MarketSystem : SharedMarketSystem
         }
         else if (state == CrateMachineVisualState.Closing && !_animationSystem.HasRunningAnimation(uid, AnimationKey))
         {
-            var closingState = new RSI.StateId(component.ClosingSpriteState);
+            var closingState = sprite.LayerMapTryGet(CrateMachineVisualLayers.Closing, out var flushLayer)
+                ? sprite.LayerGetState(flushLayer)
+                : new RSI.StateId(component.ClosingSpriteState);
             // Setup the opening animation to play
             var anim = new Animation
             {
@@ -97,7 +104,7 @@ public sealed class MarketSystem : SharedMarketSystem
                 {
                     new AnimationTrackSpriteFlick
                     {
-                        LayerKey = CrateMachineVisualLayers.BaseDoors,
+                        LayerKey = CrateMachineVisualLayers.Closing,
                         KeyFrames =
                         {
                             // Play the flush animation
@@ -114,7 +121,7 @@ public sealed class MarketSystem : SharedMarketSystem
                     {
                         KeyFrames =
                         {
-                            new AnimationTrackPlaySound.KeyFrame(_audioSystem.GetSound(component.ClosingSound), 0)
+                            new AnimationTrackPlaySound.KeyFrame(_audioSystem.GetSound(component.ClosingSound), 0.5f),
                         }
                     }
                 );
@@ -136,8 +143,8 @@ public sealed class MarketSystem : SharedMarketSystem
 public enum CrateMachineVisualLayers : byte
 {
     Base,
-    BaseDoors,
-    Open,
+    Opening,
+    Closing,
     Closed,
     Crate
 }

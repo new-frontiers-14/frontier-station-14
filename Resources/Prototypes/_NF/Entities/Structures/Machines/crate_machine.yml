@@ -16,13 +16,15 @@
       drawdepth: FloorObjects
       layers:
         - state: background
-          map: ["enum.CrateMachineVisualLayers.Base"]
+          map: [ "enum.CrateMachineVisualLayers.Base" ]
         - state: opening
-          map: ["enum.CrateMachineVisualLayers.BaseDoors"]
+          map: ["enum.CrateMachineVisualLayers.Opening"]
+        - state: crate
+          map: [ "enum.CrateMachineVisualLayers.Crate" ]
+        - state: closing
+          map: ["enum.CrateMachineVisualLayers.Closing" ]
         - state: closed
           map: ["enum.CrateMachineVisualLayers.Closed"]
-        - state: open
-          map: ["enum.CrateMachineVisualLayers.Open"]
     - type: AnimationPlayer
     - type: Transform
       anchored: true
@@ -46,7 +48,7 @@
     - type: InteractionOutline
     - type: Appearance
     - type: ApcPowerReceiver
-      powerLoad: 20
+      powerLoad: 0
     - type: Tag
       tags:
         - Structure

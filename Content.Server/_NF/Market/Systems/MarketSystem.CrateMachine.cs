@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using System.Threading.Tasks;
 using Content.Server._NF.Market.Components;
 using Content.Server._NF.Market.Extensions;
 using Content.Server.Power.Components;
@@ -30,6 +29,8 @@ public sealed partial class MarketSystem
             if (!receiver.Powered)
                 continue;
 
+            ProcessOpeningAnimation(uid, frameTime, crateMachine);
+            ProcessClosingAnimation(uid, frameTime, crateMachine);
         }
     }
 
@@ -40,6 +41,26 @@ public sealed partial class MarketSystem
 
         comp.OpeningTimeRemaining -= frameTime;
 
+        // Automatically start closing after it finishes open animation.
+        // Also spawns the crate.
+        if (comp.OpeningTimeRemaining <= 0)
+        {
+            comp.ClosingTimeRemaining = comp.ClosingTime;
+            var targetCrate = Spawn(comp.CratePrototype, Transform(uid).Coordinates);
+            SpawnCrateItems(comp.ItemsToSpawn, targetCrate);
+        }
+
+        // Update at the end so the closing animation can start automatically.
+        UpdateVisualState(uid, comp);
+    }
+
+    private void ProcessClosingAnimation(EntityUid uid, float frameTime, CrateMachineComponent comp)
+    {
+        if (comp.ClosingTimeRemaining <= 0)
+            return;
+
+        comp.ClosingTimeRemaining -= frameTime;
+        UpdateVisualState(uid, comp);
     }
 
     /// <summary>
@@ -142,8 +163,6 @@ public sealed partial class MarketSystem
                            cratePrototype);
     }
 
-    private bool _isAnimationRunning = false;
-
     private void TrySpawnCrate(EntityUid crateMachineUid,
         EntityUid player,
         CrateMachineComponent component,
@@ -151,7 +170,7 @@ public sealed partial class MarketSystem
         float marketMod,
         BankAccountComponent playerBank)
     {
-        if (_isAnimationRunning || IsCrateMachineOccupied(crateMachineUid, component.CratePrototype))
+        if (IsCrateMachineOccupied(crateMachineUid, component.CratePrototype))
             return;
 
         var cartBalance = MarketDataExtensions.GetMarketValue(consoleComponent.CartDataList, marketMod);
@@ -180,21 +199,9 @@ public sealed partial class MarketSystem
         if (!_bankSystem.TryBankWithdraw(player, spawnCost))
             return;
 
-        var xform = Transform(crateMachineUid);
-
-        _isAnimationRunning = true;
-
-        Task.Run(async () =>
-        {
-            UpdateVisualState(crateMachineUid, component);
-            Dirty(crateMachineUid, component);
-            await Task.Delay(3000);
-            var targetCrate = Spawn(component.CratePrototype, xform.Coordinates);
-            UpdateVisualState(crateMachineUid, component, false);
-            Dirty(crateMachineUid, component);
-            _isAnimationRunning = false;
-            SpawnCrateItems(spawnList, targetCrate);
-        });
+        component.OpeningTimeRemaining = component.OpeningTime;
+        component.ItemsToSpawn = spawnList;
+        UpdateVisualState(crateMachineUid, component);
     }
 
     private void SpawnCrateItems(List<MarketData> spawnList, EntityUid targetCrate)
@@ -206,32 +213,16 @@ public sealed partial class MarketSystem
         }
     }
 
-    private void UpdateVisualState(EntityUid uid, CrateMachineComponent component, bool isOpening = true)
+    private void UpdateVisualState(EntityUid uid, CrateMachineComponent? component = null)
     {
-        if (!TryComp(uid, out AppearanceComponent? appearance))
-        {
+        if (!Resolve(uid, ref component))
             return;
-        }
 
-        // Unanchored should not animate.
-        if (!Transform(uid).Anchored)
-        {
-            return;
-        }
-
-        if (isOpening)
-        {
-            _appearanceSystem.SetData(uid,
-                CrateMachineVisuals.VisualState,
-                CrateMachineVisualState.Opening,
-                appearance);
-        }
+        if (component.OpeningTimeRemaining > 0)
+            _appearanceSystem.SetData(uid, CrateMachineVisuals.VisualState, CrateMachineVisualState.Opening);
+        else if (component.ClosingTimeRemaining > 0)
+            _appearanceSystem.SetData(uid, CrateMachineVisuals.VisualState, CrateMachineVisualState.Closing);
         else
-        {
-            _appearanceSystem.SetData(uid,
-                CrateMachineVisuals.VisualState,
-                CrateMachineVisualState.Closing,
-                appearance);
-        }
+            _appearanceSystem.SetData(uid, CrateMachineVisuals.VisualState, CrateMachineVisualState.Closed);
     }
 }

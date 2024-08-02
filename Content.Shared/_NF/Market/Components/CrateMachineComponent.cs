@@ -4,9 +4,15 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared._NF.Market.Components;
 
+[RegisterComponent]
 [NetworkedComponent]
-public abstract partial class CrateMachineComponent: Component
+[Access(typeof(SharedMarketSystem))]
+public sealed partial class CrateMachineComponent: Component
 {
+
+    [NonSerialized]
+    public List<MarketData> ItemsToSpawn;
+
     [ViewVariables, DataField]
     public bool Powered;
 
@@ -28,25 +34,25 @@ public abstract partial class CrateMachineComponent: Component
     /// <summary>
     /// How long the opening animation will play
     /// </summary>
-    [ViewVariables]
-    public float OpeningTime = 1.88f;
+    [NonSerialized]
+    public float OpeningTime = 3.2f;
 
     /// <summary>
     /// How long the closing animation will play
     /// </summary>
-    [ViewVariables]
-    public float ClosingTime = 1.88f;
+    [NonSerialized]
+    public float ClosingTime = 3.2f;
 
     /// <summary>
     /// Remaining time of opening animation
     /// </summary>
-    [DataField]
+    [NonSerialized]
     public float OpeningTimeRemaining;
 
     /// <summary>
     /// Remaining time of closing animation
     /// </summary>
-    [DataField]
+    [NonSerialized]
     public float ClosingTimeRemaining;
 
     #region Graphics
