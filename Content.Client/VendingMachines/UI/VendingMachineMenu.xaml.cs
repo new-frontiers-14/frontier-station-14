@@ -8,6 +8,7 @@ using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.UserInterface.Controls;
 using Content.Client.Stylesheets;
+using Content.Shared._NF.Bank;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Prototypes;
 using Content.Shared.Chemistry.Components.SolutionManager;
@@ -172,9 +173,9 @@ namespace Content.Client.VendingMachines.UI
                 // New Frontiers - Unlimited vending - support items with unlimited vending stock.
                 // This code is licensed under AGPLv3. See AGPLv3.txt
                 if (entry.Amount != uint.MaxValue)
-                    vendingItem.Text = $"[${cost}] {itemName} [{entry.Amount}]";
+                    vendingItem.Text = $"[{BankSystemExtensions.ToCurrencyString(cost)}] {itemName} [{entry.Amount}]";
                 else
-                    vendingItem.Text = $"[${cost}] {itemName}";
+                    vendingItem.Text = $"[{BankSystemExtensions.ToCurrencyString(cost)}] {itemName}";
                 // End of modified code
                 vendingItem.Icon = icon;
                 filteredInventory.Add(i);
@@ -185,7 +186,7 @@ namespace Content.Client.VendingMachines.UI
 
         public void UpdateBalance(int balance)
         {
-            BalanceLabel.Text = Loc.GetString("cargo-console-menu-points-amount", ("amount", balance.ToString()));
+            BalanceLabel.Text = BankSystemExtensions.ToCurrencyString(balance);
         }
 
         private void SetSizeAfterUpdate(int longestEntryLength, int contentCount)

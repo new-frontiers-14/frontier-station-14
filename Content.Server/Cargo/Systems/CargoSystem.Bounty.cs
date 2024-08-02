@@ -4,6 +4,7 @@ using Content.Server.Cargo.Components;
 using Content.Server.Labels;
 using Content.Server.NameIdentifier;
 using Content.Server.Paper;
+using Content.Shared._NF.Bank;
 using Content.Shared.Access.Components;
 using Content.Shared.Cargo;
 using Content.Shared.Cargo.Components;
@@ -124,7 +125,7 @@ public sealed partial class CargoSystem
                 ("item", Loc.GetString(entry.Name)))}");
             msg.PushNewline();
         }
-        msg.AddMarkup(Loc.GetString("bounty-console-manifest-reward", ("reward", prototype.Reward)));
+        msg.AddMarkup(Loc.GetString("bounty-console-manifest-reward", ("reward", BankSystemExtensions.ToCurrencyString(prototype.Reward))));
         _paperSystem.SetContent(uid, msg.ToMarkup(), paper);
     }
 
