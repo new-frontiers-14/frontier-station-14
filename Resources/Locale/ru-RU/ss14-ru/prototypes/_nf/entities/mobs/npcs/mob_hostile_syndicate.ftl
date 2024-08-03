@@ -1,7 +1,7 @@
 ent-MobSyndicateNavalTimedDespawn = { "" }
     .desc = { "" }
 ent-MobSyndicateNavalBase = агент синдиката
-  .desc = { ent-MobHumanoidHostileBase].desc }
+  .desc = { ent-MobHumanoidHostileBase.desc }
 ent-MobSyndicateNavalCaptainA = капитан синдиката
     .desc = Капитаны синдиката — это не просто командиры, это стратеги хаоса. Они управляют операциями на борту с точностью и жестокостью дирижёра, направляющего оркестр. Их магнум револьвер — символ власти, который не знает промахов, и каждый выстрел — это симфония разрушения. Эти капитаны способны повернуть ход сражения одним приказом, и их хладнокровие в бою лишь усиливает их легенду.
 ent-MobSyndicateNavalCaptainB = { ent-MobSyndicateNavalCaptainA }

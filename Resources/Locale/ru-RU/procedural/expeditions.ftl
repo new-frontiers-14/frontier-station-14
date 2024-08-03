@@ -27,13 +27,10 @@ salvage-expedition-desc-structure =
     }
 salvage-expedition-desc-elimination = Убейте большое и опасное существо в этой зоне.
 salvage-expedition-type-Mining = Добыча
-salvage-expedition-type-Destruction = Destruction
+salvage-expedition-type-Destruction = Уничтожение
 salvage-expedition-type-Elimination = Устранение
-salvage-expedition-difficulty-Minimal = Minimal
-salvage-expedition-difficulty-Minor = Minor
-salvage-expedition-difficulty-Moderate = Умеренная
-salvage-expedition-difficulty-Hazardous = Высокая
-salvage-expedition-difficulty-Extreme = Экстремальная
+salvage-expedition-difficulty-Minimal = Минимальная
+salvage-expedition-difficulty-Minor = Низкая
 offering-window-claimed = Принято
 offering-window-claim = Принять
 salvage-expedition-window-next = Следующее предложение

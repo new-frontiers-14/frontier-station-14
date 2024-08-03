@@ -19,6 +19,6 @@ ent-FoodSoupMeatballMoldy = заплесневелый суп с фрикаде�
 ent-FoodNoodlesMoldy = заплесневелая лапша
   .desc = { ent-FoodSpoiledMoldy.desc }
 ent-FoodNoodlesMeatballMoldy = заплесневелая лапша с фрикадельками
-  .desc = { ent-{ ent-FoodSpoiledMoldy.desc }
+  .desc = { eent-FoodSpoiledMoldy.desc }
 ent-FoodSaladCaesarMoldy = заплесневелый салат Цезарь
   .desc = { ent-FoodSpoiledMoldy.desc }

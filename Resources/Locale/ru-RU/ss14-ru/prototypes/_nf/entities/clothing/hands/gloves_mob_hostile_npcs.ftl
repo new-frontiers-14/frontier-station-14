@@ -1,6 +1,3 @@
-ent-ClothingHandsGlovesColorBlackSMG = боевые перчатки
-    .desc = Эти тактические перчатки огнеупорны и ударопрочны.
-    .suffix = ПП
 ent-ClothingHandsGlovesColorBlackAK = боевые перчатки
     .suffix = АКМС
     .desc = { ent-ClothingHandsGlovesColorBlackSMG.desc }
