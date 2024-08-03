@@ -1,7 +1,5 @@
 ﻿using System.Linq;
-using Content.Server._NF.Market.Components;
 using Content.Shared._NF.Market;
-using Content.Shared.Whitelist;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server._NF.Market.Extensions;
@@ -11,18 +9,19 @@ public static class MarketDataExtensions
     /// <summary>
     /// Update-or-insert the market data list or adds it new if it doesnt exist in there yet.
     /// </summary>
-    /// <param name="entityPrototype">The entity prototype to change the amount of.</param>
+    /// <param name="entityPrototypeId">The entity prototype id to change the amount of.</param>
     /// <param name="increaseAmount">The change in units, ie. 6 plushies.</param>
     /// <param name="marketDataList">The market data list to modify.</param>
     /// <param name="estimatedPrice">The estimated price by the pricing system.</param>
+    /// <param name="stackPrototypeId">The stack prototype id for this prototype if any.</param>
     public static void Upsert(this List<MarketData> marketDataList,
-        EntityPrototype entityPrototype,
+        string entityPrototypeId,
         int increaseAmount,
         double estimatedPrice,
         string? stackPrototypeId = null)
     {
         // Find the MarketData for the given EntityPrototype.
-        var prototypeMarketData = marketDataList.FirstOrDefault(md => md.Prototype == entityPrototype.ID);
+        var prototypeMarketData = marketDataList.FirstOrDefault(md => md.Prototype == entityPrototypeId);
 
         if (prototypeMarketData != null && (prototypeMarketData.Quantity + increaseAmount) >= 0)
         {
@@ -36,7 +35,10 @@ public static class MarketDataExtensions
         else if (increaseAmount > 0)
         {
             // If it doesn't exist, create a new MarketData and add it to the list.
-            marketDataList.Add(new MarketData(entityPrototype.ID, stackPrototypeId ?? prototypeMarketData?.StackPrototype, increaseAmount, estimatedPrice));
+            marketDataList.Add(new MarketData(entityPrototypeId,
+                stackPrototypeId ?? prototypeMarketData?.StackPrototype,
+                increaseAmount,
+                estimatedPrice));
         }
     }
 

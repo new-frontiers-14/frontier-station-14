@@ -67,6 +67,11 @@ public sealed partial class MarketMenu : FancyWindow
     {
         _lastStateUpdate = uiState;
         Populate(uiState.MarketDataList, uiState.CartDataList, uiState.MarketModifier, uiState.Enabled);
+        CartEntitiesCount.Text = $"{uiState.CartEntities}/30";
+        if (uiState.CartEntities == 30)
+            CartEntitiesCount.FontColorOverride = Color.OrangeRed;
+        else
+            CartEntitiesCount.FontColorOverride = null;
         BalanceLabel.Text = $" ${uiState.Balance}";
         CartBalanceLabel.Text = _loc.GetString("market-cart-balance", ("cost", uiState.CartBalance), ("cratecost", uiState.TransactionCost));
         PurchaseCart.Text = _loc.GetString("market-purchase-cart-button") +

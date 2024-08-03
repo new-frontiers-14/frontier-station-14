@@ -41,7 +41,12 @@ public sealed class MarketConsoleInterfaceState : BoundUserInterfaceState
     /// </summary>
     public int TransactionCost;
 
-    public MarketConsoleInterfaceState(int balance, float marketModifier, List<MarketData> marketDataList, List<MarketData> cartDataList, int cartBalance, bool enabled, int transactionCost)
+    /// <summary>
+    /// The total amount of entities in the cart.
+    /// </summary>
+    public int CartEntities;
+
+    public MarketConsoleInterfaceState(int balance, float marketModifier, List<MarketData> marketDataList, List<MarketData> cartDataList, int cartBalance, bool enabled, int transactionCost, int cartEntities)
     {
         Balance = balance;
         MarketModifier = marketModifier;
@@ -50,5 +55,6 @@ public sealed class MarketConsoleInterfaceState : BoundUserInterfaceState
         CartBalance = cartBalance;
         Enabled = enabled;
         TransactionCost = transactionCost;
+        CartEntities = cartEntities;
     }
 }

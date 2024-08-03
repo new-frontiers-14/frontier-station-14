@@ -179,21 +179,13 @@ public sealed partial class MarketSystem
         if (playerBank.Balance < cartBalance)
             return;
 
-        var spawnList = new List<MarketData>();
-        for (var i = 0; i < 30 && consoleComponent.CartDataList.Count > 0; i++)
-        {
-            var marketData = consoleComponent.CartDataList.First();
-            spawnList.Add(marketData);
-            consoleComponent.CartDataList.RemoveAt(0);
-        }
-
         // Withdraw spesos from player
-        var spawnCost = int.Abs(MarketDataExtensions.GetMarketValue(spawnList, marketMod));
+        var spawnCost = int.Abs(MarketDataExtensions.GetMarketValue(consoleComponent.CartDataList, marketMod));
         if (!_bankSystem.TryBankWithdraw(player, spawnCost))
             return;
 
         component.OpeningTimeRemaining = component.OpeningTime;
-        component.ItemsToSpawn = spawnList;
+        component.ItemsToSpawn = consoleComponent.CartDataList;
         UpdateVisualState(crateMachineUid, component);
     }
 
@@ -202,15 +194,15 @@ public sealed partial class MarketSystem
         var coordinates = Transform(targetCrate).Coordinates;
         foreach (var data in spawnList)
         {
-            if (_prototypeManager.TryIndex(data.Prototype, out var entityPrototype) &&
+            if (data.StackPrototype != null && _prototypeManager.TryIndex(data.StackPrototype, out var entityPrototype) &&
                 entityPrototype.HasComponent<StackComponent>() &&
-                _prototypeManager.TryIndex<StackPrototype>(data.Prototype, out var stackPrototype))
+                _prototypeManager.TryIndex<StackPrototype>(data.StackPrototype, out var stackPrototype))
             {
                 var maxStackCount = stackPrototype.MaxCount ?? int.MaxValue;
                 var remainingCount = data.Quantity;
                 while (remainingCount > 0)
                 {
-                    var stackEnt = _entityManager.SpawnEntity(data.Prototype, coordinates);
+                    var stackEnt = _entityManager.SpawnEntity(data.StackPrototype, coordinates);
                     var stack = _entityManager.GetComponent<StackComponent>(stackEnt);
                     var toWithdraw = Math.Min(remainingCount, maxStackCount);
                     remainingCount -= toWithdraw;
