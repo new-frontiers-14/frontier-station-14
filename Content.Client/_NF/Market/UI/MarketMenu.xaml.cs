@@ -179,6 +179,6 @@ public sealed partial class MarketMenu : FancyWindow
     private bool IsWithinSearchQuery(EntityPrototype prototype)
     {
         var text = _searchText.Trim();
-        return string.IsNullOrEmpty(text) || prototype.Name.Contains(text);
+        return string.IsNullOrEmpty(text) || prototype.Name.Contains(text, StringComparison.CurrentCultureIgnoreCase);
     }
 }
