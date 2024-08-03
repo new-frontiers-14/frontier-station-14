@@ -1,4 +1,4 @@
 ## Species Names
 
-species-name-felinid = Фелиниж
+species-name-felinid = Фелинид
 species-name-oni = Они
