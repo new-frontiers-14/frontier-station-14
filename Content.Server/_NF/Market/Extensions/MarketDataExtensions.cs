@@ -18,7 +18,8 @@ public static class MarketDataExtensions
     public static void Upsert(this List<MarketData> marketDataList,
         EntityPrototype entityPrototype,
         int increaseAmount,
-        double estimatedPrice)
+        double estimatedPrice,
+        string? stackPrototypeId = null)
     {
         // Find the MarketData for the given EntityPrototype.
         var prototypeMarketData = marketDataList.FirstOrDefault(md => md.Prototype == entityPrototype.ID);
@@ -35,7 +36,7 @@ public static class MarketDataExtensions
         else if (increaseAmount > 0)
         {
             // If it doesn't exist, create a new MarketData and add it to the list.
-            marketDataList.Add(new MarketData(entityPrototype.ID, increaseAmount, estimatedPrice));
+            marketDataList.Add(new MarketData(entityPrototype.ID, stackPrototypeId ?? prototypeMarketData?.StackPrototype, increaseAmount, estimatedPrice));
         }
     }
 

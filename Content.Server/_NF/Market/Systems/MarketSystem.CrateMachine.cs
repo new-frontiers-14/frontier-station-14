@@ -203,21 +203,15 @@ public sealed partial class MarketSystem
         foreach (var data in spawnList)
         {
             if (_prototypeManager.TryIndex(data.Prototype, out var entityPrototype) &&
-                entityPrototype.HasComponent<StackComponent>())
+                entityPrototype.HasComponent<StackComponent>() &&
+                _prototypeManager.TryIndex<StackPrototype>(data.Prototype, out var stackPrototype))
             {
-                StackPrototype? stackPrototype = null;
-                var maxStackCount = int.MaxValue;
+                var maxStackCount = stackPrototype.MaxCount ?? int.MaxValue;
                 var remainingCount = data.Quantity;
                 while (remainingCount > 0)
                 {
                     var stackEnt = _entityManager.SpawnEntity(data.Prototype, coordinates);
                     var stack = _entityManager.GetComponent<StackComponent>(stackEnt);
-                    if (stackPrototype == null)
-                    {
-                        _prototypeManager.TryIndex(stack.StackTypeId, out stackPrototype);
-                        maxStackCount = stackPrototype?.MaxCount ?? int.MaxValue;
-                    }
-
                     var toWithdraw = Math.Min(remainingCount, maxStackCount);
                     remainingCount -= toWithdraw;
                     _stackSystem.SetCount(stackEnt, toWithdraw, stack);
