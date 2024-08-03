@@ -1,0 +1,41 @@
+- type: constructionGraph
+  id: ClothingWebNeckMiscClassicPonchoGraph
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: ClothingWebNeckMiscClassicPonchoNode
+      steps:
+      - material: WebSilk
+        amount: 12
+        doAfter: 15
+  - node: ClothingWebNeckMiscClassicPonchoNode
+    entity: ClothingWebNeckMiscClassicPoncho
+
+- type: constructionGraph
+  id: ClothingWebNeckMiscPonchoGraph
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: ClothingWebNeckMiscPonchoNode
+      steps:
+      - material: WebSilk
+        amount: 12
+        doAfter: 15
+  - node: ClothingWebNeckMiscPonchoNode
+    entity: ClothingWebNeckMiscPoncho
+
+- type: constructionGraph
+  id: ClothingWebNeckCloakGraph
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: ClothingWebNeckCloakNode
+      steps:
+      - material: WebSilk
+        amount: 12
+        doAfter: 15
+  - node: ClothingWebNeckCloakNode
+    entity: ClothingWebNeckCloak
