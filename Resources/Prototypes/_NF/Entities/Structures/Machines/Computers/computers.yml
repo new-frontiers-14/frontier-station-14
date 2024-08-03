@@ -178,11 +178,27 @@
       sound:
         collection: Keyboard
     - type: MarketConsole
-# TODO: Fill in whitelist based on frontier needs...
-#      whitelist:
-#        tags:
-#          - Ore
-#          - Bread
+      blacklist:
+        tags:
+          - Trash
+          - Mail
+          - Currency
+          - Paper
+        components:
+          - Anchorable
+          - Food
+          - SpaceGarbage
+          - Contraband
+          - Gun
+          - Ammo
+          - Drink
+          - GasTank
+          - Explosive
+          - Actor
+          - Mind
+          - MindContainer
+          - Body
+          - MobPrice
     - type: ActivatableUI
       key: enum.MarketConsoleUiKey.Default
     - type: UserInterface

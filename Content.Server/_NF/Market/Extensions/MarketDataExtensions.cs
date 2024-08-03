@@ -1,5 +1,7 @@
 ﻿using System.Linq;
+using Content.Server._NF.Market.Components;
 using Content.Shared._NF.Market;
+using Content.Shared.Whitelist;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server._NF.Market.Extensions;
@@ -13,7 +15,10 @@ public static class MarketDataExtensions
     /// <param name="increaseAmount">The change in units, ie. 6 plushies.</param>
     /// <param name="marketDataList">The market data list to modify.</param>
     /// <param name="estimatedPrice">The estimated price by the pricing system.</param>
-    public static void Upsert(this List<MarketData> marketDataList, EntityPrototype entityPrototype, int increaseAmount, double estimatedPrice)
+    public static void Upsert(this List<MarketData> marketDataList,
+        EntityPrototype entityPrototype,
+        int increaseAmount,
+        double estimatedPrice)
     {
         // Find the MarketData for the given EntityPrototype.
         var prototypeMarketData = marketDataList.FirstOrDefault(md => md.Prototype == entityPrototype.ID);
@@ -59,5 +64,4 @@ public static class MarketDataExtensions
 
         return dataList.Sum(marketData => (int) Math.Round(marketData.Price * marketData.Quantity * marketModifier));
     }
-
 }

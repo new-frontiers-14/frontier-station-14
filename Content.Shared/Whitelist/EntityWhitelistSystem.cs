@@ -78,7 +78,7 @@ public sealed class EntityWhitelistSystem : EntitySystem
         {
             foreach (var reg in list.Registrations)
             {
-                if (prototype.Components.ContainsKey(reg.Type.ToString()))
+                if (prototype.Components.ContainsKey(reg.Name) || prototype.Components.ContainsKey(reg.Type.ToString()))
                 {
                     if (!list.RequireAll)
                         return true;
