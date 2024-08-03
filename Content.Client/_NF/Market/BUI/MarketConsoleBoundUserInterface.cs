@@ -62,7 +62,7 @@ public sealed class MarketConsoleBoundUserInterface : BoundUserInterface
     {
         if (args.Button.Parent?.Parent?.Parent is not MarketCartProductRow product)
             return;
-        var purchaseMessage = new MarketConsoleCartMessage(-1, product.Prototype.ID);
+        var purchaseMessage = new MarketConsoleCartMessage(0, product.Prototype.ID, true);
 
         SendMessage(purchaseMessage);
     }

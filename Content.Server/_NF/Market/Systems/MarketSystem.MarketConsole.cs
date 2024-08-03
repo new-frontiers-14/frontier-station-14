@@ -211,29 +211,31 @@ public sealed partial class MarketSystem
             return; // Skip this iteration if the prototype was not found
         }
 
-        var isRemovingFromCart = args.Amount == -1;
         var marketData = _entityManager.EnsureComponent<MarketDataComponent>(gridUid).MarketDataList;
-        var maxQuantityToWithdraw = isRemovingFromCart
-            ? consoleComponent.CartDataList.GetMaxQuantityToWithdraw(prototype)
-            : marketData.GetMaxQuantityToWithdraw(prototype);
-        var toWithdraw = isRemovingFromCart ? maxQuantityToWithdraw : args.Amount;
-        if (args.Amount > maxQuantityToWithdraw)
+        if (args.RemoveFromCart)
         {
-            toWithdraw = maxQuantityToWithdraw;
+            consoleComponent.CartDataList.Move(marketData, prototype.ID);
         }
-
-        var existing = FindMarketDataByPrototype(marketData, args.ItemPrototype!);
-        if (existing == null)
-            return;
-
-        marketData.Upsert(existing.Prototype, -toWithdraw, existing.Price, existing.StackPrototype);
-        consoleComponent.CartDataList.Upsert(existing.Prototype, toWithdraw, existing.Price, existing.StackPrototype);
-
-        if (CalculateEntityAmount(consoleComponent.CartDataList) > 30)
+        else
         {
-            // Revert changes if cart is too full.
-            marketData.Upsert(existing.Prototype, toWithdraw, existing.Price, existing.StackPrototype);
-            consoleComponent.CartDataList.Upsert(existing.Prototype, -toWithdraw, existing.Price, existing.StackPrototype);
+            var maxQuantityToWithdraw = marketData.GetMaxQuantityToWithdraw(prototype);
+            var toWithdraw = args.Amount;
+            if (args.Amount > maxQuantityToWithdraw)
+                toWithdraw = maxQuantityToWithdraw;
+
+            var existing = FindMarketDataByPrototype(marketData, args.ItemPrototype!);
+            if (existing == null)
+                return;
+
+            marketData.Upsert(existing.Prototype, -toWithdraw, existing.Price, existing.StackPrototype);
+            consoleComponent.CartDataList.Upsert(existing.Prototype, toWithdraw, existing.Price, existing.StackPrototype);
+
+            if (CalculateEntityAmount(consoleComponent.CartDataList) > 30)
+            {
+                // Revert changes if cart is too full.
+                marketData.Upsert(existing.Prototype, toWithdraw, existing.Price, existing.StackPrototype);
+                consoleComponent.CartDataList.Upsert(existing.Prototype, -toWithdraw, existing.Price, existing.StackPrototype);
+            }
         }
 
 

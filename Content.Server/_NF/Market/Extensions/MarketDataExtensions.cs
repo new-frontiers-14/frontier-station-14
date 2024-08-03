@@ -43,6 +43,22 @@ public static class MarketDataExtensions
     }
 
     /// <summary>
+    /// Moves a MarketData item from the source list to the target list.
+    /// </summary>
+    /// <param name="sourceList">The source list to move the item from.</param>
+    /// <param name="targetList">The target list to move the item to.</param>
+    /// <param name="prototypeId">The prototype ID of the item to move.</param>
+    public static void Move(this List<MarketData> sourceList, List<MarketData> targetList, string prototypeId)
+    {
+        var marketData = sourceList.FirstOrDefault(md => md.Prototype == prototypeId);
+        if (marketData != null)
+        {
+            targetList.Upsert(marketData.Prototype, marketData.Quantity, marketData.Price, marketData.StackPrototype);
+            sourceList.Remove(marketData);
+        }
+    }
+
+    /// <summary>
     /// Get the current maximum amount available for a particular prototype.
     /// </summary>
     /// <param name="marketDataList">the list to check in</param>
