@@ -1,0 +1,38 @@
+# Author Info
+# GitHub: Amfai (Buyrcsp2) (https://github.com/AF-Buyrcsp2)
+# Discord: Buyrcsp2
+
+# Maintainer Info
+# GitHub: Amfai (Buyrcsp2) (https://github.com/AF-Buyrcsp2)
+# Discord: Buyrcsp2
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Barber
+  name: SSS Barber
+  description: A medium sized service shuttle, designed and equipped to groom, style, and maintain various types of hair.
+  price: 18000 #Appraise value 15000 with ~20% markup
+  category: Medium
+  group: Civilian
+  shuttlePath: /Maps/_NF/Shuttles/barber.yml
+
+- type: gameMap
+  id: Barber
+  mapName: 'SSS Barber'
+  mapPath: /Maps/_NF/Shuttles/barber.yml
+  minPlayers: 0
+  stations:
+    Barber:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Barber {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]

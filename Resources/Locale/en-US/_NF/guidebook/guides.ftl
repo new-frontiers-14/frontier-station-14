@@ -23,6 +23,7 @@ guide-entry-expedition-xenos = Xenos
 # Shipyard entries
 guide-entry-shipyard-ambition = Ambition
 guide-entry-shipyard-apothecary = Apothecary
+guide-entry-shipyard-barber = Barber
 guide-entry-shipyard-bazaar = Bazaar
 guide-entry-shipyard-bocadillo = Bocadillo
 guide-entry-shipyard-bookworm = Bookworm
