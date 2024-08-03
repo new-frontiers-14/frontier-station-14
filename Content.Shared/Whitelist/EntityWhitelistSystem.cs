@@ -69,7 +69,7 @@ public sealed class EntityWhitelistSystem : EntitySystem
     /// <param name="list">The list to check</param>
     /// <param name="prototype">the prototype to check</param>
     /// <returns>True if it is valid</returns>
-    public bool isPrototypeValid(EntityWhitelist list, EntityPrototype prototype)
+    public bool IsPrototypeValid(EntityWhitelist list, EntityPrototype prototype)
     {
         if (list.Components != null)
             EnsureRegistrations(list);
@@ -118,7 +118,7 @@ public sealed class EntityWhitelistSystem : EntitySystem
     /// <returns></returns>
     public bool IsPrototypeWhitelistPass(EntityWhitelist? whitelist, EntityPrototype prototype)
     {
-        return whitelist != null && isPrototypeValid(whitelist, prototype);
+        return whitelist != null && IsPrototypeValid(whitelist, prototype);
     }
 
     /// <summary>
@@ -130,7 +130,7 @@ public sealed class EntityWhitelistSystem : EntitySystem
     /// <returns></returns>
     public bool IsPrototypeWhitelistFail(EntityWhitelist? whitelist, EntityPrototype prototype)
     {
-        return whitelist != null && !isPrototypeValid(whitelist, prototype);
+        return whitelist != null && !IsPrototypeValid(whitelist, prototype);
     }
 
     /// <summary>
