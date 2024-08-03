@@ -462,7 +462,7 @@ namespace Content.Shared.Preferences
             );
 
         // Frontier
-        public string BankBalanceText => BankSystemExtensions.ToCurrencyString(BankBalance);
+        public string BankBalanceText => BankSystemExtensions.ToSpesoString(BankBalance);
 
         public bool MemberwiseEquals(ICharacterProfile maybeOther)
         {

@@ -125,7 +125,7 @@ public sealed partial class CargoSystem
                 ("item", Loc.GetString(entry.Name)))}");
             msg.PushNewline();
         }
-        msg.AddMarkup(Loc.GetString("bounty-console-manifest-reward", ("reward", BankSystemExtensions.ToCurrencyString(prototype.Reward))));
+        msg.AddMarkup(Loc.GetString("bounty-console-manifest-reward", ("reward", BankSystemExtensions.ToSpesoString(prototype.Reward))));
         _paperSystem.SetContent(uid, msg.ToMarkup(), paper);
     }
 

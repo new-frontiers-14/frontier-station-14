@@ -173,9 +173,9 @@ namespace Content.Client.VendingMachines.UI
                 // New Frontiers - Unlimited vending - support items with unlimited vending stock.
                 // This code is licensed under AGPLv3. See AGPLv3.txt
                 if (entry.Amount != uint.MaxValue)
-                    vendingItem.Text = $"[{BankSystemExtensions.ToCurrencyString(cost)}] {itemName} [{entry.Amount}]";
+                    vendingItem.Text = $"[{BankSystemExtensions.ToSpesoString(cost)}] {itemName} [{entry.Amount}]";
                 else
-                    vendingItem.Text = $"[{BankSystemExtensions.ToCurrencyString(cost)}] {itemName}";
+                    vendingItem.Text = $"[{BankSystemExtensions.ToSpesoString(cost)}] {itemName}";
                 // End of modified code
                 vendingItem.Icon = icon;
                 filteredInventory.Add(i);
@@ -184,10 +184,12 @@ namespace Content.Client.VendingMachines.UI
             SetSizeAfterUpdate(longestEntry.Length, inventory.Count);
         }
 
+        // Frontier
         public void UpdateBalance(int balance)
         {
-            BalanceLabel.Text = BankSystemExtensions.ToCurrencyString(balance);
+            BalanceLabel.Text = BankSystemExtensions.ToSpesoString(balance);
         }
+        // End Frontier
 
         private void SetSizeAfterUpdate(int longestEntryLength, int contentCount)
         {

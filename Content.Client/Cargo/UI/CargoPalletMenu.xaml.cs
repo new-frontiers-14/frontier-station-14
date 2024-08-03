@@ -22,7 +22,7 @@ public sealed partial class CargoPalletMenu : FancyWindow
 
     public void SetAppraisal(int amount)
     {
-        AppraisalLabel.Text = BankSystemExtensions.ToCurrencyString(amount);
+        AppraisalLabel.Text = BankSystemExtensions.ToSpesoString(amount);
     }
 
     public void SetCount(int count)

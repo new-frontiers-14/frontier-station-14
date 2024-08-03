@@ -86,7 +86,7 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
                 if (_freeListings)
                     priceText = Loc.GetString("shipyard-console-menu-listing-free");
                 else
-                    priceText = BankSystemExtensions.ToCurrencyString(prototype!.Price);
+                    priceText = BankSystemExtensions.ToSpesoString(prototype!.Price);
 
                 var vesselEntry = new VesselRow
                 {
@@ -133,12 +133,12 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
 
     public void UpdateState(ShipyardConsoleInterfaceState state)
     {
-        BalanceLabel.Text = BankSystemExtensions.ToCurrencyString(state.Balance);
+        BalanceLabel.Text = BankSystemExtensions.ToSpesoString(state.Balance);
         var shipPrice = 0;
         if (!state.FreeListings)
             shipPrice = state.ShipSellValue;
 
-        ShipAppraisalLabel.Text = BankSystemExtensions.ToCurrencyString(shipPrice);
+        ShipAppraisalLabel.Text = BankSystemExtensions.ToSpesoString(shipPrice);
         SellShipButton.Disabled = state.ShipDeedTitle == null;
         TargetIdButton.Text = state.IsTargetIdPresent
             ? Loc.GetString("id-card-console-window-eject-button")

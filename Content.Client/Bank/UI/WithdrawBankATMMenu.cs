@@ -27,7 +27,7 @@ public sealed partial class WithdrawBankATMMenu : FancyWindow
 
     public void SetBalance(int amount)
     {
-        BalanceLabel.Text = BankSystemExtensions.ToCurrencyString(amount);
+        BalanceLabel.Text = BankSystemExtensions.ToSpesoString(amount);
     }
 
     public void SetEnabled(bool enabled)

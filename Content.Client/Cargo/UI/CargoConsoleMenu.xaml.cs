@@ -101,7 +101,7 @@ namespace Content.Client.Cargo.UI
                         Product = prototype,
                         ProductName = { Text = prototype.Name },
                         MainButton = { ToolTip = prototype.Description },
-                        PointCost = { Text = BankSystemExtensions.ToCurrencyString(prototype.Cost) },
+                        PointCost = { Text = BankSystemExtensions.ToSpesoString(prototype.Cost) }, // Frontier: 
                         Icon = { Texture = _spriteSystem.Frame0(prototype.Icon) },
                     };
                     button.MainButton.OnPressed += args =>
@@ -193,7 +193,7 @@ namespace Content.Client.Cargo.UI
         public void UpdateBankData(string name, int bankBalance)
         {
             AccountNameLabel.Text = name;
-            PointsLabel.Text = BankSystemExtensions.ToCurrencyString(bankBalance);
+            PointsLabel.Text = BankSystemExtensions.ToSpesoString(bankBalance);
         }
     }
 }
