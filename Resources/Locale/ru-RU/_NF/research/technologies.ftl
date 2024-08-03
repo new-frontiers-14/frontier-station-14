@@ -1,0 +1,11 @@
+research-techology-advanced-personal-propulsion = Системы персонального перемещения
+research-technology-advanced-personal-propulsion = Системы персонального перемещения
+research-technology-rapid-construction = Ускоренное строительство
+research-technology-hardsuits-basic = Базовые экзокостюмы
+research-technology-hardsuits-specialized = Специализированные экзокостюмы
+research-technology-hardsuits-advanced = Продвинутые экзокостюмы
+research-technology-hardsuits-experimental-industrial = Экспериментальный промышленный экзокостюм
+research-technology-hardsuits-armored = Бронированные экзокостюмы
+research-technology-hardsuits-armored-advanced = Продвинутые бронированные экзокостюмы
+research-technology-hardsuits-experimental-rd = Экспериментальный научный экзокостюм
+research-technology-construction-bags = Строительные сумки

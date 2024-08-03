@@ -1,0 +1,11 @@
+ent-WeaponTurretEnergyNF = contraband denying turret
+    .desc = { ent-BaseWeaponTurretEnergyNF.desc }
+ent-WeaponTurretLaserNanoTrasenNF = laser turret
+    .suffix = Frontier, NT
+    .desc = { ent-BaseWeaponTurretEnergyNF.desc }
+ent-WeaponTurretLaserSyndicateNF = laser turret
+    .suffix = Frontier, Syndicate
+    .desc = { ent-WeaponTurretLaserNanoTrasenNF.desc }
+ent-WeaponTurretLaserHostileNF = laser turret
+    .suffix = Frontier, Hostile
+    .desc = { ent-WeaponTurretLaserNanoTrasenNF.desc }

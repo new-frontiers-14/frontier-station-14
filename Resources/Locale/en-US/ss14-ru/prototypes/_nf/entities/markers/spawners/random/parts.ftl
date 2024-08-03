@@ -1,0 +1,10 @@
+ent-SalvagePartsT2Spawner = Salvage T2 Machine Parts Spawner
+    .desc = { ent-MarkerBase.desc }
+ent-SalvagePartsT3T4Spawner = tier 3/4 machine part
+    .desc = { ent-MarkerBase.desc }
+ent-SalvagePartsT3Spawner = tier 3 machine part
+    .suffix = Spawner
+    .desc = { ent-MarkerBase.desc }
+ent-SalvagePartsT4Spawner = tier 4 machine part
+    .suffix = Spawner
+    .desc = { ent-MarkerBase.desc }

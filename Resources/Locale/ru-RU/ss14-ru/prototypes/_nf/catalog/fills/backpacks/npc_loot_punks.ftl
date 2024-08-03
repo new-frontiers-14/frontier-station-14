@@ -1,0 +1,11 @@
+ent-PunkMessengerGiftBox = набор панков
+    .desc = Лутбоксы? Тут?
+    .suffix = Лут НПС
+ent-ClothingBackpackPunkLootA = набор снаряжения панков
+    .desc = { ent-PunkMessengerGiftBox.desc }
+ent-ClothingBackpackPunkLootB = { ent-ClothingBackpackPunkLootA }
+    .desc = { ent-ClothingBackpackPunkLootA.desc }
+ent-ClothingBackpackPunkLootC = { ent-ClothingBackpackPunkLootA }
+    .desc = { ent-ClothingBackpackPunkLootA.desc }
+ent-ClothingBackpackPunkLootD = { ent-ClothingBackpackPunkLootA }
+    .desc = { ent-ClothingBackpackPunkLootA.desc }

@@ -1,0 +1,2 @@
+ent-ContrabandClothing = { "" }
+    .desc = { "" }

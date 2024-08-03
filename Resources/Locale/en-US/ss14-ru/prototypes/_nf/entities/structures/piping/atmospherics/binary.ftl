@@ -1,0 +1,9 @@
+ent-GasPressurePumpOn = { ent-GasPressurePump }
+    .suffix = On
+    .desc = { ent-GasPressurePump.desc }
+ent-GasPressurePumpOnMax = { ent-GasPressurePumpOn }
+    .suffix = On, Max
+    .desc = { ent-GasPressurePumpOn.desc }
+ent-GasVolumePumpOn = { ent-GasVolumePump }
+    .suffix = On
+    .desc = { ent-GasVolumePump.desc }

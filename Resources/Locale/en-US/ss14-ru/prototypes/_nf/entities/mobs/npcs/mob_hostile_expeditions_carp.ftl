@@ -1,0 +1,12 @@
+ent-BaseMobCarpExpeditions = carp
+    .desc = A variant of the common space carp, evolved to "swim" through gravity. Equally dangerous.
+ent-MobCarpExpeditions = { ent-BaseMobCarpExpeditions }
+    .desc = { ent-BaseMobCarpExpeditions.desc }
+ent-MobCarpMagicExpeditions = magicarp
+    .desc = A lesser version of spaceproof giant carp believed to have magic powers. Contrary to popular belief, does not possess magical abilities.
+ent-MobCarpHoloExpeditions = holocarp
+    .desc = Carp made out of holographic energies. Sadly for you, it is very much real.
+ent-MobCarpRainbowExpeditions = rainbow carp
+    .desc = "Wow such a shiny fishie!" you might say. Reasonable, but these are deadly nonetheless.
+ent-MobSharkExpeditions = sharkminnow
+    .desc = A dangerous shark from the blackness of endless space, who loves to drink blood.

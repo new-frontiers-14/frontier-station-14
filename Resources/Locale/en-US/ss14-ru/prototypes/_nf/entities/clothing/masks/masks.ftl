@@ -1,0 +1,10 @@
+ent-ClothingMaskArcadia = arcadia battle mask
+    .desc = A close-fitting high tech mask designed by Arcadia Industries for space faring battlers.
+ent-FaceHuggerPlushie = facehugger plushie
+    .desc = The perfect plushie to scare your friends with aliens!
+ent-ClothingMaskPilot = pilot breathing mask
+    .desc = A close-fitting breathing mask designed for, it would seems, minimal comfort of wearer.
+ent-ClothingMaskGasNfsd = nfsd gas mask
+    .desc = A standard issue nfsd gas mask.
+ent-ClothingMaskGasSheriff = nfsd sheriff gas mask
+    .desc = A gas mask worthy of a sheriff.

@@ -1,0 +1,14 @@
+ent-MobVandalizer = { "" }
+    .desc = { "" }
+ent-MobPunkBase = punk
+    .desc = 'Criminally-inclined individuals', as NT Security documents call them, these are armed with a variety of weapons. These weapons range from makeshift shivs and machined truncheons to rusty pistols and shotguns. Some may be armored, so plan appropriately.
+ent-MobPunkGangerMelee = { ent-MobPunkBase }
+  .desc = { ent-MobPunkBase.desc }
+ent-MobPunkGangerPistol = { ent-MobPunkBase }
+  .desc = { ent-MobPunkBase.desc }
+ent-MobPunkGangerShotgun = { ent-MobPunkBase }
+  .desc = { ent-MobPunkBase.desc }
+ent-MobPunkGangerArmoredMelee = { ent-MobPunkBase }
+  .desc = { ent-MobPunkBase.desc }
+ent-MobPunkGangerArmoredElite = punk gang leader
+    .desc = It takes a formidable figure to lead a pack of street trash. These leaders usually wield scavenged SMGs and wear armor taken from unfortunate security forces. Usually high on meth and booze.

@@ -1,0 +1,13 @@
+ent-SpaceCashExpedition = spesos
+    .desc = Hard-earned credits. Fresh from the digital cash mint. Smells like success and unpaid taxes.
+    .suffix = Money
+ent-SpaceCashMinimalExpedition = spesos (5000)
+    .desc = { ent-SpaceCashExpedition.desc }
+ent-SpaceCashMinorExpedition = spesos (10000)
+    .desc = { ent-SpaceCashExpedition.desc }
+ent-SpaceCashModerateExpedition = spesos (20000)
+    .desc = { ent-SpaceCashExpedition.desc }
+ent-SpaceCashHazardousExpedition = spesos (40000)
+    .desc = { ent-SpaceCashExpedition.desc }
+ent-SpaceCashExtremeExpedition = spesos (70000)
+    .desc = { ent-SpaceCashExpedition.desc }

@@ -1,0 +1,16 @@
+ent-ClothingHeadMailCarrier = mail carrier's hat
+    .desc = Smells like a good pension.
+ent-ClothingHeadHoodBrown = brown hood
+    .desc = Spooky.
+ent-ClothingHeadAreopagite = areopagite hat
+    .desc = Intimidating.
+ent-ClothingHeadTinfoil = tinfoil hat
+    .desc = Protects you from all manner of intrusive thoughts.
+ent-ClothingHeadHatBellhop = bellhop cap
+    .desc = All the inconvinience and humiliation of a fez with none of the style!
+ent-ClothingHeadPrisonGuard = prison guard's hat
+    .desc = Grants full immunity from denying others basic human rights, dignity, or respect.
+ent-ClothingHeadHelmetKendoMen = men
+    .desc = The quintessential head armor of the kendo practitioner.
+ent-ClothingHeadHelmetKabuto = kabuto and menpo
+    .desc = A modern replica of a kabuto and menpo.

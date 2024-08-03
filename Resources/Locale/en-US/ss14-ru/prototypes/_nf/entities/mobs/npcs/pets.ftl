@@ -1,0 +1,10 @@
+ent-MobPetNF = { "" }
+    .desc = { "" }
+ent-MobCatClippy = Clippy
+    .desc = It looks like you’re writing a letter, would you like help?
+ent-MobCatClarpy = Clarpy
+    .desc = First cat to gain a bounty.
+ent-MobCatCappy = Cappy
+    .desc = First cat to shoot a gun.
+ent-MobCatMistake = Mistake
+    .desc = ???

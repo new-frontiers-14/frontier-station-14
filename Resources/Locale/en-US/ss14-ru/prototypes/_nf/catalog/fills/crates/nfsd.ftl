@@ -1,0 +1,16 @@
+ent-CrateNfsdArmor = nfsd armor crate
+    .desc = Three vests of well-rounded, decently-protective armor. Requires Security access to open.
+ent-CrateNfsdHelmet = nfsd helmet crate
+    .desc = Contains three standard-issue brain buckets. Requires Security access to open.
+ent-CrateNfsdNonlethal = nfsd nonlethals crate
+    .desc = Disabler weapons. Requires Security access to open.
+ent-CrateNfsdRiot = nfsd swat crate
+    .desc = Contains two sets of riot armor, helmets, shields, and enforcers loaded with beanbags. Extra ammo is included. Requires Armory access to open.
+ent-CrateNfsdSupplies = nfsd supplies crate
+    .desc = Contains various supplies for the station's Security team. Requires Security access to open.
+ent-CrateNfsdRestraints = nfsd restraints crate
+    .desc = Contains two boxes each of handcuffs and zipties. Requires Security access to open.
+ent-CrateNfsdBioSuit = nfsd bio suit crate
+    .desc = Contains 2 biohazard suits to ensure that no disease will distract you from your duties. Requires Security access to open.
+ent-CrateNfsdImplants = nfsd implanter crate
+    .desc = Contains 4 MindShield implants and 4 tracking implant. Requires Security access to open.

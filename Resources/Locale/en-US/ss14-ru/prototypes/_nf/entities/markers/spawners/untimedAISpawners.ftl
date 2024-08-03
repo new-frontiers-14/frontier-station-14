@@ -1,0 +1,12 @@
+ent-XenoAISpawnerEasy = Xeno Spawner
+    .suffix = Easy
+    .desc = { ent-MarkerBase.desc }
+ent-XenoAISpawnerMedium = Xeno Spawner
+    .suffix = Medium
+    .desc = { ent-MarkerBase.desc }
+ent-XenoAISpawnerHard = Xeno Spawner
+    .suffix = Hard
+    .desc = { ent-MarkerBase.desc }
+ent-XenoAISpawnerQueen = Xeno Spawner
+    .suffix = Queen
+    .desc = { ent-MarkerBase.desc }

@@ -1,0 +1,14 @@
+ent-BaseScrapDebrisNF = Scrap Debris
+    .desc = { ent-BaseDebrisNF.desc }
+ent-ScrapDebrisNFSmall = Scrap Debris Small
+    .desc = { ent-BaseScrapDebrisNF.desc }
+ent-ScrapDebrisNFMedium = Scrap Debris Medium
+    .desc = { ent-BaseScrapDebrisNF.desc }
+ent-ScrapDebrisNFLarge = Scrap Debris Large
+    .desc = { ent-BaseScrapDebrisNF.desc }
+ent-ScrapDebrisNFExtraLarge = Scrap Debris Extra Large
+    .desc = { ent-BaseScrapDebrisNF.desc }
+ent-ScrapDebrisNFExtraLargeScattered = Scrap Debris Extra Large Scattered
+    .desc = { ent-BaseScrapDebrisNF.desc }
+ent-ScrapDebrisNFHuge = Scrap Debris Huge
+    .desc = { ent-BaseScrapDebrisNF.desc }

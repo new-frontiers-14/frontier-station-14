@@ -1,0 +1,15 @@
+ent-ThrusterNfsd = { ent-ThrusterSecurity }
+    .suffix = ДСБФ
+    .desc = { ent-ThrusterSecurity.desc }
+ent-DebugThrusterNfsd = { ent-DebugThrusterSecurity }
+    .suffix = ДЕБАГ, ДСБФ
+    .desc = { ent-DebugThrusterSecurity.desc }
+ent-GyroscopeNfsd = { ent-GyroscopeSecurity }
+    .suffix = ДСБФ
+    .desc = { ent-GyroscopeSecurity.desc }
+ent-DebugGyroscopeNfsd = { ent-DebugGyroscopeSecurity }
+    .suffix = ДЕБАГ, ДСБФ
+    .desc = { ent-DebugGyroscopeSecurity.desc }
+ent-SmallGyroscopeNfsd = small gyroscope
+    .suffix = ДСБФ
+    .desc = { ent-SmallGyroscopeSecurity.desc }

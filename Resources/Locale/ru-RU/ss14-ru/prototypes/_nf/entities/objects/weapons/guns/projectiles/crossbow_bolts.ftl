@@ -1,0 +1,12 @@
+ent-BaseCrossbowBolt = { ent-BaseArrow }
+    .desc = { ent-BaseArrow.desc }
+ent-CrossbowBolt = болт
+    .desc = Одного болта было достаточно, чтобы свергнуть короля Ричарда Львиное Сердце. Хватит и Королеве ксеноморфов.
+ent-CrossbowBoltGlassShard = болт с осколком стекла
+    .desc = Болт с осколком стекла в качестве наконечника.
+ent-CrossbowBoltPlasmaGlassShard = болт с осколком плазменного стекла
+    .desc = Болт с осколком плазменного стекла в качестве наконечника.
+ent-CrossbowBoltUraniumGlassShard = болт с осколком уранового стекла
+    .desc = Болт с осколком уранового стекла в качестве наконечника. Господи помилуй.
+ent-CrossbowBoltBloodDrinker = болт с засечками
+    .desc = { ent-CrossbowBolt.desc }
