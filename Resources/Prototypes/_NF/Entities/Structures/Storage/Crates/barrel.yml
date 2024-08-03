@@ -55,10 +55,14 @@
 
 - type: entity
   parent: StorageTank
-  id: WoodenKeg
-  name: wooden keg
-  description: A musty old wooden keg, with a tap attached to the front.
+  id: BaseBarrel
+  abstract: true
   components:
+  - type: Sprite
+    sprite: _NF/Objects/Storage/barrel.rsi
+    layers:
+    - state: base
+      map: ["enum.StorageVisualLayers.Base"]
   - type: SolutionContainerManager
     solutions:
       tank:
@@ -79,21 +83,8 @@
     solution: tank
   - type: DumpableSolution
     solution: tank
-  - type: Sprite
-    sprite: _NF/Objects/Storage/keg.rsi
-    layers:
-    - state: base
-      map: ["enum.StorageVisualLayers.Base"]
-  - type: Damageable
-    damageContainer: StructuralInorganic
-    damageModifierSet: Wood
   - type: StaticPrice
     price: 50
-  - type: Construction
-    graph: WoodenKeg
-    node: woodenkeg
-    containers:
-    - entity_storage
   - type: Fixtures
     fixtures:
       fix1:
@@ -107,24 +98,43 @@
         - MachineLayer
   - type: Transform
     noRot: false
-
-- type: entity
-  id: MetalBarrelGrey
-  name: metal barrel
-  parent: WoodenKeg
-  description: A metal keg. It can be filled with liquid.
-  components:
-  - type: Sprite
-    sprite: _NF/Objects/Storage/barrel.rsi
-    layers:
-    - state: metal_grey
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: Metallic
 
 - type: entity
+  parent: BaseBarrel
+  id: WoodenKeg
+  name: wooden keg
+  description: A musty old wooden keg, with a tap attached to the front.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Storage/keg.rsi
+    layers:
+    - state: base
+      map: ["enum.StorageVisualLayers.Base"]
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Wood
+  - type: Construction
+    graph: WoodenKeg
+    node: woodenkeg
+    containers:
+    - entity_storage
+
+- type: entity
+  id: MetalBarrelGrey
+  name: metal barrel
+  parent: BaseBarrel
+  description: A metal keg. It can be filled with liquid.
+  components:
+  - type: Sprite
+    layers:
+    - state: metal_grey
+
+- type: entity
   id: MetalBarrelBlue
-  parent: MetalBarrelGrey
+  parent: BaseBarrel
   components:
   - type: Sprite
     layers:
@@ -132,7 +142,7 @@
 
 - type: entity
   id: MetalBarrelRed
-  parent: MetalBarrelGrey
+  parent: BaseBarrel
   components:
   - type: Sprite
     layers:
@@ -140,7 +150,7 @@
 
 - type: entity
   id: MetalBarrelYellow
-  parent: MetalBarrelGrey
+  parent: BaseBarrel
   components:
   - type: Sprite
     layers:
@@ -148,7 +158,7 @@
 
 - type: entity
   id: MetalBarrelGreen
-  parent: MetalBarrelGrey
+  parent: BaseBarrel
   components:
   - type: Sprite
     layers:
@@ -156,7 +166,7 @@
 
 - type: entity
   id: ChemicalBarrelExplosiveEmpty
-  parent: MetalBarrelGrey
+  parent: BaseBarrel
   name: explosive barrel
   suffix: Empty
   description: The ancient and mysterious symbol on the front is believed to have once meant 'Use me as cover!' in days of yore.
@@ -192,7 +202,7 @@
     totalIntensity: 80
 
 - type: entity
-  parent: MetalBarrelGrey
+  parent: BaseBarrel
   id: ChemicalBarrelCarbon
   name: chemical barrel (carbon)
   components:
