@@ -10,6 +10,7 @@
     state: icon
     layers:
     - state: icon
+      map: ["enum.OpenableVisuals.Layer"]
     - state: paper
       map: ["enum.PaperLabelVisuals.Layer"]
   - type: Item
@@ -45,6 +46,10 @@
         type: TransferAmountBoundUserInterface
   - type: GenericVisualizer
     visuals:
+      enum.OpenableVisuals.Opened:
+        enum.OpenableVisuals.Layer:
+          True: { state: "icon_open" }
+          False: { state: "icon" }
       enum.PaperLabelVisuals.HasLabel:
         enum.PaperLabelVisuals.Layer:
           True: { visible: true }
@@ -55,10 +60,6 @@
           Bounty: { state: paper }
           CaptainsPaper: { state: paper }
           Invoice: { state: paper }
-      enum.OpenableVisuals.Opened:
-        enum.OpenableVisuals.Layer:
-          True: {state: "icon_open"}
-          False: {state: "icon"}
   - type: PaperLabel
     labelSlot:
       insertVerbText: Attach Label
@@ -113,6 +114,9 @@
     - state: icon
     - state: keg-alpha-6
       map: ["enum.SolutionContainerLayers.Fill"]
+    - state: stopper
+      visible: true
+      map: ["enum.OpenableVisuals.Layer"]
     - state: paper
       map: ["enum.PaperLabelVisuals.Layer"]
       visible: true
@@ -124,3 +128,19 @@
   - type: SolutionContainerVisuals
     maxFillLevels: 6
     fillBaseName: keg-alpha-
+  - type: GenericVisualizer
+    visuals:
+      enum.OpenableVisuals.Opened:
+        enum.OpenableVisuals.Layer:
+          True: { visible: false }
+          False: { visible: true }
+      enum.PaperLabelVisuals.HasLabel:
+        enum.PaperLabelVisuals.Layer:
+          True: { visible: true }
+          False: { visible: false }
+      enum.PaperLabelVisuals.LabelType:
+        enum.PaperLabelVisuals.Layer:
+          Paper: { state: paper }
+          Bounty: { state: paper }
+          CaptainsPaper: { state: paper }
+          Invoice: { state: paper }
