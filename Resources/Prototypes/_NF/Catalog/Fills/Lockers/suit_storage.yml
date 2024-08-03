@@ -27,7 +27,37 @@
         - id: ClothingMaskBreath
         - id: JetpackMiniFilled
         - id: HandheldGPSBasic
-#        - id: ClothingShoesBootsMagMercenaryFilled # Frontier - Not adding this to the suit storage so it wont be abused, exists only on role spawn.
+  - type: AccessReader
+
+#Mail Carrier EVA
+- type: entity
+  id: SuitStorageMailCarrier
+  parent: SuitStorageBase
+  suffix: Mail Carrier
+  components:
+  - type: StorageFill
+    contents:
+        - id: AirTankFilled
+        - id: ClothingOuterEVASuitMailman
+        - id: ClothingMaskBreath
+        - id: JetpackMiniFilled
+        - id: HandheldGPSBasic
+  - type: AccessReader
+    access: [["Mail"]]
+
+#Goblin EVA
+- type: entity
+  id: SuitStorageGoblin
+  parent: SuitStorageBase
+  suffix: Goblin
+  components:
+  - type: StorageFill
+    contents:
+        - id: AirTankFilled
+        - id: ClothingOuterEVASuitGoblin
+        - id: ClothingMaskBreath
+        - id: JetpackMiniFilled
+        - id: HandheldGPSBasic
   - type: AccessReader
 
 #HARDSUITS
@@ -278,19 +308,3 @@
         - id: ClothingShoesBootsMagNfsd # Frontier
   - type: AccessReader
     access: [["Security"]]
-
-#Mail Carrier hardsuit
-- type: entity
-  id: SuitStorageMailCarrier
-  parent: SuitStorageBase
-  suffix: Mail Carrier
-  components:
-  - type: StorageFill
-    contents:
-        - id: AirTankFilled
-        - id: ClothingOuterEVASuitMailman
-        - id: ClothingMaskBreath
-        - id: JetpackMiniFilled
-        - id: HandheldGPSBasic
-  - type: AccessReader
-    access: [["Mail"]]
