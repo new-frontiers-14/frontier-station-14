@@ -7,6 +7,8 @@ using Content.Shared._NF.Market.Components;
 using Content.Shared._NF.Market.Events;
 using Content.Shared.Bank.Components;
 using Content.Shared.Maps;
+using Content.Shared.Prototypes;
+using Content.Shared.Stacks;
 using Robust.Shared.Map;
 using static Content.Shared._NF.Market.Components.CrateMachineComponent;
 
@@ -181,17 +183,8 @@ public sealed partial class MarketSystem
         for (var i = 0; i < 30 && consoleComponent.CartDataList.Count > 0; i++)
         {
             var marketData = consoleComponent.CartDataList.First();
-
             spawnList.Add(marketData);
-
-            if (marketData.Quantity > 1)
-            {
-                consoleComponent.CartDataList.First().Quantity -= 1;
-            }
-            else
-            {
-                consoleComponent.CartDataList.Remove(marketData);
-            }
+            consoleComponent.CartDataList.RemoveAt(0);
         }
 
         // Withdraw spesos from player
@@ -206,10 +199,36 @@ public sealed partial class MarketSystem
 
     private void SpawnCrateItems(List<MarketData> spawnList, EntityUid targetCrate)
     {
+        var coordinates = Transform(targetCrate).Coordinates;
         foreach (var data in spawnList)
         {
-            var spawn = Spawn(data.Prototype, Transform(targetCrate).Coordinates);
-            _storage.Insert(spawn, targetCrate);
+            if (_prototypeManager.TryIndex(data.Prototype, out var entityPrototype) &&
+                entityPrototype.HasComponent<StackComponent>())
+            {
+                StackPrototype? stackPrototype = null;
+                var maxStackCount = int.MaxValue;
+                var remainingCount = data.Quantity;
+                while (remainingCount > 0)
+                {
+                    var stackEnt = _entityManager.SpawnEntity(data.Prototype, coordinates);
+                    var stack = _entityManager.GetComponent<StackComponent>(stackEnt);
+                    if (stackPrototype == null)
+                    {
+                        _prototypeManager.TryIndex(stack.StackTypeId, out stackPrototype);
+                        maxStackCount = stackPrototype?.MaxCount ?? int.MaxValue;
+                    }
+
+                    var toWithdraw = Math.Min(remainingCount, maxStackCount);
+                    remainingCount -= toWithdraw;
+                    _stackSystem.SetCount(stackEnt, toWithdraw, stack);
+                    _storage.Insert(stackEnt, targetCrate);
+                }
+            }
+            else
+            {
+                var spawn = Spawn(data.Prototype, coordinates);
+                _storage.Insert(spawn, targetCrate);
+            }
         }
     }
 

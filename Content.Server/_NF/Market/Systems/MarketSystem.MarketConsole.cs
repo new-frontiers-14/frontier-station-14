@@ -39,18 +39,26 @@ public sealed partial class MarketSystem
                 continue;
 
             var count = 1;
+            var entityPrototype = metaData.EntityPrototype;
 
             // Get amount of items in the stack if it's a stackable item.
+            // If it's a stackable item, get the singular item id instead.
             if (_entityManager.TryGetComponent<StackComponent>(sold, out var stackComponent))
             {
                 count = stackComponent.Count;
+                var singularId = _prototypeManager.Index<StackPrototype>(stackComponent.StackTypeId).Spawn.Id;
+                _prototypeManager.TryIndex(singularId, out entityPrototype);
             }
 
-            var estimatedPrice = _pricingSystem.GetEstimatedPrice(metaData.EntityPrototype) / count;
+            // If this is null, probably couldnt find the stack type id.
+            if (entityPrototype == null)
+                return;
+
+            var estimatedPrice = _pricingSystem.GetEstimatedPrice(entityPrototype);
 
             // Increase the count in the MarketData for this entity
             // Assuming the quantity to increase is 1 for each sold entity
-            marketDataComponent.MarketDataList.Upsert(metaData.EntityPrototype, count, estimatedPrice);
+            marketDataComponent.MarketDataList.Upsert(entityPrototype, count, estimatedPrice);
         }
     }
 

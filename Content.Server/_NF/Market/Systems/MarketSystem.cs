@@ -1,5 +1,6 @@
 ﻿using Content.Server.Bank;
 using Content.Server.Cargo.Systems;
+using Content.Server.Stack;
 using Content.Shared._NF.Market;
 using Content.Shared.Storage.EntitySystems;
 using Content.Shared.Whitelist;
@@ -21,6 +22,7 @@ public sealed partial class MarketSystem: SharedMarketSystem
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
     [Dependency] private readonly PricingSystem _pricingSystem = default!;
+    [Dependency] private readonly StackSystem _stackSystem = default!;
 
     public override void Initialize()
     {
