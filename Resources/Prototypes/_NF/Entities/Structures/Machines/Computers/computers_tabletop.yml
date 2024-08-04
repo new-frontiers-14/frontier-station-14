@@ -649,6 +649,48 @@
 # Computers: Frontier
 
 - type: entity
+  parent: [BaseStructureComputerTabletop, ComputerMarketConsoleNFLow]
+  id: ComputerTabletopMarketConsoleNFLow
+  suffix: Low 2x, Tabletop
+  components:
+  - type: Sprite
+    drawdepth: SmallObjects
+    layers:
+    - map: ["computerLayerBody"]
+      sprite: _NF/Structures/Machines/computer_tabletop.rsi
+      state: computer_tabletop
+    - map: ["computerLayerKeyboard"]
+      sprite: _NF/Structures/Machines/computer_tabletop.rsi
+      state: generic_keyboard_tabletop
+    - map: ["computerLayerScreen"]
+      sprite: Structures/Machines/computers.rsi
+      state: request
+    - map: ["computerLayerKeys"]
+      sprite: Structures/Machines/computers.rsi
+      state: tech_key
+
+- type: entity
+  parent: [BaseStructureComputerTabletop, ComputerMarketConsoleNFHigh]
+  id: ComputerTabletopMarketConsoleNFHigh
+  suffix: High 5x, Tabletop
+  components:
+  - type: Sprite
+    drawdepth: SmallObjects
+    layers:
+    - map: ["computerLayerBody"]
+      sprite: _NF/Structures/Machines/computer_tabletop.rsi
+      state: computer_tabletop
+    - map: ["computerLayerKeyboard"]
+      sprite: _NF/Structures/Machines/computer_tabletop.rsi
+      state: generic_keyboard_tabletop
+    - map: ["computerLayerScreen"]
+      sprite: Structures/Machines/computers.rsi
+      state: request
+    - map: ["computerLayerKeys"]
+      sprite: Structures/Machines/computers.rsi
+      state: tech_key
+
+- type: entity
   parent: [BaseStructureIndestructible, BaseStructureComputerTabletop, ComputerPalletConsoleNFHighMarket]
   id: ComputerTabletopPalletConsoleNFHighMarket
   suffix: High, Tabletop
