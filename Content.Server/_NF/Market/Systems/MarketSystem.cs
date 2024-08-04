@@ -1,10 +1,13 @@
-﻿using Content.Server.Bank;
+﻿using Content.Server._NF.SectorServices;
+using Content.Server.Bank;
 using Content.Server.Cargo.Systems;
 using Content.Server.Stack;
 using Content.Shared._NF.Market;
+using Content.Shared.Popups;
 using Content.Shared.Storage.EntitySystems;
 using Content.Shared.Whitelist;
 using Robust.Server.GameObjects;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 
@@ -23,6 +26,10 @@ public sealed partial class MarketSystem: SharedMarketSystem
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
     [Dependency] private readonly PricingSystem _pricingSystem = default!;
     [Dependency] private readonly StackSystem _stackSystem = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly SectorServiceSystem _sectorService = default!;
+    [Dependency] private readonly EntProtoIdWhitelistSystem _protoIdWhitelist = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
 
     public override void Initialize()
     {

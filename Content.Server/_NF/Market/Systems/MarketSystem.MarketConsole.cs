@@ -20,8 +20,6 @@ namespace Content.Server._NF.Market.Systems;
 
 public sealed partial class MarketSystem
 {
-    [Dependency] private SectorServiceSystem _sectorService = default!;
-    [Dependency] private EntProtoIdWhitelistSystem _protoIdWhitelist = default!;
     private void InitializeConsole()
     {
         SubscribeLocalEvent<EntitySoldEvent>(OnEntitySoldEvent);

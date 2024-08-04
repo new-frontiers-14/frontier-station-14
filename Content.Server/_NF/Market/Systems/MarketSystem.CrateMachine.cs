@@ -7,9 +7,12 @@ using Content.Shared._NF.Market.Components;
 using Content.Shared._NF.Market.Events;
 using Content.Shared.Bank.Components;
 using Content.Shared.Maps;
+using Content.Shared.Popups;
 using Content.Shared.Prototypes;
 using Content.Shared.Stacks;
+using Robust.Shared.Audio;
 using Robust.Shared.Map;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using static Content.Shared._NF.Market.Components.CrateMachineComponent;
 
@@ -51,6 +54,7 @@ public sealed partial class MarketSystem
             comp.ClosingTimeRemaining = comp.ClosingTime;
             var targetCrate = Spawn(comp.CratePrototype, Transform(uid).Coordinates);
             SpawnCrateItems(comp.ItemsToSpawn, targetCrate);
+            comp.ItemsToSpawn = [];
         }
 
         // Update at the end so the closing animation can start automatically.
@@ -116,7 +120,7 @@ public sealed partial class MarketSystem
             }
 
             var isTooFarAway = distance > maxCrateMachineDistance;
-            var isBusy = comp.ClosingTimeRemaining > 0f || comp.OpeningTimeRemaining > 0f;
+            var isBusy = IsCrateMachineOccupied(crateMachineUid, comp);
 
             if (!compXform.Anchored || isTooFarAway || isBusy)
             {
@@ -124,13 +128,16 @@ public sealed partial class MarketSystem
             }
 
             // We found the first nearby compatible crate machine.
-            OnPurchaseCrateMessage(crateMachineUid, comp, component, marketMod, args);
+            OnPurchaseCrateMessage(crateMachineUid, consoleUid, comp, component, marketMod, args);
 
-            break;
+            return;
         }
+        _popup.PopupEntity(Loc.GetString("market-no-crate-machine-available"), consoleUid, Filter.PvsExcept(consoleUid), true);
+        _audio.PlayPredicted(component.ErrorSound, consoleUid, null, AudioParams.Default.WithMaxDistance(5f));
     }
 
     private void OnPurchaseCrateMessage(EntityUid crateMachineUid,
+        EntityUid consoleUid,
         CrateMachineComponent component,
         MarketConsoleComponent consoleComponent,
         float marketMod,
@@ -142,41 +149,40 @@ public sealed partial class MarketSystem
         if (!TryComp<BankAccountComponent>(player, out var bankAccount))
             return;
 
-        TrySpawnCrate(crateMachineUid, player, component, consoleComponent, marketMod, bankAccount);
+        TrySpawnCrate(crateMachineUid, player, consoleUid, component, consoleComponent, marketMod, bankAccount);
     }
 
     /// <summary>
     /// Checks if there is a crate on the crate machine
     /// </summary>
     /// <param name="crateMachineUid">The Uid of the crate machine</param>
-    /// <param name="cratePrototype">The prototype of the crate being spawned by the crate machine</param>
+    /// <param name="component">The crate machine component</param>
     /// <returns>False if not occupied, true if it is.</returns>
-    private bool IsCrateMachineOccupied(EntityUid crateMachineUid, string cratePrototype)
+    private bool IsCrateMachineOccupied(EntityUid crateMachineUid, CrateMachineComponent component)
     {
         if (!TryComp<TransformComponent>(crateMachineUid, out var crateMachineTransform))
             return true;
         var tileRef = crateMachineTransform.Coordinates.GetTileRef(EntityManager, _mapManager);
         if (tileRef == null)
-        {
             return true;
-        }
+
+        if (component.OpeningTimeRemaining > 0 || component.ClosingTimeRemaining > 0f)
+            return true;
 
         // Finally check if there is a crate intersecting the crate machine.
         return _lookup.GetLocalEntitiesIntersecting(tileRef.Value, flags: LookupFlags.All | LookupFlags.Approximate)
             .Any(entity => _entityManager.GetComponent<MetaDataComponent>(entity).EntityPrototype?.ID ==
-                           cratePrototype);
+                           component.CratePrototype);
     }
 
     private void TrySpawnCrate(EntityUid crateMachineUid,
         EntityUid player,
+        EntityUid consoleUid,
         CrateMachineComponent component,
         MarketConsoleComponent consoleComponent,
         float marketMod,
         BankAccountComponent playerBank)
     {
-        if (IsCrateMachineOccupied(crateMachineUid, component.CratePrototype))
-            return;
-
         var cartBalance = MarketDataExtensions.GetMarketValue(consoleComponent.CartDataList, marketMod);
         if (playerBank.Balance < cartBalance)
             return;
@@ -184,10 +190,16 @@ public sealed partial class MarketSystem
         // Withdraw spesos from player
         var spawnCost = int.Abs(MarketDataExtensions.GetMarketValue(consoleComponent.CartDataList, marketMod));
         if (!_bankSystem.TryBankWithdraw(player, spawnCost))
+        {
+            _popup.PopupEntity(Loc.GetString("market-insufficient-funds"), consoleUid, player);
+            _audio.PlayPredicted(consoleComponent.ErrorSound, consoleUid, null, AudioParams.Default.WithMaxDistance(5f));
             return;
+        }
+        _audio.PlayPredicted(consoleComponent.SuccessSound, consoleUid, null, AudioParams.Default.WithMaxDistance(5f));
 
         component.OpeningTimeRemaining = component.OpeningTime;
         component.ItemsToSpawn = consoleComponent.CartDataList;
+        consoleComponent.CartDataList = [];
         UpdateVisualState(crateMachineUid, component);
     }
 
