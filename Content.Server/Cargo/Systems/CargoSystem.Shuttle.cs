@@ -278,7 +278,7 @@ public sealed partial class CargoSystem
             return false;
 
 
-        var ev = new EntitySoldEvent(toSell, griduid);
+        var ev = new EntitySoldEvent(toSell, gridUid);
         RaiseLocalEvent(ref ev);
 
         foreach (var ent in toSell)

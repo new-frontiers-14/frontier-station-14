@@ -124,7 +124,7 @@ public sealed partial class MarketSystem
     /// </summary>
     /// <param name="marketDataComponent">The MarketDataComponent to update.</param>
     /// <param name="itemSlotsComponent">The ItemSlotsComponent containing item slots to process.</param>
-    private void UpsertItemSlots(SectorCargoMarketDataComponent marketDataComponent, ItemSlotsComponent itemSlotsComponent)
+    private void UpsertItemSlots(CargoMarketDataComponent marketDataComponent, ItemSlotsComponent itemSlotsComponent)
     {
         foreach (var slot in itemSlotsComponent.Slots.Values)
         {
@@ -211,13 +211,16 @@ public sealed partial class MarketSystem
             marketMultiplier = priceMod.Mod;
         }
 
+        var gridUid = Transform(consoleUid).GridUid!.Value;
+
         // Try to get the EntityPrototype that matches marketData.Prototype
         if (!_prototypeManager.TryIndex<EntityPrototype>(args.ItemPrototype!, out var prototype))
         {
             return; // Skip this iteration if the prototype was not found
         }
 
-        if (!TryComp<CargoMarketDataComponent>(_sectorService.GetServiceEntity(), out var market))
+        // No data set for market data, can't update cart, no data.
+        if (!_entityManager.TryGetComponent<CargoMarketDataComponent>(gridUid, out var market))
             return;
 
         var marketData = market.MarketDataList;
