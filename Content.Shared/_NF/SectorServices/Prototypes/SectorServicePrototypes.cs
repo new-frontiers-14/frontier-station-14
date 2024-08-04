@@ -19,7 +19,7 @@ public sealed partial class SectorServicePrototype : IPrototype
     public string ID { get; private set; } = default!;
 
     /// <summary>
-    /// A dictionary mapping the component type list to the YAML mapping containing their settings.
+    /// A dictionary mapping a service to its necessary components.
     /// </summary>
     [DataField]
     public ComponentRegistry Components { get; } = new();
