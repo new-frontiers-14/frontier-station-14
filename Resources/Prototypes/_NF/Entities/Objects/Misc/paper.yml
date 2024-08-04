@@ -1,0 +1,31 @@
+- type: entity
+  id: PaperPirateBountyManifest
+  parent: PaperCargoInvoice
+  name: pirate bounty reminder
+  description: A little scroll reminding you of the bounty you agreed to pilfer. How is it stained?
+  components:
+  - type: Sprite
+    layers:
+    - state: paper
+      color: "#f7e574"
+    - state: paper_words
+      map: ["enum.PaperVisualLayers.Writing"]
+      color: "#f7e574"
+      visible: false
+    - state: paper_stamp-trader
+      map: ["enum.PaperVisualLayers.Stamp"]
+      visible: false
+  - type: PaperVisuals # TODO: fix this up
+    backgroundImagePath: "/Textures/Interface/Paper/paper_background_default.svg.96dpi.png"
+    contentImagePath: "/Textures/Interface/Paper/paper_content_lined.svg.96dpi.png"
+    backgroundModulate: "#f7e574"
+    contentImageModulate: "#f7e574"
+    backgroundPatchMargin: 16.0, 16.0, 16.0, 16.0
+    contentMargin: 16.0, 16.0, 16.0, 16.0
+    headerImagePath: "/Textures/Interface/Paper/paper_heading_cargo_invoice.svg.96dpi.png"
+    headerMargin: 0.0, 12.0, 0.0, 0.0
+  - type: StaticPrice
+    price: 0
+  # - type: GuideHelp # Frontier: removed guidebook entries
+  #   guides: # Frontier: removed guidebook entries
+  #   - Pirate # Frontier: add this eventually
