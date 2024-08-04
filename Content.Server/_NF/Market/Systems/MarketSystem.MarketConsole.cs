@@ -41,7 +41,7 @@ public sealed partial class MarketSystem
     /// <param name="entitySoldEvent">The details of the event</param>
     private void OnEntitySoldEvent(ref EntitySoldEvent entitySoldEvent)
     {
-        if (!TryComp<SectorCargoMarketDataComponent>(_sectorService.GetServiceEntity(), out var market))
+        if (!_entityManager.TryGetComponent<CargoMarketDataComponent>(entitySoldEvent.Grid, out var market))
             return;
 
         foreach (var sold in entitySoldEvent.Sold)
@@ -57,7 +57,7 @@ public sealed partial class MarketSystem
         }
     }
 
-    private void UpsertMetadata(SectorCargoMarketDataComponent marketDataComponent, EntityUid sold)
+    private void UpsertMetadata(CargoMarketDataComponent marketDataComponent, EntityUid sold)
     {
         // Get the MetaDataComponent from the sold entity
         if (!_entityManager.TryGetComponent<MetaDataComponent>(sold, out var metaDataComponent))
@@ -103,7 +103,7 @@ public sealed partial class MarketSystem
     /// </summary>
     /// <param name="marketDataComponent">The MarketDataComponent to update.</param>
     /// <param name="entityStorageComponent">The EntityStorageComponent containing entities to process.</param>
-    private void UpsertEntityStorage(SectorCargoMarketDataComponent marketDataComponent, EntityStorageComponent entityStorageComponent)
+    private void UpsertEntityStorage(CargoMarketDataComponent marketDataComponent, EntityStorageComponent entityStorageComponent)
     {
         foreach (var entityUid in entityStorageComponent.Contents.ContainedEntities)
         {
@@ -124,7 +124,7 @@ public sealed partial class MarketSystem
     /// </summary>
     /// <param name="marketDataComponent">The MarketDataComponent to update.</param>
     /// <param name="itemSlotsComponent">The ItemSlotsComponent containing item slots to process.</param>
-    private void UpsertItemSlots(SectorCargoMarketDataComponent marketDataComponent, ItemSlotsComponent itemSlotsComponent)
+    private void UpsertItemSlots(CargoMarketDataComponent marketDataComponent, ItemSlotsComponent itemSlotsComponent)
     {
         foreach (var slot in itemSlotsComponent.Slots.Values)
         {
@@ -148,7 +148,7 @@ public sealed partial class MarketSystem
     /// </summary>
     /// <param name="marketDataComponent"></param>
     /// <param name="storageComponent"></param>
-    private void UpsertStorage(SectorCargoMarketDataComponent marketDataComponent, StorageComponent storageComponent)
+    private void UpsertStorage(CargoMarketDataComponent marketDataComponent, StorageComponent storageComponent)
     {
         foreach (var entityUid in storageComponent.Container.ContainedEntities.ToArray())
         {
@@ -211,13 +211,16 @@ public sealed partial class MarketSystem
             marketMultiplier = priceMod.Mod;
         }
 
+        var gridUid = Transform(consoleUid).GridUid!.Value;
+
         // Try to get the EntityPrototype that matches marketData.Prototype
         if (!_prototypeManager.TryIndex<EntityPrototype>(args.ItemPrototype!, out var prototype))
         {
             return; // Skip this iteration if the prototype was not found
         }
 
-        if (!TryComp<SectorCargoMarketDataComponent>(_sectorService.GetServiceEntity(), out var market))
+        // No data set for market data, can't update cart, no data.
+        if (!_entityManager.TryGetComponent<CargoMarketDataComponent>(gridUid, out var market))
             return;
 
         var marketData = market.MarketDataList;
@@ -308,7 +311,9 @@ public sealed partial class MarketSystem
         // Get the market data for this grid.
         var cartData = component.CartDataList;
         var marketData = new List<MarketData>();
-        if (TryComp<SectorCargoMarketDataComponent>(_sectorService.GetServiceEntity(), out var market))
+
+        var consoleGridUid = Transform(consoleUid).GridUid!.Value;
+        if (TryComp<CargoMarketDataComponent>(consoleGridUid, out var market))
         {
             marketData = market.MarketDataList;
         }
