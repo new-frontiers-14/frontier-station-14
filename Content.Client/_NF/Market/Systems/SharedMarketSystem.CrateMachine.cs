@@ -46,6 +46,7 @@ public sealed class MarketSystem : SharedMarketSystem
         sprite.LayerSetVisible(CrateMachineVisualLayers.Closed, state == CrateMachineVisualState.Closed);
         sprite.LayerSetVisible(CrateMachineVisualLayers.Opening, state == CrateMachineVisualState.Opening);
         sprite.LayerSetVisible(CrateMachineVisualLayers.Closing, state == CrateMachineVisualState.Closing);
+        sprite.LayerSetVisible(CrateMachineVisualLayers.Open, state == CrateMachineVisualState.Open);
         sprite.LayerSetVisible(CrateMachineVisualLayers.Crate, state == CrateMachineVisualState.Opening);
 
         if (state == CrateMachineVisualState.Opening && !_animationSystem.HasRunningAnimation(uid, AnimationKey))
@@ -144,6 +145,7 @@ public enum CrateMachineVisualLayers : byte
 {
     Base,
     Opening,
+    Open,
     Closing,
     Closed,
     Crate

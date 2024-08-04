@@ -51,9 +51,9 @@ public sealed partial class MarketSystem
         // Also spawns the crate.
         if (comp.OpeningTimeRemaining <= 0)
         {
-            comp.ClosingTimeRemaining = comp.ClosingTime;
             var targetCrate = Spawn(comp.CratePrototype, Transform(uid).Coordinates);
             SpawnCrateItems(comp.ItemsToSpawn, targetCrate);
+            comp.DidTakeCrate = false;
             comp.ItemsToSpawn = [];
         }
 
@@ -63,6 +63,11 @@ public sealed partial class MarketSystem
 
     private void ProcessClosingAnimation(EntityUid uid, float frameTime, CrateMachineComponent comp)
     {
+        if (!comp.DidTakeCrate && !IsCrateMachineOccupied(uid, comp, true))
+        {
+            comp.DidTakeCrate = true;
+            comp.ClosingTimeRemaining = comp.ClosingTime;
+        }
         if (comp.ClosingTimeRemaining <= 0)
             return;
 
@@ -157,8 +162,9 @@ public sealed partial class MarketSystem
     /// </summary>
     /// <param name="crateMachineUid">The Uid of the crate machine</param>
     /// <param name="component">The crate machine component</param>
+    /// <param name="ignoreAnimation">Ignores animation checks</param>
     /// <returns>False if not occupied, true if it is.</returns>
-    private bool IsCrateMachineOccupied(EntityUid crateMachineUid, CrateMachineComponent component)
+    private bool IsCrateMachineOccupied(EntityUid crateMachineUid, CrateMachineComponent component, bool ignoreAnimation = false)
     {
         if (!TryComp<TransformComponent>(crateMachineUid, out var crateMachineTransform))
             return true;
@@ -166,7 +172,7 @@ public sealed partial class MarketSystem
         if (tileRef == null)
             return true;
 
-        if (component.OpeningTimeRemaining > 0 || component.ClosingTimeRemaining > 0f)
+        if (!ignoreAnimation && (component.OpeningTimeRemaining > 0 || component.ClosingTimeRemaining > 0f))
             return true;
 
         // Finally check if there is a crate intersecting the crate machine.
@@ -233,6 +239,8 @@ public sealed partial class MarketSystem
             _appearanceSystem.SetData(uid, CrateMachineVisuals.VisualState, CrateMachineVisualState.Opening);
         else if (component.ClosingTimeRemaining > 0)
             _appearanceSystem.SetData(uid, CrateMachineVisuals.VisualState, CrateMachineVisualState.Closing);
+        else if (!component.DidTakeCrate)
+            _appearanceSystem.SetData(uid, CrateMachineVisuals.VisualState, CrateMachineVisualState.Open);
         else
             _appearanceSystem.SetData(uid, CrateMachineVisuals.VisualState, CrateMachineVisualState.Closed);
     }

@@ -13,6 +13,9 @@ public sealed partial class CrateMachineComponent: Component
     [NonSerialized]
     public List<MarketData> ItemsToSpawn;
 
+    [NonSerialized]
+    public bool DidTakeCrate = true;
+
     [ViewVariables, DataField]
     public bool Powered;
 
