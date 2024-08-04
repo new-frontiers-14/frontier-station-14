@@ -125,9 +125,9 @@
 
 - type: entity
   name: cargo market computer
-  suffix: Normal
+  abstract: true
   parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseStructureComputer]
-  id: ComputerMarketConsoleNFNormalMarket
+  id: ComputerMarketConsoleNFBase
   description: Used to buy goods from the station's market system
   placement:
     mode: SnapgridCenter
@@ -185,7 +185,25 @@
         enum.MarketConsoleUiKey.Default:
           type: MarketConsoleBoundUserInterface
     - type: MarketModifier
-      mod: 1.90
+      mod: 1
+      
+- type: entity
+  name: cargo market computer
+  parent: ComputerMarketConsoleNFBase
+  id: ComputerMarketConsoleNFLow
+  suffix: Low 5x
+  components:
+  - type: MarketModifier
+    mod: 5
+
+- type: entity
+  name: cargo market computer
+  parent: ComputerMarketConsoleNFBase
+  id: ComputerMarketConsoleNFHigh
+  suffix: High 10x
+  components:
+  - type: MarketModifier
+    mod: 10
 
 - type: entity
   id: ComputerPirateBounty
