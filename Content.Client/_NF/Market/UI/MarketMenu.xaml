@@ -1,0 +1,114 @@
+﻿<controls:FancyWindow xmlns="https://spacestation14.io"
+                      xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+                      xmlns:customControls="clr-namespace:Content.Client.Administration.UI.CustomControls"
+                      xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+                      MinSize="1000 500"
+                      Title="{Loc 'market-console-menu-title'}">
+
+    <BoxContainer Name="ViewContainer"
+                  HorizontalExpand="True"
+                  VerticalExpand="True"
+                  Access="Public"
+                  Orientation="Vertical">
+        <BoxContainer Orientation="Vertical"
+                      VerticalExpand="True"
+                      HorizontalExpand="True"
+                      MinSize="50 50"
+                      Margin="8">
+
+            <!-- Panel containing market and cart -->
+            <BoxContainer Orientation="Horizontal" Margin="5 0 5 0" VerticalExpand="True" HorizontalExpand="True">
+                <!-- Market data container -->
+                <PanelContainer VerticalExpand="True" HorizontalExpand="True" Margin="10">
+                    <PanelContainer.PanelOverride>
+                        <gfx:StyleBoxFlat BorderThickness="2" BorderColor="#777777" />
+                    </PanelContainer.PanelOverride>
+                    <BoxContainer Orientation="Vertical"
+                                  VerticalExpand="True"
+                                  HorizontalExpand="True">
+                        <!-- Balance, cart balance, etc -->
+                        <BoxContainer Orientation="Horizontal" Margin="5">
+                            <Label Text="{Loc 'market-bank-balance'}"
+                                   StyleClasses="LabelKeyText" />
+                            <Label Name="BalanceLabel"
+                                   Text="{Loc 'market-no-bank-found'}" />
+                            <Label Name="Price"
+                                   Text="{Loc 'market-price'}"
+                                   HorizontalExpand="True"
+                                   Align="Right"/>
+                        </BoxContainer>
+                        <customControls:HSeparator StyleClasses="LowDivider" />
+                        <ScrollContainer HorizontalExpand="True"
+                                         VerticalExpand="True"
+                                         VScrollEnabled="True">
+                            <BoxContainer Name="Products"
+                                          Orientation="Vertical"
+                                          HorizontalExpand="True"
+                                          VerticalExpand="True"
+                                          MinSize="50 50"
+                                          Margin="4">
+                            </BoxContainer>
+                        </ScrollContainer>
+                    </BoxContainer>
+                </PanelContainer>
+
+                <!-- Cart data container -->
+                <PanelContainer VerticalExpand="True" HorizontalExpand="True" Margin="10">
+                    <PanelContainer.PanelOverride>
+                        <gfx:StyleBoxFlat BorderThickness="2" BorderColor="#777777" />
+                    </PanelContainer.PanelOverride>
+                    <BoxContainer Orientation="Vertical"
+                                  VerticalExpand="True"
+                                  HorizontalExpand="True">
+                        <!-- Balance, cart balance, etc -->
+                        <BoxContainer Orientation="Horizontal" Margin="5">
+                            <Label Text="{Loc 'market-cart-prefix'}"
+                                   StyleClasses="LabelKeyText" />
+                            <Label Name="CartBalanceLabel"
+                                   HorizontalExpand="True"
+                                   Text="{Loc 'market-no-cart-found'}" />
+                            <Label Name="CartEntitiesCount" />
+                        </BoxContainer>
+                        <customControls:HSeparator StyleClasses="LowDivider"/>
+                        <ScrollContainer HorizontalExpand="True"
+                                         VerticalExpand="True"
+                                         VScrollEnabled="True">
+                            <BoxContainer Name="Cart"
+                                          Orientation="Vertical"
+                                          HorizontalExpand="True"
+                                          VerticalExpand="True"
+                                          MinSize="50 50"
+                                          Margin="4">
+                            </BoxContainer>
+                        </ScrollContainer>
+                    </BoxContainer>
+                </PanelContainer>
+
+            </BoxContainer>
+
+            <BoxContainer Orientation="Horizontal">
+                <BoxContainer Orientation="Horizontal" HorizontalExpand="True" Margin="5 0 5 0">
+                    <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
+                        <Label Text="{Loc 'market-search'}" StyleClasses="LabelSubText" Margin="0 0 5 0" />
+                        <LineEdit Name="SearchText" Access="Public" HorizontalExpand="True" MinHeight="30"
+                                  MinWidth="60" />
+                    </BoxContainer>
+                    <Button Name="ClearSearchButton" Access="Public" Text="✖" />
+                </BoxContainer>
+                <Button Name="PurchaseCart"
+                        Access="Public"
+                        ToolTip=""
+                        HorizontalExpand="True"
+                        Margin="5 0 5 0"
+                        Text="{Loc 'market-purchase-cart-button'}"
+                        StyleClasses="LabelSubText" />
+            </BoxContainer>
+        </BoxContainer>
+        <BoxContainer Name="ContentFooter" HorizontalExpand="True" SetHeight="28" Margin="1 0 2 1">
+            <controls:StripeBack HasBottomEdge="False" HasMargins="False" HorizontalExpand="True">
+                <Label Text="Robust#OS ™" VerticalAlignment="Center" HorizontalAlignment="Right" HorizontalExpand="True"
+                       Margin="6 0" StyleClasses="PdaContentFooterText" />
+            </controls:StripeBack>
+        </BoxContainer>
+    </BoxContainer>
+</controls:FancyWindow>
