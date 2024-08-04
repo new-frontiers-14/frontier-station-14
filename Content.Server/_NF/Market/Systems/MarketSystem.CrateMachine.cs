@@ -116,8 +116,9 @@ public sealed partial class MarketSystem
             }
 
             var isTooFarAway = distance > maxCrateMachineDistance;
+            var isBusy = comp.ClosingTimeRemaining > 0f || comp.OpeningTimeRemaining > 0f;
 
-            if (!compXform.Anchored || isTooFarAway)
+            if (!compXform.Anchored || isTooFarAway || isBusy)
             {
                 continue;
             }
