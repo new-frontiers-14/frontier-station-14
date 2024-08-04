@@ -10,6 +10,7 @@ using Content.Shared.Maps;
 using Content.Shared.Prototypes;
 using Content.Shared.Stacks;
 using Robust.Shared.Map;
+using Robust.Shared.Prototypes;
 using static Content.Shared._NF.Market.Components.CrateMachineComponent;
 
 namespace Content.Server._NF.Market.Systems;
@@ -194,20 +195,12 @@ public sealed partial class MarketSystem
         var coordinates = Transform(targetCrate).Coordinates;
         foreach (var data in spawnList)
         {
-            if (data.StackPrototype != null && _prototypeManager.TryIndex(data.StackPrototype, out var entityPrototype) &&
-                entityPrototype.HasComponent<StackComponent>() &&
-                _prototypeManager.TryIndex<StackPrototype>(data.StackPrototype, out var stackPrototype))
+            if (data.StackPrototype != null && _prototypeManager.TryIndex(data.StackPrototype, out var stackPrototype))
             {
-                var maxStackCount = stackPrototype.MaxCount ?? int.MaxValue;
-                var remainingCount = data.Quantity;
-                while (remainingCount > 0)
+                var entityList = _stackSystem.SpawnMultiple(stackPrototype.Spawn, data.Quantity, coordinates);
+                foreach (var entity in entityList)
                 {
-                    var stackEnt = _entityManager.SpawnEntity(data.StackPrototype, coordinates);
-                    var stack = _entityManager.GetComponent<StackComponent>(stackEnt);
-                    var toWithdraw = Math.Min(remainingCount, maxStackCount);
-                    remainingCount -= toWithdraw;
-                    _stackSystem.SetCount(stackEnt, toWithdraw, stack);
-                    _storage.Insert(stackEnt, targetCrate);
+                    _storage.Insert(entity, targetCrate);
                 }
             }
             else

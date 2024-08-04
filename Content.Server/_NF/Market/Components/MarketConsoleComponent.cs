@@ -17,18 +17,6 @@ public sealed partial class MarketConsoleComponent : Component
     public List<MarketData> CartDataList = [];
 
     /// <summary>
-    /// Whitelist for this console, will only show items described in the whitelist.
-    /// </summary>
-    [DataField]
-    public EntityWhitelist? Whitelist;
-
-    /// <summary>
-    /// Blacklist for this console, will never show items described in the blacklist.
-    /// </summary>
-    [DataField]
-    public EntityWhitelist? Blacklist;
-
-    /// <summary>
     /// The cost of one transaction.
     /// </summary>
     [DataField]

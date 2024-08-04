@@ -1,18 +1,25 @@
 ﻿using Robust.Shared.Serialization;
+using Robust.Shared.Prototypes;
+using Content.Shared.Stacks;
 
 namespace Content.Shared._NF.Market;
 
 [Virtual, NetSerializable, Serializable]
 public class MarketData
 {
-    public string Prototype { get; set; }
+    [ViewVariables]
+    public EntProtoId Prototype { get; set; }
 
-    public string? StackPrototype { get; set; }
+    [ViewVariables]
+    public ProtoId<StackPrototype>? StackPrototype { get; set; }
+
+    [ViewVariables]
     public int Quantity { get; set; }
 
+    [ViewVariables]
     public double Price { get; set; }
 
-    public MarketData(string prototype, string? stackPrototype, int quantity, double price)
+    public MarketData(EntProtoId prototype, ProtoId<StackPrototype>? stackPrototype, int quantity, double price)
     {
         Prototype = prototype;
         StackPrototype = stackPrototype;

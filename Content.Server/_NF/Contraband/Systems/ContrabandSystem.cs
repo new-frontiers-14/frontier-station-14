@@ -116,7 +116,7 @@ public sealed partial class ContrabandSystem : SharedContrabandSystem
 
         if (station != null)
         {
-            var ev = new EntitySoldEvent(toSell, gridUid);
+            var ev = new EntitySoldEvent(toSell);
             RaiseLocalEvent(ref ev);
         }
 

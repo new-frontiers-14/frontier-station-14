@@ -12,4 +12,4 @@ market-cart-balance = ${$cost} (+${$cratecost} transaction costs)
 market-cart-prefix = Cart:
 market-no-bank-found = No bank account.
 market-return-button = Remove
-market-search = Search for items
+market-search = Search for items:

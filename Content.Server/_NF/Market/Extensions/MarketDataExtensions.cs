@@ -78,7 +78,8 @@ public static class MarketDataExtensions
     /// <returns>The total value</returns>
     public static int GetMarketValue(List<MarketData> dataList, float marketModifier)
     {
-        if (!(dataList.Count >= 1))
+        // Nothing to buy, no value.
+        if (dataList.Count <= 0)
             return 0;
 
         return dataList.Sum(marketData => (int) Math.Round(marketData.Price * marketData.Quantity * marketModifier));

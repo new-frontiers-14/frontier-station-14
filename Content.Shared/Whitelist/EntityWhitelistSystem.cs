@@ -135,6 +135,30 @@ public sealed class EntityWhitelistSystem : EntitySystem
 
     /// <summary>
     /// FRONTIER ADDITION
+    /// Checks if a given EntityPrototype passes the given whitelist, or if the whitelist is null
+    /// </summary>
+    /// <param name="whitelist">The whitelist to check</param>
+    /// <param name="prototype">The prototype to check</param>
+    /// <returns></returns>
+    public bool IsPrototypeWhitelistPassOrNull(EntityWhitelist? whitelist, EntityPrototype prototype)
+    {
+        return whitelist == null || IsPrototypeValid(whitelist, prototype);
+    }
+
+    /// <summary>
+    /// FRONTIER ADDITION
+    /// Checks if a given EntityPrototype passes the given whitelist, or if the whitelist is null
+    /// </summary>
+    /// <param name="whitelist">The whitelist to check</param>
+    /// <param name="prototype">The prototype to check</param>
+    /// <returns></returns>
+    public bool IsPrototypeWhitelistFailOrNull(EntityWhitelist? whitelist, EntityPrototype prototype)
+    {
+        return whitelist == null || !IsPrototypeValid(whitelist, prototype);
+    }
+
+    /// <summary>
+    /// FRONTIER ADDITION
     /// Checks if a given EntityPrototype passes the given blacklist
     /// </summary>
     /// <param name="blacklist">The whitelist to check</param>
@@ -155,6 +179,30 @@ public sealed class EntityWhitelistSystem : EntitySystem
     public bool IsPrototypeBlacklistFail(EntityWhitelist? blacklist, EntityPrototype prototype)
     {
         return IsPrototypeWhitelistFail(blacklist, prototype);
+    }
+
+    /// <summary>
+    /// FRONTIER ADDITION
+    /// Checks if a given EntityPrototype passes the given blacklist, or if the blacklist is null
+    /// </summary>
+    /// <param name="blacklist">The whitelist to check</param>
+    /// <param name="prototype">The prototype to check</param>
+    /// <returns></returns>
+    public bool IsPrototypeBlacklistPassOrNull(EntityWhitelist? blacklist, EntityPrototype prototype)
+    {
+        return IsPrototypeWhitelistPassOrNull(blacklist, prototype);
+    }
+
+    /// <summary>
+    /// FRONTIER ADDITION
+    /// Checks if a given EntityPrototype fails the given blacklist, or if the blacklist is null
+    /// </summary>
+    /// <param name="blacklist">The whitelist to check</param>
+    /// <param name="prototype">The prototype to check</param>
+    /// <returns></returns>
+    public bool IsPrototypeBlacklistFailOrNull(EntityWhitelist? blacklist, EntityPrototype prototype)
+    {
+        return IsPrototypeWhitelistFailOrNull(blacklist, prototype);
     }
 
     /// The following are a list of "helper functions" that are basically the same as each other

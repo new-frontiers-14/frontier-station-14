@@ -112,7 +112,7 @@ public sealed partial class MarketMenu : FancyWindow
                 {
                     Title = { Text = prototype.Name },
                     Quantity = { Text = marketData.Quantity.ToString() },
-                    Price = { Text = $"${(int) double.Round(marketData.Quantity*marketData.Price*marketModifier)}" },
+                    Price = { Text = $"${(int) double.Round(marketData.Quantity * marketData.Price * marketModifier)}" },
                     Icon = { Texture = sprite.Icon?.Default }
                 };
                 productRow.Return.OnPressed += args => { OnReturn?.Invoke(args); };
@@ -122,10 +122,10 @@ public sealed partial class MarketMenu : FancyWindow
             }
             else
             {
-                var priceText = $"${(int) double.Round(marketData.Quantity*marketData.Price*marketModifier)}";
+                var priceText = $"${(int) double.Round(marketData.Quantity * marketData.Price *marketModifier)}";
                 if (marketData.Quantity > 1)
                 {
-                    priceText += " (" + (int) double.Round(marketData.Price * marketModifier) + " ea)";
+                    priceText += " ($" + (int) double.Round(marketData.Price * marketModifier) + " ea)";
                 }
 
                 var productRow = new MarketProductRow(prototype)
