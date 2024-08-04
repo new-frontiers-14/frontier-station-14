@@ -7,8 +7,8 @@
 
 - type: vessel
   id: Cleithro
-  name: DC Cleithro
-  description: "A simple psychologist ship, ready to help anyone in need, nothing seems weird about it"
+  name: DC Клейтро
+  description: Малогабаритный сервисный шаттл. Рекомендованный размер команды 2-4 человека.
   price: 30000 # 10+% up from sell
   category: Medium
   group: Civilian
@@ -16,7 +16,7 @@
 
 - type: gameMap
   id: Cleithro
-  mapName: 'DC Cleithro'
+  mapName: 'DC Клейтро'
   mapPath: /Maps/_NF/Shuttles/cleithro.yml
   minPlayers: 0
   stations:
@@ -24,7 +24,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Cleithro {1}'
+          mapNameTemplate: 'Клейтро {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

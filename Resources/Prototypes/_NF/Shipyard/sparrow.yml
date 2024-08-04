@@ -10,8 +10,8 @@
 #
 - type: vessel
   id: Sparrow
-  name: NR Sparrow
-  description: A small research and engineering vessel.
+  name: NR Воробей
+  description: Малогабаритный инженерно-исследовательский шаттл. Рекомендованный состав команды 1-4 человека.
   price: 37000 # +4800 from 15% markup
   category: Small
   group: Civilian
@@ -19,7 +19,7 @@
 
 - type: gameMap
   id: Sparrow
-  mapName: 'NR Sparrow'
+  mapName: 'NR Воробей'
   mapPath: /Maps/_NF/Shuttles/sparrow.yml
   minPlayers: 0
   stations:
@@ -27,7 +27,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Sparrow {1}'
+          mapNameTemplate: 'Воробей {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

@@ -4,8 +4,8 @@
 #
 - type: vessel
   id: Canister
-  name: UAC Canister
-  description: Whatever you're bringing, it won't fit. Seats two. Gravity included.
+  name: UAC Канистра
+  description: Малогабаритный транспортный шаттл. Рекомендуется для 1 игрока.
   price: 8000
   category: Small
   group: Scrap
@@ -13,7 +13,7 @@
 
 - type: gameMap
   id: Canister
-  mapName: 'UAC Canister'
+  mapName: 'UAC Канистра'
   mapPath: /Maps/_NF/Shuttles/Scrap/canister.yml
   minPlayers: 0
   stations:
@@ -21,7 +21,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Canister {1}'
+          mapNameTemplate: 'Канистра {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

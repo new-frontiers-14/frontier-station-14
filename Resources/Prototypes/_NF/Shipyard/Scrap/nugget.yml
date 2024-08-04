@@ -10,8 +10,8 @@
 #
 - type: vessel
   id: Nugget
-  name: SV Nugget
-  description: A flying hunk of wood and metal disguised as a kitchen shuttle. Not FDA approved.
+  name: SV Наггетс
+  description: Кусок мусора с двигателями. Рекомендуемый размер команды 1-2 человека.
   price: 15950 # +1450 from 10% Markup
   category: Small
   group: Scrap
@@ -19,7 +19,7 @@
 
 - type: gameMap
   id: Nugget
-  mapName: 'SV Nugget'
+  mapName: 'SV Наггетс'
   mapPath: /Maps/_NF/Shuttles/Scrap/nugget.yml
   minPlayers: 0
   stations:
@@ -27,7 +27,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Nugget {1}'
+          mapNameTemplate: 'Наггетс {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

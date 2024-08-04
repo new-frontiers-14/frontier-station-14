@@ -1,7 +1,7 @@
 - type: vessel
   id: Investigator
-  name: NR Investigator
-  description: A small salvage shuttle designed for researching artifacts, fitted with a small bar for long-distance travel.
+  name: NR Исследователь
+  description: Малогабаритный исследовательский шаттл. Рекомендованный состав команды 1-2 человека.
   price: 46000
   category: Small
   group: Civilian
@@ -9,7 +9,7 @@
 
 - type: gameMap
   id: Investigator
-  mapName: 'NR Investigator'
+  mapName: 'NR Исследователь'
   mapPath: /Maps/_NF/Shuttles/investigator.yml
   minPlayers: 0
   stations:
@@ -17,7 +17,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Investigator {1}'
+          mapNameTemplate: 'Исследователь {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

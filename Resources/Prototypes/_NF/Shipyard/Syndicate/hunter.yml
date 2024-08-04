@@ -1,7 +1,7 @@
 - type: vessel
   id: Hunter
-  name: Hunter
-  description: A small armored Syndicate assault shuttle, perfect for devious operations!
+  name: Охотник
+  description: Малогабаритный штурмовой шаттл синдиката. Рекомендованный состав команды 1-4 человека.
   price: 50000
   category: Small
   group: Syndicate
@@ -9,7 +9,7 @@
 
 - type: gameMap
   id: Hunter
-  mapName: 'Hunter'
+  mapName: 'Охотник'
   mapPath: /Maps/_NF/Shuttles/Syndicate/hunter.yml
   minPlayers: 0
   stations:
@@ -17,7 +17,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Hunter {1}'
+          mapNameTemplate: 'Охотник {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

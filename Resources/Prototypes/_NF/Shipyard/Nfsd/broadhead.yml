@@ -1,7 +1,7 @@
 - type: vessel
   id: Broadhead
-  name: NSF Broadhead
-  description: A medium size detective ship with facilities for autopsies, interrogations and detailed investigations.
+  name: NSF Авангард
+  description: Среднегабаритный шаттл ДСБФ, предназначенный для проведения раследований.
   price: 50000
   category: Medium
   group: Security
@@ -10,7 +10,7 @@
 
 - type: gameMap
   id: Broadhead
-  mapName: 'NSF Broadhead'
+  mapName: 'NSF Авангард'
   mapPath: /Maps/_NF/Shuttles/Nfsd/broadhead.yml
   minPlayers: 0
   stations:
@@ -18,7 +18,7 @@
       stationProto: StandardFrontierSecurityVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Broadhead {1}'
+          mapNameTemplate: 'Авангард {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

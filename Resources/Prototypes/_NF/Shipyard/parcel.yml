@@ -10,8 +10,8 @@
 #
 - type: vessel
   id: Parcel
-  name: NC Parcel
-  description: A reliable shuttle for delivering mail and packages.
+  name: NC Пачка
+  description: Малогабаритный почтовый шаттл. Рекомендованный размер команды 1 человек.
   price: 18000
   category: Small
   group: None
@@ -19,7 +19,7 @@
 
 - type: gameMap
   id: Parcel
-  mapName: 'NC Parcel'
+  mapName: 'NC Пачка'
   mapPath: /Maps/_NF/Shuttles/parcel.yml
   minPlayers: 0
   stations:
@@ -27,7 +27,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Parcel {1}'
+          mapNameTemplate: 'Пачка {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

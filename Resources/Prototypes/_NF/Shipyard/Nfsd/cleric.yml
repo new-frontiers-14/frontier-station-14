@@ -1,7 +1,7 @@
 - type: vessel
   id: Cleric
-  name: NSF Cleric
-  description: Small support vessel used for emergency rescues and first aid.
+  name: NSF Пастырь
+  description: Малогабаритный медицинский шаттл ДСБФ. Рекомендованный состав команды 1 человек.
   price: 11800 #Appraisal is 10500
   category: Small
   group: None
@@ -11,7 +11,7 @@
 
 - type: gameMap
   id: Cleric
-  mapName: 'NSF Cleric'
+  mapName: 'NSF Пастырь'
   mapPath: /Maps/_NF/Shuttles/Nfsd/cleric.yml
   minPlayers: 0
   stations:
@@ -19,7 +19,7 @@
       stationProto: StandardFrontierSecurityVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Cleric {1}'
+          mapNameTemplate: 'Пастырь {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

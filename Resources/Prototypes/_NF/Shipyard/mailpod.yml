@@ -10,8 +10,8 @@
 #
 - type: vessel
   id: MailPod
-  name: NC Mail Pod
-  description: A cramped yet reliable shuttle for delivering packages.
+  name: NC Ямщик
+  description: Малогабаритный почтовый шаттл, предназначенный для 1 человека.
   price: 15000
   category: Small
   group: None
@@ -19,7 +19,7 @@
 
 - type: gameMap
   id: MailPod
-  mapName: 'NC Mail Pod'
+  mapName: 'NC Ямщик'
   mapPath: /Maps/_NF/Shuttles/mailpod.yml
   minPlayers: 0
   stations:
@@ -27,7 +27,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Mail Pod {1}'
+          mapNameTemplate: 'Ямщик {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

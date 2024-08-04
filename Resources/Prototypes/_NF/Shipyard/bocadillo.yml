@@ -10,8 +10,8 @@
 #
 - type: vessel
   id: Bocadillo
-  name: NC Bocadillo
-  description: A tiny food truck perfect for a solo chef.
+  name: NC Фудтрак
+  description: Малогабаритный шаттл-ресторан. Рекомендованный размер команды 1-2 человека.
   price: 19780 # 13.5% markup (+2350 from init)
   category: Small
   group: Civilian
@@ -19,7 +19,7 @@
 
 - type: gameMap
   id: Bocadillo
-  mapName: 'NC Bocadillo'
+  mapName: 'NC Фудтрак'
   mapPath: /Maps/_NF/Shuttles/bocadillo.yml
   minPlayers: 0
   stations:
@@ -27,7 +27,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Bocadillo {1}'
+          mapNameTemplate: 'Фудтрак {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

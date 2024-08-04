@@ -10,8 +10,8 @@
 #
 - type: vessel
   id: Comet
-  name: NT Comet
-  description: A mining and construction vessel intended to help build or repair quickly.
+  name: NT Комета
+  description: Среднегабаритный инженерный шаттл. Рекомендованный размер команды 3-6 человек.
   price: 55000
   category: Medium
   group: Civilian
@@ -19,7 +19,7 @@
 
 - type: gameMap
   id: Comet
-  mapName: 'NT Comet'
+  mapName: 'NT Комета'
   mapPath: /Maps/_NF/Shuttles/comet.yml
   minPlayers: 0
   stations: 
@@ -27,7 +27,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Comet {1}'
+          mapNameTemplate: 'Комета {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

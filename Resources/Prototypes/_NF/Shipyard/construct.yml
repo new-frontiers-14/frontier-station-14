@@ -1,7 +1,7 @@
 - type: vessel
   id: Construct
-  name: NT Construct
-  description: A technically spacefaring vessel.  No livery.
+  name: NT Каркас
+  description: Чисто технически это тоже шаттл. Не рекомендуется никому.
   price: 10500
   category: Small
   group: Civilian
@@ -9,7 +9,7 @@
 
 - type: gameMap
   id: Construct
-  mapName: 'NT Construct'
+  mapName: 'NT Каркас'
   mapPath: /Maps/_NF/Shuttles/construct.yml
   minPlayers: 0
   stations:
@@ -17,7 +17,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Construct {1}'
+          mapNameTemplate: 'Каркас {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

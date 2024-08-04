@@ -1,7 +1,7 @@
 - type: vessel
   id: Infiltrator
-  name: Infiltrator
-  description: A Syndicate nuclear operative infiltration ship.
+  name: Лазутчик
+  description: Среднегабаритный экспедиционный шаттл синдиката. Рекомендованный состав команды 2-5 человек.
   price: 85000
   category: Medium
   group: Syndicate
@@ -9,7 +9,7 @@
 
 - type: gameMap
   id: Infiltrator
-  mapName: 'Infiltrator'
+  mapName: 'Лазутчик'
   mapPath: /Maps/_NF/Shuttles/Syndicate/infiltrator.yml
   minPlayers: 0
   stations:
@@ -17,7 +17,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Infiltrator {1}'
+          mapNameTemplate: 'Лазутчик {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
