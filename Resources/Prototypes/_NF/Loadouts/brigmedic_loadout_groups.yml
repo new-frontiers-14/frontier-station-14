@@ -6,6 +6,7 @@
   - BrigmedicClothingUniformJumpskirtBrigmedic
   fallbacks:
   - BrigmedicClothingUniformJumpsuitBrigmedic
+  - BrigmedicClothingUniformJumpskirtBrigmedic
 
 - type: loadoutGroup
   id: BrigmedicOuterClothing
@@ -13,14 +14,6 @@
   minLimit: 0
   loadouts:
   - BrigmedicOuterClothing
-
-- type: loadoutGroup
-  id: BrigmedicShoes
-  name: loadout-group-contractor-shoes
-  loadouts:
-  - NfsdClothingShoesBootsCream
-  fallbacks:
-  - NfsdClothingShoesBootsCream
 
 - type: loadoutGroup
   id: BrigmedicHead
@@ -32,6 +25,7 @@
 - type: loadoutGroup
   id: BrigmedicGloves
   name: loadout-group-contractor-gloves
+  hidden: true # No point in showing this, it gets auto-selected.
   loadouts:
   - NitrileGloves
   fallbacks:
@@ -47,6 +41,7 @@
 - type: loadoutGroup
   id: BrigmedicPDA
   name: loadout-group-contractor-id
+  hidden: true # No point in showing this, it gets auto-selected.
   loadouts:
   - BrigmedicBrigmedicPDA
   fallbacks:
@@ -55,6 +50,7 @@
 - type: loadoutGroup
   id: BrigmedicGlasses
   name: loadout-group-contractor-glasses
+  hidden: true # No point in showing this, it gets auto-selected.
   loadouts:
   - BrigmedicClothingEyesGlasses
   fallbacks:
@@ -63,14 +59,17 @@
 - type: loadoutGroup
   id: BrigmedicFace
   name: loadout-group-contractor-face
-  minLimit: 0
+  hidden: true # No point in showing this, it gets auto-selected.
   loadouts:
+  - BrigmedicClothingMaskBrigmedic
+  fallbacks:
   - BrigmedicClothingMaskBrigmedic
 
 - type: loadoutGroup
   id: BrigmedicBelt
   minLimit: 1
   name: loadout-group-contractor-belt
+  hidden: true # No point in showing this, it gets auto-selected.
   loadouts:
   - BrigmedicClothingBeltBrigmedicWebbing
   fallbacks:

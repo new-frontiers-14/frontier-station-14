@@ -1,5 +1,4 @@
 # Contractor
-
 - type: roleLoadout
   id: JobContractor
   groups:
@@ -22,7 +21,6 @@
   - ContractorTrinkets
 
 # Mercenary
-
 - type: roleLoadout
   id: JobMercenary
   groups:
@@ -45,7 +43,6 @@
   - ContractorTrinkets
 
 # Pilot
-
 - type: roleLoadout
   id: JobPilot
   groups:
@@ -59,7 +56,7 @@
   - PilotFace
   - PilotGlasses
   - PilotPDA
-  - PilotBelt
+  - ContractorBelt
   - ContractorBoxSurvival
   - ContractorEncryptionKey
   - ContractorImplanter
@@ -68,7 +65,6 @@
   - ContractorTrinkets
 
 # Frontier
-
 - type: roleLoadout
   id: JobValet
   groups:
@@ -91,7 +87,7 @@
   - ContractorNeck
   - MailCarrierJumpsuit
   - ContractorGloves
-  - ContractorBackpack
+  - MailCarrierBackpack
   - MailCarrierOuterClothing
   - ContractorShoes
   - ContractorFace
@@ -104,12 +100,13 @@
 - type: roleLoadout
   id: JobStationTrafficController
   groups:
+  - StcHead
   - ContractorNeck
   - StcJumpsuit
   - ContractorGloves
   - ContractorBackpack
   - ContractorOuterClothing
-  - ContractorShoes
+  - StcShoes
   - ContractorFace
   - ContractorGlasses
   - ContractorBelt
@@ -125,7 +122,7 @@
   - StationRepNeck
   - StationRepJumpsuit
   - StationRepGloves
-  - ContractorBackpack
+  - StationRepBackpack
   - StationRepOuterClothing
   - ContractorShoes
   - ContractorFace
@@ -136,7 +133,6 @@
   - ContractorFun
   - ContractorTrinkets
 
-# Security
 - type: roleLoadout
   id: JobSecurityGuard
   groups:
@@ -161,12 +157,12 @@
   groups:
   - CadetHead
   - CadetJumpsuit
-  - CadetGloves
+  - NfsdGlovesBrown
   - NfsdBackpackBrown
   - CadetOuterClothing
-  - CadetShoes
+  - NfsdShoesBrown
   - NfsdFace
-  - CadetGlasses
+  - NfsdGlasses
   - CadetPDA
   - NfsdBelt
   - NfsdBoxSurvival
@@ -180,12 +176,12 @@
   groups:
   - DeputyHead
   - DeputyJumpsuit
-  - DeputyGloves
+  - NfsdGlovesBrown
   - NfsdBackpackBrown
   - DeputyOuterClothing
-  - DeputyShoes
+  - NfsdShoesBrown
   - NfsdFace
-  - DeputyGlasses
+  - NfsdGlasses
   - DeputyPDA
   - NfsdBelt
   - NfsdBoxSurvival
@@ -203,7 +199,7 @@
   - BrigmedicGloves
   - NfsdBackpackCream
   - BrigmedicOuterClothing
-  - BrigmedicShoes
+  - NfsdShoesCream
   - BrigmedicFace
   - BrigmedicGlasses
   - BrigmedicPDA
@@ -222,9 +218,9 @@
   - DetectiveNFGloves
   - NfsdBackpackBrown
   - DetectiveNFOuterClothing
-  - DetectiveNFShoes
+  - NfsdShoesBrown
   - NfsdFace
-  - DetectiveNFGlasses
+  - NfsdGlasses
   - DetectiveNFPDA
   - NfsdBelt
   - NfsdBoxSurvival
@@ -237,27 +233,32 @@
   # id: JobPrisonGuard
   # groups:
   # - PrisonGuardHead
-  # - PrisonGuardPDA
   # - PrisonGuardJumpsuit
-  # - PrisonGuardBackpack
+  # - NfsdGlovesBrown
+  # - NfsdBackpackBrown
   # - PrisonGuardOuterClothing
-  # - PrisonGuardShoes
-  # - PrisonGuardGloves
-  # - PrisonGuardGlasses
+  # - NfsdShoesBrown
+  # - NfsdFace
+  # - NfsdGlasses
+  # - PrisonGuardPDA
   # - NfsdBelt
-  # - Trinkets
+  # - NfsdBoxSurvival
+  # - ContractorImplanter
+  # - ContractorEncryptionKey
+  # - ContractorFun
+  # - ContractorTrinkets
 
 - type: roleLoadout
   id: JobBailiff
   groups:
   - BailiffHead
   - BailiffJumpsuit
-  - BailiffGloves
+  - NfsdGlovesCream
   - NfsdBackpackBrown
   - BailiffOuterClothing
-  - BailiffShoes
+  - NfsdShoesCream
   - NfsdFace
-  - BailiffGlasses
+  - NfsdGlasses
   - BailiffPDA
   - NfsdBelt
   - NfsdBoxSurvival
@@ -271,12 +272,12 @@
   groups:
   - SeniorOfficerHead
   - SeniorOfficerJumpsuit
-  - SeniorOfficerGloves
+  - NfsdGlovesCream
   - NfsdBackpackBrown
   - SeniorOfficerOuterClothing
-  - SeniorOfficerShoes
+  - NfsdShoesBrown
   - NfsdFace
-  - SeniorOfficerGlasses
+  - NfsdGlasses
   - SeniorOfficerPDA
   - NfsdBelt
   - NfsdBoxSurvival
@@ -291,12 +292,12 @@
   - SheriffHead
   - SheriffNeck
   - SheriffJumpsuit
-  - SheriffGloves
+  - NfsdGlovesCream
   - NfsdBackpackBrown
   - SheriffOuterClothing
-  - SheriffShoes
+  - NfsdShoesBrown
   - SheriffFace
-  - SheriffGlasses
+  - NfsdGlasses
   - SheriffPDA
   - NfsdBelt
   - NfsdBoxSurvival
@@ -357,4 +358,6 @@
 #  - PirateNeck
   - PrisonerJumpsuit
 #  - PrisonerShoes
+  - PrisonerFace
   - PrisonerPDA
+  - PrisonerSurvival
