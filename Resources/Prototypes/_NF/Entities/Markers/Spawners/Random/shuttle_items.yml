@@ -1,0 +1,78 @@
+# Randomized spawners to make things a bit more diverse
+# Unlike dungeon spawners, this ones shouldn't have contraband
+# items or machines
+
+# Clutter
+
+# Tools
+
+# Clothes
+
+# Furniture/lockers
+- type: entity
+  name: random suit storage unit
+  id: SpawnShuttleGearSuitStorageUnitsMercenary
+  parent: MarkerBase
+  suffix: "Shuttle, Mercenary"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Storage/suit_storage.rsi
+        state: base
+      - sprite: Structures/Storage/suit_storage.rsi
+        state: door
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - SuitStorageMercenary
+    - SuitStoragePrivateSecurity
+    chance: 1
+    offset: 0.0
+
+# Machines
+- type: entity
+  name: random vendomat
+  id: SpawnShuttleVendomatsClothes
+  parent: MarkerBase
+  suffix: "Shuttle, Clothes"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Machines/VendingMachines/winterdrobe.rsi
+        state: off
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - VendingMachineClothing
+    - VendingMachineWinter
+    - VendingMachineHydrobe
+    - VendingMachineTheater
+    - VendingMachineLawDrobe
+    - VendingBarDrobe
+    - VendingMachineChapel
+    - VendingMachineCargoDrobe
+    - VendingMachineMediDrobe
+    - VendingMachineChemDrobe
+    - VendingMachineCuraDrobe
+    - VendingMachineAtmosDrobe
+    - VendingMachineEngiDrobe
+    - VendingMachineChefDrobe
+    - VendingMachineJaniDrobe
+    - VendingMachineSciDrobe
+    - VendingMachineRoboDrobe
+    - VendingMachineGeneDrobe
+    - VendingMachineViroDrobe
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - VendingMachineBountyVendPunk
+    - VendingMachineClothingPunk
+    rareChance: 0.05
+
+# Other
