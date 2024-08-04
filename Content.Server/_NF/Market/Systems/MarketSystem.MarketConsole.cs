@@ -308,9 +308,12 @@ public sealed partial class MarketSystem
             return;
 
         // Get the market data for this grid.
-        var consoleGridUid = Transform(consoleUid).GridUid!.Value;
         var cartData = component.CartDataList;
-        var marketData = _entityManager.EnsureComponent<SectorCargoMarketDataComponent>(consoleGridUid).MarketDataList;
+        var marketData = new List<MarketData>();
+        if (TryComp<SectorCargoMarketDataComponent>(_sectorService.GetServiceEntity(), out var market))
+        {
+            marketData = market.MarketDataList;
+        }
         var cartBalance = MarketDataExtensions.GetMarketValue(cartData, marketMultiplier);
 
         var newState = new MarketConsoleInterfaceState(
