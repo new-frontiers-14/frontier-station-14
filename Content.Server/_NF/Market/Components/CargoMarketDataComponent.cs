@@ -9,7 +9,7 @@ namespace Content.Server._NF.Market.Components;
 /// </summary>
 [RegisterComponent]
 [Access(typeof(MarketSystem))]
-public sealed partial class SectorCargoMarketDataComponent : Component
+public sealed partial class CargoMarketDataComponent : Component
 {
     [DataField]
     public List<MarketData> MarketDataList = [];
