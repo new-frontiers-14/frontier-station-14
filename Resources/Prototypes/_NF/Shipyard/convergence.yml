@@ -1,0 +1,33 @@
+
+
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: YC Convergence
+  name: YC Convergence
+  description: A large ship deisgned to be a hub for other ships to dock to, has a built in restaurant, botany lab, and cargo bay.
+  price: 120000 #~105000 + 15000 (~15%)
+  category: Large
+  group: Civilian
+  shuttlePath: /Maps/Shuttles/convergence.yml
+
+- type: gameMap
+  id: YC Convergence
+  mapName: 'YC Convergence'
+  mapPath: /Maps/Shuttles/convergence.yml
+  minPlayers: 0
+  stations:
+    YC Convergence:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Convergence {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]
