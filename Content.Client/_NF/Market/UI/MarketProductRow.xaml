@@ -1,0 +1,89 @@
+﻿<PanelContainer xmlns="https://spacestation14.io"
+                Access="Public"
+                StyleClasses="PanelBackgroundLight"
+                SetHeight="80"
+                Margin="0 2 0 2"
+                HorizontalExpand="True">
+    <BoxContainer Orientation="Horizontal"
+                  HorizontalExpand="True">
+        <BoxContainer Orientation="Horizontal"
+                      HorizontalExpand="True"
+                      SeparationOverride="10">
+            <PanelContainer HorizontalExpand="False"
+                            VerticalExpand="True"
+                            MinSize="60 60"
+                            MaxSize="80 80">
+                <TextureRect Name="Icon"
+                             Access="Public"
+                             HorizontalAlignment="Center"
+                             VerticalAlignment="Center"
+                             HorizontalExpand="False"
+                             VerticalExpand="True"
+                             MinSize="60 60"
+                             MaxSize="80 80"
+                             Stretch="KeepAspectCentered" />
+            </PanelContainer>
+
+            <BoxContainer Orientation="Vertical"
+                          Align="Center"
+                          HorizontalExpand="True">
+                <Label Name="Title"
+                       Access="Public"
+                       Margin="5 0 0 0"
+                       HorizontalExpand="True" />
+                <Label Name="Quantity"
+                       Access="Public"
+                       Margin="5 0 0 0"
+                       HorizontalExpand="True" />
+            </BoxContainer>
+        </BoxContainer>
+
+        <!-- Right side container -->
+        <BoxContainer Orientation="Vertical"
+                      Align="Center"
+                      MinWidth="60"
+                      MaxWidth="250"
+                      SeparationOverride="5">
+            <BoxContainer Orientation="Horizontal"
+                          Align="Center"
+                          MaxWidth="250"
+                          HorizontalExpand="True">
+                <Label Name="Price"
+                       Access="Public"
+                       Align="Right"
+                       MaxWidth="250"
+                       HorizontalExpand="True" />
+            </BoxContainer>
+            <BoxContainer Orientation="Horizontal"
+                          Align="Center"
+                          MinWidth="60"
+                          SeparationOverride="1">
+                <Button Name="AddToCart1"
+                        Access="Public"
+                        ToolTip=""
+                        Text="1"
+                        StyleClasses="LabelSubText" />
+                <Button Name="AddToCart5"
+                        Access="Public"
+                        ToolTip=""
+                        Text="5"
+                        StyleClasses="LabelSubText" />
+                <Button Name="AddToCart10"
+                        Access="Public"
+                        ToolTip=""
+                        Text="10"
+                        StyleClasses="LabelSubText" />
+                <Button Name="AddToCart30"
+                        Access="Public"
+                        ToolTip=""
+                        Text="30"
+                        StyleClasses="LabelSubText" />
+                <Button Name="AddToCartAll"
+                        Access="Public"
+                        ToolTip=""
+                        Text="{Loc 'market-all'}"
+                        StyleClasses="LabelSubText" />
+            </BoxContainer>
+        </BoxContainer>
+    </BoxContainer>
+</PanelContainer>
