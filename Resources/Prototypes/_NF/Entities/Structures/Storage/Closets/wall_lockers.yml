@@ -1,6 +1,7 @@
+# Parent for 
 - type: entity
   parent: BaseStructureUnanchorable
-  id: LockerWallBase
+  id: BaseWallmount
   abstract: true
   components:
   - type: Physics # Mimicing existing wall lockers
@@ -8,10 +9,11 @@
     canCollide: false # Passthrough
   - type: Fixtures
     fixtures: {}
+  - type: WallMount
 
 - type: entity
   id: LockerWallChemistry
-  parent: [LockerWallMedical, LockerWallBase]
+  parent: [LockerWallMedical, BaseWallmount]
   name: chemistry wall locker
   components:
   - type: Sprite
