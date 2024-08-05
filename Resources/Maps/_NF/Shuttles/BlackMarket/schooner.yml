@@ -15,6 +15,7 @@ entities:
   - uid: 1
     components:
     - type: MetaData
+      name: Schooner
     - type: Transform
       pos: 0.07584572,-0.04730892
       parent: invalid
@@ -540,13 +541,6 @@ entities:
     - type: RadiationGridResistance
     - type: BecomesStation
       id: Schooner
-- proto: AirCanister
-  entities:
-  - uid: 2
-    components:
-    - type: Transform
-      pos: -2.5,7.5
-      parent: 1
 - proto: AirlockGlassShuttle
   entities:
   - uid: 3
@@ -922,6 +916,14 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
+- proto: ButtonFrameCaution
+  entities:
+  - uid: 2
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -2.5,10.5
+      parent: 1
 - proto: CableApcExtension
   entities:
   - uid: 28
@@ -1832,6 +1834,13 @@ entities:
     - type: Transform
       pos: -2.5,0.5
       parent: 1
+- proto: ClosetRadiationSuitFilled
+  entities:
+  - uid: 217
+    components:
+    - type: Transform
+      pos: 3.5,8.5
+      parent: 1
 - proto: ClosetSteelBase
   entities:
   - uid: 201
@@ -1924,14 +1933,6 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -0.5,-6.5
-      parent: 1
-- proto: ComputerPowerMonitoring
-  entities:
-  - uid: 217
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -2.5,8.5
       parent: 1
 - proto: ComputerShuttleAntag
   entities:
@@ -2181,13 +2182,11 @@ entities:
       parent: 1
 - proto: Gyroscope
   entities:
-  - uid: 264
+  - uid: 244
     components:
     - type: Transform
-      pos: 3.5,6.5
+      pos: -2.5,7.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
 - proto: HeadSkeleton
   entities:
   - uid: 265
@@ -2240,6 +2239,20 @@ entities:
     components:
     - type: Transform
       pos: -2.7120032,-0.473266
+      parent: 1
+- proto: NitrogenCanister
+  entities:
+  - uid: 207
+    components:
+    - type: Transform
+      pos: 3.5,6.5
+      parent: 1
+- proto: OxygenCanister
+  entities:
+  - uid: 264
+    components:
+    - type: Transform
+      pos: 3.5,7.5
       parent: 1
 - proto: PaintingSkeletonBoof
   entities:
@@ -2618,13 +2631,6 @@ entities:
     - type: Transform
       pos: -1.5,-5.5
       parent: 1
-- proto: RandomSpawner
-  entities:
-  - uid: 336
-    components:
-    - type: Transform
-      pos: 3.5,-0.5
-      parent: 1
 - proto: RemoteSignaller
   entities:
   - uid: 505
@@ -2665,13 +2671,11 @@ entities:
         - Pressed: Trigger
 - proto: SheetUranium
   entities:
-  - uid: 340
+  - uid: 208
     components:
     - type: Transform
-      pos: -0.51266235,8.61944
+      pos: -0.65123916,8.543868
       parent: 1
-    - type: Stack
-      count: 15
 - proto: ShuttersNormal
   entities:
   - uid: 341
@@ -2770,6 +2774,43 @@ entities:
     - type: DeviceLinkSink
       links:
       - 354
+- proto: ShuttersRadiation
+  entities:
+  - uid: 206
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -3.5,8.5
+      parent: 1
+    - type: DeviceLinkSink
+      links:
+      - 274
+  - uid: 224
+    components:
+    - type: Transform
+      pos: -1.5,9.5
+      parent: 1
+    - type: DeviceLinkSink
+      links:
+      - 274
+  - uid: 225
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -3.5,7.5
+      parent: 1
+    - type: DeviceLinkSink
+      links:
+      - 274
+  - uid: 228
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -3.5,6.5
+      parent: 1
+    - type: DeviceLinkSink
+      links:
+      - 274
 - proto: ShuttleGunPirateCannon
   entities:
   - uid: 501
@@ -2810,6 +2851,22 @@ entities:
       - 505
 - proto: SignalButtonDirectional
   entities:
+  - uid: 274
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -2.5,10.5
+      parent: 1
+    - type: DeviceLinkSource
+      linkedPorts:
+        224:
+        - Pressed: Toggle
+        206:
+        - Pressed: Toggle
+        225:
+        - Pressed: Toggle
+        228:
+        - Pressed: Toggle
   - uid: 353
     components:
     - type: Transform
@@ -2869,9 +2926,9 @@ entities:
     - type: Transform
       pos: 0.5,-9.5
       parent: 1
-- proto: SignEngine
+- proto: SignRadiationMed
   entities:
-  - uid: 358
+  - uid: 210
     components:
     - type: Transform
       pos: -0.5,9.5
@@ -2946,14 +3003,12 @@ entities:
       parent: 1
 - proto: SpaceVillainArcadeFilled
   entities:
-  - uid: 371
+  - uid: 280
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 3.5,8.5
+      rot: 1.5707963267948966 rad
+      pos: -2.5,8.5
       parent: 1
-    - type: SpamEmitSound
-      enabled: False
 - proto: SpawnPointPirate
   entities:
   - uid: 373
@@ -3046,92 +3101,68 @@ entities:
       rot: 3.141592653589793 rad
       pos: 5.5,-6.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
   - uid: 388
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 4.5,-9.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
   - uid: 389
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -3.5,-9.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
   - uid: 390
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -4.5,-6.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
   - uid: 391
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -4.5,0.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
   - uid: 392
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -4.5,-0.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
   - uid: 393
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 5.5,0.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
   - uid: 394
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 5.5,-0.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
   - uid: 395
     components:
     - type: Transform
       pos: 5.5,6.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
   - uid: 396
     components:
     - type: Transform
       pos: -4.5,6.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
   - uid: 397
     components:
     - type: Transform
       pos: -3.5,10.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
   - uid: 398
     components:
     - type: Transform
       pos: 4.5,10.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
 - proto: ToyFigurineCaptain
   entities:
   - uid: 399
@@ -3598,11 +3629,6 @@ entities:
     components:
     - type: Transform
       pos: 1.5,6.5
-      parent: 1
-  - uid: 494
-    components:
-    - type: Transform
-      pos: -1.5,9.5
       parent: 1
   - uid: 495
     components:

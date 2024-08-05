@@ -2272,7 +2272,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -10.5,2.5
       parent: 1
-- proto: BedsheetMedical
+- proto: BedsheetSpawner
   entities:
   - uid: 190
     components:
@@ -4767,7 +4767,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 6.483588,2.141698
       parent: 1
-- proto: chem_master
+- proto: MachineFrame
   entities:
   - uid: 26
     components:
@@ -5419,13 +5419,6 @@ entities:
     - type: DeviceLinkSink
       links:
       - 154
-- proto: CrateChemistrySupplies
-  entities:
-  - uid: 436
-    components:
-    - type: Transform
-      pos: -8.5,7.5
-      parent: 1
 - proto: DefibrillatorCabinetFilled
   entities:
   - uid: 793
@@ -6055,23 +6048,6 @@ entities:
       parent: 1
     - type: Fixtures
       fixtures: {}
-- proto: FoodBakedCookie
-  entities:
-  - uid: 161
-    components:
-    - type: Transform
-      pos: 6.3913617,2.0044975
-      parent: 1
-  - uid: 609
-    components:
-    - type: Transform
-      pos: 6.6257367,1.934185
-      parent: 1
-  - uid: 808
-    components:
-    - type: Transform
-      pos: 6.4499555,1.88731
-      parent: 1
 - proto: FoodPlate
   entities:
   - uid: 608
@@ -7477,7 +7453,7 @@ entities:
         - 0
         - 0
         - 0
-- proto: LockerMedicalFilled
+- proto: LockerMedical
   entities:
   - uid: 239
     components:
@@ -7541,7 +7517,7 @@ entities:
     - type: Transform
       pos: 12.5,-13.5
       parent: 1
-- proto: MedicalBed
+- proto: Bed
   entities:
   - uid: 206
     components:
@@ -7552,20 +7528,6 @@ entities:
     components:
     - type: Transform
       pos: -5.5,0.5
-      parent: 1
-- proto: MedkitFilled
-  entities:
-  - uid: 435
-    components:
-    - type: Transform
-      pos: -8.446656,3.6739035
-      parent: 1
-- proto: MedkitToxinFilled
-  entities:
-  - uid: 976
-    components:
-    - type: Transform
-      pos: -8.642134,3.4433465
       parent: 1
 - proto: Morgue
   entities:
@@ -9813,47 +9775,12 @@ entities:
     - type: Transform
       pos: 4.5,-1.5
       parent: 1
-- proto: SpawnPointChemist
-  entities:
-  - uid: 586
-    components:
-    - type: Transform
-      pos: -6.5,9.5
-      parent: 1
-- proto: SpawnPointChiefEngineer
-  entities:
-  - uid: 629
-    components:
-    - type: Transform
-      pos: 12.5,7.5
-      parent: 1
 - proto: SpawnPointLatejoin
   entities:
   - uid: 1731
     components:
     - type: Transform
       pos: 2.5,3.5
-      parent: 1
-- proto: SpawnPointMedicalDoctor
-  entities:
-  - uid: 1216
-    components:
-    - type: Transform
-      pos: -6.5,2.5
-      parent: 1
-- proto: SpawnPointParamedic
-  entities:
-  - uid: 478
-    components:
-    - type: Transform
-      pos: -7.5,2.5
-      parent: 1
-- proto: SpawnPointSalvageSpecialist
-  entities:
-  - uid: 645
-    components:
-    - type: Transform
-      pos: 12.5,3.5
       parent: 1
 - proto: SubstationBasic
   entities:
@@ -10458,7 +10385,7 @@ entities:
     - type: Transform
       pos: -5.5,7.5
       parent: 1
-- proto: VendingMachineChemicals
+- proto: MachineFrame
   entities:
   - uid: 1716
     components:
@@ -10493,7 +10420,7 @@ entities:
     - type: Transform
       pos: 13.5,8.5
       parent: 1
-- proto: VendingMachineWallMedical
+- proto: LockerWallMedical
   entities:
   - uid: 461
     components:

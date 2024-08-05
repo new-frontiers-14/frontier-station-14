@@ -17,6 +17,8 @@ using Content.Shared.Hands;
 using Robust.Shared.Audio.Systems;
 using static Content.Shared.Paper.SharedPaperComponent;
 using Content.Shared.Verbs;
+using Content.Shared.Ghost; // Frontier: avoid ghost interaction
+using Content.Shared.Timing; // Frontier: stamp reapplication, avoiding spam
 
 namespace Content.Server.Paper
 {
@@ -31,6 +33,10 @@ namespace Content.Server.Paper
         [Dependency] private readonly MetaDataSystem _metaSystem = default!;
         [Dependency] private readonly SharedAudioSystem _audio = default!;
         [Dependency] private readonly IdCardSystem _idCardSystem = default!;
+        [Dependency] private readonly UseDelaySystem _useDelay = default!; // Frontier
+
+        private const int ReapplyLimit = 10; // Frontier: limits on reapplied stamps
+        private const int StampLimit = 100; // Frontier: limits on total stamps on a page (should be able to get a signature from everybody on the server on a page)
 
         public override void Initialize()
         {
@@ -46,8 +52,7 @@ namespace Content.Server.Paper
 
             SubscribeLocalEvent<PaperComponent, MapInitEvent>(OnMapInit);
 
-            // FRONTIER - Sign verb hook
-            SubscribeLocalEvent<PaperComponent, GetVerbsEvent<AlternativeVerb>>(AddSignVerb);
+            SubscribeLocalEvent<PaperComponent, GetVerbsEvent<AlternativeVerb>>(AddSignVerb); // Frontier - Sign verb hook
         }
 
         private void OnMapInit(EntityUid uid, PaperComponent paperComp, MapInitEvent args)
@@ -152,28 +157,38 @@ namespace Content.Server.Paper
 
             // If a stamp, attempt to stamp paper
             if (TryComp<StampComponent>(args.Used, out var stampComp) &&
-                TryStamp(uid, GetStampInfo(stampComp), stampComp.StampState, paperComp))
+                !StampDelayed(args.Used)) // Frontier: check stamp is delayed
             {
-                // successfully stamped, play popup
-                var stampPaperOtherMessage = Loc.GetString("paper-component-action-stamp-paper-other",
-                    ("user", args.User), ("target", args.Target), ("stamp", args.Used));
+                var stampInfo = GetStampInfo(stampComp); // Frontier: assign DisplayStampInfo before stamp
+                if (_tagSystem.HasTag(args.Used, "Write"))
+                    stampInfo.Type = StampType.Signature;
+                if (TryStamp(uid, stampInfo, stampComp.StampState, paperComp))
+                {
+                    // End of Frontier modifications
+                    // successfully stamped, play popup
+                    var stampPaperOtherMessage = Loc.GetString("paper-component-action-stamp-paper-other",
+                        ("user", args.User), ("target", args.Target), ("stamp", args.Used));
 
-                _popupSystem.PopupEntity(stampPaperOtherMessage, args.User,
-                    Filter.PvsExcept(args.User, entityManager: EntityManager), true);
-                var stampPaperSelfMessage = Loc.GetString("paper-component-action-stamp-paper-self",
-                    ("target", args.Target), ("stamp", args.Used));
-                _popupSystem.PopupEntity(stampPaperSelfMessage, args.User, args.User);
+                    _popupSystem.PopupEntity(stampPaperOtherMessage, args.User,
+                        Filter.PvsExcept(args.User, entityManager: EntityManager), true);
+                    var stampPaperSelfMessage = Loc.GetString("paper-component-action-stamp-paper-self",
+                        ("target", args.Target), ("stamp", args.Used));
+                    _popupSystem.PopupEntity(stampPaperSelfMessage, args.User, args.User);
 
-                _audio.PlayPvs(stampComp.Sound, uid);
+                    _audio.PlayPvs(stampComp.Sound, uid);
 
-                UpdateUserInterface(uid, paperComp);
-            }
+                    UpdateUserInterface(uid, paperComp);
+
+                    DelayStamp(args.Used); // Frontier: prevent stamp spam
+                }
+            } // Frontier: added an indent level
         }
 
         private static StampDisplayInfo GetStampInfo(StampComponent stamp)
         {
             return new StampDisplayInfo
             {
+                Reapply = stamp.Reapply, // Frontier
                 StampedName = stamp.StampedName,
                 StampedColor = stamp.StampedColor
             };
@@ -214,7 +229,7 @@ namespace Content.Server.Paper
             if (!Resolve(uid, ref paperComp))
                 return false;
 
-            if (!paperComp.StampedBy.Contains(stampInfo))
+            if (CanStamp(stampInfo, paperComp)) // Frontier: !paperComp.StampedBy.Contains(stampInfo) < CanStamp(stampInfo, paperComp)
             {
                 paperComp.StampedBy.Add(stampInfo);
                 if (paperComp.StampState == null && TryComp<AppearanceComponent>(uid, out var appearance))
@@ -229,6 +244,31 @@ namespace Content.Server.Paper
             return true;
         }
 
+        // FRONTIER - stamp precondition
+        private bool CanStamp(StampDisplayInfo stampInfo, PaperComponent paperComp)
+        {
+            if (paperComp.StampedBy.Count >= StampLimit)
+                return false;
+            if (stampInfo.Reapply)
+                return paperComp.StampedBy.FindAll(x => x.Equals(stampInfo)).Count < ReapplyLimit;
+            else
+                return !paperComp.StampedBy.Contains(stampInfo); // Original precondition
+        }
+
+        // FRONTIER - stamp reapplication: checks if a given stamp is delayed
+        private bool StampDelayed(EntityUid stampUid)
+        {
+            return TryComp<UseDelayComponent>(stampUid, out var delay) &&
+                _useDelay.IsDelayed((stampUid, delay));
+        }
+
+        // FRONTIER - stamp reapplication: resets the delay on a given stamp
+        private void DelayStamp(EntityUid stampUid)
+        {
+            if (TryComp<UseDelayComponent>(stampUid, out var delay))
+                _useDelay.TryResetDelay(stampUid, false, delay);
+        }
+
         // FRONTIER - Pen signing: Adds the sign verb for pen signing
         private void AddSignVerb(EntityUid uid, PaperComponent component, GetVerbsEvent<AlternativeVerb> args)
         {
@@ -236,7 +276,7 @@ namespace Content.Server.Paper
                 return;
 
             // Sanity check
-            if (uid != args.Target)
+            if (uid != args.Target || HasComp<GhostComponent>(args.User))
                 return;
 
             // Pens have a `Write` tag.
@@ -258,10 +298,10 @@ namespace Content.Server.Paper
         // FRONTIER - TrySign method, attempts to place a signature
         public bool TrySign(EntityUid paper, EntityUid signer, EntityUid pen, PaperComponent paperComp)
         {
-
             // Generate display information.
             StampDisplayInfo info = new StampDisplayInfo
             {
+                Reapply = false, // Frontier
                 StampedName = Name(signer),
                 StampedColor = Color.FromHex("#333333"),
                 Type = StampType.Signature
@@ -269,16 +309,12 @@ namespace Content.Server.Paper
 
             // Get Crayon component, and if present set custom color from crayon
             if (TryComp<CrayonComponent>(pen, out var crayon))
-            {
                 info.StampedColor = crayon.Color;
-                crayon.Charges -= 1;
-            }
 
             // Try stamp with the info, return false if failed.
-            if (TryStamp(paper, info, "paper_stamp-generic", paperComp))
+            if (!StampDelayed(pen) && TryStamp(paper, info, "paper_stamp-generic", paperComp)) // Frontier: add !StampDelayed(pen)
             {
                 // Signing successful, popup time.
-
                 _popupSystem.PopupEntity(
                     Loc.GetString(
                         "paper-component-action-signed-other",
@@ -306,6 +342,12 @@ namespace Content.Server.Paper
 
                 UpdateUserInterface(paper, paperComp);
 
+                // If this is a crayon, decrease # charges when actually used
+                if (crayon is not null)
+                    crayon.Charges -= 1;
+
+                DelayStamp(pen); // prevent stamp spam
+
                 return true;
             }
 
@@ -317,7 +359,7 @@ namespace Content.Server.Paper
             if (!Resolve(uid, ref paperComp))
                 return;
 
-            paperComp.Content = content + '\n';
+            paperComp.Content = content.Trim() + '\n'; // Frontier: content<content.Trim()
             UpdateUserInterface(uid, paperComp);
 
             if (!TryComp<AppearanceComponent>(uid, out var appearance))

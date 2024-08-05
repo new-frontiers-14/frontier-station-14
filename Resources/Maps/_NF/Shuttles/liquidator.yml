@@ -18,7 +18,7 @@ entities:
   - uid: 1
     components:
     - type: MetaData
-      name: grid
+      name: Liquidator
     - type: Transform
       pos: -0.4999962,-0.4928913
       parent: invalid
@@ -269,8 +269,6 @@ entities:
           0,-2:
             0: 65280
             2: 14
-          -1,-2:
-            0: 63094
           -1,-1:
             0: 8183
           1,-2:
@@ -285,6 +283,8 @@ entities:
             2: 17408
           -1,0:
             0: 1911
+          -1,-2:
+            0: 30326
         uniqueMixes:
         - volume: 2500
           temperature: 293.15
@@ -705,19 +705,19 @@ entities:
   - uid: 186
     components:
     - type: Transform
-      pos: 1.5,3.5
-      parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 188
-  - uid: 326
-    components:
-    - type: Transform
       pos: 0.5,3.5
       parent: 1
     - type: DeviceLinkSink
       links:
-      - 188
+      - 145
+  - uid: 347
+    components:
+    - type: Transform
+      pos: 1.5,3.5
+      parent: 1
+    - type: DeviceLinkSink
+      links:
+      - 145
 - proto: BoxBodyBag
   entities:
   - uid: 88
@@ -759,6 +759,26 @@ entities:
     components:
     - type: Transform
       pos: 5.6002502,0.5775392
+      parent: 1
+- proto: ButtonFrameCaution
+  entities:
+  - uid: 359
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -0.5,-3.5
+      parent: 1
+  - uid: 363
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -4.5,-1.5
+      parent: 1
+  - uid: 368
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -0.5,2.5
       parent: 1
 - proto: CableApcExtension
   entities:
@@ -1188,19 +1208,12 @@ entities:
       rot: 3.141592653589793 rad
       pos: -2.5,1.5
       parent: 1
-- proto: CleanerGrenade
-  entities:
-  - uid: 236
-    components:
-    - type: Transform
-      pos: -3.7238417,-4.438796
-      parent: 1
 - proto: ClosetRadiationSuitFilled
   entities:
-  - uid: 232
+  - uid: 360
     components:
     - type: Transform
-      pos: 2.5,2.5
+      pos: -3.5,-4.5
       parent: 1
 - proto: ClothingNeckCloakJanitorFilled
   entities:
@@ -1269,7 +1282,7 @@ entities:
   - uid: 97
     components:
     - type: Transform
-      pos: -3.5,-3.5
+      pos: 2.5,2.5
       parent: 1
 - proto: DefibrillatorCabinetFilled
   entities:
@@ -2184,10 +2197,10 @@ entities:
       parent: 1
 - proto: Jug
   entities:
-  - uid: 357
+  - uid: 100
     components:
     - type: Transform
-      pos: -3.4069247,-4.011713
+      pos: 4.2617903,0.79023325
       parent: 1
 - proto: Lamp
   entities:
@@ -2255,6 +2268,8 @@ entities:
       parent: 1
     - type: FuelGenerator
       on: False
+    - type: MaterialStorageMagnetPickup
+      magnetEnabled: True
     - type: Physics
       bodyType: Static
 - proto: PosterLegitCleanliness
@@ -2587,91 +2602,143 @@ entities:
       parent: 1
 - proto: ShuttersNormalOpen
   entities:
-  - uid: 189
-    components:
-    - type: Transform
-      pos: -2.5,-6.5
-      parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 245
-  - uid: 347
-    components:
-    - type: Transform
-      pos: -1.5,-6.5
-      parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 245
-- proto: ShuttersRadiationOpen
-  entities:
-  - uid: 100
-    components:
-    - type: Transform
-      pos: 1.5,-6.5
-      parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 266
   - uid: 130
     components:
     - type: Transform
-      pos: 1.5,-3.5
+      pos: -1.5,-5.5
       parent: 1
     - type: DeviceLinkSink
       links:
-      - 266
+      - 364
   - uid: 142
     components:
     - type: Transform
-      pos: 2.5,-3.5
+      pos: -2.5,-5.5
       parent: 1
     - type: DeviceLinkSink
       links:
-      - 266
-  - uid: 250
+      - 364
+  - uid: 357
+    components:
+    - type: Transform
+      pos: -1.5,-7.5
+      parent: 1
+    - type: DeviceLinkSink
+      links:
+      - 364
+  - uid: 358
+    components:
+    - type: Transform
+      pos: -2.5,-7.5
+      parent: 1
+    - type: DeviceLinkSink
+      links:
+      - 364
+- proto: ShuttersRadiation
+  entities:
+  - uid: 189
     components:
     - type: Transform
       pos: 3.5,-6.5
       parent: 1
     - type: DeviceLinkSink
       links:
-      - 266
-  - uid: 360
-    components:
-    - type: Transform
-      pos: 4.5,-4.5
-      parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 266
-  - uid: 372
-    components:
-    - type: Transform
-      pos: 4.5,-5.5
-      parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 266
-  - uid: 387
-    components:
-    - type: Transform
-      pos: -0.5,-4.5
-      parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 266
-  - uid: 388
+      - 188
+  - uid: 232
     components:
     - type: Transform
       pos: 2.5,-6.5
       parent: 1
     - type: DeviceLinkSink
       links:
-      - 266
-- proto: SignalButton
-  entities:
+      - 188
+  - uid: 236
+    components:
+    - type: Transform
+      pos: 2.5,-3.5
+      parent: 1
+    - type: DeviceLinkSink
+      links:
+      - 188
   - uid: 245
+    components:
+    - type: Transform
+      pos: 1.5,-6.5
+      parent: 1
+    - type: DeviceLinkSink
+      links:
+      - 188
+  - uid: 250
+    components:
+    - type: Transform
+      pos: 4.5,-4.5
+      parent: 1
+    - type: DeviceLinkSink
+      links:
+      - 188
+  - uid: 266
+    components:
+    - type: Transform
+      pos: 4.5,-5.5
+      parent: 1
+    - type: DeviceLinkSink
+      links:
+      - 188
+  - uid: 326
+    components:
+    - type: Transform
+      pos: 1.5,-3.5
+      parent: 1
+    - type: DeviceLinkSink
+      links:
+      - 188
+  - uid: 365
+    components:
+    - type: Transform
+      pos: -0.5,-4.5
+      parent: 1
+    - type: DeviceLinkSink
+      links:
+      - 188
+- proto: SignalButtonDirectional
+  entities:
+  - uid: 145
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -0.5,2.5
+      parent: 1
+    - type: DeviceLinkSource
+      linkedPorts:
+        186:
+        - Pressed: Toggle
+        347:
+        - Pressed: Toggle
+  - uid: 188
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -0.5,-3.5
+      parent: 1
+    - type: DeviceLinkSource
+      linkedPorts:
+        365:
+        - Pressed: Toggle
+        236:
+        - Pressed: Toggle
+        326:
+        - Pressed: Toggle
+        245:
+        - Pressed: Toggle
+        232:
+        - Pressed: Toggle
+        189:
+        - Pressed: Toggle
+        250:
+        - Pressed: Toggle
+        266:
+        - Pressed: Toggle
+  - uid: 364
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
@@ -2679,50 +2746,13 @@ entities:
       parent: 1
     - type: DeviceLinkSource
       linkedPorts:
-        189:
-        - Pressed: Toggle
-        347:
-        - Pressed: Toggle
-  - uid: 266
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -0.52770877,-3.1912308
-      parent: 1
-    - type: DeviceLinkSource
-      linkedPorts:
-        130:
-        - Pressed: Toggle
         142:
         - Pressed: Toggle
-        360:
+        130:
         - Pressed: Toggle
-        372:
+        358:
         - Pressed: Toggle
-        250:
-        - Pressed: Toggle
-        388:
-        - Pressed: Toggle
-        100:
-        - Pressed: Toggle
-        387:
-        - Pressed: Toggle
-- proto: SignalButtonDirectional
-  entities:
-  - uid: 188
-    components:
-    - type: MetaData
-      desc: 'Reminder: keep... Uhh.. I forgot..'
-      name: blast doors switch
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -0.5,2.5
-      parent: 1
-    - type: DeviceLinkSource
-      linkedPorts:
-        326:
-        - Pressed: Toggle
-        186:
+        357:
         - Pressed: Toggle
 - proto: SignJanitor
   entities:
@@ -2750,11 +2780,11 @@ entities:
       parent: 1
 - proto: SignRadiationMed
   entities:
-  - uid: 397
+  - uid: 367
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
-      pos: -0.5,-3.5
+      pos: -0.16389537,-3.5
       parent: 1
 - proto: SinkWide
   entities:
@@ -2774,20 +2804,20 @@ entities:
       parent: 1
 - proto: SprayBottleSpaceCleaner
   entities:
+  - uid: 23
+    components:
+    - type: Transform
+      pos: -1.7382097,2.2121081
+      parent: 1
   - uid: 120
     components:
     - type: Transform
-      pos: -3.4173415,-4.345046
+      pos: -1.9413347,2.3996081
       parent: 1
-  - uid: 145
+  - uid: 369
     components:
     - type: Transform
-      pos: -3.4485915,-4.4596295
-      parent: 1
-  - uid: 358
-    components:
-    - type: Transform
-      pos: -3.2819247,-4.3971295
+      pos: 4.9649153,0.72773325
       parent: 1
 - proto: SubstationBasic
   entities:
@@ -2808,11 +2838,6 @@ entities:
       canCollide: False
 - proto: Table
   entities:
-  - uid: 23
-    components:
-    - type: Transform
-      pos: -3.5,-4.5
-      parent: 1
   - uid: 72
     components:
     - type: Transform
