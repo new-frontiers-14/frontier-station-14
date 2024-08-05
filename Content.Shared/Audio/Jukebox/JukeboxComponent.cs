@@ -1,4 +1,6 @@
+using System.Numerics; // Frontier: wallmount jukebox
 using Robust.Shared.GameStates;
+using Robust.Shared.Maths;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
@@ -37,6 +39,11 @@ public sealed partial class JukeboxComponent : Component
 
     [ViewVariables]
     public float SelectAccumulator;
+
+    // Frontier: wallmount jukebox
+    [DataField]
+    public Vector2 AudioOffset = Vector2.Zero;
+    // End Frontier
 }
 
 [Serializable, NetSerializable]
