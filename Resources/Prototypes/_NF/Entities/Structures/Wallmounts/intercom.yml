@@ -3,8 +3,11 @@
   parent: IntercomSecurity
   suffix: NFSD # Frontier - Not adding DO NOT MAP. (Prototype is already matched by "Security" for sec shipyard.)
   components:
-  - type: Intercom
-    supportedChannels:
-    - Common
-    - Nfsd
-    - Traffic # Frontier - Add Traffic channel
+  - type: ContainerFill
+    containers:
+      board:
+      - IntercomElectronics
+      key_slots:
+      - EncryptionKeyCommon
+      - EncryptionKeyNfsd
+      - EncryptionKeyTraffic # Frontier
