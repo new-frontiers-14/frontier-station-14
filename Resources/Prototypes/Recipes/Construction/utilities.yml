@@ -467,12 +467,12 @@
   placementMode: SnapgridCenter
   canBuildInImpassable: false
   icon:
-    sprite: Structures/Piping/Atmospherics/vent.rsi
+    sprite: _NF/Structures/Piping/Atmospherics/vent.rsi # Frontier
     state: vent_off
   layers:
   - sprite: Structures/Piping/Atmospherics/pipe.rsi
     state: pipeHalf
-  - sprite: Structures/Piping/Atmospherics/vent.rsi
+  - sprite: _NF/Structures/Piping/Atmospherics/vent.rsi # Frontier
     state: vent_off
   conditions:
     - !type:NoUnstackableInTile
@@ -488,13 +488,13 @@
   placementMode: SnapgridCenter
   canBuildInImpassable: false
   icon:
-    sprite: Structures/Piping/Atmospherics/vent.rsi
-    state: vent_off
+    sprite: _NF/Structures/Piping/Atmospherics/vent.rsi # Frontier
+    state: vent_passive
   layers:
   - sprite: Structures/Piping/Atmospherics/pipe.rsi
     state: pipeHalf
-  - sprite: Structures/Piping/Atmospherics/vent.rsi
-    state: vent_off
+  - sprite: _NF/Structures/Piping/Atmospherics/vent.rsi # Frontier
+    state: vent_passive
   conditions:
     - !type:NoUnstackableInTile
 
@@ -509,12 +509,12 @@
   placementMode: SnapgridCenter
   canBuildInImpassable: false
   icon:
-    sprite: Structures/Piping/Atmospherics/scrubber.rsi
+    sprite: _NF/Structures/Piping/Atmospherics/scrubber.rsi # Frontier
     state: scrub_off
   layers:
   - sprite: Structures/Piping/Atmospherics/pipe.rsi
     state: pipeHalf
-  - sprite: Structures/Piping/Atmospherics/scrubber.rsi
+  - sprite: _NF/Structures/Piping/Atmospherics/scrubber.rsi # Frontier
     state: scrub_off
   conditions:
     - !type:NoUnstackableInTile
@@ -678,12 +678,12 @@
   placementMode: SnapgridCenter
   canBuildInImpassable: false
   icon:
-    sprite: Structures/Piping/Atmospherics/vent.rsi
+    sprite: _NF/Structures/Piping/Atmospherics/vent.rsi # Frontier
     state: vent_off
   layers:
   - sprite: Structures/Piping/Atmospherics/pipe.rsi
     state: pipeStraight
-  - sprite: Structures/Piping/Atmospherics/vent.rsi
+  - sprite: _NF/Structures/Piping/Atmospherics/vent.rsi # Frontier
     state: vent_off
 
 - type: construction
@@ -790,7 +790,7 @@
 # INTERCOM
 - type: construction
   name: intercom
-  id: IntercomAssesmbly
+  id: IntercomAssembly
   graph: Intercom
   startNode: start
   targetNode: intercom
