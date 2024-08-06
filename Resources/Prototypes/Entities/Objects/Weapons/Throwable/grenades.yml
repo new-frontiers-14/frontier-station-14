@@ -3,6 +3,7 @@
   parent: BaseItem
   id: GrenadeBase
   components:
+  - type: WeaponCaseInsertable # Frontier
   - type: Sprite
     sprite: Objects/Weapons/Grenades/grenade.rsi
     layers:
@@ -56,6 +57,7 @@
         volume: 5
     initialBeepDelay: 0
     beepInterval: 2 # 2 beeps total (at 0 and 2)
+  - type: Contraband #frontier
 
 - type: entity
   name: flashbang
@@ -119,6 +121,7 @@
       path: /Audio/Effects/minibombcountdown.ogg
       params:
         volume: 12
+  - type: Contraband #frontier
 
 - type: entity
   name: Self Destruct
@@ -206,6 +209,7 @@
           params:
             volume: 5
       - type: ExplodeOnTrigger
+      - type: Contraband #frontier
 
 - type: entity
   name: whitehole grenade
@@ -253,6 +257,7 @@
           params:
             volume: 15
       - type: DeleteOnTrigger
+      - type: Contraband #frontier
 
 - type: entity
   name: the nuclear option
@@ -283,6 +288,7 @@
   - type: TimerTriggerVisuals
     primingSound:
       path: /Audio/Effects/countdown.ogg
+  - type: Contraband #frontier
 
 - type: entity
   name: modular grenade
@@ -290,6 +296,7 @@
   parent: BaseItem
   id: ModularGrenade
   components:
+  - type: WeaponCaseInsertable # Frontier
   - type: Sprite
     sprite: Objects/Weapons/Grenades/modular.rsi
     layers:
@@ -370,6 +377,7 @@
   - type: TimerTriggerVisuals
     primingSound:
       path: /Audio/Effects/hallelujah.ogg
+  - type: Contraband #frontier
 
 - type: entity
   parent: GrenadeBase
@@ -421,21 +429,6 @@
       reagents:
       - ReagentId: TearGas
         Quantity: 50
-
-- type: entity
-  parent: SmokeGrenade
-  id: MetalFoamGrenade
-  name: metal foam grenade
-  description: An emergency tool used for patching up holes. Almost as good as real walls.
-  components:
-  - type: Sprite
-    sprite: Objects/Weapons/Grenades/metalfoam.rsi
-  - type: SmokeOnTrigger
-    duration: 10
-    spreadAmount: 13
-    smokePrototype: AluminiumMetalFoam
-  - type: StaticPrice
-    price: 350
 
 # Non-explosive "dummy" grenades to use as a distraction.
 
