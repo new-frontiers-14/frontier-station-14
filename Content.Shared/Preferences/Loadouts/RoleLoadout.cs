@@ -105,8 +105,25 @@ public sealed partial class RoleLoadout : IEquatable<RoleLoadout>
                 // Malicious client maybe, check the group even has it.
                 if (!groupProto.Loadouts.Contains(loadout.Prototype))
                 {
-                    loadouts.RemoveAt(i);
-                    continue;
+                    // Frontier: check subgroups
+                    bool subGroupEntryFound = false;
+                    foreach (var subgroup in groupProto.Subgroups)
+                    {
+                        if (protoManager.TryIndex(subgroup, out var subgroupProto) &&
+                            subgroupProto.Loadouts.Contains(loadout.Prototype))
+                        {
+                            subGroupEntryFound = true;
+                            break;
+                        }
+                    }
+                    if (!subGroupEntryFound)
+                    {
+                        loadouts.RemoveAt(i);
+                        continue;
+                    }
+                    // End Frontier: check subgroups
+                    // loadouts.RemoveAt(i); // Frontier: commented out old implementation
+                    // continue; // Frontier: commented out old implementation
                 }
 
                 // Validate the loadout can be applied (e.g. points).
@@ -151,11 +168,9 @@ public sealed partial class RoleLoadout : IEquatable<RoleLoadout>
                 }
                 // End Frontier
 
-                // Apply any loadouts we can.
-                foreach (var protoId in groupProto.Loadouts) // Frontier: foreach (a la #29264)
+                foreach (var protoId in groupProto.Loadouts)
                 {
-                    // Reached the limit, time to stop
-                    if (loadouts.Count >= groupProto.MinLimit) // Frontier: groupProto.Loadouts[i]<groupProto - foreach (a la #29264)
+                    if (loadouts.Count >= groupProto.MinLimit)
                         break;
 
                     if (!protoManager.TryIndex(protoId, out var loadoutProto))
