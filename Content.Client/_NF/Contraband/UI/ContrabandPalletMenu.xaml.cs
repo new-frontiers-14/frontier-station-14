@@ -12,17 +12,32 @@ public sealed partial class ContrabandPalletMenu : FancyWindow
     public Action? SellRequested;
     public Action? AppraiseRequested;
 
-    public ContrabandPalletMenu()
+    private string _locPrefix = string.Empty;
+
+    public ContrabandPalletMenu(string locPrefix)
     {
         RobustXamlLoader.Load(this);
         SellButton.OnPressed += OnSellPressed;
         AppraiseButton.OnPressed += OnAppraisePressed;
-        Title = Loc.GetString("contraband-pallet-console-menu-title");
+
+        _locPrefix = locPrefix ?? string.Empty;
+
+        Title = Loc.GetString($"{_locPrefix}contraband-pallet-console-menu-title");
+
+        if (!string.IsNullOrEmpty(_locPrefix))
+        {
+            AppraisalLabelLeft.Text = Loc.GetString($"{_locPrefix}contraband-pallet-menu-appraisal-label");
+            AppraisalLabel.Text = Loc.GetString($"{_locPrefix}contraband-pallet-menu-no-goods-text");
+            CountLabelLeft.Text = Loc.GetString($"{_locPrefix}contraband-pallet-menu-count-label");
+            CountLabel.Text = Loc.GetString($"{_locPrefix}contraband-pallet-menu-no-goods-text");
+            AppraiseButton.Text = Loc.GetString($"{_locPrefix}contraband-pallet-appraise-button");
+            SellButton.Text = Loc.GetString($"{_locPrefix}contraband-pallet-sell-button");
+        }
     }
 
     public void SetAppraisal(int amount)
     {
-        AppraisalLabel.Text = Loc.GetString("contraband-console-menu-points-amount", ("amount", amount.ToString()));
+        AppraisalLabel.Text = Loc.GetString($"{_locPrefix}contraband-console-menu-points-amount", ("amount", amount.ToString()));
     }
 
     public void SetCount(int count)
