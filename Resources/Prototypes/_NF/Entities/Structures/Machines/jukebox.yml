@@ -2,10 +2,6 @@
   id: JukeboxWallmount
   suffix: Wallmount
   parent: [ BaseWallmount, Jukebox ]
-  placement:
-    mode: SnapgridCenter
-    snap:
-      - Wallmount
   components:
   - type: Sprite
     sprite: _NF/Structures/Machines/jukebox.rsi
@@ -16,3 +12,8 @@
     noRot: false
   - type: Jukebox
     audioOffset: 0, -1 # Oriented facing south - extend audio south out of the wall.
+
+- type: entity
+  id: JukeboxWallmountShip
+  suffix: Wallmount, Ship
+  parent: [ BaseStructureDisableToolUse, BaseStructureIndestructible, JukeboxWallmount ]
