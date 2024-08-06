@@ -24,6 +24,7 @@
   - SecurityGuardJumpskirt
   fallbacks:
   - SecurityGuardJumpsuit
+  - SecurityGuardJumpskirt
 
 - type: loadoutGroup
   id: SecurityGuardBackpack
@@ -67,6 +68,7 @@
 - type: loadoutGroup
   id: SecurityGuardPDA
   name: loadout-group-contractor-id
+  hidden: true # No point in showing this, it gets auto-selected.
   loadouts:
   - SecurityGuardSecurityGuardPDA
   fallbacks:
@@ -75,6 +77,8 @@
 - type: loadoutGroup
   id: SecurityGuardFace
   name: loadout-group-contractor-face
-  minLimit: 0
+  hidden: true # No point in showing this, it gets auto-selected.
   loadouts:
+  - SecurityClothingMaskGasSecurity
+  fallbacks:
   - SecurityClothingMaskGasSecurity

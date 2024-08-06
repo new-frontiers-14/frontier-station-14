@@ -25,6 +25,9 @@ public partial struct StampDisplayInfo
 
     [DataField("stampType")]
     public StampType Type = StampType.RubberStamp;
+
+    [DataField("reapply")] // Frontier: allow reapplying stamps
+    public bool Reapply = false; // Frontier: allow reapplying stamps
 };
 
 // FRONTIER - Stamp types, put it into an enum for modularity purposes.
@@ -44,7 +47,7 @@ public sealed partial class StampComponent : Component
     public string StampedName { get; set; } = "stamp-component-stamped-name-default";
 
     /// <summary>
-    ///     Tne sprite state of the stamp to display on the paper from paper Sprite path.
+    ///     The sprite state of the stamp to display on the paper from paper Sprite path.
     /// </summary>
     [DataField("stampState")]
     public string StampState { get; set; } = "paper_stamp-generic";
@@ -61,4 +64,11 @@ public sealed partial class StampComponent : Component
     [DataField("sound")]
     public SoundSpecifier? Sound = null;
 
+    // Frontier: allow reapplying stamps
+    /// <summary>
+    /// Whether or not a stamp can be reapplied
+    /// </summary>
+    [DataField("reapply")]
+    public bool Reapply { get; set; } = false;
+    // End Frontier: allow reapplying stamps
 }

@@ -6,6 +6,7 @@
   - SheriffClothingUniformJumpskirtSheriff
   fallbacks:
   - SheriffClothingUniformJumpsuitSheriff
+  - SheriffClothingUniformJumpskirtSheriff
   
 - type: loadoutGroup
   id: SheriffOuterClothing
@@ -15,27 +16,11 @@
   - SheriffOuterClothing
 
 - type: loadoutGroup
-  id: SheriffShoes
-  name: loadout-group-contractor-shoes
-  loadouts:
-  - NfsdClothingShoesBootsBrown
-  fallbacks:
-  - NfsdClothingShoesBootsBrown
-
-- type: loadoutGroup
   id: SheriffHead
   name: loadout-group-contractor-head
   minLimit: 0
   loadouts:
   - SheriffClothingHeadHatSheriff
-  
-- type: loadoutGroup
-  id: SheriffGloves
-  name: loadout-group-contractor-gloves
-  loadouts:
-  - SheriffClothingHandsGlovesSheriff
-  fallbacks:
-  - SheriffClothingHandsGlovesSheriff
 
 - type: loadoutGroup
   id: SheriffNeck
@@ -47,22 +32,17 @@
 - type: loadoutGroup
   id: SheriffPDA
   name: loadout-group-contractor-id
+  hidden: true # No point in showing this, it gets auto-selected.
   loadouts:
   - SheriffSheriffPDA
   fallbacks:
   - SheriffSheriffPDA
-  
-- type: loadoutGroup
-  id: SheriffGlasses
-  name: loadout-group-contractor-glasses
-  loadouts:
-  - NfsdClothingEyesGlasses
-  fallbacks:
-  - NfsdClothingEyesGlasses
 
 - type: loadoutGroup
   id: SheriffFace
   name: loadout-group-contractor-face
-  minLimit: 0
+  hidden: true # No point in showing this, it gets auto-selected.
   loadouts:
+  - SheriffClothingMaskSheriff
+  fallbacks:
   - SheriffClothingMaskSheriff
