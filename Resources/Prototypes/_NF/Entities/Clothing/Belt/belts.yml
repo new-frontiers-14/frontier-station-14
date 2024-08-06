@@ -21,38 +21,6 @@
     sprite: _NF/Clothing/Belt/chaplain_sash.rsi
   - type: Clothing
     sprite: _NF/Clothing/Belt/chaplain_sash.rsi
-  - type: Storage
-    maxItemSize: Small
-    grid:
-    - 0,0,3,2
-    # TODO: Fill this out more.
-    whitelist:
-      tags:
-      - ObjectOfSpiritualSignificance
-      - Censer
-      - ReligiousSymbol
-      - Crucifix
-      - WeaponMeleeStake
-      - Book
-      - Smokable
-      - Matchstick
-      - Flashlight
-      - Trash
-      - CigPack
-      - Radio
-      - Crayon
-      - Bottle
-      - DrinkBottle
-      components:
-      - BibleComponent
-      - Drink
-      - Smokable
-      - MeleeWeapon
-      - HandheldLight
-      - ExpendableLight
-      - ToggleableLightVisuals
-      - Paper
-      - Stamp
   - type: ItemMapper
     mapLayers:
       book:
@@ -69,6 +37,7 @@
           - DrinkBottle
           components:
           - Drink
+          - Hypospray
       censer:
         whitelist:
           tags:
