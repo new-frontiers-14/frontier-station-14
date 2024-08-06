@@ -4,7 +4,6 @@ using Content.Server.Administration.Logs;
 using Content.Server.Audio;
 using Content.Server.Cargo.Systems;
 using Content.Server.Chemistry.Containers.EntitySystems;
-using Content.Server.Chemistry.EntitySystems;
 using Content.Server.Construction;
 using Content.Server.DoAfter;
 using Content.Server.Fluids.EntitySystems;
@@ -28,6 +27,7 @@ using Content.Shared.Damage.Prototypes;
 using Content.Shared.Database;
 using Content.Shared.Destructible;
 using Content.Shared.DoAfter;
+using Content.Shared.EntityEffects; // Frontier
 using Content.Shared.Examine;
 using Content.Shared.FixedPoint;
 using Content.Shared.Hands.Components;
@@ -383,17 +383,17 @@ public sealed partial class DeepFryerSystem : SharedDeepfryerSystem
         {
             //JJ Comment - not sure this works. Need to check if Reagent.ToString is correct.
             _prototypeManager.TryIndex<ReagentPrototype>(reagent.Reagent.ToString(), out var proto);
-            var effectsArgs = new ReagentEffectArgs(uid,
+            var effectsArgs = new EntityEffectReagentArgs(uid, // Frontier: ReagentEffectArgs<EntityEffectReagentArgs
+                EntityManager,
                 null,
                 component.Solution,
-                proto!,
                 reagent.Quantity,
-                EntityManager,
+                proto!,
                 null,
                 1f);
             foreach (var effect in component.UnsafeOilVolumeEffects)
             {
-                if (!effect.ShouldApply(effectsArgs, _random))
+                if (!EntityEffectExt.ShouldApply(effect, effectsArgs, _random)) // Frontier: effect.ShouldApply<EntityEffectExt.ShouldApply
                     continue;
                 effect.Effect(effectsArgs);
             }
