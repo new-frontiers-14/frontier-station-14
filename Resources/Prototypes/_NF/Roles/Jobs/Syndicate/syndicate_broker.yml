@@ -1,0 +1,54 @@
+- type: job
+  id: SyndicateBroker
+  name: job-name-syndicate-broker
+  description: job-description-syndicate-broker
+  playTimeTracker: JobSyndicateBroker
+  requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 172800 # Frontier - 48 hours
+  whitelisted: true
+  startingGear: SyndicateBrokerNFGear
+  alwaysUseSpawner: true
+  hideConsoleVisibility: true
+  canBeAntag: true
+  icon: "JobIconMercenary"
+  supervisors: job-supervisors-syndicate-broker
+  setPreference: true
+  accessGroups:
+  - GeneralAccess
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: MailDisabled
+    - type: NpcFactionMember
+      factions: [Syndicate]
+    - type: Access
+      tags:
+      - SyndicateAgent
+
+  - !type:AddImplantSpecial
+    implants: [ DeathRattleImplant ]
+  - !type:GiveItemOnHolidaySpecial
+    holiday: FrontierBirthday
+    prototype: FrontierBirthdayGift
+
+- type: startingGear
+  id: SyndicateBrokerNFGear
+  equipment:
+    head: ClothingHeadHatSyndie
+    eyes: ClothingEyesHudSyndicate
+    mask: ClothingMaskGasSyndicate
+    ears: ClothingHeadsetAltSyndicate
+    shoes: ClothingShoesBootsLaceup
+    belt: ClothingBeltUtilityEngineering
+    pocket1: MagazinePistolSubMachineGun
+    pocket2: MagazinePistolSubMachineGun
+    outerClothing: ClothingOuterCoatSyndieCapArmored
+    back: ClothingBackpackSyndicate
+    jumpsuit: ClothingUniformJumpsuitOperative
+    gloves: ClothingHandsGlovesCombat
+  inhand:
+    - BriefcaseSyndicateBrokerBundleFilled
+  storage:
+    back:
+    - WeaponSubMachineGunC20r

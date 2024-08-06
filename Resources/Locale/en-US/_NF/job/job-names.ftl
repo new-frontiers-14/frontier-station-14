@@ -15,6 +15,8 @@ job-name-security-guard = Security Guard
 job-name-sheriff = Sheriff
 job-name-stc = Station Traffic Controller
 job-name-sr = Station Representative
+job-name-syndicate-broker = Syndicate Broker
+job-name-syndicate-bodyguard = Syndiacte Bodyguard
 
 # Role timers - Make these alphabetical or I cut you
 JobERTMailCarrier = ERT Mail Carrier
@@ -25,6 +27,8 @@ JobPirateCaptain = Pirate Captain
 JobPirateFirstMate = Pirate First Mate
 JobSecurityGuard = Security Guard
 JobSTC = Station Traffic Controller
+JobSyndicateBroker = Syndicate Broker
+JobSyndicateBodyguard = Syndicate Bodyguard
 
 # Upstream Removed
 job-name-senior-engineer = Senior Engineer

@@ -62,7 +62,7 @@
     layers:
       - state: green
       - state: pilot
-      
+
 - type: entity
   id: SpawnPointPirateFirstMate
   parent: SpawnPointJobBase
@@ -70,6 +70,32 @@
   components:
   - type: SpawnPoint
     job_id: PirateFirstMate
+  - type: Sprite
+    sprite: _NF/Markers/jobs.rsi
+    layers:
+      - state: green
+      - state: pilot
+
+- type: entity
+  id: SpawnPointSyndicateBroker
+  parent: SpawnPointJobBase
+  name: syndicate broker
+  components:
+  - type: SpawnPoint
+    job_id: SyndicateBroker
+  - type: Sprite
+    sprite: _NF/Markers/jobs.rsi
+    layers:
+      - state: green
+      - state: pilot
+
+- type: entity
+  id: SpawnPointSyndicateBodyguard
+  parent: SpawnPointJobBase
+  name: syndicate bodyguard
+  components:
+  - type: SpawnPoint
+    job_id: SyndicateBodyguard
   - type: Sprite
     sprite: _NF/Markers/jobs.rsi
     layers:

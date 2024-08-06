@@ -23,4 +23,10 @@ public sealed partial class EmagComponent : Component
     /// </summary>
     [DataField("demag")]
     public bool Demag = false;
+
+    /// <summary>
+    // Frontier - Print Dead Drops from supported Fax Machines
+    /// </sumary>
+    [DataField("dropprinter")]
+    public bool DropPrinter = false;
 }

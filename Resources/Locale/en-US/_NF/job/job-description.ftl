@@ -15,3 +15,5 @@ job-description-senior-officer = Teach new deputies the basics of searches, pref
 job-description-sheriff = Manage your department and keep them efficient, quell dissent, and keep the sector safe.
 job-description-stc = Expertly de-conflict the space around the station and help the NFSD issue fines for overdocked ships.
 job-description-sr = Handle access reassignment fairly using your ID console, manage Frontier outpost, and keep Clippy safe.
+job-desctiption-syndicate-bodyguard = Listen to your boss, keep your boss alive, intimidate visitors.
+job-description-syndicate-broker = The head of smuggling logistics in the sector, control a POI, distribute dead drops, and deal contraband.
