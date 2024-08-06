@@ -1,11 +1,6 @@
-using System.Diagnostics.CodeAnalysis;
-using System.Runtime.CompilerServices;
 using Content.Shared._NF.SectorServices.Prototypes;
-using Content.Server.GameTicking;
 using JetBrains.Annotations;
-using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
-using Content.Server.Administration.Logs.Converters;
 
 
 namespace Content.Server._NF.SectorServices;
@@ -33,14 +28,14 @@ public sealed class SectorServiceSystem : EntitySystem
 
     private void OnComponentStartup(EntityUid uid, StationSectorServiceHostComponent component, ComponentStartup args)
     {
-        Log.Error($"OnComponentStartup! Entity: {uid} internal: {_entity}");
+        Log.Debug($"OnComponentStartup! Entity: {uid} internal: {_entity}");
         if (_entity == EntityUid.Invalid)
         {
             _entity = uid;
 
             foreach (var servicePrototype in _prototypeManager.EnumeratePrototypes<SectorServicePrototype>())
             {
-                Log.Error($"Adding component: {servicePrototype.Components}");
+                Log.Debug($"Adding components for service {servicePrototype.ID}");
                 _entityManager.AddComponents(_entity, servicePrototype.Components, false); // removeExisting false - do not override existing components.
             }
         }
@@ -48,12 +43,12 @@ public sealed class SectorServiceSystem : EntitySystem
 
     private void OnComponentShutdown(EntityUid uid, StationSectorServiceHostComponent component, ComponentShutdown args)
     {
-        Log.Error($"OnComponentShutdown! Entity: {_entity}");
+        Log.Debug($"OnComponentShutdown! Entity: {_entity}");
         if (_entity != EntityUid.Invalid)
         {
             foreach (var servicePrototype in _prototypeManager.EnumeratePrototypes<SectorServicePrototype>())
             {
-                Log.Error($"Removing component: {servicePrototype.Components}");
+                Log.Debug($"Removing component for service {servicePrototype.ID}");
                 _entityManager.RemoveComponents(_entity, servicePrototype.Components);
             }
             _entity = EntityUid.Invalid;
