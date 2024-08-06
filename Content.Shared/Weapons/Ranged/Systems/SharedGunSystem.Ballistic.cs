@@ -104,7 +104,7 @@ public abstract partial class SharedGunSystem
 
     private void OnBallisticAmmoFillDoAfter(EntityUid uid, BallisticAmmoProviderComponent component, AmmoFillDoAfterEvent args)
     {
-        if (Deleted(args.Target))
+        if (Deleted(args.Target)) // Frontier: deferred component & whitelist check
             return;
 
         // Frontier: Better revolver reloading
