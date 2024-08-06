@@ -1,0 +1,9 @@
+ent-CrateNPCEmotionalSupport = emotional support pet crate
+    .desc = A crate containing a single emotional support pet.
+ent-FillNPCEmotionalSupportSafe = { "" }
+    .suffix = Safe
+    .desc = { "" }
+ent-CrateNPCEmotionalSupportSafe = { ent-CrateNPCEmotionalSupport }
+  .desc = { ent-CrateNPCEmotionalSupport.desc }
+ent-PetCarrierNPCEmotionalSupportSafe = { ent-FillNPCEmotionalSupportSafe }
+  .desc = { ent-FillNPCEmotionalSupportSafe.desc }

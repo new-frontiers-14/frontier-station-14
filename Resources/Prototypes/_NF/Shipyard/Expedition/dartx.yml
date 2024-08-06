@@ -10,8 +10,8 @@
 # 
 - type: vessel
   id: DartX
-  name: NT Dart-X
-  description: A light emergency response cruiser outfitted for extended rescue missions.
+  name: NT Копьё-X
+  description: Среднегабаритный экспедиционный шаттл. Рекомендованный размер команды 3-6 человек.
   price: 83500 #~72400 after mapinit +15% (10860)
   category: Medium
   group: Expedition
@@ -19,7 +19,7 @@
 
 - type: gameMap
   id: DartX
-  mapName: 'NT Dart-X'
+  mapName: 'NT Копьё-X'
   mapPath: /Maps/_NF/Shuttles/Expedition/dartx.yml
   minPlayers: 0
   stations:
@@ -27,7 +27,7 @@
       stationProto: StandardFrontierExpeditionVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Dart-X {1}'
+          mapNameTemplate: 'Копьё-X {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

@@ -1,7 +1,7 @@
 - type: vessel
   id: Hospitaller
-  name: NSF Hospitaller
-  description: A small security medical craft designed for emergency response and search and rescue operations.
+  name: NSF Лазарет
+  description: Малогабаритный медицинский шаттл. Рекомендованный состав команды 1-3 человека.
   price: 28220
   category: Small
   group: Security
@@ -10,7 +10,7 @@
 
 - type: gameMap
   id: Hospitaller
-  mapName: 'NSF Hospitaller'
+  mapName: 'NSF Лазарет'
   mapPath: /Maps/_NF/Shuttles/Nfsd/hospitaller.yml
   minPlayers: 0
   stations:
@@ -18,7 +18,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Hospitaller {1}'
+          mapNameTemplate: 'Лазарет {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

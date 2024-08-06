@@ -1,0 +1,27 @@
+ent-ShredderMachineCircuitboard = измельчитель (машинная плата)
+    .desc = Печатная плата измельчителя.
+ent-TilePrinterNFMachineCircuitboard = Плиточник 5000 (машинная плата)
+    .desc = Печатная плата Плиточник 5000
+ent-SalvageTechFabCircuitboardNF = утилизационный техфаб (машинная плата)
+    .desc = Печатная плата утилизационного техфаба.
+ent-NfsdTechFabCircuitboard = техфаб ДСБФ (машинная плата)
+    .desc = Печатная плата техфабрикатора ДСБФ.
+ent-ThrusterSecurityMachineCircuitboard = двигатель ДСБФ (машинная плата)
+    .desc = { ent-BaseMachineCircuitboard.desc }
+ent-ThrusterNfsdMachineCircuitboard = двигатель ДСБФ (машинная плата)
+    .desc = { ent-BaseMachineCircuitboard.desc }
+ent-SmallThrusterMachineCircuitboard = малый двигатель (машинная плата)
+    .desc = { ent-BaseMachineCircuitboard.desc }
+ent-GyroscopeSecurityMachineCircuitboard = гироскоп ДСБФ (машинная плата)
+    .desc = { ent-BaseMachineCircuitboard.desc }
+ent-SmallGyroscopeSecurityMachineCircuitboard = малый гироскоп ДСБФ (машинная плата)
+    .desc = { ent-BaseMachineCircuitboard.desc }
+ent-GyroscopeNfsdMachineCircuitboard = гироскоп ДСБФ (машинная плата)
+    .desc = { ent-BaseMachineCircuitboard.desc }
+ent-SmallGyroscopeNfsdMachineCircuitboard = малый гироскоп ДСБФ (машинная плата)
+    .desc = { ent-BaseMachineCircuitboard.desc }
+ent-SmallGyroscopeMachineCircuitboard = малый гироскоп (машинная плата)
+    .desc = { ent-BaseMachineCircuitboard.desc }
+ent-M_EmpMachineCircuitboard = БЭМИ (машинная плата)
+    .desc = Печатная плата БЭМИ.
+

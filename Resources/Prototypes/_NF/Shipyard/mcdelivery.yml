@@ -7,8 +7,8 @@
 
 - type: vessel
   id: McDelivery
-  name: DC McDelivery
-  description: "Fast food fast ship, bring the McCargo meals to the people"
+  name: DC Курьер
+  description: Персональный малогабаритный шаттл доставки продуктов.
   price: 8500
   category: Small
   group: None
@@ -16,7 +16,7 @@
 
 - type: gameMap
   id: McDelivery
-  mapName: 'DC McDelivery'
+  mapName: 'DC Курьер'
   mapPath: /Maps/_NF/Shuttles/mcdelivery.yml
   minPlayers: 0
   stations:
@@ -24,7 +24,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'McDelivery {1}'
+          mapNameTemplate: 'Курьер {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

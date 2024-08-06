@@ -1,7 +1,7 @@
 - type: vessel
   id: Rogue
-  name: NSF Rogue
-  description: Small assault vessel with a toggle for going dark in deep space.
+  name: NSF Плут
+  description: Малогабаритный штурмовой шаттл ДСБФ с системами активной маскировки.
   price: 12200 #the appraisal is 9100$
   category: Small
   group: None
@@ -11,7 +11,7 @@
 
 - type: gameMap
   id: Rogue
-  mapName: 'NSF Rogue'
+  mapName: 'NSF Плут'
   mapPath: /Maps/_NF/Shuttles/Nfsd/rogue.yml
   minPlayers: 0
   stations:
@@ -19,7 +19,7 @@
       stationProto: StandardFrontierSecurityVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Rogue {1}'
+          mapNameTemplate: 'Плут {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

@@ -10,8 +10,8 @@
 #
 - type: vessel
   id: Pathfinder
-  name: KC Pathfinder
-  description: Once a scout ship serving with the Nanotrasen Marine Expeditionary Forces, this now decommissioned expedition capable ship can be yours!
+  name: KC Следопыт
+  description: Малогабаритный экспедиционный шаттл. Рекомендуемый состав команды 2-4 человека.
   price: 52920
   category: Small
   group: Expedition
@@ -19,7 +19,7 @@
   
 - type: gameMap
   id: Pathfinder
-  mapName: 'KC Pathfinder'
+  mapName: 'KC Следопыт'
   mapPath: /Maps/_NF/Shuttles/Expedition/pathfinder.yml
   minPlayers: 0
   stations: 
@@ -27,7 +27,7 @@
       stationProto: StandardFrontierExpeditionVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Pathfinder {1}'
+          mapNameTemplate: 'Следопыт {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

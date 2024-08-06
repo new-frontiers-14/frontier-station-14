@@ -10,8 +10,8 @@
 # 
 - type: vessel
   id: harbormaster
-  name: NC Harbormaster
-  description: A small tugboat.
+  name: NC Квадрон
+  description: Малогабаритный персональный шаттл. Рекомендованный размер команды 1 человек.
   price: 28300 # ~24600$ on mapinit + ~3690$ from 15% markup
   category: Small
   group: Civilian
@@ -19,7 +19,7 @@
 
 - type: gameMap
   id: harbormaster
-  mapName: 'Harbormaster'
+  mapName: 'Квадрон'
   mapPath: /Maps/_NF/Shuttles/harbormaster.yml
   minPlayers: 0
   stations: 
@@ -27,7 +27,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Harbormaster {1}'
+          mapNameTemplate: 'Квадрон {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

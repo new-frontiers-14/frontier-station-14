@@ -1,0 +1,10 @@
+ent-CrateTradeSecureNormalFilled = ящик с товарами
+    .desc = Содержит товары, произведенные в секторах Фронтира, готовые к продаже на грузовом складе по высокой цене. ЯЩИК ДОЛЖЕН БЫТЬ ЦЕЛ.
+ent-CrateTradeSecureHighFilled = ящик с ценными товарами
+    .desc = Содержит ценные товары, произведенные в секторах Фронтира, готовые к продаже на грузовом складе по высокой цене. ЯЩИК ДОЛЖЕН БЫТЬ ЦЕЛ.
+ent-CrateTradeContrabandSecureNormalFilled = { ent-CrateTradeContrabandSecureNormal }
+    .desc = { ent-CrateTradeContrabandSecureNormal.desc }
+ent-CrateTradeContrabandSecureDonkFilled = { ent-CrateTradeContrabandSecureDonk }
+    .desc = { ent-CrateTradeContrabandSecureDonk.desc }
+ent-CrateTradeContrabandSecureCyberSunFilled = { ent-CrateTradeContrabandSecureCyberSun }
+    .desc = { ent-CrateTradeContrabandSecureCyberSun.desc }

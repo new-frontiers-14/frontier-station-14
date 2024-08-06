@@ -1,0 +1,10 @@
+ent-BarSignLittleTreats = Little Treats Tea Room
+    .desc = A delightfully relaxing tearoom for all the fancy lads in the cosmos.
+ent-BarSignMaltroach = Maltroach
+    .desc = Mothroaches politely greet you into the bar, or are they greeting each other?
+ent-BarSignNeonFlamingos = Neon Flamingos
+    .desc = You doubt you'll be able to stand on one leg after you're done here.
+ent-BarSignTheRune = The Rune
+    .desc = Reality-shifting drinks.
+ent-BarSignWhiskeyEchoes = Whiskey Echoes
+    .desc = Wew lad! Sit down and have a drink! No matter your affiliation, the slogan here is 'Death to sobriety!'

@@ -1,0 +1,11 @@
+ent-MagazineRifleLowCapacityEmpty = low cap magazine (.20 rifle any)
+    .suffix = empty
+    .desc = { ent-MagazineRifle.desc }
+ent-MagazineRifleLowCapacity = low cap magazine (.20 rifle)
+    .desc = { ent-BaseMagazineRifle.desc }
+ent-MagazineRifleLowCapacityPractice = low cap magazine (.20 rifle practice)
+    .desc = { ent-MagazineRifleLowCapacity.desc }
+ent-MagazineRifleLowCapacityRubber = low cap magazine (.20 rifle rubber)
+    .desc = { ent-MagazineRifleLowCapacity.desc }
+ent-MagazineRifleLowCapacityUranium = low cap magazine (.20 rifle uranium)
+    .desc = { ent-MagazineRifleLowCapacity.desc }

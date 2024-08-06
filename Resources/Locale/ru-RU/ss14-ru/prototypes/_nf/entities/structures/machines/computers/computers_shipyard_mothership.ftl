@@ -1,0 +1,17 @@
+ent-BaseMothershipComputer = { ent-ComputerShipyard }
+    .desc = Используется на флагманах для покупки и продажи шаттлов, не возвращаясь на станцию.
+    .suffix = Флагман
+ent-SellOnlyMothershipComputer = консоль верфи для продажи
+    .desc = Только продажа! Эта консоль позволяет флагманам избавиться от старых или ненужных шаттлов без необходимости возвращаться на станцию.
+ent-EmpressMothershipComputer = консоль верфи императрицы
+    .desc = { ent-BaseMothershipComputer.desc }
+ent-McCargoMothershipComputer = консоль верфи каргонии
+    .desc = { ent-BaseMothershipComputer.desc }
+ent-CaduceusMothershipComputer = консоль верфи кадуцея
+    .desc = { ent-BaseMothershipComputer.desc }
+ent-GasbenderMothershipComputer = консоль верфи газового гиганта
+    .desc = { ent-BaseMothershipComputer.desc }
+ent-CrescentMothershipComputer = консоль верфи полумесяца
+    .desc = { ent-BaseMothershipComputer.desc }
+ent-MailCarrierMothershipComputer = консоль почтовой верфи
+    .desc = { ent-BaseMothershipComputer.desc }

@@ -1,0 +1,17 @@
+ent-BaseMobXenoExpeditions = xeno
+    .desc = They mostly come at night. Mostly.
+ent-MobXenoBurrowerExpeditions = Burrower
+    .desc = A young stage of development, burrowers stay close to their nests and dig underground to stay in relative safety.
+ent-MobXenoDroneExpeditions = Drone
+    .desc = The backbone of any xeno hive, drones serve as workers and nurses. They shape the environment to suit the hive's needs and care for unhatched eggs.
+ent-MobXenoPraetorianExpeditions = Praetorian
+    .desc = Praetorians are larger than the smaller drones, with their robust body designed for protection and strength. Their impressive size also enables them to efficiently transport large prey back to the hive.
+ent-MobXenoRavagerExpeditions = Ravager
+    .desc = Ravagers are large, vicious killers that specialize in brutal, high-damage hit-and-run attacks.
+ent-MobXenoRunnerExpeditions = Runner
+    .desc = Built for speed, the Runner is a very fast caste that excels at hit and run tactics and individual combat. Its lightweight frame leaves it vulnerable, though.
+ent-MobXenoSpitterExpeditions = Spitter
+    .desc = The Spitter, a master of ranged combat among Xenos, spits globs of caustic saliva that can incapacitate foes with ease. With a quick flick of its elongated tongue, the Spitter unleashes a stream of corrosive goo that can burn through armor and sizzle flesh.
+ent-MobXenoQueenDungeon = Queen
+    .desc = Responsible for both laying eggs and providing direction to her children, the Queen is the most important member of a Xeno hive. If she dies, the hive will lose all direction.
+    .suffix = AI/Ghost, Hostile

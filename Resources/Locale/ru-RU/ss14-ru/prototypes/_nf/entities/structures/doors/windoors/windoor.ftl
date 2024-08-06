@@ -1,0 +1,12 @@
+ent-WindoorSecureMercenaryLocked = { ent-WindoorSecure }
+    .suffix = Наёмник, Закрыт
+    .desc = { ent-WindoorSecure.desc }
+ent-WindoorSecureFrontierLocked = { ent-WindoorSecure }
+    .suffix = Фронтир, Закрыт
+    .desc = { ent-WindoorSecure.desc }
+ent-WindoorSecureFrontierCommandLocked = { ent-WindoorSecure }
+    .suffix = Фронтир Командный, Закрыт
+    .desc = { ent-WindoorSecure.desc }
+ent-WindoorSecureHeadOfSecurityLocked = { ent-WindoorSecure }
+    .suffix = Шериф, Закрыт
+    .desc = { ent-WindoorSecure.desc }

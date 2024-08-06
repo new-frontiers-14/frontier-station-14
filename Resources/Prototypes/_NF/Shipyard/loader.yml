@@ -10,8 +10,8 @@
 #
 - type: vessel
   id: Loader
-  name: NC Loader
-  description: A compact cargo ship designed for hauling shipments.
+  name: NC Такелажник
+  description: Малогабаритный грузовой шаттл. Рекомендованный состав команды 1-2 человека.
   price: 18000
   category: Small
   group: Civilian
@@ -19,7 +19,7 @@
 
 - type: gameMap
   id: Loader
-  mapName: 'NC Loader'
+  mapName: 'NC Такелажник'
   mapPath: /Maps/_NF/Shuttles/loader.yml
   minPlayers: 0
   stations:
@@ -27,7 +27,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Loader {1}'
+          mapNameTemplate: 'Такелажник {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

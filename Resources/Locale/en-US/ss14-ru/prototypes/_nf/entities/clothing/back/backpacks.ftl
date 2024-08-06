@@ -1,0 +1,12 @@
+ent-ClothingBackpackArcadia = arcadia backpack
+    .desc = A backpack produced by Arcadia Industries
+ent-ClothingBackpackPilot = pilot backpack
+    .desc = A backpack for a True Ace.
+ent-ClothingBackpackERTMailCarrier = ERT mail carrier backpack
+    .desc = A spacious backpack with lots of pockets, worn by Mail Carrier's of an Emergency Response Team.
+ent-ClothingBackpackClippy = Clippy's backpack
+    .desc = Made from a real Clippy.
+ent-ClothingBackpackNfsdBrown = nfsd backpack
+    .desc = { ent-ClothingBackpackSecurity.desc }
+ent-ClothingBackpackNfsdCream = { ent-ClothingBackpackNfsdBrown }
+    .desc = { ent-ClothingBackpackNfsdBrown.desc }

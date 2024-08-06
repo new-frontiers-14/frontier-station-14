@@ -1,0 +1,15 @@
+ent-MagazineLightRifleRubber = магазин (.30 винтовочный резиновый)
+    .desc = { ent-BaseMagazineLightRifle.desc }
+ent-10roundmagazine = магазин низкой вместительности (.30 винтовочный)
+    .desc = { ent-BaseMagazineLightRifle.desc }
+ent-10roundmagazineempty = магазин низкой вместительности (.30 винтовочный любой)
+    .suffix = Пустой
+    .desc = { ent-10roundmagazine.desc }
+ent-10roundmagazineUranium = магазин низкой вместительности (.30 винтовочный uranium)
+    .desc = { ent-10roundmagazine.desc }
+ent-10roundmagazineRubber = магазин низкой вместительности(.30 винтовочный резиновый)
+    .desc = { ent-10roundmagazine.desc }
+ent-10roundmagazinePractice = магазин низкой вместительности (.30 винтовочный учебный)
+    .desc = { ent-10roundmagazine.desc }
+ent-10roundmagazineIncendiary = магазин низкой вместительности (.30 винтовочный зажигательный)
+    .desc = { ent-10roundmagazine.desc }

@@ -10,8 +10,8 @@
 #
 - type: vessel
   id: Apothecary
-  name: NM Apothecary
-  description: A small medical and chemistry support vessel.
+  name: NM Апотекарий
+  description: Малогабаритный медицинский шаттл. Рекомендованный состав команды 1-2 человека.
   price: 30000 #Appraise value 17782 with markup for chemistry equipment and rounding. Feel free to adjust on the backend. Medics are always poor.
   category: Small
   group: Civilian
@@ -19,7 +19,7 @@
 
 - type: gameMap
   id: Apothecary
-  mapName: 'NM Apothecary'
+  mapName: 'NM Апотекарий'
   mapPath: /Maps/_NF/Shuttles/apothecary.yml
   minPlayers: 0
   stations: 
@@ -27,7 +27,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Apothecary {1}'
+          mapNameTemplate: 'Апотекарий {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
