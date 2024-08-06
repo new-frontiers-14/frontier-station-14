@@ -177,6 +177,89 @@
     factions:
     - HostileUniversally
 
+# Meteor defense turret
+- type: entity
+  parent:
+  - BaseWeaponTurretEnergyNF
+  id: WeaponTurretLaserDebrisDefenseDeployed
+  name: PDALT
+  description: |-
+   A Point Defence Automated Laser Turret (PDALT). A laser turret designed for protection of vessels from space debris. Use screwdriver to disassemble.
+  suffix: Frontier, Debris Defense
+  components:
+  - type: HTN
+    rootTask:
+      task: TurretCompound
+    blackboard:
+      RotateSpeed: !type:Single
+        9.423
+      SoundTargetInLOS: !type:SoundPathSpecifier
+        path: /Audio/Effects/double_beep.ogg
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Turrets/pdw.rsi
+  - type: Gun
+    fireRate: 12
+    minAngle: 1
+    maxAngle: 5
+    projectileSpeed: 70
+    soundGunshot:
+      path: /Audio/DeltaV/Weapons/Guns/Gunshots/laser.ogg
+      params:
+        variation: 0.125
+    soundEmpty:
+      path: /Audio/DeltaV/Weapons/Guns/Empty/dry_fire.ogg
+  - type: ProjectileBatteryAmmoProvider
+    proto: BulletEnergyGunLaser
+    fireCost: 10
+  - type: NpcFactionMember
+    factions:
+    - DebrisDefenseWeapon
+  - type: Construction
+    deconstructionTarget: null
+    graph: WeaponTurretLaserDebrisDefensePackingGraph
+    node: WeaponTurretLaserDebrisDefensePacked
+
+- type: entity # folded turret
+  parent: BaseItem
+  id: WeaponTurretLaserDebrisDefensePacked
+  name: packed PDALT
+  description: |-
+   A disassembled and packed Point Defence Automated Laser Turret (PDALT).
+  suffix: NT, Packed
+  components:
+  - type: WeaponCaseInsertable
+  - type: MultiHandedItem
+  - type: SpawnAfterInteract
+    prototype: WeaponTurretLaserDebrisDefenseDeployed
+    doAfter: 5
+    removeOnInteract: true
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Turrets/pdw.rsi
+    state: packed
+  - type: Item
+    size: Ginormous
+    shape:
+    - 0,0,3,3
+    sprite: _NF/Objects/Weapons/Guns/Turrets/pdw.rsi
+
+- type: constructionGraph # deconstruction graph
+  id: WeaponTurretLaserDebrisDefensePackingGraph
+  start: WeaponTurretLaserDebrisDefensePacked
+  graph:
+  - node: WeaponTurretLaserDebrisDefensePacked
+    entity: WeaponTurretLaserDebrisDefenseDeployed
+    edges:
+    - to: WeaponTurretLaserDebrisDefensePacked
+      completed:
+      - !type:SpawnPrototype
+            prototype: WeaponTurretLaserDebrisDefensePacked
+            amount: 1
+      - !type:EmptyAllContainers
+      - !type:DeleteEntity {}
+      steps:
+        - tool: Screwing
+          doAfter: 14
+
 ## Magazine fed, deployable NanoTrasen turret
 - type: entity # deployed turret
   parent:
