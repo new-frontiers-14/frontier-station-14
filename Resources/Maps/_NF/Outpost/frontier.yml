@@ -34,6 +34,7 @@ entities:
   - uid: 2173
     components:
     - type: MetaData
+      name: Frontier Outpost
     - type: Transform
       pos: 0.121950805,-0.15609694
       parent: 5691
@@ -14439,6 +14440,23 @@ entities:
           showEnts: False
           occludes: True
           ents: []
+- proto: ComputerShipyardSr
+  entities:
+  - uid: 514
+    components:
+    - type: Transform
+      pos: 6.5,23.5
+      parent: 2173
+    - type: ContainerContainer
+      containers:
+        ShipyardConsole-targetId: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
 - proto: ComputerStationRecords
   entities:
   - uid: 4053
@@ -14455,10 +14473,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 10.5,10.5
       parent: 2173
-    - type: ContainerContainer
-      containers:
-        board: !type:Container
-          ents: []
 - proto: ComputerTabletopComms
   entities:
   - uid: 816
@@ -17462,10 +17476,10 @@ entities:
       parent: 2173
 - proto: filingCabinetRandom
   entities:
-  - uid: 3765
+  - uid: 2041
     components:
     - type: Transform
-      pos: 6.5,23.5
+      pos: 6.5,18.5
       parent: 2173
 - proto: FireAlarm
   entities:
@@ -27278,6 +27292,8 @@ entities:
       anchored: True
       pos: 7.5,23.5
       parent: 2173
+    - type: Physics
+      bodyType: Static
 - proto: HandheldGPSBasic
   entities:
   - uid: 4455
@@ -27750,14 +27766,14 @@ entities:
   - uid: 1196
     components:
     - type: Transform
-      pos: 6.3189855,18.603966
+      pos: 10.3198,21.657822
       parent: 2173
 - proto: MaterialDurathread
   entities:
   - uid: 4129
     components:
     - type: Transform
-      pos: 6.6530757,18.317799
+      pos: 10.684384,21.407648
       parent: 2173
 - proto: MaterialReclaimer
   entities:
@@ -32823,6 +32839,11 @@ entities:
       rot: 3.141592653589793 rad
       pos: 4.5,24.5
       parent: 2173
+  - uid: 2043
+    components:
+    - type: Transform
+      pos: 10.5,21.5
+      parent: 2173
   - uid: 2410
     components:
     - type: Transform
@@ -32979,11 +33000,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 5.5,22.5
       parent: 2173
-  - uid: 5755
-    components:
-    - type: Transform
-      pos: 6.5,18.5
-      parent: 2173
 - proto: TableReinforcedGlass
   entities:
   - uid: 3032
@@ -33112,11 +33128,10 @@ entities:
         - Middle: Off
 - proto: UniformPrinter
   entities:
-  - uid: 514
+  - uid: 2042
     components:
     - type: Transform
-      rot: -3.141592653589793 rad
-      pos: 8.5,18.5
+      pos: 11.5,21.5
       parent: 2173
 - proto: VehicleKeySecway
   entities:

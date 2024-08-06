@@ -1,0 +1,57 @@
+﻿- type: entity
+  id: CrateMachine
+  name: crate machine
+  description: Where do they come from?
+  placement:
+    mode: SnapgridCenter
+  components:
+    - type: ItemPlacer
+      whitelist:
+        components:
+          - CrateGenericSteel
+    - type: CrateMachine
+    - type: Sprite
+      sprite: _NF/Structures/Machines/crate_machine.rsi
+      snapCardinals: true
+      drawdepth: FloorObjects
+      layers:
+        - state: background
+          map: [ "enum.CrateMachineVisualLayers.Base" ]
+        - state: opening
+          map: ["enum.CrateMachineVisualLayers.Opening"]
+        - state: open
+          map: [ "enum.CrateMachineVisualLayers.Open" ]
+        - state: crate
+          map: [ "enum.CrateMachineVisualLayers.Crate" ]
+        - state: closing
+          map: ["enum.CrateMachineVisualLayers.Closing" ]
+        - state: closed
+          map: ["enum.CrateMachineVisualLayers.Closed"]
+    - type: AnimationPlayer
+    - type: Transform
+      anchored: true
+    - type: Physics
+      canCollide: false
+      bodyType: Static
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.45,-0.45,0.45,0.45"
+          density: 300
+          mask:
+            - MachineMask
+          layer:
+            - Impassable
+            - MidImpassable
+            - LowImpassable
+          hard: False
+    - type: InteractionOutline
+    - type: Appearance
+    - type: ApcPowerReceiver
+      powerLoad: 0
+    - type: Tag
+      tags:
+        - Structure
+
