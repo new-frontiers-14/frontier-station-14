@@ -286,7 +286,7 @@
   components:
     - type: Sprite
       drawdepth: FloorObjects
-      sprite: Structures/Piping/Atmospherics/vent.rsi
+      sprite: _NF/Structures/Piping/Atmospherics/vent.rsi # Frontier
       layers:
         - sprite: Structures/Piping/Atmospherics/pipe.rsi
           state: pipeStraight
@@ -301,6 +301,7 @@
             In: { state: vent_in }
             Out: { state: vent_out }
             Welded: { state: vent_welded }
+            Lockout: { state: vent_lockout }
     - type: PipeColorVisuals
     - type: GasVentPump
       inlet: inlet
