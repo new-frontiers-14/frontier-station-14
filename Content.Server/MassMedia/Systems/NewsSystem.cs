@@ -20,6 +20,7 @@ using Content.Server.Station.Systems;
 using Content.Shared.Popups;
 using Content.Shared.StationRecords;
 using Robust.Shared.Audio.Systems;
+using Content.Server.Chat.Managers;
 using Content.Shared.GameTicking; // Frontier
 
 namespace Content.Server.MassMedia.Systems;
@@ -36,6 +37,7 @@ public sealed class NewsSystem : SharedNewsSystem
     [Dependency] private readonly GameTicker _ticker = default!;
     [Dependency] private readonly AccessReaderSystem _accessReader = default!;
     [Dependency] private readonly IdCardSystem _idCardSystem = default!;
+    [Dependency] private readonly IChatManager _chatManager = default!;
 
     public override void Initialize()
     {
@@ -149,10 +151,16 @@ public sealed class NewsSystem : SharedNewsSystem
         ent.Comp.NextPublish = _timing.CurTime + TimeSpan.FromSeconds(ent.Comp.PublishCooldown);
 
         if (!TryGetArticles(ent, out var articles))
+        {
+            Log.Error("OnWriteUiPublishMessage: no articles!");
             return;
+        }
 
         if (!_accessReader.FindStationRecordKeys(msg.Actor, out _))
+        {
+            Log.Error("OnWriteUiPublishMessage: FindStationRecordKeys failed!");
             return;
+        }
 
         string? authorName = null;
         if (_idCardSystem.TryFindIdCard(msg.Actor, out var idCard))
@@ -176,6 +184,12 @@ public sealed class NewsSystem : SharedNewsSystem
             LogImpact.Medium,
             $"{ToPrettyString(msg.Actor):actor} created news article {article.Title} by {article.Author}: {article.Content}"
             );
+
+        _chatManager.SendAdminAnnouncement(Loc.GetString("news-publish-admin-announcement",
+            ("actor", msg.Actor),
+            ("title", article.Title),
+            ("author", article.Author ?? Loc.GetString("news-read-ui-no-author"))
+            ));
 
         articles.Add(article);
 
