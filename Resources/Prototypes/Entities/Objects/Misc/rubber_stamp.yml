@@ -21,6 +21,8 @@
     size: Tiny
   - type: StealTarget
     stealGroup: Stamp
+  - type: UseDelay # Frontier
+    delay: 1.0 # Frontier: 1 second between stampings, avoid spam for reapplied stamps
 
 - type: entity
   name: alternate rubber stamp
@@ -244,6 +246,7 @@
     stampedName: stamp-component-stamped-name-approved
     stampedColor: "#00be00"
     stampState: "paper_stamp-ok"
+    reapply: true # Frontier
   - type: Sprite
     state: stamp-ok
 
@@ -256,6 +259,7 @@
     stampedName: stamp-component-stamped-name-denied
     stampedColor: "#a23e3e"
     stampState: "paper_stamp-deny"
+    reapply: true # Frontier
   - type: Sprite
     state: stamp-deny
 
