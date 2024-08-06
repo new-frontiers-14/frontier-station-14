@@ -120,6 +120,9 @@ public sealed class BodySystem : SharedBodySystem
         if (xform.MapUid is null)
             return new HashSet<EntityUid>();
 
+        var beforeEv = new BeforeGibbedEvent(bodyId); // Frontier: before gibbed event
+        RaiseLocalEvent(bodyId, ref beforeEv); // Frontier: before gibbed event
+
         var gibs = base.GibBody(bodyId, gibOrgans, body, launchGibs: launchGibs,
             splatDirection: splatDirection, splatModifier: splatModifier, splatCone:splatCone);
 

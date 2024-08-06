@@ -78,6 +78,46 @@
     key: walls
     base: cult
 
+- type: entity
+  parent: BaseStructure
+  id: WindowCultIndestructibleInvisible
+  name: cult window
+  suffix: invisible, indestructible
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Window
+  components:
+  - type: WallMount
+    arc: 360 # interact despite grilles
+  - type: Tag
+    tags:
+      - ForceFixRotations
+      - Window
+  - type: Sprite
+    drawdepth: WallTops
+    sprite: _NF/Structures/Specific/BloodCult/glowingfloor.rsi
+    layers:
+    - state: wallglow
+      #shader: unshaded
+  - type: Icon
+    sprite: _NF/Structures/Specific/BloodCult/glowingfloor.rsi
+    state: wallglow
+    #shader: unshaded
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb {}
+        mask:
+        - FullTileMask
+        layer:
+        - GlassLayer
+  - type: Airtight
+  - type: BlockWeather
+
 # Blood Cult Airlock
 - type: entity
   parent: AirlockGlass

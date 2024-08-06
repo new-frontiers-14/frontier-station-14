@@ -31,7 +31,7 @@
 # Frontier -right now you never find them since they spawn on random grids.
 # - type: entity
 #   id: AnomalySpawn
-#   parent: BaseStationEventShortDelay # Old startDelay: 30
+#   parent: BaseStationEventShortDelay
 #   components:
 #   - type: StationEvent
 #     startAnnouncementColor: "#18abf5"
@@ -152,7 +152,43 @@
 #     earliestStart: 30
 #     reoccurrenceDelay: 20
 #     minimumPlayers: 30
-#   - type: NinjaSpawnRule
+#   - type: SpaceSpawnRule
+#   - type: AntagLoadProfileRule
+#   - type: AntagObjectives
+#     objectives:
+#     - StealResearchObjective
+#     - DoorjackObjective
+#     - SpiderChargeObjective
+#     - TerrorObjective
+#     - MassArrestObjective
+#     - NinjaSurviveObjective
+#   - type: AntagSelection
+#    agentName: ninja-round-end-agent-name
+#    definitions:
+#    - spawnerPrototype: SpawnPointGhostSpaceNinja
+#      min: 1
+#      max: 1
+#      pickPlayer: false
+#      startingGear: SpaceNinjaGear
+#      briefing:
+#        text: ninja-role-greeting
+#        color: Green
+#        sound: /Audio/Misc/ninja_greeting.ogg
+#      components:
+#      - type: SpaceNinja
+#      - type: NpcFactionMember
+#        factions:
+#        - Syndicate
+#      - type: AutoImplant
+#        implants:
+#        - DeathAcidifierImplant
+#      - type: RandomMetadata
+#        nameSegments:
+#        - names_ninja_title
+#        - names_ninja
+#      mindComponents:
+#      - type: NinjaRole
+#        prototype: SpaceNinja
 
 # - type: entity
 #   parent: BaseGameRule
@@ -205,7 +241,7 @@
 
 - type: entity
   id: MouseMigration
-  parent: BaseStationEventShortDelay # Old startDelay: 10
+  parent: BaseStationEventShortDelay
   components:
   - type: StationEvent
     startAnnouncement: station-event-vent-creatures-start-announcement
@@ -237,7 +273,7 @@
 #     earliestStart: 15
 #     weight: 6
 #     duration: 50
-#     minimumPlayers: 15 # Hopefully this is enough for the Rat King's potential Army
+#     minimumPlayers: 30 # Hopefully this is enough for the Rat King's potential Army (it was not, raised from 15 -> 30)
 #   - type: VentCrittersRule
 #     entries:
 #     - id: MobMouse
@@ -254,7 +290,7 @@
 
 - type: entity
   id: CockroachMigration
-  parent: BaseStationEventShortDelay # Old startDelay: 10
+  parent: BaseStationEventShortDelay
   components:
   - type: StationEvent
     startAnnouncement: station-event-vent-creatures-start-announcement
@@ -271,7 +307,7 @@
 
 - type: entity
   id: PowerGridCheck
-  parent: BaseStationEventShortDelay # Old startDelay: 24
+  parent: BaseStationEventShortDelay
   components:
   - type: StationEvent
     startAnnouncement: station-event-power-grid-check-start-announcement
@@ -406,7 +442,7 @@
 #       blacklist:
 #         components:
 #         - ZombieImmune
-#         - InitialInfectedExempt
+#         - AntagImmune
 #       briefing:
 #         text: zombie-patientzero-role-greeting
 #         color: Plum
@@ -417,13 +453,13 @@
 #         maxInitialInfectedGrace: 450
 #       - type: ZombifyOnDeath
 #       - type: IncurableZombie
+#       - type: InitialInfected
 #       mindComponents:
 #       - type: InitialInfectedRole
 #         prototype: InitialInfected
 
 # - type: entity
 #   parent: BaseNukeopsRule
-#   abstract: true
 #   id: LoneOpsSpawn
 #   components:
 #   - type: StationEvent
@@ -432,8 +468,8 @@
 #     minimumPlayers: 20
 #     duration: 1
 #   - type: RuleGrids
-#   # - type: LoadMapRule # Frontier: do not load the map, it was removed
-#   #   preloadedGrid: ShuttleStriker # Frontier: do not load the map, it was removed
+#   - type: LoadMapRule
+#     preloadedGrid: ShuttleStriker
 #   - type: NukeopsRule
 #     roundEndBehavior: Nothing
 #   - type: AntagSelection
@@ -458,7 +494,7 @@
 
 # - type: entity
 #   parent: BaseTraitorRule
-#   id: SleeperAgentsRule
+#   id: SleeperAgents
 #   components:
 #   - type: StationEvent
 #     earliestStart: 30
@@ -468,16 +504,21 @@
 #     startAnnouncement: station-event-communication-interception
 #     startAudio:
 #       path: /Audio/Announcements/intercept.ogg
+#     duration: null # the rule has to last the whole round not 1 second
 #   - type: AlertLevelInterceptionRule
 #   - type: AntagSelection
 #     definitions:
-#     - prefRoles: [ Traitor ]
+#     - prefRoles: [ TraitorSleeper ]
+#       fallbackRoles: [ Traitor ]
 #       min: 1
 #       max: 2
 #       playerRatio: 10
+#       blacklist:
+#         components:
+#         - AntagImmune
 #       mindComponents:
 #       - type: TraitorRole
-#         prototype: Traitor
+#         prototype: TraitorSleeper
 
 - type: entity
   id: MassHallucinations
@@ -546,7 +587,7 @@
     duration: 1
   - type: IonStormRule
 
-# - type: entity # Frontier - Restore this ones we add a blacklist on it for critical machines
+# - type: entity # Frontier - Restore this once we add a blacklist on it for critical machines
 #   id: MimicVendorRule
 #   parent: BaseGameRule
 #   components:

@@ -32,25 +32,7 @@ public sealed class EntProtoIdWhitelistSystem : EntitySystem
             return false;
 
         EntityPrototype proto = nullableProto!;
-
-        // Check our prototype's ID against our desired list.  Any match is good (no duplicate IDs).
-        foreach (var id in list.Ids)
-        {
-            if (proto.ID.Equals(id))
-                return true;
-        }
-
-        // If we haven't matched, check the parents if needed: recurse through each ancestor of this entity.
-        if (list.MatchParents)
-        {
-            foreach (var (parentId, _) in _protoMan.EnumerateAllParents<EntityPrototype>(proto.ID))
-            {
-                if (IsValidRecursive(list, parentId))
-                    return true;
-            }
-        }
-
-        return false;
+        return IsPrototypeValid(list, proto);
     }
 
     // Recurse through parents: trust the list that the PrototypeManager returns.
@@ -162,5 +144,134 @@ public sealed class EntProtoIdWhitelistSystem : EntitySystem
     public bool IsBlacklistFailOrNull(EntProtoIdWhitelist? blacklist, EntityUid uid)
     {
         return IsWhitelistFailOrNull(blacklist, uid);
+    }
+
+
+    // Prototype variants
+
+    /// <summary>
+    /// Checks for a prototype
+    /// </summary>
+    /// <param name="list">The list to check</param>
+    /// <param name="prototype">the prototype to check</param>
+    /// <returns>True if it is valid</returns>
+    public bool IsPrototypeValid(EntProtoIdWhitelist list, EntityPrototype prototype)
+    {
+        if (list.Ids is null)
+            return false;
+
+        // Check our prototype's ID against our desired list.  Any match is good (no duplicate IDs).
+        foreach (var id in list.Ids)
+        {
+            if (prototype.ID.Equals(id))
+                return true;
+        }
+
+        // If we haven't matched, check the parents if needed: recurse through each ancestor of this entity.
+        if (list.MatchParents)
+        {
+            foreach (var (parentId, _) in _protoMan.EnumerateAllParents<EntityPrototype>(prototype.ID))
+            {
+                if (IsValidRecursive(list, parentId))
+                    return true;
+            }
+        }
+
+        return false;
+    }
+
+    /// <summary>
+    /// Checks if a given EntityPrototype passes the given whitelist
+    /// </summary>
+    /// <param name="whitelist">The whitelist to check</param>
+    /// <param name="prototype">The prototype to check</param>
+    /// <returns></returns>
+    public bool IsPrototypeWhitelistPass(EntProtoIdWhitelist? whitelist, EntityPrototype prototype)
+    {
+        return whitelist != null && IsPrototypeValid(whitelist, prototype);
+    }
+
+    /// <summary>
+    /// FRONTIER ADDITION
+    /// Checks if a given EntityPrototype passes the given whitelist
+    /// </summary>
+    /// <param name="whitelist">The whitelist to check</param>
+    /// <param name="prototype">The prototype to check</param>
+    /// <returns></returns>
+    public bool IsPrototypeWhitelistFail(EntProtoIdWhitelist? whitelist, EntityPrototype prototype)
+    {
+        return whitelist != null && !IsPrototypeValid(whitelist, prototype);
+    }
+
+    /// <summary>
+    /// FRONTIER ADDITION
+    /// Checks if a given EntityPrototype passes the given blacklist, or if the blacklist is null
+    /// </summary>
+    /// <param name="blacklist">The whitelist to check</param>
+    /// <param name="prototype">The prototype to check</param>
+    /// <returns></returns>
+    public bool IsPrototypeWhitelistPassOrNull(EntProtoIdWhitelist? whitelist, EntityPrototype prototype)
+    {
+        return whitelist == null || IsPrototypeWhitelistPass(whitelist, prototype);
+    }
+
+    /// <summary>
+    /// FRONTIER ADDITION
+    /// Checks if a given EntityPrototype fails the given blacklist, or if the blacklist is null
+    /// </summary>
+    /// <param name="blacklist">The whitelist to check</param>
+    /// <param name="prototype">The prototype to check</param>
+    /// <returns></returns>
+    public bool IsPrototypeWhitelistFailOrNull(EntProtoIdWhitelist? whitelist, EntityPrototype prototype)
+    {
+        return whitelist == null || IsPrototypeWhitelistFail(whitelist, prototype);
+    }
+
+    /// <summary>
+    /// FRONTIER ADDITION
+    /// Checks if a given EntityPrototype passes the given blacklist
+    /// </summary>
+    /// <param name="blacklist">The whitelist to check</param>
+    /// <param name="prototype">The prototype to check</param>
+    /// <returns></returns>
+    public bool IsPrototypeBlacklistPass(EntProtoIdWhitelist? blacklist, EntityPrototype prototype)
+    {
+        return IsPrototypeWhitelistPass(blacklist, prototype);
+    }
+
+    /// <summary>
+    /// FRONTIER ADDITION
+    /// Checks if a given EntityPrototype fails the given blacklist
+    /// </summary>
+    /// <param name="blacklist">The whitelist to check</param>
+    /// <param name="prototype">The prototype to check</param>
+    /// <returns></returns>
+    public bool IsPrototypeBlacklistFail(EntProtoIdWhitelist? blacklist, EntityPrototype prototype)
+    {
+        return IsPrototypeWhitelistFail(blacklist, prototype);
+    }
+
+    /// <summary>
+    /// FRONTIER ADDITION
+    /// Checks if a given EntityPrototype passes the given blacklist, or if the blacklist is null
+    /// </summary>
+    /// <param name="blacklist">The whitelist to check</param>
+    /// <param name="prototype">The prototype to check</param>
+    /// <returns></returns>
+    public bool IsPrototypeBlacklistPassOrNull(EntProtoIdWhitelist? blacklist, EntityPrototype prototype)
+    {
+        return IsPrototypeWhitelistPassOrNull(blacklist, prototype);
+    }
+
+    /// <summary>
+    /// FRONTIER ADDITION
+    /// Checks if a given EntityPrototype fails the given blacklist, or if the blacklist is null
+    /// </summary>
+    /// <param name="blacklist">The whitelist to check</param>
+    /// <param name="prototype">The prototype to check</param>
+    /// <returns></returns>
+    public bool IsPrototypeBlacklistFailOrNull(EntProtoIdWhitelist? blacklist, EntityPrototype prototype)
+    {
+        return IsPrototypeWhitelistFailOrNull(blacklist, prototype);
     }
 }
