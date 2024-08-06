@@ -425,6 +425,22 @@ entities:
           ents: []
     - type: Physics
       canCollide: False
+- proto: DefibrillatorCabinetFilled
+  entities:
+  - uid: 71
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 0.5,-3.5
+      parent: 1
+- proto: ExtinguisherCabinetFilled
+  entities:
+  - uid: 70
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 2.5,-3.5
+      parent: 1
 - proto: FaxMachineShip
   entities:
   - uid: 85
@@ -745,10 +761,11 @@ entities:
     - type: InsideEntityStorage
 - proto: SignJanitor
   entities:
-  - uid: 71
+  - uid: 98
     components:
     - type: Transform
-      pos: 2.5,-3.5
+      rot: 1.5707963267948966 rad
+      pos: -1.5,-1.5
       parent: 1
 - proto: Sink
   entities:
