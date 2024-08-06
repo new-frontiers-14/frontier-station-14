@@ -41,20 +41,13 @@
 
 - type: entity
   name: weapon case
-  parent: ToolboxBase
+  parent: WeaponCaseLong
   id: WeaponCaseShort
   description: A reinforced casing for storing side arms and weapon accessories.
   suffix: Short
   components:
-  - type: ExplosionResistance
-    damageCoefficient: 0.3
   - type: Sprite
     sprite: _NF/Objects/Tools/guncaseshort.rsi
-    layers:
-    - map: [ base ]
-      state: icon
-    - state: unshaded
-      shader: unshaded
   - type: Item
     size: Large
     sprite: _NF/Objects/Tools/guncaseshort.rsi
@@ -72,5 +65,36 @@
       - MeleeWeapon
       - Blocking
       - WeaponCaseInsertable
+      tags:
+      - Cartridge
+
+- type: entity
+  name: weapon case
+  parent: WeaponCaseLong
+  id: WeaponCaseHeavy
+  description: A reinforced casing for storing heavy armaments.
+  suffix: Heavy
+  components:
+  - type: MultiHandedItem
+  - type: Sprite
+    sprite: _NF/Objects/Tools/guncaseheavy.rsi
+  - type: Item
+    size: Ginormous
+    sprite: _NF/Objects/Tools/guncaseheavy.rsi
+  - type: Storage
+    maxItemSize: Ginormous
+    grid:
+    - 0,0,7,3
+    whitelist:
+      components:
+      - Gun
+      - BallisticAmmoProvider
+      - Projectile
+      - CartridgeAmmo
+      - PowerCell
+      - MeleeWeapon
+      - Blocking
+      - WeaponCaseInsertable
+      - Armor
       tags:
       - Cartridge

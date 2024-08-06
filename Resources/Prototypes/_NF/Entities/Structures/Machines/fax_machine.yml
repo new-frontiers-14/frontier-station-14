@@ -75,13 +75,15 @@
   - type: DeadDrop
 
 - type: entity
-  parent: [BaseStructureDisableToolUse, BaseStructureUnanchorable, FaxMachineSyndie]
+  parent: [BaseStructureDisableToolUse, BaseStructureUnanchorable, FaxMachineSyndie, FaxMachineShipAntag]
   id: FaxMachineNFLPBravo
   suffix: POI, LP Bravo
   noSpawn: true
   components:
   - type: FaxMachine
     name: "Listening Point: Bravo"
+  - type: ApcPowerReceiver
+    powerDisabled: true #starts off
   - type: DeadDrop
 
 - type: entity

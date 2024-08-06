@@ -27,27 +27,28 @@
           - Ectoplasm
         insertOnInteract: true
         priority: 1
-      label_slot:
-        insertVerbText: Attach Label
-        ejectVerbText: Remove Label
-        name: Urn Label
-        startingItem: null
-        whitelist:
-          tags:
-          - Document
-        insertOnInteract: true
-        priority: 2
   - type: ContainerContainer
     containers:
       storagebase: !type:Container
         ents: []
       ashes_slot: !type:ContainerSlot {}
-      label_slot: !type:ContainerSlot {}
   - type: Appearance
-  - type: ItemMapper
-    mapLayers:
-      label:
-        whitelist:
-          tags:
-          - Document
-    sprite: _NF/Objects/Misc/mortuary_urn.rsi
+  - type: GenericVisualizer
+    visuals:
+      enum.PaperLabelVisuals.HasLabel:
+        enum.PaperLabelVisuals.Layer:
+          True: { visible: true }
+          False: { visible: false }
+      enum.PaperLabelVisuals.LabelType:
+        enum.PaperLabelVisuals.Layer:
+          Paper: { state: paper }
+          Bounty: { state: paper }
+          CaptainsPaper: { state: paper }
+          Invoice: { state: paper }
+  - type: PaperLabel
+    labelSlot:
+      insertVerbText: Attach Label
+      ejectVerbText: Remove Label
+      whitelist:
+        components:
+        - Paper
