@@ -7,6 +7,7 @@ using Content.Shared.Access.Systems;
 using Content.Shared.APC;
 using Content.Shared.Emag.Components;
 using Content.Shared.Emag.Systems;
+using Content.Shared.Emp;
 using Content.Shared.Popups;
 using Content.Shared.Rounding;
 using Robust.Server.GameObjects;
@@ -177,7 +178,7 @@ public sealed class ApcSystem : EntitySystem
 
     private ApcChargeState CalcChargeState(EntityUid uid, PowerState.Battery battery)
     {
-        if (HasComp<EmaggedComponent>(uid))
+        if (HasComp<EmaggedComponent>(uid) || HasComp<EmpDisabledComponent>(uid))
             return ApcChargeState.Emag;
 
         if (battery.CurrentStorage / battery.Capacity > ApcComponent.HighPowerThreshold)
@@ -204,7 +205,7 @@ public sealed class ApcSystem : EntitySystem
 
         return ApcExternalPowerState.Good;
     }
-
+    
     private void OnEmpPulse(EntityUid uid, ApcComponent component, ref EmpPulseEvent args)
     {
         if (component.MainBreakerEnabled)

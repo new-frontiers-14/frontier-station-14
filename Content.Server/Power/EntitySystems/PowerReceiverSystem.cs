@@ -1,6 +1,7 @@
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
 using Content.Server.Power.Components;
+using Content.Server.Emp;
 using Content.Shared.Administration;
 using Content.Shared.Database;
 using Content.Shared.Examine;
@@ -14,6 +15,7 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Utility;
+using Content.Shared.Emp;
 
 namespace Content.Server.Power.EntitySystems
 {
@@ -136,7 +138,7 @@ namespace Content.Server.Power.EntitySystems
             {
                 Act = () =>
                 {
-                    TogglePower(uid, user: args.User);
+                    TryTogglePower(uid, user: args.User);
                 },
                 Icon = new SpriteSpecifier.Texture(new ("/Textures/Interface/VerbIcons/Spare/poweronoff.svg.192dpi.png")),
                 Text = Loc.GetString("power-switch-component-toggle-verb"),
