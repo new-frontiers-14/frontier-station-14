@@ -1,4 +1,12 @@
 - type: entity
+  id: JukeboxShip
+  suffix: Ship
+  parent: [ BaseStructureDisableToolUse, Jukebox ]
+  components:
+  - type: Machine
+    board: Null
+
+- type: entity
   id: JukeboxWallmount
   suffix: Wallmount
   parent: [ BaseWallmount, Jukebox ]
@@ -16,4 +24,7 @@
 - type: entity
   id: JukeboxWallmountShip
   suffix: Wallmount, Ship
-  parent: [ BaseStructureDisableToolUse, BaseStructureIndestructible, JukeboxWallmount ]
+  parent: [ BaseStructureDisableToolUse, JukeboxWallmount ]
+  components:
+  - type: Machine
+    board: Null
