@@ -52,7 +52,7 @@ public sealed partial class LoadoutWindow : FancyWindow
         CalculateLoadoutCost(loadout, collection);
         // Frontier - update bank balance label text - value should not change.
         Balance.Margin = new Thickness(5, 2, 5, 5);
-        Balance.Text = Loc.GetString("frontier-loadout-balance", ("balance", BankSystemExtensions.ToCurrencyString(Profile.BankBalance)));
+        Balance.Text = Loc.GetString("frontier-loadout-balance", ("balance", BankSystemExtensions.ToSpesoString(Profile.BankBalance)));
     }
 
     public void RefreshLoadouts(RoleLoadout loadout, ICommonSession session, IDependencyCollection collection)
@@ -86,6 +86,7 @@ public sealed partial class LoadoutWindow : FancyWindow
         }
 
         Cost.Margin = new Thickness(5, 2, 5, 5);
-        Cost.Text = Loc.GetString("frontier-loadout-cost", ("cost", BankSystemExtensions.ToCurrencyString(cost)));
+        Cost.Text = Loc.GetString("frontier-loadout-cost", ("cost", BankSystemExtensions.ToSpesoString(cost)));
     }
+    // End Frontier
 }

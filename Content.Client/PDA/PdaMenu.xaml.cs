@@ -169,7 +169,7 @@ namespace Content.Client.PDA
             StationNameLabel.SetMarkup(Loc.GetString("comp-pda-ui-station",
                 ("station", _stationName)));
 
-            _balance = BankSystemExtensions.ToCurrencyString(state.Balance); // Frontier
+            _balance = BankSystemExtensions.ToSpesoString(state.Balance); // Frontier
             BalanceLabel.SetMarkup(Loc.GetString("comp-pda-ui-balance", ("balance", _balance))); // Frontier
 
             var stationTime = _gameTiming.CurTime.Subtract(_gameTicker.RoundStartTimeSpan);

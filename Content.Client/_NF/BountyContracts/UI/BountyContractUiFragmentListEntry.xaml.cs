@@ -34,7 +34,7 @@ public sealed partial class BountyContractUiFragmentListEntry : Control
         }
 
         // bounty reward
-        BountyReward.Text = BankSystemExtensions.ToCurrencyString(contract.Reward);
+        BountyReward.Text = BankSystemExtensions.ToSpesoString(contract.Reward);
 
         // remove button
         RemoveButton.OnPressed += _ => OnRemoveButtonPressed?.Invoke(contract);

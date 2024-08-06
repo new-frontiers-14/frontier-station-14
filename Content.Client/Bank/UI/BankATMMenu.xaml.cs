@@ -28,14 +28,14 @@ public sealed partial class BankATMMenu : FancyWindow
 
     public void SetBalance(int amount)
     {
-        BalanceLabel.Text = BankSystemExtensions.ToCurrencyString(amount);
+        BalanceLabel.Text = BankSystemExtensions.ToSpesoString(amount);
     }
 
     public void SetDeposit(int amount)
     {
         DepositButton.Disabled = amount <= 0;
         if (amount >= 0) // Valid
-            DepositLabel.Text = BankSystemExtensions.ToCurrencyString(amount);
+            DepositLabel.Text = BankSystemExtensions.ToSpesoString(amount);
         else
             DepositLabel.Text = Loc.GetString("bank-atm-menu-cash-error");
     }

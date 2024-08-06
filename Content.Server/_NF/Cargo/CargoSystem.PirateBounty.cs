@@ -142,7 +142,7 @@ public sealed partial class CargoSystem
                 ("item", Loc.GetString(entry.Name)))}", out var _);
         }
         message.PushNewline();
-        message.TryAddMarkup(Loc.GetString("pirate-bounty-console-manifest-reward", ("reward", BankSystemExtensions.ToCurrencyString(prototype.Reward))), out var _);
+        message.TryAddMarkup(Loc.GetString("pirate-bounty-console-manifest-reward", ("reward", BankSystemExtensions.ToDoubloonString(prototype.Reward))), out var _);
 
         _metaSystem.SetEntityDescription(uid, message.ToMarkup());
 
@@ -169,7 +169,7 @@ public sealed partial class CargoSystem
                 ("item", Loc.GetString(entry.Name)))}", out var _);
             msg.PushNewline();
         }
-        msg.TryAddMarkup(Loc.GetString("pirate-bounty-console-manifest-reward", ("reward", BankSystemExtensions.ToCurrencyString(prototype.Reward))), out var _);
+        msg.TryAddMarkup(Loc.GetString("pirate-bounty-console-manifest-reward", ("reward", BankSystemExtensions.ToDoubloonString(prototype.Reward))), out var _);
         _paperSystem.SetContent(uid, msg.ToMarkup(), paper);
     }
 
