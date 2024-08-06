@@ -14,3 +14,33 @@
   id: LockerNfsdSilverDetectiveFilled
   suffix: Filled
   parent: [LockerNfsdSilver, LockerDetectiveFilled]
+
+- type: entity
+  parent: GunSafe
+  id: GunSafeTurrets
+  name: turret safe
+  suffix: NFSD, Filled
+  components:
+  - type: AccessReader
+    access: [["Security"]]
+  - type: StorageFill
+    contents:
+    - id: WeaponCaseHeavyCdet
+      amount: 2
+    - id: WeaponCaseHeavySlat
+      amount: 1
+    - id: WeaponCaseHeavyAsmgt
+      amount: 1
+
+- type: entity
+  parent: GunSafe
+  id: GunSafeTurretsCdet
+  name: turret safe
+  suffix: CDET, Filled
+  components:
+  - type: AccessReader
+    access: [["Security"]]
+  - type: StorageFill
+    contents:
+    - id: WeaponCaseHeavyCdet
+      amount: 1

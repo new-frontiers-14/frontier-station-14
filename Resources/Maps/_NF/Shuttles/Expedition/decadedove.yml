@@ -19,6 +19,7 @@ entities:
   - uid: 1
     components:
     - type: MetaData
+      name: DecadeDove
     - type: Transform
       pos: -2.0101273,0.04338789
       parent: invalid
@@ -920,11 +921,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 804
-  - uid: 107
-    components:
-    - type: Transform
-      pos: -3.5,4.5
-      parent: 1
 - proto: AmeController
   entities:
   - uid: 822
@@ -1433,11 +1429,10 @@ entities:
       bodyType: Static
 - proto: BorgCharger
   entities:
-  - uid: 719
+  - uid: 101
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 8.5,-3.5
+      pos: 5.5,-4.5
       parent: 1
 - proto: BoxLighttube
   entities:
@@ -2613,6 +2608,20 @@ entities:
     - type: Transform
       pos: -2.5,-0.5
       parent: 1
+- proto: CrateFreezer
+  entities:
+  - uid: 693
+    components:
+    - type: Transform
+      pos: -0.5,7.5
+      parent: 1
+- proto: CratePrivateSecure
+  entities:
+  - uid: 241
+    components:
+    - type: Transform
+      pos: -6.5,4.5
+      parent: 1
 - proto: CyborgEndoskeleton
   entities:
   - uid: 282
@@ -2636,6 +2645,115 @@ entities:
     - type: Transform
       pos: 4.456059,0.65753937
       parent: 1
+- proto: DisposalBend
+  entities:
+  - uid: 715
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -3.5,2.5
+      parent: 1
+  - uid: 719
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -2.5,2.5
+      parent: 1
+  - uid: 956
+    components:
+    - type: Transform
+      pos: -2.5,8.5
+      parent: 1
+  - uid: 957
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -3.5,-3.5
+      parent: 1
+- proto: DisposalPipe
+  entities:
+  - uid: 138
+    components:
+    - type: Transform
+      pos: -3.5,-1.5
+      parent: 1
+  - uid: 293
+    components:
+    - type: Transform
+      pos: -3.5,1.5
+      parent: 1
+  - uid: 780
+    components:
+    - type: Transform
+      pos: -3.5,-0.5
+      parent: 1
+  - uid: 799
+    components:
+    - type: Transform
+      pos: -3.5,0.5
+      parent: 1
+  - uid: 809
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -2.5,3.5
+      parent: 1
+  - uid: 843
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -2.5,4.5
+      parent: 1
+  - uid: 951
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -2.5,5.5
+      parent: 1
+  - uid: 952
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -2.5,6.5
+      parent: 1
+  - uid: 953
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -2.5,7.5
+      parent: 1
+  - uid: 955
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -3.5,8.5
+      parent: 1
+  - uid: 958
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -3.5,-2.5
+      parent: 1
+  - uid: 959
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -4.5,-3.5
+      parent: 1
+  - uid: 960
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -5.5,-3.5
+      parent: 1
+- proto: DisposalTrunk
+  entities:
+  - uid: 954
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -4.5,8.5
+      parent: 1
 - proto: DrinkAleGlass
   entities:
   - uid: 868
@@ -2655,7 +2773,7 @@ entities:
   - uid: 338
     components:
     - type: Transform
-      pos: 1.4947319,7.552256
+      pos: 2.3059227,7.6452827
       parent: 1
 - proto: DrinkGinGlass
   entities:
@@ -4546,9 +4664,9 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -4.5,10.5
       parent: 1
-- proto: GunSafeShuttleT1Spawner
+- proto: GunSafeShuttleCaptain
   entities:
-  - uid: 293
+  - uid: 107
     components:
     - type: Transform
       pos: 8.5,-0.5
@@ -4560,21 +4678,6 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 7.5,6.5
-      parent: 1
-- proto: HandheldGPSBasic
-  entities:
-  - uid: 752
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 3.546164,-5.340608
-      parent: 1
-- proto: JetpackMiniFilled
-  entities:
-  - uid: 780
-    components:
-    - type: Transform
-      pos: 3.5224488,-5.521045
       parent: 1
 - proto: LockerBoozeFilled
   entities:
@@ -4628,22 +4731,29 @@ entities:
         - 0
 - proto: LockerEngineerFilled
   entities:
-  - uid: 799
+  - uid: 238
     components:
     - type: Transform
       pos: -5.5,4.5
       parent: 1
 - proto: LockerSalvageSpecialistFilled
   entities:
+  - uid: 60
+    components:
+    - type: Transform
+      pos: -3.5,4.5
+      parent: 1
   - uid: 211
     components:
     - type: Transform
       pos: -4.5,4.5
       parent: 1
-  - uid: 715
+- proto: LockerWallMedical
+  entities:
+  - uid: 686
     components:
     - type: Transform
-      pos: -3.5,4.5
+      pos: 6.5,4.5
       parent: 1
 - proto: MaterialReclaimer
   entities:
@@ -4742,13 +4852,6 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 11.5,-1.5
-      parent: 1
-- proto: PersonalAI
-  entities:
-  - uid: 843
-    components:
-    - type: Transform
-      pos: 5.4177475,0.5472
       parent: 1
 - proto: PinpointerUniversal
   entities:
@@ -4928,19 +5031,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -1.5,-4.5
       parent: 1
-- proto: PottedPlant27
-  entities:
-  - uid: 238
-    components:
-    - type: Transform
-      pos: 5.5,-3.5
-      parent: 1
-    - type: ContainerContainer
-      containers:
-        stash: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: 241
 - proto: PottedPlantRandomPlastic
   entities:
   - uid: 139
@@ -4952,6 +5042,11 @@ entities:
     components:
     - type: Transform
       pos: 13.5,3.5
+      parent: 1
+  - uid: 752
+    components:
+    - type: Transform
+      pos: 5.5,-3.5
       parent: 1
 - proto: PowerCellRecharger
   entities:
@@ -5788,10 +5883,10 @@ entities:
       parent: 1
 - proto: SuitStorageEngi
   entities:
-  - uid: 693
+  - uid: 764
     components:
     - type: Transform
-      pos: 6.5,-5.5
+      pos: 5.5,-5.5
       parent: 1
 - proto: SuitStorageSalv
   entities:
@@ -5840,13 +5935,6 @@ entities:
     components:
     - type: Transform
       pos: -5.5,-4.5
-      parent: 1
-- proto: TableCounterWood
-  entities:
-  - uid: 60
-    components:
-    - type: Transform
-      pos: -0.5,7.5
       parent: 1
 - proto: TableReinforced
   entities:
@@ -6013,12 +6101,6 @@ entities:
       parent: 1
 - proto: ToyAmongPequeno
   entities:
-  - uid: 241
-    components:
-    - type: Transform
-      parent: 238
-    - type: Physics
-      canCollide: False
   - uid: 534
     components:
     - type: Transform
@@ -6108,13 +6190,6 @@ entities:
         - Left: Forward
         - Right: Reverse
         - Middle: Off
-- proto: VendingMachineCargoDrobe
-  entities:
-  - uid: 720
-    components:
-    - type: Transform
-      pos: -6.5,4.5
-      parent: 1
 - proto: VendingMachineCigs
   entities:
   - uid: 649
@@ -6122,40 +6197,12 @@ entities:
     - type: Transform
       pos: 4.5,3.5
       parent: 1
-- proto: VendingMachineEngiDrobe
-  entities:
-  - uid: 764
-    components:
-    - type: Transform
-      pos: -6.5,-2.5
-      parent: 1
-- proto: VendingMachineEngivend
-  entities:
-  - uid: 496
-    components:
-    - type: Transform
-      pos: 5.5,-5.5
-      parent: 1
-- proto: VendingMachineSalvage
-  entities:
-  - uid: 101
-    components:
-    - type: Transform
-      pos: -2.5,-4.5
-      parent: 1
 - proto: VendingMachineTankDispenserEVA
   entities:
   - uid: 145
     components:
     - type: Transform
       pos: -2.5,-3.5
-      parent: 1
-- proto: VendingMachineYouTool
-  entities:
-  - uid: 686
-    components:
-    - type: Transform
-      pos: 7.5,-5.5
       parent: 1
 - proto: WallShuttle
   entities:
@@ -6838,10 +6885,10 @@ entities:
     - type: Transform
       pos: 11.5,1.5
       parent: 1
-  - uid: 809
+  - uid: 496
     components:
     - type: Transform
-      pos: -0.5,7.5
+      pos: 1.5,7.5
       parent: 1
 - proto: WeaponGrapplingGun
   entities:
@@ -6866,10 +6913,10 @@ entities:
       parent: 1
 - proto: WeldingFuelTankFull
   entities:
-  - uid: 138
+  - uid: 720
     components:
     - type: Transform
-      pos: 5.5,-4.5
+      pos: 7.5,-5.5
       parent: 1
 - proto: Windoor
   entities:

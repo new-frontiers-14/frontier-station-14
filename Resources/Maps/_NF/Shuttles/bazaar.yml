@@ -23,7 +23,7 @@ entities:
   - uid: 1
     components:
     - type: MetaData
-      name: grid
+      name: Bazaar
     - type: Transform
       pos: -8.499361,3.2310195
       parent: invalid
@@ -5198,6 +5198,8 @@ entities:
       parent: 1
     - type: FuelGenerator
       on: False
+    - type: MaterialStorageMagnetPickup
+      magnetEnabled: True
     - type: Physics
       bodyType: Static
   - uid: 961
@@ -5207,6 +5209,8 @@ entities:
       parent: 1
     - type: FuelGenerator
       on: False
+    - type: MaterialStorageMagnetPickup
+      magnetEnabled: True
     - type: Physics
       bodyType: Static
 - proto: PosterLegitCarpMount
@@ -5532,19 +5536,13 @@ entities:
   - uid: 48
     components:
     - type: Transform
-      pos: -10.492079,7.4558206
+      pos: -10.480434,9.520037
       parent: 1
-    - type: Stack
-      count: 15
-- proto: SheetUranium1
-  entities:
-  - uid: 963
+  - uid: 531
     components:
     - type: Transform
-      pos: -10.538954,9.408945
+      pos: -10.496059,7.488787
       parent: 1
-    - type: Stack
-      count: 15
 - proto: ShuttersNormal
   entities:
   - uid: 525
@@ -5676,6 +5674,9 @@ entities:
     - type: Transform
       pos: -9.5,8.5
       parent: 1
+    - type: DeviceLinkSink
+      links:
+      - 41
 - proto: ShuttleWindow
   entities:
   - uid: 577
@@ -5764,6 +5765,10 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -9.5,9.5
       parent: 1
+    - type: DeviceLinkSource
+      linkedPorts:
+        235:
+        - Pressed: Toggle
   - uid: 571
     components:
     - type: Transform
