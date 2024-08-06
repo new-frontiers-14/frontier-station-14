@@ -20,6 +20,9 @@ station-beacon-shooting-range-mercenary = Shooting Range
 station-beacon-armory-mercenary = Armory
 station-beacon-mess = Mess
 station-beacon-head = Head
+station-beacon-atmos-nf = Atmospherics
+station-beacon-atmos-burn = Burn Chamber
+station-beacon-atmos-collector = Gas Collector Array
 
 station-beacon-eva-access = EVA Access
 station-beacon-dock-one = Dock 1
