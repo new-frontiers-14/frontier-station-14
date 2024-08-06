@@ -168,11 +168,9 @@ public sealed partial class RoleLoadout : IEquatable<RoleLoadout>
                 }
                 // End Frontier
 
-                // Apply any loadouts we can.
-                foreach (var protoId in groupProto.Loadouts) // Frontier: foreach (a la #29264)
+                foreach (var protoId in groupProto.Loadouts)
                 {
-                    // Reached the limit, time to stop
-                    if (loadouts.Count >= groupProto.MinLimit) // Frontier: groupProto.Loadouts[i]<groupProto - foreach (a la #29264)
+                    if (loadouts.Count >= groupProto.MinLimit)
                         break;
 
                     if (!protoManager.TryIndex(protoId, out var loadoutProto))
