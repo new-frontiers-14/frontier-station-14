@@ -91,7 +91,7 @@ public sealed partial class InjectorComponent : Component
     /// A null ReagentWhitelist indicates all reagents are allowed.
     /// </summary>
     [DataField]
-    public List<ProtoId<ReagentPrototype>>? ReagentWhitelist = null;
+    public ProtoId<ReagentPrototype>[]? ReagentWhitelist = null;
 }
 
 /// <summary>
