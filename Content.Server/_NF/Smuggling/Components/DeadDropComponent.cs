@@ -21,14 +21,14 @@ public sealed partial class DeadDropComponent : Component
     /// </summary>
     [DataField]
     //Use 10 seconds for testing
-    public int MinimumCoolDown = 900; // 900 / 60 = 15 minutes
+    public int MinimumCoolDown = 300; // 300 / 60 = 5 minutes
 
     /// <summary>
     ///     Max wait time in seconds to wait for the next dead drop.
     /// </summary>
     [DataField]
     //Use 15 seconds for testing
-    public int MaximumCoolDown = 1800; // 1800 / 60 = 30 minutes
+    public int MaximumCoolDown = 600; // 600 / 60 = 10 minutes
 
     /// <summary>
     ///     Wait time for NSFD to get coordinates of the drop pod location.
@@ -48,6 +48,12 @@ public sealed partial class DeadDropComponent : Component
     /// </summary>
     [DataField]
     public int MaximumDistance = 6500;
+
+    /// <summary>
+    ///     Max amount of dead drop posters active at a time
+    /// </summary>
+    [DataField]
+    public int MaxPosters = 2;
 
     /// <summary>
     ///     Boolean which confirms whether a poster can spawn a dead drop and has the verb to do so
@@ -74,7 +80,7 @@ public sealed partial class DeadDropComponent : Component
     public bool PosterScanned = false;
 
     /// <summary>
-    ///     Location of the grid to spawn in as the dead drop.
+    ///     Location of the grid to spawn in as the dead drop
     /// </summary>
     [DataField]
     public string DropGrid = "/Maps/deaddrop.yml";

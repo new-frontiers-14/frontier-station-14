@@ -328,6 +328,7 @@
   - type: RandomSpawner
     prototypes:
     - ClothingOuterHardsuitMercenary
+    - ClothingOuterHardsuitPrivateSecurity
     chance: 1
     offset: 0.0
     rarePrototypes:
@@ -355,14 +356,41 @@
     prototypes:
     - LockerMercenary
     - LockerMercenaryFilled
+    - ClosetBomb
+    - ClosetBombFilled
     chance: 1
     offset: 0.0
     rarePrototypes:
     - LockerSyndicatePersonal
     # - LockerSyndicatePersonalFilled # Less Syndicate Loot
-    - ClosetBomb
-    - ClosetBombFilled
-    rareChance: 0.03
+    - SpawnDungeonLootSuitStorageUnitsMercenary
+    rareChance: 0.05
+
+- type: entity
+  name: random suit storage unit
+  id: SpawnDungeonLootSuitStorageUnitsMercenary
+  parent: MarkerBase
+  suffix: "Dungeon, Mercenary"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Storage/suit_storage.rsi
+        state: base
+      - sprite: Structures/Storage/suit_storage.rsi
+        state: door
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - SuitStorageMercenary
+    - SuitStoragePrivateSecurity
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - SuitStorageScaf
+    rareChance: 0.1
 
 - type: entity
   name: random crate

@@ -1,0 +1,14 @@
+- type: gameMap
+  id: DevNF
+  mapName: DevNF
+  mapPath: /Maps/_NF/Test/dev_map.yml
+  minPlayers: 0
+  stations:
+    Dev:
+      stationProto: StandardFrontierStation
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: "DevNF"
+        - type: StationJobs
+          availableJobs:
+            StationRepresentative: [ -1, -1 ]

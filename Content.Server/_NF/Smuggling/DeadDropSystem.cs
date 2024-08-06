@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Reflection;
+using System.Text;
 using Content.Server._NF.Smuggling.Components;
 using Content.Server.Administration.Logs;
 using Content.Server.Paper;
@@ -40,6 +41,7 @@ public sealed class DeadDropSystem : EntitySystem
 
     private readonly List<EntityUid> _poi = [];
     private readonly Queue<EntityUid> _drops = [];
+    private int currentPosters = 0;
 
     public override void Initialize()
     {
@@ -63,19 +65,12 @@ public sealed class DeadDropSystem : EntitySystem
         var xform = Transform(uid);
         var targetCoordinates = xform.Coordinates;
 
-        //gets any dead drop posters that are nearby
-        var deadDrops = new HashSet<Entity<DeadDropComponent>>();
-        _entityLookup.GetEntitiesInRange(targetCoordinates, 300, deadDrops);
-
-        //checks if any of them are already active and if so don't do anything.
-        foreach (var ent in deadDrops)
+        //reset timer if there are 2 dead drop posters already active and this poster isn't one of them
+        if (currentPosters >= component.MaxPosters && component.DeadDropActivated != true)
         {
-            if (ent.Comp.DeadDropActivated == true && ent.Owner != uid)
-            {
-                //reset the timer
-                component.NextDrop = _timing.CurTime + TimeSpan.FromSeconds(_random.Next(component.MinimumCoolDown, component.MaximumCoolDown));
-                return;
-            }
+            //reset the timer
+            component.NextDrop = _timing.CurTime + TimeSpan.FromSeconds(_random.Next(component.MinimumCoolDown, component.MaximumCoolDown));
+            return;
         }
 
         //here we build our dynamic verb. Using the object's sprite for now to make it more dynamic for the moment.
@@ -89,7 +84,11 @@ public sealed class DeadDropSystem : EntitySystem
 
         args.Verbs.Add(searchVerb);
 
-        component.DeadDropActivated = true;
+        if (component.DeadDropActivated == false) 
+        {
+            component.DeadDropActivated = true;
+            currentPosters++;
+        }
     }
 
     //toggles the scanned boolean from ForensicScannerSystem.cs
@@ -175,6 +174,9 @@ public sealed class DeadDropSystem : EntitySystem
         //reset the timer
         component.NextDrop = _timing.CurTime + TimeSpan.FromSeconds(_random.Next(component.MinimumCoolDown, component.MaximumCoolDown));
         component.DeadDropActivated = false;
+        currentPosters--;
+
+        //logic of posters ends here and logic of radio signals begins here
 
         component.DeadDropCalled = true;
 
