@@ -18,7 +18,7 @@
     Drink:
       effects:
       - !type:SatiateThirst
-        factor: 1.5
+        factor: 1.0
         conditions:
           - !type:OrganType
             type: Human
@@ -27,7 +27,7 @@
       effects:
         - !type:AdjustReagent
           reagent: UncookedAnimalProteins
-          amount: 0.5
+          amount: 0.01 # Frontier - 0.1<0.01
     Medicine:
       effects:
       - !type:HealthChange
@@ -76,7 +76,7 @@
 #      # Delicious! # Frontier
 #      effects: # Frontier
 #      - !type:SatiateHunger # Frontier
-#        factor: 1.5 # Frontier
+#        factor: 1 # Frontier
   footstepSound:
     collection: FootstepBlood
     params:
