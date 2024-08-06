@@ -148,7 +148,40 @@
     defaultText: station-beacon-shooting-range-mercenary
     color: "#b8b873"
 
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultStationBeaconFrontierArmoryMercenary
+  suffix: Armory, Mercenary
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-armory-mercenary
+    color: "#b8b873"
+
+- type: entity
+  parent: DefaultStationBeaconService
+  id: DefaultStationBeaconFrontierMess
+  suffix: Mess
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-mess
+
+- type: entity
+  parent: DefaultStationBeaconService
+  id: DefaultStationBeaconFrontierHead
+  suffix: Head
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-head
+
 # Docks
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultStationBeaconFrontierEvaAccess
+  suffix: EVA Access
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-eva-access
+
 - type: entity
   parent: DefaultStationBeacon
   id: DefaultStationBeaconFrontierDockOne
