@@ -74,13 +74,15 @@
     name: "Omnichurch Beacon"
 
 - type: entity
-  parent: [BaseStructureDisableToolUse, BaseStructureUnanchorable, FaxMachineSyndie]
+  parent: [BaseStructureDisableToolUse, BaseStructureUnanchorable, FaxMachineSyndie, FaxMachineShipAntag]
   id: FaxMachineNFLPBravo
   suffix: POI, LP Bravo
   noSpawn: true
   components:
   - type: FaxMachine
     name: "Listening Point: Bravo"
+  - type: ApcPowerReceiver
+    powerDisabled: true #starts off
 
 - type: entity
   parent: [BaseStructureDisableToolUse, BaseStructureUnanchorable, FaxMachineBase]
