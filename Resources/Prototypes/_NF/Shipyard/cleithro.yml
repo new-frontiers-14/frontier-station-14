@@ -3,33 +3,33 @@
 # Discord: dvir01 (84770870936997888)
 
 # Shuttle Notes:
-# 
+#
 
-- type: vessel
-  id: Cleithro
-  name: DC Клейтро
-  description: Малогабаритный сервисный шаттл. Рекомендованный размер команды 2-4 человека.
-  price: 30000 # 10+% up from sell
-  category: Medium
-  group: Civilian
-  shuttlePath: /Maps/_NF/Shuttles/cleithro.yml
+# - type: vessel
+#   id: Cleithro
+#   name: DC Клейтро
+#   description: Малогабаритный сервисный шаттл. Рекомендованный размер команды 2-4 человека.
+#   price: 30000 # 10+% up from sell
+#   category: Medium
+#   group: Civilian
+#   shuttlePath: /Maps/_NF/Shuttles/cleithro.yml
 
-- type: gameMap
-  id: Cleithro
-  mapName: 'DC Клейтро'
-  mapPath: /Maps/_NF/Shuttles/cleithro.yml
-  minPlayers: 0
-  stations:
-    Cleithro:
-      stationProto: StandardFrontierVessel
-      components:
-        - type: StationNameSetup
-          mapNameTemplate: 'Клейтро {1}'
-          nameGenerator:
-            !type:NanotrasenNameGenerator
-            prefixCreator: '14'
-        - type: StationJobs
-          availableJobs:
-            Contractor: [ 0, 0 ]
-            Pilot: [ 0, 0 ]
-            Mercenary: [ 0, 0 ]
+# - type: gameMap
+#   id: Cleithro
+#   mapName: 'DC Клейтро'
+#   mapPath: /Maps/_NF/Shuttles/cleithro.yml
+#   minPlayers: 0
+#   stations:
+#     Cleithro:
+#       stationProto: StandardFrontierVessel
+#       components:
+#         - type: StationNameSetup
+#           mapNameTemplate: 'Клейтро {1}'
+#           nameGenerator:
+#             !type:NanotrasenNameGenerator
+#             prefixCreator: '14'
+#         - type: StationJobs
+#           availableJobs:
+#             Contractor: [ 0, 0 ]
+#             Pilot: [ 0, 0 ]
+#             Mercenary: [ 0, 0 ]

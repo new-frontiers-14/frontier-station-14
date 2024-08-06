@@ -1,24 +1,11 @@
 - type: entity
   name: cargo sale computer
   suffix: Normal
-  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseStructureComputer]
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseComputer]
   id: ComputerPalletConsoleNFNormalMarket
   description: Used to sell goods loaded onto cargo pallets
-  placement:
-    mode: SnapgridCenter
   components:
-  - type: MeleeSound
-    soundGroups:
-      Brute:
-        collection: MetalGlassBreak
-  - type: ApcPowerReceiver
-    powerLoad: 200
-  - type: ExtensionCableReceiver
-  - type: ActivatableUIRequiresPower
   - type: Sprite
-    netsync: false
-    noRot: true
-    sprite: Structures/Machines/computers.rsi
     layers:
     - map: ["computerLayerBody"]
       state: computer
@@ -28,29 +15,10 @@
       state: request
     - map: ["computerLayerKeys"]
       state: tech_key
-  - type: Appearance
-  - type: GenericVisualizer
-    visuals:
-      enum.ComputerVisuals.Powered:
-        computerLayerScreen:
-          True: { visible: true, shader: unshaded }
-          False: { visible: false }
-        computerLayerKeys:
-          True: { visible: true, shader: unshaded }
-          False: { visible: true, shader: shaded }
-  - type: LitOnPowered
   - type: PointLight
     radius: 1.5
     energy: 1.6
     color: "#b89f25"
-    enabled: false
-    mask: /Textures/Effects/LightMasks/cone.png
-    autoRot: true
-    offset: "0, 0.4" # shine from the top, not bottom of the computer
-    castShadows: false
-  - type: EmitSoundOnUIOpen
-    sound:
-      collection: Keyboard
   - type: CargoPalletConsole
   - type: ActivatableUI
     key: enum.CargoPalletConsoleUiKey.Sale
@@ -92,23 +60,11 @@
 
 - type: entity
   name: contraband exchange computer
-  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseStructureComputer]
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseComputer]
   id: ComputerContrabandPalletConsole
   description: Used to exchange contraband
-  placement:
-    mode: SnapgridCenter
   components:
-  - type: MeleeSound
-    soundGroups:
-      Brute:
-        collection: MetalGlassBreak
-  - type: ApcPowerReceiver
-    powerLoad: 200
-  - type: ExtensionCableReceiver
-  - type: ActivatableUIRequiresPower
   - type: Sprite
-    netsync: false
-    noRot: true
     sprite: _NF/Structures/Machines/computers.rsi
     layers:
     - map: ["computerLayerBody"]
@@ -119,29 +75,6 @@
       state: contraband
     - map: ["computerLayerKeys"]
       state: telesci_key
-    - type: Appearance
-    - type: GenericVisualizer
-    visuals:
-      enum.ComputerVisuals.Powered:
-        computerLayerScreen:
-          True: { visible: true, shader: unshaded }
-          False: { visible: false }
-        computerLayerKeys:
-          True: { visible: true, shader: unshaded }
-          False: { visible: true, shader: shaded }
-  - type: LitOnPowered
-  - type: PointLight
-    radius: 1.5
-    energy: 1.6
-    color: "#b89f25"
-    enabled: false
-    mask: /Textures/Effects/LightMasks/cone.png
-    autoRot: true
-    offset: "0, 0.4" # shine from the top, not bottom of the computer
-    castShadows: false
-  - type: EmitSoundOnUIOpen
-    sound:
-      collection: Keyboard
   - type: ContrabandPalletConsole
   - type: ActivatableUI
     key: enum.ContrabandPalletConsoleUiKey.Contraband
@@ -189,3 +122,182 @@
         type: IFFConsoleBoundUserInterface
   - type: Computer
     board: Null
+
+- type: entity
+  name: cargo market computer
+  abstract: true
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseStructureComputer]
+  id: ComputerMarketConsoleNFBase
+  description: Used to buy goods from the station's market system
+  placement:
+    mode: SnapgridCenter
+  components:
+    - type: MeleeSound
+      soundGroups:
+        Brute:
+          collection: MetalGlassBreak
+    - type: Computer
+    - type: ApcPowerReceiver
+      powerLoad: 200
+    - type: ExtensionCableReceiver
+    - type: ActivatableUIRequiresPower
+    - type: Sprite
+      netsync: false
+      noRot: true
+      sprite: Structures/Machines/computers.rsi
+      layers:
+        - map: ["computerLayerBody"]
+          state: computer
+        - map: ["computerLayerKeyboard"]
+          state: generic_keyboard
+        - map: ["computerLayerScreen"]
+          state: request
+        - map: ["computerLayerKeys"]
+          state: tech_key
+    - type: Appearance
+    - type: GenericVisualizer
+      visuals:
+        enum.ComputerVisuals.Powered:
+          computerLayerScreen:
+            True: { visible: true, shader: unshaded }
+            False: { visible: false }
+          computerLayerKeys:
+            True: { visible: true, shader: unshaded }
+            False: { visible: true, shader: shaded }
+    - type: LitOnPowered
+    - type: PointLight
+      radius: 1.5
+      energy: 1.6
+      color: "#b89f25"
+      enabled: false
+      mask: /Textures/Effects/LightMasks/cone.png
+      autoRot: true
+      offset: "0, 0.4" # shine from the top, not bottom of the computer
+      castShadows: false
+    - type: EmitSoundOnUIOpen
+      sound:
+        collection: Keyboard
+    - type: MarketConsole
+    - type: ActivatableUI
+      key: enum.MarketConsoleUiKey.Default
+    - type: UserInterface
+      interfaces:
+        enum.MarketConsoleUiKey.Default:
+          type: MarketConsoleBoundUserInterface
+    - type: MarketModifier
+      mod: 1
+      
+- type: entity
+  name: cargo market computer
+  parent: ComputerMarketConsoleNFBase
+  id: ComputerMarketConsoleNFLow
+  suffix: Low 5x
+  components:
+  - type: MarketModifier
+    mod: 5
+
+- type: entity
+  name: cargo market computer
+  parent: ComputerMarketConsoleNFBase
+  id: ComputerMarketConsoleNFHigh
+  suffix: High 10x
+  components:
+  - type: MarketModifier
+    mod: 10
+
+- type: entity
+  id: ComputerPirateBounty
+  parent: BaseComputer
+  name: pirate bounty computer
+  description: Avast, get ye pirate bounties here.
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer_blackmarket
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: piratebounty
+    - map: ["computerLayerKeys"]
+      state: blackmarket_key
+  - type: PirateBountyConsole
+    spawnChestSound:
+      path: /Audio/Effects/Lightning/lightningbolt.ogg
+      params:
+        volume: -2
+        variation: 0.2
+  - type: ActivatableUI
+    key: enum.PirateConsoleUiKey.Bounty
+  - type: UserInterface
+    interfaces:
+      enum.PirateConsoleUiKey.Bounty:
+        type: PirateBountyConsoleBoundUserInterface
+  - type: Computer
+    board: Null # Really shouldn't spawn anything on destruction
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#b89f25"
+  # - type: GuideHelp # Frontier
+  #   guides: # Frontier
+  #   - Pirate # Frontier: eventually?  maybe?
+
+- type: entity
+  name: plunder exchange computer
+  parent: ComputerContrabandPalletConsole
+  id: ComputerContrabandPalletConsolePirate
+  description: Fence yer ill-gotten goods here! And keep yer pile orderly.
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer_blackmarket
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: contraband # TODO: replace this
+    - map: ["computerLayerKeys"]
+      state: blackmarket_key
+  - type: Computer
+    board: Null # Really shouldn't spawn anything on destruction
+  - type: ContrabandPalletConsole
+    cashType: Doubloon
+    faction: Pirates
+    locStringPrefix: pirate-
+
+- type: entity
+  name: pirate bounty redemption computer
+  parent: ComputerPirateBounty
+  id: ComputerPirateBountyRedemption
+  description: Back from a voyage? Redeem yer bounties here, matey.
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer_blackmarket
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: piratebounty_pad
+    - map: ["computerLayerKeys"]
+      state: blackmarket_key
+  - type: PirateBountyRedemptionConsole
+  - type: ActivatableUI
+    key: enum.PirateConsoleUiKey.BountyRedemption
+  - type: UserInterface
+    interfaces:
+      enum.PirateConsoleUiKey.BountyRedemption:
+        type: PirateBountyRedemptionConsoleBoundUserInterface
+  - type: Computer
+    board: Null
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#b89f25"
+  # - type: GuideHelp # Frontier
+  #   guides: # Frontier
+  #   - CargoBounties # Frontier

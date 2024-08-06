@@ -1,0 +1,76 @@
+# Species
+- type: loadoutEffectGroup
+  id: NitrogenBreatherNF
+  effects:
+  - !type:SpeciesLoadoutEffect
+    species:
+    - SlimePerson
+    - Vox
+
+- type: loadoutEffectGroup
+  id: OxygenBreatherNF
+  effects:
+  - !type:SpeciesLoadoutEffect
+    species:
+    - Arachnid
+    - Diona
+    - Dwarf
+    - Human
+    - Moth
+    - Reptilian
+    - Goblin
+    - Oni
+    - Felinid
+    - Vulpkanin
+    - Harpy
+
+- type: loadoutEffectGroup
+  id: PantsCapableNF
+  effects:
+  - !type:SpeciesLoadoutEffect
+    species:
+    - Arachnid
+    - Diona
+    - Dwarf
+    - Human
+    - Moth
+    - Reptilian
+    - SlimePerson
+    - Vox
+    - Goblin
+    - Oni
+    - Felinid
+    - Vulpkanin
+
+- type: loadoutEffectGroup
+  id: ShoesCapableNF
+  effects:
+  - !type:SpeciesLoadoutEffect
+    species:
+    - Arachnid
+    - Dwarf
+    - Human
+    - Moth
+    - Reptilian
+    - SlimePerson
+    - Vox
+    - Goblin
+    - Oni
+    - Felinid
+    - Vulpkanin
+    - Harpy
+
+- type: loadoutEffectGroup
+  id: NotStcNF
+  effects:
+  - !type:RoleBlacklistLoadoutEffect
+    blacklist:
+      - JobStationTrafficController
+
+- type: loadoutEffectGroup
+  id: NotFemaleNF
+  effects:
+  - !type:SexLoadoutEffect
+    sex:
+      - Male
+      - Unsexed
