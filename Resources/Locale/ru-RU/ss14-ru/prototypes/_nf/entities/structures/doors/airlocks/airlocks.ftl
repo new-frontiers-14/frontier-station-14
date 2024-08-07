@@ -13,3 +13,6 @@ ent-AirlockNfsdGlass = { ent-AirlockGlass }
 ent-AirlockExternalGlassShuttleTransit = { ent-AirlockGlassShuttle }
     .suffix = Внешний, Транспортный, Стеклянный, Стыковочный
     .desc = { ent-AirlockGlassShuttle.desc }
+ent-AirlockExternalGlassShuttleMcCargo = { ent-AirlockGlassShuttle }
+    .suffix = Внешний, Каргония, Стеклянный, Стыковочный
+    .desc = { ent-AirlockGlassShuttle.desc }

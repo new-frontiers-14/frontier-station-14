@@ -58,3 +58,6 @@ ent-FaxMachineNFNfsd = { ent-FaxMachineBase }
 ent-FaxMachineNFNfsdLawyer = { ent-FaxMachineBase }
     .suffix = POI, Адвокат ДСБФ
     .desc = { ent-FaxMachineBase.desc }
+ent-FaxMachineShipMcCargo = { ent-FaxMachineBase }
+    .suffix = Шаттл, Каргония
+    .desc = { ent-FaxMachineBase.desc }
