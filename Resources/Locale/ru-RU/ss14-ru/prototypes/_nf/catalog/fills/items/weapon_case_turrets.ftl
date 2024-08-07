@@ -1,0 +1,9 @@
+ent-WeaponCaseHeavyCdet = { ent-WeaponCaseHeavy }
+    .suffix = упакованная АКЭТ
+    .desc = { ent-WeaponCaseHeavy.desc }
+ent-WeaponCaseHeavySlat = { ent-WeaponCaseHeavy }
+    .suffix = упакованная САЛТ
+    .desc = { ent-WeaponCaseHeavy.desc }
+ent-WeaponCaseHeavyAsmgt = { ent-WeaponCaseHeavy }
+    .suffix = упакованная АСПТ
+    .desc = { ent-WeaponCaseHeavy.desc }

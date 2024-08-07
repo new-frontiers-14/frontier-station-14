@@ -1,6 +1,6 @@
 ent-ClothingHeadHelmetBasic = helmet
     .desc = Standard security gear. Protects the head from impacts.
-ent-ClothingHeadHelmetMerc = mercenary helmet
+ent-ClothingHeadHelmetMercenary = mercenary helmet
     .desc = The combat helmet is commonly used by mercenaries, is strong, light and smells like gunpowder and the jungle.
 ent-ClothingHeadHelmetSwat = SWAT helmet
     .desc = An extremely robust helmet, commonly used by paramilitary forces. This one has the Nanotrasen logo emblazoned on the top.
@@ -40,8 +40,6 @@ ent-ClothingHeadHelmetERTEngineer = ERT engineer helmet
     .desc = An in-atmosphere helmet worn by engineering members of the Nanotrasen Emergency Response Team. Has orange highlights.
 ent-ClothingHeadHelmetERTJanitor = ERT janitor helmet
     .desc = An in-atmosphere helmet worn by janitorial members of the Nanotrasen Emergency Response Team. Has dark purple highlights.
-ent-ClothingHeadHelmetRaid = syndicate raid helmet
-    .desc = An armored helmet for use with the syndicate raid suit. Very stylish.
 ent-ClothingHeadHelmetBone = bone helmet
     .desc = Cool-looking helmet made of skull of your enemies.
 ent-ClothingHeadHelmetPodWars = ironclad II helmet

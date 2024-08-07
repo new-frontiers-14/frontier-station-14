@@ -1,6 +1,6 @@
-ent-ComputerBankATMBase = { "" }
-    .desc = { "" }
-ent-ComputerBankATMDeposit = bank atm
+ent-ComputerBankATMBase = { ent-BaseComputer }
+    .desc = { ent-BaseComputer.desc }
+ent-ComputerBankATMDeposit = bank ATM
     .desc = Used to deposit and withdraw funds from a personal bank account.
 ent-ComputerBankATMWithdraw = bank atm withdraw-only
     .desc = Used to withdraw funds from a personal bank account, unable to deposit.

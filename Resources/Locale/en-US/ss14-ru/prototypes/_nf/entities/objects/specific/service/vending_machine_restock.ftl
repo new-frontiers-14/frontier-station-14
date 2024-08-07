@@ -18,3 +18,5 @@ ent-VendingMachineRestockPottedPlantVend = Plant-O-Matic restock box
     .desc = A box containing potted plants for the Plant-O-Matic vending machine. A label reads THE BOX IS TAMPER PROOF AND WILL DESTROY IT'S CONTENT ON HARM.
 ent-VendingMachineRestockSyndieContraband = contravend restock box
     .desc = A box containing best ilegal tools for the ContraVend machine. A label reads THE BOX IS TAMPER PROOF AND WILL DESTROY IT'S CONTENT ON HARM.
+ent-VendingMachineRestockCiviMedVend = CiviMed restock box
+    .desc = A box containing medical supplies for the CiviMed vending machine. A label reads THE BOX IS TAMPER PROOF AND WILL DESTROY IT'S CONTENT ON HARM.

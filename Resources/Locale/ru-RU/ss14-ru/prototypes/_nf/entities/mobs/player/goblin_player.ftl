@@ -1,2 +1,2 @@
 ent-MobGoblin = Урист МакГоблин
-  .desc = { ent-MobGoblinBase.desc }
+    .desc = { ent-MobGoblinBase.desc }

@@ -1,5 +1,5 @@
 ent-CargoPallet = cargo pallet
-    .desc = Common fixture of logistics and cargo. Subtle reminder where crates go during transport to avoid bruised shins.
+    .desc = Designates valid items to sell to CentCom.
 ent-CargoPalletSell = cargo selling pallet
     .desc = Designates valid items to sell.
 ent-CargoPalletBuy = cargo buying pallet

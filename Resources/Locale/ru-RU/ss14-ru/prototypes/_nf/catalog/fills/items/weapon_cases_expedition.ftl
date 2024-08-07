@@ -145,3 +145,6 @@ ent-WeaponCaseShortExGrenade = { ent-WeaponCaseShort }
 ent-WeaponCaseShortC4 = { ent-WeaponCaseShort }
     .suffix = Экспедиция, C4
     .desc = { ent-WeaponCaseShort.desc }
+ent-WeaponCaseHeavyAsmgtExpeditions = { ent-WeaponCaseHeavy }
+    .suffix = Упакованная Турель, Экспедиция
+    .desc = { ent-WeaponCaseHeavy.desc }

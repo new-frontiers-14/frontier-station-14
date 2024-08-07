@@ -24,4 +24,5 @@ ent-SmallGyroscopeMachineCircuitboard = малый гироскоп (машин�
     .desc = { ent-BaseMachineCircuitboard.desc }
 ent-M_EmpMachineCircuitboard = БЭМИ (машинная плата)
     .desc = Печатная плата БЭМИ.
-
+ent-PortableGeneratorHyperPacmanMachineCircuitboard = Г.И.П.Е.Р.П.А.К.М.А.Н (машинная плата)
+    .desc = { ent-BaseMachineCircuitboard.desc }

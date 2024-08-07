@@ -1,4 +1,6 @@
 barsign-component-name = вывеска бара
+barsign-ui-menu = Настройки Вывески
+barsign-ui-set-label = Установить вывеску:
 
 # Bar signs prototypes
 

@@ -1,6 +1,6 @@
 ent-SimpleArtifactMobBase = { ent-MobAtmosNF }
-  .suffix = AI
-  .desc = { ent-MobAtmosNF.desc }
+    .suffix = AI
+    .desc = { ent-MobAtmosNF.desc }
 ent-BaseMobArtifactConstruct = артефактный голем
     .desc = { ent-SimpleArtifactMobBase.desc }
 ent-MobGrimForged = артефактный голем

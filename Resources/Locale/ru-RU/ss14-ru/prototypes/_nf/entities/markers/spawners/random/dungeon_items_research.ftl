@@ -16,6 +16,6 @@ ent-SpawnDungeonLootRnDDisk = случайный диск
 ent-SpawnDungeonLootCircuitBoardScience = случайная плата
     .suffix = Экспедиция, Наука
     .desc = { ent-MarkerBasePlaceFree.desc }
-ent-SpawnDungeonLootFlatpacksScience =  случайная упаковка
+ent-SpawnDungeonLootFlatpacksScience = случайная упаковка
     .suffix = Экспедиция, Наука
     .desc = { ent-MarkerBasePlaceFree.desc }

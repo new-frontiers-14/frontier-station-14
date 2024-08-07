@@ -1,3 +1,5 @@
+ent-ClothingBackpackDuffelSurgeryFilled = хирургический вещмешок
+    .desc = Большой вещевой мешок с полным набором хирургических инструментов.
 ent-ClothingBackpackDuffelSyndicateFilledMedical = хирургический вещмешок Синдиката
     .desc = Большой вещевой мешок с полным набором хирургических инструментов.
 ent-ClothingBackpackDuffelSyndicateFilledShotgun = набор "Бульдог"

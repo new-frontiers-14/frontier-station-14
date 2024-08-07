@@ -1,3 +1,3 @@
 ent-ClothingEyesChameleon = sun glasses
-    .desc = Useful both for security and cargonia.
+    .desc = Useful for security.
     .suffix = Chameleon

@@ -1,8 +1,8 @@
-ent-SpawnPointMailCarrier = mailcarrier
+ent-SpawnPointMailCarrier = почтальон
     .desc = { ent-SpawnPointJobBase.desc }
-ent-SpawnPointPrisoner = prisoner
+ent-SpawnPointPrisoner = заключенный
     .desc = { ent-SpawnPointJobBase.desc }
-ent-SpawnPointValet = valet
+ent-SpawnPointValet = камердинер
     .desc = { ent-SpawnPointJobBase.desc }
-ent-SpawnPointPrisonGuard = prison guard
+ent-SpawnPointPrisonGuard = тюремный охранник
     .desc = { ent-SpawnPointJobBase.desc }

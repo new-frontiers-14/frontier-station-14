@@ -1,3 +1,6 @@
+ent-LockerBrigmedicFilledHardsuit = { ent-LockerBrigmedic }
+    .suffix = Filled, Hardsuit
+    .desc = { ent-LockerBrigmedic.desc }
 ent-LockerWardenFilledHardsuit = { ent-LockerWarden }
     .suffix = Filled, Hardsuit
     .desc = { ent-LockerWarden.desc }

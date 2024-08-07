@@ -3,24 +3,19 @@ ent-PresentBase = present
 ent-Present = { ent-PresentBase }
   .suffix = Empty
   .desc = { ent-PresentBase.desc }
-
 ent-PresentRandomUnsafe = { ent-PresentBase }
-
   .suffix = Filled, any item
   .desc = { ent-PresentBase.desc }
 ent-PresentRandomInsane = { ent-PresentRandomUnsafe }
     .suffix = Filled, any entity
     .desc = { ent-PresentRandomUnsafe.desc }
 ent-PresentRandom = { ent-PresentBase }
-
   .suffix = Filled Safe
   .desc = { ent-PresentBase.desc }
 ent-PresentRandomAsh = { ent-PresentBase }
-
   .suffix = Filled Ash
   .desc = { ent-PresentBase.desc }
 ent-PresentRandomCash = { ent-PresentBase }
-
   .suffix = Filled Cash
   .desc = { ent-PresentBase.desc }
 ent-PresentTrash = Wrapping Paper

@@ -1,4 +1,4 @@
-ent-FoodCartBase = food cart
+ent-FoodCartBase = Food Cart
     .desc = A cart for food.
 ent-FoodCartHot = hot food cart
     .desc = Get out there and slang some dogs.

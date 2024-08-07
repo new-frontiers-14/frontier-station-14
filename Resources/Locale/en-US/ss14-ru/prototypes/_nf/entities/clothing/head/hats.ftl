@@ -39,3 +39,5 @@ ent-ClothingHeadHatSrCap = station representative's cap
     .desc = A cap issued to Frontier Outpost's station representative. Try not to lose it.
 ent-ClothingHeadHatSrBeret = station representative's beret
     .desc = A breezy beret issued to Frontier Outpost's station representative. Looks soft.
+ent-ClothingHeadHatStcCap = station traffic controller's cap
+    .desc = A cap issued to Frontier Outpost's station traffic controller. Try not to lose it.
