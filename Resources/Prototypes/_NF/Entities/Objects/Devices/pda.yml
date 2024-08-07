@@ -353,6 +353,47 @@
     state: pda-detective
 
 - type: entity
+  parent: BasePDA
+  id: PublicAffairsOfficialPDA
+  name: public affairs official PDA
+  description: Paperwork, paperwork, paperwork!
+  components:
+  - type: Pda
+    id: PublicAffairsIDCard
+    state: pda-deputy
+    penSlot:
+      startingItem: PublicAffairsPen
+      priority: -1
+      whitelist:
+        tags:
+        - Write
+    bookSlot: # Frontier
+      startingItem: HyperlinkBookNfsdSop
+      priority: -2
+      whitelist:
+        tags:
+        - BookSpaceLaw
+        - BookNfsdSop
+  - type: PdaBorderColor
+    borderColor: "#FFFDD0"
+    accentHColor: "#896b49"
+  - type: Sprite
+    sprite: _NF/Objects/Devices/pda.rsi
+    layers:
+    - map: [ "enum.PdaVisualLayers.Base" ]
+    - state: "light_overlay"
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+      shader: "unshaded"
+      visible: false
+    - state: "id_overlay"
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+      shader: "unshaded"
+      visible: false
+  - type: Icon
+    sprite: _NF/Objects/Devices/pda.rsi
+    state: pda-deputy
+
+- type: entity
   parent: HoPPDA
   id: SrPDA
   name: station representative PDA

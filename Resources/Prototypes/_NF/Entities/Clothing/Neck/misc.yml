@@ -212,3 +212,16 @@
       - state: equipped-NECK-on
         color: "#9c0de1"
         shader: unshaded
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckPublicAffairsOfficialBadge
+  name: public affairs official badge
+  description: A badge to show that the owner is a paperwork wizard, and affiliated with the nfsd.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Neck/Misc/paobadge.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Neck/Misc/paobadge.rsi
+  - type: TypingIndicatorClothing
+    proto: lawyer

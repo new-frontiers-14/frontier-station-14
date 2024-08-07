@@ -29,3 +29,64 @@
   # - type: GuideHelp # Frontier: removed guidebook entries
   #   guides: # Frontier: removed guidebook entries
   #   - Pirate # Frontier: add this eventually
+
+- type: entity
+  id: BoxFolderClipboardPao
+  parent: BoxFolderClipboard
+  name: pao clipboard
+  description: The weapon of choice for the master of bureaucracy.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Misc/pao_clipboard.rsi
+  - type: Item
+    sprite: _NF/Objects/Misc/pao_clipboard.rsi
+  - type: Clothing
+    sprite: _NF/Objects/Misc/pao_clipboard.rsi
+
+- type: entity
+  id: BoxFolderPaoGreen
+  parent: BoxFolderBase
+  name: green pao folder
+  description: A folder meant to contain super secret nfsd forms.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Misc/bureaucracy.rsi
+    layers:
+    - state: folder-PAO-green
+    - state: folder-base
+  - type: StorageFill
+    contents:
+      - id: Paper
+        prob: 0.5
+      - id: PaperOffice
+        prob: 0.4
+      - id: Paper
+        prob: 0.3
+      - id: PaperOffice
+        prob: 0.2
+      - id: Paper
+        prob: 0.2
+
+- type: entity
+  id: BoxFolderPaoBrown
+  parent: BoxFolderBase
+  name: brown pao folder
+  description: A folder meant to contain super secret nfsd forms.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Misc/bureaucracy.rsi
+    layers:
+    - state: folder-PAO-brown
+    - state: folder-base
+  - type: StorageFill
+    contents:
+      - id: Paper
+        prob: 0.5
+      - id: PaperOffice
+        prob: 0.4
+      - id: Paper
+        prob: 0.3
+      - id: PaperOffice
+        prob: 0.2
+      - id: Paper
+        prob: 0.2
