@@ -191,14 +191,14 @@ public sealed partial class MarketSystem
     /// Calculates the amount of items that can fit within an entity's worth of space for a given item type.
     /// </summary>
     /// <param name="data">The item type to calculate.</param>
-    /// <returns>The number of items that can fit within an entity's worth of space.</returns>
+    /// <returns>The number of items that can fit within an entity's worth of space. Null if infinite.</returns>
     public int? GetAmountPerEntitySpace(MarketData data)
     {
         if (data.StackPrototype != null && _prototypeManager.TryIndex(data.StackPrototype, out var stackPrototype))
         {
             var maxStackCount = stackPrototype.MaxCount;
             if (maxStackCount != null)
-                return int.Max(1, maxStackCount.Value); // Ensure denominator is positive
+                return int.Max(1, maxStackCount.Value); // Ensure amount is positive.
             else
                 return null; // Infinity.
         }
