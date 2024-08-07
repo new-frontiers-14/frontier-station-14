@@ -275,6 +275,7 @@ public sealed partial class MarketSystem
                 amountLeft = (30 - entityAmount) * amountPerEntity.Value;
                 if (existingCart != null)
                 {
+                    // Find if there's a partially filled entity in the cart.
                     var quantityMod = existingCart.Quantity % amountPerEntity.Value;
                     if (quantityMod != 0)
                     {
