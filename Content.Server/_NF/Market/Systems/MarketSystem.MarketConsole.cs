@@ -260,8 +260,6 @@ public sealed partial class MarketSystem
             if (existing == null)
                 return;
 
-            var existingCart = FindMarketDataByPrototype(consoleComponent.CartDataList, args.ItemPrototype!);
-
             // Calculate maximum we can fit.
             var entityAmount = CalculateEntityAmount(consoleComponent.CartDataList);
             var amountPerEntity = GetAmountPerEntitySpace(existing);
@@ -273,6 +271,8 @@ public sealed partial class MarketSystem
             else
             {
                 amountLeft = (30 - entityAmount) * amountPerEntity.Value;
+
+                var existingCart = FindMarketDataByPrototype(consoleComponent.CartDataList, args.ItemPrototype!);
                 if (existingCart != null)
                 {
                     // Find if there's a partially filled entity in the cart.
