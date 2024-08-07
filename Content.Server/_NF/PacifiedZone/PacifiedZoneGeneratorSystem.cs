@@ -35,9 +35,8 @@ namespace Content.Server._NF.PacifiedZone
 
                 _jobSystem.MindTryGetJobId(mindId, out var jobId);
 
-                if (jobId != null)
-                    if (component.ImmuneRoles.Contains(jobId!.Value))
-                        continue;
+                if (jobId != null && component.ImmuneRoles.Contains(jobId.Value))
+                    continue;
 
                 AddComp<PacifiedComponent>(humanoid_uid);
                 AddComp<PacifiedByZoneComponent>(humanoid_uid);
@@ -71,7 +70,7 @@ namespace Content.Server._NF.PacifiedZone
                     if (jobId != null && component.ImmuneRoles.Contains(jobId.Value))
                         continue;
 
-                    // Player is permanently pacified, 
+                    // Player is naturally pacified, skip them.
                     if (HasComp<PacifiedComponent>(humanoid_uid) && !HasComp<PacifiedByZoneComponent>(humanoid_uid))
                         continue;
 
