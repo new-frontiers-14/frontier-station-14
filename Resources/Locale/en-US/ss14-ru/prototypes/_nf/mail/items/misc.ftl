@@ -33,3 +33,5 @@ ent-CigarPlatinum = Generalissimo No. 3 cigar
 ent-CigarPlatinumSpent = { ent-CigarPlatinum }
     .suffix = spent
     .desc = { ent-CigarPlatinum.desc }
+ent-WeaponVulpCannon = lil vulp cannon
+    .desc = With a widened barrel, this friend launcher can huck your little buddies further than you ever could.

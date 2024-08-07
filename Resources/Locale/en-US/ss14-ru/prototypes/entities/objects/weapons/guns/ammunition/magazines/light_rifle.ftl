@@ -15,5 +15,3 @@ ent-MagazineLightRifleIncendiary = magazine (.30 rifle incendiary)
     .desc = { ent-MagazineLightRifle.desc }
 ent-MagazineLightRifleMaxim = pan magazine (.30 rifle)
     .desc = { ent-BaseMagazineLightRifle.desc }
-ent-MagazineLightRiflePkBox = PK munitions box (.30 rifle)
-    .desc = { ent-BaseMagazineLightRifle.desc }

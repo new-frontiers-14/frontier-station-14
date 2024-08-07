@@ -10,5 +10,7 @@ ent-ClothingShoesBootsNfsdBrownFilled = { ent-ClothingShoesBootsNfsdBrown }
     .desc = { ent-ClothingShoesBootsNfsdBrown.desc }
 ent-ClothingShoesBootsNfsdCreamFilled = { ent-ClothingShoesBootsNfsdCream }
     .desc = { ent-ClothingShoesBootsNfsdCream.desc }
+ent-ChaplainHolywaterFlaskFilled = бутыль святой воды
+    .desc = Испей эту святую воду во благословение выбранного тобой божества.
 ent-ChaplainHolywaterBottleFilled = бутыль святой воды
     .desc = Испей эту святую воду во благословение выбранного тобой божества.

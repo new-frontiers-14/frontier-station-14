@@ -20,5 +20,7 @@ ent-CrateNfsdSecure2 = nfsd crate
     .desc = { ent-CrateSecgear.desc }
 ent-CratePirateGrey = pirate chest
     .desc = A space pirate chest, not for station lubbers.
+ent-CratePirateBounty = pirate bounty chest
+    .desc = A chest for storing looted goods. Huh, this one's blank.
 ent-CrateFreezerMcCargo = mccargo freezer
     .desc = { ent-CrateFreezer.desc }

@@ -1,6 +1,6 @@
 ent-ClusterBang = clusterbang
     .desc = Can be used only with flashbangs. Explodes several times.
-ent-ClusterBangFull = clusterbang
+ent-ClusterBangFull = ClusterBang
     .desc = Launches three flashbangs after the timer runs out.
     .suffix = Full
 ent-ClusterGrenade = clustergrenade

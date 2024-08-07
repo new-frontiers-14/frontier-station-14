@@ -4,3 +4,6 @@ ent-WeaponCaseLong = weapon case
 ent-WeaponCaseShort = weapon case
     .desc = A reinforced casing for storing side arms and weapon accessories.
     .suffix = Short
+ent-WeaponCaseHeavy = weapon case
+    .desc = A reinforced casing for storing heavy armaments.
+    .suffix = Heavy

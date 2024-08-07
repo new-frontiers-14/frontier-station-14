@@ -1,11 +1,1 @@
-ent-WeaponTurretEnergyNF = энергетическая турель NT
-    .desc = { ent-BaseWeaponTurretEnergyNF.desc }
-ent-WeaponTurretLaserNanoTrasenNF = laser turret
-    .suffix = Фронтир, NT
-    .desc = { ent-BaseWeaponTurretEnergyNF.desc }
-ent-WeaponTurretLaserSyndicateNF = лазерная турель
-    .suffix = Фронтир, Синдикат
-    .desc = { ent-WeaponTurretLaserNanoTrasenNF.desc }
-ent-WeaponTurretLaserHostileNF = лазерная турель
-    .suffix = Фронтир, Вражеская
-    .desc = { ent-WeaponTurretLaserNanoTrasenNF.desc }
+

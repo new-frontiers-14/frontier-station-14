@@ -7,4 +7,4 @@ ent-CrateNPCEmotionalSupportSafe = ящик с ручными зверушкам
     .suffix = Безопасный
     .desc = { ent-CrateLivestock.desc }
 ent-PetCarrierNPCEmotionalSupportSafe = ручная зверушка с удобной переноской
-  .desc = { ent-PetCarrier.desc }
+    .desc = { ent-PetCarrier.desc }

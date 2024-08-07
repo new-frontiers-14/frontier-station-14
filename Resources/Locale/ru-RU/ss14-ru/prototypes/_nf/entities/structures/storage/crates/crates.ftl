@@ -20,5 +20,7 @@ ent-CrateNfsdSecure2 = ящик ДСБФ
     .desc = { ent-CrateSecgear.desc }
 ent-CratePirateGrey = пиратский ящик
     .desc = Пиратский сундук, не для стационарных крыс.
+ent-CratePirateBounty = сундук пиратской добычи
+    .desc = Сундук для хранения награбленной добычи.
 ent-CrateFreezerMcCargo = холодильник каргонии
     .desc = { ent-CrateFreezer.desc }

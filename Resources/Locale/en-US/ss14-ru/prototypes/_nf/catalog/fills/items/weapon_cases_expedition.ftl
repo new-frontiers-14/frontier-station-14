@@ -145,3 +145,6 @@ ent-WeaponCaseShortExGrenade = { ent-WeaponCaseShort }
 ent-WeaponCaseShortC4 = { ent-WeaponCaseShort }
     .suffix = Dungeon, C4
     .desc = { ent-WeaponCaseShort.desc }
+ent-WeaponCaseHeavyAsmgtExpeditions = { ent-WeaponCaseHeavy }
+    .suffix = packed ASMGT, Expeditions
+    .desc = { ent-WeaponCaseHeavy.desc }

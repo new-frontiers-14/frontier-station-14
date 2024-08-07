@@ -1,2 +1,2 @@
-ent-ActionForceWall = forcewall
+ent-ActionForceWall = Forcewall
     .desc = Creates a magical barrier.

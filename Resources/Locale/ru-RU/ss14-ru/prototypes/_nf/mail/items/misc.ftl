@@ -33,3 +33,5 @@ ent-CigarPlatinum = сигара "Генералиссимус №3"
 ent-CigarPlatinumSpent = { ent-CigarPlatinum }
     .suffix = использована
     .desc = { ent-CigarPlatinum.desc }
+ent-WeaponVulpCannon = вульпомёт
+    .desc = С этой пушечкой и её широким стволом ваши маленькие друзья полетят дальше, чем вы когда-либо мечтали!

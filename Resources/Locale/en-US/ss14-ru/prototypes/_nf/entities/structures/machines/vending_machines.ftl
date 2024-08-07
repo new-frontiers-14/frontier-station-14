@@ -33,3 +33,7 @@ ent-VendingMachineClothingPunk = ThreadsChoom
     .desc = A vandalized ClothesMate.
 ent-VendingMachineBountyVendPunk = BonanzaMatic
     .desc = A vandalised BountyVend.
+ent-VendingMachineFuelVend = FuelVend
+    .desc = A vendor selling fuel for ship engines. Smells like ozone.
+ent-VendingMachineCiviMedVend = CiviMedVend
+    .desc = CiviMed, distributing lifesaving meds harder than the rocks you break! Miners, DON'T DIE!

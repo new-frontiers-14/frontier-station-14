@@ -1,6 +1,6 @@
 ent-ComputerShipyardBase = shipyard console
     .desc = Used to purchase and sell shuttles
-ent-ComputerShipyard = shipyard console
+ent-ComputerShipyard = { ent-ComputerShipyardBase }
     .desc = { ent-ComputerShipyardBase.desc }
 ent-ComputerShipyardSecurity = security shipyard console
     .desc = Used to enlist into Nanotrasen Security Forces

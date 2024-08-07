@@ -24,3 +24,5 @@ ent-SmallGyroscopeMachineCircuitboard = small gyroscope machine board
     .desc = { ent-BaseMachineCircuitboard.desc }
 ent-M_EmpMachineCircuitboard = M_EMP Generator machine board
     .desc = A machine printed circuit board for a mobile EMP generator.
+ent-PortableGeneratorHyperPacmanMachineCircuitboard = H.Y.P.E.R.P.A.C.M.A.N.-type portable generator machine board
+    .desc = { ent-BaseMachineCircuitboard.desc }

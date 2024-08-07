@@ -10,3 +10,5 @@ ent-WebBed = web bed
     .desc = You got webbed.
 ent-PsychBed = psychologist bed
     .desc = An upholstered bed for the psychological care of patients.
+ent-WebNest = web nest
+    .desc = You got webbed.

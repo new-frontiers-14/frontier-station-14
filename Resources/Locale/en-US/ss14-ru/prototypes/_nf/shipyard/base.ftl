@@ -26,3 +26,5 @@ ent-BaseStationEmpImmune = { "" }
     .desc = { "" }
 ent-BaseStationSectorNews = { "" }
     .desc = { "" }
+ent-BaseStationSectorServices = { "" }
+    .desc = { "" }
