@@ -10,7 +10,7 @@ pirate-bounty-console-manifest-entry =    { $amount ->
         [1] { $item }
        *[other] { $item } x{ $amount }
     }
-pirate-bounty-console-manifest-reward = Награда: { $reward } кредов
+pirate-bounty-console-manifest-reward = Награда: { $reward } дублонов
 pirate-bounty-console-description-label = [color=gray]{ $description }[/color]
 pirate-bounty-console-id-label = { $id }
 pirate-bounty-console-flavor-left = Вперёд, на добычу, морские волки! Долой NT!

@@ -10,6 +10,6 @@ ent-GyroscopeNfsd = { ent-GyroscopeSecurity }
 ent-DebugGyroscopeNfsd = { ent-DebugGyroscopeSecurity }
     .suffix = ДЕБАГ, ДСБФ
     .desc = { ent-DebugGyroscopeSecurity.desc }
-ent-SmallGyroscopeNfsd = small gyroscope
+ent-SmallGyroscopeNfsd = малый гироскоп
     .suffix = ДСБФ
     .desc = { ent-SmallGyroscopeSecurity.desc }

@@ -15,3 +15,4 @@ market-return-button = Удалить
 market-search = Поиск товаров:
 market-no-crate-machine-available = Нет доступных устройств для упаковки
 market-insufficient-funds = Недостаточно средств
+market-no-cart-found = Отсутствует упаковочная машина
