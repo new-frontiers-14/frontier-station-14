@@ -14,7 +14,6 @@ shuttle-console-angular-velocity = Угловая скорость:
 shuttle-console-unknown = Неизвестно
 shuttle-console-iff-label = { $name } ({ $distance } м)
 shuttle-console-exclusion = Зона отчуждения
-shuttle-console-iff-search = Поиск IFF
 # Buttons
 shuttle-console-strafing = Режим стрейфа
 shuttle-console-nav-settings = Настройки
