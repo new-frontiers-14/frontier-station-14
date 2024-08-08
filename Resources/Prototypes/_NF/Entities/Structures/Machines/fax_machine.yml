@@ -182,3 +182,15 @@
   components:
   - type: FaxMachine
     name: "NFSD Outpost Lawyer"
+
+# Ships
+- type: entity
+  parent: FaxMachineBase
+  id: FaxMachineShipMcCargo
+  suffix: Ship, McCargo
+  noSpawn: true
+  components:
+  - type: FaxMachine
+    useStationName: true
+    stationNameSuffix: McDrive Thru
+  - type: PowerSwitch
