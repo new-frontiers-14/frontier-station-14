@@ -20,6 +20,7 @@
     - id: PaperWrittenNfsdTicket
     - id: PaperWrittenNfsdReport
     - id: PaperWrittenNfsdPayHistory
+    - id: PaperWrittenNfsdWarrant
     - id: Paper
       prob: 0.5
     - id: Paper
@@ -58,44 +59,6 @@
       ═══════════════════════════════════════
 
       [color=#AAAAAA]This Form is invalid without signs of both Parties and a stamp of NFSD acting Sheriff[/color]
-
-- type: entity # Based on form made by Starly (Shaw Clifflower)
-  id: PaperWrittenFrontierFormAuthorization
-  name: Authorization for Bluespace Threats
-  suffix: MappedPaper
-  parent: Paper
-  components:
-  - type: Paper
-    content: |2
-      [color=#2e9935ff]◥[bold]N[/bold]◣ [bold]Frontier Outpost Command[/bold][/color]
-      [color=#2e9935ff]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
-      [head=2]Authorization for Bluespace Threats[/head]
-
-      [bold]Vessel Captain:[/bold]
-      [bold]Vessel IFF:[/bold]
-      [bold]Shift Time:[/bold]
-
-      [bold]Issuing Frontier Command:[/bold]
-          [bullet]XXXXXXXX, Station Representative
-          [bullet]XXXXXXXX, Sheriff
-
-      This document authorizes the above vessel and its captain to assist and cooperate with the NFSD and Frontier authorities in neutralizing hostile bluespace threats to Frontier. These include, but are not limited to:
-          [bullet] Cultist vessels
-          [bullet] Syndicate vessels
-          [bullet] Wizard Federation vessels
-          [bullet] Arcadia Industries vessels
-
-      This document does NOT deputize the authorized party. The authorized party is not granted special privileges to arrest, detain, and prosecute individuals associated with Nanotrasen.
-
-      [bold]Any contraband seized during operations aboard hostile vessels must be surrendered, either to the NFSD or the Station Representative, for a cash bounty. Failure to surrender contraband will lead to the forfeiture of this agreement, and the authorized party may be liable for criminal charges.[/bold]
-        
-      The authorized party is to keep a copy of this document for inspection. The authorized party is expected to maintain contact with NFSD command and/or the Station Representative to minimize casualties.
-
-      Before engaging with hostile vessels, the authorized party is expected to follow any instructions given by the NFSD for staging or other preparation prior to boarding.
-
-
-
-      [color=#AAAAAA]This Form is void without the signatures of both Parties and a stamp of Frontier Command (Sheriff or Station Representative)[/color]
 
 - type: entity # Based on form made by Blumbee (Aki Suboshi)
   id: PaperWrittenFrontierFormContrabandAmnesty
@@ -326,4 +289,34 @@
       If you are reading this as a non SR, please hand yourself in 
       to the nearest Law Enforcment.[/color] 
 
+- type: entity # Creator: Kwentov (Vica)
+  id: PaperWrittenNfsdWarrant
+  name: nfsd warrant request
+  suffix: MappedPaper
+  parent: Paper
+  components:
+  - type: Paper
+    content: |2
+      [color=red][head=2][bold]New Frontier Sheriffs Department[/bold][/head][/color]
 
+                       [head=3][italic]WARRANT REQUEST[/italic][/head]
+
+              [head=3][bold]SECTION 1[/bold]: Officer Information[/head]
+
+      [bullet/]Case No (if applicable):
+      [bullet/]Date of Request: 
+      [bullet/]Requesting Officer:
+      [bullet/]Officer Rank:
+
+
+              [head=3][bold]SECTION 2[/bold]:  Warrant Information[/head]
+
+      [bullet/]Location (Or Ship Designation):
+      [bullet/]Shift time:
+
+      [bullet/]Scope of Incident (Low/Medium/High):
+
+      [bullet/]Request Reason:
+
+
+      [head=2]Sheriff Signature[/head]
