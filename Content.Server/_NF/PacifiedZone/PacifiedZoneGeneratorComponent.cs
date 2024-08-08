@@ -8,7 +8,7 @@ namespace Content.Server._NF.PacifiedZone
     public sealed partial class PacifiedZoneGeneratorComponent : Component
     {
         [ViewVariables]
-        public List<NetEntity> OldListEntities = new();
+        public List<EntityUid> TrackedEntities = new();
 
         [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
         public TimeSpan NextUpdate;
