@@ -21,14 +21,14 @@ public sealed partial class DeadDropComponent : Component
     /// </summary>
     [DataField]
     //Use 10 seconds for testing
-    public int MinimumCoolDown = 300; // 300 / 60 = 5 minutes
+    public int MinimumCoolDown = 900; // 900 / 60 = 15 minutes
 
     /// <summary>
     ///     Max wait time in seconds to wait for the next dead drop.
     /// </summary>
     [DataField]
     //Use 15 seconds for testing
-    public int MaximumCoolDown = 600; // 600 / 60 = 10 minutes
+    public int MaximumCoolDown = 5400; // 5400 / 60 = 90 minutes
 
     /// <summary>
     ///     Wait time for NSFD to get coordinates of the drop pod location.
@@ -50,18 +50,6 @@ public sealed partial class DeadDropComponent : Component
     public int MaximumDistance = 6500;
 
     /// <summary>
-    ///     Max amount of dead drop posters active at a time
-    /// </summary>
-    [DataField]
-    public int MaxPosters = 2;
-
-    /// <summary>
-    ///     Boolean which confirms whether a poster can spawn a dead drop and has the verb to do so
-    /// </summary>
-    [DataField]
-    public bool DeadDropActivated = false;
-
-    /// <summary>
     ///     The paper prototype to spawn.
     /// </summary>
     [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
@@ -74,13 +62,7 @@ public sealed partial class DeadDropComponent : Component
     public bool DeadDropCalled = false;
 
     /// <summary>
-    ///     Boolean which determines if the dead drop poster has ever been scanned
-    /// </summary>
-    [DataField]
-    public bool PosterScanned = false;
-
-    /// <summary>
-    ///     Location of the grid to spawn in as the dead drop
+    ///     Location of the grid to spawn in as the dead drop.
     /// </summary>
     [DataField]
     public string DropGrid = "/Maps/deaddrop.yml";

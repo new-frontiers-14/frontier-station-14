@@ -13,6 +13,9 @@ using System.Threading.Tasks;
 using Content.Shared._NF.GameRule;
 using Content.Server.Procedural;
 using Content.Shared.Bank.Components;
+using Content.Server._NF.GameTicking.Events;
+using Content.Server.GameTicking.Events;
+using Content.Server.GameTicking.Rules.Components;
 using Content.Shared.Procedural;
 using Robust.Server.GameObjects;
 using Robust.Server.Maps;
@@ -160,6 +163,8 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         GenerateUniques(remainingUniqueProtosBySpawnGroup, out component.UniquePois);
 
         base.Started(uid, component, gameRule, args);
+
+        RaiseLocalEvent(EntityUid.Invalid, new StationsGeneratedEvent(), broadcast: true); // TODO: attach this to a meaningful entity.
 
         var dungenTypes = _prototypeManager.EnumeratePrototypes<DungeonConfigPrototype>();
 

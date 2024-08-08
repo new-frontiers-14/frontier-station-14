@@ -1,11 +1,14 @@
-﻿using System.Reflection;
+﻿using System.Linq;
 using System.Text;
+using Content.Server._NF.GameTicking.Events;
+using Content.Server._NF.SectorServices;
 using Content.Server._NF.Smuggling.Components;
 using Content.Server.Administration.Logs;
 using Content.Server.Radio.EntitySystems;
 using Content.Server.Shipyard.Systems;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
+using Content.Server.Station.Systems;
 using Content.Shared.Database;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
@@ -38,10 +41,10 @@ public sealed class DeadDropSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedMapSystem _mapManager = default!;
     [Dependency] private readonly EntityLookupSystem _entityLookup = default!;
+    [Dependency] private readonly StationSystem _station = default!;
+    [Dependency] private readonly SectorServiceSystem _sectorService = default!;
 
-    private readonly List<EntityUid> _poi = [];
     private readonly Queue<EntityUid> _drops = [];
-    private int currentPosters = 0;
 
     public override void Initialize()
     {
@@ -49,6 +52,144 @@ public sealed class DeadDropSystem : EntitySystem
 
         SubscribeLocalEvent<DeadDropComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<DeadDropComponent, GetVerbsEvent<InteractionVerb>>(AddSearchVerb);
+        SubscribeLocalEvent<StationDeadDropComponent, ComponentStartup>(OnStationStartup);
+        SubscribeLocalEvent<SectorDeadDropComponent, StationsGeneratedEvent>(OnStationsGenerated);
+    }
+
+    // There is some redundancy here - this should ideally run once over all the stations once worldgen is complete
+    // Then once on any new stations if/when they're created.
+    private void OnStationStartup(EntityUid stationUid, StationDeadDropComponent component, ComponentStartup _)
+    {
+    }
+
+    public void CompromiseDeadDrop(EntityUid uid, DeadDropComponent component)
+    {
+        //Get our station.
+        var station = _station.GetOwningStation(uid);
+        //Remove the dead drop.
+        RemComp<DeadDropComponent>(uid);
+        //Find a new potential dead drop to spawn.
+        var deadDropQuery = EntityManager.EntityQueryEnumerator<PotentialDeadDropComponent>();
+        List<(EntityUid ent, PotentialDeadDropComponent comp)> potentialDeadDrops = new();
+        while (deadDropQuery.MoveNext(out var ent, out var potentialDeadDrop))
+        {
+            // This potential dead drop is not on our station
+            if (_station.GetOwningStation(ent) != station)
+                continue;
+
+            // This item already has an active dead drop, skip it
+            if (HasComp<DeadDropComponent>(ent))
+                continue;
+
+            potentialDeadDrops.Add((ent, potentialDeadDrop));
+        }
+
+        // We have a potential dead drop, 
+        if (potentialDeadDrops.Count > 0)
+        {
+            var item = _random.Pick(potentialDeadDrops);
+            EnsureComp<DeadDropComponent>(item.ent);
+        }
+    }
+
+    private void OnStationsGenerated(EntityUid uid, SectorDeadDropComponent component, StationsGeneratedEvent args)
+    {
+        // Distribute total number of dead drops to assign between each station.
+        var remainingDeadDrops = component.MaxSectorDeadDrops;
+
+        Dictionary<EntityUid, (int assigned, int max)> assignedDeadDrops = new();
+        var stationDropQuery = AllEntityQuery<StationDeadDropComponent>();
+        while (stationDropQuery.MoveNext(out var station, out var stationDeadDrop))
+        {
+            var deadDropCount = int.Min(remainingDeadDrops, _random.Next(0, stationDeadDrop.MaxDeadDrops + 1));
+            assignedDeadDrops[station] = (deadDropCount, stationDeadDrop.MaxDeadDrops);
+            remainingDeadDrops -= deadDropCount;
+        }
+
+        // We have remaining dead drops, assign them to whichever stations have remaining space (in a random order)
+        if (remainingDeadDrops > 0)
+        {
+            var stationList = assignedDeadDrops.Keys.ToList();
+            _random.Shuffle(stationList);
+            foreach (var station in stationList)
+            {
+                var dropTuple = assignedDeadDrops[station];
+                var remainingSpace = dropTuple.max - dropTuple.assigned;
+                remainingSpace = int.Min(remainingSpace, remainingDeadDrops);
+                dropTuple.assigned += remainingSpace;
+                assignedDeadDrops[station] = dropTuple;
+
+                if (remainingDeadDrops <= 0)
+                    break;
+            }
+        }
+
+        // For each station, distribute its assigned dead drops to potential dead drop components available on their grids.
+        Dictionary<EntityUid, List<EntityUid>> potentialDropEntitiesPerStation = new();
+        var potentialDropQuery = AllEntityQuery<PotentialDeadDropComponent>();
+        while (potentialDropQuery.MoveNext(out var ent, out var potentialDrop))
+        {
+            var station = _station.GetOwningStation(ent);
+            if (station is null)
+                continue;
+
+            var stationUid = station.Value;
+            if (assignedDeadDrops.ContainsKey(stationUid))
+            {
+                if (!potentialDropEntitiesPerStation.ContainsKey(stationUid))
+                    potentialDropEntitiesPerStation[stationUid] = new List<EntityUid>();
+
+                potentialDropEntitiesPerStation[stationUid].Add(ent);
+            }
+        }
+
+        List<(EntityUid, EntityUid)> deadDropStationTuples = new();
+        foreach (var (station, potentialDropList) in potentialDropEntitiesPerStation)
+        {
+            if (!assignedDeadDrops.TryGetValue(station, out var stationDrops))
+                continue;
+
+            _random.Shuffle(potentialDropList);
+            for (int i = 0; i < stationDrops.assigned && i < potentialDropList.Count; i++)
+            {
+                EnsureComp<DeadDropComponent>(potentialDropList[i]);
+                deadDropStationTuples.Add((station, potentialDropList[i]));
+            }
+        }
+
+        // For each hint spawner, randomly generate a hint from the distributed dead drop locations, spawn the text for the note.
+        var hintQuery = AllEntityQuery<DeadDropHintComponent>();
+        while (hintQuery.MoveNext(out var ent, out var _))
+        {
+            var hintCount = _random.Next(2, 5);
+            _random.Shuffle(deadDropStationTuples);
+
+            var hintLines = new StringBuilder();
+            var hints = 0;
+            for (var i = 0; i < deadDropStationTuples.Count && hints < hintCount; i++)
+            {
+                var hintTuple = deadDropStationTuples[i];
+                var objectHintString = "dead-drop-hint-generic";
+                if (TryComp<PotentialDeadDropComponent>(hintTuple.Item2, out var potentialDeadDrop))
+                    objectHintString = potentialDeadDrop.HintText;
+
+                var stationHintString = "dead-drop-station-hint-generic";
+                if (TryComp<MetaDataComponent>(hintTuple.Item1, out var stationMetadata))
+                    stationHintString = stationMetadata.EntityName;
+
+                hintLines.AppendLine(Loc.GetString("dead-drop-hint-line", ("object", objectHintString), ("poi", stationHintString)));
+                hints++;
+            }
+            var hintText = new StringBuilder();
+            hintText.AppendLine(Loc.GetString("dead-drop-hint", ("drops", hintLines)));
+
+            // Select some number of dead drops to hint
+            if (TryComp<PaperComponent>(ent, out var paper))
+                _paper.SetContent(ent, hintText.ToString(), paper);
+
+            // Hint generated, destroy component
+            RemComp<DeadDropHintComponent>(ent);
+        }
     }
 
     private void OnStartup(EntityUid paintingUid, DeadDropComponent component, ComponentStartup _)
@@ -65,13 +206,14 @@ public sealed class DeadDropSystem : EntitySystem
         var xform = Transform(uid);
         var targetCoordinates = xform.Coordinates;
 
+        // TODO: check global state if there's space to add our 
         //reset timer if there are 2 dead drop posters already active and this poster isn't one of them
-        if (currentPosters >= component.MaxPosters && component.DeadDropActivated != true)
+        /*if (currentPosters >= component.MaxPosters && component.DeadDropActivated != true)
         {
             //reset the timer
             component.NextDrop = _timing.CurTime + TimeSpan.FromSeconds(_random.Next(component.MinimumCoolDown, component.MaximumCoolDown));
             return;
-        }
+        }*/
 
         //here we build our dynamic verb. Using the object's sprite for now to make it more dynamic for the moment.
         InteractionVerb searchVerb = new()
@@ -84,17 +226,10 @@ public sealed class DeadDropSystem : EntitySystem
 
         args.Verbs.Add(searchVerb);
 
-        if (component.DeadDropActivated == false) 
-        {
-            component.DeadDropActivated = true;
-            currentPosters++;
-        }
-    }
-
-    //toggles the scanned boolean from ForensicScannerSystem.cs
-    public static void ToggleScanned(DeadDropComponent component)
-    {
-        component.PosterScanned = true;
+        // if (component.DeadDropActivated == false)
+        // {
+        //     component.DeadDropActivated = true;
+        // }
     }
 
     //spawning the dead drop.
@@ -176,12 +311,8 @@ public sealed class DeadDropSystem : EntitySystem
 
         //reset the timer
         component.NextDrop = _timing.CurTime + TimeSpan.FromSeconds(_random.Next(component.MinimumCoolDown, component.MaximumCoolDown));
-        component.DeadDropActivated = false;
-        currentPosters--;
-
-        //logic of posters ends here and logic of radio signals begins here
-
         component.DeadDropCalled = true;
+        //logic of posters ends here and logic of radio signals begins here
 
         //grabs NFSD Outpost to say the announcement
         var nfsdOutpost = new HashSet<Entity<MapGridComponent>>();
@@ -192,60 +323,34 @@ public sealed class DeadDropSystem : EntitySystem
 
         var pirateChannel = _prototypeManager.Index<RadioChannelPrototype>("Freelance");
 
+        // TODO: make this time based (windowing?)
+        int numDeadDropsReported = 0;
+        if (TryComp<SectorDeadDropComponent>(_sectorService.GetServiceEntity(), out var sectorDeadDrop))
+        {
+            numDeadDropsReported = sectorDeadDrop.NumDeadDropsReported;
+        }
+
         //checks if any of them are named NFSD Outpost
         foreach (var ent in nfsdOutpost)
         {
             if (MetaData(ent.Owner).EntityName.Equals("NFSD Outpost"))
             {
-                //adds the poi to a list to count for the hints
-                _poi.Add(sender);
-                var count = 0;
-
-                foreach (var poi in _poi)
-                {
-                    if (poi == sender)
-                    {
-                        count++;
-                    }
-                }
-
                 //sends hints at the location depending on how many times a dead drop posters were activated in a POI
-                if (count == 1)
-                {
-                    _radio.SendRadioMessage(ent.Owner, Loc.GetString("deaddrop-security-report"), channel, uid);
-                }
-                else if (count == 2)
-                {
-                    var location1 = "";
-                    var location2 = "";
-
-                    //rolls a 50/50 chance to see whether the real location would be on the left or right
-                    if (_random.Next(0, 2) == 0)
-                    {
-                        location1 = MetaData(sender).EntityName;
-                        location2 = deadDropPossibleLocations[_random.Next(0, deadDropPossibleLocations.Length)];
-                        while (location1.Equals(location2))
-                        {
-                            location2 = deadDropPossibleLocations[_random.Next(0, deadDropPossibleLocations.Length)];
-                        }
-                    }
-                    else
-                    {
-                        location2 = MetaData(sender).EntityName;
-                        location1 = deadDropPossibleLocations[_random.Next(0, deadDropPossibleLocations.Length)];
-                        while (location2.Equals(location1))
-                        {
-                            location1 = deadDropPossibleLocations[_random.Next(0, deadDropPossibleLocations.Length)];
-                        }
-                    }
-
-                    //then sends a radio message telling a fake location and a real one
-                    _radio.SendRadioMessage(ent.Owner, Loc.GetString("deaddrop-fifty-fifty", ("location1", location1), ("location2", location2)), channel, uid);
-                }
-                else if (count > 2)
+                if (numDeadDropsReported > 2)
                 {
                     //tells the full location like it did earlier but only after the 3rd time a POI inovked a dead drop
                     _radio.SendRadioMessage(ent.Owner, Loc.GetString("deaddrop-correct-location", ("name", MetaData(sender).EntityName)), channel, uid);
+                }
+                else if (numDeadDropsReported == 2)
+                {
+                    //then sends a radio message telling a fake location and a real one
+                    string[] locations = { MetaData(sender).EntityName, _random.Pick<string>(deadDropPossibleLocations) };
+                    _random.Shuffle(locations);
+                    _radio.SendRadioMessage(ent.Owner, Loc.GetString("deaddrop-fifty-fifty", ("location1", locations[0]), ("location2", locations[1])), channel, uid);
+                }
+                else if (numDeadDropsReported == 1)
+                {
+                    _radio.SendRadioMessage(ent.Owner, Loc.GetString("deaddrop-security-report"), channel, uid);
                 }
 
                 //tells the NFSD about the location of the dead drop after 15 minutes of it being active
@@ -265,6 +370,5 @@ public sealed class DeadDropSystem : EntitySystem
                 });
             }
         }
-
     }
 }

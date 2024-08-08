@@ -90,3 +90,15 @@
         prob: 0.2
       - id: Paper
         prob: 0.2
+
+- type: entity
+  id: PaperContrabandHint
+  parent: Napkin
+  name: suspicious note
+  description: A napkin with pen scribbles on it. Seems to have been written in a hurry.
+  components:
+  - type: DeadDropHint
+  - type: Paper
+    content: |2
+      Not much time.
+      Spinward Syndicate needs help.

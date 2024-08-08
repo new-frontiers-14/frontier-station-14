@@ -1,11 +1,10 @@
 using System.Linq;
 using System.Text;
 using Content.Server.Popups;
-using Content.Server.Stack;
-using Content.Server._NF.Smuggling;
-using Content.Server._NF.Smuggling.Components;
-using Content.Server.Radio.EntitySystems;
-using Content.Shared.Access.Components;
+using Content.Server.Stack; // Frontier
+using Content.Server._NF.Smuggling; // Frontier
+using Content.Server._NF.Smuggling.Components; // Frontier
+using Content.Server.Radio.EntitySystems; // Frontier
 using Content.Shared.UserInterface;
 using Content.Shared.DoAfter;
 using Content.Shared.Fluids.Components;
@@ -47,6 +46,7 @@ namespace Content.Server.Forensics
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!; // Frontier
         [Dependency] private readonly RadioSystem _radio = default!; // Frontier
         [Dependency] private readonly AccessReaderSystem _accessReader = default!; // Frontier
+        [Dependency] private readonly DeadDropSystem _deadDrop = default!; // Frontier
 
         private readonly List<EntityUid> _scannedDeadDrops = []; // Frontier
         private int _amountScanned = 0; // Frontier
@@ -64,6 +64,7 @@ namespace Content.Server.Forensics
             SubscribeLocalEvent<ForensicScannerComponent, ForensicScannerDoAfterEvent>(OnDoAfter);
         }
 
+        // Frontier: add dead drop rewards
         /// <summary>
         ///     Gives rewards in form of FUC to the detective for interacting with the dead drop system
         /// </summary>
@@ -78,6 +79,7 @@ namespace Content.Server.Forensics
             var channel = _prototypeManager.Index<RadioChannelPrototype>("Nfsd");
             _radio.SendRadioMessage(uidOrigin, msg, channel, uidOrigin);
         }
+        // Frontier: add dead drop rewards
 
         private void UpdateUserInterface(EntityUid uid, ForensicScannerComponent component)
         {
@@ -141,31 +143,32 @@ namespace Content.Server.Forensics
 
                 if (detective == true)
                 {
+                    EntityUid posterUid = args.Args.Target.Value;
                     // Prints FUC if you've successfully scanned a dead drop poster that has spawned a dead drop at least once
-                    if (HasComp<DeadDropComponent>(args.Args.Target))
+                    if (HasComp<DeadDropComponent>(posterUid))
                     {
-                        if (TryComp<DeadDropComponent>(args.Args.Target, out var deadDropComponent) &&
-                            deadDropComponent.DeadDropCalled && !deadDropComponent.PosterScanned)
+                        if (TryComp<DeadDropComponent>(posterUid, out var deadDropComponent) &&
+                            deadDropComponent.DeadDropCalled)
                         {
                             var amount = 3;
                             var msg = Loc.GetString("forensic-reward-poster", ("amount", amount));
 
-                            GiveReward(uid, args.Args.Target.Value, amount, msg);
+                            GiveReward(uid, posterUid, amount, msg);
 
                             // Makes the boolean true so you can't just keep scanning the same poster over and over again
-                            DeadDropSystem.ToggleScanned(deadDropComponent);
+                            _deadDrop.CompromiseDeadDrop(posterUid, deadDropComponent);
                         }
                     }
-                    else if (MetaData(Transform(args.Args.Target.Value).ParentUid).EntityName.Equals("Syndicate Supply Drop") &&
-                            !_scannedDeadDrops.Contains(Transform(args.Args.Target.Value).ParentUid) && _amountScanned <= 5)
+                    else if (MetaData(Transform(posterUid).ParentUid).EntityName.Equals("Syndicate Supply Drop") &&
+                            !_scannedDeadDrops.Contains(Transform(posterUid).ParentUid) && _amountScanned <= 5)
                     {
                         // Only works if you scan anything on the Syndicate Supply Drop and have scanned less than 5 times total
                         var amount = 6;
                         var msg = Loc.GetString("forensic-reward-drop", ("amount", amount));
 
-                        GiveReward(uid, args.Args.Target.Value, amount, msg);
+                        GiveReward(uid, posterUid, amount, msg);
 
-                        _scannedDeadDrops.Add(Transform(args.Args.Target.Value).ParentUid);
+                        _scannedDeadDrops.Add(Transform(posterUid).ParentUid);
                         _amountScanned++;
                     }
                 }
