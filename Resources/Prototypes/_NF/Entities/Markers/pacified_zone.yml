@@ -1,9 +1,16 @@
 - type: entity
   parent:  MarkerBase
+<<<<<<< HEAD
   id: PacifiedZone10
   name: Pacified zone
   description: It's just a NanoTrasen miracle...
   suffix: 10
+=======
+  id: BasePacifiedZone
+  name: pacified zone
+  description: It's just a NanoTrasen miracle...
+  abstract: true
+>>>>>>> 90fe984dbd345be1f52cbdc576ab5b5cf1d23ee4
   components:
   - type: Sprite
     sprite: _NF/Markers/pacifiedzone.rsi
@@ -21,13 +28,25 @@
       - SecurityGuard
       - StationRepresentative
       - StationTrafficController
+<<<<<<< HEAD
 - type: entity
   parent:  PacifiedZone10
+=======
+
+- type: entity
+  parent:  BasePacifiedZone
+  id: PacifiedZone10
+  suffix: 10
+
+- type: entity
+  parent:  BasePacifiedZone
+>>>>>>> 90fe984dbd345be1f52cbdc576ab5b5cf1d23ee4
   id: PacifiedZone20
   suffix: 20
   components:
   - type: PacifiedZoneGenerator
     radius: 20
+<<<<<<< HEAD
     rolesImmun:
       - Bailiff
       - Brigmedic
@@ -41,11 +60,17 @@
       - StationTrafficController
 - type: entity
   parent:  PacifiedZone10
+=======
+
+- type: entity
+  parent:  BasePacifiedZone
+>>>>>>> 90fe984dbd345be1f52cbdc576ab5b5cf1d23ee4
   id: PacifiedZone50
   suffix: 50
   components:
   - type: PacifiedZoneGenerator
     radius: 50
+<<<<<<< HEAD
     rolesImmun:
       - Bailiff
       - Brigmedic
@@ -59,11 +84,17 @@
       - StationTrafficController
 - type: entity
   parent:  PacifiedZone10
+=======
+
+- type: entity
+  parent:  BasePacifiedZone
+>>>>>>> 90fe984dbd345be1f52cbdc576ab5b5cf1d23ee4
   id: PacifiedZone100
   suffix: 100
   components:
   - type: PacifiedZoneGenerator
     radius: 100
+<<<<<<< HEAD
     rolesImmun:
       - Bailiff
       - Brigmedic
@@ -75,3 +106,5 @@
       - SecurityGuard
       - StationRepresentative
       - StationTrafficController
+=======
+>>>>>>> 90fe984dbd345be1f52cbdc576ab5b5cf1d23ee4
