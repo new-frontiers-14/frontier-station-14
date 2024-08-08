@@ -70,10 +70,6 @@ namespace Content.Server._NF.PacifiedZone
                     if (jobId != null && component.ImmuneRoles.Contains(jobId.Value))
                         continue;
 
-                    // Player is naturally pacified, skip them.
-                    if (HasComp<PacifiedComponent>(humanoid_uid) && !HasComp<PacifiedByZoneComponent>(humanoid_uid))
-                        continue;
-
                     if (component.OldListEntities.Contains(_entMan.GetNetEntity(humanoid_uid)))
                     {
                         // Entity still in zone.
@@ -82,6 +78,10 @@ namespace Content.Server._NF.PacifiedZone
                     }
                     else
                     {
+                        // Player is pacified (either naturally or by another zone), skip them.
+                        if (HasComp<PacifiedComponent>(humanoid_uid))
+                            continue;
+
                         // New entity in zone, needs the Pacified comp.
                         AddComp<PacifiedComponent>(humanoid_uid);
                         AddComp<PacifiedByZoneComponent>(humanoid_uid);
@@ -89,12 +89,14 @@ namespace Content.Server._NF.PacifiedZone
                     }
                 }
 
+                // Anything left in our old set has left the zone, remove their pacified status.
                 foreach (var humanoid_net_uid in component.OldListEntities)
                 {
                     RemComp<PacifiedComponent>(GetEntity(humanoid_net_uid));
                     RemComp<PacifiedByZoneComponent>(GetEntity(humanoid_net_uid));
                 }
 
+                // Update state for next run.
                 component.OldListEntities = newListEntities;
                 component.NextUpdate = _gameTiming.CurTime + component.UpdateInterval;
             }
