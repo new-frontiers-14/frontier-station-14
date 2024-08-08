@@ -1,9 +1,9 @@
 - type: entity
   parent:  MarkerBase
-  id: PacifiedZone10
+  id: BasePacifiedZone
   name: Pacified zone
   description: It's just a NanoTrasen miracle...
-  suffix: 10
+  abstract: true
   components:
   - type: Sprite
     sprite: _NF/Markers/pacifiedzone.rsi
@@ -21,57 +21,32 @@
       - SecurityGuard
       - StationRepresentative
       - StationTrafficController
+
 - type: entity
-  parent:  PacifiedZone10
+  parent:  BasePacifiedZone
+  id: PacifiedZone10
+  suffix: 10
+
+- type: entity
+  parent:  BasePacifiedZone
   id: PacifiedZone20
   suffix: 20
   components:
   - type: PacifiedZoneGenerator
     radius: 20
-    rolesImmun:
-      - Bailiff
-      - Brigmedic
-      - Cadet
-      - Deputy
-      - DetectiveNF
-      - SeniorOfficer
-      - Sheriff
-      - SecurityGuard
-      - StationRepresentative
-      - StationTrafficController
+
 - type: entity
-  parent:  PacifiedZone10
+  parent:  BasePacifiedZone
   id: PacifiedZone50
   suffix: 50
   components:
   - type: PacifiedZoneGenerator
     radius: 50
-    rolesImmun:
-      - Bailiff
-      - Brigmedic
-      - Cadet
-      - Deputy
-      - DetectiveNF
-      - SeniorOfficer
-      - Sheriff
-      - SecurityGuard
-      - StationRepresentative
-      - StationTrafficController
+
 - type: entity
-  parent:  PacifiedZone10
+  parent:  BasePacifiedZone
   id: PacifiedZone100
   suffix: 100
   components:
   - type: PacifiedZoneGenerator
     radius: 100
-    rolesImmun:
-      - Bailiff
-      - Brigmedic
-      - Cadet
-      - Deputy
-      - DetectiveNF
-      - SeniorOfficer
-      - Sheriff
-      - SecurityGuard
-      - StationRepresentative
-      - StationTrafficController
