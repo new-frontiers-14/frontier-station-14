@@ -175,12 +175,11 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             var mapGrid = EnsureComp<MapGridComponent>(grids[0]);
             _shuttle.AddIFFFlag(grids[0], IFFFlags.HideLabel);
             _console.WriteLine(null, $"dungeon spawned at {offset}");
-            offset = new Vector2i(0, 0);
 
             //pls fit the grid I beg, this is so hacky
             //its better now but i think i need to do a normalization pass on the dungeon configs
             //because they are all offset. confirmed good size grid, just need to fix all the offsets.
-            _dunGen.GenerateDungeon(dunGen, grids[0], mapGrid, (Vector2i) offset, seed);
+            _dunGen.GenerateDungeon(dunGen, grids[0], mapGrid, new Vector2i(0, 0), seed);
             AddStationCoordsToSet(offset);
         }
     }
@@ -202,7 +201,14 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             Vector2i offset = new Vector2i((int) (_random.Next(proto.RangeMin, proto.RangeMax) * _distanceOffset), 0);
             offset = offset.Rotate(rotationOffset);
             rotationOffset += rotation;
-            if (TrySpawnPoiGrid(proto, offset, out var depotUid) && depotUid is { Valid: true } depot)
+            // Append letter to depot name.
+
+            string overrideName = proto.Name;
+            if (i < 26)
+                overrideName += $" {(char) ('A' + i)}"; // " A" ... " Z"
+            else
+                overrideName += $" {i + 1}"; // " 27", " 28"...
+            if (TrySpawnPoiGrid(proto, offset, out var depotUid, overrideName: overrideName) && depotUid is { Valid: true } depot)
             {
                 depotStations.Add(depot);
                 AddStationCoordsToSet(offset); // adjust list of actual station coords
@@ -313,24 +319,28 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         }
     }
 
-    private bool TrySpawnPoiGrid(PointOfInterestPrototype proto, Vector2 offset, out EntityUid? gridUid)
+    private bool TrySpawnPoiGrid(PointOfInterestPrototype proto, Vector2 offset, out EntityUid? gridUid, string? overrideName = null)
     {
         gridUid = null;
         if (_map.TryLoad(_mapId, proto.GridPath.ToString(), out var mapUids,
                 new MapLoadOptions
                 {
-                    Offset = offset
+                    Offset = offset,
+                    Rotation = _random.NextAngle()
                 }))
         {
+
+            string stationName = string.IsNullOrEmpty(overrideName) ? proto.Name : overrideName;
+
             if (_prototypeManager.TryIndex<GameMapPrototype>(proto.ID, out var stationProto))
             {
-                _station.InitializeNewStation(stationProto.Stations[proto.ID], mapUids, proto.Name);
+                _station.InitializeNewStation(stationProto.Stations[proto.ID], mapUids, stationName);
             }
 
             foreach (var grid in mapUids)
             {
                 var meta = EnsureComp<MetaDataComponent>(grid);
-                _meta.SetEntityName(grid, proto.Name, meta);
+                _meta.SetEntityName(grid, stationName, meta);
                 _shuttle.SetIFFColor(grid, proto.IffColor);
                 if (proto.IsHidden)
                 {
