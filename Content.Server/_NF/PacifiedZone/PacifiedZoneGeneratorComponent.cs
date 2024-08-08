@@ -1,5 +1,4 @@
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 using Content.Shared.Roles;
 
 namespace Content.Server._NF.PacifiedZone
@@ -10,7 +9,7 @@ namespace Content.Server._NF.PacifiedZone
         [ViewVariables]
         public List<EntityUid> TrackedEntities = new();
 
-        [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
+        [ViewVariables]
         public TimeSpan NextUpdate;
 
         /// <summary>
