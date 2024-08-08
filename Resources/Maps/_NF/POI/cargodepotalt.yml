@@ -3553,6 +3553,17 @@ entities:
     - type: Transform
       pos: 4.5,10.5
       parent: 10
+- proto: ComputerMarketConsoleNFHigh
+  entities:
+  - uid: 483
+    components:
+    - type: Transform
+      pos: 0.5,-0.5
+      parent: 10
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          ents: []
 - proto: ComputerPalletConsoleNFHighMarket
   entities:
   - uid: 7
@@ -3587,11 +3598,6 @@ entities:
       parent: 10
     - type: CargoPalletConsole
       palletDistance: 4
-  - uid: 483
-    components:
-    - type: Transform
-      pos: 0.5,-0.5
-      parent: 10
 - proto: ComputerTabletopAlert
   entities:
   - uid: 289
