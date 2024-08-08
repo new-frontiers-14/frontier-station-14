@@ -90,7 +90,7 @@ public sealed partial class MarketSystem
             _whitelistSystem.IsPrototypeBlacklistFailOrNull(marketDataComponent.Blacklist, entityPrototype) ||
             _protoIdWhitelist.IsPrototypeWhitelistPassOrNull(marketDataComponent.OverrideList, entityPrototype))
         {
-            var estimatedPrice = _pricingSystem.GetEstimatedPrice(entityPrototype);
+            var estimatedPrice = _pricingSystem.GetEstimatedPrice(entityPrototype) / count;
 
             // Increase the count in the MarketData for this entity
             // Assuming the quantity to increase is 1 for each sold entity
