@@ -10,16 +10,16 @@
 #
 - type: vessel
   id: Liquidator
-  name: NT Liquidator
+  name: LVHI Liquidator
   description: A small vessel equipped with everything you need to make even the dirtiest ship squeaky clean (ducky slippers included).
-  price: 34000 # 27480+4120 from 15% markup
+  price: 29035 # ~25245$ on mapinit + 3785$ from 15% markup
   category: Small
   group: Civilian
   shuttlePath: /Maps/_NF/Shuttles/liquidator.yml
 
 - type: gameMap
   id: Liquidator
-  mapName: 'NC Liquidator'
+  mapName: 'Liquidator'
   mapPath: /Maps/_NF/Shuttles/liquidator.yml
   minPlayers: 0
   stations:
@@ -32,9 +32,7 @@
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
         - type: StationJobs
-          overflowJobs: []
           availableJobs:
+            Contractor: [ 0, 0 ]
             Pilot: [ 0, 0 ]
-            Janitor: [ 0, 0 ]
-            AtmosphericTechnician: [ 0, 0 ]
-            Chemist: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]

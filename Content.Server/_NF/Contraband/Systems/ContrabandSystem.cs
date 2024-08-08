@@ -46,23 +46,23 @@ public sealed partial class ContrabandSystem : SharedContrabandSystem
 
     private void UpdatePalletConsoleInterface(EntityUid uid, ContrabandPalletConsoleComponent comp)
     {
-        var bui = _uiSystem.GetUi(uid, ContrabandPalletConsoleUiKey.Contraband);
+        var bui = _uiSystem.HasUi(uid, ContrabandPalletConsoleUiKey.Contraband);
         if (Transform(uid).GridUid is not EntityUid gridUid)
         {
-            _uiSystem.SetUiState(bui,
+            _uiSystem.SetUiState(uid, ContrabandPalletConsoleUiKey.Contraband,
                 new ContrabandPalletConsoleInterfaceState(0, 0, false));
             return;
         }
 
         GetPalletGoods(gridUid, comp, out var toSell, out var amount);
 
-        _uiSystem.SetUiState(bui,
+        _uiSystem.SetUiState(uid, ContrabandPalletConsoleUiKey.Contraband,
             new ContrabandPalletConsoleInterfaceState((int) amount, toSell.Count, true));
     }
 
     private void OnPalletUIOpen(EntityUid uid, ContrabandPalletConsoleComponent component, BoundUIOpenedEvent args)
     {
-        var player = args.Session.AttachedEntity;
+        var player = args.Actor;
 
         if (player == null)
             return;
@@ -80,7 +80,7 @@ public sealed partial class ContrabandSystem : SharedContrabandSystem
 
     private void OnPalletAppraise(EntityUid uid, ContrabandPalletConsoleComponent component, ContrabandPalletAppraiseMessage args)
     {
-        var player = args.Session.AttachedEntity;
+        var player = args.Actor;
 
         if (player == null)
             return;
@@ -112,11 +112,11 @@ public sealed partial class ContrabandSystem : SharedContrabandSystem
         station ??= _station.GetOwningStation(gridUid);
         GetPalletGoods(gridUid, component, out var toSell, out amount);
 
-        Log.Debug($"NFSD sold {toSell.Count} contraband items for {amount}");
+        Log.Debug($"{component.Faction} sold {toSell.Count} contraband items for {amount}");
 
         if (station != null)
         {
-            var ev = new EntitySoldEvent(toSell);
+            var ev = new EntitySoldEvent(toSell, gridUid);
             RaiseLocalEvent(ref ev);
         }
 
@@ -189,15 +189,14 @@ public sealed partial class ContrabandSystem : SharedContrabandSystem
 
     private void OnPalletSale(EntityUid uid, ContrabandPalletConsoleComponent component, ContrabandPalletSellMessage args)
     {
-        var player = args.Session.AttachedEntity;
+        var player = args.Actor;
 
         if (player == null)
             return;
 
-        var bui = _uiSystem.GetUi(uid, ContrabandPalletConsoleUiKey.Contraband);
         if (Transform(uid).GridUid is not EntityUid gridUid)
         {
-            _uiSystem.SetUiState(bui,
+            _uiSystem.SetUiState(uid, ContrabandPalletConsoleUiKey.Contraband,
                 new ContrabandPalletConsoleInterfaceState(0, 0, false));
             return;
         }

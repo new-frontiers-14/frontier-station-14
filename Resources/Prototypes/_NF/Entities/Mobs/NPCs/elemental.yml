@@ -1,0 +1,648 @@
+# Upstream
+- type: entity
+  parent: MobOreCrab
+  id: MobBananiumCrab
+  description: An ore crab made from bananium.
+  components:
+  - type: Sprite
+    sprite: /Textures/_NF/Mobs/Elemental/orecrab.rsi
+    state: bananium_crab
+  - type: RadiationSource
+    intensity: 1
+    slope: 0.3
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 80
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          BananiumOre1:
+            min: 1
+            max: 3
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  parent: MobOreCrab
+  id: MobCoalCrab
+  description: An ore crab made from coal.
+  components:
+  - type: Sprite
+    sprite: /Textures/_NF/Mobs/Elemental/orecrab.rsi
+    state: coal_crab
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 80
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          Coal1:
+            min: 2
+            max: 4
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  parent: MobOreCrab
+  id: MobGoldCrab
+  description: An ore crab made from gold.
+  components:
+  - type: Sprite
+    sprite: /Textures/_NF/Mobs/Elemental/orecrab.rsi
+    state: gold_crab
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50 # Gold soft u know
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          GoldOre1:
+            min: 2
+            max: 4
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  parent: MobOreCrab
+  id: MobPlasmaCrab
+  description: An ore crab made from plasma.
+  components:
+  - type: Sprite
+    sprite: /Textures/_NF/Mobs/Elemental/orecrab.rsi
+    state: plasma_crab
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 7
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          PlasmaOre1:
+            min: 2
+            max: 4
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: PointLight
+    radius: 2
+    energy: 3
+    color: "#E592E7FF" # Same as plasma ore
+
+- type: entity
+  parent: MobOreCrab
+  id: MobSaltCrab
+  description: An ore crab made from salt. # delicious, don't try to lick this
+  components:
+  - type: Sprite
+    sprite: /Textures/_NF/Mobs/Elemental/orecrab.rsi
+    state: salt_crab
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 80
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          Salt1:
+            min: 1
+            max: 3
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+# Frontier
+- type: entity
+  abstract: true
+  id: MobOreCrabNF
+  parent: MobOreCrab
+  components:
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile # Because AI stupid ass hell right now
+  - type: MovementIgnoreGravity # Or they just can't do something
+  - type: SalvageMobRestrictionsNF
+
+- type: entity
+  parent: MobOreCrabNF
+  id: MobBananiumCrabNF
+  description: An ore crab made from bananium.
+  components:
+  - type: Sprite
+    sprite: /Textures/_NF/Mobs/Elemental/orecrab.rsi
+    state: bananium_crab
+  - type: RadiationSource
+    intensity: 1
+    slope: 0.3
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 80
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          BananiumOre1:
+            min: 1
+            max: 3
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  parent: MobOreCrabNF
+  id: MobGoldCrabNF
+  description: An ore crab made from gold.
+  components:
+  - type: Sprite
+    sprite: /Textures/_NF/Mobs/Elemental/orecrab.rsi
+    state: gold_crab
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50 # Gold soft u know
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          GoldOre1:
+            min: 2
+            max: 4
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  parent: MobOreCrabNF
+  id: MobPlasmaCrabNF
+  description: An ore crab made from plasma.
+  components:
+  - type: Sprite
+    sprite: /Textures/_NF/Mobs/Elemental/orecrab.rsi
+    state: plasma_crab
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 7
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          PlasmaOre1:
+            min: 2
+            max: 4
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: PointLight
+    radius: 2
+    energy: 3
+    color: "#E592E7FF" # Same as plasma ore
+
+- type: entity
+  parent: MobOreCrabNF
+  id: MobSaltCrabNF
+  description: An ore crab made from salt. # delicious, don't try to lick this
+  components:
+  - type: Sprite
+    sprite: /Textures/_NF/Mobs/Elemental/orecrab.rsi
+    state: salt_crab
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 80
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          Salt1:
+            min: 1
+            max: 3
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  parent: MobOreCrabNF
+  id: MobQuartzCrabNF
+  description: An ore crab made from Quartz.
+  components:
+  - type: Sprite
+    state: quartz_crab
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SpaceQuartz1:
+            min: 3
+            max: 5
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  parent: MobOreCrabNF
+  id: MobIronCrabNF
+  description: An ore crab made from iron.
+  components:
+  - type: Sprite
+    state: iron_crab
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 1.5
+    baseSprintSpeed : 2
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 80
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SteelOre1:
+            min: 3
+            max: 5
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  parent: MobOreCrabNF
+  id: MobUraniumCrabNF
+  description: An ore crab made from uranium.
+  components:
+  - type: RadiationSource
+    intensity: 1
+    slope: 0.3
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 80
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          UraniumOre1:
+            min: 2
+            max: 4
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: PointLight
+    radius: 2
+    energy: 3
+    color: "#06DF24"
+
+- type: entity
+  parent: MobOreCrabNF
+  id: MobSilverCrabNF
+  description: An ore crab made from silver.
+  components:
+  - type: Sprite
+    state: silver_crab
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 80
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SilverOre1:
+            min: 2
+            max: 4
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  abstract: true
+  id: MobOreGolem
+  name: ore golem
+  parent: [ MobElementalBase, MobCombat ]
+  components:
+  - type: Sprite
+    sprite: /Textures/_NF/Mobs/Elemental/golems.rsi
+    state: uranium_golem
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+  - type: MeleeWeapon
+    hidden: true
+    soundHit:
+      path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    damage:
+      types:
+        Blunt: 12
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 2
+    baseSprintSpeed : 2.25
+  - type: NpcFactionMember
+    factions:
+      - SimpleHostile
+  - type: Damageable
+    damageContainer: StructuralInorganic
+  - type: MovementIgnoreGravity # Or they just can't do something
+  - type: SalvageMobRestrictionsNF
+
+- type: entity
+  parent: MobOreGolem
+  id: MobBananiumGolem
+  description: An ore golem made from bananium.
+  components:
+  - type: Sprite
+    state: bananium_golem
+  - type: RadiationSource
+    intensity: 1
+    slope: 0.3
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          BananiumOre1:
+            min: 5
+            max: 10
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  parent: MobOreCrabNF
+  id: MobCoalCrabNF
+  description: An ore crab made from coal.
+  components:
+  - type: Sprite
+    sprite: /Textures/_NF/Mobs/Elemental/orecrab.rsi
+    state: coal_crab
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 80
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          Coal1:
+            min: 2
+            max: 4
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  parent: MobOreGolem
+  id: MobCoalGolem
+  description: An ore golem made from coal.
+  components:
+  - type: Sprite
+    state: coal_golem
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          Coal1:
+            min: 5
+            max: 15
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  parent: MobOreGolem
+  id: MobGoldGolem
+  description: An ore golem made from gold.
+  components:
+  - type: Sprite
+    state: gold_golem
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          GoldOre1:
+            min: 5
+            max: 15
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  parent: MobOreGolem
+  id: MobIronGolem
+  description: An ore golem made from iron.
+  components:
+  - type: Sprite
+    state: iron_golem
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SteelOre1:
+            min: 5
+            max: 15
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  parent: MobOreGolem
+  id: MobPlasmaGolem
+  description: An ore golem made from plasma.
+  components:
+  - type: Sprite
+    state: plasma_golem
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 10
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          PlasmaOre1:
+            min: 5
+            max: 15
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: PointLight
+    radius: 2
+    energy: 3
+    color: "#E592E7FF" # Same as plasma ore
+
+- type: entity
+  parent: MobOreGolem
+  id: MobQuartzGolem
+  description: An ore golem made from quartz.
+  components:
+  - type: Sprite
+    state: quartz_golem
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SpaceQuartz1:
+            min: 5
+            max: 15
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  parent: MobOreGolem
+  id: MobSaltGolem
+  description: An ore golem made from salt.
+  components:
+  - type: Sprite
+    state: salt_golem
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          Salt1:
+            min: 5
+            max: 10
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  parent: MobOreGolem
+  id: MobSilverGolem
+  description: An ore golem made from silver.
+  components:
+  - type: Sprite
+    state: silver_golem
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SilverOre1:
+            min: 5
+            max: 15
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  parent: MobOreGolem
+  id: MobUraniumGolem
+  description: An ore golem made from bananium.
+  components:
+  - type: Sprite
+    state: uranium_golem
+  - type: RadiationSource
+    intensity: 1
+    slope: 0.3
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          UraniumOre1:
+            min: 5
+            max: 15
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]

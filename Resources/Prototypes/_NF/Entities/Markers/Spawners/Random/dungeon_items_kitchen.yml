@@ -1,0 +1,375 @@
+# Clutter
+- type: entity
+  name: random clutter
+  id: SpawnDungeonLootClutterKitchen
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Kitchen"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Misc/desk_bell.rsi
+        state: normal
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - SpawnDungeonLootCutlery
+    - SpawnDungeonLootMugs
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - SpawnDungeonLootClothesKitchen
+    - SpawnDungeonLootFood
+    - SpawnDungeonLootFlatpacksService
+    - SpawnDungeonLootVendingRestocks
+    rareChance: 0.05
+
+# Tools
+- type: entity
+  name: random cutlery
+  id: SpawnDungeonLootCutlery
+  parent: MarkerBasePlaceFree
+  suffix: Dungeon
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Consumable/Food/bowl.rsi
+        state: bowl
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - NFAshtray
+    - FoodKebabSkewer
+    - FoodPlateTin
+    - FoodPlateSmall
+    - FoodPlate
+    - FoodPlateTrash
+    - FoodPlateSmallTrash
+    - CandyBowl
+    - FoodBowlBig
+    - FoodBowlFancy
+    - FoodBowlBigTrash
+    - RollingPin
+    - Fork
+    - Spoon
+    - ForkPlastic
+    - SpoonPlastic
+    - KnifePlastic
+    - FoodPlatePlastic
+    - FoodPlateSmallPlastic
+    - FoodShakerPepper
+    - FoodShakerSalt
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - KitchenKnife
+    - ButchCleaver
+    rareChance: 0.01
+
+- type: entity
+  name: random mug
+  id: SpawnDungeonLootMugs
+  parent: MarkerBasePlaceFree
+  suffix: Dungeon
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Consumable/Drinks/mug_moebius.rsi
+        state: icon-0
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - DrinkMugOne
+    - DrinkMugBlack
+    - DrinkMugDog
+    - DrinkMugBlue
+    - DrinkMugGreen
+    - DrinkMugHeart
+    - DrinkMugMetal
+    - DrinkMugMoebius
+    - DrinkMug
+    - DrinkMugRainbow
+    - DrinkMugRed
+    - DrinkGlassCoupeShaped
+    - DrinkGlass
+    - DrinkShotGlass
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - DrinkFlaskBar
+    - DrinkFlaskOld
+    - DrinkLithiumFlask
+    - DrinkShinyFlask
+    - DrinkVacuumFlask
+    - SpawnDungeonLootVendingRestocks
+    rareChance: 0.01
+
+# Clothes
+- type: entity
+  name: random clothes
+  id: SpawnDungeonLootClothesKitchen
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Kitchen"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Clothing/Head/Hats/chefhat.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - ClothingHeadHatChef
+    - ClothingUniformJumpsuitChef
+    - ClothingOuterApronChef
+    - ClothingOuterJacketChef
+    - ClothingBeltChef
+    chance: 1
+    offset: 0.0
+
+# Furniture/Lockers
+- type: entity
+  name: random furniture
+  id: SpawnDungeonFurnitureKitchen
+  parent: MarkerBase
+  suffix: "Dungeon, Kitchen"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Storage/closet.rsi
+        state: freezer
+      - sprite: Structures/Storage/closet.rsi
+        state: freezer_door
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - FoodCartCold
+    - FoodCartHot
+    - CrateFreezer
+    - LockerFreezerBase
+    - LockerFreezerBase
+    - LockerFreezerBase
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - KitchenDeepFryer
+    rareChance: 0.05
+
+- type: entity
+  name: random crate
+  id: SpawnDungeonLootCrateService
+  parent: MarkerBase
+  suffix: "Dungeon, Service"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Storage/Crates/hydroponics.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    # Empty crates
+    - SpawnDungeonLootCrateEmptyService
+    # Restocks
+    - SpawnDungeonLootCrateRestockService
+    # Filled crates
+    - CrateServiceReplacementLights
+    - CrateServiceReplacementColoredLights
+    - CrateFunArtSupplies
+    - CrateServiceJanitorialSupplies
+    - CrateServiceJanitorialSupplies2
+    - JanitorialTrolley
+    - FoodCartHot
+    - FoodCartCold
+    - CrateFoodDinnerware
+    - CrateFoodCooking
+    - CrateServiceCustomSmokable
+    - CrateServiceSmokeables
+    - CrateMousetrapBoxes
+    - CrateFoodBarSupply
+    - CrateServiceBoozeDispenser
+    - CrateSpaceCleaner
+    chance: 0.95
+    offset: 0.0
+    rarePrototypes:
+    - CrateServiceKitKitchen
+    - CrateServiceKitHydroponics
+    rareChance: 0.05
+
+- type: entity
+  name: random crate (restock)
+  id: SpawnDungeonLootCrateRestockService
+  parent: MarkerBase
+  suffix: "Dungeon, Service"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Storage/Crates/plastic.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - CrateVendingMachineRestockBoozeFilled
+    - CrateVendingMachineRestockChefvendFilled
+    - CrateVendingMachineRestockCondimentStationFilled
+    - CrateVendingMachineRestockDinnerwareFilled
+    - CrateVendingMachineRestockSmokesFilled
+    - CrateVendingMachineRestockHappyHonkFilled
+    chance: 1.0
+    offset: 0.0
+
+- type: entity
+  name: random crate (empty)
+  id: SpawnDungeonLootCrateEmptyService
+  parent: MarkerBase
+  suffix: "Dungeon, Service"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Storage/Crates/plastic.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - CrateFreezer
+    - CrateTrashCartJani
+    - CrateHydroponics
+    - CrateHydroSecure
+    - CratePlastic
+    - CratePlasticBiodegradable
+    chance: 1.0
+    offset: 0.0
+
+# Machines
+- type: entity
+  name: random machine techfab
+  id: SpawnDungeonLootKitchenTabletop
+  parent: MarkerBase
+  suffix: "Dungeon, Kitchen, Tabletop"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Machines/microwave.rsi
+        state: mw
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - KitchenMicrowave
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - KitchenElectricGrill
+    - KitchenReagentGrinder
+    - VendingMachineCondiments
+    - BoozeDispenserEmpty
+    - SodaDispenserEmpty
+    - SyndicateMicrowave # For real
+    - SpawnDungeonLootFlatpacksService
+    rareChance: 0.40
+
+# Other
+- type: entity
+  name: random food
+  id: SpawnDungeonLootFood
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Spoiled"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+        scale: 0.7, 0.7
+      - sprite: Objects/Consumable/Food/burger.rsi
+        state: plain
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - FoodMeatRotten
+    - FoodBurgerBaconRotten
+    - FoodBurgerBigBiteRotten
+    - FoodBurgerCheeseRotten
+    - FoodBurgerEmpoweredRotten
+    - FoodBurgerPlainRotten
+    - FoodRiceEggMoldy
+    - FoodSoupMeatballMoldy
+    - FoodNoodlesMoldy
+    - FoodNoodlesMeatballMoldy
+    - FoodSaladCaesarMoldy
+    #- DonkpocketBoxSpawner
+    #- RandomFoodBakedSingle
+    #- RandomFoodBakedWhole
+    #- RandomFoodMeal
+    #- RandomFoodSingle
+    #- RandomSnacks
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - FoodBreadMoldySlice
+    - FoodBreadMoldy
+    - FoodPizzaMoldySlice
+    rareChance: 0.05
+
+- type: entity
+  name: random flatpack
+  id: SpawnDungeonLootFlatpacksService
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Service"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _NF/Objects/Devices/flatpack.rsi
+        state: engineering_lathe
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - UniformPrinterFlatpack
+    - ServiceTechFabFlatpack
+    - KitchenElectricGrillFlatpack
+    - KitchenMicrowaveFlatpack
+    - KitchenReagentGrinderFlatpack
+    - MaterialReclaimerFlatpack
+    - HydroponicsTrayEmptyFlatpack
+    - TilePrinterNFFlatpack
+    - DawInstrumentFlatpack
+    - MinimoogInstrumentFlatpack
+    - ComputerIFFFlatpack
+    - JukeboxFlatpack
+    - VendingMachineBoozeFlatpack
+    - VendingMachineCigsFlatpack
+    - VendingMachineClothingPunkFlatpack
+    - VendingMachineBountyVendPunkFlatpack
+    chance: 0.95
+    offset: 0.0

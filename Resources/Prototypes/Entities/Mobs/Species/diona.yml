@@ -11,7 +11,6 @@
     baseDecayRate: 0.0083
   - type: Thirst
     baseDecayRate: 0.0083
-  - type: Carriable # Carrying system from nyanotrasen.
   - type: Icon
     sprite: Mobs/Species/Diona/parts.rsi
     state: full
@@ -50,9 +49,9 @@
         scaleByQuantity: true
         damage:
           types:
-            Blunt: 2
-            Slash: 2
-            Piercing: 3
+            Blunt: 0.1
+            Slash: 0.1
+            Piercing: 0.15
       - !type:PopupMessage
         type: Local
         visualType: Large
@@ -65,7 +64,7 @@
         scaleByQuantity: true
         damage:
           types:
-            Poison: 5
+            Poison: 0.25
       - !type:PopupMessage
         type: Local
         visualType: Large
@@ -95,7 +94,6 @@
   - type: BodyEmotes
     soundsId: DionaBodyEmotes
   - type: IgnoreKudzu
-  - type: ShoesRequiredStepTriggerImmune # Frontier
   - type: IgniteOnHeatDamage
     fireStacks: 1
     threshold: 12
@@ -103,6 +101,8 @@
     actionPrototype: DionaGibAction
     allowedStates:
     - Dead
+  - type: Carriable # Carrying system from nyanotrasen.
+  - type: StepTriggerImmune # Frontier
 
 - type: entity
   parent: BaseSpeciesDummy

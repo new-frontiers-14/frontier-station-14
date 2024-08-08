@@ -12,10 +12,10 @@ namespace Content.Server.Mail.Components
 
         // Not starting accumulator at 0 so mail carriers have some deliveries to make shortly after roundstart.
         [DataField("accumulator")]
-        public float Accumulator = 285f;
+        public float Accumulator = 1995f; // Frontier 285*7=1995
 
         [DataField("teleportInterval")]
-        public TimeSpan TeleportInterval = TimeSpan.FromMinutes(5);
+        public TimeSpan TeleportInterval = TimeSpan.FromMinutes(35);
 
         /// <summary>
         /// The sound that's played when new mail arrives.
@@ -28,7 +28,7 @@ namespace Content.Server.Mail.Components
         /// teleporter can deliver.
         /// </summary>
         [DataField("mailPool")]
-        public string MailPool = "RandomMailDeliveryPool";
+        public string MailPool = "RandomNFMailDeliveryPool"; // Frontier: use our own mail pool (TODO: migrate to frontier.yml instance?)
 
         /// <summary>
         /// How many mail candidates do we need per actual delivery sent when
@@ -72,7 +72,7 @@ namespace Content.Server.Mail.Components
         /// What's the bonus for delivering a fragile package intact?
         /// </summary>
         [DataField("fragileBonus")]
-        public int FragileBonus = 200;
+        public int FragileBonus = 2000; // Frontier 200<2000
 
         /// <summary>
         /// What's the malus for failing to deliver a fragile package?
@@ -91,18 +91,32 @@ namespace Content.Server.Mail.Components
         /// if not delivered?
         /// </summary>
         [DataField("priorityDuration")]
-        public TimeSpan priorityDuration = TimeSpan.FromMinutes(15);
+        public TimeSpan priorityDuration = TimeSpan.FromMinutes(45); // Frontier 15<45
 
         /// <summary>
         /// What's the bonus for delivering a priority package on time?
         /// </summary>
         [DataField("priorityBonus")]
-        public int PriorityBonus = 500;
+        public int PriorityBonus = 5000; // Frontier 500<5000
 
         /// <summary>
         /// What's the malus for failing to deliver a priority package?
         /// </summary>
         [DataField("priorityMalus")]
         public int PriorityMalus = -250;
+
+        // Frontier: Large mail
+        /// <summary>
+        /// What's the bonus for delivering a large package intact?
+        /// </summary>
+        [DataField("largeBonus")]
+        public int LargeBonus = 5000;
+
+        /// <summary>
+        /// What's the malus for failing to deliver a large package?
+        /// </summary>
+        [DataField("largeMalus")]
+        public int LargeMalus = -250;
+        // End Frontier: Large mail
     }
 }

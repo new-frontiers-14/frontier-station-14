@@ -1,7 +1,9 @@
 using Content.Shared.Chemistry.EntitySystems;
+using Content.Shared.Chemistry.Reagent;
 using Content.Shared.DoAfter;
 using Content.Shared.FixedPoint;
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.Chemistry.Components;
@@ -24,7 +26,8 @@ public sealed partial class InjectorDoAfterEvent : SimpleDoAfterEvent
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class InjectorComponent : Component
 {
-    public const string SolutionName = "injector";
+    [DataField]
+    public string SolutionName = "injector";
 
     /// <summary>
     /// Whether or not the injector is able to draw from containers or if it's a single use
@@ -80,6 +83,15 @@ public sealed partial class InjectorComponent : Component
     [AutoNetworkedField]
     [DataField]
     public InjectorToggleMode ToggleState = InjectorToggleMode.Draw;
+
+    // Frontier
+    /// <summary>
+    /// Reagents that are allowed to be within this injector.
+    /// If a solution has both allowed and non-allowed reagents, only allowed reagents will be drawn into this injector.
+    /// A null ReagentWhitelist indicates all reagents are allowed.
+    /// </summary>
+    [DataField]
+    public ProtoId<ReagentPrototype>[]? ReagentWhitelist = null;
 }
 
 /// <summary>

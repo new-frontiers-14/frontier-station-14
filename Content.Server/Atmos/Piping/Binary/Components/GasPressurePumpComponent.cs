@@ -27,5 +27,11 @@ namespace Content.Server.Atmos.Piping.Binary.Components
         [ViewVariables(VVAccess.ReadWrite)]
         [DataField("maxTargetPressure")]
         public float MaxTargetPressure = Atmospherics.MaxOutputPressure;
+
+        /// <summary>
+        /// Frontier - Start the pump with the map.
+        /// </summary>
+        [DataField]
+        public bool StartOnMapInit { get; set; } = false;
     }
 }

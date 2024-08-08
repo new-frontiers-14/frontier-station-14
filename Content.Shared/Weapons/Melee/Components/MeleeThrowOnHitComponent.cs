@@ -2,6 +2,7 @@ using System.Numerics;
 using Robust.Shared.GameStates;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
+using Content.Shared.Whitelist; // Frontier
 
 namespace Content.Shared.Weapons.Melee.Components;
 
@@ -40,6 +41,12 @@ public sealed partial class MeleeThrowOnHitComponent : Component
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     [AutoNetworkedField]
     public bool UnanchorOnHit;
+
+    /// <summary>
+    ///     Frontier - If any entities on the whitelist then UnanchorOnHit won't work on anything else.
+    /// </summary>
+    [DataField]
+    public EntityWhitelist? Whitelist;
 
     /// <summary>
     /// Whether or not the throwing behavior occurs by default.

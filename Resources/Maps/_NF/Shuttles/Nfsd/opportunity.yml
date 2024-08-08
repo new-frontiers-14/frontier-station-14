@@ -2891,17 +2891,6 @@ entities:
     - type: Transform
       pos: 0.5,-3.5
       parent: 2
-- proto: FoodBoxDonkpocket
-  entities:
-  - uid: 635
-    components:
-    - type: MetaData
-      flags: InContainer
-    - type: Transform
-      parent: 634
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: GasPassiveVent
   entities:
   - uid: 653
@@ -4365,25 +4354,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 4.5,10.5
       parent: 2
-- proto: KitchenMicrowave
-  entities:
-  - uid: 320
-    components:
-    - type: Transform
-      pos: 3.5,8.5
-      parent: 2
-  - uid: 633
-    components:
-    - type: Transform
-      pos: 1.5,-4.5
-      parent: 2
-- proto: KitchenReagentGrinder
-  entities:
-  - uid: 321
-    components:
-    - type: Transform
-      pos: 4.5,8.5
-      parent: 2
 - proto: KnifePlastic
   entities:
   - uid: 940
@@ -4782,8 +4752,7 @@ entities:
     - type: Paper
       stampState: paper_stamp-ce
       stampedBy:
-      - stampedBorderless: False
-        stampedColor: '#C69B17FF'
+      - stampedColor: '#C69B17FF'
         stampedName: stamp-component-stamped-name-ce
       content: >-
         [color=#1a6295]█▄ █ ▀█▀    [head=3]Galaxywise Shipyards[/head]
@@ -6288,18 +6257,6 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -3.5,10.5
-      parent: 2
-- proto: VendingMachineChang
-  entities:
-  - uid: 265
-    components:
-    - type: Transform
-      pos: 2.5,-4.5
-      parent: 2
-  - uid: 324
-    components:
-    - type: Transform
-      pos: 2.5,5.5
       parent: 2
 - proto: VendingMachineSeedsUnlocked
   entities:

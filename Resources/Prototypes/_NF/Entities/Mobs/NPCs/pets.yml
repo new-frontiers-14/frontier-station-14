@@ -1,30 +1,49 @@
 - type: entity
+  id: MobPetNF
+  abstract: true
+  components:
+  - type: GhostRole
+  - type: IntrinsicRadioReceiver
+
+- type: entity
   name: Clippy
-  parent: MobCatGhost
+  parent: [MobPetNF, MobCatGhost]
   id: MobCatClippy
   description: It looks like you’re writing a letter, would you like help?
   components:
   - type: GhostRole
     name: ghost-role-information-clippy-name
     description: ghost-role-information-clippy-description
-    requirements:
-    - !type:WhitelistRequirement
+    rules: ghost-role-information-nonantagonist-rules
+    prototype: CatClippy
   - type: Loadout
     prototypes: [ MobClippyGear ]
   - type: RandomMetadata
     nameSegments: [names_cat_clippy] # Its needed to fix the names since it was using the MobCatGhost list.
   - type: AutoImplant
     implants:
+    - MindShieldImplant
     - MedicalTrackingImplant
   - type: Butcherable
     spawned:
     - id: FoodMeatCat
       amount: 1
 #    - id: MaterialHideClippy
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Service
+  - type: ActiveRadio
+    channels:
+    - Service
+  - type: NpcFactionMember
+    factions:
+      - Cat
+      - PetsNT
+  - type: ShowJobIcons
 
 - type: entity
   name: Clarpy
-  parent: MobCatGhost
+  parent: [MobPetNF, MobCatGhost]
   id: MobCatClarpy
   description: First cat to gain a bounty.
   components:
@@ -45,8 +64,8 @@
   - type: GhostRole
     name: ghost-role-information-clarpy-name
     description: ghost-role-information-clarpy-description
-    requirements:
-    - !type:WhitelistRequirement
+    rules: ghost-role-information-clarpy-rules
+    prototype: CatClarpy
   - type: Loadout
     prototypes: [ MobClarpyGear ]
   - type: ReplacementAccent
@@ -56,6 +75,81 @@
   - type: AutoImplant
     implants:
     - FreelanceTrackingImplant
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Freelance
+  - type: ActiveRadio
+    channels:
+    - Freelance
+  - type: NpcFactionMember
+    factions:
+      - Cat
+      - PirateNF
+
+- type: entity
+  name: Cappy
+  parent: [MobPetNF, MobCatGhost, ShowSecurityIcons]
+  id: MobCatCappy
+  description: First cat to shoot a gun.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _NF/Mobs/Pets/cat.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: nfsdcat
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: nfsdcat
+  - type: GhostRole
+    name: ghost-role-information-cappy-name
+    description: ghost-role-information-cappy-description
+    rules: ghost-role-information-nonantagonist-rules
+    prototype: CatCappy
+  - type: Loadout
+    prototypes: [ MobCappyGear ]
+  - type: ReplacementAccent
+    accent: nfsdCat
+  - type: RandomMetadata
+    nameSegments: [names_cat_cappy] # Its needed to fix the names since it was using the MobCatGhost list.
+  - type: AutoImplant
+    implants:
+    - MindShieldImplant
+    - TrackingImplant
+    - LightImplant
+  - type: FlashImmunity
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Nfsd
+  - type: ActiveRadio
+    channels:
+    - Nfsd
+  - type: Inventory
+    templateId: nfsdpet
+  - type: CombatMode
+    combatToggleAction: ActionCombatModeToggle
+  - type: MeleeWeapon
+    damage:
+      types:
+        Piercing: 0 # Declawed cat
+  - type: StaminaDamageOnHit
+    damage: 18
+  - type: NpcFactionMember
+    factions:
+      - Cat
+      - PetsNT
+  - type: Speech
+    speechSounds: NfsdCat
+    speechVerb: SmallMob
+  - type: Vocal
+    sounds:
+      Male: NfsdCat
+      Female: NfsdCat
+      Unsexed: NfsdCat
+  - type: InteractionPopup
+    interactSuccessSound:
+      path: /Audio/_NF/Animals/nfsdcat_meow.ogg
 
 - type: entity
   name: Mistake
@@ -73,13 +167,11 @@
     states:
       Alive:
         Base: mistakecat
-      Critical:
-        Base: mistakecat_dead
-      Dead:
-        Base: mistakecat_dead
   - type: GhostRole
     name: ghost-role-information-mistake-name
     description: ghost-role-information-mistake-description
+    rules: ghost-role-information-freeagent-rules
+    prototype: CatMistake
   - type: ReplacementAccent
     accent: mistakeCat
   - type: RandomMetadata
@@ -95,3 +187,6 @@
   - type: MovementSpeedModifier
     baseWalkSpeed : 8
     baseSprintSpeed : 8
+  - type: NpcFactionMember
+    factions:
+      - Cat

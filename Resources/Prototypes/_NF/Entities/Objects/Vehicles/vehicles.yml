@@ -51,6 +51,8 @@
             - Storage
     sprite: _NF/Objects/Vehicles/atv.rsi
   - type: Appearance
+  - type: Strap
+    unbuckleDistanceSquared: 0.09 # (30 cm)^2
 
 - type: entity
   parent: VehicleSkeletonMotorcycle
@@ -72,8 +74,10 @@
       storagebase: !type:Container
   - type: UserInterface
     interfaces:
-    - key: enum.StorageUiKey.Key
-      type: StorageBoundUserInterface
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+  - type: Strap
+    unbuckleDistanceSquared: 0.09 # (30 cm)^2
 
 # New Frontier vehicles
 - type: entity
@@ -92,7 +96,7 @@
     enabled: false
   - type: Strap
     buckleOffset: "0.1, -0.05"
-    maxBuckleDistance: 1
+    # maxBuckleDistance: 1 # Umbra - buckling fix
   - type: MovementSpeedModifier
     acceleration: 2
     friction: 1.5

@@ -120,8 +120,8 @@
 - type: entity
   parent: ClothingHeadBase
   id: ClothingHeadHatBeretHoS
-  name: sheriff's beret
-  description: A black beret with a sheriff's rank emblem. For officers that are more inclined towards style than safety.
+  name: head of security's beret
+  description: A black beret with a commander's rank emblem. For officers that are more inclined towards style than safety.
   components:
   - type: Sprite
     sprite: Clothing/Head/Hats/beret_hos.rsi
@@ -136,8 +136,8 @@
 - type: entity
   parent: ClothingHeadBase
   id: ClothingHeadHatBeretWarden
-  name: bailiff's beret
-  description: A corporate blue beret with a bailiff's rank emblem. For officers that are more inclined towards style than safety.
+  name: warden's beret
+  description: A corporate blue beret with a warden's rank emblem. For officers that are more inclined towards style than safety.
   components:
   - type: Sprite
     sprite: Clothing/Head/Hats/beret_warden.rsi
@@ -245,11 +245,15 @@
     - 0,0,0,0
   - type: UserInterface
     interfaces:
-      - key: enum.StorageUiKey.Key
+      enum.StorageUiKey.Key:
         type: StorageBoundUserInterface
   - type: ContainerContainer
     containers:
       storagebase: !type:Container
+  - type: PilotedClothing
+    pilotWhitelist:
+      tags:
+        - ChefPilot
   - type: Tag
     tags:
     - ClothMade
@@ -314,8 +318,8 @@
 - type: entity
   parent: ClothingHeadBase
   id: ClothingHeadHatHoshat
-  name: sheriff's hat
-  description: "There's a new sheriff in station."
+  name: head of security cap
+  description: The robust standard-issue cap of the Head of Security. For showing the officers who's in charge.
   components:
   - type: Sprite
     sprite: Clothing/Head/Hats/hoshat.rsi
@@ -388,12 +392,17 @@
     sprite: Clothing/Head/Hats/plaguedoctor.rsi
   - type: Tag
     tags:
-    - HidesHair
     - WhitelistChameleon
     - ClothMade
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - Snout
+    - HeadTop
+    - HeadSide
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: ClothingHeadHatWizardBase
   id: ClothingHeadHatRedwizard
   name: red wizard hat
   description: Strange-looking red hat-wear that most certainly belongs to a real magic user.
@@ -508,7 +517,7 @@
 
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: ClothingHeadHatWizardBase
   id: ClothingHeadHatVioletwizard
   name: violet wizard hat
   description: "Strange-looking violet hat-wear that most certainly belongs to a real magic user."
@@ -521,8 +530,8 @@
 - type: entity
   parent: ClothingHeadBase
   id: ClothingHeadHatWarden
-  name: bailiff's cap
-  description: A bailiff's Hat. This hat emphasizes that you are THE LAW.
+  name: warden's cap
+  description: A police officer's Hat. This hat emphasizes that you are THE LAW
   components:
   - type: Sprite
     sprite: Clothing/Head/Hats/warden.rsi
@@ -537,15 +546,18 @@
   name: witch hat
   description: A witch hat.
   components:
+  - type: WizardClothes #Yes this will count
   - type: Sprite
     sprite: Clothing/Head/Hats/witch.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/witch.rsi
   - type: Tag
     tags:
-    - HidesHair
     - WhitelistChameleon
     - ClothMade
+  - type: HideLayerClothing
+    slots:
+    - Hair
 
 - type: entity
   parent: ClothingHeadBase
@@ -559,7 +571,14 @@
     sprite: Clothing/Head/Hats/wizard_fake.rsi
 
 - type: entity
+  abstract: true
   parent: ClothingHeadBase
+  id: ClothingHeadHatWizardBase
+  components:
+  - type: WizardClothes
+
+- type: entity
+  parent: ClothingHeadHatWizardBase
   id: ClothingHeadHatWizard
   name: wizard hat
   description: Strange-looking blue hat-wear that most certainly belongs to a powerful magic user.
@@ -597,7 +616,7 @@
     sprite: Clothing/Head/Hats/truckershat.rsi
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: [ClothingHeadBase, ContrabandClothing] # Frontier: added ContrabandClothing as parent
   id: ClothingHeadPyjamaSyndicateBlack
   name: syndicate black pyjama hat
   description: For keeping that traitor head of yours warm.
@@ -608,7 +627,7 @@
     sprite: Clothing/Head/Hats/pyjamasyndicateblack.rsi
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: [ClothingHeadBase, ContrabandClothing] # Frontier: added ContrabandClothing as parent
   id: ClothingHeadPyjamaSyndicatePink
   name: syndicate pink pyjama hat
   description: For keeping that traitor head of yours warm.
@@ -619,7 +638,7 @@
     sprite: Clothing/Head/Hats/pyjamasyndicatepink.rsi
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: [ClothingHeadBase, ContrabandClothing] # Frontier: added ContrabandClothing as parent
   id: ClothingHeadPyjamaSyndicateRed
   name: syndicate red pyjama hat
   description: For keeping that traitor head of yours warm.
@@ -765,7 +784,7 @@
         Blunt: 0.95
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: [ClothingHeadBase, ContrabandClothing] # Frontier: added ContrabandClothing as parent
   id: ClothingHeadHatSyndie
   name: syndicate hat
   description: A souvenir hat from "Syndieland", their production has already been closed.
@@ -776,7 +795,7 @@
     sprite: Clothing/Head/Hats/syndiecap.rsi
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: [ClothingHeadBase, ContrabandClothing] # Frontier: added ContrabandClothing as parent
   id: ClothingHeadHatSyndieMAA
   name: master at arms hat
   description: Master at arms hat, looks intimidating, I doubt that you will like to communicate with its owner...
@@ -835,8 +854,8 @@
     - 0,0,0,0
   - type: UserInterface
     interfaces:
-      - key: enum.StorageUiKey.Key
-        type: StorageBoundUserInterface
+        enum.StorageUiKey.Key:
+          type: StorageBoundUserInterface
   - type: ContainerContainer
     containers:
       storagebase: !type:Container

@@ -32,7 +32,7 @@
     - ClothMade
     - WhitelistChameleon
   - type: StaticPrice
-    price: 70
+    price: 50
 
 - type: entity
   parent: ClothingOuterWinterCoat
@@ -224,9 +224,23 @@
     clothingPrototype: ClothingHeadHatHoodWinterHOP
 
 - type: entity
-  parent: ClothingOuterWinterCoatToggleable
+  parent: [ClothingOuterArmorHoS, ClothingOuterWinterCoatToggleable]
   id: ClothingOuterWinterHoS
-  name: sheriff's winter coat
+  name: head of security's armored winter coat
+  description: A sturdy, utilitarian winter coat designed to protect a head of security from any brig-bound threats and hypothermic events.
+  components:
+  - type: Sprite
+    sprite: Clothing/OuterClothing/WinterCoats/coathosarmored.rsi
+  - type: Clothing
+    sprite: Clothing/OuterClothing/WinterCoats/coathosarmored.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHatHoodWinterHOS
+
+- type: entity
+  parent: ClothingOuterWinterCoatToggleable
+  id: ClothingOuterWinterHoSUnarmored
+  name: head of security's winter coat
+  description: A sturdy coat, a warm coat, but not an armored coat.
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/WinterCoats/coathos.rsi
@@ -424,27 +438,33 @@
     clothingPrototype: ClothingHeadHatHoodWinterSci
 
 - type: entity
-  parent: ClothingOuterWinterCoatToggleable
+  parent: [ClothingOuterArmorWarden, ClothingOuterWinterCoatToggleable]
   id: ClothingOuterWinterWarden
-  name: bailiff's armored winter coat
-  description: A sturdy, utilitarian winter coat designed to protect a bailiff from any brig-bound threats and hypothermic events.
+  name: warden's armored winter coat
+  description: A sturdy, utilitarian winter coat designed to protect a warden from any brig-bound threats and hypothermic events.
   components:
   - type: Sprite
-    sprite: Clothing/OuterClothing/WinterCoats/coatwarden.rsi
+    sprite: Clothing/OuterClothing/WinterCoats/coatwardenarmored.rsi
   - type: Clothing
-    sprite: Clothing/OuterClothing/WinterCoats/coatwarden.rsi
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.70
-        Slash: 0.70
-        Piercing: 0.8 #slightly less bulletproof then warden's normal coat
-        Heat: 0.70
+    sprite: Clothing/OuterClothing/WinterCoats/coatwardenarmored.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodWinterWarden
 
 - type: entity
   parent: ClothingOuterWinterCoatToggleable
+  id: ClothingOuterWinterWardenUnarmored
+  name: warden's winter coat
+  description: A sturdy coat, a warm coat, but not an armored coat.
+  components:
+  - type: Sprite
+    sprite: Clothing/OuterClothing/WinterCoats/coatwarden.rsi
+  - type: Clothing
+    sprite: Clothing/OuterClothing/WinterCoats/coatwarden.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHatHoodWinterWarden
+
+- type: entity
+  parent: [ClothingOuterWinterCoatToggleable, ContrabandClothing] # Frontier: added ContrabandClothing as parent
   id: ClothingOuterWinterSyndieCap
   name: syndicate's winter coat
   description: "The syndicate's winter coat is made of durable fabric, with gilded patterns, and coarse wool."
@@ -455,10 +475,9 @@
     sprite: Clothing/OuterClothing/WinterCoats/syndicate/coatsyndiecap.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodWinterSyndie
-  - type: Contraband #frontier
 
 - type: entity
-  parent: ClothingOuterWinterWarden
+  parent: [ClothingOuterWinterWarden, ContrabandClothing] # Frontier: added ContrabandClothing as parent
   id: ClothingOuterWinterSyndieCapArmored
   name: syndicate's armored winter coat
   description: "The syndicate's armored winter coat is made of durable fabric, with gilded patterns, and coarse wool."
@@ -469,10 +488,9 @@
     sprite: Clothing/OuterClothing/WinterCoats/syndicate/coatsyndiecaparmored.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodWinterSyndie
-  - type: Contraband #frontier
 
 - type: entity
-  parent: ClothingOuterWinterCoatToggleable
+  parent: [ClothingOuterWinterCoatToggleable, ContrabandClothing] # Frontier: added ContrabandClothing as parent
   id: ClothingOuterWinterSyndie
   name: syndicate's winter coat
   description: Insulated winter coat, looks like a merch from "Syndieland"
@@ -483,7 +501,6 @@
     sprite: Clothing/OuterClothing/WinterCoats/syndicate/wintercoatsyndie.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodWinterSyndie
-  - type: Contraband #frontier
 
 - type: entity
   parent: ClothingOuterWinterCoat

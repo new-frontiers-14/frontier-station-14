@@ -4,6 +4,7 @@
   suffix: ""
   name: Jerma
   description: Its Jerma.
+  noSpawn: true # The joke is over
   components:
   - type: Bloodstream
     bloodMaxVolume: 650
@@ -13,6 +14,7 @@
     makeSentient: true
     name: ghost-role-information-jerma-name
     description: ghost-role-information-jerma-description
+    rules: ghost-role-information-antagonist-rules
   - type: GhostTakeoverAvailable
   - type: HTN
     rootTask:
@@ -66,10 +68,11 @@
       500: Dead
   - type: Metabolizer
     solutionOnBody: false
-    updateFrequency: 0.25
+    updateInterval: 0.25
     metabolizerTypes: [ Dragon ]
     groups:
     - id: Medicine
+    - id: Cryogenic
     - id: Poison
   - type: Butcherable
     spawned:

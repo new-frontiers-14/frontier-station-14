@@ -34,6 +34,12 @@
       collection: Whistles
     Weh:
       collection: Weh
+    Belch: # Frontier
+      collection: Belch # Frontier
+    Gasp:
+      collection: MaleGasp
+    DefaultDeathgasp:
+      collection: MaleDeathGasp
 
 - type: emoteSounds
   id: FemaleHuman
@@ -70,9 +76,15 @@
       collection: Whistles
     Weh:
       collection: Weh
+    Belch: # Frontier
+      collection: Belch # Frontier
+    Gasp:
+      collection: FemaleGasp
+    DefaultDeathgasp:
+      collection: FemaleDeathGasp
 
 - type: emoteSounds
-  id: UnisexReptilian
+  id: MaleReptilian
   params:
     variation: 0.125
   sounds:
@@ -88,6 +100,32 @@
       collection: MaleCry
     Weh:
       collection: Weh
+    Gasp:
+      collection: MaleGasp
+    DefaultDeathgasp:
+      collection: DeathGasp
+
+- type: emoteSounds
+  id: FemaleReptilian
+  params:
+    variation: 0.125
+  sounds:
+    Scream:
+      path: /Audio/Voice/Reptilian/reptilian_scream.ogg
+    Laugh:
+      path: /Audio/Animals/lizard_happy.ogg
+    Honk:
+      collection: BikeHorn
+    Whistle:
+      collection: Whistles
+    Crying:
+      collection: FemaleCry
+    Weh:
+      collection: Weh
+    Gasp:
+      collection: FemaleGasp
+    DefaultDeathgasp:
+      collection: FemaleDeathGasp
 
 - type: emoteSounds
   id: MaleSlime
@@ -124,6 +162,10 @@
       collection: Whistles
     Weh:
       collection: Weh
+    Gasp:
+      collection: MaleGasp
+    DefaultDeathgasp:
+      collection: MaleDeathGasp
   params:
     variation: 0.125
 
@@ -162,6 +204,10 @@
       collection: Whistles
     Weh:
       collection: Weh
+    Gasp:
+      collection: FemaleGasp
+    DefaultDeathgasp:
+      collection: FemaleDeathGasp
   params:
     variation: 0.125
 
@@ -187,6 +233,10 @@
       collection: BikeHorn
     Weh:
       collection: Weh
+    Gasp:
+      collection: MaleGasp
+    DefaultDeathgasp:
+      collection: DeathGasp
   params:
     variation: 0.125
 
@@ -205,6 +255,10 @@
       path: /Audio/Voice/Arachnid/arachnid_click.ogg
     Weh:
       collection: Weh
+    Gasp:
+      collection: MaleGasp
+    DefaultDeathgasp:
+      collection: DeathGasp
 
 - type: emoteSounds
   id: UnisexDwarf
@@ -239,6 +293,12 @@
       collection: Whistles
     Weh:
       collection: Weh
+    Belch: # Frontier
+      collection: Belch # Frontier
+    Gasp:
+      collection: MaleGasp
+    DefaultDeathgasp:
+      collection: MaleDeathGasp
   params:
     variation: 0.125
     pitch: 0.75
@@ -276,6 +336,12 @@
       collection: Whistles
     Weh:
       collection: Weh
+    Belch: # Frontier
+      collection: Belch # Frontier
+    Gasp:
+      collection: FemaleGasp
+    DefaultDeathgasp:
+      collection: FemaleDeathGasp
   params:
     variation: 0.125
     pitch: 0.75
@@ -297,12 +363,36 @@
       path: /Audio/Voice/Moth/moth_squeak.ogg
     Weh:
       collection: Weh
+    Gasp:
+      collection: MaleGasp
+    DefaultDeathgasp:
+      collection: MothDeathGasp
 
 - type: emoteSounds
   id: UnisexSilicon
   params:
     variation: 0.05
   sounds:
+    Beep:
+      path: /Audio/Machines/twobeep.ogg
+    Chime:
+      path: /Audio/Machines/chime.ogg
+    Buzz:
+      path: /Audio/Machines/buzz-sigh.ogg
+    Buzz-Two:
+      path: /Audio/Machines/buzz-two.ogg
+    Honk:
+      path: /Audio/Items/bikehorn.ogg
+    Ping:
+      path: /Audio/Effects/Cargo/ping.ogg
+
+- type: emoteSounds
+  id: UnisexSiliconSyndicate
+  params:
+    variation: 0.05
+  sounds:
+    Laugh:
+      path: /Audio/Voice/Silicon/syndieborg_laugh.ogg
     Beep:
       path: /Audio/Machines/twobeep.ogg
     Chime:

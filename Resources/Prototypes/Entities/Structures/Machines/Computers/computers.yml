@@ -32,8 +32,8 @@
     key: enum.EmergencyConsoleUiKey.Key
   - type: UserInterface
     interfaces:
-      - key: enum.EmergencyConsoleUiKey.Key
-        type: EmergencyConsoleBoundUserInterface
+        enum.EmergencyConsoleUiKey.Key:
+          type: EmergencyConsoleBoundUserInterface
   - type: PointLight
     radius: 1.5
     energy: 1.6
@@ -53,8 +53,8 @@
     key: enum.ShuttleConsoleUiKey.Key
   - type: UserInterface
     interfaces:
-      - key: enum.ShuttleConsoleUiKey.Key
-        type: ShuttleConsoleBoundUserInterface
+        enum.ShuttleConsoleUiKey.Key:
+          type: ShuttleConsoleBoundUserInterface
   - type: RadarConsole
   - type: WorldLoader
     radius: 256
@@ -156,7 +156,7 @@
   - type: PointLight
     radius: 1.5
     energy: 1.6
-    color: "#c94242"
+    color: "#43ccb5"
   - type: Computer
     board: CargoShuttleConsoleCircuitboard
   - type: StealTarget
@@ -187,7 +187,7 @@
     - type: PointLight
       radius: 1.5
       energy: 1.6
-      color: "#c94242"
+      color: "#43ccb5"
     - type: Computer
       board: SalvageShuttleConsoleCircuitboard
     - type: StealTarget
@@ -215,8 +215,8 @@
     key: enum.IFFConsoleUiKey.Key
   - type: UserInterface
     interfaces:
-      - key: enum.IFFConsoleUiKey.Key
-        type: IFFConsoleBoundUserInterface
+        enum.IFFConsoleUiKey.Key:
+          type: IFFConsoleBoundUserInterface
   - type: Computer
     board: ComputerIFFCircuitboard
 
@@ -235,8 +235,8 @@
     key: enum.IFFConsoleUiKey.Key
   - type: UserInterface
     interfaces:
-      - key: enum.IFFConsoleUiKey.Key
-        type: IFFConsoleBoundUserInterface
+        enum.IFFConsoleUiKey.Key:
+          type: IFFConsoleBoundUserInterface
   - type: Computer
     board: ComputerIFFSyndicateCircuitboard
 
@@ -275,8 +275,8 @@
     key: enum.PowerMonitoringConsoleUiKey.Key
   - type: UserInterface
     interfaces:
-    - key: enum.PowerMonitoringConsoleUiKey.Key
-      type: PowerMonitoringConsoleBoundUserInterface
+      enum.PowerMonitoringConsoleUiKey.Key:
+        type: PowerMonitoringConsoleBoundUserInterface
 
 - type: entity
   parent: BaseComputer
@@ -310,8 +310,8 @@
   - type: CriminalRecordsConsole
   - type: UserInterface
     interfaces:
-    - key: enum.CriminalRecordsConsoleKey.Key
-      type: CriminalRecordsConsoleBoundUserInterface
+      enum.CriminalRecordsConsoleKey.Key:
+        type: CriminalRecordsConsoleBoundUserInterface
   - type: ActivatableUI
     key: enum.CriminalRecordsConsoleKey.Key
   - type: Sprite
@@ -345,8 +345,8 @@
   - type: GeneralStationRecordConsole
   - type: UserInterface
     interfaces:
-      - key: enum.GeneralStationRecordConsoleKey.Key
-        type: GeneralStationRecordConsoleBoundUserInterface
+        enum.GeneralStationRecordConsoleKey.Key:
+          type: GeneralStationRecordConsoleBoundUserInterface
   - type: ActivatableUI
     key: enum.GeneralStationRecordConsoleKey.Key
   - type: PointLight
@@ -385,7 +385,7 @@
     key: enum.CrewMonitoringUIKey.Key
   - type: UserInterface
     interfaces:
-        - key: enum.CrewMonitoringUIKey.Key
+        enum.CrewMonitoringUIKey.Key:
           type: CrewMonitoringBoundUserInterface
   - type: CrewMonitoringConsole
   - type: DeviceNetwork
@@ -420,10 +420,10 @@
     key: enum.ResearchConsoleUiKey.Key
   - type: UserInterface
     interfaces:
-    - key: enum.ResearchConsoleUiKey.Key
-      type: ResearchConsoleBoundUserInterface
-    - key: enum.ResearchClientUiKey.Key
-      type: ResearchClientBoundUserInterface
+      enum.ResearchConsoleUiKey.Key:
+        type: ResearchConsoleBoundUserInterface
+      enum.ResearchClientUiKey.Key:
+        type: ResearchClientBoundUserInterface
   - type: ApcPowerReceiver
     powerLoad: 1000
   - type: Computer
@@ -468,10 +468,10 @@
     key: enum.ArtifactAnalzyerUiKey.Key
   - type: UserInterface
     interfaces:
-    - key: enum.ArtifactAnalzyerUiKey.Key
-      type: AnalysisConsoleBoundUserInterface
-    - key: enum.ResearchClientUiKey.Key
-      type: ResearchClientBoundUserInterface
+      enum.ArtifactAnalzyerUiKey.Key:
+        type: AnalysisConsoleBoundUserInterface
+      enum.ResearchClientUiKey.Key:
+        type: ResearchClientBoundUserInterface
   - type: ApcPowerReceiver
     powerLoad: 1000
   - type: Computer
@@ -513,8 +513,8 @@
     key: enum.IdCardConsoleUiKey.Key
   - type: UserInterface
     interfaces:
-    - key: enum.IdCardConsoleUiKey.Key
-      type: IdCardConsoleBoundUserInterface
+      enum.IdCardConsoleUiKey.Key:
+        type: IdCardConsoleBoundUserInterface
   - type: CrewManifestViewer
     ownerKey: enum.IdCardConsoleUiKey.Key
   - type: Sprite
@@ -585,8 +585,8 @@
     key: enum.CommunicationsConsoleUiKey.Key
   - type: UserInterface
     interfaces:
-    - key: enum.CommunicationsConsoleUiKey.Key
-      type: CommunicationsConsoleBoundUserInterface
+      enum.CommunicationsConsoleUiKey.Key:
+        type: CommunicationsConsoleBoundUserInterface
   - type: Computer
     board: CommsComputerCircuitboard
   - type: PointLight
@@ -649,8 +649,8 @@
     key: enum.SolarControlConsoleUiKey.Key
   - type: UserInterface
     interfaces:
-    - key: enum.SolarControlConsoleUiKey.Key
-      type: SolarControlConsoleBoundUserInterface
+      enum.SolarControlConsoleUiKey.Key:
+        type: SolarControlConsoleBoundUserInterface
   - type: Computer
     board: SolarControlComputerCircuitboard
   - type: PointLight
@@ -683,8 +683,8 @@
     key: enum.RadarConsoleUiKey.Key
   - type: UserInterface
     interfaces:
-      - key: enum.RadarConsoleUiKey.Key
-        type: RadarConsoleBoundUserInterface
+        enum.RadarConsoleUiKey.Key:
+          type: RadarConsoleBoundUserInterface
   - type: Computer
     board: RadarConsoleCircuitboard
   - type: PointLight
@@ -735,8 +735,8 @@
     key: enum.CargoConsoleUiKey.Shuttle
   - type: UserInterface
     interfaces:
-    - key: enum.CargoConsoleUiKey.Shuttle
-      type: CargoShuttleConsoleBoundUserInterface
+      enum.CargoConsoleUiKey.Shuttle:
+        type: CargoShuttleConsoleBoundUserInterface
   - type: Computer
     board: CargoShuttleComputerCircuitboard
   - type: PointLight
@@ -745,31 +745,17 @@
     color: "#b89f25"
   - type: AccessReader
     access: [["Cargo"]]
-  - type: GuideHelp
-    guides:
-    - Cargo
+  # - type: GuideHelp # Frontier: removed guidebook entries (needs rework)
+  #   guides: # Frontier: removed guidebook entries (needs rework)
+  #   - Cargo # Frontier: removed guidebook entries (needs rework)
 
 - type: entity
   id: ComputerCargoOrders
-  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseStructureComputer] # Frontier
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseComputer] # Frontier: add BaseStructureDisableToolUse, BaseStructureIndestructible
   name: cargo request computer
   description: Used to order supplies and approve requests.
-  placement:
-    mode: SnapgridCenter
   components:
-  - type: MeleeSound
-    soundGroups:
-      Brute:
-        collection: MetalGlassBreak
-  - type: Computer
-  - type: ApcPowerReceiver
-    powerLoad: 200
-  - type: ExtensionCableReceiver
-  - type: ActivatableUIRequiresPower
   - type: Sprite
-    netsync: false
-    noRot: true
-    sprite: Structures/Machines/computers.rsi
     layers:
     - map: ["computerLayerBody"]
       state: computer
@@ -780,36 +766,35 @@
     - map: ["computerLayerKeys"]
       state: tech_key
   - type: CargoOrderConsole
+#  - type: ActiveRadio # Frontier
+#    channels: # Frontier
+#    - Supply # Frontier
   - type: ActivatableUI
     key: enum.CargoConsoleUiKey.Orders
   - type: UserInterface
     interfaces:
-    - key: enum.CargoConsoleUiKey.Orders
-      type: CargoOrderConsoleBoundUserInterface
-  - type: LitOnPowered
+      enum.CargoConsoleUiKey.Orders:
+        type: CargoOrderConsoleBoundUserInterface
+  - type: Computer
+    board: Null # Frontier: CargoRequestComputerCircuitboard<Null
   - type: PointLight
     radius: 1.5
     energy: 1.6
     color: "#b89f25"
-    enabled: false
-    mask: /Textures/Effects/LightMasks/cone.png
-    autoRot: true
-    offset: "0, 0.4" # shine from the top, not bottom of the computer
-    castShadows: false
   - type: AccessReader
-    #access: [["Cargo"]]
+    #access: [["Cargo"]] # Frontier
   - type: DeviceNetwork
     deviceNetId: Wireless
     receiveFrequencyId: BasicDevice
-#  - type: WirelessNetworkConnection
-#    range: 200
+#  - type: WirelessNetworkConnection # Frontier
+#    range: 200 # Frontier
   - type: DeviceLinkSource
     range: 200
     ports:
       - OrderSender
-  - type: GuideHelp
-    guides:
-    - Cargo
+  # - type: GuideHelp # Frontier: guidebook removed
+  #   guides: # Frontier: guidebook removed
+  #   - Cargo # Frontier: guidebook removed
 
 - type: entity
   id: ComputerCargoBounty
@@ -832,8 +817,8 @@
     key: enum.CargoConsoleUiKey.Bounty
   - type: UserInterface
     interfaces:
-    - key: enum.CargoConsoleUiKey.Bounty
-      type: CargoBountyConsoleBoundUserInterface
+      enum.CargoConsoleUiKey.Bounty:
+        type: CargoBountyConsoleBoundUserInterface
   - type: Computer
     board: CargoBountyComputerCircuitboard
   - type: PointLight
@@ -842,9 +827,9 @@
     color: "#b89f25"
   - type: AccessReader
     access: [["Quartermaster"]]
-  - type: GuideHelp
-    guides:
-    - CargoBounties
+  # - type: GuideHelp # Frontier
+  #   guides: # Frontier
+  #   - CargoBounties # Frontier
 
 - type: entity
   parent: BaseComputer
@@ -883,8 +868,8 @@
     key: enum.CloningConsoleUiKey.Key
   - type: UserInterface
     interfaces:
-      - key: enum.CloningConsoleUiKey.Key
-        type: CloningConsoleBoundUserInterface
+        enum.CloningConsoleUiKey.Key:
+          type: CloningConsoleBoundUserInterface
   - type: Speech
     speechVerb: Robotic
     speechSounds: Pai
@@ -927,7 +912,7 @@
     - type: ActivatableUIRequiresPower
     - type: UserInterface
       interfaces:
-        - key: enum.SalvageConsoleUiKey.Expedition
+        enum.SalvageConsoleUiKey.Expedition:
           type: SalvageExpeditionConsoleBoundUserInterface
     - type: Computer
       board: SalvageExpeditionsComputerCircuitboard
@@ -972,8 +957,8 @@
     anchored: true
   - type: UserInterface
     interfaces:
-      - key: enum.SurveillanceCameraMonitorUiKey.Key
-        type: SurveillanceCameraMonitorBoundUserInterface
+        enum.SurveillanceCameraMonitorUiKey.Key:
+          type: SurveillanceCameraMonitorBoundUserInterface
 
 - type: entity
   parent: BaseComputer
@@ -1009,8 +994,8 @@
   - type: ActivatableUIRequiresVision
   - type: UserInterface
     interfaces:
-      - key: enum.SurveillanceCameraMonitorUiKey.Key
-        type: SurveillanceCameraMonitorBoundUserInterface
+        enum.SurveillanceCameraMonitorUiKey.Key:
+          type: SurveillanceCameraMonitorBoundUserInterface
 
 - type: entity
   id: ComputerPalletConsole
@@ -1036,19 +1021,19 @@
     key: enum.CargoPalletConsoleUiKey.Sale
   - type: UserInterface
     interfaces:
-    - key: enum.CargoPalletConsoleUiKey.Sale
-      type: CargoPalletConsoleBoundUserInterface
+      enum.CargoPalletConsoleUiKey.Sale:
+        type: CargoPalletConsoleBoundUserInterface
   - type: Computer
-    board: CargoRequestComputerCircuitboard
+    board: CargoSaleComputerCircuitboard
   - type: PointLight
     radius: 1.5
     energy: 1.6
     color: "#b89f25"
   - type: MarketModifier # In the case someone got a computer board from QM locker, they can use it to sell on a ship if they have the grids, just to make sure its useless.
     mod: 0
-  - type: GuideHelp
-    guides:
-    - Cargo
+  # - type: GuideHelp # Frontier: guidebook removed
+  #   guides: # Frontier: guidebook removed
+  #   - Cargo # Frontier: guidebook removed
 
 - type: entity
   parent: BaseComputer
@@ -1079,8 +1064,8 @@
     anchored: true
   - type: UserInterface
     interfaces:
-      - key: enum.NewsWriterUiKey.Key
-        type: NewsWriterBoundUserInterface
+        enum.NewsWriterUiKey.Key:
+          type: NewsWriterBoundUserInterface
 
 - type: entity
   parent: BaseComputer
@@ -1112,7 +1097,7 @@
       key: enum.SensorMonitoringConsoleUiKey.Key
     - type: UserInterface
       interfaces:
-        - key: enum.SensorMonitoringConsoleUiKey.Key
+        enum.SensorMonitoringConsoleUiKey.Key:
           type: SensorMonitoringConsoleBoundUserInterface
     - type: DeviceNetwork
       deviceNetId: AtmosDevices
@@ -1124,3 +1109,42 @@
     - type: WiredNetworkConnection
     - type: DeviceList
     - type: AtmosDevice
+
+- type: entity
+  parent: BaseComputer
+  id: ComputerRoboticsControl
+  name: robotics control console
+  description: Used to remotely monitor, disable and destroy the station's cyborgs.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: robot
+    - map: ["computerLayerKeys"]
+      state: rd_key
+  - type: RoboticsConsole
+  - type: ActiveRadio
+    channels:
+    - Science
+  - type: ActivatableUI
+    key: enum.RoboticsConsoleUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.RoboticsConsoleUiKey.Key:
+        type: RoboticsConsoleBoundUserInterface
+  - type: ApcPowerReceiver
+    powerLoad: 1000
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: RoboticsConsole
+    transmitFrequencyId: CyborgControl
+  - type: Computer
+    board: RoboticsConsoleCircuitboard
+  - type: AccessReader # only used for dangerous things
+    access: [["ResearchDirector"]]
+  - type: Lock
+    unlockOnClick: false

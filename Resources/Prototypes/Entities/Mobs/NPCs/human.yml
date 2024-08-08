@@ -7,7 +7,7 @@
   - type: InputMover
   - type: MobMover
   - type: Loadout
-    prototypes: [PassengerGear]
+    prototypes: [LimitedPassengerGear]
   - type: NpcFactionMember
     factions:
     - NanoTrasen
@@ -76,6 +76,7 @@
   id: SalvageHumanCorpse
   name: unidentified corpse
   description: I think they're dead.
+  noSpawn: true # Frontier
   components:
   - type: RandomHumanoidAppearance
     randomizeName: false

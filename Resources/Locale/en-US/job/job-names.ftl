@@ -1,9 +1,8 @@
-job-name-warden = Bailiff
-job-name-security = Deputy
-job-name-cadet = Cadet
-job-name-hos = Sheriff
+job-name-warden = Warden
+job-name-security = Security Officer
+job-name-cadet = Security Cadet
+job-name-hos = Head of Security
 job-name-detective = Detective
-job-name-brigmedic = Brigmedic
 job-name-borg = Cyborg
 job-name-scientist = Scientist
 job-name-research-assistant = Research Assistant
@@ -17,7 +16,7 @@ job-name-chemist = Chemist
 job-name-technical-assistant = Technical Assistant
 job-name-engineer = Station Engineer
 job-name-atmostech = Atmospheric Technician
-job-name-hop = Station Representative
+job-name-hop = Head of Personnel
 job-name-captain = Captain
 job-name-serviceworker = Service Worker
 job-name-centcomoff = CentCom Official
@@ -45,10 +44,6 @@ job-name-ertmedic = ERT Medic
 job-name-ertjanitor = ERT Janitor
 job-name-boxer = Boxer
 job-name-zookeeper = Zookeeper
-job-name-senior-engineer = Senior Engineer
-job-name-senior-researcher = Senior Researcher
-job-name-senior-physician = Senior Physician
-job-name-senior-officer = Sergeant
 job-name-visitor = Visitor
 
 # Role timers - Make these alphabetical or I cut you
@@ -74,7 +69,9 @@ JobERTJanitor = ERT Janitor
 JobERTLeader = ERT Leader
 JobERTMedical = ERT Medical
 JobERTSecurity = ERT Security
+# Frontier: Head of Personnel<Station Representative
 JobHeadOfPersonnel = Station Representative
+# Frontier: Head of Security<Sheriff
 JobHeadOfSecurity = Sheriff
 JobJanitor = Janitor
 JobLawyer = Lawyer
@@ -84,7 +81,8 @@ JobMedicalIntern = Medical intern
 JobMime = Mime
 JobMusician = Musician
 JobParamedic = Paramedic
-JobPassenger = Passenger
+# Frontier: Passenger<Contractor
+JobPassenger = Contractor
 JobPsychologist = Psychologist
 JobQuartermaster = Quartermaster
 JobReporter = Reporter
@@ -92,15 +90,14 @@ JobResearchAssistant = Research Assistant
 JobResearchDirector = Research Director
 JobSalvageSpecialist = Salvage Specialist
 JobScientist = Scientist
+# Frontier: Security Cadet<Cadet
 JobSecurityCadet = Cadet
+# Frontier: Security Officer<Deputy
 JobSecurityOfficer = Deputy
-JobSeniorEngineer = Senior Engineer
-JobSeniorOfficer = Sergeant
-JobSeniorPhysician = Senior Physician
-JobSeniorResearcher = Senior Researcher
 JobServiceWorker = Service Worker
 JobStationEngineer = Station Engineer
 JobTechnicalAssistant = Technical Assistant
 JobVisitor = Visitor
+# Frontier: Warden<Bailiff
 JobWarden = Bailiff
 JobZookeeper = Zookeeper

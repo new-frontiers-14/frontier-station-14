@@ -28,7 +28,10 @@ entities:
     - type: MetaData
     - type: Transform
     - type: Map
+      mapPaused: True
     - type: PhysicsMap
+    - type: GridTree
+    - type: MovedGrids
     - type: Broadphase
     - type: OccluderTree
     - type: MapGrid
@@ -2684,8 +2687,6 @@ entities:
     - type: RadiationGridResistance
     - type: LoadedMap
     - type: SpreaderGrid
-    - type: GridTree
-    - type: MovedGrids
     - type: GridPathfinding
 - proto: AirlockBrigGlassLocked
   entities:
@@ -3158,13 +3159,6 @@ entities:
     components:
     - type: Transform
       pos: 24.420084,44.539436
-      parent: 588
-- proto: BriefcaseBrownFilled
-  entities:
-  - uid: 325
-    components:
-    - type: Transform
-      pos: 19.413612,4.6972914
       parent: 588
 - proto: BrokenBottle
   entities:
@@ -7109,76 +7103,6 @@ entities:
     - type: Transform
       pos: 21.586027,4.583762
       parent: 588
-- proto: ClothingOuterArmorHeavy
-  entities:
-  - uid: 522
-    components:
-    - type: Transform
-      pos: 30.47641,8.530076
-      parent: 588
-    - type: GroupExamine
-      group:
-      - hoverMessage: ""
-        contextText: verb-examine-group-other
-        icon: /Textures/Interface/examine-star.png
-        components:
-        - Armor
-        - ClothingSpeedModifier
-        entries:
-        - message: This decreases your speed by [color=yellow]10%[/color].
-          priority: 0
-          component: ClothingSpeedModifier
-        - message: >-
-            It provides the following protection:
-
-            - [color=yellow]Blunt[/color] damage reduced by [color=lightblue]40%[/color].
-
-            - [color=yellow]Slash[/color] damage reduced by [color=lightblue]40%[/color].
-
-            - [color=yellow]Piercing[/color] damage reduced by [color=lightblue]50%[/color].
-
-            - [color=yellow]Heat[/color] damage reduced by [color=lightblue]30%[/color].
-
-            - [color=yellow]Caustic[/color] damage reduced by [color=lightblue]25%[/color].
-
-            - [color=orange]Explosion[/color] damage reduced by [color=lightblue]30%[/color].
-          priority: 0
-          component: Armor
-        title: null
-  - uid: 1069
-    components:
-    - type: Transform
-      pos: 30.708948,8.655076
-      parent: 588
-    - type: GroupExamine
-      group:
-      - hoverMessage: ""
-        contextText: verb-examine-group-other
-        icon: /Textures/Interface/examine-star.png
-        components:
-        - Armor
-        - ClothingSpeedModifier
-        entries:
-        - message: This decreases your speed by [color=yellow]10%[/color].
-          priority: 0
-          component: ClothingSpeedModifier
-        - message: >-
-            It provides the following protection:
-
-            - [color=yellow]Blunt[/color] damage reduced by [color=lightblue]40%[/color].
-
-            - [color=yellow]Slash[/color] damage reduced by [color=lightblue]40%[/color].
-
-            - [color=yellow]Piercing[/color] damage reduced by [color=lightblue]50%[/color].
-
-            - [color=yellow]Heat[/color] damage reduced by [color=lightblue]30%[/color].
-
-            - [color=yellow]Caustic[/color] damage reduced by [color=lightblue]25%[/color].
-
-            - [color=orange]Explosion[/color] damage reduced by [color=lightblue]30%[/color].
-          priority: 0
-          component: Armor
-        title: null
 - proto: ClothingOuterRobesJudge
   entities:
   - uid: 370
@@ -7280,27 +7204,6 @@ entities:
     components:
     - type: Transform
       pos: 22.5,36.5
-      parent: 588
-- proto: CrateEngineeringGear
-  entities:
-  - uid: 1008
-    components:
-    - type: Transform
-      pos: 26.5,30.5
-      parent: 588
-- proto: CrateFunBoardGames
-  entities:
-  - uid: 1845
-    components:
-    - type: Transform
-      pos: 26.5,48.5
-      parent: 588
-- proto: CrateFunParty
-  entities:
-  - uid: 1876
-    components:
-    - type: Transform
-      pos: 25.5,43.5
       parent: 588
 - proto: CrayonBox
   entities:
@@ -7784,11 +7687,6 @@ entities:
       parent: 588
 - proto: filingCabinetRandom
   entities:
-  - uid: 320
-    components:
-    - type: Transform
-      pos: 21.5,0.5
-      parent: 588
   - uid: 321
     components:
     - type: Transform
@@ -8397,13 +8295,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 27.5,39.5
       parent: 588
-- proto: GunSafeShuttleT3Spawner
-  entities:
-  - uid: 396
-    components:
-    - type: Transform
-      pos: 28.5,8.5
-      parent: 588
 - proto: HighSecArmoryLocked
   entities:
   - uid: 1597
@@ -8673,28 +8564,6 @@ entities:
     components:
     - type: Transform
       pos: 20.5,40.5
-      parent: 588
-- proto: MaintenanceWeaponSpawner
-  entities:
-  - uid: 548
-    components:
-    - type: Transform
-      pos: 15.5,4.5
-      parent: 588
-  - uid: 549
-    components:
-    - type: Transform
-      pos: 3.5,4.5
-      parent: 588
-  - uid: 1580
-    components:
-    - type: Transform
-      pos: 1.5,8.5
-      parent: 588
-  - uid: 1581
-    components:
-    - type: Transform
-      pos: 9.5,8.5
       parent: 588
 - proto: MaterialCloth1
   entities:
@@ -9652,6 +9521,11 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 27.5,15.5
       parent: 588
+  - uid: 522
+    components:
+    - type: Transform
+      pos: 28.5,8.5
+      parent: 588
   - uid: 551
     components:
     - type: Transform
@@ -10103,6 +9977,13 @@ entities:
     - type: Transform
       pos: 5.5,43.5
       parent: 588
+- proto: RandomEngineerCorpseSpawner
+  entities:
+  - uid: 1851
+    components:
+    - type: Transform
+      pos: 5.5,8.5
+      parent: 588
 - proto: RandomFoodSingle
   entities:
   - uid: 764
@@ -10503,6 +10384,28 @@ entities:
     - type: Transform
       pos: 30.513643,24.642054
       parent: 588
+- proto: SpawnDungeonLootArmorMercenary
+  entities:
+  - uid: 396
+    components:
+    - type: Transform
+      pos: 30.233421,8.670348
+      parent: 588
+  - uid: 532
+    components:
+    - type: Transform
+      pos: 30.452171,8.560973
+      parent: 588
+  - uid: 1846
+    components:
+    - type: Transform
+      pos: 30.780296,8.701598
+      parent: 588
+  - uid: 1852
+    components:
+    - type: Transform
+      pos: 1.5882692,16.451473
+      parent: 588
 - proto: SpawnDungeonLootArmoryClutter
   entities:
   - uid: 1836
@@ -10694,43 +10597,72 @@ entities:
       parent: 588
 - proto: SpawnDungeonLootArmoryGuns
   entities:
-  - uid: 511
-    components:
-    - type: Transform
-      pos: 12.573845,13.149443
-      parent: 588
-  - uid: 1296
-    components:
-    - type: Transform
-      pos: 1.52317,0.58291197
-      parent: 588
   - uid: 1297
     components:
     - type: Transform
       pos: 26.491337,36.55478
       parent: 588
-  - uid: 1298
+  - uid: 1877
     components:
     - type: Transform
-      pos: 26.678837,36.30478
+      pos: 1.7419353,8.400731
       parent: 588
-  - uid: 1611
+  - uid: 1878
     components:
     - type: Transform
-      pos: 12.510225,10.52252
+      pos: 1.4294353,12.542862
       parent: 588
-  - uid: 1612
+  - uid: 1880
     components:
     - type: Transform
-      pos: 22.6821,6.4756455
+      pos: 10.368743,18.981575
+      parent: 588
+  - uid: 1881
+    components:
+    - type: Transform
+      pos: 18.422972,25.488514
+      parent: 588
+  - uid: 1882
+    components:
+    - type: Transform
+      pos: 7.2941008,36.305187
       parent: 588
 - proto: SpawnDungeonLootArmoryMelee
   entities:
+  - uid: 1022
+    components:
+    - type: Transform
+      pos: 1.4944978,8.680037
+      parent: 588
   - uid: 1837
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 9.406113,8.369862
+      parent: 588
+- proto: SpawnDungeonLootArmoryRare
+  entities:
+  - uid: 1611
+    components:
+    - type: Transform
+      pos: 26.522364,35.493427
+      parent: 588
+  - uid: 1847
+    components:
+    - type: Transform
+      pos: 28.514671,8.639098
+      parent: 588
+  - uid: 1848
+    components:
+    - type: Transform
+      pos: 28.530296,8.389098
+      parent: 588
+- proto: SpawnDungeonLootBriefcase
+  entities:
+  - uid: 325
+    components:
+    - type: Transform
+      pos: 19.499813,4.5458493
       parent: 588
 - proto: SpawnDungeonLootBureaucracy
   entities:
@@ -10976,6 +10908,160 @@ entities:
     - type: Transform
       pos: 30.458656,48.244118
       parent: 588
+- proto: SpawnDungeonLootCrateArmoryWeapon
+  entities:
+  - uid: 724
+    components:
+    - type: Transform
+      pos: 21.5,0.5
+      parent: 588
+  - uid: 1886
+    components:
+    - type: Transform
+      pos: 8.5,12.5
+      parent: 588
+  - uid: 1899
+    components:
+    - type: Transform
+      pos: 20.5,34.5
+      parent: 588
+- proto: SpawnDungeonLootCrateEngi
+  entities:
+  - uid: 320
+    components:
+    - type: Transform
+      pos: 26.5,30.5
+      parent: 588
+  - uid: 1891
+    components:
+    - type: Transform
+      pos: 30.5,12.5
+      parent: 588
+  - uid: 1898
+    components:
+    - type: Transform
+      pos: 23.5,32.5
+      parent: 588
+  - uid: 1906
+    components:
+    - type: Transform
+      pos: 20.5,45.5
+      parent: 588
+- proto: SpawnDungeonLootCrateGeneral
+  entities:
+  - uid: 511
+    components:
+    - type: Transform
+      pos: 26.5,48.5
+      parent: 588
+  - uid: 629
+    components:
+    - type: Transform
+      pos: 26.5,42.5
+      parent: 588
+  - uid: 1887
+    components:
+    - type: Transform
+      pos: 12.5,16.5
+      parent: 588
+  - uid: 1890
+    components:
+    - type: Transform
+      pos: 30.5,16.5
+      parent: 588
+  - uid: 1893
+    components:
+    - type: Transform
+      pos: 2.5,28.5
+      parent: 588
+  - uid: 1894
+    components:
+    - type: Transform
+      pos: 0.5,30.5
+      parent: 588
+  - uid: 1895
+    components:
+    - type: Transform
+      pos: 12.5,32.5
+      parent: 588
+  - uid: 1896
+    components:
+    - type: Transform
+      pos: 18.5,27.5
+      parent: 588
+  - uid: 1897
+    components:
+    - type: Transform
+      pos: 26.5,27.5
+      parent: 588
+  - uid: 1900
+    components:
+    - type: Transform
+      pos: 27.5,39.5
+      parent: 588
+  - uid: 1903
+    components:
+    - type: Transform
+      pos: 0.5,40.5
+      parent: 588
+  - uid: 1904
+    components:
+    - type: Transform
+      pos: 6.5,38.5
+      parent: 588
+- proto: SpawnDungeonLootCrateHydro
+  entities:
+  - uid: 1892
+    components:
+    - type: Transform
+      pos: 31.5,22.5
+      parent: 588
+- proto: SpawnDungeonLootCrateMed
+  entities:
+  - uid: 1905
+    components:
+    - type: Transform
+      pos: 10.5,47.5
+      parent: 588
+- proto: SpawnDungeonLootCrateRestockGeneral
+  entities:
+  - uid: 1612
+    components:
+    - type: Transform
+      pos: 6.5,18.5
+      parent: 588
+  - uid: 1845
+    components:
+    - type: Transform
+      pos: 19.5,22.5
+      parent: 588
+  - uid: 1901
+    components:
+    - type: Transform
+      pos: 21.5,38.5
+      parent: 588
+  - uid: 1902
+    components:
+    - type: Transform
+      pos: 20.5,38.5
+      parent: 588
+  - uid: 1907
+    components:
+    - type: Transform
+      pos: 28.5,47.5
+      parent: 588
+- proto: SpawnDungeonLootCrateService
+  entities:
+  - uid: 1888
+    components:
+    - type: Transform
+      pos: 20.5,12.5
+      parent: 588
+  - uid: 1889
+    components:
+    - type: Transform
+      pos: 18.5,16.5
+      parent: 588
 - proto: SpawnDungeonLootCrateVehicle
   entities:
   - uid: 1838
@@ -11131,6 +11217,41 @@ entities:
     - type: Transform
       pos: 29.431097,40.491657
       parent: 588
+  - uid: 1853
+    components:
+    - type: Transform
+      pos: 26.357872,21.37014
+      parent: 588
+  - uid: 1854
+    components:
+    - type: Transform
+      pos: 26.607872,21.479515
+      parent: 588
+  - uid: 1855
+    components:
+    - type: Transform
+      pos: 26.764122,21.385765
+      parent: 588
+  - uid: 1871
+    components:
+    - type: Transform
+      pos: 27.285765,15.347457
+      parent: 588
+  - uid: 1872
+    components:
+    - type: Transform
+      pos: 27.504515,15.425582
+      parent: 588
+  - uid: 1873
+    components:
+    - type: Transform
+      pos: 27.83264,15.441207
+      parent: 588
+  - uid: 1875
+    components:
+    - type: Transform
+      pos: 22.384432,15.523854
+      parent: 588
 - proto: SpawnDungeonLootMaterialsValuableFull
   entities:
   - uid: 1161
@@ -11158,6 +11279,23 @@ entities:
     - type: Transform
       pos: 10.482424,39.571304
       parent: 588
+- proto: SpawnDungeonLootMeleeT1
+  entities:
+  - uid: 548
+    components:
+    - type: Transform
+      pos: 3.1972697,3.9128616
+      parent: 588
+  - uid: 549
+    components:
+    - type: Transform
+      pos: 15.781064,4.3895993
+      parent: 588
+  - uid: 1013
+    components:
+    - type: Transform
+      pos: 9.475606,8.521234
+      parent: 588
 - proto: SpawnDungeonLootMugs
   entities:
   - uid: 720
@@ -11179,6 +11317,68 @@ entities:
     components:
     - type: Transform
       pos: 22.487928,18.464716
+      parent: 588
+- proto: SpawnDungeonLootPartsEngi
+  entities:
+  - uid: 1857
+    components:
+    - type: Transform
+      pos: 0.6503401,28.370096
+      parent: 588
+  - uid: 1859
+    components:
+    - type: Transform
+      pos: 4.68159,26.354471
+      parent: 588
+  - uid: 1860
+    components:
+    - type: Transform
+      pos: 6.15034,24.823221
+      parent: 588
+  - uid: 1861
+    components:
+    - type: Transform
+      pos: 10.305524,31.401346
+      parent: 588
+  - uid: 1862
+    components:
+    - type: Transform
+      pos: 3.2573352,45.870567
+      parent: 588
+  - uid: 1863
+    components:
+    - type: Transform
+      pos: 3.3198352,45.604942
+      parent: 588
+  - uid: 1864
+    components:
+    - type: Transform
+      pos: 3.7885852,45.401817
+      parent: 588
+  - uid: 1866
+    components:
+    - type: Transform
+      pos: 4.36671,44.948692
+      parent: 588
+  - uid: 1867
+    components:
+    - type: Transform
+      pos: 4.77296,44.354942
+      parent: 588
+  - uid: 1868
+    components:
+    - type: Transform
+      pos: 5.42921,43.651817
+      parent: 588
+  - uid: 1869
+    components:
+    - type: Transform
+      pos: 5.71046,43.073692
+      parent: 588
+  - uid: 1870
+    components:
+    - type: Transform
+      pos: 6.36671,43.042442
       parent: 588
 - proto: SpawnDungeonLootPowerCell
   entities:
@@ -11339,15 +11539,67 @@ entities:
       parent: 588
 - proto: SpawnDungeonLootVaultGuns
   entities:
+  - uid: 1008
+    components:
+    - type: Transform
+      pos: 12.396959,13.181981
+      parent: 588
+  - uid: 1296
+    components:
+    - type: Transform
+      pos: 1.4584165,0.5822991
+      parent: 588
+  - uid: 1298
+    components:
+    - type: Transform
+      pos: 26.631739,36.384052
+      parent: 588
   - uid: 1299
     components:
     - type: Transform
-      pos: 26.599047,35.444897
+      pos: 12.489998,10.538
+      parent: 588
+  - uid: 1570
+    components:
+    - type: Transform
+      pos: 22.536873,6.5536256
       parent: 588
   - uid: 1660
     components:
     - type: Transform
       pos: 11.198751,39.646996
+      parent: 588
+  - uid: 1849
+    components:
+    - type: Transform
+      pos: 28.483421,8.560973
+      parent: 588
+  - uid: 1883
+    components:
+    - type: Transform
+      pos: 10.875552,39.649677
+      parent: 588
+  - uid: 1884
+    components:
+    - type: Transform
+      pos: 12.297427,39.680927
+      parent: 588
+  - uid: 1885
+    components:
+    - type: Transform
+      pos: 13.333992,0.46897745
+      parent: 588
+- proto: SpawnDungeonVendomatsArmory
+  entities:
+  - uid: 1580
+    components:
+    - type: Transform
+      pos: 14.5,27.5
+      parent: 588
+  - uid: 1581
+    components:
+    - type: Transform
+      pos: 16.5,25.5
       parent: 588
 - proto: SpawnDungeonVendomatsClothes
   entities:
@@ -11358,6 +11610,11 @@ entities:
       parent: 588
 - proto: SpawnDungeonVendomatsRecreational
   entities:
+  - uid: 1069
+    components:
+    - type: Transform
+      pos: 18.5,12.5
+      parent: 588
   - uid: 1190
     components:
     - type: Transform
@@ -11917,13 +12174,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 8.5,25.5
       parent: 588
-- proto: VendingMachineChefvend
-  entities:
-  - uid: 532
-    components:
-    - type: Transform
-      pos: 18.5,12.5
-      parent: 588
 - proto: VendingMachineDetDrobe
   entities:
   - uid: 582
@@ -11951,20 +12201,6 @@ entities:
     components:
     - type: Transform
       pos: 28.5,28.5
-      parent: 588
-- proto: VendingMachineSec
-  entities:
-  - uid: 1013
-    components:
-    - type: Transform
-      pos: 14.5,27.5
-      parent: 588
-- proto: VendingMachineSecDrobe
-  entities:
-  - uid: 1022
-    components:
-    - type: Transform
-      pos: 16.5,25.5
       parent: 588
 - proto: VendingMachineSeedsUnlocked
   entities:
@@ -12537,18 +12773,6 @@ entities:
     - type: Transform
       pos: 24.5,47.5
       parent: 588
-- proto: WaterCooler
-  entities:
-  - uid: 629
-    components:
-    - type: Transform
-      pos: 6.5,18.5
-      parent: 588
-  - uid: 724
-    components:
-    - type: Transform
-      pos: 19.5,22.5
-      parent: 588
 - proto: WaterTankHighCapacity
   entities:
   - uid: 801
@@ -12632,12 +12856,6 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 18.5,45.5
-      parent: 588
-  - uid: 1570
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 20.5,45.5
       parent: 588
 - proto: WindoorSecureMedicalLocked
   entities:
@@ -12799,6 +13017,12 @@ entities:
     components:
     - type: Transform
       pos: 30.5,46.5
+      parent: 588
+  - uid: 1876
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 20.5,45.5
       parent: 588
 - proto: WindowFrostedDirectional
   entities:

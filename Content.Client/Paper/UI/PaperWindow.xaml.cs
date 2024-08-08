@@ -240,10 +240,19 @@ namespace Content.Client.Paper.UI
                 Input.InsertAtCursor(state.Text);
             }
 
-            for (var i = 0; i <= state.StampedBy.Count * 3 + 1; i++)
+            // for (var i = 0; i <= state.StampedBy.Count * 3 + 1; i++) // Frontier
+            // { // Frontier
+            //     msg.AddMarkupPermissive("\r\n"); // Frontier
+            // } // Frontier
+
+            // Frontier: signatures shouldn't walk off the page
+            if (state.StampedBy.Count > 0)
             {
-                msg.AddMarkupPermissive("\r\n");
+                for (int i = 0; i < 6; i++)
+                    msg.AddMarkupPermissive("\r\n");
             }
+            // End Frontier
+
             WrittenTextLabel.SetMessage(msg, _allowedTags, DefaultTextColor);
 
             WrittenTextLabel.Visible = !isEditing && state.Text.Length > 0;
@@ -253,10 +262,7 @@ namespace Content.Client.Paper.UI
             StampDisplay.RemoveStamps();
             foreach(var stamper in state.StampedBy)
             {
-                if (stamper.StampedBorderless)
-                    StampDisplay.AddStamp(new StampWidget(true) { StampInfo = stamper });
-                else
-                    StampDisplay.AddStamp(new StampWidget { StampInfo = stamper });
+                StampDisplay.AddStamp(new StampWidget { StampInfo = stamper });
             }
         }
 

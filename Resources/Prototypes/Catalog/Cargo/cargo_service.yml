@@ -41,6 +41,7 @@
 
 - type: cargoProduct
   id: ServiceSmokeables
+  abstract: true # Frontier
   icon:
     sprite: Objects/Consumable/Smokeables/Cigarettes/Cartons/green.rsi
     state: closed
@@ -62,10 +63,20 @@
 - type: cargoProduct
   id: ServiceBureaucracy
   icon:
-    sprite: Objects/Misc/bureaucracy.rsi
+    sprite: Objects/Misc/pens.rsi
     state: pen
   product: CrateServiceBureaucracy
   cost: 1000
+  category: cargoproduct-category-name-service
+  group: market
+
+- type: cargoProduct
+  id: ServiceFaxMachine
+  icon:
+    sprite: Structures/Machines/fax_machine.rsi
+    state: icon
+  product: CrateServiceFaxMachine
+  cost: 2000
   category: cargoproduct-category-name-service
   group: market
 
@@ -102,6 +113,7 @@
 
 - type: cargoProduct
   id: ServiceSodaDispenser
+  abstract: true # Frontier
   icon:
     sprite: Objects/Consumable/Drinks/generic_jug.rsi
     state: icon
@@ -112,6 +124,7 @@
 
 - type: cargoProduct
   id: ServiceBoozeDispenser
+  abstract: true # Frontier
   icon:
     sprite: Objects/Consumable/Drinks/generic_jug.rsi
     state: icon
@@ -173,10 +186,11 @@
 
 - type: cargoProduct
   id: JanitorExplosive
+  abstract: true # Frontier
   icon:
     sprite: Clothing/Head/Helmets/janitor_bombsuit.rsi
     state: icon
-  product: CrateJanitorExplosive
+  product: ClosetJanitorBombFilled
   cost: 1000
   category: cargoproduct-category-name-service
   group: market

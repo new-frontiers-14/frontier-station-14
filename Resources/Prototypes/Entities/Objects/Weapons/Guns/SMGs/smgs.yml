@@ -80,7 +80,7 @@
 
 - type: entity
   name: C-20r sub machine gun
-  parent: BaseWeaponSubMachineGun
+  parent: [BaseWeaponSubMachineGun, BaseGunWieldable]
   id: WeaponSubMachineGunC20r
   description: An illegal firearm that is often used by the infamous nuclear operatives. Uses .35 auto ammo.
   components:
@@ -93,7 +93,14 @@
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
     sprite: Objects/Weapons/Guns/SMGs/c20r.rsi
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: GunWieldBonus
+    minAngle: -19
+    maxAngle: -16
   - type: Gun
+    minAngle: 21
+    maxAngle: 32 
     shotsPerBurst: 5
     availableModes:
     - SemiAuto
@@ -112,7 +119,7 @@
 
 - type: entity
   name: Drozd
-  parent: BaseWeaponSubMachineGun
+  parent: [BaseWeaponSubMachineGun, BaseGunWieldable]
   id: WeaponSubMachineGunDrozd
   description: An excellent fully automatic Heavy SMG. An illegal firearm often used by Syndicate agents.
   components:
@@ -125,7 +132,14 @@
           map: ["enum.GunVisualLayers.Mag"]
     - type: Clothing
       sprite: Objects/Weapons/Guns/SMGs/drozd.rsi
+    - type: Wieldable
+      unwieldOnUse: false
+    - type: GunWieldBonus
+      minAngle: -19
+      maxAngle: -16
     - type: Gun
+      minAngle: 21
+      maxAngle: 32
       fireRate: 6
       selectedMode: FullAuto
       soundGunshot:
@@ -261,55 +275,3 @@
     steps: 6
     zeroVisible: true
   - type: Appearance
-
-# Rubber
-- type: entity
-  name: Drozd
-  parent: WeaponSubMachineGunDrozd
-  id: WeaponSubMachineGunDrozdRubber
-  suffix: Non-Lethal
-  components:
-    - type: ItemSlots
-      slots:
-        gun_magazine:
-          name: Magazine
-          startingItem: MagazinePistolSubMachineGunRubber
-          insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
-          ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
-          priority: 2
-          whitelist:
-            tags:
-              - MagazinePistolSubMachineGun
-        gun_chamber:
-          name: Chamber
-          startingItem: CartridgePistolRubber
-          priority: 1
-          whitelist:
-            tags:
-              - CartridgePistol
-
-- type: entity
-  name: Vector
-  parent: WeaponSubMachineGunVector
-  id: WeaponSubMachineGunVectorRubber
-  description: An excellent fully automatic Heavy SMG. Uses .45 magnum ammo. An illegal firearm often used by Syndicate agents.
-  suffix: Non-Lethal
-  components:
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        name: Magazine
-        startingItem: MagazineMagnumSubMachineGunRubber
-        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
-        priority: 2
-        whitelist:
-          tags:
-            - MagazineMagnumSubMachineGun
-      gun_chamber:
-        name: Chamber
-        startingItem: CartridgeMagnumRubber
-        priority: 1
-        whitelist:
-          tags:
-            - CartridgeMagnum

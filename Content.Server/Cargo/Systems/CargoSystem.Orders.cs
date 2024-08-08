@@ -33,6 +33,8 @@ namespace Content.Server.Cargo.Systems
 {
     public sealed partial class CargoSystem
     {
+        [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
+
         /// <summary>
         /// How much time to wait (in seconds) before increasing bank accounts balance.
         /// </summary>
@@ -79,7 +81,7 @@ namespace Content.Server.Cargo.Systems
         private void OnInit(EntityUid uid, CargoOrderConsoleComponent orderConsole, ComponentInit args)
         {
             var station = _station.GetOwningStation(uid);
-            UpdateOrderState(orderConsole, station);
+            UpdateOrderState(uid, orderConsole, station);
         }
 
         private void Reset()
@@ -108,7 +110,7 @@ namespace Content.Server.Cargo.Systems
                     if (!_uiSystem.IsUiOpen(uid, CargoConsoleUiKey.Orders)) continue;
 
                     var station = _station.GetOwningStation(uid);
-                    UpdateOrderState(comp, station);
+                    UpdateOrderState(uid, comp, station);
                 }
             }
         }
@@ -117,12 +119,12 @@ namespace Content.Server.Cargo.Systems
 
         private void OnApproveOrderMessage(EntityUid uid, CargoOrderConsoleComponent component, CargoConsoleApproveOrderMessage args)
         {
-            if (args.Session.AttachedEntity is not { Valid: true } player)
+            if (args.Actor is not { Valid: true } player)
                 return;
 
             if (!_accessReaderSystem.IsAllowed(player, uid))
             {
-                ConsolePopup(args.Session, Loc.GetString("cargo-console-order-not-allowed"));
+                ConsolePopup(args.Actor, Loc.GetString("cargo-console-order-not-allowed"));
                 PlayDenySound(uid, component);
                 return;
             }
@@ -132,7 +134,7 @@ namespace Content.Server.Cargo.Systems
             // No station to deduct from.
             if (!TryGetOrderDatabase(uid, out var dbUid, out var orderDatabase, component) ||  bankAccount == null)
             {
-                ConsolePopup(args.Session, Loc.GetString("cargo-console-station-not-found"));
+                ConsolePopup(args.Actor, Loc.GetString("cargo-console-station-not-found"));
                 PlayDenySound(uid, component);
                 return;
             }
@@ -147,7 +149,7 @@ namespace Content.Server.Cargo.Systems
             // Invalid order
             if (!_protoMan.HasIndex<EntityPrototype>(order.ProductId))
             {
-                ConsolePopup(args.Session, Loc.GetString("cargo-console-invalid-product"));
+                ConsolePopup(args.Actor, Loc.GetString("cargo-console-invalid-product"));
                 PlayDenySound(uid, component);
                 return;
             }
@@ -158,7 +160,7 @@ namespace Content.Server.Cargo.Systems
             // Too many orders, avoid them getting spammed in the UI.
             if (amount >= capacity)
             {
-                ConsolePopup(args.Session, Loc.GetString("cargo-console-too-many"));
+                ConsolePopup(args.Actor, Loc.GetString("cargo-console-too-many"));
                 PlayDenySound(uid, component);
                 return;
             }
@@ -169,7 +171,7 @@ namespace Content.Server.Cargo.Systems
             if (cappedAmount != order.OrderQuantity)
             {
                 order.OrderQuantity = cappedAmount;
-                ConsolePopup(args.Session, Loc.GetString("cargo-console-snip-snip"));
+                ConsolePopup(args.Actor, Loc.GetString("cargo-console-snip-snip"));
                 PlayDenySound(uid, component);
             }
 
@@ -178,7 +180,7 @@ namespace Content.Server.Cargo.Systems
             // Not enough balance
             if (cost > bankAccount.Balance)
             {
-                ConsolePopup(args.Session, Loc.GetString("cargo-console-insufficient-funds", ("cost", cost)));
+                ConsolePopup(args.Actor, Loc.GetString("cargo-console-insufficient-funds", ("cost", cost)));
                 PlayDenySound(uid, component);
                 return;
             }
@@ -186,7 +188,18 @@ namespace Content.Server.Cargo.Systems
             _idCardSystem.TryFindIdCard(player, out var idCard);
             // ReSharper disable once ConditionalAccessQualifierIsNonNullableAccordingToAPIContract
             order.SetApproverData(idCard.Comp?.FullName, idCard.Comp?.JobTitle);
-            _audio.PlayPvs(_audio.GetSound(component.ConfirmSound), uid);
+            _audio.PlayPvs(component.ConfirmSound, uid);
+
+            var approverName = idCard.Comp?.FullName ?? Loc.GetString("access-reader-unknown-id");
+            var approverJob = idCard.Comp?.JobTitle ?? Loc.GetString("access-reader-unknown-id");
+            var message = Loc.GetString("cargo-console-unlock-approved-order-broadcast",
+                ("productName", Loc.GetString(order.ProductName)),
+                ("orderAmount", order.OrderQuantity),
+                ("approverName", approverName),
+                ("approverJob", approverJob),
+                ("cost", cost));
+            //_radio.SendRadioMessage(uid, message, component.AnnouncementChannel, uid, escapeMarkup: false); # Frontier
+            ConsolePopup(args.Actor, Loc.GetString("cargo-console-trade-station", ("destination", MetaData(uid).EntityName)));
 
             // Log order approval
             _adminLogger.Add(LogType.Action, LogImpact.Low,
@@ -264,7 +277,7 @@ namespace Content.Server.Cargo.Systems
 
         private void OnAddOrderMessage(EntityUid uid, CargoOrderConsoleComponent component, CargoConsoleAddOrderMessage args)
         {
-            if (args.Session.AttachedEntity is not { Valid: true } player)
+            if (args.Actor is not { Valid: true } player)
                 return;
 
             if (args.Amount <= 0)
@@ -273,6 +286,8 @@ namespace Content.Server.Cargo.Systems
             var bank = GetBankAccount(uid, component);
 
             if (!HasComp<BankAccountComponent>(player) && bank == null) return;
+
+
             if (!TryGetOrderDatabase(uid, out var dbUid, out var orderDatabase, component))
                 return;
 
@@ -302,54 +317,51 @@ namespace Content.Server.Cargo.Systems
         private void OnOrderUIOpened(EntityUid uid, CargoOrderConsoleComponent component, BoundUIOpenedEvent args)
         {
             var station = _station.GetOwningStation(uid);
-            UpdateOrderState(component, station);
+            UpdateOrderState(uid, component, station);
         }
 
         #endregion
 
-        private void UpdateOrderState(CargoOrderConsoleComponent component, EntityUid? station)
+        private void UpdateOrderState(EntityUid uid, CargoOrderConsoleComponent component, EntityUid? station)
         {
-            if (!_uiSystem.TryGetUi(component.Owner, CargoConsoleUiKey.Orders, out var bui))
+
+            var uiUsers = _uiSystem.GetActors(uid, CargoConsoleUiKey.Orders);
+            foreach (var user in uiUsers)
             {
-                return;
+                var balance = 0;
+
+                if (Transform(user).GridUid is EntityUid stationGrid &&
+                    TryComp<BankAccountComponent>(user, out var playerBank))
+                {
+                    station = stationGrid;
+                    balance = playerBank.Balance;
+                }
+                else if (TryComp<StationBankAccountComponent>(station, out var stationBank))
+                {
+                    balance = stationBank.Balance;
+                }
+
+                if (station == null || !TryGetOrderDatabase(station.Value, out var _, out var orderDatabase, component))
+                    return;
+
+                // Frontier - we only want to see orders made on the same computer, so filter them out
+                var filteredOrders = orderDatabase.Orders
+                    .Where(order => order.Computer == EntityManager.GetNetEntity(uid)).ToList();
+
+                var state = new CargoConsoleInterfaceState(
+                    MetaData(user).EntityName,
+                    GetOutstandingOrderCount(orderDatabase),
+                    orderDatabase.Capacity,
+                    balance,
+                    filteredOrders);
+
+                _uiSystem.SetUiState(uid, CargoConsoleUiKey.Orders, state);
             }
-
-            var uiUser = bui.SubscribedSessions.FirstOrDefault();
-            var balance = 0;
-
-            if (uiUser?.AttachedEntity is not { Valid: true } player)
-            {
-                return;
-            }
-
-            if (Transform(component.Owner).GridUid is EntityUid stationGrid && TryComp<BankAccountComponent>(player, out var playerBank))
-            {
-                station = stationGrid;
-                balance = playerBank.Balance;
-            }
-            else if (TryComp<StationBankAccountComponent>(station, out var stationBank))
-            {
-                balance = stationBank.Balance;
-            }
-
-            if (station == null || !TryGetOrderDatabase(station.Value, out var _, out var orderDatabase, component)) return;
-
-            // Frontier - we only want to see orders made on the same computer, so filter them out
-            var filteredOrders = orderDatabase.Orders.Where(order => order.Computer == EntityManager.GetNetEntity(component.Owner)).ToList();
-
-            var state = new CargoConsoleInterfaceState(
-                MetaData(player).EntityName,
-                GetOutstandingOrderCount(orderDatabase),
-                orderDatabase.Capacity,
-                balance,
-                filteredOrders);
-
-            _uiSystem.SetUiState(bui, state);
         }
 
-        private void ConsolePopup(ICommonSession session, string text)
+        private void ConsolePopup(EntityUid actor, string text)
         {
-            _popup.PopupCursor(text, session);
+            _popup.PopupCursor(text, actor);
         }
 
         private void PlayDenySound(EntityUid uid, CargoOrderConsoleComponent component)
@@ -359,7 +371,7 @@ namespace Content.Server.Cargo.Systems
 
         private static CargoOrderData GetOrderData(NetEntity consoleUid, CargoConsoleAddOrderMessage args, CargoProductPrototype cargoProduct, int id)
         {
-            return new CargoOrderData(id, cargoProduct.Product, cargoProduct.Cost, args.Amount, args.Requester, args.Reason, consoleUid);
+            return new CargoOrderData(id, cargoProduct.Product, cargoProduct.Name, cargoProduct.Cost, args.Amount, args.Requester, args.Reason, consoleUid);
         }
 
         public static int GetOutstandingOrderCount(StationCargoOrderDatabaseComponent component)
@@ -391,7 +403,7 @@ namespace Content.Server.Cargo.Systems
                 if (station != dbUid)
                     continue;
 
-                UpdateOrderState(comp, station);
+                UpdateOrderState(uid, comp, station);
             }
 
             var consoleQuery = AllEntityQuery<CargoShuttleConsoleComponent>();
@@ -408,6 +420,7 @@ namespace Content.Server.Cargo.Systems
         public bool AddAndApproveOrder(
             EntityUid dbUid,
             string spawnId,
+            string name,
             int cost,
             int qty,
             string sender,
@@ -420,7 +433,7 @@ namespace Content.Server.Cargo.Systems
             DebugTools.Assert(_protoMan.HasIndex<EntityPrototype>(spawnId));
             // Make an order
             var id = GenerateOrderId(component);
-            var order = new CargoOrderData(id, spawnId, cost, qty, sender, description, null);
+            var order = new CargoOrderData(id, spawnId, name, cost, qty, sender, description, null);
 
             // Approve it now
             order.SetApproverData(dest, sender);
@@ -504,6 +517,9 @@ namespace Content.Server.Cargo.Systems
             // Create the item itself
             var item = Spawn(order.ProductId, spawn);
 
+            // Ensure the item doesn't start anchored
+            _transformSystem.Unanchor(item, Transform(item));
+
             // Create a sheet of paper to write the order details on
             var printed = EntityManager.SpawnEntity(paperProto, spawn);
             if (TryComp<PaperComponent>(printed, out var paper))
@@ -516,6 +532,7 @@ namespace Content.Server.Cargo.Systems
                         "cargo-console-paper-print-text",
                         ("orderNumber", order.OrderId),
                         ("itemName", MetaData(item).EntityName),
+                        ("orderQuantity", order.OrderQuantity),
                         ("requester", order.Requester),
                         ("reason", order.Reason),
                         ("approver", order.Approver ?? string.Empty)),

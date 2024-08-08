@@ -1,0 +1,56 @@
+- type: loadoutGroup
+  id: StationRepJumpsuit
+  name: loadout-group-contractor-jumpsuit
+  loadouts:
+  - StationRepClothingUniformJumpsuitSr
+  - StationRepClothingUniformJumpskirtSr
+  - StationRepClothingUniformJumpsuitMilitarySr
+  fallbacks:
+  - StationRepClothingUniformJumpsuitSr
+  - StationRepClothingUniformJumpskirtSr
+  
+- type: loadoutGroup
+  id: StationRepOuterClothing
+  name: loadout-group-contractor-outerclothing
+  minLimit: 0
+  loadouts:
+  - StationRepClothingOuterArmorSrCarapace
+  - StationRepClothingOuterJacketSr
+  - ContractorClothingOuterCoatExpensive #We let them drip out a little if they want
+  - ContractorClothingOuterCoatSpaceAsshole
+  
+- type: loadoutGroup
+  id: StationRepBackpack
+  name: loadout-group-contractor-backpack
+  loadouts:
+  - StationRepClothingBackpackMessengerSr
+  - StationRepClothingBackpackIan
+  subgroups:
+  - ContractorBackpack
+  fallbacks:
+  - StationRepClothingBackpackMessengerSr
+
+- type: loadoutGroup
+  id: StationRepHead
+  name: loadout-group-contractor-head
+  minLimit: 0
+  loadouts:
+  - StationRepClothingHeadHatSrCap
+  - StationRepClothingHeadHatSrBeret
+  subgroups:
+  - ContractorHead
+  
+- type: loadoutGroup
+  id: StationRepGloves
+  name: loadout-group-contractor-gloves
+  minLimit: 0
+  loadouts:
+  - StationRepClothingHandsGlovesSr
+
+- type: loadoutGroup
+  id: StationRepNeck
+  name: loadout-group-contractor-neck
+  minLimit: 0
+  loadouts:
+  - StationRepClothingNeckCloakSr
+  - StationRepClothingNeckMantleSr

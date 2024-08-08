@@ -1,0 +1,21 @@
+# New Frontiers - This file is licensed under AGPLv3
+# Copyright (c) 2024 New Frontiers Contributors
+# See AGPLv3.txt for details.
+
+- type: entity
+  id: PortalAdmin
+  parent: BasePortal
+  name: mystical portal
+  description: "A mystical portal to realms unknown. Adventure awaits!"
+  components:
+  - type: Sprite
+    layers:
+    - state: portal-artifact
+  - type: PointLight
+    color: "#ed85c2"
+    radius: 3
+    energy: 1
+    netsync: false
+  - type: Portal
+    canTeleportToOtherMaps: true
+    randomTeleport: false

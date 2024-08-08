@@ -8,7 +8,6 @@
     sprite: _NF/Clothing/Eyes/Hud/nfsd_hud.rsi
   - type: Clothing
     sprite: _NF/Clothing/Eyes/Hud/nfsd_hud.rsi
-  - type: ShowSecurityIcons
 
 - type: entity
   parent: ClothingEyesBase
@@ -20,9 +19,10 @@
     sprite: _NF/Clothing/Eyes/Hud/mail.rsi
   - type: Clothing
     sprite: _NF/Clothing/Eyes/Hud/mail.rsi
+  - type: ShowJobIcons
 
 - type: entity
-  parent: ClothingEyesBase
+  parent: [ClothingEyesHudMedical, ClothingEyesHudNfsd]
   id: ClothingEyesHudNfsdMed
   name: brigmedic hud
   description: An eye display that looks like a mixture of medical and nfsd huds.
@@ -34,10 +34,6 @@
   - type: Construction
     graph: HudMedSec
     node: medsecHud
-  - type: ShowSecurityIcons
-  - type: ShowHealthBars
-    damageContainers:
-    - Biological
 
 - type: entity
   parent: ClothingEyesHudSecurity
@@ -49,4 +45,3 @@
     sprite: _NF/Clothing/Eyes/Hud/nfsd_patch.rsi
   - type: Clothing
     sprite: _NF/Clothing/Eyes/Hud/nfsd_patch.rsi
-  - type: ShowSecurityIcons

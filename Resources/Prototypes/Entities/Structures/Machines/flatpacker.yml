@@ -62,8 +62,8 @@
   - type: ActivatableUIRequiresPower
   - type: UserInterface
     interfaces:
-    - key: enum.FlatpackCreatorUIKey.Key
-      type: FlatpackCreatorBoundUserInterface
+      enum.FlatpackCreatorUIKey.Key:
+        type: FlatpackCreatorBoundUserInterface
   - type: ItemSlots
     slots:
       board_slot:
@@ -88,7 +88,7 @@
 - type: entity
   id: FlatpackerNoBoardEffect
   categories:
-  - hideSpawnMenu
+  - HideSpawnMenu
   components:
   - type: Sprite
     sprite: Structures/Machines/autolathe.rsi

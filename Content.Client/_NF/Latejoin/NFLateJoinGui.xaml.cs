@@ -18,7 +18,7 @@ public sealed partial class NFLateJoinGui : FancyWindow
 {
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IConsoleHost _consoleHost = default!;
-    [Dependency] private readonly JobRequirementsManager _playManager = default!;
+    [Dependency] private readonly JobRequirementsManager _jobReqs = default!;
 
     private ClientGameTicker _gameTicker;
 
@@ -52,7 +52,7 @@ public sealed partial class NFLateJoinGui : FancyWindow
         _gameTicker.LobbyJobsAvailableUpdated -= UpdateUi;
     }
 
-    public void UpdateUi(IReadOnlyDictionary<NetEntity, Dictionary<string, uint?>> obj)
+    public void UpdateUi(IReadOnlyDictionary<NetEntity, Dictionary<ProtoId<JobPrototype>, int?>> obj)
     {
         if (VesselSelection.Selected is null)
         {
@@ -85,7 +85,7 @@ public sealed partial class NFLateJoinGui : FancyWindow
 
 
 
-            var newButton = new NewFrontierLateJoinJobButton(station, jobId, _gameTicker, _prototypeManager);
+            var newButton = new NewFrontierLateJoinJobButton(station, jobId, _gameTicker, _prototypeManager, _jobReqs);
             newButton.OnPressed += args =>
             {
                 Logger.InfoS("latejoin", $"Late joining as ID: {jobId}");
@@ -93,7 +93,7 @@ public sealed partial class NFLateJoinGui : FancyWindow
                 Close();
             };
 
-            if (!_playManager.IsAllowed(job, out var denyReason))
+            if (!_jobReqs.IsAllowed(job, out var denyReason))
             {
                 newButton.Disabled = true;
                 newButton.ToolTip = denyReason.ToString();

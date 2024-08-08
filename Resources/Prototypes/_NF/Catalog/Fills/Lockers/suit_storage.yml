@@ -27,7 +27,37 @@
         - id: ClothingMaskBreath
         - id: JetpackMiniFilled
         - id: HandheldGPSBasic
-#        - id: ClothingShoesBootsMagMercenaryFilled # Frontier - Not adding this to the suit storage so it wont be abused, exists only on role spawn.
+  - type: AccessReader
+
+#Mail Carrier EVA
+- type: entity
+  id: SuitStorageMailCarrier
+  parent: SuitStorageBase
+  suffix: Mail Carrier
+  components:
+  - type: StorageFill
+    contents:
+        - id: AirTankFilled
+        - id: ClothingOuterEVASuitMailman
+        - id: ClothingMaskBreath
+        - id: JetpackMiniFilled
+        - id: HandheldGPSBasic
+  - type: AccessReader
+    access: [["Mail"]]
+
+#Goblin EVA
+- type: entity
+  id: SuitStorageGoblin
+  parent: SuitStorageBase
+  suffix: Goblin
+  components:
+  - type: StorageFill
+    contents:
+        - id: AirTankFilled
+        - id: ClothingOuterEVASuitGoblin
+        - id: ClothingMaskBreath
+        - id: JetpackMiniFilled
+        - id: HandheldGPSBasic
   - type: AccessReader
 
 #HARDSUITS
@@ -80,6 +110,22 @@
   - type: AccessReader
     access: [["Captain"], ["Mercenary"]]
 
+- type: entity
+  id: SuitStoragePrivateSecurity
+  parent: SuitStorageBase
+  suffix: Private Security
+  components:
+  - type: StorageFill
+    contents:
+        - id: AirTankFilled
+        - id: ClothingOuterHardsuitPrivateSecurity
+        - id: ClothingMaskGasSecurity
+        - id: JetpackMiniFilled
+        - id: HandheldGPSBasic
+#        - id: ClothingShoesBootsMagCombat # Frontier - Not adding this to the suit storage so it wont be abused, exists only on role spawn.
+  - type: AccessReader
+    access: [["Captain"], ["Mercenary"]]
+
 #SCAF hardsuit
 - type: entity
   id: SuitStorageScaf
@@ -111,7 +157,6 @@
         - id: JetpackMiniFilled
         - id: HandheldGPSBasic
   - type: AccessReader
-    access: [["Captain"], ["Pilot"]]
 
 #Clown hardsuit
 - type: entity
@@ -263,19 +308,3 @@
         - id: ClothingShoesBootsMagNfsd # Frontier
   - type: AccessReader
     access: [["Security"]]
-
-#Mail Carrier hardsuit
-- type: entity
-  id: SuitStorageMailCarrier
-  parent: SuitStorageBase
-  suffix: Mail Carrier
-  components:
-  - type: StorageFill
-    contents:
-        - id: AirTankFilled
-        - id: ClothingOuterEVASuitMailman
-        - id: ClothingMaskBreath
-        - id: JetpackMiniFilled
-        - id: HandheldGPSBasic
-  - type: AccessReader
-    access: [["Mail"]]

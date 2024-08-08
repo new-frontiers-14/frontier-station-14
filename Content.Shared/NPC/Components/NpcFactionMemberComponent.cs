@@ -2,10 +2,11 @@ using Content.Shared.NPC.Prototypes;
 using Content.Shared.NPC.Systems;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
+using Content.Shared.Mech.EntitySystems; // Frontier
 
 namespace Content.Shared.NPC.Components;
 
-[RegisterComponent, NetworkedComponent, Access(typeof(NpcFactionSystem))]
+[RegisterComponent, NetworkedComponent, Access(typeof(NpcFactionSystem), typeof(SharedMechSystem))] // Frontier - Added MechSystem
 public sealed partial class NpcFactionMemberComponent : Component
 {
     /// <summary>
@@ -25,4 +26,16 @@ public sealed partial class NpcFactionMemberComponent : Component
     /// </summary>
     [ViewVariables]
     public readonly HashSet<ProtoId<NpcFactionPrototype>> HostileFactions = new();
+
+    /// <summary>
+    /// Used to add friendly factions in prototypes.
+    /// </summary>
+    [DataField, ViewVariables]
+    public HashSet<ProtoId<NpcFactionPrototype>>? AddFriendlyFactions;
+
+    /// <summary>
+    /// Used to add hostile factions in prototypes.
+    /// </summary>
+    [DataField, ViewVariables]
+    public HashSet<ProtoId<NpcFactionPrototype>>? AddHostileFactions;
 }

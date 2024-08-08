@@ -1,0 +1,1079 @@
+﻿# Baseline
+- type: entity
+  id: BaseAsteroidDebrisNF
+  parent: BaseDebrisNF
+  name: Asteroid Debris
+  abstract: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      floorTileset:
+      - FloorAsteroidSand
+      blobDrawProb: 0.5
+      radius: 6
+      floorPlacements: 16
+    - type: SimpleFloorPlanPopulator
+      entries:
+        FloorAsteroidSand:
+          - id: RandomArtifactSpawner20
+            prob: 0.03
+            orGroup: rock
+          - id: WallRock
+            prob: 0.3
+            orGroup: rock
+          - id: WallRockCoal
+            prob: 0.15
+            orGroup: rock
+          - id: WallRockTin
+            prob: 0.2
+            orGroup: rock
+          - id: WallRockQuartz
+            prob: 0.1
+            orGroup: rock
+          - id: WallRockSalt
+            prob: 0.15
+            orGroup: rock
+          - id: WallRockGold
+            prob: 0.06
+            orGroup: rock
+          - id: WallRockSilver
+            prob: 0.04
+            orGroup: rock
+          - id: WallRockPlasma
+            prob: 0.07
+            orGroup: rock
+          - id: WallRockUranium
+            prob: 0.04
+            orGroup: rock
+          - id: WallRockBananium
+            prob: 0.03
+            orGroup: rock
+          - id: WallRockArtifactFragment
+            prob: 0.03
+            orGroup: rock
+          - id: RockElementalSpawner
+            prob: 0.08
+            orGroup: rock
+    - type: GCAbleObject
+      queue: SpaceDebris
+    - type: IFF
+      flags: HideLabel
+      color: "#d67e27"
+
+- type: entity
+  id: AsteroidDebrisNFMedium
+  parent: BaseAsteroidDebrisNF
+  name: Asteroid Debris Medium
+  noSpawn: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      floorPlacements: 24
+
+- type: entity
+  id: AsteroidDebrisNFLarge
+  parent: BaseAsteroidDebrisNF
+  name: Asteroid Debris Large
+  noSpawn: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      floorPlacements: 36
+
+- type: entity
+  id: AsteroidDebrisNFLarger
+  parent: BaseAsteroidDebrisNF
+  name: Asteroid Debris Larger
+  noSpawn: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      radius: 12
+      floorPlacements: 48
+
+- type: entity
+  id: AsteroidDebrisNFHuge
+  parent: BaseAsteroidDebrisNF
+  name: Asteroid Debris Huge
+  noSpawn: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      radius: 28
+      floorPlacements: 108
+
+- type: entity
+  id: AsteroidSalvageNFSmall
+  parent: BaseAsteroidDebrisNF
+  name: Salvage Asteroid Small
+  noSpawn: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      blobDrawProb: 0.66
+      radius: 15
+      floorPlacements: 100
+
+- type: entity
+  id: AsteroidSalvageNFMedium
+  parent: BaseAsteroidDebrisNF
+  name: Salvage Asteroid Medium
+  noSpawn: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      blobDrawProb: 0.66
+      radius: 17
+      floorPlacements: 150
+
+- type: entity
+  id: AsteroidSalvageNFLarge
+  parent: BaseAsteroidDebrisNF
+  name: Salvage Asteroid Large
+  noSpawn: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      blobDrawProb: 0.66
+      radius: 20
+      floorPlacements: 200
+
+- type: entity
+  id: AsteroidSalvageNFHuge
+  parent: BaseAsteroidDebrisNF
+  name: Salvage Asteroid Huge
+  noSpawn: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      blobDrawProb: 0.66
+      radius: 23
+      floorPlacements: 250
+
+# Snow
+
+- type: entity
+  id: BaseAsteroidDebrisNFIce
+  parent: BaseDebrisNF
+  name: Salvage Iced Asteroid
+  abstract: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      floorTileset:
+      - FloorIce
+      blobDrawProb: 0.5
+      radius: 6
+      floorPlacements: 16
+    - type: SimpleFloorPlanPopulator
+      entries:
+        FloorIce:
+          - id: RandomArtifactSpawner20
+            prob: 0.03
+            orGroup: rock
+          - id: SnowElementalSpawner
+            prob: 0.08
+            orGroup: rock
+          - id: WallRockSnow
+            prob: 0.65
+            orGroup: rock
+          - id: WallRockSnowArtifactFragment
+            prob: 0.05
+            orGroup: rock
+          - id: WallRockSnowBananium
+            prob: 0.02
+            orGroup: rock
+          - id: WallRockSnowCoal
+            prob: 0.08
+            orGroup: rock
+          - id: WallRockSnowPlasma
+            prob: 0.05
+            orGroup: rock
+          - id: WallRockSnowUranium
+            prob: 0.01
+            orGroup: rock
+          - id: WallRockSnowTin
+            prob: 0.01
+            orGroup: rock
+          - id: WallRockSnowGold
+            prob: 0.01
+            orGroup: rock
+          - id: WallRockSnowQuartz
+            prob: 0.01
+            orGroup: rock
+          - id: WallRockSnowSilver
+            prob: 0.01
+            orGroup: rock
+          - id: WallRockSnowSalt
+            prob: 0.01
+            orGroup: rock
+          - id: WallIce
+            prob: 0.1
+            orGroup: rock
+    - type: GCAbleObject
+      queue: SpaceDebris
+    - type: IFF
+      flags: HideLabel
+      color: "#d6fffc"
+
+- type: entity
+  id: AsteroidDebrisNFIceMedium
+  parent: BaseAsteroidDebrisNFIce
+  name: Asteroid Ice Debris Medium
+  noSpawn: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      floorPlacements: 24
+
+- type: entity
+  id: AsteroidDebrisNFIceLarge
+  parent: BaseAsteroidDebrisNFIce
+  name: Asteroid Ice Debris Large
+  noSpawn: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      floorPlacements: 36
+
+- type: entity
+  id: AsteroidDebrisNFIceLarger
+  parent: BaseAsteroidDebrisNFIce
+  name: Asteroid Ice Debris Larger
+  noSpawn: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      radius: 12
+      floorPlacements: 48
+
+- type: entity
+  id: AsteroidDebrisNFIceHuge
+  parent: BaseAsteroidDebrisNFIce
+  name: Asteroid Ice Debris Huge
+  noSpawn: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      radius: 28
+      floorPlacements: 108
+
+- type: entity
+  id: AsteroidSalvageNFIceSmall
+  parent: BaseAsteroidDebrisNFIce
+  name: Salvage Ice Asteroid Small
+  noSpawn: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      blobDrawProb: 0.66
+      radius: 15
+      floorPlacements: 100
+
+- type: entity
+  id: AsteroidSalvageNFIceMedium
+  parent: BaseAsteroidDebrisNFIce
+  name: Salvage Ice Asteroid Medium
+  noSpawn: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      blobDrawProb: 0.66
+      radius: 17
+      floorPlacements: 150
+
+- type: entity
+  id: AsteroidSalvageNFIceLarge
+  parent: BaseAsteroidDebrisNFIce
+  name: Salvage Ice Asteroid Large
+  noSpawn: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      blobDrawProb: 0.66
+      radius: 20
+      floorPlacements: 200
+
+- type: entity
+  id: AsteroidSalvageNFIceHuge
+  parent: BaseAsteroidDebrisNFIce
+  name: Salvage Ice Asteroid Huge
+  noSpawn: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      blobDrawProb: 0.66
+      radius: 23
+      floorPlacements: 250
+
+# Andesite
+
+- type: entity
+  id: BaseAsteroidDebrisNFAndesite
+  parent: BaseDebrisNF
+  name: Salvage Andesite Asteroid
+  abstract: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      floorTileset:
+      - FloorCaveDrought
+      blobDrawProb: 0.5
+      radius: 6
+      floorPlacements: 16
+    - type: SimpleFloorPlanPopulator
+      entries:
+        FloorCaveDrought:
+          - id: RandomArtifactSpawner20
+            prob: 0.01
+            orGroup: rock
+          - id: AndesiteElementalSpawner
+            prob: 0.08
+            orGroup: rock
+          - id: WallRockAndesite
+            prob: 0.65
+            orGroup: rock
+          - id: WallRockAndesiteQuartz
+            prob: 0.25
+            orGroup: rock
+          - id: WallRockAndesiteTin
+            prob: 0.1
+            orGroup: rock
+          - id: WallRockAndesiteBananium
+            prob: 0.02
+            orGroup: rock
+          - id: WallRockAndesiteCoal
+            prob: 0.08
+            orGroup: rock
+          - id: WallRockAndesiteGold
+            prob: 0.01
+            orGroup: rock
+          - id: WallRockAndesitePlasma
+            prob: 0.01
+            orGroup: rock
+          - id: WallRockAndesiteSilver
+            prob: 0.01
+            orGroup: rock
+          - id: WallRockAndesiteSalt
+            prob: 0.01
+            orGroup: rock
+          - id: WallRockAndesiteUranium
+            prob: 0.01
+            orGroup: rock
+          - id: WallRockAndesiteArtifactFragment
+            prob: 0.01
+            orGroup: rock
+          - id: WallAndesiteCobblebrick
+            prob: 0.1
+            orGroup: rock
+    - type: GCAbleObject
+      queue: SpaceDebris
+    - type: IFF
+      flags: HideLabel
+      color: "#95c280"
+
+- type: entity
+  id: AsteroidDebrisNFAndesiteMedium
+  parent: BaseAsteroidDebrisNFAndesite
+  name: Asteroid Andesite Debris Medium
+  noSpawn: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      floorPlacements: 24
+
+- type: entity
+  id: AsteroidDebrisNFAndesiteLarge
+  parent: BaseAsteroidDebrisNFAndesite
+  name: Asteroid Andesite Debris Large
+  noSpawn: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      floorPlacements: 36
+
+- type: entity
+  id: AsteroidDebrisNFAndesiteLarger
+  parent: BaseAsteroidDebrisNFAndesite
+  name: Asteroid Andesite Debris Larger
+  noSpawn: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      radius: 12
+      floorPlacements: 48
+
+- type: entity
+  id: AsteroidDebrisNFAndesiteHuge
+  parent: BaseAsteroidDebrisNFAndesite
+  name: Asteroid Andesite Debris Huge
+  noSpawn: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      radius: 28
+      floorPlacements: 108
+
+- type: entity
+  id: AsteroidSalvageNFAndesiteSmall
+  parent: BaseAsteroidDebrisNFAndesite
+  name: Salvage Andesite Asteroid Small
+  noSpawn: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      blobDrawProb: 0.66
+      radius: 15
+      floorPlacements: 100
+
+- type: entity
+  id: AsteroidSalvageNFAndesiteMedium
+  parent: BaseAsteroidDebrisNFAndesite
+  name: Salvage Andesite Asteroid Medium
+  noSpawn: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      blobDrawProb: 0.66
+      radius: 17
+      floorPlacements: 150
+
+- type: entity
+  id: AsteroidSalvageNFAndesiteLarge
+  parent: BaseAsteroidDebrisNFAndesite
+  name: Salvage Andesite Asteroid Large
+  noSpawn: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      blobDrawProb: 0.66
+      radius: 20
+      floorPlacements: 200
+
+- type: entity
+  id: AsteroidSalvageNFAndesiteHuge
+  parent: BaseAsteroidDebrisNFAndesite
+  name: Salvage Andesite Asteroid Huge
+  noSpawn: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      blobDrawProb: 0.66
+      radius: 23
+      floorPlacements: 250
+
+# Basalt
+
+- type: entity
+  id: BaseAsteroidDebrisNFBasalt
+  parent: BaseDebrisNF
+  name: Salvage Basalt Asteroid
+  abstract: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      floorTileset:
+      - FloorBasalt
+      blobDrawProb: 0.5
+      radius: 6
+      floorPlacements: 16
+    - type: SimpleFloorPlanPopulator
+      entries:
+        FloorBasalt:
+          - id: RandomArtifactSpawner20
+            prob: 0.01
+            orGroup: rock
+          - id: BasaltElementalSpawner
+            prob: 0.08
+            orGroup: rock
+          - id: WallRockBasalt
+            prob: 0.65
+            orGroup: rock
+          - id: WallRockBasaltPlasma
+            prob: 0.15
+            orGroup: rock
+          - id: WallRockBasaltUranium
+            prob: 0.1
+            orGroup: rock
+          - id: WallRockBasaltSilver
+            prob: 0.05
+            orGroup: rock
+          - id: WallRockBasaltTin
+            prob: 0.05
+            orGroup: rock
+          - id: WallRockBasaltBananium
+            prob: 0.01
+            orGroup: rock
+          - id: WallRockBasaltGold
+            prob: 0.01
+            orGroup: rock
+          - id: WallRockBasaltQuartz
+            prob: 0.01
+            orGroup: rock
+          - id: WallRockBasaltSalt
+            prob: 0.01
+            orGroup: rock
+          - id: WallRockBasaltCoal
+            prob: 0.01
+            orGroup: rock
+          - id: WallRockBasaltArtifactFragment
+            prob: 0.01
+            orGroup: rock
+          - id: WallBasaltCobblebrick
+            prob: 0.1
+            orGroup: rock
+    - type: IFF
+      flags: HideLabel
+      color: "#b5b5b5"
+
+- type: entity
+  id: AsteroidDebrisNFBasaltMedium
+  parent: BaseAsteroidDebrisNFBasalt
+  name: Asteroid Basalt Debris Medium
+  noSpawn: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      floorPlacements: 24
+
+- type: entity
+  id: AsteroidDebrisNFBasaltLarge
+  parent: BaseAsteroidDebrisNFBasalt
+  name: Asteroid Basalt Debris Large
+  noSpawn: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      floorPlacements: 36
+
+- type: entity
+  id: AsteroidDebrisNFBasaltLarger
+  parent: BaseAsteroidDebrisNFBasalt
+  name: Asteroid Basalt Debris Larger
+  noSpawn: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      radius: 12
+      floorPlacements: 48
+
+- type: entity
+  id: AsteroidDebrisNFBasaltHuge
+  parent: BaseAsteroidDebrisNFBasalt
+  name: Asteroid Basalt Debris Huge
+  noSpawn: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      radius: 28
+      floorPlacements: 108
+
+- type: entity
+  id: AsteroidSalvageNFBasaltSmall
+  parent: BaseAsteroidDebrisNFBasalt
+  name: Salvage Basalt Asteroid Small
+  noSpawn: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      blobDrawProb: 0.66
+      radius: 15
+      floorPlacements: 100
+
+- type: entity
+  id: AsteroidSalvageNFBasaltMedium
+  parent: BaseAsteroidDebrisNFBasalt
+  name: Salvage Basalt Asteroid Medium
+  noSpawn: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      blobDrawProb: 0.66
+      radius: 17
+      floorPlacements: 150
+
+- type: entity
+  id: AsteroidSalvageNFBasaltLarge
+  parent: BaseAsteroidDebrisNFBasalt
+  name: Salvage Basalt Asteroid Large
+  noSpawn: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      blobDrawProb: 0.66
+      radius: 20
+      floorPlacements: 200
+
+- type: entity
+  id: AsteroidSalvageNFBasaltHuge
+  parent: BaseAsteroidDebrisNFBasalt
+  name: Salvage Basalt Asteroid Huge
+  noSpawn: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      blobDrawProb: 0.66
+      radius: 23
+      floorPlacements: 250
+
+# Sand
+
+- type: entity
+  id: BaseAsteroidDebrisNFSand
+  parent: BaseDebrisNF
+  name: Salvage Sand Asteroid
+  abstract: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      floorTileset:
+      - FloorLowDesert
+      blobDrawProb: 0.5
+      radius: 6
+      floorPlacements: 16
+    - type: SimpleFloorPlanPopulator
+      entries:
+        FloorLowDesert:
+          - id: RandomArtifactSpawner20
+            prob: 0.01
+            orGroup: rock
+          - id: SandElementalSpawner
+            prob: 0.08
+            orGroup: rock
+          - id: WallRockSand
+            prob: 0.65
+            orGroup: rock
+          - id: WallRockSandGold
+            prob: 0.07
+            orGroup: rock
+          - id: WallRockSandQuartz
+            prob: 0.1
+            orGroup: rock
+          - id: WallRockSandSilver
+            prob: 0.05
+            orGroup: rock
+          - id: WallRockSandSalt
+            prob: 0.03
+            orGroup: rock
+          - id: WallRockSandBananium
+            prob: 0.01
+            orGroup: rock
+          - id: WallRockSandPlasma
+            prob: 0.01
+            orGroup: rock
+          - id: WallRockSandTin
+            prob: 0.01
+            orGroup: rock
+          - id: WallRockSandCoal
+            prob: 0.01
+            orGroup: rock
+          - id: WallRockSandUranium
+            prob: 0.01
+            orGroup: rock
+          - id: WallRockSandArtifactFragment
+            prob: 0.01
+            orGroup: rock
+          - id: WallSandstone
+            prob: 0.1
+            orGroup: rock
+    - type: IFF
+      flags: HideLabel
+      color: "#cad17b"
+
+- type: entity
+  id: AsteroidDebrisNFSandMedium
+  parent: BaseAsteroidDebrisNFSand
+  name: Asteroid Sand Debris Medium
+  noSpawn: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      floorPlacements: 24
+
+- type: entity
+  id: AsteroidDebrisNFSandLarge
+  parent: BaseAsteroidDebrisNFSand
+  name: Asteroid Sand Debris Large
+  noSpawn: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      floorPlacements: 36
+
+- type: entity
+  id: AsteroidDebrisNFSandLarger
+  parent: BaseAsteroidDebrisNFSand
+  name: Asteroid Sand Debris Larger
+  noSpawn: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      radius: 12
+      floorPlacements: 48
+
+- type: entity
+  id: AsteroidDebrisNFSandHuge
+  parent: BaseAsteroidDebrisNFSand
+  name: Asteroid Sand Debris Huge
+  noSpawn: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      radius: 28
+      floorPlacements: 108
+
+- type: entity
+  id: AsteroidSalvageNFSandSmall
+  parent: BaseAsteroidDebrisNFSand
+  name: Salvage Sand Asteroid Small
+  noSpawn: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      blobDrawProb: 0.66
+      radius: 15
+      floorPlacements: 100
+
+- type: entity
+  id: AsteroidSalvageNFSandMedium
+  parent: BaseAsteroidDebrisNFSand
+  name: Salvage Sand Asteroid Medium
+  noSpawn: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      blobDrawProb: 0.66
+      radius: 17
+      floorPlacements: 150
+
+- type: entity
+  id: AsteroidSalvageNFSandLarge
+  parent: BaseAsteroidDebrisNFSand
+  name: Salvage Sand Asteroid Large
+  noSpawn: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      blobDrawProb: 0.66
+      radius: 20
+      floorPlacements: 200
+
+- type: entity
+  id: AsteroidSalvageNFSandHuge
+  parent: BaseAsteroidDebrisNFSand
+  name: Salvage Sand Asteroid Huge
+  noSpawn: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      blobDrawProb: 0.66
+      radius: 23
+      floorPlacements: 250
+
+# Chromite
+
+- type: entity
+  id: BaseAsteroidDebrisNFChromite
+  parent: BaseDebrisNF
+  name: Salvage Chromite Asteroid
+  abstract: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      floorTileset:
+      - FloorChromite
+      blobDrawProb: 0.5
+      radius: 6
+      floorPlacements: 16
+    - type: SimpleFloorPlanPopulator
+      entries:
+        FloorChromite:
+          - id: RandomArtifactSpawner20
+            prob: 0.01
+            orGroup: rock
+          - id: ChromiteElementalSpawner
+            prob: 0.08
+            orGroup: rock
+          - id: WallRockChromite
+            prob: 0.65
+            orGroup: rock
+          - id: WallRockChromiteUranium
+            prob: 0.1
+            orGroup: rock
+          - id: WallRockChromitePlasma
+            prob: 0.05
+            orGroup: rock
+          - id: WallRockChromiteTin
+            prob: 0.05
+            orGroup: rock
+          - id: WallRockChromiteArtifactFragment
+            prob: 0.01
+            orGroup: rock
+          - id: WallRockChromiteBananium
+            prob: 0.01
+            orGroup: rock
+          - id: WallRockChromiteGold
+            prob: 0.01
+            orGroup: rock
+          - id: WallRockChromiteQuartz
+            prob: 0.01
+            orGroup: rock
+          - id: WallRockChromiteSalt
+            prob: 0.01
+            orGroup: rock
+          - id: WallRockChromiteCoal
+            prob: 0.01
+            orGroup: rock
+          - id: WallRockChromiteSilver
+            prob: 0.01
+            orGroup: rock
+          - id: WallChromiteCobblebrick
+            prob: 0.1
+            orGroup: rock
+    - type: IFF
+      flags: HideLabel
+      color: "#8178cc"
+
+- type: entity
+  id: AsteroidDebrisNFChromiteMedium
+  parent: BaseAsteroidDebrisNFChromite
+  name: Asteroid Chromite Debris Medium
+  noSpawn: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      floorPlacements: 24
+
+- type: entity
+  id: AsteroidDebrisNFChromiteLarge
+  parent: BaseAsteroidDebrisNFChromite
+  name: Asteroid Chromite Debris Large
+  noSpawn: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      floorPlacements: 36
+
+- type: entity
+  id: AsteroidDebrisNFChromiteLarger
+  parent: BaseAsteroidDebrisNFChromite
+  name: Asteroid Chromite Debris Larger
+  noSpawn: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      radius: 12
+      floorPlacements: 48
+
+- type: entity
+  id: AsteroidDebrisNFChromiteHuge
+  parent: BaseAsteroidDebrisNFChromite
+  name: Asteroid Chromite Debris Huge
+  noSpawn: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      radius: 28
+      floorPlacements: 108
+
+- type: entity
+  id: AsteroidSalvageNFChromiteSmall
+  parent: BaseAsteroidDebrisNFChromite
+  name: Salvage Chromite Asteroid Small
+  noSpawn: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      blobDrawProb: 0.66
+      radius: 15
+      floorPlacements: 100
+
+- type: entity
+  id: AsteroidSalvageNFChromiteMedium
+  parent: BaseAsteroidDebrisNFChromite
+  name: Salvage Chromite Asteroid Medium
+  noSpawn: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      blobDrawProb: 0.66
+      radius: 17
+      floorPlacements: 150
+
+- type: entity
+  id: AsteroidSalvageNFChromiteLarge
+  parent: BaseAsteroidDebrisNFChromite
+  name: Salvage Chromite Asteroid Large
+  noSpawn: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      blobDrawProb: 0.66
+      radius: 20
+      floorPlacements: 200
+
+- type: entity
+  id: AsteroidSalvageNFChromiteHuge
+  parent: BaseAsteroidDebrisNFChromite
+  name: Salvage Chromite Asteroid Huge
+  noSpawn: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      blobDrawProb: 0.66
+      radius: 23
+      floorPlacements: 250
+
+# Asteroid Asteroid Debris, because yes, base asteroid is made NOT from asteroid
+
+- type: entity
+  id: BaseRockAsteroidDebrisNF
+  parent: BaseAsteroidDebrisNF
+  name: Asteroid Rock Debris
+  abstract: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      floorTileset:
+        - FloorAsteroidSand
+      blobDrawProb: 0.5
+      radius: 6
+      floorPlacements: 16
+    - type: SimpleFloorPlanPopulator
+      entries:
+        FloorAsteroidSand:
+          - id: RandomArtifactSpawner20
+            prob: 0.01
+            orGroup: rock
+          - id: AsteroidRockElementalSpawner
+            prob: 0.08
+            orGroup: rock
+          - id: AsteroidRock
+            prob: 0.65
+            orGroup: rock
+          - id: AsteroidRockCoal
+            prob: 0.15
+            orGroup: rock
+          - id: AsteroidRockTin
+            prob: 0.2
+            orGroup: rock
+          - id: AsteroidRockQuartz
+            prob: 0.1
+            orGroup: rock
+          - id: AsteroidRockSalt
+            prob: 0.15
+            orGroup: rock
+          - id: AsteroidRockGold
+            prob: 0.06
+            orGroup: rock
+          - id: AsteroidRockSilver
+            prob: 0.04
+            orGroup: rock
+          - id: AsteroidRockPlasma
+            prob: 0.07
+            orGroup: rock
+          - id: AsteroidRockUranium
+            prob: 0.04
+            orGroup: rock
+          - id: AsteroidRockBananium
+            prob: 0.03
+            orGroup: rock
+          - id: AsteroidRockArtifactFragment
+            prob: 0.01
+            orGroup: rock
+          - id: WallNecropolis
+            prob: 0.1
+            orGroup: rock
+    - type: IFF
+      flags: HideLabel
+      color: "#BF8C5C"
+
+- type: entity
+  id: AsteroidRockDebrisNFMedium
+  parent: BaseRockAsteroidDebrisNF
+  name: Asteroid Debris Medium
+  noSpawn: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      floorPlacements: 24
+
+- type: entity
+  id: AsteroidRockDebrisNFLarge
+  parent: BaseRockAsteroidDebrisNF
+  name: Asteroid Debris Large
+  noSpawn: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      floorPlacements: 36
+
+- type: entity
+  id: AsteroidRockDebrisNFLarger
+  parent: BaseRockAsteroidDebrisNF
+  name: Asteroid Debris Larger
+  noSpawn: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      radius: 12
+      floorPlacements: 48
+
+- type: entity
+  id: AsteroidRockDebrisNFHuge
+  parent: BaseRockAsteroidDebrisNF
+  name: Asteroid Debris Huge
+  noSpawn: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      radius: 28
+      floorPlacements: 108
+
+- type: entity
+  id: AsteroidRockSalvageNFSmall
+  parent: BaseRockAsteroidDebrisNF
+  name: Salvage Asteroid Small
+  noSpawn: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      blobDrawProb: 0.66
+      radius: 15
+      floorPlacements: 100
+
+- type: entity
+  id: AsteroidRockSalvageNFMedium
+  parent: BaseRockAsteroidDebrisNF
+  name: Salvage Asteroid Medium
+  noSpawn: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      blobDrawProb: 0.66
+      radius: 17
+      floorPlacements: 150
+
+- type: entity
+  id: AsteroidRockSalvageNFLarge
+  parent: BaseRockAsteroidDebrisNF
+  name: Salvage Asteroid Large
+  noSpawn: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      blobDrawProb: 0.66
+      radius: 20
+      floorPlacements: 200
+
+- type: entity
+  id: AsteroidRockSalvageNFHuge
+  parent: BaseRockAsteroidDebrisNF
+  name: Salvage Asteroid Huge
+  noSpawn: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      blobDrawProb: 0.66
+      radius: 23
+      floorPlacements: 250

@@ -1,4 +1,4 @@
-﻿#
+#
 # You can use this Desmos sheet to calculate fuel burn rate values:
 # https://www.desmos.com/calculator/qcektq5dqs
 #
@@ -6,7 +6,7 @@
 - type: entity
   abstract: true
   id: PortableGeneratorBase
-  parent: [ BaseMachine, ConstructibleMachine, StructureWheeled]
+  parent: [ BaseMachine, SmallConstructibleMachine, StructureWheeled]
   components:
     # Basic properties
     - type: Transform
@@ -44,7 +44,7 @@
     - type: WiresPanel
     - type: UserInterface
       interfaces:
-        - key: enum.GeneratorComponentUiKey.Key
+        enum.GeneratorComponentUiKey.Key:
           type: PortableGeneratorBoundUserInterface
     - type: ActivatableUI
       key: enum.GeneratorComponentUiKey.Key
@@ -244,7 +244,7 @@
       sprite: Structures/Power/Generation/portable_generator.rsi
       state: portgen1
     - type: MaterialStorageMagnetPickup # Frontier
-      range: 0.30
+      range: 0.30 # Frontier
 
 - type: entity
   name: J.R.P.A.C.M.A.N.-type portable generator
@@ -293,11 +293,11 @@
     - type: Machine
       board: PortableGeneratorJrPacmanMachineCircuitboard
     - type: FuelGenerator
-      targetPower: 4000 # Frontier - 2000<4000
+      targetPower: 5000 # Frontier - 2000<5000
       minTargetPower: 1000
       optimalPower: 5000
       maxTargetPower: 15000
-      # 7.5 minutes at full tank.
+      # 30~ minutes at full tank.
       optimalBurnRate: 0.11111111
       # Shallow curve
       fuelEfficiencyConstant: 0.5
@@ -308,7 +308,7 @@
     - type: SolutionContainerManager
       solutions:
         tank:
-          maxVol: 100 # Frontier - 50<100
+          maxVol: 200 # Frontier - 50<200
     - type: RefillableSolution
       solution: tank
     - type: PortableGenerator

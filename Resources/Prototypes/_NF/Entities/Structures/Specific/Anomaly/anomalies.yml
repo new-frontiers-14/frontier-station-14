@@ -1,0 +1,249 @@
+- type: entity
+  id: AnomalyRockBananium
+  parent: AnomalyRockBase
+  suffix: Rock, Bananium
+  components:
+  - type: Sprite
+    color: "#eef066"
+  - type: PointLight
+    radius: 2.0
+    energy: 7.5
+    color: "#eef066"
+  - type: EntitySpawnAnomaly
+    entries:
+    - settings:
+        spawnOnPulse: true
+        minAmount: 8
+        maxAmount: 15
+        minRange: 4.5
+        maxRange: 7.5
+      spawns:
+      - WallSpawnAsteroid
+      - WallSpawnAsteroid
+      - WallSpawnAsteroidBananium
+      - WallSpawnAsteroidBananiumCrab
+    - settings:
+        spawnOnPulse: true
+        maxAmount: 3
+        minRange: 2.5
+        maxRange: 4.5
+      spawns:
+      - CrystalOrange
+    - settings:
+        spawnOnSuperCritical: true
+        minAmount: 30
+        maxAmount: 40
+        minRange: 5
+        maxRange: 15
+      spawns:
+      - CrystalOrange
+      - WallSpawnAsteroid
+      - WallSpawnAsteroid
+      - WallSpawnAsteroidBananiumCrab
+    - settings:
+        spawnOnSuperCritical: true
+        minAmount: 6
+        maxAmount: 10
+        maxRange: 5
+      spawns:
+      - MobSpawnBananiumCrab
+
+- type: entity
+  id: AnomalyRockCoal
+  parent: AnomalyRockBase
+  suffix: Rock, Coal
+  components:
+  - type: Sprite
+    color: "#ff8227"
+  - type: PointLight
+    radius: 2.0
+    energy: 7.5
+    color: "#ff8227"
+  - type: EntitySpawnAnomaly
+    entries:
+    - settings:
+        spawnOnPulse: true
+        minAmount: 8
+        maxAmount: 15
+        minRange: 4.5
+        maxRange: 7.5
+      spawns:
+      - WallSpawnAsteroid
+      - WallSpawnAsteroid
+      - WallSpawnAsteroidCoal
+      - WallSpawnAsteroidCoalCrab
+    - settings:
+        spawnOnPulse: true
+        maxAmount: 3
+        minRange: 2.5
+        maxRange: 4.5
+      spawns:
+      - CrystalGreen
+    - settings:
+        spawnOnSuperCritical: true
+        minAmount: 30
+        maxAmount: 40
+        minRange: 5
+        maxRange: 15
+      spawns:
+      - CrystalGreen
+      - WallSpawnAsteroid
+      - WallSpawnAsteroid
+      - WallSpawnAsteroidCoalCrab
+    - settings:
+        spawnOnSuperCritical: true
+        minAmount: 6
+        maxAmount: 10
+        maxRange: 5
+      spawns:
+      - MobSpawnCoalCrab
+
+- type: entity
+  id: AnomalyRockGold
+  parent: AnomalyRockBase
+  suffix: Rock, Gold
+  components:
+  - type: Sprite
+    color: "#eef066"
+  - type: PointLight
+    radius: 2.0
+    energy: 7.5
+    color: "#eef066"
+  - type: EntitySpawnAnomaly
+    entries:
+    - settings:
+        spawnOnPulse: true
+        minAmount: 8
+        maxAmount: 15
+        minRange: 4.5
+        maxRange: 7.5
+      spawns:
+      - WallSpawnAsteroid
+      - WallSpawnAsteroid
+      - WallSpawnAsteroidGold
+      - WallSpawnAsteroidGoldCrab
+    - settings:
+        spawnOnPulse: true
+        maxAmount: 3
+        minRange: 2.5
+        maxRange: 4.5
+      spawns:
+      - CrystalGrey
+    - settings:
+        spawnOnSuperCritical: true
+        minAmount: 30
+        maxAmount: 40
+        minRange: 5
+        maxRange: 15
+      spawns:
+      - CrystalGrey
+      - WallSpawnAsteroid
+      - WallSpawnAsteroid
+      - WallSpawnAsteroidGoldCrab
+    - settings:
+        spawnOnSuperCritical: true
+        minAmount: 6
+        maxAmount: 10
+        maxRange: 5
+      spawns:
+      - MobSpawnGoldCrab
+
+- type: entity
+  id: AnomalyRockPlasma
+  parent: AnomalyRockBase
+  suffix: Rock, Plasma
+  components:
+  - type: Sprite
+    color: "#eef066"
+  - type: PointLight
+    radius: 2.0
+    energy: 7.5
+    color: "#eef066"
+  - type: EntitySpawnAnomaly
+    entries:
+    - settings:
+        spawnOnPulse: true
+        minAmount: 8
+        maxAmount: 15
+        minRange: 4.5
+        maxRange: 7.5
+      spawns:
+      - WallSpawnAsteroid
+      - WallSpawnAsteroid
+      - WallSpawnAsteroidPlasma
+      - WallSpawnAsteroidPlasmaCrab
+    - settings:
+        spawnOnPulse: true
+        maxAmount: 3
+        minRange: 2.5
+        maxRange: 4.5
+      spawns:
+      - CrystalPink
+    - settings:
+        spawnOnSuperCritical: true
+        minAmount: 30
+        maxAmount: 40
+        minRange: 5
+        maxRange: 15
+      spawns:
+      - CrystalPink
+      - WallSpawnAsteroid
+      - WallSpawnAsteroid
+      - WallSpawnAsteroidPlasmaCrab
+    - settings:
+        spawnOnSuperCritical: true
+        minAmount: 6
+        maxAmount: 10
+        maxRange: 5
+      spawns:
+      - MobSpawnPlasmaCrab
+
+- type: entity
+  id: AnomalyRockSalt
+  parent: AnomalyRockBase
+  suffix: Rock, Salt
+  components:
+  - type: Sprite
+    color: "#ffe4ce"
+  - type: PointLight
+    radius: 2.0
+    energy: 7.5
+    color: "#ffe4ce"
+  - type: EntitySpawnAnomaly
+    entries:
+    - settings:
+        spawnOnPulse: true
+        minAmount: 8
+        maxAmount: 15
+        minRange: 4.5
+        maxRange: 7.5
+      spawns:
+      - WallSpawnAsteroid
+      - WallSpawnAsteroid
+      - WallSpawnAsteroidSalt
+      - WallSpawnAsteroidSaltCrab
+    - settings:
+        spawnOnPulse: true
+        maxAmount: 3
+        minRange: 2.5
+        maxRange: 4.5
+      spawns:
+      - CrystalBlue
+    - settings:
+        spawnOnSuperCritical: true
+        minAmount: 30
+        maxAmount: 40
+        minRange: 5
+        maxRange: 15
+      spawns:
+      - CrystalBlue
+      - WallSpawnAsteroid
+      - WallSpawnAsteroid
+      - WallSpawnAsteroidSaltCrab
+    - settings:
+        spawnOnSuperCritical: true
+        minAmount: 6
+        maxAmount: 10
+        maxRange: 5
+      spawns:
+      - MobSpawnSaltCrab

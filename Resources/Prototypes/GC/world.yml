@@ -1,4 +1,5 @@
 ﻿- type: gcQueue
   id: SpaceDebris
-  depth: 512 # So there's a decent bit of time before roids unload.
-  minDepthToProcess: 256
+  depth: 256 # Frontier
+  minDepthToProcess: 128 # Frontier
+  trySkipQueue: true  # Frontier - Attempt immediate removal if possible

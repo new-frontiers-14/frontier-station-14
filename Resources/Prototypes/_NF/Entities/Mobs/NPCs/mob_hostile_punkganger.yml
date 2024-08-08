@@ -1,0 +1,156 @@
+- type: entity
+  abstract: true
+  id: MobVandalizer
+  components:
+  - type: Timer
+  - type: TimedSpawner
+    prototypes:
+    - SpawnerHoloGraffitiRandom
+    chance: 1.0
+    intervalSeconds: 300 # every 5 minutes
+    minimumEntitiesSpawned: 1
+    maximumEntitiesSpawned: 1
+
+- type: entity
+  name: punk
+  abstract: true
+  parent:
+  - MobHumanoidHostileBase
+  - MobVandalizer
+  id: MobPunkBase
+  description: |-
+   "Criminally-inclined individuals", as NT Security documents call them, these are armed with a variety of weapons. These weapons range from makeshift shivs and machined truncheons to rusty pistols and shotguns. Some may be armored, so plan appropriately.
+  components:
+  - type: NpcFactionMember
+    factions:
+    - StreetGangNF
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Critical
+      130: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      60: 0.7
+      80: 0.5
+  - type: Stamina
+    critThreshold: 100
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 1.5
+    rechargeSound:
+      path: /Audio/_NF/Effects/silence.ogg
+  - type: MeleeWeapon
+    attackRate: 1.0
+    altDisarm: false
+    angle: 0
+    animation: WeaponArcPunch
+    damage:
+      types:
+        Slash: 10
+        Structural: 20
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+  - type: ReplacementAccent
+    accent: streetpunk
+  - type: Advertise
+    pack: spacepunkhumanoidchatter
+    minimumWait: 30
+    maximumWait: 120
+    nextAdvertisementTime: 10
+  - type: AutoWakeUp
+
+# Humans
+- type: entity
+  parent:
+  - MobPunkBase
+  - MobHumanoidHostileAISimpleMelee
+  id: MobPunkGangerMelee
+  noSpawn: true
+  components:
+  - type: Loadout
+    prototypes:
+    - PunkGangerGearMelee
+
+- type: entity
+  parent:
+  - MobPunkBase
+  - MobHumanoidHostileAISimpleRanged
+  id: MobPunkGangerPistol
+  noSpawn: true
+  components:
+  - type: Loadout
+    prototypes:
+    - PunkGangerGearPistol
+  - type: BasicEntityAmmoProvider
+    proto: BulletPistol
+    capacity: 2
+    count: 2
+  - type: Gun
+    showExamineText: false
+    fireRate: 0.5
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/pistol.ogg
+
+- type: entity
+  parent:
+  - MobPunkBase
+  - MobHumanoidHostileAISimpleRanged
+  id: MobPunkGangerShotgun
+  noSpawn: true
+  components:
+  - type: Loadout
+    prototypes:
+    - PunkGangerGearShotgun
+  - type: BasicEntityAmmoProvider
+    proto: ShellShotgun
+    capacity: 1
+    count: 1
+  - type: Gun
+    showExamineText: false
+    fireRate: 0.5
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/pistol.ogg
+
+- type: entity
+  parent:
+  - MobPunkBase
+  - MobHumanoidHostileAISimpleMelee
+  id: MobPunkGangerArmoredMelee
+  noSpawn: true
+  components:
+  - type: Loadout
+    prototypes:
+    - PunkGangerArmoredGearMelee
+
+- type: entity
+  parent:
+  - MobPunkBase
+  - MobHumanoidHostileAISimpleRanged
+  id: MobPunkGangerArmoredElite
+  name: punk gang leader
+  description: It takes a formidable figure to lead a pack of street trash. These leaders usually wield scavenged SMGs and wear armor taken from unfortunate security forces. Usually high on meth and booze.
+  noSpawn: true
+  components:
+  - type: Loadout
+    prototypes:
+    - PunkGangerArmoredEliteGear
+  - type: BasicEntityAmmoProvider
+    proto: BulletPistol
+    capacity: 6
+    count: 6
+  - type: Gun
+    showExamineText: false
+    minAngle: 10
+    maxAngle: 30
+    fireRate: 3
+    angleIncrease: 3
+    angleDecay: 6
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/smg.ogg
+  - type: Jittering

@@ -3,6 +3,7 @@
   name: job-name-chaplain
   description: job-description-chaplain
   playTimeTracker: JobChaplain
+  setPreference: false # Frontier
   requirements:
     - !type:OverallPlaytimeRequirement
       time: 10800
@@ -19,12 +20,10 @@
 - type: startingGear
   id: ChaplainGear
   equipment:
-    jumpsuit: ClothingUniformJumpsuitChaplain
-    back: ClothingBackpackChaplainFilled
     shoes: ClothingShoesColorBlack
     id: ChaplainPDA
     ears: ClothingHeadsetService
-  innerClothingSkirt: ClothingUniformJumpskirtChaplain
-  satchel: ClothingBackpackSatchelChaplainFilled
-  duffelbag: ClothingBackpackDuffelChaplainFilled
-  messenger: ClothingBackpackMessengerChaplainFilled # Frontier
+  storage:
+    back:
+    - Bible
+    - RubberStampChaplain

@@ -1,0 +1,47 @@
+- type: entity
+  id: SpawnPointMailCarrier
+  parent: SpawnPointJobBase
+  name: mailcarrier
+  components:
+  - type: SpawnPoint
+    job_id: MailCarrier
+  - type: Sprite
+    layers:
+      - state: green
+      - state: mailcarrier
+
+- type: entity
+  id: SpawnPointPrisoner
+  parent: SpawnPointJobBase
+  name: prisoner
+  components:
+  - type: SpawnPoint
+    job_id: Prisoner
+  - type: Sprite
+    layers:
+      - state: green
+      - state: prisoner
+
+- type: entity
+  id: SpawnPointValet
+  parent: SpawnPointJobBase
+  name: valet
+  components:
+  - type: SpawnPoint
+    job_id: Valet
+  - type: Sprite
+    layers:
+      - state: green
+      - state: passenger
+
+- type: entity
+  id: SpawnPointPrisonGuard
+  parent: SpawnPointJobBase
+  name: prison guard
+  components:
+  - type: SpawnPoint
+    job_id: PrisonGuard
+  - type: Sprite
+    layers:
+      - state: green
+      - state: prisonguard

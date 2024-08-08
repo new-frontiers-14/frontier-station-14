@@ -144,6 +144,9 @@
   - type: Produce
     seedId: towercap
   - type: Log
+  - type: PhysicalComposition # Frontier
+    materialComposition:
+      Wood: 200
 
 - type: entity
   name: steel-cap log
@@ -163,6 +166,9 @@
   - type: Log
     spawnedPrototype: SheetSteel1
     spawnCount: 1
+  - type: PhysicalComposition # Frontier
+    materialComposition:
+      Steel: 100
 
 - type: entity
   name: nettle
@@ -1066,6 +1072,9 @@
     state: slice
   - type: Extractable
     grindableSolutionName: food
+  - type: Tag
+    tags:
+    - Slice
 
 - type: entity
   name: pineapple slice
@@ -1086,6 +1095,7 @@
   - type: Tag
     tags:
     - Fruit
+    - Slice
 
 - type: entity
   name: onion slice
@@ -1109,6 +1119,10 @@
           Quantity: 1
         - ReagentId: Vitamin
           Quantity: 1
+  - type: Tag
+    tags:
+    - Vegetable
+    - Slice
 
 - type: entity
   name: red onion slice
@@ -1132,11 +1146,15 @@
           Quantity: 1
         - ReagentId: Vitamin
           Quantity: 1
+  - type: Tag
+    tags:
+    - Vegetable
+    - Slice
 
 - type: entity
-  name: chili
+  name: chili pepper
   parent: FoodProduceBase
-  id: FoodChili
+  id: FoodChiliPepper
   description: Spicy, best not touch your eyes.
   components:
     - type: FlavorProfile
@@ -1164,7 +1182,7 @@
 - type: entity
   name: chilly pepper
   parent: FoodProduceBase
-  id: FoodChilly
+  id: FoodChillyPepper
   description: Icy hot.
   components:
     - type: FlavorProfile
@@ -1648,6 +1666,10 @@
       reagents:
       - ReagentId: JuiceWatermelon
         Quantity: 4
+  - type: Tag
+    tags:
+    - Fruit
+    - Slice
 
 - type: entity
   name: grapes
@@ -1870,3 +1892,36 @@
     tags:
     - ClothMade
     - CottonBoll
+
+- type: entity
+  name: pyrotton boll
+  description: This will probably set you on fire.
+  id: PyrottonBol
+  parent: FoodProduceBase
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/pyrotton.rsi
+  - type: FlavorProfile
+    flavors:
+      - pyrotton
+  - type: Food
+    requiresSpecialDigestion: true
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Fiber
+          Quantity: 5
+        - ReagentId: Phlogiston
+          Quantity: 5
+  - type: Log
+    spawnedPrototype: MaterialPyrotton1
+    spawnCount: 2
+  - type: Produce
+    seedId: pyrotton
+  - type: Tag
+    tags:
+    - ClothMade
+    - CottonBoll
+  - type: Extractable
+    grindableSolutionName: food

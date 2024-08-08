@@ -48,4 +48,18 @@ public sealed partial class RevolverAmmoProviderComponent : AmmoProviderComponen
 
     [DataField("soundSpin")]
     public SoundSpecifier? SoundSpin = new SoundPathSpecifier("/Audio/Weapons/Guns/Misc/revolver_spin.ogg");
+
+    // Frontier: better revolver reloading
+    /// <summary>
+    /// Is it okay for this entity to directly transfer its valid ammunition into another provider?
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite), DataField("mayTransfer")]
+    public bool MayTransfer;
+
+    /// <summary>
+    /// DoAfter delay for filling a bullet into another ballistic ammo provider.
+    /// </summary>
+    [DataField("fillDelay")]
+    public TimeSpan FillDelay = TimeSpan.FromSeconds(0.7); // Assume revolvers are harder to reload, and so should take more time.
+    // End Frontier
 }

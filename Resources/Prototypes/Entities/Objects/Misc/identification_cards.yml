@@ -24,9 +24,9 @@
     - WhitelistChameleon
   - type: StealTarget
     stealGroup: IDCard
-  - type: StaticPrice
+  - type: StaticPrice # Frontier
     price: 5 # The card need to cost less then the PDA that comes with a card and a pen in it.
-  - type: CargoSellBlacklist # Liltenhead moment
+  - type: CargoSellBlacklist # Frontier
 
 #IDs with layers
 
@@ -81,7 +81,7 @@
 - type: entity
   parent: PassengerIDCard
   id: SecurityCadetIDCard
-  name: cadet ID card
+  name: security cadet ID card
   components:
   - type: PresetIdCard
     job: SecurityCadet
@@ -126,7 +126,7 @@
 - type: entity
   parent: IDCardStandard
   id: SecurityIDCard
-  name: deputy ID card
+  name: security ID card
   components:
   - type: Sprite
     layers:
@@ -138,7 +138,7 @@
 - type: entity
   parent: IDCardStandard
   id: WardenIDCard
-  name: bailiff ID card
+  name: warden ID card
   components:
     - type: Sprite
       layers:
@@ -425,7 +425,7 @@
 - type: entity
   parent: IDCardStandard
   id: HoSIDCard
-  name: sheriff ID card
+  name: head of security ID card
   components:
   - type: Sprite
     layers:
@@ -445,8 +445,8 @@
     layers:
     - state: default
     - state: idbrigmedic
-  - type: PresetIdCard
-    job: Brigmedic
+  - type: PresetIdCard # Frontier
+    job: Brigmedic # Frontier
 
 - type: entity
   parent: IDCardStandard
@@ -588,7 +588,8 @@
     jobTitle: Centcom Agent
 
 - type: entity
-  name: passenger ID card
+  # name: passenger ID card # Frontier
+  name: contractor ID card # Frontier
   parent: IDCardStandard
   id: AgentIDCard
   suffix: Agent
@@ -607,7 +608,7 @@
     icons:
     # TODO figure out a better way of doing this.
     # Probably by adding a bool or icon-category data-field to the icon prototype?
-    - JobIconDetective
+#    - JobIconDetective # Frontier
     - JobIconQuarterMaster
     - JobIconBotanist
     - JobIconBoxer
@@ -617,7 +618,7 @@
     - JobIconJanitor
     - JobIconChemist
     - JobIconStationEngineer
-    - JobIconSecurityOfficer
+#    - JobIconSecurityOfficer # Frontier
     - JobIconChiefMedicalOfficer
     - JobIconRoboticist
     - JobIconChaplain
@@ -630,18 +631,17 @@
     - JobIconGeneticist
     - JobIconClown
     - JobIconCaptain
-    - JobIconHeadOfPersonnel
+#    - JobIconHeadOfPersonnel # Frontier
     - JobIconVirologist
     - JobIconShaftMiner
-    - JobIconPassenger
+    # - JobIconPassenger # Frontier
     - JobIconChiefEngineer
     - JobIconBartender
-    - JobIconHeadOfSecurity
-    - JobIconBrigmedic
+#    - JobIconHeadOfSecurity
     - JobIconMedicalDoctor
     - JobIconParamedic
     - JobIconChef
-    - JobIconWarden
+#    - JobIconWarden
     - JobIconResearchDirector
     - JobIconMime
     - JobIconMusician
@@ -650,9 +650,16 @@
     - JobIconMedicalIntern
     - JobIconTechnicalAssistant
     - JobIconServiceWorker
-    - JobIconSecurityCadet
+#    - JobIconSecurityCadet # Frontier
     - JobIconZookeeper
     - JobIconVisitor
+    - JobIconValet # Frontier
+    - JobIconMailCarrier # Frontier
+    # - JobIconSecurityGuard # Frontier
+    # - JobIconStc # Frontier
+    - JobIconContractor # Frontier
+    - JobIconPilot # Frontier
+    - JobIconMercenary # Frontier
   - type: ActivatableUI
     key: enum.AgentIDCardUiKey.Key
     inHandsOnly: true
@@ -664,13 +671,13 @@
     default: PassengerIDCard
   - type: UserInterface
     interfaces:
-      - key: enum.AgentIDCardUiKey.Key
+      enum.AgentIDCardUiKey.Key:
         type: AgentIDCardBoundUserInterface
-      - key: enum.ChameleonUiKey.Key
+      enum.ChameleonUiKey.Key:
         type: ChameleonBoundUserInterface
-  - type: StaticPrice
-    price: 200
-  - type: Contraband #frontier
+  - type: StaticPrice # Frontier
+    price: 200 # Frontier
+  - type: Contraband # Frontier
 
 - type: entity
   name: passenger ID card
@@ -683,6 +690,7 @@
     - Maintenance
     - SyndicateAgent
     - NuclearOperative
+  - type: Contraband # Frontier
 
 - type: entity
   parent: IDCardStandard
@@ -708,12 +716,13 @@
     tags:
     - NuclearOperative
     - SyndicateAgent
-  - type: Contraband #frontier
+  - type: Contraband # Frontier
 
 - type: entity
   parent: IDCardStandard
   id: PirateIDCard
   name: pirate ID card
+  noSpawn: true # Frontier
   components:
   - type: Sprite
     layers:
@@ -722,6 +731,7 @@
     tags:
     - NuclearOperative
     - SyndicateAgent
+  - type: Contraband # Frontier
 
 - type: entity
   parent: IDCardStandard
@@ -812,7 +822,7 @@
   - type: Unremoveable
 
 - type: entity
-  parent: IDCardStandard
+  parent: EngineeringIDCard
   id: SeniorEngineerIDCard
   name: senior engineer ID card
   components:
@@ -822,7 +832,7 @@
     - state: idseniorengineer
 
 - type: entity
-  parent: IDCardStandard
+  parent: ResearchIDCard
   id: SeniorResearcherIDCard
   name: senior researcher ID card
   components:
@@ -832,7 +842,7 @@
     - state: idseniorresearcher
 
 - type: entity
-  parent: IDCardStandard
+  parent: MedicalIDCard
   id: SeniorPhysicianIDCard
   name: senior physician ID card
   components:
@@ -842,7 +852,7 @@
     - state: idseniorphysician
 
 - type: entity
-  parent: IDCardStandard
+  parent: SecurityIDCard
   id: SeniorOfficerIDCard
   name: senior officer ID card
   components:
@@ -852,3 +862,30 @@
     - state: idseniorofficer
   - type: PresetIdCard
     job: SeniorOfficer
+
+- type: entity
+  parent: IDCardStandard
+  id: UniversalIDCard
+  name: universal ID card
+  suffix: Admin
+  description: An ID card that gives you access beyond your wildest dreams.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/id_cards.rsi
+    layers:
+    - state: admin
+    - state: idadmin
+  - type: Clothing
+    sprite: Objects/Misc/id_cards.rsi
+  - type: Item
+    heldPrefix: green
+  - type: IdCard
+    jobTitle: Universal
+    jobIcon: JobIconAdmin
+  - type: Access
+    groups:
+    - AllAccess
+    tags:
+    - CentralCommand
+    - NuclearOperative
+    - SyndicateAgent

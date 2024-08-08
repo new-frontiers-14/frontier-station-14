@@ -54,6 +54,17 @@
         amount: 2
 
 - type: entity
+  id: CrateVendingMachineRestockNonLethalVendFilled
+  parent: CratePlasticBiodegradable
+  name: NonLethalVend restock crate
+  description: Contains two restock boxes for the NonLethalVend vending machine.
+  components:
+  - type: StorageFill
+    contents:
+      - id: VendingMachineRestockNonLethalVend
+        amount: 2
+
+- type: entity
   id: CrateVendingMachineRestockAutoTuneVendFilled
   parent: CratePlasticBiodegradable
   name: AutoTuneVend restock crate
@@ -73,4 +84,15 @@
   - type: StorageFill
     contents:
       - id: VendingMachineRestockPottedPlantVend
+        amount: 2
+
+- type: entity
+  id: CrateVendingMachineRestockCiviMedVendFilled
+  parent: CratePlasticBiodegradable
+  name: CiviMed restock crate
+  description: Contains two restock boxes for the CiviMed vending machine.
+  components:
+  - type: StorageFill
+    contents:
+      - id: VendingMachineRestockCiviMedVend
         amount: 2

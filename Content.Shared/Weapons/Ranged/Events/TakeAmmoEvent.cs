@@ -21,11 +21,19 @@ public sealed class TakeAmmoEvent : EntityEventArgs
     /// </summary>
     public EntityCoordinates Coordinates;
 
-    public TakeAmmoEvent(int shots, List<(EntityUid? Entity, IShootable Shootable)> ammo, EntityCoordinates coordinates, EntityUid? user)
+    // Frontier: better revolver reloading
+    /// <summary>
+    /// Does this event represent an intent to fire, or to safely remove ammo from an entity?
+    /// </summary>
+    public bool WillBeFired;
+    // End Frontier
+
+    public TakeAmmoEvent(int shots, List<(EntityUid? Entity, IShootable Shootable)> ammo, EntityCoordinates coordinates, EntityUid? user, bool willBeFired = false) // Frontier: add willBeFired
     {
         Shots = shots;
         Ammo = ammo;
         Coordinates = coordinates;
         User = user;
+        WillBeFired = willBeFired; // Frontier
     }
 }

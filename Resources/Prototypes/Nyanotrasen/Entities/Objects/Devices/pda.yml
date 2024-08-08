@@ -5,7 +5,7 @@
   description: Hope this doesn't have any... JUNK MAIL.
   components:
   - type: Pda
-    id: MailCarrierIDCard
+    id: MailCarrierNFIDCard # Frontier: MailCarrierIDCard<MailCarrierNFIDCard
     state: pda-mailcarrier
   - type: Icon
     state: pda-mailcarrier
@@ -23,21 +23,13 @@
     state: pda-clear
 
 - type: entity
-  parent: PrisonerPDA
-  id: GladiatorPDA
-  name: gladiator PDA
-  components:
-  - type: Pda
-    id: GladiatorIDCard
-
-- type: entity
   parent: BasePDA
   id: ValetPDA
   name: valet PDA
   description: Why isn't it gray?
   components:
   - type: Pda
-    id: ValetIDCard
+    id: ValetNFIDCard # Frontier: ValetIDCard<ValetNFIDCard
     state: pda-valet
   - type: PdaBorderColor
     borderColor: "#860000"
@@ -69,12 +61,3 @@
     state: pda-security
   - type: Icon
     state: pda-guard
-
-- type: entity
-  parent: BoxerPDA
-  id: MartialArtistPDA
-  name: martial artist PDA
-  components:
-  - type: Pda
-    id: MartialArtistIDCard
-    state: pda-boxer

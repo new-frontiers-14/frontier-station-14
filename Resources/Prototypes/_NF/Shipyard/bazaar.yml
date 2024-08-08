@@ -1,8 +1,18 @@
+# Author Info
+# GitHub: YumiGumi (https://github.com/YumiGumi)
+# Discord: ???
+
+# Maintainer Info
+# GitHub: ???
+# Discord: ???
+
+# Shuttle Notes:
+# 
 - type: vessel
   id: Bazaar
   name: SLI Bazaar
   description: The Bazaar is a personal service vessel designed to provide a platform for merchants to sell their goods, it features two locking cargo docks, a spacious cargo hold, and a mercenary post for shop security.
-  price: 65000
+  price: 65555 # on init ~57005$ + 8550$ from 15% markup
   category: Medium
   group: Civilian
   shuttlePath: /Maps/_NF/Shuttles/bazaar.yml
@@ -22,9 +32,7 @@
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
         - type: StationJobs
-          overflowJobs: []
           availableJobs:
-            Quartermaster: [ 0, 0 ]
-            CargoTechnician: [ 0, 0 ]
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
             Mercenary: [ 0, 0 ]
-            ServiceWorker: [ 0, 0 ]

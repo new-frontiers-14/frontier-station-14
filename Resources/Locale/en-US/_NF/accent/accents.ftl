@@ -7,6 +7,15 @@ accent-words-pirate-cat-5 = Brrrrrow.
 accent-words-pirate-cat-6 = Yarrgh Meow?
 accent-words-pirate-cat-7 = Garr Miau.
 
+# Nfsd cat accent
+accent-words-nfsd-cat-1 = Meowdy!
+accent-words-nfsd-cat-2 = Mowdy.
+accent-words-nfsd-cat-3 = Mrrrowdy.
+accent-words-nfsd-cat-4 = Hhsss!
+accent-words-nfsd-cat-5 = Mrrow.
+accent-words-nfsd-cat-6 = Meowdy?
+accent-words-nfsd-cat-7 = Moauu.
+
 # Mistake cat accent
 accent-words-mistake-cat-1 = Hafh ya.
 accent-words-mistake-cat-2 = Ahh Y' ah like fahf.

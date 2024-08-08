@@ -1,0 +1,52 @@
+# Salvage expedition objective
+- type: entity
+  parent: CarpStatue
+  id: DinosaurEgg
+  name: dinosaur egg
+  description: Looks more like a fossil than egg.
+  components:
+  - type: Sprite
+    sprite: Objects/Consumable/Food/egg.rsi
+    layers:
+    - sprite: Structures/Web/nest.rsi
+      state: icon
+      color: "#cd7f32"
+    - state: icon
+      scale: 1.5, 2.2
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Heat
+        damage: 5
+      behaviors:
+      - !type:SolutionExplosionBehavior
+        solution: tank
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Piercing
+        damage: 5
+      behaviors:
+      - !type:SolutionExplosionBehavior
+        solution: tank
+    - trigger:
+        !type:DamageTrigger
+        damage: 10
+      behaviors:
+      - !type:SpillBehavior
+        solution: tank
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        maxVol: 150
+        reagents:
+        - ReagentId: Egg
+          Quantity: 150

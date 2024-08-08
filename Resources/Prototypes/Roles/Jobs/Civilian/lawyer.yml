@@ -12,18 +12,20 @@
   canBeAntag: false
   accessGroups: # Frontier
   - GeneralNfsdBrigAccess # Frontier
+  special: # Frontier
+  - !type:GiveItemOnHolidaySpecial # Frontier
+    holiday: FrontierBirthday # Frontier
+    prototype: FrontierBirthdayGift # Frontier
 
 - type: startingGear
   id: LawyerGear
   equipment:
-    jumpsuit: ClothingUniformJumpsuitLawyerBlack  # TODO change jumpsuit to randomiser of the 4 variants
-    back: ClothingBackpackLawyerFilled # Frontier
     shoes: ClothingShoesBootsLaceup
     id: LawyerPDA
-    ears: ClothingHeadsetSecurity
+    ears: ClothingHeadsetNfsdGreen # Frontier ClothingHeadsetSecurity<ClothingHeadsetNfsdGreen
   inhand:
     - BriefcaseBrownFilled
-  innerClothingSkirt: ClothingUniformJumpskirtLawyerBlack
-  satchel: ClothingBackpackSatchelLawyerFilled # Frontier
-  duffelbag: ClothingBackpackDuffelLawyerFilled # Frontier
-  messenger: ClothingBackpackMessengerLawyerFilled # Frontier
+  storage:
+    back:
+    - RubberStampLawyer
+    - HyperlinkBookSpaceLaw # Frontier: BookSpaceLaw<HyperlinkBookSpaceLaw

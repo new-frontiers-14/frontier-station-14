@@ -3,6 +3,7 @@ using Content.Server.Power.EntitySystems;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Server.Station.Systems;
+using Content.Shared._NF.Shuttles.Events; // Frontier
 using Content.Shared.ActionBlocker;
 using Content.Shared.Alert;
 using Content.Shared.Popups;
@@ -19,17 +20,12 @@ using Robust.Shared.Collections;
 using Robust.Shared.GameStates;
 using Robust.Shared.Map;
 using Robust.Shared.Utility;
-using Content.Server.Emp;
-using Content.Shared.Tools.Components;
-using Content.Shared.Emp;
 using Content.Shared.UserInterface;
-using Robust.Shared.Timing;
 
 namespace Content.Server.Shuttles.Systems;
 
 public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly ActionBlockerSystem _blocker = default!;
     [Dependency] private readonly AlertsSystem _alertsSystem = default!;
@@ -79,9 +75,6 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
 
         SubscribeLocalEvent<FTLDestinationComponent, ComponentStartup>(OnFtlDestStartup);
         SubscribeLocalEvent<FTLDestinationComponent, ComponentShutdown>(OnFtlDestShutdown);
-
-        SubscribeLocalEvent<ShuttleConsoleComponent, EmpPulseEvent>(OnEmpPulse);
-        SubscribeLocalEvent<ShuttleConsoleComponent, ToolUseAttemptEvent>(OnToolUseAttempt);
 
         InitializeFTL();
     }
@@ -135,7 +128,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
 
         while (query.MoveNext(out var uid, out _))
         {
-            UpdateState(uid,ref dockState);
+            UpdateState(uid, ref dockState);
         }
     }
 
@@ -144,13 +137,12 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
     /// </summary>
     private void OnConsoleUIClose(EntityUid uid, ShuttleConsoleComponent component, BoundUIClosedEvent args)
     {
-        if ((ShuttleConsoleUiKey) args.UiKey != ShuttleConsoleUiKey.Key ||
-            args.Session.AttachedEntity is not { } user)
+        if ((ShuttleConsoleUiKey)args.UiKey != ShuttleConsoleUiKey.Key)
         {
             return;
         }
 
-        RemovePilot(user);
+        RemovePilot(args.Actor);
     }
 
     private void OnConsoleUIOpenAttempt(EntityUid uid, ShuttleConsoleComponent component,
@@ -251,7 +243,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         RaiseLocalEvent(entity.Value, ref getShuttleEv);
         entity = getShuttleEv.Console;
 
-        TryComp<TransformComponent>(entity, out var consoleXform);
+        TryComp(entity, out TransformComponent? consoleXform);
         var shuttleGridUid = consoleXform?.GridUid;
 
         NavInterfaceState navState;
@@ -265,7 +257,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         }
         else
         {
-            navState = new NavInterfaceState(0f, null, null, new Dictionary<NetEntity, List<DockingPortState>>());
+            navState = new NavInterfaceState(0f, null, null, new Dictionary<NetEntity, List<DockingPortState>>(), InertiaDampeningMode.Dampen); // Frontier: inertia dampening);
             mapState = new ShuttleMapInterfaceState(
                 FTLState.Invalid,
                 default,
@@ -273,9 +265,9 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
                 new List<ShuttleExclusionObject>());
         }
 
-        if (_ui.TryGetUi(consoleUid, ShuttleConsoleUiKey.Key, out var bui))
+        if (_ui.HasUi(consoleUid, ShuttleConsoleUiKey.Key))
         {
-            _ui.SetUiState(bui, new ShuttleBoundUserInterfaceState(navState, mapState, dockState));
+            _ui.SetUiState(consoleUid, ShuttleConsoleUiKey.Key, new ShuttleBoundUserInterfaceState(navState, mapState, dockState));
         }
     }
 
@@ -326,7 +318,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
 
         component.SubscribedPilots.Add(entity);
 
-        _alertsSystem.ShowAlert(entity, AlertType.PilotingShuttle);
+        _alertsSystem.ShowAlert(entity, pilotComponent.PilotingAlert);
 
         pilotComponent.Console = uid;
         ActionBlockerSystem.UpdateCanMove(entity);
@@ -348,7 +340,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         if (!helm.SubscribedPilots.Remove(pilotUid))
             return;
 
-        _alertsSystem.ClearAlert(pilotUid, AlertType.PilotingShuttle);
+        _alertsSystem.ClearAlert(pilotUid, pilotComponent.PilotingAlert);
 
         _popup.PopupEntity(Loc.GetString("shuttle-pilot-end"), pilotUid, pilotUid);
 
@@ -372,21 +364,6 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
             if (query.TryGetComponent(pilot, out var pilotComponent))
                 RemovePilot(pilot, pilotComponent);
         }
-
-        // Frontier - Adds EMP functionality - PR 526
-        // This makes the Shuttle Console kick pilots like its removed, to make sure EMP in effect.
-        var disabled = EntityQueryEnumerator<EmpDisabledComponent, ShuttleConsoleComponent>();
-        while (disabled.MoveNext(out var uid, out _, out var comp))
-        {
-            if (comp.TimeoutFromEmp <= _timing.CurTime)
-            {
-                ClearPilots(comp);
-                comp.TimeoutFromEmp += TimeSpan.FromSeconds(0.1);
-                comp.MainBreakerEnabled = false;
-            }
-            else
-                comp.MainBreakerEnabled = true;
-        }
     }
 
     /// <summary>
@@ -395,7 +372,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
     public NavInterfaceState GetNavState(Entity<RadarConsoleComponent?, TransformComponent?> entity, Dictionary<NetEntity, List<DockingPortState>> docks)
     {
         if (!Resolve(entity, ref entity.Comp1, ref entity.Comp2))
-            return new NavInterfaceState(SharedRadarConsoleSystem.DefaultMaxRange, null, null, docks);
+            return new NavInterfaceState(SharedRadarConsoleSystem.DefaultMaxRange, null, null, docks, Shared._NF.Shuttles.Events.InertiaDampeningMode.Dampen); // Frontier: add inertia dampening
 
         return GetNavState(
             entity,
@@ -411,13 +388,14 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         Angle angle)
     {
         if (!Resolve(entity, ref entity.Comp1, ref entity.Comp2))
-            return new NavInterfaceState(SharedRadarConsoleSystem.DefaultMaxRange, GetNetCoordinates(coordinates), angle, docks);
+            return new NavInterfaceState(SharedRadarConsoleSystem.DefaultMaxRange, GetNetCoordinates(coordinates), angle, docks, InertiaDampeningMode.Dampen); // Frontier: add inertial dampening
 
         return new NavInterfaceState(
             entity.Comp1.MaxRange,
             GetNetCoordinates(coordinates),
             angle,
-            docks);
+            docks,
+            _shuttle.NfGetInertiaDampeningMode(entity)); // Frontier: inertia dampening
     }
 
     /// <summary>
@@ -455,27 +433,4 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
             beacons ?? new List<ShuttleBeaconObject>(),
             exclusions ?? new List<ShuttleExclusionObject>());
     }
-
-    // Frontier - Adds EMP functionality - PR 526
-    private void OnEmpPulse(EntityUid uid, ShuttleConsoleComponent component, ref EmpPulseEvent args)
-    {
-        args.Affected = true;
-        args.Disabled = true;
-        component.TimeoutFromEmp = _timing.CurTime;
-    }
-
-    // Frontier - Adds EMP functionality - PR 526
-    private void OnToolUseAttempt(EntityUid uid, ShuttleConsoleComponent component, ToolUseAttemptEvent args)
-    {
-        if (!HasComp<EmpDisabledComponent>(uid))
-            return;
-
-        // prevent reconstruct exploit to skip cooldowns
-        if (!component.MainBreakerEnabled)
-            args.Cancel();
-    }
-
-    // Frontier - Adds EMP functionality - PR 526
-    [ByRefEvent]
-    public record struct ShuttleToggleAttemptEvent(bool Cancelled);
 }

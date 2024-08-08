@@ -90,6 +90,7 @@ namespace Content.Server.Explosion.EntitySystems
             InitializeTimedCollide();
             InitializeVoice();
             InitializeMobstate();
+            InitializeBeingGibbed(); // Frontier
 
             SubscribeLocalEvent<TriggerOnSpawnComponent, MapInitEvent>(OnSpawnTriggered);
             SubscribeLocalEvent<TriggerOnCollideComponent, StartCollideEvent>(OnTriggerCollide);
@@ -98,6 +99,7 @@ namespace Content.Server.Explosion.EntitySystems
             SubscribeLocalEvent<TriggerOnStepTriggerComponent, StepTriggeredOffEvent>(OnStepTriggered);
             SubscribeLocalEvent<TriggerOnSlipComponent, SlipEvent>(OnSlipTriggered);
             SubscribeLocalEvent<TriggerWhenEmptyComponent, OnEmptyGunShotEvent>(OnEmptyTriggered);
+            SubscribeLocalEvent<RepeatingTriggerComponent, MapInitEvent>(OnRepeatInit);
 
             SubscribeLocalEvent<SpawnOnTriggerComponent, TriggerEvent>(OnSpawnTrigger);
             SubscribeLocalEvent<DeleteOnTriggerComponent, TriggerEvent>(HandleDeleteTrigger);
@@ -157,7 +159,7 @@ namespace Content.Server.Explosion.EntitySystems
         private void HandleFlashTrigger(EntityUid uid, FlashOnTriggerComponent component, TriggerEvent args)
         {
             // TODO Make flash durations sane ffs.
-            _flashSystem.FlashArea(uid, args.User, component.Range, component.Duration * 1000f);
+            _flashSystem.FlashArea(uid, args.User, component.Range, component.Duration * 1000f, probability: component.Probability);
             args.Handled = true;
         }
 
@@ -167,13 +169,24 @@ namespace Content.Server.Explosion.EntitySystems
             args.Handled = true;
         }
 
+        // Frontier: more configurable gib triggers
         private void HandleGibTrigger(EntityUid uid, GibOnTriggerComponent component, TriggerEvent args)
         {
-            if (!TryComp<TransformComponent>(uid, out var xform))
-                return;
+            EntityUid ent;
+            if (component.UseArgumentEntity)
+            {
+                ent = uid;
+            }
+            else
+            {
+                if (!TryComp(uid, out TransformComponent? xform))
+                    return;
+                ent = xform.ParentUid;
+            }
+
             if (component.DeleteItems)
             {
-                var items = _inventory.GetHandOrInventoryEntities(xform.ParentUid);
+                var items = _inventory.GetHandOrInventoryEntities(ent);
                 foreach (var item in items)
                 {
                     Del(item);
@@ -182,9 +195,9 @@ namespace Content.Server.Explosion.EntitySystems
 
             if (component.DeleteOrgans) // Frontier - Gib organs
             {
-                if (TryComp<BodyComponent>(xform.ParentUid, out var body))
+                if (TryComp<BodyComponent>(ent, out var body))
                 {
-                    var organs = _body.GetBodyOrganComponents<TransformComponent>(xform.ParentUid, body);
+                    var organs = _body.GetBodyOrganComponents<TransformComponent>(ent, body);
                     foreach (var (_, organ) in organs)
                     {
                         Del(organ.Owner);
@@ -192,9 +205,11 @@ namespace Content.Server.Explosion.EntitySystems
                 }
             } // Frontier
 
-            _body.GibBody(xform.ParentUid, true);
+            if (component.Gib)
+                _body.GibBody(ent, true);
             args.Handled = true;
         }
+        // End Frontier
 
         private void HandleRattleTrigger(EntityUid uid, RattleComponent component, TriggerEvent args)
         {
@@ -254,6 +269,9 @@ namespace Content.Server.Explosion.EntitySystems
 
         private void OnActivate(EntityUid uid, TriggerOnActivateComponent component, ActivateInWorldEvent args)
         {
+            if (args.Handled || !args.Complex)
+                return;
+
             Trigger(uid, args.User);
             args.Handled = true;
         }
@@ -278,6 +296,11 @@ namespace Content.Server.Explosion.EntitySystems
             Trigger(uid, args.EmptyGun);
         }
 
+        private void OnRepeatInit(Entity<RepeatingTriggerComponent> ent, ref MapInitEvent args)
+        {
+            ent.Comp.NextTrigger = _timing.CurTime + ent.Comp.Delay;
+        }
+
         public bool Trigger(EntityUid trigger, EntityUid? user = null)
         {
             var triggerEvent = new TriggerEvent(trigger, user);
@@ -291,6 +314,18 @@ namespace Content.Server.Explosion.EntitySystems
                 return;
 
             comp.TimeRemaining += amount;
+        }
+
+        /// <summary>
+        /// Start the timer for triggering the device.
+        /// </summary>
+        public void StartTimer(Entity<OnUseTimerTriggerComponent?> ent, EntityUid? user)
+        {
+            if (!Resolve(ent, ref ent.Comp, false))
+                return;
+
+            var comp = ent.Comp;
+            HandleTimerTrigger(ent, user, comp.Delay, comp.BeepInterval, comp.InitialBeepDelay, comp.BeepSound);
         }
 
         public void HandleTimerTrigger(EntityUid uid, EntityUid? user, float delay, float beepInterval, float? initialBeepDelay, SoundSpecifier? beepSound)
@@ -360,6 +395,7 @@ namespace Content.Server.Explosion.EntitySystems
             UpdateProximity();
             UpdateTimer(frameTime);
             UpdateTimedCollide(frameTime);
+            UpdateRepeat();
         }
 
         private void UpdateTimer(float frameTime)
@@ -392,6 +428,20 @@ namespace Content.Server.Explosion.EntitySystems
                 // In case this is a re-usable grenade, un-prime it.
                 if (TryComp<AppearanceComponent>(uid, out var appearance))
                     _appearance.SetData(uid, TriggerVisuals.VisualState, TriggerVisualState.Unprimed, appearance);
+            }
+        }
+
+        private void UpdateRepeat()
+        {
+            var now = _timing.CurTime;
+            var query = EntityQueryEnumerator<RepeatingTriggerComponent>();
+            while (query.MoveNext(out var uid, out var comp))
+            {
+                if (comp.NextTrigger > now)
+                    continue;
+
+                comp.NextTrigger = now + comp.Delay;
+                Trigger(uid);
             }
         }
     }

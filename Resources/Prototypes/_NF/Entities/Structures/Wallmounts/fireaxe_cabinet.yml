@@ -1,4 +1,5 @@
 - type: entity
+  parent: BaseItemCabinetGlass
   id: FireAxeCabinetCommand
   name: fire axe cabinet
   suffix: With Lock
@@ -16,28 +17,23 @@
     layers:
     - state: cabinet
     - state: fireaxe
-      map: ["enum.ItemCabinetVisualLayers.ContainsItem"]
+      map: ["enum.ItemCabinetVisuals.Layer"]
       visible: true
     - state: glass
-      map: ["enum.ItemCabinetVisualLayers.Door"]
+      map: ["enum.OpenableVisuals.Layer"]
   - type: ItemCabinet
-    cabinetSlot:
-      ejectOnInteract: true
-      whitelist:
-        tags:
-        - FireAxe
-    doorSound:
-      path: /Audio/Machines/machine_switch.ogg
-    openState: glass-up
-    closedState: glass
   - type: Appearance
+  - type: Openable
   - type: Lock
   - type: AccessReader
     access: [["Atmospherics"], ["Command"]]
   - type: ItemSlots
-  - type: ContainerContainer
-    containers:
-      ItemCabinet: !type:ContainerSlot
+    slots:
+      ItemCabinet:
+        ejectOnInteract: true
+        whitelist:
+          tags:
+          - FireAxe
   placement:
     mode: SnapgridCenter
 
@@ -46,38 +42,22 @@
   parent: FireAxeCabinetCommand
   suffix: Open, With Lock
   components:
-  - type: ItemCabinet
+  - type: Openable
     opened: true
-    doorSound:
-      path: /Audio/Machines/machine_switch.ogg
-    openState: glass-up
-    closedState: glass
+  - type: Lock
+    locked: false
 
 - type: entity
   id: FireAxeCabinetFilledCommand
   parent: FireAxeCabinetCommand
   suffix: Filled, With Lock
   components:
-  - type: ItemCabinet
-    cabinetSlot:
-      startingItem: FireAxe
-      ejectOnInteract: true
-      whitelist:
-        tags:
-        - FireAxe
-    doorSound:
-      path: /Audio/Machines/machine_switch.ogg
-    openState: glass-up
-    closedState: glass
+  - type: ContainerFill
+    containers:
+      ItemCabinet:
+      - FireAxe
 
 - type: entity
   id: FireAxeCabinetFilledOpenCommand
-  parent: FireAxeCabinetFilledCommand
+  parent: [FireAxeCabinetFilledCommand, FireAxeCabinetOpenCommand]
   suffix: Filled, Open, With Lock
-  components:
-  - type: ItemCabinet
-    opened: true
-    doorSound:
-      path: /Audio/Machines/machine_switch.ogg
-    openState: glass-up
-    closedState: glass

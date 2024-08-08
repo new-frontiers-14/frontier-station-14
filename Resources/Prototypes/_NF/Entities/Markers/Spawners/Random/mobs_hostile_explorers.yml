@@ -1,0 +1,88 @@
+- type: entity
+  name: explorer spawner
+  id: SpawnMobExplorerT1
+  parent: MarkerBase
+  suffix: AI, Hostile, T1
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - state: ai
+    - sprite: _NF/Mobs/Species/Templates/human.rsi
+      state: human
+    - sprite: Clothing/Uniforms/Jumpsuit/salvage.rsi
+      state: equipped-INNERCLOTHING
+    - sprite: Clothing/Mask/gasexplorer.rsi
+      state: equipped-MASK
+    - sprite: _NF/Clothing/Head/Hats/pilot.rsi
+      state: equipped-HELMET
+    - sprite: Objects/Weapons/Melee/pickaxe.rsi
+      state: wielded-inhand-right
+  - type: RandomSpawner
+    prototypes:
+    - MobExplorerMeleeT1
+    - MobExplorerMeleeT1
+    - MobExplorerRangedT1
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - SpawnMobExplorerT2
+    rareChance: 0.05
+
+- type: entity
+  name: explorer spawner
+  id: SpawnMobExplorerT2
+  parent: MarkerBase
+  suffix: AI, Hostile, T2
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - state: ai
+    - sprite: _NF/Mobs/Species/Templates/human.rsi
+      state: human
+    - sprite: Clothing/OuterClothing/Hardsuits/spatio.rsi
+      state: equipped-OUTERCLOTHING
+    - sprite: Clothing/Head/Hardsuits/spatiohelm.rsi
+      state: equipped-head
+    - sprite: Objects/Weapons/Melee/pickaxe.rsi
+      state: wielded-inhand-right
+  - type: RandomSpawner
+    prototypes:
+    - MobExplorerMeleeT2
+    - MobExplorerMeleeT2
+    - MobExplorerRangedT2
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - SpawnMobExplorerT3
+    rareChance: 0.05
+
+- type: entity
+  name: explorer spawner
+  id: SpawnMobExplorerT3
+  parent: MarkerBase
+  suffix: AI, Hostile, T3
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - state: ai
+    - sprite: _NF/Mobs/Species/Templates/human.rsi
+      state: human
+    - sprite: Clothing/OuterClothing/Hardsuits/salvage.rsi
+      state: equipped-OUTERCLOTHING
+    - sprite: Clothing/Head/Hardsuits/salvage.rsi
+      state: off-equipped-HELMET
+    - sprite: Objects/Weapons/Melee/pickaxe.rsi
+      state: wielded-inhand-right
+  - type: RandomSpawner
+    prototypes:
+    - MobExplorerMeleeT3
+    - MobExplorerMeleeT3
+    - MobExplorerRangedT3
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - MobExplorerHauler
+    rareChance: 0.1

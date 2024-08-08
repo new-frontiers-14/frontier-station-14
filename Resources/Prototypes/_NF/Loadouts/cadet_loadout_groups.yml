@@ -1,0 +1,39 @@
+- type: loadoutGroup
+  id: CadetJumpsuit
+  name: loadout-group-contractor-jumpsuit
+  loadouts:
+  - CadetClothingUniformJumpsuitCadet
+  - CadetClothingUniformJumpskirtCadet
+  fallbacks:
+  - CadetClothingUniformJumpsuitCadet
+  - CadetClothingUniformJumpskirtCadet
+  
+- type: loadoutGroup
+  id: CadetOuterClothing
+  name: loadout-group-contractor-outerclothing
+  minLimit: 0
+  loadouts:
+  - NfsdOuterClothing
+
+- type: loadoutGroup
+  id: CadetHead
+  name: loadout-group-contractor-head
+  minLimit: 0
+  loadouts:
+  - CadetClothingHeadHatCadet
+
+- type: loadoutGroup
+  id: CadetNeck
+  name: loadout-group-contractor-neck
+  minLimit: 0
+  loadouts:
+  - CadetClothingNeckBadgeCadet
+
+- type: loadoutGroup
+  id: CadetPDA
+  name: loadout-group-contractor-id
+  hidden: true # No point in showing this, it gets auto-selected.
+  loadouts:
+  - CadetCadetPDA
+  fallbacks:
+  - CadetCadetPDA

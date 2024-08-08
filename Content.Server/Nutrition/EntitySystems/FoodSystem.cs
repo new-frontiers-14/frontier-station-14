@@ -31,6 +31,8 @@ using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Utility;
 using System.Linq;
+using Robust.Server.GameObjects;
+using Content.Shared.Whitelist;
 
 namespace Content.Server.Nutrition.EntitySystems;
 
@@ -52,9 +54,11 @@ public sealed class FoodSystem : EntitySystem
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly SharedInteractionSystem _interaction = default!;
     [Dependency] private readonly SolutionContainerSystem _solutionContainer = default!;
+    [Dependency] private readonly TransformSystem _transform = default!;
     [Dependency] private readonly StackSystem _stack = default!;
     [Dependency] private readonly StomachSystem _stomach = default!;
     [Dependency] private readonly UtensilSystem _utensil = default!;
+    [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
 
     public const float MaxFeedDistance = 1.0f;
 
@@ -95,6 +99,9 @@ public sealed class FoodSystem : EntitySystem
         args.Handled = result.Handled;
     }
 
+    /// <summary>
+    /// Tries to feed the food item to the target entity
+    /// </summary>
     public (bool Success, bool Handled) TryFeed(EntityUid user, EntityUid target, EntityUid food, FoodComponent foodComp)
     {
         //Suppresses eating yourself and alive mobs
@@ -150,7 +157,7 @@ public sealed class FoodSystem : EntitySystem
             return (false, true);
 
         // TODO make do-afters account for fixtures in the range check.
-        if (!Transform(user).MapPosition.InRange(Transform(target).MapPosition, MaxFeedDistance))
+        if (!_transform.GetMapCoordinates(user).InRange(_transform.GetMapCoordinates(target), MaxFeedDistance))
         {
             var message = Loc.GetString("interaction-system-user-interaction-cannot-reach");
             _popup.PopupEntity(message, user, user);
@@ -161,7 +168,7 @@ public sealed class FoodSystem : EntitySystem
         if (forceFeed)
         {
             var userName = Identity.Entity(user, EntityManager);
-            _popup.PopupEntity(Loc.GetString("food-system-force-feed", ("user", userName)),
+            _popup.PopupEntity(Loc.GetString(foodComp.ForceFeedMessage, ("user", userName)), // Frontier - Loc
                 user, target);
 
             // logging
@@ -185,9 +192,9 @@ public sealed class FoodSystem : EntitySystem
             BreakOnDamage = true,
             MovementThreshold = 0.01f,
             DistanceThreshold = MaxFeedDistance,
-            // Mice and the like can eat without hands.
-            // TODO maybe set this based on some CanEatWithoutHands event or component?
-            NeedHand = forceFeed,
+            // do-after will stop if item is dropped when trying to feed someone else
+            // or if the item started out in the user's own hands
+            NeedHand = forceFeed || _hands.IsHolding(user, food),
         };
 
         _doAfter.TryStartDoAfter(doAfterArgs);
@@ -250,7 +257,7 @@ public sealed class FoodSystem : EntitySystem
         if (stomachToUse == null)
         {
             _solutionContainer.TryAddSolution(soln.Value, split);
-            _popup.PopupEntity(forceFeed ? Loc.GetString("food-system-you-cannot-eat-any-more-other") : Loc.GetString("food-system-you-cannot-eat-any-more"), args.Target.Value, args.User);
+            _popup.PopupEntity(forceFeed ? Loc.GetString(entity.Comp.CannotEatAnyMoreOtherMessage) : Loc.GetString(entity.Comp.CannotEatAnyMoreMessage), args.Target.Value, args.User); // Frontier - Loc
             return;
         }
 
@@ -263,9 +270,9 @@ public sealed class FoodSystem : EntitySystem
         {
             var targetName = Identity.Entity(args.Target.Value, EntityManager);
             var userName = Identity.Entity(args.User, EntityManager);
-            _popup.PopupEntity(Loc.GetString("food-system-force-feed-success", ("user", userName), ("flavors", flavors)), entity.Owner, entity.Owner);
+            _popup.PopupEntity(Loc.GetString(entity.Comp.ForceFeedSuccessMessage, ("user", userName), ("flavors", flavors)), args.Target.Value, args.Target.Value); // Frontier: entity.Owner->args.Target.Value
 
-            _popup.PopupEntity(Loc.GetString("food-system-force-feed-success-user", ("target", targetName)), args.User, args.User);
+            _popup.PopupEntity(Loc.GetString(entity.Comp.ForceFeedSuccessUserMessage, ("target", targetName)), args.User, args.User);
 
             // log successful force feed
             _adminLogger.Add(LogType.ForceFeed, LogImpact.Medium, $"{ToPrettyString(entity.Owner):user} forced {ToPrettyString(args.User):target} to eat {ToPrettyString(entity.Owner):food}");
@@ -287,6 +294,8 @@ public sealed class FoodSystem : EntitySystem
         }
 
         args.Repeat = !forceFeed;
+
+        _solutionContainer.SetCapacity(soln.Value, soln.Value.Comp.Solution.MaxVolume - transferAmount); // Frontier: remove food capacity after taking a bite.
 
         if (TryComp<StackComponent>(entity, out var stack))
         {
@@ -325,7 +334,7 @@ public sealed class FoodSystem : EntitySystem
         }
 
         //We're empty. Become trash.
-        var position = Transform(food).MapPosition;
+        var position = _transform.GetMapCoordinates(food);
         var finisher = Spawn(component.Trash, position);
 
         // If the user is holding the item
@@ -366,7 +375,7 @@ public sealed class FoodSystem : EntitySystem
                 TryFeed(user, user, entity, entity.Comp);
             },
             Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/cutlery.svg.192dpi.png")),
-            Text = Loc.GetString("food-system-verb-eat"),
+            Text = Loc.GetString(entity.Comp.VerbEat), // Frontier - Loc
             Priority = -1
         };
 
@@ -406,7 +415,7 @@ public sealed class FoodSystem : EntitySystem
             if (comp.SpecialDigestible == null)
                 continue;
             // Check if the food is in the whitelist
-            if (comp.SpecialDigestible.IsValid(food, EntityManager))
+            if (_whitelistSystem.IsWhitelistPass(comp.SpecialDigestible, food))
                 return true;
             // They can only eat whitelist food and the food isn't in the whitelist. It's not edible.
             return false;
@@ -449,7 +458,7 @@ public sealed class FoodSystem : EntitySystem
         // If "required" field is set, try to block eating without proper utensils used
         if (component.UtensilRequired && (usedTypes & component.Utensil) != component.Utensil)
         {
-            _popup.PopupEntity(Loc.GetString("food-you-need-to-hold-utensil", ("utensil", component.Utensil ^ usedTypes)), user, user);
+            _popup.PopupEntity(Loc.GetString(component.UtensilMessage, ("utensil", component.Utensil ^ usedTypes)), user, user);  // Frontier - Loc
             return false;
         }
 

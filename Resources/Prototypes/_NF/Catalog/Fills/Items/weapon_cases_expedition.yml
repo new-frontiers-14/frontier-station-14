@@ -26,7 +26,48 @@
     - id: MagazineMagnum
       amount: 2
 
+- type: entity
+  parent: WeaponCaseShort
+  id: WeaponCaseShortViper
+  suffix: Dungeon, Viper
+  noSpawn: true
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponPistolViper
+      amount: 1
+    - id: MagazinePistol
+      amount: 2
+
+- type: entity
+  parent: WeaponCaseShort
+  id: WeaponCaseShortCobra
+  suffix: Dungeon, Cobra
+  noSpawn: true
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponPistolCobra
+      amount: 1
+    - id: MagazinePistolCaselessRifle
+      amount: 1
+    - id: MagazineBoxCaselessRifle10x24
+      amount: 1
+
 # Revolvers
+- type: entity
+  parent: WeaponCaseShort
+  id: WeaponCaseShortArgentiExpedition
+  suffix: Dungeon, Argenti
+  noSpawn: true
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponRevolverArgentiExpedition
+      amount: 1
+    - id: SpeedLoaderRifleHeavy
+      amount: 2
+
 - type: entity
   parent: WeaponCaseShort
   id: WeaponCaseShortDeckardExpedition
@@ -40,7 +81,85 @@
     - id: SpeedLoaderMagnum
       amount: 2
 
+- type: entity
+  parent: WeaponCaseShort
+  id: WeaponCaseShortPython
+  suffix: Dungeon, Python
+  noSpawn: true
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponRevolverPython
+      amount: 1
+    - id: SpeedLoaderMagnum
+      amount: 2
+
+- type: entity
+  parent: WeaponCaseShort
+  id: WeaponCaseShortMateba
+  suffix: Dungeon, Mateba
+  noSpawn: true
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponRevolverMatebaExpedition
+      amount: 1
+    - id: SpeedLoaderMagnum
+      amount: 2
+
+- type: entity
+  parent: WeaponCaseShort
+  id: WeaponCaseShortRevolverPirate
+  suffix: Dungeon, Pirate Revolver
+  noSpawn: true
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponRevolverPirateExpedition
+      amount: 1
+    - id: SpeedLoaderMagnum
+      amount: 2
+
 # Shotguns
+- type: entity
+  parent: WeaponCaseShort
+  id: WeaponCaseShortHandmadeExpedition
+  suffix: Dungeon, Handmade Pistol
+  noSpawn: true
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponShotgunHandmadeExpedition
+      amount: 1
+    - id: BoxLethalshot
+      amount: 1
+
+- type: entity
+  parent: WeaponCaseLong
+  id: WeaponCaseLongShotgunDoubleBarreledExpedition
+  suffix: Dungeon, Double Barreled
+  noSpawn: true
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponShotgunDoubleBarreledExpedition
+      amount: 1
+    - id: BoxLethalshot
+      amount: 2
+
+- type: entity
+  parent: WeaponCaseShort
+  id: WeaponCaseShortSawnExpedition
+  suffix: Dungeon, Sawn-off
+  noSpawn: true
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponShotgunSawnExpedition
+      amount: 1
+    - id: BoxLethalshot
+      amount: 1
+
 - type: entity
   parent: WeaponCaseLong
   id: WeaponCaseLongKammererExpedition
@@ -54,11 +173,39 @@
     - id: BoxLethalshot
       amount: 2
 
+- type: entity
+  parent: WeaponCaseLong
+  id: WeaponCaseLongEnforcerExpedition
+  suffix: Dungeon, Enforcer
+  noSpawn: true
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponShotgunEnforcerExpedition
+      amount: 1
+    - id: BoxLethalshot
+      amount: 2
+
+- type: entity
+  parent: WeaponCaseLong
+  id: WeaponCaseLongBulldog
+  suffix: Dungeon, Bulldog
+  noSpawn: true
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponShotgunBulldog
+      amount: 1
+    - id: MagazineShotgun
+      amount: 2
+    - id: BoxLethalshot
+      amount: 2
+
 # SMGs
 - type: entity
   parent: WeaponCaseLong
   id: WeaponCaseLongWT550Expedition
-  suffix: Dungeon, SMG, WT550
+  suffix: Dungeon, WT550
   noSpawn: true
   components:
   - type: StorageFill
@@ -67,11 +214,13 @@
       amount: 1
     - id: MagazinePistolSubMachineGunTopMounted
       amount: 2
+    - id: MagazineBoxPistol
+      amount: 1
 
 - type: entity
   parent: WeaponCaseLong
   id: WeaponCaseLongAtreidesExpedition
-  suffix: Dungeon, SMG, Atreides
+  suffix: Dungeon, Atreides
   noSpawn: true
   components:
   - type: StorageFill
@@ -80,11 +229,13 @@
       amount: 1
     - id: MagazinePistolSubMachineGun
       amount: 2
+    - id: MagazineBoxPistol
+      amount: 2
 
 - type: entity
   parent: WeaponCaseLong
   id: WeaponCaseLongDrozdExpedition
-  suffix: Dungeon, SMG, Drozd
+  suffix: Dungeon, Drozd
   noSpawn: true
   components:
   - type: StorageFill
@@ -93,8 +244,51 @@
       amount: 1
     - id: MagazinePistolSubMachineGun
       amount: 2
+    - id: MagazineBoxPistol
+      amount: 1
+
+- type: entity
+  parent: WeaponCaseLong
+  id: WeaponCaseLongC20r
+  suffix: Dungeon, C20r
+  noSpawn: true
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponSubMachineGunC20r
+      amount: 1
+    - id: MagazinePistolSubMachineGun
+      amount: 2
+    - id: MagazineBoxPistol
+      amount: 2
 
 # Rifles
+- type: entity
+  parent: WeaponCaseLong
+  id: WeaponCaseLongGestioExpedition
+  suffix: Dungeon, Gestio
+  noSpawn: true
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponRifleGestio
+      amount: 1
+    - id: MagazineLightRifleLowCapacity
+      amount: 3
+
+- type: entity
+  parent: WeaponCaseLong
+  id: WeaponCaseLongWeaponRifleNovaliteC1Expedition
+  suffix: Dungeon, NovaliteC1
+  noSpawn: true
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponRifleNovaliteC1Expedition
+      amount: 1
+    - id: MagazineNovaliteC1
+      amount: 2
+
 - type: entity
   parent: WeaponCaseLong
   id: WeaponCaseLongLecterExpedition
@@ -124,7 +318,7 @@
 - type: entity
   parent: WeaponCaseLong
   id: WeaponCaseLongM90Expedition
-  suffix: Dungeon, M90
+  suffix: Dungeon, M-90gl
   noSpawn: true
   components:
   - type: StorageFill
@@ -133,6 +327,19 @@
       amount: 1
     - id: MagazineRifle
       amount: 2
+
+- type: entity #made By VividPups added in with PR 1417
+  parent: WeaponCaseLong
+  id: WeaponCaseLongSVTExpedition
+  suffix: Dungeon, SVT
+  noSpawn: true
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponSVT
+      amount: 1
+    - id: 10roundmagazine
+      amount: 2 
 
 # Energy
 - type: entity
@@ -192,7 +399,42 @@
     - id: WeaponAdvancedLaserExpedition
       amount: 1
 
+- type: entity
+  parent: WeaponCaseShort
+  id: WeaponCaseLongLaserCannonExpedition
+  suffix: Dungeon, Laser Cannon
+  noSpawn: true
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponLaserCannonExpedition
+      amount: 1
+
+- type: entity
+  parent: WeaponCaseShort
+  id: WeaponCaseLongXrayCannonExpedition
+  suffix: Dungeon, Xray Cannon
+  noSpawn: true
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponXrayCannonExpedition
+      amount: 1
+
 # Sniper
+- type: entity
+  parent: WeaponCaseLong
+  id: WeaponCaseLongMosinExpedition
+  suffix: Dungeon, Mosin
+  noSpawn: true
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponSniperMosinExpedition
+      amount: 1
+    - id: MagazineBoxLightRifle
+      amount: 2
+
 - type: entity
   parent: WeaponCaseLong
   id: WeaponCaseLongHristovExpedition
@@ -219,7 +461,20 @@
     - id: MagazineBoxMagnum
       amount: 2
 
-# RPG
+- type: entity
+  parent: WeaponCaseLong
+  id: WeaponCaseLongMusketExpedition
+  suffix: Dungeon, Musket
+  noSpawn: true
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponMusketExpedition
+      amount: 1
+    - id: MagazineBoxAntiMateriel
+      amount: 2
+
+# Launchers
 - type: entity
   parent: WeaponCaseLong
   id: WeaponCaseLongLauncherRocketExpedition
@@ -231,6 +486,33 @@
     - id: WeaponLauncherRocket
       amount: 1
     - id: CartridgeRocket
+      amount: 2
+
+- type: entity
+  parent: WeaponCaseLong
+  id: WeaponCaseLongLauncherChinaLake
+  suffix: Dungeon, China Lake
+  noSpawn: true
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponLauncherChinaLake
+      amount: 1
+    - id: GrenadeFrag
+      amount: 2
+
+# LMG
+- type: entity
+  parent: WeaponCaseLong
+  id: WeaponCaseLongLightMachineGunL6
+  suffix: Dungeon, L6
+  noSpawn: true
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponLightMachineGunL6
+      amount: 1
+    - id: MagazineLightRifleBox
       amount: 2
 
 # Melee
@@ -288,3 +570,73 @@
     contents:
     - id: EnergySwordDouble
       amount: 1
+
+# Explosives
+- type: entity
+  parent: WeaponCaseShort
+  id: WeaponCaseShortFireBomb
+  suffix: Dungeon, Fire Bomb
+  noSpawn: true
+  components:
+  - type: StorageFill
+    contents:
+    - id: FireBomb
+      amount: 4
+
+- type: entity
+  parent: WeaponCaseShort
+  id: WeaponCaseShortPipeBomb
+  suffix: Dungeon, Pipe Bomb
+  noSpawn: true
+  components:
+  - type: StorageFill
+    contents:
+    - id: PipeBomb
+      amount: 4
+
+- type: entity
+  parent: WeaponCaseShort
+  id: WeaponCaseShortSeismicCharge
+  suffix: Dungeon, Seismic Charge
+  noSpawn: true
+  components:
+  - type: StorageFill
+    contents:
+    - id: SeismicCharge
+      amount: 4
+
+- type: entity
+  parent: WeaponCaseShort
+  id: WeaponCaseShortExGrenade
+  suffix: Dungeon, Explosive Grenade
+  noSpawn: true
+  components:
+  - type: StorageFill
+    contents:
+    - id: ExGrenade
+      amount: 4
+
+- type: entity
+  parent: WeaponCaseShort
+  id: WeaponCaseShortC4
+  suffix: Dungeon, C4
+  noSpawn: true
+  components:
+  - type: StorageFill
+    contents:
+    - id: C4
+      amount: 2
+
+# Turrets
+- type: entity
+  parent: WeaponCaseHeavy
+  id: WeaponCaseHeavyAsmgtExpeditions
+  suffix: packed ASMGT, Expeditions
+  noSpawn: true
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponTurretAsmgtHostileUniversallyPacked
+      amount: 1
+    - id: MagazineAsmgtUniversalPistol
+      amount: 4

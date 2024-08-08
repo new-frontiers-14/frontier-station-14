@@ -1,0 +1,39 @@
+- type: loadoutGroup
+  id: SeniorOfficerJumpsuit
+  name: loadout-group-contractor-jumpsuit
+  loadouts:
+  - SeniorOfficerClothingUniformJumpsuitSeniorOfficer
+  - SeniorOfficerClothingUniformJumpskirtSeniorOfficer
+  fallbacks:
+  - SeniorOfficerClothingUniformJumpsuitSeniorOfficer
+  - SeniorOfficerClothingUniformJumpskirtSeniorOfficer
+  
+- type: loadoutGroup
+  id: SeniorOfficerOuterClothing
+  name: loadout-group-contractor-outerclothing
+  minLimit: 0
+  loadouts:
+  - SeniorOfficerOuterClothing
+
+- type: loadoutGroup
+  id: SeniorOfficerHead
+  name: loadout-group-contractor-head
+  minLimit: 0
+  loadouts:
+  - SeniorOfficerClothingHeadHatSeniorOfficer
+
+- type: loadoutGroup
+  id: SeniorOfficerNeck
+  name: loadout-group-contractor-neck
+  minLimit: 0
+  loadouts:
+  - SeniorOfficerClothingNeckBadgeSeniorOfficer
+
+- type: loadoutGroup
+  id: SeniorOfficerPDA
+  name: loadout-group-contractor-id
+  hidden: true # No point in showing this, it gets auto-selected.
+  loadouts:
+  - SeniorOfficerSeniorOfficerPDA
+  fallbacks:
+  - SeniorOfficerSeniorOfficerPDA

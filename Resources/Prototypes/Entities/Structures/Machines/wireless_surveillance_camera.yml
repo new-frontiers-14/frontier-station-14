@@ -1,6 +1,6 @@
 - type: entity
   abstract: true
-  parent: [ BaseStructureDynamic, ConstructibleMachine ]
+  parent: [ BaseStructureDynamic, SmallConstructibleMachine ]
   id: SurveillanceWirelessCameraBase
   name: wireless camera
   description: A camera. It's watching you. Kinda.
@@ -23,17 +23,19 @@
           density: 80
           mask:
             - MachineMask
-    # - type: SurveillanceCameraMicrophone
-      # blacklist:
-        # components:
-          # - SurveillanceCamera
-          # - SurveillanceCameraMonitor
-          # - RadioSpeaker
-    # - type: ActiveListener
-      # range: 10
+          layer:
+            - BulletImpassable
+    - type: SurveillanceCameraMicrophone
+      blacklist:
+        components:
+          - SurveillanceCamera
+          - SurveillanceCameraMonitor
+          - RadioSpeaker
+    - type: ActiveListener
+      range: 6 # Frontier 10>6
     - type: UserInterface
       interfaces:
-        - key: enum.SurveillanceCameraSetupUiKey.Camera
+        enum.SurveillanceCameraSetupUiKey.Camera:
           type: SurveillanceCameraSetupBoundUi
   placement:
     mode: SnapgridCenter

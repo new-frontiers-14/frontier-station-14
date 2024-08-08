@@ -8,9 +8,9 @@
   requirements:
     - !type:OverallPlaytimeRequirement
       time: 72000 # 20 hrs
-    - !type:DepartmentTimeRequirement
-      department: Security
-      time: 10800 # 3 hrs as sec
+    - !type:RoleTimeRequirement
+      role: JobSecurityGuard
+      time: 10800 # 3 hrs as security guard
   canBeAntag: false
   icon: "JobIconStc" 
   supervisors: job-supervisors-sr
@@ -21,17 +21,14 @@
   - External
   - Frontier
   - StationTrafficController
+  special:
+  - !type:GiveItemOnHolidaySpecial
+    holiday: FrontierBirthday
+    prototype: FrontierBirthdayGift
 
 - type: startingGear
   id: StcGear
   equipment:
-    jumpsuit: ClothingUniformJumpsuitDetectiveGrey
-    back: ClothingBackpackStcFilled
-    shoes: ClothingShoesColorBlack
     id: StcPDA
     ears: ClothingHeadsetAltCommand
-    belt: BoxFolderClipboard
-  innerClothingSkirt: ClothingUniformJumpskirtDetectiveGrey
-  satchel: ClothingBackpackSatchelStcFilled
-  duffelbag: ClothingBackpackDuffelStcFilled
-  messenger: ClothingBackpackMessengerStcFilled # Frontier
+    pocket1: RubberStampStc

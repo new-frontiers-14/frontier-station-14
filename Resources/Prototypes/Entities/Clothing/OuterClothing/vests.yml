@@ -1,6 +1,6 @@
 #Web vest
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: [ClothingOuterStorageBase, AllowSuitStorageClothing]
   id: ClothingOuterVestWeb
   name: web vest
   description: A synthetic armor vest. This one has added webbing and ballistic plates.
@@ -21,9 +21,9 @@
 
 #Mercenary web vest
 - type: entity
-  parent: ClothingOuterStorageBase #web vest so it should have some pockets for ammo
+  parent: ClothingOuterStorageBase #web vest so it should have some pockets for ammo # Frontier: ClothingOuterVestWeb<ClothingOuterStorageBase
   id: ClothingOuterVestWebMercenary # Frontier - Merc to Mercenary
-  name: mercenary web vest
+  name: mercenary web vest # Frontier - merc to mercenary
   description: A high-quality armored vest made from a hard synthetic material. It's surprisingly flexible and light, despite formidable armor plating.
   components:
   - type: Sprite
@@ -33,9 +33,9 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.70
-        Slash: 0.70
-        Piercing: 0.70 #Can save you, but bullets will still hurt. Will take about 10 shots from a Viper before critting, as opposed to 7 while unarmored and 16~ with a bulletproof vest.
+        Blunt: 0.75
+        Slash: 0.75
+        Piercing: 0.75 #Can save you, but bullets will still hurt. Will take about 10 shots from a Viper before critting, as opposed to 7 while unarmored and 16~ with a bulletproof vest.
         Heat: 0.80
         Caustic: 0.9
   - type: ExplosionResistance
@@ -79,3 +79,15 @@
     sprite: Clothing/OuterClothing/Vests/vest.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Vests/vest.rsi
+
+#Tank Harness
+- type: entity
+  parent: [ClothingOuterBase, AllowSuitStorageClothingGasTanks]
+  id: ClothingOuterVestTank
+  name: tank harness
+  description: A simple harness that can hold a gas tank.
+  components:
+  - type: Sprite
+    sprite: Clothing/OuterClothing/Vests/tankharness.rsi
+  - type: Clothing
+    sprite: Clothing/OuterClothing/Vests/tankharness.rsi

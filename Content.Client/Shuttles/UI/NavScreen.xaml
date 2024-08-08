@@ -74,11 +74,48 @@
                             Text="{controls:Loc 'shuttle-console-dock-toggle'}"
                             TextAlign="Center"
                             ToggleMode="True"/>
-
+                    <!-- Frontier - Inertia dampener controls-->
+                    <controls:BoxContainer Name="DampenerModeButtons"
+                                  Orientation="Horizontal"
+                                  HorizontalAlignment="Stretch"
+                                  Margin="5">
+                        <controls:Button Name="DampenerOff"
+                                         Text="{controls:Loc 'shuttle-console-inertia-dampener-off'}"
+                                         TextAlign="Center"
+                                         ToggleMode="True"
+                                         MinWidth="82"
+                                         MaxWidth="82"/>
+                        <controls:Button Name="DampenerOn"
+                                         Text="{controls:Loc 'shuttle-console-inertia-dampener-dampen'}"
+                                         TextAlign="Center"
+                                         ToggleMode="True"
+                                         MinWidth="82"
+                                         MaxWidth="82"/>
+                        <controls:Button Name="AnchorOn"
+                                         Text="{controls:Loc 'shuttle-console-inertia-dampener-anchor'}"
+                                         TextAlign="Center"
+                                         ToggleMode="True"
+                                         MinWidth="82"
+                                         MaxWidth="82"/>
+                    </controls:BoxContainer>
+                    <!-- End Frontier - Inertia dampener controls-->
                     <!-- Frontier - IFF search -->
                     <controls:BoxContainer Orientation="Vertical" HorizontalExpand="True" Name="IffSearchBox">
-                        <controls:Label Text="{controls:Loc 'shuttle-console-iff-search'}"></controls:Label>
-                        <controls:LineEdit Name="IffSearchCriteria" Access="Public" HorizontalExpand="True"></controls:LineEdit>
+                        <controls:Label Text="{controls:Loc 'shuttle-console-iff-search'}"/>
+                        <controls:LineEdit Name="IffSearchCriteria" Access="Public" HorizontalExpand="True"/>
+                    </controls:BoxContainer>
+                    <!-- End Frontier - IFF search -->
+
+                    <!-- Frontier - Maximum IFF Distance -->
+                    <controls:BoxContainer Orientation="Vertical" HorizontalExpand="True" Name="MaximumIFFDistanceBox">
+                        <controls:Label Text="{controls:Loc 'shuttle-console-maximum-iff-distance'}"/>
+                        <controls:SliderIntInput Name="MaximumIFFDistanceValue"
+                                                 Access="Public"
+                                                 MinValue="0"
+                                                 MaxValue="3000"
+                                                 Value="3000"
+                                                 HorizontalExpand="True"/>
+                    </controls:BoxContainer>
+                    <!-- End Frontier - Maximum IFF Distance -->
                     </controls:BoxContainer>
                 </controls:BoxContainer>
-            </controls:BoxContainer>

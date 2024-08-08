@@ -6,10 +6,11 @@
   requirements:
     - !type:OverallPlaytimeRequirement
       time: 86400 # Frontier - 24 hours
-  startingGear: NFPirateGear
+  startingGear: PirateNFGear
   alwaysUseSpawner: true
+  hideConsoleVisibility: true
   canBeAntag: true
-  icon: "JobIconMercenary" 
+  icon: "JobIconPirate"
   supervisors: job-supervisors-hire
   setPreference: true
   accessGroups:
@@ -20,19 +21,16 @@
     - type: MailDisabled
   - !type:AddImplantSpecial
     implants: [ FreelanceTrackingImplant ]
+  - !type:GiveItemOnHolidaySpecial # Even pirates get a piece of cake.
+    holiday: FrontierBirthday
+    prototype: FrontierBirthdayGift
 
 - type: startingGear
-  id: NFPirateGear
+  id: PirateNFGear
   equipment:
-    jumpsuit: ClothingUniformJumpsuitPirate
-    back: ClothingBackpackPirateFilled
     head: ClothingHeadBandBlack
     ears: ClothingHeadsetAltFreelancer
     shoes: ClothingShoesBootsLaceup
-    id: PiratePDA
     belt: ClothingBeltUtility
-    pocket1: AppraisalTool
-  innerClothingSkirt: ClothingUniformJumpsuitPirate
-  satchel: ClothingBackpackPirateFilled
-  duffelbag: ClothingBackpackPirateFilled
-  messenger: ClothingBackpackMessengerMercenaryFilled
+    pocket1: BasePirateUplinkPirateCrew
+    pocket2: AppraisalTool

@@ -4,21 +4,25 @@ using Content.Server.Chat.Managers;
 using Content.Server.DeviceNetwork.Components;
 using Content.Server.Instruments;
 using Content.Server.Light.EntitySystems;
-using Content.Server.Light.Events;
 using Content.Server.PDA.Ringer;
 using Content.Server.Station.Systems;
 using Content.Server.Store.Components;
 using Content.Server.Store.Systems;
+using Content.Server.Traitor.Uplink;
 using Content.Shared.Access.Components;
 using Content.Shared.CartridgeLoader;
 using Content.Shared.Chat;
+using Content.Shared.Light;
 using Content.Shared.Light.Components;
+using Content.Shared.Light.EntitySystems;
 using Content.Shared.PDA;
+using Content.Shared.Store.Components;
 using Robust.Server.Containers;
 using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
+using Content.Shared.Bank.Components; // Frontier
 
 namespace Content.Server.PDA
 {
@@ -41,6 +45,7 @@ namespace Content.Server.PDA
             SubscribeLocalEvent<PdaComponent, LightToggleEvent>(OnLightToggle);
 
             // UI Events:
+            SubscribeLocalEvent<PdaComponent, BoundUIOpenedEvent>(OnPdaOpen);
             SubscribeLocalEvent<PdaComponent, PdaRequestUpdateInterfaceMessage>(OnUiMessage);
             SubscribeLocalEvent<PdaComponent, PdaToggleFlashlightMessage>(OnUiMessage);
             SubscribeLocalEvent<PdaComponent, PdaShowRingtoneMessage>(OnUiMessage);
@@ -140,17 +145,17 @@ namespace Content.Server.PDA
         /// <summary>
         /// Send new UI state to clients, call if you modify something like uplink.
         /// </summary>
-        public void UpdatePdaUi(EntityUid uid, PdaComponent? pda = null)
+        public void UpdatePdaUi(EntityUid uid, PdaComponent? pda = null, EntityUid? actor_uid = null) // Frontier
         {
             if (!Resolve(uid, ref pda, false))
                 return;
 
-            if (!_ui.TryGetUi(uid, PdaUiKey.Key, out var ui))
+            if (!_ui.HasUi(uid, PdaUiKey.Key))
                 return;
 
             var address = GetDeviceNetAddress(uid);
             var hasInstrument = HasComp<InstrumentComponent>(uid);
-            var showUplink = HasComp<StoreComponent>(uid) && IsUnlocked(uid);
+            var showUplink = HasComp<UplinkComponent>(uid) && IsUnlocked(uid);
 
             UpdateStationName(uid, pda);
             UpdateAlertLevel(uid, pda);
@@ -163,6 +168,9 @@ namespace Content.Server.PDA
 
             var programs = _cartridgeLoader.GetAvailablePrograms(uid, loader);
             var id = CompOrNull<IdCardComponent>(pda.ContainedId);
+            var balance = 0; // frontier
+            if (actor_uid != null && TryComp<BankAccountComponent>(actor_uid, out var account)) // frontier
+                balance = account.Balance; // frontier
             var state = new PdaUpdateState(
                 programs,
                 GetNetEntity(loader.ActiveProgram),
@@ -178,12 +186,21 @@ namespace Content.Server.PDA
                     StationAlertLevel = pda.StationAlertLevel,
                     StationAlertColor = pda.StationAlertColor
                 },
+                balance, // Frontier
                 pda.StationName,
                 showUplink,
                 hasInstrument,
                 address);
 
-            _ui.SetUiState(ui, state);
+            _ui.SetUiState(uid, PdaUiKey.Key, state);
+        }
+
+        private void OnPdaOpen(Entity<PdaComponent> ent, ref BoundUIOpenedEvent args)
+        {
+            if (!PdaUiKey.Key.Equals(args.UiKey))
+                return;
+
+            UpdatePdaUi(ent.Owner, ent.Comp, args.Actor); // Frontier
         }
 
         private void OnUiMessage(EntityUid uid, PdaComponent pda, PdaRequestUpdateInterfaceMessage msg)
@@ -199,8 +216,9 @@ namespace Content.Server.PDA
             if (!PdaUiKey.Key.Equals(msg.UiKey))
                 return;
 
-            if (TryComp<UnpoweredFlashlightComponent>(uid, out var flashlight))
-                _unpoweredFlashlight.ToggleLight(uid, flashlight);
+            // TODO PREDICTION
+            // When moving this to shared, fill in the user field
+            _unpoweredFlashlight.TryToggleLight(uid, user: null);
         }
 
         private void OnUiMessage(EntityUid uid, PdaComponent pda, PdaShowRingtoneMessage msg)
@@ -209,7 +227,7 @@ namespace Content.Server.PDA
                 return;
 
             if (HasComp<RingerComponent>(uid))
-                _ringer.ToggleRingerUI(uid, msg.Session);
+                _ringer.ToggleRingerUI(uid, msg.Actor);
         }
 
         private void OnUiMessage(EntityUid uid, PdaComponent pda, PdaShowMusicMessage msg)
@@ -218,7 +236,7 @@ namespace Content.Server.PDA
                 return;
 
             if (TryComp<InstrumentComponent>(uid, out var instrument))
-                _instrument.ToggleInstrumentUi(uid, msg.Session, instrument);
+                _instrument.ToggleInstrumentUi(uid, msg.Actor, instrument);
         }
 
         private void OnUiMessage(EntityUid uid, PdaComponent pda, PdaShowUplinkMessage msg)
@@ -227,8 +245,8 @@ namespace Content.Server.PDA
                 return;
 
             // check if its locked again to prevent malicious clients opening locked uplinks
-            if (TryComp<StoreComponent>(uid, out var store) && IsUnlocked(uid))
-                _store.ToggleUi(msg.Session.AttachedEntity!.Value, uid, store);
+            if (HasComp<UplinkComponent>(uid) && IsUnlocked(uid))
+                _store.ToggleUi(msg.Actor, uid);
         }
 
         private void OnUiMessage(EntityUid uid, PdaComponent pda, PdaLockUplinkMessage msg)
