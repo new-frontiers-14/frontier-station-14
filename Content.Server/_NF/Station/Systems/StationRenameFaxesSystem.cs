@@ -1,4 +1,3 @@
-using Content.Server.Fax;
 using Content.Server.Station.Components;
 using Content.Server.Station.Events;
 using Content.Shared.Fax.Components;
@@ -39,7 +38,20 @@ public sealed class StationRenameFaxesSystem : EntitySystem
             if (faxStationUid != stationUid)
                 continue;
 
-            var stationName = Name(faxStationUid.Value);
+            var stationName = "";
+
+            if (!string.IsNullOrEmpty(fax.StationNamePrefix))
+            {
+                stationName += fax.StationNamePrefix + " ";
+            }
+
+            stationName += Name(faxStationUid.Value);
+
+            if (!string.IsNullOrEmpty(fax.StationNameSuffix))
+            {
+                stationName += " " + fax.StationNameSuffix;
+            }
+
             fax.FaxName = stationName;
         }
     }

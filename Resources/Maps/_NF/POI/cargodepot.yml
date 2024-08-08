@@ -22,32 +22,60 @@ entities:
     - type: Transform
       pos: -0.5,-0.5208335
       parent: invalid
+      # FIXME: remove this to a cargo depot station pending #1737
     - type: CargoMarketData
-      overrideList:
-        matchParents: True
+      whitelist:
+        tags:
+          - Ore
+          - Sheet
+          - Metal
+          - Ingot
+          - RawMaterial
+          - ClothMade
+          - CrystalRed
+          - CrystalGreen
+          - CrystalPink
+          - CrystalOrange
+          - CrystalBlue
+          - CrystalCyan
+        components:
+          - Material
+          - ConstructionMaterials
+          - ToolRefinable
+          - MachinePart
+          - VendingMachineRestock
+          - Seed
       blacklist:
         tags:
-        - Trash
-        - Mail
-        - Paper
+          - Trash
+          - Mail
+          - Paper
         components:
-        - Anchorable
-        - Food
-        - Currency
-        - SpaceGarbage
-        - Contraband
-        - Gun
-        - Ammo
-        - Drink
-        - GasTank
-        - Explosive
-        - Actor
-        - Mind
-        - MindContainer
-        - Body
-        - MobPrice
-        - Artifact
-      marketDataList: []
+          - Anchorable # No structures, they won't fit in crates
+          - Food
+          - Currency # No selling money.
+          - SpaceGarbage
+          - Contraband
+          - Gun
+          - Ammo
+          - Drink
+          - GasTank # Default containers won't be empty
+          - Explosive
+          - Actor
+          - Mind # Players
+          - MindContainer # Positronic brains
+          - Body # No corpses
+          - MobPrice # Animals (live or dead) and the like
+          - Artifact # Unique, abusable for research points
+          - RCD # Dup charges
+          - Storage # Till fixed
+          - StorageFill # Till fixed
+          - ContainerContainer # Till fixed
+      overrideList:
+        matchParents: true
+        id:
+          - SheetUranium # Counts as food
+      # END FIXME: remove this to a cargo depot station pending #1737
     - type: MapGrid
       chunks:
         0,0:
