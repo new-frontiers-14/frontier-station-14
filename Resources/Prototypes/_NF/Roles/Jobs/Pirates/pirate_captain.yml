@@ -4,6 +4,9 @@
   description: job-description-pirate-captain
   playTimeTracker: JobPirateCaptain
   requirements:
+    - !type:RoleTimeRequirement
+      role: JobSeniorOfficer
+      time: 10800 # Frontier - 3 hours
     - !type:OverallPlaytimeRequirement
       time: 172800 # Frontier - 48 hours
   whitelisted: true
