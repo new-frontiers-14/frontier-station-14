@@ -573,7 +573,7 @@
 
 # Explosives
 - type: entity
-  parent: WeaponCaseShort
+  parent: WeaponCaseShortExplosives
   id: WeaponCaseShortFireBomb
   suffix: Dungeon, Fire Bomb
   noSpawn: true
@@ -584,7 +584,7 @@
       amount: 4
 
 - type: entity
-  parent: WeaponCaseShort
+  parent: WeaponCaseShortExplosives
   id: WeaponCaseShortPipeBomb
   suffix: Dungeon, Pipe Bomb
   noSpawn: true
@@ -595,7 +595,7 @@
       amount: 4
 
 - type: entity
-  parent: WeaponCaseShort
+  parent: WeaponCaseShortExplosives
   id: WeaponCaseShortSeismicCharge
   suffix: Dungeon, Seismic Charge
   noSpawn: true
@@ -606,7 +606,7 @@
       amount: 4
 
 - type: entity
-  parent: WeaponCaseShort
+  parent: WeaponCaseShortExplosives
   id: WeaponCaseShortExGrenade
   suffix: Dungeon, Explosive Grenade
   noSpawn: true
@@ -617,7 +617,7 @@
       amount: 4
 
 - type: entity
-  parent: WeaponCaseShort
+  parent: WeaponCaseShortExplosives
   id: WeaponCaseShortC4
   suffix: Dungeon, C4
   noSpawn: true
@@ -639,4 +639,165 @@
     - id: WeaponTurretAsmgtHostileUniversallyPacked
       amount: 1
     - id: MagazineAsmgtUniversalPistol
+      amount: 4
+
+# Ammo
+- type: entity
+  parent: WeaponCaseShortAmmo
+  id: WeaponCaseShortAmmoBox20
+  noSpawn: true
+  components:
+  - type: StorageFill
+    contents:
+    - id: MagazineBoxRifle
+      amount: 4
+
+- type: entity
+  parent: WeaponCaseShortAmmo
+  id: WeaponCaseShortAmmoBox20Rubber
+  noSpawn: true
+  components:
+  - type: StorageFill
+    contents:
+    - id: MagazineBoxRifleRubber
+      amount: 4
+
+- type: entity
+  parent: WeaponCaseShortAmmo
+  id: WeaponCaseShortAmmoBox20Practice
+  noSpawn: true
+  components:
+  - type: StorageFill
+    contents:
+    - id: MagazineBoxRiflePractice
+      amount: 4
+
+- type: entity
+  parent: WeaponCaseShortAmmo
+  id: WeaponCaseShortAmmoBox25
+  noSpawn: true
+  components:
+  - type: StorageFill
+    contents:
+    - id: MagazineBoxCaselessRifle
+      amount: 4
+
+- type: entity
+  parent: WeaponCaseShortAmmo
+  id: WeaponCaseShortAmmoBox25Rubber
+  noSpawn: true
+  components:
+  - type: StorageFill
+    contents:
+    - id: MagazineBoxCaselessRifleRubber
+      amount: 4
+
+- type: entity
+  parent: WeaponCaseShortAmmo
+  id: WeaponCaseShortAmmoBox25Practice
+  noSpawn: true
+  components:
+  - type: StorageFill
+    contents:
+    - id: MagazineBoxCaselessRiflePractice
+      amount: 4
+
+- type: entity
+  parent: WeaponCaseShortAmmo
+  id: WeaponCaseShortAmmoBox30
+  noSpawn: true
+  components:
+  - type: StorageFill
+    contents:
+    - id: MagazineBoxLightRifle
+      amount: 4
+
+- type: entity
+  parent: WeaponCaseShortAmmo
+  id: WeaponCaseShortAmmoBox30Rubber
+  noSpawn: true
+  components:
+  - type: StorageFill
+    contents:
+    - id: MagazineBoxLightRifleRubber
+      amount: 4
+
+- type: entity
+  parent: WeaponCaseShortAmmo
+  id: WeaponCaseShortAmmoBox30Practice
+  noSpawn: true
+  components:
+  - type: StorageFill
+    contents:
+    - id: MagazineBoxLightRiflePractice
+      amount: 4
+
+- type: entity
+  parent: WeaponCaseShortAmmo
+  id: WeaponCaseShortAmmoBox35
+  noSpawn: true
+  components:
+  - type: StorageFill
+    contents:
+    - id: MagazineBoxPistol
+      amount: 4
+
+- type: entity
+  parent: WeaponCaseShortAmmo
+  id: WeaponCaseShortAmmoBox35Rubber
+  noSpawn: true
+  components:
+  - type: StorageFill
+    contents:
+    - id: CrateAmmoSecureAmmoBox35Rubber
+      amount: 4
+
+- type: entity
+  parent: WeaponCaseShortAmmo
+  id: WeaponCaseShortAmmoBox35Practice
+  noSpawn: true
+  components:
+  - type: StorageFill
+    contents:
+    - id: CrateAmmoSecureAmmoBox35Practice
+      amount: 4
+
+- type: entity
+  parent: WeaponCaseShortAmmo
+  id: WeaponCaseShortAmmoBox45
+  noSpawn: true
+  components:
+  - type: StorageFill
+    contents:
+    - id: MagazineBoxMagnum
+      amount: 4
+
+- type: entity
+  parent: WeaponCaseShortAmmo
+  id: WeaponCaseShortAmmoBox45Rubber
+  noSpawn: true
+  components:
+  - type: StorageFill
+    contents:
+    - id: MagazineBoxMagnumRubber
+      amount: 4
+
+- type: entity
+  parent: WeaponCaseShortAmmo
+  id: WeaponCaseShortAmmoBox45Practice
+  noSpawn: true
+  components:
+  - type: StorageFill
+    contents:
+    - id: MagazineBoxMagnumPractice
+      amount: 4
+
+- type: entity
+  parent: WeaponCaseShortAmmo
+  id: WeaponCaseShortAmmoBox60
+  noSpawn: true
+  components:
+  - type: StorageFill
+    contents:
+    - id: MagazineBoxAntiMateriel
       amount: 4

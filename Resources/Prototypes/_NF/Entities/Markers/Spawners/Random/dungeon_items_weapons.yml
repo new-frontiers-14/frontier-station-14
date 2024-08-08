@@ -462,3 +462,74 @@
     - WeaponCaseShortC4
     chance: 0.3
     offset: 0.0
+
+# Ammo
+- type: entity
+  name: random ammo
+  id: SpawnDungeonLootAmmoLethal
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Ammo, Lethal"
+  noSpawn: true
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+      scale: 0.7, 0.7
+    - sprite: _NF/Objects/Storage/Cases/ammocaseshort.rsi
+      state: icon
+  - type: RandomSpawner
+    prototypes:
+    - WeaponCaseShortAmmoBox20
+    - WeaponCaseShortAmmoBox25
+    - WeaponCaseShortAmmoBox30
+    - WeaponCaseShortAmmoBox35
+    - WeaponCaseShortAmmoBox45
+    - WeaponCaseShortAmmoBox60
+    chance: 0.9
+    offset: 0.0
+
+- type: entity
+  name: random ammo
+  id: SpawnDungeonLootAmmoRubber
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Ammo, Rubber"
+  noSpawn: true
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+      scale: 0.7, 0.7
+    - sprite: _NF/Objects/Storage/Cases/ammocaseshort.rsi
+      state: icon
+  - type: RandomSpawner
+    prototypes:
+    - WeaponCaseShortAmmoBox20Rubber
+    - WeaponCaseShortAmmoBox25Rubber
+    - WeaponCaseShortAmmoBox30Rubber
+    - WeaponCaseShortAmmoBox35Rubber
+    - WeaponCaseShortAmmoBox45Rubber
+    chance: 0.9
+    offset: 0.0
+
+- type: entity
+  name: random ammo
+  id: SpawnDungeonLootAmmoPractice
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Ammo, Practice"
+  noSpawn: true
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+      scale: 0.7, 0.7
+    - sprite: _NF/Objects/Storage/Cases/ammocaseshort.rsi
+      state: icon
+  - type: RandomSpawner
+    prototypes:
+    - WeaponCaseShortAmmoBox20Practice
+    - WeaponCaseShortAmmoBox25Practice
+    - WeaponCaseShortAmmoBox30Practice
+    - WeaponCaseShortAmmoBox35Practice
+    - WeaponCaseShortAmmoBox45Practice
+    chance: 0.9
+    offset: 0.0

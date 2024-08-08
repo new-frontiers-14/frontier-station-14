@@ -99,6 +99,9 @@
     - SpawnDungeonLootGunT1
     - SpawnDungeonLootGunT1
     - SpawnDungeonLootMeleeT1
+    - SpawnDungeonLootAmmoLethal
+    - SpawnDungeonLootAmmoRubber
+    - SpawnDungeonLootAmmoPractice
     chance: 0.8
     offset: 0.0
     rarePrototypes:
@@ -127,6 +130,7 @@
     - SpawnDungeonLootGunT2
     - SpawnDungeonLootGunT2
     - SpawnDungeonLootMeleeT2
+    - SpawnDungeonLootAmmoLethal
     chance: 0.85
     offset: 0.0
     rarePrototypes:
@@ -408,11 +412,29 @@
         color: red
   - type: RandomSpawner
     prototypes:
+    # Guns
     - CrateArmoryShotgunExpedition
     - CrateArmoryPistolsExpedition
     - CrateArmoryRifleGestioExpedition
     - CrateArmoryRifleNovaliteC1Expedition
     - CrateArmoryEnergyGunExpedition
+    # Ammo
+    - CrateAmmoSecureAmmoBox20
+    - CrateAmmoSecureAmmoBox20Rubber
+    - CrateAmmoSecureAmmoBox20Practice
+    - CrateAmmoSecureAmmoBox25
+    - CrateAmmoSecureAmmoBox25Rubber
+    - CrateAmmoSecureAmmoBox25Practice
+    - CrateAmmoSecureAmmoBox30
+    - CrateAmmoSecureAmmoBox30Rubber
+    - CrateAmmoSecureAmmoBox30Practice
+    - CrateAmmoSecureAmmoBox35
+    - CrateAmmoSecureAmmoBox35Rubber
+    - CrateAmmoSecureAmmoBox35Practice
+    - CrateAmmoSecureAmmoBox45
+    - CrateAmmoSecureAmmoBox45Rubber
+    - CrateAmmoSecureAmmoBox45Practice
+    - CrateAmmoSecureAmmoBox60
     chance: 0.85
     offset: 0.0
     rarePrototypes:
@@ -421,7 +443,7 @@
     - CrateArmorySMGExpedition
     - CrateArmoryLaserExpedition
     - CrateSecurityNonlethal
-    rareChance: 0.1
+    rareChance: 0.05
 
 - type: entity
   name: random crate
