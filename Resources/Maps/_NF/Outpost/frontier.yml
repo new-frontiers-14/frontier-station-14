@@ -1762,8 +1762,8 @@ entities:
             2400: 7,25
             2401: 0,21
             2402: 0,21
-            2457: -37,12
-            2458: -38,12
+            2451: -37,12
+            2452: -38,12
         - node:
             cleanable: True
             zIndex: 180
@@ -2253,7 +2253,7 @@ entities:
             2351: 40,11
             2352: 40,10
             2353: 37,11
-            2456: -35,12
+            2450: -35,12
         - node:
             cleanable: True
             zIndex: 180
@@ -2505,10 +2505,10 @@ entities:
             2218: 31,18
             2219: 32,17
             2272: 42,16
-            2459: -33,12
-            2460: -34,12
-            2461: -32,12
-            2462: -31,12
+            2453: -33,12
+            2454: -34,12
+            2455: -32,12
+            2456: -31,12
         - node:
             color: '#334E6DC8'
             id: FullTileOverlayGreyscale
@@ -2975,45 +2975,45 @@ entities:
             color: '#FFFFFFFF'
             id: WarnCornerNE
           decals:
-            2448: -39,16
+            2442: -39,16
         - node:
             color: '#FFFFFFFF'
             id: WarnCornerNW
           decals:
-            2450: -41,16
+            2444: -41,16
         - node:
             color: '#FFFFFFFF'
             id: WarnCornerSE
           decals:
-            2452: -39,14
+            2446: -39,14
         - node:
             color: '#FFFFFFFF'
             id: WarnCornerSW
           decals:
-            2454: -41,14
+            2448: -41,14
         - node:
             color: '#EFB34196'
             id: WarnFull
           decals:
-            2447: -32,6
+            2441: -32,6
         - node:
             color: '#52B4E996'
             id: WarnFullGreyscale
           decals:
-            2469: -36,6
-            2470: -35,6
+            2459: -36,6
+            2460: -35,6
         - node:
             color: '#D4D4D496'
             id: WarnFullGreyscale
           decals:
-            2471: -34,6
-            2472: -33,6
+            2461: -34,6
+            2462: -33,6
         - node:
             color: '#DE3A3A96'
             id: WarnFullGreyscale
           decals:
-            2467: -38,6
-            2468: -37,6
+            2457: -38,6
+            2458: -37,6
         - node:
             color: '#FFFFFFFF'
             id: WarnLineE
@@ -3076,7 +3076,7 @@ entities:
             2359: 35,22
             2360: 35,23
             2403: -57,2
-            2453: -39,15
+            2447: -39,15
         - node:
             color: '#FFFFFFFF'
             id: WarnLineN
@@ -3129,7 +3129,7 @@ entities:
             2238: 37,19
             2239: 36,21
             2240: 37,21
-            2455: -40,14
+            2449: -40,14
         - node:
             cleanable: True
             color: '#FFFFFFFF'
@@ -3198,7 +3198,7 @@ entities:
             2357: 35,22
             2358: 35,23
             2404: -57,2
-            2451: -41,15
+            2445: -41,15
         - node:
             color: '#FFFFFFFF'
             id: WarnLineW
@@ -3253,7 +3253,7 @@ entities:
             2242: 37,19
             2243: 37,21
             2244: 36,21
-            2449: -40,16
+            2443: -40,16
         - node:
             cleanable: True
             color: '#FFFFFFFF'
@@ -5054,9 +5054,6 @@ entities:
       parent: 2173
     - type: DeviceLinkSink
       invokeCounter: 2
-      links:
-      - 3745
-      - 3746
     - type: DeviceLinkSource
       linkedPorts:
         3746:
@@ -5071,9 +5068,6 @@ entities:
       parent: 2173
     - type: DeviceLinkSink
       invokeCounter: 2
-      links:
-      - 3745
-      - 3746
     - type: DeviceLinkSource
       linkedPorts:
         3746:
@@ -5088,9 +5082,6 @@ entities:
       parent: 2173
     - type: DeviceLinkSink
       invokeCounter: 2
-      links:
-      - 2982
-      - 2976
     - type: DeviceLinkSource
       linkedPorts:
         2976:
@@ -5105,9 +5096,6 @@ entities:
       parent: 2173
     - type: DeviceLinkSink
       invokeCounter: 2
-      links:
-      - 2976
-      - 2982
     - type: DeviceLinkSource
       linkedPorts:
         2976:
@@ -14674,9 +14662,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 52.5,18.5
       parent: 2173
-    - type: DeviceLinkSink
-      links:
-      - 6145
 - proto: CrateTrashCart
   entities:
   - uid: 1990
@@ -28057,6 +28042,13 @@ entities:
     - type: Transform
       pos: -35.5,6.5
       parent: 2173
+- proto: PacifiedZone100
+  entities:
+  - uid: 2054
+    components:
+    - type: Transform
+      pos: -0.5,12.5
+      parent: 2173
 - proto: Paper
   entities:
   - uid: 2038
@@ -36898,9 +36890,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 4.5,24.5
       parent: 2173
-    - type: DeviceLinkSink
-      links:
-      - 2642
     - type: DeviceLinkSource
       linkedPorts:
         2642:
@@ -36918,9 +36907,6 @@ entities:
     - type: Transform
       pos: 4.5,24.5
       parent: 2173
-    - type: DeviceLinkSink
-      links:
-      - 2643
     - type: DeviceLinkSource
       linkedPorts:
         2643:
