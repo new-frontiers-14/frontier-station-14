@@ -1,0 +1,135 @@
+[net]
+max_connections = 256
+pvs = true
+pvs_range = 25.0
+pvs_priority_range = 32.5
+pvs_budget = 50
+pvs_enter_budget = 200
+tickrate = 30
+
+[game]
+maxplayers = 150
+soft_max_players = 100
+hostname = "🌀 Corvax — FRONTIER 🌀"
+desc = "Корвакс - первый русскоязычный проект в Space Station 14.\nНа этом сервере средние требования к RP.\nВ данный момент проходит бета-тестирование. Возможны вайпы прогресса."
+role_timers = true
+table_bonk = false
+global_status_icons_enabled = true
+debug_coordinates_admin_only = true
+cryo_sleep_rejoining = true
+role_timer_override = ""
+role_whitelist = true
+
+[shuttle]
+auto_call_time = 360
+auto_call_extension_time = 30
+camera_rotation_locked = false
+
+[atmos]
+space_wind = true
+space_wind_max_velocity = 22.0
+
+[game.panic_bunker]
+enabled = false
+
+[game.baby_jail]
+enabled = false
+
+[lookup]
+enlargement_range = 10.0
+
+[render]
+fov_color = "#000000FF"
+
+[salvage]
+expedition_cooldown = 300.0
+expedition_failed_cooldown = 600.0
+
+[audio]
+attenuation = 16
+z_offset = -5.0
+admin_chat_sound_path = "/Audio/Items/pop.ogg"
+admin_chat_sound_volume = -5.0
+
+[physics]
+broadphase_expand = 2.0
+target_minimum_tickrate = 60
+grid_fixtures = true
+grid_fixture_enlargement = -0.0099999997764826
+relative_movement = true
+tile_friction = 40.0
+stop_speed = 0.100000001490116
+mob_pushing = false
+
+[interface]
+audio = true
+click_sound = "/Audio/UserInterface/click.ogg"
+hover_sound = "/Audio/UserInterface/hover.ogg"
+
+[discord]
+rich_main_icon_id = "devstation"
+rich_second_icon_id = "logo"
+
+[replay]
+client_recording_enabled = false
+
+[netres]
+enabled = true
+limit = 3.0
+
+[midi]
+max_events_per_second = 1000
+max_events_per_batch = 60
+
+[ambience]
+range = 8.0
+min_max_sounds_configured = 16
+max_max_sounds_configured = 64
+
+[viewport]
+minimum_width = 15
+maximum_width = 26
+
+[server]
+id = "frontier_main"
+rules_file = "FrontierRuleset"
+
+[infolinks]
+discord = "https://discord.gg/corvax-forge"
+forum = ""
+github = "https://github.com/Corvax-Frontier/Frontier"
+website = ""
+wiki = "https://station14.ru/wiki/Портал:Frontier"
+patreon = "https://boosty.to/corvax-frontier"
+bug_report = ""
+appeal = "https://discord.gg/corvax-forge"
+
+[admin]
+see_own_notes = false
+note_fresh_days = 91.31055
+note_stale_days = 365.2422
+message_wait_time = 3.0
+new_player_threshold = 0
+role_ban_default_severity = "medium"
+department_ban_default_severity = "medium"
+server_ban_default_severity = "High"
+server_ban_ip_ban_default = true
+server_ban_hwid_ban_default = true
+server_ban_use_last_details = true
+server_ban_erase_player = false
+
+[nf14]
+
+[nf14.respawn]
+enabled = true
+time = 300.0
+
+[nf14.uncryo]
+enabled = true
+maxtime = 10800.0
+
+[tippy]
+entity = "TippyClippy"
+
+[console]
+login_host_user = "Kill_Me_I_Noobs"
