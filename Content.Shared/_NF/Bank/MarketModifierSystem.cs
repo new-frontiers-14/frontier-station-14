@@ -1,13 +1,11 @@
 using Content.Shared.Examine;
 using Content.Shared.Bank.Components;
-using Robust.Shared.Network;
+using Content.Shared.VendingMachines;
 
 namespace Content.Shared.Bank;
 
-public abstract class MarketModifierSystem : EntitySystem
+public sealed partial class MarketModifierSystem : EntitySystem
 {
-    [Dependency] private readonly INetManager _net = default!;
-
     public override void Initialize()
     {
         base.Initialize();
@@ -16,9 +14,16 @@ public abstract class MarketModifierSystem : EntitySystem
     }
 
     // This code is licensed under AGPLv3. See AGPLv3.txt
-    private void OnExamined(EntityUid uid, MarketModifierComponent component, ExaminedEvent args)
+    private void OnExamined(Entity<MarketModifierComponent> ent, ref ExaminedEvent args)
     {
-        if (args.IsInDetailsRange && !_net.IsClient)
-            args.PushMarkup(Loc.GetString("market-modifier-green", ("mod", component.Mod)));
+        // If the machine is a vendor, don't print out rates
+        if (HasComp<VendingMachineComponent>(ent))
+            return;
+
+        string locVerb = ent.Comp.Buy ? "buy" : "sell";
+        if (ent.Comp.Mod >= 1.0f)
+            args.PushMarkup(Loc.GetString($"market-modifier-{locVerb}-high", ("mod", ent.Comp.Mod)));
+        else
+            args.PushMarkup(Loc.GetString($"market-modifier-{locVerb}-low", ("mod", ent.Comp.Mod)));
     }
 }
