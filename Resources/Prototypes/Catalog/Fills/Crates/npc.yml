@@ -177,12 +177,12 @@
   id: CrateNPCParrot
   parent: CrateLivestock
   name: parrot crate
-  description: A crate containing three parrots.
+  description: A crate containing two parrots. # Frontier "three"<"two"
   components:
   - type: StorageFill
     contents:
-      - id: MobParrot
-        amount: 3
+      - id: MobParrotNF # Frontier: MobParrot<MobParrotNF
+        amount: 2 # Frontier: 3<2 (loud)
 
 - type: entity
   id: CrateNPCPenguin
