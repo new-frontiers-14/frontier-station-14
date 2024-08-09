@@ -5,6 +5,7 @@ using Content.Server.Cargo.Systems;
 using Content.Server.Salvage.Expeditions;
 using Content.Server.Salvage.Expeditions.Structure;
 using Content.Shared.CCVar;
+using Content.Shared._NF.CCVar;
 using Content.Shared.Examine;
 using Content.Shared.Random.Helpers;
 using Content.Shared.Salvage.Expeditions;
@@ -63,6 +64,7 @@ public sealed partial class SalvageSystem
         _failedCooldown = _configurationManager.GetCVar(CCVars.SalvageExpeditionFailedCooldown);
         _configurationManager.OnValueChanged(CCVars.SalvageExpeditionCooldown, SetCooldownChange);
         _configurationManager.OnValueChanged(CCVars.SalvageExpeditionFailedCooldown, SetFailedCooldownChange);
+        _configurationManager.OnValueChanged(NFCCVars.SalvageExpeditionMaxActive, SetSalvageExpeditionMaxActive);
     }
 
     private void OnExpeditionGetState(EntityUid uid, SalvageExpeditionComponent component, ref ComponentGetState args)
@@ -77,6 +79,7 @@ public sealed partial class SalvageSystem
     {
         _configurationManager.UnsubValueChanged(CCVars.SalvageExpeditionCooldown, SetCooldownChange);
         _configurationManager.UnsubValueChanged(CCVars.SalvageExpeditionFailedCooldown, SetFailedCooldownChange);
+        _configurationManager.UnsubValueChanged(NFCCVars.SalvageExpeditionMaxActive, SetSalvageExpeditionMaxActive);
     }
 
     private void SetCooldownChange(float obj)
@@ -106,6 +109,11 @@ public sealed partial class SalvageSystem
         }
 
         _failedCooldown = obj;
+    }
+
+    private void SetSalvageExpeditionMaxActive(int obj) // Frontier
+    {
+
     }
 
     private void OnExpeditionMapInit(EntityUid uid, SalvageExpeditionComponent component, MapInitEvent args)

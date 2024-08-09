@@ -1,9 +1,9 @@
 using Robust.Shared.Configuration;
 
-namespace Content.Shared.NF14.CCVar;
+namespace Content.Shared._NF.CCVar;
 
 [CVarDefs]
-public sealed class NF14CVars
+public sealed partial class NFCCVars
 {
     /// <summary>
     /// Whether or not respawning is enabled.
@@ -94,4 +94,13 @@ public sealed class NF14CVars
     /// </summary>
     public static readonly CVarDef<int> POIPlacementRetries =
         CVarDef.Create("nf14.worldgen.poi_placement_retries", 10, CVar.SERVERONLY);
+
+    /*
+     * Salvage
+     */
+    /// <summary>
+    /// TODO
+    /// </summary>
+    public static readonly CVarDef<int> SalvageExpeditionMaxActive =
+        CVarDef.Create("nf14.salvage.expedition_max_active", 15, CVar.REPLICATED);
 }
