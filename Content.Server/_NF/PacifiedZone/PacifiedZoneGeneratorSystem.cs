@@ -1,10 +1,9 @@
-using Robust.Server.GameObjects;
 using Robust.Shared.Timing;
-using Content.Shared.Humanoid;
+using Content.Shared.Alert;
 using Content.Shared.CombatMode.Pacification;
+using Content.Shared.Humanoid;
 using Content.Shared.Mind;
 using Content.Shared.Roles.Jobs;
-
 
 namespace Content.Server._NF.PacifiedZone
 {
@@ -14,6 +13,9 @@ namespace Content.Server._NF.PacifiedZone
         [Dependency] private readonly IGameTiming _gameTiming = default!;
         [Dependency] private readonly SharedMindSystem _mindSystem = default!;
         [Dependency] private readonly SharedJobSystem _jobSystem = default!;
+        [Dependency] private readonly AlertsSystem _alerts = default!;
+
+        private const string Alert = "PacifiedZone";
 
         public override void Initialize()
         {
@@ -24,12 +26,12 @@ namespace Content.Server._NF.PacifiedZone
 
         private void OnComponentInit(EntityUid uid, PacifiedZoneGeneratorComponent component, ComponentInit args)
         {
-            foreach (var humanoid_uid in _lookup.GetEntitiesInRange<HumanoidAppearanceComponent>(Transform(uid).Coordinates, component.Radius))
+            foreach (var humanoidUid in _lookup.GetEntitiesInRange<HumanoidAppearanceComponent>(Transform(uid).Coordinates, component.Radius))
             {
-                if (HasComp<PacifiedComponent>(humanoid_uid))
+                if (HasComp<PacifiedComponent>(humanoidUid))
                     continue;
 
-                if (!_mindSystem.TryGetMind(humanoid_uid, out var mindId, out var _))
+                if (!_mindSystem.TryGetMind(humanoidUid, out var mindId, out var _))
                     continue;
 
                 _jobSystem.MindTryGetJobId(mindId, out var jobId);
@@ -37,9 +39,10 @@ namespace Content.Server._NF.PacifiedZone
                 if (jobId != null && component.ImmuneRoles.Contains(jobId.Value))
                     continue;
 
-                AddComp<PacifiedComponent>(humanoid_uid);
-                AddComp<PacifiedByZoneComponent>(humanoid_uid);
-                component.TrackedEntities.Add(humanoid_uid);
+                var pacifiedComponent = AddComp<PacifiedComponent>(humanoidUid);
+                EnableAlert(humanoidUid, pacifiedComponent);
+                AddComp<PacifiedByZoneComponent>(humanoidUid);
+                component.TrackedEntities.Add(humanoidUid);
             }
 
             component.NextUpdate = _gameTiming.CurTime + component.UpdateInterval;
@@ -51,6 +54,7 @@ namespace Content.Server._NF.PacifiedZone
             {
                 RemComp<PacifiedComponent>(entity);
                 RemComp<PacifiedByZoneComponent>(entity);
+                DisableAlert(entity);
             }
         }
 
@@ -58,18 +62,18 @@ namespace Content.Server._NF.PacifiedZone
         {
             base.Update(frameTime);
 
-            var gen_query = AllEntityQuery<PacifiedZoneGeneratorComponent>();
-            while (gen_query.MoveNext(out var gen_uid, out var component))
+            var genQuery = AllEntityQuery<PacifiedZoneGeneratorComponent>();
+            while (genQuery.MoveNext(out var genUid, out var component))
             {
                 List<EntityUid> newEntities = new List<EntityUid>();
                 // Not yet update time, skip this 
                 if (_gameTiming.CurTime < component.NextUpdate)
                     continue;
 
-                var query = _lookup.GetEntitiesInRange<HumanoidAppearanceComponent>(Transform(gen_uid).Coordinates, component.Radius);
-                foreach (var humanoid_uid in query)
+                var query = _lookup.GetEntitiesInRange<HumanoidAppearanceComponent>(Transform(genUid).Coordinates, component.Radius);
+                foreach (var humanoidUid in query)
                 {
-                    if (!_mindSystem.TryGetMind(humanoid_uid, out var mindId, out var mind))
+                    if (!_mindSystem.TryGetMind(humanoidUid, out var mindId, out var mind))
                         continue;
 
                     _jobSystem.MindTryGetJobId(mindId, out var jobId);
@@ -78,22 +82,23 @@ namespace Content.Server._NF.PacifiedZone
                     if (jobId != null && component.ImmuneRoles.Contains(jobId.Value))
                         continue;
 
-                    if (component.TrackedEntities.Contains(humanoid_uid))
+                    if (component.TrackedEntities.Contains(humanoidUid))
                     {
                         // Entity still in zone.
-                        newEntities.Add(humanoid_uid);
-                        component.TrackedEntities.Remove(humanoid_uid);
+                        newEntities.Add(humanoidUid);
+                        component.TrackedEntities.Remove(humanoidUid);
                     }
                     else
                     {
                         // Player is pacified (either naturally or by another zone), skip them.
-                        if (HasComp<PacifiedComponent>(humanoid_uid))
+                        if (HasComp<PacifiedComponent>(humanoidUid))
                             continue;
 
                         // New entity in zone, needs the Pacified comp.
-                        AddComp<PacifiedComponent>(humanoid_uid);
-                        AddComp<PacifiedByZoneComponent>(humanoid_uid);
-                        newEntities.Add(humanoid_uid);
+                        var pacifiedComponent = AddComp<PacifiedComponent>(humanoidUid);
+                        EnableAlert(humanoidUid, pacifiedComponent);
+                        AddComp<PacifiedByZoneComponent>(humanoidUid);
+                        newEntities.Add(humanoidUid);
                     }
                 }
 
@@ -102,12 +107,26 @@ namespace Content.Server._NF.PacifiedZone
                 {
                     RemComp<PacifiedComponent>(humanoid_net_uid);
                     RemComp<PacifiedByZoneComponent>(humanoid_net_uid);
+                    DisableAlert(humanoid_net_uid);
                 }
 
                 // Update state for next run.
                 component.TrackedEntities = newEntities;
                 component.NextUpdate = _gameTiming.CurTime + component.UpdateInterval;
             }
+        }
+
+        // Overrides the default Pacified alert with one for the pacified zone.
+        private void EnableAlert(EntityUid entity, PacifiedComponent pacified)
+        {
+            _alerts.ClearAlert(entity, pacified.PacifiedAlert);
+            _alerts.ShowAlert(entity, Alert);
+        }
+
+        // Hides our pacified zone alert.
+        private void DisableAlert(EntityUid entity)
+        {
+            _alerts.ClearAlert(entity, Alert);
         }
     }
 }
