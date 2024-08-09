@@ -1,6 +1,25 @@
+# Author Info
+# GitHub:
+# Discord: Tjsip
+
+# Maintainer Info
+# GitHub: ???
+# Discord: ???
+
+# Notes:
+#
+- type: pointOfInterest
+  id: Nfsd
+  name: 'NFSD Outpost'
+  rangeMin: 500
+  rangeMax: 750
+  iffColor: "#8e6444" #brown to match the color of uniform and the color of the pants of the nearest pirates
+  alwaysSpawn: true
+  gridPath: /Maps/_NF/POI/nfsd.yml
+
 - type: gameMap
   id: Nfsd
-  mapName: 'NFSD Outpost'
+  mapName: 'Аванпост ДСБФ'
   mapPath: /Maps/_NF/POI/nfsd.yml
   minPlayers: 0
   stations:
@@ -8,7 +27,7 @@
       stationProto: SecurityFrontierOutpost
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'NFSD Outpost'
+          mapNameTemplate: 'Аванпост ДСБФ'
         - type: StationJobs
           availableJobs:
             Sheriff: [ 1, 1 ]
@@ -16,7 +35,7 @@
             SeniorOfficer: [ 1, 1 ]
             Brigmedic: [ 0, 0 ]
             DetectiveNF: [ 0, 0 ]
-            Deputy: [ 2, 2 ]
+            Deputy: [ 3, 3 ]
             Cadet: [ 0, 0 ]
             # Others:
             Lawyer: [ 0, 0 ]
