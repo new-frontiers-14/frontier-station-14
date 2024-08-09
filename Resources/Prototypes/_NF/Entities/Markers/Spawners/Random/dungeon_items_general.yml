@@ -302,6 +302,7 @@
     prototypes:
     # Empty Crates
     - CrateEmptySpawner
+    - GenericTank
     # Mats
     - CrateMaterialGlass
     - CrateMaterialSteel
@@ -316,8 +317,13 @@
     - CrateMaterialMetalRods
     - CrateMaterialPaper
     - WeldingFuelTank
+    - WaterTankFull
     chance: 1.0
     offset: 0.0
+    rarePrototypes:
+    - WeldingFuelTankHighCapacity
+    - WaterTankHighCapacity
+    rareChance: 0.01
 
 - type: entity
   name: random crate (restock)

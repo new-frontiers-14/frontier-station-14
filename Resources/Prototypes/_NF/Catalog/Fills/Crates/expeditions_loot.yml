@@ -1,15 +1,3 @@
-# Materials
-- type: entity
-  id: CrateMaterialMetalRods
-  parent: CrateGenericSteel
-  name: metal rods crate
-  description: 90 metal rods, packed with reckless abandon.
-  components:
-  - type: StorageFill
-    contents:
-    - id: PartRodMetal
-      amount: 3
-
 # Engineering
 - type: entity
   parent: CrateEngineering
@@ -230,6 +218,85 @@
     - id: VendingMachineChemicalsFlatpack
     - id: VendingMachineRestockChemVend
 
+- type: entity
+  parent: CrateChemistrySecure
+  id: CrateChemistrySecureKitChemist
+  name: chemistry kit
+  description: Contains a chemist equipment kit.
+  components:
+  - type: StorageFill
+    contents:
+    - id: BoxSyringe
+    - id: BoxBeaker
+      amount: 2
+    - id: BoxPillCanister
+    - id: BoxBottle
+    - id: BoxVial
+    - id: ChemBag
+    - id: ClothingHandsGlovesLatex
+    - id: ClothingMaskSterile
+    - id: ClothingEyesGlassesChemical  
+
+- type: entity
+  parent: CrateMedicalSecure
+  id: CrateMedicalSecureDoctor
+  name: doctor chest
+  description: Contains a doctor equipment kit.
+  components:
+  - type: StorageFill
+    contents:
+    - id: HandheldHealthAnalyzer
+    - id: ClothingHandsGlovesLatex
+    - id: ClothingEyesHudMedical
+    - id: ClothingMaskSterile
+    - id: ClothingBeltMedicalFilled
+
+- type: entity
+  parent: CrateSurgery
+  id: CrateMedicalSecureMedicine
+  name: medicine chest
+  description: Contains a essential medical supplies.
+  components:
+  - type: StorageFill
+    contents:
+    - id: BoxSyringe
+    - id: EpinephrineChemistryBottle
+      amount: 1
+    - id: Brutepack
+      amount: 2
+    - id: Ointment
+      amount: 2
+    - id: Bloodpack
+      amount: 2
+    - id: Gauze
+  
+- type: entity
+  parent: CrateSurgery
+  id: CrateMedicalSecureMedicinePierce
+  name: medicine chest
+  description: Contains a essential medical supplies.
+  components:
+  - type: StorageFill
+    contents:
+    - id: BoxSyringe
+    - id: EpinephrineChemistryBottle
+      amount: 1
+    - id: Bloodpack
+      amount: 3
+    - id: Gauze
+      amount: 3
+  
+- type: entity
+  parent: CrateMedical
+  id: CrateMedicalRollerBeds
+  name: roller bed chest
+  description: Contains four roller beds.
+  components:
+  - type: StorageFill
+    contents:
+    - id: RollerBedSpawnFolded
+      amount: 4
+  
 - type: entity
   parent: CrateEvaKit
   id: CrateEvaKitParamedic
