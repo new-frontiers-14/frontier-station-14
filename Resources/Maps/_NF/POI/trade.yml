@@ -37,6 +37,27 @@ entities:
       parent: invalid
       # FIXME: remove this to a cargo depot station pending #1737
     - type: CargoMarketData
+      whitelist:
+        tags:
+          - Ore
+          - Sheet
+          - Metal
+          - Ingot
+          - RawMaterial
+          - ClothMade
+          - CrystalRed
+          - CrystalGreen
+          - CrystalPink
+          - CrystalOrange
+          - CrystalBlue
+          - CrystalCyan
+        components:
+          - Material
+          - ConstructionMaterials
+          - ToolRefinable
+          - MachinePart
+          - VendingMachineRestock
+          - Seed
       blacklist:
         tags:
           - Trash
@@ -59,9 +80,13 @@ entities:
           - Body # No corpses
           - MobPrice # Animals (live or dead) and the like
           - Artifact # Unique, abusable for research points
+          - RCD # Dup charges
+          - Storage # Till fixed
+          - StorageFill # Till fixed
+          - ContainerContainer # Till fixed
       overrideList:
         matchParents: true
-        entities:
+        id:
           - SheetUranium # Counts as food
       # END FIXME: remove this to a cargo depot station pending #1737
     - type: MapGrid
