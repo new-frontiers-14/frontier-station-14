@@ -56,6 +56,12 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
             }
 
             component.AudioStream = Audio.PlayPvs(jukeboxProto.Path, uid, AudioParams.Default.WithMaxDistance(10f))?.Entity;
+            // Frontier: wallmount jukebox
+            if (TryComp<TransformComponent>(component.AudioStream, out var xform))
+            {
+                xform.LocalPosition = component.AudioOffset;
+            }
+            // End Frontier
             Dirty(uid, component);
         }
     }
