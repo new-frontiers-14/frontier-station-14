@@ -21,6 +21,7 @@ using Robust.Shared.Random;
 using Robust.Shared.Prototypes;
 using Content.Shared.Nutrition.EntitySystems;
 using Content.Shared.Nyanotrasen.Abilities;
+using Content.Shared.CombatMode.Pacification; // Frontier
 
 namespace Content.Server.Abilities.Felinid
 {
@@ -47,6 +48,8 @@ namespace Content.Server.Abilities.Felinid
             SubscribeLocalEvent<FelinidComponent, DidUnequipHandEvent>(OnUnequipped);
             SubscribeLocalEvent<HairballComponent, ThrowDoHitEvent>(OnHairballHit);
             SubscribeLocalEvent<HairballComponent, GettingPickedUpAttemptEvent>(OnHairballPickupAttempt);
+
+            SubscribeLocalEvent<HairballComponent, AttemptPacifiedThrowEvent>(OnHairballAttemptPacifiedThrow); // Frontier - Block hairball abuse
         }
 
         private Queue<EntityUid> RemQueue = new();
@@ -189,6 +192,11 @@ namespace Content.Server.Abilities.Felinid
                 _vomitSystem.Vomit(args.User);
                 args.Cancel();
             }
+        }
+
+        private void OnHairballAttemptPacifiedThrow(Entity<HairballComponent> ent, ref AttemptPacifiedThrowEvent args) // Frontier - Block hairball abuse
+        {
+            args.Cancel("pacified-cannot-throw-hairball");
         }
     }
 
