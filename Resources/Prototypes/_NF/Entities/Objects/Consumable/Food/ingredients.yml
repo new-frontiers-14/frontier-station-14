@@ -43,28 +43,27 @@
           Quantity: 50
 
 - type: entity
-  parent: BaseItem
+  parent: ReagentPacketBase
   id: ReagentContainerRaisin
   name: raisin bag
-  description: A big bag of raisin. Good for baking!
+  description: A big bag of raisins. Good for baking!
   components:
   - type: Sprite
     sprite: _NF/Objects/Consumable/Food/ingredients.rsi
     state: raisin-big
-  - type: FlavorProfile
-    flavors:
-      - raisins
-  - type: Tag
-    tags:
-    - Fruit
-  - type: Damageable
-    damageContainer: Inorganic
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 50
+        reagents:
+        - ReagentId: Raisins
+          Quantity: 50
 
 - type: entity
   parent: ReagentPacketBase
   id: ReagentContainerChocolate
-  name: chocolate chips bag
-  description: A big bag of chocolate chips. Good for cooking!
+  name: cocoa powder bag
+  description: A big bag of cocoa powder. Good for cooking!
   components:
   - type: Sprite
     sprite: _NF/Objects/Consumable/Food/ingredients.rsi
