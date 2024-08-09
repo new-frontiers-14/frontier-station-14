@@ -1,0 +1,38 @@
+# Author Info
+# GitHub: @drhat (https://github.com/drhat)
+# Discord: ???
+
+# Maintainer Info
+# GitHub: ???
+# Discord: ???
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Frida
+  name: NT Frida
+  description: This is the Frida, a large expedition ship commissioned by Nanotrasen as part of a series of variants based on the same command module.
+  price: 150000 # ~114000$ on mapinit +30% markup
+  category: Large
+  group: Expedition
+  shuttlePath: /Maps/_NF/Shuttles/Expedition/Frida.yml
+
+- type: gameMap
+  id: Frida
+  mapName: 'NT Frida'
+  mapPath: /Maps/_NF/Shuttles/Expedition/Frida.yml
+  minPlayers: 0
+  stations:
+    Frida:
+      stationProto: StandardFrontierExpeditionVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Frida {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]
