@@ -201,9 +201,9 @@ public sealed class PublicTransitSystem : EntitySystem
                         ignoreActionBlocker: true);
                 }
             }
-            _shuttles.FTLToDock(uid, shuttle, comp.NextStation, hyperspaceTime: FlyTime);
+            _shuttles.FTLToDock(uid, shuttle, comp.NextStation, hyperspaceTime: FlyTime, priorityTag: "DockTransit");
 
-            if (TryGetNextStation(out var nextStation) && nextStation is {Valid : true} destination)
+            if (TryGetNextStation(out var nextStation) && nextStation is { Valid: true } destination)
                 comp.NextStation = destination;
 
             comp.NextTransfer = curTime + TimeSpan.FromSeconds(FlyTime + _cfgManager.GetCVar(NF14CVars.PublicTransitWaitTime));
