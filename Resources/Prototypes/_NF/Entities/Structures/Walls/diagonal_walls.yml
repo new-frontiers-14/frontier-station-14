@@ -21,7 +21,7 @@
     state: state0
   - type: IconSmooth
     mode: Diagonal
-    key: walls
+    #key: walls
     base: state
   - type: Icon
     state: state0
@@ -57,14 +57,14 @@
   - type: Sprite
     drawdepth: Walls
     sprite: _NF/Structures/Walls/solid_reinforced_diagonal.rsi
-    state: state0
+    state: reinf0
   - type: IconSmooth
-    mode: Diagonal
+    mode: DiagonalNF
     key: walls
-    base: state
+    base: reinf
   - type: Icon
     sprite: _NF/Structures/Walls/solid_reinforced_diagonal.rsi
-    state: state0
+    state: reinf0
   - type: Fixtures
     fixtures:
       fix1:
@@ -93,14 +93,14 @@
   - type: Sprite
     drawdepth: Walls
     sprite: _NF/Structures/Walls/wood_diagonal.rsi
-    state: state0
+    state: wood0
   - type: IconSmooth
-    mode: Diagonal
-    key: walls
-    base: state
+    mode: DiagonalNF
+    key: woods
+    base: wood
   - type: Icon
     sprite: _NF/Structures/Walls/wood_diagonal.rsi
-    state: state0
+    state: wood0
   - type: Fixtures
     fixtures:
       fix1:
@@ -129,14 +129,14 @@
   - type: Sprite
     drawdepth: Walls
     sprite: _NF/Structures/Walls/uranium_diagonal.rsi
-    state: state0
+    state: uranium0
   - type: IconSmooth
-    mode: Diagonal
+    mode: DiagonalNF
     key: walls
-    base: state
+    base: uranium
   - type: Icon
     sprite: _NF/Structures/Walls/uranium_diagonal.rsi
-    state: state0
+    state: uranium0
   - type: Fixtures
     fixtures:
       fix1:
