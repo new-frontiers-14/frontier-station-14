@@ -239,3 +239,28 @@
     sprite: _NF/Structures/Storage/Crates/mccargo.rsi
   - type: Sprite
     sprite: _NF/Structures/Storage/Crates/mccargo.rsi
+
+# Mercenary
+- type: entity
+  parent: CrateBaseSecure
+  id: CrateSecureMercenary
+  name: mercenary crate
+  components:
+  - type: Icon
+    sprite: _NF/Structures/Storage/Crates/mercenary_secure.rsi
+  - type: Sprite
+    sprite: _NF/Structures/Storage/Crates/mercenary_secure.rsi
+  - type: AccessReader
+    access: [["Mercenary"]]
+
+- type: entity
+  parent: CrateBaseSecure
+  id: CrateSecureMercenaryPrivateSec
+  name: private security crate
+  components:
+  - type: Icon
+    sprite: _NF/Structures/Storage/Crates/privatesec_secure.rsi
+  - type: Sprite
+    sprite: _NF/Structures/Storage/Crates/privatesec_secure.rsi
+  - type: AccessReader
+    access: [["Mercenary"]]

@@ -412,13 +412,24 @@
         color: red
   - type: RandomSpawner
     prototypes:
-    # Guns
+    # Empty crates
+    - CrateSecureMercenary
+    - CrateSecureMercenaryPrivateSec
+    - CrateAmmoGeneric
+    # Restocks
+    - CrateVendingMachineRestockAmmoFilled
+    - CrateVendingMachineRestockLessLethalVendFilled
+    - CrateVendingMachineRestockNonLethalVendFilled
+    # Filled crates
+    - CrateSecureMercenaryHardsuit
+    - CrateSecureMercenaryPrivateSecHardsuit
+    - CrateSecurityArmor
+    - CrateSecurityHelmet
     - CrateArmoryShotgunExpedition
     - CrateArmoryPistolsExpedition
     - CrateArmoryRifleGestioExpedition
     - CrateArmoryRifleNovaliteC1Expedition
     - CrateArmoryEnergyGunExpedition
-    # Ammo
     - CrateAmmoSecureAmmoBox20
     - CrateAmmoSecureAmmoBox20Rubber
     - CrateAmmoSecureAmmoBox20Practice
@@ -443,6 +454,8 @@
     - CrateArmorySMGExpedition
     - CrateArmoryLaserExpedition
     - CrateSecurityNonlethal
+    - CrateSecureMercenaryHardsuitMagBoots
+    - CrateSecureMercenaryPrivateSecHardsuitMagBoots
     rareChance: 0.05
 
 - type: entity

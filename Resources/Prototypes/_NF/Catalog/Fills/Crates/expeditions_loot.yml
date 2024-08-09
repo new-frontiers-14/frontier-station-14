@@ -62,7 +62,7 @@
   parent: CrateEngineering
   id: CrateEngineerHardsuit
   name: station engineer's hardsuit crate
-  description: Contains station engineer's hardsuit.
+  description: Contains station engineer hardsuit.
   components:
   - type: StorageFill
     contents:
@@ -77,7 +77,7 @@
   parent: CrateEngineering
   id: CrateAtmosTechHardsuit
   name: atmospheric technician's hardsuit crate
-  description: Contains atmospheric technician's hardsuit.
+  description: Contains atmospheric technician hardsuit.
   components:
   - type: StorageFill
     contents:
@@ -92,7 +92,7 @@
   parent: CrateEngineering
   id: CrateEngineerChiefHardsuit
   name: chief engineer's hardsuit crate
-  description: Contains chief engineer's hardsuit.
+  description: Contains chief engineer hardsuit.
   components:
   - type: StorageFill
     contents:
@@ -248,12 +248,71 @@
   parent: CrateEvaKit
   id: CrateEvaKitCmo
   name: chief medical officer hardsuit kit
-  description: Contains a full chief medical officer kit.
+  description: Contains a full chief medical officer hardsuit kit.
   components:
   - type: StorageFill
     contents:
     - id: AirTankFilled
     - id: ClothingOuterHardsuitMedical
     - id: ClothingMaskBreathMedical
-    - id: JetpackMiniFilled # Frontier
-    - id: HandheldGPSBasic # Frontier
+    - id: JetpackMiniFilled
+    - id: HandheldGPSBasic
+
+# Mercenary
+- type: entity
+  parent: CrateSecureMercenary
+  id: CrateSecureMercenaryHardsuitMagBoots
+  name: mercenary hardsuit crate
+  description: Contains mercenary hardsuit.
+  components:
+  - type: StorageFill
+    contents:
+    - id: DoubleEmergencyAirTankFilled
+    - id: ClothingShoesBootsMagMercenary
+    - id: ClothingOuterHardsuitMercenary
+    - id: ClothingMaskGasMercenary
+    - id: JetpackMiniFilled
+    - id: HandheldGPSBasic
+
+- type: entity
+  parent: CrateSecureMercenaryPrivateSec
+  id: CrateSecureMercenaryPrivateSecHardsuitMagBoots
+  name: private security hardsuit crate
+  description: Contains private security hardsuit.
+  components:
+  - type: StorageFill
+    contents:
+    - id: DoubleEmergencyAirTankFilled
+    - id: ClothingShoesBootsMagCombat
+    - id: ClothingOuterHardsuitPrivateSecurity
+    - id: ClothingMaskGasSecurity
+    - id: JetpackMiniFilled
+    - id: HandheldGPSBasic
+
+- type: entity
+  parent: CrateSecureMercenary
+  id: CrateSecureMercenaryHardsuit
+  name: mercenary hardsuit crate
+  description: Contains mercenary hardsuit.
+  components:
+  - type: StorageFill
+    contents:
+    - id: DoubleEmergencyAirTankFilled
+    - id: ClothingOuterHardsuitMercenary
+    - id: ClothingMaskGasMercenary
+    - id: JetpackMiniFilled
+    - id: HandheldGPSBasic
+
+- type: entity
+  parent: CrateSecureMercenaryPrivateSec
+  id: CrateSecureMercenaryPrivateSecHardsuit
+  name: private security hardsuit crate
+  description: Contains private security hardsuit.
+  components:
+  - type: StorageFill
+    contents:
+    - id: DoubleEmergencyAirTankFilled
+    - id: ClothingOuterHardsuitPrivateSecurity
+    - id: ClothingMaskGasSecurity
+    - id: JetpackMiniFilled
+    - id: HandheldGPSBasic
