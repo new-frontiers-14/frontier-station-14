@@ -11,6 +11,6 @@ public sealed partial class MarketModifierComponent : Component
     /// <summary>
     /// The amount to multiply a Static Price by
     /// </summary>
-    [DataField("mod", required: true)]
-    public float Mod;
+    [DataField(required: true)]
+    public float Mod { get; set; } = 0;
 }
