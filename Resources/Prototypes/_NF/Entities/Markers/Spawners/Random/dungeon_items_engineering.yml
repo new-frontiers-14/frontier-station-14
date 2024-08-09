@@ -255,11 +255,29 @@
   - type: RandomSpawner
     prototypes:
     # Empty crates
-    - SpawnDungeonLootCrateEmptyEngi
+    - CratePlasma
+    - CrateEngineering
+    - CrateElectrical
+    - CrateRadiation
+    - CrateUranium
     # Restocks
-    - SpawnDungeonLootCrateRestockEngi
+    - CrateVendingMachineRestockEngineeringFilled
+    - CrateVendingMachineRestockVendomatFilled
+    - CrateVendingMachineRestockRoboticsFilled
+    - CrateVendingMachineRestockAstroVendFilled
+    - CrateVendingMachineRestockTankDispenserFilled
+    - CrateVendingMachineRestockFlatpackVendFilled
     # Mats
-    - SpawnDungeonLootCrateMaterials
+    - CrateMaterialGlass
+    - CrateMaterialSteel
+    - CrateMaterialPlastic
+    - CrateMaterialWood
+    - CrateMaterialPlasteel
+    - CrateMaterialPlasma
+    - CrateMaterialUranium
+    - CrateMaterialTextiles
+    - CrateMaterials
+    - CrateMaterialBrass
     # Filled crates
     - CrateEngineeringGear
     - CrateEngineeringElectricalSupplies
@@ -270,12 +288,30 @@
     - CrateEngineeringToolbox
     - CrateEngineeringKitShipyardRcd
     - CrateEngineeringShuttle
+    - CrateEngineeringFoamGrenade
+    - CrateEngineeringMiniJetpack
+    - CrateAirlockKit
+    - CrateEngineeringSpaceHeater
+    - CrateEngineeringSolar
+    - CrateTools
+    - CrateEngineerHardsuit
+    - CrateAtmosTechHardsuit
+    - CrateEngineeringThruster
+    - CrateEngineeringGyroscope
     chance: 0.95
     offset: 0.0
     rarePrototypes:
+    # Empty crates
+    - CratePlasma
+    - CrateEngineering
+    - CrateElectrical
+    - CrateRadiation
+    - CrateUranium
+    # Filled crates
     - CrateEngineeringKitRtg
     - CrateEngineeringKitFabrication
-    rareChance: 0.1
+    - CrateEngineerChiefHardsuit
+    rareChance: 0.05
 
 - type: entity
   name: random crate (empty)

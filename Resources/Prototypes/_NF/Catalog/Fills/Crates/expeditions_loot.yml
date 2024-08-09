@@ -1,3 +1,15 @@
+# Materials
+- type: entity
+  id: CrateMaterialMetalRods
+  parent: CrateGenericSteel
+  name: metal rods crate
+  description: 90 metal rods, packed with reckless abandon.
+  components:
+  - type: StorageFill
+    contents:
+    - id: PartRodMetal
+      amount: 3
+
 # Engineering
 - type: entity
   parent: CrateEngineering
@@ -8,7 +20,10 @@
   - type: StorageFill
     contents:
     - id: GeneratorRTGFlatpack
-      amount: 4
+      amount: 2
+    - id: GeneratorRTGFlatpack
+      amount: 2
+      prob: 0.4
 
 - type: entity
   parent: CrateEngineering
@@ -42,6 +57,94 @@
     - id: ShipyardRCD
     - id: ShipyardRCDAmmo
       amount: 4
+
+- type: entity
+  parent: CrateEngineering
+  id: CrateEngineerHardsuit
+  name: station engineer's hardsuit crate
+  description: Contains station engineer's hardsuit.
+  components:
+  - type: StorageFill
+    contents:
+    - id: AirTankFilled
+    - id: ClothingShoesBootsMag
+    - id: ClothingOuterHardsuitEngineering
+    - id: ClothingMaskBreath
+    - id: JetpackMiniFilled
+    - id: HandheldGPSBasic
+
+- type: entity
+  parent: CrateEngineering
+  id: CrateAtmosTechHardsuit
+  name: atmospheric technician's hardsuit crate
+  description: Contains atmospheric technician's hardsuit.
+  components:
+  - type: StorageFill
+    contents:
+    - id: AirTankFilled
+    - id: ClothingShoesBootsMag
+    - id: ClothingOuterHardsuitAtmos
+    - id: ClothingMaskBreath
+    - id: JetpackMiniFilled
+    - id: HandheldGPSBasic
+
+- type: entity
+  parent: CrateEngineering
+  id: CrateEngineerChiefHardsuit
+  name: chief engineer's hardsuit crate
+  description: Contains chief engineer's hardsuit.
+  components:
+  - type: StorageFill
+    contents:
+    - id: AirTankFilled
+    - id: ClothingShoesBootsMag
+    - id: ClothingOuterHardsuitEngineeringWhite
+    - id: ClothingMaskBreath
+    - id: JetpackMiniFilled
+    - id: HandheldGPSBasic
+
+- type: entity
+  parent: CrateEngineering
+  id: CrateTools
+  name: tools crate
+  description: Contains a essential tools.
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingOuterVestHazard
+        prob: 0.4
+      - id: FlashlightLantern
+        prob: 0.7
+      - id: Screwdriver
+        prob: 0.7
+      - id: Wrench
+        prob: 0.7
+      - id: Welder
+        prob: 0.7
+      - id: Crowbar
+        prob: 0.7
+      - id: Wirecutter
+        prob: 0.7
+      - id: Multitool
+        prob: 0.2
+      - id: trayScanner
+        prob: 0.7
+      - id: GasAnalyzer
+        prob: 0.7
+      - id: ClothingBeltUtility
+        prob: 0.2
+      - id: ClothingHandsGlovesColorYellow
+        prob: 0.05
+      - id: ClothingHeadHatHardhatRed
+        prob: 0.4
+      - id: CableApcStack
+        prob: 0.3
+      - id: CableApcStack
+        prob: 0.3
+      - id: CableApcStack
+        prob: 0.3
+      - id: SprayPainter
+        prob: 0.7
 
 # Science
 
@@ -126,3 +229,31 @@
     - id: KitchenReagentGrinderFlatpack
     - id: VendingMachineChemicalsFlatpack
     - id: VendingMachineRestockChemVend
+
+- type: entity
+  parent: CrateEvaKit
+  id: CrateEvaKitParamedic
+  name: paramedic voidsuit kit
+  description: Contains a full paramedic voidsuit kit.
+  components:
+  - type: StorageFill
+    contents:
+    - id: AirTankFilled
+    - id: ClothingOuterHardsuitVoidParamed
+    - id: ClothingMaskBreathMedical
+    - id: JetpackMiniFilled
+    - id: HandheldGPSBasic
+
+- type: entity
+  parent: CrateEvaKit
+  id: CrateEvaKitCmo
+  name: chief medical officer hardsuit kit
+  description: Contains a full chief medical officer kit.
+  components:
+  - type: StorageFill
+    contents:
+    - id: AirTankFilled
+    - id: ClothingOuterHardsuitMedical
+    - id: ClothingMaskBreathMedical
+    - id: JetpackMiniFilled # Frontier
+    - id: HandheldGPSBasic # Frontier
