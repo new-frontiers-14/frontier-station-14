@@ -131,9 +131,9 @@ public sealed class PublicTransitSystem : EntitySystem
 
         while (consoleQuery.MoveNext(out var consoleUid, out _))
         {
-            if (Transform(consoleUid).GridUid == uid)
+            if (Transform(consoleUid).GridUid == uid && TryComp(comp.NextStation, out MetaDataComponent? metadata))
             {
-                var destinationString = MetaData(comp.NextStation).EntityName;
+                var destinationString = metadata.EntityName;
 
                 _chat.TrySendInGameICMessage(consoleUid, Loc.GetString("public-transit-arrival",
                         ("destination", destinationString), ("waittime", _cfgManager.GetCVar(NF14CVars.PublicTransitWaitTime))),
@@ -191,9 +191,9 @@ public sealed class PublicTransitSystem : EntitySystem
 
             while (consoleQuery.MoveNext(out var consoleUid, out _))
             {
-                if (Transform(consoleUid).GridUid == uid)
+                if (Transform(consoleUid).GridUid == uid && TryComp(comp.NextStation, out MetaDataComponent? metadata))
                 {
-                    var destinationString = MetaData(comp.NextStation).EntityName;
+                    var destinationString = metadata.EntityName;
 
                     _chat.TrySendInGameICMessage(consoleUid, Loc.GetString("public-transit-departure",
                         ("destination", destinationString), ("flytime", FlyTime)),
@@ -206,7 +206,7 @@ public sealed class PublicTransitSystem : EntitySystem
             if (TryGetNextStation(out var nextStation) && nextStation is {Valid : true} destination)
                 comp.NextStation = destination;
 
-            comp.NextTransfer += TimeSpan.FromSeconds(FlyTime + _cfgManager.GetCVar(NF14CVars.PublicTransitWaitTime));
+            comp.NextTransfer = curTime + TimeSpan.FromSeconds(FlyTime + _cfgManager.GetCVar(NF14CVars.PublicTransitWaitTime));
         }
     }
 

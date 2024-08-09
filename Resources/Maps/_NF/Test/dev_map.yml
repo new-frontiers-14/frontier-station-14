@@ -406,38 +406,6 @@ entities:
     - type: Broadphase
     - type: OccluderTree
     - type: LoadedMap
-- proto: ActionToggleMagboots
-  entities:
-  - uid: 282
-    components:
-    - type: Transform
-      parent: 725
-    - type: InstantAction
-      container: 725
-- proto: ActionToggleMagbootsGaloshes
-  entities:
-  - uid: 1209
-    components:
-    - type: Transform
-      parent: 1208
-    - type: InstantAction
-      container: 1208
-- proto: ActionToggleMagbootsNfsd
-  entities:
-  - uid: 1211
-    components:
-    - type: Transform
-      parent: 1210
-    - type: InstantAction
-      container: 1210
-- proto: ActionToggleMagbootsPirate
-  entities:
-  - uid: 1207
-    components:
-    - type: Transform
-      parent: 1206
-    - type: InstantAction
-      container: 1206
 - proto: AdvancedCapacitorStockPart
   entities:
   - uid: 266
@@ -3495,14 +3463,6 @@ entities:
     - type: Transform
       pos: 0.5172012,8.121316
       parent: 179
-    - type: Magboots
-      toggleActionEntity: 282
-    - type: ActionsContainer
-    - type: ContainerContainer
-      containers:
-        actions: !type:Container
-          ents:
-          - 282
 - proto: ClothingShoesBootsMagGaloshes
   entities:
   - uid: 1208
@@ -3510,14 +3470,6 @@ entities:
     - type: Transform
       pos: 0.5613978,8.433816
       parent: 179
-    - type: Magboots
-      toggleActionEntity: 1209
-    - type: ActionsContainer
-    - type: ContainerContainer
-      containers:
-        actions: !type:Container
-          ents:
-          - 1209
 - proto: ClothingShoesBootsMagNfsdFilled
   entities:
   - uid: 1210
@@ -3525,20 +3477,6 @@ entities:
     - type: Transform
       pos: 0.26973104,8.662983
       parent: 179
-    - type: Magboots
-      toggleActionEntity: 1211
-    - type: ContainerContainer
-      containers:
-        item: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        actions: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 1211
-    - type: ActionsContainer
 - proto: ClothingShoesBootsMagPirateFilled
   entities:
   - uid: 1206
@@ -3546,20 +3484,6 @@ entities:
     - type: Transform
       pos: 0.16303456,8.308816
       parent: 179
-    - type: Magboots
-      toggleActionEntity: 1207
-    - type: ContainerContainer
-      containers:
-        item: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        actions: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 1207
-    - type: ActionsContainer
 - proto: ClothingUniformJumpsuitEngineering
   entities:
   - uid: 424
@@ -5461,7 +5385,6 @@ entities:
   - uid: 1078
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
       pos: 12.5,24.5
       parent: 179
     - type: DeviceLinkSink
