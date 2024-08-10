@@ -31,3 +31,56 @@
 - type: entity
   id: LockerWallChemistryFilled
   parent: [LockerWallChemistry, LockerChemistryFilled]
+
+# WALL LOCKER COLOR
+# Base
+- type: entity
+  abstract: true
+  id: LockerWallColorBase
+  parent: [ BaseWallCloset, BaseWallmount ]
+  name: wall locker
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: _NF/Structures/Storage/wall_locker_color.rsi
+    layers:
+    - state: base
+      #color: "#2d4c5e"
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: door
+      #color: "#2d4c5e"
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+  - type: Lock
+  - type: LockVisuals
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBase: base
+    stateDoorOpen: open
+    stateDoorClosed: door
+
+# Variations
+- type: entity
+  id: LockerWallColorCaptain
+  parent: LockerWallColorBase
+  name: captain wall locker
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: _NF/Structures/Storage/wall_locker_color.rsi
+    layers:
+    - state: base
+      color: "#2d4c5e"
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: door
+      color: "#2d4c5e"
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
