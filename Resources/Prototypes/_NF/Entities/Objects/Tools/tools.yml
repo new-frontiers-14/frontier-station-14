@@ -1,0 +1,39 @@
+- type: entity
+  name: shipyard RCD
+  parent: RCD
+  id: ShipyardRCD
+  description: An advanced construction device which can place/remove walls, floors, and airlocks quickly. It has a slot to swipe ID cards.
+  components:
+  - type: RCD
+    isShipyardRCD: true
+  - type: Sprite
+    state: icon-shipyard
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 5000
+      Plastic: 1000
+
+- type: entity
+  id: ShipyardRCDEmpty
+  parent: ShipyardRCD
+  suffix: Empty
+  components:
+    - type: LimitedCharges
+      charges: 0
+
+- type: entity
+  name: shipyard compressed matter
+  parent: RCDAmmo
+  id: ShipyardRCDAmmo
+  description: Ammo cartridge for a shipyard RCD.
+  components:
+  - type: RCDAmmo
+    isShipyardRCDAmmo: true
+  - type: Sprite
+    state: ammo-shipyard
+  - type: Item
+    heldPrefix: ammo-shipyard
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 1000
+      Plastic: 1000
