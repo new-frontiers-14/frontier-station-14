@@ -305,6 +305,156 @@
         color: "#606275"
       - state: equipped-head-visor
 
+- type: entity
+  parent: ClothingHeadEVAHelmetBase
+  id: ClothingHeadEVAHelmetChaplain
+  name: chaplain EVA helmet
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Head/Helmets/eva_color.rsi
+    layers:
+    - state: icon-base
+      color: "#a42424"
+    - state: icon-reinforced-points
+      color: "#a42424"
+    - state: icon-visor
+      color: "#ffce5b"
+  - type: Clothing
+    sprite: _NF/Clothing/Head/Helmets/eva_color.rsi
+    clothingVisuals:
+      head:
+      - state: equipped-head-base
+        color: "#a42424"
+      - state: equipped-head-reinforced-points
+        color: "#a42424"
+      - state: equipped-head-visor
+        color: "#ffce5b"
+
+- type: entity
+  parent: ClothingHeadEVAHelmetBase
+  id: ClothingHeadEVAHelmetBoxerRed
+  name: boxer EVA helmet
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Head/Helmets/eva_color.rsi
+    layers:
+    - state: icon-base
+      color: "#d1502c"
+    - state: icon-reinforced-points
+      color: "#606275"
+    - state: icon-visor
+  - type: Clothing
+    sprite: _NF/Clothing/Head/Helmets/eva_color.rsi
+    clothingVisuals:
+      head:
+      - state: equipped-head-base
+        color: "#d1502c"
+      - state: equipped-head-reinforced-points
+        color: "#606275"
+      - state: equipped-head-visor
+
+- type: entity
+  parent: ClothingHeadEVAHelmetBase
+  id: ClothingHeadEVAHelmetBoxerGreen
+  name: boxer EVA helmet
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Head/Helmets/eva_color.rsi
+    layers:
+    - state: icon-base
+      color: "#4cd339"
+    - state: icon-reinforced-points
+      color: "#606275"
+    - state: icon-visor
+  - type: Clothing
+    sprite: _NF/Clothing/Head/Helmets/eva_color.rsi
+    clothingVisuals:
+      head:
+      - state: equipped-head-base
+        color: "#4cd339"
+      - state: equipped-head-reinforced-points
+        color: "#606275"
+      - state: equipped-head-visor
+
+- type: entity
+  parent: ClothingHeadEVAHelmetBase
+  id: ClothingHeadEVAHelmetBoxerBlue
+  name: boxer EVA helmet
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Head/Helmets/eva_color.rsi
+    layers:
+    - state: icon-base
+      color: "#23a0bb"
+    - state: icon-reinforced-points
+      color: "#606275"
+    - state: icon-visor
+  - type: Clothing
+    sprite: _NF/Clothing/Head/Helmets/eva_color.rsi
+    clothingVisuals:
+      head:
+      - state: equipped-head-base
+        color: "#23a0bb"
+      - state: equipped-head-reinforced-points
+        color: "#606275"
+      - state: equipped-head-visor
+
+- type: entity
+  parent: ClothingHeadEVAHelmetBase
+  id: ClothingHeadEVAHelmetBoxerYellow
+  name: boxer EVA helmet
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Head/Helmets/eva_color.rsi
+    layers:
+    - state: icon-base
+      color: "#d9be15"
+    - state: icon-reinforced-points
+      color: "#606275"
+    - state: icon-visor
+  - type: Clothing
+    sprite: _NF/Clothing/Head/Helmets/eva_color.rsi
+    clothingVisuals:
+      head:
+      - state: equipped-head-base
+        color: "#d9be15"
+      - state: equipped-head-reinforced-points
+        color: "#606275"
+      - state: equipped-head-visor
+
+- type: entity
+  parent: ClothingHeadEVAHelmetBase
+  id: ClothingHeadEVAHelmetBoxerRandom
+  name: boxer EVA helmet
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Head/Helmets/eva_color.rsi
+    layers:
+    - state: equipped-head-base
+      map: [ "EVA_helmet_decal_boxing" ]
+    - state: equipped-head-reinforced-points
+      color: "#606275"
+    - state: equipped-head-visor
+  - type: Clothing
+    sprite: _NF/Clothing/Head/Helmets/eva_color.rsi
+    clothingVisuals:
+      head:
+      - state: equipped-head-base
+        map: [ "EVA_helmet_decal_boxing" ]
+      - state: equipped-head-reinforced-points
+        color: "#606275"
+      - state: equipped-head-visor
+  - type: RandomSprite
+    available:
+      - EVA_helmet_decal_boxing:
+          equipped-head-base: Sixteen # CyberpunkNeon
+
 ## WILDCARDS
 - type: entity
   parent: ClothingHeadEVAHelmetBase
@@ -393,16 +543,18 @@
     sprite: _NF/Clothing/Head/Helmets/eva_color.rsi
     layers:
     - state: icon-base
-      color: "#63492a"
+      color: "#a9947d"
     - state: icon-reinforced-points
       color: "#384d2f"
     - state: icon-visor
+      color: "#52843f"
   - type: Clothing
     sprite: _NF/Clothing/Head/Helmets/eva_color.rsi
     clothingVisuals:
       head:
       - state: equipped-head-base
-        color: "#63492a"
+        color: "#a9947d"
       - state: equipped-head-reinforced-points
         color: "#384d2f"
       - state: equipped-head-visor
+        color: "#52843f"

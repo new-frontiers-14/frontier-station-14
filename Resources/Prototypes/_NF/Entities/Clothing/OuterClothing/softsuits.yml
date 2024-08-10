@@ -643,6 +643,321 @@
     containers:
       toggleable-clothing: !type:ContainerSlot {}
 
+- type: entity
+  parent: ClothingOuterEVASuitBaseNF
+  id: ClothingOuterEVASuitChaplain
+  name: chaplain EVA suit
+  description: An EVA suit with a built-in helmet commonly issued to chaplains.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Suits/eva_color.rsi
+    layers:
+    - state: icon-base
+      color: "#3e3e48"
+    - state: icon-decals-01
+      color: "#ffce5b"
+    - state: icon-reinforced-points
+      color: "#3e3e48"
+    - state: icon-breathing-gear
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-base
+        color: "#3e3e48"
+      - state: inhand-left-decals-01
+        color: "#ffce5b"
+      - state: inhand-left-reinforced-points
+        color: "#3e3e48"
+      - state: inhand-left-breathing-gear
+      right:
+      - state: inhand-right-base
+        color: "#3e3e48"
+      - state: inhand-right-decals-01
+        color: "#ffce5b"
+      - state: inhand-right-reinforced-points
+        color: "#3e3e48"
+      - state: inhand-right-breathing-gear
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Suits/eva_color.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: equipped-base
+        color: "#3e3e48"
+      - state: equipped-decals-01
+        color: "#ffce5b"
+      - state: equipped-reinforced-points
+        color: "#3e3e48"
+      - state: equipped-breathing-gear
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadEVAHelmetChaplain
+    slot: head
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:ContainerSlot {}
+
+## Boxing
+- type: entity
+  parent: ClothingOuterEVASuitBaseNF
+  id: ClothingOuterEVASuitBoxerRed
+  name: boxer EVA suit
+  description: An EVA suit with a built-in helmet commonly issued to boxers in the red corner.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Suits/eva_color.rsi
+    layers:
+    - state: icon-base
+      color: "#fff4e2"
+    - state: icon-reinforced-points
+      color: "#606275"
+    - state: icon-decals-02-boxer
+      color: "#d1502c"
+    - state: icon-breathing-gear
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-base
+        color: "#fff4e2"
+      - state: inhand-left-decals-01
+        color: "#d1502c"
+      - state: inhand-left-reinforced-points
+        color: "#606275"
+      - state: inhand-left-breathing-gear
+      right:
+      - state: inhand-right-base
+        color: "#fff4e2"
+      - state: inhand-right-decals-01
+        color: "#d1502c"
+      - state: inhand-right-reinforced-points
+        color: "#606275"
+      - state: inhand-right-breathing-gear
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Suits/eva_color.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: equipped-base
+        color: "#fff4e2"
+      - state: equipped-reinforced-points
+        color: "#606275"
+      - state: equipped-decals-02-boxer
+        color: "#d1502c"
+      - state: equipped-breathing-gear
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadEVAHelmetBoxerRed
+    slot: head
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:ContainerSlot {}
+
+- type: entity
+  parent: ClothingOuterEVASuitBaseNF
+  id: ClothingOuterEVASuitBoxerGreen
+  name: boxer EVA suit
+  description: An EVA suit with a built-in helmet commonly issued to boxers in the green corner.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Suits/eva_color.rsi
+    layers:
+    - state: icon-base
+      color: "#fff4e2"
+    - state: icon-reinforced-points
+      color: "#606275"
+    - state: icon-decals-02-boxer
+      color: "#4cd339"
+    - state: icon-breathing-gear
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-base
+        color: "#fff4e2"
+      - state: inhand-left-decals-01
+        color: "#4cd339"
+      - state: inhand-left-reinforced-points
+        color: "#606275"
+      - state: inhand-left-breathing-gear
+      right:
+      - state: inhand-right-base
+        color: "#fff4e2"
+      - state: inhand-right-decals-01
+        color: "#4cd339"
+      - state: inhand-right-reinforced-points
+        color: "#606275"
+      - state: inhand-right-breathing-gear
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Suits/eva_color.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: equipped-base
+        color: "#fff4e2"
+      - state: equipped-reinforced-points
+        color: "#606275"
+      - state: equipped-decals-02-boxer
+        color: "#4cd339"
+      - state: equipped-breathing-gear
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadEVAHelmetBoxerGreen
+    slot: head
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:ContainerSlot {}
+
+- type: entity
+  parent: ClothingOuterEVASuitBaseNF
+  id: ClothingOuterEVASuitBoxerBlue
+  name: boxer EVA suit
+  description: An EVA suit with a built-in helmet commonly issued to boxers in the blue corner.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Suits/eva_color.rsi
+    layers:
+    - state: icon-base
+      color: "#fff4e2"
+    - state: icon-reinforced-points
+      color: "#606275"
+    - state: icon-decals-02-boxer
+      color: "#23a0bb"
+    - state: icon-breathing-gear
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-base
+        color: "#fff4e2"
+      - state: inhand-left-decals-01
+        color: "#23a0bb"
+      - state: inhand-left-reinforced-points
+        color: "#606275"
+      - state: inhand-left-breathing-gear
+      right:
+      - state: inhand-right-base
+        color: "#fff4e2"
+      - state: inhand-right-decals-01
+        color: "#23a0bb"
+      - state: inhand-right-reinforced-points
+        color: "#606275"
+      - state: inhand-right-breathing-gear
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Suits/eva_color.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: equipped-base
+        color: "#fff4e2"
+      - state: equipped-reinforced-points
+        color: "#606275"
+      - state: equipped-decals-02-boxer
+        color: "#23a0bb"
+      - state: equipped-breathing-gear
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadEVAHelmetBoxerBlue
+    slot: head
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:ContainerSlot {}
+
+- type: entity
+  parent: ClothingOuterEVASuitBaseNF
+  id: ClothingOuterEVASuitBoxerYellow
+  name: boxer EVA suit
+  description: An EVA suit with a built-in helmet commonly issued to boxers in the yellow corner.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Suits/eva_color.rsi
+    layers:
+    - state: icon-base
+      color: "#fff4e2"
+    - state: icon-reinforced-points
+      color: "#606275"
+    - state: icon-decals-02-boxer
+      color: "#d9be15"
+    - state: icon-breathing-gear
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-base
+        color: "#fff4e2"
+      - state: inhand-left-decals-01
+        color: "#d9be15"
+      - state: inhand-left-reinforced-points
+        color: "#606275"
+      - state: inhand-left-breathing-gear
+      right:
+      - state: inhand-right-base
+        color: "#fff4e2"
+      - state: inhand-right-decals-01
+        color: "#d9be15"
+      - state: inhand-right-reinforced-points
+        color: "#606275"
+      - state: inhand-right-breathing-gear
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Suits/eva_color.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: equipped-base
+        color: "#fff4e2"
+      - state: equipped-reinforced-points
+        color: "#606275"
+      - state: equipped-decals-02-boxer
+        color: "#d9be15"
+      - state: equipped-breathing-gear
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadEVAHelmetBoxerYellow
+    slot: head
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:ContainerSlot {}
+
+- type: entity
+  parent: ClothingOuterEVASuitBaseNF
+  id: ClothingOuterEVASuitBoxerRandom
+  name: boxer EVA suit
+  description: An EVA suit with a built-in helmet commonly issued to boxers in the random corner.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Suits/eva_color.rsi
+    layers:
+    - state: equipped-base
+      color: "#fff4e2"
+    - state: equipped-reinforced-points
+      color: "#606275"
+    - state: equipped-decals-02-boxer
+      map: [ "eva_decal_boxing" ]
+    - state: equipped-breathing-gear
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Suits/eva_color.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: equipped-base
+        color: "#fff4e2"
+      - state: equipped-reinforced-points
+        color: "#606275"
+      - state: equipped-decals-02-boxer
+        map: [ "eva_decal_boxing" ]
+      - state: equipped-breathing-gear
+  - type: RandomSprite
+    available:
+    - eva_decal_boxing:
+        equipped-decals-02-boxer: Cyberpunk
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-base
+        color: "#fff4e2"
+      - state: inhand-left-decals-01
+      - state: inhand-left-reinforced-points
+        color: "#606275"
+      - state: inhand-left-breathing-gear
+      right:
+      - state: inhand-right-base
+        color: "#fff4e2"
+      - state: inhand-right-decals-01
+      - state: inhand-right-reinforced-points
+        color: "#606275"
+      - state: inhand-right-breathing-gear
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadEVAHelmetBoxerRandom
+    slot: head
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:ContainerSlot {}
+
 ## WILDCARDS
 - type: entity
   parent: ClothingOuterEVASuitBaseNF
@@ -811,7 +1126,7 @@
     sprite: _NF/Clothing/OuterClothing/Suits/eva_color.rsi
     layers:
     - state: icon-base
-      color: "#63492a"
+      color: "#a9947d"
     - state: icon-decals-01
       color: "#384d2f"
     - state: icon-reinforced-points
@@ -821,7 +1136,7 @@
     inhandVisuals:
       left:
       - state: inhand-left-base
-        color: "#63492a"
+        color: "#a9947d"
       - state: inhand-left-decals-01
         color: "#384d2f"
       - state: inhand-left-reinforced-points
@@ -829,7 +1144,7 @@
       - state: inhand-left-breathing-gear
       right:
       - state: inhand-right-base
-        color: "#63492a"
+        color: "#a9947d"
       - state: inhand-right-decals-01
         color: "#384d2f"
       - state: inhand-right-reinforced-points
@@ -840,7 +1155,7 @@
     clothingVisuals:
       outerClothing:
       - state: equipped-base
-        color: "#63492a"
+        color: "#a9947d"
       - state: equipped-decals-01
         color: "#384d2f"
       - state: equipped-reinforced-points
