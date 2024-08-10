@@ -55,4 +55,43 @@ public sealed class NF14CVars
     /// </summary>
     public static readonly CVarDef<float> PublicTransitFlyTime =
         CVarDef.Create("nf14.publictransit.fly_time", 50f, CVar.SERVERONLY);
+
+    /*
+     *  World Gen
+     */
+    /// <summary>
+    /// The number of Trade Stations to spawn in every round
+    /// </summary>
+    public static readonly CVarDef<int> MarketStations =
+        CVarDef.Create("nf14.worldgen.market_stations", 1, CVar.SERVERONLY);
+
+    /// <summary>
+    /// The number of Cargo Depots to spawn in every round
+    /// </summary>
+    public static readonly CVarDef<int> CargoDepots =
+        CVarDef.Create("nf14.worldgen.cargo_depots", 2, CVar.SERVERONLY);
+
+    /// <summary>
+    /// The number of Optional Points Of Interest to spawn in every round
+    /// </summary>
+    public static readonly CVarDef<int> OptionalStations =
+        CVarDef.Create("nf14.worldgen.optional_stations", 8, CVar.SERVERONLY);
+
+    /// <summary>
+    /// The multiplier to add to distance spawning calculations for a smidge of server setting variance
+    /// </summary>
+    public static readonly CVarDef<float> POIDistanceModifier =
+        CVarDef.Create("nf14.worldgen.distance_modifier", 1f, CVar.SERVERONLY);
+
+    /// <summary>
+    /// The rough minimum distance between POIs in meters.
+    /// </summary>
+    public static readonly CVarDef<float> MinPOIDistance =
+        CVarDef.Create("nf14.worldgen.min_poi_distance", 400f, CVar.SERVERONLY);
+
+    /// <summary>
+    /// The maximum number of times to retry POI placement during world generation.
+    /// </summary>
+    public static readonly CVarDef<int> POIPlacementRetries =
+        CVarDef.Create("nf14.worldgen.poi_placement_retries", 10, CVar.SERVERONLY);
 }
