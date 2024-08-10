@@ -32,7 +32,9 @@ public sealed class AbsorbentSystem : SharedAbsorbentSystem
     [Dependency] private readonly MapSystem _mapSystem = default!;
 
     private static readonly ProtoId<ReagentPrototype> Water = "Water"; // Frontier
-    public static readonly string[] EvaporationReagents = [Water]; // Frontier
+    private static readonly ProtoId<ReagentPrototype> HolyWater = "Holywater"; // Frontier
+    public static readonly string[] EvaporationReagents = [Water, HolyWater]; // Frontier
+    // Frontier: if updating this list, consider updating PuddleSystem.EvaporationReagents
 
     public override void Initialize()
     {
