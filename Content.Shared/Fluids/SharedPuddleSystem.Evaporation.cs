@@ -11,6 +11,7 @@ public abstract partial class SharedPuddleSystem
 
     private static readonly ProtoId<ReagentPrototype> FluorosulfuricAcid = "FluorosulfuricAcid"; // Frontier
     private static readonly ProtoId<ReagentPrototype> Vomit = "Vomit"; // Frontier
+	private static readonly ProtoId<ReagentPrototype> Holywater = "Holywater"; // Frontier
     private static readonly ProtoId<ReagentPrototype> InsectBlood = "InsectBlood"; // Frontier
     private static readonly ProtoId<ReagentPrototype> AmmoniaBlood = "AmmoniaBlood"; // Frontier
     private static readonly ProtoId<ReagentPrototype> ZombieBlood = "ZombieBlood"; // Frontier
@@ -23,7 +24,7 @@ public abstract partial class SharedPuddleSystem
     private static readonly ProtoId<ReagentPrototype> Fiber = "Fiber"; // Frontier
     private static readonly ProtoId<ReagentPrototype> Nothing = "Nothing"; // Frontier
 
-    public static readonly string[] EvaporationReagents = [Water, Vomit, InsectBlood, AmmoniaBlood, ZombieBlood, Blood, Slime, CopperBlood, FluorosulfuricAcid, Sap, Syrup, JuiceTomato, Fiber, Nothing]; // Frontier
+    public static readonly string[] EvaporationReagents = [Water, Vomit, Holywater, InsectBlood, AmmoniaBlood, ZombieBlood, Blood, Slime, CopperBlood, FluorosulfuricAcid, Sap, Syrup, JuiceTomato, Fiber, Nothing]; // Frontier
 
     public bool CanFullyEvaporate(Solution solution)
     {
