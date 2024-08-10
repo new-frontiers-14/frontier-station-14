@@ -229,7 +229,7 @@
   name:  uplink-security-emitter-name
   description: uplink-security-emitter-desc
   productEntity: WeaponEmpEmitter
-  icon: { sprite: _NF/Objects/Weapons/EMP-Gun.rsi, state: icon }
+  icon: { sprite: _NF/Objects/Weapons/Guns/Projectiles/emp.rsi, state: icon }
   cost:
     FrontierUplinkCoin: 1
   categories:
@@ -581,7 +581,7 @@
           - SecurityUplink
     - !type:BuyerJobCondition
       whitelist:
-        - Sheriff
+        - Bailiff
         - SeniorOfficer
         - Sheriff
 
@@ -1270,6 +1270,22 @@
     FrontierUplinkCoin: 1
   categories:
     - UplinkSecurityAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+
+- type: listing
+  id: UplinkSecuritySpaceBladeSec
+  name:  uplink-security-spaceblade-sec-name
+  description: uplink-security-spaceblade-sec-desc
+  productEntity: SpaceBladeSec
+  icon: { sprite: _NF/Objects/Fun/spaceblade.rsi, state: secblade }
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+    - UplinkSecurityUtility
   conditions:
     - !type:StoreWhitelistCondition
       whitelist:

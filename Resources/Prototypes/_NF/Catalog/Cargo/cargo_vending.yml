@@ -8,6 +8,7 @@
 
 - type: cargoProduct
   id: CrateVendingMachineRestockAstroVend
+  abstract: true # Frontier
   icon:
     sprite: Objects/Specific/Service/vending_machine_restock.rsi
     state: base
@@ -18,6 +19,7 @@
 
 - type: cargoProduct
   id: CrateVendingMachineRestockAmmo
+  abstract: true # Frontier
   icon:
     sprite: Objects/Specific/Service/vending_machine_restock.rsi
     state: base
@@ -28,6 +30,7 @@
 
 - type: cargoProduct
   id: CrateVendingMachineRestockFlatpackVend
+  abstract: true # Frontier
   icon:
     sprite: Objects/Specific/Service/vending_machine_restock.rsi
     state: base
@@ -38,6 +41,7 @@
 
 - type: cargoProduct
   id: CrateVendingMachineRestockCuddlyCritterVend
+  abstract: true # Frontier
   icon:
     sprite: Objects/Specific/Service/vending_machine_restock.rsi
     state: base
@@ -48,6 +52,7 @@
 
 - type: cargoProduct
   id: CrateVendingMachineRestockLessLethalVend
+  abstract: true # Frontier
   icon:
     sprite: _NF/Objects/Specific/Service/vending_machine_restock.rsi
     state: base
@@ -58,6 +63,7 @@
 
 - type: cargoProduct
   id: CrateVendingMachineRestockNonLethalVend
+  abstract: true # Frontier
   icon:
     sprite: _NF/Objects/Specific/Service/vending_machine_restock.rsi
     state: base
@@ -68,7 +74,7 @@
 
 - type: cargoProduct
   id: CrateVendingMachineRestockAutoTuneVend
-  abstract: true
+  abstract: true # Frontier
   icon:
     sprite: _NF/Objects/Specific/Service/vending_machine_restock.rsi
     state: base
@@ -79,11 +85,22 @@
 
 - type: cargoProduct
   id: CrateVendingMachineRestockPottedPlantVend
-  abstract: true
+  abstract: true # Frontier
   icon:
     sprite: _NF/Objects/Specific/Service/vending_machine_restock.rsi
     state: base
   product: CrateVendingMachineRestockPottedPlantVendFilled
   cost: 100 # Frontier
   category: cargoproduct-category-name-fun
+  group: market
+
+- type: cargoProduct
+  id: CrateVendingMachineRestockCiviMed
+  abstract: true # Frontier
+  icon:
+    sprite: _NF/Objects/Specific/Service/vending_machine_restock.rsi
+    state: base
+  product: CrateVendingMachineRestockCiviMedFilled
+  cost: 100 # Frontier
+  category: cargoproduct-category-name-medical
   group: market

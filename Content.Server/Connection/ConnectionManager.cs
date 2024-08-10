@@ -1,9 +1,9 @@
 using System.Collections.Immutable;
+using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text.Json.Nodes;
 using System.Threading.Tasks;
 using Content.Server._NF.Auth;
-using Content.Server.Administration;
+using Content.Server.Chat.Managers;
 using Content.Server.Database;
 using Content.Server.GameTicking;
 using Content.Server.Preferences.Managers;
@@ -12,7 +12,9 @@ using Content.Shared.GameTicking;
 using Content.Shared.Players.PlayTimeTracking;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
+using Robust.Shared.Enums;
 using Robust.Shared.Network;
+using Robust.Shared.Player;
 using Robust.Shared.Timing;
 
 /*
@@ -52,6 +54,7 @@ namespace Content.Server.Connection
         [Dependency] private readonly ServerDbEntryManager _serverDbEntry = default!;
         [Dependency] private readonly IGameTiming _gameTiming = default!;
         [Dependency] private readonly ILogManager _logManager = default!;
+        [Dependency] private readonly IChatManager _chatManager = default!;
 
         //frontier
         [Dependency] private readonly MiniAuthManager _authManager = default!;
@@ -65,6 +68,7 @@ namespace Content.Server.Connection
 
             _netMgr.Connecting += NetMgrOnConnecting;
             _netMgr.AssignUserIdCallback = AssignUserIdCallback;
+            _plyMgr.PlayerStatusChanged += PlayerStatusChanged;
             // Approval-based IP bans disabled because they don't play well with Happy Eyeballs.
             // _netMgr.HandleApprovalCallback = HandleApproval;
         }
@@ -133,6 +137,42 @@ namespace Content.Server.Connection
             }
         }
 
+        private async void PlayerStatusChanged(object? sender, SessionStatusEventArgs args)
+        {
+            if (args.NewStatus == SessionStatus.Connected)
+            {
+                AdminAlertIfSharedConnection(args.Session);
+            }
+        }
+
+        private void AdminAlertIfSharedConnection(ICommonSession newSession)
+        {
+            var playerThreshold = _cfg.GetCVar(CCVars.AdminAlertMinPlayersSharingConnection);
+            if (playerThreshold < 0)
+                return;
+
+            var addr = newSession.Channel.RemoteEndPoint.Address;
+
+            var otherConnectionsFromAddress = _plyMgr.Sessions.Where(session =>
+                    session.Status is SessionStatus.Connected or SessionStatus.InGame
+                    && session.Channel.RemoteEndPoint.Address.Equals(addr)
+                    && session.UserId != newSession.UserId)
+                .ToList();
+
+            var otherConnectionCount = otherConnectionsFromAddress.Count;
+            if (otherConnectionCount + 1 < playerThreshold) // Add one for the total, not just others, using the address
+                return;
+
+            var username = newSession.Name;
+            var otherUsernames = string.Join(", ",
+                otherConnectionsFromAddress.Select(session => session.Name));
+
+            _chatManager.SendAdminAlert(Loc.GetString("admin-alert-shared-connection",
+                ("player", username),
+                ("otherCount", otherConnectionCount),
+                ("otherList", otherUsernames)));
+        }
+
         /*
          * TODO: Jesus H Christ what is this utter mess of a function
          * TODO: Break this apart into is constituent steps.
@@ -166,8 +206,12 @@ namespace Content.Server.Connection
             }
 
             var adminData = await _dbManager.GetAdminDataForAsync(e.UserId);
+            // New Frontiers - Session Respector - Checks that a player was connected before applying panic bunker/baby jail/no whitelist on low pop checks
+            // This code is licensed under AGPLv3. See AGPLv3.txt
+            var wasInGame = EntitySystem.TryGet<GameTicker>(out var ticker) &&
+                            ticker.PlayerGameStatuses.ContainsKey(userId); // Frontier: remove status.JoinedGame check, TryGetValue<ContainsKey
 
-            if (_cfg.GetCVar(CCVars.PanicBunkerEnabled) && adminData == null)
+            if (_cfg.GetCVar(CCVars.PanicBunkerEnabled) && adminData == null && !wasInGame) // Frontier: allow users who joined before panic bunker was enforced to reconnect
             {
                 var showReason = _cfg.GetCVar(CCVars.PanicBunkerShowReason);
                 var customReason = _cfg.GetCVar(CCVars.PanicBunkerCustomReason);
@@ -214,7 +258,7 @@ namespace Content.Server.Connection
                 }
             }
 
-            if (_cfg.GetCVar(CCVars.BabyJailEnabled) && adminData == null)
+            if (_cfg.GetCVar(CCVars.BabyJailEnabled) && adminData == null && !wasInGame) // Frontier: allow users who joined before panic bunker was enforced to reconnect
             {
                 var result = await IsInvalidConnectionDueToBabyJail(userId, e);
 
@@ -222,16 +266,14 @@ namespace Content.Server.Connection
                     return (ConnectionDenyReason.BabyJail, result.Reason, null);
             }
 
-            var wasInGame = EntitySystem.TryGet<GameTicker>(out var ticker) &&
-                            ticker.PlayerGameStatuses.TryGetValue(userId, out var status) &&
-                            status == PlayerGameStatus.JoinedGame;
+            // Frontier: wasInGame previously calculated here.
             var adminBypass = _cfg.GetCVar(CCVars.AdminBypassMaxPlayers) && adminData != null;
             if ((_plyMgr.PlayerCount >= _cfg.GetCVar(CCVars.SoftMaxPlayers) && !adminBypass) && !wasInGame)
             {
                 return (ConnectionDenyReason.Full, Loc.GetString("soft-player-cap-full"), null);
             }
 
-            if (_cfg.GetCVar(CCVars.WhitelistEnabled))
+            if (_cfg.GetCVar(CCVars.WhitelistEnabled) && !wasInGame) // Frontier: allow users who joined before panic bunker was enforced to reconnect
             {
                 var min = _cfg.GetCVar(CCVars.WhitelistMinPlayers);
                 var max = _cfg.GetCVar(CCVars.WhitelistMaxPlayers);
@@ -247,6 +289,7 @@ namespace Content.Server.Connection
                     return (ConnectionDenyReason.Whitelist, msg, null);
                 }
             }
+            // End of modified code
 
             //Frontier
             //This is our little chunk that serves as a dAuth. It takes in a comma seperated list of IP:PORT, and chekcs
@@ -281,7 +324,11 @@ namespace Content.Server.Connection
             // Wait some time to lookup data
             var record = await _dbManager.GetPlayerRecordByUserId(userId);
 
-            var isAccountAgeInvalid = record == null || record.FirstSeenTime.CompareTo(DateTimeOffset.Now - TimeSpan.FromMinutes(maxAccountAgeMinutes)) <= 0;
+            // No player record = new account or the DB is having a skill issue
+            if (record == null)
+                return (false, "");
+
+            var isAccountAgeInvalid = record.FirstSeenTime.CompareTo(DateTimeOffset.Now - TimeSpan.FromMinutes(maxAccountAgeMinutes)) <= 0;
             if (isAccountAgeInvalid && showReason)
             {
                 var locAccountReason = reason != string.Empty

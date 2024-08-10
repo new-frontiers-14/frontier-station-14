@@ -1,0 +1,34 @@
+# Author Info
+# GitHub: 
+# Discord: Checkraze
+
+# Maintainer Info
+# GitHub: ???
+# Discord: ???
+
+# Notes:
+# Provides higher end expeditionary ships and a space for vets to spawn in away from potential frontier shenanigans
+- type: pointOfInterest
+  id: Lodge
+  name: 'Expeditionary Lodge'
+  rangeMin: 1650
+  rangeMax: 3400
+  iffColor: "#3737C8" #blue the color of NT
+  alwaysSpawn: true
+  gridPath: /Maps/_NF/POI/lodge.yml
+
+- type: gameMap
+  id: Lodge
+  mapName: 'Expeditionary Lodge'
+  mapPath: /Maps/_NF/POI/lodge.yml
+  minPlayers: 0
+  stations:
+    Lodge:
+      stationProto: SpawnableFrontierOutpost
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Expeditionary Lodge'
+        - type: StationJobs
+          availableJobs:
+            Pilot: [ -1, -1 ]
+            Mercenary: [ -1, -1 ]

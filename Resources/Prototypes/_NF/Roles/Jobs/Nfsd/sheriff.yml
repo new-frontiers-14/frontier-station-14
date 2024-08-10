@@ -16,12 +16,13 @@
       department: Security
       time: 43200 # 12 hrs
   whitelisted: true
-  weight: 10
   startingGear: SheriffGear
   alwaysUseSpawner: true
   icon: "JobIconHeadOfSecurity" # Frontier
   requireAdminNotify: true
   supervisors: job-supervisors-centcom
+  weight: 180
+  displayWeight: 70
   whitelistRequired: true
   canBeAntag: false
   accessGroups:
@@ -42,11 +43,12 @@
     ears: ClothingHeadsetAltNfsdCreamandBrown # Frontier
     pocket1: WeaponPistolMk58 #WeaponPistolMk58Nonlethal
     pocket2: HoloprojectorNfsd # Frontier
-    suitstorage: WeaponEnergyGunMultiphase # Frontier - DeltaV gun
   storage:
     back:
-    - RubberStampSheriff
-    - DoorRemoteNfsd
     - NfsdTechFabFlatpack
+    - Multitool
+    - WeaponEnergyGunMultiphase # Frontier - DeltaV gun
+    - DoorRemoteNfsd
     - BaseSecurityUplinkRadioSheriff
     - ClothingNeckNfsdBadgeSheriff
+    - RubberStampSheriff

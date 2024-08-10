@@ -98,6 +98,9 @@ public partial class FoodSystem : EntitySystem // Frontier: sealed<partial
         args.Handled = result.Handled;
     }
 
+    /// <summary>
+    /// Tries to feed the food item to the target entity
+    /// </summary>
     public (bool Success, bool Handled) TryFeed(EntityUid user, EntityUid target, EntityUid food, FoodComponent foodComp)
     {
         //Suppresses eating yourself and alive mobs
@@ -164,7 +167,7 @@ public partial class FoodSystem : EntitySystem // Frontier: sealed<partial
         if (forceFeed)
         {
             var userName = Identity.Entity(user, EntityManager);
-            _popup.PopupEntity(Loc.GetString("food-system-force-feed", ("user", userName)),
+            _popup.PopupEntity(Loc.GetString(foodComp.ForceFeedMessage, ("user", userName)), // Frontier - Loc
                 user, target);
 
             // logging
@@ -188,9 +191,9 @@ public partial class FoodSystem : EntitySystem // Frontier: sealed<partial
             BreakOnDamage = true,
             MovementThreshold = 0.01f,
             DistanceThreshold = MaxFeedDistance,
-            // Mice and the like can eat without hands.
-            // TODO maybe set this based on some CanEatWithoutHands event or component?
-            NeedHand = forceFeed,
+            // do-after will stop if item is dropped when trying to feed someone else
+            // or if the item started out in the user's own hands
+            NeedHand = forceFeed || _hands.IsHolding(user, food),
         };
 
         _doAfter.TryStartDoAfter(doAfterArgs);
@@ -261,7 +264,7 @@ public partial class FoodSystem : EntitySystem // Frontier: sealed<partial
         if (stomachToUse == null)
         {
             _solutionContainer.TryAddSolution(soln.Value, split);
-            _popup.PopupEntity(forceFeed ? Loc.GetString("food-system-you-cannot-eat-any-more-other") : Loc.GetString("food-system-you-cannot-eat-any-more"), args.Target.Value, args.User);
+            _popup.PopupEntity(forceFeed ? Loc.GetString(entity.Comp.CannotEatAnyMoreOtherMessage) : Loc.GetString(entity.Comp.CannotEatAnyMoreMessage), args.Target.Value, args.User); // Frontier - Loc
             return;
         }
 
@@ -278,10 +281,12 @@ public partial class FoodSystem : EntitySystem // Frontier: sealed<partial
         {
             var targetName = Identity.Entity(args.Target!.Value, EntityManager);
             var userName = Identity.Entity(args.User, EntityManager);
-            if (digestion.ShowFlavors) // Frontier
-                _popup.PopupEntity(Loc.GetString("food-system-force-feed-success", ("user", userName), ("flavors", flavors)), entity.Owner, entity.Owner);
 
-            _popup.PopupEntity(Loc.GetString("food-system-force-feed-success-user", ("target", targetName)), args.User, args.User);
+            // TODO: revise this with napkin work
+            if (digestion.ShowFlavors) // Frontier
+                _popup.PopupEntity(Loc.GetString(entity.Comp.ForceFeedSuccessMessage, ("user", userName), ("flavors", flavors)), args.Target.Value, args.Target.Value); // Frontier: entity.Owner->args.Target.Value
+
+            _popup.PopupEntity(Loc.GetString(entity.Comp.ForceFeedSuccessUserMessage, ("target", targetName)), args.User, args.User);
 
             // log successful force feed
             _adminLogger.Add(LogType.ForceFeed, LogImpact.Medium, $"{ToPrettyString(entity.Owner):user} forced {ToPrettyString(args.User):target} to eat {ToPrettyString(entity.Owner):food}");
@@ -304,6 +309,8 @@ public partial class FoodSystem : EntitySystem // Frontier: sealed<partial
         }
 
         args.Repeat = !forceFeed;
+
+        _solutionContainer.SetCapacity(soln.Value, soln.Value.Comp.Solution.MaxVolume - transferAmount); // Frontier: remove food capacity after taking a bite.
 
         if (TryComp<StackComponent>(entity, out var stack))
         {
@@ -383,7 +390,7 @@ public partial class FoodSystem : EntitySystem // Frontier: sealed<partial
                 TryFeed(user, user, entity, entity.Comp);
             },
             Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/cutlery.svg.192dpi.png")),
-            Text = Loc.GetString("food-system-verb-eat"),
+            Text = Loc.GetString(entity.Comp.VerbEat), // Frontier - Loc
             Priority = -1
         };
 
@@ -480,7 +487,7 @@ public partial class FoodSystem : EntitySystem // Frontier: sealed<partial
         // If "required" field is set, try to block eating without proper utensils used
         if (component.UtensilRequired && (usedTypes & component.Utensil) != component.Utensil)
         {
-            _popup.PopupEntity(Loc.GetString("food-you-need-to-hold-utensil", ("utensil", component.Utensil ^ usedTypes)), user, user);
+            _popup.PopupEntity(Loc.GetString(component.UtensilMessage, ("utensil", component.Utensil ^ usedTypes)), user, user);  // Frontier - Loc
             return false;
         }
 

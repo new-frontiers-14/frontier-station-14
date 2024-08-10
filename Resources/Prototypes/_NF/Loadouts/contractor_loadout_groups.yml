@@ -163,6 +163,7 @@
   - ContractorClothingUniformJumpsuitMilitaryColorBrown
   fallbacks:
   - ContractorClothingUniformJumpsuitColorGrey
+  - ContractorClothingUniformJumpskirtColorGrey
 
 - type: loadoutGroup
   id: ContractorBackpack
@@ -586,7 +587,7 @@
   id: ContractorPDA
   name: loadout-group-contractor-id
   loadouts:
-  - ContractorClearPDA
+  - ContractorClearNFPDA
   - ContractorSalvagePDA
   - ContractorResearchAssistantPDA
   - ContractorCargoPDA
@@ -620,7 +621,7 @@
   - ContractorClownPDA
   - ContractorMimePDA
   fallbacks:
-  - ContractorClearPDA
+  - ContractorClearNFPDA
   
 - type: loadoutGroup
   id: ContractorGlasses
@@ -682,6 +683,7 @@
   - ContractorBalloonNT
   - ContractorPonderingOrb
   - ContractorPlushieRGBee
+  - ContractorMysterySpaceBladeBox
   - ContractorHoloGraffitiProjector # Punkish (might be annoying)
   - ContractorFlashlightUmbrella
   - ContractorDawInstrumentFlatpack
@@ -691,7 +693,6 @@
 - type: loadoutGroup
   id: ContractorFace
   name: loadout-group-contractor-face
-  minLimit: 0
   loadouts:
   - ContractorClothingMaskBreath
   - ContractorClothingMaskBreathMedical
@@ -706,6 +707,8 @@
   - ContractorClothingMaskScaredMime
   - ContractorClothingMaskSadMime
   - ContractorClothingMaskClown
+  fallbacks:
+  - ContractorClothingMaskBreath
 
 - type: loadoutGroup
   id: ContractorTrinkets
@@ -766,7 +769,7 @@
 - type: loadoutGroup
   id: ContractorEncryptionKey
   name: loadout-group-contractor-encryption-key
-  minLimit: 1
+  minLimit: 0
   maxLimit: 3
   loadouts:
   - ContractorEncryptionKeyTraffic
@@ -787,3 +790,25 @@
   - ContractorLightImplanter
   - ContractorBikeHornImplanter
   - ContractorSadTromboneImplanter
+  fallbacks:
+  - ContractorMedicalTrackingImplanter
+
+- type: loadoutGroup
+  id: ContractorBureaucracy
+  name: loadout-group-contractor-bureaucracy
+  minLimit: 0
+  maxLimit: 3
+  loadouts:
+  - ContractorBoxFolderMedicalDoctor
+  - ContractorBrbSign
+  - ContractorHandLabeler
+  - ContractorStampsApprovedDenied
+  - ContractorRubberStampCaptain
+  - ContractorRubberStampChaplain
+  - ContractorRubberStampDoctor
+  - ContractorRubberStampEngineer
+  - ContractorRubberStampLawyer
+  - ContractorRubberStampPsychologist
+  - ContractorRubberStampTrader
+  - ContractorRubberStampClown
+  - ContractorRubberStampMime

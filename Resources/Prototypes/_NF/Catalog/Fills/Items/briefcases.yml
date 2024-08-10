@@ -1,7 +1,8 @@
 - type: entity
   parent: BaseItem
   id: SpaceCashExpedition
-  name: syndicate naval operative bundle
+  name: spesos
+  description: Hard-earned credits. Fresh from the digital cash mint. Smells like success and unpaid taxes.
   abstract: true
   noSpawn: true
   suffix: Money
@@ -16,7 +17,7 @@
 
 - type: entity
   parent: SpaceCashExpedition
-  id: SpaceCash5000Expedition
+  id: SpaceCashExpeditionT1
   name: spesos (5000)
   noSpawn: true
   components:
@@ -30,7 +31,7 @@
 
 - type: entity
   parent: SpaceCashExpedition
-  id: SpaceCash10000Expedition
+  id: SpaceCashExpeditionT2
   name: spesos (10000)
   noSpawn: true
   components:
@@ -44,21 +45,7 @@
 
 - type: entity
   parent: SpaceCashExpedition
-  id: SpaceCash15000Expedition
-  name: spesos (15000)
-  noSpawn: true
-  components:
-  - type: SpawnItemsOnUse
-    items:
-      - id: SpaceCash15000
-    sound:
-      collection: storageRustle
-  - type: StaticPrice # Require since you can still sell a ship that have it on it
-    price: 15000
-
-- type: entity
-  parent: SpaceCashExpedition
-  id: SpaceCash20000Expedition
+  id: SpaceCashExpeditionT3
   name: spesos (20000)
   noSpawn: true
   components:
@@ -72,14 +59,31 @@
 
 - type: entity
   parent: SpaceCashExpedition
-  id: SpaceCash25000Expedition
-  name: spesos (25000)
+  id: SpaceCashExpeditionT4
+  name: spesos (40000)
+  noSpawn: true
+  components:
+  - type: SpawnItemsOnUse
+    items:
+      - id: SpaceCash20000
+        amount: 2
+    sound:
+      collection: storageRustle
+  - type: StaticPrice # Require since you can still sell a ship that have it on it
+    price: 40000
+
+- type: entity
+  parent: SpaceCashExpedition
+  id: SpaceCashExpeditionT5
+  name: spesos (70000)
   noSpawn: true
   components:
   - type: SpawnItemsOnUse
     items:
       - id: SpaceCash25000
+        amount: 2
+      - id: SpaceCash20000
     sound:
       collection: storageRustle
   - type: StaticPrice # Require since you can still sell a ship that have it on it
-    price: 25000
+    price: 70000

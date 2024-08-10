@@ -1,0 +1,93 @@
+- type: entity
+  name: napkin drum
+  description: Holds napkins.
+  id: NapkinDrum
+  parent: [BaseItem, PaperBin]
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Service/napkindrum.rsi
+    state: drum0
+  - type: ItemMapper
+    sprite: _NF/Objects/Specific/Service/napkindrum.rsi
+    mapLayers:
+      drum1:
+        whitelist:
+          tags:
+          - Paper
+  - type: Bin
+    whitelist:
+      tags:
+      - Paper
+
+- type: entity
+  name: napkin drum
+  suffix: 5
+  description: Holds napkins.
+  id: NapkinDrum5
+  parent: NapkinDrum
+  components:
+  - type: Bin
+    initialContents:
+    - Napkin
+    - Napkin
+    - Napkin
+    - Napkin
+    - Napkin
+    whitelist:
+      tags:
+      - Paper
+
+- type: entity
+  name: napkin
+  parent: Paper
+  id: Napkin
+  description: A small napkin.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Misc/bureaucracy.rsi
+    layers:
+    - state: napkin
+    - state: napkin_words
+      map: ["enum.PaperVisualLayers.Writing"]
+      visible: false
+    - state: paper_stamp-generic
+      sprite: Objects/Misc/bureaucracy.rsi
+      map: ["enum.PaperVisualLayers.Stamp"]
+      visible: false
+  - type: PaperVisuals
+    backgroundImagePath: "/Textures/Interface/Paper/paper_background_default.svg.96dpi.png"
+    backgroundModulate: "#EAD4AA"
+    backgroundPatchMargin: 16.0, 16.0, 16.0, 16.0
+    contentMargin: 16.0, 16.0, 16.0, 16.0
+    headerMargin: 0.0, 12.0, 0.0, 0.0
+    # This is a narrow piece of paper
+    maxWritableArea: 256.0, 0.0
+  - type: Paper
+    contentSize: 280 # Tweet
+  - type: Food
+    solution: food
+    delay: 1
+    forceFeedDelay: 3
+    trash: TrashNapkin
+    eatMessage: wipe-face
+    verbEat: food-system-verb-wipe
+    forceFeedMessage: food-system-wipe
+    forceFeedSuccessMessage: food-system-wipe-success
+    forceFeedSuccessUserMessage: food-system-wipe-success-user
+    cannotEatAnyMoreMessage: food-system-you-cannot-wipe
+    cannotEatAnyMoreOtherMessage: food-system-you-cannot-wipe-other
+    useSound:
+      path: /Audio/_NF/Items/Napkin/wipe.ogg
+
+- type: entity
+  name: crumpled napkin
+  parent: BaseItem
+  id: TrashNapkin
+  description: A crumpled napkin.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Service/napkin.rsi
+    state: napkin
+  - type: Tag
+    tags:
+    - Trash

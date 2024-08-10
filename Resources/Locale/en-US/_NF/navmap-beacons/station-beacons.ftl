@@ -15,3 +15,15 @@ station-beacon-nfsd = NFSD
 station-beacon-nfsd-brig = Brig
 station-beacon-cafe = Cafe
 station-beacon-conference = Conference
+station-beacon-office-mercenary = Office
+station-beacon-shooting-range-mercenary = Shooting Range
+
+station-beacon-dock-one = Dock 1
+station-beacon-dock-two = Dock 2
+station-beacon-dock-three = Dock 3
+station-beacon-dock-four = Dock 4
+station-beacon-dock-five = Dock 5
+station-beacon-dock-six = Dock 6
+station-beacon-dock-six-a = Dock 6a
+station-beacon-dock-six-b = Dock 6b
+station-beacon-dock-six-c = Dock 6c
