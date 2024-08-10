@@ -33,7 +33,7 @@ public sealed class AbsorbentSystem : SharedAbsorbentSystem
 
     private static readonly ProtoId<ReagentPrototype> Water = "Water"; // Frontier
     private static readonly ProtoId<ReagentPrototype> HolyWater = "Holywater"; // Frontier
-    public static readonly string[] EvaporationReagents = [Water, HolyWater]; // Frontier
+    public static readonly string[] MopFriendlyReagents = [Water, HolyWater]; // Frontier: separate list of reagents we consider practical for use in a mop
     // Frontier: if updating this list, consider updating PuddleSystem.EvaporationReagents
 
     public override void Initialize()
@@ -64,13 +64,13 @@ public sealed class AbsorbentSystem : SharedAbsorbentSystem
         var oldProgress = component.Progress.ShallowClone();
         component.Progress.Clear();
 
-        var water = solution.GetTotalPrototypeQuantity(EvaporationReagents); // Frontier: PuddleSystem.EvaporationReagents<EvaporationReagents
+        var water = solution.GetTotalPrototypeQuantity(MopFriendlyReagents); // Frontier: PuddleSystem.EvaporationReagents<MopFriendlyReagents
         if (water > FixedPoint2.Zero)
         {
-            component.Progress[solution.GetColorWithOnly(_prototype, EvaporationReagents)] = water.Float(); // Frontier: PuddleSystem.EvaporationReagents<EvaporationReagents
+            component.Progress[solution.GetColorWithOnly(_prototype, MopFriendlyReagents)] = water.Float(); // Frontier: PuddleSystem.EvaporationReagents<MopFriendlyReagents
         }
 
-        var otherColor = solution.GetColorWithout(_prototype, EvaporationReagents); // Frontier: PuddleSystem.EvaporationReagents<EvaporationReagents
+        var otherColor = solution.GetColorWithout(_prototype, MopFriendlyReagents); // Frontier: PuddleSystem.EvaporationReagents<MopFriendlyReagents
         var other = (solution.Volume - water).Float();
 
         if (other > 0f)
@@ -187,7 +187,7 @@ public sealed class AbsorbentSystem : SharedAbsorbentSystem
         }
 
         // Prioritize transferring non-evaporatives if absorbent has any
-        var contaminants = _solutionContainerSystem.SplitSolutionWithout(absorbentSoln, transferAmount, EvaporationReagents); // Frontier: PuddleSystem.EvaporationReagents<EvaporationReagents
+        var contaminants = _solutionContainerSystem.SplitSolutionWithout(absorbentSoln, transferAmount, MopFriendlyReagents); // Frontier: PuddleSystem.EvaporationReagents<MopFriendlyReagents
         if (contaminants.Volume > 0)
         {
             _solutionContainerSystem.TryAddSolution(refillableSoln, contaminants);
@@ -212,7 +212,7 @@ public sealed class AbsorbentSystem : SharedAbsorbentSystem
         Entity<SolutionComponent> absorbentSoln,
         Entity<SolutionComponent> refillableSoln)
     {
-        var contaminantsFromAbsorbent = _solutionContainerSystem.SplitSolutionWithout(absorbentSoln, component.PickupAmount, EvaporationReagents); // Frontier: PuddleSystem.EvaporationReagents<EvaporationReagents
+        var contaminantsFromAbsorbent = _solutionContainerSystem.SplitSolutionWithout(absorbentSoln, component.PickupAmount, MopFriendlyReagents); // Frontier: PuddleSystem.EvaporationReagents<MopFriendlyReagents
 
         var absorbentSolution = absorbentSoln.Comp.Solution;
         if (contaminantsFromAbsorbent.Volume == FixedPoint2.Zero && absorbentSolution.AvailableVolume == FixedPoint2.Zero)
@@ -229,7 +229,7 @@ public sealed class AbsorbentSystem : SharedAbsorbentSystem
             absorbentSolution.AvailableVolume;
 
         var refillableSolution = refillableSoln.Comp.Solution;
-        var waterFromRefillable = refillableSolution.SplitSolutionWithOnly(waterPulled, EvaporationReagents); // Frontier: PuddleSystem.EvaporationReagents<EvaporationReagents
+        var waterFromRefillable = refillableSolution.SplitSolutionWithOnly(waterPulled, MopFriendlyReagents); // Frontier: PuddleSystem.EvaporationReagents<MopFriendlyReagents
         _solutionContainerSystem.UpdateChemicals(refillableSoln);
 
         if (waterFromRefillable.Volume == FixedPoint2.Zero && contaminantsFromAbsorbent.Volume == FixedPoint2.Zero)
@@ -283,7 +283,7 @@ public sealed class AbsorbentSystem : SharedAbsorbentSystem
             return false;
 
         // Check if the puddle has any non-evaporative reagents
-        if (_puddleSystem.CanFullyEvaporate(puddleSolution))
+        if (IsMoppable(puddleSolution)) // Frontier: _puddleSystem.CanFullyEvaporate<IsMoppable
         {
             _popups.PopupEntity(Loc.GetString("mopping-system-puddle-evaporate", ("target", target)), user, user);
             return true;
@@ -291,7 +291,7 @@ public sealed class AbsorbentSystem : SharedAbsorbentSystem
 
         // Check if we have any evaporative reagents on our absorber to transfer
         var absorberSolution = absorberSoln.Comp.Solution;
-        var available = absorberSolution.GetTotalPrototypeQuantity(EvaporationReagents); // Frontier: PuddleSystem.EvaporationReagents<EvaporationReagents
+        var available = absorberSolution.GetTotalPrototypeQuantity(MopFriendlyReagents); // Frontier: PuddleSystem.EvaporationReagents<MopFriendlyReagents
 
         // No material
         if (available == FixedPoint2.Zero)
@@ -303,8 +303,8 @@ public sealed class AbsorbentSystem : SharedAbsorbentSystem
         var transferMax = absorber.PickupAmount;
         var transferAmount = available > transferMax ? transferMax : available;
 
-        var puddleSplit = puddleSolution.SplitSolutionWithout(transferAmount, EvaporationReagents); // Frontier: PuddleSystem.EvaporationReagents<EvaporationReagents
-        var absorberSplit = absorberSolution.SplitSolutionWithOnly(puddleSplit.Volume, EvaporationReagents); // Frontier: PuddleSystem.EvaporationReagents<EvaporationReagents
+        var puddleSplit = puddleSolution.SplitSolutionWithout(transferAmount, MopFriendlyReagents); // Frontier: PuddleSystem.EvaporationReagents<MopFriendlyReagents
+        var absorberSplit = absorberSolution.SplitSolutionWithOnly(puddleSplit.Volume, MopFriendlyReagents); // Frontier: PuddleSystem.EvaporationReagents<MopFriendlyReagents
 
         // Do tile reactions first
         var transform = Transform(target);
@@ -331,4 +331,11 @@ public sealed class AbsorbentSystem : SharedAbsorbentSystem
 
         return true;
     }
+
+    // Frontier: separate check from CanFullyEvaporate against mop-friendly reagents
+    public bool IsMoppable(Solution solution)
+    {
+        return solution.GetTotalPrototypeQuantity(MopFriendlyReagents) == solution.Volume;
+    }
+    // End Frontier
 }
