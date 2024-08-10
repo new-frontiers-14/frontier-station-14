@@ -84,13 +84,26 @@ namespace Content.Shared.Roles
             if (requirements == null)
                 return true;
 
+            bool anyMet = false;
+
             foreach (var requirement in requirements)
             {
-                if (!TryRequirementMet(requirement, playTimes, out reason, entManager, prototypes))
-                    return false;
+                if (job.NeedAllJobRequirement)
+                {
+                    if (!TryRequirementMet(requirement, playTimes, out reason, entManager, prototypes))
+                        return false;
+                }
+                else
+                {
+                    if (TryRequirementMet(requirement, playTimes, out reason, entManager, prototypes))
+                        anyMet = true;
+                }
             }
 
-            return true;
+            if (!job.NeedAllJobRequirement)
+                return anyMet;
+            else
+                return true;
         }
 
         /// <summary>

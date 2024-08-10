@@ -53,6 +53,9 @@ namespace Content.Shared.Roles
         [DataField("requireAdminNotify")]
         public bool RequireAdminNotify { get; private set; } = false;
 
+        [DataField]
+        public bool NeedAllJobRequirement { get; private set; } = true; // Frontier
+
         [DataField("setPreference")]
         public bool SetPreference { get; private set; } = true;
 
