@@ -4,15 +4,12 @@ using Content.Shared.Spider;
 using Content.Shared.Maps;
 using Robust.Server.GameObjects;
 using Robust.Shared.Map;
-using Content.Shared.Nutrition.EntitySystems;
-using Content.Shared.Nutrition.Components;
 
 namespace Content.Server.Spider;
 
 public sealed class SpiderSystem : SharedSpiderSystem
 {
     [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly HungerSystem _hungerSystem = default!;
 
     public override void Initialize()
     {
@@ -24,13 +21,6 @@ public sealed class SpiderSystem : SharedSpiderSystem
     {
         if (args.Handled)
             return;
-
-        if (TryComp<HungerComponent>(uid, out var hungerComp)
-        && _hungerSystem.IsHungerBelowState(uid, HungerThreshold.Okay, hungerComp.CurrentHunger - 5, hungerComp))
-        {
-            _popup.PopupEntity(Loc.GetString("sericulture-failure-hunger"), args.Performer, args.Performer);
-            return;
-        }
 
         var transform = Transform(uid);
 
@@ -52,10 +42,22 @@ public sealed class SpiderSystem : SharedSpiderSystem
             result = true;
         }
 
+        // Spawn web in other directions
+        for (var i = 0; i < 4; i++)
+        {
+            var direction = (DirectionFlag) (1 << i);
+            coords = transform.Coordinates.Offset(direction.AsDir().ToVec());
+
+            if (!IsTileBlockedByWeb(coords))
+            {
+                Spawn(component.WebPrototype, coords);
+                result = true;
+            }
+        }
+
         if (result)
         {
             _popup.PopupEntity(Loc.GetString("spider-web-action-success"), args.Performer, args.Performer);
-            _hungerSystem.ModifyHunger(uid, -5);
             args.Handled = true;
         }
         else
@@ -72,4 +74,3 @@ public sealed class SpiderSystem : SharedSpiderSystem
         return false;
     }
 }
-
