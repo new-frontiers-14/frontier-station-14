@@ -1,0 +1,38 @@
+- type: body
+  id: Elzuosa
+  name: "elzuosa"
+  root: torso
+  slots:
+    head:
+      part: HeadElzuosa
+      connections:
+      - torso
+      organs:
+        brain: OrganElzuosaBrain
+    torso:
+      part: TorsoElzuosa
+      connections:
+      - right_arm
+      - left_arm
+      - right_leg
+      - left_leg
+      organs:
+        heart: OrganElzuosaHeart
+        lungs: OrganElzuosaLungs
+        stomach: OrganElzuosaStomach
+    right_arm:
+      part: RightArmElzuosa
+      connections:
+      - right_hand
+    left_arm:
+      part: LeftArmElzuosa
+      connections:
+      - left_hand
+    right_hand:
+      part: RightHandElzuosa
+    left_hand:
+      part: LeftHandElzuosa
+    right_leg:
+      part: RightLegElzuosa
+    left_leg:
+      part: LeftLegElzuosa
