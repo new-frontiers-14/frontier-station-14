@@ -12,6 +12,10 @@
     - !type:DepartmentTimeRequirement
       department: Security
       time: 32400 # 9 hrs
+  alternateRequirementSets:
+    overallPlaytime:
+    - !type:OverallPlaytimeRequirement
+      time: 720000 # Frontier - 200 hrs
   startingGear: BailiffGear
   icon: "JobIconWarden" # Frontier
   supervisors: job-supervisors-sheriff

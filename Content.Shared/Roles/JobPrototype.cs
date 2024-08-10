@@ -44,6 +44,9 @@ namespace Content.Shared.Roles
         [DataField, Access(typeof(SharedRoleSystem), Other = AccessPermissions.None)]
         public HashSet<JobRequirement>? Requirements;
 
+        [DataField, Access(typeof(SharedRoleSystem), Other = AccessPermissions.None)] // Frontier
+        public Dictionary<string, HashSet<JobRequirement>>? AlternateRequirementSets; // Frontier: sets of requirements - one must be matched in order to 
+
         [DataField("whitelistRequired")]
         public bool WhitelistRequired = false;
 
@@ -52,9 +55,6 @@ namespace Content.Shared.Roles
 
         [DataField("requireAdminNotify")]
         public bool RequireAdminNotify { get; private set; } = false;
-
-        [DataField]
-        public bool NeedAllJobRequirement { get; private set; } = true; // Frontier
 
         [DataField("setPreference")]
         public bool SetPreference { get; private set; } = true;
