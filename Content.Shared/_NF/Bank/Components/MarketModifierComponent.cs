@@ -3,14 +3,20 @@ namespace Content.Shared.Bank.Components;
 /// <summary>
 /// This is used for applying a pricing modifier to things like vending machines.
 /// It's used to ensure that a purchased product costs more than it is actually worth.
-/// The float is applied to the StaticPrice component in the various systems that utilize it.
 /// </summary>
 [RegisterComponent]
 public sealed partial class MarketModifierComponent : Component
 {
     /// <summary>
-    /// The amount to multiply a Static Price by
+    /// The amount to multiply an item's price by
     /// </summary>
-    [DataField("mod", required: true)]
-    public float Mod;
+    [DataField(required: true)]
+    public float Mod { get; set; } = 1.0f;
+
+    /// <summary>
+    /// True if the modifier is for purchase (e.g. on a vendor)
+    /// Currently used for examine strings.
+    /// </summary>
+    [DataField]
+    public bool Buy { get; set; } = true;
 }
