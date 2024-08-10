@@ -90,7 +90,7 @@ public sealed partial class MarketSystem
             _whitelistSystem.IsPrototypeBlacklistFailOrNull(marketDataComponent.Blacklist, entityPrototype) ||
             _protoIdWhitelist.IsPrototypeWhitelistPassOrNull(marketDataComponent.OverrideList, entityPrototype))
         {
-            var estimatedPrice = _pricingSystem.GetEstimatedPrice(entityPrototype);
+            var estimatedPrice = _pricingSystem.GetPrice(sold) / count;
 
             // Increase the count in the MarketData for this entity
             // Assuming the quantity to increase is 1 for each sold entity
@@ -188,6 +188,27 @@ public sealed partial class MarketSystem
     }
 
     /// <summary>
+    /// Calculates the amount of items that can fit within an entity's worth of space for a given item type.
+    /// </summary>
+    /// <param name="data">The item type to calculate.</param>
+    /// <returns>The number of items that can fit within an entity's worth of space. Null if infinite.</returns>
+    public int? GetAmountPerEntitySpace(MarketData data)
+    {
+        if (data.StackPrototype != null && _prototypeManager.TryIndex(data.StackPrototype, out var stackPrototype))
+        {
+            var maxStackCount = stackPrototype.MaxCount;
+            if (maxStackCount != null)
+                return int.Max(1, maxStackCount.Value); // Ensure amount is positive.
+            else
+                return null; // Infinity.
+        }
+        else
+        {
+            return 1;
+        }
+    }
+
+    /// <summary>
     /// Occurs whenever something is added to the cart.
     /// If args.Amount is too high it will automatically be clamped to the maximum amount possible.
     /// This also prevents desync if there are two different consoles.
@@ -239,15 +260,35 @@ public sealed partial class MarketSystem
             if (existing == null)
                 return;
 
+            // Calculate maximum we can fit.
+            var entityAmount = CalculateEntityAmount(consoleComponent.CartDataList);
+            var amountPerEntity = GetAmountPerEntitySpace(existing);
+            int amountLeft;
+            if (amountPerEntity == null)
+            {
+                amountLeft = int.MaxValue; // Infinite stack, infinite space.
+            }
+            else
+            {
+                amountLeft = (30 - entityAmount) * amountPerEntity.Value;
+
+                var existingCart = FindMarketDataByPrototype(consoleComponent.CartDataList, args.ItemPrototype!);
+                if (existingCart != null)
+                {
+                    // Find if there's a partially filled entity in the cart.
+                    var quantityMod = existingCart.Quantity % amountPerEntity.Value;
+                    if (quantityMod != 0)
+                    {
+                        amountLeft += amountPerEntity.Value - quantityMod;
+                    }
+                }
+                amountLeft = int.Max(0, amountLeft); // If we're over the limit as-is, don't move anything.
+            }
+
+            toWithdraw = int.Min(toWithdraw, amountLeft);
+
             marketData.Upsert(existing.Prototype, -toWithdraw, existing.Price, existing.StackPrototype);
             consoleComponent.CartDataList.Upsert(existing.Prototype, toWithdraw, existing.Price, existing.StackPrototype);
-
-            if (CalculateEntityAmount(consoleComponent.CartDataList) > 30)
-            {
-                // Revert changes if cart is too full.
-                marketData.Upsert(existing.Prototype, toWithdraw, existing.Price, existing.StackPrototype);
-                consoleComponent.CartDataList.Upsert(existing.Prototype, -toWithdraw, existing.Price, existing.StackPrototype);
-            }
         }
 
         RefreshState(
