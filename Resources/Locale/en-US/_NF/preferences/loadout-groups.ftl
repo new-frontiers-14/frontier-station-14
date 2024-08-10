@@ -17,3 +17,4 @@ loadout-group-contractor-trinkets = trinkets
 loadout-group-contractor-survival-box = survival box
 loadout-group-contractor-encryption-key = encryption keys
 loadout-group-contractor-implanter = implanters
+loadout-group-contractor-bureaucracy = bureaucracy
