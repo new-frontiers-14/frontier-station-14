@@ -43,18 +43,6 @@
   - type: Sprite
     noRot: true
     sprite: _NF/Structures/Storage/wall_locker_color.rsi
-    layers:
-    - state: base
-      #color: "#2d4c5e"
-      map: ["enum.StorageVisualLayers.Base"]
-    - state: door
-      #color: "#2d4c5e"
-      map: ["enum.StorageVisualLayers.Door"]
-    - state: welded
-      visible: false
-      map: ["enum.WeldableLayers.BaseWelded"]
-    - state: locked
-      map: ["enum.LockVisualLayers.Lock"]
   - type: Lock
   - type: LockVisuals
   - type: Appearance
@@ -70,17 +58,31 @@
   name: captain wall locker
   components:
   - type: Sprite
-    noRot: true
-    sprite: _NF/Structures/Storage/wall_locker_color.rsi
     layers:
     - state: base
-      color: "#2d4c5e"
       map: ["enum.StorageVisualLayers.Base"]
     - state: door
-      color: "#2d4c5e"
       map: ["enum.StorageVisualLayers.Door"]
+    - state: door-decal
+      map: [ decal1 ]
+      color: "#f5d742"
+    - state: door-decal-eva
+      map: [ decal2 ]
+      color: "#f5d742"
     - state: welded
       visible: false
       map: ["enum.WeldableLayers.BaseWelded"]
     - state: locked
       map: ["enum.LockVisualLayers.Lock"]
+  - type: GenericVisualizer
+    visuals:
+      enum.StorageVisuals.Open:
+        decal1:
+          True: { visible: false }
+          False: { visible: true }
+        decal2:
+          True: { visible: false }
+          False: { visible: true }
+        enum.StorageVisualLayers.Door:
+          True: { color: "#ffffff" }
+          False: { color: "#2d4c5e" }
