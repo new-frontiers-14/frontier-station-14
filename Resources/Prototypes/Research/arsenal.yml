@@ -39,6 +39,10 @@
   - MagazineBoxMagnumIncendiary
   - MagazineBoxLightRifleIncendiary
   - MagazineBoxRifleIncendiary
+  - MagazineVector22Incendiary #CorvaxFrontier
+  - MagazineBoxVector22Incendiary #CorvaxFrontier
+  - MagazineVector45Incendiary #CorvaxFrontier
+  - MagazineBoxVector45Incendiary #CorvaxFrontier
 
 - type: technology
   id: WeaponizedLaserManipulation
@@ -70,6 +74,10 @@
   - MagazineBoxMagnumRubber # Frontier
   - MagazineBoxPistolRubber # Frontier
   - MagazineBoxRifleRubber # Frontier
+  - MagazineBoxVector22Practice #CorvaxFrontier
+  - MagazineVector22Practice #CorvaxFrontier
+  - MagazineBoxVector45Practice #CorvaxFrontier
+  - MagazineVector45Practice #CorvaxFrontier
 
 - type: technology
   id: UraniumMunitions
@@ -91,6 +99,10 @@
   - MagazineBoxLightRifleUranium
   - MagazineBoxRifleUranium
   - BoxShotgunUranium
+  - MagazineBoxVector22Uranium #CorvaxFrontier
+  - MagazineVector22Uranium #CorvaxFrontier
+  - MagazineBoxVector45Uranium #CorvaxFrontier
+  - MagazineVector45Uranium #CorvaxFrontier
 
 - type: technology
   id: AdvancedRiotControl
@@ -213,5 +225,27 @@
   - GrenadeEMP
   - PowerCageHigh
   - ShuttleGunDusterCircuitboard
+  technologyPrerequisites:
+  - BasicShuttleArmament
+
+- type: technology #Corvax-Frontier
+  id: VariousShuttleWeapons
+  name: research-technology-various-shuttle-weapons
+  icon:
+    sprite: Corvax/Objects/Weapons/Guns/Ammunition/Magazine/rifle_cartridges.rsi
+    state: 35base
+  discipline: Arsenal
+  tier: 3
+  cost: 30000
+  recipeUnlocks:
+    - ShuttleShotgunMachineCircuitboard
+    - ShuttleGunAntiMaterialMachineCircuitboard
+    - ShuttleLightRifleGunMachineCircuitboard
+    - ShuttleSMGRifleMachineCircuitboard
+    - ShuttleMagnumRifleMachineCircuitboard
+    - ShuttleShotgunShellsBox
+    - ShuttleSmgRifleAmmoBox
+    - ShuttleRifleAmmoBox
+    - ShuttleMagnumRifleAmmoBox
   technologyPrerequisites:
   - BasicShuttleArmament

@@ -1,0 +1,105 @@
+- type: entity #FrontierCorvax
+  name: Vector (.22 LR)
+  parent: BaseWeaponSubMachineGun
+  id: WeaponSubMachineGunVector22
+  description: An illegal version of the legendary submachine gun for sport shooting. He might even be able to shoot a squirrel. Uses .22lr ammunition.
+  components:
+  - type: Sprite
+    sprite: Corvax/Objects/Weapons/Guns/SMGs/vector22.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    size: Huge
+  - type: Clothing
+    sprite: Corvax/Objects/Weapons/Guns/SMGs/vector22.rsi
+    quickEquip: false
+    slots:
+    - suitStorage
+    - Belt
+  - type: Gun
+    fireRate: 18
+    selectedMode: FullAuto
+    soundGunshot:
+      path: /Audio/Corvax/Weapons/Guns/Gunshots/Vector22.ogg
+    availableModes:
+    - FullAuto
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineVector22
+        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineVector22
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeVector22
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeVector22
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: StaticPrice
+    price: 800
+
+- type: entity #FrontierCorvax
+  name: Vector (.45 ACP)
+  parent: BaseWeaponSubMachineGun
+  id: WeaponSubMachineGunVector45
+  description: A legal civilian version of the already legendary and forgotten submachine gun. Uses caliber cartridges .45 ACP. Automatic fire is not included in the package.
+  components:
+  - type: Sprite
+    sprite: Corvax/Objects/Weapons/Guns/SMGs/vector45.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+  - type: Clothing
+    sprite: Corvax/Objects/Weapons/Guns/SMGs/vector45.rsi
+    quickEquip: false
+    slots:
+    - suitStorage
+    - Belt
+  - type: Gun
+    minAngle: 2
+    maxAngle: 8
+    fireRate: 4.2
+    selectedMode: SemiAuto
+    soundGunshot:
+      path: /Audio/Corvax/Weapons/Guns/Gunshots/Vector45.ogg
+    availableModes:
+    - SemiAuto
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineVector45
+        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineVector45
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeVector45
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeVector45
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: StaticPrice
+    price: 1033

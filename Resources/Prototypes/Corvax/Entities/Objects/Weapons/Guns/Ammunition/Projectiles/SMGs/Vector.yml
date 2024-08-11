@@ -1,0 +1,95 @@
+- type: entity #FrontierCorvax
+  id: BulletVector22
+  name: bullet (.22 LR)
+  parent: BaseBullet
+  noSpawn: true
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 5
+        Blunt: 4
+
+- type: entity #FrontierCorvax
+  id: BulletVector22Incendiary
+  parent: BaseBulletIncendiary
+  name: bullet .22 LR (incendiary)
+  noSpawn: true
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 3
+        Heat: 3
+
+- type: entity #FrontierCorvax
+  id: BulletVector22Practice
+  name: bullet .22 LR (practice)
+  parent: BaseBulletPractice
+  noSpawn: true
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 1
+
+- type: entity #FrontierCorvax
+  id: BulletVector22Uranium
+  name: bullet .22 LR (uranium)
+  parent: BaseBulletUranium
+  noSpawn: true
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 3
+        Blunt: 3
+        Radiation: 8
+
+- type: entity #FrontierCorvax
+  id: BulletVector45
+  name: bullet (.45 ACP)
+  parent: BaseBullet
+  noSpawn: true
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 17
+        Blunt: 6
+
+- type: entity #FrontierCorvax
+  id: BulletVector45Incendiary
+  parent: BaseBulletIncendiary
+  name: bullet .45 ACP (incendiary)
+  noSpawn: true
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 3
+        Heat: 11
+
+- type: entity #FrontierCorvax
+  id: BulletVector45Practice
+  name: bullet .45 ACP (practice)
+  parent: BaseBulletPractice
+  noSpawn: true
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 3
+
+- type: entity #FrontierCorvax
+  id: BulletVector45Uranium
+  name: bullet .45 ACP (uranium)
+  parent: BaseBulletUranium
+  noSpawn: true
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 6
+        Blunt: 3
+        Radiation: 14

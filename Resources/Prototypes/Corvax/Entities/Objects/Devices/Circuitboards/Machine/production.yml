@@ -1,0 +1,105 @@
+﻿- type: entity
+  id: ShuttleShotgunMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Trophy-50
+  description: Machine Board from the shuttle`s gun "Trophy-50"
+  components:
+    - type: Sprite
+      state: security
+    - type: MachineBoard
+      prototype: ShuttleShotgun
+      requirements:
+        Capacitor: 3
+        Manipulator: 2
+        MatterBin: 2
+      stackRequirements:
+        Cable: 5
+        CableHV: 3
+        Steel: 12
+    - type: StaticPrice
+      price: 150
+
+- type: entity
+  id: ShuttleGunAntiMaterialMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: BOFROG-60/B
+  description: Machine Board from the shuttle`s gun "BOFROG-60/B"
+  components:
+    - type: Sprite
+      state: security
+    - type: MachineBoard
+      prototype: ShuttleGunAntiMaterial
+      requirements:
+        Capacitor: 5
+        Manipulator: 3
+        MatterBin: 1
+      stackRequirements:
+        Cable: 4
+        CableHV: 5
+        Steel: 16
+    - type: StaticPrice
+      price: 150
+
+- type: entity
+  id: ShuttleLightRifleGunMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: АК-6.30
+  description: Machine Board from the shuttle`s gun "АК-6.30"
+  components:
+    - type: Sprite
+      state: security
+    - type: MachineBoard
+      prototype: ShuttleLightRifleGun
+      requirements:
+        Capacitor: 4
+        Manipulator: 4
+        MatterBin: 5
+      stackRequirements:
+        Cable: 6
+        CableHV: 3
+        Steel: 14
+    - type: StaticPrice
+      price: 150
+
+- type: entity
+  id: ShuttleSMGRifleMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: NVT-35
+  description: Machine Board from the shuttle`s gun "NVT-35"
+  components:
+    - type: Sprite
+      state: security
+    - type: MachineBoard
+      prototype: ShuttleSMGRifle
+      requirements:
+        Capacitor: 3
+        Manipulator: 6
+        MatterBin: 3
+      stackRequirements:
+        Cable: 4
+        CableHV: 2
+        Steel: 11
+    - type: StaticPrice
+      price: 150
+
+- type: entity
+  id: ShuttleMagnumRifleMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: 2А42-45
+  description: Machine Board from the shuttle`s gun "2А42-45"
+  components:
+    - type: Sprite
+      state: security
+    - type: MachineBoard
+      prototype: ShuttleMagnumRifle
+      requirements:
+        Capacitor: 6
+        Manipulator: 4
+        MatterBin: 2
+      stackRequirements:
+        Cable: 5
+        CableHV: 3
+        Steel: 18
+        Glass: 10
+    - type: StaticPrice
+      price: 150

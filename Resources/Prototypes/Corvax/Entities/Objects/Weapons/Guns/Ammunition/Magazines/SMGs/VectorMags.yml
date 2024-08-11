@@ -1,0 +1,175 @@
+- type: entity #FrontierCorvax
+  id: MagazineVector22
+  name: magazine (.22 LR)
+  parent: BaseItem
+  description: A ridiculously large magazine with ridiculously small and ridiculous .22 ammo
+  components:
+  - type: Tag
+    tags:
+      - MagazineVector22
+  - type: BallisticAmmoProvider
+    proto: CartridgeVector22
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeVector22
+    capacity: 33
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Corvax/Objects/Weapons/Guns/Ammunition/Magazine/Vector/vector22mag.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity #FrontierCorvax
+  id: MagazineVector22Empty
+  parent: MagazineVector22
+  suffix: Empty
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+
+- type: entity #FrontierCorvax
+  id: MagazineVector22Incendiary
+  name: magazine (.22 LR incendiary)
+  parent: MagazineVector22
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeVector22Incendiary
+  - type: Sprite
+    layers:
+    - state: incendiary
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity #FrontierCorvax
+  id: MagazineVector22Practice
+  name: magazine (.22 LR practice)
+  parent: MagazineVector22
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeVector22Practice
+  - type: Sprite
+    layers:
+    - state: practice
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity #FrontierCorvax
+  id: MagazineVector22Uranium
+  name: magazine (.22 LR uranium)
+  parent: MagazineVector22
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeVector22Uranium
+  - type: Sprite
+    layers:
+    - state: uranium
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity #FrontierCorvax
+  id: MagazineVector45
+  name: magazine (.45 ACP)
+  parent: BaseItem
+  description: Standard magazine for 13 small (big and slow) friends in .45 ACP
+  components:
+  - type: Tag
+    tags:
+      - MagazineVector45
+  - type: BallisticAmmoProvider
+    proto: CartridgeVector45
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeVector45
+    capacity: 13
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Corvax/Objects/Weapons/Guns/Ammunition/Magazine/Vector/vector45mag.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity #FrontierCorvax
+  id: MagazineVector45Empty
+  parent: MagazineVector45
+  suffix: Empty
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+
+- type: entity #FrontierCorvax
+  id: MagazineVector45Incendiary
+  name: magazine (.45 ACP incendiary)
+  parent: MagazineVector45
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeVector45Incendiary
+  - type: Sprite
+    layers:
+    - state: incendiary
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity #FrontierCorvax
+  id: MagazineVector45Practice
+  name: magazine (.45 ACP practice)
+  parent: MagazineVector45
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeVector45Practice
+  - type: Sprite
+    layers:
+    - state: practice
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity #FrontierCorvax
+  id: MagazineVector45Uranium
+  name: magazine (.45 ACP uranium)
+  parent: MagazineVector45
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeVector45Uranium
+  - type: Sprite
+    layers:
+    - state: uranium
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]

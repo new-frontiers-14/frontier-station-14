@@ -1,0 +1,163 @@
+- type: entity
+  id: ShuttleShotgunShellsBox
+  name: Cartridge for Trophy-50
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+      - ShuttleShotgunShellsBox
+  - type: BallisticAmmoProvider
+    proto: ShellShotgun
+    mayTransfer: true
+    whitelist:
+       tags:
+         - ShellShotgun
+    capacity: 24
+    soundRack:
+      path: /Audio/Weapons/Guns/Bolt/lmg_bolt_closed.ogg
+      params:
+        variation: 0.05
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/rifle_load.ogg
+      params:
+        variation: 0.05
+  - type: Item
+    size: Large
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Corvax/Objects/Weapons/Guns/Ammunition/Magazine/rifle_cartridges.rsi
+    layers:
+    - state: 50base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: 50mag-6
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: 50mag
+    steps: 7
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: ShuttleSmgRifleAmmoBox
+  name: Cartridge for NVT-35
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+      - ShuttleSmgRifleAmmoBox
+  - type: BallisticAmmoProvider
+    proto: CartridgePistol
+    mayTransfer: true
+    whitelist:
+       tags:
+         - CartridgePistol
+    capacity: 100
+    soundRack:
+      path: /Audio/Weapons/Guns/Bolt/lmg_bolt_closed.ogg
+      params:
+        variation: 0.05
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/rifle_load.ogg
+      params:
+        variation: 0.05
+  - type: Item
+    size: Large
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Corvax/Objects/Weapons/Guns/Ammunition/Magazine/rifle_cartridges.rsi
+    layers:
+    - state: 35base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: 35mag-8
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: 35mag
+    steps: 9
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: ShuttleRifleAmmoBox
+  name: Cartridge for АК-6.30
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+      - ShuttleRifleAmmoBox
+  - type: BallisticAmmoProvider
+    proto: CartridgeLightRifle
+    whitelist:
+       tags:
+         - CartridgeLightRifle
+    capacity: 150
+    mayTransfer: true
+    soundRack:
+      path: /Audio/Weapons/Guns/Bolt/lmg_bolt_closed.ogg
+      params:
+        variation: 0.05
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/rifle_load.ogg
+      params:
+        variation: 0.05
+  - type: Item
+    size: Large
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Corvax/Objects/Weapons/Guns/Ammunition/Magazine/rifle_cartridges.rsi
+    layers:
+    - state: 30base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: 30mag-8
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: 30mag
+    steps: 9
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: ShuttleMagnumRifleAmmoBox
+  name: Cartridge for 2А42-45
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+      - ShuttleMagnumRifleAmmoBox
+  - type: BallisticAmmoProvider
+    proto: CartridgeMagnum
+    mayTransfer: true
+    whitelist:
+       tags:
+         - CartridgeMagnum
+    capacity: 40
+    soundRack:
+      path: /Audio/Weapons/Guns/Bolt/lmg_bolt_closed.ogg
+      params:
+        variation: 0.05
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/rifle_load.ogg
+      params:
+        variation: 0.05
+  - type: Item
+    size: Large
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Corvax/Objects/Weapons/Guns/Ammunition/Magazine/rifle_cartridges.rsi
+    layers:
+    - state: 45base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: 45mag-8
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: 45mag
+    steps: 9
+    zeroVisible: false
+  - type: Appearance
