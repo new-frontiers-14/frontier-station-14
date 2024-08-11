@@ -7,11 +7,19 @@
   components:
   - type: StorageFill
     contents:
+      # Expected value: 2.8
     - id: GeneratorRTGFlatpack
       amount: 2
-    - id: GeneratorRTGFlatpack
-      amount: 2
+      orGroup: rtg
       prob: 0.4
+    - id: GeneratorRTGFlatpack
+      amount: 3
+      orGroup: rtg
+      prob: 0.4
+    - id: GeneratorRTGFlatpack
+      amount: 4
+      orGroup: rtg
+      prob: 0.2
 
 - type: entity
   parent: CrateEngineering
