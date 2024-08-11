@@ -241,16 +241,16 @@
     layers:
     - state: base
       map: ["enum.StorageVisualLayers.Base"]
-      color: "#2d4c5e"
+      color: "#42658d"
     - state: door
       map: ["enum.StorageVisualLayers.Door"]
-      color: "#2d4c5e"
+      color: "#42658d"
     - state: door-decal-line-01
       map: [ decal1 ]
-      color: "#f5d742"
+      color: "#cbbd60"
     - state: door-decal-eva-02
       map: [ decal2 ]
-      color: "#f5d742"
+      color: "#cbbd60"
     - state: welded
       visible: false
       map: ["enum.WeldableLayers.BaseWelded"]
@@ -281,6 +281,8 @@
       map: ["enum.WeldableLayers.BaseWelded"]
     - state: locked
       map: ["enum.LockVisualLayers.Lock"]
+  - type: AccessReader
+    access: [["HeadOfPersonnel"]]
 
 - type: entity
   id: LockerWallEVAColorEngineer
@@ -291,16 +293,16 @@
     layers:
     - state: base
       map: ["enum.StorageVisualLayers.Base"]
-      color: "#ffee00"
+      color: "#ead152"
     - state: door
       map: ["enum.StorageVisualLayers.Door"]
-      color: "#ffee00"
+      color: "#ead152"
     - state: door-decal-line-01
       map: [ decal1 ]
-      color: "#ff7f00"
+      color: "#a7333b"
     - state: door-decal-eva-02
       map: [ decal2 ]
-      color: "#ff7f00"
+      color: "#a7333b"
     - state: welded
       visible: false
       map: ["enum.WeldableLayers.BaseWelded"]
@@ -316,10 +318,10 @@
     layers:
     - state: base
       map: ["enum.StorageVisualLayers.Base"]
-      color: "#ffee00"
+      color: "#ead152"
     - state: door
       map: ["enum.StorageVisualLayers.Door"]
-      color: "#ffee00"
+      color: "#ead152"
     - state: door-decal-line-01
       map: [ decal1 ]
       color: "#00a5ff"
@@ -341,10 +343,10 @@
     layers:
     - state: base
       map: ["enum.StorageVisualLayers.Base"]
-      color: "#deb733"
+      color: "#b3863c"
     - state: door
       map: ["enum.StorageVisualLayers.Door"]
-      color: "#deb733"
+      color: "#b3863c"
     - state: door-decal-line-01
       map: [ decal1 ]
       color: "#707070"
@@ -366,16 +368,16 @@
     layers:
     - state: base
       map: ["enum.StorageVisualLayers.Base"]
-      color: "#deb733"
+      color: "#b3863c"
     - state: door
       map: ["enum.StorageVisualLayers.Door"]
-      color: "#deb733"
+      color: "#b3863c"
     - state: door-decal-line-01
       map: [ decal1 ]
-      color: "#ad2aea"
+      color: "#76417b"
     - state: door-decal-eva-02
       map: [ decal2 ]
-      color: "#ad2aea"
+      color: "#76417b"
     - state: welded
       visible: false
       map: ["enum.WeldableLayers.BaseWelded"]
@@ -676,6 +678,159 @@
     - state: door-decal-eva-02
       map: [ decal2 ]
       color: "#384d2f"
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+  - type: AccessReader
+    access: [["Security"]]
+
+# DEPARTMENTS
+- type: entity
+  id: LockerWallColorCaptain
+  parent: LockerWallColorBase
+  name: captain wall locker
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.StorageVisualLayers.Base"]
+      color: "#42658d"
+    - state: door
+      map: ["enum.StorageVisualLayers.Door"]
+      color: "#42658d"
+    - state: door-decal-line-03
+      map: [ decal1 ]
+      color: "#cbbd60"
+    - state: door-decal-captain-01
+      map: [ decal2 ]
+      color: "#cbbd60"
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+
+- type: entity
+  id: LockerWallColorEngineer
+  parent: LockerWallColorBase
+  name: engineer wall locker
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.StorageVisualLayers.Base"]
+      color: "#ead152"
+    - state: door
+      map: ["enum.StorageVisualLayers.Door"]
+      color: "#ead152"
+    - state: door-decal-line-03
+      map: [ decal1 ]
+      color: "#a7333b"
+    - state: door-decal-engi-03
+      map: [ decal2 ]
+      color: "#a7333b"
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+
+- type: entity
+  id: LockerWallColorAtmosTech
+  parent: LockerWallColorBase
+  name: atmospheric technician wall locker
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.StorageVisualLayers.Base"]
+      color: "#ead152"
+    - state: door
+      map: ["enum.StorageVisualLayers.Door"]
+      color: "#ead152"
+    - state: door-decal-line-03
+      map: [ decal1 ]
+      color: "#00a5ff"
+    - state: door-decal-engi-02
+      map: [ decal2 ]
+      color: "#00a5ff"
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+
+- type: entity
+  id: LockerWallColorCargo
+  parent: LockerWallColorBase
+  name: cargo technician wall locker
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.StorageVisualLayers.Base"]
+      color: "#b3863c"
+    - state: door
+      map: ["enum.StorageVisualLayers.Door"]
+      color: "#b3863c"
+    - state: door-decal-line-03
+      map: [ decal1 ]
+      color: "#707070"
+    - state: door-decal-cargo-01
+      map: [ decal2 ]
+      color: "#707070"
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+
+- type: entity
+  id: LockerWallColorSalvage
+  parent: LockerWallColorBase
+  name: salvage specialist wall locker
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.StorageVisualLayers.Base"]
+      color: "#b3863c"
+    - state: door
+      map: ["enum.StorageVisualLayers.Door"]
+      color: "#b3863c"
+    - state: door-decal-line-04
+      map: [ decal1 ]
+      color: "#76417b"
+    - state: door-decal-cargo-02
+      map: [ decal2 ]
+      color: "#76417b"
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+
+- type: entity
+  id: LockerWallColorMedical
+  parent: LockerWallColorBase
+  name: medical wall locker
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.StorageVisualLayers.Base"]
+      color: "#fff4e2"
+    - state: door
+      map: ["enum.StorageVisualLayers.Door"]
+      color: "#fff4e2"
+    - state: door-decal-line-04
+      map: [ decal1 ]
+      color: "#5995ba"
+    - state: door-decal-med-01
+      map: [ decal2 ]
+      color: "#5995ba"
     - state: welded
       visible: false
       map: ["enum.WeldableLayers.BaseWelded"]

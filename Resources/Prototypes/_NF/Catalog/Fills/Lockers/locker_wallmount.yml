@@ -56,9 +56,6 @@
   parent: [ LockerWallEVAColorSr, StorageFillEVASuitSr ]
   id: LockerWallEVAColorSrFilled
   suffix: Filled
-  components:
-  - type: AccessReader
-    access: [["HeadOfPersonnel"]]
 
 - type: entity
   parent: [ LockerWallEVAColorCaptain, StorageFillEVASuitCaptain ]
@@ -93,6 +90,7 @@
 - type: entity
   parent: [ LockerWallEVAColorMedical, StorageFillEVASuitParamedic ]
   id: LockerWallEVAColorParamedicFilled
+  name: paramedic voidsuit wall locker
   suffix: Filled
 
 - type: entity
@@ -169,6 +167,3 @@
   parent: [ LockerWallEVAColorNfsd, StorageFillEVASuitNfsd ]
   id: LockerWallEVAColorNfsdFilled
   suffix: Filled
-  components:
-  - type: AccessReader
-    access: [["Security"]]
