@@ -1,0 +1,15 @@
+# Dungeon grilles that prevent lasers from passing through
+- type: entity
+  id: GrilleExpedition
+  parent: Grille
+  noSpawn: true
+  suffix: DO NOT MAP, Dungeon only
+  components:
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.5,-0.5,0.5,0.5"
+          layer:
+          - WallLayer
