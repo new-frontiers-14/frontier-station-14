@@ -48,7 +48,7 @@
   - type: Tag
     tags:
     - BypassInteractionRangeChecks
-  #Frontier changes to the prototype so it can access radars
+  #Frontier: changes to the prototype so it can access radars
   - type: UserInterface
     interfaces:
       enum.RadarConsoleUiKey.Key:
@@ -59,10 +59,8 @@
         toggleAction: ActionObserverShowRadar
   - type: RadarConsole
     followEntity: true
-  - type: BypassInteractionChecks
-  - type: IgnoreUIRange
-  - type: StationLimitedNetwork
-  - type: ComplexInteraction
+  - type: ComplexInteraction # Needed to interact with consoles
+  # End Frontier
 
 - type: entity
   id: ActionGhostBoo
@@ -86,18 +84,14 @@
     checkCanInteract: false
     event: !type:ToggleLightingActionEvent
 
-#Frontier action
+# Frontier: radar action
 - type: entity
   id: ActionObserverShowRadar
-  name: Mass Scanner Interface
-  description: View a mass scanner interface.
+  parent: ActionAGhostShowRadar
   components:
   - type: InstantAction
-    icon: { sprite: Structures/Machines/parts.rsi, state: box_0 }
-    iconOn: Structures/Machines/parts.rsi/box_2.png
-    keywords: [ "AI", "console", "interface" ]
     checkCanInteract: false
-    event: !type:ToggleIntrinsicUIEvent { key: enum.RadarConsoleUiKey.Key }
+# End Frontier
 
 - type: entity
   id: ActionToggleFov
