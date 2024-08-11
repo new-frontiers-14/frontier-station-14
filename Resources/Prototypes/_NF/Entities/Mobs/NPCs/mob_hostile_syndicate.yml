@@ -321,13 +321,13 @@
         path: /Audio/_NF/Effects/silence.ogg
     - type: BasicEntityAmmoProvider
       proto: BulletPistol
-      capacity: 8
-      count: 8
+      capacity: 7
+      count: 7
     - type: Gun
       showExamineText: false
       minAngle: 10
       maxAngle: 30
-      fireRate: 8
+      fireRate: 5
       angleIncrease: 3
       angleDecay: 6
       selectedMode: FullAuto
@@ -728,7 +728,9 @@
 # Syndicate Captain, "armed" with Python
 - type: entity
   name: syndicate captain
-  parent: MobSyndicateNavalCaptainA
+  parent:
+  - MobSyndicateNavalCaptainA
+  - MobLaserReflect # Added to prevent laser abuse from players
   id: MobSyndicateNavalCaptainVoid
   noSpawn: true
   components:
@@ -742,7 +744,9 @@
 
 # Second Officer, "armed" with Advanced Laser Pistol
 - type: entity
-  parent: MobSyndicateNavalSecondOfficerA
+  parent:
+  - MobSyndicateNavalSecondOfficerA
+  - MobLaserReflect # Added to prevent laser abuse from players
   id: MobSyndicateNavalSecondOfficerVoid
   noSpawn: true
   components:
@@ -752,7 +756,9 @@
 
 # Syndicate Security Operative, "armed" with Atreides SMG
 - type: entity
-  parent: MobSyndicateNavalOperatorA
+  parent:
+  - MobSyndicateNavalOperatorA
+  - MobLaserReflect # Added to prevent laser abuse from players
   id: MobSyndicateNavalOperatorVoid
   noSpawn: true
   components:
@@ -762,7 +768,9 @@
 
 # Syndicate Engineer, "armed" with shotgun
 - type: entity
-  parent: MobSyndicateNavalEngineerA
+  parent:
+  - MobSyndicateNavalEngineerA
+  - MobLaserReflect # Added to prevent laser abuse from players
   id: MobSyndicateNavalEngineerVoid
   noSpawn: true
   components:
@@ -778,7 +786,9 @@
 
 # Syndicate Deckhand, "armed" with Viper
 - type: entity
-  parent: MobSyndicateNavalDeckhandA
+  parent:
+  - MobSyndicateNavalDeckhandA
+  - MobLaserReflect # Added to prevent laser abuse from players
   id: MobSyndicateNavalDeckhandVoid
   noSpawn: true
   components:
@@ -790,7 +800,9 @@
 
 # Syndicate Medic, "armed" poisoned darts
 - type: entity
-  parent: MobSyndicateNavalMedicA
+  parent:
+  - MobSyndicateNavalMedicA
+  - MobLaserReflect # Added to prevent laser abuse from players
   id: MobSyndicateNavalMedicVoid
   noSpawn: true
   components:
