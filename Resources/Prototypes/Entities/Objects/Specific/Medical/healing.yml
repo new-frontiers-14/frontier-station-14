@@ -202,19 +202,7 @@
   components:
   - type: Tag
     tags:
-    - BloodFood
     - Bloodpack
-  - type: Food
-    requiresSpecialDigestion: true
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 5
-        - ReagentId: Fat
-          Quantity: 5
   - type: Sprite
     state: bloodpack
   - type: Healing
@@ -232,7 +220,7 @@
     stackType: Bloodpack
     count: 10
   - type: StackPrice
-    price: 5
+    price: 5 # Frontier 10<5
 
 - type: entity
   parent: Bloodpack
@@ -299,7 +287,7 @@
     stackType: Gauze
     count: 10
   - type: StackPrice
-    price: 5
+    price: 5 # Frontier 10<5
 
 - type: entity
   id: Gauze1
