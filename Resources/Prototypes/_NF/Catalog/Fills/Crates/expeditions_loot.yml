@@ -3,7 +3,7 @@
   parent: CrateEngineering
   id: CrateEngineeringKitRtg
   name: RTG toolkit
-  description: Contains a full kit to build RTG power plant.
+  description: Contains a full kit to build an RTG power plant.
   components:
   - type: StorageFill
     contents:
@@ -25,7 +25,7 @@
   parent: CrateEngineering
   id: CrateEngineeringKitFabrication
   name: fabrication kit
-  description: Contains a full kit to build engineering fabrication facility.
+  description: Contains a full kit to build an engineering fabrication facility.
   components:
   - type: StorageFill
     contents:
@@ -58,7 +58,7 @@
   parent: CrateEngineering
   id: CrateEngineerHardsuit
   name: station engineer's hardsuit crate
-  description: Contains station engineer hardsuit.
+  description: Contains a station engineer hardsuit.
   components:
   - type: StorageFill
     contents:
@@ -73,7 +73,7 @@
   parent: CrateEngineering
   id: CrateAtmosTechHardsuit
   name: atmospheric technician's hardsuit crate
-  description: Contains atmospheric technician hardsuit.
+  description: Contains a atmospheric technician hardsuit.
   components:
   - type: StorageFill
     contents:
@@ -88,7 +88,7 @@
   parent: CrateEngineering
   id: CrateEngineerChiefHardsuit
   name: chief engineer's hardsuit crate
-  description: Contains chief engineer hardsuit.
+  description: Contains a chief engineer hardsuit.
   components:
   - type: StorageFill
     contents:
@@ -103,7 +103,7 @@
   parent: CrateEngineering
   id: CrateTools
   name: tools crate
-  description: Contains a essential tools.
+  description: Contains essential tools for engineering.
   components:
   - type: StorageFill
     contents:
@@ -162,6 +162,24 @@
     - id: ServiceTechFabFlatpack
     - id: VendingMachineRestockChefvend
     - id: VendingMachineRestockDinnerware
+
+- type: entity
+  parent: CratePlastic
+  id: CrateServiceKitCleanades
+  name: cleanade crate
+  description: Contains a full kit to clean up a warzone.
+  components:
+  - type: StorageFill
+    contents:
+    - id: CleanerGrenade
+      amount: 2
+      orGroup: cleanades
+    - id: CleanerGrenade
+      amount: 4
+      orGroup: cleanades
+    - id: CleanerGrenade
+      amount: 6
+      orGroup: cleanades
 
 - type: entity
   parent: CrateHydroponics
