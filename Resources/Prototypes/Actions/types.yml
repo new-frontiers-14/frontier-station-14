@@ -37,6 +37,7 @@
   description: Turn the light on and off.
   components:
   - type: InstantAction
+    useDelay: 1
     icon: { sprite: Objects/Tools/flashlight.rsi, state: flashlight }
     iconOn: { sprite: Objects/Tools/flashlight.rsi, state: flashlight-on }
     event: !type:ToggleActionEvent
@@ -258,7 +259,7 @@
     checkCanInteract: false
     checkConsciousness: false
     temporary: true
-    icon: { sprite: Objects/Tools/multitool.rsi, state: icon }
+    icon: { sprite: _NF/Objects/Tools/multitool.rsi, state: icon } # Frontier: separate sprites (add _NF folder)
     event: !type:ClearAllOverlaysEvent
 
 - type: entity

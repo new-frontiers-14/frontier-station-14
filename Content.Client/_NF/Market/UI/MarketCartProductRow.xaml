@@ -1,0 +1,63 @@
+﻿<PanelContainer xmlns="https://spacestation14.io"
+                Access="Public"
+                StyleClasses="PanelBackgroundLight"
+                SetHeight="80"
+                Margin="0 2 0 2"
+                HorizontalExpand="True">
+    <BoxContainer Orientation="Horizontal"
+                  HorizontalExpand="True">
+        <!-- Left side container -->
+        <BoxContainer Orientation="Vertical"
+                      Align="Center"
+                      MinWidth="60"
+                      MaxWidth="80"
+                      SeparationOverride="5">
+            <Label Name="Price"
+                   Access="Public"
+                   Align="Center"
+                   MaxWidth="80"
+                   HorizontalExpand="True" />
+            <Button Name="Return"
+                    Access="Public"
+                    ToolTip=""
+                    HorizontalExpand="True"
+                    MaxWidth="80"
+                    Text="{Loc 'market-return-button'}"
+                    StyleClasses="LabelSubText" />
+        </BoxContainer>
+
+        <!-- Right side container -->
+        <BoxContainer Orientation="Horizontal"
+                      HorizontalExpand="True"
+                      SeparationOverride="10">
+            <PanelContainer HorizontalExpand="False"
+                            VerticalExpand="True"
+                            MinSize="60 60"
+                            MaxSize="80 80">
+                <TextureRect Name="Icon"
+                             Access="Public"
+                             HorizontalAlignment="Center"
+                             VerticalAlignment="Center"
+                             HorizontalExpand="False"
+                             VerticalExpand="True"
+                             MinSize="60 60"
+                             MaxSize="80 80"
+                             Stretch="KeepAspectCentered" />
+            </PanelContainer>
+
+            <BoxContainer Orientation="Vertical"
+                          Align="Center"
+                          HorizontalExpand="True">
+                <Label Name="Title"
+                       Access="Public"
+                       Margin="5 0 0 0"
+                       HorizontalExpand="True" />
+                <Label Name="Quantity"
+                       Access="Public"
+                       Margin="5 0 0 0"
+                       HorizontalExpand="True" />
+            </BoxContainer>
+        </BoxContainer>
+    </BoxContainer>
+
+</PanelContainer>
