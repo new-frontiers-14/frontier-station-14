@@ -19,14 +19,15 @@ salvage-expedition-window-claim = Claim
 
 salvage-expedition-window-next = Next offer
 
-# Expedition descriptions
-salvage-expedition-desc-mining = Collect resources inside the area.
+# Frontier: Expedition descriptions
+salvage-expedition-desc-mining = Collect resources.
 #  You will be taxed {$tax}% of the resources collected.
 salvage-expedition-desc-structure = {$count ->
-    [one] Destroy {$count} {$structure} inside the area.
-    *[other] Destroy {$count} {$structure}s inside the area.
+    [one] Destroy {$count} {$structure}.
+    *[other] Destroy {$count} {$structure}s.
 }
-salvage-expedition-desc-elimination = Kill a large and dangerous creature inside the area.
+salvage-expedition-desc-elimination = Kill a large and dangerous creature.
+# End Frontier
 
 salvage-expedition-type-Mining = Mining
 salvage-expedition-type-Destruction = Destruction
