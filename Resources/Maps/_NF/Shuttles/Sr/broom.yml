@@ -345,7 +345,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: 0.5,-2.5
       parent: 1
-- proto: ClosetWallPink
+- proto: LockerWallMaterialsBasic10Filled
   entities:
   - uid: 30
     components:
@@ -353,43 +353,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 2.5,-1.5
       parent: 1
-    - type: EntityStorage
-      air:
-        volume: 200
-        immutable: False
-        temperature: 293.14923
-        moles:
-        - 1.8856695
-        - 7.0937095
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-    - type: ContainerContainer
-      containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 63
-          - 36
-          - 61
-          - 82
-- proto: ClothingNeckCloakJanitorFilled
-  entities:
-  - uid: 36
-    components:
-    - type: Transform
-      parent: 30
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: ComputerTabletopShuttle
   entities:
   - uid: 83
@@ -818,7 +781,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -1.5,-0.5
       parent: 1
-- proto: SuitStorageWallmountEVAAlternate
+- proto: LockerWallEVAColorJanitor
   entities:
   - uid: 56
     components:
