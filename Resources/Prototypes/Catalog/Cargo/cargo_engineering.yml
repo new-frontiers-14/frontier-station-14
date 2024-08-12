@@ -32,6 +32,17 @@
   group: market
 
 - type: cargoProduct
+  id: EngineeringFoamGrenade
+  abstract: true # Frontier
+  icon:
+    sprite: Objects/Weapons/Grenades/metalfoam.rsi
+    state: icon
+  product: CrateEngineeringFoamGrenade
+  cost: 2500
+  category: cargoproduct-category-name-engineering
+  group: market
+
+- type: cargoProduct
   id: EngineeringCableBulk
   abstract: true # Frontier
   icon:
@@ -112,7 +123,7 @@
   id: EngineeringRCDAmmo
   abstract: true # Frontier
   icon:
-    sprite: Objects/Tools/rcd.rsi
+    sprite: _NF/Objects/Tools/rcd.rsi # Frontier
     state: ammo
   product: CrateRCDAmmo
   cost: 2500
@@ -123,7 +134,7 @@
   id: EngineeringRCD
   abstract: true # Frontier
   icon:
-    sprite: Objects/Tools/rcd.rsi
+    sprite: _NF/Objects/Tools/rcd.rsi # Frontier
     state: icon
   product: CrateRCD
   cost: 800
