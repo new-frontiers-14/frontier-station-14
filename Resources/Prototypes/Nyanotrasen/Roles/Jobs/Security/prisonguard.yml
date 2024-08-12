@@ -10,15 +10,10 @@
       time: 10800 # 3 hrs
     - !type:OverallPlaytimeRequirement
       time: 36000 # Frontier - 10 hrs
-    - !type:DepartmentTimeRequirement
-      department: Security
-      time: 14400 # Frontier - 4 hrs
   startingGear: PrisonGuardGear
-#  alwaysUseSpawner: true
   icon: "JobIconWarden"
   supervisors: job-supervisors-bailiff # Frontier
   canBeAntag: false
-#  whitelistRequired: true
   access:
   - Security
   - Brig
