@@ -1,10 +1,10 @@
 using System.Numerics;
+using Content.Shared._NF.Vehicle.Components;
 using Content.Shared.Access.Components;
 using Content.Shared.Actions;
 using Content.Shared.Audio;
 using Content.Shared.Buckle;
 using Content.Shared.Buckle.Components;
-using Content.Shared.Hands;
 using Content.Shared.Inventory.VirtualItem;
 using Content.Shared.Item;
 using Content.Shared.Light.Components;
@@ -13,7 +13,6 @@ using Content.Shared.Movement.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Tag;
 using Content.Shared.Vehicle.Components;
-using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Network;
@@ -64,6 +63,10 @@ public abstract partial class SharedVehicleSystem : EntitySystem
         SubscribeLocalEvent<VehicleComponent, GetAdditionalAccessEvent>(OnGetAdditionalAccess);
 
         SubscribeLocalEvent<InVehicleComponent, GettingPickedUpAttemptEvent>(OnGettingPickedUpAttempt);
+
+        SubscribeLocalEvent<VehicleHornComponent, ComponentInit>(OnVehicleHornInit);
+        SubscribeLocalEvent<VehicleHornComponent, ComponentShutdown>(OnVehicleHornShutdown);
+        SubscribeLocalEvent<VehicleHornComponent, HonkActionEvent>(OnHornHonkAction); // Frontier: for vehicles with innate horns (e.g. taxibot)
     }
 
     /// <summary>
@@ -351,6 +354,35 @@ public abstract partial class SharedVehicleSystem : EntitySystem
     private void UpdateAutoAnimate(EntityUid uid, bool autoAnimate)
     {
         Appearance.SetData(uid, VehicleVisuals.AutoAnimate, autoAnimate);
+    }
+
+    /// Horn-only functions
+    private void OnVehicleHornShutdown(EntityUid uid, VehicleHornComponent component, ComponentShutdown args)
+    {
+        // Perf: If the entity is deleting itself, no reason to change these back.
+        if (Terminating(uid))
+            return;
+
+        _actionsSystem.RemoveAction(uid, component.ActionEntity);
+    }
+
+    private void OnVehicleHornInit(EntityUid uid, VehicleHornComponent component, ComponentInit args)
+    {
+        _actionsSystem.AddAction(uid, ref component.ActionEntity, out var _, component.Action);
+    }
+
+    /// <summary>
+    /// This fires when the vehicle entity presses the honk action
+    /// </summary>
+    private void OnHornHonkAction(EntityUid uid, VehicleHornComponent vehicle, HonkActionEvent args)
+    {
+        if (args.Handled || vehicle.HornSound == null)
+            return;
+
+        // TODO: Need audio refactor maybe, just some way to null it when the stream is over.
+        // For now better to just not loop to keep the code much cleaner.
+        vehicle.HonkPlayingStream = _audioSystem.PlayPredicted(vehicle.HornSound, uid, args.Performer)?.Entity;
+        args.Handled = true;
     }
 }
 
