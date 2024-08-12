@@ -2,10 +2,25 @@
 # TODO BODY: Part damage
 - type: entity
   id: PartVulpkanin
-  parent: [BaseItem, BasePart]
+  parent: [BaseItem, BasePart] # Frontier: add BasePart, consistency with upstream
   name: "vulpkanin body part"
   abstract: true
   components:
+  # Frontier: commented out lines below, inherited from BasePart
+  # - type: Damageable
+  #   damageContainer: Biological
+  # - type: BodyPart
+  # - type: ContainerContainer
+  #   containers:
+  #     bodypart: !type:Container
+  #       ents: []
+  # - type: StaticPrice #DynamicPrice
+  #   price: 100
+  # - type: Tag
+  #   tags:
+  #     - Trash
+  # End Frontier: inherited from BasePart
+  # Frontier: added lines below, consistency with upstream
   - type: Extractable
     juiceSolution:
       reagents:
@@ -13,16 +28,23 @@
         Quantity: 3
       - ReagentId: Blood
         Quantity: 10
+  # End Frontier: consistency with upstream
 
 - type: entity
   id: TorsoVulpkanin
   name: "vulpkanin torso"
-  parent: [PartVulpkanin, BaseTorso]
+  parent: [PartVulpkanin, BaseTorso] # Frontier: add BaseTorso
   components:
   - type: Sprite
     netsync: false
     sprite: DeltaV/Mobs/Species/Vulpkanin/parts.rsi
     state: "torso_m"
+  - type: Icon
+    sprite: DeltaV/Mobs/Species/Vulpkanin/parts.rsi
+    state: "torso_m"
+  # - type: BodyPart # Frontier: inherited from BaseTorso
+  #   partType: Torso # Frontier: inherited from BaseTorso
+  # Frontier: added lines below, consistency with upstream
   - type: Extractable
     juiceSolution:
       reagents:
@@ -30,16 +52,31 @@
         Quantity: 10
       - ReagentId: Blood
         Quantity: 20
+  # End Frontier: consistency with upstream
 
 - type: entity
   id: HeadVulpkanin
   name: "vulpkanin head"
-  parent: [PartVulpkanin, BaseHead]
+  parent: [PartVulpkanin, BaseHead] # Frontier: add BaseHead
   components:
   - type: Sprite
     netsync: false
     sprite: DeltaV/Mobs/Species/Vulpkanin/parts.rsi
     state: "head_m"
+  - type: Icon
+    sprite: DeltaV/Mobs/Species/Vulpkanin/parts.rsi
+    state: "head_m"
+  # - type: BodyPart # Frontier: inherited from BaseHead
+  #   partType: Head # Frontier: inherited from BaseHead
+  #   vital: true # Frontier: inherited from BaseHead
+  # - type: Input # Frontier: inherited from BaseHead
+  #   context: "ghost" # Frontier: inherited from BaseHead
+  # - type: InputMover # Frontier: consistency with upstream (moved to the brain)
+  # - type: GhostOnMove # Frontier: consistency with upstream (added by BrainSystem)
+  # - type: Tag # Frontier: inherited from BaseHead
+  #   tags: # Frontier: inherited from BaseHead
+  #    - Head # Frontier: inherited from BaseHead
+  # Frontier: added lines below, consistency with upstream
   - type: Extractable
     juiceSolution:
       reagents:
@@ -47,83 +84,134 @@
         Quantity: 5
       - ReagentId: Blood
         Quantity: 10
+  # End Frontier: consistency with upstream
 
 - type: entity
   id: LeftArmVulpkanin
   name: "left vulpkanin arm"
-  parent: [PartVulpkanin, BaseLeftArm]
+  parent: [PartVulpkanin, BaseLeftArm] # Frontier: add BaseLeftArm
   components:
   - type: Sprite
     netsync: false
     sprite: DeltaV/Mobs/Species/Vulpkanin/parts.rsi
     state: "l_arm"
+  - type: Icon
+    sprite: DeltaV/Mobs/Species/Vulpkanin/parts.rsi
+    state: "l_arm"
+  # - type: BodyPart # Frontier: inherited from BaseLeftArm
+  #   partType: Arm # Frontier: inherited from BaseLeftArm
+  #   symmetry: Left # Frontier: inherited from BaseLeftArm
 
 - type: entity
   id: RightArmVulpkanin
   name: "right vulpkanin arm"
-  parent: [PartVulpkanin, BaseRightArm]
+  parent: [PartVulpkanin, BaseRightArm] # Frontier: add BaseRightArm
   components:
   - type: Sprite
     netsync: false
     sprite: DeltaV/Mobs/Species/Vulpkanin/parts.rsi
     state: "r_arm"
+  - type: Icon
+    sprite: DeltaV/Mobs/Species/Vulpkanin/parts.rsi
+    state: "r_arm"
+  # - type: BodyPart # Frontier: inherited from BaseRightArm
+  #   partType: Arm # Frontier: inherited from BaseRightArm
+  #   symmetry: Right # Frontier: inherited from BaseRightArm
 
 - type: entity
   id: LeftHandVulpkanin
-  name: "left vulpkanin handpaw"
-  parent: [PartVulpkanin, BaseLeftHand]
+  name: "left vulpkanin hand"
+  parent: [PartVulpkanin, BaseLeftHand] # Frontier: add BaseLeftHand
   components:
   - type: Sprite
     netsync: false
     sprite: DeltaV/Mobs/Species/Vulpkanin/parts.rsi
     state: "l_hand"
+  - type: Icon
+    sprite: DeltaV/Mobs/Species/Vulpkanin/parts.rsi
+    state: "l_hand"
+  # - type: BodyPart # Frontier: inherited from BaseLeftHand
+  #   partType: Hand # Frontier: inherited from BaseLeftHand
+  #   symmetry: Left # Frontier: inherited from BaseLeftHand
 
 - type: entity
   id: RightHandVulpkanin
-  name: "right vulpkanin handpaw"
-  parent: [PartVulpkanin, BaseRightHand]
+  name: "right vulpkanin hand"
+  parent: [PartVulpkanin, BaseRightHand] # Frontier: add BaseRightHand
   components:
   - type: Sprite
     netsync: false
     sprite: DeltaV/Mobs/Species/Vulpkanin/parts.rsi
     state: "r_hand"
+  - type: Icon
+    sprite: DeltaV/Mobs/Species/Vulpkanin/parts.rsi
+    state: "r_hand"
+  # - type: BodyPart # Frontier: inherited from BaseRightHand
+  #   partType: Hand # Frontier: inherited from BaseRightHand
+  #   symmetry: Right # Frontier: inherited from BaseRightHand
 
 - type: entity
   id: LeftLegVulpkanin
   name: "left vulpkanin leg"
-  parent: [PartVulpkanin, BaseLeftLeg]
+  parent: [PartVulpkanin, BaseLeftLeg] # Frontier: add BaseLeftLeg
   components:
   - type: Sprite
     netsync: false
     sprite: DeltaV/Mobs/Species/Vulpkanin/parts.rsi
     state: "l_leg"
+  - type: Icon
+    sprite: DeltaV/Mobs/Species/Vulpkanin/parts.rsi
+    state: "l_leg"
+  # - type: BodyPart # Frontier: inherited from BaseLeftLeg
+  #   partType: Leg # Frontier: inherited from BaseLeftLeg
+  #   symmetry: Left # Frontier: inherited from BaseLeftLeg
+  # - type: MovementBodyPart # Frontier: commented out for upstream consistency (handled elsewhere)
 
 - type: entity
   id: RightLegVulpkanin
   name: "right vulpkanin leg"
-  parent: [PartVulpkanin, BaseRightLeg]
+  parent: [PartVulpkanin, BaseRightLeg] # Frontier: add BaseRightLeg
   components:
   - type: Sprite
     netsync: false
     sprite: DeltaV/Mobs/Species/Vulpkanin/parts.rsi
     state: "r_leg"
+  - type: Icon
+    sprite: DeltaV/Mobs/Species/Vulpkanin/parts.rsi
+    state: "r_leg"
+  # - type: BodyPart # Frontier: inherited from BaseRightLeg
+  #   partType: Leg # Frontier: inherited from BaseRightLeg
+  #   symmetry: Right # Frontier: inherited from BaseRightLeg
+  # - type: MovementBodyPart # Frontier: commented out for upstream consistency (handled elsewhere)
 
 - type: entity
   id: LeftFootVulpkanin
-  name: "left vulpkanin paw"
-  parent: [PartVulpkanin, BaseLeftFoot]
+  name: "left vulpkanin foot"
+  parent: [PartVulpkanin, BaseLeftFoot] # Frontier: add BaseLeftFoot
   components:
   - type: Sprite
     netsync: false
     sprite: DeltaV/Mobs/Species/Vulpkanin/parts.rsi
     state: "l_foot"
+  - type: Icon
+    sprite: DeltaV/Mobs/Species/Vulpkanin/parts.rsi
+    state: "l_foot"
+  # - type: BodyPart # Frontier: inherited from BaseLeftFoot
+  #   partType: Foot # Frontier: inherited from BaseLeftFoot
+  #   symmetry: Left # Frontier: inherited from BaseLeftFoot
 
 - type: entity
   id: RightFootVulpkanin
-  name: "right vulpkanin paw"
-  parent: [PartVulpkanin, BaseRightFoot]
+  name: "right vulpkanin foot"
+  parent: [PartVulpkanin, BaseRightFoot] # Frontier: add BaseRightFoot
   components:
   - type: Sprite
     netsync: false
     sprite: DeltaV/Mobs/Species/Vulpkanin/parts.rsi
     state: "r_foot"
+  - type: Icon
+    sprite: DeltaV/Mobs/Species/Vulpkanin/parts.rsi
+    state: "r_foot"
+  # - type: BodyPart # Frontier: inherited from BaseRightFoot
+  #   partType: Foot # Frontier: inherited from BaseRightFoot
+  #   symmetry: Right # Frontier: inherited from BaseRightFoot
