@@ -1,0 +1,15 @@
+# Special grilles for dungeons that block lasers
+- type: entity
+  id: GrilleDungeon
+  parent: Grille
+  noSpawn: true
+  suffix: DO NOT MAP, Dungeon only
+  components:
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.5,-0.5,0.5,0.5"
+          layer:
+          - WallLayer # Blocks lasers, but not LoS
