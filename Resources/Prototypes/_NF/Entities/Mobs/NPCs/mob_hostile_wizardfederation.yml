@@ -14,6 +14,7 @@
   - MobPassiveRegen
   - MobHumanoidInvetory
   - MobHumanoidHostileAISimpleRanged
+  - MobLaserReflect # Added to prevent laser abuse from players
   #- MobWizFedTimedDespawn
   id: MobWizFedlBase
   components:
@@ -24,9 +25,6 @@
     rechargeCooldown: 3
     rechargeSound:
       path: /Audio/_NF/Effects/silence.ogg
-  - type: Reflect
-    reflectProb: .3
-    spread: 90
   - type: Flammable
     fireSpread: true
     canResistFire: true

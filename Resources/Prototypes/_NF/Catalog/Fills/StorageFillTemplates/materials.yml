@@ -1,0 +1,81 @@
+# Fuel
+- type: entity # Full stack
+  abstract: true
+  id: StorageFillMaterialsFuelPlasma
+  components:
+  - type: StorageFill
+    contents:
+    - id: SheetPlasma
+
+- type: entity # Full stack
+  abstract: true
+  id: StorageFillMaterialsFuelUranium
+  components:
+  - type: StorageFill
+    contents:
+    - id: SheetUranium
+
+- type: entity # Full stack
+  abstract: true
+  id: StorageFillMaterialsFuelPlasma2
+  components:
+  - type: StorageFill
+    contents:
+    - id: SheetPlasma
+      amount: 2
+
+- type: entity # Full stack
+  abstract: true
+  id: StorageFillMaterialsFuelUranium2
+  components:
+  - type: StorageFill
+    contents:
+    - id: SheetUranium
+      amount: 2
+
+- type: entity # Full stack
+  abstract: true
+  id: StorageFillMaterialsFuelBananium
+  components:
+  - type: StorageFill
+    contents:
+    - id: MaterialBananium
+
+- type: entity
+  abstract: true
+  id: StorageFillMaterialsFuelAmeJar
+  components:
+  - type: StorageFill
+    contents:
+    - id: AmeJar
+      amount: 2
+
+- type: entity
+  abstract: true
+  id: StorageFillMaterialsFuelWelding
+  components:
+  - type: StorageFill
+    contents:
+    - id: JerryCanWeldingFuel
+      amount: 2
+
+# Basic Materials
+- type: entity # Full stacks
+  abstract: true
+  id: StorageFillMaterialsBasic
+  components:
+  - type: StorageFill
+    contents:
+    - id: SheetSteel
+    - id: SheetGlass
+    - id: SheetPlastic
+
+- type: entity # Stacks of 10
+  abstract: true
+  id: StorageFillMaterialsBasic10
+  components:
+  - type: StorageFill
+    contents:
+    - id: SheetSteel10
+    - id: SheetGlass10
+    - id: SheetPlastic10
