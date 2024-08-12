@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Numerics;
+using Content.Server._NF.Shuttles.Components; // Frontier: NPC knockdown immunity
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Server.Station.Events;
@@ -614,6 +615,9 @@ public sealed partial class ShuttleSystem
             {
                 if (!_statusQuery.TryGetComponent(child, out var status))
                     continue;
+                
+                if (HasComp<FTLKnockdownImmuneComponent>(child)) // Frontier: NPC knockdown immunity
+                    continue; // Frontier: NPC knockdown immunity
 
                 _stuns.TryParalyze(child, _hyperspaceKnockdownTime, true, status);
 
