@@ -17,6 +17,7 @@ shipyard-rules-default2 =
     Космический Закон, приведут к административным мерам.
     Благодарим за выбор Департамента Службы Безопасности Фронтира.
 shuttle-ftl-proximity = Массивный объект блокирует блюспейс перемещение!
+shuttle-ftl-recharge = Блюспейс двигатель на перезарядке!
 changelog-tab-title-Upstream = Журнал изменений
 multiauth-already-connected = Уже подключены к серверу Фронтира.
 public-transit-departure = Транспорт направляется в { $destination }. Ориентировочное время в пути: { $flytime } секунд.

@@ -1,5 +1,6 @@
 using System.Linq;
 using System.Text.RegularExpressions;
+using Content.Shared._NF.Bank;
 using Content.Shared.CCVar;
 using Content.Shared.GameTicking;
 using Content.Shared.Humanoid;
@@ -91,7 +92,7 @@ namespace Content.Shared.Preferences
 
         [DataField]
         public Gender Gender { get; private set; } = Gender.Male;
- 
+
         [DataField] // Frontier: Bank balance
         public int BankBalance { get; private set; } = DefaultBalance; // Frontier: Bank balance
 
@@ -470,13 +471,8 @@ namespace Content.Shared.Preferences
                 ("age", Age)
             );
 
-        // Frontier: bank balance text
-        public string BankBalanceText =>
-            Loc.GetString(
-                "humanoid-character-profile-bankbalance",
-                ("bankBalance", BankBalance)
-            );
-        // End Frontier
+        // Frontier
+        public string BankBalanceText => BankSystemExtensions.ToSpesoString(BankBalance);
 
         public bool MemberwiseEquals(ICharacterProfile maybeOther)
         {
