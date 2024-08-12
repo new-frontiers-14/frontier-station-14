@@ -1200,7 +1200,8 @@
   id: RecipeCookie
   name: cookie recipe
   result: FoodBakedCookie
-  time: 5
+  resultCount: 3 # Frontier
+  time: 10 # Frontier - 5<10
   reagents:
     Flour: 5
     Sugar: 5
@@ -1212,7 +1213,8 @@
   id: RecipeSugarCookie
   name: sugar cookie recipe
   result: FoodBakedCookieSugar
-  time: 5
+  resultCount: 2 # Frontier
+  time: 10 # Frontier - 5<10
   reagents:
     Flour: 5
     Sugar: 10
@@ -1223,18 +1225,21 @@
   id: RecipeRaisinCookie
   name: raisin cookie recipe
   result: FoodBakedCookieRaisin
-  time: 5
+  resultCount: 2 # Frontier
+  time: 10 # Frontier - 5<10
   reagents:
     Flour: 5
     Sugar: 5
-  solids:
-    FoodSnackRaisins: 1
+    Raisins: 10 # Frontier
+  # solids: # Frontier
+    # FoodSnackRaisins: 1 # Frontier
 
 - type: microwaveMealRecipe
   id: RecipeCookieOatmeal
   name: oatmeal cookie recipe
   result: FoodBakedCookieOatmeal
-  time: 5
+  resultCount: 2 # Frontier
+  time: 10 # Frontier - 5<10
   reagents:
     Oats: 5
     Sugar: 5
@@ -1399,10 +1404,11 @@
   time: 15
   reagents:
     Milk: 15
+    Raisins: 10 # Frontier
     Cognizine: 5
   solids:
     FoodCakePlain: 1
-    FoodSnackRaisins: 1
+    # FoodSnackRaisins: 1 # Frontier
     OrganAnimalHeart: 1
 
 - type: microwaveMealRecipe

@@ -25,13 +25,13 @@
 
 - type: entity
   parent: BasePlushie
-  id: PlushieSlips
+  id: PlushieJanitor
   name: janitor plushie
   description: The silent cleaner, the one that you dont hear say "Weh"!
   components:
   - type: Sprite
     sprite: _NF/Objects/Fun/toys.rsi
-    state: plushie_slips
+    state: plushie_janitor
   - type: EmitSoundOnUse
     sound:
       path: /Audio/_NF/Effects/silence.ogg
@@ -72,22 +72,6 @@
         density: 10
         mask:
         - ItemMask
-
-- type: entity
-  parent: ToySword
-  id: DBToySword
-  name: toy double-esword
-  noSpawn: true # This is just giving security more items to have to beat you up for.
-  components:
-  - type: Sprite
-    sprite: Objects/Weapons/Melee/e_sword_double.rsi
-    layers:
-      - state: e_sword_double
-      - state: e_sword_double_blade
-        color: "#FFFFFF"
-        visible: false
-        shader: unshaded
-        map: [ "blade" ]
 
 - type: entity
   id: PetRockCarrier
@@ -378,16 +362,6 @@
   - type: Sprite
     sprite: _NF/Objects/Fun/toys.rsi
     state: plushie_vulp
-
-- type: entity
-  parent: BasePlushieVulp
-  id: PlushieTrystan
-  name: office vulp plushie
-  description: The ones who yeeps!
-  components:
-  - type: Sprite
-    sprite: _NF/Objects/Fun/toys.rsi
-    state: plushie_trystan
 
 - type: entity
   parent: BasePlushieVulp

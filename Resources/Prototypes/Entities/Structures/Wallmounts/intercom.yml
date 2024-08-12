@@ -182,7 +182,7 @@
 
 - type: entity
   id: Intercom
-  parent: IntercomConstructed
+  parent: [BaseStructureDisableToolUse, IntercomConstructed] # Frontier: add BaseStructureDisableToolUse
   suffix: ""
   components:
   - type: Sprite
@@ -219,7 +219,7 @@
 
 - type: entity
   id: IntercomCommand
-  parent: Intercom
+  parent: [BaseStructureIndestructible, Intercom] # Frontier - added BaseStructureIndestructible
   suffix: Command, DO NOT MAP # Frontier - Added DO NOT MAP
   components:
   - type: ContainerFill
@@ -275,7 +275,7 @@
 
 - type: entity
   id: IntercomSecurity
-  parent: Intercom
+  parent: [BaseStructureIndestructible, Intercom] # Frontier - added BaseStructureIndestructible
   suffix: Security # Frontier - Not adding DO NOT MAP. (Prototype is already matched by "Security" for sec shipyard.)
   description: An intercom. It's been reinforced with metal from security helmets, making it a bitch-and-a-half to open.
   components:
@@ -325,7 +325,7 @@
 
 - type: entity
   id: IntercomAll
-  parent: Intercom
+  parent: [BaseStructureIndestructible, Intercom] # Frontier - added BaseStructureIndestructible
   suffix: All, DO NOT MAP # Frontier - Added DO NOT MAP
   components:
   - type: ContainerFill
