@@ -84,8 +84,6 @@ namespace Content.Shared.Roles
             if (requirements == null)
                 return true;
 
-            bool anyMet = false;
-
             foreach (var requirement in requirements)
             {
                 if (!TryRequirementMet(requirement, playTimes, out reason, entManager, prototypes))
