@@ -512,7 +512,9 @@
 # Syndicate Commander, "armed" with AK
 - type: entity
   name: syndicate commander # Mega Fauna for Dungeons
-  parent: MobSyndicateNavalBase
+  parent:
+  - MobSyndicateNavalBase
+  - MobLaserReflect # Added to prevent laser abuse from players
   id: MobSyndicateNavalCommanderA
   description: A regional commander of Syndicate operations, this officer holds ultimate local command and responsibility. Armed with an assault rifle and heavily armored.
   noSpawn: true
