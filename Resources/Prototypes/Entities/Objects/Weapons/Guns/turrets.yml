@@ -31,7 +31,7 @@
                   max: 4
 
 - type: entity
-  parent: BaseStructure
+  parent: [ BaseStructure, MobLaserReflect ]  # Frontier: added MobLaserReflect to prevent laser abuse from players, prototype is in \Resources\Prototypes\_NF\Entities\Mobs\NPCs\mob_hostile_base.yml
   id: BaseWeaponTurret
   name: ballistic turret
   abstract: true
@@ -124,6 +124,7 @@
   parent: BaseWeaponTurret
   id: WeaponTurretSyndicate
   suffix: Syndicate
+  noSpawn: true # Frontier
   components:
     - type: NpcFactionMember
       factions:
