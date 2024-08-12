@@ -1,0 +1,58 @@
+# Special windows for dungeons that block lasers
+# Base
+- type: entity
+  id: WindowMurkyDungeon
+  abstract: true
+  suffix: DO NOT MAP, Dungeon only
+  description: A murky glass window, it's hard to see what's on the other side.
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb {}
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer # Blocks lasers, but not LoS
+
+# Common window
+- type: entity
+  id: WindowDungeon
+  parent:
+  - WindowMurkyDungeon
+  - Window
+  noSpawn: true
+
+# Reinforced window
+- type: entity
+  id: ReinforcedWindowDungeon
+  parent:
+  - WindowMurkyDungeon
+  - ReinforcedWindow
+  noSpawn: true
+
+# Mining window
+- type: entity
+  id: MiningWindowDungeon
+  parent:
+  - WindowMurkyDungeon
+  - MiningWindow
+  noSpawn: true
+  components:
+  - type: Destructible # Made it as durable as common window
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WindowShatter
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlass:
+            min: 1
+            max: 2
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]

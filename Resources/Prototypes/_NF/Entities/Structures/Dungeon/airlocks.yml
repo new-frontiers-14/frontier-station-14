@@ -1,0 +1,59 @@
+# Special glass airlocks for dungeons that block lasers
+# Base
+- type: entity
+  id: AirlockGlassMurkyDungeon
+  abstract: true
+  suffix: DO NOT MAP, Dungeon only
+  description: An airlock with murky glass windows, it's hard to see what's on the other side.
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,0.49"
+        density: 100
+        mask:
+        - FullTileMask
+        layer:
+        - AirlockLayer # Blocks lasers, but not LoS
+
+# Basic airlock
+- type: entity
+  id: AirlockGlassDungeon
+  parent:
+  - AirlockGlassMurkyDungeon
+  - AirlockGlass
+  noSpawn: true
+
+# Security airlock
+- type: entity
+  id: AirlockSecurityGlassDungeon
+  parent:
+  - AirlockGlassMurkyDungeon
+  - AirlockSecurityGlass
+  noSpawn: true
+
+# Mining airlock
+- type: entity
+  id: AirlockMiningGlassDungeon
+  parent:
+  - AirlockGlassMurkyDungeon
+  - AirlockMiningGlass
+  noSpawn: true
+
+# Virology airlock
+- type: entity
+  id: AirlockVirologyGlassDungeon
+  parent:
+  - AirlockGlassMurkyDungeon
+  - AirlockVirologyGlass
+  noSpawn: true
+
+# Mercenary airlock
+- type: entity
+  id: AirlockMercenaryGlassDungeon
+  parent:
+  - AirlockGlassMurkyDungeon
+  - AirlockMercenaryGlass
+  noSpawn: true
