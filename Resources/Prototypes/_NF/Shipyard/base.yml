@@ -11,6 +11,7 @@
     - BaseStationEmpImmune
     - BaseStationSectorNews
     - BaseStationSectorServices # Hosts all sector-wide services
+    - BaseStationDampening
   noSpawn: true
   components:
     - type: Transform
@@ -22,6 +23,7 @@
     - BaseStationJobsSpawning
     - BaseStationCargo
     - BaseStationSiliconLawFrontierShips
+    - BaseStationDampening
   noSpawn: true
   components:
     - type: Transform
@@ -36,19 +38,21 @@
     - BaseStationShuttles # Can spawn shuttles via shipyard consoles
     - BaseStationAlertLevels # Has a comms console
     - BaseStationSiliconLawFrontierStation # No funny borg laws
+    - BaseStationDampening
     - BaseStationSectorRecords # Allows the NFSD criminal records to properly function
   noSpawn: true
   components:
     - type: Transform
 
 - type: entity
-  id: PirateFrontierOutpost
+  id: SpawnableFrontierOutpost
   parent:
     - BaseStation
     - BaseStationJobsSpawning
     - BaseStationCargo
     - BaseStationSiliconLawFrontierShips # TODO: change this with pirate borgs?
     - BaseStationRecords
+    - BaseStationDampening
   noSpawn: true
   components:
     - type: Transform
@@ -161,6 +165,12 @@
   abstract: true
   components:
     - type: StationSectorServiceHost
+
+- type: entity
+  id: BaseStationDampening
+  abstract: true
+  components:
+    - type: StationDampening
 
 # Gives this station copy of player records from Sector-wide
 - type: entity
