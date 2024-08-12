@@ -26,7 +26,30 @@
   - AirlockGlass
   noSpawn: true
 
-# Security airlock
+# Maint airlock
+- type: entity
+  id: AirlockMaintGlassLockedDungeon
+  parent:
+  - AirlockGlassMurkyDungeon
+  - AirlockMaintGlassLocked
+  noSpawn: true
+
+# Engineering airlocks
+- type: entity
+  id: AirlockEngineeringGlassDungeon
+  parent:
+  - AirlockGlassMurkyDungeon
+  - AirlockEngineeringGlass
+  noSpawn: true
+
+- type: entity
+  id: AirlockEngineeringGlassLockedDungeon
+  parent:
+  - AirlockGlassMurkyDungeon
+  - AirlockEngineeringGlassLocked
+  noSpawn: true
+
+# Security airlocks
 - type: entity
   id: AirlockSecurityGlassDungeon
   parent:
@@ -34,7 +57,21 @@
   - AirlockSecurityGlass
   noSpawn: true
 
-# Mining airlock
+- type: entity
+  id: AirlockSecurityGlassLockedDungeon
+  parent:
+  - AirlockGlassMurkyDungeon
+  - AirlockSecurityGlassLocked
+  noSpawn: true
+
+- type: entity
+  id: AirlockBrigGlassLockedDungeon
+  parent:
+  - AirlockGlassMurkyDungeon
+  - AirlockBrigGlassLocked
+  noSpawn: true
+
+# Mining airlocks
 - type: entity
   id: AirlockMiningGlassDungeon
   parent:
@@ -42,7 +79,14 @@
   - AirlockMiningGlass
   noSpawn: true
 
-# Virology airlock
+- type: entity
+  id: AirlockMiningGlassLockedDungeon
+  parent:
+  - AirlockGlassMurkyDungeon
+  - AirlockMiningGlassLocked
+  noSpawn: true
+
+# Virology airlocks
 - type: entity
   id: AirlockVirologyGlassDungeon
   parent:
@@ -50,10 +94,40 @@
   - AirlockVirologyGlass
   noSpawn: true
 
-# Mercenary airlock
+- type: entity
+  id: AirlockVirologyGlassLockedDungeon
+  parent:
+  - AirlockGlassMurkyDungeon
+  - AirlockVirologyGlassLocked
+  noSpawn: true
+
+# Mercenary airlocks
 - type: entity
   id: AirlockMercenaryGlassDungeon
   parent:
   - AirlockGlassMurkyDungeon
   - AirlockMercenaryGlass
+  noSpawn: true
+
+- type: entity
+  id: AirlockMercenaryGlassLockedDungeon
+  parent:
+  - AirlockGlassMurkyDungeon
+  - AirlockMercenaryGlassLocked
+  noSpawn: true
+
+# Science airlock
+- type: entity
+  id: AirlockScienceGlassLockedDungeon
+  parent:
+  - AirlockGlassMurkyDungeon
+  - AirlockScienceGlassLocked
+  noSpawn: true
+
+# Hydroponics ailock
+- type: entity
+  id: AirlockHydroGlassLockedDungeon
+  parent:
+  - AirlockGlassMurkyDungeon
+  - AirlockHydroGlassLocked
   noSpawn: true

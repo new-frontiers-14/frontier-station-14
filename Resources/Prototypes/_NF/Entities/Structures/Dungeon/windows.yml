@@ -56,3 +56,27 @@
             max: 2
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
+
+# Plasma window
+- type: entity
+  id: PlasmaWindowDungeon
+  parent:
+  - WindowMurkyDungeon
+  - PlasmaWindow
+  noSpawn: true
+
+# Plasma reinforced window
+- type: entity
+  id: ReinforcedPlasmaWindowDungeon
+  parent:
+  - WindowMurkyDungeon
+  - ReinforcedPlasmaWindow
+  noSpawn: true
+
+# Uranium reinforced window
+- type: entity
+  id: ReinforcedUraniumWindowDungeon
+  parent:
+  - WindowMurkyDungeon
+  - ReinforcedUraniumWindow
+  noSpawn: true
