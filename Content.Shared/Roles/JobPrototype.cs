@@ -44,6 +44,9 @@ namespace Content.Shared.Roles
         [DataField, Access(typeof(SharedRoleSystem), Other = AccessPermissions.None)]
         public HashSet<JobRequirement>? Requirements;
 
+        [DataField, Access(typeof(SharedRoleSystem), Other = AccessPermissions.None)] // Frontier
+        public Dictionary<string, HashSet<JobRequirement>>? AlternateRequirementSets; // Frontier: sets of requirements - one must be matched in order to 
+
         [DataField("whitelistRequired")]
         public bool WhitelistRequired = false;
 
