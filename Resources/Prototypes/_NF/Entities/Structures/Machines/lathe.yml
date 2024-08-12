@@ -281,9 +281,11 @@
       - AppraisalTool
       - HandLabeler
       - LightTube
+      - LedLightTube
       - SodiumLightTube
       - ExteriorLightTube
       - LightBulb
+      - LedLightBulb
       - DrinkMugMetal
       - PowerCellSmall
       - PowerCellMedium
@@ -355,8 +357,8 @@
        - MagazineBoxLightRifle
        - GrenadeBlast
        - ClothingHeadHelmetCosmonaut
-#       - ClothingHeadHelmetSyndicate # Frontier
-#       - ClothingOuterHardsuitSyndicate # Frontier
+#       - ClothingHeadHelmetSyndicate
+#       - ClothingOuterHardsuitSyndicate
   - type: MaterialStorage
     whitelist:
       tags:
@@ -386,3 +388,203 @@
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: Machine
     board: NfsdTechFabCircuitboard
+
+- type: entity
+  id: MercenaryTechFab
+  parent: BaseLatheLube
+  name: mercenary techfab
+  description: Prints the bare minimum of tools of the trade that any budget mercenary or private security could need. Nothing fancy.
+  components:
+  - type: Sprite
+    sprite: Structures/Machines/techfab.rsi
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: ammo
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: inserting
+      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: MercenaryTechFabCircuitboardNF
+  - type: Lathe
+    idleState: icon
+    runningState: icon
+    staticRecipes:
+    # Clothing / Armor
+    - RiotShield
+    - ClothingNeckIFFNeutral
+    - ClothingNeckIFFGreen
+    - ClothingNeckIFFRed
+    - ClothingNeckIFFBlue
+    - ClothingNeckIFFOrange
+    - ClothingNeckIFFPurple
+    - ClothingHeadHelmetMercenary
+    - ClothingHeadHelmetBasic
+    - ClothingOuterVestWebMercenary
+    - ClothingOuterVestWebMercenaryBlack
+    - ClothingBeltMercenaryWebbing
+    - ClothingBeltMilitaryWebbing
+    - ClothingHandsMercenaryGlovesCombat
+    - ClothingHandsGlovesCombat
+    - ClothingShoesBootsMercenary
+    - ClothingShoesBootsCombat
+    - ClothingShoesBootsJack
+    # EVA / Hardsuits
+    - ClothingOuterHardsuitEVA
+    - ClothingHeadHelmetEVA
+    - ClothingHeadHelmetEVALarge
+    # Utilities
+    - Wirecutter
+    - Signaller
+    - Screwdriver
+    - Welder
+    - Wrench
+    - Crowbar
+    - Multitool
+    - NetworkConfigurator
+    - HandheldGPSBasic
+    - TRayScanner
+    - AirTank
+    - GasAnalyzer
+    - AppraisalTool
+    - HandLabeler
+    - LightTube
+    - LedLightTube
+    - SodiumLightTube
+    - ExteriorLightTube
+    - LightBulb
+    - LedLightBulb
+    - DoorElectronics
+    - StationMapElectronics
+    - CellRechargerCircuitboard
+    - BorgChargerCircuitboard
+    - WeaponCapacitorRechargerCircuitboard
+    - RadioHandheld
+    - FlashlightSeclite
+    - Floodlight
+    - FlareLathe
+    - GlowstickBlue
+    - GlowstickBase
+    - GlowstickPurple
+    - GlowstickRedLathe
+    - GlowstickYellow
+    - Handcuffs
+    - TargetClown
+    - TargetHuman
+    - CableStack
+    - PowerCellSmall
+    - PowerCellMedium
+    - SignalTimerElectronics
+    # Weapons
+    - Stunbaton
+    # Ammo boxes
+    - BoxLethalshot
+    - BoxShotgunFlare
+    - BoxShotgunSlug
+    - BoxShellTranquilizer
+    - MagazineBoxLightRifle
+    - MagazineBoxMagnum
+    - MagazineBoxPistol
+    - MagazineBoxRifle
+    # Mags / Speedloaders / Clips
+    - MagazineNovaliteC1Empty
+    - MagazineNovaliteC1
+    - MagazineLightRifleLowCapacityEmpty
+    - MagazineLightRifleLowCapacity
+    - MagazineLightRifle
+    - MagazineLightRifleEmpty
+    - MagazineRifle
+    - MagazineRifleEmpty
+    - MagazinePistol
+    - MagazinePistolEmpty
+    - SpeedLoaderMagnum
+    - SpeedLoaderMagnumEmpty
+    - SpeedLoaderRifleHeavy
+    - SpeedLoaderRifleHeavyEmpty
+    - MagazineShotgun
+    - MagazineShotgunEmpty
+    - MagazineShotgunSlug
+    - 10roundmagazine #frontier by VividPups
+    - 10roundmagazineempty #frontier by VividPups
+    dynamicRecipes:
+    # Armor
+    - TelescopicShield
+    # EVA / Hardsuits
+    - ClothingOuterHardsuitCap
+    - ClothingOuterHardsuitMercenary
+    - ClothingOuterHardsuitPrivateSecurity
+    - ClothingOuterHardsuitScaf
+    # Utilities
+    - JetpackVoid
+    - SignalTrigger
+    - PortableRecharger
+    - TimerTrigger
+    - VoiceTrigger
+    - PowerCellMicroreactor
+    - PowerCellMedium
+    - PowerCellHigh
+    - PowerCellMicroreactor
+    - TurboItemRechargerCircuitboard
+    # - HoloprojectorSecurity
+    # Weapons
+    - WeaponLaserSvalinn
+    - ExplosivePayload
+    - FlashPayload
+    - WeaponAdvancedLaser
+    - WeaponLaserCannon
+    - WeaponLaserCarbine
+    - WeaponXrayCannon
+    # - WeaponDisabler
+    # - WeaponDisablerSMG
+    # - GrenadeBlast
+    # - GrenadeEMP
+    # - GrenadeFlash
+    # - Truncheon
+    # Mags / Speedloaders / Clips
+    # Ammo boxes
+    - BoxBeanbag
+    - BoxShellTranquilizer
+    # - BoxShotgunIncendiary
+    # - BoxShotgunUranium
+    # - MagazineBoxLightRifleIncendiary
+    # - MagazineBoxLightRifleUranium
+    # - MagazineBoxMagnumIncendiary
+    # - MagazineBoxMagnumUranium
+    # - MagazineBoxPistolIncendiary
+    # - MagazineBoxPistolUranium
+    # - MagazineBoxRifleIncendiary
+    # - MagazineBoxRifleUranium
+    - MagazineBoxLightRifleRubber
+    - MagazineBoxMagnumRubber
+    - MagazineBoxPistolRubber
+    - MagazineBoxRifleRubber
+    # - MagazineGrenadeEmpty
+    # - MagazineLightRifleIncendiary
+    # - MagazineLightRifleUranium
+    # - MagazinePistolIncendiary
+    # - MagazinePistolUranium
+    # - MagazineRifleIncendiary
+    # - MagazineRifleUranium
+    - MagazineShotgunBeanbag
+    # - MagazineShotgunIncendiary
+    # - PowerCageHigh
+    # - PowerCageMedium
+    # - PowerCageSmall
+    # - ShuttleGunDusterCircuitboard
+    # - ShuttleGunFriendshipCircuitboard
+    # - ShuttleGunPerforatorCircuitboard
+    # - ShuttleGunSvalinnMachineGunCircuitboard
+    # - SpeedLoaderMagnumIncendiary
+    # - SpeedLoaderMagnumUranium
+    # - SpeedLoaderRifleHeavyIncendiary
+    # - SpeedLoaderRifleHeavyUranium
+  - type: MaterialStorage
+    whitelist:
+    tags:
+    - Sheet
+    - RawMaterial
+    - Ingot

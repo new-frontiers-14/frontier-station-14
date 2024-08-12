@@ -45,6 +45,24 @@
           amount: 2
           defaultPrototype: Beaker
 
+- type: entity
+  id: MercenaryTechFabCircuitboardNF
+  parent: SecurityTechFabCircuitboard
+  name: mercenary techfab machine board
+  description: A machine printed circuit board for a mercenary techfab
+  components:
+    - type: Sprite
+      state: supply
+    - type: MachineBoard
+      prototype: SalvageTechfabNF
+      requirements:
+        MatterBin: 2
+        Manipulator: 2
+      tagRequirements:
+        GlassBeaker:
+          amount: 2
+          defaultPrototype: Beaker
+
 # TechFab
 - type: entity
   id: NfsdTechFabCircuitboard
