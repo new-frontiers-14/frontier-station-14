@@ -129,6 +129,9 @@ public sealed partial class VesselListControl : BoxContainer
             if (VesselItemList.Any(x => (NetEntity) x.Metadata! == key))
                 continue;
 
+            if (_gameTicker.JobsAvailable[key].Values.Count == 0)
+                continue; // No jobs here, continue.
+
             var jobsAvailable = _gameTicker.JobsAvailable[key].Values.Sum(a => a ?? 0);
             var item = new ItemList.Item(VesselItemList)
             {

@@ -1,13 +1,11 @@
 - type: entity
   name: web cocoon
-  description: Strong web cocoon used to restrain criminal or preys, its also prevent rotting.
+  description: A strong web cocoon used to restrain criminals or prey. Prevents rotting.
   id: WebCocoon
   parent: ClothingOuterStraightjacket
   components:
   - type: Handcuff
-    noRot: true
     cuffedRSI: Clothing/OuterClothing/Misc/webcocoon.rsi
-    bodyIconState: body-overlay
     breakOnRemove: true
     brokenPrototype: MaterialWebSilk1
     startCuffSound:
@@ -26,3 +24,4 @@
   - type: Sprite
     sprite: Clothing/OuterClothing/Misc/webcocoon.rsi
     state: cocoon
+  - type: AntiRottingContainer

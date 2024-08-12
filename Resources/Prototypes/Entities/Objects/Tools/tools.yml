@@ -101,12 +101,12 @@
     tags:
     - Wrench
   - type: Sprite
-    sprite: Objects/Tools/wrench.rsi
+    sprite: _NF/Objects/Tools/wrench.rsi # Frontier: separate sprites (add _NF folder)
     state: icon
   - type: Item
-    sprite: Objects/Tools/wrench.rsi
+    sprite: _NF/Objects/Tools/wrench.rsi # Frontier: separate sprites (add _NF folder)
     storedSprite:
-      sprite: Objects/Tools/wrench.rsi
+      sprite: _NF/Objects/Tools/wrench.rsi # Frontier: separate sprites (add _NF folder)
       state: storage
   - type: MeleeWeapon
     wideAnimationRotation: 135
@@ -140,13 +140,13 @@
     tags:
     - Crowbar
   - type: Sprite
-    sprite: Objects/Tools/crowbar.rsi
+    sprite: _NF/Objects/Tools/crowbar.rsi # Frontier: separate sprites (add _NF folder)
     state: icon
   - type: Item
-    sprite: Objects/Tools/crowbar.rsi
+    sprite: _NF/Objects/Tools/crowbar.rsi # Frontier: separate sprites (add _NF folder)
     size: Small
     storedSprite:
-      sprite: Objects/Tools/crowbar.rsi
+      sprite: _NF/Objects/Tools/crowbar.rsi # Frontier: separate sprites (add _NF folder)
       state: storage
   - type: MeleeWeapon
     wideAnimationRotation: -135
@@ -182,7 +182,7 @@
   - type: Item
     heldPrefix: red
     storedSprite:
-      sprite: Objects/Tools/crowbar.rsi
+      sprite: _NF/Objects/Tools/crowbar.rsi # Frontier: separate sprites (add _NF folder)
       state: red-storage
 
 - type: entity
@@ -195,14 +195,15 @@
     sound:
       path: /Audio/Items/multitool_drop.ogg
   - type: Sprite
-    sprite: Objects/Tools/multitool.rsi
+    sprite: _NF/Objects/Tools/multitool.rsi # Frontier: separate sprites (add _NF folder)
     layers:
     - state: icon
     - state: green-unlit
+      shader: unshaded
   - type: Item
     size: Small
   - type: Clothing
-    sprite: Objects/Tools/multitool.rsi
+    sprite: _NF/Objects/Tools/multitool.rsi # Frontier: separate sprites (add _NF folder)
     quickEquip: false
     slots:
     - Belt
@@ -371,12 +372,12 @@
     charges: 30
   - type: UseDelay
   - type: Sprite
-    sprite: Objects/Tools/rcd.rsi
+    sprite: _NF/Objects/Tools/rcd.rsi # Frontier
     state: icon
   - type: Item
     size: Normal
   - type: Clothing
-    sprite: Objects/Tools/rcd.rsi
+    sprite: _NF/Objects/Tools/rcd.rsi # Frontier
     quickEquip: false
     slots:
     - Belt
@@ -447,10 +448,10 @@
   components:
   - type: RCDAmmo
   - type: Sprite
-    sprite: Objects/Tools/rcd.rsi
+    sprite: _NF/Objects/Tools/rcd.rsi # Frontier
     state: ammo
   - type: Item
-    sprite: Objects/Tools/rcd.rsi
+    sprite: _NF/Objects/Tools/rcd.rsi # Frontier
     heldPrefix: ammo
   - type: PhysicalComposition
     materialComposition:
@@ -458,6 +459,7 @@
       Plastic: 100
   - type: StaticPrice
     price: 40
+    vendPrice: 1000 # Frontier
 
 - type: entity
   name: omnitool
