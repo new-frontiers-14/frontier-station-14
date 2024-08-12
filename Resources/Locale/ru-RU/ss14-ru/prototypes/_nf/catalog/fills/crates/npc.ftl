@@ -8,3 +8,5 @@ ent-CrateNPCEmotionalSupportSafe = ящик с ручными зверушкам
     .desc = { ent-CrateLivestock.desc }
 ent-PetCarrierNPCEmotionalSupportSafe = ручная зверушка с удобной переноской
     .desc = { ent-PetCarrier.desc }
+ent-CrateNPCPoultryCube = ящик птичьих кубиков 
+    .desc = Ящик, содержащий коробку с полным набором кубиков для создания личного курятника.

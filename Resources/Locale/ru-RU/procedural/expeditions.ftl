@@ -23,7 +23,7 @@ salvage-expedition-desc-mining = Собирайте ресурсы в этой �
 salvage-expedition-desc-structure =
     { $count ->
         [one] Уничтожьте { $count } { $structure } в этой зоне.
-       *[other] Уничтожьте { $count } { $structure } в этой зоне.
+       *[other] Уничтожьте { $count } {MAKEPLURAL($structure)} в этой зоне.
     }
 salvage-expedition-desc-elimination = Убейте большое и опасное существо в этой зоне.
 salvage-expedition-type-Mining = Добыча

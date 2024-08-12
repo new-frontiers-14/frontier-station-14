@@ -24,7 +24,6 @@ station-bank-other = Другое
 station-bank-required = { "(" }выбрать из списка{ ")" }
 station-bank-requires-reason = Требуются детали транзакции!
 station-bank-unauthorized = Не авторизовано!
-bank-atm-menu-cash-amount = ${ $amount }
 bank-atm-menu-cash-error = ERR: ОШИБКА
 
 ## ATM entity

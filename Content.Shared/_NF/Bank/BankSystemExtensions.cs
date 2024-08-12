@@ -69,12 +69,12 @@ public static class BankSystemExtensions
 
     public static string ToDoubloonString(int amount, CultureInfo? culture = null)
     {
-        return ToCurrencyString(amount, culture, symbolOverride: "DB", symbolLocation: CurrencySymbolLocation.Suffix);
+        return ToCurrencyString(amount, culture, symbolOverride: "ДБ", symbolLocation: CurrencySymbolLocation.Suffix);
     }
 
     public static string ToFUCString(int amount, CultureInfo? culture = null)
     {
-        return ToCurrencyString(amount, culture, symbolOverride: "FUC", symbolLocation: CurrencySymbolLocation.Suffix);
+        return ToCurrencyString(amount, culture, symbolOverride: "ТК", symbolLocation: CurrencySymbolLocation.Suffix);
     }
 }
 
