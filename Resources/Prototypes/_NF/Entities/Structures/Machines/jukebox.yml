@@ -1,0 +1,30 @@
+- type: entity
+  id: JukeboxShip
+  suffix: Ship
+  parent: [ BaseStructureDisableToolUse, Jukebox ]
+  components:
+  - type: Machine
+    board: Null
+
+- type: entity
+  id: JukeboxWallmount
+  suffix: Wallmount
+  parent: [ BaseWallmount, Jukebox ]
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Machines/jukebox.rsi
+    layers:
+    - state: "off"
+      map: ["enum.JukeboxVisualLayers.Base"]
+  - type: Transform
+    noRot: false
+  - type: Jukebox
+    audioOffset: 0, -1 # Oriented facing south - extend audio south out of the wall.
+
+- type: entity
+  id: JukeboxWallmountShip
+  suffix: Wallmount, Ship
+  parent: [ BaseStructureDisableToolUse, JukeboxWallmount ]
+  components:
+  - type: Machine
+    board: Null
