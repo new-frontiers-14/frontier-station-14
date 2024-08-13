@@ -188,16 +188,12 @@ entities:
       id: Broom
 - proto: AirAlarm
   entities:
-  - uid: 47
+  - uid: 56
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
-      pos: 2.5,-0.5
+      pos: 2.5,-1.5
       parent: 1
-    - type: DeviceList
-      devices:
-      - 62
-      - 41
 - proto: AirlockGlassShuttle
   entities:
   - uid: 27
@@ -344,14 +340,6 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 0.5,-2.5
-      parent: 1
-- proto: LockerWallMaterialsBasic10Filled
-  entities:
-  - uid: 30
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 2.5,-1.5
       parent: 1
 - proto: ComputerTabletopShuttle
   entities:
@@ -525,8 +513,6 @@ entities:
     - type: DeviceNetwork
       configurators:
       - invalid
-      deviceLists:
-      - 47
     - type: AtmosPipeColor
       color: '#0055CCFF'
 - proto: GasVentScrubber
@@ -539,8 +525,6 @@ entities:
     - type: DeviceNetwork
       configurators:
       - invalid
-      deviceLists:
-      - 47
     - type: AtmosPipeColor
       color: '#990000FF'
 - proto: GravityGeneratorMini
@@ -588,6 +572,22 @@ entities:
     components:
     - type: Transform
       pos: -1.5,4.5
+      parent: 1
+- proto: LockerWallEVAColorJanitorFilled
+  entities:
+  - uid: 30
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 1.5,2.5
+      parent: 1
+- proto: LockerWallMaterialsBasic10Filled
+  entities:
+  - uid: 47
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 2.5,-0.5
       parent: 1
 - proto: MaterialReclaimer
   entities:
@@ -687,41 +687,13 @@ entities:
     - type: Transform
       pos: 1.5,-0.5
       parent: 1
-- proto: SheetGlass10
-  entities:
-  - uid: 82
-    components:
-    - type: Transform
-      parent: 30
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: SheetPlasma
   entities:
-  - uid: 96
+  - uid: 36
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -0.52485347,-0.5113888
+      pos: -0.515625,-0.453125
       parent: 1
-- proto: SheetPlastic10
-  entities:
-  - uid: 61
-    components:
-    - type: Transform
-      parent: 30
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-- proto: SheetSteel10
-  entities:
-  - uid: 63
-    components:
-    - type: Transform
-      parent: 30
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: SignJanitor
   entities:
   - uid: 98
@@ -781,16 +753,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -1.5,-0.5
       parent: 1
-- proto: LockerWallEVAColorJanitor
-  entities:
-  - uid: 56
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 1.5,2.5
-      parent: 1
-    - type: Physics
-      canCollide: False
 - proto: TableReinforced
   entities:
   - uid: 79
@@ -875,7 +837,7 @@ entities:
   - uid: 21
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
+      rot: 1.5707963267948966 rad
       pos: 2.5,-0.5
       parent: 1
   - uid: 22
