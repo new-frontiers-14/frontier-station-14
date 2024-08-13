@@ -42,6 +42,7 @@
   parent:
   - MobBloodCultistBase
   - MobHumanoidHostileAISimpleRanged
+  - MobLaserReflect # Added to prevent laser abuse from players
   id: MobBloodCultistPriest
   description: Enlightened by the whispers of The Void That Is, these individuals are initiated into secret rituals. They lead the blood harvest and perform rites, bringing the day when Nar'Sie rises ever closer.
   noSpawn: true
@@ -75,6 +76,7 @@
   parent:
   - MobBloodCultistBase
   - MobHumanoidHostileAISimpleRanged
+  - MobLaserReflect # Added to prevent laser abuse from players
   id: MobBloodCultistJanitor
   description: The fate of blood cults on space stations hinges on the actions of a single individual - the station janitor. This humble worker serves as the primary line of defense against the presence of blood cults, but even the most resolute individuals can be swayed by corruption.
   noSpawn: true
@@ -109,6 +111,7 @@
   parent: 
   - MobBloodCultistBase
   - MobHumanoidHostileAISimpleMelee
+  - MobLaserReflect # Added to prevent laser abuse from players
   id: MobBloodCultistAcolyte
   description: |- 
    The acolyte - The most trusted cult follower and bodyguard of a priest, clad in the finest armor the cult has to offer and armed with the most vile weapons: eldrich blades and unholy halberds.
@@ -250,6 +253,7 @@
   parent:
   - MobNonHumanHostileBase
   - MobHumanoidHostileAIComplex
+  - MobLaserReflect # Added to prevent laser abuse from players
   #- MobBloodCultistTimedDespawn
   id: MobBloodCultistAscended
   components:
@@ -273,9 +277,6 @@
       path: /Audio/_NF/Effects/silence.ogg
   - type: Advertise
     pack: bloodcultisthumanoidchatter
-  - type: Reflect
-    reflectProb: .3
-    spread: 90
   - type: Sprite
     drawdepth: Mobs
     sprite: _NF/Mobs/BloodCult/ascended_cultist.rsi
