@@ -63,118 +63,118 @@ entities:
             color: '#FFFFFFFF'
             id: Arrows
           decals:
-            35: -1,-3
-            36: 1,-3
+            32: -1,-3
+            33: 1,-3
         - node:
             angle: 4.71238898038469 rad
             color: '#B3B3B3FF'
             id: ArrowsGreyscale
           decals:
-            32: -1,-2
+            29: -1,-2
         - node:
             color: '#FFFFFFFF'
             id: BotLeftGreyscale
           decals:
-            33: -1,-3
-            34: 1,-3
+            30: -1,-3
+            31: 1,-3
         - node:
             color: '#FFFFFFFF'
             id: BoxGreyscale
           decals:
-            31: -2,1
+            28: -2,1
         - node:
             color: '#FFFFFFFF'
             id: BrickTileDarkCornerNe
           decals:
-            23: 0,1
+            20: 0,1
         - node:
             color: '#FFFFFFFF'
             id: BrickTileDarkCornerNw
           decals:
-            24: -1,1
+            21: -1,1
         - node:
             color: '#FFFFFFFF'
             id: BrickTileDarkCornerSe
           decals:
-            25: 0,-1
+            22: 0,-1
         - node:
             color: '#FFFFFFFF'
             id: BrickTileDarkCornerSw
           decals:
-            26: -1,-1
+            23: -1,-1
         - node:
             color: '#FFFFFFFF'
             id: BrickTileDarkLineE
           decals:
-            27: 0,0
+            24: 0,0
         - node:
             color: '#FFFFFFFF'
             id: BrickTileDarkLineW
           decals:
-            28: -1,0
+            25: -1,0
         - node:
             color: '#96DAFFFF'
             id: DeliveryGreyscale
           decals:
-            16: -2,-1
+            13: -2,-1
         - node:
             color: '#FF5C5CFF'
             id: DeliveryGreyscale
           decals:
-            15: -2,0
+            12: -2,0
         - node:
             color: '#FFFFFFFF'
             id: DeliveryGreyscale
           decals:
-            12: -1,2
-            13: 0,2
-            14: 0,-2
+            9: -1,2
+            10: 0,2
+            11: 0,-2
         - node:
             color: '#639137FF'
             id: HalfTileOverlayGreyscale270
           decals:
-            18: -1,0
+            15: -1,0
         - node:
             color: '#639137FF'
             id: HalfTileOverlayGreyscale90
           decals:
-            17: 0,0
+            14: 0,0
         - node:
             color: '#FFFFFFFF'
             id: StandClear
           decals:
-            11: -1,-4
+            8: -1,-4
         - node:
             color: '#639137FF'
             id: ThreeQuarterTileOverlayGreyscale
           decals:
-            19: -1,1
+            16: -1,1
         - node:
             color: '#639137FF'
             id: ThreeQuarterTileOverlayGreyscale180
           decals:
-            20: 0,-1
+            17: 0,-1
         - node:
             color: '#639137FF'
             id: ThreeQuarterTileOverlayGreyscale270
           decals:
-            21: -1,-1
+            18: -1,-1
         - node:
             color: '#639137FF'
             id: ThreeQuarterTileOverlayGreyscale90
           decals:
-            22: 0,1
+            19: 0,1
         - node:
             color: '#B3B3B3FF'
             id: WarnLineGreyscaleE
           decals:
-            29: 0,-1
-            30: 0,1
+            26: 0,-1
+            27: 0,1
         - node:
             color: '#B3B3B3FF'
             id: WarnLineGreyscaleS
           decals:
-            9: -1,-2
+            7: -1,-2
         - node:
             color: '#FFFFFFFF'
             id: WoodTrimThinCornerNw
@@ -908,6 +908,14 @@ entities:
     - type: Transform
       pos: 2.3825405,1.4098848
       parent: 1
+- proto: LockerWallEVAColorServiceWorkerFilled
+  entities:
+  - uid: 64
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -1.5,-1.5
+      parent: 1
 - proto: NFAshtray
   entities:
   - uid: 163
@@ -1203,16 +1211,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 4.5,-1.5
       parent: 1
-- proto: SuitStorageWallmountEVAAlternate
-  entities:
-  - uid: 64
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -1.5,-1.5
-      parent: 1
-    - type: Physics
-      canCollide: False
 - proto: SurveillanceWirelessCameraMovableEntertainment
   entities:
   - uid: 159
