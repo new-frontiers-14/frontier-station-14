@@ -1167,3 +1167,56 @@
   - type: ContainerContainer
     containers:
       toggleable-clothing: !type:ContainerSlot {}
+
+## PLAYER FACTIONS
+- type: entity
+  parent: ClothingOuterEVASuitBaseNF
+  id: ClothingOuterEVASuitLvhi
+  name: lvhi EVA suit
+  description: An EVA suit with a built-in helmet commonly issued to Langstad-Voigt Heavy Industries (LVHI) personnel.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Suits/eva_color.rsi
+    layers:
+    - state: icon-base
+      color: "#283846"
+    - state: icon-decals-01
+      color: "#e48545"
+    - state: icon-reinforced-points
+      color: "#3e3e48"
+    - state: icon-breathing-gear
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-base
+        color: "#283846"
+      - state: inhand-left-decals-01
+        color: "#e48545"
+      - state: inhand-left-reinforced-points
+        color: "#3e3e48"
+      - state: inhand-left-breathing-gear
+      right:
+      - state: inhand-right-base
+        color: "#283846"
+      - state: inhand-right-decals-01
+        color: "#e48545"
+      - state: inhand-right-reinforced-points
+        color: "#3e3e48"
+      - state: inhand-right-breathing-gear
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Suits/eva_color.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: equipped-base
+        color: "#283846"
+      - state: equipped-decals-01
+        color: "#e48545"
+      - state: equipped-reinforced-points
+        color: "#3e3e48"
+      - state: equipped-breathing-gear
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadEVAHelmetLvhi
+    slot: head
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:ContainerSlot {}
