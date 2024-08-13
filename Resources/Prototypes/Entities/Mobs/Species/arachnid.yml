@@ -30,7 +30,6 @@
         amount: 5
   - type: Inventory
     templateId: arachnid
-  - type: Carriable # Carrying system from nyanotrasen.
   - type: Reactive
     reactions:
     - reagents: [Water]
@@ -46,10 +45,6 @@
   # Damage (Self)
   - type: Bloodstream
     bloodReagent: CopperBlood
-  - type: ArachnidChaos
-  - type: Spider
-  - type: IgnoreSpiderWeb
-  - type: Perishable
   # Damage (Others)
   - type: MeleeWeapon
     animation: WeaponArcBite
@@ -127,6 +122,7 @@
         sprite: "Effects/creampie.rsi"
         state: "creampie_arachnid"
         visible: false
+  - type: Carriable # Carrying system from nyanotrasen.
 
 - type: entity
   parent: BaseSpeciesDummy

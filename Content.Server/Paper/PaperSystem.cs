@@ -320,7 +320,7 @@ namespace Content.Server.Paper
                 info.StampedColor = crayon.Color;
 
             // Try stamp with the info, return false if failed.
-            if (!StampDelayed(pen) && TryStamp(paper, info, "paper_stamp-generic", paperComp)) // Frontier: add !StampDelayed(pen)
+            if (!StampDelayed(pen) && TryStamp(paper, info, "paper_stamp-nf-signature", paperComp)) // Frontier: add !StampDelayed(pen)
             {
                 // Signing successful, popup time.
                 _popupSystem.PopupEntity(
