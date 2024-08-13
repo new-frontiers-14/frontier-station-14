@@ -652,7 +652,12 @@ namespace Content.Server.Kitchen.EntitySystems
                     for (var i = 0; i < active.PortionedRecipe.Item2; i++)
                     {
                         SubtractContents(microwave, active.PortionedRecipe.Item1);
-                        Spawn(active.PortionedRecipe.Item1.Result, coords);
+                        // Frontier: ResultCount - support multiple results per recipe
+                        for (var r = 0; r < active.PortionedRecipe.Item1.ResultCount; r++)
+                        {
+                            Spawn(active.PortionedRecipe.Item1.Result, coords);
+                        }
+                        // End Frontier
                     }
                 }
 
