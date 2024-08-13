@@ -233,11 +233,11 @@
   components:
   - type: Sprite
     netsync: false
-    sprite: Structures/Machines/techfab.rsi
+    sprite: _NF/Structures/Machines/techfab.rsi
     layers:
     - state: icon
       map: ["enum.LatheVisualLayers.IsRunning"]
-    - state: cargo
+    - state: salvage
     - state: unlit
       shader: unshaded
       map: ["enum.PowerDeviceVisualLayers.Powered"]
@@ -333,6 +333,7 @@
       - OreBagOfHolding
       - WelderExperimental
       - JawsOfLife
+      - PowerDrill
       - JetpackVoid
       - ClothingOuterHardsuitBasic
       - ClothingOuterHardsuitSpatio
@@ -395,11 +396,11 @@
   description: Prints the bare minimum of tools of the trade that any budget mercenary or private security could need. Nothing fancy.
   components:
   - type: Sprite
-    sprite: Structures/Machines/techfab.rsi
+    sprite: _NF/Structures/Machines/techfab.rsi
     layers:
     - state: icon
       map: ["enum.LatheVisualLayers.IsRunning"]
-    - state: ammo
+    - state: mercenary
     - state: unlit
       shader: unshaded
       map: ["enum.PowerDeviceVisualLayers.Powered"]
@@ -439,9 +440,10 @@
     - ClothingMaskGasSecurity
     - ClothingBeltBandolier
     # EVA / Hardsuits
-    - ClothingOuterHardsuitEVA
-    - ClothingHeadHelmetEVA
-    - ClothingHeadHelmetEVALarge
+    - ClothingOuterEVASuitContractor
+    - ClothingOuterEVASuitPilot
+    - ClothingOuterEVASuitMercenary
+    - ClothingOuterEVASuitPrivateSec
     # Boxes for sorting stuff
     - MedkitCombat
     - WeaponCaseShort
@@ -482,7 +484,6 @@
     - GlowstickPurple
     - GlowstickRedLathe
     - GlowstickYellow
-    - Handcuffs
     - Zipties
     - TargetClown
     - TargetHuman
@@ -491,16 +492,11 @@
     - PowerCellMedium
     - SignalTimerElectronics
     # Weapons
-    - Stunbaton
     - CombatKnife
-    - BaseBallBatNF
-    - BolaNF
-    - KukriKnifeNF
-    - MacheteNF
-    - KatanaNF
     - WeaponLaserSvalinn
     - WeaponLaserPistolNF
     - WeaponRevolverArgenti
+    - WeaponPistolMk58NF
     - WeaponShotgunDoubleBarreled
     - WeaponRifleNovaliteC1
     - WeaponRifleGestio
@@ -536,12 +532,18 @@
     dynamicRecipes:
     # Armor
     - TelescopicShield
+    - ClothingOuterArmorBulletproofNF
+    - ClothingOuterCoatBHTrench
     # EVA / Hardsuits
     - ClothingOuterHardsuitCap
     - ClothingOuterHardsuitMercenary
     - ClothingOuterHardsuitPrivateSecurity
     - ClothingOuterHardsuitScaf
     # Utilities
+    - ClothingEyesHudBountyHunter
+    - ClothingEyesPunkInfoShades
+    - PinpointerUniversalNF
+    - Handcuffs
     - JetpackVoid
     - SignalTrigger
     - PortableRecharger
@@ -552,15 +554,30 @@
     - PowerCellHigh
     - PowerCellMicroreactor
     - TurboItemRechargerCircuitboard
+    - ClothingBackpackHolding
+    - ClothingBackpackSatchelHolding
+    - ClothingBackpackDuffelHolding
+    - ClothingBackpackMessengerHolding
+    - WelderExperimental
+    - JawsOfLife
+    - PowerDrill
     # - HoloprojectorSecurity
     # Weapons
+    - BaseBallBatNF
+    - KatanaNF
+    - KukriKnifeNF
+    - MacheteNF
+    - Stunbaton
+    - BolaNF
     - ExplosivePayload
     - FlashPayload
+    - ChemicalPayload
+    - WeaponShotgunKammererNF
     # - WeaponAdvancedLaser
     # - WeaponLaserCannon
-    # - WeaponLaserCarbine
+    - WeaponLaserCarbine
     # - WeaponXrayCannon
-    # - WeaponDisabler
+    - WeaponDisabler
     # - WeaponDisablerSMG
     # - GrenadeBlast
     # - GrenadeEMP

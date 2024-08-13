@@ -8,3 +8,5 @@ research-technology-hardsuits-armored = Armored Hardsuits
 research-technology-hardsuits-armored-advanced = Advanced Armored Hardsuits
 research-technology-hardsuits-experimental-rd = Experimental Research Hardsuit
 research-technology-construction-bags = Construction Bags
+research-technology-bounty-hunting = Bounty Hunting
+research-technology-arsenal-style = Style
