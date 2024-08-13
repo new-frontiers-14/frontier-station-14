@@ -54,20 +54,20 @@ entities:
             color: '#96DAFFFF'
             id: DeliveryGreyscale
           decals:
-            37: -8,3
+            31: -8,3
         - node:
             color: '#FF5C5CFF'
             id: DeliveryGreyscale
           decals:
-            36: -8,4
+            30: -8,4
         - node:
             color: '#FFFFFFFF'
             id: DeliveryGreyscale
           decals:
-            33: -8,6
-            34: -10,4
-            35: -10,3
-            39: -9,3
+            27: -8,6
+            28: -10,4
+            29: -10,3
+            33: -9,3
         - node:
             color: '#D4D4D428'
             id: MiniTileCheckerBOverlay
@@ -84,80 +84,80 @@ entities:
             color: '#D4D4D496'
             id: MiniTileSteelCornerNw
           decals:
-            41: -6,6
+            35: -6,6
         - node:
             color: '#D4D4D496'
             id: MiniTileSteelCornerSw
           decals:
-            40: -6,3
+            34: -6,3
         - node:
             color: '#D4D4D496'
             id: MiniTileSteelLineW
           decals:
-            42: -6,5
-            43: -6,4
+            36: -6,5
+            37: -6,4
         - node:
             color: '#D4D4D428'
             id: MiniTileWhiteCornerNe
           decals:
-            11: 2,6
+            10: 2,6
         - node:
             color: '#334E6DC8'
             id: MiniTileWhiteCornerNw
           decals:
-            44: -9,5
+            38: -9,5
         - node:
             color: '#D4D4D428'
             id: MiniTileWhiteCornerSe
           decals:
-            9: -1,3
-            10: 2,5
+            8: -1,3
+            9: 2,5
         - node:
             color: '#334E6DC8'
             id: MiniTileWhiteEndE
           decals:
-            31: -8,5
+            26: -8,5
         - node:
             color: '#334E6DC8'
             id: MiniTileWhiteEndS
           decals:
-            38: -9,4
+            32: -9,4
         - node:
             color: '#334E6DC8'
             id: MiniTileWhiteInnerSe
           decals:
-            45: -9,5
+            39: -9,5
         - node:
             color: '#D4D4D428'
             id: MiniTileWhiteInnerSe
           decals:
-            26: -1,5
+            25: -1,5
         - node:
             color: '#D4D4D428'
             id: MiniTileWhiteLineE
           decals:
-            23: -1,4
+            22: -1,4
         - node:
             color: '#D4D4D428'
             id: MiniTileWhiteLineN
           decals:
-            12: 1,6
-            13: 0,6
-            14: -1,6
-            15: -2,6
-            16: -3,6
-            17: -4,6
-            18: -5,6
+            11: 1,6
+            12: 0,6
+            13: -1,6
+            14: -2,6
+            15: -3,6
+            16: -4,6
+            17: -5,6
         - node:
             color: '#D4D4D428'
             id: MiniTileWhiteLineS
           decals:
-            19: -5,3
-            20: -4,3
-            21: -3,3
-            22: -2,3
-            24: 0,5
-            25: 1,5
+            18: -5,3
+            19: -4,3
+            20: -3,3
+            21: -2,3
+            23: 0,5
+            24: 1,5
     - type: GridAtmosphere
       version: 2
       data:
@@ -225,10 +225,11 @@ entities:
     - type: RadiationGridResistance
 - proto: AirAlarm
   entities:
-  - uid: 201
+  - uid: 67
     components:
     - type: Transform
-      pos: 0.5,7.5
+      rot: 1.5707963267948966 rad
+      pos: -6.5,3.5
       parent: 2
     - type: DeviceList
       devices:
@@ -238,8 +239,9 @@ entities:
       - 197
       - 211
       - 239
-      - 247
       - 246
+      - 247
+      - 127
 - proto: AirlockCommandGlass
   entities:
   - uid: 229
@@ -298,10 +300,11 @@ entities:
       parent: 2
 - proto: APCBasic
   entities:
-  - uid: 121
+  - uid: 118
     components:
     - type: Transform
-      pos: -0.5,7.5
+      rot: 3.141592653589793 rad
+      pos: -5.5,2.5
       parent: 2
 - proto: AtmosDeviceFanTiny
   entities:
@@ -431,6 +434,16 @@ entities:
     - type: Transform
       pos: 0.5,5.5
       parent: 2
+  - uid: 44
+    components:
+    - type: Transform
+      pos: -5.5,4.5
+      parent: 2
+  - uid: 52
+    components:
+    - type: Transform
+      pos: -5.5,3.5
+      parent: 2
   - uid: 85
     components:
     - type: Transform
@@ -461,16 +474,6 @@ entities:
     - type: Transform
       pos: -7.5,5.5
       parent: 2
-  - uid: 99
-    components:
-    - type: Transform
-      pos: -0.5,6.5
-      parent: 2
-  - uid: 100
-    components:
-    - type: Transform
-      pos: -0.5,7.5
-      parent: 2
   - uid: 104
     components:
     - type: Transform
@@ -496,6 +499,11 @@ entities:
     - type: Transform
       pos: -0.5,4.5
       parent: 2
+  - uid: 122
+    components:
+    - type: Transform
+      pos: -5.5,2.5
+      parent: 2
   - uid: 124
     components:
     - type: Transform
@@ -520,30 +528,10 @@ entities:
       parent: 2
 - proto: CableMV
   entities:
-  - uid: 9
-    components:
-    - type: Transform
-      pos: -2.5,5.5
-      parent: 2
-  - uid: 42
-    components:
-    - type: Transform
-      pos: -0.5,7.5
-      parent: 2
-  - uid: 91
-    components:
-    - type: Transform
-      pos: -1.5,5.5
-      parent: 2
   - uid: 97
     components:
     - type: Transform
       pos: -9.5,5.5
-      parent: 2
-  - uid: 98
-    components:
-    - type: Transform
-      pos: -0.5,5.5
       parent: 2
   - uid: 101
     components:
@@ -560,10 +548,20 @@ entities:
     - type: Transform
       pos: -9.5,2.5
       parent: 2
-  - uid: 202
+  - uid: 112
     components:
     - type: Transform
-      pos: -0.5,6.5
+      pos: -5.5,2.5
+      parent: 2
+  - uid: 120
+    components:
+    - type: Transform
+      pos: -5.5,3.5
+      parent: 2
+  - uid: 142
+    components:
+    - type: Transform
+      pos: -5.5,4.5
       parent: 2
   - uid: 215
     components:
@@ -585,22 +583,12 @@ entities:
     - type: Transform
       pos: -5.5,5.5
       parent: 2
-  - uid: 219
-    components:
-    - type: Transform
-      pos: -4.5,5.5
-      parent: 2
-  - uid: 220
-    components:
-    - type: Transform
-      pos: -3.5,5.5
-      parent: 2
 - proto: ClosetChefFilled
   entities:
-  - uid: 52
+  - uid: 200
     components:
     - type: Transform
-      pos: 0.23455286,6.506313
+      pos: 1.2315423,6.5131145
       parent: 2
 - proto: ClothingBeltPlantFilled
   entities:
@@ -687,7 +675,7 @@ entities:
       configurators:
       - invalid
       deviceLists:
-      - 201
+      - 67
   - uid: 247
     components:
     - type: Transform
@@ -698,7 +686,7 @@ entities:
       configurators:
       - invalid
       deviceLists:
-      - 201
+      - 67
 - proto: FirelockGlass
   entities:
   - uid: 127
@@ -706,6 +694,9 @@ entities:
     - type: Transform
       pos: -6.5,5.5
       parent: 2
+    - type: DeviceNetwork
+      deviceLists:
+      - 67
 - proto: FloorDrain
   entities:
   - uid: 138
@@ -814,18 +805,18 @@ entities:
       color: '#990000FF'
 - proto: GasPipeStraight
   entities:
-  - uid: 5
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -3.5,5.5
-      parent: 2
-    - type: AtmosPipeColor
-      color: '#990000FF'
   - uid: 6
     components:
     - type: Transform
       pos: -2.5,4.5
+      parent: 2
+    - type: AtmosPipeColor
+      color: '#990000FF'
+  - uid: 9
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -3.5,5.5
       parent: 2
     - type: AtmosPipeColor
       color: '#990000FF'
@@ -1025,7 +1016,7 @@ entities:
       configurators:
       - invalid
       deviceLists:
-      - 201
+      - 67
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 197
@@ -1036,9 +1027,8 @@ entities:
     - type: DeviceNetwork
       configurators:
       - invalid
-      - invalid
       deviceLists:
-      - 201
+      - 67
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 239
@@ -1050,9 +1040,8 @@ entities:
     - type: DeviceNetwork
       configurators:
       - invalid
-      - invalid
       deviceLists:
-      - 201
+      - 67
     - type: AtmosPipeColor
       color: '#0055CCFF'
 - proto: GasVentScrubber
@@ -1065,9 +1054,8 @@ entities:
     - type: DeviceNetwork
       configurators:
       - invalid
-      - invalid
       deviceLists:
-      - 201
+      - 67
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 109
@@ -1080,7 +1068,7 @@ entities:
       configurators:
       - invalid
       deviceLists:
-      - 201
+      - 67
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 211
@@ -1092,9 +1080,8 @@ entities:
     - type: DeviceNetwork
       configurators:
       - invalid
-      - invalid
       deviceLists:
-      - 201
+      - 67
     - type: AtmosPipeColor
       color: '#990000FF'
 - proto: GravityGeneratorMini
@@ -1234,12 +1221,35 @@ entities:
     - type: Transform
       pos: -1.0440803,6.569582
       parent: 2
-- proto: LockerFreezer
+- proto: LockerFreezerBase
   entities:
-  - uid: 142
+  - uid: 5
     components:
     - type: Transform
-      pos: 0.7345528,6.499368
+      pos: 1.732569,6.503855
+      parent: 2
+- proto: LockerWallEVAColorServiceWorkerFilled
+  entities:
+  - uid: 121
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -6.5,6.5
+      parent: 2
+- proto: LockerWallMaterialsBasic10Filled
+  entities:
+  - uid: 91
+    components:
+    - type: Transform
+      pos: 0.5,7.5
+      parent: 2
+- proto: LockerWallMaterialsFuelPlasmaFilled
+  entities:
+  - uid: 156
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -6.5,4.5
       parent: 2
 - proto: NitrogenCanister
   entities:
@@ -1311,52 +1321,35 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 2.5,2.5
       parent: 2
-  - uid: 156
+- proto: PoweredSmallLight
+  entities:
+  - uid: 98
+    components:
+    - type: Transform
+      pos: 4.5,5.5
+      parent: 2
+  - uid: 99
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -0.5,1.5
-      parent: 2
-  - uid: 200
-    components:
-    - type: Transform
-      pos: 4.5,5.5
       parent: 2
 - proto: ServiceTechFab
   entities:
   - uid: 84
     components:
     - type: Transform
-      pos: 2.5,6.5
-      parent: 2
-- proto: SheetGlass10
-  entities:
-  - uid: 44
-    components:
-    - type: Transform
-      pos: -1.4235142,6.588151
-      parent: 2
-- proto: SheetPlasma
-  entities:
-  - uid: 240
-    components:
-    - type: Transform
-      pos: -8.578515,3.487638
-      parent: 2
-- proto: SheetPlastic10
-  entities:
-  - uid: 67
-    components:
-    - type: Transform
-      pos: -1.2672642,6.588151
+      pos: 0.5,6.5
       parent: 2
 - proto: SheetSteel
   entities:
-  - uid: 120
+  - uid: 201
     components:
     - type: Transform
-      pos: -1.7257495,6.556901
+      pos: -1.652667,6.572551
       parent: 2
+    - type: Stack
+      count: 15
 - proto: ShuttersNormalOpen
   entities:
   - uid: 179
@@ -1512,14 +1505,6 @@ entities:
     - type: Transform
       pos: -9.5,2.5
       parent: 2
-- proto: SuitStorageWallmountEVAAlternate
-  entities:
-  - uid: 231
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -6.5,6.5
-      parent: 2
 - proto: TableReinforced
   entities:
   - uid: 16
@@ -1608,10 +1593,10 @@ entities:
       parent: 2
 - proto: VendingMachineChefvend
   entities:
-  - uid: 118
+  - uid: 100
     components:
     - type: Transform
-      pos: 1.5,6.5
+      pos: 2.5,6.5
       parent: 2
 - proto: VendingMachineSeedsUnlocked
   entities:
@@ -1622,6 +1607,12 @@ entities:
       parent: 2
 - proto: WallShuttle
   entities:
+  - uid: 42
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -0.5,7.5
+      parent: 2
   - uid: 47
     components:
     - type: Transform
@@ -1631,11 +1622,6 @@ entities:
     components:
     - type: Transform
       pos: -9.5,2.5
-      parent: 2
-  - uid: 112
-    components:
-    - type: Transform
-      pos: -0.5,7.5
       parent: 2
   - uid: 144
     components:
@@ -1837,22 +1823,6 @@ entities:
   - uid: 115
     components:
     - type: Transform
-      pos: -6.5,3.5
-      parent: 2
-- proto: WarningN2
-  entities:
-  - uid: 122
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -6.5,4.5
-      parent: 2
-- proto: WarningO2
-  entities:
-  - uid: 236
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
       pos: -6.5,3.5
       parent: 2
 - proto: WarpPointShip
