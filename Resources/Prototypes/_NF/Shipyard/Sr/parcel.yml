@@ -9,25 +9,26 @@
 # Shuttle Notes:
 #
 - type: vessel
-  id: MailPod
-  name: NC Mail Pod
-  description: A cramped yet reliable shuttle for delivering packages.
-  price: 15000
+  id: Parcel
+  name: NC Parcel
+  description: A reliable shuttle for delivering mail and packages.
+  price: 18000
   category: Small
-  group: None
-  shuttlePath: /Maps/_NF/Shuttles/mailpod.yml
+  group: Sr
+  access: Mail
+  shuttlePath: /Maps/_NF/Shuttles/Sr/parcel.yml
 
 - type: gameMap
-  id: MailPod
-  mapName: 'NC Mail Pod'
-  mapPath: /Maps/_NF/Shuttles/mailpod.yml
+  id: Parcel
+  mapName: 'NC Parcel'
+  mapPath: /Maps/_NF/Shuttles/Sr/parcel.yml
   minPlayers: 0
   stations:
-    MailPod:
+    Parcel:
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Mail Pod {1}'
+          mapNameTemplate: 'Parcel {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
