@@ -29,28 +29,28 @@
   #   - Pirate # Frontier: add this eventually
 
 - type: entity
-  id: BoxFolderClipboardPao
+  id: BoxFolderClipboardPal
   parent: BoxFolderClipboard
-  name: pao clipboard
-  description: The weapon of choice for the master of bureaucracy.
+  name: pal clipboard
+  description: The tool of choice for the master of bureaucracy.
   components:
   - type: Sprite
-    sprite: _NF/Objects/Misc/pao_clipboard.rsi
+    sprite: _NF/Objects/Misc/pal_clipboard.rsi
   - type: Item
-    sprite: _NF/Objects/Misc/pao_clipboard.rsi
+    sprite: _NF/Objects/Misc/pal_clipboard.rsi
   - type: Clothing
-    sprite: _NF/Objects/Misc/pao_clipboard.rsi
+    sprite: _NF/Objects/Misc/pal_clipboard.rsi
 
 - type: entity
-  id: BoxFolderPaoGreen
+  id: BoxFolderPalGreen
   parent: BoxFolderBase
-  name: green pao folder
-  description: A folder meant to contain super secret nfsd forms.
+  name: green pal folder
+  description: A folder meant to contain super important NFSD forms.
   components:
   - type: Sprite
     sprite: _NF/Objects/Misc/bureaucracy.rsi
     layers:
-    - state: folder-PAO-green
+    - state: folder-PAL-green
     - state: folder-base
   - type: StorageFill
     contents:
@@ -66,15 +66,15 @@
         prob: 0.2
 
 - type: entity
-  id: BoxFolderPaoBrown
+  id: BoxFolderPalBrown
   parent: BoxFolderBase
-  name: brown pao folder
-  description: A folder meant to contain super secret nfsd forms.
+  name: brown pal folder
+  description: A folder meant to contain super important NFSD forms.
   components:
   - type: Sprite
     sprite: _NF/Objects/Misc/bureaucracy.rsi
     layers:
-    - state: folder-PAO-brown
+    - state: folder-PAL-brown
     - state: folder-base
   - type: StorageFill
     contents:

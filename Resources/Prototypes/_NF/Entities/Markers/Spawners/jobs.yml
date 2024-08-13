@@ -154,7 +154,8 @@
 - type: entity
   id: SpawnPointDetectiveNF
   parent: SpawnPointDetective
-  name: detective nf
+  name: detective
+  suffix: Frontier
   components:
   - type: SpawnPoint
     job_id: DetectiveNF
@@ -164,12 +165,12 @@
       - state: detective
 
 - type: entity
-  id: SpawnPointPublicAffairsOfficial
-  parent: SpawnPointDetective
-  name: public affairs official
+  id: SpawnPointPublicAffairsLiaison
+  parent: SpawnPointJobBase
+  name: public affairs liaison
   components:
   - type: SpawnPoint
-    job_id: PublicAffairsOfficial
+    job_id: PublicAffairsLiaison
   - type: Sprite
     layers:
       - state: green

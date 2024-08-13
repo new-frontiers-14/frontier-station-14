@@ -354,13 +354,13 @@
 
 - type: entity
   parent: BasePDA
-  id: PublicAffairsOfficialPDA
-  name: public affairs official PDA
+  id: PublicAffairsLiaisonPDA
+  name: public affairs liaison PDA
   description: Paperwork, paperwork, paperwork!
   components:
   - type: Pda
     id: PublicAffairsIDCard
-    state: pda-deputy
+    state: pda-pal
     penSlot:
       startingItem: PublicAffairsPen
       priority: -1
@@ -391,7 +391,7 @@
       visible: false
   - type: Icon
     sprite: _NF/Objects/Devices/pda.rsi
-    state: pda-deputy
+    state: pda-pal
 
 - type: entity
   parent: HoPPDA
