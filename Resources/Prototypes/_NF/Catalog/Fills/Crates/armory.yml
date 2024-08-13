@@ -108,178 +108,260 @@
         amount: 6
 
 # Ammo crates
+## .20 rifle
 - type: entity
-  id: CrateAmmoGenericAmmoBox20
-  parent: CrateAmmoGeneric
-  description: Contains 6 boxes of .20 rifle ammo.
+  parent:
+  - CrateAmmoGeneric
+  - StorageFillAmmoBoxLethal20
+  id: CrateAmmoBoxLethal20
   noSpawn: true
-  components:
-  - type: StorageFill
-    contents:
-      - id: MagazineBoxRifle
-        amount: 6
 
 - type: entity
-  id: CrateAmmoGenericAmmoBox20Rubber
-  parent: CrateAmmoGeneric
-  description: Contains 6 boxes of .20 rifle rubber ammo.
+  parent:
+  - CrateAmmoGeneric
+  - StorageFillAmmoBoxBigLethal20
+  id: CrateAmmoBoxBigLethal20
   noSpawn: true
-  components:
-  - type: StorageFill
-    contents:
-      - id: MagazineBoxRifleRubber
-        amount: 6
 
 - type: entity
-  id: CrateAmmoGenericAmmoBox20Practice
-  parent: CrateAmmoGeneric
-  description: Contains 6 boxes of .20 rifle practice ammo.
+  parent:
+  - CrateAmmoGeneric
+  - StorageFillAmmoBoxRubber20
+  id: CrateAmmoBoxRubber20
   noSpawn: true
-  components:
-  - type: StorageFill
-    contents:
-      - id: MagazineBoxRiflePractice
-        amount: 6
 
 - type: entity
-  id: CrateAmmoGenericAmmoBox25
-  parent: CrateAmmoGeneric
-  description: Contains 6 boxes of caseless .25 rifle ammo.
+  parent:
+  - CrateAmmoGeneric
+  - StorageFillAmmoBoxBigRubber20
+  id: CrateAmmoBoxBigRubber20
   noSpawn: true
-  components:
-  - type: StorageFill
-    contents:
-      - id: MagazineBoxCaselessRifle
-        amount: 6
 
 - type: entity
-  id: CrateAmmoGenericAmmoBox25Rubber
-  parent: CrateAmmoGeneric
-  description: Contains 6 boxes of caseless .25 rifle rubber ammo.
+  parent:
+  - CrateAmmoGeneric
+  - StorageFillAmmoBoxPractice20
+  id: CrateAmmoBoxPractice20
   noSpawn: true
-  components:
-  - type: StorageFill
-    contents:
-      - id: MagazineBoxCaselessRifleRubber
-        amount: 6
 
 - type: entity
-  id: CrateAmmoGenericAmmoBox25Practice
-  parent: CrateAmmoGeneric
-  description: Contains 6 boxes of caseless .25 rifle practice ammo.
+  parent:
+  - CrateAmmoGeneric
+  - StorageFillAmmoBoxIncendiary20
+  id: CrateAmmoBoxIncendiary20
   noSpawn: true
-  components:
-  - type: StorageFill
-    contents:
-      - id: MagazineBoxCaselessRiflePractice
-        amount: 6
 
 - type: entity
-  id: CrateAmmoGenericAmmoBox30
-  parent: CrateAmmoGeneric
-  description: Contains 6 boxes of .30 rifle ammo.
+  parent:
+  - CrateAmmoGeneric
+  - StorageFillAmmoBoxUranium20
+  id: CrateAmmoBoxUranium20
   noSpawn: true
-  components:
-  - type: StorageFill
-    contents:
-      - id: MagazineBoxLightRifle
-        amount: 6
+
+## .30 rifle
+- type: entity
+  parent:
+  - CrateAmmoGeneric
+  - StorageFillAmmoBoxLethal30
+  id: CrateAmmoBoxLethal30
+  noSpawn: true
 
 - type: entity
-  id: CrateAmmoGenericAmmoBox30Rubber
-  parent: CrateAmmoGeneric
-  description: Contains 6 boxes of .30 rifle rubber ammo.
+  parent:
+  - CrateAmmoGeneric
+  - StorageFillAmmoBoxBigLethal30
+  id: CrateAmmoBoxBigLethal30
   noSpawn: true
-  components:
-  - type: StorageFill
-    contents:
-      - id: MagazineBoxLightRifleRubber
-        amount: 6
 
 - type: entity
-  id: CrateAmmoGenericAmmoBox30Practice
-  parent: CrateAmmoGeneric
-  description: Contains 6 boxes of .30 rifle practice ammo.
+  parent:
+  - CrateAmmoGeneric
+  - StorageFillAmmoBoxRubber30
+  id: CrateAmmoBoxRubber30
   noSpawn: true
-  components:
-  - type: StorageFill
-    contents:
-      - id: MagazineBoxLightRiflePractice
-        amount: 6
 
 - type: entity
-  id: CrateAmmoGenericAmmoBox35
-  parent: CrateAmmoGeneric
-  description: Contains 6 boxes of .35 pistol ammo.
+  parent:
+  - CrateAmmoGeneric
+  - StorageFillAmmoBoxPractice30
+  id: CrateAmmoBoxPractice30
   noSpawn: true
-  components:
-  - type: StorageFill
-    contents:
-      - id: MagazineBoxPistol
-        amount: 6
 
 - type: entity
-  id: CrateAmmoGenericAmmoBox35Rubber
-  parent: CrateAmmoGeneric
-  description: Contains 6 boxes of .35 pistol rubber ammo.
+  parent:
+  - CrateAmmoGeneric
+  - StorageFillAmmoBoxIncendiary30
+  id: CrateAmmoBoxIncendiary30
   noSpawn: true
-  components:
-  - type: StorageFill
-    contents:
-      - id: MagazineBoxPistolRubber
-        amount: 6
 
 - type: entity
-  id: CrateAmmoGenericAmmoBox35Practice
-  parent: CrateAmmoGeneric
-  description: Contains 6 boxes of .35 pistol practice ammo.
+  parent:
+  - CrateAmmoGeneric
+  - StorageFillAmmoBoxUranium30
+  id: CrateAmmoBoxUranium30
   noSpawn: true
-  components:
-  - type: StorageFill
-    contents:
-      - id: MagazineBoxPistolPractice
-        amount: 6
+
+## .35 pistol
+- type: entity
+  parent:
+  - CrateAmmoGeneric
+  - StorageFillAmmoBoxLethal35
+  id: CrateAmmoBoxLethal35
+  noSpawn: true
 
 - type: entity
-  id: CrateAmmoGenericAmmoBox45
-  parent: CrateAmmoGeneric
-  description: Contains 6 boxes of .45 ammo.
+  parent:
+  - CrateAmmoGeneric
+  - StorageFillAmmoBoxRubber35
+  id: CrateAmmoBoxRubber35
   noSpawn: true
-  components:
-  - type: StorageFill
-    contents:
-      - id: MagazineBoxMagnum
-        amount: 6
 
 - type: entity
-  id: CrateAmmoGenericAmmoBox45Rubber
-  parent: CrateAmmoGeneric
-  description: Contains 6 boxes of .45 rubber ammo.
+  parent:
+  - CrateAmmoGeneric
+  - StorageFillAmmoBoxPractice35
+  id: CrateAmmoBoxPractice35
   noSpawn: true
-  components:
-  - type: StorageFill
-    contents:
-      - id: MagazineBoxMagnumRubber
-        amount: 6
 
 - type: entity
-  id: CrateAmmoGenericAmmoBox45Practice
-  parent: CrateAmmoGeneric
-  description: Contains 6 boxes of .45 practice ammo.
+  parent:
+  - CrateAmmoGeneric
+  - StorageFillAmmoBoxIncendiary35
+  id: CrateAmmoBoxIncendiary35
   noSpawn: true
-  components:
-  - type: StorageFill
-    contents:
-      - id: MagazineBoxMagnumPractice
-        amount: 6
 
 - type: entity
-  id: CrateAmmoGenericAmmoBox60
-  parent: CrateAmmoGeneric
-  description: Contains 6 boxes of .60 anti-materiel ammo.
+  parent:
+  - CrateAmmoGeneric
+  - StorageFillAmmoBoxUranium35
+  id: CrateAmmoBoxUranium35
   noSpawn: true
-  components:
-  - type: StorageFill
-    contents:
-      - id: MagazineBoxAntiMateriel
-        amount: 6
+
+- type: entity
+  parent:
+  - CrateAmmoGeneric
+  - StorageFillAmmoBoxEmp35
+  id: CrateAmmoBoxEmp35
+  noSpawn: true
+
+## .25 caseless
+- type: entity
+  parent:
+  - CrateAmmoGeneric
+  - StorageFillAmmoBoxLethal25
+  id: CrateAmmoBoxLethal25
+  noSpawn: true
+
+- type: entity
+  parent:
+  - CrateAmmoGeneric
+  - StorageFillAmmoBoxBigLethal25
+  id: CrateAmmoBoxBigLethal25
+  noSpawn: true
+
+- type: entity
+  parent:
+  - CrateAmmoGeneric
+  - StorageFillAmmoBoxRubber25
+  id: CrateAmmoBoxRubber25
+  noSpawn: true
+
+- type: entity
+  parent:
+  - CrateAmmoGeneric
+  - StorageFillAmmoBoxBigRubber25
+  id: CrateAmmoBoxBigRubber25
+  noSpawn: true
+
+- type: entity
+  parent:
+  - CrateAmmoGeneric
+  - StorageFillAmmoBoxPractice25
+  id: CrateAmmoBoxPractice25
+  noSpawn: true
+
+## Shotgun
+- type: entity
+  parent:
+  - CrateAmmoGeneric
+  - StorageFillAmmoBoxLethalShotgun
+  id: CrateAmmoBoxLethalShotgun
+  noSpawn: true
+
+- type: entity
+  parent:
+  - CrateAmmoGeneric
+  - StorageFillAmmoBoxRubberShotgun
+  id: CrateAmmoBoxRubberShotgun
+  noSpawn: true
+
+- type: entity
+  parent:
+  - CrateAmmoGeneric
+  - StorageFillAmmoBoxPracticeShotgun
+  id: CrateAmmoBoxPracticeShotgun
+  noSpawn: true
+
+- type: entity
+  parent:
+  - CrateAmmoGeneric
+  - StorageFillAmmoBoxIncendiaryShotgun
+  id: CrateAmmoBoxIncendiaryShotgun
+  noSpawn: true
+
+- type: entity
+  parent:
+  - CrateAmmoGeneric
+  - StorageFillAmmoBoxUraniumShotgun
+  id: CrateAmmoBoxUraniumShotgun
+  noSpawn: true
+
+- type: entity
+  parent:
+  - CrateAmmoGeneric
+  - StorageFillAmmoBoxSlugShotgun
+  id: CrateAmmoBoxSlugShotgun
+  noSpawn: true
+
+- type: entity
+  parent:
+  - CrateAmmoGeneric
+  - StorageFillAmmoBoxFlareShotgun
+  id: CrateAmmoBoxFlareShotgun
+  noSpawn: true
+
+## .45 ammo
+- type: entity
+  parent:
+  - CrateAmmoGeneric
+  - StorageFillAmmoBoxLethal45
+  id: CrateAmmoBoxLethal45
+  noSpawn: true
+
+- type: entity
+  parent:
+  - CrateAmmoGeneric
+  - StorageFillAmmoBoxRubber45
+  id: CrateAmmoBoxRubber45
+  noSpawn: true
+
+- type: entity
+  parent:
+  - CrateAmmoGeneric
+  - StorageFillAmmoBoxPractice45
+  id: CrateAmmoBoxPractice45
+  noSpawn: true
+
+- type: entity
+  parent:
+  - CrateAmmoGeneric
+  - StorageFillAmmoBoxIncendiary45
+  id: CrateAmmoBoxIncendiary45
+  noSpawn: true
+
+- type: entity
+  parent:
+  - CrateAmmoGeneric
+  - StorageFillAmmoBoxUranium45
+  id: CrateAmmoBoxUranium45
+  noSpawn: true
