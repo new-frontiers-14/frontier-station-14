@@ -5,7 +5,11 @@
   name: Urist McHands
   abstract: true
   components:
-  - type: Hunger
+  - type: Hunger # Corvax-Frontier
+    starvationDamage:
+      types:
+        Cold: 0.15
+        Bloodloss: 0.15
   - type: Icon # It will not have an icon in the adminspawn menu without this. Body parts seem fine for whatever reason.
     sprite: Mobs/Species/Human/parts.rsi
     state: full

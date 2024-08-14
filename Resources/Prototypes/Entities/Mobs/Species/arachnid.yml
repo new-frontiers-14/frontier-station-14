@@ -10,7 +10,11 @@
     requiredLegs: 2 # It would be funny if arachnids could use their little back limbs to move around once they lose their legs, but just something to consider post-woundmed
   - type: HumanoidAppearance
     species: Arachnid
-  - type: Hunger
+  - type: Hunger # Corvax-Frontier
+    starvationDamage:
+      types:
+        Cold: 0.15
+        Bloodloss: 0.15
   - type: Thirst
   - type: Sericulture
     action: ActionSericulture

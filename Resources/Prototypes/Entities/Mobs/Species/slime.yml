@@ -4,7 +4,11 @@
   id: BaseMobSlimePerson
   abstract: true
   components:
-  - type: Hunger
+  - type: Hunger # Corvax-Frontier
+    starvationDamage:
+      types:
+        Cold: 0.15
+        Bloodloss: 0.15
   - type: Thirst
   - type: Carriable # Carrying system from nyanotrasen.
   - type: Icon

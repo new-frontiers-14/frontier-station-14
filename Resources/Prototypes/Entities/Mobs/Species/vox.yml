@@ -1,9 +1,13 @@
-﻿- type: entity
+- type: entity
   parent: BaseMobSpeciesOrganic
   id: BaseMobVox
   abstract: true
   components:
-  - type: Hunger
+  - type: Hunger # Corvax-Frontier
+    starvationDamage:
+      types:
+        Cold: 0.15
+        Bloodloss: 0.15
   - type: Thirst
   - type: Icon
     sprite: Mobs/Species/Vox/parts.rsi
