@@ -251,51 +251,50 @@
     idleState: icon
     runningState: icon
     staticRecipes:
-      #- Durathread
-      #- Plasteel
-      #- SheetSteel
-      #- SheetPlasteel
-      #- SheetPlasma30
-      #- SheetUranium30
-      #- SheetGlass30
-      #- SheetRGlass
-      #- SheetPlastic
-      - ClothingOuterEVASuitCargo
-      - ClothingOuterEVASuitSalvage
+    # Shared lathe recipes
+    ## Basic tools
       - Wirecutter
-      - Signaller
       - Screwdriver
       - Welder
       - Wrench
       - Crowbar
       - Multitool
-      - NetworkConfigurator
       - FlashlightLantern
-      - HandheldGPSBasic
-      - TRayScanner
-      - AirTank
-      - GasAnalyzer
-      - ClothingBeltSalvageWebbing
-      - Pickaxe
       - AppraisalTool
       - HandLabeler
+      - Signaller
+    ## Basic storage
+      - ToolboxArtisticNF
+      - ToolboxElectricalNF
+      - ToolboxMechanicalNF
+      - ToolboxEmergencyNF
+    ## Basic parts
+      - CableStack
       - LightTube
       - LedLightTube
       - SodiumLightTube
       - ExteriorLightTube
       - LightBulb
       - LedLightBulb
-      - DrinkMugMetal
+      - ConveyorBeltAssembly
       - PowerCellSmall
       - PowerCellMedium
-      - EmergencyRollerBedSpawnFolded
-      - CableStack
-      - ConveyorBeltAssembly
-      - DoorElectronics
-      - StationMapElectronics
+    ## Basic electronics
+      - SignalTimerElectronics
       - CellRechargerCircuitboard
       - BorgChargerCircuitboard
       - WeaponCapacitorRechargerCircuitboard
+    ## Basic EVA:
+      - ClothingOuterEVASuitContractor
+      - ClothingOuterEVASuitPilot
+      - AirTank
+      - HandheldGPSBasic
+    # Salvage techfab
+      - EmergencyRollerBedSpawnFolded
+      - ClothingOuterEVASuitCargo
+      - ClothingOuterEVASuitSalvage
+      - ClothingBeltSalvageWebbing
+      - Pickaxe
       - RadioHandheld
       - Floodlight
       - FlareLathe
@@ -313,10 +312,18 @@
       - ClothingNeckIFFBlue
       - ClothingNeckIFFOrange
       - ClothingNeckIFFPurple
+      - LanternNF
     dynamicRecipes:
-      - Bucket
-      - MopItem
-      - SprayBottle
+    # Shared lathe recipes
+    ## Advanced tools
+      - WelderExperimental
+      - JawsOfLife
+      - PowerDrill
+      - JetpackVoid
+      - PowerCellHigh
+      - PowerCellHyper
+      - PowerCellMicroreactor
+    # Salvage techfab
       - FireExtinguisher
       - CableMVStack
       - CableHVStack
@@ -331,10 +338,6 @@
       - ClothingBackpackDuffelHolding
       - ClothingBackpackMessengerHolding
       - OreBagOfHolding
-      - WelderExperimental
-      - JawsOfLife
-      - PowerDrill
-      - JetpackVoid
       - ClothingOuterHardsuitBasic
       - ClothingOuterHardsuitSpatio
       - ClothingOuterHardsuitSalvage
@@ -344,21 +347,13 @@
       - ClothingOuterHardsuitAncientEVA
   - type: EmagLatheRecipes
     emagStaticRecipes:
-#       - CartridgePistol
-#       - CartridgeMagnum
-#       - ShellShotgun
-#       - ShellShotgunFlare
        - ShellTranquilizer
-#       - CartridgeLightRifle
-#       - CartridgeRifle
        - MagazineBoxPistol
        - MagazineBoxMagnum
        - MagazineBoxRifle
        - MagazineBoxLightRifle
        - GrenadeBlast
        - ClothingHeadHelmetCosmonaut
-#       - ClothingHeadHelmetSyndicate
-#       - ClothingOuterHardsuitSyndicate
   - type: MaterialStorage
     whitelist:
       tags:
@@ -414,214 +409,176 @@
     idleState: icon
     runningState: icon
     staticRecipes:
-    # Clothing / Armor
-    - RiotShield
-    - ClothingNeckIFFNeutral
-    - ClothingNeckIFFGreen
-    - ClothingNeckIFFRed
-    - ClothingNeckIFFBlue
-    - ClothingNeckIFFOrange
-    - ClothingNeckIFFPurple
-    - ClothingHeadHelmetMercenary
-    - ClothingHeadHelmetBasic
-    - ClothingOuterVestWebMercenary
-    - ClothingOuterVestWebMercenaryBlack
-    - ClothingBeltMercenaryWebbing
-    - ClothingBeltMilitaryWebbing
-    - ClothingHandsMercenaryGlovesCombat
-    - ClothingHandsGlovesCombat
-    - ClothingShoesBootsMercenary
-    - ClothingShoesBootsCombat
-    - ClothingShoesBootsJack
-    - ClothingEyesGlassesMercenary
-    - ClothingEyesGlassesSunglasses
-    - ClothingMaskGasMercenary
-    - ClothingMaskBreathMedicalSecurity
-    - ClothingMaskGasSecurity
-    - ClothingBeltBandolier
-    # EVA / Hardsuits
-    - ClothingOuterEVASuitContractor
-    - ClothingOuterEVASuitPilot
-    - ClothingOuterEVASuitMercenary
-    - ClothingOuterEVASuitPrivateSec
-    # Boxes for sorting stuff
-    - MedkitCombat
-    - WeaponCaseShort
-    - WeaponCaseLong
-    - WeaponCaseHeavy
-    # Utilities
-    - Wirecutter
-    - Signaller
-    - Screwdriver
-    - Welder
-    - Wrench
-    - Crowbar
-    - Multitool
-    - NetworkConfigurator
-    - HandheldGPSBasic
-    - TRayScanner
-    - AirTank
-    - GasAnalyzer
-    - AppraisalTool
-    - HandLabeler
-    - LightTube
-    - LedLightTube
-    - SodiumLightTube
-    - ExteriorLightTube
-    - LightBulb
-    - LedLightBulb
-    - DoorElectronics
-    - StationMapElectronics
-    - CellRechargerCircuitboard
-    - BorgChargerCircuitboard
-    - WeaponCapacitorRechargerCircuitboard
-    - RadioHandheld
-    - FlashlightSeclite
-    - Floodlight
-    - FlareLathe
-    - GlowstickBlue
-    - GlowstickBase
-    - GlowstickPurple
-    - GlowstickRedLathe
-    - GlowstickYellow
-    - Zipties
-    - TargetClown
-    - TargetHuman
-    - CableStack
-    - PowerCellSmall
-    - PowerCellMedium
-    - SignalTimerElectronics
-    # Weapons
-    - CombatKnife
-    - WeaponLaserSvalinn
-    - WeaponLaserPistolNF
-    - WeaponRevolverArgenti
-    - WeaponPistolMk58NF
-    - WeaponShotgunDoubleBarreled
-    - WeaponRifleNovaliteC1
-    - WeaponRifleGestio
-    # Ammo boxes
-    - BoxLethalshot
-    - BoxShotgunFlare
-    - BoxShotgunSlug
-    - BoxShellTranquilizer
-    - MagazineBoxLightRifle
-    - MagazineBoxMagnum
-    - MagazineBoxPistol
-    - MagazineBoxRifle
-    # Mags / Speedloaders / Clips
-    - MagazineNovaliteC1Empty
-    - MagazineNovaliteC1
-    - MagazineLightRifleLowCapacityEmpty
-    - MagazineLightRifleLowCapacity
-    - MagazineLightRifle
-    - MagazineLightRifleEmpty
-    - MagazineRifle
-    - MagazineRifleEmpty
-    - MagazinePistol
-    - MagazinePistolEmpty
-    - SpeedLoaderMagnum
-    - SpeedLoaderMagnumEmpty
-    - SpeedLoaderRifleHeavy
-    - SpeedLoaderRifleHeavyEmpty
-    - MagazineShotgun
-    - MagazineShotgunEmpty
-    - MagazineShotgunSlug
-    - 10roundmagazine #frontier by VividPups
-    - 10roundmagazineempty #frontier by VividPups
+    # Shared lathe recipes
+    ## Basic tools
+      - Wirecutter
+      - Screwdriver
+      - Welder
+      - Wrench
+      - Crowbar
+      - Multitool
+      - FlashlightLantern
+      - AppraisalTool
+      - HandLabeler
+      - Signaller
+    ## Basic storage
+      - ToolboxArtisticNF
+      - ToolboxElectricalNF
+      - ToolboxMechanicalNF
+      - ToolboxEmergencyNF
+    ## Basic parts
+      - CableStack
+      - LightTube
+      - LedLightTube
+      - SodiumLightTube
+      - ExteriorLightTube
+      - LightBulb
+      - LedLightBulb
+      - ConveyorBeltAssembly
+      - PowerCellSmall
+      - PowerCellMedium
+    ## Basic electronics
+      - SignalTimerElectronics
+      - CellRechargerCircuitboard
+      - BorgChargerCircuitboard
+      - WeaponCapacitorRechargerCircuitboard
+    ## Basic EVA:
+      - ClothingOuterEVASuitContractor
+      - ClothingOuterEVASuitPilot
+      - AirTank
+      - HandheldGPSBasic
+    # Mercenary techfab
+    ## Clothing / Armor
+      - RiotShield
+      - ClothingNeckIFFNeutral
+      - ClothingNeckIFFGreen
+      - ClothingNeckIFFRed
+      - ClothingNeckIFFBlue
+      - ClothingNeckIFFOrange
+      - ClothingNeckIFFPurple
+      - ClothingHeadHelmetMercenary
+      - ClothingHeadHelmetBasic
+      - ClothingOuterVestWebMercenary
+      - ClothingOuterVestWebMercenaryBlack
+      - ClothingBeltMercenaryWebbing
+      - ClothingBeltMilitaryWebbing
+      - ClothingHandsMercenaryGlovesCombat
+      - ClothingHandsGlovesCombat
+      - ClothingShoesBootsMercenary
+      - ClothingShoesBootsCombat
+      - ClothingShoesBootsJack
+      - ClothingEyesGlassesMercenary
+      - ClothingEyesGlassesSunglasses
+      - ClothingMaskGasMercenary
+      - ClothingMaskBreathMedicalSecurity
+      - ClothingMaskGasSecurity
+      - ClothingBeltBandolier
+    ## EVA / Hardsuits
+      - ClothingOuterEVASuitMercenary
+      - ClothingOuterEVASuitPrivateSec
+    ## Storage
+      - MedkitCombat
+      - WeaponCaseShort
+      - WeaponCaseLong
+      - WeaponCaseHeavy
+    ## Weapons
+      - CombatKnife
+      - WeaponLaserSvalinn
+      - WeaponLaserPistolNF
+      - WeaponRevolverArgenti
+      - WeaponPistolMk58NF
+      - WeaponShotgunDoubleBarreled
+      - WeaponRifleNovaliteC1
+      - WeaponRifleGestio
+    ## Ammo boxes
+      - BoxLethalshot
+      - BoxShotgunFlare
+      - BoxShotgunSlug
+      - BoxShellTranquilizer
+      - MagazineBoxLightRifle
+      - MagazineBoxMagnum
+      - MagazineBoxPistol
+      - MagazineBoxRifle
+    ## Mags / Speedloaders / Clips
+      - MagazineNovaliteC1Empty
+      - MagazineNovaliteC1
+      - MagazineLightRifleLowCapacityEmpty
+      - MagazineLightRifleLowCapacity
+      - MagazineLightRifle
+      - MagazineLightRifleEmpty
+      - MagazineRifle
+      - MagazineRifleEmpty
+      - MagazinePistol
+      - MagazinePistolEmpty
+      - SpeedLoaderMagnum
+      - SpeedLoaderMagnumEmpty
+      - SpeedLoaderRifleHeavy
+      - SpeedLoaderRifleHeavyEmpty
+      - MagazineShotgun
+      - MagazineShotgunEmpty
+      - MagazineShotgunSlug
+      - 10roundmagazine #frontier by VividPups
+      - 10roundmagazineempty #frontier by VividPups
     dynamicRecipes:
-    # Armor
-    - TelescopicShield
-    - ClothingOuterArmorBulletproofNF
-    - ClothingOuterCoatBHTrench
-    # EVA / Hardsuits
-    - ClothingOuterHardsuitCap
-    - ClothingOuterHardsuitMercenary
-    - ClothingOuterHardsuitPrivateSecurity
-    - ClothingOuterHardsuitScaf
-    # Utilities
-    - ClothingEyesHudBountyHunter
-    - ClothingEyesPunkInfoShades
-    - PinpointerUniversalNF
-    - Handcuffs
-    - JetpackVoid
-    - SignalTrigger
-    - PortableRecharger
-    - TimerTrigger
-    - VoiceTrigger
-    - PowerCellMicroreactor
-    - PowerCellMedium
-    - PowerCellHigh
-    - PowerCellMicroreactor
-    - TurboItemRechargerCircuitboard
-    - ClothingBackpackHolding
-    - ClothingBackpackSatchelHolding
-    - ClothingBackpackDuffelHolding
-    - ClothingBackpackMessengerHolding
-    - WelderExperimental
-    - JawsOfLife
-    - PowerDrill
-    # - HoloprojectorSecurity
-    # Weapons
-    - BaseBallBatNF
-    - KatanaNF
-    - KukriKnifeNF
-    - MacheteNF
-    - Stunbaton
-    - BolaNF
-    - ExplosivePayload
-    - FlashPayload
-    - ChemicalPayload
-    - WeaponShotgunKammererNF
-    - WeaponAdvancedLaser
-    - WeaponAntiqueLaserNF
-    # - WeaponLaserCannon
-    - WeaponLaserCarbine
-    # - WeaponXrayCannon
-    - WeaponDisabler
-    # - WeaponDisablerSMG
-    # - GrenadeBlast
-    # - GrenadeEMP
-    # - GrenadeFlash
-    # - Truncheon
-    # Mags / Speedloaders / Clips
-    # Ammo boxes
-    - BoxBeanbag
-    - BoxShellTranquilizer
-    # - BoxShotgunIncendiary
-    # - BoxShotgunUranium
-    # - MagazineBoxLightRifleIncendiary
-    # - MagazineBoxLightRifleUranium
-    # - MagazineBoxMagnumIncendiary
-    # - MagazineBoxMagnumUranium
-    # - MagazineBoxPistolIncendiary
-    # - MagazineBoxPistolUranium
-    # - MagazineBoxRifleIncendiary
-    # - MagazineBoxRifleUranium
-    - MagazineBoxLightRifleRubber
-    - MagazineBoxMagnumRubber
-    - MagazineBoxPistolRubber
-    - MagazineBoxRifleRubber
-    # - MagazineGrenadeEmpty
-    # - MagazineLightRifleIncendiary
-    # - MagazineLightRifleUranium
-    # - MagazinePistolIncendiary
-    # - MagazinePistolUranium
-    # - MagazineRifleIncendiary
-    # - MagazineRifleUranium
-    - MagazineShotgunBeanbag
-    # - MagazineShotgunIncendiary
-    # - PowerCageHigh
-    # - PowerCageMedium
-    # - PowerCageSmall
-    # - ShuttleGunDusterCircuitboard
-    # - ShuttleGunFriendshipCircuitboard
-    # - ShuttleGunPerforatorCircuitboard
-    # - ShuttleGunSvalinnMachineGunCircuitboard
-    # - SpeedLoaderMagnumIncendiary
-    # - SpeedLoaderMagnumUranium
-    # - SpeedLoaderRifleHeavyIncendiary
-    # - SpeedLoaderRifleHeavyUranium
+    # Shared lathe recipes
+    ## Advanced tools
+      - WelderExperimental
+      - JawsOfLife
+      - PowerDrill
+      - JetpackVoid
+      - PowerCellHigh
+      - PowerCellHyper
+      - PowerCellMicroreactor
+    # Mercenary techfab
+    ## Armor
+      - TelescopicShield
+      - ClothingOuterArmorBulletproofNF
+      - ClothingOuterCoatBHTrench
+    ## EVA / Hardsuits
+      - ClothingOuterHardsuitCap
+      - ClothingOuterHardsuitMercenary
+      - ClothingOuterHardsuitPrivateSecurity
+      - ClothingOuterHardsuitScaf
+    ## Utilities
+      - ForensicPad
+      - ClothingEyesHudBountyHunter
+      - ClothingEyesPunkInfoShades
+      - PinpointerUniversalNF
+      - Handcuffs
+      - SignalTrigger
+      - PortableRecharger
+      - TimerTrigger
+      - VoiceTrigger
+      - TurboItemRechargerCircuitboard
+      - ClothingBackpackHolding
+      - ClothingBackpackSatchelHolding
+      - ClothingBackpackDuffelHolding
+      - ClothingBackpackMessengerHolding
+    ## Weapons
+      - WeaponGrapplingGun
+      - BaseBallBatNF
+      - KatanaNF
+      - KukriKnifeNF
+      - MacheteNF
+      - Stunbaton
+      - BolaNF
+      - ExplosivePayload
+      - FlashPayload
+      - ChemicalPayload
+      - WeaponShotgunKammererNF
+      - WeaponAdvancedLaser
+      - WeaponAntiqueLaserNF
+      - WeaponLaserCarbine
+      - WeaponDisabler
+    ## Mags / Speedloaders / Clips
+    ## Ammo boxes
+      - BoxBeanbag
+      - BoxShellTranquilizer
+      - MagazineBoxLightRifleRubber
+      - MagazineBoxMagnumRubber
+      - MagazineBoxPistolRubber
+      - MagazineBoxRifleRubber
+      - MagazineShotgunBeanbag
   - type: MaterialStorage
     whitelist:
     tags:

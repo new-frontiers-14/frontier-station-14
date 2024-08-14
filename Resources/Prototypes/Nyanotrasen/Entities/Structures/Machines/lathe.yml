@@ -90,16 +90,50 @@
     idleState: icon
     runningState: icon
     staticRecipes: #Frontier
-      - MailCapsule #Frontier
+    # Shared lathe recipes
+    ## Basic tools
+      - Wirecutter #Frontier
+      - Screwdriver #Frontier
+      - Welder #Frontier
+      - Wrench #Frontier
+      - Crowbar #Frontier
+      - Multitool #Frontier
+      - FlashlightLantern #Frontier
+      - AppraisalTool #Frontier
+      - HandLabeler #Frontier
+      - Signaller #Frontier
+    ## Basic storage
+      - ToolboxArtisticNF #Frontier
+      - ToolboxElectricalNF #Frontier
+      - ToolboxMechanicalNF #Frontier
+      - ToolboxEmergencyNF #Frontier
+    ## Basic parts
+      - CableStack #Frontier
+      - LightTube #Frontier
+      - LedLightTube #Frontier
+      - SodiumLightTube #Frontier
+      - ExteriorLightTube #Frontier
+      - LightBulb #Frontier
+      - LedLightBulb #Frontier
+      - ConveyorBeltAssembly #Frontier
+      - PowerCellSmall #Frontier
+      - PowerCellMedium #Frontier
+    ## Basic electronics
+      - SignalTimerElectronics #Frontier
+      - CellRechargerCircuitboard #Frontier
+      - BorgChargerCircuitboard #Frontier
+      - WeaponCapacitorRechargerCircuitboard #Frontier
+    ## Basic EVA:
+      - ClothingOuterEVASuitContractor #Frontier
+      - ClothingOuterEVASuitPilot #Frontier
+      - AirTank #Frontier
+      - HandheldGPSBasic #Frontier
+    # Service techfab
       - SprayBottle #Frontier, moved some recipes from dynamicRecipes, so the service fab wouldn't need a server for the basic stuff
-      - FlashlightLantern
       - FireExtinguisher
-      - LightTube
-      - LightBulb
       - DrinkMug
       - DrinkMugMetal
       - DrinkGlass
-      - CableStack
       - CableMVStack
       - CableHVStack
       - LightReplacer
@@ -110,6 +144,11 @@
       - WetFloorSign
       - KitchenKnife
       - ButchCleaver
+      - ClothingHeadHatCone #Frontier
+      - MailCapsule #Frontier
+      - LanternNF # Frontier
+      - PillCanister # Frontier
+      - ChemistryEmptyBottle01 # Frontier
       - ServiceRollingPin # Frontier
       - ServiceSpoon # Frontier
       - ServiceFork # Frontier
@@ -119,8 +158,14 @@
       - ServiceFoodPlateSmall # Frontier
       - ServiceFoodPlateTin # Frontier
       - ServiceFoodKebabSkewer # Frontier
-      - NapkinDrum
-      - Napkin
+      - DrinkShotGlass # Frontier
+      - DrinkGlassCoupeShaped # Frontier
+      - CustomDrinkJug # Frontier
+      - FoodPlatePlastic # Frontier
+      - FoodPlateSmallPlastic # Frontier
+      - Mousetrap # Frontier
+      - NapkinDrum # Frontier
+      - Napkin # Frontier
       - Beaker # Frontier
       - LargeBeaker # Frontier
       - ServiceSelectiveDropper # Frontier
@@ -144,16 +189,11 @@
       - Spade
       - Clippers
       - Shovel # Below is shared with other lathes
-      - SheetSteel
-      - SheetPlasteel
-      - SheetPlasma
-      - SheetGlass1
-      - SheetRGlass
-      - SheetPlastic
       - ClothingOuterHardsuitBasic # Frontier
       - ClothingOuterHardsuitPilot # Frontier
       - ClothingOuterHardsuitClown # Frontier
       - ClothingOuterHardsuitMime # Frontier
+      - Jug # Frontier
   - type: MaterialStorage
     whitelist:
       tags:
