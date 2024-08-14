@@ -1,5 +1,6 @@
 using Robust.Server.Player;
 using Robust.Shared.Timing;
+using Content.Server.Administration.Systems;
 using Content.Shared.Alert;
 using Content.Shared.CombatMode.Pacification;
 using Content.Shared.Humanoid;
@@ -18,6 +19,7 @@ namespace Content.Server._NF.PacifiedZone
         [Dependency] private readonly AlertsSystem _alerts = default!;
         [Dependency] private readonly IPlayerManager _playerManager = default!;
         [Dependency] private readonly PlayTimeTrackingManager _playtimeTracking = default!;
+        [Dependency] private readonly AdminSystem _admin = default!;
 
         private const string Alert = "PacifiedZone";
 
@@ -64,24 +66,26 @@ namespace Content.Server._NF.PacifiedZone
             var query = _lookup.GetEntitiesInRange<HumanoidAppearanceComponent>(Transform(genUid).Coordinates, component.Radius);
             foreach (var humanoidUid in query)
             {
+                // Check preconditions for an entity to be pacified at all.
+                // If player matches an immune role, or has playtime above a zone's threshold, it should not be pacified.
                 if (!_mindSystem.TryGetMind(humanoidUid, out var mindId, out var mind))
                     continue;
 
                 _jobSystem.MindTryGetJobId(mindId, out var jobId);
 
-                // Player matches an immune role, should not be pacified.
                 if (jobId != null && component.ImmuneRoles.Contains(jobId.Value))
                     continue;
 
                 if (component.ImmunePlaytime != null)
                 {
-                    if (!_playerManager.TryGetSessionByEntity(humanoidUid, out var session) ||
-                        _playtimeTracking.GetOverallPlaytime(session) >= component.ImmunePlaytime)
+                    var playerInfo = _admin.GetCachedPlayerInfo(mind?.UserId);
+                    if (playerInfo != null && playerInfo.OverallPlaytime >= component.ImmunePlaytime)
                     {
                         continue;
                     }
                 }
 
+                // Existing entity, note it still exists.
                 if (component.TrackedEntities.Contains(humanoidUid))
                 {
                     // Entity still in zone.
