@@ -16,6 +16,7 @@ using Content.Shared.Localizations;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
+using Content.Shared.Coordinates;
 
 namespace Content.Server.Salvage;
 
@@ -206,10 +207,52 @@ public sealed partial class SalvageSystem
 
                             //this whole code snippet makes me question humanity. the following code block is a fix for frontier.
                             var mapId = _gameTicker.DefaultMap;
-                            var mapUid = _mapManager.GetMapEntityId(mapId);
-                            var dropLocation = _random.NextVector2(750, 2750);
+                            if (!_mapSystem.TryGetMap(mapId, out var mapUid))
+                            {
+                                Log.Warning("Could not get DefaultMap EntityUID");
+                                continue;
+                            }
 
-                            _shuttle.FTLToCoordinates(shuttleUid, shuttle, new EntityCoordinates(mapUid, dropLocation), 0f, 5.5f, 50f);
+                            // Try to find a position that doesn't intersect with any stations.
+                            int numRetries = 20; // CVAR?
+                            float minDistance = 200f; // CVAR?
+
+                            // Get a list of all station positions
+                            List<Vector2> gridCoords = new();
+                            foreach (var station in _station.GetStations())
+                            {
+                                if (!TryComp<StationDataComponent>(station, out var stationComp))
+                                    continue;
+                                foreach (var grid in stationComp.Grids)
+                                {
+                                    gridCoords.Add(_transform.GetWorldPosition(grid));
+                                }
+                            }
+
+                            float minRange = 750f;
+                            float maxRange = 3500f;
+                            Vector2 dropLocation = _random.NextVector2(minRange, maxRange);
+                            for (int i = 0; i < numRetries; i++)
+                            {
+                                bool positionIsValid = true;
+                                foreach (var station in gridCoords)
+                                {
+                                    if (Vector2.Distance(station, dropLocation) < minDistance)
+                                    {
+                                        positionIsValid = false;
+                                        break;
+                                    }
+                                }
+
+                                // We have a valid position
+                                if (positionIsValid)
+                                    break;
+
+                                // No vector yet, get next value.
+                                dropLocation = _random.NextVector2(minRange, maxRange);
+                            }
+
+                            _shuttle.FTLToCoordinates(shuttleUid, shuttle, new EntityCoordinates(mapUid.Value, dropLocation), 0f, 5.5f, 50f);
                         }
 
                         break;
