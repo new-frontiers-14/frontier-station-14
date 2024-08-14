@@ -205,32 +205,29 @@ public sealed partial class SalvageSystem
                             if (shuttleXform.MapUid != uid || HasComp<FTLComponent>(shuttleUid))
                                 continue;
 
-                            //this whole code snippet makes me question humanity. the following code block is a fix for frontier.
+                            // Frontier: try to find a potential destination for ship that doesn't collide with other grids.
                             var mapId = _gameTicker.DefaultMap;
                             if (!_mapSystem.TryGetMap(mapId, out var mapUid))
                             {
-                                Log.Warning("Could not get DefaultMap EntityUID");
+                                Log.Error($"Could not get DefaultMap EntityUID, shuttle {shuttleUid} may be stuck on expedition.");
                                 continue;
                             }
 
-                            // Try to find a position that doesn't intersect with any stations.
-                            int numRetries = 20; // CVAR?
-                            float minDistance = 200f; // CVAR?
+                            // Destination generator parameters (move to CVAR?)
+                            int numRetries = 20; // Maximum number of retries
+                            float minDistance = 200f; // Minimum distance from another object, in meters
+                            float minRange = 750f; // Minimum distance from sector centre, in meters
+                            float maxRange = 3500f; // Maximum distance from sector centre, in meters
 
-                            // Get a list of all station positions
+                            // Get a list of all grid positions on the destination map
                             List<Vector2> gridCoords = new();
-                            foreach (var station in _station.GetStations())
+                            var gridQuery = EntityManager.AllEntityQueryEnumerator<MapGridComponent, TransformComponent>();
+                            while (gridQuery.MoveNext(out var _, out _, out var xform))
                             {
-                                if (!TryComp<StationDataComponent>(station, out var stationComp))
-                                    continue;
-                                foreach (var grid in stationComp.Grids)
-                                {
-                                    gridCoords.Add(_transform.GetWorldPosition(grid));
-                                }
+                                if (xform.MapID == mapId)
+                                    gridCoords.Add(_transform.GetWorldPosition(xform));
                             }
 
-                            float minRange = 750f;
-                            float maxRange = 3500f;
                             Vector2 dropLocation = _random.NextVector2(minRange, maxRange);
                             for (int i = 0; i < numRetries; i++)
                             {
@@ -244,15 +241,15 @@ public sealed partial class SalvageSystem
                                     }
                                 }
 
-                                // We have a valid position
                                 if (positionIsValid)
                                     break;
 
-                                // No vector yet, get next value.
+                                // No good position yet, pick another random position.
                                 dropLocation = _random.NextVector2(minRange, maxRange);
                             }
 
                             _shuttle.FTLToCoordinates(shuttleUid, shuttle, new EntityCoordinates(mapUid.Value, dropLocation), 0f, 5.5f, 50f);
+                            // End Frontier:  try to find a potential destination for ship that doesn't collide with other grids.
                         }
 
                         break;
