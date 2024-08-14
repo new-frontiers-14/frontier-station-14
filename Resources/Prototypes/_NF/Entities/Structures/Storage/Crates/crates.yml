@@ -247,9 +247,9 @@
   name: mercenary crate
   components:
   - type: Icon
-    sprite: _NF/Structures/Storage/Crates/mercenary_secure.rsi
+    sprite: _NF/Structures/Storage/Crates/secure_mercenary.rsi
   - type: Sprite
-    sprite: _NF/Structures/Storage/Crates/mercenary_secure.rsi
+    sprite: _NF/Structures/Storage/Crates/secure_mercenary.rsi
   - type: AccessReader
     access: [["Mercenary"]]
 
@@ -259,9 +259,21 @@
   name: private security crate
   components:
   - type: Icon
-    sprite: _NF/Structures/Storage/Crates/privatesec_secure.rsi
+    sprite: _NF/Structures/Storage/Crates/secure_privatesec.rsi
   - type: Sprite
-    sprite: _NF/Structures/Storage/Crates/privatesec_secure.rsi
+    sprite: _NF/Structures/Storage/Crates/secure_privatesec.rsi
+  - type: AccessReader
+    access: [["Mercenary"]]
+
+- type: entity
+  parent: CrateBaseSecure
+  id: CrateAmmoSecureMercenary
+  name: secure ammo crate
+  components:
+  - type: Icon
+    sprite: _NF/Structures/Storage/Crates/secure_ammo.rsi
+  - type: Sprite
+    sprite: _NF/Structures/Storage/Crates/secure_ammo.rsi
   - type: AccessReader
     access: [["Mercenary"]]
 
@@ -271,6 +283,6 @@
   name: secure firearms crate
   components:
   - type: Icon
-    sprite: _NF/Structures/Storage/Crates/firearms_secure.rsi
+    sprite: _NF/Structures/Storage/Crates/secure_firearms.rsi
   - type: Sprite
-    sprite: _NF/Structures/Storage/Crates/firearms_secure.rsi
+    sprite: _NF/Structures/Storage/Crates/secure_firearms.rsi
