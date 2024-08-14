@@ -53,7 +53,7 @@ public sealed class DeadDropSystem : EntitySystem
         SubscribeLocalEvent<DeadDropComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<DeadDropComponent, GetVerbsEvent<InteractionVerb>>(AddSearchVerb);
         SubscribeLocalEvent<StationDeadDropComponent, ComponentStartup>(OnStationStartup);
-        SubscribeLocalEvent<SectorDeadDropComponent, StationsGeneratedEvent>(OnStationsGenerated);
+        SubscribeLocalEvent<StationsGeneratedEvent>(OnStationsGenerated);
     }
 
     // There is some redundancy here - this should ideally run once over all the stations once worldgen is complete
@@ -92,8 +92,14 @@ public sealed class DeadDropSystem : EntitySystem
         }
     }
 
-    private void OnStationsGenerated(EntityUid uid, SectorDeadDropComponent component, StationsGeneratedEvent args)
+    private void OnStationsGenerated(StationsGeneratedEvent args)
     {
+        Log.Error("OnStationsGenerated!");
+        if (!TryComp<SectorDeadDropComponent>(_sectorService.GetServiceEntity(), out var component))
+        {
+            Log.Error("OnStationsGenerated: no dead drop service!");
+            return;
+        }
         // Distribute total number of dead drops to assign between each station.
         var remainingDeadDrops = component.MaxSectorDeadDrops;
 
@@ -104,34 +110,62 @@ public sealed class DeadDropSystem : EntitySystem
             var deadDropCount = int.Min(remainingDeadDrops, _random.Next(0, stationDeadDrop.MaxDeadDrops + 1));
             assignedDeadDrops[station] = (deadDropCount, stationDeadDrop.MaxDeadDrops);
             remainingDeadDrops -= deadDropCount;
+            Log.Error($"OnStationsGenerated: assigned {deadDropCount} dead drops to station w/ UID {station.Id}");
         }
 
         // We have remaining dead drops, assign them to whichever stations have remaining space (in a random order)
         if (remainingDeadDrops > 0)
         {
+            Log.Error($"OnStationsGenerated: {remainingDeadDrops} dead drops still to assign.");
             var stationList = assignedDeadDrops.Keys.ToList();
             _random.Shuffle(stationList);
             foreach (var station in stationList)
             {
                 var dropTuple = assignedDeadDrops[station];
+
+                // Insert as many dead drops here as we can.
                 var remainingSpace = dropTuple.max - dropTuple.assigned;
                 remainingSpace = int.Min(remainingSpace, remainingDeadDrops);
                 dropTuple.assigned += remainingSpace;
                 assignedDeadDrops[station] = dropTuple;
 
+                // Adjust global counts.
+                remainingDeadDrops -= remainingSpace;
+
+                Log.Error($"OnStationsGenerated: assigned {remainingSpace} dead drops to station w/ UID {station.Id}.");
+
                 if (remainingDeadDrops <= 0)
                     break;
             }
         }
+        
+        Log.Error($"OnStationsGenerated: enumerating PotentialDeadDropComponent w/EntityQueryEnumerator.");
+        var pdq1 = EntityQueryEnumerator<PotentialDeadDropComponent>();
+        while (pdq1.MoveNext(out var ent, out var potentialDrop))
+        {
+            Log.Error($"OnStationsGenerated: entity query enumerator: checking {ent}.");
+        }
+
+        // Log.Error($"OnStationsGenerated: enumerating PotentialDeadDropComponent w/EntityQuery.");
+        // var pdq2 = new EntityQuery<PotentialDeadDropComponent>(true);
+        // foreach (var ent in pdq2)
+        // {
+        //     Log.Error($"OnStationsGenerated: entity query enumerator: checking {ent.Owner}.");
+        // }
 
         // For each station, distribute its assigned dead drops to potential dead drop components available on their grids.
         Dictionary<EntityUid, List<EntityUid>> potentialDropEntitiesPerStation = new();
         var potentialDropQuery = AllEntityQuery<PotentialDeadDropComponent>();
+        Log.Error($"OnStationsGenerated: enumerating PotentialDeadDropComponent w/AllEntityQuery.");
         while (potentialDropQuery.MoveNext(out var ent, out var potentialDrop))
         {
+            Log.Error($"OnStationsGenerated: checking entity's station {ent}.");
             var station = _station.GetOwningStation(ent);
             if (station is null)
+            {
+                Log.Error($"OnStationsGenerated: null station.");
                 continue;
+            }
 
             var stationUid = station.Value;
             if (assignedDeadDrops.ContainsKey(stationUid))
@@ -140,20 +174,30 @@ public sealed class DeadDropSystem : EntitySystem
                     potentialDropEntitiesPerStation[stationUid] = new List<EntityUid>();
 
                 potentialDropEntitiesPerStation[stationUid].Add(ent);
+                Log.Error($"OnStationsGenerated: associated potential dead drop: {stationUid}:{ent}.");
+            }
+            else
+            {
+                Log.Error($"OnStationsGenerated: assignedDeadDrops does not contain {stationUid}.");
             }
         }
 
         List<(EntityUid, EntityUid)> deadDropStationTuples = new();
         foreach (var (station, potentialDropList) in potentialDropEntitiesPerStation)
         {
+            Log.Error($"OnStationsGenerated: assigning dead drops for station {station}.");
             if (!assignedDeadDrops.TryGetValue(station, out var stationDrops))
+            {
+                Log.Error($"OnStationsGenerated: station {station} not in map.");
                 continue;
+            }
 
             _random.Shuffle(potentialDropList);
-            for (int i = 0; i < stationDrops.assigned && i < potentialDropList.Count; i++)
+            for (int i = 0; i < potentialDropList.Count && i < stationDrops.assigned; i++)
             {
                 EnsureComp<DeadDropComponent>(potentialDropList[i]);
                 deadDropStationTuples.Add((station, potentialDropList[i]));
+                Log.Error($"OnStationsGenerated: assigned dead drop {station}:{potentialDropList[i]}.");
             }
         }
 
@@ -162,6 +206,7 @@ public sealed class DeadDropSystem : EntitySystem
         while (hintQuery.MoveNext(out var ent, out var _))
         {
             var hintCount = _random.Next(2, 5);
+            Log.Error($"OnStationsGenerated: assigning dead drop hints for {ent} (picking {hintCount}).");
             _random.Shuffle(deadDropStationTuples);
 
             var hintLines = new StringBuilder();
@@ -169,19 +214,24 @@ public sealed class DeadDropSystem : EntitySystem
             for (var i = 0; i < deadDropStationTuples.Count && hints < hintCount; i++)
             {
                 var hintTuple = deadDropStationTuples[i];
-                var objectHintString = "dead-drop-hint-generic";
+                Log.Error($"OnStationsGenerated: assigning dead drop hint for {ent}: {hintTuple.Item2}.");
+                string objectHintString;
                 if (TryComp<PotentialDeadDropComponent>(hintTuple.Item2, out var potentialDeadDrop))
-                    objectHintString = potentialDeadDrop.HintText;
+                    objectHintString = Loc.GetString(potentialDeadDrop.HintText);
+                else
+                    objectHintString = Loc.GetString("dead-drop-hint-generic");
 
-                var stationHintString = "dead-drop-station-hint-generic";
+                string stationHintString;
                 if (TryComp<MetaDataComponent>(hintTuple.Item1, out var stationMetadata))
                     stationHintString = stationMetadata.EntityName;
+                else
+                    stationHintString = Loc.GetString("dead-drop-station-hint-generic");
 
                 hintLines.AppendLine(Loc.GetString("dead-drop-hint-line", ("object", objectHintString), ("poi", stationHintString)));
                 hints++;
             }
             var hintText = new StringBuilder();
-            hintText.AppendLine(Loc.GetString("dead-drop-hint", ("drops", hintLines)));
+            hintText.AppendLine(Loc.GetString("dead-drop-hint-note", ("drops", hintLines)));
 
             // Select some number of dead drops to hint
             if (TryComp<PaperComponent>(ent, out var paper))
