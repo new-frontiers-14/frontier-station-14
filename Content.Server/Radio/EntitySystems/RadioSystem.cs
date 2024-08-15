@@ -131,12 +131,20 @@ public sealed class RadioSystem : EntitySystem
             ? FormattedMessage.EscapeText(message)
             : message;
 
+        // Frontier: append frequency if the channel requests it
+        string channelText;
+        if (channel.ShowFrequency)
+            channelText = $"\\[{channel.LocalizedName} ({frequency})\\]";
+        else
+            channelText = $"\\[{channel.LocalizedName}\\]";
+        // End Frontier
+
         var wrappedMessage = Loc.GetString(speech.Bold ? "chat-radio-message-wrap-bold" : "chat-radio-message-wrap",
             ("color", channel.Color),
             ("fontType", speech.FontId),
             ("fontSize", speech.FontSize),
             ("verb", Loc.GetString(_random.Pick(speech.SpeechVerbStrings))),
-            ("channel", $"\\[{channel.LocalizedName}\\]"),
+            ("channel", channelText), // Frontier: $"\\[{channel.LocalizedName}\\]"<channelText
             ("name", name),
             ("message", content));
 
@@ -161,10 +169,8 @@ public sealed class RadioSystem : EntitySystem
 
         var radioQuery = EntityQueryEnumerator<ActiveRadioComponent, TransformComponent>();
 
-        /*Nuclear-14-Start*/
-        if (frequency == null)
-            frequency = GetFrequency(messageSource, channel);
-        /*Nuclear-14-End*/
+        if (frequency == null) // Nuclear-14
+            frequency = GetFrequency(messageSource, channel); // Nuclear-14
 
         while (canSend && radioQuery.MoveNext(out var receiver, out var radio, out var transform))
         {
@@ -175,9 +181,8 @@ public sealed class RadioSystem : EntitySystem
                     continue;
             }
 
-            // Nuclear-14
-            if (!HasComp<GhostComponent>(receiver) && GetFrequency(receiver, channel) != frequency)
-                continue;
+            if (!HasComp<GhostComponent>(receiver) && GetFrequency(receiver, channel) != frequency) // Nuclear-14
+                continue; // Nuclear-14
 
             if (!channel.LongRange && transform.MapID != sourceMapId && !radio.GlobalReceive)
                 continue;

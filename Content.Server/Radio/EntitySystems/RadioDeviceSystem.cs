@@ -34,6 +34,10 @@ public sealed class RadioDeviceSystem : EntitySystem
     // Used to prevent a shitter from using a bunch of radios to spam chat.
     private HashSet<(string, EntityUid)> _recentlySent = new();
 
+    // Frontier: minimum, maximum radio frequencies
+    private const int MinRadioFrequency = 1000;
+    private const int MaxRadioFrequency = 3000;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -326,7 +330,10 @@ public sealed class RadioDeviceSystem : EntitySystem
         if (!args.Actor.Valid)
             return;
 
-        microphone.Comp.Frequency = args.Frequency;
+        // Update frequency if valid and within range.
+        if (args.Frequency >= MinRadioFrequency && args.Frequency <= MaxRadioFrequency)
+            microphone.Comp.Frequency = args.Frequency;
+        // Update UI with current frequency.
         UpdateHandheldRadioUi(microphone);
     }
 
@@ -338,8 +345,8 @@ public sealed class RadioDeviceSystem : EntitySystem
         var micEnabled = radio.Comp.Enabled;
         var speakerEnabled = speakerComp?.Enabled ?? false;
         var state = new HandheldRadioBoundUIState(micEnabled, speakerEnabled, frequency);
-        if(TryComp<UserInterfaceComponent>(radio, out var uiComp))
-            _ui.SetUiState((radio.Owner, uiComp), HandheldRadioUiKey.Key, state); // Frontier: SetUiState<TrySetUiState
+        if (TryComp<UserInterfaceComponent>(radio, out var uiComp))
+            _ui.SetUiState((radio.Owner, uiComp), HandheldRadioUiKey.Key, state); // Frontier: TrySetUiState<SetUiState
     }
 
     #endregion
