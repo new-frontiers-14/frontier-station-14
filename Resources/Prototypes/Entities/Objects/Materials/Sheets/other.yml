@@ -114,7 +114,7 @@
     - Sheet
   - type: StackPrice
     price: 10
-    vendPrice: 1200 # Frontier: FuelVend price
+    vendPrice: 2000 # Frontier: FuelVend price (should be more expensive than cargo market)
 # End of modified code
 
 - type: entity
@@ -191,8 +191,6 @@
   - type: Stack
     count: 1
 
-# New Frontiers - FuelVend - Expensive uranium sheets
-# This code is licensed under AGPLv3. See LICENSE
 - type: entity
   parent: [SheetOtherBase, FoodBase]
   id: SheetUranium
@@ -232,9 +230,8 @@
         - ReagentId: Radium
           Quantity: 2
         canReact: false
-  - type: StaticPrice # Frontier: FuelVend price (use inheritance from FoodBase)
-    vendPrice: 2500 # Frontier: FuelVend price
-# End of modified code
+  - type: StaticPrice # Frontier: FuelVend price
+    vendPrice: 3000 # Frontier: FuelVend price
 
 - type: entity
   parent: SheetUranium
