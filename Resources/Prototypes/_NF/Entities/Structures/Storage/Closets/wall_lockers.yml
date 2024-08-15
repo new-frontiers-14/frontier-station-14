@@ -1,4 +1,5 @@
 # Frontier-specific parent for turning regular objects into wallmounts to avoid redefining upstream prototypes.
+# Base
 - type: entity
   parent: BaseStructureUnanchorable
   id: BaseWallmount
@@ -15,6 +16,181 @@
     fixtures: {}
   - type: WallMount
 
+- type: entity # Base for yml-colored lockers
+  abstract: true
+  id: LockerWallColorBase
+  parent: [ BaseWallCloset, BaseWallmount ]
+  suffix: Frontier
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Storage/wall_locker_color.rsi
+  - type: Lock
+  - type: LockVisuals
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBase: base
+    stateDoorOpen: open
+    stateDoorClosed: door
+  - type: GenericVisualizer
+    visuals:
+      enum.StorageVisuals.Open:
+        decal1:
+          True: { visible: false }
+          False: { visible: true }
+        decal2:
+          True: { visible: false }
+          False: { visible: true }
+
+# Fuel / materials storage
+- type: entity
+  id: LockerWallColorFuelPlasma
+  parent: LockerWallColorBase
+  name: plasma fuel wall locker
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.StorageVisualLayers.Base"]
+      color: "#b97644"
+    - state: door
+      map: ["enum.StorageVisualLayers.Door"]
+      color: "#b97644"
+    - state: door-decal-line-01
+      map: [ decal1 ]
+      color: "#fff4e2"
+    - state: door-decal-fuel-plasma
+      map: [ decal2 ]
+      color: "#fff4e2"
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+
+- type: entity
+  id: LockerWallColorUranium
+  parent: LockerWallColorBase
+  name: uranium fuel wall locker
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.StorageVisualLayers.Base"]
+      color: "#287529"
+    - state: door
+      map: ["enum.StorageVisualLayers.Door"]
+      color: "#287529"
+    - state: door-decal-line-01
+      map: [ decal1 ]
+      color: "#f4d81e"
+    - state: door-decal-fuel-uranium
+      map: [ decal2 ]
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+
+- type: entity
+  id: LockerWallColorWelding
+  parent: LockerWallColorBase
+  name: welding fuel wall locker
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.StorageVisualLayers.Base"]
+      color: "#ae2023"
+    - state: door
+      map: ["enum.StorageVisualLayers.Door"]
+      color: "#ae2023"
+    - state: door-decal-line-01
+      map: [ decal1 ]
+      color: "#dba124"
+    - state: door-decal-fuel-welding
+      map: [ decal2 ]
+      color: "#dba124"
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+
+- type: entity
+  id: LockerWallColorAme
+  parent: LockerWallColorBase
+  name: AME fuel wall locker
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.StorageVisualLayers.Base"]
+      color: "#b97644"
+    - state: door
+      map: ["enum.StorageVisualLayers.Door"]
+      color: "#b97644"
+    - state: door-decal-line-01
+      map: [ decal1 ]
+      color: "#fff4e2"
+    - state: door-decal-fuel-ame
+      map: [ decal2 ]
+      color: "#fff4e2"
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+
+- type: entity
+  id: LockerWallColorBananium
+  parent: LockerWallColorBase
+  name: bananium fuel wall locker
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.StorageVisualLayers.Base"]
+      color: "#c67421"
+    - state: door
+      map: ["enum.StorageVisualLayers.Door"]
+      color: "#c67421"
+    - state: door-decal-line-01
+      map: [ decal1 ]
+      color: "#ac221c"
+    - state: door-decal-fuel-uranium
+      map: [ decal2 ]
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+
+- type: entity
+  id: LockerWallColorMaterials
+  parent: LockerWallColorBase
+  name: materials wall locker
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.StorageVisualLayers.Base"]
+      color: "#707070"
+    - state: door
+      map: ["enum.StorageVisualLayers.Door"]
+      color: "#707070"
+    - state: door-decal-line-01
+      map: [ decal1 ]
+      color: "#ad8c27"
+    - state: door-decal-engi-01
+      map: [ decal2 ]
+      color: "#ad8c27"
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+
+# Other: Chemistry wall locker
 - type: entity
   id: LockerWallChemistry
   parent: [LockerWallMedical, BaseWallmount]
