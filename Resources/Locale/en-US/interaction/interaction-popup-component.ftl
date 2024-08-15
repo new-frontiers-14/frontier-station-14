@@ -81,8 +81,3 @@ hugging-success-generic-target = { CAPITALIZE(THE($user)) } hugs you.
 
 petting-success-tesla = You pet {THE($target)}, violating the laws of nature and physics.
 petting-failure-tesla = You reach out towards {THE($target)}, but {SUBJECT($target)} {CONJUGATE-BASIC($target, "zap", "zaps")} your hand away.
-
-## Patting players
-pat-success-generic = You pet {THE($target)} soft fluffy head.
-pat-success-generic-others = { CAPITALIZE(THE($user)) } pets {THE($target)} soft fluffy head.
-pat-success-generic-target = { CAPITALIZE(THE($user)) } pets your soft fluffy head.

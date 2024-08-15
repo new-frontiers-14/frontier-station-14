@@ -113,7 +113,31 @@ public sealed partial class JobRequirementsManager : ISharedPlaytimeManager
     public bool CheckRoleTime(JobPrototype job, [NotNullWhen(false)] out FormattedMessage? reason)
     {
         var reqs = _entManager.System<SharedRoleSystem>().GetJobRequirement(job);
-        return CheckRoleTime(reqs, out reason);
+
+        //return CheckRoleTime(reqs, out reason); // Frontier: old implementation
+
+        // Frontier: alternate role time checks
+        if (CheckRoleTime(reqs, out reason))
+            return true;
+
+        var altReqs = _entManager.System<SharedRoleSystem>().GetAlternateJobRequirements(job);
+        if (altReqs != null)
+        {
+            foreach (var alternateSet in altReqs.Values)
+            {
+                // Suppress reasons on alternate requirement sets
+                if (CheckRoleTime(alternateSet, out var altReason))
+                {
+                    return true;
+                }
+                reason.PushNewline();
+                reason.AddMarkupPermissive(Loc.GetString("role-requirement-alternative"));
+                reason.PushNewline();
+                reason.AddMarkupPermissive(altReason.ToMarkup());
+            }
+        }
+        return false;
+        // End Frontier: alternate role time checks
     }
 
     public bool CheckRoleTime(HashSet<JobRequirement>? requirements, [NotNullWhen(false)] out FormattedMessage? reason)
