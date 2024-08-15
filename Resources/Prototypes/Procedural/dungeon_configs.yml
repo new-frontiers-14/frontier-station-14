@@ -125,7 +125,7 @@
       Entrance: LavaBrigEntrance
       EntranceFlank: BaseWindow
       Junction: BaseAirlock
-      WallMounts: ScienceLabsWalls
+      #WallMounts: NanoTrasenFasilityWallmounts # Frontier: ScienceLabsWalls<NanoTrasenFasilityWallmounts
       Window: BaseWindow
     whitelists:
       Rooms:
@@ -133,7 +133,7 @@
         - LavaBrig
   layers:
   - !type:PrototypeDunGen
-    proto: PlanetBase
+    proto: Everything # Frontier: PlanetBase<Everything
 
 - type: dungeonConfig
   id: Mineshaft
@@ -146,6 +146,7 @@
       Entrance: BaseWoodWall
       EntranceFlank: BaseWoodWall
       Junction: BaseWoodSupport
+      #WallMounts: NanoTrasenFasilityWallmounts # Frontier:added WallMounts: NanoTrasenFasilityWallmounts
       Window: BaseWoodWall
     tiles:
       FallbackTile: FloorCaveDrought
@@ -155,7 +156,7 @@
         - Mineshaft
   layers:
   - !type:PrototypeDunGen
-    proto: PlanetBase
+    proto: Everything # Frontier: PlanetBase<Everything
 
 - type: dungeonConfig
   id: SnowyLabs
@@ -200,7 +201,7 @@
 - type: entitySpawnEntry
   id: BaseWindow
   entries:
-  - id: GrilleDungeon # Frontier: Grille<GrilleDungeon
+  - id: GrilleDungeon # Frontier: GrilleDungeon<GrilleDungeon
   - id: WindowDungeon # Frontier: Window<WindowDungeon
 
 # Lava brig
