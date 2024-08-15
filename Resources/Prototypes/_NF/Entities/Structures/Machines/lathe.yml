@@ -481,6 +481,8 @@
       - WeaponCaseShort
       - WeaponCaseLong
       - WeaponCaseHeavy
+      - WeaponCaseShortAmmo
+      - WeaponCaseShortExplosives
     ## Weapons
       - CombatKnife
       - WeaponLaserSvalinn # After the changes made to windows shouldn't be that much of an issue now if it's widely available
@@ -682,23 +684,56 @@
       - ClothingNeckIFFBlue
       - ClothingNeckIFFOrange
       - ClothingNeckIFFPurple
-      - ClothingHeadHelmetMercenary
-      - ClothingHeadHelmetBasic
-      - ClothingOuterVestWebMercenary
-      - ClothingOuterVestWebMercenaryBlack
-      - ClothingBeltMercenaryWebbing
-      - ClothingBeltMilitaryWebbing
-      - ClothingHandsMercenaryGlovesCombat
-      - ClothingHandsGlovesCombat
-      - ClothingShoesBootsMercenary
-      - ClothingShoesBootsCombat
-      - ClothingShoesBootsJack
-      - ClothingEyesGlassesMercenary
-      - ClothingEyesGlassesSunglasses
-      - ClothingMaskGasMercenary
-      - ClothingMaskBreathMedicalSecurity
-      - ClothingMaskGasSecurity
-      - ClothingBeltBandolier
+      - ClothingOuterArmorPunkRandomized
+      - ClothingOuterArmorPunkRed
+      - ClothingOuterArmorPunkGreen
+      - ClothingOuterArmorPunkOrange
+      - ClothingOuterArmorElitePunkRandomized
+      - ClothingBeltPunkRandomized
+      - ClothingShoesBootsPunkRandomized
+      - ClothingEyesPunkGoggles
+      - ClothingEyesPunkInfoShades
+      - ClothingMaskPunkHalf
+      - ClothingUniformRandomPunkTanktop
+      - ClothingUniformRandomPunkTanktopShorts
+      - ClothingUniformRandomPunkCroptop
+      - ClothingUniformRandomPunkCroptopShorts
+      - ClothingOuterCoatLettermanRandomized
+      - ClothingOuterCoatBomberRandomized
+    ## Storage
+      - MedkitCombat
+      - WeaponCaseShort
+      - WeaponCaseLong
+      - WeaponCaseHeavy
+      - WeaponCaseShortAmmo
+      - WeaponCaseShortExplosives
+    ## Weapons
+      - WeaponLaserSvalinn # After the changes made to windows shouldn't be that much of an issue now if it's widely available
+      - WeaponLaserPistolNF
+      - WeaponPistolMk58NF
+      - WeaponRifleNovaliteC1
+      - WeaponRifleGestio
+      - BaseBallBatNF
+      - KatanaNF
+      - KukriKnifeNF
+    ## Ammo boxes
+      - BoxLethalshot
+      - MagazineBoxLightRifle
+      - MagazineBoxPistol
+      - MagazineBoxRifle
+    ## Mags / Speedloaders / Clips
+      - MagazineNovaliteC1Empty
+      - MagazineNovaliteC1
+      - MagazineLightRifleLowCapacityEmpty
+      - MagazineLightRifleLowCapacity
+      - MagazineLightRifle
+      - MagazineLightRifleEmpty
+      - MagazineRifle
+      - MagazineRifleEmpty
+      - MagazinePistol
+      - MagazinePistolEmpty
+      - SpeedLoaderRifleHeavy
+      - SpeedLoaderRifleHeavyEmpty
     dynamicRecipes:
     # Shared lathe recipes
     ## Advanced tools
@@ -709,3 +744,85 @@
       - PowerCellHigh
       - PowerCellHyper
       - PowerCellMicroreactor
+    # Merc techfab
+    # Mercenary techfab
+    ## Armor
+      - TelescopicShield
+      - ClothingOuterArmorBulletproofNF
+      - ClothingOuterCoatBHTrench
+    ## EVA / Hardsuits
+      - ClothingOuterHardsuitCap
+      - ClothingOuterHardsuitMercenary
+      - ClothingOuterHardsuitPrivateSecurity
+      - ClothingOuterHardsuitScaf
+    ## Utilities
+      - ForensicPad
+      - ClothingEyesHudBountyHunter
+      - PinpointerUniversalNF
+      - Handcuffs
+      - SignalTrigger
+      - PortableRecharger
+      - TimerTrigger
+      - VoiceTrigger
+      - TurboItemRechargerCircuitboard
+      - ClothingBackpackHolding
+      - ClothingBackpackSatchelHolding
+      - ClothingBackpackDuffelHolding
+      - ClothingBackpackMessengerHolding
+    ## Weapons
+      - WeaponGrapplingGun
+      - MacheteNF
+      - Stunbaton
+      - BolaNF
+      - ExplosivePayload
+      - FlashPayload
+      - ChemicalPayload
+      - WeaponShotgunKammererNF
+      - WeaponAdvancedLaser # After the changes made to windows shouldn't be that much of an issue now if it's widely available
+      - WeaponAntiqueLaserNF # After the changes made to windows shouldn't be that much of an issue now if it's widely available
+      - WeaponLaserCarbine
+      - WeaponDisabler
+    # Spicy
+      - BoxBeanbag
+      - BoxShotgunIncendiary
+      - BoxShotgunUranium
+      - BoxShellTranquilizer
+      - GrenadeBlast
+      - GrenadeEMP
+      - GrenadeFlash
+      - MagazineBoxLightRifleIncendiary
+      - MagazineBoxLightRifleUranium
+      - MagazineBoxMagnumIncendiary
+      - MagazineBoxMagnumUranium
+      - MagazineBoxPistolIncendiary
+      - MagazineBoxPistolUranium
+      - MagazineBoxRifleIncendiary
+      - MagazineBoxRifleUranium
+      - MagazineBoxLightRifleRubber
+      - MagazineBoxMagnumRubber
+      - MagazineBoxPistolRubber
+      - MagazineBoxRifleRubber
+      - MagazineGrenadeEmpty
+      - MagazineLightRifleIncendiary
+      - MagazineLightRifleUranium
+      - MagazinePistolIncendiary
+      - MagazinePistolUranium
+      - MagazineRifleIncendiary
+      - MagazineRifleUranium
+      - MagazineShotgunBeanbag
+      - MagazineShotgunIncendiary
+      # - PowerCageHigh
+      # - PowerCageMedium
+      # - PowerCageSmall
+      # - ShuttleGunDusterCircuitboard
+      # - ShuttleGunFriendshipCircuitboard
+      # - ShuttleGunPerforatorCircuitboard
+      # - ShuttleGunSvalinnMachineGunCircuitboard
+      - SpeedLoaderMagnumIncendiary
+      - SpeedLoaderMagnumUranium
+      - SpeedLoaderRifleHeavyIncendiary
+      - SpeedLoaderRifleHeavyUranium
+      - Truncheon
+#      - WeaponDisablerSMG
+      - WeaponLaserCannon
+      - WeaponXrayCannon
