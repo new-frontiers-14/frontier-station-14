@@ -48,6 +48,8 @@ public sealed class RadioDeviceSystem : EntitySystem
         SubscribeLocalEvent<IntercomComponent, ToggleIntercomMicMessage>(OnToggleIntercomMic);
         SubscribeLocalEvent<IntercomComponent, ToggleIntercomSpeakerMessage>(OnToggleIntercomSpeaker);
         SubscribeLocalEvent<IntercomComponent, SelectIntercomChannelMessage>(OnSelectIntercomChannel);
+
+        SubscribeLocalEvent<IntercomComponent, MapInitEvent>(OnMapInit); // Frontier
     }
 
     public override void Update(float frameTime)
@@ -279,5 +281,21 @@ public sealed class RadioDeviceSystem : EntitySystem
         if (TryComp<RadioSpeakerComponent>(ent, out var speaker))
             speaker.Channels = new(){ channel };
         Dirty(ent);
+    }
+
+    private void OnMapInit(EntityUid uid, IntercomComponent ent, MapInitEvent args) // Frontier - Init on map
+    {
+        if (ent.StartSpeakerOnMapInit)
+        {
+            SetSpeakerEnabled(uid, null, true);
+            ent.SpeakerEnabled = true;
+            _appearance.SetData(uid, RadioDeviceVisuals.Speaker, true);
+        }
+        if (ent.StartMicrophoneOnMapInit)
+        {
+            SetMicrophoneEnabled(uid, null, true);
+            ent.MicrophoneEnabled = true;
+            _appearance.SetData(uid, RadioDeviceVisuals.Broadcasting, true);
+        }
     }
 }
