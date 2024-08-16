@@ -1,1 +1,1 @@
-intercom-verb = Intercom
+intercom-verb = Open Intercom
