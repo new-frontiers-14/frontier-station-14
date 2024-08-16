@@ -4,6 +4,7 @@ using Content.Shared.Bank.Components;
 using Robust.Client.GameObjects;
 using Robust.Client.UserInterface.Controls;
 using System.Linq;
+using Content.Shared._NF.Cargo; // Frontier
 
 namespace Content.Client.VendingMachines
 {
@@ -31,13 +32,14 @@ namespace Content.Client.VendingMachines
 
             var entMan = IoCManager.Resolve<IEntityManager>();
             var vendingMachineSys = entMan.System<VendingMachineSystem>();
+            var sharedPricingSys = entMan.System<SharedPricingSystem>(); // Frontier
 
             if (entMan.TryGetComponent<MarketModifierComponent>(Owner, out var market))
                 _mod = market.Mod;
 
             _cachedInventory = vendingMachineSys.GetAllInventory(Owner);
 
-            _menu = new VendingMachineMenu { Title = entMan.GetComponent<MetaDataComponent>(Owner).EntityName };
+            _menu = new VendingMachineMenu(sharedPricingSys) { Title = entMan.GetComponent<MetaDataComponent>(Owner).EntityName };
 
             _menu.OnClose += Close;
             _menu.OnItemSelected += OnItemSelected;

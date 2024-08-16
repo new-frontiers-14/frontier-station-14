@@ -73,8 +73,6 @@
   - type: Stack
     count: 1
 
-# New Frontiers - FuelVend - Expensive plasma sheets
-# This code is licensed under AGPLv3. See LICENSE
 - type: entity
   parent: SheetOtherBase
   id: SheetPlasma
@@ -114,8 +112,6 @@
     - Sheet
   - type: StackPrice
     price: 10
-    vendPrice: 3000 # Frontier: FuelVend price (should be more expensive than cargo market)
-# End of modified code
 
 - type: entity
   parent: SheetPlasma
@@ -230,8 +226,6 @@
         - ReagentId: Radium
           Quantity: 2
         canReact: false
-  - type: StaticPrice # Frontier: FuelVend price
-    vendPrice: 3500 # Frontier: FuelVend price (needs to be more expensive than the cargo market price)
 
 - type: entity
   parent: SheetUranium
