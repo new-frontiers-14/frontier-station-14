@@ -1,0 +1,33 @@
+# Author Info
+# GitHub: mersen_tyn
+# Discord: kvasen and mersen
+
+# Maintainer Info
+# GitHub: ???
+# Discord: ???
+
+# Notes:
+# just a little loot n shoot POI. Pretty much the second POI to even exist
+- type: pointOfInterest
+  id: epsilon
+  name: 'Ретранслятор Эпсилон'
+  rangeMin: 4150
+  rangeMax: 6550
+  iffColor: "#C83737" #red the color of ebil
+  isHidden: true
+  spawnChance: 1
+  gridPath: /Maps/Corvax/POI/epsilon.yml
+
+- type: gameMap
+  id: epsilon
+  mapName: 'Ретранслятор Эпсилон'
+  mapPath: /Maps/Corvax/POI/epsilon.yml
+  minPlayers: 0
+  stations:
+    epsilon:
+      stationProto: StandardFrontierOutpost
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Ретранслятор Эпсилон'
+        - type: StationJobs
+          availableJobs: {}

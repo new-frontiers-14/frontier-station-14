@@ -1,0 +1,26 @@
+- type: vessel
+  id: QueenAnnesRevenge
+  name: Месть Королевы Анны
+  description: Среднегабаритный пиратский шаттл. Рекомендованный состав команды 2-8 человека.
+  price: 100000
+  category: Medium
+  group: BlackMarket
+  shuttlePath: /Maps/Corvax/Shuttles/BlackMarket/QueenAnnesRevenge.yml
+
+- type: gameMap
+  id: QueenAnnesRevenge
+  mapName: 'QueenAnnesRevenge'
+  mapPath: /Maps/Corvax/Shuttles/BlackMarket/QueenAnnesRevenge.yml
+  minPlayers: 0
+  stations:
+    QueenAnnesRevenge:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Месть Королевы Анны {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Pirate: [ 0, 0 ]

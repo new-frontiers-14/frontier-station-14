@@ -1,0 +1,33 @@
+# Author Info
+# GitHub: mersen_tyn
+# Discord: kvasen and mersen
+
+# Maintainer Info
+# GitHub: ???
+# Discord: ???
+
+# Notes:
+# just a little loot n shoot POI. Pretty much the second POI to even exist
+- type: pointOfInterest
+  id: Charlie
+  name: 'Синдикатовcкий аванпост Чарли'
+  rangeMin: 8150
+  rangeMax: 13550
+  iffColor: "#C83737" #red the color of ebil
+  isHidden: true
+  spawnChance: 1
+  gridPath: /Maps/Corvax/POI/charlie.yml
+
+- type: gameMap
+  id: Charlie
+  mapName: 'Синдикатовcкий аванпост Чарли'
+  mapPath: /Maps/Corvax/POI/charlie.yml
+  minPlayers: 0
+  stations:
+    Charlie:
+      stationProto: StandardFrontierOutpost
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Синдикатовcкий аванпост Чарли'
+        - type: StationJobs
+          availableJobs: {}

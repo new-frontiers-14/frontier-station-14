@@ -1,0 +1,31 @@
+# Author Info
+# GitHub: Leander_0
+
+# Shuttle Notes:
+# Kestrel looking ship with hangar bay meant to be used along with hoverbikes.
+- type: vessel
+  id: Falcon
+  name: Сокол
+  description: Пиратский среднегабаритный шаттл. Рекомендованный размер команды 3-4 человека.
+  price: 70000 #Selling price is 22520
+  category: Medium
+  group: BlackMarket
+  shuttlePath: /Maps/Corvax/Shuttles/BlackMarket/falcon.yml
+
+- type: gameMap
+  id: Falcon
+  mapName: 'Falcon'
+  mapPath: /Maps/Corvax/Shuttles/BlackMarket/falcon.yml
+  minPlayers: 0
+  stations:
+    Falcon:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Пустельга {1}' # Very fake name
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Pirate: [ 0, 0 ]

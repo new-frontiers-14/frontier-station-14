@@ -1,36 +1,36 @@
-# Author Info
-# GitHub: MagnusCrowe (https://github.com/magnuscrowe)
-# Discord: ???
+# # Author Info
+# # GitHub: MagnusCrowe (https://github.com/magnuscrowe)
+# # Discord: ???
 
-# Maintainer Info
-# GitHub: ???
-# Discord: ???
+# # Maintainer Info
+# # GitHub: ???
+# # Discord: ???
 
-# Shuttle Notes:
-#
-- type: vessel
-  id: Bocakillo
-  name: Сэндвич
-  description: Малогабаритный пиратский шаттл. Рекомендованный размер команды 2-3 человека.
-  price: 35000 #Cheap
-  category: Small
-  group: BlackMarket
-  shuttlePath: /Maps/_NF/Shuttles/BlackMarket/bocakillo.yml
+# # Shuttle Notes:
+# #
+# - type: vessel
+  # id: Bocakillo
+  # name: Сэндвич
+  # description: Малогабаритный пиратский шаттл. Рекомендованный размер команды 2-3 человека.
+  # price: 35000 #Cheap
+  # category: Small
+  # group: BlackMarket
+  # shuttlePath: /Maps/_NF/Shuttles/BlackMarket/bocakillo.yml
 
-- type: gameMap
-  id: Bocakillo
-  mapName: 'Bocakillo'
-  mapPath: /Maps/_NF/Shuttles/BlackMarket/bocakillo.yml
-  minPlayers: 0
-  stations:
-    Bocakillo:
-      stationProto: StandardFrontierVessel
-      components:
-        - type: StationNameSetup
-          mapNameTemplate: 'Сэндвич {1}' #Sneaky spoofed name
-          nameGenerator:
-            !type:NanotrasenNameGenerator
-            prefixCreator: '14'
-        - type: StationJobs
-          availableJobs:
-            Pirate: [ 0, 0 ]
+# - type: gameMap
+  # id: Bocakillo
+  # mapName: 'Bocakillo'
+  # mapPath: /Maps/_NF/Shuttles/BlackMarket/bocakillo.yml
+  # minPlayers: 0
+  # stations:
+    # Bocakillo:
+      # stationProto: StandardFrontierVessel
+      # components:
+        # - type: StationNameSetup
+          # mapNameTemplate: 'Сэндвич {1}' #Sneaky spoofed name
+          # nameGenerator:
+            # !type:NanotrasenNameGenerator
+            # prefixCreator: '14'
+        # - type: StationJobs
+          # availableJobs:
+            # Pirate: [ 0, 0 ]

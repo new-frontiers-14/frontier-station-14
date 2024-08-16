@@ -1,0 +1,31 @@
+# Author Info
+# GitHub: cheackraze
+
+# Shuttle Notes:
+# a wooden pirate version of the classic Prospector
+- type: vessel
+  id: Barnacle
+  name: Моряк
+  description: 'Малогабаритный пиратский шаттл.'
+  price: 16000
+  category: Small
+  group: BlackMarket
+  shuttlePath: /Maps/Corvax/Shuttles/BlackMarket/barnacle.yml
+
+- type: gameMap
+  id: Barnacle
+  mapName: 'Моряк'
+  mapPath: /Maps/Corvax/Shuttles/BlackMarket/barnacle.yml
+  minPlayers: 0
+  stations:
+    Barnacle:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Старатель {1}' # Fake name eh?
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs: 
+            Pirate: [ 0, 0 ]
