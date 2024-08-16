@@ -29,6 +29,39 @@
     appendName: true
 
 - type: entity
+  parent: BaseShuttleIntercom
+  id: ShuttleIntercomNfsd
+  abstract: true
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyTraffic
+      - EncryptionKeyNfsd
+
+- type: entity
+  parent: BaseShuttleIntercom
+  id: ShuttleIntercomAntag
+  abstract: true
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyTraffic
+      - EncryptionKeyFreelance
+
+- type: entity
+  parent: BaseShuttleIntercom
+  id: ShuttleIntercomSyndicate
+  abstract: true
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyTraffic
+      - EncryptionKeySyndie
+
+- type: entity
   id: IntercomNfsd
   parent: IntercomSecurity
   suffix: NFSD # Frontier - Not adding DO NOT MAP. (Prototype is already matched by "Security" for sec shipyard.)
