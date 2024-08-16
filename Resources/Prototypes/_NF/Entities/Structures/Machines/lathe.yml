@@ -263,6 +263,7 @@
       - AppraisalTool
       - HandLabeler
       - Signaller
+      - ClothingMaskWeldingGas
     ## Basic storage
       - ToolboxArtisticNF
       - ToolboxElectricalNF
@@ -290,7 +291,6 @@
       - AirTank
       - HandheldGPSBasic
     # Salvage techfab
-      - EmergencyRollerBedSpawnFolded
       - ClothingOuterEVASuitCargo
       - ClothingOuterEVASuitSalvage
       - ClothingBeltSalvageWebbing
@@ -324,11 +324,8 @@
       - PowerCellHyper
       - PowerCellMicroreactor
     # Salvage techfab
-      - FireExtinguisher
       - CableMVStack
       - CableHVStack
-      - PowerCellHigh
-      - PowerCellMicroreactor
       - WeaponCrusher
       - WeaponCrusherDagger
       - WeaponCrusherGlaive
@@ -360,7 +357,6 @@
         - Sheet
         - RawMaterial
         - Ingot
-#        - Ore
 
 - type: entity
   id: NfsdTechFab
@@ -421,6 +417,7 @@
       - AppraisalTool
       - HandLabeler
       - Signaller
+      - ClothingMaskWeldingGas
     ## Basic storage
       - ToolboxArtisticNF
       - ToolboxElectricalNF
@@ -486,12 +483,13 @@
     ## Weapons
       - CombatKnife
       - WeaponLaserSvalinn # After the changes made to windows shouldn't be that much of an issue now if it's widely available
-      - WeaponLaserPistolNF
+      - WeaponLaserPistolNF # After the changes made to windows shouldn't be that much of an issue now if it's widely available
       - WeaponRevolverArgenti
       - WeaponPistolMk58NF
       - WeaponShotgunDoubleBarreled
       - WeaponRifleNovaliteC1
       - WeaponRifleGestio
+      - BaseBallBatNF
     ## Ammo boxes
       - BoxLethalshot
       - MagazineBoxLightRifle
@@ -525,11 +523,29 @@
       - TelescopicShield
       - ClothingOuterArmorBulletproofNF
       - ClothingOuterCoatBHTrench
+      - ClothingOuterArmorPunkRandomized
+      - ClothingOuterArmorPunkRed
+      - ClothingOuterArmorPunkGreen
+      - ClothingOuterArmorPunkOrange
+      - ClothingOuterArmorElitePunkRandomized
+      - ClothingBeltPunkRandomized
+      - ClothingShoesBootsPunkRandomized
+      - ClothingEyesPunkGoggles
+      - ClothingEyesPunkInfoShades
+      - ClothingMaskPunkHalf
+      - ClothingUniformRandomPunkTanktop
+      - ClothingUniformRandomPunkTanktopShorts
+      - ClothingUniformRandomPunkCroptop
+      - ClothingUniformRandomPunkCroptopShorts
+      - ClothingOuterCoatLettermanRandomized
+      - ClothingOuterCoatBomberRandomized
     ## EVA / Hardsuits
       - ClothingOuterHardsuitCap
       - ClothingOuterHardsuitMercenary
       - ClothingOuterHardsuitPrivateSecurity
       - ClothingOuterHardsuitScaf
+      - ClothingShoesBootsMagCombat
+      - ClothingShoesBootsMagMercenary
     ## Utilities
       - ForensicPad
       - ClothingEyesHudBountyHunter
@@ -545,9 +561,9 @@
       - ClothingBackpackSatchelHolding
       - ClothingBackpackDuffelHolding
       - ClothingBackpackMessengerHolding
+      - FlashlightSecliteNF
     ## Weapons
       - WeaponGrapplingGun
-      - BaseBallBatNF
       - KatanaNF
       - KukriKnifeNF
       - MacheteNF
@@ -579,7 +595,7 @@
 
 - type: entity
   id: MercenaryTechFabHacked
-  parent: BaseLatheLube
+  parent: BaseHyperlathe
   name: hacked mercenary techfab
   description: Prints the bare minimum of tools of the trade that any budget mercenary or private security could need. Nothing fancy.
   components:
@@ -645,10 +661,9 @@
       - Wrench
       - Crowbar
       - Multitool
-      - FlashlightLantern
-      - AppraisalTool
       - HandLabeler
       - Signaller
+      - ClothingMaskWeldingGas
     ## Basic storage
       - ToolboxArtisticNF
       - ToolboxElectricalNF
@@ -754,9 +769,9 @@
       - ClothingOuterHardsuitMercenary
       - ClothingOuterHardsuitPrivateSecurity
       - ClothingOuterHardsuitScaf
+      - ClothingShoesBootsMagCombat
+      - ClothingShoesBootsMagMercenary
     ## Utilities
-      - ForensicPad
-      - ClothingEyesHudBountyHunter
       - PinpointerUniversalNF
       - Handcuffs
       - SignalTrigger
@@ -768,60 +783,30 @@
       - ClothingBackpackSatchelHolding
       - ClothingBackpackDuffelHolding
       - ClothingBackpackMessengerHolding
+      - FlashlightSecliteNF
     ## Weapons
-      - WeaponGrapplingGun
+      - GrenadeBlast
+      - GrenadeEMP
+      - GrenadeFlash
+      - Truncheon
       - MacheteNF
       - Stunbaton
       - BolaNF
-      - ExplosivePayload
-      - FlashPayload
       - ChemicalPayload
       - WeaponShotgunKammererNF
       - WeaponAdvancedLaser # After the changes made to windows shouldn't be that much of an issue now if it's widely available
       - WeaponAntiqueLaserNF # After the changes made to windows shouldn't be that much of an issue now if it's widely available
       - WeaponLaserCarbine
       - WeaponDisabler
-    # Spicy
-      - BoxBeanbag
-      - BoxShotgunIncendiary
-      - BoxShotgunUranium
-      - BoxShellTranquilizer
-      - GrenadeBlast
-      - GrenadeEMP
-      - GrenadeFlash
-      - MagazineBoxLightRifleIncendiary
-      - MagazineBoxLightRifleUranium
-      - MagazineBoxMagnumIncendiary
-      - MagazineBoxMagnumUranium
-      - MagazineBoxPistolIncendiary
-      - MagazineBoxPistolUranium
-      - MagazineBoxRifleIncendiary
-      - MagazineBoxRifleUranium
-      - MagazineBoxLightRifleRubber
-      - MagazineBoxMagnumRubber
-      - MagazineBoxPistolRubber
-      - MagazineBoxRifleRubber
-      - MagazineGrenadeEmpty
-      - MagazineLightRifleIncendiary
-      - MagazineLightRifleUranium
-      - MagazinePistolIncendiary
-      - MagazinePistolUranium
-      - MagazineRifleIncendiary
-      - MagazineRifleUranium
-      - MagazineShotgunBeanbag
-      - MagazineShotgunIncendiary
-      # - PowerCageHigh
-      # - PowerCageMedium
-      # - PowerCageSmall
-      # - ShuttleGunDusterCircuitboard
-      # - ShuttleGunFriendshipCircuitboard
-      # - ShuttleGunPerforatorCircuitboard
-      # - ShuttleGunSvalinnMachineGunCircuitboard
-      - SpeedLoaderMagnumIncendiary
-      - SpeedLoaderMagnumUranium
-      - SpeedLoaderRifleHeavyIncendiary
-      - SpeedLoaderRifleHeavyUranium
-      - Truncheon
-#      - WeaponDisablerSMG
       - WeaponLaserCannon
-      - WeaponXrayCannon
+    ## Ammo boxes
+      - BoxShotgunIncendiary
+      - MagazineBoxLightRifleIncendiary
+      - MagazineBoxMagnumIncendiary
+      - MagazineBoxPistolIncendiary
+      - MagazineBoxRifleIncendiary
+      - BoxShotgunUranium
+      - MagazineBoxLightRifleUranium
+      - MagazineBoxMagnumUranium
+      - MagazineBoxPistolUranium
+      - MagazineBoxRifleUranium

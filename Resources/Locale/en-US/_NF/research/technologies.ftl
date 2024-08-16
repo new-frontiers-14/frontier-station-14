@@ -11,3 +11,5 @@ research-technology-construction-bags = Construction Bags
 research-technology-bounty-hunting = Bounty Hunting
 research-technology-arsenal-style = Style
 research-techology-advanced-topicals = Advanced Topicals
+research-technology-magnets-tech-advanced = Advanced Localized Magnetism
+research-technology-magnets-tech-combat = Combat Localized Magnetism

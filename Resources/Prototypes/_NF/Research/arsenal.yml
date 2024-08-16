@@ -10,7 +10,6 @@
   tier: 1
   cost: 10000
   recipeUnlocks:
-  - BaseBallBatNF
   - Stunbaton
   - BolaNF
   - Handcuffs
@@ -21,10 +20,26 @@
   - ClothingEyesHudBountyHunter
   - WeaponShotgunKammererNF
   - ForensicPad
+  - FlashlightSecliteNF
   technologyPrerequisites:
   - AdvancedRiotControl
 
 # Tier 2
+
+- type: technology
+  id: MagnetsTechCombat
+  name: research-technology-magnets-tech-combat
+  icon:
+    sprite: _NF/Clothing/Shoes/Boots/magboots-combat.rsi
+    state: icon
+  discipline: Experimental
+  tier: 1
+  cost: 9000
+  recipeUnlocks:
+  - ClothingShoesBootsMagCombat
+  - ClothingShoesBootsMagMercenary
+  technologyPrerequisites:
+  - MagnetsTech
 
 - type: technology
   id: HardsuitsArmored
@@ -57,6 +72,22 @@
   - KukriKnifeNF
   - MacheteNF
   - ClothingEyesPunkInfoShades
+  - ClothingOuterArmorPunkRandomized
+  - ClothingOuterArmorPunkRed
+  - ClothingOuterArmorPunkGreen
+  - ClothingOuterArmorPunkOrange
+  - ClothingOuterArmorElitePunkRandomized
+  - ClothingBeltPunkRandomized
+  - ClothingShoesBootsPunkRandomized
+  - ClothingEyesPunkGoggles
+  - ClothingEyesPunkInfoShades
+  - ClothingMaskPunkHalf
+  - ClothingUniformRandomPunkTanktop
+  - ClothingUniformRandomPunkTanktopShorts
+  - ClothingUniformRandomPunkCroptop
+  - ClothingUniformRandomPunkCroptopShorts
+  - ClothingOuterCoatLettermanRandomized
+  - ClothingOuterCoatBomberRandomized
   technologyPrerequisites:
   - BountyHunting
 
