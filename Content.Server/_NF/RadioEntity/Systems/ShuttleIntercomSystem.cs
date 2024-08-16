@@ -1,8 +1,11 @@
+using Content.Server._NF.Radio;
 using Content.Shared.Radio.Components;
 using Robust.Server.GameObjects;
 using Content.Shared.Verbs;
 using Robust.Shared.Player;
 using Content.Shared.Radio;
+using Content.Server.Station.Systems;
+using Content.Server.Station.Components;
 
 namespace Content.Server.Radio.EntitySystems;
 
@@ -12,11 +15,13 @@ namespace Content.Server.Radio.EntitySystems;
 public sealed partial class ShuttleIntercomSystem : EntitySystem
 {
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
+    [Dependency] private readonly StationSystem _station = default!;
 
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<ShuttleIntercomComponent, GetVerbsEvent<AlternativeVerb>>(OnAlternativeVerb);
+        SubscribeLocalEvent<ShuttleIntercomComponent, RadioTransformMessageEvent>(OnRadioTransformMessage);
     }
 
     private void OnAlternativeVerb(EntityUid uid, ShuttleIntercomComponent component, GetVerbsEvent<AlternativeVerb> args)
@@ -41,5 +46,34 @@ public sealed partial class ShuttleIntercomSystem : EntitySystem
             return;
 
         _ui.TryToggleUi(uid, IntercomUiKey.Key, actor.PlayerSession);
+    }
+
+    private void OnRadioTransformMessage(EntityUid uid, ShuttleIntercomComponent component, ref RadioTransformMessageEvent args)
+    {
+        Log.Error("OnRadioTransformMessage!");
+        // Not appending name, nothing to do.
+        if (!component.AppendName)
+        {
+            return;
+        }
+
+        var station = _station.GetOwningStation(uid);
+        if (station is null || !TryComp<MetaDataComponent>(station, out var metadata))
+        {
+            return;
+        }
+
+        // Get the name of the ship we're on, if there is one.
+        string nameToAppend;
+        if (component.OverrideName != null)
+        {
+            nameToAppend = component.OverrideName;
+        }
+        else
+        {
+            nameToAppend = metadata.EntityName;
+        }
+        args.Name += $" ({nameToAppend})";
+        args.MessageSource = station.Value;
     }
 }
