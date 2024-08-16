@@ -119,6 +119,24 @@
     color: "#c94242"
 
 - type: entity
+  parent: ComputerShuttleAntag
+  id: ComputerShuttleAntagEmpty
+  noSpawn: true
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots: []
+
+- type: entity
+  parent: ComputerShuttle
+  id: ComputerShuttleEmpty
+  noSpawn: true
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots: []
+
+- type: entity
   parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerIFFSyndicate]
   id: ComputerIFFPOI
   name: IFF computer

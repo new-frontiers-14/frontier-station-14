@@ -42,7 +42,7 @@
     rotateWhileAnchored: true
 
 - type: entity
-  parent: BaseComputer
+  parent: [BaseComputer, BaseStructureDisableToolUse] # Frontier - BaseStructureDisableToolUse
   id: BaseComputerShuttle
   name: shuttle console
   description: Used to pilot a shuttle.
@@ -341,7 +341,7 @@
 
 - type: entity
   parent: BaseComputer
-  id: ComputerStationRecords
+  id: [ComputerStationRecords, BaseStructureDisableToolUse] # Frontier - BaseStructureDisableToolUse
   name: station records computer
   description: This can be used to check station records.
   components:
