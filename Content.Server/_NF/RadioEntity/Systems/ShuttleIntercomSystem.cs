@@ -50,7 +50,6 @@ public sealed partial class ShuttleIntercomSystem : EntitySystem
 
     private void OnRadioTransformMessage(EntityUid uid, ShuttleIntercomComponent component, ref RadioTransformMessageEvent args)
     {
-        Log.Error("OnRadioTransformMessage!");
         // Not appending name, nothing to do.
         if (!component.AppendName)
         {
