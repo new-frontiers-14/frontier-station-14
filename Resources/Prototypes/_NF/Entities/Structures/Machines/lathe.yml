@@ -522,7 +522,7 @@
       - PowerDrill
       - JetpackVoid
       - PowerCellHigh
-      - PowerCellHyperNF
+      # - PowerCellHyperNF
       - PowerCellMicroreactor
     # Mercenary techfab
     ## Armor
@@ -595,7 +595,10 @@
 
 - type: entity
   id: MercenaryTechFabHacked
-  parent: [ MercenaryTechFab, BaseHyperlathe ]
+  parent:
+  - MercenaryTechFab
+  - BaseHyperlathe
+  - PunkHoloGraffitiOverlay # Prototype can be located at \Resources\Prototypes\_NF\Entities\Structures\Holographic\graffiti.yml
   name: hacked mercenary techfab
   description: Prints the bare minimum of tools of the trade that any budget mercenary or private security could need. Nothing fancy.
   components:
@@ -625,31 +628,6 @@
       - Sheet
       - RawMaterial
       - Ingot
-  - type: RandomSprite
-    available:
-    - graffiti:
-        holograffiti01: CyberpunkNeon
-        holograffiti02: CyberpunkNeon
-        holograffiti03: CyberpunkNeon
-        holograffiti04: CyberpunkNeon
-        holograffiti05: CyberpunkNeon
-        holograffiti06: CyberpunkNeon
-        holograffiti07: CyberpunkNeon
-        holograffiti08: CyberpunkNeon
-        holograffiti09: CyberpunkNeon
-        holograffiti10: CyberpunkNeon
-        holograffiti11: CyberpunkNeon
-        holograffiti12: CyberpunkNeon
-        holograffiti13: CyberpunkNeon
-        holograffiti14: CyberpunkNeon
-        holograffiti15: CyberpunkNeon
-        holograffiti16: CyberpunkNeon
-        holograffiti17: CyberpunkNeon
-        holograffiti18: CyberpunkNeon
-        holograffiti19: CyberpunkNeon
-        holograffiti20: CyberpunkNeon
-        holograffiti21: CyberpunkNeon
-        holograffiti22: CyberpunkNeon
   - type: PointLight
     radius: 1.5
     energy: 2
@@ -763,7 +741,7 @@
       - PowerDrill
       - JetpackVoid
       - PowerCellHigh
-      - PowerCellHyperNF
+      # - PowerCellHyperNF
       - PowerCellMicroreactor
     # Mercenary techfab
     ## Armor
