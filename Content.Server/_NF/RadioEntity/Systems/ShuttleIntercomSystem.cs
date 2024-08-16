@@ -7,7 +7,7 @@ using Content.Shared.Radio;
 namespace Content.Server.Radio.EntitySystems;
 
 /// <summary>
-///     Skibidi Code?
+///     Add the intercom UI as a new verb as to not conflict with shuttle UI
 /// </summary>
 public sealed partial class ShuttleIntercomSystem : EntitySystem
 {
