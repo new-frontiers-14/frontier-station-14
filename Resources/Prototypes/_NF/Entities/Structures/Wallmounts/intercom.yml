@@ -13,26 +13,18 @@
     toggleOnInteract: false
   - type: RadioSpeaker
     toggleOnInteract: false
+    enabled: true
   - type: Intercom
+    speakerEnabled: true
   - type: Speech
     speechVerb: Robotic
   - type: ContainerFill
     containers:
-      board:
-      - IntercomElectronics
       key_slots:
       - EncryptionKeyTraffic
   - type: ContainerContainer
     containers:
-      board: !type:Container
       key_slots: !type:Container
-  # - type: ActivatableUI
-    # key: enum.IntercomUiKey.Key
-    # singleUser: true
-  # - type: UserInterface
-    # interfaces:
-      # enum.IntercomUiKey.Key:
-        # type: IntercomBoundUserInterface
   - type: ShuttleIntercom
 
 - type: entity
