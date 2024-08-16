@@ -49,8 +49,6 @@ public sealed partial class ShuttleIntercomSystem : EntitySystem
         if (!Resolve(uid, ref component))
             return;
 
-        var state = new IntercomBoundUIState(micEnabled, speakerEnabled, availableChannels, selectedChannel);
-
         _ui.SetUiState(uid, IntercomUiKey.Key, state);
     }
 }
