@@ -6,6 +6,8 @@
   components:
   - type: Item
     size: Small
+    shape:
+    - 0,0,1,1
   - type: Sprite
     sprite: EstacaoPirata/Objects/Misc/cards.rsi
     state: box
@@ -26,7 +28,6 @@
     - id: CardDeckBase
       amount: 1
   - type: Appearance
-
 
 - type: entity
   parent: BaseItem
@@ -52,7 +53,7 @@
   parent: BaseItem
   id: CardDeckBase
   noSpawn: true
-  name: Deck_of_cards
+  name: deck of cards
   components:
   - type: Sprite
     sprite: EstacaoPirata/Objects/Misc/cards.rsi
@@ -86,7 +87,7 @@
 - type: entity
   parent: CardDeckBase
   id: CardDeckBlack
-  name: Deck_of_cards
+  name: Deck of cards
   components:
   - type: Sprite
     sprite: EstacaoPirata/Objects/Misc/cards.rsi

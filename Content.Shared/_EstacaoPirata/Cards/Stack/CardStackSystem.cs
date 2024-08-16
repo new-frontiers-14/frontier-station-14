@@ -198,7 +198,7 @@ public sealed class CardStackSystem : EntitySystem
 
         args.Verbs.Add(new AlternativeVerb()
         {
-            Text = "card-verb-join",
+            Text = Loc.GetString("card-verb-join"),
             Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/refresh.svg.192dpi.png")),
             Priority = 8,
             Act = () => JoinStacks(args.User, args.Target, targetStack, (EntityUid)args.Using, usingStack)
