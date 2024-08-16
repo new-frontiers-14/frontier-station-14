@@ -27,7 +27,7 @@ public sealed partial class ShuttleIntercomSystem : EntitySystem
         var openUiVerb = new AlternativeVerb
         {
             Act = () => ToggleUi(uid, component, args.User),
-            Text = Loc.GetString("station-beacon-telecoms")
+            Text = Loc.GetString("intercom-verb")
         };
         args.Verbs.Add(openUiVerb);
     }
