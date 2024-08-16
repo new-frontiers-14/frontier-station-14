@@ -41,14 +41,5 @@ public sealed partial class ShuttleIntercomSystem : EntitySystem
             return;
 
         _ui.TryToggleUi(uid, IntercomUiKey.Key, actor.PlayerSession);
-        UpdateUserInterface(uid, component);
-    }
-
-    public override void UpdateUserInterface(EntityUid uid, ShuttleIntercomComponent? component = null)
-    {
-        if (!Resolve(uid, ref component))
-            return;
-
-        _ui.SetUiState(uid, IntercomUiKey.Key, state);
     }
 }
