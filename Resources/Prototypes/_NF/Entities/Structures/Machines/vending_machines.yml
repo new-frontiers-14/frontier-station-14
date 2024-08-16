@@ -244,8 +244,9 @@
       color: "#ff033e"
 
 - type: entity
-  parent: VendingMachine
+  parent: LessLethalVendingMachine
   id: LessLethalVendingMachinePOI
+  suffix: POI
   components:
     - type: VendingMachine
       pack: LessLethalVendPOIInventory
@@ -636,6 +637,7 @@
   - type: MarketModifier
     mod: 30 # damn
   - type: Sprite
+    sprite: _NF/Structures/Machines/VendingMachines/civimed.rsi
     layers:
     - state: "off"
       map: ["enum.VendingMachineVisualLayers.Base"]
@@ -650,9 +652,6 @@
   id: VendingMachineCiviMedPlus
   name: CiviMed Plus
   description: CiviMed Plus, distributing lifesaving meds harder than the rocks you break! Miners, DON'T DIE!
-  components:
-  - type: Sprite
-    sprite: _NF/Structures/Machines/VendingMachines/civimed.rsi
 
 - type: entity
   parent: [BaseCiviMedVend, BaseStructureUnanchorable, BaseStructureIndestructible, VendingMachineWallmount]
