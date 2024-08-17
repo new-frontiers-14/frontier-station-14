@@ -312,7 +312,6 @@ public sealed class CardStackSystem : EntitySystem
             //InsertCardOnStack(args.User, args.Target, stack, args.Used); // Frontier: old version
             if (TryComp(args.Used, out CardComponent? card))
             {
-                Log.Error($"CardStackSystem: setting up hand from stack!");
                 _cardHandSystem.TrySetupHandFromStack(args.User, args.Used, card, args.Target, stack, true);
                 args.Handled = true;
             }
