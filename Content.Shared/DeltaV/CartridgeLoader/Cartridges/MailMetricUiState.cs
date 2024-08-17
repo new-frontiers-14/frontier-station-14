@@ -35,7 +35,7 @@ public partial record struct MailStats
 
     public readonly int TotalMail(int unopenedCount)
     {
-        return OpenedCount + unopenedCount;
+        return OpenedCount + TamperedCount + DamagedCount + ExpiredCount + unopenedCount;
     }
 
     public readonly int TotalIncome => Earnings + DamagedLosses + ExpiredLosses + TamperedLosses;

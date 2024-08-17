@@ -230,6 +230,7 @@ namespace Content.Server.Mail
                 }
             }
 
+            UnlockMail(uid, component);
             // DeltaV - Add earnings to logistic stats
             ExecuteForEachLogisticsStats(uid, (station, logisticStats) =>
             {
@@ -237,7 +238,6 @@ namespace Content.Server.Mail
                     logisticStats,
                     component.IsProfitable ? component.Bounty : 0);
             });
-            UnlockMail(uid, component);
 
             if (!component.IsProfitable)
             {
@@ -320,15 +320,17 @@ namespace Content.Server.Mail
         {
             if (component.IsLocked)
             {
-                // DeltaV - Tampered mail recorded to logistic stats
+                bool wasProfitable = component.IsProfitable; // Frontier: cache mail profitability
+                PenalizeStationFailedDelivery(uid, component, "mail-penalty-lock");
+
+                // DeltaV - Damaged mail recorded to logistic stats
+                component.IsLocked = false; // Frontier: do not count this package as unopened.
                 ExecuteForEachLogisticsStats(uid, (station, logisticStats) =>
                 {
-                    _logisticsStatsSystem.AddTamperedMailLosses(station,
+                    _logisticsStatsSystem.AddDamagedMailLosses(station,
                         logisticStats,
-                        component.IsProfitable ? component.Penalty : 0);
+                        wasProfitable ? component.Penalty : 0);
                 });
-
-                PenalizeStationFailedDelivery(uid, component, "mail-penalty-lock");
             }
 
             // if (component.IsEnabled)
@@ -359,15 +361,16 @@ namespace Content.Server.Mail
 
             if (component.IsFragile)
             {
+                bool wasProfitable = component.IsProfitable; // Frontier: cache mail profitability
+                PenalizeStationFailedDelivery(uid, component, "mail-penalty-fragile");
+
                 // DeltaV - Broken mail recorded to logistic stats
                 ExecuteForEachLogisticsStats(uid, (station, logisticStats) =>
                 {
                     _logisticsStatsSystem.AddDamagedMailLosses(station,
                         logisticStats,
-                        component.IsProfitable ? component.Penalty : 0);
+                        wasProfitable ? component.Penalty : 0);
                 });
-
-                PenalizeStationFailedDelivery(uid, component, "mail-penalty-fragile");
             }
         }
 
@@ -377,6 +380,18 @@ namespace Content.Server.Mail
                 return;
 
             UnlockMail(uid, component);
+
+            // Frontier: ding station on emag
+            bool wasProfitable = component.IsProfitable; // Frontier: cache mail profitability
+            PenalizeStationFailedDelivery(uid, component, "mail-penalty-lock");
+
+            // DeltaV - Tampered mail recorded to logistic stats
+            ExecuteForEachLogisticsStats(uid, (station, logisticStats) =>
+            {
+                _logisticsStatsSystem.AddTamperedMailLosses(station,
+                    logisticStats,
+                    wasProfitable ? component.Penalty : 0);
+            });
 
             _popupSystem.PopupEntity(Loc.GetString("mail-unlocked-by-emag"), uid, args.UserUid);
 
@@ -531,15 +546,16 @@ namespace Content.Server.Mail
                 Timer.Spawn((int) component.priorityDuration.TotalMilliseconds,
                     () =>
                     {
+                        bool wasProfitable = mailComp.IsProfitable; // Frontier: cache mail profitability
+                        PenalizeStationFailedDelivery(uid, mailComp, "mail-penalty-expired");
+
                         // DeltaV - Expired mail recorded to logistic stats
                         ExecuteForEachLogisticsStats(uid, (station, logisticStats) =>
                         {
                             _logisticsStatsSystem.AddExpiredMailLosses(station,
                                 logisticStats,
-                                mailComp.IsProfitable ? mailComp.Penalty : 0);
+                                wasProfitable ? mailComp.Penalty : 0);
                         });
-
-                        PenalizeStationFailedDelivery(uid, mailComp, "mail-penalty-expired");
                     },
                     mailComp.priorityCancelToken.Token);
             }
@@ -759,7 +775,6 @@ namespace Content.Server.Mail
                 SetupMail(mail, component, candidate);
 
                 _tagSystem.AddTag(mail, "Mail"); // Frontier
-                _tagSystem.AddTag(mail, "Recyclable"); // Frontier - Make it so mail can be destroyed by reclaimer
             }
 
             if (_containerSystem.TryGetContainer(uid, "queued", out var queued))
