@@ -131,7 +131,7 @@ namespace Content.Server.Mail
                 return;
             }
 
-            //if (!HasComp<StationMailRouterComponent>(station)) # Frontier - We dont need to test for station related but we still need to comp to exists to avoid merge issues.
+            //if (!HasComp<StationMailRouterComponent>(station)) # Frontier - We dont need to test this.
             //    return;
 
             EnsureComp<MailReceiverComponent>(args.SpawnResult.Value);
