@@ -56,12 +56,15 @@ public sealed class RadioDeviceSystem : EntitySystem
         SubscribeLocalEvent<IntercomComponent, ToggleIntercomMicMessage>(OnToggleIntercomMic);
         SubscribeLocalEvent<IntercomComponent, ToggleIntercomSpeakerMessage>(OnToggleIntercomSpeaker);
         SubscribeLocalEvent<IntercomComponent, SelectIntercomChannelMessage>(OnSelectIntercomChannel);
+
         // Nuclear-14-Start
         SubscribeLocalEvent<RadioMicrophoneComponent, BeforeActivatableUIOpenEvent>(OnBeforeHandheldRadioUiOpen);
         SubscribeLocalEvent<RadioMicrophoneComponent, ToggleHandheldRadioMicMessage>(OnToggleHandheldRadioMic);
         SubscribeLocalEvent<RadioMicrophoneComponent, ToggleHandheldRadioSpeakerMessage>(OnToggleHandheldRadioSpeaker);
         SubscribeLocalEvent<RadioMicrophoneComponent, SelectHandheldRadioFrequencyMessage>(OnChangeHandheldRadioFrequency);
         // Nuclear-14-End
+
+        SubscribeLocalEvent<IntercomComponent, MapInitEvent>(OnMapInit); // Frontier
     }
 
     public override void Update(float frameTime)
@@ -229,7 +232,7 @@ public sealed class RadioDeviceSystem : EntitySystem
             ("originalName", nameEv.Name));
 
         // log to chat so people can identity the speaker/source, but avoid clogging ghost chat if there are many radios
-        _chat.TrySendInGameICMessage(uid, args.Message, InGameICChatType.Whisper, ChatTransmitRange.GhostRangeLimitNoAdminCheck, nameOverride: name, checkRadioPrefix: false); // Frontier: GhostRangeLimit<GhostRangeLimitNoAdminCheck
+        _chat.TrySendInGameICMessage(uid, args.Message, component.OutputChatType, ChatTransmitRange.GhostRangeLimitNoAdminCheck, nameOverride: name, checkRadioPrefix: false); // Frontier: GhostRangeLimit<GhostRangeLimitNoAdminCheck, InGameICChatType.Whisper<component.OutputChatType
     }
 
     private void OnIntercomEncryptionChannelsChanged(Entity<IntercomComponent> ent, ref EncryptionChannelsChangedEvent args)
@@ -351,4 +354,22 @@ public sealed class RadioDeviceSystem : EntitySystem
 
     #endregion
     // Nuclear-14-End
+
+    // Frontier: init intercom with map
+    private void OnMapInit(EntityUid uid, IntercomComponent ent, MapInitEvent args)
+    {
+        if (ent.StartSpeakerOnMapInit)
+        {
+            SetSpeakerEnabled(uid, null, true);
+            ent.SpeakerEnabled = true;
+            _appearance.SetData(uid, RadioDeviceVisuals.Speaker, true);
+        }
+        if (ent.StartMicrophoneOnMapInit)
+        {
+            SetMicrophoneEnabled(uid, null, true);
+            ent.MicrophoneEnabled = true;
+            _appearance.SetData(uid, RadioDeviceVisuals.Broadcasting, true);
+        }
+    }
+    // End Frontier
 }
