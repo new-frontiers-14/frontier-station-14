@@ -498,14 +498,29 @@
   - type: Flatpack
     entity: OreProcessorIndustrial
 
+# Mercenary
 - type: entity
-  parent: OreProcessorFlatpack
+  parent: BaseNFFlatpack
   id: AmmoTechFabFlatpack
   name: ammo techfab flatpack
   description: A flatpack used for constructing an ammo techfab.
   components:
   - type: Flatpack
     entity: AmmoTechFab
+  - type: Sprite
+    layers:
+    - state: mercenary
+
+- type: entity
+  parent: AmmoTechFabFlatpack
+  id: MercenaryTechFabFlatpack
+  name: mercenary techfab flatpack
+  description: A flatpack used for constructing a mercenary techfab.
+  components:
+  - type: Flatpack
+    entity: MercenaryTechFab
+  - type: StaticPrice
+    price: 600
 
 # Consoles
 - type: entity

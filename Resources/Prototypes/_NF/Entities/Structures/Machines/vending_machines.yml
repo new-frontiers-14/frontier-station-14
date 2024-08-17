@@ -456,7 +456,9 @@
 
 # Punk stuff
 - type: entity
-  parent: VendingMachineClothing
+  parent:
+  - VendingMachine
+  - PunkHoloGraffitiOverlay # Prototype can be located at \Resources\Prototypes\_NF\Entities\Structures\Holographic\graffiti.yml
   id: VendingMachineClothingPunk
   name: ThreadsChoom
   description: A vandalized ClothesMate.
@@ -487,34 +489,11 @@
       map: [ "graffiti" ]
       shader: unshaded
       scale: 0.7, 0.7
-  - type: RandomSprite
-    available:
-    - graffiti:
-        holograffiti01: Cyberpunk
-        holograffiti02: Cyberpunk
-        holograffiti03: Cyberpunk
-        holograffiti04: Cyberpunk
-        holograffiti05: Cyberpunk
-        holograffiti06: Cyberpunk
-        holograffiti07: Cyberpunk
-        holograffiti08: Cyberpunk
-        holograffiti09: Cyberpunk
-        holograffiti10: Cyberpunk
-        holograffiti11: Cyberpunk
-        holograffiti12: Cyberpunk
-        holograffiti13: Cyberpunk
-        holograffiti14: Cyberpunk
-        holograffiti15: Cyberpunk
-        holograffiti16: Cyberpunk
-        holograffiti17: Cyberpunk
-        holograffiti18: Cyberpunk
-        holograffiti19: Cyberpunk
-        holograffiti20: Cyberpunk
-        holograffiti21: Cyberpunk
-        holograffiti22: Cyberpunk
 
 - type: entity
-  parent: VendingMachineBountyVend
+  parent:
+  - VendingMachine
+  - PunkHoloGraffitiOverlay # Prototype can be located at \Resources\Prototypes\_NF\Entities\Structures\Holographic\graffiti.yml
   id: VendingMachineBountyVendPunk
   name: BonanzaMatic
   description: A vandalised BountyVend.
@@ -541,31 +520,6 @@
       map: [ "graffiti" ]
       shader: unshaded
       scale: 0.7, 0.7
-  - type: RandomSprite
-    available:
-    - graffiti:
-        holograffiti01: Cyberpunk
-        holograffiti02: Cyberpunk
-        holograffiti03: Cyberpunk
-        holograffiti04: Cyberpunk
-        holograffiti05: Cyberpunk
-        holograffiti06: Cyberpunk
-        holograffiti07: Cyberpunk
-        holograffiti08: Cyberpunk
-        holograffiti09: Cyberpunk
-        holograffiti10: Cyberpunk
-        holograffiti11: Cyberpunk
-        holograffiti12: Cyberpunk
-        holograffiti13: Cyberpunk
-        holograffiti14: Cyberpunk
-        holograffiti15: Cyberpunk
-        holograffiti16: Cyberpunk
-        holograffiti17: Cyberpunk
-        holograffiti18: Cyberpunk
-        holograffiti19: Cyberpunk
-        holograffiti20: Cyberpunk
-        holograffiti21: Cyberpunk
-        holograffiti22: Cyberpunk
   - type: PointLight
     radius: 1.1
     energy: 1.2
