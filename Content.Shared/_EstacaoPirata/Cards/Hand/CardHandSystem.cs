@@ -104,25 +104,17 @@ public sealed class CardHandSystem : EntitySystem
 
     private void OnInteractUsing(EntityUid uid, CardComponent comp, InteractUsingEvent args)
     {
-        Log.Error($"CardHandSystem: OnInteractUsing! {uid} {args.Used} {args.Target}");
         if (args.Handled)
-        {
-            Log.Error("CardHandSystem: already handled!");
             return;
-        }
 
         if (HasComp<CardStackComponent>(args.Used) ||
                 !TryComp(args.Used, out CardComponent? usedComp))
-        {
-            Log.Error($"CardHandSystem: used {args.Used} is a stack!");
             return;
-        }
 
         if (!HasComp<CardStackComponent>(args.Target) &&
                 TryComp(args.Target, out CardComponent? targetCardComp))
         {
-            Log.Error($"CardHandSystem: setting up hand from card!");
-            TrySetupHandOfCards(args.User, args.Used, usedComp, args.Target, targetCardComp);
+            TrySetupHandOfCards(args.User, args.Used, usedComp, args.Target, targetCardComp, true);
             args.Handled = true;
         }
     }
@@ -144,7 +136,7 @@ public sealed class CardHandSystem : EntitySystem
         if (isHoldingCards)
             _hands.TryPickupAnyHand(user, cardDeck);
     }
-    public void TrySetupHandOfCards(EntityUid user, EntityUid card, CardComponent comp, EntityUid target, CardComponent targetComp)
+    public void TrySetupHandOfCards(EntityUid user, EntityUid card, CardComponent comp, EntityUid target, CardComponent targetComp, bool pickup)
     {
         if (_net.IsClient)
             return;
@@ -153,12 +145,12 @@ public sealed class CardHandSystem : EntitySystem
             return;
         if (!_cardStack.TryInsertCard(cardHand, card, stack) || !_cardStack.TryInsertCard(cardHand, target, stack))
             return;
-        if (!_hands.TryPickupAnyHand(user, cardHand))
+        if (pickup && !_hands.TryPickupAnyHand(user, cardHand))
             return;
         _cardStack.FlipAllCards(cardHand, stack, false);
     }
 
-    public void TrySetupHandFromStack(EntityUid user, EntityUid card, CardComponent comp, EntityUid target, CardStackComponent targetComp)
+    public void TrySetupHandFromStack(EntityUid user, EntityUid card, CardComponent comp, EntityUid target, CardStackComponent targetComp, bool pickup)
     {
         if (_net.IsClient)
             return;
@@ -168,7 +160,7 @@ public sealed class CardHandSystem : EntitySystem
         if (!_cardStack.TryInsertCard(cardHand, card, stack))
             return;
         _cardStack.TransferNLastCardFromStacks(user, 1, target, targetComp, cardHand, stack);
-        if (!_hands.TryPickupAnyHand(user, cardHand))
+        if (pickup && !_hands.TryPickupAnyHand(user, cardHand))
             return;
         _cardStack.FlipAllCards(cardHand, stack, false);
     }
