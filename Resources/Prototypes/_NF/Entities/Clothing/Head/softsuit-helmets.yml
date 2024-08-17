@@ -593,3 +593,29 @@
         color: "#3e3e48"
       - state: equipped-head-visor
         color: "#283846"
+
+- type: entity
+  parent: ClothingHeadEVAHelmetBase
+  id: ClothingHeadEVAHelmetArcadia
+  name: arcadia EVA helmet
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Head/Helmets/eva_color.rsi
+    layers:
+    - state: icon-base
+      color: "#3e3e48"
+    - state: icon-reinforced-points
+      color: "#3e3e48"
+    - state: icon-visor
+      color: "#8f1717"
+  - type: Clothing
+    sprite: _NF/Clothing/Head/Helmets/eva_color.rsi
+    clothingVisuals:
+      head:
+      - state: equipped-head-base
+        color: "#3e3e48"
+      - state: equipped-head-reinforced-points
+        color: "#3e3e48"
+      - state: equipped-head-visor
+        color: "#8f1717"
