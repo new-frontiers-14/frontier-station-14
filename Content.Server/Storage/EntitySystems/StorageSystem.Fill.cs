@@ -31,7 +31,7 @@ public sealed partial class StorageSystem
         }
     }
 
-    public void FillStorage(Entity<StorageFillComponent?, StorageComponent?> entity)
+    private void FillStorage(Entity<StorageFillComponent?, StorageComponent?> entity)
     {
         var (uid, component, storage) = entity;
 
