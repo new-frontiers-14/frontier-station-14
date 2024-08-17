@@ -509,21 +509,21 @@ namespace Content.Server.Mail
             if (mailComp.IsLarge)
             {
                 mailComp.Bounty += component.LargeBonus;
-                mailComp.Penalty += component.LargeMalus;
+                //mailComp.Penalty += component.LargeMalus; // Frontier - Setting penalty to stay 0
             }
             // End Frontier
 
             if (mailComp.IsFragile)
             {
                 mailComp.Bounty += component.FragileBonus;
-                mailComp.Penalty += component.FragileMalus;
+                //mailComp.Penalty += component.FragileMalus; // Frontier - Setting penalty to stay 0
                 _appearanceSystem.SetData(uid, MailVisuals.IsFragile, true);
             }
 
             if (mailComp.IsPriority)
             {
                 mailComp.Bounty += component.PriorityBonus;
-                mailComp.Penalty += component.PriorityMalus;
+                //mailComp.Penalty += component.PriorityMalus; // Frontier - Setting penalty to stay 0
                 _appearanceSystem.SetData(uid, MailVisuals.IsPriority, true);
 
                 mailComp.priorityCancelToken = new CancellationTokenSource();
