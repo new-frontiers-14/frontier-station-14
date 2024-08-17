@@ -51,3 +51,54 @@
   id: WeaponRevolverDeckardExpeditionGrifty
   noSpawn: true
   name: Customer Service Resolver
+
+- type: entity
+  parent: BaseItem
+  name: The Arbitrator
+  id: WeaponRevolverarbitrator
+  description: Based off of an older design. S.E.S.W.C decided to revamp and rechamber for a modern era  .45cal, .50cal, and .60cal
+  components:
+  - type: Sprite
+    scale: 0.75 , 0.75
+    sprite: _NF/Objects/Weapons/Guns/Revolvers/Judge.rsi
+    state: icon
+  - type: Clothing
+    sprite: _NF/Objects/Weapons/Guns/Revolvers/Judge.rsi
+    quickEquip: false
+    slots:
+    - Belt
+  - type: Item
+    size: Small
+    shape:
+    - 0,0,1,0
+    - 0,1,0,1
+  - type: Tag
+    tags:
+    - Sidearm
+  - type: Gun
+    minAngle: 0
+    maxAngle: 7
+    selectedMode: SemiAuto
+    fireRate: 2
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/revolver.ogg
+  - type: AmmoCounter
+  - type: RevolverAmmoProvider
+    capacity: 4
+    chambers: [ True, True, True, True ]
+    ammoSlots: [ null, null, null, null ]
+    soundEject:
+      path: /Audio/Weapons/Guns/MagOut/revolver_magout.ogg
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/revolver_magin.ogg
+    whitelist:
+      tags:
+      - ShellShotgun
+      - CartridgeAntiMateriel
+      - CartridgeMagnum
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: []
