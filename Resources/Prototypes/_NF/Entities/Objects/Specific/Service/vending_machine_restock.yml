@@ -7,6 +7,7 @@
   - type: VendingMachineRestock
     canRestock:
     - AstroVendInventory
+    - AstroVendPOIInventory # Infinite stock apart from clothing.
   - type: Sprite
     layers:
     - state: base
@@ -29,22 +30,6 @@
     - state: green_bit
       shader: unshaded
     - state: refill_sec # Update this later with a new sprite
-
-- type: entity
-  parent: BaseVendingMachineRestock
-  id: VendingMachineRestockFlatpackVend
-  name: FlatpackVend restock box
-  description: A box full of flatpacks for various computers. Load it into a FlatpackVend to begin. A label reads THE BOX IS TAMPER PROOF AND WILL DESTROY IT'S CONTENT ON HARM.
-  components:
-  - type: VendingMachineRestock
-    canRestock:
-    - FlatpackVendInventory
-  - type: Sprite
-    layers:
-    - state: base
-    - state: green_bit
-      shader: unshaded
-    - state: refill_parts # Update this later with a new sprite
 
 - type: entity
   parent: BaseVendingMachineRestock
@@ -146,20 +131,3 @@
     - state: green_bit
       shader: unshaded
     - state: refill_contravend
-        
-- type: entity
-  parent: BaseVendingMachineRestock
-  id: VendingMachineRestockCiviMedVend
-  name: CiviMed restock box
-  description: A box containing medical supplies for the CiviMed vending machine. A label reads THE BOX IS TAMPER PROOF AND WILL DESTROY IT'S CONTENT ON HARM.
-  components:
-  - type: VendingMachineRestock
-    canRestock:
-    - CiviMedVendInventory
-  - type: Sprite
-    sprite: _NF/Objects/Specific/Service/vending_machine_restock.rsi
-    layers:
-    - state: base
-    - state: green_bit
-      shader: unshaded
-    - state: refill_civimed
