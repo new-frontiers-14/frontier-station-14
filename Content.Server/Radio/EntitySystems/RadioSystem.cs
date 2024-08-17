@@ -1,3 +1,4 @@
+using Content.Server._NF.Radio; // Frontier
 using Content.Server.Administration.Logs;
 using Content.Server.Chat.Systems;
 using Content.Server.Power.Components;
@@ -100,6 +101,14 @@ public sealed class RadioSystem : EntitySystem
             }
             name = mode;
         } // Frontier - code block to allow multi masks.
+
+        // Frontier: add name transform event
+        var transformEv = new RadioTransformMessageEvent(channel, radioSource, name, message, messageSource);
+        RaiseLocalEvent(radioSource, ref transformEv);
+        name = transformEv.Name;
+        message = transformEv.Message;
+        messageSource = transformEv.MessageSource;
+        // End Frontier
 
         name = FormattedMessage.EscapeText(name);
 

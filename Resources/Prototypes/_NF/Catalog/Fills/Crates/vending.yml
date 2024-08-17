@@ -11,24 +11,13 @@
 
 - type: entity
   id: CrateVendingMachineRestockAmmoFilled
-  parent: CratePlasticBiodegradable
+  parent: CrateAmmoGeneric
   name: Liberation restock crate
   description: Contains two restock boxes for the Liberation vending machine.
   components:
   - type: StorageFill
     contents:
       - id: VendingMachineRestockAmmo
-        amount: 2
-
-- type: entity
-  id: CrateVendingMachineRestockFlatpackVendFilled
-  parent: CratePlasticBiodegradable
-  name: FlatpackVend restock crate
-  description: Contains two restock boxes for a FlatpackVend vending machine.
-  components:
-  - type: StorageFill
-    contents:
-      - id: VendingMachineRestockFlatpackVend
         amount: 2
 
 - type: entity
@@ -44,7 +33,7 @@
 
 - type: entity
   id: CrateVendingMachineRestockLessLethalVendFilled
-  parent: CratePlasticBiodegradable
+  parent: CrateAmmoGeneric
   name: LessLethalVend restock crate
   description: Contains two restock boxes for the LessLethalVend vending machine.
   components:
@@ -55,7 +44,7 @@
 
 - type: entity
   id: CrateVendingMachineRestockNonLethalVendFilled
-  parent: CratePlasticBiodegradable
+  parent: CrateAmmoGeneric
   name: NonLethalVend restock crate
   description: Contains two restock boxes for the NonLethalVend vending machine.
   components:
@@ -84,15 +73,4 @@
   - type: StorageFill
     contents:
       - id: VendingMachineRestockPottedPlantVend
-        amount: 2
-
-- type: entity
-  id: CrateVendingMachineRestockCiviMedVendFilled
-  parent: CratePlasticBiodegradable
-  name: CiviMed restock crate
-  description: Contains two restock boxes for the CiviMed vending machine.
-  components:
-  - type: StorageFill
-    contents:
-      - id: VendingMachineRestockCiviMedVend
         amount: 2
