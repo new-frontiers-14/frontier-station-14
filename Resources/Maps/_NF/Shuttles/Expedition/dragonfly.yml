@@ -64,13 +64,13 @@ entities:
             color: '#FFFFFFFF'
             id: Arrows
           decals:
-            93: -2.0344133,-9.415693
+            92: -2.0344133,-9.415693
         - node:
             angle: 6.283185307179586 rad
             color: '#FFFFFFFF'
             id: Arrows
           decals:
-            94: 1.9968367,-8.993818
+            93: 1.9968367,-8.993818
         - node:
             color: '#FFFFFFFF'
             id: Bot
@@ -79,8 +79,8 @@ entities:
             19: -3,-10
             20: 3,-10
             21: 3,-9
-            64: 10,-8
-            95: 10,-7
+            63: 10,-8
+            94: 10,-7
         - node:
             color: '#FFFFFFFF'
             id: Box
@@ -97,10 +97,10 @@ entities:
             color: '#7D7D7D7F'
             id: Damaged
           decals:
-            65: -5,4
-            66: 5,4
-            67: 5,-8
-            68: -5,-8
+            64: -5,4
+            65: 5,4
+            66: 5,-8
+            67: -5,-8
         - node:
             color: '#FFFFFFFF'
             id: Delivery
@@ -110,8 +110,8 @@ entities:
             56: -1,9
             57: 0,9
             58: 1,9
-            91: -3,4
-            92: 3,4
+            90: -3,4
+            91: 3,4
         - node:
             color: '#7D7D7DFF'
             id: FullTileOverlayGreyscale
@@ -198,72 +198,72 @@ entities:
             color: '#FFFFFFFF'
             id: WarnCornerSmallNE
           decals:
-            71: 1,4
-            76: -2,8
+            70: 1,4
+            75: -2,8
         - node:
             color: '#FFFFFFFF'
             id: WarnCornerSmallNW
           decals:
-            70: 3,4
-            75: 2,8
+            69: 3,4
+            74: 2,8
         - node:
             color: '#FFFFFFFF'
             id: WarnLineW
           decals:
-            69: 2,4
-            72: -1,8
-            73: 0,8
-            74: 1,8
+            68: 2,4
+            71: -1,8
+            72: 0,8
+            73: 1,8
         - node:
             color: '#FFFFFFFF'
             id: WoodTrimThinCornerNe
           decals:
-            82: -7,8
+            81: -7,8
         - node:
             color: '#FFFFFFFF'
             id: WoodTrimThinCornerNw
           decals:
-            77: -9,9
+            76: -9,9
         - node:
             color: '#FFFFFFFF'
             id: WoodTrimThinCornerSe
           decals:
-            83: -7,4
+            82: -7,4
         - node:
             color: '#FFFFFFFF'
             id: WoodTrimThinCornerSw
           decals:
-            80: -9,6
-            81: -8,4
+            79: -9,6
+            80: -8,4
         - node:
             color: '#FFFFFFFF'
             id: WoodTrimThinInnerNe
           decals:
-            90: -8,8
+            89: -8,8
         - node:
             color: '#FFFFFFFF'
             id: WoodTrimThinInnerNw
           decals:
-            89: -8,9
+            88: -8,9
         - node:
             color: '#FFFFFFFF'
             id: WoodTrimThinInnerSw
           decals:
-            88: -8,6
+            87: -8,6
         - node:
             color: '#FFFFFFFF'
             id: WoodTrimThinLineE
           decals:
-            84: -7,5
-            85: -7,6
-            86: -7,7
+            83: -7,5
+            84: -7,6
+            85: -7,7
         - node:
             color: '#FFFFFFFF'
             id: WoodTrimThinLineW
           decals:
-            78: -9,8
-            79: -9,7
-            87: -8,5
+            77: -9,8
+            78: -9,7
+            86: -8,5
     - type: GridAtmosphere
       version: 2
       data:
@@ -526,9 +526,6 @@ entities:
     - type: Transform
       pos: 8.5,3.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 630
   - uid: 164
     components:
     - type: Transform
@@ -565,9 +562,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 6.5,4.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 630
   - uid: 175
     components:
     - type: Transform
@@ -1383,6 +1377,14 @@ entities:
     components:
     - type: Transform
       pos: -8.522253,-5.4259543
+      parent: 1
+- proto: ButtonFrameCaution
+  entities:
+  - uid: 630
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 9.5,5.5
       parent: 1
 - proto: CableApcExtension
   entities:
@@ -4391,8 +4393,8 @@ entities:
   - uid: 699
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 9.5,5.5
+      rot: 1.5707963267948966 rad
+      pos: 6.5,8.5
       parent: 1
 - proto: Lamp
   entities:
@@ -4953,7 +4955,7 @@ entities:
       parent: 1
     - type: DeviceLinkSink
       links:
-      - 630
+      - 971
   - uid: 401
     components:
     - type: Transform
@@ -4961,7 +4963,7 @@ entities:
       parent: 1
     - type: DeviceLinkSink
       links:
-      - 630
+      - 971
   - uid: 402
     components:
     - type: Transform
@@ -4969,12 +4971,15 @@ entities:
       parent: 1
     - type: DeviceLinkSink
       links:
-      - 630
+      - 971
   - uid: 404
     components:
     - type: Transform
       pos: 9.5,4.5
       parent: 1
+    - type: DeviceLinkSink
+      links:
+      - 971
   - uid: 405
     components:
     - type: Transform
@@ -5089,7 +5094,7 @@ entities:
       parent: 1
     - type: DeviceLinkSink
       links:
-      - 630
+      - 971
   - uid: 634
     components:
     - type: Transform
@@ -5098,7 +5103,7 @@ entities:
       parent: 1
     - type: DeviceLinkSink
       links:
-      - 630
+      - 971
   - uid: 635
     components:
     - type: Transform
@@ -5107,7 +5112,7 @@ entities:
       parent: 1
     - type: DeviceLinkSink
       links:
-      - 630
+      - 971
   - uid: 688
     components:
     - type: Transform
@@ -5318,30 +5323,6 @@ entities:
         - Pressed: Toggle
         336:
         - Pressed: Toggle
-  - uid: 630
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 6.5,8.5
-      parent: 1
-    - type: DeviceLinkSource
-      linkedPorts:
-        383:
-        - Pressed: Toggle
-        401:
-        - Pressed: Toggle
-        402:
-        - Pressed: Toggle
-        633:
-        - Pressed: Toggle
-        634:
-        - Pressed: Toggle
-        635:
-        - Pressed: Toggle
-        173:
-        - Pressed: DoorBolt
-        132:
-        - Pressed: DoorBolt
   - uid: 638
     components:
     - type: Transform
@@ -5379,6 +5360,28 @@ entities:
         242:
         - Pressed: Toggle
         726:
+        - Pressed: Toggle
+  - uid: 971
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 9.5,5.5
+      parent: 1
+    - type: DeviceLinkSource
+      linkedPorts:
+        383:
+        - Pressed: Toggle
+        401:
+        - Pressed: Toggle
+        402:
+        - Pressed: Toggle
+        633:
+        - Pressed: Toggle
+        634:
+        - Pressed: Toggle
+        635:
+        - Pressed: Toggle
+        404:
         - Pressed: Toggle
 - proto: SignLastIdiot
   entities:
