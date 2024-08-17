@@ -101,7 +101,8 @@
 
 - type: entity
   parent: ComputerShuttle
-  id: ComputerShuttleAntag
+  id: ComputerShuttleAntagEmpty
+  noSpawn: true
   components:
   - type: Sprite
     layers:
@@ -117,6 +118,24 @@
     radius: 1.5
     energy: 1.6
     color: "#c94242"
+
+- type: entity
+  parent: ComputerShuttleAntagEmpty
+  id: ComputerShuttleAntag
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyTraffic
+
+- type: entity
+  parent: ComputerShuttleEmpty
+  id: ComputerShuttle
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyTraffic
 
 - type: entity
   parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerIFFSyndicate]
