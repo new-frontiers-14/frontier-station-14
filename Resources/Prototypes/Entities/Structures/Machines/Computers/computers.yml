@@ -86,9 +86,10 @@
 
 - type: entity
   parent: [BaseComputerShuttle, BaseShuttleIntercom] # Frontier - BaseShuttleIntercom
-  id: ComputerShuttle
+  id: ComputerShuttleEmpty # Frontier - ComputerShuttle<ComputerShuttleEmpty
   name: shuttle console
   description: Used to pilot a shuttle.
+  noSpawn: true # Frontier
   components:
   - type: Sprite
     layers:
