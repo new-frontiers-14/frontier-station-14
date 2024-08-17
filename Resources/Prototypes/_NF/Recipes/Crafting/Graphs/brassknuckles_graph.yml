@@ -1,0 +1,13 @@
+- type: constructionGraph
+  id: GraphWeaponBrassKnuckles
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: WeaponBrassKnuckles
+      steps:
+      - material: Brass
+        amount: 10
+        doAfter: 2
+  - node: WeaponBrassKnuckles
+    entity: WeaponBrassKnuckles
