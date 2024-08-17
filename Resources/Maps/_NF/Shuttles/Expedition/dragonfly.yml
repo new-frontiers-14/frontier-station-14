@@ -1380,11 +1380,36 @@ entities:
       parent: 1
 - proto: ButtonFrameCaution
   entities:
-  - uid: 630
+  - uid: 404
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 9.5,5.5
+      parent: 1
+  - uid: 972
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -2.5,0.5
+      parent: 1
+  - uid: 973
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -8.5,4.5
+      parent: 1
+  - uid: 974
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 2.5,9.5
+      parent: 1
+- proto: ButtonFrameExit
+  entities:
+  - uid: 975
+    components:
+    - type: Transform
+      pos: 2.5,9.5
       parent: 1
 - proto: CableApcExtension
   entities:
@@ -4972,14 +4997,6 @@ entities:
     - type: DeviceLinkSink
       links:
       - 971
-  - uid: 404
-    components:
-    - type: Transform
-      pos: 9.5,4.5
-      parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 971
   - uid: 405
     components:
     - type: Transform
@@ -5086,6 +5103,15 @@ entities:
     - type: DeviceLinkSink
       links:
       - 4
+  - uid: 630
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 9.5,4.5
+      parent: 1
+    - type: DeviceLinkSink
+      links:
+      - 971
   - uid: 633
     components:
     - type: Transform
@@ -5118,16 +5144,25 @@ entities:
     - type: Transform
       pos: -8.5,10.5
       parent: 1
+    - type: DeviceLinkSink
+      links:
+      - 4
   - uid: 692
     components:
     - type: Transform
       pos: -7.5,10.5
       parent: 1
+    - type: DeviceLinkSink
+      links:
+      - 4
   - uid: 694
     components:
     - type: Transform
       pos: -6.5,10.5
       parent: 1
+    - type: DeviceLinkSink
+      links:
+      - 4
 - proto: ShuttleWindow
   entities:
   - uid: 6
@@ -5298,6 +5333,12 @@ entities:
         - Pressed: Toggle
         626:
         - Pressed: Toggle
+        688:
+        - Pressed: Toggle
+        692:
+        - Pressed: Toggle
+        694:
+        - Pressed: Toggle
   - uid: 179
     components:
     - type: Transform
@@ -5381,7 +5422,7 @@ entities:
         - Pressed: Toggle
         635:
         - Pressed: Toggle
-        404:
+        630:
         - Pressed: Toggle
 - proto: SignLastIdiot
   entities:
