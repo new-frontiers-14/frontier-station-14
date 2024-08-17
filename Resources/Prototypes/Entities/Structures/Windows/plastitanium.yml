@@ -5,9 +5,9 @@
   components:
   - type: Sprite
     drawdepth: WallTops
-    sprite: _NF/Structures/Windows/plastitanium_window.rsi
+    sprite: _NF/Structures/Windows/plastitanium_window.rsi # Frontier
   - type: Icon
-    sprite: _NF/Structures/Windows/plastitanium_window.rsi
+    sprite: _NF/Structures/Windows/plastitanium_window.rsi # Frontier
   - type: Repairable
     fuelCost: 15
     doAfterDelay: 3
@@ -48,11 +48,11 @@
     trackAllDamage: true
     damageOverlay:
       sprite: Structures/Windows/cracks.rsi
-#  - type: StaticPrice
-#    price: 100
-  - type: Construction # Frontier
-    graph: Plastitanium
-    node: plastitaniumWindow
+  - type: StaticPrice
+    price: 100
+  - type: Construction # Frontier - Harder to break into
+    graph: Plastitanium # Frontier - Harder to break into
+    node: plastitaniumWindow # Frontier - Harder to break into
 
 - type: entity
   parent: ShuttleWindow
@@ -69,7 +69,7 @@
     state: state0
   - type: IconSmooth
     mode: Diagonal
-    key: windows
+    key: walls # Frontier: windows<walls
     base: state
   - type: Icon
     sprite: Structures/Windows/plastitanium_window_diagonal.rsi

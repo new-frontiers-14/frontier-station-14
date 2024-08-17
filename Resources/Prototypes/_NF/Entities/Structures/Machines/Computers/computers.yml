@@ -2,8 +2,9 @@
   name: cargo sale computer
   suffix: Normal
   parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseComputer]
-  id: ComputerPalletConsoleNFNormalMarket
+  id: ComputerPalletConsoleNFMarket
   description: Used to sell goods loaded onto cargo pallets
+  abstract: true
   components:
   - type: Sprite
     layers:
@@ -26,37 +27,50 @@
     interfaces:
       enum.CargoPalletConsoleUiKey.Sale:
         type: CargoPalletConsoleBoundUserInterface
-  - type: MarketModifier
-    mod: 1.00
   - type: Computer
     board: Null
+  - type: MarketModifier
+    buy: false # The user _sells_ things to this machine.
 
 - type: entity
-  parent: ComputerPalletConsoleNFNormalMarket
+  parent: ComputerPalletConsoleNFMarket
+  id: ComputerPalletConsoleNFVeryHighMarket
+  suffix: VeryHigh
+  components:
+  - type: MarketModifier
+    mod: 1.75
+
+- type: entity
+  parent: ComputerPalletConsoleNFMarket
   id: ComputerPalletConsoleNFHighMarket
   suffix: High
-  description: Used to sell goods loaded onto cargo pallets
   components:
   - type: MarketModifier
-    mod: 1.59
+    mod: 1.50
 
 - type: entity
-  parent: ComputerPalletConsoleNFNormalMarket
+  parent: ComputerPalletConsoleNFMarket
+  id: ComputerPalletConsoleNFNormalMarket
+  suffix: Normal
+  components:
+  - type: MarketModifier
+    mod: 1.0
+
+- type: entity
+  parent: ComputerPalletConsoleNFMarket
   id: ComputerPalletConsoleNFLowMarket
   suffix: Low
-  description: Used to sell goods loaded onto cargo pallets
   components:
   - type: MarketModifier
-    mod: 0.698
+    mod: 0.75
 
 - type: entity
-  parent: ComputerPalletConsoleNFNormalMarket
+  parent: ComputerPalletConsoleNFMarket
   id: ComputerPalletConsoleNFVeryLowMarket
   suffix: VeryLow
-  description: Used to sell goods loaded onto cargo pallets
   components:
   - type: MarketModifier
-    mod: 0.40
+    mod: 0.50
 
 - type: entity
   name: contraband exchange computer
@@ -191,19 +205,19 @@
   name: cargo market computer
   parent: ComputerMarketConsoleNFBase
   id: ComputerMarketConsoleNFLow
-  suffix: Low 5x
+  suffix: Low
   components:
   - type: MarketModifier
-    mod: 5
+    mod: 4
 
 - type: entity
   name: cargo market computer
   parent: ComputerMarketConsoleNFBase
   id: ComputerMarketConsoleNFHigh
-  suffix: High 10x
+  suffix: High
   components:
   - type: MarketModifier
-    mod: 10
+    mod: 8
 
 - type: entity
   id: ComputerPirateBounty
