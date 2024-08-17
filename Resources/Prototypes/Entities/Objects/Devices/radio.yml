@@ -18,9 +18,17 @@
   - type: Sprite
     sprite: _NF/Objects/Devices/communication.rsi # Frontier - _NF/Objects/Devices/communication.rsi
     layers:
-    - state: walkietalkie
+    - state: base
 #    - state: walkietalkie-on # Frontier
-    state: walkietalkie
+    - state: broadcasting # Frontier
+      map: ["enum.RadioDeviceVisualLayers.Broadcasting"] # Frontier
+      shader: unshaded # Frontier
+      visible: false # Frontier
+    - state: speaker # Frontier
+      map: ["enum.RadioDeviceVisualLayers.Speaker"] # Frontier
+      shader: unshaded # Frontier
+      visible: false # Frontier
+    state: base # Frontier
   - type: Item
     sprite: _NF/Objects/Devices/communication.rsi # Frontier - _NF/Objects/Devices/communication.rsi
     heldPrefix: walkietalkie
@@ -37,6 +45,16 @@
       enum.HandheldRadioUiKey.Key:
         type: HandheldRadioBoundUserInterface
   # Nuclear-14-End
+  - type: GenericVisualizer # Frontier
+    visuals: # Frontier
+      enum.RadioDeviceVisuals.Broadcasting: # Frontier
+        enum.RadioDeviceVisualLayers.Broadcasting: # Frontier
+          True: { visible: true } # Frontier
+          False: { visible: false } # Frontier
+      enum.RadioDeviceVisuals.Speaker: # Frontier
+        enum.RadioDeviceVisualLayers.Speaker: # Frontier
+          True: { visible: true } # Frontier
+          False: { visible: false } # Frontier
 
 - type: entity
   name: security radio
