@@ -153,8 +153,22 @@
     prototypes:
     - SuitStorageBase
     - SuitStorageEVAAlternate
-    - SuitStorageHydro
-    - SuitStorageMailCarrier
+    - SuitStorageEVAContractor
+    - SuitStorageEVAPilot
+    - SuitStorageEVAEngineer
+    - SuitStorageEVAAtmosTech
+    - SuitStorageEVACargo
+    - SuitStorageEVASalvage
+    - SuitStorageEVAMedical
+    - SuitStorageEVAScientist
+    - SuitStorageEVAJanitor
+    - SuitStorageEVAServiceWorker
+    - SuitStorageEVAChaplain
+    - SuitStorageEVABoxerBlue
+    - SuitStorageEVAMercenary
+    - SuitStorageEVAPrivateSec
+    - SuitStorageEVAHydro
+    - SuitStorageEVAMail
     - SuitStorageBasic
     - SuitStoragePilot
     - SuitStorageParamedic
@@ -302,6 +316,7 @@
     prototypes:
     # Empty Crates
     - CrateEmptySpawner
+    - GenericTank
     # Mats
     - CrateMaterialGlass
     - CrateMaterialSteel
@@ -313,8 +328,16 @@
     - CrateMaterialTextiles
     - CrateMaterials
     - CrateMaterialBrass
+    - CrateMaterialMetalRods
+    - CrateMaterialPaper
+    - WeldingFuelTankFull
+    - WaterTankFull
     chance: 1.0
     offset: 0.0
+    rarePrototypes:
+    - WeldingFuelTankHighCapacity
+    - WaterTankHighCapacity
+    rareChance: 0.01
 
 - type: entity
   name: random crate (restock)
@@ -651,6 +674,7 @@
     - DawInstrumentMachineCircuitboard
     - ComputerIFFCircuitboard
     - SpawnDungeonLootFlatpacks
+    - MercenaryTechFabCircuitboardNF
     chance: 1
     offset: 0.0
     rarePrototypes:
@@ -758,7 +782,7 @@
     chance: 0.9
     offset: 0.0
     rarePrototypes:
-    - MaterialDiamond
+    - MaterialDiamond1
     rareChance: 0.01
 
 - type: entity
@@ -1011,11 +1035,12 @@
     - ComputerResearchAndDevelopmentFlatpack
     - ResearchAndDevelopmentServerFlatpack
     - AmmoTechFabFlatpack
+    - MercenaryTechFabFlatpack
     chance: 0.95
     offset: 0.0
     rarePrototypes:
     - VendingMachineSyndieContrabandFlatpack
-    rareChance: 0.01
+    rareChance: 0.005
 
 - type: entity
   name: random restock box
@@ -1047,7 +1072,6 @@
     - VendingMachineRestockEngineering
     - VendingMachineRestockGames
     - VendingMachineRestockMedical
-    - VendingMachineRestockCiviMedVend
     - VendingMachineRestockNutriMax
     - VendingMachineRestockSalvageEquipment
     - VendingMachineRestockSeeds
@@ -1058,7 +1082,6 @@
     - VendingMachineRestockChemVend
     - VendingMachineRestockAstroVend
     - VendingMachineRestockAmmo
-    - VendingMachineRestockFlatpackVend
     - VendingMachineRestockLessLethalVend
     - VendingMachineRestockNonLethalVend
     - VendingMachineRestockAutoTuneVend
