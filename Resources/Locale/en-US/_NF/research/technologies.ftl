@@ -12,4 +12,4 @@ research-technology-bounty-hunting = Bounty Hunting
 research-technology-arsenal-style = Punk Gear
 research-techology-advanced-topicals = Advanced Topicals
 research-technology-magnets-tech-advanced = Advanced Localized Magnetism
-research-technology-magnets-tech-combat = Combat Localized Magnetism
+research-technology-magnets-tech-combat = Localized Magnetism Combat Application
