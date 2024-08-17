@@ -358,6 +358,13 @@ public sealed class RadioDeviceSystem : EntitySystem
     // Frontier: init intercom with map
     private void OnMapInit(EntityUid uid, IntercomComponent ent, MapInitEvent args)
     {
+        // Set initial frequency (must be done regardless of power/enabled)
+        if (ent.CurrentChannel != null &&
+                _protoMan.TryIndex(ent.CurrentChannel, out var channel) &&
+                TryComp(uid, out RadioMicrophoneComponent? mic))
+        {
+            mic.Frequency = channel.Frequency;
+        }
         if (ent.StartSpeakerOnMapInit)
         {
             SetSpeakerEnabled(uid, null, true);
