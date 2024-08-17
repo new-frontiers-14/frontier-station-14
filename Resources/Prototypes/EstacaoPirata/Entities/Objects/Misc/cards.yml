@@ -1,7 +1,7 @@
 - type: entity
   parent: [ BoxCardboard, BaseBagOpenClose ]
   id: CardBoxBase
-  name: Card Box
+  name: deck box
   noSpawn: true
   components:
   - type: Item
@@ -33,7 +33,7 @@
   parent: BaseItem
   id: CardHandBase
   noSpawn: true
-  name: Card hand
+  name: hand of cards
   components:
   - type: Item
     size: Small
@@ -67,7 +67,7 @@
 - type: entity
   parent: CardBoxBase
   id: CardBoxBlack
-  name: black deck case
+  name: black deck box
   components:
   - type: Item
     size: Small
@@ -87,7 +87,7 @@
 - type: entity
   parent: CardDeckBase
   id: CardDeckBlack
-  name: Deck of cards
+  name: deck of cards
   components:
   - type: Sprite
     sprite: EstacaoPirata/Objects/Misc/cards.rsi
@@ -156,7 +156,7 @@
 - type: entity
   parent: BaseItem
   id: CardBase
-  name: Card
+  name: card
   noSpawn: true
   components:
   - type: EmitSoundOnLand

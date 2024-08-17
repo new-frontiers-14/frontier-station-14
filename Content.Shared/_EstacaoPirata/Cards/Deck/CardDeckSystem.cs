@@ -107,7 +107,7 @@ public sealed class CardDeckSystem : EntitySystem
         _cardStackSystem.FlipAllCards(deck, stack, isFlipped: isFlipped);
 
         _audio.PlayPvs(comp.ShuffleSound, deck, AudioHelpers.WithVariation(0.05f, _random));
-        _popup.PopupEntity(Loc.GetString("card-verb-organize-success", ("target", MetaData(deck).EntityName)), deck);
+        _popup.PopupEntity(Loc.GetString("card-verb-organize-success", ("target", MetaData(deck).EntityName), ("facedown", isFlipped)), deck);
     }
 
 

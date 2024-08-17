@@ -1,5 +1,6 @@
 using System.Linq;
 using Content.Shared._EstacaoPirata.Cards.Card;
+using Content.Shared._EstacaoPirata.Cards.Hand;
 using Content.Shared.Examine;
 using Content.Shared.Interaction;
 using Content.Shared.Storage.EntitySystems;
@@ -27,6 +28,7 @@ public sealed class CardStackSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly SharedStorageSystem _storage = default!;
+    [Dependency] private readonly CardHandSystem _cardHandSystem = default!; // Frontier
 
 
     /// <inheritdoc/>
@@ -56,13 +58,13 @@ public sealed class CardStackSystem : EntitySystem
 
         Dirty(uid, comp);
 
+        RaiseLocalEvent(uid, new CardStackQuantityChangeEvent(GetNetEntity(uid), GetNetEntity(card), StackQuantityChangeType.Removed));
+        RaiseNetworkEvent(new CardStackQuantityChangeEvent(GetNetEntity(uid), GetNetEntity(card), StackQuantityChangeType.Removed));
         // Prevents prediction ruining things
         if (_net.IsServer && comp.Cards.Count <= 0)
         {
             _entityManager.DeleteEntity(uid);
         }
-        RaiseLocalEvent(uid, new CardStackQuantityChangeEvent(GetNetEntity(uid), GetNetEntity(card), StackQuantityChangeType.Removed));
-        RaiseNetworkEvent(new CardStackQuantityChangeEvent(GetNetEntity(uid), GetNetEntity(card), StackQuantityChangeType.Removed));
         return true;
     }
 
@@ -189,22 +191,32 @@ public sealed class CardStackSystem : EntitySystem
 
     private void OnAlternativeVerb(EntityUid uid, CardStackComponent component, GetVerbsEvent<AlternativeVerb> args)
     {
-        if (!TryComp(args.Using, out CardStackComponent? usingStack) ||
-            !TryComp(args.Target, out CardStackComponent? targetStack))
-            return;
-
         if (args.Using == args.Target)
             return;
+        if (!TryComp(args.Target, out CardStackComponent? targetStack))
+            return;
 
-        args.Verbs.Add(new AlternativeVerb()
+        if (TryComp(args.Using, out CardStackComponent? usingStack))
         {
-            Text = Loc.GetString("card-verb-join"),
-            Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/refresh.svg.192dpi.png")),
-            Priority = 8,
-            Act = () => JoinStacks(args.User, args.Target, targetStack, (EntityUid)args.Using, usingStack)
-        });
-
-     }
+            args.Verbs.Add(new AlternativeVerb()
+            {
+                Text = Loc.GetString("card-verb-join"),
+                Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/refresh.svg.192dpi.png")),
+                Priority = 8,
+                Act = () => JoinStacks(args.User, args.Target, targetStack, (EntityUid)args.Using, usingStack)
+            });
+        }
+        else if (TryComp(args.Using, out CardComponent? usingCard)) // Frontier: single card interaction
+        {
+            args.Verbs.Add(new AlternativeVerb()
+            {
+                Text = Loc.GetString("card-verb-join"),
+                Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/refresh.svg.192dpi.png")),
+                Priority = 8,
+                Act = () => InsertCardOnStack(args.User, args.Target, targetStack, (EntityUid)args.Using)
+            });
+        } // End Frontier: single card interaction
+    }
 
     private void JoinStacks(EntityUid user, EntityUid first, CardStackComponent firstComp, EntityUid second, CardStackComponent secondComp)
     {
@@ -249,7 +261,6 @@ public sealed class CardStackSystem : EntitySystem
                 return;
         }
 
-
         _audio.PlayPredicted(firstComp.PlaceDownSound, Transform(second).Coordinates, user);
         if (_net.IsClient)
             return;
@@ -258,13 +269,15 @@ public sealed class CardStackSystem : EntitySystem
         {
             _storage.PlayPickupAnimation(cards.First(), Transform(user).Coordinates, Transform(second).Coordinates, 0);
         }
-        else
+        else if (cards.Count() > 0)
         {
             _storage.PlayPickupAnimation(first, Transform(first).Coordinates, Transform(second).Coordinates, 0);
         }
+
+        // Not a stack anymore, remove the last card.
+        if (firstComp.Cards.Count == 1)
+            TryRemoveCard(first, firstComp.Cards[0]);
     }
-
-
 
     private void OnInteractUsing(InteractUsingEvent args)
     {
@@ -296,9 +309,11 @@ public sealed class CardStackSystem : EntitySystem
         // This handles the reverse case, where the user is using a card and inserting it to a stack
         else if (TryComp(args.Target, out CardStackComponent? stack))
         {
-            if (TryComp(args.Used, out CardComponent? _))
+            //InsertCardOnStack(args.User, args.Target, stack, args.Used); // Frontier: old version
+            if (TryComp(args.Used, out CardComponent? card))
             {
-                InsertCardOnStack(args.User, args.Target, stack, args.Used);
+                Log.Error($"CardStackSystem: setting up hand from stack!");
+                _cardHandSystem.TrySetupHandFromStack(args.User, args.Used, card, args.Target, stack);
                 args.Handled = true;
             }
         }

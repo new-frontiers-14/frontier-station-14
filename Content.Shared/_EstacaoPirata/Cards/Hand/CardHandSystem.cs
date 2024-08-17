@@ -49,6 +49,7 @@ public sealed class CardHandSystem : EntitySystem
         {
             StackQuantityChangeType.Added => "cards-stackquantitychange-added",
             StackQuantityChangeType.Removed => "cards-stackquantitychange-removed",
+            StackQuantityChangeType.Joined => "cards-stackquantitychange-joined",
             _ => "cards-stackquantitychange-unknown"
         };
 
@@ -66,14 +67,12 @@ public sealed class CardHandSystem : EntitySystem
 
         _hands.TryPickupAnyHand(args.Actor, GetEntity(args.Card));
 
-
         if (stack.Cards.Count != 1)
             return;
         var lastCard = stack.Cards.Last();
         if (!_cardStack.TryRemoveCard(uid, lastCard, stack))
             return;
-        _hands.TryPickupAnyHand(args.Actor, lastCard);
-
+        //_hands.TryPickupAnyHand(args.Actor, lastCard);
     }
 
     private void OpenHandMenu(EntityUid user, EntityUid hand)
@@ -105,9 +104,26 @@ public sealed class CardHandSystem : EntitySystem
 
     private void OnInteractUsing(EntityUid uid, CardComponent comp, InteractUsingEvent args)
     {
-        if (TryComp(args.Used, out CardComponent? usedComp) && TryComp(args.Target, out CardComponent? targetComp))
+        Log.Error($"CardHandSystem: OnInteractUsing! {uid} {args.Used} {args.Target}");
+        if (args.Handled)
         {
-            TrySetupHandOfCards(args.User, args.Used, usedComp, args.Target, targetComp);
+            Log.Error("CardHandSystem: already handled!");
+            return;
+        }
+
+        if (HasComp<CardStackComponent>(args.Used) ||
+                !TryComp(args.Used, out CardComponent? usedComp))
+        {
+            Log.Error($"CardHandSystem: used {args.Used} is a stack!");
+            return;
+        }
+
+        if (!HasComp<CardStackComponent>(args.Target) &&
+                TryComp(args.Target, out CardComponent? targetCardComp))
+        {
+            Log.Error($"CardHandSystem: setting up hand from card!");
+            TrySetupHandOfCards(args.User, args.Used, usedComp, args.Target, targetCardComp);
+            args.Handled = true;
         }
     }
 
@@ -128,7 +144,7 @@ public sealed class CardHandSystem : EntitySystem
         if (isHoldingCards)
             _hands.TryPickupAnyHand(user, cardDeck);
     }
-    private void TrySetupHandOfCards(EntityUid user, EntityUid card, CardComponent comp, EntityUid target, CardComponent targetComp)
+    public void TrySetupHandOfCards(EntityUid user, EntityUid card, CardComponent comp, EntityUid target, CardComponent targetComp)
     {
         if (_net.IsClient)
             return;
@@ -142,8 +158,18 @@ public sealed class CardHandSystem : EntitySystem
         _cardStack.FlipAllCards(cardHand, stack, false);
     }
 
-
-
-
-
+    public void TrySetupHandFromStack(EntityUid user, EntityUid card, CardComponent comp, EntityUid target, CardStackComponent targetComp)
+    {
+        if (_net.IsClient)
+            return;
+        var cardHand = Spawn(CardHandBaseName, Transform(card).Coordinates);
+        if (!TryComp(cardHand, out CardStackComponent? stack))
+            return;
+        if (!_cardStack.TryInsertCard(cardHand, card, stack))
+            return;
+        _cardStack.TransferNLastCardFromStacks(user, 1, target, targetComp, cardHand, stack);
+        if (!_hands.TryPickupAnyHand(user, cardHand))
+            return;
+        _cardStack.FlipAllCards(cardHand, stack, false);
+    }
 }
