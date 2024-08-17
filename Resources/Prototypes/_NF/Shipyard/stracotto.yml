@@ -1,0 +1,43 @@
+# Author: birdie412
+# GitHub: ???
+# Discord: birdie412
+
+# Maintainer Info
+# GitHub: ???
+# Discord: ???
+
+# Shuttle Notes:
+#This is a classy ittialian pasta/pizza resturant,
+#The other food ships out there are just Fastfood slopppy resturant, while this one is a bit more on the classy side
+#I picture this map is perfect for a small italian Mob that run the shop, and making aldente pasta
+
+
+
+- type: vessel
+  id: stracotto
+  name: NC Stracotto
+  description: A small classy Italian restaurant.
+  price: 22000
+  category: Medium
+  group: Civilian
+  shuttlePath: /Maps/_NF/Shuttles/stracotto.yml
+
+- type: gameMap
+  id: stracotto
+  mapName: 'NC Stracotto'
+  mapPath: /Maps/_NF/Shuttles/stracotto.yml
+  minPlayers: 0
+  stations:
+    stracotto:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'stracotto {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]
