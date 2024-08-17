@@ -168,7 +168,8 @@ public sealed partial class SalvageSystem
                 continue;
 
             comp.Cooldown = false;
-            comp.NextOffer += TimeSpan.FromSeconds(_cooldown);
+            //comp.NextOffer += TimeSpan.FromSeconds(_cooldown); // Frontier
+            comp.NextOffer = currentTime + TimeSpan.FromSeconds(_cooldown); // Frontier
             GenerateMissions(comp);
             UpdateConsoles(comp);
         }

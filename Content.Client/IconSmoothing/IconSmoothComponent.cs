@@ -74,5 +74,12 @@ namespace Content.Client.IconSmoothing
         ///     Where this component contributes to our neighbors being calculated but we do not update our own sprite.
         /// </summary>
         NoSprite,
+
+        // Frontier: pretty diagonal windows
+        /// <summary>
+        ///     The icon represents a triangular sprite with 5 states, representing which combinations of South and East are being occupied or not.
+        /// </summary>
+        DiagonalNF,
+        // End Frontier
     }
 }

@@ -24,7 +24,7 @@ entities:
   - uid: 1
     components:
     - type: MetaData
-      name: grid
+      name: Cove
     - type: Transform
       pos: -0.5,-0.6875
       parent: invalid
@@ -4991,6 +4991,14 @@ entities:
     - type: Transform
       pos: 4.5399175,2.4303112
       parent: 1
+- proto: ComputerBroken # TODO: swap out for ComputerContrabandPalletConsolePirate when doubloon Contraband is added to NFSD items
+  entities:
+  - uid: 686
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -3.5,-4.5
+      parent: 1
 - proto: ComputerPalletConsoleNFLowMarket
   entities:
   - uid: 560
@@ -5001,19 +5009,18 @@ entities:
       parent: 1
 - proto: ComputerPirateBounty
   entities:
-  - uid: 1562
+  - uid: 2098
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -8.5,-4.5
+      pos: -7.5,-1.5
       parent: 1
 - proto: ComputerPirateBountyRedemption
   entities:
   - uid: 268
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -3.5,-4.5
+      rot: 1.5707963267948966 rad
+      pos: -8.5,-4.5
       parent: 1
 - proto: ComputerPowerMonitoring
   entities:
@@ -5951,7 +5958,7 @@ entities:
       pos: 7.5,28.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -5703.0693
+      secondsUntilStateChange: -6264.317
       state: Opening
 - proto: FenceWoodSmallCorner
   entities:
@@ -7853,22 +7860,22 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 9.5,3.5
       parent: 1
-- proto: JugWeldingFuel
+- proto: JerryCanWeldingFuel
   entities:
-  - uid: 686
-    components:
-    - type: Transform
-      pos: -0.27437842,13.09
-      parent: 1
   - uid: 1008
     components:
     - type: Transform
-      pos: -0.73063827,13.09
+      pos: -0.30208337,13.108901
+      parent: 1
+  - uid: 1562
+    components:
+    - type: Transform
+      pos: -0.76041675,13.119318
       parent: 1
   - uid: 2002
     components:
     - type: Transform
-      pos: 9.503801,17.030228
+      pos: 9.443164,17.108042
       parent: 1
 - proto: KitchenDeepFryer
   entities:
