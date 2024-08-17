@@ -131,6 +131,9 @@ namespace Content.Server.Mail
                 return;
             }
 
+            //if (!HasComp<StationMailRouterComponent>(station)) # Frontier - We dont need to test for station related but we still need to comp to exists to avoid merge issues.
+            //    return;
+
             EnsureComp<MailReceiverComponent>(args.SpawnResult.Value);
         }
 
@@ -812,8 +815,8 @@ namespace Content.Server.Mail
             var query = EntityQueryEnumerator<StationLogisticStatsComponent>();
             while (query.MoveNext(out var station, out var logisticStats))
             {
-                if (_stationSystem.GetOwningStation(uid) != station)
-                    continue;
+                //if (_stationSystem.GetOwningStation(uid) != station) # Frontier - No need for this test
+                //    continue;
                 action(station, logisticStats);
             }
         }
