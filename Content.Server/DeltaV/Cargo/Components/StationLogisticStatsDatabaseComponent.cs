@@ -4,10 +4,10 @@ using Content.Shared.CartridgeLoader.Cartridges;
 namespace Content.Server.DeltaV.Cargo.Components;
 
 /// <summary>
-/// Added to the abstract representation of a station to track stats related to mail delivery and income
+/// Tracks all mail statistics for mail activity in the sector.
 /// </summary>
 [RegisterComponent, Access(typeof(SharedCargoSystem))]
-public sealed partial class StationLogisticStatsComponent : Component
+public sealed partial class SectorLogisticStatsComponent : Component // Frontier: Station->Sector
 {
     [DataField]
     public MailStats Metrics { get; set; }

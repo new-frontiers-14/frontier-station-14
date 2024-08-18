@@ -5,13 +5,14 @@ using Content.Server.CartridgeLoader;
 using Content.Shared.CartridgeLoader;
 using Content.Shared.CartridgeLoader.Cartridges;
 using Content.Server.Mail.Components;
+using Content.Server._NF.SectorServices;
 
 namespace Content.Server.DeltaV.CartridgeLoader.Cartridges;
 
 public sealed class MailMetricsCartridgeSystem : EntitySystem
 {
     [Dependency] private readonly CartridgeLoaderSystem _cartridgeLoader = default!;
-    [Dependency] private readonly StationSystem _station = default!;
+    [Dependency] private readonly SectorServiceSystem _sectorService = default!;
 
     public override void Initialize()
     {
@@ -24,41 +25,40 @@ public sealed class MailMetricsCartridgeSystem : EntitySystem
 
     private void OnUiReady(Entity<MailMetricsCartridgeComponent> ent, ref CartridgeUiReadyEvent args)
     {
-        UpdateUI(ent, args.Loader);
+        UpdateUI(args.Loader);
     }
 
     private void OnLogisticsStatsUpdated(LogisticStatsUpdatedEvent args)
     {
-        UpdateAllCartridges(args.Station);
+        UpdateAllCartridges(); // Frontier: remove station
     }
 
     private void OnMapInit(EntityUid uid, MailComponent mail, MapInitEvent args)
     {
-        if (_station.GetOwningStation(uid) is { } station)
-            UpdateAllCartridges(station);
+        UpdateAllCartridges(); // Frontier: remove station
     }
 
-    private void UpdateAllCartridges(EntityUid station)
+    private void UpdateAllCartridges() // Frontier: remove station
     {
         var query = EntityQueryEnumerator<MailMetricsCartridgeComponent, CartridgeComponent>();
         while (query.MoveNext(out var uid, out var comp, out var cartridge))
         {
-            if (cartridge.LoaderUid is not { } loader || comp.Station != station)
+            if (cartridge.LoaderUid is not { } loader)
                 continue;
-            UpdateUI((uid, comp), loader);
+            UpdateUI(loader);
         }
     }
 
-    private void UpdateUI(Entity<MailMetricsCartridgeComponent> ent, EntityUid loader)
+    private void UpdateUI(EntityUid loader)
     {
-        if (_station.GetOwningStation(loader) is { } station)
-            ent.Comp.Station = station;
+        //if (_station.GetOwningStation(loader) is { } station)
+        //    ent.Comp.Station = station;
 
-        if (!TryComp<StationLogisticStatsComponent>(ent.Comp.Station, out var logiStats))
+        if (!TryComp<SectorLogisticStatsComponent>(_sectorService.GetServiceEntity(), out var logiStats))
             return;
 
         // Get station's logistic stats
-        var unopenedMailCount = GetUnopenedMailCount(ent.Comp.Station);
+        var unopenedMailCount = GetUnopenedMailCount();
 
         // Send logistic stats to cartridge client
         var state = new MailMetricUiState(logiStats.Metrics, unopenedMailCount);
@@ -66,15 +66,17 @@ public sealed class MailMetricsCartridgeSystem : EntitySystem
     }
 
 
-    private int GetUnopenedMailCount(EntityUid? station)
+    private int GetUnopenedMailCount() // Frontier: remove EntityUid param
     {
         var unopenedMail = 0;
 
         var query = EntityQueryEnumerator<MailComponent>();
 
-        while (query.MoveNext(out var uid, out var comp))
+        while (query.MoveNext(out var _, out var comp))
         {
-            if (comp.IsLocked && _station.GetOwningStation(uid) == station)
+            //if (comp.IsLocked && _station.GetOwningStation(uid) == station)
+            //    unopenedMail++;
+            if (comp.IsLocked && comp.IsProfitable) // Frontier: remove station check, add profitable check (consider only possible profit as unopened)
                 unopenedMail++;
         }
 

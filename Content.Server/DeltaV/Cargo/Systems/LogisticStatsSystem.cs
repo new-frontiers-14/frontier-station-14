@@ -12,57 +12,55 @@ public sealed partial class LogisticStatsSystem : SharedCargoSystem
     }
 
     [PublicAPI]
-    public void AddOpenedMailEarnings(EntityUid uid, StationLogisticStatsComponent component, int earnedMoney)
+    public void AddOpenedMailEarnings(SectorLogisticStatsComponent component, int earnedMoney)
     {
         component.Metrics = component.Metrics with
         {
             Earnings = component.Metrics.Earnings + earnedMoney,
             OpenedCount = component.Metrics.OpenedCount + 1
         };
-        UpdateLogisticsStats(uid);
+        UpdateLogisticsStats();
     }
 
     [PublicAPI]
-    public void AddExpiredMailLosses(EntityUid uid, StationLogisticStatsComponent component, int lostMoney)
+    public void AddExpiredMailLosses(SectorLogisticStatsComponent component, int lostMoney)
     {
         component.Metrics = component.Metrics with
         {
             ExpiredLosses = component.Metrics.ExpiredLosses + lostMoney,
             ExpiredCount = component.Metrics.ExpiredCount + 1
         };
-        UpdateLogisticsStats(uid);
+        UpdateLogisticsStats();
     }
 
     [PublicAPI]
-    public void AddDamagedMailLosses(EntityUid uid, StationLogisticStatsComponent component, int lostMoney)
+    public void AddDamagedMailLosses(SectorLogisticStatsComponent component, int lostMoney)
     {
         component.Metrics = component.Metrics with
         {
             DamagedLosses = component.Metrics.DamagedLosses + lostMoney,
             DamagedCount = component.Metrics.DamagedCount + 1
         };
-        UpdateLogisticsStats(uid);
+        UpdateLogisticsStats();
     }
 
     [PublicAPI]
-    public void AddTamperedMailLosses(EntityUid uid, StationLogisticStatsComponent component, int lostMoney)
+    public void AddTamperedMailLosses(SectorLogisticStatsComponent component, int lostMoney)
     {
         component.Metrics = component.Metrics with
         {
             TamperedLosses = component.Metrics.TamperedLosses + lostMoney,
             TamperedCount = component.Metrics.TamperedCount + 1
         };
-        UpdateLogisticsStats(uid);
+        UpdateLogisticsStats();
     }
 
-    private void UpdateLogisticsStats(EntityUid uid) => RaiseLocalEvent(new LogisticStatsUpdatedEvent(uid));
+    private void UpdateLogisticsStats() => RaiseLocalEvent(new LogisticStatsUpdatedEvent());
 }
 
 public sealed class LogisticStatsUpdatedEvent : EntityEventArgs
 {
-    public EntityUid Station;
-    public LogisticStatsUpdatedEvent(EntityUid station)
+    public LogisticStatsUpdatedEvent()
     {
-        Station = station;
     }
 }
