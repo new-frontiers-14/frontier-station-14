@@ -4,8 +4,8 @@
   abstract: true
   components:
   - type: RandomTimerTrigger
-    min: 1
-    max: 10
+    min: 2
+    max: 8
   - type: OnUseTimerTrigger # todo: make it activate through welder/lighter/fire instead
     delay: 5
     examinable: false
@@ -34,14 +34,6 @@
     layers:
     - state: icon
       map: ["enum.TriggerVisualLayers.Base"]
-  - type: OnUseTimerTrigger
-    delay: 5
-    examinable: false
-    initialBeepDelay: 0
-    beepSound:
-      path: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
-      params:
-        volume: 1
   - type: ExplodeOnTrigger
   - type: Explosive # Weak explosion with rad damage spread over a large radius.
     explosionType: Radioactive
@@ -69,63 +61,59 @@
     canCreateVacuum: false
 
 - type: entity
-  parent: BaseItem
+  id: PirateFireBombCompoundA
+  parent: Beaker
+  noSpawn: true
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 50
+        reagents:
+        - ReagentId: Napalm
+          Quantity: 15
+        - ReagentId: Water
+          Quantity: 25
+
+- type: entity
+  id: PirateFireBombCompoundB
+  parent: Beaker
+  noSpawn: true
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 50
+        reagents:
+        - ReagentId: Phlogiston
+          Quantity: 15
+        - ReagentId: Fluorosurfactant
+          Quantity: 25
+
+- type: entity
+  parent: PirateGrenadeBase
   id: PirateFireBomb
   name: red pirate grenade
-  description: A grenade that's hot to the touch; may be prone to catch things on fire.
+  description: A grenade that's hot to the touch; prone to catch things on fire.
   components:
   - type: Sprite
     sprite: _NF/Objects/Weapons/Bombs/pirate_fire.rsi
     layers:
     - state: icon
       map: ["enum.TriggerVisualLayers.Base"]
-  - type: Appearance
-  - type: AnimationPlayer
-  - type: TimerTriggerVisuals
-    unprimedSprite: icon
-    primedSprite: primed
-  - type: Damageable
-    damageContainer: Inorganic
-    damageModifierSet: Glass
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 5
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalBreak
-      - !type:DoActsBehavior
-         acts: [ "Destruction" ]
-      - !type:DumpCanisterBehavior
-  - type: DamageOnLand
-    damage:
-      types:
-        Blunt: 10 # glass resistance set reduces damage. Need to land twice (w/o hitting wall)
-  - type: DamageOtherOnHit
-    damage:
-      types:
-        Blunt: 5
-  - type: DamageOnHighSpeedImpact
-    minimumSpeed: 2
-    damage:
-      types:
-        Blunt: 5
-  - type: GasCanister
-    gasMixture:
-        volume: 15
-        moles: # List of gasses for easy reference
-          - 3 # oxygen
-          - 0 # nitrogen
-          - 0 # CO2
-          - 12 # Plasma
-          - 0 # Tritium
-          - 0 # Water vapor
-          - 0 # Ammonia
-          - 0 # N2O
-          - 0 # Frezon
-        temperature: 800
-  - type: IgnitionSource
-    ignited: true
-    temperature: 1
+  - type: ChemicalPayload
+    beakerSlotA:
+      ejectOnUse: false
+      ejectOnDeconstruct: false
+      swap: false
+      locked: true
+      startingItem: PirateFireBombCompoundA
+    beakerSlotB:
+      ejectOnUse: false
+      ejectOnDeconstruct: false
+      swap: false
+      locked: true
+      startingItem: PirateFireBombCompoundB
+  - type: DeleteOnTrigger
+  - type: SoundOnTrigger
+    sound: /Audio/Items/smoke_grenade_smoke.ogg
