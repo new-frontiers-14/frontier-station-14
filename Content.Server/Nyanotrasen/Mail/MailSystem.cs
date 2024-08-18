@@ -324,7 +324,7 @@ namespace Content.Server.Mail
         {
             if (component.IsLocked)
             {
-                if (component.IsProfitable) // Frontier: cache mail profitability
+                if (component.IsProfitable) // Frontier: update only when profitable
                 {
                     PenalizeStationFailedDelivery(uid, component, "mail-penalty-lock");
 
@@ -364,7 +364,7 @@ namespace Content.Server.Mail
         {
             _appearanceSystem.SetData(uid, MailVisuals.IsBroken, true);
 
-            if (component.IsFragile && component.IsProfitable)
+            if (component.IsFragile && component.IsProfitable) // Frontier: update only when profitable
             {
                 PenalizeStationFailedDelivery(uid, component, "mail-penalty-fragile");
 
@@ -384,7 +384,7 @@ namespace Content.Server.Mail
 
             UnlockMail(uid, component);
 
-            // Frontier: ding station on emag
+            // Frontier: penalize station on emag, but only if profitable
             if (component.IsProfitable)
             {
                 PenalizeStationFailedDelivery(uid, component, "mail-penalty-lock");
@@ -396,6 +396,7 @@ namespace Content.Server.Mail
                         component.Penalty);
                 });
             }
+            // End Frontier
 
             _popupSystem.PopupEntity(Loc.GetString("mail-unlocked-by-emag"), uid, args.UserUid);
 
@@ -550,7 +551,7 @@ namespace Content.Server.Mail
                 Timer.Spawn((int) component.priorityDuration.TotalMilliseconds,
                     () =>
                     {
-                        if (mailComp.IsProfitable)
+                        if (mailComp.IsProfitable) // Frontier: only penalize and adjust stats if profitable
                         {
                             PenalizeStationFailedDelivery(uid, mailComp, "mail-penalty-expired");
 
@@ -830,8 +831,10 @@ namespace Content.Server.Mail
         // For updating MailMetrics stats
         private void ExecuteForEachLogisticsStats(Action<SectorLogisticStatsComponent> action)
         {
+            // Frontier: use service entity - there should be only one
             if (TryComp(_sectorService.GetServiceEntity(), out SectorLogisticStatsComponent? logisticStats))
                 action(logisticStats);
+            // End Frontier
         }
     }
 
