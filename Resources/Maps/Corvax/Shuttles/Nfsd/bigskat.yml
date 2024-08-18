@@ -4141,7 +4141,8 @@ entities:
             0: 35771
           1,-2:
             3: 17
-            0: 29696
+            0: 13312
+            4: 16384
           1,-5:
             0: 48063
           2,-4:
@@ -6464,6 +6465,57 @@ entities:
     - type: Transform
       pos: 6.735427,-1.4154496
       parent: 1
+  - uid: 9120
+    components:
+    - type: Transform
+      pos: 6.386024,-0.27473545
+      parent: 1
+  - uid: 9121
+    components:
+    - type: Transform
+      pos: 6.5631075,-0.38939857
+      parent: 1
+  - uid: 9122
+    components:
+    - type: Transform
+      pos: 6.7714405,-0.23303986
+      parent: 1
+  - uid: 9123
+    components:
+    - type: Transform
+      pos: 6.3443575,-1.2545829
+      parent: 1
+  - uid: 9124
+    components:
+    - type: Transform
+      pos: 6.761024,-1.2545829
+      parent: 1
+  - uid: 9125
+    components:
+    - type: Transform
+      pos: 6.5526905,-1.3796697
+      parent: 1
+  - uid: 9127
+    components:
+    - type: Transform
+      parent: 9126
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+  - uid: 9128
+    components:
+    - type: Transform
+      parent: 9126
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+  - uid: 9129
+    components:
+    - type: Transform
+      parent: 9126
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
 - proto: AmeShielding
   entities:
   - uid: 871
@@ -15903,7 +15955,7 @@ entities:
   - uid: 157
     components:
     - type: Transform
-      pos: -2.5,-0.5
+      pos: 3.5,1.5
       parent: 1
   - uid: 161
     components:
@@ -15913,7 +15965,7 @@ entities:
   - uid: 730
     components:
     - type: Transform
-      pos: -1.5,0.5
+      pos: -2.5,1.5
       parent: 1
   - uid: 785
     components:
@@ -16128,7 +16180,7 @@ entities:
   - uid: 1772
     components:
     - type: Transform
-      pos: 2.5,0.5
+      pos: -3.5,0.5
       parent: 1
   - uid: 1773
     components:
@@ -18164,6 +18216,41 @@ entities:
     components:
     - type: Transform
       pos: -57.5,-7.5
+      parent: 1
+  - uid: 9112
+    components:
+    - type: Transform
+      pos: -0.5,-0.5
+      parent: 1
+  - uid: 9113
+    components:
+    - type: Transform
+      pos: -1.5,-0.5
+      parent: 1
+  - uid: 9114
+    components:
+    - type: Transform
+      pos: 1.5,-0.5
+      parent: 1
+  - uid: 9115
+    components:
+    - type: Transform
+      pos: 2.5,-0.5
+      parent: 1
+  - uid: 9116
+    components:
+    - type: Transform
+      pos: -3.5,-0.5
+      parent: 1
+  - uid: 9117
+    components:
+    - type: Transform
+      pos: -3.5,-1.5
+      parent: 1
+  - uid: 9119
+    components:
+    - type: Transform
+      pos: -4.5,0.5
       parent: 1
 - proto: CableMV
   entities:
@@ -24639,6 +24726,14 @@ entities:
     - type: Transform
       pos: 9.5,-0.5
       parent: 1
+- proto: ComputerPowerMonitoring
+  entities:
+  - uid: 9118
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -4.5,0.5
+      parent: 1
 - proto: ComputerRadar
   entities:
   - uid: 5554
@@ -24901,6 +24996,44 @@ entities:
     - type: Transform
       pos: -11.5,-2.5
       parent: 1
+- proto: CrateEngineeringAMEControl
+  entities:
+  - uid: 9126
+    components:
+    - type: Transform
+      pos: 6.5,-4.5
+      parent: 1
+    - type: EntityStorage
+      air:
+        volume: 200
+        immutable: False
+        temperature: 293.14923
+        moles:
+        - 1.7459903
+        - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+    - type: ContainerContainer
+      containers:
+        entity_storage: !type:Container
+          showEnts: False
+          occludes: True
+          ents:
+          - 9127
+          - 9128
+          - 9129
+        paper_label: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
 - proto: CrateEngineeringCableBulk
   entities:
   - uid: 4928
@@ -40674,6 +40807,26 @@ entities:
       - 7582
     - type: AtmosPipeColor
       color: '#FF0000FF'
+- proto: GeneratorBasic15kW
+  entities:
+  - uid: 9110
+    components:
+    - type: Transform
+      pos: -1.5,-0.5
+      parent: 1
+    - type: PowerSupplier
+      supplyRampRate: 35000
+      supplyRampTolerance: 35000
+      supplyRate: 180000
+  - uid: 9111
+    components:
+    - type: Transform
+      pos: 2.5,-0.5
+      parent: 1
+    - type: PowerSupplier
+      supplyRampRate: 35000
+      supplyRampTolerance: 35000
+      supplyRate: 180000
 - proto: GlassBoxFrame
   entities:
   - uid: 1082
