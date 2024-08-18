@@ -24,12 +24,15 @@ ghost-role-information-mistake-description = Ymg' ph'nglui ah li.
 ghost-role-information-ert-mailcarrier-name = ERT Mail Carrier
 ghost-role-information-ert-mailcarrier-description = Assist with delivery efforts to resolve the station's issues.
 
-ghost-role-information-jerma-name = Jerma
-ghost-role-information-jerma-description = Pog moment
-
 ghost-role-information-baby-dragon-name = Baby space dragon
 ghost-role-information-baby-dragon-description = Hatch from your egg and go on incredible adventures with your mom and their crew!
 ghost-role-information-baby-dragon-rules = You are a [color=#6495ed][bold]Familiar[/bold][/color]. Serve the interests of your new mom, whatever those may be.
                                         You don't remember any of your previous life, and you don't remember anything you learned as a ghost.
                                         You are allowed to remember knowledge about the game in general, such as how to cook, how to use objects, etc.
                                         You are absolutely [color=red]NOT[/color] allowed to remember, say, the name, appearance, etc. of your previous character.
+
+ghost-role-information-taxibot-name = Taxibot
+ghost-role-information-taxibot-description = Drive passengers to where they need to go.
+
+ghost-role-information-hovertaxibot-name = Hovertaxibot
+ghost-role-information-hovertaxibot-description = Fly passengers to where they need to go, remember to check they can breathe!
