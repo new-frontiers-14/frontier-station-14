@@ -150,7 +150,9 @@
         Base: dead
 
 - type: entity
-  parent: BaseMobFleshExpeditions
+  parent:
+  - BaseMobFleshExpeditions
+  - MobLaserReflect # Added to prevent laser abuse from players
   id: MobFleshAssimilatedMiner
   description: An unfortunate miner that was infected upon contact with aberrant flesh and has been slowly assimilated.
   noSpawn: true
@@ -240,7 +242,7 @@
     rechargeSound:
       path: /Audio/_NF/Effects/silence.ogg
   - type: BasicEntityAmmoProvider
-    proto: DartAberrantFleshHorrorSpikeCluster #DartAberrantFleshHorrorSpike
+    proto: DartAberrantFleshHorrorSpike #DartAberrantFleshHorrorSpikeCluster
     capacity: 1
     count: 1
   - type: Gun
