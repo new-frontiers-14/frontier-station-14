@@ -233,13 +233,15 @@ namespace Content.Server.Mail
             }
 
             UnlockMail(uid, component);
-            // DeltaV - Add earnings to logistic stats
-            ExecuteForEachLogisticsStats((logisticStats) =>
+            if (component.IsProfitable) // Frontier: update only when profitable
             {
-                if (component.IsProfitable)
-                    _logisticsStatsSystem.AddOpenedMailEarnings(logisticStats,
-                        component.Bounty);
-            });
+                // DeltaV - Add earnings to logistic stats
+                ExecuteForEachLogisticsStats((logisticStats) =>
+                {
+                        _logisticsStatsSystem.AddOpenedMailEarnings(logisticStats,
+                            component.Bounty);
+                });
+            }
 
             if (!component.IsProfitable)
             {
@@ -322,17 +324,18 @@ namespace Content.Server.Mail
         {
             if (component.IsLocked)
             {
-                bool wasProfitable = component.IsProfitable; // Frontier: cache mail profitability
-                PenalizeStationFailedDelivery(uid, component, "mail-penalty-lock");
-
-                // DeltaV - Damaged mail recorded to logistic stats
-                component.IsLocked = false; // Frontier: do not count this package as unopened.
-                ExecuteForEachLogisticsStats((logisticStats) =>
+                if (component.IsProfitable) // Frontier: cache mail profitability
                 {
-                    if (wasProfitable)
+                    PenalizeStationFailedDelivery(uid, component, "mail-penalty-lock");
+
+                    // DeltaV - Damaged mail recorded to logistic stats
+                    component.IsLocked = false; // Frontier: do not count this package as unopened.
+                    ExecuteForEachLogisticsStats((logisticStats) =>
+                    {
                         _logisticsStatsSystem.AddDamagedMailLosses(logisticStats,
                             component.Penalty);
-                });
+                    });
+                }
             }
 
             // if (component.IsEnabled)
