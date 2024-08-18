@@ -1,0 +1,38 @@
+#Delta-V - This file is licensed under AGPLv3
+# Copyright (c) 2024 Delta-V Contributors
+# See AGPLv3.txt for details.
+
+- type: entity
+  parent: BasePDA
+  id: CourierPDA
+  name: mail carrier PDA # Frontier: courier PDA<mail carrier PDA
+  description: Smells like unopened letters.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Devices/pda.rsi # Frontier - DeltaV/Objects/Devices/pda.rsi<_NF/Objects/Devices/pda.rsi
+    layers:
+    - map: [ "enum.PdaVisualLayers.Base" ]
+    - state: "light_overlay"
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+      shader: "unshaded"
+      visible: false
+    - state: "id_overlay"
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+      shader: "unshaded"
+      visible: false
+  - type: Pda
+    id: CourierIDCard
+    state: pda-mailcarrier
+  - type: PdaBorderColor
+    borderColor: "#e39751"
+    accentVColor: "#050c4d"
+  - type: Icon
+    sprite: _NF/Objects/Devices/pda.rsi # Frontier - DeltaV/Objects/Devices/pda.rsi<_NF/Objects/Devices/pda.rsi
+    state: pda-mailcarrier
+  - type: CartridgeLoader # DeltaV - Courier Performance
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NewsReaderCartridge
+      - BountyContractsCartridge
+      - MailMetricsCartridge
