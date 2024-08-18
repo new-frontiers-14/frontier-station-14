@@ -10,8 +10,8 @@
 # 
 - type: vessel
   id: Broom
-  name: LVHI Broom
-  description: A cramped yet reliable shuttle for providing janitorial services.
+  name: LVHI Метёлка
+  description: Одноместный шаттл, предназначенный для уборщика аванпоста.
   price: 11000 # ~9650$ on mapinit + ~1450$ from 15% markup
   category: Small
   group: Sr
@@ -20,7 +20,7 @@
 
 - type: gameMap
   id: Broom
-  mapName: 'Broom'
+  mapName: 'Метёлка'
   mapPath: /Maps/_NF/Shuttles/Sr/broom.yml
   minPlayers: 0
   stations:
@@ -28,7 +28,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Broom {1}'
+          mapNameTemplate: 'Метёлка {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
