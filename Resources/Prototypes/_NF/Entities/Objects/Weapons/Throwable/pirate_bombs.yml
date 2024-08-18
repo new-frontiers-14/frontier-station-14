@@ -1,0 +1,131 @@
+- type: entity
+  parent: GrenadeBase
+  id: PirateGrenadeBase
+  abstract: true
+  components:
+  - type: RandomTimerTrigger
+    min: 1
+    max: 10
+  - type: OnUseTimerTrigger # todo: make it activate through welder/lighter/fire instead
+    delay: 5
+    examinable: false
+    initialBeepDelay: 0
+    beepSound: /Audio/Effects/lightburn.ogg
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50 # Probably thick cast iron, should be a bit beefy
+      behaviors:
+      - !type:TriggerBehavior
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+
+- type: entity
+  parent: PirateGrenadeBase
+  id: PirateRadiationGrenade
+  name: green pirate grenade
+  description: A foul-smelling grenade that makes you feel fuzzy.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Bombs/pirate_caustic.rsi
+    layers:
+    - state: icon
+      map: ["enum.TriggerVisualLayers.Base"]
+  - type: OnUseTimerTrigger
+    delay: 5
+    examinable: false
+    initialBeepDelay: 0
+    beepSound:
+      path: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+      params:
+        volume: 1
+  - type: ExplodeOnTrigger
+  - type: Explosive # Weak explosion with rad damage spread over a large radius.
+    explosionType: Radioactive
+    totalIntensity: 40
+    intensitySlope: 0.7
+    canCreateVacuum: false
+
+- type: entity
+  parent: PirateGrenadeBase
+  id: PirateConcussionGrenade
+  name: gray pirate grenade
+  description: A solid grenade that feels like a cannonball.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Bombs/pirate_explosive.rsi
+    layers:
+    - state: icon
+      map: ["enum.TriggerVisualLayers.Base"]
+  - type: ExplodeOnTrigger
+  - type: Explosive # Weak explosion in a very small radius. Doesn't break underplating.
+    explosionType: DemolitionCharge
+    totalIntensity: 50
+    intensitySlope: 5
+    maxIntensity: 6
+    canCreateVacuum: false
+
+- type: entity
+  parent: BaseItem
+  id: PirateFireBomb
+  name: red pirate grenade
+  description: A grenade that's hot to the touch; may be prone to catch things on fire.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Bombs/pirate_fire.rsi
+    layers:
+    - state: icon
+      map: ["enum.TriggerVisualLayers.Base"]
+  - type: Appearance
+  - type: AnimationPlayer
+  - type: TimerTriggerVisuals
+    unprimedSprite: icon
+    primedSprite: primed
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Glass
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 5
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:DoActsBehavior
+         acts: [ "Destruction" ]
+      - !type:DumpCanisterBehavior
+  - type: DamageOnLand
+    damage:
+      types:
+        Blunt: 10 # glass resistance set reduces damage. Need to land twice (w/o hitting wall)
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 5
+  - type: DamageOnHighSpeedImpact
+    minimumSpeed: 2
+    damage:
+      types:
+        Blunt: 5
+  - type: GasCanister
+    gasMixture:
+        volume: 15
+        moles: # List of gasses for easy reference
+          - 3 # oxygen
+          - 0 # nitrogen
+          - 0 # CO2
+          - 12 # Plasma
+          - 0 # Tritium
+          - 0 # Water vapor
+          - 0 # Ammonia
+          - 0 # N2O
+          - 0 # Frezon
+        temperature: 800
+  - type: IgnitionSource
+    ignited: true
+    temperature: 1
