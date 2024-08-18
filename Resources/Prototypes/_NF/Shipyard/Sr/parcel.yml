@@ -1,0 +1,36 @@
+# Author Info
+# GitHub: ???
+# Discord: ???
+
+# Maintainer Info
+# GitHub: ???
+# Discord: ???
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Parcel
+  name: NC Пачка
+  description: Малогабаритный почтовый шаттл. Рекомендованный размер команды 1 человек.
+  price: 18000
+  category: Small
+  group: Sr
+  access: Mail
+  shuttlePath: /Maps/_NF/Shuttles/Sr/parcel.yml
+
+- type: gameMap
+  id: Parcel
+  mapName: 'NC Пачка'
+  mapPath: /Maps/_NF/Shuttles/Sr/parcel.yml
+  minPlayers: 0
+  stations:
+    Parcel:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Пачка {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs: {}

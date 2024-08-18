@@ -154,7 +154,7 @@
     offset: 0.0
     rarePrototypes:
     - SpawnDungeonLootMeleeT3
-    rareChance: 0.1
+    rareChance: 0.15
 
 - type: entity
   name: random weapon
@@ -188,7 +188,7 @@
     offset: 0.0
     rarePrototypes:
     - SpawnDungeonLootGunT3
-    rareChance: 0.1
+    rareChance: 0.15
 
 - type: entity
   name: random weapon
@@ -243,7 +243,7 @@
     offset: 0.0
     rarePrototypes:
     - SpawnDungeonLootMeleeT4
-    rareChance: 0.1
+    rareChance: 0.15
 
 - type: entity
   name: random weapon
@@ -270,13 +270,15 @@
     - WeaponCaseLongLecterExpedition
     - WeaponCaseLongLaserCarbineExpedition
     - WeaponCaseLongHristovExpedition
+    - WeaponCaseShortSvalinnExpedition
+    - WeaponCaseShortAdvancedLaserExpedition
     #- WeaponCaseLongMusketExpedition
     - WeaponCaseLongVector22Expedition #Corvax-Frontier
     chance: 1.0
     offset: 0.0
     rarePrototypes:
     - SpawnDungeonLootGunT4
-    rareChance: 0.1
+    rareChance: 0.15
 
 - type: entity
   name: random weapon
@@ -331,7 +333,7 @@
     offset: 0.0
     rarePrototypes:
     - SpawnDungeonLootMeleeT5
-    rareChance: 0.01
+    rareChance: 0.05
 
 - type: entity
   name: random weapon
@@ -355,8 +357,6 @@
     - WeaponCaseLongM90Expedition
     - WeaponCaseLongC20r
     - WeaponCaseLongAkExpedition
-    - WeaponCaseShortSvalinnExpedition
-    - WeaponCaseShortAdvancedLaserExpedition
     - WeaponCaseHeavyAsmgtExpeditions
     - WeaponCaseLongEnforcerExpedition
     - WeaponCaseLongLaserCannonExpedition
@@ -364,7 +364,7 @@
     offset: 0.0
     rarePrototypes:
     - SpawnDungeonLootGunT5
-    rareChance: 0.01
+    rareChance: 0.1
 
 - type: entity
   name: random weapon
@@ -462,4 +462,142 @@
     prototypes:
     - WeaponCaseShortC4
     chance: 0.3
+    offset: 0.0
+
+# Ammo
+- type: entity
+  name: random ammo
+  id: SpawnDungeonLootAmmoLethal
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Ammo, Lethal"
+  noSpawn: true
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+      scale: 0.7, 0.7
+    - sprite: _NF/Objects/Storage/Cases/ammocaseshort.rsi
+      state: icon
+  - type: RandomSpawner
+    prototypes:
+    - WeaponCaseShortAmmoBoxLethal20
+    - WeaponCaseShortAmmoBoxLethal30
+    - WeaponCaseShortAmmoBoxLethal35
+    - WeaponCaseShortAmmoBoxLethal25
+    - WeaponCaseShortAmmoBoxLethalShotgun
+    - WeaponCaseShortAmmoBoxSlugShotgun
+    - WeaponCaseShortAmmoBoxLethal45
+    chance: 0.8
+    offset: 0.0
+    rarePrototypes:
+    - WeaponCaseShortAmmoBoxBigLethal20
+    - WeaponCaseShortAmmoBoxBigLethal30
+    - WeaponCaseShortAmmoBoxBigLethal25
+    - WeaponCaseShortAmmoBoxEmp35
+    - WeaponCaseShortAmmoBoxFlareShotgun
+    - SpawnDungeonLootAmmoRubber
+    - SpawnDungeonLootAmmoPractice
+    - SpawnDungeonLootAmmoIncendiary
+    - SpawnDungeonLootAmmoUranium
+    rareChance: 0.01
+
+- type: entity
+  name: random ammo
+  id: SpawnDungeonLootAmmoRubber
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Ammo, Rubber"
+  noSpawn: true
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+      scale: 0.7, 0.7
+    - sprite: _NF/Objects/Storage/Cases/ammocaseshort.rsi
+      state: icon
+  - type: RandomSpawner
+    prototypes:
+    - WeaponCaseShortAmmoBoxRubber20
+    - WeaponCaseShortAmmoBoxRubber30
+    - WeaponCaseShortAmmoBoxRubber35
+    - WeaponCaseShortAmmoBoxRubber25
+    - WeaponCaseShortAmmoBoxRubberShotgun
+    - WeaponCaseShortAmmoBoxRubber45
+    chance: 0.7
+    offset: 0.0
+    rarePrototypes:
+    - WeaponCaseShortAmmoBoxBigRubber20
+    - WeaponCaseShortAmmoBoxBigRubber25
+    rareChance: 0.01
+
+- type: entity
+  name: random ammo
+  id: SpawnDungeonLootAmmoPractice
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Ammo, Practice"
+  noSpawn: true
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+      scale: 0.7, 0.7
+    - sprite: _NF/Objects/Storage/Cases/ammocaseshort.rsi
+      state: icon
+  - type: RandomSpawner
+    prototypes:
+    - WeaponCaseShortAmmoBoxPractice20
+    - WeaponCaseShortAmmoBoxPractice30
+    - WeaponCaseShortAmmoBoxPractice35
+    - WeaponCaseShortAmmoBoxPractice25
+    - WeaponCaseShortAmmoBoxPracticeShotgun
+    - WeaponCaseShortAmmoBoxPractice45
+    chance: 0.6
+    offset: 0.0
+
+- type: entity
+  name: random ammo
+  id: SpawnDungeonLootAmmoIncendiary
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Ammo, Incendiary"
+  noSpawn: true
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+      scale: 0.7, 0.7
+    - sprite: _NF/Objects/Storage/Cases/ammocaseshort.rsi
+      state: icon
+  - type: RandomSpawner
+    prototypes:
+    - WeaponCaseShortAmmoBoxIncendiary20
+    - WeaponCaseShortAmmoBoxIncendiary30
+    - WeaponCaseShortAmmoBoxIncendiary35
+    - WeaponCaseShortAmmoBoxIncendiaryShotgun
+    - WeaponCaseShortAmmoBoxIncendiary45
+    chance: 0.5
+    offset: 0.0
+    rarePrototypes:
+    - SpawnDungeonLootAmmoUranium
+    rareChance: 0.01
+
+- type: entity
+  name: random ammo
+  id: SpawnDungeonLootAmmoUranium
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Ammo, Uranium"
+  noSpawn: true
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+      scale: 0.7, 0.7
+    - sprite: _NF/Objects/Storage/Cases/ammocaseshort.rsi
+      state: icon
+  - type: RandomSpawner
+    prototypes:
+    - WeaponCaseShortAmmoBoxUranium20
+    - WeaponCaseShortAmmoBoxUranium30
+    - WeaponCaseShortAmmoBoxUranium35
+    - WeaponCaseShortAmmoBoxUraniumShotgun
+    - WeaponCaseShortAmmoBoxUranium45
+    chance: 0.4
     offset: 0.0

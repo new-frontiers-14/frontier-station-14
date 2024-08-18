@@ -18,3 +18,7 @@ ghost-role-information-jerma-description = Погчамп момент
 ghost-role-information-baby-dragon-name = Космодракончик
 ghost-role-information-baby-dragon-description = Вылупись из яйца и отправься в невероятные приключения с мамой и её экипажем!
 ghost-role-information-baby-dragon-rules = Ты вот-вот вылупишься из яйца. Не забудь, кто твоя мама, будь верным и защищай её экипаж!
+ghost-role-information-taxibot-name = Таксибот
+ghost-role-information-taxibot-description = Доставляй пассажиров до их точки назначения.
+ghost-role-information-hovertaxibot-name = Ховертаксибот
+ghost-role-information-hovertaxibot-description = Доставляй пассажиров до их точки назначения, но удостоверься, что им есть чем дышать!

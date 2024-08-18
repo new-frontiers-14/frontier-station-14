@@ -26,3 +26,7 @@ ent-M_EmpMachineCircuitboard = БЭМИ (машинная плата)
     .desc = Печатная плата БЭМИ.
 ent-PortableGeneratorHyperPacmanMachineCircuitboard = Г.И.П.Е.Р.П.А.К.М.А.Н (машинная плата)
     .desc = { ent-BaseMachineCircuitboard.desc }
+ent-MercenaryTechFabCircuitboardNF = техфаб наёмника (машинная плата)
+    .desc = { ent-BaseMachineCircuitboard.desc }
+ent-MercenaryTechFabCircuitboardHackedNF = взломанный техфаб наёмника (машинная плата)
+    .desc = { ent-BaseMachineCircuitboard.desc }
