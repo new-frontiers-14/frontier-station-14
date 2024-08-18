@@ -46,3 +46,6 @@ ent-WarpPointNFGrifty = { ent-WarpPoint }
 ent-WarpPointNFNfsd = { ent-WarpPoint }
     .suffix = POI, Аванпост ДСБФ
     .desc = { ent-WarpPoint.desc }
+ent-WarpPointNFMcHobo = { ent-WarpPoint }
+    .suffix = POI, МакХобо
+    .desc = { ent-WarpPoint.desc }
