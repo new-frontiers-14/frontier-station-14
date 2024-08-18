@@ -116,19 +116,85 @@
   - type: RandomSpawner
     prototypes:
     # Empty crates
-    - SpawnDungeonLootCrateEmptyEngi
+    - CrateScienceSecure
+    - CratePlasma
+    - CrateEngineering
+    - CrateElectrical
+    - CrateRadiation
+    - CrateUranium
+    - CrateMedical
+    - CrateSurgery
+    - CrateChemistrySecure
     # Restocks
-    - SpawnDungeonLootCrateRestockEngi
+    - CrateVendingMachineRestockEngineeringFilled
+    - CrateVendingMachineRestockVendomatFilled
+    - CrateVendingMachineRestockRoboticsFilled
+    - CrateVendingMachineRestockAstroVendFilled
+    - CrateVendingMachineRestockTankDispenserFilled
+    - CrateVendingMachineRestockMedicalFilled
+    - CrateVendingMachineRestockChemVendFilled
     # Mats
-    - SpawnDungeonLootCrateMaterials
+    - CrateMaterialGlass
+    - CrateMaterialSteel
+    - CrateMaterialPlastic
+    - CrateMaterialWood
+    - CrateMaterialPlasteel
+    - CrateMaterialPlasma
+    - CrateMaterialUranium
+    - CrateMaterialTextiles
+    - CrateMaterials
+    - CrateMaterialBrass
+    - CrateMaterialMetalRods
+    - CrateMaterialPaper
+    - WeldingFuelTankFull
+    - WaterTankFull
     # Filled crates
-    - SpawnDungeonLootCrateEngi
-    - SpawnDungeonLootCrateMed
-    chance: 0.95
+    - CrateEngineeringGear
+    - CrateEngineeringElectricalSupplies
+    - CrateEngineeringCableLV
+    - CrateEngineeringCableMV
+    - CrateEngineeringCableHV
+    - CrateEngineeringCableBulk
+    - CrateEngineeringToolbox
+    - CrateEngineeringShuttle
+    - CrateEngineeringFoamGrenade
+    - CrateEngineeringMiniJetpack
+    - CrateAirlockKit
+    - CrateEngineeringSpaceHeater
+    - CrateEngineeringSolar
+    - CrateTools
+    - CrateEngineerHardsuit
+    - CrateAtmosTechHardsuit
+    - CrateEngineeringThruster
+    - CrateEngineeringGyroscope
+    - CrateBodyBags
+    - CrateMedicalRollerBeds
+    - CrateChemistrySupplies
+    - CrateChemistryVials
+    - CrateMedicalSupplies
+    - CrateMedicalSurgery
+    - CrateMedicalScrubs
+    - CrateVirologyBiosuit
+    - CrateChemistrySecureKitChemist
+    - CrateMedicalSecureDoctor
+    - CrateMedicalSecureMedicine
+    - CrateMedicalSecureMedicinePierce
+    - CrateEvaKitParamedic
+    chance: 0.9
     offset: 0.0
     rarePrototypes:
-    - CrateScienceLabBundle
-    rareChance: 0.03
+    # Mats
+    - WeldingFuelTankHighCapacity
+    # Filled crates
+    - CrateEngineeringKitShipyardRcd
+    - CrateEngineeringKitRtg
+    - CrateEngineeringKitFabrication
+    - CrateEngineerChiefHardsuit
+    - CrateServiceKitMedbay
+    - CrateServiceKitChemLab
+    - CrateServiceKitMedbayCryo
+    - CrateEvaKitCmo
+    rareChance: 0.01
 
 # Other
 - type: entity
