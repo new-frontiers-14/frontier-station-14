@@ -231,29 +231,9 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
         Box2 shuttleBox = new Box2();
 
         if (shuttleUid is { Valid: true } vesselUid &&
-            _entManager.TryGetComponent<TransformComponent>(vesselUid, out var vesselXform))
+            _entManager.TryGetComponent<MapGridComponent>(vesselUid, out var gridComp))
         {
-            foreach (var gridUid in stationData.Grids)
-            {
-                if (!_entManager.TryGetComponent<MapGridComponent>(gridUid, out var gridComp))
-                    continue;
-
-                MapCoordinates mapBottomLeft = _xforms.ToMapCoordinates(EntityCoordinatesExtensions.ToCoordinates(gridUid, gridComp.LocalAABB.BottomLeft));
-                MapCoordinates mapTopRight = _xforms.ToMapCoordinates(EntityCoordinatesExtensions.ToCoordinates(gridUid, gridComp.LocalAABB.TopRight));
-                EntityCoordinates shuttleBottomLeft = _xforms.ToCoordinates((vesselUid, vesselXform), mapBottomLeft);
-                EntityCoordinates shuttleTopRight = _xforms.ToCoordinates((vesselUid, vesselXform), mapTopRight);
-
-                //IsEmpty check needed so box won't contain 0, 0
-                if (!shuttleBox.IsEmpty())
-                {
-                    shuttleBox = shuttleBox.ExtendToContain(shuttleBottomLeft.Position);
-                    shuttleBox = shuttleBox.ExtendToContain(shuttleTopRight.Position);
-                }
-                else
-                {
-                    shuttleBox = new Box2(shuttleBottomLeft.Position, shuttleTopRight.Position);
-                }
-            }
+            shuttleBox = gridComp.LocalAABB;
         }
 
         // Frontier: offset ship spawn point from bounding boxes
