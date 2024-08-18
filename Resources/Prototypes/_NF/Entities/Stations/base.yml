@@ -1,0 +1,52 @@
+- type: entity
+  id: BaseStationSiliconLawFrontierStation
+  abstract: true
+  components:
+  - type: SiliconLawProvider
+    laws: NTDefault
+
+- type: entity
+  id: BaseStationSiliconLawFrontierShips
+  abstract: true
+  components:
+  - type: SiliconLawProvider
+    laws: Corporate
+
+- type: entity
+  id: BaseStationRenameFaxes
+  abstract: true
+  components:
+    - type: StationRenameFaxes
+
+- type: entity
+  id: BaseStationRenameWarpPoints
+  abstract: true
+  components:
+    - type: StationRenameWarps
+
+- type: entity
+  id: BaseStationEmpImmune
+  abstract: true
+  components:
+    - type: StationEmpImmune
+
+# Sector-wide news access, should be on stations with comms (radio station, telecomms)
+# TODO: move SectorNewsComponent to a SectorService
+- type: entity
+  id: BaseStationSectorNews
+  abstract: true
+  components:
+    - type: SectorNews
+
+# Uses this station ID to host singleton-esque services to avoid station references (e.g. for PDA apps)
+- type: entity
+  id: BaseStationSectorServices
+  abstract: true
+  components:
+    - type: StationSectorServiceHost
+
+- type: entity
+  id: BaseStationDampening
+  abstract: true
+  components:
+    - type: StationDampening
