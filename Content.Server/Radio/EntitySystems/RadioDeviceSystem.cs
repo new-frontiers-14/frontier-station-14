@@ -48,6 +48,8 @@ public sealed class RadioDeviceSystem : EntitySystem
         SubscribeLocalEvent<IntercomComponent, ToggleIntercomMicMessage>(OnToggleIntercomMic);
         SubscribeLocalEvent<IntercomComponent, ToggleIntercomSpeakerMessage>(OnToggleIntercomSpeaker);
         SubscribeLocalEvent<IntercomComponent, SelectIntercomChannelMessage>(OnSelectIntercomChannel);
+
+        SubscribeLocalEvent<IntercomComponent, MapInitEvent>(OnMapInit); // Frontier
     }
 
     public override void Update(float frameTime)
@@ -215,7 +217,7 @@ public sealed class RadioDeviceSystem : EntitySystem
             ("originalName", nameEv.Name));
 
         // log to chat so people can identity the speaker/source, but avoid clogging ghost chat if there are many radios
-        _chat.TrySendInGameICMessage(uid, args.Message, InGameICChatType.Whisper, ChatTransmitRange.GhostRangeLimit, nameOverride: name, checkRadioPrefix: false);
+        _chat.TrySendInGameICMessage(uid, args.Message, component.OutputChatType, ChatTransmitRange.GhostRangeLimitNoAdminCheck, nameOverride: name, checkRadioPrefix: false); // Frontier: GhostRangeLimit<GhostRangeLimitNoAdminCheck, InGameICChatType.Whisper<component.OutputChatType
     }
 
     private void OnIntercomEncryptionChannelsChanged(Entity<IntercomComponent> ent, ref EncryptionChannelsChangedEvent args)
@@ -279,5 +281,21 @@ public sealed class RadioDeviceSystem : EntitySystem
         if (TryComp<RadioSpeakerComponent>(ent, out var speaker))
             speaker.Channels = new(){ channel };
         Dirty(ent);
+    }
+
+    private void OnMapInit(EntityUid uid, IntercomComponent ent, MapInitEvent args) // Frontier - Init on map
+    {
+        if (ent.StartSpeakerOnMapInit)
+        {
+            SetSpeakerEnabled(uid, null, true);
+            ent.SpeakerEnabled = true;
+            _appearance.SetData(uid, RadioDeviceVisuals.Speaker, true);
+        }
+        if (ent.StartMicrophoneOnMapInit)
+        {
+            SetMicrophoneEnabled(uid, null, true);
+            ent.MicrophoneEnabled = true;
+            _appearance.SetData(uid, RadioDeviceVisuals.Broadcasting, true);
+        }
     }
 }
