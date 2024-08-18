@@ -33,5 +33,3 @@ ent-ComputerPirateBountyRedemption = консоль пиратских возн�
     .desc = Вернулся из плавания? Обменивай здесь свои награды, дружище.
 ent-ComputerShuttleAntag = { ent-ComputerShuttleAntagEmpty }
     .desc = { ent-ComputerShuttleAntagEmpty.desc }
-ent-ComputerShuttle = { ent-ComputerShuttleEmpty }
-    .desc = { ent-ComputerShuttleEmpty.desc }
