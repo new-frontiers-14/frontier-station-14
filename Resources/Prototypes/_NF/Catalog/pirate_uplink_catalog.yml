@@ -241,26 +241,26 @@
           - PirateUplink
 
 - type: listing
- id: UplinkPirateRedGrenade
- name:  uplink-pirate-redgrenade-name
- description: uplink-pirate-redgrenade-desc
- productEntity: PirateFireBomb
- icon: { sprite: _NF/Objects/Weapons/Bombs/pirate_fire.rsi, state: icon }
- cost:
-   Doubloon: 3
- categories:
-   - UplinkPirateWeapons
- conditions:
-   - !type:StoreWhitelistCondition
-     whitelist:
-       tags:
-         - PirateUplink
+  id: UplinkPirateRedGrenade
+  name:  uplink-pirate-redgrenade-name
+  description: uplink-pirate-redgrenade-desc
+  productEntity: PirateGrenadeFire
+  icon: { sprite: _NF/Objects/Weapons/Bombs/pirate_fire.rsi, state: icon }
+  cost:
+    Doubloon: 3
+  categories:
+    - UplinkPirateWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
 
 - type: listing
   id: UplinkPirateGreenGrenade
   name:  uplink-pirate-greengrenade-name
   description: uplink-pirate-greengrenade-desc
-  productEntity: PirateRadiationGrenade
+  productEntity: PirateGrenadeRadiation
   icon: { sprite: _NF/Objects/Weapons/Bombs/pirate_caustic.rsi, state: icon }
   cost:
     Doubloon: 3
@@ -276,7 +276,7 @@
   id: UplinkPirateGrayGrenade
   name:  uplink-pirate-graygrenade-name
   description: uplink-pirate-graygrenade-desc
-  productEntity: PirateConcussionGrenade
+  productEntity: PirateGrenadeConcussion
   icon: { sprite: _NF/Objects/Weapons/Bombs/pirate_explosive.rsi, state: icon }
   cost:
     Doubloon: 3

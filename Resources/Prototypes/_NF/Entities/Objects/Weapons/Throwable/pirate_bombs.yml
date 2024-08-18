@@ -25,7 +25,7 @@
 
 - type: entity
   parent: PirateGrenadeBase
-  id: PirateRadiationGrenade
+  id: PirateGrenadeRadiation
   name: green pirate grenade
   description: A foul-smelling grenade that makes you feel fuzzy.
   components:
@@ -43,7 +43,7 @@
 
 - type: entity
   parent: PirateGrenadeBase
-  id: PirateConcussionGrenade
+  id: PirateGrenadeConcussion
   name: gray pirate grenade
   description: A solid grenade that feels like a cannonball.
   components:
@@ -61,38 +61,8 @@
     canCreateVacuum: false
 
 - type: entity
-  id: PirateFireBombCompoundA
-  parent: Beaker
-  noSpawn: true
-  components:
-  - type: SolutionContainerManager
-    solutions:
-      beaker:
-        maxVol: 50
-        reagents:
-        - ReagentId: Napalm
-          Quantity: 15
-        - ReagentId: Water
-          Quantity: 25
-
-- type: entity
-  id: PirateFireBombCompoundB
-  parent: Beaker
-  noSpawn: true
-  components:
-  - type: SolutionContainerManager
-    solutions:
-      beaker:
-        maxVol: 50
-        reagents:
-        - ReagentId: Phlogiston
-          Quantity: 15
-        - ReagentId: Fluorosurfactant
-          Quantity: 25
-
-- type: entity
   parent: PirateGrenadeBase
-  id: PirateFireBomb
+  id: PirateGrenadeFire
   name: red pirate grenade
   description: A grenade that's hot to the touch; prone to catch things on fire.
   components:
@@ -101,19 +71,16 @@
     layers:
     - state: icon
       map: ["enum.TriggerVisualLayers.Base"]
-  - type: ChemicalPayload
-    beakerSlotA:
-      ejectOnUse: false
-      ejectOnDeconstruct: false
-      swap: false
-      locked: true
-      startingItem: PirateFireBombCompoundA
-    beakerSlotB:
-      ejectOnUse: false
-      ejectOnDeconstruct: false
-      swap: false
-      locked: true
-      startingItem: PirateFireBombCompoundB
+  - type: SmokeOnTrigger
+    duration: 10
+    spreadAmount: 10
+    smokePrototype: Smoke
+    solution:
+      reagents:
+      - ReagentId: Phlogiston
+        Quantity: 8
+      - ReagentId: Napalm
+        Quantity: 8
   - type: DeleteOnTrigger
   - type: SoundOnTrigger
     sound: /Audio/Items/smoke_grenade_smoke.ogg
