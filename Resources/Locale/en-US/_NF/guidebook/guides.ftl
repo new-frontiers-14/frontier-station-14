@@ -52,6 +52,7 @@ guide-entry-shipyard-pioneer = Pioneer
 guide-entry-shipyard-prospector = Prospector
 guide-entry-shipyard-searchlight = Searchlight
 guide-entry-shipyard-spirit = Spirit
+guide-entry-shipyard-starhaven = Starhaven
 guide-entry-shipyard-vagabond = Vagabond
 
 # Rules entries

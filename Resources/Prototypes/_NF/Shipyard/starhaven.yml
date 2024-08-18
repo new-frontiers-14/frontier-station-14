@@ -1,0 +1,38 @@
+# Author Info
+# GitHub: https://github.com/AF-Buyrcsp2
+# Discord:
+
+# Maintainer Info
+#
+
+# Shuttle Notes:
+#
+
+- type: vessel
+  id: Starhaven
+  name: SSS Starhaven
+  description: A large space vessel designed as a mobile rest stop to provide food and drinks, general recreation, and entertainment.
+  price: 120000 # Around 15% tax, with an average initialized value of around $104000
+  category: Large
+  group: Civilian
+  shuttlePath: /Maps/_NF/Shuttles/starhaven.yml
+
+- type: gameMap
+  id: Starhaven
+  mapName: 'SSS Starhaven'
+  mapPath: /Maps/_NF/Shuttles/starhaven.yml
+  minPlayers: 0
+  stations:
+    Starhaven:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Starhaven {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]
