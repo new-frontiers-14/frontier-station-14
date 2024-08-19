@@ -23,7 +23,7 @@ public sealed partial class NewFrontierLateJoinJobButton : Button
     private readonly IClientPreferencesManager _preferencesManager;
     private readonly string _jobId;
 
-    public NewFrontierLateJoinJobButton(NetEntity station, string jobId, ClientGameTicker gameTicker, IPrototypeManager prototypeManager, JobRequirementsManager jobReqs, ClientPreferencesManager preferencesManager)
+    public NewFrontierLateJoinJobButton(NetEntity station, string jobId, ClientGameTicker gameTicker, IPrototypeManager prototypeManager, JobRequirementsManager jobReqs, IClientPreferencesManager preferencesManager)
     {
         RobustXamlLoader.Load(this);
         _prototypeManager = prototypeManager;

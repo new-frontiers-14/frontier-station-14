@@ -6,7 +6,6 @@ using Content.Server.Interaction;
 using Content.Server.Mind;
 using Content.Server.Popups;
 using Content.Server.Shipyard.Systems;
-using Content.Server.Traits.Assorted;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Climbing.Systems;
 using Content.Shared.CryoSleep;
@@ -16,7 +15,6 @@ using Content.Shared.DragDrop;
 using Content.Shared.Examine;
 using Content.Shared.GameTicking;
 using Content.Shared.Interaction.Events;
-using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
@@ -154,7 +152,7 @@ public sealed partial class CryoSleepSystem : SharedCryoSleepSystem
 
         QueueDel(args.Victim);
         _audio.PlayPvs(component.LeaveSound, uid);
-        args.SetHandled(SuicideKind.Special);
+        args.Handled = true;
     }
 
     private void OnExamine(EntityUid uid, CryoSleepComponent component, ExaminedEvent args)

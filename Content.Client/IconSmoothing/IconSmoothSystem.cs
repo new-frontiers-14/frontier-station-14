@@ -291,7 +291,7 @@ namespace Content.Client.IconSmoothing
                     CalculateNewSpriteDiagonal(gridEntity, smooth, spriteEnt, xform, smoothQuery);
                     break;
                 case IconSmoothingMode.DiagonalNF: // Frontier
-                    CalculateNewSpriteDiagonalNF(grid, smooth, spriteEnt, xform, smoothQuery); // Frontier
+                    CalculateNewSpriteDiagonalNF(gridEntity, smooth, spriteEnt, xform, smoothQuery); // Frontier
                     break; // Frontier
                 default:
                     throw new ArgumentOutOfRangeException();
