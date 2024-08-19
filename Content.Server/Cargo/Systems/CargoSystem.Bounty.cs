@@ -3,14 +3,14 @@ using System.Linq;
 using Content.Server.Cargo.Components;
 using Content.Server.Labels;
 using Content.Server.NameIdentifier;
-using Content.Server.Paper;
-using Content.Shared._NF.Bank;
+using Content.Shared._NF.Bank; // Frontier
 using Content.Shared.Access.Components;
 using Content.Shared.Cargo;
 using Content.Shared.Cargo.Components;
 using Content.Shared.Cargo.Prototypes;
 using Content.Shared.Database;
 using Content.Shared.NameIdentifier;
+using Content.Shared.Paper;
 using Content.Shared.Stacks;
 using Content.Shared.Whitelist;
 using JetBrains.Annotations;
@@ -127,10 +127,8 @@ public sealed partial class CargoSystem
         }
         msg.AddMarkup(Loc.GetString("bounty-console-manifest-reward", ("reward", BankSystemExtensions.ToSpesoString(prototype.Reward))));
         _paperSystem.SetContent(uid, msg.ToMarkup(), paper);
-    }
 
     /// <summary>
-    /// Bounties do not sell for any currency. The reward for a bounty is
     /// calculated after it is sold separately from the selling system.
     /// </summary>
     private void OnGetBountyPrice(EntityUid uid, CargoBountyLabelComponent component, ref PriceCalculationEvent args)
@@ -139,7 +137,7 @@ public sealed partial class CargoSystem
             return;
 
         // make sure this label was actually applied to a crate.
-        if (!_container.TryGetContainingContainer(uid, out var container) || container.ID != LabelSystem.ContainerName)
+        if (!_container.TryGetContainingContainer((uid, null, null), out var container) || container.ID != LabelSystem.ContainerName)
             return;
 
         if (component.AssociatedStationId is not { } station || !TryComp<StationCargoBountyDatabaseComponent>(station, out var database))

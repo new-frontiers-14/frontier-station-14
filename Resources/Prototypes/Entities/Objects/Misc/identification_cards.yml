@@ -103,7 +103,7 @@
     - state: idintern-service
 
 - type: entity
-  parent: IDCardStandard
+  parent: [IDCardStandard, BaseGrandTheftContraband]
   id: CaptainIDCard
   name: captain ID card
   components:
@@ -585,7 +585,7 @@
   - type: Item
     heldPrefix: blue
   - type: IdCard
-    jobTitle: Centcom Agent
+    jobTitle: Centcomm Agent
 
 - type: entity
   # name: passenger ID card # Frontier
@@ -603,63 +603,9 @@
   - type: Sprite
     layers:
     - state: default
-    - state: idpassenger
+    - state: idcontractor # Frontier: idpassenger<idcontractor
+      sprite: Resources/Textures/_NF/Objects/Misc/id_cards.rsi # Frontier
   - type: AgentIDCard
-    icons:
-    # TODO figure out a better way of doing this.
-    # Probably by adding a bool or icon-category data-field to the icon prototype?
-#    - JobIconDetective # Frontier
-    - JobIconQuarterMaster
-    - JobIconBotanist
-    - JobIconBoxer
-    - JobIconAtmosphericTechnician
-    - JobIconNanotrasen
-    - JobIconPrisoner
-    - JobIconJanitor
-    - JobIconChemist
-    - JobIconStationEngineer
-#    - JobIconSecurityOfficer # Frontier
-    - JobIconChiefMedicalOfficer
-    - JobIconRoboticist
-    - JobIconChaplain
-    - JobIconLawyer
-    - JobIconUnknown
-    - JobIconLibrarian
-    - JobIconCargoTechnician
-    - JobIconScientist
-    - JobIconResearchAssistant
-    - JobIconGeneticist
-    - JobIconClown
-    - JobIconCaptain
-#    - JobIconHeadOfPersonnel # Frontier
-    - JobIconVirologist
-    - JobIconShaftMiner
-    # - JobIconPassenger # Frontier
-    - JobIconChiefEngineer
-    - JobIconBartender
-#    - JobIconHeadOfSecurity
-    - JobIconMedicalDoctor
-    - JobIconParamedic
-    - JobIconChef
-#    - JobIconWarden
-    - JobIconResearchDirector
-    - JobIconMime
-    - JobIconMusician
-    - JobIconReporter
-    - JobIconPsychologist
-    - JobIconMedicalIntern
-    - JobIconTechnicalAssistant
-    - JobIconServiceWorker
-#    - JobIconSecurityCadet # Frontier
-    - JobIconZookeeper
-    - JobIconVisitor
-    - JobIconValet # Frontier
-    - JobIconMailCarrier # Frontier
-    # - JobIconSecurityGuard # Frontier
-    # - JobIconStc # Frontier
-    - JobIconContractor # Frontier
-    - JobIconPilot # Frontier
-    - JobIconMercenary # Frontier
   - type: ActivatableUI
     key: enum.AgentIDCardUiKey.Key
     inHandsOnly: true
@@ -805,7 +751,7 @@
   - type: Item
     heldPrefix: blue
   - type: IdCard
-    jobTitle: Centcom Quarantine Officer
+    jobTitle: Centcomm Quarantine Officer
 
 - type: entity
   parent: IDCardStandard
