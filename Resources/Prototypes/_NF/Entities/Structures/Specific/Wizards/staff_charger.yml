@@ -1,13 +1,10 @@
 - type: entity
-  parent: BaseMachinePowered
   id: StaffRechargerWizard
+  parent: [ BaseMachine, ConstructibleMachine ]
   name: staff altar
   placement:
     mode: SnapgridCenter
   components:
-  - type: Transform
-    anchored: true
-    noRot: false
   - type: Sprite
     sprite: _NF/Structures/Specific/Wizard/recharger_altar.rsi
     snapCardinals: true
@@ -17,43 +14,16 @@
     - map: ["enum.PowerChargerVisualLayers.Light"]
       state: "light-off"
       shader: "unshaded"
+  - type: Machine
+    board: ScrollWizardStaffRechargerAltar
   - type: Appearance
   - type: Charger
+    chargeRate: 40
     slotId: charger_slot
   - type: Anchorable
     delay: 1
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 80
-      behaviors:
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-    - trigger:
-        !type:DamageTrigger
-        damage: 40
-      behaviors:
-      - !type:EmptyAllContainersBehaviour
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalBreak
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-0.45,-0.45,0.45,0.45"
-        density: 190
-        mask:
-        - MachineMask
-        layer:
-        - MachineLayer
   - type: StaticPrice
-    price: 25
-  # no powercellslot since stun baton etc arent powercells
+    price: 250
   - type: PowerChargerVisuals
   - type: ContainerContainer
     containers:
@@ -67,14 +37,16 @@
           - WizardStaffRechargeable
 
 - type: entity
-  parent: StaffRechargerWizard
   id: StaffRechargerCult
+  parent: StaffRechargerWizard
   name: cult staff altar
   placement:
     mode: SnapgridCenter
   components:
   - type: Sprite
     sprite: _NF/Structures/Specific/BloodCult/recharger_altar_cult.rsi
+  - type: Machine
+    board: ScrollCultStaffRechargerAltar
   - type: ItemSlots
     slots:
       charger_slot:

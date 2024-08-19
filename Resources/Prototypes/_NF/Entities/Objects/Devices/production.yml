@@ -240,3 +240,61 @@
         Silicon: 20
     - type: StaticPrice
       price: 40
+
+# Wizards and cultists
+- type: entity
+  id: ScrollWizardStaffRechargerAltar
+  parent: BaseMachineCircuitboard
+  name: staff altar binding scroll
+  components:
+    - type: Sprite # placeholder
+      sprite: _NF/Objects/Specific/Wizard/scrolls.rsi
+      state: spell_default
+    - type: MachineBoard
+      prototype: StaffRechargerWizard
+      # requirements:
+        # ShardCrystalBlue: 2
+        # CandleBlue: 2
+      # stackRequirements:
+        # CableHV: 10
+    - type: PhysicalComposition
+      materialComposition:
+        Paper: 200
+      chemicalComposition:
+        Carbon: 10
+    - type: StaticPrice
+      price: 0
+
+- type: entity
+  id: ScrollCultStaffRechargerAltar
+  parent: ScrollWizardStaffRechargerAltar
+  name: cult staff altar binding scroll
+  components:
+    - type: Sprite # placeholder
+      sprite: _NF/Objects/Specific/Wizard/scrolls.rsi
+      state: spell_default
+      color: "red"
+    - type: MachineBoard
+      prototype: StaffRechargerCult
+      # requirements:
+        # ShardCrystalRed: 2
+        # CandleRed: 2
+      # stackRequirements:
+        # CableHV: 10
+
+- type: entity
+  id: ScrollCultForge
+  parent: ScrollWizardStaffRechargerAltar
+  name: cult forge binding scroll
+  components:
+    - type: Sprite # placeholder
+      sprite: _NF/Objects/Specific/Wizard/scrolls.rsi
+      state: spell_default
+      color: "red"
+    - type: MachineBoard
+      prototype: BloodCultProp02
+      # requirements:
+        # ShardCrystalRed: 2
+        # CandleRed: 2
+      # stackRequirements:
+        # CableHV: 10

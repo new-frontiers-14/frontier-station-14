@@ -19,8 +19,11 @@
     soundGunshot:
       path: /Audio/Effects/Lightning/lightningshock.ogg
   - type: Battery
-    maxCharge: 1000
-    startingCharge: 1000
+    maxCharge: 800
+    startingCharge: 800
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 1 # With fireCost 40 the recharge rate should give you one charge back every 40 seconds or so
   - type: Item
     size: Normal
     shape:
@@ -48,10 +51,10 @@
 # VARIATIONS
 ## WIZARDS
 - type: entity
+  id: WeaponChargedStaffWizardLightning
   parent:
   - WeaponChargedStaffBase
   - WeaponStaffRechargeableWizard
-  id: WeaponChargedStaffWizardLightning
   name: wizard lightning staff
   description: An acolyte-grade battle staff.
   components:
@@ -70,10 +73,10 @@
       - state: change-inhand-right
 
 - type: entity
+  id: WeaponChargedStaffWizardIce
   parent:
   - WeaponChargedStaffBase
   - WeaponStaffRechargeableWizard
-  id: WeaponChargedStaffWizardIce
   name: wizard ice staff
   description: An acolyte-grade battle staff.
   components:
@@ -103,10 +106,10 @@
     price: 190
 
 - type: entity
+  id: WeaponChargedStaffWizardElemental
   parent:
   - WeaponChargedStaffBase
   - WeaponStaffRechargeableWizard
-  id: WeaponChargedStaffWizardElemental
   name: wizard blue curacao elemental staff
   description: An acolyte-grade battle staff.
   components:
@@ -118,7 +121,7 @@
       color: "#75b1f0"
   - type: ProjectileBatteryAmmoProvider
     proto: WaterElementalConjuredStaff
-    fireCost: 500
+    fireCost: 400
   - type: Item
     inhandVisuals:
       left:
@@ -135,10 +138,10 @@
     price: 190
 
 - type: entity
+  id: WeaponChargedStaffWizardSoap
   parent:
   - WeaponChargedStaffBase
   - WeaponStaffRechargeableWizard
-  id: WeaponChargedStaffWizardSoap
   name: wizard soap staff
   description: An acolyte-grade battle staff.
   components:
@@ -158,10 +161,10 @@
     price: 190
 
 - type: entity
+  id: WeaponChargedStaffWizardBoltFire
   parent:
   - WeaponChargedStaffBase
   - WeaponStaffRechargeableWizard
-  id: WeaponChargedStaffWizardBoltFire
   name: wizard fire bolt staff
   description: An acolyte-grade battle staff.
   components:
@@ -181,10 +184,10 @@
     price: 190
 
 - type: entity
+  id: WeaponChargedStaffWizardBoltMagic
   parent:
   - WeaponChargedStaffBase
   - WeaponStaffRechargeableWizard
-  id: WeaponChargedStaffWizardBoltMagic
   name: wizard magic bolt staff
   description: An acolyte-grade battle staff.
   components:
@@ -205,10 +208,10 @@
 
 ## CULTISTS
 - type: entity
+  id: WeaponChargedStaffCultistBoltDark
   parent:
   - WeaponChargedStaffBase
   - WeaponStaffRechargeableBloodCult
-  id: WeaponChargedStaffCultistBoltDark
   name: cultist's staff of blood bolt
   description: An acolyte-grade battle staff.
   components:
@@ -229,10 +232,10 @@
     price: 190
 
 - type: entity
+  id: WeaponChargedStaffCultistHand
   parent:
   - WeaponChargedStaffBase
   - WeaponStaffRechargeableBloodCult
-  id: WeaponChargedStaffCultistHand
   name: cultist's staff of blood hand
   description: An acolyte-grade battle staff.
   components:
@@ -253,10 +256,10 @@
     price: 190
 
 - type: entity
+  id: WeaponChargedStaffCultistLightning
   parent:
   - WeaponChargedStaffBase
   - WeaponStaffRechargeableBloodCult
-  id: WeaponChargedStaffCultistLightning
   name: cultist's staff of blood lightning
   description: An acolyte-grade battle staff.
   components:
