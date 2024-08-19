@@ -9,6 +9,11 @@ using Content.Shared.Tag;
 using Robust.Shared.Player;
 using Robust.Shared.Audio.Systems;
 using static Content.Shared.Paper.PaperComponent;
+using Content.Shared.Timing; // Frontier
+using Content.Shared.Access.Systems; // Frontier
+using Content.Shared.Verbs; // Frontier
+using Content.Shared.Crayon; // Frontier
+using Content.Shared.Ghost; // Frontier
 
 namespace Content.Shared.Paper;
 
@@ -22,7 +27,7 @@ public sealed class PaperSystem : EntitySystem
     [Dependency] private readonly SharedUserInterfaceSystem _uiSystem = default!;
     [Dependency] private readonly MetaDataSystem _metaSystem = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly IdCardSystem _idCardSystem = default!; // Frontier
+    [Dependency] private readonly SharedIdCardSystem _idCardSystem = default!; // Frontier
     [Dependency] private readonly UseDelaySystem _useDelay = default!; // Frontier
 
     private const int ReapplyLimit = 10; // Frontier: limits on reapplied stamps
@@ -94,8 +99,8 @@ public sealed class PaperSystem : EntitySystem
             {
                 // BEGIN FRONTIER MODIFICATION - Make stamps and signatures render separately.
                 // Separate into stamps and signatures.
-                var stamps = paperComp.StampedBy.FindAll(s => s.Type == StampType.RubberStamp);
-                var signatures = paperComp.StampedBy.FindAll(s => s.Type == StampType.Signature);
+                var stamps = entity.Comp.StampedBy.FindAll(s => s.Type == StampType.RubberStamp);
+                var signatures = entity.Comp.StampedBy.FindAll(s => s.Type == StampType.Signature);
 
                 // If we have stamps, render them.
                 if (stamps.Count > 0)
@@ -104,7 +109,7 @@ public sealed class PaperSystem : EntitySystem
                     args.PushMarkup(
                         Loc.GetString(
                             "paper-component-examine-detail-stamped-by",
-                            ("paper", uid),
+                            ("paper", entity.Owner),
                             ("stamps", joined)
                         )
                     );
@@ -117,7 +122,7 @@ public sealed class PaperSystem : EntitySystem
                     args.PushMarkup(
                         Loc.GetString(
                             "paper-component-examine-detail-signed-by",
-                            ("paper", uid),
+                            ("paper", entity.Owner),
                             ("stamps", joined)
                         )
                     );
@@ -162,7 +167,7 @@ public sealed class PaperSystem : EntitySystem
             var stampInfo = GetStampInfo(stampComp); // Frontier: assign DisplayStampInfo before stamp
             if (_tagSystem.HasTag(args.Used, "Write"))
                 stampInfo.Type = StampType.Signature;
-            if (TryStamp(uid, stampInfo, stampComp.StampState, paperComp))
+            if (TryStamp(entity, stampInfo, stampComp.StampState))
             { // End Frontier
                 // successfully stamped, play popup
                 var stampPaperOtherMessage = Loc.GetString("paper-component-action-stamp-paper-other",
@@ -286,7 +291,7 @@ public sealed class PaperSystem : EntitySystem
         {
             Act = () =>
             {
-                TrySign(args.Target, args.User, args.Using.Value, component);
+                TrySign((uid, component), args.User, args.Using.Value);
             },
             Text = Loc.GetString("paper-component-verb-sign")
             // Icon = Don't have an icon yet. Todo for later.
@@ -295,7 +300,7 @@ public sealed class PaperSystem : EntitySystem
     }
 
     // FRONTIER - TrySign method, attempts to place a signature
-    public bool TrySign(EntityUid paper, EntityUid signer, EntityUid pen, PaperComponent paperComp)
+    public bool TrySign(Entity<PaperComponent> paper, EntityUid signer, EntityUid pen)
     {
         // Generate display information.
         StampDisplayInfo info = new StampDisplayInfo
@@ -307,18 +312,18 @@ public sealed class PaperSystem : EntitySystem
         };
 
         // Get Crayon component, and if present set custom color from crayon
-        if (TryComp<CrayonComponent>(pen, out var crayon))
+        if (TryComp<SharedCrayonComponent>(pen, out var crayon))
             info.StampedColor = crayon.Color;
 
         // Try stamp with the info, return false if failed.
-        if (!StampDelayed(pen) && TryStamp(paper, info, "paper_stamp-nf-signature", paperComp))
+        if (!StampDelayed(pen) && TryStamp(paper, info, "paper_stamp-nf-signature"))
         {
             // Signing successful, popup time.
             _popupSystem.PopupEntity(
                 Loc.GetString(
                     "paper-component-action-signed-other",
                     ("user", signer),
-                    ("target", paper)
+                    ("target", paper.Owner)
                 ),
                 signer,
                 Filter.PvsExcept(signer, entityManager: EntityManager),
@@ -328,22 +333,22 @@ public sealed class PaperSystem : EntitySystem
             _popupSystem.PopupEntity(
                 Loc.GetString(
                     "paper-component-action-signed-self",
-                    ("target", paper)
+                    ("target", paper.Owner)
                 ),
                 signer,
                 signer
             );
 
-            _audio.PlayPvs(paperComp.Sound, paper);
+            _audio.PlayPvs(paper.Comp.Sound, paper);
 
             _adminLogger.Add(LogType.Verb, LogImpact.Low,
                 $"{ToPrettyString(signer):player} has signed {ToPrettyString(paper):paper}.");
 
-            UpdateUserInterface(paper, paperComp);
+            UpdateUserInterface(paper);
 
             // If this is a crayon, decrease # charges when actually used
-            if (crayon is not null)
-                crayon.Charges -= 1;
+            //if (crayon is not null) // FRONTIER MERGE: inaccessible from shared
+            //    crayon.Charges -= 1;
 
             DelayStamp(pen); // prevent stamp spam
 
