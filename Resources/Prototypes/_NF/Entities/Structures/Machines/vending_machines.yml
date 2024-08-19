@@ -33,7 +33,7 @@
   parent: [BaseStructureUnanchorable, VendingMachine]
   id: VendingMachineAstroVend
   name: AstroVend
-  description: Essential gear for the space-men on the go
+  description: Essential gear for the spaceman on the go.
   components:
   - type: VendingMachine
     pack: AstroVendInventory
@@ -59,10 +59,18 @@
     color: "#4b93ad"
 
 - type: entity
+  parent: VendingMachineAstroVend
+  id: VendingMachineAstroVendPOI
+  suffix: POI
+  components:
+  - type: VendingMachine
+    pack: AstroVendPOIInventory
+
+- type: entity
   parent: [BaseStructureUnanchorable, VendingMachine]
   id: VendingMachineFlatpackVend
   name: FlatpackVend
-  description: Essential tech for the space-men on the go
+  description: Essential tech for the spaceman on the go.
   components:
   - type: VendingMachine
     pack: FlatpackVendInventory
@@ -94,7 +102,7 @@
   parent: [BaseStructureUnanchorable, VendingMachineFlatpackVend]
   id: VendingMachineExpeditionaryFlatpackVend
   name: Expeditionary FlatpackVend
-  description: Essential tech for the space-men on an expedition
+  description: Essential tech for the spaceman on an expedition.
   components:
   - type: VendingMachine
     pack: ExpeditionaryFlatpackVendInventory
@@ -144,7 +152,7 @@
   parent: [BaseStructureUnanchorable, VendingMachine]
   id: VendingMachineBountyVend
   name: BountyVend
-  description: Essential gear for the space-men on the go
+  description: Essential gear for the bounty hunter on the go.
   components:
   - type: VendingMachine
     pack: BountyVendInventory
@@ -206,7 +214,7 @@
   parent: VendingMachine
   id: LessLethalVendingMachine
   name: LessLethalVend
-  description: Making violence safe since '08
+  description: Making violence safe since '08.
   components:
     - type: VendingMachine
       pack: LessLethalVendInventory
@@ -234,6 +242,14 @@
       radius: 1.5
       energy: 1.6
       color: "#ff033e"
+
+- type: entity
+  parent: LessLethalVendingMachine
+  id: LessLethalVendingMachinePOI
+  suffix: POI
+  components:
+    - type: VendingMachine
+      pack: LessLethalVendPOIInventory
 
 - type: entity
   parent: VendingMachine
@@ -272,7 +288,7 @@
   parent: [BaseStructureUnanchorable, VendingMachine]
   id: VendingMachineAutoTuneVend
   name: AutoTune
-  description: feeling BASSed? time to TUNE into AutoVend! Take NOTES and let your audience TREBLE
+  description: Feeling BASSed? Time to TUNE into AutoVend! Take NOTES and let your audience TREBLE.
   components:
   - type: VendingMachine
     pack: AutoTuneVendInventory
@@ -456,7 +472,9 @@
 
 # Punk stuff
 - type: entity
-  parent: VendingMachineClothing
+  parent:
+  - VendingMachine
+  - PunkHoloGraffitiOverlay # Prototype can be located at \Resources\Prototypes\_NF\Entities\Structures\Holographic\graffiti.yml
   id: VendingMachineClothingPunk
   name: ThreadsChoom
   description: A vandalized ClothesMate.
@@ -487,34 +505,11 @@
       map: [ "graffiti" ]
       shader: unshaded
       scale: 0.7, 0.7
-  - type: RandomSprite
-    available:
-    - graffiti:
-        holograffiti01: Cyberpunk
-        holograffiti02: Cyberpunk
-        holograffiti03: Cyberpunk
-        holograffiti04: Cyberpunk
-        holograffiti05: Cyberpunk
-        holograffiti06: Cyberpunk
-        holograffiti07: Cyberpunk
-        holograffiti08: Cyberpunk
-        holograffiti09: Cyberpunk
-        holograffiti10: Cyberpunk
-        holograffiti11: Cyberpunk
-        holograffiti12: Cyberpunk
-        holograffiti13: Cyberpunk
-        holograffiti14: Cyberpunk
-        holograffiti15: Cyberpunk
-        holograffiti16: Cyberpunk
-        holograffiti17: Cyberpunk
-        holograffiti18: Cyberpunk
-        holograffiti19: Cyberpunk
-        holograffiti20: Cyberpunk
-        holograffiti21: Cyberpunk
-        holograffiti22: Cyberpunk
 
 - type: entity
-  parent: VendingMachineBountyVend
+  parent:
+  - VendingMachine
+  - PunkHoloGraffitiOverlay # Prototype can be located at \Resources\Prototypes\_NF\Entities\Structures\Holographic\graffiti.yml
   id: VendingMachineBountyVendPunk
   name: BonanzaMatic
   description: A vandalised BountyVend.
@@ -541,31 +536,6 @@
       map: [ "graffiti" ]
       shader: unshaded
       scale: 0.7, 0.7
-  - type: RandomSprite
-    available:
-    - graffiti:
-        holograffiti01: Cyberpunk
-        holograffiti02: Cyberpunk
-        holograffiti03: Cyberpunk
-        holograffiti04: Cyberpunk
-        holograffiti05: Cyberpunk
-        holograffiti06: Cyberpunk
-        holograffiti07: Cyberpunk
-        holograffiti08: Cyberpunk
-        holograffiti09: Cyberpunk
-        holograffiti10: Cyberpunk
-        holograffiti11: Cyberpunk
-        holograffiti12: Cyberpunk
-        holograffiti13: Cyberpunk
-        holograffiti14: Cyberpunk
-        holograffiti15: Cyberpunk
-        holograffiti16: Cyberpunk
-        holograffiti17: Cyberpunk
-        holograffiti18: Cyberpunk
-        holograffiti19: Cyberpunk
-        holograffiti20: Cyberpunk
-        holograffiti21: Cyberpunk
-        holograffiti22: Cyberpunk
   - type: PointLight
     radius: 1.1
     energy: 1.2
@@ -601,10 +571,8 @@
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
 
 - type: entity
-  parent: [BaseStructureUnanchorable, BaseStructureIndestructible, VendingMachine]
-  id: VendingMachineCiviMedVend
-  name: CiviMedVend
-  description: CiviMed, distributing lifesaving meds harder than the rocks you break! Miners, DON'T DIE!
+  id: BaseCiviMedVend
+  abstract: true
   components:
   - type: VendingMachine
     pack: CiviMedVendInventory
@@ -614,6 +582,14 @@
     # ejectState: eject-unshaded  No sprite, see chefvend/dinnerware/BODA/etc for expamples
   - type: Advertise
     pack: CiviMedAds
+  - type: SpeakOnUIClosed
+    pack: CiviMedGoodbyes
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#4b93ad"
+  - type: MarketModifier
+    mod: 30 # damn
   - type: Sprite
     sprite: _NF/Structures/Machines/VendingMachines/civimed.rsi
     layers:
@@ -624,9 +600,70 @@
       shader: unshaded
     - state: panel
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
-  - type: PointLight
-    radius: 1.5
-    energy: 1.6
-    color: "#4b93ad"
-  - type: MarketModifier
-    mod: 15
+
+- type: entity
+  parent: [BaseCiviMedVend, BaseStructureUnanchorable, BaseStructureIndestructible, VendingMachine]
+  id: VendingMachineCiviMedPlus
+  name: CiviMed Plus
+  description: CiviMed Plus, distributing lifesaving meds harder than the rocks you break! Miners, DON'T DIE!
+
+- type: entity
+  parent: [BaseCiviMedVend, BaseStructureUnanchorable, BaseStructureIndestructible, VendingMachineWallmount]
+  id: VendingMachineCiviMed
+  name: CiviMed
+  description: CiviMed, distributing lifesaving meds harder than the rocks you break! Miners, DON'T DIE!
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Machines/VendingMachines/wallcivimed.rsi
+
+# POI versions of upstream machines
+
+- type: entity
+  parent: VendingMachineAmmo
+  id: VendingMachineAmmoPOI
+  suffix: POI
+  components:
+  - type: VendingMachine
+    pack: AmmoVendPOIInventory
+
+- type: entity
+  parent: VendingMachineEngivend
+  id: VendingMachineEngivendPOI
+  suffix: POI
+  components:
+  - type: VendingMachine
+    pack: EngiVendPOIInventory
+
+- type: entity
+  parent: VendingMachineVendomat
+  id: VendingMachineVendomatPOI
+  suffix: POI
+  components:
+  - type: VendingMachine
+    pack: VendomatInventory
+
+- type: entity
+  parent: VendingMachineYouTool
+  id: VendingMachineYouToolPOI
+  suffix: POI
+  components:
+  - type: VendingMachine
+    pack: YouToolPOIInventory
+
+- type: entity
+  parent: VendingMachineSalvage
+  id: VendingMachineSalvagePOI
+  suffix: POI
+  components:
+  - type: VendingMachine
+    pack: SalvageEquipmentPOIInventory
+
+# Gas Tank Dispenser
+
+- type: entity
+  parent: VendingMachineTankDispenserEVA
+  id: VendingMachineTankDispenserEVAPOI
+  suffix: POI, EVA [O2, N2]
+  components:
+  - type: VendingMachine
+    pack: TankDispenserEVAPOIInventory
