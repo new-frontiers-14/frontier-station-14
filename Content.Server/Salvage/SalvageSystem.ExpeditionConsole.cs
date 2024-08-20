@@ -1,3 +1,4 @@
+using Content.Server._NF.Salvage; // Frontier: graceful exped spawn failures
 using Content.Server.Station.Components;
 using Content.Shared.Popups;
 using Content.Shared.Shuttles.Components;
@@ -71,7 +72,7 @@ public sealed partial class SalvageSystem
 
         // Frontier  change - disable coordinate disks for expedition missions
         //var cdUid = Spawn(CoordinatesDisk, Transform(uid).Coordinates);
-        SpawnMission(missionparams, station.Value, null);
+        SpawnMission(missionparams, station.Value, null, uid); // Frontier: add uid
 
         data.ActiveMission = args.Index;
         var mission = GetMission(missionparams.MissionType, missionparams.Difficulty, missionparams.Seed);
