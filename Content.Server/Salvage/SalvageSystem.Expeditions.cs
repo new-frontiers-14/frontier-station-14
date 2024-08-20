@@ -292,7 +292,7 @@ public sealed partial class SalvageSystem
         return new SalvageExpeditionConsoleState(component.NextOffer, component.Claimed, component.Cooldown, component.ActiveMission, missions);
     }
 
-    private void SpawnMission(SalvageMissionParams missionParams, EntityUid station, EntityUid? coordinatesDisk, EntityUid console) // Frontier: add console
+    private void SpawnMission(SalvageMissionParams missionParams, EntityUid station, EntityUid? coordinatesDisk)
     {
         var cancelToken = new CancellationTokenSource();
         var job = new SpawnSalvageMissionJob(
@@ -361,4 +361,5 @@ public sealed partial class SalvageSystem
             UpdateConsoles(component);
         }
     }
+    // End Frontier
 }

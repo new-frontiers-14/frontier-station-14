@@ -101,6 +101,7 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
 
     protected override async Task<bool> Process()
     {
+        // Frontier: gracefully handle expedition failures
         bool success = false;
         try
         {
@@ -117,6 +118,7 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
             _entManager.EventBus.RaiseLocalEvent(Station, ev); // We have no idea who spawned this, so broadcast our success/failure.
         }
         return success;
+        // End Frontier: gracefully handle expedition failures
     }
 
     private async Task<bool> InternalProcess() // Frontier: make process an internal function (for a try block indenting an entire)

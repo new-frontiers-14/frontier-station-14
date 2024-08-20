@@ -72,7 +72,7 @@ public sealed partial class SalvageSystem
 
         // Frontier  change - disable coordinate disks for expedition missions
         //var cdUid = Spawn(CoordinatesDisk, Transform(uid).Coordinates);
-        SpawnMission(missionparams, station.Value, null, uid); // Frontier: add uid
+        SpawnMission(missionparams, station.Value, null);
 
         data.ActiveMission = args.Index;
         var mission = GetMission(missionparams.MissionType, missionparams.Difficulty, missionparams.Seed);
