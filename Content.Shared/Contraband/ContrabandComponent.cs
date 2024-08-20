@@ -8,7 +8,7 @@ namespace Content.Shared.Contraband;
 /// <summary>
 /// This is used for marking entities that are considered 'contraband' IC and showing it clearly in examine.
 /// </summary>
-[RegisterComponent, NetworkedComponent, Access(typeof(ContrabandSystem)), AutoGenerateComponentState]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState] // Frontier: removed Access(typeof(ContrabandSystem))
 public sealed partial class ContrabandComponent : Component
 {
     /// <summary>
@@ -32,6 +32,7 @@ public sealed partial class ContrabandComponent : Component
     ///     The set of currency types this item can be redeemed 
     /// </summary>
     [DataField]
+    [AutoNetworkedField]
     public Dictionary<ProtoId<CurrencyPrototype>, int> TurnInValues = new();
 
     /// <summary>

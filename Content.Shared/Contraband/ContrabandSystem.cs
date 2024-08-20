@@ -38,6 +38,9 @@ public sealed class ContrabandSystem : EntitySystem
         if (!_contrabandExamineEnabled)
             return;
 
+        if (ent.Comp.HideValues) // Frontier: allow selective display
+            return; // Frontier: allow selective display
+
         // two strings:
         // one, the actual informative 'this is restricted'
         // then, the 'you can/shouldn't carry this around' based on the ID the user is wearing

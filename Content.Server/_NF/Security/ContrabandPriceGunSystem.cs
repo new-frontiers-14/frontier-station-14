@@ -1,10 +1,11 @@
 using Content.Server.Popups;
-using Content.Shared._NF.Contraband.Components;
+using Content.Shared.Contraband;
 using Content.Server._NF.Security.Components;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Timing;
 using Content.Shared.Verbs;
+using System.Linq;
 
 namespace Content.Server._NF.Security.Systems;
 
@@ -56,8 +57,8 @@ public sealed class ContrabandPriceGunSystem : EntitySystem
         if (!TryComp(uid, out UseDelayComponent? useDelay) || _useDelay.IsDelayed((uid, useDelay)))
             return;
 
-        if (TryComp<ContrabandComponent>(args.Target, out var contraband) && contraband.Currency == component.Currency)
-            _popupSystem.PopupEntity(Loc.GetString($"{component.LocStringPrefix}contraband-price-gun-pricing-result", ("object", Identity.Entity(args.Target.Value, EntityManager)), ("price", contraband.Value)), args.User, args.User);
+        if (TryComp<ContrabandComponent>(args.Target, out var contraband) && contraband.TurnInValues.ContainsKey(component.Currency))
+            _popupSystem.PopupEntity(Loc.GetString($"{component.LocStringPrefix}contraband-price-gun-pricing-result", ("object", Identity.Entity(args.Target.Value, EntityManager)), ("price", contraband.TurnInValues[component.Currency])), args.User, args.User);
         else
             _popupSystem.PopupEntity(Loc.GetString($"{component.LocStringPrefix}contraband-price-gun-pricing-result-none", ("object", Identity.Entity(args.Target.Value, EntityManager))), args.User, args.User);
 

@@ -8,4 +8,4 @@ public enum ContrabandPalletConsoleUiKey : byte
     Contraband
 }
 
-public abstract class SharedContrabandSystem : EntitySystem {}
+public abstract class SharedContrabandTurnInSystem : EntitySystem {}

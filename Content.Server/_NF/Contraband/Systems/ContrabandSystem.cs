@@ -3,10 +3,10 @@ using Content.Server.Cargo.Components;
 using Content.Server.Cargo.Systems;
 using Content.Server.Stack;
 using Content.Server.Station.Systems;
-using Content.Shared._NF.Contraband;
 using Content.Shared._NF.Contraband.BUI;
 using Content.Shared._NF.Contraband.Components;
 using Content.Shared._NF.Contraband.Events;
+using Content.Shared.Contraband;
 using Content.Shared.Stacks;
 using Robust.Server.GameObjects;
 using Content.Shared.Coordinates;
@@ -19,7 +19,7 @@ namespace Content.Server._NF.Contraband.Systems;
 /// <summary>
 /// Contraband system. Contraband Pallet UI Console is mostly a copy of the system in cargo. Checkraze Note: copy of my code from cargosystems.shuttles.cs
 /// </summary>
-public sealed partial class ContrabandSystem : SharedContrabandSystem
+public sealed partial class ContrabandTurnInSystem : SharedContrabandTurnInSystem
 {
     [Dependency] private readonly IPrototypeManager _protoMan = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
