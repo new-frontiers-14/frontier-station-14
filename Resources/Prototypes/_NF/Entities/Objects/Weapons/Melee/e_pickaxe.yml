@@ -5,7 +5,10 @@
   description: A holographic mining tool with blades comprised of hard light. Doesn't pack the same punch as an energy weapon, but more compact than most mining tools when turned off.
   components:
   - type: ItemToggleSize
-    activatedSize: Ginormous
+    activatedSize: Huge
+    activatedShape:
+    - 0,0,2,0
+    - 1,1,1,2
   - type: ItemToggleMeleeWeapon
     activatedDamage:
         types: # Slightly less total damage than wielded crusher glaive has
@@ -23,10 +26,8 @@
         shader: unshaded
         map: [ "blade" ]
   - type: Item
-    size: Small
-    shape:
-    - 0,0,1,1
     sprite: _NF/Objects/Weapons/Melee/energy_pickaxe.rsi
+    storedRotation: -45
   - type: Clothing
     sprite: _NF/Objects/Weapons/Melee/energy_pickaxe.rsi
     quickEquip: false
@@ -43,8 +44,6 @@
       right:
       - state: inhand-right-blade
         shader: unshaded
-  - type: UseDelay
-    delay: 0.9
   - type: Reflect # Explicitly specified the value (the default one from the parent might be too high)
     reflectProb: 0.05
   - type: Tag
