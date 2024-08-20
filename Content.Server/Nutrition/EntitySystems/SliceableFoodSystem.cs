@@ -132,8 +132,8 @@ public sealed class SliceableFoodSystem : EntitySystem
         }
 
         // DeltaV - Begin deep frier related code
-        var sliceEvent = new SliceFoodEvent(user, uid, sliceUid);
-        RaiseLocalEvent(uid, sliceEvent);
+        var slicedEv = new FoodSlicedEvent(user, uid, sliceUid);
+        RaiseLocalEvent(uid, ref slicedEv);
         // DeltaV - End deep frier related code
 
         return sliceUid;

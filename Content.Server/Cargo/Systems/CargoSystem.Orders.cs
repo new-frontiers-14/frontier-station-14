@@ -187,25 +187,25 @@ namespace Content.Server.Cargo.Systems
                 return;
             }
 
-            var ev = new FulfillCargoOrderEvent((station.Value, stationData), order, (uid, component));
-            RaiseLocalEvent(ref ev);
-            ev.FulfillmentEntity ??= station.Value;
+            //var ev = new FulfillCargoOrderEvent((station.Value, stationData), order, (uid, component)); // Frontier
+            //RaiseLocalEvent(ref ev); // Frontier
+            //ev.FulfillmentEntity ??= station.Value; // Frontier
 
             _idCardSystem.TryFindIdCard(player, out var idCard);
             // ReSharper disable once ConditionalAccessQualifierIsNonNullableAccordingToAPIContract
             order.SetApproverData(idCard.Comp?.FullName, idCard.Comp?.JobTitle);
 
-            if (!ev.Handled)
-            {
-                ev.FulfillmentEntity = TryFulfillOrder((station.Value, stationData), order, orderDatabase);
+            // if (!ev.Handled)
+            // {
+            //     ev.FulfillmentEntity = TryFulfillOrder((station.Value, stationData), order, orderDatabase);
 
-                if (ev.FulfillmentEntity == null)
-                {
-                    ConsolePopup(args.Actor, Loc.GetString("cargo-console-unfulfilled"));
-                    PlayDenySound(uid, component);
-                    return;
-                }
-            }
+            //     if (ev.FulfillmentEntity == null)
+            //     {
+            //         ConsolePopup(args.Actor, Loc.GetString("cargo-console-unfulfilled"));
+            //         PlayDenySound(uid, component);
+            //         return;
+            //     }
+            // }
 
             order.Approved = true;
             _audio.PlayPvs(component.ConfirmSound, uid);
@@ -215,7 +215,7 @@ namespace Content.Server.Cargo.Systems
                 ("orderAmount", order.OrderQuantity),
                 ("approver", order.Approver ?? string.Empty),
                 ("cost", cost));
-            //_radio.SendRadioMessage(uid, message, component.AnnouncementChannel, uid, escapeMarkup: false); # Frontier
+            //_radio.SendRadioMessage(uid, message, component.AnnouncementChannel, uid, escapeMarkup: false); # Frontier: spammy
             ConsolePopup(args.Actor, Loc.GetString("cargo-console-trade-station", ("destination", MetaData(uid).EntityName)));
 
             // Log order approval
@@ -349,9 +349,9 @@ namespace Content.Server.Cargo.Systems
         }
 
         // Frontier: custom UpdateOrderState function
-        private void UpdateOrderState(EntityUid consoleUid, CargoOrderConsoleComponent component, EntityUid? station)
+        private void UpdateOrderState(EntityUid uid, CargoOrderConsoleComponent component, EntityUid? station)
         {
-            var uiUsers = _uiSystem.GetActors(uid, CargoConsoleUiKey.Orders);
+            var uiUsers = _uiSystem.GetActors((uid, null), CargoConsoleUiKey.Orders);
             foreach (var user in uiUsers)
             {
                 var balance = 0;

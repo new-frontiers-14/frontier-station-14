@@ -219,8 +219,8 @@ namespace Content.Server.Explosion.EntitySystems
             {
                 if (TryComp<BodyComponent>(ent, out var body))
                 {
-                    var organs = _body.GetBodyOrganComponents<TransformComponent>(ent, body);
-                    foreach (var (_, organ) in organs)
+                    var organs = _body.GetBodyOrganEntityComps<TransformComponent>((ent, body));
+                    foreach (var organ in organs)
                     {
                         Del(organ.Owner);
                     }
