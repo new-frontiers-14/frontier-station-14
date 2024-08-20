@@ -96,7 +96,7 @@
 
 - type: entity
   id: BaseImplantOnlyImplanterSyndi
-  parent: [BaseImplantOnlyImplanter, BaseSyndicateContraband]
+  parent: [BaseImplantOnlyImplanter, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   description: A compact disposable syringe exclusively designed for the injection of subdermal implants.
   abstract: true
   components:
@@ -155,7 +155,7 @@
 - type: entity
   id: TrackingImplanter
   name: tracking implanter
-  parent: [ BaseImplantOnlyImplanter, BaseRestrictedContraband]
+  parent: [ BaseImplantOnlyImplanter, BaseC2ContrabandUnredeemable] # Frontier: BaseRestrictedContraband<BaseC2ContrabandUnredeemable
   components:
     - type: Implanter
       implant: TrackingImplant
@@ -261,7 +261,7 @@
 - type: entity
   id: MindShieldImplanter
   name: mindshield implanter
-  parent: [ BaseImplantOnlyImplanter, BaseSecurityCommandContraband]
+  parent: [ BaseImplantOnlyImplanter, BaseC2ContrabandUnredeemable] # Frontier: BaseSecurityCommandContraband<BaseC2ContrabandUnredeemable
   components:
     - type: Implanter
       implant: MindShieldImplant

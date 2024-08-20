@@ -40,7 +40,7 @@
 - type: entity
   name: explosive grenade
   description: Grenade that creates a small but devastating explosion.
-  parent: [GrenadeBase, BaseSyndicateContraband]
+  parent: [GrenadeBase, BaseC2Contraband] # Frontier: BaseSyndicateContraband<BaseC2Contraband
   id: ExGrenade
   components:
   - type: ExplodeOnTrigger
@@ -62,7 +62,7 @@
 - type: entity
   name: flashbang
   description: Eeeeeeeeeeeeeeeeeeeeee.
-  parent: [ GrenadeBase, BaseRestrictedContraband ]
+  parent: [ GrenadeBase, BaseC2ContrabandUnredeemable ] # Frontier: BaseRestrictedContraband<BaseC2ContrabandUnredeemable
   id: GrenadeFlashBang
   components:
   - type: Sprite
@@ -103,7 +103,7 @@
 - type: entity
   name: syndicate minibomb
   description: A syndicate-manufactured explosive used to stow destruction and cause chaos.
-  parent: [GrenadeBase, BaseSyndicateContraband]
+  parent: [GrenadeBase, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   id: SyndieMiniBomb
   components:
   - type: Sprite
@@ -151,7 +151,7 @@
 - type: entity
   name: supermatter grenade
   description: Grenade that simulates delamination of the supermatter engine, pulling things in a heap and exploding after some time.
-  parent: [GrenadeBase, BaseSyndicateContraband]
+  parent: [GrenadeBase, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   id: SupermatterGrenade
   components:
   - type: Sprite
@@ -340,7 +340,7 @@
 - type: entity
   name: EMP grenade
   description: A grenade designed to wreak havoc on electronic systems.
-  parent: [GrenadeBase, BaseSyndicateContraband]
+  parent: [GrenadeBase, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   id: EmpGrenade
   components:
   - type: Sprite
@@ -357,7 +357,7 @@
 - type: entity
   name: holy hand grenade
   description: O Lord, bless this thy hand grenade, that with it thou mayst blow thine enemies to tiny bits, in thy mercy.
-  parent: [GrenadeBase, BaseSyndicateContraband]
+  parent: [GrenadeBase, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   id: HolyHandGrenade
   components:
   - type: Sprite
@@ -381,7 +381,7 @@
   - type: Contraband #frontier
 
 - type: entity
-  parent: [ GrenadeBase, BaseMinorContraband ]
+  parent: [ GrenadeBase, BaseC2SyndicateContrabandUnredeemable ] # Frontier: BaseMinorContraband<BaseC2SyndicateContrabandUnredeemable
   id: SmokeGrenade
   name: smoke grenade
   description: A tactical grenade that releases a large, long-lasting cloud of smoke when used.
@@ -470,7 +470,7 @@
 - type: entity
   name: syndicate trickybomb
   description: A syndicate-manufactured explosive used to make an excellent distraction.
-  parent: [GrenadeDummy, BaseSyndicateContraband]
+  parent: [GrenadeDummy, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   id: SyndieTrickyBomb
   components:
   - type: Sprite

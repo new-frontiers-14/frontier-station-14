@@ -94,7 +94,7 @@
     mustBeEquippedToUse: true
 
 - type: entity
-  parent: [ClothingHandsBase, BaseCommandContraband]
+  parent: ClothingHandsBase # remove BaseCommandContraband
   id: ClothingHandsGlovesCaptain
   name: captain gloves
   description: Regal blue gloves, with a nice gold trim. Swanky.
@@ -202,7 +202,7 @@
   - type: FingerprintMask
 
 - type: entity
-  parent: [ClothingHandsBase, BaseToggleClothing, BaseMajorContraband, ContrabandClothing] # Frontier: added ContrabandClothing as parent
+  parent: [ClothingHandsBase, BaseToggleClothing, BaseC3Contraband, ContrabandClothing] # Frontier: BaseMajorContraband<BaseC3Contraband, added ContrabandClothing as parent
   id: ClothingHandsGlovesSpaceNinja
   name: space ninja gloves
   description: These black nano-enhanced gloves insulate from electricity and provide fire resistance.
@@ -258,7 +258,7 @@
     faction: ContrabandClothing # Frontier
 
 - type: entity
-  parent: [ClothingHandsGlovesColorBlack, BaseSecurityEngineeringContraband]
+  parent: [ClothingHandsGlovesColorBlack, BaseC2ContrabandUnredeemable] # BaseSecurityEngineeringContraband<BaseC2ContrabandUnredeemable
   id: ClothingHandsGlovesCombat
   name: combat gloves
   description: These tactical gloves are fireproof and shock resistant.
@@ -361,7 +361,7 @@
 - type: entity
   # Intentionally named after regular gloves, they're meant to be sneaky.
   # This means they can also be butchered if you need to look un-sus before a very thorough search...
-  parent: [ClothingHandsGlovesColorBlack, ContrabandClothing] # Frontier: added ContrabandClothing as parent
+  parent: [ClothingHandsGlovesColorBlack, BaseC3Contraband, ContrabandClothing] # Frontier: added BaseC3Contraband, ContrabandClothing as parents
   id: ThievingGloves
   suffix: Thieving
   components:
@@ -382,7 +382,7 @@
   - type: Unremoveable
 
 - type: entity
-  parent: [ClothingHandsButcherable, BaseSyndicateContraband, ContrabandClothing] # Frontier: added ContrabandClothing as parent
+  parent: [ClothingHandsButcherable, BaseC3SyndicateContraband, ContrabandClothing] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband added ContrabandClothing as parent
   id: ClothingHandsGlovesNorthStar
   name: gloves of the north star
   description: These gloves allow you to punch incredibly fast.

@@ -1,5 +1,5 @@
 - type: entity
-  parent: [BaseItem, BaseRestrictedContraband]
+  parent: [BaseItem, BaseC2ContrabandUnredeemable] # Frontier: BaseRestrictedContraband<BaseC2ContrabandUnredeemable
   id: ClusterBang
   name: clusterbang
   description: Can be used only with flashbangs. Explodes several times.
@@ -51,7 +51,7 @@
       cluster-payload: !type:Container
 
 - type: entity
-  parent: [GrenadeBase, BaseSyndicateContraband]
+  parent: [GrenadeBase, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   id: ClusterGrenade
   name: clustergrenade
   description: Why use one grenade when you can use three at once!
@@ -81,7 +81,7 @@
   - type: Contraband #frontier
 
 - type: entity
-  parent: [BaseItem, BaseSyndicateContraband]
+  parent: [BaseItem, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   id: ClusterBananaPeel
   name: cluster banana peel
   description: Splits into 6 explosive banana peels after throwing, guaranteed fun!
@@ -119,7 +119,7 @@
       cluster-payload: !type:Container
 
 - type: entity
-  parent: [GrenadeBase, BaseSyndicateContraband]
+  parent: [GrenadeBase, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   id: GrenadeStinger
   name: stinger grenade
   description: Nothing to see here, please disperse.
@@ -148,7 +148,7 @@
       cluster-payload: !type:Container
 
 - type: entity
-  parent: [GrenadeBase, BaseSyndicateContraband]
+  parent: [GrenadeBase, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   id: GrenadeIncendiary
   name: incendiary grenade
   description: Guaranteed to light up the mood.
@@ -177,7 +177,7 @@
       cluster-payload: !type:Container
 
 - type: entity
-  parent: [GrenadeBase, BaseSyndicateContraband]
+  parent: [GrenadeBase, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   id: GrenadeShrapnel
   name: shrapnel grenade
   description: Releases a deadly spray of shrapnel that causes severe bleeding.

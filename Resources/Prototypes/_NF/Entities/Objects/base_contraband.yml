@@ -1,0 +1,93 @@
+# Frontier-specific contraband targets.
+# If you need multiple currency types, specify them in the actual object instead of inheriting multiple parents here.
+
+- type: entity
+  id: BaseC1Contraband
+  abstract: true
+  components:
+  - type: Contraband
+    severity: Class1
+    # Pretty much everyone.
+    allowedDepartments: [ Civilian, Security, Command, Frontier ]
+
+# Unredeemable C2 contraband, for sensitive items (e.g. command headset, secway, secway keys) that should not be redeemed for FUCs
+- type: entity
+  id: BaseC2ContrabandUnredeemable
+  abstract: true
+  components:
+  - type: Contraband
+    severity: Class2
+    # Security and heads only (finally, shotgun traffic controller)
+    allowedDepartments: [ Security, Command ]
+    turnInValues:
+      Doubloon: 1
+
+- type: entity
+  parent: BaseC2ContrabandUnredeemable
+  id: BaseC2Contraband
+  abstract: true
+  components:
+  - type: Contraband
+    turnInValues:
+      FrontierUplinkCoin: 0
+
+- type: entity
+  id: BaseC3Contraband
+  abstract: true
+  components:
+  - type: Contraband
+    severity: Class3General
+    allowedDepartments: null
+    turnInValues:
+      FrontierUplinkCoin: 1
+
+- type: entity
+  id: BaseC3ContrabandNoValue
+  abstract: true
+  components:
+  - type: Contraband
+    severity: Class3General
+    allowedDepartments: null
+    turnInValues:
+      FrontierUplinkCoin: 0
+
+- type: entity
+  parent: 
+  id: BaseC3SyndicateContraband
+  abstract: true
+  components:
+  - type: Contraband
+    severity: Class3Syndicate
+
+- type: entity
+  id: BaseC3PirateContraband
+  abstract: true
+  components:
+  - type: Contraband
+    severity: Class3Pirate
+    # Security and heads only
+    allowedDepartments: null
+    turnInValues:
+      FrontierUplinkCoin: 0
+
+- type: entity
+  id: BaseC3WizardContraband
+  abstract: true
+  components:
+  - type: Contraband
+    severity: Class3Wizard
+    # Security and heads only
+    allowedDepartments: null
+    turnInValues:
+      FrontierUplinkCoin: 0
+
+- type: entity
+  id: BasePirateTarget
+  abstract: true
+  components:
+  - type: Contraband
+    severity: PirateTarget
+    # Security and heads only
+    allowedDepartments: null
+    turnInValues:
+      Doubloon: 1

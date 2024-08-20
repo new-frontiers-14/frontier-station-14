@@ -31,7 +31,7 @@ public sealed class ContrabandPriceGunSystem : EntitySystem
         if (!TryComp(uid, out UseDelayComponent? useDelay) || _useDelay.IsDelayed((uid, useDelay)))
             return;
 
-        if (!TryComp<ContrabandComponent>(args.Target, out var contraband))
+        if (!TryComp<ContrabandComponent>(args.Target, out var contraband) || contraband.Currency != component.Currency)
             return;
 
         var verb = new UtilityVerb()

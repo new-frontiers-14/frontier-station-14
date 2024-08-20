@@ -103,7 +103,7 @@
     price: 255
 
 - type: entity
-  parent: [BaseWeaponCrusher, BaseSecurityCargoContraband]
+  parent: [BaseWeaponCrusher, BaseC1Contraband] # Frontier: BaseSecurityCargoContraband<BaseC1Contraband
   id: WeaponCrusher
   components:
   - type: Tag
@@ -163,7 +163,7 @@
   - type: Prying
 
 - type: entity
-  parent: [ BaseWeaponCrusher, BaseSecurityCargoContraband]
+  parent: [ BaseWeaponCrusher, BaseC1Contraband] # Frontier: BaseSecurityCargoContraband<BaseC1Contraband
   id: WeaponCrusherDagger
   name: crusher dagger
   description: A scaled down version of a proto-kinetic crusher. Uses kinetic energy to vibrate the blade at high speeds.
@@ -186,7 +186,7 @@
 
 # Like a crusher... but better
 - type: entity
-  parent: [ WeaponCrusher, BaseSecurityCargoContraband]
+  parent: [ WeaponCrusher, BaseC1Contraband] # Frontier: BaseSecurityCargoContraband<BaseC1Contraband
   id: WeaponCrusherGlaive
   name: crusher glaive
   description: An early design of the proto-kinetic accelerator, in glaive form.

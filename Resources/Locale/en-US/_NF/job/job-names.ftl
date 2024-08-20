@@ -1,10 +1,9 @@
 # Frontier
 job-name-bailiff = Bailiff
 job-name-brigmedic = Brigmedic
-job-name-cadet-nf = Cadet
+job-name-nf-cadet = Cadet
 job-name-contractor = Contractor
 job-name-deputy = Deputy
-job-name-detective-nf = Detective
 job-name-ertmailcarrier = ERT Mail Carrier
 job-name-mercenary = Mercenary
 job-name-pilot = Pilot

@@ -1,4 +1,5 @@
 ﻿using Content.Shared.Roles;
+using Content.Shared.Store; // Frontier: turn-in features
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
@@ -25,4 +26,12 @@ public sealed partial class ContrabandComponent : Component
     [DataField]
     [AutoNetworkedField]
     public HashSet<ProtoId<DepartmentPrototype>>? AllowedDepartments = ["Security"];
+
+    // Frontier: turn-in features
+    /// <summary>
+    ///     The set of currency types this item can be redeemed 
+    /// </summary>
+    [DataField]
+    public Dictionary<ProtoId<CurrencyPrototype>, int> TurnInValues = new();
+    // End Frontier: turn-in extensions
 }

@@ -1,4 +1,4 @@
-- type: statusIcon
+- type: jobIcon
   parent: JobIcon
   id: JobIconContractor
   icon:
@@ -6,7 +6,7 @@
     state: contractor
   jobName: job-name-contractor
 
-- type: statusIcon
+- type: jobIcon
   parent: JobIcon
   id: JobIconMercenary
   icon:
@@ -14,15 +14,7 @@
     state: mercenary
   jobName: job-name-mercenary
 
-- type: statusIcon
-  parent: JobIcon
-  id: JobIconNFDetective
-  icon:
-    sprite: /Textures/_NF/Interface/Misc/job_icons.rsi
-    state: nfsddetective
-  jobName: job-name-detective
-
-- type: statusIcon
+- type: jobIcon
   parent: JobIcon
   id: JobIconPilot
   icon:
@@ -30,7 +22,7 @@
     state: pilot
   jobName: job-name-pilot
 
-- type: statusIcon
+- type: jobIcon
   parent: JobIcon
   id: JobIconPirate
   icon:
@@ -38,7 +30,7 @@
     state: pirate
   jobName: job-name-pirate
 
-- type: statusIcon
+- type: jobIcon
   parent: JobIcon
   id: JobIconPirateCaptain
   icon:
@@ -46,7 +38,7 @@
     state: piratecaptain
   jobName: job-name-pirate-captain
 
-- type: statusIcon
+- type: jobIcon
   parent: JobIcon
   id: JobIconPirateFirstMate
   icon:
@@ -54,7 +46,7 @@
     state: piratefirstmate
   jobName: job-name-pirate-first-mate
 
-- type: statusIcon
+- type: jobIcon
   parent: JobIcon
   id: JobIconSecurityGuard
   icon:
@@ -66,8 +58,9 @@
   parent: JobIconHeadOfPersonnel
   id: JobIconStationRepresentative
   jobName: job-name-station-representative
+  allowSelection: false # Frontier: no impersonating command staff, literally 1984
 
-- type: statusIcon
+- type: jobIcon
   parent: JobIcon
   id: JobIconStc
   icon:
@@ -87,11 +80,11 @@
 # NFSD positions
 - type: jobIcon
   parent: JobIcon
-  id: JobIconCadetNF
+  id: JobIconNFCadet
   icon:
     sprite: /Textures/_NF/Interface/Misc/job_icons.rsi
     state: nfsdcadet
-  jobName: job-name-cadet-nf
+  jobName: job-name-nf-cadet
 
 - type: jobIcon
   parent: JobIcon
@@ -103,25 +96,27 @@
 
 - type: jobIcon
   parent: JobIcon
+  id: JobIconDetectiveNF
+  icon:
+    sprite: /Textures/_NF/Interface/Misc/job_icons.rsi
+    state: nfsddetective
+  jobName: job-name-detective
+
+- type: jobIcon
+  parent: JobIcon
   id: JobIconSergeant
   icon:
     sprite: /Textures/_NF/Interface/Misc/job_icons.rsi
     state: nfsdsergeant
-  jobName: job-name-sergeant
+  jobName: job-name-senior-officer
 
 - type: jobIcon
   parent: JobIcon
-  id: JobIconBrigmedicNF
+  id: JobIconNFBrigmedic
   icon:
     sprite: /Textures/_NF/Interface/Misc/job_icons.rsi
     state: nfsdbrigmed
   jobName: job-name-brigmedic
-
-- type: jobIcon
-  parent: JobIcon
-  id: JobIconDetectiveNF
-  icon:
-  jobName: job-name-detective
 
 - type: jobIcon
   parent: JobIcon

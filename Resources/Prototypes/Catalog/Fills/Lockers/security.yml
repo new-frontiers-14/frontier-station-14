@@ -200,7 +200,7 @@
 #        prob: 0.5 # Frontier - Always has this
 
 - type: entity
-  parent: [GunSafe, BaseRestrictedContraband]
+  parent: [GunSafe, BaseClass1Contraband ] # Frontier: BaseRestrictedContraband<BaseClass1Contraband
   id: GunSafeDisabler
   name: disabler safe
   components:
@@ -210,7 +210,7 @@
       amount: 5
 
 - type: entity
-  parent: [GunSafe, BaseRestrictedContraband]
+  parent: [GunSafe, BaseClass1Contraband ] # Frontier: BaseRestrictedContraband<BaseClass1Contraband
   id: GunSafePistolMk58
   name: mk58 safe
   components:
@@ -222,7 +222,7 @@
       amount: 8
 
 - type: entity
-  parent: [GunSafe, BaseRestrictedContraband]
+  parent: [GunSafe, BaseC2Contraband ] # Frontier: BaseRestrictedContraband<BaseC2Contraband
   id: GunSafeRifleLecter
   name: lecter safe
   components:
@@ -234,7 +234,7 @@
       amount: 4
 
 - type: entity
-  parent: [GunSafe, BaseRestrictedContraband]
+  parent: [GunSafe, BaseC2Contraband ] # Frontier: BaseRestrictedContraband<BaseC2Contraband
   id: GunSafeSubMachineGunDrozd
   name: drozd safe
   components:
@@ -246,7 +246,7 @@
       amount: 4
 
 - type: entity
-  parent: [GunSafe, BaseRestrictedContraband]
+  parent: [GunSafe, BaseC2Contraband ] # Frontier: BaseRestrictedContraband<BaseC2Contraband
   id: GunSafeShotgunEnforcer
   name: enforcer safe
   components:
@@ -258,7 +258,7 @@
       amount: 4
 
 - type: entity
-  parent: [GunSafe, BaseRestrictedContraband]
+  parent: [GunSafe, BaseC2Contraband ] # Frontier: BaseRestrictedContraband<BaseC2Contraband
   id: GunSafeShotgunKammerer
   name: kammerer safe
   components:
@@ -272,7 +272,7 @@
 - type: entity
   id: GunSafeSubMachineGunWt550
   suffix: Wt550
-  parent: [GunSafe, BaseRestrictedContraband]
+  parent: [GunSafe, BaseC2Contraband ] # Frontier: BaseRestrictedContraband<BaseC2Contraband
   name: wt550 safe
   components:
   - type: StorageFill
@@ -283,7 +283,7 @@
       amount: 4
 
 - type: entity
-  parent: GunSafe
+  parent: [GunSafe, BaseC2Contraband ] # Frontier: added BaseClass1Contraband
   id: GunSafeLaserCarbine
   name: laser safe
   components:

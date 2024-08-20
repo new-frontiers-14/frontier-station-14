@@ -2,7 +2,7 @@
   name: holoparasite injector
   suffix: Ghost # Frontier
   id: HoloparasiteInjector
-  parent: [BaseItem, BaseSyndicateContraband]
+  parent: [BaseItem, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   description: A complex artwork of handheld machinery allowing the user to host a holoparasite guardian.
   components:
   - type: Sprite
@@ -38,7 +38,7 @@
 - type: entity
   name: holoparasite box
   suffix: Ghost # Frontier
-  parent: [BoxCardboard, BaseSyndicateContraband]
+  parent: [BoxCardboard, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   id: BoxHoloparasite
   description: A box containing a holoparasite injector.
   components:
@@ -57,7 +57,7 @@
 - type: entity
   name: holoclown box
   suffix: Ghost # Frontier
-  parent: [BoxCardboard, BaseSyndicateContraband]
+  parent: [BoxCardboard, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   id: BoxHoloclown
   description: A box containing a holoclown injector.
   components:

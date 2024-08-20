@@ -70,7 +70,7 @@
 
 - type: entity
   name: viper
-  parent: [BaseWeaponPistol, BaseSyndicateContraband]
+  parent: [BaseWeaponPistol, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   id: WeaponPistolViper
   description: A small, easily concealable, but somewhat underpowered gun. Retrofitted with a fully automatic receiver. Uses .35 auto ammo. An illegal firearm often used by Syndicate agents.
   components:
@@ -106,7 +106,7 @@
 
 - type: entity
   name: echis
-  parent: [ BaseItem, BaseSyndicateContraband ]
+  parent: [ BaseItem, BaseC3SyndicateContraband ] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   id: WeaponPistolEchis
   description: A viper for use by cyborgs. Creates .35 ammo on the fly from an internal ammo fabricator, which slowly self-charges.
   components:
@@ -141,7 +141,7 @@
 
 - type: entity
   name: cobra
-  parent: [ BaseWeaponPistol, BaseSyndicateContraband ]
+  parent: [ BaseWeaponPistol, BaseC3SyndicateContraband ] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   id: WeaponPistolCobra
   description: A rugged, robust operator handgun with inbuilt silencer. Uses .25 caseless ammo. An illegal firearm often used by Syndicate agents.
   components:
@@ -191,7 +191,7 @@
 
 - type: entity
   name: mk 58
-  parent: [BaseWeaponPistol, BaseRestrictedContraband]
+  parent: [BaseWeaponPistol, BaseC2ContrabandUnredeemable] # Frontier: BaseRestrictedContraband<BaseC2ContrabandUnredeemable
   id: WeaponPistolMk58
   description: A cheap, civilian grade, ubiquitous sidearm, produced by a NanoTrasen subsidiary. Uses .35 auto ammo.
   components:
@@ -213,7 +213,7 @@
 
 - type: entity
   name: N1984
-  parent: [BaseWeaponPistol, BaseRestrictedContraband]
+  parent: [BaseWeaponPistol, BaseC2ContrabandUnredeemable] # Frontier: BaseRestrictedContraband<BaseC2ContrabandUnredeemable
   id: WeaponPistolN1984 # the spaces in description are for formatting.
   description: The sidearm of any self respecting officer. Comes in .45 magnum, the lord's caliber. On the handle is a label that says 'for authorized use only.'
   components:
