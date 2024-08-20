@@ -114,7 +114,7 @@
     sprite: Objects/Fun/Darts/dart_yellow.rsi
 
 - type: entity
-  parent: Dart
+  parent: [Dart, BaseC3SyndicateContraband] # Frontier: added BaseC3SyndicateContraband
   id: HypoDart
   suffix: HypoDart
   components:
@@ -128,7 +128,6 @@
     solution: melee
   - type: SolutionTransfer
     maxTransferAmount: 7
-  - type: Contraband #frontier
 
 - type: entity
   name: dartboard

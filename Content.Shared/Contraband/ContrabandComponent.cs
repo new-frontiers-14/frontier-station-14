@@ -33,5 +33,11 @@ public sealed partial class ContrabandComponent : Component
     /// </summary>
     [DataField]
     public Dictionary<ProtoId<CurrencyPrototype>, int> TurnInValues = new();
+
+    /// <summary>
+    ///     If true, will not show contraband status on examine.  Useful for chameleon shoes and other camouflaged items.
+    /// </summary>
+    [DataField]
+    public bool HideValues = false;
     // End Frontier: turn-in extensions
 }

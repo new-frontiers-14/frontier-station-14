@@ -588,9 +588,8 @@
     jobTitle: Centcomm Agent
 
 - type: entity
-  # name: passenger ID card # Frontier
-  name: contractor ID card # Frontier
-  parent: IDCardStandard
+  name: contractor ID card # Frontier: passenger<contractor
+  parent: [IDCardStandard, BaseC3SyndicateContraband]
   id: AgentIDCard
   suffix: Agent
   components:
@@ -624,6 +623,7 @@
   - type: StaticPrice # Frontier
     price: 200 # Frontier
   - type: Contraband # Frontier
+    hideValues: true # Frontier
 
 - type: entity
   name: passenger ID card
@@ -636,7 +636,6 @@
     - Maintenance
     - SyndicateAgent
     - NuclearOperative
-  - type: Contraband # Frontier
 
 - type: entity
   parent: IDCardStandard

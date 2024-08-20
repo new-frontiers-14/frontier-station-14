@@ -78,7 +78,9 @@
     price: 2000
 
 - type: entity
-  parent: CrateTradeBaseSecure
+  parent:
+  - CrateTradeBaseSecure
+  - BaseC3SyndicateContraband
   id: CrateTradeContrabandSecureNormal
   name: Syndicate contraband crate
   noSpawn: true
@@ -103,10 +105,13 @@
   - type: StaticPrice
     price: 7500
   - type: Contraband
-    value: 5
+    tradeInValues:
+      FrontierUplinkCoin: 5
 
 - type: entity
-  parent: CrateTradeBaseSecure
+  parent:
+  - CrateTradeBaseSecure
+  - BaseC3SyndicateContraband
   id: CrateTradeContrabandSecureDonk
   name: Donk Co. contraband crate
   noSpawn: true
@@ -131,10 +136,13 @@
   - type: StaticPrice
     price: 15000
   - type: Contraband
-    value: 5
+    tradeInValues:
+      FrontierUplinkCoin: 5
 
 - type: entity
-  parent: CrateTradeBaseSecure
+  parent:
+  - CrateTradeBaseSecure
+  - BaseC3SyndicateContraband
   id: CrateTradeContrabandSecureCyberSun
   name: Cybersun Industries contraband crate
   noSpawn: true
@@ -159,7 +167,8 @@
   - type: StaticPrice
     price: 15000
   - type: Contraband
-    value: 5
+    tradeInValues:
+      FrontierUplinkCoin: 5
 
 - type: entity
   parent: CrateSecgear

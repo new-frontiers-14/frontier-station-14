@@ -138,7 +138,9 @@
 
 - type: entity
   id: SpaceBladeContra
-  parent: SpaceBlade
+  parent:
+  - SpaceBlade
+  - BaseC3SyndicateContraband
   description: Let it reap
   components:
   - type: Sprite
@@ -151,7 +153,6 @@
     enabled: true
     radius: 5
     color: "#3db83b"
-  - type: Contraband
   - type: StaticPrice
     price: 100
 

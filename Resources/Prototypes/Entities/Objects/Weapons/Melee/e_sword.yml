@@ -156,7 +156,7 @@
 
 - type: entity
   name: pen
-  parent: BaseMeleeWeaponEnergy
+  parent: [BaseMeleeWeaponEnergy, BaseC3SyndicateContraband] # Frontier: added BaseC3SyndicateContraband
   id: EnergyDagger
   suffix: E-Dagger
   description: 'A dark ink pen.'
@@ -192,9 +192,9 @@
       malus: 0.4
     - type: Execution
       doAfterDuration: 4.0
-    - type: Contraband
-      severity: Syndicate
-      allowedDepartments: null
+    # - type: Contraband # Frontier
+    #   severity: Syndicate # Frontier
+    #   allowedDepartments: null # Frontier
   - type: Sprite
     sprite: Objects/Weapons/Melee/e_dagger.rsi
     layers:
@@ -224,6 +224,7 @@
     tags:
     - Write
   - type: Contraband # Frontier
+    hideValues: false # Frontier
 
 - type: entity
   parent: [BaseItem, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
@@ -242,11 +243,10 @@
     - id: EnergyDagger
     sound:
       path: /Audio/Effects/unwrap.ogg
-  - type: Contraband #frontier
 
 - type: entity
   name: energy cutlass
-  parent: [BaseMeleeWeaponEnergy, BaseMajorContraband]
+  parent: [BaseMeleeWeaponEnergy, BaseC3PirateContraband] # Frontier: BaseMajorContraband<BaseC3PirateContraband
   id: EnergyCutlass
   description: An exotic energy weapon.
   components:
@@ -267,7 +267,6 @@
         map: [ "blade" ]
   - type: Item
     sprite: Objects/Weapons/Melee/e_cutlass.rsi
-  - type: Contraband # Frontier
 
 - type: entity
   name: double-bladed energy sword
@@ -332,7 +331,6 @@
   - type: Reflect
     reflectProb: .75
     spread: 75
-  - type: Contraband # Frontier
 
 - type: entity
   suffix: One-Handed, For Borgs

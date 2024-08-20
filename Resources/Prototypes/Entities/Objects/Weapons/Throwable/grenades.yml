@@ -57,7 +57,6 @@
         volume: 5
     initialBeepDelay: 0
     beepInterval: 2 # 2 beeps total (at 0 and 2)
-  - type: Contraband #frontier
 
 - type: entity
   name: flashbang
@@ -122,7 +121,6 @@
       path: /Audio/Effects/minibombcountdown.ogg
       params:
         volume: 12
-  - type: Contraband #frontier
 
 - type: entity
   name: self destruct
@@ -210,12 +208,11 @@
           params:
             volume: 5
       - type: ExplodeOnTrigger
-      - type: Contraband #frontier
 
 - type: entity
   name: whitehole grenade
   description: Grenade that repulses everything around for some time.
-  parent: SupermatterGrenade
+  parent: [SupermatterGrenade, BaseC3SyndicateContraband] # Frontier: added BaseC3SyndicateContraband
   id: WhiteholeGrenade
   components:
   - type: Sprite
@@ -258,12 +255,11 @@
           params:
             volume: 15
       - type: DeleteOnTrigger
-      - type: Contraband #frontier
 
 - type: entity
   name: the nuclear option
   description: Please don't throw it, think of the children.
-  parent: GrenadeBase
+  parent: [GrenadeBase, BaseC3SyndicateContraband] # Frontier: added BaseC3SyndicateContraband
   id: NuclearGrenade
   components:
   - type: Sprite
@@ -289,7 +285,6 @@
   - type: TimerTriggerVisuals
     primingSound:
       path: /Audio/Effects/countdown.ogg
-  - type: Contraband #frontier
 
 - type: entity
   name: modular grenade
@@ -378,7 +373,6 @@
   - type: TimerTriggerVisuals
     primingSound:
       path: /Audio/Effects/hallelujah.ogg
-  - type: Contraband #frontier
 
 - type: entity
   parent: [ GrenadeBase, BaseC2SyndicateContrabandUnredeemable ] # Frontier: BaseMinorContraband<BaseC2SyndicateContrabandUnredeemable

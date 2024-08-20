@@ -501,7 +501,7 @@
     sprite: Clothing/Uniforms/Jumpskirt/hosformaldress.rsi
 
 - type: entity
-  parent: [UnsensoredClothingUniformSkirtBase, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
+  parent: [UnsensoredClothingUniformSkirtBase, BaseC3SyndicateContraband, ContrabandClothing ] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband, ContrabandClothing
   id: ClothingUniformJumpskirtOperative
   name: operative jumpskirt
   description: Uniform for elite syndicate operatives performing tactical operations in deep space.
@@ -510,9 +510,6 @@
     sprite: Clothing/Uniforms/Jumpskirt/operative_s.rsi
   - type: Clothing
     sprite: Clothing/Uniforms/Jumpskirt/operative_s.rsi
-  - type: Contraband #frontier
-  #- type: FactionClothing # frontier
-    #faction: ContrabandClothing # frontier
 
 - type: entity
   parent: ClothingUniformSkirtBase
@@ -618,7 +615,7 @@
       sprite: Clothing/Uniforms/Jumpskirt/lawyergood.rsi
 
 - type: entity
-  parent: ClothingUniformSkirtBase
+  parent: [ClothingUniformSkirtBase, BaseC3SyndicateContraband, ContrabandClothing] # Frontier: added BaseC3SyndicateContraband, ContrabandClothing
   id: ClothingUniformJumpskirtSyndieFormalDress
   name: syndicate formal dress
   description: "The syndicate's uniform is made in an elegant style, it's even a pity to do dirty tricks in this."
@@ -627,9 +624,6 @@
       sprite: Clothing/Uniforms/Jumpskirt/syndieformaldress.rsi
     - type: Clothing
       sprite: Clothing/Uniforms/Jumpskirt/syndieformaldress.rsi
-    - type: Contraband #frontier
-    #- type: FactionClothing # frontier
-      #faction: ContrabandClothing # frontier
 
 - type: entity
   parent: ClothingUniformSkirtBase

@@ -31,7 +31,7 @@
 
 - type: entity
   name: gorlex hypospray
-  parent: BaseItem
+  parent: [BaseItem, BaseC3SyndicateContraband] # Frontier: add BaseC3SyndicateContraband
   description: Using reverse engineered designs from NT, Cybersun produced these in limited quantities for Gorlex Marauder operatives.
   id: SyndiHypo
   components:
@@ -52,7 +52,6 @@
     onlyAffectsMobs: false
   - type: UseDelay
     delay: 0.5
-  - type: Contraband #frontier
 
 - type: entity
   name: borghypo
@@ -81,7 +80,7 @@
 - type: entity
   name: experimental hypospray
   suffix: Admeme
-  parent: SyndiHypo
+  parent: SyndiHypo # FRONTIER MERGE - FIXME: listed as contraband
   description: The ultimate application of bluespace technology and rapid chemical administration.
   id: AdminHypo
   components:
@@ -91,7 +90,6 @@
           maxVol: 3000
     - type: UseDelay
       delay: 0.0
-    - type: Contraband #frontier
 
 - type: entity
   name: chemical medipen
@@ -415,7 +413,7 @@
 - type: entity
   name: pen
   suffix: Hypopen
-  parent: Pen # It is just like normal pen, isn't it?
+  parent: [Pen, BaseC3SyndicateContraband] # It is just like normal pen, isn't it?
   description: A dark ink pen.
   id: Hypopen
   components:
@@ -437,6 +435,7 @@
   - type: EmitSoundOnUse
     handle: false # don't want the sound to stop the self-inject from triggering
   - type: Contraband # Frontier
+    hideValues: true # Frontier - stealthy
 
 - type: entity
   parent: [ BaseItem, BaseC3SyndicateContraband ] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband

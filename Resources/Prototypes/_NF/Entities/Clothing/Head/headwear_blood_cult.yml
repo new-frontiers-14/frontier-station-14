@@ -1,6 +1,7 @@
 - type: entity
   parent:
   - ClothingHeadHelmetBasic
+  - BaseC3CultContraband
   - ContrabandClothing
   id: ClothingHeadHelmetCultJanitor
   name: cult janitor helmet
@@ -9,7 +10,6 @@
     sprite: _NF/Clothing/Head/Helmets/cult_janitor.rsi
   - type: Clothing
     sprite: _NF/Clothing/Head/Helmets/cult_janitor.rsi
-  - type: Contraband
   - type: Tag
     tags:
     - ClothMade
@@ -19,6 +19,7 @@
 - type: entity
   parent:
   - ClothingHeadBase
+  - BaseC3CultContraband
   - ContrabandClothing
   id: ClothingHeadHatHoodBloodCulthood
   name: cult hood
@@ -32,10 +33,9 @@
     tags:
     - HidesHair
     - WhitelistChameleon
-  - type: Contraband
 
 - type: entity # for looks only
-  parent: [ ClothingHeadHatHoodBloodCulthood, ClothingHeadHelmetBasic, ContrabandClothing ]
+  parent: [ ClothingHeadHatHoodBloodCulthood, ClothingHeadHelmetBasic, BaseC3CultContraband, ContrabandClothing ]
   id: ClothingHeadHatHoodBloodCulthoodUnremoveable
   noSpawn: true
   name: cult hood
