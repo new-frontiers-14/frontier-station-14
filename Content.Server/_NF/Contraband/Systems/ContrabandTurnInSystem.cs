@@ -3,6 +3,7 @@ using Content.Server.Cargo.Components;
 using Content.Server.Cargo.Systems;
 using Content.Server.Stack;
 using Content.Server.Station.Systems;
+using Content.Shared._NF.Contraband;
 using Content.Shared._NF.Contraband.BUI;
 using Content.Shared._NF.Contraband.Components;
 using Content.Shared._NF.Contraband.Events;
@@ -150,12 +151,16 @@ public sealed partial class ContrabandTurnInSystem : SharedContrabandTurnInSyste
                 if (_blacklistQuery.HasComponent(ent))
                     continue;
 
-                if (TryComp<ContrabandComponent>(ent, out var comp) && comp.Currency == console.RewardType)
+                if (TryComp<ContrabandComponent>(ent, out var comp))
                 {
-                    if (comp.Value == 0)
+                    if (!comp.TurnInValues.ContainsKey(console.RewardType))
                         continue;
+
                     toSell.Add(ent);
-                    amount += comp.Value;
+                    var value = comp.TurnInValues[console.RewardType];
+                    if (value <= 0)
+                        continue;
+                    amount += value;
                 }
             }
         }

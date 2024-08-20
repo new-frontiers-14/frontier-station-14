@@ -33,7 +33,7 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
-using Content.Shared._NF.Contraband.Components; // Frontier
+using Content.Shared.Contraband; // Frontier
 
 namespace Content.Server.Medical.BiomassReclaimer
 {
