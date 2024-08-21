@@ -1,4 +1,5 @@
 using System.Runtime.InteropServices;
+using Content.Server.Ghost.Roles.Components;
 using Content.Shared.Corvax.Respawn;
 using Content.Shared.GameTicking;
 using Content.Shared.Mind.Components;
@@ -7,32 +8,53 @@ using Content.Shared.Mobs.Components;
 using Robust.Server.Player;
 using Robust.Shared.Network;
 using Robust.Shared.Timing;
+using Content.Shared.NF14.CCVar; // Frontier
+using Robust.Shared.Configuration; // Frontier
+using Content.Shared.Mind; // Frontier
+using Content.Server.Mind;
+using Content.Server.CryoSleep; // Frontier
 
 namespace Content.Server.Corvax.Respawn;
 
-public sealed class RespawnSystem : EntitySystem
+public sealed class RespawnSystem : SharedNFRespawnSystem
 {
     [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private readonly MindSystem _mind = default!;
 
-    private readonly Dictionary<NetUserId, TimeSpan> _respawnResetTimes = [];
-
+    private float _respawnCryoFirstTime = 0f;
+    private float _respawnTime = 0f;
     public override void Initialize()
     {
-        SubscribeLocalEvent<MobStateChangedEvent>(OnMobStateChanged);
+        SubscribeLocalEvent<MindContainerComponent, MobStateChangedEvent>(OnMobStateChanged);
         SubscribeLocalEvent<MindContainerComponent, MindRemovedMessage>(OnMindRemoved);
-        SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestartCleanup);
+        SubscribeLocalEvent<MindContainerComponent, CryosleepEnterEvent>(OnCryoEnter);
+        SubscribeLocalEvent<MindContainerComponent, CryosleepWakeUpEvent>(OnCryoWakeUp);
+
+        Subs.CVar(_cfg, NF14CVars.RespawnCryoFirstTime, OnRespawnCryoFirstTimeChanged, true);
+        Subs.CVar(_cfg, NF14CVars.RespawnTime, OnRespawnCryoTimeChanged, true);
     }
 
-    private void OnMobStateChanged(MobStateChangedEvent e)
+    private void OnRespawnCryoFirstTimeChanged(float value)
+    {
+        _respawnCryoFirstTime = value;
+    }
+
+    private void OnRespawnCryoTimeChanged(float value)
+    {
+        _respawnTime = value;
+    }
+
+    private void OnMobStateChanged(EntityUid entity, MindContainerComponent component, MobStateChangedEvent e)
     {
         if (e.NewMobState != MobState.Dead)
             return;
 
-        if (!_player.TryGetSessionByEntity(e.Target, out var session))
+        if (!_mind.TryGetMind(entity, out var _, out var mind, component))
             return;
 
-        ResetRespawnTime(e.Target, session.UserId);
+        SetRespawnTime(entity, mind, _timing.CurTime + TimeSpan.FromSeconds(_respawnTime));
     }
 
     private void OnMindRemoved(EntityUid entity, MindContainerComponent component, MindRemovedMessage e)
@@ -40,39 +62,49 @@ public sealed class RespawnSystem : EntitySystem
         if (e.Mind.Comp.UserId is null)
             return;
 
+        // Mob is dead, don't reset spawn timer twice
         if (TryComp<MobStateComponent>(entity, out var state) && state.CurrentState == MobState.Dead)
             return;
 
-        ResetRespawnTime(entity, e.Mind.Comp.UserId.Value);
-    }
-
-    private void OnRoundRestartCleanup(RoundRestartCleanupEvent e)
-    {
-        foreach (var player in _respawnResetTimes.Keys)
-            SendRespawnResetTime(player, null);
-
-        _respawnResetTimes.Clear();
-    }
-
-    private void ResetRespawnTime(EntityUid entity, NetUserId player)
-    {
-        if (!HasComp<RespawnResetComponent>(entity))
+        if (!_mind.TryGetMind(entity, out var _, out var mind, component))
             return;
 
-        ref var respawnTime = ref CollectionsMarshal.GetValueRefOrAddDefault(_respawnResetTimes, player, out _);
+        if (HasComp<GhostRoleComponent>(entity)) // Frontier: don't penalize user for exiting ghost roles
+            return; // Frontier: don't penalize user for exiting ghost roles
 
-        respawnTime = _timing.CurTime;
-
-        SendRespawnResetTime(player, _timing.CurTime);
+        SetRespawnTime(entity, mind, _timing.CurTime + TimeSpan.FromSeconds(_respawnTime));
     }
 
-    private void SendRespawnResetTime(NetUserId player, TimeSpan? time)
+    private void OnCryoEnter(EntityUid entity, MindContainerComponent component, CryosleepEnterEvent _)
     {
-        RaiseNetworkEvent(new RespawnResetEvent(time), _player.GetSessionById(player));
+        if (!_mind.TryGetMind(entity, out var _, out var mind, component))
+            return;
+
+        mind.LastCryoSleep = _timing.CurTime;
+        double respawnTime = _respawnCryoFirstTime; // Not previously respawned from cryo.
+        if (mind.LastRespawnOnCryo is not null)
+        {
+            double secondsSinceCryoSleep = (_timing.CurTime - mind.LastRespawnOnCryo!).Value.TotalSeconds;
+            respawnTime = double.Min(_respawnTime, secondsSinceCryoSleep);
+        }
+        SetRespawnTime(entity, mind, _timing.CurTime + TimeSpan.FromSeconds(respawnTime));
     }
 
-    public TimeSpan? GetRespawnResetTime(NetUserId user)
+    private void OnCryoWakeUp(EntityUid entity, MindContainerComponent component, CryosleepWakeUpEvent _)
     {
-        return _respawnResetTimes.TryGetValue(user, out var time) ? time : null;
+        if (!_mind.TryGetMind(entity, out var _, out var mind, component))
+            return;
+
+        mind.LastCryoSleep = null;
+    }
+
+    private void SetRespawnTime(EntityUid entity, MindComponent mind, TimeSpan nextSpawn, TimeSpan? cryoTime = null)
+    {
+        mind.RespawnTime = nextSpawn;
+        mind.LastRespawnOnCryo = cryoTime;
+        mind.LastCryoSleep = null;
+        Dirty(entity, mind);
+        if (mind.Session is not null)
+            RaiseNetworkEvent(new RespawnResetEvent(nextSpawn), mind.Session!);
     }
 }

@@ -4,6 +4,7 @@ using Content.Shared.Mind.Components;
 using Robust.Shared.GameStates;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
+using Content.Shared.Corvax.Respawn; // Frontier
 
 namespace Content.Shared.Mind
 {
@@ -105,5 +106,20 @@ namespace Content.Shared.Mind
         [ViewVariables, Access(typeof(SharedMindSystem), typeof(SharedGameTicker))]
         // TODO remove this after moving IPlayerManager functions to shared
         public ICommonSession? Session { get; set; }
+
+        // Frontier: 
+        /// <summary>
+        [ViewVariables, Access(typeof(SharedMindSystem), typeof(SharedNFRespawnSystem))]
+        // TODO remove this after moving IPlayerManager functions to shared
+        public TimeSpan RespawnTime { get; set; } = TimeSpan.Zero;
+
+        [ViewVariables, Access(typeof(SharedMindSystem), typeof(SharedNFRespawnSystem))]
+        // TODO remove this after moving IPlayerManager functions to shared
+        public TimeSpan? LastCryoSleep { get; set; } = null;
+
+        [ViewVariables, Access(typeof(SharedMindSystem), typeof(SharedNFRespawnSystem))]
+        // TODO remove this after moving IPlayerManager functions to shared
+        public TimeSpan? LastRespawnOnCryo { get; set; } = null;
+        // End Frontier
     }
 }

@@ -81,6 +81,7 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
     private void OnRespawnReseted()
     {
         UpdateGui();
+        UpdateRespawn(_respawn?.RespawnResetTime);
     }
 
     public void UpdateGui()
@@ -92,8 +93,6 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
 
         Gui.Visible = _system?.IsGhost ?? false;
         Gui.Update(_system?.AvailableGhostRoleCount, _system?.Player?.CanReturnToBody,
-            _respawn?.RespawnResetTime,
-            _cfg.GetCVar(NF14CVars.RespawnTime),
             _canUncryo && _cfg.GetCVar(NF14CVars.CryoReturnEnabled));
     }
 
