@@ -11,8 +11,9 @@ using Robust.Shared.Timing;
 using Content.Shared.NF14.CCVar; // Frontier
 using Robust.Shared.Configuration; // Frontier
 using Content.Shared.Mind; // Frontier
-using Content.Server.Mind;
+using Content.Server.Mind; // Frontier
 using Content.Server.CryoSleep; // Frontier
+using Robust.Shared.Player; // Frontier
 
 namespace Content.Server.Corvax.Respawn;
 
@@ -29,7 +30,7 @@ public sealed class RespawnSystem : SharedNFRespawnSystem
     {
         SubscribeLocalEvent<MindContainerComponent, MobStateChangedEvent>(OnMobStateChanged);
         SubscribeLocalEvent<MindContainerComponent, MindRemovedMessage>(OnMindRemoved);
-        SubscribeLocalEvent<MindContainerComponent, CryosleepEnterEvent>(OnCryoEnter);
+        SubscribeLocalEvent<MindContainerComponent, CryosleepBeforeMindRemovedEvent>(OnCryoBeforeMindRemoved);
         SubscribeLocalEvent<MindContainerComponent, CryosleepWakeUpEvent>(OnCryoWakeUp);
 
         Subs.CVar(_cfg, NF14CVars.RespawnCryoFirstTime, OnRespawnCryoFirstTimeChanged, true);
@@ -51,43 +52,54 @@ public sealed class RespawnSystem : SharedNFRespawnSystem
         if (e.NewMobState != MobState.Dead)
             return;
 
-        if (!_mind.TryGetMind(entity, out var _, out var mind, component))
+        if (!_mind.TryGetMind(entity, out var mindEnt, out var mind, component))
             return;
 
-        SetRespawnTime(entity, mind, _timing.CurTime + TimeSpan.FromSeconds(_respawnTime));
+        SetRespawnTime(mindEnt, mind, _timing.CurTime + TimeSpan.FromSeconds(_respawnTime));
     }
 
     private void OnMindRemoved(EntityUid entity, MindContainerComponent component, MindRemovedMessage e)
     {
-        if (e.Mind.Comp.UserId is null)
+        if (e.Mind.Comp is null)
             return;
 
         // Mob is dead, don't reset spawn timer twice
         if (TryComp<MobStateComponent>(entity, out var state) && state.CurrentState == MobState.Dead)
             return;
 
-        if (!_mind.TryGetMind(entity, out var _, out var mind, component))
-            return;
-
         if (HasComp<GhostRoleComponent>(entity)) // Frontier: don't penalize user for exiting ghost roles
             return; // Frontier: don't penalize user for exiting ghost roles
 
-        SetRespawnTime(entity, mind, _timing.CurTime + TimeSpan.FromSeconds(_respawnTime));
-    }
-
-    private void OnCryoEnter(EntityUid entity, MindContainerComponent component, CryosleepEnterEvent _)
-    {
-        if (!_mind.TryGetMind(entity, out var _, out var mind, component))
+        if (e.Mind.Comp.LastCryoSleep != null) // Entity has cryoed, don't reset the respawn time
             return;
 
-        mind.LastCryoSleep = _timing.CurTime;
+        SetRespawnTime(e.Mind.Owner, e.Mind.Comp, _timing.CurTime + TimeSpan.FromSeconds(_respawnTime));
+    }
+
+    public void Respawn(ICommonSession session)
+    {
+        EntityUid? mindEnt = _mind.GetMind(session.UserId);
+        if (mindEnt is null || !TryComp<MindComponent>(mindEnt, out var mindComp))
+            return;
+
+        // Push temporary cryo information 
+        mindComp.LastRespawnedCryo = mindComp.LastCryoSleep;
+        mindComp.LastCryoSleep = null;
+        Dirty(mindEnt.Value, mindComp);
+    }
+
+    private void OnCryoBeforeMindRemoved(EntityUid entity, MindContainerComponent component, CryosleepBeforeMindRemovedEvent _)
+    {
+        if (!_mind.TryGetMind(entity, out var mindEnt, out var mind, component))
+            return;
+
         double respawnTime = _respawnCryoFirstTime; // Not previously respawned from cryo.
-        if (mind.LastRespawnOnCryo is not null)
+        if (mind.LastRespawnedCryo is not null)
         {
-            double secondsSinceCryoSleep = (_timing.CurTime - mind.LastRespawnOnCryo!).Value.TotalSeconds;
+            double secondsSinceCryoSleep = (_timing.CurTime - mind.LastRespawnedCryo!).Value.TotalSeconds;
             respawnTime = double.Min(_respawnTime, secondsSinceCryoSleep);
         }
-        SetRespawnTime(entity, mind, _timing.CurTime + TimeSpan.FromSeconds(respawnTime));
+        SetRespawnTime(mindEnt, mind, _timing.CurTime + TimeSpan.FromSeconds(respawnTime), _timing.CurTime);
     }
 
     private void OnCryoWakeUp(EntityUid entity, MindContainerComponent component, CryosleepWakeUpEvent _)
@@ -96,14 +108,15 @@ public sealed class RespawnSystem : SharedNFRespawnSystem
             return;
 
         mind.LastCryoSleep = null;
+        Dirty(entity, mind);
     }
 
     private void SetRespawnTime(EntityUid entity, MindComponent mind, TimeSpan nextSpawn, TimeSpan? cryoTime = null)
     {
         mind.RespawnTime = nextSpawn;
-        mind.LastRespawnOnCryo = cryoTime;
-        mind.LastCryoSleep = null;
+        mind.LastCryoSleep = cryoTime;
         Dirty(entity, mind);
+
         if (mind.Session is not null)
             RaiseNetworkEvent(new RespawnResetEvent(nextSpawn), mind.Session!);
     }

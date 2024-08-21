@@ -2,6 +2,7 @@ using System.Globalization;
 using System.Linq;
 using System.Numerics;
 using Content.Server.Administration.Managers;
+using Content.Server.GameTicking.Events;
 using Content.Server.Ghost;
 using Content.Server.Spawners.Components;
 using Content.Server.Speech.Components;
@@ -314,6 +315,9 @@ namespace Content.Server.GameTicking
         {
             _mind.WipeMind(player);
             _adminLogger.Add(LogType.Respawn, LogImpact.Medium, $"Player {player} was respawned.");
+
+            // Frontier: reset respawn
+            
 
             if (LobbyEnabled)
                 PlayerJoinLobby(player);

@@ -265,6 +265,8 @@ public sealed partial class CryoSleepSystem : SharedCryoSleepSystem
         NetUserId? id = null;
         if (_mind.TryGetMind(bodyId, out var mindEntity, out var mind) && mind.CurrentEntity is { Valid : true } body)
         {
+            var argMind = mind;
+            RaiseLocalEvent(bodyId, new CryosleepBeforeMindRemovedEvent(cryopod, argMind?.UserId), true);
             _gameTicker.OnGhostAttempt(mindEntity, false, true, mind: mind);
 
             id = mind.UserId;

@@ -107,19 +107,25 @@ namespace Content.Shared.Mind
         // TODO remove this after moving IPlayerManager functions to shared
         public ICommonSession? Session { get; set; }
 
-        // Frontier: 
+        // Frontier: respawn times
         /// <summary>
+        ///     The game time when this mind can next respawn.
+        /// </summary>
         [ViewVariables, Access(typeof(SharedMindSystem), typeof(SharedNFRespawnSystem))]
-        // TODO remove this after moving IPlayerManager functions to shared
         public TimeSpan RespawnTime { get; set; } = TimeSpan.Zero;
 
+        /// <summary>
+        ///     The game time when this mind last entered cryosleep.
+        ///     When not-null, the user's mind is still in cryosleep.
+        /// </summary>
         [ViewVariables, Access(typeof(SharedMindSystem), typeof(SharedNFRespawnSystem))]
-        // TODO remove this after moving IPlayerManager functions to shared
         public TimeSpan? LastCryoSleep { get; set; } = null;
 
+        /// <summary>
+        ///     The game time when this mind can next respawn.
+        /// </summary>
         [ViewVariables, Access(typeof(SharedMindSystem), typeof(SharedNFRespawnSystem))]
-        // TODO remove this after moving IPlayerManager functions to shared
-        public TimeSpan? LastRespawnOnCryo { get; set; } = null;
+        public TimeSpan? LastRespawnedCryo { get; set; } = null;
         // End Frontier
     }
 }
