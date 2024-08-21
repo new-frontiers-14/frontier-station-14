@@ -1,8 +1,10 @@
 - type: entity
+  id: ClothingOuterRobeTacticalWizardBlue
   parent:
   - ClothingOuterStorageBase
   - ClothingOuterBaseToggleable
-  id: ClothingOuterRobeTacticalWizardBlue
+  - ContrabandClothing
+  - RecyclableItemClothArmor
   name: blue wizard tactical robes
   description: The perfect synthesis of tradition with modern materials and warfare practices.
   components:
@@ -12,22 +14,24 @@
     sprite: _NF/Clothing/OuterClothing/Coats/wizard_robe_blue.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodTacticalWizardBlue
-  - type: Armor # ClothingOuterArmorBulletproof stats for now, later will be changed to something else
+  - type: Armor # placeholder stats, will be changed to something else
     modifiers:
       coefficients:
         Blunt: 0.8
         Slash: 0.8
-        Piercing: 0.75
+        Piercing: 0.4
         Heat: 0.9
         Cold: 0.4
   - type: ExplosionResistance
-    damageCoefficient: 0.80
+    damageCoefficient: 0.40
 
 - type: entity
+  id: ClothingOuterRobeTacticalWizardRed
   parent:
   - ClothingOuterStorageBase
   - ClothingOuterBaseToggleable
-  id: ClothingOuterRobeTacticalWizardRed
+  - ContrabandClothing
+  - RecyclableItemClothArmor
   name: red wizard tactical robes
   description: The perfect synthesis of tradition with modern materials and warfare practices.
   components:
@@ -42,7 +46,33 @@
       coefficients:
         Blunt: 0.8
         Slash: 0.8
-        Piercing: 0.75
+        Piercing: 0.4
         Heat: 0.4
   - type: ExplosionResistance
-    damageCoefficient: 0.80
+    damageCoefficient: 0.40
+
+- type: entity
+  id: ClothingOuterRobeTacticalWizardPurple
+  parent:
+  - ClothingOuterStorageBase
+  - ClothingOuterBaseToggleable
+  - ContrabandClothing
+  - RecyclableItemClothArmor
+  name: purple wizard tactical robes
+  description: The perfect synthesis of tradition with modern materials and warfare practices.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Coats/wizard_robe_purple.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Coats/wizard_robe_purple.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHatHoodTacticalWizardPurple
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.4
+        Heat: 0.4
+  - type: ExplosionResistance
+    damageCoefficient: 0.40

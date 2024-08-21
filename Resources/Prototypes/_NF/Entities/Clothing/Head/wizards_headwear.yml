@@ -1,6 +1,8 @@
 - type: entity
-  parent: ClothingHeadBase
   id: ClothingHeadHatHoodTacticalWizardBlue
+  parent:
+  - ClothingHeadBase
+  - ContrabandClothing
   name: blue wizard tactical hood
   noSpawn: true
   components:
@@ -15,13 +17,12 @@
     tags:
     - HidesHair
     - WhitelistChameleon
-  - type: Contraband
-  - type: FactionClothing
-    faction: ContrabandClothing
 
 - type: entity
-  parent: ClothingHeadBase
   id: ClothingHeadHatHoodTacticalWizardRed
+  parent: 
+  - ClothingHeadBase
+  - ContrabandClothing
   name: red wizard tactical hood
   noSpawn: true
   components:
@@ -36,6 +37,23 @@
     tags:
     - HidesHair
     - WhitelistChameleon
-  - type: Contraband
-  - type: FactionClothing
-    faction: ContrabandClothing
+
+- type: entity
+  id: ClothingHeadHatHoodTacticalWizardPurple
+  parent: 
+  - ClothingHeadBase
+  - ContrabandClothing
+  name: purple wizard tactical hood
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Head/Hoods/Coat/wizard_robe_purple.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Head/Hoods/Coat/wizard_robe_purple.rsi
+  - type: HideLayerClothing
+    slots:
+    - Hair
+  - type: Tag
+    tags:
+    - HidesHair
+    - WhitelistChameleon
