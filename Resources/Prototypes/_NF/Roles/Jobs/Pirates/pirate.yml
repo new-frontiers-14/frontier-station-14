@@ -4,11 +4,11 @@
   description: job-description-pirate
   playTimeTracker: JobPirate
   requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 86400 # 24 hours
     - !type:DepartmentTimeRequirement
       department: Security
       time: 10800 # 3 hrs
-    - !type:OverallPlaytimeRequirement
-      time: 86400 # Frontier - 24 hours
   startingGear: PirateNFGear
   alwaysUseSpawner: true
   hideConsoleVisibility: true
