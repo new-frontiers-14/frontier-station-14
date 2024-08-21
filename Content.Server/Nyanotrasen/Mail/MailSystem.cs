@@ -11,6 +11,7 @@ using Content.Server.Cargo.Systems;
 using Content.Server.Chat.Systems;
 using Content.Server.Chemistry.Containers.EntitySystems;
 using Content.Server.Damage.Components;
+using Content.Server.DeltaV.Cargo.Components;
 using Content.Server.Destructible;
 using Content.Server.Destructible.Thresholds;
 using Content.Server.Destructible.Thresholds.Behaviors;
@@ -49,6 +50,8 @@ using Content.Shared.Storage;
 using Content.Shared.Tag;
 using Robust.Shared.Audio.Systems;
 using Timer = Robust.Shared.Timing.Timer;
+using Content.Server.DeltaV.Cargo.Systems;
+using Content.Server._NF.SectorServices;
 
 namespace Content.Server.Mail
 {
@@ -75,6 +78,10 @@ namespace Content.Server.Mail
         [Dependency] private readonly MindSystem _mindSystem = default!;
         [Dependency] private readonly MetaDataSystem _metaDataSystem = default!;
         [Dependency] private readonly IEntityManager _entManager = default!; // Frontier
+        [Dependency] private readonly SectorServiceSystem _sectorService = default!; // Frontier
+
+        // DeltaV - system that keeps track of mail and cargo stats
+        [Dependency] private readonly LogisticStatsSystem _logisticsStatsSystem = default!;
 
         private ISawmill _sawmill = default!;
 
@@ -125,6 +132,9 @@ namespace Content.Server.Mail
             {
                 return;
             }
+
+            //if (!HasComp<StationMailRouterComponent>(station)) # Frontier - We dont need to test this.
+            //    return;
 
             EnsureComp<MailReceiverComponent>(args.SpawnResult.Value);
         }
@@ -223,6 +233,15 @@ namespace Content.Server.Mail
             }
 
             UnlockMail(uid, component);
+            if (component.IsProfitable) // Frontier: update only when profitable
+            {
+                // DeltaV - Add earnings to logistic stats
+                ExecuteForEachLogisticsStats((logisticStats) =>
+                {
+                        _logisticsStatsSystem.AddOpenedMailEarnings(logisticStats,
+                            component.Bounty);
+                });
+            }
 
             if (!component.IsProfitable)
             {
@@ -239,7 +258,6 @@ namespace Content.Server.Mail
             while (query.MoveNext(out var station, out var account))
             {
                 _cargoSystem.UpdateBankAccount(station, account, component.Bounty);
-                return;
             }
         }
 
@@ -305,7 +323,20 @@ namespace Content.Server.Mail
         private void OnDestruction(EntityUid uid, MailComponent component, DestructionEventArgs args)
         {
             if (component.IsLocked)
-                PenalizeStationFailedDelivery(uid, component, "mail-penalty-lock");
+            {
+                if (component.IsProfitable) // Frontier: update only when profitable
+                {
+                    PenalizeStationFailedDelivery(uid, component, "mail-penalty-lock");
+
+                    // DeltaV - Damaged mail recorded to logistic stats
+                    component.IsLocked = false; // Frontier: do not count this package as unopened.
+                    ExecuteForEachLogisticsStats((logisticStats) =>
+                    {
+                        _logisticsStatsSystem.AddDamagedMailLosses(logisticStats,
+                            component.Penalty);
+                    });
+                }
+            }
 
             // if (component.IsEnabled)
             //     OpenMail(uid, component); // Frontier - Dont open the mail on destruction.
@@ -333,8 +364,17 @@ namespace Content.Server.Mail
         {
             _appearanceSystem.SetData(uid, MailVisuals.IsBroken, true);
 
-            if (component.IsFragile)
+            if (component.IsFragile && component.IsProfitable) // Frontier: update only when profitable
+            {
                 PenalizeStationFailedDelivery(uid, component, "mail-penalty-fragile");
+
+                // DeltaV - Broken mail recorded to logistic stats
+                ExecuteForEachLogisticsStats((logisticStats) =>
+                {
+                    _logisticsStatsSystem.AddDamagedMailLosses(logisticStats,
+                        component.Penalty);
+                });
+            }
         }
 
         private void OnMailEmagged(EntityUid uid, MailComponent component, ref GotEmaggedEvent args)
@@ -343,6 +383,20 @@ namespace Content.Server.Mail
                 return;
 
             UnlockMail(uid, component);
+
+            // Frontier: penalize station on emag, but only if profitable
+            if (component.IsProfitable)
+            {
+                PenalizeStationFailedDelivery(uid, component, "mail-penalty-lock");
+
+                // DeltaV - Tampered mail recorded to logistic stats
+                ExecuteForEachLogisticsStats((logisticStats) =>
+                {
+                    _logisticsStatsSystem.AddTamperedMailLosses(logisticStats,
+                        component.Penalty);
+                });
+            }
+            // End Frontier
 
             _popupSystem.PopupEntity(Loc.GetString("mail-unlocked-by-emag"), uid, args.UserUid);
 
@@ -475,27 +529,40 @@ namespace Content.Server.Mail
             if (mailComp.IsLarge)
             {
                 mailComp.Bounty += component.LargeBonus;
-                mailComp.Penalty += component.LargeMalus;
+                //mailComp.Penalty += component.LargeMalus; // Frontier - Setting penalty to stay 0
             }
             // End Frontier
 
             if (mailComp.IsFragile)
             {
                 mailComp.Bounty += component.FragileBonus;
-                mailComp.Penalty += component.FragileMalus;
+                //mailComp.Penalty += component.FragileMalus; // Frontier - Setting penalty to stay 0
                 _appearanceSystem.SetData(uid, MailVisuals.IsFragile, true);
             }
 
             if (mailComp.IsPriority)
             {
                 mailComp.Bounty += component.PriorityBonus;
-                mailComp.Penalty += component.PriorityMalus;
+                //mailComp.Penalty += component.PriorityMalus; // Frontier - Setting penalty to stay 0
                 _appearanceSystem.SetData(uid, MailVisuals.IsPriority, true);
 
                 mailComp.priorityCancelToken = new CancellationTokenSource();
 
                 Timer.Spawn((int) component.priorityDuration.TotalMilliseconds,
-                    () => PenalizeStationFailedDelivery(uid, mailComp, "mail-penalty-expired"),
+                    () =>
+                    {
+                        if (mailComp.IsProfitable) // Frontier: only penalize and adjust stats if profitable
+                        {
+                            PenalizeStationFailedDelivery(uid, mailComp, "mail-penalty-expired");
+
+                            // DeltaV - Expired mail recorded to logistic stats
+                            ExecuteForEachLogisticsStats((logisticStats) =>
+                            {
+                                _logisticsStatsSystem.AddExpiredMailLosses(logisticStats,
+                                    mailComp.Penalty);
+                            });
+                        }
+                    },
                     mailComp.priorityCancelToken.Token);
             }
 
@@ -714,7 +781,6 @@ namespace Content.Server.Mail
                 SetupMail(mail, component, candidate);
 
                 _tagSystem.AddTag(mail, "Mail"); // Frontier
-                _tagSystem.AddTag(mail, "Recyclable"); // Frontier - Make it so mail can be destroyed by reclaimer
             }
 
             if (_containerSystem.TryGetContainer(uid, "queued", out var queued))
@@ -759,6 +825,16 @@ namespace Content.Server.Mail
         private void UpdateMailTrashState(EntityUid uid, bool isTrash)
         {
             _appearanceSystem.SetData(uid, MailVisuals.IsTrash, isTrash);
+        }
+
+        // DeltaV - Helper function that executes for each StationLogisticsStatsComponent
+        // For updating MailMetrics stats
+        private void ExecuteForEachLogisticsStats(Action<SectorLogisticStatsComponent> action)
+        {
+            // Frontier: use service entity - there should be only one
+            if (TryComp(_sectorService.GetServiceEntity(), out SectorLogisticStatsComponent? logisticStats))
+                action(logisticStats);
+            // End Frontier
         }
     }
 

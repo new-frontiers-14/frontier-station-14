@@ -1,3 +1,4 @@
+using Content.Server._NF.Salvage; // Frontier: graceful exped spawn failures
 using Content.Server.Station.Components;
 using Content.Shared.Popups;
 using Content.Shared.Shuttles.Components;
