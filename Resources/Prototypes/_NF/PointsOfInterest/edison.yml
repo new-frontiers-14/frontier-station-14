@@ -1,0 +1,34 @@
+# Author Info
+# GitHub: 
+# Discord: Checkraze
+
+# Maintainer Info
+# GitHub: ???
+# Discord: ???
+
+# Notes:
+# Provides higher end expeditionary ships and a space for vets to spawn in away from potential frontier shenanigans
+- type: pointOfInterest
+  id: Edison
+  name: 'Edison Fuel Factory'
+  rangeMin: 1650
+  rangeMax: 3400
+  iffColor: "#3737C8" #blue the color of NT
+  alwaysSpawn: true
+  gridPath: /Maps/_NF/POI/edison_dev.yml #TODO: change to final build POI
+
+- type: gameMap
+  id: Edison
+  mapName: 'Edison Fuel Factory'
+  mapPath: /Maps/_NF/POI/edison_dev.yml
+  minPlayers: 0
+  stations:
+    Edison:
+      stationProto: SpawnableFrontierOutpost
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Edison Fuel Factory'
+        - type: StationJobs
+          availableJobs:
+            Pilot: [ -1, -1 ]
+            Mercenary: [ -1, -1 ]
