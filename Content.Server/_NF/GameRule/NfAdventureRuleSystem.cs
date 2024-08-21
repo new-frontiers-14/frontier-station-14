@@ -341,7 +341,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             }
 
             // Cache our damping strength
-            float dampingStrength = proto.CanMove ? 999999f : 0.05f;
+            float dampingStrength = proto.CanMove ? 0.05f : 999999f;
 
             foreach (var grid in mapUids)
             {
