@@ -28,6 +28,11 @@ namespace Content.Shared.Kitchen
         [DataField("result", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
         public string Result { get; private set; } = string.Empty;
 
+        // Frontier
+        [DataField("resultCount")]
+        public int ResultCount { get; private set; } = 1;
+        // End Frontier
+
         [DataField("time")]
         public uint CookTime { get; private set; } = 5;
 
