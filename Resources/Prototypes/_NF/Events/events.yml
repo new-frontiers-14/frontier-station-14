@@ -240,15 +240,15 @@
 
 # disabled until event is rewritten to be more interesting
 - type: entity
- id: FalseAlarm
- parent: BaseGameRule
- components:
- - type: StationEvent
-   weight: 15
-   duration: 1
+  id: FalseAlarm
+  parent: BaseGameRule
+  components:
+  - type: StationEvent
+    weight: 15
+    duration: 1
     reoccurrenceDelay: 180 # Frontier
     maxOccurrences: 2 # Frontier - People dont like too many false alarms
- - type: FalseAlarmRule
+  - type: FalseAlarmRule
 
 - type: entity
   id: GasLeak

@@ -39,6 +39,7 @@ public sealed partial class ContrabandComponent : Component
     ///     If true, will not show contraband status on examine.  Useful for chameleon shoes and other camouflaged items.
     /// </summary>
     [DataField]
+    [AutoNetworkedField]
     public bool HideValues = false;
     // End Frontier: turn-in extensions
 }

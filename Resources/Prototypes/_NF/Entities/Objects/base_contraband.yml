@@ -21,7 +21,7 @@
     severity: Class2
     # Security and heads only (finally, shotgun traffic controller)
     allowedDepartments: [ Security, Command ]
-    turnInValues:
+    turnInValues: &oneDoubloon
       Doubloon: 1
 
 - type: entity
@@ -30,7 +30,7 @@
   abstract: true
   components:
   - type: Contraband
-    turnInValues:
+    turnInValues: &noFUCs
       FrontierUplinkCoin: 0
 
 # Class 3 contraband ()
@@ -41,8 +41,7 @@
   - type: Contraband
     severity: Class3General
     allowedDepartments: null
-    turnInValues:
-      Doubloon: 1
+    turnInValues: *oneDoubloon
 
 - type: entity
   parent: BaseC3ContrabandUnredeemable
@@ -50,7 +49,7 @@
   abstract: true
   components:
   - type: Contraband
-    turnInValues:
+    turnInValues: &oneFUC
       FrontierUplinkCoin: 1
 
 - type: entity
@@ -59,40 +58,78 @@
   abstract: true
   components:
   - type: Contraband
-    turnInValues:
-      FrontierUplinkCoin: 0
+    turnInValues: *noFUCs
 
 - type: entity
-  parent: 
-  id: BaseC3SyndicateContraband
+  parent: BaseC3ContrabandUnredeemable
+  id: BaseC3CultContrabandUnredeemable
   abstract: true
   components:
   - type: Contraband
-    severity: Class3Syndicate
-    allowedDepartments: null
-    turnInValues:
-      FrontierUplinkCoin: 0
+    severity: Class3Cult
+    turnInValues: *oneDoubloon
 
 - type: entity
-  id: BaseC3PirateContraband
+  parent: BaseC3CultContrabandUnredeemable
+  id: BaseC3CultContraband
+  abstract: true
+  components:
+  - type: Contraband
+    turnInValues: *oneFUC
+
+- type: entity
+  parent: BaseC3ContrabandUnredeemable
+  id: BaseC3PirateContrabandUnredeemable
   abstract: true
   components:
   - type: Contraband
     severity: Class3Pirate
-    allowedDepartments: null
-    turnInValues:
-      FrontierUplinkCoin: 0
+    turnInValues: *noFUCs
 
 - type: entity
+  parent: BaseC3PirateContrabandUnredeemable
+  id: BaseC3PirateContraband
+  abstract: true
+  components:
+  - type: Contraband
+  turnInValues: *oneFUC
+
+- type: entity
+  parent: BaseC3ContrabandUnredeemable
+  id: BaseC3SyndicateContrabandUnredeemable
+  abstract: true
+  components:
+  - type: Contraband
+    severity: Class3Syndicate
+  turnInValues: *oneDoubloon
+
+- type: entity
+  parent: BaseC3SyndicateContrabandUnredeemable
+  id: BaseC3SyndicateContraband
+  abstract: true
+  components:
+  - type: Contraband
+  turnInValues: *oneFUC
+
+- type: entity
+  parent: BaseC3ContrabandUnredeemable
+  id: BaseC3WizardContrabandUnredeemable
+  abstract: true
+  components:
+  - type: Contraband
+    severity: Class3Wizard
+  turnInValues: *oneDoubloon
+
+- type: entity
+  parent: BaseC3ContrabandUnredeemable
   id: BaseC3WizardContraband
   abstract: true
   components:
   - type: Contraband
     severity: Class3Wizard
-    # Security and heads only
-    allowedDepartments: null
-    turnInValues:
-      FrontierUplinkCoin: 0
+  turnInValues: *oneFUC
+
+# Miscellaneous categories
 
 - type: entity
   id: BasePirateTarget

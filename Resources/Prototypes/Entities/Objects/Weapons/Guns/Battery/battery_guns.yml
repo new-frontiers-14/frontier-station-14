@@ -152,8 +152,8 @@
 
 - type: entity
   name: makeshift laser pistol
-  parent: BaseWeaponBatterySmall
-  id: [WeaponMakeshiftLaser, BaseC1Contraband] # Frontier: added BaseC1Contraband
+  parent: [BaseWeaponBatterySmall, BaseC1Contraband] # Frontier: added BaseC1Contraband
+  id: WeaponMakeshiftLaser
   description: Better pray it won't burn your hands off. At least it's legal.
   components:
   - type: Sprite
@@ -175,8 +175,8 @@
 
 - type: entity
   name: tesla gun
-  parent: BaseWeaponBattery
-  id: [WeaponTeslaGun, BaseC3Contraband] # Frontier: added BaseC3Contraband
+  parent: [BaseWeaponBattery, BaseC3Contraband] # Frontier: added BaseC3Contraband
+  id: WeaponTeslaGun
   description: The power of the primordial element of lightning in your hands. An experimental and illegal weapon.
   components:
   - type: Sprite
@@ -239,8 +239,6 @@
   - type: HitscanBatteryAmmoProvider
     proto: RedLaser
     fireCost: 62.5
-  - type: StaticPrice # Frontier
-    price: 300 # Frontier
 
 - type: entity
   name: pulse pistol
@@ -333,7 +331,7 @@
   name: laser cannon
   parent: [BaseWeaponBattery, BaseGunWieldable, BaseC2ContrabandUnredeemable] # Frontier: BaseRestrictedContraband<BaseC2ContrabandUnredeemable
   id: WeaponLaserCannon
-  description: A heavy duty, high powered laser weapon. On the handle is a label that says 'for authorized use only.'
+  description: A heavy duty, high powered laser weapon. On the handle is a label that says 'for authorized use only.' # Frontier: added label sentence
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Battery/laser_cannon.rsi
@@ -359,9 +357,9 @@
 
 - type: entity
   name: portable particle decelerator
-  parent: BaseWeaponBattery
+  parent: [BaseWeaponBattery, BaseC2ContrabandUnredeemable] # Frontier: BaseRestrictedContraband<BaseC2ContrabandUnredeemable
   id: WeaponParticleDecelerator
-  description: A portable particle decelerator capable of decomposing a tesla or singularity.
+  description: A portable particle decelerator capable of decomposing a tesla or singularity. On the handle is a label that says 'for authorized use only.' # Frontier: added label sentence
   components:
     - type: Item
       size: Ginormous
@@ -604,7 +602,7 @@
 
 - type: entity
   name: advanced laser pistol
-  parent: [ BaseWeaponBatterySmall, BaseC1Contraband] # Frontier: BaseRestrictedContraband<BaseC1Contraband
+  parent: [ BaseWeaponBatterySmall, BaseC1Contraband ] # Frontier: BaseRestrictedContraband<BaseC1Contraband
   id: WeaponAdvancedLaser
   description: An experimental civilian grade high-energy laser pistol with a self-charging nuclear battery.
   components:
