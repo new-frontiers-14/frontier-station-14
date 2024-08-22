@@ -6,6 +6,10 @@
   requirements:
     - !type:OverallPlaytimeRequirement
       time: 21600 # 6 hours
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 64800 # 18 hours
+      inverted: true # Leave slots open for newer, less confident players.
   startingGear: CadetGear
   icon: "JobIconSecurityCadet"
   supervisors: job-supervisors-cadet
