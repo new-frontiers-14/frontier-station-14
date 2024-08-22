@@ -177,3 +177,18 @@
   parent: [ LockerWallEVAColorNfsd, StorageFillEVASuitNfsd ]
   id: LockerWallEVAColorNfsdFilled
   suffix: Filled
+
+- type: entity
+  id: ClosetWallN2FilledRandom
+  parent: ClosetWallN2
+  suffix: Filled, Random
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingMaskBreath
+      - id: EmergencyNitrogenTankFilled
+        prob: 0.80
+        orGroup: EmergencyTankOrRegularTank
+      - id: NitrogenTankFilled
+        prob: 0.20
+        orGroup: EmergencyTankOrRegularTank

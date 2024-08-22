@@ -207,3 +207,17 @@
 - type: entity
   id: LockerWallChemistryFilled
   parent: [LockerWallChemistry, LockerChemistryFilled]
+  
+- type: entity
+  id: ClosetWallN2
+  name: nitrogen wall closet
+  parent: BaseWallCloset
+  description: It's a storage unit for emergency breath masks and N2 tanks.
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Storage/wall_locker.rsi
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: n2
+    stateDoorOpen: n2_open
+    stateDoorClosed: n2_door
