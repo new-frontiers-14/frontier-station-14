@@ -128,7 +128,7 @@
   components:
     - type: NpcFactionMember
       factions:
-        - Syndicate
+        - SyndicateNF
 
 - type: entity
   parent: BaseWeaponTurret
@@ -138,7 +138,7 @@
   components:
     - type: NpcFactionMember
       factions:
-        - Syndicate
+        - SyndicateNF
     - type: Destructible
       thresholds:
         - trigger:
@@ -182,7 +182,7 @@
 - type: entity
   parent: BaseWeaponTurret
   id: WeaponTurretNanoTrasen
-  suffix: NanoTrasen
+  suffix: NanoTrasen, НЕ_МАППИТЬ
   components:
   - type: NpcFactionMember
     factions:
@@ -191,7 +191,7 @@
 - type: entity
   parent: BaseWeaponTurret
   id: WeaponTurretHostile
-  suffix: Hostile
+  suffix: Hostile, НЕ_МАППИТЬ
   components:
   - type: NpcFactionMember
     factions:
@@ -202,7 +202,7 @@
   description: Shoots 9mm acid projectiles
   parent: BaseWeaponTurret
   id: WeaponTurretXeno
-  suffix: Xeno
+  suffix: Xeno, НЕ_МАППИТЬ
   components:
     - type: NpcFactionMember
       factions:

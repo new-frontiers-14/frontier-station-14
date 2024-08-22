@@ -9782,15 +9782,6 @@ entities:
     - type: Transform
       pos: 17.46684,-8.50809
       parent: 1
-- proto: BoxSurvivalNFOxygen
-  entities:
-  - uid: 351
-    components:
-    - type: Transform
-      parent: 350
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: BoxTrashbag
   entities:
   - uid: 354
@@ -18112,15 +18103,6 @@ entities:
         actions: !type:Container
           ents:
           - 3
-- proto: ClothingOuterEVASuitMailman
-  entities:
-  - uid: 352
-    components:
-    - type: Transform
-      parent: 350
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: Cobweb2
   entities:
   - uid: 4514
@@ -44812,22 +44794,7 @@ entities:
     - type: Transform
       pos: 4.5,-28.5
       parent: 1
-- proto: SuitStorageMailCarrier
-  entities:
-  - uid: 350
-    components:
-    - type: Transform
-      pos: 20.5,-9.5
-      parent: 1
-    - type: ContainerContainer
-      containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 352
-          - 351
-          - 353
+
 - proto: SurveillanceCameraCommand
   entities:
   - uid: 5883
@@ -45875,15 +45842,6 @@ entities:
     - type: Transform
       pos: -4.8303585,22.695908
       parent: 1
-- proto: ToolboxEmergencyFilled
-  entities:
-  - uid: 353
-    components:
-    - type: Transform
-      parent: 350
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: ToolboxMechanicalFilled
   entities:
   - uid: 3808
@@ -46139,26 +46097,12 @@ entities:
     - type: Transform
       pos: 3.49276,-22.467604
       parent: 1
-- proto: VendingMachineRestockCiviMedVend
-  entities:
-  - uid: 3255
-    components:
-    - type: Transform
-      pos: 2.539635,-22.498875
-      parent: 1
 - proto: VendingMachineRestockCuddlyCritterVend
   entities:
   - uid: 3258
     components:
     - type: Transform
       pos: 4.46151,-22.498875
-      parent: 1
-- proto: VendingMachineRestockFlatpackVend
-  entities:
-  - uid: 3259
-    components:
-    - type: Transform
-      pos: 3.33651,-23.49957
       parent: 1
 - proto: VendingMachineRestockPottedPlantVend
   entities:
