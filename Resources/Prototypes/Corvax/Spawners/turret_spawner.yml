@@ -1,0 +1,45 @@
+#Corvax-frontier
+- type: entity
+  id: SpawnMobWeaponTurretSyndicateAntiMateriel
+  parent: MarkerBase
+  name: спавнер баллистической турели синдиката
+  suffix: Синдикат, Фронтир, 60 калибр
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Objects/Weapons/Guns/Turrets/turrets.rsi
+      state: syndie_lethal
+  - type: ConditionalSpawner
+    prototypes:
+    - WeaponTurretSyndicateAntiMateriel
+    
+- type: entity
+  id: SpawnMobWeaponTurretSyndicateMagnumAP
+  parent: MarkerBase
+  name: спавнер баллистической турели синдиката
+  suffix: Синдикат, Фронтир, 45калибрББ
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Objects/Weapons/Guns/Turrets/turrets.rsi
+      state: syndie_lethal
+  - type: ConditionalSpawner
+    prototypes:
+    - WeaponTurretSyndicateMagnumAP
+    
+- type: entity
+  id: SpawnMobWeaponTurretSyndicateShotgun
+  parent: MarkerBase
+  name: спавнер баллистической турели синдиката
+  suffix: Синдикат, Фронтир, 50дробь
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Objects/Weapons/Guns/Turrets/turrets.rsi
+      state: syndie_lethal
+  - type: ConditionalSpawner
+    prototypes:
+    - WeaponTurretSyndicateShotgun
