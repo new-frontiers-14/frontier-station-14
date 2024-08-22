@@ -55,8 +55,8 @@ entities:
     - type: Broadphase
     - type: Physics
       bodyStatus: InAir
-      angularDamping: 0.05
-      linearDamping: 0.05
+      angularDamping: 999999
+      linearDamping: 999999
       fixedRotation: False
       bodyType: Dynamic
     - type: Fixtures
@@ -64,6 +64,8 @@ entities:
     - type: OccluderTree
     - type: SpreaderGrid
     - type: Shuttle
+      angularDamping: 999999
+      linearDamping: 999999
     - type: GridPathfinding
     - type: DecalGrid
       chunkCollection:
