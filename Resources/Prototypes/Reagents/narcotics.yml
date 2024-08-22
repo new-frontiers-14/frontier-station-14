@@ -46,6 +46,7 @@
         conditions:
         - !type:ReagentThreshold
           min: 20
+  pricePerUnit: 7
 
 - type: reagent
   id: Ephedrine
@@ -91,6 +92,7 @@
         conditions:
         - !type:ReagentThreshold
           min: 30
+  pricePerUnit: 5
 
 - type: reagent
   id: Stimulants
@@ -156,6 +158,7 @@
             groups:
               Burn: -1
               Brute: -1
+  pricePerUnit: 3
 
 - type: reagent
   id: THC
@@ -180,6 +183,7 @@
         type: Add
         time: 16
         refresh: false
+  pricePerUnit: 2
 
 - type: reagent
   id: Nicotine
@@ -192,6 +196,7 @@
   plantMetabolism:
   - !type:PlantAdjustHealth
     amount: -5
+  pricePerUnit: 1
 
 # TODO: Replace these nonstandardized effects with generic brain damage
 - type: reagent
@@ -222,6 +227,7 @@
         probability: 0.05
       - !type:Drunk # Headaches and slurring are major symptoms of brain damage, this is close enough
         boozePower: 5
+  pricePerUnit: 0.5
 
 - type: reagent
   id: SpaceDrugs
@@ -240,6 +246,7 @@
         type: Add
         time: 5
         refresh: false
+  pricePerUnit: 4
 
 - type: reagent
   id: Bananadine
@@ -258,6 +265,7 @@
         type: Add
         time: 5
         refresh: false
+  pricePerUnit: 1
 
 # Probably replace this one with sleeping chem when putting someone in a comatose state is easier
 - type: reagent
@@ -281,6 +289,7 @@
         component: ForcedSleeping
         refresh: false
         type: Add
+  pricePerUnit: 2
 
 - type: reagent
   id: MuteToxin
@@ -297,6 +306,7 @@
       - !type:GenericStatusEffect
         key: Muted
         component: Muted
+  pricePerUnit: 1.5
 
 - type: reagent
   id: NorepinephricAcid
@@ -341,6 +351,7 @@
         conditions:
         - !type:ReagentThreshold
           min: 20
+  pricePerUnit: 0.5
 
 - type: reagent
   id: TearGas
@@ -387,6 +398,7 @@
         conditions:
         - !type:ReagentThreshold
           min: 20
+  pricePerUnit: 0.5
 
 - type: reagent
   id: Happiness
@@ -437,3 +449,4 @@
         type: Add
         time: 5
         refresh: false
+  pricePerUnit: 5
