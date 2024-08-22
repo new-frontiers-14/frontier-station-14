@@ -1,5 +1,6 @@
 using System.Linq;
 using System.Threading;
+using Content.Server._NF.Salvage; // Frontier: graceful exped spawn failures
 using Content.Server.Cargo.Components;
 using Content.Server.Cargo.Systems;
 using Content.Server.Salvage.Expeditions;
@@ -47,6 +48,7 @@ public sealed partial class SalvageSystem
         SubscribeLocalEvent<SalvageExpeditionConsoleComponent, ComponentInit>(OnSalvageConsoleInit);
         SubscribeLocalEvent<SalvageExpeditionConsoleComponent, EntParentChangedMessage>(OnSalvageConsoleParent);
         SubscribeLocalEvent<SalvageExpeditionConsoleComponent, ClaimSalvageMessage>(OnSalvageClaimMessage);
+        SubscribeLocalEvent<SalvageExpeditionDataComponent, ExpeditionSpawnCompleteEvent>(OnExpeditionSpawnComplete); // Frontier: more gracefully handle expedition generation failures
 
         SubscribeLocalEvent<SalvageExpeditionComponent, MapInitEvent>(OnExpeditionMapInit);
 //        SubscribeLocalEvent<SalvageExpeditionDataComponent, EntityUnpausedEvent>(OnDataUnpaused);
@@ -342,4 +344,22 @@ public sealed partial class SalvageSystem
             Spawn(reward, (Transform(_random.Pick(palletList)).MapPosition));
         }
     }
+
+    // Frontier: handle exped spawn job failures gracefully - reset the console
+    private void OnExpeditionSpawnComplete(EntityUid uid, SalvageExpeditionDataComponent component, ExpeditionSpawnCompleteEvent ev)
+    {
+        if (!TryComp<SalvageExpeditionDataComponent>(uid, out var data))
+        {
+            Log.Info($"OnExpeditionSpawnComplete: station {uid} has no expedition data");
+            return;
+        }
+
+        if (data.ActiveMission == ev.MissionIndex && !ev.Success)
+        {
+            data.ActiveMission = 0;
+            data.Cooldown = false;
+            UpdateConsoles(component);
+        }
+    }
+    // End Frontier
 }
