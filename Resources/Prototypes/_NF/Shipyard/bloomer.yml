@@ -1,0 +1,28 @@
+- type: vessel
+  id: Bloomer
+  name: BS Bloomer
+  description: A perfectly safe legitimate bontanics ship that comes with a cozy smoothie bar. BUST declines any responsibility for the use of botanical horrors in boarding actions.
+  price: 32500
+  category: Medium
+  group: Civilian
+  shuttlePath: Maps/_NF/Shuttles/bloomer.yml 
+
+- type: gameMap
+  id: Bloomer
+  mapName: 'BS Bloomer'
+  mapPath: /Maps/_NF/Shuttles/bloomer.yml
+  minPlayers: 0
+  stations:
+    Bloomer:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Bloomer {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]
