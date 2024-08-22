@@ -66,7 +66,7 @@ public sealed class StatusIconOverlay : Overlay
 
             var countL = 0;
             var countR = 0;
-            var accOffsetL = 0;
+            var accOffsetL = 8; // Frontier: do not overlap the speech bubble
             var accOffsetR = 0;
             icons.Sort();
 
