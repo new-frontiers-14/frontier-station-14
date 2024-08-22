@@ -107,15 +107,26 @@
     sprite: _NF/Clothing/OuterClothing/Misc/nfsd_long.rsi
 
 - type: entity
-  parent: ClothingOuterWinterHoP
+  parent: ClothingOuterWinterCoat
   id: ClothingOuterJacketSr
   name: station representative's jacket
   description: The upper part of the station representative's uniform.
   components:
   - type: Sprite
-    sprite: _NF/Clothing/OuterClothing/Misc/sr_jacket.rsi
+    sprite: _NF/Clothing/OuterClothing/WinterCoats/coat.rsi
+    layers:
+    - state: icon
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      right:
+      - state: inhand-right
   - type: Clothing
-    sprite: _NF/Clothing/OuterClothing/Misc/sr_jacket.rsi
+    sprite: Clothing/OuterClothing/WinterCoats/coat.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: equipped-OUTERCLOTHING
 
 - type: entity
   parent: ClothingOuterStorageBase

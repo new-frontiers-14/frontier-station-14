@@ -21,8 +21,9 @@ public sealed partial class NFLateJoinGui : FancyWindow
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IConsoleHost _consoleHost = default!;
     [Dependency] private readonly JobRequirementsManager _jobReqs = default!;
-    [Dependency] private readonly ClientGameTicker _gameTicker = default!;
     [Dependency] private readonly IClientPreferencesManager _preferencesManager = default!;
+    [Dependency] private readonly IEntitySystemManager _entitySystem = default!;
+    private ClientGameTicker _gameTicker;
     private ISawmill _latejoinSawmill;
 
     private NetEntity _lastSelection;
@@ -33,6 +34,7 @@ public sealed partial class NFLateJoinGui : FancyWindow
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
+        _gameTicker = _entitySystem.GetEntitySystem<ClientGameTicker>();
         _gameTicker.LobbyJobsAvailableUpdated += UpdateUi;
         _latejoinSawmill = Logger.GetSawmill("latejoin");
         VesselSelection.VesselItemList.OnItemSelected += args =>
