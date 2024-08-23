@@ -3,7 +3,7 @@ using Content.Client.Ghost;
 using Content.Client.UserInterface.Systems.Gameplay;
 using Content.Client.UserInterface.Systems.Ghost.Widgets;
 using Content.Shared.CCVar;
-using Content.Shared._NF.CCVars; // Frontier
+using Content.Shared._NF.CCVar; // Frontier
 using Content.Shared.Ghost;
 using Robust.Client.Console;
 using Robust.Client.UserInterface;
