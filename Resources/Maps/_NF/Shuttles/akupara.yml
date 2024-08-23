@@ -97,11 +97,15 @@ entities:
           decals:
             3: -1.3596934,5.1760073
         - node:
-            cleanable: True
             color: '#FFFFFFFF'
-            id: Bushk3
+            id: Bushk1
           decals:
-            11: -3.1574507,7.1834326
+            94: -3.127624,7.243284
+        - node:
+            color: '#FFFFFFFF'
+            id: Caution
+          decals:
+            130: 4,-13
         - node:
             color: '#FFFFFFFF'
             id: Delivery
@@ -117,7 +121,7 @@ entities:
             color: '#FFFFFFFF'
             id: FlowersBRTwo
           decals:
-            48: -1.0521628,7.0909953
+            47: -1.0521628,7.0909953
         - node:
             color: '#FFFFFFFF'
             id: Flowersbr1
@@ -127,7 +131,7 @@ entities:
             color: '#FFFFFFFF'
             id: Flowerspv2
           decals:
-            51: -4.3177876,-3.1078234
+            49: -4.3177876,-3.1078234
         - node:
             cleanable: True
             color: '#FFFFFFFF'
@@ -157,18 +161,58 @@ entities:
             color: '#FFFFFFFF'
             id: Flowersy4
           decals:
-            49: -1.2709128,6.2628703
+            48: -1.2709128,6.2628703
         - node:
-            cleanable: True
             color: '#FFFFFFFF'
-            id: Grassa2
+            id: Grassa3
           decals:
-            9: -3.025928,2.5171952
+            63: -3.2266178,2.647862
         - node:
             color: '#FFFFFFFF'
             id: Grassc2
           decals:
-            52: -3.9115376,-3.5140734
+            50: -3.9115376,-3.5140734
+        - node:
+            color: '#FFFFFFFF'
+            id: Grassd1
+          decals:
+            59: -4.890536,0.18257093
+            61: -3.5547428,3.007237
+        - node:
+            color: '#FFFFFFFF'
+            id: Grassd2
+          decals:
+            67: -3.0194793,1.935483
+        - node:
+            color: '#FFFFFFFF'
+            id: Grasse3
+          decals:
+            56: -5.2902217,-0.19464958
+        - node:
+            color: '#FFFFFFFF'
+            id: GrayConcreteTrimInnerNw
+          decals:
+            142: -6,-3
+        - node:
+            color: '#FFFFFFFF'
+            id: GrayConcreteTrimInnerSw
+          decals:
+            143: -6,3
+        - node:
+            color: '#FFFFFFFF'
+            id: GrayConcreteTrimLineW
+          decals:
+            137: -6,2
+            138: -6,1
+            139: -6,0
+            140: -6,-1
+            141: -6,-2
+        - node:
+            color: '#FFFFFFFF'
+            id: LoadingArea
+          decals:
+            128: 3,-12
+            129: 5,-12
         - node:
             color: '#CC5100FF'
             id: MiniTileWhiteCornerNe
@@ -4113,6 +4157,13 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -5.5,3.5
       parent: 1
+- proto: SprayPainter
+  entities:
+  - uid: 675
+    components:
+    - type: Transform
+      pos: 4.4587674,-2.5606894
+      parent: 1
 - proto: StorageCanister
   entities:
   - uid: 514
@@ -4877,7 +4928,7 @@ entities:
       lastSignals:
         DoorStatus: True
     - type: Door
-      secondsUntilStateChange: -5512.763
+      secondsUntilStateChange: -6699.3086
       state: Opening
 - proto: WindowReinforcedDirectional
   entities:
