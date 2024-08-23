@@ -127,6 +127,9 @@ public sealed partial class SalvageSystem
         // Based on SalvageSystem.Runner:OnConsoleFTLAttempt
         if (!TryComp(entity, out TransformComponent? xform)) // Get the console's grid (if you move it, rip you)
         {
+            PlayDenySound(entity, component);
+            _popupSystem.PopupEntity(Loc.GetString("salvage-expedition-shuttle-not-found"), entity, PopupType.MediumCaution);
+            UpdateConsoles(data);
             return;
         }
 
@@ -140,7 +143,12 @@ public sealed partial class SalvageSystem
 
             // If the mob is on expedition but not on the ship, nope.
             if (mobXform.GridUid != xform.GridUid)
+            {
+                PlayDenySound(entity, component);
+                _popupSystem.PopupEntity(Loc.GetString("salvage-expedition-not-everyone-aboard"), entity, PopupType.MediumCaution);
+                UpdateConsoles(data);
                 return;
+            }
         }
         // End SalvageSystem.Runner:OnConsoleFTLAttempt
 
@@ -152,7 +160,8 @@ public sealed partial class SalvageSystem
         if (!TryComp<SalvageExpeditionComponent>(map, out var expedition))
             return;
 
-        var newEndTime = _timing.CurTime + TimeSpan.FromSeconds(20);
+        const int departTime = 20;
+        var newEndTime = _timing.CurTime + TimeSpan.FromSeconds(departTime);
 
         if (expedition.EndTime <= newEndTime)
             return;
@@ -160,7 +169,7 @@ public sealed partial class SalvageSystem
         expedition.EndTime = newEndTime;
         expedition.Stage = ExpeditionStage.FinalCountdown;
 
-        Announce(map.Value, Loc.GetString("salvage-expedition-announcement-early-finish"));
+        Announce(map.Value, Loc.GetString("salvage-expedition-announcement-early-finish", ("departTime", departTime)));
     }
 
     private void ClearMissions()
