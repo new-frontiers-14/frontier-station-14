@@ -1,5 +1,6 @@
 using System.Linq;
 using System.Threading;
+using Content.Server._NF.Salvage; // Frontier: graceful exped spawn failures
 using Content.Server.Cargo.Components;
 using Content.Server.Cargo.Systems;
 using Content.Server.Salvage.Expeditions;
@@ -49,13 +50,14 @@ public sealed partial class SalvageSystem
         SubscribeLocalEvent<SalvageExpeditionConsoleComponent, ComponentInit>(OnSalvageConsoleInit);
         SubscribeLocalEvent<SalvageExpeditionConsoleComponent, EntParentChangedMessage>(OnSalvageConsoleParent);
         SubscribeLocalEvent<SalvageExpeditionConsoleComponent, ClaimSalvageMessage>(OnSalvageClaimMessage);
-        SubscribeLocalEvent<SalvageExpeditionConsoleComponent, FinishSalvageMessage>(OnSalvageFinishMessage); // Frontier
+        SubscribeLocalEvent<SalvageExpeditionDataComponent, ExpeditionSpawnCompleteEvent>(OnExpeditionSpawnComplete); // Frontier: more gracefully handle expedition generation failures
+        SubscribeLocalEvent<SalvageExpeditionConsoleComponent, FinishSalvageMessage>(OnSalvageFinishMessage); // Frontier: For early finish
 
         SubscribeLocalEvent<SalvageExpeditionComponent, MapInitEvent>(OnExpeditionMapInit);
-//        SubscribeLocalEvent<SalvageExpeditionDataComponent, EntityUnpausedEvent>(OnDataUnpaused);
+//        SubscribeLocalEvent<SalvageExpeditionDataComponent, EntityUnpausedEvent>(OnDataUnpaused); // Frontier
 
         SubscribeLocalEvent<SalvageExpeditionComponent, ComponentShutdown>(OnExpeditionShutdown);
-//        SubscribeLocalEvent<SalvageExpeditionComponent, EntityUnpausedEvent>(OnExpeditionUnpaused);
+//        SubscribeLocalEvent<SalvageExpeditionComponent, EntityUnpausedEvent>(OnExpeditionUnpaused); // Frontier
         SubscribeLocalEvent<SalvageExpeditionComponent, ComponentGetState>(OnExpeditionGetState);
 
         SubscribeLocalEvent<SalvageStructureComponent, ExaminedEvent>(OnStructureExamine);
@@ -64,7 +66,7 @@ public sealed partial class SalvageSystem
         _failedCooldown = _configurationManager.GetCVar(CCVars.SalvageExpeditionFailedCooldown);
         _configurationManager.OnValueChanged(CCVars.SalvageExpeditionCooldown, SetCooldownChange);
         _configurationManager.OnValueChanged(CCVars.SalvageExpeditionFailedCooldown, SetFailedCooldownChange);
-        _configurationManager.OnValueChanged(NFCCVars.SalvageExpeditionMaxActive, SetSalvageExpeditionMaxActive);
+        _configurationManager.OnValueChanged(NFCCVars.SalvageExpeditionMaxActive, SetSalvageExpeditionMaxActive); // Frontier
     }
 
     private void OnExpeditionGetState(EntityUid uid, SalvageExpeditionComponent component, ref ComponentGetState args)
@@ -79,7 +81,7 @@ public sealed partial class SalvageSystem
     {
         _configurationManager.UnsubValueChanged(CCVars.SalvageExpeditionCooldown, SetCooldownChange);
         _configurationManager.UnsubValueChanged(CCVars.SalvageExpeditionFailedCooldown, SetFailedCooldownChange);
-        _configurationManager.UnsubValueChanged(NFCCVars.SalvageExpeditionMaxActive, SetSalvageExpeditionMaxActive);
+        _configurationManager.UnsubValueChanged(NFCCVars.SalvageExpeditionMaxActive, SetSalvageExpeditionMaxActive); // Frontier
     }
 
     private void SetCooldownChange(float obj)
@@ -178,8 +180,9 @@ public sealed partial class SalvageSystem
                 continue;
 
             if (!HasComp<FTLComponent>(_station.GetLargestGrid(Comp<StationDataComponent>(uid)))) // Frontier
-                comp.Cooldown = false; // Frontier
-            comp.NextOffer += TimeSpan.FromSeconds(_cooldown);
+                comp.Cooldown = false;
+            //comp.NextOffer += TimeSpan.FromSeconds(_cooldown); // Frontier
+            comp.NextOffer = currentTime + TimeSpan.FromSeconds(_cooldown); // Frontier
             GenerateMissions(comp);
             UpdateConsoles(comp);
         }
@@ -353,4 +356,22 @@ public sealed partial class SalvageSystem
             Spawn(reward, (Transform(_random.Pick(palletList)).MapPosition));
         }
     }
+
+    // Frontier: handle exped spawn job failures gracefully - reset the console
+    private void OnExpeditionSpawnComplete(EntityUid uid, SalvageExpeditionDataComponent component, ExpeditionSpawnCompleteEvent ev)
+    {
+        if (!TryComp<SalvageExpeditionDataComponent>(uid, out var data))
+        {
+            Log.Info($"OnExpeditionSpawnComplete: station {uid} has no expedition data");
+            return;
+        }
+
+        if (data.ActiveMission == ev.MissionIndex && !ev.Success)
+        {
+            data.ActiveMission = 0;
+            data.Cooldown = false;
+            UpdateConsoles(component);
+        }
+    }
+    // End Frontier
 }
