@@ -20,7 +20,7 @@ using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
-using Content.Shared._NF.CCVar; // Frontier
+using Content.Shared._NF.CCVar;
 using Content.Shared.Popups;
 using Content.Shared.Verbs;
 using Robust.Server.Containers;
@@ -283,7 +283,7 @@ public sealed partial class CryoSleepSystem : SharedCryoSleepSystem
             _doAfter.Cancel(cryo.CryosleepDoAfter);
 
         // Start a timer. When it ends, the body needs to be deleted.
-        Timer.Spawn(TimeSpan.FromSeconds(_configurationManager.GetCVar(NFCVars.CryoExpirationTime)), () =>
+        Timer.Spawn(TimeSpan.FromSeconds(_configurationManager.GetCVar(NFCCVars.CryoExpirationTime)), () =>
         {
             if (id != null)
                 ResetCryosleepState(id.Value);

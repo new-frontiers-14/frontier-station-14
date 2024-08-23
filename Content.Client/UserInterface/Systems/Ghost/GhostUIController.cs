@@ -76,8 +76,8 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
         Gui.Visible = _system?.IsGhost ?? false;
         Gui.Update(_system?.AvailableGhostRoleCount, _system?.Player?.CanReturnToBody,
             _system?.Player?.TimeOfDeath,
-            _cfg.GetCVar(NFCVars.RespawnTime),
-            _canUncryo && _cfg.GetCVar(NFCVars.CryoReturnEnabled));
+            _cfg.GetCVar(NFCCVars.RespawnTime), // Frontier
+            _canUncryo && _cfg.GetCVar(NFCCVars.CryoReturnEnabled)); // Frontier
     }
 
     private void UpdateRespawn(TimeSpan? timeOfDeath)
