@@ -44,6 +44,10 @@ public sealed partial class SalvageSystem
 
     private float _cooldown;
     private float _failedCooldown;
+    private int _maxActiveExpeditions; // Frontier
+
+    // Fix this: keep track of the ships entering/exiting salvage
+    HashSet<EntityUid> _shuttlesOnExpedition = new(); // Frontier
 
     private void InitializeExpeditions()
     {
@@ -62,11 +66,9 @@ public sealed partial class SalvageSystem
 
         SubscribeLocalEvent<SalvageStructureComponent, ExaminedEvent>(OnStructureExamine);
 
-        _cooldown = _configurationManager.GetCVar(CCVars.SalvageExpeditionCooldown);
-        _failedCooldown = _configurationManager.GetCVar(CCVars.SalvageExpeditionFailedCooldown);
-        _configurationManager.OnValueChanged(CCVars.SalvageExpeditionCooldown, SetCooldownChange);
-        _configurationManager.OnValueChanged(CCVars.SalvageExpeditionFailedCooldown, SetFailedCooldownChange);
-        _configurationManager.OnValueChanged(NFCCVars.SalvageExpeditionMaxActive, SetSalvageExpeditionMaxActive); // Frontier
+        Subs.CVar(_configurationManager, CCVars.SalvageExpeditionCooldown, SetCooldownChange, true); // Frontier
+        Subs.CVar(_configurationManager, CCVars.SalvageExpeditionFailedCooldown, SetFailedCooldownChange, true); // Frontier
+        Subs.CVar(_configurationManager, NFCCVars.SalvageExpeditionMaxActive, SetSalvageExpeditionMaxActive, true); // Frontier
     }
 
     private void OnExpeditionGetState(EntityUid uid, SalvageExpeditionComponent component, ref ComponentGetState args)
@@ -113,10 +115,12 @@ public sealed partial class SalvageSystem
         _failedCooldown = obj;
     }
 
-    private void SetSalvageExpeditionMaxActive(int obj) // Frontier
+    // Frontier: expedition limit cvar
+    private void SetSalvageExpeditionMaxActive(int obj)
     {
-
+        _maxActiveExpeditions = obj;
     }
+    // End Frontier
 
     private void OnExpeditionMapInit(EntityUid uid, SalvageExpeditionComponent component, MapInitEvent args)
     {
@@ -143,7 +147,7 @@ public sealed partial class SalvageSystem
         // Finish mission
         if (TryComp<SalvageExpeditionDataComponent>(component.Station, out var data))
         {
-            FinishExpedition(data, uid, component, null);
+            FinishExpedition(data, uid, component, component.Station); // Frontier: null<component.Station
         }
     }
 
@@ -217,6 +221,9 @@ public sealed partial class SalvageSystem
 
                 break;
         }
+
+        if (shuttle != null) // Frontier
+            _shuttlesOnExpedition.Remove(shuttle.Value); // Frontier
 
         // Handle payout after expedition has finished
         if (expedition.Completed)
@@ -365,6 +372,10 @@ public sealed partial class SalvageSystem
             Log.Info($"OnExpeditionSpawnComplete: station {uid} has no expedition data");
             return;
         }
+
+        // Failure to generate, try to remove the shuttle from the set regardless of event consistency
+        if (!ev.Success)
+            _shuttlesOnExpedition.Remove(uid);
 
         if (data.ActiveMission == ev.MissionIndex && !ev.Success)
         {

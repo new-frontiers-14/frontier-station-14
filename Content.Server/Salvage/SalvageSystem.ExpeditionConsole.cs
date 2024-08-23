@@ -11,6 +11,8 @@ using Content.Shared.Dataset;
 using Robust.Shared.Prototypes;
 using Content.Server.Salvage.Expeditions; // Frontier
 using Content.Shared._NF.CCVar; // Frontier
+using Content.Shared.Humanoid; // Frontier
+using Content.Shared.Mobs.Components; // Frontier
 
 namespace Content.Server.Salvage;
 
@@ -90,6 +92,17 @@ public sealed partial class SalvageSystem
         }
         // End Frontier
 
+        // Frontier: check for number of stations
+        if (_shuttlesOnExpedition.Count >= _maxActiveExpeditions)
+        {
+            PlayDenySound(uid, component);
+            _popupSystem.PopupEntity(Loc.GetString("shuttle-ftl-too-many"), uid, PopupType.MediumCaution);
+            UpdateConsoles(data); // Sure, why not?
+            return;
+        }
+        _shuttlesOnExpedition.Add(station.Value);
+        // End Frontier
+
         // Frontier  change - disable coordinate disks for expedition missions
         //var cdUid = Spawn(CoordinatesDisk, Transform(uid).Coordinates);
         SpawnMission(missionparams, station.Value, null);
@@ -111,6 +124,26 @@ public sealed partial class SalvageSystem
         if (!TryComp<SalvageExpeditionDataComponent>(_station.GetOwningStation(entity), out var data) || !data.CanFinish)
             return;
 
+        // Based on SalvageSystem.Runner:OnConsoleFTLAttempt
+        if (!TryComp(entity, out TransformComponent? xform)) // Get the console's grid (if you move it, rip you)
+        {
+            return;
+        }
+
+        var query = EntityQueryEnumerator<HumanoidAppearanceComponent, TransformComponent>();
+
+        while (query.MoveNext(out var _, out var _, out var mobXform))
+        {
+            // If the mob is on another expedition or still in space, we don't care.
+            if (mobXform.MapUid != xform.MapUid)
+                continue;
+
+            // If the mob is on expedition but not on the ship, nope.
+            if (mobXform.GridUid != xform.GridUid)
+                return;
+        }
+        // End SalvageSystem.Runner:OnConsoleFTLAttempt
+
         data.CanFinish = false;
         UpdateConsoles(data);
 
@@ -128,6 +161,11 @@ public sealed partial class SalvageSystem
         expedition.Stage = ExpeditionStage.FinalCountdown;
 
         Announce(map.Value, Loc.GetString("salvage-expedition-announcement-early-finish"));
+    }
+
+    private void ClearMissions()
+    {
+        _shuttlesOnExpedition.Clear();
     }
     // Frontier
 
