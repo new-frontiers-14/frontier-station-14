@@ -72,7 +72,6 @@ public sealed partial class SalvageExpeditionDataComponent : Component
     [ViewVariables(VVAccess.ReadWrite), DataField("cooldown")]
     public bool Cooldown = false;
 
-
     /// <summary>
     /// Frontier - Allow early finish.
     /// </summary>
