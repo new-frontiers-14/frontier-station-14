@@ -1,9 +1,9 @@
 using Robust.Shared.Configuration;
 
-namespace Content.Shared.NF14.CCVar;
+namespace Content.Shared._NF.CCVar;
 
 [CVarDefs]
-public sealed class NF14CVars
+public sealed class NFCCVars
 {
     /// <summary>
     /// Whether or not respawning is enabled.
