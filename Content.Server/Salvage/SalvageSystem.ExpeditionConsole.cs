@@ -101,6 +101,7 @@ public sealed partial class SalvageSystem
         UpdateConsoles(data);
     }
 
+    // Frontier
     private void OnSalvageFinishMessage(EntityUid entity, SalvageExpeditionConsoleComponent component, FinishSalvageMessage e) // Frontier
     {
         if (!TryComp<SalvageExpeditionDataComponent>(_station.GetOwningStation(entity), out var data) || !data.CanFinish)
@@ -124,6 +125,7 @@ public sealed partial class SalvageSystem
 
         Announce(map.Value, Loc.GetString("salvage-expedition-announcement-early-finish"));
     }
+    // Frontier
 
     private void OnSalvageConsoleInit(Entity<SalvageExpeditionConsoleComponent> console, ref ComponentInit args)
     {

@@ -6,7 +6,7 @@ using Content.Server.Cargo.Systems;
 using Content.Server.Salvage.Expeditions;
 using Content.Server.Salvage.Expeditions.Structure;
 using Content.Shared.CCVar;
-using Content.Shared._NF.CCVar;
+using Content.Shared._NF.CCVar; // Frontier
 using Content.Shared.Examine;
 using Content.Shared.Random.Helpers;
 using Content.Shared.Salvage.Expeditions;
