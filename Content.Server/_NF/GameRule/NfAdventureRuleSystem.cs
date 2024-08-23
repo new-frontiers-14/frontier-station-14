@@ -30,7 +30,7 @@ using Content.Server.GameTicking.Rules;
 using Content.Server.Maps;
 using Content.Server.Station.Systems;
 using Content.Shared.CCVar;
-using Content.Shared._NF.CCVars; // Frontier
+using Content.Shared._NF.CCVar; // Frontier
 using Robust.Shared.Configuration;
 using Robust.Shared.Physics.Components;
 using Content.Server.Shuttles.Components;

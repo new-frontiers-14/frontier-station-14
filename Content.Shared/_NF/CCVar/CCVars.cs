@@ -1,6 +1,6 @@
 using Robust.Shared.Configuration;
 
-namespace Content.Shared._NF.CCVars;
+namespace Content.Shared._NF.CCVar;
 
 [CVarDefs]
 public sealed class NFCCVars

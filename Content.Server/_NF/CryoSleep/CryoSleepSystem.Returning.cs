@@ -5,7 +5,7 @@ using Content.Shared.Bed.Sleep;
 using Content.Shared.Database;
 using Content.Shared.Ghost;
 using Content.Shared.Mind;
-using Content.Shared._NF.CCVars;
+using Content.Shared._NF.CCVar;
 using Content.Shared.Players;
 using Robust.Shared.Configuration;
 using Robust.Shared.Network;

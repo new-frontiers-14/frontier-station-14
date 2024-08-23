@@ -4,7 +4,7 @@ using Content.Shared.Administration;
 using Content.Shared.CCVar;
 using Content.Shared.Ghost;
 using Content.Shared.Mind;
-using Content.Shared._NF.CCVars;
+using Content.Shared._NF.CCVar;
 using Content.Shared.Roles;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
