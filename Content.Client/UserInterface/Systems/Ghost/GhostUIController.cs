@@ -3,7 +3,7 @@ using Content.Client.Ghost;
 using Content.Client.UserInterface.Systems.Gameplay;
 using Content.Client.UserInterface.Systems.Ghost.Widgets;
 using Content.Shared.CCVar;
-using Content.Shared._NF.CCVar; // Frontier
+using Content.Shared._NF.CCVars; // Frontier
 using Content.Shared.Ghost;
 using Robust.Client.Console;
 using Robust.Client.UserInterface;
@@ -76,8 +76,8 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
         Gui.Visible = _system?.IsGhost ?? false;
         Gui.Update(_system?.AvailableGhostRoleCount, _system?.Player?.CanReturnToBody,
             _system?.Player?.TimeOfDeath,
-            _cfg.GetCVar(NFCVars.RespawnTime), // Frontier
-            _canUncryo && _cfg.GetCVar(NFCVars.CryoReturnEnabled)); // Frontier
+            _cfg.GetCVar(NFCCVars.RespawnTime), // Frontier
+            _canUncryo && _cfg.GetCVar(NFCCVars.CryoReturnEnabled)); // Frontier
     }
 
     private void UpdateRespawn(TimeSpan? timeOfDeath)

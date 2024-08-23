@@ -30,7 +30,7 @@ using Content.Server.GameTicking.Rules;
 using Content.Server.Maps;
 using Content.Server.Station.Systems;
 using Content.Shared.CCVar;
-using Content.Shared._NF.CCVar; // Frontier
+using Content.Shared._NF.CCVars; // Frontier
 using Robust.Shared.Configuration;
 using Robust.Shared.Physics.Components;
 using Content.Server.Shuttles.Components;
@@ -125,7 +125,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
     {
         _mapId = GameTicker.DefaultMap;
 
-        _distanceOffset = _configurationManager.GetCVar(NFCVars.POIDistanceModifier);
+        _distanceOffset = _configurationManager.GetCVar(NFCCVars.POIDistanceModifier);
         _stationCoords = new List<Vector2>();
 
         //First, we need to grab the list and sort it into its respective spawning logics
@@ -194,7 +194,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         //by the number of depots set in our corresponding cvar
 
         depotStations = new List<EntityUid>();
-        var depotCount = _configurationManager.GetCVar(NFCVars.CargoDepots);
+        var depotCount = _configurationManager.GetCVar(NFCCVars.CargoDepots);
         var rotation = 2 * Math.PI / depotCount;
         var rotationOffset = _random.NextAngle() / depotCount;
 
@@ -226,7 +226,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         //ideal world
 
         marketStations = new List<EntityUid>();
-        var marketCount = _configurationManager.GetCVar(NFCVars.MarketStations);
+        var marketCount = _configurationManager.GetCVar(NFCCVars.MarketStations);
         _random.Shuffle(marketPrototypes);
         int marketsAdded = 0;
         foreach (var proto in marketPrototypes)
@@ -252,7 +252,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         //and most RP places. This will essentially put them all into a pool to pull from, and still does not use the RNG function.
 
         optionalStations = new List<EntityUid>();
-        var optionalCount = _configurationManager.GetCVar(NFCVars.OptionalStations);
+        var optionalCount = _configurationManager.GetCVar(NFCCVars.OptionalStations);
         _random.Shuffle(optionalPrototypes);
         int optionalsAdded = 0;
         foreach (var proto in optionalPrototypes)
@@ -372,8 +372,8 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
 
     private Vector2 GetRandomPOICoord(float unscaledMinRange, float unscaledMaxRange, bool scaleRange)
     {
-        int numRetries = int.Max(_configurationManager.GetCVar(NFCVars.POIPlacementRetries), 0);
-        float minDistance = float.Max(_configurationManager.GetCVar(NFCVars.MinPOIDistance), 0); // Constant at the end to avoid NaN weirdness
+        int numRetries = int.Max(_configurationManager.GetCVar(NFCCVars.POIPlacementRetries), 0);
+        float minDistance = float.Max(_configurationManager.GetCVar(NFCCVars.MinPOIDistance), 0); // Constant at the end to avoid NaN weirdness
 
         Vector2 coords = _random.NextVector2(unscaledMinRange, unscaledMaxRange);
         if (scaleRange)
