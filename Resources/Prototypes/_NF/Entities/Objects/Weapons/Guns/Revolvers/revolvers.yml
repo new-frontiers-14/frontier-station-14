@@ -53,13 +53,12 @@
   name: Customer Service Resolver
 
 - type: entity
-  parent: BaseItem
+  parent: BaseWeaponRevolver
   name: The Arbitrator
   id: WeaponRevolverarbitrator
   description: Based off of an older design. S.E.S.W.C decided to revamp and rechamber for a modern era  .45cal, .50cal, and .60cal. 
   components:
   - type: Sprite
-    scale: 0.75 , 0.75
     sprite: _NF/Objects/Weapons/Guns/Revolvers/arbitrator.rsi
     state: icon
   - type: Clothing
@@ -76,9 +75,6 @@
     tags:
     - Sidearm
   - type: Gun
-    minAngle: 1
-    maxAngle: 8
-    selectedMode: SemiAuto
     fireRate: 2
     availableModes:
     - SemiAuto
