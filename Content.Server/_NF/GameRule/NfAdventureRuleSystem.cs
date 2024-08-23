@@ -32,6 +32,8 @@ using Content.Server.Station.Systems;
 using Content.Shared.CCVar;
 using Content.Shared._NF.CCVar; // Frontier
 using Robust.Shared.Configuration;
+using Robust.Shared.Physics.Components;
+using Content.Server.Shuttles.Components;
 
 namespace Content.Server._NF.GameRule;
 
@@ -49,6 +51,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
     [Dependency] private readonly IConsoleHost _console = default!;
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly ShuttleSystem _shuttle = default!;
+    [Dependency] private readonly PhysicsSystem _physics = default!;
 
     private readonly HttpClient _httpClient = new();
 
@@ -337,6 +340,9 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
                 _station.InitializeNewStation(stationProto.Stations[proto.ID], mapUids, stationName);
             }
 
+            // Cache our damping strength
+            float dampingStrength = proto.CanMove ? 0.05f : 999999f;
+
             foreach (var grid in mapUids)
             {
                 var meta = EnsureComp<MetaDataComponent>(grid);
@@ -345,6 +351,16 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
                 if (proto.IsHidden)
                 {
                     _shuttle.AddIFFFlag(grid, IFFFlags.HideLabel);
+                }
+
+                // Ensure damping for each grid in the POI - set the shuttle component if it exists just to be safe
+                var physics = EnsureComp<PhysicsComponent>(grid);
+                _physics.SetAngularDamping(grid, physics, dampingStrength);
+                _physics.SetLinearDamping(grid, physics, dampingStrength);
+                if (TryComp<ShuttleComponent>(grid, out var shuttle))
+                {
+                    shuttle.AngularDamping = dampingStrength;
+                    shuttle.LinearDamping = dampingStrength;
                 }
             }
             gridUid = mapUids[0];
