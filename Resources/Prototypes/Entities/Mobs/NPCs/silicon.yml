@@ -103,6 +103,7 @@
     - Robotics
   - type: Speech
     speechVerb: Robotic
+    speechSounds: Pai # Frontier: give robots beepy speech sounds
   - type: TypingIndicator
     proto: robot
   - type: ZombieImmune
@@ -141,12 +142,15 @@
   - type: GhostRole
     name: ghost-role-information-taxibot-name
     description: ghost-role-information-taxibot-description
+    rules: ghost-role-information-nonantagonist-rules # Frontier?
   - type: Strap
     buckleOffset: "0, 0"
+    unbuckleDistanceSquared: 0.09 # Frontier: (30 cm)^2 - seems unnecessary, but for consistency with vehicles
     # maxBuckleDistance: 1 # Umbra - buckling fix
   - type: Construction
     graph: TaxiBot
     node: bot
+  - type: VehicleHorn # Frontier: beep beep
 
 - type: entity
   parent: MobSiliconBase
@@ -365,6 +369,8 @@
     interactFailureString: petting-failure-mimebot
   - type: Inventory
     templateId: head
+  - type: Speech # Frontier: robots have beepy speech sounds, but not the mimebot
+    speechSounds: null # Frontier: robots have beepy speech sounds, but not the mimebot
 
 - type: entity
   parent: MobSiliconBase
