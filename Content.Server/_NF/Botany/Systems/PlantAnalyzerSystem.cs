@@ -40,9 +40,10 @@ public sealed class PlantAnalyzerSystem : EntitySystem
         {
             var doAfterArgs = new DoAfterArgs(EntityManager, args.User, ent.Comp.Settings.AdvScanDelay, new PlantAnalyzerDoAfterEvent(), ent, target: args.Target, used: ent)
             {
-                //BreakOnTargetMove = true, # TODO: FIX?
-                //BreakOnUserMove = true, # TODO: FIX?
-                NeedHand = true
+                NeedHand = true,
+                BreakOnDamage = true,
+                BreakOnMove = true,
+                MovementThreshold = 0.01f
             };
             _doAfterSystem.TryStartDoAfter(doAfterArgs, out ent.Comp.DoAfter);
         }
@@ -50,9 +51,10 @@ public sealed class PlantAnalyzerSystem : EntitySystem
         {
             var doAfterArgs = new DoAfterArgs(EntityManager, args.User, ent.Comp.Settings.ScanDelay, new PlantAnalyzerDoAfterEvent(), ent, target: args.Target, used: ent)
             {
-                //BreakOnTargetMove = true, # TODO: FIX?
-                //BreakOnUserMove = true,
-                NeedHand = true
+                NeedHand = true,
+                BreakOnDamage = true,
+                BreakOnMove = true,
+                MovementThreshold = 0.01f
             };
             _doAfterSystem.TryStartDoAfter(doAfterArgs, out ent.Comp.DoAfter);
         }
