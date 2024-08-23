@@ -49,41 +49,44 @@ public sealed partial class SalvageSystem
         if (!data.Missions.TryGetValue(args.Index, out var missionparams))
             return;
 
-        // On Frontier, FTL travel is currently restricted to expeditions and such, and so we need to put this here
+        // Frontier: FTL travel is currently restricted to expeditions and such, and so we need to put this here
         // until FTL changes for us in some way.
-        if (!TryComp<StationDataComponent>(station, out var stationData))
-            return;
-        if (_station.GetLargestGrid(stationData) is not {Valid : true} grid)
-            return;
-        if (!TryComp<MapGridComponent>(grid, out var gridComp))
-            return;
-
-        var xform = Transform(grid);
-        var bounds = xform.WorldMatrix.TransformBox(gridComp.LocalAABB).Enlarged(ShuttleFTLRange);
-        var bodyQuery = GetEntityQuery<PhysicsComponent>();
-        foreach (var other in _mapManager.FindGridsIntersecting(xform.MapID, bounds))
+        if (!component.Debug) // Skip the test
         {
-            if (grid == other.Owner ||
-                !bodyQuery.TryGetComponent(other.Owner, out var body) ||
-                body.Mass < ShuttleFTLMassThreshold)
+            if (!TryComp<StationDataComponent>(station, out var stationData))
+                return;
+            if (_station.GetLargestGrid(stationData) is not { Valid: true } grid)
+                return;
+            if (!TryComp<MapGridComponent>(grid, out var gridComp))
+                return;
+
+            var xform = Transform(grid);
+            var bounds = xform.WorldMatrix.TransformBox(gridComp.LocalAABB).Enlarged(ShuttleFTLRange);
+            var bodyQuery = GetEntityQuery<PhysicsComponent>();
+            foreach (var other in _mapManager.FindGridsIntersecting(xform.MapID, bounds))
             {
-                continue;
+                if (grid == other.Owner ||
+                    !bodyQuery.TryGetComponent(other.Owner, out var body) ||
+                    body.Mass < ShuttleFTLMassThreshold)
+                {
+                    continue;
+                }
+
+                PlayDenySound(uid, component);
+                _popupSystem.PopupEntity(Loc.GetString("shuttle-ftl-proximity"), uid, PopupType.MediumCaution);
+                UpdateConsoles(data);
+                return;
             }
+            // end of Frontier proximity check
 
-            PlayDenySound(uid, component);
-            _popupSystem.PopupEntity(Loc.GetString("shuttle-ftl-proximity"), uid, PopupType.MediumCaution);
-            UpdateConsoles(data);
-            return;
-        }
-        // end of Frontier proximity check
-
-        // Frontier: check for FTL component - if one exists, the station won't be taken into FTL.
-        if (HasComp<FTLComponent>(grid))
-        {
-            PlayDenySound(uid, component);
-            _popupSystem.PopupEntity(Loc.GetString("shuttle-ftl-recharge"), uid, PopupType.MediumCaution);
-            UpdateConsoles(data); // Sure, why not?
-            return;
+            // Frontier: check for FTL component - if one exists, the station won't be taken into FTL.
+            if (HasComp<FTLComponent>(grid))
+            {
+                PlayDenySound(uid, component);
+                _popupSystem.PopupEntity(Loc.GetString("shuttle-ftl-recharge"), uid, PopupType.MediumCaution);
+                UpdateConsoles(data); // Sure, why not?
+                return;
+            }
         }
         // End Frontier
 

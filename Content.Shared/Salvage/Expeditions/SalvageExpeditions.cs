@@ -38,11 +38,19 @@ public sealed partial class SalvageExpeditionConsoleComponent : Component
     /// </summary>
     [DataField]
     public SoundSpecifier PrintSound = new SoundPathSpecifier("/Audio/Machines/terminal_insert_disc.ogg");
-    
-    // Frontier - Adding error to the FTL warning - Hard to tell without it - PR 377
+
+    /// <summary>
+    /// Frontier: Adding error to the FTL warning - Hard to tell without it - PR 377
+    /// </summary>
     [DataField("soundError")]
     public SoundSpecifier ErrorSound =
     new SoundPathSpecifier("/Audio/Effects/Cargo/buzz_sigh.ogg");
+
+    /// <summary>
+    /// Frontier: Debug mod
+    /// </summary>
+    [DataField]
+    public bool Debug = false;
 }
 
 [Serializable, NetSerializable]
