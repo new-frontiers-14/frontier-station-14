@@ -15,7 +15,7 @@
       - !type:Drunk
         slurSpeech: false
         boozePower: 20
-  pricePerUnit: 4
+  pricePerUnit: 3
 
 - type: reagent
   id: Dylovene
@@ -198,7 +198,7 @@
               # Toxin: -4 # Frontier
         - !type:ModifyBloodLevel # Frontier
           amount: 5 # Frontier
-  pricePerUnit: 3.5
+  pricePerUnit: 0.5 # Easy to make via condensing, should not be worth much
 
 - type: reagent
   id: Doxarubixadone
@@ -221,7 +221,7 @@
              Cellular: -4 # Frontier: -2<-4
             groups: # Frontier
                 Brute: 1 # Frontier
-  pricePerUnit: 3.5
+  pricePerUnit: 2.5
 
 - type: reagent
   id: Dermaline
@@ -376,7 +376,7 @@
         key: KnockedDown
         time: 0.75
         type: Remove
-  pricePerUnit: 4
+  pricePerUnit: 3
 
 - type: reagent
   id: Hyronalin
@@ -753,7 +753,7 @@
         key: SeeingRainbows
         time: 15.0
         type: Remove
-  pricePerUnit: 5
+  pricePerUnit: 3
 
 - type: reagent
   id: TranexamicAcid
@@ -839,7 +839,7 @@
             Toxin: -2
             Airloss: -2
             Brute: -2
-  pricePerUnit: 10
+  pricePerUnit: 2.5
 
 - type: reagent
   id: Ultravasculine
@@ -914,7 +914,7 @@
         conditions:
         - !type:ReagentThreshold
           min: 5
-  pricePerUnit: 10
+  pricePerUnit: 3.5
 
 - type: reagent
   id: Ethyloxyephedrine
@@ -940,7 +940,7 @@
         messages: ["ethyloxyephedrine-effect-feeling-awake", "ethyloxyephedrine-effect-clear-mind"]
         type: Local
         probability: 0.1
-  pricePerUnit: 3.5
+  pricePerUnit: 3
 
 - type: reagent
   id: Diphenylmethylamine
@@ -962,8 +962,7 @@
         messages: ["ethyloxyephedrine-effect-feeling-awake", "ethyloxyephedrine-effect-clear-mind"]
         type: Local
         probability: 0.1
-  pricePerUnit: 4.5
-
+  pricePerUnit: 3.2
 - type: reagent
   id: Sigynate
   name: reagent-name-sigynate
@@ -1217,7 +1216,7 @@
             max: 150.0
           - !type:MobStateCondition
             mobstate: Dead
-  pricePerUnit: 10
+  pricePerUnit: 4
 
 - type: reagent
   id: Necrosol
@@ -1247,7 +1246,7 @@
               Burn: -5
             types:
               Poison: -2
-  pricePerUnit: 8
+  pricePerUnit: 3.5
 
 - type: reagent
   id : Aloxadone
