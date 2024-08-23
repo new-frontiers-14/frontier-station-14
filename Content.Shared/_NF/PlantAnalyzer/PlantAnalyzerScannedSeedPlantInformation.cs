@@ -38,25 +38,25 @@ public sealed class PlantAnalyzerScannedSeedPlantInformation : BoundUserInterfac
 
     public List<string>? Speciation;
 
-    [DataDefinition, Serializable, NetSerializable]
-    public partial struct MutationFlags
-    {
-        [DataField]
-        public bool TurnIntoKudzu;
-        [DataField]
-        public bool Seedless;
-        [DataField]
-        public bool Slip;
-        [DataField]
-        public bool Sentient;
-        [DataField]
-        public bool Ligneous;
-        [DataField]
-        public bool Bioluminescent;
-        [DataField]
-        public bool CanScream;
-    }
-    public MutationFlags Mutflag = new();
+    //[DataDefinition, Serializable, NetSerializable]
+    //public partial struct MutationFlags
+    //{
+    //    [DataField]
+    //    public bool TurnIntoKudzu;
+    //    [DataField]
+    //    public bool Seedless;
+    //    [DataField]
+    //    public bool Slip;
+    //    [DataField]
+    //    public bool Sentient;
+    //    [DataField]
+    //    public bool Ligneous;
+    //    [DataField]
+    //    public bool Bioluminescent;
+    //    [DataField]
+    //    public bool CanScream;
+    //}
+    //public MutationFlags Mutflag = new();
     public PlantAnalyzerScannedSeedPlantInformation(NetEntity? targetEntity, bool scanMode, bool isTray,
             string seedName, string seedChem, string harvestType, string exudeGases, float endurance,
             float seedYield, float lifespan, float maturation, float growthStages, float seedPotency,
@@ -98,6 +98,7 @@ public sealed class PlantAnalyzerScannedSeedPlantInformation : BoundUserInterfac
         }
     }
 }
+
 [Serializable, NetSerializable]
 public sealed class PlantAnalyzerSetMode : BoundUserInterfaceMessage
 {

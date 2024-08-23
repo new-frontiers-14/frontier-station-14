@@ -102,13 +102,13 @@ public sealed class PlantAnalyzerSystem : EntitySystem
             {
                 var seedData = seedcomponent.Seed;
                 var state = ObtainingGeneDataSeed(seedData, target, false, ent.Comp.Settings.AdvancedScan);
-                _uiSystem.ServerSendUiMessage(target, PlantAnalyzerUiKey.Key, state);
+                _uiSystem.ServerSendUiMessage(ent.Owner, PlantAnalyzerUiKey.Key, state);
             }
             else if (seedcomponent.SeedId != null && _prototypeManager.TryIndex(seedcomponent.SeedId, out SeedPrototype? protoSeed))
             {
                 var seedProtoId = protoSeed;
                 var state = ObtainingGeneDataSeedProt(protoSeed, target, ent.Comp.Settings.AdvancedScan);
-                _uiSystem.ServerSendUiMessage(target, PlantAnalyzerUiKey.Key, state);
+                _uiSystem.ServerSendUiMessage(ent.Owner, PlantAnalyzerUiKey.Key, state);
             }
         }
         else if (plantcomp != null)
@@ -117,7 +117,7 @@ public sealed class PlantAnalyzerSystem : EntitySystem
             if (seedData != null)
             {
                 var state = ObtainingGeneDataSeed(seedData, target, true, ent.Comp.Settings.AdvancedScan);
-                _uiSystem.ServerSendUiMessage(target, PlantAnalyzerUiKey.Key, state);
+                _uiSystem.ServerSendUiMessage(ent.Owner, PlantAnalyzerUiKey.Key, state);
             }
         }
     }
@@ -179,7 +179,7 @@ public sealed class PlantAnalyzerSystem : EntitySystem
         if (plant.Slip) mutationsList.Add(Loc.GetString("plant-analyzer-mutation-slip"));
         if (plant.Sentient) mutationsList.Add(Loc.GetString("plant-analyzer-mutation-sentient"));
         if (plant.Ligneous) mutationsList.Add(Loc.GetString("plant-analyzer-mutation-ligneous"));
-        if (plant.Bioluminescent) mutationsList.Add(Loc.GetString("plant-analyzer-mutation-bioluminescent"));
+//        if (plant.Bioluminescent) mutationsList.Add(Loc.GetString("plant-analyzer-mutation-bioluminescent"));
         if (plant.CanScream) mutationsList.Add(Loc.GetString("plant-analyzer-mutation-canscream"));
 
         return mutationsList;
