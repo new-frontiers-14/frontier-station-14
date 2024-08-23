@@ -10,6 +10,7 @@ using Robust.Shared.Physics.Components;
 using Content.Shared.Dataset;
 using Robust.Shared.Prototypes;
 using Content.Server.Salvage.Expeditions; // Frontier
+using Content.Shared._NF.CCVar; // Frontier
 
 namespace Content.Server.Salvage;
 
@@ -34,7 +35,7 @@ public sealed partial class SalvageSystem
             if (TryComp<SalvageExpeditionDataComponent>(expeditionUid, out var expeditionData) && expeditionData.Claimed)
                 activeExpeditionCount++;
 
-        if (activeExpeditionCount >= 15)
+        if (activeExpeditionCount >= _configurationManager.GetCVar(NFCCVars.SalvageExpeditionMaxActive))
         {
             PlayDenySound(uid, component);
             _popupSystem.PopupEntity(Loc.GetString("ftl-channel-blocked"), uid, PopupType.MediumCaution);
