@@ -1,0 +1,49 @@
+﻿- type: entity
+  parent: BaseItem
+  id: ContrabandAppraisalTool
+  name: contraband appraisal tool
+  description: An officer's best friend, with a quantum connection to the NT database and the ability to appraise even the toughest items.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Tools/appraisal-tool.rsi
+    state: icon
+  - type: Item
+    sprite: _NF/Objects/Tools/appraisal-tool.rsi
+  - type: ContrabandPriceGun
+  - type: UseDelay
+    delay: 1
+  - type: Clothing
+    sprite: _NF/Objects/Tools/appraisal-tool.rsi
+    quickEquip: false
+    slots:
+    - Belt
+  - type: Tag
+    tags:
+    - AppraisalTool
+    - Sidearm
+
+- type: entity
+  parent: BaseItem
+  id: ContrabandAppraisalToolPirate
+  name: Skizzit's Price-It-All Guide
+  description: A book claiming to appraise all items at their black market rate. The book is in tatters, and is missing several pages.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/books.rsi
+    layers:
+    - state: paper
+    - state: cover_old
+      color: "#52190e"
+    - state: icon_text
+      color: lightsteelblue
+    - state: overlay_dirt
+    - state: detail_bookmark
+      color: peru
+  - type: ContrabandPriceGun
+    currency: Doubloon
+    locStringPrefix: pirate-
+  - type: UseDelay
+    delay: 1
+  - type: Tag
+    tags:
+    - AppraisalTool

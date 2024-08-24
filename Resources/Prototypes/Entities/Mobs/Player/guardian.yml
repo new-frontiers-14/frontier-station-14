@@ -13,6 +13,9 @@
       makeSentient: true
       name: ghost-role-information-guardian-name
       description: ghost-role-information-guardian-description
+      rules: ghost-role-information-familiar-rules
+      raffle:
+        settings: default
     - type: GhostTakeoverAvailable
     - type: Input
       context: "human"
@@ -121,6 +124,9 @@
       makeSentient: true
       name: ghost-role-information-holoparasite-name
       description: ghost-role-information-holoparasite-description
+      rules: ghost-role-information-familiar-rules
+      raffle:
+        settings: default
     - type: GhostTakeoverAvailable
     - type: NameIdentifier
       group: Holoparasite
@@ -152,6 +158,9 @@
       makeSentient: true
       name: ghost-role-information-ifrit-name
       description: ghost-role-information-ifrit-description
+      rules: ghost-role-information-familiar-rules
+      raffle:
+        settings: default
     - type: GhostTakeoverAvailable
     - type: RandomSprite
       available:
@@ -170,7 +179,7 @@
   name: HoloClown
   suffix: Ghost # Frontier
   id: MobHoloClownGuardian
-  parent: MobGuardianBase
+  parent: [MobGuardianBase, InventoryBase]
   description: A mesmerising whirl of hard-light patterns weaves a blue colored clown of dubious origin.
   components:
     - type: GhostRole
@@ -179,6 +188,9 @@
       makeSentient: true
       name: ghost-role-information-holoclown-name
       description: ghost-role-information-holoclown-description
+      rules: ghost-role-information-familiar-rules
+      raffle:
+        settings: default
     - type: GhostTakeoverAvailable
     - type: NameIdentifier
       group: Holoparasite
@@ -220,6 +232,7 @@
     - type: Inventory
       templateId: holoclown
     - type: Hands
+    - type: ComplexInteraction
     - type: Clumsy
       clumsyDamage:
         types:
@@ -227,7 +240,6 @@
           Piercing: 4
         groups:
           Burn: 3
-    - type: InventorySlots
     - type: MeleeWeapon
       angle: 30
       animation: WeaponArcFist
@@ -253,7 +265,6 @@
   id: ActionToggleGuardian
   name: Toggle Guardian
   description: Either manifests the guardian or recalls it back into your body
-  noSpawn: true
   components:
   - type: InstantAction
     icon: Interface/Actions/manifest.png

@@ -15,19 +15,21 @@
   startingGear: BailiffGear
   icon: "JobIconWarden" # Frontier
   supervisors: job-supervisors-sheriff
+  weight: 150 # Frontier
+  displayWeight: 60 # Frontier
   canBeAntag: false
   access:
-  - Maintenance
-  - External
-  - Command
-  - Brig
-  - Security
-  - Mercenary # Frontier
-  - Captain # Frontier
   - Armory
+  - Sergeant # Frontier
+  - Bailiff # Frontier
+  accessGroups: # Frontier
+  - GeneralNfsdAccess # Frontier
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant, TrackingImplant ] # Frontier
+  - !type:GiveItemOnHolidaySpecial
+    holiday: FrontierBirthday
+    prototype: FrontierBirthdayGift
 
 - type: startingGear
   id: BailiffGear
@@ -35,3 +37,10 @@
     ears: ClothingHeadsetAltNfsdGreen # Frontier
     pocket1: WeaponPistolMk58 #WeaponPistolMk58Nonlethal
     pocket2: HoloprojectorNfsd # Frontier
+  storage:
+    back:
+    - Flash
+    - MagazinePistol
+    - MagazinePistolRubber
+    - BaseSecurityUplinkRadioOfficer
+    - NfsdBailiffShipVoucher

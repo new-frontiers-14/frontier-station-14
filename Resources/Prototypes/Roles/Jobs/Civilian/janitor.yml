@@ -10,6 +10,8 @@
   alwaysUseSpawner: true
   icon: "JobIconJanitor"
   supervisors: job-supervisors-sr
+  weight: 100 # Frontier
+  displayWeight: 40 # Frontier
   canBeAntag: false
   access:
   - Service
@@ -23,6 +25,9 @@
     prototype: WeaponRevolverInspector
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
+  - !type:GiveItemOnHolidaySpecial # Frontier
+    holiday: FrontierBirthday # Frontier
+    prototype: FrontierBirthdayGift # Frontier
 
 - type: startingGear
   id: JanitorGear
@@ -31,6 +36,9 @@
     id: JanitorPDA
     ears: ClothingHeadsetService
     belt: ClothingBeltJanitorFilled
+  #storage:
+    #back:
+    #- Stuff
 
 - type: startingGear
   id: JanitorMaidGear

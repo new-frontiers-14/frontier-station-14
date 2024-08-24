@@ -1,0 +1,60 @@
+# Categorized
+- type: entity
+  name: dinosaur spawner
+  id: SpawnMobDinosaurSmall
+  parent: MarkerBase
+  suffix: AI, Hostile, Small
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: _NF/Mobs/Dinosaurs/compy.rsi
+      state: compy
+    - state: ai
+  - type: RandomSpawner
+    prototypes:
+    - MobDinosaurCompyExpeditions
+    - MobDinosaurDiloExpeditions
+    - MobDinosaurRaptorExpeditions
+    chance: 1
+    offset: 0.0
+
+- type: entity
+  name: dinosaur spawner
+  id: SpawnMobDinosaurMedium
+  parent: MarkerBase
+  suffix: AI, Hostile, Medium
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: _NF/Mobs/Dinosaurs/kentro.rsi
+      state: kentro
+    - state: ai
+  - type: RandomSpawner
+    prototypes:
+    - MobDinosaurKentroExpeditions
+    - MobDinosaurParaExpeditions
+    - MobDinosaurTrikeExpeditions
+    - MobDinosaurAnkiExpeditions
+    chance: 1
+    offset: 0.0
+
+- type: entity
+  name: dinosaur spawner
+  id: SpawnMobDinosaurBig
+  parent: MarkerBase
+  suffix: AI, Hostile, Big
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: _NF/Mobs/Dinosaurs/stego.rsi
+      state: stego
+    - state: ai
+  - type: RandomSpawner
+    prototypes:
+    - MobDinosaurStegoExpeditions
+    - MobDinosaurSpinoExpeditions
+    chance: 1
+    offset: 0.0

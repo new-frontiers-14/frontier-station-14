@@ -10,21 +10,21 @@
     - !type:OverallPlaytimeRequirement
       time: 36000 # Frontier - 10 hrs
   startingGear: DetectiveNFGear
-  icon: "JobIconDetective"
+  icon: "JobIconNFDetective"
   supervisors: job-supervisors-bailiff
+  weight: 110 # Frontier
+  displayWeight: 20 # Frontier
   canBeAntag: false
   access:
-  - Maintenance
-  - External
-  - Command
-  - Brig
-  - Security
-  - Mercenary # Frontier
-  - Captain # Frontier
   - Detective
+  accessGroups: # Frontier
+  - GeneralNfsdAccess # Frontier
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant, TrackingImplant ]
+  - !type:GiveItemOnHolidaySpecial
+    holiday: FrontierBirthday
+    prototype: FrontierBirthdayGift
 
 - type: startingGear
   id: DetectiveNFGear
@@ -32,3 +32,13 @@
     ears: ClothingHeadsetNfsdCream
     pocket1: WeaponRevolverInspector
     pocket2: SpeedLoaderMagnum
+  storage:
+    back:
+    - Flash
+    - MagazinePistol
+    - MagazinePistolRubber
+    - ForensicPad
+    - ForensicScanner
+    - FrontierUplinkCoin10
+    - LogProbeCartridge
+    - RubberStampDetective

@@ -23,6 +23,8 @@ namespace Content.Client.Administration.UI
             AnnounceMethod.SetItemMetadata(0, AdminAnnounceType.Station);
             AnnounceMethod.AddItem(_localization.GetString("admin-announce-type-server"));
             AnnounceMethod.SetItemMetadata(1, AdminAnnounceType.Server);
+            AnnounceMethod.AddItem(_localization.GetString("admin-announce-type-antag"));  // Frontier
+            AnnounceMethod.SetItemMetadata(2, AdminAnnounceType.Antag);  // Frontier
             AnnounceMethod.OnItemSelected += AnnounceMethodOnOnItemSelected;
             Announcement.OnKeyBindUp += AnnouncementOnOnTextChanged;
         }
@@ -35,7 +37,8 @@ namespace Content.Client.Administration.UI
         private void AnnounceMethodOnOnItemSelected(OptionButton.ItemSelectedEventArgs args)
         {
             AnnounceMethod.SelectId(args.Id);
-            Announcer.Editable = ((AdminAnnounceType?)args.Button.SelectedMetadata ?? AdminAnnounceType.Station) == AdminAnnounceType.Station;
+            Announcer.Editable = ((AdminAnnounceType?)args.Button.SelectedMetadata ?? AdminAnnounceType.Station) == AdminAnnounceType.Station
+            || ((AdminAnnounceType?)args.Button.SelectedMetadata ?? AdminAnnounceType.Antag) == AdminAnnounceType.Antag; // Frontier
         }
     }
 }

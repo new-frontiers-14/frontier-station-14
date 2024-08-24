@@ -18,13 +18,6 @@ public sealed partial class FaxMachineComponent : Component
     public string FaxName { get; set; } = "Unknown";
 
     /// <summary>
-    /// If true, will sync fax name with a station name.
-    /// </summary>
-    [ViewVariables(VVAccess.ReadWrite)]
-    [DataField("useStationName")]
-    public bool UseStationName { get; set; }
-
-    /// <summary>
     /// Sprite to use when inserting an object.
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite)]
@@ -148,6 +141,27 @@ public sealed partial class FaxMachineComponent : Component
     /// </summary>
     [ViewVariables]
     public float PrintingTime = 2.3f;
+
+    /// <summary>
+    /// Frontier - If true, will sync fax name with a station name.
+    /// </summary>
+    [ViewVariables]
+    [DataField]
+    public bool UseStationName { get; set; }
+
+    /// <summary>
+    /// Frontier - If added with UseStationName will add a Prefix to the name
+    /// </summary>
+    [ViewVariables]
+    [DataField]
+    public string? StationNamePrefix { get; set; } = null;
+
+    /// <summary>
+    /// Frontier - If added with UseStationName will add a suffix to the name
+    /// </summary>
+    [ViewVariables]
+    [DataField]
+    public string? StationNameSuffix { get; set; } = null;
 }
 
 [DataDefinition]
@@ -171,11 +185,14 @@ public sealed partial class FaxPrintout
     [DataField("stampedBy")]
     public List<StampDisplayInfo> StampedBy { get; private set; } = new();
 
+    [DataField]
+    public bool Locked { get; private set; }
+
     private FaxPrintout()
     {
     }
 
-    public FaxPrintout(string content, string name, string? label = null, string? prototypeId = null, string? stampState = null, List<StampDisplayInfo>? stampedBy = null)
+    public FaxPrintout(string content, string name, string? label = null, string? prototypeId = null, string? stampState = null, List<StampDisplayInfo>? stampedBy = null, bool locked = false)
     {
         Content = content;
         Name = name;
@@ -183,5 +200,6 @@ public sealed partial class FaxPrintout
         PrototypeId = prototypeId ?? "";
         StampState = stampState;
         StampedBy = stampedBy ?? new List<StampDisplayInfo>();
+        Locked = locked;
     }
 }

@@ -137,6 +137,37 @@
     tags:
     - ClothMade
     - WhitelistChameleon
+    - HidesHair
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatPirates
+  name: pirate's hat
+  description: Y'Arrgghhh.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Head/Hats/pirate_hat.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Head/Hats/pirate_hat.rsi
+  - type: Tag
+    tags:
+    - ClothMade
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatPirateLuffy
+  name: suspicious pirate's hat
+  description: This here hat be lookin' suspicious.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Head/Hats/pirate_hat_luffy.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Head/Hats/pirate_hat_luffy.rsi
+  - type: Tag
+    tags:
+    - ClothMade
+    - WhitelistChameleon
 
 - type: entity
   parent: ClothingHeadBase
@@ -254,3 +285,40 @@
     sprite: _NF/Clothing/Head/Hats/sr_cap.rsi
   - type: Clothing
     sprite: _NF/Clothing/Head/Hats/sr_cap.rsi
+  - type: Tag
+    tags:
+    - ClothMade
+    - WhitelistChameleon
+    - HamsterWearable # Frontier
+
+- type: entity
+  parent: ClothingHeadHatHopcap
+  id: ClothingHeadHatSrBeret
+  name: station representative's beret
+  description: A breezy beret issued to Frontier Outpost's station representative. Looks soft.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Head/Hats/sr_beret.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Head/Hats/sr_beret.rsi
+  - type: Tag
+    tags:
+    - ClothMade
+    - WhitelistChameleon
+    - CatWearable # Frontier
+    
+- type: entity
+  parent: ClothingHeadHatHopcap
+  id: ClothingHeadHatStcCap
+  name: station traffic controller's cap
+  description: A cap issued to Frontier Outpost's station traffic controller. Try not to lose it.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Head/Hats/stc_cap.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Head/Hats/stc_cap.rsi
+  - type: Tag
+    tags:
+    - ClothMade
+    - WhitelistChameleon
+    - HamsterWearable

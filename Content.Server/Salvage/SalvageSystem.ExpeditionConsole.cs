@@ -1,3 +1,4 @@
+using Content.Server._NF.Salvage; // Frontier: graceful exped spawn failures
 using Content.Server.Station.Components;
 using Content.Shared.Popups;
 using Content.Shared.Shuttles.Components;
@@ -59,6 +60,16 @@ public sealed partial class SalvageSystem
         }
         // end of Frontier proximity check
 
+        // Frontier: check for FTL component - if one exists, the station won't be taken into FTL.
+        if (HasComp<FTLComponent>(grid))
+        {
+            PlayDenySound(uid, component);
+            _popupSystem.PopupEntity(Loc.GetString("shuttle-ftl-recharge"), uid, PopupType.MediumCaution);
+            UpdateConsoles(data); // Sure, why not?
+            return;
+        }
+        // End Frontier
+
         // Frontier  change - disable coordinate disks for expedition missions
         //var cdUid = Spawn(CoordinatesDisk, Transform(uid).Coordinates);
         SpawnMission(missionparams, station.Value, null);
@@ -96,6 +107,15 @@ public sealed partial class SalvageSystem
             if (station != component.Owner)
                 continue;
 
+            // Frontier: if we have a lingering FTL component, we cannot start a new mission
+            if (!TryComp<StationDataComponent>(station, out var stationData) ||
+                    _station.GetLargestGrid(stationData) is not {Valid : true} grid || 
+                    HasComp<FTLComponent>(grid))
+            {
+                state.Cooldown = true; //Hack: disable buttons
+            }
+            // End Frontier
+
             _ui.SetUiState((uid, uiComp), SalvageConsoleUiKey.Expedition, state);
         }
     }
@@ -113,6 +133,15 @@ public sealed partial class SalvageSystem
         {
             state = new SalvageExpeditionConsoleState(TimeSpan.Zero, false, true, 0, new List<SalvageMissionParams>());
         }
+
+        // Frontier: if we have a lingering FTL component, we cannot start a new mission
+        if (!TryComp<StationDataComponent>(station, out var stationData) ||
+                _station.GetLargestGrid(stationData) is not {Valid : true} grid || 
+                HasComp<FTLComponent>(grid))
+        {
+            state.Cooldown = true; //Hack: disable buttons
+        }
+        // End Frontier
 
         _ui.SetUiState(component.Owner, SalvageConsoleUiKey.Expedition, state);
     }

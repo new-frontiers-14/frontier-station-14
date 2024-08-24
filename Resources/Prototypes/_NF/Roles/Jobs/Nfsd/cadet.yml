@@ -13,12 +13,17 @@
   startingGear: CadetGear
   icon: "JobIconSecurityCadet" # Frontier
   supervisors: job-supervisors-cadet
+  weight: 70 # Frontier
+  displayWeight: 10 # Frontier
   canBeAntag: false
   accessGroups: # Frontier
-  - GeneralNfsdAccess # Frontier
+  - CadetNfsdAccess # Frontier
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant, TrackingImplant ]
+  - !type:GiveItemOnHolidaySpecial
+    holiday: FrontierBirthday
+    prototype: FrontierBirthdayGift
 
 - type: startingGear
   id: CadetGear
@@ -26,3 +31,9 @@
     ears: ClothingHeadsetNfsdBrown # Frontier
     pocket1: WeaponPistolMk58 #WeaponPistolMk58Nonlethal
     pocket2: BookSecurity
+  storage:
+    back:
+    - Flash
+    - MagazinePistol
+    - MagazinePistolRubber
+    - FrontierUplinkCoin10

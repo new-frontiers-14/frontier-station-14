@@ -1,6 +1,6 @@
 - type: entity
   id: BluespaceCacheError
-  parent: BaseGameRule
+  parent: BaseStationEventShortDelay
   noSpawn: true
   components:
   - type: StationEvent
@@ -11,17 +11,17 @@
     earliestStart: 100
     minimumPlayers: 30
     weight: 5
-    startDelay: 10
     duration: 1350
     maxDuration: 1560
     maxOccurrences: 1 # Only once per shift possible
   - type: BluespaceErrorRule
-    gridPath: /Maps/_NF/Bluespace/cache.yml
+    gridPaths:
+      - /Maps/_NF/Bluespace/cache.yml
     rewardFactor: 3.3
 
 - type: entity
   id: BluespaceVaultError
-  parent: BaseGameRule
+  parent: BaseStationEventShortDelay
   noSpawn: true
   components:
   - type: StationEvent
@@ -32,17 +32,17 @@
     earliestStart: 100
     minimumPlayers: 30
     weight: 5
-    startDelay: 10
     duration: 1020
     maxDuration: 1350
     maxOccurrences: 1 # Only once per shift possible
   - type: BluespaceErrorRule
-    gridPath: /Maps/_NF/Bluespace/vault.yml
+    gridPaths:
+      - /Maps/_NF/Bluespace/vault.yml
     rewardFactor: 0.7
 
 - type: entity
   id: BluespaceVaultSmallError
-  parent: BaseGameRule
+  parent: BaseStationEventShortDelay
   noSpawn: true
   components:
   - type: StationEvent
@@ -54,17 +54,17 @@
     minimumPlayers: 30
     maximumPlayers: 45
     weight: 5
-    startDelay: 10
     duration: 590
     maxDuration: 780
     maxOccurrences: 1 # Only once per shift possible
   - type: BluespaceErrorRule
-    gridPath: /Maps/_NF/Bluespace/vaultsmall.yml
+    gridPaths:
+      - /Maps/_NF/Bluespace/vaultsmall.yml
     rewardFactor: 3
 
 # - type: entity # Need rework
   # id: BluespaceAsteroid
-  # parent: BaseGameRule
+  # parent: BaseStationEventShortDelay
   # noSpawn: true
   # components:
   # - type: StationEvent
@@ -75,7 +75,6 @@
     # earliestStart: 100
     # minimumPlayers: 25
     # weight: 2
-    # startDelay: 10
     # duration: 1500
     # maxDuration: 1800
     # maxOccurrences: 1 # Only once per shift possible
@@ -85,7 +84,7 @@
 
 # - type: entity # Need rework
   # id: BluespaceAsteroidBunker
-  # parent: BaseGameRule
+  # parent: BaseStationEventShortDelay
   # noSpawn: true
   # components:
   # - type: StationEvent
@@ -96,7 +95,6 @@
     # earliestStart: 100
     # minimumPlayers: 25
     # weight: 2
-    # startDelay: 10
     # duration: 2100
     # maxDuration: 2400
     # maxOccurrences: 1 # Only once per shift possible
@@ -106,18 +104,17 @@
 
 # - type: entity # Need rework
   # id: BluespaceCargoniaShip
-  # parent: BaseGameRule
+  # parent: BaseStationEventShortDelay
   # noSpawn: true
   # components:
   # - type: StationEvent
-    # startAnnouncement: station-event-bluespace-ship-start-announcement
+    # startAnnouncement: station-event-bluespace-generic-ftl-start-announcement
     # startAudio:
-      # path: /Audio/Announcements/attention.ogg
-    # endAnnouncement: station-event-bluespace-ship-end-announcement
+      # path: /Audio/Misc/notice1.ogg
+    # endAnnouncement: station-event-bluespace-generic-ftl-end-announcement
     # earliestStart: 100
     # minimumPlayers: 15
     # weight: 2
-    # startDelay: 10
     # duration: 900
     # maxDuration: 1200
     # maxOccurrences: 1 # Only once per shift possible
@@ -126,85 +123,105 @@
     # rewardFactor: 0.5 # Filler to make the bank go up
 
 - type: entity
-  id: BluespaceArcIndDataCarrier
-  parent: BaseGameRule
+  id: BluespaceDataCarrier
+  parent: BaseStationEventShortDelay
   noSpawn: true
   components:
   - type: StationEvent
-    startAnnouncement: station-event-bluespace-ship-start-announcement
+    startAnnouncement: station-event-bluespace-generic-ftl-start-announcement
     startAudio:
-      path: /Audio/Announcements/attention.ogg
-    endAnnouncement: station-event-bluespace-ship-end-announcement
+      path: /Audio/Misc/notice1.ogg
+    endAnnouncement: station-event-bluespace-generic-ftl-end-announcement
     earliestStart: 100
     minimumPlayers: 35
     weight: 2
-    startDelay: 10
-    duration: 900
-    maxDuration: 1200
+    duration: 2100
+    maxDuration: 2400
     maxOccurrences: 1 # Only once per shift possible
   - type: BluespaceErrorRule
-    gridPath: /Maps/_NF/Bluespace/datacarrier.yml
+    gridPaths:
+      - /Maps/_NF/Bluespace/datacarrier.yml
     rewardFactor: 0.5 # Filler to make the bank go up
 
 - type: entity
   id: BluespaceSyndicateFTLInterception
-  parent: BaseGameRule
+  parent: BaseStationEventShortDelay
   noSpawn: true
   components:
   - type: StationEvent
-    startAnnouncement: station-event-bluespace-syndicate-ftl-interception-start-announcement
+    startAnnouncement: station-event-bluespace-generic-ftl-start-announcement
     startAudio:
       path: /Audio/Misc/notice1.ogg
-    endAnnouncement: station-event-bluespace-syndicate-ftl-interception-end-announcement
+    endAnnouncement: station-event-bluespace-generic-ftl-end-announcement
     earliestStart: 80
     minimumPlayers: 45
     weight: 1
-    startDelay: 10
     duration: 1800
     maxDuration: 2400
     maxOccurrences: 1 # Only once per shift possible
   - type: BluespaceErrorRule
-    gridPath: /Maps/_NF/Bluespace/syndieftlintercept.yml
+    gridPaths:
+      - /Maps/_NF/Bluespace/syndieftlintercept.yml
     rewardFactor: 0.5 # Filler to make the bank go up
 
 - type: entity
   id: BluespaceWizardFederationScout
-  parent: BaseGameRule
+  parent: BaseStationEventShortDelay
   noSpawn: true
   components:
   - type: StationEvent
-    startAnnouncement: station-event-bluespace-wizardfederation-scout-start-announcement
+    startAnnouncement: station-event-bluespace-generic-ftl-start-announcement
     startAudio:
       path: /Audio/Misc/notice1.ogg
-    endAnnouncement: station-event-bluespace-wizardfederation-scout-end-announcement
+    endAnnouncement: station-event-bluespace-generic-ftl-end-announcement
     earliestStart: 100
     minimumPlayers: 45
     weight: 1
-    startDelay: 10
     duration: 900
     maxDuration: 1200
     maxOccurrences: 1 # Only once per shift possible
   - type: BluespaceErrorRule
-    gridPath: /Maps/_NF/Bluespace/wizardprobealt.yml
+    gridPaths:
+      - /Maps/_NF/Bluespace/wizardprobealt.yml
     rewardFactor: 0.5 # Filler to make the bank go up
 
 - type: entity
   id: BluespaceBloodMoon
-  parent: BaseGameRule
+  parent: BaseStationEventShortDelay
   noSpawn: true
   components:
   - type: StationEvent
-    startAnnouncement: station-event-bluespace-bloodmoon-start-announcement
+    startAnnouncement: station-event-bluespace-generic-ftl-start-announcement
     startAudio:
       path: /Audio/Misc/notice1.ogg
-    endAnnouncement: station-event-bluespace-bloodmoon-end-announcement
+    endAnnouncement: station-event-bluespace-generic-ftl-end-announcement
     earliestStart: 80
     minimumPlayers: 45
     weight: 1
-    startDelay: 10
     duration: 1800
     maxDuration: 2400
     maxOccurrences: 1 # Only once per shift possible
   - type: BluespaceErrorRule
-    gridPath: /Maps/_NF/Bluespace/bloodmoon.yml
+    gridPaths:
+      - /Maps/_NF/Bluespace/bloodmoon.yml
     rewardFactor: 0.5 # Filler to make the bank go up
+
+- type: entity
+  id: BluespaceBrokenMcDelivery
+  parent: BaseStationEventShortDelay
+  noSpawn: true
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-bluespace-generic-ftl-start-announcement
+    startAudio:
+      path: /Audio/Misc/notice1.ogg
+    endAnnouncement: station-event-bluespace-generic-ftl-end-announcement
+    earliestStart: 20
+    maximumPlayers: 20
+    weight: 5
+    duration: 900
+    maxDuration: 1800
+    maxOccurrences: 2 # Only twice per shift possible
+  - type: BluespaceErrorRule
+    gridPaths:
+      - /Maps/_NF/Bluespace/mcevent.yml

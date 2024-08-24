@@ -1,17 +1,5 @@
 - type: entity
   parent: BasePDA
-  id: MailCarrierPDA
-  name: mail carrier PDA
-  description: Hope this doesn't have any... JUNK MAIL.
-  components:
-  - type: Pda
-    id: MailCarrierIDCard
-    state: pda-mailcarrier
-  - type: Icon
-    state: pda-mailcarrier
-
-- type: entity
-  parent: BasePDA
   id: PrisonerPDA
   name: prisoner PDA
   description: Clear, so you can make sure there's nothing being smuggled inside.
@@ -29,7 +17,7 @@
   description: Why isn't it gray?
   components:
   - type: Pda
-    id: ValetIDCard
+    id: ValetNFIDCard # Frontier: ValetIDCard<ValetNFIDCard
     state: pda-valet
   - type: PdaBorderColor
     borderColor: "#860000"
@@ -52,13 +40,16 @@
 
 - type: entity
   parent: BasePDA
-  id: GuardPDA
-  name: guard PDA
+  id: PrisonGuardPDA
+  name: prison guard PDA
   description: Red to hide the stains of prisoner blood.
   components:
   - type: Pda
-    id: GuardIDCard
+    id: PrisonGuardIDCard
     state: pda-security
-  - type: Icon
-    state: pda-guard
-
+  - type: PdaBorderColor
+    borderColor: "#A32D26"
+    accentVColor: "#DFDFDF"
+#  - type: Icon
+#    sprite: _NF/Objects/Devices/pda.rsi
+#    state: pda-guard

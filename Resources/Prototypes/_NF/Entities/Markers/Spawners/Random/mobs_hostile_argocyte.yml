@@ -1,0 +1,113 @@
+# Categorized
+- type: entity
+  name: argocyte spawner
+  id: SpawnMobArgocyteTiny
+  parent: MarkerBase
+  suffix: AI, Hostile, Tiny
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Mobs/Aliens/Argocyte/argocyte_common.rsi
+      state: skitter
+    - state: ai
+  - type: RandomSpawner
+    prototypes:
+    - MobArgocyteSlurvaExpeditions
+    - MobArgocyteBarrierExpeditions
+    - MobArgocyteSkitterExpeditions
+    - MobArgocyteSwiperExpeditions
+    chance: 1
+    offset: 0.0
+
+- type: entity
+  name: argocyte spawner
+  id: SpawnMobArgocyteSmall
+  parent: MarkerBase
+  suffix: AI, Hostile, Small
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Mobs/Aliens/Argocyte/argocyte_common.rsi
+      state: pouncer
+    - state: ai
+  - type: RandomSpawner
+    prototypes:
+    - MobArgocyteMolderExpeditions
+    - MobArgocytePouncerExpeditions
+    - MobArgocyteGliderExpeditions
+    chance: 1
+    offset: 0.0
+
+- type: entity
+  name: argocyte spawner
+  id: SpawnMobArgocyteMedium
+  parent: MarkerBase
+  suffix: AI, Hostile, Medium
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Mobs/Aliens/Argocyte/argocyte_common.rsi
+      state: harvester
+    - state: ai
+  - type: RandomSpawner
+    prototypes:
+    - MobArgocyteHarvesterExpeditions
+    - MobArgocyteCrawlerExpeditions
+    chance: 1
+    offset: 0.0
+
+- type: entity
+  name: argocyte spawner
+  id: SpawnMobArgocyteBig
+  parent: MarkerBase
+  suffix: AI, Hostile, Big
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Mobs/Aliens/Argocyte/argocyte_common.rsi
+      state: enforcer
+    - state: ai
+  - type: RandomSpawner
+    prototypes:
+    - MobArgocyteEnforcerExpeditions
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - MobArgocyteFounderExpeditions
+    rareChance: 0.05
+
+# Full random
+- type: entity
+  name: argocyte spawner
+  id: ArgocyteAISpawner
+  parent: MarkerBase
+  suffix: AI, Hostile
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Mobs/Aliens/Argocyte/argocyte_large.rsi
+      state: founder
+    - sprite: _NF/Markers/general.rsi
+      state: questionmark
+      color: red
+  - type: RandomSpawner
+    prototypes:
+    - MobArgocyteSlurvaExpeditions
+    - MobArgocyteBarrierExpeditions
+    - MobArgocyteSkitterExpeditions
+    - MobArgocyteSwiperExpeditions
+    - MobArgocyteMolderExpeditions
+    - MobArgocytePouncerExpeditions
+    - MobArgocyteGliderExpeditions
+    - MobArgocyteHarvesterExpeditions
+    - MobArgocyteCrawlerExpeditions
+    - MobArgocyteEnforcerExpeditions
+    - MobArgocyteFounderExpeditions
+    rarePrototypes:
+    - MobArgocyteLeviathingExpeditions
+    rareChance: 0.10

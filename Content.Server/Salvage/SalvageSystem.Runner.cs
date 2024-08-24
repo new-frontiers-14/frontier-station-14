@@ -4,20 +4,19 @@ using Content.Server.Salvage.Expeditions;
 using Content.Server.Salvage.Expeditions.Structure;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
-using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Components;
 using Content.Shared.Chat;
-using Content.Shared.Coordinates;
 using Content.Shared.Humanoid;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Salvage.Expeditions;
 using Robust.Shared.Map;
 using Content.Shared.Shuttles.Components;
+using Content.Shared.Localizations;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
-using Robust.Shared.Spawners;
 using Robust.Shared.Utility;
+using Content.Shared.Coordinates;
 
 namespace Content.Server.Salvage;
 
@@ -39,7 +38,7 @@ public sealed partial class SalvageSystem
 
     private void OnConsoleFTLAttempt(ref ConsoleFTLAttemptEvent ev)
     {
-        if (!TryComp<TransformComponent>(ev.Uid, out var xform) ||
+        if (!TryComp(ev.Uid, out TransformComponent? xform) ||
             !TryComp<SalvageExpeditionComponent>(xform.MapUid, out var salvage))
         {
             return;
@@ -110,8 +109,10 @@ public sealed partial class SalvageSystem
 
         Announce(args.MapUid, Loc.GetString("salvage-expedition-announcement-countdown-minutes", ("duration", (component.EndTime - _timing.CurTime).Minutes)));
 
+         var directionLocalization = ContentLocalizationManager.FormatDirection(component.DungeonLocation.GetDir()).ToLower();
+
         if (component.DungeonLocation != Vector2.Zero)
-            Announce(args.MapUid, Loc.GetString("salvage-expedition-announcement-dungeon", ("direction", component.DungeonLocation.GetDir())));
+            Announce(args.MapUid, Loc.GetString("salvage-expedition-announcement-dungeon", ("direction", directionLocalization)));
 
         component.Stage = ExpeditionStage.Running;
         Dirty(component);
@@ -183,16 +184,16 @@ public sealed partial class SalvageSystem
                 Announce(uid, Loc.GetString("salvage-expedition-announcement-countdown-minutes", ("duration", TimeSpan.FromMinutes(5).Minutes)));
             }
             // Auto-FTL out any shuttles
-            else if (remaining < TimeSpan.FromSeconds(ShuttleSystem.DefaultStartupTime) + TimeSpan.FromSeconds(0.5))
+            else if (remaining < TimeSpan.FromSeconds(_shuttle.DefaultStartupTime) + TimeSpan.FromSeconds(0.5))
             {
                 var ftlTime = (float) remaining.TotalSeconds;
 
-                if (remaining < TimeSpan.FromSeconds(ShuttleSystem.DefaultStartupTime))
+                if (remaining < TimeSpan.FromSeconds(_shuttle.DefaultStartupTime))
                 {
                     ftlTime = MathF.Max(0, (float) remaining.TotalSeconds - 0.5f);
                 }
 
-                ftlTime = MathF.Min(ftlTime, ShuttleSystem.DefaultStartupTime);
+                ftlTime = MathF.Min(ftlTime, _shuttle.DefaultStartupTime);
                 var shuttleQuery = AllEntityQuery<ShuttleComponent, TransformComponent>();
 
                 if (TryComp<StationDataComponent>(comp.Station, out var data))
@@ -204,12 +205,51 @@ public sealed partial class SalvageSystem
                             if (shuttleXform.MapUid != uid || HasComp<FTLComponent>(shuttleUid))
                                 continue;
 
-                            //this whole code snippet makes me question humanity. the following code block is a fix for frontier.
+                            // Frontier: try to find a potential destination for ship that doesn't collide with other grids.
                             var mapId = _gameTicker.DefaultMap;
-                            var mapUid = _mapManager.GetMapEntityId(mapId);
-                            var dropLocation = _random.NextVector2(750, 2750);
+                            if (!_mapSystem.TryGetMap(mapId, out var mapUid))
+                            {
+                                Log.Error($"Could not get DefaultMap EntityUID, shuttle {shuttleUid} may be stuck on expedition.");
+                                continue;
+                            }
 
-                            _shuttle.FTLToCoordinates(shuttleUid, shuttle, new EntityCoordinates(mapUid, dropLocation), 0f, 5.5f, 50f);
+                            // Destination generator parameters (move to CVAR?)
+                            int numRetries = 20; // Maximum number of retries
+                            float minDistance = 200f; // Minimum distance from another object, in meters
+                            float minRange = 750f; // Minimum distance from sector centre, in meters
+                            float maxRange = 3500f; // Maximum distance from sector centre, in meters
+
+                            // Get a list of all grid positions on the destination map
+                            List<Vector2> gridCoords = new();
+                            var gridQuery = EntityManager.AllEntityQueryEnumerator<MapGridComponent, TransformComponent>();
+                            while (gridQuery.MoveNext(out var _, out _, out var xform))
+                            {
+                                if (xform.MapID == mapId)
+                                    gridCoords.Add(_transform.GetWorldPosition(xform));
+                            }
+
+                            Vector2 dropLocation = _random.NextVector2(minRange, maxRange);
+                            for (int i = 0; i < numRetries; i++)
+                            {
+                                bool positionIsValid = true;
+                                foreach (var station in gridCoords)
+                                {
+                                    if (Vector2.Distance(station, dropLocation) < minDistance)
+                                    {
+                                        positionIsValid = false;
+                                        break;
+                                    }
+                                }
+
+                                if (positionIsValid)
+                                    break;
+
+                                // No good position yet, pick another random position.
+                                dropLocation = _random.NextVector2(minRange, maxRange);
+                            }
+
+                            _shuttle.FTLToCoordinates(shuttleUid, shuttle, new EntityCoordinates(mapUid.Value, dropLocation), 0f, 5.5f, 50f);
+                            // End Frontier:  try to find a potential destination for ship that doesn't collide with other grids.
                         }
 
                         break;

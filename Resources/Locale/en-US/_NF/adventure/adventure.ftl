@@ -1,5 +1,4 @@
 ## UI
-playtime-deny-reason-not-whitelisted = You need to be whitelisted.
 adventure-list-start = NT Galactic Bank
 adventure-mode-profit-text = made a total profit of: {" "}
 adventure-mode-loss-text = lost a total of: {" "}
@@ -19,8 +18,10 @@ shipyard-rules-default2 =
     Thank you for choosing Nanotrasen Security Forces.
 
 shuttle-ftl-proximity = Nearby objects too massive for FTL!
+shuttle-ftl-recharge = FTL drives still spooling down!
 
 changelog-tab-title-Upstream = Upstream Changelog
+multiauth-already-connected = Already connected to Frontier Official servers.
 
 public-transit-departure = Now departing for {$destination}. Estimated travel time: {$flytime} seconds.
 public-transit-arrival = Thank you for choosing NT Public Transit. Next transfer to {$destination} departs in {$waittime} seconds.

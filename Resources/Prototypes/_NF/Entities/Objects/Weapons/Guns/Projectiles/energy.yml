@@ -1,0 +1,14 @@
+- type: entity
+  parent: BulletDisabler
+  id: BulletDisablerStaminaOnly
+  name: disabler bolt
+  noSpawn: true
+  components:
+  - type: Projectile
+    impactEffect: BulletImpactEffectDisabler
+    damage:
+      types:
+        Heat: 0
+    soundHit:
+      collection: WeakHit
+    forceSound: true

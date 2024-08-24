@@ -1,0 +1,100 @@
+# Salvage expedition objective
+- type: entity
+  parent: CarpStatue
+  id: PunkPartySupplies
+  name: party supply stash
+  description: The only thing that can hold a gang together.
+  components:
+  - type: Sprite
+    layers:
+    - sprite: _NF/Structures/Specific/Punks/partysupplies.rsi
+      state: base
+    - sprite: _NF/Structures/Specific/Punks/partysupplies.rsi
+      state: unshaded
+      map: [ "neon_bit" ]
+      shader: unshaded
+    - sprite: _NF/Structures/Holo/graffiti/simple.rsi
+      state:   holograffiti01
+      map: [ "graffiti" ]
+      shader: unshaded
+      scale: 0.5, 0.5
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Heat
+        damage: 5
+      behaviors:
+      - !type:SolutionExplosionBehavior
+        solution: tank
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Piercing
+        damage: 5
+      behaviors:
+      - !type:SolutionExplosionBehavior
+        solution: tank
+    - trigger:
+        !type:DamageTrigger
+        damage: 10
+      behaviors:
+      - !type:SpillBehavior
+        solution: tank
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        maxVol: 200
+        reagents:
+        - ReagentId: Desoxyephedrine
+          Quantity: 20
+        - ReagentId: THC
+          Quantity: 25
+        - ReagentId: Happiness
+          Quantity: 10
+        - ReagentId: VentCrud
+          Quantity: 15
+        - ReagentId: SpaceDrugs
+          Quantity: 10
+        - ReagentId: Mopwata
+          Quantity: 10
+        - ReagentId: AcidSpit
+          Quantity: 10
+        - ReagentId: Stimulants
+          Quantity: 5
+        - ReagentId: Whiskey
+          Quantity: 95
+  - type: RandomSprite
+    available:
+    - neon_bit:
+        unshaded: CyberpunkNeon
+      graffiti:
+        holograffiti01: CyberpunkNeon
+        holograffiti02: CyberpunkNeon
+        holograffiti03: CyberpunkNeon
+        holograffiti04: CyberpunkNeon
+        holograffiti05: CyberpunkNeon
+        holograffiti06: CyberpunkNeon
+        holograffiti07: CyberpunkNeon
+        holograffiti08: CyberpunkNeon
+        holograffiti09: CyberpunkNeon
+        holograffiti10: CyberpunkNeon
+        holograffiti11: CyberpunkNeon
+        holograffiti12: CyberpunkNeon
+        holograffiti13: CyberpunkNeon
+        holograffiti14: CyberpunkNeon
+        holograffiti15: CyberpunkNeon
+        holograffiti16: CyberpunkNeon
+        holograffiti17: CyberpunkNeon
+        holograffiti18: CyberpunkNeon
+        holograffiti19: CyberpunkNeon
+        holograffiti20: CyberpunkNeon
+        holograffiti21: CyberpunkNeon
+        holograffiti22: CyberpunkNeon

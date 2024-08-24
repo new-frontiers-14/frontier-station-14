@@ -203,6 +203,19 @@ namespace Content.Server.Cloning
             if (_configManager.GetCVar(CCVars.BiomassEasyMode))
                 cloningCost = (int) Math.Round(cloningCost * EasyModeCloningCost);
 
+            // Check if they have the uncloneable trait
+            if (TryComp<UncloneableComponent>(bodyToClone, out _))
+            {
+                if (clonePod.ConnectedConsole != null)
+                {
+                    _chatSystem.TrySendInGameICMessage(clonePod.ConnectedConsole.Value,
+                        Loc.GetString("cloning-console-uncloneable-trait-error"),
+                        InGameICChatType.Speak, false);
+                }
+
+                return false;
+            }
+
             // biomass checks
             var biomassAmount = _material.GetMaterialAmount(uid, clonePod.RequiredMaterial);
 
@@ -237,7 +250,7 @@ namespace Content.Server.Cloning
             }
             // end of genetic damage checks
 
-            var mob = Spawn(speciesPrototype.Prototype, Transform(uid).MapPosition);
+            var mob = Spawn(speciesPrototype.Prototype, _transformSystem.GetMapCoordinates(uid));
             _humanoidSystem.CloneAppearance(bodyToClone, mob);
 
             // bank account transfer

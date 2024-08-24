@@ -19,32 +19,21 @@ namespace Content.Server.Labels
     {
         [Dependency] private readonly ItemSlotsSystem _itemSlotsSystem = default!;
         [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-        [Dependency] private readonly MetaDataSystem _metaData = default!;
-        [Dependency] private readonly TagSystem _tagSystem = default!;
+        [Dependency] private readonly TagSystem _tagSystem = default!; // Frontier
 
         public const string ContainerName = "paper_label";
-        [ValidatePrototypeId<TagPrototype>]
-        private const string PreventTag = "PreventLabel";
+        [ValidatePrototypeId<TagPrototype>] // Frontier: label prevention
+        private const string PreventTag = "PreventLabel"; // Frontier: label prevention
 
         public override void Initialize()
         {
             base.Initialize();
 
-            SubscribeLocalEvent<LabelComponent, MapInitEvent>(OnLabelCompMapInit);
             SubscribeLocalEvent<PaperLabelComponent, ComponentInit>(OnComponentInit);
             SubscribeLocalEvent<PaperLabelComponent, ComponentRemove>(OnComponentRemove);
             SubscribeLocalEvent<PaperLabelComponent, EntInsertedIntoContainerMessage>(OnContainerModified);
             SubscribeLocalEvent<PaperLabelComponent, EntRemovedFromContainerMessage>(OnContainerModified);
             SubscribeLocalEvent<PaperLabelComponent, ExaminedEvent>(OnExamined);
-        }
-
-        private void OnLabelCompMapInit(EntityUid uid, LabelComponent component, MapInitEvent args)
-        {
-            if (!string.IsNullOrEmpty(component.CurrentLabel))
-            {
-                component.CurrentLabel = Loc.GetString(component.CurrentLabel);
-                Dirty(uid, component);
-            }
         }
 
         /// <summary>
@@ -56,32 +45,13 @@ namespace Content.Server.Labels
         /// <param name="metadata">metadata component for resolve</param>
         public override void Label(EntityUid uid, string? text, MetaDataComponent? metadata = null, LabelComponent? label = null)
         {
-            if (!Resolve(uid, ref metadata))
-                return;
-            if (_tagSystem.HasTag(uid, PreventTag)) // DeltaV - Prevent labels on certain items
-                return;
             if (!Resolve(uid, ref label, false))
                 label = EnsureComp<LabelComponent>(uid);
+            if (_tagSystem.HasTag(uid, PreventTag)) // DeltaV - Prevent labels on certain items // Frontier: currently unused - TODO: remove
+                return; // DeltaV
 
-            if (string.IsNullOrEmpty(text))
-            {
-                if (label.OriginalName is null)
-                    return;
-
-                // Remove label
-                _metaData.SetEntityName(uid, label.OriginalName, metadata);
-                label.CurrentLabel = null;
-                label.OriginalName = null;
-
-                Dirty(uid, label);
-
-                return;
-            }
-
-            // Update label
-            label.OriginalName ??= metadata.EntityName;
             label.CurrentLabel = text;
-            _metaData.SetEntityName(uid, $"{label.OriginalName} ({text})", metadata);
+            NameMod.RefreshNameModifiers(uid);
 
             Dirty(uid, label);
         }

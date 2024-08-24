@@ -4,6 +4,7 @@
   color: "#A46106"
   weight: -90
   primary: false
+  editorHidden: true # Frontier
 
 - type: department
   id: Civilian
@@ -42,7 +43,6 @@
   - Quartermaster # Frontier
   - CargoTechnician # Frontier
   - SalvageSpecialist # Frontier
-  enabled: true
 
 - type: department
   id: Command
@@ -58,7 +58,6 @@
   - StationTrafficController # Frontier
   primary: false
   weight: 100
-  enabled: true
 
 - type: department
   id: Engineering
@@ -66,6 +65,7 @@
   color: "#EFB341"
   weight: -94
   primary: false
+  editorHidden: true # Frontier
 
 - type: department
   id: Medical
@@ -73,11 +73,12 @@
   color: "#52B4E9"
   weight: -93
   primary: false
+  editorHidden: true # Frontier
 
 - type: department
   id: Security
   description: department-Security-description
-  color: "#DE3A3A"
+  color: "#5C7D4D" # Frontier: DE3A3A<5C7D4D
   weight: 20
   roles:
   - Detective # Frontier - No Longer Usable
@@ -94,7 +95,6 @@
   - Bailiff # Frontier
   - Sheriff # Frontier
   - SeniorOfficer # Frontier
-  enabled: true
 
 - type: department
   id: Science
@@ -102,6 +102,7 @@
   color: "#D381C9"
   weight: -92
   primary: false
+  editorHidden: true # Frontier
 
 - type: department
   id: Specific
@@ -109,10 +110,11 @@
   color: "#9FED58"
   weight: -91
   primary: false
+  editorHidden: true # Frontier
 
 - type: department
   id: Antag
-  description: department-Security-description
+  description: department-Antag-description
   color: "#DE3A3A"
   weight: -11
   roles:
@@ -120,4 +122,3 @@
   - PirateFirstMate
   - Pirate
   - Prisoner ##nyano
-  enabled: true

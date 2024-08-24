@@ -21,17 +21,12 @@
     - RitualDagger
     - Machete
     - ButchCleaver
-    - WeaponCrusherGlaive
     - SpearBone
     chance: 1.0
     offset: 0.0
     rarePrototypes:
-    - UnholyHalberd
-    - EldritchBlade
-    - Katana
-    - FireAxe
-    - BrokenBottle
-    rareChance: 0.01
+    - SpawnInhandMeleeWeaponBloodCultHigh
+    rareChance: 0.05
 
 - type: entity
   name: random melee weapon
@@ -62,9 +57,29 @@
     chance: 1.0
     offset: 0.0
     rarePrototypes:
-    - RitualDagger
-    - Machete
-    - ButchCleaver
-    - WeaponCrusherGlaive
-    - BrokenBottle
+    - SpawnInhandMeleeWeaponBloodCultLow
     rareChance: 0.01
+
+- type: entity
+  name: ascended cultist summons
+  suffix: AI, Hostile
+  noSpawn: true
+  id: SpawnMobBloodCultistAscendedSummons
+  parent: MarkerBase
+  components:
+  - type: Ammo
+    muzzleFlash: null
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+      - sprite: _NF/Mobs/BloodCult/drainedone.rsi
+        state: drained
+  - type: RandomSpawner
+    prototypes:
+    - MobBloodCultDrainedOne
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - MobBloodCultShade
+    rareChance: 0.05

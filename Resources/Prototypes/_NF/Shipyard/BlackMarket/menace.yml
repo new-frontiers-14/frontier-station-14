@@ -27,10 +27,9 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Mail Truck {1}' # Fake name eh?
+          mapNameTemplate: 'Parcel {1}' # Fake name eh?
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
         - type: StationJobs
-          overflowJobs: []
           availableJobs: {}

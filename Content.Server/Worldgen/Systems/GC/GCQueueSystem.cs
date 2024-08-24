@@ -1,10 +1,9 @@
-using System.Linq;
+﻿using System.Linq;
 using Content.Server.Worldgen.Components.GC;
 using Content.Server.Worldgen.Prototypes;
 using Content.Shared.CCVar;
 using JetBrains.Annotations;
 using Robust.Shared.Configuration;
-using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
@@ -19,7 +18,6 @@ public sealed class GCQueueSystem : EntitySystem
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
 
     [ViewVariables] private TimeSpan _maximumProcessTime = TimeSpan.Zero;
 
@@ -72,32 +70,6 @@ public sealed class GCQueueSystem : EntitySystem
     /// <param name="e">Entity to GC.</param>
     public void TryGCEntity(EntityUid e)
     {
-        if (!EntityManager.TryGetComponent<TransformComponent>(e, out var transform))
-        {
-            Log.Error("Entity was missing transform component");
-            return;
-        }
-
-        if (transform.GridUid == null)
-        {
-            Log.Error("Entity has no associated grid?");
-            return;
-        }
-
-        foreach (var player in Filter.Empty().AddInGrid(transform.GridUid.Value, EntityManager).Recipients)
-        {
-            if (player.AttachedEntity.HasValue)
-            {
-                var playerEntityUid = player.AttachedEntity.Value;
-                if (HasComp<GCAbleObjectComponent>(playerEntityUid))
-                {
-                    // Mobs are NEVER immune (even if they're from a different grid, they shouldn't be here)
-                    continue;
-                }
-                _transform.SetParent(playerEntityUid, transform.ParentUid);
-            }
-        }
-
         if (!TryComp<GCAbleObjectComponent>(e, out var comp))
         {
             QueueDel(e); // not our problem :)

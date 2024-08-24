@@ -168,6 +168,7 @@
   physicalDesc: reagent-physical-desc-fizzy
   flavor: medicine
   color: "#0091ff"
+  worksOnTheDead: true # Frontier
   plantMetabolism:
   - !type:PlantAdjustToxins
     amount: -5
@@ -175,7 +176,7 @@
     amount: 5
   - !type:PlantCryoxadone {}
   metabolisms:
-    Medicine:
+    Cryogenic: # Frontier: Medicine<Cryogenic
       effects:
         - !type:HealthChange
           conditions:
@@ -185,10 +186,12 @@
           damage:
           # todo scale with temp like SS13
             groups:
-              Airloss: -6
-              Brute: -4
-              Burn: -6
-              Toxin: -4
+              Airloss: -10 # Frontier: -6<-10
+              # Brute: -4 # Frontier
+              # Burn: -6 # Frontier
+              # Toxin: -4 # Frontier
+        - !type:ModifyBloodLevel # Frontier
+          amount: 5 # Frontier
 
 - type: reagent
   id: Doxarubixadone
@@ -198,8 +201,9 @@
   physicalDesc: reagent-physical-desc-bubbling
   flavor: medicine
   color: "#32cd32"
+  worksOnTheDead: true # Frontier
   metabolisms:
-    Medicine:
+    Cryogenic: # Frontier: Medicine<Cryogenic
       effects:
         - !type:HealthChange
           conditions:
@@ -207,7 +211,9 @@
             max: 213.0
           damage:
             types:
-             Cellular: -2
+             Cellular: -4 # Frontier: -2<-4
+            groups: # Frontier
+                Brute: 1 # Frontier
 
 - type: reagent
   id: Dermaline
@@ -1159,7 +1165,7 @@
   color: "#b5e36d"
   worksOnTheDead: true
   metabolisms:
-    Medicine:
+    Cryogenic: # Frontier: Medicine<Cryogenic
       effects:
         - !type:ReduceRotting
           seconds: 20
@@ -1186,7 +1192,7 @@
     amount: 5
   - !type:PlantCryoxadone {}
   metabolisms:
-    Medicine:
+    Cryogenic: # Frontier: Medicine<Cryogenic
       effects:
         - !type:HealthChange
           conditions:
@@ -1209,7 +1215,7 @@
   color: "#89f77f"
   worksOnTheDead: true
   metabolisms:
-    Medicine:
+    Cryogenic: # Frontier: Medicine<Cryogenic
       effects:
       - !type:HealthChange
         conditions:
@@ -1219,6 +1225,7 @@
           types:
             Heat: -3.0
             Shock: -3.0
+            Cold: -3.0 # Frontier
             Caustic: -1.0
 
 - type: reagent

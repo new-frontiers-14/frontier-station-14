@@ -8,13 +8,13 @@ using System.Text.Json.Nodes;
 using System.Threading.Tasks;
 using Content.Server.Administration.Systems;
 using Content.Server.GameTicking;
-using Content.Server.GameTicking.Components;
 using Content.Server.GameTicking.Presets;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Maps;
 using Content.Server.RoundEnd;
 using Content.Shared.Administration.Managers;
 using Content.Shared.CCVar;
+using Content.Shared.GameTicking.Components;
 using Content.Shared.Prototypes;
 using Robust.Server.ServerStatus;
 using Robust.Shared.Asynchronous;
@@ -41,7 +41,7 @@ public sealed partial class ServerApi : IPostInjectInit
         CCVars.PanicBunkerCountDeadminnedAdmins.Name,
         CCVars.PanicBunkerShowReason.Name,
         CCVars.PanicBunkerMinAccountAge.Name,
-        CCVars.PanicBunkerMinOverallHours.Name,
+        CCVars.PanicBunkerMinOverallMinutes.Name,
         CCVars.PanicBunkerCustomReason.Name,
     ];
 
@@ -67,7 +67,7 @@ public sealed partial class ServerApi : IPostInjectInit
         _sawmill = _logManager.GetSawmill("serverApi");
 
         // Get
-        RegisterActorHandler(HttpMethod.Get, "/admin/info", InfoHandler);
+        RegisterHandler(HttpMethod.Get, "/admin/info", InfoHandler); //frontier - not sure why this action needs an actor
         RegisterHandler(HttpMethod.Get, "/admin/game_rules", GetGameRules);
         RegisterHandler(HttpMethod.Get, "/admin/presets", GetPresets);
 
@@ -452,7 +452,7 @@ public sealed partial class ServerApi : IPostInjectInit
     /// <summary>
     ///     Handles fetching information.
     /// </summary>
-    private async Task InfoHandler(IStatusHandlerContext context, Actor actor)
+    private async Task InfoHandler(IStatusHandlerContext context) //frontier - we had an actor here and never used it so we drop it for now until im compelled to re-add it
     {
         /*
         Information to display

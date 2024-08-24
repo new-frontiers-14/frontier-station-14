@@ -2,6 +2,9 @@
   id: MailCarrierClothingUniformJumpsuitMailCarrier
   equipment: MailCarrierClothingUniformJumpsuitMailCarrier
   price: 0
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: PantsCapableNF
 
 - type: startingGear
   id: MailCarrierClothingUniformJumpsuitMailCarrier
@@ -17,3 +20,19 @@
   id: MailCarrierClothingUniformJumpskirtMailCarrier
   equipment:
     jumpsuit: ClothingUniformJumpskirtMailCarrier
+
+- type: loadout
+  id: MailCarrierClothingUniformJumpsuitMilitaryMailCarrier
+  equipment: MailCarrierClothingUniformJumpsuitMilitaryMailCarrier
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: ContractorT3
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: PantsCapableNF
+  price: 650
+
+- type: startingGear
+  id: MailCarrierClothingUniformJumpsuitMilitaryMailCarrier
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitMilitaryMailCarrier

@@ -1,0 +1,39 @@
+# Bullet
+- type: entity
+  parent: BaseBulletTrigger
+  id: BulletRocketMiniNF
+  name: mini rocket
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+      - state: grenade
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 1 # max 15 per tile
+    intensitySlope: 1
+    totalIntensity: 2 # 30 total damage to distribute over tiles
+    maxTileBreak: 1
+  - type: PointLight
+    radius: 3.5
+    color: orange
+    energy: 0.5
+
+# Cartridge
+- type: entity
+  id: CartridgeRocketMiniNF
+  name: minirocket
+  parent: BaseItem
+  components:
+    - type: Item
+      size: Small
+    - type: CartridgeAmmo
+      proto: BulletRocketMiniNF
+      deleteOnSpawn: true
+    - type: Sprite
+      sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+      state: frag
+    - type: StaticPrice
+      price: 20

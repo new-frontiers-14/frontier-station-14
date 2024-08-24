@@ -4,10 +4,16 @@
   description: job-description-contractor
   playTimeTracker: JobPassenger
   startingGear: ContractorGear
-  icon: "JobIconPassenger"
+  icon: "JobIconContractor"
   supervisors: job-supervisors-hire
+  weight: -1 # Prioritize station & department jobs
+  displayWeight: 40 # Top
   accessGroups: # Frontier
   - GeneralAccess # Frontier
+  special:
+  - !type:GiveItemOnHolidaySpecial
+    holiday: FrontierBirthday
+    prototype: FrontierBirthdayGift
 
 - type: startingGear
   id: ContractorGear

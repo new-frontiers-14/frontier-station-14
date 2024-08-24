@@ -7,10 +7,13 @@ using Content.Server.NPC.Queries.Queries;
 using Content.Server.Nutrition.Components;
 using Content.Server.Nutrition.EntitySystems;
 using Content.Server.Storage.Components;
+using Content.Shared.Damage;
 using Content.Shared.Examine;
 using Content.Shared.Fluids.Components;
 using Content.Shared.Hands.Components;
 using Content.Shared.Inventory;
+using Content.Shared.Mobs;
+using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.NPC.Systems;
 using Content.Shared.Nutrition.Components;
@@ -19,11 +22,13 @@ using Content.Shared.Tools.Systems;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
+using Content.Shared.Whitelist;
 using Microsoft.Extensions.ObjectPool;
 using Robust.Server.Containers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using System.Linq;
+using Content.Shared.StatusEffect; // Frontier
 
 namespace Content.Server.NPC.Systems;
 
@@ -46,6 +51,9 @@ public sealed class NPCUtilitySystem : EntitySystem
     [Dependency] private readonly SolutionContainerSystem _solutions = default!;
     [Dependency] private readonly WeldableSystem _weldable = default!;
     [Dependency] private readonly ExamineSystemShared _examine = default!;
+    [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private readonly MobThresholdSystem _thresholdSystem = default!;
+    [Dependency] private readonly StatusEffectsSystem _statusEffectsSystem = default!; // Frontier
 
     private EntityQuery<PuddleComponent> _puddleQuery;
     private EntityQuery<TransformComponent> _xformQuery;
@@ -249,7 +257,7 @@ public sealed class NPCUtilitySystem : EntitySystem
                     return 0f;
                 }
 
-                if (heldGun.Whitelist?.IsValid(targetUid, EntityManager) != true)
+                if (_whitelistSystem.IsWhitelistFailOrNull(heldGun.Whitelist, targetUid))
                 {
                     return 0f;
                 }
@@ -260,8 +268,8 @@ public sealed class NPCUtilitySystem : EntitySystem
             {
                 var radius = blackboard.GetValueOrDefault<float>(NPCBlackboard.VisionRadius, EntityManager);
 
-                if (!TryComp<TransformComponent>(targetUid, out var targetXform) ||
-                    !TryComp<TransformComponent>(owner, out var xform))
+                if (!TryComp(targetUid, out TransformComponent? targetXform) ||
+                    !TryComp(owner, out TransformComponent? xform))
                 {
                     return 0f;
                 }
@@ -291,8 +299,14 @@ public sealed class NPCUtilitySystem : EntitySystem
 
                 return (float) ev.Count / ev.Capacity;
             }
-            case TargetHealthCon:
+            case TargetHealthCon con:
             {
+                if (!TryComp(targetUid, out DamageableComponent? damage))
+                    return 0f;
+                if (con.TargetState != MobState.Invalid && _thresholdSystem.TryGetPercentageForState(targetUid, con.TargetState, damage.TotalDamage, out var percentage))
+                    return Math.Clamp((float)(1 - percentage), 0f, 1f);
+                if (_thresholdSystem.TryGetIncapPercentage(targetUid, damage.TotalDamage, out var incapPercentage))
+                    return Math.Clamp((float)(1 - incapPercentage), 0f, 1f);
                 return 0f;
             }
             case TargetInLOSCon:
@@ -308,8 +322,8 @@ public sealed class NPCUtilitySystem : EntitySystem
 
                 if (blackboard.TryGetValue<EntityUid>("Target", out var currentTarget, EntityManager) &&
                     currentTarget == targetUid &&
-                    TryComp<TransformComponent>(owner, out var xform) &&
-                    TryComp<TransformComponent>(targetUid, out var targetXform) &&
+                    TryComp(owner, out TransformComponent? xform) &&
+                    TryComp(targetUid, out TransformComponent? targetXform) &&
                     xform.Coordinates.TryDistance(EntityManager, _transform, targetXform.Coordinates, out var distance) &&
                     distance <= radius + bufferRange)
                 {
@@ -339,6 +353,16 @@ public sealed class NPCUtilitySystem : EntitySystem
 
                 return 0f;
             }
+            // Frontier: stun conditions
+            case TargetIsNotStunnedCon:
+            {
+                return _statusEffectsSystem.HasStatusEffect(targetUid, "Stun") ? 0f : 1f;
+            }
+            case TargetIsStunnedCon:
+            {
+                return _statusEffectsSystem.HasStatusEffect(targetUid, "Stun") ? 1f : 0f;
+            }
+            // End Frontier
             default:
                 throw new NotImplementedException();
         }
@@ -372,7 +396,7 @@ public sealed class NPCUtilitySystem : EntitySystem
                 if (compQuery.Components.Count == 0)
                     return;
 
-                var mapPos = _xformQuery.GetComponent(owner).MapPosition;
+                var mapPos = _transform.GetMapCoordinates(owner, xform: _xformQuery.GetComponent(owner));
                 _compTypes.Clear();
                 var i = -1;
                 EntityPrototype.ComponentRegistryEntry compZero = default!;

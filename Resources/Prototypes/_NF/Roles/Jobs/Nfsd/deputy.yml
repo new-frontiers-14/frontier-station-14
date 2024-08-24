@@ -12,15 +12,26 @@
   startingGear: DeputyGear
   icon: "JobIconSecurityOfficer" # Frontier
   supervisors: job-supervisors-sergeant
+  weight: 130 # Frontier
+  displayWeight: 40 # Frontier
   canBeAntag: false
   accessGroups: # Frontier
   - GeneralNfsdAccess # Frontier
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant, TrackingImplant ]
+  - !type:GiveItemOnHolidaySpecial
+    holiday: FrontierBirthday
+    prototype: FrontierBirthdayGift
 
 - type: startingGear
   id: DeputyGear
   equipment:
     ears: ClothingHeadsetNfsdBrown # Frontier
     pocket1: WeaponPistolMk58 #WeaponPistolMk58Nonlethal
+  storage:
+    back:
+    - Flash
+    - MagazinePistol
+    - MagazinePistolRubber
+    - FrontierUplinkCoin10

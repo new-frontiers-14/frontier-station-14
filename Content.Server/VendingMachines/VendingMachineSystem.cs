@@ -25,6 +25,7 @@ using Content.Shared.Popups;
 using Content.Shared.Throwing;
 using Content.Shared.UserInterface;
 using Content.Shared.VendingMachines;
+using Content.Shared.Wall;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
@@ -34,6 +35,8 @@ using Content.Shared.Tools.Components;
 using Content.Shared.Tools.Systems;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Utility;
+using Content.Server.Administration.Logs; // Frontier
+using Content.Shared.Database; // Frontier
 
 namespace Content.Server.VendingMachines
 {
@@ -57,7 +60,11 @@ namespace Content.Server.VendingMachines
 
         [Dependency] private readonly DamageableSystem _damageableSystem = default!;
 
+        [Dependency] private readonly IAdminLogManager _adminLogger = default!; // Frontier
+
         private ISawmill _sawmill = default!;
+
+        private const float WallVendEjectDistanceFromWall = 1f;
 
         public override void Initialize()
         {
@@ -67,8 +74,8 @@ namespace Content.Server.VendingMachines
             SubscribeLocalEvent<VendingMachineComponent, PowerChangedEvent>(OnPowerChanged);
             SubscribeLocalEvent<VendingMachineComponent, BreakageEventArgs>(OnBreak);
             SubscribeLocalEvent<VendingMachineComponent, GotEmaggedEvent>(OnEmagged);
-            SubscribeLocalEvent<VendingMachineComponent, GotUnEmaggedEvent>(OnUnEmagged); // Frontier - Added DEMUG
-            SubscribeLocalEvent<VendingMachineComponent, DamageChangedEvent>(OnDamage);
+            SubscribeLocalEvent<VendingMachineComponent, GotUnEmaggedEvent>(OnUnEmagged); // Frontier - Added DEMAG
+            SubscribeLocalEvent<VendingMachineComponent, DamageChangedEvent>(OnDamageChanged);
             SubscribeLocalEvent<VendingMachineComponent, PriceCalculationEvent>(OnVendingPrice);
             SubscribeLocalEvent<VendingMachineComponent, EmpPulseEvent>(OnEmpPulse);
 
@@ -202,8 +209,15 @@ namespace Content.Server.VendingMachines
             args.Handled = component.EmaggedInventory.Count > 0;
         }
 
-        private void OnDamage(EntityUid uid, VendingMachineComponent component, DamageChangedEvent args)
+        private void OnDamageChanged(EntityUid uid, VendingMachineComponent component, DamageChangedEvent args)
         {
+            if (!args.DamageIncreased && component.Broken)
+            {
+                component.Broken = false;
+                TryUpdateVisualState(uid, component);
+                return;
+            }
+
             if (component.Broken || component.DispenseOnHitCoolingDown ||
                 component.DispenseOnHitChance == null || args.DamageDelta == null)
                 return;
@@ -343,7 +357,13 @@ namespace Content.Server.VendingMachines
             if (TryComp(uid, out SpeakOnUIClosedComponent? speakComponent))
                 _speakOnUIClosed.TrySetFlag((uid, speakComponent));
 
-            entry.Amount--;
+            // New Frontiers - Unlimited vending - support items with unlimited vending stock.
+            // This code is licensed under AGPLv3. See AGPLv3.txt
+
+            // Infinite supplies must stay infinite.
+            if (entry.Amount != uint.MaxValue)
+                entry.Amount--;
+            // End of modified code
             UpdateVendingMachineInterfaceState(uid, vendComponent, balance);
             TryUpdateVisualState(uid, vendComponent);
             Audio.PlayPvs(vendComponent.SoundVend, uid);
@@ -380,35 +400,38 @@ namespace Content.Server.VendingMachines
 
             var totalPrice = (int) price;
 
-            // This block exists to allow the VendPrice flag to set a vending machine item price.
+            // Frontier: if any price has a vendor price, explicitly use its value - higher OR lower, over others.
             var priceVend = _pricing.GetEstimatedVendPrice(proto);
-            if (priceVend != null && totalPrice <= (int) priceVend)
+            if (priceVend > 0.0) // if vending price exists, overwrite it.
                 totalPrice = (int) priceVend;
-            // This block exists to allow the VendPrice flag to set a vending machine item price.
-
-            if (totalPrice > bank.Balance)
-            {
-                _popupSystem.PopupEntity(Loc.GetString("bank-insufficient-funds"), uid);
-                Deny(uid, component);
-                return;
-            }
+            // End Frontier
 
             if (IsAuthorized(uid, sender, component))
             {
-                if (_bankSystem.TryBankWithdraw(sender, totalPrice))
+                // Frontier
+                if (totalPrice > bank.Balance)
                 {
-                    if (TryEjectVendorItem(uid, type, itemId, component.CanShoot, bank.Balance, component))
-                    {
-                        var stationQuery = EntityQuery<StationBankAccountComponent>();
-
-                        foreach (var stationBankComp in stationQuery)
-                        {
-                            _cargo.DeductFunds(stationBankComp, (int) -(Math.Floor(totalPrice * 0.45f)));
-                        }
-
-                        UpdateVendingMachineInterfaceState(uid, component, bank.Balance);
-                    }
+                    _popupSystem.PopupEntity(Loc.GetString("bank-insufficient-funds"), uid);
+                    Deny(uid, component);
+                    return;
                 }
+
+                if (TryEjectVendorItem(uid, type, itemId, component.CanShoot, bank.Balance, component))
+                {
+                    var stationQuery = EntityQuery<StationBankAccountComponent>();
+
+                    foreach (var stationBankComp in stationQuery)
+                    {
+                        _cargo.DeductFunds(stationBankComp, (int) -(Math.Floor(totalPrice * 0.45f)));
+                    }
+
+                    _bankSystem.TryBankWithdraw(sender, totalPrice);
+                    UpdateVendingMachineInterfaceState(uid, component, bank.Balance);
+
+                    _adminLogger.Add(LogType.Action, LogImpact.Low, // Frontier - Vending machine log
+                        $"{ToPrettyString(sender):user} bought from [vendingMachine:{ToPrettyString(uid!)}, product:{proto.Name}, cost:{totalPrice},  with balance at {bank.Balance}"); // Frontier - Vending machine log
+                }
+                // Frontier
             }
         }
 
@@ -511,7 +534,20 @@ namespace Content.Server.VendingMachines
                 return;
             }
 
-            var ent = Spawn(vendComponent.NextItemToEject, Transform(uid).Coordinates);
+            // Default spawn coordinates
+            var spawnCoordinates = Transform(uid).Coordinates;
+
+            //Make sure the wallvends spawn outside of the wall.
+
+            if (TryComp<WallMountComponent>(uid, out var wallMountComponent))
+            {
+
+                var offset = wallMountComponent.Direction.ToWorldVec() * WallVendEjectDistanceFromWall;
+                spawnCoordinates = spawnCoordinates.Offset(offset);
+            }
+
+            var ent = Spawn(vendComponent.NextItemToEject, spawnCoordinates);
+
             if (vendComponent.ThrowNextItem)
             {
                 var range = vendComponent.NonLimitedEjectRange;

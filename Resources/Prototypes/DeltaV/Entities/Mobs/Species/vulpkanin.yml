@@ -7,12 +7,10 @@
   components:
   - type: HumanoidAppearance
     species: Vulpkanin
-  - type: Carriable # Carrying system from nyanotrasen.
   - type: Hunger
-    starvationDamage:
-      types:
-        Cold: 0.05
-        Bloodloss: 0.1
+  - type: Carriable # Carrying system from nyanotrasen.
+  - type: Inventory # Allows vulps to wear properly shaped helmets
+    speciesId: vulpkanin
   - type: Thirst
   - type: Icon
     sprite: DeltaV/Mobs/Species/Vulpkanin/parts.rsi
@@ -20,9 +18,6 @@
   - type: Body
     prototype: Vulpkanin
     requiredLegs: 2
-  - type: VulpLanguageSpeaker
-  - type: VulpLangaugeListener
-  - type: VulpGiveTranslator
   - type: Speech
     speechSounds: Vulpkanin
     speechVerb: Vulpkanin
@@ -33,8 +28,6 @@
     - Whine
     - Howl
     - Awoo
-  - type: Inventory
-    speciesId: vulpkanin
   - type: Sprite
     netsync: false
     noRot: true
@@ -86,36 +79,36 @@
       - map: [ "head" ]
       - map: [ "pocket1" ]
       - map: [ "pocket2" ]
-  - type: Damageable
-    damageContainer: Biological
-    damageModifierSet: Vulpkanin
+      - map: [ "clownedon" ] # Dynamically generated
+        sprite: "DeltaV/Effects/creampie.rsi"
+        state: "creampie_vulpkanin"
+        visible: false
   - type: MeleeWeapon
+    hidden: true
     soundHit:
-      path: /Audio/Weapons/slash.ogg
+      path: /Audio/Weapons/pierce.ogg
     angle: 30
     animation: WeaponArcClaw
     damage:
       types:
-        Slash: 4
-        Blunt: 1
-  - type: InteractionPopup
+        Blunt: 2
+        Slash: 3
+  - type: Perishable
+  - type: Damageable
+    damageModifierSet: Vulpkanin
+  - type: TemperatureProtection
+    coefficient: 0.1
+  - type: Vocal
+    sounds:
+      Male: MaleVulpkanin
+      Female: FemaleVulpkanin
+      Unsexed: MaleVulpkanin
+  - type: DogVision
+  - type: InteractionPopup # Frontier
     successChance: 1
     interactSuccessString: pat-success-generic
     interactSuccessSound: /Audio/Effects/thudswoosh.ogg
     messagePerceivedByOthers: pat-success-generic-others
-  - type: Perishable
-  - type: Temperature
-    heatDamageThreshold: 335
-    coldDamageThreshold: 200
-    currentTemperature: 310.15
-    specificHeat: 46
-    coldDamage:
-      types:
-        Cold : 0.05
-  - type: Flammable
-    damage:
-      types:
-        Heat: 1.5 # Rip Fur
   - type: SizeAttributeWhitelist # Frontier
     short: true
     shortscale: 0.8

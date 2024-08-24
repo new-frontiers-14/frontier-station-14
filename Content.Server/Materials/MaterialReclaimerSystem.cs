@@ -85,7 +85,8 @@ public sealed class MaterialReclaimerSystem : SharedMaterialReclaimerSystem
             return;
 
         // if we're trying to get a solution out of the reclaimer, don't destroy it
-        if (_solutionContainer.TryGetSolution(entity.Owner, entity.Comp.SolutionContainerId, out _, out var outputSolution) && outputSolution.Contents.Any())
+        // if (_solutionContainer.TryGetSolution(entity.Owner, entity.Comp.SolutionContainerId, out _, out var outputSolution) && outputSolution.Contents.Any()) // Frontier: previous implementation
+        if (_solutionContainer.TryGetSolution(entity.Owner, entity.Comp.SolutionContainerId, out _, out var outputSolution)) // Frontier: do not trash solution containers if the reclaimer is empty
         {
             if (TryComp<SolutionContainerManagerComponent>(args.Used, out var managerComponent) &&
                 _solutionContainer.EnumerateSolutions((args.Used, managerComponent)).Any(s => s.Solution.Comp.Solution.AvailableVolume > 0))

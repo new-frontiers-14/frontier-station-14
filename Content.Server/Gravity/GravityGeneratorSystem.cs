@@ -43,7 +43,7 @@ namespace Content.Server.Gravity
         private void OnComponentShutdown(EntityUid uid, GravityGeneratorComponent component, ComponentShutdown args)
         {
             if (component.GravityActive &&
-                TryComp<TransformComponent>(uid, out var xform) &&
+                TryComp(uid, out TransformComponent? xform) &&
                 TryComp(xform.ParentUid, out GravityComponent? gravity))
             {
                 component.GravityActive = false;
@@ -116,7 +116,7 @@ namespace Content.Server.Gravity
                     UpdateUI(ent, chargeRate);
 
                 if (active != gravGen.GravityActive &&
-                    TryComp<TransformComponent>(uid, out var xform) &&
+                    TryComp(uid, out TransformComponent? xform) &&
                     TryComp<GravityComponent>(xform.ParentUid, out var gravity))
                 {
                     // Force it on in the faster path.

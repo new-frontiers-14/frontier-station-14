@@ -1,44 +1,42 @@
-# Frontier - duplicate, using NF variant
-#- type: entity
-#  name: handheld mass scanner
-#  parent: [ BaseItem, PowerCellSlotSmallItem]
-#  id: HandHeldMassScanner
-#  description: A hand-held mass scanner.
-#  components:
-#  - type: Item
-#  - type: Sprite
-#    sprite: Objects/Tools/handheld_mass_scanner.rsi
-#    state: icon
-#    layers:
-#      - state: icon
-#      - state: scanner
-#        shader: unshaded
-#        visible: true
-#        map: [ "enum.PowerDeviceVisualLayers.Powered" ]
-#  - type: RadarConsole
-#    maxRange: 64
-#    followEntity: true
-#  - type: Appearance
-#  - type: GenericVisualizer
-#    visuals:
-#      enum.PowerCellSlotVisuals.Enabled:
-#        enum.PowerDeviceVisualLayers.Powered:
-#          True: { visible: true }
-#          False: { visible: false }
-#  - type: PowerCellDraw
-#    drawRate: 3
-#    useRate: 100
-#  - type: ActivatableUIRequiresPowerCell
-#  - type: ActivatableUI
-#    key: enum.RadarConsoleUiKey.Key
-#    inHandsOnly: true
-#    singleUser: true
-#  - type: UserInterface
-#    interfaces:
-#      enum.RadarConsoleUiKey.Key:
-#        type: RadarConsoleBoundUserInterface
-#  - type: StaticPrice
-#    price: 150
+- type: entity
+  name: handheld mass scanner
+  parent: BaseHandheldComputer
+  id: HandHeldMassScanner
+  description: A hand-held mass scanner.
+  components:
+  - type: Item
+  - type: Sprite
+    sprite: Objects/Tools/handheld_mass_scanner.rsi
+    state: icon
+    layers:
+      - state: icon
+      - state: scanner
+        shader: unshaded
+        visible: true
+        map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+  - type: RadarConsole
+    maxRange: 64
+    followEntity: true
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.PowerCellSlotVisuals.Enabled:
+        enum.PowerDeviceVisualLayers.Powered:
+          True: { visible: true }
+          False: { visible: false }
+  - type: PowerCellDraw
+    drawRate: 3
+    useRate: 100
+  - type: ActivatableUI
+    key: enum.RadarConsoleUiKey.Key
+    inHandsOnly: true
+    singleUser: true
+  - type: UserInterface
+    interfaces:
+      enum.RadarConsoleUiKey.Key:
+        type: RadarConsoleBoundUserInterface
+  - type: StaticPrice
+    price: 150
 
 - type: entity
   id: HandHeldMassScannerEmpty

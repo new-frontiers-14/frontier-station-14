@@ -5,7 +5,6 @@ cargo-console-menu-account-name-none-text = None
 cargo-console-menu-shuttle-name-label = Shuttle name:{" "}
 cargo-console-menu-shuttle-name-none-text = None
 cargo-console-menu-points-label = Spesos:{" "}
-cargo-console-menu-points-amount = ${$amount}
 cargo-console-menu-shuttle-status-label = Shuttle status:{" "}
 cargo-console-menu-shuttle-status-away-text = Away
 cargo-console-menu-order-capacity-label = Order capacity:{" "}
@@ -36,6 +35,7 @@ cargo-console-paper-print-name = Order #{$orderNumber}
 cargo-console-paper-print-text =
     Order #{$orderNumber}
     Item: {$itemName}
+    Quantity: {$orderQuantity}
     Requested by: {$requester}
     Reason: {$reason}
     Approved by: {$approver}

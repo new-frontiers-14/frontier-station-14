@@ -1,0 +1,99 @@
+- type: entity
+  parent: MarkerBase
+  id: BasePacifiedZone
+  name: pacified zone
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _NF/Markers/pacifiedzone.rsi
+    layers:
+      - sprite: Markers/cross.rsi
+        state: pink
+      - state: pacified_zone
+  - type: PacifiedZoneGenerator
+    radius: 10
+    immuneRoles:
+      - Bailiff
+      - Brigmedic
+      - Cadet
+      - Deputy
+      - DetectiveNF
+      - SeniorOfficer
+      - Sheriff
+      - SecurityGuard
+      - StationRepresentative
+      - StationTrafficController
+
+- type: entity
+  parent: BasePacifiedZone
+  id: PacifiedZone10
+  description: Players will not be able to attack living things within a 10 block radius of this point.
+  suffix: 10
+
+- type: entity
+  parent: BasePacifiedZone
+  id: PacifiedZone20
+  description: Players will not be able to attack living things within a 20 block radius of this point.
+  suffix: 20
+  components:
+  - type: PacifiedZoneGenerator
+    radius: 20
+
+- type: entity
+  parent: BasePacifiedZone
+  id: PacifiedZone50
+  description: Players will not be able to attack living things within a 50 block radius of this point.
+  suffix: 50
+  components:
+  - type: PacifiedZoneGenerator
+    radius: 50
+
+- type: entity
+  parent: BasePacifiedZone
+  id: PacifiedZone100
+  description: Players will not be able to attack living things within a 100 block radius of this point.
+  suffix: 100
+  components:
+  - type: PacifiedZoneGenerator
+    radius: 100
+
+- type: entity
+  parent: BasePacifiedZone
+  id: BasePacifiedZonePanicBunker
+  abstract: true
+  components:
+  - type: PacifiedZoneGenerator
+    immunePlaytime: 36000 # 10h
+
+- type: entity
+  parent: BasePacifiedZonePanicBunker
+  id: PacifiedZonePanicBunker10
+  description: New players will not be able to attack living things within a 10 block radius of this point.
+  suffix: Panic Bunker, 10
+
+- type: entity
+  parent: BasePacifiedZonePanicBunker
+  id: PacifiedZonePanicBunker20
+  description: New players will not be able to attack living things within a 20 block radius of this point.
+  suffix: Panic Bunker, 20
+  components:
+  - type: PacifiedZoneGenerator
+    radius: 20
+
+- type: entity
+  parent: BasePacifiedZonePanicBunker
+  id: PacifiedZonePanicBunker50
+  description: New players will not be able to attack living things within a 50 block radius of this point.
+  suffix: Panic Bunker, 50
+  components:
+  - type: PacifiedZoneGenerator
+    radius: 50
+
+- type: entity
+  parent: BasePacifiedZonePanicBunker
+  id: PacifiedZonePanicBunker100
+  description: New players will not be able to attack living things within a 100 block radius of this point.
+  suffix: Panic Bunker, 100
+  components:
+  - type: PacifiedZoneGenerator
+    radius: 100

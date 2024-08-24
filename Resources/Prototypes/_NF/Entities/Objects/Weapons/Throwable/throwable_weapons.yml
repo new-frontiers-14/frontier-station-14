@@ -1,8 +1,46 @@
+# BASE
 - type: entity
   parent:
   - Dart
   - ConjuredObject10 # Despawns in 10 seconds
-  id: DartSindicateImpedrezene
+  id: MobHostileThrowableWeapon
+  name: dart
+  description: Try not to prick yourself.
+  abstract: true
+  noSpawn: true
+  components:
+  - type: Item
+    size: Tiny
+  - type: SpaceGarbage
+  - type: Ammo
+    muzzleFlash: null
+  - type: ChemicalAmmo
+  - type: EmbeddableProjectile
+    deleteOnRemove: true
+    sound: /Audio/Weapons/star_hit.ogg
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Piercing: 6
+  - type: SolutionContainerManager
+    solutions:
+      ammo:
+        maxVol: 2
+  - type: SolutionTransfer
+    maxTransferAmount: 4
+  - type: SolutionInjectOnEmbed
+    transferAmount: 2
+    solution: ammo
+  - type: InjectableSolution
+    solution: ammo
+  - type: MeleeChemicalInjector
+    solution: ammo
+
+# CHILDREN
+## Syndicate
+- type: entity
+  parent: MobHostileThrowableWeapon
+  id: DartSyndicateImpedrezene
   name: syndicate impedrezene dart
   description: Try not to prick yourself.
   noSpawn: true
@@ -10,13 +48,6 @@
   - type: Sprite
     sprite: Objects/Fun/Darts/dart_red.rsi
     state: icon
-  - type: EmbeddableProjectile
-    removalTime: 0.5
-    sound: /Audio/Weapons/star_hit.ogg
-  - type: DamageOtherOnHit
-    damage:
-      types:
-        Blunt: 4
   - type: SolutionContainerManager
     solutions:
       ammo:
@@ -24,19 +55,10 @@
         reagents:
         - ReagentId: Impedrezene
           Quantity: 2
-  - type: RefillableSolution
-    solution: ammo
-  - type: DrainableSolution
-    solution: ammo
-  - type: SolutionInjectOnEmbed
-    transferAmount: 2
-    solution: melee
-  - type: InjectableSolution
-    solution: ammo
 
 - type: entity # 4 hits to KO a spaceman
-  parent: DartSindicateImpedrezene
-  id: DartSindicateTranquilizer
+  parent: DartSyndicateImpedrezene
+  id: DartSyndicateTranquilizer
   name: syndicate tranquilizer dart
   noSpawn: true
   components:
@@ -47,6 +69,56 @@
         reagents:
         - ReagentId: ChloralHydrate
           Quantity: 3
-  - type: SolutionInjectOnEmbed
-    transferAmount: 3
-    solution: melee
+
+## Aberrant flesh
+- type: entity
+  parent: Dart
+  id: DartAberrantFleshHorrorSpikeGuidebook
+  name: bone spike
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: _NF/Mobs/Aliens/flesh.rsi
+    state: spike
+
+- type: entity
+  parent: MobHostileThrowableWeapon
+  id: DartAberrantFleshHorrorSpike
+  name: bone spike
+  noSpawn: true
+  components:
+  - type: ThrowingAngle
+    angle: 90
+  - type: Sprite
+    sprite: _NF/Mobs/Aliens/flesh.rsi
+    state: spike
+  - type: SolutionContainerManager
+    solutions:
+      ammo:
+        maxVol: 3
+        reagents:
+        - ReagentId: GastroToxin
+          Quantity: 3
+
+- type: entity
+  id: DartAberrantFleshHorrorSpikeCluster
+  name: bone spike
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: _NF/Mobs/Aliens/flesh.rsi
+    state: spike
+  - type: CartridgeAmmo
+    muzzleFlash: null
+    deleteOnSpawn: true
+    proto: DartAberrantFleshHorrorSpikeSpread
+
+- type: entity
+  id: DartAberrantFleshHorrorSpikeSpread
+  parent: DartAberrantFleshHorrorSpike
+  noSpawn: true
+  components:
+  - type: ProjectileSpread
+    proto: DartAberrantFleshHorrorSpike
+    count: 3
+    spread: 25

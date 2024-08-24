@@ -1,9 +1,8 @@
 using Content.Server.Administration;
 using Content.Server.Database;
-using Content.Server.Players.PlayTimeTracking;
+using Content.Server.Players.JobWhitelist; // Frontier
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
-using Content.Shared.Players;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Console;
@@ -14,6 +13,7 @@ namespace Content.Server.Whitelist;
 [AdminCommand(AdminFlags.Ban)]
 public sealed class AddWhitelistCommand : LocalizedCommands
 {
+    [Dependency] private readonly JobWhitelistManager _jobWhitelist = default!; // Frontier
     public override string Command => "whitelistadd";
 
     public override async void Execute(IConsoleShell shell, string argStr, string[] args)
@@ -27,8 +27,6 @@ public sealed class AddWhitelistCommand : LocalizedCommands
 
         var db = IoCManager.Resolve<IServerDbManager>();
         var loc = IoCManager.Resolve<IPlayerLocator>();
-        var player = IoCManager.Resolve<IPlayerManager>();
-        var playtime = IoCManager.Resolve<PlayTimeTrackingManager>();
 
         var name = string.Join(' ', args).Trim();
         var data = await loc.LookupIdByNameAsync(name);
@@ -43,15 +41,7 @@ public sealed class AddWhitelistCommand : LocalizedCommands
                 return;
             }
 
-            await db.AddToWhitelistAsync(guid);
-
-            // Nyanotrasen - Update whitelist status in player data.
-            if (player.TryGetPlayerDataByUsername(name, out var playerData) &&
-                player.TryGetSessionByUsername(name, out var session))
-            {
-                playerData.ContentData()!.Whitelisted = true;
-                playtime.QueueSendWhitelist(session);
-            }
+            _jobWhitelist.AddGlobalWhitelist(guid);
 
             shell.WriteLine(Loc.GetString("command-whitelistadd-added", ("username", data.Username)));
             return;
@@ -74,6 +64,7 @@ public sealed class AddWhitelistCommand : LocalizedCommands
 [AdminCommand(AdminFlags.Ban)]
 public sealed class RemoveWhitelistCommand : LocalizedCommands
 {
+    [Dependency] private readonly JobWhitelistManager _jobWhitelist = default!; // Frontier
     public override string Command => "whitelistremove";
 
     public override async void Execute(IConsoleShell shell, string argStr, string[] args)
@@ -87,8 +78,6 @@ public sealed class RemoveWhitelistCommand : LocalizedCommands
 
         var db = IoCManager.Resolve<IServerDbManager>();
         var loc = IoCManager.Resolve<IPlayerLocator>();
-        var player = IoCManager.Resolve<IPlayerManager>();
-        var playtime = IoCManager.Resolve<PlayTimeTrackingManager>();
 
         var name = string.Join(' ', args).Trim();
         var data = await loc.LookupIdByNameAsync(name);
@@ -103,15 +92,7 @@ public sealed class RemoveWhitelistCommand : LocalizedCommands
                 return;
             }
 
-            await db.RemoveFromWhitelistAsync(guid);
-
-            // Nyanotrasen - Update whitelist status in player data.
-            if (player.TryGetPlayerDataByUsername(name, out var playerData) &&
-                player.TryGetSessionByUsername(name, out var session))
-            {
-                playerData.ContentData()!.Whitelisted = false;
-                playtime.QueueSendWhitelist(session);
-            }
+            _jobWhitelist.RemoveGlobalWhitelist(guid);
 
             shell.WriteLine(Loc.GetString("command-whitelistremove-removed", ("username", data.Username)));
             return;
@@ -134,6 +115,7 @@ public sealed class RemoveWhitelistCommand : LocalizedCommands
 [AdminCommand(AdminFlags.Ban)]
 public sealed class KickNonWhitelistedCommand : LocalizedCommands
 {
+    [Dependency] private readonly JobWhitelistManager _jobWhitelist = default!; // Frontier
     public override string Command => "kicknonwhitelisted";
 
     public override async void Execute(IConsoleShell shell, string argStr, string[] args)
@@ -159,7 +141,7 @@ public sealed class KickNonWhitelistedCommand : LocalizedCommands
             if (await db.GetAdminDataForAsync(session.UserId) is not null)
                 continue;
 
-            if (!await db.GetWhitelistStatusAsync(session.UserId))
+            if (!_jobWhitelist.IsGloballyWhitelisted(session.UserId)) // Frontier: use JobWhitelistManager as a wrapper.
             {
                 net.DisconnectChannel(session.Channel, Loc.GetString("whitelist-not-whitelisted"));
             }

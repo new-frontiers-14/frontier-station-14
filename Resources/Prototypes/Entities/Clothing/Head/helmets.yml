@@ -22,6 +22,10 @@
   - type: Tag
     tags:
     - WhitelistChameleon
+  - type: HideLayerClothing
+    slots:
+    - HeadTop
+    - HeadSide
 
 #Mercenary Helmet
 - type: entity
@@ -60,7 +64,7 @@
 
 #Syndicate SWAT Helmet
 - type: entity
-  parent: ClothingHeadHelmetSwat
+  parent: [ClothingHeadHelmetSwat, ContrabandClothing] # Frontier: added ContrabandClothing as parent
   id: ClothingHeadHelmetSwatSyndicate
   name: SWAT helmet
   suffix: Syndicate
@@ -70,7 +74,6 @@
     sprite: Clothing/Head/Helmets/swat_syndicate.rsi
   - type: Clothing
     sprite: Clothing/Head/Helmets/swat_syndicate.rsi
-  - type: Contraband #frontier
 
 #Light Riot Helmet
 - type: entity
@@ -115,6 +118,8 @@
     slots:
     - Hair
     - Snout
+    - HeadTop
+    - HeadSide
 
 #Janitorial Bombsuit Helmet
 - type: entity
@@ -131,7 +136,7 @@
 
 #Cult Helmet
 - type: entity
-  parent: ClothingHeadBase
+  parent: [ClothingHeadBase, ContrabandClothing] # Frontier: added ContrabandClothing as parent
   id: ClothingHeadHelmetCult
   name: cult helmet
   description: A robust, evil-looking cult helmet.
@@ -148,7 +153,6 @@
         Slash: 0.8
         Piercing: 0.9
         Heat: 0.9
-  - type: Contraband #frontier
 
 #Space Ninja Helmet
 - type: entity
@@ -170,6 +174,8 @@
     slots:
     - Hair
     - Snout
+    - HeadTop
+    - HeadSide
 
 #Templar Helmet
 - type: entity
@@ -199,7 +205,7 @@
 
 #Wizard Helmet
 - type: entity
-  parent: ClothingHeadBase
+  parent: [ClothingHeadBase, ContrabandClothing] # Frontier: added ContrabandClothing as parent
   id: ClothingHeadHelmetWizardHelm
   name: wizard helm
   description: Strange-looking helmet that most certainly belongs to a real magic user.
@@ -210,7 +216,6 @@
     sprite: Clothing/Head/Helmets/wizardhelm.rsi
   - type: IngestionBlocker
   - type: IdentityBlocker
-  - type: Contraband #frontier
 
 #Fire Helmet
 - type: entity
@@ -227,6 +232,8 @@
   - type: IngestionBlocker
   - type: TemperatureProtection
     coefficient: 0.005
+  - type: FireProtection
+    reduction: 0.15 # not fully sealed so less protection
   - type: IdentityBlocker
   - type: Tag
     tags:
@@ -235,6 +242,8 @@
     slots:
     - Hair
     - Snout
+    - HeadTop
+    - HeadSide
 
 #Atmos Fire Helmet
 - type: entity
@@ -251,6 +260,8 @@
   - type: IngestionBlocker
   - type: TemperatureProtection
     coefficient: 0.005
+  - type: FireProtection
+    reduction: 0.2
   - type: PressureProtection
     highPressureMultiplier: 0.25
     lowPressureMultiplier: 1000
@@ -262,6 +273,9 @@
     slots:
     - Hair
     - Snout
+    - HeadTop
+    - HeadSide
+  - type: BreathMask
 
 #Chitinous Helmet
 - type: entity

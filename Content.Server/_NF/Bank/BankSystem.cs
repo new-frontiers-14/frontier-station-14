@@ -62,10 +62,10 @@ public sealed partial class BankSystem : EntitySystem
             bank.Balance,
             profile.Appearance,
             profile.SpawnPriority,
-            profile.JobPriorities,
+            new Dictionary<ProtoId<JobPrototype>, JobPriority>(profile.JobPriorities),
             profile.PreferenceUnavailable,
-            profile.AntagPreferences,
-            profile.TraitPreferences,
+            new HashSet<ProtoId<AntagPrototype>>(profile.AntagPreferences),
+            new HashSet<ProtoId<TraitPrototype>>(profile.TraitPreferences),
             new Dictionary<string, RoleLoadout>(profile.Loadouts));
 
         args.State = new BankAccountComponentState

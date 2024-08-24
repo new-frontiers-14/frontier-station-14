@@ -10,16 +10,16 @@
 #
 - type: vessel
   id: Pioneer
-  name: NC Pioneer
+  name: LVHI Pioneer
   description: A cargo container outfitted to be space-capable and equipped for salvaging and mining either on its own or as part of a fleet.
-  price: 14650
+  price: 12200 # ~10600$ on mapinit + ~1600$ from 15% markup
   category: Small
   group: Civilian
   shuttlePath: /Maps/_NF/Shuttles/pioneer.yml
 
 - type: gameMap
   id: Pioneer
-  mapName: 'NC Pioneer'
+  mapName: 'Pioneer'
   mapPath: /Maps/_NF/Shuttles/pioneer.yml
   minPlayers: 0
   stations:
@@ -32,7 +32,7 @@
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
         - type: StationJobs
-          overflowJobs: []
           availableJobs:
+            Contractor: [ 0, 0 ]
             Pilot: [ 0, 0 ]
-            SalvageSpecialist: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]

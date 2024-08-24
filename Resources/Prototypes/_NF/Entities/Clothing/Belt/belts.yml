@@ -1,5 +1,7 @@
 - type: entity
-  parent: ClothingBeltStorageBase
+  parent:
+  - ClothingBeltStorageBase
+  - ContrabandClothing
   id: ClothingBeltArcadia
   name: arcadia webbing
   description: A webbing created by Arcadia Industries. Seems very capable of fitting many items.
@@ -19,38 +21,6 @@
     sprite: _NF/Clothing/Belt/chaplain_sash.rsi
   - type: Clothing
     sprite: _NF/Clothing/Belt/chaplain_sash.rsi
-  - type: Storage
-    maxItemSize: Small
-    grid:
-    - 0,0,3,2
-    # TODO: Fill this out more.
-    whitelist:
-      tags:
-      - ObjectOfSpiritualSignificance
-      - Censer
-      - ReligiousSymbol
-      - Crucifix
-      - WeaponMeleeStake
-      - Book
-      - Smokable
-      - Matchstick
-      - Flashlight
-      - Trash
-      - CigPack
-      - Radio
-      - Crayon
-      - Bottle
-      - DrinkBottle
-      components:
-      - BibleComponent
-      - Drink
-      - Smokable
-      - MeleeWeapon
-      - HandheldLight
-      - ExpendableLight
-      - ToggleableLightVisuals
-      - Paper
-      - Stamp
   - type: ItemMapper
     mapLayers:
       book:
@@ -67,6 +37,7 @@
           - DrinkBottle
           components:
           - Drink
+          - Hypospray
       censer:
         whitelist:
           tags:
@@ -117,29 +88,3 @@
   - type: Tag
     tags:
     - CatWearable # Frontier
-
-- type: entity
-  parent: ClothingBeltBase
-  id: ClothingBeltCultForceField
-  name: cult runic belt buckle
-  components:
-  - type: Sprite
-    sprite: _NF/Clothing/Belt/cult_force_field.rsi
-    shader: unshaded
-  - type: Clothing
-    sprite: _NF/Clothing/Belt/cult_force_field.rsi
-  - type: Reflect
-    enabled: true
-    reflectProb: .1
-    spread: 90
-
-- type: entity
-  parent: ClothingBeltStorageBase
-  id: ClothingBeltCultWebbing
-  name: cult webbing
-  description: A webbing with pockets lined with waterproof (water, huh?)  material.
-  components:
-  - type: Sprite
-    sprite: _NF/Clothing/Belt/cult_webbing.rsi
-  - type: Clothing
-    sprite: _NF/Clothing/Belt/cult_webbing.rsi

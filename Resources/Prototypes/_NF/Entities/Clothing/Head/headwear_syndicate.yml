@@ -1,0 +1,72 @@
+# Syndicate Bomb Suit Helmet
+- type: entity
+  parent:
+  - ClothingHeadHelmetBombSuit
+  - ContrabandClothing
+  id: ClothingHeadHelmetBombSuitSyndie
+  name: syndicate bombsuit helmet
+  components:
+  - type: Tag
+    tags:
+    - HidesHair
+  - type: Sprite
+    sprite: _NF/Clothing/Head/Helmets/syndicate_bombsuit.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Head/Helmets/syndicate_bombsuit.rsi
+
+# Syndicate armored bio suit hood
+- type: entity
+  parent:
+  - ClothingHeadHatHoodBioGeneral
+  - ContrabandClothing
+  id: ClothingHeadHatHoodBioArmoredSyndicate
+  name: bio hood
+  suffix: Syndicate
+  description: A hood that protects the head and face from biological contaminants. As well as user's identity.
+  components:
+  - type: IdentityBlocker
+  - type: Tag
+    tags:
+    - HidesHair
+  - type: Sprite
+    sprite: _NF/Clothing/Head/Hoods/Bio/syndicate.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Head/Hoods/Bio/syndicate.rsi
+
+# Syndicate NPC unremoveable headwear for looks only
+- type: entity
+  parent:
+  - ClothingHeadHelmetHardsuitSyndieElite
+  - ContrabandClothing
+  id: ClothingHeadHelmetHardsuitSyndieEliteUnremoveable
+  noSpawn: true
+  components:
+  - type: Unremoveable
+
+- type: entity
+  parent:
+  - ClothingHeadHelmetHardsuitSyndie
+  - ContrabandClothing
+  id: ClothingHeadHelmetHardsuitSyndieUnremoveable
+  noSpawn: true
+  components:
+  - type: Unremoveable
+
+- type: entity
+  parent:
+  - ClothingHeadHelmetHardsuitSyndieMedic
+  - ContrabandClothing
+  id: ClothingHeadHelmetHardsuitSyndieMedicUnremoveable
+  noSpawn: true
+  components:
+  - type: Unremoveable
+
+- type: entity
+  parent:
+  - ClothingHeadHatHoodWinterSyndie
+  - ContrabandClothing
+  id: ClothingHeadHatHoodWinterSyndieUnremoveable
+  noSpawn: true
+  name: syndicate coat hood
+  components:
+  - type: Unremoveable

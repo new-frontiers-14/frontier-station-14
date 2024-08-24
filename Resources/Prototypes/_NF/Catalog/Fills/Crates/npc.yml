@@ -72,5 +72,14 @@
 
 - type: entity
   id: PetCarrierNPCEmotionalSupportSafe
-  parent: [FillNPCEmotionalSupportSafe, PetCarrier]
-  name: emotional support pet in a pet carrier
+  parent: [PetCarrier, FillNPCEmotionalSupportSafe]
+
+- type: entity
+  id: CrateNPCPoultryCube
+  parent: CrateGenericSteel
+  name: poultry cube crate
+  description: A crate containing single box of poultry cubes.
+  components:
+  - type: StorageFill
+    contents:
+      - id: PoultryCubeBox

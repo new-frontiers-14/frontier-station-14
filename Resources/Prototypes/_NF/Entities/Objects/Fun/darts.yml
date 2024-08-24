@@ -1,0 +1,13 @@
+- type: entity
+  name: dartboard
+  id: TargetDartsFlatpack
+  parent: BaseNFFlatpack
+  description: A flatpack used for constructing a dart board.
+  components:
+  - type: Flatpack
+    entity: TargetDarts
+  - type: Sprite
+    layers:
+    - state: service_tray
+  - type: StaticPrice
+    price: 40

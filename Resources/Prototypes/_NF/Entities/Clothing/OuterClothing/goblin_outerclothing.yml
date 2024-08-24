@@ -1,0 +1,45 @@
+- type: entity
+  parent: ClothingOuterStorageToggleableBase
+  id: ClothingOuterCoatRobesGoblin
+  name: goblin robes
+  description: Traditional robes of goblinkind. Very regal.
+  components:
+  - type: Tag
+    tags:
+    - ClothingRobesGoblin
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Coats/goblin_robes.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Coats/goblin_robes.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHatHoodGoblin
+    slot: head
+  - type: Construction
+    graph: ClothingOuterCoatRobesGoblinGraph
+    node: ClothingOuterCoatRobesGoblinNode
+
+- type: entity
+  parent: ClothingOuterEVASuitBaseNF
+  id: ClothingOuterEVASuitGoblin
+  name: goblin EVA suit
+  description: Traditional robes of goblinkind made EVA-capable. Very regal.
+  components:
+  - type: Tag
+    tags:
+    - SuitEVA
+    - WhitelistChameleon
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Suits/goblin_eva_robes.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Suits/goblin_eva_robes.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadEVAHelmetGoblin
+    slot: head
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:ContainerSlot {}
+  - type: StaticPrice
+    price: 65
+  - type: Construction
+    graph: ClothingOuterEVASuitGoblinGraph
+    node: ClothingOuterEVASuitGoblinNode

@@ -15,15 +15,29 @@
   startingGear: SeniorOfficerGear
   icon: "JobIconSeniorOfficer" # Frontier
   supervisors: job-supervisors-bailiff
+  weight: 140 # Frontier
+  displayWeight: 50 # Frontier
   canBeAntag: false
+  access:
+  - Sergeant # Frontier
   accessGroups: # Frontier
   - GeneralNfsdAccess # Frontier
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant, TrackingImplant ]
+  - !type:GiveItemOnHolidaySpecial
+    holiday: FrontierBirthday
+    prototype: FrontierBirthdayGift
 
 - type: startingGear
   id: SeniorOfficerGear
   equipment:
     ears: ClothingHeadsetAltNfsdBrown # Frontier
     pocket1: WeaponPistolMk58 #WeaponPistolMk58Nonlethal
+  storage:
+    back:
+    - Flash
+    - MagazinePistol
+    - MagazinePistolRubber
+    - BaseSecurityUplinkRadioOfficer
+    - NfsdSergeantShipVoucher

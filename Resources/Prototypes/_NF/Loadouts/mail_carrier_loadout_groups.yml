@@ -4,6 +4,10 @@
   loadouts:
   - MailCarrierClothingUniformJumpsuitMailCarrier
   - MailCarrierClothingUniformJumpskirtMailCarrier
+  - MailCarrierClothingUniformJumpsuitMilitaryMailCarrier
+  fallbacks:
+  - MailCarrierClothingUniformJumpsuitMailCarrier
+  - MailCarrierClothingUniformJumpskirtMailCarrier
 
 - type: loadoutGroup
   id: MailCarrierOuterClothing
@@ -12,3 +16,14 @@
   loadouts:
   - MailCarrierClothingOuterWinterCoatMail
   - MailCarrierClothingOuterEVASuitMailman
+
+- type: loadoutGroup
+  id: MailCarrierBackpack
+  name: loadout-group-contractor-backpack
+  loadouts:
+  - MailCarrierClothingBackpackMessengerMailCarrier
+  - MailCarrierClothingBackpackClippy
+  subgroups:
+  - ContractorBackpack
+  fallbacks:
+  - MailCarrierClothingBackpackMessengerMailCarrier

@@ -24,3 +24,31 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
+
+- type: entity
+  parent: Holoprojector
+  id: HoloGraffitiProjector
+  name: holograffiti projector
+  description: Tag up the sharp end, let 'em know you were here.
+  components:
+  - type: HolosignProjector
+    signProto: SpawnerHoloGraffitiRandom
+    chargeUse: 60
+  - type: Sprite
+    sprite: _NF/Objects/Devices/Holoprojectors/graffiti.rsi
+    state: icon
+  - type: Tag
+    tags:
+    - HolofanProjector
+  - type: StaticPrice
+    price: 80
+
+- type: entity
+  parent: HoloGraffitiProjector
+  id: HoloGraffitiProjectorEmpty
+  suffix: Empty
+  components:
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default

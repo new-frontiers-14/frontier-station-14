@@ -4,16 +4,10 @@
   loadouts:
   - StationRepClothingUniformJumpsuitSr
   - StationRepClothingUniformJumpskirtSr
-
-- type: loadoutGroup
-  id: StationRepBackpack
-  name: loadout-group-contractor-backpack
-  loadouts:
-  - StationRepClothingBackpackSrFilled
-  - StationRepClothingBackpackDuffelSrFilled
-  - StationRepClothingBackpackSatchelSrFilled
-  - StationRepClothingBackpackMessengerSrFilled
-  - StationRepClothingBackpackIanFilled #We put the ian bag here so its not default, we also let SR pick a bag out of drip concerns.
+  - StationRepClothingUniformJumpsuitMilitarySr
+  fallbacks:
+  - StationRepClothingUniformJumpsuitSr
+  - StationRepClothingUniformJumpskirtSr
   
 - type: loadoutGroup
   id: StationRepOuterClothing
@@ -24,6 +18,17 @@
   - StationRepClothingOuterJacketSr
   - ContractorClothingOuterCoatExpensive #We let them drip out a little if they want
   - ContractorClothingOuterCoatSpaceAsshole
+  
+- type: loadoutGroup
+  id: StationRepBackpack
+  name: loadout-group-contractor-backpack
+  loadouts:
+  - StationRepClothingBackpackMessengerSr
+  - StationRepClothingBackpackIan
+  subgroups:
+  - ContractorBackpack
+  fallbacks:
+  - StationRepClothingBackpackMessengerSr
 
 - type: loadoutGroup
   id: StationRepHead
@@ -31,69 +36,9 @@
   minLimit: 0
   loadouts:
   - StationRepClothingHeadHatSrCap
-  - ContractorClothingHeadHelmetEVALarge
-  - ContractorClothingHeadBandBlack
-  - ContractorClothingHeadBandBlue
-  - ContractorClothingHeadBandGreen
-  - ContractorClothingHeadBandRed
-  - ContractorClothingHeadBandSkull
-  - ContractorClothingHeadHatGreysoft
-  - ContractorClothingHeadHatBluesoft
-  - ContractorClothingHeadHatYellowsoft
-  - ContractorClothingHeadHatGreensoft
-  - ContractorClothingHeadHatOrangesoft
-  - ContractorClothingHeadHatRedsoft
-  - ContractorClothingHeadHatBlacksoft
-  - ContractorClothingHeadHatPurplesoft
-  - ContractorClothingHeadHatCorpsoft
-  - ContractorClothingHeadBandGrey
-  - ContractorClothingHeadHatUshanka
-  - ContractorClothingHeadHatHardhatYellow
-  - ContractorClothingHeadHatChef
-  - ContractorClothingHeadHatCargosoft
-  - ContractorClothingHeadBandBotany
-  - ContractorClothingHeadHatHoodBioScientist
-  - ContractorClothingHeadRastaHat
-  - ContractorClothingHeadHatSombrero
-  - ContractorClothingHeadFishCap
-  - ContractorClothingHeadHatTrucker
-  - ContractorClothingHeadHatCasa
-  - ContractorClothingHeadHatBowlerHat
-  - ContractorClothingHeadHatGreyFlatcap
-  - ContractorClothingHeadHatCapcap
-  - ContractorClothingHeadHatParamedicsoft
-  - ContractorClothingHeadNurseHat
-  - ContractorClothingHeadHatBeretMedic
-  - ContractorClothingHeadHatSurgcapGreen
-  - ContractorClothingHeadHatSurgcapBlue
-  - ContractorClothingHeadHatSurgcapPurple
-  - ContractorClothingHeadTinfoil
-  - ContractorClothingHeadHatBeretRND
-  - ContractorClothingHeadHatBeretEngineering
-  - ContractorClothingHeadHatBeretSeniorPhysician
-  - ContractorClothingHeadHatBeretCmo
-  - ContractorClothingHeadHatBeretQM
-  - ContractorClothingHeadHatQMsoft
-  - ContractorClothingHeadHatCardinal
-  - ContractorClothingHeadHatHoodNunHood
-  - ContractorClothingHeadSafari
-  - ContractorClothingHeadHatJester
-  - ContractorClothingHeadHatJesterAlt
-  - ContractorClothingHeadHatBeret
-  - ContractorClothingHeadHatBeretFrench
-  - ContractorClothingHeadHatMimesoft
-  - ContractorClothingHeadHatPilgrim
-  - ContractorClothingHeadHatStrawHat
-  - ContractorClothingHeadHatCowboyBlack
-  - ContractorClothingHeadHatCowboyBrown
-  - ContractorClothingHeadHatCowboyGrey
-  - ContractorClothingHeadHatCowboyBountyHunter
-  - ContractorClothingHeadHatBH
-  - ContractorClothingHeadHatCowboyRed
-  - ContractorClothingHeadHatCowboyWhite
-  - ContractorClothingHeadHatWideBrimmed
-  - ContractorClothingHeadBandGold
-  - ContractorClothingHeadHatTophat
+  - StationRepClothingHeadHatSrBeret
+  subgroups:
+  - ContractorHead
   
 - type: loadoutGroup
   id: StationRepGloves

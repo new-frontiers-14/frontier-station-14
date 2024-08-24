@@ -6,6 +6,7 @@ using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Database;
+using Content.Shared.EntityEffects;
 using Content.Shared.FixedPoint;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
@@ -67,6 +68,9 @@ namespace Content.Server.Body.Systems
             Entity<MetabolizerComponent> ent,
             ref ApplyMetabolicMultiplierEvent args)
         {
+            // TODO REFACTOR THIS
+            // This will slowly drift over time due to floating point errors.
+            // Instead, raise an event with the base rates and allow modifiers to get applied to it.
             if (args.Apply)
             {
                 ent.Comp.UpdateInterval *= args.Multiplier;
@@ -159,9 +163,10 @@ namespace Content.Server.Body.Systems
                     continue;
                 }
 
-                // we're done here entirely if this is true
-                if (reagents >= ent.Comp1.MaxReagentsProcessable)
-                    return;
+                // Frontier: all cryogenic reagents in the solution should be processed, others should be limited (buff cryo meds)
+                if (reagents >= ent.Comp1.MaxReagentsProcessable && !proto.Metabolisms.ContainsKey("Cryogenic"))
+                    continue;
+                // End Frontier
 
 
                 // loop over all our groups and see which ones apply
@@ -190,8 +195,7 @@ namespace Content.Server.Body.Systems
                     }
 
                     var actualEntity = ent.Comp2?.Body ?? solutionEntityUid.Value;
-                    var args = new ReagentEffectArgs(actualEntity, ent, solution, proto, mostToRemove,
-                        EntityManager, null, scale);
+                    var args = new EntityEffectReagentArgs(actualEntity, EntityManager, ent, solution, mostToRemove, proto, null, scale);
 
                     // do all effects, if conditions apply
                     foreach (var effect in entry.Effects)
@@ -219,9 +223,10 @@ namespace Content.Server.Body.Systems
                 if (mostToRemove > FixedPoint2.Zero)
                 {
                     solution.RemoveReagent(reagent, mostToRemove);
-
-                    // We have processed a reagant, so count it towards the cap
-                    reagents += 1;
+                    // Frontier: do not count cryogenics chems against the reagent limit (to buff cryo meds)
+                    if (!proto.Metabolisms.ContainsKey("Cryogenic"))
+                        reagents++;
+                    // End Frontier
                 }
             }
 
@@ -229,6 +234,9 @@ namespace Content.Server.Body.Systems
         }
     }
 
+    // TODO REFACTOR THIS
+    // This will cause rates to slowly drift over time due to floating point errors.
+    // Instead, the system that raised this should trigger an update and subscribe to get-modifier events.
     [ByRefEvent]
     public readonly record struct ApplyMetabolicMultiplierEvent(
         EntityUid Uid,

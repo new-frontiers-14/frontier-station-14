@@ -9,7 +9,6 @@
   - type: Clothing
     sprite: _NF/Clothing/Eyes/Hud/nfsd_hud.rsi
 
-
 - type: entity
   parent: ClothingEyesBase
   id: ClothingEyesHudMail
@@ -20,9 +19,10 @@
     sprite: _NF/Clothing/Eyes/Hud/mail.rsi
   - type: Clothing
     sprite: _NF/Clothing/Eyes/Hud/mail.rsi
+  - type: ShowJobIcons
 
 - type: entity
-  parent: ClothingEyesBase
+  parent: [ClothingEyesHudMedical, ClothingEyesHudNfsd]
   id: ClothingEyesHudNfsdMed
   name: brigmedic hud
   description: An eye display that looks like a mixture of medical and nfsd huds.
@@ -34,9 +34,6 @@
   - type: Construction
     graph: HudMedSec
     node: medsecHud
-  - type: ShowHealthBars
-    damageContainers:
-    - Biological
 
 - type: entity
   parent: ClothingEyesHudSecurity
@@ -49,3 +46,12 @@
   - type: Clothing
     sprite: _NF/Clothing/Eyes/Hud/nfsd_patch.rsi
 
+- type: entity
+  parent: ClothingEyesHudSecurity
+  id: ClothingEyesHudBountyHunter
+  name: bounty hunter hud
+  description: A heads-up display that scans the humanoids in view and provides accurate data about their ID status, criminal records and health status.
+  components:
+  - type: ShowHealthBars
+    damageContainers:
+    - Biological

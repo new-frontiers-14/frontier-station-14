@@ -1,14 +1,14 @@
 - type: reagent
-  id : Tramoxadone
-  name: reagent-name-tramoxadone
+  id : Traumoxadone
+  name: reagent-name-traumoxadone
   group: Medicine
-  desc: reagent-desc-tramoxadone
+  desc: reagent-desc-traumoxadone
   physicalDesc: reagent-physical-desc-soothing
   flavor: medicine
   color: "#880077"
   worksOnTheDead: true
   metabolisms:
-    Medicine:
+    Cryogenic:
       effects:
       - !type:HealthChange
         conditions:
@@ -19,3 +19,28 @@
             Blunt: -2
             Piercing: -2
             Slash: -2
+
+- type: reagent
+  id: Stelloxadone
+  name: reagent-name-stelloxadone
+  group: Medicine
+  desc: reagent-desc-stelloxadone
+  physicalDesc: reagent-physical-desc-soothing
+  flavor: medicine
+  color: "#FFA861"
+  worksOnTheDead: true
+  metabolisms:
+    Cryogenic:
+      effects:
+      - !type:HealthChange
+        conditions:
+        - !type:Temperature
+          max: 213.0
+        damage:
+          types:
+            Poison: -6
+            Radiation: -3
+            Cellular: 1
+          groups:
+            Brute: 3
+          

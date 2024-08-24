@@ -61,12 +61,10 @@
   components:
   - type: SubdermalImplant
     permanent: true
-#    implantAction: ActionActivateDeathAcidifier
   - type: TriggerOnMobstateChange
     mobState:
     - Dead
     - Critical
-#  - type: TriggerImplantAction
   - type: GibOnTrigger
     deleteItems: true
     deleteOrgans: true
@@ -77,3 +75,35 @@
     - SubdermalImplant
     - HideContextMenu
     - DeathAcidifier
+
+- type: entity
+  parent: BaseSubdermalImplant
+  id: GibAcidifierImplantNF
+  name: gib-acidifier implant
+  description: This implant melts the user and their equipment upon gibbing.
+  noSpawn: true
+  components:
+  - type: SubdermalImplant
+    permanent: true
+  - type: TriggerOnBeingGibbed
+  - type: GibOnTrigger
+    deleteItems: true
+    deleteOrgans: true
+  - type: SpawnOnTrigger
+    proto: Acidifier
+  - type: Tag
+    tags:
+    - SubdermalImplant
+    - HideContextMenu
+    - DeathAcidifier
+
+- type: entity
+  parent: BaseSubdermalImplant
+  id: BibleUserImplant
+  name: faith implant
+  description: This implant binds the user to the gods.
+  noSpawn: true
+  components:
+  - type: SubdermalImplant
+    permanent: true
+  - type: BibleUserImplant

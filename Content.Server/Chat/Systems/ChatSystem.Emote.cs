@@ -4,6 +4,8 @@ using Content.Shared.Speech;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
+using Content.Shared.DeltaV.Harpy;
+
 namespace Content.Server.Chat.Systems;
 
 // emotes using emote prototype
@@ -49,18 +51,20 @@ public partial class ChatSystem
     /// <param name="hideLog">Whether or not this message should appear in the adminlog window</param>
     /// <param name="range">Conceptual range of transmission, if it shows in the chat window, if it shows to far-away ghosts or ghosts at all...</param>
     /// <param name="nameOverride">The name to use for the speaking entity. Usually this should just be modified via <see cref="TransformSpeakerNameEvent"/>. If this is set, the event will not get raised.</param>
+    /// <param name="forceEmote">Bypasses whitelist/blacklist/availibility checks for if the entity can use this emote</param>
     public void TryEmoteWithChat(
         EntityUid source,
         string emoteId,
         ChatTransmitRange range = ChatTransmitRange.Normal,
         bool hideLog = false,
         string? nameOverride = null,
-        bool ignoreActionBlocker = false
+        bool ignoreActionBlocker = false,
+        bool forceEmote = false
         )
     {
         if (!_prototypeManager.TryIndex<EmotePrototype>(emoteId, out var proto))
             return;
-        TryEmoteWithChat(source, proto, range, hideLog: hideLog, nameOverride, ignoreActionBlocker: ignoreActionBlocker);
+        TryEmoteWithChat(source, proto, range, hideLog: hideLog, nameOverride, ignoreActionBlocker: ignoreActionBlocker, forceEmote: forceEmote);
     }
 
     /// <summary>
@@ -72,23 +76,18 @@ public partial class ChatSystem
     /// <param name="hideChat">Whether or not this message should appear in the chat window</param>
     /// <param name="range">Conceptual range of transmission, if it shows in the chat window, if it shows to far-away ghosts or ghosts at all...</param>
     /// <param name="nameOverride">The name to use for the speaking entity. Usually this should just be modified via <see cref="TransformSpeakerNameEvent"/>. If this is set, the event will not get raised.</param>
+    /// <param name="forceEmote">Bypasses whitelist/blacklist/availibility checks for if the entity can use this emote</param>
     public void TryEmoteWithChat(
         EntityUid source,
         EmotePrototype emote,
         ChatTransmitRange range = ChatTransmitRange.Normal,
         bool hideLog = false,
         string? nameOverride = null,
-        bool ignoreActionBlocker = false
+        bool ignoreActionBlocker = false,
+        bool forceEmote = false
         )
     {
-        if (!(emote.Whitelist?.IsValid(source, EntityManager) ?? true))
-            return;
-        if (emote.Blacklist?.IsValid(source, EntityManager) ?? false)
-            return;
-
-        if (!emote.Available &&
-            TryComp<SpeechComponent>(source, out var speech) &&
-            !speech.AllowedEmotes.Contains(emote.ID))
+        if (!forceEmote && !AllowedToUseEmote(source, emote))
             return;
 
         // check if proto has valid message for chat
@@ -157,14 +156,43 @@ public partial class ChatSystem
         _audio.PlayPvs(sound, uid, param);
         return true;
     }
-
+    /// <summary>
+    /// Checks if a valid emote was typed, to play sounds and etc and invokes an event.
+    /// </summary>
+    /// <param name="uid"></param>
+    /// <param name="textInput"></param>
     private void TryEmoteChatInput(EntityUid uid, string textInput)
     {
         var actionLower = textInput.ToLower();
         if (!_wordEmoteDict.TryGetValue(actionLower, out var emote))
             return;
 
+        if (!AllowedToUseEmote(uid, emote))
+            return;
+
         InvokeEmoteEvent(uid, emote);
+    }
+    /// <summary>
+    /// Checks if we can use this emote based on the emotes whitelist, blacklist, and availibility to the entity.
+    /// </summary>
+    /// <param name="source">The entity that is speaking</param>
+    /// <param name="emote">The emote being used</param>
+    /// <returns></returns>
+    private bool AllowedToUseEmote(EntityUid source, EmotePrototype emote)
+    {
+        // New Frontiers - Harpy Mimicry - Allows harpies to mimic other species,
+        //      bypasses whitelist checks
+        // This code is licensed under AGPLv3. See AGPLv3.txt
+        if (!TryComp<SpeechComponent>(source, out var speech) ||
+            !speech.MimicEmotes && (_whitelistSystem.IsWhitelistFail(emote.Whitelist, source) || _whitelistSystem.IsBlacklistPass(emote.Blacklist, source)))
+            return false;
+
+        if (!emote.Available &&
+            !speech.AllowedEmotes.Contains(emote.ID))
+            return false;
+
+        return true;
+        // End of modified code
     }
 
     private void InvokeEmoteEvent(EntityUid uid, EmotePrototype proto)

@@ -31,6 +31,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Toolshed.TypeParsers;
 using System.Xml.Linq;
 using Robust.Shared.Prototypes;
+using Content.Shared.NameModifier.Components;
 
 namespace Content.Server.Fax;
 
@@ -305,8 +306,9 @@ public sealed class FaxSystem : EntitySystem
                     args.Data.TryGetValue(FaxConstants.FaxPaperStampStateData, out string? stampState);
                     args.Data.TryGetValue(FaxConstants.FaxPaperStampedByData, out List<StampDisplayInfo>? stampedBy);
                     args.Data.TryGetValue(FaxConstants.FaxPaperPrototypeData, out string? prototypeId);
+                    args.Data.TryGetValue(FaxConstants.FaxPaperLockedData, out bool? locked);
 
-                    var printout = new FaxPrintout(content, name, label, prototypeId, stampState, stampedBy);
+                    var printout = new FaxPrintout(content, name, label, prototypeId, stampState, stampedBy, locked ?? false);
                     Receive(uid, printout, args.SenderAddress);
 
                     break;
@@ -465,19 +467,21 @@ public sealed class FaxSystem : EntitySystem
         if (sendEntity == null)
             return;
 
-        if (!TryComp<MetaDataComponent>(sendEntity, out var metadata) ||
+        if (!TryComp(sendEntity, out MetaDataComponent? metadata) ||
             !TryComp<PaperComponent>(sendEntity, out var paper))
             return;
 
         TryComp<LabelComponent>(sendEntity, out var labelComponent);
+        TryComp<NameModifierComponent>(sendEntity, out var nameMod);
 
         // TODO: See comment in 'Send()' about not being able to copy whole entities
         var printout = new FaxPrintout(paper.Content,
-                                       labelComponent?.OriginalName ?? metadata.EntityName,
+                                       nameMod?.BaseName ?? metadata.EntityName,
                                        labelComponent?.CurrentLabel,
                                        metadata.EntityPrototype?.ID ?? DefaultPaperPrototypeId,
                                        paper.StampState,
-                                       paper.StampedBy);
+                                       paper.StampedBy,
+                                       paper.EditingDisabled);
 
         component.PrintingQueue.Enqueue(printout);
         component.SendTimeoutRemaining += component.SendTimeout;
@@ -512,18 +516,21 @@ public sealed class FaxSystem : EntitySystem
         if (!component.KnownFaxes.TryGetValue(component.DestinationFaxAddress, out var faxName))
             return;
 
-        if (!TryComp<MetaDataComponent>(sendEntity, out var metadata) ||
+        if (!TryComp(sendEntity, out MetaDataComponent? metadata) ||
            !TryComp<PaperComponent>(sendEntity, out var paper))
             return;
+
+        TryComp<NameModifierComponent>(sendEntity, out var nameMod);
 
         TryComp<LabelComponent>(sendEntity, out var labelComponent);
 
         var payload = new NetworkPayload()
         {
             { DeviceNetworkConstants.Command, FaxConstants.FaxPrintCommand },
-            { FaxConstants.FaxPaperNameData, labelComponent?.OriginalName ?? metadata.EntityName },
+            { FaxConstants.FaxPaperNameData, nameMod?.BaseName ?? metadata.EntityName },
             { FaxConstants.FaxPaperLabelData, labelComponent?.CurrentLabel },
             { FaxConstants.FaxPaperContentData, paper.Content },
+            { FaxConstants.FaxPaperLockedData, paper.EditingDisabled },
         };
 
         if (metadata.EntityPrototype != null)
@@ -600,6 +607,8 @@ public sealed class FaxSystem : EntitySystem
                     _paperSystem.TryStamp(printed, stamp, printout.StampState);
                 }
             }
+
+            paper.EditingDisabled = printout.Locked;
         }
 
         _metaData.SetEntityName(printed, printout.Name);

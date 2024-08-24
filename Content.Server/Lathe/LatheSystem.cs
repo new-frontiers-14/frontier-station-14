@@ -15,6 +15,7 @@ using Content.Shared.Database;
 using Content.Shared.Emag.Components;
 using Content.Shared.Lathe;
 using Content.Shared.Materials;
+using Content.Shared.ReagentSpeed;
 using Content.Shared.Research.Components;
 using Content.Shared.Research.Prototypes;
 using JetBrains.Annotations;
@@ -36,6 +37,7 @@ namespace Content.Server.Lathe
         [Dependency] private readonly SharedAudioSystem _audio = default!;
         [Dependency] private readonly UserInterfaceSystem _uiSys = default!;
         [Dependency] private readonly MaterialStorageSystem _materialStorage = default!;
+        [Dependency] private readonly ReagentSpeedSystem _reagentSpeed = default!;
         [Dependency] private readonly StackSystem _stack = default!;
         [Dependency] private readonly TransformSystem _transform = default!;
 
@@ -171,7 +173,7 @@ namespace Content.Server.Lathe
             foreach (var (mat, amount) in recipe.RequiredMaterials)
             {
                 var adjustedAmount = recipe.ApplyMaterialDiscount
-                    ? (int) (-amount * component.MaterialUseMultiplier)
+                    ? (int) (-amount * component.FinalMaterialUseMultiplier) // Frontier: MaterialUseMultiplier<FinalMaterialUseMultiplier
                     : -amount;
 
                 _materialStorage.TryChangeMaterialAmount(uid, mat, adjustedAmount);
@@ -191,9 +193,11 @@ namespace Content.Server.Lathe
             var recipe = component.Queue.First();
             component.Queue.RemoveAt(0);
 
+            var time = _reagentSpeed.ApplySpeed(uid, recipe.CompleteTime);
+
             var lathe = EnsureComp<LatheProducingComponent>(uid);
             lathe.StartTime = _timing.CurTime;
-            lathe.ProductionLength = recipe.CompleteTime * component.TimeMultiplier;
+            lathe.ProductionLength = time * component.FinalTimeMultiplier; // Frontier: TimeMultiplier<FinalTimeMultiplier
             component.CurrentRecipe = recipe;
 
             var ev = new LatheStartPrintingEvent(recipe);
@@ -289,6 +293,11 @@ namespace Content.Server.Lathe
             _appearance.SetData(uid, LatheVisuals.IsRunning, false);
 
             _materialStorage.UpdateMaterialWhitelist(uid);
+            // New Frontiers - Lathe Upgrades - initialization of upgrade coefficients
+            // This code is licensed under AGPLv3. See AGPLv3.txt
+            component.FinalTimeMultiplier = component.TimeMultiplier;
+            component.FinalMaterialUseMultiplier = component.MaterialUseMultiplier;
+            // End of modified code
         }
 
         /// <summary>
@@ -358,21 +367,24 @@ namespace Content.Server.Lathe
         }
         #endregion
 
-        //Frontier Upgrade Code Restore
+
+        // New Frontiers - Lathe Upgrades - upgrading lathe speed through machine parts
+        // This code is licensed under AGPLv3. See AGPLv3.txt
         private void OnPartsRefresh(EntityUid uid, LatheComponent component, RefreshPartsEvent args)
         {
             var printTimeRating = args.PartRatings[component.MachinePartPrintSpeed];
             var materialUseRating = args.PartRatings[component.MachinePartMaterialUse];
 
-            component.TimeMultiplier = MathF.Pow(component.PartRatingPrintTimeMultiplier, printTimeRating - 1);
-            component.MaterialUseMultiplier = MathF.Pow(component.PartRatingMaterialUseMultiplier, materialUseRating - 1);
+            component.FinalTimeMultiplier = component.TimeMultiplier * MathF.Pow(component.PartRatingPrintTimeMultiplier, printTimeRating - 1);
+            component.FinalMaterialUseMultiplier = component.MaterialUseMultiplier * MathF.Pow(component.PartRatingMaterialUseMultiplier, materialUseRating - 1);
             Dirty(component);
         }
 
         private void OnUpgradeExamine(EntityUid uid, LatheComponent component, UpgradeExamineEvent args)
         {
-            args.AddPercentageUpgrade("lathe-component-upgrade-speed", 1 / component.TimeMultiplier);
-            args.AddPercentageUpgrade("lathe-component-upgrade-material-use", component.MaterialUseMultiplier);
+            args.AddPercentageUpgrade("lathe-component-upgrade-speed", 1 / component.FinalTimeMultiplier);
+            args.AddPercentageUpgrade("lathe-component-upgrade-material-use", component.FinalMaterialUseMultiplier);
         }
+        // End of modified code
     }
 }

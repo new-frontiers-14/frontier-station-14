@@ -53,6 +53,8 @@
           implantOnly:
             True: {state: broken}
             False: {state: implanter0}
+    - type: StaticPrice
+      price: 35
 
 - type: entity
   id: Implanter
@@ -258,7 +260,7 @@
 
 - type: entity
   id: MindShieldImplanter
-  name: mind-shield implanter
+  name: mindshield implanter
   parent: BaseImplantOnlyImplanter
   components:
     - type: Implanter

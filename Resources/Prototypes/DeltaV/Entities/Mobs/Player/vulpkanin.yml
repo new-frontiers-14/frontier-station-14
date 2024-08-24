@@ -7,9 +7,9 @@
     - type: CombatMode
     - type: InteractionPopup
       successChance: 1
-      interactSuccessString: pat-success-generic
+      interactSuccessString: pat-success-generic # Frontier - pat-success-generic<hugging-success-generic
       interactSuccessSound: /Audio/Effects/thudswoosh.ogg
-      messagePerceivedByOthers: pat-success-generic-others
+      messagePerceivedByOthers: pat-success-generic-others # Frontier - hugging-success-generic-others<pat-success-generic-others
     - type: MindContainer
       showExamineInfo: true
     - type: Input
@@ -17,11 +17,6 @@
     - type: MobMover
     - type: InputMover
     - type: Alerts
-    - type: Vocal
-      sounds:
-        Male: MaleVulpkanin
-        Female: FemaleVulpkanin
-        Unsexed: MaleVulpkanin
     - type: Eye
     - type: CameraRecoil
     - type: Examiner
@@ -29,6 +24,7 @@
     - type: NpcFactionMember
       factions:
         - NanoTrasen
+#    - type: PotentialPsionic
     - type: Respirator
       damage:
        types:

@@ -1,0 +1,104 @@
+<Document>
+  # BAZAAR-CLASS SERVICE SHUTTLE
+  <Box>
+  <GuideEntityEmbed Entity="CrateAirlockKit" Caption="crate"/>
+  <GuideEntityEmbed Entity="ComputerWallmountWithdrawBankATM" Caption="ATM"/>
+  <GuideEntityEmbed Entity="Rack"/>
+  </Box>
+  <Box>
+  <GuideEntityEmbed Entity="ShuttleMapBazaar" Caption=""/>
+  </Box>
+    [color=#a4885c]Ship Size:[/color] Medium
+	
+	[color=#a4885c]Recommended Crew:[/color] 4+
+	
+	[color=#a4885c]Power Gen Type:[/color] Uranium
+	
+	[color=#a4885c]Expeditions:[/color] None
+	
+	[color=#a4885c]IFF Console:[/color] None
+	
+  "The Bazaar is a personal service vessel designed to provide a platform for merchants to sell their goods. It features two locking cargo docks, a spacious cargo hold, and a mercenary post for shop security."
+    
+  # PREFLIGHT CHECKLIST
+  
+  ## 1. Power supply
+  
+  ## 1.1. Battery units
+  <Box>
+  <GuideEntityEmbed Entity="SMESBasic"/>
+  <GuideEntityEmbed Entity="SubstationBasic"/>
+  <GuideEntityEmbed Entity="APCBasic"/>
+  </Box>
+  
+  - Check that the SMES unit is anchored to the floor.
+  - Check that the substation unit is anchored to the floor.
+  - Check that the APC unit's Main Breaker is toggled on.
+  - Check the APC unit's current Load* (W).
+  
+  ## 1.2. S.U.P.E.R.P.A.C.M.A.N. generator unit
+  <Box>
+  <GuideEntityEmbed Entity="PortableGeneratorSuperPacman"/>
+  <GuideEntityEmbed Entity="SheetUranium"/>
+  <GuideEntityEmbed Entity="SignRadiationMed"/>
+  </Box>
+  
+  - Check that the S.U.P.E.R.P.A.C.M.A.N. generator units are anchored to the floor.
+  - Check that the S.U.P.E.R.P.A.C.M.A.N. generator units have fuel. For extended flights make sure that you have enough fuel stockpiled to sustain prolonged power generation during flight.
+  - Check that the S.U.P.E.R.P.A.C.M.A.N. generator units are set to HV output.
+  - Set Target Power for 40-41** [bold]kW[/bold].
+  - Start S.U.P.E.R.P.A.C.M.A.N. generator units.
+  
+  ## 2. Atmospherics
+  
+  ## 2.1. Distribution Loop
+  <Box>
+  <GuideEntityEmbed Entity="GasPort"/>
+  <GuideEntityEmbed Entity="OxygenCanister"/>
+  <GuideEntityEmbed Entity="NitrogenCanister"/>
+  <GuideEntityEmbed Entity="GasMixer"/>
+  <GuideEntityEmbed Entity="GasPressurePump"/>
+  </Box>
+  
+  - Check that the O2 canister is anchored to connector port.
+  - Check that the N2 canister is anchored to connector port.
+  - Check that the gas mixer is set to the correct mixing ratio (21% Oxygen, 79% Nitrogen).
+  - Check that the gas mixer is set to 101kPa.
+  - Enable gas mixer.
+  
+  ## 2.2. Waste Loop
+  <Box>
+  <GuideEntityEmbed Entity="GasPressurePump"/>
+  <GuideEntityEmbed Entity="AirAlarm"/>
+  </Box>
+    
+  - Enable waste loop pump.
+  - Disable Auto Mode on the Air Alarm in the Engine Room.
+  - Set the Air Alarm in the Engine Room to Filtering (Wide).
+  
+  ## 3. Other checks
+  <Box>
+  <GuideEntityEmbed Entity="Gyroscope"/>
+  <GuideEntityEmbed Entity="GravityGeneratorMini"/>
+  <GuideEntityEmbed Entity="BlastDoor"/>
+  </Box>
+  
+  - Check that the gyroscope is anchored, powered, and enabled.
+  - Check that the mini gravity generator is anchored, powered, and enabled.
+  - Check that the blast doors are closed.
+  
+  ## Sidenotes
+  
+  * - Bazaar-class service ships are equipped with nine APC units that can be used to appraise the ship's total power consumption. One can check the ship's total power consumption against the S.U.P.E.R.P.A.C.M.A.N. generator unit Target Power output: to keep SMES, substation, and APC fully charged, S.U.P.E.R.P.A.C.M.A.N. generator unit Target Power output should exceed APC's Load. Remember to check APC Load and adjust the generator unit Target Power after connecting new power-consuming machines.
+  
+  ** - Bazaar-class service ships have higher power demand than standard P.A.C.M.A.N. generator unit can provide at optimal settings, so the standard P.A.C.M.A.N. was replaced with two S.U.P.E.R.P.A.C.M.A.N.: recommended Target Power value to avoid blackouts during Gravity Generator charging sequence is 41 kW.
+
+  <Box>
+  <GuideEntityEmbed Entity="SignRadiationMed"/>
+  <GuideEntityEmbed Entity="ClothingOuterSuitRad"/>
+  <GuideEntityEmbed Entity="GeigerCounter"/>
+  <GuideEntityEmbed Entity="ShuttersRadiation"/>
+  </Box>
+  Note: Be sure to take all necessary protective measures when working with radioactive materials: use a radiation suit, engage internals, make sure to enable Geiger's counter, wash your hands after, and keep radiation shutters closed at all times.
+
+</Document>

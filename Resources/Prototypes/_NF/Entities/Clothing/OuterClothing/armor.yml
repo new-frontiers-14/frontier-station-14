@@ -25,7 +25,9 @@
 
 # Syndicate armored bio suit
 - type: entity
-  parent: ClothingOuterBioGeneral
+  parent:
+  - ClothingOuterBioGeneral
+  - ContrabandClothing
   id: ClothingOuterBioArmoredSyndicate
   name: bio suit
   suffix: Syndicate
@@ -47,7 +49,6 @@
     sprintModifier: 0.85
   - type: ExplosionResistance
     damageCoefficient: 0.60
-  - type: Contraband
 
 - type: entity
   parent: ClothingOuterBaseLarge
