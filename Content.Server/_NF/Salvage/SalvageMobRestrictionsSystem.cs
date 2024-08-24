@@ -52,16 +52,18 @@ public sealed class SalvageMobRestrictionsSystem : EntitySystem
         {
             if (TryComp(target, out BodyComponent? body))
             {
-                // Just because.
+                // Creates a pool of blood on death, but remove the organs.
                 var gibs = _body.GibBody(target, body: body, gibOrgans: true);
                 foreach (var gib in gibs)
                     Del(gib);
             }
             else
             {
+                // No body, probably a robot - explode it and delete the body
                 _explosion.QueueExplosion(target, ExplosionSystem.DefaultExplosionPrototypeId, 5, 10, 5);
                 Del(target);
             }
+            // Old implementation
             //else if (TryComp(target, out DamageableComponent? dc))
             //{
             //    _damageableSystem.SetAllDamage(target, dc, 200);
