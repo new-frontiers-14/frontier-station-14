@@ -207,6 +207,7 @@ namespace Content.Server.Administration.Systems
 
             UpdatePlayerList(ev.Session);
         }
+
         public override void Shutdown()
         {
             base.Shutdown();
