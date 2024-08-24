@@ -145,6 +145,12 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
                 PlayDenySound(args.Actor, uid, component);
                 return;
             }
+            else if (voucher!.ConsoleType != (ShipyardConsoleUiKey)args.UiKey)
+            {
+                ConsolePopup(args.Actor, Loc.GetString("shipyard-console-invalid-voucher-type"));
+                PlayDenySound(args.Actor, uid, component);
+                return;
+            }
             voucher.RedemptionsLeft--;
             voucherUsed = true;
         }
@@ -617,8 +623,16 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         IDShipAccesses accesses;
         if (TryComp<ShipyardVoucherComponent>(targetId, out var voucher))
         {
-            accesses.Tags = voucher.Access;
-            accesses.Groups = voucher.AccessGroups;
+            if (voucher.ConsoleType == key)
+            {
+                accesses.Tags = voucher.Access;
+                accesses.Groups = voucher.AccessGroups;
+            }
+            else
+            {
+                accesses.Tags = new HashSet<ProtoId<AccessLevelPrototype>>();
+                accesses.Groups = new HashSet<ProtoId<AccessGroupPrototype>>();
+            }
         }
         else if (TryComp<AccessComponent>(targetId, out var accessComponent))
         {

@@ -21,6 +21,7 @@ shipyard-console-sale-unknown-reason = Ship cannot be sold: {reason}
 shipyard-console-deed-label = Registered Ship:
 shipyard-console-appraisal-label = Shuttle Estimated Value:{" "}
 shipyard-console-no-voucher-redemptions = All voucher redemptions have been used.
+shipyard-console-invalid-voucher-type = This voucher cannot be used at this console.
 
 shipyard-console-menu-size-label = Size:{" "}
 shipyard-console-menu-class-label = Class:{" "}
