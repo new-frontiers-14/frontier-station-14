@@ -358,6 +358,7 @@
   noSpawn: true
   parent:
   - MobExplorerBase
+  - MobLaserReflect # Added to prevent laser abuse from players
   id: MobExplorerHauler
   description: |- 
    Loaded with heavy equipment for industrial-scale looting. Pardon me, "asset recovery".
@@ -426,10 +427,13 @@
   name: explorer captain
   parent:
   - MobExplorerBase
+  - MobHumanoidHostileAISimpleMelee
   id: MobExplorerBoss
   description: Fearless and battle-hardened salvage team leaders, it takes years picking through the darkest corners of space and navigating the galaxy's criminal underbelly of the galaxy before you can become a captain. Not to be underestimated.
   noSpawn: true
   components:
+  - type: Reflect # Emulating holopickaxe to a degree
+    reflectProb: 0.025
   - type: Loadout
     prototypes:
     - MobHumanoidExplorerGearBoss
@@ -446,23 +450,6 @@
       state: equipped-head-light
       shader: unshaded
       color: "#47f8ff"
-  - type: RechargeBasicEntityAmmo
-    rechargeCooldown: 0.375
-    rechargeSound:
-      path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
-  - type: BasicEntityAmmoProvider
-    proto: BulletKinetic
-    capacity: 2
-    count: 2
-  - type: Gun
-    showExamineText: false
-    fireRate: 5
-    selectedMode: FullAuto
-    minAngle: 41
-    maxAngle: 55
-    availableModes:
-    - FullAuto
-    soundGunshot: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
   - type: PointLight
     enabled: true
     autoRot: true
@@ -471,3 +458,27 @@
     energy: 3
     mask: /Textures/Effects/LightMasks/cone.png
     color: "#47f8ff"
+  - type: MobThresholds
+    thresholds:
+      120: Critical
+      150: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      60: 0.7
+      80: 0.5
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 4
+    baseSprintSpeed: 5.25
+  - type: MeleeWeapon
+    hidden: true
+    attackRate: 0.8
+    damage:
+      types:
+        Heat: 12.5
+        Piercing: 2.5
+        Structural: 40
+    soundHit:
+      path: /Audio/Weapons/eblade1.ogg
+      params:
+        variation: 0.250
+        volume: -10
