@@ -5,7 +5,7 @@ using Content.Shared.Administration;
 using Content.Shared.CCVar;
 using Content.Shared.Ghost;
 using Content.Shared.Mind;
-using Content.Shared.NF14.CCVar;
+using Content.Shared._NF.CCVar;
 using Content.Shared.Roles;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
@@ -29,7 +29,7 @@ public sealed class GhostRespawnCommand : IConsoleCommand
 
     public void Execute(IConsoleShell shell, string argStr, string[] args)
     {
-        if (!_configurationManager.GetCVar(NF14CVars.RespawnEnabled))
+        if (!_configurationManager.GetCVar(NFCCVars.RespawnEnabled))
         {
             shell.WriteLine("Respawning is disabled, ask an admin to respawn you.");
             return;
