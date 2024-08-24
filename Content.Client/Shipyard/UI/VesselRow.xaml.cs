@@ -18,6 +18,7 @@ public sealed partial class VesselRow : PanelContainer
     public VesselRow()
     {
         RobustXamlLoader.Load(this);
+        IoCManager.InjectDependencies(this);
         _guidebook = _entitySystem.GetEntitySystem<GuidebookSystem>();
 
         Guidebook.OnPressed += LoadVesselGuidebook;
@@ -25,7 +26,7 @@ public sealed partial class VesselRow : PanelContainer
 
     private void LoadVesselGuidebook(BaseButton.ButtonEventArgs args)
     {
-        if (Vessel == null || Vessel.GuidebookPage == null)
+        if (Vessel?.GuidebookPage == null)
             return;
 
         List<ProtoId<GuideEntryPrototype>> guidebookEntries = new() { Vessel.GuidebookPage.Value };

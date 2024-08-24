@@ -621,6 +621,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         // Construct access set from input type (voucher or ID card)
         IDShipAccesses accesses;
+        bool initialHasAccess = true;
         if (TryComp<ShipyardVoucherComponent>(targetId, out var voucher))
         {
             if (voucher.ConsoleType == key)
@@ -632,6 +633,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             {
                 accesses.Tags = new HashSet<ProtoId<AccessLevelPrototype>>();
                 accesses.Groups = new HashSet<ProtoId<AccessGroupPrototype>>();
+                initialHasAccess = false;
             }
         }
         else if (TryComp<AccessComponent>(targetId, out var accessComponent))
@@ -647,7 +649,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         foreach (var vessel in _prototypeManager.EnumeratePrototypes<VesselPrototype>())
         {
-            bool hasAccess = true;
+            bool hasAccess = initialHasAccess;
             // If the vessel needs access to be bought, check the user's access.
             if (!string.IsNullOrEmpty(vessel.Access))
             {
@@ -674,7 +676,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             // Check that the listing contains the shuttle or that the shuttle is in the group that the console is looking for
             if (listing?.Shuttles.Contains(vessel.ID) ?? false ||
                 key != null && key != ShipyardConsoleUiKey.Custom &&
-                ShipyardGroupMapping.TryGetValue(key.Value, out var group) && vessel.Group == group)
+                vessel.Group == key)
             {
                 if (hasAccess)
                     available.Add(vessel.ID);

@@ -29,14 +29,20 @@ public sealed class VesselPrototype : IPrototype
     /// <summary>
     ///     The category of the product. (e.g. Small, Medium, Large, Emergency, Special etc.)
     /// </summary>
-    [DataField("category")]
-    public string Category = string.Empty;
+    [DataField("category", required: true)]
+    public VesselSize Category = VesselSize.Small;
 
     /// <summary>
     ///     The group of the product. (e.g. Civilian, Syndicate, Contraband etc.)
     /// </summary>
-    [DataField("group")]
-    public string Group = string.Empty;
+    [DataField("group", required: true)]
+    public ShipyardConsoleUiKey Group = ShipyardConsoleUiKey.Shipyard;
+
+    /// <summary>
+    ///     The group of the product. (e.g. Civilian, Syndicate, Contraband etc.)
+    /// </summary>
+    [DataField("class")]
+    public List<VesselClass> Classes = new();
 
     /// <summary>
     ///     The access required to buy the product. (e.g. Command, Mail, Bailiff, etc.)
@@ -63,3 +69,42 @@ public sealed class VesselPrototype : IPrototype
     [DataField]
     public ProtoId<GuideEntryPrototype>? GuidebookPage = default!;
 }
+
+public enum VesselSize : byte
+{
+    All, // Should not be used by ships, intended as a placeholder value to represent everything
+    Micro,
+    Small,
+    Medium,
+    Large
+}
+
+public enum VesselClass : byte
+{
+    All, // Should not be used by ships, intended as a placeholder value to represent everything
+    // Capabilities
+    Expedition,
+    Scrapyard,
+    // General
+    Salvage,
+    Science,
+    Cargo,
+    Chemistry,
+    Botany,
+    Engineering,
+    Atmospherics,
+    Mercenary,
+    Medical,
+    Civilian, // Service catch-all - reporter, legal, entertainment, misc. ships
+    Kitchen,
+    // Antag ships
+    Syndicate,
+    Pirate,
+    // NFSD-specific categories
+    Detainment,
+    Detective,
+    Fighter,
+    Stealth,
+    Capital,
+}
+

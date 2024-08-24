@@ -22,10 +22,10 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
     public event Action<ButtonEventArgs>? OnSellShip;
     public event Action<ButtonEventArgs>? OnOrderApproved;
     private readonly ShipyardConsoleBoundUserInterface _menu;
-    private readonly List<string> _categoryStrings = new();
-    private readonly List<string> _classStrings = new();
-    private string? _category;
-    private string? _class;
+    private readonly List<VesselSize> _categoryStrings = new();
+    private readonly List<VesselClass> _classStrings = new();
+    private VesselSize? _category;
+    private VesselClass? _class;
 
     private List<string> _lastAvailableProtos = new();
     private List<string> _lastUnavailableProtos = new();
@@ -91,37 +91,36 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
 
         foreach (var prototype in newVessels)
         {
-            // if no search or category
-            // else if search
-            // else if category and not search
-            if (search.Length == 0 && _category == null && _class == null ||
-                search.Length != 0 && prototype!.Name.ToLowerInvariant().Contains(search) ||
-                search.Length == 0 && _category != null && prototype!.Category.Equals(_category) ||
-                search.Length == 0 && _class != null && prototype!.Group.Equals(_class))
+            // Filter any ships
+            if (_category != null && !prototype!.Category.Equals(_category))
+                continue;
+            if (_class != null && !prototype!.Classes.Contains(_class.Value))
+                continue;
+            if (search.Length > 0 && !prototype!.Name.ToLowerInvariant().Contains(search))
+                continue;
+
+            string priceText;
+            if (free)
+                priceText = Loc.GetString("shipyard-console-menu-listing-free");
+            else
+                priceText = BankSystemExtensions.ToSpesoString(prototype!.Price);
+
+            string purchaseText;
+            if (canPurchase)
+                purchaseText = Loc.GetString("shipyard-console-purchase-available");
+            else
+                purchaseText = Loc.GetString("shipyard-console-purchase-unavailable");
+
+            var vesselEntry = new VesselRow
             {
-                string priceText;
-                if (free)
-                    priceText = Loc.GetString("shipyard-console-menu-listing-free");
-                else
-                    priceText = BankSystemExtensions.ToSpesoString(prototype!.Price);
-
-                string purchaseText;
-                if (canPurchase)
-                    purchaseText = Loc.GetString("shipyard-console-purchase-available");
-                else
-                    purchaseText = Loc.GetString("shipyard-console-purchase-unavailable");
-
-                var vesselEntry = new VesselRow
-                {
-                    Vessel = prototype,
-                    VesselName = { Text = prototype!.Name },
-                    Purchase = { Text = purchaseText, ToolTip = prototype.Description, TooltipDelay = 0.2f, Disabled = !canPurchase },
-                    Guidebook = { Disabled = prototype.GuidebookPage is null },
-                    Price = { Text = priceText },
-                };
-                vesselEntry.Purchase.OnPressed += (args) => { OnOrderApproved?.Invoke(args); };
-                Vessels.AddChild(vesselEntry);
-            }
+                Vessel = prototype,
+                VesselName = { Text = prototype!.Name },
+                Purchase = { Text = purchaseText, ToolTip = prototype.Description, TooltipDelay = 0.2f, Disabled = !canPurchase },
+                Guidebook = { Disabled = prototype.GuidebookPage is null },
+                Price = { Text = priceText },
+            };
+            vesselEntry.Purchase.OnPressed += (args) => { OnOrderApproved?.Invoke(args); };
+            Vessels.AddChild(vesselEntry);
         }
 
         // Extremely gross, fix please
@@ -135,32 +134,32 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
 
         foreach (var prototype in newUnavailableVessels)
         {
-            // if no search or category
-            // else if search
-            // else if category and not search
-            if (search.Length == 0 && _category == null && _class == null ||
-                search.Length != 0 && prototype!.Name.ToLowerInvariant().Contains(search) ||
-                search.Length == 0 && _category != null && prototype!.Category.Equals(_category) ||
-                search.Length == 0 && _class != null && prototype!.Group.Equals(_class))
-            {
-                string priceText;
-                if (free)
-                    priceText = Loc.GetString("shipyard-console-menu-listing-free");
-                else
-                    priceText = Loc.GetString("shipyard-console-menu-listing-amount", ("amount", prototype!.Price.ToString()));
-                string purchaseText = Loc.GetString("shipyard-console-purchase-unavailable");
+            // Filter any ships
+            if (_category != null && !prototype!.Category.Equals(_category))
+                continue;
+            if (_class != null && !prototype!.Classes.Contains(_class.Value))
+                continue;
+            if (search.Length > 0 && !prototype!.Name.ToLowerInvariant().Contains(search))
+                continue;
 
-                var vesselEntry = new VesselRow
-                {
-                    Vessel = prototype,
-                    VesselName = { Text = prototype!.Name },
-                    Purchase = { Text = purchaseText, ToolTip = prototype.Description, TooltipDelay = 0.2f, Disabled = true },
-                    Guidebook = { Disabled = prototype.GuidebookPage is null },
-                    Price = { Text = priceText },
-                };
-                vesselEntry.Purchase.OnPressed += (args) => { OnOrderApproved?.Invoke(args); };
-                Vessels.AddChild(vesselEntry);
-            }
+            string priceText;
+            if (free)
+                priceText = Loc.GetString("shipyard-console-menu-listing-free");
+            else
+                priceText = BankSystemExtensions.ToSpesoString(prototype!.Price);
+
+            string purchaseText = Loc.GetString("shipyard-console-purchase-unavailable");
+
+            var vesselEntry = new VesselRow
+            {
+                Vessel = prototype,
+                VesselName = { Text = prototype!.Name },
+                Purchase = { Text = purchaseText, ToolTip = prototype.Description, TooltipDelay = 0.2f, Disabled = true },
+                Guidebook = { Disabled = prototype.GuidebookPage is null },
+                Price = { Text = priceText },
+            };
+            //vesselEntry.Purchase.OnPressed += (args) => { OnOrderApproved?.Invoke(args); }; // Frontier: will not be used.
+            Vessels.AddChild(vesselEntry);
         }
 
         _lastAvailableProtos = availablePrototypes;
@@ -171,51 +170,81 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
     /// <summary>
     ///     Populates the list categories that will actually be shown, using the current filters.
     /// </summary>
-    public void PopulateCategories()
+    public void PopulateCategories(List<string> availablePrototypes, List<string> unavailablePrototypes)
     {
         _categoryStrings.Clear();
         Categories.Clear();
-        var vessels = _protoManager.EnumeratePrototypes<VesselPrototype>();
-        foreach (var prototype in vessels)
+        foreach (var protoId in availablePrototypes)
         {
+            if (!_protoManager.TryIndex<VesselPrototype>(protoId, out var prototype))
+                continue;
+
             if (!_categoryStrings.Contains(prototype.Category))
             {
-                _categoryStrings.Add(Loc.GetString(prototype.Category));
+                _categoryStrings.Add(prototype.Category);
+            }
+        }
+        foreach (var protoId in unavailablePrototypes)
+        {
+            if (!_protoManager.TryIndex<VesselPrototype>(protoId, out var prototype))
+                continue;
+
+            if (!_categoryStrings.Contains(prototype.Category))
+            {
+                _categoryStrings.Add(prototype.Category);
             }
         }
 
         _categoryStrings.Sort();
 
         // Add "All" category at the top of the list
-        _categoryStrings.Insert(0, Loc.GetString("cargo-console-menu-populate-categories-all-text"));
+        _categoryStrings.Insert(0, VesselSize.All);
 
         foreach (var str in _categoryStrings)
         {
-            Categories.AddItem(str);
+            Categories.AddItem(str.ToString()); // TODO: localize this
         }
     }
 
-    public void PopulateClasses()
+    public void PopulateClasses(List<string> availablePrototypes, List<string> unavailablePrototypes)
     {
         _classStrings.Clear();
         Classes.Clear();
-        var vessels = _protoManager.EnumeratePrototypes<VesselPrototype>();
-        foreach (var prototype in vessels)
+        foreach (var protoId in availablePrototypes)
         {
-            if (!_classStrings.Contains(prototype.Group))
+            if (!_protoManager.TryIndex<VesselPrototype>(protoId, out var prototype))
+                continue;
+
+            foreach (var classString in prototype.Classes)
             {
-                _classStrings.Add(Loc.GetString(prototype.Group));
+                if (!_classStrings.Contains(classString))
+                {
+                    _classStrings.Add(classString);
+                }
+            }
+        }
+        foreach (var protoId in unavailablePrototypes)
+        {
+            if (!_protoManager.TryIndex<VesselPrototype>(protoId, out var prototype))
+                continue;
+
+            foreach (var classString in prototype.Classes)
+            {
+                if (!_classStrings.Contains(classString))
+                {
+                    _classStrings.Add(classString);
+                }
             }
         }
 
         _classStrings.Sort();
 
         // Add "All" category at the top of the list
-        _classStrings.Insert(0, Loc.GetString("cargo-console-menu-populate-categories-all-text"));
+        _classStrings.Insert(0, VesselClass.All);
 
         foreach (var str in _classStrings)
         {
-            Classes.AddItem(str);
+            Classes.AddItem(str.ToString()); // TODO: localize this
         }
     }
 

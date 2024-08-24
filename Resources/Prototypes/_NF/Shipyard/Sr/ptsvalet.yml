@@ -1,41 +1,30 @@
-# Author Info
-# GitHub: arimah
-# Discord: arimah
-
-# Maintainer Info
-# GitHub: arimah
-# Discord: arimah
-
-# Shuttle Notes:
-#
+# Prototype for the Frontier console
 - type: vessel
-  id: PTS
-  name: NC Personal Transport
+  id: Taxi
+  name: NC Taxi
   description: A small transport shuttle with space for 4 passengers. Comes with the latest audio entertainment technology.
   price: 13000 # $11594 after appraisal + $1406 (~12% markup)
   category: Small
-  group: Shipyard
+  group: Sr
+  access: Service
   shuttlePath: /Maps/_NF/Shuttles/pts.yml
   guidebookPage: Null
   class:
   - Civilian
 
 - type: gameMap
-  id: PTS
+  id: Taxi
   mapName: 'NC Personal Transport'
   mapPath: /Maps/_NF/Shuttles/pts.yml
   minPlayers: 0
   stations:
-    PTS:
+    Taxi:
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'PTS {1}'
+          mapNameTemplate: 'Taxi {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
         - type: StationJobs
-          availableJobs:
-            Contractor: [ 0, 0 ]
-            Pilot: [ 0, 0 ]
-            Mercenary: [ 0, 0 ]
+          availableJobs: {}
