@@ -1,23 +1,180 @@
 #SOFTSUITS
-#Paramedic's Voidsuit
 - type: entity
+  parent: [ SuitStorageWallmount, StorageFillEVASuitGoblin ]
+  id: SuitStorageWallmountEVAGoblin
+  suffix: EVA, Goblin
+  components:
+  - type: AccessReader
+
+- type: entity
+  parent: [ SuitStorageWallmount, StorageFillEVASuitContractor ]
+  id: SuitStorageWallmountEVAContractor
+  suffix: EVA, Contractor
+  components:
+  - type: AccessReader
+
+- type: entity
+  parent: [ SuitStorageWallmount, StorageFillEVASuitPilot ]
+  id: SuitStorageWallmountEVAPilot
+  suffix: EVA, Pilot
+  components:
+  - type: AccessReader
+
+- type: entity
+  parent: [ SuitStorageWallmount, StorageFillEVASuitSr ]
+  id: SuitStorageWallmountEVASr
+  suffix: EVA, Station Representative
+  components:
+  - type: AccessReader
+    access: [["HeadOfPersonnel"]]
+
+- type: entity
+  parent: [ SuitStorageWallmount, StorageFillEVASuitCaptain ]
+  id: SuitStorageWallmountEVACaptain
+  suffix: EVA, Captain
+  components:
+  - type: AccessReader
+
+- type: entity
+  parent: [ SuitStorageWallmount, StorageFillEVASuitEngineer ]
+  id: SuitStorageWallmountEVAEngineer
+  suffix: EVA, Engineer
+  components:
+  - type: AccessReader
+
+- type: entity
+  parent: [ SuitStorageWallmount, StorageFillEVASuitAtmosTech ]
+  id: SuitStorageWallmountEVAAtmosTech
+  suffix: EVA, Atmospherics Technician
+  components:
+  - type: AccessReader
+
+- type: entity
+  parent: [ SuitStorageWallmount, StorageFillEVASuitCargo ]
+  id: SuitStorageWallmountEVACargo
+  suffix: EVA, Cargo Technician
+  components:
+  - type: AccessReader
+
+- type: entity
+  parent: [ SuitStorageWallmount, StorageFillEVASuitSalvage ]
+  id: SuitStorageWallmountEVASalvage
+  suffix: EVA, Salvage Specialist
+  components:
+  - type: AccessReader
+
+- type: entity
+  parent: [ SuitStorageWallmount, StorageFillEVASuitMedic ]
+  id: SuitStorageWallmountEVAMedical
+  suffix: EVA, Medical Doctor
+  components:
+  - type: AccessReader
+
+- type: entity
+  parent: [ SuitStorageWallmount, StorageFillEVASuitParamedic ]
   id: SuitStorageWallmountParamedic
-  parent: [SuitStorageWallmount, SuitStorageParamedic]
+  suffix: EVA, Paramedic
+  components:
+  - type: AccessReader
 
-#Hydroponics EVA
 - type: entity
-  id: SuitStorageWallmountHydro
-  parent: [SuitStorageWallmount, SuitStorageHydro]
+  parent: [ SuitStorageWallmount, StorageFillEVASuitScientist ]
+  id: SuitStorageWallmountEVAScientist
+  suffix: EVA, Scientist
+  components:
+  - type: AccessReader
 
-#Mail Carrier EVA
 - type: entity
-  id: SuitStorageWallmountMailCarrier
-  parent: [SuitStorageWallmount, SuitStorageMailCarrier]
+  parent: [ SuitStorageWallmount, StorageFillEVASuitJanitor ]
+  id: SuitStorageWallmountEVAJanitor
+  suffix: EVA, Janitor
+  components:
+  - type: AccessReader
 
-#Goblin EVA
 - type: entity
-  id: SuitStorageWallmountGoblin
-  parent: [SuitStorageWallmount, SuitStorageGoblin]
+  parent: [ SuitStorageWallmount, StorageFillEVASuitServiceWorker ]
+  id: SuitStorageWallmountEVAServiceWorker
+  suffix: EVA, Service Worker
+  components:
+  - type: AccessReader
+
+- type: entity
+  parent: [ SuitStorageWallmount, StorageFillEVASuitChaplain ]
+  id: SuitStorageWallmountEVAChaplain
+  suffix: EVA, Chaplain
+  components:
+  - type: AccessReader
+
+- type: entity
+  parent: [ SuitStorageWallmount, StorageFillEVASuitBoxerRed ]
+  id: SuitStorageWallmountEVABoxerRed
+  suffix: EVA, Boxer, Red
+  components:
+  - type: AccessReader
+
+- type: entity
+  parent: [ SuitStorageWallmount, StorageFillEVASuitBoxerGreen ]
+  id: SuitStorageWallmountEVABoxerGreen
+  suffix: EVA, Boxer, Green
+  components:
+  - type: AccessReader
+
+- type: entity
+  parent: [ SuitStorageWallmount, StorageFillEVASuitBoxerBlue ]
+  id: SuitStorageWallmountEVABoxerBlue
+  suffix: EVA, Boxer, Blue
+  components:
+  - type: AccessReader
+
+- type: entity
+  parent: [ SuitStorageWallmount, StorageFillEVASuitBoxerYellow ]
+  id: SuitStorageWallmountEVABoxerYellow
+  suffix: EVA, Boxer, Yellow
+  components:
+  - type: AccessReader
+
+- type: entity
+  parent: [ SuitStorageWallmount, StorageFillEVASuitBoxerRandom ]
+  id: SuitStorageWallmountEVABoxerRandom
+  suffix: EVA, Boxer, Random
+  components:
+  - type: AccessReader
+
+- type: entity
+  parent: [ SuitStorageWallmount, StorageFillEVASuitHydro ]
+  id: SuitStorageWallmountEVAHydro
+  suffix: EVA, Hydroponics
+  components:
+  - type: AccessReader
+
+- type: entity
+  parent: [ SuitStorageWallmount, StorageFillEVASuitMail ]
+  id: SuitStorageWallmountEVAMail
+  suffix: EVA, Mail Carrier
+  components:
+  - type: AccessReader
+
+- type: entity
+  parent: [ SuitStorageWallmount, StorageFillEVASuitMercenary ]
+  id: SuitStorageWallmountEVAMercenary
+  suffix: EVA, Mercenary
+  components:
+  - type: AccessReader
+
+- type: entity
+  parent: [ SuitStorageWallmount, StorageFillEVASuitPrivateSec ]
+  id: SuitStorageWallmountEVAPrivateSec
+  suffix: EVA, Private Security
+  components:
+  - type: AccessReader
+
+- type: entity
+  parent: [ SuitStorageWallmount, StorageFillEVASuitNfsd ]
+  id: SuitStorageWallmountEVANfsd
+  suffix: EVA, NFSD
+  components:
+  - type: AccessReader
+    access: [["Security"]]
 
 #HARDSUITS
 #Quartermaster hardsuit

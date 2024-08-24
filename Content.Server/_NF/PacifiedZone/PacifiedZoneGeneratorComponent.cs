@@ -23,5 +23,8 @@ namespace Content.Server._NF.PacifiedZone
 
         [DataField]
         public List<ProtoId<JobPrototype>> ImmuneRoles = new();
+
+        [DataField]
+        public TimeSpan? ImmunePlaytime = null;
     }
 }
