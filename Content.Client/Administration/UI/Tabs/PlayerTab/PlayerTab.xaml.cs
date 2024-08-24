@@ -200,7 +200,7 @@ namespace Content.Client.Administration.UI.Tabs.PlayerTab
                 Header.Playtime => TimeSpan.Compare(x.OverallPlaytime ?? default, y.OverallPlaytime ?? default),
                 Header.Balance => x.Balance.CompareTo(y.Balance), // Frontier
                 _ => 1
-            }; ;
+            };
         }
 
         private int Compare(string x, string y)
