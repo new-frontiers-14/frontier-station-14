@@ -1,4 +1,5 @@
 using System.Threading;
+using Content.Server._NF.Tools.Components; // Frontier
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
@@ -30,8 +31,7 @@ namespace Content.Server.StationEvents.Events
             var query = AllEntityQuery<ApcComponent, TransformComponent>();
             while (query.MoveNext(out var apcUid ,out var apc, out var transform))
             {
-                // if (apc.MainBreakerEnabled && CompOrNull<StationMemberComponent>(transform.GridUid)?.Station == chosenStation) // Umbra - ElectricalOverload
-                if (apc.MainBreakerEnabled && CompOrNull<StationMemberComponent>(transform.GridUid)?.Station == chosenStation) // Umbra - ElectricalOverload
+                if (apc.MainBreakerEnabled && CompOrNull<StationMemberComponent>(transform.GridUid)?.Station == chosenStation)
                     component.Powered.Add(apcUid);
             }
 
@@ -56,6 +56,7 @@ namespace Content.Server.StationEvents.Events
                 }
 
                 RemComp<ElectricalOverloadComponent>(entity); // Umbra - ElectricalOverload
+                RemComp<OnToolsUseComponent>(entity); // Umbra - ElectricalOverload
             }
 
             // Can't use the default EndAudio
@@ -93,7 +94,9 @@ namespace Content.Server.StationEvents.Events
                     if (apcComponent.MainBreakerEnabled)
                     {
                         _apcSystem.ApcToggleBreaker(selected, apcComponent);
-                        AddComp<ElectricalOverloadComponent>(selected); // Umbra - ElectricalOverload
+                        EnsureComp<ElectricalOverloadComponent>(selected); // Umbra - ElectricalOverload
+                        var onToolUse = EnsureComp<OnToolsUseComponent>(selected); // Umbra - ElectricalOverload
+                        onToolUse.Disabled = true; // Umbra - ElectricalOverload
                     }
                 }
                 component.Unpowered.Add(selected);
