@@ -1,27 +1,7 @@
-using Content.Shared.CCVar;
-using Content.Shared.Examine;
-using Content.Shared.Interaction;
 using Content.Shared.Damage;
-using Content.Shared.Damage;
-using Content.Server.Body.Components;
-using Robust.Server.Maps;
-using Robust.Shared.Configuration;
-using Robust.Shared.GameObjects;
-using Robust.Shared.IoC;
-using Robust.Shared.Localization;
-using Robust.Shared.Log;
-using Robust.Shared.Map;
-using Robust.Shared.Maths;
-using Robust.Shared.Player;
-using Robust.Shared.Prototypes;
-using Robust.Shared.Random;
-using Robust.Shared.Timing;
-using Robust.Shared.Utility;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Content.Shared.Body.Components;
 using Content.Server.Body.Systems;
+using Content.Server.Explosion.EntitySystems;
 
 namespace Content.Server._NF.Salvage;
 
@@ -29,6 +9,8 @@ public sealed class SalvageMobRestrictionsSystem : EntitySystem
 {
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly BodySystem _body = default!;
+    [Dependency] private readonly ExplosionSystem _explosion = default!;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -75,10 +57,15 @@ public sealed class SalvageMobRestrictionsSystem : EntitySystem
                 foreach (var gib in gibs)
                     Del(gib);
             }
-            else if (TryComp(target, out DamageableComponent? dc))
+            else
             {
-                _damageableSystem.SetAllDamage(target, dc, 200);
+                _explosion.QueueExplosion(target, ExplosionSystem.DefaultExplosionPrototypeId, 5, 10, 5);
+                Del(target);
             }
+            //else if (TryComp(target, out DamageableComponent? dc))
+            //{
+            //    _damageableSystem.SetAllDamage(target, dc, 200);
+            //}
         }
     }
 }
