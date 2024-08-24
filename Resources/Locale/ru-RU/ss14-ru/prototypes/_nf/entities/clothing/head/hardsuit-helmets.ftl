@@ -28,3 +28,5 @@ ent-ClothingHeadHelmetHardsuitScaf = шлем СКАФандра
     .desc = Робастный, крепкий шлем. Внутри пахнет сдерживаемым гневом.
 ent-ClothingHeadHelmetHardsuitTacticalMaid = шлем тактического скафандра горничной
     .desc = Шлем из прочного нержавеющего сплава с антикоррозийным покрытием — идеален для чистки и безопасности.
+ent-ClothingHeadHelmetHardsuitPirateElite = шлем элитного пиратского скафандра
+    .desc = Элитный бронированный шлем для йо-хо-хокинга.
