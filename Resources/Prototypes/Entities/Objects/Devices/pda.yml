@@ -78,6 +78,7 @@
 #  - type: WirelessNetworkConnection # Frontier
 #    range: 500 # Frontier
   - type: CartridgeLoader
+    diskSpace: 8 # Frontier - Too many programs 5<8
     uiKey: enum.PdaUiKey.Key
     preinstalled:
       - CrewManifestCartridge
@@ -121,6 +122,9 @@
   id: BaseMedicalPDA
   abstract: true
   components:
+  - type: ItemToggle
+    toggleLight: false
+    onUse: false
   - type: HealthAnalyzer
     scanDelay: 1
     scanningEndSound:
@@ -680,6 +684,7 @@
     scanDelay: 0
   - type: CartridgeLoader
     uiKey: enum.PdaUiKey.Key
+    notificationsEnabled: false
     preinstalled:
       - CrewManifestCartridge
       - NotekeeperCartridge

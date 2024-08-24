@@ -9,6 +9,8 @@
   startingGear: LawyerGear
   icon: "JobIconLawyer"
   supervisors: job-supervisors-hire # Frontier
+  weight: 50 # Frontier
+  displayWeight: 10 # Frontier
   canBeAntag: false
   accessGroups: # Frontier
   - GeneralNfsdBrigAccess # Frontier
@@ -23,7 +25,9 @@
     shoes: ClothingShoesBootsLaceup
     id: LawyerPDA
     ears: ClothingHeadsetNfsdGreen # Frontier ClothingHeadsetSecurity<ClothingHeadsetNfsdGreen
-    # TODO add copy of space law
-    pocket1: RubberStampLawyer # Frontier
   inhand:
     - BriefcaseBrownFilled
+  storage:
+    back:
+    - RubberStampLawyer
+    - HyperlinkBookSpaceLaw # Frontier: BookSpaceLaw<HyperlinkBookSpaceLaw

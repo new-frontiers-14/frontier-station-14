@@ -45,6 +45,41 @@
           amount: 2
           defaultPrototype: Beaker
 
+- type: entity
+  id: MercenaryTechFabCircuitboardNF
+  parent: SecurityTechFabCircuitboard
+  name: mercenary techfab machine board
+  description: A machine printed circuit board for a mercenary techfab
+  components:
+    - type: MachineBoard
+      prototype: MercenaryTechFab
+      requirements:
+        MatterBin: 2
+        Manipulator: 2
+      tagRequirements:
+        GlassBeaker:
+          amount: 2
+          defaultPrototype: Beaker
+
+- type: entity
+  id: MercenaryTechFabCircuitboardHackedNF
+  parent: SecurityTechFabCircuitboard
+  name: hacked mercenary techfab machine board
+  description: A spray painted circuit board for a mercenary techfab with some doodads attached to it. Don't worry 'bout it, choomba.
+  components:
+    - type: Sprite
+      sprite: _NF/Objects/Misc/module.rsi
+      state: hacked-merc-fab-board
+    - type: MachineBoard
+      prototype: MercenaryTechFabHacked
+      requirements:
+        MatterBin: 2
+        Manipulator: 2
+      tagRequirements:
+        GlassBeaker:
+          amount: 2
+          defaultPrototype: Beaker
+
 # TechFab
 - type: entity
   id: NfsdTechFabCircuitboard
@@ -95,6 +130,9 @@
       Steel: 5
   - type: StaticPrice
     price: 12.5
+  - type: Tag # Frontier
+    tags: # Frontier
+    - SmallThrusterMachineCircuitboard # Frontier
 
 # Gyroscope
 - type: entity
