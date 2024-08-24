@@ -25,7 +25,7 @@ public sealed partial class PlayerTabEntry : PanelContainer
         AntagonistLabel.Text = Loc.GetString(player.Antag ? "player-tab-is-antag-yes" : "player-tab-is-antag-no");
         BackgroundColorPanel.PanelOverride = styleBoxFlat;
         OverallPlaytimeLabel.Text = player.PlaytimeString;
-        BalanceLabel.Text = player.Balance; // Frontier
+        BalanceLabel.Text = player.Balance.ToString(); // Frontier
         PlayerEntity = player.NetEntity;
     }
 }
