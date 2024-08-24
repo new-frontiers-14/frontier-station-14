@@ -79,7 +79,6 @@ namespace Content.Server.Salvage
         // Frontier
         public override void Shutdown()
         {
-            ClearMissions();
             ShutdownExpeditions();
             base.Shutdown();
         }

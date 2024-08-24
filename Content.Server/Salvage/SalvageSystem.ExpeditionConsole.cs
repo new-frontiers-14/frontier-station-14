@@ -42,16 +42,17 @@ public sealed partial class SalvageSystem
             if (TryComp<SalvageExpeditionDataComponent>(expeditionUid, out var expeditionData) && expeditionData.Claimed)
                 activeExpeditionCount++;
 
+        if (!TryComp<SalvageExpeditionDataComponent>(station, out var data) || data.Claimed)
+            return;
+
         if (activeExpeditionCount >= _configurationManager.GetCVar(NFCCVars.SalvageExpeditionMaxActive))
         {
             PlayDenySound(uid, component);
             _popupSystem.PopupEntity(Loc.GetString("shuttle-ftl-too-many"), uid, PopupType.MediumCaution);
+            UpdateConsoles(data);
             return;
         }
         // Frontier
-
-        if (!TryComp<SalvageExpeditionDataComponent>(station, out var data) || data.Claimed)
-            return;
 
         if (!data.Missions.TryGetValue(args.Index, out var missionparams))
             return;
@@ -95,17 +96,6 @@ public sealed partial class SalvageSystem
                 return;
             }
         }
-        // End Frontier
-
-        // Frontier: check for number of stations
-        if (_shuttlesOnExpedition.Count >= _maxActiveExpeditions)
-        {
-            PlayDenySound(uid, component);
-            _popupSystem.PopupEntity(Loc.GetString("shuttle-ftl-too-many"), uid, PopupType.MediumCaution);
-            UpdateConsoles(data); // Sure, why not?
-            return;
-        }
-        _shuttlesOnExpedition.Add(station.Value);
         // End Frontier
 
         // Frontier  change - disable coordinate disks for expedition missions
@@ -191,11 +181,6 @@ public sealed partial class SalvageSystem
 
         Announce(map.Value, Loc.GetString("salvage-expedition-announcement-early-finish", ("departTime", departTime)));
     }
-
-    private void ClearMissions()
-    {
-        _shuttlesOnExpedition.Clear();
-    }
     // Frontier
 
     private void OnSalvageConsoleInit(Entity<SalvageExpeditionConsoleComponent> console, ref ComponentInit args)
@@ -244,8 +229,7 @@ public sealed partial class SalvageSystem
         }
         else
         {
-            //state = new SalvageExpeditionConsoleState(TimeSpan.Zero, false, true, 0, new List<SalvageMissionParams>());
-            state = new SalvageExpeditionConsoleState(TimeSpan.Zero, false, true, false, 0, new List<SalvageMissionParams>()); // Frontier
+            state = new SalvageExpeditionConsoleState(TimeSpan.Zero, false, true, false, 0, new List<SalvageMissionParams>()); // Frontier: add false as 4th param
         }
 
         // Frontier: if we have a lingering FTL component, we cannot start a new mission
