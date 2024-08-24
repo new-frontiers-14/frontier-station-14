@@ -1,4 +1,3 @@
-using Content.Server._NF.Salvage; // Frontier: graceful exped spawn failures
 using Content.Server.Station.Components;
 using Content.Shared.Popups;
 using Content.Shared.Shuttles.Components;
@@ -12,7 +11,13 @@ using Robust.Shared.Prototypes;
 using Content.Server.Salvage.Expeditions; // Frontier
 using Content.Shared._NF.CCVar; // Frontier
 using Content.Shared.Humanoid; // Frontier
+using Content.Server.NPC.HTN; // Frontier
+using Content.Shared.Mind.Components; // Frontier
 using Content.Shared.Mobs.Components; // Frontier
+using Content.Shared.Bank.Components; // Frontier
+using Content.Shared.NPC.Components; // Frontier
+using Content.Shared.IdentityManagement; // Frontier
+using Content.Shared.NPC; // Frontier
 
 namespace Content.Server.Salvage;
 
@@ -133,19 +138,34 @@ public sealed partial class SalvageSystem
             return;
         }
 
-        var query = EntityQueryEnumerator<HumanoidAppearanceComponent, TransformComponent>();
-
-        while (query.MoveNext(out var _, out var _, out var mobXform))
+        // Frontier: check if any player characters or friendly ghost roles are outside
+        var query = EntityQueryEnumerator<MindContainerComponent, MobStateComponent, TransformComponent>();
+        while (query.MoveNext(out var uid, out var mindContainer, out var mobState, out var mobXform))
         {
-            // If the mob is on another expedition or still in space, we don't care.
             if (mobXform.MapUid != xform.MapUid)
                 continue;
 
-            // If the mob is on expedition but not on the ship, nope.
+            // Not player controlled (ghosted/SSD): if this player stands to lose nothing, continue
+            if (!mindContainer.HasMind && !HasComp<BankAccountComponent>(uid))
+                continue;
+
+            // Active NPC, definitely not a person
+            if (HasComp<ActiveNPCComponent>(uid))
+                continue;
+
+            // Hostile ghost role, continue
+            if (TryComp(uid, out NpcFactionMemberComponent? npcFaction))
+            {
+                var hostileFactions = npcFaction.HostileFactions;
+                if (hostileFactions.Contains("NanoTrasen")) // Nasty - what if we need pirate expeditions?
+                    continue;
+            }
+
+            // Okay they're on salvage, so are they on the shuttle.
             if (mobXform.GridUid != xform.GridUid)
             {
                 PlayDenySound(entity, component);
-                _popupSystem.PopupEntity(Loc.GetString("salvage-expedition-not-everyone-aboard"), entity, PopupType.MediumCaution);
+                _popupSystem.PopupEntity(Loc.GetString("salvage-expedition-not-everyone-aboard", ("target", Identity.Entity(uid, EntityManager))), entity, PopupType.MediumCaution);
                 UpdateConsoles(data);
                 return;
             }
