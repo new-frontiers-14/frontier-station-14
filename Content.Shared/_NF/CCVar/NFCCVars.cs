@@ -99,7 +99,7 @@ public sealed class NFCCVars
      * Salvage
      */
     /// <summary>
-    /// TODO
+    /// The maximum number of shuttles able to go on expedition at once.
     /// </summary>
     public static readonly CVarDef<int> SalvageExpeditionMaxActive =
         CVarDef.Create("nf14.salvage.expedition_max_active", 15, CVar.REPLICATED);

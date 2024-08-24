@@ -42,7 +42,7 @@ public sealed partial class SalvageSystem
             if (TryComp<SalvageExpeditionDataComponent>(expeditionUid, out var expeditionData) && expeditionData.Claimed)
                 activeExpeditionCount++;
 
-        if (!TryComp<SalvageExpeditionDataComponent>(station, out var data) || data.Claimed)
+        if (!TryComp<SalvageExpeditionDataComponent>(station, out var data) || data.Claimed) // Moved up before the active expedition count
             return;
 
         if (activeExpeditionCount >= _configurationManager.GetCVar(NFCCVars.SalvageExpeditionMaxActive))
@@ -52,7 +52,7 @@ public sealed partial class SalvageSystem
             UpdateConsoles(data);
             return;
         }
-        // Frontier
+        // End Frontier
 
         if (!data.Missions.TryGetValue(args.Index, out var missionparams))
             return;
@@ -113,8 +113,8 @@ public sealed partial class SalvageSystem
         UpdateConsoles(data);
     }
 
-    // Frontier
-    private void OnSalvageFinishMessage(EntityUid entity, SalvageExpeditionConsoleComponent component, FinishSalvageMessage e) // Frontier
+    // Frontier: early expedition end
+    private void OnSalvageFinishMessage(EntityUid entity, SalvageExpeditionConsoleComponent component, FinishSalvageMessage e)
     {
         if (!TryComp<SalvageExpeditionDataComponent>(_station.GetOwningStation(entity), out var data) || !data.CanFinish)
             return;
@@ -181,7 +181,7 @@ public sealed partial class SalvageSystem
 
         Announce(map.Value, Loc.GetString("salvage-expedition-announcement-early-finish", ("departTime", departTime)));
     }
-    // Frontier
+    // End Frontier: early expedition end
 
     private void OnSalvageConsoleInit(Entity<SalvageExpeditionConsoleComponent> console, ref ComponentInit args)
     {
@@ -243,6 +243,7 @@ public sealed partial class SalvageSystem
 
         _ui.SetUiState(component.Owner, SalvageConsoleUiKey.Expedition, state);
     }
+
     private void PlayDenySound(EntityUid uid, SalvageExpeditionConsoleComponent component)
     {
         _audio.PlayPvs(_audio.GetSound(component.ErrorSound), uid);
