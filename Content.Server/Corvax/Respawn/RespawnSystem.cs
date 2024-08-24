@@ -8,7 +8,7 @@ using Content.Shared.Mobs.Components;
 using Robust.Server.Player;
 using Robust.Shared.Network;
 using Robust.Shared.Timing;
-using Content.Shared.NF14.CCVar; // Frontier
+using Content.Shared._NF.CCVar; // Frontier
 using Robust.Shared.Configuration; // Frontier
 using Content.Shared.Mind; // Frontier
 using Content.Server.Mind; // Frontier
@@ -33,8 +33,8 @@ public sealed class RespawnSystem : SharedNFRespawnSystem
         SubscribeLocalEvent<MindContainerComponent, CryosleepBeforeMindRemovedEvent>(OnCryoBeforeMindRemoved);
         SubscribeLocalEvent<MindContainerComponent, CryosleepWakeUpEvent>(OnCryoWakeUp);
 
-        Subs.CVar(_cfg, NF14CVars.RespawnCryoFirstTime, OnRespawnCryoFirstTimeChanged, true);
-        Subs.CVar(_cfg, NF14CVars.RespawnTime, OnRespawnCryoTimeChanged, true);
+        Subs.CVar(_cfg, NFCCVars.RespawnCryoFirstTime, OnRespawnCryoFirstTimeChanged, true);
+        Subs.CVar(_cfg, NFCCVars.RespawnTime, OnRespawnCryoTimeChanged, true);
     }
 
     private void OnRespawnCryoFirstTimeChanged(float value)
