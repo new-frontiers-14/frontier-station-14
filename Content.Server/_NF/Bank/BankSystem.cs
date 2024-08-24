@@ -9,6 +9,9 @@ using Robust.Shared.Network;
 using Content.Server.Cargo.Components;
 using Content.Shared.Preferences.Loadouts;
 using Content.Shared._NF.Bank.Events;
+using Robust.Shared.Prototypes;
+using Content.Shared.Roles;
+using Content.Shared.Traits;
 using Robust.Server.Player;
 
 namespace Content.Server.Bank;
