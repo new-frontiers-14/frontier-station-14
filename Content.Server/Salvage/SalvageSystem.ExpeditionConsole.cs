@@ -10,14 +10,13 @@ using Content.Shared.Dataset;
 using Robust.Shared.Prototypes;
 using Content.Server.Salvage.Expeditions; // Frontier
 using Content.Shared._NF.CCVar; // Frontier
-using Content.Shared.Humanoid; // Frontier
-using Content.Server.NPC.HTN; // Frontier
 using Content.Shared.Mind.Components; // Frontier
 using Content.Shared.Mobs.Components; // Frontier
 using Content.Shared.Bank.Components; // Frontier
 using Content.Shared.NPC.Components; // Frontier
 using Content.Shared.IdentityManagement; // Frontier
 using Content.Shared.NPC; // Frontier
+using Content.Server._NF.Salvage; // Frontier
 
 namespace Content.Server.Salvage;
 
@@ -130,17 +129,17 @@ public sealed partial class SalvageSystem
 
         // Frontier: check if any player characters or friendly ghost roles are outside
         var query = EntityQueryEnumerator<MindContainerComponent, MobStateComponent, TransformComponent>();
-        while (query.MoveNext(out var uid, out var mindContainer, out var mobState, out var mobXform))
+        while (query.MoveNext(out var uid, out var mindContainer, out var _, out var mobXform))
         {
             if (mobXform.MapUid != xform.MapUid)
                 continue;
 
-            // Not player controlled (ghosted/SSD): if this player stands to lose nothing, continue
-            if (!mindContainer.HasMind && !HasComp<BankAccountComponent>(uid))
+            // Not player controlled (ghosted)
+            if (!mindContainer.HasMind)
                 continue;
 
-            // Active NPC, definitely not a person
-            if (HasComp<ActiveNPCComponent>(uid))
+            // NPC, definitely not a person
+            if (HasComp<ActiveNPCComponent>(uid) || HasComp<SalvageMobRestrictionsNFComponent>(uid))
                 continue;
 
             // Hostile ghost role, continue
