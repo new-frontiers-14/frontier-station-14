@@ -103,6 +103,14 @@ public sealed partial class SalvageSystem
         if (!TryComp<SalvageExpeditionComponent>(args.MapUid, out var component))
             return;
 
+        // Frontier
+        if (TryComp<SalvageExpeditionDataComponent>(component.Station, out var data))
+        {
+            data.CanFinish = true;
+            UpdateConsoles(data);
+        }
+        // Frontier
+
         // Someone FTLd there so start announcement
         if (component.Stage != ExpeditionStage.Added)
             return;
@@ -137,6 +145,8 @@ public sealed partial class SalvageSystem
             return;
         }
 
+        station.CanFinish = false; // Frontier
+
         // Check if any shuttles remain.
         var query = EntityQueryEnumerator<ShuttleComponent, TransformComponent>();
 
@@ -168,7 +178,7 @@ public sealed partial class SalvageSystem
                 Dirty(uid, comp);
                 Announce(uid, Loc.GetString("salvage-expedition-announcement-countdown-seconds", ("duration", TimeSpan.FromSeconds(45).Seconds)));
             }
-            else if (comp.Stream == null && remaining < audioLength)
+            else if (comp.Stage < ExpeditionStage.MusicCountdown && comp.Stream == null && remaining < audioLength) // Frontier
             {
                 var audio = _audio.PlayPvs(comp.Sound, uid).Value;
                 comp.Stream = audio.Entity;

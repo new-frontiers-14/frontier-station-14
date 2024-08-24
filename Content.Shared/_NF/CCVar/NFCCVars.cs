@@ -94,4 +94,13 @@ public sealed class NFCCVars
     /// </summary>
     public static readonly CVarDef<int> POIPlacementRetries =
         CVarDef.Create("nf14.worldgen.poi_placement_retries", 10, CVar.SERVERONLY);
+
+    /*
+     * Salvage
+     */
+    /// <summary>
+    /// The maximum number of shuttles able to go on expedition at once.
+    /// </summary>
+    public static readonly CVarDef<int> SalvageExpeditionMaxActive =
+        CVarDef.Create("nf14.salvage.expedition_max_active", 15, CVar.REPLICATED);
 }
