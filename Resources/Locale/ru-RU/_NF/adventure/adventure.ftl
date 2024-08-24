@@ -22,3 +22,4 @@ changelog-tab-title-Upstream = Журнал изменений
 multiauth-already-connected = Уже подключены к серверу Фронтира.
 public-transit-departure = Транспорт направляется в { $destination }. Ориентировочное время в пути: { $flytime } секунд.
 public-transit-arrival = Благодарим за выбор общественного транспорта NT. Следующий шаттл до { $destination } отправляется через { $waittime } секунд.
+shuttle-ftl-too-many = Слишком много активных экспедиций!
