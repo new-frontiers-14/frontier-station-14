@@ -2,6 +2,7 @@ using System.Linq;
 using System.Numerics;
 using System.Threading;
 using System.Threading.Tasks;
+using Content.Server._NF.Salvage; // Frontier: job complete event
 using Content.Server.Atmos;
 using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
@@ -99,6 +100,24 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
     }
 
     protected override async Task<bool> Process()
+    {
+        // Frontier: gracefully handle expedition failures
+        bool success = true;
+        try
+        {
+            Task<bool> task = InternalProcess();
+            await task.ContinueWith((t) => { Logger.ErrorS("salvage", $"Expedition generation failed with exception: {t.Exception?.StackTrace}!"); success = false; }, TaskContinuationOptions.OnlyOnFaulted);
+        }
+        finally
+        {
+            ExpeditionSpawnCompleteEvent ev = new(Station, success, _missionParams.Index);
+            _entManager.EventBus.RaiseLocalEvent(Station, ev); // We have no idea who spawned this, so broadcast our success/failure.
+        }
+        return success;
+        // End Frontier: gracefully handle expedition failures
+    }
+
+    private async Task<bool> InternalProcess() // Frontier: make process an internal function (for a try block indenting an entire)
     {
         Logger.DebugS("salvage", $"Spawning salvage mission with seed {_missionParams.Seed}");
         var config = _missionParams.MissionType;
@@ -231,29 +250,9 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
         Box2 shuttleBox = new Box2();
 
         if (shuttleUid is { Valid: true } vesselUid &&
-            _entManager.TryGetComponent<TransformComponent>(vesselUid, out var vesselXform))
+            _entManager.TryGetComponent<MapGridComponent>(vesselUid, out var gridComp))
         {
-            foreach (var gridUid in stationData.Grids)
-            {
-                if (!_entManager.TryGetComponent<MapGridComponent>(gridUid, out var gridComp))
-                    continue;
-
-                MapCoordinates mapBottomLeft = _xforms.ToMapCoordinates(EntityCoordinatesExtensions.ToCoordinates(gridUid, gridComp.LocalAABB.BottomLeft));
-                MapCoordinates mapTopRight = _xforms.ToMapCoordinates(EntityCoordinatesExtensions.ToCoordinates(gridUid, gridComp.LocalAABB.TopRight));
-                EntityCoordinates shuttleBottomLeft = _xforms.ToCoordinates((vesselUid, vesselXform), mapBottomLeft);
-                EntityCoordinates shuttleTopRight = _xforms.ToCoordinates((vesselUid, vesselXform), mapTopRight);
-
-                //IsEmpty check needed so box won't contain 0, 0
-                if (!shuttleBox.IsEmpty())
-                {
-                    shuttleBox = shuttleBox.ExtendToContain(shuttleBottomLeft.Position);
-                    shuttleBox = shuttleBox.ExtendToContain(shuttleTopRight.Position);
-                }
-                else
-                {
-                    shuttleBox = new Box2(shuttleBottomLeft.Position, shuttleTopRight.Position);
-                }
-            }
+            shuttleBox = gridComp.LocalAABB;
         }
 
         // Frontier: offset ship spawn point from bounding boxes
@@ -261,7 +260,6 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
         Vector2 shuttleProjection = new Vector2(shuttleBox.Width * (float) -Math.Sin(dungeonRotation) / 2, shuttleBox.Height * (float) Math.Cos(dungeonRotation) / 2); // Note: sine is negative because of CCW rotation (starting north, then west)
         Vector2 coords = dungeonBox.Center - dungeonProjection - dungeonOffset - shuttleProjection - shuttleBox.Center; // Coordinates to spawn the ship at to center it with the dungeon's bounding boxes
 
-        // Attempt to c
         // Frontier: delay ship FTL
         if (shuttleUid is { Valid: true })
         {
@@ -309,7 +307,6 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
         // Handle loot
         // We'll always add this loot if possible
         foreach (var lootProto in _prototypeManager.EnumeratePrototypes<SalvageLootPrototype>())
-
         {
             if (!lootProto.Guaranteed)
                 continue;
