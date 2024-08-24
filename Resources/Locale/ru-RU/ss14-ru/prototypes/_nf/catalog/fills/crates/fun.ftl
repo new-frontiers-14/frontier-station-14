@@ -5,3 +5,5 @@ ent-CrateFunHoverbikeNF = ящик с ховербайком
 ent-CrateFunHoverbikeNFPirate = ящик с ховербайком
     .desc = Harder, better, faster, stronger? Нет, просто быстрее, быстрее, быстрее.
     .suffix = Пиратский
+ent-CrateFunPartyNF = ящик для вечеринок
+    .desc = Лицензированный NanoTrasen ящик для проведения вечеринок. Содержит только одобренные корпоративными диетологами припасы.
