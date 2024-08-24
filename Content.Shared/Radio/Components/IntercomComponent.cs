@@ -1,4 +1,4 @@
-﻿using Robust.Shared.GameStates;
+using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Radio.Components;
@@ -29,4 +29,16 @@ public sealed partial class IntercomComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public List<ProtoId<RadioChannelPrototype>> SupportedChannels = new();
+
+    /// <summary>
+    /// Frontier - Start the intercom speaker with the map.
+    /// </summary>
+    [DataField]
+    public bool StartSpeakerOnMapInit { get; set; } = false;
+
+    /// <summary>
+    /// Frontier - Start the intercom microphone with the map.
+    /// </summary>
+    [DataField]
+    public bool StartMicrophoneOnMapInit { get; set; } = false;
 }
