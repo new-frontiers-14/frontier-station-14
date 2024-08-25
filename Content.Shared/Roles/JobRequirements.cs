@@ -84,13 +84,42 @@ namespace Content.Shared.Roles
             if (requirements == null)
                 return true;
 
+            // Frontier: add alternate requirement sets
+            bool success = true;
             foreach (var requirement in requirements)
             {
                 if (!TryRequirementMet(requirement, playTimes, out reason, entManager, prototypes))
-                    return false;
+                {
+                    success = false;
+                    break;
+                }
+            }
+            if (success)
+                return true;
+
+            var altRequirementsSets = sys.GetAlternateJobRequirements(job) ?? new();
+            foreach (var requirementSet in altRequirementsSets.Values)
+            {
+                success = true;
+                foreach (var requirement in requirementSet)
+                {
+                    // Frontier: do not accumulate reasons for alternate job requirements.
+                    if (!TryRequirementMet(requirement, playTimes, out var _, entManager, prototypes))
+                    {
+                        success = false;
+                        break;
+                    }
+                }
+                if (success)
+                    return true;
             }
 
-            return true;
+            // If this happens, something's gone wrong.  Only for error suppression.
+            if (reason == null)
+                reason = FormattedMessage.FromMarkupPermissive(Loc.GetString("role-timer-no-reason-given"));
+
+            // Frontier: check alternate requirement times
+            return false;
         }
 
         /// <summary>

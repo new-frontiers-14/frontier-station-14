@@ -176,8 +176,16 @@
       shader: unshaded
       color: red
   - type: CartridgeAmmo
-    proto: SoapletBloodCult # SoapConjuredBloodCultCluster
+    muzzleFlash: null
+    deleteOnSpawn: true
+    proto: SoapletBloodCultSpread # SoapConjuredBloodCultCluster
+
+- type: entity
+  id: SoapletBloodCultSpread
+  parent: SoapletBloodCult
+  noSpawn: true
+  components:
+  - type: ProjectileSpread
+    proto: SoapletBloodCult
     count: 35
     spread: 40
-  - type: Ammo
-    muzzleFlash: null
