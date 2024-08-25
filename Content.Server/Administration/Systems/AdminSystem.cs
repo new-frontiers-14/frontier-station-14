@@ -202,9 +202,6 @@ namespace Content.Server.Administration.Systems
 
         private void OnBalanceChanged(BalanceChangedEvent ev) // Frontier
         {
-            if (ev.Amount == 0)
-                return;
-
             UpdatePlayerList(ev.Session);
         }
 

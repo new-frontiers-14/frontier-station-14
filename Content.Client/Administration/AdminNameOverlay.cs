@@ -64,11 +64,11 @@ namespace Content.Client.Administration
                 var balance_str = playerInfo.Balance == int.MinValue ? "NO BALANCE" : playerInfo.Balance.ToString(); // Frontier
                 if (playerInfo.Antag)
                 {
-                    args.ScreenHandle.DrawString(_font, screenCoordinates + (lineoffset * 2), "ANTAG", Color.OrangeRed);
+                    args.ScreenHandle.DrawString(_font, screenCoordinates + (lineoffset * 3), "ANTAG", Color.OrangeRed); // Frontier: 2<3
                 }
                 args.ScreenHandle.DrawString(_font, screenCoordinates+lineoffset, playerInfo.Username, playerInfo.Connected ? Color.Yellow : Color.White);
                 args.ScreenHandle.DrawString(_font, screenCoordinates, playerInfo.CharacterName, playerInfo.Connected ? Color.Aquamarine : Color.White);
-                args.ScreenHandle.DrawString(_font, screenCoordinates + 3 * lineoffset, $"balance: {balance_str}", playerInfo.Connected ? Color.Aquamarine : Color.White);
+                args.ScreenHandle.DrawString(_font, screenCoordinates + 2 * lineoffset, $"balance: {balance_str}", playerInfo.Connected ? Color.Aquamarine : Color.White); // Frontier
             }
         }
     }
