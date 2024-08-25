@@ -15,44 +15,43 @@
     contents:
     - id: PaperWrittenNfsdWarrant
     - id: PaperWrittenNfsdReport
-    - id: PaperWrittenNfsdTicket
-    - id: PaperWrittenNfsdPayHistory
+    - id: PaperWrittenNfsdArrestWarrant
+    - id: PaperWrittenNfsdArrestReport
+    - id: PaperWrittenNfsdDutyLog
     - id: PaperWrittenNfsdAuthorization
     - id: PaperWrittenNfsdContrabandAmnesty
     - id: PaperWrittenNfsdContrabandTurnover
     - id: PaperWrittenNfsdContrabandPermit
     - id: Paper
       prob: 0.5
-    - id: Paper
-      prob: 0.5
 
 # Forms
 - type: entity # Creator: Kwentov (Vica)
   id: PaperWrittenNfsdWarrant
-  name: warrant form
+  name: search warrant
   parent: Paper
   noSpawn: true
   components:
   - type: Paper
     content: |2
-      [color=#2e9935ff]◥[bold]N[/bold]◣ [bold]New Frontier Sheriff's Department[/bold][/color]
-      [color=#2e9935ff]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
-      [head=2]Warrant Form[/head]
+      [color=#4f6e40]◥[bold]N[/bold]◣ [bold]New Frontier Sheriff's Department[/bold][/color]
+      [color=#4f6e40]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
+      [head=2]Search Warrant[/head]
 
-      [head=3]Request Information[/head]
+      [head=3]Warrant Information[/head]
+      [bold]Subject (Person/Vessel IFF):[/bold]
+      [bold]Request Reason:[/bold]
+      [bold]Shift Time Granted:[/bold]
+
+      [head=3]Requestor Information[/head]
       [bold]Case #:[/bold]
       [bold]Request Time:[/bold]
       [bold]Requesting Officer:[/bold]
       [bold]Officer Rank:[/bold]
 
-      [head=3]Warrant Information[/head]
-      [bold]Location (Or Ship Designation):[/bold]
-      [bold]Shift Time Granted:[/bold]
-      [bold]Request Reason:[/bold]
 
 
-
-      [color=#AAAAAA]This Form is void without the signature and stamp of the senior acting NFSD officer[/color]
+      [color=#AAAAAA]This Warrant is only valid when requested and signed by an officer of the NFSD and approved, signed, and stamped by a [italic]distinct[/italic] (unless impossible) officer ranked Bailiff or above or a Station Representative.[/color]
 
 - type: entity # Creator: Starly (Shaw Clifflower)
   id: PaperWrittenNfsdReport
@@ -62,8 +61,8 @@
   components:
   - type: Paper
     content: |2
-      [color=#2e9935ff]◥[bold]N[/bold]◣ [bold]New Frontier Sheriff's Department[/bold][/color]
-      [color=#2e9935ff]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
+      [color=#4f6e40]◥[bold]N[/bold]◣ [bold]New Frontier Sheriff's Department[/bold][/color]
+      [color=#4f6e40]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
       [head=2]After Action Report[/head]
 
       [head=3]Incident Information[/head]
@@ -98,61 +97,109 @@
 
       [color=#AAAAAA]I, the [italic]Bailiff or Sheriff[/italic] of the NFSD, or an agent acting on their behalf, certify that everything written in this report is correct and truthful, and am aware of the penalties should anything in this report be proven incorrect, falsified, or exaggerated.[/color]
 
-- type: entity # Creator: Kwentov (Vica)
-  id: PaperWrittenNfsdTicket
-  name: space law violation ticket
+- type: entity
+  id: PaperWrittenNfsdArrestWarrant
+  name: arrest warrant
   parent: Paper
   noSpawn: true
   components:
   - type: Paper
     content: |2
-      [color=#2e9935ff]◥[bold]N[/bold]◣ [bold]New Frontier Sheriff's Department[/bold][/color]
-      [color=#2e9935ff]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
-      [head=2]Space Law Violation Ticket[/head]
+      [color=#4f6e40]◥[bold]N[/bold]◣ [bold]New Frontier Sheriff's Department[/bold][/color]
+      [color=#4f6e40]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
+      [head=2]Arrest Warrant[/head]
 
-      [head=3]Details of Crime Committed[/head]
-      [bold]Case #:[/bold]
-      [bold]Full Name of Accused:[/bold] 
-      [bold]Crime(s) of Accused:[/bold] 
-      [bold]Time of Violation:[/bold] 
-      [bold]Location of Violation:[/bold] 
+      [head=3]Defendant(s)[/head]
+      [bold]Name:[/bold] 
+      [bold]Description:[/bold] 
+      [bold]Name:[/bold] 
+      [bold]Description:[/bold] 
+      [bold]Name:[/bold] 
+      [bold]Description:[/bold] 
 
-      [head=3]Details of Arrest[/head]
-      [bold]Responding Officer:[/bold] 
+      [head=3]Offense Details[/head]
+      [bold]Case #:[/bold] 
+      [bold]Approximate Time of Offense:[/bold] 
+      [bold]Location of Offense:[/bold] 
+      [bold]Charges:[/bold] 
+
+      [head=3]Requestor Information[/head]
+      [bold]Requesting Officer:[/bold] 
+      [bold]Authorizing Officer:[/bold] 
+      [bold]Time of Authorization:[/bold] 
+
+
+
+      [color=#AAAAAA]This warrant is only valid when requested and signed by an agent of the NFSD, and approved, signed and stamped by a distinct (unless impossible) officer ranked Bailiff or above, or a Station Representative.[/color]
+
+- type: entity # Creator: Kwentov (Vica)
+  id: PaperWrittenNfsdArrestReport
+  name: arrest report
+  parent: Paper
+  noSpawn: true
+  components:
+  - type: Paper
+    content: |2
+      [color=#4f6e40]◥[bold]N[/bold]◣ [bold]New Frontier Sheriff's Department[/bold][/color]
+      [color=#4f6e40]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
+      [head=2]Arrest Report[/head]
+
+      [head=3]Incident Details[/head]
+      [bold]Case #:[/bold] 
+      [bold]Time of Arrest:[/bold] 
       [bold]Location of Arrest:[/bold] 
+      [bold]Charges:[/bold] 
+
+      [head=3]Arrested Person(s)[/head]
       [bold]Time Detained:[/bold] 
+
+      [bold]Name:[/bold] 
+      [bold]Description:[/bold] 
+      [bold]Fine or Punishment:[/bold] 
+      
+      [bold]Name:[/bold] 
+      [bold]Description:[/bold] 
       [bold]Fine or Punishment:[/bold] 
 
+      [head=3]Arrestor[/head]
+      [bold]Arresting Officer:[/bold] 
+      [bold]Supervisor:[/bold] 
 
 
-      [color=#AAAAAA]I, the undersigned, hereby swear under oath that all information on this ticket is accurate and correct to the best of my knowledge at the time of signing.[/color]
+
+      [color=#AAAAAA]I, the undersigned, hereby swear under oath that all information on this report is accurate and correct to the best of my knowledge at the time of signing.[/color]
+
 
 - type: entity
-  id: PaperWrittenNfsdPayHistory
-  name: employee pay history
+  id: PaperWrittenNfsdDutyLog
+  name: duty log
   noSpawn: true
   parent: Paper
   components:
   - type: Paper
     content: |2 # If editing this, edit PaperWrittenFrontierEmployeePayHistory
-      [color=#2e9935ff]◥[bold]N[/bold]◣ [bold]New Frontier Sheriff's Department[/bold][/color]
-      [color=#2e9935ff]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
-      [head=2]Employee Pay History[/head]
+      [color=#4f6e40]◥[bold]N[/bold]◣ [bold]New Frontier Sheriff's Department[/bold][/color]
+      [color=#4f6e40]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
+      [head=2]Duty Log[/head]
 
-      [bold]Name:[/bold]
-      [bold]Position Title:[/bold]
-      [bold]Hourly Wage:[/bold]
-      [bold]Pay history (Shift time, wage recieved):[/bold]
-          [bullet/]
-          [bullet/]
-          [bullet/]
-          [bullet/]
-          [bullet/]
-          [bullet/]
+      [bold]Sheriff:[/bold] 
+
+      [head=3]Officers[/head]
+
+      [bold]Name:[/bold] 
+      [bold]Signed on:[/bold] 
+      [bold]Signed off:[/bold] 
+
+      [bold]Name:[/bold] 
+      [bold]Signed on:[/bold] 
+      [bold]Signed off:[/bold] 
+
+      [bold]Name:[/bold] 
+      [bold]Signed on:[/bold] 
+      [bold]Signed off:[/bold] 
 
 
-
-      [color=#AAAAAA]This Form is void without the signature and stamp of Frontier Command (Sheriff or Station Representative)[/color]
+      [color=#AAAAAA]This Form is considered as NT Sensitive Data, Class 2, and is for internal NFSD use only.[/color]
 
 - type: entity # Based on form made by Blumbee (Aki Suboshi)
   id: PaperWrittenNfsdContrabandTurnover
@@ -162,8 +209,8 @@
   components:
   - type: Paper
     content: |2 # If updating this, update PaperWrittenFrontierContrabandTurnover
-      [color=#2e9935ff]◥[bold]N[/bold]◣ [bold]New Frontier Sheriff's Department[/bold][/color]
-      [color=#2e9935ff]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
+      [color=#4f6e40]◥[bold]N[/bold]◣ [bold]New Frontier Sheriff's Department[/bold][/color]
+      [color=#4f6e40]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
       [head=2]Contraband Turnover Receipt[/head]
 
       [bold]Contraband Holder:[/bold] 
@@ -195,11 +242,9 @@
   components:
   - type: Paper
     content: |2 # If updating this, update PaperWrittenFrontierContrabandAmnesty
-      [color=#2e9935ff]◥[bold]N[/bold]◣ [bold]New Frontier Sheriff's Department[/bold][/color]
-      [color=#2e9935ff]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
+      [color=#4f6e40]◥[bold]N[/bold]◣ [bold]New Frontier Sheriff's Department[/bold][/color]
+      [color=#4f6e40]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
       [head=2]Contraband Amnesty Agreement[/head]
-
-      [color=#AAAAAA]This Form may only be issued without an acting Sheriff or with the acting Sheriff's approval.[/color]
 
       [head=3]Contraband Holder[/head]
           [bold]Name:[/bold] 
@@ -219,7 +264,7 @@
 
       [color=#AAAAAA]This form is void without the signatures of both Parties and a stamp of Frontier Command (Sheriff or Station Representative)[/color]
 
-- type: entity # Based on form made by papaneko (Blumbee (Aki Suboshi))
+- type: entity # Based on form made by Blumbee (Aki Suboshi)
   id: PaperWrittenNfsdContrabandPermit
   name: class 2 contraband permit
   noSpawn: true
@@ -227,8 +272,8 @@
   components:
   - type: Paper
     content: |2 # If updating this, update PaperWrittenFrontierContrabandPermit
-      [color=#2e9935ff]◥[bold]N[/bold]◣ [bold]New Frontier Sheriff's Department[/bold][/color]
-      [color=#2e9935ff]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
+      [color=#4f6e40]◥[bold]N[/bold]◣ [bold]New Frontier Sheriff's Department[/bold][/color]
+      [color=#4f6e40]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
       [head=2]Class 2 Contraband Permit[/head]
 
       [bold]Permit Holder:[/bold] 
@@ -256,8 +301,8 @@
   components:
   - type: Paper
     content: |2 # When updating this, update PaperWrittenFrontierAuthorization
-      [color=#2e9935ff]◥[bold]N[/bold]◣ [bold]New Frontier Sheriff's Department[/bold][/color]
-      [color=#2e9935ff]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
+      [color=#4f6e40]◥[bold]N[/bold]◣ [bold]New Frontier Sheriff's Department[/bold][/color]
+      [color=#4f6e40]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
       [head=2]Authorization for Bluespace Threats[/head]
 
       [bold]Vessel Captain:[/bold]

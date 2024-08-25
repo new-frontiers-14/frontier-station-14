@@ -339,7 +339,7 @@
   components:
   - type: Pda
     id: DetectiveNFIDCard
-    state: pda-detective
+    state: pda-detectivenf
     bookSlot: # Frontier
       startingItem: HyperlinkBookNfsdSop
       priority: -2
@@ -349,8 +349,21 @@
         - BookNfsdSop
   - type: PdaBorderColor
     borderColor: "#774705"
+  - type: Sprite
+    sprite: _NF/Objects/Devices/pda.rsi
+    layers:
+    - map: [ "enum.PdaVisualLayers.Base" ]
+    - state: "light_overlay"
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+      shader: "unshaded"
+      visible: false
+    - state: "id_overlay"
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+      shader: "unshaded"
+      visible: false
   - type: Icon
-    state: pda-detective
+    sprite: _NF/Objects/Devices/pda.rsi
+    state: pda-detectivenf
 
 - type: entity
   parent: BasePDA
