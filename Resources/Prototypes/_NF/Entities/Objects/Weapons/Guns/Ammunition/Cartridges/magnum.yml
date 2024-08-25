@@ -12,3 +12,23 @@
       - state: tip
         map: [ "enum.AmmoVisualLayers.Tip" ]
         color: "#43c4f7"
+
+- type: entity
+  id: Cartridge454Casull
+  name: cartridge (.454 Casull)
+  parent: BaseCartridge
+  components:
+  - type: Tag
+    tags:
+    - Cartridge
+    - Cartridge454Casull
+  - type: CartridgeAmmo
+    proto: Bullet454Casull
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Casings/454Casull.rsi
+    layers:
+    - state: base
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+  - type: StaticPrice

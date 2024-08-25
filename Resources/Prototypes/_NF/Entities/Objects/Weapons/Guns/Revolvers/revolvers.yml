@@ -56,7 +56,7 @@
   parent: BaseWeaponRevolver
   name: The Arbitrator
   id: WeaponRevolverarbitrator
-  description: Based off of an older design. S.E.S.W.C decided to revamp and rechamber for a modern era  .45cal, .50cal, and .60cal. 
+  description: S.E.S.W.C has revamped this classic for the modern age! Civilian-grade, supports .45 and .454 cartridges and .410 shells 
   components:
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Revolvers/arbitrator.rsi
@@ -92,9 +92,10 @@
       path: /Audio/Weapons/Guns/MagIn/revolver_magin.ogg
     whitelist:
       tags:
-      - ShellShotgun
-      - CartridgeAntiMateriel
+      - Shell410Shotgun
       - CartridgeMagnum
+      - Cartridge454Casull
+      - SpeedLoaderMagnum
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
