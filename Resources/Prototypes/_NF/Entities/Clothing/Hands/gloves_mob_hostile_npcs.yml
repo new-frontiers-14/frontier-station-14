@@ -409,3 +409,20 @@
         state: inhand-left
       - sprite: _NF/Objects/Weapons/Guns/Basic/sawn_kinetic_accelerator.rsi
         state: inhand-right
+
+- type: entity
+  parent: ClothingHandsGlovesColorBlackSMG
+  id: ClothingHandsGlovesWeaponEnergyPickaxe
+  name: wielded weapon
+  suffix: energy pickaxe
+  noSpawn: true
+  components:
+  - type: Clothing
+    clothingVisuals:
+      gloves:
+      - sprite: _NF/Objects/Weapons/Melee/energy_pickaxe.rsi
+        state: inhand-left
+      - sprite: _NF/Objects/Weapons/Melee/energy_pickaxe.rsi
+        state: inhand-left-blade
+        shader: unshaded
+        color: "#e95151"

@@ -35,60 +35,6 @@ entities:
     - type: Transform
       pos: -0.4687497,-0.4947884
       parent: invalid
-      # FIXME: remove this to a cargo depot station pending #1737
-    - type: CargoMarketData
-      whitelist:
-        tags:
-          - Ore
-          - Sheet
-          - Metal
-          - Ingot
-          - RawMaterial
-          - ClothMade
-          - CrystalRed
-          - CrystalGreen
-          - CrystalPink
-          - CrystalOrange
-          - CrystalBlue
-          - CrystalCyan
-        components:
-          - Material
-          - ConstructionMaterials
-          - ToolRefinable
-          - MachinePart
-          - VendingMachineRestock
-          - Seed
-      blacklist:
-        tags:
-          - Trash
-          - Mail
-          - Paper
-        components:
-          - Anchorable # No structures, they won't fit in crates
-          - Food
-          - Currency # No selling money.
-          - SpaceGarbage
-          - Contraband
-          - Gun
-          - Ammo
-          - Drink
-          - GasTank # Default containers won't be empty
-          - Explosive
-          - Actor
-          - Mind # Players
-          - MindContainer # Positronic brains
-          - Body # No corpses
-          - MobPrice # Animals (live or dead) and the like
-          - Artifact # Unique, abusable for research points
-          - RCD # Dup charges
-          - Storage # Till fixed
-          - StorageFill # Till fixed
-          - ContainerContainer # Till fixed
-      overrideList:
-        matchParents: true
-        id:
-          - SheetUranium # Counts as food
-      # END FIXME: remove this to a cargo depot station pending #1737
     - type: MapGrid
       chunks:
         0,1:
@@ -22742,7 +22688,7 @@ entities:
     - type: Transform
       pos: 60.5,-18.5
       parent: 1
-- proto: LessLethalVendingMachine
+- proto: LessLethalVendingMachinePOI
   entities:
   - uid: 2598
     components:
@@ -28206,7 +28152,7 @@ entities:
     - type: Transform
       pos: 53.5,-1.5
       parent: 1
-- proto: VendingMachineAstroVend
+- proto: VendingMachineAstroVendPOI
   entities:
   - uid: 5717
     components:
@@ -28276,7 +28222,7 @@ entities:
     - type: Transform
       pos: 35.5,3.5
       parent: 1
-- proto: VendingMachineEngivend
+- proto: VendingMachineEngivendPOI
   entities:
   - uid: 5546
     components:
@@ -28339,7 +28285,7 @@ entities:
     - type: Transform
       pos: -12.5,7.5
       parent: 1
-- proto: VendingMachineTankDispenserEVA
+- proto: VendingMachineTankDispenserEVAPOI
   entities:
   - uid: 3727
     components:
@@ -28360,7 +28306,7 @@ entities:
     - type: Transform
       pos: 69.5,-8.5
       parent: 1
-- proto: VendingMachineYouTool
+- proto: VendingMachineYouToolPOI
   entities:
   - uid: 1491
     components:

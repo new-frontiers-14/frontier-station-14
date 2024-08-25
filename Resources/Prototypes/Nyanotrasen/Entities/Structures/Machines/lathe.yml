@@ -23,21 +23,72 @@
   - type: Lathe
     idleState: icon
     runningState: icon
+    staticRecipes: #Frontier
+    # Shared lathe recipes
+    ## Basic tools
+      - Wirecutter #Frontier
+      - Screwdriver #Frontier
+      - Welder #Frontier
+      - Wrench #Frontier
+      - Crowbar #Frontier
+      - Multitool #Frontier
+      - FlashlightLantern #Frontier
+      - AppraisalTool #Frontier
+      - HandLabeler #Frontier
+      - Signaller #Frontier
+      - ClothingMaskWeldingGas #Frontier
+    ## Basic storage
+      - ToolboxArtisticNF #Frontier
+      - ToolboxElectricalNF #Frontier
+      - ToolboxMechanicalNF #Frontier
+      - ToolboxEmergencyNF #Frontier
+    ## Basic parts
+      - CableStack #Frontier
+      - LightTube #Frontier
+      - LedLightTube #Frontier
+      - SodiumLightTube #Frontier
+      - ExteriorLightTube #Frontier
+      - LightBulb #Frontier
+      - LedLightBulb #Frontier
+      - ConveyorBeltAssembly #Frontier
+      - PowerCellSmall #Frontier
+      - PowerCellMedium #Frontier
+    ## Basic electronics
+      - SignalTimerElectronics #Frontier
+      - CellRechargerCircuitboard #Frontier
+      - BorgChargerCircuitboard #Frontier
+      - WeaponCapacitorRechargerCircuitboard #Frontier
+    ## Basic EVA:
+      - ClothingOuterEVASuitContractor #Frontier
+      - ClothingOuterEVASuitPilot #Frontier
+      - AirTank #Frontier
+      - HandheldGPSBasic #Frontier
+    # Science techfab
+    ## Tools
+      - NodeScanner
+    ## Basic EVA:
+      - ClothingOuterEVASuitScientist #Frontier
     dynamicRecipes:
+    # Shared lathe recipes #Frontier
+    ## Advanced tools #Frontier
+      - WelderExperimental #Frontier
+      - JawsOfLife #Frontier
+      - PowerDrill #Frontier
+      - JetpackVoid #Frontier
+      - PowerCellHigh #Frontier
+      #- PowerCellHyperNF #Frontier
+      - PowerCellMicroreactor #Frontier
       - BluespaceBeaker
       - CryostasisBeaker
       - ClothingBackpackHolding
       - ClothingBackpackSatchelHolding
       - ClothingBackpackDuffelHolding
       - ClothingBackpackMessengerHolding # Frontier
-      - ChemicalPayload #Below = shared
-      - FlashlightLantern
+      - ChemicalPayload
       - Bucket
       - MopItem
       - SprayBottle
       - FireExtinguisher
-      - LightTube
-      - LightBulb
       - SheetSteel
       - SheetPlastic
       - SheetPlasteel
@@ -47,7 +98,6 @@
       - CableStack
       - CableMVStack
       - CableHVStack
-      - NodeScanner
       - ClothingOuterHardsuitBasic # Frontier
       - ClothingOuterHardsuitRd # Frontier
   - type: MaterialStorage
@@ -56,11 +106,6 @@
         - Sheet
         - RawMaterial
         - Ingot
-    materialWhiteList:
-    - Glass
-    - Plastic
-    - Steel
-    - Durathread
 
 - type: entity
   parent: Protolathe
@@ -88,26 +133,75 @@
     idleState: icon
     runningState: icon
     staticRecipes: #Frontier
+    # Shared lathe recipes
+    ## Basic tools
+      - Wirecutter #Frontier
+      - Screwdriver #Frontier
+      - Welder #Frontier
+      - Wrench #Frontier
+      - Crowbar #Frontier
+      - Multitool #Frontier
+      - FlashlightLantern #Frontier
+      - AppraisalTool #Frontier
+      - HandLabeler #Frontier
+      - Signaller #Frontier
+      - ClothingMaskWeldingGas #Frontier
+    ## Basic storage
+      - ToolboxArtisticNF #Frontier
+      - ToolboxElectricalNF #Frontier
+      - ToolboxMechanicalNF #Frontier
+      - ToolboxEmergencyNF #Frontier
+    ## Basic parts
+      - CableStack #Frontier
+      - LightTube #Frontier
+      - LedLightTube #Frontier
+      - SodiumLightTube #Frontier
+      - ExteriorLightTube #Frontier
+      - LightBulb #Frontier
+      - LedLightBulb #Frontier
+      - ConveyorBeltAssembly #Frontier
+      - PowerCellSmall #Frontier
+      - PowerCellMedium #Frontier
+    ## Basic electronics
+      - SignalTimerElectronics #Frontier
+      - CellRechargerCircuitboard #Frontier
+      - BorgChargerCircuitboard #Frontier
+      - WeaponCapacitorRechargerCircuitboard #Frontier
+    ## Basic EVA:
+      - ClothingOuterEVASuitContractor #Frontier
+      - ClothingOuterEVASuitPilot #Frontier
+      - AirTank #Frontier
+      - HandheldGPSBasic #Frontier
+    # Service techfab
+    ## Tools
+      - LightReplacer #Frontier
+      - MopBucket #Frontier
+      - TrashBag #Frontier
+      - Bucket #Frontier
+      - MopItem #Frontier
+      - SprayBottle #Frontier
+      - MiniHoe #Frontier
+      - HydroponicsToolScythe #Frontier
+      - HydroponicsToolHatchet #Frontier
+      - Spade #Frontier
+      - Clippers #Frontier
+      - ServiceSelectiveDropper # Frontier
+      - Beaker # Frontier
+      - LargeBeaker # Frontier
+      - Jug # Frontier
       - MailCapsule #Frontier
-      - SprayBottle #Frontier, moved some recipes from dynamicRecipes, so the service fab wouldn't need a server for the basic stuff
-      - FlashlightLantern
-      - FireExtinguisher
-      - LightTube
-      - LightBulb
-      - DrinkMug
-      - DrinkMugMetal
-      - DrinkGlass
-      - CableStack
-      - CableMVStack
-      - CableHVStack
-      - LightReplacer
-      - MopBucket
-      - TrashBag
-      - Bucket
-      - MopItem
-      - WetFloorSign
-      - KitchenKnife
-      - ButchCleaver
+      - LanternNF # Frontier
+      - PillCanister # Frontier
+      - ChemistryEmptyBottle01 # Frontier
+      - Mousetrap # Frontier
+      - Holoprojector #Frontier
+      - Shovel #Frontier
+    ## Kitchen
+      - DrinkMug #Frontier
+      - DrinkMugMetal #Frontier
+      - DrinkGlass #Frontier
+      - KitchenKnife #Frontier
+      - ButchCleaver #Frontier
       - ServiceRollingPin # Frontier
       - ServiceSpoon # Frontier
       - ServiceFork # Frontier
@@ -117,48 +211,57 @@
       - ServiceFoodPlateSmall # Frontier
       - ServiceFoodPlateTin # Frontier
       - ServiceFoodKebabSkewer # Frontier
-      - NapkinDrum
-      - Napkin
-      - Beaker # Frontier
-      - LargeBeaker # Frontier
-      - ServiceSelectiveDropper # Frontier
-      - ClothingOuterSuitEmergency # Frontier
-      - ClothingHeadHelmetEVA # Frontier
-      - ClothingOuterHardsuitEVA # Frontier
+      - DrinkShotGlass # Frontier
+      - DrinkGlassCoupeShaped # Frontier
+      - CustomDrinkJug # Frontier
+      - FoodPlatePlastic # Frontier
+      - FoodPlateSmallPlastic # Frontier
+      - NapkinDrum # Frontier
+      - Napkin # Frontier
+    ## EVA
       - ClothingOuterEVASuitHydro # Frontier
+      - ClothingOuterEVASuitJanitor # Frontier
+      - ClothingOuterEVASuitMailman # Frontier
+      - ClothingOuterEVASuitServiceWorker # Frontier
+      - ClothingOuterEVASuitChaplain # Frontier
+      - ClothingOuterEVASuitBoxerRed # Frontier
+      - ClothingOuterEVASuitBoxerGreen # Frontier
+      - ClothingOuterEVASuitBoxerBlue # Frontier
+      - ClothingOuterEVASuitBoxerYellow # Frontier
+    ## Misc
+      - ClothingHeadHatCone #Frontier
+      - FireExtinguisher #Frontier
+      - WetFloorSign #Frontier
     dynamicRecipes:
-      - Holoprojector
-      - HydroponicsToolScythe
-      - HydroponicsToolHatchet
-      - SynthesizerInstrument
-      - MiniHoe
-      - HydroponicsToolScythe
-      - HydroponicsToolHatchet
-      - Spade
-      - Clippers
-      - Shovel # Below is shared with other lathes
-      - SheetSteel
-      - SheetPlasteel
-      - SheetPlasma
-      - SheetGlass1
-      - SheetRGlass
-      - SheetPlastic
+    # Shared lathe recipes # Frontier
+    ## Advanced tools # Frontier
+      - WelderExperimental # Frontier
+      - JawsOfLife # Frontier
+      - PowerDrill # Frontier
+      - JetpackVoid # Frontier
+      - PowerCellHigh # Frontier
+      # - PowerCellHyperNF # Frontier
+      - PowerCellMicroreactor #Frontier
+    # Service techfab
+      - SynthesizerInstrument #Frontier
       - ClothingOuterHardsuitBasic # Frontier
       - ClothingOuterHardsuitPilot # Frontier
       - ClothingOuterHardsuitClown # Frontier
       - ClothingOuterHardsuitMime # Frontier
-  - type: MaterialStorage
+      - AdvMopItem # Frontier
+      - WeaponSprayNozzle # Frontier
+      - ClothingBackpackWaterTank # Frontier
+      - MegaSprayBottle # Frontier
+      - TimerTrigger # Frontier
+      - ChemicalPayload # Frontier
+      - BluespaceBeaker # Frontier
+      - SyringeBluespace # Frontier
+  - type: MaterialStorage # Frontier
     whitelist:
       tags:
         - Sheet
         - RawMaterial
         - Ingot
-    materialWhiteList:
-    - Steel
-    - Plastic
-    - Glass
-    - Durathread
-    - Wood
 
 - type: entity
   parent: Protolathe
@@ -185,67 +288,78 @@
   - type: Lathe
     idleState: icon
     runningState: icon
-    # Frontier Start
     staticRecipes:
-      - Wirecutter
-      - Igniter
-      - Signaller
-      - Screwdriver
-      - Welder
-      - Wrench
-      - Crowbar
-      - Multitool
-      - NetworkConfigurator
-      - SprayPainter
-      - FlashlightLantern
-      - CableStack
-      - CableMVStack
-      - CableHVStack
-      - HandheldGPSBasic
-      - TRayScanner
-      - AirTank
-      - GasAnalyzer
-      - UtilityBelt
-      - SheetRGlass
-      - LightTube
-      - SodiumLightTube
-      - ExteriorLightTube
-      - LightBulb
-      - Bucket
-      - MopItem
-      - Holoprojector
-      - Mousetrap
-      - LightReplacer
-      - TrashBag
-      - PowerCellSmall
-      - PowerCellMedium
-      - MicroManipulatorStockPart
-      - MatterBinStockPart
-      - CapacitorStockPart
-      - ConveyorBeltAssembly
-      - IntercomElectronics
-      - FirelockElectronics
-      - DoorElectronics
-      - AirAlarmElectronics
-      - StationMapElectronics
-      - FireAlarmElectronics
-      - MailingUnitElectronics
-      - SignalTimerElectronics
-      - APCElectronics
-      - SMESMachineCircuitboard
-      - SubstationMachineCircuitboard
-      - CellRechargerCircuitboard
-      - BorgChargerCircuitboard
-      - WeaponCapacitorRechargerCircuitboard
-      - Durathread
-      - Plasteel
-      - ClothingOuterSuitEmergency # Frontier
-      - ClothingHeadHelmetEVA # Frontier
-      - ClothingHeadHelmetEVALarge # Frontier
-      - ClothingOuterHardsuitEVA # Frontier
-      - WelderIndustrial # Frontier
-      - WelderIndustrialAdvanced # Frontier
-      # Engi fab has shuttle power and tech at base
+    # Shared lathe recipes
+    ## Basic tools
+      - Wirecutter #Frontier
+      - Screwdriver #Frontier
+      - Welder #Frontier
+      - Wrench #Frontier
+      - Crowbar #Frontier
+      - Multitool #Frontier
+      - FlashlightLantern #Frontier
+      - AppraisalTool #Frontier
+      - HandLabeler #Frontier
+      - Signaller #Frontier
+      - ClothingMaskWeldingGas #Frontier
+    ## Basic storage
+      - ToolboxArtisticNF #Frontier
+      - ToolboxElectricalNF #Frontier
+      - ToolboxMechanicalNF #Frontier
+      - ToolboxEmergencyNF #Frontier
+    ## Basic parts
+      - CableStack #Frontier
+      - LightTube #Frontier
+      - LedLightTube #Frontier
+      - SodiumLightTube #Frontier
+      - ExteriorLightTube #Frontier
+      - LightBulb #Frontier
+      - LedLightBulb #Frontier
+      - ConveyorBeltAssembly #Frontier
+      - PowerCellSmall #Frontier
+      - PowerCellMedium #Frontier
+    ## Basic electronics
+      - SignalTimerElectronics #Frontier
+      - CellRechargerCircuitboard #Frontier
+      - BorgChargerCircuitboard #Frontier
+      - WeaponCapacitorRechargerCircuitboard #Frontier
+    ## Basic EVA
+      - ClothingOuterEVASuitContractor #Frontier
+      - ClothingOuterEVASuitPilot #Frontier
+      - AirTank #Frontier
+      - HandheldGPSBasic #Frontier
+    # Engineering techfab
+    ## Tools
+      - NetworkConfigurator #Frontier
+      - SprayPainter #Frontier
+      - TRayScanner #Frontier
+      - GasAnalyzer #Frontier
+      - Holoprojector #Frontier
+      - LightReplacer #Frontier
+      - WelderIndustrial #Frontier
+      - WelderIndustrialAdvanced #Frontier
+      - HolofanProjector #Frontier
+    ## Parts
+      - MicroManipulatorStockPart #Frontier
+      - MatterBinStockPart #Frontier
+      - CapacitorStockPart #Frontier
+      - Igniter #Frontier
+      - CableMVStack #Frontier
+      - CableHVStack #Frontier
+    ## Electronics
+      - IntercomElectronics #Frontier
+      - FirelockElectronics #Frontier
+      - DoorElectronics #Frontier
+      - AirAlarmElectronics #Frontier
+      - StationMapElectronics #Frontier
+      - FireAlarmElectronics #Frontier
+      - MailingUnitElectronics #Frontier
+      - APCElectronics #Frontier
+      - SMESMachineCircuitboard #Frontier
+      - SubstationMachineCircuitboard #Frontier
+      - SmallThrusterMachineCircuitboard # Frontier
+      - SmallGyroscopeMachineCircuitboard # Frontier
+      - WallmountSubstationElectronics # Frontier
       - SolarControlComputerCircuitboard # Frontier
       - SolarTrackerElectronics # Frontier
       - SolarAssemblyFlatpack # Frontier
@@ -256,59 +370,57 @@
       - ThrusterMachineCircuitboard # Frontier
       - GyroscopeMachineCircuitboard # Frontier
       - MiniGravityGeneratorCircuitboard # Frontier
+    ## Clothing
+      - UtilityBelt
       - ConstructionBag # Frontier
-      - SmallThrusterMachineCircuitboard # Frontier
-      - SmallGyroscopeMachineCircuitboard # Frontier
-      - WallmountSubstationElectronics # Frontier
+    ## EVA
+      - ClothingOuterSuitEmergency # Frontier
+      - ClothingHeadHelmetEVA # Frontier
+      - ClothingHeadHelmetEVALarge # Frontier
+      - ClothingOuterHardsuitEVA # Frontier
+      - ClothingOuterEVASuitEngineer # Frontier
+      - ClothingOuterEVASuitAtmosTech # Frontier
+    ## Misc
       - ClothingHeadHatCone # Frontier
-    # Frontier end
-    dynamicRecipes:
-      - Flash
-      - MicroManipulatorStockPart
-      - NanoManipulatorStockPart
-      - PicoManipulatorStockPart
-      - FemtoManipulatorStockPart
-      - MatterBinStockPart
-      - AdvancedMatterBinStockPart
-      - SuperMatterBinStockPart
-      - BluespaceMatterBinStockPart
-      - CapacitorStockPart
-      - AdvancedCapacitorStockPart
-      - SuperCapacitorStockPart
-      - QuadraticCapacitorStockPart
-      - FirelockElectronics
-      - DoorElectronics
-      - APCElectronics
-      - AirAlarmElectronics
-      - FireAlarmElectronics
-      - MailingUnitElectronics
-      - IntercomElectronics
-      - HolofanProjector
-      - ConveyorBeltAssembly
-      - RPED
-      - PowerDrill
-      - MiningDrill
-      - RCDAmmo # Below is shared with other lathes
-      - FlashlightLantern
-      - Bucket
-      - MopItem
-      - SprayBottle
-      - FireExtinguisher
-      - LightTube
-      - LightBulb
-      - SheetSteel
-      - SheetPlasteel
-      - SheetPlasma
-      - SheetGlass1
+      - Durathread
+      - Plasteel
       - SheetRGlass
-      - SheetPlastic
-      - CableStack
-      - CableMVStack
-      - CableHVStack
+    dynamicRecipes:
+    # Shared lathe recipes
+    ## Advanced tools
+      - WelderExperimental #Frontier
+      - JawsOfLife #Frontier
+      - PowerDrill #Frontier
+      - JetpackVoid #Frontier
+      - PowerCellHigh #Frontier
+      # - PowerCellHyperNF #Frontier
+      - PowerCellMicroreactor #Frontier
+    # Engineering techfab
+      - Flash #Frontier
+      - MicroManipulatorStockPart #Frontier
+      - NanoManipulatorStockPart #Frontier
+      - PicoManipulatorStockPart #Frontier
+      - FemtoManipulatorStockPart #Frontier
+      - MatterBinStockPart #Frontier
+      - AdvancedMatterBinStockPart #Frontier
+      - SuperMatterBinStockPart #Frontier
+      - BluespaceMatterBinStockPart #Frontier
+      - CapacitorStockPart #Frontier
+      - AdvancedCapacitorStockPart #Frontier
+      - SuperCapacitorStockPart #Frontier
+      - QuadraticCapacitorStockPart #Frontier
+      - RPED #Frontier
+      - MiningDrill #Frontier
+      - SprayBottle #Frontier
+      - FireExtinguisher #Frontier
+      - SheetSteel #Frontier
+      - SheetPlasteel #Frontier
+      - SheetPlasma #Frontier
+      - SheetGlass1 #Frontier
+      - SheetRGlass #Frontier
+      - SheetPlastic #Frontier
       - ShipyardRCD # Frontier
       - ShipyardRCDAmmo # Frontier
-      - WelderExperimental # Frontier
-      - JawsOfLife # Frontier
       - SignallerAdvanced # Frontier
       - ClothingOuterHardsuitBasic # Frontier
       - ClothingOuterHardsuitAtmos # Frontier
@@ -323,9 +435,3 @@
         - Sheet
         - RawMaterial
         - Ingot
-    materialWhiteList:
-    - Glass
-    - Plastic
-    - Steel
-    - Gold # Frontier
-    - Silver # Frontier

@@ -101,7 +101,8 @@
 
 - type: entity
   parent: ComputerShuttle
-  id: ComputerShuttleAntag
+  id: ComputerShuttleAntagEmpty
+  noSpawn: true
   components:
   - type: Sprite
     layers:
@@ -117,6 +118,24 @@
     radius: 1.5
     energy: 1.6
     color: "#c94242"
+
+- type: entity
+  parent: ComputerShuttleAntagEmpty
+  id: ComputerShuttleAntag
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyTraffic
+
+- type: entity
+  parent: ComputerShuttleEmpty
+  id: ComputerShuttle
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyTraffic
 
 - type: entity
   parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerIFFSyndicate]
@@ -205,19 +224,19 @@
   name: cargo market computer
   parent: ComputerMarketConsoleNFBase
   id: ComputerMarketConsoleNFLow
-  suffix: Low 5x
+  suffix: Low
   components:
   - type: MarketModifier
-    mod: 5
+    mod: 4
 
 - type: entity
   name: cargo market computer
   parent: ComputerMarketConsoleNFBase
   id: ComputerMarketConsoleNFHigh
-  suffix: High 10x
+  suffix: High
   components:
   - type: MarketModifier
-    mod: 10
+    mod: 8
 
 - type: entity
   id: ComputerPirateBounty
@@ -315,3 +334,11 @@
   # - type: GuideHelp # Frontier
   #   guides: # Frontier
   #   - CargoBounties # Frontier
+
+- type: entity
+  id: ComputerSalvageExpeditionDebug
+  parent: ComputerSalvageExpedition
+  suffix: Debug
+  components:
+    - type: SalvageExpeditionConsole
+      debug: true
