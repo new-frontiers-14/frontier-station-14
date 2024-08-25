@@ -21,6 +21,9 @@ public sealed partial class BankSystem : EntitySystem
 
     private ISawmill _log = default!;
 
+    // Cached bank accounts
+    private Dictionary<NetUserId, int> _cachedBankAccounts = new();
+
     public override void Initialize()
     {
         base.Initialize();
@@ -31,18 +34,47 @@ public sealed partial class BankSystem : EntitySystem
         InitializeStationATM();
     }
 
-    // To ensure that bank account data gets saved, we are going to update the db every time the component changes
-    // I at first wanted to try to reduce database calls, however notafet suggested I just do it every time the account changes
-    // TODO: stop it from running 5 times every time
+    // This could use a refactor into a BankAccountManager that handles your caching.
     private void OnBankAccountChanged(EntityUid mobUid, BankAccountComponent bank, ref ComponentGetState args)
     {
         var user = args.Player?.UserId;
 
         if (user == null || args.Player?.AttachedEntity != mobUid)
         {
+            // The person reading this isn't the controller of the character.
+            // Never update - return cached value if it exists, otherwise trust the data we receive.
+            int balance = bank.Balance;
+            var earlyUserId = args.Player?.UserId;
+            if (earlyUserId is not null && _cachedBankAccounts.ContainsKey(earlyUserId.Value))
+            {
+                balance = _cachedBankAccounts[earlyUserId.Value];
+            }
+            args.State = new BankAccountComponentState
+            {
+                Balance = balance
+            };
             return;
         }
+        var userId = user = user.Value;
 
+        // Regardless of what happens, the given balance will be the returned state.
+        // Possible desync with database if character is the wrong type.
+        args.State = new BankAccountComponentState
+        {
+            Balance = bank.Balance
+        };
+
+        // Check if value is in cache.
+        if (_cachedBankAccounts.ContainsKey(userId.Value))
+        {
+            // Our cached value matches the request, nothing to do.
+            if (_cachedBankAccounts[userId.Value] == bank.Balance)
+            {
+                return;
+            }
+        }
+
+        // Mismatched or missing value in cache. Update DB & cache new value.
         var prefs = _prefsManager.GetPreferences((NetUserId) user);
         var character = prefs.SelectedCharacter;
         var index = prefs.IndexOfCharacter(character);
@@ -52,26 +84,8 @@ public sealed partial class BankSystem : EntitySystem
             return;
         }
 
-        var newProfile = new HumanoidCharacterProfile(
-            profile.Name,
-            profile.FlavorText,
-            profile.Species,
-            profile.Age,
-            profile.Sex,
-            profile.Gender,
-            bank.Balance,
-            profile.Appearance,
-            profile.SpawnPriority,
-            new Dictionary<ProtoId<JobPrototype>, JobPriority>(profile.JobPriorities), // Frontier Merge
-            profile.PreferenceUnavailable,
-            new HashSet<ProtoId<AntagPrototype>>(profile.AntagPreferences), // Frontier Merge
-            new HashSet<ProtoId<TraitPrototype>>(profile.TraitPreferences), // Frontier Merge
-            new Dictionary<string, RoleLoadout>(profile.Loadouts));
-
-        args.State = new BankAccountComponentState
-        {
-            Balance = bank.Balance,
-        };
+        var newProfile = profile.WithBankBalance(bank.Balance);
+        _cachedBankAccounts[userId.Value] = bank.Balance;
 
         _dbManager.SaveCharacterSlotAsync((NetUserId) user, newProfile, index);
         _log.Info($"Character {profile.Name} saved");
