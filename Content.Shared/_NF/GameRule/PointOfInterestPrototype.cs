@@ -42,6 +42,12 @@ public sealed partial class PointOfInterestPrototype : IPrototype
     public Color IffColor { get; private set; } = (100, 100, 100, 100);
 
     /// <summary>
+    ///     Whether or not the POI itself should be able to move or be moved. Should be false for immobile POIs (static stations) and true for ship-like POIs.
+    /// </summary>
+    [DataField("canMove")]
+    public bool CanMove { get; private set; }
+
+    /// <summary>
     ///     Whether or not the POI is shown on IFF.
     /// </summary>
     [DataField("isHidden")]
