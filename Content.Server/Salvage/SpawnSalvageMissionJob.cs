@@ -102,15 +102,11 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
     protected override async Task<bool> Process()
     {
         // Frontier: gracefully handle expedition failures
-        bool success = false;
+        bool success = true;
         try
         {
             Task<bool> task = InternalProcess();
-            await task.ContinueWith((t) => { }, TaskContinuationOptions.OnlyOnFaulted);
-        }
-        catch (Exception e)
-        {
-            Logger.ErrorS("salvage", $"Expedition generation failed with exception: {e?.StackTrace}!");
+            await task.ContinueWith((t) => { Logger.ErrorS("salvage", $"Expedition generation failed with exception: {t.Exception?.StackTrace}!"); success = false; }, TaskContinuationOptions.OnlyOnFaulted);
         }
         finally
         {
