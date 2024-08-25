@@ -68,7 +68,7 @@
   noSpawn: true
   components:
   - type: Paper
-    content: |2
+    content: |2 # If editing this, edit PaperWrittenNfsdPayHistory
       [color=#2e9935ff]◥[bold]N[/bold]◣ [bold]Frontier Outpost Command[/bold][/color]
       [color=#2e9935ff]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
       [head=2]Employee Pay History[/head]
@@ -113,6 +113,7 @@
   id: PaperWrittenFrontierAuthorization
   name: authorization for bluespace threats
   parent: Paper
+  noSpawn: true
   components:
   - type: Paper
     content: |2 # When updating this, update PaperWrittenNfsdAuthorization
@@ -152,6 +153,7 @@
   id: PaperWrittenFrontierShuttleTitleChange
   name: shuttle title change
   parent: Paper
+  noSpawn: true
   components:
   - type: Paper
     content: |2
@@ -170,9 +172,9 @@
 
 - type: entity # Based on form made by Blumbee (Aki Suboshi)
   id: PaperWrittenFrontierShuttleDerelict
-  name: Declaration of Salvage
-  suffix: MappedPaper
+  name: declaration of salvage
   parent: Paper
+  noSpawn: true
   components:
   - type: Paper
     content: |2
@@ -196,12 +198,12 @@
 
 - type: entity # Based on form made by Blumbee (Aki Suboshi)
   id: PaperWrittenFrontierContrabandAmnesty
-  name: Contraband Amnesty Agreement
-  suffix: MappedPaper
+  name: contraband amnesty agreement
   parent: Paper
+  noSpawn: true
   components:
   - type: Paper
-    content: |2 # The same text as PaperWrittenNfsdContrabandPermit just with a different header and issuing clause.
+    content: |2 # If updating this, update PaperWrittenNfsdContrabandAmnesty
       [color=#2e9935ff]◥[bold]N[/bold]◣ [bold]Frontier Outpost Command[/bold][/color]
       [color=#2e9935ff]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
       [head=2]Contraband Amnesty Agreement[/head]
@@ -226,15 +228,14 @@
 
       [color=#AAAAAA]This form is void without the signatures of both Parties and a stamp of Frontier Command (Sheriff or Station Representative)[/color]
 
-
 - type: entity # Based on form made by Blumbee (Aki Suboshi)
   id: PaperWrittenFrontierContrabandTurnover
-  name: Contraband Turnover Receipt
-  noSpawn: true
+  name: contraband turnover receipt
   parent: Paper
+  noSpawn: true
   components:
   - type: Paper
-    content: |2
+    content: |2 # If updating this, update PaperWrittenNfsdContrabandTurnover
       [color=#2e9935ff]◥[bold]N[/bold]◣ [bold]Frontier Outpost Command[/bold][/color]
       [color=#2e9935ff]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
       [head=2]Contraband Turnover Receipt[/head]
@@ -262,11 +263,12 @@
 
 - type: entity # Based on form made by Blumbee (Aki Suboshi)
   id: PaperWrittenFrontierContrabandPermit
-  name: Class 2 Contraband Permit
+  name: class 2 contraband permit
   parent: Paper
+  noSpawn: true
   components:
   - type: Paper
-    content: |2 # The same text as PaperWrittenNfsdContrabandPermit just with a different header and issuing clause.
+    content: |2 # If updating this, update PaperWrittenNfsdContrabandPermit
       [color=#2e9935ff]◥[bold]N[/bold]◣ [bold]Frontier Outpost Command[/bold][/color]
       [color=#2e9935ff]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
       [head=2]Class 2 Contraband Permit[/head]
@@ -275,9 +277,9 @@
 
       [bold]Permit Holder:[/bold] 
       [bold]Holder Crew:[/bold]
-      [bullet/] 
-      [bullet/] 
-      [bullet/] 
+          [bullet/] 
+          [bullet/] 
+          [bullet/] 
 
       [bold]Shift Time:[/bold] 
 

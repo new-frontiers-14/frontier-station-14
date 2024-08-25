@@ -130,11 +130,11 @@
 - type: entity
   id: PaperWrittenNfsdPayHistory
   name: employee pay history
-  parent: Paper
   noSpawn: true
+  parent: Paper
   components:
   - type: Paper
-    content: |2
+    content: |2 # If editing this, edit PaperWrittenFrontierEmployeePayHistory
       [color=#2e9935ff]◥[bold]N[/bold]◣ [bold]New Frontier Sheriff's Department[/bold][/color]
       [color=#2e9935ff]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
       [head=2]Employee Pay History[/head]
@@ -156,12 +156,12 @@
 
 - type: entity # Based on form made by Blumbee (Aki Suboshi)
   id: PaperWrittenNfsdContrabandTurnover
-  name: Contraband Turnover Receipt
+  name: contraband turnover receipt
   noSpawn: true
   parent: Paper
   components:
   - type: Paper
-    content: |2
+    content: |2 # If updating this, update PaperWrittenFrontierContrabandTurnover
       [color=#2e9935ff]◥[bold]N[/bold]◣ [bold]New Frontier Sheriff's Department[/bold][/color]
       [color=#2e9935ff]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
       [head=2]Contraband Turnover Receipt[/head]
@@ -189,12 +189,12 @@
 
 - type: entity # Based on form made by Blumbee (Aki Suboshi)
   id: PaperWrittenNfsdContrabandAmnesty
-  name: Contraband Amnesty Agreement
-  suffix: MappedPaper
+  name: contraband amnesty agreement
+  noSpawn: true
   parent: Paper
   components:
   - type: Paper
-    content: |2 # The same text as PaperWrittenNfsdContrabandPermit just with a different header and issuing clause.
+    content: |2 # If updating this, update PaperWrittenFrontierContrabandAmnesty
       [color=#2e9935ff]◥[bold]N[/bold]◣ [bold]New Frontier Sheriff's Department[/bold][/color]
       [color=#2e9935ff]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
       [head=2]Contraband Amnesty Agreement[/head]
@@ -222,11 +222,11 @@
 - type: entity # Based on form made by papaneko (Blumbee (Aki Suboshi))
   id: PaperWrittenNfsdContrabandPermit
   name: class 2 contraband permit
-  parent: Paper
   noSpawn: true
+  parent: Paper
   components:
   - type: Paper
-    content: |2 # The same text as PaperWrittenFrontierContrabandPermit just with a different header.
+    content: |2 # If updating this, update PaperWrittenFrontierContrabandPermit
       [color=#2e9935ff]◥[bold]N[/bold]◣ [bold]New Frontier Sheriff's Department[/bold][/color]
       [color=#2e9935ff]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
       [head=2]Class 2 Contraband Permit[/head]
