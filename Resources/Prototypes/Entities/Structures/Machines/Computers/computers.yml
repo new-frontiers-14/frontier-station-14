@@ -55,6 +55,8 @@
     interfaces:
         enum.ShuttleConsoleUiKey.Key:
           type: ShuttleConsoleBoundUserInterface
+        enum.IntercomUiKey.Key: # Frontier
+          type: IntercomBoundUserInterface # Frontier
   - type: RadarConsole
   - type: WorldLoader
     radius: 256
@@ -80,12 +82,14 @@
       board: !type:Container
         ents: []
       disk_slot: !type:ContainerSlot {}
+      key_slots: !type:Container # Frontier
 
 - type: entity
-  parent: BaseComputerShuttle
-  id: ComputerShuttle
+  parent: [BaseComputerShuttle, BaseShuttleIntercom] # Frontier - BaseShuttleIntercom
+  id: ComputerShuttleEmpty # Frontier - ComputerShuttle<ComputerShuttleEmpty
   name: shuttle console
   description: Used to pilot a shuttle.
+  noSpawn: true # Frontier
   components:
   - type: Sprite
     layers:
