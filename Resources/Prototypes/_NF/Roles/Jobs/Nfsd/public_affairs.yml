@@ -5,10 +5,14 @@
   playTimeTracker: JobPublicAffairsLiaison
   requirements:
     - !type:OverallPlaytimeRequirement
-      time: 43200 # Frontier - 12 hrs
+      time: 43200 # 12 hours
     - !type:DepartmentTimeRequirement
       department: Security
-      time: 10800 # Frontier - 3 hrs
+      time: 21600 # 6 hours
+  alternateRequirementSets:
+    longerPlaytimeLessSec:
+    - !type:OverallPlaytimeRequirement
+      time: 360000 # 100 hours
   startingGear: PublicAffairGear
   icon: "JobIconPublicAffairsLiaison"
   supervisors: job-supervisors-cadet

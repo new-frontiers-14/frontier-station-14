@@ -7,129 +7,80 @@
 - type: entity
   id: BoxFolderNfsdForms
   parent: BoxFolderPalGreen
-  name: Pao folder
+  name: PAL folder
   description: A folder filled with nfsd paperwork templates.
   suffix: Forms
   components:
   - type: StorageFill
     contents:
-    - id: PaperWrittenContrabandPermit
-    - id: PaperWrittenFrontierFormAuthorization
-    - id: PaperWrittenFrontierFormContrabandAmnesty
-    - id: PaperWrittenFrontierFormContrabandTurnover
-    - id: PaperWrittenNfsdTicket
-    - id: PaperWrittenNfsdReport
-    - id: PaperWrittenNfsdPayHistory
     - id: PaperWrittenNfsdWarrant
+    - id: PaperWrittenNfsdReport
+    - id: PaperWrittenNfsdTicket
+    - id: PaperWrittenNfsdPayHistory
+    - id: PaperWrittenNfsdAuthorization
+    - id: PaperWrittenNfsdContrabandAmnesty
+    - id: PaperWrittenNfsdContrabandTurnover
+    - id: PaperWrittenNfsdContrabandPermit
     - id: Paper
       prob: 0.5
     - id: Paper
       prob: 0.5
 
 # Forms
-- type: entity # Based on form made by papaneko (Blumbee (Aki Suboshi))
-  id: PaperWrittenContrabandPermit
-  name: class 2 contraband contract
-  suffix: MappedPaper
-  parent: Paper
-  components:
-  - type: Paper
-    content: |2
-      [color=#1b487e]███░███░░░░██░░░░[/color]
-      [color=#1b487e]░██░████░░░██░░░░[/color]     [color=red][bold]C2 Permit[/bold][/color]
-      [color=#1b487e]░░█░██░██░░██░█░░[/color]               [head=3]Frontier [/head]
-      [color=#1b487e]░░░░██░░██░██░██░[/color]                        [head=3]Station[/head]
-      [color=#1b487e]░░░░██░░░████░███[/color]
-
-      ═══════════════════════════════════════
-      [bold]Permit Holder:[/bold] [color=#2200BD]WRITE HERE[/color]
-      [bold]Holder Crew:[/bold] [color=#2200BD]WRITE HERE[/color]
-      [bullet/] [color=#2200BD]WRITE HERE[/color]
-      [bullet/] [color=#2200BD][/color]
-      [bullet/] [color=#2200BD][/color]
-
-      [bold]Sheriff on Duty:[/bold] [color=#2200BD]WRITE HERE[/color]
-      [bold]Time of issuing:[/bold] [color=#2200BD]WRITE HERE[/color]
-
-      This Permit allows the Holder and his crew,[italic] as written above[/italic], to hold and use C2 Contraband.
-      Non-compliance with Contraband Turnover orders void this Permit.
-
-      [bold]Class 2 Contraband contains:[/bold] [color=red]all explosive devices not otherwise covered by higher classifications; objects which can be used to non-destructively or non-invasively gain unauthorized access to Nanotrasen secured areas; exclusively restricted and/or authorized use weapons or equipment, uniforms and EMPs; and, security vessels.[/color]
-
-      ═══════════════════════════════════════
-
-      [color=#AAAAAA]This Form is invalid without signs of both Parties and a stamp of NFSD acting Sheriff[/color]
-
 - type: entity # Creator: Kwentov (Vica)
-  id: PaperWrittenNfsdTicket
-  name: nfsd violation ticket
-  suffix: MappedPaper
+  id: PaperWrittenNfsdWarrant
+  name: warrant form
   parent: Paper
+  noSpawn: true
   components:
   - type: Paper
     content: |2
-      
-      [color=red][head=1][italic]NFSD Space Law Violation Ticket[/color][/head][/italic]
+      [color=#2e9935ff]◥[bold]N[/bold]◣ [bold]New Frontier Sheriff's Department[/bold][/color]
+      [color=#2e9935ff]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
+      [head=2]Warrant Form[/head]
+
+      [head=3]Request Information[/head]
+      [bold]Case #:[/bold]
+      [bold]Request Time:[/bold]
+      [bold]Requesting Officer:[/bold]
+      [bold]Officer Rank:[/bold]
+
+      [head=3]Warrant Information[/head]
+      [bold]Location (Or Ship Designation):[/bold]
+      [bold]Shift Time Granted:[/bold]
+      [bold]Request Reason:[/bold]
 
 
-      [color=red][head=3]Details of Crime Committed[/head][/color]
 
-
-      Full name of Accused:
-      Crime(s) of Accused:
-      Time of Violation:
-      Location of Violation:
-
-
-
-
-      [color=red][head=3]Details of Arrest[/head][/color]
-
-
-      Responding Officer:
-      Location of Arrest:
-      Time Detained:
-      Fine or Punishment:
-
-
-      [color=red][head=3][italic]I, the undersigned, hereby swear under oath that all information on this ticket is accurate and correct to the best of my knowledge at the time of signing.[/italic][/head][/color]
+      [color=#AAAAAA]This Form is void without the signature and stamp of the senior acting NFSD officer[/color]
 
 - type: entity # Creator: Starly (Shaw Clifflower)
   id: PaperWrittenNfsdReport
-  name: nfsd report form
-  suffix: MappedPaper
+  name: after action report
   parent: Paper
+  noSpawn: true
   components:
   - type: Paper
     content: |2
-      [color=#FF0000]◥[bold]N[/bold]◣ [bold]New Frontier Sheriff's Department[/bold][/color]
-      [color=#FF0000]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
-      [head=1]After Action Report[/head]
+      [color=#2e9935ff]◥[bold]N[/bold]◣ [bold]New Frontier Sheriff's Department[/bold][/color]
+      [color=#2e9935ff]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
+      [head=2]After Action Report[/head]
 
+      [head=3]Incident Information[/head]
+      [bold]Case #:[/bold]
+      [bold]Offending Vessel:[/bold] 
+      [bold]Suspect:[/bold] 
+      [bold]Charges (list any escalations):[/bold] 
+      [bold]Suspect:[/bold] 
+      [bold]Charges (list any escalations):[/bold] 
 
-      Responding Vessel:
-      Time of Incident: [italic] XX:XX:XX [/italic]
+      [head=3]Response Information[/head]
+      [bold]Responding Vessel:[/bold] 
+      [bold]Time of Incident:[/bold] 
+      [bold]Officers on Board:[/bold] 
 
-
-      [head=2]Suspect Information[/head]
-
-
-      Offending Vessel:
-
-
-      Suspect:
-
-
-      Charges (list any escalations):
-
-
-      Suspect:
-
-
-      Charges (list any escalations):
-
-
-      List all evidence collected as per part of this investigation, and the officer who is in possession of it: 
+      [head=3]Evidence Collected[/head]
+      List all evidence collected below and the officer in possession.
 
 
 
@@ -137,123 +88,200 @@
 
 
 
-      [head=4]Commendations[/head]
+      [head=3]Commendations[/head]
 
 
 
-      [head=5]Recommendations[/head]
+      [head=3]Recommendations[/head]
 
 
-      I, [italic]Bailiff and/or Sheriff[/italic] of the NFSD, certify that everything written in this report is correct and truthful, and am aware of the penalties should anything in this report be proven incorrect, falsified, or exaggerated.
 
-- type: entity # Blumbee (Aki Suboshi)
-  id: PaperWrittenNfsdPayHistory
-  name: nfsd pay history
-  suffix: MappedPaper
-  parent: Paper
-  components:
-  - type: Paper
-    content: |2
-      [color=#364b2b]███░███░░░░██░░░░[/color]
-      [color=#364b2b]░██░████░░░██░░░░[/color]      [color=#364b2b][bold]Pay History[/bold][/color]
-      [color=#364b2b]░░█░██░██░░██░█░░[/color]            [head=3]New Frontier[/head]
-      [color=#364b2b]░░░░██░░██░██░██░[/color]                   [head=3]Sheriff's Department[/head]
-      [color=#364b2b]░░░░██░░░████░███[/color]
-
-
-      ═══════════════════════════════════════
-      [bold]Sheriff on Duty:[/bold] [color=#2200BD]WRITE HERE[/color]
-      [bold]Signup Time:[/bold] [color=#2200BD]WRITE HERE[/color]
-
-
-      [bold]Example:[/bold]
-      [bullet/][bold]Name:[/bold] [color=#2200BD]Urist McHands[/color] [bold]Signup Time:[/bold] [color=#2200BD]6:06[/color]
-        [bold]Pay History:[/bold] [color=#2200BD]1,2,3,4,5,6[/color] [bold]Cryo Time:[/bold] [color=#2200BD]6:07[/color]
-
-
-      [bold]Bailiff:[/bold]
-      [bullet/][bold]Name:[/bold] [color=#2200BD][/color] [bold]Signup Time:[/bold] [color=#2200BD][/color]
-        [bold]Pay History:[/bold] [color=#2200BD][/color] [bold]Cryo Time:[/bold] [color=#2200BD][/color]
-      [bullet/][bold]Name:[/bold] [color=#2200BD][/color] [bold]Signup Time:[/bold] [color=#2200BD][/color]
-        [bold]Pay History:[/bold] [color=#2200BD][/color] [bold]Cryo Time:[/bold] [color=#2200BD][/color]
-   
-      [bold]Sergeant:[/bold]
-      [bullet/][bold]Name:[/bold] [color=#2200BD][/color] [bold]Signup Time:[/bold] [color=#2200BD][/color]
-        [bold]Pay History:[/bold] [color=#2200BD][/color] [bold]Cryo Time:[/bold] [color=#2200BD][/color]
-      [bullet/][bold]Name:[/bold] [color=#2200BD][/color] [bold]Signup Time:[/bold] [color=#2200BD][/color]
-        [bold]Pay History:[/bold] [color=#2200BD][/color] [bold]Cryo Time:[/bold] [color=#2200BD][/color]
-
-
-      [bold]Deputy:[/bold]
-      [bullet/][bold]Name:[/bold] [color=#2200BD][/color] [bold]Signup Time:[/bold] [color=#2200BD][/color]
-        [bold]Pay History:[/bold] [color=#2200BD][/color] [bold]Cryo Time:[/bold] [color=#2200BD][/color]
-      [bullet/][bold]Name:[/bold] [color=#2200BD][/color] [bold]Signup Time:[/bold] [color=#2200BD][/color]
-        [bold]Pay History:[/bold] [color=#2200BD][/color] [bold]Cryo Time:[/bold] [color=#2200BD][/color]
-   
-      [bold]BrigMedic:[/bold]
-      [bullet/][bold]Name:[/bold] [color=#2200BD][/color] [bold]Signup Time:[/bold] [color=#2200BD][/color]
-        [bold]Pay History:[/bold] [color=#2200BD][/color] [bold]Cryo Time:[/bold] [color=#2200BD][/color]
-      [bullet/][bold]Name:[/bold] [color=#2200BD][/color] [bold]Signup Time:[/bold] [color=#2200BD][/color]
-        [bold]Pay History:[/bold] [color=#2200BD][/color] [bold]Cryo Time:[/bold] [color=#2200BD][/color]
-   
-      [bold]Detective:[/bold]
-      [bullet/][bold]Name:[/bold] [color=#2200BD][/color] [bold]Signup Time:[/bold] [color=#2200BD][/color]
-        [bold]Pay History:[/bold] [color=#2200BD][/color] [bold]Cryo Time:[/bold] [color=#2200BD][/color]
-      [bullet/][bold]Name:[/bold] [color=#2200BD][/color] [bold]Signup Time:[/bold] [color=#2200BD][/color]
-        [bold]Pay History:[/bold] [color=#2200BD][/color] [bold]Cryo Time:[/bold] [color=#2200BD][/color]
-   
-      [bold]Cadet:[/bold]
-      [bullet/][bold]Name:[/bold] [color=#2200BD][/color] [bold]Signup Time:[/bold] [color=#2200BD][/color]
-        [bold]Pay History:[/bold] [color=#2200BD][/color] [bold]Cryo Time:[/bold] [color=#2200BD][/color]
-      [bullet/][bold]Name:[/bold] [color=#2200BD][/color] [bold]Signup Time:[/bold] [color=#2200BD][/color]
-        [bold]Pay History:[/bold] [color=#2200BD][/color] [bold]Cryo Time:[/bold] [color=#2200BD][/color]
-   
-      [bold]Public Affairs:[/bold]
-      [bullet/][bold]Name:[/bold] [color=#2200BD][/color] [bold]Signup Time:[/bold] [color=#2200BD][/color]
-        [bold]Pay History:[/bold] [color=#2200BD][/color] [bold]Cryo Time:[/bold] [color=#2200BD][/color]
-      [bullet/][bold]Name:[/bold] [color=#2200BD][/color] [bold]Signup Time:[/bold] [color=#2200BD][/color]
-        [bold]Pay History:[/bold] [color=#2200BD][/color] [bold]Cryo Time:[/bold] [color=#2200BD][/color]
-   
-      [bold]Other paid Station Expenses:[/bold]
-      [bullet/][color=#2200BD][/color]
-      [bullet/][color=#2200BD][/color]
-
-
-      ═══════════════════════════════════════
-
-
-      [color=#AAAAAA]This Document is for Sheriff Eyes [color=red][bold]ONLY[/bold][/color].
-      If you are reading this as a non SR, please hand yourself in 
-      to the nearest Law Enforcment.[/color] 
+      [color=#AAAAAA]I, the [italic]Bailiff or Sheriff[/italic] of the NFSD, or an agent acting on their behalf, certify that everything written in this report is correct and truthful, and am aware of the penalties should anything in this report be proven incorrect, falsified, or exaggerated.[/color]
 
 - type: entity # Creator: Kwentov (Vica)
-  id: PaperWrittenNfsdWarrant
-  name: nfsd warrant request
-  suffix: MappedPaper
+  id: PaperWrittenNfsdTicket
+  name: space law violation ticket
+  parent: Paper
+  noSpawn: true
+  components:
+  - type: Paper
+    content: |2
+      [color=#2e9935ff]◥[bold]N[/bold]◣ [bold]New Frontier Sheriff's Department[/bold][/color]
+      [color=#2e9935ff]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
+      [head=2]Space Law Violation Ticket[/head]
+
+      [head=3]Details of Crime Committed[/head]
+      [bold]Case #:[/bold]
+      [bold]Full Name of Accused:[/bold] 
+      [bold]Crime(s) of Accused:[/bold] 
+      [bold]Time of Violation:[/bold] 
+      [bold]Location of Violation:[/bold] 
+
+      [head=3]Details of Arrest[/head]
+      [bold]Responding Officer:[/bold] 
+      [bold]Location of Arrest:[/bold] 
+      [bold]Time Detained:[/bold] 
+      [bold]Fine or Punishment:[/bold] 
+
+
+
+      [color=#AAAAAA]I, the undersigned, hereby swear under oath that all information on this ticket is accurate and correct to the best of my knowledge at the time of signing.[/color]
+
+- type: entity
+  id: PaperWrittenNfsdPayHistory
+  name: employee pay history
+  parent: Paper
+  noSpawn: true
+  components:
+  - type: Paper
+    content: |2
+      [color=#2e9935ff]◥[bold]N[/bold]◣ [bold]New Frontier Sheriff's Department[/bold][/color]
+      [color=#2e9935ff]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
+      [head=2]Employee Pay History[/head]
+
+      [bold]Name:[/bold]
+      [bold]Position Title:[/bold]
+      [bold]Hourly Wage:[/bold]
+      [bold]Pay history (Shift time, wage recieved):[/bold]
+          [bullet/]
+          [bullet/]
+          [bullet/]
+          [bullet/]
+          [bullet/]
+          [bullet/]
+
+
+
+      [color=#AAAAAA]This Form is void without the signature and stamp of Frontier Command (Sheriff or Station Representative)[/color]
+
+- type: entity # Based on form made by Blumbee (Aki Suboshi)
+  id: PaperWrittenNfsdContrabandTurnover
+  name: Contraband Turnover Receipt
+  noSpawn: true
   parent: Paper
   components:
   - type: Paper
     content: |2
-      [color=red][head=2][bold]New Frontier Sheriffs Department[/bold][/head][/color]
+      [color=#2e9935ff]◥[bold]N[/bold]◣ [bold]New Frontier Sheriff's Department[/bold][/color]
+      [color=#2e9935ff]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
+      [head=2]Contraband Turnover Receipt[/head]
 
-                       [head=3][italic]WARRANT REQUEST[/italic][/head]
+      [bold]Contraband Holder:[/bold] 
+      [bold]Contraband F.U.C. Value:[/bold] 
+      [bold]Payout per F.U.C.:[/bold] [color=#ff0000]2 000 spesos[/color]
+      [bold]Payout Total:[/bold] 
 
-              [head=3][bold]SECTION 1[/bold]: Officer Information[/head]
+      [bold]C2 Contraband:[/bold]
+          [bullet/] 
+          [bullet/] 
+          [bullet/] 
 
-      [bullet/]Case No (if applicable):
-      [bullet/]Date of Request: 
-      [bullet/]Requesting Officer:
-      [bullet/]Officer Rank:
+      [bold]C3 Contraband:[/bold]
+          [bullet/] 
+          [bullet/] 
+          [bullet/] 
 
-
-              [head=3][bold]SECTION 2[/bold]:  Warrant Information[/head]
-
-      [bullet/]Location (Or Ship Designation):
-      [bullet/]Shift time:
-
-      [bullet/]Scope of Incident (Low/Medium/High):
-
-      [bullet/]Request Reason:
+      [bold]Shift Time:[/bold] 
 
 
-      [head=2]Sheriff Signature[/head]
+
+      [color=#AAAAAA]This Form is void without the signatures of both Parties and a stamp of Frontier Command (Sheriff or Station Representative)[/color]
+
+- type: entity # Based on form made by Blumbee (Aki Suboshi)
+  id: PaperWrittenNfsdContrabandAmnesty
+  name: Contraband Amnesty Agreement
+  suffix: MappedPaper
+  parent: Paper
+  components:
+  - type: Paper
+    content: |2 # The same text as PaperWrittenNfsdContrabandPermit just with a different header and issuing clause.
+      [color=#2e9935ff]◥[bold]N[/bold]◣ [bold]New Frontier Sheriff's Department[/bold][/color]
+      [color=#2e9935ff]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
+      [head=2]Contraband Amnesty Agreement[/head]
+
+      [color=#AAAAAA]This Form may only be issued without an acting Sheriff or with the acting Sheriff's approval.[/color]
+
+      [head=3]Contraband Holder[/head]
+          [bold]Name:[/bold] 
+          [bold]Species:[/bold] 
+          [bold]Vessel IFF:[/bold] 
+
+      [bold]Payout per F.U.C.:[/bold] [color=#ff0000]2 000 spesos[/color]
+      [bold]Shift Time:[/bold] 
+
+      This document is a contract between the above Contraband Holder and Frontier Command.
+
+      Any crimes of contraband possession for the Contraband Holder will be waived so long as all Class 3 contraband items, and any Class 2 contraband items not subject to a Class 2 Contraband Permit are turned in within reasonable time (subject to the clause below), and not used for malicious purposes. Noncompliance with this document results in voiding any standing Class 2 Contraband Permits.
+
+      If the Contraband Holder is not paid in full at the above rate for any contraband turned in, they may remain in possession of the contraband without penalty at their discretion.
+
+
+
+      [color=#AAAAAA]This form is void without the signatures of both Parties and a stamp of Frontier Command (Sheriff or Station Representative)[/color]
+
+- type: entity # Based on form made by papaneko (Blumbee (Aki Suboshi))
+  id: PaperWrittenNfsdContrabandPermit
+  name: class 2 contraband permit
+  parent: Paper
+  noSpawn: true
+  components:
+  - type: Paper
+    content: |2 # The same text as PaperWrittenFrontierContrabandPermit just with a different header.
+      [color=#2e9935ff]◥[bold]N[/bold]◣ [bold]New Frontier Sheriff's Department[/bold][/color]
+      [color=#2e9935ff]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
+      [head=2]Class 2 Contraband Permit[/head]
+
+      [bold]Permit Holder:[/bold] 
+      [bold]Holder Crew:[/bold]
+          [bullet/] 
+          [bullet/] 
+          [bullet/] 
+
+      [bold]Shift Time:[/bold] 
+
+
+      This Permit allows the Holder and crew, as listed above, to possess and use Class 2 contraband.
+      Non-compliance with a Contraband Amnesty agreement voids this Permit.
+      Refer to §6.1.4 of Space Law for a full definition of Class 2 contraband.
+
+
+
+      [color=#AAAAAA]This Permit is void without the signature of the Holder and the signature and stamp of the Sheriff[/color]
+
+- type: entity # Based on form made by Starly (Shaw Clifflower)
+  id: PaperWrittenNfsdAuthorization
+  name: authorization for bluespace threats
+  parent: Paper
+  noSpawn: true
+  components:
+  - type: Paper
+    content: |2 # When updating this, update PaperWrittenFrontierAuthorization
+      [color=#2e9935ff]◥[bold]N[/bold]◣ [bold]New Frontier Sheriff's Department[/bold][/color]
+      [color=#2e9935ff]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
+      [head=2]Authorization for Bluespace Threats[/head]
+
+      [bold]Vessel Captain:[/bold]
+      [bold]Vessel IFF:[/bold]
+      [bold]Shift Time:[/bold]
+
+      [bold]Issuing Frontier Command:[/bold]
+          [bullet]XXXXXXXX, Station Representative
+          [bullet]XXXXXXXX, Sheriff
+
+      This document authorizes the above vessel and its captain to assist and cooperate with the NFSD and Frontier authorities in neutralizing hostile bluespace threats to Frontier. These include, but are not limited to:
+          [bullet] Cultist vessels
+          [bullet] Syndicate vessels
+          [bullet] Wizard Federation vessels
+          [bullet] Arcadia Industries vessels
+
+      This document does NOT deputize the authorized party. The authorized party is not granted special privileges to arrest, detain, and prosecute individuals associated with Nanotrasen.
+
+      [bold]Any contraband seized during operations aboard hostile vessels must be surrendered, either to the NFSD or the Station Representative, for a cash bounty. Failure to surrender contraband will lead to the forfeiture of this agreement, and the authorized party may be liable for criminal charges.[/bold]
+        
+      The authorized party is to keep a copy of this document for inspection. The authorized party is expected to maintain contact with NFSD command and/or the Station Representative to minimize casualties.
+
+      Before engaging with hostile vessels, the authorized party is expected to follow any instructions given by the NFSD for staging or other preparation prior to boarding.
+
+
+
+      [color=#AAAAAA]This Form is void without the signatures of both Parties and a stamp of Frontier Command (Sheriff or Station Representative)[/color]
