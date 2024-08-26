@@ -27,5 +27,4 @@ shipyard-console-menu-size-label = Size:{" "}
 shipyard-console-menu-class-label = Class:{" "}
 
 shipyard-console-purchase-available = Purchase
-shipyard-console-purchase-unavailable = N/A
-shipyard-console-guidebook = ?
+shipyard-console-guidebook = Manual

@@ -105,18 +105,12 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
             else
                 priceText = BankSystemExtensions.ToSpesoString(prototype!.Price);
 
-            string purchaseText;
-            if (canPurchase)
-                purchaseText = Loc.GetString("shipyard-console-purchase-available");
-            else
-                purchaseText = Loc.GetString("shipyard-console-purchase-unavailable");
-
             var vesselEntry = new VesselRow
             {
                 Vessel = prototype,
                 VesselName = { Text = prototype!.Name },
-                Purchase = { Text = purchaseText, ToolTip = prototype.Description, TooltipDelay = 0.2f, Disabled = !canPurchase },
-                Guidebook = { Disabled = prototype.GuidebookPage is null },
+                Purchase = { Text = Loc.GetString("shipyard-console-purchase-available"), Disabled = !canPurchase },
+                Guidebook = { Disabled = prototype.GuidebookPage is null, TooltipDelay = 0.2f, ToolTip = prototype.Description },
                 Price = { Text = priceText },
             };
             vesselEntry.Purchase.OnPressed += (args) => { OnOrderApproved?.Invoke(args); };
