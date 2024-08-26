@@ -29,7 +29,6 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
 
     private List<string> _lastAvailableProtos = new();
     private List<string> _lastUnavailableProtos = new();
-    private string _lastType = "";
     private bool _freeListings = false;
     private bool _validId = false;
 
@@ -49,18 +48,18 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
     private void OnCategoryItemSelected(OptionButton.ItemSelectedEventArgs args)
     {
         SetCategoryText(args.Id);
-        PopulateProducts(_lastAvailableProtos, _lastUnavailableProtos, _lastType, _freeListings, _validId);
+        PopulateProducts(_lastAvailableProtos, _lastUnavailableProtos, _freeListings, _validId);
     }
 
     private void OnClassItemSelected(OptionButton.ItemSelectedEventArgs args)
     {
         SetClassText(args.Id);
-        PopulateProducts(_lastAvailableProtos, _lastUnavailableProtos, _lastType, _freeListings, _validId);
+        PopulateProducts(_lastAvailableProtos, _lastUnavailableProtos, _freeListings, _validId);
     }
 
     private void OnSearchBarTextChanged(LineEdit.LineEditEventArgs args)
     {
-        PopulateProducts(_lastAvailableProtos, _lastUnavailableProtos, _lastType, _freeListings, _validId);
+        PopulateProducts(_lastAvailableProtos, _lastUnavailableProtos, _freeListings, _validId);
     }
 
     private void SetCategoryText(int id)
@@ -76,7 +75,7 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
     /// <summary>
     ///     Populates the list of products that will actually be shown, using the current filters.
     /// </summary>
-    public void PopulateProducts(List<string> availablePrototypes, List<string> unavailablePrototypes, string type, bool free, bool canPurchase)
+    public void PopulateProducts(List<string> availablePrototypes, List<string> unavailablePrototypes, bool free, bool canPurchase)
     {
         Vessels.RemoveAllChildren();
 
@@ -90,7 +89,6 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
 
         _lastAvailableProtos = availablePrototypes;
         _lastUnavailableProtos = unavailablePrototypes;
-        _lastType = type;
     }
 
     /// <summary>
@@ -241,6 +239,6 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
         }
         _freeListings = state.FreeListings;
         _validId = state.IsTargetIdPresent;
-        PopulateProducts(_lastAvailableProtos, _lastUnavailableProtos, _lastType, _freeListings, _validId);
+        PopulateProducts(_lastAvailableProtos, _lastUnavailableProtos, _freeListings, _validId);
     }
 }
