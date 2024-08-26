@@ -80,16 +80,33 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
     {
         Vessels.RemoveAllChildren();
 
-        var newVessels = availablePrototypes.Select(it => _protoManager.TryIndex<VesselPrototype>(it, out var proto) ? proto : null)
+        var search = SearchBar.Text.Trim().ToLowerInvariant();
+
+        var newVessels = GetVesselPrototypesFromIds(availablePrototypes);
+        AddVesselsToControls(newVessels, search, free, canPurchase);
+
+        var newUnavailableVessels = GetVesselPrototypesFromIds(unavailablePrototypes);
+        AddVesselsToControls(newUnavailableVessels, search, free, false);
+
+        _lastAvailableProtos = availablePrototypes;
+        _lastUnavailableProtos = unavailablePrototypes;
+        _lastType = type;
+    }
+
+    private List<VesselPrototype?> GetVesselPrototypesFromIds(IEnumerable<string> protoIds)
+    {
+        var vesselList = protoIds.Select(it => _protoManager.TryIndex<VesselPrototype>(it, out var proto) ? proto : null)
             .Where(it => it != null)
             .ToList();
 
-        newVessels.Sort((x, y) =>
+        vesselList.Sort((x, y) =>
             string.Compare(x!.Name, y!.Name, StringComparison.CurrentCultureIgnoreCase));
+        return vesselList;
+    }
 
-        var search = SearchBar.Text.Trim().ToLowerInvariant();
-
-        foreach (var prototype in newVessels)
+    private void AddVesselsToControls(IEnumerable<VesselPrototype?> vessels, string search, bool free, bool canPurchase)
+    {
+        foreach (var prototype in vessels)
         {
             // Filter any ships
             if (_category != null && !prototype!.Category.Equals(_category))
@@ -116,49 +133,6 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
             vesselEntry.Purchase.OnPressed += (args) => { OnOrderApproved?.Invoke(args); };
             Vessels.AddChild(vesselEntry);
         }
-
-        // Extremely gross, fix please
-
-        var newUnavailableVessels = unavailablePrototypes.Select(it => _protoManager.TryIndex<VesselPrototype>(it, out var proto) ? proto : null)
-            .Where(it => it != null)
-            .ToList();
-
-        newUnavailableVessels.Sort((x, y) =>
-            string.Compare(x!.Name, y!.Name, StringComparison.CurrentCultureIgnoreCase));
-
-        foreach (var prototype in newUnavailableVessels)
-        {
-            // Filter any ships
-            if (_category != null && !prototype!.Category.Equals(_category))
-                continue;
-            if (_class != null && !prototype!.Classes.Contains(_class.Value))
-                continue;
-            if (search.Length > 0 && !prototype!.Name.ToLowerInvariant().Contains(search))
-                continue;
-
-            string priceText;
-            if (free)
-                priceText = Loc.GetString("shipyard-console-menu-listing-free");
-            else
-                priceText = BankSystemExtensions.ToSpesoString(prototype!.Price);
-
-            string purchaseText = Loc.GetString("shipyard-console-purchase-unavailable");
-
-            var vesselEntry = new VesselRow
-            {
-                Vessel = prototype,
-                VesselName = { Text = prototype!.Name },
-                Purchase = { Text = purchaseText, ToolTip = prototype.Description, TooltipDelay = 0.2f, Disabled = true },
-                Guidebook = { Disabled = prototype.GuidebookPage is null },
-                Price = { Text = priceText },
-            };
-            //vesselEntry.Purchase.OnPressed += (args) => { OnOrderApproved?.Invoke(args); }; // Frontier: will not be used.
-            Vessels.AddChild(vesselEntry);
-        }
-
-        _lastAvailableProtos = availablePrototypes;
-        _lastUnavailableProtos = unavailablePrototypes;
-        _lastType = type;
     }
 
     /// <summary>
