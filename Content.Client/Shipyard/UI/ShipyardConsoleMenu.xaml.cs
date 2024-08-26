@@ -93,6 +93,9 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
         _lastType = type;
     }
 
+    /// <summary>
+    /// Given a set of prototype IDs, returns a corresponding set of prototypes, ordered by name.
+    /// </summary>
     private List<VesselPrototype?> GetVesselPrototypesFromIds(IEnumerable<string> protoIds)
     {
         var vesselList = protoIds.Select(it => _protoManager.TryIndex<VesselPrototype>(it, out var proto) ? proto : null)
@@ -104,6 +107,9 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
         return vesselList;
     }
 
+    /// <summary>
+    /// Adds all vessels in a given list of prototypes as VesselRows in the UI.
+    /// </summary>
     private void AddVesselsToControls(IEnumerable<VesselPrototype?> vessels, string search, bool free, bool canPurchase)
     {
         foreach (var prototype in vessels)
@@ -142,26 +148,9 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
     {
         _categoryStrings.Clear();
         Categories.Clear();
-        foreach (var protoId in availablePrototypes)
-        {
-            if (!_protoManager.TryIndex<VesselPrototype>(protoId, out var prototype))
-                continue;
 
-            if (!_categoryStrings.Contains(prototype.Category))
-            {
-                _categoryStrings.Add(prototype.Category);
-            }
-        }
-        foreach (var protoId in unavailablePrototypes)
-        {
-            if (!_protoManager.TryIndex<VesselPrototype>(protoId, out var prototype))
-                continue;
-
-            if (!_categoryStrings.Contains(prototype.Category))
-            {
-                _categoryStrings.Add(prototype.Category);
-            }
-        }
+        AddCategoriesFromPrototypes(availablePrototypes);
+        AddCategoriesFromPrototypes(unavailablePrototypes);
 
         _categoryStrings.Sort();
 
@@ -174,36 +163,30 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
         }
     }
 
+    /// <summary>
+    /// Adds all ship categories from a list of vessel prototypes to the current control's list if they are missing.
+    /// </summary>
+    private void AddCategoriesFromPrototypes(IEnumerable<string> prototypes)
+    {
+        foreach (var protoId in prototypes)
+        {
+            if (!_protoManager.TryIndex<VesselPrototype>(protoId, out var prototype))
+                continue;
+
+            if (!_categoryStrings.Contains(prototype.Category) && prototype.Category != VesselSize.All)
+            {
+                _categoryStrings.Add(prototype.Category);
+            }
+        }
+    }
+
     public void PopulateClasses(List<string> availablePrototypes, List<string> unavailablePrototypes)
     {
         _classStrings.Clear();
         Classes.Clear();
-        foreach (var protoId in availablePrototypes)
-        {
-            if (!_protoManager.TryIndex<VesselPrototype>(protoId, out var prototype))
-                continue;
 
-            foreach (var classString in prototype.Classes)
-            {
-                if (!_classStrings.Contains(classString))
-                {
-                    _classStrings.Add(classString);
-                }
-            }
-        }
-        foreach (var protoId in unavailablePrototypes)
-        {
-            if (!_protoManager.TryIndex<VesselPrototype>(protoId, out var prototype))
-                continue;
-
-            foreach (var classString in prototype.Classes)
-            {
-                if (!_classStrings.Contains(classString))
-                {
-                    _classStrings.Add(classString);
-                }
-            }
-        }
+        AddClassesFromPrototypes(availablePrototypes);
+        AddClassesFromPrototypes(unavailablePrototypes);
 
         _classStrings.Sort();
 
@@ -213,6 +196,26 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
         foreach (var str in _classStrings)
         {
             Classes.AddItem(str.ToString()); // TODO: localize this
+        }
+    }
+
+    /// <summary>
+    /// Adds all ship classes from a list of vessel prototypes to the current control's list if they are missing.
+    /// </summary>
+    private void AddClassesFromPrototypes(IEnumerable<string> prototypes)
+    {
+        foreach (var protoId in prototypes)
+        {
+            if (!_protoManager.TryIndex<VesselPrototype>(protoId, out var prototype))
+                continue;
+
+            foreach (var cl in prototype.Classes)
+            {
+                if (!_classStrings.Contains(cl) && cl != VesselClass.All)
+                {
+                    _classStrings.Add(cl);
+                }
+            }
         }
     }
 
