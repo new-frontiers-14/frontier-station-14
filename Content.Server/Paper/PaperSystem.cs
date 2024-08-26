@@ -101,14 +101,14 @@ namespace Content.Server.Paper
                 if (paperComp.StampedBy.Count > 0)
                 {
                     // BEGIN FRONTIER MODIFICATION - Make stamps and signatures render separately.
-                    // Separate into stamps and signatures.
+                    // Separate into stamps and signatures, display each name/stamp only once.
                     var stamps = paperComp.StampedBy.FindAll(s => s.Type == StampType.RubberStamp);
                     var signatures = paperComp.StampedBy.FindAll(s => s.Type == StampType.Signature);
 
                     // If we have stamps, render them.
                     if (stamps.Count > 0)
                     {
-                        var joined = string.Join(", ", stamps.Select(s => Loc.GetString(s.StampedName)));
+                        var joined = string.Join(", ", stamps.Select(s => Loc.GetString(s.StampedName)).Distinct());
                         args.PushMarkup(
                             Loc.GetString(
                                 "paper-component-examine-detail-stamped-by",
@@ -121,7 +121,7 @@ namespace Content.Server.Paper
                     // Ditto for signatures.
                     if (signatures.Count > 0)
                     {
-                        var joined = string.Join(", ", signatures.Select(s => s.StampedName));
+                        var joined = string.Join(", ", signatures.Select(s => s.StampedName).Distinct());
                         args.PushMarkup(
                             Loc.GetString(
                                 "paper-component-examine-detail-signed-by",
@@ -169,8 +169,10 @@ namespace Content.Server.Paper
             {
                 var stampInfo = GetStampInfo(stampComp); // Frontier: assign DisplayStampInfo before stamp
                 if (_tagSystem.HasTag(args.Used, "Write"))
-                    stampInfo.Type = StampType.Signature;
-                if (TryStamp(uid, stampInfo, stampComp.StampState, paperComp))
+                {
+                    TrySign(uid, args.User, args.Used, paperComp);
+                }
+                else if (TryStamp(uid, stampInfo, stampComp.StampState, paperComp))
                 {
                     // End of Frontier modifications
                     // successfully stamped, play popup
