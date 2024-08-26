@@ -32,6 +32,8 @@
   - type: PhysicalComposition
     materialComposition:
       Brass: 1000
+  - type: StaticPrice
+    price: 30 # Ensures these can be sold and have a reasonable vending value.
 
 - type: entity
   name: improvised brass knuckles
@@ -40,7 +42,7 @@
   description: Ever wanted to punch just a little harder?
   components:
   - type: MeleeWeapon
-    attackRate: 1.6 # ~10 dps
+    attackRate: 1.6 # ~9.6 dps
   - type: Construction
     graph: GraphWeaponBrassKnucklesImprovised
     node: WeaponBrassKnucklesImprovised
@@ -60,6 +62,7 @@
     damage:
       types:
        Blunt: 0 # ~0 dps :^)
+       Structural: 0
     soundHit:
       collection: Parp
   - type: Construction
