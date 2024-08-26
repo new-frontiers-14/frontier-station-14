@@ -106,3 +106,17 @@
   - type: ShipyardVoucher
     access:
     - Mail
+
+- type: entity
+  parent: ShipVoucherFrontierJanitor
+  id: ShipVoucherFrontierGuard
+  name: station guard ship voucher
+  description: Allows for one free guard ship purchase from the Frontier Staff Shipyard. Destroyed on sale.
+  components:
+  - type: Sprite
+    layers:
+    - state: blue
+    - state: voucherstationguard
+  - type: ShipyardVoucher
+    access:
+    - Brig # odd, but potentially restricts cadets in lieu of a security guard-only access level
