@@ -11,6 +11,7 @@ using Content.Shared.Preferences.Loadouts;
 using Robust.Shared.Prototypes;
 using Content.Shared.Roles;
 using Content.Shared.Traits;
+using Robust.Shared.Player;
 
 namespace Content.Server.Bank;
 
@@ -18,10 +19,10 @@ public sealed partial class BankSystem : EntitySystem
 {
     [Dependency] private readonly IServerPreferencesManager _prefsManager = default!;
     [Dependency] private readonly IServerDbManager _dbManager = default!;
+    [Dependency] private readonly ISharedPlayerManager _playerManager = default!;
 
     private ISawmill _log = default!;
 
-    // Cached bank accounts
     private Dictionary<NetUserId, int> _cachedBankAccounts = new();
 
     public override void Initialize()
@@ -44,10 +45,10 @@ public sealed partial class BankSystem : EntitySystem
             // The person reading this isn't the controller of the character.
             // Never update - return cached value if it exists, otherwise trust the data we receive.
             int balance = bank.Balance;
-            var earlyUserId = args.Player?.UserId;
-            if (earlyUserId is not null && _cachedBankAccounts.ContainsKey(earlyUserId.Value))
+            if (_playerManager.TryGetSessionByEntity(mobUid, out var session) &&
+                _cachedBankAccounts.ContainsKey(session.UserId))
             {
-                balance = _cachedBankAccounts[earlyUserId.Value];
+                balance = _cachedBankAccounts[session.UserId];
             }
             args.State = new BankAccountComponentState
             {
@@ -55,7 +56,7 @@ public sealed partial class BankSystem : EntitySystem
             };
             return;
         }
-        var userId = user = user.Value;
+        var userId = user.Value;
 
         // Regardless of what happens, the given balance will be the returned state.
         // Possible desync with database if character is the wrong type.
@@ -65,17 +66,17 @@ public sealed partial class BankSystem : EntitySystem
         };
 
         // Check if value is in cache.
-        if (_cachedBankAccounts.ContainsKey(userId.Value))
+        if (_cachedBankAccounts.ContainsKey(userId))
         {
             // Our cached value matches the request, nothing to do.
-            if (_cachedBankAccounts[userId.Value] == bank.Balance)
+            if (_cachedBankAccounts[userId] == bank.Balance)
             {
                 return;
             }
         }
 
         // Mismatched or missing value in cache. Update DB & cache new value.
-        var prefs = _prefsManager.GetPreferences((NetUserId) user);
+        var prefs = _prefsManager.GetPreferences(userId);
         var character = prefs.SelectedCharacter;
         var index = prefs.IndexOfCharacter(character);
 
@@ -85,9 +86,9 @@ public sealed partial class BankSystem : EntitySystem
         }
 
         var newProfile = profile.WithBankBalance(bank.Balance);
-        _cachedBankAccounts[userId.Value] = bank.Balance;
+        _cachedBankAccounts[userId] = bank.Balance;
 
-        _dbManager.SaveCharacterSlotAsync((NetUserId) user, newProfile, index);
+        _dbManager.SaveCharacterSlotAsync((NetUserId) userId, newProfile, index);
         _log.Info($"Character {profile.Name} saved");
     }
 
@@ -119,7 +120,7 @@ public sealed partial class BankSystem : EntitySystem
 
         bank.Balance -= amount;
         _log.Info($"{mobUid} withdrew {amount}");
-        Dirty(bank);
+        Dirty(mobUid, bank);
         return true;
     }
 
@@ -145,7 +146,7 @@ public sealed partial class BankSystem : EntitySystem
 
         bank.Balance += amount;
         _log.Info($"{mobUid} deposited {amount}");
-        Dirty(bank);
+        Dirty(mobUid, bank);
         return true;
     }
 
