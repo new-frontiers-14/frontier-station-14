@@ -1,0 +1,36 @@
+# Author Info
+# GitHub: Vissent https://github.com/Vladimir-Gonchar)
+# Discord: @vissent
+
+# Maintainer Info
+# GitHub: ???
+# Discord: ???
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Behemoth
+  name: NSF Behemoth
+  description: The Behemoth-class cruiser is a versatile, autonomous deep-space patrol vessel equipped with everything necessary for neutralizing menaces and collaborating with smaller vessels.
+  price: 112250
+  category: Large
+  group: Security
+  shuttlePath: /Maps/_NF/Shuttles/Nfsd/behemoth.yml
+
+- type: gameMap
+  id: Behemoth
+  mapName: 'NSF Behemoth'
+  mapPath: /Maps/_NF/Shuttles/Nfsd/behemoth.yml
+  minPlayers: 0
+  stations:
+    Behemoth:
+      stationProto: StandardFrontierSecurityVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Behemoth {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs: {}
