@@ -336,32 +336,16 @@
   #   - CargoBounties # Frontier
 
 - type: entity
-  name: Frontier Outpost traffic console
-  parent: Computer
-  id: ComputerContrabandPalletConsolePirate
-  description: Fence yer ill-gotten goods here! And keep yer pile orderly.
+  id: ComputerSalvageExpeditionDebug
+  parent: ComputerSalvageExpedition
+  suffix: Debug
   components:
-  - type: Sprite
-    sprite: _NF/Structures/Machines/computers.rsi
-    layers:
-    - map: ["computerLayerBody"]
-      state: computer_blackmarket
-    - map: ["computerLayerKeyboard"]
-      state: generic_keyboard
-    - map: ["computerLayerScreen"]
-      state: contraband # TODO: replace this
-    - map: ["computerLayerKeys"]
-      state: blackmarket_key
-  - type: Computer
-    board: Null # Really shouldn't spawn anything on destruction
-  - type: ContrabandPalletConsole
-    cashType: Doubloon
-    faction: Pirates
-    locStringPrefix: pirate-
+    - type: SalvageExpeditionConsole
+      debug: true
 
 # Station Traffic Controller consoles
 - type: entity
-  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerShuttle]
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseComputerShuttle]
   id: BaseComputerTraffic
   abstract: true
   components:
@@ -369,14 +353,26 @@
     maxRange: 350
   - type: Computer
     board: Null
+  - type: Sprite
+    drawdepth: SmallObjects
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      sprite: Structures/Machines/computers.rsi
+      state: shuttle
+    - map: ["computerLayerKeys"]
+      sprite: Structures/Machines/computers.rsi
+      state: generic_keys
 
 - type: entity
-  parent: BaseComputerTraffic
+  parent: [BaseComputerTraffic, BaseShuttleIntercom]
   id: ComputerShuttleFrontierOutpostLocal
-  name: Frontier Outpost traffic console
+  name: frontier outpost traffic console
   description: Monitors the traffic around Frontier Outpost.
   suffix: Local
-  noSpawn: true
   components:
   - type: NFDroneConsoleTarget
     id: Frontier
@@ -384,18 +380,17 @@
 - type: entity
   parent: BaseComputerTraffic
   id: ComputerShuttleFrontierOutpostRemote
-  name: Frontier Outpost traffic console
+  name: frontier outpost traffic console
   description: Monitors the traffic around Frontier Outpost.
   suffix: Remote
-  noSpawn: true
   components:
   - type: NFDroneConsole
     id: Frontier
 
 - type: entity
-  parent: BaseComputerTraffic
+  parent: [BaseComputerTraffic, BaseShuttleIntercom]
   id: ComputerShuttleTradeOutpostLocal
-  name: Trade Outpost traffic console
+  name: trade outpost traffic console
   suffix: Local
   description: Monitors the traffic around the Trade Outpost.
   components:
@@ -405,18 +400,9 @@
 - type: entity
   parent: BaseComputerTraffic
   id: ComputerShuttleTradeOutpostRemote
-  name: Trade Outpost traffic console
+  name: trade outpost traffic console
   suffix: Remote
   description: Monitors the traffic around the Trade Outpost.
-  noSpawn: true
   components:
   - type: NFDroneConsole
     id: Trade
-
-- type: entity
-  id: ComputerSalvageExpeditionDebug
-  parent: ComputerSalvageExpedition
-  suffix: Debug
-  components:
-    - type: SalvageExpeditionConsole
-      debug: true

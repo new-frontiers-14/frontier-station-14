@@ -784,25 +784,85 @@
       state: blackmarket_key
 
 - type: entity
-  parent: [BaseStructureComputerTabletop, ComputerShuttleFrontierOutpostLocal, ComputerTabletopShuttle]
+  parent: [BaseStructureComputerTabletop, ComputerShuttleFrontierOutpostLocal]
   id: ComputerTabletopShuttleFrontierOutpostLocal
-  description: Monitors the traffic around Frontier Outpost.
-  noSpawn: true
+  suffix: Local, Tabletop
+  components:
+  - type: Sprite
+    drawdepth: SmallObjects
+    layers:
+    - map: ["computerLayerBody"]
+      sprite: _NF/Structures/Machines/computer_tabletop.rsi
+      state: computer_tabletop
+    - map: ["computerLayerKeyboard"]
+      sprite: _NF/Structures/Machines/computer_tabletop.rsi
+      state: generic_keyboard_tabletop
+    - map: ["computerLayerScreen"]
+      sprite: Structures/Machines/computers.rsi
+      state: shuttle
+    - map: ["computerLayerKeys"]
+      sprite: Structures/Machines/computers.rsi
+      state: generic_keys
 
 - type: entity
-  parent: [BaseStructureComputerTabletop, ComputerShuttleFrontierOutpostRemote, ComputerTabletopShuttle]
+  parent: [BaseStructureComputerTabletop, ComputerShuttleFrontierOutpostRemote]
   id: ComputerTabletopShuttleFrontierOutpostRemote
   suffix: Remote, Tabletop
-  noSpawn: true
-
-- type: entity
-  parent: [BaseStructureComputerTabletop, ComputerShuttleTradeOutpostLocal, ComputerTabletopShuttle]
-  id: ComputerTabletopShuttleTradeOutpostLocal
-  suffix: Local, Tabletop
-  noSpawn: true
+  components:
+  - type: Sprite
+    drawdepth: SmallObjects
+    layers:
+    - map: ["computerLayerBody"]
+      sprite: _NF/Structures/Machines/computer_tabletop.rsi
+      state: computer_tabletop
+    - map: ["computerLayerKeyboard"]
+      sprite: _NF/Structures/Machines/computer_tabletop.rsi
+      state: generic_keyboard_tabletop
+    - map: ["computerLayerScreen"]
+      sprite: Structures/Machines/computers.rsi
+      state: shuttle
+    - map: ["computerLayerKeys"]
+      sprite: Structures/Machines/computers.rsi
+      state: generic_keys
 
 - type: entity
   parent: [BaseStructureComputerTabletop, ComputerShuttleTradeOutpostLocal]
-  id: ComputerShuttleTradeOutpostOutpostRemote
+  id: ComputerTabletopShuttleTradeOutpostLocal
+  suffix: Local, Tabletop
+  components:
+  - type: Sprite
+    drawdepth: SmallObjects
+    layers:
+    - map: ["computerLayerBody"]
+      sprite: _NF/Structures/Machines/computer_tabletop.rsi
+      state: computer_tabletop
+    - map: ["computerLayerKeyboard"]
+      sprite: _NF/Structures/Machines/computer_tabletop.rsi
+      state: generic_keyboard_tabletop
+    - map: ["computerLayerScreen"]
+      sprite: Structures/Machines/computers.rsi
+      state: shuttle
+    - map: ["computerLayerKeys"]
+      sprite: Structures/Machines/computers.rsi
+      state: generic_keys
+
+- type: entity
+  parent: [BaseStructureComputerTabletop, ComputerShuttleTradeOutpostLocal]
+  id: ComputerShuttleTradeOutpostRemote
   suffix: Remote, Tabletop
-  noSpawn: true
+  components:
+  - type: Sprite
+    drawdepth: SmallObjects
+    layers:
+    - map: ["computerLayerBody"]
+      sprite: _NF/Structures/Machines/computer_tabletop.rsi
+      state: computer_tabletop
+    - map: ["computerLayerKeyboard"]
+      sprite: _NF/Structures/Machines/computer_tabletop.rsi
+      state: generic_keyboard_tabletop
+    - map: ["computerLayerScreen"]
+      sprite: Structures/Machines/computers.rsi
+      state: shuttle
+    - map: ["computerLayerKeys"]
+      sprite: Structures/Machines/computers.rsi
+      state: generic_keys
