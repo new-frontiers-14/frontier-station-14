@@ -1,0 +1,39 @@
+# Author Info
+# GitHub: Vissent https://github.com/Vladimir-Gonchar)
+# Discord: @vissent
+
+# Maintainer Info
+# GitHub: ???
+# Discord: ???
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Metunstable
+  name: NT Metunstable
+  description: Formerly compressed variation of a standard Nanotrassen station, written off for scrap after scientific-chemical accident. Can be still used to service other ships with food supplies.
+  price: 55555
+  category: Medium
+  group: Scrap
+  shuttlePath: /Maps/_NF/Shuttles/Scrap/metunstable.yml
+
+- type: gameMap
+  id: Metunstable
+  mapName: 'NT Metunstable'
+  mapPath: /Maps/_NF/Shuttles/Scrap/metunstable.yml
+  minPlayers: 0
+  stations: 
+    Metunstable:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Metunstable {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]
