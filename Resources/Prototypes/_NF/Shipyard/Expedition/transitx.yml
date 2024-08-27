@@ -1,0 +1,39 @@
+# Author Info
+# GitHub: Vissent https://github.com/Vladimir-Gonchar)
+# Discord: @vissent
+
+# Maintainer Info
+# GitHub: ???
+# Discord: ???
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: TransitX
+  name: NT Transit-X
+  description: A medium sized multi-role long haul conversion of the long time popular Transit model.
+  price: 60650
+  category: Medium
+  group: Expedition
+  shuttlePath: /Maps/_NF/Shuttles/Expedition/transitx.yml
+
+- type: gameMap
+  id: TransitX
+  mapName: 'NT Transit-X'
+  mapPath: /Maps/_NF/Shuttles/Expedition/transitx.yml
+  minPlayers: 0
+  stations:
+    TransitX:
+      stationProto: StandardFrontierExpeditionVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Transit-X {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]
