@@ -1,0 +1,39 @@
+# Author Info
+# GitHub: Vissent https://github.com/Vladimir-Gonchar)
+# Discord: @vissent
+
+# Maintainer Info
+# GitHub: ???
+# Discord: ???
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Pluservice
+  name: NT Pluservice
+  description: The Pluservice, named regardingly its exterior shape, is a vessel focused on providing all spectre of service conviniences for smaller vessels.
+  price: 150000
+  category: Large
+  group: Civilian
+  shuttlePath: /Maps/_NF/Shuttles/pluservice.yml
+
+- type: gameMap
+  id: Pluservice
+  mapName: 'NT Pluservice'
+  mapPath: /Maps/_NF/Shuttles/pluservice.yml
+  minPlayers: 0
+  stations:
+    Pluservice:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Pluservice {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          overflowJobs: []
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]
