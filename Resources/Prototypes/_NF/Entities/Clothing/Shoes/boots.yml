@@ -55,3 +55,31 @@
   - type: Clothing
     sprite: _NF/Clothing/Shoes/Boots/pirate_luffy.rsi
   - type: Matchbox
+
+- type: entity
+  parent: ClothingShoesMilitaryBase
+  id: ClothingShoesCombatSkates
+  name: combat roller skates
+  description: "Heavily armored combat skates, for when you need to fight a wall"
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Shoes/Boots/combatskates.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Shoes/Boots/combatskates.rsi
+    clothingVisuals:
+      shoes:
+      - state: equipped-FEET
+        offset: "0, -0.04"
+  - type: Item
+    sprite: _NF/Clothing/Shoes/Boots/combatskates.rsi
+  - type: Skates
+  - type: ClothingSpeedModifier
+    walkModifier: 1.05
+    sprintModifier: 1.075
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepSkates
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.99
