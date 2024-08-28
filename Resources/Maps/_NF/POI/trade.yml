@@ -244,7 +244,7 @@ entities:
             629: 6,-16
             661: -28,5
             662: -23,10
-            1215: 28,2
+            1214: 28,2
         - node:
             color: '#FFFFFFFF'
             id: BrickTileDarkCornerSe
@@ -859,11 +859,10 @@ entities:
           decals:
             1180: 53,-2
         - node:
-            angle: 1.5707963267948966 rad
             color: '#9FED5896'
             id: BrickTileWhiteCornerNe
           decals:
-            1207: 24,2
+            1217: 26,2
         - node:
             color: '#D58C18FF'
             id: BrickTileWhiteCornerNe
@@ -880,11 +879,10 @@ entities:
           decals:
             1181: 51,-2
         - node:
-            angle: 1.5707963267948966 rad
             color: '#9FED5896'
             id: BrickTileWhiteCornerNw
           decals:
-            1205: 24,-1
+            1218: 24,2
         - node:
             color: '#D58C18FF'
             id: BrickTileWhiteCornerNw
@@ -901,11 +899,10 @@ entities:
           decals:
             1178: 53,-4
         - node:
-            angle: 1.5707963267948966 rad
             color: '#9FED5896'
             id: BrickTileWhiteCornerSe
           decals:
-            1206: 26,2
+            1216: 26,-1
         - node:
             color: '#D58C18FF'
             id: BrickTileWhiteCornerSe
@@ -922,11 +919,10 @@ entities:
           decals:
             1177: 51,-4
         - node:
-            angle: 1.5707963267948966 rad
             color: '#9FED5896'
             id: BrickTileWhiteCornerSw
           decals:
-            1208: 26,-1
+            1215: 24,-1
         - node:
             color: '#D58C18FF'
             id: BrickTileWhiteCornerSw
@@ -966,11 +962,11 @@ entities:
           decals:
             1182: 53,-3
         - node:
-            angle: 1.5707963267948966 rad
             color: '#9FED5896'
             id: BrickTileWhiteLineE
           decals:
-            1214: 25,2
+            1221: 26,0
+            1222: 26,1
         - node:
             color: '#EFB34196'
             id: BrickTileWhiteLineE
@@ -1018,12 +1014,10 @@ entities:
           decals:
             1184: 52,-2
         - node:
-            angle: 1.5707963267948966 rad
             color: '#9FED5896'
             id: BrickTileWhiteLineN
           decals:
-            1212: 24,0
-            1213: 24,1
+            1224: 25,2
         - node:
             color: '#DE3A3AFF'
             id: BrickTileWhiteLineN
@@ -1073,12 +1067,10 @@ entities:
             1190: 53,0
             1191: 54,0
         - node:
-            angle: 1.5707963267948966 rad
             color: '#9FED5896'
             id: BrickTileWhiteLineS
           decals:
-            1210: 26,0
-            1211: 26,1
+            1223: 25,-1
         - node:
             color: '#A46106FF'
             id: BrickTileWhiteLineS
@@ -1124,11 +1116,11 @@ entities:
             1197: 55,-6
             1198: 55,-7
         - node:
-            angle: 1.5707963267948966 rad
             color: '#9FED5896'
             id: BrickTileWhiteLineW
           decals:
-            1209: 25,-1
+            1219: 24,1
+            1220: 24,0
         - node:
             color: '#A4610696'
             id: CheckerNESW
@@ -3642,15 +3634,8 @@ entities:
   - uid: 1220
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: 54.5,-3.5
       parent: 1
-    - type: Door
-      secondsUntilStateChange: -713.8477
-      state: Opening
-    - type: DeviceLinkSource
-      lastSignals:
-        DoorStatus: True
 - proto: AirlockSecurityLocked
   entities:
   - uid: 125
