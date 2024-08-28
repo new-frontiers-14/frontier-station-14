@@ -1395,6 +1395,9 @@ entities:
       rot: 3.141592653589793 rad
       pos: 1.5,1.5
       parent: 1
+    - type: GasMixer
+      inletTwoConcentration: 0.78
+      inletOneConcentration: 0.22
     - type: AtmosPipeColor
       color: '#0055CCFF'
 - proto: GasPassiveVent
@@ -1602,7 +1605,7 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#990000FF'
-  - uid: 166
+  - uid: 167
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
@@ -1672,14 +1675,6 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
-  - uid: 210
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -0.5,-3.5
-      parent: 1
-    - type: AtmosPipeColor
-      color: '#990000FF'
   - uid: 211
     components:
     - type: Transform
@@ -1782,6 +1777,14 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#990000FF'
+  - uid: 237
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -0.5,-3.5
+      parent: 1
+    - type: AtmosPipeColor
+      color: '#990000FF'
   - uid: 247
     components:
     - type: Transform
@@ -1846,14 +1849,6 @@ entities:
       color: '#0055CCFF'
 - proto: GasPipeTJunction
   entities:
-  - uid: 2
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -0.5,-4.5
-      parent: 1
-    - type: AtmosPipeColor
-      color: '#990000FF'
   - uid: 120
     components:
     - type: Transform
@@ -1886,14 +1881,14 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#990000FF'
-  - uid: 167
+  - uid: 166
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
-      pos: -1.5,-2.5
+      pos: -0.5,-4.5
       parent: 1
     - type: AtmosPipeColor
-      color: '#0055CCFF'
+      color: '#990000FF'
   - uid: 206
     components:
     - type: Transform
@@ -1902,6 +1897,14 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#990000FF'
+  - uid: 207
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -1.5,-2.5
+      parent: 1
+    - type: AtmosPipeColor
+      color: '#0055CCFF'
   - uid: 215
     components:
     - type: Transform
@@ -2008,7 +2011,7 @@ entities:
       - 3
     - type: AtmosPipeColor
       color: '#0055CCFF'
-  - uid: 363
+  - uid: 372
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
@@ -2066,7 +2069,7 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#990000FF'
-  - uid: 207
+  - uid: 210
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
@@ -3145,7 +3148,7 @@ entities:
       parent: 1
 - proto: WallWeaponCapacitorRechargerOmnidirectional
   entities:
-  - uid: 237
+  - uid: 363
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
