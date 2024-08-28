@@ -345,7 +345,6 @@
 
 # Station Traffic Controller consoles
 - type: entity
-  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseComputerShuttle]
   id: BaseComputerTraffic
   abstract: true
   components:
@@ -368,7 +367,17 @@
       state: generic_keys
 
 - type: entity
-  parent: [BaseComputerTraffic, BaseShuttleIntercom]
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseComputerShuttle, BaseComputerTraffic]
+  id: BaseComputerTrafficRemote
+  abstract: true
+
+- type: entity
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerShuttle, BaseShuttleIntercom, BaseComputerTraffic]
+  id: BaseComputerTrafficLocal
+  abstract: true
+
+- type: entity
+  parent: BaseComputerTrafficLocal
   id: ComputerShuttleFrontierOutpostLocal
   name: frontier outpost traffic console
   description: Monitors the traffic around Frontier Outpost.
@@ -378,7 +387,7 @@
     id: Frontier
 
 - type: entity
-  parent: BaseComputerTraffic
+  parent: BaseComputerTrafficRemote
   id: ComputerShuttleFrontierOutpostRemote
   name: frontier outpost traffic console
   description: Monitors the traffic around Frontier Outpost.
@@ -388,7 +397,7 @@
     id: Frontier
 
 - type: entity
-  parent: [BaseComputerTraffic, BaseShuttleIntercom]
+  parent: BaseComputerTrafficLocal
   id: ComputerShuttleTradeOutpostLocal
   name: trade outpost traffic console
   suffix: Local
@@ -398,7 +407,7 @@
     id: Trade
 
 - type: entity
-  parent: BaseComputerTraffic
+  parent: BaseComputerTrafficRemote
   id: ComputerShuttleTradeOutpostRemote
   name: trade outpost traffic console
   suffix: Remote
