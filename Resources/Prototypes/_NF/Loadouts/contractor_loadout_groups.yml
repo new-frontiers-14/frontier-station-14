@@ -102,6 +102,8 @@
   - ContractorClothingUniformJumpskirtSeniorPhysician
   - ContractorClothingUniformJumpsuitCMO
   - ContractorClothingUniformJumpskirtCMO
+  - ContractorClothingUniformTurtleneckCMO
+  - ContractorClothingUniformTurtleskirtCMO
   - ContractorClothingUniformJumpsuitSeniorResearcher
   - ContractorClothingUniformJumpskirtSeniorResearcher
   - ContractorClothingUniformJumpsuitResearchDirector
@@ -163,6 +165,7 @@
   - ContractorClothingUniformJumpsuitMilitaryColorBrown
   fallbacks:
   - ContractorClothingUniformJumpsuitColorGrey
+  - ContractorClothingUniformJumpskirtColorGrey
 
 - type: loadoutGroup
   id: ContractorBackpack
@@ -692,7 +695,6 @@
 - type: loadoutGroup
   id: ContractorFace
   name: loadout-group-contractor-face
-  minLimit: 0
   loadouts:
   - ContractorClothingMaskBreath
   - ContractorClothingMaskBreathMedical
@@ -707,6 +709,8 @@
   - ContractorClothingMaskScaredMime
   - ContractorClothingMaskSadMime
   - ContractorClothingMaskClown
+  fallbacks:
+  - ContractorClothingMaskBreath
 
 - type: loadoutGroup
   id: ContractorTrinkets
@@ -767,7 +771,7 @@
 - type: loadoutGroup
   id: ContractorEncryptionKey
   name: loadout-group-contractor-encryption-key
-  minLimit: 1
+  minLimit: 0
   maxLimit: 3
   loadouts:
   - ContractorEncryptionKeyTraffic
@@ -788,3 +792,25 @@
   - ContractorLightImplanter
   - ContractorBikeHornImplanter
   - ContractorSadTromboneImplanter
+  fallbacks:
+  - ContractorMedicalTrackingImplanter
+
+- type: loadoutGroup
+  id: ContractorBureaucracy
+  name: loadout-group-contractor-bureaucracy
+  minLimit: 0
+  maxLimit: 3
+  loadouts:
+  - ContractorBoxFolderMedicalDoctor
+  - ContractorBrbSign
+  - ContractorHandLabeler
+  - ContractorStampsApprovedDenied
+  - ContractorRubberStampCaptain
+  - ContractorRubberStampChaplain
+  - ContractorRubberStampDoctor
+  - ContractorRubberStampEngineer
+  - ContractorRubberStampLawyer
+  - ContractorRubberStampPsychologist
+  - ContractorRubberStampTrader
+  - ContractorRubberStampClown
+  - ContractorRubberStampMime

@@ -3143,7 +3143,7 @@ entities:
     - type: Transform
       pos: 19.5,43.5
       parent: 1
-- proto: AirlockEngineeringGlassLocked
+- proto: AirlockEngineeringGlassLockedDungeon
   entities:
   - uid: 1949
     components:
@@ -3182,7 +3182,7 @@ entities:
     - type: Transform
       pos: 27.5,46.5
       parent: 1
-- proto: AirlockMaintGlassLocked
+- proto: AirlockMaintGlassLockedDungeon
   entities:
   - uid: 754
     components:
@@ -3205,6 +3205,11 @@ entities:
     components:
     - type: Transform
       pos: 21.5,32.5
+      parent: 1
+  - uid: 1405
+    components:
+    - type: Transform
+      pos: 31.5,19.5
       parent: 1
   - uid: 1504
     components:
@@ -5401,6 +5406,11 @@ entities:
     - type: Transform
       pos: 30.5,39.5
       parent: 1
+  - uid: 1407
+    components:
+    - type: Transform
+      pos: 31.5,19.5
+      parent: 1
   - uid: 1421
     components:
     - type: Transform
@@ -6701,6 +6711,21 @@ entities:
     - type: Transform
       pos: 19.5,46.5
       parent: 1
+  - uid: 2074
+    components:
+    - type: Transform
+      pos: 33.5,19.5
+      parent: 1
+  - uid: 2075
+    components:
+    - type: Transform
+      pos: 33.5,20.5
+      parent: 1
+  - uid: 2076
+    components:
+    - type: Transform
+      pos: 32.5,20.5
+      parent: 1
 - proto: CableMV
   entities:
   - uid: 490
@@ -6733,6 +6758,11 @@ entities:
     - type: Transform
       pos: 25.5,19.5
       parent: 1
+  - uid: 888
+    components:
+    - type: Transform
+      pos: 31.5,19.5
+      parent: 1
   - uid: 1522
     components:
     - type: Transform
@@ -6757,6 +6787,16 @@ entities:
     components:
     - type: Transform
       pos: 25.5,12.5
+      parent: 1
+  - uid: 2071
+    components:
+    - type: Transform
+      pos: 32.5,19.5
+      parent: 1
+  - uid: 2072
+    components:
+    - type: Transform
+      pos: 33.5,19.5
       parent: 1
 - proto: CableTerminal
   entities:
@@ -8949,13 +8989,6 @@ entities:
     - type: Transform
       pos: 25.5,21.5
       parent: 1
-- proto: GeneratorRTGDamaged
-  entities:
-  - uid: 1407
-    components:
-    - type: Transform
-      pos: 32.5,20.5
-      parent: 1
 - proto: Girder
   entities:
   - uid: 1296
@@ -8963,7 +8996,7 @@ entities:
     - type: Transform
       pos: 26.5,39.5
       parent: 1
-- proto: Grille
+- proto: GrilleDungeon
   entities:
   - uid: 213
     components:
@@ -9340,7 +9373,7 @@ entities:
     - type: Transform
       pos: 25.49259,25.48387
       parent: 1
-- proto: PlasmaReinforcedWindowDirectional
+- proto: PlasmaReinforcedWindowDirectionalDungeon
   entities:
   - uid: 1164
     components:
@@ -9459,6 +9492,17 @@ entities:
     - type: Transform
       pos: 20.590317,3.594551
       parent: 1
+- proto: PortableGeneratorHyperPacmanShuttle
+  entities:
+  - uid: 2077
+    components:
+    - type: Transform
+      pos: 32.5,20.5
+      parent: 1
+    - type: FuelGenerator
+      on: False
+    - type: Physics
+      bodyType: Static
 - proto: PortableGeneratorPacman
   entities:
   - uid: 962
@@ -9499,13 +9543,6 @@ entities:
     components:
     - type: Transform
       pos: 18.5,30.5
-      parent: 1
-- proto: PosterContrabandPower
-  entities:
-  - uid: 888
-    components:
-    - type: Transform
-      pos: 33.5,19.5
       parent: 1
 - proto: PosterLegitNanotrasenLogo
   entities:
@@ -11006,7 +11043,7 @@ entities:
     - type: Transform
       pos: 20.5,47.5
       parent: 1
-- proto: ReinforcedPlasmaWindow
+- proto: ReinforcedPlasmaWindowDungeon
   entities:
   - uid: 1378
     components:
@@ -11032,7 +11069,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 32.5,21.5
       parent: 1
-- proto: ReinforcedWindow
+- proto: ReinforcedWindowDungeon
   entities:
   - uid: 409
     components:
@@ -11314,11 +11351,6 @@ entities:
       parent: 1
 - proto: SignRadiationMed
   entities:
-  - uid: 1405
-    components:
-    - type: Transform
-      pos: 31.5,19.5
-      parent: 1
   - uid: 1406
     components:
     - type: Transform
@@ -13199,6 +13231,11 @@ entities:
     - type: Transform
       pos: 19.5,32.5
       parent: 1
+  - uid: 2073
+    components:
+    - type: Transform
+      pos: 33.5,19.5
+      parent: 1
 - proto: SurveillanceWirelessCameraMovableEntertainment
   entities:
   - uid: 705
@@ -14322,14 +14359,14 @@ entities:
     - type: Transform
       pos: 9.5,12.5
       parent: 1
-- proto: WindoorSecure
+- proto: WindoorSecureDungeon
   entities:
   - uid: 663
     components:
     - type: Transform
       pos: 11.5,44.5
       parent: 1
-- proto: WindoorSecureEngineeringLocked
+- proto: WindoorSecureEngineeringLockedDungeon
   entities:
   - uid: 1564
     components:
@@ -14343,7 +14380,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 20.5,45.5
       parent: 1
-- proto: Window
+- proto: WindowDungeon
   entities:
   - uid: 253
     components:
@@ -14351,7 +14388,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 31.5,3.5
       parent: 1
-- proto: WindowDirectional
+- proto: WindowDirectionalDungeon
   entities:
   - uid: 43
     components:
@@ -14448,7 +14485,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 20.5,46.5
       parent: 1
-- proto: WindowFrostedDirectional
+- proto: WindowFrostedDirectionalDungeon
   entities:
   - uid: 931
     components:
@@ -14510,7 +14547,7 @@ entities:
     - type: Transform
       pos: 14.5,44.5
       parent: 1
-- proto: WindowReinforcedDirectional
+- proto: WindowReinforcedDirectionalDungeon
   entities:
   - uid: 328
     components:

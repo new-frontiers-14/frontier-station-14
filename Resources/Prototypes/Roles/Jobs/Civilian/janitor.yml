@@ -10,6 +10,8 @@
   alwaysUseSpawner: true
   icon: "JobIconJanitor"
   supervisors: job-supervisors-sr
+  weight: 100 # Frontier
+  displayWeight: 40 # Frontier
   canBeAntag: false
   access:
   - Service
@@ -34,9 +36,9 @@
     id: JanitorPDA
     ears: ClothingHeadsetService
     belt: ClothingBeltJanitorFilled
-  storage:
-    back:
-    - BoxSurvival
+  #storage:
+    #back:
+    #- Stuff
 
 - type: startingGear
   id: JanitorMaidGear

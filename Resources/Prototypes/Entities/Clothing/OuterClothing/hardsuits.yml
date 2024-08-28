@@ -46,6 +46,8 @@
     lowPressureMultiplier: 1000
   - type: TemperatureProtection
     coefficient: 0.001
+  - type: FireProtection
+    reduction: 0.8
   - type: ExplosionResistance
     damageCoefficient: 0.5
   - type: Armor
@@ -296,10 +298,10 @@
       coefficients:
         Blunt: 0.8
         Slash: 0.8
-        Piercing: 0.6
-        Heat: 0.5
-        Radiation: 0.5
-        Caustic: 0.6
+        Piercing: 0.7 #Frontier 0.6<0.7
+        Heat: 0.75 #Frontier 0.5<0.75
+        Radiation: 0.75 #Frontier 0.5<0.75
+        Caustic: 0.85 #Frontier 0.6<0.85
   - type: ClothingSpeedModifier
     walkModifier: 0.8
     sprintModifier: 0.8
@@ -321,6 +323,8 @@
   - type: PressureProtection
     highPressureMultiplier: 0.02
     lowPressureMultiplier: 1000
+  - type: FireProtection
+    reduction: 0.8
   - type: ExplosionResistance
     damageCoefficient: 0.2
   - type: Armor
@@ -547,7 +551,7 @@
   - type: ExplosionResistance
     damageCoefficient: 0.2
   - type: FireProtection
-    reduction: 0.8 # perfect protection like atmos firesuit for pyro tf2 ops
+    reduction: 0.8
   - type: Armor
     modifiers:
       coefficients:
@@ -561,7 +565,7 @@
     size: Huge
   - type: ClothingSpeedModifier
     walkModifier: 1.0
-    sprintModifier: 1.0
+    sprintModifier: 0.9
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSyndieElite
@@ -864,6 +868,8 @@
     coefficient: 0.001
   - type: ExplosionResistance
     damageCoefficient: 0.2
+  - type: FireProtection
+    reduction: 0.8
   - type: Armor
     modifiers:
       coefficients:

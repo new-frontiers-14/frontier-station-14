@@ -66,7 +66,7 @@
   abstract: true
   components:
   - type: Reflect
-    reflectProb: 0.7
+    reflectProb: 0.8
     reflects:
       - Energy
 
@@ -191,6 +191,8 @@
   - MobHumanoidHostileAIComplex
   id: MobHumanoidHostileBase
   components:
+  - type: NPCRetaliation
+    attackMemoryLength: 10
   - type: MobMover
   - type: StandingState
   - type: RandomHumanoidAppearance
@@ -226,6 +228,7 @@
     maximumWait: 240 # 2 * 60
     nextAdvertisementTime: 0
   - type: SalvageMobRestrictionsNF
+  - type: FTLKnockdownImmune
 
 # NonHuman NPC base, no equipment, immune to vacuum/low pressure
 - type: entity
@@ -243,6 +246,8 @@
   - MobHumanoidHostileAIComplex
   id: MobNonHumanHostileBase
   components:
+  - type: NPCRetaliation
+    attackMemoryLength: 10
   - type: Reactive
     groups:
       Flammable: [Touch]
@@ -298,3 +303,4 @@
     - CanPilot
     - FootstepSound
     - DoorBumpOpener
+  - type: FTLKnockdownImmune

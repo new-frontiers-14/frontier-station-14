@@ -1,0 +1,321 @@
+# VARIATIONS
+# Contraband denying turret
+- type: entity # Targets players wearing contra and all hostile to NT factions
+  parent: BaseWeaponTurretEnergyNF
+  id: WeaponTurretContrabandDenyingDeployed
+  name: CDET
+  description: |-
+   A Contraband Denying Energy Turret (CDET). A disabler turret with built-in microreactor. Use screwdriver to disassemble.
+  components:
+  - type: HTN
+    rootTask:
+      task: StunTurretCompound
+    blackboard:
+      RotateSpeed: !type:Single
+        3.141
+      SoundTargetInLOS: !type:SoundPathSpecifier
+        path: /Audio/Effects/double_beep.ogg
+  - type: Gun
+    fireRate: 2
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
+      params:
+        variation: 0.125
+  - type: ProjectileBatteryAmmoProvider
+    proto: BulletDisablerStaminaOnly
+    fireCost: 10
+  - type: NpcFactionMember
+    factions:
+    - ContrabandDetection
+  - type: Construction
+    deconstructionTarget: null
+    graph: WeaponTurretContrabandDenyingPackingGraph
+    node: WeaponTurretContrabandDenyingPacked
+
+- type: entity # folded turret
+  parent: BaseItem
+  id: WeaponTurretContrabandDenyingPacked
+  name: packed CDET
+  description: |-
+   A disassembled and packed Contraband Denying Energy Turret (CDET).
+  suffix: NT, Packed
+  components:
+  - type: WeaponCaseInsertable
+  - type: MultiHandedItem
+  - type: SpawnAfterInteract
+    prototype: WeaponTurretContrabandDenyingDeployed
+    doAfter: 5
+    removeOnInteract: true
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Turrets/disabler.rsi
+    state: packed
+  - type: Item
+    size: Ginormous
+    shape:
+    - 0,0,3,3
+    sprite: _NF/Objects/Weapons/Guns/Turrets/disabler.rsi
+
+- type: constructionGraph # deconstruction graph
+  id: WeaponTurretContrabandDenyingPackingGraph
+  start: WeaponTurretContrabandDenyingPacked
+  graph:
+  - node: WeaponTurretContrabandDenyingPacked
+    entity: WeaponTurretContrabandDenyingDeployed
+    edges:
+    - to: WeaponTurretContrabandDenyingPacked
+      completed:
+      - !type:SpawnPrototype
+            prototype: WeaponTurretContrabandDenyingPacked
+            amount: 1
+      - !type:EmptyAllContainers
+      - !type:DeleteEntity {}
+      steps:
+        - tool: Screwing
+          doAfter: 14
+
+# Basic laser turrets
+- type: entity
+  parent:
+  - BaseTurretSearchBeam
+  - BaseWeaponTurretEnergyNF
+  id: WeaponTurretLaserNanoTrasenDeployed
+  name: SLAT
+  description: |-
+   A Self-Recharging Laser Auto Turret (SLAT). A laser turret with built-in microreactor. Use screwdriver to disassemble.
+  suffix: Frontier, NT
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Turrets/laser.rsi
+  - type: Gun
+    fireRate: 2
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser.ogg
+      params:
+        variation: 0.125
+  - type: HitscanBatteryAmmoProvider
+    proto: RedLightLaser
+    fireCost: 10
+  - type: NpcFactionMember
+    factions:
+    - NanoTrasen
+  - type: Construction
+    deconstructionTarget: null
+    graph: WeaponTurretLaserNanoTrasenPackingGraph
+    node: WeaponTurretLaserNanoTrasenPacked
+
+- type: entity # folded turret
+  parent: BaseItem
+  id: WeaponTurretLaserNanoTrasenPacked
+  name: packed SLAT
+  description: |-
+   A disassembled and packed Self-Recharging Laser Auto Turret (SLAT).
+  suffix: NT, Packed
+  components:
+  - type: WeaponCaseInsertable
+  - type: MultiHandedItem
+  - type: SpawnAfterInteract
+    prototype: WeaponTurretLaserNanoTrasenDeployed
+    doAfter: 5
+    removeOnInteract: true
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Turrets/laser.rsi
+    state: packed
+  - type: Item
+    size: Ginormous
+    shape:
+    - 0,0,3,3
+    sprite: _NF/Objects/Weapons/Guns/Turrets/laser.rsi
+
+- type: constructionGraph # deconstruction graph
+  id: WeaponTurretLaserNanoTrasenPackingGraph
+  start: WeaponTurretLaserNanoTrasenPacked
+  graph:
+  - node: WeaponTurretLaserNanoTrasenPacked
+    entity: WeaponTurretLaserNanoTrasenDeployed
+    edges:
+    - to: WeaponTurretLaserNanoTrasenPacked
+      completed:
+      - !type:SpawnPrototype
+            prototype: WeaponTurretLaserNanoTrasenPacked
+            amount: 1
+      - !type:EmptyAllContainers
+      - !type:DeleteEntity {}
+      steps:
+        - tool: Screwing
+          doAfter: 14
+
+- type: entity
+  parent:
+  - BaseTurretSearchBeam
+  - BaseWeaponTurretEnergyNF
+  id: WeaponTurretLaserSyndicateNF
+  name: laser turret
+  suffix: Frontier, Syndicate
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Turrets/laser.rsi
+  - type: Gun
+    fireRate: 2
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser.ogg
+      params:
+        variation: 0.125
+  - type: HitscanBatteryAmmoProvider
+    proto: RedLightLaser
+    fireCost: 10
+  - type: NpcFactionMember
+    factions:
+    - SyndicateNF
+
+- type: entity
+  parent: WeaponTurretLaserSyndicateNF
+  id: WeaponTurretLaserHostileNF
+  name: laser turret
+  suffix: Frontier, Hostile
+  components:
+  - type: NpcFactionMember
+    factions:
+    - HostileUniversally
+
+## Magazine fed, deployable NanoTrasen turret
+- type: entity # deployed turret
+  parent:
+  - BaseWeaponTurretMagazineFed
+  id: WeaponTurretAsmgtNtDeployed
+  name: ASMGT
+  description: |-
+   An Autonomous Sentry Machine Gun Turret (ASMGT) is a magazine-fed turret with barrels compatible with .20, .25, .30 and .35 cartridges. Use screwdriver to disassemble.
+  suffix: NT
+  components:
+  - type: NPCImprintingOnSpawnBehaviour
+    whitelist:
+      components:
+      - HumanoidAppearance
+  - type: NpcFactionMember
+    factions:
+    - NanoTrasen
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Turrets/magazinefed.rsi
+    drawdepth: Mobs
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Appearance
+  - type: MagazineVisuals
+    magState: mag
+    steps: 11
+    zeroVisible: true
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: null
+        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineAsmgt
+  - type: Construction
+    deconstructionTarget: null
+    graph: WeaponTurretAsmgtNtPackingGraph
+    node: WeaponTurretAsmgtNtPacked
+
+- type: entity # folded turret
+  parent: BaseItem
+  id: WeaponTurretAsmgtNtPacked
+  name: packed ASMGT
+  description: |-
+   A disassembled and packed Autonomous Sentry Machine Gun Turret (ASMGT).
+  suffix: NT, Packed
+  components:
+  - type: WeaponCaseInsertable
+  - type: MultiHandedItem
+  - type: SpawnAfterInteract
+    prototype: WeaponTurretAsmgtNtDeployed
+    doAfter: 5
+    removeOnInteract: true
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Turrets/magazinefed.rsi
+    state: packed
+  - type: Item
+    size: Ginormous
+    shape:
+    - 0,0,3,3
+    sprite: _NF/Objects/Weapons/Guns/Turrets/magazinefed.rsi
+
+- type: constructionGraph # deconstruction graph
+  id: WeaponTurretAsmgtNtPackingGraph
+  start: WeaponTurretAsmgtNtPacked
+  graph:
+  - node: WeaponTurretAsmgtNtPacked
+    entity: WeaponTurretAsmgtNtDeployed
+    edges:
+    - to: WeaponTurretAsmgtNtPacked
+      completed:
+      - !type:SpawnPrototype
+            prototype: WeaponTurretAsmgtNtPacked
+            amount: 1
+      - !type:EmptyAllContainers
+      - !type:DeleteEntity {}
+      steps:
+        - tool: Screwing
+          doAfter: 14
+
+## Magazine fed, deployable punk turret
+- type: entity # deployed turret
+  parent:
+  - WeaponTurretAsmgtNtDeployed
+  - UnregisteredFirearmBase
+  id: WeaponTurretAsmgtHostileUniversallyDeployed
+  suffix: Universally Hostile
+  components:
+  - type: NPCImprintingOnSpawnBehaviour
+    whitelist:
+      components:
+      - HumanoidAppearance
+  - type: NpcFactionMember
+    factions:
+    - HostileUniversally
+  - type: Construction
+    deconstructionTarget: null
+    graph: WeaponTurretAsmgtHostileUniversallyPackingGraph
+    node: WeaponTurretAsmgtHostileUniversallyPacked
+
+- type: entity # folded turret
+  parent:
+  - WeaponTurretAsmgtNtPacked
+  - UnregisteredFirearmBase
+  id: WeaponTurretAsmgtHostileUniversallyPacked
+  suffix: Universally Hostile, Packed
+  description: |-
+   A disassembled and packed Autonomous Sentry Machine Gun Turret (ASMGT). WARNING! Unpacked turret will be hostile towards anyone who wasn't in close proximity (within 3 m) after unpacking!
+  components:
+  - type: WeaponCaseInsertable
+  - type: MultiHandedItem
+  - type: SpawnAfterInteract
+    prototype: WeaponTurretAsmgtHostileUniversallyDeployed
+    doAfter: 5
+    removeOnInteract: true
+
+- type: constructionGraph # deconstruction graph
+  id: WeaponTurretAsmgtHostileUniversallyPackingGraph
+  start: WeaponTurretAsmgtHostileUniversallyPacked
+  graph:
+  - node: WeaponTurretAsmgtHostileUniversallyPacked
+    entity: WeaponTurretAsmgtHostileUniversallyDeployed
+    edges:
+    - to: WeaponTurretAsmgtHostileUniversallyPacked
+      completed:
+      - !type:SpawnPrototype
+            prototype: WeaponTurretAsmgtHostileUniversallyPacked
+            amount: 1
+      - !type:EmptyAllContainers
+      - !type:DeleteEntity {}
+      steps:
+        - tool: Screwing
+          doAfter: 14

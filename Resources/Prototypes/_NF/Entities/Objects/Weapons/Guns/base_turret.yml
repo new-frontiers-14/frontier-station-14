@@ -1,0 +1,177 @@
+# BASE
+- type: entity # 'Gun', 'AmmoProvider' and 'ContainerContainer' components are not defined in this one
+  parent:
+  - BaseStructure
+  - MobLaserReflect # Preventing laser abuse from players, prototype is in \Resources\Prototypes\_NF\Entities\Mobs\NPCs\mob_hostile_base.yml
+  id: BaseWeaponTurretNF
+  name: turret
+  suffix: Frontier
+  abstract: true
+  components:
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Actions
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.45,0.25,0.45"
+        density: 60
+        mask:
+          - MachineMask
+        layer:
+          - MachineLayer
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Turrets/turrets.rsi
+    drawdepth: Mobs
+    layers:
+      - state: syndie_lethal
+  - type: InteractionPopup
+    interactDelay: 0.2
+    successChance: 0.8
+    interactSuccessString: petting-success-generic
+    interactFailureString: petting-failure-generic
+    interactSuccessSound:
+      path: /Audio/Effects/double_beep.ogg
+  - type: CombatMode
+    toggleMouseRotator: false
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 600
+        behaviors:
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+      - trigger:
+          !type:DamageTrigger
+          damage: 300
+        # TODO: Construction graph
+        behaviors:
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+          - !type:PlaySoundBehavior
+            sound:
+              collection: MetalGlassBreak
+          - !type:SpawnEntitiesBehavior
+            spawn:
+              SheetSteel1:
+                min: 3
+                max: 5
+  - type: HTN
+    rootTask:
+      task: TurretCompound
+    blackboard:
+      RotateSpeed: !type:Single
+        3.141
+      SoundTargetInLOS: !type:SoundPathSpecifier
+        path: /Audio/Effects/double_beep.ogg
+  - type: MouseRotator
+    angleTolerance: 5
+    rotationSpeed: 180
+    simple4DirMode: false
+  - type: NoRotateOnInteract
+  - type: NoRotateOnMove
+  - type: Input
+    context: "human"
+  - type: MobState # Frontier (otherwise NPCs won't attack the entity)
+
+- type: entity # A search light for turrets
+  id: BaseTurretSearchBeam
+  abstract: true
+  components:
+  - type: PointLight
+    enabled: true
+    autoRot: true
+    netsync: false
+    radius: 16
+    energy: 8
+    mask: /Textures/_NF/Effects/LightMasks/beam.png
+    color: "#990000"
+
+- type: entity # Basic ballistic turret
+  parent: BaseWeaponTurretNF
+  id: BaseWeaponTurretBallisticNF
+  name: ballistic turret
+  abstract: true
+  components:
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Gun
+    fireRate: 6
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/gun_sentry.ogg
+  - type: BallisticAmmoProvider
+    proto: CartridgeCaselessRifle
+    capacity: 500
+
+- type: entity # Magazine fed turret
+  parent: BaseWeaponTurretNF
+  id: BaseWeaponTurretMagazineFed
+  name: ballistic turret (magazine-fed)
+  description: A ballistic machine gun auto-turret with replaceable magazine.
+  abstract: true
+  components:
+  - type: Gun
+    fireRate: 6
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/gun_sentry.ogg
+  - type: MagazineAmmoProvider
+    autoEject: false
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazinePistolSubMachineGun
+        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+        priority: 1
+        whitelist:
+          tags:
+          - MagazinePistolSubMachineGun
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+
+- type: entity # Basic energy turret
+  parent: BaseWeaponTurretNF
+  id: BaseWeaponTurretEnergyNF
+  name: energy turret
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Turrets/disabler.rsi
+    drawdepth: Mobs
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: unshaded
+      shader: unshaded
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+      shader: unshaded
+  - type: Appearance
+  - type: MagazineVisuals
+    magState: mag
+    steps: 8
+    zeroVisible: true
+  - type: Gun
+    fireRate: 6
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/laser.ogg
+  - type: Battery
+    maxCharge: 500
+    startingCharge: 500
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 5

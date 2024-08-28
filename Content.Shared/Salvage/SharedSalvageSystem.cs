@@ -198,23 +198,23 @@ public abstract partial class SharedSalvageSystem : EntitySystem
     /// </summary>
     private string[] RewardsForDifficulty(DifficultyRating rating)
     {
-        var common = "SalvageRewardCommon";
-        var uncommon = "SalvageRewardUncommon";
-        var rare = "SalvageRewardRare";
-        var epic = "SalvageRewardEpic";
-        var legendary = "SalvageRewardLegendary";
+        var t1 = "ExpeditionRewardT1"; // Frontier - Update tiers
+        var t2 = "ExpeditionRewardT2"; // Frontier - Update tiers
+        var t3 = "ExpeditionRewardT3"; // Frontier - Update tiers
+        var t4 = "ExpeditionRewardT4"; // Frontier - Update tiers
+        var t5 = "ExpeditionRewardT5"; // Frontier - Update tiers
         switch (rating)
         {
             case DifficultyRating.Minimal:
-                return new string[] { common };
+                return new string[] { t1 }; // Frontier - Update tiers
             case DifficultyRating.Minor:
-                return new string[] { uncommon };
+                return new string[] { t2 }; // Frontier - Update tiers
             case DifficultyRating.Moderate:
-                return new string[] { rare };
+                return new string[] { t3 }; // Frontier - Update tiers
             case DifficultyRating.Hazardous:
-                return new string[] { epic };
+                return new string[] { t4 }; // Frontier - Update tiers
             case DifficultyRating.Extreme:
-                return new string[] { legendary };
+                return new string[] { t5 }; // Frontier - Update tiers
             default:
                 throw new NotImplementedException();
         }

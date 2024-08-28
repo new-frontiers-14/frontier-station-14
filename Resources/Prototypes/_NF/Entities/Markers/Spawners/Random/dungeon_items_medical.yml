@@ -543,27 +543,44 @@
   - type: RandomSpawner
     prototypes:
     # Empty crates
-    - SpawnDungeonLootCrateEmptyMed
+    - CrateMedical
+    - CrateSurgery
+    - CrateChemistrySecure
     # Restocks
-    - SpawnDungeonLootCrateRestockMed
-    # Filled crates
-    - CrateBodyBags
-    - CrateChemistrySupplies
-    - CrateChemistryVials
+    - CrateVendingMachineRestockMedicalFilled
+    - CrateVendingMachineRestockChemVendFilled
+    # Mats
+    - CrateMaterialGlass
+    - CrateMaterialSteel
+    - CrateMaterialPlastic
+    - CrateMaterialTextiles
+    - CrateMaterialBiomass
     - CrateChemistryD
     - CrateChemistryP
     - CrateChemistryS
+    - WaterTankFull
+    # Filled crates
+    - CrateBodyBags
+    - CrateMedicalRollerBeds
+    - CrateChemistrySupplies
+    - CrateChemistryVials
     - CrateMedicalSupplies
     - CrateMedicalSurgery
     - CrateMedicalScrubs
     - CrateVirologyBiosuit
-    chance: 0.95
+    - CrateChemistrySecureKitChemist
+    - CrateMedicalSecureDoctor
+    - CrateMedicalSecureMedicine
+    - CrateMedicalSecureMedicinePierce
+    - CrateEvaKitParamedic
+    chance: 0.9
     offset: 0.0
     rarePrototypes:
     - CrateServiceKitMedbay
     - CrateServiceKitChemLab
     - CrateServiceKitMedbayCryo
-    rareChance: 0.05
+    - CrateEvaKitCmo
+    rareChance: 0.01
 
 - type: entity
   name: random crate (empty)
