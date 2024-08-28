@@ -284,8 +284,7 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
             if (prototype?.StartingGear is not null)
                 EquipStartingGear(entity.Value, prototype.StartingGear, raiseEvent: false);
 
-            var bank = EnsureComp<BankAccountComponent>(entity.Value);
-            bank.Balance = bankBalance;
+            EnsureComp<BankAccountComponent>(entity.Value);
         }
 
         var gearEquippedEv = new StartingGearEquippedEvent(entity.Value);
