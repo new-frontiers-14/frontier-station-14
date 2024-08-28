@@ -1,0 +1,11 @@
+<controls:FancyWindow
+        xmlns="https://spacestation14.io"
+        xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+        Title="{Loc player-panel-job-whitelists}" MinSize="750 600">
+    <BoxContainer Orientation="Vertical">
+	    <Label Name="PlayerName" Margin="4"/>
+    	<ScrollContainer VerticalExpand="True">
+    	    <BoxContainer Name="Departments" Orientation="Vertical"/> <!-- Populated with DepartmentWhitelistPanel -->
+	    </ScrollContainer>
+    </BoxContainer>
+</controls:FancyWindow>
