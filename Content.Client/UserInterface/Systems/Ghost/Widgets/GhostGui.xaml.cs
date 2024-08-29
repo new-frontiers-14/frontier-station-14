@@ -87,7 +87,7 @@ public sealed partial class GhostGui : UIWidget
         }
         else
         {
-            double delta = (_gameTiming.CurTime - _respawnTime).Value.TotalSeconds;
+            double delta = (_respawnTime.Value - _gameTiming.CurTime).TotalSeconds;
             GhostRespawnButton.Text = Loc.GetString("ghost-gui-respawn-button-denied", ("time", $"{delta:f1}"));
             GhostRespawnButton.Disabled = true;
         }

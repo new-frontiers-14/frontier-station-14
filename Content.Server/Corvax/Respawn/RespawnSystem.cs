@@ -1,7 +1,6 @@
 using System.Runtime.InteropServices;
 using Content.Server.Ghost.Roles.Components;
 using Content.Shared.Corvax.Respawn;
-using Content.Shared.GameTicking;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
@@ -10,10 +9,11 @@ using Robust.Shared.Network;
 using Robust.Shared.Timing;
 using Content.Shared._NF.CCVar; // Frontier
 using Robust.Shared.Configuration; // Frontier
-using Content.Shared.Mind; // Frontier
-using Content.Server.Mind; // Frontier
 using Content.Server.CryoSleep; // Frontier
 using Robust.Shared.Player; // Frontier
+using Content.Shared.Ghost; // Frontier
+using Content.Server.Administration.Managers;
+using Content.Server.Administration; // Frontier
 
 namespace Content.Server.Corvax.Respawn;
 
@@ -22,10 +22,22 @@ public sealed class RespawnSystem : SharedNFRespawnSystem
     [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly MindSystem _mind = default!;
+    [Dependency] private readonly IAdminManager _admin = default!;
 
-    private float _respawnCryoFirstTime = 0f;
+    private float _respawnTimeOnFirstCryo = 0f; // Frontier: shorter time for respawns
     private float _respawnTime = 0f;
+
+    // Frontier: struct for respawn lookup
+    private struct RespawnData
+    {
+        public TimeSpan RespawnTime;
+        public TimeSpan? LastCryoSleep;
+        public TimeSpan? LastRespawnFromCryo;
+    }
+    // End Frontier
+
+    [ViewVariables]
+    private Dictionary<NetUserId, RespawnData> _respawnInfo = new(); // Frontier: struct for complete respawn info
     public override void Initialize()
     {
         SubscribeLocalEvent<MindContainerComponent, MobStateChangedEvent>(OnMobStateChanged);
@@ -33,13 +45,15 @@ public sealed class RespawnSystem : SharedNFRespawnSystem
         SubscribeLocalEvent<MindContainerComponent, CryosleepBeforeMindRemovedEvent>(OnCryoBeforeMindRemoved);
         SubscribeLocalEvent<MindContainerComponent, CryosleepWakeUpEvent>(OnCryoWakeUp);
 
+        _admin.OnPermsChanged += ClearAdminRespawn;
+
         Subs.CVar(_cfg, NFCCVars.RespawnCryoFirstTime, OnRespawnCryoFirstTimeChanged, true);
         Subs.CVar(_cfg, NFCCVars.RespawnTime, OnRespawnCryoTimeChanged, true);
     }
 
     private void OnRespawnCryoFirstTimeChanged(float value)
     {
-        _respawnCryoFirstTime = value;
+        _respawnTimeOnFirstCryo = value;
     }
 
     private void OnRespawnCryoTimeChanged(float value)
@@ -52,15 +66,16 @@ public sealed class RespawnSystem : SharedNFRespawnSystem
         if (e.NewMobState != MobState.Dead)
             return;
 
-        if (!_mind.TryGetMind(entity, out var mindEnt, out var mind, component))
+        if (!_player.TryGetSessionByEntity(entity, out var session))
             return;
 
-        SetRespawnTime(mindEnt, mind, _timing.CurTime + TimeSpan.FromSeconds(_respawnTime));
+        var respawnData = GetRespawnData(session.UserId);
+        SetRespawnTime(session.UserId, ref respawnData, _timing.CurTime + TimeSpan.FromSeconds(_respawnTime));
     }
 
-    private void OnMindRemoved(EntityUid entity, MindContainerComponent component, MindRemovedMessage e)
+    private void OnMindRemoved(EntityUid entity, MindContainerComponent _, MindRemovedMessage e)
     {
-        if (e.Mind.Comp is null)
+        if (e.Mind.Comp.UserId is null)
             return;
 
         // Mob is dead, don't reset spawn timer twice
@@ -70,54 +85,80 @@ public sealed class RespawnSystem : SharedNFRespawnSystem
         if (HasComp<GhostRoleComponent>(entity)) // Frontier: don't penalize user for exiting ghost roles
             return; // Frontier: don't penalize user for exiting ghost roles
 
-        if (e.Mind.Comp.LastCryoSleep != null) // Entity has cryoed, don't reset the respawn time
+        if (HasComp<GhostComponent>(entity)) // Frontier: reghosting is fine (observing)
+            return; // Frontier: reghosting is fine (observing)
+
+        if (e.Mind.Comp.Session != null && _admin.IsAdmin(e.Mind.Comp.Session)) // Frontier: reghosting is fine (observing)
+            return; // Frontier: reghosting is fine (observing)
+
+        // Get respawn info
+        var userId = e.Mind.Comp.UserId.Value;
+        var respawnInfo = GetRespawnData(userId);
+        if (respawnInfo.LastCryoSleep != null) // Entity has cryoed, don't reset the respawn time
             return;
 
-        SetRespawnTime(e.Mind.Owner, e.Mind.Comp, _timing.CurTime + TimeSpan.FromSeconds(_respawnTime));
+        SetRespawnTime(userId, ref respawnInfo, _timing.CurTime + TimeSpan.FromSeconds(_respawnTime));
+    }
+
+    private void ClearAdminRespawn(AdminPermsChangedEventArgs args)
+    {
+        if (args.IsAdmin)
+        {
+            var respawnData = GetRespawnData(args.Player.UserId);
+            SetRespawnTime(args.Player.UserId, ref respawnData, TimeSpan.Zero);
+        }
     }
 
     public void Respawn(ICommonSession session)
     {
-        EntityUid? mindEnt = _mind.GetMind(session.UserId);
-        if (mindEnt is null || !TryComp<MindComponent>(mindEnt, out var mindComp))
-            return;
+        var respawnData = GetRespawnData(session.UserId);
 
         // Push temporary cryo information 
-        mindComp.LastRespawnedCryo = mindComp.LastCryoSleep;
-        mindComp.LastCryoSleep = null;
-        Dirty(mindEnt.Value, mindComp);
+        respawnData.LastRespawnFromCryo = respawnData.LastCryoSleep;
+        respawnData.LastCryoSleep = null;
     }
 
     private void OnCryoBeforeMindRemoved(EntityUid entity, MindContainerComponent component, CryosleepBeforeMindRemovedEvent _)
     {
-        if (!_mind.TryGetMind(entity, out var mindEnt, out var mind, component))
+        if (!_player.TryGetSessionByEntity(entity, out var session))
             return;
 
-        double respawnTime = _respawnCryoFirstTime; // Not previously respawned from cryo.
-        if (mind.LastRespawnedCryo is not null)
+        var respawnData = GetRespawnData(session.UserId);
+        double respawnTime = _respawnTimeOnFirstCryo; // Not previously respawned from cryo.
+        if (respawnData.LastRespawnFromCryo is not null)
         {
-            double secondsSinceCryoSleep = (_timing.CurTime - mind.LastRespawnedCryo!).Value.TotalSeconds;
+            double secondsSinceCryoSleep = (_timing.CurTime - respawnData.LastRespawnFromCryo).Value.TotalSeconds;
             respawnTime = double.Min(_respawnTime, secondsSinceCryoSleep);
         }
-        SetRespawnTime(mindEnt, mind, _timing.CurTime + TimeSpan.FromSeconds(respawnTime), _timing.CurTime);
+        SetRespawnTime(session.UserId, ref respawnData, _timing.CurTime + TimeSpan.FromSeconds(respawnTime), _timing.CurTime);
     }
 
     private void OnCryoWakeUp(EntityUid entity, MindContainerComponent component, CryosleepWakeUpEvent _)
     {
-        if (!_mind.TryGetMind(entity, out var _, out var mind, component))
+        if (!_player.TryGetSessionByEntity(entity, out var session))
             return;
 
-        mind.LastCryoSleep = null;
-        Dirty(entity, mind);
+        var respawnData = GetRespawnData(session.UserId);
+        respawnData.LastCryoSleep = null;
     }
 
-    private void SetRespawnTime(EntityUid entity, MindComponent mind, TimeSpan nextSpawn, TimeSpan? cryoTime = null)
+    private void SetRespawnTime(NetUserId user, ref RespawnData data, TimeSpan nextSpawn, TimeSpan? cryoTime = null)
     {
-        mind.RespawnTime = nextSpawn;
-        mind.LastCryoSleep = cryoTime;
-        Dirty(entity, mind);
+        data.RespawnTime = nextSpawn;
+        data.LastCryoSleep = cryoTime;
 
-        if (mind.Session is not null)
-            RaiseNetworkEvent(new RespawnResetEvent(nextSpawn), mind.Session!);
+        if (_player.TryGetSessionById(user, out var session)) // Frontier: try first, if no valid session, nothing to do.
+            RaiseNetworkEvent(new RespawnResetEvent(nextSpawn), session);
+    }
+
+    public TimeSpan? GetRespawnTime(NetUserId user) // Frontier: GetRespawnResetTime<GetRespawnTime
+    {
+        return _respawnInfo.TryGetValue(user, out var data) ? data.RespawnTime : null;
+    }
+
+    // Frontier: return a writable reference
+    private ref RespawnData GetRespawnData(NetUserId player)
+    {
+        return ref CollectionsMarshal.GetValueRefOrAddDefault(_respawnInfo, player, out _);;
     }
 }

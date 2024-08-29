@@ -53,18 +53,16 @@ public sealed class GhostRespawnCommand : IConsoleCommand
             return;
         }
 
-        var mindSystem = _entityManager.EntitySysManager.GetEntitySystem<MindSystem>();
-        if (!mindSystem.TryGetMind(shell.Player, out _, out var mind))
-        {
-            shell.WriteLine("You have no mind.");
-            return;
-        }
+        var respawnResetTime = _entity.GetEntitySystem<RespawnSystem>().GetRespawnTime(shell.Player.UserId);
 
-        if (_gameTiming.CurTime < mind.RespawnTime)
+        if (respawnResetTime is not null)
         {
-            var delta = (mind.RespawnTime - _gameTiming.CurTime).TotalSeconds;
-            shell.WriteLine($"You haven't been dead long enough. You must wait an additional {delta} seconds.");
-            return;
+            if (_gameTiming.CurTime < respawnResetTime.Value)
+            {
+                var timeLeft = (respawnResetTime.Value - _gameTiming.CurTime).TotalSeconds;
+                shell.WriteLine($"You haven't been dead long enough. You can respawn in {timeLeft} seconds.");
+                return;
+            }
         }
 
         var gameTicker = _entityManager.EntitySysManager.GetEntitySystem<GameTicker>();
