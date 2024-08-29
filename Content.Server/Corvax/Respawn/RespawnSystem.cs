@@ -88,8 +88,8 @@ public sealed class RespawnSystem : SharedNFRespawnSystem
         if (HasComp<GhostComponent>(entity)) // Frontier: reghosting is fine (observing)
             return; // Frontier: reghosting is fine (observing)
 
-        if (e.Mind.Comp.Session != null && _admin.IsAdmin(e.Mind.Comp.Session)) // Frontier: reghosting is fine (observing)
-            return; // Frontier: reghosting is fine (observing)
+        if (e.Mind.Comp.Session != null && _admin.IsAdmin(e.Mind.Comp.Session)) // Frontier: admins get free respawns
+            return; // Frontier: admins get free respawns
 
         // Get respawn info
         var userId = e.Mind.Comp.UserId.Value;
@@ -122,6 +122,9 @@ public sealed class RespawnSystem : SharedNFRespawnSystem
     {
         if (!_player.TryGetSessionByEntity(entity, out var session))
             return;
+
+        if (_admin.IsAdmin(session)) // Frontier: admins get free respawns
+            return; // Frontier: admins get free respawns
 
         var respawnData = GetRespawnData(session.UserId);
         double respawnTime = _respawnTimeOnFirstCryo; // Not previously respawned from cryo.
