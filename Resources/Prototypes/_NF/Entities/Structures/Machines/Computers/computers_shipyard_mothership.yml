@@ -123,3 +123,13 @@
     - Parcel
 #  - type: AccessReader # Cannot lock it for mail since the inserted card will be missing from you
 #    access: [["Mail"]] # Cannot lock it for mail since the inserted card will be missing from you
+
+# The mccargo console
+- type: entity
+  id: ColossusMothershipComputer
+  parent: BaseMothershipComputer
+  name: colossus mothership console
+  components:
+  - type: ShipyardListing
+    shuttles:
+    - Colo

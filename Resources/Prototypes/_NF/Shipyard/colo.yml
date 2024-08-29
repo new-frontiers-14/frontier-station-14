@@ -1,0 +1,32 @@
+# Maintainer Info
+# GitHub: 
+# Discord: 
+
+# Shuttle Notes:
+# 
+
+- type: vessel
+  id: Colo
+  name: COU Colo
+  description: "An Old COU Colo designed to be paired with a mothership for large mining operations"
+  price: 8800
+  category: Small
+  group: None
+  shuttlePath: /Maps/_NF/Shuttles/colo.yml
+
+- type: gameMap
+  id: Colo
+  mapName: 'COU Colo'
+  mapPath: /Maps/_NF/Shuttles/colo.yml
+  minPlayers: 0
+  stations:
+    Colo:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Colo {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs: {}
