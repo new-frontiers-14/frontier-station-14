@@ -91,7 +91,7 @@
       - !type:DoActsBehavior
         acts: ["Breakage"]
   - type: ApcPowerReceiver
-    powerLoad: 1500 # Many watts
+    powerLoad: 1500 # Assume the range is off.
   - type: Machine
     board: null # TODO: define OvenMachineCircuitboard
   - type: ContainerContainer
@@ -106,6 +106,7 @@
     guides:
     - Chef
   - type: EntityHeater
+    passivePower: 1500 # Base oven power.
   - type: PlaceableSurface
   - type: ItemPlacer
     maxEntities: 4 # big grill, many steaks
