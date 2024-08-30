@@ -2,6 +2,7 @@ using Content.Server.Shuttles.Components;
 using Content.Shared.Shuttles.BUIStates;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Shuttles.Events;
+using Content.Shared.Tiles;
 
 namespace Content.Server.Shuttles.Systems;
 
@@ -39,6 +40,9 @@ public sealed partial class ShuttleSystem
         {
             return;
         }
+
+        if (xform.GridUid.HasValue && HasComp<ProtectedGridComponent>(xform.GridUid.Value))
+            return;
 
         if (!args.Show)
         {
