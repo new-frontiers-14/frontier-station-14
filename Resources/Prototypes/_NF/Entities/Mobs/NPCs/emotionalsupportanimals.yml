@@ -23,7 +23,7 @@
       enum.StrippingUiKey.Key:
         type: StrippableBoundUserInterface
   - type: Inventory
-    templateId: emotionalsupportpet
+    templateId: nfpet
   - type: Tag
     tags:
     - CannotSuicide
@@ -34,6 +34,7 @@
 
 - type: entity
   id: BaseEmotionalGhostCat
+  perent: BaseEmotionalGhost
   abstract: true
   components:
   - type: ReplacementAccent
@@ -44,6 +45,7 @@
       Female: Cat
       Unsexed: Cat
   - type: Inventory
+    templateId: nfcat
     speciesId: cat
   - type: RotationVisuals
     defaultRotation: 90
@@ -51,6 +53,7 @@
 
 - type: entity
   id: BaseEmotionalGhostDog
+  perent: BaseEmotionalGhost
   abstract: true
   components:
   - type: ReplacementAccent
@@ -65,7 +68,7 @@
 
 - type: entity
   suffix: Ghost
-  parent: [BaseEmotionalGhost, BaseEmotionalGhostCat, MobCat]
+  parent: [BaseEmotionalGhostCat, MobCat]
   id: MobCatGhost
   components:
   - type: RandomMetadata
@@ -78,7 +81,7 @@
 - type: entity
   suffix: Ghost
   id: MobCatCalicoGhost
-  parent: [BaseEmotionalGhost, BaseEmotionalGhostCat, MobCatCalico]
+  parent: [BaseEmotionalGhostCat, MobCatCalico]
   components:
   - type: RandomMetadata
     nameSegments: [names_cat_calico]
@@ -89,31 +92,7 @@
 
 - type: entity
   suffix: Ghost
-  id: MobCatCaracalGhost
-  parent: [BaseEmotionalGhost, BaseEmotionalGhostCat, MobCatCaracal]
-  components:
-  - type: RandomMetadata
-    nameSegments: [names_cat_caracal]
-  - type: DamageStateVisuals
-    states:
-      Alive:
-        Base: caracal_flop
-
-- type: entity
-  suffix: Ghost
-  parent: [BaseEmotionalGhost, BaseEmotionalGhostCat, MobCatSpace]
-  id: MobCatSpaceGhost
-  components:
-  - type: RandomMetadata
-    nameSegments: [names_cat_space]
-  - type: DamageStateVisuals
-    states:
-      Alive:
-        Base: spacecat
-
-- type: entity
-  suffix: Ghost
-  parent: [BaseEmotionalGhost, BaseEmotionalGhostCat, MobBingus]
+  parent: [BaseEmotionalGhostCat, MobBingus]
   id: MobBingusGhost
   components:
   - type: RandomMetadata
@@ -125,7 +104,35 @@
 
 - type: entity
   suffix: Ghost
-  parent: [BaseEmotionalGhost, BaseEmotionalGhostDog, MobCorgi]
+  id: MobCatCaracalGhost
+  parent: [BaseEmotionalGhostCat, MobCatCaracal]
+  components:
+  - type: RandomMetadata
+    nameSegments: [names_cat_caracal]
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: caracal_flop
+  - type: Inventory # Broken hats
+    templateId: nfpet # Broken hats
+
+- type: entity
+  suffix: Ghost
+  parent: [BaseEmotionalGhostCat, MobCatSpace]
+  id: MobCatSpaceGhost
+  components:
+  - type: RandomMetadata
+    nameSegments: [names_cat_space]
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: spacecat
+  - type: Inventory # Broken hats
+    templateId: nfpet # Broken hats
+
+- type: entity
+  suffix: Ghost
+  parent: [BaseEmotionalGhostDog, MobCorgi]
   id: MobCorgiGhost
   components:
   - type: RandomMetadata
@@ -133,7 +140,7 @@
 
 - type: entity
   suffix: Ghost
-  parent: [BaseEmotionalGhost, BaseEmotionalGhostDog, MobCorgiPuppy]
+  parent: [BaseEmotionalGhostDog, MobCorgiPuppy]
   id: MobCorgiPuppyGhost
   components:
   - type: Inventory
@@ -143,7 +150,7 @@
 
 - type: entity
   suffix: Ghost
-  parent: [BaseEmotionalGhost, BaseEmotionalGhostDog, MobPibble]
+  parent: [BaseEmotionalGhostDog, MobPibble]
   id: MobPibbleGhost
   components:
   - type: CombatMode
@@ -167,7 +174,6 @@
     nameSegments: [names_chicken]
   - type: Inventory # Frontier
     speciesId: chicken
-    templateId: pet
   - type: InventorySlots
   - type: Strippable
   - type: UserInterface
