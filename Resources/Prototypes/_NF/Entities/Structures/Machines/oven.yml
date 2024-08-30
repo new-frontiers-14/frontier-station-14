@@ -48,16 +48,26 @@
     bodyType: Static
   - type: Fixtures
     fixtures:
-      fix1:
+      fix1: # The body of the oven
         shape:
           !type:PhysShapeAabb
           bounds: "-0.30,-0.25,0.30,0.45"
         density: 600
         mask:
         - MachineMask
-        - TabletopMachineMask
         layer:
         - MachineLayer
+      fix2: # The range - this is where we cook
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.30,0.15,0.30,0.45"
+        mask:
+        - TabletopMachineMask
+        layer:
+        - Impassable
+        - MidImpassable
+        - LowImpassable
+        hard: false
   - type: Sprite
     sprite: _NF/Structures/Machines/oven.rsi
     snapCardinals: true
