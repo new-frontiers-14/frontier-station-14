@@ -1,6 +1,17 @@
 - type: entity
+  name: nfsd energy sword
+  parent: [BaseC2ContrabandUnredeemable, EnergySword]
+  id: EnergySwordNfsd
+  description: A very loud & dangerous sword with a beam made of pure, concentrated plasma. Cuts through unarmored targets like butter.
+  components:
+  - type: EnergySword
+    colorOptions:
+      - "#d4ffbf"
+    blockHacking: true
+
+- type: entity
   id: EnergyPickaxeNF
-  parent: EnergySword # Has a reflect chance
+  parent: [EnergySword, BaseC1Contraband] # Has a reflect chance
   name: holopickaxe
   description: A holographic mining tool with blades comprised of hard light. Doesn't pack the same punch as an energy weapon, but more compact than most mining tools when turned off.
   components:
