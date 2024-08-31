@@ -16,7 +16,7 @@ public sealed partial class EmpDisabledComponent : Component
     /// </summary>
     [DataField("timeLeft", customTypeSerializer: typeof(TimeOffsetSerializer)), ViewVariables(VVAccess.ReadWrite)]
     [AutoPausedField]
-    public TimeSpan DisabledUntil;
+    public TimeSpan? DisabledUntil; // Frontier TimeSpan<TimeSpan?
 
     [DataField("effectCoolDown"), ViewVariables(VVAccess.ReadWrite)]
     public float EffectCooldown = 3f;

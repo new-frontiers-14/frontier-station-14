@@ -4,7 +4,7 @@ using Content.Shared.Power;
 namespace Content.Server.Power.Components
 {
     [RegisterComponent]
-    public sealed partial class ChargingComponent : Component
+    public sealed partial class ChargingComponent : Component // Frontier: Upstream - #28984
     {
         ///<summary>
         ///References the entity of the charger that is currently powering this battery

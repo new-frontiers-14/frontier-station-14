@@ -2,7 +2,7 @@ using Content.Server.Administration.Logs;
 using Content.Server.Audio;
 using Content.Server.Construction;
 using Content.Server.Power.Components;
-using Content.Server.Emp;
+using Content.Server.Emp; // Frontier: Upstream - #28984
 using Content.Shared.Database;
 using Content.Shared.Gravity;
 using Content.Shared.Interaction;
@@ -32,7 +32,7 @@ namespace Content.Server.Gravity
             SubscribeLocalEvent<GravityGeneratorComponent, SharedGravityGeneratorComponent.SwitchGeneratorMessage>(
                 OnSwitchGenerator);
 
-            SubscribeLocalEvent<GravityGeneratorComponent, EmpPulseEvent>(OnEmpPulse);
+            SubscribeLocalEvent<GravityGeneratorComponent, EmpPulseEvent>(OnEmpPulse); // Frontier: Upstream - #28984
         }
 
         private void OnParentChanged(EntityUid uid, GravityGeneratorComponent component, ref EntParentChangedMessage args)
@@ -298,13 +298,12 @@ namespace Content.Server.Gravity
             SetSwitchedOn(uid, component, args.On, user: args.Actor);
         }
 
-        private void OnEmpPulse(EntityUid uid, GravityGeneratorComponent component, EmpPulseEvent args)
+        private void OnEmpPulse(EntityUid uid, GravityGeneratorComponent component, EmpPulseEvent args) // Frontier: Upstream - #28984
         {
             /// i really don't think that the gravity generator should use normalised 0-1 charge
             /// as opposed to watts charge that every other battery uses
 
-            ApcPowerReceiverComponent? powerReceiver = null;
-            if (!Resolve(uid, ref powerReceiver, false))
+            if (!TryComp<ApcPowerReceiverComponent>(uid, out var powerReceiver))
                 return;
 
             var ent = (uid, component, powerReceiver);

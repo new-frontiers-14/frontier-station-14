@@ -27,8 +27,8 @@ public sealed class EmpSystem : SharedEmpSystem
 
         SubscribeLocalEvent<EmpDisabledComponent, RadioSendAttemptEvent>(OnRadioSendAttempt);
         SubscribeLocalEvent<EmpDisabledComponent, RadioReceiveAttemptEvent>(OnRadioReceiveAttempt);
-        //SubscribeLocalEvent<EmpDisabledComponent, ApcToggleMainBreakerAttemptEvent>(OnApcToggleMainBreaker);
-        //SubscribeLocalEvent<EmpDisabledComponent, SurveillanceCameraSetActiveAttemptEvent>(OnCameraSetActive);
+        //SubscribeLocalEvent<EmpDisabledComponent, ApcToggleMainBreakerAttemptEvent>(OnApcToggleMainBreaker); // Frontier: Upstream - #28984
+        //SubscribeLocalEvent<EmpDisabledComponent, SurveillanceCameraSetActiveAttemptEvent>(OnCameraSetActive); // Frontier: Upstream - #28984
     }
 
     /// <summary>
@@ -85,8 +85,9 @@ public sealed class EmpSystem : SharedEmpSystem
         }
         if (ev.Disabled)
         {
+            // Frontier: Upstream - #28984 start
+            //disabled.DisabledUntil = Timing.CurTime + TimeSpan.FromSeconds(duration);
             var disabled = EnsureComp<EmpDisabledComponent>(uid);
-            // couldnt use null-coalescing operator here sadge
             if (disabled.DisabledUntil == TimeSpan.Zero)
             {
                 disabled.DisabledUntil = Timing.CurTime;
@@ -99,6 +100,7 @@ public sealed class EmpSystem : SharedEmpSystem
             {
                 powerNetBattery.CanCharge = false;
             }
+            // Frontier: Upstream - #28984 end
         }
     }
 
@@ -115,7 +117,7 @@ public sealed class EmpSystem : SharedEmpSystem
                 var ev = new EmpDisabledRemoved();
                 RaiseLocalEvent(uid, ref ev);
 
-                if (TryComp<PowerNetworkBatteryComponent>(uid, out var powerNetBattery))
+                if (TryComp<PowerNetworkBatteryComponent>(uid, out var powerNetBattery)) // Frontier: Upstream - #28984
                 {
                     powerNetBattery.CanCharge = true;
                 }
@@ -144,12 +146,12 @@ public sealed class EmpSystem : SharedEmpSystem
         args.Cancelled = true;
     }
 
-    //private void OnApcToggleMainBreaker(EntityUid uid, EmpDisabledComponent component, ref ApcToggleMainBreakerAttemptEvent args)
+    //private void OnApcToggleMainBreaker(EntityUid uid, EmpDisabledComponent component, ref ApcToggleMainBreakerAttemptEvent args) // Frontier: Upstream - #28984
     //{
     //    args.Cancelled = true;
     //}
 
-    //private void OnCameraSetActive(EntityUid uid, EmpDisabledComponent component, ref SurveillanceCameraSetActiveAttemptEvent args)
+    //private void OnCameraSetActive(EntityUid uid, EmpDisabledComponent component, ref SurveillanceCameraSetActiveAttemptEvent args) // Frontier: Upstream - #28984
     //{
     //    args.Cancelled = true;
     //}
