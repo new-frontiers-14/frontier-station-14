@@ -982,6 +982,7 @@
 
 # Frontier projectiles
 # The game wont allow them to sit under _NF.
+# TODO: redefine the flybyfixture anchor locally; it probably will.
 
 - type: entity
   id: BaseBulletRubber
@@ -1100,7 +1101,7 @@
     disableDuration: 30
 
 - type: entity
-  id: BulletCannonBallEMP
+  id: BulletCannonBallEmp
   name: emp cannonball
   parent: BaseBulletTrigger
   categories: [ HideSpawnMenu ]
@@ -1109,9 +1110,11 @@
     sprite: _NF/Objects/Weapons/Guns/Projectiles/projectiles2.rsi
     layers:
       - state: ball-emp
+      - state: ball-emp-unlit
+        shader: unshaded
   - type: PointLight
     radius: 1
-    color: orange
+    color: cyan
     energy: 0.5
   - type: Projectile
     damage:

@@ -11,7 +11,7 @@ pirate-bounty-console-manifest-entry =
         [1] {$item}
         *[other] {$item} x{$amount}
     }
-pirate-bounty-console-manifest-reward = Reward: {$reward} DB
+pirate-bounty-console-manifest-reward = Reward: {$reward}
 pirate-bounty-console-description-label = [color=gray]{$description}[/color]
 pirate-bounty-console-id-label = {$id}
 
