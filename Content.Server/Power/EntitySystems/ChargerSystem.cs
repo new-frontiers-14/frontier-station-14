@@ -334,5 +334,5 @@ internal sealed class ChargerSystem : EntitySystem
     }
 }
 
-[ByRefEvent]  // Frontier: Upstream - #28984
+[ByRefEvent] // Frontier: Upstream - #28984
 public record struct ChargerUpdateStatusEvent();
