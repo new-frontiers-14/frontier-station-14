@@ -312,8 +312,8 @@ public sealed class PaperSystem : EntitySystem
         };
 
         // Get Crayon component, and if present set custom color from crayon
-        if (TryComp<SharedCrayonComponent>(pen, out var crayon))
-            info.StampedColor = crayon.Color;
+        //if (TryComp<SharedCrayonComponent>(pen, out var crayon)) // FRONTIER MERGE - TODO: fix crayon signing
+        //    info.StampedColor = crayon.Color; // FRONTIER MERGE - TODO: fix crayon signing
 
         // Try stamp with the info, return false if failed.
         if (!StampDelayed(pen) && TryStamp(paper, info, "paper_stamp-nf-signature"))

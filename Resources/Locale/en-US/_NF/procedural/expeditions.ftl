@@ -4,7 +4,7 @@ salvage-expedition-shuttle-not-found = Cannot locate shuttle.
 salvage-expedition-not-everyone-aboard = Not all crew aboard! {CAPITALIZE(THE($target))} is still out there!
 
 # Salvage mods
-salvage-time-mod-standard = Normal Duration
+salvage-time-mod-standard-time = Normal Duration
 salvage-time-mod-rush = Rush
 
 salvage-weather-mod-heavy-snowfall = Heavy Snowfall
