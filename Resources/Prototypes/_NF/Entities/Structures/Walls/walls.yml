@@ -5,7 +5,10 @@
   abstract: true
   components:
   - type: Reflect
+    reflectProb: 0.4
     spread: 10 # Narrow spread, need to balance vs. max projectile distance
+    reflects:
+    - ShuttleKinetic # Only reflects PTK (otherwise RIP miners)
 
 - type: entity
   parent: [AsteroidWallNF, WallIce]
