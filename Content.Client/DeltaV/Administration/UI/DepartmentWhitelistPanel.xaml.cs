@@ -18,11 +18,14 @@ public sealed partial class DepartmentWhitelistPanel : PanelContainer
         RobustXamlLoader.Load(this);
 
         var allWhitelisted = true;
+        var grey = Color.FromHex("#ccc");
         foreach (var id in department.Roles)
         {
             var thisJob = id; // closure capturing funny
             var button = new CheckBox();
             button.Text = proto.Index(id).LocalizedName;
+            if (!proto.Index(id).Whitelisted)
+                button.Modulate = grey; // Let admins know whitelisting this job is only for futureproofing.
             button.Pressed = whitelists.Contains(id);
             button.OnPressed += _ => OnSetJob?.Invoke(thisJob, button.Pressed);
             JobsContainer.AddChild(button);
