@@ -4,8 +4,8 @@
   id: AsteroidWallNF
   abstract: true
   components:
-  - type: Reflective
-    prob: 0.25
+  - type: Reflect
+    spread: 10 # Narrow spread, need to balance vs. max projectile distance
 
 - type: entity
   parent: [AsteroidWallNF, WallIce]
