@@ -133,7 +133,7 @@ public abstract partial class SharedSalvageSystem : EntitySystem
 
         if (time.Description != string.Empty)
         {
-            mods.Add(time.Description);
+            mods.Add(Loc.GetString(time.Description));
         }
 
         var rewards = GetRewards(difficulty, rand);
