@@ -263,14 +263,14 @@ public sealed class PaperSystem : EntitySystem
     private bool StampDelayed(EntityUid stampUid)
     {
         return TryComp<UseDelayComponent>(stampUid, out var delay) &&
-            _useDelay.IsDelayed((stampUid, delay));
+            _useDelay.IsDelayed((stampUid, delay), "stamp");
     }
 
     // FRONTIER - stamp reapplication: resets the delay on a given stamp
     private void DelayStamp(EntityUid stampUid)
     {
         if (TryComp<UseDelayComponent>(stampUid, out var delay))
-            _useDelay.TryResetDelay(stampUid, false, delay);
+            _useDelay.TryResetDelay(stampUid, false, delay, "stamp");
     }
 
     // FRONTIER - Pen signing: Adds the sign verb for pen signing
@@ -302,18 +302,12 @@ public sealed class PaperSystem : EntitySystem
     // FRONTIER - TrySign method, attempts to place a signature
     public bool TrySign(Entity<PaperComponent> paper, EntityUid signer, EntityUid pen)
     {
-        // Generate display information.
-        StampDisplayInfo info = new StampDisplayInfo
-        {
-            Reapply = false, // Frontier
-            StampedName = Name(signer),
-            StampedColor = Color.FromHex("#333333"),
-            Type = StampType.Signature
-        };
+        if (!TryComp<StampComponent>(pen, out var stamp))
+            return false;
 
-        // Get Crayon component, and if present set custom color from crayon
-        //if (TryComp<SharedCrayonComponent>(pen, out var crayon)) // FRONTIER MERGE - TODO: fix crayon signing
-        //    info.StampedColor = crayon.Color; // FRONTIER MERGE - TODO: fix crayon signing
+        // Generate display information.
+        var info = GetStampInfo(stamp);
+        info.Type = StampType.Signature;
 
         // Try stamp with the info, return false if failed.
         if (!StampDelayed(pen) && TryStamp(paper, info, "paper_stamp-nf-signature"))
@@ -345,10 +339,6 @@ public sealed class PaperSystem : EntitySystem
                 $"{ToPrettyString(signer):player} has signed {ToPrettyString(paper):paper}.");
 
             UpdateUserInterface(paper);
-
-            // If this is a crayon, decrease # charges when actually used
-            //if (crayon is not null) // FRONTIER MERGE: inaccessible from shared
-            //    crayon.Charges -= 1;
 
             DelayStamp(pen); // prevent stamp spam
 

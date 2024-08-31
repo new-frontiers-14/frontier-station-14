@@ -22,7 +22,9 @@
   - type: StealTarget
     stealGroup: Stamp
   - type: UseDelay # Frontier
-    delay: 1.0 # Frontier: 1 second between stampings, avoid spam for reapplied stamps
+    delays: # Frontier
+      stamp:
+        length: 1.0 # Frontier: 1 second between stampings, avoid spam for reapplied stamps
 
 - type: entity
   name: alternate rubber stamp
