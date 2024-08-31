@@ -105,25 +105,6 @@
         Blunt: 1
 
 - type: entity
-  id: BaseBulletRubber
-  name: base bullet rubber
-  parent: BaseBullet
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
-    layers:
-    - state: rubber
-  - type: Projectile
-    damage:
-      types:
-        Blunt: 3
-    soundHit:
-      path: /Audio/Weapons/Guns/Hits/snap.ogg
-  - type: StaminaDamageOnCollide
-    damage: 22 # 5 hits to stun sounds reasonable
-
-- type: entity
   id: BaseBulletIncendiary
   name: base bullet incendiary
   parent: BaseBullet
@@ -414,8 +395,8 @@
     impactEffect: BulletImpactEffectKinetic
     damage:
       types:
-        Blunt: 20
-        Structural: 15
+        Blunt: 25
+        Structural: 30
   # Short lifespan
   - type: TimedDespawn
     lifetime: 0.4
@@ -436,8 +417,8 @@
     impactEffect: BulletImpactEffectKinetic
     damage:
       types:
-        Blunt: 8
-        Structural: 5
+        Blunt: 30
+        Structural: 35
   - type: Ammo
     muzzleFlash: HitscanEffect
   - type: TimedDespawn
@@ -730,9 +711,9 @@
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: Default
-    totalIntensity: 140 # a ~2 tile radius
+    totalIntensity: 150 # a ~2 tile radius
     intensitySlope: 5
-    maxIntensity: 8
+    maxIntensity: 10
 
 - type: entity
   id: BulletGrenadeFlash
@@ -745,7 +726,7 @@
     layers:
       - state: grenade
   - type: FlashOnTrigger
-    range: 9
+    range: 7
   - type: SpawnOnTrigger
     proto: GrenadeFlashEffect
   - type: ActiveTimerTrigger
@@ -879,8 +860,8 @@
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: DemolitionCharge
-    maxIntensity: 7
-    intensitySlope: 4
+    maxIntensity: 9
+    intensitySlope: 6
     totalIntensity: 60
     maxTileBreak: 0
   - type: PointLight
@@ -922,9 +903,6 @@
             - Impassable
             - HighImpassable
     - type: GrapplingProjectile
-
-# Frontier projectiles
-# The game wont allow them to sit under _NF.
 
 - type: entity
   name : disabler bolt smg
@@ -1002,6 +980,28 @@
     tags:
       - HideContextMenu
 
+# Frontier projectiles
+# The game wont allow them to sit under _NF.
+
+- type: entity
+  id: BaseBulletRubber
+  name: base bullet rubber
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+    - state: rubber
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 3
+    soundHit:
+      path: /Audio/Weapons/Guns/Hits/snap.ogg
+  - type: StaminaDamageOnCollide
+    damage: 22 # 5 hits to stun sounds reasonable
+
 - type: entity
   id: BaseBulletEmp
   name: base bullet emp
@@ -1056,7 +1056,7 @@
   - type: TimedDespawn
     lifetime: 15
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    sprite: _NF/Objects/Weapons/Guns/Projectiles/projectiles2.rsi
     layers:
       - state: frag-emp
   - type: EmpOnTrigger
@@ -1098,6 +1098,29 @@
     range: 2
     energyConsumption: 500000
     disableDuration: 30
+
+- type: entity
+  id: BulletCannonBallEMP
+  name: emp cannonball
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+      - state: ball-emp
+  - type: PointLight
+    radius: 1
+    color: orange
+    energy: 0.5
+  - type: Projectile
+    damage:
+      types:
+        Shock: 0
+  - type: EmpOnTrigger
+    range: 4
+    energyConsumption: 50000
+    disableDuration: 60
 
 # DeltaV projectiles
 # For whatever magical reasons, I cannot put those in the DeltaV folders without having errors.
