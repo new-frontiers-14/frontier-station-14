@@ -22,4 +22,8 @@ public sealed class SalvageTimeMod : IPrototype, ISalvageMod
 
     [DataField("maxDuration")]
     public int MaxDuration = 930;
+
+    // Hack: Description isn't nullable
+    [DataField]
+    public bool Hidden = true;
 }

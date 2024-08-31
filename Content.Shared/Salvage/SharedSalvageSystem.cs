@@ -131,7 +131,7 @@ public abstract partial class SharedSalvageSystem : EntitySystem
         exactDuration = MathF.Round(exactDuration / 15f) * 15f;
         var duration = TimeSpan.FromSeconds(exactDuration);
 
-        if (time.Description != string.Empty)
+        if (!time.Hidden && time.Description != string.Empty)
         {
             mods.Add(Loc.GetString(time.Description));
         }
