@@ -98,14 +98,14 @@ public sealed class PaperSystem : EntitySystem
             if (entity.Comp.StampedBy.Count > 0)
             {
                 // BEGIN FRONTIER MODIFICATION - Make stamps and signatures render separately.
-                // Separate into stamps and signatures.
+                // Separate into stamps and signatures, display each name/stamp only once.
                 var stamps = entity.Comp.StampedBy.FindAll(s => s.Type == StampType.RubberStamp);
                 var signatures = entity.Comp.StampedBy.FindAll(s => s.Type == StampType.Signature);
 
                 // If we have stamps, render them.
                 if (stamps.Count > 0)
                 {
-                    var joined = string.Join(", ", stamps.Select(s => Loc.GetString(s.StampedName)));
+                    var joined = string.Join(", ", stamps.Select(s => Loc.GetString(s.StampedName)).Distinct());
                     args.PushMarkup(
                         Loc.GetString(
                             "paper-component-examine-detail-stamped-by",
@@ -118,7 +118,7 @@ public sealed class PaperSystem : EntitySystem
                 // Ditto for signatures.
                 if (signatures.Count > 0)
                 {
-                    var joined = string.Join(", ", signatures.Select(s => s.StampedName));
+                    var joined = string.Join(", ", signatures.Select(s => s.StampedName).Distinct());
                     args.PushMarkup(
                         Loc.GetString(
                             "paper-component-examine-detail-signed-by",
@@ -166,7 +166,9 @@ public sealed class PaperSystem : EntitySystem
         {
             var stampInfo = GetStampInfo(stampComp); // Frontier: assign DisplayStampInfo before stamp
             if (_tagSystem.HasTag(args.Used, "Write"))
-                stampInfo.Type = StampType.Signature;
+            {
+                TrySign(entity, args.User, args.Used);
+            }
             if (TryStamp(entity, stampInfo, stampComp.StampState))
             { // End Frontier
                 // successfully stamped, play popup
@@ -308,6 +310,7 @@ public sealed class PaperSystem : EntitySystem
         // Generate display information.
         var info = GetStampInfo(stamp);
         info.Type = StampType.Signature;
+        info.StampedName = Name(signer);
 
         // Try stamp with the info, return false if failed.
         if (!StampDelayed(pen) && TryStamp(paper, info, "paper_stamp-nf-signature"))
