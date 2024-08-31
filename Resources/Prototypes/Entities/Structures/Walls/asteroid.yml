@@ -32,13 +32,13 @@
       - map: [ "enum.EdgeLayer.West" ]
         state: rock_asteroid_west
   - type: Damageable
-    damageContainer: StructuralInorganic
-    damageModifierSet: Rock
+    damageContainer: Inorganic # Frontier: StructuralInorganic<Inorganic
+    damageModifierSet: Metallic # Frontier: Rock<Metallic
   - type: Destructible
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 120
+        damage: 150 # Frontier: 120<150
       behaviors:
       - !type:DoActsBehavior
         acts: ["Destruction"]
@@ -47,6 +47,11 @@
           path: /Audio/Effects/break_stone.ogg
           params:
             volume: -6
+  - type: SoundOnGather # Frontier
+  - type: Gatherable # Frontier
+    toolWhitelist: # Frontier
+      tags: # Frontier
+        - Pickaxe # Frontier
 
 # Ore veins
 - type: entity
