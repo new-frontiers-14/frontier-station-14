@@ -169,7 +169,7 @@ public sealed class PaperSystem : EntitySystem
             {
                 TrySign(entity, args.User, args.Used);
             }
-            if (TryStamp(entity, stampInfo, stampComp.StampState))
+            else if (TryStamp(entity, stampInfo, stampComp.StampState))
             { // End Frontier
                 // successfully stamped, play popup
                 var stampPaperOtherMessage = Loc.GetString("paper-component-action-stamp-paper-other",
