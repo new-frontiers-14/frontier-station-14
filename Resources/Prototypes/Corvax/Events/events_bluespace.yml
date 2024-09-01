@@ -13,7 +13,7 @@
     weight: 2
     duration: 900
     maxDuration: 1200
-    maxOccurrences: 3 # Only once per shift possible
+    maxOccurrences: 10 # Only once per shift possible
   - type: BluespaceErrorRule
     gridPaths:
       - /Maps/_NF/Bluespace/cargoniaship.yml
@@ -26,3 +26,23 @@
       - /Maps/Corvax/Bluespace/RuinedSprinter.yml #Corvax-Frontier
     rewardFactor: 0.5 # Filler to make the bank go up
 
+- type: entity
+  id: BluespaceSyndicateFTLRepeater
+  parent: BaseStationEventShortDelay
+  noSpawn: true
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-bluespace-generic-ftl-start-announcement
+    startAudio:
+      path: /Audio/Misc/notice1.ogg
+    endAnnouncement: station-event-bluespace-generic-ftl-end-announcement
+    earliestStart: 80
+    minimumPlayers: 15
+    weight: 1
+    duration: 3800
+    maxDuration: 6400
+    maxOccurrences: 5 # Only once per shift possible
+  - type: BluespaceErrorRule
+    gridPaths:
+      - /Maps/Corvax/Bluespace/epsilon.yml
+    rewardFactor: 0.3 # Filler to make the bank go up
