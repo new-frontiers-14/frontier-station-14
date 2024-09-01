@@ -594,7 +594,7 @@
   suffix: Agent
   components:
   - type: PresetIdCard
-    job: Passenger
+    job: Contractor # Frontier: Passenger<Contractor
   - type: Access
     tags:
     - Maintenance
@@ -613,7 +613,7 @@
     - DoorBumpOpener
   - type: ChameleonClothing
     slot: [idcard]
-    default: PassengerIDCard
+    default: ContractorIDCard # Frontier: PassengerIDCard<ContractorIDCard
   - type: UserInterface
     interfaces:
       enum.AgentIDCardUiKey.Key:
@@ -626,7 +626,7 @@
     hideValues: true # Frontier
 
 - type: entity
-  name: passenger ID card
+  name: contractor ID card # Frontier: passenger<contractor
   parent: AgentIDCard
   id: NukieAgentIDCard
   suffix: Nukie
