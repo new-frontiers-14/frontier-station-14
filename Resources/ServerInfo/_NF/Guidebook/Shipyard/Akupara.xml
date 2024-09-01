@@ -31,10 +31,12 @@
   
   ## 1.1. Battery units
   <Box>
+  <GuideEntityEmbed Entity="SMESBasic"/>
   <GuideEntityEmbed Entity="SubstationBasic"/>
   <GuideEntityEmbed Entity="APCBasic"/>
   </Box>
 
+  - Check that the SMES unit is anchored to the floor.
   - Check if the substation unit is anchored to the floor.
   - Check if all APC unit Main Breakers are toggled on.
   - Check the current Load of all APC units* (W).
@@ -79,7 +81,7 @@
   <GuideEntityEmbed Entity="StorageCanister"/>
   </Box>
 
-  The Akupara does not feature a standard waste loop: it is also capable of storing valuable waste gases. Waste pipes are denoted with an orange color.
+  The Akupara does not feature a standard waste loop: it is also capable of storing valuable waste gases, and correcting O2-N2 cabin overpressure. Waste pipes are denoted with an orange color.
 
   - Ensure you have enabled the distribution loop, as it is an integral part of the waste loop.***
   - Set all Air Alarms to Filtering (Wide).
@@ -93,6 +95,11 @@
   - Set the Gas Filter labelled "Waste" to the waste gas you wish to store.
   - Enable the volumetric gas pump labelled "Waste".
   - Monitor contents of storage canister. Replace storage canister as necessary.
+  
+   To correct cabin O2-N2 overpressure:
+   - Ensure distro O2 and N2 canisters have capacity.
+   - Ensure air alarm in overpressured area has Auto mode enabled.
+   - Set the air alarm in overpressured the area to Panic. Auto mode should reset the air alarm to Filter after pressures are reduced.
 
   ## 3. Other checks
   <Box>
