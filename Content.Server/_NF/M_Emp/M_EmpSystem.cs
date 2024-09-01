@@ -288,7 +288,7 @@ namespace Content.Server._NF.M_Emp
             Report(uid, component.M_EmpChannel, "m_emp-system-announcement-active", ("timeLeft", component.EngagedTime.TotalSeconds), ("grid", stationName!));
 
             var empRange = 100;
-            var empEnergyConsumption = 50000;
+            var empEnergyConsumption = 2700000;
             var empDisabledDuration = 60;
 
             _emp.EmpPulse(Transform(uid).MapPosition, empRange, empEnergyConsumption, empDisabledDuration);
