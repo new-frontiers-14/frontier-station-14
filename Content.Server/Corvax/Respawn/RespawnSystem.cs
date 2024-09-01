@@ -17,22 +17,22 @@ using Content.Server.Administration; // Frontier
 
 namespace Content.Server.Corvax.Respawn;
 
-public sealed class RespawnSystem : SharedNFRespawnSystem
+public sealed class RespawnSystem : EntitySystem
 {
     [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IAdminManager _admin = default!;
 
-    private float _respawnTimeOnFirstCryo = 0f; // Frontier: shorter time for respawns
+    private float _respawnTimeOnFirstCryo = 0f; // Frontier: shorter time for cryo respawns
     private float _respawnTime = 0f;
 
     // Frontier: struct for respawn lookup
     private struct RespawnData
     {
-        public TimeSpan RespawnTime;
-        public TimeSpan? LastCryoSleep;
-        public TimeSpan? LastRespawnFromCryo;
+        public TimeSpan RespawnTime; // The next time the user can respawn.
+        public TimeSpan? LastCryoSleep; // The last time the user entered cryosleep.
+        public TimeSpan? LastRespawnFromCryosleep; // The last time the user respawned after entering cryosleep.
     }
     // End Frontier
 
@@ -45,7 +45,7 @@ public sealed class RespawnSystem : SharedNFRespawnSystem
         SubscribeLocalEvent<MindContainerComponent, CryosleepBeforeMindRemovedEvent>(OnCryoBeforeMindRemoved);
         SubscribeLocalEvent<MindContainerComponent, CryosleepWakeUpEvent>(OnCryoWakeUp);
 
-        _admin.OnPermsChanged += ClearAdminRespawn;
+        _admin.OnPermsChanged += OnAdminPermsChanged;
 
         Subs.CVar(_cfg, NFCCVars.RespawnCryoFirstTime, OnRespawnCryoFirstTimeChanged, true);
         Subs.CVar(_cfg, NFCCVars.RespawnTime, OnRespawnCryoTimeChanged, true);
@@ -82,25 +82,28 @@ public sealed class RespawnSystem : SharedNFRespawnSystem
         if (TryComp<MobStateComponent>(entity, out var state) && state.CurrentState == MobState.Dead)
             return;
 
-        if (HasComp<GhostRoleComponent>(entity)) // Frontier: don't penalize user for exiting ghost roles
+        // Frontier: extra conditions for respawn lenience
+        if (HasComp<GhostRoleComponent>(entity)) // Don't penalize user for exiting ghost roles
             return; // Frontier: don't penalize user for exiting ghost roles
 
-        if (HasComp<GhostComponent>(entity)) // Frontier: reghosting is fine (observing)
-            return; // Frontier: reghosting is fine (observing)
+        if (HasComp<GhostComponent>(entity)) // Don't penalize user for reobserving
+            return;
 
-        if (e.Mind.Comp.Session != null && _admin.IsAdmin(e.Mind.Comp.Session)) // Frontier: admins get free respawns
-            return; // Frontier: admins get free respawns
+        if (e.Mind.Comp.Session != null && _admin.IsAdmin(e.Mind.Comp.Session)) // Admins get free respawns
+            return;
 
         // Get respawn info
         var userId = e.Mind.Comp.UserId.Value;
         var respawnInfo = GetRespawnData(userId);
-        if (respawnInfo.LastCryoSleep != null) // Entity has cryoed, don't reset the respawn time
+        if (respawnInfo.LastCryoSleep != null) // Entity has been handled separately for cryosleep, don't handle it twice.
             return;
+        // End Frontier
 
         SetRespawnTime(userId, ref respawnInfo, _timing.CurTime + TimeSpan.FromSeconds(_respawnTime));
     }
 
-    private void ClearAdminRespawn(AdminPermsChangedEventArgs args)
+    // Frontier: admin permissions handler: clear respawn data for admins
+    private void OnAdminPermsChanged(AdminPermsChangedEventArgs args)
     {
         if (args.IsAdmin)
         {
@@ -109,29 +112,32 @@ public sealed class RespawnSystem : SharedNFRespawnSystem
         }
     }
 
+    // Frontier: respawn handler: adjusts 
     public void Respawn(ICommonSession session)
     {
         var respawnData = GetRespawnData(session.UserId);
 
-        // Push temporary cryo information 
-        respawnData.LastRespawnFromCryo = respawnData.LastCryoSleep;
-        respawnData.LastCryoSleep = null;
+        if (respawnData.LastCryoSleep != null)
+            respawnData.LastRespawnFromCryosleep = _timing.CurTime;
+
+        respawnData.LastCryoSleep = null; // User no longer in cryosleep
     }
 
+    // Frontier: cryosleep handler
     private void OnCryoBeforeMindRemoved(EntityUid entity, MindContainerComponent component, CryosleepBeforeMindRemovedEvent _)
     {
         if (!_player.TryGetSessionByEntity(entity, out var session))
             return;
 
-        if (_admin.IsAdmin(session)) // Frontier: admins get free respawns
-            return; // Frontier: admins get free respawns
+        if (_admin.IsAdmin(session)) // admins get free respawns
+            return;
 
         var respawnData = GetRespawnData(session.UserId);
         double respawnTime = _respawnTimeOnFirstCryo; // Not previously respawned from cryo.
-        if (respawnData.LastRespawnFromCryo is not null)
+        if (respawnData.LastRespawnFromCryosleep is not null)
         {
-            double secondsSinceCryoSleep = (_timing.CurTime - respawnData.LastRespawnFromCryo).Value.TotalSeconds;
-            respawnTime = double.Min(_respawnTime, secondsSinceCryoSleep);
+            double secondsSinceLastCryoRespawn = (_timing.CurTime - respawnData.LastRespawnFromCryosleep).Value.TotalSeconds;
+            respawnTime = double.Max(_respawnTimeOnFirstCryo, _respawnTime - secondsSinceLastCryoRespawn); // Respawn at lenient cryo time
         }
         SetRespawnTime(session.UserId, ref respawnData, _timing.CurTime + TimeSpan.FromSeconds(respawnTime), _timing.CurTime);
     }
@@ -145,7 +151,7 @@ public sealed class RespawnSystem : SharedNFRespawnSystem
         respawnData.LastCryoSleep = null;
     }
 
-    private void SetRespawnTime(NetUserId user, ref RespawnData data, TimeSpan nextSpawn, TimeSpan? cryoTime = null)
+    private void SetRespawnTime(NetUserId user, ref RespawnData data, TimeSpan nextSpawn, TimeSpan? cryoTime = null) // Frontier: Reset<Set, added cryoTime, time changed to be time of next respawn, not time of death
     {
         data.RespawnTime = nextSpawn;
         data.LastCryoSleep = cryoTime;
