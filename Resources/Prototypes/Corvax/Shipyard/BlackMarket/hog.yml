@@ -1,0 +1,26 @@
+- type: vessel
+  id: hog
+  name: Боров
+  description: Среднегабаритный пиратский шаттл. Рекомендованный состав команды 2-4 человека.
+  price: 80000
+  category: Medium
+  group: BlackMarket
+  shuttlePath: /Maps/Corvax/Shuttles/BlackMarket/hog.yml
+
+- type: gameMap
+  id: hog
+  mapName: 'Боров'
+  mapPath: /Maps/Corvax/Shuttles/BlackMarket/hog.yml
+  minPlayers: 0
+  stations:
+    hog:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Межзвёздный {1}' #Fake name
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Pirate: [ 0, 0 ]

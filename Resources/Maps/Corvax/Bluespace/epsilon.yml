@@ -13,7 +13,7 @@ entities:
   - uid: 1
     components:
     - type: MetaData
-      name: grid
+      name: Ретранслятор Эпсилон
     - type: Transform
       pos: -0.609375,0.265625
       parent: invalid
@@ -3246,26 +3246,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 1.5,-6.5
       parent: 1
-- proto: ComputerTabletopComputerIFFPOI
-  entities:
-  - uid: 755
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 3.5,-9.5
-      parent: 1
-    - type: Destructible
-      thresholds:
-      - trigger: !type:DamageTrigger
-          damage: 0
-        triggersOnce: False
-        triggered: True
-        behaviors: []
-    - type: Godmode
-      oldDamage: {}
-    missingComponents:
-    - Anchorable
-    - Construction
 - proto: ComputerTabletopRadar
   entities:
   - uid: 753
@@ -3273,6 +3253,14 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 4.5,-6.5
+      parent: 1
+- proto: ComputerTabletopShuttleAntag
+  entities:
+  - uid: 755
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 3.5,-9.5
       parent: 1
 - proto: CyberPen
   entities:
