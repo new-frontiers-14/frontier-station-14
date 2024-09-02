@@ -240,3 +240,17 @@
     layers:
     - state: pirate
     - state: idpiratefirstmate
+
+# Adopted from space-wizards #26265 (Thank you, PolterTzi)
+- type: entity
+  parent: IDCardStandard
+  id: YipYipIDCard
+  name: yip yip ID card
+  components:
+    - type: Sprite
+      layers:
+        - state: default
+        - state: idbartender
+    - type: PresetIdCard
+      job: Bartender
+      name: Yip Yip
