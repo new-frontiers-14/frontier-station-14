@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Robust.Shared.Audio;
+﻿using Robust.Shared.Serialization;
 
 namespace Content.Server.Corvax.Elzuosa
 {
@@ -16,5 +11,15 @@ namespace Content.Server.Corvax.Elzuosa
 
         [DataField("cycleRate")]
         public float CycleRate = 1f;
+
+        [DataField("stannedByEMP")]
+        public bool StannedByEmp = false;
     }
+
+    /*[Serializable, NetSerializable]
+    public enum ElzuosaState : byte
+    {
+        Normal,
+        Emagged
+    }*/
 }

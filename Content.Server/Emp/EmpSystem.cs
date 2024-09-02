@@ -1,3 +1,4 @@
+using Content.Server.Corvax.Elzuosa; //Corvax-Frontier
 using Content.Server.Entry;
 using Content.Server.Explosion.EntitySystems;
 using Content.Server.Power.EntitySystems;
@@ -50,6 +51,13 @@ public sealed class EmpSystem : SharedEmpSystem
             var attemptEv = new EmpAttemptEvent();
             if (HasComp<StationEmpImmuneComponent>(gridUid))
                 continue;
+
+            //Corvax-Frontier start
+            if (HasComp<ElzuosaColorComponent>(uid))
+                if (TryComp(uid, out ElzuosaColorComponent? elzuosaColorComponent))
+                    elzuosaColorComponent.StannedByEmp = true;
+
+            //Corvax-Frontier end
 
             TryEmpEffects(uid, energyConsumption, duration);
         }
