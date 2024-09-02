@@ -54,6 +54,12 @@ public sealed partial class PointOfInterestPrototype : IPrototype
     public bool IsHidden { get; private set; }
 
     /// <summary>
+    ///     Whether or not the POI permits IFF changes (i.e. from a console aboard it)
+    /// </summary>
+    [DataField("allowIFFChanges")]
+    public bool AllowIFFChanges { get; private set; }
+
+    /// <summary>
     ///     Must this POI always spawn? This is independent of spawn chance. If it always spawns,
     ///     it will be excluded from any kind of random lists, for places like the sheriff's department etc.
     /// </summary>
