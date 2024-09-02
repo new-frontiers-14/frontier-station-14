@@ -26,6 +26,16 @@
 
 - type: entity
   parent: BaseC2ContrabandUnredeemable
+  id: BaseC2ExpeditionContraband
+  abstract: true
+  components:
+  - type: Contraband
+    severity: Class2Expedition
+    turnInValues: &oneFUC
+      FrontierUplinkCoin: 1
+
+- type: entity
+  parent: BaseC2ContrabandUnredeemable
   id: BaseC2Contraband
   abstract: true
   components:
@@ -49,8 +59,7 @@
   abstract: true
   components:
   - type: Contraband
-    turnInValues: &oneFUC
-      FrontierUplinkCoin: 1
+    turnInValues: *oneFUC
 
 - type: entity
   parent: BaseC3ContrabandUnredeemable

@@ -1,5 +1,6 @@
 contraband-examine-text-Class1 = [color=yellow]This item is considered class 1 contraband, and may be taken from you on committing a crime.[/color]
 contraband-examine-text-Class2 = [color=red]This item is considered class 2 contraband, civilian possession is illegal without a permit.[/color]
+contraband-examine-text-Class2Expedition = [color=red]This unregistered weapon is considered class 2 contraband, civilian possession is illegal without a permit.[/color]
 contraband-examine-text-Class3Cult = [color=crimson]This cult item is considered class 3 contraband, and its possession is illegal.[/color]
 contraband-examine-text-Class3General = [color=crimson]This item is considered class 3 contraband, and its possession is illegal.[/color]
 contraband-examine-text-Class3Pirate = [color=crimson]This pirate item is considered class 3 contraband, and its possession is illegal.[/color]
