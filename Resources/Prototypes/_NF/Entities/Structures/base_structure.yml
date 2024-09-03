@@ -23,6 +23,14 @@
       - Screwing
 
 - type: entity
+  id: BaseStructureDisablePrying
+  abstract: true
+  components:
+  - type: OnToolsUse
+    disabledQualities:
+      - Prying
+
+- type: entity
   id: BaseStructureDestructible
   abstract: true
   components:
