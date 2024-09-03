@@ -1,0 +1,38 @@
+# Author Info
+# GitHub: Suraru (https://github.com/Suraru)
+# Discord: astralsomnia
+
+# Maintainer Info
+# GitHub: Suraru (https://github.com/Suraru)
+# Discord: astralsomnia
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Caldari
+  name: SV Caldari
+  description: A medium vessel based purely on deep space mining and salv, with a small medbay and lounge.
+  price: 70000 #55172 sell value at Frontier. Added 15k to enforce ship to maintain its role as a salvage/mining rig. Crew will have to earn a profit first, or lose money by trying to multi-class too early. 
+  category: Medium
+  group: Civilian
+  shuttlePath: /Maps/_NF/Shuttles/caldari.yml
+
+- type: gameMap
+  id: Caldari
+  mapName: 'SV Caldari'
+  mapPath: /Maps/_NF/Shuttles/caldari.yml
+  minPlayers: 0
+  stations: 
+    Caldari:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Caldari {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]
