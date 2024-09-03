@@ -9,13 +9,13 @@ namespace Content.Server._NF.Tools.Components
         /// <summary>
         ///     Disables the use of all tools on an entity
         /// </summary>
-        [DataField("disabled")]
+        [DataField("disabled"), ViewVariables(VVAccess.ReadWrite)]
         public bool AllToolUseDisabled;
 
         /// <summary>
         ///     Disable the use of tools on the entity.
         /// </summary>
-        [DataField]
+        [DataField, ViewVariables(VVAccess.ReadWrite)]
         public PrototypeFlags<ToolQualityPrototype> DisabledQualities = [];
     }
 }
