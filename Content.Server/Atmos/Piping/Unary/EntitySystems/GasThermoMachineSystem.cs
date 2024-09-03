@@ -143,7 +143,7 @@ namespace Content.Server.Atmos.Piping.Unary.EntitySystems
 
         private void OnToggleMessage(EntityUid uid, GasThermoMachineComponent thermoMachine, GasThermomachineToggleMessage args)
         {
-            var powerState = _power.TogglePower(uid);
+            var powerState = _power.TryTogglePower(uid); // Frontier: Upstream - #28984
             _adminLogger.Add(LogType.AtmosPowerChanged, $"{ToPrettyString(args.Actor)} turned {(powerState ? "On" : "Off")} {ToPrettyString(uid)}");
             DirtyUI(uid, thermoMachine);
         }
