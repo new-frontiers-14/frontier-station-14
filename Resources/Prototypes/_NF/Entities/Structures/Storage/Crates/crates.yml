@@ -2,6 +2,7 @@
   parent: CrateBaseWeldable
   id: CratePlasticBiodegradable
   name: biodegradable plastic crate
+  description: Feels incredibly flimsy.
   components:
   - type: Icon
     sprite: Structures/Storage/Crates/plastic.rsi
@@ -13,7 +14,7 @@
     containers:
     - entity_storage
   - type: StaticPrice
-    price: 0
+    price: 15 # 12 spesos at 0.75x, proportional to the plastic crate if deconstructable for 1 sheet
 
 - type: entity
   parent: CrateBaseSecure
