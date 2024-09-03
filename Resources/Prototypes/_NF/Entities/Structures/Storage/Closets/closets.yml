@@ -1,0 +1,14 @@
+#Frontier specific for new closets without needing to touch upstream entities.
+- type: entity
+  id: ClosetO2N2
+  name: emergency internals closet
+  parent: ClosetSteelBase
+  description: It's a storage unit for emergency breathing equipment for all species.
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Storage/closet.rsi
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: o2n2
+    stateDoorOpen: o2n2_open
+    stateDoorClosed: o2n2_door
