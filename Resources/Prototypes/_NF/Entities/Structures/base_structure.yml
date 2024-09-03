@@ -3,17 +3,24 @@
   abstract: true
   components:
   - type: OnToolsUse
-    disabled: true
 
 - type: entity
-  id: BaseStructureUnanchorable
+  id: BaseStructureDisableScrewing
+  abstract: true
+  components:
+  - type: OnToolsUse
+    disabledQualities:
+      - Anchoring
+
+- type: entity
+  id: BaseStructureDisableAnchoring
   abstract: true
   components:
   - type: Transform
     anchored: true
   - type: OnToolsUse
     disabledQualities:
-      - Anchoring
+      - Screwing
 
 - type: entity
   id: BaseStructureDestructible
