@@ -230,7 +230,7 @@
 #HOS's hardsuit
 - type: entity
   id: SuitStorageHOS
-  parent: [BaseStructureIndestructible, BaseStructureLockImmuneToEmag, BaseStructureAccessReaderImmuneToEmag, BaseStructureDisableToolUse, BaseStructureUnanchorable, SuitStorageBase] # Frontier
+  parent: [BaseStructureIndestructible, BaseStructureLockImmuneToEmag, BaseStructureAccessReaderImmuneToEmag, BaseStructureDisableToolUse, SuitStorageBase] # Frontier: added BaseStructureDisableToolUse
   suffix: Head of Security
   components:
   - type: EntityTableContainerFill
@@ -243,7 +243,7 @@
 #Warden's hardsuit
 - type: entity
   id: SuitStorageWarden
-  parent: [BaseStructureIndestructible, BaseStructureLockImmuneToEmag, BaseStructureAccessReaderImmuneToEmag, BaseStructureDisableToolUse, BaseStructureUnanchorable, SuitStorageBase] # Frontier
+  parent: [BaseStructureIndestructible, BaseStructureLockImmuneToEmag, BaseStructureAccessReaderImmuneToEmag, BaseStructureDisableToolUse, SuitStorageBase] # Frontier: added BaseStructureDisableToolUse
   suffix: Warden
   components:
   - type: StorageFill
