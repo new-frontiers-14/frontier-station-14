@@ -11,8 +11,9 @@
   components:
   - type: Transform
     anchored: true
-  - type: Anchorable
-    delay: 999999
+  - type: OnToolsUse
+    disabledQualities:
+      - Anchoring
 
 - type: entity
   id: BaseStructureDestructible

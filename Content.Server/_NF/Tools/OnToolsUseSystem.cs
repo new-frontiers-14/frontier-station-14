@@ -13,8 +13,14 @@ public sealed class OnToolsUseSystem : EntitySystem
 
     private void OnToolUseAttempt(EntityUid uid, OnToolsUseComponent component, ToolUseAttemptEvent args)
     {
-        // prevent deconstruct
-        if (component.Disabled)
+        if (component.AllToolUseDisabled)
             args.Cancel();
+
+        // Check each tool quality being cancelled.
+        foreach (var quality in args.Qualities)
+        {
+            if (component.DisabledQualities.Contains(quality))
+                args.Cancel();
+        }
     }
 }
