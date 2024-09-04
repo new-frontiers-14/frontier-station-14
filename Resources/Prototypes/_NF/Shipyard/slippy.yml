@@ -1,0 +1,28 @@
+- type: vessel
+  id: Slippy
+  name: NC Slippy
+  description: A colorful entertainment shuttle equipped with a minimal setup for growing and preparing bananas.
+  price: 19700
+  category: Small
+  group: Civilian
+  shuttlePath: /Maps/_NF/Shuttles/slippy.yml
+
+- type: gameMap
+  id: Slippy
+  mapName: 'NC Slippy'
+  mapPath: /Maps/_NF/Shuttles/slippy.yml
+  minPlayers: 0
+  stations:
+    Slippy:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Slippy {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]
