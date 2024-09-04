@@ -3,6 +3,7 @@ using Content.Server.Popups;
 using Content.Server.Radio.EntitySystems;
 using Content.Server.Bank;
 using Content.Server.Shipyard.Components;
+using Content.Shared._NF.GameRule;
 using Content.Shared.Bank.Components;
 using Content.Shared.Shipyard.Events;
 using Content.Shared.Shipyard.BUI;
@@ -39,6 +40,7 @@ using Content.Shared.UserInterface;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Content.Shared.Access;
+using Content.Shared.Tiles;
 
 namespace Content.Server.Shipyard.Systems;
 
@@ -248,8 +250,23 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         _records.Synchronize(shuttleStation!.Value);
         _records.Synchronize(station);
 
-        //if (ShipyardConsoleUiKey.Security == (ShipyardConsoleUiKey) args.UiKey) Enable in the case we force this on every security ship
-        //    EnsureComp<StationEmpImmuneComponent>(shuttle.Owner); Enable in the case we force this on every security ship
+        // Shuttle setup: add protected grid status if needed.
+        if (vessel.GridProtection != GridProtectionFlags.None)
+        {
+            var prot = EnsureComp<ProtectedGridComponent>(shuttle.Owner);
+            if (vessel.GridProtection.HasFlag(GridProtectionFlags.FloorRemoval))
+                prot.PreventFloorRemoval = true;
+            if (vessel.GridProtection.HasFlag(GridProtectionFlags.FloorPlacement))
+                prot.PreventFloorPlacement = true;
+            if (vessel.GridProtection.HasFlag(GridProtectionFlags.RcdUse))
+                prot.PreventRCDUse = true;
+            if (vessel.GridProtection.HasFlag(GridProtectionFlags.EmpEvents))
+                prot.PreventEmpEvents = true;
+            if (vessel.GridProtection.HasFlag(GridProtectionFlags.Explosions))
+                prot.PreventExplosions = true;
+            if (vessel.GridProtection.HasFlag(GridProtectionFlags.ArtifactTriggers))
+                prot.PreventArtifactTriggers = true;
+        }
 
         int sellValue = 0;
         if (!voucherUsed)

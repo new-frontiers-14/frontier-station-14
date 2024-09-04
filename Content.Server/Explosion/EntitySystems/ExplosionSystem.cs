@@ -368,7 +368,7 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
                 var mapGrid = _mapManager.GetGrid(gridId.Value);
                 var gridUid = mapGrid.Owner;
                 var ev = new FloorTileAttemptEvent();
-                if (HasComp<ProtectedGridComponent>(gridUid) || ev.Cancelled)
+                if ((TryComp<ProtectedGridComponent>(gridUid, out var prot) && prot.PreventExplosions) || ev.Cancelled)
                     return null;
             }
         }
