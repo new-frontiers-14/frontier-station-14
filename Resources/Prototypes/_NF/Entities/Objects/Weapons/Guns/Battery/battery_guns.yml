@@ -129,3 +129,34 @@
       - state: inhand-right
       - state: inhand-right-unshaded
         shader: unshaded
+
+- type: entity
+  name: disabler c-row
+  id: WeaponDisablerC
+  parent: WeaponEnergyGun
+  description: A disabler projectile based weapon used to stun combative instead of killing them, brought to you by S.E.S.W.C.
+  components:
+    - type: Gun
+      minAngle: 4
+      maxAngle: 16
+      angleIncrease: 2
+      angleDecay: 16
+      fireRate: 8
+      selectedMode: FullAuto
+      availableModes:
+        - FullAuto
+    - type: Item
+      size: Huge
+    - type: ContainerContainer
+      containers:
+        ballistic-ammo: !type:Container
+    - type: ProjectileBatteryAmmoProvider
+      proto: BulletDisablerStaminaOnly
+      fireCost: 100
+    - type: Battery
+      maxCharge: 10000
+      startingCharge: 10000
+    - type: BatterySelfRecharger
+      autoRecharge: true
+      autoRechargeRate: 25
+    - type: AmmoCounter

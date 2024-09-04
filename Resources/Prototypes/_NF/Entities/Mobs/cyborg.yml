@@ -1,0 +1,36 @@
+- type: entity
+  id: BorgChassisnfsd
+  parent: BaseBorgChassisSyndicate
+  name: nfsd assult borg 
+  description: A lean, mean killing machine with access to a variety of deadly modules.
+  components:
+    - type: Sprite
+      layers:
+        - state: synd_sec
+        - state: synd_sec_e
+          map: ["enum.BorgVisualLayers.Light"]
+          shader: unshaded
+          visible: false
+        - state: synd_sec_l
+          shader: unshaded
+          map: ["light"]
+          visible: false
+    - type: SiliconLawProvider
+      laws: Crewsimov
+    - type: IntrinsicRadioTransmitter
+      channels:
+       - Nfsd
+       - Binary
+       - Common
+    - type: ActiveRadio
+      channels:
+       - Nfsd
+       - Binary
+       - Common
+    - type: BorgChassis
+      maxModules: 4
+      hasMindState: synd_sec_e
+      noMindState: synd_sec
+    - type: Construction
+      node: syndicateassault
+

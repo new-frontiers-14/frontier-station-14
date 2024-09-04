@@ -1,0 +1,62 @@
+- type: entity
+  id: BorgModuleRange
+  parent: [ BaseBorgModuleSyndicateAssault, BaseProviderBorgModule ]
+  name: d-c row cyborg module
+  description: A module that comes with a disabler builted in self-charging battery, a auto feeding on standby ziptie cuffs, and a 360 degree bubble shield. Brought to you by S.E.S.W.C!
+  components:
+    - type: Sprite
+      layers:
+      - state: syndicate
+      - state: icon-syndicate
+    - type: ItemBorgModule
+      items:
+        - WeaponDisablerC
+        - Energyshieldborgmodule
+        - Cablecuffs
+
+- type: entity
+  id: BorgModuleMelee
+  parent: [ BaseBorgModuleSyndicateAssault, BaseProviderBorgModule ]
+  name: close range protection cyborg module
+  description: A module that comes with a auto feeding on standby ziptie cuffs, Stun baton for up close and personal, and a truncheon for when things need a beating. Brought to you by S.E.S.W.C!
+  components:
+    - type: Sprite
+      layers:
+      - state: syndicate
+      - state: icon-syndicate
+    - type: ItemBorgModule
+      items:
+        - Stunbatonmodule
+        - Truncheon
+        - Cablecuffs
+        
+- type: entity
+  id: BorgModuleTools
+  parent: [ BaseBorgModuleSyndicateAssault, BaseProviderBorgModule ]
+  name: involunteery self protection cyborg module
+  description: A module that comes with a auto feeding on standby ziptie cuffs, heavy duty claw for prying, and the contrband appraisal tool. Brought to you by S.E.S.W.C!
+  components:
+    - type: Sprite
+      layers:
+      - state: syndicate
+      - state: icon-syndicate
+    - type: ItemBorgModule
+      items:
+        - ContrabandAppraisalTool
+        - JawsOfLife
+        - Cablecuffs
+
+- type: entity
+  id: BorgModuleHeavyweapons
+  parent: [ BaseBorgModuleSyndicateAssault, BaseProviderBorgModule ]
+  name: Heavy weapons Module 
+  description: A modules in place for heavy combat. what you see is what you get, used it wisely. Brought to you by S.E.S.W.C! (by using said module in anyway you agree to a covenant not to sue  )
+  components:
+    - type: Sprite
+      layers:
+      - state: syndicate
+      - state: icon-syndicate
+    - type: ItemBorgModule
+      items:
+        - RPGmodule
+        - Heavymachinegunmodule
