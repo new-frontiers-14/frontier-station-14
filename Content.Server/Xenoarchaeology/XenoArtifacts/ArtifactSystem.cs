@@ -177,7 +177,7 @@ public sealed partial class ArtifactSystem : EntitySystem
         var xform = Transform(uid);
         if (xform.GridUid != null)
         {
-            if (HasComp<ProtectedGridComponent>(xform.GridUid.Value))
+            if (TryComp<ProtectedGridComponent>(xform.GridUid.Value, out var prot) && prot.PreventArtifactTriggers)
                 return false;
         }
 
