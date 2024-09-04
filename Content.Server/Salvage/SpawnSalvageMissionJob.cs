@@ -103,15 +103,17 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
     {
         // Frontier: gracefully handle expedition failures
         bool success = true;
+        string? errorStackTrace = null;
         try
         {
-            Task<bool> task = InternalProcess();
-            await task.ContinueWith((t) => { Logger.ErrorS("salvage", $"Expedition generation failed with exception: {t.Exception?.StackTrace}!"); success = false; }, TaskContinuationOptions.OnlyOnFaulted);
+            await InternalProcess().ContinueWith((t) => { success = false; errorStackTrace = t.Exception?.InnerException?.StackTrace; }, TaskContinuationOptions.OnlyOnFaulted);
         }
         finally
         {
             ExpeditionSpawnCompleteEvent ev = new(Station, success, _missionParams.Index);
             _entManager.EventBus.RaiseLocalEvent(Station, ev); // We have no idea who spawned this, so broadcast our success/failure.
+            if (errorStackTrace != null)
+                Logger.ErrorS("salvage", $"Expedition generation failed with exception: {errorStackTrace}!");
         }
         return success;
         // End Frontier: gracefully handle expedition failures
