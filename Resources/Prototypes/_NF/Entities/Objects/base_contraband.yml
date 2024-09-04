@@ -95,8 +95,16 @@
     turnInValues: *oneFUC
 
 - type: entity
+  parent: BaseC3CultContraband
+  id: BaseC3CultContrabandNoValue
+  abstract: true
+  components:
+  - type: Contraband
+    turnInValues: *noFUCs
+
+- type: entity
   parent: BaseC3ContrabandUnredeemable
-  id: BaseC3PirateContrabandUnredeemable
+  id: BaseC3PirateContrabandNoValue
   abstract: true
   components:
   - type: Contraband
@@ -104,7 +112,7 @@
     turnInValues: *noFUCs
 
 - type: entity
-  parent: BaseC3PirateContrabandUnredeemable
+  parent: BaseC3PirateContrabandNoValue
   id: BaseC3PirateContraband
   abstract: true
   components:
