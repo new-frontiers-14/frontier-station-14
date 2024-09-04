@@ -11,6 +11,14 @@
     allowedDepartments: [ Civilian, Security, Command, Frontier ]
     turnInValues: {}
 
+- type: entity
+  parent: BaseC1Contraband
+  id: BaseClearContraband
+  abstract: true
+  components:
+  - type: Contraband
+    hideValues: true
+
 # Class 2 contraband: explosives, unregistered firearms, 
 
 # Specific parent for sensitive items (e.g. command headset, secway, secway keys) that should not be redeemed for FUCs
