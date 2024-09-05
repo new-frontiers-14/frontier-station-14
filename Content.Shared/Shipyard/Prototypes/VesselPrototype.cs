@@ -1,3 +1,4 @@
+using Content.Shared._NF.GameRule;
 using Content.Shared.Store;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
@@ -59,4 +60,9 @@ public sealed class VesselPrototype : IPrototype
     [DataField("shuttlePath", required: true)]
     public ResPath ShuttlePath = default!;
 
+    /// <summary>
+    ///     Grid protections for a given ship. Should be None in _most_ cases.
+    /// </summary>
+    [DataField("gridProtection")]
+    public GridProtectionFlags GridProtection = GridProtectionFlags.None;
 }
