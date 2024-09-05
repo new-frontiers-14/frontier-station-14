@@ -273,10 +273,6 @@ public sealed class CardStackSystem : EntitySystem
         {
             _storage.PlayPickupAnimation(first, Transform(first).Coordinates, Transform(second).Coordinates, 0);
         }
-
-        // Not a stack anymore, remove the last card.
-        if (firstComp.Cards.Count == 1)
-            TryRemoveCard(first, firstComp.Cards[0]);
     }
 
     private void OnInteractUsing(InteractUsingEvent args)

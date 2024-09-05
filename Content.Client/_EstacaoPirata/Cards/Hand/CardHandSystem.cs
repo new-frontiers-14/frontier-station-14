@@ -34,25 +34,42 @@ public sealed class CardHandSystem : EntitySystem
 
         var cardCount = Math.Min(cardStack.Cards.Count, comp.CardLimit);
 
-        var intervalAngle = comp.Angle / (cardCount-1);
-        var intervalSize = comp.XOffset / (cardCount - 1);
+        // Frontier: one card case.
+        if (cardCount <= 1)
+        {
+            _cardSpriteSystem.TryHandleLayerConfiguration(
+                (uid, sprite, cardStack),
+                cardCount,
+                (sprt, cardIndex, layerIndex) =>
+                {
+                    sprt.Comp.LayerSetRotation(layerIndex, Angle.FromDegrees(0));
+                    sprt.Comp.LayerSetOffset(layerIndex, new Vector2(0, 0.10f));
+                    sprt.Comp.LayerSetScale(layerIndex, new Vector2(comp.Scale, comp.Scale));
+                    return true;
+                }
+            );
+        }
+        else
+        {
+            var intervalAngle = comp.Angle / (cardCount-1);
+            var intervalSize = comp.XOffset / (cardCount - 1);
 
-        _cardSpriteSystem.TryHandleLayerConfiguration(
-            (uid, sprite, cardStack),
-            cardCount,
-            (sprt, cardIndex, layerIndex) =>
-            {
-                var angle = (-(comp.Angle/2)) + cardIndex * intervalAngle;
-                var x = (-(comp.XOffset / 2)) + cardIndex * intervalSize;
-                var y = -(x * x) + 0.10f;
+            _cardSpriteSystem.TryHandleLayerConfiguration(
+                (uid, sprite, cardStack),
+                cardCount,
+                (sprt, cardIndex, layerIndex) =>
+                {
+                    var angle = (-(comp.Angle/2)) + cardIndex * intervalAngle;
+                    var x = (-(comp.XOffset / 2)) + cardIndex * intervalSize;
+                    var y = -(x * x) + 0.10f;
 
-                sprt.Comp.LayerSetRotation(layerIndex, Angle.FromDegrees(-angle));
-                sprt.Comp.LayerSetOffset(layerIndex, new Vector2(x, y));
-                sprt.Comp.LayerSetScale(layerIndex, new Vector2(comp.Scale, comp.Scale));
-                return true;
-            }
-        );
-
+                    sprt.Comp.LayerSetRotation(layerIndex, Angle.FromDegrees(-angle));
+                    sprt.Comp.LayerSetOffset(layerIndex, new Vector2(x, y));
+                    sprt.Comp.LayerSetScale(layerIndex, new Vector2(comp.Scale, comp.Scale));
+                    return true;
+                }
+            );
+        }
     }
 
 

@@ -72,7 +72,6 @@ public sealed class CardHandSystem : EntitySystem
         var lastCard = stack.Cards.Last();
         if (!_cardStack.TryRemoveCard(uid, lastCard, stack))
             return;
-        //_hands.TryPickupAnyHand(args.Actor, lastCard);
     }
 
     private void OpenHandMenu(EntityUid user, EntityUid hand)
