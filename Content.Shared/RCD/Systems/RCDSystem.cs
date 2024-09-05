@@ -293,7 +293,7 @@ public class RCDSystem : EntitySystem
         var gridUid = mapGrid.Owner;
 
         // Frontier - Remove all RCD use on outpost.
-        if (HasComp<ProtectedGridComponent>(gridUid))
+        if (TryComp<ProtectedGridComponent>(gridUid, out var prot) && prot.PreventRCDUse)
         {
             _popup.PopupClient(Loc.GetString("rcd-component-use-blocked"), uid, args.User);
             return false;
