@@ -36,3 +36,17 @@
   - type: ConditionalSpawner
     prototypes:
       - MobCatCappy
+
+# Adopted from space-wizards #26265 (Thank you, PolterTzi)
+- type: entity
+  name: Yip Yip Spawner
+  id: SpawnMobKoboldYipyip
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+      - MobKoboldYipyip
