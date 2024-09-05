@@ -7,6 +7,7 @@ using Content.Server.Station.Components;
 using Content.Server.SurveillanceCamera;
 using Content.Shared.Emp;
 using Content.Shared.Examine;
+using Content.Shared.Tiles; // Frontier
 using Robust.Server.GameObjects;
 using Robust.Shared.Map;
 
@@ -45,7 +46,7 @@ public sealed class EmpSystem : SharedEmpSystem
             // Block EMP on grid
             var gridUid = Transform(uid).GridUid;
             var attemptEv = new EmpAttemptEvent();
-            if (HasComp<StationEmpImmuneComponent>(gridUid))
+            if (TryComp<ProtectedGridComponent>(gridUid, out var prot) && prot.PreventEmpEvents)
                 continue;
 
             TryEmpEffects(uid, energyConsumption, duration);
