@@ -3477,15 +3477,19 @@ entities:
       parent: 1
 - proto: FireAlarm
   entities:
-  - uid: 154
+  - uid: 469
     components:
     - type: Transform
-      pos: 2.5,9.5
+      rot: -1.5707963267948966 rad
+      pos: 1.5,10.5
       parent: 1
     - type: DeviceList
       devices:
       - 39
-      - 70
+      - 1112
+      - 365
+      - 112
+      - 107
       - 8
       - 966
       - 972
@@ -3494,6 +3498,10 @@ entities:
       - 969
       - 968
       - 967
+      - 70
+      - 490
+      - 395
+      - 855
 - proto: Firelock
   entities:
   - uid: 8
@@ -3502,17 +3510,26 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -2.5,4.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 469
   - uid: 39
     components:
     - type: Transform
       pos: 3.5,9.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 469
   - uid: 70
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 5.5,3.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 469
   - uid: 171
     components:
     - type: Transform
@@ -3524,6 +3541,9 @@ entities:
     - type: Transform
       pos: 1.5,14.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 469
   - uid: 856
     components:
     - type: Transform
@@ -3551,6 +3571,7 @@ entities:
       - invalid
       deviceLists:
       - 239
+      - 469
 - proto: FirelockEdge
   entities:
   - uid: 107
@@ -3559,60 +3580,90 @@ entities:
       rot: 3.141592653589793 rad
       pos: -1.5,16.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 469
   - uid: 112
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -0.5,16.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 469
   - uid: 365
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 0.5,16.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 469
   - uid: 966
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -1.5,1.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 469
   - uid: 967
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 4.5,1.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 469
   - uid: 968
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 3.5,1.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 469
   - uid: 969
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 2.5,1.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 469
   - uid: 970
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 1.5,1.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 469
   - uid: 971
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 0.5,1.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 469
   - uid: 972
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -0.5,1.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 469
   - uid: 974
     components:
     - type: Transform
@@ -4493,6 +4544,9 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 4.5,8.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 469
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 468
@@ -4579,6 +4633,9 @@ entities:
     - type: Transform
       pos: 4.5,7.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 469
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 650
@@ -4908,10 +4965,10 @@ entities:
       parent: 1
 - proto: IntercomSupply
   entities:
-  - uid: 469
+  - uid: 136
     components:
     - type: Transform
-      pos: 1.5,9.5
+      pos: 2.5,9.5
       parent: 1
   - uid: 1061
     components:
@@ -5168,20 +5225,20 @@ entities:
       parent: 1
 - proto: OilJarGhee
   entities:
-  - uid: 136
-    components:
-    - type: Transform
-      pos: 4.522492,4.7073903
-      parent: 1
   - uid: 160
     components:
     - type: Transform
-      pos: 4.3766418,4.868999
+      pos: 4.3400984,4.758706
       parent: 1
   - uid: 162
     components:
     - type: Transform
-      pos: 4.6995583,4.8585825
+      pos: 4.4859314,4.8837934
+      parent: 1
+  - uid: 827
+    components:
+    - type: Transform
+      pos: 4.6213484,4.758706
       parent: 1
 - proto: OxygenCanister
   entities:
@@ -5787,6 +5844,13 @@ entities:
     components:
     - type: Transform
       pos: 4.5,8.5
+      parent: 1
+- proto: ShelfKitchen
+  entities:
+  - uid: 154
+    components:
+    - type: Transform
+      pos: 1.5,9.5
       parent: 1
 - proto: ShuttersNormalOpen
   entities:
@@ -7856,12 +7920,24 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -2.5,6.5
       parent: 1
+    - type: DeviceLinkSink
+      invokeCounter: 1
+    - type: DeviceLinkSource
+      linkedPorts:
+        44:
+        - DoorStatus: Close
   - uid: 44
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -2.5,6.5
       parent: 1
+    - type: DeviceLinkSink
+      invokeCounter: 1
+    - type: DeviceLinkSource
+      linkedPorts:
+        32:
+        - DoorStatus: Close
   - uid: 542
     components:
     - type: Transform
