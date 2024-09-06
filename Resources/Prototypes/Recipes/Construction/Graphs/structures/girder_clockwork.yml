@@ -6,8 +6,8 @@
       edges:
         - to: clockGirder
           completed:
-            - !type:SnapToGrid
-              southRotation: true
+            - !type:SnapToGrid {} # Frontier: use default ctor
+              # southRotation: true # Frontier
           steps:
             - material: Brass
               amount: 2
