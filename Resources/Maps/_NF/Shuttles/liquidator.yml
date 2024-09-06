@@ -513,29 +513,29 @@ entities:
       rot: 3.141592653589793 rad
       pos: 0.5,-3.5
       parent: 1
-- proto: AtmosDeviceFanTiny
+- proto: AtmosDeviceFanDirectional
   entities:
-  - uid: 7
+  - uid: 17
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -2.5,-7.5
+      rot: 3.141592653589793 rad
+      pos: 0.5,3.5
       parent: 1
   - uid: 137
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -1.5,-7.5
+      rot: 3.141592653589793 rad
+      pos: 1.5,3.5
       parent: 1
   - uid: 215
     components:
     - type: Transform
-      pos: 1.5,3.5
+      pos: -2.5,-7.5
       parent: 1
   - uid: 241
     components:
     - type: Transform
-      pos: 0.5,3.5
+      pos: -1.5,-7.5
       parent: 1
 - proto: AtmosFixBlockerMarker
   entities:
@@ -1108,6 +1108,11 @@ entities:
       parent: 1
 - proto: Catwalk
   entities:
+  - uid: 7
+    components:
+    - type: Transform
+      pos: 5.5,-1.5
+      parent: 1
   - uid: 18
     components:
     - type: Transform
@@ -1218,12 +1223,6 @@ entities:
     components:
     - type: Transform
       pos: 5.5,1.5
-      parent: 1
-  - uid: 275
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 5.5,-1.5
       parent: 1
   - uid: 279
     components:
@@ -2290,7 +2289,7 @@ entities:
       parent: 1
 - proto: MaterialReclaimer
   entities:
-  - uid: 17
+  - uid: 275
     components:
     - type: Transform
       pos: 5.5,-1.5
@@ -2906,6 +2905,12 @@ entities:
     - type: Transform
       pos: 4.5,-1.5
       parent: 1
+    - type: DeviceLinkSource
+      linkedPorts:
+        139:
+        - Left: Forward
+        - Right: Forward
+        - Middle: Off
 - proto: VendingMachineJaniDrobe
   entities:
   - uid: 249

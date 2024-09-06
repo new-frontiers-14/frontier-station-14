@@ -1407,74 +1407,81 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 7.5,-8.5
       parent: 1
-- proto: AtmosDeviceFanTiny
+- proto: AtmosDeviceFanDirectional
   entities:
   - uid: 8
-    components:
-    - type: Transform
-      pos: -6.5,1.5
-      parent: 1
-  - uid: 32
-    components:
-    - type: Transform
-      pos: -6.5,3.5
-      parent: 1
-  - uid: 42
-    components:
-    - type: Transform
-      pos: -7.5,-8.5
-      parent: 1
-  - uid: 111
-    components:
-    - type: Transform
-      pos: -2.5,-14.5
-      parent: 1
-  - uid: 143
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 4.5,6.5
       parent: 1
+  - uid: 28
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -6.5,4.5
+      parent: 1
+  - uid: 32
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -6.5,3.5
+      parent: 1
+  - uid: 42
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -6.5,2.5
+      parent: 1
+  - uid: 111
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -6.5,1.5
+      parent: 1
+  - uid: 143
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -6.5,0.5
+      parent: 1
   - uid: 148
     components:
     - type: Transform
-      pos: -1.5,-14.5
+      rot: -1.5707963267948966 rad
+      pos: -7.5,-6.5
       parent: 1
   - uid: 158
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -0.5,-14.5
+      rot: -1.5707963267948966 rad
+      pos: -7.5,-7.5
+      parent: 1
+  - uid: 296
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -7.5,-8.5
       parent: 1
   - uid: 337
     components:
     - type: Transform
-      pos: -7.5,-7.5
+      pos: -3.5,-14.5
       parent: 1
   - uid: 372
     components:
     - type: Transform
-      pos: -6.5,4.5
+      pos: -2.5,-14.5
       parent: 1
   - uid: 373
     components:
     - type: Transform
-      pos: -6.5,2.5
+      pos: -1.5,-14.5
       parent: 1
   - uid: 374
     components:
     - type: Transform
-      pos: -6.5,0.5
-      parent: 1
-  - uid: 898
-    components:
-    - type: Transform
-      pos: -7.5,-6.5
-      parent: 1
-  - uid: 929
-    components:
-    - type: Transform
-      pos: -3.5,-14.5
+      pos: -0.5,-14.5
       parent: 1
 - proto: AtmosFixBlockerMarker
   entities:
@@ -3604,13 +3611,6 @@ entities:
     components:
     - type: Transform
       pos: -5.5,-0.5
-      parent: 1
-- proto: CrateMaterialGlass
-  entities:
-  - uid: 787
-    components:
-    - type: Transform
-      pos: -0.5,-9.5
       parent: 1
 - proto: CrateMaterialSteel
   entities:
@@ -6573,34 +6573,6 @@ entities:
     - type: Transform
       pos: -5.5,15.5
       parent: 1
-- proto: SheetGlass
-  entities:
-  - uid: 392
-    components:
-    - type: Transform
-      pos: -4.25173,-4.4612446
-      parent: 1
-- proto: SheetPlastic
-  entities:
-  - uid: 830
-    components:
-    - type: Transform
-      pos: -5.3717155,-2.3743224
-      parent: 1
-- proto: SheetRPGlass
-  entities:
-  - uid: 296
-    components:
-    - type: Transform
-      pos: -4.618571,-4.5239058
-      parent: 1
-- proto: SheetSteel
-  entities:
-  - uid: 28
-    components:
-    - type: Transform
-      pos: -5.69607,-2.5081196
-      parent: 1
 - proto: ShipyardGasbenderInfo
   entities:
   - uid: 882
@@ -7039,7 +7011,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -1.5,11.5
       parent: 1
-- proto: TelecomServerFilledShuttle
+- proto: TelecomServerFilledCommon
   entities:
   - uid: 726
     components:

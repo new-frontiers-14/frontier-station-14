@@ -544,36 +544,36 @@ entities:
       rot: 3.141592653589793 rad
       pos: -1.5,-10.5
       parent: 1
-- proto: AtmosDeviceFanTiny
+- proto: AtmosDeviceFanDirectional
   entities:
-  - uid: 2
-    components:
-    - type: Transform
-      pos: 2.5,-8.5
-      parent: 1
   - uid: 59
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: -0.5,-12.5
       parent: 1
   - uid: 75
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
       pos: 0.5,-12.5
       parent: 1
   - uid: 97
     components:
     - type: Transform
       rot: 3.141592653589793 rad
-      pos: 4.5,-2.5
+      pos: 5.5,-2.5
       parent: 1
   - uid: 98
     components:
     - type: Transform
       rot: 3.141592653589793 rad
-      pos: 5.5,-2.5
+      pos: 4.5,-2.5
+      parent: 1
+- proto: AtmosDeviceFanTiny
+  entities:
+  - uid: 2
+    components:
+    - type: Transform
+      pos: 2.5,-8.5
       parent: 1
 - proto: AtmosFixBlockerMarker
   entities:
@@ -1516,7 +1516,6 @@ entities:
     - type: DeviceNetwork
       configurators:
       - invalid
-      - invalid
       deviceLists:
       - 34
       - 281
@@ -1541,7 +1540,6 @@ entities:
     - type: DeviceNetwork
       configurators:
       - invalid
-      - invalid
       deviceLists:
       - 34
       - 281
@@ -1556,7 +1554,6 @@ entities:
     - type: DeviceNetwork
       configurators:
       - invalid
-      - invalid
       deviceLists:
       - 34
       - 281
@@ -1570,7 +1567,6 @@ entities:
       parent: 1
     - type: DeviceNetwork
       configurators:
-      - invalid
       - invalid
       deviceLists:
       - 34

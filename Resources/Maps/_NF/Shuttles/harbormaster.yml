@@ -476,42 +476,44 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 2.5,-2.5
       parent: 1
-- proto: AtmosDeviceFanTiny
+- proto: AtmosDeviceFanDirectional
   entities:
   - uid: 24
     components:
     - type: Transform
+      rot: 1.5707963267948966 rad
       pos: 2.5,-1.5
       parent: 1
   - uid: 33
     components:
     - type: Transform
+      rot: 3.141592653589793 rad
       pos: 1.5,4.5
       parent: 1
-  - uid: 47
+  - uid: 34
     components:
     - type: Transform
       pos: 1.5,-3.5
       parent: 1
+  - uid: 47
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 0.5,4.5
+      parent: 1
   - uid: 73
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 0.5,4.5
+      rot: 3.141592653589793 rad
+      pos: 2.5,4.5
       parent: 1
   - uid: 93
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 2.5,4.5
-      parent: 1
-  - uid: 111
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
+      rot: 3.141592653589793 rad
       pos: -2.5,2.5
       parent: 1
-  - uid: 268
+  - uid: 111
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
@@ -1427,7 +1429,7 @@ entities:
       parent: 1
 - proto: LockerWallMaterialsFuelPlasmaFilled2
   entities:
-  - uid: 34
+  - uid: 216
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
