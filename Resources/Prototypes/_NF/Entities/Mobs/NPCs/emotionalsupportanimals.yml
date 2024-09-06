@@ -10,8 +10,6 @@
     allowSpeech: true
     allowMovement: true
   - type: GhostTakeoverAvailable
-  - type: CombatMode
-    combatToggleAction: ActionCombatModeToggleOff
   - type: Grammar
     attributes:
       proper: true
@@ -153,8 +151,6 @@
   parent: [BaseEmotionalGhostDog, MobPibble]
   id: MobPibbleGhost
   components:
-  - type: CombatMode
-    combatToggleAction: ActionCombatModeToggle
   - type: Inventory
     speciesId: pitbull
 
