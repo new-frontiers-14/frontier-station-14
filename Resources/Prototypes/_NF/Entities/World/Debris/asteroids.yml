@@ -15,9 +15,6 @@
     - type: SimpleFloorPlanPopulator
       entries:
         FloorAsteroidSand:
-          - id: RandomArtifactSpawner20
-            prob: 0.03
-            orGroup: rock
           - id: WallRock
             prob: 0.3
             orGroup: rock
@@ -48,11 +45,14 @@
           - id: WallRockBananium
             prob: 0.03
             orGroup: rock
+          - id: WallRockArtifactFragment
+            prob: 0.03
+            orGroup: rock
           - id: WallRockDiamond
             prob: 0.005
             orGroup: rock
-          - id: WallRockArtifactFragment
-            prob: 0.03
+          - id: WallRockBluespace
+            prob: 0.005
             orGroup: rock
           - id: RockElementalSpawner
             prob: 0.06
@@ -168,14 +168,14 @@
     - type: SimpleFloorPlanPopulator
       entries:
         FloorIce:
-          - id: RandomArtifactSpawner20
-            prob: 0.03
-            orGroup: rock
           - id: WallRockSnow
             prob: 0.65
             orGroup: rock
           - id: WallRockSnowArtifactFragment
             prob: 0.05
+            orGroup: rock
+          - id: WallRockSnowBluespace
+            prob: 0.01
             orGroup: rock
           - id: WallRockSnowBananium
             prob: 0.02
@@ -324,9 +324,6 @@
     - type: SimpleFloorPlanPopulator
       entries:
         FloorCaveDrought:
-          - id: RandomArtifactSpawner20
-            prob: 0.01
-            orGroup: rock
           - id: WallRockAndesite
             prob: 0.65
             orGroup: rock
@@ -362,6 +359,9 @@
             orGroup: rock
           - id: WallRockAndesiteArtifactFragment
             prob: 0.01
+            orGroup: rock
+          - id: WallRockAndesiteBluespace
+            prob: 0.002
             orGroup: rock
           - id: AndesiteElementalSpawner
             prob: 0.08
@@ -480,9 +480,6 @@
     - type: SimpleFloorPlanPopulator
       entries:
         FloorBasalt:
-          - id: RandomArtifactSpawner20
-            prob: 0.01
-            orGroup: rock
           - id: WallRockBasalt
             prob: 0.65
             orGroup: rock
@@ -518,6 +515,9 @@
             orGroup: rock
           - id: WallRockBasaltDiamond
             prob: 0.005
+            orGroup: rock
+          - id: WallRockBasaltBluespace
+            prob: 0.002
             orGroup: rock
           - id: BasaltElementalSpawner
             prob: 0.06
@@ -636,9 +636,6 @@
     - type: SimpleFloorPlanPopulator
       entries:
         FloorLowDesert:
-          - id: RandomArtifactSpawner20
-            prob: 0.01
-            orGroup: rock
           - id: WallRockSand
             prob: 0.65
             orGroup: rock
@@ -674,6 +671,9 @@
             orGroup: rock
           - id: WallRockSandDiamond
             prob: 0.005
+            orGroup: rock
+          - id: WallRockSandBluespace
+            prob: 0.002
             orGroup: rock
           - id: SandElementalSpawner
             prob: 0.06
@@ -792,9 +792,6 @@
     - type: SimpleFloorPlanPopulator
       entries:
         FloorChromite:
-          - id: RandomArtifactSpawner20
-            prob: 0.01
-            orGroup: rock
           - id: WallRockChromite
             prob: 0.65
             orGroup: rock
@@ -809,6 +806,9 @@
             orGroup: rock
           - id: WallRockChromiteArtifactFragment
             prob: 0.01
+            orGroup: rock
+          - id: WallRockChromiteBluespace
+            prob: 0.002
             orGroup: rock
           - id: WallRockChromiteBananium
             prob: 0.01
@@ -948,8 +948,6 @@
     - type: SimpleFloorPlanPopulator
       entries:
         FloorAsteroidSand:
-          - id: RandomArtifactSpawner20
-            prob: 0.01
             orGroup: rock
           - id: AsteroidRock
             prob: 0.65
@@ -982,6 +980,9 @@
             prob: 0.03
             orGroup: rock
           - id: AsteroidRockArtifactFragment
+            prob: 0.01
+            orGroup: rock
+          - id: AsteroidRockBluespace
             prob: 0.01
             orGroup: rock
           - id: AsteroidRockDiamond
