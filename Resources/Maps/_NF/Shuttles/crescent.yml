@@ -1108,6 +1108,7 @@ entities:
     - type: MovedGrids
     - type: Broadphase
     - type: OccluderTree
+    - type: LoadedMap
 - proto: ActionToggleLight
   entities:
   - uid: 1130
@@ -9420,6 +9421,38 @@ entities:
     - type: Transform
       pos: -26.5,19.5
       parent: 1
+- proto: FireAlarm
+  entities:
+  - uid: 2453
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 25.5,13.5
+      parent: 1
+    - type: DeviceList
+      devices:
+      - 1318
+      - 1319
+  - uid: 2514
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -23.5,14.5
+      parent: 1
+    - type: DeviceList
+      devices:
+      - 1351
+      - 1350
+  - uid: 2643
+    components:
+    - type: Transform
+      pos: -3.5,25.5
+      parent: 1
+    - type: DeviceList
+      devices:
+      - 1347
+      - 1348
+      - 1349
 - proto: FireAxeCabinetFilled
   entities:
   - uid: 1293
@@ -9564,11 +9597,17 @@ entities:
     - type: Transform
       pos: 23.5,15.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 2453
   - uid: 1319
     components:
     - type: Transform
       pos: 23.5,16.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 2453
   - uid: 1320
     components:
     - type: Transform
@@ -9709,26 +9748,47 @@ entities:
     - type: Transform
       pos: -4.5,28.5
       parent: 1
+    - type: DeviceNetwork
+      configurators:
+      - invalid
+      deviceLists:
+      - 2643
   - uid: 1348
     components:
     - type: Transform
       pos: -5.5,28.5
       parent: 1
+    - type: DeviceNetwork
+      configurators:
+      - invalid
+      deviceLists:
+      - 2643
   - uid: 1349
     components:
     - type: Transform
       pos: -6.5,28.5
       parent: 1
+    - type: DeviceNetwork
+      configurators:
+      - invalid
+      deviceLists:
+      - 2643
   - uid: 1350
     components:
     - type: Transform
       pos: -22.5,16.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 2514
   - uid: 1351
     components:
     - type: Transform
       pos: -22.5,15.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 2514
   - uid: 1352
     components:
     - type: Transform
