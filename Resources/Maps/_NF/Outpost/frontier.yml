@@ -3948,7 +3948,12 @@ entities:
       id: Frontier
     - type: StationTransit
     - type: ProtectedGrid
-    - type: StationEmpImmune
+      preventFloorRemoval: true
+      preventFloorPlacement: true
+      preventRCDUse: true
+      preventEmpEvents: true
+      preventExplosions: true
+      preventArtifactTriggers: true
     - type: SpreaderGrid
     - type: IFF
   - uid: 5691
