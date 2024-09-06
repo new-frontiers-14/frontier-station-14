@@ -44,7 +44,199 @@
       oreChance: 1.0
       currentOre: OreSaltCrab
 
-# Frontier
+# Frontier - Ore
+- type: entity
+  id: AsteroidRockBluespace
+  parent: AsteroidRock
+  description: An ore vein with bluespace.
+  suffix: Bluespace
+  components:
+  - type: OreVein
+    oreChance: 1.0
+    currentOre: OreBluespace
+  - type: Sprite
+    layers:
+    - state: rock_asteroid
+    - map: [ "enum.EdgeLayer.South" ]
+      state: rock_asteroid_south
+    - map: [ "enum.EdgeLayer.East" ]
+      state: rock_asteroid_east
+    - map: [ "enum.EdgeLayer.North" ]
+      state: rock_asteroid_north
+    - map: [ "enum.EdgeLayer.West" ]
+      state: rock_asteroid_west
+    - sprite: _NF/Structures/Walls/rock.rsi
+      state: rock_bluespace
+
+- type: entity
+  id: IronRockBluespace
+  parent: IronRock
+  description: An ore vein with bluespace.
+  suffix: Bluespace
+  components:
+    - type: OreVein
+      oreChance: 1.0
+      currentOre: OreBluespace
+    - type: Sprite
+      layers:
+      - state: ironrock
+      - map: [ "enum.EdgeLayer.South" ]
+        state: ironrock_south
+      - map: [ "enum.EdgeLayer.East" ]
+        state: ironrock_east
+      - map: [ "enum.EdgeLayer.North" ]
+        state: ironrock_north
+      - map: [ "enum.EdgeLayer.West" ]
+        state: ironrock_west
+      - sprite: _NF/Structures/Walls/rock.rsi
+        state: rock_bluespace
+
+- type: entity
+  id: WallRockBluespace
+  parent: WallRock
+  description: An ore vein with bluespace.
+  suffix: Bluespace
+  components:
+  - type: EntityRemap
+    mask:
+      AsteroidRock: AsteroidRockBluespace
+      WallRockBasalt: WallRockBasaltBluespace
+      WallRockChromite: WallRockChromiteBluespace
+      WallRockSand: WallRockSandBluespace
+      WallRockSnow: WallRockSnowBluespace
+  - type: OreVein
+    oreChance: 1.0
+    currentOre: OreBluespace
+  - type: Sprite
+    layers:
+      - state: rock
+      - map: [ "enum.EdgeLayer.South" ]
+        state: rock_south
+      - map: [ "enum.EdgeLayer.East" ]
+        state: rock_east
+      - map: [ "enum.EdgeLayer.North" ]
+        state: rock_north
+      - map: [ "enum.EdgeLayer.West" ]
+        state: rock_west
+      - sprite: _NF/Structures/Walls/rock.rsi
+        state: rock_bluespace
+
+- type: entity
+  id: WallRockBasaltBluespace
+  parent: WallRockBasalt
+  description: An ore vein with bluespace.
+  suffix: Bluespace
+  components:
+    - type: OreVein
+      oreChance: 1.0
+      currentOre: OreBluespace
+    - type: Sprite
+      layers:
+      - state: rock_wall
+      - map: [ "enum.EdgeLayer.South" ]
+        state: rock_wall_south
+      - map: [ "enum.EdgeLayer.East" ]
+        state: rock_wall_east
+      - map: [ "enum.EdgeLayer.North" ]
+        state: rock_wall_north
+      - map: [ "enum.EdgeLayer.West" ]
+        state: rock_wall_west
+      - sprite: _NF/Structures/Walls/rock.rsi
+        state: rock_bluespace
+
+- type: entity
+  id: WallRockSnowBluespace
+  parent: WallRockSnow
+  description: An ore vein with bluespace.
+  suffix: Bluespace
+  components:
+    - type: OreVein
+      oreChance: 1.0
+      currentOre: OreBluespace
+    - type: Sprite
+      layers:
+      - state: rock_snow
+      - map: [ "enum.EdgeLayer.South" ]
+        state: rock_snow_south
+      - map: [ "enum.EdgeLayer.East" ]
+        state: rock_snow_east
+      - map: [ "enum.EdgeLayer.North" ]
+        state: rock_snow_north
+      - map: [ "enum.EdgeLayer.West" ]
+        state: rock_snow_west
+      - sprite: _NF/Structures/Walls/rock.rsi
+        state: rock_bluespace
+
+- type: entity
+  id: WallRockSandBluespace
+  parent: WallRockSand
+  description: An ore vein with bluespace.
+  suffix: Bluespace
+  components:
+    - type: OreVein
+      oreChance: 1.0
+      currentOre: OreBluespace
+    - type: Sprite
+      layers:
+      - state: rock_sand
+      - map: [ "enum.EdgeLayer.South" ]
+        state: rock_sand_south
+      - map: [ "enum.EdgeLayer.East" ]
+        state: rock_sand_east
+      - map: [ "enum.EdgeLayer.North" ]
+        state: rock_sand_north
+      - map: [ "enum.EdgeLayer.West" ]
+        state: rock_sand_west
+      - sprite: _NF/Structures/Walls/rock.rsi
+        state: rock_bluespace
+
+- type: entity
+  id: WallRockChromiteBluespace
+  parent: WallRockChromite
+  description: An ore vein with bluespace.
+  suffix: Bluespace
+  components:
+    - type: OreVein
+      oreChance: 1.0
+      currentOre: OreBluespace
+    - type: Sprite
+      layers:
+      - state: rock_chromite
+      - map: [ "enum.EdgeLayer.South" ]
+        state: rock_chromite_south
+      - map: [ "enum.EdgeLayer.East" ]
+        state: rock_chromite_east
+      - map: [ "enum.EdgeLayer.North" ]
+        state: rock_chromite_north
+      - map: [ "enum.EdgeLayer.West" ]
+        state: rock_chromite_west
+      - sprite: _NF/Structures/Walls/rock.rsi
+        state: rock_bluespace
+
+- type: entity
+  id: WallRockAndesiteBluespace
+  parent: WallRockAndesite
+  description: An ore vein with bluespace.
+  suffix: Bluespace
+  components:
+    - type: OreVein
+      oreChance: 1.0
+      currentOre: OreBluespace
+    - type: Sprite
+      layers:
+      - state: rock_andesite
+      - map: [ "enum.EdgeLayer.South" ]
+        state: rock_andesite_south
+      - map: [ "enum.EdgeLayer.East" ]
+        state: rock_andesite_east
+      - map: [ "enum.EdgeLayer.North" ]
+        state: rock_andesite_north
+      - map: [ "enum.EdgeLayer.West" ]
+        state: rock_andesite_west
+      - sprite: _NF/Structures/Walls/rock.rsi
+        state: rock_bluespace
+
+# Frontier - Mobs
 - type: entity
   id: AsteroidRockQuartzCrabNF
   parent: AsteroidRockQuartzCrab
