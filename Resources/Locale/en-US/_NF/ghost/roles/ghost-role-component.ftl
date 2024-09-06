@@ -39,4 +39,4 @@ ghost-role-information-hovertaxibot-description = Fly passengers to where they n
 
 # Adopted from space-wizards #26265 (Thank you, PolterTzi)
 ghost-role-information-yipyip-name = Yip Yip
-ghost-role-information-yipyip-description = Notorious lounge lizard and proprietor of Bahama Mama's, this drink-slinging kobold tends his bar and serves his patrons.
+ghost-role-information-yipyip-description = The notorious lounge lizard resident of Bahama Mama's. This drink-slinging kobold tends his bar and serves his patrons.
