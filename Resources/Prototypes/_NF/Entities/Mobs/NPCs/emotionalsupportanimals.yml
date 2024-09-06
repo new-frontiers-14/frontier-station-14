@@ -8,13 +8,12 @@
       proper: true
       gender: epicene
   - type: IdExaminable
+  - type: InventorySlots
   - type: Strippable
   - type: UserInterface
     interfaces:
       enum.StrippingUiKey.Key:
         type: StrippableBoundUserInterface
-  - type: Inventory
-    templateId: nfpet
   - type: Tag
     tags:
     - CannotSuicide
@@ -22,6 +21,8 @@
     - VimPilot
   - type: Puller
     needsHands: false
+  - type: Inventory
+    templateId: nfpet
 
 - type: entity
   id: BaseEmotionalGhostCat
@@ -136,8 +137,6 @@
     states:
       Alive:
         Base: caracal_flop
-  - type: Inventory # Broken hats
-    templateId: nfpet # Broken hats
 
 - type: entity
   suffix: Ghost
@@ -158,8 +157,6 @@
     states:
       Alive:
         Base: spacecat
-  - type: Inventory # Broken hats
-    templateId: nfpet # Broken hats
 
 - type: entity
   suffix: Ghost
@@ -190,10 +187,10 @@
     allowSpeech: true
     allowMovement: true
     prototype: CorgiPuppy
-  - type: Inventory
-    speciesId: puppy
   - type: RandomMetadata
     nameSegments: [names_corgi]
+  - type: Inventory
+    speciesId: puppy
 
 - type: entity
   suffix: Ghost
@@ -233,14 +230,8 @@
       Unsexed: Chicken
   - type: RandomMetadata
     nameSegments: [names_chicken]
-  - type: Inventory # Frontier
+  - type: Inventory
     speciesId: chicken
-  - type: InventorySlots
-  - type: Strippable
-  - type: UserInterface
-    interfaces:
-      enum.StrippingUiKey.Key:
-        type: StrippableBoundUserInterface
 
 - type: entity
   suffix: Ghost
