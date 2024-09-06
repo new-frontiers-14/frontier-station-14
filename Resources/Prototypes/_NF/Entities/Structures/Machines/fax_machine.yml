@@ -183,6 +183,18 @@
   - type: FaxMachine
     name: "NFSD Outpost Lawyer"
 
+# Events
+- type: entity
+  parent: FaxMachineNFLPBravo
+  id: FaxMachineNFSyndicateVessel
+  suffix: Event, Syndicate Vessel
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: FaxMachine
+    name: "Unknown"
+  - type: ApcPowerReceiver
+    powerDisabled: false #starts off
+
 # Ships
 - type: entity
   parent: FaxMachineBase
