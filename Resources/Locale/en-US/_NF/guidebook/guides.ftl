@@ -21,6 +21,7 @@ guide-entry-expedition-syndicate-naval-forces = Syndicate Naval Forces
 guide-entry-expedition-xenos = Xenos
 
 # Shipyard entries
+guide-entry-shipyard-akupara = Akupara
 guide-entry-shipyard-ambition = Ambition
 guide-entry-shipyard-apothecary = Apothecary
 guide-entry-shipyard-bazaar = Bazaar
@@ -52,6 +53,7 @@ guide-entry-shipyard-pioneer = Pioneer
 guide-entry-shipyard-prospector = Prospector
 guide-entry-shipyard-searchlight = Searchlight
 guide-entry-shipyard-spirit = Spirit
+guide-entry-shipyard-stasis = Stasis
 guide-entry-shipyard-vagabond = Vagabond
 
 # Rules entries

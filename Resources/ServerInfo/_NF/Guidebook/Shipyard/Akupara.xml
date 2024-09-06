@@ -1,0 +1,121 @@
+<Document>
+  # AKUPARA-CLASS BOTANICAL SHUTTLE
+  <Box>
+  <GuideEntityEmbed Entity="ChemMaster"/>
+  <GuideEntityEmbed Entity="SeedExtractor"/>
+  <GuideEntityEmbed Entity="hydroponicsTrayAnchored"/>
+  </Box>
+  <Box>
+  <GuideEntityEmbed Entity="UnstableMutagenChemistryBottle"/>
+  <GuideEntityEmbed Entity="FoodSpacemansTrumpet"/>
+  <GuideEntityEmbed Entity="GasVentScrubber"/>
+  <GuideEntityEmbed Entity="StorageCanister"/>
+  </Box>
+  [color=#a4885c]Ship Size:[/color] Medium
+
+  [color=#a4885c]Recommended Crew:[/color] 1-3
+
+  [color=#a4885c]Power Gen Type:[/color] Uranium
+
+  [color=#a4885c]Expeditions:[/color] No
+
+  [color=#a4885c]IFF Console:[/color] None
+
+  [color=#a4885c]Available Roles:[/color] Contractor, Pilot, Mercenary
+
+  "A medium full-feature botanical research biodome equipped to help a botanist fully interact with their plants in almost any way conceivable."
+
+  # PREFLIGHT CHECKLIST
+  
+  ## 1. Power supply
+  
+  ## 1.1. Battery units
+  <Box>
+  <GuideEntityEmbed Entity="SMESBasic"/>
+  <GuideEntityEmbed Entity="SubstationBasic"/>
+  <GuideEntityEmbed Entity="APCBasic"/>
+  </Box>
+
+  - Check that the SMES unit is anchored to the floor.
+  - Check if the substation unit is anchored to the floor.
+  - Check if all APC unit Main Breakers are toggled on.
+  - Check the current Load of all APC units* (W).
+
+  ## 1.2. S.U.P.E.R.P.A.C.M.A.N. generator unit
+  <Box>
+    <GuideEntityEmbed Entity="PortableGeneratorSuperPacman"/>
+    <GuideEntityEmbed Entity="SheetUranium"/>
+    <GuideEntityEmbed Entity="SignRadiationMed"/>
+  </Box>
+
+  - Check if the S.U.P.E.R.P.A.C.M.A.N. generator unit is anchored to the floor.
+  - Check if the S.U.P.E.R.P.A.C.M.A.N. generator unit has fuel. For extended flights make sure that you have enough fuel stockpiled to sustain prolonged power generation during flight.
+  - Check if the S.U.P.E.R.P.A.C.M.A.N. generator unit is set to HV output.
+  - Set Target Power for 32 [bold]k[/bold]W.
+  - Start the S.U.P.E.R.P.A.C.M.A.N. generator unit.
+
+  ## 2. Atmospherics
+
+  ## 2.1. Distribution Loop
+  <Box>
+  <GuideEntityEmbed Entity="OxygenCanister"/>
+  <GuideEntityEmbed Entity="NitrogenCanister"/>
+  <GuideEntityEmbed Entity="GasPort"/>
+  <GuideEntityEmbed Entity="GasFilterFlipped"/>
+  <GuideEntityEmbed Entity="GasMixer"/>
+  </Box>
+
+  - Check if the O2 canister and N2 canister are anchored to their connector ports.
+  - Check the air canister connection port, if required.**
+  - Check if the gas mixer labelled "Air" has its mixing ratio and output pressure set correctly.
+  - Find the gas filter labelled "Nitrogen" and set it to filter nitrogen.
+  - Find the gas filter labelled "Oxygen" and set it to filter oxygen.
+  - Enable the gas mixer labelled "Air".
+
+  ## 2.2. Waste Loop
+  <Box>
+  <GuideEntityEmbed Entity="AirAlarm"/>
+  <GuideEntityEmbed Entity="GasValve"/>
+  <GuideEntityEmbed Entity="GasFilterFlipped"/>
+  <GuideEntityEmbed Entity="GasVolumePump"/>
+  <GuideEntityEmbed Entity="StorageCanister"/>
+  </Box>
+
+  The Akupara does not feature a standard waste loop: it is also capable of storing valuable waste gases, and correcting O2-N2 cabin overpressure. Waste pipes are denoted with an orange color.
+
+  - Ensure you have enabled the distribution loop, as it is an integral part of the waste loop.***
+  - Set all Air Alarms to Filtering (Wide).
+
+  To purge waste gases without collecting them:
+  - Open the manual valve labelled "Waste".
+
+  To collect waste gases:
+  - Keep the manual valve labelled "Waste" closed.
+  - Ensure a storage canister is connected into the collection connector port.
+  - Set the Gas Filter labelled "Waste" to the waste gas you wish to store.
+  - Enable the volumetric gas pump labelled "Waste".
+  - Monitor contents of storage canister. Replace storage canister as necessary.
+  
+   To correct cabin O2-N2 overpressure:
+   - Ensure distro O2 and N2 canisters have capacity.
+   - Ensure air alarm in overpressured area has Auto mode enabled.
+   - Set the air alarm in overpressured the area to Panic. Auto mode should reset the air alarm to Filter after pressures are reduced.
+
+  ## 3. Other checks
+  <Box>
+  <GuideEntityEmbed Entity="Gyroscope"/>
+  <GuideEntityEmbed Entity="GravityGeneratorMini"/>
+  </Box>
+
+  - Check if the gyroscope is anchored, powered, and enabled.
+  - Check if the mini gravity generator is anchored, powered, and enabled.
+
+  ## Sidenotes
+
+  * - Akupara-class vessels are equipped with three APC units that can be used to appraise the ship's total power consumption. Unmodified Akupara-class vessels require 32 kW of power to remain operational.
+
+  ** - Since the Akupara's distribution loop uses a gas mixer, it does not need pre-mixed air for optimal atmospherics. However, it features a port to accept pre-mixed air.
+
+  *** - The oxygen and nitrogen filters are critical in the event mutagenic experiments create plants that produce oxygen or nitrogen. Turning them on enables waste to pass through and enables configurating the scrubbers to handle unwanted overpressure.
+
+</Document>
