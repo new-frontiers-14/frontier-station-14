@@ -33,15 +33,13 @@
 
 - type: entity
   name: bluespace vial
-  parent: BaseItem
+  parent: BaseBeakerMetallic
   id: VialBluespace
-  description: A vile device created by bluespace technology.
+  description: A vial device created with bluespace technology.
   components:
   - type: Tag
     tags:
     - CentrifugeCompatible  
-  - type: FitsInDispenser
-    solution: beaker  
   - type: Sprite
     sprite: _NF/Objects/Specific/Chemistry/vial_bluespace.rsi
     layers:
@@ -49,62 +47,23 @@
       - state: vialbluespace-1
         map: ["enum.SolutionContainerLayers.Fill"]
         visible: false
-  - type: Appearance
   - type: SolutionContainerVisuals
     maxFillLevels: 6
     fillBaseName: vial-1-
     inHandsMaxFillLevels: 4
     inHandsFillBaseName: -fill-  
-  - type: Drink
-    solution: beaker
   - type: SolutionContainerManager
     solutions:
       beaker:
         maxVol: 300
-  - type: MixableSolution
-    solution: beaker
-  - type: RefillableSolution
-    solution: beaker
-  - type: DrainableSolution
-    solution: beaker
-  - type: ExaminableSolution
-    solution: beaker
-  - type: DrawableSolution
-    solution: beaker
   - type: SolutionTransfer
     maxTransferAmount: 300
-    canChangeTransferAmount: true
-  - type: SolutionItemStatus
-    solution: beaker
-  - type: UserInterface
-    interfaces:
-      enum.TransferAmountUiKey.Key:
-        type: TransferAmountBoundUserInterface
   - type: Item
     size: Tiny
-    sprite: _NF/Objects/Specific/Chemistry/vial_bluespace.rsi
-    shape:
-    - 0,0,0,0
-  - type: MeleeWeapon
-    soundNoDamage:
-      path: "/Audio/Effects/Fluids/splat.ogg"
-    damage:
-      types:
-        Blunt: 0
-  - type: TrashOnSolutionEmpty
-    solution: beaker
+    sprite: _NF/Objects/Specific/Chemistry/vial_bluespace.rsi  
   - type: StaticPrice
     price: 100
-    vendPrice: 100
-  - type: DamageOnLand
-    damage:
-      types:
-        Blunt: 5
-  - type: DamageOtherOnHit
-    damage:
-      types:
-        Blunt: 2
+    vendPrice: 100  
   - type: Damageable
     damageContainer: Inorganic
-  - type: Spillable
-    solution: beaker
+    damageModifierSet: null
