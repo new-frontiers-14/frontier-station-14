@@ -3,6 +3,14 @@
   abstract: true
   components:
   - type: GhostTakeoverAvailable
+  - type: GhostRole
+    name: ghost-role-information-emotional-support-name
+    description: ghost-role-information-emotional-support-description
+    rules: ghost-role-information-emotional-support-rules
+    makeSentient: true
+    allowSpeech: true
+    allowMovement: true
+    prototype: EmotionalSupportPet
   - type: Grammar
     attributes:
       proper: true
@@ -26,7 +34,7 @@
 
 - type: entity
   id: BaseEmotionalGhostCat
-  perent: BaseEmotionalGhost
+  parent: BaseEmotionalGhost
   abstract: true
   components:
   - type: ReplacementAccent
@@ -45,7 +53,7 @@
 
 - type: entity
   id: BaseEmotionalGhostDog
-  perent: BaseEmotionalGhost
+  parent: BaseEmotionalGhost
   abstract: true
   components:
   - type: ReplacementAccent
@@ -63,14 +71,6 @@
   parent: [BaseEmotionalGhostCat, MobCat]
   id: MobCatGhost
   components:
-  - type: GhostRole
-    name: ghost-role-information-emotional-support-name
-    description: ghost-role-information-emotional-support-description
-    rules: ghost-role-information-emotional-support-rules
-    makeSentient: true
-    allowSpeech: true
-    allowMovement: true
-    prototype: Cat
   - type: RandomMetadata
     nameSegments: [names_cat]
   - type: DamageStateVisuals
@@ -83,14 +83,6 @@
   parent: [BaseEmotionalGhostCat, MobCatCalico]
   id: MobCatCalicoGhost
   components:
-  - type: GhostRole
-    name: ghost-role-information-emotional-support-name
-    description: ghost-role-information-emotional-support-description
-    rules: ghost-role-information-emotional-support-rules
-    makeSentient: true
-    allowSpeech: true
-    allowMovement: true
-    prototype: CatCalico
   - type: RandomMetadata
     nameSegments: [names_cat_calico]
   - type: DamageStateVisuals
@@ -103,14 +95,6 @@
   parent: [BaseEmotionalGhostCat, MobBingus]
   id: MobBingusGhost
   components:
-  - type: GhostRole
-    name: ghost-role-information-emotional-support-name
-    description: ghost-role-information-emotional-support-description
-    rules: ghost-role-information-emotional-support-rules
-    makeSentient: true
-    allowSpeech: true
-    allowMovement: true
-    prototype: Bingus
   - type: RandomMetadata
     nameSegments: [names_cat_bingus]
   - type: DamageStateVisuals
@@ -123,14 +107,6 @@
   parent: [BaseEmotionalGhostCat, MobCatCaracal]
   id: MobCatCaracalGhost
   components:
-  - type: GhostRole
-    name: ghost-role-information-emotional-support-name
-    description: ghost-role-information-emotional-support-description
-    rules: ghost-role-information-emotional-support-rules
-    makeSentient: true
-    allowSpeech: true
-    allowMovement: true
-    prototype: CatCaracal
   - type: RandomMetadata
     nameSegments: [names_cat_caracal]
   - type: DamageStateVisuals
@@ -143,14 +119,6 @@
   parent: [BaseEmotionalGhostCat, MobCatSpace]
   id: MobCatSpaceGhost
   components:
-  - type: GhostRole
-    name: ghost-role-information-emotional-support-name
-    description: ghost-role-information-emotional-support-description
-    rules: ghost-role-information-emotional-support-rules
-    makeSentient: true
-    allowSpeech: true
-    allowMovement: true
-    prototype: CatSpace
   - type: RandomMetadata
     nameSegments: [names_cat_space]
   - type: DamageStateVisuals
@@ -163,14 +131,6 @@
   parent: [BaseEmotionalGhostDog, MobCorgi]
   id: MobCorgiGhost
   components:
-  - type: GhostRole
-    name: ghost-role-information-emotional-support-name
-    description: ghost-role-information-emotional-support-description
-    rules: ghost-role-information-emotional-support-rules
-    makeSentient: true
-    allowSpeech: true
-    allowMovement: true
-    prototype: Corgi
   - type: RandomMetadata
     nameSegments: [names_corgi]
 
@@ -179,14 +139,8 @@
   parent: [BaseEmotionalGhostDog, MobCorgiPuppy]
   id: MobCorgiPuppyGhost
   components:
-  - type: GhostRole
-    name: ghost-role-information-emotional-support-name
-    description: ghost-role-information-emotional-support-description
-    rules: ghost-role-information-emotional-support-rules
-    makeSentient: true
-    allowSpeech: true
-    allowMovement: true
-    prototype: CorgiPuppy
+  - type: Inventory
+    speciesId: puppy
   - type: RandomMetadata
     nameSegments: [names_corgi]
   - type: Inventory
@@ -197,14 +151,6 @@
   parent: [BaseEmotionalGhostDog, MobPibble]
   id: MobPibbleGhost
   components:
-  - type: GhostRole
-    name: ghost-role-information-emotional-support-name
-    description: ghost-role-information-emotional-support-description
-    rules: ghost-role-information-emotional-support-rules
-    makeSentient: true
-    allowSpeech: true
-    allowMovement: true
-    prototype: Pibble
   - type: Inventory
     speciesId: pitbull
 
@@ -213,14 +159,6 @@
   parent: [BaseEmotionalGhost, MobChicken]
   id: MobChickenGhost
   components:
-  - type: GhostRole
-    name: ghost-role-information-emotional-support-name
-    description: ghost-role-information-emotional-support-description
-    rules: ghost-role-information-emotional-support-rules
-    makeSentient: true
-    allowSpeech: true
-    allowMovement: true
-    prototype: Chicken
   - type: ReplacementAccent
     accent: chicken
   - type: Vocal
@@ -238,14 +176,6 @@
   parent: [BaseEmotionalGhost, MobFox]
   id: MobFoxGhost
   components:
-  - type: GhostRole
-    name: ghost-role-information-emotional-support-name
-    description: ghost-role-information-emotional-support-description
-    rules: ghost-role-information-emotional-support-rules
-    makeSentient: true
-    allowSpeech: true
-    allowMovement: true
-    prototype: Fox
   - type: ReplacementAccent
     accent: fox
   - type: Vocal
