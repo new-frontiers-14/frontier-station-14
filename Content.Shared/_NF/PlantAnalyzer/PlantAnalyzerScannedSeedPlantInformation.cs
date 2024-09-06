@@ -8,20 +8,30 @@ namespace Content.Shared._NF.PlantAnalyzer;
 [Serializable, NetSerializable]
 public sealed class PlantAnalyzerScannedSeedPlantInformation : BoundUserInterfaceMessage
 {
-    public readonly NetEntity? TargetEntity;
-    public bool ScanMode;
+    public NetEntity? TargetEntity;
     public bool IsTray;
 
-    public string SeedName;
-    public string SeedChem;
-    public string HarvestType;
-    public string ExudeGases;
+    public string? SeedName;
+    public string[]? SeedChem;
+    public AnalyzerHarvestType HarvestType;
+    public GasFlags ExudeGases;
+    public GasFlags ConsumeGases;
     public float Endurance;
     public float SeedYield;
     public float Lifespan;
     public float Maturation;
     public float GrowthStages;
     public float SeedPotency;
+    public string[]? Speciation; // Currently only available on server, we need to send strings to the client.
+    public AdvancedScanInfo? AdvancedInfo;
+}
+
+/// <summary>
+///     Information gathered in an advanced scan.
+/// </summary>
+[Serializable, NetSerializable]
+public struct AdvancedScanInfo
+{
     public float NutrientConsumption;
     public float WaterConsumption;
     public float IdealHeat;
@@ -33,71 +43,45 @@ public sealed class PlantAnalyzerScannedSeedPlantInformation : BoundUserInterfac
     public float HighPressureTolerance;
     public float PestTolerance;
     public float WeedTolerance;
-
-    public string? MutationsList;
-
-    public List<string>? Speciation;
-
-    //[DataDefinition, Serializable, NetSerializable]
-    //public partial struct MutationFlags
-    //{
-    //    [DataField]
-    //    public bool TurnIntoKudzu;
-    //    [DataField]
-    //    public bool Seedless;
-    //    [DataField]
-    //    public bool Slip;
-    //    [DataField]
-    //    public bool Sentient;
-    //    [DataField]
-    //    public bool Ligneous;
-    //    [DataField]
-    //    public bool Bioluminescent;
-    //    [DataField]
-    //    public bool CanScream;
-    //}
-    //public MutationFlags Mutflag = new();
-    public PlantAnalyzerScannedSeedPlantInformation(NetEntity? targetEntity, bool scanMode, bool isTray,
-            string seedName, string seedChem, string harvestType, string exudeGases, float endurance,
-            float seedYield, float lifespan, float maturation, float growthStages, float seedPotency,
-            float nutrientConsumption, float waterConsumption, float idealHeat, float heatTolerance,
-            float idealLight, float lightTolerance, float toxinsTolerance, float lowPressureTolerance,
-            float highPressureTolerance, float pestTolerance, float weedTolerance, string? mutationsList, List<string>? speciation)
-    {
-        TargetEntity = targetEntity;
-        ScanMode = scanMode;
-        IsTray = isTray;
-
-        SeedName = seedName;
-        SeedChem = seedChem;
-        HarvestType = harvestType;
-        ExudeGases = exudeGases;
-        Endurance = endurance;
-        SeedYield = seedYield;
-        Lifespan = lifespan;
-        Maturation = maturation;
-        GrowthStages = growthStages;
-        SeedPotency = seedPotency;
-
-        if (scanMode)
-        {
-            NutrientConsumption = nutrientConsumption;
-            WaterConsumption = waterConsumption;
-            IdealHeat = idealHeat;
-            HeatTolerance = heatTolerance;
-            IdealLight = idealLight;
-            LightTolerance = lightTolerance;
-            ToxinsTolerance = toxinsTolerance;
-            LowPressureTolerance = lowPressureTolerance;
-            HighPressureTolerance = highPressureTolerance;
-            PestTolerance = pestTolerance;
-            WeedTolerance = weedTolerance;
-
-            MutationsList = mutationsList;
-            Speciation = speciation;
-        }
-    }
+    public MutationFlags Mutations;
 }
+
+[Flags]
+public enum MutationFlags : byte
+{
+    None = 0,
+    TurnIntoKudzu = 1,
+    Seedless = 2,
+    Slip = 4,
+    Sentient = 8,
+    Ligneous = 16,
+    Bioluminescent = 32,
+    CanScream = 64,
+}
+
+[Flags]
+public enum GasFlags : short
+{
+    None = 0,
+    Nitrogen = 1,
+    Oxygen = 2,
+    CarbonDioxide = 4,
+    Plasma = 8,
+    Tritium = 16,
+    WaterVapor = 32,
+    Ammonia = 64,
+    NitrousOxide = 128,
+    Frezon = 256,
+}
+
+public enum AnalyzerHarvestType : byte
+{
+    Unknown, // Just in case the backing enum type changes and we haven't caught it.
+    Repeat,
+    NoRepeat,
+    SelfHarvest
+}
+
 
 [Serializable, NetSerializable]
 public sealed class PlantAnalyzerSetMode : BoundUserInterfaceMessage

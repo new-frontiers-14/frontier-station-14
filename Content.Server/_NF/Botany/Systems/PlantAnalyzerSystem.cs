@@ -9,6 +9,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using System.Linq;
 using System.Text;
+using Content.Shared.Atmos;
 
 namespace Content.Server.Botany.Systems;
 
@@ -93,30 +94,24 @@ public sealed class PlantAnalyzerSystem : EntitySystem
         if (!_uiSystem.HasUi(ent, PlantAnalyzerUiKey.Key))
             return;
 
-        TryComp<PlantHolderComponent>(target, out var plantcomp);
-        TryComp<SeedComponent>(target, out var seedcomponent);
-
-        if (seedcomponent != null)
+        if (TryComp<SeedComponent>(target, out var seedComp))
         {
-            if (seedcomponent.Seed != null)
+            if (seedComp.Seed != null)
             {
-                var seedData = seedcomponent.Seed;
-                var state = ObtainingGeneDataSeed(seedData, target, false, ent.Comp.Settings.AdvancedScan);
+                var state = ObtainingGeneDataSeed(seedComp.Seed, target, false, ent.Comp.Settings.AdvancedScan);
                 _uiSystem.ServerSendUiMessage(ent.Owner, PlantAnalyzerUiKey.Key, state);
             }
-            else if (seedcomponent.SeedId != null && _prototypeManager.TryIndex(seedcomponent.SeedId, out SeedPrototype? protoSeed))
+            else if (seedComp.SeedId != null && _prototypeManager.TryIndex(seedComp.SeedId, out SeedPrototype? protoSeed))
             {
-                var seedProtoId = protoSeed;
-                var state = ObtainingGeneDataSeedProt(protoSeed, target, ent.Comp.Settings.AdvancedScan);
+                var state = ObtainingGeneDataSeed(protoSeed, target, false, ent.Comp.Settings.AdvancedScan);
                 _uiSystem.ServerSendUiMessage(ent.Owner, PlantAnalyzerUiKey.Key, state);
             }
         }
-        else if (plantcomp != null)
+        else if (TryComp<PlantHolderComponent>(target, out var plantComp))
         {
-            var seedData = plantcomp.Seed;
-            if (seedData != null)
+            if (plantComp.Seed != null)
             {
-                var state = ObtainingGeneDataSeed(seedData, target, true, ent.Comp.Settings.AdvancedScan);
+                var state = ObtainingGeneDataSeed(plantComp.Seed, target, true, ent.Comp.Settings.AdvancedScan);
                 _uiSystem.ServerSendUiMessage(ent.Owner, PlantAnalyzerUiKey.Key, state);
             }
         }
@@ -125,64 +120,127 @@ public sealed class PlantAnalyzerSystem : EntitySystem
     /// <summary>
     ///     Analysis of seed from prototype.
     /// </summary>
-    public PlantAnalyzerScannedSeedPlantInformation ObtainingGeneDataSeedProt(SeedPrototype seedProto, EntityUid target, Boolean scanMode)
+    public PlantAnalyzerScannedSeedPlantInformation ObtainingGeneDataSeed(SeedData seedData, EntityUid target, bool isTray, bool scanIsAdvanced)
     {
-        string plantHarvestType = "";
-        if (seedProto.HarvestRepeat == HarvestType.Repeat) plantHarvestType = HarvestType.Repeat.ToString().ToLower();
-        if (seedProto.HarvestRepeat == HarvestType.NoRepeat) plantHarvestType = HarvestType.NoRepeat.ToString().ToLower();
-        if (seedProto.HarvestRepeat == HarvestType.SelfHarvest) plantHarvestType = HarvestType.SelfHarvest.ToString().ToLower();
+        // Get trickier fields first.
+        AnalyzerHarvestType harvestType = AnalyzerHarvestType.Unknown;
+        switch (seedData.HarvestRepeat)
+        {
+            case HarvestType.Repeat:
+                harvestType = AnalyzerHarvestType.Repeat;
+                break;
+            case HarvestType.NoRepeat:
+                harvestType = AnalyzerHarvestType.NoRepeat;
+                break;
+            case HarvestType.SelfHarvest:
+                harvestType = AnalyzerHarvestType.SelfHarvest;
+                break;
+            default:
+                break;
+        }
 
-        string exudeGases = new StringBuilder("").AppendJoin("\n   ", seedProto.ExudeGasses.Select(item => item.Key.ToString())).ToString();
-        string seedChem = new StringBuilder("\n   ").AppendJoin("\n   ", seedProto.Chemicals.Select(item => item.Key.ToString())).ToString();
-        string speciation = new StringBuilder("").AppendJoin("\n   ", seedProto.MutationPrototypes.Select(item => item.ToString())).ToString();
-        string traits = new StringBuilder("\n   ").AppendJoin("\n   ", CheckAllMutations(seedProto).Select(item => item.ToString())).ToString();
+        var mutationProtos = seedData.MutationPrototypes;
+        List<string> mutationStrings = new();
+        foreach (var mutationProto in mutationProtos)
+        {
+            if (_prototypeManager.TryIndex<SeedPrototype>(mutationProto, out var seed))
+            {
+                mutationStrings.Add(seed.DisplayName);
+            }
+        }
 
-        return new PlantAnalyzerScannedSeedPlantInformation(GetNetEntity(target), scanMode, false,
-            Loc.GetString(seedProto.DisplayName), seedChem, plantHarvestType, exudeGases, seedProto.Endurance,
-            seedProto.Yield, seedProto.Lifespan, seedProto.Maturation, seedProto.GrowthStages, seedProto.Potency,
-            seedProto.NutrientConsumption, seedProto.WaterConsumption, seedProto.IdealHeat, seedProto.HeatTolerance,
-            seedProto.IdealLight, seedProto.LightTolerance, seedProto.ToxinsTolerance, seedProto.LowPressureTolerance,
-            seedProto.HighPressureTolerance, seedProto.PestTolerance, seedProto.WeedTolerance, traits, seedProto.MutationPrototypes);
+        PlantAnalyzerScannedSeedPlantInformation ret = new()
+        {
+            TargetEntity = GetNetEntity(target),
+            IsTray = isTray,
+            SeedName = seedData.DisplayName,
+            SeedChem = seedData.Chemicals.Keys.ToArray(),
+            HarvestType = harvestType,
+            ExudeGases = GetGasFlags(seedData.ExudeGasses.Keys),
+            ConsumeGases = GetGasFlags(seedData.ConsumeGasses.Keys),
+            Endurance = seedData.Endurance,
+            SeedYield = seedData.Yield,
+            Lifespan = seedData.Lifespan,
+            Maturation = seedData.Maturation,
+            GrowthStages = seedData.GrowthStages,
+            SeedPotency = seedData.Potency,
+            Speciation = mutationStrings.ToArray()
+        };
+
+        if (scanIsAdvanced)
+        {
+            AdvancedScanInfo advancedInfo = new()
+            {
+                NutrientConsumption = seedData.NutrientConsumption,
+                WaterConsumption = seedData.WaterConsumption,
+                IdealHeat = seedData.IdealHeat,
+                HeatTolerance = seedData.HeatTolerance,
+                IdealLight = seedData.IdealLight,
+                LightTolerance = seedData.LightTolerance,
+                ToxinsTolerance = seedData.ToxinsTolerance,
+                LowPressureTolerance = seedData.LowPressureTolerance,
+                HighPressureTolerance = seedData.HighPressureTolerance,
+                PestTolerance = seedData.PestTolerance,
+                WeedTolerance = seedData.WeedTolerance,
+                Mutations = GetMutationFlags(seedData)
+            };
+
+            ret.AdvancedInfo = advancedInfo;
+        }
+        return ret;
     }
 
-    /// <summary>
-    ///     Analysis of unique seed.
-    /// </summary>
-    public PlantAnalyzerScannedSeedPlantInformation ObtainingGeneDataSeed(SeedData seed, EntityUid target, bool trayChecker, Boolean scanMode)
+    public MutationFlags GetMutationFlags(SeedData plant)
     {
-        string plantHarvestType = "";
-        if (seed.HarvestRepeat == HarvestType.Repeat) plantHarvestType = HarvestType.Repeat.ToString().ToLower();
-        if (seed.HarvestRepeat == HarvestType.NoRepeat) plantHarvestType = HarvestType.NoRepeat.ToString().ToLower();
-        if (seed.HarvestRepeat == HarvestType.SelfHarvest) plantHarvestType = HarvestType.SelfHarvest.ToString().ToLower();
+        MutationFlags ret = MutationFlags.None;
+        if (plant.TurnIntoKudzu) ret |= MutationFlags.TurnIntoKudzu;
+        if (plant.Seedless) ret |= MutationFlags.Seedless;
+        if (plant.Slip) ret |= MutationFlags.Slip;
+        if (plant.Sentient) ret |= MutationFlags.Sentient;
+        if (plant.Ligneous) ret |= MutationFlags.Ligneous;
+        // if (plant.Bioluminescent) ret |= MutationFlags.Bioluminescent;
+        if (plant.CanScream) ret |= MutationFlags.CanScream;
 
-        string exudeGases = new StringBuilder("").AppendJoin("\n   ", seed.ExudeGasses.Select(item => item.Key.ToString())).ToString();
-        string seedChem = new StringBuilder("\n   ").AppendJoin("\n   ", seed.Chemicals.Select(item => item.Key.ToString())).ToString();
-        string speciation = new StringBuilder("").AppendJoin("\n   ", seed.MutationPrototypes.Select(item => item.ToString())).ToString();
-        string traits = new StringBuilder("\n   ").AppendJoin("\n   ", CheckAllMutations(seed).Select(item => item.ToString())).ToString();
-
-        return new PlantAnalyzerScannedSeedPlantInformation(GetNetEntity(target), scanMode, trayChecker,
-            Loc.GetString(seed.DisplayName), seedChem, plantHarvestType, exudeGases, seed.Endurance,
-            seed.Yield, seed.Lifespan, seed.Maturation, seed.GrowthStages, seed.Potency,
-            seed.NutrientConsumption, seed.WaterConsumption, seed.IdealHeat, seed.HeatTolerance,
-            seed.IdealLight, seed.LightTolerance, seed.ToxinsTolerance, seed.LowPressureTolerance,
-            seed.HighPressureTolerance, seed.PestTolerance, seed.WeedTolerance, traits, seed.MutationPrototypes);
+        return ret;
     }
 
-    /// <summary>
-    ///     Returns information about the seeds boolean mutations.
-    /// </summary>
-    public List<string> CheckAllMutations(SeedData plant)
+    public GasFlags GetGasFlags(IEnumerable<Gas> gases)
     {
-        List<string> mutationsList = new List<string>();
-        if (plant.TurnIntoKudzu) mutationsList.Add(Loc.GetString("plant-analyzer-mutation-turnintokudzu"));
-        if (plant.Seedless) mutationsList.Add(Loc.GetString("plant-analyzer-mutation-seedless"));
-        if (plant.Slip) mutationsList.Add(Loc.GetString("plant-analyzer-mutation-slip"));
-        if (plant.Sentient) mutationsList.Add(Loc.GetString("plant-analyzer-mutation-sentient"));
-        if (plant.Ligneous) mutationsList.Add(Loc.GetString("plant-analyzer-mutation-ligneous"));
-//        if (plant.Bioluminescent) mutationsList.Add(Loc.GetString("plant-analyzer-mutation-bioluminescent"));
-        if (plant.CanScream) mutationsList.Add(Loc.GetString("plant-analyzer-mutation-canscream"));
-
-        return mutationsList;
+        var gasFlags = GasFlags.None;
+        foreach (var gas in gases)
+        {
+            switch (gas)
+            {
+                case Gas.Nitrogen:
+                    gasFlags |= GasFlags.Nitrogen;
+                    break;
+                case Gas.Oxygen:
+                    gasFlags |= GasFlags.Oxygen;
+                    break;
+                case Gas.CarbonDioxide:
+                    gasFlags |= GasFlags.CarbonDioxide;
+                    break;
+                case Gas.Plasma:
+                    gasFlags |= GasFlags.Plasma;
+                    break;
+                case Gas.Tritium:
+                    gasFlags |= GasFlags.Tritium;
+                    break;
+                case Gas.WaterVapor:
+                    gasFlags |= GasFlags.WaterVapor;
+                    break;
+                case Gas.Ammonia:
+                    gasFlags |= GasFlags.Ammonia;
+                    break;
+                case Gas.NitrousOxide:
+                    gasFlags |= GasFlags.NitrousOxide;
+                    break;
+                case Gas.Frezon:
+                    gasFlags |= GasFlags.Frezon;
+                    break;
+            }
+        }
+        return gasFlags;
     }
 
     private void OnModeSelected(Entity<PlantAnalyzerComponent> ent, ref PlantAnalyzerSetMode args)
