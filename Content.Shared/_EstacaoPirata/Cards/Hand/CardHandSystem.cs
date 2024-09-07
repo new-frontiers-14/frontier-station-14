@@ -5,6 +5,7 @@ using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
 using Content.Shared.Popups;
 using Content.Shared.Verbs;
+using Robust.Shared.Containers;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
@@ -24,6 +25,7 @@ public sealed class CardHandSystem : EntitySystem
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
+    [Dependency] private readonly SharedContainerSystem _container = default!;
 
 
 
@@ -69,9 +71,9 @@ public sealed class CardHandSystem : EntitySystem
 
         if (stack.Cards.Count != 1)
             return;
-        var lastCard = stack.Cards.Last();
-        if (!_cardStack.TryRemoveCard(uid, lastCard, stack))
-            return;
+        // var lastCard = stack.Cards.Last();
+        // if (!_cardStack.TryRemoveCard(uid, lastCard, stack))
+        //     return;
     }
 
     private void OpenHandMenu(EntityUid user, EntityUid hand)
@@ -123,8 +125,7 @@ public sealed class CardHandSystem : EntitySystem
         if (_net.IsClient)
             return;
 
-        var cardDeck = Spawn(CardDeckBaseName, Transform(hand).Coordinates);
-
+        var cardDeck = SpawnInSameParent(CardDeckBaseName, hand);
         bool isHoldingCards = _hands.IsHolding(user, hand);
 
         EnsureComp<CardStackComponent>(cardDeck, out var deckStack);
@@ -139,7 +140,7 @@ public sealed class CardHandSystem : EntitySystem
     {
         if (_net.IsClient)
             return;
-        var cardHand = Spawn(CardHandBaseName, Transform(card).Coordinates);
+        var cardHand = SpawnInSameParent(CardHandBaseName, card);
         if (!TryComp(cardHand, out CardStackComponent? stack))
             return;
         if (!_cardStack.TryInsertCard(cardHand, card, stack) || !_cardStack.TryInsertCard(cardHand, target, stack))
@@ -153,7 +154,7 @@ public sealed class CardHandSystem : EntitySystem
     {
         if (_net.IsClient)
             return;
-        var cardHand = Spawn(CardHandBaseName, Transform(card).Coordinates);
+        var cardHand = SpawnInSameParent(CardHandBaseName, card);
         if (!TryComp(cardHand, out CardStackComponent? stack))
             return;
         if (!_cardStack.TryInsertCard(cardHand, card, stack))
@@ -162,5 +163,15 @@ public sealed class CardHandSystem : EntitySystem
         if (pickup && !_hands.TryPickupAnyHand(user, cardHand))
             return;
         _cardStack.FlipAllCards(cardHand, stack, false);
+    }
+
+    private EntityUid SpawnInSameParent(string prototype, EntityUid uid)
+    {
+        if (_container.IsEntityOrParentInContainer(uid) &&
+            _container.TryGetOuterContainer(uid, Transform(uid), out var container))
+        {
+            return SpawnInContainerOrDrop(prototype, container.Owner, container.ID);
+        }
+        return Spawn(prototype, Transform(uid).Coordinates);
     }
 }

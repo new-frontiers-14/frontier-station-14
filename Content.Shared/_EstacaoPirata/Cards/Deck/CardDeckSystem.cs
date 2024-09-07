@@ -5,6 +5,7 @@ using Content.Shared.Interaction;
 using Content.Shared.Popups;
 using Content.Shared.Verbs;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Containers;
 using Robust.Shared.Network;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
@@ -23,6 +24,7 @@ public sealed class CardDeckSystem : EntitySystem
     [Dependency] private readonly CardStackSystem _cardStackSystem = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private readonly SharedContainerSystem _container = default!;
     const string CardDeckBaseName = "CardDeckBase";
 
 
@@ -81,7 +83,7 @@ public sealed class CardDeckSystem : EntitySystem
         if (!_net.IsServer || stack.Cards.Count <= 1)
             return;
 
-        var cardDeck = Spawn(CardDeckBaseName, Transform(uid).Coordinates);
+        var cardDeck = SpawnInSameParent(CardDeckBaseName, uid);
 
         EnsureComp<CardStackComponent>(cardDeck, out var deckStack);
 
@@ -135,5 +137,13 @@ public sealed class CardDeckSystem : EntitySystem
         args.Handled = true;
     }
 
-
+    private EntityUid SpawnInSameParent(string prototype, EntityUid uid)
+    {
+        if (_container.IsEntityOrParentInContainer(uid) &&
+            _container.TryGetOuterContainer(uid, Transform(uid), out var container))
+        {
+            return SpawnInContainerOrDrop(prototype, container.Owner, container.ID);
+        }
+        return Spawn(prototype, Transform(uid).Coordinates);
+    }
 }
