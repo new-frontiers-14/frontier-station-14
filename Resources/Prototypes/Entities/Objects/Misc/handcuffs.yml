@@ -2,7 +2,7 @@
   name: handcuffs
   description: Used to detain criminals and other assholes.
   id: Handcuffs
-  parent: BaseItem
+  parent: [BaseItem, BaseC2ContrabandUnredeemable] # Frontier: BaseRestrictedContraband<BaseC2ContrabandUnredeemable
   components:
   - type: Item
     size: Small
@@ -28,6 +28,7 @@
   - type: GuideHelp
     guides:
     - Security
+    # - Antagonists # Frontier: guidebook entry removed
   - type: UseDelay
     delay: 3
 
