@@ -11,7 +11,7 @@
   - type: Matchbox
 
 - type: entity
-  parent: ClothingShoesMilitaryBase
+  parent: [ClothingShoesMilitaryBase, BaseC2ContrabandUnredeemable] # Frontier: BaseRestrictedContraband<BaseC2ContrabandUnredeemable
   id: ClothingShoesBootsJack
   name: jackboots
   description: Nanotrasen-issue Security combat boots for combat scenarios or combat situations. All combat, all the time.
@@ -45,7 +45,7 @@
     sprite: Clothing/Shoes/Boots/performer.rsi
 
 - type: entity
-  parent: ClothingShoesMilitaryBase
+  parent: [ClothingShoesMilitaryBase, BaseC2ContrabandUnredeemable] # Frontier: BaseRestrictedContraband<BaseC2ContrabandUnredeemable
   id: ClothingShoesBootsCombat
   name: combat boots
   description: Robust combat boots for combat scenarios or combat situations. All combat, all the time.
@@ -143,7 +143,7 @@
     sprite: Clothing/Shoes/Boots/winterbootssci.rsi
 
 - type: entity
-  parent: [ClothingShoesBaseWinterBoots, ClothingShoesMilitaryBase]
+  parent: [ClothingShoesBaseWinterBoots, ClothingShoesMilitaryBase, BaseC2ContrabandUnredeemable] # Frontier: BaseRestrictedContraband<BaseC2ContrabandUnredeemable
   id: ClothingShoesBootsWinterSec
   name: security winter boots
   components:
@@ -153,10 +153,10 @@
     sprite: Clothing/Shoes/Boots/winterbootssec.rsi
 
 - type: entity
-  parent: ClothingShoesBaseWinterBoots
+  parent: [ClothingShoesBaseWinterBoots, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   id: ClothingShoesBootsWinterSyndicate
   name: syndicate's winter boots
-  description: Durable heavy boots, looks like merch from "Syndieland"
+  description: Durable heavy boots, looks like merch from "Syndieland".
   components:
   - type: Sprite
     sprite: Clothing/Shoes/Boots/winterbootssyndicate.rsi

@@ -47,7 +47,7 @@
     - type: GuideHelp
       openOnActivation: true
       guides:
-        - Defusal
+      - Defusal
 
 - type: entity
   parent: BaseHardBomb
@@ -92,7 +92,7 @@
       disposable: false
 
 - type: entity
-  parent: BaseHardBomb
+  parent: [BaseHardBomb, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   id: SyndicateBomb
   name: syndicate bomb
   description: A bomb for Syndicate operatives and agents alike. The real deal, no more training, get to it!
@@ -126,7 +126,6 @@
       totalIntensity: 4000.0
       intensitySlope: 3
       maxIntensity: 400
-    - type: Contraband #frontier
 
 - type: entity
   parent: SyndicateBomb
@@ -145,7 +144,7 @@
   id: DebugHardBomb
   name: debug bomb
   suffix: DEBUG
-  description: Holy shit this is gonna explode
+  description: Holy shit this is gonna explode.
   components:
     - type: Defusable
       disposable: true
