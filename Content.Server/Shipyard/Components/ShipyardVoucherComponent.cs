@@ -1,4 +1,5 @@
 using Content.Shared.Access;
+using Content.Shared.Shipyard;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Shipyard.Components;
@@ -21,10 +22,16 @@ public sealed partial class ShipyardVoucherComponent : Component
     /// <summary>
     ///  Access tags and groups for shipyard access.
     /// </summary>
-    [DataField("access")]
+    [DataField]
     public IReadOnlyCollection<ProtoId<AccessLevelPrototype>> Access { get; private set; } = Array.Empty<ProtoId<AccessLevelPrototype>>();
 
-    [DataField("accessGroups")]
+    [DataField]
     public IReadOnlyCollection<ProtoId<AccessGroupPrototype>> AccessGroups { get; private set; } = Array.Empty<ProtoId<AccessGroupPrototype>>();
 
+    /// <summary>
+    ///  The type of console where this voucher can be used.
+    ///  Should not be ShipyardConsoleUiKey.Custom.  Note: currently cannot be used for mothership consoles.
+    /// </summary>
+    [DataField(required: true)]
+    public ShipyardConsoleUiKey ConsoleType;
 }
