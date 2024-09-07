@@ -111,7 +111,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             return;
         }
 
-        if (!GetAvailableShuttles(uid, targetId: targetId).Contains(vessel.ID))
+        if (!GetAvailableShuttles(uid, targetId: targetId).available.Contains(vessel.ID))
         {
             PlayDenySound(args.Actor, uid, component);
             _adminLogger.Add(LogType.Action, LogImpact.Medium, $"{ToPrettyString(player):player} tried to purchase a vessel that was never available.");
@@ -144,6 +144,12 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             if (voucher!.RedemptionsLeft <= 0)
             {
                 ConsolePopup(args.Actor, Loc.GetString("shipyard-console-no-voucher-redemptions"));
+                PlayDenySound(args.Actor, uid, component);
+                return;
+            }
+            else if (voucher!.ConsoleType != (ShipyardConsoleUiKey)args.UiKey)
+            {
+                ConsolePopup(args.Actor, Loc.GetString("shipyard-console-invalid-voucher-type"));
                 PlayDenySound(args.Actor, uid, component);
                 return;
             }
@@ -607,10 +613,11 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     /// <summary>
     ///   Returns all shuttle prototype IDs the given shipyard console can offer.
     /// </summary>
-    public List<string> GetAvailableShuttles(EntityUid uid, ShipyardConsoleUiKey? key = null,
+    public (List<string> available, List<string> unavailable) GetAvailableShuttles(EntityUid uid, ShipyardConsoleUiKey? key = null,
         ShipyardListingComponent? listing = null, EntityUid? targetId = null)
     {
-        var availableShuttles = new List<string>();
+        var available = new List<string>();
+        var unavailable = new List<string>();
 
         if (key == null && TryComp<UserInterfaceComponent>(uid, out var ui))
         {
@@ -625,17 +632,26 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             }
         }
 
-
         // No listing provided, try to get the current one from the console being used as a default.
         if (listing is null)
             TryComp(uid, out listing);
 
         // Construct access set from input type (voucher or ID card)
         IDShipAccesses accesses;
+        bool initialHasAccess = true;
         if (TryComp<ShipyardVoucherComponent>(targetId, out var voucher))
         {
-            accesses.Tags = voucher.Access;
-            accesses.Groups = voucher.AccessGroups;
+            if (voucher.ConsoleType == key)
+            {
+                accesses.Tags = voucher.Access;
+                accesses.Groups = voucher.AccessGroups;
+            }
+            else
+            {
+                accesses.Tags = new HashSet<ProtoId<AccessLevelPrototype>>();
+                accesses.Groups = new HashSet<ProtoId<AccessGroupPrototype>>();
+                initialHasAccess = false;
+            }
         }
         else if (TryComp<AccessComponent>(targetId, out var accessComponent))
         {
@@ -650,10 +666,11 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         foreach (var vessel in _prototypeManager.EnumeratePrototypes<VesselPrototype>())
         {
+            bool hasAccess = initialHasAccess;
             // If the vessel needs access to be bought, check the user's access.
             if (!string.IsNullOrEmpty(vessel.Access))
             {
-                bool hasAccess = false;
+                hasAccess = false;
                 // Check tags
                 if (accesses.Tags.Contains(vessel.Access))
                     hasAccess = true;
@@ -671,25 +688,21 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
                         }
                     }
                 }
-
-                // No access to this vessel, skip to the next one.
-                if (!hasAccess)
-                    continue;
             }
 
             // Check that the listing contains the shuttle or that the shuttle is in the group that the console is looking for
-            if ((listing?.Shuttles.Contains(vessel.ID) ?? false) ||
-                // if the listing contains the shuttle, add it to the list or
-
-                // if the shuttle is in the group that the console is looking for
-                (key != null && key != ShipyardConsoleUiKey.Custom &&
-                 ShipyardGroupMapping.TryGetValue(key.Value, out var group) && vessel.Group == group))
+            if (listing?.Shuttles.Contains(vessel.ID) ?? false ||
+                key != null && key != ShipyardConsoleUiKey.Custom &&
+                vessel.Group == key)
             {
-                availableShuttles.Add(vessel.ID);
+                if (hasAccess)
+                    available.Add(vessel.ID);
+                else
+                    unavailable.Add(vessel.ID);
             }
         }
 
-        return availableShuttles;
+        return (available, unavailable);
     }
 
     private void RefreshState(EntityUid uid, int balance, bool access, string? shipDeed, int shipSellValue, EntityUid? targetId, ShipyardConsoleUiKey uiKey, bool freeListings)
