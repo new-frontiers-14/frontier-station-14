@@ -1,5 +1,5 @@
 - type: entity
-  parent: [BaseStructureUnanchorable, VendingMachine]
+  parent: [BaseStructureDisableAnchoring, VendingMachine]
   id: VendingMachineCuddlyCritterVend
   name: CuddlyCritterVend
   description: Step into the world of wonder and warmth with Cuddly Critters Vending Machine, a haven for plushie and toy enthusiasts alike.
@@ -30,7 +30,7 @@
     mod: 15
 
 - type: entity
-  parent: [BaseStructureUnanchorable, VendingMachine]
+  parent: [BaseStructureDisableAnchoring, VendingMachine]
   id: VendingMachineAstroVend
   name: AstroVend
   description: Essential gear for the spaceman on the go.
@@ -67,7 +67,7 @@
     pack: AstroVendPOIInventory
 
 - type: entity
-  parent: [BaseStructureUnanchorable, VendingMachine]
+  parent: [BaseStructureDisableAnchoring, VendingMachine]
   id: VendingMachineFlatpackVend
   name: FlatpackVend
   description: Essential tech for the spaceman on the go.
@@ -99,7 +99,7 @@
     mod: 25
 
 - type: entity
-  parent: [BaseStructureUnanchorable, VendingMachineFlatpackVend]
+  parent: [BaseStructureDisableAnchoring, VendingMachineFlatpackVend]
   id: VendingMachineExpeditionaryFlatpackVend
   name: Expeditionary FlatpackVend
   description: Essential tech for the spaceman on an expedition.
@@ -110,7 +110,7 @@
     sprite: _NF/Structures/Machines/VendingMachines/expeditionaryflatpackvend.rsi
 
 - type: entity
-  parent: [BaseStructureUnanchorable, VendingMachine]
+  parent: [BaseStructureDisableAnchoring, VendingMachine]
   id: VendingMachineSyndieContraband
   name: ContraVend
   description: Wanted across multiple sectors!
@@ -149,7 +149,7 @@
     mod: 50
 
 - type: entity
-  parent: [BaseStructureUnanchorable, VendingMachine]
+  parent: [BaseStructureDisableAnchoring, VendingMachine]
   id: VendingMachineBountyVend
   name: BountyVend
   description: Essential gear for the bounty hunter on the go.
@@ -244,7 +244,7 @@
       color: "#ff033e"
 
 - type: entity
-  parent: LessLethalVendingMachine
+  parent: [BaseStructureDisableAnchoring, LessLethalVendingMachine]
   id: LessLethalVendingMachinePOI
   suffix: POI
   components:
@@ -285,7 +285,7 @@
       color: "#ff033e"
 
 - type: entity
-  parent: [BaseStructureUnanchorable, VendingMachine]
+  parent: [BaseStructureDisableAnchoring, VendingMachine]
   id: VendingMachineAutoTuneVend
   name: AutoTune
   description: Feeling BASSed? Time to TUNE into AutoVend! Take NOTES and let your audience TREBLE.
@@ -336,7 +336,7 @@
   # - type: GhostTakeoverAvailable
 
 - type: entity
-  parent: [BaseStructureUnanchorable, VendingMachine]
+  parent: [BaseStructureDisableAnchoring, VendingMachine]
   id: VendingMachinePottedPlantVend
   name: Plant-O-Matic
   description: Sometimes potted plants are the best crewmates money can get.
@@ -370,7 +370,7 @@
     mod: 10
 
 - type: entity
-  parent: [BaseStructureUnanchorable, VendingMachine]
+  parent: [BaseStructureDisableAnchoring, VendingMachine]
   id: VendingMachineNfsdDrobe
   name: NFSDDrobe
   description: A vending machine for NFSD and NFSD clothing!
@@ -396,7 +396,7 @@
     access: [["Security"]]
 
 - type: entity
-  parent: [BaseStructureUnanchorable, VendingMachine]
+  parent: [BaseStructureDisableAnchoring, VendingMachine]
   id: VendingMachineYarrrDrobe
   name: YarrrDrobe
   description: A vending machine for skallywags and booty lovers!
@@ -420,7 +420,7 @@
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
 
 - type: entity
-  parent: [BaseStructureUnanchorable, VendingMachine]
+  parent: [BaseStructureDisableAnchoring, VendingMachine]
   id: VendingMachineNfsdTech
   name: NFSDTech
   description: A vending machine for NFSD and NFSD tech!
@@ -446,7 +446,7 @@
     access: [["Security"]]
 
 - type: entity
-  parent: [BaseStructureIndestructible, BaseStructureAccessReaderImmuneToEmag, VendingMachineCart] # Frontier
+  parent: VendingMachineCart # Frontier
   id: VendingMachineCartNfsd
   suffix: NFSD
   components:
@@ -602,19 +602,83 @@
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
 
 - type: entity
-  parent: [BaseCiviMedVend, BaseStructureUnanchorable, BaseStructureIndestructible, VendingMachine]
+  parent: [BaseCiviMedVend, BaseStructureDisableAnchoring, BaseStructureIndestructible, VendingMachine]
   id: VendingMachineCiviMedPlus
   name: CiviMed Plus
   description: CiviMed Plus, distributing lifesaving meds harder than the rocks you break! Miners, DON'T DIE!
 
 - type: entity
-  parent: [BaseCiviMedVend, BaseStructureUnanchorable, BaseStructureIndestructible, VendingMachineWallmount]
+  parent: [BaseCiviMedVend, BaseStructureDisableAnchoring, BaseStructureIndestructible, VendingMachineWallmount]
   id: VendingMachineCiviMed
   name: CiviMed
   description: CiviMed, distributing lifesaving meds harder than the rocks you break! Miners, DON'T DIE!
   components:
   - type: Sprite
     sprite: _NF/Structures/Machines/VendingMachines/wallcivimed.rsi
+
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineValetDrobe
+  name: ValetDrobe
+  description: Assist others in style! Dress in top-top shape for tip-top tips!
+  components:
+  - type: VendingMachine
+    pack: ValetDrobeInventory
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    # ejectState: eject-unshaded  No sprite, see chefvend/dinnerware/BODA/etc for expamples
+  - type: Advertise
+    pack: ValetDrobeAds
+  - type: SpeakOnUIClosed
+    pack: ValetDrobeGoodbyes
+  - type: Sprite
+    sprite: _NF/Structures/Machines/VendingMachines/valetdrobe.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#4b93ad"
+  - type: AccessReader
+    access: [["Service"]] # Mail Carrier and Janitor teaming up to loot the machine dry.
+
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineMailVend
+  name: MailVend
+  description: Make your thoughts known, send a letter today!
+  components:
+  - type: VendingMachine
+    pack: MailVendInventory
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    # ejectState: eject-unshaded  No sprite, see chefvend/dinnerware/BODA/etc for expamples
+  - type: Advertise
+    pack: MailVendAds
+  - type: SpeakOnUIClosed
+    pack: MailVendGoodbyes
+  - type: Sprite
+    sprite: _NF/Structures/Machines/VendingMachines/mailvend.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#4b93ad"
 
 # POI versions of upstream machines
 
@@ -640,7 +704,7 @@
   suffix: POI
   components:
   - type: VendingMachine
-    pack: VendomatInventory
+    pack: VendomatPOIInventory
 
 - type: entity
   parent: VendingMachineYouTool

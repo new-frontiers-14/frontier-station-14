@@ -180,7 +180,7 @@
 
 - type: entity
   id: CigPackSyndicate
-  parent: CigPackBase
+  parent: [CigPackBase, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   name: Interdyne herbals packet
   description: Elite cigarettes for elite syndicate agents. Infused with medicine for when you need to do more than calm your nerves.
   components:
@@ -192,7 +192,6 @@
     contents:
     - id: CigaretteSyndicate
       amount: 10
-  - type: Contraband #frontier
 
 - type: entity
   id: CigPackMixedMedical

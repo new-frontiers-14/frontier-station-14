@@ -1,5 +1,6 @@
 using Content.Server.Temperature.Systems;
 using Content.Shared.Temperature;
+using Robust.Shared.Audio;
 
 namespace Content.Server.Temperature.Components;
 
@@ -29,4 +30,10 @@ public sealed partial class EntityHeaterComponent : Component
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public float PassivePower = 0f;
     // End Frontier
+
+    /// <summary>
+    /// An optional sound that plays when the setting is changed.
+    /// </summary>
+    [DataField]
+    public SoundPathSpecifier? SettingSound;
 }
