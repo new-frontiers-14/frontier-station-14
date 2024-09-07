@@ -9,8 +9,6 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Prototypes;
 using static Robust.Client.UserInterface.Controls.BaseButton;
-using Content.Shared.Shipyard;
-using Content.Shared.Emp;
 
 namespace Content.Client.Shipyard.UI;
 
