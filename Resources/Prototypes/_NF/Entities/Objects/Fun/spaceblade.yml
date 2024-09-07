@@ -1,10 +1,23 @@
 - type: entity
   id: SpaceBlade
-  parent: AirTank
+  parent: BaseItem
   name: space blade
   description: Let it drip
   abstract: true
   components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/spaceblade.rsi
+    state: redorange
+    scale: 0.5, 0.5
+  - type: Item
+    size: Small
+    sprite: _NF/Objects/Fun/spaceblade.rsi
+  - type: ActivatableUI
+    key: enum.SharedGasTankUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.SharedGasTankUiKey.Key:
+        type: GasTankBoundUserInterface
   - type: GasTank
     outputPressure: 0.1
     maxOutputPressure: 0.1
@@ -14,6 +27,8 @@
       moles:
          - 0.4101137219 # oxygen
       temperature: 293.15
+  - type: StaticPrice
+    price: 20
   - type: Physics
     bodyType: Dynamic
   - type: Fixtures
@@ -22,28 +37,17 @@
         shape:
           !type:PhysShapeAabb
           bounds: "-0.25,-0.25,0.25,0.25"
-        density: 0.1
+        density: 100
         mask:
         - InteractImpassable
         layer:
         - InteractImpassable
-  - type: Item
-    size: Small
-    sprite: _NF/Objects/Fun/spaceblade.rsi
-  - type: Sprite
-    sprite: _NF/Objects/Fun/spaceblade.rsi
-    state: redorange
-    scale: 0.5, 0.5
   - type: EmitSoundOnCollide
     sound:
       path: /Audio/Items/desk_bell_ring.ogg
       params:
         variation: 0.65
         volume: -5
-  - type: MeleeWeapon
-    damage:
-      types:
-        Slash: 5
 
 - type: entity
   id: SpaceBladeRedOrange
@@ -127,7 +131,9 @@
 
 - type: entity
   id: SpaceBladeSec
-  parent: SpaceBlade
+  parent:
+  - SpaceBlade
+  - BaseC2ContrabandUnredeemable
   components:
   - type: Sprite
     state: secblade
@@ -138,7 +144,9 @@
 
 - type: entity
   id: SpaceBladeContra
-  parent: SpaceBlade
+  parent:
+  - SpaceBlade
+  - BaseC3SyndicateContraband
   description: Let it reap
   components:
   - type: Sprite
@@ -151,7 +159,6 @@
     enabled: true
     radius: 5
     color: "#3db83b"
-  - type: Contraband
   - type: StaticPrice
     price: 100
 
@@ -224,7 +231,7 @@
 
 - type: entity
   id: SpaceBladeSingularity
-  parent: SpaceBlade
+  parent: [BaseC3Contraband, SpaceBlade]
   name: space blade
   description: Let it consume
   components:
