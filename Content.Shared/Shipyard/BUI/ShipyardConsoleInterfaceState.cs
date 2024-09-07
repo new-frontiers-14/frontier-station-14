@@ -12,7 +12,7 @@ public sealed class ShipyardConsoleInterfaceState : BoundUserInterfaceState
     public readonly bool IsTargetIdPresent;
     public readonly byte UiKey;
 
-    public readonly List<string> ShipyardPrototypes;
+    public readonly (List<string> available, List<string> unavailable) ShipyardPrototypes;
     public readonly string ShipyardName;
     public readonly bool FreeListings;
 
@@ -23,7 +23,7 @@ public sealed class ShipyardConsoleInterfaceState : BoundUserInterfaceState
         int shipSellValue,
         bool isTargetIdPresent,
         byte uiKey,
-        List<string> shipyardPrototypes,
+        (List<string> available, List<string> unavailable) shipyardPrototypes,
         string shipyardName,
         bool freeListings)
     {

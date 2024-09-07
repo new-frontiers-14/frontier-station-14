@@ -46,7 +46,7 @@
 - type: entity
   name: Bulldog
   # Don't parent to BaseWeaponShotgun because it differs significantly
-  parent: [BaseItem, BaseGunWieldable]
+  parent: [BaseItem, BaseGunWieldable, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   id: WeaponShotgunBulldog
   description: It's a magazine-fed shotgun designed for close quarters combat. Uses .50 shotgun shells. An illegal firearm often used by Syndicate agents.
   components:
@@ -85,6 +85,7 @@
         whitelist:
           tags:
           - MagazineShotgun
+        whitelistFailPopup: gun-magazine-whitelist-fail
         insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
   - type: ContainerContainer
@@ -99,11 +100,10 @@
   - type: Appearance
   - type: StaticPrice
     price: 500
-  - type: Contraband #frontier
 
 - type: entity
   name: double-barreled shotgun
-  parent: [BaseWeaponShotgun, BaseGunWieldable]
+  parent: [BaseWeaponShotgun, BaseGunWieldable, BaseC1Contraband] # Frontier: BaseMinorContraband<BaseC1Contraband
   id: WeaponShotgunDoubleBarreled
   description: An immortal classic. A civilian grade shotgun. Uses .50 shotgun shells.
   components:
@@ -138,7 +138,7 @@
 
 - type: entity
   name: Enforcer
-  parent: [BaseWeaponShotgun, BaseGunWieldable]
+  parent: [BaseWeaponShotgun, BaseGunWieldable, BaseC2ContrabandUnredeemable] # Frontier: BaseRestrictedContraband<BaseC2ContrabandUnredeemable
   id: WeaponShotgunEnforcer
   description: A premium combat shotgun based on the Kammerer design, featuring an upgraded clip capacity. .50 shotgun shells. On the receiver is a label that says 'for authorized use only.'
   components:
@@ -161,7 +161,7 @@
 
 - type: entity
   name: Kammerer
-  parent: [BaseWeaponShotgun, BaseGunWieldable]
+  parent: [BaseWeaponShotgun, BaseGunWieldable, BaseC2ContrabandUnredeemable] # Frontier: BaseRestrictedContraband<BaseC2ContrabandUnredeemable
   id: WeaponShotgunKammerer
   description: When an old Remington design meets modern materials, this is the result. A civilian grade shotgun, favored by militia forces throughout many worlds. Uses .50 shotgun shells.
   components:
@@ -218,7 +218,7 @@
 
 - type: entity
   name: handmade pistol
-  parent: BaseWeaponShotgun
+  parent: [BaseWeaponShotgun, BaseC2Contraband] # Frontier: BaseMinorContraband<BaseC2Contraband
   id: WeaponShotgunHandmade
   description: Looks unreliable, but legal. Uses .50 shotgun shells.
   components:
@@ -242,7 +242,7 @@
 
 - type: entity
   name: blunderbuss
-  parent: [BaseWeaponShotgun, BaseGunWieldable]
+  parent: [BaseWeaponShotgun, BaseGunWieldable, BaseC3PirateContraband] # Frontier: BaseMinorContraband<BaseC3PirateContraband
   id: WeaponShotgunBlunderbuss
   suffix: Pirate
   description: Deadly at close range, an illegal shotgun often found at the side of a pirate.
@@ -263,7 +263,7 @@
 
 - type: entity
   name: improvised shotgun
-  parent: [BaseWeaponShotgun, BaseGunWieldable]
+  parent: [BaseWeaponShotgun, BaseGunWieldable, BaseC2Contraband] # Frontier: BaseMinorContraband<BaseC2Contraband
   id: WeaponShotgunImprovised
   description: A shitty, but legal, hand-made shotgun that uses .50 shotgun shells. It can only hold one round in the chamber.
   components:

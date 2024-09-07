@@ -22,7 +22,9 @@
   - type: StealTarget
     stealGroup: Stamp
   - type: UseDelay # Frontier
-    delay: 1.0 # Frontier: 1 second between stampings, avoid spam for reapplied stamps
+    delays: # Frontier
+      stamp:
+        length: 1.0 # Frontier: 1 second between stampings, avoid spam for reapplied stamps
 
 - type: entity
   name: alternate rubber stamp
@@ -41,7 +43,7 @@
 
 - type: entity
   name: captain's rubber stamp
-  parent: RubberStampBase
+  parent: RubberStampBase # Frontier: remove BaseCommandContraband
   id: RubberStampCaptain
   suffix: DO NOT MAP
   components:
@@ -53,7 +55,7 @@
     state: stamp-cap
 
 - type: entity
-  name: CentCom rubber stamp
+  name: CentComm rubber stamp
   parent: RubberStampBase
   id: RubberStampCentcom
   suffix: DO NOT MAP
@@ -109,7 +111,7 @@
 
 - type: entity
   name: chief engineer's rubber stamp
-  parent: RubberStampBase
+  parent: RubberStampBase # Frontier: remove BaseCommandContraband
   id: RubberStampCE
   suffix: DO NOT MAP
   components:
@@ -122,7 +124,7 @@
 
 - type: entity
   name: chief medical officer's rubber stamp
-  parent: RubberStampBase
+  parent: RubberStampBase # Frontier: remove BaseCommandContraband
   id: RubberStampCMO
   suffix: DO NOT MAP
   components:
@@ -135,7 +137,7 @@
 
 - type: entity
   name: head of personnel's rubber stamp
-  parent: RubberStampBase
+  parent: RubberStampBase # Frontier: remove BaseCommandContraband
   id: RubberStampHop
   suffix: DO NOT MAP
   components:
@@ -148,7 +150,7 @@
 
 - type: entity
   name: head of security's rubber stamp
-  parent: RubberStampBase
+  parent: [RubberStampBase, BaseC2ContrabandUnredeemable] # Frontier: BaseCommandContraband<BaseC2ContrabandUnredeemable
   id: RubberStampHos
   suffix: DO NOT MAP
   components:
@@ -175,7 +177,7 @@
 
 - type: entity
   name: quartermaster's rubber stamp
-  parent: RubberStampBase
+  parent: RubberStampBase # Frontier: remove BaseCommandContraband
   id: RubberStampQm
   suffix: DO NOT MAP
   components:
@@ -188,7 +190,7 @@
 
 - type: entity
   name: research director's rubber stamp
-  parent: RubberStampBase
+  parent: RubberStampBase # Frontier: remove BaseCommandContraband
   id: RubberStampRd
   suffix: DO NOT MAP
   components:
@@ -213,7 +215,7 @@
 
 - type: entity
   name: syndicate rubber stamp
-  parent: RubberStampBase
+  parent: [RubberStampBase, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   id: RubberStampSyndicate
   suffix: DO NOT MAP
   components:
@@ -226,7 +228,7 @@
 
 - type: entity
   name: warden's rubber stamp
-  parent: RubberStampBase
+  parent: [RubberStampBase, BaseC2ContrabandUnredeemable] # Frontier: BaseRestrictedContraband<BaseC2ContrabandUnredeemable
   id: RubberStampWarden
   suffix: DO NOT MAP
   components:
@@ -265,7 +267,7 @@
 
 - type: entity
   name: detective's rubber stamp
-  parent: RubberStampBase
+  parent: [RubberStampBase, BaseC2ContrabandUnredeemable] # Frontier: BaseRestrictedContraband<BaseC2ContrabandUnredeemable
   id: RubberStampDetective
   suffix: DO NOT MAP
   components:
