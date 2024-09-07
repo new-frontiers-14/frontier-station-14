@@ -92,6 +92,7 @@ public abstract partial class SharedGunSystem
         {
             args.Handled = true;
 
+            // Continuous loading
             _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, fillDelay, new AmmoFillDoAfterEvent(), used: uid, target: args.Target, eventTarget: uid) // Frontier: component.FillDelay<fillDelay
             {
                 BreakOnMove = true,
@@ -99,7 +100,6 @@ public abstract partial class SharedGunSystem
                 NeedHand = true
             });
         }
-
     }
 
     private void OnBallisticAmmoFillDoAfter(EntityUid uid, BallisticAmmoProviderComponent component, AmmoFillDoAfterEvent args)
@@ -316,6 +316,17 @@ public abstract partial class SharedGunSystem
 
         Appearance.SetData(uid, AmmoVisuals.AmmoCount, GetBallisticShots(component), appearance);
         Appearance.SetData(uid, AmmoVisuals.AmmoMax, component.Capacity, appearance);
+    }
+
+    public void SetBallisticUnspawned(Entity<BallisticAmmoProviderComponent> entity, int count)
+    {
+        if (entity.Comp.UnspawnedCount == count)
+            return;
+
+        entity.Comp.UnspawnedCount = count;
+        UpdateBallisticAppearance(entity.Owner, entity.Comp);
+        UpdateAmmoCount(entity.Owner);
+        Dirty(entity);
     }
 }
 

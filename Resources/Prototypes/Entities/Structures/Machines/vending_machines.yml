@@ -96,6 +96,7 @@
   - type: Actions
   - type: SentienceTarget
     flavorKind: station-event-random-sentience-flavor-mechanical
+    weight: 0.025 # fuck you in particular (it now needs 40 vending machines to be as likely as 1 interesting animal)
   - type: StaticPrice
     price: 1000 # Frontier: 100<1000
   - type: Appearance
@@ -202,6 +203,7 @@
   - type: GuideHelp
     guides:
     - Bartender
+    - Drinks
 
 - type: entity
   parent: [BaseStructureDisableScrewing, BaseStructureIndestructible, BaseStructureAccessReaderImmuneToEmag, VendingMachine] # Frontier: add BaseStructureDisableScrewing, BaseStructureIndestructible, BaseStructureAccessReaderImmuneToEmag
@@ -897,6 +899,7 @@
   - type: GuideHelp
     guides:
     - Security
+    # - Antagonists # Frontier: removed guidebook entry
 
 - type: entity
   parent: VendingMachine
@@ -1996,7 +1999,7 @@
   parent: [BaseStructureDisableAnchoring, VendingMachine] # Frontier
   id: VendingMachineCentDrobe
   name: CentDrobe
-  description: A one-of-a-kind vending machine for all your centcom aesthetic needs!
+  description: A one-of-a-kind vending machine for all your centcomm aesthetic needs!
   components:
   - type: VendingMachine
     pack: CentDrobeInventory
@@ -2117,6 +2120,7 @@
   - type: GuideHelp
     guides:
     - Chemicals
+    - Chemist
 
 - type: entity
   parent: VendingMachineChemicals
