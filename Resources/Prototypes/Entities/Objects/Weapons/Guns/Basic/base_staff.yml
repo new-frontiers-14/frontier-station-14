@@ -1,7 +1,7 @@
 ﻿- type: entity
   id: WeaponStaffBase
   abstract: true
-  parent: BaseItem
+  parent: [BaseItem, BaseC3WizardContraband] # Frontier: add BaseC3WizardContraband
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Basic/staves.rsi
@@ -20,5 +20,4 @@
   - type: Tag
     tags:
     - WizardStaff
-  - type: Contraband #frontier
 

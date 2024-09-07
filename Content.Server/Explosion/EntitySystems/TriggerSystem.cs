@@ -3,6 +3,7 @@ using Content.Server.Body.Systems;
 using Content.Server.Chemistry.Containers.EntitySystems;
 using Content.Server.Explosion.Components;
 using Content.Server.Flash;
+using Content.Server.Electrocution;
 using Content.Server.Pinpointer;
 using Content.Shared.Flash.Components;
 using Content.Server.Radio.EntitySystems;
@@ -36,6 +37,7 @@ using Robust.Shared.Player;
 using Content.Shared.Coordinates;
 using Content.Shared.Body.Components; // Frontier - Gib organs
 using Robust.Shared.Utility;
+using Robust.Shared.Timing;
 
 namespace Content.Server.Explosion.EntitySystems
 {
@@ -78,7 +80,8 @@ namespace Content.Server.Explosion.EntitySystems
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
         [Dependency] private readonly SolutionContainerSystem _solutionContainerSystem = default!;
         [Dependency] private readonly InventorySystem _inventory = default!;
-        [Dependency] private readonly StationSystem _station = default!;
+        [Dependency] private readonly ElectrocutionSystem _electrocution = default!;
+        [Dependency] private readonly StationSystem _station = default!; // Frontier: medical insurance
 
         public override void Initialize()
         {
@@ -109,6 +112,7 @@ namespace Content.Server.Explosion.EntitySystems
 
             SubscribeLocalEvent<AnchorOnTriggerComponent, TriggerEvent>(OnAnchorTrigger);
             SubscribeLocalEvent<SoundOnTriggerComponent, TriggerEvent>(OnSoundTrigger);
+            SubscribeLocalEvent<ShockOnTriggerComponent, TriggerEvent>(HandleShockTrigger);
             SubscribeLocalEvent<RattleComponent, TriggerEvent>(HandleRattleTrigger);
         }
 
@@ -123,6 +127,24 @@ namespace Content.Server.Explosion.EntitySystems
             {
                 _audio.PlayPvs(component.Sound, uid); // have the sound follow the entity itself
             }
+        }
+
+        private void HandleShockTrigger(Entity<ShockOnTriggerComponent> shockOnTrigger, ref TriggerEvent args)
+        {
+            if (!_container.TryGetContainingContainer(shockOnTrigger, out var container))
+                return;
+
+            var containerEnt = container.Owner;
+            var curTime = _timing.CurTime;
+
+            if (curTime < shockOnTrigger.Comp.NextTrigger)
+            {
+                // The trigger's on cooldown.
+                return;
+            }
+
+            _electrocution.TryDoElectrocution(containerEnt, null, shockOnTrigger.Comp.Damage, shockOnTrigger.Comp.Duration, true);
+            shockOnTrigger.Comp.NextTrigger = curTime + shockOnTrigger.Comp.Cooldown;
         }
 
         private void OnAnchorTrigger(EntityUid uid, AnchorOnTriggerComponent component, TriggerEvent args)
@@ -197,8 +219,8 @@ namespace Content.Server.Explosion.EntitySystems
             {
                 if (TryComp<BodyComponent>(ent, out var body))
                 {
-                    var organs = _body.GetBodyOrganComponents<TransformComponent>(ent, body);
-                    foreach (var (_, organ) in organs)
+                    var organs = _body.GetBodyOrganEntityComps<TransformComponent>((ent, body));
+                    foreach (var organ in organs)
                     {
                         Del(organ.Owner);
                     }
@@ -211,6 +233,7 @@ namespace Content.Server.Explosion.EntitySystems
         }
         // End Frontier
 
+        // Frontier: custom function implementation
         private void HandleRattleTrigger(EntityUid uid, RattleComponent component, TriggerEvent args)
         {
             if (!TryComp<SubdermalImplantComponent>(uid, out var implanted))
@@ -226,14 +249,14 @@ namespace Content.Server.Explosion.EntitySystems
             var y = (int) pos.Y;
             var posText = $"({x}, {y})";
 
-            // Gets station location of the implant
+            // Frontier: Gets station location of the implant
             var station = _station.GetOwningStation(uid);
             var stationText = station is null ? null : $"{Name(station.Value)} ";
 
             if (stationText == null)
                 stationText = "";
 
-            // Gets specie of the implant user
+            // Frontier: Gets species of the implant user
             var speciesText = $"";
             if (TryComp<HumanoidAppearanceComponent>(implanted.ImplantedEntity, out var species))
                 speciesText = $" ({species!.Species})";
@@ -255,6 +278,7 @@ namespace Content.Server.Explosion.EntitySystems
 
             args.Handled = true;
         }
+        // End Frontier
 
         private void OnTriggerCollide(EntityUid uid, TriggerOnCollideComponent component, ref StartCollideEvent args)
         {
