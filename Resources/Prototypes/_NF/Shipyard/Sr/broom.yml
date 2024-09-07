@@ -1,0 +1,39 @@
+# Author Info
+# GitHub: erhardsteinhauer
+# Discord: erhardsteinhauer
+
+# Maintainer Info
+# GitHub: erhardsteinhauer
+# Discord: erhardsteinhauer
+
+# Shuttle Notes:
+# 
+- type: vessel
+  id: Broom
+  name: LVHI Broom
+  description: A cramped yet reliable shuttle for providing janitorial services.
+  price: 11000 # ~9650$ on mapinit + ~1450$ from 15% markup
+  category: Micro
+  group: Sr
+  access: Janitor
+  shuttlePath: /Maps/_NF/Shuttles/Sr/broom.yml
+  guidebookPage: Null
+  class:
+  - Civilian
+
+- type: gameMap
+  id: Broom
+  mapName: 'Broom'
+  mapPath: /Maps/_NF/Shuttles/Sr/broom.yml
+  minPlayers: 0
+  stations:
+    Broom:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Broom {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs: {}
