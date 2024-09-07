@@ -31,8 +31,8 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 using Content.Server.Spawners.Components;
-using Content.Shared.Bank.Components;
-using Content.Server.Bank; // DeltaV
+using Content.Shared.Bank.Components; // DeltaV
+using Content.Server.Bank; // Frontier
 using Content.Server.Preferences.Managers; // Frontier
 
 namespace Content.Server.Station.Systems;
