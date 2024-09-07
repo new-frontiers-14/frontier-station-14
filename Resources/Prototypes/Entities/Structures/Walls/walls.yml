@@ -566,6 +566,10 @@
     price: 50 # Frontier 150<50
   - type: RadiationBlocker
     resistance: 5
+  - type: RCDDeconstructable
+    cost: 2
+    delay: 2
+    fx: EffectRCDDeconstruct2
 
 - type: entity
   parent: WallReinforced
@@ -584,6 +588,10 @@
   - type: IconSmooth
     key: walls
     base: reinf_over
+  - type: RCDDeconstructable
+    cost: 2
+    delay: 2
+    fx: EffectRCDDeconstruct2
 
 - type: entity
   parent: WallShuttleDiagonal
@@ -606,6 +614,10 @@
   - type: Icon
     sprite: _NF/Structures/Walls/reinforced_diagonal.rsi # Frontier: _NF folder
     state: state0
+  - type: RCDDeconstructable
+    cost: 2
+    delay: 2
+    fx: EffectRCDDeconstruct2
 
 # Riveting
 - type: entity
@@ -799,6 +811,10 @@
   - type: Construction
     graph: Girder
     node: diagonalshuttleWall
+  - type: RCDDeconstructable
+    cost: 2
+    delay: 2
+    fx: EffectRCDDeconstruct2
 
 - type: entity
   parent: WallReinforced
@@ -829,9 +845,13 @@
           3: { state: shuttle_construct-3, visible: true}
           4: { state: shuttle_construct-4, visible: true}
           5: { state: shuttle_construct-5, visible: true}
+  - type: RCDDeconstructable
+    cost: 2
+    delay: 2
+    fx: EffectRCDDeconstruct2
 #  - type: Reflect # Frontier
 #    reflectProb: 1 # Frontier
-
+   
 - type: entity
   parent: WallSolid
   id: WallShuttleInterior
@@ -848,6 +868,10 @@
   - type: IconSmooth
     key: walls
     base: state
+  - type: RCDDeconstructable
+    cost: 2
+    delay: 2
+    fx: EffectRCDDeconstruct2
 #  - type: Reflect # Frontier
 #    reflectProb: 1 # Frontier
 
@@ -896,7 +920,7 @@
   - type: IconSmooth
     key: walls
     base: solid
-
+  
 - type: entity
   parent: WallShuttleDiagonal
   id: WallSolidDiagonal
@@ -918,6 +942,10 @@
   - type: Icon
     sprite: Structures/Walls/solid_diagonal.rsi
     state: state0
+  - type: RCDDeconstructable
+    cost: 2
+    delay: 2
+    fx: EffectRCDDeconstruct2
 
 - type: entity
   parent: WallSolid
@@ -936,6 +964,10 @@
   - type: IconSmooth
     key: walls
     base: solid
+  - type: RCDDeconstructable
+    cost: 2
+    delay: 2
+    fx: EffectRCDDeconstruct2
 
 - type: entity
   parent: BaseWall
