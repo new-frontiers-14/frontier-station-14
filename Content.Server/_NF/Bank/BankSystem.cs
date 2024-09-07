@@ -5,6 +5,7 @@ using Content.Shared.Bank;
 using Content.Shared.Bank.Components;
 using Content.Shared.Preferences;
 using Robust.Shared.Player;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Content.Server.Bank;
 
@@ -28,7 +29,9 @@ public sealed partial class BankSystem : SharedBankSystem
     }
 
     /// <summary>
-    /// Attempts to remove money from a character's bank account. This should always be used instead of attempting to modify the bankaccountcomponent directly
+    /// Attempts to remove money from a character's bank account.
+    /// This should always be used instead of attempting to modify the BankAccountComponent directly.
+    /// When successful, the entity's BankAccountComponent will be updated with their current balance.
     /// </summary>
     /// <param name="mobUid">The UID that the bank account is attached to, typically the player controlled mob</param>
     /// <param name="amount">The integer amount of which to decrease the bank account</param>
@@ -37,7 +40,7 @@ public sealed partial class BankSystem : SharedBankSystem
     {
         if (amount <= 0)
         {
-            _log.Info($"{amount} is invalid");
+            _log.Info($"TryBankWithdraw: {amount} is invalid");
             return false;
         }
 
@@ -47,8 +50,13 @@ public sealed partial class BankSystem : SharedBankSystem
             return false;
         }
 
-        if (!_playerManager.TryGetSessionByEntity(mobUid, out var session) ||
-            !_prefsManager.TryGetCachedPreferences(session.UserId, out var prefs))
+        if (!_playerManager.TryGetSessionByEntity(mobUid, out var session))
+        {
+            _log.Info($"{mobUid} has no attached session");
+            return false;
+        }
+
+        if (!_prefsManager.TryGetCachedPreferences(session.UserId, out var prefs))
         {
             _log.Info($"{mobUid} has no cached prefs");
             return false;
@@ -60,24 +68,14 @@ public sealed partial class BankSystem : SharedBankSystem
             return false;
         }
 
-        int balance = profile.BankBalance;
-
-        if (balance < amount)
+        if (TryBankWithdraw(session, prefs, profile, amount, out var newBalance))
         {
-            _log.Info($"{mobUid} has insufficient funds");
-            return false;
+            bank.Balance = newBalance.Value;
+            Dirty(mobUid, bank);
+            _log.Info($"{mobUid} withdrew {amount}");
+            return true;
         }
-
-        balance -= amount;
-
-        var newProfile = profile.WithBankBalance(balance);
-        var index = prefs.IndexOfCharacter(prefs.SelectedCharacter);
-        _prefsManager.SetProfile(session.UserId, index, newProfile);
-
-        bank.Balance = balance;
-        Dirty(mobUid, bank);
-        _log.Info($"{mobUid} withdrew {amount}");
-        return true;
+        return false;
     }
 
     /// <summary>
@@ -90,7 +88,7 @@ public sealed partial class BankSystem : SharedBankSystem
     {
         if (amount <= 0)
         {
-            _log.Info($"{amount} is invalid");
+            _log.Info($"TryBankDeposit: {amount} is invalid");
             return false;
         }
 
@@ -100,8 +98,13 @@ public sealed partial class BankSystem : SharedBankSystem
             return false;
         }
 
-        if (!_playerManager.TryGetSessionByEntity(mobUid, out var session) ||
-            !_prefsManager.TryGetCachedPreferences(session.UserId, out var prefs))
+        if (!_playerManager.TryGetSessionByEntity(mobUid, out var session))
+        {
+            _log.Info($"{mobUid} has no attached session");
+            return false;
+        }
+
+        if (!_prefsManager.TryGetCachedPreferences(session.UserId, out var prefs))
         {
             _log.Info($"{mobUid} has no cached prefs");
             return false;
@@ -113,15 +116,87 @@ public sealed partial class BankSystem : SharedBankSystem
             return false;
         }
 
-        int balance = profile.BankBalance + amount;
+        if (TryBankDeposit(session, prefs, profile, amount, out var newBalance))
+        {
+            bank.Balance = newBalance.Value;
+            Dirty(mobUid, bank);
+            _log.Info($"{mobUid} deposited {amount}");
+            return true;
+        }
+
+        return false;
+    }
+
+    /// <summary>
+    /// Attempts to remove money from a character's bank account without a backing entity.
+    /// This should only be used in cases where a character doesn't have a backing entity.
+    /// </summary>
+    /// <param name="session">The session of the player making the withdrawal.</param>
+    /// <param name="prefs">The preferences storing the character whose bank will be changed.</param>
+    /// <param name="profile">The profile of the character whose account is being withdrawn.</param>
+    /// <param name="amount">The number of spesos to be withdrawn.</param>
+    /// <param name="newBalance">The new value of the bank account.</param>
+    /// <returns>true if the transaction was successful, false if it was not.  When successful, newBalance contains the character's new balance.</returns>
+    public bool TryBankWithdraw(ICommonSession session, PlayerPreferences prefs, HumanoidCharacterProfile profile, int amount, [NotNullWhen(true)] out int? newBalance)
+    {
+        newBalance = null; // Default return
+        if (amount <= 0)
+        {
+            _log.Info($"TryBankWithdraw: {amount} is invalid");
+            return false;
+        }
+
+        int balance = profile.BankBalance;
+
+        if (balance < amount)
+        {
+            _log.Info($"{session.UserId} tried to withdraw {amount}, but has insufficient funds ({balance})");
+            return false;
+        }
+
+        balance -= amount;
 
         var newProfile = profile.WithBankBalance(balance);
-        var index = prefs.IndexOfCharacter(prefs.SelectedCharacter);
+        var index = prefs.IndexOfCharacter(profile);
+        if (index == -1)
+        {
+            _log.Info($"{session.UserId} tried to adjust the balance of {profile.Name}, but they were not in the user's character set.");
+            return false;
+        }
         _prefsManager.SetProfile(session.UserId, index, newProfile);
+        newBalance = balance;
+        return true;
+    }
 
-        bank.Balance = balance;
-        Dirty(mobUid, bank);
-        _log.Info($"{mobUid} deposited {amount}");
+    /// <summary>
+    /// Attempts to add money to a character's bank account.
+    /// This should only be used in cases where a character doesn't have a backing entity.
+    /// </summary>
+    /// <param name="session">The session of the player making the deposit.</param>
+    /// <param name="prefs">The preferences storing the character whose bank will be changed.</param>
+    /// <param name="profile">The profile of the character whose account is being withdrawn.</param>
+    /// <param name="amount">The number of spesos to be deposited.</param>
+    /// <param name="newBalance">The new value of the bank account.</param>
+    /// <returns>true if the transaction was successful, false if it was not.  When successful, newBalance contains the character's new balance.</returns>
+    public bool TryBankDeposit(ICommonSession session, PlayerPreferences prefs, HumanoidCharacterProfile profile, int amount, [NotNullWhen(true)] out int? newBalance)
+    {
+        newBalance = null; // Default return
+        if (amount <= 0)
+        {
+            _log.Info($"TryBankDeposit: {amount} is invalid");
+            return false;
+        }
+
+        newBalance = profile.BankBalance + amount;
+
+        var newProfile = profile.WithBankBalance(newBalance.Value);
+        var index = prefs.IndexOfCharacter(profile);
+        if (index == -1)
+        {
+            _log.Info($"{session.UserId} tried to adjust the balance of {profile.Name}, but they were not in the user's character set.");
+            return false;
+        }
+        _prefsManager.SetProfile(session.UserId, index, newProfile);
         return true;
     }
 
