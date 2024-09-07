@@ -2,15 +2,11 @@
   id: Pellet410Shotgun
   name: pellet (.410)
   noSpawn: true
-  parent: BaseBullet
+  parent: PelletShotgun
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
     state: buckshot
-  - type: Projectile
-    damage:
-      types:
-        Piercing: 10
 
 - type: entity
   id: Pellet410ShotgunSpread
@@ -20,4 +16,4 @@
   - type: ProjectileSpread
     proto: Pellet410Shotgun
     count: 3
-    spread: 5
+    spread: 2
