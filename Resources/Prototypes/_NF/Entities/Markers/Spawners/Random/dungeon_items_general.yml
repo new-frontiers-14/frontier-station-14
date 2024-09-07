@@ -53,7 +53,7 @@
 - type: entity
   name: random pen
   id: SpawnDungeonLootBureaucracyPen
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: MarkerBasePlaceFree
   suffix: Dungeon
   components:
@@ -412,7 +412,7 @@
         color: red
   - type: RandomSpawner
     prototypes:
-    - TilePrinterNF
+    - CutterMachine
     - SalvageTechfabNF
     - ScienceTechFab
     - ServiceTechFab
@@ -579,7 +579,7 @@
   id: SpawnDungeonMachineFrame
   parent: MarkerBase
   suffix: Dungeon
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:
