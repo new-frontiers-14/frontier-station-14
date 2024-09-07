@@ -202,7 +202,6 @@
   id: PirateNFIDCard
   name: pirate ID card
   description: Garr, be this wood?
-  noSpawn: false # true in parent
   components:
   - type: PresetIdCard
     job: Pirate
@@ -241,16 +240,35 @@
     - state: pirate
     - state: idpiratefirstmate
 
-# Adopted from space-wizards #26265 (Thank you, PolterTzi)
 - type: entity
-  parent: IDCardStandard
+  parent: PunPunIDCard
   id: YipYipIDCard
   name: yip yip ID card
   components:
-    - type: Sprite
-      layers:
-        - state: default
-        - state: idbartender
-    - type: PresetIdCard
-      job: Bartender
-      name: Yip Yip
+  - type: PresetIdCard
+    name: Yip Yip
+
+# Cats
+- type: entity
+  parent: CourierIDCard
+  id: ClippyIDCard
+  name: clippy ID card
+  components:
+  - type: PresetIdCard
+    name: Clippy
+
+- type: entity
+  parent: PirateFirstMateNFIDCard
+  id: ClarpyIDCard
+  name: clarpy ID card
+  components:
+  - type: PresetIdCard
+    name: Clarpy
+
+- type: entity
+  parent: DeputyIDCard
+  id: CappyIDCard
+  name: cappy ID card
+  components:
+  - type: PresetIdCard
+    name: Cappy

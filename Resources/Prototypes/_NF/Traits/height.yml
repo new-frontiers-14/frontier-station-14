@@ -1,0 +1,30 @@
+# This implementation not good, replace later for slider
+- type: trait
+  id: Tall
+  name: trait-tall-name
+  category: Height
+  cost: 1
+  whitelist:
+    components:
+      - TallWhitelist
+  blacklist:
+    components:
+      - SizeAttribute
+  components:
+  - type: SizeAttribute
+    tall: true
+
+- type: trait
+  id: Short
+  name: trait-short-name
+  category: Height
+  cost: 1
+  whitelist:
+    components:
+      - ShortWhitelist
+  blacklist:
+    components:
+      - SizeAttribute
+  components:
+  - type: SizeAttribute
+    short: true

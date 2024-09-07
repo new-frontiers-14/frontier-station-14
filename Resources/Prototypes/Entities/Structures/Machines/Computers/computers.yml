@@ -22,7 +22,7 @@
   id: ComputerEmergencyShuttle
   name: emergency shuttle console
   description: Handles authorization to early launch the shuttle.
-  noSpawn: true # Frontier
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: AccessReader
     access:
@@ -89,7 +89,7 @@
   id: ComputerShuttleEmpty # Frontier - ComputerShuttle<ComputerShuttleEmpty
   name: shuttle console
   description: Used to pilot a shuttle.
-  noSpawn: true # Frontier
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: Sprite
     layers:
@@ -109,7 +109,7 @@
   id: ComputerShuttleSyndie
   name: syndicate shuttle console
   description: Used to pilot a syndicate shuttle.
-  noSpawn: true # Frontier
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: Sprite
     layers:
@@ -140,7 +140,7 @@
   id: ComputerShuttleCargo
   name: cargo shuttle console
   description: Used to pilot the cargo shuttle.
-  noSpawn: true # Frontier
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: Sprite
     layers:
@@ -171,7 +171,7 @@
   id: ComputerShuttleSalvage
   name: salvage shuttle console
   description: Used to pilot the salvage shuttle.
-  noSpawn: true # Frontier
+  categories: [ HideSpawnMenu ] # Frontier
   components:
     - type: Sprite
       layers:
@@ -722,7 +722,7 @@
   parent: BaseComputer
   name: cargo shuttle computer
   description: Used to order the shuttle.
-  noSpawn: true # Frontier
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: Sprite
     layers:
@@ -770,6 +770,7 @@
     - map: ["computerLayerKeys"]
       state: tech_key
   - type: CargoOrderConsole
+  - type: BankClient
 #  - type: ActiveRadio # Frontier
 #    channels: # Frontier
 #    - Supply # Frontier
@@ -834,6 +835,7 @@
   # - type: GuideHelp # Frontier
   #   guides: # Frontier
   #   - CargoBounties # Frontier
+  #   - Cargo # Frontier
 
 - type: entity
   parent: BaseComputer
@@ -1005,7 +1007,7 @@
   id: ComputerPalletConsole
   parent: BaseComputer
   name: cargo sale computer
-  description: Used to sell goods loaded onto cargo pallets
+  description: Used to sell goods loaded onto cargo pallets.
   components:
   - type: Sprite
     layers:
