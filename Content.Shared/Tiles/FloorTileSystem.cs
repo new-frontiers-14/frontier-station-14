@@ -186,7 +186,7 @@ public sealed class FloorTileSystem : EntitySystem
         var ev = new FloorTileAttemptEvent();
         RaiseLocalEvent(gridUid, ref ev);
 
-        if ((HasComp<ProtectedGridComponent>(gridUid) || ev.Cancelled) && currentTileDefinition?.ID == "Lattice")
+        if ((TryComp<ProtectedGridComponent>(gridUid, out var prot) && prot.PreventFloorPlacement || ev.Cancelled) && currentTileDefinition?.ID == "Lattice") // Frontier: HasComp<TryComp, add PreventFloorPlaceement check
         {
             reason = Loc.GetString("invalid-floor-placement");
             return false;
