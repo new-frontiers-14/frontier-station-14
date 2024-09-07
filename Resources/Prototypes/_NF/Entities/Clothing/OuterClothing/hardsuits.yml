@@ -124,7 +124,7 @@
   - ContrabandClothing
   id: ClothingOuterHardsuitSyndieEliteUnremoveable
   name: syndicate hardsuit
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Unremoveable
   - type: Sprite
@@ -138,7 +138,7 @@
   - ContrabandClothing
   id: ClothingOuterHardsuitSyndieBloodRedUnremoveable
   name: syndicate hardsuit
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Unremoveable
   - type: Sprite
@@ -227,7 +227,7 @@
     clothingPrototype: ClothingHeadHelmetHardsuitNfsdBrigmedic
 
 - type: entity
-  parent: ClothingOuterHardsuitJuggernaut # Jugger Suit
+  parent: [BaseC2ContrabandUnredeemable, ClothingOuterHardsuitJuggernaut] # Jugger Suit
   id: ClothingOuterHardsuitNfsdExperimental
   name: experimental nfsd hardsuit
   description: An experimental nfsd hardsuit, never before seen!

@@ -65,7 +65,7 @@
 - type: entity
   name: L6 SAW
   id: WeaponLightMachineGunL6
-  parent: BaseWeaponLightMachineGun
+  parent: [BaseWeaponLightMachineGun, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   description: A rather traditionally made LMG with a pleasantly lacquered wooden pistol grip. Uses .30 rifle ammo. An illegal firearm often used by Syndicate agents.
   components:
   - type: Sprite
@@ -80,12 +80,11 @@
     steps: 4
     zeroVisible: true
   - type: Appearance
-  - type: Contraband #frontier
 
 - type: entity
   name: L6C ROW
   id: WeaponLightMachineGunL6C
-  parent: BaseItem
+  parent: [BaseItem, BaseC3SyndicateContraband] # Frontier: added BaseC3SyndicateContraband
   description: A L6 SAW for use by cyborgs. Creates .30 rifle ammo on the fly from an internal ammo fabricator, which slowly self-charges. An illegal firearm often used by Syndicate agents.
   components:
     - type: Gun
@@ -123,4 +122,3 @@
       autoRecharge: true
       autoRechargeRate: 25
     - type: AmmoCounter
-    - type: Contraband #frontier
