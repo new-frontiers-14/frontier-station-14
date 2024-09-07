@@ -1,24 +1,11 @@
 - type: entity
   name: shipyard console
-  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseStructureComputer]
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseComputer]
   id: ComputerShipyardBase
   description: Used to purchase and sell shuttles
-  placement:
-    mode: SnapgridCenter
   abstract: true
   components:
-  - type: MeleeSound
-    soundGroups:
-      Brute:
-        collection: MetalGlassBreak
-  - type: Computer
-  - type: ApcPowerReceiver
-    powerLoad: 200
-  - type: ExtensionCableReceiver
-  - type: ActivatableUIRequiresPower
   - type: Sprite
-    netsync: false
-    noRot: true
     sprite: _NF/Structures/Machines/computers.rsi
     layers:
     - map: ["computerLayerBody"]
@@ -29,29 +16,6 @@
       state: shipyard
     - map: ["computerLayerKeys"]
       state: telesci_key
-  - type: Appearance
-  - type: GenericVisualizer
-    visuals:
-      enum.ComputerVisuals.Powered:
-        computerLayerScreen:
-          True: { visible: true, shader: unshaded }
-          False: { visible: false }
-        computerLayerKeys:
-          True: { visible: true, shader: unshaded }
-          False: { visible: true, shader: shaded }
-  - type: LitOnPowered
-  - type: PointLight
-    radius: 1.5
-    energy: 1.6
-    color: "#b89f25"
-    enabled: false
-    mask: /Textures/Effects/LightMasks/cone.png
-    autoRot: true
-    offset: "0, 0.4" # shine from the top, not bottom of the computer
-    castShadows: false
-  - type: EmitSoundOnUIOpen
-    sound:
-      collection: Keyboard
   - type: ShipyardConsole
     targetIdSlot:
       name: id-card-console-target-id
@@ -62,6 +26,7 @@
       whitelist:
         components:
         - IdCard
+        - ShipyardVoucher
     newAccessLevels: [Captain]
   - type: ActivatableUI
     singleUser: true
@@ -77,7 +42,6 @@
 
 # Hardcoded consoles
 - type: entity
-  name: shipyard console
   parent: ComputerShipyardBase
   id: ComputerShipyard
   components:
@@ -241,3 +205,27 @@
       state: shipyard_blackmarket
     - map: ["computerLayerKeys"]
       state: blackmarket_key
+
+- type: entity
+  id: ComputerShipyardSr
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerShipyard]
+  name: outpost staff shipyard console
+  description: Used to buy vessels exclusive to the Frontier Outpost personnel.
+  components:
+  - type: ActivatableUI
+    key: enum.ShipyardConsoleUiKey.Sr
+  - type: UserInterface
+    interfaces:
+      enum.ShipyardConsoleUiKey.Sr:
+        type: ShipyardConsoleBoundUserInterface
+  - type: Sprite
+    sprite: _NF/Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer_sr
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: shipyard_sr
+    - map: ["computerLayerKeys"]
+      state: telesci_key

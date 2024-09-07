@@ -1,6 +1,6 @@
 - type: entity
   id: ThrusterSecurity
-  parent: [ BaseStructureUnanchorable, Thruster ]
+  parent: [ BaseStructureDisableAnchoring, Thruster ]
   name: thruster
   suffix: Security
   components:
@@ -43,7 +43,6 @@
   components:
   - type: Sprite
     sprite: _NF/Structures/Shuttles/gyroscope.rsi
-    snapCardinals: true
   - type: Machine
     board: GyroscopeSecurityMachineCircuitboard
 
@@ -55,7 +54,6 @@
   components:
   - type: Sprite
     sprite: _NF/Structures/Shuttles/gyroscope.rsi
-    snapCardinals: true
   - type: Machine
     board: GyroscopeSecurityMachineCircuitboard
 
@@ -66,8 +64,6 @@
   suffix: Security
   components:
   - type: Thruster
-    thrusterType: Angular
-    requireSpace: false
     baseThrust: 250
     thrust: 250
   - type: ApcPowerReceiver
@@ -75,7 +71,6 @@
   - type: Sprite
     scale: 0.8, 0.8
     sprite: _NF/Structures/Shuttles/gyroscope.rsi
-    snapCardinals: true
   - type: StaticPrice
     price: 100
   - type: Machine

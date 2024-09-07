@@ -18,7 +18,7 @@
     Drink:
       effects:
       - !type:SatiateThirst
-        factor: 1.5
+        factor: 1.0
         conditions:
           - !type:OrganType
             type: Human
@@ -27,7 +27,7 @@
       effects:
         - !type:AdjustReagent
           reagent: UncookedAnimalProteins
-          amount: 0.5
+          amount: 0.01 # Frontier - 0.1<0.01
     Medicine:
       effects:
       - !type:HealthChange
@@ -71,12 +71,12 @@
   viscosity: 0.25
   tileReactions:
     - !type:SpillTileReaction
-  metabolisms:
-    Food:
-      # Delicious!
-      effects:
-      - !type:SatiateHunger
-        factor: 1.5
+#  metabolisms: # Frontier
+#    Food: # Frontier
+#      # Delicious! # Frontier
+#      effects: # Frontier
+#      - !type:SatiateHunger # Frontier
+#        factor: 1 # Frontier
   footstepSound:
     collection: FootstepBlood
     params:
@@ -95,14 +95,14 @@
   viscosity: 0.10
   tileReactions:
     - !type:SpillTileReaction
-  metabolisms:
-    Food:
-      # Sweet!
-      effects:
-      - !type:SatiateHunger
-        factor: 1
-      - !type:SatiateThirst
-        factor: 1
+#  metabolisms: # Frontier
+#    Food: # Frontier
+#      # Sweet! # Frontier
+#      effects: # Frontier
+#      - !type:SatiateHunger # Frontier
+#        factor: 1 # Frontier
+#      - !type:SatiateThirst # Frontier
+#        factor: 1 # Frontier
   footstepSound:
     collection: FootstepBlood
     params:

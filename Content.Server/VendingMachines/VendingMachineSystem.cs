@@ -4,13 +4,12 @@ using System.Numerics;
 using Content.Server.Advertise;
 using Content.Server.Advertise.Components;
 using Content.Server.Cargo.Systems;
-using Content.Server.Emp;
+//using Content.Server.Emp; // Frontier: Upstream - #28984
 using Content.Server.Cargo.Components;
 using Content.Server.Popups;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Station.Systems;
-using Content.Server.UserInterface;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
 using Content.Shared.Actions;
@@ -31,10 +30,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
-using Content.Shared.Tools.Components;
-using Content.Shared.Tools.Systems;
 using Robust.Shared.Audio.Systems;
-using Robust.Shared.Utility;
 using Content.Server.Administration.Logs; // Frontier
 using Content.Shared.Database; // Frontier
 
@@ -43,26 +39,21 @@ namespace Content.Server.VendingMachines
     public sealed class VendingMachineSystem : SharedVendingMachineSystem
     {
         [Dependency] private readonly IRobustRandom _random = default!;
-        [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
         [Dependency] private readonly AccessReaderSystem _accessReader = default!;
         [Dependency] private readonly AppearanceSystem _appearanceSystem = default!;
-        [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
-        [Dependency] private readonly BankSystem _bankSystem = default!;
-        [Dependency] private readonly CargoSystem _cargo = default!;
-        [Dependency] private readonly PopupSystem _popupSystem = default!;
         [Dependency] private readonly SharedActionsSystem _action = default!;
-        [Dependency] private readonly StationSystem _station = default!;
         [Dependency] private readonly PricingSystem _pricing = default!;
         [Dependency] private readonly ThrowingSystem _throwingSystem = default!;
         [Dependency] private readonly UserInterfaceSystem _userInterfaceSystem = default!;
         [Dependency] private readonly IGameTiming _timing = default!;
         [Dependency] private readonly SpeakOnUIClosedSystem _speakOnUIClosed = default!;
 
-        [Dependency] private readonly DamageableSystem _damageableSystem = default!;
-
+        [Dependency] private readonly IPrototypeManager _prototypeManager = default!; // Frontier
+        [Dependency] private readonly SharedAudioSystem _audioSystem = default!; // Frontier
+        [Dependency] private readonly BankSystem _bankSystem = default!; // Frontier
+        [Dependency] private readonly CargoSystem _cargo = default!; // Frontier
+        [Dependency] private readonly PopupSystem _popupSystem = default!; // Frontier
         [Dependency] private readonly IAdminLogManager _adminLogger = default!; // Frontier
-
-        private ISawmill _sawmill = default!;
 
         private const float WallVendEjectDistanceFromWall = 1f;
 
@@ -74,10 +65,9 @@ namespace Content.Server.VendingMachines
             SubscribeLocalEvent<VendingMachineComponent, PowerChangedEvent>(OnPowerChanged);
             SubscribeLocalEvent<VendingMachineComponent, BreakageEventArgs>(OnBreak);
             SubscribeLocalEvent<VendingMachineComponent, GotEmaggedEvent>(OnEmagged);
-            SubscribeLocalEvent<VendingMachineComponent, GotUnEmaggedEvent>(OnUnEmagged); // Frontier - Added DEMAG
             SubscribeLocalEvent<VendingMachineComponent, DamageChangedEvent>(OnDamageChanged);
             SubscribeLocalEvent<VendingMachineComponent, PriceCalculationEvent>(OnVendingPrice);
-            SubscribeLocalEvent<VendingMachineComponent, EmpPulseEvent>(OnEmpPulse);
+            //SubscribeLocalEvent<VendingMachineComponent, EmpPulseEvent>(OnEmpPulse); // Frontier: Upstream - #28984
 
             SubscribeLocalEvent<VendingMachineComponent, ActivatableUIOpenAttemptEvent>(OnActivatableUIOpenAttempt);
 
@@ -93,13 +83,23 @@ namespace Content.Server.VendingMachines
 
             SubscribeLocalEvent<VendingMachineRestockComponent, PriceCalculationEvent>(OnPriceCalculation);
 
-            SubscribeLocalEvent<VendingMachineComponent, WeldableChangedEvent>(OnWeldChanged); // Frontier - Allow repair
+            SubscribeLocalEvent<VendingMachineComponent, GotUnEmaggedEvent>(OnUnEmagged); // Frontier - Added DEMAG
         }
 
         private void OnComponentMapInit(EntityUid uid, VendingMachineComponent component, MapInitEvent args)
         {
             _action.AddAction(uid, ref component.ActionEntity, component.Action, uid);
             Dirty(uid, component);
+        }
+
+        protected override void OnComponentInit(EntityUid uid, VendingMachineComponent component, ComponentInit args)
+        {
+            base.OnComponentInit(uid, component, args);
+
+            if (HasComp<ApcPowerReceiverComponent>(uid))
+            {
+                TryUpdateVisualState(uid, component);
+            }
         }
 
         private void OnVendingPrice(EntityUid uid, VendingMachineComponent component, ref PriceCalculationEvent args)
@@ -114,20 +114,10 @@ namespace Content.Server.VendingMachines
                     continue;
                 }
 
-                price += entry.Amount; //* _pricing.GetEstimatedPrice(proto); Removed this to make machine price without the items worth.
+                price += entry.Amount; //* _pricing.GetEstimatedPrice(proto); Frontier - This is used to price the worth of a vending machine with the inventory it has.
             }
 
-            //args.Price += price; Removed this to also make the machine price without the amount of items worth.
-        }
-
-        protected override void OnComponentInit(EntityUid uid, VendingMachineComponent component, ComponentInit args)
-        {
-            base.OnComponentInit(uid, component, args);
-
-            if (HasComp<ApcPowerReceiverComponent>(uid))
-            {
-                TryUpdateVisualState(uid, component);
-            }
+            //args.Price += price; Frontier - This is used to price the worth of a vending machine with the inventory it has.
         }
 
         private void OnActivatableUIOpenAttempt(EntityUid uid, VendingMachineComponent component, ActivatableUIOpenAttemptEvent args)
@@ -179,22 +169,6 @@ namespace Content.Server.VendingMachines
         {
             vendComponent.Broken = true;
             TryUpdateVisualState(uid, vendComponent);
-            EnsureComp<WeldableComponent>(uid);
-        }
-
-        private void OnWeldChanged(EntityUid uid, VendingMachineComponent component, WeldableChangedEvent args)
-        {
-            if (!EntityManager.TryGetComponent(uid, out DamageableComponent? damageable) || damageable.TotalDamage == 0)
-                return;
-
-            if (component.Broken)
-            {
-                component.Broken = false;
-                TryUpdateVisualState(uid, component);
-                EntityManager.RemoveComponent<WeldableComponent>(uid);
-                // Repair all damage
-                _damageableSystem.SetAllDamage(uid, damageable, 0);
-            }
         }
 
         private void OnEmagged(EntityUid uid, VendingMachineComponent component, ref GotEmaggedEvent args)
@@ -357,7 +331,13 @@ namespace Content.Server.VendingMachines
             if (TryComp(uid, out SpeakOnUIClosedComponent? speakComponent))
                 _speakOnUIClosed.TrySetFlag((uid, speakComponent));
 
-            entry.Amount--;
+            // New Frontiers - Unlimited vending - support items with unlimited vending stock.
+            // This code is licensed under AGPLv3. See AGPLv3.txt
+
+            // Infinite supplies must stay infinite.
+            if (entry.Amount != uint.MaxValue)
+                entry.Amount--;
+            // End of modified code
             UpdateVendingMachineInterfaceState(uid, vendComponent, balance);
             TryUpdateVisualState(uid, vendComponent);
             Audio.PlayPvs(vendComponent.SoundVend, uid);
@@ -394,11 +374,11 @@ namespace Content.Server.VendingMachines
 
             var totalPrice = (int) price;
 
-            // This block exists to allow the VendPrice flag to set a vending machine item price.
+            // Frontier: if any price has a vendor price, explicitly use its value - higher OR lower, over others.
             var priceVend = _pricing.GetEstimatedVendPrice(proto);
-            if (priceVend != null && totalPrice <= (int) priceVend)
+            if (priceVend > 0.0) // if vending price exists, overwrite it.
                 totalPrice = (int) priceVend;
-            // This block exists to allow the VendPrice flag to set a vending machine item price.
+            // End Frontier
 
             if (IsAuthorized(uid, sender, component))
             {
@@ -640,13 +620,14 @@ namespace Content.Server.VendingMachines
 
         private void OnPriceCalculation(EntityUid uid, VendingMachineRestockComponent component, ref PriceCalculationEvent args)
         {
-            List<double> priceSets = new();
+            args.Price = 0; // This area of the code make it so the cargoblacklist gets ignored, this change was to resolve it.
+            return;
 
+            List<double> priceSets = new();
             // Find the most expensive inventory and use that as the highest price.
             foreach (var vendingInventory in component.CanRestock)
             {
                 double total = 0;
-
                 if (PrototypeManager.TryIndex(vendingInventory, out VendingMachineInventoryPrototype? inventoryPrototype))
                 {
                     foreach (var (item, amount) in inventoryPrototype.StartingInventory)
@@ -655,23 +636,20 @@ namespace Content.Server.VendingMachines
                             total += _pricing.GetEstimatedPrice(entity) * amount;
                     }
                 }
-
                 priceSets.Add(total);
             }
 
-            // This area of the code make it so the cargoblacklist gets ignored, this change was to resolve it.
-            //args.Price += priceSets.Max();
-            args.Price = 0;
+            args.Price += priceSets.Max();
         }
 
-        private void OnEmpPulse(EntityUid uid, VendingMachineComponent component, ref EmpPulseEvent args)
-        {
-            if (!component.Broken && this.IsPowered(uid, EntityManager))
-            {
-                args.Affected = true;
-                args.Disabled = true;
-                component.NextEmpEject = _timing.CurTime;
-            }
-        }
+        //private void OnEmpPulse(EntityUid uid, VendingMachineComponent component, ref EmpPulseEvent args) // Frontier: Upstream - #28984
+        //{
+        //    if (!component.Broken && this.IsPowered(uid, EntityManager))
+        //    {
+        //        args.Affected = true;
+        //        args.Disabled = true;
+        //        component.NextEmpEject = _timing.CurTime;
+        //    }
+        //}
     }
 }

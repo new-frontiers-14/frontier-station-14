@@ -193,6 +193,11 @@ entities:
             1650: 3,6
             1651: 34,28
         - node:
+            color: '#FFFFFFFF'
+            id: BotLeft
+          decals:
+            1652: 13,42
+        - node:
             cleanable: True
             color: '#FFFFFFFF'
             id: BotLeft
@@ -2902,7 +2907,7 @@ entities:
     - type: Transform
       pos: 3.5,18.5
       parent: 1653
-- proto: AirlockHydroGlassLocked
+- proto: AirlockHydroGlassLockedDungeon
   entities:
   - uid: 10
     components:
@@ -6763,7 +6768,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 44.5,1.5
       parent: 1653
-- proto: chem_master
+- proto: ChemMaster
   entities:
   - uid: 1454
     components:
@@ -6910,27 +6915,6 @@ entities:
     components:
     - type: Transform
       pos: 22.5,34.5
-      parent: 1653
-- proto: CrateHydroponicsSeeds
-  entities:
-  - uid: 161
-    components:
-    - type: Transform
-      pos: 22.5,27.5
-      parent: 1653
-- proto: CrateHydroponicsTools
-  entities:
-  - uid: 1958
-    components:
-    - type: Transform
-      pos: 24.5,28.5
-      parent: 1653
-- proto: CrateHydroSecure
-  entities:
-  - uid: 599
-    components:
-    - type: Transform
-      pos: 26.5,0.5
       parent: 1653
 - proto: CrystalBlue
   entities:
@@ -7382,7 +7366,7 @@ entities:
     - type: Transform
       pos: 14.5,34.5
       parent: 1653
-- proto: Grille
+- proto: GrilleDungeon
   entities:
   - uid: 11
     components:
@@ -11104,7 +11088,7 @@ entities:
     - type: Transform
       pos: 17.5,47.5
       parent: 1653
-- proto: ReinforcedUraniumWindow
+- proto: ReinforcedUraniumWindowDungeon
   entities:
   - uid: 289
     components:
@@ -11146,7 +11130,7 @@ entities:
     - type: Transform
       pos: 3.5,13.5
       parent: 1653
-- proto: ReinforcedWindow
+- proto: ReinforcedWindowDungeon
   entities:
   - uid: 104
     components:
@@ -11198,13 +11182,6 @@ entities:
     - type: Transform
       pos: 17.5,32.5
       parent: 1653
-- proto: SalvageMaterialCrateSpawner
-  entities:
-  - uid: 2024
-    components:
-    - type: Transform
-      pos: 34.5,27.5
-      parent: 1653
 - proto: SeedExtractor
   entities:
   - uid: 810
@@ -11252,25 +11229,16 @@ entities:
     - type: Transform
       pos: 10.5,43.5
       parent: 1653
-    - type: DeviceLinkSink
-      links:
-      - 583
   - uid: 581
     components:
     - type: Transform
       pos: 11.5,43.5
       parent: 1653
-    - type: DeviceLinkSink
-      links:
-      - 583
   - uid: 582
     components:
     - type: Transform
       pos: 12.5,43.5
       parent: 1653
-    - type: DeviceLinkSink
-      links:
-      - 583
 - proto: SignalButton
   entities:
   - uid: 583
@@ -11459,15 +11427,15 @@ entities:
       parent: 1653
 - proto: SpawnDungeonLootArmoryGuns
   entities:
-  - uid: 2278
-    components:
-    - type: Transform
-      pos: 1.4826298,27.256184
-      parent: 1653
   - uid: 2279
     components:
     - type: Transform
       pos: 10.536568,31.832405
+      parent: 1653
+  - uid: 2283
+    components:
+    - type: Transform
+      pos: 6.4505115,0.661644
       parent: 1653
 - proto: SpawnDungeonLootArmoryMelee
   entities:
@@ -11480,6 +11448,13 @@ entities:
     components:
     - type: Transform
       pos: 1.3854625,25.896809
+      parent: 1653
+- proto: SpawnDungeonLootArmoryRare
+  entities:
+  - uid: 2285
+    components:
+    - type: Transform
+      pos: 3.4761977,14.726286
       parent: 1653
 - proto: SpawnDungeonLootBureaucracy
   entities:
@@ -11932,6 +11907,203 @@ entities:
     - type: Transform
       pos: 0.32714605,18.575994
       parent: 1653
+- proto: SpawnDungeonLootCrateEngi
+  entities:
+  - uid: 1958
+    components:
+    - type: Transform
+      pos: 14.5,42.5
+      parent: 1653
+  - uid: 2024
+    components:
+    - type: Transform
+      pos: 31.5,7.5
+      parent: 1653
+  - uid: 2278
+    components:
+    - type: Transform
+      pos: 27.5,7.5
+      parent: 1653
+  - uid: 2292
+    components:
+    - type: Transform
+      pos: 46.5,15.5
+      parent: 1653
+  - uid: 2300
+    components:
+    - type: Transform
+      pos: 13.5,36.5
+      parent: 1653
+  - uid: 2301
+    components:
+    - type: Transform
+      pos: 30.5,36.5
+      parent: 1653
+  - uid: 2313
+    components:
+    - type: Transform
+      pos: 13.5,42.5
+      parent: 1653
+- proto: SpawnDungeonLootCrateGeneral
+  entities:
+  - uid: 1544
+    components:
+    - type: Transform
+      pos: 34.5,27.5
+      parent: 1653
+  - uid: 2296
+    components:
+    - type: Transform
+      pos: 34.5,24.5
+      parent: 1653
+  - uid: 2311
+    components:
+    - type: Transform
+      pos: 4.5,47.5
+      parent: 1653
+  - uid: 2312
+    components:
+    - type: Transform
+      pos: 5.5,47.5
+      parent: 1653
+  - uid: 2314
+    components:
+    - type: Transform
+      pos: 16.5,42.5
+      parent: 1653
+- proto: SpawnDungeonLootCrateHydro
+  entities:
+  - uid: 161
+    components:
+    - type: Transform
+      pos: 24.5,28.5
+      parent: 1653
+  - uid: 599
+    components:
+    - type: Transform
+      pos: 22.5,27.5
+      parent: 1653
+  - uid: 727
+    components:
+    - type: Transform
+      pos: 30.5,0.5
+      parent: 1653
+  - uid: 2287
+    components:
+    - type: Transform
+      pos: 28.5,4.5
+      parent: 1653
+  - uid: 2293
+    components:
+    - type: Transform
+      pos: 28.5,13.5
+      parent: 1653
+  - uid: 2294
+    components:
+    - type: Transform
+      pos: 18.5,15.5
+      parent: 1653
+- proto: SpawnDungeonLootCrateRestockGeneral
+  entities:
+  - uid: 2290
+    components:
+    - type: Transform
+      pos: 10.5,10.5
+      parent: 1653
+  - uid: 2291
+    components:
+    - type: Transform
+      pos: 6.5,10.5
+      parent: 1653
+  - uid: 2297
+    components:
+    - type: Transform
+      pos: 2.5,36.5
+      parent: 1653
+  - uid: 2298
+    components:
+    - type: Transform
+      pos: 1.5,36.5
+      parent: 1653
+  - uid: 2299
+    components:
+    - type: Transform
+      pos: 14.5,36.5
+      parent: 1653
+  - uid: 2302
+    components:
+    - type: Transform
+      pos: 31.5,36.5
+      parent: 1653
+  - uid: 2303
+    components:
+    - type: Transform
+      pos: 46.5,38.5
+      parent: 1653
+  - uid: 2304
+    components:
+    - type: Transform
+      pos: 45.5,38.5
+      parent: 1653
+  - uid: 2305
+    components:
+    - type: Transform
+      pos: 44.5,38.5
+      parent: 1653
+  - uid: 2306
+    components:
+    - type: Transform
+      pos: 41.5,38.5
+      parent: 1653
+  - uid: 2307
+    components:
+    - type: Transform
+      pos: 42.5,40.5
+      parent: 1653
+  - uid: 2308
+    components:
+    - type: Transform
+      pos: 54.5,40.5
+      parent: 1653
+  - uid: 2309
+    components:
+    - type: Transform
+      pos: 25.5,38.5
+      parent: 1653
+  - uid: 2310
+    components:
+    - type: Transform
+      pos: 16.5,38.5
+      parent: 1653
+  - uid: 2315
+    components:
+    - type: Transform
+      pos: 1.5,43.5
+      parent: 1653
+  - uid: 2316
+    components:
+    - type: Transform
+      pos: 2.5,43.5
+      parent: 1653
+- proto: SpawnDungeonLootCrateRestockService
+  entities:
+  - uid: 2289
+    components:
+    - type: Transform
+      pos: 14.5,0.5
+      parent: 1653
+- proto: SpawnDungeonLootCrateService
+  entities:
+  - uid: 2288
+    components:
+    - type: Transform
+      pos: 4.5,4.5
+      parent: 1653
+  - uid: 2295
+    components:
+    - type: Transform
+      pos: 2.5,22.5
+      parent: 1653
 - proto: SpawnDungeonLootCrateVehicle
   entities:
   - uid: 1077
@@ -11998,11 +12170,6 @@ entities:
       parent: 1653
 - proto: SpawnDungeonLootLockersEngi
   entities:
-  - uid: 727
-    components:
-    - type: Transform
-      pos: 14.5,42.5
-      parent: 1653
   - uid: 961
     components:
     - type: Transform
@@ -12536,6 +12703,23 @@ entities:
     components:
     - type: Transform
       pos: 24.59688,27.35907
+      parent: 1653
+- proto: SpawnDungeonLootVaultGuns
+  entities:
+  - uid: 1545
+    components:
+    - type: Transform
+      pos: 1.5230727,27.278448
+      parent: 1653
+  - uid: 2284
+    components:
+    - type: Transform
+      pos: 10.574582,14.485476
+      parent: 1653
+  - uid: 2286
+    components:
+    - type: Transform
+      pos: 35.709583,15.189978
       parent: 1653
 - proto: SpawnDungeonVendomatsRecreational
   entities:
@@ -13368,7 +13552,7 @@ entities:
     - type: Transform
       pos: 40.5,0.5
       parent: 1653
-- proto: UraniumReinforcedWindowDirectional
+- proto: UraniumReinforcedWindowDirectionalDungeon
   entities:
   - uid: 852
     components:
@@ -13416,7 +13600,7 @@ entities:
     - type: Transform
       pos: 34.5,36.5
       parent: 1653
-- proto: UraniumWindowDirectional
+- proto: UraniumWindowDirectionalDungeon
   entities:
   - uid: 1833
     components:
@@ -14245,17 +14429,7 @@ entities:
     - type: Transform
       pos: 26.5,19.5
       parent: 1653
-  - uid: 1544
-    components:
-    - type: Transform
-      pos: 31.5,7.5
-      parent: 1653
-  - uid: 1545
-    components:
-    - type: Transform
-      pos: 27.5,7.5
-      parent: 1653
-- proto: Windoor
+- proto: WindoorDungeon
   entities:
   - uid: 127
     components:
@@ -14348,7 +14522,7 @@ entities:
     - type: Transform
       pos: 4.5,43.5
       parent: 1653
-- proto: WindoorSecure
+- proto: WindoorSecureDungeon
   entities:
   - uid: 691
     components:
@@ -14450,7 +14624,7 @@ entities:
     - type: Transform
       pos: 51.5,13.5
       parent: 1653
-- proto: WindowDirectional
+- proto: WindowDirectionalDungeon
   entities:
   - uid: 632
     components:
@@ -14474,7 +14648,7 @@ entities:
     - type: Transform
       pos: 44.5,3.5
       parent: 1653
-- proto: WindowFrostedDirectional
+- proto: WindowFrostedDirectionalDungeon
   entities:
   - uid: 500
     components:
@@ -14532,7 +14706,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 2.5,6.5
       parent: 1653
-- proto: WindowReinforcedDirectional
+- proto: WindowReinforcedDirectionalDungeon
   entities:
   - uid: 76
     components:

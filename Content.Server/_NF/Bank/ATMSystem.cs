@@ -1,3 +1,8 @@
+/*
+ * New Frontiers - This file is licensed under AGPLv3
+ * Copyright (c) 2024 New Frontiers Contributors
+ * See AGPLv3.txt for details.
+ */
 using Content.Server.Popups;
 using Content.Server.Stack;
 using Content.Shared.Bank;
@@ -229,13 +234,19 @@ public sealed partial class BankSystem
     {
         amount = 0;
         var cashEntity = component.CashSlot.ContainerSlot?.ContainedEntity;
+        // Nothing inserted: amount should be 0.
+        if (cashEntity is null)
+            return;
 
+        // Invalid item inserted (doubloons, FUC, telecrystals...): amount should be negative (to denote an error)
         if (!TryComp<StackComponent>(cashEntity, out var cashStack) ||
             cashStack.StackTypeId != component.CashType)
         {
+            amount = -1;
             return;
         }
 
+        // Valid amount: output the stack's value.
         amount = cashStack.Count;
         return;
     }

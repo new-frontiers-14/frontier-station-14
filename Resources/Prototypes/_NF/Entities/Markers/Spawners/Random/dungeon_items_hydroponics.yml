@@ -25,6 +25,7 @@
     offset: 0.0
     rarePrototypes:
     - SpawnDungeonLootClothesHydroponics
+    - SpawnDungeonLootVendingRestocks
     rareChance: 0.1
 
 # Tools
@@ -60,6 +61,93 @@
     - ClothingOuterEVASuitHydro
     - Chainsaw
     rareChance: 0.01
+
+# Furniture/Lockers
+- type: entity
+  name: random crate
+  id: SpawnDungeonLootCrateHydro
+  parent: MarkerBase
+  suffix: "Dungeon, Hydroponics"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Storage/Crates/hydroponics.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    # Empty crates
+    - CrateHydroponics
+    - CrateHydroSecure
+    - CratePlastic
+    - CratePlasticBiodegradable
+    # Restocks
+    - CrateVendingMachineRestockNutriMaxFilled
+    - CrateVendingMachineRestockSeedsFilled
+    # Mats
+    - CrateMaterialGlass
+    - CrateMaterialSteel
+    - CrateMaterialPlastic
+    - CrateMaterialWood
+    - CrateMaterialTextiles
+    - CrateMaterialBiomass
+    # Filled crates
+    - CrateHydroponicsTools
+    - CrateHydroponicsSeeds
+    - CrateHydroponicsSeedsExotic
+    - CrateHydroponicsSeedsMedicinal
+    chance: 0.9
+    offset: 0.0
+    rarePrototypes:
+    - CrateServiceKitHydroponics
+    rareChance: 0.005
+
+- type: entity
+  name: random crate (restock)
+  id: SpawnDungeonLootCrateRestockHydro
+  parent: MarkerBase
+  suffix: "Dungeon, Hydroponics"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Storage/Crates/plastic.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - CrateVendingMachineRestockNutriMaxFilled
+    - CrateVendingMachineRestockSeedsFilled
+    chance: 1.0
+    offset: 0.0
+
+- type: entity
+  name: random crate (empty)
+  id: SpawnDungeonLootCrateEmptyHydro
+  parent: MarkerBase
+  suffix: "Dungeon, Hydroponics"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Storage/Crates/plastic.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - CrateHydroponics
+    - CrateHydroSecure
+    - CratePlastic
+    - CratePlasticBiodegradable
+    chance: 1.0
+    offset: 0.0
 
 # Clothes
 - type: entity

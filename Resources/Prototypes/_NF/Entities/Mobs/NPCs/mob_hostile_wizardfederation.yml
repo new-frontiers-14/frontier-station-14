@@ -1,3 +1,11 @@
+## Mob base
+- type: entity
+  abstract: true
+  id: MobWizFedTimedDespawn
+  components:
+  - type: TimedDespawn
+    lifetime: 1800 # 30 mins (max blue space event duration involving these mobs - 20 mins)
+
 - type: entity
   name: Wizard
   abstract: true
@@ -6,6 +14,8 @@
   - MobPassiveRegen
   - MobHumanoidInvetory
   - MobHumanoidHostileAISimpleRanged
+  - MobLaserReflect # Added to prevent laser abuse from players
+  #- MobWizFedTimedDespawn
   id: MobWizFedlBase
   components:
   - type: NpcFactionMember
@@ -15,10 +25,6 @@
     rechargeCooldown: 3
     rechargeSound:
       path: /Audio/_NF/Effects/silence.ogg
-  - type: Reflect
-    enabled: true
-    reflectProb: .3
-    spread: 90
   - type: Flammable
     fireSpread: true
     canResistFire: true
@@ -32,12 +38,22 @@
       0: Alive
       120: Critical
       160: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      72: 0.7
+      96: 0.5
   - type: Advertise
     pack: wizardhumanoidchatter
     minimumWait: 30
     maximumWait: 120
     nextAdvertisementTime: 10
   - type: AutoWakeUp
+  - type: TriggerOnBeingGibbed
+  - type: GibOnTrigger
+    deleteItems: true
+    deleteOrgans: true
+    gib: false
+    useArgumentEntity: true
 
 # Humans
 # Blue Wizard, summons 2 Blue Curacao Elementals

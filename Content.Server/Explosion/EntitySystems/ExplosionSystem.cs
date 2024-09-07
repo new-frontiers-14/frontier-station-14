@@ -366,7 +366,7 @@ public sealed partial class ExplosionSystem : EntitySystem
                 var mapGrid = _mapManager.GetGrid(gridId.Value);
                 var gridUid = mapGrid.Owner;
                 var ev = new FloorTileAttemptEvent();
-                if (HasComp<ProtectedGridComponent>(gridUid) || ev.Cancelled)
+                if ((TryComp<ProtectedGridComponent>(gridUid, out var prot) && prot.PreventExplosions) || ev.Cancelled)
                     return null;
             }
         }
@@ -447,7 +447,10 @@ public sealed partial class ExplosionSystem : EntitySystem
     {
         var value = MathF.Round((1f - component.DamageCoefficient) * 100, 1);
 
+        if (value == 0)
+            return;
+
         args.Msg.PushNewline();
-        args.Msg.AddMarkup(Loc.GetString(component.Examine, ("value", value)));
+        args.Msg.AddMarkupOrThrow(Loc.GetString(component.Examine, ("value", value)));
     }
 }

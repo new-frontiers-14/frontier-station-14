@@ -21,6 +21,8 @@
     - SpawnDungeonLootOresSingle
     - SpawnDungeonLootMaterialsBasicSingle
     - SpawnDungeonLootCircuitBoardSalvage
+    - SpawnDungeonLootFlatpacksSuppl
+    - SpawnDungeonLootVendingRestocks
     chance: 0.9
     offset: 0.0
     rarePrototypes:
@@ -52,7 +54,7 @@
     - WeaponProtoKineticAccelerator
     - WeaponProtoKineticAcceleratorSawn
     - OreBag
-    - RadioHandheld
+    - RadioHandheldNF
     - HandheldGPSBasic
     - Floodlight
     - Pickaxe
@@ -180,6 +182,8 @@
     - SuitStorageBase
     - SuitStorageBasic
     - SuitStorageSalv
+    - SuitStorageEVACargo
+    - SuitStorageEVASalvage
     chance: 1
     offset: 0.0
     rarePrototypes:
@@ -211,13 +215,12 @@
     - SalvageTechfabNF
     - SalvageTechfabNF
     - SalvageTechfabNF
-    - SalvageTechfabNF
+    - OreProcessor
     - Autolathe
     chance: 1
     offset: 0.0
     rarePrototypes:
     - OreProcessorIndustrial
-    - OreProcessor
     - SpawnDungeonMachineFrame
     rareChance: 0.05
 
@@ -288,6 +291,37 @@
     - OreProcessorIndustrialMachineCircuitboard
     - AmmoTechFabCircuitboard
     - ShuttleGunSvalinnMachineGunCircuitboard
-    - SecurityTechFabCircuitboard
+    #- SecurityTechFabCircuitboard
     - ComputerIFFCircuitboard
     rareChance: 0.03
+
+- type: entity
+  name: random flatpack
+  id: SpawnDungeonLootFlatpacksSuppl
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Salvaging"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _NF/Objects/Devices/flatpack.rsi
+        state: engineering_lathe
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - TelecomServerFlatpack
+    - OreProcessorFlatpack
+    - SalvageTechfabNFFlatpack
+    - ProtolatheFlatpack
+    - OreProcessorIndustrialFlatpack
+    - MaterialReclaimerFlatpack
+    - PowerCellRechargerFlatpack
+    - WeaponCapacitorRechargerFlatpack
+    chance: 0.95
+    offset: 0.0
+    rarePrototypes:
+    - ShuttleGunKineticFlatpack
+    - AmmoTechFabFlatpack
+    rareChance: 0.01

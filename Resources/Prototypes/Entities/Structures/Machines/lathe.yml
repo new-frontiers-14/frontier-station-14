@@ -199,12 +199,16 @@
       - WeaponCapacitorRechargerCircuitboard
       - HandheldStationMap
       - ClothingHeadHatWelding
+      - WetFloorSign
+      - ClothingHeadHatCone
       - Durathread # Frontier
       - Plasteel # Frontier
       - ClothingOuterSuitEmergency # Frontier
       - ClothingHeadHelmetEVA # Frontier
       - ClothingHeadHelmetEVALarge # Frontier
       - ClothingOuterHardsuitEVA # Frontier
+      - ClothingOuterEVASuitContractor # Frontier
+      - ClothingOuterEVASuitPilot # Frontier
   - type: EmagLatheRecipes
     emagStaticRecipes:
       - BoxLethalshot
@@ -330,7 +334,6 @@
       - SynthesizerInstrument
       - RPED
       - ClothingShoesBootsMagSci
-      - ClothingShoesBootsMagAdv # Frontier
       - ClothingShoesBootsMoon
       - ClothingShoesBootsSpeed
       - NodeScanner
@@ -360,7 +363,7 @@
       - OreBagOfHolding
       - DeviceQuantumSpinInverter
       - UtilityBeltChiefEngineer
-      - JetpackVoid
+      - JetpackVoid # Frontier
       - ClothingShoesBootsMagAdv # Frontier
       - ClothingOuterHardsuitBasic # Frontier
       - ClothingOuterHardsuitAtmos # Frontier
@@ -816,15 +819,14 @@
       - TargetHuman
       - TargetSyndicate
       - WeaponDisablerPractice
-      # Frontier Start
-      - ThrusterSecurityMachineCircuitboard
-      - ClothingOuterSuitEmergency
-      - ClothingHeadHelmetEVA
-      - ClothingHeadHelmetEVALarge
-      - ClothingOuterHardsuitEVAPrisoner
-      # Frontier End
       - WeaponLaserCarbinePractice
       - Zipties
+      - ThrusterSecurityMachineCircuitboard # Frontier
+      - ClothingOuterSuitEmergency # Frontier
+      - ClothingOuterEVASuitNfsd # Frontier
+      - ClothingHeadHelmetEVA # Frontier
+      - ClothingHeadHelmetEVALarge # Frontier
+      - ClothingOuterHardsuitEVAPrisoner # Frontier
     dynamicRecipes:
       - BoxBeanbag
       - BoxShotgunIncendiary
@@ -934,6 +936,8 @@
         - SpeedLoaderMagnumEmpty
         - SpeedLoaderRifleHeavy # Frontier
         - SpeedLoaderRifleHeavyEmpty # Frontier
+        - 10roundmagazine #frontier by VividPups
+        - 10roundmagazineempty #frontier by VividPups
     - type: MaterialStorage
       whitelist:
         tags:
@@ -1002,11 +1006,13 @@
       - Saw
       - Hemostat
       - ClothingEyesGlassesChemical
-      # Frontier Start
-      - ClothingOuterSuitEmergency
-      - ClothingOuterHardsuitVoidParamed
-      # Frontier End
       - WhiteCane
+      - ClothingOuterEVASuitMedic # Frontier
+      - ClothingOuterSuitEmergency # Frontier
+      - ClothingOuterHardsuitVoidParamed # Frontier
+      - BaseChemistryEmptyVial # Frontier
+      - PowerCellSmall # Frontier
+
     dynamicRecipes:
       - ChemicalPayload
       - CryostasisBeaker
@@ -1014,9 +1020,9 @@
       - SyringeBluespace
       - Jug
       - SyringeCryostasis
-      # Frontier Start
-      - ClothingOuterHardsuitMedical
-      # Frontier End
+      - ClothingOuterHardsuitMedical # Frontier
+      - OintmentAdvancedNF # Frontier
+      - BrutepackAdvancedNF # Frontier      
   - type: Machine
     board: MedicalTechFabCircuitboard
   - type: StealTarget
@@ -1267,12 +1273,14 @@
         - SheetGlass30
         - SheetRGlass30
         - SheetPlasma30
+        - SheetPlasteel30
         - SheetPGlass30
         - SheetRPGlass30
         - SheetUranium30
         - IngotGold30
         - IngotSilver30
         - MaterialBananium10
+        - BluespaceCrystal #Nyano - Summary: Bluespace Crystals can be created here.
 
 - type: entity
   parent: OreProcessor
@@ -1301,6 +1309,7 @@
       - IngotGold30
       - IngotSilver30
       - MaterialBananium10
+      - BluespaceCrystal #Nyano - Summary: Bluespace Crystals can be created here.
 
 - type: entity
   parent: BaseLathe

@@ -14,7 +14,7 @@ entities:
   - uid: 1
     components:
     - type: MetaData
-      name: grid
+      name: Spirit
     - type: Transform
       pos: -0.484375,-0.5625
       parent: invalid
@@ -164,31 +164,33 @@ entities:
       data:
         tiles:
           0,0:
-            0: 13175
-            1: 34944
+            0: 13159
+            1: 16
+            2: 34944
           0,-1:
-            0: 32547
-            1: 8
-          -1,0:
+            0: 32291
+            1: 256
             2: 8
-            1: 1088
+          -1,0:
+            3: 8
+            2: 1088
           0,1:
             0: 3
-            1: 64
+            2: 64
           -1,1:
-            1: 128
+            2: 128
           1,0:
             0: 1
-            1: 306
+            2: 306
           1,-1:
             0: 4352
-            1: 8225
+            2: 8225
           0,-2:
             0: 8192
-            1: 16384
+            2: 16384
           -1,-2:
             0: 32768
-            1: 16384
+            2: 16384
           -1,-1:
             0: 34952
         uniqueMixes:
@@ -197,6 +199,21 @@ entities:
           moles:
           - 21.824879
           - 82.10312
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          temperature: 293.14996
+          moles:
+          - 20.078888
+          - 75.53487
           - 0
           - 0
           - 0
@@ -225,8 +242,8 @@ entities:
         - volume: 2500
           temperature: 293.15
           moles:
-          - 21.823984
-          - 82.09976
+          - 23.721722
+          - 89.23887
           - 0
           - 0
           - 0
@@ -252,8 +269,7 @@ entities:
     - type: DeviceList
       devices:
       - 56
-      - 131
-      - 89
+      - 12
 - proto: AirCanister
   entities:
   - uid: 73
@@ -285,7 +301,7 @@ entities:
       pos: -0.5,-2.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -830.6309
+      secondsUntilStateChange: -2207.9924
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -308,18 +324,6 @@ entities:
     - type: Transform
       pos: -0.5,-4.5
       parent: 1
-- proto: AirSensor
-  entities:
-  - uid: 131
-    components:
-    - type: Transform
-      pos: 1.5,-0.5
-      parent: 1
-    - type: DeviceNetwork
-      configurators:
-      - invalid
-      deviceLists:
-      - 57
 - proto: APCBasic
   entities:
   - uid: 9
@@ -355,7 +359,7 @@ entities:
   - uid: 87
     components:
     - type: Transform
-      parent: 86
+      parent: 24
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
@@ -496,9 +500,10 @@ entities:
       parent: 1
 - proto: ClosetWall
   entities:
-  - uid: 86
+  - uid: 24
     components:
     - type: Transform
+      rot: 1.5707963267948966 rad
       pos: -0.5,1.5
       parent: 1
     - type: EntityStorage
@@ -507,8 +512,8 @@ entities:
         immutable: False
         temperature: 293.14923
         moles:
-        - 1.8977377
-        - 7.139109
+        - 1.7459903
+        - 6.568249
         - 0
         - 0
         - 0
@@ -525,17 +530,24 @@ entities:
           showEnts: False
           occludes: True
           ents:
-          - 98
+          - 25
           - 87
-          - 108
-- proto: ComputerTabletopCrewMonitoring
-  entities:
-  - uid: 12
+          - 98
+  - uid: 142
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
-      pos: 1.5,3.5
+      pos: 5.5,-1.5
       parent: 1
+- proto: ClothingBeltUtilityEngineering
+  entities:
+  - uid: 25
+    components:
+    - type: Transform
+      parent: 24
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
 - proto: ComputerTabletopShuttle
   entities:
   - uid: 88
@@ -545,12 +557,28 @@ entities:
       parent: 1
 - proto: ComputerTabletopStationRecords
   entities:
-  - uid: 46
+  - uid: 43
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
-      pos: 1.5,2.5
+      pos: 1.5,3.5
       parent: 1
+- proto: ComputerWallmountWithdrawBankATM
+  entities:
+  - uid: 86
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 2.5,-3.5
+      parent: 1
+    - type: Physics
+      canCollide: False
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          ents: []
+        bank-ATM-cashSlot: !type:ContainerSlot {}
+    - type: ItemSlots
 - proto: DefibrillatorCabinetFilled
   entities:
   - uid: 8
@@ -601,10 +629,10 @@ entities:
       canCollide: False
 - proto: ExtinguisherCabinetFilled
   entities:
-  - uid: 97
+  - uid: 107
     components:
     - type: Transform
-      pos: 5.5,-1.5
+      pos: -1.5,-3.5
       parent: 1
 - proto: FaxMachineShip
   entities:
@@ -632,11 +660,26 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
+  - uid: 89
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 0.5,-1.5
+      parent: 1
+    - type: AtmosPipeColor
+      color: '#990000FF'
   - uid: 93
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 4.5,-1.5
+      parent: 1
+    - type: AtmosPipeColor
+      color: '#990000FF'
+  - uid: 140
+    components:
+    - type: Transform
+      pos: 0.5,0.5
       parent: 1
     - type: AtmosPipeColor
       color: '#990000FF'
@@ -647,6 +690,21 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 4.5,0.5
+      parent: 1
+    - type: AtmosPipeColor
+      color: '#990000FF'
+  - uid: 46
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 1.5,-1.5
+      parent: 1
+    - type: AtmosPipeColor
+      color: '#990000FF'
+  - uid: 97
+    components:
+    - type: Transform
+      pos: 0.5,-0.5
       parent: 1
     - type: AtmosPipeColor
       color: '#990000FF'
@@ -710,11 +768,11 @@ entities:
       color: '#0055CCFF'
 - proto: GasVentScrubber
   entities:
-  - uid: 89
+  - uid: 12
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: 1.5,-1.5
+      pos: -0.5,0.5
       parent: 1
     - type: DeviceNetwork
       configurators:
@@ -747,11 +805,6 @@ entities:
     - type: Transform
       pos: -0.5,2.5
       parent: 1
-  - uid: 43
-    components:
-    - type: Transform
-      pos: 0.5,-4.5
-      parent: 1
   - uid: 72
     components:
     - type: Transform
@@ -772,11 +825,6 @@ entities:
     - type: Transform
       pos: 1.5,5.5
       parent: 1
-  - uid: 91
-    components:
-    - type: Transform
-      pos: 0.5,-2.5
-      parent: 1
   - uid: 123
     components:
     - type: Transform
@@ -795,12 +843,19 @@ entities:
     - type: Transform
       pos: -0.5,5.5
       parent: 1
-- proto: HandheldHealthAnalyzerUnpowered
+- proto: HandheldCrewMonitor
   entities:
-  - uid: 92
+  - uid: 143
     components:
     - type: Transform
-      pos: 1.4132138,3.058436
+      pos: 1.6052063,2.7571776
+      parent: 1
+- proto: HandheldHealthAnalyzerUnpowered
+  entities:
+  - uid: 141
+    components:
+    - type: Transform
+      pos: 1.4177063,4.198888
       parent: 1
 - proto: HospitalCurtainsOpen
   entities:
@@ -816,6 +871,39 @@ entities:
       rot: 3.141592653589793 rad
       pos: 2.5,0.5
       parent: 1
+- proto: LockerWallMedical
+  entities:
+  - uid: 92
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 0.5,-2.5
+      parent: 1
+    - type: EntityStorage
+      air:
+        volume: 200
+        immutable: False
+        temperature: 293.14923
+        moles:
+        - 1.7459903
+        - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+- proto: MedicalTechFab
+  entities:
+  - uid: 131
+    components:
+    - type: Transform
+      pos: 1.5,1.5
+      parent: 1
 - proto: PortableGeneratorPacmanShuttle
   entities:
   - uid: 99
@@ -827,6 +915,21 @@ entities:
       on: False
     - type: Physics
       bodyType: Static
+- proto: PowerCellRecharger
+  entities:
+  - uid: 139
+    components:
+    - type: Transform
+      pos: 1.5,2.5
+      parent: 1
+- proto: PoweredLEDSmallLight
+  entities:
+  - uid: 102
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 0.5,-3.5
+      parent: 1
 - proto: PoweredlightEmpty
   entities:
   - uid: 5
@@ -861,7 +964,7 @@ entities:
   - uid: 98
     components:
     - type: Transform
-      parent: 86
+      parent: 24
     - type: Stack
       count: 15
     - type: Physics
@@ -869,18 +972,6 @@ entities:
     - type: InsideEntityStorage
 - proto: ShuttleWindow
   entities:
-  - uid: 24
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 0.5,-2.5
-      parent: 1
-  - uid: 25
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 0.5,-4.5
-      parent: 1
   - uid: 32
     components:
     - type: Transform
@@ -938,17 +1029,15 @@ entities:
       parent: 1
 - proto: SignMedical
   entities:
-  - uid: 101
+  - uid: 108
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 2.5,-3.5
+      pos: 2.5,-4.5
       parent: 1
-  - uid: 102
+  - uid: 138
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -1.5,-3.5
+      pos: -1.5,-4.5
       parent: 1
 - proto: SmallGyroscope
   entities:
@@ -1070,13 +1159,6 @@ entities:
       parent: 1
     - type: Thruster
       originalPowerLoad: 1500
-- proto: VendingMachineMediDrobe
-  entities:
-  - uid: 107
-    components:
-    - type: Transform
-      pos: 1.5,1.5
-      parent: 1
 - proto: VendingMachineWallMedical
   entities:
   - uid: 2
@@ -1164,6 +1246,18 @@ entities:
     - type: Transform
       pos: 5.5,0.5
       parent: 1
+  - uid: 91
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 0.5,-2.5
+      parent: 1
+  - uid: 101
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 0.5,-4.5
+      parent: 1
   - uid: 111
     components:
     - type: Transform
@@ -1231,13 +1325,4 @@ entities:
     - type: Transform
       pos: 2.5,-0.5
       parent: 1
-- proto: Wrench
-  entities:
-  - uid: 108
-    components:
-    - type: Transform
-      parent: 86
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 ...

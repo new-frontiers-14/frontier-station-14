@@ -3,8 +3,9 @@ using Content.Shared.Tools.Components;
 using Content.Shared.Damage.Events;
 using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.Weapons.Ranged.Components;
-using Robust.Shared.Containers;
 using Content.Shared.Weapons.Ranged.Systems;
+using Content.Shared.Wieldable.Components;
+using Robust.Shared.Containers;
 
 namespace Content.Server.Abilities.Oni
 {
@@ -32,8 +33,8 @@ namespace Content.Server.Abilities.Oni
 
             if (TryComp<GunComponent>(args.Entity, out var gun))
             {
-                // Frontier: adjust penalty for wielded malus
-                if (TryComp<GunWieldBonusComponent>(args.Entity, out var bonus))
+                // Frontier: adjust penalty for wielded malus (ensuring it's actually wieldable)
+                if (TryComp<GunWieldBonusComponent>(args.Entity, out var bonus) && HasComp<WieldableComponent>(args.Entity))
                 {
                     //GunWieldBonus values are stored as negative.
                     heldComp.minAngleAdded = (gun.MinAngle + bonus.MinAngle) * GunInaccuracyFactor;

@@ -16,7 +16,7 @@
     damageContainers:
     - Biological
   - type: ShowHealthIcons
-    damageContainers: 
+    damageContainers:
     - Biological
 
 - type: entity
@@ -47,6 +47,8 @@
   - type: Tag
     tags:
     - HudMedical
+  - type: StaticPrice # Frontier
+    price: 30 # Frontier
 
 - type: entity
   parent: [ClothingEyesBase, ShowSecurityIcons]
@@ -188,7 +190,7 @@
   - type: ShowSyndicateIcons
 
 - type: entity
-  parent: [ClothingEyesBase, ShowSecurityIcons]
+  parent: [ClothingEyesBase, ShowSecurityIcons, ContrabandClothing] # Frontier: added ContrabandClothing as parent
   id: ClothingEyesHudSyndicate
   name: syndicate visor
   description: The syndicate's professional head-up display, designed for better detection of humanoids and their subsequent elimination.
@@ -198,12 +200,9 @@
   - type: Clothing
     sprite: Clothing/Eyes/Hud/synd.rsi
   - type: ShowSyndicateIcons
-  - type: Contraband #frontier
-  - type: FactionClothing # frontier
-    faction: ContrabandClothing # frontier
 
 - type: entity
-  parent: [ClothingEyesBase, ShowSecurityIcons]
+  parent: [ClothingEyesBase, ShowSecurityIcons, ContrabandClothing] # Frontier: added ContrabandClothing as parent
   id: ClothingEyesHudSyndicateAgent
   name: syndicate agent visor
   description: The Syndicate Agent's professional heads-up display, designed for quick diagnosis of their team's status.
@@ -216,18 +215,11 @@
   - type: ShowHealthBars
     damageContainers:
     - Biological
-  - type: Contraband #frontier
-  - type: FactionClothing #frontier
-    faction: ContrabandClothing #frontier
 
 - type: entity
-  parent: [ClothingEyesGlassesSunglasses, ShowSecurityIcons]
+  parent: [ClothingEyesGlassesSunglasses, ShowSecurityIcons, ContrabandClothing] # Frontier: added ContrabandClothing as parent
   id: ClothingEyesGlassesHiddenSecurity
   suffix: Syndicate
-  components:
-  - type: Contraband #frontier
-  - type: FactionClothing #frontier
-    faction: ContrabandClothing #frontier
 
 - type: entity
   parent: [ClothingEyesHudMedical, ClothingHeadEyeBaseFlippable]

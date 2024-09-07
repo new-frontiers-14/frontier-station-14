@@ -1,3 +1,5 @@
+using Content.Shared._NF.GameRule;
+using Content.Shared.Store;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
@@ -39,6 +41,12 @@ public sealed class VesselPrototype : IPrototype
     [DataField("group")]
     public string Group = string.Empty;
 
+    /// <summary>
+    ///     The access required to buy the product. (e.g. Command, Mail, Bailiff, etc.)
+    /// </summary>
+    [DataField("access")]
+    public string Access = string.Empty;
+
     /// Frontier - Add this field for the MapChecker script.
     /// <summary>
     ///     The MapChecker override group for this vessel.
@@ -51,4 +59,10 @@ public sealed class VesselPrototype : IPrototype
     /// </summary>
     [DataField("shuttlePath", required: true)]
     public ResPath ShuttlePath = default!;
+
+    /// <summary>
+    ///     Grid protections for a given ship. Should be None in _most_ cases.
+    /// </summary>
+    [DataField("gridProtection")]
+    public GridProtectionFlags GridProtection = GridProtectionFlags.None;
 }

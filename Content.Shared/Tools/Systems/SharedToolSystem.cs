@@ -24,7 +24,7 @@ public abstract partial class SharedToolSystem : EntitySystem
     [Dependency] private   readonly SharedAudioSystem _audioSystem = default!;
     [Dependency] private   readonly SharedDoAfterSystem _doAfterSystem = default!;
     [Dependency] protected readonly SharedInteractionSystem InteractionSystem = default!;
-    [Dependency] protected readonly SharedItemToggleSystem ItemToggle = default!;
+    [Dependency] protected readonly ItemToggleSystem ItemToggle = default!;
     [Dependency] private   readonly SharedMapSystem _maps = default!;
     [Dependency] private   readonly SharedPopupSystem _popup = default!;
     [Dependency] protected readonly SharedSolutionContainerSystem SolutionContainerSystem = default!;
@@ -217,7 +217,7 @@ public abstract partial class SharedToolSystem : EntitySystem
             return false;
 
         // check if the tool allows being used
-        var beforeAttempt = new ToolUseAttemptEvent(user, fuel);
+        var beforeAttempt = new ToolUseAttemptEvent(user, fuel, tool, toolQualitiesNeeded); // Frontier: added tool, toolQualitiesNeeded
         RaiseLocalEvent(tool, beforeAttempt);
         if (beforeAttempt.Cancelled)
             return false;
@@ -270,6 +270,11 @@ public abstract partial class SharedToolSystem : EntitySystem
                 return this;
 
             return new ToolDoAfterEvent(Fuel, evClone, OriginalTarget);
+        }
+
+        public override bool IsDuplicate(DoAfterEvent other)
+        {
+            return other is ToolDoAfterEvent toolDoAfter && WrappedEvent.IsDuplicate(toolDoAfter.WrappedEvent);
         }
     }
 

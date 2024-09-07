@@ -5,14 +5,19 @@
   playTimeTracker: JobPirateFirstMate
   requirements:
     - !type:OverallPlaytimeRequirement
-      time: 129600 # Frontier - 36 hours
+      time: 129600 # 36 hours
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 10800 # 3 hours
   whitelisted: true
   startingGear: PirateFirstMateNFGear
   alwaysUseSpawner: true
   hideConsoleVisibility: true
   canBeAntag: true
-  icon: "JobIconMercenary" 
-  supervisors: job-supervisors-hire
+  icon: "JobIconPirateFirstMate"
+  supervisors: job-supervisors-captain
+  weight: 30
+  displayWeight: 30
   setPreference: true
   accessGroups:
   - GeneralAccess

@@ -62,6 +62,8 @@ namespace Content.Server.Nutrition.EntitySystems
 
             var lostSolution = _solutionContainerSystem.SplitSolution(soln.Value, solution.Volume / FixedPoint2.New(component.Count));
 
+            _solutionContainerSystem.SetCapacity(soln.Value, soln.Value.Comp.Solution.MaxVolume - solution.MaxVolume / FixedPoint2.New(component.Count)); // Frontier: remove food capacity after taking a slice.
+
             // Fill new slice
             FillSlice(sliceUid, lostSolution);
 

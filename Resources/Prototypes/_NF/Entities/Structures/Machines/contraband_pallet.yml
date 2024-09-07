@@ -1,7 +1,7 @@
 - type: entity
   id: ContrabandPallet
   name: contraband exchange pallet
-  description: Designates valid items to exchange with CentCom for security crystals
+  description: Designates valid items to exchange with CentCom for Frontier uplink coins
   parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseStructure] # Frontier - BaseStructureDisabledToolsUse,BaseStructureIndestructible
   components:
   - type: InteractionOutline
@@ -26,3 +26,18 @@
     layers:
     - sprite: _NF/Structures/Machines/contraband_pallet.rsi
       state: base
+
+# Pirate reskin for flavour
+- type: entity
+  id: ContrabandPalletPirate
+  name: plunder exchange pallet
+  description: Sells yer ill-gotten goods fer heaps o' doubloons!
+  parent: ContrabandPallet
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Machines/piratebounty_pallet.rsi
+    layers:
+    - state: base
+    - state: unshaded
+      shader: unshaded
+

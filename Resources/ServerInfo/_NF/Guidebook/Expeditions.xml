@@ -1,33 +1,170 @@
 <Document>
   # Salvage Expeditions
   <Box>
-    <GuideEntityEmbed Entity="ComputerSalvageExpedition"/>
-    <GuideEntityEmbed Entity="TelecomServerFilledShuttle"/>
+  <GuideEntityEmbed Entity="ComputerSalvageExpedition"/>
+  <GuideEntityEmbed Entity="TelecomServerFilledShuttle"/>
   </Box>
-  Expeditions are adventures that you can go on with your crew.[br][/br]
-Your ship will jump to a planet and you need to complete an objective in a limited time.[br][/br]
-When that time runs out, the ship jumps back, [bold]whether you're on it or not[/bold].
+  
+  When going on expedition, your ship will jump to a planet and you need to complete an objective in a limited time.
+  When that time runs out, the ship jumps back, [bold]whether you're on it or not[/bold].
 
-Ships purchased at Frontier Outpost [bold]cannot[/bold] go on expedition, but [italic]any purchased at [bold]Expeditionary Lodge[/bold] can[/italic].
-You will need to use the [color=#a4885c]salvage console[/color] onboard.
+  Ships purchased at Frontier Outpost [bold]cannot[/bold] go on expedition, but [italic]any purchased at [bold]Expeditionary Lodge[/bold] can[/italic].
+  You will need to use the [color=#a4885c]salvage console[/color] onboard.
 
-To go on an expedition:
-- Pilot your ship so there is 200 m of empty space in each direction.
-- Use the [color=#a4885c]salvage console[/color].
-- Pick one of the five missions offered to you.
-- Note the enemy, conditions, total time, and objectives for the mission.
-- Buckle into a seat to avoid falling down.
+  To go on an expedition:
+  - Pilot your ship so there is 200 m of empty space in each direction.
+  - Use the [color=#a4885c]salvage console[/color].
+  - Pick one of the five missions offered to you.
+  - Note the enemy, conditions, total time, and objectives for the mission.
+  - Buckle into a seat to avoid falling down.
 
-Tips for expeditions:
-- Start with easier missions and progress to harder ones as you get better equipped.
-- Different enemy types have different strengths and weaknesses. Vary your loadout to best deal with each.
-- If you don't think you can win a fight, don't take it.
+  Tips for expeditions:
+  - Start with easier missions and progress to harder ones as you get better equipped.
+  - Different enemy types have different strengths and weaknesses. Vary your loadout to best deal with each.
+  - If you don't think you can win a fight, don't take it.
 
-When you arrive on-site, you'll be told which direction the objective is in.
-There'll be a building in that direction; break in and complete your objective.
-Note: North is towards the top of the screen in default rotation (NUMPAD 8).
+  When you arrive on-site, you'll be told which direction the objective is in.
+  There'll be a building in that direction; break in and complete your objective.
+  Note: North is towards the top of the screen in default rotation (default keybinding: [color=#028ed9][keybind="CameraReset"/][/color]).
 
-While planetside, you can't communicate via radio with the wider Frontier Sector.
-If you don't have a [color=#a4885c]telecommunication server[/color] on your ship, your headset won't work.
-Note that [color=#a4885c]handheld radios[/color] work without a server.
+  While planetside you will be unable to communicate via radio with the wider Frontier Sector, and unless you have a [color=#a4885c]telecommunication server[/color] installed you won't be able to use radio to communicate with your crew in the expedition either.
+
+  # Being Prepared
+  <Box>
+  <GuideEntityEmbed Entity="MobBloodCultistZealotMelee"/>
+  <GuideEntityEmbed Entity="MobFleshGolemExpeditions"/>
+  <GuideEntityEmbed Entity="MobArgocyteEnforcerExpeditions"/>
+  <GuideEntityEmbed Entity="MobCarpHoloExpeditions"/>
+  <GuideEntityEmbed Entity="MobRogueSiliconHunter"/>
+  </Box>
+  During missions planetside, you will encounter dangers ranging from inhospitable environments to hostile wildlife and even bloodthirsty cultists or relentless automatons. If you want to survive a mission with your loot in hand, you've got to be prepared for the challenges ahead. You will need the right gear and the knowledge of how and when that gear should be used. And most importantly, you will need the help of your crewmates.
+
+  # Gear
+  ## Environmental Hazards
+  The first hazard you will encounter on the planet is [italic]the planet itself[/italic]. Planetary environments are diverse: the atmosphere and temperature can vary - both can be dangerous. The [color=#a4885c]salvage console[/color] will give you a rough idea of what conditions on the planet are in the [color=#a4885c]Modifiers[/color] section of the mission description. This information will help you to decide what environmental protection gear you need, if any.
+  
+  <Box>
+  <GuideEntityEmbed Entity="FloorLiquidPlasmaEntity"/>
+  <GuideEntityEmbed Entity="FloorLavaEntity"/>
+  </Box>
+  [bold][color=#a4885c]Biomes:[/color][/bold]
+  - [bold]Grassland/Caves/Shadow:[/bold] no hazards have been observed so far.
+  - [bold]Snow:[/bold] liquid plasma pools can be encountered in this biome. Touching one will set you on fire.
+  - [bold]Lava:[/bold] lava pools can be encountered in this biome. Touching one will set you on fire.
+
+If you [italic]do[/italic] get set on fire, remember to [bold]click the [color=#ee0000]fire icon[/color][/bold] to stop, drop and roll. It may take [bold]multiple tries[/bold] to put yourself out.
+  
+  <Box>
+  <GuideEntityEmbed Entity="ClothingMaskGas"/>
+  <GuideEntityEmbed Entity="AirTankFilled"/>
+  </Box>
+  [bold][color=#a4885c]Air quality modifiers:[/color][/bold]
+  - [bold]None:[/bold] the air is safe to breathe without internals on.
+  - [bold]Dangerous atmosphere:[/bold] ranges from a toxic atmosphere to none at all. Internals must be on, and an EVA suit or hardsuit in extreme cases.
+  - [bold]Volatile atmosphere:[/bold] the atmosphere has gaseous plasma in it. Internals must be on. Depending on the other gases present, the atmosphere may combust and engulf the entire planet.
+  
+  <Box>
+  <GuideEntityEmbed Entity="ClothingOuterWinterMiner"/>
+  <GuideEntityEmbed Entity="ClothingOuterHardsuitEVA"/>
+  <GuideEntityEmbed Entity="ClothingOuterHardsuitBasic"/>
+  </Box>
+  [bold][color=#a4885c]Temperature modifiers:[/color][/bold]
+  - [bold]None:[/bold] the temperature on the planet is warm, no special equipment is needed.
+  - [bold]Low temperature:[/bold] cold, but bearable. Reptilians are advised to wear a winter coat or hardsuit.
+  - [bold]Extreme cold:[/bold] temperatures are close to absolute zero, a hardsuit is required.
+  - [bold]High temperature:[/bold] unpleasantly hot, roughly 150 centigrade. Heat-resistant gear or a hardsuit are needed.
+  - [bold]Extreme heat:[/bold] temperatures are very high, a hardsuit is mandatory.
+  
+  <Box>
+  <GuideEntityEmbed Entity="Flare"/>
+  <GuideEntityEmbed Entity="GlowstickBlue"/>
+  <GuideEntityEmbed Entity="FlashlightLantern"/>
+  <GuideEntityEmbed Entity="Floodlight"/>
+  </Box>
+  [bold][color=#a4885c]Time of day:[/color][/bold]
+  - [bold]Morning/Day/Evening times:[/bold] the ambient light on the planet is sufficient, no need for light sources.
+  - [bold]Night time:[/bold] complete darkness, light sources are required for navigating the planet.
+  
+  [bold][color=#a4885c]Time constraints:[/color][/bold]
+  - [bold]Rush:[/bold] you will have less time to complete the expedition. Set your priorities in advance, and avoid being slowed down too mcuh with heavy gear.
+  
+  ## Tools
+  <Box>
+  <GuideEntityEmbed Entity="Pickaxe"/>
+  <GuideEntityEmbed Entity="Crowbar"/>
+  <GuideEntityEmbed Entity="Wrench"/>
+  <GuideEntityEmbed Entity="Screwdriver"/>
+  <GuideEntityEmbed Entity="Wirecutter"/>
+  </Box>
+  <Box>
+  <GuideEntityEmbed Entity="ClothingEyesGlassesMeson"/>
+  <GuideEntityEmbed Entity="Welder"/>
+  <GuideEntityEmbed Entity="Multitool"/>
+  <GuideEntityEmbed Entity="RadioHandheld"/>
+  </Box>
+  Salvaging often requires digging through layers of rocks to reach an abandoned facility, as well as deconstructing walls and windows, to gain entrance to the ruins. You may need to pry open unpowered airlocks or dismantle valuable machinery to take back. Tools can make hard tasks easier, like using a crowbar to pry open airlocks (much faster than using your hands), or make impossible tasks possible, like mining through rocks with a drill. Also, tools like a handheld radio can provide a way for crewmates to talk without a telecommunication server.
+  
+  For more details see the Guidebook entries on [textlink="Engineering" link="Engineering"] and [textlink="Construction" link="Construction"].
+  
+  ## Medicine
+  <Box>
+  <GuideEntityEmbed Entity="EmergencyMedipen"/>
+  <GuideEntityEmbed Entity="Brutepack"/>
+  <GuideEntityEmbed Entity="Ointment"/>
+  <GuideEntityEmbed Entity="Gauze"/>
+  </Box>
+  <Box>
+  <GuideEntityEmbed Entity="MedicatedSuture"/>
+  <GuideEntityEmbed Entity="RegenerativeMesh"/>
+  <GuideEntityEmbed Entity="Tourniquet"/>
+  </Box>
+  You will get hurt. Period. Knowing the basics of medical care and having supplies at hand can make the difference between life and death for you or your crewmates. 
+  
+  Before going on expedition, consider buying medical supplies for the types of damage you're likely to receive ([color=red]brute[/color] and [color=#ffa500]burn[/color]), and supplies to stop [color=red]bleeding[/color], like [color=#a4885c]gauze[/color] or [color=#a4885c]epinephrine[/color]. Basic medications can be bought from vending machines. More efficient, advanced ones are harder to obtain, but most of the time they can be bought from other players providing medical services.
+  
+  Remember, having medical supplies at hand is only half the job! Remember to [textlink="learn the basics of medical care" link="Medical Doctor"].
+  
+  ## Armor
+  <Box>
+  <GuideEntityEmbed Entity="ClothingHeadHelmetBasic"/>
+  <GuideEntityEmbed Entity="ClothingOuterArmorBulletproof"/>
+  <GuideEntityEmbed Entity="ClothingOuterArmorReflective"/>
+  <GuideEntityEmbed Entity="RiotShield"/>
+  </Box>
+  Most of the time, you can't avoid getting hit. Wearing armor reduces damage taken, keeping you in action for longer, and giving you a chance to go and heal. Since different types of enemies do different types of damage, choosing your armor wisely will significantly increase your chances of survival.
+  
+  Here are some examples for your consideration:
+  - [textlink="Syndicate naval forces" link="MobsExpeditionGuideSyndicate"] use firearms that deal [color=yellow]piercing[/color] damage. Wearing armor with high pierce resistance (like a bulletproof vest) is a good choice.
+  - [textlink="Rogue silicons" link="MobsExpeditionGuideSilicons"] mostly deal [color=#ffa500]heat[/color] damage: wearing a reflective vest is a good choice.
+  
+  ## Teamwork
+  <Box>
+  <GuideEntityEmbed Entity="GuidebookMemeNpcGood" Caption="the good,"/>
+  <GuideEntityEmbed Entity="GuidebookMemeNpcBad" Caption="the bad,"/>
+  <GuideEntityEmbed Entity="GuidebookMemeNpcUgly" Caption="the ugly"/>
+  <GuideEntityEmbed Entity="GuidebookMemeNpcThatGuy" Caption="and that guy"/>
+  </Box>
+  By far, your best bet at surviving expeditions is your crewmates. You might [italic]know[/italic] how to heal yourself, but you [italic]can't[/italic] if you're unconscious.
+  
+  <Box>
+  <GuideEntityEmbed Entity="TelecomServerFilledShuttle"/>
+  <GuideEntityEmbed Entity="EncryptionKeyCommon"/>
+  </Box>
+  <Box>
+  <GuideEntityEmbed Entity="ClothingHeadsetGrey" Caption="headset"/>
+  <GuideEntityEmbed Entity="EncryptionKeyMedical"/>
+  <GuideEntityEmbed Entity="MedicalTrackingImplanter"/>
+  </Box>
+  
+  Communication is crucial. Make sure to keep in contact with your teammates to know what they're doing and when they need help. You'll need either a headset and a [color=#a4885c]telecommunication server[/color] with [color=#a4885c]encryption keys[/color] installed, or [color=#a4885c]handheld radios[/color] on each crewmate (make sure they're on!).
+
+  Having a [color=#a4885c]medical encryption key[/color] installed in your headset will tell you when anyone with a [color=#a4885c]medical tracking implanter[/color] installed goes down in combat. Leave no friend behind!
+  
+  ## Know Your Enemy
+  <Box>
+  <GuideEntityEmbed Entity="ClothingEyesHudMedical"/>
+  <GuideEntityEmbed Entity="ClothingEyesHudDiagnostic"/>
+  </Box>
+  Adaptability is key: strategies and tactics that work against [textlink="xenos" link="MobsExpeditionGuideXenos"] might not work well against [textlink="mercenaries" link="MobsExpeditionGuideMercenaries"], and vice versa. The Guidebook entries on hostile entities may provide some insight into what to expect planetside, but they [italic]cannot[/italic] replace firsthand experience. Instead, descend to the planet, salvage what you can, and face danger head-on. The riches won't wait around forever!
+  
 </Document>

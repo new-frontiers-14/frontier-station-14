@@ -15,9 +15,6 @@
     - type: SimpleFloorPlanPopulator
       entries:
         FloorAsteroidSand:
-          - id: RandomArtifactSpawner20
-            prob: 0.03
-            orGroup: rock
           - id: WallRock
             prob: 0.3
             orGroup: rock
@@ -51,13 +48,13 @@
           - id: WallRockArtifactFragment
             prob: 0.03
             orGroup: rock
+          - id: WallRockBluespace
+            prob: 0.005
+            orGroup: rock
           - id: RockElementalSpawner
             prob: 0.08
             orGroup: rock
-    - type: GCAbleObject
-      queue: SpaceDebris
     - type: IFF
-      flags: HideLabel
       color: "#d67e27"
 
 - type: entity
@@ -168,9 +165,6 @@
     - type: SimpleFloorPlanPopulator
       entries:
         FloorIce:
-          - id: RandomArtifactSpawner20
-            prob: 0.03
-            orGroup: rock
           - id: SnowElementalSpawner
             prob: 0.08
             orGroup: rock
@@ -179,6 +173,9 @@
             orGroup: rock
           - id: WallRockSnowArtifactFragment
             prob: 0.05
+            orGroup: rock
+          - id: WallRockSnowBluespace
+            prob: 0.01
             orGroup: rock
           - id: WallRockSnowBananium
             prob: 0.02
@@ -210,10 +207,7 @@
           - id: WallIce
             prob: 0.1
             orGroup: rock
-    - type: GCAbleObject
-      queue: SpaceDebris
     - type: IFF
-      flags: HideLabel
       color: "#d6fffc"
 
 - type: entity
@@ -324,9 +318,6 @@
     - type: SimpleFloorPlanPopulator
       entries:
         FloorCaveDrought:
-          - id: RandomArtifactSpawner20
-            prob: 0.01
-            orGroup: rock
           - id: AndesiteElementalSpawner
             prob: 0.08
             orGroup: rock
@@ -363,13 +354,13 @@
           - id: WallRockAndesiteArtifactFragment
             prob: 0.01
             orGroup: rock
+          - id: WallRockAndesiteBluespace
+            prob: 0.002
+            orGroup: rock
           - id: WallAndesiteCobblebrick
             prob: 0.1
             orGroup: rock
-    - type: GCAbleObject
-      queue: SpaceDebris
     - type: IFF
-      flags: HideLabel
       color: "#95c280"
 
 - type: entity
@@ -480,9 +471,6 @@
     - type: SimpleFloorPlanPopulator
       entries:
         FloorBasalt:
-          - id: RandomArtifactSpawner20
-            prob: 0.01
-            orGroup: rock
           - id: BasaltElementalSpawner
             prob: 0.08
             orGroup: rock
@@ -519,11 +507,13 @@
           - id: WallRockBasaltArtifactFragment
             prob: 0.01
             orGroup: rock
+          - id: WallRockBasaltBluespace
+            prob: 0.002
+            orGroup: rock
           - id: WallBasaltCobblebrick
             prob: 0.1
             orGroup: rock
     - type: IFF
-      flags: HideLabel
       color: "#b5b5b5"
 
 - type: entity
@@ -634,9 +624,6 @@
     - type: SimpleFloorPlanPopulator
       entries:
         FloorLowDesert:
-          - id: RandomArtifactSpawner20
-            prob: 0.01
-            orGroup: rock
           - id: SandElementalSpawner
             prob: 0.08
             orGroup: rock
@@ -673,11 +660,13 @@
           - id: WallRockSandArtifactFragment
             prob: 0.01
             orGroup: rock
+          - id: WallRockSandBluespace
+            prob: 0.002
+            orGroup: rock
           - id: WallSandstone
             prob: 0.1
             orGroup: rock
     - type: IFF
-      flags: HideLabel
       color: "#cad17b"
 
 - type: entity
@@ -788,9 +777,6 @@
     - type: SimpleFloorPlanPopulator
       entries:
         FloorChromite:
-          - id: RandomArtifactSpawner20
-            prob: 0.01
-            orGroup: rock
           - id: ChromiteElementalSpawner
             prob: 0.08
             orGroup: rock
@@ -808,6 +794,9 @@
             orGroup: rock
           - id: WallRockChromiteArtifactFragment
             prob: 0.01
+            orGroup: rock
+          - id: WallRockChromiteBluespace
+            prob: 0.002
             orGroup: rock
           - id: WallRockChromiteBananium
             prob: 0.01
@@ -831,7 +820,6 @@
             prob: 0.1
             orGroup: rock
     - type: IFF
-      flags: HideLabel
       color: "#8178cc"
 
 - type: entity
@@ -942,9 +930,6 @@
     - type: SimpleFloorPlanPopulator
       entries:
         FloorAsteroidSand:
-          - id: RandomArtifactSpawner20
-            prob: 0.01
-            orGroup: rock
           - id: AsteroidRockElementalSpawner
             prob: 0.08
             orGroup: rock
@@ -981,11 +966,13 @@
           - id: AsteroidRockArtifactFragment
             prob: 0.01
             orGroup: rock
+          - id: AsteroidRockBluespace
+            prob: 0.01
+            orGroup: rock
           - id: WallNecropolis
             prob: 0.1
             orGroup: rock
     - type: IFF
-      flags: HideLabel
       color: "#BF8C5C"
 
 - type: entity

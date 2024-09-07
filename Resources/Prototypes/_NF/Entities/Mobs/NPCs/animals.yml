@@ -1,0 +1,43 @@
+
+- type: entity
+  name: parrot
+  parent: [ MobParrot, ClothingNeckBase ]
+  id: MobParrotNF
+  components:
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,2,2
+  - type: Sprite
+    sprite: _NF/Mobs/NPC/Animals/parrot.rsi
+  - type: ActiveListener
+    range: 5
+  - type: ParrotSpeech
+    blacklist:
+      components:
+        - ParrotSpeech # Stop parrots repeating their own speech
+        - SurveillanceCamera
+        - SurveillanceCameraMonitor
+        - RadioSpeaker
+        - VendingMachine
+
+# Really shouldn't be here
+- type: entity
+  id: CageParrot
+  parent: PetRockCarrier
+  name: parrot carrying cage
+  description: A home away from home for your squawking feathered friend.
+  suffix: null # Previously defined
+  components:
+  - type: StorageFill
+    contents:
+      - id: MobParrotNF
+  - type: Storage
+    grid:
+    - 0,0,2,2
+    maxItemSize: Large
+    whitelist:
+      components:
+        - ParrotSpeech
+  - type: StaticPrice
+    vendPrice: 1000

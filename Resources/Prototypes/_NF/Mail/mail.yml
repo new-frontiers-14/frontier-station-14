@@ -199,7 +199,7 @@
 - type: entity
   noSpawn: true
   parent: BaseMailLarge
-  id: MailNFPowerTool 
+  id: MailNFPowerTool
   suffix: power tool
   components:
   - type: Mail
@@ -531,7 +531,7 @@
       prob: 0.5
       orGroup: Plushie
       # Rare loot, drops should be special.
-    - id: PlushieSlips
+    - id: PlushieJanitor
       prob: 0.05
       orGroup: Plushie
     - id: PlushieJester
@@ -1333,6 +1333,28 @@
 - type: entity
   noSpawn: true
   parent: BaseMailLarge
+  id: MailNFEmotionalRPG
+  suffix: RPG
+  components:
+  - type: Mail
+    contents:
+    - id: WeaponLauncherRocketToy
+    - id: BulletFoamRPG
+      amount: 1
+
+- type: entity
+  noSpawn: true
+  parent: BaseMailLarge
+  id: MailNFVulpCannon
+  suffix: vulp cannon
+  components:
+  - type: Mail
+    contents:
+    - id: WeaponVulpCannon
+
+- type: entity
+  noSpawn: true
+  parent: BaseMailLarge
   id: MailNFDAW
   suffix: DAW
   components:
@@ -1815,7 +1837,7 @@
 
 - type: entity
   noSpawn: true
-  parent: BaseMail
+  parent: BaseMailLarge
   id: MailNFTacticalMaid
   suffix: tactical maid
   components:
@@ -1825,6 +1847,7 @@
       - id: ClothingHeadHatTacticalMaidHeadband
       - id: MegaSprayBottle
       - id: ClothingHandsTacticalMaidGloves
+      - id: ClothingOuterHardsuitTacticalMaid
 
 # These could use separate sprites.  That would be a nice touch.
 - type: entity

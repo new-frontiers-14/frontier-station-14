@@ -4,9 +4,35 @@
   loadouts:
   - PrisonerJumpsuit
   - PrisonerJumpskirt
+  fallbacks:
+  - PrisonerJumpsuit
+  - PrisonerJumpskirt
 
 - type: loadoutGroup
   id: PrisonerPDA
   name: loadout-group-contractor-id
+  hidden: true # No point in showing this, it gets auto-selected.
   loadouts:
   - PrisonerPrisonerPDA
+  fallbacks:
+  - PrisonerPrisonerPDA
+
+- type: loadoutGroup
+  id: PrisonerFace
+  name: loadout-group-contractor-face
+  hidden: true # No point in showing this, it gets auto-selected.
+  loadouts:
+  - PrisonerClothingMaskBreath
+  fallbacks:
+  - PrisonerClothingMaskBreath
+
+- type: loadoutGroup
+  id: PrisonerSurvival
+  name: loadout-group-contractor-survival-box # Not a box.  If unhidden, should probably be fixed.
+  hidden: true # No point in showing this, it gets auto-selected.
+  loadouts:
+  - PrisonerEmergencyOxygenTankFilled
+  - PrisonerEmergencyNitrogenTankFilled
+  fallbacks:
+  - PrisonerEmergencyOxygenTankFilled
+  - PrisonerEmergencyNitrogenTankFilled

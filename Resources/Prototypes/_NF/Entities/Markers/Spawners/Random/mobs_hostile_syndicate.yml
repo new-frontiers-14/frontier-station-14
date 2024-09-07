@@ -51,7 +51,7 @@
         state: equipped-INNERCLOTHING
       - sprite: Clothing/Shoes/Boots/jackboots.rsi
         state: equipped-FEET
-      - sprite: Objects/Weapons/Guns/Shotguns/db_shotgun.rsi
+      - sprite: Objects/Weapons/Guns/Shotguns/db_shotgun_inhands_64x.rsi
         state: inhand-left
       - sprite: Objects/Tools/Toolboxes/toolbox_syn.rsi
         state: inhand-right
@@ -436,3 +436,37 @@
     - MobSyndicateNavalChemwarriorA
     - MobSyndicateNavalGrenadierA
     rareChance: 0.1
+
+# Voidsmen
+- type: entity
+  name: syndicate naval harder mobs spawner
+  id: SpawnMobSyndicateNavalHardVoid
+  parent: MarkerBase
+  suffix: AI, Hostile, RND (low), Void
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+      - sprite: _NF/Mobs/Species/Templates/human.rsi
+        state: human
+      - sprite: Clothing/Head/Hardsuits/syndieelite.rsi
+        state: off-equipped-HELMET
+      - sprite: Clothing/OuterClothing/Hardsuits/syndieelite.rsi
+        state: equipped-OUTERCLOTHING
+      - sprite: Objects/Weapons/Guns/Revolvers/python.rsi
+        state: inhand-left
+      - sprite: _NF/Objects/Weapons/Melee/armingsword.rsi
+        state: inhand-right
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - SpawnMobSyndicateNavalSecondOfficerVoid
+    - SpawnMobSyndicateNavalCaptainVoid
+    chance: 0.1
+    offset: 0.0
+    rarePrototypes:
+    - SpawnMobSyndicateNavalOperatorVoid
+    rareChance: 0.02

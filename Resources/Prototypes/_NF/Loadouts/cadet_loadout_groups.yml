@@ -4,6 +4,9 @@
   loadouts:
   - CadetClothingUniformJumpsuitCadet
   - CadetClothingUniformJumpskirtCadet
+  fallbacks:
+  - CadetClothingUniformJumpsuitCadet
+  - CadetClothingUniformJumpskirtCadet
   
 - type: loadoutGroup
   id: CadetOuterClothing
@@ -13,23 +16,11 @@
   - NfsdOuterClothing
 
 - type: loadoutGroup
-  id: CadetShoes
-  name: loadout-group-contractor-shoes
-  loadouts:
-  - NfsdClothingShoesBootsBrown
-
-- type: loadoutGroup
   id: CadetHead
   name: loadout-group-contractor-head
   minLimit: 0
   loadouts:
   - CadetClothingHeadHatCadet
-  
-- type: loadoutGroup
-  id: CadetGloves
-  name: loadout-group-contractor-gloves
-  loadouts:
-  - CadetClothingHandsGlovesCadet
 
 - type: loadoutGroup
   id: CadetNeck
@@ -41,11 +32,8 @@
 - type: loadoutGroup
   id: CadetPDA
   name: loadout-group-contractor-id
+  hidden: true # No point in showing this, it gets auto-selected.
   loadouts:
   - CadetCadetPDA
-  
-- type: loadoutGroup
-  id: CadetGlasses
-  name: loadout-group-contractor-glasses
-  loadouts:
-  - NfsdClothingEyesGlasses
+  fallbacks:
+  - CadetCadetPDA

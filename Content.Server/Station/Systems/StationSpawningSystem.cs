@@ -54,6 +54,7 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
     [Dependency] private readonly MetaDataSystem _metaSystem = default!;
     [Dependency] private readonly PdaSystem _pdaSystem = default!;
     [Dependency] private readonly SharedAccessSystem _accessSystem = default!;
+    [Dependency] private readonly IDependencyCollection _dependencyCollection = default!; // Frontier
 
     private bool _randomizeCharacters;
 
@@ -211,6 +212,7 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
             // Order loadout selections by the order they appear on the prototype.
             foreach (var group in loadout.SelectedLoadouts.OrderBy(x => roleProto.Groups.FindIndex(e => e == x.Key)))
             {
+                List<ProtoId<LoadoutPrototype>> equippedItems = new(); //Frontier - track purchased items (list: few items)
                 foreach (var items in group.Value)
                 {
                     if (!_prototypeManager.TryIndex(items.Prototype, out var loadoutProto))
@@ -228,12 +230,53 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
 
                     //Frontier - we handle bank stuff so we are wrapping each item spawn inside our own cached check.
                     //This way, we will spawn every item we can afford in the order that they were originally sorted.
-                    if (loadoutProto.Price < bankBalance)
+                    if (loadoutProto.Price <= bankBalance)
                     {
                         bankBalance -= loadoutProto.Price;
                         EquipStartingGear(entity.Value, startingGear, raiseEvent: false);
+                        equippedItems.Add(loadoutProto.ID);
                     }
                 }
+
+                // New Frontiers - Loadout Fallbacks - if a character cannot afford their current job loadout, ensure they have fallback items for mandatory categories.
+                // This code is licensed under AGPLv3. See AGPLv3.txt
+                if (_prototypeManager.TryIndex(group.Key, out var groupPrototype) &&
+                    equippedItems.Count < groupPrototype.MinLimit)
+                {
+                    foreach (var fallback in groupPrototype.Fallbacks)
+                    {
+                        // Do not duplicate items in loadout
+                        if (equippedItems.Contains(fallback))
+                        {
+                            continue;
+                        }
+
+                        if (!_prototypeManager.TryIndex(fallback, out var loadoutProto))
+                        {
+                            Log.Error($"Unable to find loadout prototype for fallback {fallback}");
+                            continue;
+                        }
+
+                        // Validate effects against the current character.
+                        if (!loadout.IsValid(profile!, _actors.GetSession(entity!), fallback, _dependencyCollection, out var _))
+                        {
+                            continue;
+                        }
+
+                        if (!_prototypeManager.TryIndex(loadoutProto.Equipment, out var startingGear))
+                        {
+                            Log.Error($"Unable to find starting gear {loadoutProto.Equipment} for fallback loadout {loadoutProto}");
+                            continue;
+                        }
+
+                        EquipStartingGear(entity.Value, startingGear, raiseEvent: false);
+                        equippedItems.Add(fallback);
+                        // Minimum number of items equipped, no need to load more prototypes.
+                        if (equippedItems.Count >= groupPrototype.MinLimit)
+                            break;
+                    }
+                }
+                // End of modified code.
             }
 
             // Frontier: do not re-equip roleLoadout.

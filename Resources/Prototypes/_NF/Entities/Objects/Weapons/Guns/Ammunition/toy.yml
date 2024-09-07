@@ -1,0 +1,20 @@
+- type: entity
+  id: BulletFoamRPG
+  description: Looks like the REAL THING! I hope you're wearing face protection.
+  name: Foam RPG rocket
+  parent: BaseItem
+  components:
+    - type: Tag
+      tags:
+        - BulletFoam
+        - Trash
+    - type: Ammo
+    - type: Sprite
+      sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+      layers:
+        - state: rpg
+    - type: EmitSoundOnCollide
+      sound:
+       path: /Audio/Weapons/rubberhammer.ogg
+    - type: StaminaDamageOnCollide
+      damage: 20

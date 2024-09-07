@@ -2,7 +2,7 @@
   parent: CarpStatue
   id: RogueAiNode
   name: rogue ai node
-  description: "Contains portion of rogue AI database. CAUTION! EXPLOSIVE!"
+  description: "Contains portion of rogue AI database."
   components:
   - type: Sprite
     sprite: _NF/Structures/Specific/RogueSilicons/ai_node.rsi
@@ -10,6 +10,19 @@
     - state: base
     - state: unshaded
       shader: unshaded
+    - state: electrified
+      sprite: Effects/electricity.rsi
+      map: ["enum.ElectrifiedLayers.Powered"]
+      shader: unshaded
+      visible: false
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ElectrifiedVisuals.IsPowered:
+        enum.ElectrifiedLayers.Powered:
+          True: { visible: True }
+          False: { visible: False }
+  - type: AnimationPlayer
   - type: PointLight
     radius: 1.5
     energy: 1.6
@@ -20,6 +33,25 @@
     range: 5
     sound:
       path: /Audio/Ambience/Objects/hdd_buzz.ogg
+  - type: PowerConsumer
+    showInMonitor: false
+  - type: Electrified
+    requirePower: true
+    noWindowInTile: true
+    highVoltageNode: high
+    mediumVoltageNode: medium
+    lowVoltageNode: low
+  - type: NodeContainer
+    nodes:
+      high:
+        !type:CableDeviceNode
+        nodeGroupID: HVPower
+      medium:
+        !type:CableDeviceNode
+        nodeGroupID: MVPower
+      low:
+        !type:CableDeviceNode
+        nodeGroupID: Apc
   - type: RangedDamageSound
     soundGroups:
       Brute:

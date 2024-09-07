@@ -33,8 +33,7 @@ public sealed partial class NavScreen : BoxContainer
         DockToggle.OnToggled += OnDockTogglePressed;
         DockToggle.Pressed = NavRadar.ShowDocks;
 
-        // Frontier - IFF search
-        IffSearchCriteria.OnTextChanged += args => OnIffSearchChanged(args.Text);
+        NfInitialize(); // Frontier Initialization for the NavScreen
     }
 
     // Frontier - IFF search
@@ -55,20 +54,7 @@ public sealed partial class NavScreen : BoxContainer
     {
         _shuttleEntity = shuttle;
 
-        // Frontier - PR #1284 Add Shuttle Designation
-        if (_entManager.TryGetComponent<MetaDataComponent>(shuttle, out var metadata))
-        {
-            var shipNameParts = metadata.EntityName.Split(' ');
-            var designation = shipNameParts[^1];
-            if (designation[2] == '-')
-            {
-                NavDisplayLabel.Text = string.Join(' ', shipNameParts[..^1]);
-                ShuttleDesignation.Text = designation;
-            }
-            else
-                NavDisplayLabel.Text = metadata.EntityName;
-        }
-        // End Frontier - PR #1284
+        NfAddShuttleDesignation(shuttle); // Frontier - PR #1284 Add Shuttle Designation
     }
 
     private void OnIFFTogglePressed(BaseButton.ButtonEventArgs args)
@@ -92,6 +78,7 @@ public sealed partial class NavScreen : BoxContainer
     public void UpdateState(NavInterfaceState scc)
     {
         NavRadar.UpdateState(scc);
+        NfUpdateState(); // Frontier Update State
     }
 
     public void SetMatrix(EntityCoordinates? coordinates, Angle? angle)

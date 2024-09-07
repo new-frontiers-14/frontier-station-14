@@ -137,6 +137,7 @@
     tags:
     - ClothMade
     - WhitelistChameleon
+    - HidesHair
 
 - type: entity
   parent: ClothingHeadBase
@@ -305,3 +306,19 @@
     - ClothMade
     - WhitelistChameleon
     - CatWearable # Frontier
+    
+- type: entity
+  parent: ClothingHeadHatHopcap
+  id: ClothingHeadHatStcCap
+  name: station traffic controller's cap
+  description: A cap issued to Frontier Outpost's station traffic controller. Try not to lose it.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Head/Hats/stc_cap.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Head/Hats/stc_cap.rsi
+  - type: Tag
+    tags:
+    - ClothMade
+    - WhitelistChameleon
+    - HamsterWearable

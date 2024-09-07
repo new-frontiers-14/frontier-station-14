@@ -18,7 +18,7 @@
   components:
   - type: EmpOnTrigger
     range: 7
-    energyConsumption: 50000
+    energyConsumption: 2700000
 
 - type: entity
   id: DelayedEMP
@@ -43,29 +43,29 @@
 
 - type: entity
   id: SyringeCognizine
-  parent: Syringe
+  parent: PrefilledSyringe
   name: cognizine syringe
   components:
   - type: SolutionContainerManager
     solutions:
-      drink:
+      injector:
         maxVol: 15
         reagents:
-        - ReagentId: Cognizine
-          Quantity: 15 # Surely three friends is enough.
+          - ReagentId: Cognizine
+            Quantity: 15 # Surely three friends is enough.
 
 - type: entity
   id: SyringeOpporozidone
-  parent: Syringe
+  parent: PrefilledSyringe
   name: opporozidone syringe
   components:
   - type: SolutionContainerManager
     solutions:
-      drink:
+      injector:
         maxVol: 15
         reagents:
-        - ReagentId: Opporozidone
-          Quantity: 15
+          - ReagentId: Opporozidone
+            Quantity: 15
 
 - type: entity
   id: NecrosolChemistryBottle
@@ -159,3 +159,20 @@
     solutions:
       smokable:
         maxVol: 20
+
+- type: entity
+  name: lil vulp cannon
+  parent: WeaponImprovisedPneumaticCannon
+  id: WeaponVulpCannon
+  description: With a widened barrel, this friend launcher can huck your little buddies further than you ever could.
+  components:
+  - type: Storage
+    maxItemSize: Ginormous
+    grid:
+    - 0,0,3,3
+    whitelist:
+      components:
+        - HumanoidAppearance
+  - type: PneumaticCannon
+    throwItems: false # must be false to get the TOOMP
+    baseProjectileSpeed: 25.0 # zoom

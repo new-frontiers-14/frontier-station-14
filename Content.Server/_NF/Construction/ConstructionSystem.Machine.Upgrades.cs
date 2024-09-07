@@ -77,19 +77,24 @@ public sealed partial class ConstructionSystem
 
         foreach (var entity in component.PartContainer.ContainedEntities)
         {
-            if (TryComp<MachinePartComponent>(entity, out var machinePart))
-            {
-                var partState = new MachinePartState
-                {
-                    Part = machinePart
-                };
-                TryComp(entity, out partState.Stack);
-
+            if (GetMachinePartState(entity, out var partState))
                 parts.Add(partState);
-            }
         }
 
         return parts;
+    }
+
+    public bool GetMachinePartState(EntityUid uid, out MachinePartState state)
+    {
+        state = new MachinePartState();
+        MachinePartComponent? part;
+        if (TryComp(uid, out part) && part is not null)
+            state.Part = part;
+        else
+            return false;
+
+        TryComp(uid, out state.Stack);
+        return true;
     }
 
     public Dictionary<string, float> GetPartsRatings(List<MachinePartState> partStates)

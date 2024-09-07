@@ -38,6 +38,8 @@
     - SpawnDungeonLootToolsSurgeryAdvanced
     - SpawnDungeonLootClothesMed
     - PillCanisterRandom
+    - SpawnDungeonLootFlatpacksMed
+    - SpawnDungeonLootVendingRestocks
     chance: 0.95
     offset: 0.0
     rarePrototypes:
@@ -524,6 +526,105 @@
     - LockerChiefMedicalOfficerFilled
     rareChance: 0.05
 
+- type: entity
+  name: random crate
+  id: SpawnDungeonLootCrateMed
+  parent: MarkerBase
+  suffix: "Dungeon, Medical"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Storage/Crates/medicalcrate_secure.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    # Empty crates
+    - CrateMedical
+    - CrateSurgery
+    - CrateChemistrySecure
+    # Restocks
+    - CrateVendingMachineRestockMedicalFilled
+    - CrateVendingMachineRestockChemVendFilled
+    # Mats
+    - CrateMaterialGlass
+    - CrateMaterialSteel
+    - CrateMaterialPlastic
+    - CrateMaterialTextiles
+    - CrateMaterialBiomass
+    - CrateChemistryD
+    - CrateChemistryP
+    - CrateChemistryS
+    - WaterTankFull
+    # Filled crates
+    - CrateBodyBags
+    - CrateMedicalRollerBeds
+    - CrateChemistrySupplies
+    - CrateChemistryVials
+    - CrateMedicalSupplies
+    - CrateMedicalSurgery
+    - CrateMedicalScrubs
+    - CrateVirologyBiosuit
+    - CrateChemistrySecureKitChemist
+    - CrateMedicalSecureDoctor
+    - CrateMedicalSecureMedicine
+    - CrateMedicalSecureMedicinePierce
+    - CrateEvaKitParamedic
+    chance: 0.9
+    offset: 0.0
+    rarePrototypes:
+    - CrateServiceKitMedbay
+    - CrateServiceKitChemLab
+    - CrateServiceKitMedbayCryo
+    - CrateEvaKitCmo
+    rareChance: 0.01
+
+- type: entity
+  name: random crate (empty)
+  id: SpawnDungeonLootCrateEmptyMed
+  parent: MarkerBase
+  suffix: "Dungeon, Medical"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Storage/Crates/medicalcrate_secure.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - CrateMedical
+    - CrateSurgery
+    - CrateChemistrySecure
+    chance: 1.0
+    offset: 0.0
+
+- type: entity
+  name: random crate (restock)
+  id: SpawnDungeonLootCrateRestockMed
+  parent: MarkerBase
+  suffix: "Dungeon, Medical"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Storage/Crates/medicalcrate_secure.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - CrateVendingMachineRestockMedicalFilled
+    - CrateVendingMachineRestockChemVendFilled
+    chance: 1.0
+    offset: 0.0
+
 # Machines
 - type: entity
   name: random vendomat
@@ -647,3 +748,34 @@
     rarePrototypes:
     - ComputerIFFCircuitboard
     rareChance: 0.03
+
+- type: entity
+  name: random flatpack
+  id: SpawnDungeonLootFlatpacksMed
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Medical"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _NF/Objects/Devices/flatpack.rsi
+        state: engineering_lathe
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - MedicalTechFabFlatpack
+    - StasisBedFlatpack
+    - ChemMasterFlatpack
+    - MachineElectrolysisUnitFlatpack
+    - BaseGasCondenserFlatpack
+    - MachineCentrifugeFlatpack
+    - ChemistryHotplateFlatpack
+    - KitchenReagentGrinderFlatpack
+    - ComputerCrewMonitoringFlatpack
+    - VendingMachineMedicalFlatpack
+    - VendingMachineWallMedicalFlatpack
+    - VendingMachineChemicalsFlatpack
+    chance: 0.95
+    offset: 0.0

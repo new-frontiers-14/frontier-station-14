@@ -1,0 +1,43 @@
+- type: entity
+  parent: CarpStatue
+  id: MercenaryCounterfeitCache
+  name: counterfeit cache
+  description: "Cache with counterfeit spesos, bootleg movie posters."
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Specific/Mercenaries/counterfeitcache.rsi
+    layers:
+    - state: base
+    - state: unshaded
+      shader: unshaded
+  - type: RangedDamageSound
+    soundGroups:
+      Brute:
+        collection:
+          MetalBulletImpact
+    soundTypes:
+      Heat:
+        collection:
+          MetalLaserImpact
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 60
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 30
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SpaceCashCounterfeit:
+            min: 100
+            max: 2500

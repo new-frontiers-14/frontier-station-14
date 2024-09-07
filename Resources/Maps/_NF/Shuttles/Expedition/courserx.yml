@@ -18,7 +18,7 @@ entities:
   - uid: 1
     components:
     - type: MetaData
-      name: NT Courser
+      name: CourserX
     - type: Transform
       pos: 0.52083397,0.5416665
       parent: invalid
@@ -866,7 +866,7 @@ entities:
     - type: Transform
       pos: 4.5,-10.5
       parent: 1
-- proto: BedsheetMedical
+- proto: BedsheetSpawner
   entities:
   - uid: 45
     components:
@@ -3618,7 +3618,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -6.5,-4.5
       parent: 1
-- proto: GunSafeShuttleT2Spawner
+- proto: GunSafeShuttleCaptain
   entities:
   - uid: 330
     components:
@@ -3715,7 +3715,7 @@ entities:
         - 0
         - 0
         - 0
-- proto: LockerMedicalFilled
+- proto: LockerMedical
   entities:
   - uid: 466
     components:
@@ -3804,40 +3804,12 @@ entities:
     - type: Transform
       pos: 1.5,-17.5
       parent: 1
-- proto: MedicalBed
+- proto: Bed
   entities:
   - uid: 469
     components:
     - type: Transform
       pos: 1.5,-6.5
-      parent: 1
-- proto: MedkitAdvancedFilled
-  entities:
-  - uid: 470
-    components:
-    - type: Transform
-      pos: 0.6290281,-4.389641
-      parent: 1
-- proto: MedkitOxygenFilled
-  entities:
-  - uid: 471
-    components:
-    - type: Transform
-      pos: 0.36398113,-4.595904
-      parent: 1
-- proto: MedkitRadiationFilled
-  entities:
-  - uid: 472
-    components:
-    - type: Transform
-      pos: -0.08593774,-4.5585074
-      parent: 1
-- proto: MedkitToxinFilled
-  entities:
-  - uid: 473
-    components:
-    - type: Transform
-      pos: 0.08593726,-4.3553824
       parent: 1
 - proto: NitrogenCanister
   entities:
@@ -4089,27 +4061,6 @@ entities:
     components:
     - type: Transform
       pos: -4.5,7.5
-      parent: 1
-- proto: RandomFoodBakedSingle
-  entities:
-  - uid: 515
-    components:
-    - type: Transform
-      pos: 3.5,4.5
-      parent: 1
-- proto: RandomFoodMeal
-  entities:
-  - uid: 516
-    components:
-    - type: Transform
-      pos: -3.5,-4.5
-      parent: 1
-- proto: RandomFoodSingle
-  entities:
-  - uid: 517
-    components:
-    - type: Transform
-      pos: -5.5,-1.5
       parent: 1
 - proto: RandomInstruments
   entities:
@@ -4425,33 +4376,12 @@ entities:
       rot: 3.141592653589793 rad
       pos: 0.5,-2.5
       parent: 1
-- proto: SpawnPointBartender
-  entities:
-  - uid: 576
-    components:
-    - type: Transform
-      pos: -0.5,-1.5
-      parent: 1
 - proto: SpawnPointLatejoin
   entities:
   - uid: 579
     components:
     - type: Transform
       pos: -0.5,1.5
-      parent: 1
-- proto: SpawnPointMercenary
-  entities:
-  - uid: 582
-    components:
-    - type: Transform
-      pos: -0.5,5.5
-      parent: 1
-- proto: SpawnPointParamedic
-  entities:
-  - uid: 583
-    components:
-    - type: Transform
-      pos: -0.5,-5.5
       parent: 1
 - proto: StoolBar
   entities:
@@ -4797,7 +4727,7 @@ entities:
     - type: Transform
       pos: 3.5,-12.5
       parent: 1
-- proto: VendingMachineMedical
+- proto: MachineFrame
   entities:
   - uid: 637
     components:

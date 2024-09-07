@@ -27,10 +27,12 @@
     - SpawnDungeonLootMaterialsBasicSingle
     - SpawnDungeonLootClothesScience
     - SpawnDungeonLootRnDDisk
+    - SpawnDungeonLootVendingRestocks
     chance: 1
     offset: 0.0
     rarePrototypes:
     - SpawnDungeonLootCircuitBoardScience
+    - SpawnDungeonLootFlatpacksScience
     rareChance: 0.05
 
 # Clothes
@@ -95,6 +97,103 @@
     offset: 0.0
     rarePrototypes:
     - LockerResearchDirectorFilled
+    rareChance: 0.01
+
+- type: entity
+  name: random crate
+  id: SpawnDungeonLootCrateScience
+  parent: MarkerBase
+  suffix: "Dungeon, Science"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Storage/Crates/scicrate_secure.rsi
+        state: icon
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    # Empty crates
+    - CrateScienceSecure
+    - CratePlasma
+    - CrateEngineering
+    - CrateElectrical
+    - CrateRadiation
+    - CrateUranium
+    - CrateMedical
+    - CrateSurgery
+    - CrateChemistrySecure
+    # Restocks
+    - CrateVendingMachineRestockEngineeringFilled
+    - CrateVendingMachineRestockVendomatFilled
+    - CrateVendingMachineRestockRoboticsFilled
+    - CrateVendingMachineRestockAstroVendFilled
+    - CrateVendingMachineRestockTankDispenserFilled
+    - CrateVendingMachineRestockMedicalFilled
+    - CrateVendingMachineRestockChemVendFilled
+    # Mats
+    - CrateMaterialGlass
+    - CrateMaterialSteel
+    - CrateMaterialPlastic
+    - CrateMaterialWood
+    - CrateMaterialPlasteel
+    - CrateMaterialPlasma
+    - CrateMaterialUranium
+    - CrateMaterialTextiles
+    - CrateMaterials
+    - CrateMaterialBrass
+    - CrateMaterialMetalRods
+    - CrateMaterialPaper
+    - WeldingFuelTankFull
+    - WaterTankFull
+    # Filled crates
+    - CrateEngineeringGear
+    - CrateEngineeringElectricalSupplies
+    - CrateEngineeringCableLV
+    - CrateEngineeringCableMV
+    - CrateEngineeringCableHV
+    - CrateEngineeringCableBulk
+    - CrateEngineeringToolbox
+    - CrateEngineeringShuttle
+    - CrateEngineeringFoamGrenade
+    - CrateEngineeringMiniJetpack
+    - CrateAirlockKit
+    - CrateEngineeringSpaceHeater
+    - CrateEngineeringSolar
+    - CrateTools
+    - CrateEngineerHardsuit
+    - CrateAtmosTechHardsuit
+    - CrateEngineeringThruster
+    - CrateEngineeringGyroscope
+    - CrateBodyBags
+    - CrateMedicalRollerBeds
+    - CrateChemistrySupplies
+    - CrateChemistryVials
+    - CrateMedicalSupplies
+    - CrateMedicalSurgery
+    - CrateMedicalScrubs
+    - CrateVirologyBiosuit
+    - CrateChemistrySecureKitChemist
+    - CrateMedicalSecureDoctor
+    - CrateMedicalSecureMedicine
+    - CrateMedicalSecureMedicinePierce
+    - CrateEvaKitParamedic
+    chance: 0.9
+    offset: 0.0
+    rarePrototypes:
+    # Mats
+    - WeldingFuelTankHighCapacity
+    # Filled crates
+    - CrateEngineeringKitShipyardRcd
+    - CrateEngineeringKitRtg
+    - CrateEngineeringKitFabrication
+    - CrateEngineerChiefHardsuit
+    - CrateServiceKitMedbay
+    - CrateServiceKitChemLab
+    - CrateServiceKitMedbayCryo
+    - CrateEvaKitCmo
     rareChance: 0.01
 
 # Other
@@ -169,3 +268,38 @@
     - ProtolatheHyperConvectionMachineCircuitboard
     - ComputerIFFCircuitboard
     rareChance: 0.05
+
+- type: entity
+  name: random flatpack
+  id: SpawnDungeonLootFlatpacksScience
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Sciense"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _NF/Objects/Devices/flatpack.rsi
+        state: engineering_lathe
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - ExosuitFabricatorFlatpack
+    - CircuitImprinterFlatpack
+    - ProtolatheFlatpack
+    - MachineArtifactAnalyzerFlatpack
+    - MachineAnomalyVesselFlatpack
+    - MachineAPEFlatpack
+    - ScienceTechFabFlatpack
+    - MachineArtifactCrusherFlatpack
+    - ComputerResearchAndDevelopmentFlatpack
+    - ResearchAndDevelopmentServerFlatpack
+    - MachineAnomalySynchronizerFlatpack
+    - MachineAnomalyVesselExperimentalFlatpack
+    - MachineAnomalyVesselFlatpack
+    chance: 0.95
+    offset: 0.0
+    rarePrototypes:
+    - MachineAnomalyGeneratorFlatpack
+    rareChance: 0.001
