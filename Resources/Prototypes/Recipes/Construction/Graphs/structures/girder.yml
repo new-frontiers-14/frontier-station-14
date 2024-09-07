@@ -6,8 +6,8 @@
       edges:
         - to: girder
           completed:
-            - !type:SnapToGrid
-              southRotation: true
+            - !type:SnapToGrid {} # Frontier: use default ctor
+              # southRotation: true # Frontier
           steps:
             - material: Steel
               amount: 2
@@ -344,8 +344,8 @@
 
         - to: girder
           completed:
-            - !type:SnapToGrid
-              southRotation: true
+            - !type:SnapToGrid {} # Frontier: use default ctor
+              # southRotation: true # Frontier
             - !type:SpawnPrototype
               prototype: SheetPlasteel1
               amount: 2
