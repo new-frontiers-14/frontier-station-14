@@ -7,6 +7,7 @@ using Content.Shared.Storage.EntitySystems;
 using Content.Shared.Verbs;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
+using Robust.Shared.Map;
 using Robust.Shared.Network;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
@@ -21,6 +22,7 @@ namespace Content.Shared._EstacaoPirata.Cards.Stack;
 public sealed class CardStackSystem : EntitySystem
 {
     public const string ContainerId = "cardstack-container";
+    public const int MaxCardsInStack = 212; // Frontier: four 53-card decks.
 
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly EntityManager _entityManager = default!;
@@ -29,7 +31,6 @@ public sealed class CardStackSystem : EntitySystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly SharedStorageSystem _storage = default!;
     [Dependency] private readonly CardHandSystem _cardHandSystem = default!; // Frontier
-
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -42,8 +43,6 @@ public sealed class CardStackSystem : EntitySystem
         SubscribeLocalEvent<CardStackComponent, ExaminedEvent>(OnExamine);
         SubscribeLocalEvent<InteractUsingEvent>(OnInteractUsing);
     }
-
-
 
     public bool TryRemoveCard(EntityUid uid, EntityUid card, CardStackComponent? comp = null)
     {
@@ -76,6 +75,9 @@ public sealed class CardStackSystem : EntitySystem
         if (!TryComp(card, out CardComponent? _))
             return false;
 
+        if (comp.Cards.Count >= MaxCardsInStack)
+            return false;
+
         _container.Insert(card, comp.ItemContainer);
         comp.Cards.Add(card);
 
@@ -83,7 +85,6 @@ public sealed class CardStackSystem : EntitySystem
         RaiseLocalEvent(uid, new CardStackQuantityChangeEvent(GetNetEntity(uid), GetNetEntity(card), StackQuantityChangeType.Added));
         RaiseNetworkEvent(new CardStackQuantityChangeEvent(GetNetEntity(uid), GetNetEntity(card), StackQuantityChangeType.Added));
         return true;
-
     }
 
     public bool ShuffleCards(EntityUid uid, CardStackComponent? comp = null)
@@ -117,7 +118,6 @@ public sealed class CardStackSystem : EntitySystem
             if (!TryComp(card, out CardComponent? cardComponent))
                 continue;
 
-
             cardComponent.Flipped = isFlipped?? !cardComponent.Flipped;
 
             Dirty(card, cardComponent);
@@ -128,7 +128,6 @@ public sealed class CardStackSystem : EntitySystem
         return true;
     }
 
-
     public bool TryJoinStacks(EntityUid firstStack, EntityUid secondStack, CardStackComponent? firstComp = null, CardStackComponent? secondComp = null)
     {
         if (firstStack == secondStack)
@@ -136,20 +135,35 @@ public sealed class CardStackSystem : EntitySystem
         if (!Resolve(firstStack, ref firstComp) || !Resolve(secondStack, ref secondComp))
             return false;
 
+        bool changes = false;
         foreach (var card in secondComp.Cards.ToList())
         {
+            if (firstComp.Cards.Count >= MaxCardsInStack)
+                break;
             _container.Remove(card, secondComp.ItemContainer);
             secondComp.Cards.Remove(card);
             firstComp.Cards.Add(card);
             _container.Insert(card, firstComp.ItemContainer);
+            changes = true;
         }
-        Dirty(firstStack, firstComp);
+        if (changes)
+        {
+            Dirty(firstStack, firstComp);
+            if (secondComp.Cards.Count <= 0)
+            {
+                _entityManager.DeleteEntity(secondStack);
+            }
+            else
+            {
+                Dirty(secondStack, secondComp);
+                RaiseLocalEvent(secondStack, new CardStackQuantityChangeEvent(GetNetEntity(secondStack), null, StackQuantityChangeType.Split));
+                RaiseNetworkEvent(new CardStackQuantityChangeEvent(GetNetEntity(secondStack), null, StackQuantityChangeType.Split));
+            }
+            RaiseLocalEvent(firstStack, new CardStackQuantityChangeEvent(GetNetEntity(firstStack), null, StackQuantityChangeType.Joined));
+            RaiseNetworkEvent(new CardStackQuantityChangeEvent(GetNetEntity(firstStack), null, StackQuantityChangeType.Joined));
+        }
 
-        _entityManager.DeleteEntity(secondStack);
-
-        RaiseLocalEvent(firstStack, new CardStackQuantityChangeEvent(GetNetEntity(firstStack), null, StackQuantityChangeType.Joined) );
-        RaiseNetworkEvent(new CardStackQuantityChangeEvent(GetNetEntity(firstStack), null, StackQuantityChangeType.Joined));
-        return true;
+        return changes;
     }
 
     #region EventHandling
@@ -176,7 +190,6 @@ public sealed class CardStackSystem : EntitySystem
         RaiseNetworkEvent(new CardStackInitiatedEvent(GetNetEntity(uid), comp));
     }
 
-
     // It seems the cards don't get removed if this event is not subscribed... strange right? thanks again bin system
     private void OnEntRemoved(EntityUid uid, CardStackComponent component, EntRemovedFromContainerMessage args)
     {
@@ -187,7 +200,6 @@ public sealed class CardStackSystem : EntitySystem
     {
         args.PushText(Loc.GetString("card-stack-examine", ("count", component.Cards.Count)));
     }
-
 
     private void OnAlternativeVerb(EntityUid uid, CardStackComponent component, GetVerbsEvent<AlternativeVerb> args)
     {
@@ -220,14 +232,20 @@ public sealed class CardStackSystem : EntitySystem
 
     private void JoinStacks(EntityUid user, EntityUid first, CardStackComponent firstComp, EntityUid second, CardStackComponent secondComp)
     {
-        _audio.PlayPredicted(firstComp.PlaceDownSound, Transform(second).Coordinates, user);
         if (_net.IsServer)
         {
-            _storage.PlayPickupAnimation(first, Transform(user).Coordinates, Transform(second).Coordinates, 0);
-            TryJoinStacks(first, second, firstComp, secondComp);
+            if (TryJoinStacks(first, second, firstComp, secondComp))
+            {
+                _audio.PlayPredicted(firstComp.PlaceDownSound, Transform(first).Coordinates, user);
+                _storage.PlayPickupAnimation(first, Transform(user).Coordinates, Transform(second).Coordinates, 0);
+            }
+        }
+        else
+        {
+            if (firstComp.Cards.Count < MaxCardsInStack)
+                _audio.PlayPredicted(firstComp.PlaceDownSound, Transform(first).Coordinates, user);
         }
     }
-
 
     private void InsertCardOnStack(EntityUid user, EntityUid stack, CardStackComponent stackComponent, EntityUid card)
     {
@@ -240,7 +258,6 @@ public sealed class CardStackSystem : EntitySystem
         _storage.PlayPickupAnimation(card, Transform(user).Coordinates, Transform(stack).Coordinates, 0);
     }
 
-
     /// <summary>
     /// This takes the last card from the first stack and inserts it into the second stack
     /// </summary>
@@ -249,29 +266,36 @@ public sealed class CardStackSystem : EntitySystem
         if (firstComp.Cards.Count <= 0)
             return;
 
-
         var cards = firstComp.Cards.TakeLast(n);
 
+        bool changed = false;
         foreach (var card in cards)
         {
+            if (secondComp.Cards.Count >= MaxCardsInStack)
+                break;
+
             if (!TryRemoveCard(first, card))
                 return;
 
             if (!TryInsertCard(second, card))
                 return;
+            changed = true;
         }
 
-        _audio.PlayPredicted(firstComp.PlaceDownSound, Transform(second).Coordinates, user);
-        if (_net.IsClient)
-            return;
+        if (changed)
+        {
+            _audio.PlayPredicted(firstComp.PlaceDownSound, Transform(second).Coordinates, user);
+            if (_net.IsClient)
+                return;
 
-        if (cards.Count() == 1)
-        {
-            _storage.PlayPickupAnimation(cards.First(), Transform(user).Coordinates, Transform(second).Coordinates, 0);
-        }
-        else if (cards.Count() > 0)
-        {
-            _storage.PlayPickupAnimation(first, Transform(first).Coordinates, Transform(second).Coordinates, 0);
+            if (cards.Count() == 1)
+            {
+                _storage.PlayPickupAnimation(cards.First(), Transform(user).Coordinates, Transform(second).Coordinates, 0);
+            }
+            else if (cards.Count() > 0)
+            {
+                _storage.PlayPickupAnimation(first, Transform(first).Coordinates, Transform(second).Coordinates, 0);
+            }
         }
     }
 
@@ -279,7 +303,6 @@ public sealed class CardStackSystem : EntitySystem
     {
         if (args.Handled)
             return;
-
 
         // This checks if the user is using an item with Stack component
         if (TryComp(args.Used, out CardStackComponent? usedStack))
@@ -290,7 +313,6 @@ public sealed class CardStackSystem : EntitySystem
                 InsertCardOnStack(args.User, args.Used, usedStack, args.Target);
                 args.Handled = true;
                 return;
-
             }
 
             // If instead, the target is a stack, then it will join the two stacks
@@ -299,7 +321,6 @@ public sealed class CardStackSystem : EntitySystem
 
             TransferNLastCardFromStacks(args.User, 1, args.Target, targetStack, args.Used, usedStack);
             args.Handled = true;
-
         }
 
         // This handles the reverse case, where the user is using a card and inserting it to a stack
@@ -312,11 +333,7 @@ public sealed class CardStackSystem : EntitySystem
                 args.Handled = true;
             }
         }
-
-
     }
-
-
 
     #endregion
 }

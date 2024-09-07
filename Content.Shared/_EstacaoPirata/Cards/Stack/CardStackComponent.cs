@@ -61,7 +61,8 @@ public enum StackQuantityChangeType: sbyte
 {
     Added,
     Removed,
-    Joined
+    Joined,
+    Split
 }
 
 

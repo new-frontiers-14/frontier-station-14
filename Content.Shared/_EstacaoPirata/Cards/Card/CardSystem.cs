@@ -19,9 +19,7 @@ public sealed class CardSystem : EntitySystem
         SubscribeLocalEvent<CardComponent, GetVerbsEvent<AlternativeVerb>>(AddTurnOnVerb);
         SubscribeLocalEvent<CardComponent, ExaminedEvent>(OnExamined);
         SubscribeLocalEvent<CardComponent, UseInHandEvent>(OnUse);
-
     }
-
     private void OnExamined(EntityUid uid, CardComponent component, ExaminedEvent args)
     {
         if (args.IsInDetailsRange && !component.Flipped)

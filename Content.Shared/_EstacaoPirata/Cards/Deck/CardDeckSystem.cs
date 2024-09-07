@@ -27,15 +27,12 @@ public sealed class CardDeckSystem : EntitySystem
     [Dependency] private readonly SharedContainerSystem _container = default!;
     const string CardDeckBaseName = "CardDeckBase";
 
-
-
     /// <inheritdoc/>
     public override void Initialize()
     {
         SubscribeLocalEvent<CardDeckComponent, InteractHandEvent>(OnInteractHand);
         SubscribeLocalEvent<CardDeckComponent, GetVerbsEvent<AlternativeVerb>>(AddTurnOnVerb);
     }
-
 
     private void AddTurnOnVerb(EntityUid uid, CardDeckComponent component, GetVerbsEvent<AlternativeVerb> args)
     {
@@ -78,9 +75,12 @@ public sealed class CardDeckSystem : EntitySystem
 
     private void TrySplit(EntityUid uid, CardDeckComponent deck, CardStackComponent stack, EntityUid user)
     {
+        if (stack.Cards.Count <= 1)
+            return;
+
         _audio.PlayPredicted(deck.PickUpSound, Transform(uid).Coordinates, user);
 
-        if (!_net.IsServer || stack.Cards.Count <= 1)
+        if (!_net.IsServer)
             return;
 
         var cardDeck = SpawnInSameParent(CardDeckBaseName, uid);
@@ -90,7 +90,6 @@ public sealed class CardDeckSystem : EntitySystem
         _cardStackSystem.TransferNLastCardFromStacks(user, stack.Cards.Count, uid, stack, cardDeck, deckStack);
         _hands.PickupOrDrop(user, cardDeck);
     }
-
 
     private void TryShuffle(EntityUid deck, CardDeckComponent comp, CardStackComponent? stack)
     {
@@ -111,7 +110,6 @@ public sealed class CardDeckSystem : EntitySystem
         _audio.PlayPvs(comp.ShuffleSound, deck, AudioHelpers.WithVariation(0.05f, _random));
         _popup.PopupEntity(Loc.GetString("card-verb-organize-success", ("target", MetaData(deck).EntityName), ("facedown", isFlipped)), deck);
     }
-
 
     private void OnInteractHand(EntityUid uid, CardDeckComponent component, InteractHandEvent args)
     {

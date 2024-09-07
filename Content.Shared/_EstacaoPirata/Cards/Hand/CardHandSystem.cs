@@ -39,7 +39,7 @@ public sealed class CardHandSystem : EntitySystem
         SubscribeLocalEvent<CardHandComponent, GetVerbsEvent<AlternativeVerb>>(OnAlternativeVerb);
     }
 
-    private void OnStackQuantityChange(EntityUid uid, CardHandComponent comp,  CardStackQuantityChangeEvent args)
+    private void OnStackQuantityChange(EntityUid uid, CardHandComponent comp, CardStackQuantityChangeEvent args)
     {
         if (_net.IsClient)
             return;
@@ -52,6 +52,7 @@ public sealed class CardHandSystem : EntitySystem
             StackQuantityChangeType.Added => "cards-stackquantitychange-added",
             StackQuantityChangeType.Removed => "cards-stackquantitychange-removed",
             StackQuantityChangeType.Joined => "cards-stackquantitychange-joined",
+            StackQuantityChangeType.Split => "cards-stackquantitychange-split",
             _ => "cards-stackquantitychange-unknown"
         };
 
