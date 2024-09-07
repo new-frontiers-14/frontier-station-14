@@ -1,7 +1,6 @@
 ﻿using System.Text;
 using Content.Server._NF.Smuggling.Components;
 using Content.Server.Administration.Logs;
-using Content.Server.Paper;
 using Content.Server.Radio.EntitySystems;
 using Content.Server.Shipyard.Systems;
 using Content.Server.Shuttles.Components;
@@ -10,6 +9,7 @@ using Content.Shared.Coordinates;
 using Content.Shared.Database;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
+using Content.Shared.Paper;
 using Content.Shared.Radio;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Verbs;
@@ -119,7 +119,10 @@ public sealed class DeadDropSystem : EntitySystem
 
         var paper = EntityManager.SpawnEntity(component.HintPaper, Transform(uid).Coordinates);
 
-        _paper.SetContent(paper, dropHint.ToString());
+        if (TryComp(paper, out PaperComponent? paperComp))
+        {
+            _paper.SetContent((paper, paperComp), dropHint.ToString());
+        }
         _meta.SetEntityName(paper, Loc.GetString("deaddrop-hint-name"));
         _meta.SetEntityDescription(paper, Loc.GetString("deaddrop-hint-desc"));
         _hands.PickupOrDrop(user, paper, handsComp: hands);

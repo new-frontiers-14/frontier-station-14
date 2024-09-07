@@ -98,7 +98,7 @@
   unit: materials-unit-web
   icon: { sprite: Objects/Materials/silk.rsi, state: icon }
   color: "#eeeeee" #eeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
-  price: 0 # Maybe better for it to be priceless, knowing how greedy cargo is.
+  price: 0.005 # Frontier: 0<0.005 - same value as cardboard
 
 - type: material
   id: Bones
@@ -106,7 +106,7 @@
   unit: materials-unit-piece
   icon: { sprite: Objects/Materials/materials.rsi, state: bones }
   color: "#896f5e"
-  price: 0
+  price: 0.02 # Frontier: 0<0.02 - some marginal value
 
 - type: material
   id: Coal
@@ -115,7 +115,7 @@
   unit: materials-unit-piece
   icon: { sprite: Objects/Materials/ore.rsi, state: coal }
   color: "#404040"
-  price: 0
+  price: 0.03 # Frontier: 0<0.03 - should sell for something
 
 - type: material
   id: Gunpowder
@@ -123,4 +123,12 @@
   unit: materials-unit-piece
   icon: { sprite: Objects/Misc/reagent_fillings.rsi, state: powderpile }
   color: "#A9A9A9"
-  price: 0
+  price: 0.005 # Frontier: 0<0.005 - same value as cardboard
+
+- type: material
+  id: Diamond
+  name: materials-diamond
+  unit: materials-unit-piece
+  icon: { sprite: Objects/Materials/materials.rsi, state: diamond }
+  color: "#80ffff"
+  price: 20 # big diamond gaslit us so hard diamonds actually became extremely rare

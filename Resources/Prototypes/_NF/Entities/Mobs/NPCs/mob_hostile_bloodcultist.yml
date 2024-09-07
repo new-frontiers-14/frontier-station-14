@@ -45,7 +45,7 @@
   - MobLaserReflect # Added to prevent laser abuse from players
   id: MobBloodCultistPriest
   description: Enlightened by the whispers of The Void That Is, these individuals are initiated into secret rituals. They lead the blood harvest and perform rites, bringing the day when Nar'Sie rises ever closer.
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Inventory
     templateId: human
@@ -79,7 +79,7 @@
   - MobLaserReflect # Added to prevent laser abuse from players
   id: MobBloodCultistJanitor
   description: The fate of blood cults on space stations hinges on the actions of a single individual - the station janitor. This humble worker serves as the primary line of defense against the presence of blood cults, but even the most resolute individuals can be swayed by corruption.
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Inventory
     templateId: human
@@ -115,7 +115,7 @@
   id: MobBloodCultistAcolyte
   description: |- 
    The acolyte - The most trusted cult follower and bodyguard of a priest, clad in the finest armor the cult has to offer and armed with the most vile weapons: eldrich blades and unholy halberds.
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Loadout
     prototypes:
@@ -129,7 +129,7 @@
   - MobHumanoidHostileAISimpleMelee
   id: MobBloodCultistZealotMelee
   description: Adorned in matching red robes symbolizing devotion to their dark deity, each member is eager to prove their loyalty in the most gruesome ways.
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Loadout
     prototypes:
@@ -144,7 +144,7 @@
   - MobHumanoidHostileAISimpleRanged
   id: MobBloodCultistZealotRanged
   description: Adorned in matching red robes symbolizing devotion to their dark deity, each member is eager to prove their loyalty in the most gruesome ways.
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Loadout
     prototypes:
@@ -176,7 +176,7 @@
   - MobHumanoidHostileAISimpleRanged
   id: MobBloodCultistCaster
   description: Adorned in matching red robes symbolizing devotion to their dark deity, each member is eager to prove their loyalty in the most gruesome ways.
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Loadout
     prototypes:
@@ -198,7 +198,7 @@
 # Blood Leech, melee, fast, has moderate health regen
 - type: entity
   name: blood leech
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent:
   - MobNonHumanHostileBase
   - MobPassiveRegen
@@ -249,7 +249,7 @@
 - type: entity
   name: ascended cultist
   description: Elevated above their mortal forms by Nar'Sie herself as a reward for their devotion.
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent:
   - MobNonHumanHostileBase
   - MobHumanoidHostileAIComplex
@@ -346,7 +346,7 @@
 # Drained One, melee
 - type: entity
   name: drained one
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: 
   - MobNonHumanHostileBase
   - FlyingMobBase
@@ -421,7 +421,7 @@
 
 - type: entity
   name: cultist shade
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: MobBloodCultDrainedOne
   id: MobBloodCultShade
   description: A cultist's shade, brought back to reality through foul means to gather more blood.
@@ -462,7 +462,7 @@
   
 # Drained One (summonable by players), melee
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: MobBloodCultDrainedOne
   id: MobBloodCultDrainedOneNanoTrasen
   components:
