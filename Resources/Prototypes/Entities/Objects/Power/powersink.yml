@@ -1,6 +1,6 @@
 ﻿- type: entity
   id: PowerSink
-  parent: BaseMachine
+  parent: [BaseMachine, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   name: power sink
   description: Drains immense amounts of electricity from the grid.
   components:
@@ -49,4 +49,3 @@
       location: powersink
     - type: StaticPrice
       price: 400
-    - type: Contraband #frontier
