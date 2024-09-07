@@ -40,7 +40,7 @@
 - type: entity
   name: explosive grenade
   description: Grenade that creates a small but devastating explosion.
-  parent: GrenadeBase
+  parent: [GrenadeBase, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC2Contraband
   id: ExGrenade
   components:
   - type: ExplodeOnTrigger
@@ -57,12 +57,11 @@
         volume: 5
     initialBeepDelay: 0
     beepInterval: 2 # 2 beeps total (at 0 and 2)
-  - type: Contraband #frontier
 
 - type: entity
   name: flashbang
-  description: Eeeeeeeeeeeeeeeeeeeeee
-  parent: GrenadeBase
+  description: Eeeeeeeeeeeeeeeeeeeeee.
+  parent: [ GrenadeBase, BaseC2ContrabandUnredeemable ] # Frontier: BaseRestrictedContraband<BaseC2ContrabandUnredeemable
   id: GrenadeFlashBang
   components:
   - type: Sprite
@@ -82,10 +81,11 @@
   - type: GuideHelp
     guides:
     - Security
+    # - Antagonists # Frontier: removed guidebook entry
 
 - type: entity
   id: GrenadeFlashEffect
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
     - type: PointLight
       enabled: true
@@ -102,7 +102,7 @@
 - type: entity
   name: syndicate minibomb
   description: A syndicate-manufactured explosive used to stow destruction and cause chaos.
-  parent: GrenadeBase
+  parent: [GrenadeBase, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   id: SyndieMiniBomb
   components:
   - type: Sprite
@@ -121,14 +121,13 @@
       path: /Audio/Effects/minibombcountdown.ogg
       params:
         volume: 12
-  - type: Contraband #frontier
 
 - type: entity
-  name: Self Destruct
+  name: self destruct
   description: Go out on your own terms!
   parent: GrenadeBase
   id: SelfDestructSeq
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: ExplodeOnTrigger
   - type: Explosive
@@ -150,7 +149,7 @@
 - type: entity
   name: supermatter grenade
   description: Grenade that simulates delamination of the supermatter engine, pulling things in a heap and exploding after some time.
-  parent: GrenadeBase
+  parent: [GrenadeBase, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   id: SupermatterGrenade
   components:
   - type: Sprite
@@ -209,12 +208,11 @@
           params:
             volume: 5
       - type: ExplodeOnTrigger
-      - type: Contraband #frontier
 
 - type: entity
   name: whitehole grenade
   description: Grenade that repulses everything around for some time.
-  parent: SupermatterGrenade
+  parent: [SupermatterGrenade, BaseC3SyndicateContraband] # Frontier: added BaseC3SyndicateContraband
   id: WhiteholeGrenade
   components:
   - type: Sprite
@@ -257,12 +255,11 @@
           params:
             volume: 15
       - type: DeleteOnTrigger
-      - type: Contraband #frontier
 
 - type: entity
   name: the nuclear option
   description: Please don't throw it, think of the children.
-  parent: GrenadeBase
+  parent: [GrenadeBase, BaseC3SyndicateContraband] # Frontier: added BaseC3SyndicateContraband
   id: NuclearGrenade
   components:
   - type: Sprite
@@ -288,7 +285,6 @@
   - type: TimerTriggerVisuals
     primingSound:
       path: /Audio/Effects/countdown.ogg
-  - type: Contraband #frontier
 
 - type: entity
   name: modular grenade
@@ -339,13 +335,13 @@
 - type: entity
   name: EMP grenade
   description: A grenade designed to wreak havoc on electronic systems.
-  parent: GrenadeBase
+  parent: [GrenadeBase, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   id: EmpGrenade
   components:
   - type: Sprite
     sprite: Objects/Weapons/Grenades/empgrenade.rsi
   - type: EmpOnTrigger
-    range: 4
+    range: 5.5
     energyConsumption: 2700000 # Frontier: Upstream - #28984, 50000<2700000
   - type: DeleteOnTrigger
   - type: Appearance
@@ -356,7 +352,7 @@
 - type: entity
   name: holy hand grenade
   description: O Lord, bless this thy hand grenade, that with it thou mayst blow thine enemies to tiny bits, in thy mercy.
-  parent: GrenadeBase
+  parent: [GrenadeBase, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   id: HolyHandGrenade
   components:
   - type: Sprite
@@ -377,10 +373,9 @@
   - type: TimerTriggerVisuals
     primingSound:
       path: /Audio/Effects/hallelujah.ogg
-  - type: Contraband #frontier
 
 - type: entity
-  parent: GrenadeBase
+  parent: [ GrenadeBase, BaseC2ContrabandUnredeemable ] # Frontier: BaseMinorContraband<BaseC2ContrabandUnredeemable
   id: SmokeGrenade
   name: smoke grenade
   description: A tactical grenade that releases a large, long-lasting cloud of smoke when used.
@@ -401,7 +396,7 @@
   parent: SmokeGrenade
   id: CleanerGrenade
   name: cleanade
-  description: Special grenade for janitors, releasing large cloud of space cleaner foam
+  description: Special grenade for janitors, releasing large cloud of space cleaner foam.
   components:
   - type: Sprite
     sprite: Objects/Weapons/Grenades/janitor.rsi
@@ -469,7 +464,7 @@
 - type: entity
   name: syndicate trickybomb
   description: A syndicate-manufactured explosive used to make an excellent distraction.
-  parent: GrenadeDummy
+  parent: [GrenadeDummy, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   id: SyndieTrickyBomb
   components:
   - type: Sprite

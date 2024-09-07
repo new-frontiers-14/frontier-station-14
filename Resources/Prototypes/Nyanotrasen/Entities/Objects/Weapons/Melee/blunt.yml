@@ -1,6 +1,6 @@
 - type: entity
   name: kanabou
-  parent: BaseItem
+  parent: [BaseItem, BaseC2Contraband] # Frontier: added BaseC2Contraband
   id: Kanabou
   description: The classic oni weapon, for those that forgo subtlety.
   components:
@@ -26,7 +26,6 @@
     quickEquip: false
     slots:
     - back
-  - type: Contraband #frontier
 
 - type: entity
   name: shinai

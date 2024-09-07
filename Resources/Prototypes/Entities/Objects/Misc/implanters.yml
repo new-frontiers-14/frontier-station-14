@@ -96,7 +96,7 @@
 
 - type: entity
   id: BaseImplantOnlyImplanterSyndi
-  parent: BaseImplantOnlyImplanter
+  parent: [BaseImplantOnlyImplanter, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   description: A compact disposable syringe exclusively designed for the injection of subdermal implants.
   abstract: true
   components:
@@ -155,7 +155,7 @@
 - type: entity
   id: TrackingImplanter
   name: tracking implanter
-  parent: BaseImplantOnlyImplanter
+  parent: [ BaseImplantOnlyImplanter, BaseC2ContrabandUnredeemable] # Frontier: BaseRestrictedContraband<BaseC2ContrabandUnredeemable
   components:
     - type: Implanter
       implant: TrackingImplant
@@ -171,7 +171,6 @@
       implant: StorageImplant
     - type: StaticPrice
       price: 500
-    - type: Contraband #frontier
 
 - type: entity
   id: FreedomImplanter
@@ -180,7 +179,6 @@
   components:
     - type: Implanter
       implant: FreedomImplant
-    - type: Contraband #frontier
 
 - type: entity
   id: UplinkImplanter
@@ -189,7 +187,6 @@
   components:
   - type: Implanter
     implant: UplinkImplant
-  - type: Contraband #frontier
 
 - type: entity
   id: EmpImplanter
@@ -198,7 +195,6 @@
   components:
     - type: Implanter
       implant: EmpImplant
-    - type: Contraband #frontier
 
 - type: entity
   id: ScramImplanter
@@ -207,7 +203,6 @@
   components:
     - type: Implanter
       implant: ScramImplant
-    - type: Contraband #frontier
 
 - type: entity
   id: DnaScramblerImplanter
@@ -216,7 +211,6 @@
   components:
     - type: Implanter
       implant: DnaScramblerImplant
-    - type: Contraband #frontier
 
 #Nuclear Operative/Special implanters
 
@@ -227,7 +221,6 @@
   components:
     - type: Implanter
       implant: MicroBombImplant
-    - type: Contraband #frontier
 
 - type: entity
   id: MacroBombImplanter
@@ -236,7 +229,6 @@
   components:
     - type: Implanter
       implant: MacroBombImplant
-    - type: Contraband #frontier
 
 - type: entity
   id: DeathRattleImplanter
@@ -245,7 +237,6 @@
   components:
     - type: Implanter
       implant: DeathRattleImplant
-    - type: Contraband #frontier
 
 - type: entity
   id: DeathAcidifierImplanter
@@ -254,14 +245,13 @@
   components:
   - type: Implanter
     implant: DeathAcidifierImplant
-  - type: Contraband #frontier
 
 # Security and Command implanters
 
 - type: entity
   id: MindShieldImplanter
   name: mindshield implanter
-  parent: BaseImplantOnlyImplanter
+  parent: [ BaseImplantOnlyImplanter, BaseC2ContrabandUnredeemable] # Frontier: BaseSecurityCommandContraband<BaseC2ContrabandUnredeemable
   components:
     - type: Implanter
       implant: MindShieldImplant

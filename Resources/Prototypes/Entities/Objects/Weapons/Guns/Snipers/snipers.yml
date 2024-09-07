@@ -40,7 +40,7 @@
 
 - type: entity # Frontier - Mosin rework (PR#1391)
   name: Kardashev-Mosin
-  parent: [BaseWeaponSniper, BaseGunWieldable]
+  parent: [BaseWeaponSniper, BaseGunWieldable, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   id: WeaponSniperMosin
   description: A civilian grade weapon for hunting, or endless trench warfare. Uses .30 rifle ammo. Now with new shiny bayonet!
   components:
@@ -98,7 +98,7 @@
 
 - type: entity
   name: Hristov
-  parent: [BaseWeaponSniper, BaseGunWieldable]
+  parent: [BaseWeaponSniper, BaseGunWieldable, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   id: WeaponSniperHristov
   description: A portable anti-materiel rifle. Fires armor piercing 14.5mm shells. Uses .60 anti-materiel ammo. On the receiver is a label that says 'for authorized use only.'
   components:
@@ -112,11 +112,10 @@
       - CartridgeAntiMateriel
     capacity: 5
     proto: CartridgeAntiMateriel
-  - type: Contraband #frontier
 
 - type: entity
   name: musket
-  parent: [BaseWeaponSniper, BaseGunWieldable]
+  parent: [ BaseWeaponSniper, BaseGunWieldable, BaseC2Contraband ] # Frontier: BaseMinorContraband<BaseC2Contraband
   id: Musket
   description: This should've been in a museum long before you were born. Uses .60 anti-materiel ammo.
   components:
@@ -154,7 +153,7 @@
 
 - type: entity
   name: flintlock pistol
-  parent: BaseWeaponSniper
+  parent: [BaseWeaponSniper, BaseC3PirateContraband] # Frontier: BaseMinorContraband<BaseC3PirateContraband
   id: WeaponPistolFlintlock
   description: A pirate's companion. Yarrr! Uses .60 anti-materiel ammo. An illegal weapon often used by pirates.
   components:

@@ -242,11 +242,6 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
                         Log.Error($"Unable to find loadout prototype for {items.Prototype}");
                         continue;
                     }
-                    if (!_prototypeManager.TryIndex(loadoutProto.Equipment, out var startingGear))
-                    {
-                        Log.Error($"Unable to find starting gear {loadoutProto.Equipment} for loadout {loadoutProto}");
-                        continue;
-                    }
 
                     // Handle any extra data here.
 
@@ -256,7 +251,7 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
                     if (loadoutProto.Price <= bankBalance && (loadoutProto.Price <= 0 || hasBalance))
                     {
                         bankBalance -= int.Max(0, loadoutProto.Price); // Treat negatives as zero.
-                        EquipStartingGear(entity.Value, startingGear, raiseEvent: false);
+                        EquipStartingGear(entity.Value, loadoutProto, raiseEvent: false);
                         equippedItems.Add(loadoutProto.ID);
                     }
                 }
@@ -286,13 +281,7 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
                             continue;
                         }
 
-                        if (!_prototypeManager.TryIndex(loadoutProto.Equipment, out var startingGear))
-                        {
-                            Log.Error($"Unable to find starting gear {loadoutProto.Equipment} for fallback loadout {loadoutProto}");
-                            continue;
-                        }
-
-                        EquipStartingGear(entity.Value, startingGear, raiseEvent: false);
+                        EquipStartingGear(entity.Value, loadoutProto, raiseEvent: false);
                         equippedItems.Add(fallback);
                         // Minimum number of items equipped, no need to load more prototypes.
                         if (equippedItems.Count >= groupPrototype.MinLimit)

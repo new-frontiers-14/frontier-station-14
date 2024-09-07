@@ -53,7 +53,7 @@
 
 - type: entity
   name: Deckard
-  parent: BaseWeaponRevolver
+  parent: [BaseWeaponRevolver, BaseC1Contraband] # Frontier: BaseSecurityCommandContraband<BaseC1Contraband
   id: WeaponRevolverDeckard
   description: A rare, civilian grade custom-built revolver. Use when there is no time for Voight-Kampff test. Uses .45 magnum ammo.
   components:
@@ -81,7 +81,7 @@
 
 - type: entity
   name: Inspector
-  parent: BaseWeaponRevolver
+  parent: [BaseWeaponRevolver, BaseC2ContrabandUnredeemable] # Frontier: BaseRestrictedContraband<BaseC2ContrabandUnredeemable
   id: WeaponRevolverInspector
   description: A detective's best friend. Uses .45 magnum ammo. On the handle is a label that says 'for authorized use only.'
   components:
@@ -96,7 +96,7 @@
 
 - type: entity
   name: Mateba
-  parent: BaseWeaponRevolver
+  parent: [BaseWeaponRevolver, BaseC2ContrabandUnredeemable] # Frontier: BaseMajorContraband<BaseC2ContrabandUnredeemable
   id: WeaponRevolverMateba
   description: The iconic sidearm of the dreaded death squads. Uses .45 magnum ammo. On the handle is a label that says 'for authorized use only.'
   components:
@@ -111,9 +111,9 @@
 
 - type: entity
   name: Python
-  parent: BaseWeaponRevolver
+  parent: [BaseWeaponRevolver, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   id: WeaponRevolverPython
-  description: An illegal revolver favoured by Syndicate agents. Uses .45 magnum ammo.
+  description: An illegal revolver favoured by Syndicate agents. Uses .45 magnum ammo. # Frontier
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Revolvers/python.rsi
@@ -132,11 +132,9 @@
     price: 1
 
 - type: entity
-  name: Python
   parent: WeaponRevolverPython
   id: WeaponRevolverPythonAP # For the uplink.
   suffix: armor-piercing
-  description: An illegal revolver favoured by Syndicate agents. Uses .45 magnum ammo.
   components:
   - type: RevolverAmmoProvider
     whitelist:
@@ -144,14 +142,13 @@
         - CartridgeMagnum
         - SpeedLoaderMagnum
     proto: CartridgeMagnumAP
-  - type: Contraband #frontier
 
 
 - type: entity
   name: pirate revolver
-  parent: BaseWeaponRevolver
+  parent: [BaseWeaponRevolver, BaseC3PirateContraband] # Frontier: BaseMinorContraband<BaseC3PirateContraband
   id: WeaponRevolverPirate
-  description: An odd, illegal, old-looking revolver, favoured by pirate crews. Uses .45 magnum ammo.
+  description: An odd, illegal, old-looking revolver, favoured by pirate crews. Uses .45 magnum ammo. # Frontier
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Revolvers/pirate_revolver.rsi

@@ -21,6 +21,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
+using Content.Server.Corvax.Respawn; // Frontier
 
 namespace Content.Server.GameTicking
 {
@@ -28,6 +29,7 @@ namespace Content.Server.GameTicking
     {
         [Dependency] private readonly IAdminManager _adminManager = default!;
         [Dependency] private readonly SharedJobSystem _jobs = default!;
+        [Dependency] private readonly RespawnSystem _respawn = default!; // Frontier
 
         [ValidatePrototypeId<EntityPrototype>]
         public const string ObserverPrototypeName = "MobObserver";
@@ -315,6 +317,8 @@ namespace Content.Server.GameTicking
         {
             _mind.WipeMind(player);
             _adminLogger.Add(LogType.Respawn, LogImpact.Medium, $"Player {player} was respawned.");
+
+            _respawn.Respawn(player); // Frontier: reset respawn
 
             if (LobbyEnabled)
                 PlayerJoinLobby(player);

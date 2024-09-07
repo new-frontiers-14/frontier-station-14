@@ -1,5 +1,5 @@
 job-name-mail-carrier = Mail Carrier
-job-name-prisoner = Prisoner
+# job-name-prisoner defined in main job-names.ftl
 job-name-valet = Valet
 job-name-guard = Prison Guard
 
