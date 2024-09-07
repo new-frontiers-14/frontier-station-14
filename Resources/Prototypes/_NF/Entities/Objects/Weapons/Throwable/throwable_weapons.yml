@@ -7,7 +7,7 @@
   name: dart
   description: Try not to prick yourself.
   abstract: true
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Item
     size: Tiny
@@ -43,7 +43,7 @@
   id: DartSyndicateImpedrezene
   name: syndicate impedrezene dart
   description: Try not to prick yourself.
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Objects/Fun/Darts/dart_red.rsi
@@ -60,7 +60,7 @@
   parent: DartSyndicateImpedrezene
   id: DartSyndicateTranquilizer
   name: syndicate tranquilizer dart
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: SolutionContainerManager
     solutions:
@@ -75,7 +75,7 @@
   parent: Dart
   id: DartAberrantFleshHorrorSpikeGuidebook
   name: bone spike
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: _NF/Mobs/Aliens/flesh.rsi
@@ -85,7 +85,7 @@
   parent: MobHostileThrowableWeapon
   id: DartAberrantFleshHorrorSpike
   name: bone spike
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: ThrowingAngle
     angle: 90
@@ -103,7 +103,7 @@
 - type: entity
   id: DartAberrantFleshHorrorSpikeCluster
   name: bone spike
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: _NF/Mobs/Aliens/flesh.rsi
@@ -116,7 +116,7 @@
 - type: entity
   id: DartAberrantFleshHorrorSpikeSpread
   parent: DartAberrantFleshHorrorSpike
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: ProjectileSpread
     proto: DartAberrantFleshHorrorSpike

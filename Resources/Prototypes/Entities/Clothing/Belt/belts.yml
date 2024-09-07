@@ -458,7 +458,7 @@
   - type: Appearance
 
 - type: entity
-  parent: ClothingBeltStorageBase
+  parent: [ClothingBeltStorageBase, BaseC2Contraband] # Frontier: BaseRestrictedContraband<BaseC2Contraband
   id: ClothingBeltSecurity
   name: security belt
   description: Can hold security gear like handcuffs and flashes.
@@ -510,7 +510,7 @@
   - type: Appearance
 
 - type: entity
-  parent: [ClothingBeltBase, ClothingSlotBase]
+  parent: [ClothingBeltBase, ClothingSlotBase, BaseC1Contraband] # Frontier: BaseCommandContraband<BaseC1Contraband
   id: ClothingBeltSheath
   name: sabre sheath
   description: An ornate sheath designed to hold an officer's blade.
@@ -544,7 +544,7 @@
 # Belts without visualizers
 
 - type: entity
-  parent: ClothingBeltAmmoProviderBase
+  parent: [ClothingBeltAmmoProviderBase, BaseC1Contraband] # Frontier: BaseRestrictedContraband<BaseC1Contraband
   id: ClothingBeltBandolier
   name: bandolier
   description: A bandolier for holding shotgun ammunition.
@@ -591,7 +591,7 @@
     # - 0,0,3,1 # Frontier: commented out
 
 - type: entity
-  parent: [ClothingBeltStorageBase, ContrabandClothing] # Frontier: added ContrabandClothing as parent
+  parent: [ClothingBeltStorageBase, BaseC3SyndicateContraband, ContrabandClothing] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband, added ContrabandClothing as parent
   id: ClothingBeltSyndieHolster
   name: syndicate shoulder holster
   description: A deep shoulder holster capable of holding many types of ballistics.
@@ -646,7 +646,7 @@
     sprite: Clothing/Belt/salvagewebbing.rsi
 
 - type: entity
-  parent: [ClothingBeltStorageBase, ContentsExplosionResistanceBase]
+  parent: [ClothingBeltStorageBase, ContentsExplosionResistanceBase, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   id: ClothingBeltMilitaryWebbing
   name: chest rig
   description: A set of tactical webbing worn by Syndicate boarding parties.
@@ -690,7 +690,7 @@
     quickEquip: true
 
 - type: entity
-  parent: [ClothingBeltStorageBase, ContrabandClothing] # Frontier: added ContrabandClothing as parent
+  parent: [ClothingBeltStorageBase, BaseC3WizardContraband, ContrabandClothing] # Frontier: added BaseC3WizardContraband, ContrabandClothing as parent
   id: ClothingBeltWand
   name: wizard belt # Frontier: changed the name from 'wand belt' -> 'wizard belt'
   description: A belt designed to hold various rods of power. A veritable fanny pack of exotic magic.

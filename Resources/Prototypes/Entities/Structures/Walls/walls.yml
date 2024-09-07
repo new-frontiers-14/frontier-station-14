@@ -1121,7 +1121,7 @@
 - type: entity
   parent: BaseWall
   id: WallMining
-  name: wall
+  name: mining wall
   components:
   - type: Tag
     tags:
@@ -1141,11 +1141,16 @@
   - type: IconSmooth
     key: walls
     base: mining
+  - type: RandomIconSmooth
+    randomStates:
+    - mining
+    - miningB
+  - type: Appearance
 
 - type: entity
   parent: WallShuttleDiagonal
   id: WallMiningDiagonal
-  name: wall
+  name: mining wall
   suffix: diagonal
   placement:
     mode: SnapgridCenter
@@ -1216,7 +1221,7 @@
 
 - type: entity
   id: WallInvisible
-  name: Invisible Wall
+  name: invisible wall
   components:
   - type: TimedDespawn
     lifetime: 15
