@@ -46,25 +46,25 @@ public sealed partial class BankSystem : SharedBankSystem
 
         if (!TryComp<BankAccountComponent>(mobUid, out var bank))
         {
-            _log.Info($"{mobUid} has no bank account");
+            _log.Info($"TryBankWithdraw: {mobUid} has no bank account");
             return false;
         }
 
         if (!_playerManager.TryGetSessionByEntity(mobUid, out var session))
         {
-            _log.Info($"{mobUid} has no attached session");
+            _log.Info($"TryBankWithdraw: {mobUid} has no attached session");
             return false;
         }
 
         if (!_prefsManager.TryGetCachedPreferences(session.UserId, out var prefs))
         {
-            _log.Info($"{mobUid} has no cached prefs");
+            _log.Info($"TryBankWithdraw: {mobUid} has no cached prefs");
             return false;
         }
 
         if (prefs.SelectedCharacter is not HumanoidCharacterProfile profile)
         {
-            _log.Info($"{mobUid} has the wrong prefs type");
+            _log.Info($"TryBankWithdraw: {mobUid} has the wrong prefs type");
             return false;
         }
 
@@ -94,25 +94,25 @@ public sealed partial class BankSystem : SharedBankSystem
 
         if (!TryComp<BankAccountComponent>(mobUid, out var bank))
         {
-            _log.Info($"{mobUid} has no bank account");
+            _log.Info($"TryBankDeposit: {mobUid} has no bank account");
             return false;
         }
 
         if (!_playerManager.TryGetSessionByEntity(mobUid, out var session))
         {
-            _log.Info($"{mobUid} has no attached session");
+            _log.Info($"TryBankDeposit: {mobUid} has no attached session");
             return false;
         }
 
         if (!_prefsManager.TryGetCachedPreferences(session.UserId, out var prefs))
         {
-            _log.Info($"{mobUid} has no cached prefs");
+            _log.Info($"TryBankDeposit: {mobUid} has no cached prefs");
             return false;
         }
 
         if (prefs.SelectedCharacter is not HumanoidCharacterProfile profile)
         {
-            _log.Info($"{mobUid} has the wrong prefs type");
+            _log.Info($"TryBankDeposit: {mobUid} has the wrong prefs type");
             return false;
         }
 
@@ -150,7 +150,7 @@ public sealed partial class BankSystem : SharedBankSystem
 
         if (balance < amount)
         {
-            _log.Info($"{session.UserId} tried to withdraw {amount}, but has insufficient funds ({balance})");
+            _log.Info($"TryBankWithdraw: {session.UserId} tried to withdraw {amount}, but has insufficient funds ({balance})");
             return false;
         }
 
@@ -160,7 +160,7 @@ public sealed partial class BankSystem : SharedBankSystem
         var index = prefs.IndexOfCharacter(profile);
         if (index == -1)
         {
-            _log.Info($"{session.UserId} tried to adjust the balance of {profile.Name}, but they were not in the user's character set.");
+            _log.Info($"TryBankWithdraw: {session.UserId} tried to adjust the balance of {profile.Name}, but they were not in the user's character set.");
             return false;
         }
         _prefsManager.SetProfile(session.UserId, index, newProfile);

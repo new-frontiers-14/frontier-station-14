@@ -105,6 +105,7 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
             throw new ArgumentException("Tried to use a non-station entity as a station!", nameof(station));
 
         // Delta-V: Set desired spawn point type.
+        // Frontier: add session
         var ev = new PlayerSpawningEvent(job, profile, station, spawnPointType, session);
 
         if (station != null && profile != null)
@@ -429,6 +430,6 @@ public sealed class PlayerSpawningEvent : EntityEventArgs
         HumanoidCharacterProfile = humanoidCharacterProfile;
         Station = station;
         DesiredSpawnPointType = spawnPointType;
-        Session = session;
+        Session = session; // Frontier
     }
 }
