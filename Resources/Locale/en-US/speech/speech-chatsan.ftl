@@ -136,3 +136,24 @@ chatsan-replacement-48 = right now
 # Frontier: we use ATMs, replace this with some inane garbage to keep the entry
 chatsan-word-49 = lfg
 chatsan-replacement-49 = let's fucking go
+
+chatsan-word-50 = istg
+chatsan-replacement-50 = I swear to god
+
+chatsan-word-51 = rq
+chatsan-replacement-51 = real quick
+
+chatsan-word-52 = dw
+chatsan-replacement-52 = don't worry
+
+chatsan-word-53 = wru
+chatsan-replacement-53 = where are you
+
+chatsan-word-54 = fs
+chatsan-replacement-54 = for sure
+
+chatsan-word-55 = ngl
+chatsan-replacement-55 = not gonna lie
+
+chatsan-word-56 = fml
+chatsan-replacement-56 = fuck my life

@@ -142,6 +142,11 @@
       Steel: 100
   - type: ClothingRequiredStepTriggerImmune
     slots: WITHOUT_POCKET
+  - type: DamageOnInteractProtection
+    damageProtection:
+      flatReductions:
+        Heat: 10 # the average lightbulb only does around four damage!
+    slots: OUTERCLOTHING
 
 - type: entity
   abstract: true
@@ -162,10 +167,15 @@
     size: Huge
   - type: ClothingRequiredStepTriggerImmune
     slots: WITHOUT_POCKET
+  - type: DamageOnInteractProtection
+    damageProtection:
+      flatReductions:
+        Heat: 10 # the average lightbulb only does around four damage!
+    slots: OUTERCLOTHING
   - type: PhysicalComposition # Frontier
-    materialComposition:
-      Durathread: 100
-      Cloth: 100
+    materialComposition: # Frontier
+      Durathread: 100 # Frontier
+      Cloth: 100 # Frontier
 
 - type: entity
   parent: ClothingOuterBase
