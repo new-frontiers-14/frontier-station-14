@@ -164,7 +164,7 @@ public sealed class TileSystem : EntitySystem
         var ev = new FloorTileAttemptEvent();
         RaiseLocalEvent(mapGrid);
 
-        if ((HasComp<ProtectedGridComponent>(gridUid) || ev.Cancelled) && tileDef.ID == "Plating")
+        if (((TryComp<ProtectedGridComponent>(gridUid, out var prot) && prot.PreventFloorRemoval) || ev.Cancelled) && tileDef.ID == "Plating")
             return false;
         // Frontier
 

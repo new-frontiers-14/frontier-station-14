@@ -8,12 +8,11 @@
   - BaseStationShuttles
   - BaseStationAlertLevels
   - BaseStationSiliconLawFrontierStation
-  - BaseStationEmpImmune
   - BaseStationSectorNews
   - BaseStationMail # Mail
   - BaseStationSectorServices # Hosts all sector-wide services
   - BaseStationDampening
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Transform
 
@@ -25,7 +24,7 @@
   - BaseStationCargo
   - BaseStationSiliconLawFrontierShips
   - BaseStationDampening
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Transform
 
@@ -34,13 +33,14 @@
   parent:
   - StandardFrontierOutpost
   - BaseStationCargoMarket
+  categories: [ HideSpawnMenu ]
 
 - type: entity
   id: SpawnableFrontierOutpost
   parent:
   - StandardFrontierOutpost
   - BaseStationRecords
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Transform
 
@@ -55,7 +55,7 @@
   - BaseStationAlertLevels # Has a comms console
   - BaseStationSiliconLawFrontierStation # No funny borg laws
   - BaseStationDampening
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Transform
 
@@ -70,7 +70,7 @@
   - BaseStationRenameFaxes
   - BaseStationRenameWarpPoints
   - BaseStationSiliconLawFrontierShips
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Transform
 
@@ -85,7 +85,7 @@
   - BaseStationRenameFaxes
   - BaseStationRenameWarpPoints
   - BaseStationSiliconLawFrontierShips
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Transform
 
@@ -101,7 +101,7 @@
   - BaseStationRenameWarpPoints
   - BaseStationSiliconLawFrontierShips
   - BaseStationExpeditions
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Transform
 
@@ -110,6 +110,6 @@
   parent:
   - StandardFrontierVessel
   - BaseStationExpeditions
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Transform

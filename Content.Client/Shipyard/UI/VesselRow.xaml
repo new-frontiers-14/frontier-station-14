@@ -3,24 +3,32 @@
                 HorizontalExpand="True">
     <BoxContainer Orientation="Horizontal"
                   HorizontalExpand="True">
-        <Button Name="Purchase"
-            Access="Public"
-            ToolTip=""
-            Text="{Loc 'purchase'}"
-            StyleClasses="LabelSubText" />
         <Label Name="VesselName"
             Access="Public"
             HorizontalExpand="True" />
+        <Label Name="Price"
+            Access="Public"
+            MinWidth="80"
+            Align="Right"
+            Margin="0 0 5 0"
+            HorizontalAlignment="Right" /> <!-- Right margin to account for scroll bar -->
+        <Button Name="Purchase"
+            Access="Public"
+            ToolTip=""
+            Text="{Loc 'shipyard-console-purchase-available'}"
+            StyleClasses="LabelSubText"
+            MinWidth="130"
+            HorizontalAlignment="Right" /> <!-- 130 px: approximate width of "Purchase"-->
+        <Button Name="Guidebook"
+            Access="Public"
+            Text="{Loc 'shipyard-console-guidebook'}" 
+            StyleClasses="LabelSubText"
+            Margin="0 0 12 0"
+            HorizontalAlignment="Right" /> <!-- Left margin only -->
         <PanelContainer>
             <PanelContainer.PanelOverride>
                 <gfx:StyleBoxFlat BackgroundColor="#252825" />
             </PanelContainer.PanelOverride>
-
-            <Label Name="Price"
-                Access="Public"
-                MinSize="52 32"
-                Align="Right" />
-            
         </PanelContainer>
     </BoxContainer>
 </PanelContainer>

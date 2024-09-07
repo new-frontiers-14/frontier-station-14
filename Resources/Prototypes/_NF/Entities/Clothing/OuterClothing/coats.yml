@@ -42,7 +42,7 @@
   parent: ClothingOuterBaseToggleable
   id: ClothingOuterCoatCardinal
   name: cardinal's coat
-  description: Nobody expects the spanish inquisition!
+  description: Nobody expects the Spanish Inquisition!
   components:
   - type: Sprite
     sprite: _NF/Clothing/OuterClothing/Misc/cardinal_robe.rsi
@@ -55,7 +55,7 @@
   parent: ClothingOuterStorageBase
   id: ClothingOuterCoatNfsdBomber
   name: nfsd bomber
-  description: Lookin slick Tom.
+  description: Lookin' slick Tom.
   components:
   - type: Sprite
     sprite: _NF/Clothing/OuterClothing/Misc/nfsd_bomber.rsi
@@ -88,7 +88,7 @@
   parent: ClothingOuterStorageBase
   id: ClothingOuterCoatNfsdFormalSheriff
   name: nfsd sheriff's formal coat
-  description: Snazzier.
+  description: Very snazzy.
   components:
   - type: Sprite
     sprite: _NF/Clothing/OuterClothing/Misc/nfsd_sheriff_formal.rsi
@@ -99,7 +99,7 @@
   parent: ClothingOuterStorageBase
   id: ClothingOuterCoatNfsdLongCoat
   name: nfsd long coat
-  description: Big iron on his hip..
+  description: Big iron on his hip...
   components:
   - type: Sprite
     sprite: _NF/Clothing/OuterClothing/Misc/nfsd_long.rsi
@@ -107,15 +107,20 @@
     sprite: _NF/Clothing/OuterClothing/Misc/nfsd_long.rsi
 
 - type: entity
-  parent: ClothingOuterWinterHoP
+  parent: ClothingOuterStorageBase
   id: ClothingOuterJacketSr
   name: station representative's jacket
   description: The upper part of the station representative's uniform.
   components:
   - type: Sprite
     sprite: _NF/Clothing/OuterClothing/Misc/sr_jacket.rsi
+    layers:
+    - state: icon
   - type: Clothing
     sprite: _NF/Clothing/OuterClothing/Misc/sr_jacket.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: equipped-OUTERCLOTHING
 
 - type: entity
   parent: ClothingOuterStorageBase

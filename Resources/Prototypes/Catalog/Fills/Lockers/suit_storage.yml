@@ -57,9 +57,8 @@
   components:
   - type: StorageFill
     contents:
-#        - id: NitrogenTankFilled
-#        - id: OxygenTankFilled
-        - id: AirTankFilled
+#        - id: OxygenTankFilled # Frontier
+        - id: AirTankFilled # Frontier
         - id: ClothingOuterHardsuitEVAPrisoner
         - id: ClothingHeadHelmetEVALarge
         - id: ClothingMaskBreath
@@ -195,18 +194,10 @@
   parent: SuitStorageBase
   suffix: Chief Engineer
   components:
-  - type: StorageFill
-    contents:
-#        - id: NitrogenTankFilled
-#        - id: OxygenTankFilled
-        - id: AirTankFilled
-#        - id: JetpackVoidFilled # Frontier
-#        - id: ClothingShoesBootsMagAdv # Frontier
-        - id: ClothingShoesBootsMag # Frontier
-        - id: ClothingOuterHardsuitEngineeringWhite
-        - id: ClothingMaskBreath
-        - id: JetpackMiniFilled # Frontier
-        - id: HandheldGPSBasic # Frontier
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: FillChiefEngineerHardsuit
   - type: AccessReader
     # access: [["ChiefEngineer"]] # Frontier
 
@@ -216,15 +207,10 @@
   parent: SuitStorageBase
   suffix: Chief Medical Officer
   components:
-  - type: StorageFill
-    contents:
-#        - id: NitrogenTankFilled
-#        - id: OxygenTankFilled
-        - id: AirTankFilled
-        - id: ClothingOuterHardsuitMedical
-        - id: ClothingMaskBreathMedical
-        - id: JetpackMiniFilled # Frontier
-        - id: HandheldGPSBasic # Frontier
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: FillChiefMedicalOfficerHardsuit
   - type: AccessReader
     # access: [ [ "ChiefMedicalOfficer" ] ] # Frontier
 
@@ -234,41 +220,30 @@
   parent: SuitStorageBase
   suffix: Research Director
   components:
-  - type: StorageFill
-    contents:
-#        - id: NitrogenTankFilled
-#        - id: OxygenTankFilled
-        - id: AirTankFilled
-        - id: ClothingOuterHardsuitRd
-        - id: ClothingMaskBreath
-        - id: JetpackMiniFilled # Frontier
-        - id: HandheldGPSBasic # Frontier
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: FillResearchDirectorHardsuit
   - type: AccessReader
     # access: [ [ "ResearchDirector" ] ] # Frontier
 
 #HOS's hardsuit
 - type: entity
   id: SuitStorageHOS
-  parent: [BaseStructureIndestructible, BaseStructureLockImmuneToEmag, BaseStructureAccessReaderImmuneToEmag, BaseStructureDisableToolUse, BaseStructureUnanchorable, SuitStorageBase] # Frontier
+  parent: [BaseStructureIndestructible, BaseStructureLockImmuneToEmag, BaseStructureAccessReaderImmuneToEmag, BaseStructureDisableToolUse, SuitStorageBase] # Frontier: added BaseStructureDisableToolUse
   suffix: Head of Security
   components:
-  - type: StorageFill
-    contents:
-#        - id: NitrogenTankFilled
-#        - id: OxygenTankFilled
-        - id: AirTankFilled
-        - id: JetpackSecurityFilled
-        - id: ClothingOuterHardsuitSecurityRed
-        - id: ClothingMaskGasSwat
-        - id: HandheldGPSBasic # Frontier
-        - id: ClothingShoesBootsMagCombatFilled # Frontier
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: FillHeadOfSecurityHardsuit
   - type: AccessReader
     access: [["HeadOfSecurity"]]
 
 #Warden's hardsuit
 - type: entity
   id: SuitStorageWarden
-  parent: [BaseStructureIndestructible, BaseStructureLockImmuneToEmag, BaseStructureAccessReaderImmuneToEmag, BaseStructureDisableToolUse, BaseStructureUnanchorable, SuitStorageBase] # Frontier
+  parent: [BaseStructureIndestructible, BaseStructureLockImmuneToEmag, BaseStructureAccessReaderImmuneToEmag, BaseStructureDisableToolUse, SuitStorageBase] # Frontier: added BaseStructureDisableToolUse
   suffix: Warden
   components:
   - type: StorageFill
@@ -290,15 +265,10 @@
   parent: SuitStorageBase
   suffix: Captain
   components:
-  - type: StorageFill
-    contents:
-#        - id: NitrogenTankFilled
-#        - id: OxygenTankFilled
-        - id: AirTankFilled
-        - id: ClothingOuterHardsuitCap
-        - id: ClothingMaskGasCaptain
-        - id: JetpackMiniFilled # Frontier
-        - id: HandheldGPSBasic # Frontier
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: FillCaptainHardsuit
   - type: AccessReader
     # access: [["Captain"]] # Frontier
 
