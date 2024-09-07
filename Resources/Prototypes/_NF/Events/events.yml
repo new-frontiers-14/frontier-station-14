@@ -110,6 +110,7 @@
   components:
   - type: StationEvent
     weight: 7
+    earliestStart: 15
     duration: 1
     minimumPlayers: 15
   - type: BreakerFlipRule
@@ -245,6 +246,7 @@
   components:
   - type: StationEvent
     weight: 15
+    earliestStart: 15
     duration: 1
     reoccurrenceDelay: 180 # Frontier
     maxOccurrences: 2 # Frontier - People dont like too many false alarms
@@ -260,6 +262,7 @@
       path: /Audio/Announcements/attention.ogg
     endAnnouncement: station-event-gas-leak-end-announcement
     weight: 8
+    earliestStart: 15
   - type: GasLeakRule
 
 # - type: entity
@@ -331,6 +334,7 @@
     startAudio:
       path: /Audio/Announcements/attention.ogg
     weight: 6
+    earliestStart: 15
     duration: 50
   - type: VentCrittersRule
     entries:
@@ -345,6 +349,7 @@
   components:
   - type: StationEvent
     weight: 5
+    earliestStart: 15
     startAnnouncement: station-event-power-grid-check-start-announcement
     endAnnouncement: station-event-power-grid-check-end-announcement
     startAudio:
@@ -361,6 +366,7 @@
   components:
   - type: StationEvent
     weight: 8
+    earliestStart: 15
     startAnnouncement: station-event-solar-flare-start-announcement
     endAnnouncement: station-event-solar-flare-end-announcement
     startAudio:
@@ -556,6 +562,7 @@
   parent: BaseGameRule
   components:
   - type: StationEvent
+    earliestStart: 15
     weight: 7
     duration: 150
     maxDuration: 300
@@ -572,6 +579,7 @@
   id: IonStorm
   components:
   - type: StationEvent
+    earliestStart: 15
     weight: 8
     reoccurrenceDelay: 120 # Frontier: 20<120
     duration: 1
