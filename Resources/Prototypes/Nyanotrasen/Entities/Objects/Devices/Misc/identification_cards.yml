@@ -1,13 +1,14 @@
 - type: entity
   parent: IDCardStandard
   id: MailCarrierIDCard
-  noSpawn: true # Frontier
+  categories: [ HideSpawnMenu ] # Frontier
   name: mail carrier ID card
   components:
   - type: Sprite
     layers:
     - state: default
-    - state: idmailcarrier
+    - sprite: DeltaV/Objects/Misc/id_cards.rsi
+      state: nyanomailcarrier
   - type: PresetIdCard
     job: MailCarrier
 
@@ -19,13 +20,15 @@
   - type: Sprite
     layers:
     - state: orange
+    - sprite: DeltaV/Objects/Misc/id_cards.rsi
+      state: nyanoprisoner
   - type: PresetIdCard
     job: Prisoner
 
 - type: entity
   parent: IDCardStandard
   id: ValetIDCard
-  noSpawn: true # Frontier
+  categories: [ HideSpawnMenu ] # Frontier
   name: valet ID card
   components:
   - type: Sprite
@@ -37,12 +40,13 @@
 
 - type: entity
   parent: IDCardStandard
-  id: GuardIDCard
-  name: guard ID card
+  id: PrisonGuardIDCard
+  name: prison guard ID card
   components:
   - type: Sprite
     layers:
     - state: default
-    - state: idsecurityofficer
+    - sprite: DeltaV/Objects/Misc/id_cards.rsi
+      state: nyanoprisonguard
   - type: PresetIdCard
     job: PrisonGuard

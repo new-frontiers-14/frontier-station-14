@@ -1,17 +1,9 @@
 ﻿- type: entity
   id: OrganVulpkaninStomach
   parent: OrganAnimalStomach
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Stomach
-    # specialDigestible:
-    #   tags:
-    #   - Fruit
-    #   - Meat
-    #   - Pill
-    #   - Egg
-    #   - Crayon
-    #   - Bread
   - type: SolutionContainerManager
     solutions:
       stomach:

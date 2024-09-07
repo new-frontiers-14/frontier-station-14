@@ -3,18 +3,29 @@
   parent: CrateEngineering
   id: CrateEngineeringKitRtg
   name: RTG toolkit
-  description: Contains a full kit to build RTG power plant.
+  description: Contains a full kit to build an RTG power plant.
   components:
   - type: StorageFill
     contents:
+      # Expected value: 2.8
+    - id: GeneratorRTGFlatpack
+      amount: 2
+      orGroup: rtg
+      prob: 0.4
+    - id: GeneratorRTGFlatpack
+      amount: 3
+      orGroup: rtg
+      prob: 0.4
     - id: GeneratorRTGFlatpack
       amount: 4
+      orGroup: rtg
+      prob: 0.2
 
 - type: entity
   parent: CrateEngineering
   id: CrateEngineeringKitFabrication
   name: fabrication kit
-  description: Contains a full kit to build engineering fabrication facility.
+  description: Contains a full kit to build an engineering fabrication facility.
   components:
   - type: StorageFill
     contents:
@@ -43,11 +54,99 @@
     - id: ShipyardRCDAmmo
       amount: 4
 
+- type: entity
+  parent: CrateEngineering
+  id: CrateEngineerHardsuit
+  name: station engineer's hardsuit crate
+  description: Contains a station engineer hardsuit.
+  components:
+  - type: StorageFill
+    contents:
+    - id: AirTankFilled
+    - id: ClothingShoesBootsMag
+    - id: ClothingOuterHardsuitEngineering
+    - id: ClothingMaskBreath
+    - id: JetpackMiniFilled
+    - id: HandheldGPSBasic
+
+- type: entity
+  parent: CrateEngineering
+  id: CrateAtmosTechHardsuit
+  name: atmospheric technician's hardsuit crate
+  description: Contains a atmospheric technician hardsuit.
+  components:
+  - type: StorageFill
+    contents:
+    - id: AirTankFilled
+    - id: ClothingShoesBootsMag
+    - id: ClothingOuterHardsuitAtmos
+    - id: ClothingMaskBreath
+    - id: JetpackMiniFilled
+    - id: HandheldGPSBasic
+
+- type: entity
+  parent: CrateEngineering
+  id: CrateEngineerChiefHardsuit
+  name: chief engineer's hardsuit crate
+  description: Contains a chief engineer hardsuit.
+  components:
+  - type: StorageFill
+    contents:
+    - id: AirTankFilled
+    - id: ClothingShoesBootsMag
+    - id: ClothingOuterHardsuitEngineeringWhite
+    - id: ClothingMaskBreath
+    - id: JetpackMiniFilled
+    - id: HandheldGPSBasic
+
+- type: entity
+  parent: CrateEngineering
+  id: CrateTools
+  name: tools crate
+  description: Contains essential tools for engineering.
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingOuterVestHazard
+        prob: 0.4
+      - id: FlashlightLantern
+        prob: 0.7
+      - id: Screwdriver
+        prob: 0.7
+      - id: Wrench
+        prob: 0.7
+      - id: Welder
+        prob: 0.7
+      - id: Crowbar
+        prob: 0.7
+      - id: Wirecutter
+        prob: 0.7
+      - id: Multitool
+        prob: 0.2
+      - id: trayScanner
+        prob: 0.7
+      - id: GasAnalyzer
+        prob: 0.7
+      - id: ClothingBeltUtility
+        prob: 0.2
+      - id: ClothingHandsGlovesColorYellow
+        prob: 0.05
+      - id: ClothingHeadHatHardhatRed
+        prob: 0.4
+      - id: CableApcStack
+        prob: 0.3
+      - id: CableApcStack
+        prob: 0.3
+      - id: CableApcStack
+        prob: 0.3
+      - id: SprayPainter
+        prob: 0.7
+
 # Science
 
 # Service
 - type: entity
-  parent: CratePlastic
+  parent: CratePlasticBiodegradable
   id: CrateServiceKitKitchen
   name: kitchen toolkit
   description: Contains a full kit to build a kitchen.
@@ -63,6 +162,24 @@
     - id: ServiceTechFabFlatpack
     - id: VendingMachineRestockChefvend
     - id: VendingMachineRestockDinnerware
+
+- type: entity
+  parent: CratePlasticBiodegradable
+  id: CrateServiceKitCleanades
+  name: cleanade crate
+  description: Contains a full kit to clean up a warzone.
+  components:
+  - type: StorageFill
+    contents:
+    - id: CleanerGrenade
+      amount: 2
+      orGroup: cleanades
+    - id: CleanerGrenade
+      amount: 4
+      orGroup: cleanades
+    - id: CleanerGrenade
+      amount: 6
+      orGroup: cleanades
 
 - type: entity
   parent: CrateHydroponics
@@ -126,3 +243,169 @@
     - id: KitchenReagentGrinderFlatpack
     - id: VendingMachineChemicalsFlatpack
     - id: VendingMachineRestockChemVend
+
+- type: entity
+  parent: CrateChemistrySecure
+  id: CrateChemistrySecureKitChemist
+  name: chemistry kit
+  description: Contains a chemist equipment kit.
+  components:
+  - type: StorageFill
+    contents:
+    - id: BoxSyringe
+    - id: BoxBeaker
+      amount: 2
+    - id: BoxPillCanister
+    - id: BoxBottle
+    - id: BoxVial
+    - id: ChemBag
+    - id: ClothingHandsGlovesLatex
+    - id: ClothingMaskSterile
+    - id: ClothingEyesGlassesChemical  
+
+- type: entity
+  parent: CrateMedicalSecure
+  id: CrateMedicalSecureDoctor
+  name: doctor chest
+  description: Contains a doctor equipment kit.
+  components:
+  - type: StorageFill
+    contents:
+    - id: HandheldHealthAnalyzer
+    - id: ClothingHandsGlovesLatex
+    - id: ClothingEyesHudMedical
+    - id: ClothingMaskSterile
+    - id: ClothingBeltMedicalFilled
+
+- type: entity
+  parent: CrateSurgery
+  id: CrateMedicalSecureMedicine
+  name: medicine chest
+  description: Contains essential medical supplies.
+  components:
+  - type: StorageFill
+    contents:
+    - id: BoxSyringe
+    - id: EpinephrineChemistryBottle
+      amount: 1
+    - id: Brutepack
+      amount: 2
+    - id: Ointment
+      amount: 2
+    - id: Bloodpack
+      amount: 2
+    - id: Gauze
+  
+- type: entity
+  parent: CrateSurgery
+  id: CrateMedicalSecureMedicinePierce
+  name: medicine chest
+  description: Contains essential medical supplies.
+  components:
+  - type: StorageFill
+    contents:
+    - id: BoxSyringe
+    - id: EpinephrineChemistryBottle
+      amount: 1
+    - id: Bloodpack
+      amount: 3
+    - id: Gauze
+      amount: 3
+  
+- type: entity
+  parent: CrateMedical
+  id: CrateMedicalRollerBeds
+  name: roller bed chest
+  description: Contains four roller beds.
+  components:
+  - type: StorageFill
+    contents:
+    - id: RollerBedSpawnFolded
+      amount: 4
+  
+- type: entity
+  parent: CrateEvaKit
+  id: CrateEvaKitParamedic
+  name: paramedic voidsuit kit
+  description: Contains a full paramedic voidsuit kit.
+  components:
+  - type: StorageFill
+    contents:
+    - id: AirTankFilled
+    - id: ClothingOuterHardsuitVoidParamed
+    - id: ClothingMaskBreathMedical
+    - id: JetpackMiniFilled
+    - id: HandheldGPSBasic
+
+- type: entity
+  parent: CrateEvaKit
+  id: CrateEvaKitCmo
+  name: chief medical officer hardsuit kit
+  description: Contains a full chief medical officer hardsuit kit.
+  components:
+  - type: StorageFill
+    contents:
+    - id: AirTankFilled
+    - id: ClothingOuterHardsuitMedical
+    - id: ClothingMaskBreathMedical
+    - id: JetpackMiniFilled
+    - id: HandheldGPSBasic
+
+# Mercenary
+- type: entity
+  parent: CrateSecureMercenary
+  id: CrateSecureMercenaryHardsuitMagBoots
+  name: mercenary hardsuit crate
+  description: Contains a mercenary hardsuit.
+  components:
+  - type: StorageFill
+    contents:
+    - id: DoubleEmergencyAirTankFilled
+    - id: ClothingShoesBootsMagMercenary
+    - id: ClothingOuterHardsuitMercenary
+    - id: ClothingMaskGasMercenary
+    - id: JetpackMiniFilled
+    - id: HandheldGPSBasic
+
+- type: entity
+  parent: CrateSecureMercenaryPrivateSec
+  id: CrateSecureMercenaryPrivateSecHardsuitMagBoots
+  name: private security hardsuit crate
+  description: Contains a private security hardsuit.
+  components:
+  - type: StorageFill
+    contents:
+    - id: DoubleEmergencyAirTankFilled
+    - id: ClothingShoesBootsMagCombat
+    - id: ClothingOuterHardsuitPrivateSecurity
+    - id: ClothingMaskGasSecurity
+    - id: JetpackMiniFilled
+    - id: HandheldGPSBasic
+
+- type: entity
+  parent: CrateSecureMercenary
+  id: CrateSecureMercenaryHardsuit
+  name: mercenary hardsuit crate
+  description: Contains a mercenary hardsuit.
+  components:
+  - type: StorageFill
+    contents:
+    - id: DoubleEmergencyAirTankFilled
+    - id: ClothingOuterHardsuitMercenary
+    - id: ClothingMaskGasMercenary
+    - id: JetpackMiniFilled
+    - id: HandheldGPSBasic
+
+- type: entity
+  parent: CrateSecureMercenaryPrivateSec
+  id: CrateSecureMercenaryPrivateSecHardsuit
+  name: private security hardsuit crate
+  description: Contains a private security hardsuit.
+  components:
+  - type: StorageFill
+    contents:
+    - id: DoubleEmergencyAirTankFilled
+    - id: ClothingOuterHardsuitPrivateSecurity
+    - id: ClothingMaskGasSecurity
+    - id: JetpackMiniFilled
+    - id: HandheldGPSBasic

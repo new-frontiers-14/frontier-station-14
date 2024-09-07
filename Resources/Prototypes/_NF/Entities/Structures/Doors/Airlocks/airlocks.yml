@@ -48,5 +48,14 @@
   id: AirlockExternalGlassShuttleTransit
   suffix: External, PubTrans, Glass, Docking
   components:
-    - type: PriorityDock
-      tag: DockTransit
+  - type: PriorityDock
+    tag: DockTransit
+
+- type: entity
+  parent: AirlockGlassShuttle
+  id: AirlockExternalGlassShuttleMcCargo
+  suffix: External, McCargo, Glass, Docking
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Docking
+    name: McDrive Thru

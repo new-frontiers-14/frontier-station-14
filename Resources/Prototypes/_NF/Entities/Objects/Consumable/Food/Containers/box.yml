@@ -1,13 +1,13 @@
 - type: entity
-  id: HappyHonkCargo
+  id: HappyHonkMcCargo
   parent: HappyHonk
   name: mccargo meal
   components:
   - type: Sprite
-    sprite: _NF/Objects/Storage/Happyhonk/cargo.rsi
+    sprite: _NF/Objects/Storage/Happyhonk/mccargo.rsi
     state: box
   - type: Item
-    sprite: _NF/Objects/Storage/Happyhonk/cargo.rsi
+    sprite: _NF/Objects/Storage/Happyhonk/mccargo.rsi
     heldPrefix: box
   - type: StorageFill
     contents:
@@ -24,9 +24,9 @@
     price: 40
 
 - type: entity
-  id: HappyHonkCargoFood
-  parent: HappyHonkCargo
-  noSpawn: true
+  id: HappyHonkMcCargoFood
+  parent: HappyHonkMcCargo
+  categories: [ HideSpawnMenu ]
   components:
   - type: StorageFill
     contents:

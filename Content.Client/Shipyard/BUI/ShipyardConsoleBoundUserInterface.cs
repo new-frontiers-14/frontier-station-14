@@ -25,30 +25,32 @@ public sealed class ShipyardConsoleBoundUserInterface : BoundUserInterface
     {
         base.Open();
         _menu = new ShipyardConsoleMenu(this);
-        var rules = new FormattedMessage();
-        _rulesWindow = new ShipyardRulesPopup(this);
+        // Disable the NFSD popup for now.
+        // var rules = new FormattedMessage();
+        // _rulesWindow = new ShipyardRulesPopup(this);
         _menu.OpenCentered();
-        if (ShipyardConsoleUiKey.Security == (ShipyardConsoleUiKey) UiKey)
-        {
-            rules.AddText(Loc.GetString($"shipyard-rules-default1"));
-            rules.PushNewline();
-            rules.AddText(Loc.GetString($"shipyard-rules-default2"));
-            _rulesWindow.ShipRules.SetMessage(rules);
-            _rulesWindow.OpenCentered();
-        }
+        // if (ShipyardConsoleUiKey.Security == (ShipyardConsoleUiKey) UiKey)
+        // {
+        //     rules.AddText(Loc.GetString($"shipyard-rules-default1"));
+        //     rules.PushNewline();
+        //     rules.AddText(Loc.GetString($"shipyard-rules-default2"));
+        //     _rulesWindow.ShipRules.SetMessage(rules);
+        //     _rulesWindow.OpenCentered();
+        // }
         _menu.OnClose += Close;
         _menu.OnOrderApproved += ApproveOrder;
         _menu.OnSellShip += SellShip;
         _menu.TargetIdButton.OnPressed += _ => SendMessage(new ItemSlotButtonPressedEvent("ShipyardConsole-targetId"));
     }
 
-    private void Populate(List<string> prototypes, string name, bool freeListings)
+    private void Populate(List<string> availablePrototypes, List<string> unavailablePrototypes, bool freeListings, bool validId)
     {
         if (_menu == null)
             return;
 
-        _menu.PopulateProducts(prototypes, name, freeListings);
-        _menu.PopulateCategories();
+        _menu.PopulateProducts(availablePrototypes, unavailablePrototypes, freeListings, validId);
+        _menu.PopulateCategories(availablePrototypes, unavailablePrototypes);
+        _menu.PopulateClasses(availablePrototypes, unavailablePrototypes);
     }
 
     protected override void UpdateState(BoundUserInterfaceState state)
@@ -61,7 +63,7 @@ public sealed class ShipyardConsoleBoundUserInterface : BoundUserInterface
         Balance = cState.Balance;
         ShipSellValue = cState.ShipSellValue;
         var castState = (ShipyardConsoleInterfaceState) state;
-        Populate(castState.ShipyardPrototypes, castState.ShipyardName, castState.FreeListings);
+        Populate(castState.ShipyardPrototypes.available, castState.ShipyardPrototypes.unavailable, castState.FreeListings, castState.IsTargetIdPresent);
         _menu?.UpdateState(castState);
     }
 

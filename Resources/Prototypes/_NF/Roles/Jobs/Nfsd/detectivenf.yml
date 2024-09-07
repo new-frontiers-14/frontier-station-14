@@ -4,19 +4,25 @@
   description: job-description-detective-nf
   playTimeTracker: JobDetective
   requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 43200 # 12 hours
     - !type:DepartmentTimeRequirement
       department: Security
-      time: 21600 # 6 hrs
+      time: 21600 # 6 hours
+  alternateRequirementSets:
+    longerPlaytimeLessSec:
     - !type:OverallPlaytimeRequirement
-      time: 36000 # Frontier - 10 hrs
+      time: 360000 # 100 hours
   startingGear: DetectiveNFGear
-  icon: "JobIconNFDetective"
+  icon: JobIconDetectiveNF
   supervisors: job-supervisors-bailiff
+  weight: 110
+  displayWeight: 20
   canBeAntag: false
   access:
   - Detective
-  accessGroups: # Frontier
-  - GeneralNfsdAccess # Frontier
+  accessGroups:
+  - GeneralNfsdAccess
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant, TrackingImplant ]

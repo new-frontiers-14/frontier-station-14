@@ -15,7 +15,7 @@
     proto: BulletRocketEmp
     deleteOnSpawn: true
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
     state: rpg-emp
 
 # Grenades
@@ -36,3 +36,17 @@
   - type: SpentAmmoVisuals
     state: emp
     suffix: false
+
+# Cannon Balls
+- type: entity
+  id: CannonBallEmp
+  name: shockshot
+  suffix: EMP
+  parent: BaseCannonBall
+  components:
+  - type: CartridgeAmmo
+    proto: BulletCannonBallEmp
+    deleteOnSpawn: true
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    state: ball-emp

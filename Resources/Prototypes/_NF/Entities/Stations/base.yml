@@ -1,0 +1,103 @@
+- type: entity
+  id: BaseStationSiliconLawFrontierStation
+  abstract: true
+  components:
+  - type: SiliconLawProvider
+    laws: NTDefault
+
+- type: entity
+  id: BaseStationSiliconLawFrontierShips
+  abstract: true
+  components:
+  - type: SiliconLawProvider
+    laws: Corporate
+
+- type: entity
+  id: BaseStationRenameFaxes
+  abstract: true
+  components:
+  - type: StationRenameFaxes
+
+- type: entity
+  id: BaseStationRenameWarpPoints
+  abstract: true
+  components:
+  - type: StationRenameWarps
+
+# Sector-wide news access, should be on stations with comms (radio station, telecomms)
+# TODO: move SectorNewsComponent to a SectorService
+- type: entity
+  id: BaseStationSectorNews
+  abstract: true
+  components:
+  - type: SectorNews
+
+# Uses this station ID to host singleton-esque services to avoid station references (e.g. for PDA apps)
+- type: entity
+  id: BaseStationSectorServices
+  abstract: true
+  components:
+  - type: StationSectorServiceHost
+
+- type: entity
+  id: BaseStationDampening
+  abstract: true
+  components:
+  - type: StationDampening
+
+- type: entity
+  id: BaseStationCargoMarket
+  abstract: true
+  components:
+  - type: CargoMarketData
+    whitelist:
+      tags:
+      - Ore
+      - Sheet
+      - Metal
+      - Ingot
+      - RawMaterial
+      - ClothMade
+      - CrystalRed
+      - CrystalGreen
+      - CrystalPink
+      - CrystalOrange
+      - CrystalBlue
+      - CrystalCyan
+      components:
+      - Material
+      - ConstructionMaterials
+      - ToolRefinable
+      - MachinePart
+      - VendingMachineRestock
+      - Seed
+    blacklist:
+      tags:
+      - Trash
+      - Mail
+      - Paper
+      components:
+      - Anchorable # No structures, they won't fit in crates
+      - Food
+      - Currency # No selling money.
+      - SpaceGarbage
+      - Contraband
+      - Gun
+      - Ammo
+      - Drink
+      - GasTank # Default containers won't be empty
+      - Explosive
+      - Actor
+      - Mind # Players
+      - MindContainer # Positronic brains
+      - Body # No corpses
+      - MobPrice # Animals (live or dead) and the like
+      - Artifact # Unique, abusable for research points
+      - RCD # Dup charges
+      - Storage # Till fixed
+      - StorageFill # Till fixed
+      - ContainerContainer # Till fixed
+    overrideList:
+      matchParents: true
+      id:
+      - SheetUranium # Counts as food

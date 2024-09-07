@@ -5,17 +5,19 @@
   playTimeTracker: JobSecurityCadet
   requirements:
     - !type:OverallPlaytimeRequirement
-      time: 36000 # Frontier 10 hrs
+      time: 21600 # 6 hours
     - !type:DepartmentTimeRequirement
       department: Security
-      time: 36000 # Frontier - 10 hrs
-      inverted: true # stop playing intern if you're good at security!
+      time: 64800 # 18 hours
+      inverted: true # Leave slots open for newer, less confident players.
   startingGear: CadetGear
-  icon: "JobIconSecurityCadet" # Frontier
+  icon: JobIconCadetNF
   supervisors: job-supervisors-cadet
+  weight: 70
+  displayWeight: 10
   canBeAntag: false
-  accessGroups: # Frontier
-  - CadetNfsdAccess # Frontier
+  accessGroups:
+  - CadetNfsdAccess
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant, TrackingImplant ]
@@ -26,7 +28,7 @@
 - type: startingGear
   id: CadetGear
   equipment:
-    ears: ClothingHeadsetNfsdBrown # Frontier
+    ears: ClothingHeadsetNfsdBrown
     pocket1: WeaponPistolMk58 #WeaponPistolMk58Nonlethal
     pocket2: BookSecurity
   storage:

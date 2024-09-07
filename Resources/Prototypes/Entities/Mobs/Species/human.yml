@@ -20,11 +20,26 @@
     hideLayersOnEquip:
     - Hair
     - Snout
-  - type: Carriable # Carrying system from nyanotrasen.
+  - type: Inventory
+    femaleDisplacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: jumpsuit-female
+  - type: Carriable # Frontier: Carrying system from nyanotrasen.
   - type: Speech # Frontier
     allowedEmotes: ['Belch'] # Frontier
 
 - type: entity
   parent: BaseSpeciesDummy
   id: MobHumanDummy
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Inventory
+    femaleDisplacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: jumpsuit-female

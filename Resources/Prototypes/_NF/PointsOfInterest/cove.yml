@@ -1,0 +1,37 @@
+# Author Info
+# GitHub: 
+# Discord: dvir01
+
+# Maintainer Info
+# GitHub: ???
+# Discord: ???
+
+# Notes:
+# Byarr
+- type: pointOfInterest
+  id: Cove
+  name: Pirate Cove
+  rangeMin: 10000
+  rangeMax: 15000
+  iffColor: "#C83737" #red the color of ebil
+  isHidden: true
+  alwaysSpawn: true
+  allowIFFChanges: true
+  gridPath: /Maps/_NF/POI/cove.yml
+
+- type: gameMap
+  id: Cove
+  mapName: 'Pirate Cove'
+  mapPath: /Maps/_NF/POI/cove.yml
+  minPlayers: 0
+  stations:
+    Cove:
+      stationProto: SpawnableFrontierOutpost
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Pirate Cove'
+        - type: StationJobs
+          availableJobs:
+            PirateCaptain: [ 1, 1 ]
+            PirateFirstMate: [ 1, 1 ]
+            Pirate: [ 0, 0 ]

@@ -5,7 +5,7 @@ using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Server.Shuttles.Systems;
 using Content.Shared.GameTicking;
-using Content.Shared.NF14.CCVar;
+using Content.Shared._NF.CCVar;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Tiles;
 using Robust.Server.GameObjects;
@@ -49,12 +49,12 @@ public sealed class PublicTransitSystem : EntitySystem
         SubscribeLocalEvent<TransitShuttleComponent, FTLTagEvent>(OnShuttleTag);
         SubscribeLocalEvent<RoundStartedEvent>(OnRoundStart);
 
-        Enabled = _cfgManager.GetCVar(NF14CVars.PublicTransit);
-        FlyTime = _cfgManager.GetCVar(NF14CVars.PublicTransitFlyTime);
+        Enabled = _cfgManager.GetCVar(NFCCVars.PublicTransit);
+        FlyTime = _cfgManager.GetCVar(NFCCVars.PublicTransitFlyTime);
         Counter = 0;
         StationList.Clear();
-        _cfgManager.OnValueChanged(NF14CVars.PublicTransit, SetTransit);
-        _cfgManager.OnValueChanged(NF14CVars.PublicTransitFlyTime, SetFly);
+        _cfgManager.OnValueChanged(NFCCVars.PublicTransit, SetTransit);
+        _cfgManager.OnValueChanged(NFCCVars.PublicTransitFlyTime, SetFly);
     }
 
     public void OnRoundStart(RoundStartedEvent args)
@@ -67,8 +67,8 @@ public sealed class PublicTransitSystem : EntitySystem
     public override void Shutdown()
     {
         base.Shutdown();
-        _cfgManager.UnsubValueChanged(NF14CVars.PublicTransitFlyTime, SetFly);
-        _cfgManager.UnsubValueChanged(NF14CVars.PublicTransit, SetTransit);
+        _cfgManager.UnsubValueChanged(NFCCVars.PublicTransitFlyTime, SetFly);
+        _cfgManager.UnsubValueChanged(NFCCVars.PublicTransit, SetTransit);
     }
 
 
@@ -114,7 +114,13 @@ public sealed class PublicTransitSystem : EntitySystem
     private void OnShuttleStartup(EntityUid uid, TransitShuttleComponent component, ComponentStartup args)
     {
         EnsureComp<PreventPilotComponent>(uid);
-        EnsureComp<ProtectedGridComponent>(uid);
+        var prot = EnsureComp<ProtectedGridComponent>(uid);
+        prot.PreventArtifactTriggers = true;
+        prot.PreventEmpEvents = true;
+        prot.PreventExplosions = true;
+        prot.PreventFloorPlacement = true;
+        prot.PreventFloorRemoval = true;
+        prot.PreventRCDUse = true;
     }
 
     /// <summary>
@@ -131,12 +137,12 @@ public sealed class PublicTransitSystem : EntitySystem
 
         while (consoleQuery.MoveNext(out var consoleUid, out _))
         {
-            if (Transform(consoleUid).GridUid == uid)
+            if (Transform(consoleUid).GridUid == uid && TryComp(comp.NextStation, out MetaDataComponent? metadata))
             {
-                var destinationString = MetaData(comp.NextStation).EntityName;
+                var destinationString = metadata.EntityName;
 
                 _chat.TrySendInGameICMessage(consoleUid, Loc.GetString("public-transit-arrival",
-                        ("destination", destinationString), ("waittime", _cfgManager.GetCVar(NF14CVars.PublicTransitWaitTime))),
+                        ("destination", destinationString), ("waittime", _cfgManager.GetCVar(NFCCVars.PublicTransitWaitTime))),
                     InGameICChatType.Speak, ChatTransmitRange.HideChat, hideLog: true, checkRadioPrefix: false,
                     ignoreActionBlocker: true);
             }
@@ -191,9 +197,9 @@ public sealed class PublicTransitSystem : EntitySystem
 
             while (consoleQuery.MoveNext(out var consoleUid, out _))
             {
-                if (Transform(consoleUid).GridUid == uid)
+                if (Transform(consoleUid).GridUid == uid && TryComp(comp.NextStation, out MetaDataComponent? metadata))
                 {
-                    var destinationString = MetaData(comp.NextStation).EntityName;
+                    var destinationString = metadata.EntityName;
 
                     _chat.TrySendInGameICMessage(consoleUid, Loc.GetString("public-transit-departure",
                         ("destination", destinationString), ("flytime", FlyTime)),
@@ -201,12 +207,12 @@ public sealed class PublicTransitSystem : EntitySystem
                         ignoreActionBlocker: true);
                 }
             }
-            _shuttles.FTLToDock(uid, shuttle, comp.NextStation, hyperspaceTime: FlyTime);
+            _shuttles.FTLToDock(uid, shuttle, comp.NextStation, hyperspaceTime: FlyTime, priorityTag: "DockTransit"); // TODO: Unhard code the priorityTag as it should be added from the system.
 
-            if (TryGetNextStation(out var nextStation) && nextStation is {Valid : true} destination)
+            if (TryGetNextStation(out var nextStation) && nextStation is { Valid: true } destination)
                 comp.NextStation = destination;
 
-            comp.NextTransfer += TimeSpan.FromSeconds(FlyTime + _cfgManager.GetCVar(NF14CVars.PublicTransitWaitTime));
+            comp.NextTransfer = curTime + TimeSpan.FromSeconds(FlyTime + _cfgManager.GetCVar(NFCCVars.PublicTransitWaitTime));
         }
     }
 
@@ -261,7 +267,7 @@ public sealed class PublicTransitSystem : EntitySystem
 
         // Spawn the bus onto a dummy map
         var dummyMap = _mapManager.CreateMap();
-        var busMap = _cfgManager.GetCVar(NF14CVars.PublicTransitBusMap);
+        var busMap = _cfgManager.GetCVar(NFCCVars.PublicTransitBusMap);
         if (_loader.TryLoad(dummyMap, busMap, out var shuttleUids))
         {
             var shuttleComp = Comp<ShuttleComponent>(shuttleUids[0]);
@@ -274,7 +280,7 @@ public sealed class PublicTransitSystem : EntitySystem
                 //we set up a default in case the second time we call it fails for some reason
                 transitComp.NextStation = destination;
                 _shuttles.FTLToDock(shuttleUids[0], shuttleComp, destination, hyperspaceTime: 5f);
-                transitComp.NextTransfer = _timing.CurTime + TimeSpan.FromSeconds(_cfgManager.GetCVar(NF14CVars.PublicTransitWaitTime));
+                transitComp.NextTransfer = _timing.CurTime + TimeSpan.FromSeconds(_cfgManager.GetCVar(NFCCVars.PublicTransitWaitTime));
 
                 //since the initial cached value of the next station is actually the one we are 'starting' from, we need to run the
                 //bus stop list code one more time so that our first trip isnt just Frontier - Frontier

@@ -46,7 +46,7 @@
   - type: Occluder
   - type: Airtight
   - type: StaticPrice
-    price: 25
+    price: 25 # Frontier 75<25
   - type: RadiationBlocker
     resistance: 2
   - type: BlockWeather
@@ -462,8 +462,6 @@
     - type: IconSmooth
       key: walls
       base: plastitanium
-#    - type: Reflect # Frontier
-#      reflectProb: 0.75 # Frontier
 
 - type: entity
   parent: WallPlastitaniumIndestructible
@@ -487,8 +485,6 @@
                   max: 1
             - !type:DoActsBehavior
               acts: [ "Destruction" ]
-#    - type: Reflect # Frontier
-#      reflectProb: 0.15 # Frontier
 
 - type: entity
   parent: WallShuttleDiagonal
@@ -511,8 +507,6 @@
   - type: Icon
     sprite: Structures/Walls/plastitanium_diagonal.rsi
     state: state0
-#  - type: Reflect # Frontier
-#    reflectProb: 0.15 # Frontier
 
 - type: entity
   parent: BaseWall
@@ -569,7 +563,7 @@
           5: { state: reinf_construct-5, visible: true}
   - type: ReinforcedWallReplacementMarker
   - type: StaticPrice
-    price: 50
+    price: 50 # Frontier 150<50
   - type: RadiationBlocker
     resistance: 5
 
@@ -591,27 +585,27 @@
     key: walls
     base: reinf_over
 
-# - type: entity
-  # parent: WallShuttleDiagonal
-  # id: WallReinforcedDiagonal
-  # name: reinforced wall
-  # suffix: diagonal
-  # placement:
-    # mode: SnapgridCenter
-    # snap:
-    # - Wall
-  # components:
-  # - type: Sprite
-    # drawdepth: Walls
-    # sprite: Structures/Walls/reinforced_diagonal.rsi
-    # state: state0
-  # - type: IconSmooth
-    # mode: Diagonal
-    # key: walls
-    # base: state
-  # - type: Icon
-    # sprite: Structures/Walls/reinforced_diagonal.rsi
-    # state: state0
+- type: entity
+  parent: WallShuttleDiagonal
+  id: WallReinforcedDiagonal
+  name: reinforced wall
+  suffix: diagonal
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: Sprite
+    drawdepth: Walls
+    sprite: _NF/Structures/Walls/reinforced_diagonal.rsi # Frontier: _NF folder
+    state: state0
+  - type: IconSmooth
+    mode: DiagonalNF # Frontier: Diagonal<DiagonalNF
+    key: walls
+    base: state
+  - type: Icon
+    sprite: _NF/Structures/Walls/reinforced_diagonal.rsi # Frontier: _NF folder
+    state: state0
 
 # Riveting
 - type: entity
@@ -646,7 +640,7 @@
     key: walls
     base: riveted
   - type: StaticPrice
-    price: 50
+    price: 150
 
 - type: entity
   parent: BaseWall
@@ -760,7 +754,7 @@
   - type: Physics
     bodyType: Static
 #  - type: Reflect # Frontier
-#    reflectProb: 0.1 # Frontier
+#    reflectProb: 1 # Frontier
   - type: Pullable
   - type: Airtight
     noAirWhenFullyAirBlocked: false
@@ -836,7 +830,7 @@
           4: { state: shuttle_construct-4, visible: true}
           5: { state: shuttle_construct-5, visible: true}
 #  - type: Reflect # Frontier
-#    reflectProb: 0.1 # Frontier
+#    reflectProb: 1 # Frontier
 
 - type: entity
   parent: WallSolid
@@ -855,7 +849,7 @@
     key: walls
     base: state
 #  - type: Reflect # Frontier
-#    reflectProb: 0.1 # Frontier
+#    reflectProb: 1 # Frontier
 
 - type: entity
   parent: BaseWall
@@ -1095,7 +1089,7 @@
 - type: entity
   parent: BaseWall
   id: WallMining
-  name: wall
+  name: mining wall
   components:
   - type: Tag
     tags:
@@ -1115,11 +1109,16 @@
   - type: IconSmooth
     key: walls
     base: mining
+  - type: RandomIconSmooth
+    randomStates:
+    - mining
+    - miningB
+  - type: Appearance
 
 - type: entity
   parent: WallShuttleDiagonal
   id: WallMiningDiagonal
-  name: wall
+  name: mining wall
   suffix: diagonal
   placement:
     mode: SnapgridCenter
@@ -1190,7 +1189,7 @@
 
 - type: entity
   id: WallInvisible
-  name: Invisible Wall
+  name: invisible wall
   components:
   - type: TimedDespawn
     lifetime: 15

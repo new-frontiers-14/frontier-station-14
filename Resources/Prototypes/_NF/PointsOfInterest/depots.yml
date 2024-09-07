@@ -1,0 +1,56 @@
+# Author Info
+# GitHub: Checkraze (https://github.com/cheakraze)
+# Discord: ???
+
+# Maintainer Info
+# GitHub: ???
+# Discord: ???
+
+# Notes:
+# Basic Cargo Depot selling point for economy and great wealth
+- type: pointOfInterest
+  id: CargoDepot
+  name: Cargo Depot
+  rangeMin: 4500
+  rangeMax: 6000
+  iffColor: "#37C837" #green like the color of money
+  spawnGroup: CargoDepot
+  gridPath: /Maps/_NF/POI/cargodepot.yml
+  gridProtection:
+    - ArtifactTriggers
+
+- type: pointOfInterest
+  id: CargoDepotAlt
+  name: Cargo Depot
+  rangeMin: 4500
+  rangeMax: 6000
+  iffColor: "#37C837" #green like the color of money
+  spawnGroup: CargoDepot
+  gridPath: /Maps/_NF/POI/cargodepotalt.yml
+  gridProtection:
+    - ArtifactTriggers
+
+- type: gameMap
+  id: CargoDepot
+  mapName: 'Cargo Depot' # Has a letter appended in NfAdventureSystem
+  mapPath: /Maps/_NF/POI/cargodepotalt.yml
+  minPlayers: 0
+  stations:
+    CargoDepot:
+      stationProto: MarketFrontierOutpost
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Cargo Depot' # Has a letter appended in NfAdventureSystem
+
+- type: gameMap
+  id: CargoDepotAlt
+  mapName: 'Cargo Depot' # Has a letter appended in NfAdventureSystem
+  mapPath: /Maps/_NF/POI/cargodepotalt.yml
+  minPlayers: 0
+  stations:
+    CargoDepotAlt:
+      stationProto: MarketFrontierOutpost
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Cargo Depot' # Has a letter appended in NfAdventureSystem
+  

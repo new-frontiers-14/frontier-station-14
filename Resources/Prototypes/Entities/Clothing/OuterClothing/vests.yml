@@ -1,6 +1,6 @@
 #Web vest
 - type: entity
-  parent: [ClothingOuterStorageBase, AllowSuitStorageClothing]
+  parent: [ClothingOuterStorageBase, AllowSuitStorageClothing, BaseC3SyndicateContraband, ContrabandClothing] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband, add ContrabandClothing
   id: ClothingOuterVestWeb
   name: web vest
   description: A synthetic armor vest. This one has added webbing and ballistic plates.
@@ -21,7 +21,7 @@
 
 #Mercenary web vest
 - type: entity
-  parent: ClothingOuterStorageBase #web vest so it should have some pockets for ammo # Frontier: ClothingOuterVestWeb<ClothingOuterStorageBase
+  parent: [ClothingOuterStorageBase, AllowSuitStorageClothing] #web vest so it should have some pockets for ammo # Frontier: ClothingOuterVestWeb<ClothingOuterStorageBase, removed BaseMinorContraband
   id: ClothingOuterVestWebMercenary # Frontier - Merc to Mercenary
   name: mercenary web vest # Frontier - merc to mercenary
   description: A high-quality armored vest made from a hard synthetic material. It's surprisingly flexible and light, despite formidable armor plating.
@@ -43,7 +43,7 @@
 
 #Detective's vest
 - type: entity
-  parent: ClothingOuterArmorBasic
+  parent: [ClothingOuterArmorBasic, BaseC2ContrabandUnredeemable] # Frontier: BaseRestrictedContraband<BaseC2ContrabandUnredeemable
   id: ClothingOuterVestDetective
   name: detective's vest
   description: A hard-boiled private investigator's armored vest.
