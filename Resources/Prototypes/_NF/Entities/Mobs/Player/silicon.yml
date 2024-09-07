@@ -1,0 +1,20 @@
+- type: entity
+  id: PlayerBorgNFSDASSULTBOT
+  parent: BorgChassisnfsd
+  suffix: Battery, Module
+  components:
+  - type: NukeOperative
+  - type: ContainerFill
+    containers:
+      borg_brain:
+        - PositronicBrain
+      borg_module:
+        - BorgModuleRange
+        - BorgModuleTools
+        - BorgModuleMelee
+        - BorgModuleHeavyweapons
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellHyper

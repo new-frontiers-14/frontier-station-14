@@ -1,0 +1,24 @@
+- type: entity
+  name: stun baton module
+  parent: Stunbaton
+  id: Stunbatonmodule
+  description: A stun baton module for borgs to render your future prisoners on the ground! Brought to you by S.E.S.W.C!!
+  components:
+    - type: BatterySelfRecharger
+      autoRecharge: true
+      autoRechargeRate: 15
+
+- type: entity
+  name: RPG module
+  parent: WeaponLauncherRocket
+  id: RPGmodule
+  description: A RPG module for borgs to really render your future prisoners on the dead! Brought to you by S.E.S.W.C!!
+  components:
+  - type: Gun
+    fireRate: .1
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - CartridgeRocket
+    capacity: 2
+    proto: CartridgeRocket
