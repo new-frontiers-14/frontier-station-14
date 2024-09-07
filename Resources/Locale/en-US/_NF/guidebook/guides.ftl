@@ -63,7 +63,8 @@ guide-entry-frontier-rule-4 = 4. Chat
 guide-entry-frontier-rule-5 = 5. Roleplay
 guide-entry-frontier-rule-6 = 6. Safezone
 guide-entry-frontier-rule-7 = 7. Antag
-guide-entry-frontier-rule-8 = 8. Space Law
-guide-entry-frontier-rule-9 = 9. Security
-guide-entry-frontier-rule-10 = 10. Command
+guide-entry-frontier-rule-8 = 8. Crimes
+guide-entry-frontier-rule-9 = 9. Silicons
+guide-entry-frontier-rule-10 = 10. Security
+guide-entry-frontier-rule-11 = 11. Command
 
