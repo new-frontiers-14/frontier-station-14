@@ -12,7 +12,8 @@
     size: Large
   - type: MultiHandedItem
   - type: Food
-    trash: DragonEggshells
+    trash:
+      - DragonEggshells
   - type: DamageOnHighSpeedImpact
     minimumSpeed: 0.1
     damage:
@@ -91,7 +92,7 @@
 - type: entity #This is only for the hatching animation since this is an in between from picking the ghost role and becoming the dragon
   id: MobSpawnBabyDragon
   name: mobspawner dragon
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Transform
     anchored: True

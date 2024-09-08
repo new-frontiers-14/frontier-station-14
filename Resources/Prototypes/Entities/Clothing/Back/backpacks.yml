@@ -57,7 +57,7 @@
       collection: IanBark
 
 - type: entity
-  parent: ClothingBackpack
+  parent: [ClothingBackpack, BaseC2Contraband ] # Frontier: BaseRestrictedContraband<BaseC2Contraband
   id: ClothingBackpackSecurity
   name: security backpack
   description: It's a very robust backpack.
@@ -66,7 +66,7 @@
     sprite: Clothing/Back/Backpacks/security.rsi
 
 - type: entity
-  parent: ClothingBackpack
+  parent: [ClothingBackpack, BaseC2Contraband ] # Frontier: BaseRestrictedContraband<BaseC2Contraband
   id: ClothingBackpackBrigmedic
   name: brigmedic backpack
   description: It's a very sterile backpack.
@@ -102,7 +102,7 @@
     sprite: Clothing/Back/Backpacks/medical.rsi
 
 - type: entity
-  parent: ClothingBackpack
+  parent: ClothingBackpack # Frontier: removed BaseCommandContraband
   id: ClothingBackpackCaptain
   name: captain's backpack
   description: It's a special backpack made exclusively for Nanotrasen officers.
@@ -270,7 +270,7 @@
 
 #Syndicate
 - type: entity
-  parent: ClothingBackpack
+  parent: [ClothingBackpack, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   id: ClothingBackpackSyndicate
   name: syndicate backpack
   description:
@@ -314,6 +314,29 @@
     sprite: Clothing/Back/Backpacks/cluwne.rsi
   - type: Unremoveable
     deleteOnDrop: false
+
+- type: entity
+  parent: ClothingBackpack
+  id: ClothingBackpackElectropack
+  name: electropack
+  suffix: SelfUnremovable
+  description: Shocks on the signal. It is used to keep a particularly dangerous criminal under control.
+  components:
+  - type: Sprite
+    sprite: Clothing/Back/Backpacks/electropack.rsi
+    state: icon
+  - type: Clothing
+    stripDelay: 10
+    equipDelay: 5 # to avoid accidentally falling into the trap associated with SelfUnremovableClothing
+  - type: SelfUnremovableClothing
+  - type: ShockOnTrigger
+    damage: 5
+    duration: 3
+    cooldown: 4
+  - type: TriggerOnSignal
+  - type: DeviceLinkSink
+    ports:
+      - Trigger
 
 # Debug
 - type: entity
