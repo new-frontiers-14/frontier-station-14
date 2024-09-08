@@ -85,7 +85,7 @@ public sealed class GeneralStationRecordConsoleSystem : EntitySystem
 
         IReadOnlyDictionary<ProtoId<JobPrototype>, int?>? jobList = null; // Frontier
         if (owningStation != null) // Frontier
-            _stationJobsSystem.GetJobs(owningStation.Value); // Frontier: moved this up - populate whenever possible.
+            jobList = _stationJobsSystem.GetJobs(owningStation.Value); // Frontier: moved this up - populate whenever possible.
 
         if (!TryComp<StationRecordsComponent>(owningStation, out var stationRecords))
         {
