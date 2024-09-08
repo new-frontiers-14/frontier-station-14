@@ -35,11 +35,9 @@ namespace Content.Shared.Humanoid
                 case SpeciesNaming.FirstDashFirst:
                     return Loc.GetString("namepreset-firstdashfirst",
                         ("first1", GetFirstName(speciesProto, gender)), ("first2", GetFirstName(speciesProto, gender)));
-                // Start of Nyano - Summary: for Oni naming
-                case SpeciesNaming.LastNoFirst:
-                    return Loc.GetString("namepreset-lastnofirst",
-                        ("first", GetFirstName(speciesProto, gender)), ("last", GetLastName(speciesProto)));
-                // End of Nyano - Summary: for Oni naming
+                case SpeciesNaming.LastFirst: // DeltaV: Rodentia name scheme
+                    return Loc.GetString("namepreset-lastfirst",
+                        ("last", GetLastName(speciesProto)), ("first", GetFirstName(speciesProto, gender)));
                 case SpeciesNaming.FirstLast:
                 default:
                     return Loc.GetString("namepreset-firstlast",
