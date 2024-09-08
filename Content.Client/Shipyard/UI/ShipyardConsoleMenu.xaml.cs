@@ -155,7 +155,7 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
 
         foreach (var str in _categoryStrings)
         {
-            Categories.AddItem(Loc.GetString($"shipyard-console-category-{str}")); // TODO: localize this
+            Categories.AddItem(Loc.GetString($"shipyard-console-category-{str}"));
         }
     }
 
