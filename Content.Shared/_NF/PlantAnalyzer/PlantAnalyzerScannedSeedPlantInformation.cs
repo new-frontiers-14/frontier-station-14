@@ -17,10 +17,11 @@ public sealed class PlantAnalyzerScannedSeedPlantInformation : BoundUserInterfac
     public GasFlags ExudeGases;
     public GasFlags ConsumeGases;
     public float Endurance;
-    public float SeedYield;
+    public int SeedYield;
     public float Lifespan;
     public float Maturation;
-    public float GrowthStages;
+    public float Production;
+    public int GrowthStages;
     public float SeedPotency;
     public string[]? Speciation; // Currently only available on server, we need to send strings to the client.
     public AdvancedScanInfo? AdvancedInfo;
@@ -46,6 +47,7 @@ public struct AdvancedScanInfo
     public MutationFlags Mutations;
 }
 
+// Note: currently leaving out Viable.
 [Flags]
 public enum MutationFlags : byte
 {

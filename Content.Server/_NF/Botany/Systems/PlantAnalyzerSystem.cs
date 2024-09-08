@@ -162,6 +162,7 @@ public sealed class PlantAnalyzerSystem : EntitySystem
             SeedYield = seedData.Yield,
             Lifespan = seedData.Lifespan,
             Maturation = seedData.Maturation,
+            Production = seedData.Production,
             GrowthStages = seedData.GrowthStages,
             SeedPotency = seedData.Potency,
             Speciation = mutationStrings.ToArray()

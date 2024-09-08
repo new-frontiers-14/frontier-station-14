@@ -75,29 +75,30 @@ public sealed partial class PlantAnalyzerWindow : FancyWindow
         else
             PlantName.Text = Loc.GetString("plant-analyzer-window-label-name-scanned-seed", ("seedName", Loc.GetString(string.IsNullOrEmpty(msg.SeedName) ? "plant-analyzer-unknown-plant" : msg.SeedName)));
         // Basics
-        PlantYield.Text = Loc.GetString("plant-analyzer-plant-yield-text", ("seedYield", msg.SeedYield));
-        Potency.Text = Loc.GetString("plant-analyzer-plant-potency-text", ("seedPotency", msg.SeedPotency));
-        Repeat.Text = Loc.GetString("plant-analyzer-plant-harvest-text",("plantHarvestType", Loc.GetString(new StringBuilder("plant-analyzer-harvest-").Append(msg.HarvestType.ToString()).ToString())));
-        Endurance.Text = Loc.GetString("plant-analyzer-plant-endurance-text", ("seedEndurance", msg.Endurance));
+        PlantYield.Text = Loc.GetString("plant-analyzer-plant-yield-text", ("seedYield", $"{msg.SeedYield:D0}"));
+        Potency.Text = Loc.GetString("plant-analyzer-plant-potency-text", ("seedPotency", $"{msg.SeedPotency:F0}"));
+        Repeat.Text = Loc.GetString("plant-analyzer-plant-harvest-text", ("plantHarvestType", Loc.GetString($"plant-analyzer-harvest-{msg.HarvestType}").ToString()));
+        Endurance.Text = Loc.GetString("plant-analyzer-plant-endurance-text", ("seedEndurance", $"{msg.Endurance:F0}"));
         Chemicals.Text = Loc.GetString("plant-analyzer-plant-chemistry-text", ("seedChem", chemString));
-        ExudeGases.Text = Loc.GetString("plant-analyzer-plant-exude-text", ("gases", exudeGases.Length == 0 ? Loc.GetString("plant-analyzer-plant-gases-none") : exudeGases.AppendJoin(IndentedNewline)));
-        ConsumeGases.Text = Loc.GetString("plant-analyzer-plant-consume-text", ("gases", consudeGases.Length == 0 ? Loc.GetString("plant-analyzer-plant-gases-none") : consudeGases.AppendJoin(IndentedNewline)));
-        Lifespan.Text = Loc.GetString("plant-analyzer-plant-lifespan-text", ("lifespan", msg.Lifespan));
-        Maturation.Text = Loc.GetString("plant-analyzer-plant-maturation-text", ("maturation", msg.Maturation));
-        GrowthStages.Text = Loc.GetString("plant-analyzer-plant-growthstages-text", ("growthStages", msg.GrowthStages));
+        ExudeGases.Text = Loc.GetString("plant-analyzer-plant-exude-text", ("gases", exudeGases.Length == 0 ? Loc.GetString("plant-analyzer-plant-gases-none") : exudeGases.ToString()));
+        ConsumeGases.Text = Loc.GetString("plant-analyzer-plant-consume-text", ("gases", consudeGases.Length == 0 ? Loc.GetString("plant-analyzer-plant-gases-none") : consudeGases.ToString()));
+        Lifespan.Text = Loc.GetString("plant-analyzer-plant-lifespan-text", ("lifespan", $"{msg.Lifespan:F1}"));
+        Maturation.Text = Loc.GetString("plant-analyzer-plant-maturation-text", ("maturation", $"{msg.Maturation:F1}"));
+        Production.Text = Loc.GetString("plant-analyzer-plant-production-text", ("production", $"{msg.Production:F1}"));
+        GrowthStages.Text = Loc.GetString("plant-analyzer-plant-growthstages-text", ("growthStages", $"{msg.GrowthStages:D0}"));
         // Tolerances
         var adv = msg.AdvancedInfo;
         NutrientUsage.Text = Loc.GetString("plant-analyzer-tolerance-nutrient-usage", ("nutrientUsage", adv is null ? "-" : $"{adv.Value.NutrientConsumption:F2}"));
         WaterUsage.Text = Loc.GetString("plant-analyzer-tolerance-water-usage", ("waterUsage", adv is null ? "-" : $"{adv.Value.WaterConsumption:F2}"));
-        IdealHeat.Text = Loc.GetString("plant-analyzer-tolerance-ideal-heat", ("idealHeat", adv is null ? "-" : adv.Value.IdealHeat));
-        HeatTolerance.Text = Loc.GetString("plant-analyzer-tolerance-heat-tolerance", ("heatTolerance", adv is null ? "-" : adv.Value.HeatTolerance));
-        IdealLight.Text = Loc.GetString("plant-analyzer-tolerance-ideal-light", ("idealLight", adv is null ? "-" : adv.Value.IdealLight));
-        LightTolerance.Text = Loc.GetString("plant-analyzer-tolerance-light-tolerance", ("lightTolerance", adv is null ? "-" : adv.Value.LightTolerance));
-        ToxinsTolerance.Text = Loc.GetString("plant-analyzer-tolerance-toxin-tolerance", ("toxinsTolerance", adv is null ? "-" : adv.Value.ToxinsTolerance));
-        LowPressureTolerance.Text = Loc.GetString("plant-analyzer-tolerance-low-pressure", ("lowPressureTolerance", adv is null ? "-" : adv.Value.LowPressureTolerance)); ;
-        HighPressureTolerance.Text = Loc.GetString("plant-analyzer-tolerance-high-pressure", ("highPressureTolerance", adv is null ? "-" : adv.Value.HighPressureTolerance));
-        PestTolerance.Text = Loc.GetString("plant-analyzer-tolerance-pest-tolerance", ("pestTolerance", adv is null ? "-" : adv.Value.PestTolerance));
-        WeedTolerance.Text = Loc.GetString("plant-analyzer-tolerance-weed-tolerance", ("weedTolerance", adv is null ? "-" : adv.Value.WeedTolerance));
+        IdealHeat.Text = Loc.GetString("plant-analyzer-tolerance-ideal-heat", ("idealHeat", adv is null ? "-" : $"{adv.Value.IdealHeat:F0}"));
+        HeatTolerance.Text = Loc.GetString("plant-analyzer-tolerance-heat-tolerance", ("heatTolerance", adv is null ? "-" : $"{adv.Value.HeatTolerance:F1}"));
+        IdealLight.Text = Loc.GetString("plant-analyzer-tolerance-ideal-light", ("idealLight", adv is null ? "-" : $"{adv.Value.IdealLight:F1}"));
+        LightTolerance.Text = Loc.GetString("plant-analyzer-tolerance-light-tolerance", ("lightTolerance", adv is null ? "-" : $"{adv.Value.LightTolerance:F1}"));
+        ToxinsTolerance.Text = Loc.GetString("plant-analyzer-tolerance-toxin-tolerance", ("toxinsTolerance", adv is null ? "-" : $"{adv.Value.ToxinsTolerance:F1}"));
+        LowPressureTolerance.Text = Loc.GetString("plant-analyzer-tolerance-low-pressure", ("lowPressureTolerance", adv is null ? "-" : $"{adv.Value.LowPressureTolerance:F1}")); ;
+        HighPressureTolerance.Text = Loc.GetString("plant-analyzer-tolerance-high-pressure", ("highPressureTolerance", adv is null ? "-" : $"{adv.Value.HighPressureTolerance:F1}"));
+        PestTolerance.Text = Loc.GetString("plant-analyzer-tolerance-pest-tolerance", ("pestTolerance", adv is null ? "-" : $"{adv.Value.PestTolerance:F1}"));
+        WeedTolerance.Text = Loc.GetString("plant-analyzer-tolerance-weed-tolerance", ("weedTolerance", adv is null ? "-" : $"{adv.Value.WeedTolerance:F1}"));
         // Misc
 
         if (adv != null)
