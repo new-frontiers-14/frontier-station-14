@@ -2,6 +2,7 @@
   parent: CrateBaseWeldable
   id: CratePlasticBiodegradable
   name: biodegradable plastic crate
+  description: Feels incredibly flimsy.
   components:
   - type: Icon
     sprite: Structures/Storage/Crates/plastic.rsi
@@ -13,7 +14,7 @@
     containers:
     - entity_storage
   - type: StaticPrice
-    price: 0
+    price: 15 # 12 spesos at 0.75x, proportional to the plastic crate if deconstructable for 1 sheet
 
 - type: entity
   parent: CrateBaseSecure
@@ -29,7 +30,7 @@
   parent: CrateTradeBaseSecure
   id: CrateTradeBaseSecureNormal
   name: cargo steel crate
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Icon
     sprite: _NF/Structures/Storage/Crates/tradedark.rsi
@@ -55,7 +56,7 @@
   parent: CrateTradeBaseSecure
   id: CrateTradeBaseSecureHigh
   name: high value cargo steel crate
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Icon
     sprite: _NF/Structures/Storage/Crates/tradelight.rsi
@@ -78,10 +79,12 @@
     price: 2000
 
 - type: entity
-  parent: CrateTradeBaseSecure
+  parent:
+  - CrateTradeBaseSecure
+  - BaseC3SyndicateContraband
   id: CrateTradeContrabandSecureNormal
   name: Syndicate contraband crate
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Icon
     sprite: _NF/Structures/Storage/Crates/contraband_crate.rsi
@@ -103,13 +106,16 @@
   - type: StaticPrice
     price: 7500
   - type: Contraband
-    value: 5
+    turnInValues:
+      FrontierUplinkCoin: 5
 
 - type: entity
-  parent: CrateTradeBaseSecure
+  parent:
+  - CrateTradeBaseSecure
+  - BaseC3SyndicateContraband
   id: CrateTradeContrabandSecureDonk
   name: Donk Co. contraband crate
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Icon
     sprite: _NF/Structures/Storage/Crates/donkco_crate.rsi
@@ -131,13 +137,16 @@
   - type: StaticPrice
     price: 15000
   - type: Contraband
-    value: 5
+    turnInValues:
+      FrontierUplinkCoin: 5
 
 - type: entity
-  parent: CrateTradeBaseSecure
+  parent:
+  - CrateTradeBaseSecure
+  - BaseC3SyndicateContraband
   id: CrateTradeContrabandSecureCyberSun
   name: Cybersun Industries contraband crate
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Icon
     sprite: _NF/Structures/Storage/Crates/cybersun_crate.rsi
@@ -159,7 +168,8 @@
   - type: StaticPrice
     price: 15000
   - type: Contraband
-    value: 5
+    turnInValues:
+      FrontierUplinkCoin: 5
 
 - type: entity
   parent: CrateSecgear

@@ -14,20 +14,6 @@
         Glass: 1
 
 - type: entity
-  id: TilePrinterNFMachineCircuitboard
-  parent: BaseMachineCircuitboard
-  name: tile-meister 5000 machine board
-  description: A machine printed circuit board for an tile-meister 5000
-  components:
-    - type: MachineBoard
-      prototype: TilePrinterNF
-      requirements:
-        MatterBin: 2
-        Manipulator: 2
-      stackRequirements:
-        Glass: 1
-
-- type: entity
   id: SalvageTechFabCircuitboardNF
   parent: BaseMachineCircuitboard
   name: salvage techfab machine board
@@ -88,6 +74,7 @@
   description: A machine printed circuit board for an nfsd techfab.
   components:
     - type: Sprite
+      sprite: _NF/Objects/Misc/module.rsi
       state: nfsd
     - type: MachineBoard
       prototype: NfsdTechFab
