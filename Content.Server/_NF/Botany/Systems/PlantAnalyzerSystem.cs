@@ -31,33 +31,37 @@ public sealed class PlantAnalyzerSystem : EntitySystem
 
     private void OnAfterInteract(Entity<PlantAnalyzerComponent> ent, ref AfterInteractEvent args)
     {
-        if (args.Target == null || !args.CanReach || !HasComp<SeedComponent>(args.Target) && !HasComp<PlantHolderComponent>(args.Target) || !_cell.HasActivatableCharge(ent, user: args.User))
+        if (args.Target == null || !args.CanReach || !_cell.HasActivatableCharge(ent, user: args.User))
             return;
 
         if (ent.Comp.DoAfter != null)
             return;
 
-        if (ent.Comp.Settings.AdvancedScan)
+        if (HasComp<SeedComponent>(args.Target) || TryComp<PlantHolderComponent>(args.Target, out var plantHolder) && plantHolder.Seed != null)
         {
-            var doAfterArgs = new DoAfterArgs(EntityManager, args.User, ent.Comp.Settings.AdvScanDelay, new PlantAnalyzerDoAfterEvent(), ent, target: args.Target, used: ent)
+
+            if (ent.Comp.Settings.AdvancedScan)
             {
-                NeedHand = true,
-                BreakOnDamage = true,
-                BreakOnMove = true,
-                MovementThreshold = 0.01f
-            };
-            _doAfterSystem.TryStartDoAfter(doAfterArgs, out ent.Comp.DoAfter);
-        }
-        else
-        {
-            var doAfterArgs = new DoAfterArgs(EntityManager, args.User, ent.Comp.Settings.ScanDelay, new PlantAnalyzerDoAfterEvent(), ent, target: args.Target, used: ent)
+                var doAfterArgs = new DoAfterArgs(EntityManager, args.User, ent.Comp.Settings.AdvScanDelay, new PlantAnalyzerDoAfterEvent(), ent, target: args.Target, used: ent)
+                {
+                    NeedHand = true,
+                    BreakOnDamage = true,
+                    BreakOnMove = true,
+                    MovementThreshold = 0.01f
+                };
+                _doAfterSystem.TryStartDoAfter(doAfterArgs, out ent.Comp.DoAfter);
+            }
+            else
             {
-                NeedHand = true,
-                BreakOnDamage = true,
-                BreakOnMove = true,
-                MovementThreshold = 0.01f
-            };
-            _doAfterSystem.TryStartDoAfter(doAfterArgs, out ent.Comp.DoAfter);
+                var doAfterArgs = new DoAfterArgs(EntityManager, args.User, ent.Comp.Settings.ScanDelay, new PlantAnalyzerDoAfterEvent(), ent, target: args.Target, used: ent)
+                {
+                    NeedHand = true,
+                    BreakOnDamage = true,
+                    BreakOnMove = true,
+                    MovementThreshold = 0.01f
+                };
+                _doAfterSystem.TryStartDoAfter(doAfterArgs, out ent.Comp.DoAfter);
+            }
         }
     }
 
