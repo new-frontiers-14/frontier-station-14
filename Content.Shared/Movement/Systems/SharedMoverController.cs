@@ -59,6 +59,8 @@ namespace Content.Shared.Movement.Systems
         protected EntityQuery<TransformComponent> XformQuery;
         protected EntityQuery<CanMoveInAirComponent> CanMoveInAirQuery;
         protected EntityQuery<NoRotateOnMoveComponent> NoRotateQuery;
+        protected EntityQuery<FootstepModifierComponent> FootstepModifierQuery;
+        protected EntityQuery<MapGridComponent> MapGridQuery;
 
         /// <summary>
         /// <see cref="CCVars.StopSpeed"/>
@@ -86,6 +88,8 @@ namespace Content.Shared.Movement.Systems
             XformQuery = GetEntityQuery<TransformComponent>();
             NoRotateQuery = GetEntityQuery<NoRotateOnMoveComponent>();
             CanMoveInAirQuery = GetEntityQuery<CanMoveInAirComponent>();
+            FootstepModifierQuery = GetEntityQuery<FootstepModifierComponent>();
+            MapGridQuery = GetEntityQuery<MapGridComponent>();
 
             InitializeInput();
             InitializeRelay();
@@ -183,7 +187,7 @@ namespace Content.Shared.Movement.Systems
 
             // Don't bother getting the tiledef here if we're weightless or in-air
             // since no tile-based modifiers should be applying in that situation
-            if (TryComp(xform.GridUid, out MapGridComponent? gridComp)
+            if (MapGridQuery.TryComp(xform.GridUid, out var gridComp)
                 && _mapSystem.TryGetTileRef(xform.GridUid.Value, gridComp, xform.Coordinates, out var tile)
                 && !(weightless || physicsComponent.BodyStatus == BodyStatus.InAir))
             {
@@ -212,7 +216,9 @@ namespace Content.Shared.Movement.Systems
 
             if (weightless)
             {
-                if (worldTotal != Vector2.Zero && touching)
+                if (gridComp == null && !MapGridQuery.HasComp(xform.GridUid))
+                    friction = moveSpeedComponent?.OffGridFriction ?? MovementSpeedModifierComponent.DefaultOffGridFriction;
+                else if (worldTotal != Vector2.Zero && touching)
                     friction = moveSpeedComponent?.WeightlessFriction ?? MovementSpeedModifierComponent.DefaultWeightlessFriction;
                 else
                     friction = moveSpeedComponent?.WeightlessFrictionNoInput ?? MovementSpeedModifierComponent.DefaultWeightlessFrictionNoInput;
@@ -432,7 +438,7 @@ namespace Content.Shared.Movement.Systems
 
             mobMover.StepSoundDistance -= distanceNeeded;
 
-            if (TryComp<FootstepModifierComponent>(uid, out var moverModifier))
+            if (FootstepModifierQuery.TryComp(uid, out var moverModifier))
             {
                 sound = moverModifier.FootstepSoundCollection;
                 return true;
@@ -458,7 +464,7 @@ namespace Content.Shared.Movement.Systems
             // Delta V NoShoesSilentFootsteps till here.
 
             if (_inventory.TryGetSlotEntity(uid, "shoes", out var shoes) &&
-                TryComp<FootstepModifierComponent>(shoes, out var modifier))
+                FootstepModifierQuery.TryComp(shoes, out var modifier))
             {
                 sound = modifier.FootstepSoundCollection;
                 return true;
@@ -477,9 +483,9 @@ namespace Content.Shared.Movement.Systems
             sound = null;
 
             // Fallback to the map?
-            if (!TryComp<MapGridComponent>(xform.GridUid, out var grid))
+            if (!MapGridQuery.TryComp(xform.GridUid, out var grid))
             {
-                if (TryComp<FootstepModifierComponent>(xform.MapUid, out var modifier))
+                if (FootstepModifierQuery.TryComp(xform.MapUid, out var modifier))
                 {
                     sound = modifier.FootstepSoundCollection;
                     return true;
@@ -505,7 +511,7 @@ namespace Content.Shared.Movement.Systems
                     return true;
                 }
 
-                if (TryComp<FootstepModifierComponent>(maybeFootstep, out var footstep))
+                if (FootstepModifierQuery.TryComp(maybeFootstep, out var footstep))
                 {
                     sound = footstep.FootstepSoundCollection;
                     return true;

@@ -353,6 +353,10 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
                 {
                     _shuttle.AddIFFFlag(grid, IFFFlags.HideLabel);
                 }
+                if (!proto.AllowIFFChanges)
+                {
+                    _shuttle.SetIFFReadOnly(grid, true);
+                }
 
                 // Ensure damping for each grid in the POI - set the shuttle component if it exists just to be safe
                 var physics = EnsureComp<PhysicsComponent>(grid);

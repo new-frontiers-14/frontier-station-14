@@ -39,7 +39,7 @@ namespace Content.Client.Mail
 
             args.Component.TryGetData(MailVisuals.JobIcon, out string job);
 
-            if (!_prototypeManager.TryIndex<StatusIconPrototype>(job, out var icon))
+            if (!_prototypeManager.TryIndex<JobIconPrototype>(job, out var icon))
                 return;
 
             args.Sprite.LayerSetTexture(MailVisualLayers.JobStamp, _spriteSystem.Frame0(icon.Icon));

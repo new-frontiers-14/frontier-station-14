@@ -726,89 +726,85 @@ entities:
     - type: Transform
       pos: 9.5,2.5
       parent: 1
-- proto: AtmosDeviceFanTiny
+- proto: AtmosDeviceFanDirectional
   entities:
-  - uid: 48
+  - uid: 44
     components:
     - type: Transform
+      rot: 3.141592653589793 rad
       pos: 6.5,15.5
       parent: 1
-  - uid: 56
+  - uid: 48
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 13.5,-2.5
       parent: 1
-  - uid: 257
+  - uid: 56
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 13.5,-0.5
       parent: 1
-  - uid: 259
+  - uid: 96
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 13.5,-1.5
       parent: 1
+  - uid: 110
+    components:
+    - type: Transform
+      pos: -6.5,-8.5
+      parent: 1
+  - uid: 111
+    components:
+    - type: Transform
+      pos: 6.5,-8.5
+      parent: 1
+  - uid: 124
+    components:
+    - type: Transform
+      pos: -7.5,-8.5
+      parent: 1
+  - uid: 227
+    components:
+    - type: Transform
+      pos: -5.5,-8.5
+      parent: 1
+  - uid: 257
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -12.5,-0.5
+      parent: 1
+  - uid: 259
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -12.5,-2.5
+      parent: 1
+  - uid: 268
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -12.5,-1.5
+      parent: 1
   - uid: 320
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -6.5,-8.5
+      rot: 3.141592653589793 rad
+      pos: -2.5,16.5
+      parent: 1
+  - uid: 321
+    components:
+    - type: Transform
+      pos: 7.5,-8.5
       parent: 1
   - uid: 411
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
       pos: 8.5,-8.5
-      parent: 1
-  - uid: 446
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -7.5,-8.5
-      parent: 1
-  - uid: 522
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -5.5,-8.5
-      parent: 1
-  - uid: 542
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -12.5,-2.5
-      parent: 1
-  - uid: 551
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -12.5,-0.5
-      parent: 1
-  - uid: 552
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -12.5,-1.5
-      parent: 1
-  - uid: 702
-    components:
-    - type: Transform
-      pos: -2.5,16.5
-      parent: 1
-  - uid: 905
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 7.5,-8.5
-      parent: 1
-  - uid: 906
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 6.5,-8.5
       parent: 1
 - proto: AtmosFixBlockerMarker
   entities:
@@ -3368,6 +3364,14 @@ entities:
     - type: Transform
       pos: 5.5,14.5
       parent: 1
+- proto: FirelockEdge
+  entities:
+  - uid: 371
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 5.5,12.5
+      parent: 1
 - proto: FirelockGlass
   entities:
   - uid: 57
@@ -3379,6 +3383,11 @@ entities:
     components:
     - type: Transform
       pos: 8.5,8.5
+      parent: 1
+  - uid: 370
+    components:
+    - type: Transform
+      pos: 6.5,9.5
       parent: 1
   - uid: 635
     components:
@@ -4311,11 +4320,6 @@ entities:
     - type: Transform
       pos: -0.5,-5.5
       parent: 1
-  - uid: 268
-    components:
-    - type: Transform
-      pos: 7.5,15.5
-      parent: 1
   - uid: 270
     components:
     - type: Transform
@@ -4330,6 +4334,11 @@ entities:
     components:
     - type: Transform
       pos: 12.5,0.5
+      parent: 1
+  - uid: 369
+    components:
+    - type: Transform
+      pos: 7.5,15.5
       parent: 1
   - uid: 526
     components:
@@ -5159,6 +5168,11 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 9.5,12.5
       parent: 1
+  - uid: 350
+    components:
+    - type: Transform
+      pos: 8.5,15.5
+      parent: 1
   - uid: 583
     components:
     - type: Transform
@@ -5214,11 +5228,6 @@ entities:
     components:
     - type: Transform
       pos: 0.5,16.5
-      parent: 1
-  - uid: 847
-    components:
-    - type: Transform
-      pos: 8.5,15.5
       parent: 1
   - uid: 848
     components:
@@ -5546,171 +5555,6 @@ entities:
     components:
     - type: Transform
       pos: 7.5204787,13.4464855
-      parent: 1
-- proto: SpawnMobBearSalvage
-  entities:
-  - uid: 1094
-    components:
-    - type: Transform
-      pos: 2.5,14.5
-      parent: 1
-- proto: SpawnMobCockroach
-  entities:
-  - uid: 96
-    components:
-    - type: Transform
-      pos: 8.5,-5.5
-      parent: 1
-  - uid: 110
-    components:
-    - type: Transform
-      pos: 12.5,-1.5
-      parent: 1
-  - uid: 227
-    components:
-    - type: Transform
-      pos: -3.5,-1.5
-      parent: 1
-  - uid: 321
-    components:
-    - type: Transform
-      pos: -1.5,5.5
-      parent: 1
-  - uid: 350
-    components:
-    - type: Transform
-      pos: 6.5,14.5
-      parent: 1
-  - uid: 369
-    components:
-    - type: Transform
-      pos: -3.5,14.5
-      parent: 1
-  - uid: 370
-    components:
-    - type: Transform
-      pos: -0.5,7.5
-      parent: 1
-  - uid: 371
-    components:
-    - type: Transform
-      pos: -8.5,5.5
-      parent: 1
-  - uid: 722
-    components:
-    - type: Transform
-      pos: -7.5,-7.5
-      parent: 1
-  - uid: 929
-    components:
-    - type: Transform
-      pos: 3.5,1.5
-      parent: 1
-  - uid: 1039
-    components:
-    - type: Transform
-      pos: 3.5,14.5
-      parent: 1
-- proto: SpawnMobKangarooSalvage
-  entities:
-  - uid: 1095
-    components:
-    - type: Transform
-      pos: -3.5,-0.5
-      parent: 1
-  - uid: 1096
-    components:
-    - type: Transform
-      pos: 1.5,7.5
-      parent: 1
-- proto: SpawnMobMouse
-  entities:
-  - uid: 124
-    components:
-    - type: Transform
-      pos: -8.5,-0.5
-      parent: 1
-  - uid: 390
-    components:
-    - type: Transform
-      pos: -11.5,-1.5
-      parent: 1
-  - uid: 1007
-    components:
-    - type: Transform
-      pos: -4.5,-3.5
-      parent: 1
-  - uid: 1014
-    components:
-    - type: Transform
-      pos: 0.5,0.5
-      parent: 1
-  - uid: 1016
-    components:
-    - type: Transform
-      pos: 3.5,-4.5
-      parent: 1
-  - uid: 1024
-    components:
-    - type: Transform
-      pos: 7.5,-7.5
-      parent: 1
-  - uid: 1033
-    components:
-    - type: Transform
-      pos: 6.5,3.5
-      parent: 1
-  - uid: 1034
-    components:
-    - type: Transform
-      pos: 9.5,3.5
-      parent: 1
-  - uid: 1035
-    components:
-    - type: Transform
-      pos: 4.5,7.5
-      parent: 1
-  - uid: 1037
-    components:
-    - type: Transform
-      pos: -0.5,10.5
-      parent: 1
-  - uid: 1038
-    components:
-    - type: Transform
-      pos: 4.5,10.5
-      parent: 1
-- proto: SpawnMobSpiderSalvage
-  entities:
-  - uid: 44
-    components:
-    - type: Transform
-      pos: -7.5,5.5
-      parent: 1
-  - uid: 111
-    components:
-    - type: Transform
-      pos: 6.5,13.5
-      parent: 1
-  - uid: 536
-    components:
-    - type: Transform
-      pos: 1.5,-1.5
-      parent: 1
-  - uid: 1097
-    components:
-    - type: Transform
-      pos: -7.5,-2.5
-      parent: 1
-  - uid: 1098
-    components:
-    - type: Transform
-      pos: 4.5,4.5
-      parent: 1
-  - uid: 1099
-    components:
-    - type: Transform
-      pos: 3.5,11.5
       parent: 1
 - proto: SpiderWeb
   entities:
@@ -6244,6 +6088,13 @@ entities:
     components:
     - type: Transform
       pos: 6.250475,7.2805867
+      parent: 1
+- proto: VendingMachineFuelVend
+  entities:
+  - uid: 390
+    components:
+    - type: Transform
+      pos: -5.5,1.5
       parent: 1
 - proto: WallReinforced
   entities:
