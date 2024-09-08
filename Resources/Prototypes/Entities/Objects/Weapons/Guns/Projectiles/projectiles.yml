@@ -1,6 +1,6 @@
 - type: entity
   id: MuzzleFlashEffect
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: TimedDespawn
     lifetime: 0.4
@@ -69,7 +69,7 @@
 - type: entity
   id: BaseBulletTrigger # Trigger-on-collide bullets
   parent: BaseBullet
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: TriggerOnCollide
     fixtureID: projectile
@@ -93,7 +93,7 @@
   id: BaseBulletPractice
   name: base bullet practice
   parent: BaseBullet
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
@@ -105,29 +105,10 @@
         Blunt: 1
 
 - type: entity
-  id: BaseBulletRubber
-  name: base bullet rubber
-  parent: BaseBullet
-  noSpawn: true
-  components:
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
-    layers:
-    - state: rubber
-  - type: Projectile
-    damage:
-      types:
-        Blunt: 3
-    soundHit:
-      path: /Audio/Weapons/Guns/Hits/snap.ogg
-  - type: StaminaDamageOnCollide
-    damage: 22 # 5 hits to stun sounds reasonable
-
-- type: entity
   id: BaseBulletIncendiary
   name: base bullet incendiary
   parent: BaseBullet
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Projectile
     damage:
@@ -145,7 +126,7 @@
   id: BaseBulletAP
   name: base bullet armor-piercing
   parent: BaseBullet
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
@@ -161,7 +142,7 @@
   id: BaseBulletUranium
   name: base bullet uranium
   parent: BaseBullet
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
@@ -177,7 +158,7 @@
   name: taser bolt
   id: BulletTaser
   parent: BaseBullet
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: FlyBySound
     sound:
@@ -219,7 +200,7 @@
   name : disabler bolt
   id: BulletDisabler
   parent: BaseBullet
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Reflective
     reflective:
@@ -262,7 +243,7 @@
   name : disabler bolt practice
   id: BulletDisablerPractice
   parent: BaseBullet
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: FlyBySound
     sound:
@@ -302,7 +283,7 @@
   name: emitter bolt
   id: EmitterBolt
   parent: BaseBullet
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Structures/Power/Generation/Singularity/emitter.rsi
@@ -339,7 +320,7 @@
   name: watcher bolt
   id: WatcherBolt
   parent: BaseBullet
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: FlyBySound
     sound:
@@ -379,7 +360,7 @@
   name: magmawing watcher bolt
   id: WatcherBoltMagmawing
   parent: BaseBullet
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
@@ -398,7 +379,7 @@
   id: BulletKinetic
   name: kinetic bolt
   parent: BaseBullet
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   description: Not too bad, but you still don't want to get hit by it.
   components:
   - type: Reflective
@@ -414,8 +395,8 @@
     impactEffect: BulletImpactEffectKinetic
     damage:
       types:
-        Blunt: 20
-        Structural: 15
+        Blunt: 25
+        Structural: 30
   # Short lifespan
   - type: TimedDespawn
     lifetime: 0.4
@@ -424,7 +405,7 @@
 - type: entity
   id: BulletKineticShuttle
   parent: BaseBullet
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     noRot: false
@@ -432,12 +413,14 @@
     layers:
     - state: chronobolt
       shader: unshaded
+  - type: Reflective # Frontier
+    reflective: ShuttleKinetic # Frontier
   - type: Projectile
     impactEffect: BulletImpactEffectKinetic
     damage:
       types:
-        Blunt: 8
-        Structural: 5
+        Blunt: 30
+        Structural: 35
   - type: Ammo
     muzzleFlash: HitscanEffect
   - type: TimedDespawn
@@ -452,7 +435,7 @@
   id: BulletCharge
   name: charge bolt
   parent: BaseBullet
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   description: Marks a target for additional damage.
   components:
   - type: Reflective
@@ -486,7 +469,7 @@
   parent: BaseBullet
   id: AnomalousParticleDelta
   name: delta particles
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: PointLight
     enabled: true
@@ -527,7 +510,7 @@
 - type: entity
   parent: AnomalousParticleDelta
   id: AnomalousParticleDeltaStrong
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: AnomalousParticle
     particleType: Delta
@@ -540,7 +523,7 @@
   parent: AnomalousParticleDelta
   id: AnomalousParticleEpsilon
   name: epsilon particles
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: PointLight
     enabled: true
@@ -557,7 +540,7 @@
 - type: entity
   parent: AnomalousParticleEpsilon
   id: AnomalousParticleEpsilonStrong
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: AnomalousParticle
     particleType: Epsilon
@@ -570,7 +553,7 @@
   parent: AnomalousParticleDelta
   id: AnomalousParticleZeta
   name: zeta particles
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: PointLight
     enabled: true
@@ -587,7 +570,7 @@
 - type: entity
   parent: AnomalousParticleZeta
   id: AnomalousParticleZetaStrong
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: AnomalousParticle
     particleType: Zeta
@@ -600,7 +583,7 @@
   parent: AnomalousParticleDelta
   id: AnomalousParticleOmegaStrong
   name: omega particles
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: PointLight
     enabled: true
@@ -629,7 +612,7 @@
   parent: AnomalousParticleDelta
   id: AnomalousParticleSigma
   name: sigma particles
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: PointLight
     enabled: true
@@ -647,7 +630,7 @@
   parent: AnomalousParticleSigma
   id: AnomalousParticleSigmaStrong
   name: sigma particles
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: AnomalousParticle
     particleType: Sigma
@@ -657,7 +640,7 @@
   id: BulletRocket
   name: rocket
   parent: BaseBulletTrigger
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
@@ -679,7 +662,7 @@
   id: BulletWeakRocket
   name: weak rocket
   parent: BaseBulletTrigger
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
@@ -701,7 +684,7 @@
   id: BulletGrenadeBaton
   name: baton grenade
   parent: BaseBullet
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
@@ -721,7 +704,7 @@
   id: BulletGrenadeBlast
   name: blast grenade
   parent: BaseBulletTrigger
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
@@ -730,22 +713,22 @@
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: Default
-    totalIntensity: 140 # a ~2 tile radius
+    totalIntensity: 150 # a ~2 tile radius
     intensitySlope: 5
-    maxIntensity: 8
+    maxIntensity: 10
 
 - type: entity
   id: BulletGrenadeFlash
   name: flash grenade
   parent: BaseBulletTrigger
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
     layers:
       - state: grenade
   - type: FlashOnTrigger
-    range: 9
+    range: 7
   - type: SpawnOnTrigger
     proto: GrenadeFlashEffect
   - type: ActiveTimerTrigger
@@ -757,7 +740,7 @@
   id: BulletGrenadeFrag
   name: frag grenade
   parent: BaseBulletTrigger
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
@@ -774,7 +757,7 @@
   id: BulletGrenadeEMP
   name: EMP rocket
   parent: BaseBulletTrigger
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
@@ -795,7 +778,7 @@
   id: BulletCap
   name: cap bullet
   parent: BaseBullet
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Objects/Fun/toys.rsi
@@ -811,7 +794,7 @@
   id: BulletAcid
   name: acid spit
   parent: BaseBullet
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
     - type: Projectile
       damage:
@@ -827,7 +810,7 @@
 - type: entity
   id: BulletWaterShot
   name: water
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Clickable
   - type: Physics
@@ -870,7 +853,7 @@
   id: BulletCannonBall
   name: cannonball
   parent: BaseBulletTrigger
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
@@ -879,8 +862,8 @@
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: DemolitionCharge
-    maxIntensity: 7
-    intensitySlope: 4
+    maxIntensity: 9
+    intensitySlope: 6
     totalIntensity: 60
     maxTileBreak: 0
   - type: PointLight
@@ -891,7 +874,7 @@
 - type: entity
   id: GrapplingHook
   name: grappling hook
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
     - type: EmbeddableProjectile
       deleteOnRemove: true
@@ -923,14 +906,11 @@
             - HighImpassable
     - type: GrapplingProjectile
 
-# Frontier projectiles
-# The game wont allow them to sit under _NF.
-
 - type: entity
   name : disabler bolt smg
   id: BulletDisablerSmg
   parent: BaseBullet
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Reflective
     reflective:
@@ -973,7 +953,7 @@
   name: tesla gun lightning
   id: TeslaGunBullet
   parent: BaseBullet
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: TimedDespawn
     lifetime: 5
@@ -1002,11 +982,34 @@
     tags:
       - HideContextMenu
 
+# Frontier projectiles
+# The game wont allow them to sit under _NF.
+# TODO: redefine the flybyfixture anchor locally; it probably will.
+
+- type: entity
+  id: BaseBulletRubber
+  name: base bullet rubber
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+    - state: rubber
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 3
+    soundHit:
+      path: /Audio/Weapons/Guns/Hits/snap.ogg
+  - type: StaminaDamageOnCollide
+    damage: 22 # 5 hits to stun sounds reasonable
+
 - type: entity
   id: BaseBulletEmp
   name: base bullet emp
   parent: BaseBulletTrigger
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Projectile
     damage:
@@ -1026,7 +1029,7 @@
   id: BulletGrenadeEmp
   name: emp grenade
   parent: BaseBulletTrigger
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Projectile
     damage:
@@ -1047,7 +1050,7 @@
   id: BulletRocketEmp
   name: rocket
   parent: BaseBulletTrigger
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Projectile
     damage:
@@ -1056,7 +1059,7 @@
   - type: TimedDespawn
     lifetime: 15
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    sprite: _NF/Objects/Weapons/Guns/Projectiles/projectiles2.rsi
     layers:
       - state: frag-emp
   - type: EmpOnTrigger
@@ -1068,7 +1071,7 @@
   parent: BaseBulletTrigger
   id: ProjectileEmp
   name: emp projectile
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
@@ -1099,6 +1102,31 @@
     energyConsumption: 2700000
     disableDuration: 30
 
+- type: entity
+  id: BulletCannonBallEmp
+  name: shockshot
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+      - state: ball-emp
+      - state: ball-emp-unlit
+        shader: unshaded
+  - type: PointLight
+    radius: 1
+    color: cyan
+    energy: 0.5
+  - type: Projectile
+    damage:
+      types:
+        Shock: 0
+  - type: EmpOnTrigger
+    range: 4
+    energyConsumption: 50000
+    disableDuration: 60
+
 # DeltaV projectiles
 # For whatever magical reasons, I cannot put those in the DeltaV folders without having errors.
 
@@ -1107,7 +1135,7 @@
   name: energy bolt
   id: BulletEnergyGunLaser
   parent: BaseBullet
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Reflective
     reflective:

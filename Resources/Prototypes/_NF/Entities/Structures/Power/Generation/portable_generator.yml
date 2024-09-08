@@ -31,7 +31,7 @@
 - type: entity
   parent: PortableGeneratorJrPacman
   id: PortableGeneratorJrPacmanShuttle
-  suffix: Welding Fuel, 5 kW, Ship
+  suffix: Welding Fuel, 6 kW, Ship
   components:
     - type: FuelGenerator
       on: true
@@ -53,7 +53,9 @@
     Next gen generator for powering stations.
     Runs off bananium and is rated for up to 100 kW.
     Very radioactive without protection.
-  parent: PortableGeneratorSuperPacman
+  parent: 
+  - PortableGeneratorSuperPacman
+  - BaseC3Contraband # Why will you have this thing?
   id: PortableGeneratorHyperPacman
   suffix: Bananium, 60 kW
   components:
@@ -75,7 +77,6 @@
           enum.GeneratorVisualLayers.Unlit:
             True: { visible: true }
             False: { visible: false }
-    - type: Contraband # Why will you have this thing?
 
     - type: Machine
       board: PortableGeneratorHyperPacmanMachineCircuitboard
@@ -85,7 +86,7 @@
       targetPower: 60000
       optimalPower: 60000
       # 15 minutes per stack at full power
-      optimalBurnRate: 0.0111111
+      optimalBurnRate: 0.005
       # still decent power curve
       fuelEfficiencyConstant: 0.75
       radiationColor: "#00bfff"
@@ -108,7 +109,7 @@
   parent: PortableGeneratorHyperPacman
   id: PortableGeneratorHyperPacmanShuttle
   suffix: Bananium, 60 kW, Ship
-  noSpawn: true # Mm, start-on rad source
+  categories: [ HideSpawnMenu ] # Mm, start-on rad source
   components:
     - type: FuelGenerator
       on: true
