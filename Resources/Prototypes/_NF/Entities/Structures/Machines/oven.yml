@@ -1,13 +1,17 @@
 - type: entity
-  id: KitchenOven
+  id: KitchenElectricRange
   parent: [ BaseMachinePowered, ConstructibleMachine ]
-  name: oven
+  name: electric range
   description: A functional range with a range of functions.
   components:
   - type: Microwave
     capacity: 10
     canMicrowaveIdsSafely: false # TODO: actually burn IDs
     explosionChance: 0 # it's a goddamn oven
+    lightningChance: 0 # it's a goddamn oven
+    startCookingSound: /Audio/_NF/Effects/egg-timer.ogg
+    foodDoneSound: /Audio/Machines/ding.ogg
+    loopingSound: /Audio/_NF/Effects/silence.ogg
   - type: Appearance
   - type: GenericVisualizer
     visuals:
@@ -91,9 +95,9 @@
       - !type:DoActsBehavior
         acts: ["Breakage"]
   - type: ApcPowerReceiver
-    powerLoad: 1500 # Assume the range is off.
+    powerLoad: 1000 # Assume the range is off.
   - type: Machine
-    board: null # TODO: define OvenMachineCircuitboard
+    board: ElectricRangeMachineCircuitboard
   - type: ContainerContainer
     containers:
       microwave_entity_container: !type:Container
@@ -106,10 +110,72 @@
     guides:
     - Chef
   - type: EntityHeater
-    passivePower: 1500 # Base oven power.
+    passivePower: 1000 # Base oven power.
   - type: PlaceableSurface
   - type: ItemPlacer
-    maxEntities: 4 # big grill, many steaks
+    maxEntities: 4
     whitelist:
       components:
       - Temperature
+
+- type: entity
+  id: KitchenAssembler
+  parent: KitchenMicrowave
+  name: assembler
+  description: Great for salads, apparently. You don't know how it works.
+  components:
+  - type: Microwave
+    explosionChance: 0 # Should really chop them up or something dumb, but should not explode
+    lightningChance: 0 # It's a weird arm chop thingy, not a tesla coil.
+  - type: GenericVisualizer #TODO: needs work
+    visuals:
+      enum.PowerDeviceVisuals.VisualState:
+        enum.MicrowaveVisualizerLayers.Base:
+          Idle: { state: "assembler" }
+          Broken: { state: "assembler" }
+          Cooking: { state: "assembler" }
+        enum.MicrowaveVisualizerLayers.BaseUnlit:
+          Idle: { state: "assembler-on-unlit" }
+          Broken: { state: "assembler-broken-unlit" }
+          Cooking: { state: "assembler-running-unlit" }
+        blinky:
+          Idle: { state: "assembler-invisible" }
+          Broken: { state: "assembler-invisible" }
+          Cooking: { state: "assembler-blinky-unlit" }
+        scan:
+          Idle: { state: "assembler-invisible" }
+          Broken: { state: "assembler-invisible" }
+          Cooking: { state: "assembler-scan-unlit" }
+      enum.PowerDeviceVisuals.Powered:
+        enum.MicrowaveVisualizerLayers.BaseUnlit:
+          True: { visible: true }
+          False: { visible: false }
+        blinky:
+          True: { visible: true }
+          False: { visible: false }
+        scan:
+          True: { visible: true }
+          False: { visible: false }
+  - type: Sprite
+    sprite: _NF/Structures/Machines/assembler.rsi
+    drawdepth: SmallObjects
+    snapCardinals: true
+    layers:
+    - state: assembler
+      map: ["enum.MicrowaveVisualizerLayers.Base"]
+    - state: assembler-on-unlit
+      shader: unshaded
+      map: ["enum.MicrowaveVisualizerLayers.BaseUnlit"]
+      visible: false
+    - state: assembler-invisible
+      shader: unshaded
+      map: ["blinky"]
+      visible: false
+    - state: assembler-invisible
+      shader: unshaded
+      map: ["scan"]
+      visible: false
+  - type: ApcPowerReceiver
+    powerLoad: 400 # TODO: less power?  More power?  Same power?
+  - type: Machine
+    board: KitchenAssemblerMachineCircuitboard

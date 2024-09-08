@@ -115,6 +115,22 @@ namespace Content.Server.Kitchen.Components
         /// </summary>
         [DataField, ViewVariables(VVAccess.ReadWrite)]
         public bool CanMicrowaveIdsSafely = true;
+
+        // Frontier: recipe type
+        /// <summary>
+        /// If this microwave can give ids accesses without exploding
+        /// </summary>
+        [DataField, ViewVariables(VVAccess.ReadWrite)]
+        public MicrowaveRecipeType RecipeType = MicrowaveRecipeType.Microwave;
+    }
+
+    // Frontier: microwave recipe types, to limit certain recipes to certain machines
+    [Flags]
+    public enum MicrowaveRecipeType
+    {
+        Microwave = 1,
+        Oven = 2,
+        Assembler = 4,
     }
 
     public sealed class BeingMicrowavedEvent : HandledEntityEventArgs
