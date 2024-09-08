@@ -23,7 +23,8 @@ public sealed partial class BankSystem : SharedBankSystem
         InitializeATM();
         InitializeStationATM();
 
-        SubscribeLocalEvent<BankAccountComponent, ComponentInit>(OnInit);
+        SubscribeLocalEvent<BankAccountComponent, PreferencesLoadedEvent>(OnPreferencesLoaded); // For late-add bank accounts
+        SubscribeLocalEvent<BankAccountComponent, ComponentInit>(OnInit); // For late-add bank accounts
         SubscribeLocalEvent<BankAccountComponent, PlayerAttachedEvent>(OnPlayerAttached);
         SubscribeLocalEvent<BankAccountComponent, PlayerDetachedEvent>(OnPlayerDetached);
         SubscribeLocalEvent<PlayerJoinedLobbyEvent>(OnPlayerLobbyJoin);
@@ -245,6 +246,14 @@ public sealed partial class BankSystem : SharedBankSystem
     /// Component initialized - if the player exists in the entity before the BankAccountComponent, update the player's account.
     /// </summary>
     public void OnInit(EntityUid mobUid, BankAccountComponent comp, ComponentInit _)
+    {
+        UpdateBankBalance(mobUid, comp);
+    }
+
+    /// <summary>
+    /// Player's preferences loaded (mostly for hotjoin)
+    /// </summary>
+    public void OnPreferencesLoaded(EntityUid mobUid, BankAccountComponent comp, PreferencesLoadedEvent _)
     {
         UpdateBankBalance(mobUid, comp);
     }
