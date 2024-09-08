@@ -23,6 +23,7 @@ public sealed partial class BankSystem : SharedBankSystem
         InitializeATM();
         InitializeStationATM();
 
+        SubscribeLocalEvent<BankAccountComponent, ComponentInit>(OnInit);
         SubscribeLocalEvent<BankAccountComponent, PlayerAttachedEvent>(OnPlayerAttached);
         SubscribeLocalEvent<BankAccountComponent, PlayerDetachedEvent>(OnPlayerDetached);
         SubscribeLocalEvent<PlayerJoinedLobbyEvent>(OnPlayerLobbyJoin);
@@ -228,7 +229,7 @@ public sealed partial class BankSystem : SharedBankSystem
     }
 
     /// <summary>
-    /// Update the bank balance to the current
+    /// Update the bank balance to the character's current account balance.
     /// </summary>
     private void UpdateBankBalance(EntityUid mobUid, BankAccountComponent comp)
     {
@@ -238,6 +239,14 @@ public sealed partial class BankSystem : SharedBankSystem
             comp.Balance = 0;
 
         Dirty(mobUid, comp);
+    }
+
+    /// <summary>
+    /// Component initialized - if the player exists in the entity before the BankAccountComponent, update the player's account.
+    /// </summary>
+    public void OnInit(EntityUid mobUid, BankAccountComponent comp, ComponentInit _)
+    {
+        UpdateBankBalance(mobUid, comp);
     }
 
     /// <summary>
