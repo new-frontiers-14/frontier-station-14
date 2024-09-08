@@ -1,0 +1,28 @@
+- type: vessel
+  id: ZaryaR
+  name: VT-R Заря # Vitezstvi Military Force
+  description: Исследовательское версия боевого шаттла Заря. Рекомендуемый состав команды 3-8 человек.
+  price: 125000 # 35% tax
+  category: Large
+  group: Expedition
+  shuttlePath: /Maps/Corvax/Shuttles/Expedition/ZaryaResearch.yml
+
+- type: gameMap
+  id: ZaryaR
+  mapName: 'VT-R Заря'
+  mapPath: /Maps/Corvax/Shuttles/Expedition/ZaryaResearch.yml
+  minPlayers: 0
+  stations:
+    ZaryaR:
+      stationProto: StandardFrontierExpeditionVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'VT-R Заря {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]
