@@ -63,6 +63,16 @@
 
 - type: entity
   parent: BaseC3ContrabandUnredeemable
+  id: BaseC3ExpeditionContraband
+  abstract: true
+  components:
+  - type: Contraband
+    severity: Class3Expedition
+    turnInValues:
+      FrontierUplinkCoin: 2
+
+- type: entity
+  parent: BaseC3ContrabandUnredeemable
   id: BaseC3Contraband
   abstract: true
   components:
