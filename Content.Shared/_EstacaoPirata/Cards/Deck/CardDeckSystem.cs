@@ -7,6 +7,7 @@ using Content.Shared.Verbs;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Network;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 
@@ -25,7 +26,7 @@ public sealed class CardDeckSystem : EntitySystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
-    const string CardDeckBaseName = "CardDeckBase";
+    public readonly EntProtoId CardDeckBaseName = "CardDeckBase";
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -60,14 +61,14 @@ public sealed class CardDeckSystem : EntitySystem
         {
             Act = () => TryOrganize(uid, component, comp, false),
             Text = Loc.GetString("cards-verb-organize-up"),
-            Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/refresh.svg.192dpi.png")),
+            Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/flip.svg.192dpi.png")),
             Priority = 1
         });
         args.Verbs.Add(new AlternativeVerb()
         {
             Act = () => TryOrganize(uid, component, comp, true),
             Text = Loc.GetString("cards-verb-organize-down"),
-            Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/refresh.svg.192dpi.png")),
+            Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/flip.svg.192dpi.png")),
             Priority = 2
         });
 

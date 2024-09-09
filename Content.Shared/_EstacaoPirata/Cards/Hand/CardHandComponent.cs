@@ -20,6 +20,8 @@ public sealed partial class CardHandComponent : Component
     [DataField("limit")]
     public int CardLimit = 10;
 
+    [DataField("flipped")]
+    public bool Flipped = false;
 }
 
 

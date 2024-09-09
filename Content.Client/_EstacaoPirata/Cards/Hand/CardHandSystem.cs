@@ -19,7 +19,8 @@ public sealed class CardHandSystem : EntitySystem
         SubscribeLocalEvent<CardHandComponent, ComponentStartup>(OnComponentStartupEvent);
         SubscribeNetworkEvent<CardStackInitiatedEvent>(OnStackStart);
         SubscribeNetworkEvent<CardStackQuantityChangeEvent>(OnStackUpdate);
-
+        SubscribeNetworkEvent<CardStackReorderedEvent>(OnStackReorder);
+        SubscribeNetworkEvent<CardStackFlippedEvent>(OnStackFlip);
     }
 
     private void UpdateSprite(EntityUid uid, CardHandComponent comp)
@@ -94,5 +95,20 @@ public sealed class CardHandSystem : EntitySystem
         UpdateSprite(uid, comp);
     }
 
+    // Frontier
+    private void OnStackReorder(CardStackReorderedEvent args)
+    {
+        if (!TryComp(GetEntity(args.Stack), out CardHandComponent? comp))
+            return;
+        UpdateSprite(GetEntity(args.Stack), comp);
+    }
 
+    private void OnStackFlip(CardStackFlippedEvent args)
+    {
+        var entity = GetEntity(args.CardStack);
+        if (!TryComp(entity, out CardHandComponent? comp))
+            return;
+
+        UpdateSprite(entity, comp);
+    }
 }

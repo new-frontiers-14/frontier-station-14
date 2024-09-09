@@ -275,7 +275,7 @@ public sealed class CardStackSystem : EntitySystem
         if (firstComp.Cards.Count <= 0)
             return;
 
-        var cards = firstComp.Cards.TakeLast(n);
+        var cards = firstComp.Cards.TakeLast(n).ToList(); // Frontier: make a copy we don't munge during iteration
 
         var firstCard = cards.First(); // Cache first card for animation - enumerable changes in foreach
 

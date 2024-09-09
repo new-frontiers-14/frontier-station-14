@@ -19,8 +19,8 @@ namespace Content.Shared._EstacaoPirata.Cards.Hand;
 /// </summary>
 public sealed class CardHandSystem : EntitySystem
 {
-    const string CardHandBaseName = "CardHandBase";
-    const string CardDeckBaseName = "CardDeckBase";
+    public readonly EntProtoId CardHandBaseName = "CardHandBase";
+    public readonly EntProtoId CardDeckBaseName = "CardDeckBase";
 
     [Dependency] private readonly CardStackSystem _cardStack = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
@@ -58,7 +58,7 @@ public sealed class CardHandSystem : EntitySystem
 
         _popupSystem.PopupEntity(Loc.GetString(text, ("quantity", stack.Cards.Count)), uid);
 
-        _cardStack.FlipAllCards(uid, stack, false);
+        _cardStack.FlipAllCards(uid, stack, comp.Flipped);
     }
 
     private void OnCardDraw(EntityUid uid, CardHandComponent comp, CardHandDrawMessage args)
@@ -91,14 +91,28 @@ public sealed class CardHandSystem : EntitySystem
             Act = () => OpenHandMenu(args.User, uid),
             Text = Loc.GetString("cards-verb-pickcard"),
             Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/die.svg.192dpi.png")),
+            Priority = 4
+        });
+        args.Verbs.Add(new AlternativeVerb()
+        {
+            Act = () => _cardStack.ShuffleCards(uid),
+            Text = Loc.GetString("cards-verb-shuffle"),
+            Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/die.svg.192dpi.png")),
             Priority = 3
+        });
+        args.Verbs.Add(new AlternativeVerb()
+        {
+            Act = () => FlipCards(uid, comp),
+            Text = Loc.GetString("cards-verb-flip"),
+            Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/flip.svg.192dpi.png")),
+            Priority = 1
         });
         args.Verbs.Add(new AlternativeVerb()
         {
             Act = () => ConvertToDeck(args.User, uid),
             Text = Loc.GetString("cards-verb-convert-to-deck"),
             Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/rotate_cw.svg.192dpi.png")),
-            Priority = 2
+            Priority = 0
         });
     }
 
@@ -140,6 +154,8 @@ public sealed class CardHandSystem : EntitySystem
         if (_net.IsClient)
             return;
         var cardHand = SpawnInSameParent(CardHandBaseName, card);
+        if (TryComp<CardHandComponent>(cardHand, out var handComp))
+            handComp.Flipped = targetComp.Flipped;
         if (!TryComp(cardHand, out CardStackComponent? stack))
             return;
         if (!_cardStack.TryInsertCard(cardHand, card, stack) || !_cardStack.TryInsertCard(cardHand, target, stack))
@@ -148,7 +164,7 @@ public sealed class CardHandSystem : EntitySystem
             _storage.PlayPickupAnimation(card, Transform(card).Coordinates, Transform(cardHand).Coordinates, 0);
         if (pickup && !_hands.TryPickupAnyHand(user, cardHand))
             return;
-        _cardStack.FlipAllCards(cardHand, stack, false);
+        _cardStack.FlipAllCards(cardHand, stack, targetComp.Flipped);
     }
 
     public void TrySetupHandFromStack(EntityUid user, EntityUid card, CardComponent comp, EntityUid target, CardStackComponent targetComp, bool pickup)
@@ -156,6 +172,8 @@ public sealed class CardHandSystem : EntitySystem
         if (_net.IsClient)
             return;
         var cardHand = SpawnInSameParent(CardHandBaseName, card);
+        if (TryComp<CardHandComponent>(cardHand, out var handComp))
+            handComp.Flipped = comp.Flipped;
         if (!TryComp(cardHand, out CardStackComponent? stack))
             return;
         if (!_cardStack.TryInsertCard(cardHand, card, stack))
@@ -163,7 +181,13 @@ public sealed class CardHandSystem : EntitySystem
         _cardStack.TransferNLastCardFromStacks(user, 1, target, targetComp, cardHand, stack);
         if (pickup && !_hands.TryPickupAnyHand(user, cardHand))
             return;
-        _cardStack.FlipAllCards(cardHand, stack, false);
+        _cardStack.FlipAllCards(cardHand, stack, comp.Flipped);
+    }
+
+    private void FlipCards(EntityUid hand, CardHandComponent comp)
+    {
+        comp.Flipped = !comp.Flipped;
+        _cardStack.FlipAllCards(hand, null, comp.Flipped);
     }
 
     // Frontier: tries to spawn an entity with the same parent as another given entity.

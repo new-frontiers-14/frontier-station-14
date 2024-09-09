@@ -12,10 +12,10 @@ public sealed partial class CardDeckComponent : Component
     public SoundSpecifier ShuffleSound = new SoundCollectionSpecifier("cardFan");
 
     [DataField("pickUpSound")]
-    public SoundSpecifier PickUpSound =  new SoundCollectionSpecifier("cardSlide");
+    public SoundSpecifier PickUpSound = new SoundCollectionSpecifier("cardSlide");
 
     [DataField("placeDownSound")]
-    public SoundSpecifier PlaceDownSound =   new SoundCollectionSpecifier("cardShove");
+    public SoundSpecifier PlaceDownSound = new SoundCollectionSpecifier("cardShove");
 
     [DataField("yOffset")]
     public float YOffset = 0.02f;
