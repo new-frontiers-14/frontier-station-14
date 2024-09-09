@@ -6,21 +6,17 @@
   group: Biological
   desc: reagent-desc-blood-goblin
   flavor: bitter
-  color: "#460086"
+  color: "#364500"
   recognizable: true
   physicalDesc: reagent-physical-desc-pungent
   slippery: false
   metabolisms:
     Drink:
-      # Disgusting!
       effects:
       - !type:SatiateThirst
         factor: -0.5
-    Poison:
-      effects:
-      - !type:HealthChange
-        damage:
-          types:
-            Poison: 0.1
       - !type:ChemVomit
-        probability: 0.25
+        probability: 0.025
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: GoblinAccent
