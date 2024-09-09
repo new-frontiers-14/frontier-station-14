@@ -266,9 +266,10 @@ entities:
             259: 9,11
             260: 9,10
             261: 11,11
-            262: 11,10
             263: 13,11
             264: 13,10
+            265: 12,15
+            266: 15,15
             267: 13,14
             268: 14,14
             269: 3,17
@@ -279,8 +280,9 @@ entities:
             2031: -5,12
             2032: -5,14
             2033: -5,17
-            2479: 15,11
-            2480: 15,10
+            2492: 11,10
+            2494: 15,10
+            2495: 15,11
         - node:
             cleanable: True
             color: '#FFFFFFFF'
@@ -1355,6 +1357,7 @@ entities:
             1726: 53,24
             1753: 14,15
             1754: 10,15
+            1755: 12,15
             1756: 14,15
             1757: 16,15
             1758: 17,14
@@ -1763,6 +1766,7 @@ entities:
             1744: 10,15
             1745: 11,15
             1746: 13,14
+            1747: 15,15
             1748: 17,16
             1749: 17,15
             1750: 17,13
@@ -1823,7 +1827,7 @@ entities:
             2391: 0,21
             2440: -37,12
             2441: -38,12
-            2481: 15,11
+            2493: 11,10
         - node:
             cleanable: True
             zIndex: 180
@@ -1846,13 +1850,6 @@ entities:
             1928: -53,12
             1929: -53,13
             1930: -52,12
-        - node:
-            cleanable: True
-            angle: 1.5707963267948966 rad
-            color: '#FFFFFFFF'
-            id: DirtHeavyMonotile
-          decals:
-            2482: 15,10
         - node:
             cleanable: True
             color: '#FFFFFFFF'
@@ -2319,6 +2316,8 @@ entities:
             2348: 40,10
             2349: 37,11
             2439: -35,12
+            2496: 15,10
+            2497: 15,11
         - node:
             cleanable: True
             zIndex: 180
@@ -3979,12 +3978,12 @@ entities:
       id: Frontier
     - type: StationTransit
     - type: ProtectedGrid
-      preventFloorRemoval: true
-      preventFloorPlacement: true
-      preventRCDUse: true
-      preventEmpEvents: true
-      preventExplosions: true
-      preventArtifactTriggers: true
+      preventArtifactTriggers: True
+      preventExplosions: True
+      preventEmpEvents: True
+      preventRCDUse: True
+      preventFloorPlacement: True
+      preventFloorRemoval: True
     - type: SpreaderGrid
     - type: IFF
       readOnly: True
@@ -14128,13 +14127,13 @@ entities:
       parent: 2173
 - proto: ChairOfficeDark
   entities:
-  - uid: 2067
+  - uid: 2129
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 15.5,11.5
       parent: 2173
-  - uid: 2068
+  - uid: 2130
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
@@ -14525,14 +14524,6 @@ entities:
           showEnts: False
           occludes: True
           ents: []
-- proto: ComputerTabletopShuttleTradeOutpostRemote
-  entities:
-  - uid: 731
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 12.5,15.5
-      parent: 2173
 - proto: ComputerStationRecords
   entities:
   - uid: 4053
@@ -14543,7 +14534,7 @@ entities:
       parent: 2173
 - proto: ComputerTabletopAlert
   entities:
-  - uid: 2069
+  - uid: 2128
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
@@ -14635,6 +14626,14 @@ entities:
     - type: Transform
       pos: 13.5,16.5
       parent: 2173
+- proto: ComputerTabletopShuttleTradeOutpostRemote
+  entities:
+  - uid: 731
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 12.5,15.5
+      parent: 2173
 - proto: ComputerTabletopSurveillanceCameraMonitor
   entities:
   - uid: 816
@@ -14651,7 +14650,7 @@ entities:
       parent: 2173
 - proto: ComputerTabletopSurveillanceWirelessCameraMonitor
   entities:
-  - uid: 2063
+  - uid: 2127
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
@@ -33055,15 +33054,15 @@ entities:
     - type: Transform
       pos: 6.5,18.5
       parent: 2173
-  - uid: 2061
-    components:
-    - type: Transform
-      pos: 14.5,10.5
-      parent: 2173
-  - uid: 2062
+  - uid: 2125
     components:
     - type: Transform
       pos: 14.5,11.5
+      parent: 2173
+  - uid: 2126
+    components:
+    - type: Transform
+      pos: 14.5,10.5
       parent: 2173
   - uid: 2410
     components:
@@ -33343,7 +33342,7 @@ entities:
       pos: 51.5,9.5
       parent: 2173
     - type: DisableToolUse
-      anchoring: true
+      anchoring: True
 - proto: TwoWayLever
   entities:
   - uid: 6145
@@ -37302,19 +37301,19 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 15.5,16.5
       parent: 2173
-  - uid: 2064
+  - uid: 2122
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 13.5,10.5
       parent: 2173
-  - uid: 2065
+  - uid: 2123
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 13.5,11.5
       parent: 2173
-  - uid: 2066
+  - uid: 2124
     components:
     - type: Transform
       pos: 14.5,12.5
