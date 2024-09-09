@@ -122,7 +122,7 @@ public sealed class CardDeckSystem : EntitySystem
         if (comp.Cards.Count <= 0)
             return;
 
-        if (!comp.Cards.TryGetValue(comp.Cards.Count-1, out var card))
+        if (!comp.Cards.TryGetValue(comp.Cards.Count - 1, out var card))
             return;
 
         if (!_cardStackSystem.TryRemoveCard(uid, card, comp))

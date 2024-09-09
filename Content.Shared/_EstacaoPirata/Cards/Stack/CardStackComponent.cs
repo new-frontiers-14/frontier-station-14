@@ -20,10 +20,10 @@ public sealed partial class CardStackComponent : Component
     public SoundSpecifier ShuffleSound = new SoundCollectionSpecifier("cardFan");
 
     [DataField("pickUpSound")]
-    public SoundSpecifier PickUpSound =  new SoundCollectionSpecifier("cardSlide");
+    public SoundSpecifier PickUpSound = new SoundCollectionSpecifier("cardSlide");
 
     [DataField("placeDownSound")]
-    public SoundSpecifier PlaceDownSound =   new SoundCollectionSpecifier("cardShove");
+    public SoundSpecifier PlaceDownSound = new SoundCollectionSpecifier("cardShove");
 
 
     /// <summary>
@@ -40,7 +40,7 @@ public sealed partial class CardStackComponent : Component
 }
 
 [Serializable, NetSerializable]
-public sealed class CardStackInitiatedEvent(NetEntity cardStack, CardStackComponent? component) : EntityEventArgs
+public sealed class CardStackInitiatedEvent(NetEntity cardStack) : EntityEventArgs
 {
     public NetEntity CardStack = cardStack;
 }
@@ -57,7 +57,7 @@ public sealed class CardStackQuantityChangeEvent(NetEntity stack, NetEntity? car
 }
 
 [Serializable, NetSerializable]
-public enum StackQuantityChangeType: sbyte
+public enum StackQuantityChangeType : sbyte
 {
     Added,
     Removed,

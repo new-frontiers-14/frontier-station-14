@@ -27,9 +27,6 @@ public sealed class CardHandSystem : EntitySystem
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
 
-
-
-
     /// <inheritdoc/>
     public override void Initialize()
     {
@@ -69,12 +66,6 @@ public sealed class CardHandSystem : EntitySystem
             return;
 
         _hands.TryPickupAnyHand(args.Actor, GetEntity(args.Card));
-
-        if (stack.Cards.Count != 1)
-            return;
-        // var lastCard = stack.Cards.Last();
-        // if (!_cardStack.TryRemoveCard(uid, lastCard, stack))
-        //     return;
     }
 
     private void OpenHandMenu(EntityUid user, EntityUid hand)
@@ -132,7 +123,7 @@ public sealed class CardHandSystem : EntitySystem
         EnsureComp<CardStackComponent>(cardDeck, out var deckStack);
         if (!TryComp(hand, out CardStackComponent? handStack))
             return;
-        _cardStack.TryJoinStacks(cardDeck, hand, deckStack, handStack);
+        _cardStack.TryJoinStacks(cardDeck, hand, deckStack, handStack, null);
 
         if (isHoldingCards)
             _hands.TryPickupAnyHand(user, cardDeck);

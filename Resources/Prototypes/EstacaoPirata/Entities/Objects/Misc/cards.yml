@@ -28,6 +28,8 @@
     - id: CardDeckBase
       amount: 1
   - type: Appearance
+  - type: StaticPrice # Frontier
+    price: 200 # Frontier
 
 - type: entity
   parent: BaseItem
@@ -48,6 +50,8 @@
         type: CardHandMenuBoundUserInterface
   - type: ActivatableUI
     key: enum.CardUiKey.Key
+  - type: StaticPrice # Frontier
+    price: 0.01 # Frontier
 
 - type: entity
   parent: BaseItem
@@ -152,6 +156,8 @@
     - CardScJackOfSpadesBlack
     # Joker
     - CardScJokerBlack
+  - type: StaticPrice # Frontier
+    price: 0.01 # Frontier
 
 - type: entity
   parent: BaseItem
@@ -175,6 +181,8 @@
     - sprite: EstacaoPirata/Objects/Misc/cards.rsi
       state: singlecard_down_black
     flipped: true
+  - type: StaticPrice # Frontier
+    price: 0.01 # Frontier
 
 - type: entity
   parent: CardBase
