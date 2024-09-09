@@ -130,7 +130,7 @@ public sealed class CardDeckSystem : EntitySystem
 
         _hands.TryPickupAnyHand(args.User, card);
 
-        _audio.PlayPredicted(component.PickUpSound, Transform(uid).Coordinates, args.User);
+        _audio.PlayPredicted(component.PickUpSound, Transform(card).Coordinates, args.User);
 
         args.Handled = true;
     }

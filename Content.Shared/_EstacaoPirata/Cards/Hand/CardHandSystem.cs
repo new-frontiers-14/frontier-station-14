@@ -4,10 +4,12 @@ using Content.Shared._EstacaoPirata.Cards.Stack;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
 using Content.Shared.Popups;
+using Content.Shared.Storage.EntitySystems;
 using Content.Shared.Verbs;
 using Robust.Shared.Containers;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
 namespace Content.Shared._EstacaoPirata.Cards.Hand;
@@ -26,6 +28,7 @@ public sealed class CardHandSystem : EntitySystem
     [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
+    [Dependency] private readonly SharedStorageSystem _storage = default!; // Frontier
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -62,10 +65,14 @@ public sealed class CardHandSystem : EntitySystem
     {
         if (!TryComp(uid, out CardStackComponent? stack))
             return;
-        if (!_cardStack.TryRemoveCard(uid, GetEntity(args.Card), stack))
+        var cardEnt = GetEntity(args.Card);
+        if (!_cardStack.TryRemoveCard(uid, cardEnt, stack))
             return;
 
-        _hands.TryPickupAnyHand(args.Actor, GetEntity(args.Card));
+        if (_net.IsServer)
+            _storage.PlayPickupAnimation(cardEnt, Transform(cardEnt).Coordinates, Transform(args.Actor).Coordinates, 0);
+
+        _hands.TryPickupAnyHand(args.Actor, cardEnt);
     }
 
     private void OpenHandMenu(EntityUid user, EntityUid hand)
@@ -137,6 +144,8 @@ public sealed class CardHandSystem : EntitySystem
             return;
         if (!_cardStack.TryInsertCard(cardHand, card, stack) || !_cardStack.TryInsertCard(cardHand, target, stack))
             return;
+        if (_net.IsServer)
+            _storage.PlayPickupAnimation(card, Transform(card).Coordinates, Transform(cardHand).Coordinates, 0);
         if (pickup && !_hands.TryPickupAnyHand(user, cardHand))
             return;
         _cardStack.FlipAllCards(cardHand, stack, false);
@@ -157,7 +166,9 @@ public sealed class CardHandSystem : EntitySystem
         _cardStack.FlipAllCards(cardHand, stack, false);
     }
 
-    private EntityUid SpawnInSameParent(string prototype, EntityUid uid)
+    // Frontier: tries to spawn an entity with the same parent as another given entity.
+    //           Useful when spawning decks/hands in a backpack, for example.
+    private EntityUid SpawnInSameParent(EntProtoId prototype, EntityUid uid)
     {
         if (_container.IsEntityOrParentInContainer(uid) &&
             _container.TryGetOuterContainer(uid, Transform(uid), out var container))
