@@ -308,17 +308,17 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -5.5,-0.5
       parent: 1
-- proto: AtmosDeviceFanTiny
+- proto: AtmosDeviceFanDirectional
   entities:
   - uid: 10
     components:
     - type: Transform
-      pos: -1.5,-5.5
+      pos: 0.5,-5.5
       parent: 1
   - uid: 11
     components:
     - type: Transform
-      pos: 0.5,-5.5
+      pos: -1.5,-5.5
       parent: 1
 - proto: AtmosFixBlockerMarker
   entities:
@@ -1155,8 +1155,6 @@ entities:
     - type: Transform
       pos: -9.5,-0.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
 - proto: LampGold
   entities:
   - uid: 119
@@ -1424,159 +1422,105 @@ entities:
     - type: Transform
       pos: -1.5,0.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 251
   - uid: 145
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -7.5,-4.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 252
   - uid: 148
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -6.5,-4.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 252
   - uid: 241
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -8.5,-4.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 252
   - uid: 242
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -11.5,-1.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 252
   - uid: 243
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -11.5,-0.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 252
   - uid: 244
     components:
     - type: Transform
       pos: -8.5,0.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 252
   - uid: 245
     components:
     - type: Transform
       pos: -7.5,0.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 252
   - uid: 246
     components:
     - type: Transform
       pos: -6.5,0.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 252
   - uid: 247
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -3.5,-3.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 259
   - uid: 248
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -4.5,-3.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 259
   - uid: 249
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -3.5,3.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 251
   - uid: 250
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -3.5,2.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 251
   - uid: 253
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 1.5,-0.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 259
   - uid: 254
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 1.5,-1.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 259
   - uid: 255
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 1.5,-2.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 259
   - uid: 256
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 1.5,2.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 259
   - uid: 257
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 1.5,3.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 259
 - proto: ShuttersWindowOpen
   entities:
   - uid: 151
@@ -1584,9 +1528,6 @@ entities:
     - type: Transform
       pos: -2.5,0.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 251
 - proto: SignalButtonDirectional
   entities:
   - uid: 251
@@ -1714,8 +1655,6 @@ entities:
     - type: Transform
       pos: -4.5,0.5
       parent: 1
-    - type: Physics
-      canCollide: False
 - proto: TableReinforced
   entities:
   - uid: 82
@@ -1757,31 +1696,23 @@ entities:
       rot: 3.141592653589793 rad
       pos: -10.5,-4.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
   - uid: 187
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -4.5,-4.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
   - uid: 188
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -11.5,-3.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
   - uid: 189
     components:
     - type: Transform
       pos: -4.5,1.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
 - proto: TintedWindow
   entities:
   - uid: 191

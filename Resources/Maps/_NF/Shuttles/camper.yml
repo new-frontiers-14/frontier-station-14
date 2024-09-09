@@ -275,11 +275,12 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -2.5,1.5
       parent: 1
-- proto: AtmosDeviceFanTiny
+- proto: AtmosDeviceFanDirectional
   entities:
   - uid: 8
     components:
     - type: Transform
+      rot: 1.5707963267948966 rad
       pos: 1.5,-1.5
       parent: 1
 - proto: AtmosFixBlockerMarker
@@ -1268,8 +1269,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -0.5,3.5
       parent: 1
-    - type: Physics
-      canCollide: False
 - proto: TableCounterMetal
   entities:
   - uid: 154

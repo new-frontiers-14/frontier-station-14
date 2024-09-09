@@ -164,11 +164,12 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 0.5,-0.5
       parent: 1
-- proto: AtmosDeviceFanTiny
+- proto: AtmosDeviceFanDirectional
   entities:
   - uid: 24
     components:
     - type: Transform
+      rot: 3.141592653589793 rad
       pos: -0.5,-0.5
       parent: 1
   - uid: 25
@@ -725,9 +726,6 @@ entities:
       entities:
       - 67
       - 68
-    - type: DeviceLinkSink
-      links:
-      - 121
 - proto: SmallGyroscopeNfsd
   entities:
   - uid: 50

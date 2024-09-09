@@ -419,6 +419,7 @@ entities:
   - uid: 107
     components:
     - type: Transform
+      rot: -1.5707963267948966 rad
       pos: 6.5,-9.5
       parent: 1
   - uid: 114
@@ -456,7 +457,7 @@ entities:
       lastSignals:
         DoorStatus: True
     - type: Door
-      secondsUntilStateChange: -2733.3945
+      secondsUntilStateChange: -2873.5347
       state: Opening
   - uid: 115
     components:
@@ -472,58 +473,57 @@ entities:
       parent: 1
     - type: Apc
       hasAccess: True
-      lastExternalState: Good
-      lastChargeState: Full
   - uid: 350
     components:
     - type: Transform
       pos: -5.5,-1.5
       parent: 1
-- proto: AtmosDeviceFanTiny
+- proto: AtmosDeviceFanDirectional
   entities:
   - uid: 34
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 0.5,-11.5
+      pos: 5.5,-10.5
       parent: 1
   - uid: 74
     components:
     - type: Transform
-      pos: -7.5,1.5
+      pos: -4.5,-10.5
       parent: 1
   - uid: 78
     components:
     - type: Transform
-      pos: -6.5,2.5
+      rot: -1.5707963267948966 rad
+      pos: -7.5,1.5
       parent: 1
   - uid: 81
     components:
     - type: Transform
-      pos: 7.5,2.5
+      rot: 3.141592653589793 rad
+      pos: -6.5,2.5
       parent: 1
   - uid: 82
     components:
     - type: Transform
-      pos: 8.5,1.5
+      rot: 3.141592653589793 rad
+      pos: 7.5,2.5
       parent: 1
   - uid: 100
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: -5.5,-9.5
+      pos: 8.5,1.5
       parent: 1
   - uid: 101
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -4.5,-10.5
+      pos: 0.5,-11.5
       parent: 1
   - uid: 102
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 5.5,-10.5
+      rot: -1.5707963267948966 rad
+      pos: -5.5,-9.5
       parent: 1
   - uid: 103
     components:
@@ -1092,18 +1092,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 1.5,-0.5
       parent: 1
-- proto: chem_master
-  entities:
-  - uid: 163
-    components:
-    - type: Transform
-      pos: 2.5,-5.5
-      parent: 1
-  - uid: 173
-    components:
-    - type: Transform
-      pos: -1.5,-5.5
-      parent: 1
 - proto: ChemDispenser
   entities:
   - uid: 159
@@ -1122,6 +1110,18 @@ entities:
     components:
     - type: Transform
       pos: -0.5,-4.5
+      parent: 1
+- proto: ChemMaster
+  entities:
+  - uid: 163
+    components:
+    - type: Transform
+      pos: 2.5,-5.5
+      parent: 1
+  - uid: 173
+    components:
+    - type: Transform
+      pos: -1.5,-5.5
       parent: 1
 - proto: ClosetRadiationSuitFilled
   entities:
@@ -1500,10 +1500,14 @@ entities:
   - uid: 253
     components:
     - type: Transform
+      anchored: False
       pos: -4.5,-3.5
       parent: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
+    - type: Physics
+      canCollide: True
+      bodyType: Dynamic
   - uid: 257
     components:
     - type: Transform
@@ -1758,8 +1762,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 6.5,-0.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
 - proto: HandLabeler
   entities:
   - uid: 411
@@ -2243,17 +2245,11 @@ entities:
     - type: Transform
       pos: 2.5,-9.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 119
   - uid: 262
     components:
     - type: Transform
       pos: 3.5,-9.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 119
 - proto: SignalButton
   entities:
   - uid: 119
@@ -2268,7 +2264,7 @@ entities:
         - Pressed: Toggle
         262:
         - Pressed: Toggle
-- proto: SignChemistry1
+- proto: SignChem
   entities:
   - uid: 175
     components:
@@ -2488,47 +2484,35 @@ entities:
     - type: Transform
       pos: 7.5,3.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
   - uid: 50
     components:
     - type: Transform
       pos: -6.5,3.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
   - uid: 110
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -4.5,-11.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
   - uid: 111
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -6.5,-9.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
   - uid: 112
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 5.5,-11.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
   - uid: 113
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 7.5,-9.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
 - proto: VendingMachineChemDrobe
   entities:
   - uid: 417

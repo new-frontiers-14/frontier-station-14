@@ -233,17 +233,19 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -2.5,7.5
       parent: 2
-- proto: AtmosDeviceFanTiny
+- proto: AtmosDeviceFanDirectional
   entities:
   - uid: 98
     components:
     - type: Transform
-      pos: 3.5,8.5
+      rot: 1.5707963267948966 rad
+      pos: 3.5,6.5
       parent: 2
   - uid: 99
     components:
     - type: Transform
-      pos: 3.5,6.5
+      rot: 1.5707963267948966 rad
+      pos: 3.5,8.5
       parent: 2
 - proto: AtmosFixBlockerMarker
   entities:
@@ -748,8 +750,6 @@ entities:
     - type: Transform
       pos: -1.5,6.5
       parent: 2
-    - type: Thruster
-      originalPowerLoad: 1500
 - proto: PaperBin20
   entities:
   - uid: 143
@@ -945,73 +945,46 @@ entities:
     - type: Transform
       pos: -0.5,5.5
       parent: 2
-    - type: DeviceLinkSink
-      links:
-      - 108
   - uid: 110
     components:
     - type: Transform
       pos: 1.5,5.5
       parent: 2
-    - type: DeviceLinkSink
-      links:
-      - 108
   - uid: 111
     components:
     - type: Transform
       pos: 3.5,4.5
       parent: 2
-    - type: DeviceLinkSink
-      links:
-      - 108
   - uid: 112
     components:
     - type: Transform
       pos: 3.5,3.5
       parent: 2
-    - type: DeviceLinkSink
-      links:
-      - 108
   - uid: 113
     components:
     - type: Transform
       pos: 1.5,0.5
       parent: 2
-    - type: DeviceLinkSink
-      links:
-      - 108
   - uid: 114
     components:
     - type: Transform
       pos: 0.5,0.5
       parent: 2
-    - type: DeviceLinkSink
-      links:
-      - 108
   - uid: 115
     components:
     - type: Transform
       pos: -0.5,0.5
       parent: 2
-    - type: DeviceLinkSink
-      links:
-      - 108
   - uid: 116
     components:
     - type: Transform
       pos: -2.5,4.5
       parent: 2
-    - type: DeviceLinkSink
-      links:
-      - 108
   - uid: 117
     components:
     - type: Transform
       pos: -2.5,3.5
       parent: 2
-    - type: DeviceLinkSink
-      links:
-      - 108
 - proto: SignalButtonDirectional
   entities:
   - uid: 108
@@ -1081,46 +1054,34 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -2.5,1.5
       parent: 2
-    - type: Thruster
-      originalPowerLoad: 1500
   - uid: 101
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 3.5,1.5
       parent: 2
-    - type: Thruster
-      originalPowerLoad: 1500
   - uid: 102
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -2.5,0.5
       parent: 2
-    - type: Thruster
-      originalPowerLoad: 1500
   - uid: 103
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 3.5,0.5
       parent: 2
-    - type: Thruster
-      originalPowerLoad: 1500
   - uid: 104
     components:
     - type: Transform
       pos: 3.5,10.5
       parent: 2
-    - type: Thruster
-      originalPowerLoad: 1500
   - uid: 105
     components:
     - type: Transform
       pos: -2.5,10.5
       parent: 2
-    - type: Thruster
-      originalPowerLoad: 1500
 - proto: VendingMachineCoffee
   entities:
   - uid: 126

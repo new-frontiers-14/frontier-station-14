@@ -254,19 +254,17 @@ entities:
       rot: 3.141592653589793 rad
       pos: 2.5,-2.5
       parent: 1
-- proto: AtmosDeviceFanTiny
+- proto: AtmosDeviceFanDirectional
   entities:
   - uid: 32
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -0.5,-3.5
+      pos: 1.5,-3.5
       parent: 1
   - uid: 33
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 1.5,-3.5
+      pos: -0.5,-3.5
       parent: 1
 - proto: AtmosFixBlockerMarker
   entities:
@@ -1065,8 +1063,6 @@ entities:
     - type: Transform
       pos: -0.5,2.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 200
 - proto: SmallThruster
   entities:
   - uid: 27
@@ -1075,23 +1071,17 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -2.5,-2.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 500
   - uid: 29
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 3.5,-3.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 500
   - uid: 135
     components:
     - type: Transform
       pos: 4.5,3.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 500
 - proto: SpawnPointLatejoin
   entities:
   - uid: 142
@@ -1125,8 +1115,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -1.5,-1.5
       parent: 1
-    - type: Physics
-      canCollide: False
 - proto: SurveillanceWirelessCameraMovableEntertainment
   entities:
   - uid: 116
@@ -1166,8 +1154,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -2.5,-3.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
 - proto: WallShuttle
   entities:
   - uid: 2

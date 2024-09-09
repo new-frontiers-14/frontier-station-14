@@ -416,35 +416,23 @@ entities:
     - type: Transform
       pos: -0.5,-10.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 285
   - uid: 106
     components:
     - type: Transform
       pos: 1.5,-10.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 285
   - uid: 111
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 4.5,-4.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 286
   - uid: 112
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 5.5,-4.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 286
 - proto: AirlockFreezer
   entities:
   - uid: 204
@@ -472,36 +460,35 @@ entities:
       rot: 3.141592653589793 rad
       pos: -1.5,-10.5
       parent: 1
-- proto: AtmosDeviceFanTiny
+- proto: AtmosDeviceFanDirectional
   entities:
   - uid: 2
     components:
     - type: Transform
+      rot: 1.5707963267948966 rad
       pos: 2.5,-8.5
       parent: 1
   - uid: 50
     components:
     - type: Transform
       rot: 3.141592653589793 rad
-      pos: 1.5,-12.5
+      pos: 5.5,-2.5
       parent: 1
   - uid: 59
     components:
     - type: Transform
       rot: 3.141592653589793 rad
-      pos: -0.5,-12.5
+      pos: 4.5,-2.5
       parent: 1
   - uid: 97
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 4.5,-2.5
+      pos: -0.5,-12.5
       parent: 1
   - uid: 98
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 5.5,-2.5
+      pos: 1.5,-12.5
       parent: 1
 - proto: AtmosFixBlockerMarker
   entities:
@@ -650,18 +637,12 @@ entities:
       rot: 3.141592653589793 rad
       pos: 4.5,-2.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 191
   - uid: 102
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 5.5,-2.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 191
 - proto: CableApcExtension
   entities:
   - uid: 132
@@ -1094,13 +1075,18 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -1.5,-11.5
       parent: 1
-    - type: Physics
-      canCollide: False
     - type: ContainerContainer
       containers:
         board: !type:Container
+          showEnts: False
+          occludes: True
           ents: []
-        bank-ATM-cashSlot: !type:ContainerSlot {}
+        bank-ATM-cashSlot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+    - type: Physics
+      canCollide: False
     - type: ItemSlots
 - proto: DefibrillatorCabinetFilled
   entities:
@@ -1709,8 +1695,6 @@ entities:
     - type: Transform
       pos: 1.5,-1.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
 - proto: HandheldHealthAnalyzer
   entities:
   - uid: 257
@@ -1799,8 +1783,6 @@ entities:
       powerLoad: 100
     - type: DeviceLinkSink
       invokeCounter: 2
-      links:
-      - 188
 - proto: PoweredlightLED
   entities:
   - uid: 262
@@ -2172,8 +2154,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 5.5,-7.5
       parent: 1
-    - type: Physics
-      canCollide: False
 - proto: TableReinforced
   entities:
   - uid: 124
@@ -2200,46 +2180,34 @@ entities:
       rot: 3.141592653589793 rad
       pos: -2.5,-11.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
   - uid: 51
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 3.5,-11.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
   - uid: 99
     components:
     - type: Transform
       pos: 3.5,-1.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
   - uid: 100
     components:
     - type: Transform
       pos: 6.5,-1.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
   - uid: 115
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 6.5,-8.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
   - uid: 118
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -3.5,-3.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
 - proto: TintedWindow
   entities:
   - uid: 200

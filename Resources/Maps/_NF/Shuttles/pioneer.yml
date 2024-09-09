@@ -251,13 +251,13 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -1.5,1.5
       parent: 1
-- proto: AtmosDeviceFanTiny
+- proto: AtmosDeviceFanDirectional
   entities:
   - uid: 8
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 2.5,-0.5
+      rot: 1.5707963267948966 rad
+      pos: 2.5,0.5
       parent: 1
   - uid: 34
     components:
@@ -268,19 +268,19 @@ entities:
     components:
     - type: Transform
       rot: 3.141592653589793 rad
-      pos: 2.5,0.5
+      pos: 1.5,2.5
       parent: 1
   - uid: 67
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 2.5,-1.5
+      rot: 1.5707963267948966 rad
+      pos: 2.5,-0.5
       parent: 1
   - uid: 72
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 1.5,2.5
+      rot: 1.5707963267948966 rad
+      pos: 2.5,-1.5
       parent: 1
 - proto: AtmosFixBlockerMarker
   entities:
@@ -490,18 +490,12 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 1.5,0.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 40
   - uid: 55
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 2.5,0.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 40
 - proto: DefibrillatorCabinetFilled
   entities:
   - uid: 26
@@ -798,25 +792,16 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 2.5,0.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 91
   - uid: 69
     components:
     - type: Transform
       pos: 1.5,2.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 88
   - uid: 97
     components:
     - type: Transform
       pos: 0.5,-3.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 99
 - proto: SignalButton
   entities:
   - uid: 88
@@ -876,8 +861,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 1.5,-2.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 200
 - proto: SmallThruster
   entities:
   - uid: 21
@@ -885,24 +868,18 @@ entities:
     - type: Transform
       pos: 2.5,3.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 500
   - uid: 90
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -0.5,-4.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 500
   - uid: 96
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 1.5,-4.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 500
 - proto: SpawnPointLatejoin
   entities:
   - uid: 45
@@ -927,8 +904,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -1.5,0.5
       parent: 1
-    - type: Physics
-      canCollide: False
 - proto: Table
   entities:
   - uid: 41
@@ -956,8 +931,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 0.5,-4.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
 - proto: TwoWayLever
   entities:
   - uid: 40

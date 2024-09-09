@@ -810,57 +810,61 @@ entities:
     - type: Transform
       pos: 14.5,4.5
       parent: 2
-- proto: AtmosDeviceFanTiny
+- proto: AtmosDeviceFanDirectional
   entities:
-  - uid: 1296
+  - uid: 487
     components:
     - type: Transform
+      rot: -1.5707963267948966 rad
       pos: -15.5,-5.5
       parent: 2
-  - uid: 1297
+  - uid: 798
     components:
     - type: Transform
+      rot: -1.5707963267948966 rad
       pos: -15.5,-7.5
       parent: 2
-  - uid: 1298
+  - uid: 905
     components:
     - type: Transform
       pos: -10.5,-13.5
       parent: 2
-  - uid: 1299
+  - uid: 1137
     components:
     - type: Transform
       pos: -8.5,-13.5
       parent: 2
-  - uid: 1300
+  - uid: 1247
     components:
     - type: Transform
       pos: -0.5,-13.5
       parent: 2
-  - uid: 1301
+  - uid: 1248
     components:
     - type: Transform
       pos: 1.5,-13.5
       parent: 2
-  - uid: 1302
+  - uid: 1249
     components:
     - type: Transform
       pos: 9.5,-13.5
       parent: 2
-  - uid: 1303
+  - uid: 1262
     components:
     - type: Transform
       pos: 11.5,-13.5
       parent: 2
-  - uid: 1304
+  - uid: 1296
     components:
     - type: Transform
-      pos: 16.5,-7.5
-      parent: 2
-  - uid: 1305
-    components:
-    - type: Transform
+      rot: 1.5707963267948966 rad
       pos: 16.5,-5.5
+      parent: 2
+  - uid: 1297
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 16.5,-7.5
       parent: 2
 - proto: BackgammonBoard
   entities:
@@ -957,17 +961,11 @@ entities:
     - type: Transform
       pos: 8.5,-0.5
       parent: 2
-    - type: DeviceLinkSink
-      links:
-      - 1179
   - uid: 1027
     components:
     - type: Transform
       pos: 8.5,0.5
       parent: 2
-    - type: DeviceLinkSink
-      links:
-      - 1179
 - proto: BoozeDispenser
   entities:
   - uid: 474
@@ -6675,113 +6673,71 @@ entities:
     - type: Transform
       pos: 0.5,3.5
       parent: 2
-    - type: DeviceLinkSink
-      links:
-      - 777
   - uid: 1010
     components:
     - type: Transform
       pos: -0.5,3.5
       parent: 2
-    - type: DeviceLinkSink
-      links:
-      - 777
   - uid: 1011
     components:
     - type: Transform
       pos: -2.5,3.5
       parent: 2
-    - type: DeviceLinkSink
-      links:
-      - 777
   - uid: 1012
     components:
     - type: Transform
       pos: -1.5,3.5
       parent: 2
-    - type: DeviceLinkSink
-      links:
-      - 777
   - uid: 1013
     components:
     - type: Transform
       pos: 2.5,3.5
       parent: 2
-    - type: DeviceLinkSink
-      links:
-      - 777
   - uid: 1014
     components:
     - type: Transform
       pos: 1.5,3.5
       parent: 2
-    - type: DeviceLinkSink
-      links:
-      - 777
   - uid: 1015
     components:
     - type: Transform
       pos: 3.5,3.5
       parent: 2
-    - type: DeviceLinkSink
-      links:
-      - 777
   - uid: 1016
     components:
     - type: Transform
       pos: -2.5,-3.5
       parent: 2
-    - type: DeviceLinkSink
-      links:
-      - 777
   - uid: 1017
     components:
     - type: Transform
       pos: -0.5,-3.5
       parent: 2
-    - type: DeviceLinkSink
-      links:
-      - 777
   - uid: 1018
     components:
     - type: Transform
       pos: -1.5,-3.5
       parent: 2
-    - type: DeviceLinkSink
-      links:
-      - 777
   - uid: 1019
     components:
     - type: Transform
       pos: 0.5,-3.5
       parent: 2
-    - type: DeviceLinkSink
-      links:
-      - 777
   - uid: 1020
     components:
     - type: Transform
       pos: 1.5,-3.5
       parent: 2
-    - type: DeviceLinkSink
-      links:
-      - 777
   - uid: 1021
     components:
     - type: Transform
       pos: 2.5,-3.5
       parent: 2
-    - type: DeviceLinkSink
-      links:
-      - 777
   - uid: 1022
     components:
     - type: Transform
       pos: 3.5,-3.5
       parent: 2
-    - type: DeviceLinkSink
-      links:
-      - 777
 - proto: SignalButton
   entities:
   - uid: 777

@@ -463,13 +463,12 @@ entities:
       startingCharge: 0
     - type: Apc
       hasAccess: True
-      lastChargeState: Charging
   - uid: 31
     components:
     - type: Transform
       pos: 8.5,1.5
       parent: 1
-- proto: AtmosDeviceFanTiny
+- proto: AtmosDeviceFanDirectional
   entities:
   - uid: 32
     components:
@@ -2073,8 +2072,6 @@ entities:
     - type: Transform
       pos: -1.5,-0.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
 - proto: LockerDetectiveFilled
   entities:
   - uid: 259
@@ -2327,9 +2324,6 @@ entities:
     - type: DeviceNetwork
       address: 4967-8FDB
       receiveFrequency: 1280
-    - type: DeviceLinkSink
-      links:
-      - 304
   - uid: 142
     components:
     - type: Transform
@@ -2346,9 +2340,6 @@ entities:
     - type: DeviceNetwork
       address: 7927-5FE5
       receiveFrequency: 1280
-    - type: DeviceLinkSink
-      links:
-      - 304
   - uid: 144
     components:
     - type: Transform
@@ -2365,9 +2356,6 @@ entities:
     - type: DeviceNetwork
       address: 2F67-D620
       receiveFrequency: 1280
-    - type: DeviceLinkSink
-      links:
-      - 304
 - proto: ShuttleWindow
   entities:
   - uid: 282
@@ -2613,16 +2601,12 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 1.5,2.5
       parent: 1
-    - type: Physics
-      canCollide: False
   - uid: 322
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 1.5,-3.5
       parent: 1
-    - type: Physics
-      canCollide: False
 - proto: TableWood
   entities:
   - uid: 323
@@ -2680,47 +2664,35 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 8.5,-3.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
   - uid: 332
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 8.5,2.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
   - uid: 333
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 0.5,3.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
   - uid: 334
     components:
     - type: Transform
       pos: 4.5,2.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
   - uid: 335
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 0.5,-4.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
   - uid: 336
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 4.5,-3.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
 - proto: WallShuttle
   entities:
   - uid: 338

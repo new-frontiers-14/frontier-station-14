@@ -385,8 +385,6 @@ entities:
       - 723
       - 722
       - 721
-    - type: AtmosDevice
-      joinedGrid: 281
 - proto: AirCanister
   entities:
   - uid: 650
@@ -394,8 +392,6 @@ entities:
     - type: Transform
       pos: 7.5,-8.5
       parent: 281
-    - type: AtmosDevice
-      joinedGrid: 281
 - proto: AirlockAtmosphericsGlass
   entities:
   - uid: 632
@@ -520,7 +516,7 @@ entities:
     - type: Transform
       pos: 2.5,-2.5
       parent: 281
-- proto: AtmosDeviceFanTiny
+- proto: AtmosDeviceFanDirectional
   entities:
   - uid: 628
     components:
@@ -531,14 +527,12 @@ entities:
   - uid: 651
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 3.5,-11.5
+      pos: 5.5,-11.5
       parent: 281
   - uid: 652
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 5.5,-11.5
+      pos: 3.5,-11.5
       parent: 281
 - proto: AtmosFixBlockerMarker
   entities:
@@ -610,9 +604,6 @@ entities:
       canCollide: True
     - type: Airtight
       airBlocked: True
-    - type: DeviceLinkSink
-      links:
-      - 736
 - proto: BoxFolderBase
   entities:
   - uid: 618
@@ -2251,8 +2242,6 @@ entities:
       - 707
       - 706
       - 705
-    - type: AtmosDevice
-      joinedGrid: 281
 - proto: FireAxeCabinetFilled
   entities:
   - uid: 716
@@ -2372,8 +2361,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 0.5,6.5
       parent: 281
-    - type: AtmosDevice
-      joinedGrid: 281
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 187
@@ -2382,24 +2369,18 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 2.5,6.5
       parent: 281
-    - type: AtmosDevice
-      joinedGrid: 281
   - uid: 193
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 8.5,6.5
       parent: 281
-    - type: AtmosDevice
-      joinedGrid: 281
   - uid: 194
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 10.5,6.5
       parent: 281
-    - type: AtmosDevice
-      joinedGrid: 281
 - proto: GasMixerFlipped
   entities:
   - uid: 180
@@ -2408,8 +2389,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 1.5,5.5
       parent: 281
-    - type: AtmosDevice
-      joinedGrid: 281
     - type: AtmosPipeColor
       color: '#0055CCFF'
 - proto: GasOutletInjector
@@ -2420,32 +2399,24 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 7.5,14.5
       parent: 281
-    - type: AtmosDevice
-      joinedGrid: 281
   - uid: 225
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 9.5,14.5
       parent: 281
-    - type: AtmosDevice
-      joinedGrid: 281
   - uid: 226
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 1.5,14.5
       parent: 281
-    - type: AtmosDevice
-      joinedGrid: 281
   - uid: 227
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -0.5,14.5
       parent: 281
-    - type: AtmosDevice
-      joinedGrid: 281
 - proto: GasPassiveVent
   entities:
   - uid: 192
@@ -2454,44 +2425,32 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 12.5,6.5
       parent: 281
-    - type: AtmosDevice
-      joinedGrid: 281
   - uid: 220
     components:
     - type: Transform
       pos: -0.5,13.5
       parent: 281
-    - type: AtmosDevice
-      joinedGrid: 281
   - uid: 221
     components:
     - type: Transform
       pos: 1.5,13.5
       parent: 281
-    - type: AtmosDevice
-      joinedGrid: 281
   - uid: 222
     components:
     - type: Transform
       pos: 7.5,13.5
       parent: 281
-    - type: AtmosDevice
-      joinedGrid: 281
   - uid: 223
     components:
     - type: Transform
       pos: 9.5,13.5
       parent: 281
-    - type: AtmosDevice
-      joinedGrid: 281
   - uid: 623
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -0.5,0.5
       parent: 281
-    - type: AtmosDevice
-      joinedGrid: 281
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 624
@@ -2500,8 +2459,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -0.5,-1.5
       parent: 281
-    - type: AtmosDevice
-      joinedGrid: 281
 - proto: GasPipeBend
   entities:
   - uid: 173
@@ -3223,16 +3180,12 @@ entities:
       rot: 3.141592653589793 rad
       pos: 7.5,5.5
       parent: 281
-    - type: AtmosDevice
-      joinedGrid: 281
   - uid: 266
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 7.5,-3.5
       parent: 281
-    - type: AtmosDevice
-      joinedGrid: 281
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 276
@@ -3241,32 +3194,24 @@ entities:
       rot: 3.141592653589793 rad
       pos: 9.5,5.5
       parent: 281
-    - type: AtmosDevice
-      joinedGrid: 281
   - uid: 627
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 2.5,-1.5
       parent: 281
-    - type: AtmosDevice
-      joinedGrid: 281
   - uid: 642
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 7.5,-8.5
       parent: 281
-    - type: AtmosDevice
-      joinedGrid: 281
   - uid: 643
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 6.5,-8.5
       parent: 281
-    - type: AtmosDevice
-      joinedGrid: 281
 - proto: GasPressurePump
   entities:
   - uid: 626
@@ -3275,15 +3220,11 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 1.5,-1.5
       parent: 281
-    - type: AtmosDevice
-      joinedGrid: 281
   - uid: 639
     components:
     - type: Transform
       pos: 7.5,-7.5
       parent: 281
-    - type: AtmosDevice
-      joinedGrid: 281
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 640
@@ -3292,8 +3233,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 6.5,-7.5
       parent: 281
-    - type: AtmosDevice
-      joinedGrid: 281
     - type: AtmosPipeColor
       color: '#990000FF'
 - proto: GasRecyclerMachineCircuitboard
@@ -3312,8 +3251,6 @@ entities:
       parent: 281
     - type: GasValve
       open: False
-    - type: AtmosDevice
-      joinedGrid: 281
     - type: AtmosPipeColor
       color: '#990000FF'
 - proto: GasVentPump
@@ -3323,8 +3260,6 @@ entities:
     - type: Transform
       pos: 4.5,6.5
       parent: 281
-    - type: AtmosDevice
-      joinedGrid: 281
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 252
@@ -3333,8 +3268,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 5.5,-4.5
       parent: 281
-    - type: AtmosDevice
-      joinedGrid: 281
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 715
@@ -3343,8 +3276,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 3.5,-4.5
       parent: 281
-    - type: AtmosDevice
-      joinedGrid: 281
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 719
@@ -3353,8 +3284,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 2.5,-0.5
       parent: 281
-    - type: AtmosDevice
-      joinedGrid: 281
     - type: AtmosPipeColor
       color: '#0055CCFF'
 - proto: GasVentScrubber
@@ -3365,8 +3294,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 5.5,-5.5
       parent: 281
-    - type: AtmosDevice
-      joinedGrid: 281
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 718
@@ -3375,8 +3302,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 6.5,-0.5
       parent: 281
-    - type: AtmosDevice
-      joinedGrid: 281
     - type: AtmosPipeColor
       color: '#990000FF'
 - proto: GasVolumePump
@@ -3386,29 +3311,21 @@ entities:
     - type: Transform
       pos: 1.5,8.5
       parent: 281
-    - type: AtmosDevice
-      joinedGrid: 281
   - uid: 153
     components:
     - type: Transform
       pos: -0.5,8.5
       parent: 281
-    - type: AtmosDevice
-      joinedGrid: 281
   - uid: 195
     components:
     - type: Transform
       pos: 7.5,8.5
       parent: 281
-    - type: AtmosDevice
-      joinedGrid: 281
   - uid: 196
     components:
     - type: Transform
       pos: 9.5,8.5
       parent: 281
-    - type: AtmosDevice
-      joinedGrid: 281
 - proto: GravityGeneratorMini
   entities:
   - uid: 620
@@ -3872,9 +3789,6 @@ entities:
     - type: Transform
       pos: -1.5,-0.5
       parent: 281
-    - type: DeviceLinkSink
-      links:
-      - 361
 - proto: PartRodMetal
   entities:
   - uid: 726

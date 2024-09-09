@@ -340,31 +340,29 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 2.5,-1.5
       parent: 1
-- proto: AtmosDeviceFanTiny
+- proto: AtmosDeviceFanDirectional
   entities:
   - uid: 17
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
+      rot: 1.5707963267948966 rad
       pos: 4.5,-4.5
       parent: 1
   - uid: 18
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
+      rot: -1.5707963267948966 rad
       pos: -3.5,-4.5
       parent: 1
   - uid: 19
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -0.5,-14.5
+      pos: 1.5,-14.5
       parent: 1
   - uid: 20
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 1.5,-14.5
+      pos: -0.5,-14.5
       parent: 1
 - proto: AtmosFixBlockerMarker
   entities:
@@ -555,43 +553,28 @@ entities:
     - type: Transform
       pos: -0.5,1.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 254
   - uid: 22
     components:
     - type: Transform
       pos: 0.5,1.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 254
   - uid: 23
     components:
     - type: Transform
       pos: 1.5,1.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 254
   - uid: 166
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -1.5,0.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 254
   - uid: 355
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 2.5,0.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 254
 - proto: CableApcExtension
   entities:
   - uid: 24
@@ -1937,8 +1920,6 @@ entities:
     - type: Transform
       pos: 1.5,-11.5
       parent: 1
-    - type: Physics
-      canCollide: False
 - proto: SyndicateWhistle
   entities:
   - uid: 200

@@ -445,7 +445,7 @@ entities:
       pos: -6.5,14.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -7757.4946
+      secondsUntilStateChange: -7879.5625
       state: Opening
 - proto: AirlockEngineering
   entities:
@@ -493,7 +493,7 @@ entities:
       pos: -5.5,12.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -3299.2812
+      secondsUntilStateChange: -3421.349
       state: Opening
 - proto: APCBasic
   entities:
@@ -513,12 +513,12 @@ entities:
     - type: Transform
       pos: -13.5,9.5
       parent: 1
-- proto: AtmosDeviceFanTiny
+- proto: AtmosDeviceFanDirectional
   entities:
   - uid: 19
     components:
     - type: Transform
-      pos: -6.5,-5.5
+      pos: -8.5,-5.5
       parent: 1
   - uid: 20
     components:
@@ -528,7 +528,7 @@ entities:
   - uid: 21
     components:
     - type: Transform
-      pos: -8.5,-5.5
+      pos: -6.5,-5.5
       parent: 1
 - proto: AtmosFixBlockerMarker
   entities:
@@ -649,6 +649,18 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 3.5,5.5
+      parent: 1
+- proto: Bed
+  entities:
+  - uid: 398
+    components:
+    - type: Transform
+      pos: -13.5,0.5
+      parent: 1
+  - uid: 399
+    components:
+    - type: Transform
+      pos: -12.5,0.5
       parent: 1
 - proto: BedsheetSpawner
   entities:
@@ -1690,7 +1702,7 @@ entities:
       pos: -10.5,6.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -30913.186
+      secondsUntilStateChange: -31035.254
       state: Opening
 - proto: FenceMetalStraight
   entities:
@@ -2036,11 +2048,15 @@ entities:
   - uid: 299
     components:
     - type: Transform
+      anchored: False
       rot: 3.141592653589793 rad
       pos: -6.5,12.5
       parent: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
+    - type: Physics
+      canCollide: True
+      bodyType: Dynamic
   - uid: 300
     components:
     - type: Transform
@@ -2149,10 +2165,14 @@ entities:
   - uid: 314
     components:
     - type: Transform
+      anchored: False
       pos: -6.5,4.5
       parent: 1
     - type: AtmosPipeColor
       color: '#990000FF'
+    - type: Physics
+      canCollide: True
+      bodyType: Dynamic
   - uid: 315
     components:
     - type: Transform
@@ -2287,10 +2307,14 @@ entities:
   - uid: 332
     components:
     - type: Transform
+      anchored: False
       pos: -6.5,11.5
       parent: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
+    - type: Physics
+      canCollide: True
+      bodyType: Dynamic
   - uid: 333
     components:
     - type: Transform
@@ -2493,11 +2517,15 @@ entities:
   - uid: 358
     components:
     - type: Transform
+      anchored: False
       rot: 3.141592653589793 rad
       pos: -12.5,6.5
       parent: 1
     - type: AtmosPipeColor
       color: '#990000FF'
+    - type: Physics
+      canCollide: True
+      bodyType: Dynamic
   - uid: 359
     components:
     - type: Transform
@@ -2688,8 +2716,6 @@ entities:
     - type: Transform
       pos: -9.5,17.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
 - proto: HospitalCurtains
   entities:
   - uid: 387
@@ -2705,7 +2731,7 @@ entities:
       pos: -11.5,6.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -25612.355
+      secondsUntilStateChange: -25734.424
       state: Opening
   - uid: 389
     components:
@@ -2774,18 +2800,6 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -3.6449776,-1.0814991
-      parent: 1
-- proto: Bed
-  entities:
-  - uid: 398
-    components:
-    - type: Transform
-      pos: -13.5,0.5
-      parent: 1
-  - uid: 399
-    components:
-    - type: Transform
-      pos: -12.5,0.5
       parent: 1
 - proto: Mirror
   entities:
@@ -3201,7 +3215,7 @@ entities:
     - type: Transform
       pos: -3.7077827,13.274853
       parent: 1
-- proto: soda_dispenser
+- proto: SodaDispenser
   entities:
   - uid: 469
     components:
@@ -3354,8 +3368,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -5.5,11.5
       parent: 1
-    - type: Physics
-      canCollide: False
 - proto: Table
   entities:
   - uid: 497
@@ -3459,79 +3471,59 @@ entities:
     - type: Transform
       pos: -2.5,15.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
   - uid: 513
     components:
     - type: Transform
       pos: -11.5,15.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
   - uid: 514
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -16.5,0.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
   - uid: 515
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -15.5,0.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
   - uid: 516
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -13.5,-1.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
   - uid: 517
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -0.5,-1.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
   - uid: 518
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 2.5,0.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
   - uid: 519
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -10.5,-3.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
   - uid: 520
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -3.5,-3.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
   - uid: 521
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 1.5,0.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
 - proto: ToiletDirtyWater
   entities:
   - uid: 522

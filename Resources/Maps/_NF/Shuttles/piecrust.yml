@@ -280,8 +280,6 @@ entities:
       - 315
       - 316
       - 317
-    - type: AtmosDevice
-      joinedGrid: 8756
 - proto: AirCanister
   entities:
   - uid: 228
@@ -292,8 +290,6 @@ entities:
       parent: 8756
     - type: Physics
       bodyType: Static
-    - type: AtmosDevice
-      joinedGrid: 8756
 - proto: Airlock
   entities:
   - uid: 10
@@ -308,9 +304,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 3.5,0.5
       parent: 8756
-    - type: DeviceLinkSink
-      links:
-      - 288
   - uid: 149
     components:
     - type: Transform
@@ -324,20 +317,14 @@ entities:
     - type: Transform
       pos: -0.5,-2.5
       parent: 8756
-    - type: DeviceLinkSink
-      links:
-      - 287
   - uid: 8872
     components:
     - type: Transform
       pos: -2.5,-1.5
       parent: 8756
     - type: Door
-      secondsUntilStateChange: -1115.7239
+      secondsUntilStateChange: -1171.2025
       state: Opening
-    - type: DeviceLinkSink
-      links:
-      - 286
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -347,11 +334,8 @@ entities:
       pos: -2.5,0.5
       parent: 8756
     - type: Door
-      secondsUntilStateChange: -1121.0238
+      secondsUntilStateChange: -1176.5024
       state: Opening
-    - type: DeviceLinkSink
-      links:
-      - 286
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -396,7 +380,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -3.5,4.5
       parent: 8756
-- proto: AtmosDeviceFanTiny
+- proto: AtmosDeviceFanDirectional
   entities:
   - uid: 40
     components:
@@ -407,20 +391,19 @@ entities:
   - uid: 46
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: -0.5,-4.5
       parent: 8756
-  - uid: 8868
+  - uid: 303
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -4.5,-1.5
-      parent: 8756
-  - uid: 8869
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
+      rot: -1.5707963267948966 rad
       pos: -4.5,0.5
+      parent: 8756
+  - uid: 304
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -4.5,-1.5
       parent: 8756
 - proto: AtmosFixBlockerMarker
   entities:
@@ -907,13 +890,18 @@ entities:
     - type: Transform
       pos: -1.5,1.5
       parent: 8756
-    - type: Physics
-      canCollide: False
     - type: ContainerContainer
       containers:
         board: !type:Container
+          showEnts: False
+          occludes: True
           ents: []
-        bank-ATM-cashSlot: !type:ContainerSlot {}
+        bank-ATM-cashSlot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+    - type: Physics
+      canCollide: False
     - type: ItemSlots
 - proto: CrateFreezer
   entities:
@@ -1344,8 +1332,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -3.5,-0.5
       parent: 8756
-    - type: AtmosDevice
-      joinedGrid: 8756
     - type: AtmosPipeColor
       color: '#0055CCFF'
 - proto: GasVentPump
@@ -1355,8 +1341,6 @@ entities:
     - type: Transform
       pos: 6.5,9.5
       parent: 8756
-    - type: AtmosDevice
-      joinedGrid: 8756
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 225
@@ -1369,8 +1353,6 @@ entities:
       - invalid
       deviceLists:
       - 193
-    - type: AtmosDevice
-      joinedGrid: 8756
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 226
@@ -1384,8 +1366,6 @@ entities:
       - invalid
       deviceLists:
       - 193
-    - type: AtmosDevice
-      joinedGrid: 8756
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 227
@@ -1398,8 +1378,6 @@ entities:
       - invalid
       deviceLists:
       - 193
-    - type: AtmosDevice
-      joinedGrid: 8756
     - type: AtmosPipeColor
       color: '#0055CCFF'
 - proto: GasVentScrubber
@@ -1415,8 +1393,6 @@ entities:
       - invalid
       deviceLists:
       - 193
-    - type: AtmosDevice
-      joinedGrid: 8756
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 206
@@ -1430,8 +1406,6 @@ entities:
       - invalid
       deviceLists:
       - 193
-    - type: AtmosDevice
-      joinedGrid: 8756
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 207
@@ -1445,8 +1419,6 @@ entities:
       - invalid
       deviceLists:
       - 193
-    - type: AtmosDevice
-      joinedGrid: 8756
     - type: AtmosPipeColor
       color: '#990000FF'
 - proto: GasVolumePump
@@ -1457,8 +1429,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 5.5,7.5
       parent: 8756
-    - type: AtmosDevice
-      joinedGrid: 8756
     - type: AtmosPipeColor
       color: '#990000FF'
 - proto: GravityGeneratorMini
@@ -1811,17 +1781,11 @@ entities:
     - type: Transform
       pos: 2.5,1.5
       parent: 8756
-    - type: DeviceLinkSink
-      links:
-      - 288
   - uid: 284
     components:
     - type: Transform
       pos: -0.5,1.5
       parent: 8756
-    - type: DeviceLinkSink
-      links:
-      - 288
 - proto: ShuttersWindowOpen
   entities:
   - uid: 282
@@ -1829,17 +1793,11 @@ entities:
     - type: Transform
       pos: 1.5,1.5
       parent: 8756
-    - type: DeviceLinkSink
-      links:
-      - 288
   - uid: 285
     components:
     - type: Transform
       pos: 0.5,1.5
       parent: 8756
-    - type: DeviceLinkSink
-      links:
-      - 288
 - proto: ShuttleWindow
   entities:
   - uid: 29
@@ -1976,7 +1934,7 @@ entities:
     - type: Transform
       pos: 6.5,7.5
       parent: 8756
-- proto: soda_dispenser
+- proto: SodaDispenser
   entities:
   - uid: 99
     components:
@@ -2026,8 +1984,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 2.5,5.5
       parent: 8756
-    - type: Physics
-      canCollide: False
 - proto: TableReinforced
   entities:
   - uid: 6

@@ -988,9 +988,6 @@ entities:
     - type: Transform
       pos: -3.5,-2.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 412
 - proto: AirlockMercenaryLocked
   entities:
   - uid: 21
@@ -1103,46 +1100,54 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -2.5,-0.5
       parent: 1
-- proto: AtmosDeviceFanTiny
+- proto: AtmosDeviceFanDirectional
   entities:
   - uid: 40
     components:
     - type: Transform
+      rot: 1.5707963267948966 rad
       pos: 12.5,-5.5
       parent: 1
   - uid: 41
     components:
     - type: Transform
+      rot: -1.5707963267948966 rad
       pos: -12.5,-5.5
       parent: 1
   - uid: 42
     components:
     - type: Transform
+      rot: -1.5707963267948966 rad
       pos: -12.5,-3.5
       parent: 1
   - uid: 43
     components:
     - type: Transform
+      rot: 1.5707963267948966 rad
       pos: 12.5,-3.5
       parent: 1
   - uid: 44
     components:
     - type: Transform
-      pos: -5.5,-7.5
+      rot: -1.5707963267948966 rad
+      pos: -5.5,-9.5
       parent: 1
   - uid: 45
     components:
     - type: Transform
-      pos: -5.5,-9.5
+      rot: -1.5707963267948966 rad
+      pos: -5.5,-7.5
       parent: 1
   - uid: 46
     components:
     - type: Transform
+      rot: -1.5707963267948966 rad
       pos: -5.5,-8.5
       parent: 1
   - uid: 47
     components:
     - type: Transform
+      rot: 3.141592653589793 rad
       pos: -10.5,-1.5
       parent: 1
   - uid: 48
@@ -1158,6 +1163,7 @@ entities:
   - uid: 50
     components:
     - type: Transform
+      rot: 3.141592653589793 rad
       pos: 10.5,-1.5
       parent: 1
 - proto: AtmosFixBlockerMarker
@@ -1610,25 +1616,16 @@ entities:
     - type: Transform
       pos: -5.5,-9.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 36
   - uid: 65
     components:
     - type: Transform
       pos: -5.5,-7.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 36
   - uid: 66
     components:
     - type: Transform
       pos: -5.5,-8.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 36
 - proto: BookRandomStory
   entities:
   - uid: 590
@@ -4177,49 +4174,31 @@ entities:
     - type: Transform
       pos: -1.5,12.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 693
   - uid: 217
     components:
     - type: Transform
       pos: -2.5,11.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 693
   - uid: 687
     components:
     - type: Transform
       pos: 0.5,12.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 693
   - uid: 688
     components:
     - type: Transform
       pos: -0.5,12.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 693
   - uid: 691
     components:
     - type: Transform
       pos: 1.5,12.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 693
   - uid: 692
     components:
     - type: Transform
       pos: 2.5,11.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 693
 - proto: SignalButton
   entities:
   - uid: 412
@@ -4461,8 +4440,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -5.5,-0.5
       parent: 1
-    - type: Physics
-      canCollide: False
 - proto: TableCarpet
   entities:
   - uid: 58

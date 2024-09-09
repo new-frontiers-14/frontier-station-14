@@ -1632,36 +1632,40 @@ entities:
     - type: Transform
       pos: 9.5,-21.5
       parent: 1
-- proto: AtmosDeviceFanTiny
+- proto: AtmosDeviceFanDirectional
   entities:
   - uid: 57
     components:
     - type: Transform
+      rot: 1.5707963267948966 rad
       pos: 20.5,-9.5
       parent: 1
   - uid: 58
     components:
     - type: Transform
+      rot: -1.5707963267948966 rad
       pos: -21.5,-11.5
       parent: 1
   - uid: 59
     components:
     - type: Transform
-      pos: -1.5,-32.5
+      pos: 0.5,-32.5
       parent: 1
   - uid: 60
     components:
     - type: Transform
+      rot: -1.5707963267948966 rad
       pos: -21.5,-9.5
       parent: 1
   - uid: 61
     components:
     - type: Transform
-      pos: 0.5,-32.5
+      pos: -1.5,-32.5
       parent: 1
   - uid: 62
     components:
     - type: Transform
+      rot: 1.5707963267948966 rad
       pos: 20.5,-11.5
       parent: 1
   - uid: 638
@@ -10405,17 +10409,15 @@ entities:
       parent: 1
 - proto: SignAtmos
   entities:
-  - uid: 1195
-    components:
-    - type: Transform
-      pos: 4.5,-21.5
-      parent: 1
-- proto: SignAtmosMinsky
-  entities:
   - uid: 555
     components:
     - type: Transform
       pos: 7.5,-21.5
+      parent: 1
+  - uid: 1195
+    components:
+    - type: Transform
+      pos: 4.5,-21.5
       parent: 1
 - proto: SignBar
   entities:
@@ -10580,13 +10582,6 @@ entities:
     components:
     - type: Transform
       pos: 2.5,-11.5
-      parent: 1
-- proto: SignShield
-  entities:
-  - uid: 1261
-    components:
-    - type: Transform
-      pos: -2.5,-3.5
       parent: 1
 - proto: SignShipDock
   entities:

@@ -1124,13 +1124,13 @@ entities:
     - type: Transform
       pos: 7.5,2.5
       parent: 1
-- proto: AtmosDeviceFanTiny
+- proto: AtmosDeviceFanDirectional
   entities:
   - uid: 647
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
-      pos: -10.5,4.5
+      pos: -10.5,2.5
       parent: 1
   - uid: 648
     components:
@@ -1142,25 +1142,25 @@ entities:
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
-      pos: -10.5,2.5
+      pos: -10.5,4.5
       parent: 1
   - uid: 650
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 15.5,-1.5
+      rot: 1.5707963267948966 rad
+      pos: 15.5,-3.5
       parent: 1
   - uid: 651
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
+      rot: 1.5707963267948966 rad
       pos: 15.5,-2.5
       parent: 1
   - uid: 652
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 15.5,-3.5
+      rot: 1.5707963267948966 rad
+      pos: 15.5,-1.5
       parent: 1
 - proto: BannerScience
   entities:
@@ -3202,7 +3202,6 @@ entities:
     - type: GasMixer
       inletTwoConcentration: 0.78
       inletOneConcentration: 0.22
-      enabled: True
 - proto: GasPassiveVent
   entities:
   - uid: 730
@@ -4107,9 +4106,6 @@ entities:
     - type: Transform
       pos: 3.5,-11.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 763
 - proto: SignalButton
   entities:
   - uid: 763

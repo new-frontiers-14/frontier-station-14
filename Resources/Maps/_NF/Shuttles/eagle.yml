@@ -682,7 +682,7 @@ entities:
             0: 53695
           0,-1:
             0: 45875
-            2: 128
+            1: 128
           -1,0:
             0: 61951
           0,1:
@@ -693,66 +693,66 @@ entities:
             0: 375
           -1,2:
             0: 204
-            2: 16
+            1: 16
           0,3:
-            1: 1
+            2: 1
           1,0:
             0: 47551
           1,1:
             0: 51
-            2: 128
+            1: 128
           1,2:
-            2: 16
+            1: 16
           1,-1:
             0: 47104
-            2: 40
+            1: 40
           2,0:
             0: 4479
-            2: 18432
+            1: 18432
           2,-1:
             0: 8156
           2,1:
-            2: 2
+            1: 2
           0,-2:
             0: 12898
           -1,-2:
             0: 35016
-            2: 17
+            1: 17
           -1,-1:
             0: 64648
-            2: 32
+            1: 32
           1,-2:
-            2: 17
+            1: 17
           2,-2:
             0: 32768
-            2: 128
+            1: 128
           3,-2:
             0: 12800
-            2: 66
+            1: 66
           3,-1:
             0: 274
-            2: 64
+            1: 64
           -4,-2:
-            2: 200
+            1: 200
             0: 32768
           -4,-1:
-            2: 64
+            1: 64
             0: 8
           -3,-2:
-            2: 49
+            1: 49
             0: 12544
           -3,-1:
             0: 61347
           -3,0:
             0: 204
-            2: 16912
+            1: 16912
           -2,-1:
             0: 29456
-            2: 130
+            1: 130
           -2,0:
             0: 45183
           -2,1:
-            2: 32
+            1: 32
             0: 136
         uniqueMixes:
         - volume: 2500
@@ -771,7 +771,7 @@ entities:
           - 0
           - 0
         - volume: 2500
-          temperature: 293.15
+          immutable: True
           moles:
           - 0
           - 0
@@ -786,7 +786,7 @@ entities:
           - 0
           - 0
         - volume: 2500
-          immutable: True
+          temperature: 293.15
           moles:
           - 0
           - 0
@@ -1053,24 +1053,21 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 9.5,-0.5
       parent: 1
-- proto: AtmosDeviceFanTiny
+- proto: AtmosDeviceFanDirectional
   entities:
   - uid: 472
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 1.5,-7.5
+      pos: -0.5,-7.5
       parent: 1
   - uid: 482
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -0.5,-7.5
+      pos: 1.5,-7.5
       parent: 1
   - uid: 588
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: -11.5,-5.5
       parent: 1
 - proto: AtmosFixBlockerMarker
@@ -3901,8 +3898,6 @@ entities:
       on: False
     - type: DeviceLinkSink
       invokeCounter: 1
-      links:
-      - 635
 - proto: PoweredlightSodium
   entities:
   - uid: 440
@@ -3925,9 +3920,6 @@ entities:
       parent: 1
     - type: PoweredLight
       on: False
-    - type: DeviceLinkSink
-      links:
-      - 409
   - uid: 513
     components:
     - type: Transform
@@ -4042,17 +4034,11 @@ entities:
     - type: Transform
       pos: -6.5,2.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 409
   - uid: 541
     components:
     - type: Transform
       pos: -7.5,2.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 409
 - proto: ShuttleWindow
   entities:
   - uid: 38
@@ -4284,8 +4270,6 @@ entities:
     - type: Transform
       pos: -9.5,-2.5
       parent: 1
-- proto: SignAtmosMinsky
-  entities:
   - uid: 497
     components:
     - type: Transform

@@ -698,7 +698,7 @@ entities:
       pos: 1.5,-2.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -19989.777
+      secondsUntilStateChange: -20131.092
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -714,6 +714,12 @@ entities:
       rot: 3.141592653589793 rad
       pos: -0.5,-2.5
       parent: 1
+    - type: Door
+      secondsUntilStateChange: -138.79996
+      state: Opening
+    - type: DeviceLinkSource
+      lastSignals:
+        DoorStatus: True
   - uid: 283
     components:
     - type: Transform
@@ -747,43 +753,41 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -1.5,-0.5
       parent: 1
-- proto: AtmosDeviceFanTiny
+- proto: AtmosDeviceFanDirectional
   entities:
   - uid: 63
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -5.5,-1.5
+      rot: 3.141592653589793 rad
+      pos: 3.5,7.5
       parent: 1
   - uid: 71
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 1.5,7.5
+      rot: 3.141592653589793 rad
+      pos: 2.5,7.5
       parent: 1
   - uid: 72
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 2.5,7.5
+      rot: 3.141592653589793 rad
+      pos: 1.5,7.5
       parent: 1
   - uid: 73
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 3.5,7.5
+      pos: 1.5,-4.5
       parent: 1
   - uid: 76
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
       pos: -0.5,-4.5
       parent: 1
   - uid: 77
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
-      pos: 1.5,-4.5
+      pos: -5.5,-1.5
       parent: 1
   - uid: 111
     components:
@@ -982,27 +986,18 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 3.5,7.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 296
   - uid: 29
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 2.5,7.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 296
   - uid: 37
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 1.5,7.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 296
 - proto: BoxBodyBag
   entities:
   - uid: 310
@@ -2556,8 +2551,6 @@ entities:
       parent: 1
     - type: DeviceLinkSink
       invokeCounter: 11
-      links:
-      - 331
   - uid: 75
     components:
     - type: Transform
@@ -2566,8 +2559,6 @@ entities:
       parent: 1
     - type: DeviceLinkSink
       invokeCounter: 11
-      links:
-      - 331
   - uid: 93
     components:
     - type: Transform
@@ -2576,8 +2567,6 @@ entities:
       parent: 1
     - type: DeviceLinkSink
       invokeCounter: 11
-      links:
-      - 331
   - uid: 127
     components:
     - type: Transform
@@ -2586,8 +2575,6 @@ entities:
       parent: 1
     - type: DeviceLinkSink
       invokeCounter: 11
-      links:
-      - 331
   - uid: 326
     components:
     - type: Transform
@@ -2596,8 +2583,6 @@ entities:
       parent: 1
     - type: DeviceLinkSink
       invokeCounter: 11
-      links:
-      - 331
   - uid: 333
     components:
     - type: Transform
@@ -2606,8 +2591,6 @@ entities:
       parent: 1
     - type: DeviceLinkSink
       invokeCounter: 11
-      links:
-      - 331
 - proto: ShuttleWindow
   entities:
   - uid: 42

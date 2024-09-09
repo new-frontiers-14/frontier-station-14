@@ -331,16 +331,18 @@ entities:
     - type: Transform
       pos: 0.5,-1.5
       parent: 2
-- proto: AtmosDeviceFanTiny
+- proto: AtmosDeviceFanDirectional
   entities:
+  - uid: 1
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -3.5,1.5
+      parent: 2
   - uid: 53
     components:
     - type: Transform
-      pos: -3.5,1.5
-      parent: 2
-  - uid: 188
-    components:
-    - type: Transform
+      rot: -1.5707963267948966 rad
       pos: -3.5,-0.5
       parent: 2
 - proto: AtmosFixBlockerMarker

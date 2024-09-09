@@ -417,8 +417,6 @@ entities:
       devices:
       - 115
       - 9
-    - type: AtmosDevice
-      joinedGrid: 1
   - uid: 58
     components:
     - type: Transform
@@ -429,8 +427,6 @@ entities:
       - 104
       - 116
       - 162
-    - type: AtmosDevice
-      joinedGrid: 1
 - proto: AirCanister
   entities:
   - uid: 45
@@ -438,8 +434,6 @@ entities:
     - type: Transform
       pos: -0.5,8.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
 - proto: AirlockGlassShuttle
   entities:
   - uid: 30
@@ -467,33 +461,34 @@ entities:
     - type: Transform
       pos: 2.5,2.5
       parent: 1
-- proto: AtmosDeviceFanTiny
+- proto: AtmosDeviceFanDirectional
   entities:
-  - uid: 126
+  - uid: 85
     components:
     - type: Transform
+      rot: 3.141592653589793 rad
       pos: 3.5,2.5
       parent: 1
-  - uid: 127
+  - uid: 106
     components:
     - type: Transform
       pos: 3.5,6.5
       parent: 1
-  - uid: 128
+  - uid: 126
     components:
     - type: Transform
       pos: 0.5,-0.5
       parent: 1
-  - uid: 163
+  - uid: 127
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
+      rot: -1.5707963267948966 rad
       pos: -1.5,8.5
       parent: 1
-  - uid: 265
+  - uid: 128
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
+      rot: -1.5707963267948966 rad
       pos: -0.5,1.5
       parent: 1
 - proto: AtmosFixBlockerMarker
@@ -762,7 +757,7 @@ entities:
     - type: Transform
       pos: -0.5,7.5
       parent: 1
-- proto: BodyBag_Container
+- proto: BodyBag
   entities:
   - uid: 252
     components:
@@ -1266,8 +1261,6 @@ entities:
     - type: Transform
       pos: -2.5,10.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#990000FF'
 - proto: GasPipeBend
@@ -1475,8 +1468,6 @@ entities:
     - type: Transform
       pos: 4.5,10.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
 - proto: GasPressurePump
@@ -1487,8 +1478,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -2.5,9.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 60
@@ -1496,8 +1485,6 @@ entities:
     - type: Transform
       pos: 3.5,8.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
 - proto: GasVentPump
@@ -1511,8 +1498,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 4
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 116
@@ -1526,8 +1511,6 @@ entities:
       - invalid
       deviceLists:
       - 58
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
 - proto: GasVentScrubber
@@ -1541,8 +1524,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 4
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 162
@@ -1556,8 +1537,6 @@ entities:
       - invalid
       deviceLists:
       - 58
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#990000FF'
 - proto: GravityGeneratorMini
@@ -1760,9 +1739,6 @@ entities:
     - type: Transform
       pos: -0.5,10.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 103
 - proto: MachineFrameDestroyed
   entities:
   - uid: 258

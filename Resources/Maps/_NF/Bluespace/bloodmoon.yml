@@ -636,47 +636,53 @@ entities:
     - type: Transform
       pos: 12.5,-1.5
       parent: 1
-- proto: AtmosDeviceFanTiny
+- proto: AtmosDeviceFanDirectional
   entities:
   - uid: 306
     components:
     - type: Transform
-      pos: 0.5,-15.5
+      rot: 3.141592653589793 rad
+      pos: 1.5,-15.5
       parent: 1
   - uid: 395
     components:
     - type: Transform
-      pos: -8.5,1.5
+      rot: 1.5707963267948966 rad
+      pos: -8.5,0.5
       parent: 1
   - uid: 396
     components:
     - type: Transform
-      pos: -8.5,0.5
+      rot: 1.5707963267948966 rad
+      pos: -8.5,1.5
       parent: 1
   - uid: 397
     components:
     - type: Transform
-      pos: 7.5,-9.5
+      rot: -1.5707963267948966 rad
+      pos: 7.5,-10.5
       parent: 1
   - uid: 398
     components:
     - type: Transform
-      pos: 7.5,-10.5
+      rot: -1.5707963267948966 rad
+      pos: 7.5,-9.5
       parent: 1
   - uid: 399
     components:
     - type: Transform
-      pos: 0.5,4.5
+      pos: 1.5,4.5
       parent: 1
   - uid: 400
     components:
     - type: Transform
+      rot: 1.5707963267948966 rad
       pos: -3.5,0.5
       parent: 1
   - uid: 401
     components:
     - type: Transform
-      pos: 3.5,-19.5
+      pos: 5.5,-19.5
       parent: 1
   - uid: 402
     components:
@@ -686,22 +692,18 @@ entities:
   - uid: 403
     components:
     - type: Transform
-      pos: 5.5,-19.5
+      pos: 3.5,-19.5
       parent: 1
   - uid: 404
     components:
     - type: Transform
-      pos: 1.5,-15.5
-      parent: 1
-  - uid: 405
-    components:
-    - type: Transform
-      pos: -3.5,1.5
+      rot: 3.141592653589793 rad
+      pos: 0.5,-15.5
       parent: 1
   - uid: 406
     components:
     - type: Transform
-      pos: 1.5,4.5
+      pos: 0.5,4.5
       parent: 1
   - uid: 408
     components:
@@ -712,6 +714,12 @@ entities:
     components:
     - type: Transform
       pos: 1.5,10.5
+      parent: 1
+  - uid: 470
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -3.5,1.5
       parent: 1
 - proto: AtmosFixBlockerMarker
   entities:
@@ -2003,23 +2011,6 @@ entities:
     components:
     - type: Transform
       pos: 11.5,-10.5
-      parent: 1
-- proto: BloodCultTurret
-  entities:
-  - uid: 470
-    components:
-    - type: Transform
-      pos: 8.5,13.5
-      parent: 1
-  - uid: 472
-    components:
-    - type: Transform
-      pos: 20.5,1.5
-      parent: 1
-  - uid: 1044
-    components:
-    - type: Transform
-      pos: 12.5,-7.5
       parent: 1
 - proto: BookNames
   entities:
@@ -8034,6 +8025,52 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 11.5,-4.5
       parent: 1
+- proto: WarpPointShip
+  entities:
+  - uid: 468
+    components:
+    - type: MetaData
+      name: Blood Moon
+    - type: Transform
+      pos: 4.5,-17.5
+      parent: 1
+- proto: WeaponRackMeleeBase
+  entities:
+  - uid: 1185
+    components:
+    - type: Transform
+      pos: -7.5,8.5
+      parent: 1
+    - type: ContainerContainer
+      containers:
+        storagebase: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        weapon1_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: 1186
+        weapon2_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: 1187
+        weapon3_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: 1190
+        weapon4_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: 1189
+        weapon5_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: 1188
+        weapon6_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
 - proto: WindowCultIndestructibleInvisible
   entities:
   - uid: 1280
@@ -8221,50 +8258,4 @@ entities:
     - type: Transform
       pos: -0.5,5.5
       parent: 1
-- proto: WarpPointShip
-  entities:
-  - uid: 468
-    components:
-    - type: MetaData
-      name: Blood Moon
-    - type: Transform
-      pos: 4.5,-17.5
-      parent: 1
-- proto: WeaponRackMeleeBase
-  entities:
-  - uid: 1185
-    components:
-    - type: Transform
-      pos: -7.5,8.5
-      parent: 1
-    - type: ContainerContainer
-      containers:
-        storagebase: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        weapon1_slot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: 1186
-        weapon2_slot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: 1187
-        weapon3_slot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: 1190
-        weapon4_slot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: 1189
-        weapon5_slot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: 1188
-        weapon6_slot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
 ...

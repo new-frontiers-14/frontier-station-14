@@ -225,7 +225,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -1.5,2.5
       parent: 1
-- proto: AtmosDeviceFanTiny
+- proto: AtmosDeviceFanDirectional
   entities:
   - uid: 7
     components:
@@ -235,6 +235,7 @@ entities:
   - uid: 8
     components:
     - type: Transform
+      rot: 3.141592653589793 rad
       pos: 1.5,-1.5
       parent: 1
 - proto: Bed
@@ -610,16 +611,12 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -1.5,-0.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
   - uid: 68
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 2.5,-0.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
 - proto: GasPipeFourway
   entities:
   - uid: 69
@@ -669,24 +666,18 @@ entities:
     - type: Transform
       pos: 1.5,2.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
   - uid: 77
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 1.5,-2.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
   - uid: 78
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -0.5,-2.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
 - proto: GeneratorWallmountAPU
   entities:
   - uid: 79
@@ -895,36 +886,24 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 3.5,0.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 108
   - uid: 105
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -2.5,-0.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 108
   - uid: 106
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -2.5,0.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 108
   - uid: 107
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 3.5,-0.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 108
 - proto: SignalButton
   entities:
   - uid: 108

@@ -601,27 +601,29 @@ entities:
       rot: 3.141592653589793 rad
       pos: 3.5,5.5
       parent: 1
-- proto: AtmosDeviceFanTiny
+- proto: AtmosDeviceFanDirectional
   entities:
   - uid: 33
     components:
     - type: Transform
+      rot: -1.5707963267948966 rad
       pos: -4.5,4.5
       parent: 1
   - uid: 34
     components:
     - type: Transform
-      pos: 1.5,-8.5
+      pos: -0.5,-8.5
       parent: 1
   - uid: 35
     components:
     - type: Transform
+      rot: 1.5707963267948966 rad
       pos: 5.5,4.5
       parent: 1
   - uid: 36
     components:
     - type: Transform
-      pos: -0.5,-8.5
+      pos: 1.5,-8.5
       parent: 1
 - proto: AtmosFixBlockerMarker
   entities:
@@ -831,18 +833,12 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 0.5,-7.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 398
   - uid: 62
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 1.5,-7.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 398
   - uid: 63
     components:
     - type: Transform
@@ -851,8 +847,6 @@ entities:
       parent: 1
     - type: DeviceLinkSink
       invokeCounter: 1
-      links:
-      - 399
   - uid: 64
     components:
     - type: Transform
@@ -861,8 +855,6 @@ entities:
       parent: 1
     - type: DeviceLinkSink
       invokeCounter: 1
-      links:
-      - 399
   - uid: 65
     components:
     - type: Transform
@@ -871,17 +863,12 @@ entities:
       parent: 1
     - type: DeviceLinkSink
       invokeCounter: 1
-      links:
-      - 399
   - uid: 66
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -0.5,-7.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 398
   - uid: 67
     components:
     - type: Transform
@@ -890,8 +877,6 @@ entities:
       parent: 1
     - type: DeviceLinkSink
       invokeCounter: 1
-      links:
-      - 399
   - uid: 68
     components:
     - type: Transform
@@ -900,8 +885,6 @@ entities:
       parent: 1
     - type: DeviceLinkSink
       invokeCounter: 1
-      links:
-      - 399
   - uid: 69
     components:
     - type: Transform
@@ -910,8 +893,6 @@ entities:
       parent: 1
     - type: DeviceLinkSink
       invokeCounter: 1
-      links:
-      - 399
   - uid: 70
     components:
     - type: Transform
@@ -920,8 +901,6 @@ entities:
       parent: 1
     - type: DeviceLinkSink
       invokeCounter: 1
-      links:
-      - 399
 - proto: CableApcExtension
   entities:
   - uid: 71
@@ -1755,17 +1734,11 @@ entities:
     - type: Transform
       pos: 0.5,-3.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 447
   - uid: 225
     components:
     - type: Transform
       pos: 2.5,-3.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 447
 - proto: DefibrillatorCabinetFilled
   entities:
   - uid: 619
@@ -3191,8 +3164,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 5.5,-0.5
       parent: 1
-    - type: Physics
-      canCollide: False
 - proto: SurveillanceCameraRouterSecurity
   entities:
   - uid: 417
