@@ -1,21 +1,27 @@
-﻿# sprite: _NF/Objects/Weapons/Guns/Bow/crossbow.rsi
-# ammo tag: CrossbowBolt
-# Parents
+﻿# Base
 - type: entity
   id: BaseCrossbow
+  parent: BaseItem
   name: crossbow
-  parent: [ BaseItem, BaseC1Contraband ]
   description: The original rooty tooty point and shooty.
   abstract: true
   components:
   - type: Sprite
-    sprite: _NF/Objects/Weapons/Guns/Bow/crossbow.rsi
+    sprite: _NF/Objects/Weapons/Guns/Crossbow/crossbow.rsi
+    layers:
+    - state: icon
+    - state: icon-string
+      map: [ string ]
+    - state: icon-bolt
+      map: [ bolt ]
+      visible: false
   - type: Item
     size: Large
   - type: Clothing
     quickEquip: false
     slots:
     - Back
+    - suitStorage
   - type: GunWieldBonus
     minAngle: -33
     maxAngle: -33
@@ -49,19 +55,6 @@
       bolt: !type:ContainerSlot
   - type: ContainerAmmoProvider
     container: bolt
-
-- type: entity
-  id: CrossbowImprovised
-  parent: BaseCrossbow
-  name: impovised crossbow
-  components:
-  - type: Sprite
-    layers:
-    - state: unwielded
-      map: [ base ]
-    - state: unwielded-bolt
-      map: [ bolt ]
-      visible: false
   # to elucidate whats intended here:
   # arrow is inserted -> ItemMapper sets layer with map `arrow` to visible
   # bow is wielded -> generic vis sets states of layers with map `arrow` and `base`
@@ -79,11 +72,35 @@
     visuals:
       enum.WieldableVisuals.Wielded:
         bolt:
-          True: { state: wielded-bolt }
-          False: { state: unwielded-bolt }
-        base:
-          True: { state: wielded }
-          False: { state: unwielded }
+          True: { state: icon-bolt-drawn }
+          False: { state: icon-bolt }
+        string:
+          True: { state: icon-string-drawn }
+          False: { state: icon-string }
+
+# Variations
+- type: entity
+  id: CrossbowModern
+  parent: [ BaseCrossbow, BaseC1Contraband ]
+  components:
+  - type: UseDelay
+    delay: 0.5
+
+- type: entity
+  id: CrossbowImprovised
+  parent: [ BaseCrossbow, BaseC1Contraband ]
+  name: impovised crossbow
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Crossbow/improvised.rsi
   - type: Construction
     graph: ImprovisedCrossbow
     node: ImprovisedCrossbow
+
+- type: entity
+  id: CrossbowBloodCult
+  parent: [ BaseCrossbow, BaseC3CultContraband ]
+  name: blood cult crossbow
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Crossbow/cult.rsi

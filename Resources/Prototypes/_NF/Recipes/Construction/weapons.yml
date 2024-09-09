@@ -6,7 +6,7 @@
   targetNode: ImprovisedCrossbow
   category: construction-category-weapons
   description: A shoddily constructed crossbow made out of wood and cloth. It's not much, but it's gotten the job done for millennia.
-  icon: { sprite: _NF/Objects/Weapons/Guns/Bow/crossbow.rsi, state: unwielded }
+  icon: { sprite: _NF/Objects/Weapons/Guns/Crossbow/improvised.rsi, state: icon }
   objectType: Item
 
 - type: construction
@@ -16,8 +16,8 @@
   startNode: start
   targetNode: CraftCrossbowBoltGlassShard
   category: construction-category-weapons
-  description: An arrow tipped with pieces of a glass shard, for use with a crossbow.
-  icon: { sprite: _NF/Objects/Weapons/Guns/Bow/crossbow.rsi, state: wielded-bolt }
+  description: A bolt tipped with pieces of a glass shard, for use with a crossbow.
+  icon: { sprite: _NF/Objects/Weapons/Guns/Crossbow/improvised.rsi, state: icon-bolt }
   objectType: Item
 
 - type: construction
@@ -27,8 +27,8 @@
   startNode: start
   targetNode: CraftCrossbowBoltPlasmaGlassShard
   category: construction-category-weapons
-  description: An arrow tipped with pieces of a plasma glass shard, for use with a crossbow.
-  icon: { sprite: _NF/Objects/Weapons/Guns/Bow/crossbow.rsi, state: wielded-bolt }
+  description: A bolt tipped with pieces of a plasma glass shard, for use with a crossbow.
+  icon: { sprite: _NF/Objects/Weapons/Guns/Crossbow/improvised.rsi, state: icon-bolt }
   objectType: Item
 
 - type: construction
@@ -38,8 +38,19 @@
   startNode: start
   targetNode: CraftCrossbowBoltUraniumGlassShard
   category: construction-category-weapons
-  description: An arrow tipped with pieces of a uranium glass shard, for use with a crossbow.
-  icon: { sprite: _NF/Objects/Weapons/Guns/Bow/crossbow.rsi, state: wielded-bolt }
+  description: A bolt tipped with pieces of a uranium glass shard, for use with a crossbow.
+  icon: { sprite: _NF/Objects/Weapons/Guns/Crossbow/improvised.rsi, state: icon-bolt }
+  objectType: Item
+
+- type: construction
+  name: syringe-bolt
+  id: CraftCrossbowBoltSyringe
+  graph: CraftCrossbowBoltSyringe
+  startNode: start
+  targetNode: CraftCrossbowBoltSyringe
+  category: construction-category-weapons
+  description: A bolt with a syringe for the tip, for use with a crossbow.
+  icon: { sprite: _NF/Objects/Weapons/Guns/Crossbow/improvised.rsi, state: icon-bolt }
   objectType: Item
 
 - type: construction

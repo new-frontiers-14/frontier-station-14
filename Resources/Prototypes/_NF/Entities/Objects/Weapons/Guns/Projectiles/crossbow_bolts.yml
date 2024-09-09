@@ -34,6 +34,41 @@
       types:
         Piercing: 35
 
+- type: entity
+  parent: BaseCrossbowBolt
+  id: CrossbowBoltSponge
+  name: sponge tip bolt
+  description: A sponge-like structure of the bolt tip allows it to hold more liquid at the expense of structural integrity.
+  components:
+  - type: Sprite
+    layers:
+    - state: tail
+      color: "purple"
+    - state: rod
+      color: "#00303d"
+    - state: tip
+      color: "darkgray"
+    - state: solution1
+      map: ["enum.SolutionContainerLayers.Fill"]
+      visible: false
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 20
+  - type: SolutionContainerManager
+    solutions:
+      ammo:
+        maxVol: 5
+  - type: RefillableSolution
+    solution: ammo
+  - type: InjectableSolution
+    solution: ammo
+  - type: SolutionInjectOnEmbed
+    transferAmount: 5
+    solution: ammo
+  - type: SolutionTransfer
+    maxTransferAmount: 5
+
 # Craftable variations
 - type: entity
   parent: CrossbowBolt
@@ -110,6 +145,31 @@
   - type: Construction
     graph: CraftCrossbowBoltUraniumGlassShard
     node: CraftCrossbowBoltUraniumGlassShard
+
+- type: entity
+  parent: CrossbowBoltSponge
+  id: CrossbowBoltSyringe
+  name: syringe-bolt
+  description: A bolt with a syringe for a tip. Very inefficient.
+  components:
+  - type: Sprite
+    layers:
+    - state: tail
+      color: darkgreen
+    - state: rod
+      color: darkgray
+    - state: tip
+      color: darkgray
+    - state: solution1
+      map: ["enum.SolutionContainerLayers.Fill"]
+      visible: false
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 10
+  - type: Construction
+    graph: CraftCrossbowBoltSyringe
+    node: CraftCrossbowBoltSyringe
 
 - type: entity
   parent:

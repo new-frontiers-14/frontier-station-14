@@ -69,3 +69,27 @@
 
   - node: CraftCrossbowBoltUraniumGlassShard
     entity: CrossbowBoltUraniumGlassShard
+
+- type: constructionGraph
+  id: CraftCrossbowBoltSyringe
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: CraftCrossbowBoltSyringe
+      steps:
+      - material: MetalRod
+        amount: 1
+        doAfter: 0.5
+      - material: Cloth
+        amount: 1
+        doAfter: 0.5
+      - tag: Syringe
+        name: Syringe
+        icon:
+          sprite: Objects/Specific/Chemistry/syringe.rsi
+          state: syringe_base0
+        doAfter: 0.5
+
+  - node: CraftCrossbowBoltSyringe
+    entity: CrossbowBoltSyringe
