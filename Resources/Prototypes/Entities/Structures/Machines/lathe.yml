@@ -117,6 +117,8 @@
   - type: Lathe
     idleState: icon
     runningState: building
+    unlitIdleState: unlit
+    unlitRunningState: unlit-building
     staticRecipes:
       - Wirecutter
       - Igniter
@@ -124,7 +126,7 @@
       - Screwdriver
       - Welder
       - Wrench
-      - Crowbar
+      - CrowbarGreen
       - Multitool
       - NetworkConfigurator
       - SprayPainter
@@ -279,6 +281,8 @@
   - type: Lathe
     idleState: icon
     runningState: building
+    unlitIdleState: unlit
+    unlitRunningState: unlit-building
     staticRecipes:
     - LargeBeaker
     - Dropper
@@ -286,6 +290,7 @@
     dynamicRecipes:
       - PowerDrill
       - MiningDrill
+      - MiningDrillDiamond
       - AnomalyScanner
       - AnomalyLocator
       - AnomalyLocatorWide
@@ -361,9 +366,10 @@
       - FauxTileAstroIce
       - FauxTileAstroSnow
       - OreBagOfHolding
+      - PlantBagOfHolding #DeltaV
       - DeviceQuantumSpinInverter
       - UtilityBeltChiefEngineer
-      - JetpackVoid
+      - JetpackVoid # Frontier
       - ClothingShoesBootsMagAdv # Frontier
       - ClothingOuterHardsuitBasic # Frontier
       - ClothingOuterHardsuitAtmos # Frontier
@@ -482,7 +488,7 @@
     - BoozeDispenserMachineCircuitboard
     - SodaDispenserMachineCircuitboard
     - SpaceHeaterMachineCircuitBoard
-    - TilePrinterNFMachineCircuitboard # Frontier
+    - CutterMachineCircuitboard
     - SalvageTechFabCircuitboardNF # Frontier
     dynamicRecipes:
       - ThermomachineFreezerMachineCircuitBoard
@@ -600,7 +606,7 @@
   id: ExosuitFabricator
   parent: BaseLatheLube
   name: exosuit fabricator
-  description: Creates parts for robotics and other mechanical needs
+  description: Creates parts for robotics and other mechanical needs.
   components:
   - type: Sprite
     sprite: Structures/Machines/exosuit_fabricator.rsi
@@ -714,7 +720,7 @@
 - type: entity
   id: Biofabricator
   parent: BaseLathe
-  name: biofabricator
+  name: biocube fabricator
   description: Produces animal cubes using biomass.
   components:
   - type: Sprite
@@ -723,16 +729,20 @@
     layers:
     - state: icon
       map: ["enum.LatheVisualLayers.IsRunning"]
+      color: "#ffaa99"
     - state: unlit
       shader: unshaded
       map: ["enum.PowerDeviceVisualLayers.Powered"]
+      color: "#ffaaaa"
     - state: inserting
       map: ["enum.MaterialStorageVisualLayers.Inserting"]
+      color: "#ffaaaa"
     - state: panel
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: Machine
     board: BiofabricatorMachineCircuitboard
   - type: MaterialStorage
+    ignoreColor: true
     whitelist:
       tags:
         - Sheet
@@ -883,6 +893,7 @@
       - WeaponLaserCannon
       - WeaponLaserCarbine
       - WeaponXrayCannon
+      - ClothingBackpackElectropack
   - type: MaterialStorage
     whitelist:
       tags:
@@ -1010,6 +1021,9 @@
       - ClothingOuterEVASuitMedic # Frontier
       - ClothingOuterSuitEmergency # Frontier
       - ClothingOuterHardsuitVoidParamed # Frontier
+      - BaseChemistryEmptyVial # Frontier
+      - PowerCellSmall # Frontier
+
     dynamicRecipes:
       - ChemicalPayload
       - CryostasisBeaker
@@ -1019,7 +1033,7 @@
       - SyringeCryostasis
       - ClothingOuterHardsuitMedical # Frontier
       - OintmentAdvancedNF # Frontier
-      - BrutepackAdvancedNF # Frontier
+      - BrutepackAdvancedNF # Frontier      
   - type: Machine
     board: MedicalTechFabCircuitboard
   - type: StealTarget
@@ -1085,18 +1099,18 @@
       - ClothingHeadHatHopcap
       - ClothingUniformJumpsuitHoP
       - ClothingUniformJumpskirtHoP
-      - ClothingHeadHatBeretHoS
-      - ClothingHeadHatHoshat
-      - ClothingUniformJumpsuitHoS
-      - ClothingUniformJumpskirtHoS
-      - ClothingUniformJumpsuitHosFormal
-      - ClothingUniformJumpskirtHosFormal
-      - ClothingUniformJumpsuitHoSAlt
-      - ClothingUniformJumpskirtHoSAlt
-      - ClothingUniformJumpsuitHoSBlue
-      - ClothingUniformJumpsuitHoSGrey
-      - ClothingUniformJumpsuitHoSParadeMale
-      - ClothingUniformJumpskirtHoSParadeMale
+#      - ClothingHeadHatBeretHoS # Frontier
+#      - ClothingHeadHatHoshat # Frontier
+#      - ClothingUniformJumpsuitHoS # Frontier
+#      - ClothingUniformJumpskirtHoS # Frontier
+#      - ClothingUniformJumpsuitHosFormal # Frontier
+#      - ClothingUniformJumpskirtHosFormal # Frontier
+#      - ClothingUniformJumpsuitHoSAlt # Frontier
+#      - ClothingUniformJumpskirtHoSAlt # Frontier
+#      - ClothingUniformJumpsuitHoSBlue # Frontier
+#      - ClothingUniformJumpsuitHoSGrey # Frontier
+#      - ClothingUniformJumpsuitHoSParadeMale # Frontier
+#      - ClothingUniformJumpskirtHoSParadeMale # Frontier
       - ClothingUniformJumpsuitHydroponics
       - ClothingUniformJumpskirtHydroponics
       - ClothingUniformJumpsuitJanitor
@@ -1134,34 +1148,27 @@
       - ClothingUniformJumpskirtScientist
       - ClothingUniformJumpsuitSeniorResearcher
       - ClothingUniformJumpskirtSeniorResearcher
-      - ClothingHeadHatBeretSecurity
-      - ClothingUniformJumpsuitSec
-      - ClothingUniformJumpskirtSec
-      - ClothingHeadHatBeretBrigmedic
-      - ClothingUniformJumpsuitBrigmedic
-      - ClothingUniformJumpskirtBrigmedic
-      - ClothingHeadHatBeretWarden
-      - ClothingHeadHatWarden
-      - ClothingUniformJumpsuitWarden
-      - ClothingUniformJumpskirtWarden
-      - ClothingUniformJumpsuitPrivateSec #Frontier
-      - ClothingUniformJumpskirtPrivateSec #Frontier
+#      - ClothingHeadHatBeretSecurity # Frontier
+#      - ClothingUniformJumpsuitSec # Frontier
+#      - ClothingUniformJumpskirtSec # Frontier
+#      - ClothingHeadHatBeretBrigmedic # Frontier
+#      - ClothingUniformJumpsuitBrigmedic # Frontier
+#      - ClothingUniformJumpskirtBrigmedic # Frontier
+#      - ClothingHeadHatBeretWarden # Frontier
+#      - ClothingHeadHatWarden # Frontier
+#      - ClothingUniformJumpsuitWarden # Frontier
+#      - ClothingUniformJumpskirtWarden # Frontier
+      - ClothingUniformJumpsuitPrivateSec # Frontier
+      - ClothingUniformJumpskirtPrivateSec # Frontier
       # Winter outfits
       - ClothingOuterWinterCap
       - ClothingOuterWinterCE
       - ClothingOuterWinterCMO
       - ClothingOuterWinterHoP
-      - ClothingOuterWinterHoSUnarmored
-      - ClothingOuterWinterWardenUnarmored
+#      - ClothingOuterWinterHoSUnarmored # Frontier
+#      - ClothingOuterWinterWardenUnarmored # Frontier
       - ClothingOuterWinterQM
       - ClothingOuterWinterRD
-      - ClothingNeckMantleCap
-      - ClothingNeckMantleCE
-      - ClothingNeckMantleCMO
-      - ClothingNeckMantleHOP
-      - ClothingNeckMantleHOS
-      - ClothingNeckMantleRD
-      - ClothingNeckMantleQM
       - ClothingOuterWinterMusician
       - ClothingOuterWinterClown
       - ClothingOuterWinterMime
@@ -1181,7 +1188,7 @@
       - ClothingOuterWinterViro
       - ClothingOuterWinterSci
       - ClothingOuterWinterRobo
-      - ClothingOuterWinterSec
+#      - ClothingOuterWinterSec # Frontier
       - ClothingOuterWinterCoatMail
       # Ties
       - ClothingNeckTieRed
@@ -1204,8 +1211,15 @@
       - CarpetGreen
       - CarpetOrange
       - CarpetPurple
+      - FloorCarpetItemSkyBlue # Frontier
       - CarpetCyan
       - CarpetWhite
+      - FloorTileItemCarpetClown # Frontier
+      - FloorTileItemCarpetOffice # Frontier
+      - FloorTileItemEighties # Frontier
+      - FloorTileItemArcadeBlue # Frontier
+      - FloorTileItemArcadeBlue2 # Frontier
+      - FloorTileItemArcadeRed # Frontier
 #  - type: EmagLatheRecipes # Frontier
 #    emagStaticRecipes: # Frontier
 #      - ClothingHeadHatCentcomcap # Frontier
@@ -1265,18 +1279,21 @@
     - type: Lathe
       idleState: icon
       runningState: building
+      defaultProductionAmount: 10
       staticRecipes:
-        - SheetSteel30
-        - SheetGlass30
-        - SheetRGlass30
-        - SheetPlasma30
-        - SheetPlasteel30
-        - SheetPGlass30
-        - SheetRPGlass30
-        - SheetUranium30
-        - IngotGold30
-        - IngotSilver30
-        - MaterialBananium10
+        - SheetSteel
+        - SheetGlass1
+        - SheetRGlass
+        - SheetPlasma1
+        - SheetPGlass1
+        - SheetRPGlass1
+        - SheetPlasteel1 # Frontier
+        - SheetUranium1
+        - IngotGold1
+        - IngotSilver1
+        - MaterialBananium1
+        - MaterialDiamond
+        - BluespaceCrystal #Nyano - Summary: Bluespace Crystals can be created here.
 
 - type: entity
   parent: OreProcessor
@@ -1292,19 +1309,21 @@
     materialUseMultiplier: 0.75
     timeMultiplier: 0.5
     staticRecipes:
-      - SheetSteel30
-      - SheetGlass30
-      - SheetRGlass30
-      - SheetPlasma30
-      - SheetPGlass30
-      - SheetRPGlass30
-      - SheetPlasteel30
-      - SheetUranium30
-      - SheetUGlass30
-      - SheetRUGlass30
-      - IngotGold30
-      - IngotSilver30
-      - MaterialBananium10
+      - SheetSteel
+      - SheetGlass1
+      - SheetRGlass
+      - SheetPlasma1
+      - SheetPGlass1
+      - SheetRPGlass1
+      - SheetPlasteel1
+      - SheetUranium1
+      - SheetUGlass1
+      - SheetRUGlass1
+      - IngotGold1
+      - IngotSilver1
+      - MaterialBananium1
+      - MaterialDiamond
+      - BluespaceCrystal #Nyano - Summary: Bluespace Crystals can be created here.
 
 - type: entity
   parent: BaseLathe
@@ -1325,7 +1344,7 @@
   - type: MaterialStorage
     dropOnDeconstruct: false #should drop ores instead of ingots/sheets
     ignoreColor: true
-    canEjectStoredMaterials: false
+    canEjectStoredMaterials: true # Frontier: false<true
     whitelist:
       tags:
       - Raw
@@ -1336,3 +1355,113 @@
     staticRecipes:
     - MaterialSheetMeat
     - SheetPaper
+
+- type: entity
+  parent: BaseLathe
+  id: CutterMachine
+  name: cutter machine
+  description: This is a cutter. It cuts. Add variety to your station floor with eye-pleasing patterns! Don't stick your fingers in.
+  components:
+  - type: Transform
+    noRot: false
+  - type: Sprite
+    sprite: Structures/Machines/cuttermachine.rsi
+    snapCardinals: true
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: CutterMachineCircuitboard
+  - type: Lathe
+    producingSound: /Audio/Machines/cutter.ogg
+    idleState: icon
+    runningState: building
+    staticRecipes:
+      - FloorTileItemDark
+      - FloorTileItemDarkDiagonalMini
+      - FloorTileItemDarkDiagonal
+      - FloorTileItemDarkHerringbone
+      - FloorTileItemDarkMini
+      - FloorTileItemDarkMono
+      - FloorTileItemDarkPavement
+      - FloorTileItemDarkPavementVertical
+      - FloorTileItemDarkOffset
+      - FloorTileItemSteelCheckerDark
+      - FloorTileItemSteel
+      - FloorTileItemSteelOffset
+      - FloorTileItemSteelDiagonalMini
+      - FloorTileItemSteelDiagonal
+      - FloorTileItemSteelHerringbone
+      - FloorTileItemSteelMini
+      - FloorTileItemSteelMono
+      - FloorTileItemSteelPavement
+      - FloorTileItemSteelPavementVertical
+      - FloorTileItemWhite
+      - FloorTileItemWhiteOffset
+      - FloorTileItemWhiteDiagonalMini
+      - FloorTileItemWhiteDiagonal
+      - FloorTileItemWhiteHerringbone
+      - FloorTileItemWhiteMini
+      - FloorTileItemWhiteMono
+      - FloorTileItemWhitePavement
+      - FloorTileItemWhitePavementVertical
+      - FloorTileItemSteelCheckerLight
+      - FloorTileItemGratingMaint
+      - FloorTileItemTechmaint
+      - FloorTileItemSteelMaint
+      - FloorTileItemWood
+      - FloorTileItemWoodLarge
+      - FloorTileItemWoodPattern
+      - FloorTileItemConcrete
+      - FloorTileItemConcreteMono
+      - FloorTileItemConcreteSmooth
+      - FloorTileItemGrayConcrete
+      - FloorTileItemGrayConcreteMono
+      - FloorTileItemGrayConcreteSmooth
+      - FloorTileItemOldConcrete
+      - FloorTileItemOldConcreteMono
+      - FloorTileItemOldConcreteSmooth
+      - FloorTileItemMetalDiamond # Frontier
+      - FloorTileItemFreezer # Frontier
+      - FloorTileItemShowroom # Frontier
+      - FloorTileItemGCircuit # Frontier
+      - FloorTileItemBCircuit # Frontier
+      - FloorTileItemGold # Frontier
+      - FloorTileItemSilver # Frontier
+      - FloorTileItemMono # Frontier
+      - FloorTileItemLino # Frontier
+      - FloorTileItemHydro # Frontier
+      - FloorTileItemLime # Frontier
+      - FloorTileItemShuttleWhite # Frontier
+      - FloorTileItemShuttlePurple # Frontier
+      - FloorTileItemBoxing # Frontier
+      - FloorTileItemGym # Frontier
+      - FloorTileItemBlue # Frontier
+      - FloorTileItemMining # Frontier
+      - FloorTileItemMiningDark # Frontier
+      - FloorTileItemMiningLight # Frontier
+      - FloorTileItemBar # Frontier
+      - FloorTileItemClown # Frontier
+      - FloorTileItemMime # Frontier
+      - FloorTileItemKitchen # Frontier
+      - FloorTileItemLaundry # Frontier
+      - SheetPaper # Frontier
+    dynamicRecipes:
+    - FauxTileAstroGrass # Frontier
+    - FauxTileAstroIce # Frontier
+  - type: EmagLatheRecipes # Frontier
+    emagStaticRecipes: # Frontier
+    - FloorTileItemFlesh # Frontier
+  - type: MaterialStorage
+    whitelist:
+      tags:
+        - Sheet
+        - Metal
+        - Wooden
+        - RawMaterial
+        - Plastic

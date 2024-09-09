@@ -3,6 +3,7 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Collision.Shapes;
 using Robust.Shared.Physics.Systems;
+using Content.Shared._NF.SizeAttribute;
 using Content.Shared.Item.PseudoItem;
 
 namespace Content.Server.SizeAttribute
@@ -21,18 +22,15 @@ namespace Content.Server.SizeAttribute
 
         private void OnComponentInit(EntityUid uid, SizeAttributeComponent component, ComponentInit args)
         {
-            if (!TryComp<SizeAttributeWhitelistComponent>(uid, out var whitelist))
-                return;
-
-            if (whitelist.Tall && component.Tall)
+            if (component.Tall && TryComp<TallWhitelistComponent>(uid, out var tall))
             {
-                Scale(uid, component, whitelist.TallScale, whitelist.TallDensity, whitelist.TallCosmeticOnly);
-                PseudoItem(uid, component, whitelist.TallPseudoItem);
+                Scale(uid, component, tall.Scale, tall.Density, tall.CosmeticOnly);
+                PseudoItem(uid, component, tall.PseudoItem);
             }
-            else if (whitelist.Short && component.Short)
+            else if (component.Short && TryComp<ShortWhitelistComponent>(uid, out var smol))
             {
-                Scale(uid, component, whitelist.ShortScale, whitelist.ShortDensity, whitelist.ShortCosmeticOnly);
-                PseudoItem(uid, component, whitelist.ShortPseudoItem);
+                Scale(uid, component, smol.Scale, smol.Density, smol.CosmeticOnly);
+                PseudoItem(uid, component, smol.PseudoItem);
             }
         }
 

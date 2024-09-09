@@ -1,5 +1,5 @@
 - type: entity
-  id: MobPetNF
+  id: NFMobPet
   abstract: true
   components:
   - type: GhostRole
@@ -7,7 +7,7 @@
 
 - type: entity
   name: Clippy
-  parent: [MobPetNF, MobCatGhost]
+  parent: [NFMobPet, MobCatGhost]
   id: MobCatClippy
   description: It looks like you’re writing a letter, would you like help?
   components:
@@ -43,7 +43,7 @@
 
 - type: entity
   name: Clarpy
-  parent: [MobPetNF, MobCatGhost]
+  parent: [NFMobPet, MobCatGhost]
   id: MobCatClarpy
   description: First cat to gain a bounty.
   components:
@@ -88,7 +88,7 @@
 
 - type: entity
   name: Cappy
-  parent: [MobPetNF, MobCatGhost, ShowSecurityIcons]
+  parent: [NFMobPet, MobCatGhost, ShowSecurityIcons]
   id: MobCatCappy
   description: First cat to shoot a gun.
   components:
@@ -125,10 +125,6 @@
   - type: ActiveRadio
     channels:
     - Nfsd
-  - type: Inventory
-    templateId: nfsdpet
-  - type: CombatMode
-    combatToggleAction: ActionCombatModeToggle
   - type: MeleeWeapon
     damage:
       types:

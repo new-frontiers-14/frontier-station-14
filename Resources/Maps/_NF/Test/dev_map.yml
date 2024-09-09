@@ -390,7 +390,7 @@ entities:
         chunkSize: 4
     - type: GasTileOverlay
     - type: BecomesStation
-      id: DevNF
+      id: NFDev
     - type: StationTransit
     - type: SpreaderGrid
     - type: GridPathfinding
@@ -398,7 +398,7 @@ entities:
   - uid: 962
     components:
     - type: MetaData
-      name: DevNF
+      name: NFDev
     - type: Transform
     - type: Map
       mapPaused: True
@@ -829,29 +829,47 @@ entities:
     - type: Transform
       pos: -7.5,5.5
       parent: 179
-- proto: AtmosDeviceFanTiny
+- proto: AtmosDeviceFanDirectional
   entities:
-  - uid: 992
+  - uid: 135
     components:
     - type: Transform
       pos: -1.5,-16.5
       parent: 179
-  - uid: 993
+  - uid: 142
     components:
     - type: Transform
       pos: 0.5,-16.5
       parent: 179
-  - uid: 1407
+  - uid: 509
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
+      rot: 1.5707963267948966 rad
+      pos: 13.5,-16.5
+      parent: 179
+  - uid: 901
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
       pos: 13.5,-15.5
       parent: 179
-  - uid: 1408
+  - uid: 992
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 13.5,-16.5
+      rot: 3.141592653589793 rad
+      pos: -10.5,7.5
+      parent: 179
+  - uid: 993
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -8.5,7.5
+      parent: 179
+  - uid: 1348
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -9.5,7.5
       parent: 179
 - proto: Autolathe
   entities:
@@ -2627,6 +2645,11 @@ entities:
     - type: Transform
       pos: -15.5,9.5
       parent: 179
+  - uid: 1415
+    components:
+    - type: Transform
+      pos: -5.5,-6.5
+      parent: 179
   - uid: 1416
     components:
     - type: Transform
@@ -2696,6 +2719,11 @@ entities:
     components:
     - type: Transform
       pos: 10.5,7.5
+      parent: 179
+  - uid: 1475
+    components:
+    - type: Transform
+      pos: -5.5,-5.5
       parent: 179
 - proto: CableApcStack
   entities:
@@ -3339,29 +3367,6 @@ entities:
       parent: 179
 - proto: ClosetToolFilled
   entities:
-  - uid: 135
-    components:
-    - type: Transform
-      pos: -11.5,-4.5
-      parent: 179
-    - type: EntityStorage
-      air:
-        volume: 200
-        immutable: False
-        temperature: 293.14923
-        moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
   - uid: 526
     components:
     - type: Transform
@@ -3817,6 +3822,21 @@ entities:
           ents: []
 - proto: ComputerShipyardSr
   entities:
+  - uid: 382
+    components:
+    - type: Transform
+      pos: 2.5,-11.5
+      parent: 179
+    - type: ContainerContainer
+      containers:
+        ShipyardConsole-targetId: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
   - uid: 492
     components:
     - type: Transform
@@ -4073,10 +4093,10 @@ entities:
         - 0
 - proto: CrateFoodMcCargo
   entities:
-  - uid: 1415
+  - uid: 1476
     components:
     - type: Transform
-      pos: 12.5,9.5
+      pos: 12.5,6.5
       parent: 179
 - proto: CrateHydroponicsSeeds
   entities:
@@ -4203,6 +4223,14 @@ entities:
     components:
     - type: Transform
       pos: -0.10945782,4.5001388
+      parent: 179
+- proto: CutterMachine
+  entities:
+  - uid: 902
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -11.5,-4.5
       parent: 179
 - proto: CyberPen
   entities:
@@ -4893,29 +4921,6 @@ entities:
     - type: Transform
       pos: -0.982072,-3.4785347
       parent: 179
-- proto: HoloFan
-  entities:
-  - uid: 142
-    components:
-    - type: Transform
-      pos: -8.5,7.5
-      parent: 179
-    missingComponents:
-    - TimedDespawn
-  - uid: 901
-    components:
-    - type: Transform
-      pos: -10.5,7.5
-      parent: 179
-    missingComponents:
-    - TimedDespawn
-  - uid: 902
-    components:
-    - type: Transform
-      pos: -9.5,7.5
-      parent: 179
-    missingComponents:
-    - TimedDespawn
 - proto: HolosignWetFloor
   entities:
   - uid: 848
@@ -5440,23 +5445,6 @@ entities:
     - type: Transform
       pos: -9.436268,16.427261
       parent: 179
-- proto: MailCarrierMothershipComputer
-  entities:
-  - uid: 382
-    components:
-    - type: Transform
-      pos: 2.5,-11.5
-      parent: 179
-    - type: ContainerContainer
-      containers:
-        ShipyardConsole-targetId: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
 - proto: MailingUnit
   entities:
   - uid: 1217
@@ -5470,13 +5458,6 @@ entities:
     components:
     - type: Transform
       pos: 4.5,3.5
-      parent: 179
-- proto: MaterialReclaimer
-  entities:
-  - uid: 1348
-    components:
-    - type: Transform
-      pos: 21.5,10.5
       parent: 179
 - proto: MatterBinStockPart
   entities:
@@ -5565,6 +5546,13 @@ entities:
     - type: Transform
       pos: 3.8440318,4.425983
       parent: 179
+- proto: MercenaryTechFab
+  entities:
+  - uid: 1408
+    components:
+    - type: Transform
+      pos: -16.5,-5.5
+      parent: 179
 - proto: MicroManipulatorStockPart
   entities:
   - uid: 712
@@ -5631,7 +5619,7 @@ entities:
     - type: Transform
       pos: -6.3051395,8.791253
       parent: 179
-- proto: NfsdBailiffShipVoucher
+- proto: ShipVoucherNfsdBailiff
   entities:
   - uid: 1291
     components:
@@ -5639,7 +5627,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -3.7517176,-10.459884
       parent: 179
-- proto: NfsdSergeantShipVoucher
+- proto: ShipVoucherNfsdSergeant
   entities:
   - uid: 1290
     components:
@@ -5746,7 +5734,7 @@ entities:
   - uid: 1414
     components:
     - type: Transform
-      pos: 11.4939995,9.553691
+      pos: 12.506745,9.554711
       parent: 179
 - proto: PicoManipulatorStockPart
   entities:
@@ -6286,6 +6274,14 @@ entities:
     components:
     - type: Transform
       pos: -1.2657079,4.7397223
+      parent: 179
+- proto: Recycler
+  entities:
+  - uid: 1407
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 21.5,10.5
       parent: 179
 - proto: ReinforcedWindow
   entities:
@@ -7461,13 +7457,6 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 9.5,-16.5
-      parent: 179
-- proto: TilePrinterNF
-  entities:
-  - uid: 509
-    components:
-    - type: Transform
-      pos: -16.5,-5.5
       parent: 179
 - proto: TimerTrigger
   entities:
