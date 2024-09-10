@@ -13,11 +13,20 @@
     sprite: _NF/Objects/Weapons/Guns/Crossbow/crossbow.rsi
     layers:
     - state: icon
+      map: [ base ]
     - state: icon-string
       map: [ string ]
     - sprite: _NF/Objects/Weapons/Guns/Projectiles/crossbow_bolts.rsi
       state: icon-bolt
       map: [ bolt ]
+      visible: false
+    - sprite: _NF/Objects/Weapons/Guns/Projectiles/crossbow_bolts.rsi
+      state: icon-bolt-plunger
+      map: [ plunger ]
+      visible: false
+    - sprite: _NF/Objects/Weapons/Guns/Projectiles/crossbow_bolts.rsi
+      state: icon-bolt-baguette
+      map: [ bread ]
       visible: false
   - type: Item
     size: Normal
@@ -41,31 +50,39 @@
     soundEmpty: null
   - type: ItemSlots
     slots:
-      bolt:
-        name: bolt
+      projectiles:
+        name: Projectiles
         startingItem: null
-        insertSound: /Audio/Items/bow_pull.ogg
+        insertSound: /Audio/Weapons/Guns/Misc/arrow_nock.ogg
         whitelist:
           tags:
           - CrossbowBolt
+          - Plunger
+          - Bread
   - type: ContainerContainer
     containers:
-      bolt: !type:ContainerSlot
+      projectiles: !type:ContainerSlot
   - type: ContainerAmmoProvider
-    container: bolt
-  # to elucidate whats intended here:
-  # arrow is inserted -> ItemMapper sets layer with map `arrow` to visible
-  # bow is wielded -> generic vis sets states of layers with map `arrow` and `base`
-  # arrow is removed -> itemmapper sets layer with map `arrow` to invisible
+    container: projectiles
   - type: Appearance
   - type: ItemMapper
     spriteLayers:
     - bolt
+    - plunger
+    - bread
     mapLayers:
       bolt:
         whitelist:
           tags:
           - CrossbowBolt
+      plunger:
+        whitelist:
+          tags:
+          - Plunger
+      bread:
+        whitelist:
+          tags:
+          - Bread
   # Melee option
   - type: MeleeWeapon
     damage:
@@ -108,15 +125,29 @@
     soundGunshot:
       collection: BulletMiss
     soundEmpty: null
+  - type: Appearance
+  # to elucidate whats intended here:
+  # arrow is inserted -> ItemMapper sets layer with map `arrow` to visible
+  # bow is wielded -> generic vis sets states of layers with map `arrow` and `base`
+  # arrow is removed -> itemmapper sets layer with map `arrow` to invisible
   - type: GenericVisualizer
     visuals:
       enum.WieldableVisuals.Wielded:
-        bolt:
-          True: { sprite: _NF/Objects/Weapons/Guns/Projectiles/crossbow_bolts.rsi, state: icon-bolt-drawn }
-          False: { sprite: _NF/Objects/Weapons/Guns/Projectiles/crossbow_bolts.rsi, state: icon-bolt }
+        base:
+          True: { state: icon }
+          False: { state: icon }
         string:
           True: { state: icon-string-drawn }
           False: { state: icon-string }
+        bolt:
+          True: { sprite: _NF/Objects/Weapons/Guns/Projectiles/crossbow_bolts.rsi, state: icon-bolt-drawn }
+          False: { sprite: _NF/Objects/Weapons/Guns/Projectiles/crossbow_bolts.rsi, state: icon-bolt }
+        plunger:
+          True: { sprite: _NF/Objects/Weapons/Guns/Projectiles/crossbow_bolts.rsi, state: icon-bolt-plunger-drawn }
+          False: { sprite: _NF/Objects/Weapons/Guns/Projectiles/crossbow_bolts.rsi, state: icon-bolt-plunger }
+        bread:
+          True: { sprite: _NF/Objects/Weapons/Guns/Projectiles/crossbow_bolts.rsi, state: icon-bolt-baguette-drawn }
+          False: { sprite: _NF/Objects/Weapons/Guns/Projectiles/crossbow_bolts.rsi, state: icon-bolt-baguette }
 
 # Wieldable
 - type: entity
