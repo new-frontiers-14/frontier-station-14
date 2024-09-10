@@ -29,6 +29,15 @@
     - Forensics
   - type: StealTarget
     stealGroup: ForensicScanner
+  - type: ItemSlots # Frontier
+    slots: # Frontier
+      forensics_cartridge: # Frontier
+        name: Cartridge # Frontier
+        insertSound: /Audio/Machines/id_insert.ogg # Frontier
+        ejectSound: /Audio/Machines/id_swipe.ogg # Frontier
+        whitelist: # Frontier
+          components: # Frontier
+            - ForensicsCartridge # Frontier
 
 - type: entity
   name: forensic scanner report

@@ -23,6 +23,7 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Timing;
 using Content.Server.Chemistry.Containers.EntitySystems;
+using Content.Shared.Containers.ItemSlots; // Frontier
 
 // todo: remove this stinky LINQy
 
@@ -47,6 +48,7 @@ namespace Content.Server.Forensics
         [Dependency] private readonly RadioSystem _radio = default!; // Frontier
         [Dependency] private readonly AccessReaderSystem _accessReader = default!; // Frontier
         [Dependency] private readonly DeadDropSystem _deadDrop = default!; // Frontier
+        [Dependency] private readonly ItemSlotsSystem _itemSlots = default!; // Frontier
 
         private readonly List<EntityUid> _scannedDeadDrops = []; // Frontier
         private int _amountScanned = 0; // Frontier
@@ -122,26 +124,7 @@ namespace Content.Server.Forensics
                 }
 
                 // Frontier: contraband poster/pod scanning
-                var detective = false;
-
-                // Will only give FUC rewards to someone with the detective ID.
-                var accessSources = _accessReader.FindPotentialAccessItems(args.Args.User);
-                var access = _accessReader.FindAccessTags(args.Args.User, accessSources);
-
-                foreach (var tag in access)
-                {
-                    if (!_prototypeManager.TryIndex(tag, out var accessLevel))
-                    {
-                        continue;
-                    }
-
-                    if (accessLevel.GetAccessLevelName() == "Detective")
-                    {
-                        detective = true;
-                    }
-                }
-
-                if (detective == true)
+                if (_itemSlots.TryGetSlot(uid, "forensics_cartridge", out var itemSlot) && itemSlot.HasItem)
                 {
                     EntityUid posterUid = args.Args.Target.Value;
                     // Prints FUC if you've successfully scanned a dead drop poster that has spawned a dead drop at least once

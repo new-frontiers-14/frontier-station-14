@@ -235,7 +235,7 @@ public sealed class DeadDropSystem : EntitySystem
 
             // Select some number of dead drops to hint
             if (TryComp<PaperComponent>(ent, out var paper))
-                _paper.SetContent(ent, hintText.ToString(), paper);
+                _paper.SetContent((ent, paper), hintText.ToString());
 
             // Hint generated, destroy component
             RemComp<DeadDropHintComponent>(ent);
