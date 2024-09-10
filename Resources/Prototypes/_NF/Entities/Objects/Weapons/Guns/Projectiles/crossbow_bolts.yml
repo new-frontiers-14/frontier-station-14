@@ -126,17 +126,24 @@
         Piercing: 20
   - type: SolutionContainerManager
     solutions:
-      ammo:
+      injector:
         maxVol: 5
   - type: RefillableSolution
-    solution: ammo
+    solution: injector
   - type: InjectableSolution
-    solution: ammo
+    solution: injector
   - type: SolutionInjectOnEmbed
     transferAmount: 5
-    solution: ammo
+    solution: injector
   - type: SolutionTransfer
     maxTransferAmount: 5
+  - type: Injector
+    injectOnly: false
+    ignoreMobs: true
+    minTransferAmount: 5
+    maxTransferAmount: 5
+    transferAmount: 5
+    toggleState: Draw
 
 # Craftable variations
 - type: entity
