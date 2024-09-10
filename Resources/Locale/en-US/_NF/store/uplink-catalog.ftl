@@ -9,17 +9,17 @@ store-category-secexplosives = Explosives
 store-category-secbundles = Bundles
 
 
-uplink-security-hardsuit-name = Security HardSuit
+uplink-security-hardsuit-name = Security Hardsuit
 uplink-security-hardsuit-desc = Standard issue armored EVA suit. Bulky armor plating slightly limits movement speed.
-uplink-security-hardsuit-patrol-name = Security Patrol HardSuit
+uplink-security-hardsuit-patrol-name = Security Patrol Hardsuit
 uplink-security-hardsuit-patrol-desc = A light-weight variant of the Security EVA suit. Greater movement speed comes at the cost of slightly lower protection.
-uplink-security-hardsuit-brigmedic-name = BrigMedic HardSuit
+uplink-security-hardsuit-brigmedic-name = BrigMedic Hardsuit
 uplink-security-hardsuit-brigmedic-desc = A lightly armored EVA suit. Designed for rescue operations, it sacrifices most of its armor in favor of movement speed.
-uplink-security-hardsuit-warden-name = Bailiff HardSuit
+uplink-security-hardsuit-warden-name = Bailiff Hardsuit
 uplink-security-hardsuit-warden-desc = A moderately reinforced variant of the Security EVA suit. Modern plating increases resistances without sacrificing range of motion.
 uplink-security-hardsuit-experimental-name = Experimental Combat Suit
 uplink-security-hardsuit-experimental-desc = An advanced combat suit researched by the greatest Nanotrasen minds. Heavily protected and extremely mobile.
-uplink-security-hardsuit-sheriff-name = Sheriff's HardSuit
+uplink-security-hardsuit-sheriff-name = Sheriff's Hardsuit
 uplink-security-hardsuit-sheriff-desc = A heavily reinforced Security EVA suit. Provides maximum resistance while maintaining the range of motion expected of security forces.
 uplink-security-hardsuit-combat-name = Patrol Combat Hardsuit
 uplink-security-hardsuit-combat-desc = An armored patrol suit for combat meant to be utilized for multi-environmental hostile engagements.
