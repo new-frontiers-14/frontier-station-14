@@ -4,12 +4,24 @@
   id: BaseCrossbowBolt
   abstract: true
   components:
+  - type: EmbeddableProjectile
+    sound: /Audio/Weapons/star_hit.ogg
+    embedOnThrow: false
+    offset: 0.15,0.15
+  - type: LandAtCursor
+  - type: MeleeWeapon
+    attackRate: 1
+    damage:
+      types:
+        Piercing: 4
+    angle: 0
+    animation: WeaponArcThrust
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
   - type: Item
     size: Tiny
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Projectiles/crossbow_bolts.rsi
-  - type: Ammo
-    muzzleFlash: null
   - type: PhysicalComposition
     materialComposition:
       Steel: 25
@@ -35,6 +47,31 @@
   - type: Tag
     tags:
     - CrossbowBolt
+  # Liquids
+  - type: SolutionContainerManager
+    solutions:
+      injector:
+        maxVol: 2
+  - type: RefillableSolution
+    solution: injector
+  - type: InjectableSolution
+    solution: injector
+  - type: SolutionInjectOnEmbed
+    transferAmount: 2
+    solution: injector
+  - type: SolutionTransfer
+    maxTransferAmount: 2
+  - type: Injector
+    injectOnly: false
+    ignoreMobs: true
+    minTransferAmount: 2
+    maxTransferAmount: 2
+    transferAmount: 2
+    toggleState: Draw
+  - type: ExaminableSolution
+    solution: injector
+  - type: MeleeChemicalInjector
+    solution: injector
 
 - type: entity
   parent: BaseCrossbowBolt
@@ -275,11 +312,10 @@
 - type: entity
   parent: [ BaseC3ContrabandNoValue, BaseCrossbowBoltTrigger ]
   id: CrossbowBoltElectrified
-  name: electrified bolt
+  name: EMP bolt
   description: A bolt with small power cell attached to it.
   components:
   - type: Sprite
-    sprite: _NF/Objects/Weapons/Guns/Projectiles/crossbow_bolts.rsi
     layers:
     - state: tail
       color: "white"

@@ -20,3 +20,36 @@
         doAfter: 0.5
   - node: ImprovisedCrossbow
     entity: CrossbowImprovised
+    edges:
+    - to: ImprovisedCrossbowHand
+      steps:
+      - tool: Sawing
+        doAfter: 2
+  - node: ImprovisedCrossbowHand
+    entity: CrossbowImprovisedHand
+
+- type: constructionGraph
+  id: ModernCrossbowHand
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: CrossbowModernHand
+      steps:
+      - tool: Sawing
+        doAfter: 2
+  - node: CrossbowModernHand
+    entity: CrossbowModernHand
+
+- type: constructionGraph
+  id: CultCrossbowHand
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: CrossbowBloodCultHand
+      steps:
+      - tool: Sawing
+        doAfter: 2
+  - node: CrossbowBloodCultHand
+    entity: CrossbowBloodCultHand

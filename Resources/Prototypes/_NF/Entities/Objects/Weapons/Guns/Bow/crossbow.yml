@@ -15,29 +15,24 @@
     - state: icon
     - state: icon-string
       map: [ string ]
-    - state: icon-bolt
+    - sprite: _NF/Objects/Weapons/Guns/Projectiles/crossbow_bolts.rsi
+      state: icon-bolt
       map: [ bolt ]
       visible: false
   - type: Item
-    size: Large
+    size: Normal
   - type: Clothing
     quickEquip: false
     slots:
     - Back
     - suitStorage
-  - type: GunWieldBonus
-    minAngle: -33
-    maxAngle: -33
-  - type: Wieldable
-    wieldSound:
-      path: /Audio/Weapons/Guns/Misc/arrow_nock.ogg
+    - Belt
   - type: UseDelay
     delay: 2
   - type: Gun
-    angleDecay: 35
-    minAngle: 34
-    maxAngle: 36
     fireRate: 1
+    minAngle: 5
+    maxAngle: 15
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
@@ -71,31 +66,79 @@
         whitelist:
           tags:
           - CrossbowBolt
+  # Melee option
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 8
+    angle: 0
+    wideAnimationRotation: -135
+    animation: WeaponArcThrust
+    soundHit:
+      collection: MetalThud
+
+- type: entity
+  id: BaseCrossbowWieldable
+  parent: BaseCrossbow
+  abstract: true
+  components:
+  - type: Item
+    size: Large
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: GunWieldBonus
+    minAngle: -33
+    maxAngle: -33
+  - type: Wieldable
+    wieldSound:
+      path: /Audio/Weapons/Guns/Misc/arrow_nock.ogg
+  - type: UseDelay
+    delay: 1
+  - type: Gun
+    angleDecay: 35
+    minAngle: 34
+    maxAngle: 36
+    fireRate: 1
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      collection: BulletMiss
+    soundEmpty: null
   - type: GenericVisualizer
     visuals:
       enum.WieldableVisuals.Wielded:
         bolt:
-          True: { state: icon-bolt-drawn }
-          False: { state: icon-bolt }
+          True: { sprite: _NF/Objects/Weapons/Guns/Projectiles/crossbow_bolts.rsi, state: icon-bolt-drawn }
+          False: { sprite: _NF/Objects/Weapons/Guns/Projectiles/crossbow_bolts.rsi, state: icon-bolt }
         string:
           True: { state: icon-string-drawn }
           False: { state: icon-string }
 
-# Variations
+# Wieldable
 - type: entity
   id: CrossbowModern
-  parent: [ BaseCrossbow, BaseC1Contraband ]
+  parent: [ BaseCrossbowWieldable, BaseC1Contraband ]
   components:
   - type: UseDelay
     delay: 0.5
   - type: StaticPrice
     price: 280
+  - type: Construction
+    graph: ModernCrossbowHand
+    node: start
+    deconstructionTarget: null
 
 - type: entity
   id: CrossbowImprovised
-  parent: [ BaseCrossbow, BaseC1Contraband ]
+  parent: [ BaseCrossbowWieldable, BaseC1Contraband ]
   name: impovised crossbow
   components:
+  - type: UseDelay
+    delay: 2
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Crossbow/improvised.rsi
   - type: Construction
@@ -104,10 +147,54 @@
 
 - type: entity
   id: CrossbowBloodCult
-  parent: [ BaseCrossbow, BaseC3CultContraband ]
+  parent: [ BaseCrossbowWieldable, BaseC3CultContraband ]
   name: blood cult crossbow
   components:
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Crossbow/cult.rsi
   - type: StaticPrice
     price: 400
+  - type: Construction
+    graph: CultCrossbowHand
+    node: start
+    deconstructionTarget: null
+
+# Hand crossbows
+- type: entity
+  id: CrossbowModernHand
+  parent: [ BaseCrossbow, BaseC1Contraband ]
+  name: hand crossbow
+  components:
+  - type: UseDelay
+    delay: 0.5
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Crossbow/crossbowhand.rsi
+  - type: Construction
+    graph: ModernCrossbowHand
+    node: CrossbowModernHand
+
+- type: entity
+  id: CrossbowImprovisedHand
+  parent: [ BaseCrossbow, BaseC1Contraband ]
+  name: impovised hand crossbow
+  components:
+  - type: UseDelay
+    delay: 2
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Crossbow/improvisedhand.rsi
+  - type: Construction
+    graph: ImprovisedCrossbow
+    node: ImprovisedCrossbowHand
+
+- type: entity
+  id: CrossbowBloodCultHand
+  parent: [ BaseCrossbow, BaseC3CultContraband ]
+  name: blood cult crossbow
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Crossbow/culthand.rsi
+  - type: StaticPrice
+    price: 300
+  - type: Construction
+    graph: CultCrossbowHand
+    node: CrossbowBloodCultHand
