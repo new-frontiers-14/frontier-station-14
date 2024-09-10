@@ -5,14 +5,19 @@
   playTimeTracker: JobPirateCaptain
   requirements:
     - !type:OverallPlaytimeRequirement
-      time: 172800 # Frontier - 48 hours
+      time: 172800 # 48 hours
+    - !type:RoleTimeRequirement
+      role: JobSeniorOfficer
+      time: 10800 # 3 hours
   whitelisted: true
   startingGear: PirateCaptainNFGear
   alwaysUseSpawner: true
   hideConsoleVisibility: true
   canBeAntag: true
   icon: "JobIconPirateCaptain"
-  supervisors: job-supervisors-hire
+  supervisors: job-supervisors-nobody
+  weight: 40
+  displayWeight: 40
   setPreference: true
   accessGroups:
   - GeneralAccess
@@ -29,9 +34,7 @@
 - type: startingGear
   id: PirateCaptainNFGear
   equipment:
-    head: ClothingHeadHatPirate
     ears: ClothingHeadsetAltFreelancer
-    shoes: ClothingShoesBootsLaceup
     belt: ClothingBeltUtility
     pocket1: BasePirateUplinkRadioPirateCaptain
     pocket2: EnergyCutlass

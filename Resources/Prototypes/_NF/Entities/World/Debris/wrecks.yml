@@ -145,17 +145,14 @@
             prob: 0.0025
           - id: Thruster
             prob: 0.005
-    - type: GCAbleObject
-      queue: SpaceDebris
     - type: IFF
-      flags: HideLabel
       color: "#88b0d1"
 
 - type: entity
   id: ScrapDebrisNFSmall
   parent: BaseScrapDebrisNF
   name: Scrap Debris Small
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
     - type: MapGrid
     - type: BlobFloorPlanBuilder
@@ -165,7 +162,7 @@
   id: ScrapDebrisNFMedium
   parent: BaseScrapDebrisNF
   name: Scrap Debris Medium
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
     - type: MapGrid
     - type: BlobFloorPlanBuilder
@@ -175,7 +172,7 @@
   id: ScrapDebrisNFLarge
   parent: BaseScrapDebrisNF
   name: Scrap Debris Large
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
     - type: MapGrid
     - type: BlobFloorPlanBuilder
@@ -187,7 +184,7 @@
   id: ScrapDebrisNFExtraLarge
   parent: BaseScrapDebrisNF
   name: Scrap Debris Extra Large
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
     - type: MapGrid
     - type: BlobFloorPlanBuilder
@@ -199,7 +196,7 @@
   id: ScrapDebrisNFExtraLargeScattered
   parent: BaseScrapDebrisNF
   name: Scrap Debris Extra Large Scattered
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
     - type: MapGrid
     - type: BlobFloorPlanBuilder
@@ -211,7 +208,7 @@
   id: ScrapDebrisNFHuge
   parent: BaseScrapDebrisNF
   name: Scrap Debris Huge
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
     - type: MapGrid
     - type: BlobFloorPlanBuilder

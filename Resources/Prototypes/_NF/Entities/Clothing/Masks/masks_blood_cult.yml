@@ -1,5 +1,6 @@
 - type: entity
   parent:
+  - BaseC3CultContrabandUnredeemable
   - ClothingMaskPullableBase
   - ContrabandClothing
   id: ClothingMaskCultJanitor
@@ -19,7 +20,6 @@
         Slash: 0.90
         Piercing: 0.90
         Heat: 0.90
-  - type: Tag
-    tags:
-    - ClothMade
-    - HidesHair
+  - type: HideLayerClothing
+    slots:
+    - Hair

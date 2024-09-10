@@ -1,0 +1,107 @@
+<Document>
+  # STASIS-CLASS MEDICAL RESPONSE SHUTTLE
+  <Box>
+  <GuideEntityEmbed Entity="BannerMedical" Caption="medical"/> 
+  <GuideEntityEmbed Entity="ComputerCrewMonitoring" Caption="crew monitor"/>
+  <GuideEntityEmbed Entity="RollerBed"/>
+  <GuideEntityEmbed Entity="CryoPod"/>
+  </Box>  
+  <Box>
+  <GuideEntityEmbed Entity="ShuttleMapStasis" Caption=""/>
+  </Box>
+    [color=#a4885c]Ship Size:[/color] Medium
+	
+	[color=#a4885c]Recommended Crew:[/color] 1-3
+	
+	[color=#a4885c]Power Gen Type:[/color] Plasma
+
+    [color=#a4885c]Base Power Draw:[/color] 27kw
+	
+	[color=#a4885c]Expeditions:[/color] None
+	
+	[color=#a4885c]IFF Console:[/color] None
+	
+	[color=#a4885c]Available Roles:[/color] Contractor, Pilot, Mercenary
+	
+ The Stasis is designed to meet the needs of deep space disasters that call for cryogenic and other advanced tissue restoring medicines.
+  
+  # Piloting
+  <Box>
+    <GuideEntityEmbed Entity="ComputerShuttle"/>
+  </Box>
+  After clicking the shuttle console, you should see a radar view of the shuttle. Here are the steps for piloting the shuttle back and forth:
+
+  - First, disconnect any airlocks that are connected to the dock.
+  - Then, you actually get to pilot the shuttle. The controls are fairly simple, with [color=#028ed9]"W"[/color] and [color=#028ed9]"S"[/color] being forward and backward, [color=#028ed9]"A"[/color] and [color=#028ed9]"D"[/color] being left and right, and [color=#028ed9]"Q"[/color] and [color=#028ed9]"E"[/color] being rotating left and right; and [color=#028ed9]"spacebar"[/color] being the brake and moving precicely by holding the [color=#028ed9]"spacebar"[/color] while doing other inputs.
+  
+  # Hiring crew
+  <Box>
+    <GuideEntityEmbed Entity="ComputerStationRecords"/>
+    <GuideEntityEmbed Entity="ClothingHeadsetGrey"/>
+    <GuideEntityEmbed Entity="IntercomCommon"/>
+  </Box>
+  As a Captain of a Nanotrasen vessel, you have the authority to hire, fire, demote, or promote crew members at will. There are two ways you as a Captain can go about hiring crew: you can either use the [color=#a4885c]station records computer[/color] on your ship to open crew slots (jobs available vary from ship to ship) or invite through in-game communications other players to your crew.
+  
+  # PREFLIGHT CHECKLIST
+  
+  ## 1. Power supply
+  
+  ## 1.1. Battery units
+  <Box>
+  <GuideEntityEmbed Entity="SubstationBasic"/>
+  <GuideEntityEmbed Entity="APCBasic"/>
+  </Box>
+  
+    - Check if the APC unit's Main Breaker is toggled on.
+    - Check the APC unit's current Load* (W).
+  
+  ## 1.2. P.A.C.M.A.N. generator unit
+  <Box>
+  <GuideEntityEmbed Entity="PortableGeneratorPacmanShuttle"/>
+  <GuideEntityEmbed Entity="SheetPlasma"/>
+  </Box>
+  
+  - Check if the P.A.C.M.A.N. generator unit is anchored to the floor.
+  - Check if the P.A.C.M.A.N. generator unit has fuel. For extended flights make sure that you have enough fuel stockpiled to sustain prolonged power generation during flight.
+  - Check if the P.A.C.M.A.N. generator unit is set to HV output.
+  - Set Target Power for 30 [bold]k[/bold]W.
+  - Start the P.A.C.M.A.N. generator unit.
+  - Close radiation shielding.
+
+  ## 2. Atmospherics
+
+  ## 2.1. Distribution Loop
+  <Box>
+  <GuideEntityEmbed Entity="AirCanister"/>
+  <GuideEntityEmbed Entity="GasPort"/>
+  <GuideEntityEmbed Entity="GasPressurePump"/>
+  </Box>
+  
+  - Check if the air canister is anchored to connector port.
+  - Check if the distribution pump is set to normal pressure (101kPa).
+  - Enable the distribution pump.
+  
+  ## 2.2. Waste Loop
+  <Box>
+  <GuideEntityEmbed Entity="GasPressurePump"/>
+  <GuideEntityEmbed Entity="AirAlarm"/>
+  </Box>
+    
+  - Enable waste loop pump.
+  - Disable Auto Mode on the Air Alarm in the Engine Room.
+  - Set the Air Alarm in the Engine Room to Filtering (Wide).
+  
+  ## 3. Other checks
+  <Box>
+  <GuideEntityEmbed Entity="Gyroscope"/>
+  <GuideEntityEmbed Entity="GravityGeneratorMini"/>
+  </Box>
+  
+  - Check if the gyroscope is anchored, powered, and enabled.
+  - Check if the mini gravity generator is anchored, powered, and enabled.
+  
+  ## Sidenotes
+  
+  * - The Stasis is equipped with a secondary ventilation system for specific atmospheric needs within its surgery suite. Scrubbers, pumps and vents may be configured appropriately.
+
+</Document>

@@ -5,21 +5,30 @@
   playTimeTracker: JobSeniorOfficer
   requirements:
     - !type:OverallPlaytimeRequirement
-      time: 108000 # Frontier - 30 hours
-    - !type:RoleTimeRequirement
-      role: JobSecurityOfficer
-      time: 43200 # Frontier - 12 hrs
+      time: 108000 # 30 hours
     - !type:DepartmentTimeRequirement
       department: Security
-      time: 32400 # 9 hrs
+      time: 43200 # 18 hours
+    - !type:RoleTimeRequirement
+      role: JobSecurityOfficer
+      time: 64800 # 12 hours
+  alternateRequirementSets:
+    longerPlaytimeLessSec:
+    - !type:OverallPlaytimeRequirement
+      time: 540000 # 150 hours
+    - !type:RoleTimeRequirement
+      role: JobSecurityOfficer
+      time: 21600 # 6 hours
   startingGear: SeniorOfficerGear
-  icon: "JobIconSeniorOfficer" # Frontier
+  icon: JobIconSergeant
   supervisors: job-supervisors-bailiff
+  weight: 140
+  displayWeight: 50
   canBeAntag: false
   access:
-  - Sergeant # Frontier
-  accessGroups: # Frontier
-  - GeneralNfsdAccess # Frontier
+  - Sergeant
+  accessGroups:
+  - GeneralNfsdAccess
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant, TrackingImplant ]
@@ -30,7 +39,7 @@
 - type: startingGear
   id: SeniorOfficerGear
   equipment:
-    ears: ClothingHeadsetAltNfsdBrown # Frontier
+    ears: ClothingHeadsetAltNfsdBrown
     pocket1: WeaponPistolMk58 #WeaponPistolMk58Nonlethal
   storage:
     back:
@@ -38,4 +47,4 @@
     - MagazinePistol
     - MagazinePistolRubber
     - BaseSecurityUplinkRadioOfficer
-    - NfsdSergeantShipVoucher
+    - ShipVoucherNfsdSergeant

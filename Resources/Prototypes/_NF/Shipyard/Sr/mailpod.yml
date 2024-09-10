@@ -1,0 +1,39 @@
+# Author Info
+# GitHub: ???
+# Discord: ???
+
+# Maintainer Info
+# GitHub: ???
+# Discord: ???
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: MailPod
+  name: NC Mail Pod
+  description: A cramped yet reliable shuttle for delivering packages.
+  price: 15000
+  category: Micro
+  group: Sr
+  access: Mail
+  shuttlePath: /Maps/_NF/Shuttles/Sr/mailpod.yml
+  guidebookPage: Null
+  class:
+  - Cargo
+
+- type: gameMap
+  id: MailPod
+  mapName: 'NC Mail Pod'
+  mapPath: /Maps/_NF/Shuttles/Sr/mailpod.yml
+  minPlayers: 0
+  stations:
+    MailPod:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Mail Pod {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs: {}

@@ -8,31 +8,34 @@
     contents:
       - id: MobCatGhost
         prob: 1
-        orGroup: MobCatGhost
+        orGroup: MobGhost
       - id: MobCatCalicoGhost
         prob: 1
-        orGroup: MobCatGhost
+        orGroup: MobGhost
       - id: MobCatCaracalGhost
         prob: 1
-        orGroup: MobCatGhost
+        orGroup: MobGhost
       - id: MobBingusGhost
         prob: 1
-        orGroup: MobCatGhost
+        orGroup: MobGhost
       - id: MobCatSpaceGhost
         prob: 1
-        orGroup: MobCatGhost
+        orGroup: MobGhost
       - id: MobCorgiGhost
         prob: 1
-        orGroup: MobCatGhost
+        orGroup: MobGhost
       - id: MobCorgiPuppyGhost
         prob: 1
-        orGroup: MobCatGhost
+        orGroup: MobGhost
       - id: MobChickenGhost
         prob: 1
-        orGroup: MobCatGhost
+        orGroup: MobGhost
+      - id: MobFoxGhost
+        prob: 1
+        orGroup: MobGhost
       - id: MobPibbleGhost
         prob: 0.25
-        orGroup: MobCatGhost
+        orGroup: MobGhost
 
 - type: entity
   id: FillNPCEmotionalSupportSafe # No pitbull
@@ -43,28 +46,31 @@
     contents:
       - id: MobCatGhost
         prob: 1
-        orGroup: MobCatGhost
+        orGroup: MobGhost
       - id: MobCatCalicoGhost
         prob: 1
-        orGroup: MobCatGhost
+        orGroup: MobGhost
       - id: MobCatCaracalGhost
         prob: 1
-        orGroup: MobCatGhost
+        orGroup: MobGhost
       - id: MobBingusGhost
         prob: 1
-        orGroup: MobCatGhost
+        orGroup: MobGhost
       - id: MobCatSpaceGhost
         prob: 1
-        orGroup: MobCatGhost
+        orGroup: MobGhost
       - id: MobCorgiGhost
         prob: 1
-        orGroup: MobCatGhost
+        orGroup: MobGhost
       - id: MobCorgiPuppyGhost
         prob: 1
-        orGroup: MobCatGhost
+        orGroup: MobGhost
       - id: MobChickenGhost
         prob: 1
-        orGroup: MobCatGhost
+        orGroup: MobGhost
+      - id: MobFoxGhost
+        prob: 1
+        orGroup: MobGhost
 
 - type: entity
   id: CrateNPCEmotionalSupportSafe
@@ -73,3 +79,13 @@
 - type: entity
   id: PetCarrierNPCEmotionalSupportSafe
   parent: [PetCarrier, FillNPCEmotionalSupportSafe]
+
+- type: entity
+  id: CrateNPCPoultryCube
+  parent: CrateGenericSteel
+  name: poultry cube crate
+  description: A crate containing single box of poultry cubes.
+  components:
+  - type: StorageFill
+    contents:
+      - id: PoultryCubeBox

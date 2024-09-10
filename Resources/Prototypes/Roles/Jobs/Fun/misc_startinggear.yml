@@ -27,7 +27,6 @@
     ears: ClothingHeadsetAltCentCom
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitDeathsquad
-    suitstorage: AirTankFilled
     shoes: ClothingShoesBootsMagAdv
     id: DeathsquadPDA
     pocket1: EnergySword
@@ -35,8 +34,6 @@
     belt: ClothingBeltMilitaryWebbingMedFilled
   storage:
     back:
-    - BoxSurvivalEngineering
-    - WeaponPulseRifle
     - WeaponPulsePistol
     - WeaponRevolverMateba
     - SpeedLoaderMagnumAP
@@ -47,6 +44,8 @@
     - Hypospray
     - DeathAcidifierImplanter # crew will try to steal their amazing hardsuits
     - FreedomImplanter
+  inhand:
+  - WeaponPulseRifle
 
 # Syndicate Operative Outfit - Civilian
 - type: startingGear
@@ -114,13 +113,11 @@
     outerClothing: ClothingOuterHardsuitCBURN
     shoes: ClothingShoesBootsCombatFilled
     id: CBURNPDA
-    pocket1: RadioHandheld
-    pocket2: WeaponLaserPistolNF # Frontier
-    suitstorage: OxygenTankFilled
+    pocket1: RadioHandheldNF # Frontier: RadioHandheld<RadioHandheldNF
+    pocket2: WeaponLaserPistolNF # Frontier: WeaponLaserGun<WeaponLaserPistolNF
     belt: ClothingBeltBandolier
   storage:
     back:
-    - BoxSurvivalEngineering
     - WeaponShotgunDoubleBarreled
     - BoxShotgunIncendiary
     - GrenadeFlashBang

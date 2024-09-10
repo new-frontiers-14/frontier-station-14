@@ -1,6 +1,5 @@
 using System.Linq;
 using System.Text;
-using Content.Server.Paper;
 using Content.Server.Popups;
 using Content.Server.Stack;
 using Content.Server._NF.Smuggling;
@@ -9,19 +8,22 @@ using Content.Server.Radio.EntitySystems;
 using Content.Shared.Access.Components;
 using Content.Shared.UserInterface;
 using Content.Shared.DoAfter;
+using Content.Shared.Fluids.Components;
 using Content.Shared.Forensics;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
+using Content.Shared.Paper;
 using Content.Shared.Verbs;
-using Content.Shared.Stacks;
-using Content.Shared.Radio;
-using Content.Shared.Access;
-using Content.Shared.Access.Systems;
-using Robust.Shared.Prototypes;
+using Content.Shared.Stacks; // Frontier
+using Content.Shared.Radio; // Frontier
+using Content.Shared.Access.Systems; // Frontier
+using Robust.Shared.Prototypes; // Frontier
+using Content.Shared.Tag;
 using Robust.Shared.Audio.Systems;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Timing;
+using Content.Server.Chemistry.Containers.EntitySystems;
 
 // todo: remove this stinky LINQy
 
@@ -37,14 +39,17 @@ namespace Content.Server.Forensics
         [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
         [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
         [Dependency] private readonly MetaDataSystem _metaData = default!;
-        [Dependency] private readonly StackSystem _stackSystem = default!;
-        [Dependency] private readonly SharedAudioSystem _audio = default!;
-        [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-        [Dependency] private readonly RadioSystem _radio = default!;
-        [Dependency] private readonly AccessReaderSystem _accessReader = default!;
+        [Dependency] private readonly ForensicsSystem _forensicsSystem = default!;
+        [Dependency] private readonly SolutionContainerSystem _solutionContainerSystem = default!;
+        [Dependency] private readonly TagSystem _tag = default!;
+        [Dependency] private readonly StackSystem _stackSystem = default!; // Frontier
+        [Dependency] private readonly SharedAudioSystem _audio = default!; // Frontier
+        [Dependency] private readonly IPrototypeManager _prototypeManager = default!; // Frontier
+        [Dependency] private readonly RadioSystem _radio = default!; // Frontier
+        [Dependency] private readonly AccessReaderSystem _accessReader = default!; // Frontier
 
-        private readonly List<EntityUid> _scannedDeadDrops = [];
-        private int _amountScanned = 0;
+        private readonly List<EntityUid> _scannedDeadDrops = []; // Frontier
+        private int _amountScanned = 0; // Frontier
 
         public override void Initialize()
         {
@@ -79,7 +84,8 @@ namespace Content.Server.Forensics
             var state = new ForensicScannerBoundUserInterfaceState(
                 component.Fingerprints,
                 component.Fibers,
-                component.DNAs,
+                component.TouchDNAs,
+                component.SolutionDNAs,
                 component.Residues,
                 component.LastScannedName,
                 component.PrintCooldown,
@@ -102,18 +108,18 @@ namespace Content.Server.Forensics
                 {
                     scanner.Fingerprints = new();
                     scanner.Fibers = new();
-                    scanner.DNAs = new();
+                    scanner.TouchDNAs = new();
                     scanner.Residues = new();
                 }
-
                 else
                 {
                     scanner.Fingerprints = forensics.Fingerprints.ToList();
                     scanner.Fibers = forensics.Fibers.ToList();
-                    scanner.DNAs = forensics.DNAs.ToList();
+                    scanner.TouchDNAs = forensics.DNAs.ToList();
                     scanner.Residues = forensics.Residues.ToList();
                 }
 
+                // Frontier: contraband poster/pod scanning
                 var detective = false;
 
                 // Will only give FUC rewards to someone with the detective ID.
@@ -163,7 +169,15 @@ namespace Content.Server.Forensics
                         _amountScanned++;
                     }
                 }
-            
+                // End Frontier: contraband poster/pod scanning
+
+                if (_tag.HasTag(args.Args.Target.Value, "DNASolutionScannable"))
+                {
+                    scanner.SolutionDNAs = _forensicsSystem.GetSolutionsDNA(args.Args.Target.Value);
+                } else
+                {
+                    scanner.SolutionDNAs = new();
+                }
 
                 scanner.LastScannedName = MetaData(args.Args.Target.Value).EntityName;
             }
@@ -267,7 +281,7 @@ namespace Content.Server.Forensics
             var printed = EntityManager.SpawnEntity(component.MachineOutput, Transform(uid).Coordinates);
             _handsSystem.PickupOrDrop(args.Actor, printed, checkActionBlocker: false);
 
-            if (!HasComp<PaperComponent>(printed))
+            if (!TryComp<PaperComponent>(printed, out var paperComp))
             {
                 Log.Error("Printed paper did not have PaperComponent.");
                 return;
@@ -290,8 +304,15 @@ namespace Content.Server.Forensics
             }
             text.AppendLine();
             text.AppendLine(Loc.GetString("forensic-scanner-interface-dnas"));
-            foreach (var dna in component.DNAs)
+            foreach (var dna in component.TouchDNAs)
             {
+                text.AppendLine(dna);
+            }
+            foreach (var dna in component.SolutionDNAs)
+            {
+                Log.Debug(dna);
+                if (component.TouchDNAs.Contains(dna))
+                    continue;
                 text.AppendLine(dna);
             }
             text.AppendLine();
@@ -301,7 +322,7 @@ namespace Content.Server.Forensics
                 text.AppendLine(residue);
             }
 
-            _paperSystem.SetContent(printed, text.ToString());
+            _paperSystem.SetContent((printed, paperComp), text.ToString());
             _audioSystem.PlayPvs(component.SoundPrint, uid,
                 AudioParams.Default
                 .WithVariation(0.25f)
@@ -316,7 +337,8 @@ namespace Content.Server.Forensics
         {
             component.Fingerprints = new();
             component.Fibers = new();
-            component.DNAs = new();
+            component.TouchDNAs = new();
+            component.SolutionDNAs = new();
             component.LastScannedName = string.Empty;
 
             UpdateUserInterface(uid, component);

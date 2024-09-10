@@ -171,22 +171,14 @@ entities:
     - type: Transform
       pos: 1.5,-3.5
       parent: 1
-- proto: APCBasic
+- proto: AtmosDeviceFanDirectional
   entities:
-  - uid: 75
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 1.5,2.5
-      parent: 1
-- proto: AtmosDeviceFanTiny
-  entities:
-  - uid: 29
+  - uid: 5
     components:
     - type: Transform
       pos: 0.5,-3.5
       parent: 1
-  - uid: 30
+  - uid: 10
     components:
     - type: Transform
       pos: 1.5,-3.5
@@ -233,15 +225,6 @@ entities:
     - type: Transform
       pos: 2.5,2.5
       parent: 1
-- proto: BoxPaperOffice
-  entities:
-  - uid: 89
-    components:
-    - type: Transform
-      parent: 99
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: CableApcExtension
   entities:
   - uid: 4
@@ -254,7 +237,7 @@ entities:
     - type: Transform
       pos: 0.5,0.5
       parent: 1
-  - uid: 74
+  - uid: 64
     components:
     - type: Transform
       pos: 1.5,2.5
@@ -292,64 +275,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 0.5,2.5
       parent: 1
-- proto: ClosetWall
-  entities:
-  - uid: 72
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 2.5,-1.5
-      parent: 1
-    - type: EntityStorage
-      air:
-        volume: 200
-        immutable: False
-        temperature: 293.14923
-        moles:
-        - 1.8968438
-        - 7.1357465
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-  - uid: 99
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -0.5,0.5
-      parent: 1
-    - type: EntityStorage
-      air:
-        volume: 200
-        immutable: False
-        temperature: 293.14923
-        moles:
-        - 1.8968438
-        - 7.1357465
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-    - type: ContainerContainer
-      containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 89
-          - 5
 - proto: ComputerTabletopShuttle
   entities:
   - uid: 50
@@ -388,10 +313,10 @@ entities:
     - type: ItemSlots
 - proto: CrateFreezerMcCargo
   entities:
-  - uid: 69
+  - uid: 72
     components:
     - type: Transform
-      pos: 1.5,-0.5
+      pos: 1.5,-1.5
       parent: 1
 - proto: DefibrillatorCabinetFilled
   entities:
@@ -595,17 +520,21 @@ entities:
     - type: Transform
       pos: -1.5,4.5
       parent: 1
-- proto: JerryCanWeldingFuel
+- proto: LockerWallEVAColorCargoFilled
   entities:
-  - uid: 10
+  - uid: 69
     components:
     - type: Transform
-      pos: 0.14334807,1.3391094
+      rot: 1.5707963267948966 rad
+      pos: -0.5,-2.5
       parent: 1
-  - uid: 64
+- proto: LockerWallMaterialsFuelWeldingFilled
+  entities:
+  - uid: 35
     components:
     - type: Transform
-      pos: 0.15376475,1.8081849
+      rot: 1.5707963267948966 rad
+      pos: -0.5,0.5
       parent: 1
 - proto: NitrogenCanister
   entities:
@@ -617,6 +546,14 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
+- proto: NoticeBoardNF
+  entities:
+  - uid: 61
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 1.5,2.5
+      parent: 1
 - proto: OxygenCanister
   entities:
   - uid: 98
@@ -627,6 +564,13 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
+- proto: Paper
+  entities:
+  - uid: 74
+    components:
+    - type: Transform
+      pos: -0.49962702,3.2703843
+      parent: 1
 - proto: PlasticFlapsAirtightClear
   entities:
   - uid: 27
@@ -650,7 +594,8 @@ entities:
   - uid: 43
     components:
     - type: Transform
-      pos: 1.5,-1.5
+      rot: 1.5707963267948966 rad
+      pos: 1.5,-0.5
       parent: 1
 - proto: Poweredlight
   entities:
@@ -732,9 +677,6 @@ entities:
     - type: Transform
       pos: 1.5,-3.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 88
 - proto: SignalButtonDirectional
   entities:
   - uid: 88
@@ -747,9 +689,9 @@ entities:
       linkedPorts:
         79:
         - Pressed: Toggle
-- proto: SignCargo
+- proto: SignCargoDock
   entities:
-  - uid: 61
+  - uid: 30
     components:
     - type: Transform
       pos: -0.5,-3.5
@@ -789,28 +731,18 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 0.5,1.5
       parent: 1
-- proto: SuitStorageWallmountPilot
+- proto: Table
   entities:
-  - uid: 105
+  - uid: 15
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: -0.5,-2.5
+      pos: 1.5,-0.5
       parent: 1
-    - type: Physics
-      canCollide: False
-- proto: Table
-  entities:
   - uid: 17
     components:
     - type: Transform
       pos: 0.5,3.5
-      parent: 1
-  - uid: 35
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 1.5,-1.5
       parent: 1
   - uid: 38
     components:
@@ -860,16 +792,16 @@ entities:
     - type: Transform
       pos: -0.5,0.5
       parent: 1
-  - uid: 15
-    components:
-    - type: Transform
-      pos: 1.5,2.5
-      parent: 1
   - uid: 28
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -0.5,-3.5
+      parent: 1
+  - uid: 29
+    components:
+    - type: Transform
+      pos: 1.5,2.5
       parent: 1
   - uid: 33
     components:
@@ -918,13 +850,4 @@ entities:
     - type: Transform
       pos: 1.5,-2.5
       parent: 1
-- proto: Wrench
-  entities:
-  - uid: 5
-    components:
-    - type: Transform
-      parent: 99
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 ...

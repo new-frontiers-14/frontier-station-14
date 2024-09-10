@@ -3,7 +3,7 @@
   id: MobObserver
   name: observer
   description: Boo!
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: CargoSellBlacklist
   - type: Sprite
@@ -48,6 +48,19 @@
   - type: Tag
     tags:
     - BypassInteractionRangeChecks
+  # Frontier: changes to the prototype so it can access radars
+  - type: UserInterface
+    interfaces:
+      enum.RadarConsoleUiKey.Key:
+        type: RadarConsoleBoundUserInterface
+  - type: IntrinsicUI
+    uis:
+      enum.RadarConsoleUiKey.Key:
+        toggleAction: ActionObserverShowRadar
+  - type: RadarConsole
+    followEntity: true
+  - type: ComplexInteraction # Needed to interact with innate radar console
+  # End Frontier
 
 - type: entity
   id: ActionGhostBoo
@@ -70,6 +83,15 @@
     clientExclusive: true
     checkCanInteract: false
     event: !type:ToggleLightingActionEvent
+
+# Frontier: radar action
+- type: entity
+  id: ActionObserverShowRadar
+  parent: ActionAGhostShowRadar
+  components:
+  - type: InstantAction
+    checkCanInteract: false
+# End Frontier
 
 - type: entity
   id: ActionToggleFov
