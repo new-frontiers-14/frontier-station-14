@@ -16,13 +16,10 @@
         - to: start
           steps:
             - tool: Screwing
-              doAfter: 5
+              doAfter: 1
           conditions:
             - !type:StorageWelded
               welded: false
           completed:
-            - !type:SpawnPrototype
-              prototype: SheetPlastic1
-              amount: 1
             - !type:EmptyAllContainers
             - !type:DeleteEntity

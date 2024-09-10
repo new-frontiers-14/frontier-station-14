@@ -1,6 +1,8 @@
 - type: entity
   name: wizard staff
-  parent: Shovel
+  parent:
+  - Shovel
+  - BaseC3WizardContraband
   id: WizardStaffMeleeBase
   description: Symbol of wizard's mastery of arcane arts.
   components:
@@ -21,7 +23,6 @@
   - type: Tag
     tags:
     - WizardStaff
-  - type: Contraband
 
 - type: entity
   name: inert red wizard staff
@@ -32,7 +33,6 @@
     heldPrefix: animation
   - type: Sprite
     state: animation
-  - type: Contraband
 
 - type: entity
   name: inert violet wizard staff
@@ -43,7 +43,6 @@
     heldPrefix: chaos
   - type: Sprite
     state: chaos
-  - type: Contraband
 
 - type: entity
   name: inert soap wizard staff
@@ -54,13 +53,14 @@
     heldPrefix: healing
   - type: Sprite
     state: healing
-  - type: Contraband
 
 # Blood Cult
 - type: entity
-  name: inert cultist staff
-  parent: WizardStaffMeleeRed
   id: WizardStaffMeleeBlood
+  name: inert cultist staff
+  parent:
+  - BaseC3CultContraband
+  - WizardStaffMeleeRed
   components:
   - type: Sharp
   - type: MeleeWeapon
@@ -72,12 +72,13 @@
     animation: WeaponArcThrust
     soundHit:
       path: /Audio/Effects/bite.ogg
-  - type: Contraband
 
 - type: entity
-  name: cultist staff
-  parent: WizardStaffMeleeBlood
   id: WizardStaffDarkBolt
+  name: cultist staff
+  parent:
+  - BaseC3CultContraband
+  - WizardStaffMeleeBlood
   suffix: "Dark bolt"
   components:
   - type: BasicEntityAmmoProvider

@@ -1,7 +1,7 @@
 ﻿- type: entity
   id: WeaponWandBase
   abstract: true
-  parent: BaseItem
+  parent: [BaseItem, BaseC3WizardContraband] # Frontier: added BaseC3WizardContraband
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Basic/wands.rsi
@@ -25,4 +25,3 @@
   - type: Tag
     tags:
     - WizardWand
-  - type: Contraband #frontier

@@ -227,9 +227,15 @@ public sealed class ApcSystem : EntitySystem
         if (!HasComp<EmpDisabledComponent>(uid))
             return;
 
-        // prevent reconstruct exploit to skip cooldowns
-        if (!component.MainBreakerEnabled)
-            args.Cancel();
+        foreach (var quality in args.Qualities)
+        {
+            // prevent reconstruct exploit to skip cooldowns
+            if (quality == "Prying")
+            {
+                args.Cancel();
+                return;
+            }
+        }
     }
 }
 

@@ -39,7 +39,7 @@
 - type: entity
   name: composition C-4
   description: Used to put holes in specific areas without too much extra hole. A saboteur's favorite.
-  parent: BasePlasticExplosive
+  parent: [BasePlasticExplosive, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   id: C4
   components:
   - type: Sprite
@@ -73,7 +73,6 @@
   - type: HolidayRsiSwap
     sprite:
       festive: Objects/Weapons/Bombs/c4gift.rsi
-  - type: Contraband #frontier
 
 - type: entity
   name: seismic charge

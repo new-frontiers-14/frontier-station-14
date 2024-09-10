@@ -10,10 +10,9 @@
     sprite: _NF/Clothing/Mask/arcadia.rsi
   - type: Clothing
     sprite: _NF/Clothing/Mask/arcadia.rsi
-  - type: Tag
-    tags:
-    - ClothMade
-    - HidesHair
+  - type: HideLayerClothing
+    slots:
+    - Hair
 
 - type: entity
   parent: ClothingMaskBase
@@ -53,10 +52,7 @@
     sprite: _NF/Clothing/Mask/nfsd.rsi
   - type: Clothing
     sprite: _NF/Clothing/Mask/nfsd.rsi
-  - type: Tag
-    tags:
-    - WhitelistChameleon
-    - CatWearable # Frontier
+  - type: CatWearable
 
 - type: entity
   parent: ClothingMaskGasSwat
