@@ -88,31 +88,31 @@ public sealed class CardHandSystem : EntitySystem
     {
         args.Verbs.Add(new AlternativeVerb()
         {
+            Act = () => FlipCards(uid, comp),
+            Text = Loc.GetString("cards-verb-flip"),
+            Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/flip.svg.192dpi.png")),
+            Priority = 4
+        });
+        args.Verbs.Add(new AlternativeVerb()
+        {
             Act = () => OpenHandMenu(args.User, uid),
             Text = Loc.GetString("cards-verb-pickcard"),
             Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/die.svg.192dpi.png")),
-            Priority = 4
+            Priority = 3
         });
         args.Verbs.Add(new AlternativeVerb()
         {
             Act = () => _cardStack.ShuffleCards(uid),
             Text = Loc.GetString("cards-verb-shuffle"),
             Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/die.svg.192dpi.png")),
-            Priority = 3
-        });
-        args.Verbs.Add(new AlternativeVerb()
-        {
-            Act = () => FlipCards(uid, comp),
-            Text = Loc.GetString("cards-verb-flip"),
-            Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/flip.svg.192dpi.png")),
-            Priority = 1
+            Priority = 2
         });
         args.Verbs.Add(new AlternativeVerb()
         {
             Act = () => ConvertToDeck(args.User, uid),
             Text = Loc.GetString("cards-verb-convert-to-deck"),
             Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/rotate_cw.svg.192dpi.png")),
-            Priority = 0
+            Priority = 1
         });
     }
 
