@@ -28,6 +28,10 @@
       state: icon-bolt-baguette
       map: [ bread ]
       visible: false
+    - sprite: _NF/Objects/Weapons/Guns/Projectiles/crossbow_bolts.rsi
+      state: icon-bolt-mail
+      map: [ mail ]
+      visible: false
   - type: Item
     size: Normal
   - type: Clothing
@@ -59,6 +63,7 @@
           - CrossbowBolt
           - Plunger
           - Bread
+          - MailCapsule
   - type: ContainerContainer
     containers:
       projectiles: !type:ContainerSlot
@@ -70,6 +75,7 @@
     - bolt
     - plunger
     - bread
+    - mail
     mapLayers:
       bolt:
         whitelist:
@@ -83,6 +89,10 @@
         whitelist:
           tags:
           - Bread
+      mail:
+        whitelist:
+          tags:
+          - MailCapsule
   # Melee option
   - type: MeleeWeapon
     damage:
@@ -148,6 +158,9 @@
         bread:
           True: { sprite: _NF/Objects/Weapons/Guns/Projectiles/crossbow_bolts.rsi, state: icon-bolt-baguette-drawn }
           False: { sprite: _NF/Objects/Weapons/Guns/Projectiles/crossbow_bolts.rsi, state: icon-bolt-baguette }
+        mail:
+          True: { sprite: _NF/Objects/Weapons/Guns/Projectiles/crossbow_bolts.rsi, state: icon-bolt-mail-drawn }
+          False: { sprite: _NF/Objects/Weapons/Guns/Projectiles/crossbow_bolts.rsi, state: icon-bolt-mail }
 
 # Wieldable
 - type: entity
