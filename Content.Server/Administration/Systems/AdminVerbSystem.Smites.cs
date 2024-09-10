@@ -849,5 +849,32 @@ public sealed partial class AdminVerbSystem
             Message = Loc.GetString("admin-smite-super-slip-description")
         };
         args.Verbs.Add(superslip);
+
+        // Frontier
+        Verb caveman = new()
+        {
+            Text = "admin-smite-super-slip-name",
+            Category = VerbCategory.Smite,
+            Icon = new SpriteSpecifier.Rsi(new("Objects/Specific/Janitorial/soap.rsi"), "omega-4"),
+            Act = () =>
+            {
+                var hadSlipComponent = EnsureComp(args.Target, out SlipperyComponent slipComponent);
+                if (!hadSlipComponent)
+                {
+                    slipComponent.SuperSlippery = true;
+                    slipComponent.ParalyzeTime = 5;
+                    slipComponent.LaunchForwardsMultiplier = 20;
+                }
+
+                _slipperySystem.TrySlip(args.Target, slipComponent, args.Target, requiresContact: false);
+                if (!hadSlipComponent)
+                {
+                    RemComp(args.Target, slipComponent);
+                }
+            },
+            Impact = LogImpact.Extreme,
+            Message = Loc.GetString("admin-smite-super-slip-description")
+        };
+        args.Verbs.Add(caveman);
     }
 }
