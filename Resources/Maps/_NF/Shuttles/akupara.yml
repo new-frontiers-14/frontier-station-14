@@ -688,19 +688,17 @@ entities:
     - type: Transform
       pos: 5.5,10.5
       parent: 1
-- proto: AtmosDeviceFanTiny
+- proto: AtmosDeviceFanDirectional
   entities:
   - uid: 20
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 3.5,-13.5
+      pos: 5.5,-13.5
       parent: 1
   - uid: 21
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 5.5,-13.5
+      pos: 3.5,-13.5
       parent: 1
 - proto: AtmosFixBlockerMarker
   entities:
@@ -1183,10 +1181,10 @@ entities:
     - type: Transform
       pos: 7.5,-9.5
       parent: 1
-  - uid: 199
+  - uid: 141
     components:
     - type: Transform
-      pos: 8.5,-9.5
+      pos: 8.5,-8.5
       parent: 1
 - proto: CableMV
   entities:
@@ -1324,11 +1322,6 @@ entities:
     components:
     - type: Transform
       pos: 4.5,-2.5
-      parent: 1
-  - uid: 141
-    components:
-    - type: Transform
-      pos: 2.5,-2.5
       parent: 1
   - uid: 142
     components:
@@ -1694,6 +1687,14 @@ entities:
           ents:
           - 194
           - 193
+- proto: ClosetWallO2N2FilledRandom
+  entities:
+  - uid: 199
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 2.5,-12.5
+      parent: 1
 - proto: ComputerPowerMonitoring
   entities:
   - uid: 109
@@ -4157,7 +4158,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: 0.5,1.5
       parent: 1
-- proto: SignChemistry1
+- proto: SignChem
   entities:
   - uid: 540
     components:
@@ -5001,7 +5002,7 @@ entities:
       lastSignals:
         DoorStatus: True
     - type: Door
-      secondsUntilStateChange: -12314.784
+      secondsUntilStateChange: -12533.617
       state: Opening
 - proto: WindowReinforcedDirectional
   entities:
