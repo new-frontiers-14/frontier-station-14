@@ -140,6 +140,14 @@
 
 - type: entity
   parent: BaseC3SyndicateContrabandUnredeemable
+  id: BaseC3SyndicateContrabandNoValue
+  abstract: true
+  components:
+  - type: Contraband
+    turnInValues: *noFUCs
+
+- type: entity
+  parent: BaseC3SyndicateContrabandUnredeemable
   id: BaseC3SyndicateContraband
   abstract: true
   components:
