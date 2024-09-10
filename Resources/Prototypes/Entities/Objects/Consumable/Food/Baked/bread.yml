@@ -2,7 +2,7 @@
 # Base
 
 - type: entity
-  parent: FoodInjectableBase
+  parent: [ FoodInjectableBase, LaunchableProjectileBase ] # Frontier: added LaunchableProjectileBase, located in \Resources\Prototypes\_NF\Entities\Objects\Weapons\Guns\Projectiles\base_projectiles.yml
   id: FoodBreadBase
   abstract: true
   components:
@@ -24,14 +24,6 @@
           Quantity: 20
         - ReagentId: Flavorol
           Quantity: 5
-  - type: Ammo # Frontier
-    muzzleFlash: null # Frontier
-  - type: Projectile # Frontier
-    deleteOnCollide: false # Frontier
-    onlyCollideWhenShot: true # Frontier
-    damage: # Frontier
-      types: # Frontier
-        Blunt: 3 # Frontier
 
 - type: entity
   parent: FoodBreadBase
