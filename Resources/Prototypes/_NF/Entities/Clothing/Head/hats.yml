@@ -5,7 +5,7 @@
   description: "There's a new bounty hunter in the sector."
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: ClothingHeadBaseButcherable
   id: ClothingHeadHatPilgrim
   name: pilgrim's hat
   description: "Thou shalt not suffer a turkey to live."
@@ -14,13 +14,9 @@
     sprite: _NF/Clothing/Head/Hats/pilgrim_hat.rsi
   - type: Clothing
     sprite: _NF/Clothing/Head/Hats/pilgrim_hat.rsi
-  - type: Tag
-    tags:
-    - ClothMade
-    - WhitelistChameleon
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: ClothingHeadBaseButcherable
   id: ClothingHeadHatWideBrimmed
   name: wide-brimmed hat
   description: Works great as frisbee substitute.
@@ -29,13 +25,9 @@
     sprite: _NF/Clothing/Head/Hats/widebrim_hat.rsi
   - type: Clothing
     sprite: _NF/Clothing/Head/Hats/widebrim_hat.rsi
-  - type: Tag
-    tags:
-    - ClothMade
-    - WhitelistChameleon
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: ClothingHeadBaseButcherable
   id: ClothingHeadHatCardinal
   name: cardinal's hat
   description: Keeps your head well protected from sun and reason.
@@ -44,13 +36,9 @@
     sprite: _NF/Clothing/Head/Hats/cardinal_hat.rsi
   - type: Clothing
     sprite: _NF/Clothing/Head/Hats/cardinal_hat.rsi
-  - type: Tag
-    tags:
-    - ClothMade
-    - WhitelistChameleon
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: ClothingHeadBaseButcherable
   id: ClothingHeadHatWitchhunter
   name: witch hunter's hat
   description: "Thou shalt not suffer a witch to live."
@@ -59,13 +47,9 @@
     sprite: _NF/Clothing/Head/Hats/witch_hunter_hat.rsi
   - type: Clothing
     sprite: _NF/Clothing/Head/Hats/witch_hunter_hat.rsi
-  - type: Tag
-    tags:
-    - ClothMade
-    - WhitelistChameleon
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: ClothingHeadBaseButcherable
   id: ClothingHeadHatBishopMitre
   name: bishop's mitre
   description: How to wear this thing? Ah! The other way around!
@@ -74,30 +58,22 @@
     sprite: _NF/Clothing/Head/Hats/bishop_mitre.rsi
   - type: Clothing
     sprite: _NF/Clothing/Head/Hats/bishop_mitre.rsi
-  - type: Tag
-    tags:
-    - ClothMade
-    - WhitelistChameleon
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: ClothingHeadBaseButcherable
   id: ClothingHeadHatKippah
   name: kippah
-  description: Basic version without built-in ATM.
+  description: Worn on the head like a dome.
   components:
   - type: Sprite
     sprite: _NF/Clothing/Head/Hats/kippah.rsi
   - type: Clothing
     sprite: _NF/Clothing/Head/Hats/kippah.rsi
-  - type: Tag
-    tags:
-    - ClothMade
-    - WhitelistChameleon
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: ClothingHeadBaseButcherable
   id: ClothingHeadHatHoodCardinalHood
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   name: cardinal's hood
   description: Hides your eyes, ensteels your faith.
   components:
@@ -105,12 +81,9 @@
     sprite: _NF/Clothing/Head/Hoods/cardinal_hood.rsi
   - type: Clothing
     sprite: _NF/Clothing/Head/Hoods/cardinal_hood.rsi
-  - type: Tag
-    tags:
-    - WhitelistChameleon
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: ClothingHeadBaseButcherable
   id: ClothingHeadHatMcCrown
   name: mccargo crown
   description: 'Crowns and tiaras, McCargo King.'
@@ -119,28 +92,23 @@
     sprite: _NF/Clothing/Head/Hoods/mccargocrown.rsi
   - type: Clothing
     sprite: _NF/Clothing/Head/Hoods/mccargocrown.rsi
-  - type: Tag
-    tags:
-    - WhitelistChameleon
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: ClothingHeadBaseButcherable
   id: ClothingHeadHatPilot
   name: pilot's helmet
-  description: Can't hear voices in my headset when earflaps flaps over my ears. And it feels good.
+  description: Can't hear the voices in my headset with these earflaps over my ears. And it feels good.
   components:
   - type: Sprite
     sprite: _NF/Clothing/Head/Hats/pilot.rsi
   - type: Clothing
     sprite: _NF/Clothing/Head/Hats/pilot.rsi
-  - type: Tag
-    tags:
-    - ClothMade
-    - WhitelistChameleon
-    - HidesHair
+  - type: HideLayerClothing
+    slots:
+    - Hair
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: ClothingHeadBaseButcherable
   id: ClothingHeadHatPirates
   name: pirate's hat
   description: Y'Arrgghhh.
@@ -149,13 +117,9 @@
     sprite: _NF/Clothing/Head/Hats/pirate_hat.rsi
   - type: Clothing
     sprite: _NF/Clothing/Head/Hats/pirate_hat.rsi
-  - type: Tag
-    tags:
-    - ClothMade
-    - WhitelistChameleon
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: ClothingHeadBaseButcherable
   id: ClothingHeadHatPirateLuffy
   name: suspicious pirate's hat
   description: This here hat be lookin' suspicious.
@@ -164,80 +128,62 @@
     sprite: _NF/Clothing/Head/Hats/pirate_hat_luffy.rsi
   - type: Clothing
     sprite: _NF/Clothing/Head/Hats/pirate_hat_luffy.rsi
-  - type: Tag
-    tags:
-    - ClothMade
-    - WhitelistChameleon
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: ClothingHeadBaseButcherable
   id: ClothingHeadHatNfsdBeretGreen
   name: nfsd beret
-  description: a blue beret produced for deputy sheriff's.
+  description: A green beret for use by NFSD officers.
   components:
   - type: Sprite
     sprite: _NF/Clothing/Head/Hats/nfsd_beret_green.rsi
   - type: Clothing
     sprite: _NF/Clothing/Head/Hats/nfsd_beret_green.rsi
-  - type: Tag
-    tags:
-    - ClothMade
-    - WhitelistChameleon
-    - CatWearable # Frontier
+  - type: CatWearable
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: ClothingHeadBaseButcherable
   id: ClothingHeadHatNfsdBeretBrown
   name: nfsd beret
-  description: a brown beret produced for deputy sheriff's.
+  description: A brown beret for use by NFSD officers.
   components:
   - type: Sprite
     sprite: _NF/Clothing/Head/Hats/nfsd_beret_brown.rsi
   - type: Clothing
     sprite: _NF/Clothing/Head/Hats/nfsd_beret_brown.rsi
-  - type: Tag
-    tags:
-    - ClothMade
-    - WhitelistChameleon
-    - CatWearable # Frontier
+  - type: CatWearable
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: ClothingHeadBaseButcherable
   id: ClothingHeadHatNfsdBeretCream
   name: nfsd beret
-  description: a cream beret produced for deputy sheriff's.
+  description: A cream beret for use by NFSD officers.
   components:
   - type: Sprite
     sprite: _NF/Clothing/Head/Hats/nfsd_beret_cream.rsi
   - type: Clothing
     sprite: _NF/Clothing/Head/Hats/nfsd_beret_cream.rsi
-  - type: Tag
-    tags:
-    - ClothMade
-    - WhitelistChameleon
-    - CatWearable # Frontier
+  - type: CatWearable
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: ClothingHeadBaseButcherable
   id: ClothingHeadHatNfsdCampaign
   name: nfsd campaign hat
-  description: yee-haw partner.
+  description: Yeehaw, partner.
   components:
   - type: Sprite
     sprite: _NF/Clothing/Head/Hats/nfsd_campaign.rsi
   - type: Clothing
     sprite: _NF/Clothing/Head/Hats/nfsd_campaign.rsi
-  - type: Tag
-    tags:
-    - ClothMade
-    - WhitelistChameleon
   - type: Storage
+    maxItemSize: Tiny # No active lighters or welders
     grid:
       - 0,0,1,1
     whitelist:
+      tags:
+        - Cigar
       components:
         - Welder
-        - Cigar
   - type: UserInterface
     interfaces:
       enum.StorageUiKey.Key:
@@ -250,7 +196,7 @@
   parent: ClothingHeadHatNfsdCampaign
   id: ClothingHeadHatNfsdCampaignFilled
   name: nfsd campaign hat
-  description: yee-haw partner.
+  description: Yeehaw, partner.
   suffix: Filled
   components:
   - type: StorageFill
@@ -260,20 +206,16 @@
         amount: 3
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: ClothingHeadBaseButcherable
   id: ClothingHeadHatNfsdSmallCampaign
   name: nfsd campaign cap
-  description: yee partner.
+  description: All yee, no haw.
   components:
   - type: Sprite
     sprite: _NF/Clothing/Head/Hats/nfsd_campaign_small.rsi
   - type: Clothing
     sprite: _NF/Clothing/Head/Hats/nfsd_campaign_small.rsi
-  - type: Tag
-    tags:
-    - ClothMade
-    - WhitelistChameleon
-    - CatWearable # Frontier
+  - type: CatWearable
 
 - type: entity
   parent: ClothingHeadHatHopcap
@@ -285,11 +227,7 @@
     sprite: _NF/Clothing/Head/Hats/sr_cap.rsi
   - type: Clothing
     sprite: _NF/Clothing/Head/Hats/sr_cap.rsi
-  - type: Tag
-    tags:
-    - ClothMade
-    - WhitelistChameleon
-    - HamsterWearable # Frontier
+  - type: HamsterWearable
 
 - type: entity
   parent: ClothingHeadHatHopcap
@@ -301,11 +239,7 @@
     sprite: _NF/Clothing/Head/Hats/sr_beret.rsi
   - type: Clothing
     sprite: _NF/Clothing/Head/Hats/sr_beret.rsi
-  - type: Tag
-    tags:
-    - ClothMade
-    - WhitelistChameleon
-    - CatWearable # Frontier
+  - type: CatWearable
     
 - type: entity
   parent: ClothingHeadHatHopcap
@@ -317,8 +251,4 @@
     sprite: _NF/Clothing/Head/Hats/stc_cap.rsi
   - type: Clothing
     sprite: _NF/Clothing/Head/Hats/stc_cap.rsi
-  - type: Tag
-    tags:
-    - ClothMade
-    - WhitelistChameleon
-    - HamsterWearable
+  - type: HamsterWearable

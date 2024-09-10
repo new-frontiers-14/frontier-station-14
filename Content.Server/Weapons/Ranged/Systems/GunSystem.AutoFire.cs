@@ -3,11 +3,13 @@ using Content.Server.Power.Components; // Frontier
 using Content.Server.Power.EntitySystems; // Frontier
 using Content.Shared.Interaction; // Frontier
 using Content.Shared.Examine; // Frontier
+using Content.Server.Popups; // Frontier
 
 namespace Content.Server.Weapons.Ranged.Systems;
 
 public sealed partial class GunSystem
 {
+    [Dependency] public PopupSystem _popup = default!; // Frontier
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
@@ -36,9 +38,6 @@ public sealed partial class GunSystem
     // This code is licensed under AGPLv3. See AGPLv3.txt
     private void OnGunExamine(EntityUid uid, AutoShootGunComponent component, ExaminedEvent args)
     {
-        if (!HasComp<ApcPowerReceiverComponent>(uid))
-            return;
-
         // Powered is already handled by other power components
         var enabled = Loc.GetString(component.On ? "gun-comp-enabled" : "gun-comp-disabled");
 
@@ -59,6 +58,7 @@ public sealed partial class GunSystem
 
             DisableGun(uid, component);
             args.Handled = true;
+            _popup.PopupEntity(Loc.GetString("auto-fire-disabled"), uid, args.User);
         }
         else if (CanEnable(uid, component))
         {
@@ -67,6 +67,11 @@ public sealed partial class GunSystem
 
             EnableGun(uid, component);
             args.Handled = true;
+            _popup.PopupEntity(Loc.GetString("auto-fire-enabled"), uid, args.User);
+        }
+        else
+        {
+            _popup.PopupEntity(Loc.GetString("auto-fire-enabled-no-power"), uid, args.User);
         }
     }
 
