@@ -41,8 +41,13 @@
   - StandardFrontierOutpost
   - BaseStationRecords
   categories: [ HideSpawnMenu ]
-  components:
-  - type: Transform
+
+- type: entity
+  id: ShipyardFrontierOutpost
+  parent:
+  - StandardFrontierOutpost
+  - BaseStationShuttles
+  categories: [ HideSpawnMenu ]
 
 - type: entity
   id: SecurityFrontierOutpost
