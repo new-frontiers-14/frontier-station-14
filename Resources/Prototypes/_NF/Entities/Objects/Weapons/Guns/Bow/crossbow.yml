@@ -32,6 +32,10 @@
       state: icon-bolt-mail
       map: [ mail ]
       visible: false
+    - sprite: _NF/Objects/Weapons/Guns/Projectiles/crossbow_bolts.rsi
+      state: icon-bolt-stake
+      map: [ stake ]
+      visible: false
   - type: Item
     size: Normal
   - type: Clothing
@@ -64,6 +68,7 @@
           - Plunger
           - Bread
           - MailCapsule
+          - WeaponMeleeStake
   - type: ContainerContainer
     containers:
       projectiles: !type:ContainerSlot
@@ -76,6 +81,7 @@
     - plunger
     - bread
     - mail
+    - stake
     mapLayers:
       bolt:
         whitelist:
@@ -93,6 +99,10 @@
         whitelist:
           tags:
           - MailCapsule
+      stake:
+        whitelist:
+          tags:
+          - WeaponMeleeStake
 
 - type: entity
   id: BaseCrossbowWieldable
@@ -151,6 +161,9 @@
         mail:
           True: { sprite: _NF/Objects/Weapons/Guns/Projectiles/crossbow_bolts.rsi, state: icon-bolt-mail-drawn }
           False: { sprite: _NF/Objects/Weapons/Guns/Projectiles/crossbow_bolts.rsi, state: icon-bolt-mail }
+        stake:
+          True: { sprite: _NF/Objects/Weapons/Guns/Projectiles/crossbow_bolts.rsi, state: icon-bolt-stake-drawn }
+          False: { sprite: _NF/Objects/Weapons/Guns/Projectiles/crossbow_bolts.rsi, state: icon-bolt-stake }
 
 # Wieldable
 - type: entity
