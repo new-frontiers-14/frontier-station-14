@@ -26,6 +26,8 @@ public sealed partial class PaletteColorPicker : DefaultWindow
         var i = 0;
         foreach (var palette in _prototypeManager.EnumeratePrototypes<ColorPalettePrototype>())
         {
+            if (palette.Hidden) // Frontier: selectively hide palettes
+                continue; // Frontier: selectively hide palettes
             Palettes.AddItem(palette.Name);
             Palettes.SetItemMetadata(i, palette); // ew
             i += 1;
