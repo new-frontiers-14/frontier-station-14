@@ -88,7 +88,7 @@ public sealed class CardDeckSystem : EntitySystem
 
         EnsureComp<CardStackComponent>(cardDeck, out var deckStack);
 
-        _cardStackSystem.TransferNLastCardFromStacks(user, stack.Cards.Count, uid, stack, cardDeck, deckStack);
+        _cardStackSystem.TransferNLastCardFromStacks(user, stack.Cards.Count / 2, uid, stack, cardDeck, deckStack);
         _hands.PickupOrDrop(user, cardDeck);
     }
 
