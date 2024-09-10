@@ -717,12 +717,16 @@ entities:
       parent: 1
     - type: DeviceList
       devices:
-      - 186
-      - 325
-      - 369
-      - 359
+      - 283
       - 366
       - 64
+      - 359
+      - 369
+      - 325
+      - 356
+      - 129
+      - 410
+      - 279
 - proto: AirlockCargo
   entities:
   - uid: 91
@@ -787,6 +791,8 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -1.5,-0.5
       parent: 1
+    - type: Apc
+      hasAccess: True
 - proto: AtmosDeviceFanDirectional
   entities:
   - uid: 63
@@ -2006,6 +2012,9 @@ entities:
     - type: DeviceNetwork
       configurators:
       - invalid
+      - invalid
+      deviceLists:
+      - 34
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 279
@@ -2013,6 +2022,11 @@ entities:
     - type: Transform
       pos: -2.5,9.5
       parent: 1
+    - type: DeviceNetwork
+      configurators:
+      - invalid
+      deviceLists:
+      - 34
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 283
@@ -2021,6 +2035,11 @@ entities:
       rot: 3.141592653589793 rad
       pos: 3.5,-2.5
       parent: 1
+    - type: DeviceNetwork
+      configurators:
+      - invalid
+      deviceLists:
+      - 34
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 356
@@ -2029,6 +2048,11 @@ entities:
       rot: 3.141592653589793 rad
       pos: -2.5,-2.5
       parent: 1
+    - type: DeviceNetwork
+      configurators:
+      - invalid
+      deviceLists:
+      - 34
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 410
@@ -2037,6 +2061,11 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -1.5,1.5
       parent: 1
+    - type: DeviceNetwork
+      configurators:
+      - invalid
+      deviceLists:
+      - 34
     - type: AtmosPipeColor
       color: '#0055CCFF'
 - proto: GasVentScrubber
@@ -2049,6 +2078,7 @@ entities:
       parent: 1
     - type: DeviceNetwork
       configurators:
+      - invalid
       - invalid
       deviceLists:
       - 34
@@ -2063,8 +2093,6 @@ entities:
     - type: DeviceNetwork
       configurators:
       - invalid
-      deviceLists:
-      - 34
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 325
@@ -2074,6 +2102,7 @@ entities:
       parent: 1
     - type: DeviceNetwork
       configurators:
+      - invalid
       - invalid
       deviceLists:
       - 34
@@ -2088,6 +2117,7 @@ entities:
     - type: DeviceNetwork
       configurators:
       - invalid
+      - invalid
       deviceLists:
       - 34
     - type: AtmosPipeColor
@@ -2101,6 +2131,7 @@ entities:
     - type: DeviceNetwork
       configurators:
       - invalid
+      - invalid
       deviceLists:
       - 34
     - type: AtmosPipeColor
@@ -2113,6 +2144,7 @@ entities:
       parent: 1
     - type: DeviceNetwork
       configurators:
+      - invalid
       - invalid
       deviceLists:
       - 34
@@ -2378,6 +2410,20 @@ entities:
     - type: Transform
       pos: 2.5,2.5
       parent: 1
+- proto: NFPosterContrabandFsbApothecary
+  entities:
+  - uid: 289
+    components:
+    - type: Transform
+      pos: -2.5,1.5
+      parent: 1
+- proto: NFPosterContrabandFsbLogo
+  entities:
+  - uid: 298
+    components:
+    - type: Transform
+      pos: 3.5,1.5
+      parent: 1
 - proto: NitrogenCanister
   entities:
   - uid: 225
@@ -2439,27 +2485,6 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 4.5,3.5
-      parent: 1
-- proto: PosterLegitNanotrasenLogo
-  entities:
-  - uid: 234
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 3.5,1.5
-      parent: 1
-  - uid: 248
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -2.5,1.5
-      parent: 1
-- proto: PosterLegitSafetyMothMeth
-  entities:
-  - uid: 237
-    components:
-    - type: Transform
-      pos: -3.5,3.5
       parent: 1
 - proto: PosterLegitSMHardhats
   entities:
@@ -2579,6 +2604,14 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -6.5,-2.5
+      parent: 1
+- proto: ShelfChemistryChemistrySecure
+  entities:
+  - uid: 234
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -3.5,3.5
       parent: 1
 - proto: ShuttersNormalOpen
   entities:
@@ -2848,12 +2881,12 @@ entities:
       parent: 1
 - proto: SignShipDock
   entities:
-  - uid: 289
+  - uid: 237
     components:
     - type: Transform
       pos: 2.5,-4.5
       parent: 1
-  - uid: 313
+  - uid: 248
     components:
     - type: Transform
       pos: -1.5,-4.5
