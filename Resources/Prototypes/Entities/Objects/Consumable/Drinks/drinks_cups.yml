@@ -38,8 +38,12 @@
     damage:
       types:
         Blunt: 0
-  - type: StaticPrice
-    price: 4.5
+  - type: DnaSubstanceTrace
+  - type: Tag
+    tags:
+    - DrinkCup
+  - type: StaticPrice # Frontier
+    price: 4.5 # Frontier
 
 - type: entity
   parent: DrinkBaseCup
@@ -49,6 +53,8 @@
   components:
   - type: Sprite
     sprite: Objects/Consumable/Drinks/golden_cup.rsi
+  - type: StaticPrice
+    price: 125
 
 - type: entity
   parent: DrinkBaseCup
@@ -316,14 +322,14 @@
 - type: entity
   parent: DrinkBaseCup
   id: DrinkLean
-  name: grape Juice
+  name: grape juice
   description: Damn, no fun allowed.
   components:
   - type: SolutionContainerManager
     solutions:
       drink:
         reagents:
-        - ReagentId: Water
+        - ReagentId: JuiceGrape # Frontier: Water<JuiceGrape
           Quantity: 20
   - type: Sprite
     sprite: Objects/Consumable/Drinks/lean.rsi

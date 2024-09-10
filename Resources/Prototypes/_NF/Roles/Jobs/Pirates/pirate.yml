@@ -5,13 +5,18 @@
   playTimeTracker: JobPirate
   requirements:
     - !type:OverallPlaytimeRequirement
-      time: 86400 # Frontier - 24 hours
+      time: 86400 # 24 hours
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 10800 # 3 hrs
   startingGear: PirateNFGear
   alwaysUseSpawner: true
   hideConsoleVisibility: true
   canBeAntag: true
   icon: "JobIconPirate"
-  supervisors: job-supervisors-hire
+  supervisors: job-supervisors-pirate
+  weight: 20
+  displayWeight: 20
   setPreference: true
   accessGroups:
   - GeneralAccess
@@ -28,9 +33,7 @@
 - type: startingGear
   id: PirateNFGear
   equipment:
-    head: ClothingHeadBandBlack
     ears: ClothingHeadsetAltFreelancer
-    shoes: ClothingShoesBootsLaceup
     belt: ClothingBeltUtility
     pocket1: BasePirateUplinkPirateCrew
     pocket2: AppraisalTool

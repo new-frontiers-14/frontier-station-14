@@ -1,8 +1,10 @@
 using System.Diagnostics.CodeAnalysis;
+using Content.Client.Lobby;
 using Content.Shared.CCVar;
 using Content.Shared.Players;
 using Content.Shared.Players.JobWhitelist;
 using Content.Shared.Players.PlayTimeTracking;
+using Content.Shared.Preferences;
 using Content.Shared.Roles;
 using Robust.Client;
 using Robust.Client.Player;
@@ -90,7 +92,7 @@ public sealed partial class JobRequirementsManager : ISharedPlaytimeManager
         Updated?.Invoke();
     }
 
-    public bool IsAllowed(JobPrototype job, [NotNullWhen(false)] out FormattedMessage? reason)
+    public bool IsAllowed(JobPrototype job, HumanoidCharacterProfile? profile, [NotNullWhen(false)] out FormattedMessage? reason)
     {
         reason = null;
 
@@ -107,16 +109,40 @@ public sealed partial class JobRequirementsManager : ISharedPlaytimeManager
         if (player == null)
             return true;
 
-        return CheckRoleTime(job, out reason);
+        return CheckRoleRequirements(job, profile, out reason);
     }
 
-    public bool CheckRoleTime(JobPrototype job, [NotNullWhen(false)] out FormattedMessage? reason)
+    public bool CheckRoleRequirements(JobPrototype job, HumanoidCharacterProfile? profile, [NotNullWhen(false)] out FormattedMessage? reason)
     {
         var reqs = _entManager.System<SharedRoleSystem>().GetJobRequirement(job);
-        return CheckRoleTime(reqs, out reason);
+
+        //return CheckRoleRequirements(reqs, profile, out reason); // Frontier: old implementation
+
+        // Frontier: alternate role time checks
+        if (CheckRoleRequirements(reqs, profile, out reason))
+            return true;
+
+        var altReqs = _entManager.System<SharedRoleSystem>().GetAlternateJobRequirements(job);
+        if (altReqs != null)
+        {
+            foreach (var alternateSet in altReqs.Values)
+            {
+                // Suppress reasons on alternate requirement sets
+                if (CheckRoleRequirements(alternateSet, profile, out var altReason))
+                {
+                    return true;
+                }
+                reason.PushNewline();
+                reason.AddMarkupPermissive(Loc.GetString("role-requirement-alternative"));
+                reason.PushNewline();
+                reason.AddMarkupPermissive(altReason.ToMarkup());
+            }
+        }
+        return false;
+        // End Frontier: alternate role time checks
     }
 
-    public bool CheckRoleTime(HashSet<JobRequirement>? requirements, [NotNullWhen(false)] out FormattedMessage? reason)
+    public bool CheckRoleRequirements(HashSet<JobRequirement>? requirements, HumanoidCharacterProfile? profile, [NotNullWhen(false)] out FormattedMessage? reason)
     {
         reason = null;
 
@@ -126,7 +152,7 @@ public sealed partial class JobRequirementsManager : ISharedPlaytimeManager
         var reasons = new List<string>();
         foreach (var requirement in requirements)
         {
-            if (JobRequirements.TryRequirementMet(requirement, _roles, out var jobReason, _entManager, _prototypes))
+            if (requirement.Check(_entManager, _prototypes, profile, _roles, out var jobReason))
                 continue;
 
             reasons.Add(jobReason.ToMarkup());

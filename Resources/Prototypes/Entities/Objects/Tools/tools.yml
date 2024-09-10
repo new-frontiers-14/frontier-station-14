@@ -101,12 +101,12 @@
     tags:
     - Wrench
   - type: Sprite
-    sprite: Objects/Tools/wrench.rsi
+    sprite: _NF/Objects/Tools/wrench.rsi # Frontier: separate sprites (add _NF folder)
     state: icon
   - type: Item
-    sprite: Objects/Tools/wrench.rsi
+    sprite: _NF/Objects/Tools/wrench.rsi # Frontier: separate sprites (add _NF folder)
     storedSprite:
-      sprite: Objects/Tools/wrench.rsi
+      sprite: _NF/Objects/Tools/wrench.rsi # Frontier: separate sprites (add _NF folder)
       state: storage
   - type: MeleeWeapon
     wideAnimationRotation: 135
@@ -128,81 +128,24 @@
     price: 15
 
 - type: entity
-  name: crowbar
-  parent: BaseItem
-  id: Crowbar
-  description: A multipurpose tool to pry open doors and fight interdimensional invaders.
-  components:
-  - type: EmitSoundOnLand
-    sound:
-      path: /Audio/Items/crowbar_drop.ogg
-  - type: Tag
-    tags:
-    - Crowbar
-  - type: Sprite
-    sprite: Objects/Tools/crowbar.rsi
-    state: icon
-  - type: Item
-    sprite: Objects/Tools/crowbar.rsi
-    size: Small
-    storedSprite:
-      sprite: Objects/Tools/crowbar.rsi
-      state: storage
-  - type: MeleeWeapon
-    wideAnimationRotation: -135
-    damage:
-      types:
-        Blunt: 8
-    soundHit:
-      collection: MetalThud
-  - type: Tool
-    qualities:
-      - Prying
-    useSound:
-      path: /Audio/Items/crowbar.ogg
-  - type: ToolTileCompatible
-  - type: PhysicalComposition
-    materialComposition:
-      Steel: 100
-  - type: StaticPrice
-    price: 15
-  - type: Prying
-
-- type: entity
-  parent: Crowbar
-  id: CrowbarRed
-  name: emergency crowbar
-  components:
-  - type: Tag
-    tags:
-    - Crowbar
-    - CrowbarRed
-  - type: Sprite
-    state: red-icon
-  - type: Item
-    heldPrefix: red
-    storedSprite:
-      sprite: Objects/Tools/crowbar.rsi
-      state: red-storage
-
-- type: entity
   name: multitool
   parent: BaseItem
   id: Multitool
-  description: An advanced tool to copy, store, and send electrical pulses and signals through wires and machines
+  description: An advanced tool to copy, store, and send electrical pulses and signals through wires and machines.
   components:
   - type: EmitSoundOnLand
     sound:
       path: /Audio/Items/multitool_drop.ogg
   - type: Sprite
-    sprite: Objects/Tools/multitool.rsi
+    sprite: _NF/Objects/Tools/multitool.rsi # Frontier: separate sprites (add _NF folder)
     layers:
     - state: icon
     - state: green-unlit
+      shader: unshaded
   - type: Item
     size: Small
   - type: Clothing
-    sprite: Objects/Tools/multitool.rsi
+    sprite: _NF/Objects/Tools/multitool.rsi # Frontier: separate sprites (add _NF folder)
     quickEquip: false
     slots:
     - Belt
@@ -281,7 +224,7 @@
       price: 25
     - type: GuideHelp
       guides:
-        - NetworkConfigurator
+      - NetworkConfigurator
 
 #Power tools
 #Later on these should switch probably switch damage when changing the tool behavior.
@@ -341,7 +284,7 @@
 
 - type: entity
   id: RCD
-  parent: BaseItem
+  parent: BaseItem # Frontier: remove BaseEngineeringContraband
   name: RCD
   description: The rapid construction device can be used to quickly place and remove various station structures and fixtures. Requires compressed matter to function.
   components:
@@ -371,12 +314,12 @@
     charges: 30
   - type: UseDelay
   - type: Sprite
-    sprite: Objects/Tools/rcd.rsi
+    sprite: _NF/Objects/Tools/rcd.rsi # Frontier
     state: icon
   - type: Item
     size: Normal
   - type: Clothing
-    sprite: Objects/Tools/rcd.rsi
+    sprite: _NF/Objects/Tools/rcd.rsi # Frontier
     quickEquip: false
     slots:
     - Belt
@@ -392,6 +335,7 @@
       enum.RcdUiKey.Key:
         type: RCDMenuBoundUserInterface
   - type: ActivatableUI
+    inHandsOnly: true
     key: enum.RcdUiKey.Key
 
 - type: entity
@@ -401,20 +345,6 @@
   components:
   - type: LimitedCharges
     charges: 0
-  - type: RCD
-    availablePrototypes:
-    - WallSolid
-    - FloorSteel
-    - Plating
-    - Catwalk
-    - Grille
-    - Window
-    - WindowDirectional
-    - WindowReinforcedDirectional
-    - ReinforcedWindow
-    - Airlock
-    - AirlockGlass
-    - Firelock
 
 - type: entity
   id: RCDRecharging
@@ -447,10 +377,10 @@
   components:
   - type: RCDAmmo
   - type: Sprite
-    sprite: Objects/Tools/rcd.rsi
+    sprite: _NF/Objects/Tools/rcd.rsi # Frontier
     state: ammo
   - type: Item
-    sprite: Objects/Tools/rcd.rsi
+    sprite: _NF/Objects/Tools/rcd.rsi # Frontier
     heldPrefix: ammo
   - type: PhysicalComposition
     materialComposition:
@@ -458,6 +388,7 @@
       Plastic: 100
   - type: StaticPrice
     price: 40
+    vendPrice: 1000 # Frontier
 
 - type: entity
   name: omnitool

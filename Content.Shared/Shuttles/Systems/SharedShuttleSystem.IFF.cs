@@ -51,6 +51,9 @@ public abstract partial class SharedShuttleSystem
     {
         component ??= EnsureComp<IFFComponent>(gridUid);
 
+        if (component.ReadOnly) // Frontier: POI IFF protection
+            return; // Frontier: POI IFF protection
+
         if (component.Color.Equals(color))
             return;
 
@@ -63,6 +66,9 @@ public abstract partial class SharedShuttleSystem
     public void AddIFFFlag(EntityUid gridUid, IFFFlags flags, IFFComponent? component = null)
     {
         component ??= EnsureComp<IFFComponent>(gridUid);
+
+        if (component.ReadOnly) // Frontier: POI IFF protection
+            return; // Frontier: POI IFF protection
 
         if ((component.Flags & flags) == flags)
             return;
@@ -78,6 +84,9 @@ public abstract partial class SharedShuttleSystem
         if (!Resolve(gridUid, ref component, false))
             return;
 
+        if (component.ReadOnly) // Frontier: POI IFF protection
+            return; // Frontier: POI IFF protection
+
         if ((component.Flags & flags) == 0x0)
             return;
 
@@ -85,4 +94,18 @@ public abstract partial class SharedShuttleSystem
         Dirty(gridUid, component);
         UpdateIFFInterfaces(gridUid, component);
     }
+
+    // Frontier: POI IFF protection
+    [PublicAPI]
+    public void SetIFFReadOnly(EntityUid gridUid, bool readOnly, IFFComponent? component = null)
+    {
+        if (!Resolve(gridUid, ref component, false))
+            return;
+
+        if (component.ReadOnly == readOnly)
+            return;
+
+        component.ReadOnly = readOnly;
+    }
+    // End Frontier
 }

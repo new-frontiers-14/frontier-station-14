@@ -1,0 +1,32 @@
+# Author Info
+# GitHub: Tych0theSynth (https://github.com/tych0thesynth)
+# Discord: Tych0
+
+# Maintainer Info
+# GitHub: ???
+# Discord: ???
+
+# Notes:
+# Dumping ground of broken dreams and broken ships.
+# Based on the McCargo built by Dvir01 (https://github.com/dvir001) and ruined with drunken pride by Tych0. 
+- type: pointOfInterest
+  id: McHobo
+  name: Derelict McCargo
+  rangeMin: 3250
+  rangeMax: 5600
+  iffColor: "#ffa600" #yellorange for faction style
+  spawnChance: 1
+  spawnGroup: Scrapyard
+  gridPath: /Maps/_NF/POI/mchobo.yml
+
+- type: gameMap
+  id: McHobo
+  mapName: "Derelict McCargo"
+  mapPath: /Maps/_NF/POI/mchobo.yml
+  minPlayers: 0
+  stations:
+    McHobo:
+      stationProto: ShipyardFrontierOutpost
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: "Derelict McCargo"

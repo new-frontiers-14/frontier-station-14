@@ -34,6 +34,25 @@
         - PirateCaptain
 
 - type: listing
+  id: UplinkPirateHardsuitElite
+  name:  uplink-pirate-hardsuit-elite-name
+  description: uplink-pirate-hardsuit-elite-desc
+  productEntity: ClothingOuterHardsuitPirateElite
+  icon: { sprite: _NF/Clothing/OuterClothing/Hardsuits/pirate_elite.rsi, state: icon }
+  cost:
+    Doubloon: 10
+  categories:
+    - UplinkPirateHardsuits
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - PirateCaptain
+
+- type: listing
   id: UplinkPirateCaptainCrateFilled
   name:  uplink-pirate-crate-captain-name
   description: uplink-pirate-crate-captain-desc
@@ -206,6 +225,70 @@
         - PirateCaptain
 
 - type: listing
+  id: UplinkPirateAnchor
+  name:  uplink-pirate-anchor-name
+  description: uplink-pirate-anchor-desc
+  productEntity: PirateBreachingAnchor
+  icon: { sprite: _NF/Objects/Weapons/Melee/pirate_anchor.rsi, state: icon }
+  cost:
+    Doubloon: 4
+  categories:
+    - UplinkPirateWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
+
+- type: listing
+  id: UplinkPirateRedGrenade
+  name:  uplink-pirate-redgrenade-name
+  description: uplink-pirate-redgrenade-desc
+  productEntity: PirateGrenadeFire
+  icon: { sprite: _NF/Objects/Weapons/Bombs/pirate_fire.rsi, state: icon }
+  cost:
+    Doubloon: 3
+  categories:
+    - UplinkPirateWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
+
+- type: listing
+  id: UplinkPirateGreenGrenade
+  name:  uplink-pirate-greengrenade-name
+  description: uplink-pirate-greengrenade-desc
+  productEntity: PirateGrenadeRadiation
+  icon: { sprite: _NF/Objects/Weapons/Bombs/pirate_caustic.rsi, state: icon }
+  cost:
+    Doubloon: 3
+  categories:
+    - UplinkPirateWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
+
+- type: listing
+  id: UplinkPirateGrayGrenade
+  name:  uplink-pirate-graygrenade-name
+  description: uplink-pirate-graygrenade-desc
+  productEntity: PirateGrenadeConcussion
+  icon: { sprite: _NF/Objects/Weapons/Bombs/pirate_explosive.rsi, state: icon }
+  cost:
+    Doubloon: 3
+  categories:
+    - UplinkPirateWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
+
+- type: listing
   id: UplinkPirateShotgunAmmo
   name:  uplink-pirate-shotgunammo-name
   description: uplink-pirate-shotgunammo-desc
@@ -259,6 +342,22 @@
   description: uplink-pirate-cannonball-desc
   productEntity: CratePirateChestCannonBall
   icon: { sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi, state: ball }
+  cost:
+    Doubloon: 2
+  categories:
+    - UplinkPirateAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
+
+- type: listing
+  id: UplinkPirateCannonballEmp
+  name:  uplink-pirate-cannonball-emp-name
+  description: uplink-pirate-cannonball-emp-desc
+  productEntity: CratePirateChestCannonBallEmp
+  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi, state: ball-emp }
   cost:
     Doubloon: 2
   categories:

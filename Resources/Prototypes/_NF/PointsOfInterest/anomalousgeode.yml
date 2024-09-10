@@ -1,0 +1,33 @@
+# Author Info
+# GitHub: 
+# Discord: Checkraze
+
+# Maintainer Info
+# GitHub: ???
+# Discord: ???
+
+# Notes:
+# The local Science lab
+- type: pointOfInterest
+  id: AnomalousGeode
+  name: 'Anomalous Geode'
+  rangeMin: 2100
+  rangeMax: 3800
+  iffColor: "#ffa600" #yellorange for nuetral civillian
+  spawnChance: 1
+  spawnGroup: ScienceLab
+  gridPath: /Maps/_NF/POI/anomalousgeode.yml
+
+- type: gameMap
+  id: AnomalousGeode
+  mapName: 'Anomalous Lab'
+  mapPath: /Maps/_NF/POI/anomalouslab.yml
+  minPlayers: 0
+  stations:
+    AnomalousGeode:
+      stationProto: StandardFrontierOutpost
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Anomalous Geode'
+        - type: StationJobs
+          availableJobs: {}

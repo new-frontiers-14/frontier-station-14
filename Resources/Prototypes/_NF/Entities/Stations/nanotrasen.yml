@@ -1,0 +1,120 @@
+- type: entity
+  id: StandardFrontierStation
+  parent:
+  - BaseStation
+  - BaseStationCargo
+  - BaseStationJobsSpawning
+  - BaseStationRecords
+  - BaseStationShuttles
+  - BaseStationAlertLevels
+  - BaseStationSiliconLawFrontierStation
+  - BaseStationSectorNews
+  - BaseStationMail # Mail
+  - BaseStationSectorServices # Hosts all sector-wide services
+  - BaseStationDampening
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+
+- type: entity
+  id: StandardFrontierOutpost
+  parent:
+  - BaseStation
+  - BaseStationJobsSpawning
+  - BaseStationCargo
+  - BaseStationSiliconLawFrontierShips
+  - BaseStationDampening
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+
+- type: entity
+  id: MarketFrontierOutpost
+  parent:
+  - StandardFrontierOutpost
+  - BaseStationCargoMarket
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: SpawnableFrontierOutpost
+  parent:
+  - StandardFrontierOutpost
+  - BaseStationRecords
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: ShipyardFrontierOutpost
+  parent:
+  - StandardFrontierOutpost
+  - BaseStationShuttles
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: SecurityFrontierOutpost
+  parent:
+  - BaseStation # Copied from StandardFrontierStation
+  - BaseStationCargo # Cargo
+  - BaseStationJobsSpawning # Records and jobsspawning
+  - BaseStationRecords
+  - BaseStationShuttles # Can spawn shuttles via shipyard consoles
+  - BaseStationAlertLevels # Has a comms console
+  - BaseStationSiliconLawFrontierStation # No funny borg laws
+  - BaseStationDampening
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+
+- type: entity
+  id: StandardFrontierVessel
+  parent:
+  - BaseStation
+  - BaseStationJobsSpawning
+  - BaseStationRecords
+  - BaseStationAlertLevels
+  - BaseStationAllEventsEligible
+  - BaseStationRenameFaxes
+  - BaseStationRenameWarpPoints
+  - BaseStationSiliconLawFrontierShips
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+
+- type: entity
+  id: StandardFrontierSecurityVessel
+  parent:
+  - BaseStation
+  - BaseStationJobsSpawning
+  - BaseStationRecords
+  - BaseStationAlertLevels
+  - BaseStationAllEventsEligible
+  - BaseStationRenameFaxes
+  - BaseStationRenameWarpPoints
+  - BaseStationSiliconLawFrontierShips
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+
+- type: entity
+  id: StandardFrontierSecurityExpeditionVessel
+  parent:
+  - BaseStation
+  - BaseStationJobsSpawning
+  - BaseStationRecords
+  - BaseStationAlertLevels
+  - BaseStationAllEventsEligible
+  - BaseStationRenameFaxes
+  - BaseStationRenameWarpPoints
+  - BaseStationSiliconLawFrontierShips
+  - BaseStationExpeditions
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+
+- type: entity
+  id: StandardFrontierExpeditionVessel
+  parent:
+  - StandardFrontierVessel
+  - BaseStationExpeditions
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform

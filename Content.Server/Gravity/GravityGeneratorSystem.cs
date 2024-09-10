@@ -2,6 +2,7 @@ using Content.Server.Administration.Logs;
 using Content.Server.Audio;
 using Content.Server.Construction;
 using Content.Server.Power.Components;
+using Content.Server.Emp; // Frontier: Upstream - #28984
 using Content.Shared.Database;
 using Content.Shared.Gravity;
 using Content.Shared.Interaction;
@@ -30,6 +31,8 @@ namespace Content.Server.Gravity
             SubscribeLocalEvent<GravityGeneratorComponent, RefreshPartsEvent>(OnRefreshParts);
             SubscribeLocalEvent<GravityGeneratorComponent, SharedGravityGeneratorComponent.SwitchGeneratorMessage>(
                 OnSwitchGenerator);
+
+            SubscribeLocalEvent<GravityGeneratorComponent, EmpPulseEvent>(OnEmpPulse); // Frontier: Upstream - #28984
         }
 
         private void OnParentChanged(EntityUid uid, GravityGeneratorComponent component, ref EntParentChangedMessage args)
@@ -293,6 +296,28 @@ namespace Content.Server.Gravity
             SharedGravityGeneratorComponent.SwitchGeneratorMessage args)
         {
             SetSwitchedOn(uid, component, args.On, user: args.Actor);
+        }
+
+        private void OnEmpPulse(EntityUid uid, GravityGeneratorComponent component, EmpPulseEvent args) // Frontier: Upstream - #28984
+        {
+            /// i really don't think that the gravity generator should use normalised 0-1 charge
+            /// as opposed to watts charge that every other battery uses
+
+            if (!TryComp<ApcPowerReceiverComponent>(uid, out var powerReceiver))
+                return;
+
+            var ent = (uid, component, powerReceiver);
+
+            // convert from normalised energy to watts and subtract
+            float maxEnergy = component.ActivePowerUse / component.ChargeRate;
+            float currentEnergy = maxEnergy * component.Charge;
+            currentEnergy = Math.Max(0, currentEnergy - args.EnergyConsumption);
+
+            // apply renormalised energy to charge variable
+            component.Charge = currentEnergy / maxEnergy;
+
+            // update power state
+            UpdateState(ent);
         }
     }
 }

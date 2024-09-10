@@ -3,6 +3,7 @@ using Content.Server.Power.EntitySystems;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Server.Station.Systems;
+using Content.Shared._NF.Shuttles.Events; // Frontier
 using Content.Shared.ActionBlocker;
 using Content.Shared.Alert;
 using Content.Shared.Popups;
@@ -71,6 +72,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         SubscribeLocalEvent<UndockEvent>(OnUndock);
 
         SubscribeLocalEvent<PilotComponent, ComponentGetState>(OnGetState);
+        SubscribeLocalEvent<PilotComponent, StopPilotingAlertEvent>(OnStopPilotingAlert);
 
         SubscribeLocalEvent<FTLDestinationComponent, ComponentStartup>(OnFtlDestStartup);
         SubscribeLocalEvent<FTLDestinationComponent, ComponentShutdown>(OnFtlDestShutdown);
@@ -162,6 +164,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
     {
         DockingInterfaceState? dockState = null;
         UpdateState(uid, ref dockState);
+        _shuttle.NfSetPowered(uid, component, args.Powered); // Frontier
     }
 
     private bool TryPilot(EntityUid user, EntityUid uid)
@@ -194,6 +197,14 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
     private void OnGetState(EntityUid uid, PilotComponent component, ref ComponentGetState args)
     {
         args.State = new PilotComponentState(GetNetEntity(component.Console));
+    }
+
+    private void OnStopPilotingAlert(Entity<PilotComponent> ent, ref StopPilotingAlertEvent args)
+    {
+        if (ent.Comp.Console != null)
+        {
+            RemovePilot(ent, ent);
+        }
     }
 
     /// <summary>
@@ -256,7 +267,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         }
         else
         {
-            navState = new NavInterfaceState(0f, null, null, new Dictionary<NetEntity, List<DockingPortState>>());
+            navState = new NavInterfaceState(0f, null, null, new Dictionary<NetEntity, List<DockingPortState>>(), InertiaDampeningMode.Dampen); // Frontier: inertia dampening);
             mapState = new ShuttleMapInterfaceState(
                 FTLState.Invalid,
                 default,
@@ -371,7 +382,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
     public NavInterfaceState GetNavState(Entity<RadarConsoleComponent?, TransformComponent?> entity, Dictionary<NetEntity, List<DockingPortState>> docks)
     {
         if (!Resolve(entity, ref entity.Comp1, ref entity.Comp2))
-            return new NavInterfaceState(SharedRadarConsoleSystem.DefaultMaxRange, null, null, docks);
+            return new NavInterfaceState(SharedRadarConsoleSystem.DefaultMaxRange, null, null, docks, Shared._NF.Shuttles.Events.InertiaDampeningMode.Dampen); // Frontier: add inertia dampening
 
         return GetNavState(
             entity,
@@ -387,13 +398,14 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         Angle angle)
     {
         if (!Resolve(entity, ref entity.Comp1, ref entity.Comp2))
-            return new NavInterfaceState(SharedRadarConsoleSystem.DefaultMaxRange, GetNetCoordinates(coordinates), angle, docks);
+            return new NavInterfaceState(SharedRadarConsoleSystem.DefaultMaxRange, GetNetCoordinates(coordinates), angle, docks, InertiaDampeningMode.Dampen); // Frontier: add inertial dampening
 
         return new NavInterfaceState(
             entity.Comp1.MaxRange,
             GetNetCoordinates(coordinates),
             angle,
-            docks);
+            docks,
+            _shuttle.NfGetInertiaDampeningMode(entity)); // Frontier: inertia dampening
     }
 
     /// <summary>

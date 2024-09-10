@@ -5,12 +5,12 @@
   description: It extinguishes fires.
   components:
   - type: Sprite
-    sprite: Objects/Misc/fire_extinguisher.rsi
+    sprite: _NF/Objects/Misc/fire_extinguisher.rsi # Frontier
     layers:
     - state: fire_extinguisher_closed
       map: [ "enum.ToggleVisuals.Layer" ]
   - type: Item
-    sprite: Objects/Misc/fire_extinguisher.rsi
+    sprite: _NF/Objects/Misc/fire_extinguisher.rsi # Frontier
     size: Normal
   - type: SolutionContainerManager
     solutions:
@@ -76,7 +76,7 @@
   name: extinguisher spray
   id: ExtinguisherSpray
   parent: Vapor
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Effects/extinguisherSpray.rsi

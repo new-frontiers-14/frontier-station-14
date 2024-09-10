@@ -1,0 +1,41 @@
+# Author Info
+# GitHub: tonotom1
+# Discord: rws
+
+# Maintainer Info
+# GitHub: tonotom1
+# Discord: rws
+
+# Shuttle Notes:
+# hi
+- type: vessel
+  id: Akupara
+  name: UW Akupara
+  description: A medium full-feature botanical research biodome equipped to help a botanist fully interact with their plants in almost any way conceivable.
+  price: 47000 #~42500 + ~4500
+  category: Medium
+  group: Shipyard
+  shuttlePath: /Maps/_NF/Shuttles/akupara.yml
+  guidebookPage: ShipyardAkupara
+  class:
+  - Botany
+
+- type: gameMap
+  id: Akupara
+  mapName: 'Akupara'
+  mapPath: /Maps/_NF/Shuttles/akupara.yml
+  minPlayers: 0
+  stations:
+    Akupara:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Akupara {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]
