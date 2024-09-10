@@ -6,6 +6,9 @@
   description: The original rooty tooty point and shooty.
   abstract: true
   components:
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 500
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Crossbow/crossbow.rsi
     layers:
@@ -85,6 +88,8 @@
   components:
   - type: UseDelay
     delay: 0.5
+  - type: StaticPrice
+    price: 280
 
 - type: entity
   id: CrossbowImprovised
@@ -104,3 +109,5 @@
   components:
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Crossbow/cult.rsi
+  - type: StaticPrice
+    price: 400
