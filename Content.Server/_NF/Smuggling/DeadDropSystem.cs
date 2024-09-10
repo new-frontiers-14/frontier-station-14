@@ -138,7 +138,7 @@ public sealed class DeadDropSystem : EntitySystem
                     break;
             }
         }
-        
+
         Log.Error($"OnStationsGenerated: enumerating PotentialDeadDropComponent w/EntityQueryEnumerator.");
         var pdq1 = EntityQueryEnumerator<PotentialDeadDropComponent>();
         while (pdq1.MoveNext(out var ent, out var potentialDrop))

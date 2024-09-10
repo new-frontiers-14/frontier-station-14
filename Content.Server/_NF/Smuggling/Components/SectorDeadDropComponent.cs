@@ -1,3 +1,6 @@
+using Content.Shared.FixedPoint;
+using Microsoft.CodeAnalysis.Elfie.Serialization;
+
 namespace Content.Server._NF.Smuggling.Components;
 
 /// <summary>
@@ -27,6 +30,18 @@ public sealed partial class SectorDeadDropComponent : Component
     /// </summary>
     [ViewVariables]
     public int MaxSimultaneousPods = 3;
+
+    /// <summary>
+    ///     Accumulator for FUC values.  Pays out at a given amount.
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite)]
+    public FixedPoint2 FUCAccumulator = FixedPoint2.Zero;
+
+    /// <summary>
+    ///     Minimum FUC for payout.  FUCs should be paid out whenever the accumulator is greater than this value, keeping any remainder.
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite)]
+    public int MinFUCPayout = 2;
 
     // TODO: add some heat/filtering on how many dead drops there should be at once.
 }

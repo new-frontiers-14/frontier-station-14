@@ -4,6 +4,7 @@ using Content.Server.Popups;
 using Content.Server.Stack; // Frontier
 using Content.Server._NF.Smuggling; // Frontier
 using Content.Server._NF.Smuggling.Components; // Frontier
+using Content.Server.Cargo.Systems; // Frontier
 using Content.Server.Radio.EntitySystems; // Frontier
 using Content.Shared.UserInterface;
 using Content.Shared.DoAfter;
@@ -24,6 +25,9 @@ using Robust.Shared.Audio;
 using Robust.Shared.Timing;
 using Content.Server.Chemistry.Containers.EntitySystems;
 using Content.Shared.Containers.ItemSlots; // Frontier
+using Content.Server.Cargo.Components;
+using Content.Server._NF.SectorServices;
+using Content.Shared.FixedPoint; // Frontier
 
 // todo: remove this stinky LINQy
 
@@ -49,9 +53,8 @@ namespace Content.Server.Forensics
         [Dependency] private readonly AccessReaderSystem _accessReader = default!; // Frontier
         [Dependency] private readonly DeadDropSystem _deadDrop = default!; // Frontier
         [Dependency] private readonly ItemSlotsSystem _itemSlots = default!; // Frontier
-
-        private readonly List<EntityUid> _scannedDeadDrops = []; // Frontier
-        private int _amountScanned = 0; // Frontier
+        [Dependency] private readonly CargoSystem _cargo = default!; // Frontier
+        [Dependency] private readonly SectorServiceSystem _service = default!; // Frontier
 
         public override void Initialize()
         {
@@ -68,15 +71,41 @@ namespace Content.Server.Forensics
 
         // Frontier: add dead drop rewards
         /// <summary>
-        ///     Gives rewards in form of FUC to the detective for interacting with the dead drop system
+        ///     Rewards the NFSD department for scanning a dead drop.
+        ///     Gives some amount of spesos and FUC to the 
         /// </summary>
-        private void GiveReward(EntityUid uidOrigin, EntityUid target, int amount, string msg)
+        private void GiveReward(EntityUid uidOrigin, EntityUid target, int spesoAmount, FixedPoint2 fucAmount, string msg)
         {
             SoundSpecifier confirmSound = new SoundPathSpecifier("/Audio/Effects/Cargo/ping.ogg");
             _audio.PlayPvs(_audio.GetSound(confirmSound), uidOrigin);
 
-            var stackPrototype = _prototypeManager.Index<StackPrototype>("FrontierUplinkCoin");
-            _stackSystem.Spawn(amount, stackPrototype, Transform(target).Coordinates);
+            // Credit the bank account
+            if (spesoAmount > 0)
+            {
+                var queryBank = EntityQuery<StationBankAccountComponent>();
+                foreach (var account in queryBank)
+                {
+                    _cargo.DeductFunds(account, -spesoAmount);
+                }
+            }
+
+            if (fucAmount > 0)
+            {
+                // Accumulate sector-wide FUCs, pay out if min threshold met
+                if (TryComp<SectorDeadDropComponent>(_service.GetServiceEntity(), out var sectorDD))
+                {
+                    sectorDD.FUCAccumulator += fucAmount;
+                    if (sectorDD.FUCAccumulator >= sectorDD.MinFUCPayout)
+                    {
+                        // inherent floor
+                        int payout = sectorDD.FUCAccumulator.Int();
+                        sectorDD.FUCAccumulator -= payout;
+
+                        var stackPrototype = _prototypeManager.Index<StackPrototype>("FrontierUplinkCoin");
+                        _stackSystem.Spawn(payout, stackPrototype, Transform(target).Coordinates);
+                    }
+                }
+            }
 
             var channel = _prototypeManager.Index<RadioChannelPrototype>("Nfsd");
             _radio.SendRadioMessage(uidOrigin, msg, channel, uidOrigin);
@@ -126,33 +155,41 @@ namespace Content.Server.Forensics
                 // Frontier: contraband poster/pod scanning
                 if (_itemSlots.TryGetSlot(uid, "forensics_cartridge", out var itemSlot) && itemSlot.HasItem)
                 {
-                    EntityUid posterUid = args.Args.Target.Value;
-                    // Prints FUC if you've successfully scanned a dead drop poster that has spawned a dead drop at least once
-                    if (HasComp<DeadDropComponent>(posterUid))
+                    EntityUid target = args.Args.Target.Value;
+                    if (TryComp<DeadDropComponent>(target, out var deadDrop))
                     {
-                        if (TryComp<DeadDropComponent>(posterUid, out var deadDropComponent) &&
-                            deadDropComponent.DeadDropCalled)
+                        // If there's a dead drop note present, pay out regardless and compromise the dead drop.
+                        if (_gameTiming.CurTime >= deadDrop.NextDrop)
                         {
-                            var amount = 3;
-                            var msg = Loc.GetString("forensic-reward-poster", ("amount", amount));
-
-                            GiveReward(uid, posterUid, amount, msg);
-
-                            // Makes the boolean true so you can't just keep scanning the same poster over and over again
-                            _deadDrop.CompromiseDeadDrop(posterUid, deadDropComponent);
+                            int spesoReward;
+                            FixedPoint2 fucReward;
+                            string msg;
+                            if (deadDrop.DeadDropCalled)
+                            {
+                                spesoReward = 7500;
+                                fucReward = 0.5f;
+                                msg = "forensic-reward-dead-drop-used-present";
+                            }
+                            else
+                            {
+                                spesoReward = 15000;
+                                fucReward = 1f;
+                                msg = "forensic-reward-dead-drop-unused";
+                            }
+                            GiveReward(uid, target, spesoReward, fucReward, msg);
+                            _deadDrop.CompromiseDeadDrop(target, deadDrop);
+                        }
+                        // Otherwise, if it's been used, pay out at a reduced rate and compromise it.
+                        else if (deadDrop.DeadDropCalled)
+                        {
+                            GiveReward(uid, target, 2500, 0.25f, "forensic-reward-dead-drop-used-gone");
+                            _deadDrop.CompromiseDeadDrop(target, deadDrop);
                         }
                     }
-                    else if (MetaData(Transform(posterUid).ParentUid).EntityName.Equals("Syndicate Supply Drop") &&
-                            !_scannedDeadDrops.Contains(Transform(posterUid).ParentUid) && _amountScanned <= 5)
+                    else if (TryComp<ContrabandPodGridComponent>(Transform(target).GridUid, out var pod) && !pod.Scanned)
                     {
-                        // Only works if you scan anything on the Syndicate Supply Drop and have scanned less than 5 times total
-                        var amount = 6;
-                        var msg = Loc.GetString("forensic-reward-drop", ("amount", amount));
-
-                        GiveReward(uid, posterUid, amount, msg);
-
-                        _scannedDeadDrops.Add(Transform(posterUid).ParentUid);
-                        _amountScanned++;
+                        GiveReward(uid, target, 7500, 0.25f, "forensic-reward-pod");
+                        pod.Scanned = true;
                     }
                 }
                 // End Frontier: contraband poster/pod scanning
