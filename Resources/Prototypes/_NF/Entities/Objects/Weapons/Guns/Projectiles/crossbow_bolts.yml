@@ -144,6 +144,10 @@
     maxTransferAmount: 5
     transferAmount: 5
     toggleState: Draw
+  - type: DamageOnLand
+    damage:
+      types:
+        Blunt: 30 # Should prevent re-using
 
 # Craftable variations
 - type: entity
@@ -251,6 +255,10 @@
   - type: Construction
     graph: CraftCrossbowBoltSyringe
     node: CraftCrossbowBoltSyringe
+  - type: DamageOnLand
+    damage:
+      types:
+        Blunt: 30 # Should prevent re-using
 
 - type: entity
   parent: [ BaseC3ContrabandNoValue, CrossbowBolt ]
@@ -304,7 +312,7 @@
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: Default
-    maxIntensity: 1.25 # max 30 per tile
+    maxIntensity: 1.25
     intensitySlope: 1
     totalIntensity: 2.5
     maxTileBreak: 1
@@ -357,6 +365,10 @@
   - type: Construction
     graph: CraftCrossbowBoltElectrified
     node: CraftCrossbowBoltElectrified
+  - type: DamageOnLand
+    damage:
+      types:
+        Blunt: 30 # Should prevent re-using
 
 - type: entity
   parent: [ BaseC3ContrabandNoValue, BaseCrossbowBoltTrigger ]
@@ -386,15 +398,19 @@
       types:
         Piercing: 15
   - type: IgniteOnCollide
-    fireStacks: 0.3
+    fireStacks: 0.5
   - type: PointLight
     enabled: true
     color: "#ff4300"
-    radius: 2.0
-    energy: 7.0
+    radius: 1.5
+    energy: 1.3
   - type: Construction
     graph: CraftCrossbowBoltIncendiary
     node: CraftCrossbowBoltIncendiary
+  - type: DamageOnLand
+    damage:
+      types:
+        Blunt: 30 # Should prevent re-using
 
 # Blood cult
 - type: entity
