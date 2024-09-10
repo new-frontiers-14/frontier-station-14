@@ -1,0 +1,31 @@
+# Author Info
+# GitHub: 
+# Discord: ???
+
+# Maintainer Info
+# GitHub: ???
+# Discord: ???
+
+# Notes:
+# Down at your local saloon
+- type: pointOfInterest
+  id: Grifty
+  name: "Grifty's Gas n Grub"
+  rangeMin: 3250
+  rangeMax: 5600
+  iffColor: "#ffa600" #yellorange for faction style
+  spawnChance: 1
+  spawnGroup: Scrapyard
+  gridPath: /Maps/_NF/POI/grifty.yml
+
+- type: gameMap
+  id: Grifty
+  mapName: "Grifty's Gas n Grub"
+  mapPath: /Maps/_NF/POI/grifty.yml
+  minPlayers: 0
+  stations:
+    Grifty:
+      stationProto: ShipyardFrontierOutpost
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: "Grifty's Gas n Grub"
