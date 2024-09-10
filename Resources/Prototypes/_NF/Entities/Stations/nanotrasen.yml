@@ -29,6 +29,13 @@
   - type: Transform
 
 - type: entity
+  id: DeadDropFrontierOutpost
+  parent:
+  - StandardFrontierOutpost
+  - BaseStationDeadDrops
+  categories: [ HideSpawnMenu ]
+
+- type: entity
   id: MarketFrontierOutpost
   parent:
   - StandardFrontierOutpost
@@ -40,6 +47,13 @@
   parent:
   - StandardFrontierOutpost
   - BaseStationRecords
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: SpawnableDeadDropFrontierOutpost
+  parent:
+  - SpawnableFrontierOutpost
+  - BaseStationDeadDrops
   categories: [ HideSpawnMenu ]
 
 - type: entity
