@@ -192,6 +192,9 @@
   - BaseC3Contraband
   id: MobHumanoidHostileBase
   components:
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 3.5
+    baseSprintSpeed : 4.5
   - type: NPCRetaliation
     attackMemoryLength: 10
   - type: MobMover
@@ -247,6 +250,9 @@
   - BaseC3Contraband
   id: MobNonHumanHostileBase
   components:
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 3.5
+    baseSprintSpeed : 4.5
   - type: NPCRetaliation
     attackMemoryLength: 10
   - type: Reactive
@@ -254,9 +260,6 @@
       Flammable: [Touch]
       Extinguish: [Touch]
       Acidic: [Touch, Ingestion]
-  - type: MovementSpeedModifier
-    baseWalkSpeed : 4
-    baseSprintSpeed : 4
   - type: StatusEffects
     allowed:
     - SlowedDown
@@ -303,4 +306,5 @@
     - CanPilot
     - FootstepSound
     - DoorBumpOpener
+    - CannotSuicide
   - type: FTLKnockdownImmune

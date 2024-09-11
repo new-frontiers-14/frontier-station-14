@@ -36,3 +36,13 @@ ghost-role-information-taxibot-description = Drive passengers to where they need
 
 ghost-role-information-hovertaxibot-name = Hovertaxibot
 ghost-role-information-hovertaxibot-description = Fly passengers to where they need to go, remember to check they can breathe!
+
+ghost-role-information-aberrant-flesh-horror-dungeon-name = Aberrant Flesh Horror
+ghost-role-information-aberrant-flesh-horror-dungeon-description = Defend the expedition dungeon with other flesh monstrosities!
+ghost-role-information-aberrant-flesh-horror-dungeon-rules = You are a [color=red][bold]Team Antagonist[/bold][/color] with all dungeon mobs. Your goal is to seek confrontation with players on dungeon grounds.
+                                        Please [color=yellow]note[/color] that the all usual server rules are still applicable. Additionally:
+                                        - [color=red]DO NOT[/color] grief players by intentionally damaging the player's shuttle or any machinery inside.
+                                        - [color=red]DO NOT[/color] grief players by hiding from them until the expedition timer runs out.
+                                        - [color=red]DO NOT[/color] grief players by gibbing them.
+                                        - [color=red]DO NOT[/color] grief players by intentionally destroying or hiding valuable loot in the dungeon.
+                                        - [color=red]DO NOT[/color] leave the planet.
