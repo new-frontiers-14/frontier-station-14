@@ -155,7 +155,7 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
 
         foreach (var str in _categoryStrings)
         {
-            Categories.AddItem(str.ToString()); // TODO: localize this
+            Categories.AddItem(Loc.GetString($"shipyard-console-category-{str}"));
         }
     }
 
@@ -191,7 +191,7 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
 
         foreach (var str in _classStrings)
         {
-            Classes.AddItem(str.ToString()); // TODO: localize this
+            Classes.AddItem(Loc.GetString($"shipyard-console-class-{str}"));
         }
     }
 
