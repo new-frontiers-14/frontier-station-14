@@ -52,7 +52,7 @@
   parent: BaseMobFleshExpeditions
   id: MobFleshJaredExpeditions
   description: Jareds are mindless meat shields who run at threats without any concern for their survival. They seem to be more fragile than the average human.
-  categories: [ HideSpawnMenu ]
+  #categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:
@@ -78,7 +78,7 @@
 - type: entity
   parent: MobFleshJaredExpeditions
   id: MobFleshJaredOldExpeditions
-  categories: [ HideSpawnMenu ]
+  #categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -91,7 +91,7 @@
   parent: BaseMobFleshExpeditions
   id: MobFleshGolemExpeditions
   description: Golems are mindless brutes, similar to Jareds but with a heavier build. This makes them slightly more resilient, but less agile.
-  categories: [ HideSpawnMenu ]
+  #categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:
@@ -109,7 +109,7 @@
 - type: entity
   parent: MobFleshGolemExpeditions
   id: MobFleshGolemAltExpeditions
-  categories: [ HideSpawnMenu ]
+  #categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:
@@ -127,7 +127,7 @@
 - type: entity
   parent: MobFleshGolemExpeditions
   id: MobFleshGolemOldExpeditions
-  categories: [ HideSpawnMenu ]
+  #categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -150,7 +150,7 @@
   - MobLaserReflect # Added to prevent laser abuse from players
   id: MobFleshAssimilatedMiner
   description: An unfortunate miner that was infected upon contact with aberrant flesh and has been slowly assimilated.
-  categories: [ HideSpawnMenu ]
+  #categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -195,7 +195,7 @@
   - MobHumanoidHostileAISimpleRanged
   id: MobFleshClampExpeditions
   description: Clamps are flying variants that have mutated to shoot biological projectiles, such as bone spikes containing naturally secreted gastro toxins or small living organisms known simply as "maws".
-  categories: [ HideSpawnMenu ]
+  #categories: [ HideSpawnMenu ]
   components:
   - type: MovementSpeedModifier
     baseWalkSpeed : 4
@@ -255,7 +255,7 @@
 - type: entity
   parent: MobFleshClampExpeditions
   id: MobFleshClampOldExpeditions
-  categories: [ HideSpawnMenu ]
+  #categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -284,7 +284,7 @@
   parent: BaseMobFleshExpeditions
   id: MobFleshLoverExpeditions
   description: The Lover shares similarities with Jareds and Golems. Its light frame makes it fragile, but capable of flight.
-  categories: [ HideSpawnMenu ]
+  #categories: [ HideSpawnMenu ]
   components:
   - type: MovementSpeedModifier
     baseWalkSpeed : 5
@@ -340,7 +340,7 @@
   id: MobHorrorExpeditions
   name: aberrant flesh horror
   description: Tougher and more resilient than the average aberrant flesh monster, the Horror possesses sharp bone protrusions and highly developed musculature, allowing it to rend the flesh of its victims and tear through armor with efficiency.
-  categories: [ HideSpawnMenu ]
+  #categories: [ HideSpawnMenu ]
   components:
   - type: MovementSpeedModifier
     baseWalkSpeed : 4.6
@@ -482,7 +482,7 @@
   - type: TimedDespawn
     lifetime: 60
 
-# Newborns, spawned from assimilation sack
+# Newborns (spawned from assimilation sack)
 - type: entity
   id: BaseMobFleshExpeditionsNewborn
   parent: BaseMobFleshExpeditions
@@ -501,8 +501,8 @@
         Blunt: 8
         Structural: 20
   - type: MovementSpeedModifier
-    baseWalkSpeed : 4
-    baseSprintSpeed : 4
+    baseWalkSpeed : 3.5
+    baseSprintSpeed : 3.5
 
 - type: entity
   id: MobFleshJaredExpeditionsNewborn
@@ -513,7 +513,7 @@
     layers:
     - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: jared
-      scale: 0.9,0.9
+      scale: 0.85,0.85
       color: "pink"
 
 - type: entity
@@ -527,7 +527,7 @@
     layers:
     - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: jared
-      scale: 0.9,0.9
+      scale: 0.85,0.85
       color: "pink"
 
 - type: entity
@@ -539,7 +539,7 @@
     layers:
     - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: golem
-      scale: 0.9,0.9
+      scale: 0.85,0.85
       color: "pink"
 
 - type: entity
@@ -551,7 +551,7 @@
     layers:
     - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: golem2
-      scale: 0.9,0.9
+      scale: 0.85,0.85
       color: "pink"
 
 - type: entity
@@ -565,7 +565,7 @@
     layers:
     - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: golem
-      scale: 0.9,0.9
+      scale: 0.85,0.85
       color: "pink"
 
 - type: entity
@@ -577,7 +577,7 @@
     layers:
     - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: clamp
-      scale: 0.9,0.9
+      scale: 0.85,0.85
       color: "pink"
 
 - type: entity
@@ -590,7 +590,7 @@
     layers:
     - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: clamp
-      scale: 0.9,0.9
+      scale: 0.85,0.85
       color: "pink"
 
 - type: entity
@@ -602,5 +602,5 @@
     layers:
     - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: lover
-      scale: 0.9,0.9
+      scale: 0.85,0.85
       color: "pink"
