@@ -1,5 +1,5 @@
 - type: entity
-  parent: Protolathe
+  parent: BaseLatheLube # Frontier: Protolathe<BaseLatheLube
   id: ScienceTechFab
   name: science techfab
   description: Prints equipment for use by the epistemics department.
@@ -79,6 +79,7 @@
       #- PowerCellHyperNF #Frontier
       - PowerCellMicroreactor #Frontier
       - BluespaceBeaker
+      - VialBluespace # Frontier
       - CryostasisBeaker
       - ClothingBackpackHolding
       - ClothingBackpackSatchelHolding
@@ -108,7 +109,7 @@
         - Ingot
 
 - type: entity
-  parent: Protolathe
+  parent: BaseLatheLube # Frontier: Protolathe<BaseLatheLube
   id: ServiceTechFab
   name: service techfab
   description: Prints equipment for service staff.
@@ -186,6 +187,7 @@
       - Spade #Frontier
       - Clippers #Frontier
       - ServiceSelectiveDropper # Frontier
+      - PlantBag # Frontier
       - Beaker # Frontier
       - LargeBeaker # Frontier
       - Jug # Frontier
@@ -256,6 +258,8 @@
       - ChemicalPayload # Frontier
       - BluespaceBeaker # Frontier
       - SyringeBluespace # Frontier
+      - PlantBagOfHolding # Frontier
+      - PlantAnalyzer # Frontier
   - type: MaterialStorage # Frontier
     whitelist:
       tags:
@@ -264,7 +268,7 @@
         - Ingot
 
 - type: entity
-  parent: Protolathe
+  parent: BaseLatheLube # Frontier: Protolathe<BaseLatheLube
   id: EngineeringTechFab
   name: engineering techfab
   description: Prints equipment for engineers.
