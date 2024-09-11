@@ -1,9 +1,11 @@
 using Content.Shared.Actions;
+using Content.Shared.CCVar;
 using Content.Shared.Gravity;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Events;
 using Content.Shared.Popups;
+using Robust.Shared.Configuration;
 using Robust.Shared.Containers;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
@@ -20,6 +22,7 @@ public abstract class SharedJetpackSystem : EntitySystem
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly ActionContainerSystem _actionContainer = default!;
+    [Dependency] private readonly IConfigurationManager _config = default!;
 
     public override void Initialize()
     {
@@ -122,15 +125,16 @@ public abstract class SharedJetpackSystem : EntitySystem
 
         SetEnabled(uid, component, !IsEnabled(uid));
     }
-
+    // Start EE Code
     private bool CanEnableOnGrid(EntityUid? gridUid)
     {
-        // No and no again! Do not attempt to activate the jetpack on a grid with gravity disabled. You will not be the first or the last to try this.
-        // https://discord.com/channels/310555209753690112/310555209753690112/1270067921682694234
-        return gridUid == null ||
-               (!HasComp<GravityComponent>(gridUid));
+        return _config.GetCVar(CCVars.JetpackEnableAnywhere)
+            || gridUid == null
+            || _config.GetCVar(CCVars.JetpackEnableInNoGravity)
+            && TryComp<GravityComponent>(gridUid, out var comp)
+            && comp.Enabled;
     }
-
+    // End EE Code
     private void OnJetpackGetAction(EntityUid uid, JetpackComponent component, GetItemActionsEvent args)
     {
         args.AddAction(ref component.ToggleActionEntity, component.ToggleAction);
