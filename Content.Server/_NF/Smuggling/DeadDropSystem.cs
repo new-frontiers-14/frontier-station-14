@@ -8,6 +8,7 @@ using Content.Server.Radio.EntitySystems;
 using Content.Server.Shipyard.Systems;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
+using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Shared.Database;
 using Content.Shared.Hands.Components;
@@ -53,6 +54,9 @@ public sealed class DeadDropSystem : EntitySystem
         SubscribeLocalEvent<DeadDropComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<DeadDropComponent, GetVerbsEvent<InteractionVerb>>(AddSearchVerb);
         SubscribeLocalEvent<StationDeadDropComponent, ComponentStartup>(OnStationStartup);
+        SubscribeLocalEvent<StationDeadDropComponent, ComponentShutdown>(OnStationShutdown);
+        SubscribeLocalEvent<StationDeadDropReportingComponent, ComponentStartup>(OnReportingStationStartup);
+        SubscribeLocalEvent<StationDeadDropReportingComponent, ComponentShutdown>(OnReportingStationShutdown);
         SubscribeLocalEvent<StationsGeneratedEvent>(OnStationsGenerated);
     }
 
@@ -60,6 +64,58 @@ public sealed class DeadDropSystem : EntitySystem
     // Then once on any new stations if/when they're created.
     private void OnStationStartup(EntityUid stationUid, StationDeadDropComponent component, ComponentStartup _)
     {
+        if (TryComp<SectorDeadDropComponent>(_sectorService.GetServiceEntity(), out var deadDrop))
+        {
+            deadDrop.DeadDropStationNames[stationUid] = MetaData(stationUid).EntityName;
+        }
+    }
+
+    // There is some redundancy here - this should ideally run once over all the stations once worldgen is complete
+    // Then once on any new stations if/when they're created.
+    private void OnStationShutdown(EntityUid stationUid, StationDeadDropComponent component, ComponentShutdown _)
+    {
+        if (TryComp<SectorDeadDropComponent>(_sectorService.GetServiceEntity(), out var deadDrop))
+        {
+            deadDrop.DeadDropStationNames.Remove(stationUid);
+        }
+    }
+
+    // There is some redundancy here - this should ideally run once over all the stations once worldgen is complete
+    // Then once on any new stations if/when they're created.
+    private void OnReportingStationStartup(EntityUid stationUid, StationDeadDropReportingComponent component, ComponentStartup _)
+    {
+        if (!TryComp<SectorDeadDropComponent>(_sectorService.GetServiceEntity(), out var deadDrop))
+            return;
+
+        if (deadDrop.ReportingStation != EntityUid.Invalid)
+            return;
+
+        if (!TryComp<StationDataComponent>(stationUid, out var stationData))
+            return;
+
+        if (!_prototypeManager.TryIndex(component.RadioChannelId, out component.RadioChannelPrototype))
+            return;
+
+        var largestGrid = _station.GetLargestGrid(stationData);
+        if (largestGrid is null)
+            return;
+
+        deadDrop.ReportingStation = stationUid;
+        deadDrop.ReportingGrid = largestGrid.Value;
+    }
+
+    // There is some redundancy here - this should ideally run once over all the stations once worldgen is complete
+    // Then once on any new stations if/when they're created.
+    private void OnReportingStationShutdown(EntityUid stationUid, StationDeadDropReportingComponent component, ComponentShutdown _)
+    {
+        if (TryComp<SectorDeadDropComponent>(_sectorService.GetServiceEntity(), out var deadDrop))
+        {
+            if (deadDrop.ReportingStation == stationUid)
+            {
+                deadDrop.ReportingStation = EntityUid.Invalid;
+                deadDrop.ReportingGrid = EntityUid.Invalid;
+            }
+        }
     }
 
     public void CompromiseDeadDrop(EntityUid uid, DeadDropComponent component)
@@ -306,7 +362,7 @@ public sealed class DeadDropSystem : EntitySystem
         _shuttle.SetIFFColor(gridUids[0], component.Color);
         _shuttle.AddIFFFlag(gridUids[0], IFFFlags.HideLabel);
 
-        //this is where we set up all the information that FTL is going to need, including a new null entitiy as a destination target because FTL needs it for reasons?
+        //this is where we set up all the information that FTL is going to need, including a new null entity as a destination target because FTL needs it for reasons?
         //dont ask me im just fulfilling FTL requirements.
         var dropLocation = _random.NextVector2(component.MinimumDistance, component.MaximumDistance);
         var mapId = Transform(user).MapID;
@@ -316,27 +372,32 @@ public sealed class DeadDropSystem : EntitySystem
         {
             return;
         }
-        else
+
+        // A sane set of default behaviour.
+        int maxSimultaneousPods = 5;
+        int deadDropsThisHour = 0;
+        if (TryComp<SectorDeadDropComponent>(_sectorService.GetServiceEntity(), out var sectorDeadDrop))
         {
-            //this will spawn in the latest ship, and delete the oldest one available if the amount of ships exceeds 5.
-            if (TryComp<ShuttleComponent>(gridUids[0], out var shuttle))
+            maxSimultaneousPods = sectorDeadDrop.MaxSimultaneousPods;
+            deadDropsThisHour = sectorDeadDrop.ReportedEventsThisHour.Count();
+        }
+
+        //this will spawn in the latest ship, and delete the oldest one available if the amount of ships exceeds 5.
+        if (TryComp<ShuttleComponent>(gridUids[0], out var shuttle))
+        {
+            _shuttle.FTLToCoordinates(gridUids[0], shuttle, new EntityCoordinates(mapUid.Value, dropLocation), 0f, 0f, 35f);
+            _drops.Enqueue(gridUids[0]);
+
+            if (_drops.Count > maxSimultaneousPods)
             {
-
-                _shuttle.FTLToCoordinates(gridUids[0], shuttle, new EntityCoordinates(mapUid.Value, dropLocation), 0f, 0f, 35f);
-                _drops.Enqueue(gridUids[0]);
-
-                if (_drops.Count > 5)
-                {
-                    //removes the first element of the queue
-                    var entityToRemove = _drops.Dequeue();
-                    _adminLogger.Add(LogType.Action, LogImpact.Medium, $"{entityToRemove} queued for deletion");
-                    EntityManager.QueueDeleteEntity(entityToRemove);
-                }
+                //removes the first element of the queue
+                var entityToRemove = _drops.Dequeue();
+                _adminLogger.Add(LogType.Action, LogImpact.Medium, $"{entityToRemove} queued for deletion");
+                EntityManager.QueueDeleteEntity(entityToRemove);
             }
         }
 
         //tattle on the smuggler here, but obfuscate it a bit if possible to just the grid it was summoned from.
-        var channel = _prototypeManager.Index<RadioChannelPrototype>("Nfsd");
         var sender = Transform(user).GridUid ?? uid;
 
         _adminLogger.Add(LogType.Action, LogImpact.Medium, $"{ToPrettyString(user)} sent a dead drop to {dropLocation.ToString()} from {ToPrettyString(uid)} at {Transform(uid).Coordinates.ToString()}");
@@ -364,60 +425,83 @@ public sealed class DeadDropSystem : EntitySystem
         component.DeadDropCalled = true;
         //logic of posters ends here and logic of radio signals begins here
 
-        //grabs NFSD Outpost to say the announcement
-        var nfsdOutpost = new HashSet<Entity<MapGridComponent>>();
-        _entityLookup.GetEntitiesOnMap(mapId, nfsdOutpost);
-
-        //all possible locations which have dead drop posters
-        string[] deadDropPossibleLocations = ["Tinnia's Rest", "Crazy Casey's Casino", "Grifty's Gas and Grub", "Expeditionary Lodge", "The Pit"];
-
-        var pirateChannel = _prototypeManager.Index<RadioChannelPrototype>("Freelance");
-
-        // TODO: make this time based (windowing?)
-        int numDeadDropsReported = 0;
-        if (TryComp<SectorDeadDropComponent>(_sectorService.GetServiceEntity(), out var sectorDeadDrop))
+        var deadDropQuery = EntityManager.EntityQueryEnumerator<StationDeadDropReportingComponent>();
+        while (deadDropQuery.MoveNext(out var reportStation, out var reportComp))
         {
-            numDeadDropsReported = sectorDeadDrop.NumDeadDropsReported;
-        }
+            if (!TryComp<StationDataComponent>(reportStation, out var stationData))
+                continue; // Not a station?
 
-        //checks if any of them are named NFSD Outpost
-        foreach (var ent in nfsdOutpost)
-        {
-            if (MetaData(ent.Owner).EntityName.Equals("NFSD Outpost"))
+            var gridUid = _station.GetLargestGrid(stationData);
+            if (gridUid == null)
+                continue; // Nobody to send our message.
+
+            if (!_prototypeManager.TryIndex(reportComp.MessageSet, out var messageSets))
+                continue;
+
+            foreach (var messageSet in messageSets.MessageSets)
             {
-                //sends hints at the location depending on how many times a dead drop posters were activated in a POI
-                if (numDeadDropsReported > 2)
+                int delayMinutes;
+                if (messageSet.MinDelay >= messageSet.MaxDelay)
+                    delayMinutes = messageSet.MinDelay;
+                else
+                    delayMinutes = _random.Next(messageSet.MinDelay, messageSet.MaxDelay + 1);
+
+                if (!_random.Prob(messageSet.Probability))
+                    continue;
+
+                string messageLoc = "";
+                SmugglingReportMessageType messageType = SmugglingReportMessageType.General;
+                foreach (var message in messageSet.Messages)
                 {
-                    //tells the full location like it did earlier but only after the 3rd time a POI inovked a dead drop
-                    _radio.SendRadioMessage(ent.Owner, Loc.GetString("deaddrop-correct-location", ("name", MetaData(sender).EntityName)), channel, uid);
-                }
-                else if (numDeadDropsReported == 2)
-                {
-                    //then sends a radio message telling a fake location and a real one
-                    string[] locations = { MetaData(sender).EntityName, _random.Pick<string>(deadDropPossibleLocations) };
-                    _random.Shuffle(locations);
-                    _radio.SendRadioMessage(ent.Owner, Loc.GetString("deaddrop-fifty-fifty", ("location1", locations[0]), ("location2", locations[1])), channel, uid);
-                }
-                else if (numDeadDropsReported == 1)
-                {
-                    _radio.SendRadioMessage(ent.Owner, Loc.GetString("deaddrop-security-report"), channel, uid);
+                    if (deadDropsThisHour < message.HourlyThreshold)
+                    {
+                        messageLoc = message.Message;
+                        messageType = message.Type;
+                        break;
+                    }
                 }
 
-                //tells the NFSD about the location of the dead drop after 15 minutes of it being active
-                Timer.Spawn(TimeSpan.FromSeconds(component.RadioCoolDown), () =>
-                {
-                    _radio.SendRadioMessage(ent.Owner, Loc.GetString("deaddrop-nfsd", ("dropLocation", dropLocation)), channel, uid);
-                });
-            }
+                if (string.IsNullOrEmpty(messageLoc))
+                    continue;
 
-            //add a 1/3 chance for pirates to see the location of the smuggler after 15 minutes
-            if (MetaData(ent.Owner).EntityName.Equals("Pirate's Cove") && _random.Next(0, 3) == 0)
-            {
-                Timer.Spawn(TimeSpan.FromSeconds(component.RadioCoolDown), () =>
+                string output;
+                switch (messageType)
                 {
-                    var sender = Transform(user).GridUid ?? uid;
-                    _radio.SendRadioMessage(ent.Owner, Loc.GetString("deaddrop-pirate", ("ship", MetaData(sender).EntityName)), pirateChannel, uid);
-                });
+                    case SmugglingReportMessageType.General:
+                    default:
+                        output = Loc.GetString(messageLoc);
+                        break;
+                    case SmugglingReportMessageType.Alternate:
+                        if (sectorDeadDrop is not null)
+                        {
+                            string[] names = [MetaData(sender).EntityName, _random.Pick<string>(sectorDeadDrop.DeadDropStationNames.Values)];
+                            _random.Shuffle(names);
+                            output = Loc.GetString(messageLoc, ("location1", names[0]), ("location2", names[1]));
+                        }
+                        else
+                        {
+                            output = Loc.GetString(messageLoc, ("location1", MetaData(sender).EntityName)); // Looks strange, but still has a proper value.
+                        }
+                        break;
+                    case SmugglingReportMessageType.PodLocation:
+                        output = Loc.GetString(messageLoc, ("x", dropLocation.X), ("y", dropLocation.Y));
+                        break;
+                    case SmugglingReportMessageType.Precise:
+                        output = Loc.GetString(messageLoc, ("location", MetaData(sender).EntityName));
+                        break;
+                }
+
+                if (delayMinutes > 0)
+                {
+                    Timer.Spawn(TimeSpan.FromMinutes(delayMinutes), () =>
+                    {
+                        _radio.SendRadioMessage(gridUid.Value, output, messageSets.Channel, uid);
+                    });
+                }
+                else
+                {
+                    _radio.SendRadioMessage(gridUid.Value, output, messageSets.Channel, uid);
+                }
             }
         }
     }
