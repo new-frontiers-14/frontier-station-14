@@ -27,3 +27,66 @@
   # - type: GuideHelp # Frontier: removed guidebook entries
   #   guides: # Frontier: removed guidebook entries
   #   - Pirate # Frontier: add this eventually
+
+- type: entity
+  id: BoxFolderClipboardPal
+  parent: BoxFolderClipboard
+  name: PAL clipboard
+  description: The tool of choice for the master of bureaucracy.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Misc/pal_clipboard.rsi
+  - type: Item
+    sprite: _NF/Objects/Misc/pal_clipboard.rsi
+  - type: Clothing
+    sprite: _NF/Objects/Misc/pal_clipboard.rsi
+
+- type: entity
+  id: BoxFolderPalGreen
+  parent: BoxFolderBase
+  name: PAL folder
+  suffix: Green
+  description: A folder to contain important NFSD forms.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Misc/bureaucracy.rsi
+    layers:
+    - state: folder-pal-green
+    - state: folder-base
+  - type: StorageFill
+    contents:
+      - id: Paper
+        prob: 0.5
+      - id: PaperOffice
+        prob: 0.4
+      - id: Paper
+        prob: 0.3
+      - id: PaperOffice
+        prob: 0.2
+      - id: Paper
+        prob: 0.2
+
+- type: entity
+  id: BoxFolderPalBrown
+  parent: BoxFolderBase
+  name: PAL folder
+  suffix: Brown
+  description: A folder to contain important NFSD forms.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Misc/bureaucracy.rsi
+    layers:
+    - state: folder-pal-brown
+    - state: folder-base
+  - type: StorageFill
+    contents:
+      - id: Paper
+        prob: 0.5
+      - id: PaperOffice
+        prob: 0.4
+      - id: Paper
+        prob: 0.3
+      - id: PaperOffice
+        prob: 0.2
+      - id: Paper
+        prob: 0.2
