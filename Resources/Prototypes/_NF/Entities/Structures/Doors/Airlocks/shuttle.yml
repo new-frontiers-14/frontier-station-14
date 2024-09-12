@@ -1,0 +1,37 @@
+- type: entity
+  id: AirlockShuttleAssemblyNfsd
+  parent: AirlockShuttleAssembly
+  name: external airlock assembly
+  suffix: Docking
+  description: An incomplete structure necessary for connecting two space craft together.
+  components:
+  - type: Transform
+    anchored: true
+    noRot: false
+  - type: Rotatable
+  - type: Sprite
+    sprite: Structures/Doors/Airlocks/Glass/shuttle.rsi
+    state: closed
+  - type: Construction
+    graph: AirlockShuttle
+    node: assembly
+
+- type: entity
+  id: AirlockGlassShuttleNfsd
+  parent: AirlockGlassShuttle
+  name: external airlock
+  suffix: NFSD, Glass, Docking
+  description: Necessary for connecting two space craft together.
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Doors/Airlocks/Glass/docknfsd.rsi
+
+- type: entity
+  id: AirlockShuttleNfsd
+  parent: AirlockShuttle
+  name: external airlock
+  suffix: NFSD, Docking
+  description: Necessary for connecting two space craft together.
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Doors/Airlocks/Standard/docknfsd.rsi
