@@ -1,0 +1,46 @@
+- type: entity
+  id: TobaccoPouchBase
+  name: tobacco pouch
+  parent: [ BaseStorageItem, BaseBagOpenClose, RecyclableItemClothSmall ]
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Smokeables/Pipes/tobacco_pouch.rsi
+    layers:
+    - state: closed
+    - state: open
+      map: ["openLayer"]
+      visible: false
+  - type: Tag
+    tags:
+    - CigPack
+    - Trash
+  - type: SpaceGarbage
+  - type: Item
+    size: Small
+    shape:
+    - 0,0,0,1
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,1,1
+  - type: StorageFill
+    contents:
+    - id: Cigarette
+      amount: 10
+
+# Filled
+- type: entity
+  id: TobaccoPouch
+  parent: TobaccoPouchBase
+  suffix: Empty
+
+- type: entity
+  id: TobaccoPouchFilled
+  parent: TobaccoPouchBase
+  suffix: Filled, Tobacco
+  components:
+  - type: StorageFill
+    contents:
+    - id: GroundTobacco
+      amount: 20
