@@ -81,7 +81,7 @@
   - type: TriggerOnCollide
     fixtureID: projectile
 
-# Spawnable variations
+# Lathe-printable variations
 - type: entity
   parent: BaseCrossbowBolt
   id: CrossbowBolt
@@ -93,7 +93,7 @@
     - state: tail
       color: "#ff0000"
     - state: rod
-      color: "#ba7333"
+      color: "#303030"
     - state: tip
     - state: solution1
       map: ["enum.SolutionContainerLayers.Fill"]
@@ -102,6 +102,34 @@
     damage:
       types:
         Piercing: 35
+
+- type: Tag
+  id: CrossbowBoltBroadhead
+
+- type: entity
+  parent: BaseCrossbowBolt
+  id: CrossbowBoltBroadhead
+  name: broadhead bolt
+  description: A bolt with three sharp blades that cause massive bleeding in the victim.
+  components:
+  - type: Tag
+    tags:
+    - CrossbowBoltBroadhead
+  - type: Sprite
+    layers:
+    - state: tail
+      color: "yellow"
+    - state: rod
+      color: "#303030"
+    - state: tip
+    - state: solution1
+      map: ["enum.SolutionContainerLayers.Fill"]
+      visible: false
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 10
+        Slash: 20
 
 - type: entity
   parent: BaseCrossbowBolt
@@ -484,5 +512,6 @@
   - type: Projectile
     damage:
       types:
-        Slashing: 15
+        Piercing: 15
+        Slash: 5
         Bloodloss: 5

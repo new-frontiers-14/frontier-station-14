@@ -21,6 +21,10 @@
       map: [ bolt ]
       visible: false
     - sprite: _NF/Objects/Weapons/Guns/Projectiles/crossbow_bolts.rsi
+      state: icon-bolt-broadhead
+      map: [ broadhead ]
+      visible: false
+    - sprite: _NF/Objects/Weapons/Guns/Projectiles/crossbow_bolts.rsi
       state: icon-bolt-glass
       map: [ glass ]
       visible: false
@@ -97,6 +101,7 @@
         whitelist:
           tags:
           - CrossbowBolt
+          - CrossbowBoltBroadhead
           - CrossbowBoltGlassShard
           - CrossbowBoltPlasmaGlassShard
           - CrossbowBoltUraniumGlassShard
@@ -118,6 +123,7 @@
   - type: ItemMapper
     spriteLayers:
     - bolt
+    - broadhead
     - glass
     - glassp
     - glassu
@@ -135,6 +141,10 @@
         whitelist:
           tags:
           - CrossbowBolt
+      broadhead:
+        whitelist:
+          tags:
+          - CrossbowBoltBroadhead
       glass:
         whitelist:
           tags:
