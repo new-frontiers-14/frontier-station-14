@@ -1419,6 +1419,14 @@ entities:
     - type: Transform
       pos: -3.5,5.5
       parent: 1
+- proto: ClosetWallO2N2FilledRandom
+  entities:
+  - uid: 324
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 2.5,-3.5
+      parent: 1
 - proto: ClothingBeltUtilityEngineering
   entities:
   - uid: 335
@@ -2012,7 +2020,6 @@ entities:
     - type: DeviceNetwork
       configurators:
       - invalid
-      - invalid
       deviceLists:
       - 34
     - type: AtmosPipeColor
@@ -2079,7 +2086,6 @@ entities:
     - type: DeviceNetwork
       configurators:
       - invalid
-      - invalid
       deviceLists:
       - 34
     - type: AtmosPipeColor
@@ -2103,7 +2109,6 @@ entities:
     - type: DeviceNetwork
       configurators:
       - invalid
-      - invalid
       deviceLists:
       - 34
     - type: AtmosPipeColor
@@ -2116,7 +2121,6 @@ entities:
       parent: 1
     - type: DeviceNetwork
       configurators:
-      - invalid
       - invalid
       deviceLists:
       - 34
@@ -2131,7 +2135,6 @@ entities:
     - type: DeviceNetwork
       configurators:
       - invalid
-      - invalid
       deviceLists:
       - 34
     - type: AtmosPipeColor
@@ -2144,7 +2147,6 @@ entities:
       parent: 1
     - type: DeviceNetwork
       configurators:
-      - invalid
       - invalid
       deviceLists:
       - 34
@@ -2342,6 +2344,14 @@ entities:
           showEnts: False
           occludes: True
           ent: null
+- proto: LockerWallEVAColorMedicalFilled
+  entities:
+  - uid: 357
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -1.5,-3.5
+      parent: 1
 - proto: LockerWallEVAColorParamedicFilled
   entities:
   - uid: 141
@@ -2354,9 +2364,9 @@ entities:
     - type: Transform
       pos: 5.5,0.5
       parent: 1
-- proto: LockerWallMaterialsFuelPlasmaFilled
+- proto: LockerWallMaterialsFuelUraniumFilled
   entities:
-  - uid: 322
+  - uid: 160
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
@@ -2466,26 +2476,18 @@ entities:
     - type: Transform
       pos: -1.013889,1.6475694
       parent: 1
-- proto: PortableGeneratorPacmanShuttle
+- proto: PortableGeneratorSuperPacmanShuttle
   entities:
-  - uid: 160
+  - uid: 234
     components:
     - type: Transform
       pos: -2.5,-2.5
       parent: 1
     - type: FuelGenerator
       targetPower: 16000
-      on: False
+      on: False     
     - type: Physics
       bodyType: Static
-- proto: PosterLegitAnatomyPoster
-  entities:
-  - uid: 324
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 4.5,3.5
-      parent: 1
 - proto: PosterLegitSMHardhats
   entities:
   - uid: 249
@@ -2605,13 +2607,21 @@ entities:
       rot: 3.141592653589793 rad
       pos: -6.5,-2.5
       parent: 1
-- proto: ShelfChemistryChemistrySecure
+- proto: ShelfChemistry
   entities:
-  - uid: 234
+  - uid: 322
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -3.5,3.5
+      parent: 1
+- proto: ShelfRMetal
+  entities:
+  - uid: 313
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 4.5,3.5
       parent: 1
 - proto: ShuttersNormalOpen
   entities:
