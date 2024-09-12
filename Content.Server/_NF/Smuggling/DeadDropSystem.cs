@@ -10,6 +10,7 @@ using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
+using Content.Shared.Construction.Components;
 using Content.Shared.Database;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
@@ -44,6 +45,7 @@ public sealed class DeadDropSystem : EntitySystem
     [Dependency] private readonly EntityLookupSystem _entityLookup = default!;
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly SectorServiceSystem _sectorService = default!;
+    private ISawmill _sawmill = default!;
 
     private readonly Queue<EntityUid> _drops = [];
 
@@ -53,9 +55,20 @@ public sealed class DeadDropSystem : EntitySystem
 
         SubscribeLocalEvent<DeadDropComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<DeadDropComponent, GetVerbsEvent<InteractionVerb>>(AddSearchVerb);
+        SubscribeLocalEvent<DeadDropComponent, AnchorStateChangedEvent>(OnDeadDropUnanchored);
         SubscribeLocalEvent<StationDeadDropComponent, ComponentStartup>(OnStationStartup);
         SubscribeLocalEvent<StationDeadDropComponent, ComponentShutdown>(OnStationShutdown);
         SubscribeLocalEvent<StationsGeneratedEvent>(OnStationsGenerated);
+
+        _sawmill = Logger.GetSawmill("deaddrop");
+    }
+
+    private void OnDeadDropUnanchored(EntityUid uid, DeadDropComponent comp, AnchorStateChangedEvent args)
+    {
+        if (args.Anchored)
+            return;
+
+        CompromiseDeadDrop(uid, comp);
     }
 
     // There is some redundancy here - this should ideally run once over all the stations once worldgen is complete
@@ -78,7 +91,7 @@ public sealed class DeadDropSystem : EntitySystem
         }
     }
 
-    public void CompromiseDeadDrop(EntityUid uid, DeadDropComponent component)
+    public void CompromiseDeadDrop(EntityUid uid, DeadDropComponent _)
     {
         //Get our station.
         var station = _station.GetOwningStation(uid);
@@ -110,12 +123,12 @@ public sealed class DeadDropSystem : EntitySystem
 
     private void OnStationsGenerated(StationsGeneratedEvent args)
     {
-        Log.Error("OnStationsGenerated!");
         if (!TryComp<SectorDeadDropComponent>(_sectorService.GetServiceEntity(), out var component))
         {
-            Log.Error("OnStationsGenerated: no dead drop service!");
+            _sawmill.Error("Cannot generate dead drops, no service!");
             return;
         }
+        _sawmill.Info("Generating dead drops!");
         // Distribute total number of dead drops to assign between each station.
         var remainingDeadDrops = component.MaxSectorDeadDrops;
 
@@ -126,13 +139,11 @@ public sealed class DeadDropSystem : EntitySystem
             var deadDropCount = int.Min(remainingDeadDrops, _random.Next(0, stationDeadDrop.MaxDeadDrops + 1));
             assignedDeadDrops[station] = (deadDropCount, stationDeadDrop.MaxDeadDrops);
             remainingDeadDrops -= deadDropCount;
-            Log.Error($"OnStationsGenerated: assigned {deadDropCount} dead drops to station w/ UID {station.Id}");
         }
 
         // We have remaining dead drops, assign them to whichever stations have remaining space (in a random order)
         if (remainingDeadDrops > 0)
         {
-            Log.Error($"OnStationsGenerated: {remainingDeadDrops} dead drops still to assign.");
             var stationList = assignedDeadDrops.Keys.ToList();
             _random.Shuffle(stationList);
             foreach (var station in stationList)
@@ -148,40 +159,31 @@ public sealed class DeadDropSystem : EntitySystem
                 // Adjust global counts.
                 remainingDeadDrops -= remainingSpace;
 
-                Log.Error($"OnStationsGenerated: assigned {remainingSpace} dead drops to station w/ UID {station.Id}.");
-
                 if (remainingDeadDrops <= 0)
                     break;
             }
         }
 
-        Log.Error($"OnStationsGenerated: enumerating PotentialDeadDropComponent w/EntityQueryEnumerator.");
-        var pdq1 = EntityQueryEnumerator<PotentialDeadDropComponent>();
-        while (pdq1.MoveNext(out var ent, out var potentialDrop))
+        _sawmill.Info("Drop assignments:");
+        foreach (var (station, dropSet) in assignedDeadDrops)
         {
-            Log.Error($"OnStationsGenerated: entity query enumerator: checking {ent}.");
+            _sawmill.Info($"    {MetaData(station).EntityName} will place {dropSet.assigned} dead drops.");
         }
-
-        // Log.Error($"OnStationsGenerated: enumerating PotentialDeadDropComponent w/EntityQuery.");
-        // var pdq2 = new EntityQuery<PotentialDeadDropComponent>(true);
-        // foreach (var ent in pdq2)
-        // {
-        //     Log.Error($"OnStationsGenerated: entity query enumerator: checking {ent.Owner}.");
-        // }
 
         // For each station, distribute its assigned dead drops to potential dead drop components available on their grids.
         Dictionary<EntityUid, List<EntityUid>> potentialDropEntitiesPerStation = new();
         var potentialDropQuery = AllEntityQuery<PotentialDeadDropComponent>();
-        Log.Error($"OnStationsGenerated: enumerating PotentialDeadDropComponent w/AllEntityQuery.");
-        while (potentialDropQuery.MoveNext(out var ent, out var potentialDrop))
+        while (potentialDropQuery.MoveNext(out var ent, out var _))
         {
-            Log.Error($"OnStationsGenerated: checking entity's station {ent}.");
             var station = _station.GetOwningStation(ent);
             if (station is null)
             {
-                Log.Error($"OnStationsGenerated: null station.");
                 continue;
             }
+
+            // All dead drops must be anchored.
+            if (!TryComp(ent, out TransformComponent? xform) || !xform.Anchored)
+                continue;
 
             var stationUid = station.Value;
             if (assignedDeadDrops.ContainsKey(stationUid))
@@ -190,31 +192,26 @@ public sealed class DeadDropSystem : EntitySystem
                     potentialDropEntitiesPerStation[stationUid] = new List<EntityUid>();
 
                 potentialDropEntitiesPerStation[stationUid].Add(ent);
-                Log.Error($"OnStationsGenerated: associated potential dead drop: {stationUid}:{ent}.");
-            }
-            else
-            {
-                Log.Error($"OnStationsGenerated: assignedDeadDrops does not contain {stationUid}.");
             }
         }
 
         List<(EntityUid, EntityUid)> deadDropStationTuples = new();
         foreach (var (station, potentialDropList) in potentialDropEntitiesPerStation)
         {
-            Log.Error($"OnStationsGenerated: assigning dead drops for station {station}.");
             if (!assignedDeadDrops.TryGetValue(station, out var stationDrops))
             {
-                Log.Error($"OnStationsGenerated: station {station} not in map.");
                 continue;
             }
 
+            List<EntityUid> drops = new();
             _random.Shuffle(potentialDropList);
             for (int i = 0; i < potentialDropList.Count && i < stationDrops.assigned; i++)
             {
                 EnsureComp<DeadDropComponent>(potentialDropList[i]);
                 deadDropStationTuples.Add((station, potentialDropList[i]));
-                Log.Error($"OnStationsGenerated: assigned dead drop {station}:{potentialDropList[i]}.");
+                drops.Add(potentialDropList[i]);
             }
+            _sawmill.Info($"{MetaData(station).EntityName} dead drops assigned: {string.Join(", ", potentialDropList)}");
         }
 
         // For each hint spawner, randomly generate a hint from the distributed dead drop locations, spawn the text for the note.
@@ -222,7 +219,6 @@ public sealed class DeadDropSystem : EntitySystem
         while (hintQuery.MoveNext(out var ent, out var _))
         {
             var hintCount = _random.Next(2, 5);
-            Log.Error($"OnStationsGenerated: assigning dead drop hints for {ent} (picking {hintCount}).");
             _random.Shuffle(deadDropStationTuples);
 
             var hintLines = new StringBuilder();
@@ -238,7 +234,7 @@ public sealed class DeadDropSystem : EntitySystem
                     objectHintString = Loc.GetString("dead-drop-hint-generic");
 
                 string stationHintString;
-                if (TryComp<MetaDataComponent>(hintTuple.Item1, out var stationMetadata))
+                if (TryComp(hintTuple.Item1, out MetaDataComponent? stationMetadata))
                     stationHintString = stationMetadata.EntityName;
                 else
                     stationHintString = Loc.GetString("dead-drop-station-hint-generic");

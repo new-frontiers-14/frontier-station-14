@@ -13,7 +13,7 @@ public sealed partial class DeadDropComponent : Component
     /// <summary>
     ///     When the next drop will occur. Used internally.
     /// </summary>
-    [DataField]
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
     public TimeSpan? NextDrop;
 
     /// <summary>
