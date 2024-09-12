@@ -338,8 +338,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
                 new MapLoadOptions
                 {
                     Offset = offset,
-                    Rotation = _random.NextAngle(),
-                    DoMapInit = true
+                    Rotation = _random.NextAngle()
                 }))
         {
 

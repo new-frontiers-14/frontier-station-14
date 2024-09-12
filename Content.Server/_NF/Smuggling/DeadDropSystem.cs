@@ -55,8 +55,6 @@ public sealed class DeadDropSystem : EntitySystem
         SubscribeLocalEvent<DeadDropComponent, GetVerbsEvent<InteractionVerb>>(AddSearchVerb);
         SubscribeLocalEvent<StationDeadDropComponent, ComponentStartup>(OnStationStartup);
         SubscribeLocalEvent<StationDeadDropComponent, ComponentShutdown>(OnStationShutdown);
-        SubscribeLocalEvent<StationDeadDropReportingComponent, ComponentStartup>(OnReportingStationStartup);
-        SubscribeLocalEvent<StationDeadDropReportingComponent, ComponentShutdown>(OnReportingStationShutdown);
         SubscribeLocalEvent<StationsGeneratedEvent>(OnStationsGenerated);
     }
 
@@ -77,44 +75,6 @@ public sealed class DeadDropSystem : EntitySystem
         if (TryComp<SectorDeadDropComponent>(_sectorService.GetServiceEntity(), out var deadDrop))
         {
             deadDrop.DeadDropStationNames.Remove(stationUid);
-        }
-    }
-
-    // There is some redundancy here - this should ideally run once over all the stations once worldgen is complete
-    // Then once on any new stations if/when they're created.
-    private void OnReportingStationStartup(EntityUid stationUid, StationDeadDropReportingComponent component, ComponentStartup _)
-    {
-        if (!TryComp<SectorDeadDropComponent>(_sectorService.GetServiceEntity(), out var deadDrop))
-            return;
-
-        if (deadDrop.ReportingStation != EntityUid.Invalid)
-            return;
-
-        if (!TryComp<StationDataComponent>(stationUid, out var stationData))
-            return;
-
-        if (!_prototypeManager.TryIndex(component.RadioChannelId, out component.RadioChannelPrototype))
-            return;
-
-        var largestGrid = _station.GetLargestGrid(stationData);
-        if (largestGrid is null)
-            return;
-
-        deadDrop.ReportingStation = stationUid;
-        deadDrop.ReportingGrid = largestGrid.Value;
-    }
-
-    // There is some redundancy here - this should ideally run once over all the stations once worldgen is complete
-    // Then once on any new stations if/when they're created.
-    private void OnReportingStationShutdown(EntityUid stationUid, StationDeadDropReportingComponent component, ComponentShutdown _)
-    {
-        if (TryComp<SectorDeadDropComponent>(_sectorService.GetServiceEntity(), out var deadDrop))
-        {
-            if (deadDrop.ReportingStation == stationUid)
-            {
-                deadDrop.ReportingStation = EntityUid.Invalid;
-                deadDrop.ReportingGrid = EntityUid.Invalid;
-            }
         }
     }
 
