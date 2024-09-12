@@ -226,7 +226,6 @@ public sealed class DeadDropSystem : EntitySystem
             for (var i = 0; i < deadDropStationTuples.Count && hints < hintCount; i++)
             {
                 var hintTuple = deadDropStationTuples[i];
-                Log.Error($"OnStationsGenerated: assigning dead drop hint for {ent}: {hintTuple.Item2}.");
                 string objectHintString;
                 if (TryComp<PotentialDeadDropComponent>(hintTuple.Item2, out var potentialDeadDrop))
                     objectHintString = Loc.GetString(potentialDeadDrop.HintText);
@@ -257,7 +256,8 @@ public sealed class DeadDropSystem : EntitySystem
     private void OnStartup(EntityUid paintingUid, DeadDropComponent component, ComponentStartup _)
     {
         //set up the timing of the first activation
-        component.NextDrop = _timing.CurTime + TimeSpan.FromSeconds(_random.Next(component.MinimumCoolDown, component.MaximumCoolDown));
+        if (component.NextDrop == null)
+            component.NextDrop = _timing.CurTime + TimeSpan.FromSeconds(_random.Next(component.MinimumCoolDown, component.MaximumCoolDown));
     }
 
     private void AddSearchVerb(EntityUid uid, DeadDropComponent component, GetVerbsEvent<InteractionVerb> args)
@@ -267,15 +267,6 @@ public sealed class DeadDropSystem : EntitySystem
 
         var xform = Transform(uid);
         var targetCoordinates = xform.Coordinates;
-
-        // TODO: check global state if there's space to add our 
-        //reset timer if there are 2 dead drop posters already active and this poster isn't one of them
-        /*if (currentPosters >= component.MaxPosters && component.DeadDropActivated != true)
-        {
-            //reset the timer
-            component.NextDrop = _timing.CurTime + TimeSpan.FromSeconds(_random.Next(component.MinimumCoolDown, component.MaximumCoolDown));
-            return;
-        }*/
 
         //here we build our dynamic verb. Using the object's sprite for now to make it more dynamic for the moment.
         InteractionVerb searchVerb = new()
@@ -287,11 +278,6 @@ public sealed class DeadDropSystem : EntitySystem
         };
 
         args.Verbs.Add(searchVerb);
-
-        // if (component.DeadDropActivated == false)
-        // {
-        //     component.DeadDropActivated = true;
-        // }
     }
 
     //spawning the dead drop.
