@@ -36,6 +36,7 @@
         whitelist:
           tags:
             - MagazineLightRifle
+        whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
         startingItem: CartridgeLightRifle
@@ -52,7 +53,7 @@
 
 - type: entity
   name: AKMS
-  parent: BaseWeaponRifle
+  parent: [BaseWeaponRifle, BaseC3SyndicateContraband] # Frontier: BaseMajorContraband<BaseC3SyndicateContraband
   id: WeaponRifleAk
   description: An iconic weapon of war. Uses .30 rifle ammo. An illegal firearm often used by Syndicate agents.
   components:
@@ -81,6 +82,7 @@
         whitelist:
           tags:
             - MagazineLightRifle
+        whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
         startingItem: CartridgeLightRifle
@@ -100,7 +102,7 @@
 
 - type: entity
   name: M-90gl
-  parent: BaseWeaponRifle
+  parent: [BaseWeaponRifle, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   id: WeaponRifleM90GrenadeLauncher
   description: An older bullpup carbine model, with an attached underbarrel grenade launcher. Uses .20 rifle ammo. An illegal firearm often used by Syndicate agents.
   components:
@@ -124,6 +126,7 @@
         whitelist:
           tags:
             - MagazineRifle
+        whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
         startingItem: CartridgeRifle
@@ -143,7 +146,7 @@
 
 - type: entity
   name: Lecter
-  parent: BaseWeaponRifle
+  parent: [BaseWeaponRifle, BaseC2ContrabandUnredeemable] # Frontier: BaseRestrictedContraband<BaseC2ContrabandUnredeemable
   id: WeaponRifleLecter
   description: A high end military grade assault rifle. Uses .20 rifle ammo. On the receiver is a label that says 'for authorized use only.'
   components:
@@ -170,6 +173,7 @@
         whitelist:
           tags:
             - MagazineRifle
+        whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
         startingItem: CartridgeRifle
