@@ -96,6 +96,16 @@
   - type: Flammable
     damage:
       types: {}
+  - type: StatusEffects # Overwriting basesimplemob to remove flash, getting flashed as dragon just feelsbad
+    allowed:
+    - SlowedDown
+    - Stutter
+    - Electrocution
+    - ForcedSleep
+    - TemporaryBlindness
+    - Pacified
+    - RadiationProtection
+    - Drowsiness
   - type: Temperature
     heatDamageThreshold: 800
   - type: Metabolizer
@@ -155,10 +165,10 @@
   #   - MinorAntagonists # Frontier: removed from guidebook
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: DragonsBreathGun
   name: dragon's lung
-  description: For dragon's breathing
+  description: For dragon's breathing.
   components:
   - type: RechargeBasicEntityAmmo
     rechargeCooldown: 5
@@ -234,7 +244,7 @@
     priority: 1
 
 - type: entity
-  noSpawn: true # Frontier
+  categories: [ HideSpawnMenu ] # Frontier
   id: ActionDragonsBreath
   name: "[color=orange]Dragon's Breath[/color]"
   description: Spew out flames at anyone foolish enough to attack you!

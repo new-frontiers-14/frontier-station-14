@@ -4,6 +4,7 @@ using Content.Shared.Bank.Components;
 using Robust.Client.GameObjects;
 using Robust.Client.UserInterface.Controls;
 using System.Linq;
+using Robust.Client.UserInterface;
 
 namespace Content.Client.VendingMachines
 {
@@ -37,15 +38,14 @@ namespace Content.Client.VendingMachines
 
             _cachedInventory = vendingMachineSys.GetAllInventory(Owner);
 
-            _menu = new VendingMachineMenu { Title = entMan.GetComponent<MetaDataComponent>(Owner).EntityName };
+            _menu = this.CreateWindow<VendingMachineMenu>();
+            _menu.OpenCenteredLeft();
+            _menu.Title = EntMan.GetComponent<MetaDataComponent>(Owner).EntityName;
 
-            _menu.OnClose += Close;
             _menu.OnItemSelected += OnItemSelected;
             _menu.OnSearchChanged += OnSearchChanged;
 
-            _menu.Populate(_cachedInventory, _mod, out _cachedFilteredIndex);
-
-            _menu.OpenCenteredLeft();
+            _menu.Populate(_cachedInventory, _mod, out _cachedFilteredIndex); // Frontier: add _mod
         }
 
         protected override void UpdateState(BoundUserInterfaceState state)

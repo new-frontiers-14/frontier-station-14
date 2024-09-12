@@ -103,15 +103,17 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
     {
         // Frontier: gracefully handle expedition failures
         bool success = true;
+        string? errorStackTrace = null;
         try
         {
-            Task<bool> task = InternalProcess();
-            await task.ContinueWith((t) => { Logger.ErrorS("salvage", $"Expedition generation failed with exception: {t.Exception?.StackTrace}!"); success = false; }, TaskContinuationOptions.OnlyOnFaulted);
+            await InternalProcess().ContinueWith((t) => { success = false; errorStackTrace = t.Exception?.InnerException?.StackTrace; }, TaskContinuationOptions.OnlyOnFaulted);
         }
         finally
         {
             ExpeditionSpawnCompleteEvent ev = new(Station, success, _missionParams.Index);
             _entManager.EventBus.RaiseLocalEvent(Station, ev); // We have no idea who spawned this, so broadcast our success/failure.
+            if (errorStackTrace != null)
+                Logger.ErrorS("salvage", $"Expedition generation failed with exception: {errorStackTrace}!");
         }
         return success;
         // End Frontier: gracefully handle expedition failures
@@ -221,7 +223,7 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
             dungeonOffset = new Vector2(0f, dungeonOffsetDistance);
             dungeonOffset = dungeonRotation.RotateVec(dungeonOffset);
             var dungeonMod = _prototypeManager.Index<SalvageDungeonModPrototype>(mission.Dungeon);
-            var dungeonConfig = _prototypeManager.Index<DungeonConfigPrototype>(dungeonMod.Proto);
+            var dungeonConfig = _prototypeManager.Index(dungeonMod.Proto);
             var dungeons = await WaitAsyncTask(_dungeon.GenerateDungeonAsync(dungeonConfig, mapUid, grid, (Vector2i) dungeonOffset,
                     _missionParams.Seed));
 
@@ -259,6 +261,7 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
         Vector2 dungeonProjection = new Vector2(dungeonBox.Width * (float) -Math.Sin(dungeonRotation) / 2, dungeonBox.Height * (float) Math.Cos(dungeonRotation) / 2); // Project boxes to get relevant offset for dungeon rotation.
         Vector2 shuttleProjection = new Vector2(shuttleBox.Width * (float) -Math.Sin(dungeonRotation) / 2, shuttleBox.Height * (float) Math.Cos(dungeonRotation) / 2); // Note: sine is negative because of CCW rotation (starting north, then west)
         Vector2 coords = dungeonBox.Center - dungeonProjection - dungeonOffset - shuttleProjection - shuttleBox.Center; // Coordinates to spawn the ship at to center it with the dungeon's bounding boxes
+        coords = coords.Rounded(); // Ensure grid is aligned to map coords
 
         // Frontier: delay ship FTL
         if (shuttleUid is { Valid: true })

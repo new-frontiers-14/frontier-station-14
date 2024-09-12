@@ -1,4 +1,47 @@
 - type: entity
+  parent: MaterialBase
+  id: MaterialBluespace
+  suffix: Full
+  name: bluespace crystal
+  components:
+  - type: Sprite
+    sprite: Nyanotrasen/Objects/Materials/materials.rsi
+    layers:
+      - state: bluespace_3
+        map: ["base"]
+  - type: Appearance
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      Bluespace: 100
+  - type: Tag
+    tags:
+      - BluespaceCrystal
+      - RawMaterial
+  - type: Stack
+    stackType: Bluespace
+    baseLayer: base
+    layerStates:
+      - bluespace
+      - bluespace_2
+      - bluespace_3
+    count: 5
+
+- type: entity
+  parent: MaterialBluespace
+  id: MaterialBluespace1
+  suffix: 1
+  components:
+  - type: Sprite
+    layers:
+    - state: bluespace
+      map: ["base"]
+  - type: Stack
+    count: 1
+  - type: Item
+    size: Tiny
+
+- type: entity
   parent: BaseItem
   id: HideMothroach
   name: mothroach hide
