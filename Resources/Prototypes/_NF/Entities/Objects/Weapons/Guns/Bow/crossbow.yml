@@ -21,6 +21,38 @@
       map: [ bolt ]
       visible: false
     - sprite: _NF/Objects/Weapons/Guns/Projectiles/crossbow_bolts.rsi
+      state: icon-bolt-glass
+      map: [ glass ]
+      visible: false
+    - sprite: _NF/Objects/Weapons/Guns/Projectiles/crossbow_bolts.rsi
+      state: icon-bolt-glassp
+      map: [ glassp ]
+      visible: false
+    - sprite: _NF/Objects/Weapons/Guns/Projectiles/crossbow_bolts.rsi
+      state: icon-bolt-glassu
+      map: [ glassu ]
+      visible: false
+    - sprite: _NF/Objects/Weapons/Guns/Projectiles/crossbow_bolts.rsi
+      state: icon-bolt-syringe
+      map: [ syringe ]
+      visible: false
+    - sprite: _NF/Objects/Weapons/Guns/Projectiles/crossbow_bolts.rsi
+      state: icon-bolt-plasteel
+      map: [ ap ]
+      visible: false
+    - sprite: _NF/Objects/Weapons/Guns/Projectiles/crossbow_bolts.rsi
+      state: icon-bolt-explosive
+      map: [ explosive ]
+      visible: false
+    - sprite: _NF/Objects/Weapons/Guns/Projectiles/crossbow_bolts.rsi
+      state: icon-bolt-emp
+      map: [ electrified ]
+      visible: false
+    - sprite: _NF/Objects/Weapons/Guns/Projectiles/crossbow_bolts.rsi
+      state: icon-bolt-incendiary
+      map: [ incendiary ]
+      visible: false
+    - sprite: _NF/Objects/Weapons/Guns/Projectiles/crossbow_bolts.rsi
       state: icon-bolt-plunger
       map: [ plunger ]
       visible: false
@@ -65,6 +97,14 @@
         whitelist:
           tags:
           - CrossbowBolt
+          - CrossbowBoltGlassShard
+          - CrossbowBoltPlasmaGlassShard
+          - CrossbowBoltUraniumGlassShard
+          - CrossbowBoltSyringe
+          - CrossbowBoltAP
+          - CrossbowBoltExplosive
+          - CrossbowBoltElectrified
+          - CrossbowBoltIncendiary
           - Plunger
           - Bread
           - MailCapsule
@@ -78,6 +118,14 @@
   - type: ItemMapper
     spriteLayers:
     - bolt
+    - glass
+    - glassp
+    - glassu
+    - syringe
+    - ap
+    - explosive
+    - electrified
+    - incendiary
     - plunger
     - bread
     - mail
@@ -87,6 +135,38 @@
         whitelist:
           tags:
           - CrossbowBolt
+      glass:
+        whitelist:
+          tags:
+          - CrossbowBoltGlassShard
+      glassp:
+        whitelist:
+          tags:
+          - CrossbowBoltPlasmaGlassShard
+      glassu:
+        whitelist:
+          tags:
+          - CrossbowBoltUraniumGlassShard
+      syringe:
+        whitelist:
+          tags:
+          - CrossbowBoltSyringe
+      ap:
+        whitelist:
+          tags:
+          - CrossbowBoltAP
+      explosive:
+        whitelist:
+          tags:
+          - CrossbowBoltExplosive
+      electrified:
+        whitelist:
+          tags:
+          - CrossbowBoltElectrified
+      incendiary:
+        whitelist:
+          tags:
+          - CrossbowBoltIncendiary
       plunger:
         whitelist:
           tags:

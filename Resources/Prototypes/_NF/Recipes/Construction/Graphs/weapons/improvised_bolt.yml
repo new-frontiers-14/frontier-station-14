@@ -91,12 +91,12 @@
     entity: CrossbowBoltSyringe
 
 - type: constructionGraph
-  id: CraftCrossbowBoltAP
+  id: CraftCrossbowBoltPlasteel
   start: start
   graph:
   - node: start
     edges:
-    - to: CraftCrossbowBoltAP
+    - to: CraftCrossbowBoltPlasteel
       steps:
       - material: Durathread
         amount: 1
@@ -104,8 +104,8 @@
       - material: Plasteel
         amount: 1
         doAfter: 0.5
-  - node: CraftCrossbowBoltAP
-    entity: CrossbowBoltAP
+  - node: CraftCrossbowBoltPlasteel
+    entity: CrossbowBoltPlasteel
 
 - type: constructionGraph
   id: CraftCrossbowBoltExplosive

@@ -91,9 +91,9 @@
   - type: Sprite
     layers:
     - state: tail
-      color: red
+      color: "#ff0000"
     - state: rod
-      color: brown
+      color: "#ba7333"
     - state: tip
     - state: solution1
       map: ["enum.SolutionContainerLayers.Fill"]
@@ -112,11 +112,11 @@
   - type: Sprite
     layers:
     - state: tail
-      color: "purple"
+      color: "#d000ff"
     - state: rod
       color: "#00303d"
     - state: tip
-      color: "darkgray"
+      color: "#959595"
     - state: solution1
       map: ["enum.SolutionContainerLayers.Fill"]
       visible: false
@@ -150,18 +150,24 @@
         Blunt: 30 # Should prevent re-using
 
 # Craftable variations
+- type: Tag
+  id: CrossbowBoltGlassShard
+
 - type: entity
   parent: CrossbowBolt
   id: CrossbowBoltGlassShard
   name: glass shard bolt
   description: A bolt with a glass shard as a tip.
   components:
+  - type: Tag
+    tags:
+    - CrossbowBoltGlassShard
   - type: Sprite
     layers:
     - state: tail
       color: blue
     - state: rod
-      color: darkgray
+      color: "#959595"
     - state: tip
       color: "#65b9e9"
       alpha: 0.8
@@ -176,18 +182,24 @@
     graph: CraftCrossbowBoltGlassShard
     node: CraftCrossbowBoltGlassShard
 
+- type: Tag
+  id: CrossbowBoltPlasmaGlassShard
+
 - type: entity
   parent: CrossbowBolt
   id: CrossbowBoltPlasmaGlassShard
   name: plasma glass shard bolt
   description: A bolt with a plasma glass shard as a tip.
   components:
+  - type: Tag
+    tags:
+    - CrossbowBoltPlasmaGlassShard
   - type: Sprite
     layers:
     - state: tail
       color: cyan
     - state: rod
-      color: darkgray
+      color: "#959595"
     - state: tip
       color: "#cc87da"
     - state: solution1
@@ -201,18 +213,24 @@
     graph: CraftCrossbowBoltPlasmaGlassShard
     node: CraftCrossbowBoltPlasmaGlassShard
 
+- type: Tag
+  id: CrossbowBoltUraniumGlassShard
+
 - type: entity
   parent: [ BaseC3ContrabandNoValue, CrossbowBolt ]
   id: CrossbowBoltUraniumGlassShard
   name: uranium glass shard bolt
   description: A bolt with a uranium glass shard as a tip. God have mercy on thy victims for you won't.
   components:
+  - type: Tag
+    tags:
+    - CrossbowBoltUraniumGlassShard
   - type: Sprite
     layers:
     - state: tail
       color: yellow
     - state: rod
-      color: darkgray
+      color: "#959595"
     - state: tip
       color: "#00f941"
       shader: unshaded
@@ -228,12 +246,18 @@
     graph: CraftCrossbowBoltUraniumGlassShard
     node: CraftCrossbowBoltUraniumGlassShard
 
+- type: Tag
+  id: CrossbowBoltSyringe
+
 - type: entity
   parent: CrossbowBoltSponge
   id: CrossbowBoltSyringe
   name: syringe-bolt
   description: A bolt with a syringe for a tip. Very inefficient.
   components:
+  - type: Tag
+    tags:
+    - CrossbowBoltSyringe
   - type: Sprite
     layers:
     - state: tail
@@ -260,18 +284,24 @@
       types:
         Blunt: 30 # Should prevent re-using
 
+- type: Tag
+  id: CrossbowBoltPlasteel
+
 - type: entity
   parent: [ BaseC3ContrabandNoValue, CrossbowBolt ]
-  id: CrossbowBoltAP
+  id: CrossbowBoltPlasteel
   name: plasteel tipped bolt
   description: A bolt with plasteel tip. Has armor penetrating capabilities.
   components:
+  - type: Tag
+    tags:
+    - CrossbowBoltPlasteel
   - type: Sprite
     layers:
     - state: tail
       color: "#8291a1"
     - state: rod
-      color: "darkgray"
+      color: "#959595"
     - state: tip
       color: "#a7a3a6"
     - state: solution1
@@ -283,8 +313,11 @@
         Piercing: 20
     ignoreResistances: true
   - type: Construction
-    graph: CraftCrossbowBoltAP
-    node: CraftCrossbowBoltAP
+    graph: CraftCrossbowBoltPlasteel
+    node: CraftCrossbowBoltPlasteel
+
+- type: Tag
+  id: CrossbowBoltExplosive
 
 - type: entity
   parent: [ BaseC3ContrabandNoValue, BaseCrossbowBoltTrigger ]
@@ -292,12 +325,15 @@
   name: explosive bolt
   description: A bolt with small explosive charge.
   components:
+  - type: Tag
+    tags:
+    - CrossbowBoltExplosive
   - type: Sprite
     layers:
     - state: tail
       color: "orange"
     - state: rod
-      color: "darkgray"
+      color: "#959595"
     - state: charge
       color: "yellow"
     - state: tip
@@ -324,18 +360,24 @@
     graph: CraftCrossbowBoltExplosive
     node: CraftCrossbowBoltExplosive
 
+- type: Tag
+  id: CrossbowBoltElectrified
+
 - type: entity
   parent: [ BaseC3ContrabandNoValue, BaseCrossbowBoltTrigger ]
   id: CrossbowBoltElectrified
   name: EMP bolt
   description: A bolt with small power cell attached to it.
   components:
+  - type: Tag
+    tags:
+    - CrossbowBoltElectrified
   - type: Sprite
     layers:
     - state: tail
       color: "white"
     - state: rod
-      color: "darkgray"
+      color: "#959595"
     - state: charge
       color: "white"
     - state: tip-terminal
@@ -370,18 +412,24 @@
       types:
         Blunt: 30 # Should prevent re-using
 
+- type: Tag
+  id: CrossbowBoltIncendiary
+
 - type: entity
   parent: [ BaseC3ContrabandNoValue, BaseCrossbowBoltTrigger ]
   id: CrossbowBoltIncendiary
   name: incendiary bolt
   description: A bolt with a flare attached to it.
   components:
+  - type: Tag
+    tags:
+    - CrossbowBoltIncendiary
   - type: Sprite
     layers:
     - state: tail
       color: "#d20000"
     - state: rod
-      color: "darkgray"
+      color: "#959595"
     - state: charge
       color: "#d20000"
     - state: tip
