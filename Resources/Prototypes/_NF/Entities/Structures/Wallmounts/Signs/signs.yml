@@ -78,3 +78,21 @@
   components:
   - type: Sprite
     state: direction_vend
+ 
+# Directional Station Guide Signs
+- type: entity
+  parent: BaseSign
+  id: BaseSignNF
+  abstract: true
+  components:
+    - type: Sprite
+      sprite: _NF/Structures/Wallmounts/signs.rsi
+      
+- type: entity
+  parent: BaseSignNF
+  id: SignNFSD
+  name: nfsd sign
+  description: A sign that marks the area beyond as an NFSD area.
+  components:
+  - type: Sprite
+    state: nfsd
