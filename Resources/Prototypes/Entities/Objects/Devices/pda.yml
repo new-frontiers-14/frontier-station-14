@@ -344,7 +344,7 @@
   name: quartermaster PDA
   parent: BasePDA
   id: QuartermasterPDA
-  description: PDA for the guy that orders the guns.
+  description: PDA for the guy that orders the guns. Has a built in appraisal tool. # Frontier
   components:
   - type: Pda
     id: QuartermasterIDCard
@@ -354,12 +354,16 @@
     accentVColor: "#a23e3e"
   - type: Icon
     state: pda-qm
+# Frontier
+  - type: PriceGun
+  - type: UseDelay
+    delay: 3
 
 - type: entity
   parent: BasePDA
   id: CargoPDA
   name: cargo PDA
-  description: PDA for the guys that order the pizzas.
+  description: PDA for the guys that order the pizzas. Has a built in appraisal tool. # Frontier
   components:
   - type: Pda
     id: CargoIDCard
@@ -368,6 +372,10 @@
     borderColor: "#e39751"
   - type: Icon
     state: pda-cargo
+# Frontier
+  - type: PriceGun
+  - type: UseDelay
+    delay: 3
 
 - type: entity
   parent: BasePDA
@@ -576,7 +584,7 @@
   parent: BaseMedicalPDA
   id: ChemistryPDA
   name: chemistry PDA
-  description: It has a few discolored blotches here and there.
+  description: It has a few discolored blotches here and there. has a built-in health analyzer. # Frontier
   components:
   - type: Pda
     id: ChemistIDCard

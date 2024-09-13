@@ -96,7 +96,7 @@
   parent: SecurityPDA
   id: SecurityGuardPDA
   name: security guard PDA
-  description: Red to hide the stains of passenger blood.
+  description: Red to hide the stains of passenger blood. Has a built in contraband appraisal tool.
   components:
   - type: Pda
     id: SecurityGuardIDCard
@@ -105,6 +105,9 @@
     borderColor: "#A32D26"
   - type: Icon
     state: pda-security
+  - type: ContrabandPriceGun
+  - type: UseDelay
+    delay: 1
 
 - type: entity
   parent: ERTLeaderPDA
@@ -124,7 +127,7 @@
   parent: BasePDA
   id: SheriffPDA
   name: sheriff PDA
-  description: Whosoever bears this PDA is the law.
+  description: Whosoever bears this PDA is the law. Has a built in contraband appraisal tool.
   components:
   - type: Pda
     id: ShriffIDCard
@@ -154,12 +157,15 @@
   - type: Icon
     sprite: _NF/Objects/Devices/pda.rsi
     state: pda-sheriff
+  - type: ContrabandPriceGun
+  - type: UseDelay
+    delay: 1
 
 - type: entity
   parent: BasePDA
   id: CadetPDA
   name: cadet PDA
-  description: Whosoever bears this PDA could be the law.
+  description: Whosoever bears this PDA could be the law. Has a built in contraband appraisal tool.
   components:
   - type: Pda
     id: CadetIDCard
@@ -189,12 +195,15 @@
   - type: Icon
     sprite: _NF/Objects/Devices/pda.rsi
     state: pda-cadet
+  - type: ContrabandPriceGun
+  - type: UseDelay
+    delay: 1
 
 - type: entity
   parent: BasePDA
   id: DeputyPDA
   name: deputy PDA
-  description: Whosoever bears this PDA is close to being the law.
+  description: Whosoever bears this PDA is close to being the law. Has a built in contraband appraisal tool.
   components:
   - type: Pda
     id: DeputyIDCard
@@ -224,12 +233,15 @@
   - type: Icon
     sprite: _NF/Objects/Devices/pda.rsi
     state: pda-deputy
+  - type: ContrabandPriceGun
+  - type: UseDelay
+    delay: 1
 
 - type: entity
   parent: BaseMedicalPDA
   id: BrigmedicNFPDA
   name: brigmedic PDA
-  description: Whosoever bears this PDA heals the law.
+  description: Whosoever bears this PDA heals the law. Has a built-in health analyzer.
   components:
   - type: Pda
     id: BrigmedicNFIDCard
@@ -264,7 +276,7 @@
   parent: BasePDA
   id: SergeantPDA
   name: sergeant PDA
-  description: Whosoever bears this PDA puts the law on their back.
+  description: Whosoever bears this PDA puts the law on their back. Has a built in contraband appraisal tool.
   components:
   - type: Pda
     id: SergeantIDCard
@@ -294,12 +306,15 @@
   - type: Icon
     sprite: _NF/Objects/Devices/pda.rsi
     state: pda-sergeant
+  - type: ContrabandPriceGun
+  - type: UseDelay
+    delay: 1
 
 - type: entity
   parent: BasePDA
   id: BailiffPDA
   name: bailiff PDA
-  description: Whosoever bears this PDA puts the law on their back.
+  description: Whosoever bears this PDA puts the law on their back. Has a built in contraband appraisal tool.
   components:
   - type: Pda
     id: BailiffIDCard
@@ -329,12 +344,15 @@
   - type: Icon
     sprite: _NF/Objects/Devices/pda.rsi
     state: pda-bailiff
+  - type: ContrabandPriceGun
+  - type: UseDelay
+    delay: 1
 
 - type: entity
   parent: BasePDA
   id: DetectiveNFPDA
   name: detective PDA
-  description: Smells like rain... pouring down the rooftops...
+  description: Smells like rain... pouring down the rooftops... Has a built in contraband appraisal tool.
   components:
   - type: Pda
     id: DetectiveNFIDCard
@@ -363,6 +381,9 @@
   - type: Icon
     sprite: _NF/Objects/Devices/pda.rsi
     state: pda-detectivenf
+  - type: ContrabandPriceGun
+  - type: UseDelay
+    delay: 1
 
 - type: entity
   parent: BasePDA
