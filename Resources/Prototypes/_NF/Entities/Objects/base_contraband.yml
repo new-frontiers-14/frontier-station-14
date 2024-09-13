@@ -63,6 +63,16 @@
 
 - type: entity
   parent: BaseC3ContrabandUnredeemable
+  id: BaseC3ExpeditionContraband
+  abstract: true
+  components:
+  - type: Contraband
+    severity: Class3Expedition
+    turnInValues:
+      FrontierUplinkCoin: 2
+
+- type: entity
+  parent: BaseC3ContrabandUnredeemable
   id: BaseC3Contraband
   abstract: true
   components:
@@ -127,6 +137,14 @@
   - type: Contraband
     severity: Class3Syndicate
     turnInValues: {} # TODO: pirate values?
+
+- type: entity
+  parent: BaseC3SyndicateContrabandUnredeemable
+  id: BaseC3SyndicateContrabandNoValue
+  abstract: true
+  components:
+  - type: Contraband
+    turnInValues: *noFUCs
 
 - type: entity
   parent: BaseC3SyndicateContrabandUnredeemable
