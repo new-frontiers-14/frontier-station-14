@@ -189,6 +189,7 @@
   - MobEnhancedMovement
   - BaseMobSpecies
   - MobHumanoidHostileAIComplex
+  - BaseC3Contraband
   id: MobHumanoidHostileBase
   components:
   - type: NPCRetaliation
@@ -221,7 +222,6 @@
   - type: MobPrice
     price: 1500
     deathPenalty: 0.5
-  - type: Contraband
   - type: Advertise
     pack: syndicatehumanoidchatter
     minimumWait: 120 # 1 * 2
@@ -244,6 +244,7 @@
   - MobFlammable
   - MobEnhancedMovement
   - MobHumanoidHostileAIComplex
+  - BaseC3Contraband
   id: MobNonHumanHostileBase
   components:
   - type: NPCRetaliation
@@ -297,7 +298,6 @@
     price: 1500
     deathPenalty: 0.5
   - type: SalvageMobRestrictionsNF
-  - type: Contraband
   - type: Tag
     tags:
     - CanPilot

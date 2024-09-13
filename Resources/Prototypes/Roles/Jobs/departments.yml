@@ -1,5 +1,6 @@
 - type: department
   id: Cargo
+  name: department-Cargo
   description: department-Cargo-description
   color: "#A46106"
   weight: -90
@@ -8,9 +9,10 @@
 
 - type: department
   id: Civilian
+  name: department-Civilian
   description: department-Civilian-description
   color: "#9FED58"
-  weight: -10
+  weight: 0 # Frontier: -10<0 accounted for in jobs
   roles:
   - Bartender
   - Borg
@@ -46,6 +48,7 @@
 
 - type: department
   id: Command
+  name: department-Command
   description: department-Command-description
   color: "#334E6D"
   roles:
@@ -57,10 +60,11 @@
   - Sheriff  # Frontier
   - StationTrafficController # Frontier
   primary: false
-  weight: 100
+  weight: 2 # Frontier: 100<2 - accounted for in jobs
 
 - type: department
   id: Engineering
+  name: department-Engineering
   description: department-Engineering-description
   color: "#EFB341"
   weight: -94
@@ -69,6 +73,7 @@
 
 - type: department
   id: Medical
+  name: department-Medical
   description: department-Medical-description
   color: "#52B4E9"
   weight: -93
@@ -77,9 +82,10 @@
 
 - type: department
   id: Security
+  name: department-Security
   description: department-Security-description
   color: "#5C7D4D" # Frontier: DE3A3A<5C7D4D
-  weight: 20
+  weight: 1 # Frontier: 20<1 - accounted for in jobs
   roles:
   - Detective # Frontier - No Longer Usable
   - HeadOfSecurity # Frontier - No Longer Usable
@@ -95,9 +101,11 @@
   - Bailiff # Frontier
   - Sheriff # Frontier
   - SeniorOfficer # Frontier
+  - PublicAffairsLiaison # Frontier
 
 - type: department
   id: Science
+  name: department-Science
   description: department-Science-description
   color: "#D381C9"
   weight: -92
@@ -106,19 +114,9 @@
 
 - type: department
   id: Specific
+  name: department-Specific
   description: department-Specific-description
   color: "#9FED58"
   weight: -91
   primary: false
   editorHidden: true # Frontier
-
-- type: department
-  id: Antag
-  description: department-Antag-description
-  color: "#DE3A3A"
-  weight: -11
-  roles:
-  - PirateCaptain
-  - PirateFirstMate
-  - Pirate
-  - Prisoner ##nyano

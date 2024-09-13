@@ -30,3 +30,37 @@
       - Drinks
   - type: StaticPrice
     price: 30
+
+- type: entity
+  name: bluespace vial
+  parent: BaseBeakerMetallic
+  id: VialBluespace
+  description: A vial device created with bluespace technology.
+  components:
+  - type: Tag
+    tags:
+    - CentrifugeCompatible  
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Chemistry/vial_bluespace.rsi
+    layers:
+      - state: vialbluespace
+      - state: vialbluespace-1
+        map: ["enum.SolutionContainerLayers.Fill"]
+        visible: false
+  - type: SolutionContainerVisuals
+    maxFillLevels: 6
+    fillBaseName: vial-1-
+    inHandsMaxFillLevels: 4
+    inHandsFillBaseName: -fill-  
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 300
+  - type: SolutionTransfer
+    maxTransferAmount: 300
+  - type: Item
+    size: Tiny
+    sprite: _NF/Objects/Specific/Chemistry/vial_bluespace.rsi  
+  - type: StaticPrice
+    price: 100
+    vendPrice: 100  

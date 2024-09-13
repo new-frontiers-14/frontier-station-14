@@ -55,6 +55,8 @@
   - type: NpcFactionMember # Frontier
     factions: # Frontier
     - NanoTrasen # Frontier
+  - type: Repairable # Frontier
+    doAfterDelay: 3 # Frontier
 
 # ---- Laser weapon branch ----
 # naming: LSE (Laser) + conventional power + suffix (c for PowerCage, e for wired energy) + Name
@@ -287,7 +289,7 @@
 
 - type: entity
   id: ShuttleGunPirateCannon
-  parent: ShuttleGunBase
+  parent: [BaseStructureDisableToolUse, ShuttleGunBase] # Frontier: Added BaseStructureDisableToolUse
   name: pirate ship cannon
   description: Kaboom!
   components:
@@ -324,6 +326,8 @@
   - type: NpcFactionMember # Frontier
     factions: # Frontier
     - PirateNF # Frontier
+  - type: Rotatable # Frontier
+    rotateWhileAnchored: true # Frontier
 
 - type: entity
   id: ShuttleGunKinetic
