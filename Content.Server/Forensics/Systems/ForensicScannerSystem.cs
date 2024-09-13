@@ -92,7 +92,7 @@ namespace Content.Server.Forensics
             SoundSpecifier confirmSound = new SoundPathSpecifier("/Audio/Effects/Cargo/ping.ogg");
             _audio.PlayPvs(_audio.GetSound(confirmSound), uidOrigin);
 
-            // Credit the bank account
+            // Credit the NFSD's bank account (todo: split these)
             if (spesoAmount > 0)
             {
                 var queryBank = EntityQuery<StationBankAccountComponent>();
@@ -101,6 +101,8 @@ namespace Content.Server.Forensics
                     _cargo.DeductFunds(account, -spesoAmount);
                 }
             }
+            else
+                spesoAmount = 0;
 
             if (fucAmount > 0)
             {
@@ -119,9 +121,12 @@ namespace Content.Server.Forensics
                     }
                 }
             }
+            else
+                fucAmount = 0;
 
             var channel = _prototypeManager.Index<RadioChannelPrototype>("Nfsd");
-            _radio.SendRadioMessage(uidOrigin, msg, channel, uidOrigin);
+            var msgString = Loc.GetString(msg, ("spesos", spesoAmount), ("fuc", fucAmount));
+            _radio.SendRadioMessage(uidOrigin, , channel, uidOrigin);
         }
         // Frontier: add dead drop rewards
 
