@@ -1,5 +1,5 @@
-using Content.Shared.Radio;
 using Robust.Shared.Prototypes;
+using Content.Shared._NF.Smuggling.Prototypes;
 
 namespace Content.Server._NF.Smuggling.Components;
 
@@ -15,4 +15,3 @@ public sealed partial class StationDeadDropReportingComponent : Component
     [DataField(required: true)]
     public ProtoId<SmugglingReportMessageSetPrototype> MessageSet;
 }
-

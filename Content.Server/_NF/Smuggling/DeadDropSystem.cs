@@ -11,6 +11,7 @@ using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Shared._NF.CCVar;
+using Content.Shared._NF.Smuggling.Prototypes;
 using Content.Shared.Database;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;

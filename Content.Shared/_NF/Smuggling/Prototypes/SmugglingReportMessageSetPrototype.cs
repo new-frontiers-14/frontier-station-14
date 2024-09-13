@@ -1,6 +1,8 @@
 using Content.Shared.Radio;
 using Robust.Shared.Prototypes;
 
+namespace Content.Shared._NF.Smuggling.Prototypes;
+
 [Prototype("smugglingReportMessageSet")]
 public sealed class SmugglingReportMessageSetPrototype : IPrototype
 {
@@ -12,8 +14,8 @@ public sealed class SmugglingReportMessageSetPrototype : IPrototype
     public List<SmugglingReportMessageSet> MessageSets { get; private set; } = new();
 }
 
-[Serializable]
-public sealed class SmugglingReportMessageSet
+[DataDefinition]
+public sealed partial class SmugglingReportMessageSet
 {
     [DataField]
     public int MinDelay { get; private set; } = 0;
@@ -25,8 +27,8 @@ public sealed class SmugglingReportMessageSet
     public float Probability { get; private set; } = 1.0f;
 }
 
-[Serializable]
-public sealed class SmugglingReportMessage
+[DataDefinition]
+public sealed partial class SmugglingReportMessage
 {
     [DataField]
     public int HourlyThreshold { get; private set; } = int.MaxValue;
