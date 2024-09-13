@@ -22,10 +22,10 @@ public sealed partial class SmugglingReportMessageSet
 {
     // The minimum delay, in minutes, that this message will be sent at.
     [DataField]
-    public int MinDelay { get; private set; } = 0;
+    public float MinDelay { get; private set; } = 0.0f;
     // The maximum delay, in minutes, that this message will be sent at.
     [DataField]
-    public int MaxDelay { get; private set; } = 0;
+    public float MaxDelay { get; private set; } = 0.0f;
     // The list of messages to be sent.  The first message in the list whose threshold is met will be sent off.
     [DataField(required: true)]
     public List<SmugglingReportMessage> Messages { get; private set; } = new();
