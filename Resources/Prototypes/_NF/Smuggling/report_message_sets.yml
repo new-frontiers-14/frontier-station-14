@@ -2,7 +2,7 @@
   id: Nfsd
   channel: Nfsd
   messageSets:
-  - prob: 0.9
+  - prob: 0.8
     messages:
     - hourlyThreshold: 1
       type: General
@@ -13,19 +13,21 @@
     - type: DeadDropStation
       message: smuggling-report-nfsd-specific
   - prob: 0.8
-    minDelay: 15
-    maxDelay: 15
+    minDelay: 14
+    maxDelay: 16
     messages:
     - type: PodLocation
       message: smuggling-report-nfsd-pod
-      maxError: 750
+      maxError: 900 # Should be slightly larger than the giant radar range
 
 - type: smugglingReportMessageSet
   id: Pirate
   channel: Freelancer
   messageSets:
   - prob: 0.333
+    minDelay: 14
+    maxDelay: 16
     messages:
     - type: PodLocation
       message: smuggling-report-pirate
-      maxError: 750
+      maxError: 600 # Pirates don't have giant radars, let's cut them a break.
