@@ -693,6 +693,12 @@ entities:
             90: 23,-3
             91: 23,-4
         - node:
+            angle: 3.141592653589793 rad
+            color: '#FFFFFFFF'
+            id: StandClear
+          decals:
+            248: 13,-8
+        - node:
             color: '#FFFFFFFF'
             id: WarnLineGreyscaleE
           decals:
@@ -728,12 +734,12 @@ entities:
             color: '#FFFFFFFF'
             id: WarnLineN
           decals:
-            203: 12,11
-            204: 14,11
-            205: 12,9
-            206: 13,9
-            207: 14,9
             212: 13,-8
+            238: 12,9
+            239: 13,9
+            240: 14,9
+            241: 14,11
+            242: 12,11
         - node:
             color: '#B3B3B3FF'
             id: WarnLineS
@@ -745,12 +751,12 @@ entities:
             color: '#FFFFFFFF'
             id: WarnLineW
           decals:
-            201: 14,11
-            202: 12,11
-            208: 12,9
-            209: 13,9
-            210: 14,9
             211: 13,-8
+            243: 12,9
+            244: 13,9
+            245: 14,9
+            246: 14,11
+            247: 12,11
         - node:
             angle: 1.5707963267948966 rad
             color: '#FFFFFFFF'
@@ -878,12 +884,12 @@ entities:
       - 409
       - 145
       - 599
-      - 249
       - 288
       - 519
       - 345
       - 226
       - 8
+      - 127
       - 218
   - uid: 452
     components:
@@ -1885,6 +1891,14 @@ entities:
     - type: Transform
       pos: 23.5,-2.5
       parent: 1
+- proto: ClosetWallO2N2FilledRandom
+  entities:
+  - uid: 249
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 15.5,10.5
+      parent: 1
 - proto: ClothingBeltUtilityFilled
   entities:
   - uid: 336
@@ -2409,14 +2423,6 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#990000FF'
-  - uid: 127
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 21.5,-7.5
-      parent: 1
-    - type: AtmosPipeColor
-      color: '#990000FF'
   - uid: 133
     components:
     - type: Transform
@@ -2441,14 +2447,6 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#990000FF'
-  - uid: 178
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 20.5,-7.5
-      parent: 1
-    - type: AtmosPipeColor
-      color: '#0055CCFF'
   - uid: 205
     components:
     - type: Transform
@@ -2744,13 +2742,6 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
-  - uid: 470
-    components:
-    - type: Transform
-      pos: 20.5,-6.5
-      parent: 1
-    - type: AtmosPipeColor
-      color: '#0055CCFF'
   - uid: 471
     components:
     - type: Transform
@@ -2966,6 +2957,14 @@ entities:
       color: '#990000FF'
 - proto: GasPipeTJunction
   entities:
+  - uid: 178
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 21.5,-6.5
+      parent: 1
+    - type: AtmosPipeColor
+      color: '#990000FF'
   - uid: 199
     components:
     - type: Transform
@@ -2982,14 +2981,6 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
-  - uid: 229
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 21.5,-6.5
-      parent: 1
-    - type: AtmosPipeColor
-      color: '#990000FF'
   - uid: 240
     components:
     - type: Transform
@@ -3190,6 +3181,19 @@ entities:
       - 419
     - type: AtmosPipeColor
       color: '#0055CCFF'
+  - uid: 127
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 20.5,-6.5
+      parent: 1
+    - type: DeviceNetwork
+      configurators:
+      - invalid
+      deviceLists:
+      - 419
+    - type: AtmosPipeColor
+      color: '#0055CCFF'
   - uid: 187
     components:
     - type: Transform
@@ -3210,17 +3214,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 452
-    - type: AtmosPipeColor
-      color: '#0055CCFF'
-  - uid: 218
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 20.5,-8.5
-      parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 419
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 226
@@ -3309,13 +3302,15 @@ entities:
       - 419
     - type: AtmosPipeColor
       color: '#990000FF'
-  - uid: 249
+  - uid: 218
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 21.5,-8.5
+      rot: -1.5707963267948966 rad
+      pos: 22.5,-6.5
       parent: 1
     - type: DeviceNetwork
+      configurators:
+      - invalid
       deviceLists:
       - 419
     - type: AtmosPipeColor
@@ -3631,6 +3626,14 @@ entities:
           showEnts: False
           occludes: True
           ent: null
+- proto: LockerWallEVAColorMedicalFilled
+  entities:
+  - uid: 307
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 15.5,7.5
+      parent: 1
 - proto: LockerWallEVAColorParamedicFilled
   entities:
   - uid: 516
@@ -4404,7 +4407,7 @@ entities:
       parent: 1
 - proto: SinkStemlessWater
   entities:
-  - uid: 307
+  - uid: 229
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
