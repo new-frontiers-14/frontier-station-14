@@ -1,7 +1,10 @@
 using System.Linq;
 using Content.Shared._EstacaoPirata.Cards.Card;
+using Content.Shared._EstacaoPirata.Cards.Deck;
 using Content.Shared._EstacaoPirata.Cards.Hand;
 using Content.Shared.Examine;
+using Content.Shared.Hands.Components;
+using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
 using Content.Shared.Storage.EntitySystems;
 using Content.Shared.Verbs;
@@ -31,6 +34,7 @@ public sealed class CardStackSystem : EntitySystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly SharedStorageSystem _storage = default!;
     [Dependency] private readonly CardHandSystem _cardHandSystem = default!; // Frontier
+    [Dependency] private readonly SharedHandsSystem _hands = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -40,6 +44,8 @@ public sealed class CardStackSystem : EntitySystem
         SubscribeLocalEvent<CardStackComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<CardStackComponent, EntRemovedFromContainerMessage>(OnEntRemoved);
         SubscribeLocalEvent<CardStackComponent, GetVerbsEvent<AlternativeVerb>>(OnAlternativeVerb);
+        SubscribeLocalEvent<CardStackComponent, GetVerbsEvent<ActivationVerb>>(OnActivationVerb);
+        SubscribeLocalEvent<CardStackComponent, ActivateInWorldEvent>(OnActivate);
         SubscribeLocalEvent<CardStackComponent, ExaminedEvent>(OnExamine);
         SubscribeLocalEvent<InteractUsingEvent>(OnInteractUsing);
     }
@@ -243,6 +249,48 @@ public sealed class CardStackSystem : EntitySystem
         } // End Frontier: single card interaction
     }
 
+    // Frontier: hacky misuse of the activation verb, but allows us a separate way to draw cards without needing additional buttons and event fiddling
+    private void OnActivationVerb(EntityUid uid, CardStackComponent component, GetVerbsEvent<ActivationVerb> args)
+    {
+        if (!args.CanAccess || !args.CanInteract || args.Hands == null)
+            return;
+
+        if (args.Using == args.Target)
+            return;
+
+        if (args.Using == null)
+        {
+            args.Verbs.Add(new ActivationVerb()
+            {
+                Act = () => OnInteractHand(args.Target, component, args.User),
+                Text = Loc.GetString("cards-verb-draw"),
+                Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/eject.svg.192dpi.png")),
+                Priority = 16
+            });
+        }
+        else if (TryComp<CardStackComponent>(args.Using, out var cardStack))
+        {
+            args.Verbs.Add(new ActivationVerb()
+            {
+                Act = () => TransferNLastCardFromStacks(args.User, 1, args.Target, component, args.Using.Value, cardStack),
+                Text = Loc.GetString("cards-verb-draw"),
+                Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/eject.svg.192dpi.png")),
+                Priority = 16
+            });
+        }
+        else if (TryComp<CardComponent>(args.Using, out var card))
+        {
+            args.Verbs.Add(new ActivationVerb()
+            {
+                Act = () => _cardHandSystem.TrySetupHandFromStack(args.User, args.Using.Value, card, args.Target, component, true),
+                Text = Loc.GetString("cards-verb-draw"),
+                Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/eject.svg.192dpi.png")),
+                Priority = 16
+            });
+        }
+    }
+    // End Frontier
+
     private void JoinStacks(EntityUid user, EntityUid first, CardStackComponent firstComp, EntityUid second, CardStackComponent secondComp)
     {
         if (_net.IsServer)
@@ -256,7 +304,7 @@ public sealed class CardStackSystem : EntitySystem
         }
     }
 
-    private void InsertCardOnStack(EntityUid user, EntityUid stack, CardStackComponent stackComponent, EntityUid card)
+    public void InsertCardOnStack(EntityUid user, EntityUid stack, CardStackComponent stackComponent, EntityUid card)
     {
         if (!TryInsertCard(stack, card))
             return;
@@ -348,6 +396,52 @@ public sealed class CardStackSystem : EntitySystem
                 _cardHandSystem.TrySetupHandFromStack(args.User, args.Used, card, args.Target, stack, true);
                 args.Handled = true;
             }
+        }
+    }
+
+    private void OnInteractHand(EntityUid uid, CardStackComponent component, EntityUid user)
+    {
+        if (component.Cards.Count <= 0)
+            return;
+
+        if (!component.Cards.TryGetValue(component.Cards.Count - 1, out var card))
+            return;
+
+        if (!TryRemoveCard(uid, card, component))
+            return;
+
+        _hands.TryPickupAnyHand(user, card);
+
+        if (TryComp<CardDeckComponent>(uid, out var deck))
+            _audio.PlayPredicted(deck.PickUpSound, Transform(card).Coordinates, user);
+        else
+            _audio.PlayPredicted(component.PickUpSound, Transform(card).Coordinates, user);
+    }
+
+    private void OnActivate(EntityUid uid, CardStackComponent component, ActivateInWorldEvent args)
+    {
+        if (!args.Complex || args.Handled)
+            return;
+
+        if (uid == args.Target)
+            return;
+
+        if (!TryComp<HandsComponent>(args.User, out var hands))
+            return;
+
+        var activeItem = _hands.GetActiveItem((args.User, hands));
+
+        if (activeItem == null)
+        {
+            OnInteractHand(args.Target, component, args.User);
+        }
+        else if (TryComp<CardStackComponent>(activeItem, out var cardStack))
+        {
+            TransferNLastCardFromStacks(args.User, 1, args.Target, component, activeItem.Value, cardStack);
+        }
+        else if (TryComp<CardComponent>(activeItem, out var card))
+        {
+            _cardHandSystem.TrySetupHandFromStack(args.User, activeItem.Value, card, args.Target, component, true);
         }
     }
 

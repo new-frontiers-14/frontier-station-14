@@ -1,6 +1,7 @@
 card-examined = This is the {$target}.
 cards-verb-shuffle = Shuffle
 card-verb-shuffle-success = Cards shuffled
+cards-verb-draw = Draw card
 cards-verb-flip = Flip cards
 card-verb-join = Join cards
 card-verb-organize-success = Cards flipped face { $facedown ->
