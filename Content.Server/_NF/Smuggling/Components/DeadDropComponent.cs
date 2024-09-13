@@ -31,13 +31,6 @@ public sealed partial class DeadDropComponent : Component
     public int MaximumCoolDown = 5400; // 5400 / 60 = 90 minutes
 
     /// <summary>
-    ///     Wait time for NSFD to get coordinates of the drop pod location.
-    /// </summary>
-    [DataField]
-    //Use 15 seconds for testing
-    public int RadioCoolDown = 900; // 900 / 60 = 15 minutes
-
-    /// <summary>
     ///     Minimum distance to spawn the drop.
     /// </summary>
     [DataField]
@@ -56,7 +49,7 @@ public sealed partial class DeadDropComponent : Component
     public string HintPaper = "PaperCargoInvoice";
 
     /// <summary>
-    ///     Boolean which determines if the dead drop has ever been spawned by this component
+    ///     Whether or not a drop pod has been called for this dead drop.
     /// </summary>
     [DataField]
     public bool DeadDropCalled = false;

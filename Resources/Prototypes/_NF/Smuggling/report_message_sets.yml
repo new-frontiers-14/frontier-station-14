@@ -1,25 +1,31 @@
 - type: smugglingReportMessageSet
   id: Nfsd
+  channel: Nfsd
   messageSets:
-  - messages:
+  - prob: 0.9
+    messages:
     - hourlyThreshold: 1
       type: General
       message: smuggling-report-nfsd-general
     - hourlyThreshold: 2
-      type: DeadDropAlternate
+      type: DeadDropStationWithRandomAlt
       message: smuggling-report-nfsd-alternative
-    - type: DeadDropSpecific
+    - type: DeadDropStation
       message: smuggling-report-nfsd-specific
-  - minDelay: 15
+  - prob: 0.8
+    minDelay: 15
     maxDelay: 15
     messages:
     - type: PodLocation
-      message: smuggling-report-nfsd-delayed
+      message: smuggling-report-nfsd-pod
+      maxError: 750
 
 - type: smugglingReportMessageSet
   id: Pirate
+  channel: Freelancer
   messageSets:
   - prob: 0.333
     messages:
     - type: PodLocation
       message: smuggling-report-pirate
+      maxError: 750

@@ -3,7 +3,7 @@ using Robust.Shared.Timing;
 namespace Content.Server._NF.Smuggling;
 
 // <summary>
-//  A counter to keep track of the number of events that happened over a fixed period of time.
+//  A counter to keep track of the number of events that happened over a shifting window of fixed length (e.g. "an hour ago").
 // </summary>
 public sealed class WindowedCounter
 {

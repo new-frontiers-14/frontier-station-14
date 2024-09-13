@@ -165,9 +165,8 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
 
         base.Started(uid, component, gameRule, args);
 
-        Log.Error("Raising StationsGeneratedEvent!");
+        // Using invalid entity, we don't have a relevant entity to reference here.
         RaiseLocalEvent(EntityUid.Invalid, new StationsGeneratedEvent(), broadcast: true); // TODO: attach this to a meaningful entity.
-        Log.Error("Finished raising StationsGeneratedEvent!");
 
         var dungenTypes = _prototypeManager.EnumeratePrototypes<DungeonConfigPrototype>();
 

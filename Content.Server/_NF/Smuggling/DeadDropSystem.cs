@@ -104,9 +104,9 @@ public sealed class DeadDropSystem : EntitySystem
         // Change all existing dead drop timeouts
         var maxTime = _timing.CurTime + TimeSpan.FromSeconds(_maxDeadDropTimeout);
         var query = EntityManager.AllEntityQueryEnumerator<DeadDropComponent>();
-        while (query.MoveNext(out var uid, out var comp))
+        while (query.MoveNext(out var _, out var comp))
         {
-            comp.MinimumCoolDown = _maxDeadDropTimeout;
+            comp.MaximumCoolDown = _maxDeadDropTimeout;
             if (comp.NextDrop > maxTime)
                 comp.NextDrop = maxTime;
         }
@@ -117,7 +117,7 @@ public sealed class DeadDropSystem : EntitySystem
         _minDeadDropDistance = newMax;
         // Change all existing dead drop timeouts
         var query = EntityManager.AllEntityQueryEnumerator<DeadDropComponent>();
-        while (query.MoveNext(out var uid, out var comp))
+        while (query.MoveNext(out var _, out var comp))
         {
             comp.MinimumDistance = _minDeadDropDistance;
         }
@@ -128,7 +128,7 @@ public sealed class DeadDropSystem : EntitySystem
         _maxDeadDropDistance = newMax;
         // Change all existing dead drop timeouts
         var query = EntityManager.AllEntityQueryEnumerator<DeadDropComponent>();
-        while (query.MoveNext(out var uid, out var comp))
+        while (query.MoveNext(out var _, out var comp))
         {
             comp.MaximumDistance = _maxDeadDropDistance;
         }
@@ -194,17 +194,27 @@ public sealed class DeadDropSystem : EntitySystem
         if (potentialDeadDrops.Count > 0)
         {
             var item = _random.Pick(potentialDeadDrops);
-            EnsureComp<DeadDropComponent>(item.ent);
+            AddDeadDrop(item.ent);
+            _sawmill.Info($"Dead drop at {uid} compromised, new drop at {item.ent}!");
         }
+        else
+        {
+            _sawmill.Warning($"Dead drop at {uid} compromised, no new drop assigned!");
+        }
+    }
+
+    // Ensures that a given entity is a valid dead drop with the current global settings.
+    public void AddDeadDrop(EntityUid entity)
+    {
+        var deadDrop = EnsureComp<DeadDropComponent>(entity);
+        deadDrop.MinimumCoolDown = _minDeadDropTimeout;
+        deadDrop.MaximumCoolDown = _maxDeadDropTimeout;
+        deadDrop.MinimumDistance = _minDeadDropDistance;
+        deadDrop.MaximumDistance = _maxDeadDropDistance;
     }
 
     private void OnStationsGenerated(StationsGeneratedEvent args)
     {
-        if (!TryComp<SectorDeadDropComponent>(_sectorService.GetServiceEntity(), out var component))
-        {
-            _sawmill.Error("Cannot generate dead drops, no service!");
-            return;
-        }
         _sawmill.Info("Generating dead drops!");
         // Distribute total number of dead drops to assign between each station.
         var remainingDeadDrops = _maxDeadDrops;
@@ -273,6 +283,7 @@ public sealed class DeadDropSystem : EntitySystem
         }
 
         List<(EntityUid, EntityUid)> deadDropStationTuples = new();
+        StringBuilder dropList = new();
         foreach (var (station, potentialDropList) in potentialDropEntitiesPerStation)
         {
             if (!assignedDeadDrops.TryGetValue(station, out var stationDrops))
@@ -284,15 +295,21 @@ public sealed class DeadDropSystem : EntitySystem
             _random.Shuffle(potentialDropList);
             for (int i = 0; i < potentialDropList.Count && i < stationDrops.assigned; i++)
             {
-                var deadDrop = EnsureComp<DeadDropComponent>(potentialDropList[i]);
-                deadDrop.MinimumCoolDown = _minDeadDropTimeout;
-                deadDrop.MaximumCoolDown = _maxDeadDropTimeout;
-                deadDrop.MinimumDistance = _minDeadDropDistance;
-                deadDrop.MaximumDistance = _maxDeadDropDistance;
-                deadDropStationTuples.Add((station, potentialDropList[i]));
-                drops.Add(potentialDropList[i]);
+                var dropUid = potentialDropList[i];
+                AddDeadDrop(dropUid);
+                deadDropStationTuples.Add((station, dropUid));
+                drops.Add(dropUid);
+
+                if (dropList.Length <= 0)
+                    dropList.Append(dropUid);
+                else
+                    dropList.Append($", {dropUid}");
             }
-            _sawmill.Info($"{MetaData(station).EntityName} dead drops assigned: {string.Join(", ", potentialDropList)}");
+            if (dropList.Length > 0)
+            {
+                _sawmill.Info($"{MetaData(station).EntityName} dead drops assigned: {dropList}");
+                dropList.Clear();
+            }
         }
 
         // For each hint spawner, randomly generate a hint from the distributed dead drop locations, spawn the text for the note.
@@ -474,12 +491,14 @@ public sealed class DeadDropSystem : EntitySystem
 
                 string messageLoc = "";
                 SmugglingReportMessageType messageType = SmugglingReportMessageType.General;
+                float messageError = 0.0f;
                 foreach (var message in messageSet.Messages)
                 {
                     if (deadDropsThisHour < message.HourlyThreshold)
                     {
                         messageLoc = message.Message;
                         messageType = message.Type;
+                        messageError = message.MaxPodLocationError;
                         break;
                     }
                 }
@@ -494,7 +513,10 @@ public sealed class DeadDropSystem : EntitySystem
                     default:
                         output = Loc.GetString(messageLoc);
                         break;
-                    case SmugglingReportMessageType.Alternate:
+                    case SmugglingReportMessageType.DeadDropStation:
+                        output = Loc.GetString(messageLoc, ("location", MetaData(sender).EntityName));
+                        break;
+                    case SmugglingReportMessageType.DeadDropStationWithRandomAlt:
                         if (sectorDeadDrop is not null)
                         {
                             string[] names = [MetaData(sender).EntityName, _random.Pick<string>(sectorDeadDrop.DeadDropStationNames.Values)];
@@ -507,10 +529,8 @@ public sealed class DeadDropSystem : EntitySystem
                         }
                         break;
                     case SmugglingReportMessageType.PodLocation:
-                        output = Loc.GetString(messageLoc, ("x", dropLocation.X), ("y", dropLocation.Y));
-                        break;
-                    case SmugglingReportMessageType.Precise:
-                        output = Loc.GetString(messageLoc, ("location", MetaData(sender).EntityName));
+                        var error = _random.NextVector2(messageError);
+                        output = Loc.GetString(messageLoc, ("x", dropLocation.X + error.X), ("y", dropLocation.Y + error.Y));
                         break;
                 }
 
