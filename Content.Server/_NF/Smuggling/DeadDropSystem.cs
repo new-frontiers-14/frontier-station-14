@@ -480,11 +480,11 @@ public sealed class DeadDropSystem : EntitySystem
 
             foreach (var messageSet in messageSets.MessageSets)
             {
-                int delayMinutes;
+                float delayMinutes;
                 if (messageSet.MinDelay >= messageSet.MaxDelay)
                     delayMinutes = messageSet.MinDelay;
                 else
-                    delayMinutes = _random.Next(messageSet.MinDelay, messageSet.MaxDelay + 1);
+                    delayMinutes = _random.NextFloat(messageSet.MinDelay, messageSet.MaxDelay);
 
                 if (!_random.Prob(messageSet.Probability))
                     continue;
