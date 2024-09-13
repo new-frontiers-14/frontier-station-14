@@ -122,6 +122,10 @@
     state: mattress
   - type: Damageable
     damageModifierSet: Inflatable
+  # Frontier: deconstruct into just cloth, no free steel
+  - type: Construction
+    graph: bedNF
+    node: mattress
 
 - type: entity
   parent: Bed
