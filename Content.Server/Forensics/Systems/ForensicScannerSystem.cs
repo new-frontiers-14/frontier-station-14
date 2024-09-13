@@ -25,9 +25,11 @@ using Robust.Shared.Audio;
 using Robust.Shared.Timing;
 using Content.Server.Chemistry.Containers.EntitySystems;
 using Content.Shared.Containers.ItemSlots; // Frontier
-using Content.Server.Cargo.Components;
-using Content.Server._NF.SectorServices;
+using Content.Server.Cargo.Components; // Frontier
+using Content.Server._NF.SectorServices; // Frontier
 using Content.Shared.FixedPoint; // Frontier
+using Robust.Shared.Configuration; // Frontier
+using Content.Shared._NF.CCVar; // Frontier
 
 // todo: remove this stinky LINQy
 
@@ -55,6 +57,10 @@ namespace Content.Server.Forensics
         [Dependency] private readonly ItemSlotsSystem _itemSlots = default!; // Frontier
         [Dependency] private readonly CargoSystem _cargo = default!; // Frontier
         [Dependency] private readonly SectorServiceSystem _service = default!; // Frontier
+        [Dependency] private readonly IConfigurationManager _cfg = default!; // Frontier
+
+        // Temporary values, sane defaults, will be overwritten by CVARs.
+        private int _minFUCPayout = 2;
 
         public override void Initialize()
         {
@@ -67,6 +73,13 @@ namespace Content.Server.Forensics
             SubscribeLocalEvent<ForensicScannerComponent, ForensicScannerPrintMessage>(OnPrint);
             SubscribeLocalEvent<ForensicScannerComponent, ForensicScannerClearMessage>(OnClear);
             SubscribeLocalEvent<ForensicScannerComponent, ForensicScannerDoAfterEvent>(OnDoAfter);
+
+            Subs.CVar(_cfg, NFCCVars.SmugglingMinFucPayout, OnMinFucPayoutChanged, true); // Frontier
+        }
+
+        private void OnMinFucPayoutChanged(int newMin)
+        {
+            _minFUCPayout = newMin;
         }
 
         // Frontier: add dead drop rewards
@@ -95,7 +108,7 @@ namespace Content.Server.Forensics
                 if (TryComp<SectorDeadDropComponent>(_service.GetServiceEntity(), out var sectorDD))
                 {
                     sectorDD.FUCAccumulator += fucAmount;
-                    if (sectorDD.FUCAccumulator >= sectorDD.MinFUCPayout)
+                    if (sectorDD.FUCAccumulator >= _minFUCPayout)
                     {
                         // inherent floor
                         int payout = sectorDD.FUCAccumulator.Int();

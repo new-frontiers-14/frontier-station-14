@@ -10,18 +10,17 @@ using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
-using Content.Shared.Construction.Components;
+using Content.Shared._NF.CCVar;
 using Content.Shared.Database;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Paper;
-using Content.Shared.Radio;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Verbs;
 using Robust.Server.GameObjects;
 using Robust.Server.Maps;
+using Robust.Shared.Configuration;
 using Robust.Shared.Map;
-using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
@@ -42,12 +41,20 @@ public sealed class DeadDropSystem : EntitySystem
     [Dependency] private readonly ShuttleSystem _shuttle = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedMapSystem _mapManager = default!;
-    [Dependency] private readonly EntityLookupSystem _entityLookup = default!;
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly SectorServiceSystem _sectorService = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
     private ISawmill _sawmill = default!;
 
     private readonly Queue<EntityUid> _drops = [];
+
+    // Temporary values, sane defaults, will be overwritten by CVARs.
+    private int _maxDeadDrops = 10;
+    private int _maxSimultaneousPods = 5;
+    private int _minDeadDropTimeout = 900;
+    private int _maxDeadDropTimeout = 5400;
+    private int _minDeadDropDistance = 4500;
+    private int _maxDeadDropDistance = 6000;
 
     public override void Initialize()
     {
@@ -60,9 +67,78 @@ public sealed class DeadDropSystem : EntitySystem
         SubscribeLocalEvent<StationDeadDropComponent, ComponentShutdown>(OnStationShutdown);
         SubscribeLocalEvent<StationsGeneratedEvent>(OnStationsGenerated);
 
+        Subs.CVar(_cfg, NFCCVars.SmugglingMaxSimultaneousPods, OnMaxSimultaneousPodsChanged, true);
+        Subs.CVar(_cfg, NFCCVars.SmugglingMaxDeadDrops, OnMaxDeadDropsChanged, true); // TODO: handle this better - will not be reflected until next round.
+        Subs.CVar(_cfg, NFCCVars.DeadDropMinTimeout, OnMinDeadDropTimeout, true);
+        Subs.CVar(_cfg, NFCCVars.DeadDropMaxTimeout, OnMaxDeadDropTimeout, true);
+        Subs.CVar(_cfg, NFCCVars.DeadDropMinDistance, OnMinDeadDropDistance, true);
+        Subs.CVar(_cfg, NFCCVars.DeadDropMaxDistance, OnMaxDeadDropDistance, true);
+
         _sawmill = Logger.GetSawmill("deaddrop");
     }
 
+    // CVAR setters
+    private void OnMaxSimultaneousPodsChanged(int newMax)
+    {
+        _maxSimultaneousPods = newMax;
+    }
+
+    private void OnMinDeadDropTimeout(int newMax)
+    {
+        _minDeadDropTimeout = newMax;
+        // Change all existing dead drop timeouts
+        var minTime = _timing.CurTime + TimeSpan.FromSeconds(_minDeadDropTimeout);
+        var query = EntityManager.AllEntityQueryEnumerator<DeadDropComponent>();
+        while (query.MoveNext(out var _, out var comp))
+        {
+            comp.MinimumCoolDown = _minDeadDropTimeout;
+            if (comp.NextDrop < minTime)
+                comp.NextDrop = minTime;
+        }
+    }
+
+    private void OnMaxDeadDropTimeout(int newMax)
+    {
+        _maxDeadDropTimeout = newMax;
+        // Change all existing dead drop timeouts
+        var maxTime = _timing.CurTime + TimeSpan.FromSeconds(_maxDeadDropTimeout);
+        var query = EntityManager.AllEntityQueryEnumerator<DeadDropComponent>();
+        while (query.MoveNext(out var uid, out var comp))
+        {
+            comp.MinimumCoolDown = _maxDeadDropTimeout;
+            if (comp.NextDrop > maxTime)
+                comp.NextDrop = maxTime;
+        }
+    }
+
+    private void OnMinDeadDropDistance(int newMax)
+    {
+        _minDeadDropDistance = newMax;
+        // Change all existing dead drop timeouts
+        var query = EntityManager.AllEntityQueryEnumerator<DeadDropComponent>();
+        while (query.MoveNext(out var uid, out var comp))
+        {
+            comp.MinimumDistance = _minDeadDropDistance;
+        }
+    }
+
+    private void OnMaxDeadDropDistance(int newMax)
+    {
+        _maxDeadDropDistance = newMax;
+        // Change all existing dead drop timeouts
+        var query = EntityManager.AllEntityQueryEnumerator<DeadDropComponent>();
+        while (query.MoveNext(out var uid, out var comp))
+        {
+            comp.MaximumDistance = _maxDeadDropDistance;
+        }
+    }
+
+    private void OnMaxDeadDropsChanged(int newMax)
+    {
+        _maxDeadDrops = newMax;
+    }
+
+    // When a dead drop is unanchored, consider it compromised (we don't want people stealing the dead drop generators, these need to exist in public places)
     private void OnDeadDropUnanchored(EntityUid uid, DeadDropComponent comp, AnchorStateChangedEvent args)
     {
         if (args.Anchored)
@@ -130,7 +206,7 @@ public sealed class DeadDropSystem : EntitySystem
         }
         _sawmill.Info("Generating dead drops!");
         // Distribute total number of dead drops to assign between each station.
-        var remainingDeadDrops = component.MaxSectorDeadDrops;
+        var remainingDeadDrops = _maxDeadDrops;
 
         Dictionary<EntityUid, (int assigned, int max)> assignedDeadDrops = new();
         var stationDropQuery = AllEntityQuery<StationDeadDropComponent>();
@@ -207,7 +283,11 @@ public sealed class DeadDropSystem : EntitySystem
             _random.Shuffle(potentialDropList);
             for (int i = 0; i < potentialDropList.Count && i < stationDrops.assigned; i++)
             {
-                EnsureComp<DeadDropComponent>(potentialDropList[i]);
+                var deadDrop = EnsureComp<DeadDropComponent>(potentialDropList[i]);
+                deadDrop.MinimumCoolDown = _minDeadDropTimeout;
+                deadDrop.MaximumCoolDown = _maxDeadDropTimeout;
+                deadDrop.MinimumDistance = _minDeadDropDistance;
+                deadDrop.MaximumDistance = _maxDeadDropDistance;
                 deadDropStationTuples.Add((station, potentialDropList[i]));
                 drops.Add(potentialDropList[i]);
             }
@@ -320,7 +400,7 @@ public sealed class DeadDropSystem : EntitySystem
         int deadDropsThisHour = 0;
         if (TryComp<SectorDeadDropComponent>(_sectorService.GetServiceEntity(), out var sectorDeadDrop))
         {
-            maxSimultaneousPods = sectorDeadDrop.MaxSimultaneousPods;
+            maxSimultaneousPods = _maxSimultaneousPods;
             deadDropsThisHour = sectorDeadDrop.ReportedEventsThisHour.Count();
         }
 
