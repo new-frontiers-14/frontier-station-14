@@ -35,6 +35,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using System.Linq;
+using Content.Server.Access.Systems; // Frontier
 
 namespace Content.Server.Silicons.Borgs;
 
@@ -45,7 +46,6 @@ public sealed partial class BorgSystem : SharedBorgSystem
     [Dependency] private readonly IBanManager _banManager = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly SharedAccessSystem _access = default!;
     [Dependency] private readonly ActionsSystem _actions = default!;
     [Dependency] private readonly AlertsSystem _alerts = default!;
     [Dependency] private readonly DeviceNetworkSystem _deviceNetwork = default!;
@@ -61,6 +61,7 @@ public sealed partial class BorgSystem : SharedBorgSystem
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private readonly AccessSystem _access = default!; // Frontier
 
 
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;

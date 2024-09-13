@@ -56,14 +56,27 @@
     factions:
     - NanoTrasen
     - Goblin
+  - type: DamageVisuals
+    thresholds: [ 10, 20, 30, 50, 70, 100 ]
+    targetLayers:
+    - "enum.HumanoidVisualLayers.Chest"
+    - "enum.HumanoidVisualLayers.Head"
+    - "enum.HumanoidVisualLayers.LArm"
+    - "enum.HumanoidVisualLayers.LLeg"
+    - "enum.HumanoidVisualLayers.RArm"
+    - "enum.HumanoidVisualLayers.RLeg"
+    damageOverlayGroups:
+      Brute:
+        sprite: Mobs/Effects/brute_damage.rsi
+        color: "#5c7500"
+      Burn:
+        sprite: Mobs/Effects/burn_damage.rsi
+  - type: Bloodstream
+    bloodReagent: GoblinBlood
   - type: Butcherable
     spawned:
     - id: FoodMeatGoblin
       amount: 3
-#  - type: SizeAttributeWhitelist # This system need to move to a slider
-#    tall: true
-#    tallscale: 1
-#    tallDensity: 185
   - type: GoblinAccent
   - type: TypingIndicator
     proto: goblin
@@ -92,7 +105,7 @@
   name: Urist McGoblin
   parent: MobHumanDummy
   id: MobGoblinDummy
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   description: A dummy goblin meant to be used in character setup.
   components:
   - type: HumanoidAppearance

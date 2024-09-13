@@ -1,11 +1,13 @@
 # VARIATIONS
 # Contraband denying turret
 - type: entity # Targets players wearing contra and all hostile to NT factions
-  parent: BaseWeaponTurretEnergyNF
   id: WeaponTurretContrabandDenyingDeployed
   name: CDET
   description: |-
    A Contraband Denying Energy Turret (CDET). A disabler turret with built-in microreactor. Use screwdriver to disassemble.
+  parent:
+  - BaseC2ContrabandUnredeemable
+  - BaseWeaponTurretEnergyNF
   components:
   - type: HTN
     rootTask:
@@ -33,12 +35,14 @@
     node: WeaponTurretContrabandDenyingPacked
 
 - type: entity # folded turret
-  parent: BaseItem
   id: WeaponTurretContrabandDenyingPacked
   name: packed CDET
   description: |-
    A disassembled and packed Contraband Denying Energy Turret (CDET).
   suffix: NT, Packed
+  parent:
+  - BaseC2ContrabandUnredeemable
+  - BaseItem
   components:
   - type: WeaponCaseInsertable
   - type: MultiHandedItem
@@ -75,15 +79,16 @@
 
 # Basic laser turrets
 - type: entity
-  parent:
-  - BaseTurretSearchBeam
-  - BaseWeaponTurretEnergyNF
   id: WeaponTurretLaserNanoTrasenDeployed
   name: SLAT
   description: |-
    A Self-Recharging Laser Auto Turret (SLAT). A laser turret with built-in microreactor. Use screwdriver to disassemble.
   suffix: Frontier, NT
-  noSpawn: true
+  parent:
+  - BaseC2ContrabandUnredeemable
+  - BaseTurretSearchBeam
+  - BaseWeaponTurretEnergyNF
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Turrets/laser.rsi
@@ -105,12 +110,14 @@
     node: WeaponTurretLaserNanoTrasenPacked
 
 - type: entity # folded turret
-  parent: BaseItem
   id: WeaponTurretLaserNanoTrasenPacked
   name: packed SLAT
   description: |-
    A disassembled and packed Self-Recharging Laser Auto Turret (SLAT).
   suffix: NT, Packed
+  parent:
+  - BaseC2ContrabandUnredeemable
+  - BaseItem
   components:
   - type: WeaponCaseInsertable
   - type: MultiHandedItem
@@ -146,13 +153,14 @@
           doAfter: 14
 
 - type: entity
-  parent:
-  - BaseTurretSearchBeam
-  - BaseWeaponTurretEnergyNF
   id: WeaponTurretLaserSyndicateNF
   name: laser turret
   suffix: Frontier, Syndicate
-  noSpawn: true
+  parent:
+  - BaseC3SyndicateContraband
+  - BaseTurretSearchBeam
+  - BaseWeaponTurretEnergyNF
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Turrets/laser.rsi
@@ -170,10 +178,12 @@
     - SyndicateNF
 
 - type: entity
-  parent: WeaponTurretLaserSyndicateNF
   id: WeaponTurretLaserHostileNF
   name: laser turret
   suffix: Frontier, Hostile
+  parent:
+  - BaseC3Contraband
+  - WeaponTurretLaserSyndicateNF
   components:
   - type: NpcFactionMember
     factions:
@@ -181,13 +191,14 @@
 
 ## Magazine fed, deployable NanoTrasen turret
 - type: entity # deployed turret
-  parent:
-  - BaseWeaponTurretMagazineFed
   id: WeaponTurretAsmgtNtDeployed
   name: ASMGT
   description: |-
    An Autonomous Sentry Machine Gun Turret (ASMGT) is a magazine-fed turret with barrels compatible with .20, .25, .30 and .35 cartridges. Use screwdriver to disassemble.
   suffix: NT
+  parent:
+  - BaseC2ContrabandUnredeemable
+  - BaseWeaponTurretMagazineFed
   components:
   - type: NPCImprintingOnSpawnBehaviour
     whitelist:
@@ -226,12 +237,14 @@
     node: WeaponTurretAsmgtNtPacked
 
 - type: entity # folded turret
-  parent: BaseItem
   id: WeaponTurretAsmgtNtPacked
   name: packed ASMGT
   description: |-
    A disassembled and packed Autonomous Sentry Machine Gun Turret (ASMGT).
   suffix: NT, Packed
+  parent:
+  - BaseC2ContrabandUnredeemable
+  - BaseItem
   components:
   - type: WeaponCaseInsertable
   - type: MultiHandedItem
@@ -268,11 +281,11 @@
 
 ## Magazine fed, deployable punk turret
 - type: entity # deployed turret
-  parent:
-  - WeaponTurretAsmgtNtDeployed
-  - UnregisteredFirearmBase
   id: WeaponTurretAsmgtHostileUniversallyDeployed
   suffix: Universally Hostile
+  parent:
+  - BaseC3Contraband
+  - WeaponTurretAsmgtNtDeployed
   components:
   - type: NPCImprintingOnSpawnBehaviour
     whitelist:
@@ -287,13 +300,13 @@
     node: WeaponTurretAsmgtHostileUniversallyPacked
 
 - type: entity # folded turret
-  parent:
-  - WeaponTurretAsmgtNtPacked
-  - UnregisteredFirearmBase
   id: WeaponTurretAsmgtHostileUniversallyPacked
   suffix: Universally Hostile, Packed
   description: |-
    A disassembled and packed Autonomous Sentry Machine Gun Turret (ASMGT). WARNING! Unpacked turret will be hostile towards anyone who wasn't in close proximity (within 3 m) after unpacking!
+  parent:
+  - BaseC3Contraband
+  - WeaponTurretAsmgtNtPacked
   components:
   - type: WeaponCaseInsertable
   - type: MultiHandedItem

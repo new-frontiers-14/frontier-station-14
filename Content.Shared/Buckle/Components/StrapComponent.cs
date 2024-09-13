@@ -87,10 +87,18 @@ public sealed partial class StrapComponent : Component
     public ProtoId<AlertPrototype> BuckledAlertType = "Buckled";
 
     /// <summary>
+    /// How long it takes to buckle someone else into a chair
+    /// </summary>
+    [DataField]
+    public float BuckleDoafterTime = 2f;
+
+    // Frontier: fix vehicles unbuckling
+    /// <summary>
     /// Amount of tolerable distance before unbuckling a user
     /// </summary>
     [DataField, Access(typeof(SharedBuckleSystem))]
     public double UnbuckleDistanceSquared = 1e-5;
+    // End Frontier: fix vehicles unbuckling
 }
 
 public enum StrapPosition

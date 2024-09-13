@@ -208,10 +208,12 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         }
 
         var deedID = EnsureComp<ShuttleDeedComponent>(targetId);
-        AssignShuttleDeedProperties(deedID, shuttle.Owner, name, player);
+
+        var shuttleOwner = Name(args.Actor).Trim();
+        AssignShuttleDeedProperties(deedID, shuttle.Owner, name, shuttleOwner);
 
         var deedShuttle = EnsureComp<ShuttleDeedComponent>(shuttle.Owner);
-        AssignShuttleDeedProperties(deedShuttle, shuttle.Owner, name, player);
+        AssignShuttleDeedProperties(deedShuttle, shuttle.Owner, name, shuttleOwner);
 
         if (!voucherUsed)
         {
@@ -494,7 +496,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         }
     }
 
-    private void SendSellMessage(EntityUid uid, EntityUid? player, string name, string shipyardChannel, EntityUid seller, bool secret)
+    private void SendSellMessage(EntityUid uid, string? player, string name, string shipyardChannel, EntityUid seller, bool secret)
     {
         var channel = _prototypeManager.Index<RadioChannelPrototype>(shipyardChannel);
 
@@ -721,7 +723,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         _ui.SetUiState(uid, uiKey, newState);
     }
 
-    void AssignShuttleDeedProperties(ShuttleDeedComponent deed, EntityUid? shuttleUid, string? shuttleName, EntityUid? shuttleOwner)
+    void AssignShuttleDeedProperties(ShuttleDeedComponent deed, EntityUid? shuttleUid, string? shuttleName, string? shuttleOwner)
     {
         deed.ShuttleUid = shuttleUid;
         TryParseShuttleName(deed, shuttleName!);
@@ -749,8 +751,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         if (!TryComp<ShuttleDeedComponent>(xform.GridUid.Value, out var shuttleDeed) || !TryComp<ShuttleComponent>(xform.GridUid.Value, out var shuttle) || !HasComp<TransformComponent>(xform.GridUid.Value) || shuttle == null  || ShipyardMap == null)
             return;
 
-        var shuttleOwner = ToPrettyString(shuttleDeed.ShuttleOwner); // Grab owner name
-        var output = Regex.Replace($"{shuttleOwner}", @"\s*\([^()]*\)", ""); // Removes content inside parentheses along with parentheses and a preceding space
+        var output = Regex.Replace($"{shuttleDeed.ShuttleOwner}", @"\s*\([^()]*\)", ""); // Removes content inside parentheses along with parentheses and a preceding space
         _idSystem.TryChangeFullName(uid, output); // Update the card with owner name
 
         var deedID = EnsureComp<ShuttleDeedComponent>(uid);

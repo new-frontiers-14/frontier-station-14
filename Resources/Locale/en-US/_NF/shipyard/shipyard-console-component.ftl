@@ -2,8 +2,8 @@
 shipyard-console-invalid-vessel = Cannot purchase vessel:
 shipyard-console-menu-title = Shipyard Menu
 shipyard-console-menu-listing-free = Free
-shipyard-console-docking = Captain {$owner} shuttle {$vessel} en route, eta 10 seconds.
-shipyard-console-leaving = Captain {$owner} shuttle {$vessel} sold by {$player}.
+shipyard-console-docking = {$owner} shuttle {$vessel} en route.
+shipyard-console-leaving = {$owner} shuttle {$vessel} sold by {$player}.
 shipyard-console-docking-secret = Unregistered vessel detected entering your sector.
 shipyard-console-leaving-secret = Unregistered vessel detected leaving your sector.
 shipyard-commands-purchase-desc = Spawns and FTL docks a specified shuttle from a grid file.
@@ -28,3 +28,31 @@ shipyard-console-menu-class-label = Class:{" "}
 
 shipyard-console-purchase-available = Purchase
 shipyard-console-guidebook = Manual
+
+# Keep these in enum order for ease of validation.
+shipyard-console-category-All = All
+shipyard-console-category-Micro = Micro
+shipyard-console-category-Small = Small
+shipyard-console-category-Medium = Medium
+shipyard-console-category-Large = Large
+
+shipyard-console-class-All = All
+shipyard-console-class-Expedition = Expedition
+shipyard-console-class-Scrapyard = Scrapyard
+shipyard-console-class-Salvage = Salvage
+shipyard-console-class-Science = Science
+shipyard-console-class-Cargo = Cargo
+shipyard-console-class-Chemistry = Chemistry
+shipyard-console-class-Botany = Botany
+shipyard-console-class-Engineering = Engineering
+shipyard-console-class-Atmospherics = Atmospherics
+shipyard-console-class-Medical = Medical
+shipyard-console-class-Civilian = Civilian
+shipyard-console-class-Kitchen = Kitchen
+shipyard-console-class-Syndicate = Syndicate
+shipyard-console-class-Pirate = Pirate
+shipyard-console-class-Detainment = Detainment
+shipyard-console-class-Detective = Detective
+shipyard-console-class-Fighter = Fighter
+shipyard-console-class-Stealth = Stealth
+shipyard-console-class-Capital = Capital
