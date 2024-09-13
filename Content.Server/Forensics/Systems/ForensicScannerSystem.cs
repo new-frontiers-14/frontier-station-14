@@ -29,7 +29,8 @@ using Content.Server.Cargo.Components; // Frontier
 using Content.Server._NF.SectorServices; // Frontier
 using Content.Shared.FixedPoint; // Frontier
 using Robust.Shared.Configuration; // Frontier
-using Content.Shared._NF.CCVar; // Frontier
+using Content.Shared._NF.CCVar;
+using Content.Shared._NF.Bank; // Frontier
 
 // todo: remove this stinky LINQy
 
@@ -125,8 +126,19 @@ namespace Content.Server.Forensics
                 fucAmount = 0;
 
             var channel = _prototypeManager.Index<RadioChannelPrototype>("Nfsd");
-            var msgString = Loc.GetString(msg, ("spesos", spesoAmount), ("fuc", fucAmount));
-            _radio.SendRadioMessage(uidOrigin, , channel, uidOrigin);
+            string msgString = Loc.GetString(msg);
+            if (fucAmount >= 1)
+            {
+                msgString = msgString + " " + Loc.GetString("forensic-reward-amount",
+                ("spesos", BankSystemExtensions.ToSpesoString(spesoAmount)),
+                ("fuc", BankSystemExtensions.ToFUCString(fucAmount.Int())));
+            }
+            else
+            {
+                msgString = msgString + " " + Loc.GetString("forensic-reward-amount-speso-only",
+                ("spesos", BankSystemExtensions.ToSpesoString(spesoAmount)));
+            }
+            _radio.SendRadioMessage(uidOrigin, msgString, channel, uidOrigin);
         }
         // Frontier: add dead drop rewards
 
