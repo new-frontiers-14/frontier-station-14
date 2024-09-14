@@ -11,18 +11,16 @@
   components:
   - type: BasicStationEventScheduler
     scheduledGameRules: !type:NestedSelector
-      tableId: BluespaceEventsTable
+      tableId: MajorBluespaceEventsTable
     minimumTimeUntilFirstEvent: 2700 # 45 minutes
     minMaxEventTiming:
-      min: 1200 # 20 minutes between events
-      max: 2700 # 45 minutes between events
+      min: 2700 # 45 minutes between events
+      max: 4500 # 75 minutes between events
 
 - type: entityTable
-  id: BluespaceEventsTable
+  id: MajorBluespaceEventsTable
   table: !type:AllSelector # we need to pass a list of rules, since rules have further restrictions to consider via StationEventComp
     children:
-    - id: BluespaceMcCargoCrate
-    - id: BluespaceSyndicateCrate
     - id: BluespaceCacheError
     - id: BluespaceVaultError
     - id: BluespaceVaultSmallError
@@ -33,4 +31,3 @@
     - id: BluespaceSyndicateFTLInterception
     - id: BluespaceWizardFederationScout
     - id: BluespaceBloodMoon
-    - id: BluespaceBrokenMcDelivery
