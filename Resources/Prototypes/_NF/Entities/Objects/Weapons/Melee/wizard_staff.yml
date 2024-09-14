@@ -56,9 +56,11 @@
 
 # Blood Cult
 - type: entity
-  name: inert cultist staff
-  parent: WizardStaffMeleeRed
   id: WizardStaffMeleeBlood
+  name: inert cultist staff
+  parent:
+  - BaseC3CultContraband
+  - WizardStaffMeleeRed
   components:
   - type: Sharp
   - type: MeleeWeapon
@@ -72,9 +74,11 @@
       path: /Audio/Effects/bite.ogg
 
 - type: entity
-  name: cultist staff
-  parent: WizardStaffMeleeBlood
   id: WizardStaffDarkBolt
+  name: cultist staff
+  parent:
+  - BaseC3CultContraband
+  - WizardStaffMeleeBlood
   suffix: "Dark bolt"
   components:
   - type: BasicEntityAmmoProvider

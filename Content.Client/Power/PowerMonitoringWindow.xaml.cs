@@ -18,7 +18,7 @@ public sealed partial class PowerMonitoringWindow : FancyWindow
     [Dependency] private IEntityManager _entManager = default!;
     private readonly SpriteSystem _spriteSystem;
     [Dependency] private IGameTiming _gameTiming = default!;
-    [Dependency] private SharedTransformSystem _transformSystem = default!; // Frontier modification
+    private SharedTransformSystem _transformSystem; // Frontier modification
 
     private const float BlinkFrequency = 1f;
 
@@ -42,6 +42,7 @@ public sealed partial class PowerMonitoringWindow : FancyWindow
         IoCManager.InjectDependencies(this);
 
         _spriteSystem = _entManager.System<SpriteSystem>();
+        _transformSystem = _entManager.System<SharedTransformSystem>(); // Frontier
 
         // Set trackable entity selected action
         NavMap.TrackedEntitySelectedAction += SetTrackedEntityFromNavMap;
