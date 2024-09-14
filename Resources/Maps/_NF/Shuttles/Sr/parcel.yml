@@ -763,41 +763,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 0.5537621,0.6666666
       parent: 1
-- proto: ClosetWall
-  entities:
-  - uid: 166
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 7.5,0.5
-      parent: 1
-    - type: EntityStorage
-      air:
-        volume: 200
-        immutable: False
-        temperature: 293.14923
-        moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-    - type: ContainerContainer
-      containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 91
-          - 93
-          - 92
 - proto: ClothingBackpackMessengerMailCarrier
   entities:
   - uid: 83
@@ -1167,6 +1132,21 @@ entities:
     - type: Transform
       pos: 4.5,2.5
       parent: 1
+- proto: LockerWallMaterialsBasic10Filled
+  entities:
+  - uid: 36
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 7.5,0.5
+      parent: 1
+- proto: LockerWallMaterialsFuelPlasmaFilled
+  entities:
+  - uid: 77
+    components:
+    - type: Transform
+      pos: 6.5,2.5
+      parent: 1
 - proto: NitrogenCanister
   entities:
   - uid: 100
@@ -1208,6 +1188,8 @@ entities:
       parent: 1
     - type: FuelGenerator
       on: False
+    - type: MaterialStorageMagnetPickup
+      magnetEnabled: True
     - type: Physics
       bodyType: Static
 - proto: PowerCellRecharger
@@ -1400,40 +1382,6 @@ entities:
     - type: Transform
       pos: 6.5,0.5
       parent: 1
-- proto: SheetGlass
-  entities:
-  - uid: 93
-    components:
-    - type: Transform
-      parent: 166
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-- proto: SheetPlasma
-  entities:
-  - uid: 146
-    components:
-    - type: Transform
-      pos: 6.491864,1.5018094
-      parent: 1
-- proto: SheetPlastic
-  entities:
-  - uid: 92
-    components:
-    - type: Transform
-      parent: 166
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-- proto: SheetSteel
-  entities:
-  - uid: 91
-    components:
-    - type: Transform
-      parent: 166
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: ShuttersNormalOpen
   entities:
   - uid: 3
@@ -1469,14 +1417,6 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 4.5,4.5
-      parent: 1
-- proto: SignSpace
-  entities:
-  - uid: 77
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 6.5,2.5
       parent: 1
 - proto: SmallThruster
   entities:
@@ -1527,11 +1467,6 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -0.5,1.5
-      parent: 1
-  - uid: 36
-    components:
-    - type: Transform
-      pos: 4.5,1.5
       parent: 1
   - uid: 53
     components:

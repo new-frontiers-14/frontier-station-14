@@ -1092,6 +1092,13 @@ entities:
       rot: 3.141592653589793 rad
       pos: 3.5,-2.5
       parent: 1
+- proto: LockerWallMaterialsFuelPlasmaFilled
+  entities:
+  - uid: 77
+    components:
+    - type: Transform
+      pos: 6.5,2.5
+      parent: 1
 - proto: NetworkConfigurator
   entities:
   - uid: 182
@@ -1157,6 +1164,8 @@ entities:
       parent: 1
     - type: FuelGenerator
       on: False
+    - type: MaterialStorageMagnetPickup
+      magnetEnabled: True
     - type: Physics
       bodyType: Static
 - proto: Poweredlight
@@ -1346,13 +1355,6 @@ entities:
     - type: Transform
       pos: 3.160936,4.206492
       parent: 1
-- proto: SheetPlasma
-  entities:
-  - uid: 146
-    components:
-    - type: Transform
-      pos: 6.544826,1.53125
-      parent: 1
 - proto: ShuttersNormalOpen
   entities:
   - uid: 3
@@ -1441,14 +1443,6 @@ entities:
         222:
         - Pressed: Toggle
         - Pressed: Trigger
-- proto: SignSpace
-  entities:
-  - uid: 77
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 6.5,2.5
-      parent: 1
 - proto: SpawnPointPirate
   entities:
   - uid: 93
