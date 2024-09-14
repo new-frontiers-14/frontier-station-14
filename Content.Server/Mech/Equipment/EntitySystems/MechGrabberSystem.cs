@@ -34,7 +34,7 @@ public sealed class MechGrabberSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelist = default!; // Frontier
-    [Dependency] private readonly SharedBuckleSystem _buckle = default!;
+    [Dependency] private readonly SharedBuckleSystem _buckle = default!; // Frontier
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -190,9 +190,15 @@ public sealed class MechGrabberSystem : EntitySystem
         if (!_mech.TryChangeEnergy(equipmentComponent.EquipmentOwner.Value, component.GrabEnergyDelta))
             return;
 
-        if (TryComp<StrapComponent>(args.Args.Target, out var strapComp) && strapComp.BuckledEntities != null) // Frontier: Remove people from chairs
+        // Frontier: Remove people from chairs
+        if (TryComp<StrapComponent>(args.Args.Target, out var strapComp) && strapComp.BuckledEntities != null)
+        {
             foreach (var buckleUid in strapComp.BuckledEntities)
-                _buckle.TryUnbuckle(buckleUid, buckleUid, true);
+            {
+                _buckle.Unbuckle(buckleUid, args.Args.Target);
+            }
+        }
+        // End Frontier
 
         _container.Insert(args.Args.Target.Value, component.ItemContainer);
         _mech.UpdateUserInterface(equipmentComponent.EquipmentOwner.Value);
