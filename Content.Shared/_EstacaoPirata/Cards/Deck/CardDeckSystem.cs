@@ -46,16 +46,16 @@ public sealed class CardDeckSystem : EntitySystem
 
         args.Verbs.Add(new AlternativeVerb()
         {
-            Act = () => TrySplit(args.Target, component, comp, args.User),
-            Text = Loc.GetString("cards-verb-split"),
-            Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/dot.svg.192dpi.png")),
+            Act = () => TryShuffle(uid, component, comp),
+            Text = Loc.GetString("cards-verb-shuffle"),
+            Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/die.svg.192dpi.png")),
             Priority = 4
         });
         args.Verbs.Add(new AlternativeVerb()
         {
-            Act = () => TryShuffle(uid, component, comp),
-            Text = Loc.GetString("cards-verb-shuffle"),
-            Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/die.svg.192dpi.png")),
+            Act = () => TrySplit(args.Target, component, comp, args.User),
+            Text = Loc.GetString("cards-verb-split"),
+            Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/dot.svg.192dpi.png")),
             Priority = 3
         });
         args.Verbs.Add(new AlternativeVerb()

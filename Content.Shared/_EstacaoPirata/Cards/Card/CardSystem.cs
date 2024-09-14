@@ -195,10 +195,11 @@ public sealed class CardSystem : EntitySystem
         if (!args.Complex || args.Handled)
             return;
 
-        if (uid == args.Target)
+        if (!TryComp<HandsComponent>(args.User, out var hands))
             return;
 
-        if (!TryComp<HandsComponent>(args.User, out var hands))
+        // Card stacks are handled differently
+        if (HasComp<CardStackComponent>(args.Target))
             return;
 
         var activeItem = _hands.GetActiveItem((args.User, hands));

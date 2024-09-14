@@ -423,9 +423,6 @@ public sealed class CardStackSystem : EntitySystem
         if (!args.Complex || args.Handled)
             return;
 
-        if (uid == args.Target)
-            return;
-
         if (!TryComp<HandsComponent>(args.User, out var hands))
             return;
 
