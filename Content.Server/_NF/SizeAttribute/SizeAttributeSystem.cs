@@ -4,7 +4,7 @@ using Robust.Shared.Physics;
 using Robust.Shared.Physics.Collision.Shapes;
 using Robust.Shared.Physics.Systems;
 using Content.Shared._NF.SizeAttribute;
-using Content.Shared.Item.PseudoItem;
+using Content.Shared.Nyanotrasen.Item.PseudoItem;
 
 namespace Content.Server.SizeAttribute
 {
@@ -38,16 +38,18 @@ namespace Content.Server.SizeAttribute
         {
             if (active)
             {
-                if (TryComp<PseudoItemComponent>(uid, out var pseudoI))
-                    return;
+                var pseudoI = _entityManager.EnsureComponent<PseudoItemComponent>(uid);
 
-                _entityManager.AddComponent<PseudoItemComponent>(uid);
+                pseudoI.StoredOffset = new(0, 17);
+                pseudoI.Shape = new List<Box2i>
+                {
+                    new Box2i(0, 0, 1, 4),
+                    new Box2i(0, 2, 3, 4),
+                    new Box2i(4, 0, 5, 4)
+                };
             }
             else
             {
-                if (!TryComp<PseudoItemComponent>(uid, out var pseudoI))
-                    return;
-
                 _entityManager.RemoveComponent<PseudoItemComponent>(uid);
             }
         }
