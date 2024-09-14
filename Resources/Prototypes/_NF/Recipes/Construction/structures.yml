@@ -65,3 +65,40 @@
     state: closed
   conditions:
     - !type:TileNotBlocked
+
+#Airlocks
+- type: construction
+  name: shuttle airlock
+  id: AirlockShuttleNfsd
+  graph: AirlockShuttleNfsd
+  startNode: start
+  targetNode: airlock
+  category: construction-category-structures
+  description: It opens, it closes, and maybe crushes you. Necessary for connecting two space craft together.
+  icon:
+    sprite: _NF/Structures/Doors/Airlocks/Standard/docknfsd.rsi
+    state: closed
+  #  state: assembly
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  name: glass shuttle airlock
+  id: AirlockGlassShuttleNfsd
+  graph: AirlockShuttleNfsd
+  startNode: start
+  targetNode: airlockGlass
+  category: construction-category-structures
+  description: It opens, it closes, and maybe crushes you. Necessary for connecting two space craft together. This one has a window.
+  icon:
+    sprite: _NF/Structures/Doors/Airlocks/Glass/docknfsd.rsi
+    state: closed
+  #  state: assembly
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
