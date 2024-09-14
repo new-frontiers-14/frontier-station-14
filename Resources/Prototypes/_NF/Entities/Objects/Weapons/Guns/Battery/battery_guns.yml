@@ -129,3 +129,54 @@
       - state: inhand-right
       - state: inhand-right-unshaded
         shader: unshaded
+
+- type: entity
+  name: Bowcaster
+  parent: BaseItem
+  id: WeaponBowcaster
+  description: From a galaxy far far away, S.E.S.W.C got their hands on this unqiue three bolt engery weapon. It was accdiently drop during transport.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Battery/bowcaster.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - sprite: _NF/Objects/Weapons/Guns/Battery/bowcaster.rsi
+    state: icon
+  - type: Item
+    size: Large
+  - type: Gun
+    fireRate: 2
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
+      params:
+        volume: -5
+  - type: AmmoCounter
+  - type: GunRequiresWield
+  - type: Wieldable
+  - type: MeleeRequiresWield
+  - type: Battery
+    maxCharge: 200
+    startingCharge: 200
+  - type: ProjectileBatteryAmmoProvider
+    proto: BulletLaserSpread
+    fireCost: 10
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: BulletLaserSpread
+      fireCost: 10
+    - proto: BulletLaserHeavy
+      fireCost: 20
+  - type: MeleeWeapon
+    attackRate: .85
+    damage:
+      types:
+       Blunt: 10
+    angle: 0
+    wideAnimationRotation: 90
+    animation: WeaponArcThrust
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
