@@ -11,12 +11,12 @@
 - type: entity
   id: BluespaceCargoCrate
   parent: BaseStationEventNFModerateDelay
-  categories: [ HideSpawnMenu ]
   components:
   - type: StationEvent
     startAnnouncement: bluespace-cargo-event-announcement
     weight: 5
     duration: 35
+    reoccurrenceDelay: 120
   - type: BluespaceCargoRule
     spawnerPrototype: RandomCargoSpawner
     requireSafeAtmosphere: true
@@ -26,7 +26,6 @@
 - type: entity
   id: BluespaceMcCargoCrate
   parent: BaseStationEventNFModerateDelay
-  categories: [ HideSpawnMenu ]
   components:
   - type: StationEvent
     startAnnouncement: bluespace-cargo-event-announcement
@@ -43,7 +42,6 @@
 - type: entity
   id: BluespaceSyndicateCrate
   parent: BaseStationEventNFModerateDelay
-  categories: [ HideSpawnMenu ]
   components:
   - type: StationEvent
     startAnnouncement: bluespace-syndicate-crate-event-announcement
@@ -53,7 +51,7 @@
     duration: 35
     earliestStart: 90
     minimumPlayers: 20
-    maxOccurrences: 1 # Only once per shift possible
+    reoccurrenceDelay: 480 # 8 hours
   - type: BluespaceCargoRule
     spawnerPrototype: CrateSyndicateLightSurplusBundle
     maximumSpawns: 2
