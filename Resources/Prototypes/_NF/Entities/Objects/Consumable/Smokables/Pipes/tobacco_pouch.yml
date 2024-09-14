@@ -134,3 +134,39 @@
     contents:
     - id: GroundTobaccoShrooms
       amount: 10
+
+- type: entity
+  id: TobaccoPouchPurpleFilled
+  name: |-
+   "Sweet Dreams" pouch
+  parent: TobaccoPouchBase
+  description: This tobacco pouch advertises its smokers being "blessed with cozy, restful sleeps", whatever that means.
+  suffix: Filled
+  components:
+  - type: Sprite
+    layers:
+      - state: closed
+        color: "#bd66bd" # lightish purple
+      - state: open
+        color: "#bd66bd"
+        map: ["openLayer"]
+        visible: false
+      - state: label
+        color: "#77bbff" # turns into a grey
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#bd66bd"
+      right:
+      - state: inhand-right
+        color: "#bd66bd"
+  - type: Clothing
+    clothingVisuals:
+      belt:
+      - state: equipped-BELT
+        color: "#bd66bd"
+  - type: StorageFill
+    contents:
+    - id: GroundTobaccoDrowsy
+      amount: 10
