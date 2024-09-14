@@ -12,7 +12,7 @@
   name: department-Civilian
   description: department-Civilian-description
   color: "#9FED58"
-  weight: -10
+  weight: 0 # Frontier: -10<0 accounted for in jobs
   roles:
   - Bartender
   - Borg
@@ -60,7 +60,7 @@
   - Sheriff  # Frontier
   - StationTrafficController # Frontier
   primary: false
-  weight: 100
+  weight: 2 # Frontier: 100<2 - accounted for in jobs
 
 - type: department
   id: Engineering
@@ -85,7 +85,7 @@
   name: department-Security
   description: department-Security-description
   color: "#5C7D4D" # Frontier: DE3A3A<5C7D4D
-  weight: 20
+  weight: 1 # Frontier: 20<1 - accounted for in jobs
   roles:
   - Detective # Frontier - No Longer Usable
   - HeadOfSecurity # Frontier - No Longer Usable
@@ -101,6 +101,7 @@
   - Bailiff # Frontier
   - Sheriff # Frontier
   - SeniorOfficer # Frontier
+  - PublicAffairsLiaison # Frontier
 
 - type: department
   id: Science
