@@ -1,7 +1,9 @@
+using Content.Shared._EstacaoPirata.Cards.Card;
 using Content.Shared._EstacaoPirata.Cards.Stack;
 using Content.Shared.Audio;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
+using Content.Shared.Item;
 using Content.Shared.Popups;
 using Content.Shared.Verbs;
 using Robust.Shared.Audio.Systems;
@@ -31,7 +33,6 @@ public sealed class CardDeckSystem : EntitySystem
     /// <inheritdoc/>
     public override void Initialize()
     {
-        SubscribeLocalEvent<CardDeckComponent, InteractHandEvent>(OnInteractHand);
         SubscribeLocalEvent<CardDeckComponent, GetVerbsEvent<AlternativeVerb>>(AddTurnOnVerb);
     }
 
@@ -45,24 +46,17 @@ public sealed class CardDeckSystem : EntitySystem
 
         args.Verbs.Add(new AlternativeVerb()
         {
-            Act = () => TrySplit(args.Target, component, comp, args.User),
-            Text = Loc.GetString("cards-verb-split"),
-            Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/dot.svg.192dpi.png")),
+            Act = () => TryShuffle(uid, component, comp),
+            Text = Loc.GetString("cards-verb-shuffle"),
+            Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/die.svg.192dpi.png")),
             Priority = 4
         });
         args.Verbs.Add(new AlternativeVerb()
         {
-            Act = () => TryShuffle(uid, component, comp),
-            Text = Loc.GetString("cards-verb-shuffle"),
-            Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/die.svg.192dpi.png")),
+            Act = () => TrySplit(args.Target, component, comp, args.User),
+            Text = Loc.GetString("cards-verb-split"),
+            Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/dot.svg.192dpi.png")),
             Priority = 3
-        });
-        args.Verbs.Add(new AlternativeVerb()
-        {
-            Act = () => TryOrganize(uid, component, comp, false),
-            Text = Loc.GetString("cards-verb-organize-up"),
-            Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/flip.svg.192dpi.png")),
-            Priority = 1
         });
         args.Verbs.Add(new AlternativeVerb()
         {
@@ -71,7 +65,13 @@ public sealed class CardDeckSystem : EntitySystem
             Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/flip.svg.192dpi.png")),
             Priority = 2
         });
-
+        args.Verbs.Add(new AlternativeVerb()
+        {
+            Act = () => TryOrganize(uid, component, comp, false),
+            Text = Loc.GetString("cards-verb-organize-up"),
+            Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/flip.svg.192dpi.png")),
+            Priority = 1
+        });
     }
 
     private void TrySplit(EntityUid uid, CardDeckComponent deck, CardStackComponent stack, EntityUid user)
@@ -110,30 +110,6 @@ public sealed class CardDeckSystem : EntitySystem
 
         _audio.PlayPvs(comp.ShuffleSound, deck, AudioHelpers.WithVariation(0.05f, _random));
         _popup.PopupEntity(Loc.GetString("card-verb-organize-success", ("target", MetaData(deck).EntityName), ("facedown", isFlipped)), deck);
-    }
-
-    private void OnInteractHand(EntityUid uid, CardDeckComponent component, InteractHandEvent args)
-    {
-        if (args.Handled)
-            return;
-
-        if (!TryComp(uid, out CardStackComponent? comp))
-            return;
-
-        if (comp.Cards.Count <= 0)
-            return;
-
-        if (!comp.Cards.TryGetValue(comp.Cards.Count - 1, out var card))
-            return;
-
-        if (!_cardStackSystem.TryRemoveCard(uid, card, comp))
-            return;
-
-        _hands.TryPickupAnyHand(args.User, card);
-
-        _audio.PlayPredicted(component.PickUpSound, Transform(card).Coordinates, args.User);
-
-        args.Handled = true;
     }
 
     private EntityUid SpawnInSameParent(string prototype, EntityUid uid)
