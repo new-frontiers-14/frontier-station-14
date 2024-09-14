@@ -1,0 +1,14 @@
+- type: constructionGraph
+  id: meatballNF
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: cooked
+      completed:
+      - !type:PlaySound
+        sound: /Audio/Effects/sizzle.ogg
+      steps:
+      - minTemperature: 354
+  - node: cooked
+    entity: FoodMeatMeatballCooked
