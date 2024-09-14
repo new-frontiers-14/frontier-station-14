@@ -1,6 +1,8 @@
 - type: reaction
   id: Coffee
   minTemp: 353 # ~80 deg C
+  requiredMixerCategories:
+  - Stir
   reactants:
     Water:
       amount: 3
@@ -25,6 +27,8 @@
 
 - type: reaction
   id: GinAndSonic
+  requiredMixerCategories:
+  - Shake
   reactants:
     GinTonic:
       amount: 1
@@ -35,6 +39,8 @@
 
 - type: reaction
   id: GoldenCat
+  requiredMixerCategories:
+  - Stir
   reactants:
     Whiskey:
       amount: 1
@@ -59,6 +65,8 @@
 
 - type: reaction
   id: TorpedoJuice
+  requiredMixerCategories:
+  - Shake
   reactants:
     JuicePineapple:
       amount: 2
