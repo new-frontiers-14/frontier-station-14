@@ -172,6 +172,25 @@
     severity: Class3Wizard
   turnInValues: *oneFUC
 
+# Class 3 mobs
+- type: entity
+  parent: BaseC3ContrabandUnredeemable
+  id: BaseC3MobHuman
+  abstract: true
+  components:
+  - type: Contraband
+    severity: Class3MobHuman
+  turnInValues: *oneFUC
+
+- type: entity
+  parent: BaseC3ContrabandUnredeemable
+  id: BaseC3MobCreature
+  abstract: true
+  components:
+  - type: Contraband
+    severity: Class3MobCreature
+  turnInValues: *oneFUC
+
 # Miscellaneous categories
 
 - type: entity
