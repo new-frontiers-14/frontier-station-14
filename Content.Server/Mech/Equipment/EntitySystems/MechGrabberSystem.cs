@@ -195,7 +195,7 @@ public sealed class MechGrabberSystem : EntitySystem
         {
             foreach (var buckleUid in strapComp.BuckledEntities)
             {
-                _buckle.Unbuckle(buckleUid, args.Args.Target);
+                _buckle.Unbuckle(buckleUid, args.Args.User);
             }
         }
         // End Frontier
