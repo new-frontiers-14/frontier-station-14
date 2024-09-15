@@ -12,7 +12,6 @@ using static Content.Shared.Paper.PaperComponent;
 using Content.Shared.Timing; // Frontier
 using Content.Shared.Access.Systems; // Frontier
 using Content.Shared.Verbs; // Frontier
-using Content.Shared.Crayon; // Frontier
 using Content.Shared.Ghost; // Frontier
 
 namespace Content.Shared.Paper;
@@ -327,7 +326,7 @@ public sealed class PaperSystem : EntitySystem
                 true
             );
 
-            _popupSystem.PopupEntity(
+            _popupSystem.PopupClient(
                 Loc.GetString(
                     "paper-component-action-signed-self",
                     ("target", paper.Owner)
@@ -336,7 +335,7 @@ public sealed class PaperSystem : EntitySystem
                 signer
             );
 
-            _audio.PlayPvs(paper.Comp.Sound, paper);
+            _audio.PlayPredicted(paper.Comp.Sound, paper, signer);
 
             _adminLogger.Add(LogType.Verb, LogImpact.Low,
                 $"{ToPrettyString(signer):player} has signed {ToPrettyString(paper):paper}.");
