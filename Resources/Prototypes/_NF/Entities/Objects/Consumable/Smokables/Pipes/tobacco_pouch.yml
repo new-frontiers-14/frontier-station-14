@@ -1,0 +1,172 @@
+- type: entity
+  id: TobaccoPouchBase
+  name: tobacco pouch
+  parent: [ BaseStorageItem, BaseBagOpenClose, RecyclableItemClothSmall ]
+  description: A synth-leather pouch for safe storing pipe tobacco.
+  #abstract: true
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Smokeables/Pipes/tobacco_pouch.rsi
+    layers:
+      - state: closed
+        color: "#8a4f23" # brown
+      - state: open
+        color: "#8a4f23"
+        map: ["openLayer"]
+        visible: false
+      - state: label
+  - type: Item
+    size: Small
+    shape:
+    - 0,0,0,1
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#8a4f23"
+      right:
+      - state: inhand-right
+        color: "#8a4f23"
+  - type: Clothing
+    slots: [belt]
+    sprite: _NF/Objects/Consumable/Smokeables/Pipes/tobacco_pouch.rsi
+    clothingVisuals:
+      belt:
+      - state: equipped-BELT
+        color: "#8a4f23"
+  - type: Tag
+    tags:
+    - CigPack
+    - Trash
+  - type: SpaceGarbage
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,1,1
+  - type: StorageFill
+    contents:
+    - id: GroundTobacco
+      amount: 10 # 2 stacks of 5, leaves 2 slots for pipe and lighter
+  - type: StaticPrice
+    price: 50
+
+# Filled
+- type: entity
+  id: TobaccoPouchBrownFilled
+  name: |-
+   "Galaxy Core Blend" pouch
+  parent: TobaccoPouchBase
+  description: A fiery collection of exotic tobaccos, each leaf coated with preserving agent. Should you wash it off before smoking?
+  suffix: Filled
+  components:
+  - type: StorageFill
+    contents:
+    - id: GroundTobacco
+      amount: 10
+
+- type: entity
+  id: TobaccoPouchBlueFilled
+  name: |-
+   "Stonecut Leaf" pouch
+  parent: TobaccoPouchBase
+  description: A label on the packaging proudly declares that the pipe-weed is mixed with the finest dust of rarest minerals, the list of minerals occupies most of the label space.
+  suffix: Filled
+  components:
+  - type: Sprite
+    layers:
+      - state: closed
+        color: "#00d7ff" # blue(ish)
+      - state: open
+        color: "#00d7ff"
+        map: ["openLayer"]
+        visible: false
+      - state: label
+        color: "yellow"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#00d7ff"
+      right:
+      - state: inhand-right
+        color: "#00d7ff"
+  - type: Clothing
+    clothingVisuals:
+      belt:
+      - state: equipped-BELT
+        color: "#00d7ff"
+  - type: StorageFill
+    contents:
+    - id: GroundTobaccoStonecut
+      amount: 10
+
+- type: entity
+  id: TobaccoPouchRedFilled
+  name: |-
+   "Fungal Whiff" pouch
+  parent: TobaccoPouchBase
+  description: Grown deep within the mushroom forests, Fungal Whiff offers a mellow, earthy smoke that's perfect for those contemplative moments spent plotting the next heist.
+  suffix: Filled
+  components:
+  - type: Sprite
+    layers:
+      - state: closed
+        color: "#07ff00" # green(ish)
+      - state: open
+        color: "#07ff00"
+        map: ["openLayer"]
+        visible: false
+      - state: label
+        color: "#ff0000" # red(ish)
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#07ff00"
+      right:
+      - state: inhand-right
+        color: "#07ff00"
+  - type: Clothing
+    clothingVisuals:
+      belt:
+      - state: equipped-BELT
+        color: "#07ff00"
+  - type: StorageFill
+    contents:
+    - id: GroundTobaccoShrooms
+      amount: 10
+
+- type: entity
+  id: TobaccoPouchPurpleFilled
+  name: |-
+   "Sweet Dreams" pouch
+  parent: TobaccoPouchBase
+  description: This tobacco pouch advertises its smokers being "blessed with cozy, restful sleeps", whatever that means.
+  suffix: Filled
+  components:
+  - type: Sprite
+    layers:
+      - state: closed
+        color: "#bd66bd" # lightish purple
+      - state: open
+        color: "#bd66bd"
+        map: ["openLayer"]
+        visible: false
+      - state: label
+        color: "#77bbff" # turns into a grey
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#bd66bd"
+      right:
+      - state: inhand-right
+        color: "#bd66bd"
+  - type: Clothing
+    clothingVisuals:
+      belt:
+      - state: equipped-BELT
+        color: "#bd66bd"
+  - type: StorageFill
+    contents:
+    - id: GroundTobaccoDrowsy
+      amount: 10
