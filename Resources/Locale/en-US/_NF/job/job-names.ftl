@@ -15,6 +15,7 @@ job-name-security-guard = Security Guard
 job-name-sheriff = Sheriff
 job-name-stc = Station Traffic Controller
 job-name-sr = Station Representative
+job-name-pal = Public Affairs Liaison
 
 # Role timers - Make these alphabetical or I cut you
 JobERTMailCarrier = ERT Mail Carrier
