@@ -1,5 +1,5 @@
 - type: entity
-  parent: ClothingOuterBaseLarge
+  parent: [ ClothingOuterBaseLarge, BaseC2ContrabandUnredeemable ]
   id: ClothingOuterArmorSrCarapace
   name: "station representative's carapace"
   description: "A premium armored chestpiece that provides above average protection for its size. It offers maximum mobility and flexibility thanks to the premium composite materials. Issued only to the station representative."
@@ -52,7 +52,7 @@
     damageCoefficient: 0.60
 
 - type: entity
-  parent: ClothingOuterBaseLarge
+  parent: [ ClothingOuterBaseLarge, BaseC2ContrabandUnredeemable ]
   id: ClothingOuterArmorNfsd
   name: nfsd armor
   description: get shot, maybe survive?
@@ -77,10 +77,10 @@
   - type: GroupExamine
 
 - type: entity
-  parent: ClothingOuterVestWebMercenary
+  parent: [ BaseC1Contraband, ClothingOuterVestWebMercenary ]
   id: ClothingOuterVestWebMercenaryBlack
   components:
   - type: Sprite
-    sprite: Clothing/OuterClothing/Vests/webvest.rsi
+    sprite: _NF/Clothing/OuterClothing/Vests/mercenary_webvest_black.rsi
   - type: Clothing
-    sprite: Clothing/OuterClothing/Vests/webvest.rsi
+    sprite: _NF/Clothing/OuterClothing/Vests/mercenary_webvest_black.rsi

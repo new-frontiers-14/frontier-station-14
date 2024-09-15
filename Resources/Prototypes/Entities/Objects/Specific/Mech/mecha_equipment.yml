@@ -22,6 +22,10 @@
   - type: Sprite
     state: mecha_clamp
   - type: MechGrabber
+    blacklist: # Frontier
+      components: # Frontier
+        - Anomaly # Frontier
+        - Mech # Frontier
     maxContents: 8
   - type: UIFragment
     ui: !type:MechGrabberUi
@@ -38,6 +42,10 @@
   - type: Sprite
     state: mecha_clamp_small
   - type: MechGrabber
+    blacklist: # Frontier
+      components: # Frontier
+        - Anomaly # Frontier
+        - Mech # Frontier
     maxContents: 4
     grabDelay: 3
     grabEnergyDelta: 20
