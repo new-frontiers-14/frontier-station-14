@@ -20,7 +20,7 @@ namespace Content.Server.Power.NodeGroups
         void QueueNetworkReconnect();
     }
 
-    [NodeGroup(NodeGroupID.Apc)]
+    [NodeGroup(NodeGroupID.Apc, NodeGroupID.ShieldedApc)]
     [UsedImplicitly]
     public sealed partial class ApcNet : BasePowerNet<IApcNet>, IApcNet
     {

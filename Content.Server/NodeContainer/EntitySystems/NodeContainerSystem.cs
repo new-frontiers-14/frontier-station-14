@@ -219,6 +219,10 @@ namespace Content.Server.NodeContainer.EntitySystems
                         args.PushMarkup(
                             Loc.GetString("node-container-component-on-examine-details-apc"));
                         break;
+                    case NodeGroupID.ShieldedApc:
+                        args.PushMarkup(
+                            Loc.GetString("node-container-component-on-examine-details-shieldedapc"));
+                        break;
                 }
             }
         }

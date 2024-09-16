@@ -98,5 +98,6 @@ namespace Content.Server.Power.Components
         High = NodeGroupID.HVPower,
         Medium = NodeGroupID.MVPower,
         Apc = NodeGroupID.Apc,
+        ShieldedApc = NodeGroupID.ShieldedApc,
     }
 }
