@@ -45,6 +45,12 @@
         Blunt: 1
   - type: Stamina
   - type: PseudoItem
+    shape: # Parallelogram, 16 squares (vs. 26 for felinid bean)
+      - 0,0,0,3
+      - 1,1,1,4
+      - 2,2,2,5
+      - 3,3,3,6
+    storedRotation: -67.5 # Bug: must be half the angle.
   - type: Vocal
     wilhelm: "/Audio/_NF/Voice/Goblin/goblin-cackle-05.ogg"
     sounds:
@@ -56,6 +62,23 @@
     factions:
     - NanoTrasen
     - Goblin
+  - type: DamageVisuals
+    thresholds: [ 10, 20, 30, 50, 70, 100 ]
+    targetLayers:
+    - "enum.HumanoidVisualLayers.Chest"
+    - "enum.HumanoidVisualLayers.Head"
+    - "enum.HumanoidVisualLayers.LArm"
+    - "enum.HumanoidVisualLayers.LLeg"
+    - "enum.HumanoidVisualLayers.RArm"
+    - "enum.HumanoidVisualLayers.RLeg"
+    damageOverlayGroups:
+      Brute:
+        sprite: Mobs/Effects/brute_damage.rsi
+        color: "#5c7500"
+      Burn:
+        sprite: Mobs/Effects/burn_damage.rsi
+  - type: Bloodstream
+    bloodReagent: GoblinBlood
   - type: Butcherable
     spawned:
     - id: FoodMeatGoblin
