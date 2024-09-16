@@ -127,7 +127,7 @@
   abstract: true
   components:
   - type: Contraband
-  turnInValues: *oneFUC
+    turnInValues: *oneFUC
 
 - type: entity
   parent: BaseC3ContrabandUnredeemable
@@ -152,7 +152,7 @@
   abstract: true
   components:
   - type: Contraband
-  turnInValues: *oneFUC
+    turnInValues: *oneFUC
 
 - type: entity
   parent: BaseC3ContrabandUnredeemable
@@ -170,7 +170,7 @@
   components:
   - type: Contraband
     severity: Class3Wizard
-  turnInValues: *oneFUC
+    turnInValues: *oneFUC
 
 # Class 3 mobs
 - type: entity
@@ -180,7 +180,8 @@
   components:
   - type: Contraband
     severity: Class3MobHuman
-  turnInValues: *oneFUC
+    turnInValues: *oneFUC
+    hideCarryStatus: true
 
 - type: entity
   parent: BaseC3ContrabandUnredeemable
@@ -189,7 +190,8 @@
   components:
   - type: Contraband
     severity: Class3MobCreature
-  turnInValues: *oneFUC
+    turnInValues: *oneFUC
+    hideCarryStatus: true
 
 # Miscellaneous categories
 
@@ -203,3 +205,4 @@
     allowedDepartments: null
     turnInValues:
       Doubloon: 1
+    hideCarryStatus: true
