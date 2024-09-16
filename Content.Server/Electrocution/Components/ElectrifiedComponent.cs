@@ -72,6 +72,12 @@ public sealed partial class ElectrifiedComponent : Component
     public string? LowVoltageNode;
 
     /// <summary>
+    /// Identifier for the shielded node.
+    /// </summary>
+    [DataField("shieldedNode")]
+    public string? ShieldedNode;
+
+    /// <summary>
     /// Damage multiplier for HV electrocution
     /// </summary>
     [DataField]
