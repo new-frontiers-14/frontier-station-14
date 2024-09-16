@@ -13,7 +13,6 @@ namespace Content.Server.SizeAttribute
         [Dependency] private readonly IEntityManager _entityManager = default!;
         [Dependency] private readonly SharedPhysicsSystem _physics = default!;
         [Dependency] private readonly AppearanceSystem _appearance = default!;
-        [Dependency] private readonly FixtureSystem _fixtures = default!;
         public override void Initialize()
         {
             base.Initialize();
@@ -22,26 +21,27 @@ namespace Content.Server.SizeAttribute
 
         private void OnComponentInit(EntityUid uid, SizeAttributeComponent component, ComponentInit args)
         {
-            if (component.Tall && TryComp<TallWhitelistComponent>(uid, out var tall))
+            if (component.Tall && TryComp<TallWhitelistComponent>(uid, out var tallComp))
             {
-                Scale(uid, component, tall.Scale, tall.Density, tall.CosmeticOnly);
-                PseudoItem(uid, component, tall.PseudoItem);
+                Scale(uid, component, tallComp.Scale, tallComp.Density, tallComp.CosmeticOnly);
+                PseudoItem(uid, component, tallComp.PseudoItem, tallComp.Shape, tallComp.StoredOffset, tallComp.StoredRotation);
             }
-            else if (component.Short && TryComp<ShortWhitelistComponent>(uid, out var smol))
+            else if (component.Short && TryComp<ShortWhitelistComponent>(uid, out var shortComp))
             {
-                Scale(uid, component, smol.Scale, smol.Density, smol.CosmeticOnly);
-                PseudoItem(uid, component, smol.PseudoItem);
+                Scale(uid, component, shortComp.Scale, shortComp.Density, shortComp.CosmeticOnly);
+                PseudoItem(uid, component, shortComp.PseudoItem, shortComp.Shape, shortComp.StoredOffset, shortComp.StoredRotation);
             }
         }
 
-        private void PseudoItem(EntityUid uid, SizeAttributeComponent component, bool active)
+        private void PseudoItem(EntityUid uid, SizeAttributeComponent _, bool active, List<Box2i>? shape, Vector2i? storedOffset, float storedRotation)
         {
             if (active)
             {
                 var pseudoI = _entityManager.EnsureComponent<PseudoItemComponent>(uid);
 
-                pseudoI.StoredOffset = new(0, 17);
-                pseudoI.Shape = new List<Box2i>
+                pseudoI.StoredRotation = storedRotation;
+                pseudoI.StoredOffset = storedOffset ?? new(0, 17);
+                pseudoI.Shape = shape ?? new List<Box2i>
                 {
                     new Box2i(0, 0, 1, 4),
                     new Box2i(0, 2, 3, 4),

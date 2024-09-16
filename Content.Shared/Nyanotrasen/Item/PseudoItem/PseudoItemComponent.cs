@@ -23,6 +23,9 @@ public sealed partial class PseudoItemComponent : Component
     [DataField, AutoNetworkedField]
     public Vector2i StoredOffset;
 
+    [DataField, AutoNetworkedField] // Frontier
+    public float StoredRotation; // Frontier
+
     public bool Active = false;
 
     /// <summary>

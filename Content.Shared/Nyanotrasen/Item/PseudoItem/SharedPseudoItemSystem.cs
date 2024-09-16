@@ -82,7 +82,7 @@ public abstract partial class SharedPseudoItemSystem : EntitySystem
             return false;
 
         var itemComp = new ItemComponent
-            { Size = component.Size, Shape = component.Shape, StoredOffset = component.StoredOffset };
+            { Size = component.Size, Shape = component.Shape, StoredOffset = component.StoredOffset, StoredRotation = component.StoredRotation }; // Frontier: added StoredRotation
         AddComp(toInsert, itemComp);
         _item.VisualsChanged(toInsert);
 
