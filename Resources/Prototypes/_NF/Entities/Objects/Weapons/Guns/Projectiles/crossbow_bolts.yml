@@ -1,53 +1,8 @@
 ﻿# Base
 - type: entity
-  parent: [ BaseC1Contraband, BaseArrow ]
-  id: BaseCrossbowBolt
+  id: BaseBoltLiquidInjector
   abstract: true
   components:
-  - type: EmbeddableProjectile
-    sound: /Audio/Weapons/star_hit.ogg
-    embedOnThrow: false
-    offset: 0.15,0.15
-  - type: LandAtCursor
-  - type: MeleeWeapon
-    attackRate: 1
-    damage:
-      types:
-        Piercing: 4
-    angle: 0
-    animation: WeaponArcThrust
-    soundHit:
-      path: /Audio/Weapons/bladeslice.ogg
-  - type: Item
-    size: Tiny
-  - type: Sprite
-    sprite: _NF/Objects/Weapons/Guns/Projectiles/crossbow_bolts.rsi
-  - type: PhysicalComposition
-    materialComposition:
-      Steel: 25
-  - type: Damageable
-    damageContainer: Inorganic
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 30
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: GlassBreak
-          params:
-            volume: -4
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
-  - type: DamageOnLand
-    damage:
-      types:
-        Blunt: 5
-  - type: Tag
-    tags:
-    - CrossbowBolt
-  # Liquids
   - type: SolutionContainerManager
     solutions:
       injector:
@@ -74,6 +29,94 @@
     solution: injector
 
 - type: entity
+  id: BaseBoltEmbeddable
+  abstract: true
+  components:
+  - type: EmbeddableProjectile
+    sound: /Audio/Weapons/star_hit.ogg
+    embedOnThrow: false
+    offset: 0.1,0.1
+  - type: ThrowingAngle
+    angle: 0
+  
+- type: entity
+  id: BaseBoltProjectile
+  parent: BaseItem
+  abstract: true
+  components:
+  - type: LandAtCursor
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Projectiles/crossbow_bolts.rsi
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 0.2
+        density: 5
+        mask:
+        - ItemMask
+        restitution: 0.3
+        friction: 0.2
+      projectile:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.1,-0.1,0.1,0.1"
+        hard: false
+        mask:
+        - Impassable
+        - BulletImpassable
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 25
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 30
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+          params:
+            volume: -4
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: DamageOnLand
+    damage:
+      types:
+        Blunt: 5
+  - type: Ammo
+    muzzleFlash: null
+  - type: Projectile
+    deleteOnCollide: false
+    onlyCollideWhenShot: true
+    damage:
+      types:
+        Piercing: 35
+
+- type: entity
+  parent: [ BaseBoltProjectile, BaseBoltEmbeddable, BaseBoltLiquidInjector, BaseC1Contraband ]
+  id: BaseCrossbowBolt
+  abstract: true
+  components:
+  - type: MeleeWeapon
+    attackRate: 1
+    damage:
+      types:
+        Piercing: 4
+    angle: 0
+    animation: WeaponArcThrust
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+  - type: Tag
+    tags:
+    - CrossbowBolt
+
+- type: entity
   parent: BaseCrossbowBolt
   id: BaseCrossbowBoltTrigger
   abstract: true
@@ -98,10 +141,6 @@
     - state: solution1
       map: ["enum.SolutionContainerLayers.Fill"]
       visible: false
-  - type: Projectile
-    damage:
-      types:
-        Piercing: 35
 
 - type: Tag
   id: CrossbowBoltBroadhead
