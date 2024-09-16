@@ -2,7 +2,7 @@ using System.Numerics;
 using Content.Shared.Construction.Components;
 using Content.Shared.Weapons.Melee.Components;
 using Content.Shared.Weapons.Melee.Events;
-using Content.Shared.Whitelist;
+using Content.Shared.Whitelist; // Frontier
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
@@ -19,7 +19,7 @@ public sealed class MeleeThrowOnHitSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-    [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
+    [Dependency] private readonly EntityWhitelistSystem _whitelist = default!; // Frontier
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -49,12 +49,7 @@ public sealed class MeleeThrowOnHitSystem : EntitySystem
 
             if (comp.UnanchorOnHit && HasComp<AnchorableComponent>(hit))
             {
-                if (comp.Whitelist != null) // Frontier
-                {
-                    if (_whitelist.IsWhitelistPass(comp.Whitelist, hit))
-                        _transform.Unanchor(hit, Transform(hit));
-                }
-                else // Frontier
+                if (_whitelist.IsWhitelistPassOrNull(comp.Whitelist, hit))  // Frontier
                     _transform.Unanchor(hit, Transform(hit));
             }
 
