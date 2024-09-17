@@ -94,11 +94,12 @@
                 <!-- Cable network toggles -->
                 <BoxContainer Orientation="Vertical" Margin="0 10 0 0">
                     <Label Text="{Loc 'power-monitoring-window-show-cable-networks'}" Margin="0 0 0 5"/>
-                    <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
+                    <GridContainer Columns="2" HorizontalExpand="True">
                         <CheckBox Name="ShowHVCable" Text="{Loc 'power-monitoring-window-show-hv-cable'}" Pressed="True" Margin="0 0 0 0"/>
                         <CheckBox Name="ShowMVCable" Text="{Loc 'power-monitoring-window-show-mv-cable'}" Pressed="True" Margin="10 0 0 0"/>
-                        <CheckBox Name="ShowLVCable" Text="{Loc 'power-monitoring-window-show-lv-cable'}" Pressed="True" Margin="10 0 0 0"/>
-                    </BoxContainer>
+                        <CheckBox Name="ShowLVCable" Text="{Loc 'power-monitoring-window-show-lv-cable'}" Pressed="True" Margin="0 0 0 0"/>
+                        <CheckBox Name="ShowShCable" Text="{Loc 'power-monitoring-window-show-sh-cable'}" Pressed="True" Margin="10 0 0 0"/>
+                    </GridContainer>
                 </BoxContainer>
             </BoxContainer>
         </BoxContainer>

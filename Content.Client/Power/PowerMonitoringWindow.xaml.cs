@@ -63,6 +63,7 @@ public sealed partial class PowerMonitoringWindow : FancyWindow
         ShowHVCable.OnToggled += _ => OnShowCableToggled(PowerMonitoringConsoleLineGroup.HighVoltage);
         ShowMVCable.OnToggled += _ => OnShowCableToggled(PowerMonitoringConsoleLineGroup.MediumVoltage);
         ShowLVCable.OnToggled += _ => OnShowCableToggled(PowerMonitoringConsoleLineGroup.Apc);
+        ShowLVCable.OnToggled += _ => OnShowCableToggled(PowerMonitoringConsoleLineGroup.ShieldedApc);
     }
 
     public void SetEntity(EntityUid uid)

@@ -17,9 +17,10 @@ public sealed partial class PowerMonitoringConsoleNavMapControl : NavMapControl
     // 0: CableType.HighVoltage
     // 1: CableType.MediumVoltage
     // 2: CableType.Apc
+    // 3: CableType.ShieldedApc
 
-    private readonly Color[] _powerCableColors = { Color.OrangeRed, Color.Yellow, Color.LimeGreen };
-    private readonly Vector2[] _powerCableOffsets = { new Vector2(-0.2f, -0.2f), Vector2.Zero, new Vector2(0.2f, 0.2f) };
+    private readonly Color[] _powerCableColors = { Color.OrangeRed, Color.Yellow, Color.LimeGreen, Color.Magenta };
+    private readonly Vector2[] _powerCableOffsets = { new Vector2(-0.2f, -0.2f), Vector2.Zero, new Vector2(0.2f, 0.2f),  new Vector2(0.3f, 0.2f)};
     private Dictionary<Color, Color> _sRGBLookUp = new Dictionary<Color, Color>();
 
     public PowerMonitoringCableNetworksComponent? PowerMonitoringCableNetworks;
@@ -27,10 +28,10 @@ public sealed partial class PowerMonitoringConsoleNavMapControl : NavMapControl
     public List<PowerMonitoringConsoleLine> PowerCableNetwork = new();
     public List<PowerMonitoringConsoleLine> FocusCableNetwork = new();
 
-    private Dictionary<Vector2i, Vector2i>[] _horizLines = [new(), new(), new()];
-    private Dictionary<Vector2i, Vector2i>[] _horizLinesReversed = [new(), new(), new()];
-    private Dictionary<Vector2i, Vector2i>[] _vertLines = [new(), new(), new()];
-    private Dictionary<Vector2i, Vector2i>[] _vertLinesReversed = [new(), new(), new()];
+    private Dictionary<Vector2i, Vector2i>[] _horizLines = [new(), new(), new(), new()];
+    private Dictionary<Vector2i, Vector2i>[] _horizLinesReversed = [new(), new(), new(), new()];
+    private Dictionary<Vector2i, Vector2i>[] _vertLines = [new(), new(), new(), new()];
+    private Dictionary<Vector2i, Vector2i>[] _vertLinesReversed = [new(), new(), new(), new()];
 
     private MapGridComponent? _grid;
 
@@ -85,7 +86,7 @@ public sealed partial class PowerMonitoringConsoleNavMapControl : NavMapControl
 
         if (WorldRange / WorldMaxRange > 0.5f)
         {
-            var cableNetworks = new ValueList<Vector2>[3];
+            var cableNetworks = new ValueList<Vector2>[4];
 
             foreach (var line in fullCableNetwork)
             {
@@ -121,7 +122,7 @@ public sealed partial class PowerMonitoringConsoleNavMapControl : NavMapControl
 
         else
         {
-            var cableVertexUVs = new ValueList<Vector2>[3];
+            var cableVertexUVs = new ValueList<Vector2>[4];
 
             foreach (var line in fullCableNetwork)
             {
@@ -195,7 +196,7 @@ public sealed partial class PowerMonitoringConsoleNavMapControl : NavMapControl
 
         foreach (var (chunkOrigin, chunk) in chunks)
         {
-            for (var cableIdx = 0; cableIdx < 3; cableIdx++)
+            for (var cableIdx = 0; cableIdx < 4; cableIdx++)
             {
                 var horizLines = _horizLines[cableIdx];
                 var horizLinesReversed = _horizLinesReversed[cableIdx];
@@ -306,4 +307,5 @@ public enum PowerMonitoringConsoleLineGroup : byte
     HighVoltage,
     MediumVoltage,
     Apc,
+    ShieldedApc,
 }
