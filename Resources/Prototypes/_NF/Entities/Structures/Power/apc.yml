@@ -1,0 +1,132 @@
+# Shielded APCs
+
+- type: entity
+  parent: BaseAPC
+  id: BaseShieldedAPC
+  name: Shielded APC
+  components:
+  - type: Construction
+    graph: APCShielded
+    node: shielded apc
+  - type: NodeContainer
+    examinable: true
+    nodes:
+      input:
+        !type:CableDeviceNode
+        nodeGroupID: MVPower
+      output:
+        !type:CableDeviceNode
+        nodeGroupID: ShieldedApc
+  - type: PowerMonitoringDevice
+    group: APC
+    sourceNode: input
+    loadNode: output
+    collectionName: apc
+    sprite: Structures/Power/apc.rsi
+    state: static
+  - type: PowerProvider
+    voltage: ShieldedApc
+  - type: Apc
+    voltage: ShieldedApc
+  - type: ExtensionCableProvider
+    transferRange: 0
+  - type: Electrified
+    onHandInteract: false
+    onInteractUsing: false
+    onBump: false
+    requirePower: true
+    mediumVoltageNode: input
+    shieldedNode: output
+
+# Shielded APC under construction
+- type: entity
+  noSpawn: true
+  id: APCShieldedFrame
+  name: Shielded APC frame
+  description: A control terminal for the APC's electrical systems, lacking the electronics.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    drawdepth: WallMountedItems
+    sprite: Structures/Power/apc.rsi
+    state: frame
+  - type: Construction
+    graph: APCShielded
+    node: apcShieldedFrame
+  - type: WallMount
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors: #excess damage, don't spawn entities.
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 1
+            max: 1
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+# Constructed APC
+- type: entity
+  parent: BaseShieldedAPC
+  id: APCShieldedConstructed
+  suffix: Open
+  components:
+  - type: WiresPanel
+    open: true
+
+- type: entity
+  parent: BaseShieldedAPC
+  id: APCShieldedBasic
+  description: A control terminal for the area's electrical systems. Accepts Shielded LV cable and does not provide power at a distance.
+  suffix: Shielded, Basic, 50kJ
+  components:
+  - type: Battery
+    maxCharge: 50000
+    startingCharge: 50000
+
+- type: entity
+  parent: BaseShieldedAPC
+  id: APCShieldedHighCapacity
+  suffix: Shielded, High Capacity, 100kJ
+  components:
+  - type: Battery
+    maxCharge: 100000
+    startingCharge: 100000
+
+- type: entity
+  parent: BaseShieldedAPC
+  id: APCShieldedSuperCapacity
+  suffix: Shielded, Super Capacity, 150kJ
+  components:
+  - type: Battery
+    maxCharge: 150000
+    startingCharge: 150000
+
+- type: entity
+  parent: BaseShieldedAPC
+  id: APCShieldedHyperCapacity
+  suffix: Shielded, Hyper Capacity, 200kJ
+  components:
+  - type: Battery
+    maxCharge: 200000
+    startingCharge: 200000

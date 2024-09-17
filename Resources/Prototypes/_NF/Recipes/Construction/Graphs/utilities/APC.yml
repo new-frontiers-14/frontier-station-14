@@ -1,0 +1,43 @@
+- type: constructionGraph
+  id: APCShielded
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: apcShieldedFrame
+      steps:
+      - material: Steel
+        amount: 3
+
+  - node: apcShieldedFrame
+    entity: APCShieldedFrame
+    edges:
+    - to: shielded apc
+      steps:
+      - component: ApcElectronics
+        name: "APC electronics"
+        doAfter: 2
+    - to: start
+      completed:
+      - !type:GivePrototype
+        prototype: SheetSteel1
+        amount: 3
+      - !type:DeleteEntity {}
+      steps:
+      - tool: Screwing
+        doAfter: 2
+
+  - node: shielded apc
+    entity: APCShieldedConstructed
+    edges:
+    - to: apcShieldedFrame
+      completed:
+      - !type:GivePrototype
+        prototype: APCElectronics
+        amount: 1
+      conditions:
+      - !type:WirePanel
+        open: true
+      steps:
+      - tool: Prying
+        doAfter: 4
