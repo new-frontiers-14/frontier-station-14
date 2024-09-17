@@ -279,6 +279,9 @@ namespace Content.Server.Power.EntitySystems
 
                 closestCandidate = provider;
                 closestDistanceFound = distance;
+
+                if (provider.TransferRange == 0 && distance == 0) // Cut this early -- exclusively select shielded cable underneath
+                    break;
             }
 
             // Make sure the provider is in range before claiming success
