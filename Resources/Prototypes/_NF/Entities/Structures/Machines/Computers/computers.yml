@@ -365,24 +365,19 @@
     - map: ["computerLayerKeys"]
       sprite: Structures/Machines/computers.rsi
       state: generic_keys
+  - type: AccessReader
+    access: [["StationTrafficController"]]
+  - type: ActivatableUIRequiresAccess
 
 - type: entity
   parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseStructureAccessReaderImmuneToEmag, BaseComputerShuttle, BaseComputerTraffic]
   id: BaseComputerTrafficRemote
   abstract: true
-  components:
-  - type: AccessReader
-    access: [["StationTrafficController"]]
-  - type: ActivatableUIRequiresAccess
 
 - type: entity
   parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseStructureAccessReaderImmuneToEmag, ComputerShuttle, BaseShuttleIntercom, BaseComputerTraffic]
   id: BaseComputerTrafficLocal
   abstract: true
-  components:
-  - type: AccessReader
-    access: [["StationTrafficController"]]
-  - type: ActivatableUIRequiresAccess
 
 - type: entity
   parent: BaseComputerTrafficLocal
