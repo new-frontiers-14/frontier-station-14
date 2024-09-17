@@ -264,6 +264,21 @@
   assignments:
   - 2: 3
   name: APCBasic
+- action: !type:InstantActionComponent # Frontier
+    icon:
+      entity: CableShieldedApcExtension
+    keywords: []
+    checkCanInteract: False
+    checkConsciousness: False
+    clientExclusive: True
+    autoPopulate: False
+    temporary: True
+    event: !type:StartPlacementActionEvent
+      placementOption: SnapgridCenter
+      entityType: CableShieldedApcExtension
+  assignments:
+  - 2: 0
+  name: CableShieldedApcExtension
 - action: !type:InstantActionComponent
     icon:
       entity: CableApcExtension

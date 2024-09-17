@@ -1,0 +1,63 @@
+- type: entity
+  parent: CableStack
+  id: CableShieldedApcStack
+  name: Shielded LV cable coil
+  description: Low-Voltage stack of wires for connecting APCs to machines and other purposes. Comes with shielded insulation in order to connect the devices which they are physically touching.
+  suffix: Full
+  components:
+  - type: Sprite
+    state: coilsh-30
+    layers:
+    - state: coilsh-30
+      map: ["base"]
+  - type: Item
+    heldPrefix: coilsh
+  - type: Stack
+    baseLayer: base
+    layerStates:
+    - coilsh-10
+    - coilsh-20
+    - coilsh-30
+  - type: CablePlacer
+    cablePrototypeID: CableShieldedApcExtension
+    blockingWireType: ShieldedApc
+  - type: Appearance
+  - type: Extractable
+    grindableSolutionName: shcable
+  - type: SolutionContainerManager
+    solutions:
+      lvcable:
+        reagents:
+        - ReagentId: Iron
+          Quantity: 3
+        - ReagentId: Copper
+          Quantity: 2
+
+- type: entity
+  parent: CableShieldedApcStack
+  id: CableShieldedApcStack10
+  suffix: 10
+  components:
+  - type: Sprite
+    state: coilsh-10
+  - type: Stack
+    count: 10
+
+- type: entity
+  parent: CableShieldedApcStack10
+  id: CableShieldedApcStackLingering10
+  suffix: Lingering, 10
+  components:
+  - type: Stack
+    lingering: true
+    count: 10
+
+- type: entity
+  parent: CableShieldedApcStack
+  id: CableShieldedApcStack1
+  suffix: 1
+  components:
+  - type: Sprite
+    state: coilsh-10
+  - type: Stack
+    count: 1

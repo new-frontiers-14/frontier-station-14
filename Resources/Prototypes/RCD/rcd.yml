@@ -224,6 +224,20 @@
 
 # Electrical
 - type: rcd
+  id: ShieldedCable # Frontier
+  category: Electrical
+  sprite: /Textures/Interface/Radial/RCD/lv_coil.png #TODO
+  mode: ConstructObject
+  prototype: CableShieldedApcExtension
+  cost: 1
+  delay: 0
+  collisionMask: InteractImpassable
+  rules:
+  - MustBuildOnSubfloor
+  rotation: Fixed
+  fx: EffectRCDConstruct0
+
+- type: rcd
   id: LVCable
   category: Electrical
   sprite: /Textures/Interface/Radial/RCD/lv_coil.png

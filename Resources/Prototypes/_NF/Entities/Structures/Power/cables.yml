@@ -1,0 +1,47 @@
+﻿- type: entity
+  parent: CableBase
+  id: CableShieldedApcExtension
+  name: shielded LV power cable # correct case?
+  description: A Shielded cable used to connect machines to an APC. #APCs aren't area defined anymore so need this cable to connect things to the APC. This description should be dynamic in future.
+  components:
+  - type: Sprite
+    color: Magenta
+    sprite: _NF/Structures/Power/Cables/sh_cable.rsi
+    state: shcable_0
+  - type: Icon
+    color: Magenta
+    sprite: _NF/Structures/Power/Cables/sh_cable.rsi
+    state: shcable_4
+  - type: NodeContainer
+    nodes:
+      power:
+        !type:CableNode
+        nodeGroupID: ShieldedApc
+  - type: PowerProvider
+    voltage: ShieldedApc
+  - type: ExtensionCableProvider
+    transferRange: 0
+  - type: Cable
+    cableDroppedOnCutPrototype: CableShieldedApcStack1
+    cableType: ShieldedApc
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors: #excess damage (nuke?). avoid computational cost of spawning entities.
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          CableShieldedApcStack1:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: CableVisualizer
+    statePrefix: shcable_
