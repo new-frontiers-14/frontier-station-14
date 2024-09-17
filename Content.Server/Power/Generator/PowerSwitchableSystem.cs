@@ -92,6 +92,9 @@ public sealed class PowerSwitchableSystem : SharedPowerSwitchableSystem
                 case SwitchableVoltage.LV:
                     supplier.Voltage = Voltage.Apc;
                     break;
+                case SwitchableVoltage.SH:
+                    supplier.Voltage = Voltage.ShieldedApc;
+                    break;
             }
         }
 

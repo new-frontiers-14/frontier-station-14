@@ -78,5 +78,6 @@ public enum SwitchableVoltage : byte
 {
     HV,
     MV,
-    LV
+    LV,
+    SH
 }
