@@ -100,6 +100,16 @@
       shader: unshaded
       visible: false
       offset: 0, 1
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: BasicDevice
+  - type: WirelessNetworkConnection
+    range: 200
+  - type: DeviceLinkSink
+    ports:
+    - On
+    - Off
+    - Toggle
 
 - type: entity
   id: ThrusterUnanchored
