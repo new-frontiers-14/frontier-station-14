@@ -1,5 +1,6 @@
 using Content.Shared.Actions;
 
-public sealed partial class EscapeInventoryCancelActionEvent : InstantActionEvent
-{
-}
+namespace Content.Shared.Resist;
+
+// DeltaV
+public sealed partial class EscapeInventoryCancelActionEvent : InstantActionEvent;
