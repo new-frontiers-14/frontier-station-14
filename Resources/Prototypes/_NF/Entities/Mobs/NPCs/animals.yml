@@ -56,3 +56,90 @@
     size: Normal
   - type: Clothing
     sprite: _NF/Mobs/Animals/rosy_mothroach.rsi
+
+- type: entity
+  name: Quanana
+  parent: MobDuckMallard
+  id: MobBananaDuck
+  description: It's a banana. It's a duck. It's a quanana.
+  components:
+  - type: Sprite
+    noRot: true
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: quack
+    sprite: _NF/Mobs/Animals/Banana_duck.rsi
+    scale: 0.7,0.7
+  - type: GhostRole
+    prob: 1
+    name: ghost-role-information-BananaDuck-name
+    allowMovement: true
+    description: ghost-role-information-BananaDuck-description
+    rules: ghost-role-information-nonantagonist-rules
+  - type: GhostTakeoverAvailable
+  - type: ReproductivePartner
+  - type: Reproductive
+    breedChance: 0.10
+    birthPopup: reproductive-laid-egg-popup
+    makeOffspringInfant: false
+    partnerWhitelist:
+      tags:
+      - Duck
+    offspring:
+    - id: FoodEggQuananaFertilized
+      maxAmount: 3
+  - type: EggLayer
+    eggSpawn:
+    - id: FoodEggQuananaFertilized
+  - type: ReplacementAccent
+    accent: duck
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: quack
+      Dead:
+        Base: dead
+  - type: Slippery
+    paralyzeTime: 0.5
+    launchForwardsMultiplier: 1.0
+  - type: StepTrigger
+    intersectRatio: 0.2
+  - type: NoSlip
+  - type: Butcherable
+    spawned:
+    - id: FoodFoodBanana
+  - type: Bloodstream
+    bloodReagent: Potassium
+    bloodMaxVolume: 100
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Animals/duck_quack_happy.ogg
+    hidden: true
+    damage:
+      groups:
+        Slash: 2
+  - type: NPCRetaliation
+  - type: CombatMode
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+  - type: NPCImprintingOnSpawnBehaviour #your a momma now 
+    whitelist:
+      components:
+      - HumanoidAppearance
+
+- type: entity
+  id: FoodEggQuananaFertilized
+  parent: FoodEgg
+  suffix: Fertilized, Quanana
+  components:
+    - type: Timer
+    - type: TimedSpawner
+      prototypes:
+      - MobBananaDuck
+      intervalSeconds: 20
+      minimumEntitiesSpawned: 1
+      maximumEntitiesSpawned: 1
+    - type: TimedDespawn #delete the egg after the Quanana spawns
+      lifetime: 21
