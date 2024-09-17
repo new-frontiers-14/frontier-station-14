@@ -1,8 +1,8 @@
 - type: entity
-  parent: ClothingOuterCoatHoSTrench
+  parent: [ BaseC1Contraband, ClothingOuterCoatHoSTrench ]
   id: ClothingOuterCoatBHTrench
   name: "bounty hunter's flak trenchcoat"
-  description: A greatcoat enhanced with a bullet proof alloy for some extra protection and style for those with a charismatic presence.
+  description: A greatcoat enhanced with a bulletproof alloy for some extra protection and style for those with a charismatic presence.
   components:
   - type: Armor # ClothingOuterArmorBulletproof stats
     modifiers:
@@ -52,7 +52,7 @@
     clothingPrototype: ClothingHeadHatHoodCardinalHood
 
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: [ ClothingOuterStorageBase, BaseC2ContrabandUnredeemable ]
   id: ClothingOuterCoatNfsdBomber
   name: nfsd bomber
   description: Lookin' slick Tom.
@@ -63,7 +63,7 @@
     sprite: _NF/Clothing/OuterClothing/Misc/nfsd_bomber.rsi
 
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: [ ClothingOuterStorageBase, BaseC2ContrabandUnredeemable ]
   id: ClothingOuterCoatNfsdBomberBrigmed
   name: nfsd brigmedic bomber
   description: Blood may stain.
@@ -74,7 +74,7 @@
     sprite: _NF/Clothing/OuterClothing/Misc/nfsd_brigmed_bomber.rsi
 
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: [ ClothingOuterStorageBase, BaseC2ContrabandUnredeemable ]
   id: ClothingOuterCoatNfsdFormal
   name: nfsd formal coat
   description: Snazzy.
@@ -85,7 +85,7 @@
     sprite: _NF/Clothing/OuterClothing/Misc/nfsd_formal.rsi
 
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: [ ClothingOuterStorageBase, BaseC2ContrabandUnredeemable ]
   id: ClothingOuterCoatNfsdFormalSheriff
   name: nfsd sheriff's formal coat
   description: Very snazzy.
@@ -96,7 +96,7 @@
     sprite: _NF/Clothing/OuterClothing/Misc/nfsd_sheriff_formal.rsi
 
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: [ ClothingOuterStorageBase, BaseC2ContrabandUnredeemable ]
   id: ClothingOuterCoatNfsdLongCoat
   name: nfsd long coat
   description: Big iron on his hip...
@@ -107,7 +107,7 @@
     sprite: _NF/Clothing/OuterClothing/Misc/nfsd_long.rsi
 
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: [ ClothingOuterStorageBase, BaseC2ContrabandUnredeemable ]
   id: ClothingOuterJacketSr
   name: station representative's jacket
   description: The upper part of the station representative's uniform.
@@ -123,7 +123,7 @@
       - state: equipped-OUTERCLOTHING
 
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: [ ClothingOuterStorageBase, BaseC3PirateContrabandNoValue ]
   id: ClothingOuterCoatPirateCaptain
   name: pirate captain's coat
   description: Y'arrgh har fiddle di dee.
@@ -132,3 +132,40 @@
     sprite: _NF/Clothing/OuterClothing/Misc/pirate_captain.rsi
   - type: Clothing
     sprite: _NF/Clothing/OuterClothing/Misc/pirate_captain.rsi
+
+- type: entity
+  parent: [ ClothingOuterStorageFoldableBase, BaseC3ContrabandNoValue, ContrabandClothing ]
+  id: ClothingOuterCoatArcadiaTrench
+  name: arcadia flak trenchcoat
+  description: A flak trenchcoat produced by Arcadia Industries, enhanced with a bulletproof alloy for some extra protection.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Coats/arcadia_trench.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Coats/arcadia_trench.rsi
+  - type: Armor # ClothingOuterArmorBulletproof stats + caustic
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.4
+        Heat: 0.9
+        Caustic: 0.75
+  - type: ExplosionResistance
+    damageCoefficient: 0.50 # buffed 0.80<0.50
+
+- type: entity
+  parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatArcadiaTrench]
+  id: ClothingOuterCoatArcadiaTrenchOpened
+  name: arcadia flak trenchcoat
+  components:
+  - type: Armor # Open = less armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.5
+        Heat: 0.9
+        Caustic: 0.8
+  - type: ExplosionResistance
+    damageCoefficient: 0.60
