@@ -316,7 +316,7 @@ public sealed class DeadDropSystem : EntitySystem
         var hintQuery = AllEntityQuery<DeadDropHintComponent>();
         while (hintQuery.MoveNext(out var ent, out var _))
         {
-            var hintCount = _random.Next(2, 5);
+            var hintCount = _random.Next(2, 4);
             _random.Shuffle(deadDropStationTuples);
 
             var hintLines = new StringBuilder();

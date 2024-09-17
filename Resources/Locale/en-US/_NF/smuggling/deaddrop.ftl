@@ -9,3 +9,8 @@ smuggling-report-nfsd-alternative = Syndicate dead drop activity detected, possi
 smuggling-report-nfsd-specific = Syndicate dead drop activity detected at {$location}.
 smuggling-report-nfsd-pod = Syndicate drop pod detected. Estimated location: ({$x}, {$y})
 smuggling-report-pirate = Plunder ahoy! Syndicate drop pod detected around ({$x}, {$y})
+
+deaddrop-faxed-hint-name = suspicious fax
+deaddrop-faxed-hint-content = 
+    Not much time.
+    Spinward Syndicate needs help.
