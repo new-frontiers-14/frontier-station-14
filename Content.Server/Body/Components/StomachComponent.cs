@@ -74,7 +74,7 @@ namespace Content.Server.Body.Components
         /// <summary>
         ///     Frontier: digestion prototype (used for species-specific reagent replacement/effects)
         /// </summary>
-        [DataField(required: true)]
+        [DataField]
         public ProtoId<DigestionPrototype>? Digestion = "Default";
     }
 }
