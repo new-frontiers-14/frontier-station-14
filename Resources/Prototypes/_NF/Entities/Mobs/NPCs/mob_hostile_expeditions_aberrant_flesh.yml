@@ -27,7 +27,7 @@
       42: 0.7
       56: 0.5
   - type: Stamina
-    critThreshold: 50
+    critThreshold: 80
   - type: Butcherable
     spawned:
     - id: FoodMeat
@@ -336,7 +336,7 @@
 
 # EXPEDITION BOSS
 - type: entity
-  parent: BaseMobFleshExpeditions
+  parent: [ BaseMobFleshExpeditions, MobHostileBossBase ]
   id: MobHorrorExpeditions
   name: aberrant flesh horror
   description: Tougher and more resilient than the average aberrant flesh monster, the Horror possesses sharp bone protrusions and highly developed musculature, allowing it to rend the flesh of its victims and tear through armor with efficiency.
@@ -424,7 +424,6 @@
   description: Shoot a short salvo of bone spikes lased with toxins.
   components:
   - type: WorldTargetAction
-    # TODO: actual sprite
     icon: { sprite : _NF/Mobs/Aliens/flesh.rsi, state: spike }
     event: !type:ActionGunShootEvent
     priority: 2
@@ -498,11 +497,11 @@
     animation: WeaponArcClaw
     damage:
       types:
-        Blunt: 8
+        Blunt: 7
         Structural: 20
   - type: MovementSpeedModifier
-    baseWalkSpeed : 3.5
-    baseSprintSpeed : 3.5
+    baseWalkSpeed : 3.8
+    baseSprintSpeed : 3.8
 
 - type: entity
   id: MobFleshJaredExpeditionsNewborn
@@ -513,8 +512,8 @@
     layers:
     - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: jared
-      scale: 0.85,0.85
-      color: "pink"
+      scale: 0.8,0.8
+      color: "maroon"
 
 - type: entity
   id: MobFleshJaredOldExpeditionsNewborn
@@ -527,8 +526,8 @@
     layers:
     - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: jared
-      scale: 0.85,0.85
-      color: "pink"
+      scale: 0.8,0.8
+      color: "maroon"
 
 - type: entity
   id: MobFleshGolemExpeditionsNewborn
@@ -539,8 +538,8 @@
     layers:
     - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: golem
-      scale: 0.85,0.85
-      color: "pink"
+      scale: 0.8,0.8
+      color: "maroon"
 
 - type: entity
   id: MobFleshGolemAltExpeditionsNewborn
@@ -551,8 +550,8 @@
     layers:
     - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: golem2
-      scale: 0.85,0.85
-      color: "pink"
+      scale: 0.8,0.8
+      color: "maroon"
 
 - type: entity
   id: MobFleshGolemOldExpeditionsNewborn
@@ -565,8 +564,8 @@
     layers:
     - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: golem
-      scale: 0.85,0.85
-      color: "pink"
+      scale: 0.8,0.8
+      color: "maroon"
 
 - type: entity
   id: MobFleshClampExpeditionsNewborn
@@ -577,8 +576,8 @@
     layers:
     - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: clamp
-      scale: 0.85,0.85
-      color: "pink"
+      scale: 0.8,0.8
+      color: "maroon"
 
 - type: entity
   id: MobFleshClampOldExpeditionsNewborn
@@ -590,8 +589,8 @@
     layers:
     - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: clamp
-      scale: 0.85,0.85
-      color: "pink"
+      scale: 0.8,0.8
+      color: "maroon"
 
 - type: entity
   id: MobFleshLoverExpeditionsNewborn
@@ -602,5 +601,5 @@
     layers:
     - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: lover
-      scale: 0.85,0.85
-      color: "pink"
+      scale: 0.8,0.8
+      color: "maroon"
