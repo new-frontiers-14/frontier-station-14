@@ -6,11 +6,9 @@ using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 using Content.Server.Mail; // Frontier
 
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Array;
-
 namespace Content.Server.Nutrition.Components;
 
-[RegisterComponent, Access(typeof(FoodSystem), typeof(FoodSequenceSystem)), typeof(MailSystem))] // Frontier
+[RegisterComponent, Access(typeof(FoodSystem), typeof(FoodSequenceSystem), typeof(MailSystem))] // Frontier
 public sealed partial class FoodComponent : Component
 {
     [DataField]
