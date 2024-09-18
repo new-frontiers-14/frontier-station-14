@@ -141,7 +141,7 @@
       state: med_key
 
 - type: entity
-  parent: [BaseStructureComputerTabletop, ComputerCriminalRecords]
+  parent: [BaseStructureIndestructible, BaseStructureComputerTabletop, ComputerCriminalRecords]
   id: ComputerTabletopCriminalRecords
   components:
   - type: Sprite
@@ -241,7 +241,7 @@
       state: tech_key
 
 - type: entity
-  parent: [BaseStructureComputerTabletop, ComputerId]
+  parent: [BaseStructureIndestructible, BaseStructureComputerTabletop, ComputerId]
   id: ComputerTabletopId
   components:
   - type: Sprite
@@ -280,7 +280,7 @@
       state: generic_keys
 
 - type: entity
-  parent: [BaseStructureComputerTabletop, ComputerComms]
+  parent: [BaseStructureIndestructible, BaseStructureComputerTabletop, ComputerComms]
   id: ComputerTabletopComms
   components:
   - type: Sprite
@@ -772,7 +772,7 @@
       state: blackmarket_key
 
 - type: entity
-  parent: [BaseStructureComputerTabletop, ComputerShuttleFrontierOutpostLocal]
+  parent: [BaseStructureIndestructible, BaseStructureComputerTabletop, ComputerShuttleFrontierOutpostLocal]
   id: ComputerTabletopShuttleFrontierOutpostLocal
   suffix: Local, Tabletop
   components:
@@ -781,7 +781,7 @@
     layers: *NFTabletopShuttleConsoleVisuals
 
 - type: entity
-  parent: [BaseStructureComputerTabletop, ComputerShuttleFrontierOutpostRemote]
+  parent: [BaseStructureIndestructible, BaseStructureComputerTabletop, ComputerShuttleFrontierOutpostRemote]
   id: ComputerTabletopShuttleFrontierOutpostRemote
   suffix: Remote, Tabletop
   components:
@@ -790,7 +790,7 @@
     layers: *NFTabletopShuttleConsoleVisuals
 
 - type: entity
-  parent: [BaseStructureComputerTabletop, ComputerShuttleTradeOutpostLocal]
+  parent: [BaseStructureIndestructible, BaseStructureComputerTabletop, ComputerShuttleTradeOutpostLocal]
   id: ComputerTabletopShuttleTradeOutpostLocal
   suffix: Local, Tabletop
   components:
@@ -799,7 +799,7 @@
     layers: *NFTabletopShuttleConsoleVisuals
 
 - type: entity
-  parent: [BaseStructureComputerTabletop, ComputerShuttleTradeOutpostRemote]
+  parent: [BaseStructureIndestructible, BaseStructureComputerTabletop, ComputerShuttleTradeOutpostRemote]
   id: ComputerTabletopShuttleTradeOutpostRemote
   suffix: Remote, Tabletop
   components:

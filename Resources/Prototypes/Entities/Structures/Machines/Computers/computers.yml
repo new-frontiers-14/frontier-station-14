@@ -321,7 +321,7 @@
     board: MedicalRecordsComputerCircuitboard
 
 - type: entity
-  parent: BaseComputer
+  parent: [BaseStructureIndestructible, BaseComputer] # Frontier: added BaseStructureIndestructible
   id: ComputerCriminalRecords
   name: criminal records computer
   description: This can be used to check criminal records. Only security can modify them.
@@ -504,7 +504,7 @@
     - Xenoarchaeology
 
 - type: entity
-  parent: BaseComputer
+  parent: [BaseStructureIndestructible, BaseComputer] # Frontier: added BaseStructureIndestructible
   id: ComputerId
   name: ID card computer
   description: Terminal for programming Nanotrasen employee ID cards to access parts of the station.
