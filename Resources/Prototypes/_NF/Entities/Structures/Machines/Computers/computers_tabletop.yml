@@ -40,12 +40,6 @@
       state: generic_keys
 
 - type: entity
-  parent: [BaseStructureComputerTabletop, ComputerTabletopShuttle, ComputerShuttleEmpty] # Shuttle
-  id: ComputerTabletopShuttleEmpty
-  suffix: Empty
-  categories: [ HideSpawnMenu ]
-
-- type: entity
   parent: [BaseStructureComputerTabletop, ComputerShuttleAntag] # Shuttle
   id: ComputerTabletopShuttleAntag
   components:
@@ -64,12 +58,6 @@
     - map: ["computerLayerKeys"]
       sprite: Structures/Machines/computers.rsi
       state: syndie_key
-
-- type: entity
-  parent: [BaseStructureComputerTabletop, ComputerTabletopShuttleAntag, ComputerShuttleAntagEmpty] # Shuttle
-  id: ComputerTabletopShuttleAntagEmpty
-  suffix: Empty
-  categories: [ HideSpawnMenu ]
 
 - type: entity
   parent: [BaseStructureComputerTabletop, ComputerIFF]
