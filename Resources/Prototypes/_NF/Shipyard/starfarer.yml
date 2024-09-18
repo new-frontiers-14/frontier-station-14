@@ -1,0 +1,43 @@
+# Author Info
+# GitHub: Kesiath (https://github.com/Kesiath)
+# Discord: @kesiath
+
+# Maintainer Info
+# GitHub: ???
+# Discord: ???
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Starfarer
+  name: RAE Starfarer
+  description: The Starfarer, beloved flagship of Red Astra Enterprises.
+  price: 208020
+  category: Large
+  group: Shipyard
+  shuttlePath: /Maps/_NF/Shuttles/RedAstraStarfarer.yml
+  guidebookPage: Null
+  class:
+  - Science
+  - Chemistry
+  - Civilian
+
+- type: gameMap
+  id: Starfarer
+  mapName: 'RAE Starfarer'
+  mapPath: /Maps/_NF/Shuttles/RedAstraStarfarer.yml
+  minPlayers: 0
+  stations:
+    Starfarer:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Crescent {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]
