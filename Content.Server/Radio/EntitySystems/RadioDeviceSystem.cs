@@ -15,6 +15,7 @@ using Content.Shared.UserInterface; // Nuclear-14
 using Content.Shared._NC.Radio; // Nuclear-14
 using Robust.Server.GameObjects; // Nuclear-14
 using Robust.Shared.Prototypes;
+using Content.Shared.Access.Systems; // Frontier
 
 namespace Content.Server.Radio.EntitySystems;
 
@@ -30,6 +31,7 @@ public sealed class RadioDeviceSystem : EntitySystem
     [Dependency] private readonly InteractionSystem _interaction = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
+    [Dependency] private readonly AccessReaderSystem _access = default!; // Frontier: access
 
     // Used to prevent a shitter from using a bunch of radios to spam chat.
     private HashSet<(string, EntityUid)> _recentlySent = new();
@@ -250,6 +252,8 @@ public sealed class RadioDeviceSystem : EntitySystem
     {
         if (ent.Comp.RequiresPower && !this.IsPowered(ent, EntityManager))
             return;
+        if (!_access.IsAllowed(args.Actor, ent.Owner)) // Frontier
+            return; // Frontier
 
         SetMicrophoneEnabled(ent, args.Actor, args.Enabled, true);
         ent.Comp.MicrophoneEnabled = args.Enabled;
@@ -260,6 +264,8 @@ public sealed class RadioDeviceSystem : EntitySystem
     {
         if (ent.Comp.RequiresPower && !this.IsPowered(ent, EntityManager))
             return;
+        if (!_access.IsAllowed(args.Actor, ent.Owner)) // Frontier
+            return; // Frontier
 
         SetSpeakerEnabled(ent, args.Actor, args.Enabled, true);
         ent.Comp.SpeakerEnabled = args.Enabled;
@@ -270,6 +276,8 @@ public sealed class RadioDeviceSystem : EntitySystem
     {
         if (ent.Comp.RequiresPower && !this.IsPowered(ent, EntityManager))
             return;
+        if (!_access.IsAllowed(args.Actor, ent.Owner)) // Frontier
+            return; // Frontier
 
         if (!_protoMan.TryIndex<RadioChannelPrototype>(args.Channel, out var channel) || !ent.Comp.SupportedChannels.Contains(args.Channel)) // Nuclear-14: add channel
             return;
