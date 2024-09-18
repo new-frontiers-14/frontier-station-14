@@ -28,7 +28,7 @@ reagent-desc-vinegar = Often used to flavor food.
 reagent-name-rice = rice
 reagent-desc-rice = Hard, small white grains.
 
-reagent-name-oil-olive = olive oil
+reagent-name-oil-olive = vegetable oil
 reagent-desc-oil-olive = Viscous and fragrant.
 
 reagent-name-oil = oil
