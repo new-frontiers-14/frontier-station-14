@@ -42,9 +42,41 @@
     sprite: _NF/Clothing/Ears/Headsets/nfsd_h_green.rsi
 
 - type: entity
-  parent: ClothingHeadsetAltCentCom
+  parent: ClothingHeadsetAltNfsdBrown
   id: ClothingHeadsetAltNfsdCreamandBrown
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Ears/Headsets/nfsd_h_cb.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Ears/Headsets/nfsd_h_cb.rsi
+
+- type: entity
+  parent: ClothingHeadsetAlt
+  id: ClothingHeadsetAltNfsdBrownCentcom
   name: sheriff's over-ear headset
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyCentCom
+      - EncryptionKeyStationMaster
+  - type: Sprite
+    sprite: _NF/Clothing/Ears/Headsets/nfsd_h_brown.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Ears/Headsets/nfsd_h_brown.rsi
+
+- type: entity
+  parent: ClothingHeadsetAltNfsdBrownCentcom
+  id: ClothingHeadsetAltNfsdGreenCentcom
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Ears/Headsets/nfsd_h_green.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Ears/Headsets/nfsd_h_green.rsi
+
+- type: entity
+  parent: ClothingHeadsetAltNfsdBrownCentcom
+  id: ClothingHeadsetAltNfsdCreamandBrownCentcom
   components:
   - type: Sprite
     sprite: _NF/Clothing/Ears/Headsets/nfsd_h_cb.rsi
