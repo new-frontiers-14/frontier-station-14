@@ -3,6 +3,7 @@ using Content.Server.Nutrition.EntitySystems;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Whitelist;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Server.Body.Components
@@ -71,16 +72,9 @@ namespace Content.Server.Body.Components
         }
 
         /// <summary>
-        ///     Frontier - Used by goblin for fliping the food quility effects
+        ///     Frontier: digestion prototype (used for species-specific reagent replacement/effects)
         /// </summary>
-        [DataField]
-        public DigestionType Digestion = DigestionType.Normal;
-    }
-    // Digestion functions. Expand this enum if adding species-specific digestion functions.
-    public enum DigestionType : byte
-    {
-        Normal,
-        Goblin,
-        Felinid,
+        [DataField(required: true)]
+        public ProtoId<DigestionPrototype>? Digestion = "Default";
     }
 }

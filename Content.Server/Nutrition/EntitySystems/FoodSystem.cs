@@ -256,7 +256,7 @@ public partial class FoodSystem : EntitySystem // Frontier: sealed<partial
             var owner = ent.Owner;
 
             // Frontier: check specific-stomach digestion
-            if (!IsFoodDigestibleByStomach(owner, entity.Comp, stomach)) // Frontier: make sure food is processed by a stomach that can digest it
+            if (!IsFoodDigestibleByStomach(owner, entity.Comp, ent.Comp1)) // Frontier: make sure food is processed by a stomach that can digest it
                 continue;
 
             if (!_stomach.CanTransferSolution(owner, split, ent.Comp1))
@@ -280,12 +280,10 @@ public partial class FoodSystem : EntitySystem // Frontier: sealed<partial
             return;
         }
 
+        var digestion = DigestFood(entity, stomachToUse.Value, split, args.Target.Value, args.User); // Frontier: species-specific digestion
+
         _reaction.DoEntityReaction(args.Target.Value, solution, ReactionMethod.Ingestion);
         _stomach.TryTransferSolution(stomachToUse!.Value.Owner, split, stomachToUse);
-
-        // New Frontiers - Digestion Rework - Allows species-specific digestion.
-        // This code is licensed under AGPLv3. See AGPLv3.txt
-        var digestion = DigestFood(entity, stomachToUse, transferAmount, args.Target ?? EntityUid.Invalid, args.User);
 
         var flavors = args.FlavorMessage;
 
@@ -436,7 +434,7 @@ public partial class FoodSystem : EntitySystem // Frontier: sealed<partial
         return GetDigestableStomach(food, component, stomachs) is not null; // Frontier: removed
     }
 
-    private bool CheckDigestablePrereqs(EntityUid food, FoodComponent component, List<(StomachComponent, OrganComponent)> stomachs)
+    private bool CheckDigestablePrereqs(EntityUid food, FoodComponent component, List<Entity<StomachComponent, OrganComponent>> stomachs)
     {
         return stomachs.Count >= component.RequiredStomachs;
     }
@@ -456,7 +454,7 @@ public partial class FoodSystem : EntitySystem // Frontier: sealed<partial
             return false;
     }
 
-    private StomachComponent? GetDigestableStomach(EntityUid food, FoodComponent component, List<(StomachComponent, OrganComponent)> stomachs)
+    private StomachComponent? GetDigestableStomach(EntityUid food, FoodComponent component, List<Entity<StomachComponent, OrganComponent>> stomachs)
     {
         if (!CheckDigestablePrereqs(food, component, stomachs)) {
             return null;
@@ -464,20 +462,18 @@ public partial class FoodSystem : EntitySystem // Frontier: sealed<partial
         // Run through the mobs' stomachs
         foreach (var ent in stomachs)
         {
-<<<<<<< HEAD
-            if (IsFoodDigestibleByStomach(food, component, comp)) {
-                return comp;
+            if (IsFoodDigestibleByStomach(food, component, ent.Comp1)) {
+                return ent.Comp1;
             }
-=======
-            // Find a stomach with a SpecialDigestible
-            if (ent.Comp1.SpecialDigestible == null)
-                continue;
-            // Check if the food is in the whitelist
-            if (_whitelistSystem.IsWhitelistPass(ent.Comp1.SpecialDigestible, food))
-                return true;
-            // They can only eat whitelist food and the food isn't in the whitelist. It's not edible.
-            return false;
->>>>>>> a05437f57579764fe3f2f2b87a081d73ed2ebaa7
+
+            // // Find a stomach with a SpecialDigestible
+            // if (ent.Comp1.SpecialDigestible == null)
+            //     continue;
+            // // Check if the food is in the whitelist
+            // if (_whitelistSystem.IsWhitelistPass(ent.Comp1.SpecialDigestible, food))
+            //     return true;
+            // // They can only eat whitelist food and the food isn't in the whitelist. It's not edible.
+            // return false;
         }
 
         return null;

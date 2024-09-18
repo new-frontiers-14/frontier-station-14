@@ -4,16 +4,15 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Stomach
-    # Frontier - TODO: figure out species digestion
-    specialDigestible:
-      tags:
-      - Fruit
-      - ReptilianFood
-      - Meat
-      - Pill
-      - Crayon
-      - Paper
-    # End Frontier - TODO: figure out species digestion
+    digestion: Carnivore # Frontier
+    # specialDigestible:
+    #   tags:
+    #   - Fruit
+    #   - ReptilianFood
+    #   - Meat
+    #   - Pill
+    #   - Crayon
+    #   - Paper
   - type: SolutionContainerManager
     solutions:
       stomach:

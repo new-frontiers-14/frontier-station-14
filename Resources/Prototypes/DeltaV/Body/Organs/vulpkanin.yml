@@ -4,16 +4,15 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Stomach
-    # Frontier - TODO: figure out species digestion (note, removed on Delta V)
-    specialDigestible:
-      tags:
-      - Fruit
-      - Meat
-      - Pill
-      - Egg
-      - Crayon
-      - Bread
-    # End Frontier - TODO: figure out species digestion
+    digestion: Carnivore # Frontier
+    # specialDigestible:
+    #   tags:
+    #   - Fruit
+    #   - Meat
+    #   - Pill
+    #   - Egg
+    #   - Crayon
+    #   - Bread
   - type: SolutionContainerManager
     solutions:
       stomach:
