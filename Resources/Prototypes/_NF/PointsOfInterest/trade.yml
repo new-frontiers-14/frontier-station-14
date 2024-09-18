@@ -16,6 +16,8 @@
   iffColor: "#37C837" 
   spawnGroup: MarketStation
   gridPath: /Maps/_NF/POI/trade.yml
+  gridProtection:
+    - ArtifactTriggers
   
 - type: gameMap
   id: Trade
@@ -24,10 +26,8 @@
   minPlayers: 0
   stations:
     Trade:
-      stationProto: StandardFrontierOutpost
+      stationProto: MarketFrontierOutpost
       components:
         - type: StationNameSetup
           mapNameTemplate: 'Trade Outpost'
-        - type: StationJobs
-          availableJobs: {}
  

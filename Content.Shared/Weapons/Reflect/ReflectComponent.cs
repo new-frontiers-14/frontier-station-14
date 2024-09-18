@@ -14,7 +14,7 @@ public sealed partial class ReflectComponent : Component
     /// What we reflect.
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite), DataField("reflects")]
-    public ReflectType Reflects = ReflectType.Energy | ReflectType.NonEnergy;
+    public ReflectType Reflects = ReflectType.Energy | ReflectType.NonEnergy | ReflectType.ShuttleKinetic; // Frontier: added ShuttleKinetic
 
     /// <summary>
     /// Probability for a projectile to be reflected.
@@ -35,4 +35,5 @@ public enum ReflectType : byte
     None = 0,
     NonEnergy = 1 << 0,
     Energy = 1 << 1,
+    ShuttleKinetic = 1 << 7, //Frontier: PTK-800
 }

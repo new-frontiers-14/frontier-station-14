@@ -10,7 +10,7 @@ using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
-using Content._NF.Shared.GameRule;
+using Content.Shared._NF.GameRule;
 using Content.Server.Procedural;
 using Content.Shared.Bank.Components;
 using Content.Shared.Procedural;
@@ -30,8 +30,11 @@ using Content.Server.GameTicking.Rules;
 using Content.Server.Maps;
 using Content.Server.Station.Systems;
 using Content.Shared.CCVar;
-using Content.Shared.NF14.CCVar;
+using Content.Shared._NF.CCVar; // Frontier
 using Robust.Shared.Configuration;
+using Robust.Shared.Physics.Components;
+using Content.Server.Shuttles.Components;
+using Content.Shared.Tiles;
 
 namespace Content.Server._NF.GameRule;
 
@@ -49,6 +52,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
     [Dependency] private readonly IConsoleHost _console = default!;
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly ShuttleSystem _shuttle = default!;
+    [Dependency] private readonly PhysicsSystem _physics = default!;
 
     private readonly HttpClient _httpClient = new();
 
@@ -122,7 +126,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
     {
         _mapId = GameTicker.DefaultMap;
 
-        _distanceOffset = _configurationManager.GetCVar(NF14CVars.POIDistanceModifier);
+        _distanceOffset = _configurationManager.GetCVar(NFCCVars.POIDistanceModifier);
         _stationCoords = new List<Vector2>();
 
         //First, we need to grab the list and sort it into its respective spawning logics
@@ -191,7 +195,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         //by the number of depots set in our corresponding cvar
 
         depotStations = new List<EntityUid>();
-        var depotCount = _configurationManager.GetCVar(NF14CVars.CargoDepots);
+        var depotCount = _configurationManager.GetCVar(NFCCVars.CargoDepots);
         var rotation = 2 * Math.PI / depotCount;
         var rotationOffset = _random.NextAngle() / depotCount;
 
@@ -223,7 +227,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         //ideal world
 
         marketStations = new List<EntityUid>();
-        var marketCount = _configurationManager.GetCVar(NF14CVars.MarketStations);
+        var marketCount = _configurationManager.GetCVar(NFCCVars.MarketStations);
         _random.Shuffle(marketPrototypes);
         int marketsAdded = 0;
         foreach (var proto in marketPrototypes)
@@ -249,7 +253,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         //and most RP places. This will essentially put them all into a pool to pull from, and still does not use the RNG function.
 
         optionalStations = new List<EntityUid>();
-        var optionalCount = _configurationManager.GetCVar(NF14CVars.OptionalStations);
+        var optionalCount = _configurationManager.GetCVar(NFCCVars.OptionalStations);
         _random.Shuffle(optionalPrototypes);
         int optionalsAdded = 0;
         foreach (var proto in optionalPrototypes)
@@ -337,6 +341,9 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
                 _station.InitializeNewStation(stationProto.Stations[proto.ID], mapUids, stationName);
             }
 
+            // Cache our damping strength
+            float dampingStrength = proto.CanMove ? 0.05f : 999999f;
+
             foreach (var grid in mapUids)
             {
                 var meta = EnsureComp<MetaDataComponent>(grid);
@@ -345,6 +352,37 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
                 if (proto.IsHidden)
                 {
                     _shuttle.AddIFFFlag(grid, IFFFlags.HideLabel);
+                }
+                if (!proto.AllowIFFChanges)
+                {
+                    _shuttle.SetIFFReadOnly(grid, true);
+                }
+
+                // Ensure damping for each grid in the POI - set the shuttle component if it exists just to be safe
+                var physics = EnsureComp<PhysicsComponent>(grid);
+                _physics.SetAngularDamping(grid, physics, dampingStrength);
+                _physics.SetLinearDamping(grid, physics, dampingStrength);
+                if (TryComp<ShuttleComponent>(grid, out var shuttle))
+                {
+                    shuttle.AngularDamping = dampingStrength;
+                    shuttle.LinearDamping = dampingStrength;
+                }
+
+                if (proto.GridProtection != GridProtectionFlags.None)
+                {
+                    var prot = EnsureComp<ProtectedGridComponent>(grid);
+                    if (proto.GridProtection.HasFlag(GridProtectionFlags.FloorRemoval))
+                        prot.PreventFloorRemoval = true;
+                    if (proto.GridProtection.HasFlag(GridProtectionFlags.FloorPlacement))
+                        prot.PreventFloorPlacement = true;
+                    if (proto.GridProtection.HasFlag(GridProtectionFlags.RcdUse))
+                        prot.PreventRCDUse = true;
+                    if (proto.GridProtection.HasFlag(GridProtectionFlags.EmpEvents))
+                        prot.PreventEmpEvents = true;
+                    if (proto.GridProtection.HasFlag(GridProtectionFlags.Explosions))
+                        prot.PreventExplosions = true;
+                    if (proto.GridProtection.HasFlag(GridProtectionFlags.ArtifactTriggers))
+                        prot.PreventArtifactTriggers = true;
                 }
             }
             gridUid = mapUids[0];
@@ -356,8 +394,8 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
 
     private Vector2 GetRandomPOICoord(float unscaledMinRange, float unscaledMaxRange, bool scaleRange)
     {
-        int numRetries = int.Max(_configurationManager.GetCVar(NF14CVars.POIPlacementRetries), 0);
-        float minDistance = float.Max(_configurationManager.GetCVar(NF14CVars.MinPOIDistance), 0); // Constant at the end to avoid NaN weirdness
+        int numRetries = int.Max(_configurationManager.GetCVar(NFCCVars.POIPlacementRetries), 0);
+        float minDistance = float.Max(_configurationManager.GetCVar(NFCCVars.MinPOIDistance), 0); // Constant at the end to avoid NaN weirdness
 
         Vector2 coords = _random.NextVector2(unscaledMinRange, unscaledMaxRange);
         if (scaleRange)

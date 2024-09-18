@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ClothingShoesBase, BaseToggleClothing]
+  parent: [ClothingShoesBase, BaseToggleClothing] # Frontier: removed BaseEngineeringContraband
   id: ClothingShoesBootsMag
   name: magboots
   description: Magnetic boots, often used during extravehicular activity to ensure the user remains safely attached to the vehicle.
@@ -36,7 +36,7 @@
     - WhitelistChameleon
 
 - type: entity
-  parent: ClothingShoesBootsMag
+  parent: ClothingShoesBootsMag # Frontier: removed BaseGrandTheftContraband
   id: ClothingShoesBootsMagAdv
   name: advanced magboots
   description: State-of-the-art magnetic boots that do not slow down their wearer.
@@ -80,10 +80,10 @@
     price: 3000
 
 - type: entity
-  parent: [ClothingShoesBootsMag, BaseJetpack, ContrabandClothing] # Frontier: added ContrabandClothing as parent
+  parent: [ClothingShoesBootsMag, BaseJetpack, BaseC3SyndicateContraband, ContrabandClothing] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband, added ContrabandClothing as parent
   id: ClothingShoesBootsMagSyndie
   name: blood-red magboots
-  description: Reverse-engineered magnetic boots that have a heavy magnetic pull and integrated thrusters.
+  description: Reverse-engineered magnetic boots that have a heavy magnetic pull and integrated thrusters. It can hold 0.75 L of gas.
   components:
   - type: Sprite
     sprite: Clothing/Shoes/Boots/magboots-syndicate.rsi
@@ -105,9 +105,6 @@
   - type: Item
     sprite: null
     size: Normal
-  - type: Contraband # Frontier
-  - type: FactionClothing # Frontier
-    faction: ContrabandClothing # Frontier
 
 - type: entity
   id: ActionToggleMagboots

@@ -6,7 +6,6 @@ using Content.Server.Interaction;
 using Content.Server.Mind;
 using Content.Server.Popups;
 using Content.Server.Shipyard.Systems;
-using Content.Server.Traits.Assorted;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Climbing.Systems;
 using Content.Shared.CryoSleep;
@@ -16,11 +15,10 @@ using Content.Shared.DragDrop;
 using Content.Shared.Examine;
 using Content.Shared.GameTicking;
 using Content.Shared.Interaction.Events;
-using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
-using Content.Shared.NF14.CCVar;
+using Content.Shared._NF.CCVar;
 using Content.Shared.Popups;
 using Content.Shared.Verbs;
 using Robust.Server.Containers;
@@ -154,7 +152,7 @@ public sealed partial class CryoSleepSystem : SharedCryoSleepSystem
 
         QueueDel(args.Victim);
         _audio.PlayPvs(component.LeaveSound, uid);
-        args.SetHandled(SuicideKind.Special);
+        args.Handled = true;
     }
 
     private void OnExamine(EntityUid uid, CryoSleepComponent component, ExaminedEvent args)
@@ -265,6 +263,8 @@ public sealed partial class CryoSleepSystem : SharedCryoSleepSystem
         NetUserId? id = null;
         if (_mind.TryGetMind(bodyId, out var mindEntity, out var mind) && mind.CurrentEntity is { Valid : true } body)
         {
+            var argMind = mind;
+            RaiseLocalEvent(bodyId, new CryosleepBeforeMindRemovedEvent(cryopod, argMind?.UserId), true);
             _gameTicker.OnGhostAttempt(mindEntity, false, true, mind: mind);
 
             id = mind.UserId;
@@ -283,7 +283,7 @@ public sealed partial class CryoSleepSystem : SharedCryoSleepSystem
             _doAfter.Cancel(cryo.CryosleepDoAfter);
 
         // Start a timer. When it ends, the body needs to be deleted.
-        Timer.Spawn(TimeSpan.FromSeconds(_configurationManager.GetCVar(NF14CVars.CryoExpirationTime)), () =>
+        Timer.Spawn(TimeSpan.FromSeconds(_configurationManager.GetCVar(NFCCVars.CryoExpirationTime)), () =>
         {
             if (id != null)
                 ResetCryosleepState(id.Value);

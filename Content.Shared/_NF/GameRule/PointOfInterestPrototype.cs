@@ -4,7 +4,7 @@ using Robust.Shared.Serialization;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 using Robust.Shared.Utility;
 
-namespace Content._NF.Shared.GameRule;
+namespace Content.Shared._NF.GameRule;
 
 /// <summary>
 ///     Describes information for a single point of interest to be spawned in the world
@@ -42,10 +42,28 @@ public sealed partial class PointOfInterestPrototype : IPrototype
     public Color IffColor { get; private set; } = (100, 100, 100, 100);
 
     /// <summary>
+    ///     Whether or not the POI itself should be able to move or be moved. Should be false for immobile POIs (static stations) and true for ship-like POIs.
+    /// </summary>
+    [DataField("canMove")]
+    public bool CanMove { get; private set; }
+
+    /// <summary>
     ///     Whether or not the POI is shown on IFF.
     /// </summary>
     [DataField("isHidden")]
     public bool IsHidden { get; private set; }
+
+    /// <summary>
+    ///     Whether or not the POI permits IFF changes (i.e. from a console aboard it)
+    /// </summary>
+    [DataField("allowIFFChanges")]
+    public bool AllowIFFChanges { get; private set; }
+
+    /// <summary>
+    ///     Whether or not the POI is shown on IFF.
+    /// </summary>
+    [DataField("gridProtection")]
+    public GridProtectionFlags GridProtection { get; private set; } = GridProtectionFlags.None;
 
     /// <summary>
     ///     Must this POI always spawn? This is independent of spawn chance. If it always spawns,
@@ -79,4 +97,19 @@ public sealed partial class PointOfInterestPrototype : IPrototype
     /// </summary>
     [DataField("gridPath", required: true)]
     public ResPath GridPath { get; private set; } = default!;
+}
+
+/// <summary>
+///     A set of flags showing what events a grid should be protected form.
+/// </summary>
+[Flags]
+public enum GridProtectionFlags : byte
+{
+    None = 0,
+    FloorRemoval = 1,
+    FloorPlacement = 2,
+    RcdUse = 4, // Rapid construction device use (quickly building/deconstructing walls, windows, etc.)
+    EmpEvents = 8,
+    Explosions = 16,
+    ArtifactTriggers = 32
 }

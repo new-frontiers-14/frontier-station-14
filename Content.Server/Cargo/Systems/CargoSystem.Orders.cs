@@ -3,13 +3,7 @@ using Content.Server.Access.Systems;
 using Content.Server.Bank;
 using Content.Server.Cargo.Components;
 using Content.Server.Labels.Components;
-using Content.Server.Paper;
-using Content.Server.DeviceLinking.Systems;
-using Content.Server.Popups;
-using Content.Server.Station.Systems;
-using Content.Shared.Access.Systems;
-using Content.Shared.Administration.Logs;
-using Content.Shared.Bank.Components;
+using Content.Shared.Bank.Components; // Frontier
 using Content.Server.Station.Components;
 using Content.Shared.Cargo;
 using Content.Shared.Cargo.BUI;
@@ -22,10 +16,9 @@ using Content.Server.Paper;
 using Content.Shared.Access.Components;
 using Robust.Server.GameObjects;
 using Content.Shared.Interaction;
+using Content.Shared.Paper;
 using Robust.Shared.Map;
-using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Random;
 using Robust.Shared.Utility;
 using System.Linq;
 
@@ -55,6 +48,7 @@ namespace Content.Server.Cargo.Systems
             SubscribeLocalEvent<CargoOrderConsoleComponent, BoundUIOpenedEvent>(OnOrderUIOpened);
             SubscribeLocalEvent<CargoOrderConsoleComponent, ComponentInit>(OnInit);
             //SubscribeLocalEvent<CargoOrderConsoleComponent, InteractUsingEvent>(OnInteractUsing); //Frontier Disabled
+            SubscribeLocalEvent<CargoOrderConsoleComponent, BankBalanceUpdatedEvent>(OnOrderBalanceUpdated);
             Reset();
         }
 
@@ -185,20 +179,35 @@ namespace Content.Server.Cargo.Systems
                 return;
             }
 
+            //var ev = new FulfillCargoOrderEvent((station.Value, stationData), order, (uid, component)); // Frontier
+            //RaiseLocalEvent(ref ev); // Frontier
+            //ev.FulfillmentEntity ??= station.Value; // Frontier
+
             _idCardSystem.TryFindIdCard(player, out var idCard);
             // ReSharper disable once ConditionalAccessQualifierIsNonNullableAccordingToAPIContract
             order.SetApproverData(idCard.Comp?.FullName, idCard.Comp?.JobTitle);
+
+            // if (!ev.Handled)
+            // {
+            //     ev.FulfillmentEntity = TryFulfillOrder((station.Value, stationData), order, orderDatabase);
+
+            //     if (ev.FulfillmentEntity == null)
+            //     {
+            //         ConsolePopup(args.Actor, Loc.GetString("cargo-console-unfulfilled"));
+            //         PlayDenySound(uid, component);
+            //         return;
+            //     }
+            // }
+
+            order.Approved = true;
             _audio.PlayPvs(component.ConfirmSound, uid);
 
-            var approverName = idCard.Comp?.FullName ?? Loc.GetString("access-reader-unknown-id");
-            var approverJob = idCard.Comp?.JobTitle ?? Loc.GetString("access-reader-unknown-id");
             var message = Loc.GetString("cargo-console-unlock-approved-order-broadcast",
                 ("productName", Loc.GetString(order.ProductName)),
                 ("orderAmount", order.OrderQuantity),
-                ("approverName", approverName),
-                ("approverJob", approverJob),
+                ("approver", order.Approver ?? string.Empty),
                 ("cost", cost));
-            //_radio.SendRadioMessage(uid, message, component.AnnouncementChannel, uid, escapeMarkup: false); # Frontier
+            //_radio.SendRadioMessage(uid, message, component.AnnouncementChannel, uid, escapeMarkup: false); # Frontier: spammy
             ConsolePopup(args.Actor, Loc.GetString("cargo-console-trade-station", ("destination", MetaData(uid).EntityName)));
 
             // Log order approval
@@ -322,10 +331,19 @@ namespace Content.Server.Cargo.Systems
 
         #endregion
 
+
+        private void OnOrderBalanceUpdated(Entity<CargoOrderConsoleComponent> ent, ref BankBalanceUpdatedEvent args)
+        {
+            if (!_uiSystem.IsUiOpen(ent.Owner, CargoConsoleUiKey.Orders))
+                return;
+
+            UpdateOrderState(ent, ent.Comp, args.Station); // Frontier: add ent.Comp
+        }
+
+        // Frontier: custom UpdateOrderState function
         private void UpdateOrderState(EntityUid uid, CargoOrderConsoleComponent component, EntityUid? station)
         {
-
-            var uiUsers = _uiSystem.GetActors(uid, CargoConsoleUiKey.Orders);
+            var uiUsers = _uiSystem.GetActors((uid, null), CargoConsoleUiKey.Orders);
             foreach (var user in uiUsers)
             {
                 var balance = 0;
@@ -358,6 +376,7 @@ namespace Content.Server.Cargo.Systems
                 _uiSystem.SetUiState(uid, CargoConsoleUiKey.Orders, state);
             }
         }
+        // End Frontier
 
         private void ConsolePopup(EntityUid actor, string text)
         {
@@ -437,6 +456,7 @@ namespace Content.Server.Cargo.Systems
 
             // Approve it now
             order.SetApproverData(dest, sender);
+            order.Approved = true;
 
             // Log order addition
             _adminLogger.Add(LogType.Action, LogImpact.Low,
@@ -528,15 +548,14 @@ namespace Content.Server.Cargo.Systems
                 var val = Loc.GetString("cargo-console-paper-print-name", ("orderNumber", order.OrderId));
                 _metaSystem.SetEntityName(printed, val);
 
-                _paperSystem.SetContent(printed, Loc.GetString(
+                _paperSystem.SetContent((printed, paper), Loc.GetString(
                         "cargo-console-paper-print-text",
                         ("orderNumber", order.OrderId),
                         ("itemName", MetaData(item).EntityName),
                         ("orderQuantity", order.OrderQuantity),
                         ("requester", order.Requester),
                         ("reason", order.Reason),
-                        ("approver", order.Approver ?? string.Empty)),
-                    paper);
+                        ("approver", order.Approver ?? string.Empty)));
 
                 // attempt to attach the label to the item
                 if (TryComp<PaperLabelComponent>(item, out var label))
