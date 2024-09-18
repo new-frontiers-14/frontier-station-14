@@ -1,0 +1,85 @@
+- type: entity
+  id: PelletKS23Flashbang
+  name: flashbang (.90)
+  noSpawn: true
+  parent: [ BaseBullet, BaseBulletTrigger ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    state: slug
+  - type: FlashOnTrigger
+    range: 3
+  - type: SpawnOnTrigger
+    proto: GrenadeFlashEffect
+  - type: ActiveTimerTrigger
+    timeRemaining: 1
+  - type: DeleteOnTrigger
+  - type: Projectile
+    damage:
+      types:
+       Heat: 15
+
+- type: entity
+  id: PelletKS23Smoke
+  name: smoke (.90)
+  noSpawn: true
+  parent: [ BaseBullet, BaseBulletTrigger ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    state: slug
+  - type: SmokeOnTrigger
+    duration: 5
+    smokePrototype: Smoke
+    solution:
+      reagents:
+      - ReagentId: TearGas
+        Quantity: 50
+    spreadAmount: 1
+  - type: ActiveTimerTrigger
+    timeRemaining: 1
+  - type: DeleteOnTrigger
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 10
+
+- type: entity
+  id: PelletKS23Base
+  name: (.90)
+  noSpawn: true
+  parent: BaseBullet
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    state: buckshot
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 10
+
+- type: entity
+  id: PelletKS23BaseSpread
+  noSpawn: true
+  parent: PelletKS23Base
+  components:
+  - type: ProjectileSpread
+    proto: PelletKS23Base
+    count: 6
+    spread: 15
+
+- type: entity
+  id: PelletKS23Beanbag
+  name: beanbag (.90)
+  noSpawn: true
+  parent: BaseBullet
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    state: buckshot
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 10
+  - type: StaminaDamageOnCollide
+    damage: 60
