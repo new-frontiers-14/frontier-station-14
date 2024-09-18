@@ -4,7 +4,7 @@
   components:
   - type: TelecomExempt
   - type: EncryptionKeyHolder
-    keySlots: 2
+    keySlots: 1
     keysExtractionMethod: Prying
   - type: RadioMicrophone
     powerRequired: true
@@ -33,7 +33,7 @@
     containers:
       key_slots:
       - EncryptionKeyTraffic
-      - EncryptionKeyNfsd
+      # - EncryptionKeyNfsd # TODO: better support multiple keys
 
 - type: entity
   parent: BaseShuttleIntercom
@@ -44,7 +44,7 @@
     containers:
       key_slots:
       - EncryptionKeyTraffic
-      - EncryptionKeyFreelance
+      # - EncryptionKeyFreelance # TODO: better support multiple keys
 
 - type: entity
   parent: BaseShuttleIntercom
@@ -55,7 +55,7 @@
     containers:
       key_slots:
       - EncryptionKeyTraffic
-      - EncryptionKeySyndie
+      # - EncryptionKeySyndie # TODO: better support multiple keys
 
 - type: entity
   id: IntercomNfsd
