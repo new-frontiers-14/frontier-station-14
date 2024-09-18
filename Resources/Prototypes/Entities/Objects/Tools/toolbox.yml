@@ -72,7 +72,7 @@
 - type: entity
   name: electrical toolbox
   suffix: Syndicate, Turret
-  parent: ToolboxElectrical
+  parent: [ToolboxElectrical, BaseC3SyndicateContraband] # Frontier: added BaseC3SyndicateContraband
   id: ToolboxElectricalTurret
   description: A toolbox typically stocked with electrical gear.
   components:
@@ -99,7 +99,6 @@
                 max: 1
   - type: StaticPrice
     price: 1350
-  - type: Contraband #frontier
 
 - type: entity
   name: artistic toolbox
@@ -115,7 +114,7 @@
 
 - type: entity
   name: suspicious toolbox
-  parent: ToolboxBase
+  parent: [ToolboxBase, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   id: ToolboxSyndicate
   description: A sinister looking toolbox filled with elite syndicate tools.
   components:
@@ -132,7 +131,6 @@
     damage:
       types:
         Blunt: 20
-  - type: Contraband #frontier
 
 - type: entity
   name: golden toolbox
@@ -157,10 +155,10 @@
     state: icon
   - type: ThiefUndeterminedBackpack
     possibleSets:
-    # - TO DO Thief pinpointer needed
+    # TODO Thief pinpointer needed
     - ChemistrySet
     - ToolsSet
-    - ChameleonSet # - TO DO Chameleon stump PR needed
+    - ChameleonSet # TODO Chameleon stump PR needed
     - SyndieSet
     - SleeperSet
     - CommunicatorSet

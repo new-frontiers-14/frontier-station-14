@@ -178,7 +178,8 @@
       - tofu
       - leafy
   - type: Food
-    trash: FoodPlateSmall
+    trash:
+      - FoodPlateSmall
   - type: Sprite
     sprite: Nyanotrasen/Objects/Consumable/Food/moth.rsi
     state: squeakingstirfry
@@ -365,7 +366,8 @@
     count: 6
     slice: FoodMothGreenLasagneSlice
   - type: Food
-    trash: FoodPlate
+    trash:
+      - FoodPlate
   - type: Sprite
     sprite: Nyanotrasen/Objects/Consumable/Food/moth.rsi
     state: greenlasagne
@@ -542,6 +544,7 @@
   - type: Food
     requiresSpecialDigestion: true
     quality: Normal
+
 #Tastes like cotton and broth
 
 - type: entity
@@ -1200,8 +1203,9 @@
     tags:
     - MothFood
   - type: Food
-#    requiresSpecialDigestion: true # Frontier
+    requiresSpecialDigestion: true # Frontier
     quality: Normal # Frontier, New Food Quality System
+
 #Tastes like vanilla and clouds.
 
 - type: entity
@@ -1231,8 +1235,9 @@
     tags:
     - MothFood
   - type: Food
-#    requiresSpecialDigestion: true # Frontier
+    requiresSpecialDigestion: true # Frontier
     quality: Normal # Frontier, New Food Quality System
+
 #Tastes like vanilla and clouds.
 
 - type: entity
@@ -1273,7 +1278,7 @@
     tags:
     - MothFood
   - type: Food
-#    requiresSpecialDigestion: true # Frontier
+    requiresSpecialDigestion: true # Frontier
     quality: Normal # Frontier, New Food Quality System
 
 #Tastes like muffin, dust and lint

@@ -10,7 +10,7 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototy
 
 namespace Content.Server.Nutrition.Components;
 
-[RegisterComponent, Access(typeof(FoodSystem), typeof(MailSystem))] // Frontier
+[RegisterComponent, Access(typeof(FoodSystem), typeof(FoodSequenceSystem)), typeof(MailSystem))] // Frontier
 public sealed partial class FoodComponent : Component
 {
     [DataField]
@@ -20,7 +20,7 @@ public sealed partial class FoodComponent : Component
     public SoundSpecifier UseSound = new SoundCollectionSpecifier("eating");
 
     [DataField]
-    public EntProtoId? Trash;
+    public List<EntProtoId> Trash = new();
 
     [DataField]
     public FixedPoint2? TransferAmount = FixedPoint2.New(5);

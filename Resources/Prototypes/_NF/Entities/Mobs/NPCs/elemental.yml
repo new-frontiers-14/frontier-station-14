@@ -391,6 +391,11 @@
     damageContainer: StructuralInorganic
   - type: MovementIgnoreGravity # Or they just can't do something
   - type: SalvageMobRestrictionsNF
+  - type: Appearance # Next three components make the mob fall over when dead
+  - type: StandingState
+  - type: RotationVisuals
+    defaultRotation: 90
+    horizontalRotation: 90
 
 - type: entity
   parent: MobOreGolem

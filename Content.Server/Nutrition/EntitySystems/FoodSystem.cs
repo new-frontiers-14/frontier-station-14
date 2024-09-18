@@ -1,6 +1,6 @@
 using Content.Server.Body.Components;
 using Content.Server.Body.Systems;
-using Content.Server.Chemistry.Containers.EntitySystems;
+using Content.Shared.Chemistry.EntitySystems;
 using Content.Server.Inventory;
 using Content.Server.Nutrition.Components;
 using Content.Shared.Nutrition.Components;
@@ -10,7 +10,6 @@ using Content.Shared.Administration.Logs;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Organ;
 using Content.Shared.Chemistry;
-using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Database;
 using Content.Shared.DoAfter;
 using Content.Shared.FixedPoint;
@@ -31,6 +30,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Utility;
 using System.Linq;
+using Content.Shared.Containers.ItemSlots;
 using Robust.Server.GameObjects;
 using Content.Shared.Whitelist;
 namespace Content.Server.Nutrition.EntitySystems;
@@ -52,7 +52,7 @@ public partial class FoodSystem : EntitySystem // Frontier: sealed<partial
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly SharedInteractionSystem _interaction = default!;
-    [Dependency] private readonly SolutionContainerSystem _solutionContainer = default!;
+    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
     [Dependency] private readonly StackSystem _stack = default!;
     [Dependency] private readonly StomachSystem _stomach = default!;
@@ -120,7 +120,7 @@ public partial class FoodSystem : EntitySystem // Frontier: sealed<partial
         if (!_solutionContainer.TryGetSolution(food, foodComp.Solution, out _, out var foodSolution))
             return (false, false);
 
-        if (!_body.TryGetBodyOrganComponents<StomachComponent>(target, out var stomachs, body))
+        if (!_body.TryGetBodyOrganEntityComps<StomachComponent>((target, body), out var stomachs))
             return (false, false);
 
         // Check for special digestibles
@@ -135,6 +135,16 @@ public partial class FoodSystem : EntitySystem // Frontier: sealed<partial
         {
             _popup.PopupEntity(Loc.GetString("food-has-used-storage", ("food", food)), user, user);
             return (false, true);
+        }
+
+        // Checks for used item slots
+        if (TryComp<ItemSlotsComponent>(food, out var itemSlots))
+        {
+            if (itemSlots.Slots.Any(slot => slot.Value.HasItem))
+            {
+                _popup.PopupEntity(Loc.GetString("food-has-used-storage", ("food", food)), user, user);
+                return (false, true);
+            }
         }
 
         var flavors = _flavorProfile.GetLocalizedFlavorsMessage(food, user, foodSolution);
@@ -171,12 +181,12 @@ public partial class FoodSystem : EntitySystem // Frontier: sealed<partial
                 user, target);
 
             // logging
-            _adminLogger.Add(LogType.ForceFeed, LogImpact.Medium, $"{ToPrettyString(user):user} is forcing {ToPrettyString(target):target} to eat {ToPrettyString(food):food} {SolutionContainerSystem.ToPrettyString(foodSolution)}");
+            _adminLogger.Add(LogType.ForceFeed, LogImpact.Medium, $"{ToPrettyString(user):user} is forcing {ToPrettyString(target):target} to eat {ToPrettyString(food):food} {SharedSolutionContainerSystem.ToPrettyString(foodSolution)}");
         }
         else
         {
             // log voluntary eating
-            _adminLogger.Add(LogType.Ingestion, LogImpact.Low, $"{ToPrettyString(target):target} is eating {ToPrettyString(food):food} {SolutionContainerSystem.ToPrettyString(foodSolution)}");
+            _adminLogger.Add(LogType.Ingestion, LogImpact.Low, $"{ToPrettyString(target):target} is eating {ToPrettyString(food):food} {SharedSolutionContainerSystem.ToPrettyString(foodSolution)}");
         }
 
         var doAfterArgs = new DoAfterArgs(EntityManager,
@@ -187,6 +197,7 @@ public partial class FoodSystem : EntitySystem // Frontier: sealed<partial
             target: target,
             used: food)
         {
+            BreakOnHandChange = false,
             BreakOnMove = forceFeed,
             BreakOnDamage = true,
             MovementThreshold = 0.01f,
@@ -208,7 +219,7 @@ public partial class FoodSystem : EntitySystem // Frontier: sealed<partial
         if (!TryComp<BodyComponent>(args.Target.Value, out var body))
             return;
 
-        if (!_body.TryGetBodyOrganComponents<StomachComponent>(args.Target.Value, out var stomachs, body))
+        if (!_body.TryGetBodyOrganEntityComps<StomachComponent>((args.Target.Value, body), out var stomachs))
             return;
 
         if (args.Used is null || !_solutionContainer.TryGetSolution(args.Used.Value, args.Solution, out var soln, out var solution))
@@ -232,31 +243,32 @@ public partial class FoodSystem : EntitySystem // Frontier: sealed<partial
 
         var split = _solutionContainer.SplitSolution(soln.Value, transferAmount);
 
+        // Frontier: food digestion
         if (!CheckDigestablePrereqs(entity, entity.Comp, stomachs)) {
             return;
         }
 
-        //TODO: Get the stomach UID somehow without nabbing owner
         // Get the stomach with the highest available solution volume
         var highestAvailable = FixedPoint2.Zero;
-        StomachComponent? stomachToUse = null;
-        foreach ((var stomach, var _) in stomachs)
+        Entity<StomachComponent>? stomachToUse = null;
+        foreach (var ent in stomachs)
         {
+            var owner = ent.Owner;
+
             // Frontier: check specific-stomach digestion
-            if (!IsFoodDigestibleByStomach(entity, entity.Comp, stomach)) // Frontier: make sure food is processed by a stomach that can digest it
+            if (!IsFoodDigestibleByStomach(owner, entity.Comp, stomach)) // Frontier: make sure food is processed by a stomach that can digest it
                 continue;
 
-            var owner = stomach.Owner;
-            if (!_stomach.CanTransferSolution(owner, split, stomach))
+            if (!_stomach.CanTransferSolution(owner, split, ent.Comp1))
                 continue;
 
-            if (!_solutionContainer.ResolveSolution(owner, StomachSystem.DefaultSolutionName, ref stomach.Solution, out var stomachSol))
+            if (!_solutionContainer.ResolveSolution(owner, StomachSystem.DefaultSolutionName, ref ent.Comp1.Solution, out var stomachSol))
                 continue;
 
             if (stomachSol.AvailableVolume <= highestAvailable)
                 continue;
 
-            stomachToUse = stomach;
+            stomachToUse = ent;
             highestAvailable = stomachSol.AvailableVolume;
         }
 
@@ -269,7 +281,7 @@ public partial class FoodSystem : EntitySystem // Frontier: sealed<partial
         }
 
         _reaction.DoEntityReaction(args.Target.Value, solution, ReactionMethod.Ingestion);
-        _stomach.TryTransferSolution(stomachToUse.Owner, split, stomachToUse);
+        _stomach.TryTransferSolution(stomachToUse!.Value.Owner, split, stomachToUse);
 
         // New Frontiers - Digestion Rework - Allows species-specific digestion.
         // This code is licensed under AGPLv3. See AGPLv3.txt
@@ -342,27 +354,31 @@ public partial class FoodSystem : EntitySystem // Frontier: sealed<partial
         if (ev.Cancelled)
             return;
 
-        if (string.IsNullOrEmpty(component.Trash))
+        if (component.Trash.Count == 0)
         {
             QueueDel(food);
             return;
         }
 
         //We're empty. Become trash.
+        //cache some data as we remove food, before spawning trash and passing it to the hand.
+
         var position = _transform.GetMapCoordinates(food);
-        var finisher = Spawn(component.Trash, position);
+        var trashes = component.Trash;
+        var tryPickup = _hands.IsHolding(user, food, out _);
 
-        // If the user is holding the item
-        if (_hands.IsHolding(user, food, out var hand))
+        Del(food);
+        foreach (var trash in trashes)
         {
-            Del(food);
+            var spawnedTrash = Spawn(trash, position);
 
-            // Put the trash in the user's hand
-            _hands.TryPickup(user, finisher, hand);
-            return;
+            // If the user is holding the item
+            if (tryPickup)
+            {
+                // Put the trash in the user's hand
+                _hands.TryPickupAnyHand(user, spawnedTrash);
+            }
         }
-
-        QueueDel(food);
     }
 
     private void AddEatVerb(Entity<FoodComponent> entity, ref GetVerbsEvent<AlternativeVerb> ev)
@@ -371,7 +387,7 @@ public partial class FoodSystem : EntitySystem // Frontier: sealed<partial
             !ev.CanInteract ||
             !ev.CanAccess ||
             !TryComp<BodyComponent>(ev.User, out var body) ||
-            !_body.TryGetBodyOrganComponents<StomachComponent>(ev.User, out var stomachs, body))
+            !_body.TryGetBodyOrganEntityComps<StomachComponent>((ev.User, body), out var stomachs))
             return;
 
         // have to kill mouse before eating it
@@ -405,7 +421,7 @@ public partial class FoodSystem : EntitySystem // Frontier: sealed<partial
         if (!Resolve(food, ref foodComp, false))
             return false;
 
-        if (!_body.TryGetBodyOrganComponents<StomachComponent>(uid, out var stomachs))
+        if (!_body.TryGetBodyOrganEntityComps<StomachComponent>(uid, out var stomachs))
             return false;
 
         return IsDigestibleBy(food, foodComp, stomachs);
@@ -415,7 +431,7 @@ public partial class FoodSystem : EntitySystem // Frontier: sealed<partial
     ///     Returns true if <paramref name="stomachs"/> has a <see cref="StomachComponent.SpecialDigestible"/> that whitelists
     ///     this <paramref name="food"/> (or if they even have enough stomachs in the first place).
     /// </summary>
-    private bool IsDigestibleBy(EntityUid food, FoodComponent component, List<(StomachComponent, OrganComponent)> stomachs)
+    private bool IsDigestibleBy(EntityUid food, FoodComponent component, List<Entity<StomachComponent, OrganComponent>> stomachs)
     {
         return GetDigestableStomach(food, component, stomachs) is not null; // Frontier: removed
     }
@@ -446,11 +462,22 @@ public partial class FoodSystem : EntitySystem // Frontier: sealed<partial
             return null;
         }
         // Run through the mobs' stomachs
-        foreach (var (comp, _) in stomachs)
+        foreach (var ent in stomachs)
         {
+<<<<<<< HEAD
             if (IsFoodDigestibleByStomach(food, component, comp)) {
                 return comp;
             }
+=======
+            // Find a stomach with a SpecialDigestible
+            if (ent.Comp1.SpecialDigestible == null)
+                continue;
+            // Check if the food is in the whitelist
+            if (_whitelistSystem.IsWhitelistPass(ent.Comp1.SpecialDigestible, food))
+                return true;
+            // They can only eat whitelist food and the food isn't in the whitelist. It's not edible.
+            return false;
+>>>>>>> a05437f57579764fe3f2f2b87a081d73ed2ebaa7
         }
 
         return null;

@@ -1,22 +1,24 @@
 # Syndicate Bomb Suit Helmet
 - type: entity
   parent:
+  - BaseC3SyndicateContrabandUnredeemable
   - ClothingHeadHelmetBombSuit
   - ContrabandClothing
   id: ClothingHeadHelmetBombSuitSyndie
   name: syndicate bombsuit helmet
   components:
-  - type: Tag
-    tags:
-    - HidesHair
   - type: Sprite
     sprite: _NF/Clothing/Head/Helmets/syndicate_bombsuit.rsi
   - type: Clothing
     sprite: _NF/Clothing/Head/Helmets/syndicate_bombsuit.rsi
+  - type: HideLayerClothing
+    slots:
+    - Hair
 
 # Syndicate armored bio suit hood
 - type: entity
   parent:
+  - BaseC3SyndicateContrabandUnredeemable
   - ClothingHeadHatHoodBioGeneral
   - ContrabandClothing
   id: ClothingHeadHatHoodBioArmoredSyndicate
@@ -25,48 +27,52 @@
   description: A hood that protects the head and face from biological contaminants. As well as user's identity.
   components:
   - type: IdentityBlocker
-  - type: Tag
-    tags:
-    - HidesHair
   - type: Sprite
     sprite: _NF/Clothing/Head/Hoods/Bio/syndicate.rsi
   - type: Clothing
     sprite: _NF/Clothing/Head/Hoods/Bio/syndicate.rsi
+  - type: HideLayerClothing
+    slots:
+    - Hair
 
 # Syndicate NPC unremoveable headwear for looks only
 - type: entity
   parent:
+  - BaseC3SyndicateContrabandUnredeemable
   - ClothingHeadHelmetHardsuitSyndieElite
   - ContrabandClothing
   id: ClothingHeadHelmetHardsuitSyndieEliteUnremoveable
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Unremoveable
 
 - type: entity
   parent:
+  - BaseC3SyndicateContrabandUnredeemable
   - ClothingHeadHelmetHardsuitSyndie
   - ContrabandClothing
   id: ClothingHeadHelmetHardsuitSyndieUnremoveable
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Unremoveable
 
 - type: entity
   parent:
+  - BaseC3SyndicateContrabandUnredeemable
   - ClothingHeadHelmetHardsuitSyndieMedic
   - ContrabandClothing
   id: ClothingHeadHelmetHardsuitSyndieMedicUnremoveable
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Unremoveable
 
 - type: entity
   parent:
+  - BaseC3SyndicateContrabandUnredeemable
   - ClothingHeadHatHoodWinterSyndie
   - ContrabandClothing
   id: ClothingHeadHatHoodWinterSyndieUnremoveable
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   name: syndicate coat hood
   components:
   - type: Unremoveable

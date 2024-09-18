@@ -135,7 +135,7 @@
   id: CargoShuttleComputerCircuitboard
   name: cargo shuttle computer board
   description: A computer printed circuit board for a cargo shuttle computer.
-  noSpawn: true # Frontier
+  categories: [ HideSpawnMenu ] # Frontier
   components:
     - type: Sprite
       state: cpu_supply
@@ -162,7 +162,7 @@
   id: CargoShuttleConsoleCircuitboard
   name: cargo shuttle console board
   description: A computer printed circuit board for a cargo shuttle console.
-  noSpawn: true # Frontier
+  categories: [ HideSpawnMenu ] # Frontier
   components:
     - type: ComputerBoard
       prototype: ComputerShuttleCargo
@@ -174,7 +174,7 @@
   id: SalvageShuttleConsoleCircuitboard
   name: salvage shuttle console board
   description: A computer printed circuit board for a salvage shuttle console.
-  noSpawn: true # Frontier
+  categories: [ HideSpawnMenu ] # Frontier
   components:
     - type: ComputerBoard
       prototype: ComputerShuttleSalvage
@@ -273,7 +273,7 @@
       prototype: ComputerTabletopCrewMonitoring # Frontier
 
 - type: entity
-  parent: BaseComputerCircuitboard
+  parent: [BaseComputerCircuitboard, BaseC2ContrabandUnredeemable] # Frontier: BaseGrandTheftContraband<BaseC2ContrabandUnredeemable
   id: IDComputerCircuitboard
   name: ID card computer board
   description: A computer printed circuit board for an ID card console.
@@ -414,7 +414,7 @@
   id: SyndicateShuttleConsoleCircuitboard
   name: syndicate shuttle console board
   description: A computer printed circuit board for a syndicate shuttle console.
-  noSpawn: true # Frontier
+  categories: [ HideSpawnMenu ] # Frontier
   components:
     - type: ComputerBoard
       prototype: ComputerShuttleSyndie

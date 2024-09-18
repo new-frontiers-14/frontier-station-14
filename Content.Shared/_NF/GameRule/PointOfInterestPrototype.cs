@@ -54,6 +54,12 @@ public sealed partial class PointOfInterestPrototype : IPrototype
     public bool IsHidden { get; private set; }
 
     /// <summary>
+    ///     Whether or not the POI permits IFF changes (i.e. from a console aboard it)
+    /// </summary>
+    [DataField("allowIFFChanges")]
+    public bool AllowIFFChanges { get; private set; }
+
+    /// <summary>
     ///     Whether or not the POI is shown on IFF.
     /// </summary>
     [DataField("gridProtection")]

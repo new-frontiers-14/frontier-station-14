@@ -10,7 +10,7 @@
 # Frontier
 - type: entity
   name: N2524 Pattern Repeater
-  parent: [BaseWeaponSniper, BaseGunWieldable]
+  parent: [ BaseC1Contraband, BaseWeaponSniper, BaseGunWieldable ]
   id: WeaponSniperRepeater
   description: A civilian grade lever action firearm, favored by space cowboys across the Frontier for its reliability and stopping power. Uses .45 magnum ammo.
   components:
@@ -30,8 +30,9 @@
 - type: entity #made By VividPups added in with PR 1417
   id: WeaponSVT
   name: SVT-40
-  parent: BaseWeaponRifle
-  description: Once a weapon used in war, now a civilian hunting rifle brought to you by S.E.S.W.C, Retreating is Consider Treason is etch into the side 
+  parent: [ BaseC1Contraband, BaseWeaponRifle ]
+  description: |-
+   Once a weapon used in war, now a civilian hunting rifle brought to you by S.E.S.W.C., "Retreating is Considered Treason" is etched on one side.
   components:
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Rifles/svt40.rsi

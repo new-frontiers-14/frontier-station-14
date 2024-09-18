@@ -1,0 +1,57 @@
+- type: entity
+  id: BaseStationEventNFModerateDelay
+  parent: BaseGameRule
+  abstract: true
+  components:
+    - type: GameRule
+      delay:
+        min:  30
+        max:  40
+
+- type: entity
+  id: BluespaceCargoCrate
+  parent: BaseStationEventNFModerateDelay
+  components:
+  - type: StationEvent
+    startAnnouncement: bluespace-cargo-event-announcement
+    weight: 5
+    duration: 35
+    reoccurrenceDelay: 120
+  - type: BluespaceCargoRule
+    spawnerPrototype: RandomCargoSpawner
+    requireSafeAtmosphere: true
+    minimumSpawns: 2
+    maximumSpawns: 5
+
+- type: entity
+  id: BluespaceMcCargoCrate
+  parent: BaseStationEventNFModerateDelay
+  components:
+  - type: StationEvent
+    startAnnouncement: bluespace-cargo-event-announcement
+    earliestStart: 20
+    weight: 5
+    duration: 35
+    maximumPlayers: 20
+    reoccurrenceDelay: 180
+  - type: BluespaceCargoRule
+    spawnerPrototype: CrateFoodMcCargo
+    flashPrototype: EffectFlashMcBluespace
+    requireSafeAtmosphere: true
+
+- type: entity
+  id: BluespaceSyndicateCrate
+  parent: BaseStationEventNFModerateDelay
+  components:
+  - type: StationEvent
+    startAnnouncement: bluespace-syndicate-crate-event-announcement
+    startAudio:
+      path: /Audio/Announcements/attention.ogg
+    weight: 1
+    duration: 35
+    earliestStart: 90
+    minimumPlayers: 20
+    reoccurrenceDelay: 480 # 8 hours
+  - type: BluespaceCargoRule
+    spawnerPrototype: CrateSyndicateLightSurplusBundle
+    maximumSpawns: 2

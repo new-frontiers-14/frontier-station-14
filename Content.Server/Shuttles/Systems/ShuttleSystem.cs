@@ -35,6 +35,7 @@ public sealed partial class ShuttleSystem : SharedShuttleSystem
     [Dependency] private readonly IComponentFactory _factory = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
+    [Dependency] private readonly MapSystem _mapSystem = default!;
     [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly IPrototypeManager _protoManager = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
@@ -60,11 +61,15 @@ public sealed partial class ShuttleSystem : SharedShuttleSystem
     [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
     [Dependency] private readonly GameTicker _ticker = default!; //frontier edit to get the main map in FTL
 
+    private EntityQuery<MapGridComponent> _gridQuery;
+
     public const float TileMassMultiplier = 0.5f;
 
     public override void Initialize()
     {
         base.Initialize();
+
+        _gridQuery = GetEntityQuery<MapGridComponent>();
 
         InitializeFTL();
         InitializeGridFills();
