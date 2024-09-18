@@ -688,11 +688,9 @@
         color: "#96907c"
 
 - type: entity
-  parent:
-  - ClothingBackpackMessengerContractor
-  - ContrabandClothing
   id: ClothingBackpackMessengerArcadia
   name: arcadia messenger bag
+  parent: [ ClothingBackpackMessengerContractor, BaseC3ContrabandNoValue, ContrabandClothing ]
   components:
   - type: Sprite
     sprite: _NF/Clothing/Back/Messenger/color.rsi
