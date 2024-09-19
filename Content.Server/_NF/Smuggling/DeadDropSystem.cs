@@ -209,7 +209,7 @@ public sealed class DeadDropSystem : EntitySystem
         {
             var item = _random.Pick(potentialDeadDrops);
             AddDeadDrop(item.ent);
-            _sawmill.Info($"Dead drop at {uid} compromised, new drop at {item.ent}!");
+            _sawmill.Debug($"Dead drop at {uid} compromised, new drop at {item.ent}!");
         }
         else
         {
@@ -229,7 +229,7 @@ public sealed class DeadDropSystem : EntitySystem
 
     private void OnStationsGenerated(StationsGeneratedEvent args)
     {
-        _sawmill.Info("Generating dead drops!");
+        _sawmill.Debug("Generating dead drops!");
         // Distribute total number of dead drops to assign between each station.
         var remainingDeadDrops = _maxDeadDrops;
 
@@ -265,10 +265,10 @@ public sealed class DeadDropSystem : EntitySystem
             }
         }
 
-        _sawmill.Info("Drop assignments:");
+        _sawmill.Debug("Drop assignments:");
         foreach (var (station, dropSet) in assignedDeadDrops)
         {
-            _sawmill.Info($"    {MetaData(station).EntityName} will place {dropSet.assigned} dead drops.");
+            _sawmill.Debug($"    {MetaData(station).EntityName} will place {dropSet.assigned} dead drops.");
         }
 
         // For each station, distribute its assigned dead drops to potential dead drop components available on their grids.
@@ -321,7 +321,7 @@ public sealed class DeadDropSystem : EntitySystem
             }
             if (dropList.Length > 0)
             {
-                _sawmill.Info($"{MetaData(station).EntityName} dead drops assigned: {dropList}");
+                _sawmill.Debug($"{MetaData(station).EntityName} dead drops assigned: {dropList}");
                 dropList.Clear();
             }
         }
@@ -377,7 +377,7 @@ public sealed class DeadDropSystem : EntitySystem
 
             // Hint generated, destroy component
             RemComp<DeadDropHintComponent>(ent);
-            _sawmill.Info($"Dead drop hint generated at {ent}.");
+            _sawmill.Debug($"Dead drop hint generated at {ent}.");
         }
 
         if (TryComp<SectorDeadDropComponent>(_sectorService.GetServiceEntity(), out var sectorDeadDrop) &&
