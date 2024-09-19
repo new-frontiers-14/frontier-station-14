@@ -1,142 +1,173 @@
 - type: digestion
   id: Default
   effects:
-    - quality: High
-      conversions:
-        Vitamin:
-          Flavorol: 0.4
-        Nutriment:
-          Flavorol: 0.4
-        Protein:
-          Flavorol: 0.4
-    - quality: Normal
-      conversions:
-        Vitamin:
-          Flavorol: 0.2
-        Nutriment:
-          Flavorol: 0.2
-        Protein:
-          Flavorol: 0.2
-    - quality: Junk
-      conversions:
-        Vitamin:
-          Bloatamine: 0.2
-        Nutriment:
-          Bloatamine: 0.2
-        Protein:
-          Bloatamine: 0.2
+  - quality: High
+    conversions:
+      Vitamin:
+        Flavorol: 0.4
+        Vitamin: 0.6
+      Nutriment:
+        Flavorol: 0.4
+        Nutriment: 0.6
+      Protein:
+        Flavorol: 0.4
+        Protein: 0.6
+  - quality: Normal
+    conversions:
+      Vitamin:
+        Flavorol: 0.2
+        Vitamin: 0.8
+      Nutriment:
+        Flavorol: 0.2
+        Nutriment: 0.8
+      Protein:
+        Flavorol: 0.2
+        Protein: 0.8
+  - quality: Junk
+    conversions:
+      Vitamin:
+        Bloatamine: 0.2
+        Vitamin: 0.8
+      Nutriment:
+        Bloatamine: 0.2
+        Nutriment: 0.8
+      Protein:
+        Bloatamine: 0.2
+        Protein: 0.8
 
 - type: digestion
   id: Felinid
   effects:
-    - conversions:
-        Carpotoxin:
-          Nutriment: 0.5
-          Vitamin: 0.25
-          Protein: 0.25
+  - conversions:
+      Carpotoxin:
+        Nutriment: 0.5
+        Vitamin: 0.25
+        Protein: 0.25
   postDigest: Default
 
 - type: digestion
   id: Moth
   effects:
-    - quality: Normal
-      conversions:
-        Fiber:
-          Nutriment: 0.2
-    - quality: High
-      conversions:
-        Fiber:
-          Nutriment: 0.4
+  - quality: Normal
+    conversions:
+      Fiber:
+        Nutriment: 0.2
+        Fiber: 0.8
+  - quality: High
+    conversions:
+      Fiber:
+        Nutriment: 0.4
+        Fiber: 0.6
   postDigest: Default
 
 - type: digestion
   id: Arachnid
   effects:
-    - quality: Normal
-      conversions:
-        SulfuricAcid:
-          Nutriment: 0.2
-    - quality: High
-      conversions:
-        SulfuricAcid:
-          Flavorol: 0.3
-          Nutriment: 0.1
+  - quality: Normal
+    conversions:
+      SulfuricAcid:
+        Nutriment: 0.2
+        Water: 0.8
+  - quality: High
+    conversions:
+      SulfuricAcid:
+        Flavorol: 0.3
+        Nutriment: 0.1
+        Water: 0.6
   postDigest: Default
 
 - type: digestion
   id: Goblin
   effects:
-    # Eat trash, run fast, touch grass
-    - whitelist:
-        tag:
-        - Trash
-      effects:
-      - !type:AdjustReagent
-        reagent: Stimulants
-        amount: 0.5
-    # High gobbo cuisine (moth equivalent without tags)
-    - conversions:
-        TrashJuice:
-          Nutriment: 0.5
-          Vitamin: 0.25
-          Protein: 0.25
-    # Overwriting default flavorol generation.
-    - quality: Nasty
-      conversions:
-        Vitamin:
-          Flavorol: 0.2
-        Nutriment:
-          Flavorol: 0.2
-        Protein:
-          Flavorol: 0.2
-    - quality: Junk
-      conversions:
-        Vitamin:
-          Bloatamine: 0.2
-        Nutriment:
-          Bloatamine: 0.2
-        Protein:
-          Bloatamine: 0.2
+  # Eat trash, run fast, touch grass
+  - whitelist:
+      tags:
+      - Trash
+    effects:
+    - !type:AdjustReagent
+      reagent: Stimulants
+      amount: 0.5
+  # High gobbo cuisine (moth equivalent without tags)
+  - conversions:
+      TrashJuice:
+        Nutriment: 0.5
+        Vitamin: 0.25
+        Protein: 0.25
+  # Overwriting default flavorol generation.
+  - quality: Nasty
+    conversions:
+      Vitamin:
+        Flavorol: 0.2
+        Vitamin: 0.8
+      Nutriment:
+        Flavorol: 0.2
+        Nutriment: 0.8
+      Protein:
+        Flavorol: 0.2
+        Protein: 0.8
+  - quality: Junk
+    conversions:
+      Vitamin:
+        Bloatamine: 0.2
+        Vitamin: 0.8
+      Nutriment:
+        Bloatamine: 0.2
+        Nutriment: 0.8
+      Protein:
+        Bloatamine: 0.2
+        Protein: 0.8
 
 - type: digestion
   id: Carnivore
   effects:
-    - whitelist:
-        tags:
-        - Meat
-      conversions:
-        Vitamin:
-          Flavorol: 0.1
-        Nutriment:
-          Flavorol: 0.1
-        Protein:
-          Flavorol: 0.1
+  - whitelist:
+      tags:
+      - Meat
+    conversions:
+      Vitamin:
+        Flavorol: 0.1
+        Vitamin: 0.9
+      Nutriment:
+        Flavorol: 0.1
+        Nutriment: 0.9
+      Protein:
+        Flavorol: 0.1
+        Protein: 0.9
   postDigest: Default
 
 # type: digestion
 # id: SimpleDiet
 # effects:
-#   - quality: Normal
-#     conversions:
-#       Vitamin:
-#         Flavorol: 0.3
-#       Nutriment:
-#         Flavorol: 0.3
-#       Protein:
-#         Flavorol: 0.3
-#   - quality: High
-#     conversions:
-#       Vitamin:
-#         Bloatamine: 0.2
-#       Nutriment:
-#         Bloatamine: 0.2
-#       Protein:
-#         Bloatamine: 0.2
-#   - quality: Junk
-#     conversions:
-#       Vitamin:
-#         Bloatamine: 0.2
-#       Nutriment:
-#         Bloatamine: 0.2
-#       Protein:
-#         Bloatamine: 0.2
+# - quality: Normal
+#   conversions:
+#     Vitamin:
+#       Flavorol: 0.3
+#         Vitamin: 0.7
+#     Nutriment:
+#       Flavorol: 0.3
+#         Nutriment: 0.7
+#     Protein:
+#       Flavorol: 0.3
+#         Protein: 0.7
+# - quality: High
+#   conversions:
+#     Vitamin:
+#       Bloatamine: 0.2
+#         Vitamin: 0.8
+#     Nutriment:
+#       Bloatamine: 0.2
+#         Nutriment: 0.8
+#     Protein:
+#       Bloatamine: 0.2
+#         Protein: 0.8
+# - quality: Junk
+#   conversions:
+#     Vitamin:
+#       Bloatamine: 0.2
+#         Vitamin: 0.8
+#     Nutriment:
+#       Bloatamine: 0.2
+#         Nutriment: 0.8
+#     Protein:
+#       Bloatamine: 0.2
+#         Protein: 0.8

@@ -256,7 +256,7 @@ public partial class FoodSystem : EntitySystem // Frontier: sealed<partial
             var owner = ent.Owner;
 
             // Frontier: check specific-stomach digestion
-            if (!IsFoodDigestibleByStomach(owner, entity.Comp, ent.Comp1)) // Frontier: make sure food is processed by a stomach that can digest it
+            if (!IsFoodDigestibleByStomach(args.Used.Value, entity.Comp, ent.Comp1)) // Frontier: make sure food is processed by a stomach that can digest it
                 continue;
 
             if (!_stomach.CanTransferSolution(owner, split, ent.Comp1))
@@ -444,9 +444,6 @@ public partial class FoodSystem : EntitySystem // Frontier: sealed<partial
         if (!component.RequiresSpecialDigestion)
             return true;
 
-        // Find a stomach with a SpecialDigestible
-        if (stomach.SpecialDigestible == null)
-            return false;
         // Check if the food is in the whitelist
         if (_whitelistSystem.IsWhitelistPass(stomach.SpecialDigestible, food))
             return true;

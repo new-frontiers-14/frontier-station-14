@@ -42,6 +42,10 @@ public sealed partial class FoodSystem : EntitySystem // Frontier: sealed<partia
             // Iterate through effects
             foreach (var effect in digestion.Effects)
             {
+                // Precondition: match food quality and/or whitelist.
+                if (effect.Quality != null && effect.Quality != food.Comp.Quality)
+                    continue;
+
                 if (_whitelistSystem.IsWhitelistFail(effect.Whitelist, food.Owner))
                     continue;
 
@@ -65,7 +69,7 @@ public sealed partial class FoodSystem : EntitySystem // Frontier: sealed<partia
             }
 
             // Get next digestion to run
-            if (!_prototype.TryIndex(stomach.Comp.Digestion, out digestion))
+            if (!_prototype.TryIndex(digestion.PostDigest, out digestion))
             {
                 digestion = null;
             }
