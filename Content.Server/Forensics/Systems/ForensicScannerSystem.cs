@@ -63,6 +63,16 @@ namespace Content.Server.Forensics
         // Temporary values, sane defaults, will be overwritten by CVARs.
         private int _minFUCPayout = 2;
 
+        // Frontier: payout constants
+        private const int ActiveUnusedDeadDropSpesoReward = 20000;
+        private const float ActiveUnusedDeadDropFUCReward = 2.0f;
+        private const int ActiveUsedDeadDropSpesoReward = 10000;
+        private const float ActiveUsedDeadDropFUCReward = 1.0f;
+        private const int InactiveUsedDeadDropSpesoReward = 5000;
+        private const float InactiveUsedDeadDropFUCReward = 0.5f;
+        private const int DropPodSpesoReward = 10000;
+        private const float DropPodFUCReward = 1.0f;
+
         public override void Initialize()
         {
             base.Initialize();
@@ -196,14 +206,14 @@ namespace Content.Server.Forensics
                             string msg;
                             if (deadDrop.DeadDropCalled)
                             {
-                                spesoReward = 7500;
-                                fucReward = 0.5f;
+                                spesoReward = ActiveUsedDeadDropSpesoReward;
+                                fucReward = ActiveUsedDeadDropFUCReward;
                                 msg = "forensic-reward-dead-drop-used-present";
                             }
                             else
                             {
-                                spesoReward = 15000;
-                                fucReward = 1f;
+                                spesoReward = ActiveUnusedDeadDropSpesoReward;
+                                fucReward = ActiveUnusedDeadDropFUCReward;
                                 msg = "forensic-reward-dead-drop-unused";
                             }
                             GiveReward(uid, target, spesoReward, fucReward, msg);
@@ -212,13 +222,13 @@ namespace Content.Server.Forensics
                         // Otherwise, if it's been used, pay out at a reduced rate and compromise it.
                         else if (deadDrop.DeadDropCalled)
                         {
-                            GiveReward(uid, target, 2500, 0.25f, "forensic-reward-dead-drop-used-gone");
+                            GiveReward(uid, target, InactiveUsedDeadDropSpesoReward, InactiveUsedDeadDropFUCReward, "forensic-reward-dead-drop-used-gone");
                             _deadDrop.CompromiseDeadDrop(target, deadDrop);
                         }
                     }
                     else if (TryComp<ContrabandPodGridComponent>(Transform(target).GridUid, out var pod) && !pod.Scanned)
                     {
-                        GiveReward(uid, target, 7500, 0.25f, "forensic-reward-pod");
+                        GiveReward(uid, target, DropPodSpesoReward, DropPodFUCReward, "forensic-reward-pod");
                         pod.Scanned = true;
                     }
                 }
