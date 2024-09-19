@@ -73,12 +73,12 @@ public sealed class DeadDropSystem : EntitySystem
 
         Subs.CVar(_cfg, NFCCVars.SmugglingMaxSimultaneousPods, OnMaxSimultaneousPodsChanged, true);
         Subs.CVar(_cfg, NFCCVars.SmugglingMaxDeadDrops, OnMaxDeadDropsChanged, true); // TODO: handle this better - will not be reflected until next round.
-        Subs.CVar(_cfg, NFCCVars.DeadDropMinTimeout, OnMinDeadDropTimeout, true);
-        Subs.CVar(_cfg, NFCCVars.DeadDropMaxTimeout, OnMaxDeadDropTimeout, true);
-        Subs.CVar(_cfg, NFCCVars.DeadDropMinDistance, OnMinDeadDropDistance, true);
-        Subs.CVar(_cfg, NFCCVars.DeadDropMaxDistance, OnMaxDeadDropDistance, true);
-        Subs.CVar(_cfg, NFCCVars.DeadDropMinHints, OnMinDeadDropHints, true);
-        Subs.CVar(_cfg, NFCCVars.DeadDropMaxHints, OnMaxDeadDropHints, true);
+        Subs.CVar(_cfg, NFCCVars.DeadDropMinTimeout, OnMinDeadDropTimeoutChanged, true);
+        Subs.CVar(_cfg, NFCCVars.DeadDropMaxTimeout, OnMaxDeadDropTimeoutChanged, true);
+        Subs.CVar(_cfg, NFCCVars.DeadDropMinDistance, OnMinDeadDropDistanceChanged, true);
+        Subs.CVar(_cfg, NFCCVars.DeadDropMaxDistance, OnMaxDeadDropDistanceChanged, true);
+        Subs.CVar(_cfg, NFCCVars.DeadDropMinHints, OnMinDeadDropHintsChanged, true);
+        Subs.CVar(_cfg, NFCCVars.DeadDropMaxHints, OnMaxDeadDropHintsChanged, true);
 
         _sawmill = Logger.GetSawmill("deaddrop");
     }
@@ -94,7 +94,7 @@ public sealed class DeadDropSystem : EntitySystem
         _maxSimultaneousPods = newMax;
     }
 
-    private void OnMinDeadDropTimeout(int newMax)
+    private void OnMinDeadDropTimeoutChanged(int newMax)
     {
         _minDeadDropTimeout = newMax;
         // Change all existing dead drop timeouts
@@ -108,7 +108,7 @@ public sealed class DeadDropSystem : EntitySystem
         }
     }
 
-    private void OnMaxDeadDropTimeout(int newMax)
+    private void OnMaxDeadDropTimeoutChanged(int newMax)
     {
         _maxDeadDropTimeout = newMax;
         // Change all existing dead drop timeouts
@@ -122,7 +122,7 @@ public sealed class DeadDropSystem : EntitySystem
         }
     }
 
-    private void OnMinDeadDropDistance(int newMax)
+    private void OnMinDeadDropDistanceChanged(int newMax)
     {
         _minDeadDropDistance = newMax;
         // Change all existing dead drop timeouts
@@ -133,7 +133,7 @@ public sealed class DeadDropSystem : EntitySystem
         }
     }
 
-    private void OnMaxDeadDropDistance(int newMax)
+    private void OnMaxDeadDropDistanceChanged(int newMax)
     {
         _maxDeadDropDistance = newMax;
         // Change all existing dead drop timeouts
@@ -144,12 +144,12 @@ public sealed class DeadDropSystem : EntitySystem
         }
     }
 
-    private void OnMinDeadDropHints(int newMin)
+    private void OnMinDeadDropHintsChanged(int newMin)
     {
         _minDeadDropHints = newMin;
     }
 
-    private void OnMaxDeadDropHints(int newMax)
+    private void OnMaxDeadDropHintsChanged(int newMax)
     {
         _maxDeadDropHints = newMax;
     }
