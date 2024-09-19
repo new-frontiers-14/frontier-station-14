@@ -597,7 +597,7 @@ public sealed class DeadDropSystem : EntitySystem
                         break;
                     case SmugglingReportMessageType.PodLocation:
                         var error = _random.NextVector2(messageError);
-                        output = Loc.GetString(messageLoc, ("x", dropLocation.X + error.X), ("y", dropLocation.Y + error.Y));
+                        output = Loc.GetString(messageLoc, ("x", $"{dropLocation.X + error.X:F0}"), ("y", $"{dropLocation.Y + error.Y:F0}"));
                         break;
                 }
 
