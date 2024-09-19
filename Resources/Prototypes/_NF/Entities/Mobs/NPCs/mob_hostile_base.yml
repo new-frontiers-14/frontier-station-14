@@ -4,7 +4,7 @@
   abstract: true
   components:
   - type: Temperature
-    heatDamageThreshold: 2000 # Should prevent mobs from taking damage on planets with extreme head 
+    heatDamageThreshold: 2000 # Should prevent mobs from taking damage on planets with extreme head
     coldDamageThreshold: -250 # Should make mobs immune to cold planets
     currentTemperature: 310.15
     coldDamage: #per second, scales with temperature & other constants
@@ -189,7 +189,7 @@
   - MobEnhancedMovement
   - BaseMobSpecies
   - MobHumanoidHostileAIComplex
-  - BaseC3Contraband
+  - BaseC3MobHuman
   id: MobHumanoidHostileBase
   components:
   - type: NPCRetaliation
@@ -244,7 +244,7 @@
   - MobFlammable
   - MobEnhancedMovement
   - MobHumanoidHostileAIComplex
-  - BaseC3Contraband
+  - BaseC3MobCreature
   id: MobNonHumanHostileBase
   components:
   - type: NPCRetaliation
