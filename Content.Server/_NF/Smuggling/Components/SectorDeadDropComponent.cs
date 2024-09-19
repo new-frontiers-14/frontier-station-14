@@ -1,4 +1,6 @@
+using Content.Shared.Dataset;
 using Content.Shared.FixedPoint;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server._NF.Smuggling.Components;
 
@@ -22,4 +24,7 @@ public sealed partial class SectorDeadDropComponent : Component
     // In the case of providing a fake location for alternative notifications, which names can we draw from?
     [ViewVariables(VVAccess.ReadWrite)]
     public Dictionary<EntityUid, string> DeadDropStationNames = new();
+
+    [DataField]
+    public ProtoId<LocalizedDatasetPrototype> FakeDeadDropHints = default!;
 }

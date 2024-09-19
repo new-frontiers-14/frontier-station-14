@@ -96,8 +96,20 @@
   parent: Paper
   name: suspicious note
   description: A crinkled sheet with scribbles on it. Seems to have been written in a hurry.
+  categories: [ HideSpawnMenu ]
   components:
   - type: DeadDropHint
+  - type: Paper
+    content: deaddrop-faxed-hint-content
+
+- type: entity
+  id: PaperDeadDropHintFake
+  parent: Paper
+  name: suspicious note
+  description: A crinkled sheet with scribbles on it. Seems to have been written in a hurry.
+  suffix: Fake
+  categories: [ HideSpawnMenu ]
+  components:
   - type: Paper
     content: deaddrop-faxed-hint-content
 

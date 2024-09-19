@@ -13,6 +13,7 @@ using Content.Server.Station.Systems;
 using Content.Shared._NF.CCVar;
 using Content.Shared._NF.Smuggling.Prototypes;
 using Content.Shared.Database;
+using Content.Shared.Dataset;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Paper;
@@ -56,7 +57,8 @@ public sealed class DeadDropSystem : EntitySystem
     private int _maxDeadDropTimeout = 5400;
     private int _minDeadDropDistance = 4500;
     private int _maxDeadDropDistance = 6000;
-
+    private int _minDeadDropHints = 3;
+    private int _maxDeadDropHints = 5;
     public override void Initialize()
     {
         base.Initialize();
@@ -74,6 +76,8 @@ public sealed class DeadDropSystem : EntitySystem
         Subs.CVar(_cfg, NFCCVars.DeadDropMaxTimeout, OnMaxDeadDropTimeout, true);
         Subs.CVar(_cfg, NFCCVars.DeadDropMinDistance, OnMinDeadDropDistance, true);
         Subs.CVar(_cfg, NFCCVars.DeadDropMaxDistance, OnMaxDeadDropDistance, true);
+        Subs.CVar(_cfg, NFCCVars.DeadDropMinHints, OnMinDeadDropHints, true);
+        Subs.CVar(_cfg, NFCCVars.DeadDropMaxHints, OnMaxDeadDropHints, true);
 
         _sawmill = Logger.GetSawmill("deaddrop");
     }
@@ -132,6 +136,16 @@ public sealed class DeadDropSystem : EntitySystem
         {
             comp.MaximumDistance = _maxDeadDropDistance;
         }
+    }
+
+    private void OnMinDeadDropHints(int newMin)
+    {
+        _minDeadDropHints = newMin;
+    }
+
+    private void OnMaxDeadDropHints(int newMax)
+    {
+        _maxDeadDropHints = newMax;
     }
 
     private void OnMaxDeadDropsChanged(int newMax)
@@ -312,18 +326,33 @@ public sealed class DeadDropSystem : EntitySystem
             }
         }
 
-        // For each hint spawner, randomly generate a hint from the distributed dead drop locations, spawn the text for the note.
+        // From all existing hints, select a set few to be actual hints, replace the text in the remainder with random hints from a set.
         var hintQuery = AllEntityQuery<DeadDropHintComponent>();
+
+        List<EntityUid> allHints = new();
+
         while (hintQuery.MoveNext(out var ent, out var _))
         {
+            allHints.Add(ent);
+        }
+
+        _random.Shuffle(allHints);
+
+        // Generate a random number of hints.
+        var numHints = _random.Next(_minDeadDropHints, _maxDeadDropHints + 1);
+
+        for (int i = 0; i < allHints.Count && i < numHints; i++)
+        {
+            var ent = allHints[i];
+
             var hintCount = _random.Next(2, 4);
             _random.Shuffle(deadDropStationTuples);
 
             var hintLines = new StringBuilder();
             var hints = 0;
-            for (var i = 0; i < deadDropStationTuples.Count && hints < hintCount; i++)
+            for (var j = 0; j < deadDropStationTuples.Count && hints < hintCount; i++)
             {
-                var hintTuple = deadDropStationTuples[i];
+                var hintTuple = deadDropStationTuples[j];
                 string objectHintString;
                 if (TryComp<PotentialDeadDropComponent>(hintTuple.Item2, out var potentialDeadDrop))
                     objectHintString = Loc.GetString(potentialDeadDrop.HintText);
@@ -348,6 +377,28 @@ public sealed class DeadDropSystem : EntitySystem
 
             // Hint generated, destroy component
             RemComp<DeadDropHintComponent>(ent);
+            _sawmill.Info($"Dead drop hint generated at {ent}.");
+        }
+
+        if (TryComp<SectorDeadDropComponent>(_sectorService.GetServiceEntity(), out var sectorDeadDrop) &&
+            _prototypeManager.TryIndex(sectorDeadDrop.FakeDeadDropHints, out var deadDropHints))
+        {
+            var hintCount = deadDropHints.Values.Count;
+            for (int i = numHints; i < allHints.Count; i++)
+            {
+                var ent = allHints[i];
+
+                // Randomly assign a string from our list of fake hint strings.
+                var index = _random.Next(0, hintCount);
+                var msg = Loc.GetString(deadDropHints.Values[index]);
+
+                // Select some number of dead drops to hint
+                if (TryComp<PaperComponent>(ent, out var paper))
+                    _paper.SetContent((ent, paper), msg);
+
+                // Hint generated, destroy component
+                RemComp<DeadDropHintComponent>(ent);
+            }
         }
     }
 
