@@ -19,7 +19,7 @@ public sealed partial class SectorDeadDropComponent : Component
 
     // Utility field for windowing reported events.  Having more in an hour results in more precise information.
     [ViewVariables(VVAccess.ReadWrite)]
-    public WindowedCounter ReportedEventsThisHour = new(TimeSpan.FromMinutes(60));
+    public WindowedCounter? ReportedEventsThisHour = null;
 
     // In the case of providing a fake location for alternative notifications, which names can we draw from?
     [ViewVariables(VVAccess.ReadWrite)]

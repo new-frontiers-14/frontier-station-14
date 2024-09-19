@@ -7,12 +7,13 @@ namespace Content.Server._NF.Smuggling;
 // </summary>
 public sealed class WindowedCounter
 {
-    [Dependency] private IGameTiming _timing = default!;
-    private List<TimeSpan> _times = new();
+    private readonly IGameTiming _timing;
+    private List<TimeSpan> _times;
     private TimeSpan _window;
 
     public WindowedCounter(TimeSpan window)
     {
+        _timing = IoCManager.Resolve<IGameTiming>();
         _times = new();
         _window = window;
     }

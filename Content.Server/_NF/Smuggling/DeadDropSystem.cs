@@ -69,6 +69,7 @@ public sealed class DeadDropSystem : EntitySystem
         SubscribeLocalEvent<StationDeadDropComponent, ComponentStartup>(OnStationStartup);
         SubscribeLocalEvent<StationDeadDropComponent, ComponentShutdown>(OnStationShutdown);
         SubscribeLocalEvent<StationsGeneratedEvent>(OnStationsGenerated);
+        SubscribeLocalEvent<SectorDeadDropComponent, ComponentInit>(OnSectorDeadDropInit);
 
         Subs.CVar(_cfg, NFCCVars.SmugglingMaxSimultaneousPods, OnMaxSimultaneousPodsChanged, true);
         Subs.CVar(_cfg, NFCCVars.SmugglingMaxDeadDrops, OnMaxDeadDropsChanged, true); // TODO: handle this better - will not be reflected until next round.
@@ -80,6 +81,11 @@ public sealed class DeadDropSystem : EntitySystem
         Subs.CVar(_cfg, NFCCVars.DeadDropMaxHints, OnMaxDeadDropHints, true);
 
         _sawmill = Logger.GetSawmill("deaddrop");
+    }
+
+    private void OnSectorDeadDropInit(EntityUid _, SectorDeadDropComponent component, ComponentInit args)
+    {
+        component.ReportedEventsThisHour = new(TimeSpan.FromMinutes(60));
     }
 
     // CVAR setters
@@ -464,13 +470,17 @@ public sealed class DeadDropSystem : EntitySystem
             return;
         }
 
-        // A sane set of default behaviour.
+        // Get sector info (with sane defaults if it doesn't exist)
         int maxSimultaneousPods = 5;
         int deadDropsThisHour = 0;
         if (TryComp<SectorDeadDropComponent>(_sectorService.GetServiceEntity(), out var sectorDeadDrop))
         {
             maxSimultaneousPods = _maxSimultaneousPods;
-            deadDropsThisHour = sectorDeadDrop.ReportedEventsThisHour.Count();
+            if (sectorDeadDrop.ReportedEventsThisHour != null)
+            {
+                deadDropsThisHour = sectorDeadDrop.ReportedEventsThisHour.Count();
+                sectorDeadDrop.ReportedEventsThisHour.AddEvent();
+            }
         }
 
         //this will spawn in the latest ship, and delete the oldest one available if the amount of ships exceeds 5.
