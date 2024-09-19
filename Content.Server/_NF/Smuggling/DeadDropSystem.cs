@@ -350,7 +350,7 @@ public sealed class DeadDropSystem : EntitySystem
 
             var hintLines = new StringBuilder();
             var hints = 0;
-            for (var j = 0; j < deadDropStationTuples.Count && hints < hintCount; i++)
+            for (var j = 0; j < deadDropStationTuples.Count && hints < hintCount; j++)
             {
                 var hintTuple = deadDropStationTuples[j];
                 string objectHintString;

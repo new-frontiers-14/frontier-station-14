@@ -13,7 +13,7 @@ public sealed partial class DeadDropHintVariationPassComponent : Component
     ///     Remember, the average number 
     /// </summary>
     [DataField]
-    public float HintSpawnChance = 0.002f;
+    public float HintSpawnChance = 0.02f;
 
     /// <summary>
     ///     The entity to spawn for a hint.
