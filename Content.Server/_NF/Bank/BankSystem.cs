@@ -62,10 +62,10 @@ public sealed partial class BankSystem : EntitySystem
             bank.Balance,
             profile.Appearance,
             profile.SpawnPriority,
-            new Dictionary<ProtoId<JobPrototype>, JobPriority>(profile.JobPriorities), // Frontier Merge
+            new Dictionary<ProtoId<JobPrototype>, JobPriority>(profile.JobPriorities),
             profile.PreferenceUnavailable,
-            new HashSet<ProtoId<AntagPrototype>>(profile.AntagPreferences), // Frontier Merge
-            new HashSet<ProtoId<TraitPrototype>>(profile.TraitPreferences), // Frontier Merge
+            new HashSet<ProtoId<AntagPrototype>>(profile.AntagPreferences),
+            new HashSet<ProtoId<TraitPrototype>>(profile.TraitPreferences),
             new Dictionary<string, RoleLoadout>(profile.Loadouts));
 
         args.State = new BankAccountComponentState
