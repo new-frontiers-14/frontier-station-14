@@ -13,8 +13,18 @@ public sealed partial class DeadDropComponent : Component
     /// <summary>
     ///     When the next drop will occur. Used internally.
     /// </summary>
-    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    [DataField, ViewVariables(VVAccess.ReadOnly)]
     public TimeSpan? NextDrop;
+
+    /// <summary>
+    ///     A non-nullable proxy to overwrite NextDrop
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite)]
+    public TimeSpan NextDropVV
+    {
+        get { return NextDrop ?? TimeSpan.Zero; }
+        set { NextDrop = value; }
+    }
 
     /// <summary>
     ///     Minimum wait time in seconds to wait for the next dead drop.

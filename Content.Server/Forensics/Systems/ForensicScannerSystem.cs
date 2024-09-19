@@ -60,10 +60,10 @@ namespace Content.Server.Forensics
         [Dependency] private readonly SectorServiceSystem _service = default!; // Frontier
         [Dependency] private readonly IConfigurationManager _cfg = default!; // Frontier
 
+        // Frontier: payout constants
         // Temporary values, sane defaults, will be overwritten by CVARs.
         private int _minFUCPayout = 2;
 
-        // Frontier: payout constants
         private const int ActiveUnusedDeadDropSpesoReward = 20000;
         private const float ActiveUnusedDeadDropFUCReward = 2.0f;
         private const int ActiveUsedDeadDropSpesoReward = 10000;
@@ -72,6 +72,7 @@ namespace Content.Server.Forensics
         private const float InactiveUsedDeadDropFUCReward = 0.5f;
         private const int DropPodSpesoReward = 10000;
         private const float DropPodFUCReward = 1.0f;
+        // End Frontier: payout constants
 
         public override void Initialize()
         {
@@ -150,7 +151,7 @@ namespace Content.Server.Forensics
             }
             _radio.SendRadioMessage(uidOrigin, msgString, channel, uidOrigin);
         }
-        // Frontier: add dead drop rewards
+        // End Frontier: add dead drop rewards
 
         private void UpdateUserInterface(EntityUid uid, ForensicScannerComponent component)
         {
