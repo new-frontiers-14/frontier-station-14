@@ -55,8 +55,6 @@
     interfaces:
         enum.ShuttleConsoleUiKey.Key:
           type: ShuttleConsoleBoundUserInterface
-        enum.IntercomUiKey.Key: # Frontier
-          type: IntercomBoundUserInterface # Frontier
   - type: RadarConsole
   - type: WorldLoader
     radius: 256
@@ -82,11 +80,10 @@
       board: !type:Container
         ents: []
       disk_slot: !type:ContainerSlot {}
-      key_slots: !type:Container # Frontier
 
 - type: entity
   parent: [BaseComputerShuttle, BaseShuttleIntercom] # Frontier - BaseShuttleIntercom
-  id: ComputerShuttleEmpty # Frontier - ComputerShuttle<ComputerShuttleEmpty
+  id: ComputerShuttle
   name: shuttle console
   description: Used to pilot a shuttle.
   categories: [ HideSpawnMenu ] # Frontier
@@ -103,6 +100,24 @@
       state: generic_keys
   - type: Computer
     board: ShuttleConsoleCircuitboard
+  # Frontier: shuttle intercom
+  - type: UserInterface
+    interfaces:
+        enum.ShuttleConsoleUiKey.Key:
+          type: ShuttleConsoleBoundUserInterface
+        enum.IntercomUiKey.Key:
+          type: IntercomBoundUserInterface
+  - type: ContainerContainer
+    containers:
+      board: !type:Container
+        ents: []
+      disk_slot: !type:ContainerSlot {}
+      key_slots: !type:Container
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyTraffic
+  # End Frontier
 
 - type: entity
   parent: BaseComputerShuttle
@@ -306,7 +321,7 @@
     board: MedicalRecordsComputerCircuitboard
 
 - type: entity
-  parent: BaseComputer
+  parent: [BaseStructureIndestructible, BaseComputer] # Frontier: added BaseStructureIndestructible
   id: ComputerCriminalRecords
   name: criminal records computer
   description: This can be used to check criminal records. Only security can modify them.
@@ -489,7 +504,7 @@
     - Xenoarchaeology
 
 - type: entity
-  parent: BaseComputer
+  parent: [BaseStructureIndestructible, BaseComputer] # Frontier: added BaseStructureIndestructible
   id: ComputerId
   name: ID card computer
   description: Terminal for programming Nanotrasen employee ID cards to access parts of the station.

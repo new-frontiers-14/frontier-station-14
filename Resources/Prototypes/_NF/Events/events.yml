@@ -21,6 +21,9 @@
     # - id: SpiderClownSpawn
     # - id: SpiderSpawn
     - id: VentClog
+    - id: BluespaceMcCargoCrate # Frontier
+    - id: BluespaceSyndicateCrate # Frontier
+    - id: BluespaceBrokenMcDelivery # Frontier
 
 - type: entityTable
   id: BasicAntagEventsTable
@@ -245,11 +248,10 @@
   parent: BaseGameRule
   components:
   - type: StationEvent
-    weight: 15
+    weight: 2 # Frontier: 15<2
     earliestStart: 15
     duration: 1
-    reoccurrenceDelay: 180 # Frontier
-    maxOccurrences: 2 # Frontier - People dont like too many false alarms
+    reoccurrenceDelay: 240 # Frontier: 4 hours
   - type: FalseAlarmRule
 
 - type: entity
