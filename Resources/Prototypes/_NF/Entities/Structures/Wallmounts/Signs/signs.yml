@@ -78,3 +78,93 @@
   components:
   - type: Sprite
     state: direction_vend
+ 
+# Directional Station Guide Signs
+- type: entity
+  parent: BaseSign
+  id: BaseSignNF
+  abstract: true
+  components:
+    - type: Sprite
+      sprite: _NF/Structures/Wallmounts/signs.rsi
+      
+- type: entity
+  parent: BaseSignNF
+  id: SignNfsd
+  name: nfsd sign
+  description: A sign that marks the area beyond as an NFSD area.
+  components:
+  - type: Sprite
+    state: nfsd
+
+- type: entity
+  parent: BaseSignNF
+  id: SignNfsdArmoury
+  name: armoury sign
+  description: A sign that marks the area beyond as an NFSD armoury.
+  components:
+  - type: Sprite
+    state: armoury
+
+- type: entity
+  parent: BaseSignNF
+  id: SignNfsdBrief
+  name: briefing sign
+  description: A sign that marks the area beyond as an NFSD briefing room.
+  components:
+  - type: Sprite
+    state: brief
+
+- type: entity
+  parent: BaseSignNF
+  id: SignNfsdBrig
+  name: brig sign
+  description: A sign that marks the area beyond as an NFSD brig.
+  components:
+  - type: Sprite
+    state: brig
+
+- type: entity
+  parent: BaseSignNF
+  id: SignNfsdBrigmed
+  name: medbay sign
+  description: A sign that marks the area beyond as an NFSD medbay.
+  components:
+  - type: Sprite
+    state: brigmed
+
+- type: entity
+  parent: BaseSignNF
+  id: SignNfsdDetective
+  name: detective sign
+  description: A sign that marks the area beyond as an NFSD detective's office.
+  components:
+  - type: Sprite
+    state: detective
+
+- type: entity
+  parent: BaseSignNF
+  id: SignNfsdLaw
+  name: lawyer sign
+  description: A sign that marks the area beyond as an NFSD lawyer's office.
+  components:
+  - type: Sprite
+    state: law
+
+- type: entity
+  parent: BaseSignNF
+  id: SignNfsdRange
+  name: shooting range sign
+  description: A sign that marks the area beyond as an NFSD shooting range.
+  components:
+  - type: Sprite
+    state: range
+
+- type: entity
+  parent: BaseSignNF
+  id: SignNfsdEvidence
+  name: evidence sign
+  description: A sign that marks the area beyond as an NFSD evidence room.
+  components:
+  - type: Sprite
+    state: evidence
