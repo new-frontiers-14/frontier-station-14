@@ -13,7 +13,6 @@ using Content.Server.Station.Systems;
 using Content.Shared._NF.CCVar;
 using Content.Shared._NF.Smuggling.Prototypes;
 using Content.Shared.Database;
-using Content.Shared.Dataset;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Paper;
@@ -49,6 +48,8 @@ public sealed class DeadDropSystem : EntitySystem
     private ISawmill _sawmill = default!;
 
     private readonly Queue<EntityUid> _drops = [];
+
+    private const int MaxHintTimeErrorSeconds = 300; // +/- 5 minutes
 
     // Temporary values, sane defaults, will be overwritten by CVARs.
     private int _maxDeadDrops = 10;
@@ -503,6 +504,11 @@ public sealed class DeadDropSystem : EntitySystem
 
         _adminLogger.Add(LogType.Action, LogImpact.Medium, $"{ToPrettyString(user)} sent a dead drop to {dropLocation.ToString()} from {ToPrettyString(uid)} at {Transform(uid).Coordinates.ToString()}");
 
+        //reset the timer (needed for the text)
+        component.NextDrop = _timing.CurTime + TimeSpan.FromSeconds(_random.Next(component.MinimumCoolDown, component.MaximumCoolDown));
+
+        var hintNextDrop = component.NextDrop.Value + TimeSpan.FromSeconds(_random.Next(-MaxHintTimeErrorSeconds, MaxHintTimeErrorSeconds + 1));
+
         // here we are just building a string for the hint paper so that it looks pretty and RP-like on the paper itself.
         var dropHint = new StringBuilder();
         dropHint.AppendLine(Loc.GetString("deaddrop-hint-pretext"));
@@ -510,6 +516,8 @@ public sealed class DeadDropSystem : EntitySystem
         dropHint.AppendLine(dropLocation.ToString());
         dropHint.AppendLine();
         dropHint.AppendLine(Loc.GetString("deaddrop-hint-posttext"));
+        dropHint.AppendLine();
+        dropHint.AppendLine(Loc.GetString("deaddrop-hint-next-drop", ("time", hintNextDrop.ToString("hh\\:mm\\:ss"))));
 
         var paper = EntityManager.SpawnEntity(component.HintPaper, Transform(uid).Coordinates);
 
@@ -521,8 +529,6 @@ public sealed class DeadDropSystem : EntitySystem
         _meta.SetEntityDescription(paper, Loc.GetString("deaddrop-hint-desc"));
         _hands.PickupOrDrop(user, paper, handsComp: hands);
 
-        //reset the timer
-        component.NextDrop = _timing.CurTime + TimeSpan.FromSeconds(_random.Next(component.MinimumCoolDown, component.MaximumCoolDown));
         component.DeadDropCalled = true;
         //logic of posters ends here and logic of radio signals begins here
 
