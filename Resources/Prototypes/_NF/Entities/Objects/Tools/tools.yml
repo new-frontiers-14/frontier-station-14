@@ -8,10 +8,6 @@
     isShipyardRCD: true
   - type: Sprite
     state: icon-shipyard
-  - type: PhysicalComposition
-    materialComposition:
-      Steel: 5000
-      Plastic: 1000
 
 - type: entity
   id: ShipyardRCDEmpty
@@ -33,7 +29,37 @@
     state: ammo-shipyard
   - type: Item
     heldPrefix: ammo-shipyard
-  - type: PhysicalComposition
-    materialComposition:
-      Steel: 1000
-      Plastic: 1000
+
+- type: entity
+  name: maintenance jack
+  parent: BaseItem
+  id: MaintenanceJack
+  description: A maintenance jack for removing up floor plating.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Tools/maintenance-jack.rsi
+    state: icon
+  - type: MeleeWeapon
+    wideAnimationRotation: -45
+    swingLeft: true
+    attackRate: 0.75
+    damage:
+      types:
+        Blunt: 10
+        Structural: 5
+    soundHit:
+      collection: MetalThud
+  - type: Item
+    size: Huge
+  - type: Clothing
+    sprite: Objects/Weapons/Melee/fireaxe.rsi
+    quickEquip: false
+    slots:
+    - back
+    - suitStorage
+  - type: Tool
+    qualities:
+      - Axing
+  - type: ToolTileCompatible
+  - type: UseDelay
+    delay: 1
