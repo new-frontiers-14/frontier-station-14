@@ -47,6 +47,19 @@
 
 - type: entity
   parent: IDCardStandard
+  id: PublicAffairsIDCard
+  name: public affairs liaison ID card
+  components:
+  - type: PresetIdCard
+    job: PublicAffairsLiaison
+  - type: Sprite
+    sprite: _NF/Objects/Misc/id_cards.rsi
+    layers:
+    - state: nfsd
+    - state: idpublicaffairsliaison
+
+- type: entity
+  parent: IDCardStandard
   id: CadetIDCard
   name: nfsd cadet ID card
   components:

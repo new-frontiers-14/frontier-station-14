@@ -66,7 +66,7 @@ namespace Content.Server.Engineering.EntitySystems
             EntityManager.SpawnEntity(component.Prototype, args.ClickLocation.SnapToGrid(grid));
 
             if (component.RemoveOnInteract && stackComp == null)
-                TryQueueDel(uid);
+                QueueDel(uid); // Frontier: TryQueueDel<QueueDel
         }
     }
 }

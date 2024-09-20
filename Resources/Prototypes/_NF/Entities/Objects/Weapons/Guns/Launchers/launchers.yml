@@ -1,67 +1,18 @@
 - type: entity
-  name: china lake
-  parent: [BaseC2ContrabandUnredeemable, BaseWeaponLauncher]
+  parent: WeaponLauncherChinaLake
   suffix: EMP
   id: WeaponLauncherChinaLakeEmp
-  description: PLOOP
   components:
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/Launchers/china_lake.rsi
-    layers:
-      - state: icon
-        map: ["enum.GunVisualLayers.Base"]
-  - type: Clothing
-    sprite: Objects/Weapons/Guns/Launchers/china_lake.rsi
-  - type: AmmoCounter
-  - type: Gun
-    fireRate: 1
-    selectedMode: SemiAuto
-    availableModes:
-      - SemiAuto
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
   - type: BallisticAmmoProvider
-    whitelist:
-      tags:
-        - Grenade
-    capacity: 3
-    proto: GrenadeEmp
-    soundInsert:
-      path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+    proto: GrenadeEMP
 
 - type: entity
-  name: RPG-7
   suffix: EMP
   parent: [BaseC2ContrabandUnredeemable, WeaponLauncherRocket]
   id: WeaponLauncherRocketEmp
-  description: A modified ancient rocket-propelled grenade launcher. On the handle is a label that says 'for authorized use only.'
   components:
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/Launchers/rocket.rsi
-    layers:
-      - state: base
-        map: ["enum.GunVisualLayers.Base"]
-      - state: mag-0
-        map: ["enum.GunVisualLayers.Mag"]
-  - type: Clothing
-    sprite: Objects/Weapons/Guns/Launchers/rocket.rsi
-  - type: Gun
-    fireRate: 0.5
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/rpgfire.ogg
   - type: BallisticAmmoProvider
-    whitelist:
-      tags:
-        - CartridgeRocket
     proto: CartridgeRocketEmp
-    capacity: 1
-    soundInsert:
-      path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
-  - type: MagazineVisuals
-    magState: mag
-    steps: 2
-    zeroVisible: false
-  - type: Appearance
 
 - type: entity
   name: mail RPDS
@@ -71,12 +22,8 @@
   components:
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Launchers/mail.rsi
-    layers:
-      - state: icon
-        map: ["enum.GunVisualLayers.Base"]
   - type: Clothing
     sprite: _NF/Objects/Weapons/Guns/Launchers/mail.rsi
-    quickEquip: false
     slots:
     - Back
     - Belt
@@ -86,7 +33,6 @@
     whitelist:
       tags:
         - MailCapsule
-    capacity: 4
   - type: StaticPrice
     price: 50
 
@@ -98,21 +44,13 @@
   components:
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Launchers/nfsd_lake.rsi
-    layers:
-      - state: icon
-        map: ["enum.GunVisualLayers.Base"]
   - type: Clothing
     sprite: _NF/Objects/Weapons/Guns/Launchers/nfsd_lake.rsi
-    quickEquip: false
-    slots:
-    - Back
-    - suitStorage
   - type: BallisticAmmoProvider
     proto: null
     whitelist:
       tags:
         - TrackingDart
         - Grenade
-    capacity: 4
   - type: StaticPrice
     price: 50

@@ -1,0 +1,27 @@
+- type: loadoutGroup
+  id: PalPDA
+  name: loadout-group-contractor-id
+  hidden: true # No point in showing this, it gets auto-selected.
+  loadouts:
+  - PalPublicAffairsLiaisonPDA
+  fallbacks:
+  - PalPublicAffairsLiaisonPDA
+
+- type: loadoutGroup
+  id: PalJumpsuit
+  name: loadout-group-contractor-jumpsuit
+  loadouts:
+  - PalClothingUniformJumpsuitPublicAffairsLiaison
+  - PalClothingUniformJumpskirtPublicAffairsLiaison
+  fallbacks:
+  - PalClothingUniformJumpsuitPublicAffairsLiaison
+  - PalClothingUniformJumpskirtPublicAffairsLiaison
+
+- type: loadoutGroup
+  id: PalGloves
+  name: loadout-group-contractor-gloves
+  hidden: true
+  loadouts:
+  - PalClothingHandsGlovesHop
+  fallbacks:
+  - PalClothingHandsGlovesHop
