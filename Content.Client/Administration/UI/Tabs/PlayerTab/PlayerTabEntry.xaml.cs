@@ -26,6 +26,6 @@ public sealed partial class PlayerTabEntry : PanelContainer
         BackgroundColorPanel.PanelOverride = styleBoxFlat;
         OverallPlaytimeLabel.Text = player.PlaytimeString;
         PlayerEntity = player.NetEntity;
-        BalanceLabel.Text = player.Balance.ToString(); // Frontier
+        BalanceLabel.Text = BankSystemExtensions.ToCurrencyString(player.Balance); // Frontier
     }
 }
