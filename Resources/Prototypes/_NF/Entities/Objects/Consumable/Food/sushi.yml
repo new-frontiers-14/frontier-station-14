@@ -17,11 +17,11 @@
         maxVol: 40
         reagents:
         - ReagentId: Nutriment
-          Quantity: 25        
+          Quantity: 20
         - ReagentId: Flavorol
           Quantity: 10
         - ReagentId: CucumberWater
-          Quantity: 2      
+          Quantity: 2
   - type: SliceableFood
     count: 5
     slice: FoodMealAvocadoSushiSlice
@@ -42,15 +42,15 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 10
+        maxVol: 8
         reagents:
         - ReagentId: Nutriment
-          Quantity: 5
+          Quantity: 4
         - ReagentId: Flavorol
           Quantity: 2
         - ReagentId: CucumberWater
-          Quantity: .5
-          
+          Quantity: .4
+
 - type: entity
   name: carp sushi
   parent: FoodMealBase
@@ -70,13 +70,13 @@
         maxVol: 45
         reagents:
         - ReagentId: Nutriment
-          Quantity: 25        
+          Quantity: 20
         - ReagentId: Flavorol
           Quantity: 10
         - ReagentId: CarpoToxin
           Quantity: 5
         - ReagentId: CucumberWater
-          Quantity: 2         
+          Quantity: 2
   - type: SliceableFood
     count: 5
     slice: FoodMealCarpSushiSlice
@@ -85,7 +85,7 @@
   name: carp sushi
   parent: FoodInjectableBase
   id: FoodMealCarpSushiSlice
-  description: Certainly worth the risk.
+  description: Certainly worth the smaller risk.
   components:
   - type: FlavorProfile
     flavors:
@@ -97,13 +97,13 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 15
+        maxVol: 9
         reagents:
         - ReagentId: Nutriment
-          Quantity: 5
+          Quantity: 4
         - ReagentId: Flavorol
           Quantity: 2
         - ReagentId: CarpoToxin
           Quantity: 1
         - ReagentId: CucumberWater
-          Quantity: .5
+          Quantity: .4
