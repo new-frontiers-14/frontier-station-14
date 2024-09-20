@@ -291,7 +291,15 @@ namespace Content.Server._NF.M_Emp
             var empEnergyConsumption = 2700000;
             var empDisabledDuration = 60;
 
-            _emp.EmpPulse(Transform(uid).MapPosition, empRange, empEnergyConsumption, empDisabledDuration);
+            var xform = Transform(uid);
+            List<EntityUid>? immuneGridList = null;
+            if (xform.GridUid != null)
+            {
+                immuneGridList = new List<EntityUid> {
+                    xform.GridUid.Value
+                };
+            }
+            _emp.EmpPulse(xform.MapPosition, empRange, empEnergyConsumption, empDisabledDuration, immuneGrids: immuneGridList);
 
             return true;
         }
