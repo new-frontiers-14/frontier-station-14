@@ -68,7 +68,7 @@ namespace Content.Client.Administration
                 }
                 args.ScreenHandle.DrawString(_font, screenCoordinates+lineoffset, playerInfo.Username, playerInfo.Connected ? Color.Yellow : Color.White);
                 args.ScreenHandle.DrawString(_font, screenCoordinates, playerInfo.CharacterName, playerInfo.Connected ? Color.Aquamarine : Color.White);
-                args.ScreenHandle.DrawString(_font, screenCoordinates + 2 * lineoffset, $"balance: {balance_str}", playerInfo.Connected ? Color.Aquamarine : Color.White); // Frontier
+                args.ScreenHandle.DrawString(_font, screenCoordinates + 2 * lineoffset, $"balance: {balance}", playerInfo.Connected ? Color.Aquamarine : Color.White); // Frontier
             }
         }
     }
