@@ -1,4 +1,4 @@
-﻿using Content.Shared.Abilities;
+using Content.Shared.Abilities;
 using Content.Shared.Actions;
 using Content.Shared.DoAfter;
 using Content.Shared.Random;
@@ -35,6 +35,8 @@ public abstract class SharedRatKingSystem : EntitySystem
 
         SubscribeLocalEvent<RatKingRummageableComponent, GetVerbsEvent<AlternativeVerb>>(OnGetVerb);
         SubscribeLocalEvent<RatKingRummageableComponent, RatKingRummageDoAfterEvent>(OnDoAfterComplete);
+
+        SubscribeLocalEvent<RatKingRummageableComponent, ComponentInit>(OnComponentInit); // Goobstation - #660
     }
 
     private void OnStartup(EntityUid uid, RatKingComponent component, ComponentStartup args)
@@ -104,6 +106,12 @@ public abstract class SharedRatKingSystem : EntitySystem
         _action.StartUseDelay(component.ActionOrderFollowEntity);
         _action.StartUseDelay(component.ActionOrderCheeseEmEntity);
         _action.StartUseDelay(component.ActionOrderLooseEntity);
+    }
+
+    public void OnComponentInit(EntityUid uid, RatKingRummageableComponent component, ComponentInit args) // Goobstation - #660 Disposal unit rummage cooldown now start on spawn to prevent rummage abuse.
+    {
+        component.LastLooted = _gameTiming.CurTime;
+        Dirty(uid, component);
     }
 
     private void OnGetVerb(EntityUid uid, RatKingRummageableComponent component, GetVerbsEvent<AlternativeVerb> args)
