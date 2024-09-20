@@ -887,7 +887,7 @@ entities:
   - uid: 54
     components:
     - type: Transform
-      pos: 6.5,-7.5
+      pos: 5.5,-5.5
       parent: 1
   - uid: 55
     components:
@@ -947,7 +947,7 @@ entities:
   - uid: 66
     components:
     - type: Transform
-      pos: 0.5,6.5
+      pos: -2.5,-4.5
       parent: 1
   - uid: 67
     components:
@@ -977,17 +977,17 @@ entities:
   - uid: 72
     components:
     - type: Transform
-      pos: -1.5,4.5
+      pos: -1.5,5.5
       parent: 1
   - uid: 73
     components:
     - type: Transform
-      pos: 0.5,-5.5
+      pos: -2.5,4.5
       parent: 1
   - uid: 74
     components:
     - type: Transform
-      pos: -1.5,5.5
+      pos: -0.5,5.5
       parent: 1
   - uid: 75
     components:
@@ -997,17 +997,17 @@ entities:
   - uid: 76
     components:
     - type: Transform
-      pos: -1.5,-3.5
+      pos: 0.5,6.5
       parent: 1
   - uid: 77
     components:
     - type: Transform
-      pos: -0.5,5.5
+      pos: 0.5,5.5
       parent: 1
   - uid: 78
     components:
     - type: Transform
-      pos: 0.5,5.5
+      pos: -2.5,5.5
       parent: 1
   - uid: 79
     components:
@@ -1017,17 +1017,17 @@ entities:
   - uid: 80
     components:
     - type: Transform
-      pos: 6.5,-6.5
+      pos: 0.5,-5.5
       parent: 1
   - uid: 81
     components:
     - type: Transform
-      pos: 4.5,-10.5
+      pos: 6.5,2.5
       parent: 1
   - uid: 82
     components:
     - type: Transform
-      pos: 4.5,-11.5
+      pos: 5.5,-10.5
       parent: 1
   - uid: 83
     components:
@@ -1062,7 +1062,7 @@ entities:
   - uid: 89
     components:
     - type: Transform
-      pos: -2.5,4.5
+      pos: 0.5,-4.5
       parent: 1
   - uid: 90
     components:
@@ -1077,7 +1077,7 @@ entities:
   - uid: 92
     components:
     - type: Transform
-      pos: 6.5,-5.5
+      pos: 0.5,-0.5
       parent: 1
   - uid: 93
     components:
@@ -1122,12 +1122,7 @@ entities:
   - uid: 101
     components:
     - type: Transform
-      pos: 4.5,8.5
-      parent: 1
-  - uid: 102
-    components:
-    - type: Transform
-      pos: 0.5,-4.5
+      pos: 5.5,-11.5
       parent: 1
   - uid: 103
     components:
@@ -1137,7 +1132,7 @@ entities:
   - uid: 104
     components:
     - type: Transform
-      pos: 0.5,-0.5
+      pos: 5.5,-6.5
       parent: 1
   - uid: 105
     components:
@@ -1158,6 +1153,11 @@ entities:
     components:
     - type: Transform
       pos: 5.5,-12.5
+      parent: 1
+  - uid: 678
+    components:
+    - type: Transform
+      pos: 5.5,7.5
       parent: 1
 - proto: CableHV
   entities:
@@ -3399,6 +3399,13 @@ entities:
       rot: 3.141592653589793 rad
       pos: -4.5,2.5
       parent: 1
+- proto: IntercomCommon
+  entities:
+  - uid: 102
+    components:
+    - type: Transform
+      pos: 4.5,4.5
+      parent: 1
 - proto: Jug
   entities:
   - uid: 441
@@ -5002,7 +5009,7 @@ entities:
       lastSignals:
         DoorStatus: True
     - type: Door
-      secondsUntilStateChange: -12533.617
+      secondsUntilStateChange: -16137.78
       state: Opening
 - proto: WindowReinforcedDirectional
   entities:
