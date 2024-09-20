@@ -446,27 +446,24 @@
     access: [["Security"]]
 
 - type: entity
-  parent: VendingMachineCart # Frontier
-  id: VendingMachineCartNfsd
+  parent: [BaseStructureDisableScrewing, BaseStructureIndestructible, BaseStructureAccessReaderImmuneToEmag, VendingMachineCart]
+  id: NFVendingMachineCart
+  suffix: SR
+  components:
+  - type: VendingMachine
+    pack: NFPTechInventory
+  - type: AccessReader
+    access: [["HeadOfPersonnel"]]
+  - type: MarketModifier
+    mod: 5
+
+- type: entity
+  parent: NFVendingMachineCart
+  id: NFVendingMachineCartNfsd
   suffix: NFSD
   components:
   - type: VendingMachine
-    pack: PTechNfsdInventory
-    offState: off
-    brokenState: broken
-    normalState: normal-unshaded
-    ejectState: eject-unshaded
-    denyState: deny-unshaded
-  - type: Sprite
-    sprite: Structures/Machines/VendingMachines/cart.rsi
-    layers:
-    - state: "off"
-      map: ["enum.VendingMachineVisualLayers.Base"]
-    - state: "off"
-      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
-      shader: unshaded
-    - state: panel
-      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+    pack: NFPTechNfsdInventory
   - type: AccessReader
     access: [["HeadOfSecurity"]]
 
