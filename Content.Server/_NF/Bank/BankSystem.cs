@@ -78,6 +78,7 @@ public sealed partial class BankSystem : EntitySystem
 
         _dbManager.SaveCharacterSlotAsync((NetUserId) user, newProfile, index);
         _log.Info($"Character {profile.Name} saved");
+        // Update any active admin UI with new balance
         var session = _playerManager.GetSessionById((NetUserId) user);
         RaiseLocalEvent(new BalanceChangedEvent(session, bank.Balance));
     }
