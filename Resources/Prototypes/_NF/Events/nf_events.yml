@@ -65,8 +65,10 @@
     duration: 35
     earliestStart: 30
     minimumPlayers: 20
-    reoccurrenceDelay: 60 # once per hour
+    reoccurrenceDelay: 50
   - type: RandomFaxRule
+    minFaxes: 1
+    maxFaxes: 2
     name: deaddrop-faxed-hint-name
     prototypeId: PaperDeadDropFax
     content: deaddrop-faxed-hint-content # Default contents, will be edited.

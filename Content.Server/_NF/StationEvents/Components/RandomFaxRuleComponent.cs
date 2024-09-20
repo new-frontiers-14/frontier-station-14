@@ -51,6 +51,18 @@ public sealed partial class RandomFaxRuleComponent : Component
     /// </summary>
     [DataField]
     public List<IRecipientFaxAction>? PerRecipientActions { get; private set; }
+
+    /// <summary>
+    ///     Minimum faxes to send
+    /// </summary>
+    [DataField]
+    public int MinFaxes { get; private set; } = 1;
+
+    /// <summary>
+    ///     Maximum faxes to send
+    /// </summary>
+    [DataField]
+    public int MaxFaxes { get; private set; } = 1;
 }
 
 // TODO: relocate these definitions.
