@@ -22,9 +22,9 @@
 
 - type: entity
   name: china lake
-  parent: [BaseWeaponLauncher, BaseGunWieldable]
+  parent: [BaseWeaponLauncher, BaseGunWieldable, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   id: WeaponLauncherChinaLake
-  description: PLOOP
+  description: PLOOP.
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Launchers/china_lake.rsi
@@ -52,11 +52,10 @@
     proto: GrenadeFrag
     soundInsert:
       path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
-  - type: Contraband #frontier
 
 - type: entity
   name: RPG-7
-  parent: BaseWeaponLauncher
+  parent: [ BaseWeaponLauncher, BaseC3Contraband ] # Frontier: BaseMajorContraband<BaseC3Contraband
   id: WeaponLauncherRocket
   description: A modified ancient rocket-propelled grenade launcher.
   components:
@@ -124,7 +123,7 @@
 
 - type: entity
   name: pirate cannon
-  parent: BaseWeaponLauncher
+  parent: [BaseC3PirateContraband, BaseWeaponLauncher] # Frontier: added C3PirateContraband
   id: WeaponLauncherPirateCannon
   description: Kaboom!
   components:
@@ -252,6 +251,7 @@
     - type: Gun
       soundGunshot: /Audio/Weapons/Guns/Gunshots/harpoon.ogg
       fireRate: 0.5
+      clumsyProof: true
     - type: BasicEntityAmmoProvider
       proto: GrapplingHook
       capacity: 1
@@ -363,7 +363,7 @@
   parent: WeaponLauncherMultipleRocket
   id: WeaponLauncherAdmemeMeteorLarge
   suffix: Admeme
-  description: It fires large meteors
+  description: It fires large meteors.
   components:
   - type: BallisticAmmoProvider
     whitelist:

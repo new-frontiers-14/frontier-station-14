@@ -1,6 +1,6 @@
 - type: entity
   name: china lake
-  parent: BaseWeaponLauncher
+  parent: [BaseC2ContrabandUnredeemable, BaseWeaponLauncher]
   suffix: EMP
   id: WeaponLauncherChinaLakeEmp
   description: PLOOP
@@ -32,7 +32,7 @@
 - type: entity
   name: RPG-7
   suffix: EMP
-  parent: BaseWeaponLauncher
+  parent: [BaseC2ContrabandUnredeemable, WeaponLauncherRocket]
   id: WeaponLauncherRocketEmp
   description: A modified ancient rocket-propelled grenade launcher. On the handle is a label that says 'for authorized use only.'
   components:
@@ -65,7 +65,7 @@
 
 - type: entity
   name: mail RPDS
-  parent: WeaponLauncherChinaLake
+  parent: [BaseC1Contraband, WeaponLauncherChinaLake]
   id: WeaponMailLake
   description: Rap(b?)id Parcel Delivery System
   components:
@@ -92,9 +92,9 @@
 
 - type: entity
   name: nfsd grenade launcher
-  parent: WeaponLauncherChinaLake
+  parent: [BaseC2ContrabandUnredeemable, WeaponLauncherChinaLake]
   id: WeaponLauncherNfsdLake
-  description: nfsd rapid grenade delivery system
+  description: Able to lob both grenades and darts!
   components:
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Launchers/nfsd_lake.rsi
