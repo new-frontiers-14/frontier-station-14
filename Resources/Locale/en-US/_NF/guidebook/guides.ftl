@@ -21,6 +21,7 @@ guide-entry-expedition-syndicate-naval-forces = Syndicate Naval Forces
 guide-entry-expedition-xenos = Xenos
 
 # Shipyard entries
+guide-entry-shipyard-akupara = Akupara
 guide-entry-shipyard-ambition = Ambition
 guide-entry-shipyard-apothecary = Apothecary
 guide-entry-shipyard-bazaar = Bazaar
@@ -52,10 +53,11 @@ guide-entry-shipyard-pioneer = Pioneer
 guide-entry-shipyard-prospector = Prospector
 guide-entry-shipyard-searchlight = Searchlight
 guide-entry-shipyard-spirit = Spirit
+guide-entry-shipyard-stasis = Stasis
 guide-entry-shipyard-vagabond = Vagabond
 
 # Rules entries
-guide-entry-frontier-rule-zero-tolernace = Zero Tolerance
+guide-entry-frontier-rule-zero-tolerance = Zero Tolerance
 guide-entry-frontier-rule-1 = 1. Community
 guide-entry-frontier-rule-2 = 2. IC Info
 guide-entry-frontier-rule-3 = 3. Escalation
@@ -67,4 +69,3 @@ guide-entry-frontier-rule-8 = 8. Crimes
 guide-entry-frontier-rule-9 = 9. Silicons
 guide-entry-frontier-rule-10 = 10. Security
 guide-entry-frontier-rule-11 = 11. Command
-
