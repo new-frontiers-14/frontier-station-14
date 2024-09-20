@@ -1,0 +1,109 @@
+
+# Stonecut
+- type: entity
+  id: GroundTobaccoStonecut
+  name: stonecut tobacco
+  parent: GroundTobacco
+  description: "Fine cut leaves, perfect for pipes."
+  components:
+  - type: Stack
+    stackType: GroundTobaccoStonecut
+    count: 1
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nicotine
+          Quantity: 15
+        - ReagentId: FineRockDust
+          Quantity: 15
+  - type: Sprite
+    sprite: Objects/Misc/reagent_fillings.rsi
+    state: powderpile
+    color: "#5f4d2e"
+
+# Shrooms
+- type: entity
+  name: dried shrooms
+  parent: BaseItem
+  id: ShroomsDried
+  description: "Dried shrooms, ready to be ground."
+  components:
+  - type: Stack
+    stackType: ShroomsDried
+    count: 1
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: THC
+          Quantity: 12
+  - type: Sprite
+    layers:
+    - sprite: Objects/Specific/Hydroponics/fly_amanita.rsi
+      state: produce
+      offset: -0.2,0.1
+      color: "#cb7b18"
+    - sprite: Objects/Misc/spaceshroom.rsi
+      state: spaceshroom_cooked
+    - sprite: Objects/Specific/Hydroponics/chanterelle.rsi
+      state: produce
+      offset: 0.15,-0.1
+      color: "#cb7b18"
+  - type: Construction
+    graph: smokeableGroundTobaccoShrooms
+    node: ground
+
+- type: entity
+  id: GroundTobaccoShrooms
+  name: fungal whiff tobacco
+  parent: GroundTobacco
+  description: "Fine cut dried shrooms. Just perfect."
+  components:
+  - type: Stack
+    stackType: GroundTobaccoShrooms
+    count: 1
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nicotine
+          Quantity: 15
+        - ReagentId: ShroomMix
+          Quantity: 15
+  - type: Sprite
+    color: "#ffffff" # reverting the brown from the parent
+    layers:
+    - sprite: Objects/Misc/reagent_fillings.rsi
+      state: powderpile
+      color: "#b07265"
+    - sprite: Fluids/wet_floor_sparkles.rsi
+      state: sparkles
+      scale: 0.5,0.5
+      offset: 0.0,-0.1
+      color: "#748eaf"
+
+# Sweet dreams
+- type: entity
+  id: GroundTobaccoDrowsy
+  name: sweet dreams tobacco
+  parent: GroundTobacco
+  description: "A blend of tobacco ribbons. Feels sticky, smells like an old leather couch."
+  components:
+  - type: Stack
+    stackType: GroundTobaccoDrowsy
+    count: 1
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nicotine
+          Quantity: 15
+        - ReagentId: Psicodine
+          Quantity: 7.5
+        - ReagentId: Haloperidol
+          Quantity: 7.5
+  - type: Sprite
+    sprite: Objects/Misc/reagent_fillings.rsi
+    state: powderpile
+    color: "#a865a0"
