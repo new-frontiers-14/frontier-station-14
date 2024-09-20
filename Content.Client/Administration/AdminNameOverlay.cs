@@ -61,7 +61,7 @@ namespace Content.Client.Administration
                 var screenCoordinates = _eyeManager.WorldToScreen(aabb.Center +
                                                                   new Angle(-_eyeManager.CurrentEye.Rotation).RotateVec(
                                                                       aabb.TopRight - aabb.Center)) + new Vector2(1f, 7f);
-                var balance_str = playerInfo.Balance == int.MinValue ? "NO BALANCE" : playerInfo.Balance.ToString(); // Frontier
+                var balance = playerInfo.Balance == int.MinValue ? "NO BALANCE" : BankSystemExtensions.ToCurrencyString(playerInfo.Balance); // Frontier
                 if (playerInfo.Antag)
                 {
                     args.ScreenHandle.DrawString(_font, screenCoordinates + (lineoffset * 3), "ANTAG", Color.OrangeRed); // Frontier: 2<3
