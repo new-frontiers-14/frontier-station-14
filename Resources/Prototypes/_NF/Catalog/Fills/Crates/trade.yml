@@ -29,6 +29,11 @@
   components:
   - type: StaticPrice
     price: 3000
+  - type: DisableShipyardSale
+    reason: shipyard-console-contraband-onboard
+    allowedShipyardTypes:
+    - Syndicate
+    - BlackMarket
 
 - type: entity
   id: CrateTradeSecureHighFilledContraband
@@ -37,3 +42,8 @@
   components:
   - type: StaticPrice
     price: 5000
+  - type: DisableShipyardSale
+    reason: shipyard-console-contraband-onboard
+    allowedShipyardTypes:
+    - Syndicate
+    - BlackMarket

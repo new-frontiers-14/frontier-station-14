@@ -7,7 +7,9 @@ dead-drop-hint-note = Not much time.
     Check these to lend a hand.
     For a better tomorrow.
 
-dead-drop-hint-line = - {CAPITALIZE(INDEFINITE($object))} {$object} at {$poi}
+dead-drop-time-known = next drop around {$time}
+dead-drop-time-unknown = next drop placed when we can
+dead-drop-hint-line = - {CAPITALIZE(INDEFINITE($object))} {$object} at {$poi} ({$time})
 
 dead-drop-hint-generic = object
 dead-drop-hint-poster = poster

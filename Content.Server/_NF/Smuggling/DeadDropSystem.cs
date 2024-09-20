@@ -50,21 +50,23 @@ public sealed class DeadDropSystem : EntitySystem
     private readonly Queue<EntityUid> _drops = [];
 
     private const int MaxHintTimeErrorSeconds = 300; // +/- 5 minutes
+    private const int MinCluesPerHint = 1;
+    private const int MaxCluesPerHint = 2;
 
     // Temporary values, sane defaults, will be overwritten by CVARs.
-    private int _maxDeadDrops = 10;
+    private int _maxDeadDrops = 8;
     private int _maxSimultaneousPods = 5;
     private int _minDeadDropTimeout = 900;
     private int _maxDeadDropTimeout = 5400;
-    private int _minDeadDropDistance = 4500;
-    private int _maxDeadDropDistance = 6000;
+    private int _minDeadDropDistance = 6500;
+    private int _maxDeadDropDistance = 8000;
     private int _minDeadDropHints = 3;
     private int _maxDeadDropHints = 5;
     public override void Initialize()
     {
         base.Initialize();
 
-        SubscribeLocalEvent<DeadDropComponent, ComponentStartup>(OnStartup);
+        SubscribeLocalEvent<DeadDropComponent, ComponentStartup>(OnStartup); //TODO: compromise on shutdown if the stat
         SubscribeLocalEvent<DeadDropComponent, GetVerbsEvent<InteractionVerb>>(AddSearchVerb);
         SubscribeLocalEvent<DeadDropComponent, AnchorStateChangedEvent>(OnDeadDropUnanchored);
         SubscribeLocalEvent<StationDeadDropComponent, ComponentStartup>(OnStationStartup);
@@ -352,11 +354,12 @@ public sealed class DeadDropSystem : EntitySystem
         {
             var ent = allHints[i];
 
-            var hintCount = _random.Next(2, 4);
+            var hintCount = _random.Next(MinCluesPerHint, MaxCluesPerHint + 1);
             _random.Shuffle(deadDropStationTuples);
 
             var hintLines = new StringBuilder();
             var hints = 0;
+            // Format the hint lines we need from a random set of dead drops.
             for (var j = 0; j < deadDropStationTuples.Count && hints < hintCount; j++)
             {
                 var hintTuple = deadDropStationTuples[j];
@@ -372,7 +375,18 @@ public sealed class DeadDropSystem : EntitySystem
                 else
                     stationHintString = Loc.GetString("dead-drop-station-hint-generic");
 
-                hintLines.AppendLine(Loc.GetString("dead-drop-hint-line", ("object", objectHintString), ("poi", stationHintString)));
+                string timeString;
+                if (TryComp<DeadDropComponent>(hintTuple.Item2, out var deadDrop) && deadDrop.NextDrop != null)
+                {
+                    var dropTimeWithError = deadDrop.NextDrop.Value + TimeSpan.FromSeconds(_random.Next(-MaxHintTimeErrorSeconds, MaxHintTimeErrorSeconds));
+                    timeString = Loc.GetString("dead-drop-time-known", ("time", dropTimeWithError.ToString("hh\\:mm\\:ss")));
+                }
+                else
+                {
+                    timeString = Loc.GetString("dead-drop-time-unknown");
+                }
+
+                hintLines.AppendLine(Loc.GetString("dead-drop-hint-line", ("object", objectHintString), ("poi", stationHintString), ("time", timeString)));
                 hints++;
             }
             var hintText = new StringBuilder();
