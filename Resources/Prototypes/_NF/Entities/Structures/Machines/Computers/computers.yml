@@ -101,7 +101,7 @@
 
 - type: entity
   parent: ComputerShuttle
-  id: ComputerShuttleAntagEmpty
+  id: ComputerShuttleAntag
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
@@ -118,24 +118,6 @@
     radius: 1.5
     energy: 1.6
     color: "#c94242"
-
-- type: entity
-  parent: ComputerShuttleAntagEmpty
-  id: ComputerShuttleAntag
-  components:
-  - type: ContainerFill
-    containers:
-      key_slots:
-      - EncryptionKeyTraffic
-
-- type: entity
-  parent: ComputerShuttleEmpty
-  id: ComputerShuttle
-  components:
-  - type: ContainerFill
-    containers:
-      key_slots:
-      - EncryptionKeyTraffic
 
 - type: entity
   parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerIFFSyndicate]
@@ -331,9 +313,6 @@
     radius: 1.5
     energy: 1.6
     color: "#b89f25"
-  # - type: GuideHelp # Frontier
-  #   guides: # Frontier
-  #   - CargoBounties # Frontier
 
 - type: entity
   id: ComputerSalvageExpeditionDebug
@@ -342,3 +321,79 @@
   components:
     - type: SalvageExpeditionConsole
       debug: true
+
+# Station Traffic Controller consoles
+- type: entity
+  id: BaseComputerTraffic
+  abstract: true
+  components:
+  - type: RadarConsole
+    maxRange: 350
+  - type: Computer
+    board: Null
+  - type: Sprite
+    drawdepth: SmallObjects
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      sprite: Structures/Machines/computers.rsi
+      state: shuttle
+    - map: ["computerLayerKeys"]
+      sprite: Structures/Machines/computers.rsi
+      state: generic_keys
+  - type: AccessReader
+    access: [["StationTrafficController"]]
+  - type: ActivatableUIRequiresAccess
+
+- type: entity
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseStructureAccessReaderImmuneToEmag, BaseComputerShuttle, BaseComputerTraffic]
+  id: BaseComputerTrafficRemote
+  abstract: true
+
+- type: entity
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseStructureAccessReaderImmuneToEmag, ComputerShuttle, BaseShuttleIntercom, BaseComputerTraffic]
+  id: BaseComputerTrafficLocal
+  abstract: true
+
+- type: entity
+  parent: BaseComputerTrafficLocal
+  id: ComputerShuttleFrontierOutpostLocal
+  name: frontier outpost traffic console
+  description: Monitors the traffic around Frontier Outpost.
+  suffix: Local
+  components:
+  - type: NFDroneConsoleTarget
+    id: Frontier
+
+- type: entity
+  parent: BaseComputerTrafficRemote
+  id: ComputerShuttleFrontierOutpostRemote
+  name: frontier outpost traffic console
+  description: Monitors the traffic around Frontier Outpost.
+  suffix: Remote
+  components:
+  - type: NFDroneConsole
+    id: Frontier
+
+- type: entity
+  parent: BaseComputerTrafficLocal
+  id: ComputerShuttleTradeOutpostLocal
+  name: trade outpost traffic console
+  suffix: Local
+  description: Monitors the traffic around the Trade Outpost.
+  components:
+  - type: NFDroneConsoleTarget
+    id: Trade
+
+- type: entity
+  parent: BaseComputerTrafficRemote
+  id: ComputerShuttleTradeOutpostRemote
+  name: trade outpost traffic console
+  suffix: Remote
+  description: Monitors the traffic around the Trade Outpost.
+  components:
+  - type: NFDroneConsole
+    id: Trade

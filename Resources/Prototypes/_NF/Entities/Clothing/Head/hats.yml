@@ -1,8 +1,14 @@
 - type: entity
-  parent: ClothingHeadHatHoshat
   id: ClothingHeadHatBH
   name: "bounty hunter's hat"
+  parent: [ BaseC1Contraband, ClothingHeadHatHoshat ]
   description: "There's a new bounty hunter in the sector."
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Head/Hats/bounty_hunter_hat.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Head/Hats/bounty_hunter_hat.rsi
+  - type: HamsterWearable
 
 - type: entity
   parent: ClothingHeadBaseButcherable
