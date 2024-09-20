@@ -16,6 +16,8 @@ public sealed partial class GetRandomDeadDropAction : IPreFaxAction
     private IRobustRandom _random = default!;
     private StationSystem _station = default!;
 
+    const int MaxHintTimeErrorSeconds = 300;
+
     public void Initialize()
     {
         _entityManager = IoCManager.Resolve<IEntityManager>();
@@ -56,7 +58,18 @@ public sealed partial class GetRandomDeadDropAction : IPreFaxAction
             else
                 stationHintString = Loc.GetString("dead-drop-station-hint-generic");
 
-            hintLines.AppendLine(Loc.GetString("dead-drop-hint-line", ("object", objectHintString), ("poi", stationHintString)));
+            string timeString;
+            if (_entityManager.TryGetComponent<DeadDropComponent>(hintTuple.Item2, out var deadDrop) && deadDrop.NextDrop != null)
+            {
+                var dropTimeWithError = deadDrop.NextDrop.Value + TimeSpan.FromSeconds(_random.Next(-MaxHintTimeErrorSeconds, MaxHintTimeErrorSeconds));
+                timeString = Loc.GetString("dead-drop-time-known", ("time", dropTimeWithError.ToString("hh\\:mm") + ":00"));
+            }
+            else
+            {
+                timeString = Loc.GetString("dead-drop-time-unknown");
+            }
+
+            hintLines.AppendLine(Loc.GetString("dead-drop-hint-line", ("object", objectHintString), ("poi", stationHintString), ("time", timeString)));
             hints++;
         }
         var hintText = new StringBuilder();
