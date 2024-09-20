@@ -192,6 +192,80 @@
             - tool: Screwing
               doAfter: 1
 
+        #Frontier: fancy wooden chairs
+        - to: chairWoodFancyBlack
+          steps:
+            - tag: CarpetBlack
+              name: black carpet
+              icon:
+                sprite: Objects/Tiles/tile.rsi
+                state: carpet-black
+
+        - to: chairWoodFancyBlue
+          steps:
+            - tag: CarpetBlue
+              name: blue carpet
+              icon:
+                sprite: Objects/Tiles/tile.rsi
+                state: carpet-blue
+
+        - to: chairWoodFancyCyan
+          steps:
+            - tag: CarpetCyan
+              name: cyan carpet
+              icon:
+                sprite: Objects/Tiles/tile.rsi
+                state: carpet-cyan
+
+        - to: chairWoodFancyGreen
+          steps:
+            - tag: CarpetGreen
+              name: green carpet
+              icon:
+                sprite: Objects/Tiles/tile.rsi
+                state: carpet-green
+
+        - to: chairWoodFancyOrange
+          steps:
+            - tag: CarpetOrange
+              name: orange carpet
+              icon:
+                sprite: Objects/Tiles/tile.rsi
+                state: carpet-orange
+
+        - to: chairWoodFancyPurple
+          steps:
+            - tag: CarpetPurple
+              name: purple carpet
+              icon:
+                sprite: Objects/Tiles/tile.rsi
+                state: carpet-purple
+
+        - to: chairWoodFancyPink
+          steps:
+            - tag: CarpetPink
+              name: pink carpet
+              icon:
+                sprite: Objects/Tiles/tile.rsi
+                state: carpet-pink
+
+        - to: chairWoodFancyRed
+          steps:
+            - tag: CarpetRed
+              name: red carpet
+              icon:
+                sprite: Objects/Tiles/tile.rsi
+                state: carpet-red
+
+        - to: chairWoodFancyWhite
+          steps:
+            - tag: CarpetWhite
+              name: white carpet
+              icon:
+                sprite: Objects/Tiles/tile.rsi
+                state: carpet-white
+        #End Frontier
+
     - node: chairMeat
       entity: ChairMeat
       edges:
@@ -275,4 +349,113 @@
             - tool: Cutting
               doAfter: 1
             - tool: Screwing
+              doAfter: 1
+
+    # Frontier: fancy wooden chairs
+    - node: chairWoodFancyBlack
+      entity: ChairWoodFancyBlack
+      edges:
+        - to: chairWood
+          completed:
+            - !type:SpawnPrototype
+              prototype: FloorCarpetItemBlack
+              amount: 1
+          steps:
+            - tool: Prying
+              doAfter: 1
+
+    - node: chairWoodFancyBlue
+      entity: ChairWoodFancyBlue
+      edges:
+        - to: chairWood
+          completed:
+            - !type:SpawnPrototype
+              prototype: FloorCarpetItemBlue
+              amount: 1
+          steps:
+            - tool: Prying
+              doAfter: 1
+
+    - node: chairWoodFancyCyan
+      entity: ChairWoodFancyCyan
+      edges:
+        - to: chairWood
+          completed:
+            - !type:SpawnPrototype
+              prototype: FloorCarpetItemCyan
+              amount: 1
+          steps:
+            - tool: Prying
+              doAfter: 1
+
+    - node: chairWoodFancyGreen
+      entity: ChairWoodFancyGreen
+      edges:
+        - to: chairWood
+          completed:
+            - !type:SpawnPrototype
+              prototype: FloorCarpetItemGreen
+              amount: 1
+          steps:
+            - tool: Prying
+              doAfter: 1
+
+    - node: chairWoodFancyOrange
+      entity: ChairWoodFancyOrange
+      edges:
+        - to: chairWood
+          completed:
+            - !type:SpawnPrototype
+              prototype: FloorCarpetItemOrange
+              amount: 1
+          steps:
+            - tool: Prying
+              doAfter: 1
+
+    - node: chairWoodFancyPink
+      entity: ChairWoodFancyPink
+      edges:
+        - to: chairWood
+          completed:
+            - !type:SpawnPrototype
+              prototype: FloorCarpetItemPink
+              amount: 1
+          steps:
+            - tool: Prying
+              doAfter: 1
+
+    - node: chairWoodFancyPurple
+      entity: ChairWoodFancyPurple
+      edges:
+        - to: chairWood
+          completed:
+            - !type:SpawnPrototype
+              prototype: FloorCarpetItemPurple
+              amount: 1
+          steps:
+            - tool: Prying
+              doAfter: 1
+
+    - node: chairWoodFancyRed
+      entity: ChairWoodFancyRed
+      edges:
+        - to: chairWood
+          completed:
+            - !type:SpawnPrototype
+              prototype: FloorCarpetItemRed
+              amount: 1
+          steps:
+            - tool: Prying
+              doAfter: 1
+
+    - node: chairWoodFancyWhite
+      entity: ChairWoodFancyWhite
+      edges:
+        - to: chairWood
+          completed:
+            - !type:SpawnPrototype
+              prototype: FloorCarpetItemWhite
+              amount: 1
+          steps:
+            - tool: Prying
               doAfter: 1
