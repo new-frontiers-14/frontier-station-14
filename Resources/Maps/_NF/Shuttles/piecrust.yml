@@ -291,51 +291,36 @@ entities:
             0: 32768
           0,-1:
             0: 30464
-            1: 6
+            3: 6
           -1,1:
             0: 46
-            2: 26112
+            1: 26112
           -1,2:
-            3: 129
-            1: 96
+            2: 129
+            3: 96
           0,0:
             0: 63359
           0,1:
             0: 65287
           0,2:
             0: 7
-            3: 128
+            2: 128
           1,0:
             0: 30583
           1,1:
             0: 30503
           1,2:
-            1: 48
-            3: 8
+            3: 48
+            2: 8
           1,-1:
             0: 30576
-            3: 8
+            2: 8
         uniqueMixes:
         - volume: 2500
           temperature: 293.15
           moles:
           - 21.824879
           - 82.10312
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-        - volume: 2500
-          immutable: True
-          moles:
-          - 0
-          - 0
           - 0
           - 0
           - 0
@@ -363,6 +348,21 @@ entities:
           - 0
         - volume: 2500
           temperature: 293.15
+          moles:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          immutable: True
           moles:
           - 0
           - 0
@@ -479,6 +479,12 @@ entities:
       parent: 8756
 - proto: AtmosDeviceFanDirectional
   entities:
+  - uid: 40
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -2.5,5.5
+      parent: 8756
   - uid: 46
     components:
     - type: Transform
@@ -495,14 +501,6 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -4.5,0.5
-      parent: 8756
-- proto: AtmosDeviceFanTiny
-  entities:
-  - uid: 40
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -2.5,5.5
       parent: 8756
 - proto: AtmosFixBlockerMarker
   entities:
@@ -904,14 +902,14 @@ entities:
   - uid: 119
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 2.5,-1.5
+      rot: 1.5707963267948966 rad
+      pos: 0.5,-1.5
       parent: 8756
   - uid: 150
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 0.5,-1.5
+      rot: -1.5707963267948966 rad
+      pos: 2.5,-1.5
       parent: 8756
 - proto: ClosetChefFilled
   entities:
@@ -1120,6 +1118,12 @@ entities:
       - invalid
       deviceLists:
       - 323
+  - uid: 353
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -2.5,5.5
+      parent: 8756
 - proto: FloorDrain
   entities:
   - uid: 125
@@ -1156,8 +1160,8 @@ entities:
       pos: 4.5,6.5
       parent: 8756
     - type: GasMixer
-      inletTwoConcentration: 0.78
-      inletOneConcentration: 0.22
+      inletTwoConcentration: 0.79
+      inletOneConcentration: 0.21
     - type: AtmosPipeColor
       color: '#0055CCFF'
 - proto: GasPassiveVent
