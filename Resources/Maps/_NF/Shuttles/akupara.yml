@@ -552,7 +552,7 @@ entities:
       devices:
       - 344
       - 353
-      - 242
+      - 11
   - uid: 3
     components:
     - type: Transform
@@ -564,9 +564,9 @@ entities:
       - 351
       - 345
       - 349
-      - 246
+      - 242
+      - 243
       - 245
-      - 248
       - 350
   - uid: 4
     components:
@@ -578,8 +578,6 @@ entities:
       devices:
       - 348
       - 343
-      - 247
-      - 251
       - 244
   - uid: 5
     components:
@@ -589,8 +587,8 @@ entities:
       parent: 1
     - type: DeviceList
       devices:
-      - 249
-      - 243
+      - 12
+      - 246
       - 346
       - 347
       - 342
@@ -628,14 +626,14 @@ entities:
     - type: Transform
       pos: 4.5,10.5
       parent: 1
-- proto: AirlockExternal
+- proto: AirlockExternalGlass
   entities:
-  - uid: 11
+  - uid: 150
     components:
     - type: Transform
       pos: 3.5,-11.5
       parent: 1
-  - uid: 12
+  - uid: 247
     components:
     - type: Transform
       pos: 5.5,-11.5
@@ -1997,92 +1995,80 @@ entities:
       parent: 1
 - proto: Firelock
   entities:
-  - uid: 242
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 1.5,0.5
-      parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 2
-  - uid: 243
+  - uid: 12
     components:
     - type: Transform
       pos: 4.5,10.5
       parent: 1
     - type: DeviceNetwork
+      configurators:
+      - invalid
       deviceLists:
       - 5
+- proto: FirelockGlass
+  entities:
+  - uid: 11
+    components:
+    - type: Transform
+      pos: 1.5,0.5
+      parent: 1
+    - type: DeviceNetwork
+      configurators:
+      - invalid
+      deviceLists:
+      - 2
+  - uid: 242
+    components:
+    - type: Transform
+      pos: 1.5,-4.5
+      parent: 1
+    - type: DeviceNetwork
+      configurators:
+      - invalid
+      deviceLists:
+      - 3
+  - uid: 243
+    components:
+    - type: Transform
+      pos: -0.5,0.5
+      parent: 1
+    - type: DeviceNetwork
+      configurators:
+      - invalid
+      deviceLists:
+      - 3
   - uid: 244
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 3.5,-11.5
+      pos: 3.5,-4.5
       parent: 1
     - type: DeviceNetwork
+      configurators:
+      - invalid
       deviceLists:
       - 4
   - uid: 245
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -0.5,0.5
+      rot: -1.5707963267948966 rad
+      pos: 1.5,5.5
       parent: 1
     - type: DeviceNetwork
+      configurators:
+      - invalid
       deviceLists:
       - 3
   - uid: 246
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 1.5,-4.5
-      parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 3
-  - uid: 247
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 3.5,-4.5
-      parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 4
-  - uid: 248
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 1.5,5.5
-      parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 3
-  - uid: 249
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
+      rot: -1.5707963267948966 rad
       pos: 3.5,5.5
       parent: 1
     - type: DeviceNetwork
+      configurators:
+      - invalid
       deviceLists:
       - 5
-  - uid: 250
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 3.5,-11.5
-      parent: 1
-  - uid: 251
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 5.5,-11.5
-      parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 4
 - proto: FloorDrain
   entities:
   - uid: 252
@@ -3453,6 +3439,14 @@ entities:
     - type: Transform
       pos: 5.5,6.5
       parent: 1
+- proto: LockerWallMaterialsFuelUraniumFilled
+  entities:
+  - uid: 249
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 9.5,-9.5
+      parent: 1
 - proto: MachineCentrifuge
   entities:
   - uid: 431
@@ -4055,13 +4049,6 @@ entities:
     - type: Transform
       pos: 4.423638,-2.3405373
       parent: 1
-- proto: SheetUranium
-  entities:
-  - uid: 150
-    components:
-    - type: Transform
-      pos: 8.5,-10.5
-      parent: 1
 - proto: ShuttersNormalOpen
   entities:
   - uid: 527
@@ -4183,11 +4170,10 @@ entities:
       parent: 1
 - proto: SignRadiationMed
   entities:
-  - uid: 542
+  - uid: 248
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 9.5,-9.5
+      pos: 9.5,-10.5
       parent: 1
 - proto: SignSpace
   entities:
@@ -5009,7 +4995,7 @@ entities:
       lastSignals:
         DoorStatus: True
     - type: Door
-      secondsUntilStateChange: -16137.78
+      secondsUntilStateChange: -16643.004
       state: Opening
 - proto: WindowReinforcedDirectional
   entities:
