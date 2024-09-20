@@ -41,5 +41,12 @@ public sealed partial class ContrabandComponent : Component
     [DataField]
     [AutoNetworkedField]
     public bool HideValues = false;
+
+    /// <summary>
+    ///     If true, will not show the carry status ("avoid carrying this around"/"in the clear").
+    /// </summary>
+    [DataField]
+    [AutoNetworkedField]
+    public bool HideCarryStatus = false;
     // End Frontier: turn-in extensions
 }
