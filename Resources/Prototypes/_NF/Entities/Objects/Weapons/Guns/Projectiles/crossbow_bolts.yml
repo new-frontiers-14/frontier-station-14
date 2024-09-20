@@ -428,17 +428,17 @@
     node: CraftCrossbowBoltExplosive
 
 - type: Tag
-  id: CrossbowBoltElectrified
+  id: CrossbowBoltEMP
 
 - type: entity
   parent: [ BaseC3ContrabandNoValue, BaseCrossbowBoltTrigger ]
-  id: CrossbowBoltElectrified
+  id: CrossbowBoltEMP
   name: EMP bolt
   description: A bolt with small power cell attached to it.
   components:
   - type: Tag
     tags:
-    - CrossbowBoltElectrified
+    - CrossbowBoltEMP
   - type: Sprite
     layers:
     - state: tail
@@ -472,8 +472,8 @@
     color: cyan
     energy: 0.8
   - type: Construction
-    graph: CraftCrossbowBoltElectrified
-    node: CraftCrossbowBoltElectrified
+    graph: CraftCrossbowBoltEMP
+    node: CraftCrossbowBoltEMP
   - type: DamageOnLand
     damage:
       types:
