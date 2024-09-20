@@ -55,7 +55,6 @@
 
 - type: construction
   name: plasteel tipped bolt
-  hide: true # Fix later
   id: CraftCrossbowBoltPlasteel
   graph: CraftCrossbowBoltPlasteel
   startNode: start
@@ -79,10 +78,11 @@
 
 - type: construction
   name: EMP bolt
-  id: CraftCrossbowBoltElectrified
-  graph: CraftCrossbowBoltElectrified
+  hide: true # Fix later
+  id: CraftCrossbowBoltEMP
+  graph: CraftCrossbowBoltEMP
   startNode: start
-  targetNode: CraftCrossbowBoltElectrified
+  targetNode: CraftCrossbowBoltEMP
   category: construction-category-weapons
   description: Crossbow bolt with a small power cell attached to it. Capable of disrupting electronics. C3-contraband.
   icon: { sprite: _NF/Objects/Weapons/Guns/Projectiles/crossbow_bolts.rsi, state: icon-bolt-emp }
