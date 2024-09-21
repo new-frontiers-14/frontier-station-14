@@ -14,9 +14,11 @@ namespace Content.Server._NF.Salvage;
 ///     whatever it's currently parented to.
 /// </summary>
 [RegisterComponent]
-public sealed partial class SalvageMobRestrictionsNFComponent : Component
+public sealed partial class NFSalvageMobRestrictionsComponent : Component
 {
-    [ViewVariables(VVAccess.ReadOnly)]
-    [DataField("linkedGridEntity")]
+    [DataField, ViewVariables(VVAccess.ReadOnly)]
     public EntityUid LinkedGridEntity = EntityUid.Invalid;
+
+    [DataField]
+    public bool DespawnIfOffEventGrid = true;
 }

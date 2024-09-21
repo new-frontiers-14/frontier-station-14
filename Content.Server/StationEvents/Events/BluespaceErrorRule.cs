@@ -77,11 +77,19 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
         var gridValue = _pricing.AppraiseGrid(gridUid, null);
 
         // Handle mobrestrictions getting deleted
-        var query = AllEntityQuery<SalvageMobRestrictionsNFComponent>();
+        var query = AllEntityQuery<NFSalvageMobRestrictionsComponent>();
 
         while (query.MoveNext(out var salvUid, out var salvMob))
         {
-            if (gridTransform.GridUid == salvMob.LinkedGridEntity)
+            if (!salvMob.DespawnIfOffEventGrid)
+            {
+                var transform = Transform(salvUid);
+                if (transform.GridUid != salvMob.LinkedGridEntity)
+                {
+                    RemComp<NFSalvageMobRestrictionsComponent>(salvUid);
+                }
+            }
+            else if (gridTransform.GridUid == salvMob.LinkedGridEntity)
             {
                 QueueDel(salvUid);
             }
