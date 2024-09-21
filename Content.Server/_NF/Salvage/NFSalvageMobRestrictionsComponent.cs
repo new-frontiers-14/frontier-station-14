@@ -1,9 +1,3 @@
-using Robust.Shared.GameObjects;
-using Robust.Shared.Maths;
-using Robust.Shared.Serialization.Manager.Attributes;
-using Robust.Shared.ViewVariables;
-using System;
-
 namespace Content.Server._NF.Salvage;
 
 /// <summary>
@@ -19,6 +13,10 @@ public sealed partial class NFSalvageMobRestrictionsComponent : Component
     [DataField, ViewVariables(VVAccess.ReadOnly)]
     public EntityUid LinkedGridEntity = EntityUid.Invalid;
 
+    /// <summary>
+    /// If set to false, this mob will not be despawned when its linked entity is despawned.
+    /// Useful for event ghost roles, for instance.
+    /// </summary>
     [DataField]
-    public bool DespawnIfOffEventGrid = true;
+    public bool DespawnIfOffLinkedGrid = true;
 }

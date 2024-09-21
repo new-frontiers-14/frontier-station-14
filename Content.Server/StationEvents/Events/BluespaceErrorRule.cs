@@ -81,7 +81,7 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
 
         while (query.MoveNext(out var salvUid, out var salvMob))
         {
-            if (!salvMob.DespawnIfOffEventGrid)
+            if (!salvMob.DespawnIfOffLinkedGrid)
             {
                 var transform = Transform(salvUid);
                 if (transform.GridUid != salvMob.LinkedGridEntity)
