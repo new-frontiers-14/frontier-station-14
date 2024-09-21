@@ -30,6 +30,29 @@
       seedId: coffee
     - type: Sprite
       sprite: _NF/Objects/Specific/Hydroponics/coffee.rsi
+            
+- type: entity
+  parent: SeedBase
+  name: packet of avocado seeds
+  description: These seeds are the pits.
+  id: AvocadoSeeds
+  components:
+    - type: Seed
+      seedId: avocado
+    - type: Sprite
+      sprite: _NF/Objects/Specific/Hydroponics/avocado.rsi
+
+- type: entity
+  parent: SeedBase
+  name: packet of cucumber seeds
+  description: Can you grow water?
+  id: CucumberSeeds
+  components:
+    - type: Seed
+      seedId: cucumber
+    - type: Sprite
+      sprite: _NF/Objects/Specific/Hydroponics/cucumber.rsi
+
 
 - type: seed
   id: spesos
@@ -99,6 +122,59 @@
       Max: 8
       PotencyDivisor: 16
     Theobromine:
+      Min: 1
+      Max: 4
+      PotencyDivisor: 25
+
+- type: seed
+  id: avocado
+  name: seeds-avocado-name
+  noun: seeds-noun-seeds
+  displayName: seeds-avocado-display-name
+  plantRsi: _NF/Objects/Specific/Hydroponics/avocado.rsi
+  packetPrototype: AvocadoSeeds
+  productPrototypes:
+    - FoodAvocado    
+  lifespan: 55
+  maturation: 6
+  production: 6
+  yield: 3
+  potency: 10
+  idealLight: 6
+  growthStages: 5
+  harvestRepeat: Repeat
+  waterConsumption: 0.60
+  chemicals:
+    Nutriment:
+      Min: 1
+      Max: 10
+      PotencyDivisor: 10
+    Vitamin:
+      Min: 1
+      Max: 4
+      PotencyDivisor: 25
+
+- type: seed
+  id: cucumber
+  name: seeds-cucumber-name
+  noun: seeds-noun-seeds
+  displayName: seeds-cucumber-display-name
+  plantRsi: _NF/Objects/Specific/Hydroponics/cucumber.rsi
+  packetPrototype: CucumberSeeds
+  productPrototypes:
+    - FoodCucumber
+  lifespan: 50
+  maturation: 7
+  production: 5
+  yield: 4
+  potency: 10
+  growthStages: 5
+  chemicals:
+    Nutriment:
+      Min: 1
+      Max: 10
+      PotencyDivisor: 10
+    Vitamin:
       Min: 1
       Max: 4
       PotencyDivisor: 25
