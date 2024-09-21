@@ -87,9 +87,11 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
                 if (transform.GridUid != salvMob.LinkedGridEntity)
                 {
                     RemComp<NFSalvageMobRestrictionsComponent>(salvUid);
+                    continue;
                 }
             }
-            else if (gridTransform.GridUid == salvMob.LinkedGridEntity)
+
+            if (gridTransform.GridUid == salvMob.LinkedGridEntity)
             {
                 QueueDel(salvUid);
             }
