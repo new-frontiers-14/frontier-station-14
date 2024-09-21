@@ -53,15 +53,7 @@
   fallbacks:
   - PirateClothingHeadBandBlack
 
-- type: loadoutGroup
-  id: PirateFirstMateHead
-  name: loadout-group-contractor-head
-  minLimit: 0
-  loadouts:
-  - PirateClothingHeadHatPirateTricord
-  - PirateClothingHeadHatPirateLuffy
-  fallbacks:
-  - PirateClothingHeadHatPirateTricord
+# Pirate Captain loadouts
 
 - type: loadoutGroup
   id: PirateCaptainHead
@@ -73,7 +65,15 @@
   fallbacks:
   - PirateClothingHeadHatPirate
 
-# Pirate Captain loadouts
+- type: loadoutGroup
+  id: PirateCaptainOuterClothing
+  name: loadout-group-contractor-outerclothing
+  loadouts:
+  - ContractorClothingOuterVestTank
+  - PirateCaptainClothingOuterCoatPirate
+  fallbacks:
+  - ContractorClothingOuterVestTank
+  - PirateCaptainClothingOuterCoatPirate
 
 - type: loadoutGroup
   id: PirateCaptainPDA
@@ -85,6 +85,26 @@
   - PirateCaptainPirateCaptainNFPDA
 
 # Pirate First Mate loadouts
+
+- type: loadoutGroup
+  id: PirateFirstMateHead
+  name: loadout-group-contractor-head
+  minLimit: 0
+  loadouts:
+  - PirateClothingHeadHatPirateTricord
+  - PirateClothingHeadHatPirateLuffy
+  fallbacks:
+  - PirateClothingHeadHatPirateTricord
+
+- type: loadoutGroup
+  id: PirateFirstMateOuterClothing
+  name: loadout-group-contractor-outerclothing
+  loadouts:
+  - ContractorClothingOuterVestTank
+  - PirateFirstMateClothingOuterCoatGentle
+  fallbacks:
+  - ContractorClothingOuterVestTank
+  - PirateFirstMateClothingOuterCoatGentle
 
 - type: loadoutGroup
   id: PirateFirstMatePDA

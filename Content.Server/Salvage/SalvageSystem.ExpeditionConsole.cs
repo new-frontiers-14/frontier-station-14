@@ -139,7 +139,7 @@ public sealed partial class SalvageSystem
                 continue;
 
             // NPC, definitely not a person
-            if (HasComp<ActiveNPCComponent>(uid) || HasComp<SalvageMobRestrictionsNFComponent>(uid))
+            if (HasComp<ActiveNPCComponent>(uid) || HasComp<NFSalvageMobRestrictionsComponent>(uid))
                 continue;
 
             // Hostile ghost role, continue
