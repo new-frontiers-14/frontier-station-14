@@ -208,7 +208,7 @@
     - Drinks
 
 - type: entity
-  parent: [BaseStructureDisableScrewing, BaseStructureIndestructible, BaseStructureAccessReaderImmuneToEmag, VendingMachine] # Frontier: add BaseStructureDisableScrewing, BaseStructureIndestructible, BaseStructureAccessReaderImmuneToEmag
+  parent: VendingMachine
   id: VendingMachineCart
   name: PTech
   description: PTech vending! Providing a ROBUST selection of PDAs, cartridges, and anything else a dull paper pusher needs!
@@ -236,8 +236,6 @@
     color: "#ffb0b0"
   - type: AccessReader
     access: [["HeadOfPersonnel"]]
-  - type: MarketModifier # Frontier
-    mod: 5 # Frontier
 
 - type: entity
   parent: VendingMachine
