@@ -53,7 +53,6 @@ public sealed partial class PlayerTab : Control
         SearchList.ItemKeyBindDown += (args, data) => OnEntryKeyBindDown?.Invoke(args, data);
 
         RefreshPlayerList(_adminSystem.PlayerList);
-
     }
 
     #region Antag Overlay
@@ -198,6 +197,7 @@ public sealed partial class PlayerTab : Control
             Header.Job => Compare(x.StartingJob, y.StartingJob),
             Header.Antagonist => x.Antag.CompareTo(y.Antag),
             Header.Playtime => TimeSpan.Compare(x.OverallPlaytime ?? default, y.OverallPlaytime ?? default),
+            Header.Balance => x.Balance.CompareTo(y.Balance), // Frontier
             _ => 1
         };
     }
