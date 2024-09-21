@@ -203,3 +203,25 @@
   - type: Construction
     graph: Coffee
     node: dark roasted coffee
+
+- type: reagent
+  id: OilVegetable
+  name: reagent-name-oil-vegetable
+  group: Foods
+  desc: reagent-desc-oil-vegetable
+  physicalDesc: reagent-physical-desc-oily
+  flavor: oily
+  flavorMinimum: 0.05
+  color: "#ffff77"
+  meltingPoint: -6.0 #Taken from OilOlive
+  boilingPoint: 299.0
+  recognizable: true
+  metabolisms:
+    Food:
+      effects:
+      - !type:SatiateHunger 
+        conditions:
+        - !type:ReagentThreshold
+          reagent: Nutriment
+          min: 0.1
+        factor: 1
