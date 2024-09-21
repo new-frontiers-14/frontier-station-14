@@ -1,9 +1,13 @@
 - type: entity
-  parent: [ BaseC1Contraband, ClothingOuterCoatHoSTrench ]
   id: ClothingOuterCoatBHTrench
   name: "bounty hunter's flak trenchcoat"
+  parent: [ BaseC1Contraband, ClothingOuterCoatHoSTrench ]
   description: A greatcoat enhanced with a bulletproof alloy for some extra protection and style for those with a charismatic presence.
   components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Coats/bounty_hunter_coat.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Coats/bounty_hunter_coat.rsi
   - type: Armor # ClothingOuterArmorBulletproof stats
     modifiers:
       coefficients:
