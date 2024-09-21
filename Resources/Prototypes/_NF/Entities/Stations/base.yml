@@ -24,12 +24,6 @@
   components:
   - type: StationRenameWarps
 
-- type: entity
-  id: BaseStationEmpImmune
-  abstract: true
-  components:
-  - type: StationEmpImmune
-
 # Sector-wide news access, should be on stations with comms (radio station, telecomms)
 # TODO: move SectorNewsComponent to a SectorService
 - type: entity
@@ -53,6 +47,7 @@
 
 - type: entity
   id: BaseStationCargoMarket
+  abstract: true
   components:
   - type: CargoMarketData
     whitelist:

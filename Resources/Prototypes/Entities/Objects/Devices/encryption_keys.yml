@@ -46,7 +46,7 @@
     - state: cargo_label
 
 - type: entity
-  parent: EncryptionKey
+  parent: [EncryptionKey, BaseC2ContrabandUnredeemable] # Frontier: added BaseC2ContrabandUnredeemable
   id: EncryptionKeyCentCom
   name: central command encryption key
   suffix: DO NOT MAP # Frontier - Add DO NOT MAP suffix
@@ -62,7 +62,7 @@
     - state: nano_label
 
 - type: entity
-  parent: EncryptionKey
+  parent: [EncryptionKey, BaseC2ContrabandUnredeemable] # Frontier: added BaseC2ContrabandUnredeemable
   id: EncryptionKeyStationMaster
   name: station master encryption key
   suffix: DO NOT MAP # Frontier - Add DO NOT MAP suffix
@@ -76,7 +76,7 @@
     - Medical
     - Science
     - Security
-    - Nfsd
+    - Nfsd # Frontier
     - Service
     - Supply
     - Traffic # Frontier
@@ -87,7 +87,7 @@
     - state: cap_label
 
 - type: entity
-  parent: EncryptionKey
+  parent: [EncryptionKey, BaseC2ContrabandUnredeemable] # Frontier: added BaseC2ContrabandUnredeemable
   id: EncryptionKeyCommand
   name: command encryption key
   suffix: DO NOT MAP # Frontier - Add DO NOT MAP suffix
@@ -215,7 +215,7 @@
     - state: service_label
 
 - type: entity
-  parent: EncryptionKey
+  parent: [EncryptionKey, BaseC3SyndicateContraband] # Frontier: BaseRestrictedContraband<BaseC3SyndicateContraband
   id: EncryptionKeySyndie
   name: blood-red encryption key
   suffix: DO NOT MAP # Frontier - Add DO NOT MAP suffix
@@ -229,10 +229,9 @@
     layers:
     - state: crypt_red
     - state: synd_label
-  - type: Contraband #frontier
 
 - type: entity
-  parent: EncryptionKey
+  parent: EncryptionKey # Frontier: BaseScienceContraband
   id: EncryptionKeyBinary
   name: binary translator key
   suffix: DO NOT MAP # Frontier - Add DO NOT MAP suffix
@@ -248,10 +247,10 @@
     - state: rd_label
 
 - type: entity
-  parent: EncryptionKey
+  parent: [EncryptionKey, BaseC3PirateContraband] # Frontier: added BaseC3PirateContraband
   id: EncryptionKeyFreelance
   name: freelancer encryption key
-  description: An encryption key used by freelancers, who may or may not have an affiliation. It looks like its worn out.
+  description: An encryption key used by freelancers, who may or may not have an affiliation. It looks like it's worn out.
   components:
     - type: EncryptionKey
       channels:

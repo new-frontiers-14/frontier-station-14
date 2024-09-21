@@ -86,6 +86,10 @@
   - type: Rehydratable
     possibleSpawns:
     - MobMothroach
+    - MobMothroach # Frontier: enforced rarity
+    - MobMothroach # Frontier
+    - MobMothroach # Frontier
+    - MobRosyMothroach # Frontier
 
 - type: entity
   parent: MonkeyCube
@@ -153,7 +157,7 @@
     - MobAbomination
 
 - type: entity
-  parent: PlushieCarp
+  parent: [PlushieCarp, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   id: DehydratedSpaceCarp
   name: dehydrated space carp
   description: Looks like a plush toy carp, but just add water and it becomes a real-life space carp!

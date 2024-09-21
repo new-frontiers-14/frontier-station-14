@@ -63,6 +63,8 @@
       path: /Audio/Machines/airlock_deny.ogg
   - type: Airtight
     noAirWhenFullyAirBlocked: false
+    airBlockedDirection:
+      - South
   - type: Tag
     tags:
       - ForceNoFixRotations
@@ -93,6 +95,9 @@
       fix1:
         layer:     #removed opaque from the layer, allowing lasers to pass through glass airlocks
         - GlassAirlockLayer
+  - type: Construction # Frontier
+    graph: AirlockShuttle # Frontier
+    node: airlockGlass # Frontier
 
 - type: entity
   id: AirlockShuttleAssembly
@@ -106,7 +111,7 @@
     noRot: false
   - type: Rotatable
   - type: Sprite
-    sprite: Structures/Doors/Airlocks/Glass/shuttle.rsi
+    sprite: Structures/Doors/Airlocks/Standard/shuttle.rsi # Frontier: Glass<Standard
     state: closed
   - type: Construction
     graph: AirlockShuttle

@@ -1,6 +1,9 @@
-- type: statusIcon
+- type: ssdIcon
   id: SSDIcon
   icon:
     sprite: /Textures/Effects/ssd.rsi
     state: default0
   locationPreference: Left
+  priority: -1 # Frontier: should appear first
+  layer: Mod # Frontier: do not increment the position, draw "on top of" the previous icon
+  offset: 0 # Frontier: overlap the chat bubble

@@ -1,6 +1,7 @@
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
 using Content.Server.Power.Components;
+using Content.Server.Emp; // Frontier: Upstream - #28984
 using Content.Shared.Administration;
 using Content.Shared.Database;
 using Content.Shared.Examine;
@@ -14,6 +15,7 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Utility;
+using Content.Shared.Emp; // Frontier: Upstream - #28984
 
 namespace Content.Server.Power.EntitySystems
 {
@@ -21,7 +23,6 @@ namespace Content.Server.Power.EntitySystems
     {
         [Dependency] private readonly IAdminLogManager _adminLogger = default!;
         [Dependency] private readonly IAdminManager _adminManager = default!;
-        [Dependency] private readonly AppearanceSystem _appearance = default!;
         [Dependency] private readonly AudioSystem _audio = default!;
         private EntityQuery<ApcPowerReceiverComponent> _recQuery;
         private EntityQuery<ApcPowerProviderComponent> _provQuery;
@@ -43,8 +44,16 @@ namespace Content.Server.Power.EntitySystems
 
             SubscribeLocalEvent<ApcPowerReceiverComponent, ComponentGetState>(OnGetState);
 
+            SubscribeLocalEvent<ApcPowerReceiverComponent, EmpPulseEvent>(OnEmpPulse); // Frontier: Upstream - #28984
+            SubscribeLocalEvent<ApcPowerReceiverComponent, EmpDisabledRemoved>(OnEmpEnd); // Frontier: Upstream - #28984
+
             _recQuery = GetEntityQuery<ApcPowerReceiverComponent>();
             _provQuery = GetEntityQuery<ApcPowerProviderComponent>();
+        }
+
+        private void OnExamined(Entity<ApcPowerReceiverComponent> ent, ref ExaminedEvent args)
+        {
+            args.PushMarkup(GetExamineText(ent.Comp.Powered));
         }
 
         private void OnGetVerbs(EntityUid uid, ApcPowerReceiverComponent component, GetVerbsEvent<Verb> args)
@@ -60,17 +69,6 @@ namespace Content.Server.Power.EntitySystems
                 Icon = new SpriteSpecifier.Texture(new ("/Textures/Interface/VerbIcons/smite.svg.192dpi.png")), // "smite" is a lightning bolt
                 Act = () => component.NeedsPower = !component.NeedsPower
             });
-        }
-
-        ///<summary>
-        ///Adds some markup to the examine text of whatever object is using this component to tell you if it's powered or not, even if it doesn't have an icon state to do this for you.
-        ///</summary>
-        private void OnExamined(EntityUid uid, ApcPowerReceiverComponent component, ExaminedEvent args)
-        {
-            args.PushMarkup(Loc.GetString("power-receiver-component-on-examine-main",
-                                            ("stateText", Loc.GetString( component.Powered
-                                                ? "power-receiver-component-on-examine-powered"
-                                                : "power-receiver-component-on-examine-unpowered"))));
         }
 
         private void OnProviderShutdown(EntityUid uid, ApcPowerProviderComponent component, ComponentShutdown args)
@@ -136,7 +134,7 @@ namespace Content.Server.Power.EntitySystems
             {
                 Act = () =>
                 {
-                    TogglePower(uid, user: args.User);
+                    TryTogglePower(uid, user: args.User); // Frontier: Upstream - #28984
                 },
                 Icon = new SpriteSpecifier.Texture(new ("/Textures/Interface/VerbIcons/Spare/poweronoff.svg.192dpi.png")),
                 Text = Loc.GetString("power-switch-component-toggle-verb"),
@@ -200,9 +198,35 @@ namespace Content.Server.Power.EntitySystems
             return !receiver.PowerDisabled; // i.e. PowerEnabled
         }
 
+        public bool TryTogglePower(EntityUid uid, bool playSwitchSound = true, ApcPowerReceiverComponent? receiver = null, EntityUid? user = null) // Frontier: Upstream - #28984
+        {
+            if (HasComp<EmpDisabledComponent>(uid))
+                return false;
+
+            return TogglePower(uid, playSwitchSound, receiver, user);
+        }
+
         public void SetLoad(ApcPowerReceiverComponent comp, float load)
         {
             comp.Load = load;
+        }
+
+        private void OnEmpPulse(EntityUid uid, ApcPowerReceiverComponent component, ref EmpPulseEvent args) // Frontier: Upstream - #28984
+        {
+            if (!component.PowerDisabled)
+            {
+                args.Affected = true;
+                args.Disabled = true;
+                TogglePower(uid, false);
+            }
+        }
+
+        private void OnEmpEnd(EntityUid uid, ApcPowerReceiverComponent component, ref EmpDisabledRemoved args) // Frontier: Upstream - #28984
+        {
+            if (component.PowerDisabled)
+            {
+                TogglePower(uid, false);
+            }
         }
     }
 }

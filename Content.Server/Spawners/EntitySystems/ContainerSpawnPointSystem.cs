@@ -63,7 +63,8 @@ public sealed class ContainerSpawnPointSystem : EntitySystem
             baseCoords,
             args.Job,
             args.HumanoidCharacterProfile,
-            args.Station);
+            args.Station,
+            session: args.Session); // Frontier
 
         _random.Shuffle(possibleContainers);
         foreach (var (uid, spawnPoint, manager, xform) in possibleContainers)
