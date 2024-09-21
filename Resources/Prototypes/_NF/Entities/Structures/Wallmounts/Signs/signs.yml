@@ -168,3 +168,21 @@
   components:
   - type: Sprite
     state: evidence
+
+- type: entity
+  parent: BaseSignNF
+  id: SignDockNF
+  name: dock sign
+  description: A sign that indicates shuttle docking nearby.
+  components:
+  - type: Sprite
+    state: dock
+
+- type: entity
+  parent: BaseSignNF
+  id: SignBusNF
+  name: bus sign
+  description: A sign that indicates that the transit shuttle docks nearby.
+  components:
+  - type: Sprite
+    state: bus
