@@ -25,6 +25,26 @@
   metamorphicChangeColor: false
 
 - type: reagent
+  id: CucumberWater
+  name: reagent-name-cucumber-water
+  parent: BaseDrink
+  desc: reagent-desc-cucumber-water
+  physicalDesc: reagent-physical-desc-aromatic
+  flavor: cucumber
+  color: "#b1ceb0"
+  metabolisms:
+    Drink:
+      effects:
+        - !type:SatiateThirst
+          factor: 6
+  metamorphicSprite:
+    sprite: _NF/Objects/Consumable/Drinks/cucumberwater.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 5
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
+
+- type: reagent
   id: GinAndSonic
   name: reagent-name-gin-and-sonic
   parent: BaseAlcohol

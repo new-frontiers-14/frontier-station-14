@@ -5,8 +5,8 @@
   startNode: start
   targetNode: ImprovisedCrossbow
   category: construction-category-weapons
-  description: A shoddily constructed crossbow made out of wood and cloth. It's not much, but it's gotten the job done for millennia.
-  icon: { sprite: _NF/Objects/Weapons/Guns/Bow/crossbow.rsi, state: unwielded }
+  description: A shoddily constructed crossbow made out of scrap. It's not much, but it's gotten the job done for millennia.
+  icon: { sprite: _NF/Objects/Weapons/Guns/Crossbow/improvised.rsi, state: icon }
   objectType: Item
 
 - type: construction
@@ -16,30 +16,87 @@
   startNode: start
   targetNode: CraftCrossbowBoltGlassShard
   category: construction-category-weapons
-  description: An arrow tipped with pieces of a glass shard, for use with a crossbow.
-  icon: { sprite: _NF/Objects/Weapons/Guns/Bow/crossbow.rsi, state: wielded-bolt }
+  description: Crossbow bolt tipped with pieces of a glass shards.
+  icon: { sprite: _NF/Objects/Weapons/Guns/Projectiles/crossbow_bolts.rsi, state: icon-bolt-glass }
   objectType: Item
 
 - type: construction
-  name: plasma glass shard bolt
+  name: glass shard bolt (plasma)
   id: CraftCrossbowBoltPlasmaGlassShard
   graph: CraftCrossbowBoltPlasmaGlassShard
   startNode: start
   targetNode: CraftCrossbowBoltPlasmaGlassShard
   category: construction-category-weapons
-  description: An arrow tipped with pieces of a plasma glass shard, for use with a crossbow.
-  icon: { sprite: _NF/Objects/Weapons/Guns/Bow/crossbow.rsi, state: wielded-bolt }
+  description: Crossbow bolt tipped with pieces of a plasma glass shards.
+  icon: { sprite: _NF/Objects/Weapons/Guns/Projectiles/crossbow_bolts.rsi, state: icon-bolt-glassp }
   objectType: Item
 
 - type: construction
-  name: uranium glass shard bolt
+  name: glass shard bolt (uranium)
   id: CraftCrossbowBoltUraniumGlassShard
   graph: CraftCrossbowBoltUraniumGlassShard
   startNode: start
   targetNode: CraftCrossbowBoltUraniumGlassShard
   category: construction-category-weapons
-  description: An arrow tipped with pieces of a uranium glass shard, for use with a crossbow.
-  icon: { sprite: _NF/Objects/Weapons/Guns/Bow/crossbow.rsi, state: wielded-bolt }
+  description: Crossbow bolt tipped with pieces of a uranium glass shards. C3-contraband.
+  icon: { sprite: _NF/Objects/Weapons/Guns/Projectiles/crossbow_bolts.rsi, state: icon-bolt-glassu }
+  objectType: Item
+
+- type: construction
+  name: syringe-bolt
+  id: CraftCrossbowBoltSyringe
+  graph: CraftCrossbowBoltSyringe
+  startNode: start
+  targetNode: CraftCrossbowBoltSyringe
+  category: construction-category-weapons
+  description: Crossbow bolt with a syringe for the tip.
+  icon: { sprite: _NF/Objects/Weapons/Guns/Projectiles/crossbow_bolts.rsi, state: icon-bolt-syringe }
+  objectType: Item
+
+- type: construction
+  name: plasteel tipped bolt
+  id: CraftCrossbowBoltPlasteel
+  graph: CraftCrossbowBoltPlasteel
+  startNode: start
+  targetNode: CraftCrossbowBoltPlasteel
+  category: construction-category-weapons
+  description: Crossbow bolt with plasteel tip. Armor piercing.  C3-contraband.
+  icon: { sprite: _NF/Objects/Weapons/Guns/Projectiles/crossbow_bolts.rsi, state: icon-bolt-plasteel }
+  objectType: Item
+
+- type: construction
+  name: explosive bolt
+  hide: true # Fix later
+  id: CraftCrossbowBoltExplosive
+  graph: CraftCrossbowBoltExplosive
+  startNode: start
+  targetNode: CraftCrossbowBoltExplosive
+  category: construction-category-weapons
+  description: Crossbow bolt with small explosive charge. C3-contraband.
+  icon: { sprite: _NF/Objects/Weapons/Guns/Projectiles/crossbow_bolts.rsi, state: icon-bolt-explosive }
+  objectType: Item
+
+- type: construction
+  name: EMP bolt
+  hide: true # Fix later
+  id: CraftCrossbowBoltEMP
+  graph: CraftCrossbowBoltEMP
+  startNode: start
+  targetNode: CraftCrossbowBoltEMP
+  category: construction-category-weapons
+  description: Crossbow bolt with a small power cell attached to it. Capable of disrupting electronics. C3-contraband.
+  icon: { sprite: _NF/Objects/Weapons/Guns/Projectiles/crossbow_bolts.rsi, state: icon-bolt-emp }
+  objectType: Item
+
+- type: construction
+  name: incendiary bolt
+  id: CraftCrossbowBoltIncendiary
+  graph: CraftCrossbowBoltIncendiary
+  startNode: start
+  targetNode: CraftCrossbowBoltIncendiary
+  category: construction-category-weapons
+  description: Crossbow bolt with small power cell attached to it. Vile. C3-contraband.
+  icon: { sprite: _NF/Objects/Weapons/Guns/Projectiles/crossbow_bolts.rsi, state: icon-bolt-incendiary }
   objectType: Item
 
 - type: construction
@@ -52,4 +109,3 @@
   description: Advanced version of a basic stick - a pointy stick.
   icon: { sprite: _NF/Objects/Weapons/Melee/wooden_stake.rsi, state: icon }
   objectType: Item
-
