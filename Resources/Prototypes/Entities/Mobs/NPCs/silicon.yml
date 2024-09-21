@@ -103,6 +103,7 @@
     - Robotics
   - type: Speech
     speechVerb: Robotic
+    speechSounds: Pai # Frontier: give robots beepy speech sounds
   - type: TypingIndicator
     proto: robot
   - type: ZombieImmune
@@ -141,68 +142,15 @@
   - type: GhostRole
     name: ghost-role-information-taxibot-name
     description: ghost-role-information-taxibot-description
+    rules: ghost-role-information-nonantagonist-rules # Frontier?
   - type: Strap
     buckleOffset: "0, 0"
-    maxBuckleDistance: 1
+    unbuckleDistanceSquared: 0.09 # Frontier: (30 cm)^2 - seems unnecessary, but for consistency with vehicles
+    # maxBuckleDistance: 1 # Umbra - buckling fix
   - type: Construction
     graph: TaxiBot
     node: bot
-
-- type: entity
-  parent: MobSiliconBaseVehicle
-  id: MobSupplyBot
-  name: supplybot
-  description: Delivers cargo!
-  components:
-  - type: Sprite
-    sprite: Mobs/Silicon/Bots/supplybot.rsi
-    layers:
-    - state: supplybot
-      map: ["enum.VehicleVisualLayers.AutoAnimate"]
-  - type: GhostRole
-    name: ghost-role-information-supplybot-name
-    description: ghost-role-information-supplybot-description
-    raffle:
-      settings: default
-  - type: GhostTakeoverAvailable
-  - type: Construction
-    graph: SupplyBot
-    node: bot
-  - type: Dumpable
-  - type: Storage
-    maxItemSize: Huge
-    grid:
-    - 0,0,9,3
-  - type: Access
-    groups:
-    - Cargo
-  - type: UserInterface
-    interfaces:
-      enum.StorageUiKey.Key:
-        type: StorageBoundUserInterface
-  - type: ContainerContainer
-    containers:
-      storagebase: !type:Container
-        ents: []
-  - type: UnpoweredFlashlight
-  - type: PointLight
-    enabled: false
-    radius: 3.5
-    softness: 2
-    mask: /Textures/Effects/LightMasks/cone.png
-    autoRot: true
-  - type: FootstepModifier
-    footstepSoundCollection:
-      collection: FootstepBorg
-  - type: Tag
-    tags:
-    - DoorBumpOpener
-    - FootstepSound
-  - type: ActiveRadio
-    channels:
-    - Binary
-    - Common
-    - Supply
+  - type: VehicleHorn # Frontier: beep beep
 
 - type: entity
   parent: MobSiliconBase
@@ -250,6 +198,7 @@
     makeSentient: true
     name: ghost-role-information-honkbot-name
     description: ghost-role-information-honkbot-description
+    rules: ghost-role-information-freeagent-rules
     raffle:
       settings: default
   - type: GhostTakeoverAvailable
@@ -277,6 +226,7 @@
     makeSentient: true
     name: ghost-role-information-jonkbot-name
     description: ghost-role-information-jonkbot-description
+    rules: ghost-role-information-freeagent-rules
     raffle:
       settings: default
   - type: InteractionPopup
@@ -341,7 +291,10 @@
       path: /Audio/Ambience/Objects/periodic_beep.ogg
 
 - type: entity
-  parent: [MobSiliconBase, ShowMedicalIcons]
+  parent:
+  - MobSiliconBase
+  - ShowMedicalIcons
+  - StripableInventoryBase
   id: MobMedibot
   name: medibot
   description: No substitute for a doctor, but better than nothing.
@@ -375,33 +328,27 @@
   - type: Construction
     graph: MediBot
     node: bot
+  - type: SentienceTarget
+    flavorKind: station-event-random-sentience-flavor-mechanical
   - type: Anchorable
   - type: InteractionPopup
     interactSuccessString: petting-success-medibot
     interactFailureString: petting-failure-medibot
     interactSuccessSound:
       path: /Audio/Ambience/Objects/periodic_beep.ogg
-  - type: ShowHealthBars
-    damageContainers: 
-    - Biological
-  - type: ShowHealthIcons
-    damageContainers: 
-    - Biological
   - type: Advertise
     pack: MedibotAds
+  - type: Inventory
+    templateId: medibot
 
 - type: entity
-  parent: MobSiliconBase
+  parent:
+  - MobSiliconBase
+  - StripableInventoryBase
   id: MobMimeBot
   name: mimebot
-  description: Why not give mimebot a friendly wave.
+  description: Why not give the mimebot a friendly wave?
   components:
-  - type: InventorySlots
-  - type: Strippable
-  - type: UserInterface
-    interfaces:
-      enum.StrippingUiKey.Key:
-        type: StrippableBoundUserInterface
   - type: Sprite
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
@@ -415,6 +362,7 @@
     makeSentient: true
     name: ghost-role-information-mimebot-name
     description: ghost-role-information-mimebot-description
+    rules: ghost-role-information-freeagent-rules
     raffle:
       settings: default
   - type: GhostTakeoverAvailable
@@ -423,3 +371,72 @@
     interactFailureString: petting-failure-mimebot
   - type: Inventory
     templateId: head
+  - type: Speech # Frontier: robots have beepy speech sounds, but not the mimebot
+    speechSounds: null # Frontier: robots have beepy speech sounds, but not the mimebot
+
+- type: entity
+  parent: MobSiliconBase
+  id: MobSupplyBot
+  name: supplybot
+  description: Delivers cargo!
+  components:
+  - type: Sprite
+    sprite: Mobs/Silicon/Bots/supplybot.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
+      state: supplybot
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: supplybot-moving
+    noMovementLayers:
+      movement:
+        state: supplybot
+  - type: GhostRole
+    makeSentient: true
+    name: ghost-role-information-supplybot-name
+    description: ghost-role-information-supplybot-description
+    rules: ghost-role-information-nonantagonist-rules
+    raffle:
+      settings: default
+  - type: GhostTakeoverAvailable
+  - type: Construction
+    graph: SupplyBot
+    node: bot
+  - type: Access
+    tags:
+    - Cargo
+    - Maintenance
+    - Salvage
+  - type: Dumpable
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,9,3
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: []
+  - type: UnpoweredFlashlight
+  - type: PointLight
+    enabled: false
+    radius: 3.5
+    softness: 2
+    mask: /Textures/Effects/LightMasks/cone.png
+    autoRot: true
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepBorg
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
+  - type: ActiveRadio
+    channels:
+    - Binary
+    - Common
+    - Supply

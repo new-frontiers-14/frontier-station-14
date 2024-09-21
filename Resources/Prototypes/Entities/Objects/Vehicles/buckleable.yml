@@ -47,7 +47,7 @@
   components:
   - type: Strap
     buckleOffset: "0.10, 0.36"
-    maxBuckleDistance: 1
+    # maxBuckleDistance: 1 # Umbra - buckling fix
   - type: InputMover
   - type: InteractionOutline
   - type: Vehicle
@@ -189,7 +189,7 @@
     noRot: true
   - type: Strap
     buckleOffset: "0.15, -0.05"
-    maxBuckleDistance: 1
+    # maxBuckleDistance: 1 # Umbra - buckling fix
   - type: MovementSpeedModifier
     acceleration: 1
     friction: 1
@@ -222,7 +222,7 @@
   id: VehicleATV
   name: ATV
   description: All-Tile Vehicle.
-  noSpawn: true # Frontier, using VehicleATVNF instead
+  categories: [ HideSpawnMenu ] # Frontier, using VehicleATVNF instead
   components:
   - type: Vehicle
     southOver: true
@@ -244,7 +244,7 @@
     baseSprintSpeed: 7
   - type: Strap
     buckleOffset: "0.1, -0.05"
-    maxBuckleDistance: 1
+    # maxBuckleDistance: 1 # Umbra - buckling fix
   - type: UnpoweredFlashlight
   - type: PointLight
     enabled: false
@@ -288,7 +288,7 @@
       noRot: true
     - type: Strap
       buckleOffset: "0.15, -0.05"
-      maxBuckleDistance: 1
+      # maxBuckleDistance: 1 # Umbra - buckling fix
     - type: Armor
       modifiers:
         coefficients:
@@ -314,7 +314,7 @@
   id: VehicleSkeletonMotorcycle
   name: skeleton motorcycle
   description: Bad to the Bone.
-  noSpawn: true # Frontier, using VehicleSkeletonMotorcycleNF instead
+  categories: [ HideSpawnMenu ] # Frontier, using VehicleSkeletonMotorcycleNF instead
   components:
     - type: Vehicle
       southOver: true
@@ -329,7 +329,7 @@
       noRot: true
     - type: Strap
       buckleOffset: "0.1, -0.05"
-      maxBuckleDistance: 1
+      # maxBuckleDistance: 1 # Umbra - buckling fix
     - type: MovementSpeedModifier
       acceleration: 2
       friction: 1.5
@@ -381,7 +381,7 @@
     noRot: true
   - type: Strap
     buckleOffset: "0.1, -0.05"
-    maxBuckleDistance: 1
+    # maxBuckleDistance: 1 # Umbra - buckling fix
   - type: MovementSpeedModifier
     acceleration: 1
     friction: 0.8
@@ -438,7 +438,7 @@
       baseSprintSpeed: 2
     - type: Strap
       buckleOffset: "0,0"
-      maxBuckleDistance: 1
+      # maxBuckleDistance: 1 # Umbra - buckling fix
     - type: Fixtures
       fixtures:
         fix1:

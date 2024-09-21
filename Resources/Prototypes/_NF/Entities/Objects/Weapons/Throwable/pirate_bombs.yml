@@ -1,0 +1,86 @@
+- type: entity
+  parent: [GrenadeBase, BaseC3PirateContraband]
+  id: PirateGrenadeBase
+  abstract: true
+  components:
+  - type: RandomTimerTrigger
+    min: 2
+    max: 8
+  - type: OnUseTimerTrigger # todo: make it activate through welder/lighter/fire instead
+    delay: 5
+    examinable: false
+    initialBeepDelay: 0
+    beepSound: /Audio/Effects/lightburn.ogg
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50 # Probably thick cast iron, should be a bit beefy
+      behaviors:
+      - !type:TriggerBehavior
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+
+- type: entity
+  parent: PirateGrenadeBase
+  id: PirateGrenadeRadiation
+  name: green pirate grenade
+  description: A foul-smelling grenade that makes you feel fuzzy.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Bombs/pirate_caustic.rsi
+    layers:
+    - state: icon
+      map: ["enum.TriggerVisualLayers.Base"]
+  - type: ExplodeOnTrigger
+  - type: Explosive # Weak explosion with rad damage spread over a large radius.
+    explosionType: Radioactive
+    totalIntensity: 40
+    intensitySlope: 0.7
+    canCreateVacuum: false
+
+- type: entity
+  parent: PirateGrenadeBase
+  id: PirateGrenadeConcussion
+  name: gray pirate grenade
+  description: A solid grenade that feels like a cannonball.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Bombs/pirate_explosive.rsi
+    layers:
+    - state: icon
+      map: ["enum.TriggerVisualLayers.Base"]
+  - type: ExplodeOnTrigger
+  - type: Explosive # Weak explosion in a very small radius. Doesn't break underplating.
+    explosionType: DemolitionCharge
+    totalIntensity: 50
+    intensitySlope: 5
+    maxIntensity: 6
+    canCreateVacuum: false
+
+- type: entity
+  parent: PirateGrenadeBase
+  id: PirateGrenadeFire
+  name: red pirate grenade
+  description: A grenade that's hot to the touch; prone to catch things on fire.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Bombs/pirate_fire.rsi
+    layers:
+    - state: icon
+      map: ["enum.TriggerVisualLayers.Base"]
+  - type: SmokeOnTrigger
+    duration: 10
+    spreadAmount: 10
+    smokePrototype: Smoke
+    solution:
+      reagents:
+      - ReagentId: Phlogiston
+        Quantity: 8
+      - ReagentId: Napalm
+        Quantity: 8
+  - type: DeleteOnTrigger
+  - type: SoundOnTrigger
+    sound: /Audio/Items/smoke_grenade_smoke.ogg

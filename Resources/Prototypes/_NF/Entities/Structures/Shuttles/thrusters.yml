@@ -26,6 +26,17 @@
       shader: unshaded
       visible: false
       offset: 0, 1
+  - type: Fixtures # Small thruster, small fixture
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.25,0.25,0.25"
+        density: 190
+        mask:
+        - SmallMobMask #this is so they can go under plastic flaps
+        layer:
+        - MachineLayer
   - type: StaticPrice
     price: 100
   - type: Machine
@@ -58,6 +69,17 @@
       map: ["enum.ThrusterVisualLayers.ThrustingUnshaded"]
       shader: unshaded
       visible: false
+  - type: Fixtures # Small gyro, small fixture
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.25,0.25,0.25"
+        density: 190
+        mask:
+        - SmallMobMask #this is so they can go under plastic flaps
+        layer:
+        - MachineLayer
   - type: StaticPrice
     price: 100
   - type: Machine

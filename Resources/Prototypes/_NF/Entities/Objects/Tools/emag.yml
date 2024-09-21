@@ -1,13 +1,12 @@
 - type: entity
   parent: BaseItem
-  id: Demag
+  id: DemagUnlimited
   name: cryptographic resequencer
+  suffix: Unlimited
   description: The all-in-one unhacking solution. The thinking man's lock. The iconic DEMAG fixer.
   components:
   - type: Emag
     demag: true
-  - type: LimitedCharges
-  - type: AutoRecharge
   - type: Sprite
     sprite: _NF/Objects/Tools/demag.rsi
     state: icon
@@ -15,16 +14,9 @@
     sprite: _NF/Objects/Tools/demag.rsi
 
 - type: entity
-  parent: BaseItem
-  id: DemagUnlimited
-  suffix: Unlimited
-  name: cryptographic resequencer
-  description: The all-in-one unhacking solution. The thinking man's lock. The iconic DEMAG fixer.
+  parent: DemagUnlimited
+  id: Demag
+  suffix: Limited
   components:
-  - type: Emag
-    demag: true
-  - type: Sprite
-    sprite: _NF/Objects/Tools/demag.rsi
-    state: icon
-  - type: Item
-    sprite: _NF/Objects/Tools/demag.rsi
+  - type: LimitedCharges
+  - type: AutoRecharge

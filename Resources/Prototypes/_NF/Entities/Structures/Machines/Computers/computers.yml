@@ -2,8 +2,9 @@
   name: cargo sale computer
   suffix: Normal
   parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseComputer]
-  id: ComputerPalletConsoleNFNormalMarket
+  id: ComputerPalletConsoleNFMarket
   description: Used to sell goods loaded onto cargo pallets
+  abstract: true
   components:
   - type: Sprite
     layers:
@@ -26,37 +27,50 @@
     interfaces:
       enum.CargoPalletConsoleUiKey.Sale:
         type: CargoPalletConsoleBoundUserInterface
-  - type: MarketModifier
-    mod: 1.00
   - type: Computer
     board: Null
+  - type: MarketModifier
+    buy: false # The user _sells_ things to this machine.
 
 - type: entity
-  parent: ComputerPalletConsoleNFNormalMarket
+  parent: ComputerPalletConsoleNFMarket
+  id: ComputerPalletConsoleNFVeryHighMarket
+  suffix: VeryHigh
+  components:
+  - type: MarketModifier
+    mod: 1.75
+
+- type: entity
+  parent: ComputerPalletConsoleNFMarket
   id: ComputerPalletConsoleNFHighMarket
   suffix: High
-  description: Used to sell goods loaded onto cargo pallets
   components:
   - type: MarketModifier
-    mod: 1.59
+    mod: 1.50
 
 - type: entity
-  parent: ComputerPalletConsoleNFNormalMarket
+  parent: ComputerPalletConsoleNFMarket
+  id: ComputerPalletConsoleNFNormalMarket
+  suffix: Normal
+  components:
+  - type: MarketModifier
+    mod: 1.0
+
+- type: entity
+  parent: ComputerPalletConsoleNFMarket
   id: ComputerPalletConsoleNFLowMarket
   suffix: Low
-  description: Used to sell goods loaded onto cargo pallets
   components:
   - type: MarketModifier
-    mod: 0.698
+    mod: 0.75
 
 - type: entity
-  parent: ComputerPalletConsoleNFNormalMarket
+  parent: ComputerPalletConsoleNFMarket
   id: ComputerPalletConsoleNFVeryLowMarket
   suffix: VeryLow
-  description: Used to sell goods loaded onto cargo pallets
   components:
   - type: MarketModifier
-    mod: 0.40
+    mod: 0.50
 
 - type: entity
   name: contraband exchange computer
@@ -88,6 +102,7 @@
 - type: entity
   parent: ComputerShuttle
   id: ComputerShuttleAntag
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:
@@ -191,19 +206,19 @@
   name: cargo market computer
   parent: ComputerMarketConsoleNFBase
   id: ComputerMarketConsoleNFLow
-  suffix: Low 5x
+  suffix: Low
   components:
   - type: MarketModifier
-    mod: 5
+    mod: 4
 
 - type: entity
   name: cargo market computer
   parent: ComputerMarketConsoleNFBase
   id: ComputerMarketConsoleNFHigh
-  suffix: High 10x
+  suffix: High
   components:
   - type: MarketModifier
-    mod: 10
+    mod: 8
 
 - type: entity
   id: ComputerPirateBounty
@@ -298,6 +313,87 @@
     radius: 1.5
     energy: 1.6
     color: "#b89f25"
-  # - type: GuideHelp # Frontier
-  #   guides: # Frontier
-  #   - CargoBounties # Frontier
+
+- type: entity
+  id: ComputerSalvageExpeditionDebug
+  parent: ComputerSalvageExpedition
+  suffix: Debug
+  components:
+    - type: SalvageExpeditionConsole
+      debug: true
+
+# Station Traffic Controller consoles
+- type: entity
+  id: BaseComputerTraffic
+  abstract: true
+  components:
+  - type: RadarConsole
+    maxRange: 350
+  - type: Computer
+    board: Null
+  - type: Sprite
+    drawdepth: SmallObjects
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      sprite: Structures/Machines/computers.rsi
+      state: shuttle
+    - map: ["computerLayerKeys"]
+      sprite: Structures/Machines/computers.rsi
+      state: generic_keys
+  - type: AccessReader
+    access: [["StationTrafficController"]]
+  - type: ActivatableUIRequiresAccess
+
+- type: entity
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseStructureAccessReaderImmuneToEmag, BaseComputerShuttle, BaseComputerTraffic]
+  id: BaseComputerTrafficRemote
+  abstract: true
+
+- type: entity
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseStructureAccessReaderImmuneToEmag, ComputerShuttle, BaseShuttleIntercom, BaseComputerTraffic]
+  id: BaseComputerTrafficLocal
+  abstract: true
+
+- type: entity
+  parent: BaseComputerTrafficLocal
+  id: ComputerShuttleFrontierOutpostLocal
+  name: frontier outpost traffic console
+  description: Monitors the traffic around Frontier Outpost.
+  suffix: Local
+  components:
+  - type: NFDroneConsoleTarget
+    id: Frontier
+
+- type: entity
+  parent: BaseComputerTrafficRemote
+  id: ComputerShuttleFrontierOutpostRemote
+  name: frontier outpost traffic console
+  description: Monitors the traffic around Frontier Outpost.
+  suffix: Remote
+  components:
+  - type: NFDroneConsole
+    id: Frontier
+
+- type: entity
+  parent: BaseComputerTrafficLocal
+  id: ComputerShuttleTradeOutpostLocal
+  name: trade outpost traffic console
+  suffix: Local
+  description: Monitors the traffic around the Trade Outpost.
+  components:
+  - type: NFDroneConsoleTarget
+    id: Trade
+
+- type: entity
+  parent: BaseComputerTrafficRemote
+  id: ComputerShuttleTradeOutpostRemote
+  name: trade outpost traffic console
+  suffix: Remote
+  description: Monitors the traffic around the Trade Outpost.
+  components:
+  - type: NFDroneConsole
+    id: Trade

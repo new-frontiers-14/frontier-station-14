@@ -130,8 +130,10 @@ public sealed class LockSystem : EntitySystem
             return _doAfter.TryStartDoAfter(
                 new DoAfterArgs(EntityManager, user, lockComp.LockTime, new LockDoAfter(), uid, uid)
                 {
-                    BreakOnDamage = true, BreakOnMove = true, RequireCanInteract = true,
-                    NeedHand = true
+                    BreakOnDamage = true,
+                    BreakOnMove = true,
+                    NeedHand = true,
+                    BreakOnDropItem = false,
                 });
         }
 
@@ -206,8 +208,10 @@ public sealed class LockSystem : EntitySystem
             return _doAfter.TryStartDoAfter(
                 new DoAfterArgs(EntityManager, user, lockComp.LockTime, new UnlockDoAfter(), uid, uid)
                 {
-                    BreakOnDamage = true, BreakOnMove = true, RequireCanInteract = true,
-                    NeedHand = true
+                    BreakOnDamage = true,
+                    BreakOnMove = true,
+                    NeedHand = true,
+                    BreakOnDropItem = false,
                 });
         }
 
@@ -238,7 +242,12 @@ public sealed class LockSystem : EntitySystem
 
         var ev = new LockToggleAttemptEvent(user, quiet);
         RaiseLocalEvent(uid, ref ev, true);
-        return !ev.Cancelled;
+        if (ev.Cancelled)
+            return false;
+
+        var userEv = new UserLockToggleAttemptEvent(uid, quiet);
+        RaiseLocalEvent(user, ref userEv, true);
+        return !userEv.Cancelled;
     }
 
     // TODO: this should be a helper on AccessReaderSystem since so many systems copy paste it
@@ -387,7 +396,7 @@ public sealed class LockSystem : EntitySystem
         {
             args.Cancel();
             if (lockComp.Locked)
-                _sharedPopupSystem.PopupEntity(Loc.GetString("entity-storage-component-locked-message"), uid, args.User);
+                _sharedPopupSystem.PopupClient(Loc.GetString("entity-storage-component-locked-message"), uid, args.User);
         }
     }
 
@@ -399,4 +408,3 @@ public sealed class LockSystem : EntitySystem
         _activatableUI.CloseAll(uid);
     }
 }
-

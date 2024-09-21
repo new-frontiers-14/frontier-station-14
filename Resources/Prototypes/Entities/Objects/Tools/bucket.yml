@@ -45,6 +45,8 @@
         Blunt: 0
   - type: Spillable
     solution: bucket
+  - type: SpillWhenWorn
+    solution: bucket
   - type: DrawableSolution
     solution: bucket
   - type: RefillableSolution
@@ -63,7 +65,8 @@
     tags:
       - Bucket
   # - type: PhysicalComposition # Frontier
-    # materialComposition:
-      # Plastic: 50
+  #   materialComposition:
+  #     Plastic: 50
+  - type: DnaSubstanceTrace
   - type: TrashOnSolutionEmpty # Frontier
     solution: bucket # Frontier

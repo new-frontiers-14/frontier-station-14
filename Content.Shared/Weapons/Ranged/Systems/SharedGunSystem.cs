@@ -4,6 +4,7 @@ using Content.Shared.ActionBlocker;
 using Content.Shared.Actions;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Audio;
+using Content.Shared.Buckle.Components; // Frontier: firing when buckled in space
 using Content.Shared.CombatMode;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Damage;
@@ -489,7 +490,7 @@ public abstract partial class SharedGunSystem : EntitySystem
             return;
 
         var ev = new MuzzleFlashEvent(GetNetEntity(gun), sprite, worldAngle);
-        CreateEffect(gun, ev, user);
+        CreateEffect(gun, ev, gun);
     }
 
     public void CauseImpulse(EntityCoordinates fromCoordinates, EntityCoordinates toCoordinates, EntityUid user, PhysicsComponent userPhysics)
@@ -500,7 +501,19 @@ public abstract partial class SharedGunSystem : EntitySystem
 
         const float impulseStrength = 25.0f;
         var impulseVector =  shotDirection * impulseStrength;
-        Physics.ApplyLinearImpulse(user, -impulseVector, body: userPhysics);
+
+        // Frontier: apply impulse to buckled object if buckled
+        if (TryComp<BuckleComponent>(user, out var buckle) && buckle.BuckledTo is not null)
+        {
+            TryComp<PhysicsComponent>(buckle.BuckledTo, out var buckledPhys);
+            Physics.ApplyLinearImpulse(buckle.BuckledTo.Value, -impulseVector, body: buckledPhys);
+        }
+        else
+        {
+            Physics.ApplyLinearImpulse(user, -impulseVector, body: userPhysics);
+        }
+        // End Frontier
+        // Physics.ApplyLinearImpulse(user, -impulseVector, body: userPhysics); // Frontier: old implementation
     }
 
     public void RefreshModifiers(Entity<GunComponent?> gun)

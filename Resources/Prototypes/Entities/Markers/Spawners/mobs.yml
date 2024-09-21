@@ -707,7 +707,7 @@
       sprite: Mobs/Animals/parrot.rsi
   - type: ConditionalSpawner
     prototypes:
-    - MobParrot
+    - MobParrotNF # Frontier: MobParrot<MobParrotNF
 
 - type: entity
   name: Butterfly Spawner
@@ -852,3 +852,17 @@
   - type: ConditionalSpawner
     prototypes:
     - MobClownSpider
+
+- type: entity
+  name: honk bot spawner
+  id: SpawnHonkBot
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - state: honkbot
+      sprite: Mobs/Silicon/Bots/honkbot.rsi
+  - type: ConditionalSpawner
+    prototypes:
+    - MobHonkBot

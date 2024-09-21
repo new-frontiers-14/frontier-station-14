@@ -44,9 +44,9 @@
     layers:
       - state: green
         scale: 0.7, 0.7
-      - sprite: Objects/Tools/wrench.rsi
+      - sprite: _NF/Objects/Tools/wrench.rsi # Frontier: separate sprites (add _NF folder)
         state: icon
-      - sprite: Objects/Tools/crowbar.rsi
+      - sprite: _NF/Objects/Tools/crowbar.rsi # Frontier: separate sprites (add _NF folder)
         state: icon
       - sprite: _NF/Markers/general.rsi
         state: questionmark
@@ -228,6 +228,8 @@
     prototypes:
     - SuitStorageBase
     - SuitStorageEVAAlternate
+    - SuitStorageEVAEngineer
+    - SuitStorageEVAAtmosTech
     - SuitStorageBasic
     - SuitStorageEngi
     - SuitStorageAtmos
@@ -255,11 +257,29 @@
   - type: RandomSpawner
     prototypes:
     # Empty crates
-    - SpawnDungeonLootCrateEmptyEngi
+    - CratePlasma
+    - CrateEngineering
+    - CrateElectrical
+    - CrateRadiation
+    - CrateUranium
     # Restocks
-    - SpawnDungeonLootCrateRestockEngi
+    - CrateVendingMachineRestockEngineeringFilled
+    - CrateVendingMachineRestockVendomatFilled
+    - CrateVendingMachineRestockRoboticsFilled
+    - CrateVendingMachineRestockAstroVendFilled
+    - CrateVendingMachineRestockTankDispenserFilled
     # Mats
-    - SpawnDungeonLootCrateMaterials
+    - CrateMaterialGlass
+    - CrateMaterialSteel
+    - CrateMaterialPlastic
+    - CrateMaterialWood
+    - CrateMaterialPlasteel
+    - CrateMaterialPlasma
+    - CrateMaterialUranium
+    - CrateMaterialTextiles
+    - CrateMaterials
+    - CrateMaterialBrass
+    - WeldingFuelTankFull
     # Filled crates
     - CrateEngineeringGear
     - CrateEngineeringElectricalSupplies
@@ -268,14 +288,28 @@
     - CrateEngineeringCableHV
     - CrateEngineeringCableBulk
     - CrateEngineeringToolbox
-    - CrateEngineeringKitShipyardRcd
     - CrateEngineeringShuttle
-    chance: 0.95
+    - CrateEngineeringFoamGrenade
+    - CrateEngineeringMiniJetpack
+    - CrateAirlockKit
+    - CrateEngineeringSpaceHeater
+    - CrateEngineeringSolar
+    - CrateTools
+    - CrateEngineerHardsuit
+    - CrateAtmosTechHardsuit
+    - CrateEngineeringThruster
+    - CrateEngineeringGyroscope
+    chance: 0.9
     offset: 0.0
     rarePrototypes:
+    # Mats
+    - WeldingFuelTankHighCapacity
+    # Filled crates
+    - CrateEngineeringKitShipyardRcd
     - CrateEngineeringKitRtg
     - CrateEngineeringKitFabrication
-    rareChance: 0.1
+    - CrateEngineerChiefHardsuit
+    rareChance: 0.01
 
 - type: entity
   name: random crate (empty)
@@ -321,8 +355,7 @@
     - CrateVendingMachineRestockVendomatFilled
     - CrateVendingMachineRestockRoboticsFilled
     - CrateVendingMachineRestockAstroVendFilled
-    - CrateVendingMachineRestockTankDispenserFilled
-    - CrateVendingMachineRestockFlatpackVendFilled
+    # - CrateVendingMachineRestockTankDispenserFilled
     chance: 1.0
     offset: 0.0
 
@@ -357,7 +390,7 @@
     chance: 1
     offset: 0.0
     rarePrototypes:
-    - TilePrinterNF
+    - CutterMachine
     - AutolatheHyperConvection
     - ProtolatheHyperConvection
     rareChance: 0.01
@@ -402,7 +435,7 @@
     layers:
       - state: green
         scale: 0.7, 0.7
-      - sprite: Objects/Misc/stock_parts.rsi
+      - sprite: _NF/Objects/Misc/stock_parts.rsi
         state: bluespace_matter_bin
       - sprite: _NF/Markers/general.rsi
         state: questionmark
@@ -494,7 +527,7 @@
     - ProtolatheMachineCircuitboard
     - AutolatheMachineCircuitboard
     - FlatpackerMachineCircuitboard
-    - TilePrinterNFMachineCircuitboard
+    - CutterMachineCircuitboard
     # Machines
     - ShredderMachineCircuitboard
     - SpaceHeaterMachineCircuitBoard
@@ -544,7 +577,7 @@
     - CircuitImprinterFlatpack
     - EngineeringTechFabFlatpack
     - MaterialReclaimerFlatpack
-    - TilePrinterNFFlatpack
+    - CutterMachineFlatpack
     - PowerCellRechargerFlatpack
     - WeaponCapacitorRechargerFlatpack
     - BorgChargerFlatpack

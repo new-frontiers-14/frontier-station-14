@@ -10,7 +10,7 @@
   - type: Clothing
     sprite: _NF/Clothing/Shoes/Boots/magboots-combat.rsi
   - type: Magboots
-    toggleAction: ActionToggleMagbootsCombat
+    magbootsAlert: MagbootsCombat
   - type: ClothingSpeedModifier
     walkModifier: 0.95
     sprintModifier: 0.9
@@ -26,10 +26,10 @@
   - type: Clothing
     sprite: _NF/Clothing/Shoes/Boots/magboots-nfsd.rsi
   - type: Magboots
-    toggleAction: ActionToggleMagbootsNfsd
+    magbootsAlert: MagbootsNfsd
 
 - type: entity
-  parent: ClothingShoesBootsMagCombat
+  parent: [BaseC3PirateContraband, ClothingShoesBootsMagCombat]
   id: ClothingShoesBootsMagPirate
   name: pirate magboots
   description: Pirate magnetic boots, often used during extravehicular activity to ensure the user remains safely attached to the vehicle.
@@ -40,7 +40,7 @@
   - type: Clothing
     sprite: _NF/Clothing/Shoes/Boots/magboots-pirate.rsi
   - type: Magboots
-    toggleAction: ActionToggleMagbootsPirate
+    magbootsAlert: MagbootsPirate
 
 - type: entity
   parent: ClothingShoesBootsMagCombat
@@ -54,7 +54,7 @@
   - type: Clothing
     sprite: _NF/Clothing/Shoes/Boots/magboots-mercenary.rsi
   - type: Magboots
-    toggleAction: ActionToggleMagbootsMercenary
+    magbootsAlert: MagbootsMercenary
 
 - type: entity
   parent: ClothingShoesBootsMag
@@ -68,50 +68,5 @@
   - type: Clothing
     sprite: _NF/Clothing/Shoes/Boots/magboots-galoshes.rsi
   - type: Magboots
-    toggleAction: ActionToggleMagbootsGaloshes
+    magbootsAlert: MagbootsGaloshes
   - type: NoSlip
-
-- type: entity
-  id: ActionToggleMagbootsCombat
-  parent: ActionBaseToggleMagboots
-  noSpawn: true
-  components:
-  - type: InstantAction
-    icon: { sprite: _NF/Clothing/Shoes/Boots/magboots-combat.rsi, state: icon }
-    iconOn: _NF/Clothing/Shoes/Boots/magboots-combat.rsi/icon-on.png
-
-- type: entity
-  id: ActionToggleMagbootsNfsd
-  parent: ActionBaseToggleMagboots
-  noSpawn: true
-  components:
-  - type: InstantAction
-    icon: { sprite: _NF/Clothing/Shoes/Boots/magboots-nfsd.rsi, state: icon }
-    iconOn: _NF/Clothing/Shoes/Boots/magboots-nfsd.rsi/icon-on.png
-
-- type: entity
-  id: ActionToggleMagbootsPirate
-  parent: ActionBaseToggleMagboots
-  noSpawn: true
-  components:
-  - type: InstantAction
-    icon: { sprite: _NF/Clothing/Shoes/Boots/magboots-pirate.rsi, state: icon }
-    iconOn: _NF/Clothing/Shoes/Boots/magboots-pirate.rsi/icon-on.png
-
-- type: entity
-  id: ActionToggleMagbootsMercenary
-  parent: ActionBaseToggleMagboots
-  noSpawn: true
-  components:
-  - type: InstantAction
-    icon: { sprite: _NF/Clothing/Shoes/Boots/magboots-mercenary.rsi, state: icon }
-    iconOn: _NF/Clothing/Shoes/Boots/magboots-mercenary.rsi/icon-on.png
-
-- type: entity
-  id: ActionToggleMagbootsGaloshes
-  parent: ActionBaseToggleMagboots
-  noSpawn: true
-  components:
-  - type: InstantAction
-    icon: { sprite: _NF/Clothing/Shoes/Boots/magboots-galoshes.rsi, state: icon }
-    iconOn: _NF/Clothing/Shoes/Boots/magboots-galoshes.rsi/icon-on.png

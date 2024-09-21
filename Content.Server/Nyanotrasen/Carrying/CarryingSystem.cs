@@ -1,10 +1,12 @@
 using System.Numerics;
 using System.Threading;
 using Content.Server.DoAfter;
-using Content.Server.Inventory;
+using Content.Server.Body.Systems;
+using Content.Server.Hands.Systems;
 using Content.Server.Resist;
 using Content.Server.Popups;
-using Content.Server.Item.PseudoItem;
+using Content.Server.Inventory;
+using Content.Server.Nyanotrasen.Item.PseudoItem;
 using Content.Shared.Climbing; // Shared instead of Server
 using Content.Shared.Mobs;
 using Content.Shared.DoAfter;
@@ -18,23 +20,26 @@ using Content.Shared.Climbing.Events; // Added this.
 using Content.Shared.Carrying;
 using Content.Shared.Movement.Events;
 using Content.Shared.Movement.Systems;
+using Content.Shared.Pulling;
 using Content.Shared.Standing;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Inventory.VirtualItem;
 using Content.Shared.Item;
-using Content.Shared.Item.PseudoItem;
 using Content.Shared.Throwing;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Movement.Pulling.Events;
 using Content.Shared.Movement.Pulling.Systems;
+using Content.Shared.Nyanotrasen.Item.PseudoItem;
 using Content.Shared.Storage;
 using Robust.Shared.Map.Components;
+using Robust.Shared.Physics.Components;
 
 namespace Content.Server.Carrying
 {
     public sealed class CarryingSystem : EntitySystem
     {
+        [Dependency] private readonly VirtualItemSystem  _virtualItemSystem = default!;
         [Dependency] private readonly CarryingSlowdownSystem _slowdown = default!;
         [Dependency] private readonly DoAfterSystem _doAfterSystem = default!;
         [Dependency] private readonly StandingStateSystem _standingState = default!;
@@ -44,13 +49,14 @@ namespace Content.Server.Carrying
         [Dependency] private readonly EscapeInventorySystem _escapeInventorySystem = default!;
         [Dependency] private readonly PopupSystem _popupSystem = default!;
         [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!;
-        [Dependency] private readonly PseudoItemSystem _pseudoItem = default!;
-        [Dependency] private readonly VirtualItemSystem _virtualItemSystem = default!;
+        [Dependency] private readonly RespiratorSystem _respirator = default!;
+        [Dependency] private readonly PseudoItemSystem _pseudoItem = default!; // Needed for fitting check
 
         public override void Initialize()
         {
             base.Initialize();
             SubscribeLocalEvent<CarriableComponent, GetVerbsEvent<AlternativeVerb>>(AddCarryVerb);
+            SubscribeLocalEvent<CarryingComponent, GetVerbsEvent<InnateVerb>>(AddInsertCarriedVerb);
             SubscribeLocalEvent<CarryingComponent, VirtualItemDeletedEvent>(OnVirtualItemDeleted);
             SubscribeLocalEvent<CarryingComponent, BeforeThrowEvent>(OnThrow);
             SubscribeLocalEvent<CarryingComponent, EntParentChangedMessage>(OnParentChanged);
@@ -62,11 +68,12 @@ namespace Content.Server.Carrying
             SubscribeLocalEvent<BeingCarriedComponent, GettingInteractedWithAttemptEvent>(OnInteractedWith);
             SubscribeLocalEvent<BeingCarriedComponent, PullAttemptEvent>(OnPullAttempt);
             SubscribeLocalEvent<BeingCarriedComponent, StartClimbEvent>(OnStartClimb);
-            SubscribeLocalEvent<BeingCarriedComponent, BuckleChangeEvent>(OnBuckleChange);
+            SubscribeLocalEvent<BeingCarriedComponent, BuckledEvent>(OnBuckleChange);
+            SubscribeLocalEvent<BeingCarriedComponent, UnbuckledEvent>(OnBuckleChange);
+            SubscribeLocalEvent<BeingCarriedComponent, StrappedEvent>(OnBuckleChange);
+            SubscribeLocalEvent<BeingCarriedComponent, UnstrappedEvent>(OnBuckleChange);
             SubscribeLocalEvent<CarriableComponent, CarryDoAfterEvent>(OnDoAfter);
-            SubscribeLocalEvent<CarryingComponent, GetVerbsEvent<InnateVerb>>(AddInsertCarriedVerb); // Frontier
         }
-
 
         private void AddCarryVerb(EntityUid uid, CarriableComponent component, GetVerbsEvent<AlternativeVerb> args)
         {
@@ -100,6 +107,33 @@ namespace Content.Server.Carrying
             args.Verbs.Add(verb);
         }
 
+        private void AddInsertCarriedVerb(EntityUid uid, CarryingComponent component, GetVerbsEvent<InnateVerb> args)
+        {
+            // If the person is carrying someone, and the carried person is a pseudo-item, and the target entity is a storage,
+            // then add an action to insert the carried entity into the target
+            var toInsert = args.Using;
+            if (toInsert is not { Valid: true } || !args.CanAccess || !TryComp<PseudoItemComponent>(toInsert, out var pseudoItem))
+                return;
+
+            if (!TryComp<StorageComponent>(args.Target, out var storageComp))
+                return;
+
+            if (!_pseudoItem.CheckItemFits((toInsert.Value, pseudoItem), (args.Target, storageComp)))
+                return;
+
+            InnateVerb verb = new()
+            {
+                Act = () =>
+                {
+                    DropCarried(uid, toInsert.Value);
+                    _pseudoItem.TryInsert(args.Target, toInsert.Value, pseudoItem, storageComp);
+                },
+                Text = Loc.GetString("action-name-insert-other", ("target", toInsert)),
+                Priority = 2
+            };
+            args.Verbs.Add(verb);
+        }
+
         /// <summary>
         /// Since the carried entity is stored as 2 virtual items, when deleted we want to drop them.
         /// </summary>
@@ -122,8 +156,8 @@ namespace Content.Server.Carrying
 
             args.ItemUid = virtItem.BlockingEntity;
 
-            // var multiplier = _contests.MassContest(uid, virtItem.BlockingEntity);
-            // args.ThrowStrength = 5f * multiplier;
+            var multiplier = MassContest(uid, virtItem.BlockingEntity);
+            args.ThrowSpeed = 5f * multiplier;
         }
 
         private void OnParentChanged(EntityUid uid, CarryingComponent component, ref EntParentChangedMessage args)
@@ -155,7 +189,7 @@ namespace Content.Server.Carrying
             var targetParent = Transform(args.Target.Value).ParentUid;
 
             if (args.Target.Value != component.Carrier && targetParent != component.Carrier && targetParent != uid)
-                args.Cancel();
+                args.Cancelled = true;
         }
 
         /// <summary>
@@ -166,12 +200,13 @@ namespace Content.Server.Carrying
             if (!TryComp<CanEscapeInventoryComponent>(uid, out var escape))
                 return;
 
-            if (args.OldMovement == MoveButtons.None || args.OldMovement == MoveButtons.Walk)
-                return; // Don't try to escape if not moving *cries*
+            if (!args.HasDirectionalMovement)
+                return;
 
             if (_actionBlockerSystem.CanInteract(uid, component.Carrier))
             {
-                _escapeInventorySystem.AttemptEscape(uid, component.Carrier, escape);
+                // Note: the mass contest is inverted because weaker entities are supposed to take longer to escape
+                _escapeInventorySystem.AttemptEscape(uid, component.Carrier, escape, MassContest(component.Carrier, uid));
             }
         }
 
@@ -188,7 +223,7 @@ namespace Content.Server.Carrying
         private void OnInteractedWith(EntityUid uid, BeingCarriedComponent component, GettingInteractedWithAttemptEvent args)
         {
             if (args.Uid != component.Carrier)
-                args.Cancel();
+                args.Cancelled = true;
         }
 
         private void OnPullAttempt(EntityUid uid, BeingCarriedComponent component, PullAttemptEvent args)
@@ -201,7 +236,7 @@ namespace Content.Server.Carrying
             DropCarried(component.Carrier, uid);
         }
 
-        private void OnBuckleChange(EntityUid uid, BeingCarriedComponent component, ref BuckleChangeEvent args)
+        private void OnBuckleChange<TEvent>(EntityUid uid, BeingCarriedComponent component, TEvent args) // Augh
         {
             DropCarried(component.Carrier, uid);
         }
@@ -218,10 +253,10 @@ namespace Content.Server.Carrying
             Carry(args.Args.User, uid);
             args.Handled = true;
         }
-
         private void StartCarryDoAfter(EntityUid carrier, EntityUid carried, CarriableComponent component)
         {
-            var length = GetPickupDuration(carrier, carried); // Frontier: instead of in-line calculation, use a separate function
+            TimeSpan length = GetPickupDuration(carrier, carried);
+
             if (length >= TimeSpan.FromSeconds(9))
             {
                 _popupSystem.PopupEntity(Loc.GetString("carry-too-heavy"), carried, carrier, Shared.Popups.PopupType.SmallCaution);
@@ -239,36 +274,53 @@ namespace Content.Server.Carrying
                 BreakOnMove = true,
                 NeedHand = true
             };
+
             _doAfterSystem.TryStartDoAfter(args);
 
+            // Show a popup to the person getting picked up
             _popupSystem.PopupEntity(Loc.GetString("carry-started", ("carrier", carrier)), carried, carried);
         }
 
         private void Carry(EntityUid carrier, EntityUid carried)
         {
             if (TryComp<PullableComponent>(carried, out var pullable))
-                _pullingSystem.TryStopPull(carrier, pullable);
-
-            // Don't allow people to stack upon each other. They're too weak for that!
-            if (TryComp<CarryingComponent>(carried, out var carryComp))
-                DropCarried(carried, carryComp.Carried);
+                _pullingSystem.TryStopPull(carried, pullable);
 
             Transform(carrier).AttachToGridOrMap();
             Transform(carried).AttachToGridOrMap();
             Transform(carried).Coordinates = Transform(carrier).Coordinates;
             Transform(carried).AttachParent(Transform(carrier));
+            _virtualItemSystem.TrySpawnVirtualItemInHand(carried, carrier);
+            _virtualItemSystem.TrySpawnVirtualItemInHand(carried, carrier);
             var carryingComp = EnsureComp<CarryingComponent>(carrier);
             ApplyCarrySlowdown(carrier, carried);
             var carriedComp = EnsureComp<BeingCarriedComponent>(carried);
             EnsureComp<KnockedDownComponent>(carried);
 
-            _virtualItemSystem.TrySpawnVirtualItemInHand(carried, carrier);
-            _virtualItemSystem.TrySpawnVirtualItemInHand(carried, carrier);
-
             carryingComp.Carried = carried;
             carriedComp.Carrier = carrier;
 
             _actionBlockerSystem.UpdateCanMove(carried);
+        }
+
+        public bool TryCarry(EntityUid carrier, EntityUid toCarry, CarriableComponent? carriedComp = null)
+        {
+            if (!Resolve(toCarry, ref carriedComp, false))
+                return false;
+
+            if (!CanCarry(carrier, toCarry, carriedComp))
+                return false;
+
+            // The second one means that carrier is a pseudo-item and is inside a bag.
+            if (HasComp<BeingCarriedComponent>(carrier) || HasComp<ItemComponent>(carrier))
+                return false;
+
+            if (GetPickupDuration(carrier, toCarry) > TimeSpan.FromSeconds(9))
+                return false;
+
+            Carry(carrier, toCarry);
+
+            return true;
         }
 
         public void DropCarried(EntityUid carrier, EntityUid carried)
@@ -278,22 +330,22 @@ namespace Content.Server.Carrying
             RemComp<BeingCarriedComponent>(carried);
             RemComp<KnockedDownComponent>(carried);
             _actionBlockerSystem.UpdateCanMove(carried);
+            _virtualItemSystem.DeleteInHandsMatching(carrier, carried);
             Transform(carried).AttachToGridOrMap();
             _standingState.Stand(carried);
             _movementSpeed.RefreshMovementSpeedModifiers(carrier);
-            _virtualItemSystem.DeleteInHandsMatching(carrier, carried);
         }
 
         private void ApplyCarrySlowdown(EntityUid carrier, EntityUid carried)
         {
-            // Carrying slowdown made static as a part of removing mass contests
-            // var massRatio = _contests.MassContest(carrier, carried);
-            // if (massRatio == 0)
-            //     massRatio = 1;
-            // var massRatioSq = Math.Pow(massRatio, 2);
-            // var modifier = (1 - (0.15 / massRatioSq));
-            // modifier = Math.Max(0.1, modifier);
-            var modifier = 0.7f; // 30% slowdown while carrying
+            var massRatio = MassContest(carrier, carried);
+
+            if (massRatio == 0)
+                massRatio = 1;
+
+            var massRatioSq = Math.Pow(massRatio, 2);
+            var modifier = (1 - (0.15 / massRatioSq));
+            modifier = Math.Max(0.1, modifier);
             var slowdownComp = EnsureComp<CarryingSlowdownComponent>(carrier);
             _slowdown.SetModifier(carrier, (float) modifier, (float) modifier, slowdownComp);
         }
@@ -324,6 +376,28 @@ namespace Content.Server.Carrying
             return true;
         }
 
+        private float MassContest(EntityUid roller, EntityUid target, PhysicsComponent? rollerPhysics = null, PhysicsComponent? targetPhysics = null)
+        {
+            if (!Resolve(roller, ref rollerPhysics, false) || !Resolve(target, ref targetPhysics, false))
+                return 1f;
+
+            if (targetPhysics.FixturesMass == 0)
+                return 1f;
+
+            return rollerPhysics.FixturesMass / targetPhysics.FixturesMass;
+        }
+
+        private TimeSpan GetPickupDuration(EntityUid carrier, EntityUid carried)
+        {
+            var length = TimeSpan.FromSeconds(3);
+
+            var mod = MassContest(carrier, carried);
+            if (mod != 0)
+                length /= mod;
+
+            return length;
+        }
+
         public override void Update(float frameTime)
         {
             var query = EntityQueryEnumerator<BeingCarriedComponent>();
@@ -349,59 +423,6 @@ namespace Content.Server.Carrying
                 }
             }
             query.Dispose();
-        }
-
-        public TimeSpan GetPickupDuration(EntityUid carrier, EntityUid carried)
-        {
-            TimeSpan length = TimeSpan.FromSeconds(6); // The default was 3 seconds; with the removal of mass contests was increased to 6 to make it less abusable
-
-            // var mod = _contests.MassContest(carrier, carried);
-            // if (mod != 0)
-            //     length /= mod;
-
-            return length;
-        }
-
-        public bool TryCarry(EntityUid carrier, EntityUid toCarry, CarriableComponent? carriedComp = null)
-        {
-            if (!Resolve(toCarry, ref carriedComp, false))
-                return false;
-
-            if (!CanCarry(carrier, toCarry, carriedComp))
-                return false;
-
-            // The second one means that carrier *is also* inside a bag.
-            if (HasComp<BeingCarriedComponent>(carrier) || HasComp<ItemComponent>(carrier))
-                return false;
-
-            if (GetPickupDuration(carrier, toCarry) > TimeSpan.FromSeconds(9))
-                return false;
-
-            Carry(carrier, toCarry);
-
-            return true;
-        }
-
-        private void AddInsertCarriedVerb(EntityUid uid, CarryingComponent component, GetVerbsEvent<InnateVerb> args)
-        {
-            var toInsert = args.Using;
-            if (toInsert is not { Valid: true } || !args.CanAccess || !TryComp<PseudoItemComponent>(toInsert, out var pseudoItem))
-                return;
-
-            if (!HasComp<StorageComponent>(args.Target))
-                return; // Can't check if the person would actually fit here
-
-            InnateVerb verb = new()
-            {
-                Act = () =>
-                {
-                    DropCarried(uid, toInsert.Value);
-                    _pseudoItem.TryInsert(args.Target, toInsert.Value, args.User, pseudoItem);
-                },
-                Text = Loc.GetString("action-name-insert-other", ("target", toInsert)),
-                Priority = 2
-            };
-            args.Verbs.Add(verb);
         }
     }
 }

@@ -1,5 +1,5 @@
 - type: entity
-  id: MobPetNF
+  id: NFMobPet
   abstract: true
   components:
   - type: GhostRole
@@ -7,13 +7,14 @@
 
 - type: entity
   name: Clippy
-  parent: [MobPetNF, MobCatGhost]
+  parent: [NFMobPet, MobCatGhost]
   id: MobCatClippy
   description: It looks like you’re writing a letter, would you like help?
   components:
   - type: GhostRole
     name: ghost-role-information-clippy-name
     description: ghost-role-information-clippy-description
+    rules: ghost-role-information-nonantagonist-rules
     prototype: CatClippy
   - type: Loadout
     prototypes: [ MobClippyGear ]
@@ -42,7 +43,7 @@
 
 - type: entity
   name: Clarpy
-  parent: [MobPetNF, MobCatGhost]
+  parent: [NFMobPet, MobCatGhost]
   id: MobCatClarpy
   description: First cat to gain a bounty.
   components:
@@ -63,6 +64,7 @@
   - type: GhostRole
     name: ghost-role-information-clarpy-name
     description: ghost-role-information-clarpy-description
+    rules: ghost-role-information-clarpy-rules
     prototype: CatClarpy
   - type: Loadout
     prototypes: [ MobClarpyGear ]
@@ -86,7 +88,7 @@
 
 - type: entity
   name: Cappy
-  parent: [MobPetNF, MobCatGhost, ShowSecurityIcons]
+  parent: [NFMobPet, MobCatGhost, ShowSecurityIcons]
   id: MobCatCappy
   description: First cat to shoot a gun.
   components:
@@ -103,6 +105,7 @@
   - type: GhostRole
     name: ghost-role-information-cappy-name
     description: ghost-role-information-cappy-description
+    rules: ghost-role-information-nonantagonist-rules
     prototype: CatCappy
   - type: Loadout
     prototypes: [ MobCappyGear ]
@@ -122,10 +125,6 @@
   - type: ActiveRadio
     channels:
     - Nfsd
-  - type: Inventory
-    templateId: nfsdpet
-  - type: CombatMode
-    combatToggleAction: ActionCombatModeToggle
   - type: MeleeWeapon
     damage:
       types:
@@ -167,6 +166,7 @@
   - type: GhostRole
     name: ghost-role-information-mistake-name
     description: ghost-role-information-mistake-description
+    rules: ghost-role-information-freeagent-rules
     prototype: CatMistake
   - type: ReplacementAccent
     accent: mistakeCat

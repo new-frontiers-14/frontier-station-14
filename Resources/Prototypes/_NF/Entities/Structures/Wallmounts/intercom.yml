@@ -1,10 +1,73 @@
 - type: entity
+  id: BaseShuttleIntercom
+  abstract: true
+  components:
+  - type: TelecomExempt
+  - type: EncryptionKeyHolder
+    keySlots: 2
+    keysExtractionMethod: Prying
+    keysUnlocked: false
+  - type: RadioMicrophone
+    powerRequired: true
+    unobstructedRequired: true
+    listenRange: 2
+    toggleOnInteract: false
+  - type: RadioSpeaker
+    toggleOnInteract: false
+    outputChatType: Speak
+  - type: Intercom
+    startSpeakerOnMapInit: true
+  - type: Speech
+    speechVerb: Robotic
+  - type: ContainerContainer
+    containers:
+      key_slots: !type:Container
+  - type: ShuttleIntercom
+    appendName: true
+
+- type: entity
+  parent: BaseShuttleIntercom
+  id: ShuttleIntercomNfsd
+  abstract: true
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyTraffic
+      - EncryptionKeyNfsd
+
+- type: entity
+  parent: BaseShuttleIntercom
+  id: ShuttleIntercomAntag
+  abstract: true
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyTraffic
+      - EncryptionKeyFreelance
+
+- type: entity
+  parent: BaseShuttleIntercom
+  id: ShuttleIntercomSyndicate
+  abstract: true
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyTraffic
+      - EncryptionKeySyndie
+
+- type: entity
   id: IntercomNfsd
   parent: IntercomSecurity
   suffix: NFSD # Frontier - Not adding DO NOT MAP. (Prototype is already matched by "Security" for sec shipyard.)
   components:
-  - type: Intercom
-    supportedChannels:
-    - Common
-    - Nfsd
-    - Traffic # Frontier - Add Traffic channel
+  - type: ContainerFill
+    containers:
+      board:
+      - IntercomElectronics
+      key_slots:
+      - EncryptionKeyCommon
+      - EncryptionKeyNfsd
+      - EncryptionKeyTraffic # Frontier

@@ -22,7 +22,7 @@
   id: ComputerEmergencyShuttle
   name: emergency shuttle console
   description: Handles authorization to early launch the shuttle.
-  noSpawn: true # Frontier
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: AccessReader
     access:
@@ -82,10 +82,11 @@
       disk_slot: !type:ContainerSlot {}
 
 - type: entity
-  parent: BaseComputerShuttle
+  parent: [BaseComputerShuttle, BaseShuttleIntercom] # Frontier - BaseShuttleIntercom
   id: ComputerShuttle
   name: shuttle console
   description: Used to pilot a shuttle.
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: Sprite
     layers:
@@ -99,13 +100,31 @@
       state: generic_keys
   - type: Computer
     board: ShuttleConsoleCircuitboard
+  # Frontier: shuttle intercom
+  - type: UserInterface
+    interfaces:
+        enum.ShuttleConsoleUiKey.Key:
+          type: ShuttleConsoleBoundUserInterface
+        enum.IntercomUiKey.Key:
+          type: IntercomBoundUserInterface
+  - type: ContainerContainer
+    containers:
+      board: !type:Container
+        ents: []
+      disk_slot: !type:ContainerSlot {}
+      key_slots: !type:Container
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyTraffic
+  # End Frontier
 
 - type: entity
   parent: BaseComputerShuttle
   id: ComputerShuttleSyndie
   name: syndicate shuttle console
   description: Used to pilot a syndicate shuttle.
-  noSpawn: true # Frontier
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: Sprite
     layers:
@@ -136,7 +155,7 @@
   id: ComputerShuttleCargo
   name: cargo shuttle console
   description: Used to pilot the cargo shuttle.
-  noSpawn: true # Frontier
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: Sprite
     layers:
@@ -156,7 +175,7 @@
   - type: PointLight
     radius: 1.5
     energy: 1.6
-    color: "#c94242"
+    color: "#43ccb5"
   - type: Computer
     board: CargoShuttleConsoleCircuitboard
   - type: StealTarget
@@ -167,7 +186,7 @@
   id: ComputerShuttleSalvage
   name: salvage shuttle console
   description: Used to pilot the salvage shuttle.
-  noSpawn: true # Frontier
+  categories: [ HideSpawnMenu ] # Frontier
   components:
     - type: Sprite
       layers:
@@ -187,7 +206,7 @@
     - type: PointLight
       radius: 1.5
       energy: 1.6
-      color: "#c94242"
+      color: "#43ccb5"
     - type: Computer
       board: SalvageShuttleConsoleCircuitboard
     - type: StealTarget
@@ -302,7 +321,7 @@
     board: MedicalRecordsComputerCircuitboard
 
 - type: entity
-  parent: BaseComputer
+  parent: [BaseStructureIndestructible, BaseComputer] # Frontier: added BaseStructureIndestructible
   id: ComputerCriminalRecords
   name: criminal records computer
   description: This can be used to check criminal records. Only security can modify them.
@@ -485,7 +504,7 @@
     - Xenoarchaeology
 
 - type: entity
-  parent: BaseComputer
+  parent: [BaseStructureIndestructible, BaseComputer] # Frontier: added BaseStructureIndestructible
   id: ComputerId
   name: ID card computer
   description: Terminal for programming Nanotrasen employee ID cards to access parts of the station.
@@ -718,7 +737,7 @@
   parent: BaseComputer
   name: cargo shuttle computer
   description: Used to order the shuttle.
-  noSpawn: true # Frontier
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: Sprite
     layers:
@@ -766,6 +785,7 @@
     - map: ["computerLayerKeys"]
       state: tech_key
   - type: CargoOrderConsole
+  - type: BankClient
 #  - type: ActiveRadio # Frontier
 #    channels: # Frontier
 #    - Supply # Frontier
@@ -830,6 +850,7 @@
   # - type: GuideHelp # Frontier
   #   guides: # Frontier
   #   - CargoBounties # Frontier
+  #   - Cargo # Frontier
 
 - type: entity
   parent: BaseComputer
@@ -1001,7 +1022,7 @@
   id: ComputerPalletConsole
   parent: BaseComputer
   name: cargo sale computer
-  description: Used to sell goods loaded onto cargo pallets
+  description: Used to sell goods loaded onto cargo pallets.
   components:
   - type: Sprite
     layers:

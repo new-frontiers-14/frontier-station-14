@@ -37,6 +37,7 @@
   description: Turn the light on and off.
   components:
   - type: InstantAction
+    useDelay: 1
     icon: { sprite: Objects/Tools/flashlight.rsi, state: flashlight }
     iconOn: { sprite: Objects/Tools/flashlight.rsi, state: flashlight-on }
     event: !type:ToggleActionEvent
@@ -161,20 +162,6 @@
     event: !type:UseDnaScramblerImplantEvent
 
 - type: entity
-  id: ActionMorphGeras
-  name: Morph into Geras
-  description:  Morphs you into a Geras - a miniature version of you which allows you to move fast, at the cost of your inventory.
-  components:
-  - type: InstantAction
-    itemIconStyle: BigAction
-    useDelay: 10 # prevent spam
-    priority: -20
-    icon:
-      sprite: Mobs/Aliens/slimes.rsi
-      state: blue_adult_slime
-    event: !type:MorphIntoGeras
-
-- type: entity
   id: ActionToggleSuitPiece
   name: Toggle Suit Piece
   description: Remember to equip the important pieces of your suit before going into action.
@@ -258,7 +245,7 @@
     checkCanInteract: false
     checkConsciousness: false
     temporary: true
-    icon: { sprite: Objects/Tools/multitool.rsi, state: icon }
+    icon: { sprite: _NF/Objects/Tools/multitool.rsi, state: icon } # Frontier: separate sprites (add _NF folder)
     event: !type:ClearAllOverlaysEvent
 
 - type: entity

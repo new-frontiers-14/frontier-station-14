@@ -11,9 +11,10 @@
   cost: 7500
   recipeUnlocks:
   - MiningDrill
+  - WeaponGrapplingGun
   - BorgModuleMining
+  - BorgModuleGrapplingGun
   - OreProcessorIndustrialMachineCircuitboard
-  - OreBagOfHolding
   - ClothingMaskWeldingGas
 
 - type: technology
@@ -106,19 +107,6 @@
   - RipleyPeripheralsElectronics
   - MechEquipmentGrabber
 
-- type: technology
-  id: Grappling
-  name: research-technology-grappling
-  icon:
-    sprite: Objects/Weapons/Guns/Launchers/grappling_gun.rsi
-    state: base
-  discipline: Industrial
-  tier: 1
-  cost: 5000
-  recipeUnlocks:
-  - WeaponGrapplingGun
-  - BorgModuleGrapplingGun
-
 # Tier 2
 
 - type: technology
@@ -183,6 +171,19 @@
     - BorgModuleAdvancedTool
     - BorgModuleRCD
 
+- type: technology
+  id: MassExcavation
+  name: research-technology-excavation
+  icon:
+    sprite: Objects/Tools/handdrilldiamond.rsi
+    state: handdrill
+  discipline: Industrial
+  tier: 2
+  cost: 12500
+  recipeUnlocks:
+    - OreBagOfHolding
+    - MiningDrillDiamond
+
 # Tier 3
 
 - type: technology
@@ -218,7 +219,7 @@
   id: RapidConstruction
   name: research-technology-rapid-construction
   icon:
-    sprite: Objects/Tools/rcd.rsi
+    sprite: _NF/Objects/Tools/rcd.rsi
     state: icon-shipyard # Frontier
   discipline: Industrial
   tier: 2

@@ -26,7 +26,7 @@
 - type: entity
   id: CrateSalvageAssortedGoodies
   suffix: Filled, Salvage Random
-  noSpawn: true # You should use SalvageMaterialCrateSpawner instead
+  categories: [ HideSpawnMenu ] # You should use SalvageMaterialCrateSpawner instead
   parent: CrateGenericSteel
   components:
   - type: StorageFill
@@ -40,7 +40,7 @@
         prob: 0.1
       - id: IngotSilver
         prob: 0.1
-      - id: SheetPlasma
+      - id: SheetPlastic # Frontier: replaced SheetPlasma
         prob: 0.1
       - id: WelderIndustrialAdvanced
         prob: 0.1

@@ -189,9 +189,26 @@
   - type: RandomSpawner
     prototypes:
     # Empty crates
-    - SpawnDungeonLootCrateEmptyService
+    - CrateFreezer
+    - CrateTrashCartJani
+    - CrateHydroponics
+    - CrateHydroSecure
+    - CratePlastic
+    - CratePlasticBiodegradable
     # Restocks
-    - SpawnDungeonLootCrateRestockService
+    - CrateVendingMachineRestockBoozeFilled
+    - CrateVendingMachineRestockChefvendFilled
+    - CrateVendingMachineRestockCondimentStationFilled
+    - CrateVendingMachineRestockDinnerwareFilled
+    - CrateVendingMachineRestockSmokesFilled
+    - CrateVendingMachineRestockHappyHonkFilled
+    # Mats
+    - CrateMaterialGlass
+    - CrateMaterialSteel
+    - CrateMaterialPlastic
+    - CrateMaterialWood
+    - CrateMaterialTextiles
+    - CrateMaterialBiomass
     # Filled crates
     - CrateServiceReplacementLights
     - CrateServiceReplacementColoredLights
@@ -209,12 +226,13 @@
     - CrateFoodBarSupply
     - CrateServiceBoozeDispenser
     - CrateSpaceCleaner
-    chance: 0.95
+    - CrateServiceKitCleanades
+    chance: 0.9
     offset: 0.0
     rarePrototypes:
     - CrateServiceKitKitchen
     - CrateServiceKitHydroponics
-    rareChance: 0.05
+    rareChance: 0.005
 
 - type: entity
   name: random crate (restock)
@@ -362,7 +380,7 @@
     - KitchenReagentGrinderFlatpack
     - MaterialReclaimerFlatpack
     - HydroponicsTrayEmptyFlatpack
-    - TilePrinterNFFlatpack
+    - CutterMachineFlatpack
     - DawInstrumentFlatpack
     - MinimoogInstrumentFlatpack
     - ComputerIFFFlatpack

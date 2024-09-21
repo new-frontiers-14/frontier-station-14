@@ -122,8 +122,7 @@
   - type: EmagLatheRecipes
     emagStaticRecipes:
       - PlushieJesterRecipe
-      - PlushieTrystanRecipe
-      - PlushieSlipsRecipe
+      - PlushieJanitorRecipe
       - PlushieNukeRecipe
       - PlushieRGBeeRecipe
       - BalloonCorgiRecipe
@@ -138,108 +137,18 @@
         - PrizeTicket
 
 - type: entity
-  parent: BaseLathe
-  id: TilePrinterNF
-  name: tile-meister 5000
-  description: Prints floor tiles. No mercy.
-  components:
-  - type: Sprite
-    sprite: Structures/Machines/sheetifier.rsi
-    layers:
-    - state: base_machine
-      map: ["enum.LatheVisualLayers.IsRunning"]
-    - state: buttons_on
-      shader: unshaded
-      map: ["enum.PowerDeviceVisualLayers.Powered"]
-  - type: Machine
-    board: TilePrinterNFMachineCircuitboard
-  - type: MaterialStorage
-    dropOnDeconstruct: true
-    ignoreColor: true
-    canEjectStoredMaterials: false
-    whitelist:
-      tags:
-      - Raw
-      - Wooden
-      - Sheet
-      - RawMaterial
-      - Ingot
-  - type: Lathe
-    idleState: base_machine
-    runningState: base_machine_processing
-    staticRecipes:
-    - FloorTileItemSteel
-    - FloorTileItemSteelCheckerLight
-    - FloorTileItemSteelCheckerDark
-    - FloorTileItemMetalDiamond
-    - FloorTileItemWood
-    - FloorTileItemWhite
-    - FloorTileItemDark
-    - FloorTileItemTechmaint
-    - FloorTileItemFreezer
-    - FloorTileItemShowroom
-    - FloorTileItemGCircuit
-    - FloorTileItemBCircuit
-    - FloorTileItemGold
-    - FloorTileItemReinforced
-    - FloorTileItemMono
-    - FloorTileItemLino
-    - FloorTileItemHydro
-    - FloorTileItemLime
-    - FloorTileItemShuttleWhite
-#    - FloorTileStackShuttleBlue
-#    - FloorTileStackShuttleOrange
-    - FloorTileItemShuttlePurple
-#    - FloorTileStackShuttleRed
-    - FloorTileItemEighties
-    - FloorTileItemArcadeBlue
-    - FloorTileItemArcadeBlue2
-    - FloorTileItemArcadeRed
-    - FloorTileItemBoxing
-    - FloorTileItemGym
-    - FloorTileItemBlue
-    - FloorTileItemMining
-    - FloorTileItemMiningDark
-    - FloorTileItemMiningLight
-    - FloorTileItemBar
-    - FloorTileItemClown
-    - FloorTileItemMime
-    - FloorTileItemKitchen
-    - FloorTileItemLaundry
-    - FloorTileItemSilver
-    - FloorTileItemSteelMaint
-    - FloorTileItemGratingMaint
-    - SheetPaper
-    - FloorCarpetItemRed
-    - FloorCarpetItemBlack
-    - FloorCarpetItemBlue
-    - FloorCarpetItemGreen
-    - FloorCarpetItemOrange
-    - FloorCarpetItemSkyBlue
-    - FloorCarpetItemPurple
-    - FloorCarpetItemPink
-    - FloorTileItemCarpetClown
-    - FloorTileItemCarpetOffice
-    dynamicRecipes:
-    - FauxTileAstroGrass
-    - FauxTileAstroIce
-  - type: EmagLatheRecipes
-    emagStaticRecipes:    
-    - MaterialSheetMeat
-
-- type: entity
-  parent: Protolathe
+  parent: BaseLatheLube
   id: SalvageTechfabNF
   name: salvage techfab
   description: Prints equipment for salvagers.
   components:
   - type: Sprite
     netsync: false
-    sprite: Structures/Machines/techfab.rsi
+    sprite: _NF/Structures/Machines/techfab.rsi
     layers:
     - state: icon
       map: ["enum.LatheVisualLayers.IsRunning"]
-    - state: cargo
+    - state: salvage
     - state: unlit
       shader: unshaded
       map: ["enum.PowerDeviceVisualLayers.Powered"]
@@ -253,51 +162,51 @@
     idleState: icon
     runningState: icon
     staticRecipes:
-      #- Durathread
-      #- Plasteel
-      #- SheetSteel
-      #- SheetPlasteel
-      #- SheetPlasma30
-      #- SheetUranium30
-      #- SheetGlass30
-      #- SheetRGlass
-      #- SheetPlastic
-      - ClothingOuterSuitEmergency
-      - ClothingHeadHelmetEVA
-      - ClothingOuterHardsuitEVA
+    # Shared lathe recipes
+    ## Basic tools
       - Wirecutter
-      - Signaller
       - Screwdriver
       - Welder
       - Wrench
-      - Crowbar
+      - CrowbarGreen
       - Multitool
-      - NetworkConfigurator
       - FlashlightLantern
-      - HandheldGPSBasic
-      - TRayScanner
-      - AirTank
-      - GasAnalyzer
-      - ClothingBeltSalvageWebbing
-      - Pickaxe
       - AppraisalTool
       - HandLabeler
+      - Signaller
+      - ClothingMaskWeldingGas
+    ## Basic storage
+      - ToolboxArtisticNF
+      - ToolboxElectricalNF
+      - ToolboxMechanicalNF
+      - ToolboxEmergencyNF
+    ## Basic parts
+      - CableStack
       - LightTube
+      - LedLightTube
       - SodiumLightTube
       - ExteriorLightTube
       - LightBulb
-      - DrinkMugMetal
+      - LedLightBulb
+      - ConveyorBeltAssembly
       - PowerCellSmall
       - PowerCellMedium
-      - EmergencyRollerBedSpawnFolded
-      - CableStack
-      - ConveyorBeltAssembly
-      - DoorElectronics
-      - StationMapElectronics
+    ## Basic electronics
+      - SignalTimerElectronics
       - CellRechargerCircuitboard
       - BorgChargerCircuitboard
       - WeaponCapacitorRechargerCircuitboard
-      - RadioHandheld
+    ## Basic EVA:
+      - ClothingOuterEVASuitContractor
+      - ClothingOuterEVASuitPilot
+      - AirTank
+      - HandheldGPSBasic
+    # Salvage techfab
+      - ClothingOuterEVASuitCargo
+      - ClothingOuterEVASuitSalvage
+      - ClothingBeltSalvageWebbing
+      - Pickaxe
+      - RadioHandheldNF
       - Floodlight
       - FlareLathe
       - GlowstickBlue
@@ -314,15 +223,20 @@
       - ClothingNeckIFFBlue
       - ClothingNeckIFFOrange
       - ClothingNeckIFFPurple
+      - LanternNF
     dynamicRecipes:
-      - Bucket
-      - MopItem
-      - SprayBottle
-      - FireExtinguisher
+    # Shared lathe recipes
+    ## Advanced tools
+      - WelderExperimental
+      - JawsOfLife
+      - PowerDrill
+      - JetpackVoid
+      - PowerCellHigh
+      #- PowerCellHyperNF
+      - PowerCellMicroreactor
+    # Salvage techfab
       - CableMVStack
       - CableHVStack
-      - PowerCellHigh
-      - PowerCellMicroreactor
       - WeaponCrusher
       - WeaponCrusherDagger
       - WeaponCrusherGlaive
@@ -332,9 +246,6 @@
       - ClothingBackpackDuffelHolding
       - ClothingBackpackMessengerHolding
       - OreBagOfHolding
-      - WelderExperimental
-      - JawsOfLife
-      - JetpackVoid
       - ClothingOuterHardsuitBasic
       - ClothingOuterHardsuitSpatio
       - ClothingOuterHardsuitSalvage
@@ -344,28 +255,19 @@
       - ClothingOuterHardsuitAncientEVA
   - type: EmagLatheRecipes
     emagStaticRecipes:
-#       - CartridgePistol
-#       - CartridgeMagnum
-#       - ShellShotgun
-#       - ShellShotgunFlare
        - ShellTranquilizer
-#       - CartridgeLightRifle
-#       - CartridgeRifle
        - MagazineBoxPistol
        - MagazineBoxMagnum
        - MagazineBoxRifle
        - MagazineBoxLightRifle
-       - GrenadeBlast
+#       - GrenadeBlast
        - ClothingHeadHelmetCosmonaut
-#       - ClothingHeadHelmetSyndicate # Frontier
-#       - ClothingOuterHardsuitSyndicate # Frontier
   - type: MaterialStorage
     whitelist:
       tags:
         - Sheet
         - RawMaterial
         - Ingot
-#        - Ore
 
 - type: entity
   id: NfsdTechFab
@@ -388,3 +290,418 @@
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: Machine
     board: NfsdTechFabCircuitboard
+
+- type: entity
+  id: MercenaryTechFab
+  parent: BaseLatheLube
+  name: mercenary techfab
+  description: Prints the bare minimum of tools of the trade that any budget mercenary or private security could need. Nothing fancy.
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Machines/techfab.rsi
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: mercenary
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: inserting
+      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: MercenaryTechFabCircuitboardNF
+  - type: MaterialStorage
+    whitelist:
+      tags:
+      - Sheet
+      - RawMaterial
+      - Ingot
+  - type: Lathe
+    idleState: icon
+    runningState: icon
+    staticRecipes:
+    # Shared lathe recipes
+    ## Basic tools
+      - Wirecutter
+      - Screwdriver
+      - Welder
+      - Wrench
+      - CrowbarGreen
+      - Multitool
+      - FlashlightLantern
+      - AppraisalTool
+      - HandLabeler
+      - Signaller
+      - ClothingMaskWeldingGas
+    ## Basic storage
+      - ToolboxArtisticNF
+      - ToolboxElectricalNF
+      - ToolboxMechanicalNF
+      - ToolboxEmergencyNF
+    ## Basic parts
+      - CableStack
+      - LightTube
+      - LedLightTube
+      - SodiumLightTube
+      - ExteriorLightTube
+      - LightBulb
+      - LedLightBulb
+      - ConveyorBeltAssembly
+      - PowerCellSmall
+      - PowerCellMedium
+    ## Basic electronics
+      - SignalTimerElectronics
+      - CellRechargerCircuitboard
+      - BorgChargerCircuitboard
+      - WeaponCapacitorRechargerCircuitboard
+    ## Basic EVA:
+      - ClothingOuterEVASuitContractor
+      - ClothingOuterEVASuitPilot
+      - AirTank
+      - HandheldGPSBasic
+    # Mercenary techfab
+    ## Clothing / Armor
+      - RiotShield
+      - ClothingNeckIFFNeutral
+      - ClothingNeckIFFGreen
+      - ClothingNeckIFFRed
+      - ClothingNeckIFFBlue
+      - ClothingNeckIFFOrange
+      - ClothingNeckIFFPurple
+      - ClothingHeadHelmetMercenary
+      - ClothingHeadHelmetBasic
+      - ClothingOuterVestWebMercenary
+      - ClothingOuterVestWebMercenaryBlack
+      - ClothingBeltMercenaryWebbing
+      - ClothingBeltMilitaryWebbing
+      - ClothingHandsMercenaryGlovesCombat
+      - ClothingHandsGlovesCombat
+      - ClothingShoesBootsMercenary
+      - ClothingShoesBootsCombat
+      - ClothingShoesBootsJack
+      - ClothingEyesGlassesMercenary
+      - ClothingEyesGlassesSunglasses
+      - ClothingMaskGasMercenary
+      - ClothingMaskBreathMedicalSecurity
+      - ClothingMaskGasSecurity
+      - ClothingBeltBandolier
+    ## EVA / Hardsuits
+      - ClothingOuterEVASuitMercenary
+      - ClothingOuterEVASuitPrivateSec
+    ## Storage
+      - MedkitCombat
+      - WeaponCaseShort
+      - WeaponCaseLong
+      - WeaponCaseHeavy
+      - WeaponCaseShortAmmo
+      - WeaponCaseShortExplosives
+    ## Weapons
+      - CombatKnife
+      - WeaponLaserSvalinn # After the changes made to windows shouldn't be that much of an issue now if it's widely available
+      - WeaponLaserPistolNF # After the changes made to windows shouldn't be that much of an issue now if it's widely available
+      - WeaponRevolverArgenti
+      - WeaponPistolMk58NF
+      - WeaponShotgunDoubleBarreled
+      - WeaponRifleNovaliteC1
+      - WeaponRifleGestio
+      - BaseBallBatNF
+    ## Ammo boxes
+      - BoxLethalshot
+      - MagazineBoxLightRifle
+      - MagazineBoxPistol
+      - MagazineBoxRifle
+    ## Mags / Speedloaders / Clips
+      - MagazineNovaliteC1Empty
+      - MagazineNovaliteC1
+      - MagazineLightRifleLowCapacityEmpty
+      - MagazineLightRifleLowCapacity
+      - MagazineLightRifle
+      - MagazineLightRifleEmpty
+      - MagazineRifle
+      - MagazineRifleEmpty
+      - MagazinePistol
+      - MagazinePistolEmpty
+      - SpeedLoaderRifleHeavy
+      - SpeedLoaderRifleHeavyEmpty
+    dynamicRecipes:
+    # Shared lathe recipes
+    ## Advanced tools
+      - WelderExperimental
+      - JawsOfLife
+      - PowerDrill
+      - JetpackVoid
+      - PowerCellHigh
+      # - PowerCellHyperNF
+      - PowerCellMicroreactor
+    # Mercenary techfab
+    ## Armor
+      - TelescopicShield
+      - ClothingOuterArmorBulletproofNF
+      - ClothingOuterCoatBHTrench
+      - ClothingOuterArmorPunkRandomized
+      - ClothingOuterArmorPunkRed
+      - ClothingOuterArmorPunkGreen
+      - ClothingOuterArmorPunkOrange
+      - ClothingOuterArmorElitePunkRandomized
+      - ClothingBeltPunkRandomized
+      - ClothingShoesBootsPunkRandomized
+      - ClothingEyesPunkGoggles
+      - ClothingEyesPunkInfoShades
+      - ClothingMaskPunkHalf
+      - ClothingUniformRandomPunkTanktop
+      - ClothingUniformRandomPunkTanktopShorts
+      - ClothingUniformRandomPunkCroptop
+      - ClothingUniformRandomPunkCroptopShorts
+      - ClothingOuterCoatLettermanRandomized
+      - ClothingOuterCoatBomberRandomized
+    ## EVA / Hardsuits
+      - ClothingOuterHardsuitCap
+      - ClothingOuterHardsuitMercenary
+      - ClothingOuterHardsuitPrivateSecurity
+      - ClothingOuterHardsuitScaf
+      - ClothingShoesBootsMagCombat
+      - ClothingShoesBootsMagMercenary
+    ## Utilities
+      - ForensicPad
+      - ClothingEyesHudBountyHunter
+      - ClothingEyesPunkInfoShades
+      - PinpointerUniversalNF
+      - Handcuffs
+      - SignalTrigger
+      - PortableRecharger
+      - TimerTrigger
+      - VoiceTrigger
+      - TurboItemRechargerCircuitboard
+      - ClothingBackpackHolding
+      - ClothingBackpackSatchelHolding
+      - ClothingBackpackDuffelHolding
+      - ClothingBackpackMessengerHolding
+      - FlashlightSecliteNF
+    ## Weapons
+      - WeaponGrapplingGun
+      - KatanaNF
+      - KukriKnifeNF
+      - MacheteNF
+      - Stunbaton
+      - BolaNF
+      - ExplosivePayload
+      - FlashPayload
+      - ChemicalPayload
+      - WeaponShotgunKammererNF
+      - WeaponAdvancedLaser # After the changes made to windows shouldn't be that much of an issue now if it's widely available
+      - WeaponAntiqueLaserNF # After the changes made to windows shouldn't be that much of an issue now if it's widely available
+      - WeaponLaserCarbine
+      - WeaponDisabler
+    ## Mags / Speedloaders / Clips
+    ## Ammo boxes
+      - BoxBeanbag
+      - BoxShellTranquilizer
+      - MagazineBoxLightRifleRubber
+      - MagazineBoxMagnumRubber
+      - MagazineBoxPistolRubber
+      - MagazineBoxRifleRubber
+      - MagazineShotgunBeanbag
+
+- type: entity
+  id: MercenaryTechFabHacked
+  parent:
+  - MercenaryTechFab
+  - BaseHyperlathe
+  - PunkHoloGraffitiOverlay # Prototype can be located at \Resources\Prototypes\_NF\Entities\Structures\Holographic\graffiti.yml
+  name: hacked mercenary techfab
+  description: Prints the bare minimum of tools of the trade that any budget mercenary or private security could need. Nothing fancy.
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Machines/techfab.rsi
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: mercenary
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: inserting
+      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+    - sprite: _NF/Structures/Holo/graffiti/simple.rsi
+      state: holograffiti01
+      map: [ "graffiti" ]
+      shader: unshaded
+      scale: 0.7, 0.7
+  - type: Machine
+    board: MercenaryTechFabCircuitboardHackedNF
+  - type: MaterialStorage
+    whitelist:
+      tags:
+      - Sheet
+      - RawMaterial
+      - Ingot
+  - type: PointLight
+    radius: 1.5
+    energy: 2
+  - type: RgbLightController
+    layers: [ 0 ]
+  - type: Lathe
+    idleState: icon
+    runningState: icon
+    staticRecipes:
+    # Shared lathe recipes
+    ## Basic tools
+      - Wirecutter
+      - Screwdriver
+      - Welder
+      - Wrench
+      - CrowbarGreen
+      - Multitool
+      - HandLabeler
+      - Signaller
+      - ClothingMaskWeldingGas
+    ## Basic storage
+      - ToolboxArtisticNF
+      - ToolboxElectricalNF
+      - ToolboxMechanicalNF
+      - ToolboxEmergencyNF
+    ## Basic parts
+      - CableStack
+      - LightTube
+      - LedLightTube
+      - SodiumLightTube
+      - ExteriorLightTube
+      - LightBulb
+      - LedLightBulb
+      - ConveyorBeltAssembly
+      - PowerCellSmall
+      - PowerCellMedium
+    ## Basic electronics
+      - SignalTimerElectronics
+      - CellRechargerCircuitboard
+      - BorgChargerCircuitboard
+      - WeaponCapacitorRechargerCircuitboard
+    ## Basic EVA:
+      - ClothingOuterEVASuitContractor
+      - ClothingOuterEVASuitPilot
+      - AirTank
+      - HandheldGPSBasic
+    # Mercenary techfab
+    ## Utility
+      - ColoredLightTubeRedNF
+      - ColoredLightTubeBlackLightNF
+      - ColoredLightTubeFrostyBlueNF
+    ## Clothing / Armor
+      - RiotShield
+      - ClothingHandsMercenaryGlovesCombat
+      - ClothingHandsGlovesCombat
+      - ClothingOuterArmorPunkRandomized
+      - ClothingOuterArmorPunkRed
+      - ClothingOuterArmorPunkGreen
+      - ClothingOuterArmorPunkOrange
+      - ClothingOuterArmorElitePunkRandomized
+      - ClothingBeltPunkRandomized
+      - ClothingShoesBootsPunkRandomized
+      - ClothingEyesPunkGoggles
+      - ClothingEyesPunkInfoShades
+      - ClothingMaskPunkHalf
+      - ClothingUniformRandomPunkTanktop
+      - ClothingUniformRandomPunkTanktopShorts
+      - ClothingUniformRandomPunkCroptop
+      - ClothingUniformRandomPunkCroptopShorts
+      - ClothingOuterCoatLettermanRandomized
+      - ClothingOuterCoatBomberRandomized
+    ## Storage
+      - MedkitCombat
+      - WeaponCaseShort
+      - WeaponCaseLong
+      - WeaponCaseHeavy
+      - WeaponCaseShortAmmo
+      - WeaponCaseShortExplosives
+    ## Weapons
+      - WeaponLaserSvalinn # After the changes made to windows shouldn't be that much of an issue now if it's widely available
+      - WeaponLaserPistolNF
+      - WeaponPistolMk58NF
+      - WeaponRifleNovaliteC1
+      - WeaponRifleGestio
+      - BaseBallBatNF
+      - KatanaNF
+      - KukriKnifeNF
+    ## Ammo boxes
+      - BoxLethalshot
+      - MagazineBoxLightRifle
+      - MagazineBoxPistol
+      - MagazineBoxRifle
+    ## Mags / Speedloaders / Clips
+      - MagazineNovaliteC1Empty
+      - MagazineNovaliteC1
+      - MagazineLightRifleLowCapacityEmpty
+      - MagazineLightRifleLowCapacity
+      - MagazineLightRifle
+      - MagazineLightRifleEmpty
+      - MagazineRifle
+      - MagazineRifleEmpty
+      - MagazinePistol
+      - MagazinePistolEmpty
+      - SpeedLoaderRifleHeavy
+      - SpeedLoaderRifleHeavyEmpty
+    dynamicRecipes:
+    # Shared lathe recipes
+    ## Advanced tools
+      - WelderExperimental
+      - JawsOfLife
+      - PowerDrill
+      - JetpackVoid
+      - PowerCellHigh
+      # - PowerCellHyperNF
+      - PowerCellMicroreactor
+    # Mercenary techfab
+    ## Armor
+      - TelescopicShield
+      - ClothingOuterArmorBulletproofNF
+      - ClothingOuterCoatBHTrench
+    ## EVA / Hardsuits
+      - ClothingOuterHardsuitCap
+      - ClothingOuterHardsuitMercenary
+      - ClothingOuterHardsuitPrivateSecurity
+      - ClothingOuterHardsuitScaf
+      - ClothingShoesBootsMagCombat
+      - ClothingShoesBootsMagMercenary
+    ## Utilities
+      - PinpointerUniversalNF
+      - Handcuffs
+      - SignalTrigger
+      - PortableRecharger
+      - TimerTrigger
+      - VoiceTrigger
+      - TurboItemRechargerCircuitboard
+      - ClothingBackpackHolding
+      - ClothingBackpackSatchelHolding
+      - ClothingBackpackDuffelHolding
+      - ClothingBackpackMessengerHolding
+      - FlashlightSecliteNF
+    ## Weapons
+      - GrenadeBlast
+      - GrenadeEMP
+      - GrenadeFlash
+      - Truncheon
+      - MacheteNF
+      - Stunbaton
+      - BolaNF
+      - ChemicalPayload
+      - WeaponShotgunKammererNF
+      - WeaponAdvancedLaser # After the changes made to windows shouldn't be that much of an issue now if it's widely available
+      - WeaponAntiqueLaserNF # After the changes made to windows shouldn't be that much of an issue now if it's widely available
+      - WeaponLaserCarbine
+      - WeaponDisabler
+      - WeaponLaserCannon
+    ## Ammo boxes
+      - BoxShotgunIncendiary
+      - MagazineBoxLightRifleIncendiary
+      - MagazineBoxMagnumIncendiary
+      - MagazineBoxPistolIncendiary
+      - MagazineBoxRifleIncendiary
+      - BoxShotgunUranium
+      - MagazineBoxLightRifleUranium
+      - MagazineBoxMagnumUranium
+      - MagazineBoxPistolUranium
+      - MagazineBoxRifleUranium

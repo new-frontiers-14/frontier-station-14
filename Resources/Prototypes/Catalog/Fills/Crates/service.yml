@@ -1,6 +1,6 @@
 - type: entity
   id: CrateServiceJanitorialSupplies
-  parent: CratePlastic
+  parent: CratePlasticBiodegradable # Frontier: CratePlastic<CratePlasticBiodegradable
   name: janitorial supplies crate
   description: Fight back against dirt and grime with Nanotrasen's Janitorial Essentials(tm)! Contains three buckets, caution signs, and cleaner grenades. Also has a single mop, broom, spray cleaner, rag, and trash bag.
   components:
@@ -129,7 +129,8 @@
     - id: BoxFolderRed
     - id: BoxFolderYellow
     - id: NewtonCradle
-    - id: RubberStampCaptain
+    - id: BoxEnvelope
+    - id: RubberStampCaptain # Frontier
 
 - type: entity
   id: CrateServiceFaxMachine
@@ -175,7 +176,7 @@
       - id: BookSpaceEncyclopedia
       - id: BookTheBookOfControl
       - id: BookBartendersManual
-      - id: BookChefGaming
+      - id: BookHowToCookForFortySpaceman
       - id: BookLeafLoversSecret
       - id: BookEngineersHandbook
       - id: BookScientistsGuidebook
@@ -185,6 +186,7 @@
       - id: BookMedicalReferenceBook
       - id: BookHowToSurvive
       - id: BookChemicalCompendium
+      - id: HyperlinkBookSpaceLaw # Frontier: BookSpaceLaw<HyperlinkBookSpaceLaw
 
 - type: entity
   id: CrateServiceSodaDispenser
@@ -236,7 +238,7 @@
 
 - type: entity
   id: CrateServiceBox
-  parent: CratePlastic
+  parent: CratePlasticBiodegradable # Frontier: CratePlastic<CratePlasticBiodegradable
   name: boxes crate
   description: Contains 6 empty multipurpose boxes.
   components:
@@ -247,7 +249,7 @@
 
 - type: entity
   id: CrateJanitorBiosuit
-  parent: CratePlastic
+  parent: CratePlasticBiodegradable # Frontier: CratePlastic<CratePlasticBiodegradable
   name: janitor bio suit crate
   description: Contains 2 biohazard suits to ensure that no disease will distract you from cleaning.
   components:
@@ -272,6 +274,8 @@
           prob: 0.05
         - id: MobMothroach
           prob: 0.03
+        - id: MobRosyMothroach # Frontier
+          prob: 0.005 # Frontier
         - id: MobMouse
           prob: 0.05
           # Food Packaging
@@ -334,3 +338,16 @@
           prob: 0.1
         - id: ShardGlassPlasma
           prob: 0.1
+
+- type: entity
+  id: CrateCandles
+  parent: CrateGenericSteel
+  name: candles crate
+  description: Contains 4 boxes of candles, 2 large and 2 small. For atmosphere or something.
+  components:
+  - type: StorageFill
+    contents:
+      - id: BoxCandle
+        amount: 2
+      - id: BoxCandleSmall
+        amount: 2

@@ -7,16 +7,13 @@
   - type: StorageFill
     contents:
       - id: MonkeyCubeWrapped
-        amount: 6
-  - type: Storage
-    grid:
-    - 0,0,2,1
+        amount: 8
   - type: Sprite
     sprite: Objects/Misc/monkeycube.rsi
     state: box
   - type: StaticPrice
     price: 20
-    vendPrice: 900 # Frontier - 150 per monkey (Meat worth 200)
+    vendPrice: 960 # Frontier - 120 per monkey (meat worth 540 at a depot)
 
 - type: entity
   parent: BaseItem
@@ -50,10 +47,12 @@
   - type: StorageFill
     contents:
       - id: KoboldCubeWrapped
-        amount: 6
+        amount: 8
   - type: Sprite
     sprite: Objects/Misc/monkeycube.rsi
     state: box_kobold
+  - type: StaticPrice # Frontier
+    vendPrice: 640 # Frontier - 80 per kobold (meat worth 360 at a depot)
 
 - type: entity
   parent: MonkeyCubeBox
@@ -64,12 +63,15 @@
   - type: StorageFill
     contents:
       - id: KoboldCubeWrapped
-        amount: 3
+        amount: 4
       - id: MonkeyCubeWrapped
-        amount: 3
+        amount: 4
   - type: Sprite
     sprite: Objects/Misc/monkeycube.rsi
     state: box_variant
+  - type: StaticPrice
+    price: 20
+    vendPrice: 800 # Frontier - 120 per monkey, 80 per kobold (meat worth 450 at a depot)
 
 - type: entity
   parent: MonkeyCubeWrapped
@@ -94,10 +96,6 @@
   id: SyndicateSpongeBox
   description: Drymate brand monkey cubes. Just add water!
   components:
-  - type: Storage
-    whitelist:
-      tags:
-      - MonkeyCube
   - type: StorageFill
     contents:
       - id: SyndicateSpongeWrapped

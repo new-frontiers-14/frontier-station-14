@@ -63,8 +63,8 @@
   cost: 5000
   recipeUnlocks:
   - MagazineShotgunBeanbag
-  - BoxShellTranquilizer 
-  - BoxBeanbag 
+  - BoxShellTranquilizer
+  - BoxBeanbag
   - WeaponDisabler
   - MagazineBoxLightRifleRubber # Frontier
   - MagazineBoxMagnumRubber # Frontier
@@ -107,8 +107,6 @@
   - HoloprojectorSecurity
   - WeaponDisablerSMG
 
-# Tier 2
-
 - type: technology
   id: ExplosiveTechnology
   name: research-technology-explosive-technology
@@ -116,7 +114,7 @@
     sprite: Objects/Devices/payload.rsi
     state: payload-explosive-armed
   discipline: Arsenal
-  tier: 2
+  tier: 1
   cost: 10000
   recipeUnlocks:
   - SignallerAdvanced
@@ -126,6 +124,20 @@
   - FlashPayload
   - ExplosivePayload
   - ChemicalPayload
+
+- type: technology
+  id: SpecialMeans
+  name: research-technology-special-means
+  icon:
+    sprite: Clothing/Back/Backpacks/electropack.rsi
+    state: icon
+  discipline: Arsenal
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - ClothingBackpackElectropack
+
+# Tier 2
 
 - type: technology
   id: ConcentratedLaserWeaponry
@@ -185,6 +197,7 @@
   tier: 3
   cost: 15000
   recipeUnlocks:
+  - WeaponAntiqueLaserNF # Frontier
   - WeaponAdvancedLaser
   - PortableRecharger
 

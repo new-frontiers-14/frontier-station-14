@@ -16,7 +16,9 @@ using Content.Shared.GameTicking;
 using Content.Shared.Inventory;
 using Content.Shared.Projectiles;
 using Content.Shared.Throwing;
-using Content.Shared.Tiles;
+using Content.Shared.Tiles; // Frontier: safe zone
+using Content.Shared.Explosion.Components;
+using Content.Shared.Explosion.EntitySystems;
 using Robust.Server.GameStates;
 using Robust.Server.Player;
 using Robust.Shared.Audio.Systems;
@@ -32,7 +34,7 @@ using Robust.Shared.Map.Components;
 
 namespace Content.Server.Explosion.EntitySystems;
 
-public sealed partial class ExplosionSystem : EntitySystem
+public sealed partial class ExplosionSystem : SharedExplosionSystem
 {
     [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly IRobustRandom _robustRandom = default!;
@@ -96,8 +98,6 @@ public sealed partial class ExplosionSystem : EntitySystem
         SubscribeLocalEvent<TileChangedEvent>(OnTileChanged);
 
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnReset);
-
-        SubscribeLocalEvent<ExplosionResistanceComponent, ArmorExamineEvent>(OnArmorExamine);
 
         // Handled by ExplosionSystem.Processing.cs
         SubscribeLocalEvent<MapChangedEvent>(OnMapChanged);
@@ -258,7 +258,7 @@ public sealed partial class ExplosionSystem : EntitySystem
 
         var posFound = _transformSystem.TryGetMapOrGridCoordinates(uid, out var gridPos, pos);
 
-        QueueExplosion(mapPos, typeId, totalIntensity, slope, maxTileIntensity, tileBreakScale, maxTileBreak, canCreateVacuum, addLog: false);
+        QueueExplosion(mapPos, typeId, totalIntensity, slope, maxTileIntensity, uid, tileBreakScale, maxTileBreak, canCreateVacuum, addLog: false);
 
         if (!addLog)
             return;
@@ -286,6 +286,7 @@ public sealed partial class ExplosionSystem : EntitySystem
         float totalIntensity,
         float slope,
         float maxTileIntensity,
+        EntityUid? cause,
         float tileBreakScale = 1f,
         int maxTileBreak = int.MaxValue,
         bool canCreateVacuum = true,
@@ -329,7 +330,8 @@ public sealed partial class ExplosionSystem : EntitySystem
             MaxTileIntensity = maxTileIntensity,
             TileBreakScale = tileBreakScale,
             MaxTileBreak = maxTileBreak,
-            CanCreateVacuum = canCreateVacuum
+            CanCreateVacuum = canCreateVacuum,
+            Cause = cause
         };
         _explosionQueue.Enqueue(boom);
         _queuedExplosions.Add(boom);
@@ -366,7 +368,7 @@ public sealed partial class ExplosionSystem : EntitySystem
                 var mapGrid = _mapManager.GetGrid(gridId.Value);
                 var gridUid = mapGrid.Owner;
                 var ev = new FloorTileAttemptEvent();
-                if (HasComp<ProtectedGridComponent>(gridUid) || ev.Cancelled)
+                if ((TryComp<ProtectedGridComponent>(gridUid, out var prot) && prot.PreventExplosions) || ev.Cancelled)
                     return null;
             }
         }
@@ -417,7 +419,8 @@ public sealed partial class ExplosionSystem : EntitySystem
             queued.CanCreateVacuum,
             EntityManager,
             _mapManager,
-            visualEnt);
+            visualEnt,
+            queued.Cause);
     }
 
     private void CameraShake(float range, MapCoordinates epicenter, float totalIntensity)
@@ -430,7 +433,7 @@ public sealed partial class ExplosionSystem : EntitySystem
             if (player.AttachedEntity is not EntityUid uid)
                 continue;
 
-            var playerPos = Transform(player.AttachedEntity!.Value).WorldPosition;
+            var playerPos = _transformSystem.GetWorldPosition(player.AttachedEntity!.Value);
             var delta = epicenter.Position - playerPos;
 
             if (delta.EqualsApprox(Vector2.Zero))
@@ -441,13 +444,5 @@ public sealed partial class ExplosionSystem : EntitySystem
             if (effect > 0.01f)
                 _recoilSystem.KickCamera(uid, -delta.Normalized() * effect);
         }
-    }
-
-    private void OnArmorExamine(EntityUid uid, ExplosionResistanceComponent component, ref ArmorExamineEvent args)
-    {
-        var value = MathF.Round((1f - component.DamageCoefficient) * 100, 1);
-
-        args.Msg.PushNewline();
-        args.Msg.AddMarkup(Loc.GetString(component.Examine, ("value", value)));
     }
 }

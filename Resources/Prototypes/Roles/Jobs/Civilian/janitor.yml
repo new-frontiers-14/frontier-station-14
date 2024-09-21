@@ -10,6 +10,8 @@
   alwaysUseSpawner: true
   icon: "JobIconJanitor"
   supervisors: job-supervisors-sr
+  weight: 100 # Frontier
+  displayWeight: 40 # Frontier
   canBeAntag: false
   access:
   - Service
@@ -32,11 +34,12 @@
   equipment:
     shoes: ClothingShoesGaloshes
     id: JanitorPDA
-    ears: ClothingHeadsetService
+#    ears: ClothingHeadsetService # Frontier
     belt: ClothingBeltJanitorFilled
   storage:
     back:
-    - BoxSurvival
+    - EncryptionKeyService # Frontier
+    - ShipVoucherFrontierJanitor # Frontier
 
 - type: startingGear
   id: JanitorMaidGear

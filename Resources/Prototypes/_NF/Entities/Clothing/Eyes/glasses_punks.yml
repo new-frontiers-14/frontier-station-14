@@ -1,7 +1,7 @@
 # Glasses
 - type: entity
-  parent: ClothingEyesGlassesMeson
   id: ClothingEyesPunkGoggles
+  parent: [ ClothingEyesGlassesMeson, RecyclableItemClothDevice ]
   name: punk goggles
   description: How can you see anything in this with all the lights?
   components:
@@ -36,8 +36,8 @@
 
 # HUDs
 - type: entity
-  parent: ClothingEyesHudMedical
   id: ClothingEyesPunkInfoShades
+  parent: [ ClothingEyesHudMedical, RecyclableItemClothDevice ]
   name: punk infoshades
   description: How can you see anything in this with all the lights?
   components:
@@ -77,7 +77,4 @@
     damageContainers:
     - Inorganic
     - Silicon
-    - Biological
-  - type: ShowHealthIcons
-    damageContainers:
     - Biological

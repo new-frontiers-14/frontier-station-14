@@ -108,7 +108,7 @@ public sealed partial class ShuttleDockControl : BaseShuttleControl
         DrawNorthLine(handle, _angle.Value); // Frontier Corvax: north line drawing
         var gridNent = EntManager.GetNetEntity(GridEntity);
         var mapPos = _xformSystem.ToMapCoordinates(_coordinates.Value);
-        var ourGridMatrix = _xformSystem.GetWorldMatrix(gridXform.Owner);
+        var ourGridMatrix = _xformSystem.GetWorldMatrix(GridEntity.Value);
         var dockMatrix = Matrix3Helpers.CreateTransform(_coordinates.Value.Position, Angle.Zero);
         var worldFromDock = Matrix3x2.Multiply(dockMatrix, ourGridMatrix);
 
@@ -272,7 +272,7 @@ public sealed partial class ShuttleDockControl : BaseShuttleControl
                             var canDock = distance < SharedDockingSystem.DockRange && inAlignment;
 
                             if (dockButton != null)
-                                dockButton.Disabled = !canDock || !canDockChange;
+                                dockButton.Disabled = !canDock && dock.GridDockedWith == null || !canDockChange; // Frontier: add "&& dock.GridDockedWith == null"
 
                             var lineColor = inAlignment ? Color.Lime : Color.Red;
                             handle.DrawDottedLine(viewedDockPos.Value, collisionCenter, lineColor, offset: lineOffset);

@@ -1,123 +1,96 @@
+
 # Frontier - these cause startup issues due to nonexistent NoiseDunGen
 # This file comes from this PR:
 # https://github.com/space-wizards/space-station-14/commit/bf79acd127483d64f96dc23f2e64c74ceb84303d
 # but then i dont see any of the CS code so bad merge i guess
 
-#- type: weightedRandom
-#  id: AsteroidOre
-#  weights:
-#    OreIron: 1.0
-#    OreQuartz: 1.0
-#    OreCoal: 1.0
-#    OreSalt: 1.0
-#    OreGold: 0.25
-#    OreSilver: 0.25
-#    OrePlasma: 0.15
-#    OreUranium: 0.15
-#    OreArtifactFragment: 0.15
-#
-## Large asteroids, typically 1
-#- type: dungeonConfig
-#  id: BlobAsteroid
-#  # Floor generation
-#  generator: !type:NoiseDunGen
-#    tileCap: 1500
-#    capStd: 32
-#    iterations: 3
-#    layers:
-#      - tile: FloorAsteroidSand
-#        threshold: 0.30
-#        noise:
-#          frequency: 0.020
-#          noiseType: OpenSimplex2
-#          fractalType: FBm
-#          octaves: 2
-#          lacunarity: 2
-#  # Everything else
-#  postGeneration:
-#    # Generate biome
-#    - !type:BiomePostGen
-#      biomeTemplate: Asteroid
-#
-#    # Generate ore veins
-#    - !type:MarkerLayerPostGen
-#      markerTemplate: AsteroidOre
-#
-## Multiple smaller asteroids
-## This is a pain so we generate fewer tiles
-#- type: dungeonConfig
-#  id: ClusterAsteroid
-#  # Floor generation
-#  generator: !type:NoiseDunGen
-#    tileCap: 1000
-#    capStd: 32
-#    layers:
-#      - tile: FloorAsteroidSand
-#        threshold: 0.10
-#        noise:
-#          frequency: 0.130
-#          noiseType: OpenSimplex2
-#          fractalType: FBm
-#          octaves: 2
-#          lacunarity: 2
-#  # Everything else
-#  postGeneration:
-#    # Generate biome
-#    - !type:BiomePostGen
-#      biomeTemplate: Asteroid
-#
-#    # Generate ore veins
-#    - !type:MarkerLayerPostGen
-#      markerTemplate: AsteroidOre
-#
-## Long and spindly, less smooth than blob
-#- type: dungeonConfig
-#  id: SpindlyAsteroid
-#  # Floor generation
-#  generator: !type:NoiseDunGen
-#    tileCap: 1500
-#    capStd: 32
-#    layers:
-#      - tile: FloorAsteroidSand
-#        threshold: -0.50
-#        noise:
-#          frequency: 0.055
-#          noiseType: Cellular
-#          fractalType: FBm
-#          octaves: 3
-#          lacunarity: 2
-#          cellularDistanceFunction: Euclidean
-#  postGeneration:
-#    # Generate biome
-#    - !type:BiomePostGen
-#      biomeTemplate: Asteroid
-#
-#    # Generate ore veins
-#    - !type:MarkerLayerPostGen
-#      markerTemplate: AsteroidOre
-#
-## Lots of holes in it
-#- type: dungeonConfig
-#  id: SwissCheeseAsteroid
-#  # Floor generation
-#  generator: !type:NoiseDunGen
-#    tileCap: 1500
-#    capStd: 32
-#    layers:
-#      - tile: FloorAsteroidSand
-#        threshold: -0.10
-#        noise:
-#          frequency: 0.155
-#          noiseType: OpenSimplex2
-#          fractalType: FBm
-#          octaves: 2
-#          lacunarity: 2
-#  # Everything else
-#  postGeneration:
-#    # Generate biome
-#    - !type:BiomePostGen
-#      biomeTemplate: Asteroid
-#
-#    # Generate ore veins
-#    - !type:MarkerLayerPostGen
-#      markerTemplate: AsteroidOre
+# # Large asteroids, typically 1
+# - type: dungeonConfig
+#   id: BlobAsteroid
+#   # Floor generation
+#   layers:
+#   - !type:NoiseDunGen
+#     tileCap: 1000
+#     capStd: 32
+#     iterations: 3
+#     layers:
+#       - tile: FloorAsteroidSand
+#         threshold: 0.30
+#         noise:
+#           frequency: 0.020
+#           noiseType: OpenSimplex2
+#           fractalType: FBm
+#           octaves: 2
+#           lacunarity: 2
+
+#   # Generate biome
+#   - !type:BiomeDunGen
+#     biomeTemplate: Asteroid
+
+# # Multiple smaller asteroids
+# This is a pain so we generate fewer tiles
+# - type: dungeonConfig
+#   id: ClusterAsteroid
+#   # Floor generation
+#   layers:
+#   - !type:NoiseDunGen
+#     tileCap: 750
+#     capStd: 32
+#     layers:
+#       - tile: FloorAsteroidSand
+#         threshold: 0.10
+#         noise:
+#           frequency: 0.130
+#           noiseType: OpenSimplex2
+#           fractalType: FBm
+#           octaves: 2
+#           lacunarity: 2
+
+#   # Generate biome
+#   - !type:BiomeDunGen
+#     biomeTemplate: Asteroid
+
+# # Long and spindly, less smooth than blob
+# - type: dungeonConfig
+#   id: SpindlyAsteroid
+#   # Floor generation
+#   layers:
+#   - !type:NoiseDunGen
+#     tileCap: 1000
+#     capStd: 32
+#     layers:
+#       - tile: FloorAsteroidSand
+#         threshold: -0.50
+#         noise:
+#           frequency: 0.055
+#           noiseType: Cellular
+#           fractalType: FBm
+#           octaves: 3
+#           lacunarity: 2
+#           cellularDistanceFunction: Euclidean
+
+#   # Generate biome
+#   - !type:BiomeDunGen
+#     biomeTemplate: Asteroid
+
+# # Lots of holes in it
+# - type: dungeonConfig
+#   id: SwissCheeseAsteroid
+#   # Floor generation
+#   layers:
+#   - !type:NoiseDunGen
+#     tileCap: 1000
+#     capStd: 32
+#     layers:
+#       - tile: FloorAsteroidSand
+#         threshold: -0.10
+#         noise:
+#           frequency: 0.155
+#           noiseType: OpenSimplex2
+#           fractalType: FBm
+#           octaves: 2
+#           lacunarity: 2
+
+#   # Generate biome
+#   - !type:BiomeDunGen
+#     biomeTemplate: Asteroid

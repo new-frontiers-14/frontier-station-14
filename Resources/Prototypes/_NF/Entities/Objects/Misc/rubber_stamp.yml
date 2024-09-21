@@ -19,8 +19,9 @@
   - type: Stamp
     stampedName: stamp-component-stamped-name-psychologist
     stampedColor: "#3366FF"
-    stampState: "paper_stamp-psychologist"
+    stampState: "paper_stamp-nf-psychologist"
   - type: Sprite
+    sprite: _NF/Objects/Misc/stamps.rsi
     state: stamp-psychologist
 
 - type: entity
@@ -32,6 +33,63 @@
   - type: Stamp
     stampedName: stamp-component-stamped-name-stc
     stampedColor: "#CC6633"
-    stampState: "paper_stamp-stc"
+    stampState: "paper_stamp-nf-stc"
   - type: Sprite
+    sprite: _NF/Objects/Misc/stamps.rsi
     state: stamp-stc
+
+- type: entity
+  name: sheriff's rubber stamp
+  parent: RubberStampBase
+  id: RubberStampSheriff
+  suffix: DO NOT MAP
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-hos
+    stampedColor: "#4c653a"
+    stampState: "paper_stamp-nf-sheriff"
+  - type: Sprite
+    sprite: _NF/Objects/Misc/stamps.rsi
+    state: stamp-sheriff
+
+- type: entity
+  name: doctor's rubber stamp
+  parent: RubberStampBase
+  id: RubberStampDoctor
+  suffix: DO NOT MAP
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-doctor
+    stampedColor: "#2ea5e6"
+    stampState: "paper_stamp-nf-doctor"
+  - type: Sprite
+    sprite: _NF/Objects/Misc/stamps.rsi
+    state: stamp-doctor # doesn't exist
+
+- type: entity
+  name: engineer's rubber stamp
+  parent: RubberStampBase
+  id: RubberStampEngineer
+  suffix: DO NOT MAP
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-engineer
+    stampedColor: "#db8727"
+    stampState: "paper_stamp-nf-engineer"
+  - type: Sprite
+    sprite: _NF/Objects/Misc/stamps.rsi
+    state: stamp-engineer # doesn't exist
+
+- type: entity
+  name: public affairs liaison's rubber stamp
+  parent: RubberStampBase
+  id: RubberStampPal
+  suffix: DO NOT MAP
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-pal
+    stampedColor: "#61943a"
+    stampState: "paper_stamp-nf-pal"
+  - type: Sprite
+    sprite: _NF/Objects/Misc/stamps.rsi
+    state: stamp-pal

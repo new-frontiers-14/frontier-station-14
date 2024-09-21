@@ -1,0 +1,45 @@
+- type: job
+  id: StationRepresentative
+  name: job-name-sr
+  description: job-description-sr
+  playTimeTracker: JobHeadOfPersonnel
+  requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 72000 # 20 hrs
+    - !type:RoleTimeRequirement
+      role: JobSecurityGuard
+      time: 10800 # 3 hrs as security guard
+  whitelisted: true
+  startingGear: SrGear
+  alwaysUseSpawner: true
+  icon: "JobIconHeadOfPersonnel"
+  requireAdminNotify: true
+  supervisors: job-supervisors-centcom 
+  weight: 170
+  displayWeight: 60 # Top
+  canBeAntag: false
+  accessGroups:
+  - AllAccess
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant, TrackingImplant ]
+  - !type:AddComponentSpecial
+    components:
+      - type: CommandStaff
+  - !type:GiveItemOnHolidaySpecial
+    holiday: FrontierBirthday
+    prototype: FrontierBirthdayGift
+
+- type: startingGear
+  id: SrGear
+  equipment:
+    id: SrPDA
+    pocket1: WeaponDisabler
+  storage:
+    back:
+    - Flash
+    - RubberStampSr
+    - DoorRemoteCommand
+    - AccessConfigurator
+    - EncryptionKeyStationMaster
+    - EncryptionKeyCentCom

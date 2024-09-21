@@ -40,14 +40,101 @@
       - id: HypoBrigmedic # Frontier
 
 - type: entity
-  id: LockerBrigmedicFilled
+  id: LockerWardenFilledHardsuit
+  suffix: Filled, Hardsuit
+  parent: LockerWarden
+  components:
+  - type: StorageFill
+    contents:
+#      - id: FlashlightSeclite # Frontier
+#      - id: WeaponDisabler
+      - id: ClothingHeadHatWarden
+      - id: ClothingHeadHatBeretWarden
+#      - id: ClothingBeltSecurityFilled
+#      - id: Flash
+#      - id: ClothingEyesGlassesSecurity
+#      - id: ClothingHandsGlovesCombat
+#      - id: ClothingShoesBootsJack
+      - id: ClothingOuterCoatWarden
+      - id: ClothingOuterWinterWarden
+      - id: ClothingShoesBootsWinterWarden # Frontier
+      - id: RubberStampWarden
+#      - id: DoorRemoteArmory
+      - id: ClothingOuterHardsuitWarden
+#      - id: HoloprojectorSecurity # Frontier - Starting gear
+      - id: HyperlinkBookSpaceLaw # Frontier: BookSpaceLaw<HyperlinkBookSpaceLaw
+#      - id: ClothingNeckShockCollar # Frontier
+#        amount: 2 # Frontier
+#      - id: RemoteSignaller # Frontier
+#        amount: 2 # Frontier
+
+- type: entity
+  id: LockerWardenFilled
   suffix: Filled
+  parent: LockerWarden
+  components:
+  - type: StorageFill
+    contents:
+#      - id: FlashlightSeclite
+#      - id: WeaponDisabler
+      - id: ClothingHeadHatWarden
+      - id: ClothingHeadHatBeretWarden
+#      - id: ClothingBeltSecurityFilled
+#      - id: Flash
+#      - id: ClothingEyesGlassesSecurity
+#      - id: ClothingHandsGlovesCombat
+#      - id: ClothingShoesBootsJack
+      - id: ClothingOuterCoatWarden
+      - id: ClothingOuterWinterWarden
+      - id: RubberStampWarden
+#      - id: DoorRemoteArmory
+#      - id: HoloprojectorSecurity # Frontier - Starting gear
+      - id: HyperlinkBookSpaceLaw # Frontier: BookSpaceLaw<HyperlinkBookSpaceLaw
+#      - id: ClothingNeckShockCollar
+#        amount: 2
+#      - id: RemoteSignaller
+#        amount: 2
+
+- type: entity
+  id: LockerSecurityFilled
+  suffix: Filled
+  parent: LockerSecurity
+  components:
+  - type: StorageFill
+    contents:
+#      - id: FlashlightSeclite
+#        prob: 0.8
+#      - id: WeaponDisabler
+#      - id: ClothingUniformJumpsuitSecGrey
+#        prob: 0.3
+      - id: ClothingHeadHelmetBasic
+      - id: ClothingOuterArmorBasic
+#      - id: ClothingBeltSecurityFilled
+#      - id: Flash
+#        prob: 0.5
+#      - id: ClothingEyesGlassesSecurity
+      - id: ClothingHeadsetSecurityCommon # Frontier: ClothingHeadsetSecurity<ClothingHeadsetSecurityCommon - Ask SR or Sheriff for keys
+#      - id: ClothingHandsGlovesColorBlack
+#      - id: ClothingShoesBootsJack
+#      - id: WeaponMeleeNeedle
+#        prob: 0.1
+#      - id: HoloprojectorSecurity # Frontier - Starting gear
+#        prob: 0.6
+      - id: HyperlinkBookSpaceLaw # Frontier: BookSpaceLaw<HyperlinkBookSpaceLaw
+        prob: 0.5
+
+- type: entity
+  id: LockerBrigmedicFilled
+  suffix: Brigmedic, Filled
   parent: LockerBrigmedic
   components:
   - type: StorageFill
     contents:
-#      - id: ClothingEyesHudSecurity
+#      - id: ClothingEyesGlassesSecurity
 #      - id: WeaponDisabler
+#      - id: TrackingImplanter
+#        amount: 2
+#      - id: ClothingOuterHardsuitBrigmedic
       - id: BoxSterileMask
 #      - id: ClothingHeadHatBeretBrigmedic
 #      - id: ClothingOuterCoatAMG
@@ -71,83 +158,6 @@
 #      - id: ClothingNeckCloakMoth #bzzz Moth-pocalypse
 #        prob: 0.15
       - id: HypoBrigmedic # Frontier
-      
-- type: entity
-  id: LockerSecurityFilled
-  suffix: Filled
-  parent: LockerSecurity
-  components:
-  - type: StorageFill
-    contents:
-#      - id: FlashlightSeclite
-#      - id: ClothingUniformJumpsuitSecGrey
-#        prob: 0.3
-      - id: ClothingHeadHelmetBasic
-      - id: ClothingOuterArmorBasic
-#      - id: ClothingBeltSecurityFilled
-#      - id: Flash
-#      - id: ClothingEyesGlassesSecurity
-      - id: ClothingHeadsetSecurityCommon # Ask SR or Sheriff for keys
-#      - id: ClothingHandsGlovesColorBlack
-#      - id: ClothingShoesBootsJack
-#      - id: WeaponMeleeNeedle
-#        prob: 0.1
-#      - id: ClothingEyesHudSecurity
-
-- type: entity
-  id: LockerWardenFilledHardsuit
-  suffix: Filled, Hardsuit
-  parent: LockerWarden
-  components:
-  - type: StorageFill
-    contents:
-#      - id: FlashlightSeclite # Frontier
-#      - id: WeaponDisabler
-      - id: ClothingHeadHatWarden
-      - id: ClothingHeadHatBeretWarden
-#      - id: ClothingBeltSecurityFilled
-#      - id: Flash
-#      - id: ClothingEyesGlassesSecurity
-#      - id: ClothingHandsGlovesCombat
-#      - id: ClothingShoesBootsJack
-      - id: ClothingOuterCoatWarden
-      - id: ClothingOuterWinterWarden
-      - id: ClothingShoesBootsWinterWarden # Frontier
-      - id: RubberStampWarden
-#      - id: DoorRemoteArmory
-      - id: ClothingOuterHardsuitWarden
-#      - id: HoloprojectorSecurity # Frontier - Starting gear
-#      - id: ClothingEyesHudSecurity
-#      - id: NitrogenTankFilled
-#      - id: OxygenTankFilled
-      - id: AirTankFilled
-      - id: ClothingMaskGasSecurity # Frontier
-      - id: JetpackSecurityFilled # Frontier
-      - id: HandheldGPSBasic # Frontier
-      - id: ClothingShoesBootsMagCombatFilled # Frontier
-
-- type: entity
-  id: LockerWardenFilled
-  suffix: Filled
-  parent: LockerWarden
-  components:
-  - type: StorageFill
-    contents:
-#      - id: FlashlightSeclite
-#      - id: WeaponDisabler
-      - id: ClothingHeadHatWarden
-      - id: ClothingHeadHatBeretWarden
-#      - id: ClothingBeltSecurityFilled
-#      - id: Flash
-#      - id: ClothingEyesGlassesSecurity
-#      - id: ClothingHandsGlovesCombat
-#      - id: ClothingShoesBootsJack
-      - id: ClothingOuterCoatWarden
-      - id: ClothingOuterWinterWarden
-      - id: RubberStampWarden
-#      - id: DoorRemoteArmory
-#      - id: HoloprojectorSecurity # Frontier - Starting gear
-#      - id: ClothingEyesHudSecurity
 
 - type: entity
   id: LockerDetectiveFilled
@@ -170,6 +180,7 @@
 #      - id: RubberStampDetective # Frontier
 #      - id: HoloprojectorSecurity # Frontier
       - id: BoxEvidenceMarkers
+      - id: HandLabeler
 
 - type: entity
   id: ClosetBombFilled
@@ -189,7 +200,7 @@
 #        prob: 0.5 # Frontier - Always has this
 
 - type: entity
-  parent: GunSafe
+  parent: [GunSafe, BaseC1Contraband ] # Frontier: BaseRestrictedContraband<BaseC1Contraband
   id: GunSafeDisabler
   name: disabler safe
   components:
@@ -199,7 +210,7 @@
       amount: 5
 
 - type: entity
-  parent: GunSafe
+  parent: [GunSafe, BaseC2ContrabandUnredeemable ] # Frontier: BaseRestrictedContraband<BaseC2ContrabandUnredeemable
   id: GunSafePistolMk58
   name: mk58 safe
   components:
@@ -211,7 +222,7 @@
       amount: 8
 
 - type: entity
-  parent: GunSafe
+  parent: [GunSafe, BaseC2ContrabandUnredeemable ] # Frontier: BaseRestrictedContraband<BaseC2ContrabandUnredeemable
   id: GunSafeRifleLecter
   name: lecter safe
   components:
@@ -223,7 +234,7 @@
       amount: 4
 
 - type: entity
-  parent: GunSafe
+  parent: [GunSafe, BaseC2ContrabandUnredeemable ] # Frontier: BaseRestrictedContraband<BaseC2ContrabandUnredeemable
   id: GunSafeSubMachineGunDrozd
   name: drozd safe
   components:
@@ -235,7 +246,7 @@
       amount: 4
 
 - type: entity
-  parent: GunSafe
+  parent: [GunSafe, BaseC2ContrabandUnredeemable ] # Frontier: BaseRestrictedContraband<BaseC2ContrabandUnredeemable
   id: GunSafeShotgunEnforcer
   name: enforcer safe
   components:
@@ -247,7 +258,7 @@
       amount: 4
 
 - type: entity
-  parent: GunSafe
+  parent: [GunSafe, BaseC2ContrabandUnredeemable ] # Frontier: BaseRestrictedContraband<BaseC2ContrabandUnredeemable
   id: GunSafeShotgunKammerer
   name: kammerer safe
   components:
@@ -261,7 +272,7 @@
 - type: entity
   id: GunSafeSubMachineGunWt550
   suffix: Wt550
-  parent: GunSafe
+  parent: [GunSafe, BaseC2ContrabandUnredeemable ] # Frontier: BaseRestrictedContraband<BaseC2ContrabandUnredeemable
   name: wt550 safe
   components:
   - type: StorageFill
@@ -272,7 +283,7 @@
       amount: 4
 
 - type: entity
-  parent: GunSafe
+  parent: [GunSafe, BaseC2ContrabandUnredeemable ] # Frontier: added BaseC2ContrabandUnredeemable
   id: GunSafeLaserCarbine
   name: laser safe
   components:

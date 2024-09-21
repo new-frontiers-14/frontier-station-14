@@ -178,7 +178,8 @@
       - tofu
       - leafy
   - type: Food
-    trash: FoodPlateSmall
+    trash:
+      - FoodPlateSmall
   - type: Sprite
     sprite: Nyanotrasen/Objects/Consumable/Food/moth.rsi
     state: squeakingstirfry
@@ -365,7 +366,8 @@
     count: 6
     slice: FoodMothGreenLasagneSlice
   - type: Food
-    trash: FoodPlate
+    trash:
+      - FoodPlate
   - type: Sprite
     sprite: Nyanotrasen/Objects/Consumable/Food/moth.rsi
     state: greenlasagne
@@ -536,11 +538,6 @@
           Quantity: 6
         - ReagentId: Water
           Quantity: 4
-  - type: Tag
-    tags:
-    - MothFood
-  - type: Food
-    requiresSpecialDigestion: true
 #Tastes like cotton and broth
 
 - type: entity
@@ -1111,11 +1108,6 @@
   - type: Sprite
     sprite: Nyanotrasen/Objects/Consumable/Food/moth.rsi
     state: pizza-cotton
-  - type: Tag
-    tags:
-    - MothFood
-  - type: Food
-    requiresSpecialDigestion: true
 
 - type: entity
   name: slice of cotton pizza
@@ -1131,11 +1123,6 @@
   - type: Sprite
     sprite: Nyanotrasen/Objects/Consumable/Food/moth.rsi
     state: pizza-cotton-slice
-  - type: Tag
-    tags:
-    - MothFood
-  - type: Food
-    requiresSpecialDigestion: true
 # Tastes like crust, cotton, cheese
 
 # Sweets
@@ -1193,11 +1180,7 @@
           Quantity: 10
         - ReagentId: Sugar
           Quantity: 10
-  - type: Tag
-    tags:
-    - MothFood
-  - type: Food
-    requiresSpecialDigestion: true
+  # Frontier - Removed Moth requirement
 #Tastes like vanilla and clouds.
 
 - type: entity
@@ -1223,11 +1206,7 @@
           Quantity: 4
         - ReagentId: Sugar
           Quantity: 2
-  - type: Tag
-    tags:
-    - MothFood
-  - type: Food
-    requiresSpecialDigestion: true
+  # Frontier - Removed Moth requirement
 #Tastes like vanilla and clouds.
 
 - type: entity
@@ -1264,10 +1243,5 @@
           Quantity: 5
         - ReagentId: Vitamin
           Quantity: 1
-  - type: Tag
-    tags:
-    - MothFood
-  - type: Food
-    requiresSpecialDigestion: true
-
+  # Frontier - Removed Moth requirement
 #Tastes like muffin, dust and lint

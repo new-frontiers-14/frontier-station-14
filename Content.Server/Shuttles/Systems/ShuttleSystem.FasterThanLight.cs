@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Numerics;
+using Content.Server._NF.Shuttles.Components; // Frontier: NPC knockdown immunity
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Server.Station.Events;
@@ -87,6 +88,8 @@ public sealed partial class ShuttleSystem
     private void InitializeFTL()
     {
         SubscribeLocalEvent<StationPostInitEvent>(OnStationPostInit);
+        SubscribeLocalEvent<FTLComponent, ComponentShutdown>(OnFtlShutdown);
+
         _bodyQuery = GetEntityQuery<BodyComponent>();
         _buckleQuery = GetEntityQuery<BuckleComponent>();
         _beaconQuery = GetEntityQuery<FTLBeaconComponent>();
@@ -101,6 +104,12 @@ public sealed partial class ShuttleSystem
         _cfg.OnValueChanged(CCVars.FTLCooldown, time => FTLCooldown = time, true);
         _cfg.OnValueChanged(CCVars.FTLMassLimit, time => FTLMassLimit = time, true);
         _cfg.OnValueChanged(CCVars.HyperspaceKnockdownTime, time => _hyperspaceKnockdownTime = TimeSpan.FromSeconds(time), true);
+    }
+
+    private void OnFtlShutdown(Entity<FTLComponent> ent, ref ComponentShutdown args)
+    {
+        Del(ent.Comp.VisualizerEntity);
+        ent.Comp.VisualizerEntity = null;
     }
 
     private void OnStationPostInit(ref StationPostInitEvent ev)
@@ -427,8 +436,16 @@ public sealed partial class ShuttleSystem
         var comp = entity.Comp1;
         comp.StateTime = StartEndTime.FromCurTime(_gameTiming, DefaultArrivalTime);
         comp.State = FTLState.Arriving;
-        // TODO: Arrival effects
-        // For now we'll just use the ss13 bubbles but we can do fancier.
+
+        if (entity.Comp1.VisualizerProto != null)
+        {
+            comp.VisualizerEntity = SpawnAtPosition(entity.Comp1.VisualizerProto, entity.Comp1.TargetCoordinates);
+            var visuals = Comp<FtlVisualizerComponent>(comp.VisualizerEntity.Value);
+            visuals.Grid = entity.Owner;
+            Dirty(comp.VisualizerEntity.Value, visuals);
+            _transform.SetLocalRotation(comp.VisualizerEntity.Value, entity.Comp1.TargetAngle);
+            _pvs.AddGlobalOverride(comp.VisualizerEntity.Value);
+        }
 
         _thruster.DisableLinearThrusters(shuttle);
         _thruster.EnableLinearThrustDirection(shuttle, DirectionFlag.South);
@@ -598,6 +615,9 @@ public sealed partial class ShuttleSystem
             {
                 if (!_statusQuery.TryGetComponent(child, out var status))
                     continue;
+                
+                if (HasComp<FTLKnockdownImmuneComponent>(child)) // Frontier: NPC knockdown immunity
+                    continue; // Frontier: NPC knockdown immunity
 
                 _stuns.TryParalyze(child, _hyperspaceKnockdownTime, true, status);
 
