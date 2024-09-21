@@ -1,0 +1,12 @@
+- type: entity
+  parent: BoxCartridgeBB
+  id: BoxCartridgeRGBB
+  name: box of RGBBs
+  components:
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+        - BulletBB
+    proto: BulletRGBB
+  - type: StaticPrice
+    price: 2500 # 25k for a meme item

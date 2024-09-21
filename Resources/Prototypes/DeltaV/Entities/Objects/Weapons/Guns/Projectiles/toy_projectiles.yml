@@ -8,7 +8,7 @@
       size: Tiny
     - type: Reflective
     - type: Appearance
-    - type: FlyBySound
+    # - type: FlyBySound # Frontier
     - type: Sprite
       sprite: DeltaV/Objects/Weapons/Guns/Ammunition/Boxes/bbgun.rsi
       layers:
@@ -17,55 +17,59 @@
       tags:
         - BulletBB
         - Trash
-    - type: Physics
-      bodyType: Dynamic
-      linearDamping: 0.1
-      angularDamping: 0.1
-    - type: Fixtures
-      fixtures:
-        fix1:
-          shape: !type:PhysShapeCircle
-            radius: 0.01
-          density: 1
-          mask:
-          - ItemMask
-          restitution: 0.3 #bounce
-          friction: 0.2
-        projectile:
-          shape:
-            !type:PhysShapeAabb
-            bounds: "-0.15,-0.15,0.15,0.15"
-          hard: false
-          mask:
-          - Impassable
-          - BulletImpassable
-        fly-by: &flybyfixture
-          shape: !type:PhysShapeCircle
-            radius: 1.5
-          layer:
-          - Impassable
-          - MidImpassable
-          - HighImpassable
-          - LowImpassable
-          hard: False
+    # - type: Physics # Frontier
+    #   bodyType: Dynamic # Frontier
+    #   linearDamping: 0.1 # Frontier
+    #   angularDamping: 0.1 # Frontier
+    # - type: Fixtures # Frontier
+    #   fixtures: # Frontier
+    #     fix1: # Frontier
+    #       shape: !type:PhysShapeCircle # Frontier
+    #         radius: 0.01 # Frontier
+    #       density: 1 # Frontier
+    #       mask: # Frontier
+    #       - ItemMask # Frontier
+    #       restitution: 0.3 #bounce # Frontier
+    #       friction: 0.2 # Frontier
+    #     projectile: # Frontier
+    #       shape: # Frontier
+    #         !type:PhysShapeAabb # Frontier
+    #         bounds: "-0.15,-0.15,0.15,0.15" # Frontier
+    #       hard: false # Frontier
+    #       mask: # Frontier
+    #       - Impassable # Frontier
+    #       - BulletImpassable # Frontier
+    #     fly-by: &flybyfixture # Frontier
+    #       shape: !type:PhysShapeCircle # Frontier
+    #         radius: 1.5 # Frontier
+    #       layer: # Frontier
+    #       - Impassable # Frontier
+    #       - MidImpassable # Frontier
+    #       - HighImpassable # Frontier
+    #       - LowImpassable # Frontier
+    #       hard: False # Frontier
     - type: TileFrictionModifier
       modifier: 0.01
-    - type: Projectile
-      impactEffect: BulletImpactEffect
-      deleteOnCollide: false
-      onlyCollideWhenShot: true
-      damage:
-        types:
-          Blunt: 1
-      soundHit:
-        path: /Audio/Weapons/Guns/Hits/bullet_hit.ogg
-    - type: Ammo
-      muzzleFlash: null
+    # - type: Projectile # Frontier
+    #   impactEffect: BulletImpactEffect # Frontier
+    #   deleteOnCollide: false # Frontier
+    #   onlyCollideWhenShot: true # Frontier
+    #   damage: # Frontier
+    #     types: # Frontier
+    #       Blunt: 1 # Frontier
+    #   soundHit: # Frontier
+    #     path: /Audio/Weapons/Guns/Hits/bullet_hit.ogg # Frontier
+    # - type: Ammo # Frontier
+    #   muzzleFlash: null # Frontier
     - type: PhysicalComposition
       materialComposition:
         Steel: 1
     - type: SpaceGarbage
-    #- type: StaticPrice
-    #  price: 0.05
-    - type: TimedDespawn
-      lifetime: 30
+    #- type: StaticPrice # Frontier
+    #  price: 0.05 # Frontier
+    # - type: TimedDespawn # Frontier
+    #   lifetime: 30 # Frontier
+    - type: CartridgeAmmo # Frontier
+      proto: BulletBBDamaged # Frontier
+      deleteOnSpawn: true # Frontier
+      muzzleFlash: null
