@@ -66,21 +66,8 @@
     quickEquip: false
     slots:
     - Belt
-  - type: Item
-    size: Small
-    shape:
-    - 0,0,1,0
-    - 0,1,0,1
-  - type: Tag
-    tags:
-    - Sidearm
   - type: Gun
     fireRate: 2
-    availableModes:
-    - SemiAuto
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/revolver.ogg
-  - type: AmmoCounter
   - type: RevolverAmmoProvider
     proto: null
     capacity: 4
@@ -97,10 +84,6 @@
       - CartridgeMagnum
       - SpeedLoaderMagnum
       - SpeedLoaderPistol
-  - type: ContainerContainer
-    containers:
-      ballistic-ammo: !type:Container
-        ents: []
 
 - type: entity
   parent: [ WeaponRevolverPython, BaseC3ContrabandUnredeemable]
