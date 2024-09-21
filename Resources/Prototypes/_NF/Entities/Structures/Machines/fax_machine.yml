@@ -124,7 +124,7 @@
   parent: [BaseStructureDisableToolUse, FaxMachineBase]
   id: FaxMachineNFTradeSTC
   suffix: POI, Trade
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: FaxMachine
     name: "Trade Outpost STC"
@@ -191,6 +191,15 @@
   components:
   - type: FaxMachine
     name: "NFSD Outpost Lawyer"
+
+- type: entity
+  parent: [BaseStructureDisableToolUse, FaxMachineBase]
+  id: FaxMachineNFEdison
+  suffix: POI, Edison
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: FaxMachine
+    name: "Edison Power Plant"
 
 # Events
 - type: entity
