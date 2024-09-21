@@ -8,6 +8,9 @@ ghost-role-information-emotional-support-rules = You are an [color=lightpink][bo
 ghost-role-information-clippy-name = Clippy
 ghost-role-information-clippy-description = The Station Representative's loyal worker, smells like cardboard and papers.
 
+ghost-role-information-clugg-name = Clugg
+ghost-role-information-clugg-description = Ug! Me hungry for big rock! Where mammoth burger?
+
 ghost-role-information-clarpy-name = Clarpy
 ghost-role-information-clarpy-description = Avast ye mail! wanted by Nanotrasen for crimes against mice.
 ghost-role-information-clarpy-rules = You are a [color=red][bold]Team Antagonist[/bold][/color] with all other pirates.

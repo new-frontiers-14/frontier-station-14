@@ -148,6 +148,36 @@
       path: /Audio/_NF/Animals/nfsdcat_meow.ogg
 
 - type: entity
+  name: Clugg
+  parent: [NFMobPet, MobCatCaracalGhost]
+  id: MobCatClugg
+  description: 
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _NF/Mobs/Pets/cat.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: cavecat
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: cavecat
+  - type: GhostRole
+    name: ghost-role-information-clugg-name
+    description: ghost-role-information-clugg-description
+    rules: ghost-role-information-nonantagonist-rules
+    prototype: CatClugg
+  - type: RandomMetadata
+    nameSegments: [names_cat_clugg] # Its needed to fix the names since it was using the MobCatGhost list.
+  - type: NpcFactionMember
+    factions:
+      - Cat
+      - DinosaursNF
+  - type: NFSalvageMobRestrictions
+    despawnIfOffLinkedGrid: false
+
+- type: entity
   name: Mistake
   parent: MobCatGhost
   id: MobCatMistake
