@@ -150,6 +150,11 @@ namespace Content.Server.Kitchen.EntitySystems
         /// <param name="time">The time on the microwave, in seconds.</param>
         private void AddTemperature(MicrowaveComponent component, float time)
         {
+            // Frontier: temperature requires heat or irradiation
+            if (!component.CanHeat && !component.CanIrradiate)
+                return;
+            // End Frontier
+
             var heatToAdd = time * component.BaseHeatMultiplier;
             foreach (var entity in component.Storage.ContainedEntities)
             {
@@ -280,6 +285,11 @@ namespace Content.Server.Kitchen.EntitySystems
             // The act of getting your head microwaved doesn't actually kill you
             if (!TryComp<DamageableComponent>(args.Victim, out var damageableComponent))
                 return;
+
+            // Frontier: suicide requires heat or irradiation
+            if (!ent.Comp.CanHeat && !ent.Comp.CanIrradiate)
+                return;
+            // Frontier
 
             // The application of lethal damage is what kills you...
             _suicide.ApplyLethalDamage((args.Victim, damageableComponent), "Heat");
@@ -450,7 +460,7 @@ namespace Content.Server.Kitchen.EntitySystems
 
         public void UpdateUserInterfaceState(EntityUid uid, MicrowaveComponent component)
         {
-            _userInterface.SetUiState(uid, MicrowaveUiKey.Key, new MicrowaveUpdateUserInterfaceState(
+            _userInterface.SetUiState(uid, component.Key, new MicrowaveUpdateUserInterfaceState( // Frontier: MicrowaveUiKey.Key<component.Key
                 GetNetEntityArray(component.Storage.ContainedEntities.ToArray()),
                 HasComp<ActiveMicrowaveComponent>(uid),
                 component.CurrentCookTimeButtonIndex,
@@ -533,7 +543,7 @@ namespace Content.Server.Kitchen.EntitySystems
             foreach (var item in component.Storage.ContainedEntities.ToArray())
             {
                 // special behavior when being microwaved ;)
-                var ev = new BeingMicrowavedEvent(uid, user);
+                var ev = new BeingMicrowavedEvent(uid, user, component.CanHeat, component.CanIrradiate); // Frontier: add CanHeat, CanIrradiate
                 RaiseLocalEvent(item, ev);
 
                 if (ev.Handled)
@@ -542,12 +552,12 @@ namespace Content.Server.Kitchen.EntitySystems
                     return;
                 }
 
-                if (_tag.HasTag(item, "Metal"))
+                if (_tag.HasTag(item, "Metal") && component.CanIrradiate) // Frontier: add && !component.DisableMetalMalfunctions
                 {
                     malfunctioning = true;
                 }
 
-                if (_tag.HasTag(item, "Plastic"))
+                if (_tag.HasTag(item, "Plastic") && (component.CanHeat || component.CanIrradiate)) // Frontier: add && !component.DisableRuiningPlastic
                 {
                     var junk = Spawn(component.BadRecipeEntityId, Transform(uid).Coordinates);
                     _container.Insert(junk, component.Storage);

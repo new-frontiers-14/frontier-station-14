@@ -1,3 +1,4 @@
+# The machines here are to separate out the recipes that different microwave machines can make.
 - type: entity
   id: KitchenElectricRange
   parent: [ BaseMachinePowered, ConstructibleMachine ]
@@ -13,6 +14,8 @@
     foodDoneSound: /Audio/Machines/ding.ogg
     loopingSound: /Audio/_NF/Effects/silence.ogg
     validRecipeTypes: Oven
+    canHeat: true
+    canIrradiate: false
   - type: Appearance
   - type: GenericVisualizer
     visuals:
@@ -129,6 +132,8 @@
     explosionChance: 0 # Should really chop them up or something dumb, but should not explode
     lightningChance: 0 # It's a weird arm chop thingy, not a tesla coil.
     validRecipeTypes: Assembler
+    canHeat: false
+    canIrradiate: false
   - type: GenericVisualizer #TODO: needs work
     visuals:
       enum.PowerDeviceVisuals.VisualState:
@@ -192,6 +197,8 @@
     explosionChance: 0 # Should really chop them up or something dumb, but should not explode
     lightningChance: 0 # It's a weird arm chop thingy, not a tesla coil.
     validRecipeTypes: MedicalAssembler
+    canHeat: false
+    canIrradiate: false
   - type: GenericVisualizer
     visuals:
       enum.PowerDeviceVisuals.VisualState:
