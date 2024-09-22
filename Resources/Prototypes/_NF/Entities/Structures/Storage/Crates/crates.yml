@@ -300,21 +300,17 @@
 - type: entity
   parent: CrateLivestock
   id: CrateWoodCage
-  name: wood cage
+  name: wooden cage
   description: Looks like somebody made this in a cave, with a box of scraps.
   components:
   - type: EntityStorage
-    airtight: false
+    airtight: false # Keep this explicit in case the parent changes.
   - type: Sprite
     sprite: _NF/Structures/Storage/Crates/woodcage.rsi
     layers:
     - state: base
     - state: closed
       map: ["enum.StorageVisualLayers.Door"]
-    - state: paper
-      sprite: Structures/Storage/Crates/labels.rsi
-      offset: "-0.25,0.625"
-      map: ["enum.PaperLabelVisuals.Layer"]
   - type: Icon
     sprite: _NF/Structures/Storage/Crates/woodcage.rsi
     state: base
