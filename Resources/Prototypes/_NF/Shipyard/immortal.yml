@@ -1,0 +1,43 @@
+# Author Info
+# GitHub: FrostRusty
+# Discord: @kfrost4775
+
+# Maintainer Info
+# GitHub: ???
+# Discord: ???
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Immortal
+  name: RAE Immortal
+  description: The Immortal, an advanced version of the beloved flagship of Red Astra Enterprises.
+  price: 350000
+  category: Large
+  group: Shipyard
+  shuttlePath: /Maps/_NF/Shuttles/RedAstraImmortal.yml
+  guidebookPage: Null
+  class:
+  - Science
+  - Chemistry
+  - Civilian
+
+- type: gameMap
+  id: Immortal
+  mapName: 'RAE Immortal'
+  mapPath: /Maps/_NF/Shuttles/RedAstraImmortal.yml
+  minPlayers: 0
+  stations:
+    Immortal:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Immortal {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]
