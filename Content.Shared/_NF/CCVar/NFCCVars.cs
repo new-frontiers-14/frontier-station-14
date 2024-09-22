@@ -109,4 +109,26 @@ public sealed class NFCCVars
     /// </summary>
     public static readonly CVarDef<int> SalvageExpeditionMaxActive =
         CVarDef.Create("nf14.salvage.expedition_max_active", 15, CVar.REPLICATED);
+
+    /*
+     * Smuggling
+     */
+    public static readonly CVarDef<int> SmugglingMaxSimultaneousPods =
+        CVarDef.Create("nf14.smuggling.max_simultaneous_pods", 5, CVar.REPLICATED);
+    public static readonly CVarDef<int> SmugglingMaxDeadDrops =
+        CVarDef.Create("nf14.smuggling.max_sector_dead_drops", 10, CVar.REPLICATED);
+    public static readonly CVarDef<int> SmugglingMinFucPayout =
+        CVarDef.Create("nf14.smuggling.min_fuc_payout", 2, CVar.REPLICATED);
+    public static readonly CVarDef<int> DeadDropMinTimeout =
+        CVarDef.Create("nf14.smuggling.min_timeout", 900, CVar.REPLICATED);
+    public static readonly CVarDef<int> DeadDropMaxTimeout =
+        CVarDef.Create("nf14.smuggling.max_timeout", 5400, CVar.REPLICATED);
+    public static readonly CVarDef<int> DeadDropMinDistance =
+        CVarDef.Create("nf14.smuggling.min_distance", 6500, CVar.REPLICATED);
+    public static readonly CVarDef<int> DeadDropMaxDistance =
+        CVarDef.Create("nf14.smuggling.max_distance", 8000, CVar.REPLICATED);
+    public static readonly CVarDef<int> DeadDropMinHints =
+        CVarDef.Create("nf14.smuggling.min_hints", 3, CVar.REPLICATED);
+    public static readonly CVarDef<int> DeadDropMaxHints =
+        CVarDef.Create("nf14.smuggling.max_hints", 4, CVar.REPLICATED);
 }

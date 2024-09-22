@@ -16,3 +16,16 @@
   iffColor: "#8e6444" #brown
   alwaysSpawn: true
   gridPath: /Maps/_NF/POI/courthouse.yml
+
+- type: gameMap
+  id: Courthouse
+  mapName: "Courthouse"
+  mapPath: /Maps/_NF/POI/courthouse.yml
+  minPlayers: 0
+  stations:
+    Courthouse:
+      stationProto: StandardFrontierOutpost
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: "Courthouse"
+        - type: StationDeadDropHintExempt
