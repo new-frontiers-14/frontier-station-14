@@ -41,9 +41,11 @@
   id: SecurityGuardOuterClothing
   name: loadout-group-contractor-outerclothing
   loadouts:
+  - ContractorClothingOuterVestTank
   - ArmorVest
   - ArmorVestSlim
   fallbacks:
+  - ContractorClothingOuterVestTank
   - ArmorVest
 
 - type: loadoutGroup
@@ -55,6 +57,15 @@
   - SecurityWinterBoots
   fallbacks:
   - LeatherShoes
+
+- type: loadoutGroup
+  id: SecurityGuardEars
+  name: loadout-group-contractor-ears
+  loadouts:
+  - SecurityGuardClothingHeadsetSecurityCommon
+  - SecurityGuardClothingHeadsetAltSecurityCommon
+  fallbacks:
+  - SecurityGuardClothingHeadsetSecurityCommon
 
 - type: loadoutGroup
   id: SecurityGuardBelt

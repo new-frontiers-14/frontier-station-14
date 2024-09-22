@@ -14,10 +14,13 @@
   name: loadout-group-contractor-outerclothing
   minLimit: 0
   loadouts:
+  - ContractorClothingOuterVestTank
   - StationRepClothingOuterArmorSrCarapace
   - StationRepClothingOuterJacketSr
   - ContractorClothingOuterCoatExpensive #We let them drip out a little if they want
   - ContractorClothingOuterCoatSpaceAsshole
+  fallbacks:
+  - ContractorClothingOuterVestTank
   
 - type: loadoutGroup
   id: StationRepBackpack
@@ -39,7 +42,21 @@
   - StationRepClothingHeadHatSrBeret
   subgroups:
   - ContractorHead
-  
+
+- type: loadoutGroup
+  id: StationRepEars
+  name: loadout-group-contractor-ears
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - StationRepClothingHeadsetAltCentComCommon
+  subgroups:
+  - MercenaryEars
+  - PilotEars
+  - ContractorEars
+  fallbacks:
+  - StationRepClothingHeadsetAltCentComCommon
+
 - type: loadoutGroup
   id: StationRepGloves
   name: loadout-group-contractor-gloves
