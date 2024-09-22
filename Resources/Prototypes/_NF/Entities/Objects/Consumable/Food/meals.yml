@@ -286,6 +286,7 @@
     flavors:
       - fruity
       - alcohol
+      - pear
   - type: Sprite
     sprite: _NF/Objects/Consumable/Food/bowl.rsi
     layers:
@@ -294,14 +295,14 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 15
+        maxVol: 25
         reagents:
         - ReagentId: Nutriment
-          Quantity: 9
+          Quantity: 12
         - ReagentId: Vitamin
-          Quantity: 4
-        - ReagentId: Flavorol
           Quantity: 5
+        - ReagentId: Flavorol
+          Quantity: 8
   - type: Tag
     tags:
     - Vegetable
@@ -316,7 +317,7 @@
   - type: FlavorProfile
     flavors:
       - chocolate
-      - fruity
+      - pear
       - creamy
   - type: Sprite
     sprite: _NF/Objects/Consumable/Food/bowl.rsi
@@ -326,14 +327,14 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 20
+        maxVol: 35
         reagents:
         - ReagentId: Nutriment
-          Quantity: 8
+          Quantity: 12
         - ReagentId: Vitamin
-          Quantity: 6
+          Quantity: 8
         - ReagentId: Flavorol
-          Quantity: 5
+          Quantity: 8
         - ReagentId: Theobromine
           Quantity: 3
   - type: Tag
@@ -351,7 +352,7 @@
     flavors:
       - chocolate
       - muffin
-      - fruity
+      - pear
   - type: Sprite
     sprite: _NF/Objects/Consumable/Food/Baked/bread.rsi
     state: pearmuffin
@@ -384,6 +385,7 @@
     flavors:
       - sweet
       - cheesy
+      - pear
   - type: Sprite
     sprite: _NF/Objects/Consumable/Food/Baked/pie.rsi
     layers:
@@ -395,11 +397,11 @@
         maxVol: 30
         reagents:
         - ReagentId: Nutriment
-          Quantity: 10
+          Quantity: 12
         - ReagentId: Vitamin
           Quantity: 8
         - ReagentId: Flavorol
-          Quantity: 7
+          Quantity: 8
   - type: Tag
     tags:
     - Fruit
