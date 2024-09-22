@@ -5,6 +5,9 @@ using Robust.Shared.Audio;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
+using Content.Shared.Kitchen; // Frontier
+using Robust.Shared.Serialization; // Frontier
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom; // Frontier
 
 namespace Content.Server.Kitchen.Components
 {
@@ -118,19 +121,10 @@ namespace Content.Server.Kitchen.Components
 
         // Frontier: recipe type
         /// <summary>
-        /// If this microwave can give ids accesses without exploding
+        /// the types of recipes that this "microwave" can handle.
         /// </summary>
-        [DataField, ViewVariables(VVAccess.ReadWrite)]
-        public MicrowaveRecipeType RecipeType = MicrowaveRecipeType.Microwave;
-    }
-
-    // Frontier: microwave recipe types, to limit certain recipes to certain machines
-    [Flags]
-    public enum MicrowaveRecipeType
-    {
-        Microwave = 1,
-        Oven = 2,
-        Assembler = 4,
+        [DataField(customTypeSerializer: typeof(FlagSerializer<MicrowaveRecipeTypeFlags>)), ViewVariables(VVAccess.ReadWrite)]
+        public int ValidRecipeTypes = (int)MicrowaveRecipeType.Microwave;
     }
 
     public sealed class BeingMicrowavedEvent : HandledEntityEventArgs

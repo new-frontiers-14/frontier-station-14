@@ -2,13 +2,14 @@
 
 - type: microwaveMealRecipe
   id: RecipeClurgerBurger
-  name: clippy burger recipe
+  name: clurger recipe
   result: FoodBurgerClurger
   time: 10
   solids:
     FoodBreadBun: 1
     ClothingHeadMailCarrier: 1
     FoodMeatCat: 1
+  recipeType: Oven
 
 - type: microwaveMealRecipe
   id: RecipeRosyMothRoachburger
@@ -18,6 +19,8 @@
   solids:
     FoodBreadBun: 1
     MobRosyMothroach: 1
+  recipeType:
+  - Oven
 
 #Breads & Sandwiches
 
@@ -29,6 +32,8 @@
   solids:
     FoodBreadPlainSlice: 1
     FoodAvocadoSlice: 1
+  recipeType:
+  - Oven
 
 - type: microwaveMealRecipe
   id: RecipeBreakfastBagel
@@ -40,6 +45,8 @@
     FoodEgg: 2
     FoodAvocadoSlice: 1
     FoodCheeseSlice: 1
+  recipeType:
+  - Oven
 
 - type: microwaveMealRecipe
   id: RecipeBreakfastBagelPoppy
@@ -51,6 +58,8 @@
     FoodEgg: 2
     FoodAvocadoSlice: 1
     FoodCheeseSlice: 1
+  recipeType:
+  - Oven
 
 - type: microwaveMealRecipe
   id: RecipeCucumberSandwich
@@ -63,6 +72,7 @@
     FoodChevreSlice: 1
   reagents:
     Mayo: 5
+  recipeType: Assembler
 
 # Sushi
 
@@ -78,6 +88,7 @@
   reagents:
     Rice: 15
     Water: 10
+  recipeType: Assembler
 
 - type: microwaveMealRecipe
   id: RecipeCarpSushi
@@ -91,6 +102,7 @@
   reagents:
     Rice: 15
     Water: 10
+  recipeType: Assembler
 
 # Salad
 
@@ -106,6 +118,7 @@
     FoodCucumber: 1
     FoodTomato: 1
     FoodChevreSlice: 1
+  recipeType: Assembler
 
 - type: microwaveMealRecipe
   id: RecipeAvocadoSalad
@@ -120,6 +133,7 @@
     FoodCucumber: 1
     FoodAvocado: 1
     FoodTomato: 1
+  recipeType: Assembler
 
 #Other
 
@@ -135,6 +149,7 @@
     FoodMealFries: 1
     FoodOnionRings: 1
     OrganAnimalHeart: 1
+  recipeType: Assembler
 
 - type: microwaveMealRecipe
   id: RecipeDragonOmelette
@@ -148,6 +163,9 @@
     Egg: 12
     TableSalt: 5
     Blackpepper: 5
+  recipeType:
+  - Oven
+  - Microwave
 
 - type: microwaveMealRecipe
   id: RecipeRaisins
@@ -156,6 +174,9 @@
   time: 30
   solids:
     FoodGrape: 5
+  recipeType:
+  - Oven
+  - Microwave
 
 - type: microwaveMealRecipe
   id: RecipePickle
@@ -166,6 +187,8 @@
     FoodCucumber: 1
   reagents:
     Saline: 10
+  recipeType:
+  - Microwave
 
 # NOT ACTUAL FOOD
 
@@ -178,3 +201,6 @@
     FoodSpaceshroom: 1
     FoodMushroom: 1
     FoodFlyAmanita: 1
+  recipeType:
+  - Oven
+  - Microwave

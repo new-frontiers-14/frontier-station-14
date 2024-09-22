@@ -237,8 +237,8 @@
       state: service
     - type: MachineBoard
       prototype: KitchenElectricRange
-      requirements: # Frontier
-        Capacitor: 3 # Frontier stackRequirements<requirements
+      requirements:
+        Capacitor: 3
       stackRequirements:
         Steel: 5
         Glass: 2
@@ -258,3 +258,19 @@
       stackRequirements:
         Glass: 2
         Cable: 2
+
+- type: entity
+  id: MedicalAssemblerMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: medical assembler machine board
+  components:
+    - type: Sprite
+      state: medical
+    - type: MachineBoard
+      prototype: MedicalAssembler
+      requirements:
+        Capacitor: 3
+      stackRequirements:
+        Steel: 5
+        Glass: 2
+        Cable: 4

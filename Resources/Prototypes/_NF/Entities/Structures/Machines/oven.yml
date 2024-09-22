@@ -12,6 +12,7 @@
     startCookingSound: /Audio/_NF/Effects/egg-timer.ogg
     foodDoneSound: /Audio/Machines/ding.ogg
     loopingSound: /Audio/_NF/Effects/silence.ogg
+    validRecipeTypes: Oven
   - type: Appearance
   - type: GenericVisualizer
     visuals:
@@ -127,6 +128,7 @@
   - type: Microwave
     explosionChance: 0 # Should really chop them up or something dumb, but should not explode
     lightningChance: 0 # It's a weird arm chop thingy, not a tesla coil.
+    validRecipeTypes: Assembler
   - type: GenericVisualizer #TODO: needs work
     visuals:
       enum.PowerDeviceVisuals.VisualState:
@@ -179,3 +181,43 @@
     powerLoad: 400 # TODO: less power?  More power?  Same power?
   - type: Machine
     board: KitchenAssemblerMachineCircuitboard
+
+- type: entity
+  id: MedicalAssembler
+  parent: [ BaseMachinePowered, ConstructibleMachine, KitchenMicrowave ]
+  name: medical assembler
+  description: Great for medicine, apparently. You don't know how it works.
+  components:
+  - type: Microwave
+    explosionChance: 0 # Should really chop them up or something dumb, but should not explode
+    lightningChance: 0 # It's a weird arm chop thingy, not a tesla coil.
+    validRecipeTypes: MedicalAssembler
+  - type: GenericVisualizer
+    visuals:
+      enum.PowerDeviceVisuals.VisualState:
+        enum.MicrowaveVisualizerLayers.Base:
+          Idle: { state: "mediwave-base" }
+          Broken: { state: "mediwave-base" }
+          Cooking: { state: "mediwave-base" }
+        enum.MicrowaveVisualizerLayers.BaseUnlit:
+          Idle: { state: "mediwave-off-unlit" }
+          Broken: { state: "mediwave-off-unlit" }
+          Cooking: { state: "mediwave-on-unlit" }
+      enum.PowerDeviceVisuals.Powered:
+        enum.MicrowaveVisualizerLayers.BaseUnlit:
+          True: { visible: true }
+          False: { visible: false }
+  - type: Sprite
+    sprite: _NF/Structures/Machines/medical_assembler.rsi
+    snapCardinals: true
+    layers:
+    - state: mediwave-base
+      map: ["enum.MicrowaveVisualizerLayers.Base"]
+    - state: mediwave-off-unlit
+      shader: unshaded
+      map: ["enum.MicrowaveVisualizerLayers.BaseUnlit"]
+      visible: false
+  - type: ApcPowerReceiver
+    powerLoad: 1500
+  - type: Machine
+    board: MedicalAssemblerMachineCircuitboard
