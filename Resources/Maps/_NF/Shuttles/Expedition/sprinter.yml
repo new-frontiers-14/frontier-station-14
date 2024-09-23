@@ -1024,22 +1024,12 @@ entities:
           ent: 33
 - proto: AmeJar
   entities:
-  - uid: 25
-    components:
-    - type: Transform
-      pos: 0.6948629,7.6918755
-      parent: 1
   - uid: 33
     components:
     - type: Transform
       parent: 32
     - type: Physics
       canCollide: False
-  - uid: 415
-    components:
-    - type: Transform
-      pos: 0.3256532,7.6657753
-      parent: 1
 - proto: AmeShielding
   entities:
   - uid: 24
@@ -1749,45 +1739,10 @@ entities:
     - type: Transform
       pos: -10.5,-0.5
       parent: 1
-  - uid: 126
-    components:
-    - type: Transform
-      pos: 10.5,-7.5
-      parent: 1
-  - uid: 127
-    components:
-    - type: Transform
-      pos: 10.5,-6.5
-      parent: 1
-  - uid: 128
-    components:
-    - type: Transform
-      pos: 10.5,-5.5
-      parent: 1
   - uid: 129
     components:
     - type: Transform
       pos: 10.5,-4.5
-      parent: 1
-  - uid: 130
-    components:
-    - type: Transform
-      pos: 10.5,-3.5
-      parent: 1
-  - uid: 131
-    components:
-    - type: Transform
-      pos: 10.5,-2.5
-      parent: 1
-  - uid: 132
-    components:
-    - type: Transform
-      pos: 10.5,-1.5
-      parent: 1
-  - uid: 133
-    components:
-    - type: Transform
-      pos: 10.5,-0.5
       parent: 1
   - uid: 134
     components:
@@ -3734,7 +3689,7 @@ entities:
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: 9.5,-0.5
+      pos: 0.5,7.5
       parent: 1
 - proto: HospitalCurtainsOpen
   entities:
@@ -3815,6 +3770,14 @@ entities:
     components:
     - type: Transform
       pos: -3.5,-6.5
+      parent: 1
+- proto: LockerWallMaterialsFuelAmeJarFilled
+  entities:
+  - uid: 126
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 1.5,6.5
       parent: 1
 - proto: LockerWallMedicalDoctorFilled
   entities:
@@ -3984,11 +3947,6 @@ entities:
     components:
     - type: Transform
       pos: 3.5,4.5
-      parent: 1
-  - uid: 627
-    components:
-    - type: Transform
-      pos: 0.5,7.5
       parent: 1
 - proto: RagItem
   entities:
