@@ -150,6 +150,12 @@ public sealed class ArtifactAnalyzerSystem : EntitySystem
         if (!TryComp<DeviceLinkSinkComponent>(uid, out var sink))
             return;
 
+        if (TryComp<ApcPowerReceiverComponent>(uid, out var apcPower)) // Frontier
+        {
+            component.OriginalLoad = apcPower.Load;
+            SetPowerSwitch(component, apcPower, false);
+        }
+
         foreach (var source in sink.LinkedSources)
         {
             if (!TryComp<AnalysisConsoleComponent>(source, out var analysis))
@@ -491,16 +497,26 @@ public sealed class ArtifactAnalyzerSystem : EntitySystem
 
     private void OnAnalyzeStart(EntityUid uid, ActiveArtifactAnalyzerComponent component, ComponentStartup args)
     {
-        if (TryComp<ApcPowerReceiverComponent>(uid, out var powa))
-            powa.NeedsPower = true;
+        if (!TryComp<ApcPowerReceiverComponent>(uid, out var powa))
+            return;
+
+        if (!TryComp<ArtifactAnalyzerComponent>(uid, out var analyzer)) // Frontier
+            return;
+
+        SetPowerSwitch(analyzer, powa, true); // Frontier
 
         _ambientSound.SetAmbience(uid, true);
     }
 
     private void OnAnalyzeEnd(EntityUid uid, ActiveArtifactAnalyzerComponent component, ComponentShutdown args)
     {
-        if (TryComp<ApcPowerReceiverComponent>(uid, out var powa))
-            powa.NeedsPower = false;
+        if (!TryComp<ApcPowerReceiverComponent>(uid, out var powa))
+            return;
+
+        if (!TryComp<ArtifactAnalyzerComponent>(uid, out var analyzer)) // Frontier
+            return;
+
+        SetPowerSwitch(analyzer, powa, false); // Frontier
 
         _ambientSound.SetAmbience(uid, false);
     }
@@ -515,6 +531,14 @@ public sealed class ArtifactAnalyzerSystem : EntitySystem
         {
             ResumeScan(uid, null, active);
         }
+    }
+
+    private void SetPowerSwitch(ArtifactAnalyzerComponent analyzer, ApcPowerReceiverComponent apc, bool state) // Frontier
+    {
+        if (state)
+            apc.Load = analyzer.OriginalLoad;
+        else
+            apc.Load = 1;
     }
 }
 

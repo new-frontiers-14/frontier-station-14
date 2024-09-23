@@ -42,4 +42,5 @@ public sealed partial class ArtifactAnalyzerComponent : Component
     [ViewVariables(VVAccess.ReadWrite)]
     public int? LastAnalyzerPointValue;
     #endregion
+    public float OriginalLoad { get; set; } = 0; // Frontier
 }
