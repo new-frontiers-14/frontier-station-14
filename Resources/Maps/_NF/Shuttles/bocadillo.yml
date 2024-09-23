@@ -306,31 +306,29 @@ entities:
       rot: 3.141592653589793 rad
       pos: -5.5,2.5
       parent: 2
-- proto: AtmosDeviceFanTiny
+- proto: AtmosDeviceFanDirectional
   entities:
   - uid: 31
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: 1.5,0.5
       parent: 2
   - uid: 32
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: -0.5,0.5
       parent: 2
   - uid: 76
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 5.5,3.5
+      rot: 1.5707963267948966 rad
+      pos: 5.5,5.5
       parent: 2
   - uid: 77
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 5.5,5.5
+      rot: 1.5707963267948966 rad
+      pos: 5.5,3.5
       parent: 2
 - proto: AtmosFixBlockerMarker
   entities:
@@ -728,6 +726,9 @@ entities:
       rot: 3.141592653589793 rad
       pos: -8.5,4.5
       parent: 2
+    - type: GasMixer
+      inletTwoConcentration: 0.79
+      inletOneConcentration: 0.21
     - type: AtmosPipeColor
       color: '#0055CCFF'
 - proto: GasPassiveVent
@@ -1014,6 +1015,7 @@ entities:
       parent: 2
     - type: DeviceNetwork
       configurators:
+      - invalid
       - invalid
       deviceLists:
       - 67
