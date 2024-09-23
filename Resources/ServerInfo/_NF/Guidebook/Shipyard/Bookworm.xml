@@ -27,6 +27,7 @@
 
   ## 1.1. Battery units
   <Box>
+  <GuideEntityEmbed Entity="SMESBasic"/>
   <GuideEntityEmbed Entity="SubstationBasic"/>
   <GuideEntityEmbed Entity="APCBasic"/>
   </Box>
@@ -51,14 +52,15 @@
 
   ## 2.1. Distribution Loop
   <Box>
-  <GuideEntityEmbed Entity="AirCanister"/>
+  <GuideEntityEmbed Entity="OxygenCanister"/>
+  <GuideEntityEmbed Entity="NitrogenCanister"/>
   <GuideEntityEmbed Entity="GasPort"/>
-  <GuideEntityEmbed Entity="GasPressurePump"/>
+  <GuideEntityEmbed Entity="GasMixer"/>
   </Box>
 
-  - Check that the air canister is anchored to connector port.
-  - Check that the distribution pump is set to 101kPa.
-  - Enable the distribution pump.
+  - Check that the oxygen and nitrogen canisters are anchored to the connector port.
+  - Check that the distribution mixer is set to 101kPa.
+  - Enable the distribution mixer.
 
   ## 3. Other checks
   <Box>
