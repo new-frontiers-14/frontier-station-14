@@ -107,7 +107,7 @@ public sealed partial class SalvageSystem
         if (TryComp<SalvageExpeditionDataComponent>(component.Station, out var data))
         {
             data.CanFinish = true;
-            UpdateConsoles(data);
+            UpdateConsoles(component.Station, data);
         }
         // Frontier
 
@@ -117,13 +117,13 @@ public sealed partial class SalvageSystem
 
         Announce(args.MapUid, Loc.GetString("salvage-expedition-announcement-countdown-minutes", ("duration", (component.EndTime - _timing.CurTime).Minutes)));
 
-         var directionLocalization = ContentLocalizationManager.FormatDirection(component.DungeonLocation.GetDir()).ToLower();
+        var directionLocalization = ContentLocalizationManager.FormatDirection(component.DungeonLocation.GetDir()).ToLower();
 
         if (component.DungeonLocation != Vector2.Zero)
             Announce(args.MapUid, Loc.GetString("salvage-expedition-announcement-dungeon", ("direction", directionLocalization)));
 
         component.Stage = ExpeditionStage.Running;
-        Dirty(component);
+        Dirty(args.MapUid, component);
     }
 
     private void OnFTLStarted(ref FTLStartedEvent ev)
