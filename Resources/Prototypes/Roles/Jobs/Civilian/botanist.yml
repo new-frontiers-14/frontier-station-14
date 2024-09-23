@@ -3,13 +3,15 @@
   name: job-name-botanist
   description: job-description-botanist
   playTimeTracker: JobBotanist
-  setPreference: false # Frontier
+  setPreference: true # Frontier
   requirements:
     - !type:OverallPlaytimeRequirement
       time: 10800
   startingGear: BotanistGear
   icon: "JobIconBotanist"
   supervisors: job-supervisors-hire # Frontier
+  access:
+  - Hydroponics
   accessGroups: # Frontier
   - GeneralAccess # Frontier
 

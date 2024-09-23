@@ -3,13 +3,16 @@
   name: job-name-atmostech
   description: job-description-atmostech
   playTimeTracker: JobAtmosphericTechnician
-  setPreference: false # Frontier
+  setPreference: true # Frontier
   requirements:
     - !type:OverallPlaytimeRequirement
       time: 10800
   startingGear: AtmosphericTechnicianGear
   icon: "JobIconAtmosphericTechnician"
   supervisors: job-supervisors-hire # Frontier
+  access: 
+  - Engineering
+  - Atmospherics
   accessGroups: # Frontier
   - GeneralAccess # Frontier
 

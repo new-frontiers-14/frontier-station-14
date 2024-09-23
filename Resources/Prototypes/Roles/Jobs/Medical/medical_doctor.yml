@@ -3,13 +3,16 @@
   name: job-name-doctor
   description: job-description-doctor
   playTimeTracker: JobMedicalDoctor
-  setPreference: false # Frontier
+  setPreference: true # Frontier
   requirements:
     - !type:OverallPlaytimeRequirement
       time: 10800
   startingGear: DoctorGear
   icon: "JobIconMedicalDoctor"
   supervisors: job-supervisors-hire # Frontier
+  access:
+  - Medical
+  - Chemistry
   accessGroups: # Frontier
   - GeneralAccess # Frontier
 

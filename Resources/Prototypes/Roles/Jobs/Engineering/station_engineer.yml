@@ -3,13 +3,16 @@
   name: job-name-engineer
   description: job-description-engineer
   playTimeTracker: JobStationEngineer
-  setPreference: false # Frontier
+  setPreference: true # Frontier
   requirements:
     - !type:OverallPlaytimeRequirement
       time: 10800
   startingGear: StationEngineerGear
   icon: "JobIconStationEngineer"
   supervisors: job-supervisors-hire # Frontier
+  access:
+  - Engineering
+  - Atmospherics
   accessGroups: # Frontier
   - GeneralAccess # Frontier
 

@@ -3,9 +3,20 @@
   name: department-Cargo
   description: department-Cargo-description
   color: "#A46106"
-  weight: -90
-  primary: false
-  editorHidden: true # Frontier
+  weight: 2
+  roles:
+  - SalvageSpecialist
+ #  primary: false
+ #  editorHidden: true # Frontier
+
+- type: department
+  id: Service
+  name: department-Service
+  description: department-Civilian-description
+  color: "#A46106"
+  weight: 1
+  roles:
+  - Botanist
 
 - type: department
   id: Civilian
@@ -16,12 +27,12 @@
   roles:
   - Bartender
   - Borg
-  - Botanist
+ #  - Botanist
   - Boxer
   - Chaplain
   - Chef
   - Clown
-#  - HeadOfPersonnel
+ #  - HeadOfPersonnel
   - Lawyer
   - Librarian
   - Mime
@@ -35,16 +46,16 @@
   - Mercenary # Frontier
   - Pilot # Frontier
   - Captain # Frontier
-  - ChiefEngineer # Frontier
-  - AtmosphericTechnician # Frontier
-  - StationEngineer # Frontier
-  - TechnicalAssistant # Frontier
-  - ResearchDirector # Frontier
-  - Scientist # Frontier
-  - ResearchAssistant # Frontier
-  - Quartermaster # Frontier
-  - CargoTechnician # Frontier
-  - SalvageSpecialist # Frontier
+ #  - ChiefEngineer # Frontier
+ #  - AtmosphericTechnician # Frontier
+ #  - StationEngineer # Frontier
+ #  - TechnicalAssistant # Frontier
+ #  - ResearchDirector # Frontier
+ #  - Scientist # Frontier
+ #  - ResearchAssistant # Frontier
+ #  - Quartermaster # Frontier
+ #  - CargoTechnician # Frontier
+ #  - SalvageSpecialist # Frontier
 
 - type: department
   id: Command
@@ -54,47 +65,81 @@
   roles:
   - CentralCommandOfficial
   - HeadOfPersonnel # Not shown but needed here for playtime
-  - HeadOfSecurity # Not shown but needed here for playtime
-#  - ChiefMedicalOfficer
+ #  - HeadOfSecurity # Not shown but needed here for playtime
+ #  - ChiefMedicalOfficer
   - StationRepresentative # Frontier
   - Sheriff  # Frontier
   - StationTrafficController # Frontier
   primary: false
-  weight: 2 # Frontier: 100<2 - accounted for in jobs
+  weight: -1 # Frontier: 100<2 - accounted for in jobs
 
 - type: department
   id: Engineering
   name: department-Engineering
   description: department-Engineering-description
   color: "#EFB341"
-  weight: -94
-  primary: false
-  editorHidden: true # Frontier
+  weight: 5
+  roles:
+  - ChiefEngineer
+  - AtmosphericTechnician
+  - StationEngineer
+ #  primary: false
+ #  editorHidden: true # Frontier
 
 - type: department
   id: Medical
   name: department-Medical
   description: department-Medical-description
   color: "#52B4E9"
-  weight: -93
-  primary: false
-  editorHidden: true # Frontier
+  weight: 4
+  roles:
+  - ChiefMedicalOfficer
+  - Chemist
+  - MedicalDoctor
+  - Paramedic
+  # primary: false
+  # editorHidden: true # Frontier
+
+- type: department
+  id: Shipcommand
+  name: department-Shipcommand
+  description: department-Command-description
+  color: "#334E6D"
+  weight: 7
+  roles: 
+  - Captain
+  - ChiefMedicalOfficer
+  - ChiefEngineer
+  - ResearchDirector
+  - HeadOfSecurity
+
+- type: department
+  id: Shipsecurity
+  name: department-Shipsecurity
+  description: department-Security-description
+  color: "#52B4E9"
+  weight: 6
+  roles:
+  - HeadOfSecurity
+  - Warden
+  - SecurityOfficer
+#  - SecurityCadet
 
 - type: department
   id: Security
   name: department-Security
   description: department-Security-description
   color: "#5C7D4D" # Frontier: DE3A3A<5C7D4D
-  weight: 1 # Frontier: 20<1 - accounted for in jobs
+  weight: -2 # Frontier: 20<1 - accounted for in jobs
   roles:
-  - Detective # Frontier - No Longer Usable
-  - HeadOfSecurity # Frontier - No Longer Usable
-  - SecurityCadet # Frontier - No Longer Usable
-  - SecurityOfficer # Frontier - No Longer Usable
-  - Warden # Frontier - No Longer Usable
+ #  - Detective # Frontier - No Longer Usable
+ #  - HeadOfSecurity # Frontier - No Longer Usable
+ #  - SecurityCadet # Frontier - No Longer Usable
+ #  - SecurityOfficer # Frontier - No Longer Usable
+ #  - Warden # Frontier - No Longer Usable
   - PrisonGuard ##nyano
   - Brigmedic # Frontier
-#  - SecurityGuard # Frontier
+ #  - SecurityGuard # Frontier
   - DetectiveNF # Frontier
   - Cadet # Frontier
   - Deputy # Frontier
@@ -108,9 +153,12 @@
   name: department-Science
   description: department-Science-description
   color: "#D381C9"
-  weight: -92
-  primary: false
-  editorHidden: true # Frontier
+  weight: 3
+  roles:
+  - ResearchDirector
+  - Scientist
+ #  primary: false
+ #  editorHidden: true # Frontier
 
 - type: department
   id: Specific
