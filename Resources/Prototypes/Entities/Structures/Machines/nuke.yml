@@ -110,6 +110,11 @@
   - type: WarpPoint
     follow: true
     location: nuclear bomb
+  - type: DisableShipyardSale # Frontier
+    reason: shipyard-console-dangerous-materials # Frontier
+    allowedShipyardTypes: # Frontier:
+    - Syndicate # Frontier
+    - BlackMarket # Frontier
 
 - type: entity
   parent: NuclearBomb

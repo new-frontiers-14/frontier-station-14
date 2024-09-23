@@ -6,6 +6,7 @@ using Content.Shared.Bank.Components;
 using Content.Shared.Preferences;
 using Robust.Shared.Player;
 using System.Diagnostics.CodeAnalysis;
+using Content.Shared._NF.Bank.Events;
 
 namespace Content.Server.Bank;
 
@@ -167,6 +168,8 @@ public sealed partial class BankSystem : SharedBankSystem
         }
         _prefsManager.SetProfile(session.UserId, index, newProfile);
         newBalance = balance;
+        // Update any active admin UI with new balance
+        RaiseLocalEvent(new BalanceChangedEvent(session, newBalance.Value));
         return true;
     }
 
@@ -199,6 +202,8 @@ public sealed partial class BankSystem : SharedBankSystem
             return false;
         }
         _prefsManager.SetProfile(session.UserId, index, newProfile);
+        // Update any active admin UI with new balance
+        RaiseLocalEvent(new BalanceChangedEvent(session, newBalance.Value));
         return true;
     }
 
