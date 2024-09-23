@@ -39,7 +39,10 @@
     - type: MobThresholds
       thresholds:
         0: Alive
-        50: Dead
+        40: Dead
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 2.5
+      baseSprintSpeed: 3.5
     - type: Stamina
       critThreshold: 100
     - type: DamageStateVisuals
@@ -54,6 +57,9 @@
       spawned:
         - id: FoodMeatFish
           amount: 2
+        - id: MaterialToothSpaceCarp1
+          amount: 1
+          maxAmount: 4
     - type: MeleeWeapon
       altDisarm: false
       angle: 0
@@ -62,8 +68,8 @@
         path: /Audio/Effects/bite.ogg
       damage:
         types:
-          Piercing: 5
-          Slash: 5 # frontier nerf
+          Blunt: 5
+          Slash: 5 # Frontier: 7<5
     - type: TypingIndicator
       proto: alien
     - type: Tag
@@ -209,7 +215,7 @@
     - type: MobThresholds
       thresholds:
         0: Alive
-        80: Dead
+        80: Dead # Frontier: 150<80
     - type: Stamina
       critThreshold: 150
     - type: DamageStateVisuals
@@ -227,10 +233,13 @@
       spawned:
         - id: FoodMeatFish
           amount: 4
+        - id: MaterialToothSharkminnow1
+          amount: 1
+          maxAmount: 3
     - type: MeleeWeapon
       damage:
         types:
-          Slash: 7
+          Slash: 7 # Frontier: 10<7
           Bloodloss: 5
 
 - type: entity

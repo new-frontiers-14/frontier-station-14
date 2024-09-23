@@ -1,11 +1,16 @@
 using Content.Server.Chemistry.Components;
+<<<<<<< HEAD
 using Content.Server.Chemistry.Containers.EntitySystems;
 using Content.Server.Construction;
+=======
+>>>>>>> a7e29f2878a63d62c9c23326e2b8f2dc64d40cc4
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
+using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry;
 using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Placeable;
+using Content.Shared.Power;
 
 namespace Content.Server.Chemistry.EntitySystems;
 
@@ -13,7 +18,7 @@ public sealed class SolutionHeaterSystem : EntitySystem
 {
     [Dependency] private readonly PowerReceiverSystem _powerReceiver = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly SolutionContainerSystem _solutionContainer = default!;
+    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

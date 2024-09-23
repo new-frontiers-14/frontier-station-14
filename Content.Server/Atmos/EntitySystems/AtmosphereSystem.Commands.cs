@@ -36,7 +36,11 @@ public sealed partial class AtmosphereSystem
            return;
        }
 
+<<<<<<< HEAD
        var mixtures = new GasMixture[11]; // Add one per added array.
+=======
+       var mixtures = new GasMixture[8];
+>>>>>>> a7e29f2878a63d62c9c23326e2b8f2dc64d40cc4
        for (var i = 0; i < mixtures.Length; i++)
            mixtures[i] = new GasMixture(Atmospherics.CellVolume) { Temperature = Atmospherics.T20C };
 
@@ -65,6 +69,7 @@ public sealed partial class AtmosphereSystem
        mixtures[6].AdjustMoles(Gas.Nitrogen, Atmospherics.NitrogenMolesStandard);
        mixtures[6].Temperature = 235f; // Little colder than an actual freezer but gives a grace period to get e.g. themomachines set up, should keep warm for a few door openings
 
+<<<<<<< HEAD
        // Frontier - 7: Oxygen Shuttle (GM)
        mixtures[7].Clear();
        mixtures[7].AdjustMoles(Gas.Oxygen, Atmospherics.MolesCellShuttle);
@@ -84,6 +89,10 @@ public sealed partial class AtmosphereSystem
        mixtures[10].AdjustMoles(Gas.WaterVapor, Atmospherics.NitrogenMolesStandard);
        mixtures[10].Temperature = 340f; // Sauna
 
+=======
+       // 7: Nitrogen (101kpa) for vox rooms
+       mixtures[7].AdjustMoles(Gas.Nitrogen, Atmospherics.MolesCellStandard);
+>>>>>>> a7e29f2878a63d62c9c23326e2b8f2dc64d40cc4
 
        foreach (var arg in args)
        {

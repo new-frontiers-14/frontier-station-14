@@ -25,7 +25,11 @@ using Robust.Shared.Timing;
 using Robust.Shared.Audio.Systems;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Damage.Components;
+<<<<<<< HEAD
 using Robust.Shared.Random; // Frontier
+=======
+using Content.Shared.Power;
+>>>>>>> a7e29f2878a63d62c9c23326e2b8f2dc64d40cc4
 
 namespace Content.Server.Light.EntitySystems
 {

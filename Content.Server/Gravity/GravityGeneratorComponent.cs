@@ -8,16 +8,10 @@ namespace Content.Server.Gravity
     [Access(typeof(GravityGeneratorSystem))]
     public sealed partial class GravityGeneratorComponent : SharedGravityGeneratorComponent
     {
-        // 1% charge per second.
-        [ViewVariables(VVAccess.ReadWrite)] [DataField("chargeRate")] public float ChargeRate { get; set; } = 0.01f;
-        // The gravity generator has two power values.
-        // Idle power is assumed to be the power needed to run the control systems and interface.
-        [DataField("idlePower")] public float IdlePowerUse { get; set; }
-        // Active power is the power needed to keep the gravity field stable.
-        [DataField("activePower")] public float ActivePowerUse { get; set; }
         [DataField("lightRadiusMin")] public float LightRadiusMin { get; set; }
         [DataField("lightRadiusMax")] public float LightRadiusMax { get; set; }
 
+<<<<<<< HEAD
 
         /// <summary>
         /// Is the power switch on?
@@ -40,13 +34,12 @@ namespace Content.Server.Gravity
         [DataField("machinePartMaxChargeMultiplier", customTypeSerializer: typeof(PrototypeIdSerializer<MachinePartPrototype>))]
         public string MachinePartMaxChargeMultiplier = "Capacitor";
 
+=======
+>>>>>>> a7e29f2878a63d62c9c23326e2b8f2dc64d40cc4
         /// <summary>
         /// Is the gravity generator currently "producing" gravity?
         /// </summary>
         [ViewVariables]
         public bool GravityActive { get; set; } = false;
-
-        // Do we need a UI update even if the charge doesn't change? Used by power button.
-        [ViewVariables] public bool NeedUIUpdate { get; set; }
     }
 }

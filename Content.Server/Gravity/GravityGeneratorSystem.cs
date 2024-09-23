@@ -1,29 +1,42 @@
+<<<<<<< HEAD
 using Content.Server.Administration.Logs;
 using Content.Server.Audio;
 using Content.Server.Construction;
 using Content.Server.Power.Components;
 using Content.Server.Emp; // Frontier: Upstream - #28984
 using Content.Shared.Database;
+=======
+using Content.Server.Power.Components;
+using Content.Server.Power.EntitySystems;
+>>>>>>> a7e29f2878a63d62c9c23326e2b8f2dc64d40cc4
 using Content.Shared.Gravity;
-using Content.Shared.Interaction;
-using Robust.Server.GameObjects;
-using Robust.Shared.Player;
 
-namespace Content.Server.Gravity
+namespace Content.Server.Gravity;
+
+public sealed class GravityGeneratorSystem : EntitySystem
 {
-    public sealed class GravityGeneratorSystem : EntitySystem
+    [Dependency] private readonly GravitySystem _gravitySystem = default!;
+    [Dependency] private readonly SharedPointLightSystem _lights = default!;
+
+    public override void Initialize()
     {
-        [Dependency] private readonly IAdminLogManager _adminLogger = default!;
-        [Dependency] private readonly AmbientSoundSystem _ambientSoundSystem = default!;
-        [Dependency] private readonly GravitySystem _gravitySystem = default!;
-        [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-        [Dependency] private readonly SharedPointLightSystem _lights = default!;
-        [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
+        base.Initialize();
 
-        public override void Initialize()
+        SubscribeLocalEvent<GravityGeneratorComponent, EntParentChangedMessage>(OnParentChanged);
+        SubscribeLocalEvent<GravityGeneratorComponent, ChargedMachineActivatedEvent>(OnActivated);
+        SubscribeLocalEvent<GravityGeneratorComponent, ChargedMachineDeactivatedEvent>(OnDeactivated);
+    }
+
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+        var query = EntityQueryEnumerator<GravityGeneratorComponent, PowerChargeComponent>();
+        while (query.MoveNext(out var uid, out var grav, out var charge))
         {
-            base.Initialize();
+            if (!_lights.TryGetLight(uid, out var pointLight))
+                continue;
 
+<<<<<<< HEAD
             SubscribeLocalEvent<GravityGeneratorComponent, ComponentInit>(OnCompInit);
             SubscribeLocalEvent<GravityGeneratorComponent, ComponentShutdown>(OnComponentShutdown);
             SubscribeLocalEvent<GravityGeneratorComponent, EntParentChangedMessage>(OnParentChanged); // Or just anchor changed?
@@ -33,29 +46,43 @@ namespace Content.Server.Gravity
                 OnSwitchGenerator);
 
             SubscribeLocalEvent<GravityGeneratorComponent, EmpPulseEvent>(OnEmpPulse); // Frontier: Upstream - #28984
+=======
+            _lights.SetEnabled(uid, charge.Charge > 0, pointLight);
+            _lights.SetRadius(uid, MathHelper.Lerp(grav.LightRadiusMin, grav.LightRadiusMax, charge.Charge),
+                pointLight);
+>>>>>>> a7e29f2878a63d62c9c23326e2b8f2dc64d40cc4
         }
+    }
 
-        private void OnParentChanged(EntityUid uid, GravityGeneratorComponent component, ref EntParentChangedMessage args)
+    private void OnActivated(Entity<GravityGeneratorComponent> ent, ref ChargedMachineActivatedEvent args)
+    {
+        ent.Comp.GravityActive = true;
+
+        var xform = Transform(ent);
+
+        if (TryComp(xform.ParentUid, out GravityComponent? gravity))
         {
-            if (component.GravityActive && TryComp(args.OldParent, out GravityComponent? gravity))
-            {
-                _gravitySystem.RefreshGravity(args.OldParent.Value, gravity);
-            }
+            _gravitySystem.EnableGravity(xform.ParentUid, gravity);
         }
+    }
 
-        private void OnComponentShutdown(EntityUid uid, GravityGeneratorComponent component, ComponentShutdown args)
+    private void OnDeactivated(Entity<GravityGeneratorComponent> ent, ref ChargedMachineDeactivatedEvent args)
+    {
+        ent.Comp.GravityActive = false;
+
+        var xform = Transform(ent);
+
+        if (TryComp(xform.ParentUid, out GravityComponent? gravity))
         {
-            if (component.GravityActive &&
-                TryComp(uid, out TransformComponent? xform) &&
-                TryComp(xform.ParentUid, out GravityComponent? gravity))
-            {
-                component.GravityActive = false;
-                _gravitySystem.RefreshGravity(xform.ParentUid, gravity);
-            }
+            _gravitySystem.RefreshGravity(xform.ParentUid, gravity);
         }
+    }
 
-        public override void Update(float frameTime)
+    private void OnParentChanged(EntityUid uid, GravityGeneratorComponent component, ref EntParentChangedMessage args)
+    {
+        if (component.GravityActive && TryComp(args.OldParent, out GravityComponent? gravity))
         {
+<<<<<<< HEAD
             base.Update(frameTime);
 
             var query = EntityQueryEnumerator<GravityGeneratorComponent, ApcPowerReceiverComponent>();
@@ -296,6 +323,9 @@ namespace Content.Server.Gravity
             SharedGravityGeneratorComponent.SwitchGeneratorMessage args)
         {
             SetSwitchedOn(uid, component, args.On, user: args.Actor);
+=======
+            _gravitySystem.RefreshGravity(args.OldParent.Value, gravity);
+>>>>>>> a7e29f2878a63d62c9c23326e2b8f2dc64d40cc4
         }
 
         private void OnEmpPulse(EntityUid uid, GravityGeneratorComponent component, EmpPulseEvent args) // Frontier: Upstream - #28984

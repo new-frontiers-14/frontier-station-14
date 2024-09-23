@@ -292,6 +292,7 @@ public sealed partial class BorgSystem : SharedBorgSystem
         Popup.PopupEntity(Loc.GetString("borg-mind-added", ("name", Identity.Name(uid, EntityManager))), uid);
 
         Toggle.TryActivate(uid);
+<<<<<<< HEAD
 
         // Frontier: add cyborg access
         if (TryComp<AccessComponent>(uid, out var oldAccess))
@@ -311,6 +312,9 @@ public sealed partial class BorgSystem : SharedBorgSystem
         _access.SetAccessEnabled(uid, true);
         // End Frontier
 
+=======
+        _powerCell.SetDrawEnabled(uid, _mobState.IsAlive(uid));
+>>>>>>> a7e29f2878a63d62c9c23326e2b8f2dc64d40cc4
         _appearance.SetData(uid, BorgVisuals.HasPlayer, true);
     }
 
@@ -321,6 +325,7 @@ public sealed partial class BorgSystem : SharedBorgSystem
     {
         Popup.PopupEntity(Loc.GetString("borg-mind-removed", ("name", Identity.Name(uid, EntityManager))), uid);
         Toggle.TryDeactivate(uid);
+        _powerCell.SetDrawEnabled(uid, false);
         _appearance.SetData(uid, BorgVisuals.HasPlayer, false);
     }
 

@@ -1,5 +1,5 @@
 using Content.Server.Body.Components;
-using Content.Server.GameTicking;
+using Content.Server.Ghost;
 using Content.Server.Humanoid;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
@@ -17,7 +17,7 @@ namespace Content.Server.Body.Systems;
 
 public sealed class BodySystem : SharedBodySystem
 {
-    [Dependency] private readonly GameTicker _ticker = default!;
+    [Dependency] private readonly GhostSystem _ghostSystem = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly HumanoidAppearanceSystem _humanoidSystem = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
@@ -42,9 +42,14 @@ public sealed class BodySystem : SharedBodySystem
 
         if (_mobState.IsDead(ent) && _mindSystem.TryGetMind(ent, out var mindId, out var mind))
         {
+<<<<<<< HEAD
             // mind.TimeOfDeath ??= _gameTiming.RealTime;
             mind.TimeOfDeath ??= _gameTiming.CurTime; // Frontier - fix returning to body messing with the your TOD
             _ticker.OnGhostAttempt(mindId, canReturnGlobal: true, mind: mind);
+=======
+            mind.TimeOfDeath ??= _gameTiming.RealTime;
+            _ghostSystem.OnGhostAttempt(mindId, canReturnGlobal: true, mind: mind);
+>>>>>>> a7e29f2878a63d62c9c23326e2b8f2dc64d40cc4
         }
     }
 

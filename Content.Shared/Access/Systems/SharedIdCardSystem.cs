@@ -1,7 +1,9 @@
+using System.Globalization;
 using Content.Shared.Access.Components;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Database;
 using Content.Shared.Hands.Components;
+using Content.Shared.IdentityManagement;
 using Content.Shared.Inventory;
 using Content.Shared.PDA;
 using Robust.Shared.Prototypes;
@@ -21,12 +23,44 @@ public abstract class SharedIdCardSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
+
         SubscribeLocalEvent<IdCardComponent, MapInitEvent>(OnMapInit);
+        SubscribeLocalEvent<TryGetIdentityShortInfoEvent>(OnTryGetIdentityShortInfo);
+        SubscribeLocalEvent<EntityRenamedEvent>(OnRename);
+    }
+
+    private void OnRename(ref EntityRenamedEvent ev)
+    {
+        // When a player gets renamed their id card is renamed as well to match.
+        // Unfortunately since TryFindIdCard will succeed if the entity is also a card this means that the card will
+        // keep renaming itself unless we return early.
+        if (HasComp<IdCardComponent>(ev.Uid))
+            return;
+
+        if (TryFindIdCard(ev.Uid, out var idCard))
+            TryChangeFullName(idCard, ev.NewName, idCard);
     }
 
     private void OnMapInit(EntityUid uid, IdCardComponent id, MapInitEvent args)
     {
         UpdateEntityName(uid, id);
+    }
+
+    private void OnTryGetIdentityShortInfo(TryGetIdentityShortInfoEvent ev)
+    {
+        if (ev.Handled)
+        {
+            return;
+        }
+
+        string? title = null;
+        if (TryFindIdCard(ev.ForActor, out var idCard) && !(ev.RequestForAccessLogging && idCard.Comp.BypassLogging))
+        {
+            title = ExtractFullTitle(idCard);
+        }
+
+        ev.Title = title;
+        ev.Handled = true;
     }
 
     /// <summary>
@@ -216,6 +250,7 @@ public abstract class SharedIdCardSystem : EntitySystem
         _metaSystem.SetEntityName(uid, val);
     }
 
+<<<<<<< HEAD
     [Serializable, NetSerializable]
     public sealed class WriteToTargetIdMessage : BoundUserInterfaceMessage
     {
@@ -244,5 +279,11 @@ public abstract class SharedIdCardSystem : EntitySystem
             ShuttleName = shuttleName;
             ShuttleSuffix = shuttleSuffix;
         }
+=======
+    private static string ExtractFullTitle(IdCardComponent idCardComponent)
+    {
+        return $"{idCardComponent.FullName} ({CultureInfo.CurrentCulture.TextInfo.ToTitleCase(idCardComponent.JobTitle ?? string.Empty)})"
+            .Trim();
+>>>>>>> a7e29f2878a63d62c9c23326e2b8f2dc64d40cc4
     }
 }

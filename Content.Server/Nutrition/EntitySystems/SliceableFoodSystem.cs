@@ -1,7 +1,11 @@
+<<<<<<< HEAD
 using Content.Server.Nutrition; // DeltaV
 using Content.Server.Chemistry.Containers.EntitySystems;
+=======
+>>>>>>> a7e29f2878a63d62c9c23326e2b8f2dc64d40cc4
 using Content.Server.DoAfter;
 using Content.Server.Nutrition.Components;
+using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Nutrition;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Chemistry.Components;
@@ -20,7 +24,7 @@ namespace Content.Server.Nutrition.EntitySystems;
 
 public sealed class SliceableFoodSystem : EntitySystem
 {
-    [Dependency] private readonly SolutionContainerSystem _solutionContainer = default!;
+    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
     [Dependency] private readonly DoAfterSystem _doAfter = default!;
@@ -175,7 +179,7 @@ public sealed class SliceableFoodSystem : EntitySystem
     private void OnComponentStartup(Entity<SliceableFoodComponent> entity, ref ComponentStartup args)
     {
         var foodComp = EnsureComp<FoodComponent>(entity);
-        _solutionContainer.EnsureSolution(entity.Owner, foodComp.Solution);
+        _solutionContainer.EnsureSolution(entity.Owner, foodComp.Solution, out _);
     }
 }
 

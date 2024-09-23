@@ -1,10 +1,16 @@
+using Content.Client.UserInterface.Controls;
 using Content.Client.VendingMachines.UI;
 using Content.Shared.VendingMachines;
+<<<<<<< HEAD
 using Content.Shared.Bank.Components;
 using Robust.Client.GameObjects;
 using Robust.Client.UserInterface.Controls;
 using System.Linq;
+=======
+>>>>>>> a7e29f2878a63d62c9c23326e2b8f2dc64d40cc4
 using Robust.Client.UserInterface;
+using Robust.Shared.Input;
+using System.Linq;
 
 namespace Content.Client.VendingMachines
 {
@@ -16,12 +22,15 @@ namespace Content.Client.VendingMachines
         [ViewVariables]
         private List<VendingMachineInventoryEntry> _cachedInventory = new();
 
+<<<<<<< HEAD
         [ViewVariables]
         private List<int> _cachedFilteredIndex = new();
 
         [ViewVariables]
         private float _mod = 1f;
 
+=======
+>>>>>>> a7e29f2878a63d62c9c23326e2b8f2dc64d40cc4
         public VendingMachineBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
         {
         }
@@ -30,6 +39,7 @@ namespace Content.Client.VendingMachines
         {
             base.Open();
 
+<<<<<<< HEAD
             var entMan = IoCManager.Resolve<IEntityManager>();
             var vendingMachineSys = entMan.System<VendingMachineSystem>();
 
@@ -38,23 +48,35 @@ namespace Content.Client.VendingMachines
 
             _cachedInventory = vendingMachineSys.GetAllInventory(Owner);
 
+=======
+>>>>>>> a7e29f2878a63d62c9c23326e2b8f2dc64d40cc4
             _menu = this.CreateWindow<VendingMachineMenu>();
             _menu.OpenCenteredLeft();
             _menu.Title = EntMan.GetComponent<MetaDataComponent>(Owner).EntityName;
-
             _menu.OnItemSelected += OnItemSelected;
+<<<<<<< HEAD
             _menu.OnSearchChanged += OnSearchChanged;
 
             _menu.Populate(_cachedInventory, _mod, out _cachedFilteredIndex); // Frontier: add _mod
+=======
+            Refresh();
+>>>>>>> a7e29f2878a63d62c9c23326e2b8f2dc64d40cc4
         }
 
-        protected override void UpdateState(BoundUserInterfaceState state)
+        public void Refresh()
         {
-            base.UpdateState(state);
+            var system = EntMan.System<VendingMachineSystem>();
+            _cachedInventory = system.GetAllInventory(Owner);
 
-            if (state is not VendingMachineInterfaceState newState)
+            _menu?.Populate(_cachedInventory);
+        }
+
+        private void OnItemSelected(GUIBoundKeyEventArgs args, ListData data)
+        {
+            if (args.Function != EngineKeyFunctions.UIClick)
                 return;
 
+<<<<<<< HEAD
             var entMan = IoCManager.Resolve<IEntityManager>();
             var priceMod = 1f;
 
@@ -68,10 +90,15 @@ namespace Content.Client.VendingMachines
 
         private void OnItemSelected(ItemList.ItemListSelectedEventArgs args)
         {
+=======
+            if (data is not VendorItemsListData { ItemIndex: var itemIndex })
+                return;
+
+>>>>>>> a7e29f2878a63d62c9c23326e2b8f2dc64d40cc4
             if (_cachedInventory.Count == 0)
                 return;
 
-            var selectedItem = _cachedInventory.ElementAtOrDefault(_cachedFilteredIndex.ElementAtOrDefault(args.ItemIndex));
+            var selectedItem = _cachedInventory.ElementAtOrDefault(itemIndex);
 
             if (selectedItem == null)
                 return;
@@ -92,10 +119,13 @@ namespace Content.Client.VendingMachines
             _menu.OnClose -= Close;
             _menu.Dispose();
         }
+<<<<<<< HEAD
 
         private void OnSearchChanged(string? filter)
         {
             _menu?.Populate(_cachedInventory, _mod, out _cachedFilteredIndex, filter);
         }
+=======
+>>>>>>> a7e29f2878a63d62c9c23326e2b8f2dc64d40cc4
     }
 }

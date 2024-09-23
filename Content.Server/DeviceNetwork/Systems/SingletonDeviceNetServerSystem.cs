@@ -3,7 +3,11 @@ using Content.Server.DeviceNetwork.Components;
 using Content.Server.Medical.CrewMonitoring;
 using Content.Server.Power.Components;
 using Content.Server.Station.Systems;
+<<<<<<< HEAD
 using Robust.Shared.Map;
+=======
+using Content.Shared.Power;
+>>>>>>> a7e29f2878a63d62c9c23326e2b8f2dc64d40cc4
 
 namespace Content.Server.DeviceNetwork.Systems;
 
@@ -66,7 +70,7 @@ public sealed class SingletonDeviceNetServerSystem : EntitySystem
 
             last = (uid, server, device);
 
-            if (!server.Active)
+            if (!server.Active || string.IsNullOrEmpty(device.Address))
                 continue;
 
             address = device.Address;

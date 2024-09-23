@@ -33,7 +33,11 @@ using Content.Server.Popups;
 using Content.Shared.Verbs;
 using Robust.Shared.Collections;
 using Content.Shared.Ghost.Roles.Components;
+<<<<<<< HEAD
 using Content.Server._NF.Players.GhostRole.Events; // Frontier
+=======
+using Content.Shared.Roles.Jobs;
+>>>>>>> a7e29f2878a63d62c9c23326e2b8f2dc64d40cc4
 
 namespace Content.Server.Ghost.Roles;
 
@@ -624,6 +628,14 @@ public sealed class GhostRoleSystem : EntitySystem
     {
         if (!TryComp(uid, out GhostRoleComponent? ghostRole))
             return;
+
+        if (ghostRole.JobProto != null)
+        {
+            if (HasComp<JobComponent>(args.Mind))
+                _roleSystem.MindRemoveRole<JobComponent>(args.Mind);
+
+            _roleSystem.MindAddRole(args.Mind, new JobComponent { Prototype = ghostRole.JobProto });
+        }
 
         ghostRole.Taken = true;
         UnregisterGhostRole((uid, ghostRole));

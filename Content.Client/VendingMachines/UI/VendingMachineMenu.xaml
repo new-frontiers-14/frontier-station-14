@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿<controls:FancyWindow xmlns="https://spacestation14.io"
             xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
             xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
@@ -20,6 +21,16 @@
                   SelectMode="Button"
                   StyleClasses="transparentBackgroundItemList">
         </ItemList>
+=======
+<controls:FancyWindow
+    xmlns="https://spacestation14.io"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+    xmlns:co="clr-namespace:Content.Client.UserInterface.Controls">
+    <BoxContainer Name="MainContainer" Orientation="Vertical">
+        <LineEdit Name="SearchBar" PlaceHolder="{Loc 'vending-machine-component-search-filter'}" HorizontalExpand="True"  Margin ="4 4"/>
+        <co:SearchListContainer Name="VendingContents" VerticalExpand="True" Margin="4 4"/>
+>>>>>>> a7e29f2878a63d62c9c23326e2b8f2dc64d40cc4
          <!-- Footer -->
         <BoxContainer Orientation="Vertical">
             <PanelContainer StyleClasses="LowDivider" />

@@ -1,8 +1,12 @@
-﻿using Content.Server.Ghost.Roles.Raffles;
+using Content.Server.Ghost.Roles.Raffles;
 using Content.Server.Mind.Commands;
 using Content.Shared.Ghost.Roles;
 using Content.Shared.Roles;
+<<<<<<< HEAD
 using Robust.Shared.Prototypes; // Frontier
+=======
+using Robust.Shared.Prototypes;
+>>>>>>> a7e29f2878a63d62c9c23326e2b8f2dc64d40cc4
 
 namespace Content.Server.Ghost.Roles.Components;
 
@@ -16,7 +20,6 @@ public sealed partial class GhostRoleComponent : Component
 
     [DataField("rules")] private string _roleRules = "ghost-role-component-default-rules";
 
-    // TODO ROLE TIMERS
     // Actually make use of / enforce this requirement?
     // Why is this even here.
     // Move to ghost role prototype & respect CCvars.GameRoleTimerOverride
@@ -102,6 +105,7 @@ public sealed partial class GhostRoleComponent : Component
     [Access(typeof(GhostRoleSystem), Other = AccessPermissions.ReadWriteExecute)] // FIXME Friends
     public GhostRoleRaffleConfig? RaffleConfig { get; set; }
 
+<<<<<<< HEAD
     // Frontier: per-role ghost role whitelisting
     /// <summary>
     /// If set, this ghost role associates with a particular prototype.
@@ -110,4 +114,12 @@ public sealed partial class GhostRoleComponent : Component
     [DataField]
     public ProtoId<GhostRolePrototype>? Prototype { get; set; }
     // End Frontier
+=======
+    /// <summary>
+    /// Job the entity will receive after adding the mind.
+    /// </summary>
+    [DataField("job")]
+    [Access(typeof(GhostRoleSystem), Other = AccessPermissions.ReadWriteExecute)] // also FIXME Friends
+    public ProtoId<JobPrototype>? JobProto = null;
+>>>>>>> a7e29f2878a63d62c9c23326e2b8f2dc64d40cc4
 }

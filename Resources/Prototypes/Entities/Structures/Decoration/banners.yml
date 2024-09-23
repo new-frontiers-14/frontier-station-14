@@ -26,23 +26,24 @@
         # - HighImpassable
         # - BulletImpassable
   - type: InteractionOutline
-# Frontier
+  - type: Damageable
+    damageContainer: StructuralInorganic
   - type: Destructible
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 25
+        damage: 100
       behaviors:
       - !type:DoActsBehavior
         acts: ["Destruction"]
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          MaterialCloth1:
-            min: 1
-            max: 2
-          SheetSteel1:
-            min: 1
-            max: 2
+      - !type:SpawnEntitiesBehavior # Frontier
+        spawn: # Frontier
+          MaterialCloth1: # Frontier
+            min: 1 # Frontier
+            max: 2 # Frontier
+          SheetSteel1: # Frontier
+            min: 1 # Frontier
+            max: 2 # Frontier
 
 - type: entity
   id: BannerNanotrasen

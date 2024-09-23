@@ -87,9 +87,9 @@
     netsync: false
     radius: 1.1 #smallest possible
     color: orange
-  - type: StaticPrice
-    price: 15
-
+  - type: ItemTogglePointLight
+  - type: StaticPrice # Frontier
+    price: 15 # Frontier
 
 - type: entity
   name: cheap lighter
@@ -208,6 +208,7 @@
     netsync: false
     radius: 1.2 #slightly stronger than the other lighters
     color: orange
+  - type: ItemTogglePointLight
   - type: UseDelay
   - type: IgnitionSource
     ignited: false

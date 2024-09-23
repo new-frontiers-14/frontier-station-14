@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
 using Content.Server.Power.Components;
@@ -211,6 +212,7 @@ namespace Content.Server.Power.EntitySystems
             comp.Load = load;
         }
 
+<<<<<<< HEAD
         private void OnEmpPulse(EntityUid uid, ApcPowerReceiverComponent component, ref EmpPulseEvent args) // Frontier: Upstream - #28984
         {
             if (!component.PowerDisabled)
@@ -227,6 +229,18 @@ namespace Content.Server.Power.EntitySystems
             {
                 TogglePower(uid, false);
             }
+=======
+        public override bool ResolveApc(EntityUid entity, [NotNullWhen(true)] ref SharedApcPowerReceiverComponent? component)
+        {
+            if (component != null)
+                return true;
+
+            if (!TryComp(entity, out ApcPowerReceiverComponent? receiver))
+                return false;
+
+            component = receiver;
+            return true;
+>>>>>>> a7e29f2878a63d62c9c23326e2b8f2dc64d40cc4
         }
     }
 }

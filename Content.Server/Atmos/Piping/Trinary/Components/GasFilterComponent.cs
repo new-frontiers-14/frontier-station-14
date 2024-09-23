@@ -5,27 +5,25 @@ namespace Content.Server.Atmos.Piping.Trinary.Components
     [RegisterComponent]
     public sealed partial class GasFilterComponent : Component
     {
-        [ViewVariables(VVAccess.ReadWrite)]
-        [DataField("enabled")]
-        public bool Enabled { get; set; } = true;
+        [DataField]
+        public bool Enabled = true;
 
-        [ViewVariables(VVAccess.ReadWrite)]
         [DataField("inlet")]
-        public string InletName { get; set; } = "inlet";
+        public string InletName = "inlet";
 
-        [ViewVariables(VVAccess.ReadWrite)]
         [DataField("filter")]
-        public string FilterName { get; set; } = "filter";
+        public string FilterName = "filter";
 
-        [ViewVariables(VVAccess.ReadWrite)]
         [DataField("outlet")]
-        public string OutletName { get; set; } = "outlet";
+        public string OutletName = "outlet";
 
-        [ViewVariables(VVAccess.ReadWrite)]
+        [DataField]
+        public float TransferRate = Atmospherics.MaxTransferRate;
 
-        [DataField("transferRate")]
-        public float TransferRate { get; set; } = Atmospherics.MaxTransferRate;
+        [DataField]
+        public float MaxTransferRate = Atmospherics.MaxTransferRate;
 
+<<<<<<< HEAD
         [DataField("maxTransferRate")]
         public float MaxTransferRate { get; set; } = Atmospherics.MaxTransferRate;
 
@@ -37,5 +35,9 @@ namespace Content.Server.Atmos.Piping.Trinary.Components
         /// </summary>
         [DataField]
         public bool StartOnMapInit { get; set; } = false;
+=======
+        [DataField]
+        public Gas? FilteredGas;
+>>>>>>> a7e29f2878a63d62c9c23326e2b8f2dc64d40cc4
     }
 }

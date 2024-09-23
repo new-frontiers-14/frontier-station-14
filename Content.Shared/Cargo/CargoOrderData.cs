@@ -60,6 +60,11 @@ namespace Content.Shared.Cargo
             Computer = computer;
         }
 
+        public void SetApproverData(string? approver)
+        {
+            Approver = approver;
+        }
+
         public void SetApproverData(string? fullName, string? jobTitle)
         {
             var sb = new StringBuilder();
