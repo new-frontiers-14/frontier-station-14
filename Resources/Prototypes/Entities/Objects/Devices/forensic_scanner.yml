@@ -5,13 +5,13 @@
   description: A handheld device that can scan objects for fingerprints and fibers.
   components:
   - type: Sprite
-    sprite: Objects/Devices/forensic_scanner.rsi
+    sprite: _NF/Objects/Devices/forensic_scanner.rsi # Frontier: add _NF
     state: forensicnew
   - type: Item
     size: Small
     storedRotation: 90
   - type: Clothing
-    sprite: Objects/Devices/forensic_scanner.rsi
+    sprite: _NF/Objects/Devices/forensic_scanner.rsi # Frontier: add _NF
     quickEquip: false
     slots:
     - Belt
@@ -29,6 +29,28 @@
     - Forensics
   - type: StealTarget
     stealGroup: ForensicScanner
+  - type: Appearance # Frontier
+  - type: ItemSlots # Frontier
+    slots: # Frontier
+      forensics_cartridge: # Frontier
+        name: forensic-scanner-slot-component-slot-name-cartridge # Frontier
+        insertSound: /Audio/Machines/id_insert.ogg # Frontier
+        ejectSound: /Audio/Machines/id_swipe.ogg # Frontier
+        whitelist: # Frontier
+          components: # Frontier
+            - ForensicsCartridge # Frontier
+  - type: ItemMapper # Frontier
+    sprite: _NF/Objects/Devices/forensic_scanner.rsi # Frontier
+    mapLayers: # Frontier
+      forensiccartridge: # Frontier
+        whitelist: # Frontier
+          components: # Frontier
+            - ForensicsCartridge # Frontier
+  - type: ContainerContainer # Frontier
+    containers: # Frontier
+      storagebase: !type:Container # Frontier
+        ents: [] # Frontier
+      forensics_cartridge: !type:ContainerSlot {} # Frontier
 
 - type: entity
   name: forensic scanner report

@@ -72,6 +72,8 @@
     bodyType: Static
   - type: Transform
     anchored: true
+  - type: PotentialDeadDrop # Frontier
+    hintText: dead-drop-hint-chair # Frontier
 
 #Starts unanchored, can be rotated while anchored
 - type: entity
@@ -96,6 +98,8 @@
     bodyType: Static
   - type: Transform
     anchored: true
+  - type: PotentialDeadDrop # Frontier
+    hintText: dead-drop-hint-stool # Frontier
 
 - type: entity
   name: chair
@@ -371,6 +375,8 @@
   - type: Construction
     graph: Seat
     node: chairSteelBench
+  - type: PotentialDeadDrop # Frontier
+    hintText: dead-drop-hint-bench # Frontier
 
 - type: entity
   name: wooden bench
@@ -401,3 +407,5 @@
             max: 4
   - type: StaticPrice
     price: 20
+  - type: PotentialDeadDrop # Frontier
+    hintText: dead-drop-hint-bench # Frontier
