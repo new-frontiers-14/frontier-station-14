@@ -15,6 +15,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Transform
+  - type: StationDeadDropHintExempt
 
 - type: entity
   id: StandardFrontierOutpost
@@ -27,6 +28,13 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Transform
+
+- type: entity
+  id: DeadDropFrontierOutpost
+  parent:
+  - StandardFrontierOutpost
+  - BaseStationDeadDrops
+  categories: [ HideSpawnMenu ]
 
 - type: entity
   id: MarketFrontierOutpost
@@ -47,6 +55,13 @@
   parent:
   - StandardFrontierOutpost
   - BaseStationShuttles
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: DeadDropShipyardFrontierOutpost
+  parent:
+  - ShipyardFrontierOutpost
+  - BaseStationDeadDrops
   categories: [ HideSpawnMenu ]
 
 - type: entity

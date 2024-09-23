@@ -4,7 +4,7 @@
   abstract: true
   components:
   - type: Temperature
-    heatDamageThreshold: 2000 # Should prevent mobs from taking damage on planets with extreme head 
+    heatDamageThreshold: 2000 # Should prevent mobs from taking damage on planets with extreme heat
     coldDamageThreshold: -250 # Should make mobs immune to cold planets
     currentTemperature: 310.15
     coldDamage: #per second, scales with temperature & other constants
@@ -189,7 +189,7 @@
   - MobEnhancedMovement
   - BaseMobSpecies
   - MobHumanoidHostileAIComplex
-  - BaseC3Contraband
+  - BaseC3MobHuman
   id: MobHumanoidHostileBase
   components:
   - type: NPCRetaliation
@@ -227,8 +227,15 @@
     minimumWait: 120 # 1 * 2
     maximumWait: 240 # 2 * 60
     nextAdvertisementTime: 0
-  - type: SalvageMobRestrictionsNF
+  - type: NFSalvageMobRestrictions
   - type: FTLKnockdownImmune
+  - type: Respirator
+    updateInterval: 99999 # Shouldn't run often, if ever.
+    suffocationThreshold: -100 # Should never happen.
+    damage:
+      types: {}
+    damageRecovery:
+      types: {}
 
 # NonHuman NPC base, no equipment, immune to vacuum/low pressure
 - type: entity
@@ -244,7 +251,7 @@
   - MobFlammable
   - MobEnhancedMovement
   - MobHumanoidHostileAIComplex
-  - BaseC3Contraband
+  - BaseC3MobCreature
   id: MobNonHumanHostileBase
   components:
   - type: NPCRetaliation
@@ -297,7 +304,7 @@
   - type: MobPrice
     price: 1500
     deathPenalty: 0.5
-  - type: SalvageMobRestrictionsNF
+  - type: NFSalvageMobRestrictions
   - type: Tag
     tags:
     - CanPilot

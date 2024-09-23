@@ -108,12 +108,12 @@
 # Blood Cult Acolyte, melee mob armed with eldritch sword (16 slash)
 - type: entity
   name: blood cult acolyte
-  parent: 
+  parent:
   - MobBloodCultistBase
   - MobHumanoidHostileAISimpleMelee
   - MobLaserReflect # Added to prevent laser abuse from players
   id: MobBloodCultistAcolyte
-  description: |- 
+  description: |-
    The acolyte - The most trusted cult follower and bodyguard of a priest, clad in the finest armor the cult has to offer and armed with the most vile weapons: eldrich blades and unholy halberds.
   categories: [ HideSpawnMenu ]
   components:
@@ -124,7 +124,7 @@
 # Blood Cult Zealot, melee mob armed with ritual dagger (12 slash)
 - type: entity
   name: blood cult zealot
-  parent: 
+  parent:
   - MobBloodCultistBase
   - MobHumanoidHostileAISimpleMelee
   id: MobBloodCultistZealotMelee
@@ -139,7 +139,7 @@
 # Look for crossbow bolt here: \Resources\Prototypes\_NF\Entities\Objects\Weapons\Guns\Projectiles\crossbow_bolts.yml
 - type: entity
   name: blood cult zealot
-  parent: 
+  parent:
   - MobBloodCultistBase
   - MobHumanoidHostileAISimpleRanged
   id: MobBloodCultistZealotRanged
@@ -171,7 +171,7 @@
 # Look for magic bolt here:\Resources\Prototypes\_NF\Entities\Objects\Weapons\Guns\Projectiles\magic.yml
 - type: entity
   name: blood cult zealot
-  parent: 
+  parent:
   - MobBloodCultistBase
   - MobHumanoidHostileAISimpleRanged
   id: MobBloodCultistCaster
@@ -347,7 +347,7 @@
 - type: entity
   name: drained one
   categories: [ HideSpawnMenu ]
-  parent: 
+  parent:
   - MobNonHumanHostileBase
   - FlyingMobBase
   - MobPassiveRegen
@@ -459,7 +459,7 @@
     softness: 1
     color: "#ff0000"
     castShadows: true
-  
+
 # Drained One (summonable by players), melee
 - type: entity
   categories: [ HideSpawnMenu ]
@@ -491,6 +491,7 @@
 # Look for magic bolt here:\Resources\Prototypes\_NF\Entities\Objects\Weapons\Guns\Projectiles\magic.yml
 - type: entity
   parent:
+  - BaseC3CultContraband
   - BaseWeaponTurret
   #- MobBloodCultistTimedDespawn
   id: BloodCultTurret
