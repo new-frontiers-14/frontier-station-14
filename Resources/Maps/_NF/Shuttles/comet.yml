@@ -479,14 +479,10 @@ entities:
       injecting: True
     - type: ContainerContainer
       containers:
-        AmeFuel: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: 201
         fuelSlot: !type:ContainerSlot
           showEnts: False
           occludes: True
-          ent: null
+          ent: 201
 - proto: AmeJar
   entities:
   - uid: 201
@@ -2307,7 +2303,7 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#0335FCFF'
-- proto: GasPressurePump
+- proto: GasPressurePumpOn
   entities:
   - uid: 448
     components:
@@ -2779,12 +2775,6 @@ entities:
       parent: 650
     - type: Physics
       canCollide: False
-  - uid: 661
-    components:
-    - type: Transform
-      parent: 650
-    - type: Physics
-      canCollide: False
 - proto: PaperBin10
   entities:
   - uid: 650
@@ -2805,7 +2795,6 @@ entities:
       - 658
       - 659
       - 660
-      - 661
     - type: ContainerContainer
       containers:
         bin-container: !type:Container
@@ -2822,7 +2811,6 @@ entities:
           - 658
           - 659
           - 660
-          - 661
 - proto: PenCap
   entities:
   - uid: 663
