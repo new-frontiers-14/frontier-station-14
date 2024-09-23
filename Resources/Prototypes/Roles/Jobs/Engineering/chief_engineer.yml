@@ -3,7 +3,7 @@
   name: job-name-ce
   description: job-description-ce
   playTimeTracker: JobChiefEngineer
-  setPreference: false # Frontier
+  setPreference: true # Frontier
   requirements:
     - !type:OverallPlaytimeRequirement
       time: 144000 #40 hrs
@@ -14,15 +14,18 @@
   icon: "JobIconChiefEngineer"
 #  requireAdminNotify: true
   supervisors: job-supervisors-hire # Frontier
-#  canBeAntag: false
+  canBeAntag: false
+  access: 
+  - SaxonSimus
   accessGroups: # Frontier
   - GeneralAccess # Frontier
-#  special:
-#  - !type:AddImplantSpecial
-#    implants: [ MindShieldImplant ]
-#  - !type:AddComponentSpecial
-#    components:
-#      - type: CommandStaff
+  - Engineering
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+  - !type:AddComponentSpecial
+    components:
+      - type: CommandStaff
 
 - type: startingGear
   id: ChiefEngineerGear

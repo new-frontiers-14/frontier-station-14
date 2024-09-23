@@ -3,13 +3,16 @@
   name: job-name-chemist
   description: job-description-chemist
   playTimeTracker: JobChemist
-  setPreference: false # Frontier
+  setPreference: true # Frontier
   requirements:
     - !type:OverallPlaytimeRequirement
       time: 10800
   startingGear: ChemistGear
   icon: "JobIconChemist"
   supervisors: job-supervisors-hire # Frontier
+  access:
+  - Medical
+  - Chemistry
   accessGroups: # Frontier
   - GeneralAccess # Frontier
 

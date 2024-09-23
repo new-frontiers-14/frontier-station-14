@@ -3,6 +3,7 @@
   name: job-name-hos
   description: job-description-hos
   playTimeTracker: JobHeadOfSecurityOld
+  setPreference: true
   requirements:
     - !type:RoleTimeRequirement
       role: JobWarden
@@ -40,7 +41,6 @@
   - !type:AddComponentSpecial
     components:
       - type: CommandStaff
-  setPreference: false # Frontier
 
 - type: startingGear
   id: HoSGear

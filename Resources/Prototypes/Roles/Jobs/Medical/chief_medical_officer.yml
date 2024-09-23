@@ -5,7 +5,7 @@
   name: job-name-cmo
   description: job-description-cmo
   playTimeTracker: JobChiefMedicalOfficer
-  setPreference: false # Frontier
+  setPreference: true # Frontier
   requirements:
     - !type:OverallPlaytimeRequirement
       time: 144000 #40 hrs
@@ -16,15 +16,16 @@
   icon: "JobIconChiefMedicalOfficer"
 #  requireAdminNotify: true
   supervisors: job-supervisors-hire # Frontier
-#  canBeAntag: false
+  canBeAntag: false
   accessGroups: # Frontier
   - GeneralAccess # Frontier
-#  special:
-#  - !type:AddImplantSpecial
-#    implants: [ MindShieldImplant ]
-#  - !type:AddComponentSpecial
-#    components:
-#      - type: CommandStaff
+  - Medical
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+  - !type:AddComponentSpecial
+    components:
+      - type: CommandStaff
 
 - type: startingGear
   id: CMOGear

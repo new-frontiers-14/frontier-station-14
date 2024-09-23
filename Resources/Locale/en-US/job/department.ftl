@@ -1,8 +1,11 @@
-department-Cargo = `
+department-Cargo = Cargo
 department-Civilian = Civilian
 department-Command = Frontier Command
-department-Engineering = `
-department-Medical = `
+department-Engineering = Engineering
+department-Medical = Medical
 department-Security = New Frontier Sheriff's Department
-department-Science = `
+department-Science = Science
 department-Specific = `
+department-Shipcommand = Ship Command
+department-Shipsecurity = Ship Security
+department-Service = Service

@@ -47,7 +47,7 @@ public sealed partial class IdCardConsoleComponent : Component
     public List<ProtoId<AccessLevelPrototype>> AccessLevels = new()
     {
         "Armory",
-        //"Atmospherics",
+        "Atmospherics",
         "Bailiff", // Frontier
         //"Bar",
         "Brig",
@@ -55,17 +55,17 @@ public sealed partial class IdCardConsoleComponent : Component
         "Captain",
         //"Cargo",
         //"Chapel",
-        //"Chemistry",
-        //"ChiefEngineer",
-        //"ChiefMedicalOfficer",
+        "Chemistry",
+        "ChiefEngineer",
+        "ChiefMedicalOfficer",
         "Command",
         //"Cryogenics",
-        //"Engineering",
+        "Engineering",
         "External",
         "Frontier", // Frontier
         "HeadOfPersonnel",
         "HeadOfSecurity",
-        //"Hydroponics",
+        "Hydroponics",
         "Janitor",
         //"Kitchen",
         "Lawyer",
@@ -73,10 +73,11 @@ public sealed partial class IdCardConsoleComponent : Component
         "Maintenance",
         "Medical",
         "Mercenary", // Frontier
-        //"Quartermaster",
-        //"Research",
-        //"ResearchDirector",
-        //"Salvage",
+        "Quartermaster",
+        "Research",
+        "ResearchDirector",
+        "Salvage",
+        "SaxonSimus",
         "Security",
         "Sergeant", // Frontier
         "Service",
