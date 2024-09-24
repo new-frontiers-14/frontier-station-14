@@ -157,7 +157,6 @@
 
 - type: entity
   id: TrackingImplanter
-  name: tracking implanter # Frontier
   parent: [ BaseImplantOnlyImplanter, BaseC2ContrabandUnredeemable] # Frontier: BaseRestrictedContraband<BaseC2ContrabandUnredeemable
   # suffix: tracking # Frontier
   components:
@@ -254,13 +253,8 @@
 
 - type: entity
   id: MindShieldImplanter
-<<<<<<< HEAD
-  name: mindshield implanter
   parent: [ BaseImplantOnlyImplanter, BaseC2ContrabandUnredeemable] # Frontier: BaseSecurityCommandContraband<BaseC2ContrabandUnredeemable
-=======
   suffix: mindshield
-  parent: BaseImplantOnlyImplanter
->>>>>>> a7e29f2878a63d62c9c23326e2b8f2dc64d40cc4
   components:
     - type: Implanter
       implant: MindShieldImplant
