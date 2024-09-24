@@ -353,6 +353,22 @@
           - PirateUplink
 
 - type: listing
+  id: UplinkPirateCannonballEmp
+  name:  uplink-pirate-cannonball-emp-name
+  description: uplink-pirate-cannonball-emp-desc
+  productEntity: CratePirateChestCannonBallEmp
+  icon: { sprite: _NF/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi, state: ball-emp }
+  cost:
+    Doubloon: 2
+  categories:
+    - UplinkPirateAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - PirateUplink
+
+- type: listing
   id: UplinkPirateGrapeshot
   name:  uplink-pirate-grapeshot-name
   description: uplink-pirate-grapeshot-desc

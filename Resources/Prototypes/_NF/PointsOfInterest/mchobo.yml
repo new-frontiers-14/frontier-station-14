@@ -16,5 +16,17 @@
   rangeMax: 5600
   iffColor: "#ffa600" #yellorange for faction style
   spawnChance: 1
-  spawnGroup: WreckedKitchen
+  spawnGroup: Scrapyard
   gridPath: /Maps/_NF/POI/mchobo.yml
+
+- type: gameMap
+  id: McHobo
+  mapName: "Derelict McCargo"
+  mapPath: /Maps/_NF/POI/mchobo.yml
+  minPlayers: 0
+  stations:
+    McHobo:
+      stationProto: DeadDropShipyardFrontierOutpost
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: "Derelict McCargo"

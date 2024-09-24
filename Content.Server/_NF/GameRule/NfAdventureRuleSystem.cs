@@ -13,6 +13,9 @@ using System.Threading.Tasks;
 using Content.Shared._NF.GameRule;
 using Content.Server.Procedural;
 using Content.Shared.Bank.Components;
+using Content.Server._NF.GameTicking.Events;
+using Content.Server.GameTicking.Events;
+using Content.Server.GameTicking.Rules.Components;
 using Content.Shared.Procedural;
 using Robust.Server.GameObjects;
 using Robust.Server.Maps;
@@ -23,6 +26,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Map.Components;
 using Content.Shared.Shuttles.Components;
+using Content.Server._NF.GameTicking.Events;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Cargo.Components;
 using Content.Server.GameTicking;
@@ -160,6 +164,9 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         GenerateUniques(remainingUniqueProtosBySpawnGroup, out component.UniquePois);
 
         base.Started(uid, component, gameRule, args);
+
+        // Using invalid entity, we don't have a relevant entity to reference here.
+        RaiseLocalEvent(EntityUid.Invalid, new StationsGeneratedEvent(), broadcast: true); // TODO: attach this to a meaningful entity.
 
         var dungenTypes = _prototypeManager.EnumeratePrototypes<DungeonConfigPrototype>();
 
@@ -352,6 +359,10 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
                 if (proto.IsHidden)
                 {
                     _shuttle.AddIFFFlag(grid, IFFFlags.HideLabel);
+                }
+                if (!proto.AllowIFFChanges)
+                {
+                    _shuttle.SetIFFReadOnly(grid, true);
                 }
 
                 // Ensure damping for each grid in the POI - set the shuttle component if it exists just to be safe

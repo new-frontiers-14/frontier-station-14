@@ -12,9 +12,10 @@
   - BaseStationMail # Mail
   - BaseStationSectorServices # Hosts all sector-wide services
   - BaseStationDampening
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Transform
+  - type: StationDeadDropHintExempt
 
 - type: entity
   id: StandardFrontierOutpost
@@ -24,24 +25,44 @@
   - BaseStationCargo
   - BaseStationSiliconLawFrontierShips
   - BaseStationDampening
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Transform
+
+- type: entity
+  id: DeadDropFrontierOutpost
+  parent:
+  - StandardFrontierOutpost
+  - BaseStationDeadDrops
+  categories: [ HideSpawnMenu ]
 
 - type: entity
   id: MarketFrontierOutpost
   parent:
   - StandardFrontierOutpost
   - BaseStationCargoMarket
+  categories: [ HideSpawnMenu ]
 
 - type: entity
   id: SpawnableFrontierOutpost
   parent:
   - StandardFrontierOutpost
   - BaseStationRecords
-  noSpawn: true
-  components:
-  - type: Transform
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: ShipyardFrontierOutpost
+  parent:
+  - StandardFrontierOutpost
+  - BaseStationShuttles
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: DeadDropShipyardFrontierOutpost
+  parent:
+  - ShipyardFrontierOutpost
+  - BaseStationDeadDrops
+  categories: [ HideSpawnMenu ]
 
 - type: entity
   id: SecurityFrontierOutpost
@@ -54,7 +75,7 @@
   - BaseStationAlertLevels # Has a comms console
   - BaseStationSiliconLawFrontierStation # No funny borg laws
   - BaseStationDampening
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Transform
 
@@ -69,7 +90,7 @@
   - BaseStationRenameFaxes
   - BaseStationRenameWarpPoints
   - BaseStationSiliconLawFrontierShips
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Transform
 
@@ -84,7 +105,7 @@
   - BaseStationRenameFaxes
   - BaseStationRenameWarpPoints
   - BaseStationSiliconLawFrontierShips
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Transform
 
@@ -100,7 +121,7 @@
   - BaseStationRenameWarpPoints
   - BaseStationSiliconLawFrontierShips
   - BaseStationExpeditions
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Transform
 
@@ -109,6 +130,6 @@
   parent:
   - StandardFrontierVessel
   - BaseStationExpeditions
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Transform
