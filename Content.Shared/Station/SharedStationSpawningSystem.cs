@@ -40,25 +40,28 @@ public abstract class SharedStationSpawningSystem : EntitySystem
     /// <summary>
     ///     Equips the data from a `RoleLoadout` onto an entity.
     /// </summary>
-    public void EquipRoleLoadout(EntityUid entity, RoleLoadout loadout, RoleLoadoutPrototype roleProto)
-    {
-        // Order loadout selections by the order they appear on the prototype.
-        foreach (var group in loadout.SelectedLoadouts.OrderBy(x => roleProto.Groups.FindIndex(e => e == x.Key)))
-        {
-            foreach (var items in group.Value)
-            {
-                if (!PrototypeManager.TryIndex(items.Prototype, out var loadoutProto))
-                {
-                    Log.Error($"Unable to find loadout prototype for {items.Prototype}");
-                    continue;
-                }
+    /// <remarks>
+    ///     Frontier: must run on the server, requires bank access.
+    /// </remarks>
+    // public void EquipRoleLoadout(EntityUid entity, RoleLoadout loadout, RoleLoadoutPrototype roleProto)
+    // {
+    //     // Order loadout selections by the order they appear on the prototype.
+    //     foreach (var group in loadout.SelectedLoadouts.OrderBy(x => roleProto.Groups.FindIndex(e => e == x.Key)))
+    //     {
+    //         foreach (var items in group.Value)
+    //         {
+    //             if (!PrototypeManager.TryIndex(items.Prototype, out var loadoutProto))
+    //             {
+    //                 Log.Error($"Unable to find loadout prototype for {items.Prototype}");
+    //                 continue;
+    //             }
 
-                EquipStartingGear(entity, loadoutProto, raiseEvent: false);
-            }
-        }
+    //             EquipStartingGear(entity, loadoutProto, raiseEvent: false);
+    //         }
+    //     }
 
-        EquipRoleName(entity, loadout, roleProto);
-    }
+    //     EquipRoleName(entity, loadout, roleProto);
+    // }
 
     /// <summary>
     /// Applies the role's name as applicable to the entity.

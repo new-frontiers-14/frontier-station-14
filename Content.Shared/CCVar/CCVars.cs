@@ -1373,25 +1373,8 @@ namespace Content.Shared.CCVar
         ///     Specifies the whitelist prototypes to be used by the server. This should be a comma-separated list of prototypes.
         ///     If a whitelists conditions to be active fail (for example player count), the next whitelist will be used instead. If no whitelist is valid, the player will be allowed to connect.
         /// </summary>
-<<<<<<< HEAD
-        public static readonly CVarDef<string> WhitelistReason =
-            CVarDef.Create("whitelist.reason", "whitelist-not-whitelisted", CVar.SERVERONLY);
-
-        /// <summary>
-        ///     If the playercount is below this number, the whitelist will not apply.
-        /// </summary>
-        public static readonly CVarDef<int> WhitelistMinPlayers =
-            CVarDef.Create("whitelist.min_players", 32, CVar.SERVERONLY);
-
-        /// <summary>
-        ///     If the playercount is above this number, the whitelist will not apply.
-        /// </summary>
-        public static readonly CVarDef<int> WhitelistMaxPlayers =
-            CVarDef.Create("whitelist.max_players", int.MaxValue, CVar.SERVERONLY);
-=======
         public static readonly CVarDef<string> WhitelistPrototypeList =
             CVarDef.Create("whitelist.prototype_list", "basicWhitelist", CVar.SERVERONLY);
->>>>>>> a7e29f2878a63d62c9c23326e2b8f2dc64d40cc4
 
         /*
          * VOTE

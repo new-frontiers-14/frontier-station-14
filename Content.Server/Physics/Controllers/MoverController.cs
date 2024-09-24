@@ -185,26 +185,7 @@ public sealed class MoverController : SharedMoverController
 
         if ((component.HeldButtons & ShuttleButtons.StrafeLeft) != 0x0)
         {
-<<<<<<< HEAD
-            if (vel.Length() == 0f)
-                return Vector2.Zero;
-
-            // this math could PROBABLY be simplified for performance
-            // probably
-            //             __________________________________
-            //            / /    __   __ \2   /    __   __ \2
-            // O = I : _ /  |I * | 1/H | |  + |I * |  0  | |
-            //          V   \    |_ 0 _| /    \    |_1/V_| /
-
-            var horizIndex = vel.X > 0 ? 1 : 3; // east else west
-            var vertIndex = vel.Y > 0 ? 2 : 0; // north else south
-            var horizComp = vel.X != 0 ? MathF.Pow(Vector2.Dot(vel, new (shuttle.BaseLinearThrust[horizIndex] / shuttle.LinearThrust[horizIndex], 0f)), 2) : 0;
-            var vertComp = vel.Y != 0 ? MathF.Pow(Vector2.Dot(vel, new (0f, shuttle.BaseLinearThrust[vertIndex] / shuttle.LinearThrust[vertIndex])), 2) : 0;
-
-            return shuttle.BaseMaxLinearVelocity * vel * MathF.ReciprocalSqrtEstimate(horizComp + vertComp);
-=======
             x -= 1;
->>>>>>> a7e29f2878a63d62c9c23326e2b8f2dc64d40cc4
         }
 
         if ((component.HeldButtons & ShuttleButtons.StrafeRight) != 0x0)
@@ -267,8 +248,8 @@ public sealed class MoverController : SharedMoverController
 
         var horizIndex = vel.X > 0 ? 1 : 3; // east else west
         var vertIndex = vel.Y > 0 ? 2 : 0; // north else south
-        var horizComp = vel.X != 0 ? MathF.Pow(Vector2.Dot(vel, new (shuttle.LinearThrust[horizIndex] / shuttle.LinearThrust[horizIndex], 0f)), 2) : 0;
-        var vertComp = vel.Y != 0 ? MathF.Pow(Vector2.Dot(vel, new (0f, shuttle.LinearThrust[vertIndex] / shuttle.LinearThrust[vertIndex])), 2) : 0;
+        var horizComp = vel.X != 0 ? MathF.Pow(Vector2.Dot(vel, new (shuttle.BaseLinearThrust[horizIndex] / shuttle.LinearThrust[horizIndex], 0f)), 2) : 0; // Frontier: LinearThrust<BaseLinearThrust
+        var vertComp = vel.Y != 0 ? MathF.Pow(Vector2.Dot(vel, new (0f, shuttle.BaseLinearThrust[vertIndex] / shuttle.LinearThrust[vertIndex])), 2) : 0; // Frontier: LinearThrust<BaseLinearThrust
 
         return shuttle.BaseMaxLinearVelocity * vel * MathF.ReciprocalSqrtEstimate(horizComp + vertComp);
     }

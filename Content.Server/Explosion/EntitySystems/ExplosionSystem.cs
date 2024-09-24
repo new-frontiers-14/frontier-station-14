@@ -58,12 +58,6 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
     [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
     [Dependency] private readonly SharedMapSystem _map = default!;
 
-<<<<<<< HEAD
-    [Dependency] private readonly IMapManager _mapMan = default!;
-
-    private EntityQuery<TransformComponent> _transformQuery;
-=======
->>>>>>> a7e29f2878a63d62c9c23326e2b8f2dc64d40cc4
     private EntityQuery<FlammableComponent> _flammableQuery;
     private EntityQuery<PhysicsComponent> _physicsQuery;
     private EntityQuery<ProjectileComponent> _projectileQuery;

@@ -1,8 +1,5 @@
-<<<<<<< HEAD
-using Content.Shared._NF.LoggingExtensions;
-=======
+using Content.Shared._NF.LoggingExtensions; // Frontier
 using Content.Shared.Clothing.Components;
->>>>>>> a7e29f2878a63d62c9c23326e2b8f2dc64d40cc4
 using Content.Shared.Database;
 using Content.Shared.Hands.Components;
 using Content.Shared.Item;

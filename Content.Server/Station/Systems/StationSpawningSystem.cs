@@ -181,39 +181,26 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
             profile = HumanoidCharacterProfile.RandomWithSpecies(speciesId);
         }
 
-<<<<<<< HEAD
-        var jobLoadout = LoadoutSystem.GetJobPrototype(prototype?.ID);
-        var initialBankBalance = profile!.BankBalance; //Frontier
-        var bankBalance = profile!.BankBalance; //Frontier
-        bool hasBalance = false; // Frontier
-
-        // Frontier: get bank account, ensure we can make a withdrawal
-        // Note: since this is stored per character, we don't have a cached
-        //       reference for randomly generated characters.
-        PlayerPreferences? prefs = null;
-        if (session != null &&
-            _preferences.TryGetCachedPreferences(session.UserId, out prefs) &&
-            prefs.IndexOfCharacter(profile) != -1)
+        if (loadout != null)
         {
-            hasBalance = true;
-        }
-        // End Frontier
+            //EquipRoleLoadout(entity.Value, loadout, roleProto!);
+            // Frontier: overwriting EquipRoleLoadout
+            var initialBankBalance = profile!.BankBalance; //Frontier
+            var bankBalance = profile!.BankBalance; //Frontier
+            bool hasBalance = false; // Frontier
 
-        if (_prototypeManager.TryIndex(jobLoadout, out RoleLoadoutPrototype? roleProto))
-        {
-            RoleLoadout? loadout = null;
-
-            profile?.Loadouts.TryGetValue(jobLoadout, out loadout);
-
-            // Set to default if not present
-            if (loadout == null)
+            // Note: since this is stored per character, we don't have a cached
+            //       reference for randomly generated characters.
+            PlayerPreferences? prefs = null;
+            if (session != null &&
+                _preferences.TryGetCachedPreferences(session.UserId, out prefs) &&
+                prefs.IndexOfCharacter(profile) != -1)
             {
-                loadout = new RoleLoadout(jobLoadout);
-                loadout.SetDefault(profile, _actors.GetSession(entity), _prototypeManager);
+                hasBalance = true;
             }
 
             // Order loadout selections by the order they appear on the prototype.
-            foreach (var group in loadout.SelectedLoadouts.OrderBy(x => roleProto.Groups.FindIndex(e => e == x.Key)))
+            foreach (var group in loadout.SelectedLoadouts.OrderBy(x => roleProto!.Groups.FindIndex(e => e == x.Key)))
             {
                 List<ProtoId<LoadoutPrototype>> equippedItems = new(); //Frontier - track purchased items (list: few items)
                 foreach (var items in group.Value)
@@ -223,12 +210,6 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
                         Log.Error($"Unable to find loadout prototype for {items.Prototype}");
                         continue;
                     }
-=======
-        if (loadout != null)
-        {
-            EquipRoleLoadout(entity.Value, loadout, roleProto!);
-        }
->>>>>>> a7e29f2878a63d62c9c23326e2b8f2dc64d40cc4
 
                     // Handle any extra data here.
 
@@ -243,8 +224,7 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
                     }
                 }
 
-                // New Frontiers - Loadout Fallbacks - if a character cannot afford their current job loadout, ensure they have fallback items for mandatory categories.
-                // This code is licensed under AGPLv3. See AGPLv3.txt
+                // If a character cannot afford their current job loadout, ensure they have fallback items for mandatory categories.
                 if (_prototypeManager.TryIndex(group.Key, out var groupPrototype) &&
                     equippedItems.Count < groupPrototype.MinLimit)
                 {
@@ -275,7 +255,7 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
                             break;
                     }
                 }
-                // End of modified code.
+                // End Frontier
             }
 
             // Frontier: do not re-equip roleLoadout, make sure we equip job startingGear,

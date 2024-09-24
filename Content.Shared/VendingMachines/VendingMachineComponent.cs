@@ -32,7 +32,7 @@ namespace Content.Shared.VendingMachines
         [DataField]
         public float EjectDelay = 1.2f;
 
-<<<<<<< HEAD
+        // Frontier: random ejection
         /// <summary>
         /// Used by the server to determine how many items the machine allowed to eject from random triggers.
         /// </summary>
@@ -56,11 +56,9 @@ namespace Content.Shared.VendingMachines
         /// </summary>
         [DataField("nextChargeTime", customTypeSerializer: typeof(TimeOffsetSerializer))]
         public TimeSpan NextChargeTime;
+        // End Frontier: random ejection
 
-        [ViewVariables]
-=======
         [DataField, AutoNetworkedField]
->>>>>>> a7e29f2878a63d62c9c23326e2b8f2dc64d40cc4
         public Dictionary<string, VendingMachineInventoryEntry> Inventory = new();
 
         [DataField, AutoNetworkedField]

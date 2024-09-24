@@ -1,13 +1,7 @@
 using System.Collections.Immutable;
 using System.Linq;
-<<<<<<< HEAD
-using System.Runtime.InteropServices;
-using System.Threading.Tasks;
-using Content.Server._NF.Auth;
-=======
 using System.Threading.Tasks;
 using System.Runtime.InteropServices;
->>>>>>> a7e29f2878a63d62c9c23326e2b8f2dc64d40cc4
 using Content.Server.Chat.Managers;
 using Content.Server.Database;
 using Content.Server.GameTicking;
@@ -22,6 +16,7 @@ using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
+using Content.Server._NF.Auth; // Frontier
 
 /*
  * TODO: Remove baby jail code once a more mature gateway process is established. This code is only being issued as a stopgap to help with potential tiding in the immediate future.
@@ -63,14 +58,8 @@ namespace Content.Server.Connection
         [Dependency] private readonly IGameTiming _gameTiming = default!;
         [Dependency] private readonly ILogManager _logManager = default!;
         [Dependency] private readonly IChatManager _chatManager = default!;
+        [Dependency] private readonly MiniAuthManager _authManager = default!; //Frontier
 
-<<<<<<< HEAD
-        //frontier
-        [Dependency] private readonly MiniAuthManager _authManager = default!;
-
-        private readonly Dictionary<NetUserId, TimeSpan> _temporaryBypasses = [];
-=======
->>>>>>> a7e29f2878a63d62c9c23326e2b8f2dc64d40cc4
         private ISawmill _sawmill = default!;
         private readonly Dictionary<NetUserId, TimeSpan> _temporaryBypasses = [];
 
@@ -286,12 +275,8 @@ namespace Content.Server.Connection
                 return (ConnectionDenyReason.Full, Loc.GetString("soft-player-cap-full"), null);
             }
 
-<<<<<<< HEAD
-            if (_cfg.GetCVar(CCVars.WhitelistEnabled) && !wasInGame) // Frontier: allow users who joined before panic bunker was enforced to reconnect
-=======
             // Checks for whitelist IF it's enabled AND the user isn't an admin. Admins are always allowed.
-            if (_cfg.GetCVar(CCVars.WhitelistEnabled) && adminData is null)
->>>>>>> a7e29f2878a63d62c9c23326e2b8f2dc64d40cc4
+            if (_cfg.GetCVar(CCVars.WhitelistEnabled) && !wasInGame && adminData is null) // Frontier: allow users who joined before panic bunker was enforced to reconnect
             {
                 if (_whitelists is null)
                 {

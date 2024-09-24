@@ -19,11 +19,8 @@ using Robust.Shared.Physics.Systems;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Content.Shared.Localizations;
-<<<<<<< HEAD
-using Content.Server.Construction; // Frontier
-=======
 using Content.Shared.Power;
->>>>>>> a7e29f2878a63d62c9c23326e2b8f2dc64d40cc4
+using Content.Server.Construction; // Frontier
 
 namespace Content.Server.Shuttles.Systems;
 

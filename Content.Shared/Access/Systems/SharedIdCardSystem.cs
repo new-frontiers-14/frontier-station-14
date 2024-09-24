@@ -249,8 +249,14 @@ public abstract class SharedIdCardSystem : EntitySystem
                 ("jobSuffix", jobSuffix));
         _metaSystem.SetEntityName(uid, val);
     }
+    
+    private static string ExtractFullTitle(IdCardComponent idCardComponent)
+    {
+        return $"{idCardComponent.FullName} ({CultureInfo.CurrentCulture.TextInfo.ToTitleCase(idCardComponent.JobTitle ?? string.Empty)})"
+            .Trim();
+    }
 
-<<<<<<< HEAD
+    // Frontier: rename IDs & shuttles
     [Serializable, NetSerializable]
     public sealed class WriteToTargetIdMessage : BoundUserInterfaceMessage
     {
@@ -279,11 +285,6 @@ public abstract class SharedIdCardSystem : EntitySystem
             ShuttleName = shuttleName;
             ShuttleSuffix = shuttleSuffix;
         }
-=======
-    private static string ExtractFullTitle(IdCardComponent idCardComponent)
-    {
-        return $"{idCardComponent.FullName} ({CultureInfo.CurrentCulture.TextInfo.ToTitleCase(idCardComponent.JobTitle ?? string.Empty)})"
-            .Trim();
->>>>>>> a7e29f2878a63d62c9c23326e2b8f2dc64d40cc4
     }
+    // End Frontier: rename IDs & shuttles
 }

@@ -233,11 +233,7 @@ namespace Content.Server.Explosion.EntitySystems
         }
         // End Frontier
 
-<<<<<<< HEAD
         // Frontier: custom function implementation
-=======
-
->>>>>>> a7e29f2878a63d62c9c23326e2b8f2dc64d40cc4
         private void HandleRattleTrigger(EntityUid uid, RattleComponent component, TriggerEvent args)
         {
             if (!TryComp<SubdermalImplantComponent>(uid, out var implanted))
@@ -247,7 +243,6 @@ namespace Content.Server.Explosion.EntitySystems
                 return;
 
             // Gets location of the implant
-<<<<<<< HEAD
             var ownerXform = Transform(uid);
             var pos = ownerXform.MapPosition;
             var x = (int) pos.X;
@@ -268,11 +263,6 @@ namespace Content.Server.Explosion.EntitySystems
 
             var critMessage = Loc.GetString(component.CritMessage, ("user", implanted.ImplantedEntity.Value), ("specie", speciesText), ("grid", stationText!), ("position", posText));
             var deathMessage = Loc.GetString(component.DeathMessage, ("user", implanted.ImplantedEntity.Value), ("specie", speciesText), ("grid", stationText!), ("position", posText));
-=======
-            var posText = FormattedMessage.RemoveMarkupOrThrow(_navMap.GetNearestBeaconString(uid));
-            var critMessage = Loc.GetString(component.CritMessage, ("user", implanted.ImplantedEntity.Value), ("position", posText));
-            var deathMessage = Loc.GetString(component.DeathMessage, ("user", implanted.ImplantedEntity.Value), ("position", posText));
->>>>>>> a7e29f2878a63d62c9c23326e2b8f2dc64d40cc4
 
             if (!TryComp<MobStateComponent>(implanted.ImplantedEntity, out var mobstate))
                 return;

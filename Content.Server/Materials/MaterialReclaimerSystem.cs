@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-using Content.Server.Chemistry.Containers.EntitySystems;
-using Content.Server.Chemistry.EntitySystems;
 using Content.Server.Construction;
-=======
 using Content.Server.Administration.Logs;
->>>>>>> a7e29f2878a63d62c9c23326e2b8f2dc64d40cc4
 using Content.Server.Fluids.EntitySystems;
 using Content.Server.Ghost;
 using Content.Server.Popups;
@@ -54,12 +49,8 @@ public sealed class MaterialReclaimerSystem : SharedMaterialReclaimerSystem
     {
         base.Initialize();
 
-<<<<<<< HEAD
-        SubscribeLocalEvent<MaterialReclaimerComponent, ComponentStartup>(OnStartup);
-        SubscribeLocalEvent<MaterialReclaimerComponent, RefreshPartsEvent>(OnRefreshParts);
-        SubscribeLocalEvent<MaterialReclaimerComponent, UpgradeExamineEvent>(OnUpgradeExamine);
-=======
->>>>>>> a7e29f2878a63d62c9c23326e2b8f2dc64d40cc4
+        SubscribeLocalEvent<MaterialReclaimerComponent, RefreshPartsEvent>(OnRefreshParts); // Frontier: machine components
+        SubscribeLocalEvent<MaterialReclaimerComponent, UpgradeExamineEvent>(OnUpgradeExamine); // Frontier: machine components
         SubscribeLocalEvent<MaterialReclaimerComponent, PowerChangedEvent>(OnPowerChanged);
         SubscribeLocalEvent<MaterialReclaimerComponent, InteractUsingEvent>(OnInteractUsing,
             before: [typeof(WiresSystem), typeof(SolutionTransferSystem)]);

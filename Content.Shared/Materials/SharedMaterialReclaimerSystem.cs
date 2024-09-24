@@ -203,19 +203,12 @@ public abstract class SharedMaterialReclaimerSystem : EntitySystem
     /// </summary>
     public bool CanGib(EntityUid uid, EntityUid victim, MaterialReclaimerComponent component)
     {
-<<<<<<< HEAD
         return false; // DeltaV - Kinda LRP
         // return component.Powered &&
-        //       component.Enabled &&
-        //       HasComp<BodyComponent>(victim) &&
-        //       HasComp<EmaggedComponent>(uid);
-=======
-        return component.Powered &&
-               component.Enabled &&
-               !component.Broken &&
-               HasComp<BodyComponent>(victim) &&
-               HasComp<EmaggedComponent>(uid);
->>>>>>> a7e29f2878a63d62c9c23326e2b8f2dc64d40cc4
+        //        component.Enabled &&
+        //        !component.Broken &&
+        //        HasComp<BodyComponent>(victim) &&
+        //        HasComp<EmaggedComponent>(uid);
     }
 
     /// <summary>

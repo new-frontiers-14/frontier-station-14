@@ -68,14 +68,13 @@ public sealed partial class ShuttleSystem
     /// How many times we try to proximity warp close to something before falling back to map-wideAABB.
     /// </summary>
     private const int FTLProximityIterations = 5;
-<<<<<<< HEAD
 
+    // FRONTIER MERGE: REMOVE?
     /// <summary>
     /// Minimum mass for an FTL destination
     /// </summary>
-    public const float FTLDestinationMass = 1200f;
-=======
->>>>>>> a7e29f2878a63d62c9c23326e2b8f2dc64d40cc4
+    // public const float FTLDestinationMass = 1200f;
+    // End Frontier
 
     private readonly HashSet<EntityUid> _lookupEnts = new();
     private readonly HashSet<EntityUid> _immuneEnts = new();

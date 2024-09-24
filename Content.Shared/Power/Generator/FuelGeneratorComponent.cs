@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-=======
-﻿using Content.Shared.Guidebook;
->>>>>>> a7e29f2878a63d62c9c23326e2b8f2dc64d40cc4
+using Content.Shared.Guidebook;
 using Robust.Shared.GameStates;
 
 namespace Content.Shared.Power.Generator;

@@ -18,13 +18,9 @@ using Content.Shared.MassMedia.Systems;
 using Content.Shared.Popups;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
-<<<<<<< HEAD
-using Content.Server.Chat.Managers;
-using Content.Shared.GameTicking; // Frontier
-=======
 using Content.Shared.IdentityManagement;
 using Robust.Shared.Timing;
->>>>>>> a7e29f2878a63d62c9c23326e2b8f2dc64d40cc4
+using Content.Shared.GameTicking; // Frontier
 
 namespace Content.Server.MassMedia.Systems;
 
@@ -159,15 +155,8 @@ public sealed class NewsSystem : SharedNewsSystem
             return;
         }
 
-<<<<<<< HEAD
-        if (!_accessReader.FindStationRecordKeys(msg.Actor, out _))
-        {
-            Log.Error("OnWriteUiPublishMessage: FindStationRecordKeys failed!");
-=======
         if (!CanUse(msg.Actor, ent.Owner))
->>>>>>> a7e29f2878a63d62c9c23326e2b8f2dc64d40cc4
             return;
-        }
 
         ent.Comp.PublishEnabled = false;
         ent.Comp.NextPublish = _timing.CurTime + TimeSpan.FromSeconds(ent.Comp.PublishCooldown);
@@ -349,7 +338,6 @@ public sealed class NewsSystem : SharedNewsSystem
 
     private bool CanUse(EntityUid user, EntityUid console)
     {
-
         if (TryComp<AccessReaderComponent>(console, out var accessReaderComponent))
         {
             return _accessReaderSystem.IsAllowed(user, console, accessReaderComponent);

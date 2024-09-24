@@ -102,14 +102,10 @@ namespace Content.Server.Kitchen.EntitySystems
             SubscribeLocalEvent<ActiveMicrowaveComponent, EntRemovedFromContainerMessage>(OnActiveMicrowaveRemove);
 
             SubscribeLocalEvent<ActivelyMicrowavedComponent, OnConstructionTemperatureEvent>(OnConstructionTemp);
-<<<<<<< HEAD
+            SubscribeLocalEvent<FoodRecipeProviderComponent, GetSecretRecipesEvent>(OnGetSecretRecipes);
             
             SubscribeLocalEvent<MicrowaveComponent, RefreshPartsEvent>(OnRefreshParts); // Frontier
             SubscribeLocalEvent<MicrowaveComponent, UpgradeExamineEvent>(OnUpgradeExamine); // Frontier
-=======
-
-            SubscribeLocalEvent<FoodRecipeProviderComponent, GetSecretRecipesEvent>(OnGetSecretRecipes);
->>>>>>> a7e29f2878a63d62c9c23326e2b8f2dc64d40cc4
         }
 
         private void OnCookStart(Entity<ActiveMicrowaveComponent> ent, ref ComponentStartup args)

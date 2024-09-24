@@ -50,18 +50,15 @@ namespace Content.Shared.Roles
         [DataField, Access(typeof(SharedRoleSystem), Other = AccessPermissions.None)]
         public HashSet<JobRequirement>? Requirements;
 
-<<<<<<< HEAD
         [DataField, Access(typeof(SharedRoleSystem), Other = AccessPermissions.None)] // Frontier
         public Dictionary<string, HashSet<JobRequirement>>? AlternateRequirementSets; // Frontier: sets of requirements - one must be matched in order to 
 
         [DataField("whitelistRequired")]
         public bool WhitelistRequired = false;
 
-=======
         /// <summary>
         ///     When true - the station will have anouncement about arrival of this player.
         /// </summary>
->>>>>>> a7e29f2878a63d62c9c23326e2b8f2dc64d40cc4
         [DataField("joinNotifyCrew")]
         public bool JoinNotifyCrew { get; private set; } = false;
 
@@ -78,18 +75,17 @@ namespace Content.Shared.Roles
         public bool SetPreference { get; private set; } = true;
 
         /// <summary>
-<<<<<<< HEAD
         ///     Frontier - Whether this job should show in the ID Card Console.
         ///     If set to null, it will default to false.
         /// </summary>
         [DataField]
         public bool HideConsoleVisibility { get; private set; } = false;
-=======
+
+        /// <summary>
         ///     Should the selected traits be applied for this job?
         /// </summary>
         [DataField]
         public bool ApplyTraits { get; private set; } = true;
->>>>>>> a7e29f2878a63d62c9c23326e2b8f2dc64d40cc4
 
         /// <summary>
         ///     Whether this job should show in the ID Card Console.

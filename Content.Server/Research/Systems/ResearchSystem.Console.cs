@@ -39,13 +39,7 @@ public sealed partial class ResearchSystem
         if (!UnlockTechnology(uid, args.Id, act))
             return;
 
-<<<<<<< HEAD
-        var message = Loc.GetString("research-console-unlock-technology-radio-broadcast",
-            ("technology", Loc.GetString(technologyPrototype.Name)),
-            ("amount", technologyPrototype.Cost));
-        //_radio.SendRadioMessage(uid, message, component.AnnouncementChannel, uid, escapeMarkup: false); # Frontier - Make the R&D computer silent
-=======
-        if (!HasComp<EmaggedComponent>(uid))
+        if (false && !HasComp<EmaggedComponent>(uid)) // Frontier: add false - silent R&D computers
         {
             var getIdentityEvent = new TryGetIdentityShortInfoEvent(uid, act);
             RaiseLocalEvent(getIdentityEvent);
@@ -58,8 +52,7 @@ public sealed partial class ResearchSystem
             );
             _radio.SendRadioMessage(uid, message, component.AnnouncementChannel, uid, escapeMarkup: false);
         }
-       
->>>>>>> a7e29f2878a63d62c9c23326e2b8f2dc64d40cc4
+
         SyncClientWithServer(uid);
         UpdateConsoleInterface(uid, component);
     }

@@ -33,11 +33,8 @@ using Content.Server.Popups;
 using Content.Shared.Verbs;
 using Robust.Shared.Collections;
 using Content.Shared.Ghost.Roles.Components;
-<<<<<<< HEAD
-using Content.Server._NF.Players.GhostRole.Events; // Frontier
-=======
 using Content.Shared.Roles.Jobs;
->>>>>>> a7e29f2878a63d62c9c23326e2b8f2dc64d40cc4
+using Content.Server._NF.Players.GhostRole.Events; // Frontier
 
 namespace Content.Server.Ghost.Roles;
 

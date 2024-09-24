@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-using Content.Server.Nutrition; // DeltaV
-using Content.Server.Chemistry.Containers.EntitySystems;
-=======
->>>>>>> a7e29f2878a63d62c9c23326e2b8f2dc64d40cc4
 using Content.Server.DoAfter;
 using Content.Server.Nutrition.Components;
 using Content.Shared.Chemistry.EntitySystems;

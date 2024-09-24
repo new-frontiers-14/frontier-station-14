@@ -1,10 +1,6 @@
-<<<<<<< HEAD
-﻿using Content.Shared.Construction.Prototypes;
+using Content.Shared.Construction.Prototypes;
 using Content.Shared.Whitelist;
-=======
-﻿using Content.Shared.Whitelist;
 using JetBrains.Annotations;
->>>>>>> a7e29f2878a63d62c9c23326e2b8f2dc64d40cc4
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;

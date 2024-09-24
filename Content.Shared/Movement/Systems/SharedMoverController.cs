@@ -47,6 +47,7 @@ public abstract partial class SharedMoverController : VirtualController
     [Dependency] protected readonly SharedPhysicsSystem Physics = default!;
     [Dependency] private   readonly SharedTransformSystem _transform = default!;
     [Dependency] private   readonly TagSystem _tags = default!;
+    [Dependency] private   readonly IEntityManager _entities = default!; // Delta V-NoShoesSilentFootstepsComponent
 
     protected EntityQuery<InputMoverComponent> MoverQuery;
     protected EntityQuery<MobMoverComponent> MobMoverQuery;
@@ -75,25 +76,7 @@ public abstract partial class SharedMoverController : VirtualController
 
     public override void Initialize()
     {
-<<<<<<< HEAD
-        [Dependency] private   readonly IConfigurationManager _configManager = default!;
-        [Dependency] protected readonly IGameTiming Timing = default!;
-        [Dependency] private   readonly IMapManager _mapManager = default!;
-        [Dependency] private   readonly ITileDefinitionManager _tileDefinitionManager = default!;
-        [Dependency] private   readonly EntityLookupSystem _lookup = default!;
-        [Dependency] private   readonly InventorySystem _inventory = default!;
-        [Dependency] private   readonly MobStateSystem _mobState = default!;
-        [Dependency] private   readonly SharedAudioSystem _audio = default!;
-        [Dependency] private   readonly SharedContainerSystem _container = default!;
-        [Dependency] private   readonly SharedMapSystem _mapSystem = default!;
-        [Dependency] private   readonly SharedGravitySystem _gravity = default!;
-        [Dependency] protected readonly SharedPhysicsSystem Physics = default!;
-        [Dependency] private   readonly SharedTransformSystem _transform = default!;
-        [Dependency] private   readonly TagSystem _tags = default!;
-        [Dependency] private   readonly IEntityManager _entities = default!; // Delta V-NoShoesSilentFootstepsComponent
-=======
         base.Initialize();
->>>>>>> a7e29f2878a63d62c9c23326e2b8f2dc64d40cc4
 
         MoverQuery = GetEntityQuery<InputMoverComponent>();
         MobMoverQuery = GetEntityQuery<MobMoverComponent>();
@@ -509,7 +492,6 @@ public abstract partial class SharedMoverController : VirtualController
                 return true;
             }
 
-<<<<<<< HEAD
             // Frontier: check outer clothes
             // If you have a hardsuit or power armor on that goes around your boots, it's the hardsuit that hits the floor.
             // Check should happen before NoShoesSilentFootsteps check - loud power armor should count as wearing shoes.
@@ -530,10 +512,7 @@ public abstract partial class SharedMoverController : VirtualController
             // Delta V NoShoesSilentFootsteps till here.
 
             if (_inventory.TryGetSlotEntity(uid, "shoes", out var shoes) &&
-                FootstepModifierQuery.TryComp(shoes, out var modifier))
-=======
-            if (FootstepModifierQuery.TryComp(maybeFootstep, out var footstep))
->>>>>>> a7e29f2878a63d62c9c23326e2b8f2dc64d40cc4
+                FootstepModifierQuery.TryComp(maybeFootstep, out var footstep))
             {
                 sound = footstep.FootstepSoundCollection;
                 return true;

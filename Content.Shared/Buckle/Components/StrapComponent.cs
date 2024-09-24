@@ -86,7 +86,12 @@ public sealed partial class StrapComponent : Component
     [DataField]
     public float BuckleDoafterTime = 2f;
 
-<<<<<<< HEAD
+    /// <summary>
+    /// Whether InteractHand will buckle the user to the strap.
+    /// </summary>
+    [DataField]
+    public bool BuckleOnInteractHand = true;
+
     // Frontier: fix vehicles unbuckling
     /// <summary>
     /// Amount of tolerable distance before unbuckling a user
@@ -94,13 +99,6 @@ public sealed partial class StrapComponent : Component
     [DataField, Access(typeof(SharedBuckleSystem))]
     public double UnbuckleDistanceSquared = 1e-5;
     // End Frontier: fix vehicles unbuckling
-=======
-    /// <summary>
-    /// Whether InteractHand will buckle the user to the strap.
-    /// </summary>
-    [DataField]
-    public bool BuckleOnInteractHand = true;
->>>>>>> a7e29f2878a63d62c9c23326e2b8f2dc64d40cc4
 }
 
 public enum StrapPosition

@@ -101,12 +101,8 @@ public sealed class AdminSystem : EntitySystem
         SubscribeLocalEvent<RoleAddedEvent>(OnRoleEvent);
         SubscribeLocalEvent<RoleRemovedEvent>(OnRoleEvent);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestartCleanup);
-<<<<<<< HEAD
-
-        SubscribeLocalEvent<BalanceChangedEvent>(OnBalanceChanged); // Frontier
-=======
         SubscribeLocalEvent<ActorComponent, EntityRenamedEvent>(OnPlayerRenamed);
->>>>>>> a7e29f2878a63d62c9c23326e2b8f2dc64d40cc4
+        SubscribeLocalEvent<BalanceChangedEvent>(OnBalanceChanged); // Frontier
     }
 
     private void OnRoundRestartCleanup(RoundRestartCleanupEvent ev)

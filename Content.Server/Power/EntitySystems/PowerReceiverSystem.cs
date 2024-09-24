@@ -211,25 +211,7 @@ namespace Content.Server.Power.EntitySystems
         {
             comp.Load = load;
         }
-
-<<<<<<< HEAD
-        private void OnEmpPulse(EntityUid uid, ApcPowerReceiverComponent component, ref EmpPulseEvent args) // Frontier: Upstream - #28984
-        {
-            if (!component.PowerDisabled)
-            {
-                args.Affected = true;
-                args.Disabled = true;
-                TogglePower(uid, false);
-            }
-        }
-
-        private void OnEmpEnd(EntityUid uid, ApcPowerReceiverComponent component, ref EmpDisabledRemoved args) // Frontier: Upstream - #28984
-        {
-            if (component.PowerDisabled)
-            {
-                TogglePower(uid, false);
-            }
-=======
+        
         public override bool ResolveApc(EntityUid entity, [NotNullWhen(true)] ref SharedApcPowerReceiverComponent? component)
         {
             if (component != null)
@@ -240,7 +222,26 @@ namespace Content.Server.Power.EntitySystems
 
             component = receiver;
             return true;
->>>>>>> a7e29f2878a63d62c9c23326e2b8f2dc64d40cc4
         }
+
+        // Frontier: upstream (#28984) - MIT
+        private void OnEmpPulse(EntityUid uid, ApcPowerReceiverComponent component, ref EmpPulseEvent args)
+        {
+            if (!component.PowerDisabled)
+            {
+                args.Affected = true;
+                args.Disabled = true;
+                TogglePower(uid, false);
+            }
+        }
+
+        private void OnEmpEnd(EntityUid uid, ApcPowerReceiverComponent component, ref EmpDisabledRemoved args)
+        {
+            if (component.PowerDisabled)
+            {
+                TogglePower(uid, false);
+            }
+        }
+        // End Frontier: upstream (#28984) - MIT
     }
 }

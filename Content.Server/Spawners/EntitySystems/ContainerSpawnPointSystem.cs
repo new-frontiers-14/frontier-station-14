@@ -30,18 +30,16 @@ public sealed class ContainerSpawnPointSystem : EntitySystem
         if (args.SpawnResult != null)
             return;
 
-<<<<<<< HEAD
         // DeltaV - Ignore these two desired spawn types
         if (args.DesiredSpawnPointType is SpawnPointType.Observer or SpawnPointType.LateJoin)
             return;
-=======
+
         // If it's just a spawn pref check if it's for cryo (silly).
         if (args.HumanoidCharacterProfile?.SpawnPriority != SpawnPriorityPreference.Cryosleep &&
             (!_proto.TryIndex(args.Job?.Prototype, out var jobProto) || jobProto.JobEntity == null))
         {
             return;
         }
->>>>>>> a7e29f2878a63d62c9c23326e2b8f2dc64d40cc4
 
         var query = EntityQueryEnumerator<ContainerSpawnPointComponent, ContainerManagerComponent, TransformComponent>();
         var possibleContainers = new List<Entity<ContainerSpawnPointComponent, ContainerManagerComponent, TransformComponent>>();
