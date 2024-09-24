@@ -47,6 +47,7 @@
 
 - type: entity
   id: BaseStationCargoMarket
+  abstract: true
   components:
   - type: CargoMarketData
     whitelist:
@@ -100,3 +101,10 @@
       matchParents: true
       id:
       - SheetUranium # Counts as food
+
+- type: entity
+  id: BaseStationDeadDrops
+  abstract: true
+  components:
+    - type: StationDeadDrop
+      maxDeadDrops: 2 # A few to be stumbled upon.

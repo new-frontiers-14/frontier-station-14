@@ -24,10 +24,12 @@ public sealed partial class GeneralStationRecordConsoleWindow : DefaultWindow
     private bool _isPopulating;
 
     private StationRecordFilterType _currentFilterType;
+    [Dependency] private readonly IPrototypeManager _prototype = default!; // Frontier
 
     public GeneralStationRecordConsoleWindow()
     {
         RobustXamlLoader.Load(this);
+        IoCManager.InjectDependencies(this); // Frontier
 
         _currentFilterType = StationRecordFilterType.Name;
 
@@ -178,10 +180,21 @@ public sealed partial class GeneralStationRecordConsoleWindow : DefaultWindow
         JobListing.RemoveAllChildren();
         foreach (var (job, amount) in jobList)
         {
+            // Skip overflow jobs.
+            if (amount < 0 || amount is null)
+                continue;
+
+            // Get proper job names when possible
+            string jobName;
+            if (_prototype.TryIndex(job, out var jobProto))
+                jobName = jobProto.LocalizedName;
+            else
+                jobName = job;
+
             var jobEntry = new JobRow
             {
                 Job = job,
-                JobName = { Text = job },
+                JobName = { Text = jobName },
                 JobAmount = { Text = amount.ToString() },
             };
             jobEntry.DecreaseJobSlot.OnPressed += (args) => { OnJobSubtract?.Invoke(args); };

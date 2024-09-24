@@ -268,25 +268,30 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 7.5,-0.5
       parent: 1
-- proto: AtmosDeviceFanTiny
+- proto: AtmosDeviceFanDirectional
   entities:
-  - uid: 7
+  - uid: 4
     components:
     - type: Transform
       pos: 6.5,-3.5
       parent: 1
-  - uid: 24
+  - uid: 7
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 4.5,3.5
+      parent: 1
+  - uid: 24
+    components:
+    - type: Transform
+      pos: 5.5,-3.5
       parent: 1
   - uid: 151
     components:
     - type: Transform
       pos: 0.5,-3.5
       parent: 1
-  - uid: 163
+  - uid: 242
     components:
     - type: Transform
       pos: -0.5,-3.5
@@ -1087,8 +1092,13 @@ entities:
       rot: 3.141592653589793 rad
       pos: 3.5,-2.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
+- proto: LockerWallMaterialsFuelPlasmaFilled
+  entities:
+  - uid: 77
+    components:
+    - type: Transform
+      pos: 6.5,2.5
+      parent: 1
 - proto: NetworkConfigurator
   entities:
   - uid: 182
@@ -1135,7 +1145,7 @@ entities:
       parent: 1
 - proto: PlasticFlapsAirtightClear
   entities:
-  - uid: 4
+  - uid: 163
     components:
     - type: Transform
       pos: 5.5,-3.5
@@ -1154,6 +1164,8 @@ entities:
       parent: 1
     - type: FuelGenerator
       on: False
+    - type: MaterialStorageMagnetPickup
+      magnetEnabled: True
     - type: Physics
       bodyType: Static
 - proto: Poweredlight
@@ -1343,13 +1355,6 @@ entities:
     - type: Transform
       pos: 3.160936,4.206492
       parent: 1
-- proto: SheetPlasma
-  entities:
-  - uid: 146
-    components:
-    - type: Transform
-      pos: 6.544826,1.53125
-      parent: 1
 - proto: ShuttersNormalOpen
   entities:
   - uid: 3
@@ -1357,25 +1362,16 @@ entities:
     - type: Transform
       pos: 0.5,-3.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 157
   - uid: 123
     components:
     - type: Transform
       pos: 6.5,-3.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 37
   - uid: 223
     components:
     - type: Transform
       pos: 4.5,3.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 26
 - proto: ShuttleGunPirateCannon
   entities:
   - uid: 61
@@ -1384,18 +1380,12 @@ entities:
       rot: 3.141592653589793 rad
       pos: -0.5,4.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 240
   - uid: 222
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 2.5,4.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 241
 - proto: SignalButtonDirectional
   entities:
   - uid: 26
@@ -1453,14 +1443,6 @@ entities:
         222:
         - Pressed: Toggle
         - Pressed: Trigger
-- proto: SignSpace
-  entities:
-  - uid: 77
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 6.5,2.5
-      parent: 1
 - proto: SpawnPointPirate
   entities:
   - uid: 93
@@ -1497,8 +1479,6 @@ entities:
     - type: Transform
       pos: 4.5,2.5
       parent: 1
-    - type: Physics
-      canCollide: False
 - proto: Table
   entities:
   - uid: 13
@@ -1560,47 +1540,35 @@ entities:
       rot: 3.141592653589793 rad
       pos: 2.5,-3.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
   - uid: 122
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 3.5,-3.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
   - uid: 161
     components:
     - type: Transform
       pos: 7.5,4.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
   - uid: 162
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -2.5,-3.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
   - uid: 180
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -2.5,-2.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
   - uid: 202
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 7.5,3.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
 - proto: ToolboxMechanicalFilled
   entities:
   - uid: 154

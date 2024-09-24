@@ -1,0 +1,209 @@
+- type: entity
+  id: BluespaceCacheError
+  parent: BaseStationEventShortDelay
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-bluespace-cache-start-announcement
+    startAudio:
+      path: /Audio/Announcements/attention.ogg
+    endAnnouncement: station-event-bluespace-cache-end-announcement
+    earliestStart: 100
+    minimumPlayers: 30
+    weight: 5
+    duration: 1350
+    maxDuration: 1560
+    reoccurrenceDelay: 480 # 8 hours
+  - type: BluespaceErrorRule
+    gridPaths:
+      - /Maps/_NF/Bluespace/cache.yml
+    rewardFactor: 1
+
+- type: entity
+  id: BluespaceVaultError
+  parent: BaseStationEventShortDelay
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-bluespace-vault-start-announcement
+    startAudio:
+      path: /Audio/Announcements/attention.ogg
+    endAnnouncement: station-event-bluespace-vault-end-announcement
+    earliestStart: 100
+    minimumPlayers: 30
+    weight: 5
+    duration: 1020
+    maxDuration: 1350
+    reoccurrenceDelay: 480 # 8 hours
+  - type: BluespaceErrorRule
+    gridPaths:
+      - /Maps/_NF/Bluespace/vault.yml
+    rewardFactor: 1
+
+- type: entity
+  id: BluespaceVaultSmallError
+  parent: BaseStationEventShortDelay
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-bluespace-vault-start-announcement
+    startAudio:
+      path: /Audio/Announcements/attention.ogg
+    endAnnouncement: station-event-bluespace-vault-end-announcement
+    earliestStart: 100
+    minimumPlayers: 30
+    maximumPlayers: 45
+    weight: 5
+    duration: 590
+    maxDuration: 780
+    reoccurrenceDelay: 480 # 8 hours
+  - type: BluespaceErrorRule
+    gridPaths:
+      - /Maps/_NF/Bluespace/vaultsmall.yml
+    rewardFactor: 1
+
+# - type: entity # Need rework
+  # id: BluespaceAsteroid
+  # parent: BaseStationEventShortDelay
+  # components:
+  # - type: StationEvent
+    # startAnnouncement: station-event-bluespace-asteroid-start-announcement
+    # startAudio:
+      # path: /Audio/Announcements/attention.ogg
+    # endAnnouncement: station-event-bluespace-asteroid-end-announcement
+    # earliestStart: 100
+    # minimumPlayers: 25
+    # weight: 2
+    # duration: 1500
+    # maxDuration: 1800
+    # reoccurrenceDelay: 480 # 8 hours
+  # - type: BluespaceErrorRule
+    # gridPath: /Maps/_NF/Bluespace/asteroidvault.yml
+
+# - type: entity # Need rework
+  # id: BluespaceAsteroidBunker
+  # parent: BaseStationEventShortDelay
+  # components:
+  # - type: StationEvent
+    # startAnnouncement: station-event-bluespace-asteroid-start-announcement
+    # startAudio:
+      # path: /Audio/Announcements/attention.ogg
+    # endAnnouncement: station-event-bluespace-asteroid-end-announcement
+    # earliestStart: 100
+    # minimumPlayers: 25
+    # weight: 2
+    # duration: 2100
+    # maxDuration: 2400
+    # reoccurrenceDelay: 480 # 8 hours
+  # - type: BluespaceErrorRule
+    # gridPath: /Maps/_NF/Bluespace/asteroidbunker.yml
+
+# - type: entity # Need rework
+  # id: BluespaceCargoniaShip
+  # parent: BaseStationEventShortDelay
+  # components:
+  # - type: StationEvent
+    # startAnnouncement: station-event-bluespace-generic-ftl-start-announcement
+    # startAudio:
+      # path: /Audio/Misc/notice1.ogg
+    # endAnnouncement: station-event-bluespace-generic-ftl-end-announcement
+    # earliestStart: 100
+    # minimumPlayers: 15
+    # weight: 2
+    # duration: 900
+    # maxDuration: 1200
+    # reoccurrenceDelay: 480 # 8 hours
+  # - type: BluespaceErrorRule
+    # gridPath: /Maps/_NF/Bluespace/cargoniaship.yml
+
+- type: entity
+  id: BluespaceDataCarrier
+  parent: BaseStationEventShortDelay
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-bluespace-generic-ftl-start-announcement
+    startAudio:
+      path: /Audio/Misc/notice1.ogg
+    endAnnouncement: station-event-bluespace-generic-ftl-end-announcement
+    earliestStart: 100
+    minimumPlayers: 35
+    weight: 2
+    duration: 2100
+    maxDuration: 2400
+    reoccurrenceDelay: 480 # 8 hours
+  - type: BluespaceErrorRule
+    gridPaths:
+      - /Maps/_NF/Bluespace/datacarrier.yml
+
+- type: entity
+  id: BluespaceSyndicateFTLInterception
+  parent: BaseStationEventShortDelay
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-bluespace-generic-ftl-start-announcement
+    startAudio:
+      path: /Audio/Misc/notice1.ogg
+    endAnnouncement: station-event-bluespace-generic-ftl-end-announcement
+    earliestStart: 80
+    minimumPlayers: 45
+    weight: 1
+    duration: 1800
+    maxDuration: 2400
+    reoccurrenceDelay: 480 # Only once per shift possible
+  - type: BluespaceErrorRule
+    gridPaths:
+      - /Maps/_NF/Bluespace/syndieftlintercept.yml
+
+- type: entity
+  id: BluespaceWizardFederationScout
+  parent: BaseStationEventShortDelay
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-bluespace-generic-ftl-start-announcement
+    startAudio:
+      path: /Audio/Misc/notice1.ogg
+    endAnnouncement: station-event-bluespace-generic-ftl-end-announcement
+    earliestStart: 100
+    minimumPlayers: 45
+    weight: 1
+    duration: 900
+    maxDuration: 1200
+    reoccurrenceDelay: 480 # 8 hours
+  - type: BluespaceErrorRule
+    gridPaths:
+      - /Maps/_NF/Bluespace/wizardprobealt.yml
+
+- type: entity
+  id: BluespaceBloodMoon
+  parent: BaseStationEventShortDelay
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-bluespace-generic-ftl-start-announcement
+    startAudio:
+      path: /Audio/Misc/notice1.ogg
+    endAnnouncement: station-event-bluespace-generic-ftl-end-announcement
+    earliestStart: 80
+    minimumPlayers: 45
+    weight: 1
+    duration: 1800
+    maxDuration: 2400
+    reoccurrenceDelay: 480 # 8 hours
+  - type: BluespaceErrorRule
+    gridPaths:
+      - /Maps/_NF/Bluespace/bloodmoon.yml
+
+- type: entity
+  id: BluespaceBrokenMcDelivery
+  parent: BaseStationEventShortDelay
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-bluespace-generic-ftl-start-announcement
+    startAudio:
+      path: /Audio/Misc/notice1.ogg
+    endAnnouncement: station-event-bluespace-generic-ftl-end-announcement
+    earliestStart: 20
+    maximumPlayers: 20
+    weight: 5
+    duration: 900
+    maxDuration: 1800
+    reoccurrenceDelay: 240 # once per 4 hours
+  - type: BluespaceErrorRule
+    gridPaths:
+      - /Maps/_NF/Bluespace/mcevent.yml

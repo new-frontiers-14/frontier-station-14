@@ -44,7 +44,7 @@ public sealed class CrematoriumSystem : EntitySystem
 
         SubscribeLocalEvent<CrematoriumComponent, ExaminedEvent>(OnExamine);
         SubscribeLocalEvent<CrematoriumComponent, GetVerbsEvent<AlternativeVerb>>(AddCremateVerb);
-        SubscribeLocalEvent<CrematoriumComponent, SuicideEvent>(OnSuicide);
+        SubscribeLocalEvent<CrematoriumComponent, SuicideByEnvironmentEvent>(OnSuicideByEnvironment);
         SubscribeLocalEvent<ActiveCrematoriumComponent, StorageOpenAttemptEvent>(OnAttemptOpen);
     }
 
@@ -161,11 +161,10 @@ public sealed class CrematoriumSystem : EntitySystem
         _audio.PlayPvs(component.CremateFinishSound, uid);
     }
 
-    private void OnSuicide(EntityUid uid, CrematoriumComponent component, SuicideEvent args)
+    private void OnSuicideByEnvironment(EntityUid uid, CrematoriumComponent component, SuicideByEnvironmentEvent args)
     {
         if (args.Handled)
             return;
-        args.SetHandled(SuicideKind.Heat);
 
         var victim = args.Victim;
         if (TryComp(victim, out ActorComponent? actor) && _minds.TryGetMind(victim, out var mindId, out var mind))
@@ -194,6 +193,7 @@ public sealed class CrematoriumSystem : EntitySystem
         }
         _entityStorage.CloseStorage(uid);
         Cremate(uid, component);
+        args.Handled = true;
     }
 
     public override void Update(float frameTime)
