@@ -216,6 +216,16 @@ entities:
             7: -1,-3
             99: 1,-2
         - node:
+            color: '#3C44AAFF'
+            id: DeliveryGreyscale
+          decals:
+            100: 3,2
+        - node:
+            color: '#B02E26FF'
+            id: DeliveryGreyscale
+          decals:
+            101: 3,3
+        - node:
             color: '#FFFFFFFF'
             id: FlowersBROne
           decals:
@@ -315,56 +325,51 @@ entities:
       data:
         tiles:
           0,0:
-            0: 65535
+            0: 65375
+          0,-1:
+            0: 24320
+            1: 3
           -1,0:
             0: 65535
-          -1,-1:
-            1: 15
-            0: 65520
-          0,-1:
-            1: 3
-            0: 65520
           0,1:
-            0: 30719
+            0: 13174
             1: 34816
+          -1,1:
+            0: 65534
           0,2:
-            0: 3
             1: 124
+          -1,2:
+            0: 14
+            1: 16
           1,0:
-            0: 4403
+            0: 3
             1: 8704
           1,1:
             1: 275
+          -2,0:
+            2: 7
+            0: 61000
           -3,0:
-            0: 136
             1: 34816
           -3,1:
             1: 8
-          -2,0:
-            2: 7
-            0: 65528
           -2,1:
             1: 8977
-            0: 52462
+            0: 35020
+          -2,-1:
+            2: 30464
+            1: 8
           -2,2:
             1: 198
-            0: 8
-          -1,1:
-            0: 65535
-          -1,2:
-            0: 239
-            1: 16
+          -1,-1:
+            0: 65504
+            1: 15
           -3,-1:
-            1: 8
-            0: 34944
-          -2,-1:
-            0: 35056
-            2: 30464
             1: 8
           -1,-2:
             1: 57344
           1,-1:
-            0: 13104
+            0: 768
             1: 2
         uniqueMixes:
         - volume: 2500
@@ -383,7 +388,7 @@ entities:
           - 0
           - 0
         - volume: 2500
-          temperature: 293.15
+          immutable: True
           moles:
           - 0
           - 0
@@ -432,20 +437,6 @@ entities:
       - 73
       - 186
       - 183
-    - type: AtmosDevice
-      joinedGrid: 1
-- proto: AirCanister
-  entities:
-  - uid: 400
-    components:
-    - type: Transform
-      anchored: True
-      pos: 3.5,2.5
-      parent: 1
-    - type: Physics
-      bodyType: Static
-    - type: AtmosDevice
-      joinedGrid: 1
 - proto: AirlockExternalGlass
   entities:
   - uid: 2
@@ -504,33 +495,37 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 3.5,4.5
       parent: 1
-- proto: AtmosDeviceFanTiny
+- proto: AtmosDeviceFanDirectional
   entities:
-  - uid: 11
-    components:
-    - type: Transform
-      pos: 5.5,0.5
-      parent: 1
   - uid: 12
     components:
     - type: Transform
+      rot: 1.5707963267948966 rad
       pos: 5.5,-1.5
       parent: 1
   - uid: 13
     components:
     - type: Transform
-      pos: -2.5,-2.5
+      rot: 1.5707963267948966 rad
+      pos: 5.5,0.5
       parent: 1
   - uid: 14
     components:
     - type: Transform
-      pos: -1.5,-2.5
+      pos: -2.5,-2.5
       parent: 1
   - uid: 15
     components:
     - type: Transform
+      pos: -1.5,-2.5
+      parent: 1
+  - uid: 39
+    components:
+    - type: Transform
       pos: -0.5,-2.5
       parent: 1
+- proto: AtmosDeviceFanTiny
+  entities:
   - uid: 46
     components:
     - type: Transform
@@ -804,9 +799,6 @@ entities:
       canCollide: False
     - type: Airtight
       airBlocked: False
-    - type: DeviceLinkSink
-      links:
-      - 293
   - uid: 18
     components:
     - type: Transform
@@ -820,9 +812,6 @@ entities:
       canCollide: False
     - type: Airtight
       airBlocked: False
-    - type: DeviceLinkSink
-      links:
-      - 293
   - uid: 19
     components:
     - type: Transform
@@ -836,9 +825,6 @@ entities:
       canCollide: False
     - type: Airtight
       airBlocked: False
-    - type: DeviceLinkSink
-      links:
-      - 293
   - uid: 20
     components:
     - type: Transform
@@ -853,9 +839,6 @@ entities:
       canCollide: False
     - type: Airtight
       airBlocked: False
-    - type: DeviceLinkSink
-      links:
-      - 292
   - uid: 21
     components:
     - type: Transform
@@ -870,9 +853,6 @@ entities:
       canCollide: False
     - type: Airtight
       airBlocked: False
-    - type: DeviceLinkSink
-      links:
-      - 292
   - uid: 22
     components:
     - type: Transform
@@ -887,9 +867,6 @@ entities:
       canCollide: False
     - type: Airtight
       airBlocked: False
-    - type: DeviceLinkSink
-      links:
-      - 292
   - uid: 23
     components:
     - type: Transform
@@ -904,9 +881,6 @@ entities:
       canCollide: False
     - type: Airtight
       airBlocked: False
-    - type: DeviceLinkSink
-      links:
-      - 292
   - uid: 24
     components:
     - type: Transform
@@ -921,9 +895,6 @@ entities:
       canCollide: False
     - type: Airtight
       airBlocked: False
-    - type: DeviceLinkSink
-      links:
-      - 292
   - uid: 25
     components:
     - type: Transform
@@ -938,9 +909,6 @@ entities:
       canCollide: False
     - type: Airtight
       airBlocked: False
-    - type: DeviceLinkSink
-      links:
-      - 292
   - uid: 26
     components:
     - type: Transform
@@ -955,9 +923,6 @@ entities:
       canCollide: False
     - type: Airtight
       airBlocked: False
-    - type: DeviceLinkSink
-      links:
-      - 292
   - uid: 27
     components:
     - type: Transform
@@ -972,9 +937,6 @@ entities:
       canCollide: False
     - type: Airtight
       airBlocked: False
-    - type: DeviceLinkSink
-      links:
-      - 292
   - uid: 28
     components:
     - type: Transform
@@ -989,9 +951,6 @@ entities:
       canCollide: False
     - type: Airtight
       airBlocked: False
-    - type: DeviceLinkSink
-      links:
-      - 292
   - uid: 29
     components:
     - type: Transform
@@ -1006,9 +965,6 @@ entities:
       canCollide: False
     - type: Airtight
       airBlocked: False
-    - type: DeviceLinkSink
-      links:
-      - 292
   - uid: 30
     components:
     - type: Transform
@@ -1023,9 +979,6 @@ entities:
       canCollide: False
     - type: Airtight
       airBlocked: False
-    - type: DeviceLinkSink
-      links:
-      - 292
   - uid: 31
     components:
     - type: Transform
@@ -1040,9 +993,6 @@ entities:
       canCollide: False
     - type: Airtight
       airBlocked: False
-    - type: DeviceLinkSink
-      links:
-      - 292
   - uid: 32
     components:
     - type: Transform
@@ -1057,9 +1007,6 @@ entities:
       canCollide: False
     - type: Airtight
       airBlocked: False
-    - type: DeviceLinkSink
-      links:
-      - 292
 - proto: Bucket
   entities:
   - uid: 35
@@ -1488,13 +1435,18 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -4.5,-1.5
       parent: 1
-    - type: Physics
-      canCollide: False
     - type: ContainerContainer
       containers:
         board: !type:Container
+          showEnts: False
+          occludes: True
           ents: []
-        bank-ATM-cashSlot: !type:ContainerSlot {}
+        bank-ATM-cashSlot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+    - type: Physics
+      canCollide: False
     - type: ItemSlots
 - proto: CrateNPCCow
   entities:
@@ -1672,6 +1624,19 @@ entities:
     - type: Transform
       pos: -1.4058828,3.2415838
       parent: 1
+- proto: GasMixerOn
+  entities:
+  - uid: 11
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 2.5,2.5
+      parent: 1
+    - type: GasMixer
+      inletTwoConcentration: 0.79
+      inletOneConcentration: 0.21
+    - type: AtmosPipeColor
+      color: '#0055CCFF'
 - proto: GasPassiveVent
   entities:
   - uid: 191
@@ -1680,8 +1645,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -8.5,3.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#990000FF'
 - proto: GasPipeBend
@@ -1723,6 +1686,14 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#990000FF'
+  - uid: 189
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 2.5,3.5
+      parent: 1
+    - type: AtmosPipeColor
+      color: '#0055CCFF'
   - uid: 395
     components:
     - type: Transform
@@ -1972,36 +1943,30 @@ entities:
       color: '#990000FF'
 - proto: GasPort
   entities:
+  - uid: 42
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 3.5,3.5
+      parent: 1
+    - type: AtmosPipeColor
+      color: '#0055CCFF'
   - uid: 127
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 3.5,2.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
 - proto: GasPressurePump
   entities:
-  - uid: 85
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 2.5,2.5
-      parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
-    - type: AtmosPipeColor
-      color: '#0055CCFF'
   - uid: 153
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -5.5,3.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#990000FF'
 - proto: GasVentPump
@@ -2012,8 +1977,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -1.5,6.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 394
@@ -2022,8 +1985,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -7.5,-0.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 399
@@ -2031,8 +1992,6 @@ entities:
     - type: Transform
       pos: -1.5,3.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
 - proto: GasVentScrubber
@@ -2043,8 +2002,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -1.5,5.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 96
@@ -2052,8 +2009,6 @@ entities:
     - type: Transform
       pos: -1.5,8.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 183
@@ -2062,8 +2017,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -1.5,-0.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 186
@@ -2072,8 +2025,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -6.5,0.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#990000FF'
 - proto: GravityGeneratorMini
@@ -2336,11 +2287,37 @@ entities:
       parent: 1
 - proto: LockerFreezer
   entities:
-  - uid: 189
+  - uid: 296
     components:
     - type: Transform
-      pos: -7.5,-1.5
+      pos: -6.5,-1.5
       parent: 1
+- proto: LockerWallEVAColorServiceWorkerFilled
+  entities:
+  - uid: 145
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -4.5,-0.5
+      parent: 1
+- proto: LockerWallMaterialsFuelPlasmaFilled2
+  entities:
+  - uid: 85
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 0.5,8.5
+      parent: 1
+- proto: NitrogenCanister
+  entities:
+  - uid: 400
+    components:
+    - type: Transform
+      anchored: True
+      pos: 3.5,3.5
+      parent: 1
+    - type: Physics
+      bodyType: Static
 - proto: OilJarCorn
   entities:
   - uid: 225
@@ -2362,6 +2339,16 @@ entities:
     - type: Transform
       pos: -2.4983687,3.2123425
       parent: 1
+- proto: OxygenCanister
+  entities:
+  - uid: 417
+    components:
+    - type: Transform
+      anchored: True
+      pos: 3.5,2.5
+      parent: 1
+    - type: Physics
+      bodyType: Static
 - proto: PortableGeneratorPacmanShuttle
   entities:
   - uid: 123
@@ -2505,17 +2492,6 @@ entities:
     - type: Transform
       pos: -1.5,5.5
       parent: 1
-- proto: SheetPlasma
-  entities:
-  - uid: 43
-    components:
-    - type: Transform
-      pos: -0.49556077,8.430061
-      parent: 1
-    - type: Stack
-      count: 15
-    - type: Item
-      size: 15
 - proto: ShuttersNormal
   entities:
   - uid: 263
@@ -2531,9 +2507,6 @@ entities:
       state: Open
     - type: Airtight
       airBlocked: False
-    - type: DeviceLinkSink
-      links:
-      - 293
   - uid: 264
     components:
     - type: Transform
@@ -2547,9 +2520,6 @@ entities:
       state: Open
     - type: Airtight
       airBlocked: False
-    - type: DeviceLinkSink
-      links:
-      - 293
   - uid: 265
     components:
     - type: Transform
@@ -2563,9 +2533,6 @@ entities:
       state: Open
     - type: Airtight
       airBlocked: False
-    - type: DeviceLinkSink
-      links:
-      - 293
 - proto: ShuttersWindow
   entities:
   - uid: 266
@@ -2579,9 +2546,6 @@ entities:
       state: Open
     - type: Airtight
       airBlocked: False
-    - type: DeviceLinkSink
-      links:
-      - 293
   - uid: 267
     components:
     - type: Transform
@@ -2593,9 +2557,6 @@ entities:
       state: Open
     - type: Airtight
       airBlocked: False
-    - type: DeviceLinkSink
-      links:
-      - 293
 - proto: ShuttleWindow
   entities:
   - uid: 268
@@ -2875,16 +2836,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -6.5,4.5
       parent: 1
-- proto: SuitStorageWallmountEVAAlternate
-  entities:
-  - uid: 145
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -4.5,-0.5
-      parent: 1
-    - type: Physics
-      canCollide: False
 - proto: Table
   entities:
   - uid: 126
@@ -3016,10 +2967,10 @@ entities:
       parent: 1
 - proto: VendingMachineChefDrobe
   entities:
-  - uid: 42
+  - uid: 43
     components:
     - type: Transform
-      pos: 3.5,3.5
+      pos: -7.5,-1.5
       parent: 1
 - proto: VendingMachineChefvend
   entities:
