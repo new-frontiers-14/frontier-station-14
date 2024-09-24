@@ -1,0 +1,38 @@
+# New Frontiers - This file is licensed under AGPLv3
+# Copyright (c) 2024 New Frontiers Contributors
+# See AGPLv3.txt for details.
+
+- type: entity
+  id: BorgModuleAdvancedMining
+  parent: [ BaseBorgModuleCargo, BaseProviderBorgModule ]
+  name: advanced mining cyborg module
+  components:
+  - type: Sprite
+    layers:
+    - state: cargo
+    - state: icon-mining
+  - type: ItemBorgModule
+    items:
+    - MiningDrillDiamond
+    - Shovel
+    - OreBagOfHolding
+    - Crowbar
+    - RadioHandheldNF
+
+- type: entity
+  id: BorgModuleAdvancedParamedic
+  parent: [ BaseBorgModuleMedical, BaseProviderBorgModule ]
+  name: advanced paramedical cyborg module
+  components:
+  - type: Sprite
+    layers:
+    - state: medical
+    - state: icon-treatment
+  - type: ItemBorgModule
+    items:
+    - HandheldHealthAnalyzerUnpowered
+    - Suture10Lingering
+    - Mesh10Lingering
+    - Gauze10Lingering
+    - Bloodpack10Lingering
+    - SyringeBluespace
