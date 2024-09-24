@@ -36,3 +36,24 @@
     sprite: _NF/Clothing/Eyes/Glasses/nfsd_glasses.rsi
   - type: Clothing
     sprite: _NF/Clothing/Eyes/Glasses/nfsd_glasses.rsi
+
+- type: entity
+  parent: [ClothingEyesBase, ShowSecurityIcons, ShowMedicalIcons, BaseC2ContrabandUnredeemable]
+  id: ClothingEyesGlassesCaptain
+  name: captain's glasses
+  description: Upgraded sunglasses which protects the wearer's eyes with a built-in security and medical hud. Might let them see through your soul too.
+  components:
+  - type: Sprite
+    sprite: Clothing/Eyes/Glasses/captainglasses.rsi
+  - type: Clothing
+    sprite: Clothing/Eyes/Glasses/captainglasses.rsi
+  - type: FlashImmunity
+    protectionTime: 5
+  - type: EyeProtection
+  - type: Tag
+    tags:
+    - HamsterWearable
+    - WhitelistChameleon
+    - HudMedical
+  - type: IdentityBlocker
+    coverage: EYES
