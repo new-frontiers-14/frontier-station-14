@@ -21,13 +21,7 @@
   - type: Speech
     speechSounds: Vulpkanin
     speechVerb: Vulpkanin
-    allowedEmotes:
-    - Bark
-    - Snarl
-    - Growl
-    - Whine
-    - Howl
-    - Awoo
+    allowedEmotes: ['Bark', 'Snarl', 'Whine', 'Howl', 'Awoo', 'Growl']
   - type: Sprite
     netsync: false
     noRot: true
@@ -97,7 +91,7 @@
   - type: Damageable
     damageModifierSet: Vulpkanin
   - type: TemperatureProtection
-    coefficient: 0.1
+    coolingCoefficient: 0.1 # fur is insulating
   - type: Vocal
     sounds:
       Male: MaleVulpkanin
