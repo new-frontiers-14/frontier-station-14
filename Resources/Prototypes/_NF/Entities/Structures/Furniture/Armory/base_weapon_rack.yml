@@ -65,32 +65,42 @@
   id: StructureGunRack
   name: gun rack
   parent: StructureWeaponRackSlots
-  suffix: New
+  suffix: Empty
   components:
   - type: ItemSlots
     slots:
       weapon1:
-        name: stored weapon
+        insertVerbText: weapon-rack-verb-insert-weapon-01
+        ejectVerbText: weapon-rack-verb-eject-weapon-01
+        name: weapon-rack-name-stored-weapon-slot
         whitelist:
           components:
           - Gun
       weapon2:
-        name: stored weapon
+        insertVerbText: weapon-rack-verb-insert-weapon-02
+        ejectVerbText: weapon-rack-verb-eject-weapon-02
+        name: weapon-rack-name-stored-weapon-slot
         whitelist:
           components:
           - Gun
       weapon3:
-        name: stored weapon
+        insertVerbText: weapon-rack-verb-insert-weapon-03
+        ejectVerbText: weapon-rack-verb-eject-weapon-03
+        name: weapon-rack-name-stored-weapon-slot
         whitelist:
           components:
           - Gun
       weapon4:
-        name: stored weapon
+        insertVerbText: weapon-rack-verb-insert-weapon-04
+        ejectVerbText: weapon-rack-verb-eject-weapon-04
+        name: weapon-rack-name-stored-weapon-slot
         whitelist:
           components:
           - Gun
       weapon5:
-        name: stored weapon
+        insertVerbText: weapon-rack-verb-insert-weapon-05
+        ejectVerbText: weapon-rack-verb-eject-weapon-05
+        name: weapon-rack-name-stored-weapon-slot
         whitelist:
           components:
           - Gun
@@ -130,7 +140,7 @@
   id: StructureGunRackWallmounted
   name: gun rack
   parent: StructureGunRack
-  suffix: New, Wallmount
+  suffix: Empty, Wallmount
   components:
   - type: WallMount
     arc: 360
@@ -147,7 +157,7 @@
   id: StructureMeleeWeaponRack
   name: melee weapon rack
   parent: StructureWeaponRackSlots
-  suffix: New
+  suffix: Empty
   components:
   - type: Sprite
     layers:
@@ -156,27 +166,37 @@
   - type: ItemSlots
     slots:
       weapon1:
-        name: stored weapon
+        insertVerbText: weapon-rack-verb-insert-weapon-01
+        ejectVerbText: weapon-rack-verb-eject-weapon-01
+        name: weapon-rack-name-stored-weapon-slot
         whitelist:
           components:
           - MeleeWeapon
       weapon2:
-        name: stored weapon
+        insertVerbText: weapon-rack-verb-insert-weapon-02
+        ejectVerbText: weapon-rack-verb-eject-weapon-02
+        name: weapon-rack-name-stored-weapon-slot
         whitelist:
           components:
           - MeleeWeapon
       weapon3:
-        name: stored weapon
+        insertVerbText: weapon-rack-verb-insert-weapon-03
+        ejectVerbText: weapon-rack-verb-eject-weapon-03
+        name: weapon-rack-name-stored-weapon-slot
         whitelist:
           components:
           - MeleeWeapon
       weapon4:
-        name: stored weapon
+        insertVerbText: weapon-rack-verb-insert-weapon-04
+        ejectVerbText: weapon-rack-verb-eject-weapon-04
+        name: weapon-rack-name-stored-weapon-slot
         whitelist:
           components:
           - MeleeWeapon
       weapon5:
-        name: stored weapon
+        insertVerbText: weapon-rack-verb-insert-weapon-05
+        ejectVerbText: weapon-rack-verb-eject-weapon-05
+        name: weapon-rack-name-stored-weapon-slot
         whitelist:
           components:
           - MeleeWeapon
@@ -215,7 +235,7 @@
 - type: entity
   id: StructureMeleeWeaponRackWallmounted
   parent: StructureMeleeWeaponRack
-  suffix: New, Wallmount
+  suffix: Empty, Wallmount
   components:
   - type: WallMount
     arc: 360
@@ -232,8 +252,17 @@
   id: StructurePistolRack
   name: sidearm rack
   parent: StructureWeaponRackSlots
-  suffix: New
+  suffix: Empty
   components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.10,-0.10,0.10,0.10"
+        density: 500
+        mask:
+        - TabletopMachineMask
   - type: Sprite
     layers:
     - state: base-pistol
@@ -241,22 +270,30 @@
   - type: ItemSlots
     slots:
       weapon1:
-        name: stored weapon
+        insertVerbText: weapon-rack-verb-insert-weapon-01
+        ejectVerbText: weapon-rack-verb-eject-weapon-01
+        name: weapon-rack-name-stored-weapon-slot
         whitelist:
           tags:
           - Sidearm
       weapon2:
-        name: stored weapon
+        insertVerbText: weapon-rack-verb-insert-weapon-02
+        ejectVerbText: weapon-rack-verb-eject-weapon-02
+        name: weapon-rack-name-stored-weapon-slot
         whitelist:
           tags:
           - Sidearm
       weapon3:
-        name: stored weapon
+        insertVerbText: weapon-rack-verb-insert-weapon-03
+        ejectVerbText: weapon-rack-verb-eject-weapon-03
+        name: weapon-rack-name-stored-weapon-slot
         whitelist:
           tags:
           - Sidearm
       weapon4:
-        name: stored weapon
+        insertVerbText: weapon-rack-verb-insert-weapon-04
+        ejectVerbText: weapon-rack-verb-eject-weapon-04
+        name: weapon-rack-name-stored-weapon-slot
         whitelist:
           tags:
           - Sidearm
@@ -290,7 +327,7 @@
 - type: entity
   id: StructurePistolRackWallmounted
   parent: StructurePistolRack
-  suffix: New, Wallmount
+  suffix: Empty, Wallmount
   components:
   - type: WallMount
     arc: 360
@@ -309,6 +346,15 @@
   parent: StructureWeaponRackBase
   abstract: true
   components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.10,-0.10,0.10,0.10"
+        density: 500
+        mask:
+        - TabletopMachineMask
   - type: Sprite
     layers:
     - state: base-pistol
