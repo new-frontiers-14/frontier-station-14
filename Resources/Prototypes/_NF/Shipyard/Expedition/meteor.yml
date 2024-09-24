@@ -1,0 +1,41 @@
+# Author Info
+# GitHub: FrostRusty
+# Discord: @frost4775
+
+# Maintainer Info
+# GitHub: ???
+# Discord: ???
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Meteor
+  name: RAE Meteor
+  description: An expedition capable ship designed for use with the RAE fleet.
+  price: 66500 # ~51200$ on mapinit + ~15360$ from 30% markup
+  category: Medium
+  group: Expedition
+  shuttlePath: /Maps/_NF/Shuttles/Expedition/RedAstraMeteor.yml
+  guidebookPage: Null
+  class:
+  - Expedition
+
+- type: gameMap
+  id: Meteor
+  mapName: 'RAE Meteor'
+  mapPath: /Maps/_NF/Shuttles/Expedition/RedAstraMeteor.yml
+  minPlayers: 0
+  stations:
+    Meteor:
+      stationProto: StandardFrontierExpeditionVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Meteor {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]
