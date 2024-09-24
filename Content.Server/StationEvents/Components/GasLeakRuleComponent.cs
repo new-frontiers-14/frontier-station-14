@@ -11,9 +11,9 @@ public sealed partial class GasLeakRuleComponent : Component
     {
         Gas.Ammonia,
         // Frontier - Only leak water vapors, not major health risks - PR 641
-//        Gas.Plasma,
-//        Gas.Tritium,
-//        Gas.Frezon,
+        Gas.Plasma,
+        Gas.Tritium,
+        Gas.Frezon,
         Gas.WaterVapor, // the fog
     };
 
