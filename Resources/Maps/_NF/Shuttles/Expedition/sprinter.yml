@@ -901,6 +901,17 @@ entities:
       - 332
       - 92
       - 335
+      - 490
+      - 481
+      - 69
+      - 492
+      - 491
+      - 489
+      - 423
+      - 421
+      - 422
+      - 420
+      - 419
   - uid: 603
     components:
     - type: Transform
@@ -919,6 +930,14 @@ entities:
       - 386
       - 600
       - 601
+      - 489
+      - 491
+      - 427
+      - 426
+      - 424
+      - 23
+      - 495
+      - 494
 - proto: AirlockCargoGlass
   entities:
   - uid: 3
@@ -2497,12 +2516,18 @@ entities:
     - type: Transform
       pos: 0.5,2.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 603
   - uid: 495
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 1.5,5.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 603
 - proto: FirelockEdge
   entities:
   - uid: 419
@@ -2511,29 +2536,44 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -2.5,-4.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 602
   - uid: 420
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -2.5,-3.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 602
   - uid: 421
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 2.5,-4.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 602
   - uid: 422
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 2.5,-3.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 602
   - uid: 423
     components:
     - type: Transform
       pos: -3.5,-1.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 602
 - proto: FirelockGlass
   entities:
   - uid: 69
@@ -2542,57 +2582,89 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 0.5,-5.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 602
   - uid: 424
     components:
     - type: Transform
       pos: 1.5,0.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 603
   - uid: 426
     components:
     - type: Transform
       pos: 1.5,-0.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 603
   - uid: 427
     components:
     - type: Transform
       pos: 1.5,-1.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 603
   - uid: 481
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -0.5,-5.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 602
   - uid: 489
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -0.5,-2.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 602
+      - 603
   - uid: 490
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -3.5,-2.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 602
   - uid: 491
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 4.5,-2.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 602
+      - 603
   - uid: 492
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 3.5,-5.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 602
   - uid: 494
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -0.5,8.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 603
 - proto: FloorDrain
   entities:
   - uid: 401
