@@ -326,11 +326,25 @@
 - type: entity
   id: StructureMeleeWeaponRackBloodCult
   parent: StructureMeleeWeaponRack
-  suffix: Salvage, Empty
+  suffix: Blood Cult, Empty
   components:
   - type: Sprite
     layers:
     - state: base-melee
-      color: "#562f2f"
-    - state: base-melee-decal
       color: "#776756"
+    - state: base-melee-decal
+      color: "#562f2f"
+
+## Pirates/Freelancers
+# Sidearm racks
+- type: entity
+  id: StructurePistolRackPirates
+  parent: StructurePistolRack
+  suffix: Pirate, Empty
+  components:
+  - type: Sprite
+    layers:
+    - state: base-pistol
+      color: "#4c3117"
+    - state: base-pistol-decal
+      color: "#23211f"
