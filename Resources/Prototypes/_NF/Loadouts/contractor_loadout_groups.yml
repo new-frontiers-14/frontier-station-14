@@ -257,6 +257,7 @@
   name: loadout-group-contractor-outerclothing
   minLimit: 0
   loadouts:
+  - ContractorClothingOuterVestTank
   - ContractorClothingOuterSuitEmergency
   - ContractorClothingOuterHardsuitEVA
   - ContractorClothingOuterHardsuitBasic
@@ -341,6 +342,8 @@
   - ContractorWetFloorSign
   - ContractorClothingOuterCoatExpensive
   - ContractorClothingOuterCoatSpaceAsshole
+  fallbacks:
+  - ContractorClothingOuterVestTank # Vox-only, default them to have this equipped
 
 - type: loadoutGroup
   id: ContractorBelt
@@ -516,6 +519,30 @@
   - ContractorClothingHeadHatCone
   - ContractorClothingHeadBandGold
   - ContractorClothingHeadHatTophat
+
+- type: loadoutGroup
+  id: ContractorEars
+  name: loadout-group-contractor-ears
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - ContractorClothingHeadsetGreyCommon
+  - ContractorClothingHeadsetCargoCommon
+  - ContractorClothingHeadsetMiningCommon
+  - ContractorClothingHeadsetCommandCommon
+  - ContractorClothingHeadsetEngineeringCommon
+  - ContractorClothingHeadsetMedicalCommon
+  - ContractorClothingHeadsetScienceCommon
+  - ContractorClothingHeadsetMedicalScienceCommon
+  - ContractorClothingHeadsetRoboticsCommon
+  - ContractorClothingHeadsetServiceCommon
+  - ContractorClothingHeadsetAltCargoCommon
+  - ContractorClothingHeadsetAltCommandCommon
+  - ContractorClothingHeadsetAltEngineeringCommon
+  - ContractorClothingHeadsetAltMedicalCommon
+  - ContractorClothingHeadsetAltScienceCommon
+  fallbacks:
+  - ContractorClothingHeadsetGreyCommon
 
 - type: loadoutGroup
   id: ContractorGloves
@@ -789,7 +816,7 @@
   id: ContractorEncryptionKey
   name: loadout-group-contractor-encryption-key
   minLimit: 0
-  maxLimit: 3
+  maxLimit: 4
   loadouts:
   - ContractorEncryptionKeyTraffic
   - ContractorEncryptionKeyMedical
