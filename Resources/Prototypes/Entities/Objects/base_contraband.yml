@@ -29,14 +29,14 @@
 #     severity: Major
 #     allowedDepartments: null
 
-# # one department restricted contraband
-# - type: entity
-#   id: BaseCentcommContraband
-#   parent: BaseRestrictedContraband
-#   abstract: true
-#   components:
-#   - type: Contraband
-#     allowedDepartments: [ CentralCommand ]
+# one department restricted contraband
+- type: entity
+  id: BaseCentcommContraband
+  parent: BaseC2ContrabandUnredeemable # Frontier: BaseRestrictedContraband<BaseC2ContrabandUnredeemable
+  abstract: true
+  components:
+  - type: Contraband
+    allowedDepartments: [ CentralCommand ]
 
 # - type: entity
 #   id: BaseCommandContraband

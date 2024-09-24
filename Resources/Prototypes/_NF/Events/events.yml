@@ -29,17 +29,18 @@
     - id: BluespaceBrokenMcDelivery # Frontier
     - id: SmugglingFax # Frontier
 
+# Frontier: not used!
 - type: entityTable
   id: BasicAntagEventsTable
   table: !type:AllSelector # we need to pass a list of rules, since rules have further restrictions to consider via StationEventComp
     children:
-    # - id: ClosetSkeleton
-    # - id: DragonSpawn
-    # - id: KingRatMigration
-    # - id: NinjaSpawn
-    # - id: RevenantSpawn
-    # - id: SleeperAgents
-    # - id: ZombieOutbreak
+    - id: ClosetSkeleton
+    - id: DragonSpawn
+    - id: KingRatMigration
+    - id: NinjaSpawn
+    - id: RevenantSpawn
+    - id: SleeperAgents
+    - id: ZombieOutbreak
 
 - type: entity
   id: BaseStationEvent

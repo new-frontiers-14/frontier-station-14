@@ -30,7 +30,7 @@
     - state: common_label
 
 - type: entity
-  parent: [ EncryptionKey, BaseCargoContraband ]
+  parent: EncryptionKey # Frontier: removed BaseCargoContraband
   id: EncryptionKeyCargo
   name: cargo encryption key
   suffix: DO NOT MAP # Frontier - Add DO NOT MAP suffix
@@ -46,7 +46,7 @@
     - state: cargo_label
 
 - type: entity
-  parent: [EncryptionKey, BaseC2ContrabandUnredeemable] # Frontier: BaseCentcommContraband<BaseC2ContrabandUnredeemable
+  parent: [EncryptionKey, BaseCentcommContraband]
   id: EncryptionKeyCentCom
   name: central command encryption key
   suffix: DO NOT MAP # Frontier - Add DO NOT MAP suffix
@@ -103,7 +103,7 @@
     - state: com_label
 
 - type: entity
-  parent: [ EncryptionKey, BaseEngineeringContraband ]
+  parent: EncryptionKey # Frontier: removed BaseEngineeringContraband
   id: EncryptionKeyEngineering
   name: engineering encryption key
   suffix: DO NOT MAP # Frontier - Add DO NOT MAP suffix
@@ -119,7 +119,7 @@
     - state: eng_label
 
 - type: entity
-  parent: [ EncryptionKey, BaseMedicalContraband ]
+  parent: EncryptionKey # Frontier: removed BaseMedicalContraband
   id: EncryptionKeyMedical
   name: medical encryption key
   description: An encryption key used by those who save lives.
@@ -134,7 +134,7 @@
     - state: med_label
 
 - type: entity
-  parent: [ EncryptionKey, BaseMedicalScienceContraband ]
+  parent: EncryptionKey # Frontier: removed BaseMedicalScienceContraband
   id: EncryptionKeyMedicalScience
   name: med-sci encryption key
   suffix: DO NOT MAP # Frontier - Add DO NOT MAP suffix
@@ -151,7 +151,7 @@
     - state: medsci_label
 
 - type: entity
-  parent: [ EncryptionKey, BaseScienceContraband ]
+  parent: EncryptionKey # Frontier: removed BaseScienceContraband
   id: EncryptionKeyScience
   name: science encryption key
   suffix: DO NOT MAP # Frontier - Add DO NOT MAP suffix
@@ -167,7 +167,7 @@
     - state: sci_label
 
 - type: entity
-  parent: [ EncryptionKey, BaseScienceContraband ]
+  parent: EncryptionKey # Frontier: removed BaseScienceContraband
   id: EncryptionKeyRobo
   name: robotech encryption key
   suffix: DO NOT MAP # Frontier - Add DO NOT MAP suffix
@@ -183,11 +183,11 @@
     - state: robotics_label
 
 - type: entity
-  parent: [ EncryptionKey, BaseSecurityContraband ]
+  parent: [ EncryptionKey, BaseC2ContrabandUnredeemable ] # Frontier: BaseSecurityContraband<BaseC2ContrabandUnredeemable
   id: EncryptionKeySecurity
   name: security encryption key
   suffix: DO NOT MAP # Frontier - Add DO NOT MAP suffix
-  description: An encryption key used by the New Frontier Sheriff's Department.
+  description: An encryption key used by Frontier security forces. # Frontier
   components:
   - type: EncryptionKey
     channels:
@@ -199,7 +199,7 @@
     - state: sec_label
 
 - type: entity
-  parent: [ EncryptionKey, BaseCivilianContraband ]
+  parent: EncryptionKey # Frontier: removed BaseCivilianContraband
   id: EncryptionKeyService
   name: service encryption key
   suffix: DO NOT MAP # Frontier - Add DO NOT MAP suffix
