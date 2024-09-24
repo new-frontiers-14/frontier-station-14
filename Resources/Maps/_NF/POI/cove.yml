@@ -5903,7 +5903,7 @@ entities:
       pos: 7.5,28.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -7224.6685
+      secondsUntilStateChange: -7268.7188
       state: Opening
 - proto: FenceWoodSmallCorner
   entities:
@@ -9617,6 +9617,13 @@ entities:
     - type: Transform
       pos: 3.5,-3.5
       parent: 1
+- proto: StructurePistolRackPiratesFilled
+  entities:
+  - uid: 1875
+    components:
+    - type: Transform
+      pos: -14.5,24.5
+      parent: 1
 - proto: Stunbaton
   entities:
   - uid: 2090
@@ -12846,32 +12853,6 @@ entities:
     - type: Transform
       pos: -3.5,7.5
       parent: 1
-- proto: WeaponDisabler
-  entities:
-  - uid: 1911
-    components:
-    - type: Transform
-      parent: 1875
-    - type: Physics
-      canCollide: False
-  - uid: 1912
-    components:
-    - type: Transform
-      parent: 1875
-    - type: Physics
-      canCollide: False
-  - uid: 1913
-    components:
-    - type: Transform
-      parent: 1875
-    - type: Physics
-      canCollide: False
-  - uid: 1914
-    components:
-    - type: Transform
-      parent: 1875
-    - type: Physics
-      canCollide: False
 - proto: WeaponGrapplingGun
   entities:
   - uid: 2063
@@ -12879,43 +12860,6 @@ entities:
     - type: Transform
       pos: 0.49590623,-4.4579954
       parent: 1
-- proto: StructurePistolRackPirates
-  entities:
-  - uid: 1875
-    components:
-    - type: Transform
-      pos: -14.5,24.5
-      parent: 1
-    - type: ContainerContainer
-      containers:
-        storagebase: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        weapon1: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: 1911
-        weapon2: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: 1914
-        weapon3: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: 1912
-        weapon4: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: 1913
-        weapon5: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        weapon6_slot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
 - proto: WeaponRevolverArgentiNonlethal
   entities:
   - uid: 2071
