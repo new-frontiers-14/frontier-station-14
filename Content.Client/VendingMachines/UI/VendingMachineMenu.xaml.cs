@@ -84,11 +84,7 @@ namespace Content.Client.VendingMachines.UI
         /// Populates the list of available items on the vending machine interface
         /// and sets icons based on their prototypes
         /// </summary>
-<<<<<<< HEAD
-        public void Populate(List<VendingMachineInventoryEntry> inventory, float priceModifier, out List<int> filteredInventory,  string? filter = null)
-=======
-        public void Populate(List<VendingMachineInventoryEntry> inventory)
->>>>>>> a7e29f2878a63d62c9c23326e2b8f2dc64d40cc4
+        public void Populate(List<VendingMachineInventoryEntry> inventory, float priceModifier)
         {
             if (inventory.Count == 0 && VendingContents.Visible)
             {
@@ -127,15 +123,7 @@ namespace Content.Client.VendingMachines.UI
                     _dummies.Add(entry.ID, dummy);
                 }
 
-                var itemName = Identity.Name(dummy, _entityManager);
-                var itemText = $"{itemName} [{entry.Amount}]";
-
-                if (itemText.Length > longestEntry.Length)
-                    longestEntry = itemText;
-
-<<<<<<< HEAD
-                if (itemName.Length > longestEntry.Length)
-                    longestEntry = itemName;
+                // Frontier: item pricing
                 // ok so we dont really have access to the pricing system so we are doing a quick price check
                 // based on prototype info since the items inside a vending machine dont actually exist as entities
                 // until they are spawned. So this little alg does the following:
@@ -209,18 +197,23 @@ namespace Content.Client.VendingMachines.UI
                 }
                 // End Frontier
 
+                var itemName = Identity.Name(dummy, _entityManager);
+                string itemText;
+
                 // New Frontiers - Unlimited vending - support items with unlimited vending stock.
                 // This code is licensed under AGPLv3. See AGPLv3.txt
                 if (entry.Amount != uint.MaxValue)
-                    vendingItem.Text = $"[{BankSystemExtensions.ToSpesoString(cost)}] {itemName} [{entry.Amount}]";
+                    itemText = $"[{BankSystemExtensions.ToSpesoString(cost)}] {itemName} [{entry.Amount}]";
                 else
-                    vendingItem.Text = $"[{BankSystemExtensions.ToSpesoString(cost)}] {itemName}";
+                    itemText = $"[{BankSystemExtensions.ToSpesoString(cost)}] {itemName}";
                 // End of modified code
-                vendingItem.Icon = icon;
-                filteredInventory.Add(i);
-=======
-                listData.Add(new VendorItemsListData(prototype.ID, itemText, i));
->>>>>>> a7e29f2878a63d62c9c23326e2b8f2dc64d40cc4
+                // End Frontier: item pricing
+
+
+                if (itemText.Length > longestEntry.Length)
+                    longestEntry = itemText;
+
+                listData.Add(new VendorItemsListData(prototype!.ID, itemText, i)); // Frontier: prototype<prototype!
             }
 
             VendingContents.PopulateList(listData);

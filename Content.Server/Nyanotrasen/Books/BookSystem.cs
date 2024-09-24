@@ -45,7 +45,7 @@ namespace Content.Server.Books
         public void OpenURL(ICommonSession session, string url)
         {
             var ev = new OpenURLEvent(url);
-            RaiseNetworkEvent(ev, session.ConnectedClient);
+            RaiseNetworkEvent(ev, session.Channel);
         }
     }
 }

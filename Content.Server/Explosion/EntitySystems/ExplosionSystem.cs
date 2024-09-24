@@ -19,8 +19,6 @@ using Content.Shared.Inventory;
 using Content.Shared.Projectiles;
 using Content.Shared.Throwing;
 using Content.Shared.Tiles; // Frontier: safe zone
-using Content.Shared.Explosion.Components;
-using Content.Shared.Explosion.EntitySystems;
 using Robust.Server.GameStates;
 using Robust.Server.Player;
 using Robust.Shared.Audio.Systems;
@@ -354,12 +352,10 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
             location = location.AlignWithClosestGridTile();
             gridId = location.GetGridUid(EntityManager);
             // Check if fixing it failed / get final grid ID
-            if (HasComp<MapGridComponent>(gridId))
+            if (EntityManager.TryGetComponent<MapGridComponent>(gridId, out var mapGrid))
             {
-                var mapGrid = _mapManager.GetGrid(gridId.Value);
-                var gridUid = mapGrid.Owner;
                 var ev = new FloorTileAttemptEvent();
-                if ((TryComp<ProtectedGridComponent>(gridUid, out var prot) && prot.PreventExplosions) || ev.Cancelled)
+                if ((TryComp<ProtectedGridComponent>(gridId, out var prot) && prot.PreventExplosions) || ev.Cancelled)
                     return null;
             }
         }

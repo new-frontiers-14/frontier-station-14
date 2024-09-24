@@ -28,6 +28,7 @@ using Robust.Shared.Enums;
 using Robust.Shared.Map;
 using Robust.Shared.Network;
 using Robust.Shared.Timing;
+using Content.Server.Ghost;
 
 namespace Content.Server.CryoSleep;
 
@@ -47,6 +48,7 @@ public sealed partial class CryoSleepSystem : SharedCryoSleepSystem
     [Dependency] private readonly MobStateSystem _mobSystem = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly ShipyardSystem _shipyard = default!; // For the FoundOrganics method
+    [Dependency] private readonly GhostSystem _ghost = default!;
 
     private readonly Dictionary<NetUserId, StoredBody?> _storedBodies = new();
     private EntityUid? _storageMap;
@@ -265,7 +267,7 @@ public sealed partial class CryoSleepSystem : SharedCryoSleepSystem
         {
             var argMind = mind;
             RaiseLocalEvent(bodyId, new CryosleepBeforeMindRemovedEvent(cryopod, argMind?.UserId), true);
-            _gameTicker.OnGhostAttempt(mindEntity, false, true, mind: mind);
+            _ghost.OnGhostAttempt(mindEntity, false, true, mind: mind);
 
             id = mind.UserId;
             if (id != null)

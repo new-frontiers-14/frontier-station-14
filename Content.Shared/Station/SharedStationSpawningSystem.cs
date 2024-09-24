@@ -42,26 +42,56 @@ public abstract class SharedStationSpawningSystem : EntitySystem
     /// </summary>
     /// <remarks>
     ///     Frontier: must run on the server, requires bank access.
+    ///     Frontier: currently not charging the player for this.
     /// </remarks>
-    // public void EquipRoleLoadout(EntityUid entity, RoleLoadout loadout, RoleLoadoutPrototype roleProto)
-    // {
-    //     // Order loadout selections by the order they appear on the prototype.
-    //     foreach (var group in loadout.SelectedLoadouts.OrderBy(x => roleProto.Groups.FindIndex(e => e == x.Key)))
-    //     {
-    //         foreach (var items in group.Value)
-    //         {
-    //             if (!PrototypeManager.TryIndex(items.Prototype, out var loadoutProto))
-    //             {
-    //                 Log.Error($"Unable to find loadout prototype for {items.Prototype}");
-    //                 continue;
-    //             }
+    public void EquipRoleLoadout(EntityUid entity, RoleLoadout loadout, RoleLoadoutPrototype roleProto)
+    {
+        // Order loadout selections by the order they appear on the prototype.
+        foreach (var group in loadout.SelectedLoadouts.OrderBy(x => roleProto.Groups.FindIndex(e => e == x.Key)))
+        {
+            List<ProtoId<LoadoutPrototype>> equippedItems = new(); //Frontier - track purchased items (list: few items)
+            foreach (var items in group.Value)
+            {
+                if (!PrototypeManager.TryIndex(items.Prototype, out var loadoutProto))
+                {
+                    Log.Error($"Unable to find loadout prototype for {items.Prototype}");
+                    continue;
+                }
 
-    //             EquipStartingGear(entity, loadoutProto, raiseEvent: false);
-    //         }
-    //     }
+                EquipStartingGear(entity, loadoutProto, raiseEvent: false);
+                equippedItems.Add(loadoutProto.ID); // Frontier
+            }
 
-    //     EquipRoleName(entity, loadout, roleProto);
-    // }
+            // If a character cannot afford their current job loadout, ensure they have fallback items for mandatory categories.
+            if (PrototypeManager.TryIndex(group.Key, out var groupPrototype) &&
+                equippedItems.Count < groupPrototype.MinLimit)
+            {
+                foreach (var fallback in groupPrototype.Fallbacks)
+                {
+                    // Do not duplicate items in loadout
+                    if (equippedItems.Contains(fallback))
+                    {
+                        continue;
+                    }
+
+                    if (!PrototypeManager.TryIndex(fallback, out var loadoutProto))
+                    {
+                        Log.Error($"Unable to find loadout prototype for fallback {fallback}");
+                        continue;
+                    }
+
+                    EquipStartingGear(entity, loadoutProto, raiseEvent: false);
+                    equippedItems.Add(fallback);
+                    // Minimum number of items equipped, no need to load more prototypes.
+                    if (equippedItems.Count >= groupPrototype.MinLimit)
+                        break;
+                }
+            }
+            // End Frontier
+        }
+
+        EquipRoleName(entity, loadout, roleProto);
+    }
 
     /// <summary>
     /// Applies the role's name as applicable to the entity.

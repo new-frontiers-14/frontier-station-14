@@ -123,7 +123,7 @@ public sealed partial class SalvageSystem
             Announce(args.MapUid, Loc.GetString("salvage-expedition-announcement-dungeon", ("direction", directionLocalization)));
 
         component.Stage = ExpeditionStage.Running;
-        Dirty(component);
+        Dirty(args.MapUid, component);
     }
 
     private void OnFTLStarted(ref FTLStartedEvent ev)

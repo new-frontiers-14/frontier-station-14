@@ -19,6 +19,7 @@ using Content.Shared.Shipyard.Events;
 using Content.Shared.Mobs.Components;
 using Robust.Shared.Containers;
 using Content.Server._NF.Smuggling.Components;
+using Robust.Shared.Map.Components;
 
 namespace Content.Server.Shipyard.Systems;
 
@@ -155,13 +156,14 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             Offset = new Vector2(500f + _shuttleIndex, 1f)
         };
 
-        if (!_map.TryLoad(ShipyardMap.Value, shuttlePath, out var gridList, loadOptions))
+        if (!_map.TryLoad(ShipyardMap.Value, shuttlePath, out var gridList, loadOptions) ||
+            !EntityManager.TryGetComponent<MapGridComponent>(gridList[0], out var grid))
         {
             _sawmill.Error($"Unable to spawn shuttle {shuttlePath}");
             return false;
         };
 
-        _shuttleIndex += _mapManager.GetGrid(gridList[0]).LocalAABB.Width + ShuttleSpawnBuffer;
+        _shuttleIndex += grid.LocalAABB.Width + ShuttleSpawnBuffer;
 
         //only dealing with 1 grid at a time for now, until more is known about multi-grid drifting
         if (gridList.Count != 1)
@@ -175,9 +177,9 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             {
                 _sawmill.Error($"Unable to spawn shuttle {shuttlePath}, too many grids present in file");
 
-                foreach (var grid in gridList)
+                foreach (var gridElem in gridList)
                 {
-                    _mapManager.DeleteGrid(grid);
+                    _mapManager.DeleteGrid(gridElem);
                 };
             };
 

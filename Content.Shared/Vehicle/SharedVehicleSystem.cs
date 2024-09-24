@@ -324,7 +324,7 @@ public abstract partial class SharedVehicleSystem : EntitySystem
         };
 
         if (!oldOffset.Equals(strap.BuckleOffset))
-            Dirty(strap);
+            Dirty(uid, strap);
 
         foreach (var buckledEntity in strap.BuckledEntities)
         {

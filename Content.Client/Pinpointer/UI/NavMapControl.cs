@@ -718,16 +718,14 @@ public partial class NavMapControl : MapGridControl
 public struct NavMapBlip
 {
     public EntityCoordinates Coordinates;
-	public MapCoordinates MapCoordinates; //Frontier modification
     public Texture Texture;
     public Color Color;
     public bool Blinks;
     public bool Selectable;
 
-    public NavMapBlip(EntityCoordinates coordinates, MapCoordinates mapCoordinates, Texture texture, Color color, bool blinks, bool selectable = true) //Frontier modification
+    public NavMapBlip(EntityCoordinates coordinates, Texture texture, Color color, bool blinks, bool selectable = true)
     {
         Coordinates = coordinates;
-		MapCoordinates = mapCoordinates; // Frontier modification
         Texture = texture;
         Color = color;
         Blinks = blinks;

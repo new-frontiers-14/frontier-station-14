@@ -50,6 +50,7 @@ namespace Content.Server.Carrying
         [Dependency] private readonly PopupSystem _popupSystem = default!;
         [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!;
         [Dependency] private readonly RespiratorSystem _respirator = default!;
+        [Dependency] private readonly SharedTransformSystem _transform = default!;
         [Dependency] private readonly PseudoItemSystem _pseudoItem = default!; // Needed for fitting check
 
         public override void Initialize()
@@ -286,10 +287,13 @@ namespace Content.Server.Carrying
             if (TryComp<PullableComponent>(carried, out var pullable))
                 _pullingSystem.TryStopPull(carried, pullable);
 
-            Transform(carrier).AttachToGridOrMap();
-            Transform(carried).AttachToGridOrMap();
-            Transform(carried).Coordinates = Transform(carrier).Coordinates;
-            Transform(carried).AttachParent(Transform(carrier));
+            var carrierXform = Transform(carrier);
+            var xform = Transform(carried);
+            _transform.AttachToGridOrMap(carrier, carrierXform);
+            _transform.AttachToGridOrMap(carried, xform);
+            xform.Coordinates = carrierXform.Coordinates;
+            _transform.SetParent(carried, xform, carrier, carrierXform);
+
             _virtualItemSystem.TrySpawnVirtualItemInHand(carried, carrier);
             _virtualItemSystem.TrySpawnVirtualItemInHand(carried, carrier);
             var carryingComp = EnsureComp<CarryingComponent>(carrier);

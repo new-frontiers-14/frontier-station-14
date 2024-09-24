@@ -115,26 +115,11 @@ public sealed partial class PlantAnalyzerWindow : FancyWindow
                 mutations.Append(IndentedNewline);
                 mutations.Append(Loc.GetString("plant-analyzer-mutation-seedless"));
             }
-            if (advInst.Mutations.HasFlag(MutationFlags.Slip))
-            {
-                mutations.Append(IndentedNewline);
-                mutations.Append(Loc.GetString("plant-analyzer-mutation-slip"));
-            }
-            if (advInst.Mutations.HasFlag(MutationFlags.Sentient))
-            {
-                mutations.Append(IndentedNewline);
-                mutations.Append(Loc.GetString("plant-analyzer-mutation-sentient"));
-            }
             if (advInst.Mutations.HasFlag(MutationFlags.Ligneous)) 
             {
                 mutations.Append(IndentedNewline);
                 mutations.Append(Loc.GetString("plant-analyzer-mutation-ligneous"));
             }
-            // if (advInst.Mutations.HasFlag(MutationFlags.Bioluminescent))
-            // {
-            //     mutations.Append(IndentedNewline);
-            //     mutations.Append(Loc.GetString("plant-analyzer-mutation-bioluminescent"));
-            // }
             if (advInst.Mutations.HasFlag(MutationFlags.CanScream))
             {
                 mutations.Append(IndentedNewline);

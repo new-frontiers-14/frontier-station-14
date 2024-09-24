@@ -363,19 +363,7 @@ public sealed class InjectorSystem : SharedInjectorSystem
         }
 
         // Move units from attackSolution to targetSolution
-        // Frontier - Reagent Whitelist
-        Solution removedSolution;
-        if (injector.Comp.ReagentWhitelist is { } reagentWhitelist)
-        {
-            var reagentWhitelistArray = Array.ConvertAll(reagentWhitelist, id => (string) id);
-            removedSolution = applicableTargetSolution.SplitSolutionWithOnly(realTransferAmount, reagentWhitelistArray);
-            SolutionContainers.UpdateChemicals(targetSolution);
-        }
-        else
-        {
-            removedSolution = SolutionContainers.Draw(target.Owner, targetSolution, realTransferAmount);
-        }
-        // End Frontier
+        var removedSolution = SolutionContainers.Draw(target.Owner, targetSolution, realTransferAmount);
 
         // Add back non-whitelisted reagents to the target solution
         applicableTargetSolution.AddSolution(temporarilyRemovedSolution, null);

@@ -181,7 +181,7 @@ namespace Content.Server.Ghost
 
             var time = _gameTiming.CurTime;
             component.TimeOfDeath = time;
-            Dirty(component);
+            Dirty(uid, component); // Frontier
         }
 
         private void OnGhostShutdown(EntityUid uid, GhostComponent component, ComponentShutdown args)

@@ -10,6 +10,7 @@ using Content.Shared._NF.Market.BUI;
 using Content.Shared._NF.Market.Events;
 using Content.Shared.Bank.Components;
 using Content.Shared.Containers.ItemSlots;
+using Content.Shared.Power;
 using Content.Shared.Prototypes;
 using Content.Shared.Stacks;
 using Content.Shared.Storage;

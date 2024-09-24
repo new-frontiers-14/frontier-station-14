@@ -27,7 +27,8 @@ using Robust.Shared.Utility;
 using Robust.Shared.Containers;
 using Content.Shared.Interaction; // Frontier
 using Content.Shared.Examine; // Frontier
-using Content.Server.Power.Components; // Frontier
+using Content.Server.Power.Components;
+using Content.Shared.Power; // Frontier
 
 namespace Content.Server.Weapons.Ranged.Systems;
 
