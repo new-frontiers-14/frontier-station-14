@@ -41,12 +41,13 @@ ghost-role-information-hovertaxibot-description = Fly passengers to where they n
 ghost-role-information-yipyip-name = Yip Yip
 ghost-role-information-yipyip-description = Notorious lounge lizard and bartender at Bahama Mama's. This drink-slinging kobold lives to serve his patrons.
 
-ghost-role-information-aberrant-flesh-horror-dungeon-name = Aberrant Flesh Horror
+ghost-role-information-aberrant-flesh-horror-dungeon-name = Aberrant flesh horror
 ghost-role-information-aberrant-flesh-horror-dungeon-description = Defend the expedition dungeon with other flesh monstrosities!
-ghost-role-information-aberrant-flesh-horror-dungeon-rules = You are a [color=red][bold]Team Antagonist[/bold][/color] with all dungeon mobs. Your goal is to seek confrontation with players on dungeon grounds.
-                                        Please [color=yellow]note[/color] that all server rules apply are still applicable. Additionally:
-                                        - [color=red]DO NOT[/color] grief players by intentionally damaging the player's shuttle or any machinery inside.
-                                        - [color=red]DO NOT[/color] grief players by hiding from them until the expedition timer runs out.
-                                        - [color=red]DO NOT[/color] grief players by gibbing them.
-                                        - [color=red]DO NOT[/color] grief players by intentionally destroying or hiding valuable loot in the dungeon.
+ghost-role-information-aberrant-flesh-horror-dungeon-rules = You are a [color=red][bold]Team Antagonist[/bold][/color] with all dungeon mobs.
+                                        Fight players within the dungeon, defend your dungeon.
+                                        Please note that [color=yellow]all server rules still apply.[/color] Additionally:
+                                        - [color=red]DO NOT[/color] damage player shuttles or their contents.
+                                        - [color=red]DO NOT[/color] hide from players to run down the expedition timer.
+                                        - [color=red]DO NOT[/color] gib players. Once they're dead, leave them be.
+                                        - [color=red]DO NOT[/color] destroy or hide valuable loot in the dungeon.
                                         - [color=red]DO NOT[/color] leave the planet.
