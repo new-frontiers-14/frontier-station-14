@@ -101,3 +101,16 @@
       matchParents: true
       id:
       - SheetUranium # Counts as food
+
+- type: entity
+  id: BaseStationDeadDrops
+  abstract: true
+  components:
+    - type: StationDeadDrop
+      maxDeadDrops: 2 # A few to be stumbled upon.
+
+- type: entity
+  id: BaseStationDeadDropHintExempt
+  abstract: true
+  components:
+    - type: StationDeadDropHintExempt
