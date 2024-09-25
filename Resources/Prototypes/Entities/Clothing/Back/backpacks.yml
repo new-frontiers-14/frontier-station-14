@@ -288,16 +288,31 @@
   description: A backpack that opens into a localized pocket of bluespace.
   components:
   - type: Sprite
-    sprite: Clothing/Back/Backpacks/holding.rsi
+    sprite: _NF/Clothing/Back/Backpacks/holding.rsi # Frontier
     state: holding
     layers:
     - state: holding
     - state: holding-unlit
       shader: unshaded
   - type: Clothing
-    equippedPrefix: holding
+    sprite: _NF/Clothing/Back/Backpacks/holding.rsi # Frontier
+    clothingVisuals: # Frontier
+      back: # Frontier
+      - state: holding-equipped-BACKPACK # Frontier
+      - state: holding-equipped-BACKPACK-unlit # Frontier
+        shader: unshaded # Frontier
+    # equippedPrefix: holding # Frontier
   - type: Item
     size: Ginormous
+    inhandVisuals: # Frontier
+      left: # Frontier
+      - state: inhand-left # Frontier
+      - state: inhand-left-unlit # Frontier
+        shader: unshaded # Frontier
+      right: # Frontier
+      - state: inhand-right # Frontier
+      - state: inhand-right-unlit # Frontier
+        shader: unshaded # Frontier
   - type: Storage
     maxItemSize: Huge
     grid:
