@@ -239,7 +239,7 @@ namespace Content.Server.GameTicking
                 spawnPointType = SpawnPointType.Job;
             }
 
-            var mobMaybe = _stationSpawning.SpawnPlayerCharacterOnStation(station, job, character, spawnPointType: spawnPointType);
+            var mobMaybe = _stationSpawning.SpawnPlayerCharacterOnStation(station, job, character, spawnPointType: spawnPointType, session: player); // Frontier: add session
             DebugTools.AssertNotNull(mobMaybe);
             var mob = mobMaybe!.Value;
 

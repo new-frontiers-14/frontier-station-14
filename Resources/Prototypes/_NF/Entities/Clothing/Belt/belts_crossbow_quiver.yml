@@ -18,6 +18,19 @@
     whitelist:
       tags:
       - CrossbowBolt
+      - CrossbowBoltBroadhead
+      - CrossbowBoltGlassShard
+      - CrossbowBoltPlasmaGlassShard
+      - CrossbowBoltUraniumGlassShard
+      - CrossbowBoltSyringe
+      - CrossbowBoltPlasteel
+      - CrossbowBoltExplosive
+      - CrossbowBoltEMP
+      - CrossbowBoltIncendiary
+      - Plunger
+      - Bread
+      - MailCapsule
+      - WeaponMeleeStake
   - type: Appearance
   - type: StorageContainerVisuals
     maxFillLevels: 5
@@ -30,6 +43,7 @@
 - type: entity
   parent: ClothingBeltQuiverCrossbow
   id: ClothingBeltQuiverCrossbowFilledBolt
+  suffix: Filled, Bolts
   components:
   - type: StorageFill
     contents:
@@ -39,6 +53,7 @@
 - type: entity
   parent: ClothingBeltQuiverCrossbow
   id: ClothingBeltQuiverCrossbowFilledUranium
+  suffix: Filled, Uranium Tip
   components:
   - type: StorageFill
     contents:
@@ -48,6 +63,7 @@
 - type: entity
   parent: ClothingBeltQuiverCrossbow
   id: ClothingBeltQuiverCrossbowFilledPlasma
+  suffix: Filled, Plasma Tip
   components:
   - type: StorageFill
     contents:
