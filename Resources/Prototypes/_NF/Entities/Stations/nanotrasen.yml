@@ -12,10 +12,10 @@
   - BaseStationMail # Mail
   - BaseStationSectorServices # Hosts all sector-wide services
   - BaseStationDampening
+  - BaseStationDeadDropHintExempt # No hints
   categories: [ HideSpawnMenu ]
   components:
   - type: Transform
-  - type: StationDeadDropHintExempt
 
 - type: entity
   id: StandardFrontierOutpost
@@ -90,6 +90,7 @@
   - BaseStationRenameFaxes
   - BaseStationRenameWarpPoints
   - BaseStationSiliconLawFrontierShips
+  - BaseStationDeadDropHintExempt # No hints on ship generation
   categories: [ HideSpawnMenu ]
   components:
   - type: Transform
@@ -105,6 +106,7 @@
   - BaseStationRenameFaxes
   - BaseStationRenameWarpPoints
   - BaseStationSiliconLawFrontierShips
+  - BaseStationDeadDropHintExempt # No hints on ship generation
   categories: [ HideSpawnMenu ]
   components:
   - type: Transform
@@ -112,18 +114,9 @@
 - type: entity
   id: StandardFrontierSecurityExpeditionVessel
   parent:
-  - BaseStation
-  - BaseStationJobsSpawning
-  - BaseStationRecords
-  - BaseStationAlertLevels
-  - BaseStationAllEventsEligible
-  - BaseStationRenameFaxes
-  - BaseStationRenameWarpPoints
-  - BaseStationSiliconLawFrontierShips
+  - StandardFrontierSecurityVessel
   - BaseStationExpeditions
   categories: [ HideSpawnMenu ]
-  components:
-  - type: Transform
 
 - type: entity
   id: StandardFrontierExpeditionVessel
@@ -131,5 +124,3 @@
   - StandardFrontierVessel
   - BaseStationExpeditions
   categories: [ HideSpawnMenu ]
-  components:
-  - type: Transform
