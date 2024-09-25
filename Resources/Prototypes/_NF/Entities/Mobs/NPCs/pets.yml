@@ -186,3 +186,45 @@
   - type: NpcFactionMember
     factions:
       - Cat
+
+# Adopted from space-wizards #26265 (Thank you, PolterTzi)
+- type: entity
+  name: Yip Yip
+  parent: MobKobold
+  id: MobKoboldYipyip
+  description: He lives in a pineapple on the Frontier!
+  components:
+  - type: GhostRole
+    prob: 1
+    makeSentient: true
+    allowSpeech: true
+    allowMovement: true
+    prototype: KoboldYipyip
+    name: ghost-role-information-yipyip-name
+    description: ghost-role-information-yipyip-description
+    rules: ghost-role-information-nonantagonist-rules
+  - type: GhostTakeoverAvailable
+  - type: Butcherable
+    butcheringType: Spike
+    spawned:
+    - id: FoodMeat
+      amount: 3
+    - id: DrinkPremiumRumBottleFull
+      amount: 1
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - DoorBumpOpener
+    - VimPilot
+  - type: Loadout
+    prototypes: [ MobKoboldGear ]
+  - type: Grammar
+    attributes:
+      proper: true
+      gender: male
+  - type: RandomSprite # Random with one choice.
+    available:
+      - enum.DamageStateVisualLayers.Base:
+          kobold: YipYipColors
+      - horns:
+          horns_curled: YipYipHornColors
