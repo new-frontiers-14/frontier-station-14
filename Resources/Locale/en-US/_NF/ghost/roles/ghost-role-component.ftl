@@ -44,7 +44,7 @@ ghost-role-information-yipyip-description = Notorious lounge lizard and bartende
 ghost-role-information-aberrant-flesh-horror-dungeon-name = Aberrant Flesh Horror
 ghost-role-information-aberrant-flesh-horror-dungeon-description = Defend the expedition dungeon with other flesh monstrosities!
 ghost-role-information-aberrant-flesh-horror-dungeon-rules = You are a [color=red][bold]Team Antagonist[/bold][/color] with all dungeon mobs. Your goal is to seek confrontation with players on dungeon grounds.
-                                        Please [color=yellow]note[/color] that the all usual server rules are still applicable. Additionally:
+                                        Please [color=yellow]note[/color] that all server rules apply are still applicable. Additionally:
                                         - [color=red]DO NOT[/color] grief players by intentionally damaging the player's shuttle or any machinery inside.
                                         - [color=red]DO NOT[/color] grief players by hiding from them until the expedition timer runs out.
                                         - [color=red]DO NOT[/color] grief players by gibbing them.
