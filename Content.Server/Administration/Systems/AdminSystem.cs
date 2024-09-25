@@ -30,6 +30,8 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
+using Content.Shared._NF.Bank.Events; // Frontier
+using Content.Server.Bank; // Frontier
 
 namespace Content.Server.Administration.Systems;
 
@@ -51,6 +53,7 @@ public sealed class AdminSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly StationRecordsSystem _stationRecords = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
+    [Dependency] private readonly BankSystem _bank = default!; // Frontier
 
     private readonly Dictionary<NetUserId, PlayerInfo> _playerList = new();
 
@@ -96,6 +99,8 @@ public sealed class AdminSystem : EntitySystem
         SubscribeLocalEvent<RoleAddedEvent>(OnRoleEvent);
         SubscribeLocalEvent<RoleRemovedEvent>(OnRoleEvent);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestartCleanup);
+
+        SubscribeLocalEvent<BalanceChangedEvent>(OnBalanceChanged); // Frontier
     }
 
     private void OnRoundRestartCleanup(RoundRestartCleanupEvent ev)
@@ -195,6 +200,13 @@ public sealed class AdminSystem : EntitySystem
         UpdatePlayerList(ev.Player);
     }
 
+    // Frontier: add balance
+    private void OnBalanceChanged(BalanceChangedEvent ev)
+    {
+        UpdatePlayerList(ev.Session);
+    }
+    // End Frontier
+
     public override void Shutdown()
     {
         base.Shutdown();
@@ -223,11 +235,17 @@ public sealed class AdminSystem : EntitySystem
         var name = data.UserName;
         var entityName = string.Empty;
         var identityName = string.Empty;
+        int balance = int.MinValue; // Frontier
 
         if (session?.AttachedEntity != null)
         {
             entityName = EntityManager.GetComponent<MetaDataComponent>(session.AttachedEntity.Value).EntityName;
             identityName = Identity.Name(session.AttachedEntity.Value, EntityManager);
+
+            // Frontier
+            if (!_bank.TryGetBalance(session.AttachedEntity.Value, out balance))
+                balance = int.MinValue; // Reset value to "no balance" flag value.
+            // Frontier
         }
 
         var antag = false;
@@ -248,7 +266,7 @@ public sealed class AdminSystem : EntitySystem
         }
 
         return new PlayerInfo(name, entityName, identityName, startingRole, antag, GetNetEntity(session?.AttachedEntity), data.UserId,
-            connected, _roundActivePlayers.Contains(data.UserId), overallPlaytime);
+            connected, _roundActivePlayers.Contains(data.UserId), overallPlaytime, balance); // Frontier: added balance
     }
 
     private void OnPanicBunkerChanged(bool enabled)

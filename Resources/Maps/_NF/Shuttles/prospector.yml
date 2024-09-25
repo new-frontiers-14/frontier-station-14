@@ -296,38 +296,43 @@ entities:
     - type: Transform
       pos: 1.3489224,-4.3157334
       parent: 201
-- proto: AtmosDeviceFanTiny
+- proto: AtmosDeviceFanDirectional
   entities:
   - uid: 11
     components:
     - type: Transform
-      pos: 0.5,-2.5
+      rot: 1.5707963267948966 rad
+      pos: 0.5,-0.5
       parent: 201
   - uid: 12
     components:
     - type: Transform
+      rot: 1.5707963267948966 rad
       pos: 0.5,-1.5
       parent: 201
   - uid: 13
     components:
     - type: Transform
-      pos: 0.5,-0.5
+      rot: 1.5707963267948966 rad
+      pos: 0.5,-2.5
       parent: 201
   - uid: 21
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -6.5,-0.5
+      rot: -1.5707963267948966 rad
+      pos: -6.5,-2.5
       parent: 201
   - uid: 27
     components:
     - type: Transform
+      rot: -1.5707963267948966 rad
       pos: -6.5,-1.5
       parent: 201
   - uid: 114
     components:
     - type: Transform
-      pos: -6.5,-2.5
+      rot: -1.5707963267948966 rad
+      pos: -6.5,-0.5
       parent: 201
 - proto: AtmosFixBlockerMarker
   entities:
@@ -408,41 +413,26 @@ entities:
     - type: Transform
       pos: -4.5,-2.5
       parent: 201
-    - type: DeviceLinkSink
-      links:
-      - 28
   - uid: 206
     components:
     - type: Transform
       pos: -6.5,-2.5
       parent: 201
-    - type: DeviceLinkSink
-      links:
-      - 28
   - uid: 229
     components:
     - type: Transform
       pos: 0.5,-0.5
       parent: 201
-    - type: DeviceLinkSink
-      links:
-      - 23
   - uid: 230
     components:
     - type: Transform
       pos: 0.5,-1.5
       parent: 201
-    - type: DeviceLinkSink
-      links:
-      - 23
   - uid: 231
     components:
     - type: Transform
       pos: 0.5,-2.5
       parent: 201
-    - type: DeviceLinkSink
-      links:
-      - 23
 - proto: ButtonFrameCaution
   entities:
   - uid: 25
@@ -670,63 +660,42 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -0.5,-2.5
       parent: 201
-    - type: DeviceLinkSink
-      links:
-      - 169
   - uid: 15
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 0.5,-2.5
       parent: 201
-    - type: DeviceLinkSink
-      links:
-      - 169
   - uid: 16
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 1.5,-2.5
       parent: 201
-    - type: DeviceLinkSink
-      links:
-      - 169
   - uid: 17
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -4.5,-2.5
       parent: 201
-    - type: DeviceLinkSink
-      links:
-      - 179
   - uid: 19
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -5.5,-2.5
       parent: 201
-    - type: DeviceLinkSink
-      links:
-      - 179
   - uid: 20
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -6.5,-2.5
       parent: 201
-    - type: DeviceLinkSink
-      links:
-      - 179
   - uid: 144
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -3.5,-2.5
       parent: 201
-    - type: DeviceLinkSink
-      links:
-      - 179
 - proto: DefibrillatorCabinetFilled
   entities:
   - uid: 103
@@ -1218,6 +1187,14 @@ entities:
     - type: Transform
       pos: -0.5,-4.5
       parent: 201
+- proto: LockerWallMaterialsFuelPlasmaFilled
+  entities:
+  - uid: 173
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 1.5,-6.5
+      parent: 201
 - proto: Matchbox
   entities:
   - uid: 180
@@ -1433,13 +1410,6 @@ entities:
     - type: Transform
       pos: -1.5,-7.5
       parent: 201
-- proto: SheetPlasma
-  entities:
-  - uid: 173
-    components:
-    - type: Transform
-      pos: 0.51698303,-6.477809
-      parent: 201
 - proto: SignalButtonDirectional
   entities:
   - uid: 23
@@ -1467,7 +1437,7 @@ entities:
         - Pressed: Toggle
         206:
         - Pressed: Toggle
-- proto: SignMinerDock
+- proto: NFSignDock
   entities:
   - uid: 151
     components:
