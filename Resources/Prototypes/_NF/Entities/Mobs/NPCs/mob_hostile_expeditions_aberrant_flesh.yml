@@ -51,7 +51,7 @@
 - type: entity
   parent: BaseMobFleshExpeditions
   id: MobFleshJaredExpeditions
-  description: Jareds are mindless meat shields who run at threats without any concern for their survival. They seem to be more fragile than the average human.
+  description: A mindless meat shield who charges threats directly. Weaker than the average human.
   #categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
@@ -90,7 +90,7 @@
 - type: entity
   parent: BaseMobFleshExpeditions
   id: MobFleshGolemExpeditions
-  description: Golems are mindless brutes, similar to Jareds but with a heavier build. This makes them slightly more resilient, but less agile.
+  description: A mindless brute with a heavy build. A bit more resilient than other flesh monsters, but less agile.
   #categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
@@ -194,7 +194,7 @@
   - BaseMobFleshExpeditions
   - MobHumanoidHostileAISimpleRanged
   id: MobFleshClampExpeditions
-  description: Clamps are flying variants that have mutated to shoot biological projectiles, such as bone spikes containing naturally secreted gastro toxins or small living organisms known simply as "maws".
+  description: A flying flesh monster that can shoot spikes or toothy creatures that can latch on.
   #categories: [ HideSpawnMenu ]
   components:
   - type: MovementSpeedModifier
@@ -283,7 +283,7 @@
 - type: entity
   parent: BaseMobFleshExpeditions
   id: MobFleshLoverExpeditions
-  description: The Lover shares similarities with Jareds and Golems. Its light frame makes it fragile, but capable of flight.
+  description: The Lover's light frame makes it fragile, but capable of flight.
   #categories: [ HideSpawnMenu ]
   components:
   - type: MovementSpeedModifier
@@ -339,7 +339,7 @@
   parent: [ BaseMobFleshExpeditions, MobHostileBossBase ]
   id: MobHorrorExpeditions
   name: aberrant flesh horror
-  description: Tougher and more resilient than the average aberrant flesh monster, the Horror possesses sharp bone protrusions and highly developed musculature, allowing it to rend the flesh of its victims and tear through armor with efficiency.
+  description: Tougher and more resilient than most aberrant flesh monsters. Has sharp, bony protrusions and highly developed musculature.
   #categories: [ HideSpawnMenu ]
   components:
   - type: MovementSpeedModifier
@@ -394,7 +394,7 @@
 - type: entity
   id: BoneSpikeGun
   name: bone spike
-  description: Shoots short salvo of bone spikes.
+  description: Shoots a short salvo of bone spikes.
   categories: [ HideSpawnMenu ]
   components:
   - type: RechargeBasicEntityAmmo
@@ -421,7 +421,7 @@
   id: ActionBoneSpike
   categories: [ HideSpawnMenu ]
   name: "[color=yellow]Bone Spike[/color]"
-  description: Shoot a short salvo of bone spikes lased with toxins.
+  description: Shoot a short salvo of bone spikes laced with toxins.
   components:
   - type: WorldTargetAction
     icon: { sprite : _NF/Mobs/Aliens/flesh.rsi, state: spike }
@@ -436,7 +436,7 @@
   parent: BaseMobFleshExpeditions
   id: MobMawExpeditions
   name: aberrant flesh maw
-  description: Immobile, flesh-boring creatures that are launched at victims. They'll latch on with their teeth and bite their victims until killed or shaken off. Don't put your fingers in it. Unless?..
+  description: Immobile, flesh-boring creatures that are launched at victims. Latches on until killed or shaken off. Don't put your fingers in it.
   categories: [ HideSpawnMenu ]
   components:
   - type: MovementSpeedModifier
@@ -486,7 +486,7 @@
   id: BaseMobFleshExpeditionsNewborn
   parent: BaseMobFleshExpeditions
   name: aberrant flesh newborn
-  description: The newborn creature is dripping with amniotic fluid; its movements are sluggish yet deliberate; its limbs, though weak, are lethal nonetheless.
+  description: This newborn monster is dripping with amniotic fluid; its movements are sluggish yet deliberate; its limbs, though weak, are lethal nonetheless.
   abstract: true
   components:
   - type: MeleeWeapon
