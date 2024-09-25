@@ -16,7 +16,9 @@ public sealed partial class GhostGui : UIWidget
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly IConfigurationManager _configurationManager = default!;
 
-    private TimeSpan? _respawnTime;
+    // private TimeSpan? _respawnTime; // Frontier revert
+    private TimeSpan? _timeOfDeath;
+    private float _minTimeToRespawn;
 
     public GhostTargetWindow TargetWindow { get; }
     public GhostRespawnRulesWindow RulesWindow { get; }
@@ -51,14 +53,27 @@ public sealed partial class GhostGui : UIWidget
         Visible = false;
     }
 
-    public void UpdateRespawn(TimeSpan? respawnTime)
+    public void UpdateRespawn(TimeSpan? todd)
     {
-        _respawnTime = respawnTime;
+        if (todd != null)
+        {
+            _timeOfDeath = todd;
+            _minTimeToRespawn = _configurationManager.GetCVar(NFCCVars.RespawnTime); // Frontier
+        }
     }
 
-    public void Update(int? roles, bool? canReturnToBody, bool canUncryo)
+    // Frontier revert
+    // public void UpdateRespawn(TimeSpan? respawnTime)
+    // {
+    //     _respawnTime = respawnTime;
+    // }
+    // End Frontier revert
+
+    public void Update(int? roles, bool? canReturnToBody, TimeSpan? timeOfDeath, float minTimeToRespawn, bool canUncryo)
     {
         ReturnToBodyButton.Disabled = !canReturnToBody ?? true;
+        _timeOfDeath = timeOfDeath;
+        _minTimeToRespawn = minTimeToRespawn;
 
         if (roles != null)
         {
@@ -78,16 +93,38 @@ public sealed partial class GhostGui : UIWidget
         CryosleepReturnButton.Disabled = !canUncryo;
     }
 
+    // protected override void FrameUpdate(FrameEventArgs args)
+    // {
+    //     if (_respawnTime is null || _gameTiming.CurTime > _respawnTime)
+    //     {
+    //         GhostRespawnButton.Text = Loc.GetString("ghost-gui-respawn-button-allowed");
+    //         GhostRespawnButton.Disabled = false;
+    //     }
+    //     else
+    //     {
+    //         double delta = (_respawnTime.Value - _gameTiming.CurTime).TotalSeconds;
+    //         GhostRespawnButton.Text = Loc.GetString("ghost-gui-respawn-button-denied", ("time", $"{delta:f1}"));
+    //         GhostRespawnButton.Disabled = true;
+    //     }
+    // }
+
     protected override void FrameUpdate(FrameEventArgs args)
     {
-        if (_respawnTime is null || _gameTiming.CurTime > _respawnTime)
+        if (_timeOfDeath is null)
+        {
+            GhostRespawnButton.Text = Loc.GetString("ghost-gui-respawn-button-denied", ("time", "disabled"));
+            GhostRespawnButton.Disabled = true;
+            return;
+        }
+
+        var delta = (_minTimeToRespawn - _gameTiming.CurTime.Subtract(_timeOfDeath.Value).TotalSeconds);
+        if (delta <= 0)
         {
             GhostRespawnButton.Text = Loc.GetString("ghost-gui-respawn-button-allowed");
             GhostRespawnButton.Disabled = false;
         }
         else
         {
-            double delta = (_respawnTime.Value - _gameTiming.CurTime).TotalSeconds;
             GhostRespawnButton.Text = Loc.GetString("ghost-gui-respawn-button-denied", ("time", $"{delta:f1}"));
             GhostRespawnButton.Disabled = true;
         }

@@ -1,4 +1,4 @@
-using Content.Server.Corvax.Respawn;
+//using Content.Server.Corvax.Respawn;
 using Content.Server.GameTicking;
 using Content.Server.Mind;
 using Content.Shared.Administration;
@@ -21,7 +21,7 @@ public sealed class GhostRespawnCommand : IConsoleCommand
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly IConfigurationManager _configurationManager = default!;
-    [Dependency] private readonly IEntitySystemManager _entity = default!;
+    //[Dependency] private readonly IEntitySystemManager _entity = default!; // Frontier: revert
 
     public string Command => "ghostrespawn";
     public string Description => "Allows the player to return to the lobby if they've been dead long enough, allowing re-entering the round AS ANOTHER CHARACTER.";
@@ -53,17 +53,34 @@ public sealed class GhostRespawnCommand : IConsoleCommand
             return;
         }
 
-        var respawnResetTime = _entity.GetEntitySystem<RespawnSystem>().GetRespawnTime(shell.Player.UserId);
-
-        if (respawnResetTime is not null)
+        var mindSystem = _entityManager.EntitySysManager.GetEntitySystem<MindSystem>();
+        if (!mindSystem.TryGetMind(shell.Player, out _, out _))
         {
-            if (_gameTiming.CurTime < respawnResetTime.Value)
-            {
-                var timeLeft = (respawnResetTime.Value - _gameTiming.CurTime).TotalSeconds;
-                shell.WriteLine($"You haven't been dead long enough. You can respawn in {timeLeft} seconds.");
-                return;
-            }
+            shell.WriteLine("You have no mind.");
+            return;
         }
+        var time = (_gameTiming.CurTime - ghost.TimeOfDeath);
+        var respawnTime = _configurationManager.GetCVar(NFCCVars.RespawnTime);
+
+        if (respawnTime > time.TotalSeconds)
+        {
+            shell.WriteLine($"You haven't been dead long enough. You have been dead {time.TotalSeconds} seconds of the required {respawnTime}.");
+            return;
+        }
+
+        // Frontier: revert
+        // var respawnResetTime = _entity.GetEntitySystem<RespawnSystem>().GetRespawnTime(shell.Player.UserId);
+
+        // if (respawnResetTime is not null)
+        // {
+        //     if (_gameTiming.CurTime < respawnResetTime.Value)
+        //     {
+        //         var timeLeft = (respawnResetTime.Value - _gameTiming.CurTime).TotalSeconds;
+        //         shell.WriteLine($"You haven't been dead long enough. You can respawn in {timeLeft} seconds.");
+        //         return;
+        //     }
+        // }
+        // End Frontier
 
         var gameTicker = _entityManager.EntitySysManager.GetEntitySystem<GameTicker>();
         gameTicker.Respawn(shell.Player);

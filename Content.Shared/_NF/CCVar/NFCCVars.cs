@@ -11,11 +11,13 @@ public sealed class NFCCVars
     public static readonly CVarDef<bool> RespawnEnabled =
         CVarDef.Create("nf14.respawn.enabled", true, CVar.SERVER | CVar.REPLICATED);
 
-    /// <summary>
-    /// Respawn time, how long the player has to wait in seconds after going into cryosleep. Should be small, misclicks happen.
-    /// </summary>
-    public static readonly CVarDef<float> RespawnCryoFirstTime =
-        CVarDef.Create("nf14.respawn.cryo_first_time", 20.0f, CVar.SERVER | CVar.REPLICATED);
+    // Frontier revert
+    // /// <summary>
+    // /// Respawn time, how long the player has to wait in seconds after going into cryosleep. Should be small, misclicks happen.
+    // /// </summary>
+    // public static readonly CVarDef<float> RespawnCryoFirstTime =
+    //     CVarDef.Create("nf14.respawn.cryo_first_time", 20.0f, CVar.SERVER | CVar.REPLICATED);
+    // End Frontier revert
 
     /// <summary>
     /// Respawn time, how long the player has to wait in seconds after death, or on subsequent cryo attempts.

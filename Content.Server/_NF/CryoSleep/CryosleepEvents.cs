@@ -30,10 +30,12 @@ public sealed class CryosleepWakeUpEvent : BaseCryosleepEvent
     public CryosleepWakeUpEvent(EntityUid cryopod, NetUserId? user) : base(cryopod, user) {}
 }
 
+// Frontier revert
 /// <summary>
 ///   Raised on an entity who is going to enter cryosleep before their mind is detached.
 /// </summary>
-public sealed class CryosleepBeforeMindRemovedEvent : BaseCryosleepEvent
-{
-    public CryosleepBeforeMindRemovedEvent(EntityUid cryopod, NetUserId? user) : base(cryopod, user) {}
-}
+// public sealed class CryosleepBeforeMindRemovedEvent : BaseCryosleepEvent
+// {
+//     public CryosleepBeforeMindRemovedEvent(EntityUid cryopod, NetUserId? user) : base(cryopod, user) {}
+// }
+// End Frontier revert

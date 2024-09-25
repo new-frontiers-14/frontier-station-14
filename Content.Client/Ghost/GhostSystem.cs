@@ -11,7 +11,7 @@ using Robust.Client.UserInterface;
 using Robust.Shared.GameStates;
 using Robust.Shared.Timing;
 using Robust.Shared.Player;
-using Content.Server.Corvax.Respawn;
+// using Content.Server.Corvax.Respawn;
 
 namespace Content.Client.Ghost
 {
@@ -24,7 +24,7 @@ namespace Content.Client.Ghost
         [Dependency] private readonly EyeSystem _eye = default!;
         [Dependency] private readonly IUserInterfaceManager _uiManager = default!;
         [Dependency] private readonly IGameTiming _gameTiming = default!;
-        [Dependency] private readonly RespawnSystem _respawn = default!;
+        // [Dependency] private readonly RespawnSystem _respawn = default!; // Corvax
 
         public override void Update(float frameTime)
         {
@@ -32,7 +32,7 @@ namespace Content.Client.Ghost
             {
                 var ui = _uiManager.GetActiveUIWidgetOrNull<GhostGui>();
                 if (ui != null && Player != null)
-                    ui.UpdateRespawn(_respawn.RespawnResetTime);
+                    ui.UpdateRespawn(ghost.Item2.TimeOfDeath); // Frontier - reverted _respawn.RespawnResetTime
             }
         }
 
