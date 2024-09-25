@@ -51,7 +51,7 @@ public sealed partial class SupermatterComponent : Component
     public string CollisionResultPrototype = "Ash";
 
     [DataField]
-    public SoundSpecifier DustSound = new SoundPathSpecifier("/Audio/_EE/Effects/Grenades/Supermatter/supermatter_start.ogg");
+    public SoundSpecifier DustSound = new SoundPathSpecifier("/Audio/Effects/Grenades/Supermatter/supermatter_start.ogg");
 
     [DataField]
     public SoundSpecifier CalmSound = new SoundPathSpecifier("/Audio/_EE/Supermatter/calm.ogg");
