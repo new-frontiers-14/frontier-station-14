@@ -1,7 +1,6 @@
 using Robust.Shared.GameStates;
 using Robust.Shared.Audio;
 using Content.Shared.Atmos;
-using Content.Shared.Whitelist;
 using Content.Shared.DoAfter;
 using Robust.Shared.Serialization;
 
