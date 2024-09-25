@@ -1006,7 +1006,7 @@
       revolver-ammo: !type:Container
 
 - type: entity
-  parent: RevolverCapGun
+  parent: [RevolverCapGun, BaseC3SyndicateContraband] # Frontier: added BaseC3SyndicateContraband
   id: RevolverCapGunFake
   name: cap gun
   suffix: Fake
@@ -1020,6 +1020,8 @@
         - CartridgeMagnum
         - SpeedLoaderMagnum
     proto: CartridgeMagnumAP
+  - type: Contraband # Frontier
+    hideValues: true # Frontier
 
 - type: entity
   parent: BaseItem
