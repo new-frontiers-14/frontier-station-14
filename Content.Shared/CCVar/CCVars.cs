@@ -2274,7 +2274,7 @@ namespace Content.Shared.CCVar
         public static readonly CVarDef<bool> DebugPow3rDisableParallel =
             CVarDef.Create("debug.pow3r_disable_parallel", true, CVar.SERVERONLY);
 
-
+        // Start EE Code
         #region Supermatter System
 
         /// <summary>
@@ -2323,5 +2323,6 @@ namespace Content.Shared.CCVar
             CVarDef.Create("supermatter.rads_modifier", 1f, CVar.SERVER);
 
         #endregion
+        // End EE Code
     }
 }

@@ -10,5 +10,7 @@ objective-condition-thief-description = The {$itemName} would be a great additio
 objective-condition-thief-animal-description = The {$itemName} would be a great addition to my collection! Most importantly, alive.
 objective-condition-thief-multiply-description = I need to get {$count} {MAKEPLURAL($itemName)} and take them with me.
 
+## Start EE Code
 objective-condition-steal-smsliver-title = Cut off a sliver from the supermatter crystal.
 objective-condition-steal-smsliver-description = Use any cutting tool that comes in handy. A scalpel is more recommended. Also, don't die of radiation poisoning.
+## End EE Code
