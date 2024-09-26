@@ -11,6 +11,7 @@ using Content.Shared.StatusEffect;
 using Content.Shared.Eye.Blinding.Components; // Frontier
 using Content.Shared.Eye.Blinding.Systems; // Frontier
 using Robust.Shared.Random; // Frontier
+using Content.Server.Chat.Systems; // Frontier
 
 namespace Content.Server.Projectiles;
 
@@ -25,6 +26,7 @@ public sealed class ProjectileSystem : SharedProjectileSystem
     [Dependency] private readonly StatusEffectsSystem _statusEffectsSystem = default!; // Frontier
     [Dependency] private readonly BlindableSystem _blindingSystem = default!; // Frontier
     [Dependency] private readonly IRobustRandom _random = default!; // Frontier
+    [Dependency] private readonly ChatSystem _chat = default!; // Frontier
 
     public override void Initialize()
     {
@@ -102,6 +104,9 @@ public sealed class ProjectileSystem : SharedProjectileSystem
         var time = (float)(TimeSpan.FromSeconds(2) - eyeProtectionEv.Protection).TotalSeconds;
         if (time <= 0)
             return;
+
+        var emoteId = "Scream";
+        _chat.TryEmoteWithoutChat(target, emoteId);
 
         // Add permanent eye damage if they had zero protection, also somewhat scale their temporary blindness by
         // how much damage they already accumulated.
