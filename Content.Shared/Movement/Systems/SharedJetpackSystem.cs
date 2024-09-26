@@ -1,5 +1,5 @@
 using Content.Shared.Actions;
-using Content.Shared.CCVar;
+using Content.Shared._EE.CCVar; // EE
 using Content.Shared.Gravity;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Movement.Components;
@@ -52,7 +52,7 @@ public abstract class SharedJetpackSystem : EntitySystem
 
     private void OnJetpackUserGravityChanged(ref GravityChangedEvent ev)
     {
-        if (_config.GetCVar(CCVars.JetpackEnableAnywhere)) // Frontier
+        if (_config.GetCVar(EECCVars.JetpackEnableAnywhere)) // Frontier
             return; // Frontier
 
         var gridUid = ev.ChangedGridIndex;
@@ -87,9 +87,8 @@ public abstract class SharedJetpackSystem : EntitySystem
         // No and no again! Do not attempt to activate the jetpack on a grid with gravity disabled. You will not be the first or the last to try this.
         // https://discord.com/channels/310555209753690112/310555209753690112/1270067921682694234
         if (TryComp<JetpackComponent>(component.Jetpack, out var jetpack) &&
-            (args.Transform.ParentUid != args.Transform.GridUid && // Frontier: disable jetpack when hopping on/off of vehicles/bags
-            args.Transform.ParentUid != args.Transform.MapUid || // Frontier
-            !CanEnableOnGrid(args.Transform.GridUid)))
+            (!CanEnableOnGrid(args.Transform.GridUid) ||
+            !CanEnable(uid, jetpack))) // Frontier
         {
             SetEnabled(component.Jetpack, jetpack, false, uid);
 
@@ -140,8 +139,8 @@ public abstract class SharedJetpackSystem : EntitySystem
         // https://discord.com/channels/310555209753690112/310555209753690112/1270067921682694234
         return gridUid == null ||
             // (!HasComp<GravityComponent>(gridUid)); // EE
-            _config.GetCVar(CCVars.JetpackEnableAnywhere) || // EE
-            _config.GetCVar(CCVars.JetpackEnableInNoGravity) && // EE
+            _config.GetCVar(EECCVars.JetpackEnableAnywhere) || // EE
+            _config.GetCVar(EECCVars.JetpackEnableInNoGravity) && // EE
             TryComp<GravityComponent>(gridUid, out var comp) && // EE
             !comp.Enabled; // EE
     }
@@ -164,15 +163,6 @@ public abstract class SharedJetpackSystem : EntitySystem
             return;
         }
 
-        if (enabled)
-        {
-            EnsureComp<ActiveJetpackComponent>(uid);
-        }
-        else
-        {
-            RemComp<ActiveJetpackComponent>(uid);
-        }
-
         if (user == null)
         {
             Container.TryGetContainingContainer((uid, null, null), out var container);
@@ -182,6 +172,22 @@ public abstract class SharedJetpackSystem : EntitySystem
         // Can't activate if no one's using.
         if (user == null && enabled)
             return;
+
+        // Frontier: check if user has a parent (e.g. vehicle, duffelbag, bed)
+        if (enabled && !UserNotParented(user, component))
+            return;
+        // End Frontier
+
+        // Frontier: moved from above user check
+        if (enabled)
+        {
+            EnsureComp<ActiveJetpackComponent>(uid);
+        }
+        else
+        {
+            RemComp<ActiveJetpackComponent>(uid);
+        }
+        // End Frontier
 
         if (user != null)
         {
@@ -210,6 +216,15 @@ public abstract class SharedJetpackSystem : EntitySystem
     {
         return true;
     }
+
+    // Frontier: check parent
+    protected virtual bool UserNotParented(EntityUid? user, JetpackComponent component)
+    {
+        return !TryComp(user, out TransformComponent? xform) ||
+            xform.ParentUid == xform.GridUid ||
+            xform.ParentUid == xform.MapUid;
+    }
+    // End Frontier
 }
 
 [Serializable, NetSerializable]
