@@ -142,10 +142,10 @@ namespace Content.Server.Carrying
 
             args.ItemUid = virtItem.BlockingEntity;
 
+            // Frontier: clamp throw range, reduce distance when heavy
             // args.ThrowSpeed *= _contests.MassContest(uid, virtItem.BlockingEntity, false, 2f) // Frontier
             //                 * _contests.StaminaContest(uid, virtItem.BlockingEntity); // Frontier
 
-            // Frontier: sanitized throw range
             var throwSpeedCoeff = component.BaseThrowingSpeedCoeff
                              * float.Min(
                                 _contests.MassContest(uid, virtItem.BlockingEntity, false, 2f)
