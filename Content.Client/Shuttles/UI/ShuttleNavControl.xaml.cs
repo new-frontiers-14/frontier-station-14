@@ -295,17 +295,20 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
                             : blipSize, // left align the text to the right of the blip
                         Y = -labelDimensions.Y / 2f
                     };
-                    var coordDimensions = handle.GetDimensions(Font, coordsText, 1f);
-                    var coordOffset = new Vector2()
-                    {
-                        X = uiPosition.X > Width / 2f
-                            ? -coordDimensions.X - blipSize // right align the text to left of the blip
-                            : blipSize, // left align the text to the right of the blip
-                        Y = -labelDimensions.Y - coordDimensions.Y / 2f
-                    };
 
                     handle.DrawString(Font, (uiPosition + labelOffset) * UIScale, labelText, UIScale, labelColor);
-                    handle.DrawString(Font, (uiPosition + coordOffset) * UIScale, labelText, UIScale * 0.7f, coordColor);
+                    if (isMouseOver)
+                    {
+                        var coordDimensions = handle.GetDimensions(Font, coordsText, 0.7f);
+                        var coordOffset = new Vector2()
+                        {
+                            X = uiPosition.X > Width / 2f
+                                ? -coordDimensions.X - blipSize / 0.7f // right align the text to left of the blip (0.7 needed for scale)
+                                : blipSize, // left align the text to the right of the blip
+                            Y = coordDimensions.Y / 2
+                        };
+                        handle.DrawString(Font, (uiPosition + coordOffset) * UIScale, coordsText, 0.7f * UIScale, coordColor);
+                    }
                 }
 
                 NfAddBlipToList(blipDataList, isOutsideRadarCircle, uiPosition, uiXCentre, uiYCentre, labelColor); // Frontier code
