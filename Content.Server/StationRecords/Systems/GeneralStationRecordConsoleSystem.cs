@@ -5,6 +5,7 @@ using Content.Shared.StationRecords;
 using Robust.Server.GameObjects;
 using System.Linq;
 using Content.Shared.Roles;
+using Robust.Shared.Prototypes; // Frontier
 
 namespace Content.Server.StationRecords.Systems;
 
@@ -82,20 +83,23 @@ public sealed class GeneralStationRecordConsoleSystem : EntitySystem
         var (uid, console) = ent;
         var owningStation = _station.GetOwningStation(uid);
 
+        IReadOnlyDictionary<ProtoId<JobPrototype>, int?>? jobList = null; // Frontier
+        if (owningStation != null) // Frontier
+            jobList = _stationJobsSystem.GetJobs(owningStation.Value); // Frontier: moved this up - populate whenever possible.
+
         if (!TryComp<StationRecordsComponent>(owningStation, out var stationRecords))
         {
-            _ui.SetUiState(uid, GeneralStationRecordConsoleKey.Key, new GeneralStationRecordConsoleState());
+            _ui.SetUiState(uid, GeneralStationRecordConsoleKey.Key, new GeneralStationRecordConsoleState(null, null, null, jobList, console.Filter, ent.Comp.CanDeleteEntries)); // Frontier: add as many args as we can
             return;
         }
-
-        var jobList = _stationJobsSystem.GetJobs(owningStation.Value);
 
         var listing = _stationRecords.BuildListing((owningStation.Value, stationRecords), console.Filter);
 
         switch (listing.Count)
         {
             case 0:
-                _ui.SetUiState(uid, GeneralStationRecordConsoleKey.Key, new GeneralStationRecordConsoleState());
+                var consoleState = new GeneralStationRecordConsoleState(null, null, null, jobList, console.Filter, ent.Comp.CanDeleteEntries); // Frontier: add as many args as we can
+                _ui.SetUiState(uid, GeneralStationRecordConsoleKey.Key, consoleState);
                 return;
             default:
                 if (console.ActiveKey == null)
@@ -104,7 +108,10 @@ public sealed class GeneralStationRecordConsoleSystem : EntitySystem
         }
 
         if (console.ActiveKey is not { } id)
+        {
+            _ui.SetUiState(uid, GeneralStationRecordConsoleKey.Key, new GeneralStationRecordConsoleState(null, null, listing, jobList, console.Filter, ent.Comp.CanDeleteEntries)); // Frontier: add as many args as we can
             return;
+        }
 
         var key = new StationRecordKey(id, owningStation.Value);
         _stationRecords.TryGetRecord<GeneralStationRecord>(key, out var record, stationRecords);

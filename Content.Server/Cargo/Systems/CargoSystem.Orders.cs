@@ -3,14 +3,6 @@ using Content.Server.Access.Systems;
 using Content.Server.Bank;
 using Content.Server.Cargo.Components;
 using Content.Server.Labels.Components;
-// FRONTIER MERGE: BEGIN CRUFT
-using Content.Server.Paper;
-using Content.Server.DeviceLinking.Systems;
-using Content.Server.Popups;
-using Content.Server.Station.Systems;
-using Content.Shared.Access.Systems;
-using Content.Shared.Administration.Logs;
-// FRONTIER MERGE: END CRUFT
 using Content.Shared.Bank.Components; // Frontier
 using Content.Server.Station.Components;
 using Content.Shared.Cargo;

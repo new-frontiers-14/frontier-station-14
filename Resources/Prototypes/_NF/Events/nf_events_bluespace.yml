@@ -1,7 +1,6 @@
 - type: entity
   id: BluespaceCacheError
   parent: BaseStationEventShortDelay
-  categories: [ HideSpawnMenu ]
   components:
   - type: StationEvent
     startAnnouncement: station-event-bluespace-cache-start-announcement
@@ -13,16 +12,15 @@
     weight: 5
     duration: 1350
     maxDuration: 1560
-    maxOccurrences: 1 # Only once per shift possible
+    reoccurrenceDelay: 480 # 8 hours
   - type: BluespaceErrorRule
     gridPaths:
       - /Maps/_NF/Bluespace/cache.yml
-    rewardFactor: 3.3
+    rewardFactor: 1
 
 - type: entity
   id: BluespaceVaultError
   parent: BaseStationEventShortDelay
-  categories: [ HideSpawnMenu ]
   components:
   - type: StationEvent
     startAnnouncement: station-event-bluespace-vault-start-announcement
@@ -34,16 +32,15 @@
     weight: 5
     duration: 1020
     maxDuration: 1350
-    maxOccurrences: 1 # Only once per shift possible
+    reoccurrenceDelay: 480 # 8 hours
   - type: BluespaceErrorRule
     gridPaths:
       - /Maps/_NF/Bluespace/vault.yml
-    rewardFactor: 0.7
+    rewardFactor: 1
 
 - type: entity
   id: BluespaceVaultSmallError
   parent: BaseStationEventShortDelay
-  categories: [ HideSpawnMenu ]
   components:
   - type: StationEvent
     startAnnouncement: station-event-bluespace-vault-start-announcement
@@ -56,16 +53,15 @@
     weight: 5
     duration: 590
     maxDuration: 780
-    maxOccurrences: 1 # Only once per shift possible
+    reoccurrenceDelay: 480 # 8 hours
   - type: BluespaceErrorRule
     gridPaths:
       - /Maps/_NF/Bluespace/vaultsmall.yml
-    rewardFactor: 3
+    rewardFactor: 1
 
 # - type: entity # Need rework
   # id: BluespaceAsteroid
   # parent: BaseStationEventShortDelay
-  # categories: [ HideSpawnMenu ]
   # components:
   # - type: StationEvent
     # startAnnouncement: station-event-bluespace-asteroid-start-announcement
@@ -77,15 +73,13 @@
     # weight: 2
     # duration: 1500
     # maxDuration: 1800
-    # maxOccurrences: 1 # Only once per shift possible
+    # reoccurrenceDelay: 480 # 8 hours
   # - type: BluespaceErrorRule
     # gridPath: /Maps/_NF/Bluespace/asteroidvault.yml
-    # rewardFactor: 0.5 # Filler to make the bank go up
 
 # - type: entity # Need rework
   # id: BluespaceAsteroidBunker
   # parent: BaseStationEventShortDelay
-  # categories: [ HideSpawnMenu ]
   # components:
   # - type: StationEvent
     # startAnnouncement: station-event-bluespace-asteroid-start-announcement
@@ -97,15 +91,13 @@
     # weight: 2
     # duration: 2100
     # maxDuration: 2400
-    # maxOccurrences: 1 # Only once per shift possible
+    # reoccurrenceDelay: 480 # 8 hours
   # - type: BluespaceErrorRule
     # gridPath: /Maps/_NF/Bluespace/asteroidbunker.yml
-    # rewardFactor: 0.5 # Filler to make the bank go up
 
 # - type: entity # Need rework
   # id: BluespaceCargoniaShip
   # parent: BaseStationEventShortDelay
-  # categories: [ HideSpawnMenu ]
   # components:
   # - type: StationEvent
     # startAnnouncement: station-event-bluespace-generic-ftl-start-announcement
@@ -117,15 +109,13 @@
     # weight: 2
     # duration: 900
     # maxDuration: 1200
-    # maxOccurrences: 1 # Only once per shift possible
+    # reoccurrenceDelay: 480 # 8 hours
   # - type: BluespaceErrorRule
     # gridPath: /Maps/_NF/Bluespace/cargoniaship.yml
-    # rewardFactor: 0.5 # Filler to make the bank go up
 
 - type: entity
   id: BluespaceDataCarrier
   parent: BaseStationEventShortDelay
-  categories: [ HideSpawnMenu ]
   components:
   - type: StationEvent
     startAnnouncement: station-event-bluespace-generic-ftl-start-announcement
@@ -137,16 +127,14 @@
     weight: 2
     duration: 2100
     maxDuration: 2400
-    maxOccurrences: 1 # Only once per shift possible
+    reoccurrenceDelay: 480 # 8 hours
   - type: BluespaceErrorRule
     gridPaths:
       - /Maps/_NF/Bluespace/datacarrier.yml
-    rewardFactor: 0.5 # Filler to make the bank go up
 
 - type: entity
   id: BluespaceSyndicateFTLInterception
   parent: BaseStationEventShortDelay
-  categories: [ HideSpawnMenu ]
   components:
   - type: StationEvent
     startAnnouncement: station-event-bluespace-generic-ftl-start-announcement
@@ -158,16 +146,14 @@
     weight: 1
     duration: 1800
     maxDuration: 2400
-    maxOccurrences: 1 # Only once per shift possible
+    reoccurrenceDelay: 480 # Only once per shift possible
   - type: BluespaceErrorRule
     gridPaths:
       - /Maps/_NF/Bluespace/syndieftlintercept.yml
-    rewardFactor: 0.5 # Filler to make the bank go up
 
 - type: entity
   id: BluespaceWizardFederationScout
   parent: BaseStationEventShortDelay
-  categories: [ HideSpawnMenu ]
   components:
   - type: StationEvent
     startAnnouncement: station-event-bluespace-generic-ftl-start-announcement
@@ -179,16 +165,14 @@
     weight: 1
     duration: 900
     maxDuration: 1200
-    maxOccurrences: 1 # Only once per shift possible
+    reoccurrenceDelay: 480 # 8 hours
   - type: BluespaceErrorRule
     gridPaths:
       - /Maps/_NF/Bluespace/wizardprobealt.yml
-    rewardFactor: 0.5 # Filler to make the bank go up
 
 - type: entity
   id: BluespaceBloodMoon
   parent: BaseStationEventShortDelay
-  categories: [ HideSpawnMenu ]
   components:
   - type: StationEvent
     startAnnouncement: station-event-bluespace-generic-ftl-start-announcement
@@ -200,16 +184,14 @@
     weight: 1
     duration: 1800
     maxDuration: 2400
-    maxOccurrences: 1 # Only once per shift possible
+    reoccurrenceDelay: 480 # 8 hours
   - type: BluespaceErrorRule
     gridPaths:
       - /Maps/_NF/Bluespace/bloodmoon.yml
-    rewardFactor: 0.5 # Filler to make the bank go up
 
 - type: entity
   id: BluespaceBrokenMcDelivery
   parent: BaseStationEventShortDelay
-  categories: [ HideSpawnMenu ]
   components:
   - type: StationEvent
     startAnnouncement: station-event-bluespace-generic-ftl-start-announcement
@@ -221,7 +203,7 @@
     weight: 5
     duration: 900
     maxDuration: 1800
-    reoccurrenceDelay: 180
+    reoccurrenceDelay: 240 # once per 4 hours
   - type: BluespaceErrorRule
     gridPaths:
       - /Maps/_NF/Bluespace/mcevent.yml

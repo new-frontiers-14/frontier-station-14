@@ -16,6 +16,9 @@ using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
+using Content.Shared.Whitelist; // Frontier
+using Content.Shared.Buckle.Components; // Frontier
+using Content.Shared.Buckle; // Frontier
 
 namespace Content.Server.Mech.Equipment.EntitySystems;
 
@@ -30,6 +33,8 @@ public sealed class MechGrabberSystem : EntitySystem
     [Dependency] private readonly InteractionSystem _interaction = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
+    [Dependency] private readonly EntityWhitelistSystem _whitelist = default!; // Frontier
+    [Dependency] private readonly SharedBuckleSystem _buckle = default!; // Frontier
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -139,6 +144,9 @@ public sealed class MechGrabberSystem : EntitySystem
             return;
         }
 
+        if (_whitelist.IsBlacklistPass(component.Blacklist, target)) // Frontier: Blacklist
+            return;
+
         if (Transform(target).Anchored)
             return;
 
@@ -181,6 +189,16 @@ public sealed class MechGrabberSystem : EntitySystem
             return;
         if (!_mech.TryChangeEnergy(equipmentComponent.EquipmentOwner.Value, component.GrabEnergyDelta))
             return;
+
+        // Frontier: Remove people from chairs
+        if (TryComp<StrapComponent>(args.Args.Target, out var strapComp) && strapComp.BuckledEntities != null)
+        {
+            foreach (var buckleUid in strapComp.BuckledEntities)
+            {
+                _buckle.Unbuckle(buckleUid, args.Args.User);
+            }
+        }
+        // End Frontier
 
         _container.Insert(args.Args.Target.Value, component.ItemContainer);
         _mech.UpdateUserInterface(equipmentComponent.EquipmentOwner.Value);

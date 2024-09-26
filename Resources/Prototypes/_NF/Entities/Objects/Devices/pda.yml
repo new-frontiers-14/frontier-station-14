@@ -338,7 +338,7 @@
   components:
   - type: Pda
     id: DetectiveNFIDCard
-    state: pda-detective
+    state: pda-detectivenf
     bookSlot: # Frontier
       startingItem: HyperlinkBookNfsdSop
       priority: -2
@@ -348,8 +348,62 @@
         - BookNfsdSop
   - type: PdaBorderColor
     borderColor: "#774705"
+  - type: Sprite
+    sprite: _NF/Objects/Devices/pda.rsi
+    layers:
+    - map: [ "enum.PdaVisualLayers.Base" ]
+    - state: "light_overlay"
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+      shader: "unshaded"
+      visible: false
+    - state: "id_overlay"
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+      shader: "unshaded"
+      visible: false
   - type: Icon
-    state: pda-detective
+    sprite: _NF/Objects/Devices/pda.rsi
+    state: pda-detectivenf
+
+- type: entity
+  parent: BasePDA
+  id: PublicAffairsLiaisonPDA
+  name: public affairs liaison PDA
+  description: Paperwork, paperwork, paperwork!
+  components:
+  - type: Pda
+    id: PublicAffairsIDCard
+    state: pda-pal
+    penSlot:
+      startingItem: PublicAffairsPen
+      priority: -1
+      whitelist:
+        tags:
+        - Write
+    bookSlot: # Frontier
+      startingItem: HyperlinkBookNfsdSop
+      priority: -2
+      whitelist:
+        tags:
+        - BookSpaceLaw
+        - BookNfsdSop
+  - type: PdaBorderColor
+    borderColor: "#FFFDD0"
+    accentHColor: "#896b49"
+  - type: Sprite
+    sprite: _NF/Objects/Devices/pda.rsi
+    layers:
+    - map: [ "enum.PdaVisualLayers.Base" ]
+    - state: "light_overlay"
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+      shader: "unshaded"
+      visible: false
+    - state: "id_overlay"
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+      shader: "unshaded"
+      visible: false
+  - type: Icon
+    sprite: _NF/Objects/Devices/pda.rsi
+    state: pda-pal
 
 - type: entity
   parent: HoPPDA

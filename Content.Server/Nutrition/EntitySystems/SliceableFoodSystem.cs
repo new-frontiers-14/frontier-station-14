@@ -90,9 +90,6 @@ public sealed class SliceableFoodSystem : EntitySystem
             var lostSolution =
                 _solutionContainer.SplitSolution(soln.Value, sliceVolume);
 
-            // FRONTIER MERGE: commented this out
-            //_solutionContainerSystem.SetCapacity(soln.Value, soln.Value.Comp.Solution.MaxVolume - solution.MaxVolume / FixedPoint2.New(component.Count)); // Frontier: remove food capacity after taking a slice.
-
             // Fill new slice
             FillSlice(sliceUid, lostSolution);
         }

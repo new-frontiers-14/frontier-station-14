@@ -33,7 +33,6 @@ using Content.Server.Popups;
 using Content.Shared.Verbs;
 using Robust.Shared.Collections;
 using Content.Shared.Ghost.Roles.Components;
-using Content.Server.Players.JobWhitelist; // Frontier
 using Content.Server._NF.Players.GhostRole.Events; // Frontier
 
 namespace Content.Server.Ghost.Roles;
@@ -385,7 +384,17 @@ public sealed class GhostRoleSystem : EntitySystem
         if (!_ghostRoles.TryGetValue(identifier, out var roleEnt))
             return;
 
-        // FRONTIER MERGE: TODO: check ghost role requirements
+        // Frontier: check for ghost role whitelist if we don't have one.
+        if (TryComp<GhostRoleComponent>(roleEnt, out var ghostRoleComponent) &&
+            _prototype.TryIndex(ghostRoleComponent.Prototype, out var ghostRolePrototype) &&
+            ghostRolePrototype.Whitelisted)
+        {
+            var ev = new IsGhostRoleAllowedEvent(player, ghostRolePrototype);
+            RaiseLocalEvent(ref ev);
+            if (ev.Cancelled)
+                return;
+        }
+        // End Frontier
 
         // get raffle or create a new one if it doesn't exist
         var raffle = _ghostRoleRaffles.TryGetValue(identifier, out var raffleEnt)
@@ -479,7 +488,17 @@ public sealed class GhostRoleSystem : EntitySystem
         if (!_ghostRoles.TryGetValue(identifier, out var role))
             return false;
 
-        // FRONTIER MERGE: TODO: check ghost role requirements
+        // Frontier: check for ghost role whitelist if we don't have one.
+        if (TryComp<GhostRoleComponent>(role, out var ghostRoleComponent) &&
+            _prototype.TryIndex(ghostRoleComponent.Prototype, out var ghostRolePrototype) &&
+            ghostRolePrototype.Whitelisted)
+        {
+            var allowEv = new IsGhostRoleAllowedEvent(player, ghostRolePrototype);
+            RaiseLocalEvent(ref allowEv);
+            if (allowEv.Cancelled)
+                return false;
+        }
+        // End Frontier
 
         var ev = new TakeGhostRoleEvent(player);
         RaiseLocalEvent(role, ref ev);
@@ -576,6 +595,7 @@ public sealed class GhostRoleSystem : EntitySystem
                 Rules = role.RoleRules,
                 Requirements = role.Requirements,
                 Kind = kind,
+                Prototype = role.Prototype, // Frontier
                 RafflePlayerCount = rafflePlayerCount,
                 RaffleEndTime = raffleEndTime
             });

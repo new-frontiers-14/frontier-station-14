@@ -21,6 +21,7 @@ using Robust.Shared.GameStates;
 using Robust.Shared.Map;
 using Robust.Shared.Utility;
 using Content.Shared.UserInterface;
+using Content.Shared.Access.Systems; // Frontier
 
 namespace Content.Server.Shuttles.Systems;
 
@@ -37,6 +38,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
     [Dependency] private readonly TagSystem _tags = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly SharedContentEyeSystem _eyeSystem = default!;
+    [Dependency] private readonly AccessReaderSystem _access = default!;
 
     private EntityQuery<MetaDataComponent> _metaQuery;
     private EntityQuery<TransformComponent> _xformQuery;
@@ -78,6 +80,8 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         SubscribeLocalEvent<FTLDestinationComponent, ComponentShutdown>(OnFtlDestShutdown);
 
         InitializeFTL();
+
+        InitializeNFDrone(); // Frontier: add our drone subscriptions
     }
 
     private void OnFtlDestStartup(EntityUid uid, FTLDestinationComponent component, ComponentStartup args)
@@ -177,6 +181,9 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         {
             return false;
         }
+
+        if (!_access.IsAllowed(user, uid)) // Frontier: check access
+            return false; // Frontier
 
         var pilotComponent = EnsureComp<PilotComponent>(user);
         var console = pilotComponent.Console;

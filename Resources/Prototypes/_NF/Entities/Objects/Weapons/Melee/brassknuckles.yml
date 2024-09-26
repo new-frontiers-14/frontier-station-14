@@ -1,0 +1,81 @@
+- type: entity
+  name: brass knuckles
+  parent: ClothingHandsBase
+  id: WeaponBrassKnuckles
+  description: Ever wanted to punch just a little harder? S.E.S.W.C has what you need!
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Melee/brassknuckles.rsi
+    state: icon
+  - type: Clothing
+    sprite: _NF/Objects/Weapons/Melee/brassknuckles.rsi
+  - type: MeleeWeapon
+    autoAttack: true
+    attackRate: 2 # ~12 dps
+    damage:
+      types:
+       Blunt: 6
+    soundHit:
+      collection: Punch
+    animation: WeaponArcFist
+    mustBeEquippedToUse: true
+  - type: Armor
+    modifiers:
+      coefficients:
+        Shock: 1.05 # oh no so conductive
+  - type: Insulated
+    coefficient: 1.5 # Extra damage. Don't punch wires, kids.
+  - type: Tag
+    tags:
+    - BrassKnucklesNF
+    - WhitelistChameleon
+  - type: PhysicalComposition
+    materialComposition:
+      Brass: 1000
+  - type: StaticPrice
+    price: 30 # Ensures these can be sold and have a reasonable vending value.
+
+- type: entity
+  name: improvised brass knuckles
+  parent: WeaponBrassKnuckles
+  id: WeaponBrassKnucklesImprovised
+  description: Ever wanted to punch just a little harder?
+  components:
+  - type: MeleeWeapon
+    attackRate: 1.6 # ~9.6 dps
+  - type: Construction
+    graph: GraphWeaponBrassKnucklesImprovised
+    node: WeaponBrassKnucklesImprovised
+
+- type: entity
+  name: crass knuckles
+  parent: WeaponBrassKnuckles
+  id: WeaponBrassKnucklesWhoopie
+  description: Questionably silent, questionably deadly.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Melee/crassknuckles.rsi
+    state: icon
+  - type: Clothing
+    sprite: _NF/Objects/Weapons/Melee/crassknuckles.rsi
+  - type: MeleeWeapon
+    damage:
+      types:
+       Blunt: 0 # ~0 dps :^)
+       Structural: 0
+    soundHit:
+      collection: Parp
+  - type: Construction
+    graph: GraphWeaponBrassKnucklesWhoopie
+    node: WeaponBrassKnucklesWhoopie
+  - type: StaminaDamageOnHit
+    damage: 4 # 8 per second, similar to the toy hammer
+  - type: Armor
+    modifiers:
+      coefficients:
+        Shock: 1.0 # Nothing special.
+  - type: Insulated
+    coefficient: 1 # Nothing special.
+  - type: Tag
+    tags:
+    - WhitelistChameleon

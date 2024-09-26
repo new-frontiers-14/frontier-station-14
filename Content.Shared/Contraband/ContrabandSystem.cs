@@ -68,6 +68,9 @@ public sealed class ContrabandSystem : EntitySystem
                 departments = id.Comp.JobDepartments;
             }
 
+            if (ent.Comp.HideCarryStatus) // Frontier: hide carry status
+                return; // Frontier: hide carry status
+
             // either its fully restricted, you have no departments, or your departments dont intersect with the restricted departments
             if (ent.Comp.AllowedDepartments is null
                 || departments is null

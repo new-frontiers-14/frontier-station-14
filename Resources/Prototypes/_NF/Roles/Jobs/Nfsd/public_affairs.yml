@@ -1,0 +1,42 @@
+- type: job
+  id: PublicAffairsLiaison
+  name: job-name-pal
+  description: job-description-public-affairs-liaison
+  playTimeTracker: JobPublicAffairsLiaison
+  requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 43200 # 12 hours
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 21600 # 6 hours
+  alternateRequirementSets:
+    longerPlaytimeLessSec:
+    - !type:OverallPlaytimeRequirement
+      time: 360000 # 100 hours
+  startingGear: PublicAffairGear
+  icon: "JobIconPublicAffairsLiaison"
+  supervisors: job-supervisors-cadet
+  canBeAntag: false
+  weight: 105
+  displayWeight: 15
+  accessGroups:
+  - CadetNfsdAccess
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant, TrackingImplant ]
+  - !type:GiveItemOnHolidaySpecial
+    holiday: FrontierBirthday
+    prototype: FrontierBirthdayGift
+
+- type: startingGear
+  id: PublicAffairGear
+  equipment:
+    pocket1: HyperlinkBookSpaceLaw
+    pocket2: BoxFolderClipboardPal
+    neck: ClothingNeckPublicAffairsLiaisonBadge
+  storage:
+    back:
+    - Flash
+    - BoxFolderPalBrown
+    - BoxFolderNfsdForms
+    - RubberStampPal

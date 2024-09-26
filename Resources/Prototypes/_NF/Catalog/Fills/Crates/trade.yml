@@ -21,3 +21,29 @@
 - type: entity
   id: CrateTradeContrabandSecureCyberSunFilled
   parent: CrateTradeContrabandSecureCyberSun
+
+- type: entity
+  id: CrateTradeSecureNormalFilledContraband
+  parent: [CrateTradeSecureNormalFilled, BaseC3SyndicateContrabandNoValue]
+  description: Contains goods made in the Spinward sector, ready to be smuggled to a cargo depot for profit. MAKE SURE THE CRATE IS INTACT.
+  components:
+  - type: StaticPrice
+    price: 3000
+  - type: DisableShipyardSale
+    reason: shipyard-console-contraband-onboard
+    allowedShipyardTypes:
+    - Syndicate
+    - BlackMarket
+
+- type: entity
+  id: CrateTradeSecureHighFilledContraband
+  parent: [CrateTradeSecureHighFilled, BaseC3SyndicateContrabandNoValue]
+  description: Contains exotic goods made in the Spinward sector, ready to be smuggled to a cargo depot for profit. MAKE SURE THE CRATE IS INTACT.
+  components:
+  - type: StaticPrice
+    price: 5000
+  - type: DisableShipyardSale
+    reason: shipyard-console-contraband-onboard
+    allowedShipyardTypes:
+    - Syndicate
+    - BlackMarket
