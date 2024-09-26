@@ -88,7 +88,7 @@ public abstract class SharedJetpackSystem : EntitySystem
         // https://discord.com/channels/310555209753690112/310555209753690112/1270067921682694234
         if (TryComp<JetpackComponent>(component.Jetpack, out var jetpack) &&
             (!CanEnableOnGrid(args.Transform.GridUid) ||
-            !CanEnable(uid, jetpack))) // Frontier
+            !UserNotParented(uid, jetpack))) // Frontier
         {
             SetEnabled(component.Jetpack, jetpack, false, uid);
 
