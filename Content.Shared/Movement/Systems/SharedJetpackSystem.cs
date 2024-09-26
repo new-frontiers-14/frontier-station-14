@@ -52,6 +52,9 @@ public abstract class SharedJetpackSystem : EntitySystem
 
     private void OnJetpackUserGravityChanged(ref GravityChangedEvent ev)
     {
+        if (_config.GetCVar(CCVars.JetpackEnableAnywhere)) // Frontier
+            return; // Frontier
+
         var gridUid = ev.ChangedGridIndex;
         var jetpackQuery = GetEntityQuery<JetpackComponent>();
 
@@ -80,8 +83,13 @@ public abstract class SharedJetpackSystem : EntitySystem
 
     private void OnJetpackUserEntParentChanged(EntityUid uid, JetpackUserComponent component, ref EntParentChangedMessage args)
     {
+        // Frontier: note - comment from upstream, dead men tell no tales
+        // No and no again! Do not attempt to activate the jetpack on a grid with gravity disabled. You will not be the first or the last to try this.
+        // https://discord.com/channels/310555209753690112/310555209753690112/1270067921682694234
         if (TryComp<JetpackComponent>(component.Jetpack, out var jetpack) &&
-            !CanEnableOnGrid(args.Transform.GridUid))
+            (args.Transform.ParentUid != args.Transform.GridUid && // Frontier: disable jetpack when hopping on/off of vehicles/bags
+            args.Transform.ParentUid != args.Transform.MapUid || // Frontier
+            !CanEnableOnGrid(args.Transform.GridUid)))
         {
             SetEnabled(component.Jetpack, jetpack, false, uid);
 
@@ -125,16 +133,19 @@ public abstract class SharedJetpackSystem : EntitySystem
 
         SetEnabled(uid, component, !IsEnabled(uid));
     }
-    // Start EE Code
+
     private bool CanEnableOnGrid(EntityUid? gridUid)
     {
-        return _config.GetCVar(CCVars.JetpackEnableAnywhere)
-            || gridUid == null
-            || _config.GetCVar(CCVars.JetpackEnableInNoGravity)
-            && TryComp<GravityComponent>(gridUid, out var comp)
-            && comp.Enabled;
+        // No and no again! Do not attempt to activate the jetpack on a grid with gravity disabled. You will not be the first or the last to try this.
+        // https://discord.com/channels/310555209753690112/310555209753690112/1270067921682694234
+        return gridUid == null ||
+            // (!HasComp<GravityComponent>(gridUid)); // EE
+            _config.GetCVar(CCVars.JetpackEnableAnywhere) || // EE
+            _config.GetCVar(CCVars.JetpackEnableInNoGravity) && // EE
+            TryComp<GravityComponent>(gridUid, out var comp) && // EE
+            !comp.Enabled; // EE
     }
-    // End EE Code
+
     private void OnJetpackGetAction(EntityUid uid, JetpackComponent component, GetItemActionsEvent args)
     {
         args.AddAction(ref component.ToggleActionEntity, component.ToggleAction);
