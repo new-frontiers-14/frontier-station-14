@@ -254,10 +254,20 @@ namespace Content.Server.Carrying
                 return;
             }
 
-            var length = TimeSpan.FromSeconds(component.PickupDuration
-                        * _contests.MassContest(carriedPhysics, carrierPhysics, false, 4f)
-                        * _contests.StaminaContest(carrier, carried)
-                        * (_standingState.IsDown(carried) ? 0.5f : 1));
+            // Frontier: comment previous version, clamp its output
+            // var length = TimeSpan.FromSeconds(component.PickupDuration
+            //             * _contests.MassContest(carriedPhysics, carrierPhysics, false, 4f)
+            //             * _contests.StaminaContest(carrier, carried)
+            //             * (_standingState.IsDown(carried) ? 0.5f : 1));
+
+            var length = TimeSpan.FromSeconds(
+                float.Clamp(component.PickupDuration
+                    * _contests.MassContest(carriedPhysics, carrierPhysics, false, 4f)
+                    * _contests.StaminaContest(carrier, carried)
+                    * (_standingState.IsDown(carried) ? 0.5f : 1),
+                component.MinPickupDuration,
+                component.MaxPickupDuration));
+            // End Frontier
 
             component.CancelToken = new CancellationTokenSource();
 
