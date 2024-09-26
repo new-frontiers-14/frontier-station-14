@@ -20,5 +20,21 @@ namespace Content.Server.Carrying
         /// </summary>
         [DataField]
         public float PickupDuration = 3;
+
+        // Frontier: min/max sanitization
+        /// <summary>
+        ///     The minimum duration (in seconds) of how long it should take to pick up this entity.
+        ///     When the heaviest object picks up lightest object, it should take this long.
+        /// </summary>
+        [DataField]
+        public float MinPickupDuration = 1.5f;
+
+        /// <summary>
+        ///     The base duration (In Seconds) of how long it should take to pick up this entity
+        ///     When the heaviest object picks up lightest object (), it should take this long.
+        /// </summary>
+        [DataField]
+        public float MaxPickupDuration = 6.0f;
+        // End Frontier
     }
 }

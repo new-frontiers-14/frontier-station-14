@@ -142,8 +142,19 @@ namespace Content.Server.Carrying
 
             args.ItemUid = virtItem.BlockingEntity;
 
-            args.ThrowSpeed *= _contests.MassContest(uid, virtItem.BlockingEntity, false, 2f)
-                            * _contests.StaminaContest(uid, virtItem.BlockingEntity);
+            // args.ThrowSpeed *= _contests.MassContest(uid, virtItem.BlockingEntity, false, 2f) // Frontier
+            //                 * _contests.StaminaContest(uid, virtItem.BlockingEntity); // Frontier
+
+            // Frontier: sanitized throw range
+            var throwSpeedCoeff = component.BaseThrowingSpeedCoeff
+                             * float.Min(
+                                _contests.MassContest(uid, virtItem.BlockingEntity, false, 2f)
+                                * _contests.StaminaContest(uid, virtItem.BlockingEntity),
+                             component.MaxContestThrowingSpeedCoeff);
+            args.ThrowSpeed *= throwSpeedCoeff;
+            if (throwSpeedCoeff < 1)
+                args.Direction *= throwSpeedCoeff; // Reduce direction vector, results in less time in air (no long, slow tosses).
+            // End Frontier
         }
 
         private void OnParentChanged(EntityUid uid, CarryingComponent component, ref EntParentChangedMessage args)
