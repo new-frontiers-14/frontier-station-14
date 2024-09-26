@@ -39,3 +39,7 @@ ghost-role-information-hovertaxibot-description = Fly passengers to where they n
 
 ghost-role-information-BananaDuck-name = Quanana
 ghost-role-information-BananaDuck-description = You are the chef's favorite child. You're a living banana duck.
+
+# Adopted from space-wizards #26265 (Thank you, PolterTzi)
+ghost-role-information-yipyip-name = Yip Yip
+ghost-role-information-yipyip-description = Notorious lounge lizard and bartender at Bahama Mama's. This drink-slinging kobold lives to serve his patrons.
