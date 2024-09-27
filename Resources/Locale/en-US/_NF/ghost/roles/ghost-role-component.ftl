@@ -8,6 +8,9 @@ ghost-role-information-emotional-support-rules = You are an [color=lightpink][bo
 ghost-role-information-clippy-name = Clippy
 ghost-role-information-clippy-description = The Station Representative's loyal worker, smells like cardboard and papers.
 
+ghost-role-information-clugg-name = Clugg
+ghost-role-information-clugg-description = Ugg! Clugg love eat meat. Find new home off space rock, make big hunt.
+
 ghost-role-information-clarpy-name = Clarpy
 ghost-role-information-clarpy-description = Avast ye mail! wanted by Nanotrasen for crimes against mice.
 ghost-role-information-clarpy-rules = You are a [color=red][bold]Team Antagonist[/bold][/color] with all other pirates.
@@ -36,3 +39,7 @@ ghost-role-information-taxibot-description = Drive passengers to where they need
 
 ghost-role-information-hovertaxibot-name = Hovertaxibot
 ghost-role-information-hovertaxibot-description = Fly passengers to where they need to go, remember to check they can breathe!
+
+# Adopted from space-wizards #26265 (Thank you, PolterTzi)
+ghost-role-information-yipyip-name = Yip Yip
+ghost-role-information-yipyip-description = Notorious lounge lizard and bartender at Bahama Mama's. This drink-slinging kobold lives to serve his patrons.
