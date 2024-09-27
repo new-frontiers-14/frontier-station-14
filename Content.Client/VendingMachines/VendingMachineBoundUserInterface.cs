@@ -2,7 +2,6 @@ using Content.Client.UserInterface.Controls;
 using Content.Client.VendingMachines.UI;
 using Content.Shared.VendingMachines;
 using Content.Shared.Bank.Components;
-using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface;
 using Robust.Shared.Input;
 using System.Linq;
@@ -18,7 +17,7 @@ namespace Content.Client.VendingMachines
         [ViewVariables]
         private List<VendingMachineInventoryEntry> _cachedInventory = new();
 
-        // Frontier: market price modifier
+        // Frontier: market price modifier & balance
         private UserInterfaceSystem _uiSystem = default!;
         private IEntityManager _entMan = default!;
 
@@ -67,7 +66,7 @@ namespace Content.Client.VendingMachines
             }
             // End Frontier
 
-            _menu?.Populate(_cachedInventory, _mod, _balance);
+            _menu?.Populate(_cachedInventory, _mod, _balance); // Frontier: add _balance
         }
 
         private void OnItemSelected(GUIBoundKeyEventArgs args, ListData data)
