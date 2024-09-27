@@ -64,3 +64,205 @@
       - id: FoodCoffeeBeansRaw
     sound:
       path: /Audio/Effects/packetrip.ogg
+
+- type: entity
+  name: avocado
+  parent: FoodProduceBase
+  id: FoodAvocado
+  description: Like delicious buttery grass.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - avocado
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 16
+        reagents:
+        - ReagentId: Nutriment #place holder
+          Quantity: 10
+        - ReagentId: Vitamin
+          Quantity: 6
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Hydroponics/avocado.rsi
+  - type: Produce
+    seedId: avocado
+  - type: SliceableFood
+    count: 2
+    slice: FoodAvocadoSlice
+  - type: Extractable
+    grindableSolutionName: food
+    juiceSolution:
+      reagents:
+      - ReagentId: OilVegetable
+        Quantity: 5
+  - type: Tag
+    tags:
+      - Fruit
+
+- type: entity
+  name: avocado slice
+  parent: ProduceSliceBase
+  id: FoodAvocadoSlice
+  description: Like delicious, fun-sized buttery grass.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - avocado
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: Vitamin
+          Quantity: 3
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Hydroponics/avocado.rsi
+  - type: Extractable
+    grindableSolutionName: food
+    juiceSolution:
+      reagents:
+      - ReagentId: OilVegetable
+        Quantity: 2.5
+  - type: Tag
+    tags:
+      - Fruit
+      - Slice
+
+- type: entity
+  name: cucumber
+  parent: FoodProduceBase
+  id: FoodCucumber
+  description: Like fresh crispy water.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - cucumber
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment #place holder
+          Quantity: 6
+        - ReagentId: Vitamin
+          Quantity: 4
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Hydroponics/cucumber.rsi
+  - type: Produce
+    seedId: cucumber
+  - type: SliceableFood
+    count: 4
+    slice: FoodCucumberSlice
+  - type: Extractable
+    grindableSolutionName: food
+    juiceSolution:
+      reagents:
+      - ReagentId: CucumberWater
+        Quantity: 10
+  - type: Tag
+    tags:
+      - Vegetable
+
+- type: entity
+  name: cucumber slice
+  parent: ProduceSliceBase
+  id: FoodCucumberSlice
+  description: Like fresh crispy water, but smaller.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - cucumber
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 1.5
+        - ReagentId: Vitamin
+          Quantity: 1
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Hydroponics/cucumber.rsi
+  - type: Extractable
+    grindableSolutionName: food
+    juiceSolution:
+      reagents:
+      - ReagentId: CucumberWater
+        Quantity: 2.5
+  - type: Tag
+    tags:
+      - Vegetable
+      - Slice
+
+- type: entity
+  name: pickle
+  parent: FoodProduceBase
+  id: FoodPickle
+  description: Like tangy crispy water.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - salty
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment #place holder
+          Quantity: 6
+        - ReagentId: Vitamin
+          Quantity: 4
+        - ReagentId: Saline
+          Quantity: 10
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Hydroponics/cucumber.rsi
+    state: pickle
+  - type: SliceableFood
+    count: 4
+    slice: FoodPickleSlice
+  - type: Extractable
+    grindableSolutionName: food
+    juiceSolution:
+      reagents:
+      - ReagentId: Saline
+        Quantity: 10
+  - type: Tag
+    tags:
+      - Vegetable
+
+- type: entity
+  name: pickle slice
+  parent: ProduceSliceBase
+  id: FoodPickleSlice
+  description: Like tangy crispy water, but smaller.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - salty
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 1.5
+        - ReagentId: Vitamin
+          Quantity: 1
+        - ReagentId: Saline
+          Quantity: 2.5
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Hydroponics/cucumber.rsi
+    state: pickleslice
+  - type: Extractable
+    grindableSolutionName: food
+    juiceSolution:
+      reagents:
+      - ReagentId: Saline
+        Quantity: 2.5
+  - type: Tag
+    tags:
+      - Vegetable
+      - Slice

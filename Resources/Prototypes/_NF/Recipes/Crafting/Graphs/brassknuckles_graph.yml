@@ -1,0 +1,36 @@
+- type: constructionGraph
+  id: GraphWeaponBrassKnucklesImprovised
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: WeaponBrassKnucklesImprovised
+      steps:
+      - material: Brass
+        amount: 10
+        doAfter: 4
+  - node: WeaponBrassKnucklesImprovised
+    entity: WeaponBrassKnucklesImprovised
+
+- type: constructionGraph
+  id: GraphWeaponBrassKnucklesWhoopie
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: WeaponBrassKnucklesWhoopie
+      steps:
+      - tag: BrassKnucklesNF
+        icon:
+          sprite: _NF/Objects/Weapons/Melee/brassknuckles.rsi
+          state: icon
+        name: brass knuckles
+        doAfter: 2
+      - tag: WhoopieCushion
+        icon:
+          sprite: Objects/Fun/whoopie.rsi
+          state: icon
+        name: whoopie cushion
+        doAfter: 2
+  - node: WeaponBrassKnucklesWhoopie
+    entity: WeaponBrassKnucklesWhoopie

@@ -15,4 +15,13 @@ public sealed partial class TallWhitelistComponent : Component
 
     [DataField]
     public bool CosmeticOnly = true;
+
+    [DataField]
+    public List<Box2i>? Shape;
+
+    [DataField]
+    public Vector2i? StoredOffset;
+
+    [DataField]
+    public float StoredRotation = 0;
 }

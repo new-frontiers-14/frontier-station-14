@@ -15,7 +15,7 @@ using Content.Shared.Interaction;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Item;
-using Content.Shared.Item.PseudoItem;
+using Content.Shared.Nyanotrasen.Item.PseudoItem;
 using Content.Shared.Lock;
 using Content.Shared.Materials;
 using Content.Shared.Placeable;

@@ -20,6 +20,7 @@ using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Content.Shared.Localizations;
 using Content.Server.Construction; // Frontier
+using Content.Server.DeviceLinking.Events; // Frontier
 
 namespace Content.Server.Shuttles.Systems;
 
@@ -57,7 +58,35 @@ public sealed class ThrusterSystem : EntitySystem
 
         SubscribeLocalEvent<ThrusterComponent, RefreshPartsEvent>(OnRefreshParts);
         SubscribeLocalEvent<ThrusterComponent, UpgradeExamineEvent>(OnUpgradeExamine);
+        SubscribeLocalEvent<ThrusterComponent, SignalReceivedEvent>(OnSignalReceived); // Frontier
     }
+
+    // Frontier: signal handler
+    private void OnSignalReceived(EntityUid uid, ThrusterComponent component, ref SignalReceivedEvent args)
+    {
+        if (args.Port == component.OffPort)
+            component.Enabled = false;
+        else if (args.Port == component.OnPort)
+            component.Enabled = true;
+        else if (args.Port == component.TogglePort)
+            component.Enabled ^= true;
+        else
+            return; // Invalid port, don't change the thruster.
+
+        if (!component.Enabled)
+        {
+            if (TryComp<ApcPowerReceiverComponent>(uid, out var apcPower) && component.OriginalLoad != 0 && apcPower.Load != 1)
+                apcPower.Load = 1;
+            DisableThruster(uid, component);
+        }
+        else if (CanEnable(uid, component))
+        {
+            if (TryComp<ApcPowerReceiverComponent>(uid, out var apcPower) && component.OriginalLoad != apcPower.Load)
+                apcPower.Load = component.OriginalLoad;
+            EnableThruster(uid, component);
+        }
+    }
+    // End Frontier: signal handler
 
     private void OnThrusterExamine(EntityUid uid, ThrusterComponent component, ExaminedEvent args)
     {
@@ -141,9 +170,8 @@ public sealed class ThrusterSystem : EntitySystem
 
         if (!component.Enabled)
         {
-            if (TryComp<ApcPowerReceiverComponent>(uid, out var apcPower) && component.OriginalLoad != 0) // Frontier
-                apcPower.Load = 1; // Frontier
-
+            if (TryComp<ApcPowerReceiverComponent>(uid, out var apcPower) && component.OriginalLoad != 0 && apcPower.Load != 1) // Frontier
+                apcPower.Load = 1;  // Frontier
             DisableThruster(uid, component);
             args.Handled = true;
         }
@@ -151,7 +179,6 @@ public sealed class ThrusterSystem : EntitySystem
         {
             if (TryComp<ApcPowerReceiverComponent>(uid, out var apcPower) && component.OriginalLoad != apcPower.Load) // Frontier
                 apcPower.Load = component.OriginalLoad; // Frontier
-
             EnableThruster(uid, component);
             args.Handled = true;
         }
