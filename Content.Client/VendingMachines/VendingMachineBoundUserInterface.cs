@@ -6,6 +6,7 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface;
 using Robust.Shared.Input;
 using System.Linq;
+using Robust.Client.GameObjects;
 
 namespace Content.Client.VendingMachines
 {
@@ -18,8 +19,13 @@ namespace Content.Client.VendingMachines
         private List<VendingMachineInventoryEntry> _cachedInventory = new();
 
         // Frontier: market price modifier
+        private UserInterfaceSystem _uiSystem = default!;
+        private IEntityManager _entMan = default!;
+
         [ViewVariables]
         private float _mod = 1f;
+        [ViewVariables]
+        private int _balance = 0;
         // End Frontier
 
         public VendingMachineBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
@@ -32,8 +38,13 @@ namespace Content.Client.VendingMachines
 
             var entMan = IoCManager.Resolve<IEntityManager>();
 
+            // Frontier: state, market modifier, balance status
+            _entMan = entMan;
+            _uiSystem = entMan.System<UserInterfaceSystem>();
+
             if (entMan.TryGetComponent<MarketModifierComponent>(Owner, out var market))
                 _mod = market.Mod;
+            // End Frontier
 
             _menu = this.CreateWindow<VendingMachineMenu>();
             _menu.OpenCenteredLeft();
@@ -47,7 +58,16 @@ namespace Content.Client.VendingMachines
             var system = EntMan.System<VendingMachineSystem>();
             _cachedInventory = system.GetAllInventory(Owner);
 
-            _menu?.Populate(_cachedInventory, _mod);
+            // Frontier: state, market modifier, balance status
+            var uiUsers = _uiSystem.GetActors(Owner, UiKey);
+            foreach (var uiUser in uiUsers)
+            {
+                if (_entMan.TryGetComponent<BankAccountComponent>(uiUser, out var bank))
+                    _balance = bank.Balance;
+            }
+            // End Frontier
+
+            _menu?.Populate(_cachedInventory, _mod, _balance);
         }
 
         private void OnItemSelected(GUIBoundKeyEventArgs args, ListData data)

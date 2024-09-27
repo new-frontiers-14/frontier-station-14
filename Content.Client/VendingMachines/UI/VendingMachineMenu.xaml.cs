@@ -84,8 +84,10 @@ namespace Content.Client.VendingMachines.UI
         /// Populates the list of available items on the vending machine interface
         /// and sets icons based on their prototypes
         /// </summary>
-        public void Populate(List<VendingMachineInventoryEntry> inventory, float priceModifier)
+        public void Populate(List<VendingMachineInventoryEntry> inventory, float priceModifier, int balance) // Frontier: add balance
         {
+            BalanceLabel.Text = BankSystemExtensions.ToSpesoString(balance); // Frontier
+
             if (inventory.Count == 0 && VendingContents.Visible)
             {
                 SearchBar.Visible = false;
