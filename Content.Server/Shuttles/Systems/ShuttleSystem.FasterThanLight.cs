@@ -69,13 +69,6 @@ public sealed partial class ShuttleSystem
     /// </summary>
     private const int FTLProximityIterations = 5;
 
-    // FRONTIER MERGE: REMOVE?
-    /// <summary>
-    /// Minimum mass for an FTL destination
-    /// </summary>
-    // public const float FTLDestinationMass = 1200f;
-    // End Frontier
-
     private readonly HashSet<EntityUid> _lookupEnts = new();
     private readonly HashSet<EntityUid> _immuneEnts = new();
     private readonly HashSet<Entity<NoFTLComponent>> _noFtls = new();
