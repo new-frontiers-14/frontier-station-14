@@ -15,12 +15,12 @@ public sealed class SalvageMobRestrictionsSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<SalvageMobRestrictionsNFComponent, ComponentInit>(OnInit);
-        SubscribeLocalEvent<SalvageMobRestrictionsNFComponent, ComponentRemove>(OnRemove);
+        SubscribeLocalEvent<NFSalvageMobRestrictionsComponent, ComponentInit>(OnInit);
+        SubscribeLocalEvent<NFSalvageMobRestrictionsComponent, ComponentRemove>(OnRemove);
         SubscribeLocalEvent<SalvageMobRestrictionsGridComponent, ComponentRemove>(OnRemoveGrid);
     }
 
-    private void OnInit(EntityUid uid, SalvageMobRestrictionsNFComponent component, ComponentInit args)
+    private void OnInit(EntityUid uid, NFSalvageMobRestrictionsComponent component, ComponentInit args)
     {
         var gridUid = Transform(uid).ParentUid;
         if (!EntityManager.EntityExists(gridUid))
@@ -38,7 +38,7 @@ public sealed class SalvageMobRestrictionsSystem : EntitySystem
         component.LinkedGridEntity = gridUid;
     }
 
-    private void OnRemove(EntityUid uid, SalvageMobRestrictionsNFComponent component, ComponentRemove args)
+    private void OnRemove(EntityUid uid, NFSalvageMobRestrictionsComponent component, ComponentRemove args)
     {
         if (TryComp(component.LinkedGridEntity, out SalvageMobRestrictionsGridComponent? rg))
         {

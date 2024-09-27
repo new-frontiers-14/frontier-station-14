@@ -1,5 +1,6 @@
 using System.Numerics;
 using Content.Client.Administration.Systems;
+using Content.Shared._NF.Bank;
 using Robust.Client.Graphics;
 using Robust.Client.ResourceManagement;
 using Robust.Shared.Enums;
@@ -61,12 +62,14 @@ internal sealed class AdminNameOverlay : Overlay
             var screenCoordinates = _eyeManager.WorldToScreen(aabb.Center +
                                                               new Angle(-_eyeManager.CurrentEye.Rotation).RotateVec(
                                                                   aabb.TopRight - aabb.Center)) + new Vector2(1f, 7f);
+            var balance = playerInfo.Balance == int.MinValue ? "NO BALANCE" : BankSystemExtensions.ToCurrencyString(playerInfo.Balance); // Frontier
             if (playerInfo.Antag)
             {
-                args.ScreenHandle.DrawString(_font, screenCoordinates + (lineoffset * 2), "ANTAG", Color.OrangeRed);
+                args.ScreenHandle.DrawString(_font, screenCoordinates + (lineoffset * 3), "ANTAG", Color.OrangeRed); // Frontier: 2<3
             }
             args.ScreenHandle.DrawString(_font, screenCoordinates+lineoffset, playerInfo.Username, playerInfo.Connected ? Color.Yellow : Color.White);
             args.ScreenHandle.DrawString(_font, screenCoordinates, playerInfo.CharacterName, playerInfo.Connected ? Color.Aquamarine : Color.White);
+            args.ScreenHandle.DrawString(_font, screenCoordinates + lineoffset * 2, $"Balance: {balance}", playerInfo.Connected ? Color.Aquamarine : Color.White); // Frontier
         }
     }
 }

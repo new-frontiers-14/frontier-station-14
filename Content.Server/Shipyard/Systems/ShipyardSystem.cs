@@ -18,6 +18,7 @@ using Content.Shared.Coordinates;
 using Content.Shared.Shipyard.Events;
 using Content.Shared.Mobs.Components;
 using Robust.Shared.Containers;
+using Content.Server._NF.Smuggling.Components;
 
 namespace Content.Server.Shipyard.Systems;
 
@@ -46,12 +47,15 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         Undocked, // Ship is not docked with the station.
         OrganicsAboard, // Sapient intelligence is aboard, cannot sell, would delete the organics
         InvalidShip, // Ship is invalid
+        MessageOverwritten, // Overwritten message.
     }
 
+    // TODO: swap to strictly being a formatted message.
     public struct ShipyardSaleResult
     {
         public ShipyardSaleError Error; // Whether or not the ship can be sold.
         public string? OrganicName; // In case an organic is aboard, this will be set to the first that's aboard.
+        public string? OverwrittenMessage; // The message to write if Error is MessageOverwritten.
     }
 
     public override void Initialize()

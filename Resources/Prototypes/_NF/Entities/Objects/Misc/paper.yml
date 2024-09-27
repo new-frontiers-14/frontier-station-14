@@ -90,3 +90,20 @@
         prob: 0.2
       - id: Paper
         prob: 0.2
+
+- type: entity
+  id: PaperDeadDropHint
+  parent: Paper
+  name: suspicious note
+  description: A crinkled sheet with scribbles on it. Seems to have been written in a hurry.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: DeadDropHint
+  - type: Paper
+    content: deaddrop-faxed-hint-content
+
+- type: entity
+  id: PaperDeadDropFax
+  parent: PaperDeadDropHint
+  name: suspicious fax
+  description: A sheet with blurry, crooked text on it. Seems to have been copied in a hurry.
