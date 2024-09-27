@@ -1,0 +1,409 @@
+# Base
+# Localisation file \Resources\Locale\en-US\_NF\structure\weapon-racks.ftl
+- type: entity
+  id: StructureWeaponRackBase
+  name: weapon rack
+  parent: BaseStructure
+  description: A storage unit for expedited pacification measures.
+  abstract: true
+  components:
+  - type: Anchorable
+  - type: InteractionOutline
+  - type: Transform
+    anchored: true
+    noRot: true
+  - type: Sprite
+    snapCardinals: true
+    noRot: true
+    sprite: _NF/Structures/Furniture/Armory/weapon_rack.rsi
+    layers:
+    - state: base-gun
+      color: "#515e5e"
+  - type: Appearance
+  - type: Damageable
+    damageModifierSet: Metallic
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 600
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: StaticPrice
+    price: 80
+
+- type: entity
+  id: StructureWeaponRackSlots
+  parent: StructureWeaponRackBase
+  abstract: true
+  components:
+  - type: ContainerContainer
+    containers:
+      weapon1: !type:ContainerSlot
+      weapon2: !type:ContainerSlot
+      weapon3: !type:ContainerSlot
+      weapon4: !type:ContainerSlot
+      weapon5: !type:ContainerSlot
+
+# Gun racks
+- type: entity
+  id: StructureGunRack
+  name: gun rack
+  parent: StructureWeaponRackSlots
+  suffix: Empty
+  components:
+  - type: ItemSlots
+    slots:
+      weapon1:
+        insertVerbText: weapon-rack-verb-insert-weapon-01
+        ejectVerbText: weapon-rack-verb-eject-weapon-01
+        name: weapon-rack-name-stored-weapon-slot
+        whitelist:
+          components:
+          - Gun
+      weapon2:
+        insertVerbText: weapon-rack-verb-insert-weapon-02
+        ejectVerbText: weapon-rack-verb-eject-weapon-02
+        name: weapon-rack-name-stored-weapon-slot
+        whitelist:
+          components:
+          - Gun
+      weapon3:
+        insertVerbText: weapon-rack-verb-insert-weapon-03
+        ejectVerbText: weapon-rack-verb-eject-weapon-03
+        name: weapon-rack-name-stored-weapon-slot
+        whitelist:
+          components:
+          - Gun
+      weapon4:
+        insertVerbText: weapon-rack-verb-insert-weapon-04
+        ejectVerbText: weapon-rack-verb-eject-weapon-04
+        name: weapon-rack-name-stored-weapon-slot
+        whitelist:
+          components:
+          - Gun
+      weapon5:
+        insertVerbText: weapon-rack-verb-insert-weapon-05
+        ejectVerbText: weapon-rack-verb-eject-weapon-05
+        name: weapon-rack-name-stored-weapon-slot
+        whitelist:
+          components:
+          - Gun
+  - type: ItemMapper
+    sprite: _NF/Structures/Furniture/Armory/weapon_rack.rsi
+    mapLayers:
+      gun-1:
+        minCount: 1
+        whitelist:
+          components:
+          - Gun
+      gun-2:
+        minCount: 2
+        whitelist:
+          components:
+          - Gun
+      gun-3:
+        minCount: 3
+        whitelist:
+          components:
+          - Gun
+      gun-4:
+        minCount: 4
+        whitelist:
+          components:
+          - Gun
+      gun-5:
+        minCount: 5
+        whitelist:
+          components:
+          - Gun
+  - type: Construction
+    graph: WeaponRackConstructionGraph
+    node: GunRackNode
+
+- type: entity
+  id: StructureGunRackWallmounted
+  parent: StructureGunRack
+  suffix: Empty, Wallmount
+  components:
+  - type: WallMount
+    arc: 360
+  - type: Sprite
+    layers:
+    - state: base-gun-wall
+      color: "#515e5e"
+  - type: Construction
+    graph: WeaponRackConstructionGraph
+    node: GunRackWallmountedNode
+
+# Melee weapon racks
+- type: entity
+  id: StructureMeleeWeaponRack
+  name: melee weapon rack
+  parent: StructureWeaponRackSlots
+  suffix: Empty
+  components:
+  - type: Sprite
+    layers:
+    - state: base-melee
+      color: "#515e5e"
+  - type: ItemSlots
+    slots:
+      weapon1:
+        insertVerbText: weapon-rack-verb-insert-weapon-01
+        ejectVerbText: weapon-rack-verb-eject-weapon-01
+        name: weapon-rack-name-stored-weapon-slot
+        whitelist:
+          components:
+          - MeleeWeapon
+      weapon2:
+        insertVerbText: weapon-rack-verb-insert-weapon-02
+        ejectVerbText: weapon-rack-verb-eject-weapon-02
+        name: weapon-rack-name-stored-weapon-slot
+        whitelist:
+          components:
+          - MeleeWeapon
+      weapon3:
+        insertVerbText: weapon-rack-verb-insert-weapon-03
+        ejectVerbText: weapon-rack-verb-eject-weapon-03
+        name: weapon-rack-name-stored-weapon-slot
+        whitelist:
+          components:
+          - MeleeWeapon
+      weapon4:
+        insertVerbText: weapon-rack-verb-insert-weapon-04
+        ejectVerbText: weapon-rack-verb-eject-weapon-04
+        name: weapon-rack-name-stored-weapon-slot
+        whitelist:
+          components:
+          - MeleeWeapon
+      weapon5:
+        insertVerbText: weapon-rack-verb-insert-weapon-05
+        ejectVerbText: weapon-rack-verb-eject-weapon-05
+        name: weapon-rack-name-stored-weapon-slot
+        whitelist:
+          components:
+          - MeleeWeapon
+  - type: ItemMapper
+    sprite: _NF/Structures/Furniture/Armory/weapon_rack.rsi
+    mapLayers:
+      melee-1:
+        minCount: 1
+        whitelist:
+          components:
+          - MeleeWeapon
+      melee-2:
+        minCount: 2
+        whitelist:
+          components:
+          - MeleeWeapon
+      melee-3:
+        minCount: 3
+        whitelist:
+          components:
+          - MeleeWeapon
+      melee-4:
+        minCount: 4
+        whitelist:
+          components:
+          - MeleeWeapon
+      melee-5:
+        minCount: 5
+        whitelist:
+          components:
+          - MeleeWeapon
+  - type: Construction
+    graph: WeaponRackConstructionGraph
+    node: MeleeRackNode
+
+- type: entity
+  id: StructureMeleeWeaponRackWallmounted
+  parent: StructureMeleeWeaponRack
+  suffix: Empty, Wallmount
+  components:
+  - type: WallMount
+    arc: 360
+  - type: Sprite
+    layers:
+    - state: base-melee-wall
+      color: "#515e5e"
+  - type: Construction
+    graph: WeaponRackConstructionGraph
+    node: PistolRackWallmountedNode
+
+# Pistol rack (slots)
+- type: entity
+  id: StructurePistolRack
+  name: sidearm rack
+  parent: StructureWeaponRackSlots
+  suffix: Empty
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.10,-0.10,0.10,0.10"
+        density: 500
+        mask:
+        - TabletopMachineMask
+  - type: Sprite
+    layers:
+    - state: base-pistol
+      color: "#515e5e"
+  - type: ItemSlots
+    slots:
+      weapon1:
+        insertVerbText: weapon-rack-verb-insert-weapon-01
+        ejectVerbText: weapon-rack-verb-eject-weapon-01
+        name: weapon-rack-name-stored-weapon-slot
+        whitelist:
+          tags:
+          - Sidearm
+      weapon2:
+        insertVerbText: weapon-rack-verb-insert-weapon-02
+        ejectVerbText: weapon-rack-verb-eject-weapon-02
+        name: weapon-rack-name-stored-weapon-slot
+        whitelist:
+          tags:
+          - Sidearm
+      weapon3:
+        insertVerbText: weapon-rack-verb-insert-weapon-03
+        ejectVerbText: weapon-rack-verb-eject-weapon-03
+        name: weapon-rack-name-stored-weapon-slot
+        whitelist:
+          tags:
+          - Sidearm
+      weapon4:
+        insertVerbText: weapon-rack-verb-insert-weapon-04
+        ejectVerbText: weapon-rack-verb-eject-weapon-04
+        name: weapon-rack-name-stored-weapon-slot
+        whitelist:
+          tags:
+          - Sidearm
+  - type: ItemMapper
+    sprite: _NF/Structures/Furniture/Armory/weapon_rack.rsi
+    mapLayers:
+      pistol-1:
+        minCount: 1
+        whitelist:
+          tags:
+          - Sidearm
+      pistol-2:
+        minCount: 2
+        whitelist:
+          tags:
+          - Sidearm
+      pistol-3:
+        minCount: 3
+        whitelist:
+          tags:
+          - Sidearm
+      pistol-4:
+        minCount: 4
+        whitelist:
+          tags:
+          - Sidearm
+  - type: Construction
+    graph: WeaponRackConstructionGraph
+    node: PistolRackNode
+
+- type: entity
+  id: StructurePistolRackWallmounted
+  parent: StructurePistolRack
+  suffix: Empty, Wallmount
+  components:
+  - type: WallMount
+    arc: 360
+  - type: Sprite
+    layers:
+    - state: base-pistol-wall
+      color: "#515e5e"
+  - type: Construction
+    graph: WeaponRackConstructionGraph
+    node: PistolRackWallmountedNode
+
+# Pistol racks (inventory, lock)
+- type: entity
+  id: StructurePistolRackLock
+  name: personal defence weapon rack
+  parent: StructureWeaponRackBase
+  abstract: true
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.10,-0.10,0.10,0.10"
+        density: 500
+        mask:
+        - TabletopMachineMask
+  - type: Sprite
+    layers:
+    - state: base-pistol
+      color: "#515e5e"
+    - state: lock
+      color: "#515e5e"
+    - state: pistol-0
+    - map: ["enum.StorageFillLayers.Fill"]
+    - state: locked
+      map: [ enum.LockVisualLayers.Lock ]
+      shader: unshaded
+  - type: AccessReader
+  - type: LockVisuals
+  - type: Lock
+    locked: false
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+  - type: StorageFillVisualizer
+    maxFillLevels: 5
+    fillBaseName: pistol
+  - type: Storage
+    grid:
+    - 0,0,3,1
+    - 0,3,3,4
+    maxItemSize: Ginormous
+    whitelist:
+      components:
+      - Gun
+
+- type: entity
+  id: StructurePistolRackLockWallmounted
+  parent: StructurePistolRackLock
+  abstract: true
+  components:
+  - type: WallMount
+    arc: 360
+  - type: Sprite
+    layers:
+    - state: base-pistol-wall
+      color: "#515e5e"
+    - state: lock
+      color: "#515e5e"
+    - state: pistol-0
+    - map: ["enum.StorageFillLayers.Fill"]
+    - state: locked
+      map: [ enum.LockVisualLayers.Lock ]
+      shader: unshaded
