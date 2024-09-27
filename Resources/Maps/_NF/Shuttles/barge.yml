@@ -3110,9 +3110,9 @@ entities:
       rot: 3.141592653589793 rad
       pos: 0.5,-19.5
       parent: 70
-- proto: GasPressurePump
+- proto: GasPressurePumpOnMax
   entities:
-  - uid: 306
+  - uid: 276
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
@@ -3640,20 +3640,17 @@ entities:
     - type: Transform
       pos: 5.5,-0.5
       parent: 70
-- proto: PortableGeneratorPacman
+- proto: PortableGeneratorPacmanShuttle
   entities:
-  - uid: 276
+  - uid: 306
     components:
     - type: Transform
-      anchored: True
       pos: 1.5,-17.5
       parent: 70
-    - type: MaterialStorage
-      storage:
-        Plasma: 1500
+    - type: FuelGenerator
+      on: False
     - type: Physics
       bodyType: Static
-    - type: InsertingMaterialStorage
 - proto: PowerCellRecharger
   entities:
   - uid: 126
