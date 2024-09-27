@@ -1,0 +1,28 @@
+- type: vessel
+  id: faron
+  name: NLE Фарон
+  description: Среднегабаритный экспедиционный шаттл. Рекомендуемый состав команды 2-5 человек.
+  price: 67000 # 50% tax
+  category: Medium
+  group: Expedition
+  shuttlePath: /Maps/Corvax/Shuttles/Expedition/faron.yml
+
+- type: gameMap
+  id: faron
+  mapName: 'NLE Фарон'
+  mapPath: /Maps/Corvax/Shuttles/Expedition/faron.yml
+  minPlayers: 0
+  stations:
+    faron:
+      stationProto: StandardFrontierExpeditionVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Фарон {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]

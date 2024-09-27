@@ -1,0 +1,114 @@
+#Corvax-frotier (Mersen)
+- type: entity
+  name: Большой двигатель ДСБФ
+  id: ThrusterNfsdAss
+  parent: ThrusterSecurity
+  suffix: NFSD Усиленные для больших шаттлов
+  placement:
+    mode: AlignTileAny
+  components:
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    sprite: Corvax/Structures/Shuttles/thrusternfsd.rsi
+  - type: Machine
+    board: ThrusterNfsdMachineCircuitboard
+  - type: Thruster
+    damage:
+      types:
+        Heat: 80
+    thrust: 500
+    baseThrust: 500
+  - type: ApcPowerReceiver
+    powerLoad: 5000
+  - type: StaticPrice
+    price: 10000
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 3000
+      behaviors:
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+    - trigger:
+        !type:DamageTrigger
+        damage: 1000
+      behaviors:
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+        - !type:PlaySoundBehavior
+          sound:
+            collection: MetalBreak
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-1.5,-1.5,1.5,1.5"
+        density: 3250
+        mask:
+        - LargeMobMask
+        layer:
+        - WallLayer
+- type: entity
+  name: Большой гироскоп ДСБФ
+  id: GyroscopeNfsdAss
+  parent: GyroscopeSecurity
+  suffix: NFSD Усиленные для больших шаттлов
+  placement:
+    mode: AlignTileAny
+  components:
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    scale: 3, 3
+    sprite: _NF/Structures/Shuttles/nfsdgyroscope.rsi
+    snapCardinals: true
+  - type: Machine
+    board: GyroscopeNfsdMachineCircuitboard
+  - type: Thruster
+    thrusterType: Angular
+    requireSpace: false
+    baseThrust: 100000
+    thrust: 100000
+  - type: StaticPrice
+    price: 20000
+  - type: ApcPowerReceiver
+    powerLoad: 5000
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 3000
+      behaviors:
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+    - trigger:
+        !type:DamageTrigger
+        damage: 1000
+      behaviors:
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+        - !type:PlaySoundBehavior
+          sound:
+            collection: MetalBreak
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-1.5,-1.5,1.5,1.5"
+        density: 3250
+        mask:
+        - LargeMobMask
+        layer:
+        - WallLayer
