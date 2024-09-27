@@ -125,12 +125,6 @@ entities:
           decals:
             23: 1,2
         - node:
-            angle: 3.141592653589793 rad
-            color: '#FFFFFFFF'
-            id: StandClear
-          decals:
-            24: 0,-4
-        - node:
             angle: 4.71238898038469 rad
             color: '#FFFFFFFF'
             id: StandClear
@@ -231,16 +225,16 @@ entities:
       id: pioneer
 - proto: AirAlarm
   entities:
-  - uid: 88
+  - uid: 49
     components:
     - type: Transform
       rot: 3.141592653589793 rad
-      pos: 1.5,-3.5
+      pos: 0.5,-3.5
       parent: 1
     - type: DeviceList
       devices:
-      - 5
       - 27
+      - 5
 - proto: AirlockGlassShuttle
   entities:
   - uid: 7
@@ -276,11 +270,6 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 2.5,-0.5
-      parent: 1
-  - uid: 49
-    components:
-    - type: Transform
-      pos: 0.5,-3.5
       parent: 1
   - uid: 72
     components:
@@ -344,12 +333,6 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 2.5,1.5
-      parent: 1
-  - uid: 81
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -0.5,-3.5
       parent: 1
 - proto: CableApcExtension
   entities:
@@ -523,19 +506,20 @@ entities:
       parent: 70
     - type: Physics
       canCollide: False
+- proto: ExtinguisherCabinetFilled
+  entities:
+  - uid: 81
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -1.5,0.5
+      parent: 1
 - proto: FaxMachineShip
   entities:
   - uid: 57
     components:
     - type: Transform
       pos: -0.5,2.5
-      parent: 1
-- proto: FireExtinguisher
-  entities:
-  - uid: 10
-    components:
-    - type: Transform
-      pos: -0.032922745,-1.4325671
       parent: 1
 - proto: GasMixerOn
   entities:
@@ -638,8 +622,10 @@ entities:
       pos: -0.5,-0.5
       parent: 1
     - type: DeviceNetwork
+      configurators:
+      - invalid
       deviceLists:
-      - 88
+      - 49
     - type: AtmosPipeColor
       color: '#0055CCFF'
 - proto: GasVentScrubber
@@ -651,8 +637,10 @@ entities:
       pos: -0.5,0.5
       parent: 1
     - type: DeviceNetwork
+      configurators:
+      - invalid
       deviceLists:
-      - 88
+      - 49
     - type: AtmosPipeColor
       color: '#990000FF'
 - proto: GravityGeneratorMini
@@ -698,11 +686,11 @@ entities:
       parent: 1
 - proto: LockerWallEVAColorSalvageFilled
   entities:
-  - uid: 104
+  - uid: 10
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -1.5,0.5
+      rot: -1.5707963267948966 rad
+      pos: 2.5,2.5
       parent: 1
 - proto: NitrogenCanister
   entities:
@@ -803,11 +791,6 @@ entities:
       parent: 1
 - proto: ShuttersWindow
   entities:
-  - uid: 91
-    components:
-    - type: Transform
-      pos: 0.5,-3.5
-      parent: 1
   - uid: 97
     components:
     - type: Transform
@@ -825,16 +808,6 @@ entities:
       linkedPorts:
         97:
         - Pressed: Toggle
-  - uid: 93
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -0.5,-3.5
-      parent: 1
-    - type: DeviceLinkSource
-      linkedPorts:
-        91:
-        - Pressed: Toggle
 - proto: SignElectricalMed
   entities:
   - uid: 59
@@ -842,13 +815,6 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -1.5,-2.5
-      parent: 1
-- proto: SignSpace
-  entities:
-  - uid: 98
-    components:
-    - type: Transform
-      pos: 2.5,2.5
       parent: 1
 - proto: SmallGyroscope
   entities:
@@ -978,6 +944,12 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 2.5,-2.5
+      parent: 1
+  - uid: 88
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 0.5,-3.5
       parent: 1
   - uid: 138
     components:

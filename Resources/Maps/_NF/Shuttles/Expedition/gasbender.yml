@@ -109,6 +109,7 @@ entities:
             295: -1,6
             365: -6,-3
             366: -5,-5
+            373: 3,-8
         - node:
             angle: 1.5707963267948966 rad
             color: '#FFFFFFFF'
@@ -387,7 +388,6 @@ entities:
             211: 6,-8
             212: 4,-12
             213: 4,-8
-            214: 3,-8
             317: -2,-8
             318: -1,-8
             358: -7,-4
@@ -1039,8 +1039,6 @@ entities:
       - 279
   - uid: 317
     components:
-    - type: MetaData
-      name: ignition chamber output
     - type: Transform
       pos: 1.5,5.5
       parent: 1
@@ -1053,8 +1051,6 @@ entities:
     - type: Emagged
   - uid: 318
     components:
-    - type: MetaData
-      name: ignition chamber vent
     - type: Transform
       pos: 2.5,5.5
       parent: 1
@@ -1066,8 +1062,6 @@ entities:
     - type: Emagged
   - uid: 449
     components:
-    - type: MetaData
-      name: main atmos lab air alarm
     - type: Transform
       pos: 3.5,5.5
       parent: 1
@@ -1376,6 +1370,12 @@ entities:
       parent: 1
 - proto: APCBasic
   entities:
+  - uid: 45
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 5.5,-11.5
+      parent: 1
   - uid: 368
     components:
     - type: Transform
@@ -1398,14 +1398,6 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 0.5,-10.5
-      parent: 1
-- proto: APCConstructed
-  entities:
-  - uid: 748
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 5.5,-11.5
       parent: 1
 - proto: AtmosDeviceFanDirectional
   entities:
@@ -2042,6 +2034,16 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -1.5,-6.5
       parent: 1
+  - uid: 726
+    components:
+    - type: Transform
+      pos: 1.5,5.5
+      parent: 1
+  - uid: 748
+    components:
+    - type: Transform
+      pos: 2.5,5.5
+      parent: 1
 - proto: ButtonFrameCautionSecurity
   entities:
   - uid: 12
@@ -2067,6 +2069,11 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -4.5,-12.5
+      parent: 1
+  - uid: 783
+    components:
+    - type: Transform
+      pos: 3.5,5.5
       parent: 1
   - uid: 866
     components:
@@ -3820,6 +3827,12 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -0.5,-10.5
       parent: 1
+  - uid: 416
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -6.5,11.5
+      parent: 1
   - uid: 514
     components:
     - type: Transform
@@ -3836,12 +3849,6 @@ entities:
     components:
     - type: Transform
       pos: -0.5,15.5
-      parent: 1
-  - uid: 1062
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -5.5,11.5
       parent: 1
   - uid: 1063
     components:
@@ -5863,6 +5870,11 @@ entities:
     - type: Transform
       pos: 8.040113,3.9907713
       parent: 1
+  - uid: 392
+    components:
+    - type: Transform
+      pos: 8.027342,2.9493058
+      parent: 1
 - proto: InflatableDoorStack
   entities:
   - uid: 465
@@ -6016,10 +6028,10 @@ entities:
       parent: 1
 - proto: PortableScrubber
   entities:
-  - uid: 392
+  - uid: 795
     components:
     - type: Transform
-      pos: 2.5,-4.5
+      pos: 3.5,-7.5
       parent: 1
 - proto: PottedPlantRandom
   entities:
@@ -6044,12 +6056,6 @@ entities:
     components:
     - type: Transform
       pos: -2.5,3.5
-      parent: 1
-  - uid: 795
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -2.5,2.5
       parent: 1
 - proto: PoweredlightColoredBlack
   entities:
@@ -6549,13 +6555,6 @@ entities:
     - type: Transform
       pos: -4.5,10.5
       parent: 1
-- proto: ResearchAndDevelopmentServer
-  entities:
-  - uid: 727
-    components:
-    - type: Transform
-      pos: -5.5,15.5
-      parent: 1
 - proto: ShipyardGasbenderInfo
   entities:
   - uid: 882
@@ -6601,19 +6600,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 4.5,-5.5
       parent: 1
-- proto: SignalButton
-  entities:
-  - uid: 45
-    components:
-    - type: MetaData
-      name: igniter signal button
-    - type: Transform
-      pos: 2.5,5.5
-      parent: 1
-    - type: DeviceLinkSource
-      linkedPorts:
-        258:
-        - Pressed: Trigger
 - proto: SignalButtonDirectional
   entities:
   - uid: 10
@@ -6671,21 +6657,6 @@ entities:
         - Pressed: Toggle
         87:
         - Pressed: Toggle
-  - uid: 416
-    components:
-    - type: MetaData
-      name: ignition chamber vent blast doors
-    - type: Transform
-      pos: 1.5,5.5
-      parent: 1
-    - type: DeviceLinkSource
-      linkedPorts:
-        130:
-        - Pressed: Toggle
-        79:
-        - Pressed: Toggle
-        129:
-        - Pressed: Toggle
   - uid: 429
     components:
     - type: Transform
@@ -6704,17 +6675,30 @@ entities:
         - Pressed: Toggle
         171:
         - Pressed: Toggle
-  - uid: 820
+  - uid: 787
     components:
-    - type: MetaData
-      name: atmospherics lab emergency vent
     - type: Transform
-      pos: 3.5,5.5
+      pos: 1.5,5.5
       parent: 1
     - type: DeviceLinkSource
       linkedPorts:
-        853:
+        130:
         - Pressed: Toggle
+        79:
+        - Pressed: Toggle
+        129:
+        - Pressed: Toggle
+  - uid: 820
+    components:
+    - type: Transform
+      pos: 2.5,5.5
+      parent: 1
+    - type: DeviceLinkSource
+      linkedPorts:
+        258:
+        - Pressed: Trigger
+        392:
+        - Pressed: Trigger
   - uid: 824
     components:
     - type: Transform
@@ -6726,6 +6710,15 @@ entities:
         424:
         - Pressed: Toggle
         393:
+        - Pressed: Toggle
+  - uid: 830
+    components:
+    - type: Transform
+      pos: 3.5,5.5
+      parent: 1
+    - type: DeviceLinkSource
+      linkedPorts:
+        853:
         - Pressed: Toggle
   - uid: 849
     components:
@@ -6986,12 +6979,12 @@ entities:
     - type: Transform
       pos: -0.5,15.5
       parent: 1
-- proto: TelecomServerFilledCommon
+- proto: TelecomServerFilledShuttle
   entities:
-  - uid: 726
+  - uid: 727
     components:
     - type: Transform
-      pos: 3.5,-7.5
+      pos: -5.5,15.5
       parent: 1
 - proto: ThermomachineFreezerMachineCircuitBoard
   entities:
