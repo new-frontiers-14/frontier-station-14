@@ -69,19 +69,15 @@ public sealed partial class AtmosphereSystem
        mixtures[7].AdjustMoles(Gas.Nitrogen, Atmospherics.MolesCellStandard);
 
        // Frontier - 8: Oxygen Shuttle (GM)
-       mixtures[8].Clear();
        mixtures[8].AdjustMoles(Gas.Oxygen, Atmospherics.MolesCellShuttle);
 
        // Frontier - 9: Nitrogen Shuttle (GM)
-       mixtures[9].Clear();
        mixtures[9].AdjustMoles(Gas.Nitrogen, Atmospherics.MolesCellShuttle);
 
        // Frontier - 10: Plasma Shuttle (GM)
-       mixtures[10].Clear();
        mixtures[10].AdjustMoles(Gas.Plasma, Atmospherics.MolesCellShuttle);
 
        // Frontier - 11: Sauna (GM)
-       mixtures[11].Clear();
        mixtures[11].AdjustMoles(Gas.Oxygen, Atmospherics.OxygenMolesStandard);
        mixtures[11].AdjustMoles(Gas.Nitrogen, Atmospherics.NitrogenMolesStandard);
        mixtures[11].AdjustMoles(Gas.WaterVapor, Atmospherics.NitrogenMolesStandard);
