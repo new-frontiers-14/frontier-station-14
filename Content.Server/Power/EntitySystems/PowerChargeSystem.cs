@@ -1,5 +1,6 @@
 ﻿using Content.Server.Administration.Logs;
 using Content.Server.Audio;
+using Content.Server.Emp;
 using Content.Server.Power.Components;
 using Content.Shared.Database;
 using Content.Shared.Power;
@@ -27,6 +28,8 @@ public sealed class PowerChargeSystem : EntitySystem
 
         // This needs to be ui key agnostic
         SubscribeLocalEvent<PowerChargeComponent, SwitchChargingMachineMessage>(OnSwitchGenerator);
+
+        SubscribeLocalEvent<PowerChargeComponent, EmpPulseEvent>(OnEmpPulse); // Frontier: emp code
     }
 
     private void OnAnchorStateChange(EntityUid uid, PowerChargeComponent component, AnchorStateChangedEvent args)
@@ -277,6 +280,28 @@ public sealed class PowerChargeSystem : EntitySystem
 
         _appearance.SetData(ent, PowerChargeVisuals.State, PowerChargeStatus.On, appearance);
     }
+
+    // Frontier: EMP on charge system (Upstream - #28984, MIT)
+    private void OnEmpPulse(Entity<PowerChargeComponent> ent, ref EmpPulseEvent args)
+    {
+        /// i really don't think that the gravity generator should use normalised 0-1 charge
+        /// as opposed to watts charge that every other battery uses
+
+        if (!TryComp<ApcPowerReceiverComponent>(ent.Owner, out var powerReceiver))
+            return;
+
+        // convert from normalised energy to watts and subtract
+        float maxEnergy = ent.Comp.ActivePowerUse / ent.Comp.ChargeRate;
+        float currentEnergy = maxEnergy * ent.Comp.Charge;
+        currentEnergy = Math.Max(0, currentEnergy - args.EnergyConsumption);
+
+        // apply renormalised energy to charge variable
+        ent.Comp.Charge = currentEnergy / maxEnergy;
+
+        // update power state
+        UpdateState((ent.Owner, ent.Comp, powerReceiver));
+    }
+    // End Frontier
 }
 
 [ByRefEvent] public record struct ChargedMachineActivatedEvent;
