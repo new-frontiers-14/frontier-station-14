@@ -213,7 +213,7 @@
     - id: FoodCondimentPacketSalt
 
 - type: entity
-  parent: FoodBoxNugget
+  parent: DrinkCanPack
   id: FoodBoxSushi
   name: sushi tray
   description: Plastic sushi container with lid.
@@ -223,9 +223,6 @@
     state: tray
     layers:
     - state: tray
-    - state: tray-open
-      map: ["openLayer"]
-      visible: false
     - state: tray1
       map: ["tray1"]
       visible: false
@@ -244,12 +241,16 @@
     - state: tray6
       map: ["tray6"]
       visible: false
-  - type: Storage
-    grid:
-    - 0,0,1,2
   - type: Item
     sprite: _NF/Objects/Consumable/Food/sushi.rsi
     scale: 0.8, 0.8
+  - type: Storage
+    grid:
+    - 0,0,1,2
+    whitelist:
+      tags:
+        - Sushi
+    hideStackVisualsWhenClosed: false
   - type: StorageFill
     contents:
     # Slice1
