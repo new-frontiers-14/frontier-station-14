@@ -275,7 +275,21 @@ public sealed class MaterialReclaimerSystem : SharedMaterialReclaimerSystem
 
         // if the item we inserted has reagents, add it in.
 
-        if (reclaimerComponent.OnlyReclaimDrainable)
+        // Frontier: use old material reclaimer code
+        if (reclaimerComponent.UseOldSolutionLogic &&
+            TryComp<SolutionContainerManagerComponent>(item, out var solutionContainer))
+        {
+            foreach (var (_, soln) in _solutionContainer.EnumerateSolutions((item, solutionContainer)))
+            {
+                var solution = soln.Comp.Solution;
+                foreach (var quantity in solution.Contents)
+                {
+                    totalChemicals.AddReagent(quantity.Reagent.Prototype, quantity.Quantity * efficiency, false);
+                }
+            }
+        }
+        // End Frontier: use old material reclaimer code
+        else if (reclaimerComponent.OnlyReclaimDrainable) // Frontier: add else
         {
             // Are we a recycler? Only use drainable solution.
             if (_solutionContainer.TryGetDrainableSolution(item, out _, out var drainableSolution))
