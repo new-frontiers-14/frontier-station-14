@@ -1,6 +1,18 @@
 - type: entity
+  id: FoodBaseSushi
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/sushi.rsi
+  - type: Tag
+    tags:
+      - Sushi
+  - type: Item
+    size: Tiny
+
+- type: entity
   name: avocado sushi
-  parent: FoodMealBase
+  parent: [FoodBaseSushi, FoodMealBase]
   id: FoodMealAvocadoSushi
   description: Where did the seaweed come from?
   components:
@@ -9,7 +21,6 @@
       - cucumber
       - avocado
   - type: Sprite
-    sprite: _NF/Objects/Consumable/Food/sushi.rsi
     state: avocadosushi
   - type: SolutionContainerManager
     solutions:
@@ -28,7 +39,7 @@
 
 - type: entity
   name: avocado sushi
-  parent: FoodInjectableBase
+  parent: [FoodBaseSushi, FoodInjectableBase]
   id: FoodMealAvocadoSushiSlice
   description: Where did the seaweed come from?
   components:
@@ -37,7 +48,6 @@
       - cucumber
       - avocado
   - type: Sprite
-    sprite: _NF/Objects/Consumable/Food/sushi.rsi
     state: avocadosushislice
   - type: SolutionContainerManager
     solutions:
@@ -53,7 +63,7 @@
 
 - type: entity
   name: carp sushi
-  parent: FoodMealBase
+  parent: [FoodBaseSushi, FoodMealBase]
   id: FoodMealCarpSushi
   description: Certainly worth the risk.
   components:
@@ -62,7 +72,6 @@
       - cucumber
       - fishy
   - type: Sprite
-    sprite: _NF/Objects/Consumable/Food/sushi.rsi
     state: carpsushi
   - type: SolutionContainerManager
     solutions:
@@ -83,7 +92,7 @@
 
 - type: entity
   name: carp sushi
-  parent: FoodInjectableBase
+  parent: [FoodBaseSushi, FoodInjectableBase]
   id: FoodMealCarpSushiSlice
   description: Certainly worth the smaller risk.
   components:
@@ -92,7 +101,6 @@
       - cucumber
       - fishy
   - type: Sprite
-    sprite: _NF/Objects/Consumable/Food/sushi.rsi
     state: carpsushislice
   - type: SolutionContainerManager
     solutions:
@@ -107,3 +115,41 @@
           Quantity: 1
         - ReagentId: CucumberWater
           Quantity: .4
+
+- type: entity
+  name: gas station sushi
+  parent: [FoodBaseSushi, FoodInjectableBase]
+  id: FoodMealGasSafeSushiSlice
+  suffix: Safe
+  description: Is it worth the risk?
+  components:
+  - type: FlavorProfile
+    flavors:
+      - fishy
+      - cheap
+  - type: Sprite
+    state: gassushislice
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+
+- type: entity
+  parent: [FoodBaseSushi, FoodMealGasSafeSushiSlice]
+  id: FoodMealGasBadSushiSlice
+  suffix: Bad
+  components:
+  - type: FlavorProfile
+    flavors:
+      - fishy
+      - horrible
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: GastroToxin
+          Quantity: 5
