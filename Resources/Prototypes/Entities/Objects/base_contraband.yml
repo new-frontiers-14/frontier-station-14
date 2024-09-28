@@ -38,13 +38,13 @@
   - type: Contraband
     allowedDepartments: [ CentralCommand ]
 
-# - type: entity
-#   id: BaseCommandContraband
-#   parent: BaseRestrictedContraband
-#   abstract: true
-#   components:
-#   - type: Contraband
-#     allowedDepartments: [ Command ]
+- type: entity
+  id: BaseCommandContraband
+  parent: BaseC2ContrabandUnredeemable # Frontier: BaseRestrictedContraband<BaseC2ContrabandUnredeemable
+  abstract: true
+  components:
+  - type: Contraband
+    allowedDepartments: [ Command, CentralCommand ] # Frontier: added CentralCommand
 
 # - type: entity
 #   id: BaseSecurityContraband
