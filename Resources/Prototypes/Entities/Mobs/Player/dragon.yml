@@ -200,7 +200,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      200: Dead
+      250: Dead # Frontier: 200<250
   # less meat spawned since it's a lot easier to kill
   - type: Butcherable
     spawned:
@@ -213,7 +213,7 @@
   - type: MeleeWeapon
     damage:
       groups:
-        Brute: 12
+        Slash: 15 # Frontier: Brute: 12<Slash: 15
   - type: ActionGun #Frontier
     action: ActionDragonsBreath #Frontier
     gunProto: DragonsBreathGun #Frontier
