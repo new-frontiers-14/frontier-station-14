@@ -1,7 +1,7 @@
 - type: entity
   name: cargo sale computer
   suffix: Normal
-  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseComputer]
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseComputerAiAccess]
   id: ComputerPalletConsoleNFMarket
   description: Used to sell goods loaded onto cargo pallets
   abstract: true
@@ -27,6 +27,8 @@
     interfaces:
       enum.CargoPalletConsoleUiKey.Sale:
         type: CargoPalletConsoleBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
   - type: Computer
     board: Null
   - type: MarketModifier
@@ -74,7 +76,7 @@
 
 - type: entity
   name: contraband exchange computer
-  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseComputer]
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseComputerAiAccess]
   id: ComputerContrabandPalletConsole
   description: Used to exchange contraband
   components:
@@ -96,6 +98,8 @@
     interfaces:
       enum.ContrabandPalletConsoleUiKey.Contraband:
         type: ContrabandPalletConsoleBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
   - type: Computer
     board: Null
 
@@ -135,6 +139,8 @@
     interfaces:
       enum.IFFConsoleUiKey.Key:
         type: IFFConsoleBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
   - type: Computer
     board: Null
 
@@ -199,6 +205,8 @@
       interfaces:
         enum.MarketConsoleUiKey.Default:
           type: MarketConsoleBoundUserInterface
+        enum.WiresUiKey.Key:
+          type: WiresBoundUserInterface
     - type: MarketModifier
       mod: 1
       
@@ -222,7 +230,7 @@
 
 - type: entity
   id: ComputerPirateBounty
-  parent: BaseComputer
+  parent: BaseComputerAiAccess
   name: pirate bounty computer
   description: Avast, get ye pirate bounties here.
   components:
@@ -249,6 +257,8 @@
     interfaces:
       enum.PirateConsoleUiKey.Bounty:
         type: PirateBountyConsoleBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
   - type: Computer
     board: Null # Really shouldn't spawn anything on destruction
   - type: PointLight
@@ -307,6 +317,8 @@
     interfaces:
       enum.PirateConsoleUiKey.BountyRedemption:
         type: PirateBountyRedemptionConsoleBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
   - type: Computer
     board: Null
   - type: PointLight
