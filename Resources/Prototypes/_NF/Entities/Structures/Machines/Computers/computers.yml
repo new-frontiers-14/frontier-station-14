@@ -1,9 +1,31 @@
 - type: entity
+  parent: ComputerRadar
+  id: ComputerAdvancedRadar # Frontier
+  name: radar computer
+  description: This advanced radar lets you detect far away objects for an increased tactical advantage.
+  components:
+  - type: Computer
+    board: AdvancedRadarConsoleCircuitboard
+  - type: RadarConsole
+    maxRange: 768
+    maxIffRange: null # Frontier
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: eris_control
+    - map: ["computerLayerKeys"]
+      state: generic_keys
+
+- type: entity
   name: cargo sale computer
   suffix: Normal
   parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseComputerAiAccess]
   id: ComputerPalletConsoleNFMarket
-  description: Used to sell goods loaded onto cargo pallets
+  description: Used to sell goods loaded onto cargo pallets.
   abstract: true
   components:
   - type: Sprite
@@ -78,7 +100,7 @@
   name: contraband exchange computer
   parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseComputerAiAccess]
   id: ComputerContrabandPalletConsole
-  description: Used to exchange contraband
+  description: Used to exchange contraband for Frontier Uplink Coins.
   components:
   - type: Sprite
     sprite: _NF/Structures/Machines/computers.rsi
@@ -149,7 +171,7 @@
   abstract: true
   parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseStructureComputer]
   id: ComputerMarketConsoleNFBase
-  description: Used to buy goods from the station's market system
+  description: Used to buy goods from the station's market system.
   placement:
     mode: SnapgridCenter
   components:

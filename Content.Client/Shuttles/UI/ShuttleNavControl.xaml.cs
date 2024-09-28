@@ -40,6 +40,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
     public bool RotateWithEntity { get; set; } = true;
 
     public float MaximumIFFDistance { get; set; } = -1f; // Frontier
+    public bool HideCoords { get; set; } = false; // Frontier
 
     /// <summary>
     ///   If present, called for every IFF. Must determine if it should or should not be shown.
@@ -119,6 +120,12 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
         ActualRadarRange = Math.Clamp(ActualRadarRange, WorldMinRange, WorldMaxRange);
 
         RotateWithEntity = state.RotateWithEntity;
+
+        // Frontier
+        if (state.MaxIffRange != null)
+            MaximumIFFDistance = state.MaxIffRange.Value;
+        HideCoords = state.HideCoords;
+        // End Frontier
 
         _docks = state.Docks;
 
@@ -297,7 +304,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
                     };
 
                     handle.DrawString(Font, (uiPosition + labelOffset) * UIScale, labelText, UIScale, labelColor);
-                    if (isMouseOver)
+                    if (isMouseOver && !HideCoords)
                     {
                         var coordDimensions = handle.GetDimensions(Font, coordsText, 0.7f);
                         var coordOffset = new Vector2()

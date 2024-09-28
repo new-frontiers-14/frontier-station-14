@@ -755,6 +755,7 @@
       state: generic_panel_open
   - type: RadarConsole
     maxRange: 256 # Frontier
+    maxIffRange: 512 # Frontier
   - type: ActivatableUI
     key: enum.RadarConsoleUiKey.Key
   - type: UserInterface
@@ -769,27 +770,6 @@
     radius: 1.5
     energy: 1.6
     color: "#e6e227"
-
-- type: entity
-  parent: ComputerRadar
-  id: ComputerAdvancedRadar # Frontier
-  name: radar computer
-  description: Better CPU and components gives this radar the technological and tactical advantage on detection of far away objects.
-  components:
-  - type: Computer
-    board: AdvancedRadarConsoleCircuitboard
-  - type: RadarConsole
-    maxRange: 768
-  - type: Sprite
-    layers:
-    - map: ["computerLayerBody"]
-      state: computer
-    - map: ["computerLayerKeyboard"]
-      state: generic_keyboard
-    - map: ["computerLayerScreen"]
-      state: eris_control
-    - map: ["computerLayerKeys"]
-      state: generic_keys
 
 - type: entity
   id: ComputerCargoShuttle
