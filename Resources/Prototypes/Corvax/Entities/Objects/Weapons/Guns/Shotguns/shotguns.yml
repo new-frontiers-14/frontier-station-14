@@ -1,0 +1,23 @@
+- type: entity
+  parent: BaseWeaponShotgun
+  id: WeaponShotgunKS23
+  name: Shotgun KS23
+  components:
+  - type: Sprite
+    sprite: /Textures/Corvax/Objects/Weapons/Guns/Shotguns/ks23.rsi
+    scale: 0.8, 0.8
+    state: icon
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,3,0
+  - type: Clothing
+    sprite: /Textures/Corvax/Objects/Weapons/Guns/Shotguns/ks23.rsi
+  - type: Gun
+    fireRate: 1
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - ShellKS23
+    capacity: 3
+    proto: ShellKS23Base

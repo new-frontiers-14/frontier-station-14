@@ -1,0 +1,77 @@
+- type: entity
+  id: BaseShellKS23
+  name: shell (.90)
+  parent: BaseCartridge
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+    - Cartridge
+    - ShellKS23
+  - type: CartridgeAmmo
+    soundEject:
+      collection: ShellEject
+  - type: Appearance
+  - type: SpentAmmoVisuals
+  - type: StaticPrice
+    price: 1
+
+- type: entity
+  id: ShellKS23Flashbang
+  name: shell (.90 flashbang)
+  parent: BaseShellKS23
+  components:
+  - type: Sprite
+    sprite: /Textures/Corvax/Objects/Weapons/Guns/Ammunition/Casings/ks23_shell.rsi
+    layers:
+      - state: flashbang
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: CartridgeAmmo
+    proto: PelletKS23Flashbang
+  - type: SpentAmmoVisuals
+    state: "flashbang"
+
+- type: entity
+  id: ShellKS23Smoke
+  name: shell (.90 smoke)
+  parent: BaseShellKS23
+  components:
+  - type: Sprite
+    sprite: /Textures/Corvax/Objects/Weapons/Guns/Ammunition/Casings/ks23_shell.rsi
+    layers:
+      - state: smoke
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: CartridgeAmmo
+    proto: PelletKS23Smoke
+  - type: SpentAmmoVisuals
+    state: "smoke"
+
+- type: entity
+  id: ShellKS23Beanbag
+  name: shell (.90 beanbag)
+  parent: BaseShellKS23
+  components:
+  - type: Sprite
+    sprite: /Textures/Corvax/Objects/Weapons/Guns/Ammunition/Casings/ks23_shell.rsi
+    layers:
+      - state: beanbag
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: CartridgeAmmo
+    proto: PelletKS23Beanbag
+  - type: SpentAmmoVisuals
+    state: "beanbag"
+
+- type: entity
+  id: ShellKS23Base
+  name: shell (.90)
+  parent: BaseShellKS23
+  components:
+  - type: Sprite
+    sprite: /Textures/Corvax/Objects/Weapons/Guns/Ammunition/Casings/ks23_shell.rsi
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: CartridgeAmmo
+    proto: PelletKS23BaseSpread
+  - type: SpentAmmoVisuals
+    state: "base"

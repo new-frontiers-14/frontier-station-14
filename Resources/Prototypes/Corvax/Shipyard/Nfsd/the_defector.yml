@@ -1,0 +1,28 @@
+# taken from the official developers
+- type: vessel
+  id: the_defector
+  name: NSF Перебежчик
+  description: Малогабаритный патрульный шаттл ДСБФ. Рекомендуемый состав команды 1-3 человек.
+  price: 20500
+  category: Small
+  group: Security
+  access: Security
+  mapchecker_group_override: Security  # Treat this as a security vessel for mapchecker purposes
+  shuttlePath: /Maps/Corvax/Shuttles/Nfsd/the_defector.yml
+
+- type: gameMap
+  id: the_defector
+  mapName: 'NSF Перебежчик'
+  mapPath: /Maps/Corvax/Shuttles/Nfsd/the_defector.yml
+  minPlayers: 0
+  stations:
+    the_defector:
+      stationProto: StandardFrontierSecurityVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Перебежчик {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs: {}
