@@ -185,7 +185,7 @@
     projectileSpeed: 5
 
 - type: entity
-  parent: BaseMobDragon
+  parent: [ BaseMobDragon, MobNonHumanHostileBase ] # Frontier: added MobNonHumanHostileBase
   id: MobDragonDungeon
   suffix: Dungeon
   components:
@@ -213,7 +213,7 @@
   - type: MeleeWeapon
     damage:
       groups:
-        Slash: 15 # Frontier: Brute: 12<Slash: 15
+        Brute: 15 # Frontier: 12<15
   - type: ActionGun #Frontier
     action: ActionDragonsBreath #Frontier
     gunProto: DragonsBreathGun #Frontier
