@@ -1,0 +1,29 @@
+
+- type: vessel
+  id: kontrashef
+  name: NC Эскимо
+  description: Среднегабаритный шаттл-ресторан. Рекомендованный размер команды 2-4 человека.
+  price: 54500 # 13.5% markup (+2350 from init)
+  category: Medium
+  group: Civilian
+  shuttlePath: /Maps/Corvax/Shuttles/kontrashef.yml
+
+- type: gameMap
+  id: kontrashef
+  mapName: 'NC Эскимо'
+  mapPath: /Maps/Corvax/Shuttles/kontrashef.yml
+  minPlayers: 0
+  stations:
+    kontrashef:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Эскимо {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]
