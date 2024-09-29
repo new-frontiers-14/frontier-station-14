@@ -139,43 +139,58 @@ entities:
       data:
         tiles:
           0,0:
-            0: 65535
+            0: 15835
+          0,-1:
+            0: 56592
+            1: 14
           -1,0:
-            0: 61439
+            0: 52952
             1: 4096
           0,1:
-            0: 1279
+            0: 15
             1: 2816
-          1,0:
-            0: 4371
-            1: 544
-          1,1:
-            0: 1
-            1: 272
-          -2,0:
-            0: 34952
-          -2,1:
-            1: 136
           -1,1:
-            0: 28415
-            1: 37120
-          0,-1:
-            0: 65521
-            1: 14
+            0: 1132
+            1: 12544
+            2: 32768
+          1,1:
+            1: 273
           1,-1:
-            0: 13072
+            0: 4352
             1: 32
+          1,0:
+            1: 546
+          -2,0:
+            1: 34824
+            0: 128
           -2,-1:
             1: 34816
+          -2,1:
+            1: 136
           -1,-1:
+            0: 26112
             1: 30
-            0: 65504
         uniqueMixes:
         - volume: 2500
           temperature: 293.15
           moles:
           - 21.824879
           - 82.10312
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          immutable: True
+          moles:
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -225,8 +240,6 @@ entities:
       devices:
       - 119
       - 193
-    - type: AtmosDevice
-      joinedGrid: 1
 - proto: AirlockGlassShuttle
   entities:
   - uid: 31
@@ -251,11 +264,12 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 1.5,1.5
       parent: 1
-- proto: AtmosDeviceFanTiny
+- proto: AtmosDeviceFanDirectional
   entities:
-  - uid: 118
+  - uid: 102
     components:
     - type: Transform
+      rot: -1.5707963267948966 rad
       pos: -4.5,1.5
       parent: 1
 - proto: AtmosFixBlockerMarker
@@ -375,7 +389,7 @@ entities:
     - type: Transform
       pos: 5.5,-2.5
       parent: 1
-- proto: BookDemonomiconRandom
+- proto: BookRandomStory
   entities:
   - uid: 98
     components:
@@ -769,8 +783,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 3.5,-3.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#FF1212FF'
 - proto: GasPipeStraight
@@ -797,8 +809,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 0.5,-2.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#0335FCFF'
 - proto: GasPressurePump
@@ -808,8 +818,6 @@ entities:
     - type: Transform
       pos: 3.5,-1.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#FF1212FF'
   - uid: 195
@@ -818,8 +826,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 0.5,-1.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#0335FCFF'
 - proto: GasVentPump
@@ -832,8 +838,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 194
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#0335FCFF'
 - proto: GasVentScrubber
@@ -846,8 +850,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 194
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#FF1212FF'
 - proto: Girder

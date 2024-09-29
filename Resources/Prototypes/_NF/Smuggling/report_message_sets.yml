@@ -1,0 +1,33 @@
+- type: smugglingReportMessageSet
+  id: Nfsd
+  channel: Nfsd
+  messageSets:
+  - prob: 0.8
+    messages:
+    - hourlyThreshold: 1
+      type: General
+      message: smuggling-report-nfsd-general
+    - hourlyThreshold: 2
+      type: DeadDropStationWithRandomAlt
+      message: smuggling-report-nfsd-alternative
+    - type: DeadDropStation
+      message: smuggling-report-nfsd-specific
+  - prob: 0.8
+    minDelay: 14
+    maxDelay: 16
+    messages:
+    - type: PodLocation
+      message: smuggling-report-nfsd-pod
+      maxError: 900 # Should be slightly larger than the giant radar range
+
+- type: smugglingReportMessageSet
+  id: Pirate
+  channel: Freelance
+  messageSets:
+  - prob: 0.333
+    minDelay: 14
+    maxDelay: 16
+    messages:
+    - type: PodLocation
+      message: smuggling-report-pirate
+      maxError: 600 # Pirates don't have giant radars, let's cut them a break.

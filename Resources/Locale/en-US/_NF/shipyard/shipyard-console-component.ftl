@@ -23,6 +23,10 @@ shipyard-console-appraisal-label = Shuttle Estimated Value:{" "}
 shipyard-console-no-voucher-redemptions = All voucher redemptions have been used.
 shipyard-console-invalid-voucher-type = This voucher cannot be used at this console.
 
+shipyard-console-contraband-onboard = Smuggled contraband detected onboard.
+shipyard-console-station-resources = Vital station resources detected onboard.
+shipyard-console-dangerous-materials = Dangerous materials detected onboard.
+
 shipyard-console-menu-size-label = Size:{" "}
 shipyard-console-menu-class-label = Class:{" "}
 
