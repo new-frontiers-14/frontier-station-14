@@ -90,6 +90,8 @@
   components:
   - type: FaxableObject # Not sure about it, but why not? If someone wants to waste their time printing free copies of blueprints for cash they can have their spesos
 
+# Faxable variants (obtainable from research)
+
 - type: entity # Engineering
   parent: BaseBlueprintFaxable
   id: BaseBlueprintEngineeringNF
@@ -295,3 +297,41 @@
         color: "#525252"
       - state: inhand-right-text
         color: "#cbab00"
+
+# Non-faxable variants (obtainable from expeditions)
+
+- type: entity # Armory
+  parent: [ BaseC3Contraband, BaseBlueprintNF ]
+  id: BaseBlueprintExpedition
+  abstract: true
+  components:
+  - type: Sprite
+    layers:
+      - sprite: _NF/Objects/Tools/blueprints.rsi
+        state: icon-base
+        color: "#d70601"
+      - sprite: _NF/Objects/Tools/blueprints.rsi
+        state: icon-text
+      - sprite: Objects/Misc/bureaucracy.rsi
+        state: paper_stamp-generic
+        offset: 0.15,-0.1
+        map: ["enum.PaperVisualLayers.Stamp"]
+        visible: false
+  - type: Item
+    size: Normal
+    inhandVisuals:
+      left:
+      - state: inhand-left-base
+        color: "#d70601"
+      - state: inhand-left-text
+      right:
+      - state: inhand-right-base
+        color: "#d70601"
+      - state: inhand-right-text
+  - type: Paper
+    stampState: paper_stamp-rd
+    stampedBy:
+    - reapply: False
+      stampType: RubberStamp
+      stampedColor: '#1F66A0FF'
+      stampedName: stamp-component-stamped-name-rd
