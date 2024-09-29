@@ -89,6 +89,9 @@
   abstract: true
   components:
   - type: FaxableObject # Not sure about it, but why not? If someone wants to waste their time printing free copies of blueprints for cash they can have their spesos
+  - type: Paper
+    destroyOnFax: true
+    destroyMessage: fax-delete-paper-intellectual-property
 
 # Faxable variants (obtainable from research)
 
