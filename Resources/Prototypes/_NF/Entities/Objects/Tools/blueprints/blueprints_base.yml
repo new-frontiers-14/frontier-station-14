@@ -1,0 +1,195 @@
+- type: entity
+  parent: BaseBlueprint
+  id: BaseBlueprintNF
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Tools/blueprints.rsi
+    layers:
+      - state: icon-base
+        color: "#7da0ba"
+      - state: icon-text
+  - type: Item
+    size: Normal
+    sprite: _NF/Objects/Tools/blueprints.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left-base
+        color: "#7da0ba"
+      - state: inhand-left-text
+      right:
+      - state: inhand-right-base
+        color: "#7da0ba"
+      - state: inhand-right-text
+  - type: Tag
+    tags:
+    - BlueprintAutolathe
+    - Document
+    - Paper
+  - type: StaticPrice
+    price: 5 # Should be sold to players, not market console
+  - type: PhysicalComposition
+    materialComposition:
+      Paper: 100
+  # Paper stuff
+  - type: FaxableObject # Not sure about it, but why not? If someone wants to waste their time printing free copies of blueprints for cash they can have their spesos
+  - type: Paper
+  - type: Flammable
+    fireSpread: true
+    canResistFire: false
+    alwaysCombustible: true
+    canExtinguish: false
+    damage:
+      types:
+        Heat: 1
+  - type: Appearance
+  - type: FireVisuals
+    sprite: Effects/fire.rsi
+    normalState: fire
+  - type: Damageable
+    damageModifierSet: Wood
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 15
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+            Ash:
+              min: 1
+              max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity # Engineering
+  parent: BaseBlueprintNF
+  id: BaseBlueprintEngineeringNF
+  abstract: true
+  components:
+  - type: Sprite
+    layers:
+      - state: icon-base
+        color: "#fff87c" # Pale yellow
+      - state: icon-text
+  - type: Item
+    size: Normal
+    inhandVisuals:
+      left:
+      - state: inhand-left-base
+        color: "#fff87c"
+      - state: inhand-left-text
+      right:
+      - state: inhand-right-base
+        color: "#fff87c"
+      - state: inhand-right-text
+
+- type: entity # Salvage / Cargo
+  parent: BaseBlueprintNF
+  id: BaseBlueprintSalvageNF
+  abstract: true
+  components:
+  - type: Sprite
+    layers:
+      - state: icon-base
+        color: "#e1ba8b" # Pale brown
+      - state: icon-text
+  - type: Item
+    size: Normal
+    inhandVisuals:
+      left:
+      - state: inhand-left-base
+        color: "#e1ba8b"
+      - state: inhand-left-text
+      right:
+      - state: inhand-right-base
+        color: "#e1ba8b"
+      - state: inhand-right-text
+
+- type: entity # Science
+  parent: BaseBlueprintNF
+  id: BaseBlueprintScienceNF
+  abstract: true
+  components:
+  - type: Sprite
+    layers:
+      - state: icon-base
+        color: "#e18bd5" # Pale purple
+      - state: icon-text
+  - type: Item
+    size: Normal
+    inhandVisuals:
+      left:
+      - state: inhand-left-base
+        color: "#e18bd5"
+      - state: inhand-left-text
+      right:
+      - state: inhand-right-base
+        color: "#e18bd5"
+      - state: inhand-right-text
+
+- type: entity # Service
+  parent: BaseBlueprintNF
+  id: BaseBlueprintServiceNF
+  abstract: true
+  components:
+  - type: Sprite
+    layers:
+      - state: icon-base
+        color: "#94e18b" # Pale green
+      - state: icon-text
+  - type: Item
+    size: Normal
+    inhandVisuals:
+      left:
+      - state: inhand-left-base
+        color: "#94e18b"
+      - state: inhand-left-text
+      right:
+      - state: inhand-right-base
+        color: "#94e18b"
+      - state: inhand-right-text
+
+- type: entity # Medical
+  parent: BaseBlueprintNF
+  id: BaseBlueprintMedicalNF
+  abstract: true
+  components:
+  - type: Sprite
+    layers:
+      - state: icon-base
+        color: "#97cae1" # Pale blue
+      - state: icon-text
+  - type: Item
+    size: Normal
+    inhandVisuals:
+      left:
+      - state: inhand-left-base
+        color: "#97cae1"
+      - state: inhand-left-text
+      right:
+      - state: inhand-right-base
+        color: "#97cae1"
+      - state: inhand-right-text
+
+- type: entity # Armory
+  parent: BaseBlueprintNF
+  id: BaseBlueprintArmoryNF
+  abstract: true
+  components:
+  - type: Sprite
+    layers:
+      - state: icon-base
+        color: "#e18b8b" # Pale red
+      - state: icon-text
+  - type: Item
+    size: Normal
+    inhandVisuals:
+      left:
+      - state: inhand-left-base
+        color: "#e18b8b"
+      - state: inhand-left-text
+      right:
+      - state: inhand-right-base
+        color: "#e18b8b"
+      - state: inhand-right-text
