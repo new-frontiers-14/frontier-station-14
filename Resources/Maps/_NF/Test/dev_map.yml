@@ -2931,17 +2931,6 @@ entities:
       parent: 179
 - proto: CargoTelepad
   entities:
-  - uid: 1295
-    components:
-    - type: Transform
-      pos: -1.5,-5.5
-      parent: 179
-    - type: ContainerContainer
-      containers:
-        machine_board: !type:Container
-          ents: []
-        machine_parts: !type:Container
-          ents: []
   - uid: 1296
     components:
     - type: Transform
@@ -3672,28 +3661,28 @@ entities:
   - uid: 495
     components:
     - type: Transform
-      pos: -2.5,-5.5
+      pos: -1.5,-5.5
       parent: 179
 - proto: ComputerPalletConsoleNFLowMarket
   entities:
   - uid: 528
     components:
     - type: Transform
-      pos: -4.5,-5.5
-      parent: 179
-- proto: ComputerPalletConsoleNFNormalMarket
-  entities:
-  - uid: 521
-    components:
-    - type: Transform
       pos: -3.5,-5.5
       parent: 179
-- proto: ComputerPalletConsoleNFVeryLowMarket
+- proto: ComputerPalletConsoleNFNormalMarket
   entities:
   - uid: 512
     components:
     - type: Transform
-      pos: -5.5,-5.5
+      pos: -2.5,-5.5
+      parent: 179
+- proto: ComputerPalletConsoleNFVeryLowMarket
+  entities:
+  - uid: 521
+    components:
+    - type: Transform
+      pos: -4.5,-5.5
       parent: 179
 - proto: ComputerPirateBounty
   entities:
@@ -5619,22 +5608,6 @@ entities:
     - type: Transform
       pos: -6.3051395,8.791253
       parent: 179
-- proto: ShipVoucherNfsdBailiff
-  entities:
-  - uid: 1291
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -3.7517176,-10.459884
-      parent: 179
-- proto: ShipVoucherNfsdSergeant
-  entities:
-  - uid: 1290
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -3.2517176,-10.459884
-      parent: 179
 - proto: NfsdTechFab
   entities:
   - uid: 498
@@ -5779,6 +5752,13 @@ entities:
     - type: Transform
       pos: 1.5,-14.5
       parent: 179
+- proto: PlayerStationAi
+  entities:
+  - uid: 1295
+    components:
+    - type: Transform
+      pos: -5.5,-5.5
+      parent: 179
 - proto: PlushieJester
   entities:
   - uid: 1413
@@ -5835,17 +5815,17 @@ entities:
       parent: 179
 - proto: PowerCellHigh
   entities:
-  - uid: 567
-    components:
-    - type: Transform
-      pos: -4.472075,8.351691
-      parent: 179
-- proto: PowerCellHyper
-  entities:
   - uid: 703
     components:
     - type: Transform
       pos: -4.1841636,8.351739
+      parent: 179
+- proto: PowerCellHyper
+  entities:
+  - uid: 567
+    components:
+    - type: Transform
+      pos: -4.472075,8.351691
       parent: 179
 - proto: PowerCellMedium
   entities:
@@ -6539,6 +6519,22 @@ entities:
     - type: Transform
       pos: -6.2573137,-7.543512
       parent: 179
+- proto: ShipVoucherNfsdBailiff
+  entities:
+  - uid: 1291
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -3.7517176,-10.459884
+      parent: 179
+- proto: ShipVoucherNfsdSergeant
+  entities:
+  - uid: 1290
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -3.2517176,-10.459884
+      parent: 179
 - proto: ShipyardRCD
   entities:
   - uid: 1248
@@ -6764,6 +6760,13 @@ entities:
     - type: Transform
       pos: 23.5,14.5
       parent: 179
+- proto: SpawnMobCorgiMouse
+  entities:
+  - uid: 1050
+    components:
+    - type: Transform
+      pos: 3.5,8.5
+      parent: 179
 - proto: SpawnMobHuman
   entities:
   - uid: 138
@@ -6780,13 +6783,6 @@ entities:
     components:
     - type: Transform
       pos: 3.5,7.5
-      parent: 179
-- proto: SpawnMobMouse
-  entities:
-  - uid: 1050
-    components:
-    - type: Transform
-      pos: 3.5,8.5
       parent: 179
 - proto: SpawnPointContractor
   entities:
