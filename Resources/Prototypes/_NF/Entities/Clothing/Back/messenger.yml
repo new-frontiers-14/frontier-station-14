@@ -602,7 +602,22 @@
     - state: icon-unlit
       shader: unshaded
   - type: Clothing
-    equippedPrefix: holding
+    sprite: _NF/Clothing/Back/Messenger/holding.rsi
+    clothingVisuals:
+      back:
+      - state: holding-equipped-BACKPACK
+      - state: holding-equipped-BACKPACK-unlit
+        shader: unshaded
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - state: inhand-left-unlit
+        shader: unshaded
+      right:
+      - state: inhand-right
+      - state: inhand-right-unlit
+        shader: unshaded
 
 ## Antagonists / Contraband
 - type: entity

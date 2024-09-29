@@ -192,6 +192,24 @@
   - type: FaxMachine
     name: "NFSD Outpost Lawyer"
 
+- type: entity
+  parent: FaxMachineBase
+  id: FaxMachineNFBahama
+  suffix: POI, Bahama
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: FaxMachine
+    name: "Bahama Mama's"
+
+- type: entity
+  parent: [BaseStructureDisableToolUse, FaxMachineBase]
+  id: FaxMachineNFEdison
+  suffix: POI, Edison
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: FaxMachine
+    name: "Edison Power Plant"
+
 # Events
 - type: entity
   parent: FaxMachineNFLPBravo

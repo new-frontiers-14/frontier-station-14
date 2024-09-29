@@ -37,8 +37,10 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
     public bool ShowIFF { get; set; } = true;
     public bool ShowIFFShuttles { get; set; } = true;
     public bool ShowDocks { get; set; } = true;
+    public bool RotateWithEntity { get; set; } = true;
 
     public float MaximumIFFDistance { get; set; } = -1f; // Frontier
+    public bool HideCoords { get; set; } = false; // Frontier
 
     /// <summary>
     ///   If present, called for every IFF. Must determine if it should or should not be shown.
@@ -117,6 +119,14 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
 
         ActualRadarRange = Math.Clamp(ActualRadarRange, WorldMinRange, WorldMaxRange);
 
+        RotateWithEntity = state.RotateWithEntity;
+
+        // Frontier
+        if (state.MaxIffRange != null)
+            MaximumIFFDistance = state.MaxIffRange.Value;
+        HideCoords = state.HideCoords;
+        // End Frontier
+
         _docks = state.Docks;
 
         NfUpdateState(state); // Frontier Update State
@@ -148,7 +158,8 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
         var mapPos = _transform.ToMapCoordinates(_coordinates.Value);
         var offset = _coordinates.Value.Position;
         var posMatrix = Matrix3Helpers.CreateTransform(offset, _rotation.Value);
-        var (_, ourEntRot, ourEntMatrix) = _transform.GetWorldPositionRotationMatrix(_coordinates.Value.EntityId);
+        var ourEntRot = RotateWithEntity ? _transform.GetWorldRotation(xform) : _rotation.Value;
+        var ourEntMatrix = Matrix3Helpers.CreateTransform(_transform.GetWorldPosition(xform), ourEntRot);
         var ourWorldMatrix = Matrix3x2.Multiply(posMatrix, ourEntMatrix);
         Matrix3x2.Invert(ourWorldMatrix, out var ourWorldMatrixInvert);
 
@@ -211,7 +222,9 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
 
             var gridMatrix = _transform.GetWorldMatrix(gUid);
             var matty = Matrix3x2.Multiply(gridMatrix, ourWorldMatrixInvert);
-            var color = _shuttles.GetIFFColor(grid, self: false, iff);
+
+            var labelColor = _shuttles.GetIFFColor(grid, self: false, iff);
+            var coordColor = new Color(labelColor.R * 0.8f, labelColor.G * 0.8f, labelColor.B * 0.8f, 0.5f);
 
             // Others default:
             // Color.FromHex("#FFC000FF")
@@ -236,6 +249,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
                 var gridCentre = Vector2.Transform(gridBody.LocalCenter, matty);
                 gridCentre.Y = -gridCentre.Y;
 
+                // Frontier: IFF drawing functions
                 // The actual position in the UI. We offset the matrix position to render it off by half its width
                 // plus by the offset.
                 var uiPosition = ScalePosition(gridCentre) / UIScale;
@@ -269,12 +283,15 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
 
                 var distance = gridCentre.Length();
 
-                // Shows decimal when distance is < 50m, otherwise pointless to show it.
-                var displayedDistance = distance < 50f ? $"{distance:0.0}" : distance < 1000 ? $"{distance:0}" : $"{distance / 1000:0.0}k";
-                var labelText = Loc.GetString("shuttle-console-iff-label", ("name", labelName)!, ("distance", displayedDistance));
-
                 if (!isOutsideRadarCircle || isDistantPOI || isMouseOver)
                 {
+                    // Shows decimal when distance is < 50m, otherwise pointless to show it.
+                    var displayedDistance = distance < 50f ? $"{distance:0.0}" : distance < 1000 ? $"{distance:0}" : $"{distance / 1000:0.0}k";
+                    var labelText = Loc.GetString("shuttle-console-iff-label", ("name", labelName)!, ("distance", displayedDistance));
+
+                    var mapCoords = _transform.GetWorldPosition(gUid);
+                    var coordsText = $"({mapCoords.X:0.0}, {mapCoords.Y:0.0})";
+
                     // Calculate unscaled offsets.
                     var labelDimensions = handle.GetDimensions(Font, labelText, 1f);
                     var blipSize = RadarBlipSize * 0.7f;
@@ -286,10 +303,23 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
                         Y = -labelDimensions.Y / 2f
                     };
 
-                    handle.DrawString(Font, (uiPosition + labelOffset) * UIScale, labelText, UIScale, color);
+                    handle.DrawString(Font, (uiPosition + labelOffset) * UIScale, labelText, UIScale, labelColor);
+                    if (isMouseOver && !HideCoords)
+                    {
+                        var coordDimensions = handle.GetDimensions(Font, coordsText, 0.7f);
+                        var coordOffset = new Vector2()
+                        {
+                            X = uiPosition.X > Width / 2f
+                                ? -coordDimensions.X - blipSize / 0.7f // right align the text to left of the blip (0.7 needed for scale)
+                                : blipSize, // left align the text to the right of the blip
+                            Y = coordDimensions.Y / 2
+                        };
+                        handle.DrawString(Font, (uiPosition + coordOffset) * UIScale, coordsText, 0.7f * UIScale, coordColor);
+                    }
                 }
 
-                NfAddBlipToList(blipDataList, isOutsideRadarCircle, uiPosition, uiXCentre, uiYCentre, color); // Frontier code
+                NfAddBlipToList(blipDataList, isOutsideRadarCircle, uiPosition, uiXCentre, uiYCentre, labelColor); // Frontier code
+                // End Frontier: IFF drawing functions
             }
 
             // Frontier Don't skip drawing blips if they're out of range.
@@ -302,7 +332,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
             if (!gridAABB.Intersects(viewAABB))
                 continue;
 
-            DrawGrid(handle, matty, grid, color);
+            DrawGrid(handle, matty, grid, labelColor);
             DrawDocks(handle, gUid, matty);
         }
     }

@@ -7,6 +7,9 @@ guide-entry-expeditions = Expeditions
 guide-entry-shipyard = Shipyard
 guide-entry-frontier-rules = Server Rules
 
+# Security entries
+guide-entry-nfsd-smuggling = Smuggling
+
 # Expedition faction entries
 guide-entry-expedition-aberrant-flesh = Aberrant Flesh
 guide-entry-expedition-argocytes = Argocytes
