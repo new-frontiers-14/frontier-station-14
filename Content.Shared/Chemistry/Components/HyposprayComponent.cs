@@ -37,4 +37,16 @@ public sealed partial class HyposprayComponent : Component
     /// </summary>
     [DataField]
     public bool InjectOnly = false;
+
+    /// <summary>
+    /// Frontier: if true, object will not inject when attacking.
+    /// </summary>
+    [DataField]
+    public bool PreventCombatInjection;
+
+    /// <summary>
+    /// Frontier: if not null, injecting somebody else requires a doAfter with this length.
+    /// </summary>
+    [DataField]
+    public TimeSpan? DelayOnInjectingOthers;
 }

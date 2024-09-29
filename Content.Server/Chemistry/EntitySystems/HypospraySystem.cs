@@ -17,6 +17,9 @@ using Robust.Shared.GameStates;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Robust.Server.Audio;
+using Content.Shared.DoAfter; // Frontier
+using Content.Server.DoAfter; // Frontier
+using Content.Shared._NF.Chemistry.Events; // Frontier
 
 namespace Content.Server.Chemistry.EntitySystems;
 
@@ -24,6 +27,7 @@ public sealed class HypospraySystem : SharedHypospraySystem
 {
     [Dependency] private readonly AudioSystem _audio = default!;
     [Dependency] private readonly InteractionSystem _interaction = default!;
+    [Dependency] private readonly DoAfterSystem _doAfter = default!; // Frontier
 
     public override void Initialize()
     {
@@ -32,6 +36,7 @@ public sealed class HypospraySystem : SharedHypospraySystem
         SubscribeLocalEvent<HyposprayComponent, AfterInteractEvent>(OnAfterInteract);
         SubscribeLocalEvent<HyposprayComponent, MeleeHitEvent>(OnAttack);
         SubscribeLocalEvent<HyposprayComponent, UseInHandEvent>(OnUseInHand);
+        SubscribeLocalEvent<HyposprayComponent, HyposprayDoAfterEvent>(OnDoAfter); // Frontier
     }
 
     private bool TryUseHypospray(Entity<HyposprayComponent> entity, EntityUid target, EntityUid user)
@@ -42,6 +47,21 @@ public sealed class HypospraySystem : SharedHypospraySystem
         {
             return TryDraw(entity, target, drawableSolution.Value, user);
         }
+
+        // Frontier: delay injecting others
+        if (target != user
+            && entity.Comp.DelayOnInjectingOthers != null
+            && entity.Comp.DelayOnInjectingOthers > TimeSpan.Zero)
+        {
+            var doAfter =
+                new DoAfterArgs(EntityManager, user, entity.Comp.DelayOnInjectingOthers.Value, new HyposprayDoAfterEvent(), entity, target: target, used: entity)
+                {
+                    BreakOnDamage = true,
+                    BreakOnMove = true
+                };
+            return _doAfter.TryStartDoAfter(doAfter);
+        }
+        // End Frontier
 
         return TryDoInject(entity, target, user);
     }
@@ -66,6 +86,9 @@ public sealed class HypospraySystem : SharedHypospraySystem
     {
         if (!args.HitEntities.Any())
             return;
+
+        if (entity.Comp.PreventCombatInjection) // Frontier
+            return; // Frontier
 
         TryDoInject(entity, args.HitEntities.First(), args.User);
     }
@@ -191,4 +214,12 @@ public sealed class HypospraySystem : SharedHypospraySystem
               entMan.HasComponent<MobStateComponent>(entity)
             : entMan.HasComponent<SolutionContainerManagerComponent>(entity);
     }
+
+    // Frontier: delayed hypospray
+    private void OnDoAfter(Entity<HyposprayComponent> entity, ref HyposprayDoAfterEvent args)
+    {
+        if (args.Target != null)
+            TryDoInject(entity, args.Target.Value, args.User);
+    }
+    // End Frontier
 }
