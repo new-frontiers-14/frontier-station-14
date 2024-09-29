@@ -47,7 +47,6 @@ namespace Content.Server.Forensics
         [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
         [Dependency] private readonly MetaDataSystem _metaData = default!;
         [Dependency] private readonly ForensicsSystem _forensicsSystem = default!;
-        [Dependency] private readonly SolutionContainerSystem _solutionContainerSystem = default!;
         [Dependency] private readonly TagSystem _tag = default!;
         [Dependency] private readonly StackSystem _stackSystem = default!; // Frontier
         [Dependency] private readonly SharedAudioSystem _audio = default!; // Frontier

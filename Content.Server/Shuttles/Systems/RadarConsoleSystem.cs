@@ -34,7 +34,7 @@ public sealed class RadarConsoleSystem : SharedRadarConsoleSystem
         var onGrid = xform.ParentUid == xform.GridUid;
         EntityCoordinates? coordinates = onGrid ? xform.Coordinates : null;
         Angle? angle = onGrid ? xform.LocalRotation : null;
-        
+
         // Frontier - For handheld mass scanner, PR 484
         if (HasComp<PowerCellDrawComponent>(uid))
         {
@@ -61,6 +61,14 @@ public sealed class RadarConsoleSystem : SharedRadarConsoleSystem
             {
                 state = _console.GetNavState(uid, docks);
             }
+
+            state.RotateWithEntity = !component.FollowEntity;
+
+            // Frontier: ghost radar restrictions
+            if (component.MaxIffRange != null)
+                state.MaxIffRange = component.MaxIffRange.Value;
+            state.HideCoords = component.HideCoords;
+            // End Frontier
 
             _uiSystem.SetUiState(uid, RadarConsoleUiKey.Key, new NavBoundUserInterfaceState(state));
         }
