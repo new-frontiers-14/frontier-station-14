@@ -261,3 +261,28 @@
     tags:
       - Vegetable
       - Slice
+
+- type: entity
+  name: baby banana
+  parent: FoodBanana
+  id: FoodBananaBaby
+  description: Aww. Wait, how?
+  components:
+  - type: Food
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 3
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Vitamin
+          Quantity: 1
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/banana.rsi
+    scale: 0.7,0.7
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: JuiceBanana
+        Quantity: 5
