@@ -1,6 +1,6 @@
 - type: entity
   parent: BaseBlueprint
-  id: BaseBlueprintNF
+  id: NFBaseBlueprint
   abstract: true
   components:
   - type: Sprite
@@ -84,7 +84,7 @@
           Quantity: 0.1
 
 - type: entity
-  parent: BaseBlueprintNF
+  parent: NFBaseBlueprint
   id: BaseBlueprintFaxable
   abstract: true
   components:
@@ -97,7 +97,7 @@
 
 - type: entity # Engineering
   parent: BaseBlueprintFaxable
-  id: BaseBlueprintEngineeringNF
+  id: NFBaseBlueprintEngineering
   abstract: true
   components:
   - type: Sprite
@@ -126,7 +126,7 @@
 
 - type: entity # Salvage / Cargo
   parent: BaseBlueprintFaxable
-  id: BaseBlueprintSalvageNF
+  id: NFBaseBlueprintSalvage
   abstract: true
   components:
   - type: Sprite
@@ -155,7 +155,7 @@
 
 - type: entity # Science
   parent: BaseBlueprintFaxable
-  id: BaseBlueprintScienceNF
+  id: NFBaseBlueprintScience
   abstract: true
   components:
   - type: Sprite
@@ -184,7 +184,7 @@
 
 - type: entity # Service
   parent: BaseBlueprintFaxable
-  id: BaseBlueprintServiceNF
+  id: NFBaseBlueprintService
   abstract: true
   components:
   - type: Sprite
@@ -213,7 +213,7 @@
 
 - type: entity # Medical
   parent: BaseBlueprintFaxable
-  id: BaseBlueprintMedicalNF
+  id: NFBaseBlueprintMedical
   abstract: true
   components:
   - type: Sprite
@@ -242,7 +242,7 @@
 
 - type: entity # Armory
   parent: BaseBlueprintFaxable
-  id: BaseBlueprintArmoryNF
+  id: NFBaseBlueprintArmory
   abstract: true
   components:
   - type: Sprite
@@ -271,7 +271,7 @@
 
 - type: entity # Church
   parent: BaseBlueprintFaxable
-  id: BaseBlueprintChurchNF
+  id: NFBaseBlueprintChurch
   abstract: true
   components:
   - type: Sprite
@@ -304,7 +304,7 @@
 # Non-faxable variants (obtainable from expeditions)
 
 - type: entity # Armory
-  parent: [ BaseC3Contraband, BaseBlueprintNF ]
+  parent: [ BaseC3Contraband, NFBaseBlueprint ]
   id: BaseBlueprintExpedition
   abstract: true
   components:
