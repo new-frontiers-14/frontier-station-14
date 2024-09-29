@@ -50,6 +50,8 @@
   subgroups:
   - PilotOuterClothing
   - ContractorOuterClothing
+  fallbacks:
+  - ContractorClothingOuterVestTank # Vox-only, default them to have this equipped
 
 - type: loadoutGroup
   id: MercenaryShoes
@@ -78,7 +80,21 @@
   subgroups:
   - PilotHead
   - ContractorHead
-  
+
+- type: loadoutGroup
+  id: MercenaryEars
+  name: loadout-group-contractor-ears
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - MercenaryClothingHeadsetAltMercenary
+  - MercenaryClothingHeadsetSecurityCommon
+  - MercenaryClothingHeadsetBrigmedicCommon
+  - MercenaryClothingHeadsetAltSecurityCommon
+  subgroups:
+  - PilotEars
+  - ContractorEars
+
 - type: loadoutGroup
   id: MercenaryGloves
   name: loadout-group-contractor-gloves
