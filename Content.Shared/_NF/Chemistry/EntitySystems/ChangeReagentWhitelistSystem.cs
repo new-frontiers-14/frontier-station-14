@@ -67,7 +67,7 @@ public sealed class ReagentWhitelistChangeSystem : EntitySystem
             return;
         }
 
-        injectorComp.ReagentWhitelist = new[] { args.NewReagentProto };
+        injectorComp.ReagentWhitelist = new() { args.NewReagentProto };
     }
 
     private void OnReagentWhitelistReset(Entity<ReagentWhitelistChangeComponent> ent, ref ReagentWhitelistResetMessage args)
