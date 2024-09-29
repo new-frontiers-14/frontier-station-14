@@ -41,6 +41,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Content.Shared.Access;
 using Content.Shared.Tiles;
+using Content.Server._NF.Smuggling.Components;
 
 namespace Content.Server.Shipyard.Systems;
 
@@ -367,6 +368,17 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         var shuttleName = ToPrettyString(shuttleUid); // Grab the name before it gets 1984'd
 
+        // Check for shipyard blacklisting components
+        var disableSaleQuery = GetEntityQuery<DisableShipyardSaleComponent>();
+        var xformQuery = GetEntityQuery<TransformComponent>();
+        var disableSaleMsg = FindDisableShipyardSaleObjects(shuttleUid, (ShipyardConsoleUiKey)args.UiKey, disableSaleQuery, xformQuery);
+        if (disableSaleMsg != null)
+        {
+            ConsolePopup(args.Actor, Loc.GetString(disableSaleMsg));
+            PlayDenySound(args.Actor, uid, component);
+            return;
+        }
+
         var saleResult = TrySellShuttle(stationUid, shuttleUid, out var bill);
         if (saleResult.Error != ShipyardSaleError.Success)
         {
@@ -601,6 +613,28 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
                 if (charName != null)
                     return charName;
             }
+        }
+
+        return null;
+    }
+
+    /// <summary>
+    /// Looks for a living, sapient being aboard a particular entity.
+    /// </summary>
+    /// <param name="uid">The entity to search (e.g. a shuttle, a station)</param>
+    /// <param name="mobQuery">A query to get the MobState from an entity</param>
+    /// <param name="xformQuery">A query to get the transform component of an entity</param>
+    /// <returns>The name of the sapient being if one was found, null otherwise.</returns>
+    public string? FindDisableShipyardSaleObjects(EntityUid shuttle, ShipyardConsoleUiKey key, EntityQuery<DisableShipyardSaleComponent> disableSaleQuery, EntityQuery<TransformComponent> xformQuery)
+    {
+        var xform = xformQuery.GetComponent(shuttle);
+        var childEnumerator = xform.ChildEnumerator;
+
+        while (childEnumerator.MoveNext(out var child))
+        {
+            if (disableSaleQuery.TryGetComponent(child, out var disableSale)
+                && !disableSale.AllowedShipyardTypes.Contains(key))
+                return disableSale.Reason;
         }
 
         return null;

@@ -7,7 +7,7 @@
   id: BoxFolderMedicalDoctor
   parent: BoxFolderBase
   name: medical doctor folder
-  description: A folder filled with paperwork templates.
+  description: A folder filled with medical paperwork templates.
   suffix: Forms
   components:
   - type: Sprite
@@ -30,8 +30,8 @@
 # Forms
 - type: entity # Loosely based on form made by Scratchie (Nova Howe) for Formal Complaint
   id: PaperWrittenMedicalFormPatientInfo
-  name: Medical Patient Record
-  suffix: MappedPaper
+  name: medical patient record
+  categories: [ HideSpawnMenu ]
   parent: Paper
   components:
   - type: Paper
@@ -75,12 +75,12 @@
 
 
 
-      [color=#AAAAAA]This Form is void without the signature and stamp of a medical specialist[/color]
+      [color=#AAAAAA]This Form is void without the signature and stamp of a medical specialist.[/color]
 
 - type: entity
   id: PaperWrittenMedicalFormPrescription
-  name: Medical Prescription
-  suffix: MappedPaper
+  name: medical prescription
+  categories: [ HideSpawnMenu ]
   parent: Paper
   components:
   - type: Paper
@@ -104,12 +104,12 @@
 
 
 
-      [color=#AAAAAA]This Form is void without the signature and stamp of a medical specialist[/color]
+      [color=#AAAAAA]This Form is void without the signature and stamp of a medical specialist.[/color]
 
 - type: entity # Based on form made by Radiantflash (Lykaon Rahmer)
   id: PaperWrittenMedicalFormHealthInsurance
-  name: Health Insurance Contract
-  suffix: MappedPaper
+  name: health insurance contract
+  categories: [ HideSpawnMenu ]
   parent: Paper
   components:
   - type: Paper
@@ -138,12 +138,12 @@
           [bold]$XX,XXX[/bold]
 
 
-      [color=#AAAAAA]This Form is void without the signatures of borth Parties and the stamp of a medical specialist[/color]
+      [color=#AAAAAA]This Form is void without the signatures of borth Parties and the stamp of a medical specialist.[/color]
 
 - type: entity
   id: PaperWrittenMedicalFormServiceInvoice
-  name: Medical Service Invoice
-  suffix: MappedPaper
+  name: medical service invoice
+  categories: [ HideSpawnMenu ]
   parent: Paper
   components:
   - type: Paper
@@ -177,4 +177,4 @@
 
 
 
-      [color=#AAAAAA]This Form is void without the signature and stamp of a medical specialist[/color]
+      [color=#AAAAAA]This Form is void without the signature and stamp of a medical specialist.[/color]

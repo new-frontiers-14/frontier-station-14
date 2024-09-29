@@ -1,0 +1,157 @@
+- type: reagent
+  id: FineRockDust
+  name: reagent-name-rock-dust
+  group: Narcotics
+  desc: reagent-desc-rock-dust
+  physicalDesc: reagent-physical-desc-rocky
+  flavor: salty
+  color: "#794c00"
+  metabolisms:
+    Narcotic:
+      effects:
+      # Effects for non-dwarfs
+      - !type:Emote
+        emote: Cough
+        showInChat: true
+        probability: 0.05
+        conditions:
+        - !type:OrganType
+          type: Dwarf
+          shouldHave: false
+      - !type:Emote
+        emote: Gasp
+        showInChat: true
+        probability: 0.025
+        conditions:
+        - !type:OrganType
+          type: Dwarf
+          shouldHave: false
+      # Effects for dwarfs
+      - !type:PopupMessage
+        type: Local
+        visualType: Medium
+        messages:
+        - "rock-dust-effect-nf-pleasant-memories-01"
+        - "rock-dust-effect-nf-pleasant-memories-02"
+        - "rock-dust-effect-nf-pleasant-memories-03"
+        - "rock-dust-effect-nf-pleasant-memories-04"
+        probability: 0.05
+        conditions:
+        - !type:OrganType
+          type: Dwarf
+          shouldHave: true
+      - !type:PopupMessage
+        type: Local
+        visualType: Medium
+        messages:
+        - "rock-dust-effect-nf-tense-memories-01"
+        - "rock-dust-effect-nf-tense-memories-02"
+        - "rock-dust-effect-nf-tense-memories-03"
+        probability: 0.015
+        conditions:
+        - !type:OrganType
+          type: Dwarf
+          shouldHave: true
+
+- type: reagent
+  id: ShroomMix
+  name: reagent-name-shroom-mix
+  group: Narcotics
+  desc: reagent-desc-shroom-mix
+  physicalDesc: reagent-physical-desc-murky
+  flavor: bitter
+  color: "#383351"
+  plantMetabolism:
+  - !type:PlantAdjustNutrition
+    amount: -5
+  - !type:PlantAdjustHealth
+    amount: -1
+  metabolisms:
+    Narcotic:
+      effects:
+      # Effects for goblins
+      - !type:GenericStatusEffect
+        key: SeeingRainbows
+        component: SeeingRainbows
+        type: Add
+        time: 15
+        conditions:
+        - !type:OrganType
+          type: Goblin
+          shouldHave: true
+      - !type:Emote
+        emote: Laugh
+        showInChat: true
+        probability: 0.08
+        conditions:
+        - !type:OrganType
+          type: Goblin
+          shouldHave: true
+      - !type:Emote
+        emote: GoblinMutter
+        showInChat: true
+        probability: 0.05
+        conditions:
+        - !type:OrganType
+          type: Goblin
+          shouldHave: true
+      - !type:Emote
+        emote: Hiss
+        showInChat: true
+        probability: 0.025
+        conditions:
+        - !type:OrganType
+          type: Goblin
+          shouldHave: true
+      - !type:PopupMessage
+        type: Local
+        visualType: Medium
+        messages:
+        - "shroom-mix-effect-nf-procrastination-visions-01"
+        - "shroom-mix-effect-nf-procrastination-visions-02"
+        - "shroom-mix-effect-nf-procrastination-visions-03"
+        - "shroom-mix-effect-nf-procrastination-visions-04"
+        - "shroom-mix-effect-nf-procrastination-visions-05"
+        - "shroom-mix-effect-nf-procrastination-visions-06"
+        - "shroom-mix-effect-nf-procrastination-visions-07"
+        - "shroom-mix-effect-nf-procrastination-visions-08"
+        probability: 0.05
+        conditions:
+        - !type:OrganType
+          type: Goblin
+          shouldHave: true
+      # Effects for everyone
+      - !type:Emote
+        emote: Scream
+        showInChat: true
+        probability: 0.01
+      - !type:Emote
+        emote: Gasp
+        showInChat: true
+        probability: 0.03
+      # Effects for non-goblins
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 1
+        - !type:OrganType
+          type: Goblin
+          shouldHave: false
+      - !type:ChemVomit
+        probability: 0.025
+        conditions:
+        - !type:OrganType
+          type: Goblin
+          shouldHave: false
+      - !type:SatiateThirst
+        factor: -1 # Makes non goblins thirsty, scales with reagent quantity (I think)
+        conditions:
+        - !type:OrganType
+          type: Goblin
+          shouldHave: false
+      - !type:SatiateHunger
+        factor: -1 # Makes non goblins hungry, scales with reagent quantity (I think)
+        conditions:
+        - !type:OrganType
+          type: Goblin
+          shouldHave: false

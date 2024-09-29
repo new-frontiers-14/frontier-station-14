@@ -141,12 +141,12 @@ public class RCDSystem : EntitySystem
 
         var rcdEntityUid = target;
 
-        // Is this id card interacting with a shipyard RCD ? if not, ignore it.
+        // Is this id card interacting with a shipyard RCD? If not, ignore it.
         if (!TryComp<RCDComponent>(rcdEntityUid, out var rcdComponent) || !rcdComponent.IsShipyardRCD)
-        {
-            args.Handled = true;
             return;
-        }
+
+        // RCD found, we're handling this event.
+        args.Handled = true;
 
         // If the id card has no registered ship we cant continue.
         if (!TryComp<ShuttleDeedComponent>(comp.Owner, out var shuttleDeedComponent))
@@ -154,7 +154,6 @@ public class RCDSystem : EntitySystem
             _popup.PopupClient(Loc.GetString("rcd-component-missing-id-deed"),
                 uid, args.User, PopupType.Medium);
             _audio.PlayPredicted(comp.ErrorSound, rcdEntityUid, args.User, AudioParams.Default.WithMaxDistance(0.01f));
-            args.Handled = true;
             return;
         }
 
@@ -175,7 +174,6 @@ public class RCDSystem : EntitySystem
         }
 
         Dirty(rcdComponent.Owner, rcdComponent);
-        args.Handled = true;
     }
 
     private void OnAfterInteract(EntityUid uid, RCDComponent component, AfterInteractEvent args)

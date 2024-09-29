@@ -23,8 +23,40 @@ shipyard-console-appraisal-label = Shuttle Estimated Value:{" "}
 shipyard-console-no-voucher-redemptions = All voucher redemptions have been used.
 shipyard-console-invalid-voucher-type = This voucher cannot be used at this console.
 
+shipyard-console-contraband-onboard = Smuggled contraband detected onboard.
+shipyard-console-station-resources = Vital station resources detected onboard.
+shipyard-console-dangerous-materials = Dangerous materials detected onboard.
+
 shipyard-console-menu-size-label = Size:{" "}
 shipyard-console-menu-class-label = Class:{" "}
 
 shipyard-console-purchase-available = Purchase
 shipyard-console-guidebook = Manual
+
+# Keep these in enum order for ease of validation.
+shipyard-console-category-All = All
+shipyard-console-category-Micro = Micro
+shipyard-console-category-Small = Small
+shipyard-console-category-Medium = Medium
+shipyard-console-category-Large = Large
+
+shipyard-console-class-All = All
+shipyard-console-class-Expedition = Expedition
+shipyard-console-class-Scrapyard = Scrapyard
+shipyard-console-class-Salvage = Salvage
+shipyard-console-class-Science = Science
+shipyard-console-class-Cargo = Cargo
+shipyard-console-class-Chemistry = Chemistry
+shipyard-console-class-Botany = Botany
+shipyard-console-class-Engineering = Engineering
+shipyard-console-class-Atmospherics = Atmospherics
+shipyard-console-class-Medical = Medical
+shipyard-console-class-Civilian = Civilian
+shipyard-console-class-Kitchen = Kitchen
+shipyard-console-class-Syndicate = Syndicate
+shipyard-console-class-Pirate = Pirate
+shipyard-console-class-Detainment = Detainment
+shipyard-console-class-Detective = Detective
+shipyard-console-class-Fighter = Fighter
+shipyard-console-class-Stealth = Stealth
+shipyard-console-class-Capital = Capital

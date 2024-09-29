@@ -285,3 +285,19 @@
         # CandleRed: 2
       # stackRequirements:
         # CableHV: 10
+
+# Removed from upstream definitions
+- type: entity
+  id: MaterialReclaimerMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: material reclaimer machine board
+  components:
+    - type: Sprite
+      state: supply
+    - type: MachineBoard
+      prototype: MaterialReclaimer
+      requirements: 
+        Manipulator: 2
+      stackRequirements:
+        Steel: 5
+        Plastic: 5

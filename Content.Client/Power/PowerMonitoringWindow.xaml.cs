@@ -18,7 +18,7 @@ public sealed partial class PowerMonitoringWindow : FancyWindow
     [Dependency] private IEntityManager _entManager = default!;
     private readonly SpriteSystem _spriteSystem;
     [Dependency] private IGameTiming _gameTiming = default!;
-    [Dependency] private SharedTransformSystem _transformSystem = default!; // Frontier modification
+    private SharedTransformSystem _transformSystem; // Frontier modification
 
     private const float BlinkFrequency = 1f;
 
@@ -42,6 +42,7 @@ public sealed partial class PowerMonitoringWindow : FancyWindow
         IoCManager.InjectDependencies(this);
 
         _spriteSystem = _entManager.System<SpriteSystem>();
+        _transformSystem = _entManager.System<SharedTransformSystem>(); // Frontier
 
         // Set trackable entity selected action
         NavMap.TrackedEntitySelectedAction += SetTrackedEntityFromNavMap;
@@ -166,7 +167,7 @@ public sealed partial class PowerMonitoringWindow : FancyWindow
         {
             var texture = _spriteSystem.Frame0(new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/NavMap/beveled_circle.png")));
 
-            var blip = new NavMapBlip(monitorCoords.Value, _transformSystem.ToMapCoordinates(monitorCoords.Value), texture, Color.Cyan, true, false); // Frontier modification: add map coords as 2nd arg
+            var blip = new NavMapBlip(monitorCoords.Value, texture, Color.Cyan, true, false);
             NavMap.TrackedEntities[mon] = blip;
         }
 
@@ -230,7 +231,7 @@ public sealed partial class PowerMonitoringWindow : FancyWindow
         if (_focusEntity != null && usedEntity != _focusEntity && !entitiesOfInterest.Contains(usedEntity.Value))
             modulator = Color.DimGray;
 
-        var blip = new NavMapBlip(coords, coords.ToMap(_entManager, _transformSystem), _spriteSystem.Frame0(texture), color * modulator, blink); //Frontier modification
+        var blip = new NavMapBlip(coords, _spriteSystem.Frame0(texture), color * modulator, blink);
         NavMap.TrackedEntities[netEntity] = blip;
     }
 

@@ -1,0 +1,101 @@
+- type: entity # Base Badge
+  parent: ClothingNeckBase
+  id: ClothingNeckNfsdBadge
+  name: nfsd badge
+  description: Respect my authority!
+  abstract: true
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: _NF/Clothing/Neck/Scarfs/nfsd_bronze_badge.rsi
+    layers: []
+  - type: Clothing
+    sprite: _NF/Clothing/Neck/Scarfs/nfsd_bronze_badge.rsi
+
+- type: entity
+  parent: ClothingNeckNfsdBadge
+  id: ClothingNeckNfsdBadgeSecurityCadet
+  name: nfsd cadet badge
+  suffix: Bronze - Cadet
+
+- type: entity
+  parent: ClothingNeckNfsdBadge
+  id: ClothingNeckNfsdBadgeSecurity
+  suffix: Silver - Deputy
+  name: nfsd deputy badge
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Neck/Scarfs/nfsd_silver_badge.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Neck/Scarfs/nfsd_silver_badge.rsi
+    
+- type: entity
+  parent: ClothingNeckNfsdBadge
+  id: ClothingNeckNfsdBadgeSecurityBrigmedic
+  suffix: Silver - Brigmedic
+  name: nfsd brigmedic badge
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Neck/Scarfs/nfsd_silvercross_badge.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Neck/Scarfs/nfsd_silvercross_badge.rsi
+
+- type: entity
+  parent: ClothingNeckNfsdBadge
+  id: ClothingNeckNfsdBadgeDetective
+  suffix: Silver - Detective
+  name: nfsd detective badge
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Neck/Scarfs/nfsd_silver_badge.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Neck/Scarfs/nfsd_silver_badge.rsi
+
+- type: entity
+  parent: ClothingNeckNfsdBadge
+  id: ClothingNeckNfsdBadgeSeniorOfficer
+  suffix: Gold - Sergeant
+  name: nfsd sergeant badge
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Neck/Scarfs/nfsd_gold_badge.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Neck/Scarfs/nfsd_gold_badge.rsi
+
+- type: entity
+  parent: ClothingNeckNfsdBadge
+  id: ClothingNeckNfsdBadgeWarden
+  suffix: Gold - Bailiff
+  name: nfsd bailiff badge
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Neck/Scarfs/nfsd_gold_badge.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Neck/Scarfs/nfsd_gold_badge.rsi
+
+- type: entity
+  parent: ClothingNeckNfsdBadge
+  id: ClothingNeckNfsdBadgeSheriff
+  suffix: Star - Sheriff
+  name: nfsd sheriff badge
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Neck/Scarfs/nfsd_star_badge.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Neck/Scarfs/nfsd_star_badge.rsi
+  - type: EmbeddableProjectile # pointy
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckPublicAffairsLiaisonBadge
+  name: public affairs liaison badge
+  description: A badge for grade 4 paperwork wizards affiliated with the NFSD.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Neck/Misc/palbadge.rsi
+    scale: 0.5, 0.5
+  - type: Clothing
+    sprite: _NF/Clothing/Neck/Misc/palbadge.rsi
+  - type: TypingIndicatorClothing
+    proto: pal

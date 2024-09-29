@@ -3,14 +3,6 @@ using Content.Server.Access.Systems;
 using Content.Server.Bank;
 using Content.Server.Cargo.Components;
 using Content.Server.Labels.Components;
-// FRONTIER MERGE: BEGIN CRUFT
-using Content.Server.Paper;
-using Content.Server.DeviceLinking.Systems;
-using Content.Server.Popups;
-using Content.Server.Station.Systems;
-using Content.Shared.Access.Systems;
-using Content.Shared.Administration.Logs;
-// FRONTIER MERGE: END CRUFT
 using Content.Shared.Bank.Components; // Frontier
 using Content.Server.Station.Components;
 using Content.Shared.Cargo;
@@ -19,10 +11,8 @@ using Content.Shared.Cargo.Components;
 using Content.Shared.Cargo.Events;
 using Content.Shared.Cargo.Prototypes;
 using Content.Shared.Database;
-using Content.Shared.GameTicking;
-using Content.Server.Paper;
-using Content.Shared.Access.Components;
-using Robust.Server.GameObjects;
+using Content.Shared.Emag.Components;
+using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Paper;
 using Robust.Shared.Map;
@@ -191,10 +181,6 @@ namespace Content.Server.Cargo.Systems
             //RaiseLocalEvent(ref ev); // Frontier
             //ev.FulfillmentEntity ??= station.Value; // Frontier
 
-            _idCardSystem.TryFindIdCard(player, out var idCard);
-            // ReSharper disable once ConditionalAccessQualifierIsNonNullableAccordingToAPIContract
-            order.SetApproverData(idCard.Comp?.FullName, idCard.Comp?.JobTitle);
-
             // if (!ev.Handled)
             // {
             //     ev.FulfillmentEntity = TryFulfillOrder((station.Value, stationData), order, orderDatabase);
@@ -210,13 +196,23 @@ namespace Content.Server.Cargo.Systems
             order.Approved = true;
             _audio.PlayPvs(component.ConfirmSound, uid);
 
-            var message = Loc.GetString("cargo-console-unlock-approved-order-broadcast",
-                ("productName", Loc.GetString(order.ProductName)),
-                ("orderAmount", order.OrderQuantity),
-                ("approver", order.Approver ?? string.Empty),
-                ("cost", cost));
-            //_radio.SendRadioMessage(uid, message, component.AnnouncementChannel, uid, escapeMarkup: false); # Frontier: spammy
-            ConsolePopup(args.Actor, Loc.GetString("cargo-console-trade-station", ("destination", MetaData(uid).EntityName)));
+            if (!HasComp<EmaggedComponent>(uid))
+            {
+                var tryGetIdentityShortInfoEvent = new TryGetIdentityShortInfoEvent(uid, player);
+                RaiseLocalEvent(tryGetIdentityShortInfoEvent);
+                order.SetApproverData(tryGetIdentityShortInfoEvent.Title);
+
+                // Frontier: silence cargo station
+                // var message = Loc.GetString("cargo-console-unlock-approved-order-broadcast",
+                //     ("productName", Loc.GetString(order.ProductName)),
+                //     ("orderAmount", order.OrderQuantity),
+                //     ("approver", order.Approver ?? string.Empty),
+                //     ("cost", cost));
+                // _radio.SendRadioMessage(uid, message, component.AnnouncementChannel, uid, escapeMarkup: false);
+                // End Frontier: silence cargo station
+            }
+
+            ConsolePopup(args.Actor, Loc.GetString("cargo-console-trade-station", ("destination", MetaData(uid).EntityName))); // ev.FulfillmentEntity.Value<uid
 
             // Log order approval
             _adminLogger.Add(LogType.Action, LogImpact.Low,

@@ -28,7 +28,7 @@ public sealed class RespawnSystem : EntitySystem
     private float _respawnTime = 0f;
 
     // Frontier: struct for respawn lookup
-    private struct RespawnData
+    private sealed class RespawnData
     {
         public TimeSpan RespawnTime; // The next time the user can respawn.
         public TimeSpan? LastCryoSleep; // The last time the user entered cryosleep.
@@ -168,6 +168,8 @@ public sealed class RespawnSystem : EntitySystem
     // Frontier: return a writable reference
     private ref RespawnData GetRespawnData(NetUserId player)
     {
-        return ref CollectionsMarshal.GetValueRefOrAddDefault(_respawnInfo, player, out _);;
+        if (!_respawnInfo.ContainsKey(player))
+            _respawnInfo[player] = new RespawnData();
+        return ref CollectionsMarshal.GetValueRefOrNullRef(_respawnInfo, player);
     }
 }

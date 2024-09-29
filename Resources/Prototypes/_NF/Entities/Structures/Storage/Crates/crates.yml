@@ -107,7 +107,13 @@
     price: 7500
   - type: Contraband
     turnInValues:
-      FrontierUplinkCoin: 5
+      FrontierUplinkCoin: 3
+      Doubloon: 2
+  - type: DisableShipyardSale
+    reason: shipyard-console-contraband-onboard
+    allowedShipyardTypes:
+    - Syndicate
+    - BlackMarket
 
 - type: entity
   parent:
@@ -138,7 +144,13 @@
     price: 15000
   - type: Contraband
     turnInValues:
-      FrontierUplinkCoin: 5
+      FrontierUplinkCoin: 3
+      Doubloon: 2
+  - type: DisableShipyardSale
+    reason: shipyard-console-contraband-onboard
+    allowedShipyardTypes:
+    - Syndicate
+    - BlackMarket
 
 - type: entity
   parent:
@@ -169,7 +181,13 @@
     price: 15000
   - type: Contraband
     turnInValues:
-      FrontierUplinkCoin: 5
+      FrontierUplinkCoin: 3
+      Doubloon: 2
+  - type: DisableShipyardSale
+    reason: shipyard-console-contraband-onboard
+    allowedShipyardTypes:
+    - Syndicate
+    - BlackMarket
 
 - type: entity
   parent: CrateSecgear
@@ -296,3 +314,21 @@
     sprite: _NF/Structures/Storage/Crates/secure_firearms.rsi
   - type: Sprite
     sprite: _NF/Structures/Storage/Crates/secure_firearms.rsi
+
+- type: entity
+  parent: CrateLivestock
+  id: CrateWoodCage
+  name: wooden cage
+  description: Looks like somebody made this in a cave, with a box of scraps.
+  components:
+  - type: EntityStorage
+    airtight: false # Keep this explicit in case the parent changes.
+  - type: Sprite
+    sprite: _NF/Structures/Storage/Crates/woodcage.rsi
+    layers:
+    - state: base
+    - state: closed
+      map: ["enum.StorageVisualLayers.Door"]
+  - type: Icon
+    sprite: _NF/Structures/Storage/Crates/woodcage.rsi
+    state: base
