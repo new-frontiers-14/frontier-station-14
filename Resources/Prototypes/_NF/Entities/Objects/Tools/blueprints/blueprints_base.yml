@@ -4,11 +4,17 @@
   abstract: true
   components:
   - type: Sprite
-    sprite: _NF/Objects/Tools/blueprints.rsi
     layers:
-      - state: icon-base
+      - sprite: _NF/Objects/Tools/blueprints.rsi
+        state: icon-base
         color: "#7da0ba"
-      - state: icon-text
+      - sprite: _NF/Objects/Tools/blueprints.rsi
+        state: icon-text
+      - sprite: Objects/Misc/bureaucracy.rsi
+        state: paper_stamp-generic
+        offset: 0.15,-0.1
+        map: ["enum.PaperVisualLayers.Stamp"]
+        visible: false
   - type: Item
     size: Normal
     sprite: _NF/Objects/Tools/blueprints.rsi
@@ -32,8 +38,8 @@
     materialComposition:
       Paper: 100
   # Paper stuff
-  - type: FaxableObject # Not sure about it, but why not? If someone wants to waste their time printing free copies of blueprints for cash they can have their spesos
   - type: Paper
+  - type: PaperVisuals
   - type: Flammable
     fireSpread: true
     canResistFire: false
@@ -61,17 +67,46 @@
               max: 1
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
+  - type: Food
+    solution: food
+    delay: 7
+    forceFeedDelay: 7
+  - type: FlavorProfile
+    flavors:
+    - paper
+  - type: BadFood
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 1
+        reagents:
+        - ReagentId: Fiber
+          Quantity: 0.1
+
+- type: entity
+  parent: BaseBlueprintNF
+  id: BaseBlueprintFaxable
+  abstract: true
+  components:
+  - type: FaxableObject # Not sure about it, but why not? If someone wants to waste their time printing free copies of blueprints for cash they can have their spesos
 
 - type: entity # Engineering
-  parent: BaseBlueprintNF
+  parent: BaseBlueprintFaxable
   id: BaseBlueprintEngineeringNF
   abstract: true
   components:
   - type: Sprite
     layers:
-      - state: icon-base
-        color: "#fff87c" # Pale yellow
-      - state: icon-text
+      - sprite: _NF/Objects/Tools/blueprints.rsi
+        state: icon-base
+        color: "#fff87c"
+      - sprite: _NF/Objects/Tools/blueprints.rsi
+        state: icon-text
+      - sprite: Objects/Misc/bureaucracy.rsi
+        state: paper_stamp-generic
+        offset: 0.15,-0.1
+        map: ["enum.PaperVisualLayers.Stamp"]
+        visible: false
   - type: Item
     size: Normal
     inhandVisuals:
@@ -85,15 +120,22 @@
       - state: inhand-right-text
 
 - type: entity # Salvage / Cargo
-  parent: BaseBlueprintNF
+  parent: BaseBlueprintFaxable
   id: BaseBlueprintSalvageNF
   abstract: true
   components:
   - type: Sprite
     layers:
-      - state: icon-base
-        color: "#e1ba8b" # Pale brown
-      - state: icon-text
+      - sprite: _NF/Objects/Tools/blueprints.rsi
+        state: icon-base
+        color: "#e1ba8b"
+      - sprite: _NF/Objects/Tools/blueprints.rsi
+        state: icon-text
+      - sprite: Objects/Misc/bureaucracy.rsi
+        state: paper_stamp-generic
+        offset: 0.15,-0.1
+        map: ["enum.PaperVisualLayers.Stamp"]
+        visible: false
   - type: Item
     size: Normal
     inhandVisuals:
@@ -107,15 +149,22 @@
       - state: inhand-right-text
 
 - type: entity # Science
-  parent: BaseBlueprintNF
+  parent: BaseBlueprintFaxable
   id: BaseBlueprintScienceNF
   abstract: true
   components:
   - type: Sprite
     layers:
-      - state: icon-base
-        color: "#e18bd5" # Pale purple
-      - state: icon-text
+      - sprite: _NF/Objects/Tools/blueprints.rsi
+        state: icon-base
+        color: "#e18bd5"
+      - sprite: _NF/Objects/Tools/blueprints.rsi
+        state: icon-text
+      - sprite: Objects/Misc/bureaucracy.rsi
+        state: paper_stamp-generic
+        offset: 0.15,-0.1
+        map: ["enum.PaperVisualLayers.Stamp"]
+        visible: false
   - type: Item
     size: Normal
     inhandVisuals:
@@ -129,15 +178,22 @@
       - state: inhand-right-text
 
 - type: entity # Service
-  parent: BaseBlueprintNF
+  parent: BaseBlueprintFaxable
   id: BaseBlueprintServiceNF
   abstract: true
   components:
   - type: Sprite
     layers:
-      - state: icon-base
-        color: "#94e18b" # Pale green
-      - state: icon-text
+      - sprite: _NF/Objects/Tools/blueprints.rsi
+        state: icon-base
+        color: "#94e18b"
+      - sprite: _NF/Objects/Tools/blueprints.rsi
+        state: icon-text
+      - sprite: Objects/Misc/bureaucracy.rsi
+        state: paper_stamp-generic
+        offset: 0.15,-0.1
+        map: ["enum.PaperVisualLayers.Stamp"]
+        visible: false
   - type: Item
     size: Normal
     inhandVisuals:
@@ -151,15 +207,22 @@
       - state: inhand-right-text
 
 - type: entity # Medical
-  parent: BaseBlueprintNF
+  parent: BaseBlueprintFaxable
   id: BaseBlueprintMedicalNF
   abstract: true
   components:
   - type: Sprite
     layers:
-      - state: icon-base
-        color: "#97cae1" # Pale blue
-      - state: icon-text
+      - sprite: _NF/Objects/Tools/blueprints.rsi
+        state: icon-base
+        color: "#97cae1"
+      - sprite: _NF/Objects/Tools/blueprints.rsi
+        state: icon-text
+      - sprite: Objects/Misc/bureaucracy.rsi
+        state: paper_stamp-generic
+        offset: 0.15,-0.1
+        map: ["enum.PaperVisualLayers.Stamp"]
+        visible: false
   - type: Item
     size: Normal
     inhandVisuals:
@@ -173,15 +236,22 @@
       - state: inhand-right-text
 
 - type: entity # Armory
-  parent: BaseBlueprintNF
+  parent: BaseBlueprintFaxable
   id: BaseBlueprintArmoryNF
   abstract: true
   components:
   - type: Sprite
     layers:
-      - state: icon-base
-        color: "#e18b8b" # Pale red
-      - state: icon-text
+      - sprite: _NF/Objects/Tools/blueprints.rsi
+        state: icon-base
+        color: "#e18b8b"
+      - sprite: _NF/Objects/Tools/blueprints.rsi
+        state: icon-text
+      - sprite: Objects/Misc/bureaucracy.rsi
+        state: paper_stamp-generic
+        offset: 0.15,-0.1
+        map: ["enum.PaperVisualLayers.Stamp"]
+        visible: false
   - type: Item
     size: Normal
     inhandVisuals:
@@ -193,3 +263,35 @@
       - state: inhand-right-base
         color: "#e18b8b"
       - state: inhand-right-text
+
+- type: entity # Church
+  parent: BaseBlueprintFaxable
+  id: BaseBlueprintChurchNF
+  abstract: true
+  components:
+  - type: Sprite
+    layers:
+      - sprite: _NF/Objects/Tools/blueprints.rsi
+        state: icon-base
+        color: "#525252"
+      - sprite: _NF/Objects/Tools/blueprints.rsi
+        state: icon-text
+        color: "#cbab00"
+      - sprite: Objects/Misc/bureaucracy.rsi
+        state: paper_stamp-generic
+        offset: 0.15,-0.1
+        map: ["enum.PaperVisualLayers.Stamp"]
+        visible: false
+  - type: Item
+    size: Normal
+    inhandVisuals:
+      left:
+      - state: inhand-left-base
+        color: "#525252"
+      - state: inhand-left-text
+        color: "#cbab00"
+      right:
+      - state: inhand-right-base
+        color: "#525252"
+      - state: inhand-right-text
+        color: "#cbab00"
