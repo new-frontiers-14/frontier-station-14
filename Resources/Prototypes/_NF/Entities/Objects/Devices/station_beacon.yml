@@ -148,7 +148,65 @@
     defaultText: station-beacon-shooting-range-mercenary
     color: "#b8b873"
 
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultStationBeaconFrontierArmoryMercenary
+  suffix: Armory, Mercenary
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-armory-mercenary
+    color: "#b8b873"
+
+- type: entity
+  parent: DefaultStationBeaconService
+  id: DefaultStationBeaconFrontierMess
+  suffix: Mess
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-mess
+
+- type: entity
+  parent: DefaultStationBeaconService
+  id: DefaultStationBeaconFrontierHead
+  suffix: Head
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-head
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultStationBeaconFrontierAtmos
+  suffix: Atmos NF
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-atmos-nf
+    color: "#3eb38896"
+
+- type: entity
+  parent: DefaultStationBeaconFrontierAtmos
+  id: DefaultStationBeaconFrontierAtmosBurn
+  suffix: Atmos, Burn chamber
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-atmos-burn
+
+- type: entity
+  parent: DefaultStationBeaconFrontierAtmos
+  id: DefaultStationBeaconFrontierAtmosCollector
+  suffix: Atmos, Collector
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-atmos-collector
+
 # Docks
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultStationBeaconFrontierEvaAccess
+  suffix: EVA Access
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-eva-access
+
 - type: entity
   parent: DefaultStationBeacon
   id: DefaultStationBeaconFrontierDockOne
