@@ -4,7 +4,7 @@ using Robust.Client.UserInterface.Controls;
 namespace Content.Client._NF.Latejoin;
 
 [GenerateTypedNameReferences]
-public sealed partial class StationPickerWindow : PanelContainer
+public sealed partial class StationPickerControl : PanelContainer
 {
 
 }

@@ -28,8 +28,8 @@ public sealed partial class PickerWindow : FancyWindow
     }
 
     private PickerType _pickerType;
-    private CrewPickerWindow _crewPickerWindow = new CrewPickerWindow();
-    private StationPickerWindow _stationPickerWindow = new StationPickerWindow();
+    private CrewPickerControl _crewPickerControl = new CrewPickerControl();
+    private StationPickerControl _stationPickerControl = new StationPickerControl();
 
     public PickerWindow() : this(PickerType.Station) { }
 
@@ -68,11 +68,11 @@ public sealed partial class PickerWindow : FancyWindow
         switch (_pickerType)
         {
             case PickerType.Crew:
-                ContentContainer.AddChild(_crewPickerWindow);
+                ContentContainer.AddChild(_crewPickerControl);
 
                 break;
             case PickerType.Station:
-                ContentContainer.AddChild(_stationPickerWindow);
+                ContentContainer.AddChild(_stationPickerControl);
                 break;
         }
     }
