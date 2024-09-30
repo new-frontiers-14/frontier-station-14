@@ -37,6 +37,7 @@ public abstract class SharedRatKingSystem : EntitySystem
         SubscribeLocalEvent<RatKingRummageableComponent, RatKingRummageDoAfterEvent>(OnDoAfterComplete);
 
         SubscribeLocalEvent<RatKingRummageableComponent, ComponentInit>(OnComponentInit); // Goobstation - #660
+        SubscribeLocalEvent<RummagerComponent, ComponentInit>(OnRummgerComponentInit); // Frontier
     }
 
     private void OnStartup(EntityUid uid, RatKingComponent component, ComponentStartup args)
@@ -114,11 +115,18 @@ public abstract class SharedRatKingSystem : EntitySystem
         Dirty(uid, component);
     }
 
+    public void OnRummgerComponentInit(EntityUid uid, RummagerComponent component, ComponentInit args) // Frontier - per-rummager cooldown
+    {
+        component.LastRummaged = _gameTiming.CurTime;
+        Dirty(uid, component);
+    }
+
     private void OnGetVerb(EntityUid uid, RatKingRummageableComponent component, GetVerbsEvent<AlternativeVerb> args)
     {
-        if (!HasComp<RummagerComponent>(args.User)
+        if (!TryComp<RummagerComponent>(args.User, out var rummager)
             || component.Looted
-            || _gameTiming.CurTime < component.LastLooted + component.RummageCooldown)
+            || _gameTiming.CurTime < component.LastLooted + component.RummageCooldown
+            || _gameTiming.CurTime < rummager.LastRummaged + rummager.Cooldown) // Frontier: cooldown per rummager
             // DeltaV - Use RummagerComponent instead of RatKingComponent
             // (This is so we can give Rodentia rummage abilities)
             // Additionally, adds a cooldown check
@@ -151,11 +159,15 @@ public abstract class SharedRatKingSystem : EntitySystem
         var time = _gameTiming.CurTime;
         if (args.Cancelled
             || component.Looted
-            || time < component.LastLooted + component.RummageCooldown)
+            || time < component.LastLooted + component.RummageCooldown
+            || !TryComp<RummagerComponent>(args.User, out var rummager) // Frontier: must be a rummager (also, verify cooldowns)
+            || time < rummager.LastRummaged + rummager.Cooldown) // Frontier: check cooldown
             return;
 
         component.LastLooted = time;
         // End DeltaV change
+        rummager.LastRummaged = time; // Frontier: set rummager cooldown
+
         Dirty(uid, component);
         _audio.PlayPredicted(component.Sound, uid, args.User);
 

@@ -140,10 +140,10 @@ public sealed class DumpableSystem : EntitySystem
 
     private void OnDoAfter(EntityUid uid, DumpableComponent component, DumpableDoAfterEvent args)
     {
-        if (args.Handled || args.Cancelled)
+        if (args.Handled || args.Cancelled) // DeltaV: conditions pushed into DumpContents
             return;
 
-        DumpContents(uid, args.Args.Target, args.Args.User, component);
+        DumpContents(uid, args.Args.Target, args.Args.User, component); // DeltaV
     }
 
     // DeltaV: Refactor to allow dumping that doesn't require a verb
