@@ -24,6 +24,18 @@
 
 - type: entity
   parent: PosterBase
+  id: ShuttleMapBarge
+  name: "NC Barge"
+  description: "Detailed map of a Barge shuttle."
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
+    state: barge
+    scale: 1.2, 1.2
+
+- type: entity
+  parent: PosterBase
   id: ShuttleMapBazaar
   name: "SLI Bazaar"
   description: "Detailed map of a Bazaar shuttle."
