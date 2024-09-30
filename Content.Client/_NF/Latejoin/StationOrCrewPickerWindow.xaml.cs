@@ -19,13 +19,13 @@ public sealed partial class StationOrCrewPickerWindow : FancyWindow
 
     private void StationButtonOnOnPressed(BaseButton.ButtonEventArgs obj)
     {
-        new NFLateJoinGui().OpenCentered();
+        new PickerWindow(PickerWindow.PickerType.Station).OpenCentered();
         Close();
     }
 
     private void CrewButtonOnOnPressed(BaseButton.ButtonEventArgs obj)
     {
-        new NFLateJoinGui().OpenCentered();
+        new PickerWindow(PickerWindow.PickerType.Crew).OpenCentered();
         Close();
     }
 }

@@ -1,2 +1,24 @@
-<latejoin:StationPickerWindow xmlns="https://spacestation14.io"
-                                            xmlns:latejoin="clr-namespace:Content.Client._NF.Latejoin" />
+<PanelContainer xmlns="https://spacestation14.io"
+                xmlns:customControls="clr-namespace:Content.Client.Administration.UI.CustomControls"
+                Access="Public"
+                StyleClasses="PanelBackgroundLight"
+                Margin="0 2 0 2"
+                HorizontalExpand="True"
+                VerticalExpand="True">
+
+    <Label Text="This is the Station picker!"/>
+    <BoxContainer Orientation="Horizontal">
+        <BoxContainer Orientation="Vertical" Margin="4 4" HorizontalExpand="True" SizeFlagsStretchRatio="1">
+            <ItemList Name="StationItemList"
+                      Access="Public"
+                      SelectMode="Single"
+                      VerticalExpand="True"
+                      HorizontalExpand="True"
+                      MinSize="100 100" />
+        </BoxContainer>
+        <customControls:VSeparator StyleClasses="LowDivider"/>
+        <BoxContainer Name="JobList" Orientation="Vertical" Margin="4 4" HorizontalExpand="True" SizeFlagsStretchRatio="1">
+            <Button Name="CrewManifestButton" Text="Crew Manifest" HorizontalAlignment="Center" Visible="False"/>
+        </BoxContainer>
+    </BoxContainer>
+</PanelContainer>
