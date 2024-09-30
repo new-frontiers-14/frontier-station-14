@@ -168,6 +168,18 @@
 
 - type: entity
   parent: PosterBase
+  id: ShuttleMapHauler
+  name: "NC Hauler"
+  description: "Detailed map of a Hauler shuttle."
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
+    state: hauler
+    scale: 1.2, 1.2
+
+- type: entity
+  parent: PosterBase
   id: ShuttleMapInvestigator
   name: "NR Investigator"
   description: "Detailed map of a Investigator shuttle."
@@ -300,21 +312,10 @@
 
 - type: entity
   parent: PosterBase
-  id: ShuttleMapVagabond
-  name: "NT Vagabond"
-  description: "Detailed map of a Vagabond shuttle."
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
-    state: vagabond
-    scale: 1.2, 1.2
-
-- type: entity
-  parent: PosterBase
   id: ShuttleMapSpirit
   name: "NM Spirit"
   description: "Detailed map of a Spirit shuttle."
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
@@ -326,8 +327,21 @@
   id: ShuttleMapStasis
   name: "NM Stasis"
   description: "Detailed map of a Stasis shuttle."
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
     state: stasis
+    scale: 1.2, 1.2
+
+- type: entity
+  parent: PosterBase
+  id: ShuttleMapVagabond
+  name: "NT Vagabond"
+  description: "Detailed map of a Vagabond shuttle."
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
+    state: vagabond
     scale: 1.2, 1.2
