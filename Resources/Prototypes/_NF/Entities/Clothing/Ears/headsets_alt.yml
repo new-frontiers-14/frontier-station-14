@@ -1,46 +1,20 @@
 ﻿- type: entity
-  parent: ClothingHeadsetAlt
+  parent: [ClothingHeadsetCommon, ClothingHeadsetAlt]
   id: ClothingHeadsetAltMercenary
-  name: mercenary over-ear headset
   components:
-  - type: ContainerFill
-    containers:
-      key_slots:
-      - EncryptionKeyCommon
   - type: Sprite
     sprite: _NF/Clothing/Ears/Headsets/mercenary.rsi
   - type: Clothing
     sprite: _NF/Clothing/Ears/Headsets/mercenary.rsi
 
 - type: entity
-  parent: ClothingHeadsetAlt
+  parent: [ClothingHeadsetCommon, ClothingHeadsetAlt]
   id: ClothingHeadsetAltPilot
-  name: pilot over-ear headset
   components:
-  - type: ContainerFill
-    containers:
-      key_slots:
-      - EncryptionKeyCommon
   - type: Sprite
     sprite: _NF/Clothing/Ears/Headsets/pilot.rsi
   - type: Clothing
     sprite: _NF/Clothing/Ears/Headsets/pilot.rsi
-
-- type: entity
-  parent: ClothingHeadsetAlt
-  id: ClothingHeadsetAltNfsdGreen
-  name: nfsd over-ear headset
-  components:
-  - type: ContainerFill
-    containers:
-      key_slots:
-      - EncryptionKeyCommon
-      - EncryptionKeyNfsd
-      - EncryptionKeyCommand
-  - type: Sprite
-    sprite: _NF/Clothing/Ears/Headsets/nfsd_h_green.rsi
-  - type: Clothing
-    sprite: _NF/Clothing/Ears/Headsets/nfsd_h_green.rsi
 
 - type: entity
   parent: ClothingHeadsetAlt
@@ -59,16 +33,81 @@
     sprite: _NF/Clothing/Ears/Headsets/nfsd_h_brown.rsi
 
 - type: entity
-  parent: ClothingHeadsetAlt
+  parent: ClothingHeadsetAltNfsdBrown
+  id: ClothingHeadsetAltNfsdGreen
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Ears/Headsets/nfsd_h_green.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Ears/Headsets/nfsd_h_green.rsi
+
+- type: entity
+  parent: ClothingHeadsetAltNfsdBrown
   id: ClothingHeadsetAltNfsdCreamandBrown
-  name: sheriff's over-ear headset
   components:
   - type: Sprite
     sprite: _NF/Clothing/Ears/Headsets/nfsd_h_cb.rsi
   - type: Clothing
     sprite: _NF/Clothing/Ears/Headsets/nfsd_h_cb.rsi
+
+- type: entity
+  parent: ClothingHeadsetAlt
+  id: ClothingHeadsetAltNfsdBrownCentcom
+  name: sheriff's over-ear headset
+  components:
   - type: ContainerFill
     containers:
       key_slots:
-      - EncryptionKeyStationMaster
       - EncryptionKeyCentCom
+      - EncryptionKeyStationMaster
+  - type: Sprite
+    sprite: _NF/Clothing/Ears/Headsets/nfsd_h_brown.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Ears/Headsets/nfsd_h_brown.rsi
+
+- type: entity
+  parent: ClothingHeadsetAltNfsdBrownCentcom
+  id: ClothingHeadsetAltNfsdGreenCentcom
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Ears/Headsets/nfsd_h_green.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Ears/Headsets/nfsd_h_green.rsi
+
+- type: entity
+  parent: ClothingHeadsetAltNfsdBrownCentcom
+  id: ClothingHeadsetAltNfsdCreamandBrownCentcom
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Ears/Headsets/nfsd_h_cb.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Ears/Headsets/nfsd_h_cb.rsi
+
+# Common Versions - Upstream
+- type: entity
+  parent: [ClothingHeadsetCommon, ClothingHeadsetAltCargo]
+  id: ClothingHeadsetAltCargoCommon
+
+- type: entity
+  parent: [ClothingHeadsetCommon, ClothingHeadsetAltCommand]
+  id: ClothingHeadsetAltCommandCommon
+
+- type: entity
+  parent: [ClothingHeadsetCommon, ClothingHeadsetAltEngineering]
+  id: ClothingHeadsetAltEngineeringCommon
+
+- type: entity
+  parent: [ClothingHeadsetCommon, ClothingHeadsetAltMedical]
+  id: ClothingHeadsetAltMedicalCommon
+
+- type: entity
+  parent: [ClothingHeadsetCommon, ClothingHeadsetAltSecurity]
+  id: ClothingHeadsetAltSecurityCommon
+
+- type: entity
+  parent: [ClothingHeadsetCommon, ClothingHeadsetAltScience]
+  id: ClothingHeadsetAltScienceCommon
+
+- type: entity
+  parent: [ClothingHeadsetCommon, ClothingHeadsetAltCentCom]
+  id: ClothingHeadsetAltCentComCommon

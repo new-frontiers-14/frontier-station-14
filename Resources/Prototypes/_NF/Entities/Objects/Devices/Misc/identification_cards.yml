@@ -47,6 +47,19 @@
 
 - type: entity
   parent: IDCardStandard
+  id: PublicAffairsIDCard
+  name: public affairs liaison ID card
+  components:
+  - type: PresetIdCard
+    job: PublicAffairsLiaison
+  - type: Sprite
+    sprite: _NF/Objects/Misc/id_cards.rsi
+    layers:
+    - state: nfsd
+    - state: idpublicaffairsliaison
+
+- type: entity
+  parent: IDCardStandard
   id: CadetIDCard
   name: nfsd cadet ID card
   components:
@@ -202,7 +215,6 @@
   id: PirateNFIDCard
   name: pirate ID card
   description: Garr, be this wood?
-  noSpawn: false # true in parent
   components:
   - type: PresetIdCard
     job: Pirate
@@ -240,3 +252,36 @@
     layers:
     - state: pirate
     - state: idpiratefirstmate
+
+- type: entity
+  parent: PunPunIDCard
+  id: YipYipIDCard
+  name: yip yip ID card
+  components:
+  - type: PresetIdCard
+    name: Yip Yip
+
+# Cats
+- type: entity
+  parent: CourierIDCard
+  id: ClippyIDCard
+  name: clippy ID card
+  components:
+  - type: PresetIdCard
+    name: Clippy
+
+- type: entity
+  parent: PirateFirstMateNFIDCard
+  id: ClarpyIDCard
+  name: clarpy ID card
+  components:
+  - type: PresetIdCard
+    name: Clarpy
+
+- type: entity
+  parent: DeputyIDCard
+  id: CappyIDCard
+  name: cappy ID card
+  components:
+  - type: PresetIdCard
+    name: Cappy

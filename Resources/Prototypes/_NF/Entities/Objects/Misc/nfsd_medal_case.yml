@@ -1,0 +1,23 @@
+- type: entity
+  parent: MedalCase
+  id: MedalCaseNfsd
+  name: nfsd medal case
+  description: This polished oak case hides medals to be given for distinguished service.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Storage/nfsdmedalcase.rsi
+  - type: Item
+    sprite: _NF/Objects/Storage/nfsdmedalcase.rsi
+  - type: Storage
+    grid:
+    - 0,0,7,1 # Explicit just in case the parent changes
+  - type: StorageFill
+    contents:
+    - id: ClothingNeckMedalNfsdStarGold
+    - id: ClothingNeckMedalNfsdShieldGold
+    - id: ClothingNeckMedalNfsdShieldSilver
+    - id: ClothingNeckMedalNfsdShieldBronze
+    - id: ClothingNeckMedalNfsdBloodDrop
+    - id: ClothingNeckMedalNfsdBloodDrop # intentional duplicate
+    - id: ClothingNeckMedalNfsdCivStarSilver
+    - id: ClothingNeckMedalNfsdCivShieldGold

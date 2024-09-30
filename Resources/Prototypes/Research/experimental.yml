@@ -88,7 +88,7 @@
   id: AdvancedParts
   name: research-technology-advanced-parts
   icon:
-    sprite: Objects/Misc/stock_parts.rsi
+    sprite: _NF/Objects/Misc/stock_parts.rsi # Frontier
     state: advanced_matter_bin
   discipline: Experimental
   tier: 2
@@ -138,57 +138,42 @@
   recipeUnlocks:
   - RPED
 
-- type: technology
-  id: DeterrenceTechnologies
-  abstract: true # Frontier
-  name: research-technology-deterrence
-  icon:
-    sprite: Objects/Weapons/Guns/Battery/particle_decelerator.rsi
-    state: base
-  discipline: Experimental
-  tier: 2
-  cost: 7500
-  recipeUnlocks:
-  - WeaponParticleDecelerator
-  - HoloprojectorField
+# - type: technology
+  # id: DeterrenceTechnologies
+  # name: research-technology-deterrence
+  # icon:
+    # sprite: Objects/Weapons/Guns/Battery/particle_decelerator.rsi
+    # state: base
+  # discipline: Experimental
+  # tier: 2
+  # cost: 7500
+  # recipeUnlocks:
+  # - WeaponParticleDecelerator
+  # - HoloprojectorField
 
 # Tier 3
 
-- type: technology
-  id: SuperParts
-  name: research-technology-super-parts
-  icon:
-    sprite: Objects/Misc/stock_parts.rsi
-    state: super_matter_bin
-  discipline: Experimental
-  tier: 3
-  cost: 15000
-  recipeUnlocks:
-  - SuperCapacitorStockPart
-  - SuperMatterBinStockPart
-  - PicoManipulatorStockPart
+# - type: technology # Frontier - too many physics issues, bugs and exploits, the less we look like gmod the better.
+  # id: GravityManipulation
+  # name: research-technology-gravity-manipulation
+  # icon:
+    # sprite: Objects/Weapons/Guns/Launchers/tether_gun.rsi
+    # state: base
+  # discipline: Experimental
+  # tier: 3
+  # cost: 10000
+  # recipeUnlocks:
+  # - WeaponForceGun
+  # - WeaponTetherGun
 
-#- type: technology # Frontier - too many physics issues, bugs and exploits, the less we look like gmod the better.
-#  id: GravityManipulation
-#  name: research-technology-gravity-manipulation
-#  icon:
-#    sprite: Objects/Weapons/Guns/Launchers/tether_gun.rsi
-#    state: base
-#  discipline: Experimental
-#  tier: 3
-#  cost: 10000
-#  recipeUnlocks:
-#    - WeaponForceGun
-#    - WeaponTetherGun
-
-#- type: technology # Frontier - disabled because why the fuck are we adding a god damned FOURTH exploit to the game intentionally holy shit
-#  id: QuantumLeaping
-#  name: research-technology-quantum-leaping
-#  icon:
-#    sprite: Objects/Devices/swapper.rsi
-#    state: icon
-#  discipline: Experimental
-#  tier: 3
-#  cost: 10000
-#  recipeUnlocks:
-#  - DeviceQuantumSpinInverter
+# - type: technology # Frontier - disabled because why the fuck are we adding a god damned FOURTH exploit to the game intentionally holy shit
+  # id: QuantumLeaping
+  # name: research-technology-quantum-leaping
+  # icon:
+    # sprite: Objects/Devices/swapper.rsi
+    # state: icon
+  # discipline: Experimental
+  # tier: 3
+  # cost: 10000
+  # recipeUnlocks:
+  # - DeviceQuantumSpinInverter

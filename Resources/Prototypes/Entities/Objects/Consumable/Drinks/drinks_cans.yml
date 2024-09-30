@@ -66,8 +66,9 @@
   - type: Tag
     tags:
     - DrinkCan
-  - type: StaticPrice
-    price: 5.5
+  - type: DnaSubstanceTrace
+  - type: StaticPrice # Frontier
+    price: 5.5 # Frontier
 
 - type: entity
   parent: DrinkCanBaseFull
@@ -434,6 +435,7 @@
     whitelist:
       tags:
         - Cola
+    hideStackVisualsWhenClosed: false
   - type: StorageFill
     contents:
       - id: DrinkColaCan

@@ -10,6 +10,117 @@
     ClothingHeadMailCarrier: 1
     FoodMeatCat: 1
 
+- type: microwaveMealRecipe
+  id: RecipeRosyMothRoachburger
+  name: rosy mothroachburger recipe
+  result: FoodBurgerRosyMothRoach
+  time: 10
+  solids:
+    FoodBreadBun: 1
+    MobRosyMothroach: 1
+
+#Breads & Sandwiches
+
+- type: microwaveMealRecipe
+  id: RecipeAvocadoToast
+  name: avocado toast recipe
+  result: FoodMealAvocadoToast
+  time: 5
+  solids:
+    FoodBreadPlainSlice: 1
+    FoodAvocadoSlice: 1
+
+- type: microwaveMealRecipe
+  id: RecipeBreakfastBagel
+  name: breakfast bagel recipe
+  result: FoodMealBreakfastBagel
+  time: 5
+  solids:
+    FoodBagel: 1
+    FoodEgg: 2
+    FoodAvocadoSlice: 1
+    FoodCheeseSlice: 1
+
+- type: microwaveMealRecipe
+  id: RecipeBreakfastBagelPoppy
+  name: poppyseed breakfast bagel recipe
+  result: FoodMealBreakfastBagelPoppy
+  time: 5
+  solids:
+    FoodBagelPoppy: 1
+    FoodEgg: 2
+    FoodAvocadoSlice: 1
+    FoodCheeseSlice: 1
+
+- type: microwaveMealRecipe
+  id: RecipeCucumberSandwich
+  name: cucumber sandwich recipe
+  result: FoodMealCucumberSandwich
+  time: 5
+  solids:
+    FoodBreadPlainSlice: 2
+    FoodCucumberSlice: 4
+    FoodChevreSlice: 1
+  reagents:
+    Mayo: 5
+
+# Sushi
+
+- type: microwaveMealRecipe
+  id: RecipeAvocadoSushi
+  name: avocado sushi recipe
+  result: FoodMealAvocadoSushi
+  time: 5
+  solids:
+    FoodAvocadoSlice: 2
+    FoodCarrot: 1
+    FoodCucumberSlice: 2
+  reagents:
+    Rice: 15
+    Water: 10
+
+- type: microwaveMealRecipe
+  id: RecipeCarpSushi
+  name: carp sushi recipe
+  result: FoodMealCarpSushi
+  time: 5
+  solids:
+    FoodAvocadoSlice: 2
+    FoodCucumberSlice: 2
+    FoodMeatFish: 1
+  reagents:
+    Rice: 15
+    Water: 10
+
+# Salad
+
+- type: microwaveMealRecipe
+  id: RecipeGreekSalad
+  name: greek salad recipe
+  result: FoodSaladGreek
+  time: 5
+  reagents:
+    Vinaigrette: 5
+  solids:
+    FoodBowlBig: 1
+    FoodCucumber: 1
+    FoodTomato: 1
+    FoodChevreSlice: 1
+
+- type: microwaveMealRecipe
+  id: RecipeAvocadoSalad
+  name: avocado salad recipe
+  result: FoodSaladAvocado
+  time: 5
+  reagents:
+    OilOlive: 5
+    JuiceLime: 5
+  solids:
+    FoodBowlBig: 1
+    FoodCucumber: 1
+    FoodAvocado: 1
+    FoodTomato: 1
+
 #Other
 
 - type: microwaveMealRecipe
@@ -40,8 +151,79 @@
 
 - type: microwaveMealRecipe
   id: RecipeRaisins
-  name: raisins
+  name: raisins recipe
   result: ReagentContainerRaisin # A little bit cursed, spawning a bag
   time: 30
   solids:
     FoodGrape: 5
+
+- type: microwaveMealRecipe
+  id: RecipePickle
+  name: pickle recipe
+  result: FoodPickle
+  time: 5
+  solids:
+    FoodCucumber: 1
+  reagents:
+    Saline: 10
+    
+- type: microwaveMealRecipe
+  id: RecipePoachedPears
+  name: poached pears recipe
+  result: FoodMealPoachedPears
+  time: 10
+  solids:
+    FoodBowlBig: 1
+    FoodPear: 3
+    FoodOrange: 2
+  reagents:
+    Wine: 10
+    
+- type: microwaveMealRecipe
+  id: RecipePearsBelleHelene
+  name: pears belle helene recipe
+  result: FoodMealPearsBelleHelene
+  time: 10
+  solids:
+    FoodBowlBig: 1
+    FoodPear: 3
+    FoodSnackChocolateBar: 2
+    FoodLemon: 1
+  reagents:
+    Cream: 5
+
+- type: microwaveMealRecipe
+  id: RecipePearMuffin
+  name: pear muffin recipe
+  result: FoodBakedMuffinPear
+  time: 10
+  solids:
+    FoodPear: 1
+    FoodSnackChocolateBar: 1
+  reagents:
+    Flour: 5
+    Oats: 5
+    Sugar: 5
+    
+- type: microwaveMealRecipe
+  id: RecipePearCheeseTart
+  name: pear and cheese tart recipe
+  result: FoodTartPearCheese
+  time: 15
+  solids:
+    FoodPlateTin: 1
+    FoodDoughPie: 1
+    FoodPear: 2
+    FoodChevre: 1
+
+# NOT ACTUAL FOOD
+
+- type: microwaveMealRecipe
+  id: RecipeDriedShrooms
+  name: dried shrooms recipe
+  result: ShroomsDried
+  time: 15
+  solids:
+    FoodSpaceshroom: 1
+    FoodMushroom: 1
+    FoodFlyAmanita: 1

@@ -64,7 +64,7 @@
 - type: entity
   name: soaplet
   id: SoapletBloodCult
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: SoapConjured
   components:
   - type: Sprite
@@ -183,7 +183,7 @@
 - type: entity
   id: SoapletBloodCultSpread
   parent: SoapletBloodCult
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: ProjectileSpread
     proto: SoapletBloodCult

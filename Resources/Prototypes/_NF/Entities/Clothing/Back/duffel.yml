@@ -8,15 +8,13 @@
     sprite: _NF/Clothing/Back/Duffels/mercenary.rsi
 
 - type: entity
-  parent: ClothingBackpackDuffel
   id: ClothingBackpackDuffelArcadia
   name: arcadia duffel
+  parent: [ ClothingBackpackDuffel, BaseC3ContrabandNoValue, ContrabandClothing ]
   description: A duffelbag produced by Arcadia Industries
   components:
   - type: Sprite
     sprite: _NF/Clothing/Back/Duffels/arcadia.rsi
-  #- type: FactionClothing
-    #faction: ContrabandClothing
 
 - type: entity
   parent: ClothingBackpackDuffel

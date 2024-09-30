@@ -1,0 +1,16 @@
+
+- type: entity
+  id: GunMeleeAttackBluntBase # Allows using a ranged weapon in melee, blunt
+  abstract: true
+  components:
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 8
+    angle: 0
+    wideAnimationRotation: -135
+    animation: WeaponArcThrust
+    soundHit:
+      collection: MetalThud
+  - type: StaminaDamageOnHit
+    damage: 5

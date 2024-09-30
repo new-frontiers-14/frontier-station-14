@@ -1,8 +1,8 @@
 - type: entity
   name: stun prod
-  parent: BaseItem
+  parent: [BaseItem, BaseC1Contraband] # Frontier: BaseMinorContraband<BaseC1Contraband
   id: Stunprod
-  description: A stun prod for illegal incapacitation.
+  description: A stun prod for questionably legal incapacitation. # Frontier: illegal<questionably legal
   components:
   - type: Sprite
     sprite: Objects/Weapons/Melee/stunprod.rsi

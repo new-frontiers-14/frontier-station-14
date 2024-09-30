@@ -602,11 +602,27 @@
     - state: icon-unlit
       shader: unshaded
   - type: Clothing
-    equippedPrefix: holding
+    sprite: _NF/Clothing/Back/Messenger/holding.rsi
+    clothingVisuals:
+      back:
+      - state: holding-equipped-BACKPACK
+      - state: holding-equipped-BACKPACK-unlit
+        shader: unshaded
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - state: inhand-left-unlit
+        shader: unshaded
+      right:
+      - state: inhand-right
+      - state: inhand-right-unlit
+        shader: unshaded
 
 ## Antagonists / Contraband
 - type: entity
   parent:
+  - BaseC3SyndicateContrabandUnredeemable
   - ClothingBackpackMessengerContractor
   - ContrabandClothing
   id: ClothingBackpackMessengerSyndicate
@@ -647,6 +663,7 @@
 
 - type: entity
   parent:
+  - BaseC3CultContrabandUnredeemable
   - ClothingBackpackMessengerContractor
   - ContrabandClothing
   id: ClothingBackpackMessengerBloodCult
@@ -686,11 +703,9 @@
         color: "#96907c"
 
 - type: entity
-  parent:
-  - ClothingBackpackMessengerContractor
-  - ContrabandClothing
   id: ClothingBackpackMessengerArcadia
   name: arcadia messenger bag
+  parent: [ ClothingBackpackMessengerContractor, BaseC3ContrabandNoValue, ContrabandClothing ]
   components:
   - type: Sprite
     sprite: _NF/Clothing/Back/Messenger/color.rsi

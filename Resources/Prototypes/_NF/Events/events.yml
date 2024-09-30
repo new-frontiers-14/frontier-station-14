@@ -1,34 +1,78 @@
+- type: entityTable
+  id: BasicCalmEventsTable
+  table: !type:AllSelector # we need to pass a list of rules, since rules have further restrictions to consider via StationEventComp
+    children:
+    # - id: AnomalySpawn
+    # - id: BluespaceArtifact
+    # - id: BluespaceLocker
+    - id: BreakerFlip
+    # - id: BureaucraticError
+    # - id: ClericalError
+    - id: CockroachMigration
+    - id: GasLeak
+    - id: IonStorm # its calm like 90% of the time smh
+    # - id: KudzuGrowth
+    - id: MassHallucinations
+    # - id: MimicVendorRule
+    - id: MouseMigration
+    - id: PowerGridCheck
+    - id: RandomSentience
+    # - id: SlimesSpawn
+    - id: SolarFlare
+    # - id: SnakeSpawn
+    # - id: SpiderClownSpawn
+    # - id: SpiderSpawn
+    - id: VentClog
+    - id: BluespaceCargoCrate # Frontier
+    - id: BluespaceMcCargoCrate # Frontier
+    - id: BluespaceSyndicateCrate # Frontier
+    - id: BluespaceBrokenMcDelivery # Frontier
+    - id: SmugglingFax # Frontier
+
+# Frontier: not used!
+- type: entityTable
+  id: BasicAntagEventsTable
+  table: !type:AllSelector # we need to pass a list of rules, since rules have further restrictions to consider via StationEventComp
+    children: [] # Frontier: empty list
+    # - id: ClosetSkeleton # Frontier: empty list
+    # - id: DragonSpawn # Frontier: empty list
+    # - id: KingRatMigration # Frontier: empty list
+    # - id: NinjaSpawn # Frontier: empty list
+    # - id: RevenantSpawn # Frontier: empty list
+    # - id: SleeperAgents # Frontier: empty list
+    # - id: ZombieOutbreak # Frontier: empty list
+
 - type: entity
   id: BaseStationEvent
   parent: BaseGameRule
   abstract: true
   components:
-    - type: GameRule
-      delay:
-        min:  10
-        max:  20
+  - type: GameRule
+    delay:
+      min:  10
+      max:  20
 
 - type: entity
   id: BaseStationEventShortDelay
   parent: BaseGameRule
   abstract: true
   components:
-    - type: GameRule
-      delay:
-        min:  10
-        max:  20
+  - type: GameRule
+    delay:
+      min:  10
+      max:  20
 
 - type: entity
   id: BaseStationEventLongDelay
   parent: BaseGameRule
   abstract: true
   components:
-    - type: GameRule
-      delay:
-        min:  40
-        max:  60
+  - type: GameRule
+    delay:
+      min:  40
+      max:  60
 
-# Frontier -right now you never find them since they spawn on random grids.
+# Frontier: right now you never find them since they spawn on random grids.
 # - type: entity
 #   id: AnomalySpawn
 #   parent: BaseStationEventShortDelay
@@ -74,6 +118,7 @@
   components:
   - type: StationEvent
     weight: 7
+    earliestStart: 15 # Frontier
     duration: 1
     minimumPlayers: 15
   - type: BreakerFlipRule
@@ -88,6 +133,8 @@
 #     weight: 3
 #     duration: 1
 #   - type: BureaucraticErrorRule
+#     ignoredJobs:
+#     - StationAi
 
 # - type: entity
 #   id: ClericalError
@@ -120,9 +167,12 @@
 #     earliestStart: 40
 #     reoccurrenceDelay: 20
 #     minimumPlayers: 20
-#   - type: AntagRandomSpawn
+#     duration: null
+#   - type: SpaceSpawnRule
+#     spawnDistance: 0
 #   - type: AntagSpawner
 #     prototype: MobDragon
+#   - type: DragonRule
 #   - type: AntagObjectives
 #     objectives:
 #     - CarpRiftsObjective
@@ -137,8 +187,6 @@
 #       mindComponents:
 #       - type: DragonRole
 #         prototype: Dragon
-#       - type: RoleBriefing
-#         briefing: dragon-role-briefing
 
 # - type: entity
 #   parent: BaseGameRule
@@ -146,7 +194,7 @@
 #   components:
 #   - type: StationEvent
 #     weight: 6
-#     duration: 1
+#     duration: null
 #     earliestStart: 30
 #     reoccurrenceDelay: 20
 #     minimumPlayers: 30
@@ -161,32 +209,34 @@
 #     - MassArrestObjective
 #     - NinjaSurviveObjective
 #   - type: AntagSelection
-#    agentName: ninja-round-end-agent-name
-#    definitions:
-#    - spawnerPrototype: SpawnPointGhostSpaceNinja
-#      min: 1
-#      max: 1
-#      pickPlayer: false
-#      startingGear: SpaceNinjaGear
-#      briefing:
-#        text: ninja-role-greeting
-#        color: Green
-#        sound: /Audio/Misc/ninja_greeting.ogg
-#      components:
-#      - type: SpaceNinja
-#      - type: NpcFactionMember
-#        factions:
-#        - Syndicate
-#      - type: AutoImplant
-#        implants:
-#        - DeathAcidifierImplant
-#      - type: RandomMetadata
-#        nameSegments:
-#        - names_ninja_title
-#        - names_ninja
-#      mindComponents:
-#      - type: NinjaRole
-#        prototype: SpaceNinja
+#     agentName: ninja-round-end-agent-name
+#     definitions:
+#     - spawnerPrototype: SpawnPointGhostSpaceNinja
+#       min: 1
+#       max: 1
+#       pickPlayer: false
+#       startingGear: SpaceNinjaGear
+#       roleLoadout:
+#       - RoleSurvivalEVA
+#       briefing:
+#         text: ninja-role-greeting
+#         color: Green
+#         sound: /Audio/Misc/ninja_greeting.ogg
+#       components:
+#       - type: SpaceNinja
+#       - type: NpcFactionMember
+#         factions:
+#         - Syndicate
+#       - type: AutoImplant
+#         implants:
+#         - DeathAcidifierImplant
+#       - type: RandomMetadata
+#         nameSegments:
+#         - names_ninja_title
+#         - names_ninja
+#       mindComponents:
+#       - type: NinjaRole
+#         prototype: SpaceNinja
 
 # - type: entity
 #   parent: BaseGameRule
@@ -203,13 +253,13 @@
 # disabled until event is rewritten to be more interesting
 - type: entity
   id: FalseAlarm
-  parent: BaseStationEventLongDelay
+  parent: BaseGameRule
   components:
   - type: StationEvent
-    weight: 15
+    weight: 2 # Frontier: 15<2
+    earliestStart: 15
     duration: 1
-    reoccurrenceDelay: 180 # Frontier
-    maxOccurrences: 2 # Frontier - People dont like too many false alarms
+    reoccurrenceDelay: 240 # Frontier: 4 hours
   - type: FalseAlarmRule
 
 - type: entity
@@ -222,6 +272,7 @@
       path: /Audio/Announcements/attention.ogg
     endAnnouncement: station-event-gas-leak-end-announcement
     weight: 8
+    earliestStart: 15 # Frontier
   - type: GasLeakRule
 
 # - type: entity
@@ -236,83 +287,18 @@
 #   - type: KudzuGrowthRule
 
 - type: entity
-  id: MouseMigration
-  parent: BaseStationEventShortDelay
-  components:
-  - type: StationEvent
-    startAnnouncement: station-event-vent-creatures-start-announcement
-    startAudio:
-      path: /Audio/Announcements/attention.ogg
-    earliestStart: 15
-    weight: 6
-    duration: 50
-  - type: VentCrittersRule
-    entries:
-    - id: MobMouse
-      prob: 0.02
-    - id: MobMouse1
-      prob: 0.02
-    - id: MobMouse2
-      prob: 0.02
-    - id: MobMouseCancer
-      prob: 0.001
-# Events always spawn a critter regardless of Probability https://github.com/space-wizards/space-station-14/issues/28480 I added the Rat King to their own event with a player cap.
-
-# - type: entity
-#   id: KingRatMigration
-#   parent: BaseStationEventShortDelay
-#   components:
-#   - type: StationEvent
-#     startAnnouncement: station-event-vent-creatures-start-announcement
-#     startAudio:
-#       path: /Audio/Announcements/attention.ogg
-#     earliestStart: 15
-#     weight: 6
-#     duration: 50
-#     minimumPlayers: 30 # Hopefully this is enough for the Rat King's potential Army (it was not, raised from 15 -> 30)
-#   - type: VentCrittersRule
-#     entries:
-#     - id: MobMouse
-#       prob: 0.02
-#     - id: MobMouse1
-#       prob: 0.02
-#     - id: MobMouse2
-#       prob: 0.02
-#     - id: MobMouseCancer
-#       prob: 0.001
-#     specialEntries:
-#     - id: SpawnPointGhostRatKing
-#       prob: 0.001
-
-- type: entity
-  id: CockroachMigration
-  parent: BaseStationEventShortDelay
-  components:
-  - type: StationEvent
-    startAnnouncement: station-event-vent-creatures-start-announcement
-    startAudio:
-      path: /Audio/Announcements/attention.ogg
-    weight: 6
-    duration: 50
-  - type: VentCrittersRule
-    entries:
-    - id: MobCockroach
-      prob: 0.03
-    - id: MobMothroach
-      prob: 0.008
-
-- type: entity
   id: PowerGridCheck
   parent: BaseStationEventShortDelay
   components:
   - type: StationEvent
     weight: 5
+    earliestStart: 15 # Frontier
     startAnnouncement: station-event-power-grid-check-start-announcement
     endAnnouncement: station-event-power-grid-check-end-announcement
     startAudio:
       path: /Audio/Announcements/power_off.ogg
       params:
-       volume: -4
+        volume: -4
     duration: 60
     maxDuration: 120
   - type: PowerGridCheckRule
@@ -323,6 +309,7 @@
   components:
   - type: StationEvent
     weight: 8
+    earliestStart: 15 # Frontier
     startAnnouncement: station-event-solar-flare-start-announcement
     endAnnouncement: station-event-solar-flare-end-announcement
     startAudio:
@@ -349,7 +336,7 @@
 
 - type: entity
   id: VentClog
-  parent: BaseStationEventLongDelay # Old startDelay: 50
+  parent: BaseStationEventLongDelay
   components:
   - type: StationEvent
     startAnnouncement: station-event-vent-clog-start-announcement
@@ -380,6 +367,27 @@
 #     - id: MobAdultSlimesGreenAngry
 #       prob: 0.02
 #     - id: MobAdultSlimesYellowAngry
+#       prob: 0.02
+
+# - type: entity
+#   id: SnakeSpawn
+#   parent: BaseStationEventShortDelay
+#   components:
+#   - type: StationEvent
+#     startAnnouncement: station-event-vent-creatures-start-announcement
+#     startAudio:
+#       path: /Audio/Announcements/attention.ogg
+#     earliestStart: 20
+#     minimumPlayers: 15
+#     weight: 5
+#     duration: 60
+#   - type: VentCrittersRule
+#     entries:
+#     - id: MobPurpleSnake
+#       prob: 0.02
+#     - id: MobSmallPurpleSnake
+#       prob: 0.02
+#     - id: MobCobraSpace
 #       prob: 0.02
 
 # - type: entity
@@ -421,9 +429,9 @@
 #   parent: BaseGameRule
 #   components:
 #   - type: StationEvent
-#     earliestStart: 50
-#     minimumPlayers: 30
-#     weight: 2
+#     earliestStart: 90
+#     minimumPlayers: 40
+#     weight: 1 # Zombies was happening basically every single survival round, so now it's super rare
 #     duration: 1
 #   - type: ZombieRule
 #   - type: AntagSelection
@@ -471,6 +479,9 @@
 #       max: 1
 #       pickPlayer: false
 #       startingGear: SyndicateLoneOperativeGearFull
+#       roleLoadout:
+#       - RoleSurvivalNukie
+
 #       components:
 #       - type: NukeOperative
 #       - type: RandomMetadata
@@ -497,6 +508,7 @@
 #     startAudio:
 #       path: /Audio/Announcements/intercept.ogg
 #     duration: null # the rule has to last the whole round not 1 second
+#     occursDuringRoundEnd: false
 #   - type: AlertLevelInterceptionRule
 #   - type: AntagSelection
 #     definitions:
@@ -517,6 +529,7 @@
   parent: BaseGameRule
   components:
   - type: StationEvent
+    earliestStart: 15 # Frontier
     weight: 7
     duration: 150
     maxDuration: 300
@@ -528,62 +541,24 @@
     sounds:
       collection: Paracusia
 
-# - type: entity
-#   id: ImmovableRodSpawn
-#   parent: BaseGameRule
-#   components:
-#   - type: StationEvent
-#     startAnnouncement: station-event-immovable-rod-start-announcement
-#     startAudio:
-#       path: /Audio/Announcements/attention.ogg
-#     weight: 3.5
-#     duration: 1
-#     earliestStart: 30
-#     minimumPlayers: 20
-#   - type: ImmovableRodRule
-#     rodPrototypes:
-#     - id: ImmovableRodKeepTilesStill
-#       prob: 0.95
-#       orGroup: rodProto
-#     - id: ImmovableRodMop
-#       prob: 0.0072
-#       orGroup: rodProto
-#     - id: ImmovableRodShark
-#       prob: 0.0072
-#       orGroup: rodProto
-#     - id: ImmovableRodClown
-#       prob: 0.0072
-#       orGroup: rodProto
-#     - id: ImmovableRodBanana
-#       prob: 0.0072
-#       orGroup: rodProto
-#     - id: ImmovableRodHammer
-#       prob: 0.0072
-#       orGroup: rodProto
-#     - id: ImmovableRodThrongler
-#       prob: 0.0072
-#       orGroup: rodProto
-#     - id: ImmovableRodGibstick
-#       prob: 0.0072
-#       orGroup: rodProto
-
 - type: entity
   parent: BaseGameRule
   id: IonStorm
   components:
   - type: StationEvent
+    earliestStart: 15 # Frontier
     weight: 8
-    reoccurrenceDelay: 20
+    reoccurrenceDelay: 120 # Frontier: 20<120
     duration: 1
   - type: IonStormRule
 
-# - type: entity # Frontier - Restore this once we add a blacklist on it for critical machines
+# - type: entity
 #   id: MimicVendorRule
 #   parent: BaseGameRule
 #   components:
-#     - type: StationEvent
-#       earliestStart: 0
-#       minimumPlayers: 20
-#       maxOccurrences: 1 # this event has diminishing returns on interesting-ness, so we cap it
-#       weight: 5
-#     - type: MobReplacementRule
+#   - type: StationEvent
+#     earliestStart: 0
+#     minimumPlayers: 20
+#     maxOccurrences: 1 # this event has diminishing returns on interesting-ness, so we cap it
+#     weight: 5
+#   - type: MobReplacementRule
