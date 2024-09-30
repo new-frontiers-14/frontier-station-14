@@ -56,7 +56,7 @@
 - type: entity
   parent: BasePlushie
   id: PlushieThrongler
-  name: The Throngler plushie
+  name: throngler plushie
   description: A stuffed toy to remind cargo techs of what they can no longer have.
   components:
     - type: Sprite
@@ -215,7 +215,7 @@
         shader: unshaded
 
 - type: entity
-  parent: BasePlushie # Frontier: remove BaseSyndicateContraband
+  parent: BasePlushie
   id: PlushieNuke
   name: nukie plushie
   description: A stuffed toy that resembles a syndicate nuclear operative. The tag claims operatives to be purely fictitious.
@@ -1006,7 +1006,7 @@
       revolver-ammo: !type:Container
 
 - type: entity
-  parent: RevolverCapGun
+  parent: [RevolverCapGun, BaseC3SyndicateContraband] # Frontier: added BaseC3SyndicateContraband
   id: RevolverCapGunFake
   name: cap gun
   suffix: Fake
@@ -1020,6 +1020,8 @@
         - CartridgeMagnum
         - SpeedLoaderMagnum
     proto: CartridgeMagnumAP
+  - type: Contraband # Frontier
+    hideValues: true # Frontier
 
 - type: entity
   parent: BaseItem
@@ -1268,6 +1270,7 @@
         right:
           - state: inhand-right-blade
             shader: unshaded
+    - type: ItemTogglePointLight
     - type: DisarmMalus
       malus: 0
     - type: StaminaDamageOnHit
@@ -1318,10 +1321,9 @@
     sprite: Objects/Weapons/Melee/cutlass.rsi
     state: foam_icon
   - type: MeleeWeapon
+    wideAnimationRotation: -135
     attackRate: 1.5
     range: 2.0
-    angle: 0
-    animation: WeaponArcThrust
     damage:
       types:
         Blunt: 0
@@ -1546,3 +1548,52 @@
       params:
         volume: -9
         maxDistance: 3
+
+- type: entity
+  parent: BasePlushie
+  id: RubberChicken
+  name: rubber chicken
+  description: A stress inducing parody of nature's most delectable avian.
+  components:
+  - type: Sprite
+    state: rubber_chicken
+  - type: EmitSoundOnUse
+    sound:
+      collection: RubberChicken
+      params:
+        variation: 0.125
+  - type: EmitSoundOnLand
+    sound:
+      collection: RubberChicken
+      params:
+        variation: 0.125
+  - type: EmitSoundOnActivate
+    sound:
+      collection: RubberChicken
+      params:
+        variation: 0.125
+  - type: EmitSoundOnCollide
+    sound:
+      collection: RubberChicken
+      params:
+        variation: 0.125
+  - type: EmitSoundOnTrigger
+    sound:
+      collection: RubberChicken
+      params:
+        variation: 0.125
+  - type: Food
+    requiresSpecialDigestion: true
+    useSound:
+      collection: RubberChicken
+      params:
+        variation: 0.125
+  - type: MeleeWeapon
+    wideAnimationRotation: 110
+    soundHit:
+      collection: RubberChicken
+      params:
+        variation: 0.125
+  - type: PhysicalComposition
+    materialComposition:
+      Plastic: 25

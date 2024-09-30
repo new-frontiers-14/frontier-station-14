@@ -205,8 +205,8 @@ namespace Content.Server.Mail
                 idCard = pdaID;
             }
 
-            if (HasComp<IdCardComponent>(args.Used)) /// Or are they using an id card directly?
-                idCard = Comp<IdCardComponent>(args.Used);
+            if (idCard == null)
+                TryComp(args.Used, out idCard); /// Or are they using an id card directly?
 
             if (idCard == null) /// Return if we still haven't found an id card.
                 return;

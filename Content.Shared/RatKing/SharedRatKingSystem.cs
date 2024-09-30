@@ -1,4 +1,5 @@
-﻿using Content.Shared.Actions;
+using Content.Shared.Abilities;
+using Content.Shared.Actions;
 using Content.Shared.DoAfter;
 using Content.Shared.Random;
 using Content.Shared.Random.Helpers;
@@ -9,11 +10,13 @@ using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Serialization;
+using Robust.Shared.Timing;
 
 namespace Content.Shared.RatKing;
 
 public abstract class SharedRatKingSystem : EntitySystem
 {
+    [Dependency] private readonly IGameTiming _gameTiming = default!; // Used for rummage cooldown
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] protected readonly IPrototypeManager PrototypeManager = default!;
     [Dependency] protected readonly IRobustRandom Random = default!;
@@ -32,6 +35,9 @@ public abstract class SharedRatKingSystem : EntitySystem
 
         SubscribeLocalEvent<RatKingRummageableComponent, GetVerbsEvent<AlternativeVerb>>(OnGetVerb);
         SubscribeLocalEvent<RatKingRummageableComponent, RatKingRummageDoAfterEvent>(OnDoAfterComplete);
+
+        SubscribeLocalEvent<RatKingRummageableComponent, ComponentInit>(OnComponentInit); // Goobstation - #660
+        SubscribeLocalEvent<RummagerComponent, ComponentInit>(OnRummgerComponentInit); // Frontier
     }
 
     private void OnStartup(EntityUid uid, RatKingComponent component, ComponentStartup args)
@@ -103,9 +109,27 @@ public abstract class SharedRatKingSystem : EntitySystem
         _action.StartUseDelay(component.ActionOrderLooseEntity);
     }
 
+    public void OnComponentInit(EntityUid uid, RatKingRummageableComponent component, ComponentInit args) // Goobstation - #660 Disposal unit rummage cooldown now start on spawn to prevent rummage abuse.
+    {
+        component.LastLooted = _gameTiming.CurTime;
+        Dirty(uid, component);
+    }
+
+    public void OnRummgerComponentInit(EntityUid uid, RummagerComponent component, ComponentInit args) // Frontier - per-rummager cooldown
+    {
+        component.LastRummaged = _gameTiming.CurTime;
+        Dirty(uid, component);
+    }
+
     private void OnGetVerb(EntityUid uid, RatKingRummageableComponent component, GetVerbsEvent<AlternativeVerb> args)
     {
-        if (!HasComp<RatKingComponent>(args.User) || component.Looted)
+        if (!TryComp<RummagerComponent>(args.User, out var rummager)
+            || component.Looted
+            || _gameTiming.CurTime < component.LastLooted + component.RummageCooldown
+            || _gameTiming.CurTime < rummager.LastRummaged + rummager.Cooldown) // Frontier: cooldown per rummager
+            // DeltaV - Use RummagerComponent instead of RatKingComponent
+            // (This is so we can give Rodentia rummage abilities)
+            // Additionally, adds a cooldown check
             return;
 
         args.Verbs.Add(new AlternativeVerb
@@ -128,10 +152,22 @@ public abstract class SharedRatKingSystem : EntitySystem
 
     private void OnDoAfterComplete(EntityUid uid, RatKingRummageableComponent component, RatKingRummageDoAfterEvent args)
     {
-        if (args.Cancelled || component.Looted)
+        // DeltaV - Rummaging an object updates the looting cooldown rather than a "previously looted" check.
+        // Note that the "Looted" boolean can still be checked (by mappers/admins) 
+        // to disable rummaging on the object indefinitely, but rummaging will no
+        // longer permanently prevent future rummaging.
+        var time = _gameTiming.CurTime;
+        if (args.Cancelled
+            || component.Looted
+            || time < component.LastLooted + component.RummageCooldown
+            || !TryComp<RummagerComponent>(args.User, out var rummager) // Frontier: must be a rummager (also, verify cooldowns)
+            || time < rummager.LastRummaged + rummager.Cooldown) // Frontier: check cooldown
             return;
 
-        component.Looted = true;
+        component.LastLooted = time;
+        // End DeltaV change
+        rummager.LastRummaged = time; // Frontier: set rummager cooldown
+
         Dirty(uid, component);
         _audio.PlayPredicted(component.Sound, uid, args.User);
 
