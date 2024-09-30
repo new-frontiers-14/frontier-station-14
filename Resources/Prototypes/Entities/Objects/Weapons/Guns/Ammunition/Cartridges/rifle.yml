@@ -1,7 +1,7 @@
 - type: entity
   id: BaseCartridgeRifle
   name: cartridge (.20 rifle)
-  parent: BaseCartridge
+  parent: [ BaseCartridge, BaseC1Contraband ] # Frontier: BaseRestrictedContraband<BaseC1Contraband
   abstract: true
   components:
   - type: Tag

@@ -27,7 +27,8 @@ using Robust.Shared.Utility;
 using Robust.Shared.Containers;
 using Content.Shared.Interaction; // Frontier
 using Content.Shared.Examine; // Frontier
-using Content.Server.Power.Components; // Frontier
+using Content.Server.Power.Components;
+using Content.Shared.Power; // Frontier
 
 namespace Content.Server.Weapons.Ranged.Systems;
 
@@ -301,7 +302,7 @@ public sealed partial class GunSystem : SharedGunSystem
                 {
                     var newuid = Spawn(ammoSpreadComp.Proto, fromEnt);
                     ShootOrThrow(newuid, angles[i].ToVec(), gunVelocity, gun, gunUid, user);
-                    shotProjectiles.Add(ammoEnt);
+                    shotProjectiles.Add(newuid);
                 }
             }
             else
