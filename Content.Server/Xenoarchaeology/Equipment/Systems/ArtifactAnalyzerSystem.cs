@@ -151,11 +151,13 @@ public sealed class ArtifactAnalyzerSystem : EntitySystem
         if (!TryComp<DeviceLinkSinkComponent>(uid, out var sink))
             return;
 
-        if (TryComp<ApcPowerReceiverComponent>(uid, out var apcPower)) // Frontier
+        // Frontier: disable analyzer power draw when off
+        if (TryComp<ApcPowerReceiverComponent>(uid, out var apcPower))
         {
             component.OriginalLoad = apcPower.Load;
             SetPowerSwitch(component, apcPower, false);
         }
+        // End Frontier
 
         foreach (var source in sink.LinkedSources)
         {
@@ -498,26 +500,30 @@ public sealed class ArtifactAnalyzerSystem : EntitySystem
 
     private void OnAnalyzeStart(EntityUid uid, ActiveArtifactAnalyzerComponent component, ComponentStartup args)
     {
+        // Frontier: enable power before running
         if (!TryComp<ApcPowerReceiverComponent>(uid, out var powa))
             return;
 
-        if (!TryComp<ArtifactAnalyzerComponent>(uid, out var analyzer)) // Frontier
+        if (!TryComp<ArtifactAnalyzerComponent>(uid, out var analyzer))
             return;
 
-        SetPowerSwitch(analyzer, powa, true); // Frontier
+        SetPowerSwitch(analyzer, powa, true);
+        // End Frontier
 
         _ambientSound.SetAmbience(uid, true);
     }
 
     private void OnAnalyzeEnd(EntityUid uid, ActiveArtifactAnalyzerComponent component, ComponentShutdown args)
     {
+        // Frontier: disable power when not running
         if (!TryComp<ApcPowerReceiverComponent>(uid, out var powa))
             return;
 
-        if (!TryComp<ArtifactAnalyzerComponent>(uid, out var analyzer)) // Frontier
+        if (!TryComp<ArtifactAnalyzerComponent>(uid, out var analyzer))
             return;
 
-        SetPowerSwitch(analyzer, powa, false); // Frontier
+        SetPowerSwitch(analyzer, powa, false);
+        // End Frontier
 
         _ambientSound.SetAmbience(uid, false);
     }
@@ -534,12 +540,14 @@ public sealed class ArtifactAnalyzerSystem : EntitySystem
         }
     }
 
-    private void SetPowerSwitch(ArtifactAnalyzerComponent analyzer, ApcPowerReceiverComponent apc, bool state) // Frontier
+    // Frontier: reduce analyzer load when not running
+    private void SetPowerSwitch(ArtifactAnalyzerComponent analyzer, ApcPowerReceiverComponent apc, bool state)
     {
         if (state)
             apc.Load = analyzer.OriginalLoad;
         else
             apc.Load = 1;
     }
+    // End Frontier
 }
 
