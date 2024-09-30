@@ -6,6 +6,7 @@ using Robust.Shared.Serialization;
 using Robust.Shared.Serialization.Markdown.Mapping;
 using Robust.Shared.Serialization.Markdown.Value;
 using Robust.Shared.Timing;
+using Robust.Shared.Utility;
 
 namespace Content.Shared.GameTicking
 {
@@ -138,7 +139,10 @@ namespace Content.Shared.GameTicking
     [Serializable, NetSerializable]
     public sealed class TickerJobsAvailableEvent(
         Dictionary<NetEntity, string> stationNames,
-        Dictionary<NetEntity, Dictionary<ProtoId<JobPrototype>, int?>> jobsAvailableByStation)
+        Dictionary<NetEntity, Dictionary<ProtoId<JobPrototype>, int?>> jobsAvailableByStation,
+        Dictionary<NetEntity, LocId> stationSubtexts, // Frontier addition: shown in lobby as a onboarding feature.
+        Dictionary<NetEntity, ResPath> stationIcons // Frontier addition
+        )
         : EntityEventArgs
     {
         /// <summary>
@@ -147,6 +151,11 @@ namespace Content.Shared.GameTicking
         public Dictionary<NetEntity, Dictionary<ProtoId<JobPrototype>, int?>> JobsAvailableByStation { get; } = jobsAvailableByStation;
 
         public Dictionary<NetEntity, string> StationNames { get; } = stationNames;
+
+        // Frontier addition: shown in lobby as a onboarding feature.
+        public Dictionary<NetEntity, LocId> StationSubtexts { get; } = stationSubtexts;
+        // Frontier addition
+        public Dictionary<NetEntity, ResPath> StationIcons { get; } = stationIcons;
     }
 
     [Serializable, NetSerializable, DataDefinition]

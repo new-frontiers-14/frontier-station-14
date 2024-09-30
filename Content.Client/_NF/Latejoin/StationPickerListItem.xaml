@@ -1,0 +1,37 @@
+﻿<PanelContainer xmlns="https://spacestation14.io"
+                Access="Public"
+                StyleClasses="PanelBackgroundLight"
+                Margin="0 2 0 2"
+                HorizontalExpand="True"
+                VerticalExpand="True">
+
+    <Button Name="StationButton"
+            Access="Public"
+            ToolTip=""
+            HorizontalExpand="True">
+
+        <BoxContainer Orientation="Horizontal" Margin="0 4 0 4">
+            <TextureRect Name="StationIcon"
+                         HorizontalAlignment="Center"
+                         VerticalAlignment="Center"
+                         HorizontalExpand="False"
+                         VerticalExpand="True"
+                         MinSize="50 50"
+                         MaxSize="50 50"
+                         Stretch="KeepAspectCentered" />
+
+            <BoxContainer Orientation="Vertical">
+
+                <Label Name="StationName"
+                    HorizontalExpand="True"
+                    StyleClasses="FancyWindowTitle" />
+
+                <RichTextLabel Name="StationSubtext"/>
+            </BoxContainer>
+
+        </BoxContainer>
+
+    </Button>
+
+
+</PanelContainer>

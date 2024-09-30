@@ -10,6 +10,7 @@ using Robust.Client.Graphics;
 using Robust.Client.State;
 using Robust.Client.UserInterface;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Utility;
 
 namespace Content.Client.GameTicking.Managers
 {
@@ -23,6 +24,8 @@ namespace Content.Client.GameTicking.Managers
 
         private Dictionary<NetEntity, Dictionary<ProtoId<JobPrototype>, int?>>  _jobsAvailable = new();
         private Dictionary<NetEntity, string> _stationNames = new();
+        private Dictionary<NetEntity, LocId> _stationSubtexts = new();
+        private Dictionary<NetEntity, ResPath> _stationIcons = new();
 
         [ViewVariables] public bool AreWeReady { get; private set; }
         [ViewVariables] public bool IsGameStarted { get; private set; }
@@ -35,6 +38,8 @@ namespace Content.Client.GameTicking.Managers
 
         [ViewVariables] public IReadOnlyDictionary<NetEntity, Dictionary<ProtoId<JobPrototype>, int?>> JobsAvailable => _jobsAvailable;
         [ViewVariables] public IReadOnlyDictionary<NetEntity, string> StationNames => _stationNames;
+        [ViewVariables] public IReadOnlyDictionary<NetEntity, LocId> StationSubtexts => _stationSubtexts;
+        [ViewVariables] public IReadOnlyDictionary<NetEntity, ResPath> StationIcons => _stationIcons;
 
         public event Action? InfoBlobUpdated;
         public event Action? LobbyStatusUpdated;
@@ -98,6 +103,20 @@ namespace Content.Client.GameTicking.Managers
             foreach (var weh in message.StationNames)
             {
                 _stationNames[weh.Key] = weh.Value;
+            }
+
+            // Frontier addition: lobby onboarding feature
+            _stationIcons.Clear();
+            foreach (var icon in message.StationIcons)
+            {
+                _stationIcons[icon.Key] = icon.Value;
+            }
+
+            // Frontier addition: lobby onboarding feature
+            _stationSubtexts.Clear();
+            foreach (var subtext in message.StationSubtexts)
+            {
+                _stationSubtexts[subtext.Key] = subtext.Value;
             }
 
             LobbyJobsAvailableUpdated?.Invoke(JobsAvailable);

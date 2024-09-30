@@ -1,24 +1,35 @@
 <PanelContainer xmlns="https://spacestation14.io"
                 xmlns:customControls="clr-namespace:Content.Client.Administration.UI.CustomControls"
+                xmlns:graphics="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
                 Access="Public"
                 StyleClasses="PanelBackgroundLight"
                 Margin="0 2 0 2"
                 HorizontalExpand="True"
                 VerticalExpand="True">
-
-    <Label Text="This is the Station picker!"/>
     <BoxContainer Orientation="Horizontal">
-        <BoxContainer Orientation="Vertical" Margin="4 4" HorizontalExpand="True" SizeFlagsStretchRatio="1">
-            <ItemList Name="StationItemList"
-                      Access="Public"
-                      SelectMode="Single"
-                      VerticalExpand="True"
-                      HorizontalExpand="True"
-                      MinSize="100 100" />
-        </BoxContainer>
-        <customControls:VSeparator StyleClasses="LowDivider"/>
-        <BoxContainer Name="JobList" Orientation="Vertical" Margin="4 4" HorizontalExpand="True" SizeFlagsStretchRatio="1">
-            <Button Name="CrewManifestButton" Text="Crew Manifest" HorizontalAlignment="Center" Visible="False"/>
-        </BoxContainer>
+        <PanelContainer VerticalExpand="True" HorizontalExpand="True" Margin="10">
+            <PanelContainer.PanelOverride>
+                <graphics:StyleBoxFlat BorderThickness="2" BorderColor="#777777" />
+            </PanelContainer.PanelOverride>
+            <BoxContainer Orientation="Vertical"
+                          VerticalExpand="True"
+                          HorizontalExpand="True">
+                <Label Text="{Loc 'frontier-lobby-station-title'}"
+                       StyleClasses="LabelKeyText" Margin="5"/>
+                <customControls:HSeparator StyleClasses="LowDivider"/>
+                <ScrollContainer HorizontalExpand="True"
+                                 VerticalExpand="True"
+                                 VScrollEnabled="True">
+                    <BoxContainer Name="StationItemList"
+                                  Orientation="Vertical"
+                                  HorizontalExpand="True"
+                                  VerticalExpand="True"
+                                  MinSize="50 50"
+                                  Margin="4">
+                    </BoxContainer>
+                </ScrollContainer>
+            </BoxContainer>
+        </PanelContainer>
+
     </BoxContainer>
 </PanelContainer>

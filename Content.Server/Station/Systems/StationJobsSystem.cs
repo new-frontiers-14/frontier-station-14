@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Server._NF.Station.Components;
 using Content.Server.GameTicking;
 using Content.Server.Station.Components;
 using Content.Shared.CCVar;
@@ -14,6 +15,7 @@ using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Robust.Shared.Utility;
 
 namespace Content.Server.Station.Systems;
 
@@ -27,6 +29,7 @@ public sealed partial class StationJobsSystem : EntitySystem
     [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly GameTicker _gameTicker = default!;
+    [Dependency] private readonly IEntityManager _entityManager = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -477,7 +480,7 @@ public sealed partial class StationJobsSystem : EntitySystem
 
     private bool _availableJobsDirty;
 
-    private TickerJobsAvailableEvent _cachedAvailableJobs = new(new(), new());
+    private TickerJobsAvailableEvent _cachedAvailableJobs = new(new(), new(), new(), new());
 
     /// <summary>
     /// Assembles an event from the current available-to-play jobs.
@@ -488,10 +491,15 @@ public sealed partial class StationJobsSystem : EntitySystem
     {
         // If late join is disallowed, return no available jobs.
         if (_gameTicker.DisallowLateJoin)
-            return new TickerJobsAvailableEvent(new(), new());
+            return new TickerJobsAvailableEvent(new(), new(), new(), new());
 
         var jobs = new Dictionary<NetEntity, Dictionary<ProtoId<JobPrototype>, int?>>();
         var stationNames = new Dictionary<NetEntity, string>();
+
+        // Frontier addition: lobby onboarding feature
+        var stationSubtexts = new Dictionary<NetEntity, LocId>();
+        var stationIcons = new Dictionary<NetEntity, ResPath>();
+
 
         var query = EntityQueryEnumerator<StationJobsComponent>();
 
@@ -501,8 +509,15 @@ public sealed partial class StationJobsSystem : EntitySystem
             var list = comp.JobList.ToDictionary(x => x.Key, x => x.Value);
             jobs.Add(netStation, list);
             stationNames.Add(netStation, Name(station));
+
+            // Frontier addition: lobby onboarding feature
+            if (EntityManager.TryGetComponent<ExtraStationInformationComponent>(station, out var extraStationInformation))
+            {
+                stationSubtexts.Add(netStation, extraStationInformation.StationSubtext);
+                stationIcons.Add(netStation, extraStationInformation.IconPath);
+            }
         }
-        return new TickerJobsAvailableEvent(stationNames, jobs);
+        return new TickerJobsAvailableEvent(stationNames, jobs, stationSubtexts, stationIcons);
     }
 
     /// <summary>
