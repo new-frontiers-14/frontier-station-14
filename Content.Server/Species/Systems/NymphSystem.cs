@@ -51,14 +51,10 @@ public sealed partial class NymphSystem : EntitySystem
             // Frontier
             EnsureComp<CargoSellBlacklistComponent>(nymph);
 
-            // Frontier
-            // bank account transfer
-            if (TryComp<BankAccountComponent>(args.OldBody, out var bank))
+            // Frontier: bank account transfer
+            if (HasComp<BankAccountComponent>(args.OldBody))
             {
-                // Do this carefully since changing the value of a bank account component on a entity will save the balance immediately through subscribers.
-                var oldBankBalance = bank.Balance;
-                var newBank = EnsureComp<BankAccountComponent>(nymph);
-                newBank.Balance = oldBankBalance;
+                EnsureComp<BankAccountComponent>(nymph);
             }
         }
 

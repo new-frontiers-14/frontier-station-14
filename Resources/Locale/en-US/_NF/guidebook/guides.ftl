@@ -7,6 +7,9 @@ guide-entry-expeditions = Expeditions
 guide-entry-shipyard = Shipyard
 guide-entry-frontier-rules = Server Rules
 
+# Security entries
+guide-entry-nfsd-smuggling = Smuggling
+
 # Expedition faction entries
 guide-entry-expedition-aberrant-flesh = Aberrant Flesh
 guide-entry-expedition-argocytes = Argocytes
@@ -24,6 +27,7 @@ guide-entry-expedition-xenos = Xenos
 guide-entry-shipyard-akupara = Akupara
 guide-entry-shipyard-ambition = Ambition
 guide-entry-shipyard-apothecary = Apothecary
+guide-entry-shipyard-barge = Barge
 guide-entry-shipyard-bazaar = Bazaar
 guide-entry-shipyard-bocadillo = Bocadillo
 guide-entry-shipyard-bookworm = Bookworm
@@ -38,6 +42,7 @@ guide-entry-shipyard-garden = Garden
 guide-entry-shipyard-gasbender = Gasbender
 guide-entry-shipyard-gourd = Gourd
 guide-entry-shipyard-hammer = Hammer
+guide-entry-shipyard-hauler = Hauler
 guide-entry-shipyard-harbormaster = Harbormaster
 guide-entry-shipyard-investigator = Investigator
 guide-entry-shipyard-kestrel = Kestrel

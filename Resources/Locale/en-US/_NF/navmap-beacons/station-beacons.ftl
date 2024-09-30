@@ -17,7 +17,14 @@ station-beacon-cafe = Cafe
 station-beacon-conference = Conference
 station-beacon-office-mercenary = Office
 station-beacon-shooting-range-mercenary = Shooting Range
+station-beacon-armory-mercenary = Armory
+station-beacon-mess = Mess
+station-beacon-head = Head
+station-beacon-atmos-nf = Atmospherics
+station-beacon-atmos-burn = Burn Chamber
+station-beacon-atmos-collector = Gas Collector Array
 
+station-beacon-eva-access = EVA Access
 station-beacon-dock-one = Dock 1
 station-beacon-dock-two = Dock 2
 station-beacon-dock-three = Dock 3

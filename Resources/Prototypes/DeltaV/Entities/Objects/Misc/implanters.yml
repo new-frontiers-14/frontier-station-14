@@ -1,7 +1,23 @@
 - type: entity
+  parent: [BaseImplantOnlyImplanterSyndi, BaseC3SyndicateContraband] # Frontier: add BaseC3SyndicateContraband
   id: BionicSyrinxImplanter
-  name: bionic syrinx implanter
-  parent: BaseImplantOnlyImplanterSyndi
+  suffix: bionic syrinx
   components:
-    - type: Implanter
-      implant: BionicSyrinxImplant
+  - type: Implanter
+    implant: BionicSyrinxImplant
+
+# - type: entity
+#   parent: [BaseImplantOnlyImplanterSyndi, BaseC3SyndicateContraband] # Frontier: add BaseC3SyndicateContraband
+#   id: GenericRadioImplanter
+#   suffix: generic radio
+#   components:
+#   - type: Implanter
+#     implant: RadioImplant
+
+# - type: entity
+#   parent: [BaseImplantOnlyImplanterSyndi, BaseC3SyndicateContraband] # Frontier: add BaseC3SyndicateContraband
+#   id: SyndicateRadioImplanter
+#   suffix: syndicate radio
+#   components:
+#   - type: Implanter
+#     implant: SyndicateRadioImplant

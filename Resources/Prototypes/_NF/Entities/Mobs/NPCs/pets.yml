@@ -19,7 +19,7 @@
   - type: Loadout
     prototypes: [ MobClippyGear ]
   - type: RandomMetadata
-    nameSegments: [names_cat_clippy] # Its needed to fix the names since it was using the MobCatGhost list.
+    nameSegments: [names_cat_clippy]
   - type: AutoImplant
     implants:
     - MindShieldImplant
@@ -71,7 +71,7 @@
   - type: ReplacementAccent
     accent: pirateCat
   - type: RandomMetadata
-    nameSegments: [names_cat_clarpy] # Its needed to fix the names since it was using the MobCatGhost list.
+    nameSegments: [names_cat_clarpy]
   - type: AutoImplant
     implants:
     - FreelanceTrackingImplant
@@ -112,7 +112,7 @@
   - type: ReplacementAccent
     accent: nfsdCat
   - type: RandomMetadata
-    nameSegments: [names_cat_cappy] # Its needed to fix the names since it was using the MobCatGhost list.
+    nameSegments: [names_cat_cappy]
   - type: AutoImplant
     implants:
     - MindShieldImplant
@@ -148,6 +148,35 @@
       path: /Audio/_NF/Animals/nfsdcat_meow.ogg
 
 - type: entity
+  name: Clugg
+  parent: [NFMobPet, MobCatCaracalGhost]
+  id: MobCatClugg
+  description: 
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _NF/Mobs/Pets/cat.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: cavecat
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: cavecat
+  - type: GhostRole
+    name: ghost-role-information-clugg-name
+    description: ghost-role-information-clugg-description
+    rules: ghost-role-information-nonantagonist-rules
+  - type: RandomMetadata
+    nameSegments: [names_cat_clugg]
+  - type: NpcFactionMember
+    factions:
+      - Cat
+      - DinosaursNF
+  - type: NFSalvageMobRestrictions
+    despawnIfOffLinkedGrid: false
+
+- type: entity
   name: Mistake
   parent: MobCatGhost
   id: MobCatMistake
@@ -171,7 +200,7 @@
   - type: ReplacementAccent
     accent: mistakeCat
   - type: RandomMetadata
-    nameSegments: [names_cat_mistake] # Its needed to fix the names since it was using the MobCatGhost list.
+    nameSegments: [names_cat_mistake]
   - type: Vocal
     sounds:
       Male: CatMistake
@@ -186,3 +215,45 @@
   - type: NpcFactionMember
     factions:
       - Cat
+
+# Adopted from space-wizards #26265 (Thank you, PolterTzi)
+- type: entity
+  name: Yip Yip
+  parent: MobKobold
+  id: MobKoboldYipyip
+  description: He lives in a pineapple on the Frontier!
+  components:
+  - type: GhostRole
+    prob: 1
+    makeSentient: true
+    allowSpeech: true
+    allowMovement: true
+    prototype: KoboldYipyip
+    name: ghost-role-information-yipyip-name
+    description: ghost-role-information-yipyip-description
+    rules: ghost-role-information-nonantagonist-rules
+  - type: GhostTakeoverAvailable
+  - type: Butcherable
+    butcheringType: Spike
+    spawned:
+    - id: FoodMeat
+      amount: 3
+    - id: DrinkPremiumRumBottleFull
+      amount: 1
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - DoorBumpOpener
+    - VimPilot
+  - type: Loadout
+    prototypes: [ MobKoboldGear ]
+  - type: Grammar
+    attributes:
+      proper: true
+      gender: male
+  - type: RandomSprite # Random with one choice.
+    available:
+      - enum.DamageStateVisualLayers.Base:
+          kobold: YipYipColors
+      - horns:
+          horns_curled: YipYipHornColors
