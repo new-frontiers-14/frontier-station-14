@@ -1,0 +1,72 @@
+﻿<controls:FancyWindow
+    xmlns="https://spacestation14.io"
+    xmlns:lateJoin="clr-namespace:Content.Client._NF.Latejoin"
+    xmlns:cc="clr-namespace:Content.Client.Administration.UI.CustomControls"
+    xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+    Title="Join Game"
+    SetSize="600 260">
+    <PanelContainer StyleClasses="BackgroundDark"></PanelContainer>
+    <BoxContainer Orientation="Vertical" VerticalExpand="True" Margin="8">
+
+        <Button Name="StationButton"
+                Access="Public"
+                Text=""
+                MinHeight="100"
+                TextAlign="Center"
+                StyleIdentifier="mainMenu">
+
+            <BoxContainer Orientation="Vertical" VerticalExpand="True" Margin="0 4 0 4">
+                <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
+                    <Label
+                        Text="{Loc 'frontier-lobby-station-title'}"
+                        HorizontalExpand="True"
+                        StyleClasses="FancyWindowTitle" />
+
+                    <TextureRect TexturePath="/Textures/_NF/Interface/Misc/arrow-right.png"
+                                 HorizontalAlignment="Center"
+                                 VerticalAlignment="Center"
+                                 HorizontalExpand="False"
+                                 VerticalExpand="True"
+                                 MinSize="30 30"
+                                 MaxSize="30 30"
+                                 Stretch="KeepAspectCentered" />
+                </BoxContainer>
+                <cc:HSeparator SeparatorColor="#A3875A" StyleClasses="LowDivider" Margin="0 0 36 0" />
+
+                <RichTextLabel Text="{Loc 'frontier-lobby-station-subtext'}" />
+
+            </BoxContainer>
+        </Button>
+
+        <Button Name="CrewButton"
+                Access="Public"
+                Text=""
+                MinHeight="100"
+                TextAlign="Center"
+                StyleIdentifier="mainMenu">
+
+            <BoxContainer Orientation="Vertical" VerticalExpand="True" Margin="0 4 0 4">
+                <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
+                    <Label
+                        Text="{Loc 'frontier-lobby-crew-title'}"
+                        HorizontalExpand="True"
+                        StyleClasses="FancyWindowTitle" />
+
+                    <TextureRect TexturePath="/Textures/_NF/Interface/Misc/arrow-right.png"
+                                 HorizontalAlignment="Center"
+                                 VerticalAlignment="Center"
+                                 HorizontalExpand="False"
+                                 VerticalExpand="True"
+                                 MinSize="30 30"
+                                 MaxSize="30 30"
+                                 Stretch="KeepAspectCentered" />
+                </BoxContainer>
+                <cc:HSeparator SeparatorColor="#A3875A" StyleClasses="LowDivider" Margin="0 0 36 0" />
+
+                <RichTextLabel Text="{Loc 'frontier-lobby-crew-subtext'}" />
+
+            </BoxContainer>
+        </Button>
+    </BoxContainer>
+
+</controls:FancyWindow>

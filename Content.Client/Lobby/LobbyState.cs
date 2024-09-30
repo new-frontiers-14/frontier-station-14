@@ -1,8 +1,7 @@
 using Content.Client._NF.Latejoin;
-using Content.Client.Chat.Managers;
 using Content.Client.Audio;
+using Content.Client.Eui;
 using Content.Client.GameTicking.Managers;
-using Content.Client.LateJoin;
 using Content.Client.Lobby.UI;
 using Content.Client.Message;
 using Content.Client.UserInterface.Systems.Chat;
@@ -99,8 +98,7 @@ namespace Content.Client.Lobby
             {
                 return;
             }
-
-            new NFLateJoinGui().OpenCentered();
+            new StationOrCrewPickerWindow().OpenCentered();
         }
 
         private void OnReadyToggled(BaseButton.ButtonToggledEventArgs args)
