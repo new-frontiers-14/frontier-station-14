@@ -1,0 +1,93 @@
+<Document>
+  # HAULER-CLASS SALVAGE SHUTTLE
+  <Box>
+    <GuideEntityEmbed Entity="CrateTradeSecureHighFilled" Caption="trading crate"/>
+    <GuideEntityEmbed Entity="CrateGenericSteel" Caption="mystery loot"/>
+    <GuideEntityEmbed Entity="OreProcessor"/>
+  </Box>
+  <Box>
+    <GuideEntityEmbed Entity="ShuttleMapHauler" Caption=""/>
+  </Box>
+  [color=#a4885c]Ship Size:[/color] Medium
+
+  [color=#a4885c]Recommended Crew:[/color] 2-4
+
+  [color=#a4885c]Power Gen Type:[/color] Uranium
+
+  [color=#a4885c]Expeditions:[/color] None
+
+  [color=#a4885c]IFF Console:[/color] None
+
+  "A medium sized vessel specializing in long-haul salvage, mining, and cargo operations."
+
+  # PREFLIGHT CHECKLIST
+
+  ## 1. Power supply
+
+  ## 1.1. Battery units
+  <Box>
+  <GuideEntityEmbed Entity="SMESBasic"/>
+  <GuideEntityEmbed Entity="SubstationBasic"/>
+  <GuideEntityEmbed Entity="APCBasic"/>
+  </Box>
+
+  - Check that the substation unit is anchored to the floor.
+  - Check that all APC units' Main Breakers are toggled on.
+  - Check the APC unit's current Load* (W).
+
+  ## 1.2. S.U.P.E.R.P.A.C.M.A.N. generator unit
+  <Box>
+  <GuideEntityEmbed Entity="PortableGeneratorSuperPacman"/>
+  <GuideEntityEmbed Entity="SheetUranium"/>
+  <GuideEntityEmbed Entity="SignRadiationMed"/>
+  </Box>
+
+  - Check that the S.U.P.E.R.P.A.C.M.A.N. generator unit is anchored to the floor.
+  - Check that the S.U.P.E.R.P.A.C.M.A.N. generator unit has fuel. For extended flights make sure that you have enough fuel stockpiled to sustain prolonged power generation during flight.
+  - Check that the S.U.P.E.R.P.A.C.M.A.N. generator unit is set to HV output.
+  - Set Target Power for 30-35[bold]**[/bold] [bold]kW[/bold].
+  - Start the S.U.P.E.R.P.A.C.M.A.N. generator unit.
+
+  ## 2. Atmospherics
+
+  ## 2.1. Distribution Loop
+  <Box>
+  <GuideEntityEmbed Entity="GasPort"/>
+  <GuideEntityEmbed Entity="OxygenCanister"/>
+  <GuideEntityEmbed Entity="NitrogenCanister"/>
+  <GuideEntityEmbed Entity="GasMixer"/>
+  <GuideEntityEmbed Entity="GasPressurePump"/>
+  </Box>
+
+  - Check that the O2 canister is anchored to connector port.
+  - Check that the N2 canister is anchored to connector port.
+  - Check that the gas mixer is set to the correct mixing ratio (21% Oxygen, 79% Nitrogen).
+  - Check that the gas mixer is set to 101kPa.
+  - Enable gas mixer.
+
+  ## 2.2. Waste Loop
+  <Box>
+    <GuideEntityEmbed Entity="GasPressurePump"/>
+    <GuideEntityEmbed Entity="AirAlarm"/>
+  </Box>
+
+  - Locate the release valve leading to the passive ventilation duct located on the back exterior of the ship and make sure it is open. The release valve can be found inside the back airlock leading up to the ship exterior.
+
+  ## 3. Other checks
+  <Box>
+    <GuideEntityEmbed Entity="Gyroscope"/>
+    <GuideEntityEmbed Entity="GravityGeneratorMini"/>
+  </Box>
+
+  - Check if the gyroscope is anchored, powered, and enabled. It can be found adjacent to your engine.
+  - Check if the mini gravity generator is anchored, powered, and enabled inside the engine room.
+
+  ## Sidenotes
+
+  * - Hauler-class salvage ships are equipped with three APC units that can be used to appraise the ship's total power consumption. Unmodified Hauler-class ships require ~27 kW of power to remain operational.
+
+  ** - Hauler-class salvage ships have higher power demand than a standard P.A.C.M.A.N. can provide at optimal settings, and come equipped with a S.U.P.E.R.P.A.C.M.A.N. instead. Please note that the recommended Target Power value to avoid blackouts during Gravity Generator charging sequence is 35 kW.
+
+  [bold]Note:[/bold] Without a working generator, fully charged battery units (SMES and substation) can provide power in a stock Hauler for approximately 5 minutes.
+
+</Document>
