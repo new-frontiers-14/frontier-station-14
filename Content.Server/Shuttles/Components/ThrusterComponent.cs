@@ -3,6 +3,7 @@ using Content.Server._NF.M_Emp;
 using Content.Server.Shuttles.Systems;
 using Content.Shared.Construction.Prototypes;
 using Content.Shared.Damage;
+using Content.Shared.DeviceLinking; // Frontier
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
@@ -72,6 +73,19 @@ namespace Content.Server.Shuttles.Components
         ///     Frontier - Amount of charge this needs from an APC per second to function.
         /// </summary>
         public float OriginalLoad { get; set; } = 0;
+
+        /// <summary>
+        ///     Frontier - Make linkable to buttons
+        /// </summary>
+        [DataField("onPort", customTypeSerializer: typeof(PrototypeIdSerializer<SinkPortPrototype>))] // Frontier
+        public string OnPort = "On"; // Frontier
+
+        [DataField("offPort", customTypeSerializer: typeof(PrototypeIdSerializer<SinkPortPrototype>))] // Frontier
+        public string OffPort = "Off"; // Frontier
+
+        [DataField("togglePort", customTypeSerializer: typeof(PrototypeIdSerializer<SinkPortPrototype>))] // Frontier
+        public string TogglePort = "Toggle"; // Frontier
+
     }
 
     public enum ThrusterType

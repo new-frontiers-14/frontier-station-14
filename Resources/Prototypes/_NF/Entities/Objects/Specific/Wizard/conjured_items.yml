@@ -64,7 +64,7 @@
 - type: entity
   name: soaplet
   id: SoapletBloodCult
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: SoapConjured
   components:
   - type: Sprite
@@ -176,8 +176,16 @@
       shader: unshaded
       color: red
   - type: CartridgeAmmo
-    proto: SoapletBloodCult # SoapConjuredBloodCultCluster
+    muzzleFlash: null
+    deleteOnSpawn: true
+    proto: SoapletBloodCultSpread # SoapConjuredBloodCultCluster
+
+- type: entity
+  id: SoapletBloodCultSpread
+  parent: SoapletBloodCult
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ProjectileSpread
+    proto: SoapletBloodCult
     count: 35
     spread: 40
-  - type: Ammo
-    muzzleFlash: null

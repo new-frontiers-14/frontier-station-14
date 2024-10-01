@@ -187,9 +187,17 @@
   data:
     colors:
       Decals: "#5E7C16"
+    entities:
+      Cabling: CableApcExtension
+      CornerWalls: WallReinforced
+      Walls: WallSolid
     spawnGroups:
+      CornerClutter: BaseClutter
       Entrance: MercenaryAirlockNF
+      EntranceFlank: BaseWindow
+      Junction: MercenaryAirlockNF
       WallMounts: LavaMercenaryWallMountsNF
+      Window: BaseWindow
     whitelists:
       Rooms:
         tags:
@@ -323,3 +331,19 @@
   entries:
     - id: GrilleDungeon
     - id: MiningWindowDungeon
+
+## Wallmounts
+- type: entitySpawnEntry
+  id: NanoTrasenFasilityWallmounts
+  entries:
+  - id: RandomPosterLegit
+    orGroup: content
+  - id: ExtinguisherCabinetFilled
+    prob: 0.2
+    orGroup: content
+  - id: IntercomCommon
+    prob: 0.1
+    orGroup: content
+  - id: DefibrillatorCabinetFilled
+    prob: 0.05
+    orGroup: content

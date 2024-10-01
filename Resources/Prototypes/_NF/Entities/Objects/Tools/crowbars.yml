@@ -1,0 +1,48 @@
+- type: entity
+  parent: BaseCrowbar
+  id: CrowbarPocket
+  name: pocket crowbar
+  description: 
+  components:
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Items/crowbar_drop.ogg
+      params:
+        pitch: 1.2 # smaller, higher tink
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Blunt: 6
+  - type: Tool
+    speedModifier: 0.5
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 50
+  - type: StaticPrice
+    price: 11
+  - type: Sprite
+    layers:
+    - state: pocket-icon
+  - type: Clothing
+    clothingVisuals:
+      belt:
+      - state: equipped-BELT # Should be brighter, smaller
+      - state: cover-equipped-BELT
+        color: "#2e2e2e"
+  - type: Item
+    storedSprite:
+      state: pocket-icon # Not properly rotated.
+      sprite: _NF/Objects/Tools/crowbar.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left # Should be brighter, smaller
+      - state: cover-inhand-left
+        color: "#2e2e2e"
+      right:
+      - state: inhand-right # Should be brighter, smaller
+      - state: cover-inhand-right
+        color: "#2e2e2e"
+    size: Small
+    shape:
+    - 0,0,0,1 # Prefer to keep this explicit.

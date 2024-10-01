@@ -1,0 +1,39 @@
+# Author Info
+# GitHub: ???
+# Discord: ???
+
+# Maintainer Info
+# GitHub: ???
+# Discord: ???
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Parcel
+  name: NC Parcel
+  description: A reliable shuttle for delivering mail and packages.
+  price: 18000
+  category: Small
+  group: Sr
+  access: Mail
+  shuttlePath: /Maps/_NF/Shuttles/Sr/parcel.yml
+  guidebookPage: Null
+  class:
+  - Cargo
+
+- type: gameMap
+  id: Parcel
+  mapName: 'NC Parcel'
+  mapPath: /Maps/_NF/Shuttles/Sr/parcel.yml
+  minPlayers: 0
+  stations:
+    Parcel:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Parcel {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs: {}

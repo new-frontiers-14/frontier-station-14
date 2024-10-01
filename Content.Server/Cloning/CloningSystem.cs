@@ -253,11 +253,10 @@ namespace Content.Server.Cloning
             var mob = Spawn(speciesPrototype.Prototype, _transformSystem.GetMapCoordinates(uid));
             _humanoidSystem.CloneAppearance(bodyToClone, mob);
 
-            // bank account transfer
-            if (TryComp<BankAccountComponent>(bodyToClone, out var bank))
+            // Frontier: bank account transfer
+            if (HasComp<BankAccountComponent>(bodyToClone))
             {
-                var bankComp = EnsureComp<BankAccountComponent>(mob);
-                bankComp.Balance = bank.Balance;
+                EnsureComp<BankAccountComponent>(mob);
             }
 
             // Frontier

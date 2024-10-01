@@ -1,6 +1,7 @@
 - type: entity
   id: ClothingHeadsetCommon
-  suffix: Common
+  name: headset
+  description: An updated, modular intercom that fits over the head. Takes encryption keys.
   abstract: true
   components:
   - type: ContainerFill
@@ -9,9 +10,39 @@
       - EncryptionKeyCommon
 
 - type: entity
-  parent: [ClothingHeadsetCommon, ClothingHeadsetSecurity]
-  id: ClothingHeadsetSecurityCommon # Ask SR or Sheriff for keys
+  parent: ClothingHeadset
+  id: ClothingHeadsetNfsdBrown
+  name: nfsd headset
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Ears/Headsets/nfsd_e_brown.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Ears/Headsets/nfsd_e_brown.rsi
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyCommon
+      - EncryptionKeyNfsd
 
+- type: entity
+  parent: ClothingHeadsetNfsdBrown
+  id: ClothingHeadsetNfsdGreen
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Ears/Headsets/nfsd_e_green.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Ears/Headsets/nfsd_e_green.rsi
+
+- type: entity
+  parent: ClothingHeadsetNfsdBrown
+  id: ClothingHeadsetNfsdCream
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Ears/Headsets/nfsd_e_cb.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Ears/Headsets/nfsd_e_cb.rsi
+
+# Common Versions - Frontier
 - type: entity
   parent: [ClothingHeadsetCommon, ClothingHeadsetNfsdBrown]
   id: ClothingHeadsetNfsdBrownCommon # Ask SR or Sheriff for keys
@@ -24,47 +55,63 @@
   parent: [ClothingHeadsetCommon, ClothingHeadsetNfsdCream]
   id: ClothingHeadsetNfsdCreamCommon # Ask SR or Sheriff for keys
 
+# Common Versions - Upstream
 - type: entity
-  parent: ClothingHeadset
-  id: ClothingHeadsetNfsdBrown # Ask SR or Sheriff for keys
-  name: nfsd headset
-  components:
-  - type: Sprite
-    sprite: _NF/Clothing/Ears/Headsets/nfsd_e_brown.rsi
-  - type: Clothing
-    sprite: _NF/Clothing/Ears/Headsets/nfsd_e_brown.rsi
-  - type: ContainerFill
-    containers:
-      key_slots:
-      - EncryptionKeyNfsd
-      - EncryptionKeyCommon
+  parent: [ClothingHeadsetCommon, ClothingHeadsetGrey]
+  id: ClothingHeadsetGreyCommon
+  categories: [ HideSpawnMenu ]
 
 - type: entity
-  parent: ClothingHeadsetNfsdBrown
-  id: ClothingHeadsetNfsdGreen # Ask SR or Sheriff for keys
-  components:
-  - type: Sprite
-    sprite: _NF/Clothing/Ears/Headsets/nfsd_e_green.rsi
-  - type: Clothing
-    sprite: _NF/Clothing/Ears/Headsets/nfsd_e_green.rsi
+  parent: [ClothingHeadsetCommon, ClothingHeadsetCargo]
+  id: ClothingHeadsetCargoCommon
+  categories: [ HideSpawnMenu ]
 
 - type: entity
-  parent: ClothingHeadsetNfsdBrown
-  id: ClothingHeadsetNfsdCream # Ask SR or Sheriff for keys
-  components:
-  - type: Sprite
-    sprite: _NF/Clothing/Ears/Headsets/nfsd_e_cb.rsi
-  - type: Clothing
-    sprite: _NF/Clothing/Ears/Headsets/nfsd_e_cb.rsi
+  parent: [ClothingHeadsetCommon, ClothingHeadsetMining]
+  id: ClothingHeadsetMiningCommon
+  categories: [ HideSpawnMenu ]
 
 - type: entity
-  parent: ClothingHeadsetNfsdCream
-  id: ClothingHeadsetNfsdCreamMed # Ask SR or Sheriff for keys
-  noSpawn: true
-  components:
-  - type: ContainerFill
-    containers:
-      key_slots:
-      - EncryptionKeyNfsd
-      - EncryptionKeyCommon
-      - EncryptionKeyMedical
+  parent: [ClothingHeadsetCommon, ClothingHeadsetCommand]
+  id: ClothingHeadsetCommandCommon
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [ClothingHeadsetCommon, ClothingHeadsetEngineering]
+  id: ClothingHeadsetEngineeringCommon
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [ClothingHeadsetCommon, ClothingHeadsetMedical]
+  id: ClothingHeadsetMedicalCommon
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [ClothingHeadsetCommon, ClothingHeadsetScience]
+  id: ClothingHeadsetScienceCommon
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [ClothingHeadsetCommon, ClothingHeadsetMedicalScience]
+  id: ClothingHeadsetMedicalScienceCommon
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [ClothingHeadsetCommon, ClothingHeadsetRobotics]
+  id: ClothingHeadsetRoboticsCommon
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [ClothingHeadsetCommon, ClothingHeadsetSecurity]
+  id: ClothingHeadsetSecurityCommon
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [ClothingHeadsetCommon, ClothingHeadsetBrigmedic]
+  id: ClothingHeadsetBrigmedicCommon
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [ClothingHeadsetCommon, ClothingHeadsetService]
+  id: ClothingHeadsetServiceCommon
+  categories: [ HideSpawnMenu ]

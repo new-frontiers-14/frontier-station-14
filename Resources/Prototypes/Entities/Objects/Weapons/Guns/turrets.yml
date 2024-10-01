@@ -121,10 +121,10 @@
     - type: MobState # Frontier (otherwise NPCs won't attack the entity)
 
 - type: entity
-  parent: BaseWeaponTurret
+  parent: [BaseWeaponTurret, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   id: WeaponTurretSyndicate
   suffix: Syndicate
-  noSpawn: true # Frontier
+  categories: [ HideSpawnMenu ] # Frontier
   components:
     - type: NpcFactionMember
       factions:
@@ -199,7 +199,7 @@
 
 - type: entity
   name: xeno turret
-  description: Shoots 9mm acid projectiles
+  description: Shoots 9mm acid projectiles.
   parent: BaseWeaponTurret
   id: WeaponTurretXeno
   suffix: Xeno

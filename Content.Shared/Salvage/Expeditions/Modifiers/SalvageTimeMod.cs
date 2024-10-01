@@ -2,12 +2,13 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Salvage.Expeditions.Modifiers;
 
+// Frontier: a modifier to manipulate the length of a given salvage expedition
 [Prototype("salvageTimeMod")]
 public sealed class SalvageTimeMod : IPrototype, ISalvageMod
 {
     [IdDataField] public string ID { get; } = default!;
 
-    [DataField("desc")] public string Description { get; private set; } = string.Empty;
+    [DataField("desc")] public LocId Description { get; private set; } = string.Empty;
 
     /// <summary>
     /// Cost for difficulty modifiers.
@@ -21,4 +22,8 @@ public sealed class SalvageTimeMod : IPrototype, ISalvageMod
 
     [DataField("maxDuration")]
     public int MaxDuration = 930;
+
+    // Hack: Description isn't nullable
+    [DataField]
+    public bool Hidden = true;
 }

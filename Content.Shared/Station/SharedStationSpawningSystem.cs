@@ -8,14 +8,18 @@ using Content.Shared.Storage;
 using Content.Shared.Storage.EntitySystems;
 using Robust.Shared.Collections;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Random;
+using Robust.Shared.Utility;
 
 namespace Content.Shared.Station;
 
 public abstract class SharedStationSpawningSystem : EntitySystem
 {
     [Dependency] protected readonly IPrototypeManager PrototypeManager = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] protected readonly InventorySystem InventorySystem = default!;
     [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
+    [Dependency] private readonly MetaDataSystem _metadata = default!;
     [Dependency] private readonly SharedStorageSystem _storage = default!;
     [Dependency] private readonly SharedTransformSystem _xformSystem = default!;
 
@@ -34,13 +38,18 @@ public abstract class SharedStationSpawningSystem : EntitySystem
     }
 
     /// <summary>
-    ///     Equips the given starting gears from a `RoleLoadout` onto an entity.
+    ///     Equips the data from a `RoleLoadout` onto an entity.
     /// </summary>
+    /// <remarks>
+    ///     Frontier: must run on the server, requires bank access.
+    ///     Frontier: currently not charging the player for this.
+    /// </remarks>
     public void EquipRoleLoadout(EntityUid entity, RoleLoadout loadout, RoleLoadoutPrototype roleProto)
     {
         // Order loadout selections by the order they appear on the prototype.
         foreach (var group in loadout.SelectedLoadouts.OrderBy(x => roleProto.Groups.FindIndex(e => e == x.Key)))
         {
+            List<ProtoId<LoadoutPrototype>> equippedItems = new(); //Frontier - track purchased items (list: few items)
             foreach (var items in group.Value)
             {
                 if (!PrototypeManager.TryIndex(items.Prototype, out var loadoutProto))
@@ -49,16 +58,63 @@ public abstract class SharedStationSpawningSystem : EntitySystem
                     continue;
                 }
 
-                if (!PrototypeManager.TryIndex(loadoutProto.Equipment, out var startingGear))
-                {
-                    Log.Error($"Unable to find starting gear {loadoutProto.Equipment} for loadout {loadoutProto}");
-                    continue;
-                }
-
-                // Handle any extra data here.
-                EquipStartingGear(entity, startingGear, raiseEvent: false);
+                EquipStartingGear(entity, loadoutProto, raiseEvent: false);
+                equippedItems.Add(loadoutProto.ID); // Frontier
             }
+
+            // If a character cannot afford their current job loadout, ensure they have fallback items for mandatory categories.
+            if (PrototypeManager.TryIndex(group.Key, out var groupPrototype) &&
+                equippedItems.Count < groupPrototype.MinLimit)
+            {
+                foreach (var fallback in groupPrototype.Fallbacks)
+                {
+                    // Do not duplicate items in loadout
+                    if (equippedItems.Contains(fallback))
+                    {
+                        continue;
+                    }
+
+                    if (!PrototypeManager.TryIndex(fallback, out var loadoutProto))
+                    {
+                        Log.Error($"Unable to find loadout prototype for fallback {fallback}");
+                        continue;
+                    }
+
+                    EquipStartingGear(entity, loadoutProto, raiseEvent: false);
+                    equippedItems.Add(fallback);
+                    // Minimum number of items equipped, no need to load more prototypes.
+                    if (equippedItems.Count >= groupPrototype.MinLimit)
+                        break;
+                }
+            }
+            // End Frontier
         }
+
+        EquipRoleName(entity, loadout, roleProto);
+    }
+
+    /// <summary>
+    /// Applies the role's name as applicable to the entity.
+    /// </summary>
+    public void EquipRoleName(EntityUid entity, RoleLoadout loadout, RoleLoadoutPrototype roleProto)
+    {
+        string? name = null;
+
+        if (string.IsNullOrEmpty(name) && PrototypeManager.TryIndex(roleProto.NameDataset, out var nameData))
+        {
+            name = _random.Pick(nameData.Values);
+        }
+
+        if (!string.IsNullOrEmpty(name))
+        {
+            _metadata.SetEntityName(entity, name);
+        }
+    }
+
+    public void EquipStartingGear(EntityUid entity, LoadoutPrototype loadout, bool raiseEvent = true)
+    {
+        EquipStartingGear(entity, loadout.StartingGear, raiseEvent);
+        EquipStartingGear(entity, (IEquipmentLoadout) loadout, raiseEvent);
     }
 
     /// <summary>
@@ -67,7 +123,15 @@ public abstract class SharedStationSpawningSystem : EntitySystem
     public void EquipStartingGear(EntityUid entity, ProtoId<StartingGearPrototype>? startingGear, bool raiseEvent = true)
     {
         PrototypeManager.TryIndex(startingGear, out var gearProto);
-        EquipStartingGear(entity, gearProto);
+        EquipStartingGear(entity, gearProto, raiseEvent);
+    }
+
+    /// <summary>
+    /// <see cref="EquipStartingGear(Robust.Shared.GameObjects.EntityUid,System.Nullable{Robust.Shared.Prototypes.ProtoId{Content.Shared.Roles.StartingGearPrototype}},bool)"/>
+    /// </summary>
+    public void EquipStartingGear(EntityUid entity, StartingGearPrototype? startingGear, bool raiseEvent = true)
+    {
+        EquipStartingGear(entity, (IEquipmentLoadout?) startingGear, raiseEvent);
     }
 
     /// <summary>
@@ -76,7 +140,7 @@ public abstract class SharedStationSpawningSystem : EntitySystem
     /// <param name="entity">Entity to load out.</param>
     /// <param name="startingGear">Starting gear to use.</param>
     /// <param name="raiseEvent">Should we raise the event for equipped. Set to false if you will call this manually</param>
-    public void EquipStartingGear(EntityUid entity, StartingGearPrototype? startingGear, bool raiseEvent = true)
+    public void EquipStartingGear(EntityUid entity, IEquipmentLoadout? startingGear, bool raiseEvent = true)
     {
         if (startingGear == null)
             return;

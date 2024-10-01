@@ -9,7 +9,7 @@ public sealed partial class RadioChannelPrototype : IPrototype
     /// Human-readable name for the channel.
     /// </summary>
     [DataField("name")]
-    public string Name { get; private set; } = string.Empty;
+    public LocId Name { get; private set; } = string.Empty;
 
     [ViewVariables(VVAccess.ReadOnly)]
     public string LocalizedName => Loc.GetString(Name);
@@ -35,4 +35,12 @@ public sealed partial class RadioChannelPrototype : IPrototype
     /// </summary>
     [DataField("longRange"), ViewVariables]
     public bool LongRange = false;
+
+    // Frontier: radio channel frequencies
+    /// <summary>
+    /// If true, the frequency of the message being sent will be appended to the chat message
+    /// </summary>
+    [DataField, ViewVariables]
+    public bool ShowFrequency = false;
+    // End Frontier
 }

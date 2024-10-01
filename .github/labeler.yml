@@ -32,6 +32,9 @@
 "C#":
   - "**/*.cs"
 
+"Shaders":
+  - '**/*.swsl'
+
 "No C#":
  - all: ["!**/*.cs"]
 
@@ -45,3 +48,6 @@
 "YML":
   - any: ["**/*.yml"]
     all: ["!Resources/Maps/_NF/**/*.yml", "!Resources/Prototypes/Maps/_NF/**/*.yml"]
+
+"DB Migration":
+  - "Content.Server.Database/Migrations/**/*.cs"

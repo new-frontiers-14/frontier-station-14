@@ -1,5 +1,6 @@
 using Content.Server.Cargo.Systems;
 using Content.Server.Emp;
+using Content.Shared.Emp; // Frontier: Upstream - #28984
 using Content.Server.Power.Components;
 using Content.Shared.Examine;
 using Content.Shared.Rejuvenate;
@@ -20,6 +21,7 @@ namespace Content.Server.Power.EntitySystems
             SubscribeLocalEvent<BatteryComponent, RejuvenateEvent>(OnBatteryRejuvenate);
             SubscribeLocalEvent<BatteryComponent, PriceCalculationEvent>(CalculateBatteryPrice);
             SubscribeLocalEvent<BatteryComponent, EmpPulseEvent>(OnEmpPulse);
+            SubscribeLocalEvent<BatteryComponent, EmpDisabledRemoved>(OnEmpDisabledRemoved); // Frontier: Upstream - #28984
 
             SubscribeLocalEvent<NetworkBatteryPreSync>(PreSync);
             SubscribeLocalEvent<NetworkBatteryPostSync>(PostSync);
@@ -85,7 +87,7 @@ namespace Content.Server.Power.EntitySystems
             {
                 if (!comp.AutoRecharge) continue;
                 if (batt.IsFullyCharged) continue;
-                SetCharge(uid, batt.CurrentCharge + comp.AutoRechargeRate * frameTime, batt);
+                TrySetCharge(uid, batt.CurrentCharge + comp.AutoRechargeRate * frameTime, batt); // Frontier: Upstream - #28984
             }
         }
 
@@ -100,7 +102,20 @@ namespace Content.Server.Power.EntitySystems
         private void OnEmpPulse(EntityUid uid, BatteryComponent component, ref EmpPulseEvent args)
         {
             args.Affected = true;
+            args.Disabled = true; // Frontier: Upstream - #28984
             UseCharge(uid, args.EnergyConsumption, component);
+        }
+
+        /// <summary>
+        /// if a disabled battery is put into a recharged, allow the recharger to start recharging again after the disable ends.
+        /// </summary>
+        private void OnEmpDisabledRemoved(EntityUid uid, BatteryComponent component, ref EmpDisabledRemoved args) // Frontier: Upstream - #28984
+        {
+            if (!TryComp<ChargingComponent>(uid, out var charging))
+                return;
+
+            var ev = new ChargerUpdateStatusEvent();
+            RaiseLocalEvent(charging.ChargerUid, ref ev);
         }
 
         public float UseCharge(EntityUid uid, float value, BatteryComponent? battery = null)
@@ -154,6 +169,18 @@ namespace Content.Server.Power.EntitySystems
                 return false;
 
             UseCharge(uid, value, battery);
+            return true;
+        }
+
+        /// <summary>
+        ///     Like SetCharge, but checks for conditions like EmpDisabled before executing
+        /// </summary>
+        public bool TrySetCharge(EntityUid uid, float value, BatteryComponent? battery = null) // Frontier: Upstream - #28984
+        {
+            if (!Resolve(uid, ref battery, false) || HasComp<EmpDisabledComponent>(uid))
+                return false;
+
+            SetCharge(uid, value, battery);
             return true;
         }
 

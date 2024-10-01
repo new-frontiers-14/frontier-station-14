@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Shared._NF.Shuttles.Events;
 using Content.Shared.Shuttles.Components;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
@@ -22,6 +23,7 @@ namespace Content.Server.Shuttles.Components
         [ViewVariables(VVAccess.ReadWrite), DataField("whitelistSpecific")]
         public List<EntityUid> FTLWhitelist = new List<EntityUid>();
 
+        // Frontier: EMP-related state
         /// <summary>
         /// For EMP to allow keeping the shuttle off
         /// </summary>
@@ -36,5 +38,9 @@ namespace Content.Server.Shuttles.Components
 
         [DataField("disableDuration"), ViewVariables(VVAccess.ReadWrite)]
         public float DisableDuration = 60f;
+
+        [DataField, ViewVariables(VVAccess.ReadWrite)]
+        public InertiaDampeningMode DampeningMode = InertiaDampeningMode.Dampen;
+        // End Frontier
     }
 }

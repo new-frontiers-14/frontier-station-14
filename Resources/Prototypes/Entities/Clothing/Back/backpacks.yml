@@ -57,7 +57,7 @@
       collection: IanBark
 
 - type: entity
-  parent: ClothingBackpack
+  parent: [ClothingBackpack, BaseC2Contraband ] # Frontier: BaseRestrictedContraband<BaseC2Contraband
   id: ClothingBackpackSecurity
   name: security backpack
   description: It's a very robust backpack.
@@ -66,7 +66,7 @@
     sprite: Clothing/Back/Backpacks/security.rsi
 
 - type: entity
-  parent: ClothingBackpack
+  parent: [ClothingBackpack, BaseC2Contraband ] # Frontier: BaseRestrictedContraband<BaseC2Contraband
   id: ClothingBackpackBrigmedic
   name: brigmedic backpack
   description: It's a very sterile backpack.
@@ -102,7 +102,7 @@
     sprite: Clothing/Back/Backpacks/medical.rsi
 
 - type: entity
-  parent: ClothingBackpack
+  parent: ClothingBackpack # Frontier: removed BaseCommandContraband
   id: ClothingBackpackCaptain
   name: captain's backpack
   description: It's a special backpack made exclusively for Nanotrasen officers.
@@ -193,7 +193,7 @@
 
 #ERT
 - type: entity
-  parent: ClothingBackpack
+  parent: [ ClothingBackpack, BaseCentcommContraband ]
   id: ClothingBackpackERTLeader
   name: ERT leader backpack
   description: A spacious backpack with lots of pockets, worn by the Commander of an Emergency Response Team.
@@ -270,7 +270,7 @@
 
 #Syndicate
 - type: entity
-  parent: ClothingBackpack
+  parent: [ClothingBackpack, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   id: ClothingBackpackSyndicate
   name: syndicate backpack
   description:
@@ -288,16 +288,31 @@
   description: A backpack that opens into a localized pocket of bluespace.
   components:
   - type: Sprite
-    sprite: Clothing/Back/Backpacks/holding.rsi
+    sprite: _NF/Clothing/Back/Backpacks/holding.rsi # Frontier
     state: holding
     layers:
     - state: holding
     - state: holding-unlit
       shader: unshaded
   - type: Clothing
-    equippedPrefix: holding
+    sprite: _NF/Clothing/Back/Backpacks/holding.rsi # Frontier
+    clothingVisuals: # Frontier
+      back: # Frontier
+      - state: holding-equipped-BACKPACK # Frontier
+      - state: holding-equipped-BACKPACK-unlit # Frontier
+        shader: unshaded # Frontier
+    # equippedPrefix: holding # Frontier
   - type: Item
     size: Ginormous
+    inhandVisuals: # Frontier
+      left: # Frontier
+      - state: inhand-left # Frontier
+      - state: inhand-left-unlit # Frontier
+        shader: unshaded # Frontier
+      right: # Frontier
+      - state: inhand-right # Frontier
+      - state: inhand-right-unlit # Frontier
+        shader: unshaded # Frontier
   - type: Storage
     maxItemSize: Huge
     grid:
@@ -314,6 +329,29 @@
     sprite: Clothing/Back/Backpacks/cluwne.rsi
   - type: Unremoveable
     deleteOnDrop: false
+
+- type: entity
+  parent: ClothingBackpack
+  id: ClothingBackpackElectropack
+  name: electropack
+  suffix: SelfUnremovable
+  description: Shocks on the signal. It is used to keep a particularly dangerous criminal under control.
+  components:
+  - type: Sprite
+    sprite: Clothing/Back/Backpacks/electropack.rsi
+    state: icon
+  - type: Clothing
+    stripDelay: 10
+    equipDelay: 5 # to avoid accidentally falling into the trap associated with SelfUnremovableClothing
+  - type: SelfUnremovableClothing
+  - type: ShockOnTrigger
+    damage: 5
+    duration: 3
+    cooldown: 4
+  - type: TriggerOnSignal
+  - type: DeviceLinkSink
+    ports:
+      - Trigger
 
 # Debug
 - type: entity

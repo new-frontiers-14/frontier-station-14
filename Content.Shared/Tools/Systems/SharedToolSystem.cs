@@ -33,6 +33,9 @@ public abstract partial class SharedToolSystem : EntitySystem
     [Dependency] private   readonly TurfSystem _turfs = default!;
     [Dependency] protected readonly SharedSolutionContainerSystem SolutionContainer = default!;
 
+    public const string CutQuality = "Cutting";
+    public const string PulseQuality = "Pulsing";
+
     public override void Initialize()
     {
         InitializeMultipleTool();
@@ -217,7 +220,7 @@ public abstract partial class SharedToolSystem : EntitySystem
             return false;
 
         // check if the tool allows being used
-        var beforeAttempt = new ToolUseAttemptEvent(user, fuel);
+        var beforeAttempt = new ToolUseAttemptEvent(user, fuel, tool, toolQualitiesNeeded); // Frontier: added tool, toolQualitiesNeeded
         RaiseLocalEvent(tool, beforeAttempt);
         if (beforeAttempt.Cancelled)
             return false;

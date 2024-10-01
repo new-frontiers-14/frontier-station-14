@@ -10,6 +10,7 @@ using Content.Shared._NF.Market.BUI;
 using Content.Shared._NF.Market.Events;
 using Content.Shared.Bank.Components;
 using Content.Shared.Containers.ItemSlots;
+using Content.Shared.Power;
 using Content.Shared.Prototypes;
 using Content.Shared.Stacks;
 using Content.Shared.Storage;
@@ -41,8 +42,12 @@ public sealed partial class MarketSystem
     /// <param name="entitySoldEvent">The details of the event</param>
     private void OnEntitySoldEvent(ref EntitySoldEvent entitySoldEvent)
     {
-        if (!_entityManager.TryGetComponent<CargoMarketDataComponent>(entitySoldEvent.Grid, out var market))
+        var station = _station.GetOwningStation(entitySoldEvent.Grid);
+        if (station is null ||
+            !_entityManager.TryGetComponent<CargoMarketDataComponent>(station, out var market))
+        {
             return;
+        }
 
         foreach (var sold in entitySoldEvent.Sold)
         {
@@ -232,8 +237,6 @@ public sealed partial class MarketSystem
             marketMultiplier = priceMod.Mod;
         }
 
-        var gridUid = Transform(consoleUid).GridUid!.Value;
-
         // Try to get the EntityPrototype that matches marketData.Prototype
         if (!_prototypeManager.TryIndex<EntityPrototype>(args.ItemPrototype!, out var prototype))
         {
@@ -241,7 +244,8 @@ public sealed partial class MarketSystem
         }
 
         // No data set for market data, can't update cart, no data.
-        if (!_entityManager.TryGetComponent<CargoMarketDataComponent>(gridUid, out var market))
+        var stationUid = _station.GetOwningStation(consoleUid);
+        if (!TryComp<CargoMarketDataComponent>(stationUid, out var market))
             return;
 
         var marketData = market.MarketDataList;
@@ -353,8 +357,9 @@ public sealed partial class MarketSystem
         var cartData = component.CartDataList;
         var marketData = new List<MarketData>();
 
-        var consoleGridUid = Transform(consoleUid).GridUid!.Value;
-        if (TryComp<CargoMarketDataComponent>(consoleGridUid, out var market))
+        // Get station and the market data attached to it.
+        var consoleStationUid = _station.GetOwningStation(consoleUid);
+        if (TryComp<CargoMarketDataComponent>(consoleStationUid, out var market))
         {
             marketData = market.MarketDataList;
         }

@@ -6,8 +6,7 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Timing;
 using Robust.Shared.Configuration;
-using Content.Shared.CCVar;
-using Content.Shared.NF14.CCVar;
+using Content.Shared._NF.CCVar; // Frontier
 
 namespace Content.Client.UserInterface.Systems.Ghost.Widgets;
 
@@ -17,8 +16,7 @@ public sealed partial class GhostGui : UIWidget
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly IConfigurationManager _configurationManager = default!;
 
-    private TimeSpan? _timeOfDeath;
-    private float _minTimeToRespawn;
+    private TimeSpan? _respawnTime;
 
     public GhostTargetWindow TargetWindow { get; }
     public GhostRespawnRulesWindow RulesWindow { get; }
@@ -53,20 +51,14 @@ public sealed partial class GhostGui : UIWidget
         Visible = false;
     }
 
-    public void UpdateRespawn(TimeSpan? todd)
+    public void UpdateRespawn(TimeSpan? respawnTime)
     {
-        if (todd != null)
-        {
-            _timeOfDeath = todd;
-            _minTimeToRespawn = _configurationManager.GetCVar(NF14CVars.RespawnTime);
-        }
+        _respawnTime = respawnTime;
     }
 
-    public void Update(int? roles, bool? canReturnToBody, TimeSpan? timeOfDeath, float minTimeToRespawn, bool canUncryo)
+    public void Update(int? roles, bool? canReturnToBody, bool canUncryo)
     {
         ReturnToBodyButton.Disabled = !canReturnToBody ?? true;
-        _timeOfDeath = timeOfDeath;
-        _minTimeToRespawn = minTimeToRespawn;
 
         if (roles != null)
         {
@@ -88,21 +80,14 @@ public sealed partial class GhostGui : UIWidget
 
     protected override void FrameUpdate(FrameEventArgs args)
     {
-        if (_timeOfDeath is null)
-        {
-            GhostRespawnButton.Text = Loc.GetString("ghost-gui-respawn-button-denied", ("time", "disabled"));
-            GhostRespawnButton.Disabled = true;
-            return;
-        }
-
-        var delta = (_minTimeToRespawn - _gameTiming.CurTime.Subtract(_timeOfDeath.Value).TotalSeconds);
-        if (delta <= 0)
+        if (_respawnTime is null || _gameTiming.CurTime > _respawnTime)
         {
             GhostRespawnButton.Text = Loc.GetString("ghost-gui-respawn-button-allowed");
             GhostRespawnButton.Disabled = false;
         }
         else
         {
+            double delta = (_respawnTime.Value - _gameTiming.CurTime).TotalSeconds;
             GhostRespawnButton.Text = Loc.GetString("ghost-gui-respawn-button-denied", ("time", $"{delta:f1}"));
             GhostRespawnButton.Disabled = true;
         }
