@@ -1,4 +1,5 @@
-﻿using Content.Client.GameTicking.Managers;
+﻿using System.Linq;
+using Content.Client.GameTicking.Managers;
 using Content.Client.Lobby;
 using Content.Client.Players.PlayTimeTracking;
 using Content.Client.UserInterface.Controls;
@@ -73,10 +74,20 @@ public sealed partial class PickerWindow : FancyWindow
 
     private void UpdateLobbyJobs(IReadOnlyDictionary<NetEntity, Dictionary<ProtoId<JobPrototype>, int?>> obj)
     {
-        _lobbyJobs = new Dictionary<NetEntity, Dictionary<ProtoId<JobPrototype>, int?>>(obj);
-        _stationNames = new Dictionary<NetEntity, string>(_gameTicker.StationNames);
-        _stationIcons = new Dictionary<NetEntity, ResPath>(_gameTicker.StationIcons);
-        _stationSubtexts = new Dictionary<NetEntity, LocId>(_gameTicker.StationSubtexts);
+        _lobbyJobs = obj.Where(kvp => kvp.Value.Values.Count != 0)
+            .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
+
+        _stationNames = _gameTicker.StationNames
+            .Where(kvp => _gameTicker.JobsAvailable[kvp.Key].Values.Count != 0)
+            .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
+
+        _stationIcons = _gameTicker.StationIcons
+            .Where(kvp => _gameTicker.JobsAvailable[kvp.Key].Values.Count != 0)
+            .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
+
+        _stationSubtexts = _gameTicker.StationSubtexts
+            .Where(kvp => _gameTicker.JobsAvailable[kvp.Key].Values.Count != 0)
+            .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
         UpdateUi();
     }
 

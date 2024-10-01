@@ -18,6 +18,9 @@ public sealed partial class StationPickerListItem : PanelContainer
         // Disallow repeated selection of same station that does UI reloads.
         StationButton.Disabled = state.Selected;
 
-        StationIcon.TexturePath = state.IconPath;
+        if (state.IconPath.Length > 0)
+        {
+            StationIcon.TexturePath = state.IconPath;
+        }
     }
 }

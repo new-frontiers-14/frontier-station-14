@@ -3,24 +3,39 @@
                 xmlns:graphics="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
                 Access="Public"
                 StyleClasses="PanelBackgroundLight"
-                Margin="0 2 0 2"
                 HorizontalExpand="True"
-                VerticalExpand="True">
+                VerticalExpand="True"
+                Margin="2">
     <BoxContainer Orientation="Horizontal">
-        <PanelContainer VerticalExpand="True" HorizontalExpand="True" Margin="10">
-            <PanelContainer.PanelOverride>
-                <graphics:StyleBoxFlat BorderThickness="2" BorderColor="#777777" />
-            </PanelContainer.PanelOverride>
+        <PanelContainer VerticalExpand="True" HorizontalExpand="True" StyleClasses="PanelBackgroundLight">
             <BoxContainer Orientation="Vertical"
                           VerticalExpand="True"
                           HorizontalExpand="True">
-                <Label Text="{Loc 'frontier-lobby-station-title'}"
-                       StyleClasses="LabelKeyText" Margin="5"/>
-                <customControls:HSeparator StyleClasses="LowDivider"/>
                 <ScrollContainer HorizontalExpand="True"
                                  VerticalExpand="True"
                                  VScrollEnabled="True">
                     <BoxContainer Name="StationItemList"
+                                  Orientation="Vertical"
+                                  HorizontalExpand="True"
+                                  MinSize="50 50">
+                    </BoxContainer>
+                </ScrollContainer>
+            </BoxContainer>
+        </PanelContainer>
+
+        <PanelContainer VerticalExpand="True" HorizontalExpand="True">
+            <PanelContainer.PanelOverride>
+                <graphics:StyleBoxFlat BackgroundColor="#25252a"/>
+            </PanelContainer.PanelOverride>
+            <BoxContainer Orientation="Vertical"
+                          VerticalExpand="True"
+                          HorizontalExpand="True">
+                <ScrollContainer HorizontalExpand="True"
+                                 VerticalExpand="True"
+                                 VScrollEnabled="True">
+
+
+                    <BoxContainer Name="StationJobItemList"
                                   Orientation="Vertical"
                                   HorizontalExpand="True"
                                   VerticalExpand="True"
@@ -30,6 +45,5 @@
                 </ScrollContainer>
             </BoxContainer>
         </PanelContainer>
-
     </BoxContainer>
 </PanelContainer>
