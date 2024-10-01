@@ -1,0 +1,10 @@
+- type: NF_shipConnectPage
+  id: "mainmenu"
+  locKey: "MenuKey"
+  onStart: "questionIsItTerrorism"
+
+- type: NF_shipConnectPage
+  id: "questionIsItTerrorism"
+  locKey: "MenuKey2"
+  onYes: "mainmenu"
+  onNo: "questionIsItTerrorism"

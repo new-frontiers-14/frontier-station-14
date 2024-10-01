@@ -18,3 +18,24 @@
     - type: BountyContractsCartridge
     - type: AccessReader
       access: [["HeadOfSecurity"], ["HeadOfPersonnel"]]
+
+- type: entity
+  parent: BaseItem
+  id: NF_ShipConnectCartridge
+  name: ShipConnect cartridge
+  description: A cartridge that assists in identification and communication with vessels.
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/cartridge.rsi
+    state: cart-y
+  - type: Icon
+    sprite: Objects/Devices/cartridge.rsi
+    state: cart-y
+  - type: UIFragment
+    ui: !type:NF_ShipConnectUi
+  - type: Cartridge
+    programName: "ShipConnect"
+    icon:
+      sprite: Objects/Devices/cartridge.rsi
+      state: cart-y
+  - type: NF_ShipConnectCartridge
