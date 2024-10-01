@@ -154,6 +154,25 @@
       map: ["enum.LockVisualLayers.Lock"]
 
 - type: entity
+  id: LockerWallColorMedicalFilled
+  parent: LockerWallColorMedical
+  name: medicine wall locker
+  suffix: Filled, Frontier
+  components:
+  - type: StorageFill
+    contents:
+      - id: BoxSyringe
+      - id: EpinephrineChemistryBottle
+        amount: 1
+      - id: Brutepack
+        amount: 2
+      - id: Ointment
+        amount: 2
+      - id: Bloodpack
+        amount: 2
+      - id: Gauze
+
+- type: entity
   id: LockerWallColorChemistry
   parent: LockerWallColorBase
   name: chemistry wall locker
@@ -177,6 +196,29 @@
       map: ["enum.WeldableLayers.BaseWelded"]
     - state: locked
       map: ["enum.LockVisualLayers.Lock"]
+
+- type: entity
+  id: LockerWallColorChemistryFilled
+  suffix: Filled, Frontier  
+  parent: LockerWallColorChemistry
+  name: chemistry wall locker
+  components:
+  - type: StorageFill
+    contents:
+      - id: BoxSyringe
+      - id: BoxBeaker
+        amount: 2
+      - id: BoxPillCanister
+      - id: BoxBottle
+      - id: BoxVial
+      - id: ChemBag
+      - id: ClothingHandsGlovesLatex
+#      - id: ClothingHeadsetMedical # Frontier
+      - id: ClothingMaskSterile
+#      - id: HandLabeler # Frontier
+      - id: ClothingEyesGlassesChemical
+      - id: SheetPlasma1
+        amount: 3
 
 ## Service
 - type: entity
