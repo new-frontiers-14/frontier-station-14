@@ -149,7 +149,7 @@ public sealed partial class CrewMonitoringWindow : FancyWindow
         // Show monitor on nav map
         if (monitorCoords != null && _blipTexture != null)
         {
-             NavMap.TrackedEntities[_entManager.GetNetEntity(monitor)] = new NavMapBlip(monitorCoords.Value, monitorCoords.Value.ToMap(_entManager, _transformSystem), _blipTexture, Color.Cyan, true, false); // Frontier modification
+             NavMap.TrackedEntities[_entManager.GetNetEntity(monitor)] = new NavMapBlip(monitorCoords.Value, _blipTexture, Color.Cyan, true, false); // Frontier modification
         }
     }
 
@@ -158,6 +158,11 @@ public sealed partial class CrewMonitoringWindow : FancyWindow
         // Populate departments
         foreach (var sensor in departmentSensors)
         {
+            if (!string.IsNullOrEmpty(SearchLineEdit.Text)
+                && !sensor.Name.Contains(SearchLineEdit.Text, StringComparison.CurrentCultureIgnoreCase)
+                && !sensor.Job.Contains(SearchLineEdit.Text, StringComparison.CurrentCultureIgnoreCase))
+                continue;
+
             var coordinates = _entManager.GetCoordinates(sensor.Coordinates);
 
             // Add a button that will hold a username and other details
@@ -291,7 +296,6 @@ public sealed partial class CrewMonitoringWindow : FancyWindow
                 NavMap.TrackedEntities.TryAdd(sensor.SuitSensorUid,
                     new NavMapBlip
                     (coordinates.Value,
-                    coordinates.Value.ToMap(_entManager, _transformSystem), // Frontier modification
                     _blipTexture,
                     (_trackedEntity == null || sensor.SuitSensorUid == _trackedEntity) ? Color.LimeGreen : Color.LimeGreen * Color.DimGray,
                     sensor.SuitSensorUid == _trackedEntity));
@@ -358,7 +362,6 @@ public sealed partial class CrewMonitoringWindow : FancyWindow
             {
                 data = new NavMapBlip
                     (data.Coordinates,
-					data.Coordinates.ToMap(_entManager, _transformSystem), // Frontier modification
                     data.Texture,
                     (currTrackedEntity == null || castSensor.SuitSensorUid == currTrackedEntity) ? Color.LimeGreen : Color.LimeGreen * Color.DimGray,
                     castSensor.SuitSensorUid == currTrackedEntity);

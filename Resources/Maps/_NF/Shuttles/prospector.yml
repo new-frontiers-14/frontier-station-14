@@ -210,14 +210,6 @@ entities:
     - type: BecomesStation
       id: Prospector
     - type: SpreaderGrid
-- proto: ActionToggleLight
-  entities:
-  - uid: 164
-    components:
-    - type: Transform
-      parent: 160
-    - type: InstantAction
-      container: 160
 - proto: AirAlarm
   entities:
   - uid: 235
@@ -1202,6 +1194,23 @@ entities:
     - type: Transform
       pos: 1.6783751,-4.3457556
       parent: 201
+- proto: NFSignDock
+  entities:
+  - uid: 151
+    components:
+    - type: Transform
+      pos: -6.5,-3.5
+      parent: 201
+  - uid: 208
+    components:
+    - type: Transform
+      pos: 2.5,4.5
+      parent: 201
+  - uid: 209
+    components:
+    - type: Transform
+      pos: 1.5,-7.5
+      parent: 201
 - proto: NitrogenCanister
   entities:
   - uid: 120
@@ -1229,14 +1238,6 @@ entities:
       parent: 201
     - type: Physics
       bodyType: Static
-- proto: Pickaxe
-  entities:
-  - uid: 182
-    components:
-    - type: Transform
-      parent: 232
-    - type: Physics
-      canCollide: False
 - proto: PlasticFlapsAirtightClear
   entities:
   - uid: 26
@@ -1437,23 +1438,6 @@ entities:
         - Pressed: Toggle
         206:
         - Pressed: Toggle
-- proto: NFSignDock
-  entities:
-  - uid: 151
-    components:
-    - type: Transform
-      pos: -6.5,-3.5
-      parent: 201
-  - uid: 208
-    components:
-    - type: Transform
-      pos: 2.5,4.5
-      parent: 201
-  - uid: 209
-    components:
-    - type: Transform
-      pos: 1.5,-7.5
-      parent: 201
 - proto: SMESBasic
   entities:
   - uid: 84
@@ -1474,6 +1458,13 @@ entities:
     components:
     - type: Transform
       pos: 0.5,-5.5
+      parent: 201
+- proto: StructureMeleeWeaponRackWallmountedSalvageFilled
+  entities:
+  - uid: 160
+    components:
+    - type: Transform
+      pos: 2.5,0.5
       parent: 201
 - proto: SubstationBasic
   entities:
@@ -1741,14 +1732,6 @@ entities:
       parent: 201
     - type: WarpPoint
       location: Prospector
-- proto: WeaponCrusher
-  entities:
-  - uid: 204
-    components:
-    - type: Transform
-      parent: 232
-    - type: Physics
-      canCollide: False
 - proto: WeaponCrusherDagger
   entities:
   - uid: 240
@@ -1756,59 +1739,6 @@ entities:
     - type: Transform
       pos: 0.5,-5.5
       parent: 201
-- proto: WeaponCrusherGlaive
-  entities:
-  - uid: 160
-    components:
-    - type: Transform
-      parent: 232
-    - type: UnpoweredFlashlight
-      toggleActionEntity: 164
-    - type: Physics
-      canCollide: False
-    - type: ActionsContainer
-    - type: ContainerContainer
-      containers:
-        actions: !type:Container
-          ents:
-          - 164
-- proto: WeaponRackMeleeWallmountedSalvage
-  entities:
-  - uid: 232
-    components:
-    - type: Transform
-      pos: 2.5,0.5
-      parent: 201
-    - type: ContainerContainer
-      containers:
-        storagebase: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        weapon1_slot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: 182
-        weapon2_slot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: 160
-        weapon3_slot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: 204
-        weapon4_slot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        weapon5_slot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        weapon6_slot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
 - proto: Window
   entities:
   - uid: 55
