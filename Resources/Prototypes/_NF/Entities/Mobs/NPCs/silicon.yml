@@ -1,0 +1,44 @@
+- type: entity
+  parent: MobSiliconBaseVehicle
+  id: MobHoverTaxiBot
+  name: hovertaxibot
+  description: Give a ride? IN SPAAAAACE!
+  components:
+  - type: Sprite
+    sprite: _NF/Mobs/Silicons/Bots/hovertaxibot.rsi
+    layers:
+    - state: hull
+    - state: engines
+      map: ["enum.VehicleVisualLayers.AutoAnimate"]
+      shader: unshaded
+    - state: unshaded
+      shader: unshaded
+  - type: GhostRole
+    name: ghost-role-information-hovertaxibot-name
+    description: ghost-role-information-hovertaxibot-description
+    rules: ghost-role-information-nonantagonist-rules
+  - type: MovementIgnoreGravity
+  - type: MovementAlwaysTouching
+  - type: CanMoveInAir
+  - type: Strap
+    buckleOffset: "0, 0"
+    unbuckleDistanceSquared: 0.09 # (30 cm)^2 - seems unnecessary, but for consistency with vehicles
+  - type: MovementSpeedModifier # Matches a hoverbike
+    acceleration: 2
+    friction: 1.5
+    baseWalkSpeed: 4.5
+    baseSprintSpeed: 7
+  - type: Construction
+    graph: HoverTaxiBot
+    node: bot
+  - type: UserInterface
+    interfaces:
+      enum.RadarConsoleUiKey.Key:
+        type: RadarConsoleBoundUserInterface
+  - type: IntrinsicUI
+    uis:
+      enum.RadarConsoleUiKey.Key:
+        toggleAction: ActionObserverShowRadar
+  - type: RadarConsole
+    followEntity: true
+  - type: VehicleHorn

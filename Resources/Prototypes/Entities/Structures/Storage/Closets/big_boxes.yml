@@ -59,11 +59,13 @@
 - type: entity
   id: StealthBox
   suffix: stealth
-  parent: BaseBigBox
+  parent: [BaseBigBox, BaseC3SyndicateContraband] # Frontier: added BaseC3SyndicateContraband
   description: Kept ya waiting, huh?
   components:
     - type: Damageable
       damageModifierSet: FlimsyMetallic #Syndicate boxes should have a bit of protection
+    - type: CardboardBox
+      quiet: true
     - type: Stealth
       hadOutline: true
     - type: StealthOnMove
@@ -71,7 +73,6 @@
       movementVisibilityRate: 0.20
     - type: StaticPrice
       price: 100
-    - type: Contraband #frontier
 
 - type: entity
   id: BigBox

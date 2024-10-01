@@ -1,6 +1,8 @@
 # BASE
 - type: entity # 'Gun', 'AmmoProvider' and 'ContainerContainer' components are not defined in this one
-  parent: BaseStructure
+  parent:
+  - BaseStructure
+  - MobLaserReflect # Preventing laser abuse from players, prototype is in \Resources\Prototypes\_NF\Entities\Mobs\NPCs\mob_hostile_base.yml
   id: BaseWeaponTurretNF
   name: turret
   suffix: Frontier

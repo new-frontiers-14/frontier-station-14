@@ -2,10 +2,10 @@
   parent: Clothing
   id: PortableRecharger
   name: portable recharger
-  description: High-tech recharger adapted for portability
+  description: High-tech recharger adapted for portability.
   components:
   - type: Item
-    size: Huge
+    size: Ginormous # Frontier Huge<Ginormous
   - type: Sprite
     sprite: Objects/Power/portable_recharger.rsi
     state: charging
@@ -15,6 +15,7 @@
     slots:
     - back
   - type: Charger
+    chargeRate: 50 # Frontier: chargeRate: 50 
     slotId: charger_slot
     portable: true
   - type: PowerChargerVisuals

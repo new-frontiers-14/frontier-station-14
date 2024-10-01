@@ -124,7 +124,7 @@
   - ContrabandClothing
   id: ClothingOuterHardsuitSyndieEliteUnremoveable
   name: syndicate hardsuit
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Unremoveable
   - type: Sprite
@@ -138,7 +138,7 @@
   - ContrabandClothing
   id: ClothingOuterHardsuitSyndieBloodRedUnremoveable
   name: syndicate hardsuit
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Unremoveable
   - type: Sprite
@@ -227,7 +227,7 @@
     clothingPrototype: ClothingHeadHelmetHardsuitNfsdBrigmedic
 
 - type: entity
-  parent: ClothingOuterHardsuitJuggernaut # Jugger Suit
+  parent: [BaseC2ContrabandUnredeemable, ClothingOuterHardsuitJuggernaut] # Jugger Suit
   id: ClothingOuterHardsuitNfsdExperimental
   name: experimental nfsd hardsuit
   description: An experimental nfsd hardsuit, never before seen!
@@ -378,3 +378,30 @@
       path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitTacticalMaid
+
+- type: entity
+  parent: [BaseC3PirateContraband, ClothingOuterHardsuitBaseNF]
+  id: ClothingOuterHardsuitPirateElite
+  name: elite pirate hardsuit
+  description: An ancient elite armored hardsuit, designed by an unknown bearded man and built like a brick house.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/pirate_elite.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/OuterClothing/Hardsuits/pirate_elite.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitPirateElite
+  - type: ExplosionResistance
+    damageCoefficient: 0.4
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.5
+        Heat: 0.50
+        Radiation: 0.4
+        Caustic: 0.6
+  - type: ClothingSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.75

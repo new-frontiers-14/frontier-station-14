@@ -1,7 +1,7 @@
 
 - type: entity
-  parent: ClothingOuterVestWebMercenary
   id: ClothingOuterArmorPunkGreen
+  parent: [ ClothingOuterVestWebMercenary, RecyclableItemClothArmor, BaseC1Contraband ]
   name: punk armor
   components:
   - type: Sprite
@@ -80,8 +80,8 @@
         #mask_null: ""
 
 - type: entity
-  parent: ClothingOuterArmorBulletproof
   id: ClothingOuterArmorElitePunkRandomized
+  parent: [ ClothingOuterStorageBase, ClothingOuterArmorBulletproof, RecyclableItemClothArmor, BaseC1Contraband ]
   name: punk heavy armor
   suffix: Random visuals
   components:

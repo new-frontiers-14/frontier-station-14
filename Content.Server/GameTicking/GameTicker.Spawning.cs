@@ -4,6 +4,7 @@ using System.Numerics;
 using Content.Server.Administration.Managers;
 using Content.Server.GameTicking.Events;
 using Content.Server.Ghost;
+using Content.Server.Shuttles.Components;
 using Content.Server.Spawners.Components;
 using Content.Server.Speech.Components;
 using Content.Server.Station.Components;
@@ -21,6 +22,8 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
+using Content.Server.Corvax.Respawn; // Frontier
+using Content.Shared.Traits.Assorted; // Frontier
 
 namespace Content.Server.GameTicking
 {
@@ -28,6 +31,7 @@ namespace Content.Server.GameTicking
     {
         [Dependency] private readonly IAdminManager _adminManager = default!;
         [Dependency] private readonly SharedJobSystem _jobs = default!;
+        [Dependency] private readonly RespawnSystem _respawn = default!; // Frontier
 
         [ValidatePrototypeId<EntityPrototype>]
         public const string ObserverPrototypeName = "MobObserver";
@@ -237,7 +241,7 @@ namespace Content.Server.GameTicking
                 spawnPointType = SpawnPointType.Job;
             }
 
-            var mobMaybe = _stationSpawning.SpawnPlayerCharacterOnStation(station, job, character, spawnPointType: spawnPointType);
+            var mobMaybe = _stationSpawning.SpawnPlayerCharacterOnStation(station, job, character, spawnPointType: spawnPointType, session: player); // Frontier: add session
             DebugTools.AssertNotNull(mobMaybe);
             var mob = mobMaybe!.Value;
 
@@ -245,18 +249,39 @@ namespace Content.Server.GameTicking
 
             if (lateJoin && !silent)
             {
-                _chatSystem.DispatchStationAnnouncement(station,
-                    Loc.GetString("latejoin-arrival-announcement",
-                        ("character", MetaData(mob).EntityName),
-                        ("job", CultureInfo.CurrentCulture.TextInfo.ToTitleCase(jobName))),
-                    Loc.GetString("latejoin-arrival-sender"),
-                    playDefaultSound: false);
+                if (jobPrototype.JoinNotifyCrew)
+                {
+                    _chatSystem.DispatchStationAnnouncement(station,
+                        Loc.GetString("latejoin-arrival-announcement-special",
+                            ("character", MetaData(mob).EntityName),
+                            ("entity", mob),
+                            ("job", CultureInfo.CurrentCulture.TextInfo.ToTitleCase(jobName))),
+                        Loc.GetString("latejoin-arrival-sender"),
+                        playDefaultSound: false,
+                        colorOverride: Color.Gold);
+                }
+                else
+                {
+                    _chatSystem.DispatchStationAnnouncement(station,
+                        Loc.GetString("latejoin-arrival-announcement",
+                            ("character", MetaData(mob).EntityName),
+                            ("entity", mob),
+                            ("job", CultureInfo.CurrentCulture.TextInfo.ToTitleCase(jobName))),
+                        Loc.GetString("latejoin-arrival-sender"),
+                        playDefaultSound: false);
+                }
             }
 
             // who tf is perma oWo
             if (player.UserId == new Guid("{e887eb93-f503-4b65-95b6-2f282c014192}"))
             {
                 EntityManager.AddComponent<OwOAccentComponent>(mob);
+            }
+
+            // Frontier - Remove Bing Legs
+            if (player.UserId == new Guid("{8a276323-a24c-4503-ba41-916463e02de8}"))
+            {
+                EntityManager.AddComponent<LegsParalyzedComponent>(mob);
             }
 
             _stationJobs.TryAssignJob(station, jobPrototype, player.UserId);
@@ -283,28 +308,13 @@ namespace Content.Server.GameTicking
                     Loc.GetString("job-greet-station-name", ("stationName", metaData.EntityName)));
             }
 
-            // Arrivals is unable to do this during spawning as no actor is attached yet.
-            // We also want this message last.
-            if (!silent && lateJoin && _arrivals.Enabled)
-            {
-                var arrival = _arrivals.NextShuttleArrival();
-                if (arrival == null)
-                {
-                    _chatManager.DispatchServerMessage(player, Loc.GetString("latejoin-arrivals-direction"));
-                }
-                else
-                {
-                    _chatManager.DispatchServerMessage(player,
-                        Loc.GetString("latejoin-arrivals-direction-time", ("time", $"{arrival:mm\\:ss}")));
-                }
-            }
-
             // We raise this event directed to the mob, but also broadcast it so game rules can do something now.
             PlayersJoinedRoundNormally++;
             var aev = new PlayerSpawnCompleteEvent(mob,
                 player,
                 jobId,
                 lateJoin,
+                silent,
                 PlayersJoinedRoundNormally,
                 station,
                 character);
@@ -316,6 +326,8 @@ namespace Content.Server.GameTicking
             _mind.WipeMind(player);
             _adminLogger.Add(LogType.Respawn, LogImpact.Medium, $"Player {player} was respawned.");
 
+            _respawn.Respawn(player); // Frontier: reset respawn
+
             if (LobbyEnabled)
                 PlayerJoinLobby(player);
             else
@@ -323,7 +335,7 @@ namespace Content.Server.GameTicking
         }
 
         /// <summary>
-        /// Makes a player join into the game and spawn on a staiton.
+        /// Makes a player join into the game and spawn on a station.
         /// </summary>
         /// <param name="player">The player joining</param>
         /// <param name="station">The station they're spawning on</param>
@@ -503,6 +515,7 @@ namespace Content.Server.GameTicking
         public ICommonSession Player { get; }
         public string? JobId { get; }
         public bool LateJoin { get; }
+        public bool Silent { get; }
         public EntityUid Station { get; }
         public HumanoidCharacterProfile Profile { get; }
 
@@ -513,6 +526,7 @@ namespace Content.Server.GameTicking
             ICommonSession player,
             string? jobId,
             bool lateJoin,
+            bool silent,
             int joinOrder,
             EntityUid station,
             HumanoidCharacterProfile profile)
@@ -521,6 +535,7 @@ namespace Content.Server.GameTicking
             Player = player;
             JobId = jobId;
             LateJoin = lateJoin;
+            Silent = silent;
             Station = station;
             Profile = profile;
             JoinOrder = joinOrder;

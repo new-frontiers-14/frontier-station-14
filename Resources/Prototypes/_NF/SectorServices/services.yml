@@ -1,0 +1,14 @@
+- type: sectorService
+  id: PirateBounties
+  components:
+    - type: SectorPirateBountyDatabase
+
+- type: sectorService
+  id: MailMetrics
+  components:
+    - type: SectorLogisticStats
+
+- type: sectorService
+  id: SectorRecords
+  components:
+    - type: SectorStationRecord # Allows the NFSD criminal records to properly function

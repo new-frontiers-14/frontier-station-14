@@ -1,0 +1,12 @@
+- type: entity
+  parent: IDCardStandard
+  id: CourierIDCard
+  name: mail carrier ID card # Frontier: courier<mail carrier
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - sprite: _NF/Objects/Misc/id_cards.rsi # Frontier - DeltaV/Objects/Misc/id_cards.rsi<_NF/Objects/Misc/id_cards.rsi
+      state: idmailcarrier # Frontier - nyanomailcarrier<idmailcarrier
+  - type: PresetIdCard
+    job: MailCarrier # Frontier - Courier<MailCarrier

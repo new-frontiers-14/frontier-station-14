@@ -66,6 +66,7 @@
   - type: Tag
     tags:
     - DoorBumpOpener
+    - Bot
   - type: MobState
     allowedStates:
       - Alive
@@ -103,10 +104,11 @@
     - Robotics
   - type: Speech
     speechVerb: Robotic
+    speechSounds: Pai #couldn't decide if this should be borg or pai sounds so I flipped a coin.
   - type: TypingIndicator
     proto: robot
   - type: ZombieImmune
-  - type: StepTriggerImmune
+  - type: ProtectedFromStepTriggers
   - type: NoSlip
   - type: Insulated
 
@@ -141,12 +143,15 @@
   - type: GhostRole
     name: ghost-role-information-taxibot-name
     description: ghost-role-information-taxibot-description
+    rules: ghost-role-information-nonantagonist-rules # Frontier?
   - type: Strap
     buckleOffset: "0, 0"
+    unbuckleDistanceSquared: 0.09 # Frontier: (30 cm)^2 - seems unnecessary, but for consistency with vehicles
     # maxBuckleDistance: 1 # Umbra - buckling fix
   - type: Construction
     graph: TaxiBot
     node: bot
+  - type: VehicleHorn # Frontier: beep beep
 
 - type: entity
   parent: MobSiliconBase
@@ -324,6 +329,8 @@
   - type: Construction
     graph: MediBot
     node: bot
+  - type: SentienceTarget
+    flavorKind: station-event-random-sentience-flavor-mechanical
   - type: Anchorable
   - type: InteractionPopup
     interactSuccessString: petting-success-medibot
@@ -341,7 +348,7 @@
   - StripableInventoryBase
   id: MobMimeBot
   name: mimebot
-  description: Why not give mimebot a friendly wave.
+  description: Why not give the mimebot a friendly wave?
   components:
   - type: Sprite
     layers:
@@ -365,6 +372,8 @@
     interactFailureString: petting-failure-mimebot
   - type: Inventory
     templateId: head
+  - type: Speech # Frontier: robots have beepy speech sounds, but not the mimebot
+    speechSounds: null # Frontier: robots have beepy speech sounds, but not the mimebot
 
 - type: entity
   parent: MobSiliconBase
@@ -427,6 +436,7 @@
     tags:
     - DoorBumpOpener
     - FootstepSound
+    - Bot
   - type: ActiveRadio
     channels:
     - Binary

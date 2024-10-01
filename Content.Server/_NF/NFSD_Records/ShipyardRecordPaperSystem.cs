@@ -46,9 +46,10 @@ public sealed class ShipyardRecordPaperSystem : EntitySystem
         if (!Resolve(uid, ref component))
             return;
 
+        if (!TryComp<PaperComponent>(uid, out var paper))
+            return;
 
-        _paper.SetContent(uid, "paperContent");
-
+        _paper.SetContent((uid, paper), "paperContent");
     }
 
     /// <summary>
@@ -122,7 +123,7 @@ public sealed class ShipyardRecordPaperSystem : EntitySystem
             {
                 //Saves information into lists
                 vesselNameList.Add(vessel.Name);
-                vesselCategoryList.Add(vessel.Category);
+                vesselCategoryList.Add(vessel.Category.ToString());
                 vesselDescriptionList.Add(vessel.Description);
                 vesselPriceList.Add(vessel.Price.ToString());
             }
@@ -148,10 +149,10 @@ public sealed class ShipyardRecordPaperSystem : EntitySystem
             string scramVesselPrice = args.VesselPrice + randPriceValue + vesselPrice[ran_int];
 
             //save elements that can be properly scrambled
-            string[] elements = {scramVesselName, scramVesselOwnerName, scramVesselOwnerSpecies, args.VesselOwnerFingerprints, args.VesselOwnerDNA, scramVesselCategory, scramVesselDescription, scramVesselPrice};
+            string[] elements = { scramVesselName, scramVesselOwnerName, scramVesselOwnerSpecies, args.VesselOwnerFingerprints, args.VesselOwnerDNA, scramVesselCategory, scramVesselDescription, scramVesselPrice };
 
             //Scrambles each element
-            for(int ii = 0; ii < elements.Length; ii++)
+            for (int ii = 0; ii < elements.Length; ii++)
             {
                 string input = elements[ii];
                 char[] chars = input.ToCharArray();

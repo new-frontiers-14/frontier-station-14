@@ -1,5 +1,6 @@
 using System.Linq;
 using Content.Client.UserInterface.Controls;
+using Content.Shared._NF.Bank;
 using Content.Shared.Cargo;
 using Content.Shared.Cargo.Components;
 using Content.Shared.Cargo.Prototypes;
@@ -100,7 +101,7 @@ namespace Content.Client.Cargo.UI
                         Product = prototype,
                         ProductName = { Text = prototype.Name },
                         MainButton = { ToolTip = prototype.Description },
-                        PointCost = { Text = Loc.GetString("cargo-console-menu-points-amount", ("amount", prototype.Cost.ToString())) },
+                        PointCost = { Text = BankSystemExtensions.ToSpesoString(prototype.Cost) }, // Frontier: 
                         Icon = { Texture = _spriteSystem.Frame0(prototype.Icon) },
                     };
                     button.MainButton.OnPressed += args =>
@@ -189,10 +190,10 @@ namespace Content.Client.Cargo.UI
             ShuttleCapacityLabel.Text = $"{count}/{capacity}";
         }
 
-        public void UpdateBankData(string name, int points)
+        public void UpdateBankData(string name, int bankBalance)
         {
             AccountNameLabel.Text = name;
-            PointsLabel.Text = Loc.GetString("cargo-console-menu-points-amount", ("amount", points.ToString()));
+            PointsLabel.Text = BankSystemExtensions.ToSpesoString(bankBalance);
         }
     }
 }

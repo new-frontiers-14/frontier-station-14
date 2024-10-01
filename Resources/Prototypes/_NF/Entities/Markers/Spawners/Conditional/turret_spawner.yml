@@ -1,0 +1,47 @@
+# Hostile
+- type: entity
+  id: SpawnMobWeaponTurretLaserSyndicateNF
+  parent: MarkerBase
+  name: syndicate laser turret spawner
+  suffix: Hostile, Frontier
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: _NF/Objects/Weapons/Guns/Turrets/laser.rsi
+      state: base
+  - type: ConditionalSpawner
+    prototypes:
+    - WeaponTurretLaserSyndicateNF
+
+- type: entity
+  id: SpawnMobWeaponTurretSyndicate
+  parent: MarkerBase
+  name: syndicate ballistic turret spawner
+  suffix: Hostile, Frontier
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Objects/Weapons/Guns/Turrets/turrets.rsi
+      state: syndie_lethal
+  - type: ConditionalSpawner
+    prototypes:
+    - WeaponTurretSyndicate
+
+# NT
+- type: entity
+  id: SpawnMobWeaponTurretLaserNanoTrasenDeployed
+  parent: MarkerBase
+  name: SLAT spawner
+  suffix: NT, Frontier
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - state: ai
+    - sprite: _NF/Objects/Weapons/Guns/Turrets/laser.rsi
+      state: base
+  - type: ConditionalSpawner
+    prototypes:
+    - WeaponTurretLaserNanoTrasenDeployed

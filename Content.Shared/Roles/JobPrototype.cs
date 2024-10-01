@@ -20,6 +20,9 @@ namespace Content.Shared.Roles
         [DataField("playTimeTracker", required: true, customTypeSerializer: typeof(PrototypeIdSerializer<PlayTimeTrackerPrototype>))]
         public string PlayTimeTracker { get; private set; } = string.Empty;
 
+        /// <summary>
+        ///     Who is the supervisor for this job.
+        /// </summary>
         [DataField("supervisors")]
         public string Supervisors { get; private set; } = "nobody";
 
@@ -41,18 +44,33 @@ namespace Content.Shared.Roles
         [ViewVariables(VVAccess.ReadOnly)]
         public string? LocalizedDescription => Description is null ? null : Loc.GetString(Description);
 
+        /// <summary>
+        ///     Requirements for the job.
+        /// </summary>
         [DataField, Access(typeof(SharedRoleSystem), Other = AccessPermissions.None)]
         public HashSet<JobRequirement>? Requirements;
+
+        [DataField, Access(typeof(SharedRoleSystem), Other = AccessPermissions.None)] // Frontier
+        public Dictionary<string, HashSet<JobRequirement>>? AlternateRequirementSets; // Frontier: sets of requirements - one must be matched in order to 
 
         [DataField("whitelistRequired")]
         public bool WhitelistRequired = false;
 
+        /// <summary>
+        ///     When true - the station will have anouncement about arrival of this player.
+        /// </summary>
         [DataField("joinNotifyCrew")]
         public bool JoinNotifyCrew { get; private set; } = false;
 
+        /// <summary>
+        ///     When true - the player will recieve a message about importancy of their job.
+        /// </summary>
         [DataField("requireAdminNotify")]
         public bool RequireAdminNotify { get; private set; } = false;
 
+        /// <summary>
+        ///     Should this job appear in preferences menu?
+        /// </summary>
         [DataField("setPreference")]
         public bool SetPreference { get; private set; } = true;
 
@@ -62,6 +80,12 @@ namespace Content.Shared.Roles
         /// </summary>
         [DataField]
         public bool HideConsoleVisibility { get; private set; } = false;
+
+        /// <summary>
+        ///     Should the selected traits be applied for this job?
+        /// </summary>
+        [DataField]
+        public bool ApplyTraits { get; private set; } = true;
 
         /// <summary>
         ///     Whether this job should show in the ID Card Console.
@@ -103,8 +127,8 @@ namespace Content.Shared.Roles
         [DataField("antagAdvantage")]
         public int AntagAdvantage = 0;
 
-        [DataField("startingGear", customTypeSerializer: typeof(PrototypeIdSerializer<StartingGearPrototype>))]
-        public string? StartingGear { get; private set; }
+        [DataField]
+        public ProtoId<StartingGearPrototype>? StartingGear { get; private set; }
 
         /// <summary>
         /// Use this to spawn in as a non-humanoid (borg, test subject, etc.)
@@ -115,7 +139,7 @@ namespace Content.Shared.Roles
         public string? JobEntity = null;
 
         [DataField]
-        public ProtoId<StatusIconPrototype> Icon { get; private set; } = "JobIconUnknown";
+        public ProtoId<JobIconPrototype> Icon { get; private set; } = "JobIconUnknown";
 
         [DataField("special", serverOnly: true)]
         public JobSpecial[] Special { get; private set; } = Array.Empty<JobSpecial>();

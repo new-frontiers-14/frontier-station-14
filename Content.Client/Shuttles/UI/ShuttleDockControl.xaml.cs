@@ -272,7 +272,7 @@ public sealed partial class ShuttleDockControl : BaseShuttleControl
                             var canDock = distance < SharedDockingSystem.DockRange && inAlignment;
 
                             if (dockButton != null)
-                                dockButton.Disabled = !canDock || !canDockChange;
+                                dockButton.Disabled = !canDock && dock.GridDockedWith == null || !canDockChange; // Frontier: add "&& dock.GridDockedWith == null"
 
                             var lineColor = inAlignment ? Color.Lime : Color.Red;
                             handle.DrawDottedLine(viewedDockPos.Value, collisionCenter, lineColor, offset: lineOffset);

@@ -288,6 +288,18 @@ public abstract class SharedRoleSystem : EntitySystem
         return _prototypes.Index(job).Requirements;
     }
 
+    // Frontier: alternate requirement sets
+    public Dictionary<string, HashSet<JobRequirement>>? GetAlternateJobRequirements(JobPrototype job)
+    {
+        return job.AlternateRequirementSets;
+    }
+
+    public Dictionary<string, HashSet<JobRequirement>>? GetAlternateJobRequirements(ProtoId<JobPrototype> job)
+    {
+        return _prototypes.Index(job).AlternateRequirementSets;
+    }
+    // End Frontier: alternate requirement sets
+
     public HashSet<JobRequirement>? GetAntagRequirement(ProtoId<AntagPrototype> antag)
     {
         if (_requirementOverride != null && _requirementOverride.Antags.TryGetValue(antag, out var req))

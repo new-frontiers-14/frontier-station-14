@@ -1,5 +1,5 @@
 - type: entity
-  name: Rat King
+  name: rat king
   id: MobRatKing
   parent: [ SimpleMobBase, MobCombat ]
   description: He's da rat. He make da roolz.
@@ -48,6 +48,7 @@
       0: Alive
       200: Dead
   - type: MeleeWeapon
+    altDisarm: false
     soundHit:
         path: /Audio/Weapons/Xeno/alien_claw_flesh1.ogg
     angle: 0
@@ -101,6 +102,7 @@
   - type: RatKing
     hungerPerArmyUse: 25
     hungerPerDomainUse: 50
+  - type: Rummager # DeltaV: Make rummaging a generic component
   - type: MobsterAccent
   - type: Speech
     speechVerb: SmallMob
@@ -120,6 +122,7 @@
   - type: Grammar
     attributes:
       gender: male
+  - type: Sharp
 
 - type: entity
   id: MobRatKingBuff
@@ -141,6 +144,7 @@
       0: Alive
       350: Dead
   - type: MeleeWeapon
+    altDisarm: false
     soundHit:
         path: /Audio/Weapons/Xeno/alien_claw_flesh2.ogg
     angle: 0
@@ -158,11 +162,11 @@
   #   - MinorAntagonists # Frontier: guidebook removed
 
 - type: entity
-  name: Rat Servant
+  name: rat servant
   id: MobRatServant
   parent: [ SimpleMobBase, MobCombat ]
   description: He's da mini rat. He don't make da roolz.
-  noSpawn: true #Must be configured to a King or the AI breaks.
+  categories: [ HideSpawnMenu ] #Must be configured to a King or the AI breaks.
   components:
   - type: CombatMode
   - type: MovementSpeedModifier
@@ -292,10 +296,11 @@
 
 - type: weightedRandomEntity
   id: RatKingLoot
-  weights:
-    RandomSpawner100: 66 #garbage
-    FoodCheese: 28 #food
-    IngotGold1: 5 #loot
+  weights: # DeltaV: Rebalanced for Rodentia rummaging because we don't have Rat King
+    RandomSpawner100: 100 #garbage
+#    FoodCheeseSlice: 15 #food
+#    RandomSnacks: 10
+#    RandomFoodSingle: 5
 
 - type: entity
   id: ActionRatKingRaiseArmy

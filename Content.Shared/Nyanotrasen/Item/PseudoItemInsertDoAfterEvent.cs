@@ -8,3 +8,4 @@ namespace Content.Shared.Item.PseudoItem;
 public sealed partial class PseudoItemInsertDoAfterEvent : SimpleDoAfterEvent
 {
 }
+

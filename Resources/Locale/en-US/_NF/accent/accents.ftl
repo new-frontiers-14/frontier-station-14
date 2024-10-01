@@ -24,3 +24,11 @@ accent-words-mistake-cat-4 = Y' ahor h' mggoka'ai.
 accent-words-mistake-cat-5 = Y' cant ah'ehye bug.
 accent-words-mistake-cat-6 = li h' nilgh'ri ngahnah.
 accent-words-mistake-cat-7 = ymg' mgep l' ah'n'gha ya.
+
+# Fox
+accent-words-fox-1 = Yip!
+accent-words-fox-2 = Yap!
+accent-words-fox-3 = Ruff!
+accent-words-fox-4 = Wraaah!
+accent-words-fox-5 = Aaaaagh!
+accent-words-fox-6 = Screeee!

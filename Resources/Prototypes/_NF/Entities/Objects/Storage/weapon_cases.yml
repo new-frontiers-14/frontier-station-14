@@ -1,0 +1,124 @@
+- type: entity
+  name: weapon case
+  parent: ToolboxBase
+  id: WeaponCaseLong
+  description: A reinforced casing for storing long weapons and accessories.
+  suffix: Long
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Storage/Cases/guncaselong.rsi
+    layers:
+    - map: [ base ]
+      state: icon
+    - state: unshaded
+      shader: unshaded
+  - type: Item
+    sprite: _NF/Objects/Storage/Cases/guncaselong.rsi
+  - type: GenericVisualizer
+    visuals:
+      enum.StorageVisuals.Open:
+        base:
+          True: { state: icon-open }
+          False: { state: icon }
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,4,3
+    whitelist:
+      components:
+      - Gun
+      - BallisticAmmoProvider
+      - Projectile
+      - CartridgeAmmo
+      - PowerCell
+      - MeleeWeapon
+      - Blocking
+      - WeaponCaseInsertable
+      tags:
+      - Cartridge
+
+- type: entity
+  name: weapon case
+  parent: WeaponCaseLong
+  id: WeaponCaseShort
+  description: A reinforced casing for storing side arms and weapon accessories.
+  suffix: Short
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Storage/Cases/guncaseshort.rsi
+  - type: Item
+    size: Large
+    sprite: _NF/Objects/Storage/Cases/guncaseshort.rsi
+  - type: Storage
+    maxItemSize: Normal
+    grid:
+    - 0,0,3,1
+    whitelist:
+      components:
+      - Gun
+      - BallisticAmmoProvider
+      - Projectile
+      - CartridgeAmmo
+      - PowerCell
+      - MeleeWeapon
+      - Blocking
+      - WeaponCaseInsertable
+      tags:
+      - Cartridge
+
+- type: entity
+  name: ammo case
+  parent: WeaponCaseShort
+  id: WeaponCaseShortAmmo
+  description: A reinforced casing for storing ammo.
+  suffix: Short
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Storage/Cases/ammocaseshort.rsi
+  - type: Item
+    sprite: _NF/Objects/Storage/Cases/ammocaseshort.rsi
+
+- type: entity
+  name: explosives case
+  parent: WeaponCaseShort
+  id: WeaponCaseShortExplosives
+  description: A reinforced casing for storing explosives.
+  suffix: Short
+  components:
+  - type: ExplosionResistance
+    damageCoefficient: 0.2
+  - type: Sprite
+    sprite: _NF/Objects/Storage/Cases/explosivescaseshort.rsi
+  - type: Item
+    sprite: _NF/Objects/Storage/Cases/explosivescaseshort.rsi
+
+- type: entity
+  name: weapon case
+  parent: WeaponCaseLong
+  id: WeaponCaseHeavy
+  description: A reinforced casing for storing heavy armaments.
+  suffix: Heavy
+  components:
+  - type: MultiHandedItem
+  - type: Sprite
+    sprite: _NF/Objects/Storage/Cases/guncaseheavy.rsi
+  - type: Item
+    size: Ginormous
+    sprite: _NF/Objects/Storage/Cases/guncaseheavy.rsi
+  - type: Storage
+    maxItemSize: Ginormous
+    grid:
+    - 0,0,7,3
+    whitelist:
+      components:
+      - Gun
+      - BallisticAmmoProvider
+      - Projectile
+      - CartridgeAmmo
+      - PowerCell
+      - MeleeWeapon
+      - Blocking
+      - WeaponCaseInsertable
+      - Armor
+      tags:
+      - Cartridge

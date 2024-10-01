@@ -1,5 +1,5 @@
 job-description-bailiff = Patrol your assigned vessel, ensure that no one is stealing from the armory, and make sure that all prisoners are processed and let out when their time is up.
-job-description-brigmedic = Fight in the rear of the sheriff's service, for the lives of your comrades! You are the first and last hope of your squad. Hippocrates bless you.
+job-description-brigmedic-nf = Fight in the rear of the sheriff's service, for the lives of your comrades! You are the first and last hope of your squad. Hippocrates bless you.
 job-description-cadet-nf = Learn the basics of arresting criminals and managing the brig. Listen to your supervisors and feel free to ask them for any help.
 job-description-contractor = Fulfill any profitable contracts out on the frontier of NT space.
 job-description-deputy = Catch criminals and enemies of the corporation, enforce the law, and ensure that the sector does not fall into disarray.
@@ -10,6 +10,7 @@ job-description-pilot = Pilot spaceships from point A to B, outmaneuver pirates 
 job-description-pirate = Drink grog, follow orders, swab the deck, and adhere to your Captain and your code.
 job-description-pirate-captain = Lead a crew of ne'er-do-wells across the open space and plunder, respectfully, always following the code.
 job-description-pirate-first-mate = Assist your captain in any hijinks you find yourselves in.
+job-description-public-affairs-liaison = Interface with the public, hand out and fill out forms and assist the NFSD chain of command with administrative tasks.
 job-description-security-guard = Patrol the empty halls, whistle simple tunes you heard on radio, jingle your keychain and scurry away at the sight of danger.
 job-description-senior-officer = Teach new deputies the basics of searches, preforming arrests, prison times and how to properly shoot a firearm.
 job-description-sheriff = Manage your department and keep them efficient, quell dissent, and keep the sector safe.
