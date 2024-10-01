@@ -7,6 +7,7 @@ using Content.Shared.Access.Systems;
 using Content.Shared.APC;
 using Content.Shared.Emag.Components;
 using Content.Shared.Emag.Systems;
+using Content.Shared.Emp; // Frontier: Upstream - #28984
 using Content.Shared.Popups;
 using Content.Shared.Rounding;
 using Robust.Server.GameObjects;
@@ -14,7 +15,6 @@ using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Timing;
 using Content.Shared.Tools.Components;
-using Content.Shared.Emp;
 
 namespace Content.Server.Power.EntitySystems;
 
@@ -40,7 +40,8 @@ public sealed class ApcSystem : EntitySystem
         SubscribeLocalEvent<ApcComponent, GotEmaggedEvent>(OnEmagged);
 
         SubscribeLocalEvent<ApcComponent, EmpPulseEvent>(OnEmpPulse);
-        SubscribeLocalEvent<ApcComponent, ToolUseAttemptEvent>(OnToolUseAttempt);
+        SubscribeLocalEvent<ApcComponent, EmpDisabledRemoved>(OnEmpDisabledRemoved); // Frontier: Upstream - #28984
+        SubscribeLocalEvent<ApcComponent, ToolUseAttemptEvent>(OnToolUseAttempt); // Frontier
     }
 
     public override void Update(float deltaTime)
@@ -177,7 +178,7 @@ public sealed class ApcSystem : EntitySystem
 
     private ApcChargeState CalcChargeState(EntityUid uid, PowerState.Battery battery)
     {
-        if (HasComp<EmaggedComponent>(uid))
+        if (HasComp<EmaggedComponent>(uid) || HasComp<EmpDisabledComponent>(uid)) // Frontier: Upstream - #28984
             return ApcChargeState.Emag;
 
         if (battery.CurrentStorage / battery.Capacity > ApcComponent.HighPowerThreshold)
@@ -204,25 +205,37 @@ public sealed class ApcSystem : EntitySystem
 
         return ApcExternalPowerState.Good;
     }
-
-    private void OnEmpPulse(EntityUid uid, ApcComponent component, ref EmpPulseEvent args)
+    private void OnEmpPulse(EntityUid uid, ApcComponent component, ref EmpPulseEvent args) // Frontier: Upstream - #28984
     {
-        if (component.MainBreakerEnabled)
-        {
-            args.Affected = true;
-            args.Disabled = true;
-            ApcToggleBreaker(uid, component);
-        }
+        //if (component.MainBreakerEnabled)
+        //{
+        //    args.Affected = true;
+        //    args.Disabled = true;
+        //    ApcToggleBreaker(uid, component);
+        //}
+        EnsureComp<EmpDisabledComponent>(uid, out var emp); //event calls before EmpDisabledComponent is added, ensure it to force sprite update
+        UpdateApcState(uid);
     }
 
-    private void OnToolUseAttempt(EntityUid uid, ApcComponent component, ToolUseAttemptEvent args)
+    private void OnEmpDisabledRemoved(EntityUid uid, ApcComponent component, ref EmpDisabledRemoved args) // Frontier: Upstream - #28984
+    {
+        UpdateApcState(uid);
+    }
+
+    private void OnToolUseAttempt(EntityUid uid, ApcComponent component, ToolUseAttemptEvent args) // Frontier
     {
         if (!HasComp<EmpDisabledComponent>(uid))
             return;
 
-        // prevent reconstruct exploit to skip cooldowns
-        if (!component.MainBreakerEnabled)
-            args.Cancel();
+        foreach (var quality in args.Qualities)
+        {
+            // prevent reconstruct exploit to skip cooldowns
+            if (quality == "Prying")
+            {
+                args.Cancel();
+                return;
+            }
+        }
     }
 }
 

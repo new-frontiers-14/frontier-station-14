@@ -1,6 +1,6 @@
 - type: entity
   name: hypospray
-  parent: BaseItem
+  parent: BaseItem # Frontier: remove BaseGrandTheftContraband
   description: A sterile injector for rapid administration of drugs to patients.
   id: Hypospray
   components:
@@ -31,7 +31,7 @@
 
 - type: entity
   name: gorlex hypospray
-  parent: BaseItem
+  parent: [BaseItem, BaseC3SyndicateContraband] # Frontier: add BaseC3SyndicateContraband
   description: Using reverse engineered designs from NT, Cybersun produced these in limited quantities for Gorlex Marauder operatives.
   id: SyndiHypo
   components:
@@ -52,7 +52,6 @@
     onlyAffectsMobs: false
   - type: UseDelay
     delay: 0.5
-  - type: Contraband #frontier
 
 - type: entity
   name: borghypo
@@ -81,7 +80,7 @@
 - type: entity
   name: experimental hypospray
   suffix: Admeme
-  parent: SyndiHypo
+  parent: [BaseClearContraband, SyndiHypo] # Frontier: added BaseClearContraband
   description: The ultimate application of bluespace technology and rapid chemical administration.
   id: AdminHypo
   components:
@@ -91,7 +90,6 @@
           maxVol: 3000
     - type: UseDelay
       delay: 0.0
-    - type: Contraband #frontier
 
 - type: entity
   name: chemical medipen
@@ -193,7 +191,7 @@
   name: brute auto-injector
   parent: ChemicalMedipen
   id: BruteAutoInjector
-  description: A rapid dose of bicaridine and tranexamic acid, intended for combat applications
+  description: A rapid dose of bicaridine and tranexamic acid, intended for combat applications.
   components:
   - type: Sprite
     sprite: Objects/Specific/Medical/medipen.rsi
@@ -225,7 +223,7 @@
   name: burn auto-injector
   parent: ChemicalMedipen
   id: BurnAutoInjector
-  description: A rapid dose of dermaline and leporazine, intended for combat applications
+  description: A rapid dose of dermaline and leporazine, intended for combat applications.
   components:
   - type: Sprite
     sprite: Objects/Specific/Medical/medipen.rsi
@@ -321,7 +319,7 @@
 
 - type: entity
   name: hyperzine injector
-  parent: ChemicalMedipen
+  parent: [ChemicalMedipen, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   id: Stimpack
   description: Contains enough hyperzine for you to have the chemical's effect for 30 seconds. Use it when you're sure you're ready to throw down.
   components:
@@ -353,7 +351,7 @@
 
 - type: entity
   name: hyperzine microinjector
-  parent: ChemicalMedipen
+  parent: [ChemicalMedipen, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   id: StimpackMini
   description: A microinjector of hyperzine that give you about fifteen seconds of the chemical's effects.
   components:
@@ -380,7 +378,7 @@
 
 - type: entity
   name: combat medipen
-  parent: ChemicalMedipen
+  parent: [ChemicalMedipen, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   id: CombatMedipen
   description: A single-use medipen containing chemicals that regenerate most types of damage.
   components:
@@ -415,7 +413,7 @@
 - type: entity
   name: pen
   suffix: Hypopen
-  parent: Pen # It is just like normal pen, isn't it?
+  parent: [Pen, BaseC3SyndicateContraband] # It is just like normal pen, isn't it?
   description: A dark ink pen.
   id: Hypopen
   components:
@@ -434,10 +432,13 @@
     delay: 0.5
   - type: StaticPrice # A new shitcurity meta
     price: 75
-  - type: Contraband #frontier
+  - type: EmitSoundOnUse
+    handle: false # don't want the sound to stop the self-inject from triggering
+  - type: Contraband # Frontier
+    hideValues: true # Frontier - stealthy
 
 - type: entity
-  parent: BaseItem
+  parent: [ BaseItem, BaseC3SyndicateContraband ] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   id: HypopenBox
   name: hypopen box
   description: A small box containing a hypopen. Packaging disintegrates when opened, leaving no evidence behind.

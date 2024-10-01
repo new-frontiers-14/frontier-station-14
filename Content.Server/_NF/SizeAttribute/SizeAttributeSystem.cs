@@ -3,7 +3,8 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Collision.Shapes;
 using Robust.Shared.Physics.Systems;
-using Content.Shared.Item.PseudoItem;
+using Content.Shared._NF.SizeAttribute;
+using Content.Shared.Nyanotrasen.Item.PseudoItem;
 
 namespace Content.Server.SizeAttribute
 {
@@ -12,7 +13,6 @@ namespace Content.Server.SizeAttribute
         [Dependency] private readonly IEntityManager _entityManager = default!;
         [Dependency] private readonly SharedPhysicsSystem _physics = default!;
         [Dependency] private readonly AppearanceSystem _appearance = default!;
-        [Dependency] private readonly FixtureSystem _fixtures = default!;
         public override void Initialize()
         {
             base.Initialize();
@@ -21,35 +21,35 @@ namespace Content.Server.SizeAttribute
 
         private void OnComponentInit(EntityUid uid, SizeAttributeComponent component, ComponentInit args)
         {
-            if (!TryComp<SizeAttributeWhitelistComponent>(uid, out var whitelist))
-                return;
-
-            if (whitelist.Tall && component.Tall)
+            if (component.Tall && TryComp<TallWhitelistComponent>(uid, out var tallComp))
             {
-                Scale(uid, component, whitelist.TallScale, whitelist.TallDensity, whitelist.TallCosmeticOnly);
-                PseudoItem(uid, component, whitelist.TallPseudoItem);
+                Scale(uid, component, tallComp.Scale, tallComp.Density, tallComp.CosmeticOnly);
+                PseudoItem(uid, component, tallComp.PseudoItem, tallComp.Shape, tallComp.StoredOffset, tallComp.StoredRotation);
             }
-            else if (whitelist.Short && component.Short)
+            else if (component.Short && TryComp<ShortWhitelistComponent>(uid, out var shortComp))
             {
-                Scale(uid, component, whitelist.ShortScale, whitelist.ShortDensity, whitelist.ShortCosmeticOnly);
-                PseudoItem(uid, component, whitelist.ShortPseudoItem);
+                Scale(uid, component, shortComp.Scale, shortComp.Density, shortComp.CosmeticOnly);
+                PseudoItem(uid, component, shortComp.PseudoItem, shortComp.Shape, shortComp.StoredOffset, shortComp.StoredRotation);
             }
         }
 
-        private void PseudoItem(EntityUid uid, SizeAttributeComponent component, bool active)
+        private void PseudoItem(EntityUid uid, SizeAttributeComponent _, bool active, List<Box2i>? shape, Vector2i? storedOffset, float storedRotation)
         {
             if (active)
             {
-                if (TryComp<PseudoItemComponent>(uid, out var pseudoI))
-                    return;
+                var pseudoI = _entityManager.EnsureComponent<PseudoItemComponent>(uid);
 
-                _entityManager.AddComponent<PseudoItemComponent>(uid);
+                pseudoI.StoredRotation = storedRotation;
+                pseudoI.StoredOffset = storedOffset ?? new(0, 17);
+                pseudoI.Shape = shape ?? new List<Box2i>
+                {
+                    new Box2i(0, 0, 1, 4),
+                    new Box2i(0, 2, 3, 4),
+                    new Box2i(4, 0, 5, 4)
+                };
             }
             else
             {
-                if (!TryComp<PseudoItemComponent>(uid, out var pseudoI))
-                    return;
-
                 _entityManager.RemoveComponent<PseudoItemComponent>(uid);
             }
         }

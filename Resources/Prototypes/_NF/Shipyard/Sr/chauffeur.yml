@@ -1,0 +1,38 @@
+# Author Info
+# GitHub: arimah
+# Discord: arimah
+
+# Maintainer Info
+# GitHub: ???
+# Discord: ???
+
+# Shuttle Notes:
+# Placeholder for a Valet-specific ship, duplicated the PTS for now. Sorry, Arimah.
+
+- type: vessel
+  id: Chauffeur
+  name: NC Chauffeur
+  description: A small transport shuttle with space for 4 passengers. Comes with the latest audio entertainment technology.
+  price: 13000 # $11594 after appraisal + $1406 (~12% markup)
+  category: Small
+  group: Sr
+  access: Service
+  shuttlePath: /Maps/_NF/Shuttles/pts.yml
+  guidebookPage: Null
+  class:
+  - Civilian
+
+- type: gameMap
+  id: Chauffeur
+  mapName: 'NC Chauffeur'
+  mapPath: /Maps/_NF/Shuttles/pts.yml
+  minPlayers: 0
+  stations:
+    Chauffeur:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Chauffeur {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'

@@ -110,6 +110,7 @@
     - id: JetpackMiniFilled
     - id: HandheldGPSBasic
     - id: FlashlightLantern
+    - id: ClothingShoesBootsMag
 
 - type: entity
   abstract: true
@@ -354,3 +355,33 @@
     - id: JetpackMiniFilled
     - id: HandheldGPSBasic
     - id: Lantern
+
+# Emergency
+- type: entity
+  abstract: true
+  id: StorageFillEVASuitEmergency
+  description: Contains a standard issue emergency EVA kit.
+  components:
+  - type: StorageFill
+    contents:
+    - id: AirTankFilled
+    - id: ClothingOuterSuitEmergency
+    - id: ClothingMaskBreath
+    - id: JetpackMiniFilled
+    - id: HandheldGPSBasic
+    - id: FlashlightLantern
+
+# Player factions
+- type: entity
+  abstract: true
+  id: StorageFillEVASuitLvhi
+  description: Contains a standard issue Langstad-Voigt Heavy Industries (LVHI) EVA kit.
+  components:
+  - type: StorageFill
+    contents:
+    - id: AirTankFilled
+    - id: ClothingOuterEVASuitLvhi
+    - id: ClothingMaskBreath
+    - id: JetpackMiniFilled
+    - id: HandheldGPSBasic
+    - id: FlashlightLantern

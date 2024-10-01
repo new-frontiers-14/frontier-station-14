@@ -26,10 +26,12 @@ public sealed partial class ToolComponent : Component
 /// Attempt event called *before* any do afters to see if the tool usage should succeed or not.
 /// Raised on both the tool and then target.
 /// </summary>
-public sealed class ToolUseAttemptEvent(EntityUid user, float fuel) : CancellableEntityEventArgs
+public sealed class ToolUseAttemptEvent(EntityUid user, float fuel, EntityUid tool, IEnumerable<string> qualities) : CancellableEntityEventArgs // Frontier: added tool, qualities
 {
     public EntityUid User { get; } = user;
     public float Fuel = fuel;
+    public EntityUid Tool { get; } = tool; // Frontier: the tool being used
+    public IEnumerable<string> Qualities { get; } = qualities; // Frontier: the tool qualities being used here
 }
 
 /// <summary>

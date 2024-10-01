@@ -114,7 +114,13 @@ public sealed class PublicTransitSystem : EntitySystem
     private void OnShuttleStartup(EntityUid uid, TransitShuttleComponent component, ComponentStartup args)
     {
         EnsureComp<PreventPilotComponent>(uid);
-        EnsureComp<ProtectedGridComponent>(uid);
+        var prot = EnsureComp<ProtectedGridComponent>(uid);
+        prot.PreventArtifactTriggers = true;
+        prot.PreventEmpEvents = true;
+        prot.PreventExplosions = true;
+        prot.PreventFloorPlacement = true;
+        prot.PreventFloorRemoval = true;
+        prot.PreventRCDUse = true;
     }
 
     /// <summary>

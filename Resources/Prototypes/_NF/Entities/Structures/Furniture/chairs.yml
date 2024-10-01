@@ -1,0 +1,120 @@
+- type: entity
+  name: fancy wooden chair
+  id: ChairWoodFancyBase
+  parent: ChairWood
+  description: A chair, but fancy.
+  abstract: true
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Furniture/chairs.rsi
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 25
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WoodDestroy
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank:
+            min: 1
+            max: 1
+          MaterialCloth1:
+            min: 1
+            max: 1
+
+- type: entity
+  id: ChairWoodFancyBlack
+  parent: ChairWoodFancyBase
+  suffix: Black
+  components:
+  - type: Sprite
+    state: wooden_fancy-black
+  - type: Construction
+    node: chairWoodFancyBlack
+
+- type: entity
+  id: ChairWoodFancyBlue
+  parent: ChairWoodFancyBase
+  suffix: Blue
+  components:
+  - type: Sprite
+    state: wooden_fancy-blue
+  - type: Construction
+    node: chairWoodFancyBlue
+
+- type: entity
+  id: ChairWoodFancyCyan
+  parent: ChairWoodFancyBase
+  suffix: Cyan
+  components:
+  - type: Sprite
+    state: wooden_fancy-cyan
+  - type: Construction
+    node: chairWoodFancyCyan
+
+- type: entity
+  id: ChairWoodFancyGreen
+  parent: ChairWoodFancyBase
+  suffix: Green
+  components:
+  - type: Sprite
+    state: wooden_fancy-green
+  - type: Construction
+    node: chairWoodFancyGreen
+
+- type: entity
+  id: ChairWoodFancyOrange
+  parent: ChairWoodFancyBase
+  suffix: Orange
+  components:
+  - type: Sprite
+    state: wooden_fancy-orange
+  - type: Construction
+    node: chairWoodFancyOrange
+
+- type: entity
+  id: ChairWoodFancyPink
+  parent: ChairWoodFancyBase
+  suffix: Pink
+  components:
+  - type: Sprite
+    state: wooden_fancy-pink
+  - type: Construction
+    node: chairWoodFancyPink
+
+- type: entity
+  id: ChairWoodFancyPurple
+  parent: ChairWoodFancyBase
+  suffix: Purple
+  components:
+  - type: Sprite
+    state: wooden_fancy-purple
+  - type: Construction
+    node: chairWoodFancyPurple
+
+- type: entity
+  id: ChairWoodFancyRed
+  parent: ChairWoodFancyBase
+  suffix: Red
+  components:
+  - type: Sprite
+    state: wooden_fancy-red
+  - type: Construction
+    node: chairWoodFancyRed
+
+- type: entity
+  id: ChairWoodFancyWhite
+  parent: ChairWoodFancyBase
+  suffix: White
+  components:
+  - type: Sprite
+    state: wooden_fancy-white
+  - type: Construction
+    node: chairWoodFancyWhite

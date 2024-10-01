@@ -1,141 +1,185 @@
 # The list contains only the guns that were previously obtainable as expedition reward
 # or as a loose guns on the expedition
-- type: entity
-  id: UnregisteredFirearmBase
-  suffix: Unregistered
-  abstract: true
-  components:
-  - type: Contraband
 
 # Pistols
 - type: entity
-  parent: [ WeaponPistolMk58, UnregisteredFirearmBase ]
-  noSpawn: true
+  parent:
+  - BaseC2ExpeditionContraband
+  - WeaponPistolMk58
+  categories: [ HideSpawnMenu ]
   id: WeaponPistolMk58Expedition
 
 # Revolvers
 - type: entity
-  parent: [ WeaponRevolverArgenti, UnregisteredFirearmBase ]
-  noSpawn: true
+  parent:
+  - BaseC2ExpeditionContraband
+  - WeaponRevolverArgenti
+  categories: [ HideSpawnMenu ]
   id: WeaponRevolverArgentiExpedition
 
 - type: entity
-  parent: [ WeaponRevolverDeckard, UnregisteredFirearmBase ]
-  noSpawn: true
+  parent:
+  - BaseC2ExpeditionContraband
+  - WeaponRevolverDeckard
+  categories: [ HideSpawnMenu ]
   id: WeaponRevolverDeckardExpedition
 
 - type: entity
-  parent: [ WeaponRevolverMateba, UnregisteredFirearmBase ]
-  noSpawn: true
+  parent:
+  - BaseC3ExpeditionContraband
+  - WeaponRevolverMateba
+  categories: [ HideSpawnMenu ]
   id: WeaponRevolverMatebaExpedition
 
 - type: entity
-  parent: [ WeaponRevolverPirate, UnregisteredFirearmBase ]
-  noSpawn: true
+  parent:
+  - BaseC3ExpeditionContraband
+  - WeaponRevolverPirate
+  categories: [ HideSpawnMenu ]
   id: WeaponRevolverPirateExpedition
 
 # Shotguns
 - type: entity
-  parent: [ WeaponShotgunDoubleBarreled, UnregisteredFirearmBase ]
-  noSpawn: true
+  parent:
+  - BaseC2ExpeditionContraband
+  - WeaponShotgunDoubleBarreled
+  categories: [ HideSpawnMenu ]
   id: WeaponShotgunDoubleBarreledExpedition
 
 - type: entity
-  parent: [ WeaponShotgunSawn, UnregisteredFirearmBase ]
-  noSpawn: true
+  parent:
+  - BaseC2ExpeditionContraband
+  - WeaponShotgunSawn
+  categories: [ HideSpawnMenu ]
   id: WeaponShotgunSawnExpedition
 
 - type: entity
-  parent: [ WeaponShotgunHandmade, UnregisteredFirearmBase ]
-  noSpawn: true
+  parent:
+  - BaseC2ExpeditionContraband
+  - WeaponShotgunHandmade
+  categories: [ HideSpawnMenu ]
   id: WeaponShotgunHandmadeExpedition
 
 - type: entity
-  parent: [ WeaponShotgunKammerer, UnregisteredFirearmBase ]
-  noSpawn: true
+  parent:
+  - BaseC2ExpeditionContraband
+  - WeaponShotgunKammerer
+  categories: [ HideSpawnMenu ]
   id: WeaponShotgunKammererExpedition
 
 - type: entity
-  parent: [ WeaponShotgunEnforcer, UnregisteredFirearmBase ]
-  noSpawn: true
+  parent:
+  - BaseC3ExpeditionContraband
+  - WeaponShotgunEnforcer
+  categories: [ HideSpawnMenu ]
   id: WeaponShotgunEnforcerExpedition
 
 # Rifles
 - type: entity
-  parent: [ WeaponRifleGestio, UnregisteredFirearmBase ]
-  noSpawn: true
+  parent:
+  - BaseC2ExpeditionContraband
+  - WeaponRifleGestio
+  categories: [ HideSpawnMenu ]
   id: WeaponRifleGestioExpedition
 
 - type: entity
-  parent: [ WeaponRifleNovaliteC1, UnregisteredFirearmBase ]
-  noSpawn: true
+  parent:
+  - BaseC2ExpeditionContraband
+  - WeaponRifleNovaliteC1
+  categories: [ HideSpawnMenu ]
   id: WeaponRifleNovaliteC1Expedition
 
 # SMGs
 - type: entity
-  parent: [ WeaponSubMachineGunWt550, UnregisteredFirearmBase ]
-  noSpawn: true
+  parent:
+  - BaseC3ExpeditionContraband
+  - WeaponSubMachineGunWt550
+  categories: [ HideSpawnMenu ]
   id: WeaponSubMachineGunWt550Expedition
 
 - type: entity
-  parent: [ WeaponSubMachineGunAtreides, UnregisteredFirearmBase ]
-  noSpawn: true
+  parent:
+  - BaseC3ExpeditionContraband
+  - WeaponSubMachineGunAtreides
+  categories: [ HideSpawnMenu ]
   id: WeaponSubMachineGunAtreidesExpedition
 
 - type: entity
-  parent: [ WeaponSubMachineGunDrozd, UnregisteredFirearmBase ]
-  noSpawn: true
+  parent:
+  - BaseC3ExpeditionContraband
+  - WeaponSubMachineGunDrozd
+  categories: [ HideSpawnMenu ]
   id: WeaponSubMachineGunDrozdExpedition
 
 # Energy
 - type: entity
-  parent: [ WeaponLaserPistolNF, UnregisteredFirearmBase ]
-  noSpawn: true
+  parent:
+  - BaseC2ExpeditionContraband
+  - WeaponLaserPistolNF
+  categories: [ HideSpawnMenu ]
   id: WeaponLaserGunExpedition
 
 - type: entity
-  parent: [ WeaponLaserSvalinn, UnregisteredFirearmBase ]
-  noSpawn: true
+  parent:
+  - BaseC2ExpeditionContraband
+  - WeaponLaserSvalinn
+  categories: [ HideSpawnMenu ]
   id: WeaponLaserSvalinnExpedition
 
 - type: entity
-  parent: [ WeaponEnergyGun, UnregisteredFirearmBase ]
-  noSpawn: true
+  parent:
+  - BaseC2ExpeditionContraband
+  - WeaponEnergyGun
+  categories: [ HideSpawnMenu ]
   id: WeaponEnergyGunExpedition
 
 - type: entity
   name: laser carbine
-  parent: [ WeaponLaserCarbine, UnregisteredFirearmBase ]
-  noSpawn: true
+  parent:
+  - BaseC2ExpeditionContraband
+  - WeaponLaserCarbine
+  categories: [ HideSpawnMenu ]
   id: WeaponLaserCarbineExpedition
 
 - type: entity
-  parent: [ WeaponAdvancedLaser, UnregisteredFirearmBase ]
-  noSpawn: true
+  parent:
+  - BaseC2ExpeditionContraband
+  - WeaponAdvancedLaser
+  categories: [ HideSpawnMenu ]
   id: WeaponAdvancedLaserExpedition
 
 - type: entity
-  parent: [ WeaponLaserCannon, UnregisteredFirearmBase ]
-  noSpawn: true
+  parent:
+  - BaseC3ExpeditionContraband
+  - WeaponLaserCannon
+  categories: [ HideSpawnMenu ]
   id: WeaponLaserCannonExpedition
 
 - type: entity
-  parent: [ WeaponXrayCannon, UnregisteredFirearmBase ]
-  noSpawn: true
+  parent:
+  - BaseC3ExpeditionContraband
+  - WeaponXrayCannon
+  categories: [ HideSpawnMenu ]
   id: WeaponXrayCannonExpedition
 
 # Sniper
 - type: entity
-  parent: [ WeaponSniperMosin, UnregisteredFirearmBase ]
-  noSpawn: true
+  parent:
+  - BaseC2ExpeditionContraband
+  - WeaponSniperMosin
+  categories: [ HideSpawnMenu ]
   id: WeaponSniperMosinExpedition
 
 - type: entity
-  parent: [ WeaponSniperRepeater, UnregisteredFirearmBase ]
-  noSpawn: true
+  parent:
+  - BaseC2ExpeditionContraband
+  - WeaponSniperRepeater
+  categories: [ HideSpawnMenu ]
   id: WeaponSniperRepeaterExpedition
 
 - type: entity
-  parent: [ Musket, UnregisteredFirearmBase ]
-  noSpawn: true
+  parent:
+  - BaseC2ExpeditionContraband
+  - Musket
+  categories: [ HideSpawnMenu ]
   id: WeaponMusketExpedition

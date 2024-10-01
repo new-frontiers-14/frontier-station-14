@@ -135,8 +135,17 @@ public sealed partial class ArtifactSystem : EntitySystem
         EnterNode(uid, ref firstNode, component);
     }
 
+    // Frontier: randomly disintegrate an artifact.
     public void DisintegrateArtifact(EntityUid uid, float probabilityMin, float probabilityMax, float range)
     {
+        // Frontier - prevent both artifact activation and disintegration on protected grids (no grimforged in the safezone).
+        var xform = Transform(uid);
+        if (xform.GridUid != null)
+        {
+            if (TryComp<ProtectedGridComponent>(xform.GridUid.Value, out var prot) && prot.PreventArtifactTriggers)
+                return;
+        }
+
         // Make a chance between probabilityMin and probabilityMax
         var randomChanceForDisintegration = _random.NextFloat(probabilityMin, probabilityMax);
         var willDisintegrate = _random.Prob(randomChanceForDisintegration);
@@ -156,6 +165,7 @@ public sealed partial class ArtifactSystem : EntitySystem
             _entityManager.DeleteEntity(uid);
         }
     }
+    // End Frontier
 
     /// <summary>
     /// Tries to activate the artifact
@@ -163,10 +173,11 @@ public sealed partial class ArtifactSystem : EntitySystem
     /// <param name="uid"></param>
     /// <param name="user"></param>
     /// <param name="component"></param>
+    /// <param name="logMissing">Set this to false if you don't know if the entity is an artifact.</param>
     /// <returns></returns>
-    public bool TryActivateArtifact(EntityUid uid, EntityUid? user = null, ArtifactComponent? component = null)
+    public bool TryActivateArtifact(EntityUid uid, EntityUid? user = null, ArtifactComponent? component = null, bool logMissing = true)
     {
-        if (!Resolve(uid, ref component))
+        if (!Resolve(uid, ref component, logMissing))
             return false;
 
         // check if artifact is under suppression field
@@ -177,7 +188,7 @@ public sealed partial class ArtifactSystem : EntitySystem
         var xform = Transform(uid);
         if (xform.GridUid != null)
         {
-            if (HasComp<ProtectedGridComponent>(xform.GridUid.Value))
+            if (TryComp<ProtectedGridComponent>(xform.GridUid.Value, out var prot) && prot.PreventArtifactTriggers)
                 return false;
         }
 
