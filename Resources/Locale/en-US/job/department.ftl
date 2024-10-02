@@ -9,3 +9,5 @@ department-Specific = `
 department-Shipcommand = Ship Command
 department-Shipsecurity = Ship Security
 department-Service = Service
+department-Silicon = Silicon
+department-CentralCommand = Central Command
