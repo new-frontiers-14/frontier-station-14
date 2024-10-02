@@ -1,19 +1,11 @@
-using Content.Server.AlertLevel;
 using Content.Server.Audio;
-using Content.Server.Light.Components;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
-using Content.Server.Station.Systems;
 using Content.Shared.Examine;
-using Content.Shared.Light;
-using Content.Shared.Light.Components;
 using Content.Shared.Power;
-using Content.Shared.Station.Components;
-using Robust.Server.GameObjects;
-using Color = Robust.Shared.Maths.Color;
-using Content.Shared._NF.Power; // Frontier
-using Content.Shared._NF.Power.Components; // Frontier
-using Content.Server._NF.Power.Components; // Frontier
+using Content.Shared._NF.Power;
+using Content.Shared._NF.Power.Components;
+using Content.Server._NF.Power.Components;
 
 namespace Content.Server._NF.Power.EntitySystems;
 
@@ -98,6 +90,11 @@ public sealed class EmergencyChargeSystem : SharedEmergencyChargeSystem
             if (!_battery.TryUseCharge(entity.Owner, entity.Comp.Wattage * frameTime, battery))
             {
                 SetState(entity.Owner, entity.Comp, EmergencyChargeState.Empty);
+
+                if (TryComp<ApcPowerReceiverComponent>(entity.Owner, out var receiver))
+                {
+                    TurnOff(entity, receiver);
+                }
             }
         }
         else
@@ -129,6 +126,11 @@ public sealed class EmergencyChargeSystem : SharedEmergencyChargeSystem
             TurnOff(entity, receiver);
             SetState(entity.Owner, entity.Comp, EmergencyChargeState.Charging);
         }
+        else if (!receiver.Powered) // If internal battery runs out.
+        {
+            TurnOn(entity, receiver);
+            SetState(entity.Owner, entity.Comp, EmergencyChargeState.On);
+        }
         else // APC has no power
         {
             TurnOn(entity, receiver);
@@ -136,17 +138,24 @@ public sealed class EmergencyChargeSystem : SharedEmergencyChargeSystem
         }
     }
 
+    /// <summary>
+    ///     Turn off emergency power.
+    /// </summary>
     private void TurnOff(Entity<EmergencyChargeComponent> entity, ApcPowerReceiverComponent receiver)
     {
         _appearance.SetData(entity.Owner, EmergencyChargeVisuals.On, false);
-        _ambient.SetAmbience(entity.Owner, false);
+
+        receiver.NeedsPower = true;
     }
 
+    /// <summary>
+    ///     Turn on emergency power.
+    /// </summary>
     private void TurnOn(Entity<EmergencyChargeComponent> entity, ApcPowerReceiverComponent receiver)
     {
         _appearance.SetData(entity.Owner, EmergencyChargeVisuals.On, true);
-        _ambient.SetAmbience(entity.Owner, true);
 
+        receiver.NeedsPower = false;
         receiver.Powered = true;
     }
 }
