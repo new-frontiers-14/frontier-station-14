@@ -274,3 +274,19 @@
         Steel: 5
         Glass: 2
         Cable: 4
+
+# Removed from upstream definitions
+- type: entity
+  id: MaterialReclaimerMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: material reclaimer machine board
+  components:
+    - type: Sprite
+      state: supply
+    - type: MachineBoard
+      prototype: MaterialReclaimer
+      requirements: 
+        Manipulator: 2
+      stackRequirements:
+        Steel: 5
+        Plastic: 5

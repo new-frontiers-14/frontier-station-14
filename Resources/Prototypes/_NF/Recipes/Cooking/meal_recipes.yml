@@ -9,7 +9,8 @@
     FoodBreadBun: 1
     ClothingHeadMailCarrier: 1
     FoodMeatCat: 1
-  recipeType: Oven
+  recipeType:
+  - Oven
 
 - type: microwaveMealRecipe
   id: RecipeRosyMothRoachburger
@@ -72,7 +73,8 @@
     FoodChevreSlice: 1
   reagents:
     Mayo: 5
-  recipeType: Assembler
+  recipeType:
+  - Assembler
 
 # Sushi
 
@@ -88,7 +90,8 @@
   reagents:
     Rice: 15
     Water: 10
-  recipeType: Assembler
+  recipeType:
+  - Assembler
 
 - type: microwaveMealRecipe
   id: RecipeCarpSushi
@@ -102,7 +105,8 @@
   reagents:
     Rice: 15
     Water: 10
-  recipeType: Assembler
+  recipeType:
+  - Assembler
 
 # Salad
 
@@ -118,7 +122,8 @@
     FoodCucumber: 1
     FoodTomato: 1
     FoodChevreSlice: 1
-  recipeType: Assembler
+  recipeType:
+  - Assembler
 
 - type: microwaveMealRecipe
   id: RecipeAvocadoSalad
@@ -133,7 +138,8 @@
     FoodCucumber: 1
     FoodAvocado: 1
     FoodTomato: 1
-  recipeType: Assembler
+  recipeType:
+  - Assembler
 
 #Other
 
@@ -149,7 +155,8 @@
     FoodMealFries: 1
     FoodOnionRings: 1
     OrganAnimalHeart: 1
-  recipeType: Assembler
+  recipeType:
+  - Assembler
 
 - type: microwaveMealRecipe
   id: RecipeDragonOmelette
@@ -169,7 +176,7 @@
 
 - type: microwaveMealRecipe
   id: RecipeRaisins
-  name: raisins
+  name: raisins recipe
   result: ReagentContainerRaisin # A little bit cursed, spawning a bag
   time: 30
   solids:
@@ -189,6 +196,63 @@
     Saline: 10
   recipeType:
   - Microwave
+    
+- type: microwaveMealRecipe
+  id: RecipePoachedPears
+  name: poached pears recipe
+  result: FoodMealPoachedPears
+  time: 10
+  solids:
+    FoodBowlBig: 1
+    FoodPear: 3
+    FoodOrange: 2
+  reagents:
+    Wine: 10
+  recipeType:
+  - Assembler
+    
+- type: microwaveMealRecipe
+  id: RecipePearsBelleHelene
+  name: pears belle helene recipe
+  result: FoodMealPearsBelleHelene
+  time: 10
+  solids:
+    FoodBowlBig: 1
+    FoodPear: 3
+    FoodSnackChocolateBar: 2
+    FoodLemon: 1
+  reagents:
+    Cream: 5
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipePearMuffin
+  name: pear muffin recipe
+  result: FoodBakedMuffinPear
+  time: 10
+  solids:
+    FoodPear: 1
+    FoodSnackChocolateBar: 1
+  reagents:
+    Flour: 5
+    Oats: 5
+    Sugar: 5
+  recipeType:
+  - Oven
+    
+- type: microwaveMealRecipe
+  id: RecipePearCheeseTart
+  name: pear and cheese tart recipe
+  result: FoodTartPearCheese
+  time: 15
+  solids:
+    FoodPlateTin: 1
+    FoodDoughPie: 1
+    FoodPear: 2
+    FoodChevre: 1
+  recipeType:
+  - Oven
 
 # NOT ACTUAL FOOD
 

@@ -62,7 +62,7 @@
     containers:
       disposals: !type:Container
   - type: StaticPrice
-    price: 62
+    price: 62 # Frontier: 70<62 - TODO: material value rework
   - type: PowerSwitch
   - type: ApcPowerReceiver # Frontier
     powerLoad: 250 # Allows us to not use the 1000 baseline
@@ -87,6 +87,8 @@
         type: DisposalUnitBoundUserInterface
   - type: RatKingRummageable
   - type: RequireProjectileTarget
+  - type: PotentialDeadDrop # Frontier
+    hintText: dead-drop-hint-disposals # Frontier
 
 - type: entity
   id: MailingUnit

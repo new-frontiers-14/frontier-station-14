@@ -31,6 +31,7 @@ using Robust.Shared.Toolshed.TypeParsers;
 using System.Xml.Linq;
 using Robust.Shared.Prototypes;
 using Content.Shared.NameModifier.Components;
+using Content.Shared.Power;
 
 namespace Content.Server.Fax;
 

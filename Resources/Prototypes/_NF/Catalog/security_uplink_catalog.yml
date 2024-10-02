@@ -1291,3 +1291,22 @@
       whitelist:
         tags:
           - SecurityUplink
+
+- type: listing
+  id: UplinkSecurityContrabandForensicsModule
+  name:  uplink-security-contraband-forensics-module-name
+  description: uplink-security-contraband-forensics-module-desc
+  productEntity: ContrabandForensicsModule
+  icon: { sprite: _NF/Objects/Devices/cartridge.rsi, state: contraband_forensics }
+  cost:
+    FrontierUplinkCoin: 4
+  categories:
+    - UplinkSecurityUtility
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Sheriff

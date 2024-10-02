@@ -1,4 +1,3 @@
-
 - type: reagent
   parent: Blood
   id: GoblinBlood
@@ -10,13 +9,41 @@
   recognizable: true
   physicalDesc: reagent-physical-desc-pungent
   slippery: false
+  footstepSound:
+    collection: FootstepBlood
+    params:
+      volume: 6
   metabolisms:
     Drink:
       effects:
+      # Effects for non-goblins
       - !type:SatiateThirst
         factor: -0.5
+        conditions:
+        - !type:OrganType
+          type: Goblin
+          shouldHave: false
       - !type:ChemVomit
         probability: 0.025
+        conditions:
+        - !type:OrganType
+          type: Goblin
+          shouldHave: false
       - !type:GenericStatusEffect
         key: Stutter
         component: GoblinAccent
+        probability: 0.025
+        type: Add
+        time: 30
+        refresh: true
+        conditions:
+        - !type:OrganType
+          type: Goblin
+          shouldHave: false
+      # Effects for goblins
+      - !type:SatiateThirst
+        factor: 1
+        conditions:
+        - !type:OrganType
+          type: Goblin
+          shouldHave: true
