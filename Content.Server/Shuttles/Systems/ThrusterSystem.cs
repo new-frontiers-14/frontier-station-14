@@ -554,6 +554,9 @@ public sealed class ThrusterSystem : EntitySystem
             comp.Firing = true;
             appearanceQuery.TryGetComponent(uid, out var appearance);
             _appearance.SetData(uid, ThrusterVisualState.Thrusting, true, appearance);
+
+            if (TryComp<ApcPowerReceiverComponent>(uid, out var apcPower)) // Frontier - Set power to 100%
+                apcPower.Load = comp.OriginalLoad;
         }
     }
 
@@ -579,6 +582,9 @@ public sealed class ThrusterSystem : EntitySystem
             appearanceQuery.TryGetComponent(uid, out var appearance);
             comp.Firing = false;
             _appearance.SetData(uid, ThrusterVisualState.Thrusting, false, appearance);
+
+            if (TryComp<ApcPowerReceiverComponent>(uid, out var apcPower)) // Frontier - Set power to 30%
+                apcPower.Load = comp.OriginalLoad * 0.3f;
         }
     }
 
@@ -607,6 +613,9 @@ public sealed class ThrusterSystem : EntitySystem
                 appearanceQuery.TryGetComponent(uid, out var appearance);
                 comp.Firing = true;
                 _appearance.SetData(uid, ThrusterVisualState.Thrusting, true, appearance);
+
+                if (TryComp<ApcPowerReceiverComponent>(uid, out var apcPower)) // Frontier - Set power to 30%
+                    apcPower.Load = comp.OriginalLoad * 0.3f;
             }
         }
         else
@@ -619,11 +628,14 @@ public sealed class ThrusterSystem : EntitySystem
                 appearanceQuery.TryGetComponent(uid, out var appearance);
                 comp.Firing = false;
                 _appearance.SetData(uid, ThrusterVisualState.Thrusting, false, appearance);
+
+                if (TryComp<ApcPowerReceiverComponent>(uid, out var apcPower)) // Frontier - Set power to 100%
+                    apcPower.Load = comp.OriginalLoad;
             }
         }
     }
 
-    private void OnRefreshParts(EntityUid uid, ThrusterComponent component, RefreshPartsEvent args)
+    private void OnRefreshParts(EntityUid uid, ThrusterComponent component, RefreshPartsEvent args) // Frontier
     {
         if (component.IsOn) // safely disable thruster to prevent negative thrust
             DisableThruster(uid, component);
@@ -636,22 +648,10 @@ public sealed class ThrusterSystem : EntitySystem
             EnableThruster(uid, component);
     }
 
-    private void OnUpgradeExamine(EntityUid uid, ThrusterComponent component, UpgradeExamineEvent args)
+    private void OnUpgradeExamine(EntityUid uid, ThrusterComponent component, UpgradeExamineEvent args) // Frontier
     {
         args.AddPercentageUpgrade("thruster-comp-upgrade-thrust", component.Thrust / component.BaseThrust);
     }
-
-    //private void OnEmpPulse(EntityUid uid, ThrusterComponent component, ref EmpPulseEvent args)
-    //{
-    //    if (component.Enabled && !component.ThrusterIgnoreEmp)
-    //    {
-    //        args.Affected = true;
-    //        args.Disabled = true;
-    //    }
-    //}
-
-    //[ByRefEvent]
-    //public record struct ThrusterToggleAttemptEvent(bool Cancelled);
 
     #endregion
 
