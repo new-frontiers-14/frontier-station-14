@@ -59,7 +59,7 @@ jobs:
       env:
         CHANGELOG_RSS_KEY: ${{ secrets.CHANGELOG_RSS_KEY }}
 
-    - uses: geekyeggo/delete-artifact@v5
-      if: always()
-      with:
-        name: build
+    #- uses: geekyeggo/delete-artifact@v5
+    #  if: always()
+    #  with:
+    #    name: build
