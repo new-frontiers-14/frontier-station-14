@@ -13,34 +13,17 @@ public enum ShipyardConsoleUiKey : byte
 {
     Shipyard,
     Security,
-    Nfsd,
     Syndicate,
     BlackMarket,
     Expedition,
     Scrap,
     Sr,
-    // Do not add any ship to this key. Shipyards using it are inherently empty and are populated using the ShipyardListingComponent.
+    // Add ships to this key if they are only available from mothership consoles. Shipyards using it are inherently empty and are populated using the ShipyardListingComponent.
     Custom
 }
 
 public abstract class SharedShipyardSystem : EntitySystem
 {
-    /// <summary>
-    ///   Maps entries of the <see cref="ShipyardConsoleUiKey"/> enum to how they're specified in shuttle prototype files
-    /// </summary>
-    public static readonly Dictionary<ShipyardConsoleUiKey, string> ShipyardGroupMapping = new()
-    {
-        {ShipyardConsoleUiKey.Shipyard, "Civilian"},
-        {ShipyardConsoleUiKey.Security, "Security"},
-        {ShipyardConsoleUiKey.Nfsd, "Nfsd"},
-        {ShipyardConsoleUiKey.Syndicate, "Syndicate"},
-        {ShipyardConsoleUiKey.BlackMarket, "BlackMarket"},
-        {ShipyardConsoleUiKey.Expedition, "Expedition"},
-        {ShipyardConsoleUiKey.Scrap, "Scrap"},
-        {ShipyardConsoleUiKey.Sr, "Sr"},
-        {ShipyardConsoleUiKey.Custom, "<DO NOT USE>"}
-    };
-
     [Dependency] private readonly ItemSlotsSystem _itemSlotsSystem = default!;
 
     public override void Initialize()

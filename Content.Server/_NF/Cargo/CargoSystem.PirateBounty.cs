@@ -3,7 +3,6 @@ using System.Linq;
 using Content.Server._NF.Contraband.Components;
 using Content.Server._NF.Pirate.Components;
 using Content.Server.Labels;
-using Content.Server.Paper;
 using Content.Shared._NF.Bank;
 using Content.Shared._NF.Pirate;
 using Content.Shared._NF.Pirate.Components;
@@ -12,6 +11,7 @@ using Content.Shared._NF.Pirate.Events;
 using Content.Shared.Access.Components;
 using Content.Shared.Database;
 using Content.Shared.NameIdentifier;
+using Content.Shared.Paper;
 using Content.Shared.Whitelist;
 using JetBrains.Annotations;
 using Robust.Shared.Containers;
@@ -170,7 +170,7 @@ public sealed partial class CargoSystem
             msg.PushNewline();
         }
         msg.TryAddMarkup(Loc.GetString("pirate-bounty-console-manifest-reward", ("reward", BankSystemExtensions.ToDoubloonString(prototype.Reward))), out var _);
-        _paperSystem.SetContent(uid, msg.ToMarkup(), paper);
+        _paperSystem.SetContent((uid, paper), msg.ToMarkup());
     }
 
     private bool TryGetPirateBountyLabel(EntityUid uid,

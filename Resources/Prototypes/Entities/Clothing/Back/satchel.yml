@@ -106,7 +106,7 @@
     sprite: Clothing/Back/Satchels/science.rsi
 
 - type: entity
-  parent: ClothingBackpackSatchel
+  parent: [ClothingBackpackSatchel, BaseC2Contraband] # Frontier: BaseRestrictedContraband<BaseC2Contraband
   id: ClothingBackpackSatchelSecurity
   name: security satchel
   description: A robust satchel for security related needs.
@@ -115,7 +115,7 @@
     sprite: Clothing/Back/Satchels/security.rsi
 
 - type: entity
-  parent: ClothingBackpackSatchel
+  parent: [ClothingBackpackSatchel, BaseC2Contraband] # Frontier: BaseRestrictedContraband<BaseC2Contraband
   id: ClothingBackpackSatchelBrigmedic
   name: brigmedic satchel
   description: A sterile satchel for medical related needs.
@@ -124,7 +124,7 @@
     sprite: Clothing/Back/Satchels/brigmedic.rsi
 
 - type: entity
-  parent: ClothingBackpackSatchel
+  parent: ClothingBackpackSatchel # Frontier: removed BaseCommandContraband
   id: ClothingBackpackSatchelCaptain
   name: captain's satchel
   description: An exclusive satchel for Nanotrasen officers.
@@ -166,7 +166,7 @@
   description: A satchel that opens into a localized pocket of bluespace.
   components:
   - type: Sprite
-    sprite: Clothing/Back/Satchels/holding.rsi
+    sprite: _NF/Clothing/Back/Satchels/holding.rsi # Frontier
     state: icon
     layers:
     - state: icon
@@ -174,7 +174,23 @@
       shader: unshaded
   - type: Item
     size: Ginormous
+    inhandVisuals: # Frontier
+      left: # Frontier
+      - state: inhand-left # Frontier
+      - state: inhand-left-unlit # Frontier
+        shader: unshaded # Frontier
+      right: # Frontier
+      - state: inhand-right # Frontier
+      - state: inhand-right-unlit # Frontier
+        shader: unshaded # Frontier
   - type: Storage
     maxItemSize: Huge
     grid:
     - 0,0,11,4
+  - type: Clothing # Frontier
+    sprite: _NF/Clothing/Back/Satchels/holding.rsi # Frontier
+    clothingVisuals: # Frontier
+      back: # Frontier
+      - state: equipped-BACKPACK # Frontier
+      - state: equipped-BACKPACK-unlit # Frontier
+        shader: unshaded # Frontier

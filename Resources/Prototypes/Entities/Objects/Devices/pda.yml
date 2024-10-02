@@ -75,16 +75,17 @@
     deviceNetId: Wireless
     receiveFrequencyId: PDA
     prefix: device-address-prefix-console
+    savableAddress: false
 #  - type: WirelessNetworkConnection # Frontier
 #    range: 500 # Frontier
   - type: CartridgeLoader
-    diskSpace: 8 # Frontier - Too many programs 5<8
+    diskSpace: 10 # Frontier - Too many programs 5<10
     uiKey: enum.PdaUiKey.Key
     preinstalled:
       - CrewManifestCartridge
       - NotekeeperCartridge
       - NewsReaderCartridge
-      - BountyContractsCartridge
+      - BountyContractsCartridge # Frontier
     cartridgeSlot:
       priority: -1
       name: device-pda-slot-component-slot-name-cartridge
@@ -113,9 +114,31 @@
     - DoorBumpOpener
   - type: Input
     context: "human"
-  - type: StaticPrice
-    price: 20 # The card need to cost less then the PDA that comes with a card and a pen in it.
-  - type: CargoSellBlacklist # Liltenhead moment
+  - type: SentienceTarget # sentient PDA = pAI lite
+    flavorKind: station-event-random-sentience-flavor-mechanical
+    weight: 0.001 # 1,000 PDAs = as likely to be picked as 1 regular animal
+  - type: BlockMovement
+    blockInteraction: false # lets the PDA toggle its own flashlight
+  - type: TypingIndicator
+    proto: robot
+  - type: Speech
+    speechVerb: Robotic
+  - type: StaticPrice # Frontier
+    price: 20 # Frontier: The card need to cost less then the PDA that comes with a card and a pen in it.
+  - type: CargoSellBlacklist # Frontier: Liltenhead moment
+
+- type: entity
+  id: BaseSecurityPDA
+  abstract: true
+  components:
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+    - CrewManifestCartridge
+    - NotekeeperCartridge
+    - NewsReaderCartridge
+    - WantedListCartridge
+    - BountyContractsCartridge # Frontier
 
 - type: entity
   parent: BasePDA
@@ -123,7 +146,6 @@
   abstract: true
   components:
   - type: ItemToggle
-    toggleLight: false
     onUse: false
   - type: HealthAnalyzer
     scanDelay: 1
@@ -133,7 +155,7 @@
 - type: entity
   parent: BasePDA
   id: PassengerPDA
-  noSpawn: true # Frontier
+  categories: [ HideSpawnMenu ] # Frontier
   name: passenger PDA
   description: Why isn't it gray?
   components:
@@ -234,6 +256,8 @@
     borderColor: "#d7d7d0"
   - type: Icon
     state: pda-cook
+  - type: ReplacementAccent # for random sentience event
+    accent: italian
 
 - type: entity
   parent: BasePDA
@@ -262,6 +286,7 @@
     penSlot:
       startingItem: CrayonOrange # no pink crayon?!?
       # ^ Still unacceptable.
+      # ^ I would have to concur.
       ejectSound: /Audio/Items/bikehorn.ogg
       priority: -1
       whitelist:
@@ -271,9 +296,7 @@
     borderColor: "#C18199"
   - type: Icon
     state: pda-clown
-  - type: Slippery
-    paralyzeTime: 4
-    launchForwardsMultiplier: 1.5
+  - type: Slippery # secretly made of bananium
   - type: StepTrigger
   - type: CollisionWake
     enabled: false
@@ -297,6 +320,15 @@
         - ItemMask
 
 - type: entity
+  parent: ClownPDA
+  id: VisitorClownPDA
+  suffix: Visitor
+  components:
+  - type: Pda
+    id: VisitorIDCard
+    state: pda-clown
+
+- type: entity
   parent: BasePDA
   id: MimePDA
   name: mime PDA
@@ -315,6 +347,7 @@
     accentHColor: "#333333"
   - type: Icon
     state: pda-mime
+  - type: Muted # for random sentience event
 
 - type: entity
   name: chaplain PDA
@@ -328,6 +361,15 @@
   - type: PdaBorderColor
     borderColor: "#333333"
   - type: Icon
+    state: pda-chaplain
+
+- type: entity
+  parent: ChaplainPDA
+  id: VisitorChaplainPDA
+  suffix: Visitor
+  components:
+  - type: Pda
+    id: VisitorIDCard
     state: pda-chaplain
 
 - type: entity
@@ -409,7 +451,16 @@
     state: pda-library
 
 - type: entity
-  parent: BasePDA
+  parent: LibrarianPDA
+  id: VisitorLibrarianPDA
+  suffix: Visitor
+  components:
+  - type: Pda
+    id: VisitorIDCard
+    state: pda-library
+
+- type: entity
+  parent: [BaseSecurityPDA, BasePDA]
   id: LawyerPDA
   name: lawyer PDA
   description: For lawyers to poach dubious clients.
@@ -429,6 +480,15 @@
     state: pda-lawyer
 
 - type: entity
+  parent: LawyerPDA
+  id: VisitorLawyerPDA
+  suffix: Visitor
+  components:
+  - type: Pda
+    id: VisitorIDCard
+    state: pda-lawyer
+
+- type: entity
   parent: BasePDA
   id: JanitorPDA
   name: janitor PDA
@@ -443,7 +503,7 @@
     state: pda-janitor
 
 - type: entity
-  parent: BasePDA
+  parent: [BaseSecurityPDA, BasePDA]
   id: CaptainPDA
   name: captain PDA
   description: Surprisingly no different from your PDA.
@@ -548,6 +608,15 @@
     - Medical Doctor
 
 - type: entity
+  parent: MedicalPDA
+  id: VisitorMedicalPDA
+  suffix: Visitor
+  components:
+  - type: Pda
+    id: VisitorIDCard
+    state: pda-medical
+
+- type: entity
   parent: BaseMedicalPDA
   id: ParamedicPDA
   name: paramedic PDA
@@ -609,7 +678,7 @@
     state: pda-science
 
 - type: entity
-  parent: BasePDA
+  parent: [BaseSecurityPDA, BasePDA]
   id: HoSPDA
   name: head of security PDA
   description: Whosoever bears this PDA is the law.
@@ -624,7 +693,7 @@
     state: pda-hos
 
 - type: entity
-  parent: BasePDA
+  parent: [BaseSecurityPDA, BasePDA]
   id: WardenPDA
   name: warden PDA
   description: The OS appears to have been jailbroken.
@@ -639,7 +708,7 @@
     state: pda-warden
 
 - type: entity
-  parent: BasePDA
+  parent: [BaseSecurityPDA, BasePDA]
   id: SecurityPDA
   name: security PDA
   description: Red to hide the stains of passenger blood.
@@ -653,9 +722,9 @@
     state: pda-security
 
 - type: entity
-  parent: BasePDA
+  parent: [BaseSecurityPDA, BasePDA]
   id: CentcomPDA
-  name: CentCom PDA
+  name: CentComm PDA
   description: Light green sign of walking bureaucracy.
   components:
   - type: Pda
@@ -682,6 +751,7 @@
     id: UniversalIDCard
   - type: HealthAnalyzer
     scanDelay: 0
+    silent: true
   - type: CartridgeLoader
     uiKey: enum.PdaUiKey.Key
     notificationsEnabled: false
@@ -690,15 +760,9 @@
       - NotekeeperCartridge
       - NewsReaderCartridge
       - LogProbeCartridge
-      - BountyContractsCartridge
-
-- type: entity
-  parent: CentcomPDA
-  id: CentcomPDAFake
-  suffix: Fake
-  components:
-  - type: Pda
-    id: CentcomIDCardSyndie
+      - WantedListCartridge
+      - BountyContractsCartridge # Frontier
+      - MailMetricsCartridge # Frontier
 
 - type: entity
   parent: CentcomPDA
@@ -728,6 +792,15 @@
     program: 2
 
 - type: entity
+  parent: MusicianPDA
+  id: VisitorMusicianPDA
+  suffix: Visitor
+  components:
+  - type: Pda
+    id: VisitorIDCard
+    state: pda-musician
+
+- type: entity
   parent: BasePDA
   id: AtmosPDA
   name: atmos PDA
@@ -745,7 +818,7 @@
 - type: entity
   parent: BasePDA
   id: ClearPDA
-  noSpawn: true # Frontier
+  categories: [ HideSpawnMenu ] # Frontier
   name: clear PDA
   description: 99 and 44/100ths percent pure plastic.
   components:
@@ -756,6 +829,14 @@
     borderColor: "#288e4d"
   - type: Icon
     state: pda-clear
+
+- type: entity
+  parent: ClearPDA
+  id: VisitorPDA
+  components:
+  - type: Pda
+    id: VisitorIDCard
+    state: pda
 
 - type: entity
   parent: BasePDA
@@ -784,7 +865,7 @@
           - Cartridge
 
 - type: entity
-  parent: BasePDA
+  parent: [BaseSecurityPDA, BasePDA]
   id: ERTLeaderPDA
   name: ERT Leader PDA
   suffix: Leader
@@ -932,10 +1013,10 @@
     state: pda-boxer
 
 - type: entity
-  parent: BasePDA
+  parent: [BaseSecurityPDA, BasePDA]
   id: DetectivePDA
   name: detective PDA
-  noSpawn: true # Frontier
+  categories: [ HideSpawnMenu ] # Frontier
   description: Smells like rain... pouring down the rooftops...
   components:
   - type: Pda
@@ -1033,7 +1114,7 @@
     state: pda-seniorphysician
 
 - type: entity
-  parent: BasePDA
+  parent: [BaseSecurityPDA, BasePDA]
   id: SeniorOfficerPDA
   name: senior officer PDA
   description: Beaten, battered and broken, but just barely useable.
@@ -1051,7 +1132,7 @@
   parent: SyndiPDA
   id: PiratePDA
   name: pirate PDA
-  noSpawn: true # Frontier
+  categories: [ HideSpawnMenu ] # Frontier
   description: Yargh!
   components:
   - type: Pda

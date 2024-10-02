@@ -4,7 +4,7 @@ using Robust.Shared.Serialization;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 using Robust.Shared.Utility;
 
-namespace Content._NF.Shared.GameRule;
+namespace Content.Shared._NF.GameRule;
 
 /// <summary>
 ///     Describes information for a single point of interest to be spawned in the world
@@ -54,6 +54,18 @@ public sealed partial class PointOfInterestPrototype : IPrototype
     public bool IsHidden { get; private set; }
 
     /// <summary>
+    ///     Whether or not the POI permits IFF changes (i.e. from a console aboard it)
+    /// </summary>
+    [DataField("allowIFFChanges")]
+    public bool AllowIFFChanges { get; private set; }
+
+    /// <summary>
+    ///     Whether or not the POI is shown on IFF.
+    /// </summary>
+    [DataField("gridProtection")]
+    public GridProtectionFlags GridProtection { get; private set; } = GridProtectionFlags.None;
+
+    /// <summary>
     ///     Must this POI always spawn? This is independent of spawn chance. If it always spawns,
     ///     it will be excluded from any kind of random lists, for places like the sheriff's department etc.
     /// </summary>
@@ -85,4 +97,19 @@ public sealed partial class PointOfInterestPrototype : IPrototype
     /// </summary>
     [DataField("gridPath", required: true)]
     public ResPath GridPath { get; private set; } = default!;
+}
+
+/// <summary>
+///     A set of flags showing what events a grid should be protected form.
+/// </summary>
+[Flags]
+public enum GridProtectionFlags : byte
+{
+    None = 0,
+    FloorRemoval = 1,
+    FloorPlacement = 2,
+    RcdUse = 4, // Rapid construction device use (quickly building/deconstructing walls, windows, etc.)
+    EmpEvents = 8,
+    Explosions = 16,
+    ArtifactTriggers = 32
 }

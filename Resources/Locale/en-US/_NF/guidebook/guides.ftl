@@ -7,6 +7,9 @@ guide-entry-expeditions = Expeditions
 guide-entry-shipyard = Shipyard
 guide-entry-frontier-rules = Server Rules
 
+# Security entries
+guide-entry-nfsd-smuggling = Smuggling
+
 # Expedition faction entries
 guide-entry-expedition-aberrant-flesh = Aberrant Flesh
 guide-entry-expedition-argocytes = Argocytes
@@ -21,6 +24,7 @@ guide-entry-expedition-syndicate-naval-forces = Syndicate Naval Forces
 guide-entry-expedition-xenos = Xenos
 
 # Shipyard entries
+guide-entry-shipyard-akupara = Akupara
 guide-entry-shipyard-ambition = Ambition
 guide-entry-shipyard-apothecary = Apothecary
 guide-entry-shipyard-bazaar = Bazaar

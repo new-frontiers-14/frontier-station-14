@@ -3,31 +3,24 @@
   name: job-name-lawyer
   description: job-description-lawyer
   playTimeTracker: JobLawyer
+  setPreference: false # Frontier
   requirements:
     - !type:OverallPlaytimeRequirement
       time: 21600
   startingGear: LawyerGear
   icon: "JobIconLawyer"
-  supervisors: job-supervisors-hire # Frontier
-  weight: 50 # Frontier
-  displayWeight: 10 # Frontier
+  supervisors: job-supervisors-hire
   canBeAntag: false
-  accessGroups: # Frontier
-  - GeneralNfsdBrigAccess # Frontier
-  special: # Frontier
-  - !type:GiveItemOnHolidaySpecial # Frontier
-    holiday: FrontierBirthday # Frontier
-    prototype: FrontierBirthdayGift # Frontier
 
 - type: startingGear
   id: LawyerGear
   equipment:
     shoes: ClothingShoesBootsLaceup
     id: LawyerPDA
-    ears: ClothingHeadsetNfsdGreen # Frontier ClothingHeadsetSecurity<ClothingHeadsetNfsdGreen
+    ears: ClothingHeadsetSecurity
   inhand:
     - BriefcaseBrownFilled
   storage:
     back:
     - RubberStampLawyer
-    - HyperlinkBookSpaceLaw # Frontier: BookSpaceLaw<HyperlinkBookSpaceLaw
+    - BookSpaceLaw

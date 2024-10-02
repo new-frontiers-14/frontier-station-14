@@ -2,7 +2,7 @@
   parent: [MobObserver, InventoryBase]
   id: AdminObserver
   name: admin observer
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: ContentEye
     maxZoom: 8.916104, 8.916104
@@ -69,13 +69,17 @@
   - type: RadarConsole
     maxRange: 1024 # Frontier: increase admin radar range
     followEntity: true
+    hideCoords: false # Frontier
+    maxIffRange: null # Frontier
   - type: CargoOrderConsole
+  - type: BankClient
   - type: CrewMonitoringConsole
   - type: GeneralStationRecordConsole
     canDeleteEntries: true
   - type: DeviceNetwork
     deviceNetId: Wireless
     receiveFrequencyId: CrewMonitor
+    transmitFrequencyId: ShuttleTimer
   - type: WirelessNetworkConnection
     range: 500
   - type: StationLimitedNetwork
@@ -113,7 +117,7 @@
     icon: Interface/AdminPanel/communications.png # Corvax-Resprite
     iconOn: Interface/AdminPanel/communications.png # Corvax-Resprite
     keywords: [ "AI", "console", "interface" ]
-    priority: -10
+    priority: -4
     event: !type:ToggleIntrinsicUIEvent { key: enum.CommunicationsConsoleUiKey.Key }
 
 - type: entity
@@ -125,7 +129,7 @@
     icon: Interface/AdminPanel/radar.png # Corvax-Resprite
     iconOn: Interface/AdminPanel/radar.png # Corvax-Resprite
     keywords: [ "AI", "console", "interface" ]
-    priority: -10
+    priority: -7
     event: !type:ToggleIntrinsicUIEvent { key: enum.RadarConsoleUiKey.Key }
 
 - type: entity
@@ -149,7 +153,7 @@
     icon: Interface/AdminPanel/monitoring.png # Corvax-Resprite
     iconOn: Interface/AdminPanel/monitoring.png # Corvax-Resprite
     keywords: [ "AI", "console", "interface" ]
-    priority: -10
+    priority: -9
     event: !type:ToggleIntrinsicUIEvent { key: enum.CrewMonitoringUIKey.Key }
 
 - type: entity
@@ -161,5 +165,5 @@
     icon: Interface/AdminPanel/records.png # Corvax-Resprite
     iconOn: Interface/AdminPanel/records.png # Corvax-Resprite
     keywords: [ "AI", "console", "interface" ]
-    priority: -10
+    priority: -8
     event: !type:ToggleIntrinsicUIEvent { key: enum.GeneralStationRecordConsoleKey.Key }

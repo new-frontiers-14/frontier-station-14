@@ -2081,3 +2081,46 @@
         color: "#a52f29"
       - state: equipped-decor-epaulets
         color: "#ffce5b"
+
+- type: entity
+  id: ClothingUniformJumpsuitMilitaryArcadiaTac
+  name: arcadia tactical jumpsuit
+  parent: [ ClothingUniformBase, BaseC3ContrabandNoValue, ContrabandClothing ]
+  description: A tactical jumpsuit produced by Arcadia Industries.
+  suffix: Military, Tac
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Uniforms/Jumpsuit/military.rsi
+    layers:
+    - state: icon-base-bottom
+      color: "#ffffff"
+    - state: icon-base-top-jumpsuit
+      color: "#ffffff"
+    - state: icon-decor-contractor-tac
+      color: "#c12d30"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-base-bottom
+        color: "#ffffff"
+      - state: inhand-left-base-top-jumpsuit
+        color: "#ffffff"
+      - state: inhand-left-decor-contractor-tac
+        color: "#c12d30"
+      right:
+      - state: inhand-right-base-bottom
+        color: "#ffffff"
+      - state: inhand-right-base-top-jumpsuit
+        color: "#ffffff"
+      - state: inhand-right-decor-contractor-tac
+        color: "#c12d30"
+  - type: Clothing
+    sprite: _NF/Clothing/Uniforms/Jumpsuit/military.rsi
+    clothingVisuals:
+      jumpsuit:
+      - state: equipped-base-bottom
+        color: "#ffffff"
+      - state: equipped-base-top-jumpsuit-tac
+        color: "#ffffff"
+      - state: equipped-decor-contractor-tac
+        color: "#c12d30"

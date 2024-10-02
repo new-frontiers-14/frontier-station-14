@@ -24,8 +24,8 @@
 - type: entity
   parent: BaseComputerCircuitboard
   id: AlertsComputerCircuitboard
-  name: alerts computer board
-  description: A computer printed circuit board for an alerts computer.
+  name: atmospheric alerts computer board
+  description: A computer printed circuit board for an atmospheric alerts computer.
   components:
     - type: ComputerBoard
       prototype: ComputerAlert
@@ -135,7 +135,7 @@
   id: CargoShuttleComputerCircuitboard
   name: cargo shuttle computer board
   description: A computer printed circuit board for a cargo shuttle computer.
-  noSpawn: true # Frontier
+  categories: [ HideSpawnMenu ] # Frontier
   components:
     - type: Sprite
       state: cpu_supply
@@ -162,24 +162,12 @@
   id: CargoShuttleConsoleCircuitboard
   name: cargo shuttle console board
   description: A computer printed circuit board for a cargo shuttle console.
-  noSpawn: true # Frontier
+  categories: [ HideSpawnMenu ] # Frontier
   components:
     - type: ComputerBoard
       prototype: ComputerShuttleCargo
     - type: StealTarget
       stealGroup: CargoShuttleConsoleCircuitboard
-
-- type: entity
-  parent: BaseComputerCircuitboard
-  id: SalvageShuttleConsoleCircuitboard
-  name: salvage shuttle console board
-  description: A computer printed circuit board for a salvage shuttle console.
-  noSpawn: true # Frontier
-  components:
-    - type: ComputerBoard
-      prototype: ComputerShuttleSalvage
-    - type: StealTarget
-      stealGroup: SalvageShuttleConsoleCircuitboard
 
 - type: entity
   parent: BaseComputerCircuitboard
@@ -273,7 +261,7 @@
       prototype: ComputerTabletopCrewMonitoring # Frontier
 
 - type: entity
-  parent: BaseComputerCircuitboard
+  parent: [BaseComputerCircuitboard, BaseC2ContrabandUnredeemable] # Frontier: BaseGrandTheftContraband<BaseC2ContrabandUnredeemable
   id: IDComputerCircuitboard
   name: ID card computer board
   description: A computer printed circuit board for an ID card console.
@@ -305,7 +293,7 @@
       prototype: ComputerTabletopBodyScanner # Frontier
 
 - type: entity
-  parent: BaseComputerCircuitboard
+  parent: [BaseComputerCircuitboard, BaseC2ContrabandUnredeemable] # Frontier: BaseGrandTheftContraband<BaseC2ContrabandUnredeemable
   id: CommsComputerCircuitboard
   name: communications computer board
   description: A computer printed circuit board for a communications console.
@@ -318,7 +306,7 @@
       prototype: ComputerTabletopComms # Frontier
 
 - type: entity
-  parent: BaseComputerCircuitboard
+  parent: [ BaseComputerCircuitboard, BaseC3SyndicateContraband ] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   id: SyndicateCommsComputerCircuitboard
   name: syndicate communications computer board
   description: A computer printed circuit board for a syndicate communications console.
@@ -405,16 +393,16 @@
   description: A computer printed circuit board for a shuttle console.
   components:
     - type: ComputerBoard
-      prototype: ComputerShuttleEmpty # Frontier ComputerShuttle<ComputerShuttleEmpty
+      prototype: ComputerShuttle
     - type: ComputerTabletopBoard # Frontier
-      prototype: ComputerTabletopShuttleEmpty # Frontier
+      prototype: ComputerTabletopShuttle # Frontier
 
 - type: entity
   parent: BaseComputerCircuitboard
   id: SyndicateShuttleConsoleCircuitboard
   name: syndicate shuttle console board
   description: A computer printed circuit board for a syndicate shuttle console.
-  noSpawn: true # Frontier
+  categories: [ HideSpawnMenu ] # Frontier
   components:
     - type: ComputerBoard
       prototype: ComputerShuttleSyndie
@@ -505,3 +493,14 @@
       state: cpu_science
     - type: ComputerBoard
       prototype: ComputerRoboticsControl
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: StationAiUploadCircuitboard
+  name: AI upload console board
+  description: A computer printed circuit board for a AI upload console.
+  components:
+    - type: Sprite
+      state: cpu_science
+    - type: ComputerBoard
+      prototype: StationAiUploadComputer

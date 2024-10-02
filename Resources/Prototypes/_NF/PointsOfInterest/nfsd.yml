@@ -16,6 +16,8 @@
   iffColor: "#8e6444" #brown to match the color of uniform and the color of the pants of the nearest pirates
   alwaysSpawn: true
   gridPath: /Maps/_NF/POI/nfsd.yml
+  gridProtection:
+  - EmpEvents
 
 - type: gameMap
   id: Nfsd
@@ -38,4 +40,7 @@
             Deputy: [ 3, 3 ]
             Cadet: [ 0, 0 ]
             # Others:
-            Lawyer: [ 0, 0 ]
+            PublicAffairsLiaison: [ 1, 1 ]
+        - type: StationDeadDropReporting
+          messageSet: Nfsd
+        - type: StationDeadDropHintExempt

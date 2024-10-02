@@ -70,7 +70,7 @@
   - MobHumanoidHostileAISimpleMelee
   id: MobExplorerMeleeT1
   description: Armed with a trusty pickaxe and greed, every group needs its grunts.
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Loadout
     prototypes:
@@ -108,7 +108,7 @@
   - MobExplorerBase
   id: MobExplorerRangedT1
   description: Proto-kinetic accelerator in one hand, flashlight in the other, beer in the belly. That's how you explore.
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Loadout
     prototypes:
@@ -120,8 +120,8 @@
       state: human
     - sprite: Clothing/Uniforms/Jumpsuit/salvage.rsi
       state: equipped-INNERCLOTHING
-    - sprite: Clothing/OuterClothing/WinterCoats/coatminer.rsi
-      state: equipped-OUTERCLOTHING
+    - sprite: Clothing/OuterClothing/WinterCoats/coat.rsi
+      state: MINER-equipped-OUTERCLOTHING
     - sprite: Clothing/Mask/gasexplorer.rsi
       state: equipped-MASK
     - sprite: Clothing/Head/Hoods/Coat/hoodminer.rsi
@@ -160,7 +160,7 @@
   - MobHumanoidHostileAISimpleMelee
   id: MobExplorerMeleeT2
   description: A looter that scavenged enough coins to afford some decent equipment.
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Loadout
     prototypes:
@@ -208,7 +208,7 @@
   - MobExplorerBase
   id: MobExplorerRangedT2
   description: Sawn-off proto-kinetic accelerator in one hand, crusher dagger in the other, magm-ale both in the belly and in the hardsuit's boots.
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Loadout
     prototypes:
@@ -263,7 +263,7 @@
   - MobHumanoidHostileAISimpleMelee
   id: MobExplorerMeleeT3
   description: Drilling in the name of... drilling. No rock formation can withstand the power of dual-wielded mining drills - good thing you aren't a rock.
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Loadout
     prototypes:
@@ -309,7 +309,7 @@
   - MobExplorerBase
   id: MobExplorerRangedT3
   description: Veteran scrappers, these salvagers are wealthy enough to explore abandoned ruins for the adrenaline rush and adventure alone.
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Loadout
     prototypes:
@@ -355,7 +355,7 @@
 
 - type: entity
   name: hauler
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent:
   - MobExplorerBase
   - MobLaserReflect # Added to prevent laser abuse from players
@@ -430,7 +430,7 @@
   - MobHumanoidHostileAISimpleMelee
   id: MobExplorerBoss
   description: Fearless and battle-hardened salvage team leaders, it takes years picking through the darkest corners of space and navigating the galaxy's criminal underbelly of the galaxy before you can become a captain. Not to be underestimated.
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Reflect # Emulating holopickaxe to a degree
     reflectProb: 0.025

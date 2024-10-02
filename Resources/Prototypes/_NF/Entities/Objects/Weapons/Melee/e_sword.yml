@@ -1,0 +1,64 @@
+- type: entity
+  name: nfsd energy sword
+  parent: [BaseC2ContrabandUnredeemable, EnergySword]
+  id: EnergySwordNfsd
+  description: A very loud & dangerous sword with a beam made of pure, concentrated plasma. Cuts through unarmored targets like butter.
+  components:
+  - type: EnergySword
+    colorOptions:
+      - "#d4ffbf"
+    blockHacking: true
+
+- type: entity
+  id: EnergyPickaxeNF
+  parent: [EnergySword, BaseC1Contraband] # Has a reflect chance
+  name: holopickaxe
+  description: A holographic mining tool with blades comprised of hard light. Doesn't pack the same punch as an energy weapon, but more compact than most mining tools when turned off.
+  components:
+  - type: ItemToggleSize
+    activatedSize: Huge
+    activatedShape:
+    - 0,0,2,0
+    - 1,1,1,2
+  - type: ItemToggleMeleeWeapon
+    activatedDamage:
+        types: # Slightly less total damage than wielded crusher glaive has
+          Heat: 8
+          Piercing: 2
+          Structural: 40 # +10 damage compared to crusher glaive
+    deactivatedSecret: true
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Melee/energy_pickaxe.rsi
+    layers:
+      - state: e-pickaxe
+      - state: e-pickaxe-blade
+        color: "#e95151"
+        visible: false
+        shader: unshaded
+        map: [ "blade" ]
+  - type: Item
+    sprite: _NF/Objects/Weapons/Melee/energy_pickaxe.rsi
+    storedRotation: -45
+  - type: Clothing
+    sprite: _NF/Objects/Weapons/Melee/energy_pickaxe.rsi
+    quickEquip: false
+    slots:
+    - Belt
+    - back
+    - suitStorage
+  - type: ToggleableLightVisuals
+    spriteLayer: blade
+    inhandVisuals:
+      left:
+      - state: inhand-left-blade
+        shader: unshaded
+      right:
+      - state: inhand-right-blade
+        shader: unshaded
+  - type: Reflect # Explicitly specified the value (the default one from the parent might be too high)
+    reflectProb: 0.05
+  - type: Tag
+    tags:
+    - Pickaxe
+  - type: StaticPrice
+    price: 200

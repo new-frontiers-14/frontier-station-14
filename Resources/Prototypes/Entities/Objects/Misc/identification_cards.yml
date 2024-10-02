@@ -103,7 +103,7 @@
     - state: idintern-service
 
 - type: entity
-  parent: IDCardStandard
+  parent: [IDCardStandard, BaseC2ContrabandUnredeemable] # Frontier: BaseSecurityCommandContraband<BaseC2ContrabandUnredeemable
   id: CaptainIDCard
   name: captain ID card
   components:
@@ -438,6 +438,21 @@
 
 - type: entity
   parent: IDCardStandard
+  id: VisitorIDCard
+  name: visitor ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: idvisitor
+  - type: IdCard
+    jobTitle: Visitor
+    jobIcon: JobIconVisitor
+  - type: PresetIdCard
+    job: Visitor
+
+- type: entity
+  parent: IDCardStandard
   id: BrigmedicIDCard
   name: brigmedic ID card
   components:
@@ -459,17 +474,11 @@
     - state: idcentcom
   - type: Item
     heldPrefix: blue
-  - type: IdCard
-    jobTitle: Central Commander
-    jobIcon: JobIconNanotrasen
-  - type: Access
-    groups:
-    - AllAccess
-    tags:
-    - CentralCommand
+  - type: PresetIdCard
+    job: CentralCommandOfficial
 
 - type: entity
-  parent: CentcomIDCard
+  parent: IDCardStandard
   id: ERTLeaderIDCard
   name: ERT leader ID card
   components:
@@ -477,13 +486,13 @@
     layers:
     - state: gold
     - state: ert_commander
-  - type: IdCard
-    jobTitle: ERT Company Commander
+  - type: PresetIdCard
+    job: ERTLeader
   - type: Item
     heldPrefix: gold
 
 - type: entity
-  parent: ERTLeaderIDCard
+  parent: IDCardStandard
   id: ERTChaplainIDCard
   name: ERT chaplain ID card
   components:
@@ -491,13 +500,13 @@
     layers:
     - state: gold
     - state: ert_chaplain # we have the sprite for the id but dont have chaplain ERT equipment for now.
-  - type: IdCard
-    jobTitle: ERT Soul Officer
+  - type: PresetIdCard
+    job: ERTChaplain
   - type: Item
     heldPrefix: blue
 
 - type: entity
-  parent: ERTChaplainIDCard
+  parent: IDCardStandard
   id: ERTEngineerIDCard
   name: ERT engineer ID card
   components:
@@ -505,11 +514,11 @@
     layers:
     - state: gold
     - state: ert_engineer
-  - type: IdCard
-    jobTitle: ERT Field Engineer
+  - type: PresetIdCard
+    job: ERTEngineer
 
 - type: entity
-  parent: ERTChaplainIDCard
+  parent: IDCardStandard
   id: ERTJanitorIDCard
   name: ERT janitor ID card
   components:
@@ -517,11 +526,11 @@
     layers:
     - state: gold
     - state: ert_janitor
-  - type: IdCard
-    jobTitle: ERT Custodian
+  - type: PresetIdCard
+    job: ERTJanitor
 
 - type: entity
-  parent: ERTChaplainIDCard
+  parent: IDCardStandard
   id: ERTMedicIDCard
   name: ERT medic ID card
   components:
@@ -529,11 +538,11 @@
     layers:
     - state: gold
     - state: ert_medic
-  - type: IdCard
-    jobTitle: ERT Medical Doctor
+  - type: PresetIdCard
+    job: ERTMedical
 
 - type: entity
-  parent: ERTChaplainIDCard
+  parent: IDCardStandard
   id: ERTSecurityIDCard
   name: ERT security ID card
   components:
@@ -541,26 +550,8 @@
     layers:
     - state: gold
     - state: ert_security
-  - type: IdCard
-    jobTitle: ERT Field Officer
-
-- type: entity
-  parent: IDCardStandard
-  id: CentcomIDCardSyndie
-  name: command officer ID card
-  suffix: Fake
-  components:
-  - type: Sprite
-    layers:
-    - state: centcom
-    - state: idcentcom
-  - type: Item
-    heldPrefix: blue
-  - type: IdCard
-    jobTitle: Central Commander
-  - type: Access
-    tags:
-    - Maintenance
+  - type: PresetIdCard
+    job: ERTSecurity
 
 - type: entity
   parent: IDCardStandard
@@ -575,7 +566,7 @@
       job: Musician
 
 - type: entity
-  parent: CentcomIDCard
+  parent: IDCardStandard
   id: CentcomIDCardDeathsquad
   name: death squad ID card
   components:
@@ -584,18 +575,17 @@
     - state: centcom
   - type: Item
     heldPrefix: blue
-  - type: IdCard
-    jobTitle: Centcom Agent
+  - type: PresetIdCard
+    job: DeathSquad
 
 - type: entity
-  # name: passenger ID card # Frontier
-  name: contractor ID card # Frontier
-  parent: IDCardStandard
+  name: contractor ID card # Frontier: passenger<contractor
+  parent: [IDCardStandard, BaseC3SyndicateContraband]
   id: AgentIDCard
   suffix: Agent
   components:
   - type: PresetIdCard
-    job: Passenger
+    job: Contractor # Frontier: Passenger<Contractor
   - type: Access
     tags:
     - Maintenance
@@ -603,63 +593,9 @@
   - type: Sprite
     layers:
     - state: default
-    - state: idpassenger
+    - state: idcontractor # Frontier: idpassenger<idcontractor
+      sprite: _NF/Objects/Misc/id_cards.rsi # Frontier
   - type: AgentIDCard
-    icons:
-    # TODO figure out a better way of doing this.
-    # Probably by adding a bool or icon-category data-field to the icon prototype?
-#    - JobIconDetective # Frontier
-    - JobIconQuarterMaster
-    - JobIconBotanist
-    - JobIconBoxer
-    - JobIconAtmosphericTechnician
-    - JobIconNanotrasen
-    - JobIconPrisoner
-    - JobIconJanitor
-    - JobIconChemist
-    - JobIconStationEngineer
-#    - JobIconSecurityOfficer # Frontier
-    - JobIconChiefMedicalOfficer
-    - JobIconRoboticist
-    - JobIconChaplain
-    - JobIconLawyer
-    - JobIconUnknown
-    - JobIconLibrarian
-    - JobIconCargoTechnician
-    - JobIconScientist
-    - JobIconResearchAssistant
-    - JobIconGeneticist
-    - JobIconClown
-    - JobIconCaptain
-#    - JobIconHeadOfPersonnel # Frontier
-    - JobIconVirologist
-    - JobIconShaftMiner
-    # - JobIconPassenger # Frontier
-    - JobIconChiefEngineer
-    - JobIconBartender
-#    - JobIconHeadOfSecurity
-    - JobIconMedicalDoctor
-    - JobIconParamedic
-    - JobIconChef
-#    - JobIconWarden
-    - JobIconResearchDirector
-    - JobIconMime
-    - JobIconMusician
-    - JobIconReporter
-    - JobIconPsychologist
-    - JobIconMedicalIntern
-    - JobIconTechnicalAssistant
-    - JobIconServiceWorker
-#    - JobIconSecurityCadet # Frontier
-    - JobIconZookeeper
-    - JobIconVisitor
-    - JobIconValet # Frontier
-    - JobIconMailCarrier # Frontier
-    # - JobIconSecurityGuard # Frontier
-    # - JobIconStc # Frontier
-    - JobIconContractor # Frontier
-    - JobIconPilot # Frontier
-    - JobIconMercenary # Frontier
   - type: ActivatableUI
     key: enum.AgentIDCardUiKey.Key
     inHandsOnly: true
@@ -668,7 +604,7 @@
     - DoorBumpOpener
   - type: ChameleonClothing
     slot: [idcard]
-    default: PassengerIDCard
+    default: ContractorIDCard # Frontier: PassengerIDCard<ContractorIDCard
   - type: UserInterface
     interfaces:
       enum.AgentIDCardUiKey.Key:
@@ -678,9 +614,10 @@
   - type: StaticPrice # Frontier
     price: 200 # Frontier
   - type: Contraband # Frontier
+    hideValues: true # Frontier
 
 - type: entity
-  name: passenger ID card
+  name: contractor ID card # Frontier: passenger<contractor
   parent: AgentIDCard
   id: NukieAgentIDCard
   suffix: Nukie
@@ -690,7 +627,6 @@
     - Maintenance
     - SyndicateAgent
     - NuclearOperative
-  - type: Contraband # Frontier
 
 - type: entity
   parent: IDCardStandard
@@ -705,7 +641,7 @@
     job: AtmosphericTechnician
 
 - type: entity
-  parent: IDCardStandard
+  parent: [IDCardStandard, BaseC3SyndicateContraband] # Frontier: added BaseC3SyndicateContraband
   id: SyndicateIDCard
   name: syndicate ID card
   components:
@@ -716,13 +652,12 @@
     tags:
     - NuclearOperative
     - SyndicateAgent
-  - type: Contraband # Frontier
 
 - type: entity
-  parent: IDCardStandard
+  parent: [IDCardStandard, BaseC3PirateContraband] # Frontier: added BaseC3PirateContraband
   id: PirateIDCard
   name: pirate ID card
-  noSpawn: true # Frontier
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: Sprite
     layers:
@@ -731,7 +666,6 @@
     tags:
     - NuclearOperative
     - SyndicateAgent
-  - type: Contraband # Frontier
 
 - type: entity
   parent: IDCardStandard
@@ -804,8 +738,8 @@
     - state: centcom
   - type: Item
     heldPrefix: blue
-  - type: IdCard
-    jobTitle: Centcom Quarantine Officer
+  - type: PresetIdCard
+    job: CBURN
 
 - type: entity
   parent: IDCardStandard

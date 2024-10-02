@@ -9,6 +9,7 @@ using Content.Shared.Database;
 using Content.Shared.Decals;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
+using Content.Shared.Paper; // Frontier
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
@@ -121,6 +122,12 @@ public sealed class CrayonSystem : SharedCrayonSystem
         component.Color = args.Color;
         Dirty(uid, component);
 
+        // Frontier: ensure signature colour is consistent
+        if (TryComp<StampComponent>(uid, out var stamp))
+        {
+            stamp.StampedColor = args.Color;
+        }
+        // End Frontier
     }
 
     private void OnCrayonInit(EntityUid uid, CrayonComponent component, ComponentInit args)

@@ -119,6 +119,16 @@
 
 - type: entity
   parent: SheetPlasma
+  id: SheetPlasma10
+  suffix: 10
+  components:
+  - type: Sprite
+    state: plasma
+  - type: Stack
+    count: 10
+
+- type: entity
+  parent: SheetPlasma
   id: SheetPlasma1
   name: plasma
   suffix: Single
@@ -164,9 +174,9 @@
       plastic:
         reagents:
         - ReagentId: Oil
-          Quantity: 5
+          Quantity: 1 # Frontier: 5<1 (consistency with plastic reaction)
         - ReagentId: Phosphorus
-          Quantity: 5
+          Quantity: 1 # Frontier: 5<1 (consistency with plastic reaction)
         canReact: false
 
 - type: entity

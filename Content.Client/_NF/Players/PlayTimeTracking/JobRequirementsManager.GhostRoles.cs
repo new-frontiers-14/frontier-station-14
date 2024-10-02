@@ -2,6 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using Content.Shared.CCVar;
 using Content.Shared.Ghost.Roles;
 using Content.Shared.Players.PlayTimeTracking;
+using Content.Shared.Preferences;
 using Robust.Shared.Utility;
 
 namespace Content.Client.Players.PlayTimeTracking;
