@@ -2116,11 +2116,6 @@ entities:
     - type: Transform
       pos: 45.5,39.5
       parent: 1
-  - uid: 2258
-    components:
-    - type: Transform
-      pos: 42.5,38.5
-      parent: 1
   - uid: 2259
     components:
     - type: Transform
@@ -7550,32 +7545,12 @@ entities:
     - type: Transform
       pos: 9.995583,30.722734
       parent: 1
-  - uid: 1973
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 47.685192,38.220436
-      parent: 1
-- proto: FoodBoxDonkpocketTeriyaki
-  entities:
-  - uid: 1960
-    components:
-    - type: Transform
-      pos: 55.51755,32.398956
-      parent: 1
 - proto: FoodDonkpocket
   entities:
   - uid: 1961
     components:
     - type: Transform
       pos: 53.4863,28.421381
-      parent: 1
-- proto: FoodPizzaDonkpocket
-  entities:
-  - uid: 1962
-    components:
-    - type: Transform
-      pos: 53.6066,27.17305
       parent: 1
 - proto: FuelDispenser
   entities:
@@ -9541,6 +9516,13 @@ entities:
       supplyRate: 150000
     missingComponents:
     - Anchorable
+- proto: GravityGeneratorMini
+  entities:
+  - uid: 595
+    components:
+    - type: Transform
+      pos: 42.5,38.5
+      parent: 1
 - proto: Grille
   entities:
   - uid: 1500
@@ -11013,25 +10995,6 @@ entities:
     - type: Transform
       pos: 48.5,37.5
       parent: 1
-- proto: RandomFoodMeal
-  entities:
-  - uid: 1794
-    components:
-    - type: Transform
-      pos: 47.5,34.5
-      parent: 1
-  - uid: 1795
-    components:
-    - type: Transform
-      pos: 47.5,38.5
-      parent: 1
-- proto: RandomFoodSingle
-  entities:
-  - uid: 1796
-    components:
-    - type: Transform
-      pos: 48.5,35.5
-      parent: 1
 - proto: RandomPainting
   entities:
   - uid: 1797
@@ -11434,11 +11397,6 @@ entities:
       parent: 1
 - proto: RandomVending
   entities:
-  - uid: 2020
-    components:
-    - type: Transform
-      pos: 42.5,23.5
-      parent: 1
   - uid: 2021
     components:
     - type: Transform
@@ -11446,28 +11404,30 @@ entities:
       parent: 1
 - proto: RandomVendingDrinks
   entities:
-  - uid: 595
+  - uid: 598
     components:
     - type: Transform
-      pos: 35.5,34.5
-      parent: 1
-  - uid: 1985
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
       pos: 11.5,12.5
       parent: 1
-- proto: RandomVendingSnacks
-  entities:
-  - uid: 598
+  - uid: 1112
+    components:
+    - type: Transform
+      pos: 45.5,11.5
+      parent: 1
+  - uid: 1794
+    components:
+    - type: Transform
+      pos: 31.5,23.5
+      parent: 1
+  - uid: 1795
     components:
     - type: Transform
       pos: 34.5,34.5
       parent: 1
-  - uid: 2019
+  - uid: 1796
     components:
     - type: Transform
-      pos: 41.5,23.5
+      pos: 38.5,23.5
       parent: 1
 - proto: Scalpel
   entities:
