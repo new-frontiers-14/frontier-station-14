@@ -1,0 +1,350 @@
+## Command
+# SR PDW racks
+- type: entity
+  id: StructurePistolRackLockSR
+  parent: StructurePistolRackLock
+  suffix: SR, Empty
+  components:
+  - type: Sprite
+    layers:
+    - state: base-pistol
+      color: "#1f6626"
+    - state: lock
+      color: "#1f6626"
+    - state: base-pistol-decal
+      color: "#f1b223"
+    - state: pistol-0
+    - map: ["enum.StorageFillLayers.Fill"]
+    - state: locked
+      map: [ enum.LockVisualLayers.Lock ]
+      shader: unshaded
+  - type: AccessReader
+    access: [ ["HeadOfPersonnel"] ]
+  - type: Lock
+    locked: true
+
+- type: entity
+  id: StructurePistolRackLockSRWallmounted
+  parent: StructurePistolRackLockWallmounted
+  suffix: SR, Empty, Wallmount
+  components:
+  - type: Sprite
+    layers:
+    - state: base-pistol-wall
+      color: "#1f6626"
+    - state: lock
+      color: "#1f6626"
+    - state: base-pistol-wall-decal
+      color: "#f1b223"
+    - state: pistol-0
+    - map: ["enum.StorageFillLayers.Fill"]
+    - state: locked
+      map: [ enum.LockVisualLayers.Lock ]
+      shader: unshaded
+  - type: AccessReader
+    access: [ ["HeadOfPersonnel"] ]
+  - type: Lock
+    locked: true
+
+# Sheriff PDW racks
+- type: entity
+  id: StructurePistolRackLockSheriff
+  parent: StructurePistolRackLock
+  suffix: Sheriff, Empty
+  components:
+  - type: Sprite
+    layers:
+    - state: base-pistol
+      color: "#56422b"
+    - state: lock
+      color: "#1f6626"
+    - state: base-pistol-decal
+      color: "#f1b223"
+    - state: pistol-0
+    - map: ["enum.StorageFillLayers.Fill"]
+    - state: locked
+      map: [ enum.LockVisualLayers.Lock ]
+      shader: unshaded
+  - type: AccessReader
+    access: [ ["HeadOfSecurity"] ]
+  - type: Lock
+    locked: true
+
+- type: entity
+  id: StructurePistolRackLockSheriffWallmounted
+  parent: StructurePistolRackLockWallmounted
+  suffix: Sheriff, Empty, Wallmount
+  components:
+  - type: Sprite
+    layers:
+    - state: base-pistol-wall
+      color: "#56422b"
+    - state: lock
+      color: "#1f6626"
+    - state: base-pistol-wall-decal
+      color: "#f1b223"
+    - state: pistol-0
+    - map: ["enum.StorageFillLayers.Fill"]
+    - state: locked
+      map: [ enum.LockVisualLayers.Lock ]
+      shader: unshaded
+  - type: AccessReader
+    access: [ ["HeadOfSecurity"] ]
+  - type: Lock
+    locked: true
+
+## Mercenary
+# Gun racks
+- type: entity
+  id: StructureGunRackMercenary
+  parent: StructureGunRack
+  suffix: Mercenary, Empty
+  components:
+  - type: Sprite
+    layers:
+    - state: base-gun
+      color: "#7b7b3f"
+    - state: base-gun-decal
+      color: "#b8b873"
+
+- type: entity
+  id: StructureGunRackWallmountedMercenary
+  parent: StructureGunRackWallmounted
+  suffix: Mercenary, Empty, Wallmount
+  components:
+  - type: Sprite
+    layers:
+    - state: base-gun-wall
+      color: "#7b7b3f"
+    - state: base-gun-wall-decal
+      color: "#b8b873"
+
+# Melee weapon racks
+- type: entity
+  id: StructureMeleeWeaponRackMercenary
+  parent: StructureMeleeWeaponRack
+  suffix: Mercenary, Empty
+  components:
+  - type: Sprite
+    layers:
+    - state: base-melee
+      color: "#7b7b3f"
+    - state: base-melee-decal
+      color: "#b8b873"
+
+- type: entity
+  id: StructureMeleeWeaponRackWallmountedMercenary
+  parent: StructureMeleeWeaponRackWallmounted
+  suffix: Mercenary, Empty, Wallmount
+  components:
+  - type: Sprite
+    layers:
+    - state: base-melee-wall
+      color: "#7b7b3f"
+    - state: base-melee-wall-decal
+      color: "#b8b873"
+
+# Sidearm racks
+- type: entity
+  id: StructurePistolRackMercenary
+  parent: StructurePistolRack
+  suffix: Mercenary, Empty
+  components:
+  - type: Sprite
+    layers:
+    - state: base-pistol
+      color: "#7b7b3f"
+    - state: base-pistol-decal
+      color: "#b8b873"
+
+- type: entity
+  id: StructurePistolRackWallmountedMercenary
+  parent: StructurePistolRackWallmounted
+  suffix: Mercenary, Empty, Wallmount
+  components:
+  - type: Sprite
+    layers:
+    - state: base-pistol-wall
+      color: "#7b7b3f"
+    - state: base-pistol-wall-decal
+      color: "#b8b873"
+
+## Salvage
+# Gun racks
+- type: entity
+  id: StructureGunRackSalvage
+  parent: StructureGunRack
+  suffix: Salvage, Empty
+  components:
+  - type: Sprite
+    layers:
+    - state: base-gun
+      color: "#765428"
+    - state: base-gun-decal
+      color: "#9a54bf"
+
+- type: entity
+  id: StructureGunRackWallmountedSalvage
+  parent: StructureGunRackWallmounted
+  suffix: Salvage, Empty, Wallmount
+  components:
+  - type: Sprite
+    layers:
+    - state: base-gun-wall
+      color: "#765428"
+    - state: base-gun-wall-decal
+      color: "#9a54bf"
+
+# Melee weapon racks
+- type: entity
+  id: StructureMeleeWeaponRackSalvage
+  parent: StructureMeleeWeaponRack
+  suffix: Salvage, Empty
+  components:
+  - type: Sprite
+    layers:
+    - state: base-melee
+      color: "#765428"
+    - state: base-melee-decal
+      color: "#9a54bf"
+
+- type: entity
+  id: StructureMeleeWeaponRackWallmountedSalvage
+  parent: StructureMeleeWeaponRackWallmounted
+  suffix: Salvage, Empty, Wallmount
+  components:
+  - type: Sprite
+    layers:
+    - state: base-melee-wall
+      color: "#765428"
+    - state: base-melee-wall-decal
+      color: "#9a54bf"
+
+# Sidearm racks
+- type: entity
+  id: StructurePistolRackSalvage
+  parent: StructurePistolRack
+  suffix: Salvage, Empty
+  components:
+  - type: Sprite
+    layers:
+    - state: base-pistol
+      color: "#765428"
+    - state: base-pistol-decal
+      color: "#9a54bf"
+
+- type: entity
+  id: StructurePistolRackWallmountedSalvage
+  parent: StructurePistolRackWallmounted
+  suffix: Salvage, Empty, Wallmount
+  components:
+  - type: Sprite
+    layers:
+    - state: base-pistol-wall
+      color: "#765428"
+    - state: base-pistol-wall-decal
+      color: "#9a54bf"
+
+## NFSD
+# Gun racks
+- type: entity
+  id: StructureGunRackNfsd
+  parent: StructureGunRack
+  suffix: NFSD, Empty
+  components:
+  - type: Sprite
+    layers:
+    - state: base-gun
+      color: "#56422b"
+    - state: base-gun-decal
+      color: "#537045"
+
+- type: entity
+  id: StructureGunRackWallmountedNfsd
+  parent: StructureGunRackWallmounted
+  suffix: NFSD, Empty, Wallmount
+  components:
+  - type: Sprite
+    layers:
+    - state: base-gun-wall
+      color: "#56422b"
+    - state: base-gun-wall-decal
+      color: "#537045"
+
+# Melee weapon racks
+- type: entity
+  id: StructureMeleeWeaponRackNfsd
+  parent: StructureMeleeWeaponRack
+  suffix: NFSD, Empty
+  components:
+  - type: Sprite
+    layers:
+    - state: base-melee
+      color: "#56422b"
+    - state: base-melee-decal
+      color: "#537045"
+
+- type: entity
+  id: StructureMeleeWeaponRackWallmountedNfsd
+  parent: StructureMeleeWeaponRackWallmounted
+  suffix: NFSD, Empty, Wallmount
+  components:
+  - type: Sprite
+    layers:
+    - state: base-melee-wall
+      color: "#56422b"
+    - state: base-melee-wall-decal
+      color: "#537045"
+
+# Sidearm racks
+- type: entity
+  id: StructurePistolRackNfsd
+  parent: StructurePistolRack
+  suffix: NFSD, Empty
+  components:
+  - type: Sprite
+    layers:
+    - state: base-pistol
+      color: "#56422b"
+    - state: base-pistol-decal
+      color: "#537045"
+
+- type: entity
+  id: StructurePistolRackWallmountedNfsd
+  parent: StructurePistolRackWallmounted
+  suffix: NFSD, Empty, Wallmount
+  components:
+  - type: Sprite
+    layers:
+    - state: base-pistol-wall
+      color: "#56422b"
+    - state: base-pistol-wall-decal
+      color: "#537045"
+
+## Blood Cult
+# Melee weapon racks
+- type: entity
+  id: StructureMeleeWeaponRackBloodCult
+  parent: StructureMeleeWeaponRack
+  suffix: Blood Cult, Empty
+  components:
+  - type: Sprite
+    layers:
+    - state: base-melee
+      color: "#776756"
+    - state: base-melee-decal
+      color: "#562f2f"
+
+## Pirates/Freelancers
+# Sidearm racks
+- type: entity
+  id: StructurePistolRackPirates
+  parent: StructurePistolRack
+  suffix: Pirate, Empty
+  components:
+  - type: Sprite
+    layers:
+    - state: base-pistol
+      color: "#4c3117"
+    - state: base-pistol-decal
+      color: "#23211f"

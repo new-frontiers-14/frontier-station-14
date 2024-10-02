@@ -90,6 +90,14 @@ public sealed partial class InjectorComponent : Component
     [DataField]
     public InjectorToggleMode ToggleState = InjectorToggleMode.Draw;
 
+    /// <summary>
+    /// Reagents that are allowed to be within this injector.
+    /// If a solution has both allowed and non-allowed reagents, only allowed reagents will be drawn into this injector.
+    /// A null ReagentWhitelist indicates all reagents are allowed.
+    /// </summary>
+    [DataField]
+    public List<ProtoId<ReagentPrototype>>? ReagentWhitelist = null;
+
     #region Arguments for injection doafter
 
     /// <inheritdoc cref=DoAfterArgs.NeedHand>
@@ -105,15 +113,6 @@ public sealed partial class InjectorComponent : Component
     public float MovementThreshold = 0.1f;
 
     #endregion
-
-    // Frontier
-    /// <summary>
-    /// Reagents that are allowed to be within this injector.
-    /// If a solution has both allowed and non-allowed reagents, only allowed reagents will be drawn into this injector.
-    /// A null ReagentWhitelist indicates all reagents are allowed.
-    /// </summary>
-    [DataField]
-    public ProtoId<ReagentPrototype>[]? ReagentWhitelist = null;
 }
 
 /// <summary>
