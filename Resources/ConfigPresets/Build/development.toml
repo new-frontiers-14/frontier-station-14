@@ -32,3 +32,17 @@ shipyard = true
 
 [admin]
 see_own_notes = true
+
+[database]
+engine = "postgres"
+
+# Path to store the database at when using SQLite. Note that is NOT a disk path.
+# This is relative to the server data directory, which is specified by --data-dir when starting the server from the command (or automatically set by SS14.Watchdog)
+sqlite_dbpath = "preferences.db"
+
+# PostgreSQL database configuration, should be self explanatory.
+pg_host = "localhost"
+pg_port = 5432
+pg_database = "ss14"
+pg_username = "postgres"
+pg_password = "whatstone"
