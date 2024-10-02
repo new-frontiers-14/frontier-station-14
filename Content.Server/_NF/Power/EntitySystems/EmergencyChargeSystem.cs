@@ -145,7 +145,7 @@ public sealed class EmergencyChargeSystem : SharedEmergencyChargeSystem
     {
         _appearance.SetData(entity.Owner, EmergencyChargeVisuals.On, false);
 
-        receiver.NeedsPower = true;
+        //receiver.NeedsPower = true;
     }
 
     /// <summary>
@@ -155,7 +155,6 @@ public sealed class EmergencyChargeSystem : SharedEmergencyChargeSystem
     {
         _appearance.SetData(entity.Owner, EmergencyChargeVisuals.On, true);
 
-        receiver.NeedsPower = false;
-        receiver.Powered = true;
+        //receiver.NeedsPower = false;
     }
 }
