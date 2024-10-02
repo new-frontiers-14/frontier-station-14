@@ -1,0 +1,91 @@
+<Document>
+  # BARGE-CLASS CARGO SHUTTLE
+  <Box>
+  <GuideEntityEmbed Entity="OreProcessor"/>
+  <GuideEntityEmbed Entity="VendingMachineSalvage"/>
+  <GuideEntityEmbed Entity="VendingMachineBooze"/>
+  <GuideEntityEmbed Entity="CrateTradeSecureNormalFilled" Caption="trading crate"/>
+  <GuideEntityEmbed Entity="CrateTradeSecureHighFilled" Caption="trading crate"/>
+  </Box>
+  <Box>
+   <GuideEntityEmbed Entity="ShuttleMapBarge" Caption=""/>
+  </Box>
+  [color=#a4885c]Ship Size:[/color] Medium
+
+  [color=#a4885c]Recommended Crew:[/color] 2-4
+
+  [color=#a4885c]Power Gen Type:[/color] Solar/Plasma
+
+  [color=#a4885c]Expeditions:[/color] None
+
+  [color=#a4885c]IFF Console:[/color] None
+
+  "A medium shipping vessel repurposed into a salvage bar."
+
+  # PREFLIGHT CHECKLIST
+
+  ## 1. Power supply
+
+  ## 1.1. Battery units
+  <Box>
+  <GuideEntityEmbed Entity="SMESBasic"/>
+  <GuideEntityEmbed Entity="SubstationBasic"/>
+  <GuideEntityEmbed Entity="APCBasic"/>
+  </Box>
+
+  - Check that the SMES unit is anchored to the floor.
+  - Check that the substation unit is anchored to the floor.
+  - Check that the APC unit's Main Breaker is toggled on.
+  - Check the APC unit's current Load* (W).
+
+  ## 1.2. P.A.C.M.A.N. generator unit
+  <Box>
+  <GuideEntityEmbed Entity="PortableGeneratorPacmanShuttle"/>
+  <GuideEntityEmbed Entity="SheetPlasma"/>
+  </Box>
+
+  - Check that P.A.C.M.A.N. generator unit is anchored to the floor.
+  - Check that P.A.C.M.A.N. generator unit is fueled. For extended flights make sure that you have enough fuel stockpiled to sustain prolonged power generation.
+  - Check that P.A.C.M.A.N. generator unit is set to HV output.
+  - Set Target Power to 14 [bold]kW[/bold] on the generator unit.
+  - Start P.A.C.M.A.N. generator unit.
+
+  ## 1.3. Solar panels
+  <Box>
+  <GuideEntityEmbed Entity="ComputerSolarControl"/>
+  <GuideEntityEmbed Entity="SolarTracker"/>
+  <GuideEntityEmbed Entity="SolarPanel"/>
+  </Box>
+  - Inspect solar control computer (located at shuttle cockpit).
+  - Adjust panel angular velocity.
+  - Adjust panel angle.
+
+  ## 2. Atmospherics
+
+  ## 2.1. Distribution Loop
+  <Box>
+  <GuideEntityEmbed Entity="OxygenCanister"/>
+  <GuideEntityEmbed Entity="NitrogenCanister"/>
+  <GuideEntityEmbed Entity="GasPort"/>
+  <GuideEntityEmbed Entity="GasMixer"/>
+  </Box>
+
+  - Check if the O2 canister and N2 canister are anchored to their connector ports.
+  - Check if the gas mixer has its mixing ratio and output pressure set correctly.
+  - Enable the gas mixer.
+
+  ## 3. Other checks
+  <Box>
+  <GuideEntityEmbed Entity="Gyroscope"/>
+  <GuideEntityEmbed Entity="GravityGeneratorMini"/>
+  </Box>
+
+  - Check that the gyroscope is anchored, powered, and enabled.
+  - Check that the mini gravity generator is anchored, powered, and enabled.
+
+  ## Sidenotes
+
+  * - Barge-class cargo ships are equipped with two APC units that can be used to appraise the ship's total power consumption. Unmodified Barge-class ships require 23.7 kW of power to remain operational.
+
+  ** - Barge-class cargo ships come equipped with 28 solar panels that can provide up to 25 kW of power under the ideal circumstances: assuming that on average properly maintained solar array will provide one third of maximum output power, recommended target power output for P.A.C.M.A.N. generator unit is 14 kW.
+</Document>
