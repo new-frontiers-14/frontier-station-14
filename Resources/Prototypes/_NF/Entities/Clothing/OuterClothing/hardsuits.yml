@@ -47,12 +47,24 @@
   parent: ClothingOuterHardsuitMercenary
   id: ClothingOuterHardsuitPMC
   name: PMC hardsuit
-  description: A special suit that protects from the danger of space, employed by PMC forces.
+  description: A special suit that protects from the danger of space, employed by PMC forces. Heavier armor than mercenary and private-sec hardsuits, but slower.
   components:
   - type: Sprite
     sprite: _NF/Clothing/OuterClothing/Hardsuits/PMC.rsi
   - type: Clothing
     sprite: _NF/Clothing/OuterClothing/Hardsuits/PMC.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.7
+        Heat: 0.75
+        Radiation: 0.65
+        Caustic: 0.8
+  - type: ClothingSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.75
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitPMC
 
