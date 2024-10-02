@@ -98,7 +98,6 @@ public sealed class EmergencyChargeSystem : SharedEmergencyChargeSystem
             if (!_battery.TryUseCharge(entity.Owner, entity.Comp.Wattage * frameTime, battery))
             {
                 SetState(entity.Owner, entity.Comp, EmergencyChargeState.Empty);
-                TurnOff(entity);
             }
         }
         else
@@ -124,37 +123,23 @@ public sealed class EmergencyChargeSystem : SharedEmergencyChargeSystem
         if (!TryComp<ApcPowerReceiverComponent>(entity.Owner, out var receiver))
             return;
 
-        if (receiver.Powered && !entity.Comp.ForciblyEnabled) // Green alert
+        if (receiver.Powered) // APC has power
         {
             receiver.Load = (int) Math.Abs(entity.Comp.Wattage);
             TurnOff(entity, receiver);
             SetState(entity.Owner, entity.Comp, EmergencyChargeState.Charging);
         }
-        else if (!receiver.Powered) // If internal battery runs out it will end in off red state
-        {
-            // Set off
-            SetState(entity.Owner, entity.Comp, EmergencyChargeState.On);
-        }
-        else // Powered and enabled
+        else // APC has no power
         {
             TurnOn(entity, receiver);
             SetState(entity.Owner, entity.Comp, EmergencyChargeState.On);
         }
     }
 
-    private void TurnOff(Entity<EmergencyChargeComponent> entity)
-    {
-        _appearance.SetData(entity.Owner, EmergencyChargeVisuals.On, false);
-        _ambient.SetAmbience(entity.Owner, false);
-
-    }
-
     private void TurnOff(Entity<EmergencyChargeComponent> entity, ApcPowerReceiverComponent receiver)
     {
         _appearance.SetData(entity.Owner, EmergencyChargeVisuals.On, false);
         _ambient.SetAmbience(entity.Owner, false);
-
-        receiver.Powered = false;
     }
 
     private void TurnOn(Entity<EmergencyChargeComponent> entity, ApcPowerReceiverComponent receiver)

@@ -16,8 +16,6 @@ public sealed partial class EmergencyChargeComponent : SharedEmergencyChargeComp
     ///     Is this emergency light forced on for some reason and cannot be disabled through normal means
     ///     (i.e. blue alert or higher?)
     /// </summary>
-    public bool ForciblyEnabled = false;
-
     [DataField]
     public float Wattage = 200;
 
