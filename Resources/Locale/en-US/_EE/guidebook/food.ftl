@@ -6,7 +6,8 @@ guidebook-food-reagents-header = Chemical composition
 
 guidebook-food-processing-butchering = Butcher
 guidebook-food-processing-slicing = Slice
-guidebook-food-processing-cooking = Microwave for {$time}s
+# Frontier: Microwave<Cook (multiple machine types)
+guidebook-food-processing-cooking = Cook for {$time}s
 guidebook-food-processing-reaction = Mix
 
 guidebook-food-processing-recipe = {$ingredients}

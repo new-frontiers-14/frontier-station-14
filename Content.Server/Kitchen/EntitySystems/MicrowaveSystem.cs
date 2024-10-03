@@ -462,7 +462,7 @@ namespace Content.Server.Kitchen.EntitySystems
 
         public void UpdateUserInterfaceState(EntityUid uid, MicrowaveComponent component)
         {
-            _userInterface.SetUiState(uid, component.Key, new MicrowaveUpdateUserInterfaceState( // Frontier: MicrowaveUiKey.Key<component.Key
+            _userInterface.SetUiState(uid, MicrowaveUiKey.Key, new MicrowaveUpdateUserInterfaceState( // Frontier: MicrowaveUiKey.Key<component.Key
                 GetNetEntityArray(component.Storage.ContainedEntities.ToArray()),
                 HasComp<ActiveMicrowaveComponent>(uid),
                 component.CurrentCookTimeButtonIndex,

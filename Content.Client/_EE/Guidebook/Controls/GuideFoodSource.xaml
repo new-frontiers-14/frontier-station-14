@@ -15,9 +15,8 @@
                Margin="2 0 0 0"/>
     </BoxContainer>
     <BoxContainer Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" HorizontalExpand="True">
-        <TextureRect HorizontalAlignment="Center"
-                     Name="ProcessingTexture"
-                     Access="Public"/>
+        <BoxContainer Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalExpand="True" Name="ProcessingTextures"> <!-- Frontier: support for multiple machines -->
+        </BoxContainer>
         <Label Name="ProcessingLabel"
                HorizontalAlignment="Center"
                VerticalAlignment="Center"
