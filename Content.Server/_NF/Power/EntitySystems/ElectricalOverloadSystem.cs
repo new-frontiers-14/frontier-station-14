@@ -1,10 +1,11 @@
+using Content.Server._NF.Power.Components;
 using Content.Server._NF.Tools.Components;
 using Content.Server.Chat.Systems;
 using Content.Server.Emp;
 using Content.Server.Power.Components;
 using Robust.Shared.Random;
 
-namespace Content.Server.Power.EntitySystems;
+namespace Content.Server._NF.Power.EntitySystems;
 
 public sealed class ElectricalOverloadSystem : EntitySystem
 {
@@ -17,29 +18,37 @@ public sealed class ElectricalOverloadSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<ElectricalOverloadComponent, ApcToggledMainBreakerEvent>(OnApcToggleMainBreaker);
+        SubscribeLocalEvent<ElectricalOverloadComponent, ElectricalOverloadEvent>(OnElectricalOverload);
     }
 
-    private void OnApcToggleMainBreaker(EntityUid uid, ElectricalOverloadComponent component, ApcToggledMainBreakerEvent args)
+    private void OnElectricalOverload(EntityUid uid, ElectricalOverloadComponent component, ElectricalOverloadEvent args)
     {
         if (args.Enabled)
         {
             // Toggled on, means EMP pulse!
             component.EmpAt = DateTime.Now + TimeSpan.FromSeconds(_random.NextDouble(25, 35));
             component.NextBuzz = DateTime.Now + TimeSpan.FromSeconds(_random.NextDouble(3, 5));
-            EnsureComp<DisableToolUseComponent>(uid, out var disableToolUse); // Frontier
-            disableToolUse.Anchoring = true;
-            disableToolUse.Cutting = true;
-            disableToolUse.Prying = true;
-            disableToolUse.Screwing = true;
-            disableToolUse.Welding = true;
+            if (!HasComp<DisableToolUseComponent>(uid))
+            {
+                EnsureComp<DisableToolUseComponent>(uid, out var disableToolUse);
+                disableToolUse.Anchoring = true;
+                disableToolUse.Cutting = true;
+                disableToolUse.Prying = true;
+                disableToolUse.Screwing = true;
+                disableToolUse.Welding = true;
+
+                disableToolUse.TemporarilyDisabled = true; // Event
+            }
         }
         else
         {
             // Toggled off, means cancel EMP pulse.
             component.EmpAt = DateTime.MaxValue;
             component.NextBuzz = DateTime.MaxValue;
-            RemComp<DisableToolUseComponent>(uid); // Frontier
+            if (TryComp<DisableToolUseComponent>(uid, out var disableToolUse) && disableToolUse.TemporarilyDisabled)
+            {
+                RemComp<DisableToolUseComponent>(uid);
+            }
         }
     }
 
@@ -66,8 +75,8 @@ public sealed class ElectricalOverloadSystem : EntitySystem
                 continue;
             }
 
-            var coords = _transform.GetMapCoordinates(entity); // Frontier - EMP
-            _emp.EmpPulse(coords, component.EmpRange, component.EmpConsumption, component.EmpDuration); // Frontier - EMP
+            var coords = _transform.GetMapCoordinates(entity);
+            _emp.EmpPulse(coords, component.EmpRange, component.EmpConsumption, component.EmpDuration);
             // We add a bit of randomness to the next EMP pulse time
             component.EmpAt = DateTime.Now + TimeSpan.FromSeconds(_random.NextDouble(3, 10));
         }

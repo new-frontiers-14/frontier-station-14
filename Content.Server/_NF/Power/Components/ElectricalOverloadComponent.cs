@@ -1,4 +1,4 @@
-namespace Content.Server.Power.Components;
+namespace Content.Server._NF.Power.Components;
 
 [RegisterComponent]
 public sealed partial class ElectricalOverloadComponent : Component

@@ -73,7 +73,25 @@ public sealed partial class StationEventComponent : Component
     ///     Frontier - How many players need to be present on station for the event to not run, to avoid running safe events with high-pop
     /// </remarks>
     [DataField]
-    public int MaximumPlayers = 999;
+    public int MaximumPlayers = 9999;
+
+    /// <summary>
+    ///     Frontier - 
+    /// </remarks>
+    [DataField]
+    public int MinimumStations = 1;
+
+    /// <summary>
+    ///     Frontier - 
+    /// </remarks>
+    [DataField]
+    public int MaximumStations = 1;
+
+    /// <summary>
+    ///     Frontier - 
+    /// </summary>
+    [DataField]
+    public int PlayersPerEvent = 10;
 
     /// <summary>
     ///     How many times this even can occur in a single round

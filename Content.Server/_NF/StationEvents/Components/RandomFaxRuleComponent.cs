@@ -53,7 +53,7 @@ public sealed partial class RandomFaxRuleComponent : Component
     public List<IRecipientFaxAction>? PerRecipientActions { get; private set; }
 
     /// <summary>
-    ///     Minimum faxes to send
+    ///     
     /// </summary>
     [DataField]
     public int PlayersPerFaxes { get; private set; } = 15;

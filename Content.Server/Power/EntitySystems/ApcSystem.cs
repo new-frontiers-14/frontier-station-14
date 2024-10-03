@@ -113,8 +113,6 @@ public sealed class ApcSystem : EntitySystem
         apc.MainBreakerEnabled = !apc.MainBreakerEnabled;
         battery.CanDischarge = apc.MainBreakerEnabled;
 
-        RaiseLocalEvent(uid, new ApcToggledMainBreakerEvent(apc.MainBreakerEnabled)); // Umbra - ElectricalOverload
-
         UpdateUIState(uid, apc);
         _audio.PlayPvs(apc.OnReceiveMessageSound, uid, AudioParams.Default.WithVolume(-2f));
     }
@@ -243,5 +241,3 @@ public sealed class ApcSystem : EntitySystem
 
 [ByRefEvent]
 public record struct ApcToggleMainBreakerAttemptEvent(bool Cancelled);
-
-public record struct ApcToggledMainBreakerEvent(bool Enabled); // Umbra - ElectricalOverload
