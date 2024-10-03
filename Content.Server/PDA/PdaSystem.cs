@@ -58,7 +58,21 @@ namespace Content.Server.PDA
             SubscribeLocalEvent<PdaComponent, CartridgeLoaderNotificationSentEvent>(OnNotification);
 
             SubscribeLocalEvent<StationRenamedEvent>(OnStationRenamed);
+            SubscribeLocalEvent<EntityRenamedEvent>(OnEntityRenamed);
             SubscribeLocalEvent<AlertLevelChangedEvent>(OnAlertLevelChanged);
+        }
+
+        private void OnEntityRenamed(ref EntityRenamedEvent ev)
+        {
+            var query = EntityQueryEnumerator<PdaComponent>();
+
+            while (query.MoveNext(out var uid, out var comp))
+            {
+                if (comp.PdaOwner == ev.Uid)
+                {
+                    SetOwner(uid, comp, ev.Uid, ev.NewName);
+                }
+            }
         }
 
         protected override void OnComponentInit(EntityUid uid, PdaComponent pda, ComponentInit args)
@@ -97,9 +111,10 @@ namespace Content.Server.PDA
             UpdatePdaUi(uid, pda);
         }
 
-        public void SetOwner(EntityUid uid, PdaComponent pda, string ownerName)
+        public void SetOwner(EntityUid uid, PdaComponent pda, EntityUid owner, string ownerName)
         {
             pda.OwnerName = ownerName;
+            pda.PdaOwner = owner;
             UpdatePdaUi(uid, pda);
         }
 
@@ -115,7 +130,7 @@ namespace Content.Server.PDA
 
         private void UpdateAllPdaUisOnStation()
         {
-            var query = EntityQueryEnumerator<PdaComponent>();
+            var query = AllEntityQuery<PdaComponent>();
             while (query.MoveNext(out var ent, out var comp))
             {
                 UpdatePdaUi(ent, comp);

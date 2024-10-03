@@ -18,3 +18,21 @@
     - type: BountyContractsCartridge
     - type: AccessReader
       access: [["HeadOfSecurity"], ["HeadOfPersonnel"]]
+
+# Not a PDA cartridge (then why is this here)
+- type: entity
+  parent: BaseItem
+  id: ContrabandForensicsModule
+  name: contraband forensics module
+  description: A program for scanning and reporting contraband dead drops and pods for bounties.
+  components:
+    - type: Sprite
+      sprite: _NF/Objects/Devices/cartridge.rsi
+      state: contraband_forensics
+    - type: Icon
+      sprite: _NF/Objects/Devices/cartridge.rsi
+      state: contraband_forensics
+    - type: ForensicsCartridge
+    - type: GuideHelp
+      guides:
+      - Forensics

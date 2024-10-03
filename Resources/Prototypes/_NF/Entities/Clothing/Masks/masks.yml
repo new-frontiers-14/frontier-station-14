@@ -1,9 +1,7 @@
 - type: entity
-  parent:
-  - ClothingMaskGasExplorer
-  - ContrabandClothing
   id: ClothingMaskArcadia
   name: arcadia battle mask
+  parent: [ ClothingMaskGasExplorer, BaseC3ContrabandNoValue, ContrabandClothing ]
   description: A close-fitting high tech mask designed by Arcadia Industries for space faring battlers.
   components:
   - type: Sprite
@@ -43,7 +41,7 @@
   - type: BreathMask
 
 - type: entity
-  parent: ClothingMaskGasSecurity
+  parent: [ BaseC2ContrabandUnredeemable, ClothingMaskGasSecurity ]
   id: ClothingMaskGasNfsd
   name: nfsd gas mask
   description: A standard issue nfsd gas mask.
@@ -55,7 +53,7 @@
   - type: CatWearable
 
 - type: entity
-  parent: ClothingMaskGasSwat
+  parent: [ BaseC2ContrabandUnredeemable, ClothingMaskGasSwat ]
   id: ClothingMaskGasSheriff
   name: nfsd sheriff gas mask
   description: A gas mask worthy of a sheriff.

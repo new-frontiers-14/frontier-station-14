@@ -16,6 +16,7 @@
   iffColor: "#37C837" 
   spawnGroup: MarketStation
   gridPath: /Maps/_NF/POI/trade.yml
+  busStop: true
   gridProtection:
     - ArtifactTriggers
   
@@ -30,4 +31,6 @@
       components:
         - type: StationNameSetup
           mapNameTemplate: 'Trade Outpost'
+        - type: StationDeadDrop
+          maxDeadDrops: 3 # Many here, it's huge.
  

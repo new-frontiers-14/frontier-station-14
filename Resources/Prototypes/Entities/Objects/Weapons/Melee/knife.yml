@@ -108,7 +108,7 @@
 
 - type: entity
   name: survival knife
-  parent: [CombatKnife, BaseC1Contraband] # BaseSecurityCargoContraband<BaseC1Contraband
+  parent: [BaseC1Contraband, CombatKnife] # BaseSecurityCargoContraband<BaseC1Contraband
   id: SurvivalKnife
   description: Weapon of first and last resort for combatting space carp.
   components:
@@ -120,7 +120,7 @@
 
 - type: entity
   name: kukri knife
-  parent: [CombatKnife, BaseC1Contraband] # BaseMinorContraband<BaseC1Contraband
+  parent: [BaseC1Contraband, CombatKnife] # BaseMinorContraband<BaseC1Contraband
   id: KukriKnife
   description: Professionals have standards. Be polite. Be efficient. Have a plan to kill everyone you meet.
   components:
@@ -136,7 +136,7 @@
     sprite: Objects/Weapons/Melee/kukri_knife.rsi
 
 - type: entity
-  parent: [ClothingHeadHatGreyFlatcap, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
+  parent: [ClothingHeadHatGreyFlatcap, BaseC1Contraband] # Frontier: BaseSyndicateContraband<BaseC1Contraband
   id: BladedFlatcapGrey
   name: grey flatcap
   description: Fashionable for both the working class and old man Jenkins. It has glass shards hidden in the brim.

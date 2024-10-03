@@ -9,34 +9,34 @@
 # Shuttle Notes:
 #
 
-- type: vessel
-  id: Crown
-  name: SBI Crown
-  description: "A refurbished and repainted older model of the NSF Templar for Civilian and Mercenary use, mind the gap."
-  price: 20000
-  category: Small
-  group: Shipyard
-  shuttlePath: /Maps/_NF/Shuttles/crown.yml
-  guidebookPage: Null
-  class:
-  - Civilian
+#- type: vessel
+#  id: Crown
+#  name: SBI Crown
+#  description: "A refurbished and repainted older model of the NSF Templar for Civilian and Mercenary use, mind the gap."
+#  price: 20000
+#  category: Small
+#  group: Shipyard
+#  shuttlePath: /Maps/_NF/Shuttles/crown.yml
+#  guidebookPage: Null
+#  class:
+#  - Civilian
 
-- type: gameMap
-  id: Crown
-  mapName: 'SBI Crown'
-  mapPath: /Maps/_NF/Shuttles/crown.yml
-  minPlayers: 0
-  stations:
-    Crown:
-      stationProto: StandardFrontierVessel
-      components:
-        - type: StationNameSetup
-          mapNameTemplate: 'Crown {1}'
-          nameGenerator:
-            !type:NanotrasenNameGenerator
-            prefixCreator: '14'
-        - type: StationJobs
-          availableJobs:
-            Contractor: [ 0, 0 ]
-            Pilot: [ 0, 0 ]
-            Mercenary: [ 0, 0 ]
+#- type: gameMap
+#  id: Crown
+#  mapName: 'SBI Crown'
+#  mapPath: /Maps/_NF/Shuttles/crown.yml
+#  minPlayers: 0
+#  stations:
+#    Crown:
+#      stationProto: StandardFrontierVessel
+#      components:
+#        - type: StationNameSetup
+#          mapNameTemplate: 'Crown {1}'
+#          nameGenerator:
+#            !type:NanotrasenNameGenerator
+#            prefixCreator: '14'
+#        - type: StationJobs
+#          availableJobs:
+#            Contractor: [ 0, 0 ]
+#            Pilot: [ 0, 0 ]
+#            Mercenary: [ 0, 0 ]

@@ -1355,6 +1355,17 @@
 - type: entity
   categories: [ HideSpawnMenu ]
   parent: BaseMailLarge
+  id: MailNFRGBBGun
+  suffix: RGBB gun
+  components:
+  - type: Mail
+    contents:
+    - id: WeaponRifleBBEmpty
+    - id: BoxCartridgeRGBB
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: BaseMailLarge
   id: MailNFDAW
   suffix: DAW
   components:
@@ -1682,7 +1693,11 @@
         # Uncommon
       - id: MobMothroach
         orGroup: Critter
-        prob: 0.2
+        prob: 0.15
+        # Rare
+      - id: MobRosyMothroach
+        orGroup: Critter
+        prob: 0.05
       # Small reptiles (weight: 1)
       - id: MobLizard
         orGroup: Critter
@@ -2073,7 +2088,7 @@
   components:
   - type: Mail
     contents:
-    - id: Handcuffs
+    - id: Zipties
     - id: ClothingMaskMuzzle
     - id: ClothingEyesBlindfold
 

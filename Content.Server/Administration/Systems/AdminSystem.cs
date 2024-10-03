@@ -15,7 +15,9 @@ using Content.Shared.GameTicking;
 using Content.Shared.Hands.Components;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Inventory;
+using Content.Shared.Mind;
 using Content.Shared.PDA;
+using Content.Shared.Players;
 using Content.Shared.Players.PlayTimeTracking;
 using Content.Shared.Popups;
 using Content.Shared.Roles;
@@ -30,6 +32,8 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
+using Content.Shared._NF.Bank.Events; // Frontier
+using Content.Server.Bank; // Frontier
 
 namespace Content.Server.Administration.Systems;
 
@@ -51,6 +55,7 @@ public sealed class AdminSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly StationRecordsSystem _stationRecords = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
+    [Dependency] private readonly BankSystem _bank = default!; // Frontier
 
     private readonly Dictionary<NetUserId, PlayerInfo> _playerList = new();
 
@@ -96,6 +101,8 @@ public sealed class AdminSystem : EntitySystem
         SubscribeLocalEvent<RoleAddedEvent>(OnRoleEvent);
         SubscribeLocalEvent<RoleRemovedEvent>(OnRoleEvent);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestartCleanup);
+        SubscribeLocalEvent<ActorComponent, EntityRenamedEvent>(OnPlayerRenamed);
+        SubscribeLocalEvent<BalanceChangedEvent>(OnBalanceChanged); // Frontier
     }
 
     private void OnRoundRestartCleanup(RoundRestartCleanupEvent ev)
@@ -120,6 +127,11 @@ public sealed class AdminSystem : EntitySystem
         {
             RaiseNetworkEvent(updateEv, admin.Channel);
         }
+    }
+
+    private void OnPlayerRenamed(Entity<ActorComponent> ent, ref EntityRenamedEvent args)
+    {
+        UpdatePlayerList(ent.Comp.PlayerSession);
     }
 
     public void UpdatePlayerList(ICommonSession player)
@@ -195,6 +207,13 @@ public sealed class AdminSystem : EntitySystem
         UpdatePlayerList(ev.Player);
     }
 
+    // Frontier: add balance
+    private void OnBalanceChanged(BalanceChangedEvent ev)
+    {
+        UpdatePlayerList(ev.Session);
+    }
+    // End Frontier
+
     public override void Shutdown()
     {
         base.Shutdown();
@@ -223,11 +242,17 @@ public sealed class AdminSystem : EntitySystem
         var name = data.UserName;
         var entityName = string.Empty;
         var identityName = string.Empty;
+        int balance = int.MinValue; // Frontier
 
         if (session?.AttachedEntity != null)
         {
             entityName = EntityManager.GetComponent<MetaDataComponent>(session.AttachedEntity.Value).EntityName;
             identityName = Identity.Name(session.AttachedEntity.Value, EntityManager);
+
+            // Frontier
+            if (!_bank.TryGetBalance(session.AttachedEntity.Value, out balance))
+                balance = int.MinValue; // Reset value to "no balance" flag value.
+            // Frontier
         }
 
         var antag = false;
@@ -248,7 +273,7 @@ public sealed class AdminSystem : EntitySystem
         }
 
         return new PlayerInfo(name, entityName, identityName, startingRole, antag, GetNetEntity(session?.AttachedEntity), data.UserId,
-            connected, _roundActivePlayers.Contains(data.UserId), overallPlaytime);
+            connected, _roundActivePlayers.Contains(data.UserId), overallPlaytime, balance); // Frontier: added balance
     }
 
     private void OnPanicBunkerChanged(bool enabled)
@@ -377,30 +402,32 @@ public sealed class AdminSystem : EntitySystem
         }
     }
 
-    /// <summary>
-    ///     Erases a player from the round.
-    ///     This removes them and any trace of them from the round, deleting their
-    ///     chat messages and showing a popup to other players.
-    ///     Their items are dropped on the ground.
-    /// </summary>
-    public void Erase(ICommonSession player)
-    {
-        var entity = player.AttachedEntity;
-        _chat.DeleteMessagesBy(player);
-
-        if (entity != null && !TerminatingOrDeleted(entity.Value))
+        /// <summary>
+        ///     Erases a player from the round.
+        ///     This removes them and any trace of them from the round, deleting their
+        ///     chat messages and showing a popup to other players.
+        ///     Their items are dropped on the ground.
+        /// </summary>
+        public void Erase(NetUserId uid)
         {
-            if (TryComp(entity.Value, out TransformComponent? transform))
+            _chat.DeleteMessagesBy(uid);
+
+            if (!_minds.TryGetMind(uid, out var mindId, out var mind) || mind.OwnedEntity == null || TerminatingOrDeleted(mind.OwnedEntity.Value))
+                return;
+
+            var entity = mind.OwnedEntity.Value;
+
+            if (TryComp(entity, out TransformComponent? transform))
             {
-                var coordinates = _transform.GetMoverCoordinates(entity.Value, transform);
-                var name = Identity.Entity(entity.Value, EntityManager);
+                var coordinates = _transform.GetMoverCoordinates(entity, transform);
+                var name = Identity.Entity(entity, EntityManager);
                 _popup.PopupCoordinates(Loc.GetString("admin-erase-popup", ("user", name)), coordinates, PopupType.LargeCaution);
                 var filter = Filter.Pvs(coordinates, 1, EntityManager, _playerManager);
                 var audioParams = new AudioParams().WithVolume(3);
                 _audio.PlayStatic("/Audio/Effects/pop_high.ogg", filter, coordinates, true, audioParams);
             }
 
-            foreach (var item in _inventory.GetHandOrInventoryEntities(entity.Value))
+            foreach (var item in _inventory.GetHandOrInventoryEntities(entity))
             {
                 if (TryComp(item, out PdaComponent? pda) &&
                     TryComp(pda.ContainedId, out StationRecordKeyStorageComponent? keyStorage) &&
@@ -424,29 +451,29 @@ public sealed class AdminSystem : EntitySystem
                 }
             }
 
-            if (_inventory.TryGetContainerSlotEnumerator(entity.Value, out var enumerator))
+            if (_inventory.TryGetContainerSlotEnumerator(entity, out var enumerator))
             {
                 while (enumerator.NextItem(out var item, out var slot))
                 {
-                    if (_inventory.TryUnequip(entity.Value, entity.Value, slot.Name, true, true))
+                    if (_inventory.TryUnequip(entity, entity, slot.Name, true, true))
                         _physics.ApplyAngularImpulse(item, ThrowingSystem.ThrowAngularImpulse);
                 }
             }
 
-            if (TryComp(entity.Value, out HandsComponent? hands))
+            if (TryComp(entity, out HandsComponent? hands))
             {
-                foreach (var hand in _hands.EnumerateHands(entity.Value, hands))
+                foreach (var hand in _hands.EnumerateHands(entity, hands))
                 {
-                    _hands.TryDrop(entity.Value, hand, checkActionBlocker: false, doDropInteraction: false, handsComp: hands);
+                    _hands.TryDrop(entity, hand, checkActionBlocker: false, doDropInteraction: false, handsComp: hands);
                 }
             }
+
+            _minds.WipeMind(mindId, mind);
+            QueueDel(entity);
+
+            if (_playerManager.TryGetSessionById(uid, out var session))
+                _gameTicker.SpawnObserver(session);
         }
-
-        _minds.WipeMind(player);
-        QueueDel(entity);
-
-        _gameTicker.SpawnObserver(player);
-    }
 
     private void OnSessionPlayTimeUpdated(ICommonSession session)
     {

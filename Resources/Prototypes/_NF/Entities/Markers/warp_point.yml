@@ -34,6 +34,7 @@
   components:
   - type: WarpPoint
     location: "Listening Point: Bravo"
+    adminOnly: true
 
 - type: entity
   id: WarpPointNFLodge
@@ -124,6 +125,7 @@
   components:
   - type: WarpPoint
     location: Pirate's Cove
+    adminOnly: true
 
 - type: entity
   id: WarpPointNFGrifty
@@ -152,5 +154,30 @@
   - type: WarpPoint
     location: Derelict McCargo
 
-# Events
+- type: entity
+  id: WarpPointNFBahama
+  parent: WarpPoint
+  suffix: POI, Bahama
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: WarpPoint
+    location: Bahama Mama's
 
+- type: entity
+  id: WarpPointNFEdison
+  parent: WarpPoint
+  suffix: POI, Edison
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: WarpPoint
+    location: Edison Power Plant
+
+# Events
+- type: entity
+  id: WarpPointNFCave
+  parent: WarpPoint
+  suffix: Event, Cave
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: WarpPoint
+    location: Cave
