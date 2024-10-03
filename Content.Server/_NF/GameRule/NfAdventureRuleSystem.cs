@@ -39,6 +39,7 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Physics.Components;
 using Content.Server.Shuttles.Components;
 using Content.Shared.Tiles;
+using Content.Server._NF.PublicTransit.Components;
 
 namespace Content.Server._NF.GameRule;
 
@@ -373,6 +374,11 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
                 {
                     shuttle.AngularDamping = dampingStrength;
                     shuttle.LinearDamping = dampingStrength;
+                }
+
+                if (proto.BusStop)
+                {
+                    EnsureComp<StationTransitComponent>(grid);
                 }
 
                 if (proto.GridProtection != GridProtectionFlags.None)
