@@ -43,7 +43,7 @@
       sprite: Clothing/Back/Duffels/medical.rsi
 
 - type: entity
-  parent: ClothingBackpackDuffel
+  parent: ClothingBackpackDuffel # Frontier: removed BaseCommandContraband
   id: ClothingBackpackDuffelCaptain
   name: captain's duffel bag
   description: A large duffel bag for holding extra captainly goods.
@@ -64,7 +64,7 @@
         collection: BikeHorn
 
 - type: entity
-  parent: ClothingBackpackDuffel
+  parent: [ClothingBackpackDuffel, BaseC2Contraband ] # Frontier: BaseRestrictedContraband<BaseC2Contraband
   id: ClothingBackpackDuffelSecurity
   name: security duffel bag
   description: A large duffel bag for holding extra security related goods.
@@ -73,7 +73,7 @@
       sprite: Clothing/Back/Duffels/security.rsi
 
 - type: entity
-  parent: ClothingBackpackDuffel
+  parent: [ClothingBackpackDuffel, BaseC2Contraband ] # Frontier: BaseRestrictedContraband<BaseC2Contraband
   id: ClothingBackpackDuffelBrigmedic
   name: brigmedic duffel bag
   description: A large duffel bag for holding extra medical related goods.
@@ -158,7 +158,7 @@
       sprite: Clothing/Back/Duffels/salvage.rsi
 
 - type: entity
-  parent: [ClothingBackpackDuffel, ContrabandClothing] # Frontier: added ContrabandClothing as parent
+  parent: [ClothingBackpackDuffel, BaseC3Contraband, ContrabandClothing] # Frontier: BaseSyndicateContraband<BaseC3Contraband, added ContrabandClothing as parent
   id: ClothingBackpackDuffelSyndicate
   name: syndicate duffel bag
   description: A large duffel bag for holding various traitor goods.
@@ -228,7 +228,7 @@
   description: A duffelbag that opens into a localized pocket of bluespace.
   components:
   - type: Sprite
-    sprite: Clothing/Back/Duffels/holding.rsi
+    sprite: _NF/Clothing/Back/Duffels/holding.rsi # Frontier
     state: icon
     layers:
     - state: icon
@@ -236,6 +236,15 @@
       shader: unshaded
   - type: Item
     size: Ginormous
+    inhandVisuals: # Frontier
+      left: # Frontier
+      - state: inhand-left # Frontier
+      - state: inhand-left-unlit # Frontier
+        shader: unshaded # Frontier
+      right: # Frontier
+      - state: inhand-right # Frontier
+      - state: inhand-right-unlit # Frontier
+        shader: unshaded # Frontier
   - type: Storage
     maxItemSize: Huge
     grid:
@@ -243,9 +252,16 @@
   - type: ClothingSpeedModifier
     sprintModifier: 1 # makes its stats identical to other variants of bag of holding
   - type: HeldSpeedModifier
+  - type: Clothing # Frontier
+    sprite: _NF/Clothing/Back/Duffels/holding.rsi # Frontier
+    clothingVisuals: # Frontier
+      back: # Frontier
+      - state: equipped-BACKPACK # Frontier
+      - state: equipped-BACKPACK-unlit # Frontier
+        shader: unshaded # Frontier
 
 - type: entity
-  parent: ClothingBackpackDuffel
+  parent: [ ClothingBackpackDuffel, BaseCentcommContraband ]
   id: ClothingBackpackDuffelCBURN
   name: CBURN duffel bag
   description: A duffel bag containing a variety of biological containment equipment.

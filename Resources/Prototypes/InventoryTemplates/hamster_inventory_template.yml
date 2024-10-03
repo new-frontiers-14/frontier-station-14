@@ -11,11 +11,13 @@
       tags:
         - PetWearable
         - HamsterWearable
+      components: # Frontier
+        - HamsterWearable # Frontier
   - name: neck
     slotTexture: neck
     slotFlags: NECK
     uiWindowPos: 0,1
-    strippingWindowPos: 1,0
+    strippingWindowPos: 0,1
     displayName: Neck
     whitelist:
       tags:
@@ -24,18 +26,19 @@
     slotTexture: glasses
     slotFlags: EYES
     stripTime: 3
-    uiWindowPos: 0,1
+    uiWindowPos: 0,2
     strippingWindowPos: 0,0
     displayName: Eyes
     whitelist:
       tags:
         - HamsterWearable
+      components: # Frontier
+        - HamsterWearable # Frontier
   - name: suitstorage
     slotTexture: suit_storage
     slotFlags: SUITSTORAGE
-    slotGroup: SecondHotbar
     stripTime: 3
-    uiWindowPos: 2,0
+    uiWindowPos: 1,0
     strippingWindowPos: 2,5
     displayName: Suit Storage
     whitelist:
@@ -50,3 +53,5 @@
     whitelist:
       tags:
         - HamsterWearable
+      components: # Frontier
+        - HamsterWearable # Frontier

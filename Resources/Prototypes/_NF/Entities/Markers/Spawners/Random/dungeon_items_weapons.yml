@@ -4,7 +4,7 @@
   id: SpawnInhandMeleeWeaponPunkGangLow
   parent: MarkerBase
   suffix: "Punk, Melee, T1"
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:
@@ -38,7 +38,7 @@
   id: SpawnDungeonLootMeleeT1
   parent: MarkerBasePlaceFree
   suffix: "Dungeon, Melee, T1"
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:
@@ -73,7 +73,7 @@
   id: SpawnDungeonLootGunT1
   parent: MarkerBasePlaceFree
   suffix: "Dungeon, Gun, T1"
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:
@@ -86,13 +86,13 @@
       color: red
   - type: RandomSpawner
     prototypes:
-    - WeaponCaseShortMk58Expedition
-    - WeaponCaseShortArgentiExpedition
-    - WeaponCaseShortLaserGunExpedition
-    #- WeaponCaseShortHandmadeExpedition
-    #- WeaponCaseLongShotgunDoubleBarreledExpedition
-    - WeaponCaseShortSawnExpedition
-    - WeaponCaseLongMosinExpedition
+    - WeaponCaseShortMk58
+    - WeaponCaseShortArgenti
+    - WeaponCaseShortLaserGun
+    #- WeaponCaseShortHandmade
+    #- WeaponCaseLongShotgunDoubleBarreled
+    - WeaponCaseShortSawn
+    - WeaponCaseLongMosin
     chance: 1.0
     offset: 0.0
     rarePrototypes:
@@ -104,7 +104,7 @@
   id: SpawnDungeonLootExplosivesT1
   parent: MarkerBasePlaceFree
   suffix: "Dungeon, Explosives, T1"
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:
@@ -130,7 +130,7 @@
   id: SpawnDungeonLootMeleeT2
   parent: MarkerBasePlaceFree
   suffix: "Dungeon, Melee, T2"
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:
@@ -161,7 +161,7 @@
   id: SpawnDungeonLootGunT2
   parent: MarkerBasePlaceFree
   suffix: "Dungeon, Gun, T2"
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:
@@ -175,15 +175,15 @@
   - type: RandomSpawner
     prototypes:
     - WeaponCaseShortViper
-    - WeaponCaseShortDeckardExpedition
+    - WeaponCaseShortDeckard
     - WeaponCaseShortRevolverPirate
     - WeaponCaseShortPython
-    - WeaponCaseLongGestioExpedition
-    - WeaponCaseLongWeaponRifleNovaliteC1Expedition
-    - WeaponCaseLongKammererExpedition
-    - WeaponCaseLongEnergyGunExpedition
-    - WeaponCaseLongRepeaterExpedition
-    - WeaponCaseLongSVTExpedition
+    - WeaponCaseLongGestio
+    - WeaponCaseLongWeaponRifleNovaliteC1
+    - WeaponCaseLongKammerer
+    - WeaponCaseLongEnergyGun
+    - WeaponCaseLongRepeater
+    - WeaponCaseLongSVT
     chance: 1.0
     offset: 0.0
     rarePrototypes:
@@ -195,7 +195,7 @@
   id: SpawnDungeonLootExplosivesT2
   parent: MarkerBasePlaceFree
   suffix: "Dungeon, Explosives, T2"
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:
@@ -221,7 +221,7 @@
   id: SpawnDungeonLootMeleeT3
   parent: MarkerBasePlaceFree
   suffix: "Dungeon, Melee, T3"
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:
@@ -238,7 +238,7 @@
     - Cutlass
     - Claymore
     - Truncheon
-    - WeaponCaseShortEnergyDaggerExpedition
+    - WeaponCaseShortEnergyDagger
     chance: 1.0
     offset: 0.0
     rarePrototypes:
@@ -250,7 +250,7 @@
   id: SpawnDungeonLootGunT3
   parent: MarkerBasePlaceFree
   suffix: "Dungeon, Gun, T3"
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:
@@ -265,15 +265,15 @@
     prototypes:
     - WeaponCaseShortMateba
     - WeaponCaseShortCobra
-    - WeaponCaseLongWT550Expedition
-    - WeaponCaseLongDrozdExpedition
-    - WeaponCaseLongLecterExpedition
-    - WeaponCaseLongLaserCarbineExpedition
-    - WeaponCaseLongHristovExpedition
-    - WeaponCaseShortSvalinnExpedition
-    - WeaponCaseShortAdvancedLaserExpedition
-    #- WeaponCaseLongMusketExpedition
-    - WeaponCaseLongVector22Expedition #Corvax-Frontier
+    - WeaponCaseLongWT550
+    - WeaponCaseLongDrozd
+    - WeaponCaseLongLecter
+    - WeaponCaseLongLaserCarbine
+    - WeaponCaseLongHristov
+    - WeaponCaseShortSvalinn
+    - WeaponCaseShortAdvancedLaser
+    #- WeaponCaseLongMusket
+    - WeaponCaseLongVector22 #Corvax-Frontier
     chance: 1.0
     offset: 0.0
     rarePrototypes:
@@ -285,7 +285,7 @@
   id: SpawnDungeonLootExplosivesT3
   parent: MarkerBasePlaceFree
   suffix: "Dungeon, Explosives, T3"
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:
@@ -311,7 +311,7 @@
   id: SpawnDungeonLootMeleeT4
   parent: MarkerBasePlaceFree
   suffix: "Dungeon, Melee, T4"
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:
@@ -327,8 +327,8 @@
     - Katana
     - CaptainSabre
     - SecBreachingHammer
-    - WeaponCaseShortEnergySwordExpedition
-    - WeaponCaseShortEnergyCutlassExpedition
+    - WeaponCaseShortEnergySword
+    - WeaponCaseShortEnergyCutlass
     chance: 1.0
     offset: 0.0
     rarePrototypes:
@@ -340,7 +340,7 @@
   id: SpawnDungeonLootGunT4
   parent: MarkerBasePlaceFree
   suffix: "Dungeon, Gun, T4"
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:
@@ -353,13 +353,13 @@
       color: red
   - type: RandomSpawner
     prototypes:
-    - WeaponCaseShortN1984Expedition
-    - WeaponCaseLongM90Expedition
+    - WeaponCaseShortN1984
+    - WeaponCaseLongM90
     - WeaponCaseLongC20r
-    - WeaponCaseLongAkExpedition
-    - WeaponCaseHeavyAsmgtExpeditions
-    - WeaponCaseLongEnforcerExpedition
-    - WeaponCaseLongLaserCannonExpedition
+    - WeaponCaseLongAk
+    - WeaponCaseHeavyAsmgt
+    - WeaponCaseLongEnforcer
+    - WeaponCaseLongLaserCannon
     chance: 1.0
     offset: 0.0
     rarePrototypes:
@@ -371,7 +371,7 @@
   id: SpawnDungeonLootExplosivesT4
   parent: MarkerBasePlaceFree
   suffix: "Dungeon, Explosives, T4"
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:
@@ -397,7 +397,7 @@
   id: SpawnDungeonLootMeleeT5
   parent: MarkerBasePlaceFree
   suffix: "Dungeon, Melee, T5"
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:
@@ -410,7 +410,7 @@
       color: red
   - type: RandomSpawner
     prototypes:
-    - WeaponCaseShortEnergySwordDoubleExpedition
+    - WeaponCaseShortEnergySwordDouble
     chance: 1.0
     offset: 0.0
 
@@ -419,7 +419,7 @@
   id: SpawnDungeonLootGunT5
   parent: MarkerBasePlaceFree
   suffix: "Dungeon, Gun, T5"
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:
@@ -433,12 +433,12 @@
   - type: RandomSpawner
     prototypes:
     - WeaponCaseLongBulldog
-    - WeaponCaseLongAtreidesExpedition
-    - WeaponCaseLongLauncherRocketExpedition
+    - WeaponCaseLongAtreides
+    - WeaponCaseLongLauncherRocket
     - WeaponCaseLongLauncherChinaLake
     - WeaponCaseLongLightMachineGunL6
-    - WeaponCaseHeavyAsmgtExpeditions
-    - WeaponCaseLongXrayCannonExpedition
+    - WeaponCaseHeavyAsmgt
+    - WeaponCaseLongXrayCannon
     chance: 1.0
     offset: 0.0
 
@@ -447,7 +447,7 @@
   id: SpawnDungeonLootExplosivesT5
   parent: MarkerBasePlaceFree
   suffix: "Dungeon, Explosives, T5"
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:
@@ -470,7 +470,7 @@
   id: SpawnDungeonLootAmmoLethal
   parent: MarkerBasePlaceFree
   suffix: "Dungeon, Ammo, Lethal"
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:
@@ -506,7 +506,7 @@
   id: SpawnDungeonLootAmmoRubber
   parent: MarkerBasePlaceFree
   suffix: "Dungeon, Ammo, Rubber"
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:
@@ -534,7 +534,7 @@
   id: SpawnDungeonLootAmmoPractice
   parent: MarkerBasePlaceFree
   suffix: "Dungeon, Ammo, Practice"
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:
@@ -558,7 +558,7 @@
   id: SpawnDungeonLootAmmoIncendiary
   parent: MarkerBasePlaceFree
   suffix: "Dungeon, Ammo, Incendiary"
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:
@@ -584,7 +584,7 @@
   id: SpawnDungeonLootAmmoUranium
   parent: MarkerBasePlaceFree
   suffix: "Dungeon, Ammo, Uranium"
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:

@@ -1,5 +1,5 @@
 # Author Info
-# GitHub: 
+# GitHub:
 # Discord: MagnusCrowe
 
 # Maintainer Info
@@ -13,10 +13,12 @@
   name: Торговый Аванпост
   rangeMin: 1500
   rangeMax: 2500
-  iffColor: "#37C837" 
+  iffColor: "#37C837"
   spawnGroup: MarketStation
   gridPath: /Maps/_NF/POI/trade.yml
-  
+  gridProtection:
+    - ArtifactTriggers
+
 - type: gameMap
   id: Trade
   mapName: 'Торговый Аванпост'
@@ -28,4 +30,5 @@
       components:
         - type: StationNameSetup
           mapNameTemplate: 'Торговый Аванпост'
- 
+        - type: StationDeadDrop
+          maxDeadDrops: 2 # Many here, it's huge. # 2 - Corvax-Frontier

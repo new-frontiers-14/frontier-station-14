@@ -44,17 +44,23 @@
 ## Фрезон
 Фрезон - это голубовато-зелёный газ, очень сложный и очень опасный. Для получения фрезона необходимо смешать тритий, кислород и азот в помещении с температурой -203.15°C, чтобы запустить реакцию, а также предотвратить сгорание трития с кислородом.
 
-<Box>
-<GuideEntityEmbed Entity="TritiumCanister" />
-<GuideEntityEmbed Entity="AirCanister" />
-<GuideEntityEmbed Entity="GasVentScrubber"/>
-<GuideEntityEmbed Entity="StorageCanister" Caption="Канистра Фрезона"/>
-</Box>
+  <Box>
+    <GuideEntityEmbed Entity="TritiumCanister"/>
+    <GuideEntityEmbed Entity="AirCanister"/>
+    <GuideEntityEmbed Entity="GasVentScrubber"/>
+    <GuideEntityEmbed Entity="StorageCanister" Caption="Frezon Canister"/>
+  </Box>
 
-Важно понимать, что утечка фрезона может погубить станцию, превратив её в зимний ад с зудящими свитерами и обморожениями. Фрезон очень холодный и может заморозить станцию до смерти, если хотя бы несколько молей выберутся наружу, так что убедитесь, что вы заперли свои канистры или просто переместили фрезон прямо в хранилище.
+  It is critical to understand that a frezon leak can devastate the station, causing a wintery hell filled with itchy sweaters and cold burns. Frezon is very cold, and can freeze the station to death if even a few moles get out, so make sure that you lock your canisters or just move your Frezon straight into a storage room.
 
-## Справочный лист
-- Стандартная атмосферная смесь - это [color=#a4885c]78% N2 и 22% O2 при давлении 101,24 кПа.[/color]
-- Газ подчиняется реальной математике. Вы можете использовать уравнение PV = nRT (P - давление кПа * V - объем л = моли * R * температура К), чтобы получить информацию, которую вам нужно знать о газе. R - константа, приблизительно равна 8,31446.
+  ## Reference Sheet
+  - Стандартная атмосферная смесь - это [color=#a4885c]78% N2 и 22% O2 при давлении 101,24 кПа.[/color]
+  - Газ подчиняется реальной математике. Вы можете использовать уравнение:
+  <Box>
+    [color=cyan]PV = nRT [/color]
+  </Box>
+  <Box>
+    ([color=#a4885c]P - давление кПа * V - объем л = моли * R * температура К[/color])
+  </Box>чтобы получить информацию, которую вам нужно знать о газе. R - константа, приблизительно равна 8,31446.
 
 </Document>

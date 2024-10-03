@@ -1,0 +1,13 @@
+- type: constructionGraph
+  id: smokeableGroundTobaccoShrooms
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: ground
+          steps:
+            - material: ShroomsDried
+              amount: 1
+              doAfter: 5
+    - node: ground
+      entity: GroundTobaccoShrooms

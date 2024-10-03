@@ -109,20 +109,20 @@ public abstract partial class SharedSalvageSystem : EntitySystem
 
         if (air.Description != string.Empty)
         {
-            mods.Add(air.Description);
+            mods.Add(Loc.GetString(air.Description));
         }
 
         // only show the description if there is an atmosphere since wont matter otherwise
         var temp = GetBiomeMod<SalvageTemperatureMod>(biome.ID, rand, ref rating);
         if (temp.Description != string.Empty && !air.Space)
         {
-            mods.Add(temp.Description);
+            mods.Add(Loc.GetString(temp.Description));
         }
 
         var light = GetBiomeMod<SalvageLightMod>(biome.ID, rand, ref rating);
         if (light.Description != string.Empty)
         {
-            mods.Add(light.Description);
+            mods.Add(Loc.GetString(light.Description));
         }
 
         var time = GetMod<SalvageTimeMod>(rand, ref rating);
@@ -131,9 +131,9 @@ public abstract partial class SharedSalvageSystem : EntitySystem
         exactDuration = MathF.Round(exactDuration / 15f) * 15f;
         var duration = TimeSpan.FromSeconds(exactDuration);
 
-        if (time.Description != string.Empty)
+        if (!time.Hidden && time.Description != string.Empty)
         {
-            mods.Add(time.Description);
+            mods.Add(Loc.GetString(time.Description));
         }
 
         var rewards = GetRewards(difficulty, rand);

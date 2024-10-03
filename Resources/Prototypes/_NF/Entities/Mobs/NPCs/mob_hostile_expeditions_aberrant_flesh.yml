@@ -54,7 +54,7 @@
   parent: BaseMobFleshExpeditions
   id: MobFleshJaredExpeditions
   description: Jareds are mindless meat shields who run at threats without any concern for their survival. They seem to be more fragile than the average human.
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:
@@ -80,7 +80,7 @@
 - type: entity
   parent: MobFleshJaredExpeditions
   id: MobFleshJaredOldExpeditions
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -93,7 +93,7 @@
   parent: BaseMobFleshExpeditions
   id: MobFleshGolemExpeditions
   description: Golems are mindless brutes, similar to Jareds but with a heavier build. This makes them slightly more resilient, but less agile.
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:
@@ -114,7 +114,7 @@
 - type: entity
   parent: MobFleshGolemExpeditions
   id: MobFleshGolemAltExpeditions
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:
@@ -132,7 +132,7 @@
 - type: entity
   parent: MobFleshGolemExpeditions
   id: MobFleshGolemOldExpeditions
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -155,7 +155,7 @@
   - MobLaserReflect # Added to prevent laser abuse from players
   id: MobFleshAssimilatedMiner
   description: An unfortunate miner that was infected upon contact with aberrant flesh and has been slowly assimilated.
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -200,7 +200,7 @@
   - MobHumanoidHostileAISimpleRanged
   id: MobFleshClampExpeditions
   description: Clamps are flying variants that have mutated to shoot biological projectiles, such as bone spikes containing naturally secreted gastro toxins or small living organisms known simply as "maws".
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: CanMoveInAir
   - type: Fixtures
@@ -257,7 +257,7 @@
 - type: entity
   parent: MobFleshClampExpeditions
   id: MobFleshClampOldExpeditions
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -286,7 +286,7 @@
   parent: BaseMobFleshExpeditions
   id: MobFleshLoverExpeditions
   description: The Lover shares similarities with Jareds and Golems. Its light frame makes it fragile, but capable of flight.
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: CanMoveInAir
   - type: Fixtures
@@ -333,7 +333,7 @@
   id: MobHorrorExpeditions
   name: aberrant flesh horror
   description: Tougher and more resilient than the average aberrant flesh monster, the Horror possesses sharp bone protrusions and highly developed musculature, allowing it to rend the flesh of its victims and tear through armor with efficiency.
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:
@@ -376,7 +376,7 @@
   id: MobMawExpeditions
   name: aberrant flesh maw
   description: Immobile, flesh-boring creatures that are launched at victims. They'll latch on with their teeth and bite their victims until killed or shaken off. Don't put your fingers in it. Unless?..
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: DamageOtherOnHit
     damage:

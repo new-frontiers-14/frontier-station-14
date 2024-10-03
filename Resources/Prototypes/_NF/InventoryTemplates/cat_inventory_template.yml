@@ -1,0 +1,69 @@
+- type: inventoryTemplate
+  id: nfcat
+  slots:
+  - name: head
+    slotTexture: head
+    slotFlags: HEAD
+    slotGroup: MainHotbar
+    uiWindowPos: 0,0
+    strippingWindowPos: 0,0
+    displayName: Head
+    whitelist:
+      components:
+        - CatWearable
+
+  - name: mask
+    slotTexture: mask
+    slotFlags: MASK
+    uiWindowPos: 1,1
+    strippingWindowPos: 1,1
+    displayName: Mask
+    whitelist:
+      tags:
+        - PetWearable
+      components:
+        - CatWearable
+
+  - name: suitstorage
+    slotTexture: suit_storage
+    slotFlags: SUITSTORAGE
+    slotGroup: SecondHotbar
+    stripTime: 3
+    uiWindowPos: 2,0
+    strippingWindowPos: 2,5
+    displayName: Suit Storage
+    whitelist:
+      components:
+        - GasTank
+
+  - name: belt
+    slotTexture: belt
+    slotFlags: BELT
+    slotGroup: SecondHotbar
+    stripTime: 1
+    uiWindowPos: 3,1
+    strippingWindowPos: 1,5
+    displayName: Belt
+    whitelist:
+      components:
+        - CatWearable
+
+  - name: outerClothing
+    slotTexture: suit
+    slotFlags: OUTERCLOTHING
+    stripTime: 6
+    uiWindowPos: 1,1
+    strippingWindowPos: 1,2
+    displayName: Suit
+    whitelist:
+      components:
+        - CatWearable
+
+  - name: id
+    slotTexture: id
+    slotFlags: IDCARD
+    slotGroup: SecondHotbar
+    stripTime: 6
+    uiWindowPos: 2,1
+    strippingWindowPos: 2,4
+    displayName: ID

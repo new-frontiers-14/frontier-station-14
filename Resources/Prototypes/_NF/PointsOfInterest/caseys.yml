@@ -1,5 +1,5 @@
 # Author Info
-# GitHub: 
+# GitHub:
 # Discord: Terezi (??)
 
 # Maintainer Info
@@ -9,9 +9,21 @@
 # Notes:
 # Down at your local saloon
 - type: pointOfInterest
-  id: Caseys
+  id: CaseysCasino
   name: "Казино Чокнутого Джерри"
   rangeMin: 3250
   rangeMax: 5600
   iffColor: "#ffa600" #yellorange for faction style
   gridPath: /Maps/_NF/POI/caseyscasino.yml
+
+- type: gameMap
+  id: CaseysCasino
+  mapName: "Казино чокнутого Джерри"
+  mapPath: /Maps/_NF/POI/caseyscasino.yml
+  minPlayers: 0
+  stations:
+    CaseysCasino:
+      stationProto: DeadDropFrontierOutpost
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: "Казино чокнутого Джерри"

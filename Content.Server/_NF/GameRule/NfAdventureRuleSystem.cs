@@ -10,9 +10,12 @@ using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
-using Content._NF.Shared.GameRule;
+using Content.Shared._NF.GameRule;
 using Content.Server.Procedural;
 using Content.Shared.Bank.Components;
+using Content.Server._NF.GameTicking.Events;
+using Content.Server.GameTicking.Events;
+using Content.Server.GameTicking.Rules.Components;
 using Content.Shared.Procedural;
 using Robust.Server.GameObjects;
 using Robust.Server.Maps;
@@ -23,6 +26,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Map.Components;
 using Content.Shared.Shuttles.Components;
+using Content.Server._NF.GameTicking.Events;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Cargo.Components;
 using Content.Server.GameTicking;
@@ -34,6 +38,7 @@ using Content.Shared._NF.CCVar; // Frontier
 using Robust.Shared.Configuration;
 using Robust.Shared.Physics.Components;
 using Content.Server.Shuttles.Components;
+using Content.Shared.Tiles;
 
 namespace Content.Server._NF.GameRule;
 
@@ -159,6 +164,9 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         GenerateUniques(remainingUniqueProtosBySpawnGroup, out component.UniquePois);
 
         base.Started(uid, component, gameRule, args);
+
+        // Using invalid entity, we don't have a relevant entity to reference here.
+        RaiseLocalEvent(EntityUid.Invalid, new StationsGeneratedEvent(), broadcast: true); // TODO: attach this to a meaningful entity.
 
         var dungenTypes = _prototypeManager.EnumeratePrototypes<DungeonConfigPrototype>();
 
@@ -352,6 +360,10 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
                 {
                     _shuttle.AddIFFFlag(grid, IFFFlags.HideLabel);
                 }
+                if (!proto.AllowIFFChanges)
+                {
+                    _shuttle.SetIFFReadOnly(grid, true);
+                }
 
                 // Ensure damping for each grid in the POI - set the shuttle component if it exists just to be safe
                 var physics = EnsureComp<PhysicsComponent>(grid);
@@ -361,6 +373,23 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
                 {
                     shuttle.AngularDamping = dampingStrength;
                     shuttle.LinearDamping = dampingStrength;
+                }
+
+                if (proto.GridProtection != GridProtectionFlags.None)
+                {
+                    var prot = EnsureComp<ProtectedGridComponent>(grid);
+                    if (proto.GridProtection.HasFlag(GridProtectionFlags.FloorRemoval))
+                        prot.PreventFloorRemoval = true;
+                    if (proto.GridProtection.HasFlag(GridProtectionFlags.FloorPlacement))
+                        prot.PreventFloorPlacement = true;
+                    if (proto.GridProtection.HasFlag(GridProtectionFlags.RcdUse))
+                        prot.PreventRCDUse = true;
+                    if (proto.GridProtection.HasFlag(GridProtectionFlags.EmpEvents))
+                        prot.PreventEmpEvents = true;
+                    if (proto.GridProtection.HasFlag(GridProtectionFlags.Explosions))
+                        prot.PreventExplosions = true;
+                    if (proto.GridProtection.HasFlag(GridProtectionFlags.ArtifactTriggers))
+                        prot.PreventArtifactTriggers = true;
                 }
             }
             gridUid = mapUids[0];

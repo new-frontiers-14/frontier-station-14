@@ -2,17 +2,43 @@
   id: BaseStructureDisableToolUse
   abstract: true
   components:
-  - type: OnToolsUse
-    disabled: true
+  - type: Transform
+    anchored: true
+  - type: DisableToolUse
+    anchoring: true
+    prying: true
+    screwing: true
+    cutting: true
+    welding: true
+    pulsing: true
+    slicing: true
+    sawing: true
+    honking: true
+    rolling: true
+    digging: true
 
 - type: entity
-  id: BaseStructureUnanchorable
+  id: BaseStructureDisableAnchoring
   abstract: true
   components:
   - type: Transform
     anchored: true
-  - type: Anchorable
-    delay: 999999
+  - type: DisableToolUse
+    anchoring: true
+
+- type: entity
+  id: BaseStructureDisablePrying
+  abstract: true
+  components:
+  - type: DisableToolUse
+    prying: true
+
+- type: entity
+  id: BaseStructureDisableScrewing
+  abstract: true
+  components:
+  - type: DisableToolUse
+    screwing: true
 
 - type: entity
   id: BaseStructureDestructible

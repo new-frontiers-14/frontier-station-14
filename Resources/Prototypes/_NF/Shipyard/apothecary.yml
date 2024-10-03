@@ -14,15 +14,19 @@
   description: Малогабаритный медицинский шаттл. Рекомендованный состав команды 1-2 человека.
   price: 31000 #Appraise value 27000 with markup for chemistry equipment and rounding. Feel free to adjust on the backend. Medics are always poor.
   category: Small
-  group: Civilian
+  group: Shipyard
   shuttlePath: /Maps/_NF/Shuttles/apothecary.yml
+  guidebookPage: ShipyardApothecary
+  class:
+  - Medical
+  - Chemistry
 
 - type: gameMap
   id: Apothecary
   mapName: 'NM Апотекарий'
   mapPath: /Maps/_NF/Shuttles/apothecary.yml
   minPlayers: 0
-  stations: 
+  stations:
     Apothecary:
       stationProto: StandardFrontierVessel
       components:

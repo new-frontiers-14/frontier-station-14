@@ -8,13 +8,15 @@
     state: seedextractor
   discipline: CivilianServices
   tier: 1
-  cost: 5000
+  cost: 7500 # Delta Price. 5000 is pre-adjustment.
   recipeUnlocks:
   - BorgModuleGardening
   - BorgModuleHarvesting
+  - PlantBagOfHolding #DeltaV
   - SeedExtractorMachineCircuitboard
   - HydroponicsTrayMachineCircuitboard
   - ReagentGrinderIndustrialMachineCircuitboard
+  - PlantAnalyzer # Frontier
 
 - type: technology
   id: CritterMechs
@@ -247,3 +249,4 @@
   recipeUnlocks:
   - BluespaceBeaker
   - SyringeBluespace
+  - VialBluespace # Frontier
