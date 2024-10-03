@@ -97,6 +97,12 @@ public sealed partial class PointOfInterestPrototype : IPrototype
     /// </summary>
     [DataField("gridPath", required: true)]
     public ResPath GridPath { get; private set; } = default!;
+
+    /// <summary>
+    ///     Should the public transit stop here? If true, this will be added to the list of bus stops.
+    /// </summary>
+    [DataField("busStop")]
+    public bool BusStop { get; private set; }
 }
 
 /// <summary>
