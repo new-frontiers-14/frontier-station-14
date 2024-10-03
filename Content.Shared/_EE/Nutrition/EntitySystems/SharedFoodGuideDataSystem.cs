@@ -68,19 +68,20 @@ public abstract partial class FoodSourceData
     public string Identitier;
 
     /// <summary>
-    ///     Frontier: if true, this data is a recipe, if not, it is a source.
+    ///     Frontier: context about this food source - is it a recipe?  Is it a source?
     /// </summary>
     public FoodSourceType SourceType;
 
     public abstract bool IsSourceOf(EntProtoId food);
 }
 
-
+// Frontier: enum for differentiating sources
 public enum FoodSourceType : byte
 {
     Recipe = 0,
     Source = 1,
 }
+// End Frontier
 
 [Serializable, NetSerializable]
 public sealed partial class FoodButcheringData : FoodSourceData
@@ -90,21 +91,18 @@ public sealed partial class FoodButcheringData : FoodSourceData
 
     [DataField]
     public ButcheringType Type;
-    // [DataField] // Frontier: unused
-    // public List<EntitySpawnEntry> Results; // Frontier: unused
-    [DataField] // Frontier: unused
-    public EntitySpawnEntry Result; // Frontier: unused
+    [DataField]
+    public EntitySpawnEntry Result; // Frontier: List<EntitySpawnEntry><EntitySpawnEntry, Results<Result
 
-    public override int OutputCount => Result.Amount; // Frontier: Results.Count< Result.Amount
+    public override int OutputCount => Result.Amount; // Frontier: Results.Count<Result.Amount
 
-    public FoodButcheringData(EntityPrototype butchered, ButcherableComponent comp, EntitySpawnEntry product)
+    public FoodButcheringData(EntityPrototype butchered, ButcherableComponent comp, EntitySpawnEntry product) // Frontier: add product
     {
         Identitier = butchered.Name;
         Butchered = butchered.ID;
         Type = comp.Type;
-        // Frontier: butcherying 
         //Results = comp.SpawnedEntities; // Frontier: unused
-        Result = product;
+        Result = product; // Frontier: Results<Result, comp.SpawnedEntities<product
         SourceType = FoodSourceType.Source;
         // End Frontier
     }
