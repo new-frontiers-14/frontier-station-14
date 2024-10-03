@@ -192,9 +192,6 @@ namespace Content.Server.Power.EntitySystems
             if (!Resolve(uid, ref battery))
                 return false;
 
-            // If the battery is full, remove its charging component.
-            RemComp<ChargingComponent>(uid); // Frontier: Upstream - #28984
-
             return battery.CurrentCharge / battery.MaxCharge >= 0.99f;
         }
     }
