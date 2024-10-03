@@ -1,3 +1,4 @@
+using Content.Server._NF.Tools.Components;
 using Content.Server.Chat.Systems;
 using Content.Server.Emp;
 using Content.Server.Power.Components;
@@ -23,15 +24,22 @@ public sealed class ElectricalOverloadSystem : EntitySystem
     {
         if (args.Enabled)
         {
-            // Toggled on, means Emp!
+            // Toggled on, means EMP pulse!
             component.EmpAt = DateTime.Now + TimeSpan.FromSeconds(_random.NextDouble(25, 35));
             component.NextBuzz = DateTime.Now + TimeSpan.FromSeconds(_random.NextDouble(3, 5));
+            EnsureComp<DisableToolUseComponent>(uid, out var disableToolUse); // Frontier
+            disableToolUse.Anchoring = true;
+            disableToolUse.Cutting = true;
+            disableToolUse.Prying = true;
+            disableToolUse.Screwing = true;
+            disableToolUse.Welding = true;
         }
         else
         {
-            // Toggled off, means cancel emp.
+            // Toggled off, means cancel EMP pulse.
             component.EmpAt = DateTime.MaxValue;
             component.NextBuzz = DateTime.MaxValue;
+            RemComp<DisableToolUseComponent>(uid); // Frontier
         }
     }
 
@@ -60,7 +68,7 @@ public sealed class ElectricalOverloadSystem : EntitySystem
 
             var coords = _transform.GetMapCoordinates(entity); // Frontier - EMP
             _emp.EmpPulse(coords, component.EmpRange, component.EmpConsumption, component.EmpDuration); // Frontier - EMP
-            // if the device survives, we add a bit of randomness to the next emp time
+            // We add a bit of randomness to the next EMP pulse time
             component.EmpAt = DateTime.Now + TimeSpan.FromSeconds(_random.NextDouble(3, 10));
         }
     }

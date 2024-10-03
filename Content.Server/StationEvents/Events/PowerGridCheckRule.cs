@@ -1,6 +1,4 @@
 using System.Threading;
-using Content.Server._NF.Tools.Components; // Frontier
-using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Server.StationEvents.Components;
@@ -54,9 +52,6 @@ namespace Content.Server.StationEvents.Events
                     if(!apcComponent.MainBreakerEnabled)
                         _apcSystem.ApcToggleBreaker(entity, apcComponent);
                 }
-
-                RemComp<ElectricalOverloadComponent>(entity); // Umbra - ElectricalOverload
-                RemComp<OnToolsUseComponent>(entity); // Umbra - ElectricalOverload
             }
 
             // Can't use the default EndAudio
@@ -92,12 +87,7 @@ namespace Content.Server.StationEvents.Events
                 if (TryComp<ApcComponent>(selected, out var apcComponent))
                 {
                     if (apcComponent.MainBreakerEnabled)
-                    {
                         _apcSystem.ApcToggleBreaker(selected, apcComponent);
-                        EnsureComp<ElectricalOverloadComponent>(selected); // Umbra - ElectricalOverload
-                        var onToolUse = EnsureComp<OnToolsUseComponent>(selected); // Umbra - ElectricalOverload
-                        onToolUse.Disabled = true; // Umbra - ElectricalOverload
-                    }
                 }
                 component.Unpowered.Add(selected);
             }
