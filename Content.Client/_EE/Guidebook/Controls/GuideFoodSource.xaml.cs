@@ -56,7 +56,7 @@ public sealed partial class GuideFoodSource : BoxContainer, ISearchableControl
     {
         if (!_protoMan.TryIndex(entry.Butchered, out var ent))
         {
-            SourceLabel.SetMessage(Loc.GetString("guidebook-food-unknown-proto", ("id", entry.Butchered)));
+            SourceLabel.Text = Loc.GetString("guidebook-food-unknown-proto", ("id", entry.Butchered)); // Frontier: SetMessage<Text
             return;
         }
 
@@ -74,7 +74,7 @@ public sealed partial class GuideFoodSource : BoxContainer, ISearchableControl
     {
         if (!_protoMan.TryIndex(entry.Sliced, out var ent))
         {
-            SourceLabel.SetMessage(Loc.GetString("guidebook-food-unknown-proto", ("id", entry.Sliced)));
+            SourceLabel.Text = Loc.GetString("guidebook-food-unknown-proto", ("id", entry.Sliced)); // Frontier: SetMessage<Text
             return;
         }
 
@@ -87,7 +87,7 @@ public sealed partial class GuideFoodSource : BoxContainer, ISearchableControl
     {
         if (!_protoMan.TryIndex(entry.Recipe, out var recipe))
         {
-            SourceLabel.SetMessage(Loc.GetString("guidebook-food-unknown-proto", ("id", entry.Result)));
+            SourceLabel.Text = Loc.GetString("guidebook-food-unknown-proto", ("id", entry.Result)); // Frontier: SetMessage<Text
             return;
         }
 
@@ -99,7 +99,7 @@ public sealed partial class GuideFoodSource : BoxContainer, ISearchableControl
             .Where(it => it.Length > 0);
 
         var combinedIngredients = string.Join("\n", combinedLiquids.Union(combinedSolids));
-        SourceLabel.SetMessage(Loc.GetString("guidebook-food-processing-recipe", ("ingredients", combinedIngredients)));
+        SourceLabel.Text = Loc.GetString("guidebook-food-processing-recipe", ("ingredients", combinedIngredients)); // Frontier: SetMessage<Text
 
         ProcessingTexture.Texture = GetRsiTexture("/Textures/Structures/Machines/microwave.rsi", "mw");
         ProcessingLabel.Text = Loc.GetString("guidebook-food-processing-cooking", ("time", recipe.CookTime));
@@ -109,7 +109,7 @@ public sealed partial class GuideFoodSource : BoxContainer, ISearchableControl
     {
         if (!_protoMan.TryIndex(entry.Reaction, out var reaction))
         {
-            SourceLabel.SetMessage(Loc.GetString("guidebook-food-unknown-proto", ("id", entry.Reaction)));
+            SourceLabel.Text = Loc.GetString("guidebook-food-unknown-proto", ("id", entry.Reaction)); // Frontier: SetMessage<Text
             return;
         }
 
@@ -117,7 +117,7 @@ public sealed partial class GuideFoodSource : BoxContainer, ISearchableControl
             .Select(it => _protoMan.TryIndex<ReagentPrototype>(it.Key, out var proto) ? FormatIngredient(proto, it.Value.Amount) : "")
             .Where(it => it.Length > 0);
 
-        SourceLabel.SetMessage(Loc.GetString("guidebook-food-processing-recipe", ("ingredients", string.Join("\n", combinedReagents))));
+        SourceLabel.Text = Loc.GetString("guidebook-food-processing-recipe", ("ingredients", string.Join("\n", combinedReagents))); // Frontier: SetMessage<Text
         ProcessingTexture.TexturePath = "/Textures/Interface/Misc/beakerlarge.png";
         ProcessingLabel.Text = Loc.GetString("guidebook-food-processing-reaction");
     }
@@ -135,7 +135,7 @@ public sealed partial class GuideFoodSource : BoxContainer, ISearchableControl
 
     private void SetSource(EntityPrototype ent)
     {
-        SourceLabel.SetMessage(ent.Name);
+        SourceLabel.Text = Loc.GetString("guidebook-food-sources-ent-wrapper", ("name", ent.Name)); // Frontier SetMessage<.Text, add Loc.GetString for "guidebook-food-sources-ent-wrapper"
         OutputsTexture.Texture = _sprites.Frame0(ent);
     }
 
