@@ -1,0 +1,43 @@
+<BoxContainer xmlns="https://spacestation14.io"
+              xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+              Orientation="Vertical"
+              Margin="5 5 5 5">
+    <PanelContainer HorizontalExpand="True">
+        <PanelContainer.PanelOverride>
+            <gfx:StyleBoxFlat BorderThickness="1" BorderColor="#777777"/>
+        </PanelContainer.PanelOverride>
+        <BoxContainer Orientation="Vertical">
+            <PanelContainer Name="NameBackground" HorizontalExpand="True" VerticalExpand="False">
+                <RichTextLabel Name="FoodName" HorizontalAlignment="Center"/>
+            </PanelContainer>
+            <BoxContainer Name="SourcesContainer" HorizontalExpand="True">
+                <Collapsible HorizontalExpand="True">
+                    <CollapsibleHeading Title="{Loc 'guidebook-food-sources-header'}"/>
+                    <CollapsibleBody>
+                        <GridContainer Name="SourcesDescriptionContainer"
+                                       Margin="10 0 10 0"
+                                       Columns="1"
+                                       HSeparationOverride="5"
+                                       HorizontalAlignment="Stretch"
+                                       HorizontalExpand="True"/>
+                    </CollapsibleBody>
+                </Collapsible>
+            </BoxContainer>
+            <BoxContainer Name="CompositionContainer" HorizontalExpand="True">
+                <Collapsible>
+                    <CollapsibleHeading Title="{Loc 'guidebook-food-reagents-header'}"/>
+                    <CollapsibleBody>
+                        <BoxContainer Name="CompositionDescriptionContainer"
+                                      Orientation="Vertical"
+                                      Margin="10 0 10 0"
+                                      HorizontalExpand="True"/>
+                    </CollapsibleBody>
+                </Collapsible>
+            </BoxContainer>
+            <BoxContainer Margin="10 5 10 10" HorizontalExpand="True">
+                <!-- The troublemaker !-->
+                <RichTextLabel Name="FoodDescription" HorizontalAlignment="Left"/>
+            </BoxContainer>
+        </BoxContainer>
+    </PanelContainer>
+</BoxContainer>
