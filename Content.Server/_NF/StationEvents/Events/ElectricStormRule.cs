@@ -16,10 +16,6 @@ namespace Content.Server.StationEvents.Events;
 
 public sealed class ElectricStormRule : StationEventSystem<ElectricStormRuleComponent>
 {
-    [Dependency] private readonly ElectricalOverloadSystem _electricalOverload = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
-
-    private const int MaxRetries = 10;
     private float _effectTimer = 0;
 
     public override void Initialize()
@@ -37,7 +33,8 @@ public sealed class ElectricStormRule : StationEventSystem<ElectricStormRuleComp
     protected override void Ended(EntityUid uid, ElectricStormRuleComponent component, GameRuleComponent gameRule, GameRuleEndedEvent args)
     {
         base.Ended(uid, component, gameRule, args);
-        //RemComp<ElectricalOverloadComponent>(entity); // Umbra - ElectricalOverload
+
+        RemComp<ElectricalOverloadComponent>(uid);
     }
 
     protected override void ActiveTick(EntityUid uid, ElectricStormRuleComponent component, GameRuleComponent gameRule, float frameTime)
