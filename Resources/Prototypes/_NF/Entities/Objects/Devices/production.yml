@@ -229,6 +229,23 @@
       price: 40
 
 - type: entity
+  id: BlueprintLithographMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: blueprint lithograph machine board
+  components:
+  - type: Sprite
+    state: science
+  - type: MachineBoard
+    prototype: BlueprintLithograph
+    requirements:
+      MatterBin: 1
+      Manipulator: 1
+    tagRequirements:
+      GlassBeaker:
+        amount: 2
+        defaultPrototype: Beaker
+
+- type: entity
   id: ElectricRangeMachineCircuitboard
   parent: BaseMachineCircuitboard
   name: electric range machine board
