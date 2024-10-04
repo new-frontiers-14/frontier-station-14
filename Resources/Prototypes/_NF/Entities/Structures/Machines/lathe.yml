@@ -1,4 +1,21 @@
 - type: entity
+  id: BlueprintReceiverBase
+  abstract: true
+  components:
+  - type: BlueprintReceiver
+    whitelist:
+      tags:
+      - BlueprintAutolathe
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      blueprint: !type:Container
+  - type: EmptyOnMachineDeconstruct
+    containers:
+    - blueprint
+
+- type: entity
   parent: [BaseStructureDisableToolUse, BaseLathe]
   id: PrizeCounter
   name: prize counter
@@ -137,7 +154,7 @@
         - PrizeTicket
 
 - type: entity
-  parent: BaseLatheLube
+  parent: [ BaseLatheLube, BlueprintReceiverBase ]
   id: SalvageTechfabNF
   name: salvage techfab
   description: Prints equipment for salvagers.
@@ -271,7 +288,7 @@
 
 - type: entity
   id: NfsdTechFab
-  parent: SecurityTechFab
+  parent: [ SecurityTechFab, BlueprintReceiverBase ]
   name: nfsd techfab
   description: Prints equipment for use by nfsd.
   components:
@@ -293,7 +310,7 @@
 
 - type: entity
   id: MercenaryTechFab
-  parent: BaseLatheLube
+  parent: [ BaseLatheLube, BlueprintReceiverBase ]
   name: mercenary techfab
   description: Prints the bare minimum of tools of the trade that any budget mercenary or private security could need. Nothing fancy.
   components:
@@ -512,7 +529,7 @@
   parent:
   - MercenaryTechFab
   - BaseHyperlathe
-  - PunkHoloGraffitiOverlay # Prototype can be located at \Resources\Prototypes\_NF\Entities\Structures\Holographic\graffiti.yml
+  - PunkHoloGraffitiOverlay # Prototype can be located at /Resources/Prototypes/_NF/Entities/Structures/Holographic/graffiti.yml
   name: hacked mercenary techfab
   description: Prints the bare minimum of tools of the trade that any budget mercenary or private security could need. Nothing fancy.
   components:
@@ -708,3 +725,74 @@
       - MagazineBoxMagnumUranium
       - MagazineBoxPistolUranium
       - MagazineBoxRifleUranium
+
+- type: entity
+  id: BlueprintLithograph
+  parent: BaseLatheLube
+  name: blueprint lithograph
+  description: Prints blueprints.
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Machines/blueprint_printer.rsi
+    snapCardinals: true
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: CircuitImprinterMachineCircuitboard
+  - type: Lathe
+    producingSound: /Audio/Machines/circuitprinter.ogg
+    idleState: icon
+    runningState: building
+    staticRecipes:
+    - NFBlueprintPowerCellMediumPrinted
+    dynamicRecipes:
+    # Engineering
+    - NFBlueprintPowerDrill
+    - NFBlueprintJawsOfLife
+    - NFBlueprintWelderExperimental
+    - NFBlueprintShipyardRCDAmmo
+    - NFBlueprintPowerCellMicroreactor
+    - NFBlueprintSignallerAdvanced
+    - NFBlueprintClothingBackpackHolding
+    - NFBlueprintClothingBackpackSatchelHolding
+    - NFBlueprintClothingBackpackMessengerHolding
+    - NFBlueprintClothingBackpackDuffelHolding
+    - NFBlueprintConstructionBagOfHolding
+    - NFBlueprintPortableRecharger
+    # Medical
+    - NFBlueprintBluespaceBeaker
+    - NFBlueprintSyringeBluespace
+    - NFBlueprintVialBluespace
+    # Salvage
+    - NFBlueprintOreBagOfHolding
+    - NFBlueprintMiningDrillDiamond
+    - NFBlueprintAdvancedMineralScannerEmpty
+    - NFBlueprintClothingOuterHardsuitMaximPrototype
+    # Science
+    - NFBlueprintRped
+    - NFBlueprintSuperCapacitorStockPart
+    - NFBlueprintPicoManipulatorStockPart
+    - NFBlueprintSuperMatterBinStockPart
+    - NFBlueprintClothingShoesBootsMagAdv
+    # Service
+    - NFBlueprintAdvMopItem
+    - NFBlueprintPlantAnalyzerEmpty
+    - NFBlueprintPlantBagOfHolding
+    # Armory
+    - NFBlueprintWeaponAntiqueLaser
+    - NFBlueprintWeaponLaserSvalinn
+    - NFBlueprintPortableRecharger
+    - BlueprintClothingOuterHardsuitScaf
+  - type: MaterialStorage
+    whitelist:
+      tags:
+        - Sheet
+        - RawMaterial
+        - Ingot
+  - type: RequireProjectileTarget
