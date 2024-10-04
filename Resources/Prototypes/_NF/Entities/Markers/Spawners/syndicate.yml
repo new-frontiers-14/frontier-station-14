@@ -46,3 +46,20 @@
         - CrateSyndicateSurplusBundle
         - CrateSyndicateSuperSurplusBundle
       rareChance: 0.1
+
+- type: entity
+  name: Syndicate POI Pinpointer
+  id: PinpointerSyndicatePOISpawner
+  parent: MarkerBase
+  suffix: 10
+  components:
+    - type: Sprite
+      layers:
+        - state: red
+        - sprite: Objects/Devices/pinpointer.rsi
+          state: pinpointer-syndicate
+    - type: RandomSpawner
+      prototypes:
+        - PinpointerSyndicatePOI
+      chance: 0.1
+      offset: 0
