@@ -93,6 +93,27 @@
     sprite: _NF/Objects/Storage/Cases/explosivescaseshort.rsi
 
 - type: entity
+  name: document case
+  parent: WeaponCaseShortExplosives
+  id: WeaponCaseShortDocuments
+  description: A reinforced casing for storing important documents.
+  suffix: Short
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Storage/Cases/documentcaseshort.rsi
+  - type: Item
+    sprite: _NF/Objects/Storage/Cases/documentcaseshort.rsi
+  - type: Storage
+    maxItemSize: Normal
+    grid:
+    - 0,0,1,1
+    whitelist:
+      tags:
+      - BlueprintAutolathe
+      - Document
+      - Paper
+
+- type: entity
   name: weapon case
   parent: WeaponCaseLong
   id: WeaponCaseHeavy
