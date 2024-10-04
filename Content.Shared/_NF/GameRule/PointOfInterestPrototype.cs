@@ -73,10 +73,12 @@ public sealed partial class PointOfInterestPrototype : IPrototype
 
     /// <summary>
     ///     The group that this POI belongs to. Currently, the default groups are:
-    ///     "CargoDepot"
+    ///     "CargoDepot" 
     ///     "MarketStation"
+    ///     "Required"
     ///     "Optional"
-    ///     These three have corresponding CVARS by default, that set an optional # of this group to spawn.
+    ///     Each POI labeled in the Required group will be spawned in every round.
+    ///     Apart from that, each of thesehave corresponding CVARS by default, that set an optional # of this group to spawn.
     ///     Traditionally, it is 2 cargo depots, 1 trade station, and 8 optional POIs.
     ///     Dynamically added groups will default to 1 option chosen in that group, using the SpawnChance as a weighted chance
     ///     for the entire group to spawn on a per-POI basis.
