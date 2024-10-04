@@ -47,16 +47,16 @@ public sealed partial class PointOfInterestPrototype : IPrototype
     public IFFFlags Flags = IFFFlags.None;
 
     /// <summary>
-    ///     Whether or not the POI itself should be able to move or be moved. Should be false for immobile POIs (static stations) and true for ship-like POIs.
-    /// </summary>
-    [DataField]
-    public bool CanMove { get; private set; }
-
-    /// <summary>
     ///     Whether or not the POI permits IFF changes (i.e. from a console aboard it)
     /// </summary>
     [DataField]
     public bool AllowIFFChanges { get; private set; }
+
+    /// <summary>
+    ///     Whether or not the POI itself should be able to move or be moved. Should be false for immobile POIs (static stations) and true for ship-like POIs.
+    /// </summary>
+    [DataField]
+    public bool CanMove { get; private set; }
 
     /// <summary>
     ///     Whether or not the POI is shown on IFF.
