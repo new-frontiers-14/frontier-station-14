@@ -10,7 +10,22 @@
             <PanelContainer Name="NameBackground" HorizontalExpand="True" VerticalExpand="False">
                 <RichTextLabel Name="FoodName" HorizontalAlignment="Center"/>
             </PanelContainer>
-            <BoxContainer Name="SourcesContainer" HorizontalExpand="True">
+            <!-- Frontier: separate recipes from sources -->
+            <BoxContainer Name="RecipesContainer" HorizontalExpand="True" Visible="false">
+                <Collapsible HorizontalExpand="True">
+                    <CollapsibleHeading Title="{Loc 'guidebook-food-recipes-header'}"/>
+                    <CollapsibleBody>
+                        <GridContainer Name="RecipesDescriptionContainer"
+                                      Margin="10 0 10 0"
+                                      Columns="1"
+                                      HSeparationOverride="0"
+                                      HorizontalAlignment="Stretch"
+                                      HorizontalExpand="True"/>
+                    </CollapsibleBody>
+                </Collapsible>
+            </BoxContainer>
+            <!-- End Frontier: separate recipes from sources -->
+            <BoxContainer Name="SourcesContainer" HorizontalExpand="True" Visible="false"> <!-- Frontier: add Visible -->
                 <Collapsible HorizontalExpand="True">
                     <CollapsibleHeading Title="{Loc 'guidebook-food-sources-header'}"/>
                     <CollapsibleBody>

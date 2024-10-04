@@ -72,11 +72,11 @@ public sealed class FoodGuideDataSystem : SharedFoodGuideDataSystem
 
             if (ent.TryGetComponent<ButcherableComponent>(out var butcherable))
             {
-                var butcheringSource = new FoodButcheringData(ent, butcherable);
                 foreach (var butchlet in butcherable.SpawnedEntities)
                 {
                     if (butchlet.PrototypeId is null)
                         continue;
+                    var butcheringSource = new FoodButcheringData(ent, butcherable, butchlet);
 
                     _sources.GetOrNew(butchlet.PrototypeId).Add(butcheringSource);
                 }
@@ -91,7 +91,7 @@ public sealed class FoodGuideDataSystem : SharedFoodGuideDataSystem
         // Recipes
         foreach (var recipe in _protoMan.EnumeratePrototypes<FoodRecipePrototype>())
         {
-            _sources.GetOrNew(recipe.Result).Add(new FoodRecipeData(recipe));
+            _sources.GetOrNew(recipe.Result).Add(new FoodRecipeData(recipe)); // Frontier: _sources<_recipes
         }
 
         // Entity-spawning reactions
@@ -102,7 +102,7 @@ public sealed class FoodGuideDataSystem : SharedFoodGuideDataSystem
                 if (effect is not CreateEntityReactionEffect entEffect)
                     continue;
 
-                _sources.GetOrNew(entEffect.Entity).Add(new FoodReactionData(reaction, entEffect.Entity, (int) entEffect.Number));
+                _sources.GetOrNew(entEffect.Entity).Add(new FoodReactionData(reaction, entEffect.Entity, (int) entEffect.Number)); // Frontier: _sources<_recipes
             }
         }
 
@@ -122,7 +122,8 @@ public sealed class FoodGuideDataSystem : SharedFoodGuideDataSystem
 
             // We also limit the number of sources to 10 because it's a huge performance strain to render 500 raw meat recipes.
             var distinctSources = sources.DistinctBy(it => it.Identitier).Take(10);
-            var entry = new FoodGuideEntry(result, proto.Name, distinctSources.ToArray(), composition);
+
+            var entry = new FoodGuideEntry(result, proto.Name, distinctSources.Where(it => it.SourceType == FoodSourceType.Recipe).ToArray(), distinctSources.Where(it => it.SourceType == FoodSourceType.Source).ToArray(), composition); // Frontier: add Where clauses, recipe arg
             Registry.Add(entry);
         }
 

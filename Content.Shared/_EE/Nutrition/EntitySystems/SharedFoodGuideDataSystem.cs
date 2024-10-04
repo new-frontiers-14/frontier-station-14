@@ -35,16 +35,20 @@ public partial struct FoodGuideEntry
     [DataField]
     public string Identifier; // Used for sorting
 
+    [DataField] // Frontier
+    public FoodSourceData[] Recipes; // Frontier
+
     [DataField]
     public FoodSourceData[] Sources;
 
     [DataField]
     public ReagentQuantity[] Composition;
 
-    public FoodGuideEntry(EntProtoId result, string identifier, FoodSourceData[] sources, ReagentQuantity[] composition)
+    public FoodGuideEntry(EntProtoId result, string identifier, FoodSourceData[] recipes, FoodSourceData[] sources, ReagentQuantity[] composition) // Frontier: add recipes
     {
         Result = result;
         Identifier = identifier;
+        Recipes = recipes; // Frontier
         Sources = sources;
         Composition = composition;
     }
@@ -63,8 +67,21 @@ public abstract partial class FoodSourceData
     /// </summary>
     public string Identitier;
 
+    /// <summary>
+    ///     Frontier: context about this food source - is it a recipe?  Is it a source?
+    /// </summary>
+    public FoodSourceType SourceType;
+
     public abstract bool IsSourceOf(EntProtoId food);
 }
+
+// Frontier: enum for differentiating sources
+public enum FoodSourceType : byte
+{
+    Recipe = 0,
+    Source = 1,
+}
+// End Frontier
 
 [Serializable, NetSerializable]
 public sealed partial class FoodButcheringData : FoodSourceData
@@ -74,21 +91,24 @@ public sealed partial class FoodButcheringData : FoodSourceData
 
     [DataField]
     public ButcheringType Type;
-
     [DataField]
-    public List<EntitySpawnEntry> Results;
+    public EntitySpawnEntry Result; // Frontier: List<EntitySpawnEntry><EntitySpawnEntry, Results<Result
 
-    public override int OutputCount => Results.Count;
+    public override int OutputCount => Result.Amount; // Frontier: Results.Count<Result.Amount
 
-    public FoodButcheringData(EntityPrototype butchered, ButcherableComponent comp)
+    public FoodButcheringData(EntityPrototype butchered, ButcherableComponent comp, EntitySpawnEntry product) // Frontier: add product
     {
         Identitier = butchered.Name;
         Butchered = butchered.ID;
         Type = comp.Type;
-        Results = comp.SpawnedEntities;
+        //Results = comp.SpawnedEntities; // Frontier: unused
+        Result = product; // Frontier: Results<Result, comp.SpawnedEntities<product
+        SourceType = FoodSourceType.Source;
+        // End Frontier
     }
 
-    public override bool IsSourceOf(EntProtoId food) => Results.Any(it => it.PrototypeId == food);
+    //public override bool IsSourceOf(EntProtoId food) => Results.Any(it => it.PrototypeId == food); // Frontier
+    public override bool IsSourceOf(EntProtoId food) => Result.PrototypeId == food.Id; // Frontier
 }
 
 [Serializable, NetSerializable]
@@ -107,6 +127,7 @@ public sealed partial class FoodSlicingData : FoodSourceData
         Sliced = sliced.ID;
         Result = result;
         _outputCount = outputCount; // Server-only
+        SourceType = FoodSourceType.Source; // Frontier
     }
 
     public override bool IsSourceOf(EntProtoId food) => food == Result;
@@ -131,6 +152,7 @@ public sealed partial class FoodRecipeData : FoodSourceData
         Recipe = proto.ID;
         Result = proto.Result;
         _outputCount = proto.ResultCount; // Frontier
+        SourceType = FoodSourceType.Recipe; // Frontier
     }
 
     public override bool IsSourceOf(EntProtoId food) => food == Result;
@@ -155,6 +177,7 @@ public sealed partial class FoodReactionData : FoodSourceData
         Reaction = reaction.ID;
         Result = result;
         _outputCount = outputCount;
+        SourceType = FoodSourceType.Recipe; // Frontier
     }
 
     public override bool IsSourceOf(EntProtoId food) => food == Result;

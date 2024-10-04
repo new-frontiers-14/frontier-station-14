@@ -103,7 +103,23 @@ public sealed partial class GuideFoodEmbed : BoxContainer, IDocumentTag, ISearch
 
         #endregion
 
+        // Frontier: separate Recipes from Sources
+        #region Recipes
+        if (data.Recipes.Length > 0)
+            RecipesContainer.Visible = true;
+
+        foreach (var recipe in data.Recipes.OrderBy(it => it.OutputCount))
+        {
+            var control = new GuideFoodSource(proto, recipe, _prototype);
+            RecipesDescriptionContainer.AddChild(control);
+        }
+
+        #endregion
+        // End Frontier
+
         #region Sources
+        if (data.Sources.Length > 0) // Frontier
+            SourcesContainer.Visible = true; // Frontier
 
         foreach (var source in data.Sources.OrderBy(it => it.OutputCount))
         {
