@@ -93,7 +93,7 @@
 - type: entity
   abstract: true
   id: BaseGeneratorWallmount
-  parent: BaseGenerator
+  parent: [ BaseStructureDisableToolUse, BaseGenerator ] # Frontier - BaseStructureDisableToolUse
   name: wallmount generator
   description: A high efficiency thermoelectric generator stuffed in a wall cabinet.
   placement:
@@ -200,7 +200,7 @@
     price: 14
   - type: ContainerFill
     containers:
-      board: [ WallmountGeneratorElectronics ]
+      board: [ Null ] # Frontier WallmountGeneratorElectronics<Null
   - type: ContainerContainer
     containers:
       board: !type:Container
@@ -221,7 +221,7 @@
     price: 38
   - type: ContainerFill
     containers:
-      board: [ WallmountGeneratorAPUElectronics ]
+      board: [ Null ] # Frontier WallmountGeneratorAPUElectronics<Null
   - type: ContainerContainer
     containers:
       board: !type:Container
