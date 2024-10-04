@@ -8,7 +8,11 @@
       whitelist:
         tags:
         - ShellKS23
-      capacity: 8
+      capacity: 6
+    - type: Item
+      size: Normal
+      shape:
+      - 0,0,1,0
 
 - type: entity
   name: KS23 lethal cartridges dispenser
@@ -19,12 +23,11 @@
     - type: BallisticAmmoProvider
       proto: ShellKS23Base
     - type: Icon
-      sprite: _NF/Objects/Storage/boxes.rsi
-      state: shotgunlethaldisplay
+      sprite: Corvax/Objects/Storage/boxes.rsi
+      state: KS23BaseDispenser
     - type: Sprite
-      layers:
-        - state: boxwide
-        - state: shelllethal
+      sprite: Corvax/Objects/Storage/boxes.rsi
+      state: KS23BaseDispenser
 
 - type: entity
   name: KS23 flashbang cartridges dispenser
@@ -35,12 +38,11 @@
     - type: BallisticAmmoProvider
       proto: ShellKS23Flashbang
     - type: Icon
-      sprite: _NF/Objects/Storage/boxes.rsi
-      state: shotgunlethaldisplay
+      sprite: Corvax/Objects/Storage/boxes.rsi
+      state: KS23FlashbangDispenser
     - type: Sprite
-      layers:
-        - state: boxwide
-        - state: shelllethal
+      sprite: Corvax/Objects/Storage/boxes.rsi
+      state: KS23FlashbangDispenser
 
 - type: entity
   name: KS23 smoke cartridges dispenser
@@ -51,12 +53,11 @@
     - type: BallisticAmmoProvider
       proto: ShellKS23Smoke
     - type: Icon
-      sprite: _NF/Objects/Storage/boxes.rsi
-      state: shotgunlethaldisplay
+      sprite: Corvax/Objects/Storage/boxes.rsi
+      state: KS23SmokeDispenser
     - type: Sprite
-      layers:
-        - state: boxwide
-        - state: shelllethal
+      sprite: Corvax/Objects/Storage/boxes.rsi
+      state: KS23SmokeDispenser
 
 - type: entity
   name: KS23 beanbag cartridges dispenser
@@ -67,9 +68,8 @@
     - type: BallisticAmmoProvider
       proto: ShellKS23Beanbag
     - type: Icon
-      sprite: _NF/Objects/Storage/boxes.rsi
-      state: shotgunlethaldisplay
+      sprite: Corvax/Objects/Storage/boxes.rsi
+      state: KS23BeanbagDispenser
     - type: Sprite
-      layers:
-        - state: boxwide
-        - state: shelllethal
+      sprite: Corvax/Objects/Storage/boxes.rsi
+      state: KS23BeanbagDispenser
