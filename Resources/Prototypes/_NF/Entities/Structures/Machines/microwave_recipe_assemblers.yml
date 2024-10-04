@@ -1,4 +1,4 @@
-# The machines here are to separate out the recipes that different microwave machines can make.
+# The machines here are to separate out the recipes that different microwave-based machines can make.
 - type: entity
   id: KitchenElectricRange
   parent: [ BaseMachinePowered, ConstructibleMachine ]
@@ -16,6 +16,7 @@
     validRecipeTypes: Oven
     canHeat: true
     canIrradiate: false
+    menuTitle: electric-range-menu-title
   - type: Appearance
   - type: GenericVisualizer
     visuals:
@@ -116,6 +117,7 @@
   - type: EntityHeater
     passivePower: 1000 # Base oven power.
   - type: PlaceableSurface
+    isPlaceable: false # Hacky, but items have to be dropped on the range.
   - type: ItemPlacer
     maxEntities: 4
     whitelist:
@@ -134,6 +136,7 @@
     validRecipeTypes: Assembler
     canHeat: false
     canIrradiate: false
+    menuTitle: assembler-menu-title
   - type: GenericVisualizer #TODO: needs work
     visuals:
       enum.PowerDeviceVisuals.VisualState:
@@ -186,19 +189,20 @@
     powerLoad: 400 # TODO: less power?  More power?  Same power?
   - type: Machine
     board: KitchenAssemblerMachineCircuitboard
+  - type: UserInterface
+    interfaces:
+      enum.MicrowaveUiKey.Key:
+        type: AssemblerBoundUserInterface
 
 - type: entity
   id: MedicalAssembler
-  parent: [ BaseMachinePowered, ConstructibleMachine, KitchenMicrowave ]
+  parent: KitchenAssembler
   name: medical assembler
   description: Great for medicine, apparently. You don't know how it works.
   components:
   - type: Microwave
-    explosionChance: 0 # Should really chop them up or something dumb, but should not explode
-    lightningChance: 0 # It's a weird arm chop thingy, not a tesla coil.
     validRecipeTypes: MedicalAssembler
-    canHeat: false
-    canIrradiate: false
+    menuTitle: medical-assembler-menu-title
   - type: GenericVisualizer
     visuals:
       enum.PowerDeviceVisuals.VisualState:
@@ -225,6 +229,6 @@
       map: ["enum.MicrowaveVisualizerLayers.BaseUnlit"]
       visible: false
   - type: ApcPowerReceiver
-    powerLoad: 1500
+    powerLoad: 500
   - type: Machine
     board: MedicalAssemblerMachineCircuitboard

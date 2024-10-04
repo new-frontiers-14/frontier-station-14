@@ -137,6 +137,21 @@ namespace Content.Server.Kitchen.Components
         /// </summary>
         [DataField, ViewVariables(VVAccess.ReadWrite)]
         public bool CanIrradiate = true;
+
+        /// <summary>
+        /// The localization string to be displayed on the menu UI
+        /// </summary>
+        [DataField, ViewVariables(VVAccess.ReadWrite)]
+        public string MenuTitle = "microwave-menu-title";
+
+        /// <summary>
+        /// The localization string to be displayed when something that's too large is inserted.
+        /// </summary>
+        [DataField, ViewVariables(VVAccess.ReadWrite)]
+        public string TooBigPopup = "microwave-component-interact-item-too-big";
+
+        [DataField, ViewVariables(VVAccess.ReadWrite)]
+        public SoundSpecifier NoRecipeSound = new SoundPathSpecifier("/Audio/Effects/Cargo/buzz_sigh.ogg");
         // End Frontier
     }
 
