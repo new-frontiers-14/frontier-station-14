@@ -505,6 +505,7 @@
     - StationAnchorCircuitboard
     - SalvageMagnetMachineCircuitboard
     - SalvageTechFabCircuitboardNF # Frontier
+    - BlueprintLithographMachineCircuitboard # Frontier
     dynamicRecipes:
       - ThermomachineFreezerMachineCircuitBoard
       - HellfireFreezerMachineCircuitBoard
@@ -971,7 +972,7 @@
 
 - type: entity
   id: MedicalTechFab
-  parent: BaseLatheLube
+  parent: [ BaseLatheLube, BlueprintReceiverBase ] # Frontier: added BlueprintReceiverBase
   name: medical techfab
   description: Prints equipment for use by the medbay.
   components:
