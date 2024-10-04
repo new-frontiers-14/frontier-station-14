@@ -7,16 +7,16 @@
   components:
   - type: Microwave
     capacity: 10
-    canMicrowaveIdsSafely: false # TODO: actually burn IDs
-    explosionChance: 0 # it's a goddamn oven
-    lightningChance: 0 # it's a goddamn oven
+    canMicrowaveIdsSafely: false
+    explosionChance: 0
+    lightningChance: 0
     startCookingSound: /Audio/_NF/Effects/egg-timer.ogg
     foodDoneSound: /Audio/Machines/ding.ogg
     loopingSound: /Audio/_NF/Effects/silence.ogg
     validRecipeTypes: Oven
     canHeat: true
     canIrradiate: false
-    menuTitle: electric-range-menu-title
+    key: ElectricRangeKey
   - type: Appearance
   - type: GenericVisualizer
     visuals:
@@ -40,7 +40,7 @@
           Medium: { visible: true, state: range_medium }
           High: { visible: true, state: range_high }
   - type: ActivatableUI
-    key: enum.MicrowaveUiKey.Key
+    key: enum.MicrowaveUiKey.ElectricRangeKey
   - type: DeviceLinkSink
     ports:
     - On
@@ -51,7 +51,7 @@
     range: 200
   - type: UserInterface
     interfaces:
-      enum.MicrowaveUiKey.Key:
+      enum.MicrowaveUiKey.ElectricRangeKey:
         type: MicrowaveBoundUserInterface
   - type: Physics
     bodyType: Static
@@ -117,7 +117,7 @@
   - type: EntityHeater
     passivePower: 1000 # Base oven power.
   - type: PlaceableSurface
-    isPlaceable: false # Hacky, but items have to be dropped on the range.
+    isPlaceable: false # Prevent items hanging around for a few frames when clicked on the oven.
   - type: ItemPlacer
     maxEntities: 4
     whitelist:
@@ -136,7 +136,7 @@
     validRecipeTypes: Assembler
     canHeat: false
     canIrradiate: false
-    menuTitle: assembler-menu-title
+    key: AssemblerKey
   - type: GenericVisualizer #TODO: needs work
     visuals:
       enum.PowerDeviceVisuals.VisualState:
@@ -186,23 +186,25 @@
       map: ["scan"]
       visible: false
   - type: ApcPowerReceiver
-    powerLoad: 400 # TODO: less power?  More power?  Same power?
+    powerLoad: 400
   - type: Machine
     board: KitchenAssemblerMachineCircuitboard
+  - type: ActivatableUI
+    key: enum.MicrowaveUiKey.AssemblerKey
   - type: UserInterface
     interfaces:
-      enum.MicrowaveUiKey.Key:
+      enum.MicrowaveUiKey.AssemblerKey:
         type: AssemblerBoundUserInterface
 
 - type: entity
   id: MedicalAssembler
-  parent: KitchenAssembler
+  parent: [ BaseMachinePowered, ConstructibleMachine, KitchenAssembler]
   name: medical assembler
   description: Great for medicine, apparently. You don't know how it works.
   components:
   - type: Microwave
     validRecipeTypes: MedicalAssembler
-    menuTitle: medical-assembler-menu-title
+    key: MedicalAssemblerKey
   - type: GenericVisualizer
     visuals:
       enum.PowerDeviceVisuals.VisualState:
@@ -232,3 +234,9 @@
     powerLoad: 500
   - type: Machine
     board: MedicalAssemblerMachineCircuitboard
+  - type: ActivatableUI
+    key: enum.MicrowaveUiKey.MedicalAssemblerKey
+  - type: UserInterface
+    interfaces:
+      enum.MicrowaveUiKey.MedicalAssemblerKey:
+        type: AssemblerBoundUserInterface

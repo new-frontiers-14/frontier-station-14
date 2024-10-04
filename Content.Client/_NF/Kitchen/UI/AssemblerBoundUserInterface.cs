@@ -20,8 +20,21 @@ namespace Content.Client._NF.Kitchen.UI
         [ViewVariables]
         private readonly Dictionary<int, ReagentQuantity> _reagents = new();
 
+        private readonly string _menuTitle;
+        private readonly string _leftFlavorText;
+
         public AssemblerBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
         {
+            if ((MicrowaveUiKey)uiKey == MicrowaveUiKey.MedicalAssemblerKey)
+            {
+                _menuTitle = "assembler-menu-medical-title";
+                _leftFlavorText = "assembler-menu-medical-footer-flavor-left";
+            }
+            else
+            {
+                _menuTitle = "assembler-menu-title";
+                _leftFlavorText = "assembler-menu-footer-flavor-left";
+            }
         }
 
         protected override void Open()
@@ -34,6 +47,9 @@ namespace Content.Client._NF.Kitchen.UI
             {
                 SendPredictedMessage(new MicrowaveEjectSolidIndexedMessage(EntMan.GetNetEntity(_solids[args.ItemIndex])));
             };
+
+            _menu.Title = Loc.GetString(_menuTitle);
+            _menu.LeftFooter.Text = Loc.GetString(_leftFlavorText);
         }
 
         protected override void UpdateState(BoundUserInterfaceState state)
@@ -52,13 +68,9 @@ namespace Content.Client._NF.Kitchen.UI
             RefreshContentsDisplay(EntMan.GetEntityArray(cState.ContainedSolids));
 
             //Set the cook time info label
-            var cookTime = cState.ActiveButtonIndex == 0
-                ? Loc.GetString("microwave-menu-instant-button")
-                : cState.CurrentCookTime.ToString();
+            var cookTime = cState.CurrentCookTime.ToString();
 
-
-            _menu.CookTimeInfoLabel.Text = Loc.GetString("microwave-bound-user-interface-cook-time-label",
-                                                         ("time", cookTime));
+            _menu.CookTimeInfoLabel.Text = Loc.GetString("assembler-bound-user-interface-insert-ingredients");
             _menu.StartButton.Disabled = cState.IsMicrowaveBusy || cState.ContainedSolids.Length == 0;
             _menu.EjectButton.Disabled = cState.IsMicrowaveBusy || cState.ContainedSolids.Length == 0;
 

@@ -42,7 +42,7 @@
                     <PanelContainer
                         VerticalExpand="True"
                         ModulateSelfOverride="#FF0000"
-                        MinSize="100 128">
+                        MinSize="100 256">
                         <BoxContainer Orientation="Vertical">
                             <Label
                                 Name="CookTimeInfoLabel"
@@ -80,8 +80,8 @@
         <BoxContainer Orientation="Vertical">
             <PanelContainer StyleClasses="LowDivider" />
             <BoxContainer Orientation="Horizontal" Margin="10 2 5 0" VerticalAlignment="Bottom">
-                <Label Text="{Loc 'microwave-menu-footer-flavor-left'}" StyleClasses="WindowFooterText" />
-                <Label Text="{Loc 'microwave-menu-footer-flavor-right'}" StyleClasses="WindowFooterText"
+                <Label Text="{Loc 'assembler-menu-footer-flavor-left'}" StyleClasses="WindowFooterText" Name="LeftFooter" Access="Public"/>
+                <Label Text="{Loc 'assembler-menu-footer-flavor-right'}" StyleClasses="WindowFooterText"
                        HorizontalAlignment="Right" HorizontalExpand="True"  Margin="0 0 5 0" />
                 <TextureRect StyleClasses="NTLogoDark" Stretch="KeepAspectCentered" VerticalAlignment="Center" HorizontalAlignment="Right" SetSize="19 19"/>
             </BoxContainer>

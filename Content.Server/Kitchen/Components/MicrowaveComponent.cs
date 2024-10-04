@@ -7,7 +7,8 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 using Content.Shared.Kitchen; // Frontier
 using Robust.Shared.Serialization; // Frontier
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom; // Frontier
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
+using Content.Shared.Kitchen.Components; // Frontier
 
 namespace Content.Server.Kitchen.Components
 {
@@ -139,19 +140,22 @@ namespace Content.Server.Kitchen.Components
         public bool CanIrradiate = true;
 
         /// <summary>
-        /// The localization string to be displayed on the menu UI
-        /// </summary>
-        [DataField, ViewVariables(VVAccess.ReadWrite)]
-        public string MenuTitle = "microwave-menu-title";
-
-        /// <summary>
         /// The localization string to be displayed when something that's too large is inserted.
         /// </summary>
         [DataField, ViewVariables(VVAccess.ReadWrite)]
         public string TooBigPopup = "microwave-component-interact-item-too-big";
 
+        /// <summary>
+        /// The sound that is played when a set of ingredients does not match an assembly recipe.
+        /// </summary>
         [DataField, ViewVariables(VVAccess.ReadWrite)]
         public SoundSpecifier NoRecipeSound = new SoundPathSpecifier("/Audio/Effects/Cargo/buzz_sigh.ogg");
+
+        /// <summary>
+        /// The sound that is played when a set of ingredients does not match an assembly recipe.
+        /// </summary>
+        [DataField, ViewVariables(VVAccess.ReadOnly)]
+        public MicrowaveUiKey Key = MicrowaveUiKey.Key;
         // End Frontier
     }
 
