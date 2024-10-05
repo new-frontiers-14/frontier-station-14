@@ -32,8 +32,8 @@ public sealed class CatAccentSystem : EntitySystem
 
         message = RegexAn.Replace(message, "$1nyan"); // Replace words ending with "an" -> "nyan"
         message = RegexTion.Replace(message, "$1nyation"); // Replace "tion" with "nyation"
-        message = RegexErn.Replace(message, "ewn");
-        message = RegexOr.Replace(message, "ow");
+        message = RegexErn.Replace(message, "ewn"); // replace words ending with "ern" -> "ewn"
+        message = RegexOr.Replace(message, "ow"); // replace words ending with "or" -> "ow"
 
         foreach (Match match in RegexR.Matches(message))
             if (_random.Prob(0.5f))
