@@ -101,7 +101,7 @@ accent-cat-words-100 = Generous
 
 
 accent-cat-words-replace-1 = Meowdy
-accent-cat-words-replace-2 = Mewllo
+accent-cat-words-replace-2 = Hewwo
 accent-cat-words-replace-3 = Mew
 accent-cat-words-replace-4 = Nyaa
 accent-cat-words-replace-5 = Nyo
