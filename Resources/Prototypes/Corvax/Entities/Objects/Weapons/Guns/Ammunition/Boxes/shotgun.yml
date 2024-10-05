@@ -1,0 +1,75 @@
+- type: entity
+  parent: BaseAmmoProvider
+  id: AmmoProviderKS23Shell
+  abstract: true
+  components:
+    - type: BallisticAmmoProvider
+      mayTransfer: true
+      whitelist:
+        tags:
+        - ShellKS23
+      capacity: 6
+    - type: Item
+      size: Normal
+      shape:
+      - 0,0,1,0
+
+- type: entity
+  name: KS23 lethal cartridges dispenser
+  parent: AmmoProviderKS23Shell
+  id: BoxLethalshotKS23
+  description: A dispenser box full of lethal pellet shots.
+  components:
+    - type: BallisticAmmoProvider
+      proto: ShellKS23Base
+    - type: Icon
+      sprite: Corvax/Objects/Storage/boxes.rsi
+      state: KS23BaseDispenser
+    - type: Sprite
+      sprite: Corvax/Objects/Storage/boxes.rsi
+      state: KS23BaseDispenser
+
+- type: entity
+  name: KS23 flashbang cartridges dispenser
+  parent: AmmoProviderKS23Shell
+  id: BoxFlashbangKS23
+  description: A dispenser box full of flashbang pellet shots.
+  components:
+    - type: BallisticAmmoProvider
+      proto: ShellKS23Flashbang
+    - type: Icon
+      sprite: Corvax/Objects/Storage/boxes.rsi
+      state: KS23FlashbangDispenser
+    - type: Sprite
+      sprite: Corvax/Objects/Storage/boxes.rsi
+      state: KS23FlashbangDispenser
+
+- type: entity
+  name: KS23 smoke cartridges dispenser
+  parent: AmmoProviderKS23Shell
+  id: BoxSmokeKS23
+  description: A dispenser box full of smoke pellet shots.
+  components:
+    - type: BallisticAmmoProvider
+      proto: ShellKS23Smoke
+    - type: Icon
+      sprite: Corvax/Objects/Storage/boxes.rsi
+      state: KS23SmokeDispenser
+    - type: Sprite
+      sprite: Corvax/Objects/Storage/boxes.rsi
+      state: KS23SmokeDispenser
+
+- type: entity
+  name: KS23 beanbag cartridges dispenser
+  parent: AmmoProviderKS23Shell
+  id: BoxBeanbagKS23
+  description: A dispenser box full of beanbag pellet shots.
+  components:
+    - type: BallisticAmmoProvider
+      proto: ShellKS23Beanbag
+    - type: Icon
+      sprite: Corvax/Objects/Storage/boxes.rsi
+      state: KS23BeanbagDispenser
+    - type: Sprite
+      sprite: Corvax/Objects/Storage/boxes.rsi
+      state: KS23BeanbagDispenser
