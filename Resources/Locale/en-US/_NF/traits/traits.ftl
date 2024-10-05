@@ -9,6 +9,9 @@ trait-stinky-in-range-self = Something smells foul!
 trait-goblin-accent-name = Goblin cant
 trait-goblin-accent-desc = You speak in secret language many find annoying and not that secretive.
 
+trait-cat-accent-name = Cat Talk
+trait-cat-accent-desc = You speak the langue of REDACTED, you must be crazy to understand it.
+
 trait-pious-name = Pious
 trait-pious-desc = You are in touch with the gods, but your vows keep you from striking in anger.
 
