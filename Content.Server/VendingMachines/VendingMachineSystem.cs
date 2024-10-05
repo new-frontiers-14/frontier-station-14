@@ -560,11 +560,11 @@ namespace Content.Server.VendingMachines
                 }
 
                 // Added block for charges
-                if (comp.EjectRandomCounter == comp.EjectRandomMax || _timing.CurTime < comp.NextChargeTime)
+                if (comp.EjectRandomCounter == comp.EjectRandomMax || _timing.CurTime < comp.EjectNextChargeTime)
                     continue;
 
                 AddCharges(uid, 1, comp);
-                comp.NextChargeTime = _timing.CurTime + comp.RechargeDuration;
+                comp.EjectNextChargeTime = _timing.CurTime + comp.EjectRechargeDuration;
                 // Added block for charges
             }
             var disabled = EntityQueryEnumerator<EmpDisabledComponent, VendingMachineComponent>();
