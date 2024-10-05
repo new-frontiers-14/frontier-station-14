@@ -1751,9 +1751,9 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
-- proto: GasPressurePump
+- proto: GasPressurePumpOn
   entities:
-  - uid: 153
+  - uid: 37
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
@@ -1817,6 +1817,8 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -1.5,0.5
       parent: 1
+    - type: AtmosPipeColor
+      color: '#990000FF'
 - proto: GravityGeneratorMini
   entities:
   - uid: 195
@@ -1956,51 +1958,45 @@ entities:
       parent: 1
 - proto: hydroponicsTrayAnchored
   entities:
-  - uid: 37
-    components:
-    - type: Transform
-      pos: -2.5,7.5
-      parent: 1
   - uid: 38
     components:
     - type: Transform
       pos: -0.5,7.5
       parent: 1
+  - uid: 153
+    components:
+    - type: Transform
+      pos: -2.5,7.5
+      parent: 1
   - uid: 226
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 1.5,7.5
+      pos: -4.5,7.5
       parent: 1
   - uid: 227
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 0.5,7.5
+      pos: -3.5,7.5
       parent: 1
   - uid: 228
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -4.5,7.5
+      pos: 1.5,7.5
       parent: 1
   - uid: 229
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -3.5,7.5
+      pos: 0.5,7.5
       parent: 1
   - uid: 230
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -4.5,6.5
+      pos: 1.5,6.5
       parent: 1
   - uid: 231
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 1.5,6.5
+      pos: -4.5,6.5
       parent: 1
   - uid: 232
     components:
@@ -2134,7 +2130,7 @@ entities:
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
-      pos: 0.5,8.5
+      pos: 2.5,6.5
       parent: 1
 - proto: NitrogenCanister
   entities:
