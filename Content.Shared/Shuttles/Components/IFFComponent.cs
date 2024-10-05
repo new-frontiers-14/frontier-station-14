@@ -52,7 +52,7 @@ public enum IFFFlags : byte
     Hide = 2,
 
     /// <summary>
-    /// Is this a player shuttle
+    /// Frontier - Is this a player shuttle
     /// </summary>
     IsPlayerShuttle = 4,
 

@@ -1,0 +1,31 @@
+# Author Info
+# GitHub: Tych0theSynth (https://github.com/tych0thesynth)
+# Discord: Tych0
+
+# Maintainer Info
+# GitHub: Tych0theSynth (https://github.com/tych0thesynth)
+# Discord: Tych0
+
+# Notes:
+# I want to lie, shipwrecked and comatose, drinking fresh mango juice.
+- type: pointOfInterest
+  id: Bahama
+  name: "Bahama Mama's"
+  rangeMin: 1200
+  rangeMax: 2900
+  IFFColor: "#ffa600" #yellorange for faction style
+  spawnGroup: RestStop
+  gridPath: /Maps/_NF/POI/bahama.yml
+  busStop: true
+
+- type: gameMap
+  id: Bahama
+  mapName: "Bahama Mama's"
+  mapPath: /Maps/_NF/POI/bahama.yml
+  minPlayers: 0
+  stations:
+    Bahama:
+      stationProto: DeadDropFrontierOutpost
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: "Bahama Mama's"

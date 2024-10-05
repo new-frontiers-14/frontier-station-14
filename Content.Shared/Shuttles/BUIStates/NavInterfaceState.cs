@@ -21,11 +21,24 @@ public sealed class NavInterfaceState
 
     public Dictionary<NetEntity, List<DockingPortState>> Docks;
 
+    public bool RotateWithEntity = true;
+
+    // Frontier fields
     /// <summary>
     /// Frontier - the state of the shuttle's inertial dampeners
     /// </summary>
     public InertiaDampeningMode DampeningMode;
 
+    /// <summary>
+    /// Frontier: settable maximum IFF range
+    /// </summary>
+    public float? MaxIffRange = null;
+
+    /// <summary>
+    /// Frontier: settable coordinate visibility
+    /// </summary>
+    public bool HideCoords = false;
+    // End Frontier fields
     public NavInterfaceState(
         float maxRange,
         NetCoordinates? coordinates,
