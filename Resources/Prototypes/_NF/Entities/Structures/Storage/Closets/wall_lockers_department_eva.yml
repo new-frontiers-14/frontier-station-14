@@ -505,3 +505,56 @@
       map: ["enum.WeldableLayers.BaseWelded"]
     - state: locked
       map: ["enum.LockVisualLayers.Lock"]
+
+- type: entity
+  categories: [ HideSpawnMenu ] # debloat spawn menu
+  id: LockerWallEVAColorEmergency
+  parent: LockerWallColorBase
+  name: emergency EVA wall locker
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.StorageVisualLayers.Base"]
+      color: "#a3d7ff"
+    - state: door
+      map: ["enum.StorageVisualLayers.Door"]
+      color: "#a3d7ff"
+    - state: door-decal-line-01
+      map: [ decal1 ]
+      color: "#e9ebec"
+    - state: door-decal-eva-01
+      map: [ decal2 ]
+      color: "#e9ebec"
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+
+# Player Factions
+- type: entity
+  categories: [ HideSpawnMenu ] # debloat spawn menu
+  id: LockerWallEVAColorLvhi
+  parent: LockerWallColorBase
+  name: LVHI EVA wall locker
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.StorageVisualLayers.Base"]
+      color: "#283846"
+    - state: door
+      map: ["enum.StorageVisualLayers.Door"]
+      color: "#283846"
+    - state: door-decal-line-01
+      map: [ decal1 ]
+      color: "#e48545"
+    - state: door-decal-eva-01
+      map: [ decal2 ]
+      color: "#e48545"
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]

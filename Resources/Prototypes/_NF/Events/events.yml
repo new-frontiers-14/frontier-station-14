@@ -16,57 +16,61 @@
     # - id: MimicVendorRule
     - id: MouseMigration
     - id: PowerGridCheck
+    - id: RandomSentience
     # - id: SlimesSpawn
     - id: SolarFlare
+    # - id: SnakeSpawn
     # - id: SpiderClownSpawn
     # - id: SpiderSpawn
     - id: VentClog
+    - id: BluespaceCargoCrate # Frontier
     - id: BluespaceMcCargoCrate # Frontier
     - id: BluespaceSyndicateCrate # Frontier
     - id: BluespaceBrokenMcDelivery # Frontier
     - id: SmugglingFax # Frontier
 
+# Frontier: not used!
 - type: entityTable
   id: BasicAntagEventsTable
   table: !type:AllSelector # we need to pass a list of rules, since rules have further restrictions to consider via StationEventComp
-    children: []
-    # - id: ClosetSkeleton
-    # - id: DragonSpawn
-    # - id: KingRatMigration
-    # - id: NinjaSpawn
-    # - id: RevenantSpawn
-    # - id: SleeperAgents
-    # - id: ZombieOutbreak
+    children: [] # Frontier: empty list
+    # - id: ClosetSkeleton # Frontier: empty list
+    # - id: DragonSpawn # Frontier: empty list
+    # - id: KingRatMigration # Frontier: empty list
+    # - id: NinjaSpawn # Frontier: empty list
+    # - id: RevenantSpawn # Frontier: empty list
+    # - id: SleeperAgents # Frontier: empty list
+    # - id: ZombieOutbreak # Frontier: empty list
 
 - type: entity
   id: BaseStationEvent
   parent: BaseGameRule
   abstract: true
   components:
-    - type: GameRule
-      delay:
-        min:  10
-        max:  20
+  - type: GameRule
+    delay:
+      min:  10
+      max:  20
 
 - type: entity
   id: BaseStationEventShortDelay
   parent: BaseGameRule
   abstract: true
   components:
-    - type: GameRule
-      delay:
-        min:  10
-        max:  20
+  - type: GameRule
+    delay:
+      min:  10
+      max:  20
 
 - type: entity
   id: BaseStationEventLongDelay
   parent: BaseGameRule
   abstract: true
   components:
-    - type: GameRule
-      delay:
-        min:  40
-        max:  60
+  - type: GameRule
+    delay:
+      min:  40
+      max:  60
 
 # Frontier: right now you never find them since they spawn on random grids.
 # - type: entity
@@ -114,7 +118,7 @@
   components:
   - type: StationEvent
     weight: 7
-    earliestStart: 15
+    earliestStart: 15 # Frontier
     duration: 1
     minimumPlayers: 15
   - type: BreakerFlipRule
@@ -129,6 +133,8 @@
 #     weight: 3
 #     duration: 1
 #   - type: BureaucraticErrorRule
+#     ignoredJobs:
+#     - StationAi
 
 # - type: entity
 #   id: ClericalError
@@ -161,9 +167,12 @@
 #     earliestStart: 40
 #     reoccurrenceDelay: 20
 #     minimumPlayers: 20
-#   - type: AntagRandomSpawn
+#     duration: null
+#   - type: SpaceSpawnRule
+#     spawnDistance: 0
 #   - type: AntagSpawner
 #     prototype: MobDragon
+#   - type: DragonRule
 #   - type: AntagObjectives
 #     objectives:
 #     - CarpRiftsObjective
@@ -178,8 +187,6 @@
 #       mindComponents:
 #       - type: DragonRole
 #         prototype: Dragon
-#       - type: RoleBriefing
-#         briefing: dragon-role-briefing
 
 # - type: entity
 #   parent: BaseGameRule
@@ -265,7 +272,7 @@
       path: /Audio/Announcements/attention.ogg
     endAnnouncement: station-event-gas-leak-end-announcement
     weight: 8
-    earliestStart: 15
+    earliestStart: 15 # Frontier
   - type: GasLeakRule
 
 # - type: entity
@@ -280,87 +287,18 @@
 #   - type: KudzuGrowthRule
 
 - type: entity
-  id: MouseMigration
-  parent: BaseStationEventShortDelay
-  components:
-  - type: StationEvent
-    startAnnouncement: station-event-vent-creatures-start-announcement
-    startAudio:
-      path: /Audio/Announcements/attention.ogg
-    earliestStart: 15
-    weight: 6
-    duration: 50
-  - type: VentCrittersRule
-    entries:
-    - id: MobMouse
-      prob: 0.02
-    - id: MobMouse1
-      prob: 0.02
-    - id: MobMouse2
-      prob: 0.02
-    - id: MobMouseCancer
-      prob: 0.001
-# Events always spawn a critter regardless of Probability https://github.com/space-wizards/space-station-14/issues/28480 I added the Rat King to their own event with a player cap.
-
-# - type: entity
-#   id: KingRatMigration
-#   parent: BaseStationEventShortDelay
-#   components:
-#   - type: StationEvent
-#     startAnnouncement: station-event-vent-creatures-start-announcement
-#     startAudio:
-#       path: /Audio/Announcements/attention.ogg
-#     earliestStart: 15
-#     weight: 6
-#     duration: 50
-#     minimumPlayers: 30 # Hopefully this is enough for the Rat King's potential Army (it was not, raised from 15 -> 30)
-#   - type: VentCrittersRule
-#     entries:
-#     - id: MobMouse
-#       prob: 0.02
-#     - id: MobMouse1
-#       prob: 0.02
-#     - id: MobMouse2
-#       prob: 0.02
-#     - id: MobMouseCancer
-#       prob: 0.001
-#     specialEntries:
-#     - id: SpawnPointGhostRatKing
-#       prob: 0.001
-
-- type: entity
-  id: CockroachMigration
-  parent: BaseStationEventShortDelay
-  components:
-  - type: StationEvent
-    startAnnouncement: station-event-vent-creatures-start-announcement
-    startAudio:
-      path: /Audio/Announcements/attention.ogg
-    weight: 6
-    earliestStart: 15
-    duration: 50
-  - type: VentCrittersRule
-    entries:
-    - id: MobCockroach
-      prob: 0.03
-    - id: MobMothroach
-      prob: 0.006 # Frontier: 0.008<0.006
-    - id: MobRosyMothroach # Frontier
-      prob: 0.002 # Frontier
-
-- type: entity
   id: PowerGridCheck
   parent: BaseStationEventShortDelay
   components:
   - type: StationEvent
     weight: 5
-    earliestStart: 15
+    earliestStart: 15 # Frontier
     startAnnouncement: station-event-power-grid-check-start-announcement
     endAnnouncement: station-event-power-grid-check-end-announcement
     startAudio:
       path: /Audio/Announcements/power_off.ogg
       params:
-       volume: -4
+        volume: -4
     duration: 60
     maxDuration: 120
   - type: PowerGridCheckRule
@@ -371,7 +309,7 @@
   components:
   - type: StationEvent
     weight: 8
-    earliestStart: 15
+    earliestStart: 15 # Frontier
     startAnnouncement: station-event-solar-flare-start-announcement
     endAnnouncement: station-event-solar-flare-end-announcement
     startAudio:
@@ -398,7 +336,7 @@
 
 - type: entity
   id: VentClog
-  parent: BaseStationEventLongDelay # Old startDelay: 50
+  parent: BaseStationEventLongDelay
   components:
   - type: StationEvent
     startAnnouncement: station-event-vent-clog-start-announcement
@@ -429,6 +367,27 @@
 #     - id: MobAdultSlimesGreenAngry
 #       prob: 0.02
 #     - id: MobAdultSlimesYellowAngry
+#       prob: 0.02
+
+# - type: entity
+#   id: SnakeSpawn
+#   parent: BaseStationEventShortDelay
+#   components:
+#   - type: StationEvent
+#     startAnnouncement: station-event-vent-creatures-start-announcement
+#     startAudio:
+#       path: /Audio/Announcements/attention.ogg
+#     earliestStart: 20
+#     minimumPlayers: 15
+#     weight: 5
+#     duration: 60
+#   - type: VentCrittersRule
+#     entries:
+#     - id: MobPurpleSnake
+#       prob: 0.02
+#     - id: MobSmallPurpleSnake
+#       prob: 0.02
+#     - id: MobCobraSpace
 #       prob: 0.02
 
 # - type: entity
@@ -470,9 +429,9 @@
 #   parent: BaseGameRule
 #   components:
 #   - type: StationEvent
-#     earliestStart: 50
-#     minimumPlayers: 30
-#     weight: 2
+#     earliestStart: 90
+#     minimumPlayers: 40
+#     weight: 1 # Zombies was happening basically every single survival round, so now it's super rare
 #     duration: 1
 #   - type: ZombieRule
 #   - type: AntagSelection
@@ -520,6 +479,9 @@
 #       max: 1
 #       pickPlayer: false
 #       startingGear: SyndicateLoneOperativeGearFull
+#       roleLoadout:
+#       - RoleSurvivalNukie
+
 #       components:
 #       - type: NukeOperative
 #       - type: RandomMetadata
@@ -567,7 +529,7 @@
   parent: BaseGameRule
   components:
   - type: StationEvent
-    earliestStart: 15
+    earliestStart: 15 # Frontier
     weight: 7
     duration: 150
     maxDuration: 300
@@ -584,7 +546,7 @@
   id: IonStorm
   components:
   - type: StationEvent
-    earliestStart: 15
+    earliestStart: 15 # Frontier
     weight: 8
     reoccurrenceDelay: 120 # Frontier: 20<120
     duration: 1
@@ -594,9 +556,9 @@
 #   id: MimicVendorRule
 #   parent: BaseGameRule
 #   components:
-#     - type: StationEvent
-#       earliestStart: 0
-#       minimumPlayers: 20
-#       maxOccurrences: 1 # this event has diminishing returns on interesting-ness, so we cap it
-#       weight: 5
-#     - type: MobReplacementRule
+#   - type: StationEvent
+#     earliestStart: 0
+#     minimumPlayers: 20
+#     maxOccurrences: 1 # this event has diminishing returns on interesting-ness, so we cap it
+#     weight: 5
+#   - type: MobReplacementRule

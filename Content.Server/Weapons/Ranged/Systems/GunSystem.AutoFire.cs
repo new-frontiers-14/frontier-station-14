@@ -3,7 +3,8 @@ using Content.Server.Power.Components; // Frontier
 using Content.Server.Power.EntitySystems; // Frontier
 using Content.Shared.Interaction; // Frontier
 using Content.Shared.Examine; // Frontier
-using Content.Server.Popups; // Frontier
+using Content.Server.Popups;
+using Content.Shared.Power; // Frontier
 
 namespace Content.Server.Weapons.Ranged.Systems;
 

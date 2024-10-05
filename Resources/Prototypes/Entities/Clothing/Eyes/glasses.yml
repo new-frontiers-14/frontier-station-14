@@ -102,7 +102,7 @@
   parent: ClothingEyesBase
   id: ClothingEyesGlassesJamjar
   name: jamjar glasses
-  description: Also known as Virginity Protectors.
+  description: These retro glasses remind you of a simpler time.
   components:
   - type: Sprite
     sprite: Clothing/Eyes/Glasses/jamjar.rsi
@@ -160,7 +160,7 @@
     - WhitelistChameleon
 
 - type: entity
-  parent: [ClothingEyesBase, ShowSecurityIcons, BaseC2ContrabandUnredeemable] # Frontier: BaseSecurityCommandContraband<BaseC2ContrabandUnredeemable
+  parent: [ClothingEyesBase, ShowSecurityIcons, BaseC2ContrabandUnredeemable] # Frontier: BaseRestrictedContraband<BaseC2ContrabandUnredeemable
   id: ClothingEyesGlassesSecurity
   name: security glasses
   description: Upgraded sunglasses that provide flash immunity and a security HUD.
@@ -185,6 +185,27 @@
     # - Antagonists # Frontier: guidebook entry removed
   - type: IdentityBlocker
     coverage: EYES
+
+- type: entity
+  parent: [ClothingEyesBase, BaseCommandContraband ]
+  id: ClothingEyesGlassesCommand
+  name: administration glasses
+  description: Upgraded sunglasses that provide flash immunity and show ID card status. 
+  components:
+  - type: Sprite
+    sprite: Clothing/Eyes/Glasses/commandglasses.rsi
+  - type: Clothing
+    sprite: Clothing/Eyes/Glasses/commandglasses.rsi
+  - type: FlashImmunity
+  - type: EyeProtection
+    protectionTime: 5
+  - type: Tag
+    tags:
+    - HamsterWearable
+    - WhitelistChameleon
+  - type: IdentityBlocker
+    coverage: EYES
+  - type: ShowJobIcons
 
 - type: entity
   parent: ClothingEyesBase
