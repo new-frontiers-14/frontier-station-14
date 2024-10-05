@@ -521,7 +521,6 @@ entities:
   - uid: 20
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: -5.5,1.5
       parent: 1
   - uid: 39
@@ -2190,7 +2189,7 @@ entities:
       parent: 1
     - type: FuelGenerator
       targetPower: 9000
-      on: False      
+      on: False
     - type: Physics
       bodyType: Static
   - uid: 149
@@ -2200,7 +2199,7 @@ entities:
       parent: 1
     - type: FuelGenerator
       targetPower: 9000
-      on: False      
+      on: False
     - type: Physics
       bodyType: Static
 - proto: Poweredlight
@@ -2344,6 +2343,20 @@ entities:
     - type: Transform
       pos: -6.5,2.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        machine_board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        machine_parts: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        blueprint: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
 - proto: ShuttersNormalOpen
   entities:
   - uid: 23
