@@ -2,7 +2,6 @@ using Content.Server._NF.Speech.Components;
 using Robust.Shared.Random;
 using Content.Server.Speech;
 using Content.Server.Speech.EntitySystems;
-using System.Linq;
 
 namespace Content.Server._NF.Speech.EntitySystems;
 
@@ -76,7 +75,7 @@ public sealed class CavemanAccentSystem : EntitySystem
 
         if (modifiedWords.Count == 0)
         {
-            modifiedWords.Append(GetGrunt());
+            modifiedWords.Add(GetGrunt());
         }
 
         return string.Join(' ', modifiedWords);
