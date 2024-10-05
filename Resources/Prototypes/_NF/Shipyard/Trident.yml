@@ -1,0 +1,33 @@
+- type: vessel
+  id: Trident
+  name: NSS Trident
+  description: A compact atmospherics ship focusing on refining gas canisters found on salvage. Comes with salvage area, mess, beds, and atmospherics area.
+  price: 35000
+  category: Medium
+  group: Shipyard
+  shuttlePath: /Maps/_NF/Shuttles/Trident.yml
+  guidebookPage: Null
+  class:
+  - Civilian
+  - Salvage
+  - Atmospherics
+
+- type: gameMap
+  id: Trident
+  mapName: 'NSS Trident'
+  mapPath: /Maps/_NF/Shuttles/Trident.yml
+  minPlayers: 0
+  stations:
+    Trident:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Trident {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]
