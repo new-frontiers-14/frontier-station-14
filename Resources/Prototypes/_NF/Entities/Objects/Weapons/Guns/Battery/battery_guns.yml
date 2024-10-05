@@ -162,18 +162,73 @@
     startingCharge: 200
   - type: ProjectileBatteryAmmoProvider
     proto: BulletLaserSpread
-    fireCost: 10
+    fireCost: 20
   - type: BatteryWeaponFireModes
     fireModes:
     - proto: BulletLaserSpread
-      fireCost: 10
-    - proto: BulletLaserHeavy
       fireCost: 20
+    - proto: BulletLaserHeavy
+      fireCost: 30
   - type: MeleeWeapon
     attackRate: .85
     damage:
       types:
-       Blunt: 10
+       Blunt: 7
+    angle: 0
+    wideAnimationRotation: 90
+    animation: WeaponArcThrust
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+
+- type: entity
+  name: inprogress
+  parent: WeaponBowcaster
+  id: Weaponlasersawoff
+  descripton: inprogress
+  components:
+  - type: Battery
+    maxCharge: 150
+    startingCharge: 150
+  - type: ProjectileBatteryAmmoProvider
+    proto: BulletLaserSpread
+    fireCost: 50
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: BulletLaserSpread
+      fireCost: 50
+  - type: MeleeWeapon
+    attackRate: .85
+    damage:
+      types:
+       Blunt: 7 #weapon Butted hit, more then a punch just slightly
+    angle: 0
+    wideAnimationRotation: 90
+    animation: WeaponArcThrust
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+
+
+- type: entity
+  name: SESWC Vortex
+  parent: WeaponLaserCarbinePractice
+  id: WeaponAutoLaser
+  description: in progress
+  components:
+  - type: Gun
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+  - type: HitscanBatteryAmmoProvider
+    proto: RedLaserPractice
+    fireCost: 62.5
+  - type: Battery
+    maxCharge: 3000
+    startingCharge: 3000
+  - type: MeleeWeapon
+    attackRate: .85
+    damage:
+      types:
+       Slash: 7 #weapon Butted hit, more then a punch just slightly
     angle: 0
     wideAnimationRotation: 90
     animation: WeaponArcThrust
