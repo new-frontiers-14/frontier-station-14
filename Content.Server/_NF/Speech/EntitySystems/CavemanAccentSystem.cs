@@ -2,7 +2,7 @@ using Content.Server._NF.Speech.Components;
 using Robust.Shared.Random;
 using Content.Server.Speech;
 using Content.Server.Speech.EntitySystems;
-using System.Text.RegularExpressions;
+using System.Linq;
 
 namespace Content.Server._NF.Speech.EntitySystems;
 
@@ -28,27 +28,26 @@ public sealed class CavemanAccentSystem : EntitySystem
         foreach (var word in words)
         {
             string endPunctuation = "";
+            int actualLength = word.Length;
 
             for (int letterIndex = word.Length - 1; letterIndex >= 0; letterIndex--)
             {
-                if (word[letterIndex] == '!' || word[letterIndex] == '?' || word[letterIndex] == '.')
+                if (word[letterIndex] != '-' && char.IsPunctuation(word[letterIndex]))
                 {
-                    endPunctuation += word[letterIndex];
+                    endPunctuation = word[letterIndex] + endPunctuation;
+                    actualLength = letterIndex; // Length of word = index of first punctuation
                 }
-                else if (char.IsLetter(word[letterIndex]))
+                else
                 {
                     break;
                 }
             }
 
-            var modifiedWord = word.ToLower();
+            var modifiedWord = word;
 
-            if (IsForbidden(word)) continue;
-
-            if (modifiedWord.Length > CavemanAccentComponent.MaxWordLength)
+            if (actualLength > CavemanAccentComponent.MaxWordLength)
             {
-                modifiedWord = Loc.GetString(_random.Pick(CavemanAccentComponent.Grunts));
-
+                modifiedWord = GetGrunt();
                 modifiedWord += endPunctuation;
 
                 modifiedWords.Add(modifiedWord);
@@ -58,15 +57,14 @@ public sealed class CavemanAccentSystem : EntitySystem
 
             modifiedWord = TryRemovePunctuation(modifiedWord);
 
-            modifiedWord = TryReplaceFancyPhonemes(modifiedWord);
-
             modifiedWord = TryConvertNumbers(modifiedWord);
 
+            // Weird combinations of numbers/punctuations and letters
             foreach (var c in modifiedWord)
             {
-                if (!char.IsLetter(c))
+                if (!char.IsLetter(c) && c != '-')
                 {
-                    modifiedWord = Loc.GetString(_random.Pick(CavemanAccentComponent.Grunts));
+                    modifiedWord = GetGrunt();
                     break;
                 }
             }
@@ -78,10 +76,10 @@ public sealed class CavemanAccentSystem : EntitySystem
 
         if (modifiedWords.Count == 0)
         {
-            modifiedWords[^1] += Loc.GetString(_random.Pick(CavemanAccentComponent.Grunts));
+            modifiedWords.Append(GetGrunt());
         }
 
-        return string.Join(" ", modifiedWords);
+        return string.Join(' ', modifiedWords);
     }
 
     private void OnAccentGet(EntityUid uid, CavemanAccentComponent component, AccentGetEvent args)
@@ -89,35 +87,21 @@ public sealed class CavemanAccentSystem : EntitySystem
         args.Message = Convert(args.Message, component);
     }
 
-    private bool IsForbidden(string word)
+    private string GetGrunt()
     {
-        foreach (string localizationID in CavemanAccentComponent.ForbiddenWords)
+        var grunt = Loc.GetString(_random.Pick(CavemanAccentComponent.Grunts));
+
+        if (_random.Prob(0.5f))
         {
-            string forbiddenWord = Loc.GetString(localizationID);
-
-            if (word == forbiddenWord)
-            {
-                return true;
-            }
+            grunt += "-";
+            grunt += Loc.GetString(_random.Pick(CavemanAccentComponent.Grunts));
         }
-
-        return false;
+        return grunt;
     }
 
     private string TryRemovePunctuation(string word)
     {
         return word.Trim(['.', ',', '!', '?', ';', ':']);
-    }
-
-    private string TryReplaceFancyPhonemes(string word)
-    {
-        foreach (var phonemePair in CavemanAccentComponent.PhonemeConversions)
-        {
-            word = word.Replace(Loc.GetString(phonemePair.Key), Loc.GetString(phonemePair.Value));
-        }
-
-
-        return word;
     }
 
     private string TryConvertNumbers(string word)
@@ -126,17 +110,14 @@ public sealed class CavemanAccentSystem : EntitySystem
 
         if (int.TryParse(word, out num))
         {
-            if (num > 10)
-            {
-                return Loc.GetString(CavemanAccentComponent.Numbers[^1]);
-            }
-            else if (num <= 10 && num > 0)
+            num = int.Max(0, num); //Negatives treated as zero.
+            if (num < CavemanAccentComponent.Numbers.Count)
             {
                 return Loc.GetString(CavemanAccentComponent.Numbers[num]);
             }
             else
             {
-                return Loc.GetString(CavemanAccentComponent.Numbers[0]);
+                return Loc.GetString(CavemanAccentComponent.LargeNumberString);
             }
         }
 

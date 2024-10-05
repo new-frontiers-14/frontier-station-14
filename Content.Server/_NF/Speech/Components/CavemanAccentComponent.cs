@@ -28,7 +28,27 @@ public sealed partial class CavemanAccentComponent : Component
         "accent-caveman-forbidden-words-12",
         "accent-caveman-forbidden-words-13",
         "accent-caveman-forbidden-words-14",
+        "accent-caveman-forbidden-words-15",
     };
+
+    [ViewVariables]
+    public static readonly List<string> Numbers = new()
+    {
+        "accent-caveman-numbers-0",
+        "accent-caveman-numbers-1",
+        "accent-caveman-numbers-2",
+        "accent-caveman-numbers-3",
+        "accent-caveman-numbers-4",
+        "accent-caveman-numbers-5",
+        "accent-caveman-numbers-6",
+        "accent-caveman-numbers-7",
+        "accent-caveman-numbers-8",
+        "accent-caveman-numbers-9",
+        "accent-caveman-numbers-10",
+    };
+
+    [ViewVariables]
+    public const string LargeNumberString = "accent-caveman-numbers-many";
 
     [ViewVariables]
     public static readonly List<string> Grunts = new()
@@ -48,34 +68,6 @@ public sealed partial class CavemanAccentComponent : Component
         "accent-caveman-grunts-12",
         "accent-caveman-grunts-13",
         "accent-caveman-grunts-14",
-        "accent-caveman-grunts-15",
-        "accent-caveman-grunts-16",
-        "accent-caveman-grunts-17",
-        "accent-caveman-grunts-18",
-    };
-
-    [ViewVariables]
-    public static readonly List<string> Numbers = new()
-    {
-        "accent-caveman-numbers-0",
-        "accent-caveman-numbers-1",
-        "accent-caveman-numbers-2",
-        "accent-caveman-numbers-3",
-        "accent-caveman-numbers-4",
-        "accent-caveman-numbers-5",
-        "accent-caveman-numbers-6",
-        "accent-caveman-numbers-7",
-        "accent-caveman-numbers-8",
-        "accent-caveman-numbers-9",
-        "accent-caveman-numbers-10",
-        "accent-caveman-numbers-11",
-    };
-
-    [ViewVariables]
-    public static readonly Dictionary<string, string> PhonemeConversions = new()
-    {
-        {"accent-caveman-phonemes-fancy-0", "accent-caveman-phonemes-simple-0" },
-        {"accent-caveman-phonemes-fancy-1", "accent-caveman-phonemes-simple-1" },
     };
 
 }
