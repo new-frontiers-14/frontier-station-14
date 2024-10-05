@@ -114,3 +114,5 @@ ent-CottonSeeds = пакет семян (хлопок)
     .desc = { ent-SeedBase.desc }
 ent-PyrottonSeeds = пакет семян (пирохлопок)
     .desc = { ent-SeedBase.desc }
+ent-BluePumpkinSeeds = пакет семян (синяя тыква)
+    .desc = { ent-SeedBase.desc }
