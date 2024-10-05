@@ -28,7 +28,6 @@ public sealed class CatAccentSystem : EntitySystem
         message = _replacement.ApplyReplacements(message, "cat_accent");
 
         message = RegexAn.Replace(message, "$1nyan"); // Replace words ending with "an" -> "nyan"
-        message = RegexEr.Replace(message, "$1ah"); // Replace "er" with "ah"
         message = RegexTion.Replace(message, "$1nyation"); // Replace "tion" with "nyation"
         message = RegexSion.Replace(message, "$1nyation"); // Replace "sion" with "nyation"
         message = RegexR.Replace(message, "rrr"); // Replace 'r' with 'rrr' for purring effect
