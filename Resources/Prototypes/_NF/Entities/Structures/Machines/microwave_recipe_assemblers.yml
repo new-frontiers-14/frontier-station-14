@@ -240,3 +240,66 @@
     interfaces:
       enum.MicrowaveUiKey.MedicalAssemblerKey:
         type: AssemblerBoundUserInterface
+
+# POI versions of microwave machines
+
+- type: entity
+  id: KitchenMicrowavePOI
+  parent:
+  - BaseStructureDisableToolUse
+  - KitchenMicrowave
+  suffix: POI
+  components:
+  - type: Machine
+    board: Null
+
+- type: entity
+  id: KitchenElectricRangePOI
+  parent:
+  - BaseStructureDisableToolUse
+  - KitchenElectricRange
+  suffix: POI
+  components:
+  - type: Machine
+    board: Null
+
+- type: entity
+  id: KitchenAssemblerPOI
+  parent:
+  - BaseStructureDisableToolUse
+  - KitchenAssembler
+  suffix: POI
+  components:
+  - type: Machine
+    board: Null
+
+- type: entity
+  id: MedicalAssemblerPOI
+  parent:
+  - BaseStructureDisableToolUse
+  - MedicalAssembler
+  suffix: POI
+  components:
+  - type: Machine
+    board: Null
+
+# TODO: move this
+- type: entity
+  id: KitchenReagentGrinderPOI
+  parent:
+  - BaseStructureDisableToolUse
+  - KitchenReagentGrinder
+  suffix: POI
+  components:
+  - type: Machine
+    board: Null
+
+- type: entity
+  id: KitchenDeepFryerPOI
+  parent:
+  - BaseStructureDisableToolUse
+  - KitchenDeepFryer
+  suffix: POI
+  components:
+  - type: Machine
+    board: Null
