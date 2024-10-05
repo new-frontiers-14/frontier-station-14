@@ -50,10 +50,6 @@
   - type: RadiationBlocker
     resistance: 2
   - type: BlockWeather
-  - type: RCDDeconstructable #Frontier 
-    cost: 2 #Frontier 
-    delay: 2 #Frontier 
-    fx: EffectRCDDeconstruct2 #Frontier 
 
 - type: entity
   parent: BaseWall
@@ -120,6 +116,10 @@
   - type: IconSmooth
     key: walls
     base: clock
+  - type: RCDDeconstructable # Frontier
+    cost: 6 # Frontier
+    delay: 8 # Frontier
+    fx: EffectRCDDeconstruct8 # Frontier
 
 - type: entity
   parent: BaseWall
@@ -533,6 +533,8 @@
           collection: MetalSlam
       - !type:DoActsBehavior
         acts: ["Destruction"]
+  - type: RCDDeconstructible # Frontier
+    deconstructible: false # Frontier
 
 - type: entity
   id: WallPlastitaniumDiagonalIndestructible
@@ -640,10 +642,10 @@
     price: 50 # Frontier 250<50
   - type: RadiationBlocker
     resistance: 5
-  - type: RCDDeconstructable #Frontier 
-    cost: 4 #Frontier 
-    delay: 6 #Frontier 
-    fx: EffectRCDDeconstruct6 #Frontier 
+  - type: RCDDeconstructable #Frontier
+    cost: 6 #Frontier
+    delay: 8 #Frontier
+    fx: EffectRCDDeconstruct8 #Frontier
 
 - type: entity
   parent: WallReinforced
@@ -662,10 +664,10 @@
   - type: IconSmooth
     key: walls
     base: reinf_over
-  - type: RCDDeconstructable #Frontier 
-    cost: 4 #Frontier its rusted so its weaker easier to delete
-    delay: 4 #Frontier 
-    fx: EffectRCDDeconstruct4 #Frontier 
+  - type: RCDDeconstructable #Frontier
+    cost: 6 #Frontier
+    delay: 8 #Frontier
+    fx: EffectRCDDeconstruct8 #Frontier
 
 - type: entity
   parent: WallShuttleDiagonal
@@ -688,10 +690,6 @@
   - type: Icon
     sprite: _NF/Structures/Walls/reinforced_diagonal.rsi # Frontier: _NF folder
     state: state0
-  - type: RCDDeconstructable #Frontier 
-    cost: 6 #Frontier 
-    delay: 6 #Frontier 
-    fx: EffectRCDDeconstruct6 #Frontier 
 
 # Riveting
 - type: entity
@@ -727,6 +725,10 @@
     base: riveted
   - type: StaticPrice
     price: 50 # Frontier: 150<50 FRONTIER MERGE: may need review
+  - type: RCDDeconstructable #Frontier
+    cost: 6 #Frontier
+    delay: 8 #Frontier
+    fx: EffectRCDDeconstruct8 #Frontier
 
 - type: entity
   parent: BaseWall
@@ -885,10 +887,10 @@
   - type: Construction
     graph: Girder
     node: diagonalshuttleWall
-  - type: RCDDeconstructable #Frontier 
-    cost: 6 #Frontier 
-    delay: 6 #Frontier 
-    fx: EffectRCDDeconstruct6 #Frontier 
+  - type: RCDDeconstructable #Frontier
+    cost: 6 #Frontier
+    delay: 8 #Frontier
+    fx: EffectRCDDeconstruct8 #Frontier
 
 - type: entity
   parent: BaseWall
@@ -948,13 +950,13 @@
           3: { state: shuttle_construct-3, visible: true}
           4: { state: shuttle_construct-4, visible: true}
           5: { state: shuttle_construct-5, visible: true}
-  - type: RCDDeconstructable #Frontier 
-    cost: 6 #Frontier 
-    delay: 6 #Frontier 
-    fx: EffectRCDDeconstruct6 #Frontier 
+  - type: RCDDeconstructable #Frontier
+    cost: 6 #Frontier
+    delay: 8 #Frontier
+    fx: EffectRCDDeconstruct8 #Frontier
 #  - type: Reflect # Frontier
 #    reflectProb: 1 # Frontier
-   
+
 - type: entity
   parent: BaseWall
   id: WallShuttleInterior
@@ -997,10 +999,6 @@
   - type: IconSmooth
     key: walls
     base: state
-  - type: RCDDeconstructable #Frontier 
-    cost: 2 #Frontier 
-    delay: 2 #Frontier 
-    fx: EffectRCDDeconstruct2 #Frontier 
 #  - type: Reflect # Frontier
 #    reflectProb: 1 # Frontier
 
@@ -1049,7 +1047,7 @@
   - type: IconSmooth
     key: walls
     base: solid
-  
+
 - type: entity
   parent: WallShuttleDiagonal
   id: WallSolidDiagonal
@@ -1071,10 +1069,6 @@
   - type: Icon
     sprite: Structures/Walls/solid_diagonal.rsi
     state: state0
-  - type: RCDDeconstructable #Frontier 
-    cost: 4 #Frontier 
-    delay: 4 #Frontier 
-    fx: EffectRCDDeconstruct4 #Frontier 
 
 - type: entity
   parent: WallSolid
@@ -1093,10 +1087,6 @@
   - type: IconSmooth
     key: walls
     base: solid
-  - type: RCDDeconstructable #Frontier 
-    cost: 2 #Frontier 
-    delay: 2 #Frontier 
-    fx: EffectRCDDeconstruct2 #Frontier
 
 - type: entity
   parent: BaseWall
@@ -1137,6 +1127,10 @@
     base: uranium
   - type: RadiationBlocker
     resistance: 6
+  - type: RCDDeconstructable #Frontier
+    cost: 6 #Frontier
+    delay: 8 #Frontier
+    fx: EffectRCDDeconstruct8 #Frontier
 
 - type: entity
   parent: BaseWall
@@ -1175,6 +1169,10 @@
   - type: IconSmooth
     key: woods
     base: wood
+  - type: RCDDeconstructable #Frontier
+    cost: 6 #Frontier
+    delay: 8 #Frontier
+    fx: EffectRCDDeconstruct8 #Frontier
 
 - type: entity
   parent: BaseWall
@@ -1219,6 +1217,10 @@
   - type: Construction
     graph: WebStructures
     node: wall
+  - type: RCDDeconstructable #Frontier
+    cost: 6 #Frontier
+    delay: 8 #Frontier
+    fx: EffectRCDDeconstruct8 #Frontier
 
 
 # Lavalend Walls
@@ -1297,6 +1299,8 @@
   - type: Icon
     sprite: Structures/Walls/mining_diagonal.rsi
     state: state0
+  - type: RCDDeconstructable # Frontier
+    deconstructable: false # Frontier
 
 
 # Vault Walls
