@@ -42,6 +42,15 @@ jobs:
     - name: Package client
       run: dotnet run --project Content.Packaging client --no-wipe-release
 
+    - name: Upload build artifact
+      id: artifact-upload-step
+      uses: actions/upload-artifact@v4
+      with:
+        name: build
+        path: release/*.zip
+        compression-level: 0
+        retention-days: 0
+
     - name: Publish version
       run: Tools/publish_multi_request.py
       env:
