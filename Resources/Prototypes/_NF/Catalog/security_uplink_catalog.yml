@@ -750,6 +750,27 @@
         - Sheriff
 
 - type: listing
+  id: UplinkSecurityVortex
+  name:  uplink-security-vortex-name
+  description: uplink-security-vortex-desc
+  productEntity: WeaponAutoLaser
+  icon: { sprite: Objects/Weapons/Guns/Battery/pulse_pistol.rsi, state: base }
+  cost:
+    FrontierUplinkCoin: 10
+  categories:
+    - UplinkSecurityWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Bailiff
+        - SeniorOfficer
+        - Sheriff
+
+- type: listing
   id: UplinkSecurityPulsePistol
   name:  uplink-security-pulsepistol-name
   description: uplink-security-pulsepistol-desc

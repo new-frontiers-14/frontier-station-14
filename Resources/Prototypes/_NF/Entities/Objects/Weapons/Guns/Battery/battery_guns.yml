@@ -209,18 +209,19 @@
 
 
 - type: entity
-  name: SESWC Vortex
+  name: SESWC X1 Vortex
   parent: WeaponLaserCarbinePractice
   id: WeaponAutoLaser
   description: in progress
   components:
   - type: Gun
+    fireRate: 5
     selectedMode: FullAuto
     availableModes:
     - FullAuto
   - type: HitscanBatteryAmmoProvider
-    proto: RedLaserPractice
-    fireCost: 62.5
+    proto: RedLaser
+    fireCost: 100
   - type: Battery
     maxCharge: 3000
     startingCharge: 3000
