@@ -83,7 +83,7 @@ public sealed partial class GhostGui : UIWidget
         if (_respawnTime is null || _gameTiming.CurTime > _respawnTime)
         {
             GhostRespawnButton.Text = Loc.GetString("ghost-gui-respawn-button-allowed");
-            GhostRespawnButton.Disabled = false;
+            GhostRespawnButton.Disabled = true; //true сменить на false. true для ивента
         }
         else
         {
