@@ -87,10 +87,8 @@ public sealed class ShipyardTest
 
                     var idealMinPrice = appraisePrice * vessel.MinPriceMarkup;
 
-                    Assert.That(appraisePrice, Is.AtMost(vessel.Price),
-                        $"Found arbitrage on {vessel.ID} shuttle! Cost is {vessel.Price} but sell is {appraisePrice}!");
                     Assert.That(vessel.Price, Is.AtLeast(idealMinPrice),
-                        $"Arbitrage possible on {vessel.ID}. ideal price should be {idealMinPrice} = {vessel.MinPriceMarkup * 100}% over the appraise price.");
+                        $"Arbitrage possible on {vessel.ID}. Minimal price should be {idealMinPrice}, {(vessel.MinPriceMarkup - 1.0f) * 100}% over the appraise price ({appraisePrice}).");
 
                     mapManager.DeleteMap(mapId);
                 }
