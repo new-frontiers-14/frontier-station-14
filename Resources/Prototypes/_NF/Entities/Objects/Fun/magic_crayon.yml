@@ -1,47 +1,28 @@
 - type: entity
-  parent: BaseItem
-  id: MagicCrayon
+  parent: CrayonRainbow
+  id: CrayonMagic
   name: magic crayon
-  description: "The product of blending crayons with bluspace crystals, now with new special not so magical flavors"
+  description: Specially blended with bluespace crystals and certified non-toxic.
   components:
   - type: Sprite
-    sprite: _NF/Objects/Fun/magic_crayon.rsi
+    sprite: _NF/Objects/Fun/magic_crayon_small.rsi
     state: icon
   - type: Item
-    sprite: _NF/Objects/Fun/magic_crayon.rsi
-    size: Small
-  - type: Tag
+    sprite: _NF/Objects/Fun/magic_crayon_small.rsi
+    heldPrefix: icon
+  - type: Tag # Removing trash & recyclable
     tags:
     - Write
     - Crayon
-  - type: UserInterface
-    interfaces:
-      enum.CrayonUiKey.Key:
-        type: CrayonBoundUserInterface
   - type: Crayon
-    color: Red
-    selectableColor: true
-    capacity: 999999
-  - type: Stamp
-    stampState: "paper_stamp-nf-signature"
-    sound:
-      path: /Audio/Items/Paper/paper_scribble1.ogg
-      params:
-        volume: -2
-        maxDistance: 5
-  - type: UseDelay
-    delays:
-      stamp:
-        length: 1.0
-  - type: Food
+    capacity: 2147483647 # int.MaxValue, infinite charges
   - type: FlavorProfile
     flavors:
     - chewy
-    - sweet
+    - magical
   - type: SolutionContainerManager
     solutions:
       food:
         reagents:
-        - ReagentId: JuiceThatMakesYouWeh
+        - ReagentId: Nothing
           Quantity: 40
-
