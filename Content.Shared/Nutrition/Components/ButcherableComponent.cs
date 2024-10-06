@@ -1,5 +1,6 @@
 using Content.Shared.Storage;
 using Robust.Shared.GameStates;
+using Robust.Shared.Serialization; // EE
 
 namespace Content.Shared.Nutrition.Components
 {
@@ -25,6 +26,7 @@ namespace Content.Shared.Nutrition.Components
         public bool BeingButchered;
     }
 
+    [Serializable, NetSerializable] // EE
     public enum ButcheringType : byte
     {
         Knife, // e.g. goliaths

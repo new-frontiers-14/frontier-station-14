@@ -319,7 +319,7 @@ namespace Content.Server.Ghost
             }
 
             // Frontier: check admin status when warping to admin-only warp points
-            if (_admin.IsAdmin(attached) &&
+            if (!_admin.IsAdmin(attached) &&
                 TryComp<WarpPointComponent>(target, out var warpPoint) &&
                 warpPoint.AdminOnly)
             {
