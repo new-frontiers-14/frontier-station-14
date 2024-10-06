@@ -23,7 +23,6 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 using Content.Server.Corvax.Respawn; // Frontier
-using Content.Shared.Traits.Assorted; // Frontier
 
 namespace Content.Server.GameTicking
 {
@@ -276,12 +275,6 @@ namespace Content.Server.GameTicking
             if (player.UserId == new Guid("{e887eb93-f503-4b65-95b6-2f282c014192}"))
             {
                 EntityManager.AddComponent<OwOAccentComponent>(mob);
-            }
-
-            // Frontier - Remove Bing Legs
-            if (player.UserId == new Guid("{8a276323-a24c-4503-ba41-916463e02de8}"))
-            {
-                EntityManager.AddComponent<LegsParalyzedComponent>(mob);
             }
 
             _stationJobs.TryAssignJob(station, jobPrototype, player.UserId);
