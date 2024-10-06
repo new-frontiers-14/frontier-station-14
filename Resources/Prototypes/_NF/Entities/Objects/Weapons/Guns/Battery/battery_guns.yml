@@ -130,10 +130,10 @@
         shader: unshaded
 
 - type: entity
-  name: Bowcaster
-  parent: BaseItem
+  name: Experimental bowcaster
+  parent: [ BaseItem, BaseC2ExpeditionContraband ]
   id: WeaponBowcaster
-  description: From a galaxy far far away, S.E.S.W.C got their hands on this unqiue three bolt engery weapon. It was accidentally drop during transport.
+  description: From a galaxy far far away, S.E.S.W.C got their hands on this unqiue three bolt engery weapon that was accidentally drop during transport.
   components:
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Battery/bowcaster.rsi
@@ -181,10 +181,10 @@
       path: /Audio/Weapons/bladeslice.ogg
 
 - type: entity
-  name: inprogress
-  parent: WeaponBowcaster
-  id: Weaponlasersawoff
-  descripton: inprogress
+  name: Hyperbuster X3
+  parent: [ WeaponBowcaster, BaseC1ExpeditionContraband ]
+  id: WeaponHyperbuster
+  descripton: Three shots, one definitive outcome. Brought to you by S.E.S.W.C!
   components:
   - type: Battery
     maxCharge: 150
@@ -209,16 +209,14 @@
 
 
 - type: entity
-  name: SESWC X1 Vortex
-  parent: WeaponLaserCarbinePractice
-  id: WeaponAutoLaser
-  description: what in progess
+  name: X1 Vortex
+  parent: [ WeaponLaserCarbinePractice, BaseC2ExpeditionContraband ]
+  id: WeaponVortex
+  description: New fully automatic laser rifle  brought to you by S.E.S.W.C
   components:
   - type: Gun
     fireRate: 5
     selectedMode: FullAuto
-    availableModes:
-    - FullAuto
   - type: HitscanBatteryAmmoProvider
     proto: RedLaser
     fireCost: 100

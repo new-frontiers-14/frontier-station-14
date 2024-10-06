@@ -339,7 +339,7 @@
     - id: WeaponSVT
       amount: 1
     - id: 10roundmagazine
-      amount: 2 
+      amount: 2
 
 # Energy
 - type: entity
@@ -419,6 +419,39 @@
   - type: StorageFill
     contents:
     - id: WeaponXrayCannonExpedition
+      amount: 1
+
+- type: entity
+  parent: WeaponCaseLong
+  id: WeaponCaseBowcasterExpedition
+  suffix: Dungeon, Bowcaster
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponBowcasterExpedition
+      amount: 1
+
+- type: entity
+  parent: WeaponCaseLong
+  id: WeaponCaseHyperbusterExpedition
+  suffix: Dungeon, Hyperbuster
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponHyperbusterExpedition
+      amount: 1
+
+- type: entity
+  parent: WeaponCaseLong
+  id: WeaponCaseVortexExpedition
+  suffix: Dungeon, Hyperbuster
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponVortexExpedition
       amount: 1
 
 # Sniper
