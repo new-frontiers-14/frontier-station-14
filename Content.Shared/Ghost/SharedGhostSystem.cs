@@ -97,6 +97,13 @@ namespace Content.Shared.Ghost
         /// Whether this warp represents a warp point or a player
         /// </summary>
         public bool IsWarpPoint { get;  }
+
+        // Frontier: warp point hiding
+        /// <summary>
+        /// Whether this warp requires admin access to warp to
+        /// </summary>
+        public bool AdminOnly { get; }
+        // End Frontier
     }
 
     /// <summary>

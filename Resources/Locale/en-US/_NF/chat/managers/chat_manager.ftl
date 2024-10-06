@@ -23,3 +23,9 @@ chat-speech-verb-goblin-2 = vokers
 chat-speech-verb-goblin-3 = blurts out
 chat-speech-verb-goblin-4 = patters
 chat-speech-verb-goblin-5 = cuts
+
+chat-speech-verb-name-rodentia = Rodentia
+chat-speech-verb-rodentia-1 = squeaks
+chat-speech-verb-rodentia-2 = pieps
+chat-speech-verb-rodentia-3 = chatters
+chat-speech-verb-rodentia-4 = squeals

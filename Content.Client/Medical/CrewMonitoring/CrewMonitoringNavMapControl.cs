@@ -1,8 +1,6 @@
 using Content.Client.Pinpointer.UI;
 using Robust.Client.Graphics;
 using Robust.Client.UserInterface.Controls;
-using Robust.Client.UserInterface.XAML; // Frontier
-using Robust.Shared.GameObjects; // Frontier modification
 using Robust.Shared.Timing;
 
 namespace Content.Client.Medical.CrewMonitoring;
@@ -19,7 +17,6 @@ public sealed partial class CrewMonitoringNavMapControl : NavMapControl
 
     public CrewMonitoringNavMapControl() : base()
     {
-        RobustXamlLoader.Load(this); // Frontier
         IoCManager.InjectDependencies(this); // Frontier
         _transform = _entitySystem.GetEntitySystem<SharedTransformSystem>(); // Frontier
         WallColor = new Color(192, 122, 196);

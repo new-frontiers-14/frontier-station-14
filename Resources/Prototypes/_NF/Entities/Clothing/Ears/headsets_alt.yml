@@ -1,6 +1,7 @@
 ﻿- type: entity
   parent: [ClothingHeadsetCommon, ClothingHeadsetAlt]
   id: ClothingHeadsetAltMercenary
+  name: mercenary over-ear headset
   components:
   - type: Sprite
     sprite: _NF/Clothing/Ears/Headsets/mercenary.rsi
@@ -10,6 +11,7 @@
 - type: entity
   parent: [ClothingHeadsetCommon, ClothingHeadsetAlt]
   id: ClothingHeadsetAltPilot
+  name: pilot over-ear headset
   components:
   - type: Sprite
     sprite: _NF/Clothing/Ears/Headsets/pilot.rsi
@@ -54,6 +56,7 @@
   parent: ClothingHeadsetAlt
   id: ClothingHeadsetAltNfsdBrownCentcom
   name: sheriff's over-ear headset
+  categories: [ HideSpawnMenu ]
   components:
   - type: ContainerFill
     containers:
@@ -68,6 +71,7 @@
 - type: entity
   parent: ClothingHeadsetAltNfsdBrownCentcom
   id: ClothingHeadsetAltNfsdGreenCentcom
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: _NF/Clothing/Ears/Headsets/nfsd_h_green.rsi
@@ -77,37 +81,55 @@
 - type: entity
   parent: ClothingHeadsetAltNfsdBrownCentcom
   id: ClothingHeadsetAltNfsdCreamandBrownCentcom
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: _NF/Clothing/Ears/Headsets/nfsd_h_cb.rsi
   - type: Clothing
     sprite: _NF/Clothing/Ears/Headsets/nfsd_h_cb.rsi
 
+- type: entity
+  parent: [ClothingHeadsetCommon, ClothingHeadsetAltMercenary]
+  id: ClothingHeadsetAltMercenaryCommon
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [ClothingHeadsetCommon, ClothingHeadsetAltPilot]
+  id: ClothingHeadsetAltPilotCommon
+  categories: [ HideSpawnMenu ]
+
 # Common Versions - Upstream
 - type: entity
   parent: [ClothingHeadsetCommon, ClothingHeadsetAltCargo]
   id: ClothingHeadsetAltCargoCommon
+  categories: [ HideSpawnMenu ]
 
 - type: entity
   parent: [ClothingHeadsetCommon, ClothingHeadsetAltCommand]
   id: ClothingHeadsetAltCommandCommon
+  categories: [ HideSpawnMenu ]
 
 - type: entity
   parent: [ClothingHeadsetCommon, ClothingHeadsetAltEngineering]
   id: ClothingHeadsetAltEngineeringCommon
+  categories: [ HideSpawnMenu ]
 
 - type: entity
   parent: [ClothingHeadsetCommon, ClothingHeadsetAltMedical]
   id: ClothingHeadsetAltMedicalCommon
+  categories: [ HideSpawnMenu ]
 
 - type: entity
   parent: [ClothingHeadsetCommon, ClothingHeadsetAltSecurity]
   id: ClothingHeadsetAltSecurityCommon
+  categories: [ HideSpawnMenu ]
 
 - type: entity
   parent: [ClothingHeadsetCommon, ClothingHeadsetAltScience]
   id: ClothingHeadsetAltScienceCommon
+  categories: [ HideSpawnMenu ]
 
 - type: entity
   parent: [ClothingHeadsetCommon, ClothingHeadsetAltCentCom]
   id: ClothingHeadsetAltCentComCommon
+  categories: [ HideSpawnMenu ]
