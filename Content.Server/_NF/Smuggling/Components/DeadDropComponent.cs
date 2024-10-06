@@ -68,7 +68,7 @@ public sealed partial class DeadDropComponent : Component
     ///     Location of the grid to spawn in as the dead drop.
     /// </summary>
     [DataField]
-    public string DropGrid = "/Maps/deaddrop.yml";
+    public string DropGrid = "/Maps/_NF/DeadDrop/deaddrop.yml";
 
     /// <summary>
     ///     The color of your grid. the name should be set by the mapper when mapping.

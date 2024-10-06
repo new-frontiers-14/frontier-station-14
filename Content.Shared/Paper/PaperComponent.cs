@@ -32,6 +32,17 @@ public sealed partial class PaperComponent : Component
     [DataField("sound")]
     public SoundSpecifier? Sound { get; private set; } = new SoundCollectionSpecifier("PaperScribbles", AudioParams.Default.WithVariation(0.1f));
 
+    // Frontier: 
+    /// <summary>
+    /// Sound played after writing to the paper.
+    /// </summary>
+    [DataField]
+    public bool DestroyOnFax { get; private set; }
+
+    [DataField]
+    public string? DestroyMessage { get; private set; }
+    // End Frontier
+
     [Serializable, NetSerializable]
     public sealed class PaperBoundUserInterfaceState : BoundUserInterfaceState
     {
