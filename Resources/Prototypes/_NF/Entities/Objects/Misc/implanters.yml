@@ -1,20 +1,19 @@
 #Medical implanters
-
 - type: entity
   id: MedicalTrackingImplanter
   suffix: medical tracking
   parent: BaseImplantOnlyImplanter
   components:
-    - type: Implanter
-      implant: MedicalTrackingImplant
+  - type: Implanter
+    implant: MedicalTrackingImplant
 
 - type: entity
   id: FreelanceTrackingImplanter
   suffix: freelance tracking
   parent: BaseImplantOnlyImplanterSyndi
   components:
-    - type: Implanter
-      implant: FreelanceTrackingImplant
+  - type: Implanter
+    implant: FreelanceTrackingImplant
 
 - type: entity
   id: DeathAcidifierImplanterNF
@@ -39,3 +38,36 @@
   components:
   - type: Implanter
     implant: BibleUserImplant
+
+# Labeled implanters (for vendors)
+- type: entity
+  id: MedicalTrackingImplanterLabeled
+  parent: MedicalTrackingImplanter
+  suffix: medical tracking, Labeled
+  components:
+  - type: Label
+    currentLabel: implanter-label-medical-tracking
+
+- type: entity
+  id: SadTromboneImplanterLabeled
+  parent: SadTromboneImplanter
+  suffix: sad trombone, Labeled
+  components:
+  - type: Label
+    currentLabel: implanter-label-sad-trombone
+
+- type: entity
+  id: LightImplanterLabeled
+  parent: LightImplanter
+  suffix: light, Labeled
+  components:
+  - type: Label
+    currentLabel: implanter-label-light
+
+- type: entity
+  id: BikeHornImplanterLabeled
+  parent: BikeHornImplanter
+  suffix: bike horn, Labeled
+  components:
+  - type: Label
+    currentLabel: implanter-label-bike-horn

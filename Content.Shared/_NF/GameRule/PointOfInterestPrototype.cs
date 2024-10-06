@@ -1,8 +1,7 @@
-using Content.Shared.Guidebook;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 using Robust.Shared.Utility;
+using Content.Shared.Shuttles.Components;
 
 namespace Content.Shared._NF.GameRule;
 
@@ -20,83 +19,84 @@ public sealed partial class PointOfInterestPrototype : IPrototype
     /// <summary>
     ///     The name of this point of interest
     /// </summary>
-    [DataField("name")]
+    [DataField]
     public string Name { get; private set; } = "";
 
     /// <summary>
     ///     Minimum range to spawn this POI at
     /// </summary>
-    [DataField("rangeMin")]
+    [DataField]
     public int RangeMin { get; private set; } = 5000;
 
     /// <summary>
     ///     Maximum range to spawn this POI at
     /// </summary>
-    [DataField("rangeMax")]
+    [DataField]
     public int RangeMax { get; private set; } = 10000;
 
     /// <summary>
     ///     The color to display the grid and name tag as in the radar screen
     /// </summary>
-    [DataField("iffColor")]
-    public Color IffColor { get; private set; } = (100, 100, 100, 100);
+    [DataField("IFFColor")]
+    public Color IFFColor { get; private set; } = (100, 100, 100, 100);
+
+    /// <summary>
+    ///     Whether or not the POI is shown on IFF.
+    /// </summary>
+    [DataField("IFFFlags")]
+    public IFFFlags Flags = IFFFlags.None;
+
+    /// <summary>
+    ///     Whether or not the POI permits IFF changes (i.e. from a console aboard it)
+    /// </summary>
+    [DataField]
+    public bool AllowIFFChanges { get; private set; }
 
     /// <summary>
     ///     Whether or not the POI itself should be able to move or be moved. Should be false for immobile POIs (static stations) and true for ship-like POIs.
     /// </summary>
-    [DataField("canMove")]
+    [DataField]
     public bool CanMove { get; private set; }
 
     /// <summary>
     ///     Whether or not the POI is shown on IFF.
     /// </summary>
-    [DataField("isHidden")]
-    public bool IsHidden { get; private set; }
-
-    /// <summary>
-    ///     Whether or not the POI permits IFF changes (i.e. from a console aboard it)
-    /// </summary>
-    [DataField("allowIFFChanges")]
-    public bool AllowIFFChanges { get; private set; }
-
-    /// <summary>
-    ///     Whether or not the POI is shown on IFF.
-    /// </summary>
-    [DataField("gridProtection")]
+    [DataField]
     public GridProtectionFlags GridProtection { get; private set; } = GridProtectionFlags.None;
-
-    /// <summary>
-    ///     Must this POI always spawn? This is independent of spawn chance. If it always spawns,
-    ///     it will be excluded from any kind of random lists, for places like the sheriff's department etc.
-    /// </summary>
-    [DataField("alwaysSpawn")]
-    public bool AlwaysSpawn { get; private set; }
 
     /// <summary>
     ///     If the POI does not belong to a pre-defined group, it will default to the "unique" internal category and will
     ///     use this float from 0-1 as a raw chance to spawn each round.
     /// </summary>
-    [DataField("spawnChance")]
+    [DataField]
     public float SpawnChance { get; private set; } = 1;
 
     /// <summary>
     ///     The group that this POI belongs to. Currently, the default groups are:
-    ///     "CargoDepot"
+    ///     "CargoDepot" 
     ///     "MarketStation"
+    ///     "Required"
     ///     "Optional"
-    ///     These three have corresponding CVARS by default, that set an optional # of this group to spawn.
+    ///     Each POI labeled in the Required group will be spawned in every round.
+    ///     Apart from that, each of thesehave corresponding CVARS by default, that set an optional # of this group to spawn.
     ///     Traditionally, it is 2 cargo depots, 1 trade station, and 8 optional POIs.
     ///     Dynamically added groups will default to 1 option chosen in that group, using the SpawnChance as a weighted chance
     ///     for the entire group to spawn on a per-POI basis.
     /// </summary>
-    [DataField("spawnGroup")]
+    [DataField]
     public string SpawnGroup { get; private set; } = "Optional";
 
     /// <summary>
     ///     the path to the grid
     /// </summary>
-    [DataField("gridPath", required: true)]
+    [DataField(required: true)]
     public ResPath GridPath { get; private set; } = default!;
+
+    /// <summary>
+    ///     Should the public transit stop here? If true, this will be added to the list of bus stops.
+    /// </summary>
+    [DataField]
+    public bool BusStop { get; private set; }
 }
 
 /// <summary>
