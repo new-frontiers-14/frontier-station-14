@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Server.Cargo.Systems;
 using Content.Shared.Shipyard.Prototypes;
 using Robust.Server.GameObjects;
@@ -75,20 +75,20 @@ public sealed class ShipyardTest
                 foreach (var vessel in protoManager.EnumeratePrototypes<VesselPrototype>())
                 {
                     var mapId = mapManager.CreateMap();
-                    double combinedPrice = 0;
+                    double appraisePrice = 0;
 
                     Assert.That(mapLoader.TryLoad(mapId, vessel.ShuttlePath.ToString(), out var roots));
                     var shuttle = roots.FirstOrDefault(uid => entManager.HasComponent<MapGridComponent>(uid));
 
                     pricing.AppraiseGrid(shuttle, null, (uid, price) =>
                     {
-                        combinedPrice += price;
+                        appraisePrice += price;
                     });
 
-                    Assert.That(combinedPrice, Is.AtMost(vessel.Price),
-                        $"Found arbitrage on {vessel.ID} shuttle! Cost is {vessel.Price} but sell is {combinedPrice}!");
-                    Assert.That(vessel.Price - combinedPrice, Is.GreaterThan(vessel.Price * 0.05),
-                        $"Arbitrage possible on {vessel.ID}. {vessel.Price} - {combinedPrice} = {vessel.Price - combinedPrice} > 5% of the buy price!");
+                    var idealMinPrice = appraisePrice * vessel.MinPriceMarkup;
+
+                    Assert.That(vessel.Price, Is.AtLeast(idealMinPrice),
+                        $"Arbitrage possible on {vessel.ID}. Minimal price should be {idealMinPrice}, {(vessel.MinPriceMarkup - 1.0f) * 100}% over the appraise price ({appraisePrice}).");
 
                     mapManager.DeleteMap(mapId);
                 }
