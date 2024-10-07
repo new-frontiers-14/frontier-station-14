@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using System.Text;
 using Content.Server._NF.GameTicking.Events;
 using Content.Server._NF.SectorServices;
@@ -364,7 +364,7 @@ public sealed class DeadDropSystem : EntitySystem
             }
 
             // Hint generated, destroy component
-            RemComp<DeadDropHintComponent>(ent);
+            //RemComp<DeadDropHintComponent>(ent); // Removed so we can keep track of it
             _sawmill.Debug($"Dead drop hint generated at {ent}.");
         }
 
