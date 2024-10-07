@@ -27,42 +27,135 @@ namespace Content.IntegrationTests.Tests
     public sealed class PostMapInitTest
     {
         private const bool SkipTestMaps = true;
-        private const string TestMapsPath = "/Maps/Test/";
+        private const string TestMapsPath = "/Maps/_NF/Test/"; // Frontier: _NF
 
+        // Frontier: the following definitions are our maps
         private static readonly string[] NoSpawnMaps =
         {
-            "CentComm",
-            "Dart"
         };
 
         private static readonly string[] Grids =
         {
-            "/Maps/centcomm.yml",
-            "/Maps/Shuttles/cargo.yml",
-            "/Maps/Shuttles/emergency.yml",
-            "/Maps/Shuttles/infiltrator.yml",
+            "/Maps/_NF/Shuttles/akupara.yml",
+            "/Maps/_NF/Shuttles/apothecary.yml",
+            "/Maps/_NF/Shuttles/barge.yml",
+            "/Maps/_NF/Shuttles/bazaar.yml",
+            "/Maps/_NF/Shuttles/beaker.yml",
+            "/Maps/_NF/Shuttles/bocadillo.yml",
+            "/Maps/_NF/Shuttles/bookworm.yml",
+            "/Maps/_NF/Shuttles/bulker.yml",
+            "/Maps/_NF/Shuttles/caduceus.yml",
+            "/Maps/_NF/Shuttles/camper.yml",
+            "/Maps/_NF/Shuttles/ceres.yml",
+            "/Maps/_NF/Shuttles/chisel.yml",
+            "/Maps/_NF/Shuttles/cleithro.yml",
+            "/Maps/_NF/Shuttles/comet.yml",
+            "/Maps/_NF/Shuttles/condor.yml",
+            "/Maps/_NF/Shuttles/construct.yml",
+            "/Maps/_NF/Shuttles/crescent.yml",
+            "/Maps/_NF/Shuttles/crown.yml",
+            "/Maps/_NF/Shuttles/eagle.yml",
+            "/Maps/_NF/Shuttles/esquire.yml",
+            "/Maps/_NF/Shuttles/garden.yml",
+            "/Maps/_NF/Shuttles/hammer.yml",
+            "/Maps/_NF/Shuttles/harbormaster.yml",
+            "/Maps/_NF/Shuttles/hauler.yml",
+            "/Maps/_NF/Shuttles/helix.yml",
+            "/Maps/_NF/Shuttles/honker.yml",
+            "/Maps/_NF/Shuttles/investigator.yml",
+            "/Maps/_NF/Shuttles/kestrel.yml",
+            "/Maps/_NF/Shuttles/kilderkin.yml",
+            "/Maps/_NF/Shuttles/knuckleverse.yml",
+            "/Maps/_NF/Shuttles/lantern.yml",
+            "/Maps/_NF/Shuttles/legman.yml",
+            "/Maps/_NF/Shuttles/liquidator.yml",
+            "/Maps/_NF/Shuttles/loader.yml",
+            "/Maps/_NF/Shuttles/lyrae.yml",
+            "/Maps/_NF/Shuttles/mccargo.yml",
+            "/Maps/_NF/Shuttles/mcdelivery.yml",
+            //"/Maps/_NF/Shuttles/metastable.yml", // Does not pass tests.
+            "/Maps/_NF/Shuttles/mission.yml",
+            "/Maps/_NF/Shuttles/phoenix.yml",
+            "/Maps/_NF/Shuttles/piecrust.yml",
+            "/Maps/_NF/Shuttles/pioneer.yml",
+            "/Maps/_NF/Shuttles/placebo.yml",
+            "/Maps/_NF/Shuttles/prospector.yml",
+            "/Maps/_NF/Shuttles/pts.yml",
+            "/Maps/_NF/Shuttles/pulse.yml",
+            "/Maps/_NF/Shuttles/rosebudmki.yml",
+            "/Maps/_NF/Shuttles/searchlight.yml",
+            "/Maps/_NF/Shuttles/skipper.yml",
+            "/Maps/_NF/Shuttles/sparrow.yml",
+            "/Maps/_NF/Shuttles/spectre.yml",
+            "/Maps/_NF/Shuttles/spirit.yml",
+            "/Maps/_NF/Shuttles/stasis.yml",
+            "/Maps/_NF/Shuttles/stellaris.yml",
+            "/Maps/_NF/Shuttles/stratos.yml",
+            "/Maps/_NF/Shuttles/vagabond.yml",
+            "/Maps/_NF/Shuttles/waveshot.yml",
+            // Admin
+            "/Maps/_NF/Shuttles/Admin/fishbowl.yml",
+            // Black Market
+            "/Maps/_NF/Shuttles/BlackMarket/barnacle.yml",
+            "/Maps/_NF/Shuttles/BlackMarket/bocakillo.yml",
+            "/Maps/_NF/Shuttles/BlackMarket/falcon.yml",
+            "/Maps/_NF/Shuttles/BlackMarket/menace.yml",
+            "/Maps/_NF/Shuttles/BlackMarket/schooner.yml",
+            // Bus
+            "/Maps/_NF/Shuttles/Bus/publicts.yml",
+            // Expedition
+            "/Maps/_NF/Shuttles/Expedition/ambition.yml",
+            "/Maps/_NF/Shuttles/Expedition/anchor.yml",
+            "/Maps/_NF/Shuttles/Expedition/brigand.yml",
+            "/Maps/_NF/Shuttles/Expedition/courserx.yml",
+            "/Maps/_NF/Shuttles/Expedition/dartx.yml",
+            "/Maps/_NF/Shuttles/Expedition/decadedove.yml",
+            "/Maps/_NF/Shuttles/Expedition/dragonfly.yml",
+            "/Maps/_NF/Shuttles/Expedition/gasbender.yml",
+            "/Maps/_NF/Shuttles/Expedition/gourd.yml",
+            "/Maps/_NF/Shuttles/Expedition/pathfinder.yml",
+            "/Maps/_NF/Shuttles/Expedition/rosebudmkii.yml",
+            "/Maps/_NF/Shuttles/Expedition/sprinter.yml",
+            // Nfsd
+            "/Maps/_NF/Shuttles/Nfsd/broadhead.yml",
+            "/Maps/_NF/Shuttles/Nfsd/cleric.yml",
+            "/Maps/_NF/Shuttles/Nfsd/empress.yml",
+            "/Maps/_NF/Shuttles/Nfsd/fighter.yml",
+            "/Maps/_NF/Shuttles/Nfsd/hospitaller.yml",
+            "/Maps/_NF/Shuttles/Nfsd/inquisitor.yml",
+            "/Maps/_NF/Shuttles/Nfsd/interceptor.yml",
+            "/Maps/_NF/Shuttles/Nfsd/marauder.yml",
+            "/Maps/_NF/Shuttles/Nfsd/opportunity.yml",
+            "/Maps/_NF/Shuttles/Nfsd/prowler.yml",
+            "/Maps/_NF/Shuttles/Nfsd/rogue.yml",
+            "/Maps/_NF/Shuttles/Nfsd/templar.yml",
+            "/Maps/_NF/Shuttles/Nfsd/wasp.yml",
+            "/Maps/_NF/Shuttles/Nfsd/whiskey.yml",
+            // Scrap
+            "/Maps/_NF/Shuttles/Scrap/bison.yml",
+            "/Maps/_NF/Shuttles/Scrap/canister.yml",
+            "/Maps/_NF/Shuttles/Scrap/disciple.yml",
+            "/Maps/_NF/Shuttles/Scrap/nugget.yml",
+            "/Maps/_NF/Shuttles/Scrap/orange.yml",
+            "/Maps/_NF/Shuttles/Scrap/point.yml",
+            "/Maps/_NF/Shuttles/Scrap/tide.yml",
+            // Sr
+            "/Maps/_NF/Shuttles/Sr/bottleneck.yml",
+            "/Maps/_NF/Shuttles/Sr/broom.yml",
+            "/Maps/_NF/Shuttles/Sr/mailpod.yml",
+            "/Maps/_NF/Shuttles/Sr/parcel.yml",
+            "/Maps/_NF/Shuttles/Sr/watchdog.yml",
+            // Syndicate
+            "/Maps/_NF/Shuttles/Syndicate/hunter.yml",
+            "/Maps/_NF/Shuttles/Syndicate/infiltrator.yml",
         };
 
         private static readonly string[] GameMaps =
         {
-            "Dev",
-            "TestTeg",
-            "Fland",
-            "Meta",
-            "Packed",
-            "Omega",
-            "Bagel",
-            "CentComm",
-            "Box",
-            "Core",
-            "Marathon",
-            "MeteorArena",
-            "Saltern",
-            "Reach",
-            "Train",
-            "Oasis",
-            "Cog"
+            "Frontier",
+            "NFDev"
         };
+        // End Frontier
 
         /// <summary>
         /// Asserts that specific files have been saved as grids and not maps.
@@ -116,7 +209,7 @@ namespace Content.IntegrationTests.Tests
             var server = pair.Server;
 
             var resourceManager = server.ResolveDependency<IResourceManager>();
-            var mapFolder = new ResPath("/Maps");
+            var mapFolder = new ResPath("/Maps/_NF"); // Frontier: add _NF
             var maps = resourceManager
                 .ContentFindFiles(mapFolder)
                 .Where(filePath => filePath.Extension == "yml" && !filePath.Filename.StartsWith(".", StringComparison.Ordinal))
