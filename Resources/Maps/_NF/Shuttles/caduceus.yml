@@ -1321,10 +1321,11 @@ entities:
       injectionAmount: 4
       injecting: True
     - type: ContainerContainer
-      fuelSlot: !type:ContainerSlot
-        showEnts: False
-        occludes: True
-        ent: 113
+      containers:
+        fuelSlot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: 113
 - proto: AmeJar
   entities:
   - uid: 113
