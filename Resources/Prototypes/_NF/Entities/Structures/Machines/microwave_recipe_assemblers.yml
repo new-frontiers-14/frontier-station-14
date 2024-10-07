@@ -10,7 +10,7 @@
     canMicrowaveIdsSafely: false
     explosionChance: 0
     lightningChance: 0
-    startCookingSound: /Audio/_NF/Effects/egg-timer.ogg
+    beginCookingSound: /Audio/_NF/Machines/egg-timer.ogg
     foodDoneSound: /Audio/Machines/ding.ogg
     loopingSound: /Audio/_NF/Effects/silence.ogg
     validRecipeTypes: Oven
@@ -131,8 +131,11 @@
   description: Great for salads, apparently. You don't know how it works.
   components:
   - type: Microwave
-    explosionChance: 0 # Should really chop them up or something dumb, but should not explode
-    lightningChance: 0 # It's a weird arm chop thingy, not a tesla coil.
+    explosionChance: 0
+    lightningChance: 0
+    beginCookingSound: /Audio/Machines/machine_switch.ogg
+    foodDoneSound: /Audio/Machines/ding.ogg
+    loopingSound: /Audio/_NF/Machines/assembler.ogg
     validRecipeTypes: Assembler
     canHeat: false
     canIrradiate: false
@@ -204,6 +207,9 @@
   components:
   - type: Microwave
     validRecipeTypes: MedicalAssembler
+    beginCookingSound: /Audio/Machines/machine_switch.ogg
+    foodDoneSound: /Audio/Effects/Shuttle/radar_ping.ogg
+    loopingSound: /Audio/_NF/Machines/medical-assembler.ogg
     key: MedicalAssemblerKey
   - type: GenericVisualizer
     visuals:
