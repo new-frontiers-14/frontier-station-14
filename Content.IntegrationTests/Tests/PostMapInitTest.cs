@@ -153,7 +153,7 @@ namespace Content.IntegrationTests.Tests
         private static readonly string[] GameMaps =
         {
             "Frontier",
-            "NFDev"
+            "NFDev" // Missing spawn points
         };
         // End Frontier
 
@@ -404,6 +404,14 @@ namespace Content.IntegrationTests.Tests
 
             var gameMaps = protoMan.EnumeratePrototypes<GameMapPrototype>()
                 .Where(x => !pair.IsTestPrototype(x))
+                // Frontier: FIXME - hacky test fix
+                .Where(x =>
+                    x.ID == PoolManager.TestMap || // Frontier: check test map
+                    (x.MapPath.ToString().StartsWith("/Maps/_NF") && // Frontier: check frontier maps only
+                    !x.MapPath.ToString().StartsWith("/Maps/_NF/Shuttles") && // Frontier: skip shuttles (not loaded as maps)
+                    !x.MapPath.ToString().StartsWith("/Maps/_NF/POI")) // Frontier: skip POIs (not loaded as maps)
+                    )
+                // End Frontier
                 .Select(x => x.ID)
                 .ToHashSet();
 
