@@ -1322,22 +1322,12 @@ entities:
       injecting: True
     - type: ContainerContainer
       containers:
-        AmeFuel: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: 40
         fuelSlot: !type:ContainerSlot
           showEnts: False
           occludes: True
           ent: 113
 - proto: AmeJar
   entities:
-  - uid: 40
-    components:
-    - type: Transform
-      parent: 314
-    - type: Physics
-      canCollide: False
   - uid: 113
     components:
     - type: Transform
@@ -4131,10 +4121,6 @@ entities:
           showEnts: False
           occludes: True
           ent: null
-        bankATM-cashSlot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
     - type: Physics
       canCollide: False
     - type: ItemSlots
@@ -5220,18 +5206,6 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#0000FFFF'
-  - uid: 882
-    components:
-    - type: Transform
-      anchored: False
-      rot: 3.141592653589793 rad
-      pos: 5.5,6.5
-      parent: 1
-    - type: AtmosPipeColor
-      color: '#0000FFFF'
-    - type: Physics
-      canCollide: True
-      bodyType: Dynamic
   - uid: 883
     components:
     - type: Transform
