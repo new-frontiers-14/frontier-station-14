@@ -3,7 +3,7 @@
   abstract: true
   parent: ClothingHeadEVAHelmetBase
   id: ClothingHeadEVAHelmetWithLightBase
-  name: base space helmet with light
+  name: base EVA helmet with light
   components:
   - type: Sprite
     sprite: _NF/Clothing/Head/Helmets/eva_color.rsi
@@ -58,7 +58,7 @@
   - type: PointLight
     #color: "#adffe6"
     enabled: false
-    radius: 4
+    radius: 3
     energy: 2
     mask: /Textures/Effects/LightMasks/cone.png
     autoRot: true
@@ -161,6 +161,9 @@
         color: "#f2b833"
       - state: equipped-head-visor
         color: "#fbe6b8"
+  - type: PointLight
+    radius: 5
+    energy: 2
 
 - type: entity
   parent: ClothingHeadEVAHelmetWithLightBase
@@ -191,6 +194,9 @@
         color: "#ffce5b"
       - state: equipped-head-visor
         color: "#2572bf"
+  - type: PointLight
+    radius: 5
+    energy: 2
 
 ## ENGINEERING
 - type: entity
@@ -242,6 +248,8 @@
         color: "#00a5ff"
       - state: equipped-head-visor
         color: "#e1b537"
+  - type: PointLight
+    color: "#adffe6"
 
 ## SUPPLY
 - type: entity
@@ -291,6 +299,8 @@
       - state: equipped-head-reinforced-points
         color: "#ad2aea"
       - state: equipped-head-visor
+  - type: PointLight
+    radius: 6
 
 ## MEDICAL
 - type: entity
@@ -316,6 +326,8 @@
       - state: equipped-head-reinforced-points
         color: "#5a96bb"
       - state: equipped-head-visor
+  - type: PointLight
+    color: "#adf1ff"
 
 ## SCIENCE
 - type: entity
@@ -343,6 +355,8 @@
         color: "#606275"
       - state: equipped-head-visor
         color: "#2accff"
+  - type: PointLight
+    color: "#d6adff"
 
 ## SERVICE
 - type: entity
@@ -370,6 +384,8 @@
         color: "#ebdc36"
       - state: equipped-head-visor
         color: "#bb5cc9"
+  - type: PointLight
+    color: "#d6adff"
 
 - type: entity
   parent: ClothingHeadEVAHelmetWithLightBase
@@ -420,6 +436,8 @@
         color: "#a42424"
       - state: equipped-head-visor
         color: "#ffce5b"
+  - type: PointLight
+    color: "#ffce5b"
 
 - type: entity
   parent: ClothingHeadEVAHelmetWithLightBase
