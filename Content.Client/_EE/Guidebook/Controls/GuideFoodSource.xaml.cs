@@ -109,32 +109,40 @@ public sealed partial class GuideFoodSource : BoxContainer, ISearchableControl
         // Frontier: multiple machine types
         var recipeType = (MicrowaveRecipeType)recipe.RecipeType;
         TextureRect processingTexture;
+        List<string> processingTypes = new();
         if (recipeType.HasFlag(MicrowaveRecipeType.Microwave))
         {
             processingTexture = new TextureRect();
             processingTexture.Texture = GetRsiTexture("/Textures/Structures/Machines/microwave.rsi", "mw");
             ProcessingTextures.AddChild(processingTexture);
+            processingTypes.Add(Loc.GetString("guidebook-food-processing-type-microwave"));
         }
         if (recipeType.HasFlag(MicrowaveRecipeType.Oven))
         {
             processingTexture = new TextureRect();
-            processingTexture.Texture = GetRsiTexture("/Textures/_NF/Structures/Machines/oven.rsi", "off_no_door");
+            processingTexture.Texture = GetRsiTexture("/Textures/_NF/Structures/Machines/oven.rsi", "composite_off");
             ProcessingTextures.AddChild(processingTexture);
+            processingTypes.Add(Loc.GetString("guidebook-food-processing-type-oven"));
         }
         if (recipeType.HasFlag(MicrowaveRecipeType.Assembler))
         {
             processingTexture = new TextureRect();
             processingTexture.Texture = GetRsiTexture("/Textures/_NF/Structures/Machines/assembler.rsi", "assembler");
             ProcessingTextures.AddChild(processingTexture);
+            processingTypes.Add(Loc.GetString("guidebook-food-processing-type-assembler"));
         }
         if (recipeType.HasFlag(MicrowaveRecipeType.MedicalAssembler))
         {
             processingTexture = new TextureRect();
             processingTexture.Texture = GetRsiTexture("/Textures/_NF/Structures/Machines/medical_assembler.rsi", "mediwave-base");
             ProcessingTextures.AddChild(processingTexture);
+            processingTypes.Add(Loc.GetString("guidebook-food-processing-type-medical-assembler"));
         }
+        if (processingTypes.Count <= 0)
+            processingTypes.Add(Loc.GetString("guidebook-food-processing-type-generic"));
+        var processingTypeString = string.Join('/', processingTypes);
         // End Frontier
-        ProcessingLabel.Text = Loc.GetString("guidebook-food-processing-cooking", ("time", recipe.CookTime));
+        ProcessingLabel.Text = Loc.GetString("guidebook-food-processing-cooking", ("processingTypes", processingTypeString), ("time", recipe.CookTime));
     }
 
     private void GenerateControl(FoodReactionData entry)

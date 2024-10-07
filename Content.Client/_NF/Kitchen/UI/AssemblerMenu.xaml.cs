@@ -36,7 +36,7 @@ namespace Content.Client._NF.Kitchen.UI
 
             if (CurrentCooktimeEnd > _timing.CurTime)
             {
-                CookTimeInfoLabel.Text = Loc.GetString("microwave-bound-user-interface-cook-time-label",
+                CookTimeInfoLabel.Text = Loc.GetString("assembler-bound-user-interface-cook-time-label",
                 ("time", CurrentCooktimeEnd.Subtract(_timing.CurTime).Seconds));
             }
         }
