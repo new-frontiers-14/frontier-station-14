@@ -66,6 +66,7 @@ def main():
             new_date = end_date
 
         dump_admin_in_range(cur, old_date, new_date, arg_output, args.compress, args.delete)
+        old_date = new_date
 
 
 def next_month(date_in: "datetime.datetime") -> datetime.datetime:
@@ -102,7 +103,7 @@ def dump_admin_in_range(cur: "psycopg2.cursor", start: "datetime.datetime", end:
     date_suffix = f"{start.strftime("%Y-%m-%d")}-{end.strftime("%Y-%m-%d")}"
 
     # Export admin_log_player
-    print("Dumping admin_log_player from {start} to {end}...")
+    print(f"Dumping admin_log_player from {start.date()} to {end.date()}...")
     cur.execute("""
 SELECT
     COALESCE(json_agg(to_jsonb(data)), '[]') #>> '{}'
@@ -123,14 +124,14 @@ FROM (
     json_data = cur.fetchall()[0][0]
 
     if compress:
-        with open(os.path.join(outdir, f"admin_log-{date_suffix}.json"), "w", encoding="utf-8") as f:
-            f.write(json_data)
+        with gzip.GzipFile(os.path.join(outdir, f"admin_log_player-{date_suffix}.json.gz"), "w") as f:
+            f.write(json_data.encode("utf-8"))
     else:
-        with gzip.GzipFile(os.path.join(outdir, f"admin_log-{date_suffix}.json.gz"), "w") as f:
+        with open(os.path.join(outdir, f"admin_log_player-{date_suffix}.json"), "w", encoding="utf-8") as f:
             f.write(json_data)
 
     # Export admin_log
-    print("Dumping admin_log from {start} to {end}...")
+    print(f"Dumping admin_log from {start.date()} to {end.date()}...")
     cur.execute("""
 SELECT
     COALESCE(json_agg(to_jsonb(data)), '[]') #>> '{}'
@@ -147,15 +148,15 @@ FROM (
     json_data = cur.fetchall()[0][0]
 
     if compress:
-        with open(os.path.join(outdir, f"admin_log-{date_suffix}.json"), "w", encoding="utf-8") as f:
-            f.write(json_data)
-    else:
         with gzip.GzipFile(os.path.join(outdir, f"admin_log-{date_suffix}.json.gz"), "w") as f:
+            f.write(json_data.encode("utf-8"))
+    else:
+        with open(os.path.join(outdir, f"admin_log-{date_suffix}.json"), "w", encoding="utf-8") as f:
             f.write(json_data)
     
     if delete:
         # Delete admin_log_player
-        print("Deleting admin_log_player from {start} to {end}...")
+        print(f"Deleting admin_log_player from {start.date()} to {end.date()}...")
         cur.execute("""
         DELETE
         FROM
@@ -172,7 +173,7 @@ FROM (
         """, (start,end))
 
         # Delete admin_log
-        print("Deleting admin_log from {start} to {end}...")
+        print(f"Deleting admin_log from {start.date()} to {end.date()}...")
         cur.execute("""
         DELETE
         FROM
