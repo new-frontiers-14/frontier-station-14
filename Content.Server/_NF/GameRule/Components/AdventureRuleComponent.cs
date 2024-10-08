@@ -1,9 +1,4 @@
-/*
- * New Frontiers - This file is licensed under AGPLv3
- * Copyright (c) 2024 New Frontiers
- * See AGPLv3.txt for details.
- */
-namespace Content.Server._NF.GameRule;
+namespace Content.Server._NF.GameRule.Components;
 
 [RegisterComponent, Access(typeof(NfAdventureRuleSystem))]
 public sealed partial class AdventureRuleComponent : Component
