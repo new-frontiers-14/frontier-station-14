@@ -62,3 +62,52 @@
     sprite: _NF/Clothing/Mask/nfsd_sheriff.rsi
   - type: Clothing
     sprite: _NF/Clothing/Mask/nfsd_sheriff.rsi
+
+- type: entity
+  parent: [ BaseC3CultContrabandUnredeemable, ContrabandClothing, ClothingMaskGasExplorer ]
+  id: ClothingMaskCultJanitor
+  name: cult janitor mask
+  description: A close-fitting imposing breathing mask designed for acursed custodians who value style.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Mask/cult_janitor_mask.rsi
+  - type: Clothing
+    sprite: _NF/Clothing/Mask/cult_janitor_mask.rsi
+  - type: HideLayerClothing
+    slots:
+    - Hair
+
+- type: entity
+  id: ClothingMaskPunkHalf
+  parent: [ ClothingMaskGasExplorer, RecyclableItemClothDevice ]
+  name: punk halfmask
+  description: A close-fitting breathing mask with gamer lights!
+  suffix: Random visuals
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Mask/punkhalfmask.rsi
+    layers:
+    - state: equipped-MASK
+      map: [ "mask_main" ]
+      scale: 2, 2
+      offset: 0,-0.6
+    - state: decor-equipped-MASK
+      map: [ "mask_decor" ]
+      shader: unshaded
+      scale: 2, 2
+      offset: 0,-0.6
+  - type: Clothing
+    sprite: _NF/Clothing/Mask/punkhalfmask.rsi
+    clothingVisuals:
+      mask:
+      - state: equipped-MASK
+        map: [ "mask_main" ]
+      - state: decor-equipped-MASK
+        map: [ "mask_decor" ]
+        shader: unshaded
+  - type: RandomSprite
+    available:
+    - mask_main:
+        equipped-MASK: CyberpunkDark
+      mask_decor:
+        decor-equipped-MASK: CyberpunkNeon

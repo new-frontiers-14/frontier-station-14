@@ -277,3 +277,31 @@
     stampState: "paper_stamp-detective"
   - type: Sprite
     state: stamp-detective
+
+- type: entity
+  name: greytide's rubber stamp
+  parent: RubberStampBase
+  id: RubberStampGreytide
+  description: A rubber stamp for stamping important documents. The tide washes over you, just looking at it...
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-greytide
+    stampedColor: "#323232"
+    stampState: "paper_stamp-greytide"
+  - type: Sprite
+    state: stamp-greytide
+
+- type: entity
+  name: psychologist's rubber stamp
+  parent: RubberStampBase
+  id: RubberStampPsychologist
+  suffix: DO NOT MAP
+  description: A rubber stamp for stamping important documents. Prescribe those treatments!
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-psychologist 
+    stampedColor: "#3366FF" # Frontier: 5B97BC<3366FF
+    stampState: "paper_stamp-nf-psychologist" # Frontier: psychologist<nf-psychologist
+  - type: Sprite
+    sprite: _NF/Objects/Misc/stamps.rsi # Frontier
+    state: stamp-psychologist
