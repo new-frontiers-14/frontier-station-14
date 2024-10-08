@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using System.Text;
 using Content.Server._NF.GameTicking.Events;
 using Content.Server._NF.SectorServices;
@@ -13,6 +13,7 @@ using Content.Server.Station.Systems;
 using Content.Shared._NF.CCVar;
 using Content.Shared._NF.Smuggling.Prototypes;
 using Content.Shared.Database;
+using Content.Shared.GameTicking;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Paper;
@@ -45,6 +46,7 @@ public sealed class DeadDropSystem : EntitySystem
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly SectorServiceSystem _sectorService = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private readonly SharedGameTicker _ticker = default!;
     private ISawmill _sawmill = default!;
 
     private readonly Queue<EntityUid> _drops = [];
@@ -354,50 +356,15 @@ public sealed class DeadDropSystem : EntitySystem
         {
             var ent = allHints[i];
 
-            var hintCount = _random.Next(MinCluesPerHint, MaxCluesPerHint + 1);
-            _random.Shuffle(deadDropStationTuples);
-
-            var hintLines = new StringBuilder();
-            var hints = 0;
-            // Format the hint lines we need from a random set of dead drops.
-            for (var j = 0; j < deadDropStationTuples.Count && hints < hintCount; j++)
-            {
-                var hintTuple = deadDropStationTuples[j];
-                string objectHintString;
-                if (TryComp<PotentialDeadDropComponent>(hintTuple.Item2, out var potentialDeadDrop))
-                    objectHintString = Loc.GetString(potentialDeadDrop.HintText);
-                else
-                    objectHintString = Loc.GetString("dead-drop-hint-generic");
-
-                string stationHintString;
-                if (TryComp(hintTuple.Item1, out MetaDataComponent? stationMetadata))
-                    stationHintString = stationMetadata.EntityName;
-                else
-                    stationHintString = Loc.GetString("dead-drop-station-hint-generic");
-
-                string timeString;
-                if (TryComp<DeadDropComponent>(hintTuple.Item2, out var deadDrop) && deadDrop.NextDrop != null)
-                {
-                    var dropTimeWithError = deadDrop.NextDrop.Value + TimeSpan.FromSeconds(_random.Next(-MaxHintTimeErrorSeconds, MaxHintTimeErrorSeconds));
-                    timeString = Loc.GetString("dead-drop-time-known", ("time", dropTimeWithError.ToString("hh\\:mm") + ":00"));
-                }
-                else
-                {
-                    timeString = Loc.GetString("dead-drop-time-unknown");
-                }
-
-                hintLines.AppendLine(Loc.GetString("dead-drop-hint-line", ("object", objectHintString), ("poi", stationHintString), ("time", timeString)));
-                hints++;
-            }
-            var hintText = new StringBuilder();
-            hintText.AppendLine(Loc.GetString("dead-drop-hint-note", ("drops", hintLines)));
-
             // Select some number of dead drops to hint
             if (TryComp<PaperComponent>(ent, out var paper))
-                _paper.SetContent((ent, paper), hintText.ToString());
+            {
+                var hintString = GenerateRandomHint(deadDropStationTuples);
+                _paper.SetContent((ent, paper), hintString);
+            }
 
             // Hint generated, destroy component
-            RemComp<DeadDropHintComponent>(ent);
+            //RemComp<DeadDropHintComponent>(ent); // Removed so we can keep track of it
             _sawmill.Debug($"Dead drop hint generated at {ent}.");
         }
 
@@ -521,7 +488,7 @@ public sealed class DeadDropSystem : EntitySystem
         //reset the timer (needed for the text)
         component.NextDrop = _timing.CurTime + TimeSpan.FromSeconds(_random.Next(component.MinimumCoolDown, component.MaximumCoolDown));
 
-        var hintNextDrop = component.NextDrop.Value + TimeSpan.FromSeconds(_random.Next(-MaxHintTimeErrorSeconds, MaxHintTimeErrorSeconds + 1));
+        var hintNextDrop = component.NextDrop.Value - _ticker.RoundStartTimeSpan + TimeSpan.FromSeconds(_random.Next(-MaxHintTimeErrorSeconds, MaxHintTimeErrorSeconds + 1));
 
         // here we are just building a string for the hint paper so that it looks pretty and RP-like on the paper itself.
         var dropHint = new StringBuilder();
@@ -628,5 +595,60 @@ public sealed class DeadDropSystem : EntitySystem
                 }
             }
         }
+    }
+
+    // Generates a random hint from a given set of entities (grabs the first N, N randomly generated between min/max), 
+    public string GenerateRandomHint(List<(EntityUid station, EntityUid ent)>? entityList = null)
+    {
+        if (entityList == null)
+        {
+            entityList = new();
+            var hintQuery = EntityManager.AllEntityQueryEnumerator<DeadDropComponent>();
+            while (hintQuery.MoveNext(out var ent, out var _))
+            {
+                var stationUid = _station.GetOwningStation(ent);
+                if (stationUid != null)
+                    entityList.Add((stationUid.Value, ent));
+            }
+        }
+
+        _random.Shuffle(entityList);
+
+        int hintCount = _random.Next(MinCluesPerHint, MaxCluesPerHint + 1);
+
+        var hintLines = new StringBuilder();
+        var hints = 0;
+        foreach (var hintTuple in entityList)
+        {
+            if (hints >= hintCount)
+                break;
+
+            string objectHintString;
+            if (EntityManager.TryGetComponent<PotentialDeadDropComponent>(hintTuple.Item2, out var potentialDeadDrop))
+                objectHintString = Loc.GetString(potentialDeadDrop.HintText);
+            else
+                objectHintString = Loc.GetString("dead-drop-hint-generic");
+
+            string stationHintString;
+            if (EntityManager.TryGetComponent(hintTuple.Item1, out MetaDataComponent? stationMetadata))
+                stationHintString = stationMetadata.EntityName;
+            else
+                stationHintString = Loc.GetString("dead-drop-station-hint-generic");
+
+            string timeString;
+            if (EntityManager.TryGetComponent<DeadDropComponent>(hintTuple.Item2, out var deadDrop) && deadDrop.NextDrop != null)
+            {
+                var dropTimeWithError = deadDrop.NextDrop.Value - _ticker.RoundStartTimeSpan + TimeSpan.FromSeconds(_random.Next(-MaxHintTimeErrorSeconds, MaxHintTimeErrorSeconds));
+                timeString = Loc.GetString("dead-drop-time-known", ("time", dropTimeWithError.ToString("hh\\:mm") + ":00"));
+            }
+            else
+            {
+                timeString = Loc.GetString("dead-drop-time-unknown");
+            }
+
+            hintLines.AppendLine(Loc.GetString("dead-drop-hint-line", ("object", objectHintString), ("poi", stationHintString), ("time", timeString)));
+            hints++;
+        }
+        return Loc.GetString("dead-drop-hint-note", ("drops", hintLines));
     }
 }
