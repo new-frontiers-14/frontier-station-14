@@ -13,7 +13,35 @@
 - type: entity
   id: LockerNfsdSilverDetectiveFilled
   suffix: Filled
-  parent: [LockerNfsdSilver, LockerDetectiveFilled]
+  parent: LockerNfsdSilver
+  components:
+  - type: StorageFill
+    contents:
+      - id: BoxForensicPad
+      - id: DrinkDetFlask
+      - id: BoxEvidenceMarkers
+      - id: HandLabeler
+
+- type: entity
+  id: NFLockerSecurityFilled
+  parent: LockerSecurityFilled
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingHeadHelmetBasic
+      - id: ClothingOuterArmorBasic
+
+- type: entity
+  id: NFClosetBombFilled
+  parent: ClosetBombFilled
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingHeadHelmetBombSuit
+      - id: ClothingOuterSuitBomb
+      - id: Wirecutter
+      - id: Screwdriver
+      - id: Multitool
 
 - type: entity
   parent: GunSafe

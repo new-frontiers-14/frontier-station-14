@@ -44,8 +44,10 @@
 - type: entity
   id: SyringeCognizine
   parent: PrefilledSyringe
-  name: cognizine syringe
+  suffix: cognizine
   components:
+  - type: Label
+    currentLabel: reagent-name-cognizine
   - type: SolutionContainerManager
     solutions:
       injector:
@@ -57,8 +59,10 @@
 - type: entity
   id: SyringeOpporozidone
   parent: PrefilledSyringe
-  name: opporozidone syringe
+  suffix: opporozidone
   components:
+  - type: Label
+    currentLabel: reagent-name-opporozidone
   - type: SolutionContainerManager
     solutions:
       injector:
@@ -70,8 +74,10 @@
 - type: entity
   id: NecrosolChemistryBottle
   parent: BaseChemistryBottleFilled
-  name: necrosol bottle
+  suffix: necrosol
   components:
+  - type: Label
+    currentLabel: reagent-name-necrosol
   - type: SolutionContainerManager
     solutions:
       drink:

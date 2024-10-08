@@ -38,7 +38,7 @@ public sealed class EnergySwordSystem : EntitySystem
         if (args.Handled)
             return;
 
-        if (comp.BlockHacking || !_toolSystem.HasQuality(args.Used, "Pulsing")) // Frontier: add comp.BlocksHacking
+        if (comp.BlockHacking || !_toolSystem.HasQuality(args.Used, SharedToolSystem.PulseQuality)) // Frontier: add comp.BlocksHacking
             return;
 
         args.Handled = true;
