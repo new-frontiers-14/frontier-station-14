@@ -11,6 +11,7 @@ using Content.Shared.DeviceLinking.Events;
 using Content.Shared.Paper;
 using Content.Shared.Placeable;
 using Content.Shared.Popups;
+using Content.Shared.Power;
 using Content.Shared.Research.Components;
 using Content.Shared.Xenoarchaeology.Equipment;
 using Content.Shared.Xenoarchaeology.XenoArtifacts;
@@ -149,6 +150,14 @@ public sealed class ArtifactAnalyzerSystem : EntitySystem
     {
         if (!TryComp<DeviceLinkSinkComponent>(uid, out var sink))
             return;
+
+        // Frontier: disable analyzer power draw when off
+        if (TryComp<ApcPowerReceiverComponent>(uid, out var apcPower))
+        {
+            component.OriginalLoad = apcPower.Load;
+            SetPowerSwitch(component, apcPower, false);
+        }
+        // End Frontier
 
         foreach (var source in sink.LinkedSources)
         {
@@ -303,15 +312,15 @@ public sealed class ArtifactAnalyzerSystem : EntitySystem
 
         var n = component.LastAnalyzedNode;
 
-        msg.AddMarkup(Loc.GetString("analysis-console-info-id", ("id", n.Id)));
+        msg.AddMarkupOrThrow(Loc.GetString("analysis-console-info-id", ("id", n.Id)));
         msg.PushNewline();
-        msg.AddMarkup(Loc.GetString("analysis-console-info-depth", ("depth", n.Depth)));
+        msg.AddMarkupOrThrow(Loc.GetString("analysis-console-info-depth", ("depth", n.Depth)));
         msg.PushNewline();
 
         var activated = n.Triggered
             ? "analysis-console-info-triggered-true"
             : "analysis-console-info-triggered-false";
-        msg.AddMarkup(Loc.GetString(activated));
+        msg.AddMarkupOrThrow(Loc.GetString(activated));
         msg.PushNewline();
 
         msg.PushNewline();
@@ -320,7 +329,7 @@ public sealed class ArtifactAnalyzerSystem : EntitySystem
         var triggerProto = _prototype.Index<ArtifactTriggerPrototype>(n.Trigger);
         if (triggerProto.TriggerHint != null)
         {
-            msg.AddMarkup(Loc.GetString("analysis-console-info-trigger",
+            msg.AddMarkupOrThrow(Loc.GetString("analysis-console-info-trigger",
                 ("trigger", Loc.GetString(triggerProto.TriggerHint))) + "\n");
             needSecondNewline = true;
         }
@@ -328,7 +337,7 @@ public sealed class ArtifactAnalyzerSystem : EntitySystem
         var effectproto = _prototype.Index<ArtifactEffectPrototype>(n.Effect);
         if (effectproto.EffectHint != null)
         {
-            msg.AddMarkup(Loc.GetString("analysis-console-info-effect",
+            msg.AddMarkupOrThrow(Loc.GetString("analysis-console-info-effect",
                 ("effect", Loc.GetString(effectproto.EffectHint))) + "\n");
             needSecondNewline = true;
         }
@@ -336,11 +345,11 @@ public sealed class ArtifactAnalyzerSystem : EntitySystem
         if (needSecondNewline)
             msg.PushNewline();
 
-        msg.AddMarkup(Loc.GetString("analysis-console-info-edges", ("edges", n.Edges.Count)));
+        msg.AddMarkupOrThrow(Loc.GetString("analysis-console-info-edges", ("edges", n.Edges.Count)));
         msg.PushNewline();
 
         if (component.LastAnalyzerPointValue != null)
-            msg.AddMarkup(Loc.GetString("analysis-console-info-value", ("value", component.LastAnalyzerPointValue)));
+            msg.AddMarkupOrThrow(Loc.GetString("analysis-console-info-value", ("value", component.LastAnalyzerPointValue)));
 
         return msg;
     }
@@ -491,16 +500,30 @@ public sealed class ArtifactAnalyzerSystem : EntitySystem
 
     private void OnAnalyzeStart(EntityUid uid, ActiveArtifactAnalyzerComponent component, ComponentStartup args)
     {
-        if (TryComp<ApcPowerReceiverComponent>(uid, out var powa))
-            powa.NeedsPower = true;
+        // Frontier: enable power before running
+        if (!TryComp<ApcPowerReceiverComponent>(uid, out var powa))
+            return;
+
+        if (!TryComp<ArtifactAnalyzerComponent>(uid, out var analyzer))
+            return;
+
+        SetPowerSwitch(analyzer, powa, true);
+        // End Frontier
 
         _ambientSound.SetAmbience(uid, true);
     }
 
     private void OnAnalyzeEnd(EntityUid uid, ActiveArtifactAnalyzerComponent component, ComponentShutdown args)
     {
-        if (TryComp<ApcPowerReceiverComponent>(uid, out var powa))
-            powa.NeedsPower = false;
+        // Frontier: disable power when not running
+        if (!TryComp<ApcPowerReceiverComponent>(uid, out var powa))
+            return;
+
+        if (!TryComp<ArtifactAnalyzerComponent>(uid, out var analyzer))
+            return;
+
+        SetPowerSwitch(analyzer, powa, false);
+        // End Frontier
 
         _ambientSound.SetAmbience(uid, false);
     }
@@ -516,5 +539,15 @@ public sealed class ArtifactAnalyzerSystem : EntitySystem
             ResumeScan(uid, null, active);
         }
     }
+
+    // Frontier: reduce analyzer load when not running
+    private void SetPowerSwitch(ArtifactAnalyzerComponent analyzer, ApcPowerReceiverComponent apc, bool state)
+    {
+        if (state)
+            apc.Load = analyzer.OriginalLoad;
+        else
+            apc.Load = 1;
+    }
+    // End Frontier
 }
 
