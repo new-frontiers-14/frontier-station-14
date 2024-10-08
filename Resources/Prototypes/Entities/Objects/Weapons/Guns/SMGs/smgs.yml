@@ -41,6 +41,7 @@
         whitelist:
           tags:
             - MagazinePistolSubMachineGun
+        whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
         startingItem: CartridgePistol
@@ -57,7 +58,7 @@
 
 - type: entity
   name: Atreides
-  parent: BaseWeaponSubMachineGun
+  parent: [BaseWeaponSubMachineGun, BaseC3SyndicateContraband] # Frontier: BaseMajorContraband<BaseC3SyndicateContraband
   id: WeaponSubMachineGunAtreides
   description: Pla-ket-ket-ket-ket! Uses .35 auto ammo. An illegal firearm often used by Syndicate agents.
   components:
@@ -80,7 +81,7 @@
 
 - type: entity
   name: C-20r sub machine gun
-  parent: [BaseWeaponSubMachineGun, BaseGunWieldable]
+  parent: [BaseWeaponSubMachineGun, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   id: WeaponSubMachineGunC20r
   description: An illegal firearm that is often used by the infamous nuclear operatives. Uses .35 auto ammo.
   components:
@@ -100,7 +101,7 @@
     maxAngle: -16
   - type: Gun
     minAngle: 21
-    maxAngle: 32 
+    maxAngle: 32
     shotsPerBurst: 5
     availableModes:
     - SemiAuto
@@ -115,11 +116,10 @@
     steps: 6
     zeroVisible: true
   - type: Appearance
-  - type: Contraband #frontier
 
 - type: entity
   name: Drozd
-  parent: [BaseWeaponSubMachineGun, BaseGunWieldable]
+  parent: [BaseWeaponSubMachineGun, BaseC2ContrabandUnredeemable] # Frontier: BaseRestrictedContraband<BaseC2ContrabandUnredeemable
   id: WeaponSubMachineGunDrozd
   description: An excellent fully automatic Heavy SMG. An illegal firearm often used by Syndicate agents.
   components:
@@ -157,6 +157,7 @@
           whitelist:
             tags:
               - MagazinePistolSubMachineGun
+          whitelistFailPopup: gun-magazine-whitelist-fail
         gun_chamber:
           name: Chamber
           startingItem: CartridgePistol
@@ -211,6 +212,7 @@
         whitelist:
           tags:
             - CartridgeMagnum
+        whitelistFailPopup: gun-magazine-whitelist-fail
   - type: MagazineVisuals
     magState: mag
     steps: 1
@@ -219,7 +221,7 @@
 
 - type: entity
   name: WT550
-  parent: BaseWeaponSubMachineGun
+  parent: [ BaseWeaponSubMachineGun, BaseC2Contraband ] # Frontier: BaseRestrictedContraband<BaseC2Contraband
   id: WeaponSubMachineGunWt550
   description: An excellent SMG, produced by NanoTrasen's Small Arms Division. Uses .35 auto ammo. On the receiver is a label that says 'for authorized use only.'
   components:
@@ -263,6 +265,7 @@
         whitelist:
           tags:
             - MagazinePistolSubMachineGunTopMounted
+        whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
         startingItem: CartridgePistol

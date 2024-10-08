@@ -1,9 +1,31 @@
 - type: entity
+  parent: ComputerRadar
+  id: ComputerAdvancedRadar # Frontier
+  name: radar computer
+  description: This advanced radar lets you detect far away objects for an increased tactical advantage.
+  components:
+  - type: Computer
+    board: AdvancedRadarConsoleCircuitboard
+  - type: RadarConsole
+    maxRange: 768
+    maxIffRange: null # Frontier
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: eris_control
+    - map: ["computerLayerKeys"]
+      state: generic_keys
+
+- type: entity
   name: cargo sale computer
   suffix: Normal
-  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseComputer]
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseComputerAiAccess]
   id: ComputerPalletConsoleNFMarket
-  description: Used to sell goods loaded onto cargo pallets
+  description: Used to sell goods loaded onto cargo pallets.
   abstract: true
   components:
   - type: Sprite
@@ -27,6 +49,8 @@
     interfaces:
       enum.CargoPalletConsoleUiKey.Sale:
         type: CargoPalletConsoleBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
   - type: Computer
     board: Null
   - type: MarketModifier
@@ -74,9 +98,9 @@
 
 - type: entity
   name: contraband exchange computer
-  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseComputer]
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseComputerAiAccess]
   id: ComputerContrabandPalletConsole
-  description: Used to exchange contraband
+  description: Used to exchange contraband for Frontier Uplink Coins.
   components:
   - type: Sprite
     sprite: _NF/Structures/Machines/computers.rsi
@@ -96,13 +120,15 @@
     interfaces:
       enum.ContrabandPalletConsoleUiKey.Contraband:
         type: ContrabandPalletConsoleBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
   - type: Computer
     board: Null
 
 - type: entity
   parent: ComputerShuttle
-  id: ComputerShuttleAntagEmpty
-  noSpawn: true
+  id: ComputerShuttleAntag
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:
@@ -120,24 +146,6 @@
     color: "#c94242"
 
 - type: entity
-  parent: ComputerShuttleAntagEmpty
-  id: ComputerShuttleAntag
-  components:
-  - type: ContainerFill
-    containers:
-      key_slots:
-      - EncryptionKeyTraffic
-
-- type: entity
-  parent: ComputerShuttleEmpty
-  id: ComputerShuttle
-  components:
-  - type: ContainerFill
-    containers:
-      key_slots:
-      - EncryptionKeyTraffic
-
-- type: entity
   parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerIFFSyndicate]
   id: ComputerIFFPOI
   name: IFF computer
@@ -153,6 +161,8 @@
     interfaces:
       enum.IFFConsoleUiKey.Key:
         type: IFFConsoleBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
   - type: Computer
     board: Null
 
@@ -161,7 +171,7 @@
   abstract: true
   parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseStructureComputer]
   id: ComputerMarketConsoleNFBase
-  description: Used to buy goods from the station's market system
+  description: Used to buy goods from the station's market system.
   placement:
     mode: SnapgridCenter
   components:
@@ -217,6 +227,8 @@
       interfaces:
         enum.MarketConsoleUiKey.Default:
           type: MarketConsoleBoundUserInterface
+        enum.WiresUiKey.Key:
+          type: WiresBoundUserInterface
     - type: MarketModifier
       mod: 1
       
@@ -240,7 +252,7 @@
 
 - type: entity
   id: ComputerPirateBounty
-  parent: BaseComputer
+  parent: BaseComputerAiAccess
   name: pirate bounty computer
   description: Avast, get ye pirate bounties here.
   components:
@@ -267,6 +279,8 @@
     interfaces:
       enum.PirateConsoleUiKey.Bounty:
         type: PirateBountyConsoleBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
   - type: Computer
     board: Null # Really shouldn't spawn anything on destruction
   - type: PointLight
@@ -325,15 +339,14 @@
     interfaces:
       enum.PirateConsoleUiKey.BountyRedemption:
         type: PirateBountyRedemptionConsoleBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
   - type: Computer
     board: Null
   - type: PointLight
     radius: 1.5
     energy: 1.6
     color: "#b89f25"
-  # - type: GuideHelp # Frontier
-  #   guides: # Frontier
-  #   - CargoBounties # Frontier
 
 - type: entity
   id: ComputerSalvageExpeditionDebug
@@ -342,3 +355,79 @@
   components:
     - type: SalvageExpeditionConsole
       debug: true
+
+# Station Traffic Controller consoles
+- type: entity
+  id: BaseComputerTraffic
+  abstract: true
+  components:
+  - type: RadarConsole
+    maxRange: 350
+  - type: Computer
+    board: Null
+  - type: Sprite
+    drawdepth: SmallObjects
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      sprite: Structures/Machines/computers.rsi
+      state: shuttle
+    - map: ["computerLayerKeys"]
+      sprite: Structures/Machines/computers.rsi
+      state: generic_keys
+  - type: AccessReader
+    access: [["StationTrafficController"]]
+  - type: ActivatableUIRequiresAccess
+
+- type: entity
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseStructureAccessReaderImmuneToEmag, BaseComputerShuttle, BaseComputerTraffic]
+  id: BaseComputerTrafficRemote
+  abstract: true
+
+- type: entity
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseStructureAccessReaderImmuneToEmag, ComputerShuttle, BaseShuttleIntercom, BaseComputerTraffic]
+  id: BaseComputerTrafficLocal
+  abstract: true
+
+- type: entity
+  parent: BaseComputerTrafficLocal
+  id: ComputerShuttleFrontierOutpostLocal
+  name: frontier outpost traffic console
+  description: Monitors the traffic around Frontier Outpost.
+  suffix: Local
+  components:
+  - type: NFDroneConsoleTarget
+    id: Frontier
+
+- type: entity
+  parent: BaseComputerTrafficRemote
+  id: ComputerShuttleFrontierOutpostRemote
+  name: frontier outpost traffic console
+  description: Monitors the traffic around Frontier Outpost.
+  suffix: Remote
+  components:
+  - type: NFDroneConsole
+    id: Frontier
+
+- type: entity
+  parent: BaseComputerTrafficLocal
+  id: ComputerShuttleTradeOutpostLocal
+  name: trade outpost traffic console
+  suffix: Local
+  description: Monitors the traffic around the Trade Outpost.
+  components:
+  - type: NFDroneConsoleTarget
+    id: Trade
+
+- type: entity
+  parent: BaseComputerTrafficRemote
+  id: ComputerShuttleTradeOutpostRemote
+  name: trade outpost traffic console
+  suffix: Remote
+  description: Monitors the traffic around the Trade Outpost.
+  components:
+  - type: NFDroneConsole
+    id: Trade

@@ -29,7 +29,7 @@
       powerLoad: 1500
     - type: ExtensionCableReceiver
     - type: Damageable
-      damageContainer: Inorganic
+      damageContainer: StructuralInorganic
       damageModifierSet: Electronic
     - type: Destructible
       thresholds:
@@ -100,6 +100,16 @@
       shader: unshaded
       visible: false
       offset: 0, 1
+  - type: DeviceNetwork # frontier
+    deviceNetId: Wireless # frontier
+    receiveFrequencyId: BasicDevice # frontier
+  - type: WirelessNetworkConnection # frontier
+    range: 200 # frontier
+  - type: DeviceLinkSink # frontier
+    ports: # frontier
+    - On # frontier
+    - Off # frontier
+    - Toggle # frontier
 
 - type: entity
   id: ThrusterUnanchored
@@ -199,7 +209,7 @@
     powerDrawMultiplier: 0.75
     scaling: Exponential
   - type: Damageable
-    damageContainer: Inorganic
+    damageContainer: StructuralInorganic
     damageModifierSet: Electronic
   - type: StaticPrice
     price: 300 # Frontier - 2000<300

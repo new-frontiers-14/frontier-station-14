@@ -210,14 +210,6 @@ entities:
     - type: BecomesStation
       id: Prospector
     - type: SpreaderGrid
-- proto: ActionToggleLight
-  entities:
-  - uid: 164
-    components:
-    - type: Transform
-      parent: 160
-    - type: InstantAction
-      container: 160
 - proto: AirAlarm
   entities:
   - uid: 235
@@ -296,38 +288,43 @@ entities:
     - type: Transform
       pos: 1.3489224,-4.3157334
       parent: 201
-- proto: AtmosDeviceFanTiny
+- proto: AtmosDeviceFanDirectional
   entities:
   - uid: 11
     components:
     - type: Transform
-      pos: 0.5,-2.5
+      rot: 1.5707963267948966 rad
+      pos: 0.5,-0.5
       parent: 201
   - uid: 12
     components:
     - type: Transform
+      rot: 1.5707963267948966 rad
       pos: 0.5,-1.5
       parent: 201
   - uid: 13
     components:
     - type: Transform
-      pos: 0.5,-0.5
+      rot: 1.5707963267948966 rad
+      pos: 0.5,-2.5
       parent: 201
   - uid: 21
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -6.5,-0.5
+      rot: -1.5707963267948966 rad
+      pos: -6.5,-2.5
       parent: 201
   - uid: 27
     components:
     - type: Transform
+      rot: -1.5707963267948966 rad
       pos: -6.5,-1.5
       parent: 201
   - uid: 114
     components:
     - type: Transform
-      pos: -6.5,-2.5
+      rot: -1.5707963267948966 rad
+      pos: -6.5,-0.5
       parent: 201
 - proto: AtmosFixBlockerMarker
   entities:
@@ -408,41 +405,26 @@ entities:
     - type: Transform
       pos: -4.5,-2.5
       parent: 201
-    - type: DeviceLinkSink
-      links:
-      - 28
   - uid: 206
     components:
     - type: Transform
       pos: -6.5,-2.5
       parent: 201
-    - type: DeviceLinkSink
-      links:
-      - 28
   - uid: 229
     components:
     - type: Transform
       pos: 0.5,-0.5
       parent: 201
-    - type: DeviceLinkSink
-      links:
-      - 23
   - uid: 230
     components:
     - type: Transform
       pos: 0.5,-1.5
       parent: 201
-    - type: DeviceLinkSink
-      links:
-      - 23
   - uid: 231
     components:
     - type: Transform
       pos: 0.5,-2.5
       parent: 201
-    - type: DeviceLinkSink
-      links:
-      - 23
 - proto: ButtonFrameCaution
   entities:
   - uid: 25
@@ -670,63 +652,42 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -0.5,-2.5
       parent: 201
-    - type: DeviceLinkSink
-      links:
-      - 169
   - uid: 15
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 0.5,-2.5
       parent: 201
-    - type: DeviceLinkSink
-      links:
-      - 169
   - uid: 16
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 1.5,-2.5
       parent: 201
-    - type: DeviceLinkSink
-      links:
-      - 169
   - uid: 17
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -4.5,-2.5
       parent: 201
-    - type: DeviceLinkSink
-      links:
-      - 179
   - uid: 19
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -5.5,-2.5
       parent: 201
-    - type: DeviceLinkSink
-      links:
-      - 179
   - uid: 20
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -6.5,-2.5
       parent: 201
-    - type: DeviceLinkSink
-      links:
-      - 179
   - uid: 144
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -3.5,-2.5
       parent: 201
-    - type: DeviceLinkSink
-      links:
-      - 179
 - proto: DefibrillatorCabinetFilled
   entities:
   - uid: 103
@@ -1218,12 +1179,37 @@ entities:
     - type: Transform
       pos: -0.5,-4.5
       parent: 201
+- proto: LockerWallMaterialsFuelPlasmaFilled
+  entities:
+  - uid: 173
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 1.5,-6.5
+      parent: 201
 - proto: Matchbox
   entities:
   - uid: 180
     components:
     - type: Transform
       pos: 1.6783751,-4.3457556
+      parent: 201
+- proto: NFSignDock
+  entities:
+  - uid: 151
+    components:
+    - type: Transform
+      pos: -6.5,-3.5
+      parent: 201
+  - uid: 208
+    components:
+    - type: Transform
+      pos: 2.5,4.5
+      parent: 201
+  - uid: 209
+    components:
+    - type: Transform
+      pos: 1.5,-7.5
       parent: 201
 - proto: NitrogenCanister
   entities:
@@ -1252,14 +1238,6 @@ entities:
       parent: 201
     - type: Physics
       bodyType: Static
-- proto: Pickaxe
-  entities:
-  - uid: 182
-    components:
-    - type: Transform
-      parent: 232
-    - type: Physics
-      canCollide: False
 - proto: PlasticFlapsAirtightClear
   entities:
   - uid: 26
@@ -1433,13 +1411,6 @@ entities:
     - type: Transform
       pos: -1.5,-7.5
       parent: 201
-- proto: SheetPlasma
-  entities:
-  - uid: 173
-    components:
-    - type: Transform
-      pos: 0.51698303,-6.477809
-      parent: 201
 - proto: SignalButtonDirectional
   entities:
   - uid: 23
@@ -1467,23 +1438,6 @@ entities:
         - Pressed: Toggle
         206:
         - Pressed: Toggle
-- proto: SignMinerDock
-  entities:
-  - uid: 151
-    components:
-    - type: Transform
-      pos: -6.5,-3.5
-      parent: 201
-  - uid: 208
-    components:
-    - type: Transform
-      pos: 2.5,4.5
-      parent: 201
-  - uid: 209
-    components:
-    - type: Transform
-      pos: 1.5,-7.5
-      parent: 201
 - proto: SMESBasic
   entities:
   - uid: 84
@@ -1504,6 +1458,13 @@ entities:
     components:
     - type: Transform
       pos: 0.5,-5.5
+      parent: 201
+- proto: StructureMeleeWeaponRackWallmountedSalvageFilled
+  entities:
+  - uid: 160
+    components:
+    - type: Transform
+      pos: 2.5,0.5
       parent: 201
 - proto: SubstationBasic
   entities:
@@ -1771,14 +1732,6 @@ entities:
       parent: 201
     - type: WarpPoint
       location: Prospector
-- proto: WeaponCrusher
-  entities:
-  - uid: 204
-    components:
-    - type: Transform
-      parent: 232
-    - type: Physics
-      canCollide: False
 - proto: WeaponCrusherDagger
   entities:
   - uid: 240
@@ -1786,59 +1739,6 @@ entities:
     - type: Transform
       pos: 0.5,-5.5
       parent: 201
-- proto: WeaponCrusherGlaive
-  entities:
-  - uid: 160
-    components:
-    - type: Transform
-      parent: 232
-    - type: UnpoweredFlashlight
-      toggleActionEntity: 164
-    - type: Physics
-      canCollide: False
-    - type: ActionsContainer
-    - type: ContainerContainer
-      containers:
-        actions: !type:Container
-          ents:
-          - 164
-- proto: WeaponRackMeleeWallmountedSalvage
-  entities:
-  - uid: 232
-    components:
-    - type: Transform
-      pos: 2.5,0.5
-      parent: 201
-    - type: ContainerContainer
-      containers:
-        storagebase: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        weapon1_slot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: 182
-        weapon2_slot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: 160
-        weapon3_slot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: 204
-        weapon4_slot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        weapon5_slot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        weapon6_slot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
 - proto: Window
   entities:
   - uid: 55

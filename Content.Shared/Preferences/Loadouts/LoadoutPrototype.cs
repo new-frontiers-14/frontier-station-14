@@ -9,13 +9,17 @@ namespace Content.Shared.Preferences.Loadouts;
 /// Individual loadout item to be applied.
 /// </summary>
 [Prototype]
-public sealed partial class LoadoutPrototype : IPrototype
+public sealed partial class LoadoutPrototype : IPrototype, IEquipmentLoadout
 {
     [IdDataField]
     public string ID { get; } = string.Empty;
 
-    [DataField(required: true)]
-    public ProtoId<StartingGearPrototype> Equipment;
+    /*
+     * You can either use an existing StartingGearPrototype or specify it inline to avoid bloating yaml.
+     */
+
+    [DataField]
+    public ProtoId<StartingGearPrototype>? StartingGear;
 
     /// <summary>
     /// Effects to be applied when the loadout is applied.
@@ -24,6 +28,17 @@ public sealed partial class LoadoutPrototype : IPrototype
     [DataField]
     public List<LoadoutEffect> Effects = new();
 
+    /// <inheritdoc />
+    [DataField]
+    public Dictionary<string, EntProtoId> Equipment { get; set; } = new();
+
+    /// <inheritdoc />
+    [DataField]
+    public List<EntProtoId> Inhand { get; set; } = new();
+
+    /// <inheritdoc />
+    [DataField]
+    public Dictionary<string, List<EntProtoId>> Storage { get; set; } = new();
 
     /// <summary>
     /// Frontier - the cost of the item simple as

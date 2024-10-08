@@ -117,7 +117,7 @@
   components:
   - type: VendingMachine
     pack: ContraVendInventory
-    dispenseOnHitChance: 0.25
+    dispenseOnHitChance: 0
     dispenseOnHitThreshold: 2
     offState: off
     brokenState: broken
@@ -126,6 +126,9 @@
     denyState: deny-unshaded
     screenState: screen
     ejectDelay: 3
+    ejectRandomMax: 0
+    ejectRandomCounter: 0
+    initialStockQuality: 0.5
   - type: Advertise
     pack: SyndieDrobeAds
   - type: Sprite
@@ -145,11 +148,11 @@
     radius: 1.5
     energy: 1.3
     color: "#ad2c2b"
-  - type: MarketModifier
-    mod: 50
+  - type: AccessReader
+    access: [["NuclearOperative"], ["SyndicateAgent"]]
 
 - type: entity
-  parent: [BaseStructureDisableAnchoring, VendingMachine]
+  parent: VendingMachine
   id: VendingMachineBountyVend
   name: BountyVend
   description: Essential gear for the bounty hunter on the go.
@@ -178,9 +181,17 @@
     color: "#4b93ad"
 
 - type: entity
-  parent: VendingMachine
+  parent: [ BaseStructureDisableAnchoring, VendingMachineBountyVend ]
+  id: VendingMachineBountyVendPOI
+  suffix: POI
+  components:
+  - type: VendingMachine
+    pack: BountyVendPOIInventory
+
+- type: entity
   id: VendingMachineArcadia
   name: ArcadiaDrobe
+  parent: [ VendingMachine, BaseC3Contraband ]
   description: Selling clothes from another reality for cheap prices!
   components:
     - type: VendingMachine
@@ -191,7 +202,7 @@
       brokenState: broken
       normalState: normal-unshaded
       # ejectState: eject-unshaded  No sprite, see chefvend/dinnerware/BODA/etc for expamples
-      denyState: deny-unshaded
+      # denyState: deny-unshaded
       ejectDelay: 3
     - type: Advertise
       pack: ArcadiaDrobeAds
@@ -313,8 +324,6 @@
     radius: 1.5
     energy: 1.6
     color: "#4b93ad"
-  - type: MarketModifier
-    mod: 10
 #Interface
   - type: UserInterface
     interfaces:
@@ -366,8 +375,6 @@
     softness: 0.9
     offset: "0, -0.6"
     color: "#EEEEFF"
-  - type: MarketModifier
-    mod: 10
 
 - type: entity
   parent: [BaseStructureDisableAnchoring, VendingMachine]
@@ -446,27 +453,24 @@
     access: [["Security"]]
 
 - type: entity
-  parent: VendingMachineCart # Frontier
-  id: VendingMachineCartNfsd
+  parent: [BaseStructureDisableScrewing, BaseStructureIndestructible, BaseStructureAccessReaderImmuneToEmag, VendingMachineCart]
+  id: NFVendingMachineCart
+  suffix: SR
+  components:
+  - type: VendingMachine
+    pack: NFPTechInventory
+  - type: AccessReader
+    access: [["HeadOfPersonnel"]]
+  - type: MarketModifier
+    mod: 5
+
+- type: entity
+  parent: NFVendingMachineCart
+  id: NFVendingMachineCartNfsd
   suffix: NFSD
   components:
   - type: VendingMachine
-    pack: PTechNfsdInventory
-    offState: off
-    brokenState: broken
-    normalState: normal-unshaded
-    ejectState: eject-unshaded
-    denyState: deny-unshaded
-  - type: Sprite
-    sprite: Structures/Machines/VendingMachines/cart.rsi
-    layers:
-    - state: "off"
-      map: ["enum.VendingMachineVisualLayers.Base"]
-    - state: "off"
-      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
-      shader: unshaded
-    - state: panel
-      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+    pack: NFPTechNfsdInventory
   - type: AccessReader
     access: [["HeadOfSecurity"]]
 
@@ -616,6 +620,70 @@
   - type: Sprite
     sprite: _NF/Structures/Machines/VendingMachines/wallcivimed.rsi
 
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineValetDrobe
+  name: ValetDrobe
+  description: Assist others in style! Dress in top-top shape for tip-top tips!
+  components:
+  - type: VendingMachine
+    pack: ValetDrobeInventory
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    # ejectState: eject-unshaded  No sprite, see chefvend/dinnerware/BODA/etc for expamples
+  - type: Advertise
+    pack: ValetDrobeAds
+  - type: SpeakOnUIClosed
+    pack: ValetDrobeGoodbyes
+  - type: Sprite
+    sprite: _NF/Structures/Machines/VendingMachines/valetdrobe.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#4b93ad"
+  - type: AccessReader
+    access: [["Service"]] # Mail Carrier and Janitor teaming up to loot the machine dry.
+
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineMailVend
+  name: MailVend
+  description: Make your thoughts known, send a letter today!
+  components:
+  - type: VendingMachine
+    pack: MailVendInventory
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    # ejectState: eject-unshaded  No sprite, see chefvend/dinnerware/BODA/etc for expamples
+  - type: Advertise
+    pack: MailVendAds
+  - type: SpeakOnUIClosed
+    pack: MailVendGoodbyes
+  - type: Sprite
+    sprite: _NF/Structures/Machines/VendingMachines/mailvend.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#4b93ad"
+
 # POI versions of upstream machines
 
 - type: entity
@@ -624,7 +692,7 @@
   suffix: POI
   components:
   - type: VendingMachine
-    pack: AmmoVendPOIInventory
+    pack: WeaponryWorksVendPOIInventory
 
 - type: entity
   parent: VendingMachineEngivend
@@ -640,7 +708,7 @@
   suffix: POI
   components:
   - type: VendingMachine
-    pack: VendomatInventory
+    pack: VendomatPOIInventory
 
 - type: entity
   parent: VendingMachineYouTool

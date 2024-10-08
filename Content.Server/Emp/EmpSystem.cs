@@ -7,6 +7,7 @@ using Content.Server.Station.Components;
 using Content.Server.SurveillanceCamera;
 using Content.Shared.Emp;
 using Content.Shared.Examine;
+using Content.Shared.Tiles; // Frontier
 using Robust.Server.GameObjects;
 using Robust.Shared.Map;
 
@@ -38,15 +39,18 @@ public sealed class EmpSystem : SharedEmpSystem
     /// <param name="range">The range of the EMP pulse.</param>
     /// <param name="energyConsumption">The amount of energy consumed by the EMP pulse.</param>
     /// <param name="duration">The duration of the EMP effects.</param>
-    public void EmpPulse(MapCoordinates coordinates, float range, float energyConsumption, float duration)
+    /// <param name="immuneGrids">Frontier: a list of the grids that should not be affected by the 
+    public void EmpPulse(MapCoordinates coordinates, float range, float energyConsumption, float duration, List<EntityUid>? immuneGrids = null)
     {
         foreach (var uid in _lookup.GetEntitiesInRange(coordinates, range))
         {
-            // Block EMP on grid
+            // Frontier: Block EMP on grid
             var gridUid = Transform(uid).GridUid;
-            var attemptEv = new EmpAttemptEvent();
-            if (HasComp<StationEmpImmuneComponent>(gridUid))
+            if (gridUid != null &&
+                (immuneGrids != null && immuneGrids.Contains(gridUid.Value) ||
+                TryComp<ProtectedGridComponent>(gridUid, out var prot) && prot.PreventEmpEvents))
                 continue;
+            // End Frontier: block EMP on grid
 
             TryEmpEffects(uid, energyConsumption, duration);
         }

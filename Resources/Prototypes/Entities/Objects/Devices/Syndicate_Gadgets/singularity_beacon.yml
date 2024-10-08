@@ -1,6 +1,6 @@
 - type: entity
   id: SingularityBeacon
-  parent: BaseMachinePowered
+  parent: [BaseMachinePowered, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   name: singularity beacon
   description: A syndicate device that attracts the singularity. If it's loose and you're seeing this, run.
   components:
@@ -37,4 +37,3 @@
     powerLoad: 15000
   - type: StaticPrice
     price: 1500
-  - type: Contraband #frontier

@@ -12,14 +12,13 @@ public enum BankATMMenuUiKey : byte
     BlackMarket
 }
 
-public sealed partial class SharedBankSystem : EntitySystem
+public abstract partial class SharedBankSystem : EntitySystem
 {
     [Dependency] private readonly ItemSlotsSystem _itemSlotsSystem = default!;
 
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<BankAccountComponent, ComponentHandleState>(OnHandleState);
         SubscribeLocalEvent<BankATMComponent, ComponentInit>(OnComponentInit);
         SubscribeLocalEvent<BankATMComponent, ComponentRemove>(OnComponentRemove);
         SubscribeLocalEvent<StationBankATMComponent, ComponentInit>(OnComponentInit);
@@ -44,16 +43,6 @@ public sealed partial class SharedBankSystem : EntitySystem
     private void OnComponentRemove(EntityUid uid, StationBankATMComponent component, ComponentRemove args)
     {
         _itemSlotsSystem.RemoveItemSlot(uid, component.CashSlot);
-    }
-
-    private void OnHandleState(EntityUid playerUid, BankAccountComponent component, ref ComponentHandleState args)
-    {
-        if (args.Current is not BankAccountComponentState state)
-        {
-            return;
-        }
-
-        component.Balance = state.Balance;
     }
 }
 

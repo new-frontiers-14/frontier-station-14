@@ -1,6 +1,5 @@
 using Content.Shared.Salvage.Expeditions;
 using JetBrains.Annotations;
-using Robust.Client.GameObjects;
 
 namespace Content.Client.Salvage.UI;
 

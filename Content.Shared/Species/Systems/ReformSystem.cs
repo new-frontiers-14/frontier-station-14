@@ -97,14 +97,10 @@ public sealed partial class ReformSystem : EntitySystem
         if (_mindSystem.TryGetMind(uid, out var mindId, out var mind))
             _mindSystem.TransferTo(mindId, child, mind: mind);
 
-        // Frontier
-        // bank account transfer
-        if (TryComp<BankAccountComponent>(uid, out var bank))
+        // Frontier: bank account transfer
+        if (HasComp<BankAccountComponent>(uid))
         {
-            // Do this carefully since changing the value of a bank account component on a entity will save the balance immediately through subscribers.
-            var oldBankBalance = bank.Balance;
-            var newBank = EnsureComp<BankAccountComponent>(child);
-            newBank.Balance = oldBankBalance;
+            EnsureComp<BankAccountComponent>(child);
         }
 
         // Frontier

@@ -12,17 +12,19 @@ using Robust.Shared.IoC;
 using Robust.Shared.Configuration;
 using Robust.Shared.Console;
 using Robust.Shared.Timing;
+using Content.Server.Corvax.Respawn;
 
 namespace Content.Client.UserInterface.Systems.Ghost;
 
 // TODO hud refactor BEFORE MERGE fix ghost gui being too far up
-public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSystem>
+public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSystem>, IOnSystemChanged<RespawnSystem>
 {
     [Dependency] private readonly IEntityNetworkManager _net = default!;
     [Dependency] private readonly IConsoleHost _consoleHost = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
 
     [UISystemDependency] private readonly GhostSystem? _system = default;
+    [UISystemDependency] private readonly RespawnSystem? _respawn = default;
 
     private GhostGui? Gui => UIManager.GetActiveUIWidgetOrNull<GhostGui>();
     private bool _canUncryo = true; // Frontier. TODO: find a reliable way to update this, for now it just stays active all the time
@@ -66,6 +68,22 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
         system.GhostRoleCountUpdated -= OnRoleCountUpdated;
     }
 
+    public void OnSystemLoaded(RespawnSystem system)
+    {
+        system.RespawnReseted += OnRespawnReseted;
+    }
+
+    public void OnSystemUnloaded(RespawnSystem system)
+    {
+        system.RespawnReseted -= OnRespawnReseted;
+    }
+
+    private void OnRespawnReseted()
+    {
+        UpdateGui();
+        UpdateRespawn(_respawn?.RespawnResetTime);
+    }
+
     public void UpdateGui()
     {
         if (Gui == null)
@@ -75,9 +93,7 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
 
         Gui.Visible = _system?.IsGhost ?? false;
         Gui.Update(_system?.AvailableGhostRoleCount, _system?.Player?.CanReturnToBody,
-            _system?.Player?.TimeOfDeath,
-            _cfg.GetCVar(NFCCVars.RespawnTime), // Frontier
-            _canUncryo && _cfg.GetCVar(NFCCVars.CryoReturnEnabled)); // Frontier
+            _canUncryo && _cfg.GetCVar(NFCCVars.CryoReturnEnabled));
     }
 
     private void UpdateRespawn(TimeSpan? timeOfDeath)
@@ -103,7 +119,7 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
             return;
 
         Gui.Visible = true;
-        UpdateRespawn(component.TimeOfDeath);
+        UpdateRespawn(_respawn?.RespawnResetTime);
         UpdateGui();
     }
 

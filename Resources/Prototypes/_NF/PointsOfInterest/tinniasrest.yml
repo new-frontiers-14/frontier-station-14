@@ -13,5 +13,19 @@
   name: "Tinnia's Rest"
   rangeMin: 1200
   rangeMax: 2900
-  iffColor: "#ffa600" #yellorange for faction style
+  IFFColor: "#ffa600" #yellorange for faction style
+  spawnGroup: RestStop
   gridPath: /Maps/_NF/POI/tinnia.yml
+  busStop: true
+
+- type: gameMap
+  id: Tinnia
+  mapName: "Tinnia's Rest"
+  mapPath: /Maps/_NF/POI/tinnia.yml
+  minPlayers: 0
+  stations:
+    Tinnia:
+      stationProto: DeadDropFrontierOutpost
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: "Tinnia's Rest"

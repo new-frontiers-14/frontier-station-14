@@ -1,7 +1,7 @@
 - type: entity
   name: hot potato
   description: Once activated, you can't drop this time bomb - hit someone else with it to save yourself! Don't burn your hands!
-  parent: BaseItem
+  parent: [BaseItem, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   id: HotPotato
   components:
     - type: WeaponCaseInsertable # Frontier
@@ -53,7 +53,7 @@
 
 - type: entity
   id: HotPotatoEffect
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: TimedDespawn
     lifetime: 0.6

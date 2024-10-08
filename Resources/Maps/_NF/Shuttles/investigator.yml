@@ -702,43 +702,51 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 6.5,2.5
       parent: 2
-- proto: AtmosDeviceFanTiny
+- proto: AtmosDeviceFanDirectional
   entities:
   - uid: 1
     components:
     - type: Transform
       rot: 3.141592653589793 rad
-      pos: 9.5,-5.5
+      pos: 2.5,6.5
+      parent: 2
+  - uid: 163
+    components:
+    - type: Transform
+      pos: 2.5,-3.5
+      parent: 2
+  - uid: 222
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 4.5,6.5
       parent: 2
   - uid: 227
     components:
     - type: Transform
       rot: 3.141592653589793 rad
-      pos: 2.5,-3.5
+      pos: 5.5,6.5
       parent: 2
   - uid: 232
     components:
     - type: Transform
       rot: 3.141592653589793 rad
-      pos: 4.5,-3.5
+      pos: 1.5,6.5
       parent: 2
   - uid: 233
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: 3.5,-3.5
+      parent: 2
+  - uid: 366
+    components:
+    - type: Transform
+      pos: 4.5,-3.5
       parent: 2
   - uid: 457
     components:
     - type: Transform
-      pos: 4.5,6.5
-      parent: 2
-  - uid: 458
-    components:
-    - type: MetaData
-      name: Bolt docks button
-    - type: Transform
-      pos: 2.5,6.5
+      pos: 9.5,-5.5
       parent: 2
 - proto: AtmosFixBlockerMarker
   entities:
@@ -1241,65 +1249,41 @@ entities:
     - type: Transform
       pos: 3.5,-3.5
       parent: 2
-    - type: DeviceLinkSink
-      links:
-      - 246
   - uid: 51
     components:
     - type: Transform
       pos: 2.5,-3.5
       parent: 2
-    - type: DeviceLinkSink
-      links:
-      - 246
   - uid: 54
     components:
     - type: Transform
       pos: 7.5,-7.5
       parent: 2
-    - type: DeviceLinkSink
-      links:
-      - 475
   - uid: 178
     components:
     - type: Transform
       pos: 5.5,6.5
       parent: 2
-    - type: DeviceLinkSink
-      links:
-      - 205
   - uid: 193
     components:
     - type: Transform
       pos: 4.5,-3.5
       parent: 2
-    - type: DeviceLinkSink
-      links:
-      - 246
   - uid: 245
     components:
     - type: Transform
       pos: 1.5,6.5
       parent: 2
-    - type: DeviceLinkSink
-      links:
-      - 205
   - uid: 289
     components:
     - type: Transform
       pos: 5.5,3.5
       parent: 2
-    - type: DeviceLinkSink
-      links:
-      - 205
   - uid: 291
     components:
     - type: Transform
       pos: 1.5,3.5
       parent: 2
-    - type: DeviceLinkSink
-      links:
-      - 205
 - proto: BorgCharger
   entities:
   - uid: 282
@@ -2728,13 +2712,18 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 0.5,0.5
       parent: 2
-    - type: Physics
-      canCollide: False
     - type: ContainerContainer
       containers:
         board: !type:Container
+          showEnts: False
+          occludes: True
           ents: []
-        bank-ATM-cashSlot: !type:ContainerSlot {}
+        bank-ATM-cashSlot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+    - type: Physics
+      canCollide: False
     - type: ItemSlots
 - proto: ConveyorBelt
   entities:
@@ -2744,108 +2733,72 @@ entities:
       rot: 3.141592653589793 rad
       pos: 1.5,1.5
       parent: 2
-    - type: DeviceLinkSink
-      links:
-      - 18
   - uid: 4
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 5.5,1.5
       parent: 2
-    - type: DeviceLinkSink
-      links:
-      - 18
   - uid: 5
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 5.5,2.5
       parent: 2
-    - type: DeviceLinkSink
-      links:
-      - 18
   - uid: 6
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 1.5,2.5
       parent: 2
-    - type: DeviceLinkSink
-      links:
-      - 18
   - uid: 447
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 5.5,3.5
       parent: 2
-    - type: DeviceLinkSink
-      links:
-      - 18
   - uid: 448
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 5.5,4.5
       parent: 2
-    - type: DeviceLinkSink
-      links:
-      - 18
   - uid: 449
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 5.5,5.5
       parent: 2
-    - type: DeviceLinkSink
-      links:
-      - 18
   - uid: 450
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 5.5,6.5
       parent: 2
-    - type: DeviceLinkSink
-      links:
-      - 18
   - uid: 451
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 1.5,6.5
       parent: 2
-    - type: DeviceLinkSink
-      links:
-      - 18
   - uid: 452
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 1.5,5.5
       parent: 2
-    - type: DeviceLinkSink
-      links:
-      - 18
   - uid: 453
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 1.5,4.5
       parent: 2
-    - type: DeviceLinkSink
-      links:
-      - 18
   - uid: 454
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 1.5,3.5
       parent: 2
-    - type: DeviceLinkSink
-      links:
-      - 18
 - proto: CrateArtifactContainer
   entities:
   - uid: 368
@@ -3849,7 +3802,6 @@ entities:
   - uid: 125
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
       pos: 9.5,-7.5
       parent: 2
 - proto: Multitool
@@ -3858,6 +3810,18 @@ entities:
     components:
     - type: Transform
       pos: 10.5,-2.5
+      parent: 2
+- proto: NFSignDock
+  entities:
+  - uid: 481
+    components:
+    - type: Transform
+      pos: 0.5,6.5
+      parent: 2
+  - uid: 482
+    components:
+    - type: Transform
+      pos: 6.5,6.5
       parent: 2
 - proto: NitrogenCanister
   entities:
@@ -4237,92 +4201,59 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 0.5,-5.5
       parent: 2
-    - type: DeviceLinkSink
-      links:
-      - 787
   - uid: 789
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 0.5,-6.5
       parent: 2
-    - type: DeviceLinkSink
-      links:
-      - 787
   - uid: 790
     components:
     - type: Transform
       pos: -1.5,-7.5
       parent: 2
-    - type: DeviceLinkSink
-      links:
-      - 787
   - uid: 791
     components:
     - type: Transform
       pos: -2.5,-7.5
       parent: 2
-    - type: DeviceLinkSink
-      links:
-      - 787
   - uid: 792
     components:
     - type: Transform
       pos: -3.5,-7.5
       parent: 2
-    - type: DeviceLinkSink
-      links:
-      - 787
   - uid: 794
     components:
     - type: Transform
       pos: -2.5,-3.5
       parent: 2
-    - type: DeviceLinkSink
-      links:
-      - 787
   - uid: 795
     components:
     - type: Transform
       pos: -1.5,-3.5
       parent: 2
-    - type: DeviceLinkSink
-      links:
-      - 787
   - uid: 796
     components:
     - type: Transform
       pos: 2.5,6.5
       parent: 2
-    - type: DeviceLinkSink
-      links:
-      - 786
   - uid: 797
     components:
     - type: Transform
       pos: 4.5,6.5
       parent: 2
-    - type: DeviceLinkSink
-      links:
-      - 786
   - uid: 798
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -5.5,-6.5
       parent: 2
-    - type: DeviceLinkSink
-      links:
-      - 787
   - uid: 799
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -5.5,-5.5
       parent: 2
-    - type: DeviceLinkSink
-      links:
-      - 787
 - proto: SignalButton
   entities:
   - uid: 205
@@ -4435,18 +4366,6 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 6.5,-2.5
-      parent: 2
-- proto: SignShipDock
-  entities:
-  - uid: 481
-    components:
-    - type: Transform
-      pos: 0.5,6.5
-      parent: 2
-  - uid: 482
-    components:
-    - type: Transform
-      pos: 6.5,6.5
       parent: 2
 - proto: SMESBasic
   entities:

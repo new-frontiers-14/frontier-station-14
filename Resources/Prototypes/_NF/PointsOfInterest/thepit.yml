@@ -14,6 +14,17 @@
   rangeMin: 2200
   rangeMax: 4200
   spawnGroup: Arena
-  spawnChance: 1
-  iffColor: "#ffa600" #yellorange for faction style
+  IFFColor: "#ffa600" #yellorange for faction style
   gridPath: /Maps/_NF/POI/arena.yml
+
+- type: gameMap
+  id: ThePit
+  mapName: "The Pit"
+  mapPath: /Maps/_NF/POI/arena.yml
+  minPlayers: 0
+  stations:
+    ThePit:
+      stationProto: DeadDropFrontierOutpost
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: "The Pit"

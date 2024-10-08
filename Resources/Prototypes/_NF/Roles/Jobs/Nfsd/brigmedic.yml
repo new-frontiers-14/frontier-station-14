@@ -1,7 +1,7 @@
 - type: job
   id: Brigmedic
   name: job-name-brigmedic
-  description: job-description-brigmedic
+  description: job-description-brigmedic-nf
   playTimeTracker: JobBrigmedic
   requirements:
     - !type:OverallPlaytimeRequirement
@@ -14,7 +14,7 @@
     - !type:OverallPlaytimeRequirement
       time: 360000 # 100 hours
   startingGear: BrigmedicGear
-  icon: "JobIconBrigmedic"
+  icon: JobIconBrigmedicNF
   supervisors: job-supervisors-bailiff
   weight: 125
   displayWeight: 35
@@ -31,10 +31,10 @@
 - type: startingGear
   id: BrigmedicGear
   equipment:
-    ears: ClothingHeadsetNfsdCreamMed
     pocket1: WeaponPistolMk58 #WeaponPistolMk58Nonlethal
   storage:
     back:
+    - EncryptionKeyMedical
     - Flash
     - MagazinePistol
     - MagazinePistolRubber

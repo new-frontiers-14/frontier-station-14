@@ -321,46 +321,44 @@ entities:
       data:
         tiles:
           0,0:
-            0: 4095
-            1: 61440
-          -1,0:
-            0: 10376
-            1: 50788
-          0,1:
-            0: 65057
-            1: 478
-          0,2:
-            0: 65535
-          1,0:
-            0: 53247
-            1: 12288
-          1,1:
-            0: 12556
-            1: 20096
-          1,2:
-            0: 14199
-            1: 18560
-          2,0:
-            0: 4369
-          2,1:
-            0: 1
-          -1,1:
-            0: 49152
-            1: 11878
-          -1,2:
-            0: 36556
-            1: 16418
+            0: 253
+            1: 28672
+            2: 32768
           0,-1:
-            0: 61440
-          1,-1:
-            0: 12288
-            1: 49152
-          2,-1:
+            0: 4096
+          0,1:
+            2: 389
+            1: 90
+            0: 51200
+          -1,0:
+            1: 34336
+            2: 16452
+          -1,1:
+            1: 10822
+            2: 17440
+          0,2:
+            0: 3839
+          -1,2:
+            0: 2184
+            2: 16898
+            1: 32
+          1,0:
+            0: 34995
             1: 4096
-          -1,-1:
-            0: 32768
+            2: 8192
+          1,1:
+            0: 4096
+            2: 1664
+            1: 18432
+          1,2:
+            0: 817
+            2: 18560
+          1,-1:
+            2: 49152
           2,2:
             1: 16
+          2,-1:
+            2: 4096
         uniqueMixes:
         - volume: 2500
           temperature: 293.15
@@ -379,6 +377,21 @@ entities:
           - 0
         - volume: 2500
           temperature: 293.15
+          moles:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          immutable: True
           moles:
           - 0
           - 0
@@ -417,8 +430,6 @@ entities:
       devices:
       - 115
       - 9
-    - type: AtmosDevice
-      joinedGrid: 1
   - uid: 58
     components:
     - type: Transform
@@ -429,8 +440,6 @@ entities:
       - 104
       - 116
       - 162
-    - type: AtmosDevice
-      joinedGrid: 1
 - proto: AirCanister
   entities:
   - uid: 45
@@ -438,8 +447,6 @@ entities:
     - type: Transform
       pos: -0.5,8.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
 - proto: AirlockGlassShuttle
   entities:
   - uid: 30
@@ -467,33 +474,34 @@ entities:
     - type: Transform
       pos: 2.5,2.5
       parent: 1
-- proto: AtmosDeviceFanTiny
+- proto: AtmosDeviceFanDirectional
   entities:
+  - uid: 85
+    components:
+    - type: Transform
+      pos: 3.5,6.5
+      parent: 1
+  - uid: 106
+    components:
+    - type: Transform
+      pos: 0.5,-0.5
+      parent: 1
   - uid: 126
     components:
     - type: Transform
+      rot: 3.141592653589793 rad
       pos: 3.5,2.5
       parent: 1
   - uid: 127
     components:
     - type: Transform
-      pos: 3.5,6.5
+      rot: -1.5707963267948966 rad
+      pos: -1.5,8.5
       parent: 1
   - uid: 128
     components:
     - type: Transform
-      pos: 0.5,-0.5
-      parent: 1
-  - uid: 163
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -1.5,8.5
-      parent: 1
-  - uid: 265
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
+      rot: -1.5707963267948966 rad
       pos: -0.5,1.5
       parent: 1
 - proto: AtmosFixBlockerMarker
@@ -762,7 +770,7 @@ entities:
     - type: Transform
       pos: -0.5,7.5
       parent: 1
-- proto: BodyBag_Container
+- proto: BodyBag
   entities:
   - uid: 252
     components:
@@ -1226,8 +1234,6 @@ entities:
       pos: 1.5,1.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 58
 - proto: FirelockEdge
@@ -1266,8 +1272,6 @@ entities:
     - type: Transform
       pos: -2.5,10.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#990000FF'
 - proto: GasPipeBend
@@ -1475,8 +1479,6 @@ entities:
     - type: Transform
       pos: 4.5,10.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
 - proto: GasPressurePump
@@ -1487,8 +1489,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -2.5,9.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 60
@@ -1496,8 +1496,6 @@ entities:
     - type: Transform
       pos: 3.5,8.5
       parent: 1
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
 - proto: GasVentPump
@@ -1511,8 +1509,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 4
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 116
@@ -1522,12 +1518,8 @@ entities:
       pos: 4.5,0.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 58
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
 - proto: GasVentScrubber
@@ -1541,8 +1533,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 4
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 162
@@ -1552,12 +1542,8 @@ entities:
       pos: 2.5,0.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 58
-    - type: AtmosDevice
-      joinedGrid: 1
     - type: AtmosPipeColor
       color: '#990000FF'
 - proto: GravityGeneratorMini
@@ -1760,9 +1746,6 @@ entities:
     - type: Transform
       pos: -0.5,10.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 103
 - proto: MachineFrameDestroyed
   entities:
   - uid: 258
@@ -1791,6 +1774,14 @@ entities:
       parent: 1
     - type: NetworkConfigurator
       linkModeActive: False
+- proto: NFSignDock
+  entities:
+  - uid: 101
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 1.5,0.5
+      parent: 1
 - proto: PillSpaceDrugs
   entities:
   - uid: 254
@@ -2021,14 +2012,6 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -1.5,9.5
-      parent: 1
-- proto: SignShipDock
-  entities:
-  - uid: 101
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 1.5,0.5
       parent: 1
 - proto: Spaceshroom
   entities:

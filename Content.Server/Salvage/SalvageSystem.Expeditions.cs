@@ -175,7 +175,7 @@ public sealed partial class SalvageSystem
             //comp.NextOffer += TimeSpan.FromSeconds(_cooldown); // Frontier
             comp.NextOffer = currentTime + TimeSpan.FromSeconds(_cooldown); // Frontier
             GenerateMissions(comp);
-            UpdateConsoles(comp);
+            UpdateConsoles(uid, comp);
         }
     }
 
@@ -227,7 +227,8 @@ public sealed partial class SalvageSystem
 
         component.ActiveMission = 0;
         component.Cooldown = true;
-        UpdateConsoles(component);
+        if (shuttle != null) // Frontier
+            UpdateConsoles(shuttle.Value, component); // Frontier
     }
 
     /// <summary>
@@ -351,17 +352,11 @@ public sealed partial class SalvageSystem
     // Frontier: handle exped spawn job failures gracefully - reset the console
     private void OnExpeditionSpawnComplete(EntityUid uid, SalvageExpeditionDataComponent component, ExpeditionSpawnCompleteEvent ev)
     {
-        if (!TryComp<SalvageExpeditionDataComponent>(uid, out var data))
+        if (component.ActiveMission == ev.MissionIndex && !ev.Success)
         {
-            Log.Info($"OnExpeditionSpawnComplete: station {uid} has no expedition data");
-            return;
-        }
-
-        if (data.ActiveMission == ev.MissionIndex && !ev.Success)
-        {
-            data.ActiveMission = 0;
-            data.Cooldown = false;
-            UpdateConsoles(component);
+            component.ActiveMission = 0;
+            component.Cooldown = false;
+            UpdateConsoles(uid, component);
         }
     }
     // End Frontier

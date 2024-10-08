@@ -135,7 +135,10 @@ public sealed partial class SalvageExpeditionWindow : FancyWindow,
                 Text = Loc.GetString("salvage-expedition-window-hostiles")
             });
 
-            var faction = mission.Faction;
+            // Get faction name from description if possible, fallback to ID string
+            if (!_prototype.TryIndex<SalvageFactionPrototype>(mission.Faction, out var factionProto) ||
+                    !Loc.TryGetString(factionProto.Description, out var faction))
+                faction = mission.Faction;
 
             lBox.AddChild(new Label
             {

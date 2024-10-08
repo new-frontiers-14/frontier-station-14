@@ -109,16 +109,16 @@ entities:
       data:
         tiles:
           0,0:
-            0: 4983
-            1: 9216
-          -1,0:
-            1: 16898
-            0: 36076
+            0: 279
+            1: 25600
           0,-1:
-            0: 28928
+            0: 4096
             1: 544
+          -1,0:
+            0: 2188
+            1: 25090
           -1,-1:
-            0: 59392
+            0: 32768
             1: 1088
         uniqueMixes:
         - volume: 2500
@@ -137,7 +137,7 @@ entities:
           - 0
           - 0
         - volume: 2500
-          temperature: 293.15
+          immutable: True
           moles:
           - 0
           - 0
@@ -184,11 +184,12 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -1.5,1.5
       parent: 1
-- proto: AtmosDeviceFanTiny
+- proto: AtmosDeviceFanDirectional
   entities:
-  - uid: 29
+  - uid: 13
     components:
     - type: Transform
+      rot: 1.5707963267948966 rad
       pos: 2.5,0.5
       parent: 1
 - proto: AtmosFixBlockerMarker
