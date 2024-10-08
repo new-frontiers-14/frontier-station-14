@@ -1,13 +1,14 @@
 using Content.Client.Pinpointer.UI;
 using Robust.Client.Graphics;
 using Robust.Client.UserInterface.Controls;
-using Robust.Shared.GameObjects; // Frontier modification
 using Robust.Shared.Timing;
 
 namespace Content.Client.Medical.CrewMonitoring;
 
 public sealed partial class CrewMonitoringNavMapControl : NavMapControl
 {
+    [Dependency] private readonly IEntitySystemManager _entitySystem = default!;
+    private readonly SharedTransformSystem _transform = default!; // Frontier
     public NetEntity? Focus;
     public Dictionary<NetEntity, string> LocalizedNames = new();
 
@@ -16,6 +17,8 @@ public sealed partial class CrewMonitoringNavMapControl : NavMapControl
 
     public CrewMonitoringNavMapControl() : base()
     {
+        IoCManager.InjectDependencies(this); // Frontier
+        _transform = _entitySystem.GetEntitySystem<SharedTransformSystem>(); // Frontier
         WallColor = new Color(192, 122, 196);
         TileColor = new(71, 42, 72);
         BackgroundColor = Color.FromSrgb(TileColor.WithAlpha(BackgroundOpacity));
@@ -67,7 +70,8 @@ public sealed partial class CrewMonitoringNavMapControl : NavMapControl
 
             // Text location of the blip will display GPS coordinates for the purpose of being able to find a person via GPS
             // Previously it displayed coordinates relative to the center of the station, which had no use.
-            var message = name + "\nLocation: [x = " + MathF.Round(blip.MapCoordinates.X) + ", y = " + MathF.Round(blip.MapCoordinates.Y) + "]"; // Frontier modification
+            var mapCoords = _transform.ToMapCoordinates(blip.Coordinates); // Frontier
+            var message = name + "\nLocation: [x = " + MathF.Round(mapCoords.X) + ", y = " + MathF.Round(mapCoords.Y) + "]"; // Frontier: use map coords
 
             _trackedEntityLabel.Text = message;
             _trackedEntityPanel.Visible = true;

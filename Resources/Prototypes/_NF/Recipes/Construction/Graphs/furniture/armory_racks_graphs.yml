@@ -101,7 +101,7 @@
             doAfter: 1
 
   - node: GunRackNode
-    entity: WeaponRackBase
+    entity: StructureGunRack
     edges:
       - to: start
         steps:
@@ -109,7 +109,7 @@
             doAfter: 5
 
   - node: GunRackWallmountedNode
-    entity: WeaponRackWallmountedBase
+    entity: StructureGunRackWallmounted
     edges:
       - to: start
         steps:
@@ -117,7 +117,7 @@
             doAfter: 5
 
   - node: MeleeRackNode
-    entity: WeaponRackMeleeBase
+    entity: StructureMeleeWeaponRack
     edges:
       - to: start
         steps:
@@ -125,7 +125,7 @@
             doAfter: 5
 
   - node: MeleeRackWallmountedNode
-    entity: WeaponRackMeleeWallmountedBase
+    entity: StructureMeleeWeaponRackWallmounted
     edges:
       - to: start
         steps:
@@ -133,7 +133,7 @@
             doAfter: 5
 
   - node: PistolRackNode
-    entity: WeaponRackPistolBase
+    entity: StructurePistolRack
     edges:
       - to: start
         steps:
@@ -141,7 +141,7 @@
             doAfter: 5
 
   - node: PistolRackWallmountedNode
-    entity: WeaponRackPistolWallmountedBase
+    entity: StructurePistolRackWallmounted
     edges:
       - to: start
         steps:
