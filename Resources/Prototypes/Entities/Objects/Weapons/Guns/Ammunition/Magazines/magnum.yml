@@ -1,7 +1,7 @@
 - type: entity
   id: BaseMagazineMagnum
   name: pistol magazine (.45 magnum)
-  parent: BaseMagazinePistol
+  parent: [ BaseMagazinePistol, BaseC1Contraband ] # Frontier: BaseRestrictedContraband<BaseC1Contraband
   abstract: true
   components:
   - type: Tag

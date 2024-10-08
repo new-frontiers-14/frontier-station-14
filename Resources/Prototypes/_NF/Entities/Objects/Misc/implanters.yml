@@ -1,26 +1,23 @@
 #Medical implanters
-
 - type: entity
   id: MedicalTrackingImplanter
-  name: medical tracking implanter
+  suffix: medical tracking
   parent: BaseImplantOnlyImplanter
   components:
-    - type: Implanter
-      implant: MedicalTrackingImplant
+  - type: Implanter
+    implant: MedicalTrackingImplant
 
 - type: entity
   id: FreelanceTrackingImplanter
-  name: freelance tracking implanter
-  suffix: Freelance
+  suffix: freelance tracking
   parent: BaseImplantOnlyImplanterSyndi
   components:
-    - type: Implanter
-      implant: FreelanceTrackingImplant
+  - type: Implanter
+    implant: FreelanceTrackingImplant
 
 - type: entity
   id: DeathAcidifierImplanterNF
-  name: death acidifier implanter
-  suffix: All
+  suffix: death acidifier
   parent: BaseImplantOnlyImplanterSyndi
   components:
   - type: Implanter
@@ -28,8 +25,7 @@
 
 - type: entity
   id: GibAcidifierImplanterNF
-  name: gib acidifier implanter
-  suffix: All
+  suffix: gib acidifier
   parent: BaseImplantOnlyImplanterSyndi
   components:
   - type: Implanter
@@ -37,8 +33,41 @@
 
 - type: entity
   id: BibleUserImplanter
-  name: faith implanter
+  suffix: faith
   parent: BaseImplantOnlyImplanter
   components:
   - type: Implanter
     implant: BibleUserImplant
+
+# Labeled implanters (for vendors)
+- type: entity
+  id: MedicalTrackingImplanterLabeled
+  parent: MedicalTrackingImplanter
+  suffix: medical tracking, Labeled
+  components:
+  - type: Label
+    currentLabel: implanter-label-medical-tracking
+
+- type: entity
+  id: SadTromboneImplanterLabeled
+  parent: SadTromboneImplanter
+  suffix: sad trombone, Labeled
+  components:
+  - type: Label
+    currentLabel: implanter-label-sad-trombone
+
+- type: entity
+  id: LightImplanterLabeled
+  parent: LightImplanter
+  suffix: light, Labeled
+  components:
+  - type: Label
+    currentLabel: implanter-label-light
+
+- type: entity
+  id: BikeHornImplanterLabeled
+  parent: BikeHornImplanter
+  suffix: bike horn, Labeled
+  components:
+  - type: Label
+    currentLabel: implanter-label-bike-horn

@@ -27,6 +27,21 @@
 
 - type: entity
   save: false
+  id: MobPassiveRegenWeak
+  abstract: true
+  components:
+  - type: PassiveDamage
+    allowedStates:
+    - Alive
+    damageCap: 500
+    damage:
+      groups:
+        Brute: -0.5
+        Burn: -0.5
+        Airloss: -1
+
+- type: entity
+  save: false
   id: MobPassiveRegen
   abstract: true
   components:
@@ -34,14 +49,12 @@
     allowedStates:
     - Alive
     - Critical
-    damageCap: 400
+    damageCap: 500
     damage:
       groups:
-        Brute: -1
-        Burn: -10
+        Brute: -0.5
+        Burn: -0.5
         Airloss: -1
-        Toxin: -7
-        Genetic: -7
 
 - type: entity
   save: false
@@ -78,7 +91,7 @@
   - type: MovementAlwaysTouching
   - type: MovementIgnoreGravity
   - type: NoSlip
-  - type: StepTriggerImmune
+  - type: ProtectedFromStepTriggers
   - type: Climbing
   - type: Tool
     speedModifier: 1.5
@@ -95,6 +108,30 @@
   #- type: Access # Turning AA off for the time being
     #groups:
     #- AllAccess
+
+# Dungeon boss
+- type: entity
+  id: MobHostileBossBase
+  abstract: true
+  parent:
+  - MobEnhancedMovement
+  - MobPassiveRegenWeak
+  components:
+  - type: Hands
+  - type: Puller
+  - type: Stamina
+    critThreshold: 999
+  - type: MobPrice
+    price: 4000
+    deathPenalty: 0.5
+  - type: Tag
+    tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - CannotSuicide
+  - type: NFSalvageMobRestrictions
+  - type: FTLKnockdownImmune
 
 # Inventories
 - type: entity
@@ -192,6 +229,9 @@
   - BaseC3MobHuman
   id: MobHumanoidHostileBase
   components:
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 3.5
+    baseSprintSpeed : 4.5
   - type: NPCRetaliation
     attackMemoryLength: 10
   - type: MobMover
@@ -254,6 +294,9 @@
   - BaseC3MobCreature
   id: MobNonHumanHostileBase
   components:
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 3.5
+    baseSprintSpeed : 4.5
   - type: NPCRetaliation
     attackMemoryLength: 10
   - type: Reactive
@@ -261,9 +304,6 @@
       Flammable: [Touch]
       Extinguish: [Touch]
       Acidic: [Touch, Ingestion]
-  - type: MovementSpeedModifier
-    baseWalkSpeed : 4
-    baseSprintSpeed : 4
   - type: StatusEffects
     allowed:
     - SlowedDown
@@ -272,6 +312,8 @@
     - ForcedSleep
     - TemporaryBlindness
     - Pacified
+    - Drowsiness
+    - Adrenaline
   - type: Buckle
   - type: StandingState
   - type: InputMover
@@ -310,4 +352,5 @@
     - CanPilot
     - FootstepSound
     - DoorBumpOpener
+    - CannotSuicide
   - type: FTLKnockdownImmune
