@@ -18,7 +18,7 @@ def main():
     parser.add_argument("--date", help="Date to save/remove info until, must be in ISO format - time zone if unspecified will be UTC. Defaults to midnight, UTC, on the beginning of the month, 6 calendar months ago.")
     parser.add_argument("--compress", action="store_true", help="If set, compresses the contents of the file in .gzip format.")
     parser.add_argument("--delete", action="store_true", help="If set, deletes the contents of the tables after writing the output.")
-    parser.add_argument("--ignore-schema-mismatch", action="store_true" help="If set, ignores that the DB does not match the expected schema.")
+    parser.add_argument("--ignore-schema-mismatch", action="store_true", help="If set, ignores that the DB does not match the expected schema.")
     parser.add_argument("--connection-string", required=True, help="Database connection string to use. See https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-CONNSTRING")
 
     args = parser.parse_args()
@@ -106,6 +106,7 @@ def get_oldest_admin_log(cur: "psycopg2.cursor") -> "datetime.datetime":
 
 def dump_admin_in_range(cur: "psycopg2.cursor", start: "datetime.datetime", end: "datetime.datetime", outdir: str, compress: bool, delete: bool):
     date_suffix = f"{start.strftime("%Y%m%d")}-{end.strftime("%Y%m%d")}"
+    print() # Newline
 
     # Export admin_log_player
     print(f"Dumping admin_log_player from {start.date()} to {end.date()}...")
