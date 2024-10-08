@@ -13,7 +13,7 @@ import calendar
 LATEST_DB_MIGRATION = "20240623005121_BanTemplate"
 
 def main():
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser(description="Dumps admin logs into files by months and optionally deletes them from a postgres DB.")
     parser.add_argument("out_dir", help="Directory to output data dumps into.")
     parser.add_argument("--date", help="Date to save/remove info until, must be in ISO format, ignores time zones. Defaults to the beginning of the month, 6 calendar months ago.")
     parser.add_argument("--compress", action="store_true", help="If set, compresses the contents of the file in .gzip format.")
@@ -26,7 +26,7 @@ def main():
     arg_output: str = args.out_dir
 
     if not os.path.exists(arg_output):
-        print("Creating output directory {arg_output} (doesn't exist yet)")
+        print(f"Creating output directory {arg_output} (doesn't exist yet)")
         os.mkdir(arg_output)
 
     # Get our old time
@@ -45,7 +45,7 @@ def main():
             end_date = end_date.astimezone(datetime.timezone.utc)
 
     compressed_string = "compressed" if args.compress else "uncompressed"
-    print(f"Exporting {compressed_string} admin logs until {end_date}")
+    print(f"Exporting {compressed_string} admin logs until {end_date}.")
 
     conn = psycopg2.connect(args.connection_string)
     cur = conn.cursor()
@@ -56,7 +56,7 @@ def main():
 
     # From this, create your intervals up to the deleted time.
     if oldest_record > end_date:
-        print(f"Nothing to export. Oldest record {oldest_record} is older than given date {end_date}")
+        print(f"Nothing to export. Oldest record {oldest_record} is older than given date {end_date}.")
 
     old_date = datetime.datetime(oldest_record.year, oldest_record.month, oldest_record.day, tzinfo=datetime.timezone.utc)
 
