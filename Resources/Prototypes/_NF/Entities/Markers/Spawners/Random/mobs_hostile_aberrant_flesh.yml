@@ -25,3 +25,31 @@
     rarePrototypes:
     - MobFleshAssimilatedMiner
     rareChance: 0.05
+
+- type: entity
+  name: newborn aberrant flesh spawner
+  id: SpawnMobAberrantFleshNewbornExpeditions
+  parent: MarkerBase
+  suffix: AI, Hostile, RND
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: _NF/Mobs/Aliens/flesh.rsi
+      state: lover
+    - state: ai
+  - type: RandomSpawner
+    prototypes:
+    - MobFleshJaredExpeditionsNewborn
+    - MobFleshJaredOldExpeditionsNewborn
+    - MobFleshGolemExpeditionsNewborn
+    - MobFleshGolemAltExpeditionsNewborn
+    - MobFleshGolemOldExpeditionsNewborn
+    - MobFleshClampExpeditionsNewborn
+    - MobFleshClampOldExpeditionsNewborn
+    - MobFleshLoverExpeditionsNewborn
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - MobFleshAssimilatedMiner
+    rareChance: 0.05

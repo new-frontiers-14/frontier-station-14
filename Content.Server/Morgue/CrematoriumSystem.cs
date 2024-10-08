@@ -1,5 +1,4 @@
-using System.Linq;
-using Content.Server.GameTicking;
+using Content.Server.Ghost;
 using Content.Server.Morgue.Components;
 using Content.Server.Storage.Components;
 using Content.Server.Storage.EntitySystems;
@@ -16,8 +15,6 @@ using Content.Shared.Standing;
 using Content.Shared.Storage;
 using Content.Shared.Storage.Components;
 using Content.Shared.Verbs;
-using Robust.Server.GameObjects;
-using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Enums;
@@ -29,7 +26,7 @@ public sealed class CrematoriumSystem : EntitySystem
 {
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly GameTicker _ticker = default!;
+    [Dependency] private readonly GhostSystem _ghostSystem = default!;
     [Dependency] private readonly EntityStorageSystem _entityStorage = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly StandingStateSystem _standing = default!;
@@ -126,7 +123,7 @@ public sealed class CrematoriumSystem : EntitySystem
             return false;
 
         // Frontier - refuse to accept alive mobs and dead-but-connected players
-        var entity = storage.Contents.ContainedEntities.First();
+        var entity = storage.Contents.ContainedEntities[0];
         if (entity is not { Valid: true })
             return false;
         if (TryComp<MobStateComponent>(entity, out var comp) && !_mobState.IsDead(entity, comp))
@@ -169,7 +166,7 @@ public sealed class CrematoriumSystem : EntitySystem
         var victim = args.Victim;
         if (TryComp(victim, out ActorComponent? actor) && _minds.TryGetMind(victim, out var mindId, out var mind))
         {
-            _ticker.OnGhostAttempt(mindId, false, mind: mind);
+            _ghostSystem.OnGhostAttempt(mindId, false, mind: mind);
 
             if (mind.OwnedEntity is { Valid: true } entity)
             {
