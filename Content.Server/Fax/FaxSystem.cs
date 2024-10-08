@@ -31,6 +31,7 @@ using Robust.Shared.Toolshed.TypeParsers;
 using System.Xml.Linq;
 using Robust.Shared.Prototypes;
 using Content.Shared.NameModifier.Components;
+using Content.Shared.Power;
 
 namespace Content.Server.Fax;
 
@@ -476,6 +477,13 @@ public sealed class FaxSystem : EntitySystem
         // Don't play component.SendSound - it clashes with the printing sound, which
         // will start immediately.
 
+        // Frontier: check if paper should be destroyed on sending.
+        if (paper.DestroyOnFax)
+        {
+            DeleteFax(uid, sendEntity.Value, paper);
+        }
+        // End Frontier
+
         UpdateUserInterface(uid, component);
 
         _adminLogger.Add(LogType.Action,
@@ -549,6 +557,13 @@ public sealed class FaxSystem : EntitySystem
 
         _audioSystem.PlayPvs(component.SendSound, uid);
 
+        // Frontier: check if paper should be destroyed on sending.
+        if (paper.DestroyOnFax)
+        {
+            DeleteFax(uid, sendEntity.Value, paper);
+        }
+        // End Frontier
+
         UpdateUserInterface(uid, component);
     }
 
@@ -615,4 +630,16 @@ public sealed class FaxSystem : EntitySystem
         _chat.SendAdminAnnouncement(Loc.GetString("fax-machine-chat-notify", ("fax", faxName)));
         _audioSystem.PlayGlobal("/Audio/Machines/high_tech_confirm.ogg", Filter.Empty().AddPlayers(_adminManager.ActiveAdmins), false, AudioParams.Default.WithVolume(-8f));
     }
+
+    // Frontier: delete sensitive items on fax to prevent duplication
+    private void DeleteFax(EntityUid faxMachine, EntityUid itemToFax, PaperComponent paper)
+    {
+        if (paper.DestroyMessage != null)
+        {
+            _popupSystem.PopupEntity(Loc.GetString(paper.DestroyMessage), faxMachine);
+        }
+
+        Del(itemToFax);
+    }
+    // End Frontier
 }

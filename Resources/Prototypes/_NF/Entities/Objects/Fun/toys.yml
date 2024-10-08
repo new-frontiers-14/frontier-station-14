@@ -509,3 +509,13 @@
     steps: 2
     zeroVisible: false
   - type: Appearance
+
+# Grown cap gun, in toys.yml for consistency with fake parent
+- type: entity
+  parent: [BaseC3SyndicateContrabandNoValue, RevolverCapGunFake] # Frontier: added BaseC3SyndicateContraband
+  id: RevolverCapGunFakeGrown
+  categories: [ HideSpawnMenu ]
+  suffix: Fake, Grown
+  components:
+  - type: RevolverAmmoProvider
+    proto: CartridgeMagnum # Base has AP rounds
