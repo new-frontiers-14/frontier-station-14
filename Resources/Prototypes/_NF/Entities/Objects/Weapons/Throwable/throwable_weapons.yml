@@ -82,27 +82,39 @@
     state: spike
 
 - type: entity
-  parent: MobHostileThrowableWeapon
   id: DartAberrantFleshHorrorSpike
   name: bone spike
+  parent: [ ConjuredObject10, BaseArrow ]
   categories: [ HideSpawnMenu ]
   components:
-  - type: ThrowingAngle
-    angle: 90
+  - type: EmbeddableProjectile
+    offset: -0.15,0.0
   - type: Sprite
     sprite: _NF/Mobs/Aliens/flesh.rsi
-    state: spike
+    layers:
+    - state: spike
+    - state: spikeSolution1
+      map: ["enum.SolutionContainerLayers.Fill"]
+      visible: false
   - type: SolutionContainerManager
     solutions:
       ammo:
         maxVol: 3
         reagents:
         - ReagentId: GastroToxin
-          Quantity: 3
+          Quantity: 1
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    fillBaseName: spikeSolution
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 4
 
 - type: entity
   id: DartAberrantFleshHorrorSpikeCluster
   name: bone spike
+  parent: DartAberrantFleshHorrorSpike
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
