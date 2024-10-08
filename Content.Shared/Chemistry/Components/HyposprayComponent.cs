@@ -1,3 +1,4 @@
+using Content.Shared.DoAfter; // Frontier: Upstream, #30704 - MIT
 using Content.Shared.FixedPoint;
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
@@ -37,4 +38,25 @@ public sealed partial class HyposprayComponent : Component
     /// </summary>
     [DataField]
     public bool InjectOnly = false;
+
+    // Frontier: Upstream, #30704 - MIT
+    /// <summary>
+    /// If set over 0, enables a doafter for the hypospray which must be completed for injection.
+    /// </summary>
+    [DataField]
+    public float DoAfterTime = 0f;
+    // End Frontier
+
+    /// <summary>
+    /// Frontier: if true, object will not inject when attacking.
+    /// </summary>
+    [DataField]
+    public bool PreventCombatInjection;
 }
+
+// Frontier: Upstream, #30704 - MIT
+[Serializable, NetSerializable]
+public sealed partial class HyposprayDoAfterEvent : SimpleDoAfterEvent
+{
+}
+// End Frontier

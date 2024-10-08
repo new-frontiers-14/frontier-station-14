@@ -1,8 +1,3 @@
-/*
- * New Frontiers - This file is licensed under AGPLv3
- * Copyright (c) 2024 New Frontiers
- * See AGPLv3.txt for details.
- */
 using System.Linq;
 using System.Net.Http;
 using System.Numerics;
@@ -14,8 +9,6 @@ using Content.Shared._NF.GameRule;
 using Content.Server.Procedural;
 using Content.Shared.Bank.Components;
 using Content.Server._NF.GameTicking.Events;
-using Content.Server.GameTicking.Events;
-using Content.Server.GameTicking.Rules.Components;
 using Content.Shared.Procedural;
 using Robust.Server.GameObjects;
 using Robust.Server.Maps;
@@ -26,7 +19,6 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Map.Components;
 using Content.Shared.Shuttles.Components;
-using Content.Server._NF.GameTicking.Events;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Cargo.Components;
 using Content.Server.GameTicking;
@@ -39,6 +31,8 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Physics.Components;
 using Content.Server.Shuttles.Components;
 using Content.Shared.Tiles;
+using Content.Server._NF.PublicTransit.Components;
+using Content.Server._NF.GameRule.Components;
 
 namespace Content.Server._NF.GameRule;
 
@@ -146,7 +140,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
                 depotProtos.Add(location);
             else if (location.SpawnGroup == "MarketStation")
                 marketProtos.Add(location);
-            else if (location.AlwaysSpawn == true)
+            else if (location.SpawnGroup == "Required")
                 requiredProtos.Add(location);
             else if (location.SpawnGroup == "Optional")
                 optionalProtos.Add(location);
@@ -355,11 +349,11 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             {
                 var meta = EnsureComp<MetaDataComponent>(grid);
                 _meta.SetEntityName(grid, stationName, meta);
-                _shuttle.SetIFFColor(grid, proto.IffColor);
-                if (proto.IsHidden)
-                {
-                    _shuttle.AddIFFFlag(grid, IFFFlags.HideLabel);
-                }
+
+                EnsureComp<IFFComponent>(grid);
+                _shuttle.SetIFFColor(grid, proto.IFFColor);
+                _shuttle.AddIFFFlag(grid, proto.Flags);
+
                 if (!proto.AllowIFFChanges)
                 {
                     _shuttle.SetIFFReadOnly(grid, true);
@@ -373,6 +367,11 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
                 {
                     shuttle.AngularDamping = dampingStrength;
                     shuttle.LinearDamping = dampingStrength;
+                }
+
+                if (proto.BusStop)
+                {
+                    EnsureComp<StationTransitComponent>(grid);
                 }
 
                 if (proto.GridProtection != GridProtectionFlags.None)
