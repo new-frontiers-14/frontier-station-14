@@ -54,11 +54,8 @@ public enum MutationFlags : byte
     None = 0,
     TurnIntoKudzu = 1,
     Seedless = 2,
-    Slip = 4,
-    Sentient = 8,
-    Ligneous = 16,
-    Bioluminescent = 32,
-    CanScream = 64,
+    Ligneous = 4,
+    CanScream = 8,
 }
 
 [Flags]

@@ -28,8 +28,8 @@
     sprite: Structures/Walls/solid.rsi
     state: wall_girder
   - type: Damageable
-    damageContainer: Inorganic
-    damageModifierSet: Metallic
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallic
   - type: Destructible
     thresholds:
     - trigger:
@@ -53,8 +53,12 @@
         sound:
           collection: MetalBreak
   - type: StaticPrice
-    price: 10
+    price: 10 # Frontier: 30<10
   - type: Climbable # Frontier - Stop AI Abuse
+  - type: RCDDeconstructable # Frontier
+    cost: 4 # Frontier
+    delay: 4 # Frontier
+    fx: EffectRCDDeconstruct4 # Frontier
 
 - type: entity
   id: ReinforcedGirder
@@ -97,7 +101,7 @@
               sound:
                 collection: MetalBreak
     - type: StaticPrice
-      price: 66
+      price: 25 # Frontier: 130<25
 
 - type: entity
   id: ClockworkGirder
@@ -111,6 +115,8 @@
     - type: Construction
       graph: ClockworkGirder
       node: clockGirder
+    - type: StaticPrice
+      price: 25 # Frontier: 75<25
     - type: Destructible
       thresholds:
         - trigger:

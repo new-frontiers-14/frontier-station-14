@@ -3,7 +3,7 @@
   stackEntity: SheetSteel1
   name: materials-steel
   icon: { sprite: Objects/Materials/Sheets/metal.rsi, state: steel }
-  price: 0.059 # Frontier: tweaked per recipe (coal value)
+  price: 0.059 # Frontier: 0.15<0.059 tweaked per recipe (coal value)
 
 - type: material
   id: Gold
@@ -12,7 +12,7 @@
   unit: materials-unit-bar
   icon: { sprite: Objects/Materials/ingots.rsi, state: gold }
   color: "#FFD700"
-  price: 0.2
+  price: 0.2 # $75 for 1 unit # Frontier: 0.75<0.2 - TODO: material rework
 
 - type: material
   id: Silver
@@ -21,7 +21,7 @@
   unit: materials-unit-bar
   icon: { sprite: Objects/Materials/ingots.rsi, state: silver }
   color: "#C0C0C0"
-  price: 0.15
+  price: 0.15 # $60 for 1 unit # Frontier: 0.6<0.15 - TODO: material rework
 
 - type: material
   id: Brass
@@ -29,7 +29,7 @@
   name: materials-brass
   icon: { sprite: Objects/Materials/Sheets/metal.rsi, state: brass }
   color: "#b18b25"
-  price: 0.1
+  price: 0.1 # $30 for 1 unit # Frontier: 0.30<0.1 - TODO: material rework
 
 - type: material
   id: Plasteel
@@ -37,4 +37,4 @@
   name: materials-plasteel
   icon: { sprite: Objects/Materials/Sheets/metal.rsi, state: plasteel }
   color: "#696969" #Okay, this is epic
-  price: 0.309 # 1-1 mix of plasma and steel. # Frontier: 0.28<0.309 (tweaked per recipe)
+  price: 0.2544 # 1-1 mix of plasma and steel. # Frontier: 0.5<0.2544 (80% of 0.318) (tweaked per recipe)

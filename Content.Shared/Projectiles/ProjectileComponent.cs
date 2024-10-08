@@ -73,4 +73,10 @@ public sealed partial class ProjectileComponent : Component
     /// </summary>
     [DataField]
     public bool DamagedEntity;
+
+    /// <summary>
+    /// Frontier: Chance for a blind effect bonus to occur (1 = 100%).
+    /// </summary>
+    [DataField]
+    public float RandomBlindChance { get; set; } = 0;
 }

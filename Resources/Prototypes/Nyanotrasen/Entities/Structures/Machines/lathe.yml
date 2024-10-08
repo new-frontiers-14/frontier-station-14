@@ -1,5 +1,5 @@
 - type: entity
-  parent: BaseLatheLube # Frontier: Protolathe<BaseLatheLube
+  parent: [ BaseLatheLube, BlueprintReceiverBase ] # Frontier: Protolathe<BaseLatheLube, added BlueprintReceiverBase
   id: ScienceTechFab
   name: science techfab
   description: Prints equipment for use by the epistemics department.
@@ -90,12 +90,12 @@
       - MopItem
       - SprayBottle
       - FireExtinguisher
-      - SheetSteel
-      - SheetPlastic
-      - SheetPlasteel
-      - SheetPlasma
-      - SheetRGlass
-      - SheetGlass1
+      # - SheetSteel # Frontier: didn't work, use engi techfab
+      # - SheetPlastic # Frontier: didn't work, use engi techfab
+      # - SheetPlasteel # Frontier: didn't work, use engi techfab
+      # - SheetPlasma # Frontier: didn't work, use engi techfab
+      # - SheetRGlass # Frontier: didn't work, use engi techfab
+      # - SheetGlass1 # Frontier: didn't work, use engi techfab
       - CableStack
       - CableMVStack
       - CableHVStack
@@ -109,7 +109,7 @@
         - Ingot
 
 - type: entity
-  parent: BaseLatheLube # Frontier: Protolathe<BaseLatheLube
+  parent: [ BaseLatheLube, BlueprintReceiverBase ] # Frontier: Protolathe<BaseLatheLube, added BlueprintReceiverBase
   id: ServiceTechFab
   name: service techfab
   description: Prints equipment for service staff.
@@ -268,7 +268,7 @@
         - Ingot
 
 - type: entity
-  parent: BaseLatheLube # Frontier: Protolathe<BaseLatheLube
+  parent: [ BaseLatheLube, BlueprintReceiverBase ] # Frontier: Protolathe<BaseLatheLube, added BlueprintReceiverBase
   id: EngineeringTechFab
   name: engineering techfab
   description: Prints equipment for engineers.
@@ -384,11 +384,16 @@
       - ClothingOuterHardsuitEVA # Frontier
       - ClothingOuterEVASuitEngineer # Frontier
       - ClothingOuterEVASuitAtmosTech # Frontier
+    ## Materials
+      - Durathread
+      - NFSheetRGlassProcessed # Frontier
+      - NFSheetPGlass1Processed # Frontier
+      - NFSheetRPGlass1Processed # Frontier
+      - NFSheetPlasteel1Processed # Frontier
+      - NFSheetUGlass1Processed # Frontier
+      - NFSheetRUGlass1Processed # Frontier
     ## Misc
       - ClothingHeadHatCone # Frontier
-      - Durathread
-      - Plasteel
-      - SheetRGlass
     dynamicRecipes:
     # Shared lathe recipes
     ## Advanced tools
@@ -418,12 +423,6 @@
       - MiningDrillDiamond # Frontier
       - SprayBottle #Frontier
       - FireExtinguisher #Frontier
-      - SheetSteel #Frontier
-      - SheetPlasteel #Frontier
-      - SheetPlasma #Frontier
-      - SheetGlass1 #Frontier
-      - SheetRGlass #Frontier
-      - SheetPlastic #Frontier
       - ShipyardRCD # Frontier
       - ShipyardRCDAmmo # Frontier
       - SignallerAdvanced # Frontier
