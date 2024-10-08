@@ -1,3 +1,22 @@
+# No idea why it's in sci but we ball.
+- type: job
+  id: StationAi
+  name: job-name-station-ai
+  description: job-description-station-ai
+  playTimeTracker: JobStationAi
+  requirements:
+  # - !type:RoleTimeRequirement # Frontier
+  #   role: JobBorg # Frontier
+  #   time: 18000  # 5 hrs # Frontier
+    - !type:OverallPlaytimeRequirement # Frontier
+      time: 10800 # 3 hrs # Frontier
+  canBeAntag: false
+  icon: JobIconStationAi
+  supervisors: job-supervisors-hire # Frontier: rd<hire
+  jobEntity: StationAiBrain
+  applyTraits: false
+  setPreference: false # Frontier
+
 - type: job
   id: Borg
   name: job-name-borg
@@ -6,8 +25,9 @@
   setPreference: false # Frontier
   requirements:
     - !type:OverallPlaytimeRequirement
-      time: 21600
+      time: 10800 # 3 hrs # Frontier: 60<3 hrs
   canBeAntag: false
   icon: JobIconBorg
   supervisors: job-supervisors-hire # Frontier
   jobEntity: PlayerBorgGeneric
+  applyTraits: false
