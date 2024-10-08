@@ -47,7 +47,7 @@
         sound:
           collection: MetalBreak
   - type: StaticPrice
-    price: 10
+    price: 10 # Frontier: 50<10
 
 #Starts unanchored, cannot be rotated while anchored
 - type: entity
@@ -353,6 +353,7 @@
   - type: Construction
     graph: Seat
     node: chairFolding
+  - type: DamageExaminable
 
 - type: entity
   parent: ChairFolding
@@ -406,6 +407,6 @@
             min: 2
             max: 4
   - type: StaticPrice
-    price: 20
+    price: 20 # Frontier: 50<20
   - type: PotentialDeadDrop # Frontier
     hintText: dead-drop-hint-bench # Frontier

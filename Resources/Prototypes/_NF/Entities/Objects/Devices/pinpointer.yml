@@ -7,3 +7,36 @@
     maxRange: -1
     retargetDoAfter: 0
     canTargetMobs: true
+
+- type: entity
+  description: Pointing to some unknown place.
+  id: PinpointerSyndicatePOI
+  parent: PinpointerSyndicateNuclear
+  suffix: Syndicate FOB
+  components:
+  - type: Pinpointer
+    component: SyndicateFOB
+    targetName: unknown
+
+# Dead Drop
+- type: entity
+  name: dead drop hint pinpointer
+  description: Pointing to a dead drop hint.
+  id: PinpointerDeadDropHint
+  parent: PinpointerSyndicateNuclear
+  suffix: DEBUG
+  components:
+  - type: Pinpointer
+    component: DeadDropHint
+    targetName: DeadDropHint
+
+- type: entity
+  name: dead drop pinpointer
+  description: Pointing to a hidden dead drop.
+  id: PinpointerDeadDrop
+  parent: PinpointerSyndicateNuclear
+  suffix: DEBUG
+  components:
+  - type: Pinpointer
+    component: DeadDrop
+    targetName: DeadDrop

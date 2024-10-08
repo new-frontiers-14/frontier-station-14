@@ -21,5 +21,13 @@ namespace Content.Server.Warps
         [ViewVariables(VVAccess.ReadWrite)]
         [DataField("useStationName")]
         public bool UseStationName;
+
+        /// <summary>
+        /// Frontier - If true, warp point can only be used by admins
+        /// </summary>
+        [ViewVariables(VVAccess.ReadWrite)]
+        [DataField("adminOnly")]
+        public bool AdminOnly;
+        // End Frontier
     }
 }
