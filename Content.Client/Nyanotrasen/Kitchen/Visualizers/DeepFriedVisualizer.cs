@@ -11,6 +11,7 @@ namespace Content.Client.Kitchen.Visualizers
 {
     public sealed class DeepFriedVisualizerSystem : VisualizerSystem<DeepFriedComponent>
     {
+        [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
         private readonly static string ShaderName = "Crispy";
 
         public override void Initialize()
@@ -26,7 +27,7 @@ namespace Content.Client.Kitchen.Visualizers
             if (args.Sprite == null)
                 return;
 
-            if (!args.Component.TryGetData(DeepFriedVisuals.Fried, out bool isFried))
+            if (!_appearance.TryGetData(uid, DeepFriedVisuals.Fried, out bool isFried, args.Component))
                 return;
 
             for (var i = 0; i < args.Sprite.AllLayers.Count(); ++i)
