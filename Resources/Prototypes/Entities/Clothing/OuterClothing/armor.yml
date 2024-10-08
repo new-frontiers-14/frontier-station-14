@@ -173,7 +173,7 @@
     autoRechargeRate: 2
 
 - type: entity
-  parent: [ClothingOuterBaseLarge, BaseC3CultContraband, ContrabandClothing] # Frontier: added BaseC3CultContraband, ContrabandClothing as parent
+  parent: [ClothingOuterBaseLarge, BaseC3CultContraband, AllowSuitStorageClothing, ContrabandClothing] # Frontier: BaseMajorContraband<BaseC3CultContraband, added ContrabandClothing as parent
   id: ClothingOuterArmorCult
   name: acolyte armor
   description: An evil-looking piece of cult armor, made of bones.
@@ -210,7 +210,7 @@
         Heat: 0.7
         Caustic: 0.75
   - type: GroupExamine
-  - type: ClothingRequiredStepTriggerImmune
+  - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
   - type: ExplosionResistance
     damageCoefficient: 0.7
@@ -285,7 +285,7 @@
   - type: GroupExamine
 
 - type: entity
-  parent: ClothingOuterBaseLarge
+  parent: [ ClothingOuterBaseLarge, BaseC3Contraband, AllowSuitStorageClothing ] # Frontier: BaseMajorContraband<BaseC3Contraband
   id: ClothingOuterArmorChangeling
   name: chitinous armor
   description: Inflates the changeling's body into an all-consuming chitinous mass of armor.
@@ -309,11 +309,11 @@
   - type: ExplosionResistance
     damageCoefficient: 0.5
   - type: GroupExamine
-  - type: ClothingRequiredStepTriggerImmune
+  - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
 
 - type: entity
-  parent: ClothingOuterBaseLarge
+  parent: [ ClothingOuterBaseLarge, BaseC1Contraband, AllowSuitStorageClothing ] # Frontier: BaseMajorContraband<BaseC1Contraband
   id: ClothingOuterArmorBone
   name: bone armor
   description: Sits on you like a second skin.
@@ -337,11 +337,11 @@
   - type: Construction
     graph: BoneArmor
     node: armor
-  - type: ClothingRequiredStepTriggerImmune
+  - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
 
 - type: entity
-  parent: ClothingOuterBaseLarge
+  parent: [ ClothingOuterBaseLarge, BaseC1Contraband, AllowSuitStorageClothing ] # Frontier: BaseMajorContraband<BaseC1Contraband
   id: ClothingOuterArmorPodWars
   name: ironclad II armor
   description: A repurposed suit of ironclad II armor, a relic of the pod wars.
@@ -358,6 +358,6 @@
         Piercing: 0.6
         Heat: 0.5
   - type: GroupExamine
-  - type: ClothingRequiredStepTriggerImmune
+  - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
 

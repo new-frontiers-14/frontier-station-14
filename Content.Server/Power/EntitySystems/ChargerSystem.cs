@@ -66,7 +66,7 @@ internal sealed class ChargerSystem : EntitySystem
             }
             else
             {
-                // add how much each item is charged it 
+                // add how much each item is charged it
                 foreach (var contained in container.ContainedEntities)
                 {
                     if (!TryComp<BatteryComponent>(contained, out var battery))
@@ -115,7 +115,7 @@ internal sealed class ChargerSystem : EntitySystem
         var query = EntityQueryEnumerator<ChargingComponent>(); // Frontier: Upstream - #28984
         while (query.MoveNext(out var uid, out var charging)) // Frontier: Upstream - #28984
         {
-            if (!HasComp<ChargerComponent>(charging.ChargerUid)) // Frontier: Upstream - #28984
+            if (!TryComp<ChargerComponent>(charging.ChargerUid, out var charger)) // Frontier: Upstream - #28984
                 continue;
 
             if (charging.ChargerComponent.Status == CellChargerStatus.Off || charging.ChargerComponent.Status == CellChargerStatus.Empty) // Frontier: Upstream - #28984
@@ -135,7 +135,20 @@ internal sealed class ChargerSystem : EntitySystem
 
             if (Math.Abs(battery.MaxCharge - battery.CurrentCharge) < 0.01)
                 StopChargingBattery(charging.ChargerUid, charging.ChargerComponent, uid);
-            TransferPower(charging.ChargerUid, uid, charging.ChargerComponent, frameTime);
+
+            // Frontier: we already have the battery separated (it is what charges)
+            //           so we will charge the battery ourselves, instead of finding it
+            //           again through TransferPower
+            _battery.TrySetCharge(uid, battery.CurrentCharge + charger.ChargeRate * frameTime, battery); // Frontier: Upstream - #28984
+            // Just so the sprite won't be set to 99.99999% visibility
+            if (battery.MaxCharge - battery.CurrentCharge < 0.01)
+            {
+                _battery.TrySetCharge(uid, battery.MaxCharge, battery); // Frontier: Upstream - #28984
+            }
+
+            UpdateStatus(uid, charger);
+
+            //TransferPower(charging.ChargerUid, uid, charging.ChargerComponent, frameTime);
             // Frontier: Upstream - #28984 End
         }
     }
@@ -153,7 +166,10 @@ internal sealed class ChargerSystem : EntitySystem
         if (args.Container.ID != component.SlotId)
             return;
 
-        StartChargingBattery(uid, component, args.Entity); // Frontier: Upstream - #28984
+        if (!SearchForBattery(args.Entity, out var batteryEntity, out _)) // Frontier: fixing #28984
+            return; // Frontier
+
+        StartChargingBattery(uid, component, batteryEntity.Value); // Frontier: Upstream - #28984
     }
 
     private void OnRemoved(EntityUid uid, ChargerComponent component, EntRemovedFromContainerMessage args)
@@ -161,7 +177,10 @@ internal sealed class ChargerSystem : EntitySystem
         if (args.Container.ID != component.SlotId)
             return;
 
-        StopChargingBattery(uid, component, args.Entity); // Frontier: Upstream - #28984
+        if (!SearchForBattery(args.Entity, out var batteryEntity, out _)) // Frontier: fixing #28984
+            return; // Frontier
+
+        StopChargingBattery(uid, component, batteryEntity.Value); // Frontier: Upstream - #28984
     }
 
     /// <summary>
@@ -225,11 +244,11 @@ internal sealed class ChargerSystem : EntitySystem
         switch (component.Status)
         {
             case CellChargerStatus.Off:
-                receiver.Load = 0;
+                receiver.Load = 1;
                 _appearance.SetData(uid, CellVisual.Light, CellChargerStatus.Off, appearance);
                 break;
             case CellChargerStatus.Empty:
-                receiver.Load = 0;
+                receiver.Load = 1;
                 _appearance.SetData(uid, CellVisual.Light, CellChargerStatus.Empty, appearance);
                 break;
             case CellChargerStatus.Charging:
@@ -237,7 +256,7 @@ internal sealed class ChargerSystem : EntitySystem
                 _appearance.SetData(uid, CellVisual.Light, CellChargerStatus.Charging, appearance);
                 break;
             case CellChargerStatus.Charged:
-                receiver.Load = 0;
+                receiver.Load = 1;
                 _appearance.SetData(uid, CellVisual.Light, CellChargerStatus.Charged, appearance);
                 break;
             default:
@@ -260,10 +279,10 @@ internal sealed class ChargerSystem : EntitySystem
 
         foreach (var containedEntity in container.ContainedEntities)
         {
-            if (!SearchForBattery(containedEntity, out _, out _))
+            if (!SearchForBattery(containedEntity, out var batteryEntity, out _))
                 continue;
 
-            StopChargingBattery(uid, component, containedEntity);
+            StopChargingBattery(uid, component, batteryEntity.Value);
         }
     }
 
@@ -276,10 +295,10 @@ internal sealed class ChargerSystem : EntitySystem
 
         foreach (var containedEntity in container.ContainedEntities)
         {
-            if (!SearchForBattery(containedEntity, out _, out _))
+            if (!SearchForBattery(containedEntity, out var batteryEntity, out _))
                 continue;
 
-            StartChargingBattery(uid, component, containedEntity);
+            StartChargingBattery(uid, component, batteryEntity.Value);
         }
     }
 
@@ -308,15 +327,15 @@ internal sealed class ChargerSystem : EntitySystem
         foreach (var containedEntity in container.ContainedEntities)
         {
             // if none of the slotted items are actually batteries, represent the charger as off
-            if (!SearchForBattery(containedEntity, out _, out _))
+            if (!SearchForBattery(containedEntity, out var batteryEntity, out _))
                 continue;
 
             // if all batteries are either EMP'd or fully charged, represent the charger as fully charged
             statusOut = CellChargerStatus.Charged;
-            if (HasComp<EmpDisabledComponent>(containedEntity))
+            if (HasComp<EmpDisabledComponent>(batteryEntity))
                 continue;
 
-            if (!HasComp<ChargingComponent>(containedEntity))
+            if (!HasComp<ChargingComponent>(batteryEntity))
                 continue;
 
             // if we have atleast one battery being charged, represent the charger as charging;

@@ -368,6 +368,9 @@ public sealed class CardStackSystem : EntitySystem
         if (args.Handled)
             return;
 
+        if (args.Target == args.Used)
+            return;
+
         // This checks if the user is using an item with Stack component
         if (TryComp(args.Used, out CardStackComponent? usedStack))
         {
@@ -431,6 +434,10 @@ public sealed class CardStackSystem : EntitySystem
         if (activeItem == null)
         {
             OnInteractHand(args.Target, component, args.User);
+        }
+        else if (activeItem == args.Target)
+        {
+            return;
         }
         else if (TryComp<CardStackComponent>(activeItem, out var cardStack))
         {
