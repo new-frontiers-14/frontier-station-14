@@ -139,3 +139,19 @@
   - type: ConditionalSpawner
     prototypes:
       - MobSyndicateNavalCaptainVoid
+
+- type: entity
+  name: syndicate cleanbot spawner
+  id: SpawnMobCleanBotSyndie
+  parent: MarkerBase
+  suffix: AI
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - state: ai
+    - sprite: _NF/Mobs/Silicons/Bots/syndicatecleanbot.rsi
+      state: cleanbot
+  - type: ConditionalSpawner
+    prototypes:
+    - MobCleanBotSyndie

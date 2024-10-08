@@ -3659,7 +3659,7 @@ entities:
         - Pressed: Toggle
         3:
         - Pressed: DoorBolt
-- proto: LockerDetectiveFilled
+- proto: LockerNfsdSilverDetectiveFilled
   entities:
   - uid: 439
     components:
@@ -4429,9 +4429,6 @@ entities:
     - type: Transform
       pos: 8.5,-12.5
       parent: 2
-    - type: DeviceNetwork
-      configurators:
-      - invalid
 - proto: SurveillanceCameraSecurity
   entities:
   - uid: 244
@@ -4557,9 +4554,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 4.5,-18.5
       parent: 2
-    - type: DeviceNetwork
-      configurators:
-      - invalid
     - type: SurveillanceCamera
       setupAvailableNetworks:
       - SurveillanceCameraSecurity
@@ -5549,7 +5543,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 1.5,-13.5
       parent: 2
-- proto: WeaponRackPistolBase
+- proto: StructurePistolRackNfsd
   entities:
   - uid: 260
     components:
