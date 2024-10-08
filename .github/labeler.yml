@@ -65,11 +65,12 @@
   - any-glob-to-any-file: "Resources/Locale/**/*.ftl"
 
 "YML":
-- changed-files:
-  - any-glob-to-any-file: "**/*.yml"
-  - all-globs-to-all-files:
-    - "!Resources/Maps/_NF/**/*.yml"
-    - "!Resources/Prototypes/Maps/_NF/**/*.yml"
+- all:
+  - changed-files:
+    - any-glob-to-any-file: "**/*.yml"
+    - all-globs-to-all-files:
+      - "!Resources/Maps/_NF/**/*.yml"
+      - "!Resources/Prototypes/Maps/_NF/**/*.yml"
 
 "DB Migration":
 - changed-files:
