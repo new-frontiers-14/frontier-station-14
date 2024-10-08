@@ -66,6 +66,11 @@ def main():
             new_date = end_date
 
         dump_admin_in_range(cur, old_date, new_date, arg_output, args.compress, args.delete)
+
+        # If deleting, ensure modifications go through
+        if args.delete:
+            conn.commit()
+
         old_date = new_date
 
 
@@ -100,7 +105,7 @@ def get_oldest_admin_log(cur: "psycopg2.cursor") -> "datetime.datetime":
 
 
 def dump_admin_in_range(cur: "psycopg2.cursor", start: "datetime.datetime", end: "datetime.datetime", outdir: str, compress: bool, delete: bool):
-    date_suffix = f"{start.strftime("%Y-%m-%d")}-{end.strftime("%Y-%m-%d")}"
+    date_suffix = f"{start.strftime("%Y%m%d")}-{end.strftime("%Y%m%d")}"
 
     # Export admin_log_player
     print(f"Dumping admin_log_player from {start.date()} to {end.date()}...")
@@ -153,7 +158,7 @@ FROM (
     else:
         with open(os.path.join(outdir, f"admin_log-{date_suffix}.json"), "w", encoding="utf-8") as f:
             f.write(json_data)
-    
+
     if delete:
         # Delete admin_log_player
         print(f"Deleting admin_log_player from {start.date()} to {end.date()}...")
@@ -164,12 +169,12 @@ FROM (
         WHERE
             (log_id, round_id)
         IN
-            SELECT
-                (admin_log_id, round_id)
+            (SELECT
+                admin_log_id, round_id
             FROM
                 admin_log
             WHERE
-                date >= %s AND date < %s
+                date >= %s AND date < %s)
         """, (start,end))
 
         # Delete admin_log
@@ -180,7 +185,6 @@ FROM (
             admin_log
         WHERE
             date >= %s AND date < %s
-        ) as data
         """, (start,end))
 
 
