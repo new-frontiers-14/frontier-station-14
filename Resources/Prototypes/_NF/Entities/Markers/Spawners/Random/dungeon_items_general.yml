@@ -213,7 +213,7 @@
     - ClosetBomb
     - ClosetRadiationSuit
     - ClosetL3
-    - ClosetBombFilled
+    - NFClosetBombFilled
     - ClosetRadiationSuitFilled
     - ClosetL3Filled
     - SpawnDungeonLootSuitStorageUnitsGeneral
@@ -1034,13 +1034,13 @@
     - VendingMachineBountyVendPunkFlatpack
     - ComputerResearchAndDevelopmentFlatpack
     - ResearchAndDevelopmentServerFlatpack
-    - AmmoTechFabFlatpack
     - MercenaryTechFabFlatpack
     chance: 0.95
     offset: 0.0
     rarePrototypes:
-    - VendingMachineSyndieContrabandFlatpack
-    rareChance: 0.005
+    - AmmoTechFabFlatpack
+#    - VendingMachineSyndieContrabandFlatpack # A bit less Syndicate loot
+    rareChance: 0.05
 
 - type: entity
   name: random restock box
@@ -1088,6 +1088,6 @@
     - VendingMachineRestockPottedPlantVend
     chance: 0.95
     offset: 0.0
-    rarePrototypes:
-    - VendingMachineRestockSyndieContraband
-    rareChance: 0.001
+#    rarePrototypes:
+#    - VendingMachineRestockSyndieContraband # A bit less Syndicate loot
+#    rareChance: 0.001

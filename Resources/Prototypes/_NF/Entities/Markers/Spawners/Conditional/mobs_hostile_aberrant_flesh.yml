@@ -1,0 +1,99 @@
+- type: entity
+  id: SpawnMobFleshJaredExpeditions
+  name: aberrant flesh jared spawner
+  parent: MarkerBasePlaceFree
+  suffix: AI, Hostile
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+      - sprite: _NF/Mobs/Aliens/flesh.rsi
+        state: jared
+  - type: ConditionalSpawner
+    prototypes:
+    - MobFleshJaredExpeditions
+    - MobFleshJaredOldExpeditions
+
+- type: entity
+  id: SpawnMobFleshGolemExpeditions
+  name: aberrant flesh golem spawner
+  parent: MarkerBasePlaceFree
+  suffix: AI, Hostile
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+      - sprite: _NF/Mobs/Aliens/flesh.rsi
+        state: golem
+  - type: ConditionalSpawner
+    prototypes:
+    - MobFleshGolemExpeditions
+    - MobFleshGolemAltExpeditions
+    - MobFleshGolemOldExpeditions
+
+- type: entity
+  id: SpawnMobFleshAssimilatedMiner
+  name: aberrant flesh miner spawner
+  parent: MarkerBasePlaceFree
+  suffix: AI, Hostile
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+      - sprite: _NF/Mobs/Aliens/flesh_assimilated_miner.rsi
+        state: base
+  - type: ConditionalSpawner
+    prototypes:
+    - MobFleshAssimilatedMiner
+
+- type: entity
+  id: SpawnMobFleshClampExpeditions
+  name: aberrant flesh clamp spawner
+  parent: MarkerBasePlaceFree
+  suffix: AI, Hostile
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+      - sprite: _NF/Mobs/Aliens/flesh.rsi
+        state: clamp
+  - type: ConditionalSpawner
+    prototypes:
+    - MobFleshClampExpeditions
+    - MobFleshClampOldExpeditions
+
+- type: entity
+  id: SpawnMobFleshLoverExpeditions
+  name: aberrant flesh lover spawner
+  parent: MarkerBasePlaceFree
+  suffix: AI, Hostile
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+      - sprite: _NF/Mobs/Aliens/flesh.rsi
+        state: lover
+  - type: ConditionalSpawner
+    prototypes:
+    - MobFleshLoverExpeditions
+
+- type: entity
+  id: SpawnMobHorrorExpeditions
+  name: aberrant flesh horror spawner
+  parent: MarkerBasePlaceFree
+  suffix: AI, Hostile
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+      - sprite: _NF/Mobs/Aliens/flesh.rsi
+        state: horror
+  - type: ConditionalSpawner
+    prototypes:
+    - MobHorrorExpeditions
