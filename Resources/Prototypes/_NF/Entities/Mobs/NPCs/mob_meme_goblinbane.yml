@@ -24,9 +24,9 @@
 # Possessed Toilet
 - type: entity
   id: MobMemeGoblinbane
-  name: goblinbane
+  name: "The Goblinbane"
   parent: [ MobNonHumanHostileBase, MobHumanoidHostileAIComplex ]
-  description: Daemon of Cleanliness. Anathema for goblinkind.
+  description: A Daemon of Cleanliness from the time before time (but after the first toilet was built). An ancient enemy of goblinkind.
   categories: [ HideSpawnMenu ]
   components:
   - type: Advertise
@@ -113,6 +113,9 @@
   suffix: Ghost form
   categories: [ HideSpawnMenu ]
   components:
+  - type: NpcFactionMember
+    factions:
+    - GoblinbaneProvokedFaction
   - type: Bloodstream
     bloodReagent: SoapReagent
     chemicalMaxVolume: 100
@@ -180,6 +183,9 @@
   parent: [ MobIncorporealBase, MobMemeGoblinbane ]
   categories: [ HideSpawnMenu ]
   components:
+  - type: NpcFactionMember
+    factions:
+    - GoblinbaneProvokedFaction
   - type: Bloodstream
     bloodReagent: Mopwata
     chemicalMaxVolume: 100
@@ -240,6 +246,9 @@
   parent: MobMemeGoblinbane
   categories: [ HideSpawnMenu ]
   components:
+  - type: NpcFactionMember
+    factions:
+    - GoblinbaneProvokedFaction
   - type: Bloodstream
     bloodReagent: SpaceCleaner
     chemicalMaxVolume: 50
@@ -300,9 +309,12 @@
 - type: entity
   id: MobMemePossessedBucket
   name: possessed mop bucket
-  parent: MobMemeGoblinbaneGhost
+  parent: [ MobMemeGoblinbane ]
   categories: [ HideSpawnMenu ]
   components:
+  - type: NpcFactionMember
+    factions:
+    - GoblinbaneProvokedFaction
   - type: Sprite
     drawdepth: Mobs
     sprite: _NF/Mobs/Meme/goblinbane.rsi
@@ -363,14 +375,17 @@
   parent:  [ MobIncorporealBase, CarpStatue ]
   description: A portal to a mop bucket dimension. Obviously. It says so on the label at the corner.
   components:
+  - type: NpcFactionMember
+    factions:
+    - GoblinbaneProvokedFaction
   - type: Timer
   - type: TimedSpawner
     prototypes:
     - SpawnMobMemePossessedBucket
     chance: 1
-    intervalSeconds: 10
+    intervalSeconds: 20
     minimumEntitiesSpawned: 1
-    maximumEntitiesSpawned: 1
+    maximumEntitiesSpawned: 2
   - type: Sprite
     sprite: _NF/Mobs/Meme/goblinbane.rsi
     layers:
@@ -406,4 +421,4 @@
     energy: 3.5
     color: "yellow"
   - type: TimedDespawn
-    lifetime: 90
+    lifetime: 80

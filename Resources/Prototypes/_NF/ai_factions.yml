@@ -25,6 +25,9 @@
   - AberrantFleshExpeditionNF
   - ContrabandClothing
   - GoblinbaneFaction
+  - GoblinbaneProvokedFaction
+  - JanitorClothes
+  #- ChaplainClothes
 
 - type: npcFaction
   id: Dwarf
@@ -79,6 +82,9 @@
   - ContrabandClothing
   - ContrabandDetection
   - GoblinbaneFaction
+  - GoblinbaneProvokedFaction
+  - JanitorClothes
+  - ChaplainClothes
 
 - type: npcFaction
   id: WizFedFaction
@@ -110,6 +116,9 @@
   - ContrabandClothing
   - ContrabandDetection
   #- GoblinbaneFaction
+  #- GoblinbaneProvokedFaction
+  - JanitorClothes
+  - ChaplainClothes
 
 - type: npcFaction
   id: BloodCultNF
@@ -141,6 +150,9 @@
   - ContrabandClothing
   - ContrabandDetection
   - GoblinbaneFaction
+  - GoblinbaneProvokedFaction
+  - JanitorClothes
+  - ChaplainClothes
 
 - type: npcFaction
   id: PirateNF
@@ -172,6 +184,9 @@
   - ContrabandClothing
   - ContrabandDetection
   - GoblinbaneFaction
+  - GoblinbaneProvokedFaction
+  - JanitorClothes
+  - ChaplainClothes
 
 - type: npcFaction
   id: ArtifactConstruct
@@ -202,7 +217,10 @@
   - AberrantFleshExpeditionNF
   - ContrabandClothing
   - ContrabandDetection
-  - GoblinbaneFaction
+  #- GoblinbaneFaction # Magic
+  #- GoblinbaneProvokedFaction # Magic
+  - JanitorClothes
+  - ChaplainClothes
 
 - type: npcFaction
   id: StreetGangNF
@@ -234,6 +252,9 @@
   - ContrabandClothing
   - ContrabandDetection
   - GoblinbaneFaction
+  - GoblinbaneProvokedFaction
+  - JanitorClothes
+  - ChaplainClothes
 
 - type: npcFaction
   id: DinosaursNF
@@ -265,6 +286,9 @@
   - ContrabandClothing
   - ContrabandDetection
   - GoblinbaneFaction
+  - GoblinbaneProvokedFaction
+  - JanitorClothes
+  - ChaplainClothes
 
 - type: npcFaction
   id: ExplorersExpeditionNF
@@ -296,6 +320,9 @@
   - ContrabandClothing
   - ContrabandDetection
   - GoblinbaneFaction
+  - GoblinbaneProvokedFaction
+  - JanitorClothes
+  - ChaplainClothes
 
 - type: npcFaction
   id: MercenariesExpeditionNF
@@ -327,6 +354,9 @@
   - ContrabandClothing
   - ContrabandDetection
   - GoblinbaneFaction
+  - GoblinbaneProvokedFaction
+  - JanitorClothes
+  - ChaplainClothes
 
 - type: npcFaction
   id: SiliconsExpeditionNF
@@ -358,6 +388,9 @@
   - ContrabandClothing
   - ContrabandDetection
   - GoblinbaneFaction
+  - GoblinbaneProvokedFaction
+  - JanitorClothes
+  - ChaplainClothes
 
 - type: npcFaction
   id: AberrantFleshExpeditionNF
@@ -389,6 +422,9 @@
   - ContrabandClothing
   - ContrabandDetection
   - GoblinbaneFaction
+  - GoblinbaneProvokedFaction
+  - JanitorClothes
+  - ChaplainClothes
 
 - type: npcFaction
   id: ContrabandClothing
@@ -420,6 +456,9 @@
   #- ContrabandClothing
   - ContrabandDetection
   - GoblinbaneFaction
+  - GoblinbaneProvokedFaction
+  - JanitorClothes
+  - ChaplainClothes
 
 - type: npcFaction
   id: ContrabandDetection
@@ -450,6 +489,9 @@
   - AberrantFleshExpeditionNF
   - ContrabandClothing
   - GoblinbaneFaction
+  - GoblinbaneProvokedFaction
+  #- JanitorClothes
+  #- ChaplainClothes
 
 - type: npcFaction
   id: HostileUniversally
@@ -480,10 +522,14 @@
   - AberrantFleshExpeditionNF
   - ContrabandClothing
   - GoblinbaneFaction
+  - GoblinbaneProvokedFaction
+  - JanitorClothes
+  - ChaplainClothes
 
 - type: npcFaction
   id: GoblinbaneFaction
   friendly:
+  - GoblinbaneProvokedFaction
   - WizFedFaction
   - JanitorClothes
   hostile:
@@ -495,6 +541,42 @@
   - Felinid
   - Monkey
   - Goblin
+  - ChaplainClothes
+
+- type: npcFaction
+  id: GoblinbaneProvokedFaction
+  friendly:
+  - GoblinbaneFaction
+  hostile:
+  ## SS14 factions
+  - NanoTrasen
+  - Syndicate
+  - SimpleHostile
+  - SimpleNeutral
+  - Passive
+  - PetsNT
+  - Zombie
+  - Revolutionary
+  - Xeno
+  ## Frontier Factions
+  - Felinid
+  - Monkey
+  - Goblin
+  - SyndicateNF
+  - WizFedFaction
+  - BloodCultNF
+  - PirateNF
+  - ExplorersExpeditionNF
+  - ArtifactConstruct
+  - StreetGangNF
+  - DinosaursNF
+  - MercenariesExpeditionNF
+  - SiliconsExpeditionNF
+  - AberrantFleshExpeditionNF
+  - ContrabandClothing
+  #- GoblinbaneFaction
+  #- GoblinbaneProvokedFaction
+  - JanitorClothes
   - ChaplainClothes
 
 - type: npcFaction
