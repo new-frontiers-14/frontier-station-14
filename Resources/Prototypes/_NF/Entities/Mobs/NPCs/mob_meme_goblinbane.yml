@@ -25,10 +25,13 @@
 - type: entity
   id: MobMemeGoblinbane
   name: "The Goblinbane"
-  parent: [ MobNonHumanHostileBase, MobHumanoidHostileAIComplex ]
+  parent: [ MobNonHumanHostileBase, MobPassiveRegenWeak, MobHumanoidHostileAIComplex ]
   description: A Daemon of Cleanliness from the time before time (but after the first toilet was built). An ancient enemy of goblinkind.
   categories: [ HideSpawnMenu ]
   components:
+  - type: ComplexInteraction # dunno what's that, sounds cool though
+  - type: NPCRetaliation
+    attackMemoryLength: 90
   - type: Advertise
     pack: goblinbanechatter
     minimumWait: 30
