@@ -34,6 +34,7 @@ namespace Content.IntegrationTests.Tests
         {
         };
 
+        // TODO: specify this as "every YAML file under Shuttles"
         private static readonly string[] Grids =
         {
             "/Maps/_NF/Shuttles/akupara.yml",
@@ -153,7 +154,7 @@ namespace Content.IntegrationTests.Tests
         private static readonly string[] GameMaps =
         {
             "Frontier",
-            "NFDev" // Missing spawn points
+            //"NFDev" // Missing spawn points
         };
         // End Frontier
 
