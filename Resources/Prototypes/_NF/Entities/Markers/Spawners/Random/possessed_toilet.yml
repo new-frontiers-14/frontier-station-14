@@ -1,5 +1,5 @@
 - type: entity
-  id: ToiletSpawner
+  id: ToiletMemeSpawner
   name: toilet spawner
   suffix: Dungeon, Goblinbane
   parent: MarkerBase
@@ -11,8 +11,8 @@
           state: disposal
     - type: RandomSpawner
       prototypes:
-        - ToiletEmpty
-        - ToiletDirtyWater
+        - ToiletMemeSpawner
+        - ToiletMemeSpawner
       chance: 1
       rarePrototypes:
         - MobMemeGoblinbane
