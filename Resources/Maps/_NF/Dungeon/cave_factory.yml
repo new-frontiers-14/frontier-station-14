@@ -8996,6 +8996,26 @@ entities:
     - type: Transform
       pos: 26.5,39.5
       parent: 1
+- proto: GrilleBroken
+  entities:
+  - uid: 5
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 11.5,4.5
+      parent: 1
+  - uid: 840
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 5.5,4.5
+      parent: 1
+  - uid: 1297
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 27.5,39.5
+      parent: 1
 - proto: GrilleDungeon
   entities:
   - uid: 213
@@ -9094,26 +9114,6 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 12.5,43.5
-      parent: 1
-- proto: GrilleBroken
-  entities:
-  - uid: 5
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 11.5,4.5
-      parent: 1
-  - uid: 840
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 5.5,4.5
-      parent: 1
-  - uid: 1297
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 27.5,39.5
       parent: 1
 - proto: HighSecArmoryLocked
   entities:
@@ -10541,7 +10541,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: 26.5,21.5
       parent: 1
-- proto: RadioHandheld
+- proto: RadioHandheldNF
   entities:
   - uid: 757
     components:
@@ -14380,14 +14380,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 20.5,45.5
       parent: 1
-- proto: WindowDungeon
-  entities:
-  - uid: 253
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 31.5,3.5
-      parent: 1
 - proto: WindowDirectionalDungeon
   entities:
   - uid: 43
@@ -14484,6 +14476,14 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 20.5,46.5
+      parent: 1
+- proto: WindowDungeon
+  entities:
+  - uid: 253
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 31.5,3.5
       parent: 1
 - proto: WindowFrostedDirectionalDungeon
   entities:

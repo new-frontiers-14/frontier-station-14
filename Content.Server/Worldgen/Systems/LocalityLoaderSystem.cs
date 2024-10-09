@@ -81,7 +81,7 @@ public sealed class LocalityLoaderSystem : BaseWorldSystem
         if (entity != null)
         {
             // Handle mobrestrictions getting deleted
-            var query = AllEntityQuery<SalvageMobRestrictionsNFComponent>();
+            var query = AllEntityQuery<NFSalvageMobRestrictionsComponent>();
 
             while (query.MoveNext(out var salvUid, out var salvMob))
             {

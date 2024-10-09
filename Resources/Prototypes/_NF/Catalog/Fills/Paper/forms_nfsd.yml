@@ -5,11 +5,8 @@
 
 # Filled Folder
 - type: entity
-  id: BoxFolderNfsdForms
-  parent: BoxFolderPalGreen
-  name: PAL folder
-  description: A folder filled with NFSD paperwork templates.
-  suffix: Forms, Green
+  id: FillNfsdForms
+  abstract: true
   components:
   - type: StorageFill
     contents:
@@ -26,6 +23,20 @@
       prob: 0.5
     - id: Paper
       prob: 0.5
+
+- type: entity
+  id: BoxFolderNfsdForms
+  parent: [FillNfsdForms, BoxFolderPalGreen]
+  name: PAL folder
+  description: A folder filled with NFSD paperwork templates.
+  suffix: Forms, Green
+
+- type: entity
+  id: BoxFolderNfsdFormsBrown
+  parent: [FillNfsdForms, BoxFolderPalBrown]
+  name: PAL folder
+  description: A folder filled with NFSD paperwork templates.
+  suffix: Forms, Brown
 
 # Forms
 - type: entity # Creator: Kwentov (Vica)

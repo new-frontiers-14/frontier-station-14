@@ -22,6 +22,11 @@
     - HighRiskItem
   - type: StealTarget
     stealGroup: NukeDisk
+  - type: DisableShipyardSale # Frontier
+    reason: shipyard-console-station-resources # Frontier
+    allowedShipyardTypes: # Frontier: mail profits removed, sector in shambles
+    - Syndicate # Frontier
+    - BlackMarket # Frontier
 
 - type: entity
   name: nuclear authentication disk

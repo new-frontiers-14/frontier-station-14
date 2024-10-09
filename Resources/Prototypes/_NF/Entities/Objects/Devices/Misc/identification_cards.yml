@@ -144,11 +144,11 @@
 
 - type: entity
   parent: CadetIDCard
-  id: DetectiveNFIDCard
+  id: NFDetectiveIDCard
   name: nfsd detective ID card
   components:
   - type: PresetIdCard
-    job: DetectiveNF
+    job: NFDetective
   - type: Sprite
     sprite: _NF/Objects/Misc/id_cards.rsi
     layers:
@@ -253,7 +253,15 @@
     - state: pirate
     - state: idpiratefirstmate
 
-# Pets
+- type: entity
+  parent: PunPunIDCard
+  id: YipYipIDCard
+  name: yip yip ID card
+  components:
+  - type: PresetIdCard
+    name: Yip Yip
+
+# Cats
 - type: entity
   parent: CourierIDCard
   id: ClippyIDCard

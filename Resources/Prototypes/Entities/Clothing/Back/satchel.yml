@@ -166,7 +166,7 @@
   description: A satchel that opens into a localized pocket of bluespace.
   components:
   - type: Sprite
-    sprite: Clothing/Back/Satchels/holding.rsi
+    sprite: _NF/Clothing/Back/Satchels/holding.rsi # Frontier
     state: icon
     layers:
     - state: icon
@@ -174,7 +174,23 @@
       shader: unshaded
   - type: Item
     size: Ginormous
+    inhandVisuals: # Frontier
+      left: # Frontier
+      - state: inhand-left # Frontier
+      - state: inhand-left-unlit # Frontier
+        shader: unshaded # Frontier
+      right: # Frontier
+      - state: inhand-right # Frontier
+      - state: inhand-right-unlit # Frontier
+        shader: unshaded # Frontier
   - type: Storage
     maxItemSize: Huge
     grid:
     - 0,0,11,4
+  - type: Clothing # Frontier
+    sprite: _NF/Clothing/Back/Satchels/holding.rsi # Frontier
+    clothingVisuals: # Frontier
+      back: # Frontier
+      - state: equipped-BACKPACK # Frontier
+      - state: equipped-BACKPACK-unlit # Frontier
+        shader: unshaded # Frontier

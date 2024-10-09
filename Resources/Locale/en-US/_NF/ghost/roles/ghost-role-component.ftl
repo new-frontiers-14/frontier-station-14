@@ -8,6 +8,9 @@ ghost-role-information-emotional-support-rules = You are an [color=lightpink][bo
 ghost-role-information-clippy-name = Clippy
 ghost-role-information-clippy-description = The Station Representative's loyal worker, smells like cardboard and papers.
 
+ghost-role-information-clugg-name = Clugg
+ghost-role-information-clugg-description = Ugg! Clugg love eat meat. Find new home off space rock, make big hunt.
+
 ghost-role-information-clarpy-name = Clarpy
 ghost-role-information-clarpy-description = Avast ye mail! wanted by Nanotrasen for crimes against mice.
 ghost-role-information-clarpy-rules = You are a [color=red][bold]Team Antagonist[/bold][/color] with all other pirates.
@@ -36,3 +39,19 @@ ghost-role-information-taxibot-description = Drive passengers to where they need
 
 ghost-role-information-hovertaxibot-name = Hovertaxibot
 ghost-role-information-hovertaxibot-description = Fly passengers to where they need to go, remember to check they can breathe!
+
+# Adopted from space-wizards #26265 (Thank you, PolterTzi)
+ghost-role-information-yipyip-name = Yip Yip
+ghost-role-information-yipyip-description = Notorious lounge lizard and bartender at Bahama Mama's. This drink-slinging kobold lives to serve his patrons.
+
+ghost-role-information-aberrant-flesh-horror-dungeon-name = Aberrant flesh horror
+ghost-role-information-aberrant-flesh-horror-dungeon-description = Defend the expedition dungeon with other flesh monstrosities!
+
+ghost-role-information-dungeon-boss-rules = You are a [color=red][bold]Team Antagonist[/bold][/color] with all dungeon mobs.
+                                        Fight players within the dungeon, defend your dungeon.
+                                        Please note that [color=yellow]all server rules still apply.[/color] Additionally:
+                                        - [color=red]DO NOT[/color] damage player shuttles or their contents.
+                                        - [color=red]DO NOT[/color] hide from players to run down the expedition timer.
+                                        - [color=red]DO NOT[/color] gib players. Once they're dead, leave them be.
+                                        - [color=red]DO NOT[/color] destroy or hide valuable loot in the dungeon.
+                                        - [color=red]DO NOT[/color] leave the planet.

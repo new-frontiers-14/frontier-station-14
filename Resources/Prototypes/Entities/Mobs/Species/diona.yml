@@ -25,6 +25,8 @@
       Brute:
         sprite: Mobs/Effects/brute_damage.rsi
         color: "#cd7314"
+      Burn:
+        sprite: Mobs/Effects/burn_damage.rsi
   - type: Butcherable
     butcheringType: Spike
     spawned:
@@ -108,7 +110,7 @@
             sprite: Mobs/Species/Human/displacement.rsi
             state: jumpsuit-female
   - type: Carriable # Carrying system from nyanotrasen.
-  - type: StepTriggerImmune # Frontier
+  - type: ProtectedFromStepTriggers # Frontier
 
 - type: entity
   parent: BaseSpeciesDummy

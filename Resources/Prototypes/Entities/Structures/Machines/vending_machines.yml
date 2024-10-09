@@ -5,6 +5,10 @@
   description: Just add capitalism!
   abstract: true
   components:
+  - type: ActionGrant
+    actions:
+    - ActionVendingThrow
+  - type: StationAiWhitelist
   - type: AmbientOnPowered
   - type: AmbientSound
     volume: -9
@@ -103,6 +107,8 @@
   - type: WiresVisuals
   - type: MarketModifier # Frontier
     mod: 10 # Frontier
+  - type: PotentialDeadDrop # Frontier
+    hintText: dead-drop-hint-vendor # Frontier
 
 - type: entity
   parent: VendingMachine
@@ -148,7 +154,7 @@
   description: An overwhelming amount of ancient patriotism washes over you just by looking at the machine.
   components:
   - type: VendingMachine
-    pack: AmmoVendInventory
+    pack: WeaponryWorksVendInventory # Frontier AmmoVendInventory<WeaponryWorksVendInventory
     offState: off
     brokenState: broken
     normalState: normal-unshaded
@@ -168,7 +174,7 @@
     - state: panel
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: MarketModifier # Frontier
-    mod: 11.132 # Frontier
+    mod: 12 # Frontier
 
 - type: entity
   parent: VendingMachine
@@ -206,7 +212,42 @@
     - Drinks
 
 - type: entity
-  parent: [BaseStructureDisableScrewing, BaseStructureIndestructible, BaseStructureAccessReaderImmuneToEmag, VendingMachine] # Frontier: add BaseStructureDisableScrewing, BaseStructureIndestructible, BaseStructureAccessReaderImmuneToEmag
+  parent: VendingMachineBooze
+  id: VendingMachineBoozeSyndicate # syndie booze-o-mat for nukie outpost
+  name: Bruise-O-Mat
+  description: A refurbished Booze-O-Mat for boosting operative morale. An imprint of a blood-red hardsuit is visible on one side, and the paint seems ashed off on the other side.
+  components:
+  - type: VendingMachine
+    pack: BoozeOMatInventory
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    denyState: deny-unshaded
+    loopDeny: false
+  - type: Advertise
+    pack: BruiseOMatAds
+  - type: SpeakOnUIClosed
+    pack: BruiseOMatGoodbyes
+  - type: Speech
+  - type: Sprite
+    sprite: Structures/Machines/VendingMachines/bruiseomat.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: AccessReader
+    access: [["SyndicateAgent"]]
+  - type: GuideHelp
+    guides:
+    - Bartender
+    - Drinks
+
+- type: entity
+  parent: VendingMachine
   id: VendingMachineCart
   name: PTech
   description: PTech vending! Providing a ROBUST selection of PDAs, cartridges, and anything else a dull paper pusher needs!
@@ -234,8 +275,6 @@
     color: "#ffb0b0"
   - type: AccessReader
     access: [["HeadOfPersonnel"]]
-  - type: MarketModifier # Frontier
-    mod: 5 # Frontier
 
 - type: entity
   parent: VendingMachine
@@ -688,6 +727,8 @@
       shader: unshaded
     - state: panel
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  # - type: AccessReader # Frontier
+  #   access: [["Kitchen"]] # Frontier
   - type: PointLight
     radius: 1.5
     energy: 1.6
@@ -786,8 +827,6 @@
     radius: 1.5
     energy: 1.6
     color: "#b89e2a"
-  - type: MarketModifier # Frontier
-    mod: 10 # Frontier
 
 - type: entity
   parent: VendingMachine
@@ -1125,8 +1164,6 @@
     radius: 1.5
     energy: 1.6
     color: "#389690"
-  - type: MarketModifier # Frontier
-    mod: 9.64 # Frontier
 
 - type: entity
   parent: VendingMachine
@@ -1358,8 +1395,6 @@
     color: "#b89f25"
   # - type: AccessReader # Frontier
   #   access: [["Salvage"]] # Frontier
-  - type: MarketModifier # Frontier
-    mod: 10 # Frontier
   # - type: GuideHelp # Frontier: removed guidebook entry
   #   guides: # Frontier: removed guidebook entry
   #   - Salvage # Frontier: removed guidebook entry
@@ -1914,8 +1949,8 @@
     radius: 1.5
     energy: 1.6
     color: "#d82929"
-#  - type: AccessReader # Frontier
-#    access: [["NuclearOperative"], ["SyndicateAgent"]]
+  - type: AccessReader
+    access: [["NuclearOperative"], ["SyndicateAgent"]]
 
 - type: entity
   parent: VendingMachine
@@ -2135,6 +2170,6 @@
     normalState: normal
     denyState: deny
     ejectDelay: 2
-#  - type: AccessReader # Frontier
-#    access: [["SyndicateAgent"]] # Frontier
+  - type: AccessReader
+    access: [["SyndicateAgent"]]
 

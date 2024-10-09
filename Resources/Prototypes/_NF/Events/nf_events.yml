@@ -55,3 +55,22 @@
   - type: BluespaceCargoRule
     spawnerPrototype: CrateSyndicateLightSurplusBundle
     maximumSpawns: 2
+
+- type: entity
+  id: SmugglingFax
+  parent: BaseStationEventShortDelay
+  components:
+  - type: StationEvent
+    weight: 8 # Fairly common.
+    duration: 35
+    earliestStart: 30
+    minimumPlayers: 20
+    reoccurrenceDelay: 50
+  - type: RandomFaxRule
+    minFaxes: 1
+    maxFaxes: 2
+    name: deaddrop-faxed-hint-name
+    prototypeId: PaperDeadDropFax
+    content: deaddrop-faxed-hint-content # Default contents, will be edited.
+    preFaxActions:
+    - !type:GetRandomDeadDropAction

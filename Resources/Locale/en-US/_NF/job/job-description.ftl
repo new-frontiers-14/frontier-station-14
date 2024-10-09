@@ -1,9 +1,9 @@
 job-description-bailiff = Patrol your assigned vessel, ensure that no one is stealing from the armory, and make sure that all prisoners are processed and let out when their time is up.
-job-description-brigmedic = Fight in the rear of the sheriff's service, for the lives of your comrades! You are the first and last hope of your squad. Hippocrates bless you.
+job-description-brigmedic-nf = Fight in the rear of the sheriff's service, for the lives of your comrades! You are the first and last hope of your squad. Hippocrates bless you.
 job-description-cadet-nf = Learn the basics of arresting criminals and managing the brig. Listen to your supervisors and feel free to ask them for any help.
 job-description-contractor = Fulfill any profitable contracts out on the frontier of NT space.
 job-description-deputy = Catch criminals and enemies of the corporation, enforce the law, and ensure that the sector does not fall into disarray.
-job-description-detective-nf = Investigate crime scenes using forensic tools, ensure that the guilty party is found, and have a couple smokes.
+job-description-nf-detective = Investigate crime scenes using forensic tools, ensure that the guilty party is found, and have a couple smokes.
 job-description-ertmailcarrier = Nothing stops the mail.
 job-description-mercenary = Execute the bidding of anyone- for the right price. Enjoy being unbound from the confines of the law.
 job-description-pilot = Pilot spaceships from point A to B, outmaneuver pirates and dodge asteroids. You are a leaf on the solar wind, let others marvel at how you soar.

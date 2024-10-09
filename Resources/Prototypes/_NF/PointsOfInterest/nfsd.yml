@@ -13,8 +13,8 @@
   name: 'NFSD Outpost'
   rangeMin: 750
   rangeMax: 1000
-  iffColor: "#8e6444" #brown to match the color of uniform and the color of the pants of the nearest pirates
-  alwaysSpawn: true
+  IFFColor: "#8e6444" #brown to match the color of uniform and the color of the pants of the nearest pirates
+  spawnGroup: Required
   gridPath: /Maps/_NF/POI/nfsd.yml
   gridProtection:
   - EmpEvents
@@ -36,8 +36,11 @@
             Bailiff: [ 1, 1 ]
             SeniorOfficer: [ 1, 1 ]
             Brigmedic: [ 0, 0 ]
-            DetectiveNF: [ 0, 0 ]
+            NFDetective: [ 0, 0 ]
             Deputy: [ 3, 3 ]
             Cadet: [ 0, 0 ]
             # Others:
             PublicAffairsLiaison: [ 1, 1 ]
+        - type: StationDeadDropReporting
+          messageSet: Nfsd
+        - type: StationDeadDropHintExempt
