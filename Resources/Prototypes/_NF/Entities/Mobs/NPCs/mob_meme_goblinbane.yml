@@ -27,8 +27,16 @@
   name: goblinbane
   parent: [ MobNonHumanHostileBase, MobHumanoidHostileAIComplex ]
   description: Daemon of Cleanliness. Anathema for goblinkind.
-  #categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu ]
   components:
+  - type: Advertise
+    pack: goblinbanechatter
+    minimumWait: 30
+    maximumWait: 120
+    nextAdvertisementTime: 10
+  - type: Bloodstream
+    bloodReagent: Bleach
+    chemicalMaxVolume: 100
   - type: NpcFactionMember
     factions:
     - GoblinbaneFaction
@@ -88,9 +96,12 @@
       path: /Audio/Effects/bite.ogg
     damage:
       types:
-        Slash: 15
+        Slash: 12
         Structural: 20
     animation: WeaponArcBite
+  - type: MeleeChemicalInjector
+    solution: bloodstream
+    transferAmount: 4
   - type: PointLight
     radius: 1.4
     energy: 1.2
@@ -100,8 +111,11 @@
   id: MobMemeGoblinbaneGhost
   parent: [ MobIncorporealBase, MobMemeGoblinbane ]
   suffix: Ghost form
-  #categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu ]
   components:
+  - type: Bloodstream
+    bloodReagent: SoapReagent
+    chemicalMaxVolume: 100
   - type: Sprite
     drawdepth: Mobs
     sprite: _NF/Mobs/Meme/goblinbane.rsi
@@ -139,17 +153,36 @@
             max: 2
           MobMemePossessedSpray:
             min: 2
-            max: 2
+            max: 3
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
+  - type: BasicEntityAmmoProvider
+    proto: SpawnMopBucketDimnsionPortal
+    capacity: 1
+    count: 1
+  - type: Gun
+    showExamineText: false
+    fireRate: 1
+    soundGunshot:
+      path: /Audio/Effects/teleport_arrival.ogg
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 60
+    rechargeSound:
+      path: /Audio/_NF/Effects/silence.ogg
+  - type: MeleeChemicalInjector
+    solution: bloodstream
+    transferAmount: 10
 
 # Possessed Mop
 - type: entity
   id: MobMemePossessedMop
   name: possessed mop
-  parent: MobMemeGoblinbane
-  #categories: [ HideSpawnMenu ]
+  parent: [ MobIncorporealBase, MobMemeGoblinbane ]
+  categories: [ HideSpawnMenu ]
   components:
+  - type: Bloodstream
+    bloodReagent: Mopwata
+    chemicalMaxVolume: 100
   - type: Sprite
     drawdepth: Mobs
     sprite: _NF/Mobs/Meme/goblinbane.rsi
@@ -187,14 +220,29 @@
             max: 1
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
+    soundHit:
+      collection: Punch
+    angle: 30
+    animation: WeaponArcFist
+    attackRate: 1
+    damage:
+      types:
+        Blunt: 8
+        Structural: 20
+  - type: MeleeChemicalInjector
+    solution: bloodstream
+    transferAmount: 10
 
 # Possessed Spray
 - type: entity
   id: MobMemePossessedSpray
   name: possessed spray
   parent: MobMemeGoblinbane
-  #categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu ]
   components:
+  - type: Bloodstream
+    bloodReagent: SpaceCleaner
+    chemicalMaxVolume: 50
   - type: Sprite
     drawdepth: Mobs
     sprite: _NF/Mobs/Meme/goblinbane.rsi
@@ -232,13 +280,28 @@
             max: 1
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 2
+    rechargeSound:
+      path: /Audio/_NF/Effects/silence.ogg
+  - type: BasicEntityAmmoProvider
+    proto: SplatterChemCleaner
+    capacity: 2
+    count: 2
+  - type: Gun
+    showExamineText: false
+    fireRate: 4
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/water_spray.ogg
 
 # Possessed Bucket
 - type: entity
   id: MobMemePossessedBucket
   name: possessed mop bucket
-  parent: MobMemeGoblinbane
-  #categories: [ HideSpawnMenu ]
+  parent: MobMemeGoblinbaneGhost
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -280,9 +343,67 @@
             max: 1
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-    hidden: true
+  - type: MeleeWeapon
     soundHit:
-      collection: MetalThud
+      collection: Punch
+    angle: 30
+    animation: WeaponArcFist
+    attackRate: 1
     damage:
-      groups:
-        Brute: 8
+      types:
+        Blunt: 6
+        Structural: 20
+  - type: TimedDespawn
+    lifetime: 90
+
+# Mop bucket dimention portal
+- type: entity
+  id: MopBucketDimnsionPortal
+  name: mop bucket portal
+  parent:  [ MobIncorporealBase, CarpStatue ]
+  description: A portal to a mop bucket dimension. Obviously. It says so on the label at the corner.
+  components:
+  - type: Timer
+  - type: TimedSpawner
+    prototypes:
+    - SpawnMobMemePossessedBucket
+    chance: 1
+    intervalSeconds: 10
+    minimumEntitiesSpawned: 1
+    maximumEntitiesSpawned: 1
+  - type: Sprite
+    sprite: _NF/Mobs/Meme/goblinbane.rsi
+    layers:
+    - state: bucket_portal
+      shader: unshaded
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 90
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: gib
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 90
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: gib
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          WetFloorSign:
+            min: 1
+            max: 1
+  - type: PointLight
+    radius: 2.0
+    energy: 3.5
+    color: "yellow"
+  - type: TimedDespawn
+    lifetime: 90
