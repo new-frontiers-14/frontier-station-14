@@ -853,17 +853,17 @@ public sealed partial class AdminVerbSystem
         // Frontier
         Verb caveman = new()
         {
-            Text = "admin-smite-super-slip-name",
+            Text = "admin-smite-caveman-name",
             Category = VerbCategory.Smite,
-            Icon = new SpriteSpecifier.Rsi(new("Objects/Specific/Janitorial/soap.rsi"), "omega-4"),
+            Icon = new SpriteSpecifier.Rsi(new("_NF/Objects/Weapons/Melee/caveman_club.rsi"), "icon"),
             Act = () =>
             {
                 var hadSlipComponent = EnsureComp(args.Target, out SlipperyComponent slipComponent);
                 if (!hadSlipComponent)
                 {
                     slipComponent.SuperSlippery = true;
-                    slipComponent.ParalyzeTime = 5;
-                    slipComponent.LaunchForwardsMultiplier = 20;
+                    slipComponent.ParalyzeTime = 10;
+                    slipComponent.LaunchForwardsMultiplier = 1;
                 }
 
                 _slipperySystem.TrySlip(args.Target, slipComponent, args.Target, requiresContact: false);
@@ -873,7 +873,7 @@ public sealed partial class AdminVerbSystem
                 }
             },
             Impact = LogImpact.Extreme,
-            Message = Loc.GetString("admin-smite-super-slip-description")
+            Message = Loc.GetString("admin-smite-caveman-description")
         };
         args.Verbs.Add(caveman);
     }
