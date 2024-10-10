@@ -24,6 +24,7 @@ jobs:
     - name: Setup Submodule
       run: |
         git submodule update --init --recursive
+
     - name: Pull engine updates
       uses: space-wizards/submodule-dependency@v0.1.5
 
@@ -31,6 +32,7 @@ jobs:
       run: |
         cd RobustToolbox/
         git submodule update --init --recursive
+
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v3.2.0
       with:

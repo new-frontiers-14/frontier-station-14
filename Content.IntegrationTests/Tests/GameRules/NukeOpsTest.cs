@@ -32,6 +32,7 @@ public sealed class NukeOpsTest
     /// Check that a nuke ops game mode can start without issue. I.e., that the nuke station and such all get loaded.
     /// </summary>
     [Test]
+    [Ignore("Not relevant for Frontier, no nuke ops gameplay.")] // Frontier
     public async Task TryStopNukeOpsFromConstantlyFailing()
     {
         await using var pair = await PoolManager.GetServerClient(new PoolSettings

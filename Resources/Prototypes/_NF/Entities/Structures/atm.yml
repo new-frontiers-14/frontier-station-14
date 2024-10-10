@@ -6,6 +6,8 @@
   - type: ActivatableUIRequiresPower
   - type: ActivatableUI
     singleUser: true
+  - type: Computer
+    board: Null
 
 - type: entity
   name: bank ATM
@@ -15,7 +17,7 @@
   abstract: true
   components:
   - type: BankATM
-    bank-ATM-cashSlot:
+    cashSlot:
       name: bank-ATM-cashSlot
       insertSound: /Audio/Machines/scanning.ogg
       ejectSound: /Audio/Machines/tray_eject.ogg
@@ -33,7 +35,8 @@
   - type: ItemSlots
   - type: ContainerContainer
     containers:
-      bank-ATM-cashSlot: !type:ContainerSlot {}
+      board: !type:Container
+      bank-ATM-cashSlot: !type:ContainerSlot
 
 - type: entity
   name: withdraw-only bank ATM
@@ -43,7 +46,7 @@
   abstract: true
   components:
   - type: BankATM
-    bank-ATM-cashSlot:
+    cashSlot:
       name: bank-ATM-cashSlot
       insertSound: /Audio/Machines/scanning.ogg
       ejectSound: /Audio/Machines/tray_eject.ogg
@@ -175,7 +178,7 @@
     - map: ["computerLayerKeys"]
       state: id_key
   - type: StationBankATM
-    station-bank-ATM-cashSlot:
+    cashSlot:
       name: station-bank-ATM-cashSlot
       insertSound: /Audio/Machines/scanning.ogg
       ejectSound: /Audio/Machines/tray_eject.ogg
@@ -193,6 +196,7 @@
   - type: ItemSlots
   - type: ContainerContainer
     containers:
-      station-bank-ATM-cashSlot: !type:ContainerSlot {}
+      board: !type:Container
+      station-bank-ATM-cashSlot: !type:ContainerSlot
   - type: AccessReader
     access: [["HeadOfPersonnel"], ["HeadOfSecurity"]]

@@ -62,6 +62,9 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
     {
         base.Ended(uid, component, gameRule, args);
 
+        if (component.GridUid == null || !component.GridUid.Value.Valid)
+            return;
+
         if (!EntityManager.TryGetComponent<TransformComponent>(component.GridUid, out var gridTransform))
         {
             Log.Error("bluespace error objective was missing transform component");

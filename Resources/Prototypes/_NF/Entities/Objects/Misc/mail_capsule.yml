@@ -57,8 +57,21 @@
   - type: ContainerContainer
     containers:
       storagebase: !type:Container
+        showEnts: False
+        occludes: True
         ents: []
-      mail_slot: !type:ContainerSlot {}
+      mail_slot: !type:ContainerSlot
+        showEnts: False
+        occludes: True
+        ent: null
+      food_slot: !type:ContainerSlot
+        showEnts: False
+        occludes: True
+        ent: null
+      cash_slot: !type:ContainerSlot
+        showEnts: False
+        occludes: True
+        ent: null
   - type: Appearance
   - type: ItemMapper
     mapLayers:

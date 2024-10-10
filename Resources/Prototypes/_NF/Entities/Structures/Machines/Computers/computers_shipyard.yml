@@ -38,7 +38,10 @@
   - type: ItemSlots
   - type: ContainerContainer
     containers:
-      ShipyardConsole-targetId: !type:ContainerSlot {}
+      board: !type:Container
+      ShipyardConsole-targetId: !type:ContainerSlot
+  - type: Computer
+    board: Null
 
 # Concrete consoles
 - type: entity

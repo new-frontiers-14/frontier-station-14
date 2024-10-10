@@ -207,7 +207,10 @@ public sealed class PublicTransitSystem : EntitySystem
                         ignoreActionBlocker: true);
                 }
             }
-            _shuttles.FTLToDock(uid, shuttle, comp.NextStation, hyperspaceTime: FlyTime, priorityTag: "DockTransit"); // TODO: Unhard code the priorityTag as it should be added from the system.
+
+            // FTL to next station, but only if it exists.
+            if (comp.NextStation.Valid)
+                _shuttles.FTLToDock(uid, shuttle, comp.NextStation, hyperspaceTime: FlyTime, priorityTag: "DockTransit"); // TODO: Unhard code the priorityTag as it should be added from the system.
 
             if (TryGetNextStation(out var nextStation) && nextStation is { Valid: true } destination)
                 comp.NextStation = destination;

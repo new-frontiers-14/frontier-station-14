@@ -197,6 +197,14 @@ public sealed class DeadDropSystem : EntitySystem
     {
         //Get our station.
         var station = _station.GetOwningStation(uid);
+        if (station == null || !station.Value.Valid)
+            return;
+
+        // Station/entity being destroyed, nothing to do.
+        if (MetaData(station.Value).EntityLifeStage >= EntityLifeStage.Terminating ||
+            MetaData(uid).EntityLifeStage >= EntityLifeStage.Terminating)
+            return;
+
         //Remove the dead drop.
         RemComp<DeadDropComponent>(uid);
         //Find a new potential dead drop to spawn.
