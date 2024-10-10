@@ -67,6 +67,8 @@
     entity: FoodMeatRotten
     # once it would say bloated, turn into the rotten prototype
     stage: 1
+  - type: Food # Frontier
+    quality: Nasty # Frontier, New Food Quality System
 
 # bruh
 - type: Tag
@@ -154,6 +156,8 @@
       reagents:
       - ReagentId: CarpoToxin
         Quantity: 5
+  - type: Food # Frontier, New Food Quality System
+    quality: Toxin # Frontier, New Food Quality System
 
 - type: entity
   name: raw bacon
@@ -459,6 +463,8 @@
           Quantity: 4
         - ReagentId: Fat
           Quantity: 4
+  - type: Food # Frontier
+    quality: Toxin # Frontier, New Food Quality System
 
 - type: entity
   name: raw spider meat
@@ -479,6 +485,8 @@
   - type: SliceableFood
     count: 3
     slice: FoodMeatSpiderCutlet
+  - type: Food # Frontier
+    quality: Toxin # Frontier, New Food Quality System
 
 - type: entity
   name: raw spider leg
@@ -496,6 +504,8 @@
           Quantity: 10
         - ReagentId: Fat
           Quantity: 3
+  - type: Food # Frontier
+    quality: Toxin # Frontier, New Food Quality System
 
 - type: entity
   name: meatwheat clump
@@ -561,6 +571,8 @@
   - type: SliceableFood
     count: 3
     slice: FoodMeatXenoCutlet
+  - type: Food # Frontier
+    quality: Toxin # Frontier, New Food Quality System
 
 - type: entity
   name: raw rouny meat
@@ -590,6 +602,8 @@
     graph: RounySteak
     node: start
     defaultTarget: rouny steak
+  - type: Food # Frontier
+    quality: Toxin # Frontier, New Food Quality System
 
 - type: entity
   name: killer tomato meat
@@ -630,6 +644,8 @@
     damage:
       types:
         Blunt: 2
+  - type: Food # Frontier
+    quality: Normal # Frontier, New Food Quality System
 
 - type: entity
   name: meat clown
@@ -765,6 +781,8 @@
     entries:
       Burger: MeatSteak
       Taco: MeatSteak
+  - type: Food # Frontier
+    quality: Normal # Frontier, New Food Quality System
 
 - type: entity
   name: bacon
@@ -800,6 +818,8 @@
     entries:
       Burger: MeatBacon
       Taco: MeatBacon
+  - type: Food # Frontier
+    quality: Normal # Frontier, New Food Quality System
 
 - type: entity
   name: cooked bear
@@ -833,6 +853,8 @@
     entries:
       Burger: MeatBearBurger
       Taco: MeatBear
+  - type: Food # Frontier
+    quality: Normal # Frontier, New Food Quality System
 
 - type: entity
   name: penguin filet
@@ -865,6 +887,8 @@
     entries:
       Burger: MeatPenguinBurger
       Taco: MeatPenguin
+  - type: Food # Frontier
+    quality: Normal # Frontier, New Food Quality System
 
 - type: entity
   name: cooked chicken
@@ -897,6 +921,8 @@
     entries:
       Burger: MeatChicken
       Taco: MeatChicken
+  - type: Food # Frontier
+    quality: Normal # Frontier, New Food Quality System
 
 - type: entity
   name: fried chicken
@@ -929,6 +955,8 @@
     entries:
       Burger: MeatChicken
       Taco: MeatChicken
+  - type: Food # Frontier
+    quality: Normal # Frontier, New Food Quality System
 
 - type: entity
   name: cooked duck
@@ -961,6 +989,8 @@
     entries:
       Burger: MeatDuck
       Taco: MeatDuck
+  - type: Food # Frontier
+    quality: Normal # Frontier, New Food Quality System
 
 - type: entity
   name: cooked crab
@@ -993,6 +1023,8 @@
     entries:
       Burger: MeatCrabBurger
       Taco: MeatCrab
+  - type: Food # Frontier
+    quality: Normal # Frontier, New Food Quality System
 
 - type: entity
   name: goliath steak
@@ -1023,6 +1055,8 @@
     entries:
       Burger: MeatGoliathBurger
       Taco: MeatGoliath
+  - type: Food # Frontier
+    quality: Normal # Frontier, New Food Quality System
 
 - type: entity
   name: rouny steak
@@ -1090,6 +1124,8 @@
     entries:
       Burger: MeatLizardBurger
       Taco: MeatLizard
+  - type: Food # Frontier
+    quality: Normal # Frontier, New Food Quality System
 
 - type: entity
   name: boiled spider leg
@@ -1146,6 +1182,8 @@
   - type: Construction
     graph: meatballNF
     node: cooked
+  - type: Food # Frontier
+    quality: Normal # Frontier, New Food Quality System
   # End Frontier
 
 - type: entity
@@ -1400,6 +1438,8 @@
     graph: XenoCutlet
     node: start
     defaultTarget: xeno cutlet
+  - type: Food # Frontier
+    quality: Toxin # Frontier, New Food Quality System
 
 - type: entity
   name: raw killer tomato cutlet
@@ -1438,6 +1478,8 @@
           Quantity: 1
         - ReagentId: Protein
           Quantity: 1
+  - type: Food # Frontier
+    quality: Normal # Frontier, New Food Quality System
 
 # Cooked
 
@@ -1469,6 +1511,8 @@
     entries:
       Burger: MeatCutlet
       Taco: MeatCutlet
+  - type: Food # Frontier
+    quality: Normal # Frontier, New Food Quality System
 
 - type: entity
   name: bear cutlet
@@ -1501,6 +1545,8 @@
     entries:
       Burger: BearCutletBurger
       Taco: BearCutlet
+  - type: Food # Frontier
+    quality: Normal # Frontier, New Food Quality System
 
 - type: entity
   name: penguin cutlet
@@ -1531,6 +1577,8 @@
     entries:
       Burger: PenguinCutletBurger
       Taco: PenguinCutlet
+  - type: Food # Frontier
+    quality: Normal # Frontier, New Food Quality System
 
 - type: entity
   name: chicken cutlet
@@ -1561,6 +1609,8 @@
     entries:
       Burger: ChickenCutlet
       Taco: ChickenCutlet
+  - type: Food # Frontier
+    quality: Normal # Frontier, New Food Quality System
 
 - type: entity
   name: duck cutlet
@@ -1591,6 +1641,8 @@
     entries:
       Burger: DuckCutlet
       Taco: DuckCutlet
+  - type: Food # Frontier
+    quality: Normal # Frontier, New Food Quality System
 
 - type: entity
   name: lizard cutlet
@@ -1622,6 +1674,8 @@
     entries:
       Burger: LizardCutletBurger
       Taco: LizardCutlet
+  - type: Food # Frontier
+    quality: Normal # Frontier, New Food Quality System
 
 - type: entity
   name: spider cutlet
@@ -1651,6 +1705,8 @@
     entries:
       Burger: SpiderCutletBurger
       Taco: SpiderCutlet
+  - type: Food # Frontier
+    quality: Toxin # Frontier, New Food Quality System
 
 - type: entity
   name: xeno cutlet
@@ -1680,3 +1736,5 @@
     entries:
       Burger: XenoCutlet
       Taco: XenoCutlet
+  - type: Food # Frontier
+    quality: Toxin # Frontier, New Food Quality System

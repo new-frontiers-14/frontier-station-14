@@ -27,6 +27,8 @@
     entries:
       Burger: Pear
       Taco: Pear
+  - type: Food
+    quality: Normal
 
 - type: entity
   name: coffee berries
@@ -37,7 +39,6 @@
   - type: FlavorProfile
     flavors:
       - bitter
-  - type: Food
   - type: SolutionContainerManager
     solutions:
       food:
@@ -59,6 +60,8 @@
       - id: FoodCoffeeBeansRaw
     sound:
       path: /Audio/Effects/packetrip.ogg
+  - type: Food
+    quality: Normal
 
 - type: entity
   name: avocado
@@ -94,6 +97,8 @@
   - type: Tag
     tags:
       - Fruit
+  - type: Food
+    quality: Normal
 
 - type: entity
   name: avocado slice
@@ -125,6 +130,8 @@
     tags:
       - Fruit
       - Slice
+  - type: Food
+    quality: Normal
 
 - type: entity
   name: cucumber
@@ -140,7 +147,7 @@
       food:
         maxVol: 20
         reagents:
-        - ReagentId: Nutriment #place holder
+        - ReagentId: Nutriment
           Quantity: 6
         - ReagentId: Vitamin
           Quantity: 4
@@ -160,6 +167,8 @@
   - type: Tag
     tags:
       - Vegetable
+  - type: Food
+    quality: Normal
 
 - type: entity
   name: cucumber slice
@@ -191,6 +200,8 @@
     tags:
       - Vegetable
       - Slice
+  - type: Food
+    quality: Normal
 
 - type: entity
   name: pickle
@@ -206,7 +217,7 @@
       food:
         maxVol: 20
         reagents:
-        - ReagentId: Nutriment #place holder
+        - ReagentId: Nutriment
           Quantity: 6
         - ReagentId: Vitamin
           Quantity: 4
@@ -227,6 +238,8 @@
   - type: Tag
     tags:
       - Vegetable
+  - type: Food
+    quality: Normal
 
 - type: entity
   name: pickle slice
@@ -261,3 +274,5 @@
     tags:
       - Vegetable
       - Slice
+  - type: Food
+    quality: Normal

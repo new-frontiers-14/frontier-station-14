@@ -4,12 +4,16 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Stomach
-    # specialDigestible: # Frontier
-    #   tags: # Frontier
-    #   - MothFood # Frontier
-    #   - Fruit # Frontier
-    #   - Pill # Frontier
-    #   - Crayon # Frontier
+    specialDigestible:
+      tags:
+      - MothFood
+      #- Fruit
+      #- Pill
+      #- Crayon
+      #- Fiber
+      component:
+      - Food # Frontier
+    digestion: Moth # Frontier
   - type: SolutionContainerManager
     solutions:
       stomach:

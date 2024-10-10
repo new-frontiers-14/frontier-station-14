@@ -4,10 +4,11 @@ using Content.Server.Nutrition.EntitySystems;
 using Content.Shared.FixedPoint;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
+using Content.Server.Mail; // Frontier
 
 namespace Content.Server.Nutrition.Components;
 
-[RegisterComponent, Access(typeof(FoodSystem), typeof(FoodSequenceSystem))]
+[RegisterComponent, Access(typeof(FoodSystem), typeof(FoodSequenceSystem), typeof(MailSystem))] // Frontier
 public sealed partial class FoodComponent : Component
 {
     [DataField]
@@ -75,6 +76,14 @@ public sealed partial class FoodComponent : Component
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public bool RequireDead = true;
 
+    // New Frontiers - Digestion Rework - Add quality to add species-specific digestion
+    // This code is licensed under AGPLv3. See AGPLv3.txt
+    /// <summary>
+    /// The quality of this food, for species-specific digestion.
+    /// </summary>
+    [DataField, ViewVariables]
+    public FoodQuality Quality = FoodQuality.Normal;
+
     [DataField]
     public LocId VerbEat = "food-system-verb-eat"; // Frontier
 
@@ -96,3 +105,16 @@ public sealed partial class FoodComponent : Component
     [DataField]
     public LocId CannotEatAnyMoreOtherMessage = "food-system-you-cannot-eat-any-more-other"; // Frontier
 }
+
+/// <summary>
+/// An enumeration of the quality of given pieces of food.
+/// </summary>
+public enum FoodQuality : byte
+{
+    Toxin,
+    Nasty,
+    Junk,
+    Normal,
+    High,
+}
+// End of modified code
