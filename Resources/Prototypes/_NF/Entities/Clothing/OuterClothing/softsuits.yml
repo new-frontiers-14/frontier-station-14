@@ -5,6 +5,7 @@
   - ClothingOuterStorageBase # Added pockets to make this suit somewhat viable alternative to hardsuits
   - ClothingOuterEVASuitBase
   - GeigerCounterClothing
+  - ClothingOuterBaseToggleable
   id: ClothingOuterEVASuitBaseNF
   components:
   - type: Item
@@ -1110,10 +1111,6 @@
       - state: equipped-breathing-gear
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetPrivateSec
-    slot: head
-  - type: ContainerContainer
-    containers:
-      toggleable-clothing: !type:ContainerSlot {}
 
 ## NFSD
 - type: entity
