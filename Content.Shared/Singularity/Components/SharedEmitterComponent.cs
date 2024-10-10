@@ -1,4 +1,4 @@
-﻿using System.Threading;
+using System.Threading;
 using Content.Shared.Construction.Prototypes;
 using Content.Shared.DeviceLinking;
 using Robust.Shared.GameStates;
@@ -39,7 +39,7 @@ public sealed partial class EmitterComponent : Component
     /// The current amount of power being used.
     /// </summary>
     [DataField("powerUseActive")]
-    public int PowerUseActive = 600;
+    public int PowerUseActive = 1500; // Frontier 600<1500
 
     /// <summary>
     /// The amount of shots that are fired in a single "burst"

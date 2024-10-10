@@ -309,12 +309,14 @@
       types:
         Heat: 14
   # mining laser real
-  - type: GatheringProjectile
+#  - type: GatheringProjectile # Frontier
   - type: Tag
     tags:
     - EmitterBolt
   - type: TimedDespawn
     lifetime: 3
+  - type: Reflective # Frontier
+    reflective: ShuttleKinetic # Frontier
 
 - type: entity
   name: watcher bolt
