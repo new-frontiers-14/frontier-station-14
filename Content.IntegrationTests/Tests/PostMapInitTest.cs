@@ -152,7 +152,7 @@ namespace Content.IntegrationTests.Tests
         private static readonly string[] GameMaps =
         {
             "Frontier",
-            //"NFDev" // Missing spawn points
+            "NFDev",
         };
         // End Frontier
 
