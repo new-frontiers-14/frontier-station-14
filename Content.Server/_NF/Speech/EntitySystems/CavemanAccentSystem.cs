@@ -2,6 +2,8 @@ using Content.Server._NF.Speech.Components;
 using Robust.Shared.Random;
 using Content.Server.Speech;
 using Content.Server.Speech.EntitySystems;
+using System.Linq;
+using Content.Server.Chat.Systems;
 
 namespace Content.Server._NF.Speech.EntitySystems;
 
@@ -9,6 +11,7 @@ public sealed class CavemanAccentSystem : EntitySystem
 {
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly ReplacementAccentSystem _replacement = default!;
+    [Dependency] private readonly ChatSystem _chat = default!;
 
     public override void Initialize()
     {
@@ -21,7 +24,7 @@ public sealed class CavemanAccentSystem : EntitySystem
     {
         string msg = _replacement.ApplyReplacements(message, "caveman");
 
-        string[] words = msg.Split(' ');
+        string[] words = msg.Split(' ', StringSplitOptions.RemoveEmptyEntries);
         List<string> modifiedWords = new List<string>();
 
         foreach (var word in words)
@@ -47,6 +50,7 @@ public sealed class CavemanAccentSystem : EntitySystem
             if (actualLength > CavemanAccentComponent.MaxWordLength)
             {
                 modifiedWord = GetGrunt();
+                CapitalizeReplacement(word, ref modifiedWord);
                 modifiedWord += endPunctuation;
 
                 modifiedWords.Add(modifiedWord);
@@ -64,7 +68,22 @@ public sealed class CavemanAccentSystem : EntitySystem
                 if (!char.IsLetter(c) && c != '-')
                 {
                     modifiedWord = GetGrunt();
+                    CapitalizeReplacement(word, ref modifiedWord);
                     break;
+                }
+            }
+
+            // If it's all punctuation, append the punctuation to the last word if it exists, otherwise add a grunt.
+            if (modifiedWord.Length <= 0)
+            {
+                if (modifiedWords.Count > 0)
+                {
+                    modifiedWords[^1] += endPunctuation;
+                    continue;
+                }
+                else
+                {
+                    modifiedWord = GetGrunt();
                 }
             }
 
@@ -78,7 +97,7 @@ public sealed class CavemanAccentSystem : EntitySystem
             modifiedWords.Add(GetGrunt());
         }
 
-        return string.Join(' ', modifiedWords);
+        return _chat.SanitizeMessageCapital(string.Join(' ', modifiedWords));
     }
 
     private void OnAccentGet(EntityUid uid, CavemanAccentComponent component, AccentGetEvent args)
@@ -98,9 +117,21 @@ public sealed class CavemanAccentSystem : EntitySystem
         return grunt;
     }
 
+    private void CapitalizeReplacement(string input, ref string replacement)
+    {
+        if (!input.Any(char.IsLower) && (input.Length > 1 || replacement.Length == 1))
+        {
+            replacement = replacement.ToUpperInvariant();
+        }
+        else if (input.Length >= 1 && replacement.Length >= 1 && char.IsUpper(input[0]))
+        {
+            replacement = replacement[0].ToString().ToUpper() + replacement[1..];
+        }
+    }
+
     private string TryRemovePunctuation(string word)
     {
-        return word.Trim(['.', ',', '!', '?', ';', ':']);
+        return word.Trim(['.', ',', '!', '?', ';', ':', '\'']);
     }
 
     private string TryConvertNumbers(string word)
