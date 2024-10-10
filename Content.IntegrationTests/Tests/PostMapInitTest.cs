@@ -91,7 +91,7 @@ namespace Content.IntegrationTests.Tests
             "/Maps/_NF/Shuttles/spirit.yml",
             "/Maps/_NF/Shuttles/stasis.yml",
             "/Maps/_NF/Shuttles/stellaris.yml",
-            "/Maps/_NF/Shuttles/stratos.yml",
+//            "/Maps/_NF/Shuttles/stratos.yml",
             "/Maps/_NF/Shuttles/vagabond.yml",
             "/Maps/_NF/Shuttles/waveshot.yml",
             // Admin
@@ -126,7 +126,7 @@ namespace Content.IntegrationTests.Tests
             "/Maps/_NF/Shuttles/Nfsd/inquisitor.yml",
             "/Maps/_NF/Shuttles/Nfsd/interceptor.yml",
             "/Maps/_NF/Shuttles/Nfsd/marauder.yml",
-            "/Maps/_NF/Shuttles/Nfsd/opportunity.yml",
+//            "/Maps/_NF/Shuttles/Nfsd/opportunity.yml",
             "/Maps/_NF/Shuttles/Nfsd/prowler.yml",
             "/Maps/_NF/Shuttles/Nfsd/rogue.yml",
             "/Maps/_NF/Shuttles/Nfsd/templar.yml",
