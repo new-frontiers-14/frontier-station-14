@@ -316,3 +316,14 @@ accent-caveman-replaced-132 = youve
 accent-caveman-replacement-132 = you
 accent-caveman-replaced-133 = theyve
 accent-caveman-replacement-133 = they
+accent-caveman-replaced-134 = I've
+accent-caveman-replacement-134 = me
+# short enough numbers that are large
+accent-caveman-replaced-135 = forty
+accent-caveman-replacement-135 = many
+accent-caveman-replaced-136 = fifty
+accent-caveman-replacement-136 = many
+accent-caveman-replaced-137 = sixty
+accent-caveman-replacement-137 = many
+accent-caveman-replaced-138 = dozen
+accent-caveman-replacement-138 = many

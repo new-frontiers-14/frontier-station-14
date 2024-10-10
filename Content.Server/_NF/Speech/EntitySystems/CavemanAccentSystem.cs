@@ -13,6 +13,8 @@ public sealed class CavemanAccentSystem : EntitySystem
     [Dependency] private readonly ReplacementAccentSystem _replacement = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
 
+    public readonly string[] PunctuationStringsToRemove = { "'", "\"", ".", ",", "!", "?", ";", ":" }; // Leave hyphens
+
     public override void Initialize()
     {
         base.Initialize();
@@ -61,17 +63,6 @@ public sealed class CavemanAccentSystem : EntitySystem
             modifiedWord = TryRemovePunctuation(modifiedWord);
 
             modifiedWord = TryConvertNumbers(modifiedWord);
-
-            // Weird combinations of numbers/punctuations and letters
-            foreach (var c in modifiedWord)
-            {
-                if (!char.IsLetter(c) && c != '-')
-                {
-                    modifiedWord = GetGrunt();
-                    CapitalizeReplacement(word, ref modifiedWord);
-                    break;
-                }
-            }
 
             // If it's all punctuation, append the punctuation to the last word if it exists, otherwise add a grunt.
             if (modifiedWord.Length <= 0)
@@ -131,7 +122,11 @@ public sealed class CavemanAccentSystem : EntitySystem
 
     private string TryRemovePunctuation(string word)
     {
-        return word.Trim(['.', ',', '!', '?', ';', ':', '\'']);
+        foreach (var punctStr in PunctuationStringsToRemove)
+        {
+            word = word.Replace(punctStr, "");
+        }
+        return word;
     }
 
     private string TryConvertNumbers(string word)

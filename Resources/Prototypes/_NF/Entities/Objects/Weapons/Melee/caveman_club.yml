@@ -2,7 +2,7 @@
   name: caveman club
   parent: [BaseItem, BaseC1Contraband]
   id: CavemanClub
-  description: It brings forth primal urges, OOK!
+  description: Big stick make big hurt. # Frontier: changed description
   components:
   - type: Sprite
     sprite: _NF/Objects/Weapons/Melee/caveman_club.rsi
@@ -26,13 +26,20 @@
   - type: PhysicalComposition
     materialComposition:
       Wood: 200
-  - type: AddAccentPickup
-    accent: CavemanAccent
+  - type: AddAccentPickup # Frontier
+    accent: CavemanAccent # Frontier
 
 - type: entity
   name: caveman club
   parent: [CavemanClub]
   id: CavemanClubCursed
-  suffix: Unremoveable
+  suffix: Unremoveable, Foam
+  description: Big stick make big... this no wood? # Frontier: changed description
   components:
   - type: Unremoveable
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 0
+    soundHit:
+      collection: RubberHammer
