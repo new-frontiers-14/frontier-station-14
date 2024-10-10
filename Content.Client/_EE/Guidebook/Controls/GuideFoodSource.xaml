@@ -15,9 +15,8 @@
                Margin="2 0 0 0"/> <!-- Frontier: Label<RichTextLabel -->
     </BoxContainer>
     <BoxContainer Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center"> <!-- Frontier: remove HorizontalExpand -->
-        <TextureRect HorizontalAlignment="Center"
-                     Name="ProcessingTexture"
-                     Access="Public"/>
+        <BoxContainer Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalExpand="True" Name="ProcessingTextures"> <!-- Frontier: support for multiple machines -->
+        </BoxContainer>
         <RichTextLabel Name="ProcessingLabel"
                HorizontalAlignment="Center"
                VerticalAlignment="Center"

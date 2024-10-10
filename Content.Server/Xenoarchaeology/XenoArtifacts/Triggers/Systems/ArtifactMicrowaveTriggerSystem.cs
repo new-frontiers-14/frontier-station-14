@@ -15,6 +15,11 @@ public sealed class ArtifactMicrowaveTriggerSystem : EntitySystem
 
     private void OnMicrowaved(EntityUid uid, ArtifactMicrowaveTriggerComponent component, BeingMicrowavedEvent args)
     {
+        // Frontier: microwave trigger requires radiation, check if this can irradiate
+        if (!args.BeingIrradiated)
+            return;
+        // End Frontier
+
         _artifact.TryActivateArtifact(uid);
     }
 }
