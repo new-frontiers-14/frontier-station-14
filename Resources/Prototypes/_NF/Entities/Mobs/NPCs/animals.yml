@@ -56,3 +56,58 @@
     size: Normal
   - type: Clothing
     sprite: _NF/Mobs/Animals/rosy_mothroach.rsi
+
+- type: entity
+  name: Quanana
+  parent: [ FoodBanana, SimpleMobBase ]
+  id: MobBananaDuck
+  description: It quacks. It's a banana. It's a quanana.
+  components:
+  - type: Sprite
+    noRot: true
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: quack
+      sprite: _NF/Mobs/Animals/Banana_duck.rsi
+    scale: 0.7,0.7
+  - type: GhostRole
+    name: ghost-role-information-BananaDuck-name
+    allowMovement: true
+    description: ghost-role-information-BananaDuck-description
+    rules: ghost-role-information-nonantagonist-rules
+  - type: GhostTakeoverAvailable
+  - type: EggLayer
+    eggSpawn:
+    - id: FoodBananaBaby
+  - type: Speech
+    speechSounds: Duck
+    speechVerb: SmallMob
+  - type: RotationVisuals
+    defaultRotation: 0
+    horizontalRotation: 90
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: quack
+      Dead:
+        Base: quack
+  - type: Slippery
+  - type: StepTrigger
+    intersectRatio: 0.2
+  - type: NoSlip
+  - type: Butcherable
+    spawned:
+    - id: FoodBanana
+      amount: 3
+  - type: SolutionContainerManager # Shouldn't die in two bites
+    solutions:
+      food:
+        maxVol: 50
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 30
+        - ReagentId: Vitamin
+          Quantity: 15
+  - type: Puller
+    needsHands: false
