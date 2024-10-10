@@ -116,13 +116,16 @@
       board: !type:Container
         ents: []
       disk_slot: !type:ContainerSlot {}
+  - type: Battery # Frontier
+    maxCharge: 250000 # Frontier
+    startingCharge: 250000 # Frontier
+  - type: EmergencyCharge # Frontier
 
 - type: entity
   parent: [BaseComputerShuttle, BaseShuttleIntercom] # Frontier - BaseShuttleIntercom
   id: ComputerShuttle
   name: shuttle console
   description: Used to pilot a shuttle.
-  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: Sprite
     layers:
