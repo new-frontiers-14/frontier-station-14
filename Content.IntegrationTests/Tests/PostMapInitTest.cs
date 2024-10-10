@@ -83,7 +83,6 @@ namespace Content.IntegrationTests.Tests
             "/Maps/_NF/Shuttles/prospector.yml",
             "/Maps/_NF/Shuttles/pts.yml",
             "/Maps/_NF/Shuttles/pulse.yml",
-            "/Maps/_NF/Shuttles/rosebudmki.yml",
             "/Maps/_NF/Shuttles/searchlight.yml",
             "/Maps/_NF/Shuttles/skipper.yml",
             "/Maps/_NF/Shuttles/sparrow.yml",
@@ -115,7 +114,6 @@ namespace Content.IntegrationTests.Tests
             "/Maps/_NF/Shuttles/Expedition/gasbender.yml",
             "/Maps/_NF/Shuttles/Expedition/gourd.yml",
             "/Maps/_NF/Shuttles/Expedition/pathfinder.yml",
-            "/Maps/_NF/Shuttles/Expedition/rosebudmkii.yml",
             "/Maps/_NF/Shuttles/Expedition/sprinter.yml",
             // Nfsd
             "/Maps/_NF/Shuttles/Nfsd/broadhead.yml",
