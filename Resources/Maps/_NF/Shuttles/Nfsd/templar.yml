@@ -186,11 +186,12 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 3.5,-1.5
       parent: 1
-- proto: AirlockNfsd
+- proto: AirlockNfsdGlassLocked
   entities:
   - uid: 5
     components:
     - type: Transform
+      rot: 1.5707963267948966 rad
       pos: 0.5,1.5
       parent: 1
 - proto: APCBasic
@@ -484,6 +485,21 @@ entities:
     components:
     - type: Transform
       pos: -0.5,4.5
+      parent: 1
+- proto: FirelockEdge
+  entities:
+  - uid: 160
+    components:
+    - type: Transform
+      pos: 0.5,-1.5
+      parent: 1
+- proto: FirelockGlass
+  entities:
+  - uid: 159
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 0.5,1.5
       parent: 1
 - proto: FloorDrain
   entities:

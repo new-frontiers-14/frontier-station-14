@@ -613,6 +613,16 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -1.5,-2.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        entity_storage: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        paper_label: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
 - proto: ComputerTabletopCriminalRecords
   entities:
   - uid: 44
@@ -687,6 +697,20 @@ entities:
     components:
     - type: Transform
       pos: -0.5,4.5
+      parent: 1
+- proto: FirelockEdge
+  entities:
+  - uid: 162
+    components:
+    - type: Transform
+      pos: 0.5,-1.5
+      parent: 1
+- proto: FirelockGlass
+  entities:
+  - uid: 161
+    components:
+    - type: Transform
+      pos: 0.5,1.5
       parent: 1
 - proto: FloorDrain
   entities:
@@ -992,19 +1016,19 @@ entities:
     - type: Transform
       pos: -1.5,5.5
       parent: 1
-- proto: NFLockerSecurityFilled
-  entities:
-  - uid: 114
-    components:
-    - type: Transform
-      pos: 1.5,3.5
-      parent: 1
 - proto: LockerWallMaterialsFuelPlasmaFilled
   entities:
   - uid: 105
     components:
     - type: Transform
       pos: -1.5,1.5
+      parent: 1
+- proto: NFLockerSecurityFilled
+  entities:
+  - uid: 114
+    components:
+    - type: Transform
+      pos: 1.5,3.5
       parent: 1
 - proto: NitrogenCanister
   entities:
