@@ -1,50 +1,77 @@
 #"Map":
-# - "Resources/Maps/**/*.yml" # All .yml files in the Resources/Maps directory, recursive.
+# - changed-files:
+#   - any-glob-to-any-file: "Resources/Maps/**/*.yml" # All .yml files in the Resources/Maps directory, recursive.
 
 "Map-Admin":
- - "Resources/Maps/_NF/Admin/**/*.yml" # Grid Files
+- changed-files:
+  - any-glob-to-any-file: "Resources/Maps/_NF/Admin/**/*.yml" # Grid Files
 
 "Map-Bluespace":
- - "Resources/Maps/_NF/Bluespace/**/*.yml" # Grid Files
+- changed-files:
+  - any-glob-to-any-file: "Resources/Maps/_NF/Bluespace/**/*.yml" # Grid Files
 
 "Map-Dungeon":
- - "Resources/Maps/_NF/Dungeon/**/*.yml" # Grid Files
+- changed-files:
+  - any-glob-to-any-file: "Resources/Maps/_NF/Dungeon/**/*.yml" # Grid Files
 
 "Map-Outpost":
- - "Resources/Maps/_NF/Outpost/*.yml" # Map Files
- - "Resources/Prototypes/_MF/Maps/Outpost/*.yml" # Prototypes Files
+- changed-files:
+  - any-glob-to-any-file:
+    - "Resources/Maps/_NF/Outpost/*.yml" # Map Files
+    - "Resources/Prototypes/_MF/Maps/Outpost/*.yml" # Prototypes Files
 
 "Map-Shuttle":
- - "Resources/Maps/_NF/Shuttles/**/*.yml" # Grid Files
- - "Resources/Prototypes/_NF/Shipyard/**/*.yml" # Prototypes Files
+- changed-files:
+  - any-glob-to-any-file:
+    - "Resources/Maps/_NF/Shuttles/**/*.yml" # Grid Files
+    - "Resources/Prototypes/_NF/Shipyard/**/*.yml" # Prototypes Files
 
 "Map-POI":
- - "Resources/Maps/_NF/POI/**/*.yml" # Grid Files
- - "Resources/Prototypes/_MF/Maps/POI/**/*.yml" # Prototypes Files
+- changed-files:
+  - any-glob-to-any-file:
+    - "Resources/Maps/_NF/POI/**/*.yml" # Grid Files
+    - "Resources/Prototypes/_MF/Maps/POI/**/*.yml" # Prototypes Files
 
 "Sprites":
- - "**/*.rsi/*.png"
- - "**/*.rsi/*.json"
+- changed-files:
+  - any-glob-to-any-file:
+    - "**/*.rsi/*.png"
+    - "**/*.rsi/*.json"
 
 "UI":
- - "**/*.xaml*"
+- changed-files:
+  - any-glob-to-any-file: "**/*.xaml*"
 
 "C#":
-  - "**/*.cs"
+- changed-files:
+  - any-glob-to-any-file: "**/*.cs"
 
 "Shaders":
-  - '**/*.swsl'
+- changed-files:
+  - any-glob-to-any-file: '**/*.swsl'
 
 "No C#":
- - all: ["!**/*.cs"]
+- changed-files:
+  - all-globs-to-all-files: "!**/*.cs"
 
 "Docs":
-  - "**/*.xml"
-  - "**/*.md"
+- changed-files:
+  - any-glob-to-any-file:
+    - "**/*.xml"
+    - "**/*.md"
 
 "FTL":
- - "Resources/Locale/**/*.ftl"
+- changed-files:
+  - any-glob-to-any-file: "Resources/Locale/**/*.ftl"
 
 "YML":
-  - any: ["**/*.yml"]
-    all: ["!Resources/Maps/_NF/**/*.yml", "!Resources/Prototypes/Maps/_NF/**/*.yml"]
+- all:
+  - changed-files:
+    - any-glob-to-any-file: "**/*.yml"
+    - all-globs-to-all-files:
+      - "!Resources/Maps/_NF/**/*.yml"
+      - "!Resources/Prototypes/Maps/_NF/**/*.yml"
+
+"DB Migration":
+- changed-files:
+  - any-glob-to-any-file: "Content.Server.Database/Migrations/**/*.cs"

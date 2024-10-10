@@ -50,6 +50,9 @@ namespace Content.Server.Carrying
         [Dependency] private readonly PseudoItemSystem _pseudoItem = default!;
         [Dependency] private readonly ContestsSystem _contests = default!;
         [Dependency] private readonly TransformSystem _transform = default!;
+        [Dependency] private readonly RespiratorSystem _respirator = default!;
+        [Dependency] private readonly SharedTransformSystem _transform = default!;
+        [Dependency] private readonly PseudoItemSystem _pseudoItem = default!; // Needed for fitting check
 
         public override void Initialize()
         {
@@ -272,6 +275,15 @@ namespace Content.Server.Carrying
             _transform.AttachToGridOrMap(carried);
             _transform.SetCoordinates(carried, Transform(carrier).Coordinates);
             _transform.SetParent(carried, carrier);
+
+            var carrierXform = Transform(carrier);
+            var xform = Transform(carried);
+            _transform.AttachToGridOrMap(carrier, carrierXform);
+            _transform.AttachToGridOrMap(carried, xform);
+            xform.Coordinates = carrierXform.Coordinates;
+
+            _transform.SetParent(carried, xform, carrier, carrierXform);
+
             _virtualItemSystem.TrySpawnVirtualItemInHand(carried, carrier);
             _virtualItemSystem.TrySpawnVirtualItemInHand(carried, carrier);
             var carryingComp = EnsureComp<CarryingComponent>(carrier);
