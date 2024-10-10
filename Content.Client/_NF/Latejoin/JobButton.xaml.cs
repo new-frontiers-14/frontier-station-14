@@ -12,7 +12,7 @@ using Robust.Shared.Prototypes;
 namespace Content.Client._NF.Latejoin;
 
 [GenerateTypedNameReferences]
-public sealed partial class NewFrontierLateJoinJobButton : Button
+public sealed partial class JobButton : Button
 {
     private readonly IPrototypeManager _prototypeManager;
     private readonly ClientGameTicker _gameTicker;
@@ -21,7 +21,7 @@ public sealed partial class NewFrontierLateJoinJobButton : Button
     private readonly IClientPreferencesManager _preferencesManager;
     private readonly string _jobId;
 
-    public NewFrontierLateJoinJobButton(NetEntity station, string jobId, ClientGameTicker gameTicker, IPrototypeManager prototypeManager, JobRequirementsManager jobReqs, IClientPreferencesManager preferencesManager)
+    public JobButton(NetEntity station, string jobId, ClientGameTicker gameTicker, IPrototypeManager prototypeManager, JobRequirementsManager jobReqs, IClientPreferencesManager preferencesManager)
     {
         RobustXamlLoader.Load(this);
         _prototypeManager = prototypeManager;

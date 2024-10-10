@@ -26,7 +26,7 @@ public sealed partial class NFLateJoinGui : FancyWindow
 
     private NetEntity _lastSelection;
 
-    private readonly Dictionary<string, NewFrontierLateJoinJobButton> _buttons = new();
+    private readonly Dictionary<string, JobButton> _buttons = new();
 
     public NFLateJoinGui()
     {
@@ -94,7 +94,7 @@ public sealed partial class NFLateJoinGui : FancyWindow
 
             var job = _prototypeManager.Index<JobPrototype>(jobId);
 
-            var newButton = new NewFrontierLateJoinJobButton(station, jobId, _gameTicker, _prototypeManager, _jobReqs, _preferencesManager);
+            var newButton = new JobButton(station, jobId, _gameTicker, _prototypeManager, _jobReqs, _preferencesManager);
             newButton.OnPressed += args =>
             {
                 _latejoinSawmill.Info($"Late joining as ID: {jobId}");
