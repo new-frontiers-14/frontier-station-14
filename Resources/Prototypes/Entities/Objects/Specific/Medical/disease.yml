@@ -1,5 +1,5 @@
 - type: entity
-  parent: BaseItem
+  parent: [BaseItem, RecyclableItemPlasticTiny] # Frontier: added RecyclableItemPlasticTiny
   id: DiseaseSwab
   name: sterile swab
   description: Used for taking and transferring samples. Sterile until open. Single use only.
@@ -21,7 +21,7 @@
     - Chemicals
 
 - type: entity
-  parent: BaseAmmoProvider # this is for cycling swabs out and not spawning 30 entities, trust
+  parent: [BaseAmmoProvider, RecyclableItemCardboard] # this is for cycling swabs out and not spawning 30 entities, trust # Frontier: added RecyclableItemCardboard
   id: BoxMouthSwab
   name: sterile swab dispenser
   description: Dispenses 30 sterile swabs, extremely useful for botany.
