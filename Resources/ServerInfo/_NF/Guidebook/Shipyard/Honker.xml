@@ -1,0 +1,85 @@
+<Document>
+  # HONKER-CLASS CLOWN SHUTTLE
+  <Box>
+  <GuideEntityEmbed Entity="VendingMachineTheater"/>
+  <GuideEntityEmbed Entity="StatueBananiumClown"/>
+  <GuideEntityEmbed Entity="CrateToyBox"/>
+  </Box>
+  <Box>
+  <GuideEntityEmbed Entity="ShuttleMapHonker" Caption=""/>
+  </Box>
+    [color=#a4885c]Ship Size:[/color] Small
+	
+	[color=#a4885c]Recommended Crew:[/color] 1-2
+	
+	[color=#a4885c]Power Gen Type:[/color] Plasma
+	
+	[color=#a4885c]Expeditions:[/color] None
+	
+	[color=#a4885c]IFF Console:[/color] None
+	
+  "HONK HONK HONK HONK HONK HONK"
+    
+  # PREFLIGHT CHECKLIST
+  
+  ## 1. Power supply
+  
+  ## 1.1. Battery units
+  <Box>
+  <GuideEntityEmbed Entity="SubstationWallBasic"/>
+  <GuideEntityEmbed Entity="APCBasic"/>
+  </Box>
+  
+  - Check that the APC unit's Main Breaker is toggled on.
+  - Check the APC unit's current Load* (W).
+  
+  ## 1.2. P.A.C.M.A.N. generator unit
+  <Box>
+  <GuideEntityEmbed Entity="PortableGeneratorPacmanShuttle"/>
+  <GuideEntityEmbed Entity="SheetPlasma"/>
+  </Box>
+  
+  - Check that the P.A.C.M.A.N. generator unit is anchored to the floor.
+  - Check that the P.A.C.M.A.N. generator unit has fuel. For extended flights make sure that you have enough fuel stockpiled to sustain prolonged power generation during flight.
+  - Check that the P.A.C.M.A.N. generator unit is set to HV output.
+  - Set Target Power for 9-10** [bold]kW[/bold].
+  - Ensure that the P.A.C.M.A.N. generator unit is enabled.
+  
+  ## 2. Atmospherics
+  
+  ## 2.1. Distribution Loop
+  <Box>
+  <GuideEntityEmbed Entity="AirCanister"/>
+  <GuideEntityEmbed Entity="GasPort"/>
+  <GuideEntityEmbed Entity="GasPressurePump"/>
+  </Box>
+  
+  - Check that the Air canister is anchored to connector port.
+  - Ensure that the distro loop pump is enabled.
+  
+  ## 2.2. Waste Loop
+  <Box>
+  <GuideEntityEmbed Entity="GasPressurePump"/>
+  <GuideEntityEmbed Entity="AirAlarm"/>
+  </Box>
+    
+  - Ensure that the waste loop pump is enabled.
+  - Disable Auto Mode on any Air Alarms.
+  - Set the Air Alarms to Filtering (Wide).
+  
+  ## 3. Other checks
+  <Box>
+  <GuideEntityEmbed Entity="Gyroscope"/>
+  <GuideEntityEmbed Entity="GravityGeneratorMini"/>
+  </Box>
+  
+  - Check that the gyroscope is anchored, powered, and enabled.
+  - Check that the mini gravity generator is anchored, powered, and enabled.
+  
+  ## Sidenotes
+  
+  * - Honker-class clown ships are equipped with an APC unit that can be used to appraise the ship's total power consumption. An unmodified Honker-class ship requires 8.4 kW of power to remain operational.
+  
+  ** - Honker-class clown ships have low power demand meaning that standard P.A.C.M.A.N. generator unit's Target Power value can be lowered as low as 9 kW. Please note, that recommended Target Power value to avoid blackouts during Gravity Generator charging sequence is 10 kW.
+
+</Document>
