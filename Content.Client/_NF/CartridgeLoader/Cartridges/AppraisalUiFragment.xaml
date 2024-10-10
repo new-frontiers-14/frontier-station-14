@@ -1,0 +1,17 @@
+<cartridges:AppraisalUiFragment xmlns:cartridges="clr-namespace:Content.Client._NF.CartridgeLoader.Cartridges"
+                                 xmlns="https://spacestation14.io" Margin="1 0 2 0">
+    <PanelContainer StyleClasses="BackgroundDark"></PanelContainer>
+    <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True">
+        <BoxContainer Orientation="Vertical" MinHeight="32" MaxHeight="32" VerticalAlignment="Top" Margin="3 0">
+            <PanelContainer Name="HeaderPanel">
+                <BoxContainer Orientation="Horizontal" HorizontalExpand="True" Margin="4">
+                    <Label HorizontalExpand="True" Text="{Loc 'appraisal-label-name'}"/>
+                    <Label HorizontalExpand="True" Text="{Loc 'appraisal-label-price'}"/>
+                </BoxContainer>
+            </PanelContainer>
+        </BoxContainer>
+        <ScrollContainer Name="ScrollContainer" HorizontalExpand="True" VerticalExpand="True">
+            <BoxContainer Orientation="Vertical" Name="AppraisedItemContainer" HorizontalExpand="True" VerticalExpand="True" VerticalAlignment="Top" Margin="3 0"/>
+        </ScrollContainer>
+    </BoxContainer>
+</cartridges:AppraisalUiFragment>

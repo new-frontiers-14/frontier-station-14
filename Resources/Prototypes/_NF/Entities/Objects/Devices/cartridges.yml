@@ -19,6 +19,25 @@
     - type: AccessReader
       access: [["HeadOfSecurity"], ["HeadOfPersonnel"]]
 
+- type: entity
+  parent: BaseItem
+  id: AppraisalCartridge
+  name: appraisal cartridge
+  description: A program for appraising the monetary value of items
+  components:
+    - type: Sprite
+      sprite: Objects/Devices/cartridge.rsi
+      state: cart-y
+    - type: Icon
+      sprite: Objects/Devices/cartridge.rsi
+      state: cart-y
+    - type: UIFragment
+      ui: !type:AppraisalUi
+    - type: Cartridge
+      programName: appraisal-program-name
+      icon: Interface/Actions/shop.png
+    - type: AppraisalCartridge
+
 # Not a PDA cartridge (then why is this here)
 - type: entity
   parent: BaseItem
