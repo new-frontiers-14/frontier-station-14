@@ -92,7 +92,7 @@ public sealed partial class StationPickerControl : PanelContainer
                 stationSubtext = _loc.GetString(locId.Id);
             }
 
-            string? iconPath = _stationIcons.TryGetValue(stationEntity, out var resPath) ? resPath.CanonPath : null;
+            var iconPath = _stationIcons.TryGetValue(stationEntity, out var resPath) ? resPath.CanonPath : null;
             var viewState = new StationItemViewState(
                 stationName,
                 stationSubtext,
