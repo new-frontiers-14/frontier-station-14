@@ -18,7 +18,7 @@ public sealed partial class StationPickerControl : PanelContainer
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IConsoleHost _consoleHost = default!;
     private readonly SpriteSystem _spriteSystem;
-    private ISawmill _sawmill;
+    private readonly ISawmill _sawmill;
 
     public sealed class StationItemViewState(
         string stationName,
@@ -108,7 +108,7 @@ public sealed partial class StationPickerControl : PanelContainer
         {
             var prototype = _prototypeManager.Index(entry.Key);
             var jobCount = entry.Value;
-            var jobName = $"{prototype.LocalizedName} ({jobCount.ToString() ?? "Unlimited"})";
+            var jobName = $"{prototype.LocalizedName} ({jobCount?.ToString() ?? "Unlimited"})";
             Texture? texture = null;
 
             if (_prototypeManager.TryIndex(prototype.Icon, out var jobIcon))
@@ -136,9 +136,8 @@ public sealed partial class StationPickerControl : PanelContainer
     {
         var viewStateList = new List<StationItemViewState>();
 
-        foreach (var entry in obj)
+        foreach (var (stationEntity, _) in obj)
         {
-            var stationEntity = entry.Key;
             var stationName = stationNames[stationEntity];
             var stationSubtext = "";
             if (_stationSubtexts.TryGetValue(stationEntity, out var locId))
@@ -151,7 +150,7 @@ public sealed partial class StationPickerControl : PanelContainer
                 stationName,
                 stationSubtext,
                 stationEntity,
-                _lastSelectedStation?.StationEntity == entry.Key,
+                _lastSelectedStation?.StationEntity == stationEntity,
                 iconPath
             );
 
