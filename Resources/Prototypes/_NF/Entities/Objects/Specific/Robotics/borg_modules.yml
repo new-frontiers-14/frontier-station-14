@@ -1,0 +1,37 @@
+- type: entity
+  id: BorgModuleAdvancedMining
+  parent: [ BaseBorgModuleCargo, BaseProviderBorgModule ]
+  name: advanced mining cyborg module
+  components:
+  - type: Sprite
+    layers:
+    - state: cargo
+    - state: icon-advancedmining
+      sprite: _NF/Objects/Specific/Robotics/borgmodule.rsi
+  - type: ItemBorgModule
+    items:
+    - MiningDrillDiamond
+    - Shovel
+    - AdvancedMineralScannerUnpowered
+    - OreBagOfHolding
+    - JawsOfLife
+    - RadioHandheldNF
+
+- type: entity
+  id: BorgModuleAdvancedParamedic
+  parent: [ BaseBorgModuleMedical, BaseProviderBorgModule ]
+  name: advanced paramedic cyborg module
+  components:
+  - type: Sprite
+    layers:
+    - state: medical
+    - state: icon-paramedic
+      sprite: _NF/Objects/Specific/Robotics/borgmodule.rsi
+  - type: ItemBorgModule
+    items:
+    - HandheldHealthAnalyzerUnpowered
+    - Suture10Lingering
+    - Mesh10Lingering
+    - Gauze10Lingering
+    - Bloodpack10Lingering
+    - SyringeBluespace
