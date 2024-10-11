@@ -31,50 +31,50 @@
       body_container: !type:ContainerSlot
 
 # WIP for a medical bounty reclaimer machine
-# - type: entity
-#   parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseMachine]
-#   id: CryogenicSleepUnit
-#   name: body retrieval unit
-#   description: A teleporter to return lost bodies with bounties on them. Dispenses cash on teleport.
-#   components:
-#   - type: Sprite
-#     noRot: true
-#     sprite: Structures/cryostorage.rsi # TODO: sprites
-#     layers:
-#     - state: sleeper_0
-#       map: ["base"]
-#   - type: UserInterface
-#     interfaces:
-#       enum.MedicalBountyUIKey.Key:
-#         type: MedicalBountyBoundUserInterface # TODO: copy cloning UI
-#   - type: ActivatableUI
-#     key: enum.MedicalBountyUIKey.Key
-#   - type: InteractionOutline
-#   - type: Physics
-#     bodyType: Static
-#   - type: Fixtures
-#     fixtures:
-#       fix1:
-#         shape:
-#           !type:PhysShapeAabb
-#           bounds: "-0.45,-0.45,0.45,0.45"
-#         density: 190
-#         mask:
-#         - MachineMask
-#         layer:
-#         - MobLayer # To allow people to pass through
-#   - type: DragInsertContainer
-#     containerId: storage
-#   - type: ExitContainerOnMove
-#     containerId: storage
-#   - type: ContainerContainer
-#     containers:
-#       body_container: !type:ContainerSlot
-#   - type: MedicalBountyRedeemer
-#   - type: Appearance
-#   - type: GenericVisualizer
-#     visuals:
-#       enum.MedicalBountyVisuals.Full:
-#         base:
-#           True: { state: sleeper_1 }
-#           False: { state: sleeper_0 }
+- type: entity
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseMachine]
+  id: MachineMedicalBountyRedemption
+  name: body retrieval unit
+  description: A teleporter to return lost bodies with bounties on them. Dispenses cash on teleport.
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: Structures/cryostorage.rsi # TODO: sprites
+    layers:
+    - state: sleeper_0
+      map: ["base"]
+  # - type: UserInterface # TODO: implement with client-side code (UI, visualizer)
+  #   interfaces:
+  #     enum.MedicalBountyUIKey.Key:
+  #       type: MedicalBountyBoundUserInterface # TODO: copy cloning UI
+  # - type: ActivatableUI
+  #   key: enum.MedicalBountyUIKey.Key
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MobLayer # To allow people to pass through
+  - type: DragInsertContainer
+    containerId: body_container
+  - type: ExitContainerOnMove
+    containerId: body_container
+  - type: ContainerContainer
+    containers:
+      body_container: !type:ContainerSlot
+  - type: MedicalBountyRedeemer
+  # - type: Appearance # TODO: implement with client-side code (UI, visualizer)
+  # - type: GenericVisualizer
+  #   visuals:
+  #     enum.MedicalBountyVisuals.Full:
+  #       base:
+  #         True: { state: sleeper_1 }
+  #         False: { state: sleeper_0 }

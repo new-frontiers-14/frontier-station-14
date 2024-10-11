@@ -1,0 +1,250 @@
+# Base
+- type: entity
+  id: SpawnRandomHumanoidCorpseMedicalBounty
+  name: medical bounty corpse
+  suffix: No Loadout
+  components:
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+    - state: green
+    - sprite: Mobs/Species/Human/parts.rsi
+      state: full
+      rotation: 90
+  - type: RandomHumanoidSpawner
+    settings: MedicalBounty
+
+- type: entity
+  id: SpawnRandomHumanoidCorpseMedicalBountyService
+  suffix: Service
+  components:
+  - type: RandomHumanoidSpawner
+    settings: MedicalBountyService
+
+- type: entity
+  id: SpawnRandomHumanoidCorpseMedicalBountyMusician
+  suffix: Musician
+  components:
+  - type: RandomHumanoidSpawner
+    settings: MedicalBountyMusician
+
+- type: entity
+  id: SpawnRandomHumanoidCorpseMedicalBountyEngineering
+  suffix: Engineering
+  components:
+  - type: RandomHumanoidSpawner
+    settings: MedicalBountyEngineering
+
+- type: entity
+  id: SpawnRandomHumanoidCorpseMedicalBountyCargo
+  suffix: Cargo
+  components:
+  - type: RandomHumanoidSpawner
+    settings: MedicalBountyCargo
+
+- type: entity
+  id: SpawnRandomHumanoidCorpseMedicalBountyMedical
+  suffix: Medical
+  components:
+  - type: RandomHumanoidSpawner
+    settings: MedicalBountyMedical
+
+- type: entity
+  id: SpawnRandomHumanoidCorpseMedicalBountyScience
+  suffix: Science
+  components:
+  - type: RandomHumanoidSpawner
+    settings: MedicalBountyScience
+
+- type: entity
+  id: SpawnRandomHumanoidCorpseMedicalBountySecurity
+  suffix: Security
+  components:
+  - type: RandomHumanoidSpawner
+    settings: MedicalBountySecurity
+
+- type: entity
+  id: SpawnRandomHumanoidCorpseMedicalBountyCommand
+  suffix: Command
+  components:
+  - type: RandomHumanoidSpawner
+    settings: MedicalBountyCommand
+
+- type: randomHumanoidSettings
+  id: MedicalBounty
+  components:
+  - type: StinkyTrait
+  - type: Carriable # Carrying system from nyanotrasen.
+  - type: Butcherable
+    butcheringType: Spike
+    spawned:
+    - id: FoodMeatRotten
+      amount: 5
+  - type: TriggerOnBeingGibbed
+  - type: GibOnTrigger
+    deleteItems: true
+    deleteOrgans: true
+    gib: false
+    useArgumentEntity: true
+    # Medical bounty-specific fields
+  - type: MedicalBounty
+  - type: RandomHumanoidAppearance
+    randomizeName: true # Patients should have names (easier to remember)
+  - type: NpcFactionMember
+    factions:
+    - NanoTrasen # Unsure about this one, but friendly turrets shouldn't gun them down
+
+# FIXME: redefinition vs. loadouts.yml
+- type: randomHumanoidSettings
+  parent: MedicalBounty
+  id: MedicalBountyService
+  components:
+  - type: Loadout
+    prototypes:
+    - NFVisitorBartender
+    - NFVisitorBartenderAlt
+    - NFVisitorBotanist
+    - NFVisitorBotanistAlt
+    - NFVisitorBoxer
+    - NFVisitorBoxerAlt
+    - NFVisitorChaplain
+    - NFVisitorChaplainAlt
+    - NFVisitorChef
+    - NFVisitorChefAlt
+    - NFVisitorClown
+    - NFVisitorJanitor
+    - NFVisitorJanitorAlt
+    - NFVisitorLawyerAltA
+    - NFVisitorLawyerAltB
+    - NFVisitorLawyerAltC
+    - NFVisitorLawyerAltD
+    - NFVisitorLawyerAltE
+    - NFVisitorLibrarian
+    - NFVisitorLibrarianAlt
+    - NFVisitorMime
+    - NFVisitorMimeAlt
+    - NFVisitorReporter
+    - NFVisitorReporterAlt
+    - NFVisitorServiceWorker
+    - NFVisitorServiceWorkerAlt
+    - NFVisitorZookeeper
+    - NFVisitorZookeeperAlt
+
+- type: randomHumanoidSettings
+  parent: MedicalBounty
+  id: MedicalBountyMusician
+  components:
+  - type: Loadout
+    prototypes:
+    - NFVisitorMusicianFancyAltA
+    - NFVisitorMusicianFancyAltB
+    - NFVisitorMusicianFancyAltC
+    - NFVisitorMusicianFancyAltD
+    - NFVisitorMusicianFancyAltE
+    - NFVisitorMusicianFancyAltF
+    - NFVisitorMusicianFancyAltG
+    - NFVisitorMusicianFancyAltH
+    - NFVisitorMusicianFancyAltI
+    - NFVisitorMusicianRelaxedAltA
+    - NFVisitorMusicianRelaxedAltB
+    - NFVisitorMusicianRelaxedAltC
+    - NFVisitorMusicianRelaxedAltD
+    - NFVisitorMusicianRelaxedAltE
+    - NFVisitorMusicianRelaxedAltF
+    - NFVisitorMusicianMariachi
+
+- type: randomHumanoidSettings
+  parent: MedicalBounty
+  id: MedicalBountyEngineering
+  components:
+  - type: Loadout
+    prototypes:
+    - NFVisitorAtmosTech
+    - NFVisitorAtmosTechAlt
+    - NFVisitorTechnicalAssistant
+    - NFVisitorTechnicalAssistantAlt
+    - NFVisitorEngineer
+    - NFVisitorEngineerAlt
+
+- type: randomHumanoidSettings
+  parent: MedicalBounty
+  id: MedicalBountyCargo
+  components:
+  - type: Loadout
+    prototypes:
+    - NFVisitorCargoTech
+    - NFVisitorCargoTechAlt
+    - NFVisitorSalvageSpecialist
+    - NFVisitorSalvageSpecialistAlt
+
+- type: randomHumanoidSettings
+  parent: MedicalBounty
+  id: MedicalBountyMedical
+  components:
+  - type: Loadout
+    prototypes:
+    - NFVisitorChemist
+    - NFVisitorChemistAlt
+    - NFVisitorGeneticist
+    - NFVisitorGeneticistAlt
+    - NFVisitorVirologist
+    - NFVisitorVirologistAlt
+    - NFVisitorMedicalDoctor
+    - NFVisitorMedicalDoctorAlt
+    - NFVisitorDentist
+    - NFVisitorPsychologist
+    - NFVisitorPsychologistAlt
+    - NFVisitorParamedic
+    - NFVisitorParamedicAlt
+    - NFVisitorMedicalIntern
+    - NFVisitorMedicalInternAlt
+    - NFVisitorScrubsPurple
+    - NFVisitorScrubsGreen
+    - NFVisitorScrubsBlue
+
+- type: randomHumanoidSettings
+  parent: MedicalBounty
+  id: MedicalBountyScience
+  components:
+  - type: Loadout
+    prototypes:
+    - NFVisitorResearchAssistant
+    - NFVisitorResearchAssistantAlt
+    - NFVisitorScientist
+    - NFVisitorScientistAlt
+
+- type: randomHumanoidSettings
+  parent: MedicalBounty
+  id: MedicalBountySecurity
+  components:
+  - type: Loadout
+    prototypes:
+    - NFVisitorSecurityCadet
+    - NFVisitorSecurityCadetAlt
+    - NFVisitorSecurityOfficer
+    - NFVisitorSecurityOfficerAlt
+    - NFVisitorDetective
+    - NFVisitorDetectiveAlt
+    - NFVisitorWarden
+    - NFVisitorWardenAlt
+
+- type: randomHumanoidSettings
+  parent: MedicalBounty
+  id: MedicalBountyCommand
+  components:
+  - type: Loadout
+    prototypes:
+    - NFVisitorCaptain
+    - NFVisitorCaptainAlt
+    - NFVisitorCE
+    - NFVisitorCEAlt
+    - NFVisitorCMO
+    - NFVisitorCMOAlt
+    - NFVisitorHOP
+    - NFVisitorHOPAlt
+    - NFVisitorHOS
+    - NFVisitorHOSAlt
+    - NFVisitorRD
+    - NFVisitorRDAlt
+    - NFVisitorQM
+    - NFVisitorQMAlt
