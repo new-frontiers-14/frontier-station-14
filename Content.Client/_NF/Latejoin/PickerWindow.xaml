@@ -8,12 +8,14 @@
         <BoxContainer Orientation="Horizontal">
             <Button Name="StationTabButton"
                     MinSize="180 40">
-                <Label Text="{Loc 'frontier-lobby-station-title'}"
+                <Label Name="StationTabLabel"
+                       Text="{Loc 'frontier-lobby-station-title'}"
                        StyleClasses="FancyWindowTitle" />
             </Button>
             <Button Name="CrewTabButton"
                     MinSize="180 40">
-                <Label Text="{Loc 'frontier-lobby-crew-title'}"
+                <Label Name="CrewTabLabel"
+                       Text="{Loc 'frontier-lobby-crew-title'}"
                        StyleClasses="FancyWindowTitle" />
             </Button>
         </BoxContainer>
