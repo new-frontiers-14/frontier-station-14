@@ -23,12 +23,14 @@ public sealed partial class StationPickerControl : PanelContainer
     public sealed class StationItemViewState(
         string stationName,
         string stationSubtext,
+        string stationDescription,
         NetEntity stationEntity,
         bool selected,
         string? iconPath)
     {
         public string StationName { get; } = stationName;
         public string StationSubtext { get; } = stationSubtext;
+        public string StationDescription { get; } = stationDescription;
         public NetEntity StationEntity { get; } = stationEntity;
 
         public bool Selected { get; set; } = selected;
@@ -57,18 +59,21 @@ public sealed partial class StationPickerControl : PanelContainer
     private Dictionary<NetEntity, Dictionary<ProtoId<JobPrototype>, int?>> _lobbyJobs = new();
     private Dictionary<NetEntity, string> _stationNames = new();
     private Dictionary<NetEntity, LocId> _stationSubtexts = new();
+    private Dictionary<NetEntity, LocId> _stationDescriptions = new();
     private Dictionary<NetEntity, ResPath> _stationIcons = new();
     private StationItemViewState? _lastSelectedStation = null;
 
     public void UpdateUi(IReadOnlyDictionary<NetEntity, Dictionary<ProtoId<JobPrototype>, int?>> obj,
         Dictionary<NetEntity, string> stationNames,
         Dictionary<NetEntity, LocId> stationSubtexts,
+        Dictionary<NetEntity, LocId> stationDescriptions,
         Dictionary<NetEntity, ResPath> stationIcons)
     {
         // Build station names, the left section of the screen.
         _lobbyJobs = new Dictionary<NetEntity, Dictionary<ProtoId<JobPrototype>, int?>>(obj);
         _stationNames = new Dictionary<NetEntity, string>(stationNames);
         _stationSubtexts = new Dictionary<NetEntity, LocId>(stationSubtexts);
+        _stationDescriptions = new Dictionary<NetEntity, LocId>(stationDescriptions);
         _stationIcons = new Dictionary<NetEntity, ResPath>(stationIcons);
         StationItemList.RemoveAllChildren();
 
@@ -92,12 +97,15 @@ public sealed partial class StationPickerControl : PanelContainer
             };
             StationJobItemList.AddChild(item);
         }
+
+        StationName.Text = _lastSelectedStation?.StationName ?? "";
+        StationSubtext.Text = _lastSelectedStation?.StationSubtext ?? "";
     }
 
     private void OnStationPressed(StationItemViewState stationItemViewState)
     {
         _lastSelectedStation = stationItemViewState;
-        UpdateUi(_lobbyJobs, _stationNames, _stationSubtexts, _stationIcons);
+        UpdateUi(_lobbyJobs, _stationNames, _stationSubtexts, _stationDescriptions, _stationIcons);
     }
 
     private List<StationJobItemViewState> BuildStationJobViewStateList(Dictionary<ProtoId<JobPrototype>, int?> obj)
@@ -140,6 +148,7 @@ public sealed partial class StationPickerControl : PanelContainer
         {
             var stationName = stationNames[stationEntity];
             var stationSubtext = "";
+            var stationDescription = "";
             if (_stationSubtexts.TryGetValue(stationEntity, out var locId))
             {
                 stationSubtext = _loc.GetString(locId.Id);
@@ -149,6 +158,7 @@ public sealed partial class StationPickerControl : PanelContainer
             var viewState = new StationItemViewState(
                 stationName,
                 stationSubtext,
+                stationDescription,
                 stationEntity,
                 _lastSelectedStation?.StationEntity == stationEntity,
                 iconPath

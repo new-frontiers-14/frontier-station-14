@@ -25,6 +25,7 @@ namespace Content.Client.GameTicking.Managers
         private Dictionary<NetEntity, Dictionary<ProtoId<JobPrototype>, int?>>  _jobsAvailable = new();
         private Dictionary<NetEntity, string> _stationNames = new();
         private Dictionary<NetEntity, LocId> _stationSubtexts = new();
+        private Dictionary<NetEntity, LocId> _stationDescriptions = new();
         private Dictionary<NetEntity, ResPath> _stationIcons = new();
 
         [ViewVariables] public bool AreWeReady { get; private set; }
@@ -117,6 +118,13 @@ namespace Content.Client.GameTicking.Managers
             foreach (var subtext in message.StationSubtexts)
             {
                 _stationSubtexts[subtext.Key] = subtext.Value;
+            }
+
+            // Frontier addition: lobby onboarding feature
+            _stationDescriptions.Clear();
+            foreach (var subtext in message.StationDescriptions)
+            {
+                _stationDescriptions[stationDescription.Key] = stationDescription.Value;
             }
 
             LobbyJobsAvailableUpdated?.Invoke(JobsAvailable);

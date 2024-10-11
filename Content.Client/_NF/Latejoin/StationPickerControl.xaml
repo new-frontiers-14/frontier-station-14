@@ -1,13 +1,15 @@
 <PanelContainer xmlns="https://spacestation14.io"
-                xmlns:customControls="clr-namespace:Content.Client.Administration.UI.CustomControls"
                 xmlns:graphics="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
                 Access="Public"
-                StyleClasses="PanelBackgroundLight"
                 HorizontalExpand="True"
-                VerticalExpand="True"
-                Margin="2">
-    <BoxContainer Orientation="Horizontal">
-        <PanelContainer VerticalExpand="True" HorizontalExpand="True" StyleClasses="PanelBackgroundLight">
+                VerticalExpand="True">
+    <BoxContainer Orientation="Horizontal" HorizontalExpand="True"
+                  VerticalExpand="True">
+        <PanelContainer VerticalExpand="True" SetWidth="380">
+            <PanelContainer.PanelOverride>
+                <!-- Using PanelBackgroundLight adds padding left and right, so we manually set background color -->
+                <graphics:StyleBoxFlat BackgroundColor="#2F2F3B"/>
+            </PanelContainer.PanelOverride>
             <BoxContainer Orientation="Vertical"
                           VerticalExpand="True"
                           HorizontalExpand="True">
@@ -30,6 +32,16 @@
             <BoxContainer Orientation="Vertical"
                           VerticalExpand="True"
                           HorizontalExpand="True">
+                <BoxContainer Orientation="Vertical"
+                              VerticalExpand="True"
+                              HorizontalExpand="True">
+                    <Label Name="StationName"
+                           HorizontalExpand="True"
+                           StyleClasses="FancyWindowTitle"/>
+
+                    <RichTextLabel Name="StationSubtext"/>
+                </BoxContainer>
+
                 <ScrollContainer HorizontalExpand="True"
                                  VerticalExpand="True"
                                  VScrollEnabled="True">

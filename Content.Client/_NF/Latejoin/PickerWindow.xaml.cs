@@ -37,6 +37,7 @@ public sealed partial class PickerWindow : FancyWindow
     private Dictionary<NetEntity, string> _stationNames = new();
     private Dictionary<NetEntity, ResPath> _stationIcons = new();
     private Dictionary<NetEntity, LocId> _stationSubtexts = new();
+    private Dictionary<NetEntity, LocId> _stationDescriptions = new();
 
     private NetEntity _lastSelection;
 
@@ -88,6 +89,9 @@ public sealed partial class PickerWindow : FancyWindow
         _stationSubtexts = _gameTicker.StationSubtexts
             .Where(kvp => _gameTicker.JobsAvailable[kvp.Key].Values.Count != 0)
             .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
+        _stationDescriptions = _gameTicker.StationDescriptions
+            .Where(kvp => _gameTicker.JobsAvailable[kvp.Key].Values.Count != 0)
+            .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
         UpdateUi();
     }
 
@@ -101,7 +105,7 @@ public sealed partial class PickerWindow : FancyWindow
                 break;
             case PickerType.Station:
                 ContentContainer.AddChild(_stationPickerControl);
-                _stationPickerControl.UpdateUi(_lobbyJobs, _stationNames, _stationSubtexts, _stationIcons);
+                _stationPickerControl.UpdateUi(_lobbyJobs, _stationNames, _stationSubtexts, _stationDescriptions, _stationIcons);
                 break;
         }
     }

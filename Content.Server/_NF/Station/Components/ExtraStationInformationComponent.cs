@@ -10,4 +10,7 @@ public sealed partial class ExtraStationInformationComponent: Component
 
     [DataField]
     public LocId StationSubtext = new("frontier-lobby-frontier-subtext");
+
+    [DataField]
+    public LocId StationDescription = new("frontier-lobby-frontier-description");
 }
