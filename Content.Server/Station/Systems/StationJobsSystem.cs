@@ -511,10 +511,13 @@ public sealed partial class StationJobsSystem : EntitySystem
             LocId? stationDescription = null;
             ResPath? stationIcon = null;
             var lobbySortOrder = 0;
+            var isLateJoinStation = false;
 
             // Frontier addition
             if (EntityManager.TryGetComponent<ExtraStationInformationComponent>(station, out var extraStationInformation))
             {
+                // Any station with ExtraStationInformation is considered a latejoin station.
+                isLateJoinStation = extraStationInformation.IsLateJoinStation;
                 stationSubtext = extraStationInformation.StationSubtext;
                 stationDescription = extraStationInformation.StationDescription;
                 stationIcon = extraStationInformation.IconPath;
@@ -528,7 +531,8 @@ public sealed partial class StationJobsSystem : EntitySystem
                 stationSubtext: stationSubtext,
                 stationDescription: stationDescription,
                 stationIcon: stationIcon,
-                lobbySortOrder: lobbySortOrder
+                lobbySortOrder: lobbySortOrder,
+                isLateJoinStation: isLateJoinStation
             );
             stationJobInformationList.Add(stationNetEntity, stationJobInformation);
         }

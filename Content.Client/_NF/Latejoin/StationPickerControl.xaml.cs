@@ -105,7 +105,7 @@ public sealed partial class StationPickerControl : PanelContainer
         foreach (var (jobPrototype, jobCount) in jobInformation.JobsAvailable)
         {
             var prototype = _prototypeManager.Index(jobPrototype);
-            var jobName = $"{prototype.LocalizedName} ({jobCount?.ToString() ?? "Unlimited"})";
+            var jobName = jobCount > 0 ? $"{prototype.LocalizedName} ({jobCount})" : prototype.LocalizedName;
             Texture? texture = null;
 
             if (_prototypeManager.TryIndex(prototype.Icon, out var jobIcon))

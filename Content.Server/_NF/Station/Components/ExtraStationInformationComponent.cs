@@ -24,4 +24,10 @@ public sealed partial class ExtraStationInformationComponent: Component
      */
     [DataField]
     public int LobbySortOrder;
+
+    /**
+     * Determines if the station is a latejoin station option they can see in the latejoin menu.
+     */
+    [DataField]
+    public bool IsLateJoinStation = true;
 }

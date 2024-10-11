@@ -3,8 +3,10 @@
     xmlns:lateJoin="clr-namespace:Content.Client._NF.Latejoin"
     xmlns:cc="clr-namespace:Content.Client.Administration.UI.CustomControls"
     xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+    xmlns:xNamespace="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:maths="clr-namespace:Robust.Shared.Maths;assembly=Robust.Shared.Maths"
     Title="Join Game"
-    SetSize="600 260">
+    SetSize="600 320">
     <PanelContainer StyleClasses="BackgroundDark"></PanelContainer>
     <BoxContainer Orientation="Vertical" VerticalExpand="True" Margin="8">
 
@@ -13,6 +15,7 @@
                 Text=""
                 MinHeight="100"
                 TextAlign="Center"
+                Margin="4"
                 StyleIdentifier="mainMenu">
 
             <BoxContainer Orientation="Vertical" VerticalExpand="True" Margin="0 4 0 4">
@@ -35,6 +38,10 @@
 
                 <RichTextLabel Text="{Loc 'frontier-lobby-station-subtext'}" />
 
+                <Label Name="NoStationsAvailableLabel"
+                    Text="{Loc 'frontier-lobby-no-stations-available'}"
+                    Margin="0 4 0 4"
+                    FontColorOverride="{xNamespace:Static maths:Color.OrangeRed}" />
             </BoxContainer>
         </Button>
 
@@ -43,6 +50,7 @@
                 Text=""
                 MinHeight="100"
                 TextAlign="Center"
+                Margin="4 0 4 4"
                 StyleIdentifier="mainMenu">
 
             <BoxContainer Orientation="Vertical" VerticalExpand="True" Margin="0 4 0 4">
@@ -65,6 +73,10 @@
 
                 <RichTextLabel Text="{Loc 'frontier-lobby-crew-subtext'}" />
 
+                <Label Name="NoCrewsAvailableLabel"
+                       Text="{Loc 'frontier-lobby-no-crews-available'}"
+                       Margin="0 4 0 4"
+                       FontColorOverride="{xNamespace:Static maths:Color.OrangeRed}" />
             </BoxContainer>
         </Button>
     </BoxContainer>

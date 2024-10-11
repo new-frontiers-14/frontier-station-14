@@ -142,6 +142,9 @@ namespace Content.Shared.GameTicking
      * This data cannot be retrieved locally since you cannot access the station entity from the client.
      * @param stationName The name of the station.
      * @param jobsAvailable A dictionary of job prototypes and the number of jobs positions available for it.
+     * @param isLatejoinStation Whether or not this station is a latejoin station (== not a player ship) this is
+     *                          based on if it has the extra information component value set to true or false.
+     * @param lobbySortOrder The order in which this station should be displayed in the station picker.
      * @param stationSubtext The subtext that is shown under the station name.
      * @param stationDescription A longer description of the station, describing what the player can do there.
      * @param stationIcon The icon that represents the station and is shown next to the name.
@@ -150,6 +153,7 @@ namespace Content.Shared.GameTicking
     public sealed class StationJobInformation(
         string stationName,
         Dictionary<ProtoId<JobPrototype>, int?> jobsAvailable,
+        bool isLateJoinStation,
         int lobbySortOrder,
         LocId? stationSubtext,
         LocId? stationDescription,
@@ -158,6 +162,7 @@ namespace Content.Shared.GameTicking
     {
         public string StationName { get; } = stationName;
         public Dictionary<ProtoId<JobPrototype>, int?> JobsAvailable { get; } = jobsAvailable;
+        public bool IsLateJoinStation { get; } = isLateJoinStation;
         public int LobbySortOrder { get; } = lobbySortOrder;
         public LocId? StationSubtext { get; } = stationSubtext;
         public LocId? StationDescription { get; } = stationDescription;
@@ -170,15 +175,6 @@ namespace Content.Shared.GameTicking
     ) : EntityEventArgs
     {
         public Dictionary<NetEntity, StationJobInformation> StationJobList { get; } = stationJobList;
-
-        /**
-         * Frontier: This is a helper property that replaces the old JobsAvailableByStation property.
-         */
-        public Dictionary<NetEntity, Dictionary<ProtoId<JobPrototype>, int?>> JobsAvailableByStation =>
-            StationJobList.ToDictionary(
-                kvp => kvp.Key,
-                kvp => kvp.Value.JobsAvailable
-            );
     }
 
     [Serializable, NetSerializable, DataDefinition]
