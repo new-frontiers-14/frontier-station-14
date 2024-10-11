@@ -480,7 +480,7 @@ public sealed partial class StationJobsSystem : EntitySystem
 
     private bool _availableJobsDirty;
 
-    private TickerJobsAvailableEvent _cachedAvailableJobs = new(new(), new(), new(), new());
+    private TickerJobsAvailableEvent _cachedAvailableJobs = new(new Dictionary<NetEntity, StationJobInformation>());
 
     /// <summary>
     /// Assembles an event from the current available-to-play jobs.
@@ -491,33 +491,45 @@ public sealed partial class StationJobsSystem : EntitySystem
     {
         // If late join is disallowed, return no available jobs.
         if (_gameTicker.DisallowLateJoin)
-            return new TickerJobsAvailableEvent(new(), new(), new(), new());
-
-        var jobs = new Dictionary<NetEntity, Dictionary<ProtoId<JobPrototype>, int?>>();
-        var stationNames = new Dictionary<NetEntity, string>();
-
-        // Frontier addition: lobby onboarding feature
-        var stationSubtexts = new Dictionary<NetEntity, LocId>();
-        var stationIcons = new Dictionary<NetEntity, ResPath>();
-
+            return new TickerJobsAvailableEvent(new Dictionary<NetEntity, StationJobInformation>());
 
         var query = EntityQueryEnumerator<StationJobsComponent>();
 
+        // Frontier: the dictionary inside a dictionary replaced with <NetEntity, StationJobInformation> which is much cleaner.
+        var stationJobInformationList = new Dictionary<NetEntity, StationJobInformation>();
+
         while (query.MoveNext(out var station, out var comp))
         {
-            var netStation = GetNetEntity(station);
+            var stationNetEntity = GetNetEntity(station);
             var list = comp.JobList.ToDictionary(x => x.Key, x => x.Value);
-            jobs.Add(netStation, list);
-            stationNames.Add(netStation, Name(station));
 
-            // Frontier addition: lobby onboarding feature
+            // Frontier addition
+            // Every station can have ExtraStationInformation, which can contain a subtext, description, and icon.
+            // Typically shown for major stations, and not ships.
+            // These are shown in the latejoin menu in the pre-round lobby.
+            LocId? stationSubtext = null;
+            LocId? stationDescription = null;
+            ResPath? stationIcon = null;
+
+            // Frontier addition
             if (EntityManager.TryGetComponent<ExtraStationInformationComponent>(station, out var extraStationInformation))
             {
-                stationSubtexts.Add(netStation, extraStationInformation.StationSubtext);
-                stationIcons.Add(netStation, extraStationInformation.IconPath);
+                stationSubtext = extraStationInformation.StationSubtext;
+                stationDescription = extraStationInformation.StationDescription;
+                stationIcon = extraStationInformation.IconPath;
             }
+
+            // Frontier addition
+            var stationJobInformation = new StationJobInformation(
+                stationName: Name(station),
+                jobsAvailable: list,
+                stationSubtext: stationSubtext,
+                stationDescription: stationDescription,
+                stationIcon: stationIcon
+            );
+            stationJobInformationList.Add(stationNetEntity, stationJobInformation);
         }
-        return new TickerJobsAvailableEvent(stationNames, jobs, stationSubtexts, stationIcons);
+        return new TickerJobsAvailableEvent(stationJobInformationList);
     }
 
     /// <summary>

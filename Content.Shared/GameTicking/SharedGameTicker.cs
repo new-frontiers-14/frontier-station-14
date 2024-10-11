@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Shared.Roles;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
@@ -136,26 +137,45 @@ namespace Content.Shared.GameTicking
         }
     }
 
+    /**
+     * Frontier addition
+     * This data cannot be retrieved locally since you cannot access the station entity from the client.
+     * @param stationName The name of the station.
+     * @param jobsAvailable A dictionary of job prototypes and the number of jobs positions available for it.
+     * @param stationSubtext The subtext that is shown under the station name.
+     * @param stationDescription A longer description of the station, describing what the player can do there.
+     * @param stationIcon The icon that represents the station and is shown next to the name.
+     */
+    [Serializable, NetSerializable]
+    public sealed class StationJobInformation(
+        string stationName,
+        Dictionary<ProtoId<JobPrototype>, int?> jobsAvailable,
+        LocId? stationSubtext,
+        LocId? stationDescription,
+        ResPath? stationIcon)
+    {
+        public string StationName { get; } = stationName;
+        public Dictionary<ProtoId<JobPrototype>, int?> JobsAvailable { get; } = jobsAvailable;
+        public LocId? StationSubtext { get; } = stationSubtext;
+        public LocId? StationDescription { get; } = stationDescription;
+        public ResPath? StationIcon { get; } = stationIcon;
+    }
+
     [Serializable, NetSerializable]
     public sealed class TickerJobsAvailableEvent(
-        Dictionary<NetEntity, string> stationNames,
-        Dictionary<NetEntity, Dictionary<ProtoId<JobPrototype>, int?>> jobsAvailableByStation,
-        Dictionary<NetEntity, LocId> stationSubtexts, // Frontier addition: shown in lobby as a onboarding feature.
-        Dictionary<NetEntity, ResPath> stationIcons // Frontier addition
-        )
-        : EntityEventArgs
+        Dictionary<NetEntity, StationJobInformation> stationJobList // Frontier addition, replaced with StationJobInformation
+    ) : EntityEventArgs
     {
-        /// <summary>
-        /// The Status of the Player in the lobby (ready, observer, ...)
-        /// </summary>
-        public Dictionary<NetEntity, Dictionary<ProtoId<JobPrototype>, int?>> JobsAvailableByStation { get; } = jobsAvailableByStation;
+        public Dictionary<NetEntity, StationJobInformation> StationJobList { get; } = stationJobList;
 
-        public Dictionary<NetEntity, string> StationNames { get; } = stationNames;
-
-        // Frontier addition: shown in lobby as a onboarding feature.
-        public Dictionary<NetEntity, LocId> StationSubtexts { get; } = stationSubtexts;
-        // Frontier addition
-        public Dictionary<NetEntity, ResPath> StationIcons { get; } = stationIcons;
+        /**
+         * Frontier: This is a helper property that replaces the old JobsAvailableByStation property.
+         */
+        public Dictionary<NetEntity, Dictionary<ProtoId<JobPrototype>, int?>> JobsAvailableByStation =>
+            StationJobList.ToDictionary(
+                kvp => kvp.Key,
+                kvp => kvp.Value.JobsAvailable
+            );
     }
 
     [Serializable, NetSerializable, DataDefinition]
