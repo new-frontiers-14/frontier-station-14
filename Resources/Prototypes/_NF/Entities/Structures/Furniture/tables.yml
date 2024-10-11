@@ -1,0 +1,94 @@
+
+- type: entity
+  parent: BaseDeployFoldable
+  id: TableFolding
+  name: folding table
+  description: If you carry six of these you become the coolest kid at church.
+  components:
+  # Table bits
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Climbable
+  - type: PlaceableSurface
+  - type: Physics
+    bodyType: Dynamic
+    fixedRotation: true
+  - type: Anchorable
+  - type: Rotatable
+  - type: Pullable
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.4"
+        density: 55
+        mask: # tables should collide with other tables
+        - TableMask
+        layer:
+        - MobLayer
+  - type: Bonkable
+    bonkDamage:
+      types:
+        Blunt: 4
+    bonkSound: !type:SoundCollectionSpecifier
+      collection: TrayHit
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepHull
+  # Item bits
+  - type: MovedByPressure
+  - type: Item
+    size: Huge
+  - type: Sprite
+    sprite: _NF/Structures/Furniture/folding_table.rsi
+    layers:
+    - state: folding
+      map: ["unfoldedLayer"]
+    - state: folding_folded
+      map: ["foldedLayer"]
+      visible: false
+  - type: Appearance
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 8
+    soundHit:
+      collection: MetalThud
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+  - type: StaticPrice
+    price: 20
+  - type: Construction
+    graph: TableFoldingGraph
+    node: TableFolding
+  - type: DamageExaminable
+
+- type: entity
+  parent: TableFolding
+  id: TableFoldingSpawnFolded
+  suffix: folded
+  components:
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Dynamic
+  - type: Foldable
+    folded: true

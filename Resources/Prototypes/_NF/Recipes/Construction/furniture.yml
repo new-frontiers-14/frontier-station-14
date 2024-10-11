@@ -1126,3 +1126,21 @@
   canBuildInImpassable: false
   conditions:
     - !type:TileNotBlocked
+
+# Folding table
+- type: construction
+  id: TableFolding
+  name: folding table
+  description: A table, but foldable.
+  graph: TableFoldingGraph
+  startNode: start
+  targetNode: TableFolding
+  category: construction-category-furniture
+  icon:
+    sprite: _NF/Structures/Furniture/folding_table.rsi
+    state: folding
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
