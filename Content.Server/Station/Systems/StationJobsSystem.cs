@@ -510,6 +510,7 @@ public sealed partial class StationJobsSystem : EntitySystem
             LocId? stationSubtext = null;
             LocId? stationDescription = null;
             ResPath? stationIcon = null;
+            var lobbySortOrder = 0;
 
             // Frontier addition
             if (EntityManager.TryGetComponent<ExtraStationInformationComponent>(station, out var extraStationInformation))
@@ -517,6 +518,7 @@ public sealed partial class StationJobsSystem : EntitySystem
                 stationSubtext = extraStationInformation.StationSubtext;
                 stationDescription = extraStationInformation.StationDescription;
                 stationIcon = extraStationInformation.IconPath;
+                lobbySortOrder = extraStationInformation.LobbySortOrder;
             }
 
             // Frontier addition
@@ -525,7 +527,8 @@ public sealed partial class StationJobsSystem : EntitySystem
                 jobsAvailable: list,
                 stationSubtext: stationSubtext,
                 stationDescription: stationDescription,
-                stationIcon: stationIcon
+                stationIcon: stationIcon,
+                lobbySortOrder: lobbySortOrder
             );
             stationJobInformationList.Add(stationNetEntity, stationJobInformation);
         }

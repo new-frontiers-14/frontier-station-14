@@ -150,12 +150,15 @@ namespace Content.Shared.GameTicking
     public sealed class StationJobInformation(
         string stationName,
         Dictionary<ProtoId<JobPrototype>, int?> jobsAvailable,
+        int lobbySortOrder,
         LocId? stationSubtext,
         LocId? stationDescription,
-        ResPath? stationIcon)
+        ResPath? stationIcon
+        )
     {
         public string StationName { get; } = stationName;
         public Dictionary<ProtoId<JobPrototype>, int?> JobsAvailable { get; } = jobsAvailable;
+        public int LobbySortOrder { get; } = lobbySortOrder;
         public LocId? StationSubtext { get; } = stationSubtext;
         public LocId? StationDescription { get; } = stationDescription;
         public ResPath? StationIcon { get; } = stationIcon;
