@@ -6,6 +6,7 @@ lathe-menu-search-designs = Поиск проектов
 lathe-menu-category-all = Всё
 lathe-menu-search-filter = Фильтр
 lathe-menu-amount = Кол-во:
+lathe-menu-reagent-slot-examine = Сбоку имеется слот для мензурки.
 lathe-menu-material-display = { $material } { $amount }
 lathe-menu-tooltip-display = { $amount } { $material }
 lathe-menu-description-display = [italic]{ $description }[/italic]

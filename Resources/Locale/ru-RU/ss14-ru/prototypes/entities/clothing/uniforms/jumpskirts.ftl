@@ -124,3 +124,5 @@ ent-ClothingUniformJumpskirtOldDress = старое платье
     .desc = Очень старое поношенное платье.
 ent-ClothingUniformJumpskirtMusician = юбка музыканта
     .desc = Модная юбка для музыкально настроенных людей. Идеально подойдёт для любого выступления в стиле лаунж!
+ent-ClothingUniformJumpskirtPsychologist = юбка психолога
+    .desc = Я не часто теряю вещи, но иногда мне кажется, что я не могу их найти после того, как куда-то положил.
