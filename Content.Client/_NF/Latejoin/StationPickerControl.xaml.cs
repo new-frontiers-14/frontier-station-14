@@ -74,13 +74,14 @@ public sealed partial class StationPickerControl : PanelContainer
 
         // Build station jobs, the right section of the screen.
         StationJobItemList.RemoveAllChildren();
-        foreach (var jobViewState in BuildStationJobViewStateList(obj))
+        foreach (var jobViewState in BuildStationJobViewStateList(obj[_lastSelectedStation!.StationEntity]))
         {
             var item = new StationJobListItem(jobViewState);
             item.OnPressed += _ =>
             {
                 _sawmill.Info($"Late joining as ID: {jobViewState.JobId}");
-                _consoleHost.ExecuteCommand($"joingame {CommandParsing.Escape(jobViewState.JobId)} {_lastSelectedStation?.StationEntity}");
+                _consoleHost.ExecuteCommand(
+                    $"joingame {CommandParsing.Escape(jobViewState.JobId)} {_lastSelectedStation?.StationEntity}");
                 ExitedTree();
             };
             StationJobItemList.AddChild(item);
@@ -96,26 +97,23 @@ public sealed partial class StationPickerControl : PanelContainer
         UpdateUi(_lobbyJobs);
     }
 
-    private List<StationJobItemViewState> BuildStationJobViewStateList(IReadOnlyDictionary<NetEntity, StationJobInformation> obj)
+    private List<StationJobItemViewState> BuildStationJobViewStateList(StationJobInformation jobInformation)
     {
         var viewStateList = new List<StationJobItemViewState>();
 
-        foreach (var (_, jobInformation) in obj)
+        foreach (var (jobPrototype, jobCount) in jobInformation.JobsAvailable)
         {
-            foreach (var (jobPrototype, jobCount) in jobInformation.JobsAvailable)
+            var prototype = _prototypeManager.Index(jobPrototype);
+            var jobName = $"{prototype.LocalizedName} ({jobCount?.ToString() ?? "Unlimited"})";
+            Texture? texture = null;
+
+            if (_prototypeManager.TryIndex(prototype.Icon, out var jobIcon))
             {
-                var prototype = _prototypeManager.Index(jobPrototype);
-                var jobName = $"{prototype.LocalizedName} ({jobInformation?.ToString() ?? "Unlimited"})";
-                Texture? texture = null;
-
-                if (_prototypeManager.TryIndex(prototype.Icon, out var jobIcon))
-                {
-                    texture = _spriteSystem.Frame0(jobIcon.Icon);
-                }
-
-                var viewState = new StationJobItemViewState(jobPrototype, jobName, jobCount == 0, texture);
-                viewStateList.Add(viewState);
+                texture = _spriteSystem.Frame0(jobIcon.Icon);
             }
+
+            var viewState = new StationJobItemViewState(jobPrototype, jobName, jobCount == 0, texture);
+            viewStateList.Add(viewState);
         }
 
         return viewStateList;
@@ -128,7 +126,8 @@ public sealed partial class StationPickerControl : PanelContainer
      * @param stationNames Dictionary of station entities to station names.
      * @return List of view states for each station.
      */
-    private List<StationItemViewState> BuildStationViewStateList(IReadOnlyDictionary<NetEntity, StationJobInformation> obj)
+    private List<StationItemViewState> BuildStationViewStateList(
+        IReadOnlyDictionary<NetEntity, StationJobInformation> obj)
     {
         var viewStateList = new List<StationItemViewState>();
 
@@ -137,8 +136,12 @@ public sealed partial class StationPickerControl : PanelContainer
             var viewState = new StationItemViewState(
                 stationEntity,
                 stationJobInformation.StationName,
-                stationJobInformation.StationSubtext ?? "",
-                stationJobInformation.StationDescription ?? "",
+                stationJobInformation.StationSubtext != null
+                    ? _loc.GetString(stationJobInformation.StationSubtext)
+                    : "",
+                stationJobInformation.StationDescription != null
+                    ? _loc.GetString(stationJobInformation.StationDescription)
+                    : "",
                 _lastSelectedStation?.StationEntity == stationEntity,
                 stationJobInformation.StationIcon?.CanonPath
             );
@@ -150,6 +153,7 @@ public sealed partial class StationPickerControl : PanelContainer
                 _lastSelectedStation = viewState;
                 viewState.Selected = true;
             }
+
             viewStateList.Add(viewState);
         }
 
