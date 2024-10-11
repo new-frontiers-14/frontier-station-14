@@ -43,12 +43,12 @@
     layers:
     - state: sleeper_0
       map: ["base"]
-  # - type: UserInterface # TODO: implement with client-side code (UI, visualizer)
-  #   interfaces:
-  #     enum.MedicalBountyUIKey.Key:
-  #       type: MedicalBountyBoundUserInterface # TODO: copy cloning UI
-  # - type: ActivatableUI
-  #   key: enum.MedicalBountyUIKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.MedicalBountyRedemptionUiKey.Key:
+        type: MedicalBountyRedemptionBoundUserInterface
+  - type: ActivatableUI
+    key: enum.MedicalBountyRedemptionUiKey.Key
   - type: InteractionOutline
   - type: Physics
     bodyType: Static
@@ -70,7 +70,8 @@
   - type: ContainerContainer
     containers:
       body_container: !type:ContainerSlot
-  - type: MedicalBountyRedeemer
+  - type: MedicalBountyRedemption
+    bodyContainer: body_container
   # - type: Appearance # TODO: implement with client-side code (UI, visualizer)
   # - type: GenericVisualizer
   #   visuals:
