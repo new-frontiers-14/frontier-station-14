@@ -317,9 +317,16 @@ entities:
       parent: 1
 - proto: BedsheetNfsdBrigmedic
   entities:
-  - uid: 67
+  - uid: 176
     components:
     - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 1.5,0.5
+      parent: 1
+  - uid: 177
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
       pos: 1.5,-2.5
       parent: 1
 - proto: CableApcExtension
@@ -486,15 +493,11 @@ entities:
       rot: 3.141592653589793 rad
       pos: 0.5,3.5
       parent: 1
-  - uid: 51
+  - uid: 53
     components:
     - type: Transform
-      pos: -0.5,0.5
-      parent: 1
-  - uid: 52
-    components:
-    - type: Transform
-      pos: 1.5,0.5
+      rot: -1.5707963267948966 rad
+      pos: 1.5,-3.5
       parent: 1
 - proto: ClosetWallO2N2FilledRandom
   entities:
@@ -567,6 +570,14 @@ entities:
     components:
     - type: Transform
       pos: -0.5,4.5
+      parent: 1
+- proto: FirelockGlass
+  entities:
+  - uid: 51
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 0.5,1.5
       parent: 1
 - proto: GasMixerOn
   entities:
@@ -845,7 +856,12 @@ entities:
       parent: 1
 - proto: MedicalBed
   entities:
-  - uid: 53
+  - uid: 23
+    components:
+    - type: Transform
+      pos: 1.5,0.5
+      parent: 1
+  - uid: 52
     components:
     - type: Transform
       pos: 1.5,-2.5
@@ -1027,10 +1043,10 @@ entities:
       parent: 1
 - proto: StasisBed
   entities:
-  - uid: 23
+  - uid: 67
     components:
     - type: Transform
-      pos: 1.5,-3.5
+      pos: -0.5,0.5
       parent: 1
 - proto: SubstationWallBasic
   entities:
