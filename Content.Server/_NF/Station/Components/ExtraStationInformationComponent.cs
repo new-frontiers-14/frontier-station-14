@@ -6,11 +6,11 @@ namespace Content.Server._NF.Station.Components;
 public sealed partial class ExtraStationInformationComponent: Component
 {
     [DataField]
-    public ResPath IconPath = new("/Textures/Interface/Misc/beakerlarge.png");
+    public ResPath? IconPath;
 
     [DataField]
-    public LocId StationSubtext = new("frontier-lobby-frontier-subtext");
+    public LocId? StationSubtext;
 
     [DataField]
-    public LocId StationDescription = new("frontier-lobby-frontier-description");
+    public LocId? StationDescription;
 }

@@ -34,14 +34,18 @@
                           HorizontalExpand="True">
                 <BoxContainer Orientation="Vertical"
                               VerticalExpand="True"
-                              HorizontalExpand="True">
+                              HorizontalExpand="True"
+                              Margin="20">
                     <Label Name="StationName"
                            HorizontalExpand="True"
                            StyleClasses="FancyWindowTitle"/>
 
-                    <RichTextLabel Name="StationSubtext"/>
+                    <RichTextLabel Name="StationDescription"/>
                 </BoxContainer>
 
+                <Label Text="{Loc 'frontier-lobby-available-jobs'}"
+                       Margin="20 4 0 4"
+                       StyleClasses="FancyWindowTitle"/>
                 <ScrollContainer HorizontalExpand="True"
                                  VerticalExpand="True"
                                  VScrollEnabled="True">

@@ -88,7 +88,7 @@ public sealed partial class StationPickerControl : PanelContainer
         }
 
         StationName.Text = _lastSelectedStation?.StationName ?? "";
-        StationSubtext.Text = _lastSelectedStation?.StationSubtext ?? "";
+        StationDescription.Text = _lastSelectedStation?.StationDescription ?? "";
     }
 
     private void OnStationPressed(StationItemViewState stationItemViewState)
