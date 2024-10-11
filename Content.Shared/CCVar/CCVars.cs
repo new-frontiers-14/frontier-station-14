@@ -178,7 +178,7 @@ namespace Content.Shared.CCVar
         ///     Controls the game map prototype to load. SS14 stores these prototypes in Prototypes/Maps.
         /// </summary>
         public static readonly CVarDef<string>
-            GameMap = CVarDef.Create("game.map", "Frontier", CVar.SERVERONLY); // Corvax-Frontier
+            GameMap = CVarDef.Create("game.map", "corvaxFrontier", CVar.SERVERONLY); // Corvax-Frontier
 
         /// <summary>
         ///     Controls whether to use world persistence or not.
