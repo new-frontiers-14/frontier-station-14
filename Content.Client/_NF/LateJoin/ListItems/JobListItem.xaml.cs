@@ -25,6 +25,7 @@ public sealed partial class JobListItem : Button
         RobustXamlLoader.Load(this);
         JobText.Text = state.JobName;
         JobIcon.Texture = state.JobIcon;
+        ToolTip = state.ToolTip;
         Disabled = state.Disabled;
     }
 }

@@ -78,6 +78,7 @@ public sealed partial class StationPickerControl : PickerControl
             {
                 continue;
             }
+
             var prototype = _prototypeManager.Index(jobPrototype);
             var jobName = prototype.LocalizedName + jobCount.WrapJobCountInParentheses();
             Texture? texture = null;
@@ -87,8 +88,20 @@ public sealed partial class StationPickerControl : PickerControl
                 texture = _spriteSystem.Frame0(jobIcon.Icon);
             }
 
+            var buttonTooltip = "";
+            if (!_jobReqs.IsAllowed(prototype, profile, out var denyReason))
+            {
+                buttonTooltip = denyReason.ToString();
+            }
+
             var isButtonDisabled = jobCount == 0 || !_jobReqs.IsAllowed(prototype, profile, out _);
-            var viewState = new JobListItem.ViewState(jobPrototype, jobName, isButtonDisabled, texture);
+            var viewState = new JobListItem.ViewState(
+                jobId: jobPrototype,
+                jobName: jobName,
+                toolTip: buttonTooltip,
+                disabled: isButtonDisabled,
+                jobIcon: texture
+            );
             viewStateList.Add(viewState);
         }
 
