@@ -6,7 +6,6 @@
   description: A convenient place to store perishables.
   suffix: Frontier, White
   components:
-  - type: Weldable
   - type: ExplosionResistance
     damageCoefficient: 0.50
   - type: AntiRottingContainer
@@ -22,11 +21,8 @@
     - state: locked
       map: ["enum.LockVisualLayers.Lock"]
       shader: unshaded
-    - state: welded
-      visible: false
-      map: ["enum.WeldableLayers.BaseWelded"]
   - type: StorageFillVisualizer
-    maxFillLevels: 7
+    maxFillLevels: 10
     fillBaseName: food
   - type: Destructible
     thresholds:
@@ -79,9 +75,6 @@
     - state: locked
       map: ["enum.LockVisualLayers.Lock"]
       shader: unshaded
-    - state: welded
-      visible: false
-      map: ["enum.WeldableLayers.BaseWelded"]
   - type: Construction
     graph: WallFreezer
     node: ShelfWallFreezerDark
