@@ -43,7 +43,7 @@ public sealed partial class CrewPickerControl : PickerControl
 
         // Build station jobs, the right section of the screen.
         StationJobItemList.RemoveAllChildren();
-        foreach (var jobViewState in BuildStationJobViewStateList(obj[_lastSelectedStation!.StationEntity]))
+        foreach (var jobViewState in BuildJobViewStateList(obj[_lastSelectedStation!.StationEntity]))
         {
             var item = new JobListItem(jobViewState);
             item.OnPressed += _ =>
@@ -63,7 +63,7 @@ public sealed partial class CrewPickerControl : PickerControl
         UpdateUi(_lobbyJobs);
     }
 
-    private List<JobListItem.ViewState> BuildStationJobViewStateList(StationJobInformation jobInformation)
+    private List<JobListItem.ViewState> BuildJobViewStateList(StationJobInformation jobInformation)
     {
         var viewStateList = new List<JobListItem.ViewState>();
 

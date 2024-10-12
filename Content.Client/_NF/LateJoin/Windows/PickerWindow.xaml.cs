@@ -60,7 +60,10 @@ public sealed partial class PickerWindow : FancyWindow
         base.OpenCentered();
 
         // This is the place to change the default tab.
-        SetCurrentTab(PickerType.StationOrCrewLarge);
+        if (_currentTab == null)
+        {
+            SetCurrentTab(PickerType.StationOrCrewLarge);
+        }
     }
 
     protected override void ExitedTree()
