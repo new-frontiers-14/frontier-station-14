@@ -26,7 +26,7 @@ public sealed partial class CrewPickerControl : PickerControl
     }
 
     private Dictionary<NetEntity, StationJobInformation> _lobbyJobs = new();
-    private StationListItem.ViewState? _lastSelectedStation;
+    private CrewListItem.ViewState? _lastSelectedStation;
     public Action<NetEntity, string>? OnJobJoined;
 
     public override void UpdateUi(IReadOnlyDictionary<NetEntity, StationJobInformation> obj)
@@ -36,7 +36,7 @@ public sealed partial class CrewPickerControl : PickerControl
 
         foreach (var stationViewState in BuildStationViewStateList(_lobbyJobs))
         {
-            var item = new StationListItem(stationViewState);
+            var item = new CrewListItem(stationViewState);
             item.StationButton.OnPressed += _ => OnStationPressed(stationViewState);
             StationItemList.AddChild(item);
         }
@@ -57,7 +57,7 @@ public sealed partial class CrewPickerControl : PickerControl
         StationDescription.Text = _lastSelectedStation?.StationDescription ?? "";
     }
 
-    private void OnStationPressed(StationListItem.ViewState stationItemViewState)
+    private void OnStationPressed(CrewListItem.ViewState stationItemViewState)
     {
         _lastSelectedStation = stationItemViewState;
         UpdateUi(_lobbyJobs);
@@ -92,15 +92,15 @@ public sealed partial class CrewPickerControl : PickerControl
      * @param stationNames Dictionary of station entities to station names.
      * @return List of view states for each station.
      */
-    private List<StationListItem.ViewState> BuildStationViewStateList(
+    private List<CrewListItem.ViewState> BuildStationViewStateList(
         IReadOnlyDictionary<NetEntity, StationJobInformation> obj)
     {
         var stationList = obj.Where(kvp => !kvp.Value.IsLateJoinStation).ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
-        var viewStateList = new List<StationListItem.ViewState>();
+        var viewStateList = new List<CrewListItem.ViewState>();
 
         foreach (var (stationEntity, stationJobInformation) in stationList)
         {
-            var viewState = new StationListItem.ViewState(
+            var viewState = new CrewListItem.ViewState(
                 stationEntity,
                 stationJobInformation.GetStationNameWithJobCount(),
                 stationJobInformation.StationSubtext != null
