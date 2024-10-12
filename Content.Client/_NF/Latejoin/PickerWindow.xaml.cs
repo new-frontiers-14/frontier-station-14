@@ -20,11 +20,13 @@ public sealed partial class PickerWindow : FancyWindow
 
     public enum PickerType
     {
+        StationOrCrewLarge,
         Crew,
         Station,
     }
 
     private PickerType _currentTab;
+    private readonly StationOrCrewLargeControl _stationOrCrewLargeControl = new();
     private readonly CrewPickerControl _crewPickerControl = new();
     private readonly StationPickerControl _stationPickerControl = new();
 
@@ -90,6 +92,11 @@ public sealed partial class PickerWindow : FancyWindow
         ContentContainer.RemoveAllChildren();
         switch (_currentTab)
         {
+            case PickerType.StationOrCrewLarge:
+                ContentContainer.AddChild(_stationOrCrewLargeControl);
+                // Set the tab change callback once.
+                _stationOrCrewLargeControl.OnTabChange ??= tab => _currentTab = tab;
+                break;
             case PickerType.Crew:
                 ContentContainer.AddChild(_crewPickerControl);
                 break;

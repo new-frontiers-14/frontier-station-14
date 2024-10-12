@@ -98,7 +98,11 @@ namespace Content.Client.Lobby
             {
                 return;
             }
-            new StationOrCrewPickerWindow().OpenCentered();
+            // Frontier to downstream: if you want to skip the first window and go straight to station picker,
+            // simply change the enum to station or crew.
+            // Often times there is simply no crew and the station picker is now made much fancier and gives more
+            // onboarding information options, so we are completely overwriting the old spawn menu.
+            new PickerWindow(PickerWindow.PickerType.StationOrCrewLarge).OpenCentered();
         }
 
         private void OnReadyToggled(BaseButton.ButtonToggledEventArgs args)
