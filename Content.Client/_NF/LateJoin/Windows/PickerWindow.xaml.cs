@@ -78,14 +78,18 @@ public sealed partial class PickerWindow : FancyWindow
         var availableJobs = obj.Where(kvp => kvp.Value.JobsAvailable.Values.Count != 0)
             .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
 
-        var stationJobs = availableJobs.Where(kvp => kvp.Value.IsLateJoinStation).ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
-        var crewJobs = availableJobs.Where(kvp => !kvp.Value.IsLateJoinStation).ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
+        var stationJobs = availableJobs.Where(kvp => kvp.Value.IsLateJoinStation)
+            .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
+        var crewJobs = availableJobs.Where(kvp => !kvp.Value.IsLateJoinStation)
+            .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
 
         StationTabLabel.Text = _loc.GetString("frontier-lobby-station-title") + stationJobs.GetJobSumCountString();
-        StationTabButton.Disabled = !StationJobInformationExtensions.IsAnyStationAvailable(availableJobs) || _currentTab?.Type == PickerType.Station;
+        StationTabButton.Disabled = !StationJobInformationExtensions.IsAnyStationAvailable(availableJobs) ||
+                                    _currentTab?.Type == PickerType.Station;
 
         CrewTabLabel.Text = _loc.GetString("frontier-lobby-crew-title") + crewJobs.GetJobSumCountString();
-        CrewTabButton.Disabled = !StationJobInformationExtensions.IsAnyCrewJobAvailable(availableJobs) || _currentTab?.Type == PickerType.Crew;
+        CrewTabButton.Disabled = !StationJobInformationExtensions.IsAnyCrewJobAvailable(availableJobs) ||
+                                 _currentTab?.Type == PickerType.Crew;
 
         _currentTab?.Control.UpdateUi(availableJobs);
     }
@@ -97,6 +101,7 @@ public sealed partial class PickerWindow : FancyWindow
         {
             return;
         }
+
         ContentContainer.RemoveAllChildren();
 
         switch (pickerType)
@@ -129,7 +134,8 @@ public sealed partial class PickerWindow : FancyWindow
     {
         _sawmill.Info($"Late joining as ID: {jobId}");
         _consoleHost.ExecuteCommand(
-            $"joingame {CommandParsing.Escape(jobId)} {stationEntity}");
+            $"joingame {CommandParsing.Escape(jobId)} {stationEntity}"
+        );
 
         Close();
     }

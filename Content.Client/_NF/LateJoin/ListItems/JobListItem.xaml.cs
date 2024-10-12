@@ -8,12 +8,14 @@ namespace Content.Client._NF.LateJoin.ListItems;
 [GenerateTypedNameReferences]
 public sealed partial class JobListItem : Button
 {
-    public sealed class ViewState(string jobId, string jobName, bool disabled, Texture? jobIcon)
+    public sealed class ViewState(string jobId, string jobName, string toolTip, bool disabled, Texture? jobIcon)
     {
         public string JobId { get; } = jobId;
         public string JobName { get; } = jobName;
 
         public bool Disabled { get; } = disabled;
+
+        public string ToolTip { get; } = toolTip;
 
         public Texture? JobIcon { get; } = jobIcon;
     }
