@@ -2,12 +2,12 @@
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
 
-namespace Content.Client._NF.Latejoin;
+namespace Content.Client._NF.Latejoin.ListItems;
 
 [GenerateTypedNameReferences]
 public sealed partial class StationJobListItem : Button
 {
-    public StationJobListItem(StationPickerControl.StationJobItemViewState state)
+    public StationJobListItem(Controls.StationPickerControl.StationJobItemViewState state)
     {
         RobustXamlLoader.Load(this);
         JobText.Text = state.JobName;

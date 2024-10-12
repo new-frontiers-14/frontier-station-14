@@ -2,13 +2,13 @@
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
 
-namespace Content.Client._NF.Latejoin;
+namespace Content.Client._NF.Latejoin.ListItems;
 
 [GenerateTypedNameReferences]
 public sealed partial class StationPickerListItem : PanelContainer
 {
 
-    public StationPickerListItem(StationPickerControl.StationItemViewState state)
+    public StationPickerListItem(Controls.StationPickerControl.StationItemViewState state)
     {
         RobustXamlLoader.Load(this);
 

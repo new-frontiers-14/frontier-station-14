@@ -5,11 +5,9 @@ using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
-using Robust.Shared.Console;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Utility;
 
-namespace Content.Client._NF.Latejoin;
+namespace Content.Client._NF.Latejoin.Controls;
 
 [GenerateTypedNameReferences]
 public sealed partial class StationPickerControl : PanelContainer
@@ -65,7 +63,7 @@ public sealed partial class StationPickerControl : PanelContainer
 
         foreach (var stationViewState in BuildStationViewStateList(_lobbyJobs))
         {
-            var item = new StationPickerListItem(stationViewState);
+            var item = new ListItems.StationPickerListItem(stationViewState);
             item.StationButton.OnPressed += _ => OnStationPressed(stationViewState);
             StationItemList.AddChild(item);
         }
@@ -74,7 +72,7 @@ public sealed partial class StationPickerControl : PanelContainer
         StationJobItemList.RemoveAllChildren();
         foreach (var jobViewState in BuildStationJobViewStateList(obj[_lastSelectedStation!.StationEntity]))
         {
-            var item = new StationJobListItem(jobViewState);
+            var item = new ListItems.StationJobListItem(jobViewState);
             item.OnPressed += _ =>
             {
                 OnJobJoined?.Invoke(_lastSelectedStation.StationEntity, jobViewState.JobId);

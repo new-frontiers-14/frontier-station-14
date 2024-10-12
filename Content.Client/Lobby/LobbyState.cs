@@ -12,6 +12,7 @@ using Robust.Client.ResourceManagement;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Timing;
+using PickerWindow = Content.Client._NF.Latejoin.Windows.PickerWindow;
 
 
 namespace Content.Client.Lobby
