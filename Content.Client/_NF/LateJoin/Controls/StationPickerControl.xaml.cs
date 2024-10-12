@@ -7,7 +7,7 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Prototypes;
 
-namespace Content.Client._NF.Latejoin.Controls;
+namespace Content.Client._NF.LateJoin.Controls;
 
 [GenerateTypedNameReferences]
 public sealed partial class StationPickerControl : PanelContainer

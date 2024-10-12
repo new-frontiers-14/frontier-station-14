@@ -7,7 +7,7 @@ using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Console;
 using Robust.Shared.Utility;
 
-namespace Content.Client._NF.Latejoin.Windows;
+namespace Content.Client._NF.LateJoin.Windows;
 
 [GenerateTypedNameReferences]
 public sealed partial class PickerWindow : FancyWindow

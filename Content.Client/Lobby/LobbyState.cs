@@ -1,4 +1,4 @@
-using Content.Client._NF.Latejoin;
+using Content.Client._NF.LateJoin;
 using Content.Client.Audio;
 using Content.Client.Eui;
 using Content.Client.GameTicking.Managers;
@@ -12,7 +12,7 @@ using Robust.Client.ResourceManagement;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Timing;
-using PickerWindow = Content.Client._NF.Latejoin.Windows.PickerWindow;
+using PickerWindow = Content.Client._NF.LateJoin.Windows.PickerWindow;
 
 
 namespace Content.Client.Lobby

@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using Content.Shared.GameTicking;
 
-namespace Content.Client._NF.Latejoin;
+namespace Content.Client._NF.LateJoin;
 
 public static class StationJobInformationExtensions
 {
