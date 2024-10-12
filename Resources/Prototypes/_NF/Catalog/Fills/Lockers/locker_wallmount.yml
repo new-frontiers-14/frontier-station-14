@@ -189,7 +189,7 @@
   parent: [ LockerWallEVAColorLvhi, StorageFillEVASuitLvhi ]
   id: LockerWallEVAColorLvhiFilled
   suffix: Frontier, Filled
-#endregion
+# endregion
 
 # region Emergency
 - type: entity
@@ -220,6 +220,12 @@
   - LockerWallMedicalFilled
   name: medicine wall locker
   suffix: Filled, Frontier
+# endregion
+
+# region Chemistry
+- type: entity
+  id: LockerWallChemistryFilled
+  parent: [LockerWallChemistry, LockerChemistryFilled]
 
 - type: entity
   id: LockerWallColorChemistryFilled
@@ -229,10 +235,4 @@
   - BaseWallmount
   - LockerChemistryFilled
   name: chemistry wall locker
-# endregion
-
-# region Chemistry
-- type: entity
-  id: LockerWallChemistryFilled
-  parent: [LockerWallChemistry, LockerChemistryFilled]
 # endregion
