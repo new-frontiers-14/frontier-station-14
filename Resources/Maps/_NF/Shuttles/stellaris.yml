@@ -357,7 +357,7 @@ entities:
       parent: 1
 - proto: AirAlarm
   entities:
-  - uid: 584
+  - uid: 518
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
@@ -365,113 +365,59 @@ entities:
       parent: 1
     - type: DeviceList
       devices:
+      - 510
+      - 475
+      - 621
+      - 620
+      - 531
+      - 466
+      - 509
+      - 476
+      - 623
+      - 622
+      - 571
+      - 572
+      - 573
+      - 574
+      - 575
+      - 576
+      - 577
+      - 578
+      - 579
+      - 568
+      - 567
+      - 569
       - 580
       - 581
       - 582
       - 583
-      - 567
-      - 569
-      - 481
       - 601
-  - uid: 586
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 7.5,-4.5
-      parent: 1
-    - type: DeviceList
-      devices:
-      - 476
-      - 595
-      - 509
-      - 623
-      - 622
-  - uid: 587
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -6.5,-4.5
-      parent: 1
-    - type: DeviceList
-      devices:
-      - 475
-      - 594
-      - 510
-      - 620
-      - 621
-  - uid: 588
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 7.5,-7.5
-      parent: 1
-    - type: DeviceList
-      devices:
-      - 483
-      - 605
-      - 596
-      - 569
-  - uid: 589
+      - 478
+  - uid: 519
     components:
     - type: Transform
       pos: -0.5,9.5
       parent: 1
     - type: DeviceList
       devices:
-      - 592
-      - 497
-      - 550
-      - 558
-      - 559
-      - 570
-  - uid: 590
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 3.5,10.5
-      parent: 1
-    - type: DeviceList
-      devices:
-      - 599
       - 557
       - 507
       - 570
-  - uid: 591
+      - 550
+      - 497
+      - 558
+      - 559
+  - uid: 538
     components:
     - type: Transform
       rot: 3.141592653589793 rad
-      pos: -2.5,-4.5
+      pos: -3.5,-4.5
       parent: 1
     - type: DeviceList
       devices:
-      - 579
-      - 578
-      - 577
-      - 576
-      - 575
-      - 574
-      - 573
-      - 572
-      - 571
-      - 531
-      - 593
-      - 466
-      - 559
-      - 558
-      - 580
-      - 581
-      - 582
-      - 583
-      - 567
-      - 568
-      - 620
-      - 621
-      - 623
-      - 622
       - 450
-      - 413
-      - 598
       - 216
+      - 413
 - proto: Airlock
   entities:
   - uid: 192
@@ -549,59 +495,6 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 8.5,-1.5
-      parent: 1
-- proto: AirSensor
-  entities:
-  - uid: 592
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 0.5,7.5
-      parent: 1
-  - uid: 593
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 0.5,-1.5
-      parent: 1
-  - uid: 594
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -6.5,-2.5
-      parent: 1
-  - uid: 595
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 7.5,-2.5
-      parent: 1
-  - uid: 596
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 6.5,-8.5
-      parent: 1
-  - uid: 597
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 0.5,-7.5
-      parent: 1
-  - uid: 598
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -4.5,-7.5
-      parent: 1
-    - type: DeviceNetwork
-      deviceLists:
-      - 591
-  - uid: 599
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 0.5,10.5
       parent: 1
 - proto: APCBasic
   entities:
@@ -705,7 +598,6 @@ entities:
       parent: 1
     - type: Physics
       canCollide: False
-      bodyType: Static
     - type: Fixtures
       fixtures: {}
 - proto: BenchSofaCorpLeft
@@ -716,8 +608,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 2.5,7.5
       parent: 1
-    - type: Physics
-      bodyType: Static
 - proto: BenchSofaCorpRight
   entities:
   - uid: 249
@@ -725,8 +615,6 @@ entities:
     - type: Transform
       pos: 1.5,8.5
       parent: 1
-    - type: Physics
-      bodyType: Static
 - proto: BikeHorn
   entities:
   - uid: 442
@@ -1788,86 +1676,150 @@ entities:
       parent: 1
     - type: DeviceNetwork
       deviceLists:
-      - 591
+      - 538
   - uid: 558
     components:
     - type: Transform
       pos: -4.5,3.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 519
   - uid: 559
     components:
     - type: Transform
       pos: 5.5,3.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 519
   - uid: 567
     components:
     - type: Transform
       pos: 3.5,-4.5
       parent: 1
+    - type: DeviceNetwork
+      configurators:
+      - invalid
+      deviceLists:
+      - 518
   - uid: 568
     components:
     - type: Transform
       pos: 5.5,-4.5
       parent: 1
+    - type: DeviceNetwork
+      configurators:
+      - invalid
+      deviceLists:
+      - 518
   - uid: 569
     components:
     - type: Transform
       pos: 4.5,-7.5
       parent: 1
+    - type: DeviceNetwork
+      configurators:
+      - invalid
+      deviceLists:
+      - 518
   - uid: 570
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 0.5,9.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 519
   - uid: 580
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -1.5,-5.5
       parent: 1
+    - type: DeviceNetwork
+      configurators:
+      - invalid
+      deviceLists:
+      - 518
   - uid: 581
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -0.5,-5.5
       parent: 1
+    - type: DeviceNetwork
+      configurators:
+      - invalid
+      deviceLists:
+      - 518
   - uid: 582
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 0.5,-5.5
       parent: 1
+    - type: DeviceNetwork
+      configurators:
+      - invalid
+      deviceLists:
+      - 518
   - uid: 583
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 1.5,-5.5
       parent: 1
+    - type: DeviceNetwork
+      configurators:
+      - invalid
+      deviceLists:
+      - 518
   - uid: 620
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -5.5,-3.5
       parent: 1
+    - type: DeviceNetwork
+      configurators:
+      - invalid
+      deviceLists:
+      - 518
   - uid: 621
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -5.5,-1.5
       parent: 1
+    - type: DeviceNetwork
+      configurators:
+      - invalid
+      deviceLists:
+      - 518
   - uid: 622
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 6.5,-3.5
       parent: 1
+    - type: DeviceNetwork
+      configurators:
+      - invalid
+      deviceLists:
+      - 518
   - uid: 623
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 6.5,-1.5
       parent: 1
+    - type: DeviceNetwork
+      configurators:
+      - invalid
+      deviceLists:
+      - 518
 - proto: FirelockEdge
   entities:
   - uid: 571
@@ -1876,54 +1828,99 @@ entities:
       rot: 3.141592653589793 rad
       pos: -3.5,-0.5
       parent: 1
+    - type: DeviceNetwork
+      configurators:
+      - invalid
+      deviceLists:
+      - 518
   - uid: 572
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -2.5,-0.5
       parent: 1
+    - type: DeviceNetwork
+      configurators:
+      - invalid
+      deviceLists:
+      - 518
   - uid: 573
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -1.5,-0.5
       parent: 1
+    - type: DeviceNetwork
+      configurators:
+      - invalid
+      deviceLists:
+      - 518
   - uid: 574
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -0.5,-0.5
       parent: 1
+    - type: DeviceNetwork
+      configurators:
+      - invalid
+      deviceLists:
+      - 518
   - uid: 575
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 0.5,-0.5
       parent: 1
+    - type: DeviceNetwork
+      configurators:
+      - invalid
+      deviceLists:
+      - 518
   - uid: 576
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 1.5,-0.5
       parent: 1
+    - type: DeviceNetwork
+      configurators:
+      - invalid
+      deviceLists:
+      - 518
   - uid: 577
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 2.5,-0.5
       parent: 1
+    - type: DeviceNetwork
+      configurators:
+      - invalid
+      deviceLists:
+      - 518
   - uid: 578
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 3.5,-0.5
       parent: 1
+    - type: DeviceNetwork
+      configurators:
+      - invalid
+      deviceLists:
+      - 518
   - uid: 579
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 4.5,-0.5
       parent: 1
+    - type: DeviceNetwork
+      configurators:
+      - invalid
+      deviceLists:
+      - 518
 - proto: FloorDrain
   entities:
   - uid: 454
@@ -2709,7 +2706,7 @@ entities:
       parent: 1
     - type: DeviceNetwork
       deviceLists:
-      - 591
+      - 538
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 466
@@ -2717,6 +2714,11 @@ entities:
     - type: Transform
       pos: 0.5,-2.5
       parent: 1
+    - type: DeviceNetwork
+      configurators:
+      - invalid
+      deviceLists:
+      - 518
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 475
@@ -2725,6 +2727,11 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -6.5,-3.5
       parent: 1
+    - type: DeviceNetwork
+      configurators:
+      - invalid
+      deviceLists:
+      - 518
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 476
@@ -2733,6 +2740,11 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 7.5,-3.5
       parent: 1
+    - type: DeviceNetwork
+      configurators:
+      - invalid
+      deviceLists:
+      - 518
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 478
@@ -2741,6 +2753,11 @@ entities:
       rot: 3.141592653589793 rad
       pos: 5.5,-5.5
       parent: 1
+    - type: DeviceNetwork
+      configurators:
+      - invalid
+      deviceLists:
+      - 518
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 481
@@ -2764,6 +2781,9 @@ entities:
     - type: Transform
       pos: -3.5,7.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 519
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 507
@@ -2772,6 +2792,9 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 2.5,10.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 519
     - type: AtmosPipeColor
       color: '#0055CCFF'
 - proto: GasVentScrubber
@@ -2784,7 +2807,7 @@ entities:
       parent: 1
     - type: DeviceNetwork
       deviceLists:
-      - 591
+      - 538
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 509
@@ -2793,6 +2816,11 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 7.5,-1.5
       parent: 1
+    - type: DeviceNetwork
+      configurators:
+      - invalid
+      deviceLists:
+      - 518
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 510
@@ -2801,6 +2829,11 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -6.5,-1.5
       parent: 1
+    - type: DeviceNetwork
+      configurators:
+      - invalid
+      deviceLists:
+      - 518
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 531
@@ -2808,6 +2841,11 @@ entities:
     - type: Transform
       pos: 0.5,-0.5
       parent: 1
+    - type: DeviceNetwork
+      configurators:
+      - invalid
+      deviceLists:
+      - 518
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 550
@@ -2815,12 +2853,26 @@ entities:
     - type: Transform
       pos: 4.5,7.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 519
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 557
     components:
     - type: Transform
       pos: 1.5,10.5
+      parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 519
+    - type: AtmosPipeColor
+      color: '#990000FF'
+  - uid: 566
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 5.5,-8.5
       parent: 1
     - type: AtmosPipeColor
       color: '#990000FF'
@@ -2829,14 +2881,11 @@ entities:
     - type: Transform
       pos: 1.5,-7.5
       parent: 1
-    - type: AtmosPipeColor
-      color: '#990000FF'
-  - uid: 605
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 5.5,-8.5
-      parent: 1
+    - type: DeviceNetwork
+      configurators:
+      - invalid
+      deviceLists:
+      - 518
     - type: AtmosPipeColor
       color: '#990000FF'
 - proto: GravityGeneratorMini
