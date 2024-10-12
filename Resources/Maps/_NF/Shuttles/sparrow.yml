@@ -1407,6 +1407,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 3.5,-0.5
       parent: 174
+    - type: AtmosPipeColor
+      color: '#0055CCFF'
   - uid: 266
     components:
     - type: Transform
@@ -1494,8 +1496,6 @@ entities:
       pos: 5.5,1.5
       parent: 174
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 76
     - type: AtmosPipeColor
@@ -1735,7 +1735,7 @@ entities:
     - type: Transform
       pos: -5.5,1.5
       parent: 174
-- proto: LockerWallMaterialsFuelPlasmaFilled
+- proto: LockerWallMaterialsFuelPlasmaFilled2
   entities:
   - uid: 335
     components:
@@ -1927,13 +1927,6 @@ entities:
     components:
     - type: Transform
       pos: -5.5,-2.5
-      parent: 174
-- proto: SheetPlasma
-  entities:
-  - uid: 167
-    components:
-    - type: Transform
-      pos: 3.491716,1.719785
       parent: 174
 - proto: ShuttleWindow
   entities:
