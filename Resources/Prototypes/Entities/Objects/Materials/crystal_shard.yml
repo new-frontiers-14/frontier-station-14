@@ -39,6 +39,17 @@
         acts: [ "Destruction" ]
   - type: StaticPrice
     price: 50
+  - type: Extractable
+    grindableSolutionName: food
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Ethanol
+          Quantity: 15
+        - ReagentId: Sugar
+          Quantity: 15
+
 
 - type: entity
   parent: ShardCrystalBase
