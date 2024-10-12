@@ -95,7 +95,7 @@ public sealed partial class CrewPickerControl : PickerControl
     private List<StationListItem.ViewState> BuildStationViewStateList(
         IReadOnlyDictionary<NetEntity, StationJobInformation> obj)
     {
-        var stationList = obj.Where(kvp => kvp.Value.IsLateJoinStation).ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
+        var stationList = obj.Where(kvp => !kvp.Value.IsLateJoinStation).ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
         var viewStateList = new List<StationListItem.ViewState>();
 
         foreach (var (stationEntity, stationJobInformation) in stationList)
