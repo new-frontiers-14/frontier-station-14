@@ -60,65 +60,62 @@ entities:
       version: 2
       data:
         tiles:
-          0,0:
-            0: 65535
-          0,1:
-            0: 61167
-            1: 4112
-          0,2:
-            0: 65535
-          1,0:
-            0: 13105
-            1: 2
-          1,1:
-            0: 8193
-            1: 4146
-          1,2:
-            0: 29553
-            1: 1026
           0,-1:
-            1: 4096
-            0: 57344
-          1,-1:
-            1: 12288
-          -1,-1:
-            1: 32768
-          -1,2:
-            0: 51392
-            1: 1032
+            0: 4096
+            1: 40960
+          0,0:
+            1: 65450
           -1,0:
-            1: 8
-            0: 34944
+            0: 8
+          0,1:
+            0: 4112
+            1: 17486
           -1,1:
-            1: 136
-            0: 32768
+            0: 136
+          0,2:
+            1: 65534
+          -1,2:
+            0: 1032
+            1: 32768
           0,3:
-            0: 255
-          1,3:
-            0: 119
+            1: 15
           -1,3:
-            0: 204
+            1: 8
+          1,0:
+            1: 4352
+            0: 2
+          1,1:
+            0: 4146
+          1,2:
+            1: 12560
+            0: 1026
+          1,3:
+            1: 3
+          1,-1:
+            0: 12288
+          -1,-1:
+            0: 32768
         uniqueMixes:
+        - volume: 2500
+          immutable: True
+          moles:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           temperature: 293.15
           moles:
           - 21.824879
           - 82.10312
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-        - volume: 2500
-          temperature: 293.15
-          moles:
-          - 0
-          - 0
           - 0
           - 0
           - 0
@@ -136,8 +133,6 @@ entities:
   entities:
   - uid: 3
     components:
-    - type: MetaData
-      flags: InContainer
     - type: Transform
       parent: 1
     - type: InstantAction
@@ -152,37 +147,19 @@ entities:
       parent: 2
     - type: DeviceList
       devices:
-      - 281
+      - 161
       - 104
-      - 277
+      - 163
       - 95
-    - type: AtmosDevice
-      joinedGrid: 2
-- proto: AirCanister
-  entities:
-  - uid: 290
-    components:
-    - type: Transform
-      anchored: True
-      pos: 4.5,10.5
-      parent: 2
-    - type: Physics
-      bodyType: Static
-    - type: AtmosDevice
-      joinedGrid: 2
 - proto: AirlockExternal
   entities:
   - uid: 146
     components:
-    - type: MetaData
-      flags: PvsPriority
     - type: Transform
       pos: 3.5,1.5
       parent: 2
   - uid: 147
     components:
-    - type: MetaData
-      flags: PvsPriority
     - type: Transform
       pos: 1.5,1.5
       parent: 2
@@ -198,15 +175,11 @@ entities:
   entities:
   - uid: 144
     components:
-    - type: MetaData
-      flags: PvsPriority
     - type: Transform
       pos: 3.5,-0.5
       parent: 2
   - uid: 145
     components:
-    - type: MetaData
-      flags: PvsPriority
     - type: Transform
       pos: 1.5,-0.5
       parent: 2
@@ -218,19 +191,17 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 3.5,6.5
       parent: 2
-- proto: AtmosDeviceFanTiny
+- proto: AtmosDeviceFanDirectional
   entities:
-  - uid: 68
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 3.5,-0.5
-      parent: 2
   - uid: 69
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
       pos: 1.5,-0.5
+      parent: 2
+  - uid: 72
+    components:
+    - type: Transform
+      pos: 3.5,-0.5
       parent: 2
 - proto: AtmosFixBlockerMarker
   entities:
@@ -344,8 +315,6 @@ entities:
   entities:
   - uid: 230
     components:
-    - type: MetaData
-      flags: InContainer
     - type: Transform
       parent: 220
     - type: Physics
@@ -353,8 +322,6 @@ entities:
     - type: InsideEntityStorage
   - uid: 247
     components:
-    - type: MetaData
-      flags: InContainer
     - type: Transform
       parent: 244
     - type: Physics
@@ -364,8 +331,6 @@ entities:
   entities:
   - uid: 224
     components:
-    - type: MetaData
-      flags: InContainer
     - type: Transform
       parent: 220
     - type: Physics
@@ -373,8 +338,6 @@ entities:
     - type: InsideEntityStorage
   - uid: 228
     components:
-    - type: MetaData
-      flags: InContainer
     - type: Transform
       parent: 220
     - type: Physics
@@ -382,8 +345,6 @@ entities:
     - type: InsideEntityStorage
   - uid: 250
     components:
-    - type: MetaData
-      flags: InContainer
     - type: Transform
       parent: 244
     - type: Physics
@@ -391,8 +352,6 @@ entities:
     - type: InsideEntityStorage
   - uid: 254
     components:
-    - type: MetaData
-      flags: InContainer
     - type: Transform
       parent: 244
     - type: Physics
@@ -595,8 +554,6 @@ entities:
   entities:
   - uid: 223
     components:
-    - type: MetaData
-      flags: InContainer
     - type: Transform
       parent: 220
     - type: Physics
@@ -604,8 +561,6 @@ entities:
     - type: InsideEntityStorage
   - uid: 245
     components:
-    - type: MetaData
-      flags: InContainer
     - type: Transform
       parent: 244
     - type: Physics
@@ -729,8 +684,6 @@ entities:
   entities:
   - uid: 225
     components:
-    - type: MetaData
-      flags: InContainer
     - type: Transform
       parent: 220
     - type: Physics
@@ -738,8 +691,6 @@ entities:
     - type: InsideEntityStorage
   - uid: 227
     components:
-    - type: MetaData
-      flags: InContainer
     - type: Transform
       parent: 220
     - type: Physics
@@ -747,8 +698,6 @@ entities:
     - type: InsideEntityStorage
   - uid: 246
     components:
-    - type: MetaData
-      flags: InContainer
     - type: Transform
       parent: 244
     - type: Physics
@@ -756,8 +705,6 @@ entities:
     - type: InsideEntityStorage
   - uid: 249
     components:
-    - type: MetaData
-      flags: InContainer
     - type: Transform
       parent: 244
     - type: Physics
@@ -787,11 +734,11 @@ entities:
       parent: 2
 - proto: ExtinguisherCabinetFilled
   entities:
-  - uid: 82
+  - uid: 182
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
-      pos: 5.5,10.5
+      pos: 4.5,4.5
       parent: 2
 - proto: FaxMachineShip
   entities:
@@ -808,6 +755,19 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 2.5,7.5
       parent: 2
+- proto: GasMixerOnFlipped
+  entities:
+  - uid: 148
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 3.5,10.5
+      parent: 2
+    - type: GasMixer
+      inletTwoConcentration: 0.20999998
+      inletOneConcentration: 0.79
+    - type: AtmosPipeColor
+      color: '#0055CCFF'
 - proto: GasPassiveVent
   entities:
   - uid: 108
@@ -815,8 +775,6 @@ entities:
     - type: Transform
       pos: -0.5,5.5
       parent: 2
-    - type: AtmosDevice
-      joinedGrid: 2
     - type: AtmosPipeColor
       color: '#990000FF'
 - proto: GasPipeBend
@@ -845,21 +803,22 @@ entities:
       parent: 2
     - type: AtmosPipeColor
       color: '#990000FF'
-  - uid: 271
+  - uid: 102
     components:
     - type: Transform
-      pos: 2.5,11.5
+      rot: 3.141592653589793 rad
+      pos: 3.5,9.5
       parent: 2
     - type: AtmosPipeColor
       color: '#0055CCFF'
-  - uid: 279
+  - uid: 162
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: 3.5,11.5
+      pos: 2.5,10.5
       parent: 2
     - type: AtmosPipeColor
-      color: '#990000FF'
+      color: '#0055CCFF'
 - proto: GasPipeStraight
   entities:
   - uid: 90
@@ -901,14 +860,6 @@ entities:
       parent: 2
     - type: AtmosPipeColor
       color: '#0055CCFF'
-  - uid: 265
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 2.5,8.5
-      parent: 2
-    - type: AtmosPipeColor
-      color: '#0055CCFF'
   - uid: 266
     components:
     - type: Transform
@@ -933,21 +884,6 @@ entities:
       parent: 2
     - type: AtmosPipeColor
       color: '#0055CCFF'
-  - uid: 272
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 1.5,11.5
-      parent: 2
-    - type: AtmosPipeColor
-      color: '#0055CCFF'
-  - uid: 275
-    components:
-    - type: Transform
-      pos: 3.5,10.5
-      parent: 2
-    - type: AtmosPipeColor
-      color: '#990000FF'
   - uid: 284
     components:
     - type: Transform
@@ -972,24 +908,16 @@ entities:
       parent: 2
     - type: AtmosPipeColor
       color: '#990000FF'
-  - uid: 287
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 3.5,8.5
-      parent: 2
-    - type: AtmosPipeColor
-      color: '#990000FF'
-  - uid: 288
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 3.5,9.5
-      parent: 2
-    - type: AtmosPipeColor
-      color: '#990000FF'
 - proto: GasPipeTJunction
   entities:
+  - uid: 116
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 2.5,8.5
+      parent: 2
+    - type: AtmosPipeColor
+      color: '#0055CCFF'
   - uid: 121
     components:
     - type: Transform
@@ -998,46 +926,32 @@ entities:
       parent: 2
     - type: AtmosPipeColor
       color: '#990000FF'
-  - uid: 263
+- proto: GasPort
+  entities:
+  - uid: 68
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 2.5,10.5
+      rot: -1.5707963267948966 rad
+      pos: 4.5,9.5
       parent: 2
     - type: AtmosPipeColor
       color: '#0055CCFF'
-- proto: GasPort
-  entities:
   - uid: 289
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 4.5,10.5
       parent: 2
-    - type: AtmosDevice
-      joinedGrid: 2
     - type: AtmosPipeColor
       color: '#0055CCFF'
-- proto: GasPressurePump
+- proto: GasPressurePumpOnMax
   entities:
-  - uid: 100
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 3.5,10.5
-      parent: 2
-    - type: AtmosDevice
-      joinedGrid: 2
-    - type: AtmosPipeColor
-      color: '#0055CCFF'
-  - uid: 102
+  - uid: 164
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 1.5,4.5
       parent: 2
-    - type: AtmosDevice
-      joinedGrid: 2
     - type: AtmosPipeColor
       color: '#990000FF'
 - proto: GasVentPump
@@ -1051,21 +965,17 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 160
-    - type: AtmosDevice
-      joinedGrid: 2
     - type: AtmosPipeColor
       color: '#0055CCFF'
-  - uid: 277
+  - uid: 163
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: 0.5,11.5
+      pos: 1.5,8.5
       parent: 2
     - type: DeviceNetwork
       deviceLists:
       - 160
-    - type: AtmosDevice
-      joinedGrid: 2
     - type: AtmosPipeColor
       color: '#0055CCFF'
 - proto: GasVentScrubber
@@ -1079,21 +989,16 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 160
-    - type: AtmosDevice
-      joinedGrid: 2
     - type: AtmosPipeColor
       color: '#990000FF'
-  - uid: 281
+  - uid: 161
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 4.5,11.5
+      pos: 3.5,8.5
       parent: 2
     - type: DeviceNetwork
       deviceLists:
       - 160
-    - type: AtmosDevice
-      joinedGrid: 2
     - type: AtmosPipeColor
       color: '#990000FF'
 - proto: GravityGeneratorMini
@@ -1164,12 +1069,11 @@ entities:
     - type: Transform
       pos: 2.5,0.5
       parent: 2
-- proto: hydroponicsTray
+- proto: hydroponicsTrayAnchored
   entities:
   - uid: 75
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
       pos: -0.5,11.5
       parent: 2
 - proto: LampBanana
@@ -1177,7 +1081,7 @@ entities:
   - uid: 1
     components:
     - type: Transform
-      pos: 4.787325,9.869072
+      pos: 0.72970486,10.401932
       parent: 2
     - type: HandheldLight
       toggleActionEntity: 3
@@ -1202,6 +1106,24 @@ entities:
     - type: Transform
       pos: 1.5,8.5
       parent: 2
+- proto: LockerWallMaterialsFuelPlasmaFilled
+  entities:
+  - uid: 82
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 5.5,10.5
+      parent: 2
+- proto: NitrogenCanister
+  entities:
+  - uid: 143
+    components:
+    - type: Transform
+      anchored: True
+      pos: 4.5,10.5
+      parent: 2
+    - type: Physics
+      bodyType: Static
 - proto: NitrousOxideCanister
   entities:
   - uid: 103
@@ -1209,8 +1131,16 @@ entities:
     - type: Transform
       pos: 4.5,12.5
       parent: 2
-    - type: AtmosDevice
-      joinedGrid: 2
+- proto: OxygenCanister
+  entities:
+  - uid: 100
+    components:
+    - type: Transform
+      anchored: True
+      pos: 4.5,9.5
+      parent: 2
+    - type: Physics
+      bodyType: Static
 - proto: PaintingSadClown
   entities:
   - uid: 198
@@ -1223,34 +1153,29 @@ entities:
   - uid: 12
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 4.3622794,9.353447
+      pos: 0.38595486,10.704016
       parent: 2
   - uid: 15
     components:
     - type: Transform
-      pos: 4.36545,9.509697
+      pos: 0.6880381,10.735266
       parent: 2
   - uid: 17
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 4.2216544,9.712822
+      pos: 0.32345486,10.412349
       parent: 2
-- proto: PortableGeneratorPacman
+- proto: PortableGeneratorPacmanShuttle
   entities:
-  - uid: 72
+  - uid: 180
     components:
     - type: Transform
-      anchored: True
       pos: 5.5,11.5
       parent: 2
-    - type: MaterialStorage
-      storage:
-        Plasma: 3000
+    - type: FuelGenerator
+      on: False
     - type: Physics
       bodyType: Static
-    - type: InsertingMaterialStorage
 - proto: PosterContrabandClown
   entities:
   - uid: 197
@@ -1262,24 +1187,18 @@ entities:
   entities:
   - uid: 109
     components:
-    - type: MetaData
-      flags: PvsPriority
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 4.5,10.5
       parent: 2
   - uid: 142
     components:
-    - type: MetaData
-      flags: PvsPriority
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 0.5,10.5
       parent: 2
   - uid: 203
     components:
-    - type: MetaData
-      flags: PvsPriority
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 2.5,2.5
@@ -1296,8 +1215,6 @@ entities:
   entities:
   - uid: 221
     components:
-    - type: MetaData
-      flags: InContainer
     - type: Transform
       parent: 220
     - type: Physics
@@ -1305,22 +1222,11 @@ entities:
     - type: InsideEntityStorage
   - uid: 248
     components:
-    - type: MetaData
-      flags: InContainer
     - type: Transform
       parent: 244
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: SheetPlasma
-  entities:
-  - uid: 148
-    components:
-    - type: Transform
-      pos: 5.5232024,11.547904
-      parent: 2
-    - type: Stack
-      count: 15
 - proto: ShuttleWindow
   entities:
   - uid: 7
@@ -1397,8 +1303,6 @@ entities:
   entities:
   - uid: 229
     components:
-    - type: MetaData
-      flags: InContainer
     - type: Transform
       parent: 220
     - type: Physics
@@ -1406,8 +1310,6 @@ entities:
     - type: InsideEntityStorage
   - uid: 252
     components:
-    - type: MetaData
-      flags: InContainer
     - type: Transform
       parent: 244
     - type: Physics
@@ -1452,10 +1354,10 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 1.5,12.5
       parent: 2
-  - uid: 143
+  - uid: 181
     components:
     - type: Transform
-      pos: 4.5,9.5
+      pos: 0.5,10.5
       parent: 2
 - proto: Thruster
   entities:
@@ -1486,8 +1388,6 @@ entities:
   entities:
   - uid: 226
     components:
-    - type: MetaData
-      flags: InContainer
     - type: Transform
       parent: 220
     - type: Physics
@@ -1495,8 +1395,6 @@ entities:
     - type: InsideEntityStorage
   - uid: 231
     components:
-    - type: MetaData
-      flags: InContainer
     - type: Transform
       parent: 220
     - type: Physics
@@ -1504,8 +1402,6 @@ entities:
     - type: InsideEntityStorage
   - uid: 253
     components:
-    - type: MetaData
-      flags: InContainer
     - type: Transform
       parent: 244
     - type: Physics
@@ -1513,8 +1409,6 @@ entities:
     - type: InsideEntityStorage
   - uid: 255
     components:
-    - type: MetaData
-      flags: InContainer
     - type: Transform
       parent: 244
     - type: Physics
@@ -1543,219 +1437,159 @@ entities:
   entities:
   - uid: 4
     components:
-    - type: MetaData
-      flags: PvsPriority
     - type: Transform
       pos: 2.5,-0.5
       parent: 2
   - uid: 6
     components:
-    - type: MetaData
-      flags: PvsPriority
     - type: Transform
       pos: 4.5,0.5
       parent: 2
   - uid: 9
     components:
-    - type: MetaData
-      flags: PvsPriority
     - type: Transform
       pos: 0.5,0.5
       parent: 2
   - uid: 23
     components:
-    - type: MetaData
-      flags: PvsPriority
     - type: Transform
       pos: 3.5,5.5
       parent: 2
   - uid: 24
     components:
-    - type: MetaData
-      flags: PvsPriority
     - type: Transform
       pos: 1.5,5.5
       parent: 2
   - uid: 25
     components:
-    - type: MetaData
-      flags: PvsPriority
     - type: Transform
       pos: 2.5,1.5
       parent: 2
   - uid: 26
     components:
-    - type: MetaData
-      flags: PvsPriority
     - type: Transform
       pos: 4.5,1.5
       parent: 2
   - uid: 27
     components:
-    - type: MetaData
-      flags: PvsPriority
     - type: Transform
       pos: 0.5,1.5
       parent: 2
   - uid: 28
     components:
-    - type: MetaData
-      flags: PvsPriority
     - type: Transform
       pos: 3.5,6.5
       parent: 2
   - uid: 29
     components:
-    - type: MetaData
-      flags: PvsPriority
     - type: Transform
       pos: 1.5,6.5
       parent: 2
   - uid: 30
     components:
-    - type: MetaData
-      flags: PvsPriority
     - type: Transform
       pos: 1.5,7.5
       parent: 2
   - uid: 33
     components:
-    - type: MetaData
-      flags: PvsPriority
     - type: Transform
       pos: 3.5,7.5
       parent: 2
   - uid: 38
     components:
-    - type: MetaData
-      flags: PvsPriority
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 5.5,9.5
       parent: 2
   - uid: 41
     components:
-    - type: MetaData
-      flags: PvsPriority
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -0.5,9.5
       parent: 2
   - uid: 42
     components:
-    - type: MetaData
-      flags: PvsPriority
     - type: Transform
       pos: -1.5,12.5
       parent: 2
   - uid: 43
     components:
-    - type: MetaData
-      flags: PvsPriority
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 6.5,13.5
       parent: 2
   - uid: 45
     components:
-    - type: MetaData
-      flags: PvsPriority
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 6.5,11.5
       parent: 2
   - uid: 47
     components:
-    - type: MetaData
-      flags: PvsPriority
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -0.5,13.5
       parent: 2
   - uid: 48
     components:
-    - type: MetaData
-      flags: PvsPriority
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 6.5,12.5
       parent: 2
   - uid: 50
     components:
-    - type: MetaData
-      flags: PvsPriority
     - type: Transform
       pos: -1.5,11.5
       parent: 2
   - uid: 51
     components:
-    - type: MetaData
-      flags: PvsPriority
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -1.5,13.5
       parent: 2
   - uid: 52
     components:
-    - type: MetaData
-      flags: PvsPriority
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 5.5,13.5
       parent: 2
   - uid: 114
     components:
-    - type: MetaData
-      flags: PvsPriority
     - type: Transform
       pos: 5.5,1.5
       parent: 2
   - uid: 115
     components:
-    - type: MetaData
-      flags: PvsPriority
     - type: Transform
       pos: -0.5,1.5
       parent: 2
   - uid: 124
     components:
-    - type: MetaData
-      flags: PvsPriority
     - type: Transform
       pos: 4.5,4.5
       parent: 2
   - uid: 125
     components:
-    - type: MetaData
-      flags: PvsPriority
     - type: Transform
       pos: 0.5,4.5
       parent: 2
   - uid: 126
     components:
-    - type: MetaData
-      flags: PvsPriority
     - type: Transform
       pos: 5.5,10.5
       parent: 2
   - uid: 127
     components:
-    - type: MetaData
-      flags: PvsPriority
     - type: Transform
       pos: 4.5,8.5
       parent: 2
   - uid: 128
     components:
-    - type: MetaData
-      flags: PvsPriority
     - type: Transform
       pos: 0.5,8.5
       parent: 2
   - uid: 129
     components:
-    - type: MetaData
-      flags: PvsPriority
     - type: Transform
       pos: -0.5,10.5
       parent: 2
@@ -1863,8 +1697,6 @@ entities:
   entities:
   - uid: 222
     components:
-    - type: MetaData
-      flags: InContainer
     - type: Transform
       parent: 220
     - type: Physics
@@ -1872,8 +1704,6 @@ entities:
     - type: InsideEntityStorage
   - uid: 251
     components:
-    - type: MetaData
-      flags: InContainer
     - type: Transform
       parent: 244
     - type: Physics
