@@ -8,7 +8,15 @@
   # Table bits
   - type: Clickable
   - type: InteractionOutline
-  # - type: Climbable # Pointless without player-table collision, but I'll keep it
+  - type: Climbable # Pointless without player-table collision, but I'll keep it
+  - type: GlassTable
+    climberDamage:
+      types:
+        Blunt: 15
+    tableDamage:
+      types:
+        Blunt: 25
+    tableMassLimit: 60
   - type: PlaceableSurface
   - type: Physics
     bodyType: Dynamic
@@ -62,19 +70,27 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 100
+        damage: 15
       behaviors:
         - !type:DoActsBehavior
           acts: [ "Destruction" ]
+        - !type:PlaySoundBehavior
+          sound:
+            collection: MetalBreak
     - trigger:
         !type:DamageTrigger
-        damage: 50
+        damage: 5
       behaviors:
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
       - !type:PlaySoundBehavior
         sound:
           collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetPlastic1:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
   - type: StaticPrice
     price: 20
   - type: Construction
