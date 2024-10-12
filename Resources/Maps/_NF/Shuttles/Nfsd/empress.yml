@@ -1491,7 +1491,7 @@ entities:
     - type: Transform
       pos: 24.5,2.5
       parent: 1
-- proto: AirlockMedicalGlassSecurity
+- proto: AirlockMedicalGlassLockedSecurity
   entities:
   - uid: 678
     components:
@@ -6129,13 +6129,6 @@ entities:
     - type: Transform
       pos: 26.70925,5.241996
       parent: 1
-- proto: CloningPod
-  entities:
-  - uid: 585
-    components:
-    - type: Transform
-      pos: 1.5,5.5
-      parent: 1
 - proto: ClosetWall
   entities:
   - uid: 530
@@ -6214,13 +6207,11 @@ entities:
     - type: Transform
       pos: -0.5,-14.5
       parent: 1
-- proto: ComputerCloningConsole
-  entities:
-  - uid: 586
+- proto: ComputerFrame
+  - uid: 587
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 1.5,7.5
+      pos: 1.5,6.5
       parent: 1
 - proto: ComputerPowerMonitoring
   entities:
@@ -11354,6 +11345,13 @@ entities:
     - type: Transform
       pos: -1.0400991,8.540887
       parent: 1
+- proto: IntercomCommon
+  entities:
+  - uid: 2664
+    components:
+    - type: Transform
+      pos: -19.5,-1.5
+      parent: 1
 - proto: IntercomNfsd
   entities:
   - uid: 662
@@ -11660,6 +11658,17 @@ entities:
       parent: 1
 - proto: MachineFrame
   entities:
+  - uid: 585
+    components:
+    - type: Transform
+      pos: 1.5,5.5
+      parent: 1
+  - uid: 586
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 1.5,7.5
+      parent: 1
   - uid: 1161
     components:
     - type: Transform
@@ -11693,13 +11702,6 @@ entities:
     components:
     - type: Transform
       pos: -2.5,2.5
-      parent: 1
-- proto: MedicalScanner
-  entities:
-  - uid: 587
-    components:
-    - type: Transform
-      pos: 1.5,6.5
       parent: 1
 - proto: MedicalTechFab
   entities:
