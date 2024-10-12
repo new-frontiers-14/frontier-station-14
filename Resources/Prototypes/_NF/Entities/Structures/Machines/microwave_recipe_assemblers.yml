@@ -125,6 +125,22 @@
       - Temperature
 
 - type: entity
+  id: SyndicateKitchenElectricRange
+  parent: KitchenElectricRange
+  name: donk co. electric range
+  components:
+  - type: Microwave
+    cookTimeMultiplier: 0.5
+  - type: Sprite
+    sprite: _NF/Structures/Machines/oven_syndie.rsi
+  - type: Machine
+    board: SyndicateElectricRangeMachineCircuitboard
+  - type: FoodRecipeProvider
+    providedRecipes:
+    - RecipeBaguetteSword
+    - RecipeThrowingCroissant
+
+- type: entity
   id: KitchenAssembler
   parent: KitchenMicrowave
   name: food-o-mat
