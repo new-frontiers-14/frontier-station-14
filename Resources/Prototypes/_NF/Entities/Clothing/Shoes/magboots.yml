@@ -29,6 +29,36 @@
     magbootsAlert: MagbootsNfsd
 
 - type: entity
+  parent: [ClothingShoesBootsMag, BaseJetpack, ClothingShoesBase, BaseC1Contraband]
+  id: ClothingShoesBootsMagNfsdAdv
+  description: Advanced magnetic boots, with better mobility and now including integrated thrusters. It can hold up to 0.75 L of gas.
+  name: nfsd advanced magboots
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Shoes/Boots/magboots-combat.rsi #legally distinct until there is there is better sprites.
+    state: icon
+  - type: Clothing
+    sprite: _NF/Clothing/Shoes/Boots/magboots-combat.rsi
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 1
+  - type: GasTank #Frontier extra component for the jetpack fun
+    outputPressure: 42.6
+    air:
+      # 2 minutes of thrust
+      volume: 0.75
+      temperature: 293.15
+      moles:
+        - 0.153853429 # oxygen
+        - 0.153853429 # nitrogen
+  - type: Item #ugly solution used on the syndicate ones to not show the jetpack sprite
+    sprite: null
+    size: Normal
+  - type: Magboots
+    magbootsAlert: MagbootsNfsd
+
+
+- type: entity
   parent: [BaseC3PirateContraband, ClothingShoesBootsMagCombat]
   id: ClothingShoesBootsMagPirate
   name: pirate magboots

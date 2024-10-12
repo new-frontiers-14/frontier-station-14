@@ -471,6 +471,22 @@
           - SecurityUplink
 
 - type: listing
+  id: UplinkSecurityMagbootsAdvanced
+  name:  uplink-security-magboots-advanced-name
+  description: uplink-security-magboots-advanced-desc
+  productEntity: ClothingShoesBootsMagNfsdAdv
+  icon: { sprite: _NF/Clothing/Shoes/Boots/magboots-combat.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 3
+  categories:
+    - UplinkSecurityUtility
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+
+- type: listing
   id: UplinkNfsdTechfab
   name:  uplink-security-techfab-name
   description: uplink-security-techfab-desc
