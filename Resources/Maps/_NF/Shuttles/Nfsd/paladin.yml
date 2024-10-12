@@ -19,7 +19,7 @@ entities:
   - uid: 1
     components:
     - type: MetaData
-      name: Templar
+      name: Paladin
     - type: Transform
       pos: -0.4917612,-0.4486041
       parent: invalid
@@ -117,8 +117,9 @@ entities:
       data:
         tiles:
           0,0:
-            0: 21255
+            0: 4871
             1: 3200
+            2: 16384
           0,-1:
             0: 32563
             1: 32776
@@ -127,7 +128,7 @@ entities:
             1: 546
           0,1:
             1: 48
-            0: 68
+            2: 68
           -1,1:
             1: 192
           -1,-1:
@@ -155,6 +156,21 @@ entities:
           - 0
         - volume: 2500
           immutable: True
+          moles:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          temperature: 293.15
           moles:
           - 0
           - 0
@@ -208,14 +224,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 1.5,2.5
       parent: 1
-- proto: AlwaysPoweredLightExterior
-  entities:
-  - uid: 37
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 1.5,5.5
-      parent: 1
 - proto: APCBasic
   entities:
   - uid: 69
@@ -256,6 +264,103 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -2.5,-1.5
       parent: 1
+- proto: AtmosFixBlockerMarker
+  entities:
+  - uid: 115
+    components:
+    - type: Transform
+      pos: -2.5,2.5
+      parent: 1
+  - uid: 171
+    components:
+    - type: Transform
+      pos: -2.5,1.5
+      parent: 1
+  - uid: 172
+    components:
+    - type: Transform
+      pos: -2.5,0.5
+      parent: 1
+  - uid: 173
+    components:
+    - type: Transform
+      pos: -1.5,5.5
+      parent: 1
+  - uid: 174
+    components:
+    - type: Transform
+      pos: -0.5,5.5
+      parent: 1
+  - uid: 175
+    components:
+    - type: Transform
+      pos: 0.5,5.5
+      parent: 1
+  - uid: 176
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 1.5,5.5
+      parent: 1
+  - uid: 177
+    components:
+    - type: Transform
+      pos: 2.5,5.5
+      parent: 1
+  - uid: 178
+    components:
+    - type: Transform
+      pos: 2.5,4.5
+      parent: 1
+  - uid: 179
+    components:
+    - type: Transform
+      pos: 2.5,3.5
+      parent: 1
+  - uid: 180
+    components:
+    - type: Transform
+      pos: 2.5,2.5
+      parent: 1
+  - uid: 181
+    components:
+    - type: Transform
+      pos: 3.5,2.5
+      parent: 1
+  - uid: 182
+    components:
+    - type: Transform
+      pos: 3.5,-3.5
+      parent: 1
+  - uid: 183
+    components:
+    - type: Transform
+      pos: 3.5,-4.5
+      parent: 1
+  - uid: 185
+    components:
+    - type: Transform
+      pos: -2.5,-3.5
+      parent: 1
+  - uid: 186
+    components:
+    - type: Transform
+      pos: -2.5,-4.5
+      parent: 1
+- proto: ButtonFrameCaution
+  entities:
+  - uid: 37
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -1.5,4.5
+      parent: 1
+  - uid: 118
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -1.5,3.5
+      parent: 1
 - proto: ButtonFrameCautionSecurity
   entities:
   - uid: 43
@@ -263,11 +368,6 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 1.5,3.5
-      parent: 1
-  - uid: 167
-    components:
-    - type: Transform
-      pos: 1.5,1.5
       parent: 1
 - proto: CableApcExtension
   entities:
@@ -305,11 +405,6 @@ entities:
     components:
     - type: Transform
       pos: 1.5,-3.5
-      parent: 1
-  - uid: 115
-    components:
-    - type: Transform
-      pos: 0.5,-3.5
       parent: 1
   - uid: 117
     components:
@@ -634,6 +729,21 @@ entities:
     - type: Transform
       pos: 0.5,0.5
       parent: 1
+- proto: Firelock
+  entities:
+  - uid: 184
+    components:
+    - type: Transform
+      pos: -0.5,1.5
+      parent: 1
+- proto: FirelockEdge
+  entities:
+  - uid: 187
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 0.5,-2.5
+      parent: 1
 - proto: GasPassiveVent
   entities:
   - uid: 103
@@ -902,15 +1012,6 @@ entities:
         - Pressed: Toggle
         67:
         - Pressed: Toggle
-  - uid: 118
-    components:
-    - type: Transform
-      pos: 1.5,1.5
-      parent: 1
-    - type: DeviceLinkSource
-      linkedPorts:
-        132:
-        - Pressed: Trigger
 - proto: LockerNfsdSilverDetectiveFilled
   entities:
   - uid: 116
@@ -986,17 +1087,27 @@ entities:
       rot: 3.141592653589793 rad
       pos: 1.5,-3.5
       parent: 1
-  - uid: 36
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 0.5,3.5
-      parent: 1
   - uid: 126
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 2.5,-1.5
+      parent: 1
+- proto: PoweredlightColoredFrostyBlue
+  entities:
+  - uid: 36
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 1.5,5.5
+      parent: 1
+- proto: PoweredlightRed
+  entities:
+  - uid: 167
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 0.5,3.5
       parent: 1
 - proto: Railing
   entities:
@@ -1012,6 +1123,18 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -1.5,5.5
       parent: 1
+- proto: RemoteSignaller
+  entities:
+  - uid: 170
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 2.555489,-0.021983266
+      parent: 1
+    - type: DeviceLinkSource
+      linkedPorts:
+        132:
+        - Pressed: Trigger
 - proto: ShuttersWindow
   entities:
   - uid: 42
@@ -1241,6 +1364,14 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -1.5,-0.5
+      parent: 1
+- proto: WarpPointShip
+  entities:
+  - uid: 188
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 0.5,-0.5
       parent: 1
 - proto: WeaponCapacitorRecharger
   entities:
