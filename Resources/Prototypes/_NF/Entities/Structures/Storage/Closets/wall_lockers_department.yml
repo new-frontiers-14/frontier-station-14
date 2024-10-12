@@ -154,23 +154,6 @@
       map: ["enum.LockVisualLayers.Lock"]
 
 - type: entity
-  id: LockerWallColorMedicalDoctorFilled
-  parent:
-  - LockerWallColorMedical
-  - BaseWallmount
-  - LockerMedicalFilled
-  name: medical doctor's wall locker
-  suffix: Filled, Frontier
-
-- type: entity
-  id: LockerWallColorMedicalFilled
-  parent:
-  - LockerWallColorMedical
-  - LockerWallMedicalFilled
-  name: medicine wall locker
-  suffix: Filled, Frontier
-
-- type: entity
   id: LockerWallColorChemistry
   parent: LockerWallColorBase
   name: chemistry wall locker
@@ -194,15 +177,6 @@
       map: ["enum.WeldableLayers.BaseWelded"]
     - state: locked
       map: ["enum.LockVisualLayers.Lock"]
-
-- type: entity
-  id: LockerWallColorChemistryFilled
-  suffix: Filled, Frontier
-  parent:
-  - LockerWallColorChemistry
-  - BaseWallmount
-  - LockerChemistryFilled
-  name: chemistry wall locker
 
 ## Service
 - type: entity
