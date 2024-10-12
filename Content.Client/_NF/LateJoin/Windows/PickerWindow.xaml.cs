@@ -105,20 +105,14 @@ public sealed partial class PickerWindow : FancyWindow
                 stationOrCrewLargeControl.OnTabChange ??= SetCurrentTab;
                 break;
             case PickerType.Crew:
-                _currentTab = new PickerTab(pickerType, new CrewPickerControl());
+                var crewPickerControl = new CrewPickerControl();
+                _currentTab = new PickerTab(pickerType, crewPickerControl);
+                crewPickerControl.OnJobJoined ??= JoinGame;
                 break;
             case PickerType.Station:
                 var stationPickerControl = new StationPickerControl();
                 _currentTab = new PickerTab(pickerType, stationPickerControl);
-
-                stationPickerControl.OnJobJoined = (stationEntity, jobId) =>
-                {
-                    _sawmill.Info($"Late joining as ID: {jobId}");
-                    _consoleHost.ExecuteCommand(
-                        $"joingame {CommandParsing.Escape(jobId)} {stationEntity}");
-
-                    Close();
-                };
+                stationPickerControl.OnJobJoined ??= JoinGame;
                 break;
             default:
                 throw new ArgumentOutOfRangeException(); // This will never happen. Trust.
@@ -126,5 +120,14 @@ public sealed partial class PickerWindow : FancyWindow
 
         ContentContainer.AddChild(_currentTab.Control);
         UpdateUi(_gameTicker.StationJobInformationList);
+    }
+
+    private void JoinGame(NetEntity stationEntity, string jobId)
+    {
+        _sawmill.Info($"Late joining as ID: {jobId}");
+        _consoleHost.ExecuteCommand(
+            $"joingame {CommandParsing.Escape(jobId)} {stationEntity}");
+
+        Close();
     }
 }

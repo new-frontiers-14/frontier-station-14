@@ -48,6 +48,6 @@ public sealed partial class StationOrCrewLargeControl : PickerControl
 
     private void CrewButtonOnOnPressed(BaseButton.ButtonEventArgs obj)
     {
-        OnTabChange?.Invoke(Windows.PickerWindow.PickerType.Station);
+        OnTabChange?.Invoke(Windows.PickerWindow.PickerType.Crew);
     }
 }
