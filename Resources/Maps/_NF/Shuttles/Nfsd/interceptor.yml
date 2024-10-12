@@ -185,59 +185,51 @@ entities:
       version: 2
       data:
         tiles:
-          -1,-1:
-            0: 65535
-          0,-1:
-            0: 30579
-          -3,-2:
-            0: 54272
           -3,-1:
-            1: 1
-            0: 65534
-          -2,-2:
-            0: 29696
-            1: 32768
+            0: 1
+            1: 61128
+          -3,-2:
+            0: 8192
           -2,-1:
-            0: 65535
+            1: 49075
+          -2,-2:
+            0: 32768
           -1,-2:
-            0: 61184
-            1: 4096
-          0,-2:
-            0: 14080
-          -3,0:
-            0: 207
-          -2,0:
-            0: 31
-            1: 128
+            0: 4096
+            1: 17408
+          -1,-1:
+            1: 65524
           -1,0:
-            0: 65535
-          -1,1:
-            0: 239
+            1: 61162
+          0,-2:
+            1: 4352
+          0,-1:
+            1: 4369
+          -2,0:
+            0: 128
           0,0:
-            0: 30579
-          0,1:
-            0: 19
+            1: 4368
         uniqueMixes:
+        - volume: 2500
+          immutable: True
+          moles:
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         - volume: 2500
           temperature: 293.15
           moles:
           - 21.824879
           - 82.10312
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-        - volume: 2500
-          temperature: 293.15
-          moles:
-          - 0
-          - 0
           - 0
           - 0
           - 0
@@ -308,17 +300,17 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -5.5,-0.5
       parent: 1
-- proto: AtmosDeviceFanTiny
+- proto: AtmosDeviceFanDirectional
   entities:
   - uid: 10
     components:
     - type: Transform
-      pos: -1.5,-5.5
+      pos: 0.5,-5.5
       parent: 1
   - uid: 11
     components:
     - type: Transform
-      pos: 0.5,-5.5
+      pos: -1.5,-5.5
       parent: 1
 - proto: AtmosFixBlockerMarker
   entities:
@@ -563,11 +555,6 @@ entities:
     - type: Transform
       pos: -4.5,-0.5
       parent: 1
-  - uid: 260
-    components:
-    - type: Transform
-      pos: -5.5,-0.5
-      parent: 1
   - uid: 261
     components:
     - type: Transform
@@ -706,6 +693,28 @@ entities:
     components:
     - type: Transform
       pos: -6.5,-3.5
+      parent: 1
+- proto: FirelockEdge
+  entities:
+  - uid: 269
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -2.5,-0.5
+      parent: 1
+- proto: FirelockGlass
+  entities:
+  - uid: 260
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -5.5,-1.5
+      parent: 1
+  - uid: 268
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -0.5,0.5
       parent: 1
 - proto: Fireplace
   entities:
@@ -1155,8 +1164,6 @@ entities:
     - type: Transform
       pos: -9.5,-0.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
 - proto: LampGold
   entities:
   - uid: 119
@@ -1165,6 +1172,13 @@ entities:
       rot: 3.141592653589793 rad
       pos: -2.4816613,-1.1827465
       parent: 1
+- proto: LockerNfsdEvidence
+  entities:
+  - uid: 77
+    components:
+    - type: Transform
+      pos: 0.5,-0.5
+      parent: 1
 - proto: LockerNfsdSilverDetectiveFilled
   entities:
   - uid: 76
@@ -1172,12 +1186,13 @@ entities:
     - type: Transform
       pos: -6.5,-0.5
       parent: 1
-- proto: LockerNfsdEvidence
+- proto: LockerWallMaterialsFuelPlasmaFilled
   entities:
-  - uid: 77
+  - uid: 266
     components:
     - type: Transform
-      pos: 0.5,-0.5
+      rot: 3.141592653589793 rad
+      pos: -10.5,-2.5
       parent: 1
 - proto: Matchbox
   entities:
@@ -1186,13 +1201,19 @@ entities:
     - type: Transform
       pos: -2.4866343,-1.9206845
       parent: 1
-- proto: PaperBin10
+- proto: Paper
   entities:
   - uid: 74
     components:
     - type: Transform
       rot: 3.141592653589793 rad
-      pos: -7.5,-3.5
+      pos: -6.8602543,-3.3190503
+      parent: 1
+  - uid: 265
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -6.6727543,-3.4754086
       parent: 1
 - proto: Pen
   entities:
@@ -1219,20 +1240,6 @@ entities:
       on: False
     - type: Physics
       bodyType: Static
-- proto: PosterLegit12Gauge
-  entities:
-  - uid: 265
-    components:
-    - type: Transform
-      pos: 1.5,1.5
-      parent: 1
-- proto: PosterLegitDickGumshue
-  entities:
-  - uid: 266
-    components:
-    - type: Transform
-      pos: 1.5,-4.5
-      parent: 1
 - proto: PosterLegitObey
   entities:
   - uid: 267
@@ -1299,6 +1306,20 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -0.5,-2.5
+      parent: 1
+- proto: RandomPosterAny
+  entities:
+  - uid: 116
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 1.5,1.5
+      parent: 1
+  - uid: 225
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 1.5,-4.5
       parent: 1
 - proto: ReinforcedWindow
   entities:
@@ -1408,15 +1429,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -4.5,-3.5
       parent: 1
-- proto: SheetPlasma
-  entities:
-  - uid: 225
-    components:
-    - type: Transform
-      pos: -10.5,-1.5
-      parent: 1
-    - type: Stack
-      count: 15
 - proto: ShuttersNormalOpen
   entities:
   - uid: 104
@@ -1424,159 +1436,105 @@ entities:
     - type: Transform
       pos: -1.5,0.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 251
   - uid: 145
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -7.5,-4.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 252
   - uid: 148
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -6.5,-4.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 252
   - uid: 241
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -8.5,-4.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 252
   - uid: 242
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -11.5,-1.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 252
   - uid: 243
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -11.5,-0.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 252
   - uid: 244
     components:
     - type: Transform
       pos: -8.5,0.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 252
   - uid: 245
     components:
     - type: Transform
       pos: -7.5,0.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 252
   - uid: 246
     components:
     - type: Transform
       pos: -6.5,0.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 252
   - uid: 247
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -3.5,-3.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 259
   - uid: 248
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -4.5,-3.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 259
   - uid: 249
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -3.5,3.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 251
   - uid: 250
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -3.5,2.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 251
   - uid: 253
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 1.5,-0.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 259
   - uid: 254
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 1.5,-1.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 259
   - uid: 255
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 1.5,-2.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 259
   - uid: 256
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 1.5,2.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 259
   - uid: 257
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 1.5,3.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 259
 - proto: ShuttersWindowOpen
   entities:
   - uid: 151
@@ -1584,9 +1542,6 @@ entities:
     - type: Transform
       pos: -2.5,0.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 251
 - proto: SignalButtonDirectional
   entities:
   - uid: 251
@@ -1714,8 +1669,6 @@ entities:
     - type: Transform
       pos: -4.5,0.5
       parent: 1
-    - type: Physics
-      canCollide: False
 - proto: TableReinforced
   entities:
   - uid: 82
@@ -1757,31 +1710,23 @@ entities:
       rot: 3.141592653589793 rad
       pos: -10.5,-4.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
   - uid: 187
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -4.5,-4.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
   - uid: 188
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -11.5,-3.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
   - uid: 189
     components:
     - type: Transform
       pos: -4.5,1.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
 - proto: TintedWindow
   entities:
   - uid: 191
@@ -1980,14 +1925,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -9.5,0.5
       parent: 1
-- proto: WallWeaponCapacitorRecharger
-  entities:
-  - uid: 116
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -5.5,-2.5
-      parent: 1
 - proto: WardrobePrisonFilled
   entities:
   - uid: 218
@@ -2005,6 +1942,13 @@ entities:
       parent: 1
     - type: WarpPoint
       location: Interceptor
+- proto: WeaponCapacitorRecharger
+  entities:
+  - uid: 270
+    components:
+    - type: Transform
+      pos: -7.5,-3.5
+      parent: 1
 - proto: WeaponGrapplingGun
   entities:
   - uid: 221
