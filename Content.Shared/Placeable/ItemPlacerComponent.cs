@@ -29,4 +29,10 @@ public sealed partial class ItemPlacerComponent : Component
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite), DataField, AutoNetworkedField]
     public uint MaxEntities = 1;
+
+    /// <summary>
+    /// Frontier: track old placeable status
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite), DataField, AutoNetworkedField]
+    public bool? LastPlaceable;
 }
