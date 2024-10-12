@@ -1,4 +1,6 @@
 ﻿using System.Linq;
+using Content.Client._NF.LateJoin.Controls;
+using Content.Client._NF.LateJoin.Interfaces;
 using Content.Client.GameTicking.Managers;
 using Content.Client.UserInterface.Controls;
 using Content.Shared.GameTicking;
@@ -18,6 +20,7 @@ public sealed partial class PickerWindow : FancyWindow
     private readonly ClientGameTicker _gameTicker;
     private readonly ISawmill _sawmill;
 
+    // Designed so you can implement your own tab controls, simply make your control and add the enum here.
     public enum PickerType
     {
         StationOrCrewLarge,
@@ -25,19 +28,12 @@ public sealed partial class PickerWindow : FancyWindow
         Station,
     }
 
-    private PickerType _currentTab;
-    private readonly Controls.StationOrCrewLargeControl _stationOrCrewLargeControl = new();
-    private readonly Controls.CrewPickerControl _crewPickerControl = new();
-    private readonly Controls.StationPickerControl _stationPickerControl = new();
+    public record PickerTab(PickerType Type, PickerControl Control);
 
-    /**
-     * Default constructors without arguments are mandatory for RobustXamlLoader
-     */
-    public PickerWindow() : this(PickerType.Station) { }
+    private PickerTab? _currentTab;
 
-    public PickerWindow(PickerType currentTab)
+    public PickerWindow()
     {
-        _currentTab = currentTab;
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
         _gameTicker = _entitySystem.GetEntitySystem<ClientGameTicker>();
@@ -46,26 +42,25 @@ public sealed partial class PickerWindow : FancyWindow
 
         CrewTabButton.OnPressed += _ =>
         {
-            _currentTab = PickerType.Crew;
+            SetCurrentTab(PickerType.Crew);
             UpdateUi(_gameTicker.StationJobInformationList);
         };
 
         StationTabButton.OnPressed += _ =>
         {
-            _currentTab = PickerType.Station;
+            SetCurrentTab(PickerType.Station);
             UpdateUi(_gameTicker.StationJobInformationList);
         };
 
-        _stationPickerControl.OnJobJoined += (stationEntity, jobId) =>
-        {
-            _sawmill.Info($"Late joining as ID: {jobId}");
-            _consoleHost.ExecuteCommand(
-                $"joingame {CommandParsing.Escape(jobId)} {stationEntity}");
-
-            Close();
-        };
-
         UpdateUi(_gameTicker.StationJobInformationList);
+    }
+
+    public new void OpenCentered()
+    {
+        base.OpenCentered();
+
+        // This is the place to change the default tab.
+        SetCurrentTab(PickerType.StationOrCrewLarge);
     }
 
     protected override void ExitedTree()
@@ -84,28 +79,52 @@ public sealed partial class PickerWindow : FancyWindow
         var crewJobs = availableJobs.Where(kvp => !kvp.Value.IsLateJoinStation).ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
 
         StationTabLabel.Text = _loc.GetString("frontier-lobby-station-title") + stationJobs.GetJobSumCountString();
-        StationTabButton.Disabled = !StationJobInformationExtensions.IsAnyStationAvailable(availableJobs) || _currentTab == PickerType.Station;
+        StationTabButton.Disabled = !StationJobInformationExtensions.IsAnyStationAvailable(availableJobs) || _currentTab?.Type == PickerType.Station;
 
         CrewTabLabel.Text = _loc.GetString("frontier-lobby-crew-title") + crewJobs.GetJobSumCountString();
-        CrewTabButton.Disabled = !StationJobInformationExtensions.IsAnyCrewJobAvailable(availableJobs) || _currentTab == PickerType.Crew;
+        CrewTabButton.Disabled = !StationJobInformationExtensions.IsAnyCrewJobAvailable(availableJobs) || _currentTab?.Type == PickerType.Crew;
 
+        _currentTab?.Control.UpdateUi(availableJobs);
+    }
+
+    private void SetCurrentTab(PickerType pickerType)
+    {
+        // Don't do anything when switching to same tab.
+        if (_currentTab != null && _currentTab.Type == pickerType)
+        {
+            return;
+        }
         ContentContainer.RemoveAllChildren();
-        switch (_currentTab)
+
+        switch (pickerType)
         {
             case PickerType.StationOrCrewLarge:
-                ContentContainer.AddChild(_stationOrCrewLargeControl);
-                // Set the tab change callback once.
-                _stationOrCrewLargeControl.OnTabChange ??= tab => _currentTab = tab;
+                var stationOrCrewLargeControl = new StationOrCrewLargeControl();
+                _currentTab = new PickerTab(pickerType, stationOrCrewLargeControl);
+                // Child panel can change tab from within, set the tab change callback.
+                stationOrCrewLargeControl.OnTabChange ??= SetCurrentTab;
                 break;
             case PickerType.Crew:
-                ContentContainer.AddChild(_crewPickerControl);
+                _currentTab = new PickerTab(pickerType, new CrewPickerControl());
                 break;
             case PickerType.Station:
-                ContentContainer.AddChild(_stationPickerControl);
-                _stationPickerControl.UpdateUi(availableJobs);
+                var stationPickerControl = new StationPickerControl();
+                _currentTab = new PickerTab(pickerType, stationPickerControl);
+
+                stationPickerControl.OnJobJoined = (stationEntity, jobId) =>
+                {
+                    _sawmill.Info($"Late joining as ID: {jobId}");
+                    _consoleHost.ExecuteCommand(
+                        $"joingame {CommandParsing.Escape(jobId)} {stationEntity}");
+
+                    Close();
+                };
                 break;
             default:
                 throw new ArgumentOutOfRangeException(); // This will never happen. Trust.
         }
+
+        ContentContainer.AddChild(_currentTab.Control);
+        UpdateUi(_gameTicker.StationJobInformationList);
     }
 }

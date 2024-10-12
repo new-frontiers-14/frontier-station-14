@@ -33,6 +33,9 @@ namespace Content.Client.Lobby
         protected override Type? LinkedScreenType { get; } = typeof(LobbyGui);
         public LobbyGui? Lobby;
 
+        // Frontier - save pickerwindow so it opens only once
+        private PickerWindow? _pickerWindow = null;
+
         protected override void Startup()
         {
             if (_userInterfaceManager.ActiveScreen == null)
@@ -100,10 +103,9 @@ namespace Content.Client.Lobby
                 return;
             }
             // Frontier to downstream: if you want to skip the first window and go straight to station picker,
-            // simply change the enum to station or crew.
-            // Often times there is simply no crew and the station picker is now made much fancier and gives more
-            // onboarding information options, so we are completely overwriting the old spawn menu.
-            new PickerWindow(PickerWindow.PickerType.StationOrCrewLarge).OpenCentered();
+            // simply change the enum to station or crew in the PickerWindow constructor.
+            _pickerWindow ??= new PickerWindow();
+            _pickerWindow.OpenCentered();
         }
 
         private void OnReadyToggled(BaseButton.ButtonToggledEventArgs args)

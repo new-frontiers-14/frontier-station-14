@@ -1,10 +1,16 @@
-﻿<PanelContainer xmlns="https://spacestation14.io"
-                xmlns:customControls="clr-namespace:Content.Client.Administration.UI.CustomControls"
-                xmlns:maths="clr-namespace:Robust.Shared.Maths;assembly=Robust.Shared.Maths"
-                xmlns:xNamespace="http://schemas.microsoft.com/winfx/2006/xaml"
-                Access="Public"
-                HorizontalExpand="True"
-                VerticalExpand="True">
+﻿<controls:StationOrCrewLargeControl xmlns="https://spacestation14.io"
+                           xmlns:customControls="clr-namespace:Content.Client.Administration.UI.CustomControls"
+                           xmlns:maths="clr-namespace:Robust.Shared.Maths;assembly=Robust.Shared.Maths"
+                           xmlns:xNamespace="http://schemas.microsoft.com/winfx/2006/xaml"
+                           xmlns:controls="clr-namespace:Content.Client._NF.LateJoin.Controls"
+                           xmlns:graphics="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+                           Access="Public"
+                           HorizontalExpand="True"
+                           VerticalExpand="True">
+    <PanelContainer.PanelOverride>
+        <!-- Using PanelBackgroundLight adds padding left and right, so we manually set background color -->
+        <graphics:StyleBoxFlat BackgroundColor="#2F2F3B"/>
+    </PanelContainer.PanelOverride>
     <BoxContainer Orientation="Vertical" VerticalExpand="True" Margin="8">
 
         <Button Name="StationButton"
@@ -78,4 +84,4 @@
         </Button>
     </BoxContainer>
 
-</PanelContainer>
+</controls:StationOrCrewLargeControl>
