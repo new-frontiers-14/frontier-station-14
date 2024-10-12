@@ -7,6 +7,8 @@
   parent: SeatBase
   description: Multiple seats spanning a single object. Truly a marvel of science.
   components:
+  - type: Physics
+    bodyType: Static
   - type: Transform
     anchored: true
   - type: Rotatable
@@ -233,8 +235,6 @@
     state: corner
   - type: Clickable
   - type: InteractionOutline
-  - type: Physics
-    bodyType: Dynamic
   - type: Pullable
   - type: Damageable
     damageContainer: Inorganic
@@ -304,8 +304,6 @@
     state: corner
   - type: Clickable
   - type: InteractionOutline
-  - type: Physics
-    bodyType: Dynamic
   - type: Pullable
   - type: Damageable
     damageContainer: Inorganic
