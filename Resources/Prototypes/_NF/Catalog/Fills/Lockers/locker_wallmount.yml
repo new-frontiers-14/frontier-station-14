@@ -1,4 +1,4 @@
-#FUEL
+# region Fuel
 - type: entity
   parent: [ LockerWallColorFuelPlasma, StorageFillMaterialsFuelPlasma ]
   id: LockerWallMaterialsFuelPlasmaFilled
@@ -33,8 +33,9 @@
   parent: [ LockerWallColorWelding, StorageFillMaterialsFuelWelding ]
   id: LockerWallMaterialsFuelWeldingFilled
   suffix: Filled, Welding Fuel (x2)
+# endregion Fuel
 
-#MATERIALS
+# region Materials
 - type: entity
   parent: [ LockerWallColorMaterials, StorageFillMaterialsBasic ]
   id: LockerWallMaterialsBasicFilled
@@ -44,8 +45,9 @@
   parent: [ LockerWallColorMaterials, StorageFillMaterialsBasic10 ]
   id: LockerWallMaterialsBasic10Filled
   suffix: Filled, Basic Materials (10)
+# endregion Materials
 
-#SOFTSUITS
+# region Softsuits
 - type: entity
   parent: [ LockerWallEVAColorGeneric, StorageFillEVASuitGoblin ]
   id: LockerWallEVAColorGoblinFilled
@@ -187,8 +189,9 @@
   parent: [ LockerWallEVAColorLvhi, StorageFillEVASuitLvhi ]
   id: LockerWallEVAColorLvhiFilled
   suffix: Frontier, Filled
+# endregion
 
-# Emergency
+# region Emergency
 - type: entity
   parent: [ ClosetWallN2, StorageFillN2Random ]
   id: ClosetWallN2FilledRandom
@@ -198,3 +201,38 @@
   parent: [ ClosetWallO2N2, StorageFillO2N2Random ]
   id: ClosetWallO2N2FilledRandom
   suffix: Filled, Random
+# endregion
+
+# region Medical
+- type: entity
+  id: LockerWallColorMedicalDoctorFilled
+  parent:
+  - LockerWallColorMedical
+  - BaseWallmount
+  - LockerMedicalFilled
+  name: medical doctor's wall locker
+  suffix: Filled, Frontier
+
+- type: entity
+  id: LockerWallColorMedicalFilled
+  parent:
+  - LockerWallColorMedical
+  - LockerWallMedicalFilled
+  name: medicine wall locker
+  suffix: Filled, Frontier
+# endregion
+
+# region Chemistry
+- type: entity
+  id: LockerWallChemistryFilled
+  parent: [LockerWallChemistry, LockerChemistryFilled]
+
+- type: entity
+  id: LockerWallColorChemistryFilled
+  suffix: Filled, Frontier
+  parent:
+  - LockerWallColorChemistry
+  - BaseWallmount
+  - LockerChemistryFilled
+  name: chemistry wall locker
+# endregion
