@@ -113,14 +113,20 @@ public sealed partial class GuideFoodSource : BoxContainer, ISearchableControl
         if (recipeType.HasFlag(MicrowaveRecipeType.Microwave))
         {
             processingTexture = new TextureRect();
-            processingTexture.Texture = GetRsiTexture("/Textures/Structures/Machines/microwave.rsi", "mw");
+            if (recipe.SecretRecipe)
+                processingTexture.Texture = GetRsiTexture("/Textures/Structures/Machines/microwave_syndie.rsi", "mw");
+            else
+                processingTexture.Texture = GetRsiTexture("/Textures/Structures/Machines/microwave.rsi", "mw");
             ProcessingTextures.AddChild(processingTexture);
             processingTypes.Add(Loc.GetString("guidebook-food-processing-type-microwave"));
         }
         if (recipeType.HasFlag(MicrowaveRecipeType.Oven))
         {
             processingTexture = new TextureRect();
-            processingTexture.Texture = GetRsiTexture("/Textures/_NF/Structures/Machines/oven.rsi", "composite_off");
+            if (recipe.SecretRecipe)
+                processingTexture.Texture = GetRsiTexture("/Textures/_NF/Structures/Machines/oven_syndie.rsi", "composite_off");
+            else
+                processingTexture.Texture = GetRsiTexture("/Textures/_NF/Structures/Machines/oven.rsi", "composite_off");
             ProcessingTextures.AddChild(processingTexture);
             processingTypes.Add(Loc.GetString("guidebook-food-processing-type-oven"));
         }
