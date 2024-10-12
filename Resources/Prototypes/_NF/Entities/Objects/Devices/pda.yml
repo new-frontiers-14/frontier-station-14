@@ -332,13 +332,13 @@
 
 - type: entity
   parent: BasePDA
-  id: DetectiveNFPDA
+  id: NFDetectivePDA
   name: detective PDA
   description: Smells like rain... pouring down the rooftops...
   components:
   - type: Pda
-    id: DetectiveNFIDCard
-    state: pda-detectivenf
+    id: NFDetectiveIDCard
+    state: pda-nfdetective
     bookSlot: # Frontier
       startingItem: HyperlinkBookNfsdSop
       priority: -2
@@ -362,7 +362,7 @@
       visible: false
   - type: Icon
     sprite: _NF/Objects/Devices/pda.rsi
-    state: pda-detectivenf
+    state: pda-nfdetective
 
 - type: entity
   parent: BasePDA
