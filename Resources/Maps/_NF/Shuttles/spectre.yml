@@ -1622,22 +1622,12 @@ entities:
       injecting: True
     - type: ContainerContainer
       containers:
-        AmeFuel: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: 32
         fuelSlot: !type:ContainerSlot
           showEnts: False
           occludes: True
           ent: 201
 - proto: AmeJar
   entities:
-  - uid: 32
-    components:
-    - type: Transform
-      parent: 202
-    - type: Physics
-      canCollide: False
   - uid: 201
     components:
     - type: Transform
@@ -5441,6 +5431,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -0.5,-4.5
       parent: 3
+    - type: AtmosPipeColor
+      color: '#0055CCFF'
   - uid: 453
     components:
     - type: Transform
