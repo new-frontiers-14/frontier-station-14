@@ -25,8 +25,16 @@
                 </ScrollContainer>
             </BoxContainer>
             <BoxContainer Orientation="Vertical" Margin="5">
-                <Label Name="RecordContainerStatus" Visible="False" Text="{Loc 'general-station-record-console-select-record-info'}"/>
-                <Control Name="RecordContainer" Visible="False"/>
+                <ScrollContainer VerticalExpand="True"> <!-- Frontier: put record info in a scroll box -->
+                    <Label Name="RecordContainerStatus" Visible="False" Text="{Loc 'general-station-record-console-select-record-info'}"/>
+                    <Control Name="RecordContainer" Visible="False"/>
+                </ScrollContainer> <!-- Frontier: put record info in a scroll box -->
+                <!-- Frontier: ship bio -->
+                <ScrollContainer VerticalExpand="True">
+                    <Label Name="AdTitle" Text="{Loc 'general-station-record-console-advertisement-label'}"/>
+                    <TextBox Name="AdTextBox" Text="{Loc 'general-station-record-console-advertisement-default-text'}"/>
+                </ScrollContainer>
+                <!-- Frontier: end ship bio -->
             </BoxContainer>
         </BoxContainer>
     </BoxContainer>

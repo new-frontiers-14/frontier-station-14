@@ -63,6 +63,7 @@ public sealed class GeneralStationRecordConsoleSystem : EntitySystem
         UpdateUserInterface(ent);
     }
 
+    // Frontier: job counts, advertisements
     private void OnAdjustJob(EntityUid uid, GeneralStationRecordConsoleComponent component, AdjustStationJobMsg msg)
     {
         var stationUid = _stationSystem.GetOwningStation(uid);
@@ -110,6 +111,16 @@ public sealed class GeneralStationRecordConsoleSystem : EntitySystem
             UpdateUserInterface(ent);
         }
     }
+    private void OnAdvertisementChanged(Entity<GeneralStationRecordConsoleComponent> ent, ref SetStationAdvertisementMsg msg)
+    {
+        var stationUid = _stationSystem.GetOwningStation(uid);
+        if (stationUid is EntityUid station)
+        {
+            _stationJobsSystem.TryAdjustJobSlot(station, msg.JobProto, msg.Amount, false, true);
+        }
+        UpdateUserInterface((uid,component));
+    }
+    // End Frontier: job count edit
 
     private void UpdateUserInterface(Entity<GeneralStationRecordConsoleComponent> ent)
     {

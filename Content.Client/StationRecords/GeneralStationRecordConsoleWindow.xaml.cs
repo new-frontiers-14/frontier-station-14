@@ -7,6 +7,7 @@ using Robust.Client.UserInterface.CustomControls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Prototypes;
 using Content.Shared.Roles;
+using Robust.Client.Input;
 
 namespace Content.Client.StationRecords;
 
@@ -18,8 +19,9 @@ public sealed partial class GeneralStationRecordConsoleWindow : DefaultWindow
     public Action<StationRecordFilterType, string>? OnFiltersChanged;
     public Action<uint>? OnDeleted;
 
-    public event Action<ButtonEventArgs>? OnJobAdd;
-    public event Action<ButtonEventArgs>? OnJobSubtract;
+    public event Action<ButtonEventArgs>? OnJobAdd; // Frontier
+    public event Action<ButtonEventArgs>? OnJobSubtract; // Frontier
+    public event Action<TextEnteredEventArgs>? OnAdvertisementChanged; // Frontier
 
     private bool _isPopulating;
 
@@ -78,6 +80,13 @@ public sealed partial class GeneralStationRecordConsoleWindow : DefaultWindow
             StationRecordsFiltersValue.Text = "";
             FilterListingOfRecords();
         };
+
+        // Frontier: station/ship advertisements
+        AdTextBox.OnTextEntered += args =>
+        {
+            OnAdvertisementChanged.Invoke(args);
+        };
+        // End Frontier: station/ship advertisements
     }
 
     public void UpdateState(GeneralStationRecordConsoleState state)
@@ -132,6 +141,12 @@ public sealed partial class GeneralStationRecordConsoleWindow : DefaultWindow
         {
             RecordContainer.RemoveAllChildren();
         }
+
+        // Frontier: station/ship advertisements
+        if (string.IsNullOrEmpty(state.Advertisement.IsEmpty))
+            AdTextBox.Text = Loc.GetString("general-station-record-console-advertisement-default-text");
+        else
+            AdTextBox.Text = state.Advertisement;
     }
     private void PopulateRecordListing(Dictionary<uint, string> listing, uint? selected)
     {

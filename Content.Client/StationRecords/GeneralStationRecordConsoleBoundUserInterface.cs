@@ -1,4 +1,5 @@
 using Content.Shared.StationRecords;
+using Robust.Client.Input;
 using Robust.Client.UserInterface;
 using static Robust.Client.UserInterface.Controls.BaseButton;
 
@@ -25,6 +26,7 @@ public sealed class GeneralStationRecordConsoleBoundUserInterface : BoundUserInt
         _window.OnJobAdd += OnJobsAdd; // Frontier: job modification buttons
         _window.OnJobSubtract += OnJobsSubtract; // Frontier: job modification buttons
         _window.OnDeleted += id => SendMessage(new DeleteStationRecord(id));
+        _window.OnAdvertisementChanged += OnAdvertisementChanged; // Frontier: job modification buttons
     }
 
     // Frontier: job modification buttons
@@ -45,6 +47,11 @@ public sealed class GeneralStationRecordConsoleBoundUserInterface : BoundUserInt
             return;
         }
         AdjustStationJobMsg msg = new(row.Job, -1);
+        SendMessage(msg);
+    }
+    private void OnAdvertisementChanged(TextEnteredEventArgs args)
+    {
+        SetStationAdvertisementMsg msg = new(args.Text);
         SendMessage(msg);
     }
     // End Frontier

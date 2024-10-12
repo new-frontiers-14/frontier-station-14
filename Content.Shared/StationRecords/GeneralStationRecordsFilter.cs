@@ -14,3 +14,15 @@ public sealed class AdjustStationJobMsg : BoundUserInterfaceMessage
         Amount = amount;
     }
 }
+
+[Serializable, NetSerializable]
+public sealed class SetStationAdvertisementMsg : BoundUserInterfaceMessage
+{
+    public string Advertisement { get; }
+
+    public SetStationAdvertisementMsg(string advertisement)
+    {
+        Advertisement = advertisement;
+    }
+}
+
