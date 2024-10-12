@@ -1382,7 +1382,6 @@ entities:
   - uid: 972
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: 21.5,-8.5
       parent: 1
 - proto: AirlockEngineeringGlass
@@ -1434,19 +1433,16 @@ entities:
   - uid: 652
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: -8.5,-1.5
       parent: 1
   - uid: 691
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: 5.5,-1.5
       parent: 1
   - uid: 692
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: 11.5,-1.5
       parent: 1
 - proto: AirlockFreezer
@@ -1454,7 +1450,6 @@ entities:
   - uid: 123
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
       pos: 16.5,5.5
       parent: 1
 - proto: AirlockGlassShuttle
@@ -1467,13 +1462,11 @@ entities:
   - uid: 65
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: 5.5,10.5
       parent: 1
   - uid: 151
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: 7.5,10.5
       parent: 1
   - uid: 154
@@ -1498,19 +1491,16 @@ entities:
     - type: Transform
       pos: 24.5,2.5
       parent: 1
-- proto: AirlockMedicalGlass
+- proto: AirlockMedicalGlassSecurity
   entities:
   - uid: 678
     components:
     - type: Transform
       pos: -20.5,-1.5
       parent: 1
-- proto: AirlockMedicalGlassLocked
-  entities:
   - uid: 644
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
       pos: -2.5,5.5
       parent: 1
 - proto: AirlockNfsdBrigGlassLocked
@@ -1565,7 +1555,6 @@ entities:
   - uid: 12
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
       pos: 7.5,5.5
       parent: 1
 - proto: AirlockNfsdLocked
@@ -1642,10 +1631,6 @@ entities:
       injecting: True
     - type: ContainerContainer
       containers:
-        AmeFuel: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: 135
         fuelSlot: !type:ContainerSlot
           showEnts: False
           occludes: True
@@ -1653,12 +1638,6 @@ entities:
 - proto: AmeJar
   entities:
   - uid: 124
-    components:
-    - type: Transform
-      parent: 713
-    - type: Physics
-      canCollide: False
-  - uid: 135
     components:
     - type: Transform
       parent: 713
