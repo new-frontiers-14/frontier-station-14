@@ -114,11 +114,12 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     /// </summary>
     /// <param name="stationUid">The ID of the station to dock the shuttle to</param>
     /// <param name="shuttlePath">The path to the shuttle file to load. Must be a grid file!</param>
-    public bool TryPurchaseShuttle(EntityUid stationUid, string shuttlePath, [NotNullWhen(true)] out ShuttleComponent? shuttle)
+    /// <param name="shuttleEntityUid">The EntityUid of the shuttle that was purchased</param>
+    public bool TryPurchaseShuttle(EntityUid stationUid, string shuttlePath, [NotNullWhen(true)] out EntityUid? shuttleEntityUid)
     {
-        if (!TryComp<StationDataComponent>(stationUid, out var stationData) || !TryAddShuttle(shuttlePath, out var shuttleGrid) || !TryComp<ShuttleComponent>(shuttleGrid, out shuttle))
+        if (!TryComp<StationDataComponent>(stationUid, out var stationData) || !TryAddShuttle(shuttlePath, out var shuttleGrid) || !TryComp<ShuttleComponent>(shuttleGrid, out var shuttleComponent))
         {
-            shuttle = null;
+            shuttleEntityUid = null;
             return false;
         }
 
@@ -129,14 +130,14 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         if (targetGrid == null) //how are we even here with no station grid
         {
             _mapManager.DeleteGrid((EntityUid) shuttleGrid);
-            shuttle = null;
+            shuttleEntityUid = null;
             return false;
         }
 
-        _sawmill.Info($"Shuttle {shuttlePath} was purchased at {ToPrettyString((EntityUid) stationUid)} for {price:f2}");
+        _sawmill.Info($"Shuttle {shuttlePath} was purchased at {ToPrettyString(stationUid)} for {price:f2}");
         //can do TryFTLDock later instead if we need to keep the shipyard map paused
-        _shuttle.TryFTLDock(shuttleGrid.Value, shuttle, targetGrid.Value);
-
+        _shuttle.TryFTLDock(shuttleGrid.Value, shuttleComponent, targetGrid.Value);
+        shuttleEntityUid = shuttleGrid;
         return true;
     }
 
