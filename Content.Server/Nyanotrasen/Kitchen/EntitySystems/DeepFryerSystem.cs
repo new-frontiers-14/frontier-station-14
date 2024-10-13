@@ -186,8 +186,9 @@ public sealed partial class DeepFryerSystem : SharedDeepfryerSystem
     /// </summary>
     public FixedPoint2 GetOilPurity(EntityUid uid, DeepFryerComponent component)
     {
-        if (component.Solution.Volume == 0) return 0;
-        return GetOilVolume(uid, component) / component.Solution.Volume;
+        if (component.Solution.Volume > 0) // Frontier: ensure no negative division.
+            return GetOilVolume(uid, component) / component.Solution.Volume;
+        return FixedPoint2.Zero;
     }
 
     /// <summary>
@@ -195,7 +196,9 @@ public sealed partial class DeepFryerSystem : SharedDeepfryerSystem
     /// </summary>
     public FixedPoint2 GetOilLevel(EntityUid uid, DeepFryerComponent component)
     {
-        return GetOilVolume(uid, component) / component.Solution.MaxVolume;
+        if (component.Solution.MaxVolume > 0) // Frontier: ensure no negative division or division by zero.
+            return GetOilVolume(uid, component) / component.Solution.MaxVolume;
+        return FixedPoint2.Zero;
     }
 
     /// <summary>
@@ -314,7 +317,7 @@ public sealed partial class DeepFryerSystem : SharedDeepfryerSystem
         // just in case the attempt is relevant to any system in the future.
         //
         // The blacklist overrides all.
-        if (component.Blacklist != null && _whitelistSystem.IsWhitelistPass(component.Blacklist, item))
+        if (_whitelistSystem.IsBlacklistPass(component.Blacklist, item))
         {
             _popupSystem.PopupEntity(
                 Loc.GetString("deep-fryer-blacklist-item-failed",
@@ -356,7 +359,7 @@ public sealed partial class DeepFryerSystem : SharedDeepfryerSystem
                 _ => 10
             } * component.SolutionSizeCoefficient);
 
-        if (component.Whitelist != null && _whitelistSystem.IsWhitelistPass(component.Whitelist, item) ||
+        if (_whitelistSystem.IsWhitelistPass(component.Whitelist, item) ||
             beingEvent.TurnIntoFood)
             MakeEdible(uid, component, item, solutionQuantity);
         else
