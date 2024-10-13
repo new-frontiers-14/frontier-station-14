@@ -86,7 +86,7 @@
     materialComposition:
       Plastic: 50
 
-# Devices
+# Simple Devices
 ## Tiny
 - type: entity # Machine parts, encryption keys etc
   id: RecyclableItemDeviceTiny
@@ -107,6 +107,19 @@
       Plastic: 25
       Steel: 25
       Glass: 25
+
+# Complex Devices
+## Normal
+- type: entity # Flatpacks etc
+  id: RecyclableItemDeviceComplexNormal
+  abstract: true
+  components:
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 100
+      Glass: 50
+      Silver: 20
+      Gold: 10
 
 # Organic
 ## Tiny
