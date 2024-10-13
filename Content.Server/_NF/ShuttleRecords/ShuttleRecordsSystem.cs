@@ -14,12 +14,6 @@ public sealed partial class ShuttleRecordsSystem: SharedShuttleRecordsSystem
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
 
-    public override void Initialize()
-    {
-        base.Initialize();
-        InitializeShuttleRecords();
-    }
-
     /**
      * Adds a record to the shuttle records list.
      * <param name="record">The record to add.</param>
@@ -33,7 +27,7 @@ public sealed partial class ShuttleRecordsSystem: SharedShuttleRecordsSystem
         component.ShuttleRecordsList.Add(record);
     }
 
-    public bool TryGetShuttleRecordsDataComponent(EntityUid consoleEntityUid, [NotNullWhen(true)] out ShuttleRecordsDataComponent? component)
+    private bool TryGetShuttleRecordsDataComponent(EntityUid consoleEntityUid, [NotNullWhen(true)] out ShuttleRecordsDataComponent? component)
     {
         var station = _station.GetOwningStation(consoleEntityUid);
         if (station is null)
