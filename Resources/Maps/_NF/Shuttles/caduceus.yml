@@ -6672,13 +6672,6 @@ entities:
     - type: Transform
       pos: 4.274497,9.370374
       parent: 1
-- proto: KitchenMicrowave
-  entities:
-  - uid: 453
-    components:
-    - type: Transform
-      pos: 4.5,10.5
-      parent: 1
 - proto: KitchenReagentGrinder
   entities:
   - uid: 621
@@ -6894,6 +6887,27 @@ entities:
     - type: Transform
       pos: 6.5,-7.5
       parent: 1
+- proto: MedicalAssembler
+  entities:
+  - uid: 453
+    components:
+    - type: Transform
+      pos: 5.5,-10.5
+      parent: 1
+    - type: ContainerContainer
+      containers:
+        machine_board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        machine_parts: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        microwave_entity_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
 - proto: MedicalBed
   entities:
   - uid: 694
@@ -8283,11 +8297,6 @@ entities:
     components:
     - type: Transform
       pos: 4.5,-10.5
-      parent: 1
-  - uid: 624
-    components:
-    - type: Transform
-      pos: 5.5,-10.5
       parent: 1
   - uid: 731
     components:
