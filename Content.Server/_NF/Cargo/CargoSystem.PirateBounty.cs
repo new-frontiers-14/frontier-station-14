@@ -571,8 +571,8 @@ public sealed partial class CargoSystem
                             }
 
                             // Check whitelists for the pirate bounty.
-                            if ((_whitelistSys.IsWhitelistPassOrNull(entry.Whitelist, ent) ||
-                                _entProtoIdWhitelist.IsWhitelistPassOrNull(entry.IdWhitelist, ent)) &&
+                            if (_whitelistSys.IsWhitelistPassOrNull(entry.Whitelist, ent) &&
+                                _entProtoIdWhitelist.IsWhitelistPassOrNull(entry.IdWhitelist, ent) &&
                                 _whitelistSys.IsBlacklistFailOrNull(entry.Blacklist, ent))
                             {
                                 bounty.Entries[entry.Name]++;

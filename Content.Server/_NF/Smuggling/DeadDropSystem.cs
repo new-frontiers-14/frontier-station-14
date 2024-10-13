@@ -195,15 +195,8 @@ public sealed class DeadDropSystem : EntitySystem
 
     public void CompromiseDeadDrop(EntityUid uid, DeadDropComponent _)
     {
-        //Get our station.
+        //Get our station: FIXME - check lifecycle on entities before adding another drop.
         var station = _station.GetOwningStation(uid);
-        if (station == null || !station.Value.Valid)
-            return;
-
-        // Station/entity being destroyed, nothing to do.
-        if (MetaData(station.Value).EntityLifeStage >= EntityLifeStage.Terminating ||
-            MetaData(uid).EntityLifeStage >= EntityLifeStage.Terminating)
-            return;
 
         //Remove the dead drop.
         RemComp<DeadDropComponent>(uid);
@@ -223,7 +216,7 @@ public sealed class DeadDropSystem : EntitySystem
             potentialDeadDrops.Add((ent, potentialDeadDrop));
         }
 
-        // We have a potential dead drop, 
+        // We have a potential dead drop, spawn an actual one
         if (potentialDeadDrops.Count > 0)
         {
             var item = _random.Pick(potentialDeadDrops);

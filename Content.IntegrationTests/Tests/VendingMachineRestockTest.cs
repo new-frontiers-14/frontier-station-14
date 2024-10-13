@@ -30,7 +30,6 @@ namespace Content.IntegrationTests.Tests
   - type: ComplexInteraction
   - type: Body
     prototype: Human
-  - type: BankAccount # Frontier: need this
 
 - type: entity
   parent: FoodSnackBase
@@ -102,8 +101,6 @@ namespace Content.IntegrationTests.Tests
     pack: TestInventory
   - type: Sprite
     sprite: error.rsi
-  - type: ApcPowerReceiver # Frontier
-    needsPower: false # Frontier
 ";
 
         [Test]
