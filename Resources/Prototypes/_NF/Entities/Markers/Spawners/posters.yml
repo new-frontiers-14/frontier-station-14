@@ -2,25 +2,7 @@
   parent: MarkerBase
   id: RandomPosterContrabandDeadDrop
   name: random contraband poster spawner
-  suffix: DeadDrop, 50
-  components:
-  - type: Sprite
-    layers:
-      - state: red
-      - sprite: Structures/Wallmounts/posters.rsi
-        state: random_contraband
-  - type: RandomSpawner
-    offset: 0
-    prototypes:
-      - RandomPosterContrabandDeadDrop100
-      - RandomPosterContraband #this is the entire non-deaddrop contraband poster list, making this essentially a 50/50 chance
-    chance: 0.9
-
-- type: entity
-  parent: MarkerBase
-  id: RandomPosterContrabandDeadDrop100
-  name: random contraband poster spawner
-  suffix: DeadDrop, 100
+  suffix: DeadDrop
   components:
   - type: Sprite
     layers:
@@ -96,4 +78,6 @@
       - NFPosterContrabandFsbStasisDD
       - NFPosterContrabandFsbApothecaryDD
       - NFPosterContrabandFsbLogoDD
+      - NFPosterContrabandFsbSpiritDD
+      - NFPosterContrabandEmsCoordsDD
     chance: 1

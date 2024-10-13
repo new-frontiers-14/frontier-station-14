@@ -2518,7 +2518,6 @@ entities:
     - type: NavMap
     - type: BecomesStation
       id: Trade
-    - type: StationTransit
 - proto: AirAlarm
   entities:
   - uid: 6079
@@ -22686,14 +22685,28 @@ entities:
       parent: 1
     missingComponents:
     - Anchorable
-- proto: KitchenMicrowave
+- proto: KitchenAssemblerPOI
   entities:
-  - uid: 1363
+  - uid: 869
+    components:
+    - type: Transform
+      pos: 61.5,-18.5
+      parent: 1
+- proto: KitchenElectricRangePOI
+  entities:
+  - uid: 1350
     components:
     - type: Transform
       pos: 62.5,-15.5
       parent: 1
-- proto: KitchenReagentGrinder
+- proto: KitchenMicrowavePOI
+  entities:
+  - uid: 6422
+    components:
+    - type: Transform
+      pos: 62.5,-16.5
+      parent: 1
+- proto: KitchenReagentGrinderPOI
   entities:
   - uid: 1364
     components:
@@ -22836,6 +22849,40 @@ entities:
     components:
     - type: Transform
       pos: 53.396393,-14.43357
+      parent: 1
+- proto: NFSignBus
+  entities:
+  - uid: 6379
+    components:
+    - type: Transform
+      pos: -4.5,-15.5
+      parent: 1
+  - uid: 6380
+    components:
+    - type: Transform
+      pos: -1.5,-15.5
+      parent: 1
+- proto: NFSignDock
+  entities:
+  - uid: 6377
+    components:
+    - type: Transform
+      pos: -16.5,25.5
+      parent: 1
+  - uid: 6378
+    components:
+    - type: Transform
+      pos: -12.5,25.5
+      parent: 1
+  - uid: 6383
+    components:
+    - type: Transform
+      pos: 77.5,-22.5
+      parent: 1
+  - uid: 6384
+    components:
+    - type: Transform
+      pos: 73.5,-22.5
       parent: 1
 - proto: PaperBin20
   entities:
@@ -26578,8 +26625,6 @@ entities:
     - type: Transform
       pos: 1.5,-4.5
       parent: 1
-- proto: SignAtmosMinsky
-  entities:
   - uid: 3725
     components:
     - type: Transform
@@ -26973,38 +27018,6 @@ entities:
     - type: Transform
       pos: 50.5,-1.5
       parent: 1
-- proto: SignShipDock
-  entities:
-  - uid: 6377
-    components:
-    - type: Transform
-      pos: -16.5,25.5
-      parent: 1
-  - uid: 6378
-    components:
-    - type: Transform
-      pos: -12.5,25.5
-      parent: 1
-  - uid: 6379
-    components:
-    - type: Transform
-      pos: -4.5,-15.5
-      parent: 1
-  - uid: 6380
-    components:
-    - type: Transform
-      pos: -1.5,-15.5
-      parent: 1
-  - uid: 6383
-    components:
-    - type: Transform
-      pos: 77.5,-22.5
-      parent: 1
-  - uid: 6384
-    components:
-    - type: Transform
-      pos: 73.5,-22.5
-      parent: 1
 - proto: SignShock
   entities:
   - uid: 1459
@@ -27371,11 +27384,6 @@ entities:
       id: Dock South
 - proto: Table
   entities:
-  - uid: 869
-    components:
-    - type: Transform
-      pos: 62.5,-15.5
-      parent: 1
   - uid: 1256
     components:
     - type: Transform
@@ -27387,11 +27395,6 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 52.5,-1.5
-      parent: 1
-  - uid: 1350
-    components:
-    - type: Transform
-      pos: 62.5,-16.5
       parent: 1
   - uid: 1352
     components:
@@ -27422,6 +27425,12 @@ entities:
     components:
     - type: Transform
       pos: 62.5,-18.5
+      parent: 1
+  - uid: 1363
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 62.5,-16.5
       parent: 1
   - uid: 1386
     components:

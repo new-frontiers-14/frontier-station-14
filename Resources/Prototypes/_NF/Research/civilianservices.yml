@@ -2,7 +2,7 @@
 
 - type: technology
   id: AdvancedPersonalPropulsion
-  name: research-techology-advanced-personal-propulsion
+  name: research-technology-advanced-personal-propulsion
   icon:
     sprite: Objects/Tanks/Jetpacks/void.rsi
     state: icon
@@ -13,14 +13,28 @@
   - JetpackVoid
 
 - type: technology
-  id: AdvancedTopicals
-  name: research-techology-advanced-topicals
+  id: IndustrialMedicine
+  name: research-technology-industrial-medicine
   icon:
-    sprite: Objects/Specific/Medical/medical.rsi
-    state: medicated-suture
+    sprite: _NF/Structures/Machines/medical_assembler.rsi
+    state: icon
   discipline: CivilianServices
-  tier: 3
-  cost: 15000
+  tier: 2
+  cost: 5000
   recipeUnlocks:
-  - BrutepackAdvancedNF
-  - OintmentAdvancedNF
+  - MedicalAssemblerMachineCircuitboard
+
+- type: technology
+  id: AdvancedFoodService
+  name: research-technology-advanced-food-service
+  icon:
+    sprite: _NF/Structures/Machines/oven.rsi
+    state: composite_off
+  discipline: CivilianServices
+  tier: 2
+  cost: 7500
+  recipeUnlocks:
+  - DeepFryerMachineCircuitboard #Nyano - Summary: adds deep fryer circuit board to service research.
+  - ServiceSelectiveDropper
+  - KitchenAssemblerMachineCircuitboard
+  - ElectricRangeMachineCircuitboard

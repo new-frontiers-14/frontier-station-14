@@ -82,14 +82,14 @@
 # Directional Station Guide Signs
 - type: entity
   parent: BaseSign
-  id: BaseSignNF
+  id: NFBaseSign
   abstract: true
   components:
     - type: Sprite
       sprite: _NF/Structures/Wallmounts/signs.rsi
       
 - type: entity
-  parent: BaseSignNF
+  parent: NFBaseSign
   id: SignNfsd
   name: nfsd sign
   description: A sign that marks the area beyond as an NFSD area.
@@ -98,7 +98,7 @@
     state: nfsd
 
 - type: entity
-  parent: BaseSignNF
+  parent: NFBaseSign
   id: SignNfsdArmoury
   name: armoury sign
   description: A sign that marks the area beyond as an NFSD armoury.
@@ -107,7 +107,7 @@
     state: armoury
 
 - type: entity
-  parent: BaseSignNF
+  parent: NFBaseSign
   id: SignNfsdBrief
   name: briefing sign
   description: A sign that marks the area beyond as an NFSD briefing room.
@@ -116,7 +116,7 @@
     state: brief
 
 - type: entity
-  parent: BaseSignNF
+  parent: NFBaseSign
   id: SignNfsdBrig
   name: brig sign
   description: A sign that marks the area beyond as an NFSD brig.
@@ -125,7 +125,7 @@
     state: brig
 
 - type: entity
-  parent: BaseSignNF
+  parent: NFBaseSign
   id: SignNfsdBrigmed
   name: medbay sign
   description: A sign that marks the area beyond as an NFSD medbay.
@@ -134,7 +134,7 @@
     state: brigmed
 
 - type: entity
-  parent: BaseSignNF
+  parent: NFBaseSign
   id: SignNfsdDetective
   name: detective sign
   description: A sign that marks the area beyond as an NFSD detective's office.
@@ -143,7 +143,7 @@
     state: detective
 
 - type: entity
-  parent: BaseSignNF
+  parent: NFBaseSign
   id: SignNfsdLaw
   name: lawyer sign
   description: A sign that marks the area beyond as an NFSD lawyer's office.
@@ -152,7 +152,7 @@
     state: law
 
 - type: entity
-  parent: BaseSignNF
+  parent: NFBaseSign
   id: SignNfsdRange
   name: shooting range sign
   description: A sign that marks the area beyond as an NFSD shooting range.
@@ -161,10 +161,55 @@
     state: range
 
 - type: entity
-  parent: BaseSignNF
+  parent: NFBaseSign
   id: SignNfsdEvidence
   name: evidence sign
   description: A sign that marks the area beyond as an NFSD evidence room.
   components:
   - type: Sprite
     state: evidence
+
+- type: entity
+  parent: NFBaseSign
+  id: NFSignDock
+  name: dock sign
+  description: A sign that indicates shuttle docking nearby.
+  components:
+  - type: Sprite
+    state: dock
+
+- type: entity
+  parent: NFBaseSign
+  id: NFSignBus
+  name: bus sign
+  description: A sign that indicates that the transit shuttle docks nearby.
+  components:
+  - type: Sprite
+    state: bus
+
+- type: entity
+  parent: NFBaseSign
+  id: NFSignShield
+  name: shield sign
+  description: A sign with a shield.
+  components:
+  - type: Sprite
+    state: shield
+
+- type: entity
+  parent: NFBaseSign
+  id: NFSignEms1
+  name: emergency medical service sign
+  description: A sign that indicates emergency medical services.
+  components:
+  - type: Sprite
+    state: ems1
+
+- type: entity
+  parent: NFBaseSign
+  id: NFSignEms2
+  name: emergency medical service sign
+  description: A sign that indicates emergency medical services.
+  components:
+  - type: Sprite
+    state: ems2

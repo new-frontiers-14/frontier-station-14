@@ -615,7 +615,7 @@
 - type: entity
   parent: ClothingBeltStorageBase #Frontier - ClothingBeltSecurity<ClothingBeltStorageBase
   id: ClothingBeltSecurityWebbing
-  name: security webbing
+  name: security carrier
   description: Unique and versatile chest rig, can hold security gear.
   components:
   - type: Sprite
@@ -624,8 +624,8 @@
     sprite: Clothing/Belt/securitywebbing.rsi
 
 - type: entity
-  parent: ClothingBeltStorageBase
-  id: ClothingBeltMercenaryWebbing # Frontier - Merc to Mercenary
+  parent: ClothingBeltStorageBase # Frontier: remove BaseSecurityCargoContraband
+  id: ClothingBeltMercenaryWebbing # Frontier: Merc to Mercenary
   name: mercenary webbing
   description: Ideal for storing everything from ammo to weapons and combat essentials.
   components:
@@ -675,19 +675,29 @@
 
 - type: entity
   parent: ClothingBeltBase
-  id: ClothingBeltSuspenders
-  name: suspenders
+  id: ClothingBeltSuspendersRed
+  name: red suspenders
   description: For holding your pants up.
   components:
   - type: Tag
     tags:
     - MimeBelt
   - type: Sprite
-    sprite: Clothing/Belt/suspenders.rsi
+    sprite: Clothing/Belt/suspenders_red.rsi
     state: icon
   - type: Clothing
-    sprite: Clothing/Belt/suspenders.rsi
+    sprite: Clothing/Belt/suspenders_red.rsi
     quickEquip: true
+
+- type: entity
+  parent: ClothingBeltSuspendersRed
+  id: ClothingBeltSuspendersBlack
+  name: black suspenders
+  components:
+  - type: Sprite
+    sprite: Clothing/Belt/suspenders_black.rsi
+  - type: Clothing
+    sprite: Clothing/Belt/suspenders_black.rsi
 
 - type: entity
   parent: [ClothingBeltStorageBase, BaseC3WizardContraband, ContrabandClothing] # Frontier: added BaseC3WizardContraband, ContrabandClothing as parent

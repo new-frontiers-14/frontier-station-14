@@ -3,6 +3,7 @@ using Content.Server.Temperature.Components;
 using Content.Shared.Examine;
 using Content.Shared.Placeable;
 using Content.Shared.Popups;
+using Content.Shared.Power;
 using Content.Shared.Temperature;
 using Content.Shared.Verbs;
 using Robust.Server.Audio;
@@ -41,7 +42,7 @@ public sealed class EntityHeaterSystem : EntitySystem
             // don't divide by total entities since its a big grill
             // excess would just be wasted in the air but that's not worth simulating
             // if you want a heater thermomachine just use that...
-            var energy = power.PowerReceived * deltaTime;
+            var energy = (power.PowerReceived - comp.PassivePower) * deltaTime; // Frontier: subtract PassivePower
             foreach (var ent in placer.PlacedEntities)
             {
                 _temperature.ChangeHeat(ent, energy);
@@ -92,7 +93,7 @@ public sealed class EntityHeaterSystem : EntitySystem
             return;
 
         comp.Setting = setting;
-        power.Load = SettingPower(setting, comp.Power);
+        power.Load = comp.PassivePower + SettingPower(setting, comp.Power); // Frontier: add PassivePower
         _appearance.SetData(uid, EntityHeaterVisuals.Setting, setting);
         _audio.PlayPvs(comp.SettingSound, uid);
     }

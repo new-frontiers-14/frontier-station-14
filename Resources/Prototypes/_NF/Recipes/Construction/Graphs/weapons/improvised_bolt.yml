@@ -18,7 +18,6 @@
           sprite: Objects/Materials/Shards/shard.rsi
           state: shard1
         doAfter: 0.5
-
   - node: CraftCrossbowBoltGlassShard
     entity: CrossbowBoltGlassShard
 
@@ -42,7 +41,6 @@
           sprite: Objects/Materials/Shards/shard.rsi
           state: shard1
         doAfter: 0.5
-
   - node: CraftCrossbowBoltPlasmaGlassShard
     entity: CrossbowBoltPlasmaGlassShard
 
@@ -66,6 +64,114 @@
           sprite: Objects/Materials/Shards/shard.rsi
           state: shard1
         doAfter: 0.5
-
   - node: CraftCrossbowBoltUraniumGlassShard
     entity: CrossbowBoltUraniumGlassShard
+
+- type: constructionGraph
+  id: CraftCrossbowBoltSyringe
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: CraftCrossbowBoltSyringe
+      steps:
+      - material: MetalRod
+        amount: 1
+        doAfter: 0.5
+      - material: Cloth
+        amount: 1
+        doAfter: 0.5
+      - tag: Syringe
+        name: Syringe
+        icon:
+          sprite: Objects/Specific/Chemistry/syringe.rsi
+          state: syringe_base0
+        doAfter: 0.5
+  - node: CraftCrossbowBoltSyringe
+    entity: CrossbowBoltSyringe
+
+- type: constructionGraph
+  id: CraftCrossbowBoltPlasteel
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: CraftCrossbowBoltPlasteel
+      steps:
+      - material: Durathread
+        amount: 1
+        doAfter: 0.5
+      - material: Plasteel
+        amount: 1
+        doAfter: 0.5
+  - node: CraftCrossbowBoltPlasteel
+    entity: CrossbowBoltPlasteel
+
+- type: constructionGraph
+  id: CraftCrossbowBoltExplosive
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: CraftCrossbowBoltExplosive
+      steps:
+      - material: MetalRod
+        amount: 1
+        doAfter: 0.5
+      - material: Cloth
+        amount: 1
+        doAfter: 0.5
+      - tag: ShellShotgun
+        name: Shotgun shell
+        icon:
+          sprite: Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
+          state: base
+        doAfter: 1
+  - node: CraftCrossbowBoltExplosive
+    entity: CrossbowBoltExplosive
+
+- type: constructionGraph
+  id: CraftCrossbowBoltEMP
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: CraftCrossbowBoltEMP
+      steps:
+      - material: MetalRod
+        amount: 1
+        doAfter: 0.5
+      - material: Cloth
+        amount: 1
+        doAfter: 0.5
+      - tag: PowerCellSmall
+        name: Small power cell
+        icon:
+          sprite: Objects/Power/power_cells.rsi
+          state: small
+        doAfter: 1
+  - node: CraftCrossbowBoltEMP
+    entity: CrossbowBoltEMP
+
+- type: constructionGraph
+  id: CraftCrossbowBoltIncendiary
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: CraftCrossbowBoltIncendiary
+      steps:
+      - material: MetalRod
+        amount: 1
+        doAfter: 0.5
+      - material: Cloth
+        amount: 1
+        doAfter: 0.5
+      - tag: Flare
+        name: Flare
+        icon:
+          sprite: Objects/Misc/flare.rsi
+          state: icon
+        doAfter: 1
+  - node: CraftCrossbowBoltIncendiary
+    entity: CrossbowBoltIncendiary

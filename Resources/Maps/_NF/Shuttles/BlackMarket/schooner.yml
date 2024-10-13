@@ -566,77 +566,89 @@ entities:
     - type: Transform
       pos: 1.5,-5.5
       parent: 1
-- proto: AtmosDeviceFanTiny
+- proto: AtmosDeviceFanDirectional
   entities:
   - uid: 7
     components:
     - type: Transform
-      pos: 4.5,4.5
+      rot: -1.5707963267948966 rad
+      pos: -3.5,2.5
       parent: 1
   - uid: 8
     components:
     - type: Transform
-      pos: 4.5,3.5
+      rot: -1.5707963267948966 rad
+      pos: -3.5,3.5
       parent: 1
   - uid: 9
     components:
     - type: Transform
-      pos: 4.5,2.5
+      rot: -1.5707963267948966 rad
+      pos: -3.5,4.5
       parent: 1
   - uid: 10
     components:
     - type: Transform
-      pos: -3.5,2.5
+      rot: 1.5707963267948966 rad
+      pos: 4.5,4.5
       parent: 1
   - uid: 11
     components:
     - type: Transform
-      pos: -3.5,3.5
+      rot: 1.5707963267948966 rad
+      pos: 4.5,3.5
       parent: 1
   - uid: 12
     components:
     - type: Transform
-      pos: -3.5,4.5
+      rot: 1.5707963267948966 rad
+      pos: 4.5,2.5
       parent: 1
   - uid: 13
     components:
     - type: Transform
-      pos: 4.5,-2.5
+      rot: -1.5707963267948966 rad
+      pos: -3.5,-4.5
       parent: 1
   - uid: 14
     components:
     - type: Transform
-      pos: 4.5,-3.5
+      rot: -1.5707963267948966 rad
+      pos: -3.5,-3.5
       parent: 1
   - uid: 15
     components:
     - type: Transform
-      pos: 4.5,-4.5
+      rot: -1.5707963267948966 rad
+      pos: -3.5,-2.5
       parent: 1
   - uid: 16
     components:
     - type: Transform
-      pos: -3.5,-4.5
+      rot: 1.5707963267948966 rad
+      pos: 4.5,-2.5
       parent: 1
   - uid: 17
     components:
     - type: Transform
-      pos: -3.5,-3.5
+      rot: 1.5707963267948966 rad
+      pos: 4.5,-3.5
       parent: 1
   - uid: 18
     components:
     - type: Transform
-      pos: -3.5,-2.5
+      rot: 1.5707963267948966 rad
+      pos: 4.5,-4.5
       parent: 1
   - uid: 19
     components:
     - type: Transform
-      pos: -0.5,-9.5
+      pos: 1.5,-9.5
       parent: 1
   - uid: 20
     components:
     - type: Transform
-      pos: 1.5,-9.5
+      pos: -0.5,-9.5
       parent: 1
 - proto: AtmosFixBlockerMarker
   entities:
@@ -1868,29 +1880,11 @@ entities:
         - 0
 - proto: ClosetWallMaintenanceFilledRandom
   entities:
-  - uid: 209
+  - uid: 276
     components:
     - type: Transform
-      pos: -0.5,6.5
+      pos: 0.5,6.5
       parent: 1
-    - type: EntityStorage
-      air:
-        volume: 200
-        immutable: False
-        temperature: 293.14923
-        moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
 - proto: ClothingEyesEyepatch
   entities:
   - uid: 211
@@ -2240,6 +2234,47 @@ entities:
     - type: Transform
       pos: -2.7120032,-0.473266
       parent: 1
+- proto: LockerWallMaterialsFuelUraniumFilled
+  entities:
+  - uid: 208
+    components:
+    - type: Transform
+      pos: -2.5,9.5
+      parent: 1
+- proto: NFSignDock
+  entities:
+  - uid: 363
+    components:
+    - type: Transform
+      pos: 2.5,-9.5
+      parent: 1
+  - uid: 364
+    components:
+    - type: Transform
+      pos: -1.5,-9.5
+      parent: 1
+- proto: NFSignShield
+  entities:
+  - uid: 359
+    components:
+    - type: Transform
+      pos: 5.5,5.5
+      parent: 1
+  - uid: 360
+    components:
+    - type: Transform
+      pos: -4.5,5.5
+      parent: 1
+  - uid: 361
+    components:
+    - type: Transform
+      pos: -4.5,-5.5
+      parent: 1
+  - uid: 362
+    components:
+    - type: Transform
+      pos: 5.5,-5.5
+      parent: 1
 - proto: NitrogenCanister
   entities:
   - uid: 207
@@ -2263,10 +2298,10 @@ entities:
       parent: 1
 - proto: PaintingSkeletonCigarette
   entities:
-  - uid: 276
+  - uid: 209
     components:
     - type: Transform
-      pos: 0.5,6.5
+      pos: -0.5,6.5
       parent: 1
 - proto: PaperCaptainsThoughts
   entities:
@@ -2669,13 +2704,6 @@ entities:
       linkedPorts:
         503:
         - Pressed: Trigger
-- proto: SheetUranium
-  entities:
-  - uid: 208
-    components:
-    - type: Transform
-      pos: -0.65123916,8.543868
-      parent: 1
 - proto: ShuttersNormal
   entities:
   - uid: 341
@@ -2683,97 +2711,61 @@ entities:
     - type: Transform
       pos: 4.5,-2.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 356
   - uid: 342
     components:
     - type: Transform
       pos: 4.5,-3.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 356
   - uid: 343
     components:
     - type: Transform
       pos: 4.5,-4.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 356
   - uid: 344
     components:
     - type: Transform
       pos: -3.5,-4.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 355
   - uid: 345
     components:
     - type: Transform
       pos: -3.5,-3.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 355
   - uid: 346
     components:
     - type: Transform
       pos: -3.5,-2.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 355
   - uid: 347
     components:
     - type: Transform
       pos: 4.5,2.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 353
   - uid: 348
     components:
     - type: Transform
       pos: 4.5,3.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 353
   - uid: 349
     components:
     - type: Transform
       pos: 4.5,4.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 353
   - uid: 350
     components:
     - type: Transform
       pos: -3.5,2.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 354
   - uid: 351
     components:
     - type: Transform
       pos: -3.5,3.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 354
   - uid: 352
     components:
     - type: Transform
       pos: -3.5,4.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 354
 - proto: ShuttersRadiation
   entities:
   - uid: 206
@@ -2782,35 +2774,23 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -3.5,8.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 274
   - uid: 224
     components:
     - type: Transform
       pos: -1.5,9.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 274
   - uid: 225
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -3.5,7.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 274
   - uid: 228
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -3.5,6.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 274
 - proto: ShuttleGunPirateCannon
   entities:
   - uid: 501
@@ -2819,36 +2799,24 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -5.5,3.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 506
   - uid: 502
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -5.5,-3.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 507
   - uid: 503
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 6.5,-3.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 508
   - uid: 504
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 6.5,3.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 505
 - proto: SignalButtonDirectional
   entities:
   - uid: 274
@@ -2932,40 +2900,6 @@ entities:
     components:
     - type: Transform
       pos: -0.5,9.5
-      parent: 1
-- proto: SignShield
-  entities:
-  - uid: 359
-    components:
-    - type: Transform
-      pos: 5.5,5.5
-      parent: 1
-  - uid: 360
-    components:
-    - type: Transform
-      pos: -4.5,5.5
-      parent: 1
-  - uid: 361
-    components:
-    - type: Transform
-      pos: -4.5,-5.5
-      parent: 1
-  - uid: 362
-    components:
-    - type: Transform
-      pos: 5.5,-5.5
-      parent: 1
-- proto: SignShipDock
-  entities:
-  - uid: 363
-    components:
-    - type: Transform
-      pos: 2.5,-9.5
-      parent: 1
-  - uid: 364
-    components:
-    - type: Transform
-      pos: -1.5,-9.5
       parent: 1
 - proto: SMESBasic
   entities:

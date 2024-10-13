@@ -13,6 +13,19 @@
   name: "Courthouse"
   rangeMin: 1150
   rangeMax: 2050
-  iffColor: "#8e6444" #brown
-  alwaysSpawn: true
+  IFFColor: "#8e6444" #brown
+  spawnGroup: Required
   gridPath: /Maps/_NF/POI/courthouse.yml
+
+- type: gameMap
+  id: Courthouse
+  mapName: "Courthouse"
+  mapPath: /Maps/_NF/POI/courthouse.yml
+  minPlayers: 0
+  stations:
+    Courthouse:
+      stationProto: StandardFrontierOutpost
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: "Courthouse"
+        - type: StationDeadDropHintExempt
