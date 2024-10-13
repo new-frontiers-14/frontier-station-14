@@ -140,14 +140,14 @@ namespace Content.Shared.GameTicking
     /**
      * Frontier addition
      * This data cannot be retrieved locally since you cannot access the station entity from the client.
-     * @param stationName The name of the station.
-     * @param jobsAvailable A dictionary of job prototypes and the number of jobs positions available for it.
-     * @param isLatejoinStation Whether or not this station is a latejoin station (== not a player ship) this is
-     *                          based on if it has the extra information component value set to true or false.
-     * @param lobbySortOrder The order in which this station should be displayed in the station picker.
-     * @param stationSubtext The subtext that is shown under the station name.
-     * @param stationDescription A longer description of the station, describing what the player can do there.
-     * @param stationIcon The icon that represents the station and is shown next to the name.
+     * <param name="stationName">The name of the station.</param>
+     * <param name="jobsAvailable">A dictionary of job prototypes and the number of jobs positions available for it.</param>
+     * <param name="isLateJoinStation">Whether or not this station is a late join station (== not a player ship) this is
+     * based on if it has the extra information component value set to true or false.</param>
+     * <param name="lobbySortOrder">The order in which this station should be displayed in the station picker.</param>
+     * <param name="stationSubtext">The subtext that is shown under the station name.</param>
+     * <param name="stationDescription">A longer description of the station, describing what the player can do there.</param>
+     * <param name="stationIcon">The icon that represents the station and is shown next to the name.</param>
      */
     [Serializable, NetSerializable]
     public sealed class StationJobInformation(
