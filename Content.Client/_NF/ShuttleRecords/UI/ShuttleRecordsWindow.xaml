@@ -1,0 +1,39 @@
+﻿<DefaultWindow xmlns="https://spacestation14.io"
+               xmlns:graphics="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+               Title="{Loc 'shuttle-records-console-window-title'}"
+               MinSize="500 300">
+
+    <BoxContainer HorizontalExpand="True" VerticalExpand="True" Orientation="Horizontal" Margin="5">
+
+        <BoxContainer Orientation="Vertical" MinSize="250 300">
+            <Label Text="{Loc 'shuttle-records-transactions'}" />
+            <PanelContainer VerticalExpand="True" HorizontalExpand="True" Margin="10">
+                <PanelContainer.PanelOverride>
+                    <graphics:StyleBoxFlat BorderThickness="2" BorderColor="#777777" />
+                </PanelContainer.PanelOverride>
+                <BoxContainer Orientation="Vertical"
+                              VerticalExpand="True"
+                              HorizontalExpand="True">
+
+
+                    <ScrollContainer HorizontalExpand="True"
+                                     VerticalExpand="True"
+                                     VScrollEnabled="True">
+                        <BoxContainer Name="ShuttleRecordList"
+                                      Orientation="Vertical"
+                                      HorizontalExpand="True"
+                                      VerticalExpand="True"
+                                      MinSize="50 50"
+                                      Margin="4">
+                        </BoxContainer>
+                    </ScrollContainer>
+                </BoxContainer>
+            </PanelContainer>
+        </BoxContainer>
+
+        <BoxContainer Name="ShuttleRecordDetailsContainer" Orientation="Vertical" MinSize="250 300">
+            <Label Text="{Loc 'shuttle-records-detail-title'}" />
+
+        </BoxContainer>
+    </BoxContainer>
+</DefaultWindow>
