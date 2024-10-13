@@ -131,14 +131,14 @@
 - type: entity
   id: SpawnPointSeniorOfficer
   parent: SpawnPointWarden
-  name: senior officer
+  name: sergeant
   components:
   - type: SpawnPoint
     job_id: SeniorOfficer
 
 - type: entity
   id: SpawnPointDeputy
-  parent: SpawnPointWarden
+  parent: SpawnPointSecurityOfficer
   name: deputy
   components:
   - type: SpawnPoint
@@ -146,7 +146,7 @@
 
 - type: entity
   id: SpawnPointCadet
-  parent: SpawnPointWarden
+  parent: SpawnPointSecurityCadet
   name: cadet
   components:
   - type: SpawnPoint
