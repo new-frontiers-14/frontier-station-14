@@ -14,6 +14,12 @@ public sealed partial class ShuttleRecordsSystem: SharedShuttleRecordsSystem
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
 
+    public override void Initialize()
+    {
+        base.Initialize();
+        InitializeShuttleRecords();
+    }
+
     /**
      * Adds a record to the shuttle records list.
      * <param name="record">The record to add.</param>
