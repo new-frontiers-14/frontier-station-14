@@ -1,0 +1,77 @@
+<Document>
+  # PLACEBO-CLASS PSYCHOLOGY SHUTTLE
+  <Box>
+  <GuideEntityEmbed Entity="PsychBed"/>
+  <GuideEntityEmbed Entity="CrateNPCEmotionalSupport"/>
+  <GuideEntityEmbed Entity="PlushieCatBlack"/>
+  </Box>
+  <Box>
+  <GuideEntityEmbed Entity="ShuttleMapPlacebo" Caption=""/>
+  </Box>
+  [color=#a4885c]Ship Size:[/color] Small
+
+  [color=#a4885c]Recommended Crew:[/color] 1-2
+
+  [color=#a4885c]Power Gen Type:[/color] Plasma
+
+  [color=#a4885c]Expeditions:[/color] None
+
+  [color=#a4885c]IFF Console:[/color] None
+
+  "A small psychology vessel. Named after the famous Placebo effect."
+
+  # PREFLIGHT CHECKLIST
+
+  ## 1. Power supply
+  
+  ## 1.1. Battery units
+  <Box>
+  <GuideEntityEmbed Entity="SubstationWallBasic"/>
+  <GuideEntityEmbed Entity="APCBasic"/>
+  </Box>
+  
+  - Check that the substation unit is anchored to the floor.
+  - Check that the APC unit's Main Breaker is toggled on.
+  - Check the APC unit's current Load* (W).
+
+  ## 1.2. P.A.C.M.A.N. generator unit
+  <Box>
+  <GuideEntityEmbed Entity="PortableGeneratorPacmanShuttle"/>
+  <GuideEntityEmbed Entity="SheetPlasma"/>
+  </Box>
+  
+  - Check that the P.A.C.M.A.N. generator units are anchored to the floor.
+  - Check that the P.A.C.M.A.N. generator units have fuel. For extended flights make sure that you have enough fuel stockpiled to sustain prolonged power generation during flight.
+  - Check that the P.A.C.M.A.N. generator units are set to HV output.
+  - Set Target Power to 10-11 [bold]kW[/bold].
+  - Start the P.A.C.M.A.N. generator units.
+
+  ## 2. Atmospherics
+
+  ## 2.1. Distribution Loop
+  <Box>
+  <GuideEntityEmbed Entity="OxygenCanister"/>
+  <GuideEntityEmbed Entity="NitrogenCanister"/>
+  <GuideEntityEmbed Entity="GasPort"/>
+  <GuideEntityEmbed Entity="GasMixer"/>
+  </Box>
+
+  - Check if the O2 canister and N2 canister are anchored to their connector ports.
+  - Check if the gas mixer has its mixing ratio and output pressure set correctly.
+  - Enable the gas mixer.
+
+  ## 3. Other checks
+  <Box>
+  <GuideEntityEmbed Entity="Gyroscope"/>
+  <GuideEntityEmbed Entity="GravityGeneratorMini"/>
+  </Box>
+
+  - Check that the gyroscope is anchored, powered, and enabled.
+  - Check that the mini gravity generator is anchored, powered, and enabled.
+
+  ## Sidenotes
+
+  * - Placebo-class service ships are equipped with a single APC unit that can be used to appraise the ship's total power consumption. One can check the ship's total power consumption against the P.A.C.M.A.N. generator units Target Power output: to keep substation and APCs fully charged, P.A.C.M.A.N. generator unit Target Power output should exceed the combined load of all APCs. Remember to check APC Loads and adjust the generator unit Target Power after connecting new power-consuming machines. The average combined load of all APCs on a stock model Placebo-class ship is 16'000W when idle.
+
+  ** - Placebo-class service ships have low power demand meaning that the P.A.C.M.A.N. generator unit's Target Power value can be lowered as low as 10 kW. Please note, that recommended Target Power value to avoid blackouts during Gravity Generator charging sequence and extensive power use is 11 kW.
+</Document>

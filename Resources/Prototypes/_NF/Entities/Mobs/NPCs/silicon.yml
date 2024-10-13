@@ -42,3 +42,20 @@
   - type: RadarConsole
     followEntity: true
   - type: VehicleHorn
+
+- type: entity
+  parent:
+  - MobCleanBot
+  - BaseC3SyndicateContrabandNoValue
+  id: MobCleanBotSyndie
+  name: syndicate cleanbot
+  description: The creep of automation now threatening space janitors with a knife.
+  components:
+  - type: NpcFactionMember
+    factions:
+    - SyndicateNF
+  - type: Sprite
+    sprite: _NF/Mobs/Silicons/Bots/syndicatecleanbot.rsi
+  - type: HTN
+    rootTask:
+      task: CleanbotCompound
