@@ -1,0 +1,87 @@
+﻿<controls:StationOrCrewLargeControl xmlns="https://spacestation14.io"
+                           xmlns:customControls="clr-namespace:Content.Client.Administration.UI.CustomControls"
+                           xmlns:maths="clr-namespace:Robust.Shared.Maths;assembly=Robust.Shared.Maths"
+                           xmlns:xNamespace="http://schemas.microsoft.com/winfx/2006/xaml"
+                           xmlns:controls="clr-namespace:Content.Client._NF.LateJoin.Controls"
+                           xmlns:graphics="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+                           Access="Public"
+                           HorizontalExpand="True"
+                           VerticalExpand="True">
+    <PanelContainer.PanelOverride>
+        <!-- Using PanelBackgroundLight adds padding left and right, so we manually set background color -->
+        <graphics:StyleBoxFlat BackgroundColor="#2F2F3B"/>
+    </PanelContainer.PanelOverride>
+    <BoxContainer Orientation="Vertical" VerticalExpand="True" Margin="8">
+
+        <Button Name="StationButton"
+                Access="Public"
+                Text=""
+                MinHeight="100"
+                TextAlign="Center"
+                Margin="4"
+                StyleIdentifier="mainMenu">
+
+            <BoxContainer Orientation="Vertical" VerticalExpand="True" Margin="0 4 0 4">
+                <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
+                    <Label
+                        Text="{Loc 'frontier-lobby-station-title'}"
+                        HorizontalExpand="True"
+                        StyleClasses="FancyWindowTitle" />
+
+                    <TextureRect TexturePath="/Textures/_NF/Interface/Misc/arrow-right.png"
+                                 HorizontalAlignment="Center"
+                                 VerticalAlignment="Center"
+                                 HorizontalExpand="False"
+                                 VerticalExpand="True"
+                                 MinSize="30 30"
+                                 MaxSize="30 30"
+                                 Stretch="KeepAspectCentered" />
+                </BoxContainer>
+                <customControls:HSeparator SeparatorColor="#A3875A" StyleClasses="LowDivider" Margin="0 0 36 0" />
+
+                <RichTextLabel Text="{Loc 'frontier-lobby-station-subtext'}" />
+
+                <Label Name="NoStationsAvailableLabel"
+                       Text="{Loc 'frontier-lobby-no-stations-available'}"
+                       Margin="0 4 0 4"
+                       FontColorOverride="{xNamespace:Static maths:Color.OrangeRed}" />
+            </BoxContainer>
+        </Button>
+
+        <Button Name="CrewButton"
+                Access="Public"
+                Text=""
+                MinHeight="100"
+                TextAlign="Center"
+                Margin="4 0 4 4"
+                StyleIdentifier="mainMenu">
+
+            <BoxContainer Orientation="Vertical" VerticalExpand="True" Margin="0 4 0 4">
+                <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
+                    <Label
+                        Text="{Loc 'frontier-lobby-crew-title'}"
+                        HorizontalExpand="True"
+                        StyleClasses="FancyWindowTitle" />
+
+                    <TextureRect TexturePath="/Textures/_NF/Interface/Misc/arrow-right.png"
+                                 HorizontalAlignment="Center"
+                                 VerticalAlignment="Center"
+                                 HorizontalExpand="False"
+                                 VerticalExpand="True"
+                                 MinSize="30 30"
+                                 MaxSize="30 30"
+                                 Stretch="KeepAspectCentered" />
+                </BoxContainer>
+                <customControls:HSeparator SeparatorColor="#A3875A" StyleClasses="LowDivider" Margin="0 0 36 0" />
+
+                <RichTextLabel Text="{Loc 'frontier-lobby-crew-subtext'}" />
+
+                <Label Name="NoCrewsAvailableLabel"
+                       Text="{Loc 'frontier-lobby-no-crews-available'}"
+                       Margin="0 4 0 4"
+                       FontColorOverride="{xNamespace:Static maths:Color.OrangeRed}" />
+            </BoxContainer>
+        </Button>
+    </BoxContainer>
+
+</controls:StationOrCrewLargeControl>
