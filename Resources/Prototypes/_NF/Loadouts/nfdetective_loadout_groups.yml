@@ -1,0 +1,54 @@
+- type: loadoutGroup
+  id: NFDetectiveJumpsuit
+  name: loadout-group-contractor-jumpsuit
+  loadouts:
+  - NFDetectiveClothingUniformJumpsuitNFDetective
+  - NFDetectiveClothingUniformJumpskirtNFDetective
+  fallbacks:
+  - NFDetectiveClothingUniformJumpsuitNFDetective
+  - NFDetectiveClothingUniformJumpskirtNFDetective
+  
+- type: loadoutGroup
+  id: NFDetectiveOuterClothing
+  name: loadout-group-contractor-outerclothing
+  minLimit: 0
+  loadouts:
+  - ContractorClothingOuterVestTank
+  - NFDetectiveClothingOuterArmorBasic
+  - NFDetectiveClothingOuterCoatDetectiveLoadout
+  - NFDetectiveClothingOuterCoatDetectiveLoadoutGrey
+  - NFDetectiveClothingOuterCoatTrench
+  fallbacks:
+  - ContractorClothingOuterVestTank
+
+- type: loadoutGroup
+  id: NFDetectiveHead
+  name: loadout-group-contractor-head
+  minLimit: 0
+  loadouts:
+  - NFDetectiveClothingHeadHatNFDetective
+  
+- type: loadoutGroup
+  id: NFDetectiveGloves
+  name: loadout-group-contractor-gloves
+  hidden: true # No point in showing this, it gets auto-selected.
+  loadouts:
+  - NFDetectiveClothingHandsGlovesNFDetective
+  fallbacks:
+  - NFDetectiveClothingHandsGlovesNFDetective
+
+- type: loadoutGroup
+  id: NFDetectiveNeck
+  name: loadout-group-contractor-neck
+  minLimit: 0
+  loadouts:
+  - NFDetectiveClothingNeckBadgeNFDetective
+
+- type: loadoutGroup
+  id: NFDetectivePDA
+  name: loadout-group-contractor-id
+  hidden: true # No point in showing this, it gets auto-selected.
+  loadouts:
+  - NFNFDetectiveDetectivePDA
+  fallbacks:
+  - NFNFDetectiveDetectivePDA
