@@ -27,6 +27,11 @@
     - HidesHarpyWings
   - type: StaticPrice
     price: 95
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:ContainerSlot {}
+      storagebase: !type:Container
+        ents: []
 
 # DEPARTMENTAL
 - type: entity
@@ -41,10 +46,6 @@
     sprite: _NF/Clothing/OuterClothing/Suits/eva_hydro.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetHydro
-    slot: head
-  - type: ContainerContainer
-    containers:
-      toggleable-clothing: !type:ContainerSlot {}
 
 - type: entity
   parent: NFClothingOuterEVASuitBase
@@ -58,10 +59,6 @@
     sprite: _NF/Clothing/OuterClothing/Suits/eva_mailman.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetMailman
-    slot: head
-  - type: ContainerContainer
-    containers:
-      toggleable-clothing: !type:ContainerSlot {}
 
 # COLORED DEPARTMENTAL
 ## CONTRACTORS
@@ -112,10 +109,6 @@
       - state: equipped-breathing-gear
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetContractor
-    slot: head
-  - type: ContainerContainer
-    containers:
-      toggleable-clothing: !type:ContainerSlot {}
 
 ## COMMAND
 - type: entity
@@ -165,10 +158,6 @@
       - state: equipped-breathing-gear
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetSr
-    slot: head
-  - type: ContainerContainer
-    containers:
-      toggleable-clothing: !type:ContainerSlot {}
 
 - type: entity
   parent: NFClothingOuterEVASuitBase
@@ -217,10 +206,6 @@
       - state: equipped-breathing-gear
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetCaptain
-    slot: head
-  - type: ContainerContainer
-    containers:
-      toggleable-clothing: !type:ContainerSlot {}
 
 ## ENGINEERING
 - type: entity
@@ -270,10 +255,6 @@
       - state: equipped-breathing-gear
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetEngineer
-    slot: head
-  - type: ContainerContainer
-    containers:
-      toggleable-clothing: !type:ContainerSlot {}
 
 - type: entity
   parent: NFClothingOuterEVASuitBase
@@ -322,10 +303,6 @@
       - state: equipped-breathing-gear
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetAtmosTech
-    slot: head
-  - type: ContainerContainer
-    containers:
-      toggleable-clothing: !type:ContainerSlot {}
 
 ## SUPPLY
 - type: entity
@@ -375,10 +352,6 @@
       - state: equipped-breathing-gear
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetCargo
-    slot: head
-  - type: ContainerContainer
-    containers:
-      toggleable-clothing: !type:ContainerSlot {}
 
 - type: entity
   parent: NFClothingOuterEVASuitBase
@@ -427,10 +400,6 @@
       - state: equipped-breathing-gear
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetSalvage
-    slot: head
-  - type: ContainerContainer
-    containers:
-      toggleable-clothing: !type:ContainerSlot {}
 
 ## MEDICAL
 - type: entity
@@ -480,10 +449,6 @@
       - state: equipped-breathing-gear
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetMedic
-    slot: head
-  - type: ContainerContainer
-    containers:
-      toggleable-clothing: !type:ContainerSlot {}
 
 ## SCIENCE
 - type: entity
@@ -533,10 +498,6 @@
       - state: equipped-breathing-gear
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetScientist
-    slot: head
-  - type: ContainerContainer
-    containers:
-      toggleable-clothing: !type:ContainerSlot {}
 
 ## SERVICE
 - type: entity
@@ -586,10 +547,6 @@
       - state: equipped-breathing-gear
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetJanitor
-    slot: head
-  - type: ContainerContainer
-    containers:
-      toggleable-clothing: !type:ContainerSlot {}
 
 - type: entity
   parent: NFClothingOuterEVASuitBase
@@ -638,10 +595,6 @@
       - state: equipped-breathing-gear
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetServiceWorker
-    slot: head
-  - type: ContainerContainer
-    containers:
-      toggleable-clothing: !type:ContainerSlot {}
 
 - type: entity
   parent: NFClothingOuterEVASuitBase
@@ -690,10 +643,6 @@
       - state: equipped-breathing-gear
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetChaplain
-    slot: head
-  - type: ContainerContainer
-    containers:
-      toggleable-clothing: !type:ContainerSlot {}
 
 ## Boxing
 - type: entity
@@ -743,10 +692,6 @@
       - state: equipped-breathing-gear
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetBoxerRed
-    slot: head
-  - type: ContainerContainer
-    containers:
-      toggleable-clothing: !type:ContainerSlot {}
 
 - type: entity
   parent: NFClothingOuterEVASuitBase
@@ -795,10 +740,6 @@
       - state: equipped-breathing-gear
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetBoxerGreen
-    slot: head
-  - type: ContainerContainer
-    containers:
-      toggleable-clothing: !type:ContainerSlot {}
 
 - type: entity
   parent: NFClothingOuterEVASuitBase
@@ -847,10 +788,6 @@
       - state: equipped-breathing-gear
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetBoxerBlue
-    slot: head
-  - type: ContainerContainer
-    containers:
-      toggleable-clothing: !type:ContainerSlot {}
 
 - type: entity
   parent: NFClothingOuterEVASuitBase
@@ -899,10 +836,6 @@
       - state: equipped-breathing-gear
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetBoxerYellow
-    slot: head
-  - type: ContainerContainer
-    containers:
-      toggleable-clothing: !type:ContainerSlot {}
 
 - type: entity
   parent: NFClothingOuterEVASuitBase
@@ -953,10 +886,6 @@
       - state: inhand-right-breathing-gear
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetBoxerRandom
-    slot: head
-  - type: ContainerContainer
-    containers:
-      toggleable-clothing: !type:ContainerSlot {}
 
 ## WILDCARDS
 - type: entity
@@ -1006,10 +935,6 @@
       - state: equipped-breathing-gear
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetPilot
-    slot: head
-  - type: ContainerContainer
-    containers:
-      toggleable-clothing: !type:ContainerSlot {}
 
 - type: entity
   parent: NFClothingOuterEVASuitBase
@@ -1058,10 +983,6 @@
       - state: equipped-breathing-gear
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetMercenary
-    slot: head
-  - type: ContainerContainer
-    containers:
-      toggleable-clothing: !type:ContainerSlot {}
 
 - type: entity
   parent: NFClothingOuterEVASuitBase
@@ -1110,10 +1031,6 @@
       - state: equipped-breathing-gear
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetPrivateSec
-    slot: head
-  - type: ContainerContainer
-    containers:
-      toggleable-clothing: !type:ContainerSlot {}
 
 ## NFSD
 - type: entity
@@ -1163,10 +1080,6 @@
       - state: equipped-breathing-gear
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetNfsd
-    slot: head
-  - type: ContainerContainer
-    containers:
-      toggleable-clothing: !type:ContainerSlot {}
 
 ## PLAYER FACTIONS
 - type: entity
@@ -1222,10 +1135,6 @@
       - state: equipped-breathing-gear
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetLvhi
-    slot: head
-  - type: ContainerContainer
-    containers:
-      toggleable-clothing: !type:ContainerSlot {}
 
 - type: entity
   parent: NFClothingOuterEVASuitBase
@@ -1286,7 +1195,3 @@
         color: "#8f1717"
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetArcadia
-    slot: head
-  - type: ContainerContainer
-    containers:
-      toggleable-clothing: !type:ContainerSlot {}
