@@ -1,25 +1,7 @@
-# Frontier-specific parent for turning regular objects into wallmounts to avoid redefining upstream prototypes.
-# Base
-- type: entity
-  parent: BaseStructureDisableAnchoring
-  id: BaseWallmount
-  abstract: true
-  placement:
-    mode: SnapgridCenter
-    snap:
-      - Wallmount
-  components:
-  - type: Physics # Mimicing existing wall lockers
-    bodyType: Static # Unmoveable
-    canCollide: false # Passthrough
-  - type: Fixtures
-    fixtures: {}
-  - type: WallMount
-
 - type: entity # Base for yml-colored lockers
   abstract: true
   id: LockerWallColorBase
-  parent: [ BaseWallCloset, BaseWallmount ]
+  parent: [ BaseWallCloset, BaseStructureWallmount ]
   suffix: Frontier
   components:
   - type: Sprite
@@ -199,7 +181,7 @@
 # Other: Chemistry wall locker
 - type: entity
   id: LockerWallChemistry
-  parent: [LockerWallMedical, BaseWallmount]
+  parent: [LockerWallMedical, BaseStructureWallmount]
   name: chemistry wall locker
   components:
   - type: Sprite
