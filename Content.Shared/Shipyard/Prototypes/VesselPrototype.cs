@@ -76,6 +76,12 @@ public sealed class VesselPrototype : IPrototype
     /// </summary>
     [DataField]
     public ProtoId<GuideEntryPrototype>? GuidebookPage = default!;
+
+    /// <summary>
+    ///     The price markup of the vessel testing
+    /// </summary>
+    [DataField]
+    public float MinPriceMarkup = 1.05f;
 }
 
 public enum VesselSize : byte
