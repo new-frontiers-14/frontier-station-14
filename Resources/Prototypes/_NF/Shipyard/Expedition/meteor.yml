@@ -1,0 +1,41 @@
+# Author Info
+# GitHub: The048
+# Discord: @sh1nycrab
+
+# Maintainer Info
+# GitHub: someone from the future
+# Discord: that same person from the future
+
+# Shuttle Notes: the core concept is to be a capital S Small expeditionary ship, with basically everything being sacrificed for that large cargo bay while trying to fit within the 256 tile guideline that the ship submisssion guidelines point to.
+#
+- type: vessel
+  id: meteor
+  name: NT Meteor
+  description: The civilian version of a NanoTrasen dropship meant to move mechanized strike teams, now used for its large cargo bay and small overall size.
+  price: 51525 #the base sell value is ~29,687 spesos
+  category: Small
+  group: Expedition
+  shuttlePath: /Maps/_NF/Shuttles/Expedition/meteor.yml
+  guidebookPage: Null
+  class:
+  - Expedition
+  
+- type: gameMap
+  id: meteor
+  mapName: 'NT Meteor'
+  mapPath: /Maps/_NF/Shuttles/Expedition/meteor.yml
+  minPlayers: 0
+  stations: 
+    meteor:
+      stationProto: StandardFrontierExpeditionVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Meteor {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]
