@@ -38,31 +38,17 @@ namespace Content.IntegrationTests.Tests
 
         private static readonly string[] Grids =
         {
-            "/Maps/centcomm.yml",
-            "/Maps/Shuttles/cargo.yml",
-            "/Maps/Shuttles/emergency.yml",
-            "/Maps/Shuttles/infiltrator.yml",
+            // Admin
+            "/Maps/_NF/Shuttles/Admin/fishbowl.yml",
+            // Bus
+            "/Maps/_NF/Shuttles/Bus/publicts.yml",
         };
 
         private static readonly string[] GameMaps =
         {
-            "Dev",
+            "NFDev",
             "TestTeg",
-            "Fland",
-            "Meta",
-            "Packed",
-            "Omega",
-            "Bagel",
-            "CentComm",
-            "Box",
-            "Core",
-            "Marathon",
-            "MeteorArena",
-            "Saltern",
-            "Reach",
-            "Train",
-            "Oasis",
-            "Cog"
+            "Frontier",
         };
 
         /// <summary>
