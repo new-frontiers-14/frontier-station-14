@@ -46,6 +46,6 @@ public sealed partial class ShuttleRecordsConsoleComponent : Component
     /// The cost of making a new id card.
     /// This may be zero with different access levels, ie. if the SR uses the console.
     /// </summary>
-    [ViewVariables]
+    [DataField]
     public double TransactionPrice { get; set; } = 10000;
 }
