@@ -73,6 +73,7 @@ public sealed class AutoInternalsTests
   equipment:
     mask: ClothingMaskBreath
     suitstorage: OxygenTankFilled
+    outerClothing: ClothingOuterVestTank # Frontier
 
 - type: job
   id: TestInternalsDummy
