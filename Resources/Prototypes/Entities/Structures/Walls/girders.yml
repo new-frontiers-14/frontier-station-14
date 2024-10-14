@@ -90,10 +90,10 @@
             - !type:SpawnEntitiesBehavior
               spawn:
                 SheetSteel1:
-                  min: 1
+                  min: 0 # Frontier: 1<0
                   max: 1
                 SheetPlasteel1:
-                  min: 1
+                  min: 0 # Frontier: 1<0
                   max: 1
             - !type:DoActsBehavior
               acts: [ "Destruction" ]
@@ -101,7 +101,7 @@
               sound:
                 collection: MetalBreak
     - type: StaticPrice
-      price: 25 # Frontier: 130<25
+      price: 35 # Frontier: 130<25, 25<35
 
 - type: entity
   id: ClockworkGirder
@@ -116,7 +116,7 @@
       graph: ClockworkGirder
       node: clockGirder
     - type: StaticPrice
-      price: 25 # Frontier: 75<25
+      price: 45 # Frontier: 75<25, 25<45 - TODO: tests at 35
     - type: Destructible
       thresholds:
         - trigger:
