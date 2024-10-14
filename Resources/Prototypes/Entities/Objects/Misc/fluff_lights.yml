@@ -273,7 +273,7 @@
       - !type:SpawnEntitiesBehavior
         spawn:
           SheetSteel1:
-            min: 1
+            min: 0 # Frontier: 1<0
             max: 1
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
@@ -290,4 +290,4 @@
         layer:
         - MachineLayer
   - type: StaticPrice # Frontier
-    price: 3 # Frontier: TODO - tests at 6
+    price: 6 # Frontier: TODO - tests at 6
