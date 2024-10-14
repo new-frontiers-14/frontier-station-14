@@ -1053,12 +1053,27 @@ entities:
       rot: 6.283185307179586 rad
       pos: -1.6655741,6.2222466
       parent: 1
+- proto: ButtonFrameCaution
+  entities:
+  - uid: 412
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -1.25,7.5
+      parent: 1
+- proto: ButtonFrameCautionSecurity
+  entities:
+  - uid: 411
+    components:
+    - type: Transform
+      pos: 0.25,7.5
+      parent: 1
 - proto: ButtonFrameExit
   entities:
   - uid: 276
     components:
     - type: Transform
-      pos: 0.5,7.5
+      pos: 0.75,7.5
       parent: 1
 - proto: ButtonFrameGrey
   entities:
@@ -1071,7 +1086,7 @@ entities:
     components:
     - type: Transform
       rot: 3.141592653589793 rad
-      pos: -1.5,7.5
+      pos: -1.75,7.5
       parent: 1
 - proto: CableApcExtension
   entities:
@@ -2276,52 +2291,6 @@ entities:
       parent: 1
     - type: CollisionWake
       enabled: False
-- proto: LockableButtonExternal
-  entities:
-  - uid: 364
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 0.0949074,6.979876
-      parent: 1
-    - type: DeviceLinkSource
-      linkedPorts:
-        2:
-        - Pressed: DoorBolt
-        61:
-        - Pressed: DoorBolt
-        55:
-        - Pressed: DoorBolt
-        65:
-        - Pressed: DoorBolt
-  - uid: 411
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -1.9277914,7.495636
-      parent: 1
-    - type: DeviceLinkSource
-      linkedPorts:
-        293:
-        - Pressed: Toggle
-        339:
-        - Pressed: Toggle
-        336:
-        - Pressed: Toggle
-        158:
-        - Pressed: Toggle
-        202:
-        - Pressed: Toggle
-        277:
-        - Pressed: Toggle
-        355:
-        - Pressed: Toggle
-        358:
-        - Pressed: Toggle
-        213:
-        - Pressed: Toggle
-        270:
-        - Pressed: Toggle
 - proto: LockerMedicineFilled
   entities:
   - uid: 290
@@ -2881,7 +2850,7 @@ entities:
   - uid: 296
     components:
     - type: Transform
-      pos: 0.5,7.5
+      pos: 0.75,7.5
       parent: 1
     - type: DeviceLinkSource
       linkedPorts:
@@ -2912,11 +2881,26 @@ entities:
         - Pressed: Toggle
         333:
         - Pressed: Toggle
+  - uid: 364
+    components:
+    - type: Transform
+      pos: 0.25,7.5
+      parent: 1
+    - type: DeviceLinkSource
+      linkedPorts:
+        2:
+        - Pressed: DoorBolt
+        61:
+        - Pressed: DoorBolt
+        55:
+        - Pressed: DoorBolt
+        65:
+        - Pressed: DoorBolt
   - uid: 365
     components:
     - type: Transform
       rot: 3.141592653589793 rad
-      pos: -1.5,7.5
+      pos: -1.75,7.5
       parent: 1
     - type: DeviceLinkSource
       linkedPorts:
@@ -2933,6 +2917,36 @@ entities:
         407:
         - Pressed: Toggle
         408:
+        - Pressed: Toggle
+  - uid: 413
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -1.25,7.5
+      parent: 1
+    - type: SignalSwitch
+      state: True
+    - type: DeviceLinkSource
+      linkedPorts:
+        293:
+        - Pressed: Toggle
+        339:
+        - Pressed: Toggle
+        336:
+        - Pressed: Toggle
+        158:
+        - Pressed: Toggle
+        202:
+        - Pressed: Toggle
+        270:
+        - Pressed: Toggle
+        213:
+        - Pressed: Toggle
+        358:
+        - Pressed: Toggle
+        355:
+        - Pressed: Toggle
+        277:
         - Pressed: Toggle
 - proto: SignEVA
   entities:
