@@ -3,7 +3,8 @@ using Content.Server.Speech.Components;
 using Content.Shared.EntityEffects;
 using Content.Shared.Mind.Components;
 using Robust.Shared.Prototypes;
-using Content.Shared.Humanoid; //Delta-V - Banning humanoids from becoming ghost roles.
+using Content.Shared.Humanoid;
+using Content.Shared.Speech.Components; //Delta-V - Banning humanoids from becoming ghost roles.
 
 namespace Content.Server.EntityEffects.Effects;
 

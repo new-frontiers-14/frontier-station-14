@@ -1,7 +1,6 @@
-using Content.Server.Speech.Components;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
+﻿using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
-namespace Content.Server._NF.Speech.Components;
+namespace Content.Shared.Speech.Components;
 
 /// <summary>
 ///     Applies accent to user while they wear entity as a clothing.
@@ -27,3 +26,4 @@ public sealed partial class AddAccentPickupComponent : Component
     /// </summary>
     public bool IsActive = false;
 }
+
