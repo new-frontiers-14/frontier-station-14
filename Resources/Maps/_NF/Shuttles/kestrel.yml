@@ -1047,8 +1047,8 @@ entities:
   - uid: 489
     components:
     - type: MetaData
-      desc: Попробуйте найти остановку для отдыха в космосе!
-      name: грязное ведро
+      desc: You try finding a rest stop in space!
+      name: dirty bucket
     - type: Transform
       pos: 2.5162077,-1.4334857
       parent: 3
@@ -1803,6 +1803,14 @@ entities:
     components:
     - type: Transform
       pos: 0.5,-16.5
+      parent: 3
+- proto: DefibrillatorCabinetFilled
+  entities:
+  - uid: 526
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -0.5,-11.5
       parent: 3
 - proto: DrinkGlass
   entities:
@@ -2602,6 +2610,8 @@ entities:
       pos: 0.5,1.5
       parent: 3
     - type: DeviceNetwork
+      configurators:
+      - invalid
       deviceLists:
       - 523
     - type: AtmosPipeColor
@@ -2613,6 +2623,8 @@ entities:
       pos: 4.5,-3.5
       parent: 3
     - type: DeviceNetwork
+      configurators:
+      - invalid
       deviceLists:
       - 523
     - type: AtmosPipeColor
@@ -2666,6 +2678,8 @@ entities:
       pos: 1.5,0.5
       parent: 3
     - type: DeviceNetwork
+      configurators:
+      - invalid
       deviceLists:
       - 523
     - type: AtmosPipeColor
@@ -2699,6 +2713,8 @@ entities:
       pos: 2.5,-3.5
       parent: 3
     - type: DeviceNetwork
+      configurators:
+      - invalid
       deviceLists:
       - 523
     - type: AtmosPipeColor

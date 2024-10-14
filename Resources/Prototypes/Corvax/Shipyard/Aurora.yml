@@ -1,0 +1,29 @@
+#Corvax Frontier
+- type: vessel
+  id: Aurora
+  name: NC Аврора
+  description: Корабль большого класса, располагает всеми удобствами обычной станции NanoTrasen.
+  price: 1
+  category: Medium
+  group: Shipyard
+  shuttlePath: /Maps/Corvax/Shuttles/Aurora.yml
+
+- type: gameMap
+  id: Aurora
+  mapName: 'Аврора'
+  mapPath: /Maps/Corvax/Shuttles/Aurora.yml
+  minPlayers: 0
+  stations:
+    Aurora:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Аврора {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]

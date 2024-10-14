@@ -1364,6 +1364,14 @@ entities:
     - type: Transform
       pos: 2.5,2.5
       parent: 1
+- proto: DefibrillatorCabinetFilled
+  entities:
+  - uid: 26
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 6.5,0.5
+      parent: 1
 - proto: DisposalBend
   entities:
   - uid: 41
@@ -2038,6 +2046,8 @@ entities:
       pos: 1.5,-5.5
       parent: 1
     - type: DeviceNetwork
+      configurators:
+      - invalid
       deviceLists:
       - 396
     - type: AtmosPipeColor
@@ -2095,6 +2105,8 @@ entities:
       pos: 0.5,-5.5
       parent: 1
     - type: DeviceNetwork
+      configurators:
+      - invalid
       deviceLists:
       - 396
     - type: AtmosPipeColor
