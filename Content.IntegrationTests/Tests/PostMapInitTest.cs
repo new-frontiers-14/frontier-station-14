@@ -47,7 +47,6 @@ namespace Content.IntegrationTests.Tests
         private static readonly string[] GameMaps =
         {
             "NFDev",
-            "TestTeg",
             "Frontier",
         };
 
