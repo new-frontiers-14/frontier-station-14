@@ -1,15 +1,14 @@
+using System.Linq;
 using Content.Client.Administration.Managers;
 using Content.Client.Gameplay;
 using Content.Client.Lobby;
 using Content.Client.RoundEnd;
 using Content.Shared.GameTicking;
 using Content.Shared.GameWindow;
-using Content.Shared.Roles;
 using JetBrains.Annotations;
 using Robust.Client.Graphics;
 using Robust.Client.State;
 using Robust.Client.UserInterface;
-using Robust.Shared.Prototypes;
 
 namespace Content.Client.GameTicking.Managers
 {
@@ -21,8 +20,7 @@ namespace Content.Client.GameTicking.Managers
         [Dependency] private readonly IClyde _clyde = default!;
         [Dependency] private readonly IUserInterfaceManager _userInterfaceManager = default!;
 
-        private Dictionary<NetEntity, Dictionary<ProtoId<JobPrototype>, int?>>  _jobsAvailable = new();
-        private Dictionary<NetEntity, string> _stationNames = new();
+        private Dictionary<NetEntity, StationJobInformation> _stationJobInformationList = new();
 
         [ViewVariables] public bool AreWeReady { get; private set; }
         [ViewVariables] public bool IsGameStarted { get; private set; }
@@ -33,13 +31,21 @@ namespace Content.Client.GameTicking.Managers
         [ViewVariables] public TimeSpan StartTime { get; private set; }
         [ViewVariables] public new bool Paused { get; private set; }
 
-        [ViewVariables] public IReadOnlyDictionary<NetEntity, Dictionary<ProtoId<JobPrototype>, int?>> JobsAvailable => _jobsAvailable;
-        [ViewVariables] public IReadOnlyDictionary<NetEntity, string> StationNames => _stationNames;
+        [ViewVariables] public IReadOnlyDictionary<NetEntity, StationJobInformation> StationJobInformationList => _stationJobInformationList;
+
+        // Frontier addition
+        // Replaced StationNames with a getter that uses _stationJobInformationList
+        [ViewVariables]
+        public IReadOnlyDictionary<NetEntity, string> StationNames =>
+            _stationJobInformationList.ToDictionary(
+                kvp => kvp.Key,
+                kvp => kvp.Value.StationName
+            );
 
         public event Action? InfoBlobUpdated;
         public event Action? LobbyStatusUpdated;
         public event Action? LobbyLateJoinStatusUpdated;
-        public event Action<IReadOnlyDictionary<NetEntity, Dictionary<ProtoId<JobPrototype>, int?>>>? LobbyJobsAvailableUpdated;
+        public event Action<IReadOnlyDictionary<NetEntity, StationJobInformation>>? LobbyJobsAvailableUpdated;
 
         public override void Initialize()
         {
@@ -87,20 +93,9 @@ namespace Content.Client.GameTicking.Managers
 
         private void UpdateJobsAvailable(TickerJobsAvailableEvent message)
         {
-            _jobsAvailable.Clear();
-
-            foreach (var (job, data) in message.JobsAvailableByStation)
-            {
-                _jobsAvailable[job] = data;
-            }
-
-            _stationNames.Clear();
-            foreach (var weh in message.StationNames)
-            {
-                _stationNames[weh.Key] = weh.Value;
-            }
-
-            LobbyJobsAvailableUpdated?.Invoke(JobsAvailable);
+            _stationJobInformationList.Clear();
+            _stationJobInformationList = message.StationJobList;
+            LobbyJobsAvailableUpdated?.Invoke(StationJobInformationList);
         }
 
         private void JoinLobby(TickerJoinLobbyEvent message)
