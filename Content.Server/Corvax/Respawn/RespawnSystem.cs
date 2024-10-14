@@ -45,13 +45,14 @@ public sealed class RespawnSystem : EntitySystem
         SubscribeLocalEvent<MindContainerComponent, CryosleepBeforeMindRemovedEvent>(OnCryoBeforeMindRemoved);
         SubscribeLocalEvent<MindContainerComponent, CryosleepWakeUpEvent>(OnCryoWakeUp);
 
-        _admin.OnPermsChanged += OnAdminPermsChanged;
-        _player.PlayerStatusChanged += PlayerStatusChanged;
+        _admin.OnPermsChanged += OnAdminPermsChanged; // Frontier
+        _player.PlayerStatusChanged += PlayerStatusChanged; // Frontier
 
-        Subs.CVar(_cfg, NFCCVars.RespawnCryoFirstTime, OnRespawnCryoFirstTimeChanged, true);
-        Subs.CVar(_cfg, NFCCVars.RespawnTime, OnRespawnCryoTimeChanged, true);
+        Subs.CVar(_cfg, NFCCVars.RespawnCryoFirstTime, OnRespawnCryoFirstTimeChanged, true); // Frontier
+        Subs.CVar(_cfg, NFCCVars.RespawnTime, OnRespawnCryoTimeChanged, true); // Frontier
     }
 
+    // Frontier: CVar setters
     private void OnRespawnCryoFirstTimeChanged(float value)
     {
         _respawnTimeOnFirstCryo = value;
@@ -61,6 +62,7 @@ public sealed class RespawnSystem : EntitySystem
     {
         _respawnTime = value;
     }
+    // End Frontier
 
     private void OnMobStateChanged(EntityUid entity, MindContainerComponent component, MobStateChangedEvent e)
     {
