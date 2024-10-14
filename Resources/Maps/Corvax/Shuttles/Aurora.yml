@@ -840,11 +840,9 @@ entities:
             0: 65484
             1: 1
           0,1:
-            0: 3519
-            2: 576
+            0: 4095
           -1,1:
-            0: 4031
-            2: 64
+            0: 4095
           0,2:
             1: 15
           -1,2:
@@ -1003,21 +1001,6 @@ entities:
           - 0
           - 0
           - 0
-        - volume: 2500
-          temperature: 293.14996
-          moles:
-          - 20.078888
-          - 75.53487
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
         chunkSize: 4
     - type: GasTileOverlay
     - type: BecomesStation
@@ -1060,7 +1043,7 @@ entities:
       - 338
       - 231
       - 339
-      - 946
+      - 1
   - uid: 649
     components:
     - type: Transform
@@ -1412,11 +1395,10 @@ entities:
       parent: 2
 - proto: AirSensor
   entities:
-  - uid: 946
+  - uid: 1
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -8.5,-9.5
+      pos: -8.5,-11.5
       parent: 2
     - type: DeviceNetwork
       deviceLists:
@@ -1669,6 +1651,12 @@ entities:
       rot: 3.141592653589793 rad
       pos: 6.5,-19.5
       parent: 2
+  - uid: 1132
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 6.5,1.5
+      parent: 2
 - proto: BannerMedical
   entities:
   - uid: 1414
@@ -1808,25 +1796,25 @@ entities:
       parent: 2
 - proto: BlastDoorOpen
   entities:
-  - uid: 1
-    components:
-    - type: Transform
-      pos: -1.5,0.5
-      parent: 2
   - uid: 676
     components:
     - type: Transform
-      pos: -0.5,0.5
+      pos: -1.5,1.5
       parent: 2
   - uid: 677
     components:
     - type: Transform
-      pos: 1.5,0.5
+      pos: -0.5,1.5
       parent: 2
   - uid: 678
     components:
     - type: Transform
-      pos: 2.5,0.5
+      pos: 1.5,1.5
+      parent: 2
+  - uid: 946
+    components:
+    - type: Transform
+      pos: 2.5,1.5
       parent: 2
 - proto: BookMedicalReferenceBook
   entities:
@@ -1842,39 +1830,6 @@ entities:
     - type: Transform
       pos: -1.5,-16.5
       parent: 2
-- proto: BoxFolderWhite
-  entities:
-  - uid: 1596
-    components:
-    - type: MetaData
-      name: Образцы бумажной бюрократии для оказания услуг
-    - type: Transform
-      pos: -4.490182,-11.328307
-      parent: 2
-    - type: Storage
-      storedItems:
-        1597:
-          position: 0,0
-          _rotation: South
-        1598:
-          position: 1,0
-          _rotation: South
-        1599:
-          position: 2,0
-          _rotation: South
-        1600:
-          position: 3,0
-          _rotation: South
-    - type: ContainerContainer
-      containers:
-        storagebase: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 1597
-          - 1598
-          - 1599
-          - 1600
 - proto: ButtonFrameCautionSecurity
   entities:
   - uid: 1317
@@ -4564,16 +4519,6 @@ entities:
       parent: 2
 - proto: ClothingBeltUtility
   entities:
-  - uid: 1132
-    components:
-    - type: Transform
-      pos: 7.5319796,-10.158759
-      parent: 2
-  - uid: 1133
-    components:
-    - type: Transform
-      pos: 7.5319796,-10.471259
-      parent: 2
   - uid: 1156
     components:
     - type: Transform
@@ -4973,13 +4918,6 @@ entities:
     components:
     - type: Transform
       pos: -4.2142715,-8.367116
-      parent: 2
-- proto: DefaultStationBeaconCryonics
-  entities:
-  - uid: 1568
-    components:
-    - type: Transform
-      pos: -4.5,-8.5
       parent: 2
 - proto: DisposalBend
   entities:
@@ -5504,13 +5442,6 @@ entities:
     - type: Transform
       pos: 0.5,0.5
       parent: 2
-- proto: EZNutrientChemistryBottle
-  entities:
-  - uid: 1372
-    components:
-    - type: Transform
-      pos: 6.353218,-8.501013
-      parent: 2
 - proto: FaxMachineShip
   entities:
   - uid: 1344
@@ -5518,6 +5449,9 @@ entities:
     - type: Transform
       pos: -3.5,2.5
       parent: 2
+    - type: FaxMachine
+      name: Аврора
+      useStationName: False
 - proto: FireAlarm
   entities:
   - uid: 966
@@ -5942,27 +5876,26 @@ entities:
       - 925
 - proto: FloorDrain
   entities:
-  - uid: 1199
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -5.5,-15.5
-      parent: 2
-    - type: Fixtures
-      fixtures: {}
-  - uid: 1200
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -8.5,-10.5
-      parent: 2
-    - type: Fixtures
-      fixtures: {}
   - uid: 1201
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 8.5,-8.5
+      parent: 2
+    - type: Fixtures
+      fixtures: {}
+  - uid: 1301
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -6.5,-13.5
+      parent: 2
+    - type: Fixtures
+      fixtures: {}
+  - uid: 1372
+    components:
+    - type: Transform
+      pos: -8.5,-9.5
       parent: 2
     - type: Fixtures
       fixtures: {}
@@ -5988,7 +5921,7 @@ entities:
     - type: Transform
       pos: 4.770913,2.6025362
       parent: 2
-- proto: FoodDonutBlumpkin
+- proto: FoodDonutBluePumpkin
   entities:
   - uid: 1339
     components:
@@ -8481,6 +8414,13 @@ entities:
     - type: Transform
       pos: 11.5,-0.5
       parent: 2
+- proto: LockerBotanist
+  entities:
+  - uid: 1262
+    components:
+    - type: Transform
+      pos: 4.5,-8.5
+      parent: 2
 - proto: LockerCaptainFilledHardsuit
   entities:
   - uid: 1324
@@ -8657,23 +8597,13 @@ entities:
           showEnts: False
           occludes: True
           ent: null
-- proto: LockerWallChemistryFilled
+- proto: LockerWallChemistry
   entities:
-  - uid: 1301
+  - uid: 1568
     components:
     - type: Transform
       pos: -8.5,-8.5
       parent: 2
-    - type: ContainerContainer
-      containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        paper_label: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
 - proto: LockerWallMaterialsFuelPlasmaFilled2
   entities:
   - uid: 1130
@@ -8786,38 +8716,6 @@ entities:
         =============================================
 
         [italic]Место для печатей[/italic]
-- proto: PaperWrittenMedicalFormHealthInsurance
-  entities:
-  - uid: 1598
-    components:
-    - type: Transform
-      parent: 1596
-    - type: Physics
-      canCollide: False
-- proto: PaperWrittenMedicalFormPatientInfo
-  entities:
-  - uid: 1600
-    components:
-    - type: Transform
-      parent: 1596
-    - type: Physics
-      canCollide: False
-- proto: PaperWrittenMedicalFormPrescription
-  entities:
-  - uid: 1597
-    components:
-    - type: Transform
-      parent: 1596
-    - type: Physics
-      canCollide: False
-- proto: PaperWrittenMedicalFormServiceInvoice
-  entities:
-  - uid: 1599
-    components:
-    - type: Transform
-      parent: 1596
-    - type: Physics
-      canCollide: False
 - proto: Pen
   entities:
   - uid: 1381
@@ -9063,6 +8961,11 @@ entities:
       parent: 2
 - proto: Poweredlight
   entities:
+  - uid: 1133
+    components:
+    - type: Transform
+      pos: -4.5,-8.5
+      parent: 2
   - uid: 1511
     components:
     - type: Transform
@@ -9622,13 +9525,13 @@ entities:
         - Pressed: Toggle
         1359:
         - Pressed: Toggle
-        678:
+        676:
         - Pressed: Toggle
         677:
         - Pressed: Toggle
-        676:
+        678:
         - Pressed: Toggle
-        1:
+        946:
         - Pressed: Toggle
   - uid: 1162
     components:
@@ -9644,6 +9547,36 @@ entities:
         - Pressed: Toggle
         1098:
         - Pressed: Toggle
+  - uid: 1200
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 6.5,-1.5
+      parent: 2
+    - type: DeviceLinkSource
+      linkedPorts:
+        1081:
+        - Pressed: DoorBolt
+  - uid: 1596
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 6.5,-1.5
+      parent: 2
+    - type: DeviceLinkSource
+      linkedPorts:
+        1082:
+        - Pressed: DoorBolt
+  - uid: 1597
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 9.5,-1.5
+      parent: 2
+    - type: DeviceLinkSource
+      linkedPorts:
+        1083:
+        - Pressed: DoorBolt
 - proto: SignBridge
   entities:
   - uid: 976
@@ -9993,6 +9926,11 @@ entities:
       parent: 2
 - proto: SpawnPointLatejoin
   entities:
+  - uid: 1199
+    components:
+    - type: Transform
+      pos: 0.5,4.5
+      parent: 2
   - uid: 1570
     components:
     - type: Transform
@@ -10120,6 +10058,13 @@ entities:
     components:
     - type: Transform
       pos: 9.5,-5.5
+      parent: 2
+- proto: StructureGunRackMercenary
+  entities:
+  - uid: 1021
+    components:
+    - type: Transform
+      pos: -6.5,-3.5
       parent: 2
 - proto: SubstationBasic
   entities:
@@ -10561,7 +10506,7 @@ entities:
   - uid: 1458
     components:
     - type: MetaData
-      desc: Фигурка Революционера!... Здесь определённо что-то не так...
+      desc: Фигурка!... Революционера?...
       name: Фигурка Революционера
     - type: Transform
       pos: -6.7074833,-19.34149
@@ -10670,13 +10615,6 @@ entities:
     components:
     - type: Transform
       pos: 2.5,-7.5
-      parent: 2
-- proto: VendingMachineNutri
-  entities:
-  - uid: 1262
-    components:
-    - type: Transform
-      pos: 4.5,-8.5
       parent: 2
 - proto: VendingMachineSciDrobe
   entities:
@@ -11643,13 +11581,6 @@ entities:
     components:
     - type: Transform
       pos: -3.5,-6.5
-      parent: 2
-- proto: WeaponRackMercenary
-  entities:
-  - uid: 1021
-    components:
-    - type: Transform
-      pos: -6.5,-3.5
       parent: 2
 - proto: WeldingFuelTankFull
   entities:
