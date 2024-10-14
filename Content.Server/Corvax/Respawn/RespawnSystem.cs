@@ -46,6 +46,7 @@ public sealed class RespawnSystem : EntitySystem
         SubscribeLocalEvent<MindContainerComponent, CryosleepWakeUpEvent>(OnCryoWakeUp);
 
         _admin.OnPermsChanged += OnAdminPermsChanged;
+        _player.PlayerStatusChanged += PlayerStatusChanged;
 
         Subs.CVar(_cfg, NFCCVars.RespawnCryoFirstTime, OnRespawnCryoFirstTimeChanged, true);
         Subs.CVar(_cfg, NFCCVars.RespawnTime, OnRespawnCryoTimeChanged, true);
@@ -172,4 +173,17 @@ public sealed class RespawnSystem : EntitySystem
             _respawnInfo[player] = new RespawnData();
         return ref CollectionsMarshal.GetValueRefOrNullRef(_respawnInfo, player);
     }
+
+    // Frontier: send ghost timer on player connection
+    private void PlayerStatusChanged(object? _, SessionStatusEventArgs args)
+    {
+        var session = args.Session;
+
+        if (args.NewStatus == Robust.Shared.Enums.SessionStatus.InGame &&
+            _respawnInfo.ContainsKey(session.UserId))
+        {
+            RaiseNetworkEvent(new RespawnResetEvent(_respawnInfo[session.UserId].RespawnTime), session);
+        }
+    }
+    // End Frontier
 }
