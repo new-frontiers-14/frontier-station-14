@@ -104,6 +104,7 @@ namespace Content.IntegrationTests.Tests
 ";
 
         [Test]
+        [Ignore("Frontier: restocks for vendors are intentionally unpurchaseable.")] // Frontier
         public async Task TestAllRestocksAreAvailableToBuy()
         {
             await using var pair = await PoolManager.GetServerClient();
