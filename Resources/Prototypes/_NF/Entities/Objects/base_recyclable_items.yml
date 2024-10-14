@@ -2,6 +2,16 @@
 # and occasionally ignores item sizes too (eg toolbox is ginormous item, but is treated as RecyclableItemSteelMedium nonetheless)
 # Item sizes: Tiny, Small, Medium, Large, Huge, Ginormous
 
+# No materials
+- type: entity
+  id: RecyclableItemNoMats
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+    - Trash
+    - Recyclable
+
 # Cardboard
 - type: entity # Boxes
   id: RecyclableItemCardboard
