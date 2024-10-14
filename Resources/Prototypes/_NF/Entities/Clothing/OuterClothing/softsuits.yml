@@ -41,9 +41,52 @@
   description: An EVA suit with a built-in helmet commonly issued to hydroponics workers.
   components:
   - type: Sprite
-    sprite: _NF/Clothing/OuterClothing/Suits/eva_hydro.rsi
+    sprite: _NF/Clothing/OuterClothing/Suits/eva_color.rsi
+    layers:
+    - state: icon-base
+      color: "#5fa31e"
+    - state: icon-decals-01
+      color: "#3164ff"
+    - state: icon-reinforced-points
+      color: "#6b4600"
+    - state: icon-breathing-gear
+    - state: icon-unshaded
+      shader: unshaded
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-base
+        color: "#5fa31e"
+      - state: inhand-left-decals-01
+        color: "#3164ff"
+      - state: inhand-left-reinforced-points
+        color: "#6b4600"
+      - state: inhand-left-breathing-gear
+      - state: inhand-left-unshaded
+        shader: unshaded
+      right:
+      - state: inhand-right-base
+        color: "#5fa31e"
+      - state: inhand-right-decals-01
+        color: "#3164ff"
+      - state: inhand-right-reinforced-points
+        color: "#6b4600"
+      - state: inhand-right-breathing-gear
+      - state: inhand-right-unshaded
+        shader: unshaded
   - type: Clothing
-    sprite: _NF/Clothing/OuterClothing/Suits/eva_hydro.rsi
+    sprite: _NF/Clothing/OuterClothing/Suits/eva_color.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: equipped-base
+        color: "#5fa31e"
+      - state: equipped-decals-01
+        color: "#3164ff"
+      - state: equipped-reinforced-points
+        color: "#6b4600"
+      - state: equipped-breathing-gear
+      - state: equipped-unshaded
+        shader: unshaded
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetHydro
 
@@ -54,9 +97,52 @@
   description: An EVA suit with a built-in helmet commonly issued to hydroponics workers.
   components:
   - type: Sprite
-    sprite: _NF/Clothing/OuterClothing/Suits/eva_mailman.rsi
+    sprite: _NF/Clothing/OuterClothing/Suits/eva_color.rsi
+    layers:
+    - state: icon-base
+      color: "#4960ed"
+    - state: icon-decals-01
+      color: "#b3b3b3"
+    - state: icon-reinforced-points
+      color: "#3e3e48"
+    - state: icon-breathing-gear
+    - state: icon-unshaded
+      shader: unshaded
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-base
+        color: "#4960ed"
+      - state: inhand-left-decals-01
+        color: "#b3b3b3"
+      - state: inhand-left-reinforced-points
+        color: "#3e3e48"
+      - state: inhand-left-breathing-gear
+      - state: inhand-left-unshaded
+        shader: unshaded
+      right:
+      - state: inhand-right-base
+        color: "#4960ed"
+      - state: inhand-right-decals-01
+        color: "#b3b3b3"
+      - state: inhand-right-reinforced-points
+        color: "#3e3e48"
+      - state: inhand-right-breathing-gear
+      - state: inhand-right-unshaded
+        shader: unshaded
   - type: Clothing
-    sprite: _NF/Clothing/OuterClothing/Suits/eva_mailman.rsi
+    sprite: _NF/Clothing/OuterClothing/Suits/eva_color.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: equipped-base
+        color: "#4960ed"
+      - state: equipped-decals-01
+        color: "#b3b3b3"
+      - state: equipped-reinforced-points
+        color: "#3e3e48"
+      - state: equipped-breathing-gear
+      - state: equipped-unshaded
+        shader: unshaded
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetMailman
 
@@ -78,6 +164,8 @@
     - state: icon-reinforced-points
       color: "#3e3e48"
     - state: icon-breathing-gear
+    - state: icon-unshaded
+      shader: unshaded
   - type: Item
     inhandVisuals:
       left:
@@ -88,6 +176,8 @@
       - state: inhand-left-reinforced-points
         color: "#3e3e48"
       - state: inhand-left-breathing-gear
+      - state: inhand-left-unshaded
+        shader: unshaded
       right:
       - state: inhand-right-base
         color: "#fff4e2"
@@ -96,6 +186,8 @@
       - state: inhand-right-reinforced-points
         color: "#3e3e48"
       - state: inhand-right-breathing-gear
+      - state: inhand-right-unshaded
+        shader: unshaded
   - type: Clothing
     sprite: _NF/Clothing/OuterClothing/Suits/eva_color.rsi
     clothingVisuals:
@@ -107,6 +199,8 @@
       - state: equipped-reinforced-points
         color: "#3e3e48"
       - state: equipped-breathing-gear
+      - state: equipped-unshaded
+        shader: unshaded
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetContractor
 
@@ -127,6 +221,8 @@
     - state: icon-reinforced-points
       color: "#3e3e48"
     - state: icon-breathing-gear
+    - state: icon-unshaded
+      shader: unshaded
   - type: Item
     inhandVisuals:
       left:
@@ -137,6 +233,8 @@
       - state: inhand-left-reinforced-points
         color: "#3e3e48"
       - state: inhand-left-breathing-gear
+      - state: inhand-left-unshaded
+        shader: unshaded
       right:
       - state: inhand-right-base
         color: "#194214"
@@ -145,6 +243,8 @@
       - state: inhand-right-reinforced-points
         color: "#3e3e48"
       - state: inhand-right-breathing-gear
+      - state: inhand-right-unshaded
+        shader: unshaded
   - type: Clothing
     sprite: _NF/Clothing/OuterClothing/Suits/eva_color.rsi
     clothingVisuals:
@@ -156,6 +256,8 @@
       - state: equipped-reinforced-points
         color: "#3e3e48"
       - state: equipped-breathing-gear
+      - state: equipped-unshaded
+        shader: unshaded
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetSr
 
@@ -175,6 +277,8 @@
     - state: icon-reinforced-points
       color: "#3e3e48"
     - state: icon-breathing-gear
+    - state: icon-unshaded
+      shader: unshaded
   - type: Item
     inhandVisuals:
       left:
@@ -185,6 +289,8 @@
       - state: inhand-left-reinforced-points
         color: "#3e3e48"
       - state: inhand-left-breathing-gear
+      - state: inhand-left-unshaded
+        shader: unshaded
       right:
       - state: inhand-right-base
         color: "#3a6781"
@@ -193,6 +299,8 @@
       - state: inhand-right-reinforced-points
         color: "#3e3e48"
       - state: inhand-right-breathing-gear
+      - state: inhand-right-unshaded
+        shader: unshaded
   - type: Clothing
     sprite: _NF/Clothing/OuterClothing/Suits/eva_color.rsi
     clothingVisuals:
@@ -204,6 +312,8 @@
       - state: equipped-reinforced-points
         color: "#3e3e48"
       - state: equipped-breathing-gear
+      - state: equipped-unshaded
+        shader: unshaded
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetCaptain
 
@@ -224,6 +334,8 @@
     - state: icon-reinforced-points
       color: "#ff7f00"
     - state: icon-breathing-gear
+    - state: icon-unshaded
+      shader: unshaded
   - type: Item
     inhandVisuals:
       left:
@@ -234,6 +346,8 @@
       - state: inhand-left-reinforced-points
         color: "#ff7f00"
       - state: inhand-left-breathing-gear
+      - state: inhand-left-unshaded
+        shader: unshaded
       right:
       - state: inhand-right-base
         color: "#ffee00"
@@ -242,6 +356,8 @@
       - state: inhand-right-reinforced-points
         color: "#ff7f00"
       - state: inhand-right-breathing-gear
+      - state: inhand-right-unshaded
+        shader: unshaded
   - type: Clothing
     sprite: _NF/Clothing/OuterClothing/Suits/eva_color.rsi
     clothingVisuals:
@@ -253,6 +369,8 @@
       - state: equipped-reinforced-points
         color: "#ff7f00"
       - state: equipped-breathing-gear
+      - state: equipped-unshaded
+        shader: unshaded
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetEngineer
 
@@ -272,6 +390,8 @@
     - state: icon-reinforced-points
       color: "#ff7f00"
     - state: icon-breathing-gear
+    - state: icon-unshaded
+      shader: unshaded
   - type: Item
     inhandVisuals:
       left:
@@ -282,6 +402,8 @@
       - state: inhand-left-reinforced-points
         color: "#ff7f00"
       - state: inhand-left-breathing-gear
+      - state: inhand-left-unshaded
+        shader: unshaded
       right:
       - state: inhand-right-base
         color: "#ffee00"
@@ -290,6 +412,8 @@
       - state: inhand-right-reinforced-points
         color: "#ff7f00"
       - state: inhand-right-breathing-gear
+      - state: inhand-right-unshaded
+        shader: unshaded
   - type: Clothing
     sprite: _NF/Clothing/OuterClothing/Suits/eva_color.rsi
     clothingVisuals:
@@ -301,6 +425,8 @@
       - state: equipped-reinforced-points
         color: "#ff7f00"
       - state: equipped-breathing-gear
+      - state: equipped-unshaded
+        shader: unshaded
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetAtmosTech
 
@@ -321,6 +447,8 @@
     - state: icon-reinforced-points
       color: "#3e3e48"
     - state: icon-breathing-gear
+    - state: icon-unshaded
+      shader: unshaded
   - type: Item
     inhandVisuals:
       left:
@@ -331,6 +459,8 @@
       - state: inhand-left-reinforced-points
         color: "#3e3e48"
       - state: inhand-left-breathing-gear
+      - state: inhand-left-unshaded
+        shader: unshaded
       right:
       - state: inhand-right-base
         color: "#deb733"
@@ -339,6 +469,8 @@
       - state: inhand-right-reinforced-points
         color: "#3e3e48"
       - state: inhand-right-breathing-gear
+      - state: inhand-right-unshaded
+        shader: unshaded
   - type: Clothing
     sprite: _NF/Clothing/OuterClothing/Suits/eva_color.rsi
     clothingVisuals:
@@ -350,6 +482,8 @@
       - state: equipped-reinforced-points
         color: "#3e3e48"
       - state: equipped-breathing-gear
+      - state: equipped-unshaded
+        shader: unshaded
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetCargo
 
@@ -369,6 +503,8 @@
     - state: icon-reinforced-points
       color: "#786243"
     - state: icon-breathing-gear
+    - state: icon-unshaded
+      shader: unshaded
   - type: Item
     inhandVisuals:
       left:
@@ -379,6 +515,8 @@
       - state: inhand-left-reinforced-points
         color: "#786243"
       - state: inhand-left-breathing-gear
+      - state: inhand-left-unshaded
+        shader: unshaded
       right:
       - state: inhand-right-base
         color: "#deb733"
@@ -387,6 +525,8 @@
       - state: inhand-right-reinforced-points
         color: "#786243"
       - state: inhand-right-breathing-gear
+      - state: inhand-right-unshaded
+        shader: unshaded
   - type: Clothing
     sprite: _NF/Clothing/OuterClothing/Suits/eva_color.rsi
     clothingVisuals:
@@ -398,6 +538,8 @@
       - state: equipped-reinforced-points
         color: "#786243"
       - state: equipped-breathing-gear
+      - state: equipped-unshaded
+        shader: unshaded
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetSalvage
 
@@ -418,6 +560,8 @@
     - state: icon-reinforced-points
       color: "#3e3e48"
     - state: icon-breathing-gear
+    - state: icon-unshaded
+      shader: unshaded
   - type: Item
     inhandVisuals:
       left:
@@ -428,6 +572,8 @@
       - state: inhand-left-reinforced-points
         color: "#3e3e48"
       - state: inhand-left-breathing-gear
+      - state: inhand-left-unshaded
+        shader: unshaded
       right:
       - state: inhand-right-base
         color: "#5a96bb"
@@ -436,6 +582,8 @@
       - state: inhand-right-reinforced-points
         color: "#3e3e48"
       - state: inhand-right-breathing-gear
+      - state: inhand-right-unshaded
+        shader: unshaded
   - type: Clothing
     sprite: _NF/Clothing/OuterClothing/Suits/eva_color.rsi
     clothingVisuals:
@@ -447,6 +595,8 @@
       - state: equipped-reinforced-points
         color: "#3e3e48"
       - state: equipped-breathing-gear
+      - state: equipped-unshaded
+        shader: unshaded
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetMedic
 
@@ -467,6 +617,8 @@
     - state: icon-reinforced-points
       color: "#606275"
     - state: icon-breathing-gear
+    - state: icon-unshaded
+      shader: unshaded
   - type: Item
     inhandVisuals:
       left:
@@ -477,6 +629,8 @@
       - state: inhand-left-reinforced-points
         color: "#606275"
       - state: inhand-left-breathing-gear
+      - state: inhand-left-unshaded
+        shader: unshaded
       right:
       - state: inhand-right-base
         color: "#edeaea"
@@ -485,6 +639,8 @@
       - state: inhand-right-reinforced-points
         color: "#606275"
       - state: inhand-right-breathing-gear
+      - state: inhand-right-unshaded
+        shader: unshaded
   - type: Clothing
     sprite: _NF/Clothing/OuterClothing/Suits/eva_color.rsi
     clothingVisuals:
@@ -496,6 +652,8 @@
       - state: equipped-reinforced-points
         color: "#606275"
       - state: equipped-breathing-gear
+      - state: equipped-unshaded
+        shader: unshaded
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetScientist
 
@@ -516,6 +674,8 @@
     - state: icon-reinforced-points
       color: "#ebdc36"
     - state: icon-breathing-gear
+    - state: icon-unshaded
+      shader: unshaded
   - type: Item
     inhandVisuals:
       left:
@@ -526,6 +686,8 @@
       - state: inhand-left-reinforced-points
         color: "#ebdc36"
       - state: inhand-left-breathing-gear
+      - state: inhand-left-unshaded
+        shader: unshaded
       right:
       - state: inhand-right-base
         color: "#cac4c3"
@@ -534,6 +696,8 @@
       - state: inhand-right-reinforced-points
         color: "#ebdc36"
       - state: inhand-right-breathing-gear
+      - state: inhand-right-unshaded
+        shader: unshaded
   - type: Clothing
     sprite: _NF/Clothing/OuterClothing/Suits/eva_color.rsi
     clothingVisuals:
@@ -545,6 +709,8 @@
       - state: equipped-reinforced-points
         color: "#ebdc36"
       - state: equipped-breathing-gear
+      - state: equipped-unshaded
+        shader: unshaded
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetJanitor
 
@@ -564,6 +730,8 @@
     - state: icon-reinforced-points
       color: "#606275"
     - state: icon-breathing-gear
+    - state: icon-unshaded
+      shader: unshaded
   - type: Item
     inhandVisuals:
       left:
@@ -574,6 +742,8 @@
       - state: inhand-left-reinforced-points
         color: "#606275"
       - state: inhand-left-breathing-gear
+      - state: inhand-left-unshaded
+        shader: unshaded
       right:
       - state: inhand-right-base
         color: "#fff4e2"
@@ -582,6 +752,8 @@
       - state: inhand-right-reinforced-points
         color: "#606275"
       - state: inhand-right-breathing-gear
+      - state: inhand-right-unshaded
+        shader: unshaded
   - type: Clothing
     sprite: _NF/Clothing/OuterClothing/Suits/eva_color.rsi
     clothingVisuals:
@@ -593,6 +765,8 @@
       - state: equipped-reinforced-points
         color: "#606275"
       - state: equipped-breathing-gear
+      - state: equipped-unshaded
+        shader: unshaded
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetServiceWorker
 
@@ -612,6 +786,8 @@
     - state: icon-reinforced-points
       color: "#3e3e48"
     - state: icon-breathing-gear
+    - state: icon-unshaded
+      shader: unshaded
   - type: Item
     inhandVisuals:
       left:
@@ -622,6 +798,8 @@
       - state: inhand-left-reinforced-points
         color: "#3e3e48"
       - state: inhand-left-breathing-gear
+      - state: inhand-left-unshaded
+        shader: unshaded
       right:
       - state: inhand-right-base
         color: "#3e3e48"
@@ -630,6 +808,8 @@
       - state: inhand-right-reinforced-points
         color: "#3e3e48"
       - state: inhand-right-breathing-gear
+      - state: inhand-right-unshaded
+        shader: unshaded
   - type: Clothing
     sprite: _NF/Clothing/OuterClothing/Suits/eva_color.rsi
     clothingVisuals:
@@ -641,6 +821,8 @@
       - state: equipped-reinforced-points
         color: "#3e3e48"
       - state: equipped-breathing-gear
+      - state: equipped-unshaded
+        shader: unshaded
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetChaplain
 
@@ -650,6 +832,7 @@
   id: ClothingOuterEVASuitBoxerRed
   name: boxer EVA suit
   description: An EVA suit with a built-in helmet commonly issued to boxers in the red corner.
+  suffix: Red
   components:
   - type: Sprite
     sprite: _NF/Clothing/OuterClothing/Suits/eva_color.rsi
@@ -661,6 +844,8 @@
     - state: icon-decals-02-boxer
       color: "#d1502c"
     - state: icon-breathing-gear
+    - state: icon-unshaded
+      shader: unshaded
   - type: Item
     inhandVisuals:
       left:
@@ -671,6 +856,8 @@
       - state: inhand-left-reinforced-points
         color: "#606275"
       - state: inhand-left-breathing-gear
+      - state: inhand-left-unshaded
+        shader: unshaded
       right:
       - state: inhand-right-base
         color: "#fff4e2"
@@ -679,6 +866,8 @@
       - state: inhand-right-reinforced-points
         color: "#606275"
       - state: inhand-right-breathing-gear
+      - state: inhand-right-unshaded
+        shader: unshaded
   - type: Clothing
     sprite: _NF/Clothing/OuterClothing/Suits/eva_color.rsi
     clothingVisuals:
@@ -690,6 +879,8 @@
       - state: equipped-decals-02-boxer
         color: "#d1502c"
       - state: equipped-breathing-gear
+      - state: equipped-unshaded
+        shader: unshaded
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetBoxerRed
 
@@ -698,6 +889,7 @@
   id: ClothingOuterEVASuitBoxerGreen
   name: boxer EVA suit
   description: An EVA suit with a built-in helmet commonly issued to boxers in the green corner.
+  suffix: Green
   components:
   - type: Sprite
     sprite: _NF/Clothing/OuterClothing/Suits/eva_color.rsi
@@ -709,6 +901,8 @@
     - state: icon-decals-02-boxer
       color: "#4cd339"
     - state: icon-breathing-gear
+    - state: icon-unshaded
+      shader: unshaded
   - type: Item
     inhandVisuals:
       left:
@@ -719,6 +913,8 @@
       - state: inhand-left-reinforced-points
         color: "#606275"
       - state: inhand-left-breathing-gear
+      - state: inhand-left-unshaded
+        shader: unshaded
       right:
       - state: inhand-right-base
         color: "#fff4e2"
@@ -727,6 +923,8 @@
       - state: inhand-right-reinforced-points
         color: "#606275"
       - state: inhand-right-breathing-gear
+      - state: inhand-right-unshaded
+        shader: unshaded
   - type: Clothing
     sprite: _NF/Clothing/OuterClothing/Suits/eva_color.rsi
     clothingVisuals:
@@ -738,6 +936,8 @@
       - state: equipped-decals-02-boxer
         color: "#4cd339"
       - state: equipped-breathing-gear
+      - state: equipped-unshaded
+        shader: unshaded
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetBoxerGreen
 
@@ -746,6 +946,7 @@
   id: ClothingOuterEVASuitBoxerBlue
   name: boxer EVA suit
   description: An EVA suit with a built-in helmet commonly issued to boxers in the blue corner.
+  suffix: Blue
   components:
   - type: Sprite
     sprite: _NF/Clothing/OuterClothing/Suits/eva_color.rsi
@@ -757,6 +958,8 @@
     - state: icon-decals-02-boxer
       color: "#23a0bb"
     - state: icon-breathing-gear
+    - state: icon-unshaded
+      shader: unshaded
   - type: Item
     inhandVisuals:
       left:
@@ -767,6 +970,8 @@
       - state: inhand-left-reinforced-points
         color: "#606275"
       - state: inhand-left-breathing-gear
+      - state: inhand-left-unshaded
+        shader: unshaded
       right:
       - state: inhand-right-base
         color: "#fff4e2"
@@ -775,6 +980,8 @@
       - state: inhand-right-reinforced-points
         color: "#606275"
       - state: inhand-right-breathing-gear
+      - state: inhand-right-unshaded
+        shader: unshaded
   - type: Clothing
     sprite: _NF/Clothing/OuterClothing/Suits/eva_color.rsi
     clothingVisuals:
@@ -786,6 +993,8 @@
       - state: equipped-decals-02-boxer
         color: "#23a0bb"
       - state: equipped-breathing-gear
+      - state: equipped-unshaded
+        shader: unshaded
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetBoxerBlue
 
@@ -794,6 +1003,7 @@
   id: ClothingOuterEVASuitBoxerYellow
   name: boxer EVA suit
   description: An EVA suit with a built-in helmet commonly issued to boxers in the yellow corner.
+  suffix: Yellow
   components:
   - type: Sprite
     sprite: _NF/Clothing/OuterClothing/Suits/eva_color.rsi
@@ -805,6 +1015,8 @@
     - state: icon-decals-02-boxer
       color: "#d9be15"
     - state: icon-breathing-gear
+    - state: icon-unshaded
+      shader: unshaded
   - type: Item
     inhandVisuals:
       left:
@@ -815,6 +1027,8 @@
       - state: inhand-left-reinforced-points
         color: "#606275"
       - state: inhand-left-breathing-gear
+      - state: inhand-left-unshaded
+        shader: unshaded
       right:
       - state: inhand-right-base
         color: "#fff4e2"
@@ -823,6 +1037,8 @@
       - state: inhand-right-reinforced-points
         color: "#606275"
       - state: inhand-right-breathing-gear
+      - state: inhand-right-unshaded
+        shader: unshaded
   - type: Clothing
     sprite: _NF/Clothing/OuterClothing/Suits/eva_color.rsi
     clothingVisuals:
@@ -834,6 +1050,8 @@
       - state: equipped-decals-02-boxer
         color: "#d9be15"
       - state: equipped-breathing-gear
+      - state: equipped-unshaded
+        shader: unshaded
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetBoxerYellow
 
@@ -842,6 +1060,7 @@
   id: ClothingOuterEVASuitBoxerRandom
   name: boxer EVA suit
   description: An EVA suit with a built-in helmet commonly issued to boxers in the random corner.
+  suffix: Randomized colors
   components:
   - type: Sprite
     sprite: _NF/Clothing/OuterClothing/Suits/eva_color.rsi
@@ -853,6 +1072,8 @@
     - state: equipped-decals-02-boxer
       map: [ "eva_decal_boxing" ]
     - state: equipped-breathing-gear
+    - state: equipped-unshaded
+      shader: unshaded
   - type: Clothing
     sprite: _NF/Clothing/OuterClothing/Suits/eva_color.rsi
     clothingVisuals:
@@ -864,6 +1085,8 @@
       - state: equipped-decals-02-boxer
         map: [ "eva_decal_boxing" ]
       - state: equipped-breathing-gear
+      - state: equipped-unshaded
+        shader: unshaded
   - type: RandomSprite
     available:
     - eva_decal_boxing:
@@ -877,6 +1100,8 @@
       - state: inhand-left-reinforced-points
         color: "#606275"
       - state: inhand-left-breathing-gear
+      - state: inhand-left-unshaded
+        shader: unshaded
       right:
       - state: inhand-right-base
         color: "#fff4e2"
@@ -884,6 +1109,8 @@
       - state: inhand-right-reinforced-points
         color: "#606275"
       - state: inhand-right-breathing-gear
+      - state: inhand-right-unshaded
+        shader: unshaded
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetBoxerRandom
 
@@ -904,6 +1131,8 @@
     - state: icon-reinforced-points
       color: "#784f1e"
     - state: icon-breathing-gear
+    - state: icon-unshaded
+      shader: unshaded
   - type: Item
     inhandVisuals:
       left:
@@ -914,6 +1143,8 @@
       - state: inhand-left-reinforced-points
         color: "#784f1e"
       - state: inhand-left-breathing-gear
+      - state: inhand-left-unshaded
+        shader: unshaded
       right:
       - state: inhand-right-base
         color: "#496ea0"
@@ -922,6 +1153,8 @@
       - state: inhand-right-reinforced-points
         color: "#784f1e"
       - state: inhand-right-breathing-gear
+      - state: inhand-right-unshaded
+        shader: unshaded
   - type: Clothing
     sprite: _NF/Clothing/OuterClothing/Suits/eva_color.rsi
     clothingVisuals:
@@ -933,6 +1166,8 @@
       - state: equipped-reinforced-points
         color: "#784f1e"
       - state: equipped-breathing-gear
+      - state: equipped-unshaded
+        shader: unshaded
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetPilot
 
@@ -952,6 +1187,8 @@
     - state: icon-reinforced-points
       color: "#3e3e48"
     - state: icon-breathing-gear
+    - state: icon-unshaded
+      shader: unshaded
   - type: Item
     inhandVisuals:
       left:
@@ -962,6 +1199,8 @@
       - state: inhand-left-reinforced-points
         color: "#3e3e48"
       - state: inhand-left-breathing-gear
+      - state: inhand-left-unshaded
+        shader: unshaded
       right:
       - state: inhand-right-base
         color: "#7b7b3f"
@@ -970,6 +1209,8 @@
       - state: inhand-right-reinforced-points
         color: "#3e3e48"
       - state: inhand-right-breathing-gear
+      - state: inhand-right-unshaded
+        shader: unshaded
   - type: Clothing
     sprite: _NF/Clothing/OuterClothing/Suits/eva_color.rsi
     clothingVisuals:
@@ -981,6 +1222,8 @@
       - state: equipped-reinforced-points
         color: "#3e3e48"
       - state: equipped-breathing-gear
+      - state: equipped-unshaded
+        shader: unshaded
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetMercenary
 
@@ -1000,6 +1243,8 @@
     - state: icon-reinforced-points
       color: "#935c3f"
     - state: icon-breathing-gear
+    - state: icon-unshaded
+      shader: unshaded
   - type: Item
     inhandVisuals:
       left:
@@ -1010,6 +1255,8 @@
       - state: inhand-left-reinforced-points
         color: "#935c3f"
       - state: inhand-left-breathing-gear
+      - state: inhand-left-unshaded
+        shader: unshaded
       right:
       - state: inhand-right-base
         color: "#2286bd"
@@ -1018,6 +1265,8 @@
       - state: inhand-right-reinforced-points
         color: "#935c3f"
       - state: inhand-right-breathing-gear
+      - state: inhand-right-unshaded
+        shader: unshaded
   - type: Clothing
     sprite: _NF/Clothing/OuterClothing/Suits/eva_color.rsi
     clothingVisuals:
@@ -1029,6 +1278,8 @@
       - state: equipped-reinforced-points
         color: "#935c3f"
       - state: equipped-breathing-gear
+      - state: equipped-unshaded
+        shader: unshaded
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetPrivateSec
 
@@ -1049,6 +1300,8 @@
     - state: icon-reinforced-points
       color: "#493926"
     - state: icon-breathing-gear
+    - state: icon-unshaded
+      shader: unshaded
   - type: Item
     inhandVisuals:
       left:
@@ -1059,6 +1312,8 @@
       - state: inhand-left-reinforced-points
         color: "#493926"
       - state: inhand-left-breathing-gear
+      - state: inhand-left-unshaded
+        shader: unshaded
       right:
       - state: inhand-right-base
         color: "#a9947d"
@@ -1067,6 +1322,8 @@
       - state: inhand-right-reinforced-points
         color: "#493926"
       - state: inhand-right-breathing-gear
+      - state: inhand-right-unshaded
+        shader: unshaded
   - type: Clothing
     sprite: _NF/Clothing/OuterClothing/Suits/eva_color.rsi
     clothingVisuals:
@@ -1078,6 +1335,8 @@
       - state: equipped-reinforced-points
         color: "#493926"
       - state: equipped-breathing-gear
+      - state: equipped-unshaded
+        shader: unshaded
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetNfsd
 
@@ -1101,6 +1360,8 @@
         state: decor_base_OuterClothing_armor_06
         color: "#e48545"
       - state: equipped-breathing-gear
+      - state: equipped-unshaded
+        shader: unshaded
   - type: Item
     inhandVisuals:
       left:
@@ -1111,6 +1372,8 @@
       - state: inhand-left-reinforced-points
         color: "#3e3e48"
       - state: inhand-left-breathing-gear
+      - state: inhand-left-unshaded
+        shader: unshaded
       right:
       - state: inhand-right-base
         color: "#283846"
@@ -1119,6 +1382,8 @@
       - state: inhand-right-reinforced-points
         color: "#3e3e48"
       - state: inhand-right-breathing-gear
+      - state: inhand-right-unshaded
+        shader: unshaded
   - type: Clothing
     sprite: _NF/Clothing/OuterClothing/Suits/eva_color.rsi
     clothingVisuals:
@@ -1133,6 +1398,8 @@
         state: decor_base_OuterClothing_armor_06
         color: "#e48545"
       - state: equipped-breathing-gear
+      - state: equipped-unshaded
+        shader: unshaded
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEVAHelmetLvhi
 
@@ -1155,6 +1422,8 @@
         state: decor_base_OuterClothing_armor_02
         color: "#8f1717"
       - state: equipped-breathing-gear
+      - state: equipped-unshaded
+        shader: unshaded
       - sprite: _NF/Clothing/OuterClothing/Armor/bulletproof_vest_procedural.rsi
         state: decor_base_OuterClothing_armor_05
         color: "#8f1717"
@@ -1168,6 +1437,8 @@
       - state: inhand-left-reinforced-points
         color: "#3e3e48"
       - state: inhand-left-breathing-gear
+      - state: inhand-left-unshaded
+        shader: unshaded
       right:
       - state: inhand-right-base
         color: "#ffffff"
@@ -1176,6 +1447,8 @@
       - state: inhand-right-reinforced-points
         color: "#3e3e48"
       - state: inhand-right-breathing-gear
+      - state: inhand-right-unshaded
+        shader: unshaded
   - type: Clothing
     sprite: _NF/Clothing/OuterClothing/Suits/eva_color.rsi
     clothingVisuals:
@@ -1190,6 +1463,8 @@
         state: decor_base_OuterClothing_armor_02
         color: "#8f1717"
       - state: equipped-breathing-gear
+      - state: equipped-unshaded
+        shader: unshaded
       - sprite: _NF/Clothing/OuterClothing/Armor/bulletproof_vest_procedural.rsi
         state: decor_base_OuterClothing_armor_05
         color: "#8f1717"
