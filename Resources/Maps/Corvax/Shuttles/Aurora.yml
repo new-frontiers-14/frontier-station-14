@@ -840,7 +840,8 @@ entities:
             0: 65484
             1: 1
           0,1:
-            0: 4095
+            0: 3583
+            2: 512
           -1,1:
             0: 4095
           0,2:
@@ -991,6 +992,21 @@ entities:
           moles:
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          temperature: 293.15
+          moles:
+          - 21.6852
+          - 81.57766
           - 0
           - 0
           - 0
@@ -4642,15 +4658,6 @@ entities:
     - type: Transform
       pos: -6.5415964,-18.15568
       parent: 2
-- proto: ClothingNeckMantleCE
-  entities:
-  - uid: 1534
-    components:
-    - type: Transform
-      parent: 1325
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: ClothingNeckMantleCMO
   entities:
   - uid: 1560
@@ -5442,6 +5449,11 @@ entities:
     - type: Transform
       pos: 0.5,0.5
       parent: 2
+  - uid: 1564
+    components:
+    - type: Transform
+      pos: 12.5,-2.5
+      parent: 2
 - proto: FaxMachineShip
   entities:
   - uid: 1344
@@ -5449,9 +5461,6 @@ entities:
     - type: Transform
       pos: -3.5,2.5
       parent: 2
-    - type: FaxMachine
-      name: Аврора
-      useStationName: False
 - proto: FireAlarm
   entities:
   - uid: 966
@@ -8435,11 +8444,6 @@ entities:
     - type: Transform
       pos: 9.5,-10.5
       parent: 2
-  - uid: 1565
-    components:
-    - type: Transform
-      pos: 8.5,-10.5
-      parent: 2
 - proto: LockerEngineerFilledHardsuit
   entities:
   - uid: 1325
@@ -8453,8 +8457,8 @@ entities:
         immutable: False
         temperature: 293.14923
         moles:
-        - 1.7459903
-        - 6.568249
+        - 1.8856695
+        - 7.0937095
         - 0
         - 0
         - 0
@@ -8471,9 +8475,8 @@ entities:
           showEnts: False
           occludes: True
           ents:
-          - 1557
-          - 1534
           - 1525
+          - 1557
         paper_label: !type:ContainerSlot
           showEnts: False
           occludes: True
@@ -8691,31 +8694,36 @@ entities:
         stampType: RubberStamp
         stampedColor: '#850000FF'
         stampedName: stamp-component-stamped-name-syndicate
-      content: >-
+      content: >+
         [color=#B50F1D] ███░██████░███[/color]
 
         [color=#B50F1D] █░░░██░░░░░░░█[/color] [head=3]Передача[/head]
 
         [color=#B50F1D] █░░░░████░░░░█[/color] [head=3]Syndicate[/head]
 
-        [color=#B50F1D] █░░░░░░░██░░░█[/color] [bold]NC Aurora[/bold]
+        [color=#B50F1D] █░░░░░░░██░░░█[/color] [bold]  NC Aurora[/bold]
 
         [color=#B50F1D] ███░██████░███[/color]
 
         =============================================
-                        ЗАШИФРОВАННАЯ ПЕРЕДАЧА
+                            ЗАШИФРОВАННАЯ ПЕРЕДАЧА
         =============================================
 
-        Оперативник, ваша задача - ликвидировать данный актив NanoTrasen, на корабле действует революционная ячейка - при необходимости заручитесь поддержкой для эффективного выполнения задания 
+        [color=#B50F1D] [bold]Оперативник, ваша задача - ликвидировать данный актив NanoTrasen, на корабле действует революционная ячейка - при необходимости заручитесь поддержкой для эффективного выполнения задания.
 
 
-        Слава Синдикату! Смерть корпоративным крысам NanoTrasen! 
-
-        ПОСЛЕ ПРОЧТЕНИЯ УНИЧТОЖИТЬ
+        Слава Синдикату![/head] [/bold]
 
         =============================================
 
         [italic]Место для печатей[/italic]
+
+
+
+
+
+
+
 - proto: Pen
   entities:
   - uid: 1381
@@ -8776,6 +8784,15 @@ entities:
     components:
     - type: Transform
       pos: 7.5,-13.5
+      parent: 2
+    - type: FuelGenerator
+      on: False
+    - type: Physics
+      bodyType: Static
+  - uid: 1534
+    components:
+    - type: Transform
+      pos: 8.5,-10.5
       parent: 2
     - type: FuelGenerator
       on: False
@@ -10113,13 +10130,6 @@ entities:
           ents:
           - 1313
           - 1314
-- proto: SuitStorageWallmountEVAEmergency
-  entities:
-  - uid: 1564
-    components:
-    - type: Transform
-      pos: 12.5,-2.5
-      parent: 2
 - proto: SurveillanceCameraGeneral
   entities:
   - uid: 1491
