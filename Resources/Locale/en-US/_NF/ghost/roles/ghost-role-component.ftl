@@ -55,3 +55,14 @@ ghost-role-information-dungeon-boss-rules = You are a [color=red][bold]Team Anta
                                         - [color=red]DO NOT[/color] gib players. Once they're dead, leave them be.
                                         - [color=red]DO NOT[/color] destroy or hide valuable loot in the dungeon.
                                         - [color=red]DO NOT[/color] leave the planet.
+
+ghost-role-information-goblinbane-name = The Goblinbane
+ghost-role-information-goblinbane-ghost-name = The Ghost of Goblinbane
+ghost-role-information-goblinbane-description = Hunt down those pesky-little-dirty-smelly goblins. And felinids. And also chaplains.
+ghost-role-information-goblinbane-rules = You are a [color=red][bold]Solo Antagonist[/bold][/color] capable of summoning minions. [color=yellow]Do note[/color], your minions will be hostile to everyone, except you.
+                                        Search and destroy goblins/felinids/chaplains.
+                                        Please note that [color=yellow]all server rules still apply.[/color]. Additionally:
+										- Reminder that Frontier Outpost is a safe zone. Do not allow your minion reach the Outpost.
+                                        - [color=red]DO NOT[/color] damage Frontier Outpost.
+                                        - [color=red]DO NOT[/color] devour Frontier Outpost walls or airlocks.
+                                        - [color=red]DO NOT[/color] damage player shuttles or their contents.

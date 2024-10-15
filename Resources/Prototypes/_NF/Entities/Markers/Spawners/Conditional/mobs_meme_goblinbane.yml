@@ -85,3 +85,23 @@
     - MopBucketDimnsionPortal
   - type: Ammo
     muzzleFlash: null
+
+# Randomised mob portal(bucket/mop/sprayer)
+- type: entity
+  id: SpawnCleanlinessDimensionPortal
+  name: cleanliness dimension portal spawner
+  parent: MarkerBasePlaceFree
+  suffix: AI, Hostile
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+      - sprite: _NF/Mobs/Meme/goblinbane.rsi
+        state: bucket_portal
+        shader: unshaded
+  - type: ConditionalSpawner
+    prototypes:
+    - CleanlinessDimensionPortal
+  - type: Ammo
+    muzzleFlash: null

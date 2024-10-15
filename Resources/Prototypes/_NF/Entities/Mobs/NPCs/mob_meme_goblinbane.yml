@@ -29,7 +29,6 @@
   description: A Daemon of Cleanliness from the time before time (but after the first toilet was built). An ancient enemy of goblinkind.
   categories: [ HideSpawnMenu ]
   components:
-  - type: ComplexInteraction # dunno what's that, sounds cool though
   - type: NPCRetaliation
     attackMemoryLength: 90
   - type: Advertise
@@ -112,7 +111,80 @@
     radius: 1.4
     energy: 1.2
     color: "#ff0000"
+  # Ghost role stuff
+  - type: GhostRole
+    allowMovement: true
+    name: ghost-role-information-goblinbane-name
+    description: ghost-role-information-goblinbane-description
+    rules: ghost-role-information-goblinbane-rules
+    raffle:
+      settings: default
+  - type: GhostTakeoverAvailable
+  # Radar console (helps locating goblins and such)
+  - type: UserInterface
+    interfaces:
+      enum.RadarConsoleUiKey.Key:
+        type: RadarConsoleBoundUserInterface
+  - type: IntrinsicUI
+    uis:
+      enum.RadarConsoleUiKey.Key:
+        toggleAction: ActionObserverShowRadar
+  - type: RadarConsole
+    followEntity: true
+    maxIffRange: 256
+    hideCoords: true
+  - type: ComplexInteraction
+  # Abilities
+  - type: Devourer
+    foodPreference: Humanoid
+    shouldStoreDevoured: true
+    chemical: Ichor
+    healRate: 15.0
+    whitelist:
+      components:
+      - MobState
+      - Door
+      tags:
+      - Wall
+  - type: ActionGun
+    action: ActionSpawnCleanlinessDimensionPortal
+    gunProto: CleanlinessDimensionPortalGun
 
+- type: entity
+  categories: [ HideSpawnMenu ]
+  id: ActionSpawnCleanlinessDimensionPortal
+  name: "[color=orange]Open Cleanliness Portal[/color]"
+  description: "A portal to the dimension of utter cleanliness. No goblins allowed. The ability has [color=yellow]60 second cooldown.[/color]"
+  components:
+  - type: WorldTargetAction
+    icon: { sprite : _NF/Mobs/Meme/goblinbane.rsi, state: bucket_portal }
+    event: !type:ActionGunShootEvent
+    priority: 2
+    checkCanAccess: false
+    range: 0
+    itemIconStyle: BigAction
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  id: CleanlinessDimensionPortalGun
+  name: Mop Bucket Portal Gun
+  description: Spawns the portal.
+  components:
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 60
+    rechargeSound:
+      path: /Audio/Magic/fireball.ogg
+  - type: BasicEntityAmmoProvider
+    proto: SpawnCleanlinessDimensionPortal
+    capacity: 1
+    count: 1
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Effects/teleport_arrival.ogg
+    soundEmpty: null
+    projectileSpeed: 5
+
+# Ghost form of possessed toilet
 - type: entity
   id: MobMemeGoblinbaneGhost
   parent: [ MobIncorporealBase, MobMemeGoblinbane ]
@@ -181,6 +253,15 @@
   - type: MeleeChemicalInjector
     solution: bloodstream
     transferAmount: 10
+  # Ghost role stuff
+  - type: GhostRole
+    allowMovement: true
+    name: ghost-role-information-goblinbane-ghost-name
+    description: ghost-role-information-goblinbane-description
+    rules: ghost-role-information-goblinbane-rules
+    raffle:
+      settings: default
+  - type: GhostTakeoverAvailable
 
 # Possessed Mop
 - type: entity
@@ -189,6 +270,13 @@
   parent: [ MobIncorporealBase, MobMemeGoblinbane ]
   categories: [ HideSpawnMenu ]
   components:
+  - type: HTN
+    rootTask:
+       task: MeleeFollowerCompound
+  - type: NPCImprintingOnSpawnBehaviour
+    whitelist:
+      components:
+      - Devourer
   - type: NpcFactionMember
     factions:
     - GoblinbaneProvokedFaction
@@ -240,11 +328,13 @@
     attackRate: 1
     damage:
       types:
-        Blunt: 8
+        Blunt: 6
         Structural: 20
   - type: MeleeChemicalInjector
     solution: bloodstream
     transferAmount: 10
+  - type: TimedDespawn
+    lifetime: 120
 
 # Possessed Spray
 - type: entity
@@ -253,6 +343,13 @@
   parent: MobMemeGoblinbane
   categories: [ HideSpawnMenu ]
   components:
+  - type: HTN
+    rootTask:
+       task: RangedFollowerCompound
+  - type: NPCImprintingOnSpawnBehaviour
+    whitelist:
+      components:
+      - Devourer
   - type: NpcFactionMember
     factions:
     - GoblinbaneProvokedFaction
@@ -311,6 +408,8 @@
     availableModes:
     - SemiAuto
     soundGunshot: /Audio/Weapons/Guns/Gunshots/water_spray.ogg
+  - type: TimedDespawn
+    lifetime: 120
 
 # Possessed Bucket
 - type: entity
@@ -319,6 +418,13 @@
   parent: [ MobMemeGoblinbane ]
   categories: [ HideSpawnMenu ]
   components:
+  - type: HTN
+    rootTask:
+       task: MeleeFollowerCompound
+  - type: NPCImprintingOnSpawnBehaviour
+    whitelist:
+      components:
+      - Devourer
   - type: NpcFactionMember
     factions:
     - GoblinbaneProvokedFaction
@@ -373,7 +479,7 @@
         Blunt: 6
         Structural: 20
   - type: TimedDespawn
-    lifetime: 90
+    lifetime: 120
 
 # Mop bucket dimention portal
 - type: entity
@@ -429,3 +535,13 @@
     color: "yellow"
   - type: TimedDespawn
     lifetime: 80
+
+- type: entity
+  id: CleanlinessDimensionPortal
+  name: cleanliness dimension portal
+  parent: MopBucketDimnsionPortal
+  description: A portal to the dimension of utter cleanliness. No goblins allowed.
+  components:
+  - type: TimedSpawner
+    prototypes:
+    - SpawnRandomPossessedJaniTool
