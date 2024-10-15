@@ -3,7 +3,7 @@ using Robust.Shared.GameStates;
 
 namespace Content.Shared.Gravity;
 
-[NetworkedComponent()]
+[NetworkedComponent]
 [Virtual]
 public partial class SharedGravityGeneratorComponent : Component
 {
