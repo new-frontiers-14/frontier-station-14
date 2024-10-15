@@ -62,7 +62,8 @@ ghost-role-information-goblinbane-description = Hunt down those pesky-little-dir
 ghost-role-information-goblinbane-rules = You are a [color=red][bold]Solo Antagonist[/bold][/color] capable of summoning minions. [color=yellow]Do note[/color], your minions will be hostile to everyone, except you.
                                         Search and destroy goblins/felinids/chaplains.
                                         Please note that [color=yellow]all server rules still apply.[/color]. Additionally:
-                                        - [color=yellow]Reminder[/color] that Frontier Outpost (the station) is a safe zone. Do not allow your minion reach the Outpost.
-                                        - [color=red]DO NOT[/color] damage Frontier Outpost.
-                                        - [color=red]DO NOT[/color] devour Frontier Outpost walls or airlocks.
-                                        - [color=red]DO NOT[/color] damage player shuttles or their contents.
+                                        - [color=yellow]Reminder[/color] that Frontier Outpost (the station and 200m area around it) is a safe zone.
+										- [color=red]DO NOT[/color] attack players on the Outpost.
+										- [color=red]DO NOT[/color] use your abilities on the Outpost.
+                                        - [color=red]DO NOT[/color] intentionally damage Frontier Outpost, other POIs, shuttles.
+                                        - [color=red]DO NOT[/color] devour walls and airlocks on Frontier Outpost, other POIs, shuttles.
