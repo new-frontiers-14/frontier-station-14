@@ -1,41 +1,41 @@
 # Author Info
 # GitHub: ???
 # Discord: ???
-
+# 
 # Maintainer Info
 # GitHub: ???
 # Discord: ???
-
+# 
 # Shuttle Notes:
 #
-- type: vessel
-  id: Skipper
-  name: NC Шкипер
-  description: Малогабаритный ботанический шаттл-ресторан. Рекомендованный состав команды 1-2 человека.
-  price: 37500
-  category: Small
-  group: Shipyard
-  shuttlePath: /Maps/_NF/Shuttles/skipper.yml
-  guidebookPage: Null
-  class:
-  - Kitchen
-
-- type: gameMap
-  id: Skipper
-  mapName: 'NC Шкипер'
-  mapPath: /Maps/_NF/Shuttles/skipper.yml
-  minPlayers: 0
-  stations:
-    Skipper:
-      stationProto: StandardFrontierVessel
-      components:
-        - type: StationNameSetup
-          mapNameTemplate: 'Шкипер {1}'
-          nameGenerator:
-            !type:NanotrasenNameGenerator
-            prefixCreator: '14'
-        - type: StationJobs
-          availableJobs:
-            Contractor: [ 0, 0 ]
-            Pilot: [ 0, 0 ]
-            Mercenary: [ 0, 0 ]
+# - type: vessel
+#   id: Skipper
+#   name: NC Шкипер
+#   description: Малогабаритный ботанический шаттл-ресторан. Рекомендованный состав команды 1-2 человека.
+#   price: 37500
+#   category: Small
+#   group: Shipyard
+#   shuttlePath: /Maps/_NF/Shuttles/skipper.yml
+#   guidebookPage: Null
+#   class:
+#   - Kitchen
+# 
+# - type: gameMap
+#   id: Skipper
+#   mapName: 'NC Шкипер'
+#   mapPath: /Maps/_NF/Shuttles/skipper.yml
+#   minPlayers: 0
+#   stations:
+#     Skipper:
+#       stationProto: StandardFrontierVessel
+#       components:
+#         - type: StationNameSetup
+#           mapNameTemplate: 'Шкипер {1}'
+#           nameGenerator:
+#             !type:NanotrasenNameGenerator
+#             prefixCreator: '14'
+#         - type: StationJobs
+#           availableJobs:
+#             Contractor: [ 0, 0 ]
+#             Pilot: [ 0, 0 ]
+#             Mercenary: [ 0, 0 ]

@@ -1,41 +1,41 @@
 # Author Info
 # GitHub: arimah
 # Discord: arimah
-
+# 
 # Maintainer Info
 # GitHub: arimah
 # Discord: arimah
-
+# 
 # Shuttle Notes:
 #
-- type: vessel
-  id: Ceres
-  name: SBB Церера
-  description: Среднегабаритный шаттл-ресторан. Рекомендованный размер команды 2-5 человек.
-  price: 49500
-  category: Medium
-  group: Shipyard
-  shuttlePath: /Maps/_NF/Shuttles/ceres.yml
-  guidebookPage: ShipyardCeres
-  class:
-  - Kitchen
-
-- type: gameMap
-  id: Ceres
-  mapName: 'SBB Церера'
-  mapPath: /Maps/_NF/Shuttles/ceres.yml
-  minPlayers: 0
-  stations:
-    Ceres:
-      stationProto: StandardFrontierVessel
-      components:
-        - type: StationNameSetup
-          mapNameTemplate: 'Церера {1}'
-          nameGenerator:
-            !type:NanotrasenNameGenerator
-            prefixCreator: '14'
-        - type: StationJobs
-          availableJobs:
-            Contractor: [ 0, 0 ]
-            Pilot: [ 0, 0 ]
-            Mercenary: [ 0, 0 ]
+# - type: vessel
+#   id: Ceres
+#   name: SBB Церера
+#   description: Среднегабаритный шаттл-ресторан. Рекомендованный размер команды 2-5 человек.
+#   price: 49500
+#   category: Medium
+#   group: Shipyard
+#   shuttlePath: /Maps/_NF/Shuttles/ceres.yml
+#   guidebookPage: ShipyardCeres
+#   class:
+#   - Kitchen
+# 
+# - type: gameMap
+#   id: Ceres
+#   mapName: 'SBB Церера'
+#   mapPath: /Maps/_NF/Shuttles/ceres.yml
+#   minPlayers: 0
+#   stations:
+#     Ceres:
+#       stationProto: StandardFrontierVessel
+#       components:
+#         - type: StationNameSetup
+#           mapNameTemplate: 'Церера {1}'
+#           nameGenerator:
+#             !type:NanotrasenNameGenerator
+#             prefixCreator: '14'
+#         - type: StationJobs
+#           availableJobs:
+#             Contractor: [ 0, 0 ]
+#             Pilot: [ 0, 0 ]
+#             Mercenary: [ 0, 0 ]

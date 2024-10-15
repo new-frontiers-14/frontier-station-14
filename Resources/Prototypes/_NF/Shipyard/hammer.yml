@@ -1,41 +1,41 @@
 # Author Info
 # GitHub: arimah
 # Discord: arimah
-
+# 
 # Maintainer Info
 # GitHub: arimah
 # Discord: arimah
-
+# 
 # Shuttle Notes:
 #
-- type: vessel
-  id: Hammer
-  name: SBB Наковальня
-  description: Среднегабаритный инженерный шаттл. Рекомендованный состав команды 2-4 человека.
-  price: 31500 # ~28000 after purchase, ~13% markup
-  category: Medium
-  group: Shipyard
-  shuttlePath: /Maps/_NF/Shuttles/hammer.yml
-  guidebookPage: ShipyardHammer
-  class:
-  - Engineering
-
-- type: gameMap
-  id: Hammer
-  mapName: 'SBB Наковальня'
-  mapPath: /Maps/_NF/Shuttles/hammer.yml
-  minPlayers: 0
-  stations:
-    Hammer:
-      stationProto: StandardFrontierVessel
-      components:
-        - type: StationNameSetup
-          mapNameTemplate: 'Наковальня {1}'
-          nameGenerator:
-            !type:NanotrasenNameGenerator
-            prefixCreator: '14'
-        - type: StationJobs
-          availableJobs:
-            Contractor: [ 0, 0 ]
-            Pilot: [ 0, 0 ]
-            Mercenary: [ 0, 0 ]
+# - type: vessel
+#   id: Hammer
+#   name: SBB Наковальня
+#   description: Среднегабаритный инженерный шаттл. Рекомендованный состав команды 2-4 человека.
+#   price: 31500 # ~28000 after purchase, ~13% markup
+#   category: Medium
+#   group: Shipyard
+#   shuttlePath: /Maps/_NF/Shuttles/hammer.yml
+#   guidebookPage: ShipyardHammer
+#   class:
+#   - Engineering
+# 
+# - type: gameMap
+#   id: Hammer
+#   mapName: 'SBB Наковальня'
+#   mapPath: /Maps/_NF/Shuttles/hammer.yml
+#   minPlayers: 0
+#   stations:
+#     Hammer:
+#       stationProto: StandardFrontierVessel
+#       components:
+#         - type: StationNameSetup
+#           mapNameTemplate: 'Наковальня {1}'
+#           nameGenerator:
+#             !type:NanotrasenNameGenerator
+#             prefixCreator: '14'
+#         - type: StationJobs
+#           availableJobs:
+#             Contractor: [ 0, 0 ]
+#             Pilot: [ 0, 0 ]
+#             Mercenary: [ 0, 0 ]
