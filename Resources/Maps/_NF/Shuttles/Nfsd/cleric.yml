@@ -116,20 +116,17 @@ entities:
       data:
         tiles:
           0,0:
-            0: 4095
-          1,0:
-            0: 273
-          -1,0:
-            0: 3311
-            1: 784
+            0: 255
           0,-1:
-            0: 62208
+            0: 4096
             1: 3072
+          -1,0:
+            0: 140
+            1: 784
+          -1,-1:
+            0: 61440
           1,-1:
             1: 256
-            0: 4096
-          -1,-1:
-            0: 65280
         uniqueMixes:
         - volume: 2500
           temperature: 293.15
@@ -147,7 +144,7 @@ entities:
           - 0
           - 0
         - volume: 2500
-          temperature: 293.15
+          immutable: True
           moles:
           - 0
           - 0
@@ -180,7 +177,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: 1.5,-0.5
       parent: 1
-- proto: AtmosDeviceFanTiny
+- proto: AtmosDeviceFanDirectional
   entities:
   - uid: 44
     components:
@@ -663,6 +660,20 @@ entities:
     components:
     - type: Transform
       pos: -2.5,-0.5
+      parent: 1
+- proto: SignNfsd
+  entities:
+  - uid: 111
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -3.5,0.5
+      parent: 1
+  - uid: 112
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 4.5,2.5
       parent: 1
 - proto: SmallGyroscopeNfsd
   entities:
