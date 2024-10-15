@@ -15,3 +15,6 @@ ent-ClothingShoesBootsMercenaryFilled = { ent-ClothingShoesBootsMercenary }
 ent-ClothingShoesBootsMercFilled = { ent-ClothingShoesBootsMerc }
     .suffix = Заполненный
     .desc = { ent-ClothingShoesBootsMerc.desc }
+ent-ClothingShoesBootsSyndieFilled = { ent-ClothingShoesBootsCombat }
+    .suffix = Заполненный
+    .desc = { ent-ClothingShoesBootsCombat.desc }

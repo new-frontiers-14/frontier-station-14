@@ -25,3 +25,5 @@ ent-ClothingHandsGlovesColorYellowBudget = дешёвые изолированн
 ent-ClothingHandsGlovesConducting = { ent-ClothingHandsGlovesColorYellow }
     .suffix = Проводящий
     .desc = { ent-ClothingHandsGlovesColorYellow.desc }
+ent-ClothingHandsGlovesColorTeal = аквамариновые перчатки
+    .desc = Обычные аквамариновые перчатки, которые не спасут вас от поджаривания.

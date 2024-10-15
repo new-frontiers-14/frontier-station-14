@@ -20,3 +20,13 @@ ent-ClothingOuterJacketSr = куртка представителя фронти
     .desc = Верхняя часть униформы представителя фронтира.
 ent-ClothingOuterCoatPirateCaptain = куртка пиратского капитана
     .desc = Йаррр-гх!
+ent-ClothingOuterCoatArcadiaTrench = зенитный плащ Аркадиа
+    .desc = Плащ от компании Arcadia Industries, усиленный пуленепробиваемым сплавом для дополнительной защиты.
+ent-ClothingOuterCoatArcadiaTrenchOpened = зенитный плащ Аркадиа
+    .suffix = Расстёгнут
+    .desc = { ent-ClothingOuterCoatArcadiaTrench.desc }
+ent-ClothingUniformJumpsuitMilitaryArcadiaTac = тактический комбинезон от Аркадиа
+    .desc = Тактический комбинезон производства Arcadia Industries.
+
+
+

@@ -59,3 +59,7 @@ ent-VendingMachineSalvagePOI = { ent-VendingMachineSalvage }
     .desc = { ent-VendingMachineSalvage.desc }
 ent-VendingMachineTankDispenserEVAPOI = { ent-VendingMachineTankDispenserEVA }
     .desc = { ent-VendingMachineTankDispenserEVA.desc }
+ent-VendingMachineMailVend = ПочтаВенд
+   .desc = Выскажите всё, что думаете, отправьте письмо сейчас же!
+ent-VendingMachineValetDrobe = ЛакейВенд
+   .desc = Помогайте другим выглядеть стильно! Одевайтесь сногсшибательно и получайте первоклассные чаевые!

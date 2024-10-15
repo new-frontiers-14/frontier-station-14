@@ -48,6 +48,8 @@ public sealed class ChatSanitizationManager : IChatSanitizationManager
         { "зиганул", "бьёт себя по лицу" },
         { "кинул плотную", "бьёт себя по лицу" },
         { "кинул потную", "бьёт себя по лицу" },
+		{ "]=)", "chatsan-smiles" },
+		{ "--", "кажется не впечатлённым" },
         // Corvax-Localization-End
         // I could've done this with regex, but felt it wasn't the right idea.
         { ":)", "chatsan-smiles" },

@@ -49,3 +49,5 @@ ent-ClothingBackpackDuffelSyndicateMedicalBundleFilled = набор медика
     .desc = Все, что нужно для возвращения в строй ваших товарищей: главным образом, боевая аптечка, дефибриллятор и три боевых медипена.
 ent-ClothingBackpackDuffelSyndicateDecoyKitFilled = набор обманок
     .desc = Содержит отвлекающие устройства, как звуковые, так и визуальные. Скоро появятся и обонятельные.
+ent-ClothingBackpackDuffelSyndicateRaidBundle = набор рейдерского костюма Синдиката
+    .desc = Содержит прочный рейдерский бронекостюм Синдиката.

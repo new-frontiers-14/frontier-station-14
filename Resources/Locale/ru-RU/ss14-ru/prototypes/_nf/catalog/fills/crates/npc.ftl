@@ -10,3 +10,5 @@ ent-PetCarrierNPCEmotionalSupportSafe = ручная зверушка с удо�
     .desc = { ent-PetCarrier.desc }
 ent-CrateNPCPoultryCube = ящик птичьих кубиков 
     .desc = Ящик, содержащий коробку с полным набором кубиков для создания личного курятника.
+ent-CrateWoodCageClugg = { ent-CrateWoodCage }
+    .desc = { ent-CrateWoodCage.desc }
