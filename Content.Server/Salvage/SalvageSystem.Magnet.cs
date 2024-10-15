@@ -268,12 +268,12 @@ public sealed partial class SalvageSystem
         {
             case AsteroidOffering asteroid:
                 var grid = _mapManager.CreateGridEntity(salvMap);
-                await _dungeon.GenerateDungeonAsync(asteroid.DungeonConfig, grid.Owner, grid.Comp, Vector2i.Zero, seed);
+                await _dungeon.GenerateDungeonAsync(asteroid.DungeonConfig, asteroid.Id, grid.Owner, grid.Comp, Vector2i.Zero, seed); // Frontier: added asteroid.Id - FIXME: value makes no sense.
                 break;
             case DebrisOffering debris:
                 var debrisProto = _prototypeManager.Index<DungeonConfigPrototype>(debris.Id);
                 var debrisGrid = _mapManager.CreateGridEntity(salvMap);
-                await _dungeon.GenerateDungeonAsync(debrisProto, debrisGrid.Owner, debrisGrid.Comp, Vector2i.Zero, seed);
+                await _dungeon.GenerateDungeonAsync(debrisProto, debrisProto.ID, debrisGrid.Owner, debrisGrid.Comp, Vector2i.Zero, seed); // Frontier: debrisProto.ID
                 break;
             case SalvageOffering wreck:
                 var salvageProto = wreck.SalvageMap;
