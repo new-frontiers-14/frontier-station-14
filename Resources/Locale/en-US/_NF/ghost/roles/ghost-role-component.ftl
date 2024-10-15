@@ -63,7 +63,7 @@ ghost-role-information-goblinbane-rules = You are a [color=red][bold]Solo Antago
                                         Search and destroy goblins/felinids/chaplains.
                                         Please note that [color=yellow]all server rules still apply.[/color]. Additionally:
                                         - [color=yellow]Reminder[/color] that Frontier Outpost (the station and 200m area around it) is a safe zone.
-										- [color=red]DO NOT[/color] attack players on the Outpost.
-										- [color=red]DO NOT[/color] use your abilities on the Outpost.
+                                        - [color=red]DO NOT[/color] attack players on the Outpost.
+                                        - [color=red]DO NOT[/color] use your abilities on the Outpost.
                                         - [color=red]DO NOT[/color] intentionally damage Frontier Outpost, other POIs, shuttles.
                                         - [color=red]DO NOT[/color] devour walls and airlocks on Frontier Outpost, other POIs, shuttles.
