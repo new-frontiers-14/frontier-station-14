@@ -10,6 +10,7 @@ using Content.Shared.Examine;
 using Content.Shared.Tiles; // Frontier
 using Robust.Server.GameObjects;
 using Robust.Shared.Map;
+using Content.Shared._NF.Emp.Components; // Frontier
 
 namespace Content.Server.Emp;
 
@@ -18,7 +19,7 @@ public sealed class EmpSystem : SharedEmpSystem
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
 
-    public const string EmpPulseEffectPrototype = "EffectEmpPulse";
+    public const string EmpPulseEffectPrototype = "EffectEmpBlast"; // Frontier: EffectEmpPulse
 
     public override void Initialize()
     {
@@ -54,7 +55,11 @@ public sealed class EmpSystem : SharedEmpSystem
 
             TryEmpEffects(uid, energyConsumption, duration);
         }
-        Spawn(EmpPulseEffectPrototype, coordinates);
+
+        var empBlast = Spawn(EmpPulseEffectPrototype, coordinates); // Frontier: Added visual effect
+        EnsureComp<EmpBlastComponent>(empBlast, out var empBlastComp); // Frontier
+        empBlastComp.VisualRange = range; // Frontier
+        Dirty(empBlast, empBlastComp); // Frontier
     }
 
     /// <summary>
