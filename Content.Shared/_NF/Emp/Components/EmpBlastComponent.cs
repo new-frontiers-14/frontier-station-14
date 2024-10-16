@@ -20,7 +20,7 @@ public sealed partial class EmpBlastComponent : Component
     ///     Can be overridden by <see cref="Robust.Shared.Spawners.TimedDespawnComponent"/>.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public float VisualDuration = 2f;
+    public float VisualDuration = 1f;
 
     /// <summary>
     ///     The range of animation.
