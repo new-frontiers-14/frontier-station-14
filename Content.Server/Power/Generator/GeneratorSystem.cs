@@ -11,7 +11,8 @@ using Content.Shared.Popups;
 using Content.Shared.Power.Generator;
 using Robust.Server.GameObjects;
 using Content.Shared.Radiation.Components; // Frontier
-using Content.Shared.Audio; // Frontier
+using Content.Shared.Audio;
+using Content.Shared.Materials; // Frontier
 
 namespace Content.Server.Power.Generator;
 
@@ -68,7 +69,19 @@ public sealed class GeneratorSystem : SharedGeneratorSystem
 
     private void SolidEmpty(EntityUid uid, SolidFuelGeneratorAdapterComponent component, GeneratorEmpty args)
     {
-        _materialStorage.EjectAllMaterial(uid);
+        // Frontier: eject fuel-grade material
+        if (component.EjectedFuelProtoId == null)
+            _materialStorage.EjectAllMaterial(uid);
+        else
+        {
+            int materialAmount = _materialStorage.GetMaterialAmount(uid, component.FuelMaterial);
+            _materialStorage.TryChangeMaterialAmount(uid, component.FuelMaterial, -materialAmount);
+
+            var ejectedUid = Spawn(component.EjectedFuelProtoId, Transform(uid).Coordinates);
+            if (TryComp<PhysicalCompositionComponent>(ejectedUid, out var phys))
+                phys.MaterialComposition[component.FuelMaterial] = materialAmount;
+        }
+        // End Frontier
     }
 
     private void ChemicalEmpty(Entity<ChemicalFuelGeneratorAdapterComponent> entity, ref GeneratorEmpty args)

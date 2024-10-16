@@ -115,19 +115,21 @@
   - type: StaticPrice # Frontier
     vendPrice: 500 # Frontier
 
+# Fuel-grade items
 - type: entity
   parent: BaseItem
   id: FuelPlasma
-  name: fuel grade plasma
+  name: fuel-grade plasma
+  description: A rod made of desaturated plasma, suitable for fuel.
   components:
   - type: Material
   - type: PhysicalComposition
     materialComposition:
       Plasma: 2000
   - type: Sprite
-    sprite: Objects/Materials/Sheets/other.rsi
+    sprite: _NF/Objects/Specific/Fuel/fuelgrade_material.rsi
     layers:
-    - state: plasma_3
+    - state: plasma
   - type: Appearance
   - type: StaticPrice
     price: 0
@@ -136,16 +138,17 @@
 - type: entity
   parent: BaseItem
   id: FuelUranium
-  name: fuel grade uranium
+  name: fuel-grade uranium
+  description: A rod made of semi-processed uranium, suitable for fuel. 
   components:
   - type: Material
   - type: PhysicalComposition
     materialComposition:
       Uranium: 2000
   - type: Sprite
-    sprite: Objects/Materials/Sheets/other.rsi
+    sprite: _NF/Objects/Specific/Fuel/fuelgrade_material.rsi
     layers:
-    - state: uranium_3
+    - state: uranium
   - type: Appearance
   - type: StaticPrice
     price: 0
@@ -154,16 +157,17 @@
 - type: entity
   parent: BaseItem
   id: FuelBananium
-  name: fuel grade bananium
+  name: fuel-grade bananium
+  description: A rod made from pressed bananium peels, suitable for fuel. 
   components:
   - type: Material
   - type: PhysicalComposition
     materialComposition:
       Bananium: 2000
   - type: Sprite
-    sprite: Objects/Materials/materials.rsi
+    sprite: _NF/Objects/Specific/Fuel/fuelgrade_material.rsi
     layers:
-    - state: bananium_1
+    - state: bananium
   - type: Appearance
   - type: StaticPrice
     price: 0
