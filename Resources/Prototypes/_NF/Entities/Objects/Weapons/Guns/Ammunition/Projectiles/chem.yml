@@ -1,6 +1,5 @@
-# Syndicate Chemwarrior Projectiles
+# Base
 - type: entity
-#  parent: BaseBulletPractice
   parent: BulletWaterShot
   id: SplatterChemBase
   name: chemical splatter
@@ -38,10 +37,10 @@
   - type: Appearance
   - type: VaporVisuals
 
+# Syndicate Chemwarrior Projectiles
 - type: entity
   parent: SplatterChemBase
   id: SplatterChemPhlogNapalm
-  name: chemical splatter
   categories: [ HideSpawnMenu ]
   components:
   - type: SolutionContainerManager
@@ -62,7 +61,6 @@
 - type: entity
   parent: SplatterChemBase
   id: SplatterChemDrugs
-  name: chemical splatter
   categories: [ HideSpawnMenu ]
   components:
   - type: SolutionContainerManager
@@ -81,7 +79,6 @@
 - type: entity
   parent: SplatterChemBase
   id: SplatterChemMute
-  name: chemical splatter
   categories: [ HideSpawnMenu ]
   components:
   - type: SolutionContainerManager
@@ -100,7 +97,6 @@
 - type: entity
   parent: SplatterChemBase
   id: SplatterChemWeh
-  name: chemical splatter
   categories: [ HideSpawnMenu ]
   components:
   - type: SolutionContainerManager
@@ -117,7 +113,6 @@
 - type: entity
   parent: SplatterChemBase
   id: SplatterChemCold
-  name: chemical splatter
   categories: [ HideSpawnMenu ]
   components:
   - type: SolutionContainerManager
@@ -128,3 +123,22 @@
         reagents:
         - ReagentId: Fresium
           Quantity: 7 # needs 40u in bloodstream for special effect
+
+# Meme: Possessed Spray
+- type: entity
+  parent: SplatterChemBase
+  id: SplatterChemCleaner
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      vapor:
+        maxVol: 50
+        canReact: false
+        reagents:
+        - ReagentId: SpaceCleaner
+          Quantity: 20
+        - ReagentId: SoapReagent
+          Quantity: 5
+        - ReagentId: Fresium
+          Quantity: 4
