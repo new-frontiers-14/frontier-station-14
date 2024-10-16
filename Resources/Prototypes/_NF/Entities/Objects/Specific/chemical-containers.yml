@@ -114,3 +114,57 @@
           Quantity: 200
   - type: StaticPrice # Frontier
     vendPrice: 500 # Frontier
+
+- type: entity
+  parent: BaseItem
+  id: FuelPlasma
+  name: fuel grade plasma
+  components:
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      Plasma: 2000
+  - type: Sprite
+    sprite: Objects/Materials/Sheets/other.rsi
+    layers:
+    - state: plasma_3
+  - type: Appearance
+  - type: StaticPrice
+    price: 0
+    vendPrice: 1200
+
+- type: entity
+  parent: BaseItem
+  id: FuelUranium
+  name: fuel grade uranium
+  components:
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      Uranium: 2000
+  - type: Sprite
+    sprite: Objects/Materials/Sheets/other.rsi
+    layers:
+    - state: uranium_3
+  - type: Appearance
+  - type: StaticPrice
+    price: 0
+    vendPrice: 2500
+
+- type: entity
+  parent: BaseItem
+  id: FuelBananium
+  name: fuel grade bananium
+  components:
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      Bananium: 2000
+  - type: Sprite
+    sprite: Objects/Materials/Sheets/other.rsi
+    layers:
+    - state: bananium_1
+  - type: Appearance
+  - type: StaticPrice
+    price: 0
+    vendPrice: 5000
