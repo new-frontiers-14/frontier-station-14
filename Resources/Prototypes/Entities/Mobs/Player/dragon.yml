@@ -186,7 +186,7 @@
     projectileSpeed: 5
 
 - type: entity
-  parent: BaseMobDragon
+  parent: [NFMobRestrictions, BaseMobDragon] # Frontier: add NFMobRestrictions
   id: MobDragonDungeon
   suffix: Dungeon
   components:
@@ -218,7 +218,6 @@
   - type: ActionGun #Frontier
     action: ActionDragonsBreath #Frontier
     gunProto: DragonsBreathGun #Frontier
-  - type: NFSalvageMobRestrictions # Frontier
 
 - type: entity
   id: ActionSpawnRift
