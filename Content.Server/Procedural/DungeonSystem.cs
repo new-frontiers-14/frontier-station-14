@@ -188,6 +188,7 @@ public sealed partial class DungeonSystem : SharedDungeonSystem
     /// </summary>
     /// <param name="coordinates">Coordinates to move the dungeon to afterwards. Will delete the original map</param>
     public void GenerateDungeon(DungeonConfig gen,
+        string genID, // Frontier
         EntityUid gridUid,
         MapGridComponent grid,
         Vector2i position,
@@ -212,6 +213,7 @@ public sealed partial class DungeonSystem : SharedDungeonSystem
             gridUid,
             seed,
             position,
+            genID, // Frontier
             coordinates,
             cancelToken.Token);
 
@@ -221,6 +223,7 @@ public sealed partial class DungeonSystem : SharedDungeonSystem
 
     public async Task<List<Dungeon>> GenerateDungeonAsync(
         DungeonConfig gen,
+        string genID, // Frontier
         EntityUid gridUid,
         MapGridComponent grid,
         Vector2i position,
@@ -244,6 +247,7 @@ public sealed partial class DungeonSystem : SharedDungeonSystem
             gridUid,
             seed,
             position,
+            genID, // Frontier
             null,
             cancelToken.Token);
 
