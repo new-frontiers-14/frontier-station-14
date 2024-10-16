@@ -400,6 +400,12 @@
     damage:
       types:
         Piercing: 0
+  - type: TriggerOnBeingGibbed
+  - type: GibOnTrigger
+    deleteItems: true
+    deleteOrgans: true
+    gib: false
+    useArgumentEntity: true
 
 - type: entity
   name: glockroach
@@ -522,6 +528,9 @@
     spawned:
     - id: FoodMeatSlime
       amount: 2
+    - id: HideMothroach
+      amount: 1
+      prob: 0.3
   - type: Extractable
     grindableSolutionName: food
   - type: ReplacementAccent
