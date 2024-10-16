@@ -1,8 +1,7 @@
-using Content.Client._NF.Latejoin;
-using Content.Client.Chat.Managers;
+using Content.Client._NF.LateJoin;
 using Content.Client.Audio;
+using Content.Client.Eui;
 using Content.Client.GameTicking.Managers;
-using Content.Client.LateJoin;
 using Content.Client.Lobby.UI;
 using Content.Client.Message;
 using Content.Client.UserInterface.Systems.Chat;
@@ -13,6 +12,7 @@ using Robust.Client.ResourceManagement;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Timing;
+using PickerWindow = Content.Client._NF.LateJoin.Windows.PickerWindow;
 
 
 namespace Content.Client.Lobby
@@ -32,6 +32,9 @@ namespace Content.Client.Lobby
 
         protected override Type? LinkedScreenType { get; } = typeof(LobbyGui);
         public LobbyGui? Lobby;
+
+        // Frontier - save pickerwindow so it opens only once
+        private PickerWindow? _pickerWindow = null;
 
         protected override void Startup()
         {
@@ -99,8 +102,10 @@ namespace Content.Client.Lobby
             {
                 return;
             }
-
-            new NFLateJoinGui().OpenCentered();
+            // Frontier to downstream: if you want to skip the first window and go straight to station picker,
+            // simply change the enum to station or crew in the PickerWindow constructor.
+            _pickerWindow ??= new PickerWindow();
+            _pickerWindow.OpenCentered();
         }
 
         private void OnReadyToggled(BaseButton.ButtonToggledEventArgs args)
