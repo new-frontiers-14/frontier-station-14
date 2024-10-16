@@ -84,6 +84,68 @@
       - Energy
 
 - type: entity
+  abstract: true
+  id: NFMobRestrictions
+  components:
+  - type: NFSalvageMobRestrictions
+
+- type: entity
+  abstract: true
+  id: NFMobTimedDespawn30
+  components:
+  - type: TimedDespawn
+    lifetime: 30
+
+- type: entity
+  abstract: true
+  id: NFMobTimedDespawn60
+  components:
+  - type: TimedDespawn
+    lifetime: 60
+
+- type: entity
+  abstract: true
+  id: NFMobTimedDespawn80
+  components:
+  - type: TimedDespawn
+    lifetime: 80
+
+- type: entity
+  abstract: true
+  id: NFMobTimedDespawn120
+  components:
+  - type: TimedDespawn
+    lifetime: 120
+
+- type: entity
+  abstract: true
+  id: NFMobTimedDespawn180
+  components:
+  - type: TimedDespawn
+    lifetime: 180
+
+- type: entity
+  abstract: true
+  id: NFMobTimedDespawn1200
+  components:
+  - type: TimedDespawn
+    lifetime: 1200
+
+- type: entity
+  abstract: true
+  id: NFMobTimedDespawn1800
+  components:
+  - type: TimedDespawn
+    lifetime: 1800
+
+- type: entity
+  abstract: true
+  id: NFMobTimedDespawn3000
+  components:
+  - type: TimedDespawn
+    lifetime: 3000
+
+- type: entity
   save: false
   id: MobEnhancedMovement
   abstract: true
@@ -116,6 +178,7 @@
   parent:
   - MobEnhancedMovement
   - MobPassiveRegenWeak
+  - NFMobRestrictions
   components:
   - type: Hands
   - type: Puller
@@ -130,7 +193,6 @@
     - FootstepSound
     - DoorBumpOpener
     - CannotSuicide
-  - type: NFSalvageMobRestrictions
   - type: FTLKnockdownImmune
 
 # Inventories
@@ -267,7 +329,6 @@
     minimumWait: 120 # 1 * 2
     maximumWait: 240 # 2 * 60
     nextAdvertisementTime: 0
-  - type: NFSalvageMobRestrictions
   - type: FTLKnockdownImmune
   - type: Respirator
     updateInterval: 99999 # Shouldn't run often, if ever.
@@ -346,7 +407,6 @@
   - type: MobPrice
     price: 1500
     deathPenalty: 0.5
-  - type: NFSalvageMobRestrictions
   - type: Tag
     tags:
     - CanPilot
