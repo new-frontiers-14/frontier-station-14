@@ -166,6 +166,9 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
 
         foreach (var dunGen in dungenTypes)
         {
+            if (dunGen.SkipDungeonGen)
+                continue;
+
             var seed = _random.Next();
             var offset = GetRandomPOICoord(3000f, 8500f, true);
             if (!_map.TryLoad(_mapId, "/Maps/_NF/Dungeon/spaceplatform.yml", out var grids,
@@ -184,7 +187,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             //pls fit the grid I beg, this is so hacky
             //its better now but i think i need to do a normalization pass on the dungeon configs
             //because they are all offset. confirmed good size grid, just need to fix all the offsets.
-            _dunGen.GenerateDungeon(dunGen, grids[0], mapGrid, new Vector2i(0, 0), seed);
+            _dunGen.GenerateDungeon(dunGen, dunGen.ID, grids[0], mapGrid, new Vector2i(0, 0), seed);
             AddStationCoordsToSet(offset);
         }
     }
