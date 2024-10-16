@@ -13,6 +13,7 @@ using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Maps;
 using Content.Server.RoundEnd;
 using Content.Shared.Administration.Managers;
+using Content.Shared.Administration;
 using Content.Shared.CCVar;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Prototypes;
@@ -81,6 +82,7 @@ public sealed partial class ServerApi : IPostInjectInit
         RegisterActorHandler(HttpMethod.Post, "/admin/actions/force_preset", ActionForcePreset);
         RegisterActorHandler(HttpMethod.Post, "/admin/actions/set_motd", ActionForceMotd);
         RegisterActorHandler(HttpMethod.Patch, "/admin/actions/panic_bunker", ActionPanicPunker);
+        RegisterActorHandler(HttpMethod.Post, "/admin/actions/send_bwoink", ActionSendBwoink);
     }
 
     public void Initialize()
@@ -394,6 +396,35 @@ public sealed partial class ServerApi : IPostInjectInit
             await RespondOk(context);
         });
     }
+    #endregion
+
+    #region Frontier
+
+    private async Task ActionSendBwoink(IStatusHandlerContext context, Actor actor)
+    {
+        var body = await ReadJson<BwoinkActionBody>(context);
+        if (body == null)
+            return;
+
+        await RunOnMainThread(async () =>
+    {
+        if (!_playerManager.TryGetSessionById(new NetUserId(body.Guid), out var player))
+        {
+            await RespondError(
+                context,
+                ErrorCode.PlayerNotFound,
+                HttpStatusCode.UnprocessableContent,
+                "Player not found");
+            return;
+        }
+
+        var message = new SharedBwoinkSystem.BwoinkTextMessage(player.UserId, SharedBwoinkSystem.SystemUserId, body.Text);
+
+
+    });
+
+
+    }
 
     #endregion
 
@@ -629,6 +660,12 @@ public sealed partial class ServerApi : IPostInjectInit
     private sealed class MotdActionBody
     {
         public required string Motd { get; init; }
+    }
+
+    private sealed class BwoinkActionBody
+    {
+        public required string Text { get; init; }
+        public required Guid Guid { get; init; }
     }
 
     #endregion
