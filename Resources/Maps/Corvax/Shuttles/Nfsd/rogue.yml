@@ -546,20 +546,6 @@ entities:
     - type: Transform
       pos: 1.5,3.5
       parent: 1
-- proto: GrenadeEMP
-  entities:
-  - uid: 67
-    components:
-    - type: Transform
-      parent: 54
-    - type: Physics
-      canCollide: False
-  - uid: 68
-    components:
-    - type: Transform
-      parent: 54
-    - type: Physics
-      canCollide: False
 - proto: Grille
   entities:
   - uid: 52
@@ -697,7 +683,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 0.5,3.5
       parent: 1
-- proto: ShuttleGunFriendship
+- proto: ShuttleShotgun
   entities:
   - uid: 54
     components:
@@ -715,19 +701,16 @@ entities:
           showEnts: False
           occludes: True
           ents: []
-        ballistic-ammo: !type:Container
+        gun_magazine: !type:ContainerSlot
           showEnts: False
           occludes: True
-          ents:
-          - 67
-          - 68
-    - type: BallisticAmmoProvider
-      entities:
-      - 67
-      - 68
+          ent: 1589
     - type: DeviceLinkSink
       links:
       - 121
+    missingComponents:
+    - Anchorable
+    - Construction
 - proto: SmallGyroscopeNfsd
   entities:
   - uid: 50

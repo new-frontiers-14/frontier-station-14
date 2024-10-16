@@ -1,0 +1,41 @@
+# Author Info
+# GitHub: erhardsteinhauer
+# Discord: erhardsteinhauer
+
+# Maintainer Info
+# GitHub: erhardsteinhauer
+# Discord: erhardsteinhauer
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Brigand
+  name: NT Разбойник
+  description: Среднегабаритный экспедиционный шаттл. Рекомендованный размер команды 3-6 человек.
+  price: 61000 # ~47835$ on mapinit + ~7175$ from 15% markup
+  category: Medium
+  group: Expedition
+  shuttlePath: /Maps/Corvax/Shuttles/Expedition/brigand.yml
+  guidebookPage: ShipyardBrigand
+  class:
+  - Expedition
+
+- type: gameMap
+  id: Brigand
+  mapName: 'NT Разбойник'
+  mapPath: /Maps/Corvax/Shuttles/Expedition/brigand.yml
+  minPlayers: 0
+  stations:
+    Brigand:
+      stationProto: StandardFrontierExpeditionVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Разбойник {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]

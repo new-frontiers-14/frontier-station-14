@@ -1,0 +1,42 @@
+# Author Info
+# GitHub: erhardsteinhauer
+# Discord: erhardsteinhauer
+
+# Maintainer Info
+# GitHub: erhardsteinhauer
+# Discord: erhardsteinhauer
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: gasbender
+  name: NT Газовый Гигант
+  description: Крупногабаритный инженерный шаттл. Рекомендованный размер команды 3-6 человек.
+  price: 88500 # ~68140$ on mapinit + 20500$ from 30% markup
+  category: Medium
+  group: Expedition
+  shuttlePath: /Maps/Corvax/Shuttles/Expedition/gasbender.yml
+  guidebookPage: ShipyardGasbender
+  class:
+  - Expedition
+  - Atmospherics
+
+- type: gameMap
+  id: gasbender
+  mapName: 'NT Газовый Гигант'
+  mapPath: /Maps/Corvax/Shuttles/Expedition/gasbender.yml
+  minPlayers: 0
+  stations:
+    gasbender:
+      stationProto: StandardFrontierExpeditionVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Газовый Гигант {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]

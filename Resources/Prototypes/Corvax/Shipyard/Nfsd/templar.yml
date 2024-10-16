@@ -1,0 +1,29 @@
+- type: vessel
+  id: Templar
+  name: NSF Тамплиер
+  description: Малогабаритный штурмовой шаттл ДСБФ. Рекомендованный состав команды 1-3 человека.
+  price: 24220
+  category: Small
+  group: Security
+  access: Security
+  shuttlePath: /Maps/Corvax/Shuttles/Nfsd/templar.yml
+  guidebookPage: Null
+  class:
+  - Fighter
+
+- type: gameMap
+  id: Templar
+  mapName: 'NSF Тамплиер'
+  mapPath: /Maps/Corvax/Shuttles/Nfsd/templar.yml
+  minPlayers: 0
+  stations:
+    Templar:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Тамплиер {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs: {}

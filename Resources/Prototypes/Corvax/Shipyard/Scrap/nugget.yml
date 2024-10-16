@@ -1,0 +1,42 @@
+# Author Info
+# GitHub: ???
+# Discord: ???
+
+# Maintainer Info
+# GitHub: ???
+# Discord: ???
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Nugget
+  name: SV Наггетс
+  description: Кусок мусора с двигателями. Рекомендуемый размер команды 1-2 человека.
+  price: 15950 # +1450 from 10% Markup
+  category: Small
+  group: Scrap
+  shuttlePath: /Maps/Corvax/Shuttles/Scrap/nugget.yml
+  guidebookPage: Null
+  class:
+  - Scrapyard
+  - Kitchen
+
+- type: gameMap
+  id: Nugget
+  mapName: 'SV Наггетс'
+  mapPath: /Maps/Corvax/Shuttles/Scrap/nugget.yml
+  minPlayers: 0
+  stations:
+    Nugget:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Наггетс {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]

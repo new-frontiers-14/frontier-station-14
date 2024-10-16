@@ -1,0 +1,42 @@
+# Author Info
+# GitHub: Nyozzl https://github.com/nyozzl
+# Discord: Nyozzl
+
+# Maintainer Info
+# GitHub: Nyozzl https://github.com/nyozzl
+# Discord: Nyozzl
+
+# Shuttle Notes:I liked the idea of a scrap church also 9kw is probably all thats needed to run it
+#
+- type: vessel
+  id: Disciple
+  name: NSV Диакон
+  description: Малогабаритный сервисный шаттл. Рекомендованный состав команды 1 человек.
+  price: 11300
+  category: Small
+  group: Scrap
+  shuttlePath: /Maps/Corvax/Shuttles/Scrap/disciple.yml
+  guidebookPage: Null
+  class:
+  - Scrapyard
+  - Civilian
+
+- type: gameMap
+  id: Disciple
+  mapName: 'NSV Диакон'
+  mapPath: /Maps/Corvax/Shuttles/Scrap/disciple.yml
+  minPlayers: 0
+  stations:
+    Disciple:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Диакон {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]

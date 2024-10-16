@@ -1,42 +1,42 @@
 # Author Info
 # GitHub: Cu1r (https://github.com/Cu1r/)
 # Discord: cu1r
-
+# 
 # Maintainer Info
 # GitHub: ???
 # Discord: ???
-
+# 
 # Shuttle Notes:
 # 
-- type: vessel
-  id: Ambition
-  name: UAC Амбициозный
-  description: Промышленная газодобывающая платформа, расчитанная на экипаж 8+ человек.
-  price: 156000
-  category: Large
-  group: Expedition
-  shuttlePath: /Maps/_NF/Shuttles/Expedition/ambition.yml
-  guidebookPage: ShipyardAmbition
-  class:
-  - Expedition
-  - Atmospherics
-
-- type: gameMap
-  id: Ambition
-  mapName: 'UAC Ambition'
-  mapPath: /Maps/_NF/Shuttles/Expedition/ambition.yml
-  minPlayers: 0
-  stations:
-    Ambition:
-      stationProto: StandardFrontierExpeditionVessel
-      components:
-        - type: StationNameSetup
-          mapNameTemplate: 'Амбициозный {1}'
-          nameGenerator:
-            !type:NanotrasenNameGenerator
-            prefixCreator: '14'
-        - type: StationJobs
-          availableJobs:
-            Contractor: [ 0, 0 ]
-            Pilot: [ 0, 0 ]
-            Mercenary: [ 0, 0 ]
+# - type: vessel
+#   id: Ambition
+#   name: UAC Амбициозный
+#   description: Промышленная газодобывающая платформа, расчитанная на экипаж 8+ человек.
+#   price: 156000
+#   category: Large
+#   group: Expedition
+#   shuttlePath: /Maps/_NF/Shuttles/Expedition/ambition.yml
+#   guidebookPage: ShipyardAmbition
+#   class:
+#   - Expedition
+#   - Atmospherics
+# 
+# - type: gameMap
+#   id: Ambition
+#   mapName: 'UAC Ambition'
+#   mapPath: /Maps/_NF/Shuttles/Expedition/ambition.yml
+#   minPlayers: 0
+#   stations:
+#     Ambition:
+#       stationProto: StandardFrontierExpeditionVessel
+#       components:
+#         - type: StationNameSetup
+#           mapNameTemplate: 'Амбициозный {1}'
+#           nameGenerator:
+#             !type:NanotrasenNameGenerator
+#             prefixCreator: '14'
+#         - type: StationJobs
+#           availableJobs:
+#             Contractor: [ 0, 0 ]
+#             Pilot: [ 0, 0 ]
+#             Mercenary: [ 0, 0 ]

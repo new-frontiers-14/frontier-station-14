@@ -1,32 +1,32 @@
-- type: vessel
-  id: Tide
-  name: SV Волна
-  description: Малогабаритный обломок шаттла. Рекомендованный состав команды 1-2 человека.
-  price: 9700
-  category: Small
-  group: Scrap
-  shuttlePath: /Maps/_NF/Shuttles/Scrap/tide.yml
-  guidebookPage: Null
-  class:
-  - Scrapyard
-  - Civilian
-
-- type: gameMap
-  id: Tide
-  mapName: 'SV Волна'
-  mapPath: /Maps/_NF/Shuttles/Scrap/tide.yml
-  minPlayers: 0
-  stations:
-    Tide:
-      stationProto: StandardFrontierVessel
-      components:
-        - type: StationNameSetup
-          mapNameTemplate: 'Волна {1}'
-          nameGenerator:
-            !type:NanotrasenNameGenerator
-            prefixCreator: '14'
-        - type: StationJobs
-          availableJobs:
-            Contractor: [ 0, 0 ]
-            Pilot: [ 0, 0 ]
-            Mercenary: [ 0, 0 ]
+# - type: vessel
+#   id: Tide
+#   name: SV Волна
+#   description: Малогабаритный обломок шаттла. Рекомендованный состав команды 1-2 человека.
+#   price: 9700
+#   category: Small
+#   group: Scrap
+#   shuttlePath: /Maps/_NF/Shuttles/Scrap/tide.yml
+#   guidebookPage: Null
+#   class:
+#   - Scrapyard
+#   - Civilian
+# 
+# - type: gameMap
+#   id: Tide
+#   mapName: 'SV Волна'
+#   mapPath: /Maps/_NF/Shuttles/Scrap/tide.yml
+#   minPlayers: 0
+#   stations:
+#     Tide:
+#       stationProto: StandardFrontierVessel
+#       components:
+#         - type: StationNameSetup
+#           mapNameTemplate: 'Волна {1}'
+#           nameGenerator:
+#             !type:NanotrasenNameGenerator
+#             prefixCreator: '14'
+#         - type: StationJobs
+#           availableJobs:
+#             Contractor: [ 0, 0 ]
+#             Pilot: [ 0, 0 ]
+#             Mercenary: [ 0, 0 ]

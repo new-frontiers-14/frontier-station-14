@@ -1,0 +1,29 @@
+# - type: vessel
+#  id: Whiskey
+#  name: NSF Whiskey
+#  description: A heavy duty NSFD rescue ship, suited for one to two brigmedics and a pilot.
+#  price: 55000
+#  category: Medium
+#  group: Security
+#  access: Bailiff
+#  shuttlePath: /Maps/Corvax/Shuttles/Nfsd/whiskey.yml
+#  guidebookPage: Null
+#  class:
+#  - Medical
+
+# - type: gameMap
+#  id: Whiskey
+#  mapName: 'NSF Whiskey'
+#  mapPath: /Maps/Corvax/Shuttles/Nfsd/whiskey.yml
+#  minPlayers: 0
+#  stations:
+#    Whiskey:
+#      stationProto: StandardFrontierVessel
+#      components:
+#        - type: StationNameSetup
+#          mapNameTemplate: 'Whiskey {1}'
+#          nameGenerator:
+#            !type:NanotrasenNameGenerator
+#            prefixCreator: '14'
+#        - type: StationJobs
+#          availableJobs: {}

@@ -1,28 +1,28 @@
-- type: vessel
-  id: Hunter
-  name: Охотник
-  description: Малогабаритный штурмовой шаттл синдиката. Рекомендованный состав команды 1-4 человека.
-  price: 50000
-  category: Small
-  group: Syndicate
-  shuttlePath: /Maps/_NF/Shuttles/Syndicate/hunter.yml
-  guidebookPage: Null
-  class:
-  - Syndicate
-
-- type: gameMap
-  id: Hunter
-  mapName: 'Охотник'
-  mapPath: /Maps/_NF/Shuttles/Syndicate/hunter.yml
-  minPlayers: 0
-  stations:
-    Hunter:
-      stationProto: StandardFrontierVessel
-      components:
-        - type: StationNameSetup
-          mapNameTemplate: 'Охотник {1}'
-          nameGenerator:
-            !type:NanotrasenNameGenerator
-            prefixCreator: '14'
-        - type: StationJobs
-          availableJobs: {}
+# - type: vessel
+#   id: Hunter
+#   name: Охотник
+#   description: Малогабаритный штурмовой шаттл синдиката. Рекомендованный состав команды 1-4 человека.
+#   price: 50000
+#   category: Small
+#   group: Syndicate
+#   shuttlePath: /Maps/_NF/Shuttles/Syndicate/hunter.yml
+#   guidebookPage: Null
+#   class:
+#   - Syndicate
+# 
+# - type: gameMap
+#   id: Hunter
+#   mapName: 'Охотник'
+#   mapPath: /Maps/_NF/Shuttles/Syndicate/hunter.yml
+#   minPlayers: 0
+#   stations:
+#     Hunter:
+#       stationProto: StandardFrontierVessel
+#       components:
+#         - type: StationNameSetup
+#           mapNameTemplate: 'Охотник {1}'
+#           nameGenerator:
+#             !type:NanotrasenNameGenerator
+#             prefixCreator: '14'
+#         - type: StationJobs
+#           availableJobs: {}

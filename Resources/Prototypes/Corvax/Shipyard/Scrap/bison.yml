@@ -1,0 +1,32 @@
+- type: vessel
+  id: Bison
+  name: NT Бизон
+  description: Крупногобаритный многоцелевой шаттл. Рекомендованный размер команды 4-8 человек.
+  price: 166138
+  category: Large
+  group: Scrap
+  shuttlePath: /Maps/Corvax/Shuttles/Scrap/bison.yml
+  guidebookPage: Null
+  class:
+  - Scrapyard
+  - Salvage
+
+- type: gameMap
+  id: Bison
+  mapName: 'NT Бизон'
+  mapPath: /Maps/Corvax/Shuttles/Scrap/bison.yml
+  minPlayers: 0
+  stations:
+    Bison:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Бизон {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]
