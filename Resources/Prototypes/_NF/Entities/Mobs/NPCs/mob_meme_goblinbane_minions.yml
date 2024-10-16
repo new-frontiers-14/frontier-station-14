@@ -2,7 +2,7 @@
 - type: entity
   id: MobMemePossessedMop
   name: possessed mop
-  parent: [ MobIncorporealBase, MobMemeGoblinbane ]
+  parent: [ MobIncorporealBase, BaseMobMemeGoblinbane, MobTimedDespawn120 ]
   categories: [ HideSpawnMenu ]
   components:
   - type: HTN
@@ -68,14 +68,12 @@
   - type: MeleeChemicalInjector
     solution: bloodstream
     transferAmount: 10
-  - type: TimedDespawn
-    lifetime: 120
 
 # Possessed Spray
 - type: entity
   id: MobMemePossessedSpray
   name: possessed spray
-  parent: MobMemeGoblinbane
+  parent: [ BaseMobMemeGoblinbane, MobTimedDespawn120 ]
   categories: [ HideSpawnMenu ]
   components:
   - type: HTN
@@ -143,14 +141,12 @@
     availableModes:
     - SemiAuto
     soundGunshot: /Audio/Weapons/Guns/Gunshots/water_spray.ogg
-  - type: TimedDespawn
-    lifetime: 120
 
 # Possessed Bucket
 - type: entity
   id: MobMemePossessedBucket
   name: possessed mop bucket
-  parent: [ MobMemeGoblinbane ]
+  parent: [ BaseMobMemeGoblinbane, MobTimedDespawn120 ]
   categories: [ HideSpawnMenu ]
   components:
   - type: HTN
@@ -213,14 +209,12 @@
       types:
         Blunt: 6
         Structural: 20
-  - type: TimedDespawn
-    lifetime: 120
 
 # Mop bucket dimention portal
 - type: entity
   id: MopBucketDimnsionPortal
   name: mop bucket portal
-  parent:  [ MobIncorporealBase, XenoWardingTower ]
+  parent:  [ MobIncorporealBase, XenoWardingTower, MobTimedDespawn80 ]
   description: A portal to a mop bucket dimension. Obviously. It says so on the label at the corner.
   components:
   - type: NpcFactionMember
@@ -268,8 +262,6 @@
     radius: 2.0
     energy: 3.5
     color: "yellow"
-  - type: TimedDespawn
-    lifetime: 80
 
 - type: entity
   id: CleanlinessDimensionPortal

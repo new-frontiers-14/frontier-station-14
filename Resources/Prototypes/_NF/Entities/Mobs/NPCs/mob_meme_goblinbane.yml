@@ -21,9 +21,8 @@
         layer:
         - Opaque
 
-# Possessed Toilet
 - type: entity
-  id: MobMemeGoblinbane
+  id: BaseMobMemeGoblinbane
   name: "The Goblinbane"
   parent: [ MobNonHumanHostileBase, MobPassiveRegenWeak, MobHumanoidHostileAIComplex ]
   description: A Daemon of Cleanliness from the time before time (but after the first toilet was built). An ancient enemy of goblinkind.
@@ -149,6 +148,14 @@
   - type: ActionGun
     action: ActionSpawnCleanlinessDimensionPortal
     gunProto: CleanlinessDimensionPortalGun
+
+# Possessed Toilet
+- type: entity
+  id: MobMemeGoblinbane
+  name: "The Goblinbane"
+  parent: [ BaseMobMemeGoblinbane, MobRestrictions ]
+  description: A Daemon of Cleanliness from the time before time (but after the first toilet was built). An ancient enemy of goblinkind.
+  categories: [ HideSpawnMenu ]
 
 - type: entity
   categories: [ HideSpawnMenu ]
