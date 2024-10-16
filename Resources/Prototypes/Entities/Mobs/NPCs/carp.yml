@@ -152,10 +152,8 @@
 
 - type: entity
   id: MobCarpSalvage
-  parent: MobCarp
+  parent: [NFMobRestrictions, MobCarp] # Frontier: add NFMobRestrictions, remove components
   suffix: "Salvage Ruleset"
-  components:
-    - type: NFSalvageMobRestrictions # Frontier
 
 - type: entity
   name: space carp
@@ -244,7 +242,5 @@
 
 - type: entity
   id: MobSharkSalvage
-  parent: MobShark
+  parent: [NFMobRestrictions, MobShark] # Frontier: add NFMobRestrictions
   suffix: "Salvage Ruleset"
-  components:
-    - type: NFSalvageMobRestrictions
