@@ -1,11 +1,10 @@
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Damage.Prototypes;
-using Content.Shared.FixedPoint;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Dictionary;
 
-namespace Content.Shared._NF.Pirate.Prototypes;
+namespace Content.Shared._NF.Medical.Prototypes;
 
 /// <summary>
 /// This is a prototype for a pirate bounty, a set of items

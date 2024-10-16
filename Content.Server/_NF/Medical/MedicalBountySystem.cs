@@ -7,7 +7,7 @@ using Content.Server.Popups;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Stack;
 using Content.Shared._NF.Medical;
-using Content.Shared._NF.Pirate.Prototypes;
+using Content.Shared._NF.Medical.Prototypes;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Damage;

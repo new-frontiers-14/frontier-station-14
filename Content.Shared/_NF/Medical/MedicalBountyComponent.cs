@@ -1,4 +1,4 @@
-using Content.Shared._NF.Pirate.Prototypes;
+using Content.Shared._NF.Medical.Prototypes;
 
 namespace Content.Server._NF.Medical.Components;
 
