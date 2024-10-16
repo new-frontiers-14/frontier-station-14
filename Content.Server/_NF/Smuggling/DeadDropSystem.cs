@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using System.Text;
 using Content.Server._NF.GameTicking.Events;
 using Content.Server._NF.SectorServices;
@@ -195,10 +195,18 @@ public sealed class DeadDropSystem : EntitySystem
 
     public void CompromiseDeadDrop(EntityUid uid, DeadDropComponent _)
     {
-        //Get our station.
-        var station = _station.GetOwningStation(uid);
-        //Remove the dead drop.
+        // Remove the dead drop.
         RemComp<DeadDropComponent>(uid);
+
+        var station = _station.GetOwningStation(uid);
+        // If station is terminating, or if we aren't on one, nothing to do here.
+        if (station == null ||
+            !station.Value.Valid ||
+            MetaData(station.Value).EntityLifeStage >= EntityLifeStage.Terminating)
+        {
+            return;
+        }
+
         //Find a new potential dead drop to spawn.
         var deadDropQuery = EntityManager.EntityQueryEnumerator<PotentialDeadDropComponent>();
         List<(EntityUid ent, PotentialDeadDropComponent comp)> potentialDeadDrops = new();
@@ -215,10 +223,16 @@ public sealed class DeadDropSystem : EntitySystem
             potentialDeadDrops.Add((ent, potentialDeadDrop));
         }
 
-        // We have a potential dead drop, 
+        // We have a potential dead drop, spawn an actual one
         if (potentialDeadDrops.Count > 0)
         {
             var item = _random.Pick(potentialDeadDrops);
+
+            // If the item is tearing down, do nothing for now.
+            // FIXME: separate sector-wide scheduler?
+            if (MetaData(item.ent).EntityLifeStage >= EntityLifeStage.Terminating)
+                return;
+
             AddDeadDrop(item.ent);
             _sawmill.Debug($"Dead drop at {uid} compromised, new drop at {item.ent}!");
         }
@@ -364,7 +378,7 @@ public sealed class DeadDropSystem : EntitySystem
             }
 
             // Hint generated, destroy component
-            RemComp<DeadDropHintComponent>(ent);
+            //RemComp<DeadDropHintComponent>(ent); // Removed so we can keep track of it
             _sawmill.Debug($"Dead drop hint generated at {ent}.");
         }
 
