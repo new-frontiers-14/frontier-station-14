@@ -1,0 +1,48 @@
+- type: job
+  id: NFDetective
+  name: job-name-nf-detective
+  description: job-description-nf-detective
+  playTimeTracker: JobDetective
+  requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 43200 # 12 hours
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 21600 # 6 hours
+  alternateRequirementSets:
+    longerPlaytimeLessSec:
+    - !type:OverallPlaytimeRequirement
+      time: 360000 # 100 hours
+  startingGear: NFDetectiveGear
+  icon: JobIconNFDetective
+  supervisors: job-supervisors-bailiff
+  weight: 110
+  displayWeight: 20
+  canBeAntag: false
+  access:
+  - Detective
+  accessGroups:
+  - GeneralNfsdAccess
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant, TrackingImplant ]
+  - !type:GiveItemOnHolidaySpecial
+    holiday: FrontierBirthday
+    prototype: FrontierBirthdayGift
+
+- type: startingGear
+  id: NFDetectiveGear
+  equipment:
+    pocket1: WeaponRevolverInspector
+    pocket2: SpeedLoaderMagnum
+  storage:
+    back:
+    - Flash
+    - MagazinePistol
+    - MagazinePistolRubber
+    - ForensicPad
+    - ForensicScanner
+    - FrontierUplinkCoin10
+    - LogProbeCartridge
+    - RubberStampDetective
+    - ContrabandForensicsModule

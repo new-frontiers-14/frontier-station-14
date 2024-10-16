@@ -16,6 +16,33 @@
     Steel: 800
     Glass: 900
 
+- type: latheRecipe
+  id: ElectricRangeMachineCircuitboard
+  result: ElectricRangeMachineCircuitboard
+  category: Circuitry
+  completetime: 4
+  materials:
+    Steel: 800
+    Glass: 900
+
+- type: latheRecipe
+  id: KitchenAssemblerMachineCircuitboard
+  result: KitchenAssemblerMachineCircuitboard
+  category: Circuitry
+  completetime: 4
+  materials:
+    Steel: 600
+    Glass: 750
+
+- type: latheRecipe
+  id: MedicalAssemblerMachineCircuitboard
+  result: MedicalAssemblerMachineCircuitboard
+  category: Circuitry
+  completetime: 4
+  materials:
+    Steel: 800
+    Glass: 900
+
 # Thrusters
 - type: latheRecipe
   id: ThrusterSecurityMachineCircuitboard
@@ -46,50 +73,32 @@
 
 # Gyroscope
 - type: latheRecipe
+  parent: BaseCircuitboardRecipe
   id: GyroscopeSecurityMachineCircuitboard
   result: GyroscopeSecurityMachineCircuitboard
   category: Circuitry
-  completetime: 4
-  materials:
-    Steel: 400
-    Glass: 900
 
 - type: latheRecipe
+  parent: BaseCircuitboardRecipe
   id: SmallGyroscopeSecurityMachineCircuitboard
   result: SmallGyroscopeSecurityMachineCircuitboard
-  category: Circuitry
-  completetime: 4
-  materials:
-    Steel: 50
-    Glass: 120
 
 - type: latheRecipe
+  parent: BaseCircuitboardRecipe
   id: GyroscopeNfsdMachineCircuitboard
   result: GyroscopeNfsdMachineCircuitboard
-  category: Circuitry
-  completetime: 4
-  materials:
-    Steel: 400
-    Glass: 900
 
 - type: latheRecipe
+  parent: BaseCircuitboardRecipe
   id: SmallGyroscopeNfsdMachineCircuitboard
   result: SmallGyroscopeNfsdMachineCircuitboard
-  category: Circuitry
-  completetime: 4
-  materials:
-    Steel: 50
-    Glass: 120
 
 - type: latheRecipe
+  parent: BaseCircuitboardRecipe
   id: SmallGyroscopeMachineCircuitboard
   result: SmallGyroscopeMachineCircuitboard
-  category: Circuitry
-  completetime: 4
-  materials:
-    Steel: 50
-    Glass: 120
 
+# Generators
 - type: latheRecipe
   id: PortableGeneratorHyperPacmanMachineCircuitboard
   result: PortableGeneratorHyperPacmanMachineCircuitboard
