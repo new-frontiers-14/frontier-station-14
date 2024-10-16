@@ -85,62 +85,62 @@
 
 - type: entity
   abstract: true
-  id: MobRestrictions
+  id: NFMobRestrictions
   components:
   - type: NFSalvageMobRestrictions
 
 - type: entity
   abstract: true
-  id: MobTimedDespawn30
+  id: NFMobTimedDespawn30
   components:
   - type: TimedDespawn
     lifetime: 30
 
 - type: entity
   abstract: true
-  id: MobTimedDespawn60
+  id: NFMobTimedDespawn60
   components:
   - type: TimedDespawn
     lifetime: 60
 
 - type: entity
   abstract: true
-  id: MobTimedDespawn80
+  id: NFMobTimedDespawn80
   components:
   - type: TimedDespawn
     lifetime: 80
 
 - type: entity
   abstract: true
-  id: MobTimedDespawn120
+  id: NFMobTimedDespawn120
   components:
   - type: TimedDespawn
     lifetime: 120
 
 - type: entity
   abstract: true
-  id: MobTimedDespawn180
+  id: NFMobTimedDespawn180
   components:
   - type: TimedDespawn
     lifetime: 180
 
 - type: entity
   abstract: true
-  id: MobTimedDespawn1200
+  id: NFMobTimedDespawn1200
   components:
   - type: TimedDespawn
     lifetime: 1200
 
 - type: entity
   abstract: true
-  id: MobTimedDespawn1800
+  id: NFMobTimedDespawn1800
   components:
   - type: TimedDespawn
     lifetime: 1800
 
 - type: entity
   abstract: true
-  id: MobTimedDespawn3000
+  id: NFMobTimedDespawn3000
   components:
   - type: TimedDespawn
     lifetime: 3000
@@ -178,7 +178,7 @@
   parent:
   - MobEnhancedMovement
   - MobPassiveRegenWeak
-  - MobRestrictions
+  - NFMobRestrictions
   components:
   - type: Hands
   - type: Puller

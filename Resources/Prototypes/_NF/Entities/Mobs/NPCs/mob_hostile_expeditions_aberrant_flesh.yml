@@ -3,7 +3,7 @@
   parent:
   - MobNonHumanHostileBase
   - MobHumanoidHostileAISimpleMelee
-  - MobRestrictions
+  - NFMobRestrictions
   id: BaseMobFleshExpeditions
   name: aberrant flesh
   description: A shambling mass of flesh, animated through anomalous energy.
@@ -435,7 +435,7 @@
 # FUNNY LITTLE GUY
 # embedable projectile that bites you until you either kill it or detach it or die (or it despawns)
 - type: entity
-  parent: [ BaseMobFleshExpeditions, MobTimedDespawn60 ]
+  parent: [ BaseMobFleshExpeditions, NFMobTimedDespawn60 ]
   id: MobMawExpeditions
   name: aberrant flesh maw
   description: Immobile, flesh-boring creatures that are launched at victims. Latches on until killed or shaken off. Don't put your fingers in it.

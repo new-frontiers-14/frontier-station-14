@@ -4,7 +4,7 @@
   parent:
   - MobHumanoidHostileBase
   - MobHumanoidInvetory
-  - MobRestrictions
+  - NFMobRestrictions
   id: MobBloodCultistBase
   components:
   - type: NpcFactionMember
@@ -196,7 +196,7 @@
   - MobNonHumanHostileBase
   - MobPassiveRegen
   - MobHumanoidHostileAISimpleMelee
-  - MobRestrictions
+  - NFMobRestrictions
   id: MobBloodCultLeech
   description: This cultist, once human, is now a twisted and corrupted abomination, its body warped and distorted by the dark energies of Nar'Sie's influence.
   components:
@@ -247,7 +247,7 @@
   - MobNonHumanHostileBase
   - MobHumanoidHostileAIComplex
   - MobLaserReflect # Added to prevent laser abuse from players
-  - MobRestrictions
+  - NFMobRestrictions
   id: MobBloodCultistAscended
   components:
   - type: NpcFactionMember
@@ -345,7 +345,7 @@
   - FlyingMobBase
   - MobPassiveRegen
   - MobHumanoidHostileAISimpleMelee
-  - MobTimedDespawn120
+  - NFMobTimedDespawn120
   id: MobBloodCultDrainedOne
   description: A tortured soul, stripped of free will and left as a mere shadow of a human, enslaved and bound to obey its captors.
   components:
@@ -455,7 +455,10 @@
 # Drained One (summonable by players), melee
 - type: entity
   categories: [ HideSpawnMenu ]
-  parent: [ MobBloodCultDrainedOne, MobTimedDespawn180 ]
+  parent:
+  - BaseC3MobCreatureNoValue
+  - MobBloodCultDrainedOne
+  - NFMobTimedDespawn180
   id: MobBloodCultDrainedOneNanoTrasen
   components:
   - type: NPCImprintingOnSpawnBehaviour
