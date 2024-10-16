@@ -1,0 +1,23 @@
+
+# Mop bucket portal
+- type: entity
+  id: SpawnRandomPossessedJaniTool
+  name: random possessed janitor tool
+  parent: MarkerBasePlaceFree
+  suffix: AI, Hostile
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+      - sprite: _NF/Mobs/Meme/goblinbane.rsi
+        state: bucket_portal
+        shader: unshaded
+  - type: RandomSpawner
+    prototypes:
+    - MobMemePossessedBucket
+    - MobMemePossessedSpray
+    - MobMemePossessedSpray
+    - MobMemePossessedMop
+  - type: Ammo
+    muzzleFlash: null
