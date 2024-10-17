@@ -37,13 +37,13 @@ namespace Content.Shared.VendingMachines
         /// Used by the server to determine how many items the machine allowed to eject from random triggers.
         /// </summary>
         [DataField]
-        public float EjectRandomMax = 2;
+        public int EjectRandomMax = 2;
 
         /// <summary>
         /// Used by the server to determine how many items the machine ejected from random triggers.
         /// </summary>
         [DataField]
-        public float EjectRandomCounter = 2;
+        public int EjectRandomCounter = 2;
 
         /// <summary>
         /// The time it takes to regain a single charge
