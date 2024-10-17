@@ -788,6 +788,7 @@
   id: SecurityTechFab
   parent: BaseLatheLube
   name: security techfab
+  categories: [ HideSpawnMenu ] # Frontier
   description: Prints equipment for use by security crew.
   components:
   - type: Sprite
@@ -924,7 +925,7 @@
 
 - type: entity
   id: AmmoTechFab
-  parent: BaseLatheLube
+  parent: [BlueprintReceiverBase, BaseLatheLube] # Frontier: added BlueprintReceiverBase
   name: ammo techfab
   description: Prints the bare minimum of bullets that any budget military or armory could need. Nothing fancy.
   components:
@@ -977,7 +978,7 @@
 
 - type: entity
   id: MedicalTechFab
-  parent: [ BaseLatheLube, BlueprintReceiverBase ] # Frontier: added BlueprintReceiverBase
+  parent: [ BlueprintReceiverBase, BaseLatheLube ] # Frontier: added BlueprintReceiverBase
   name: medical techfab
   description: Prints equipment for use by the medbay.
   components:
