@@ -41,7 +41,7 @@ entities:
     - type: MetaData
       name: Stasis
     - type: Transform
-      pos: -0.546875,-0.53125
+      pos: -0.5,-0.6875
       parent: invalid
     - type: MapGrid
       chunks:
@@ -1281,8 +1281,7 @@ entities:
   - uid: 130
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 12.418333,-3.4793668
+      pos: 11.500278,-4.509832
       parent: 1
 - proto: ButtonFrameCaution
   entities:
@@ -1894,13 +1893,13 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 15.5,10.5
       parent: 1
-- proto: ClothingBeltUtilityFilled
+- proto: ClothingBeltUtilityEngineering
   entities:
-  - uid: 336
+  - uid: 64
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
-      pos: 14.492705,-1.3393784
+      pos: 14.387511,-1.4651437
       parent: 1
 - proto: ClothingCloakCmo
   entities:
@@ -1961,19 +1960,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 15.5,7.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        bank-ATM-cashSlot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-    - type: Physics
-      canCollide: False
-    - type: ItemSlots
 - proto: CrateChemistryD
   entities:
   - uid: 457
@@ -2019,13 +2005,6 @@ entities:
     components:
     - type: Transform
       pos: 22.5,-8.5
-      parent: 1
-- proto: CrateMaterials
-  entities:
-  - uid: 64
-    components:
-    - type: Transform
-      pos: 11.5,-4.5
       parent: 1
 - proto: CryoPod
   entities:
@@ -2154,12 +2133,12 @@ entities:
     - type: Transform
       pos: 18.5,4.5
       parent: 1
-- proto: EmergencyRollerBed
+- proto: EmergencyRollerBedSpawnFolded
   entities:
   - uid: 568
     components:
     - type: Transform
-      pos: 14.787477,5.497296
+      pos: 14.443597,5.490514
       parent: 1
 - proto: ExtinguisherCabinetFilled
   entities:
@@ -3578,16 +3557,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 20.5,-5.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        paper_label: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
 - proto: LockerWallColorMedicalDoctorFilled
   entities:
   - uid: 212
@@ -3596,31 +3565,11 @@ entities:
       rot: 3.141592653589793 rad
       pos: 19.5,5.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        paper_label: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
   - uid: 352
     components:
     - type: Transform
       pos: 19.5,7.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        paper_label: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
 - proto: LockerWallEVAColorParamedicFilled
   entities:
   - uid: 516
@@ -3634,6 +3583,14 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 16.5,5.5
+      parent: 1
+- proto: LockerWallMaterialsBasicFilled
+  entities:
+  - uid: 336
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 10.5,-4.5
       parent: 1
 - proto: LockerWallMaterialsFuelUraniumFilled
   entities:
@@ -3670,20 +3627,6 @@ entities:
     - type: Transform
       pos: 21.5,-1.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        machine_board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        machine_parts: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        microwave_entity_container: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
 - proto: MedicalBed
   entities:
   - uid: 67
@@ -3712,28 +3655,6 @@ entities:
     components:
     - type: Transform
       pos: 20.5,-3.5
-      parent: 1
-    - type: ContainerContainer
-      containers:
-        machine_board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        machine_parts: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        blueprint: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-- proto: Multitool
-  entities:
-  - uid: 578
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 14.544788,-1.8185453
       parent: 1
 - proto: NFPosterContrabandEmsCoords
   entities:
@@ -3844,9 +3765,6 @@ entities:
       parent: 1
     - type: FuelGenerator
       targetPower: 31000
-      on: False    
-    - type: Physics
-      bodyType: Static
 - proto: PosterLegitAnatomyPoster
   entities:
   - uid: 208
