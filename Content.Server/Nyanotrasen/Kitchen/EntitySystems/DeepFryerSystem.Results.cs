@@ -2,7 +2,6 @@
 using Content.Server.Atmos.Components;
 using Content.Server.Body.Components;
 using Content.Server.Ghost.Roles.Components;
-using Content.Server.Kitchen.Components;
 using Content.Server.Nutrition.Components;
 using Content.Server.Nyanotrasen.Kitchen.Components;
 using Content.Shared.Atmos.Rotting;
@@ -12,7 +11,6 @@ using Content.Shared.FixedPoint;
 using Content.Shared.Mobs.Components;
 using Content.Shared.NPC;
 using Content.Shared.Nutrition.Components;
-using Content.Shared.Nyanotrasen.Kitchen.Components;
 using Content.Shared.Nyanotrasen.Kitchen.Prototypes;
 using Content.Shared.Paper;
 using Robust.Shared.Prototypes;
@@ -25,7 +23,7 @@ public sealed partial class DeepFryerSystem
     /// <summary>
     ///     Make an item look deep-fried.
     /// </summary>
-    public void MakeCrispy(EntityUid item, ProtoId<CrispinessLevelSetPrototype> crispiness) // Frontier: add reference to deep fryer
+    public void MakeCrispy(EntityUid item, ProtoId<CrispinessLevelSetPrototype> crispiness) // Frontier: add CrispinessLevelSetPrototype
     {
         EnsureComp<AppearanceComponent>(item);
         // Frontier: apply the fryer-appropriate shader
