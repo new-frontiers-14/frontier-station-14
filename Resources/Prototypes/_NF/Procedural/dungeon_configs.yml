@@ -1,6 +1,7 @@
 # Base dungeon prototypes
 - type: dungeonConfig
   id: Everything
+  skipDungeonGen: true # Frontier
   layers:
   - !type:PrefabDunGen
     presets:
@@ -334,7 +335,7 @@
 
 ## Wallmounts
 - type: entitySpawnEntry
-  id: NanoTrasenFasilityWallmounts
+  id: NanoTrasenFacilityWallmounts
   entries:
   - id: RandomPosterLegit
     orGroup: content
