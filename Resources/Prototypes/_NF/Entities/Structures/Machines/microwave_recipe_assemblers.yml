@@ -262,6 +262,11 @@
     interfaces:
       enum.MicrowaveUiKey.MedicalAssemblerKey:
         type: AssemblerBoundUserInterface
+  - type: ContainerContainer # Redefined due to inheritance order
+    containers:
+      microwave_entity_container: !type:Container
+      machine_board: !type:Container
+      machine_parts: !type:Container
 
 # POI versions of microwave machines
 
@@ -325,3 +330,13 @@
   components:
   - type: Machine
     board: Null
+
+- type: entity
+  id: KitchenDeepFryerCauldronPOI
+  parent:
+  - BaseStructureDisableToolUse
+  - KitchenDeepFryerCauldron
+  suffix: Holiday Special, POI
+  components:
+  - type: Machine
+    board: null

@@ -997,6 +997,13 @@ entities:
     - type: Transform
       pos: -4.5,3.5
       parent: 1
+- proto: BannerMedical
+  entities:
+  - uid: 292
+    components:
+    - type: Transform
+      pos: 0.5,-3.5
+      parent: 1
 - proto: BedsheetMedical
   entities:
   - uid: 137
@@ -1046,12 +1053,27 @@ entities:
       rot: 6.283185307179586 rad
       pos: -1.6655741,6.2222466
       parent: 1
+- proto: ButtonFrameCaution
+  entities:
+  - uid: 412
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -1.25,7.5
+      parent: 1
+- proto: ButtonFrameCautionSecurity
+  entities:
+  - uid: 411
+    components:
+    - type: Transform
+      pos: 0.25,7.5
+      parent: 1
 - proto: ButtonFrameExit
   entities:
   - uid: 276
     components:
     - type: Transform
-      pos: 0.5,7.5
+      pos: 0.75,7.5
       parent: 1
 - proto: ButtonFrameGrey
   entities:
@@ -1064,7 +1086,7 @@ entities:
     components:
     - type: Transform
       rot: 3.141592653589793 rad
-      pos: -1.5,7.5
+      pos: -1.75,7.5
       parent: 1
 - proto: CableApcExtension
   entities:
@@ -1408,6 +1430,7 @@ entities:
       pos: -1.5,6.5
       parent: 1
     - type: ItemPlacer
+      lastPlaceable: False
       placedEntities:
       - 221
     - type: PlaceableSurface
@@ -1433,13 +1456,6 @@ entities:
     components:
     - type: Transform
       pos: -3.5210888,-2.1972485
-      parent: 1
-- proto: ClothingOuterCoatLabChem
-  entities:
-  - uid: 245
-    components:
-    - type: Transform
-      pos: -1.4726316,2.2593617
       parent: 1
 - proto: ComputerTabletopCrewMonitoring
   entities:
@@ -1481,8 +1497,6 @@ entities:
           showEnts: False
           occludes: True
           ent: null
-    - type: Physics
-      canCollide: False
     - type: ItemSlots
 - proto: CrateChemistryD
   entities:
@@ -1554,11 +1568,6 @@ entities:
       parent: 1
 - proto: EmergencyRollerBed
   entities:
-  - uid: 292
-    components:
-    - type: Transform
-      pos: 0.62088865,-3.4683585
-      parent: 1
   - uid: 315
     components:
     - type: Transform
@@ -2247,7 +2256,8 @@ entities:
   - uid: 167
     components:
     - type: Transform
-      pos: -1.6666503,2.7190852
+      rot: 3.141592653589793 rad
+      pos: -1.6407223,5.6968827
       parent: 1
 - proto: HospitalCurtainsOpen
   entities:
@@ -2286,31 +2296,13 @@ entities:
     - type: Transform
       pos: 4.5,5.5
       parent: 1
-- proto: LockerWallChemistryFilled
+- proto: LockerWallColorChemistryFilled
   entities:
-  - uid: 364
+  - uid: 229
     components:
     - type: Transform
       pos: -2.5,7.5
       parent: 1
-    - type: EntityStorage
-      air:
-        volume: 200
-        immutable: False
-        temperature: 293.14917
-        moles:
-        - 1.734816
-        - 6.5262127
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -2321,14 +2313,24 @@ entities:
           showEnts: False
           occludes: True
           ent: null
-- proto: LockerWallEVAColorMedicalFilled
+- proto: LockerWallColorMedicalDoctorFilled
   entities:
-  - uid: 357
+  - uid: 245
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -1.5,-3.5
+      rot: 3.141592653589793 rad
+      pos: -2.5,2.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        entity_storage: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        paper_label: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
 - proto: LockerWallEVAColorParamedicFilled
   entities:
   - uid: 141
@@ -2341,6 +2343,14 @@ entities:
     - type: Transform
       pos: 5.5,0.5
       parent: 1
+- proto: LockerWallMaterialsBasicFilled
+  entities:
+  - uid: 319
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 2.5,-2.5
+      parent: 1
 - proto: LockerWallMaterialsFuelUraniumFilled
   entities:
   - uid: 160
@@ -2348,14 +2358,6 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -1.5,-2.5
-      parent: 1
-- proto: LockerWallMedicalDoctorFilled
-  entities:
-  - uid: 309
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -2.5,2.5
       parent: 1
 - proto: LuxuryPen
   entities:
@@ -2378,6 +2380,27 @@ entities:
     - type: Transform
       pos: -3.5,4.5
       parent: 1
+- proto: MedicalAssembler
+  entities:
+  - uid: 309
+    components:
+    - type: Transform
+      pos: 3.5,3.5
+      parent: 1
+    - type: ContainerContainer
+      containers:
+        machine_board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        machine_parts: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        microwave_entity_container: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
 - proto: MedicalBed
   entities:
   - uid: 178
@@ -2397,6 +2420,20 @@ entities:
     - type: Transform
       pos: 2.5,2.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        machine_board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        machine_parts: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        blueprint: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
 - proto: NFPosterContrabandFsbApothecary
   entities:
   - uid: 289
@@ -2410,6 +2447,32 @@ entities:
     components:
     - type: Transform
       pos: 3.5,1.5
+      parent: 1
+- proto: NFSignDock
+  entities:
+  - uid: 237
+    components:
+    - type: Transform
+      pos: 2.5,-4.5
+      parent: 1
+  - uid: 248
+    components:
+    - type: Transform
+      pos: -1.5,-4.5
+      parent: 1
+- proto: NFSignEms2
+  entities:
+  - uid: 357
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 4.5,7.5
+      parent: 1
+  - uid: 372
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 0.5,-4.5
       parent: 1
 - proto: NitrogenCanister
   entities:
@@ -2461,10 +2524,7 @@ entities:
       pos: -2.5,-2.5
       parent: 1
     - type: FuelGenerator
-      targetPower: 16000
-      on: False     
-    - type: Physics
-      bodyType: Static
+      targetPower: 17000
 - proto: PosterLegitSMHardhats
   entities:
   - uid: 249
@@ -2492,8 +2552,7 @@ entities:
   - uid: 317
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 3.5,3.5
+      pos: -1.5,2.5
       parent: 1
 - proto: Poweredlight
   entities:
@@ -2786,7 +2845,7 @@ entities:
   - uid: 296
     components:
     - type: Transform
-      pos: 0.5,7.5
+      pos: 0.75,7.5
       parent: 1
     - type: DeviceLinkSource
       linkedPorts:
@@ -2817,11 +2876,26 @@ entities:
         - Pressed: Toggle
         333:
         - Pressed: Toggle
+  - uid: 364
+    components:
+    - type: Transform
+      pos: 0.25,7.5
+      parent: 1
+    - type: DeviceLinkSource
+      linkedPorts:
+        2:
+        - Pressed: DoorBolt
+        61:
+        - Pressed: DoorBolt
+        55:
+        - Pressed: DoorBolt
+        65:
+        - Pressed: DoorBolt
   - uid: 365
     components:
     - type: Transform
       rot: 3.141592653589793 rad
-      pos: -1.5,7.5
+      pos: -1.75,7.5
       parent: 1
     - type: DeviceLinkSource
       linkedPorts:
@@ -2839,6 +2913,36 @@ entities:
         - Pressed: Toggle
         408:
         - Pressed: Toggle
+  - uid: 413
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -1.25,7.5
+      parent: 1
+    - type: SignalSwitch
+      state: True
+    - type: DeviceLinkSource
+      linkedPorts:
+        293:
+        - Pressed: Toggle
+        339:
+        - Pressed: Toggle
+        336:
+        - Pressed: Toggle
+        158:
+        - Pressed: Toggle
+        202:
+        - Pressed: Toggle
+        270:
+        - Pressed: Toggle
+        213:
+        - Pressed: Toggle
+        358:
+        - Pressed: Toggle
+        355:
+        - Pressed: Toggle
+        277:
+        - Pressed: Toggle
 - proto: SignEVA
   entities:
   - uid: 337
@@ -2852,31 +2956,6 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 6.5,-2.5
-      parent: 1
-- proto: SignMedical
-  entities:
-  - uid: 319
-    components:
-    - type: Transform
-      pos: 4.5,7.5
-      parent: 1
-  - uid: 372
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 0.5,-4.5
-      parent: 1
-- proto: NFSignDock
-  entities:
-  - uid: 237
-    components:
-    - type: Transform
-      pos: 2.5,-4.5
-      parent: 1
-  - uid: 248
-    components:
-    - type: Transform
-      pos: -1.5,-4.5
       parent: 1
 - proto: SignSpace
   entities:
@@ -2924,6 +3003,8 @@ entities:
       parent: 1
     - type: ApcPowerReceiver
       powerLoad: 1
+    - type: DeviceLinkSink
+      invokeCounter: 1
   - uid: 339
     components:
     - type: Transform
@@ -2963,14 +3044,6 @@ entities:
     - type: Transform
       pos: -2.5,0.5
       parent: 1
-- proto: TableCounterMetal
-  entities:
-  - uid: 134
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 3.5,3.5
-      parent: 1
 - proto: TableReinforced
   entities:
   - uid: 14
@@ -3002,16 +3075,16 @@ entities:
       rot: 3.141592653589793 rad
       pos: -1.5,4.5
       parent: 1
+  - uid: 134
+    components:
+    - type: Transform
+      pos: -1.5,2.5
+      parent: 1
   - uid: 217
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -0.5,9.5
-      parent: 1
-  - uid: 229
-    components:
-    - type: Transform
-      pos: -1.5,2.5
       parent: 1
   - uid: 302
     components:

@@ -2,7 +2,7 @@
 - type: entity
   id: MobMemePossessedMop
   name: possessed mop
-  parent: [ MobIncorporealBase, MobMemeGoblinbane ]
+  parent: [ BaseMobMemeGoblinbane, NFMobTimedDespawn120 ]
   categories: [ HideSpawnMenu ]
   components:
   - type: HTN
@@ -38,7 +38,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      50: Dead
+      40: Dead
   - type: Destructible
     thresholds:
     - trigger:
@@ -63,19 +63,17 @@
     attackRate: 1
     damage:
       types:
-        Blunt: 6
+        Blunt: 3
         Structural: 20
   - type: MeleeChemicalInjector
     solution: bloodstream
-    transferAmount: 10
-  - type: TimedDespawn
-    lifetime: 120
+    transferAmount: 0.5
 
 # Possessed Spray
 - type: entity
   id: MobMemePossessedSpray
   name: possessed spray
-  parent: MobMemeGoblinbane
+  parent: [ BaseMobMemeGoblinbane, NFMobTimedDespawn120 ]
   categories: [ HideSpawnMenu ]
   components:
   - type: HTN
@@ -111,7 +109,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      50: Dead
+      40: Dead
   - type: Destructible
     thresholds:
     - trigger:
@@ -143,14 +141,12 @@
     availableModes:
     - SemiAuto
     soundGunshot: /Audio/Weapons/Guns/Gunshots/water_spray.ogg
-  - type: TimedDespawn
-    lifetime: 120
 
 # Possessed Bucket
 - type: entity
   id: MobMemePossessedBucket
   name: possessed mop bucket
-  parent: [ MobMemeGoblinbane ]
+  parent: [ BaseMobMemeGoblinbane, NFMobTimedDespawn120 ]
   categories: [ HideSpawnMenu ]
   components:
   - type: HTN
@@ -183,7 +179,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      50: Dead
+      40: Dead
   - type: Destructible
     thresholds:
     - trigger:
@@ -198,7 +194,7 @@
           MopBucket:
             min: 1
             max: 1
-          SoapNT:
+          RandomSoap:
             min: 1
             max: 1
       - !type:DoActsBehavior
@@ -211,16 +207,14 @@
     attackRate: 1
     damage:
       types:
-        Blunt: 6
+        Blunt: 3
         Structural: 20
-  - type: TimedDespawn
-    lifetime: 120
 
 # Mop bucket dimention portal
 - type: entity
   id: MopBucketDimnsionPortal
   name: mop bucket portal
-  parent:  [ MobIncorporealBase, XenoWardingTower ]
+  parent:  [ MobIncorporealBase, XenoWardingTower, NFMobTimedDespawn80 ]
   description: A portal to a mop bucket dimension. Obviously. It says so on the label at the corner.
   components:
   - type: NpcFactionMember
@@ -243,7 +237,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 90
+        damage: 60
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -252,7 +246,7 @@
         acts: [ "Destruction" ]
     - trigger:
         !type:DamageTrigger
-        damage: 90
+        damage: 60
       behaviors:
       - !type:DoActsBehavior
         acts: ["Destruction"]
@@ -268,8 +262,6 @@
     radius: 2.0
     energy: 3.5
     color: "yellow"
-  - type: TimedDespawn
-    lifetime: 80
 
 - type: entity
   id: CleanlinessDimensionPortal
