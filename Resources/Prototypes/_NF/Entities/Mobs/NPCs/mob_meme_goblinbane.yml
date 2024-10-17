@@ -100,12 +100,12 @@
       path: /Audio/Effects/bite.ogg
     damage:
       types:
-        Slash: 12
+        Blunt: 4
         Structural: 20
     animation: WeaponArcBite
   - type: MeleeChemicalInjector
     solution: bloodstream
-    transferAmount: 4
+    transferAmount: 0.5
   - type: PointLight
     radius: 1.4
     energy: 1.2
@@ -224,7 +224,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      200: Dead
+      140: Dead
   - type: Destructible
     thresholds:
     - trigger:
@@ -259,7 +259,7 @@
       path: /Audio/_NF/Effects/silence.ogg
   - type: MeleeChemicalInjector
     solution: bloodstream
-    transferAmount: 10
+    transferAmount: 0.5
   # Ghost role stuff
   - type: GhostRole
     allowMovement: true
