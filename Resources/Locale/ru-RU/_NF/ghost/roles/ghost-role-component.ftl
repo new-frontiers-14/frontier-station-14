@@ -22,3 +22,5 @@ ghost-role-information-taxibot-name = Таксибот
 ghost-role-information-taxibot-description = Доставляй пассажиров до их точки назначения.
 ghost-role-information-hovertaxibot-name = Ховертаксибот
 ghost-role-information-hovertaxibot-description = Доставляй пассажиров до их точки назначения, но удостоверься, что им есть чем дышать!
+ghost-role-information-clugg-name = Умник
+ghost-role-information-clugg-description = 	Угг! Умник обожает есть мясо. Найди новый дом неподалеку от космического астероида и отправляйся на большую охоту.
