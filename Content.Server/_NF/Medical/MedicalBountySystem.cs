@@ -35,6 +35,7 @@ public sealed partial class MedicalBountySystem : EntitySystem
     [Dependency] PopupSystem _popup = default!;
     [Dependency] UserInterfaceSystem _ui = default!;
     [Dependency] PowerReceiverSystem _power = default!;
+    [Dependency] SharedAppearanceSystem _appearance = default!;
 
     private List<MedicalBountyPrototype> _cachedPrototypes = new();
 
@@ -175,11 +176,13 @@ public sealed partial class MedicalBountySystem : EntitySystem
     private void OnEntityInserted(EntityUid uid, MedicalBountyRedemptionComponent component, EntInsertedIntoContainerMessage args)
     {
         UpdateUserInterface(uid, component);
+        _appearance.SetData(uid, MedicalBountyRedemptionVisuals.Full, true);
     }
 
     private void OnEntityRemoved(EntityUid uid, MedicalBountyRedemptionComponent component, EntRemovedFromContainerMessage args)
     {
         UpdateUserInterface(uid, component);
+        _appearance.SetData(uid, MedicalBountyRedemptionVisuals.Full, false);
     }
 
     private void OnActivateUI(EntityUid uid, MedicalBountyRedemptionComponent component, AfterActivatableUIOpenEvent args)

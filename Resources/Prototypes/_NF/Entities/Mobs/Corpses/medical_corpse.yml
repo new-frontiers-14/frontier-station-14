@@ -24,14 +24,6 @@
     settings: MedicalBountyService
 
 - type: entity
-  id: SpawnRandomHumanoidCorpseMedicalBountyMusician
-  suffix: Musician
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: RandomHumanoidSpawner
-    settings: MedicalBountyMusician
-
-- type: entity
   id: SpawnRandomHumanoidCorpseMedicalBountyEngineering
   suffix: Engineering
   categories: [ HideSpawnMenu ]
@@ -132,24 +124,17 @@
     - NFVisitorLibrarianAlt
     - NFVisitorMime
     - NFVisitorMimeAlt
+    - NFVisitorMusicianFancyAltA
+    - NFVisitorMusicianFancyAltB
+    - NFVisitorMusicianRelaxedAltA
+    - NFVisitorMusicianRelaxedAltB
+    - NFVisitorMusicianMariachi
     - NFVisitorReporter
     - NFVisitorReporterAlt
     - NFVisitorServiceWorker
     - NFVisitorServiceWorkerAlt
     - NFVisitorZookeeper
     - NFVisitorZookeeperAlt
-
-- type: randomHumanoidSettings
-  parent: MedicalBounty
-  id: MedicalBountyMusician
-  components:
-  - type: Loadout
-    prototypes:
-    - NFVisitorMusicianFancyAltA
-    - NFVisitorMusicianFancyAltB
-    - NFVisitorMusicianRelaxedAltA
-    - NFVisitorMusicianRelaxedAltB
-    - NFVisitorMusicianMariachi
 
 - type: randomHumanoidSettings
   parent: MedicalBounty

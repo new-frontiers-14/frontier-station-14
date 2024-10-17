@@ -18,6 +18,12 @@ public enum MedicalBountyRedemptionStatus : byte
 }
 
 [Serializable, NetSerializable]
+public enum MedicalBountyRedemptionVisuals : byte
+{
+    Full
+}
+
+[Serializable, NetSerializable]
 public sealed class MedicalBountyRedemptionUIState : BoundUserInterfaceState
 {
     public int BountyValue { get; }

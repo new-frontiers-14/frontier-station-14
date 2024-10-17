@@ -4,15 +4,18 @@ medical-bounty-redemption-fail-too-much-damage = Recovered body too damaged to r
 medical-bounty-redemption-success = Bounty redeemed! Payment dispensed.
 
 medical-bounty-redemption-ui-title = Body Retrieval Unit
-medical-bounty-redemption-ui-init = Systems booting.
-medical-bounty-redemption-ui-no-items =
-    No body detected.
-    Insert redeemable body into container.
-medical-bounty-redemption-ui-no-bounty = No bounty on body in container.
-medical-bounty-redemption-ui-too-much-damage = Body too damaged to redeem bounty.
-medical-bounty-redemption-ui-valid-bounty =
-    Redeemable bounty found.
-    Value: {$amount}
+
+medical-bounty-redemption-body-label-init = Systems booting.
+medical-bounty-redemption-body-label-no-items = No body detected.
+medical-bounty-redemption-body-label-body-present = Body present.
+medical-bounty-redemption-body-label-valid-bounty = Redeemable bounty found.
+
+medical-bounty-redemption-redeem-label-init = Loading NT BIOS v72.1...
+medical-bounty-redemption-redeem-label-no-items = Insert redeemable body into container.
+medical-bounty-redemption-redeem-label-no-bounty = No bounty detected.
+medical-bounty-redemption-redeem-label-too-much-damage = Body too damaged to redeem bounty.
+medical-bounty-redemption-redeem-label-valid-bounty = Value: {$amount}
+
 medical-bounty-redemption-ui-sell-button = Redeem
 medical-bounty-console-flavor-left = Treat all bodies as though they're family.
 medical-bounty-console-flavor-right = v3.1
