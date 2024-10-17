@@ -34,7 +34,8 @@
         mask: # tables should collide with other tables
         - TableMask
         layer:
-        - MobLayer
+        - TableLayer
+        hard: true
   - type: Bonkable
     bonkDamage:
       types:
@@ -97,6 +98,8 @@
     graph: TableFoldingGraph
     node: TableFolding
   - type: DamageExaminable
+  - type: FoldableFixture
+    fixture: fix1
 
 - type: entity
   parent: TableFolding
