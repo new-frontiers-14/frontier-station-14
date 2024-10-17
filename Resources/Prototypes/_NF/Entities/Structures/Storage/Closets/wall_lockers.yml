@@ -22,6 +22,10 @@
         decal2:
           True: { visible: false }
           False: { visible: true }
+  - type: ContainerContainer
+    containers:
+      entity_storage: !type:Container
+      paper_label: !type:ContainerSlot # Defined for any locker inheriting a physical one.
 
 # Fuel / materials storage
 - type: entity
@@ -181,7 +185,7 @@
 # Other: Chemistry wall locker
 - type: entity
   id: LockerWallChemistry
-  parent: [LockerWallMedical, BaseStructureWallmount]
+  parent: [BaseStructureWallmount, LockerWallMedical]
   name: chemistry wall locker
   components:
   - type: Sprite
