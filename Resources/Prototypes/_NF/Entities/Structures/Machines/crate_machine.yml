@@ -7,8 +7,12 @@
   components:
     - type: ItemPlacer
       whitelist:
+        # Should match crates.
+        requireAll: true
         components:
-          - CrateGenericSteel
+          - EntityStorage
+          - PaperLabel
+          - ContainerContainer
     - type: CrateMachine
     - type: Sprite
       sprite: _NF/Structures/Machines/crate_machine.rsi
