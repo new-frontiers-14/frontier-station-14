@@ -17,7 +17,7 @@ namespace Content.Client._NF.Emp.Overlays
         [Dependency] private readonly IGameTiming _gameTiming = default!;
         private TransformSystem? _transform;
 
-        private const float MaxDist = 15.0f;
+        private const float MaxDist = 100.0f;
 
         public override OverlaySpace Space => OverlaySpace.WorldSpace;
         public override bool RequestScreenTexture => true;
