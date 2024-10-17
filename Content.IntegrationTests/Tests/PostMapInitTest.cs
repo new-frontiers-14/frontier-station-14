@@ -17,9 +17,9 @@ using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
 using Content.Shared.Station.Components;
-using FastAccessors;
 using Robust.Shared.Utility;
 using YamlDotNet.RepresentationModel;
+using Content.IntegrationTests.Tests._NF;
 
 namespace Content.IntegrationTests.Tests
 {
@@ -38,32 +38,13 @@ namespace Content.IntegrationTests.Tests
 
         private static readonly string[] Grids =
         {
-            "/Maps/centcomm.yml",
-            "/Maps/Shuttles/cargo.yml",
-            "/Maps/Shuttles/emergency.yml",
-            "/Maps/Shuttles/infiltrator.yml",
+            // Admin
+            "/Maps/_NF/Shuttles/Admin/fishbowl.yml",
+            // Bus
+            "/Maps/_NF/Shuttles/Bus/publicts.yml",
         };
 
-        private static readonly string[] GameMaps =
-        {
-            "Dev",
-            "TestTeg",
-            "Fland",
-            "Meta",
-            "Packed",
-            "Omega",
-            "Bagel",
-            "CentComm",
-            "Box",
-            "Core",
-            "Marathon",
-            "MeteorArena",
-            "Saltern",
-            "Reach",
-            "Train",
-            "Oasis",
-            "Cog"
-        };
+        private static readonly string[] GameMaps = FrontierConstants.GameMapPrototypes; // Frontier: not inline constants
 
         /// <summary>
         /// Asserts that specific files have been saved as grids and not maps.

@@ -5,7 +5,7 @@ using Content.Server.Cargo.Components;
 using Content.Server.Cargo.Systems;
 using Content.Server.Nutrition.Components;
 using Content.Server.Nutrition.EntitySystems;
-using Content.Shared.Cargo.Components;
+using Content.Shared.Cargo.Components; // Frontier
 using Content.Shared.Cargo.Prototypes;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Stacks;

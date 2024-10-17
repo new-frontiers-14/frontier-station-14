@@ -35,6 +35,10 @@
           acts: ["Destruction"]
   - type: Machine
     board: ThrusterSecurityMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container # FIXME: Why do these need to be defined here?  What's missing?
+      machine_parts: !type:Container
 
 - type: entity
   id: GyroscopeSecurity
@@ -56,6 +60,10 @@
     sprite: _NF/Structures/Shuttles/gyroscope.rsi
   - type: Machine
     board: GyroscopeSecurityMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container # FIXME: Why do these need to be defined here?  What's missing?
+      machine_parts: !type:Container
 
 - type: entity
   id: SmallGyroscopeSecurity
