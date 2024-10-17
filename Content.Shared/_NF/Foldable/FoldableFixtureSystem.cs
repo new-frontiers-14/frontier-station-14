@@ -17,33 +17,40 @@ public sealed class FoldableFixtureSystem : EntitySystem
     private void OnMapInit(EntityUid uid, FoldableFixtureComponent component, MapInitEvent args)
     {
         if (TryComp<FoldableComponent>(uid, out var foldable))
-            SetFoldedFixture(uid, foldable.IsFolded, component);
+            SetFoldedFixtures(uid, foldable.IsFolded, component);
     }
 
     private void OnFolded(EntityUid uid, FoldableFixtureComponent? component, ref FoldedEvent args)
     {
-        SetFoldedFixture(uid, args.IsFolded, component);
+        SetFoldedFixtures(uid, args.IsFolded, component);
     }
 
-    private void SetFoldedFixture(EntityUid uid, bool isFolded, FoldableFixtureComponent? component)
+    // Sets all relevant fixtures for the entity to an appropriate hard/soft state.
+    private void SetFoldedFixtures(EntityUid uid, bool isFolded, FoldableFixtureComponent? component)
     {
         if (!Resolve(uid, ref component))
             return;
 
-        if (component.Fixture == null)
-            return;
-
-        var fixture = _fixtures.GetFixtureOrNull(uid, component.Fixture);
-
-        if (!isFolded)
+        if (isFolded)
         {
-            if (fixture != null)
-                _physics.SetHard(uid, fixture, true);
+            SetAllFixtureHardness(uid, component.FoldedFixtures, true);
+            SetAllFixtureHardness(uid, component.UnfoldedFixtures, false);
         }
         else
         {
+            SetAllFixtureHardness(uid, component.FoldedFixtures, false);
+            SetAllFixtureHardness(uid, component.UnfoldedFixtures, true);
+        }
+    }
+
+    // Sets all fixtures on an entity in a list to either be hard or soft.
+    void SetAllFixtureHardness(EntityUid uid, List<string> fixtures, bool hard)
+    {
+        foreach (var fixName in fixtures)
+        {
+            var fixture = _fixtures.GetFixtureOrNull(uid, fixName);
             if (fixture != null)
-                _physics.SetHard(uid, fixture, false);
+                _physics.SetHard(uid, fixture, hard);
         }
     }
 }

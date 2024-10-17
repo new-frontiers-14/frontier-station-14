@@ -6,6 +6,7 @@
   description: If you carry six of these you become the coolest kid at church.
   components:
   # Table bits
+  - type: SpriteFade
   - type: Clickable
   - type: InteractionOutline
   - type: Climbable # Pointless without player-table collision, but I'll keep it
@@ -21,12 +22,10 @@
   - type: Physics
     bodyType: Dynamic
     fixedRotation: true
-  - type: Anchorable
-  - type: Rotatable
   - type: Pullable
   - type: Fixtures
     fixtures:
-      fix1:
+      table:
         shape:
           !type:PhysShapeAabb
           bounds: "-0.4,-0.4,0.4,0.4"
@@ -36,6 +35,15 @@
         layer:
         - TableLayer
         hard: true
+      item:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.25,0.25,0.25"
+        density: 20
+        mask:
+        - ItemMask
+        restitution: 0.3  # fite me
+        friction: 0.2
   - type: Bonkable
     bonkDamage:
       types:
@@ -57,6 +65,7 @@
     - state: folding_folded
       map: ["foldedLayer"]
       visible: false
+    noRot: true
   - type: Appearance
   - type: MeleeWeapon
     damage:
@@ -99,7 +108,10 @@
     node: TableFolding
   - type: DamageExaminable
   - type: FoldableFixture
-    fixture: fix1
+    foldedFixtures:
+    - item
+    unfoldedFixtures:
+    - table
 
 - type: entity
   parent: TableFolding
