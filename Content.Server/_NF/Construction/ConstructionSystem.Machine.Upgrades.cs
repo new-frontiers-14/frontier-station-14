@@ -109,7 +109,7 @@ public sealed partial class ConstructionSystem
                 amount += state.Quantity();
                 sumRating += state.Part.Rating * state.Quantity();
             }
-            var rating = amount != 0 ? sumRating / amount : 0;
+            var rating = amount != 0 ? sumRating / amount : 1.0f;
             output.Add(type.ID, rating);
         }
 
