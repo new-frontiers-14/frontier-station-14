@@ -33,6 +33,7 @@ using Content.Server.Shuttles.Components;
 using Content.Shared.Tiles;
 using Content.Server._NF.PublicTransit.Components;
 using Content.Server._NF.GameRule.Components;
+using Content.Server.Bank;
 
 namespace Content.Server._NF.GameRule;
 
@@ -51,6 +52,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly ShuttleSystem _shuttle = default!;
     [Dependency] private readonly PhysicsSystem _physics = default!;
+    [Dependency] private readonly BankSystem _bank = default!;
 
     private readonly HttpClient _httpClient = new();
 
@@ -78,10 +80,10 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
 
         foreach (var player in _players)
         {
-            if (!TryComp<BankAccountComponent>(player.Item1, out var bank) || !TryComp<MetaDataComponent>(player.Item1, out var meta))
+            if (!_bank.TryGetBalance(player.Item1, out var bankBalance) || !TryComp<MetaDataComponent>(player.Item1, out var meta))
                 continue;
 
-            var profit = bank.Balance - player.Item2;
+            var profit = bankBalance - player.Item2;
             ev.AddLine($"- {meta.EntityName} {profitText} {profit} Spesos");
             allScore.Add(new Tuple<string, int>(meta.EntityName, profit));
         }
