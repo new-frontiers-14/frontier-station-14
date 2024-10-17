@@ -262,6 +262,11 @@
     interfaces:
       enum.MicrowaveUiKey.MedicalAssemblerKey:
         type: AssemblerBoundUserInterface
+  - type: ContainerContainer # Redefined due to inheritance order
+    containers:
+      microwave_entity_container: !type:Container
+      machine_board: !type:Container
+      machine_parts: !type:Container
 
 # POI versions of microwave machines
 
@@ -269,59 +274,55 @@
   id: KitchenMicrowavePOI
   parent:
   - BaseStructureDisableToolUse
+  - BaseStructureIndestructible
   - KitchenMicrowave
   suffix: POI
-  components:
-  - type: Machine
-    board: Null
 
 - type: entity
   id: KitchenElectricRangePOI
   parent:
   - BaseStructureDisableToolUse
+  - BaseStructureIndestructible
   - KitchenElectricRange
   suffix: POI
-  components:
-  - type: Machine
-    board: Null
 
 - type: entity
   id: KitchenAssemblerPOI
   parent:
   - BaseStructureDisableToolUse
+  - BaseStructureIndestructible
   - KitchenAssembler
   suffix: POI
-  components:
-  - type: Machine
-    board: Null
 
 - type: entity
   id: MedicalAssemblerPOI
   parent:
   - BaseStructureDisableToolUse
+  - BaseStructureIndestructible
   - MedicalAssembler
   suffix: POI
-  components:
-  - type: Machine
-    board: Null
 
 # TODO: move this
 - type: entity
   id: KitchenReagentGrinderPOI
   parent:
   - BaseStructureDisableToolUse
+  - BaseStructureIndestructible
   - KitchenReagentGrinder
   suffix: POI
-  components:
-  - type: Machine
-    board: Null
 
 - type: entity
   id: KitchenDeepFryerPOI
   parent:
   - BaseStructureDisableToolUse
+  - BaseStructureIndestructible
   - KitchenDeepFryer
   suffix: POI
-  components:
-  - type: Machine
-    board: Null
+
+- type: entity
+  id: KitchenDeepFryerCauldronPOI
+  parent:
+  - BaseStructureDisableToolUse
+  - BaseStructureIndestructible
+  - KitchenDeepFryerCauldron
+  suffix: Holiday Special, POI
