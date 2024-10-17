@@ -29,6 +29,7 @@ shipyard-console-dangerous-materials = Dangerous materials detected onboard.
 
 shipyard-console-menu-size-label = Size:{" "}
 shipyard-console-menu-class-label = Class:{" "}
+shipyard-console-menu-engine-label = Engine:{" "}
 
 shipyard-console-purchase-available = Purchase
 shipyard-console-guidebook = Manual
@@ -60,3 +61,17 @@ shipyard-console-class-Detective = Detective
 shipyard-console-class-Fighter = Fighter
 shipyard-console-class-Stealth = Stealth
 shipyard-console-class-Capital = Capital
+
+shipyard-console-engine-All = All
+shipyard-console-engine-AME = AME
+shipyard-console-engine-TEG = TEG
+shipyard-console-engine-SM = SM
+shipyard-console-engine-Tesla = Tesla
+shipyard-console-engine-Singularity = Singularity
+shipyard-console-engine-Solar = Solar
+shipyard-console-engine-RTG = RTG
+shipyard-console-engine-APU = APU
+shipyard-console-engine-Welding = Welding Fuel
+shipyard-console-engine-Plasma = Plasma
+shipyard-console-engine-Uranium = Uranium
+shipyard-console-engine-Bananium = Bananium
