@@ -20,8 +20,6 @@
     speedModifierThresholds:
       60: 0.7
       80: 0.5
-  - type: Stamina
-    critThreshold: 100
   - type: DamageStateVisuals
     rotate: true
   - type: RotationVisuals
@@ -55,10 +53,11 @@
   - type: AutoWakeUp
   - type: PointLight
     enabled: true
-    autoRot: false
+    autoRot: true
     netsync: false
     radius: 3
     energy: 1
+    mask: /Textures/Effects/LightMasks/cone.png
     color: "#47f8ff"
 
 # Variations
@@ -90,7 +89,6 @@
     # Helmet
     - sprite: _NF/Clothing/Head/Hats/pilot.rsi
       state: equipped-HELMET
-    # Suit
     # Hands
     - sprite: Clothing/Hands/Gloves/Color/color.rsi
       state: equipped-HAND
@@ -178,14 +176,6 @@
     availableModes:
     - SemiAuto
     soundGunshot: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
-  - type: PointLight
-    enabled: true
-    autoRot: true
-    netsync: false
-    radius: 3
-    energy: 1
-    mask: /Textures/Effects/LightMasks/cone.png
-    color: "#47f8ff"
 
 ## Tier 2
 - type: entity
@@ -205,9 +195,6 @@
   - type: Sprite
     drawdepth: Mobs
     layers:
-    # Body
-    # Jumpsuit
-    # Mask
     # Helmet
     - sprite: Clothing/Head/Hardsuits/spatiohelm.rsi
       state: equipped-head
@@ -221,19 +208,10 @@
     # Suit
     - sprite: Clothing/OuterClothing/Hardsuits/spatio.rsi
       state: equipped-OUTERCLOTHING
-    # Hands
     # Weapons
     - sprite: Objects/Weapons/Melee/crusher_glaive.rsi
       state: wielded-inhand-right
     # Fluff
-  - type: PointLight
-    enabled: true
-    autoRot: true
-    netsync: false
-    radius: 3
-    energy: 1
-    mask: /Textures/Effects/LightMasks/cone.png
-    color: "#47f8ff"
   - type: MeleeWeapon
     attackRate: 1.5
     altDisarm: false
@@ -267,9 +245,6 @@
   - type: Sprite
     drawdepth: Mobs
     layers:
-    # Body
-    # Jumpsuit
-    # Mask
     # Helmet
     - sprite: Clothing/Head/Hardsuits/spatiohelm.rsi
       state: equipped-head
@@ -283,7 +258,6 @@
     # Suit
     - sprite: Clothing/OuterClothing/Hardsuits/spatio.rsi
       state: equipped-OUTERCLOTHING
-    # Hands
     # Weapons
     - sprite: _NF/Objects/Weapons/Guns/Basic/sawn_kinetic_accelerator.rsi
       state: inhand-right
@@ -307,14 +281,6 @@
     availableModes:
     - FullAuto
     soundGunshot: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
-  - type: PointLight
-    enabled: true
-    autoRot: true
-    netsync: false
-    radius: 3
-    energy: 1
-    mask: /Textures/Effects/LightMasks/cone.png
-    color: "#47f8ff"
 
 # Tier 3
 - type: entity
@@ -334,9 +300,6 @@
   - type: Sprite
     drawdepth: Mobs
     layers:
-    # Body
-    # Jumpsuit
-    # Mask
     # Helmet
     - sprite: Clothing\Head\Hardsuits\salvage.rsi
       state: on-equipped-HELMET
@@ -347,7 +310,6 @@
     # Suit
     - sprite: Clothing/OuterClothing/Hardsuits/salvage.rsi
       state: equipped-OUTERCLOTHING
-    # Hands
     # Weapons
     - sprite: Objects/Tools/handdrill.rsi
       state: inhand-right
@@ -371,13 +333,8 @@
         Piercing: 2
         Structural: 25
   - type: PointLight
-    enabled: true
-    autoRot: true
-    netsync: false
     radius: 7
     energy: 3
-    mask: /Textures/Effects/LightMasks/cone.png
-    color: "#47f8ff"
 
 - type: entity
   name: explorer
@@ -399,9 +356,6 @@
   - type: Sprite
     drawdepth: Mobs
     layers:
-    # Body
-    # Jumpsuit
-    # Mask
     # Helmet
     - sprite: Clothing/Head/Hardsuits/luxury.rsi
       state: off-equipped-HELMET
@@ -412,7 +366,6 @@
     # Suit
     - sprite: Clothing\OuterClothing\Hardsuits\luxury.rsi
       state: equipped-OUTERCLOTHING
-    # Hands
     # Weapons
     - sprite: Objects/Weapons/Guns/Basic/kinetic_accelerator.rsi
       state: wielded-inhand-right
@@ -438,13 +391,8 @@
     - SemiAuto
     soundGunshot: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
   - type: PointLight
-    enabled: true
-    autoRot: true
-    netsync: false
     radius: 7
     energy: 3
-    mask: /Textures/Effects/LightMasks/cone.png
-    color: "#47f8ff"
 
 - type: entity
   name: hauler
@@ -516,9 +464,6 @@
   - type: FootstepModifier
     footstepSoundCollection:
       path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
-  - type: Repairable
-    fuelCost: 25
-    doAfterDelay: 10
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -529,13 +474,8 @@
     soundHit:
       collection: MetalThud
   - type: PointLight
-    enabled: true
-    autoRot: true
-    netsync: false
     radius: 5
     energy: 2
-    mask: /Textures/Effects/LightMasks/cone.png
-    color: "#47f8ff"
 
 # Tier 4 - Boss
 - type: entity
@@ -558,9 +498,6 @@
   - type: Sprite
     drawdepth: Mobs
     layers:
-    # Body
-    # Jumpsuit
-    # Mask
     # Helmet
     - sprite: _NF/Clothing/Head/Hardsuits/maxim_prototype.rsi
       state: off-equipped-HELMET
@@ -571,7 +508,6 @@
     # Suit
     - sprite: _NF\Clothing\OuterClothing\Hardsuits\maxim_prototype.rsi
       state: equipped-OUTERCLOTHING
-    # Hands
     # Weapons
     - sprite: _NF/Objects/Weapons/Melee/energy_pickaxe.rsi
       state: inhand-left
@@ -584,13 +520,8 @@
       state: on-equipped-BELT
       shader: unshaded
   - type: PointLight
-    enabled: true
-    autoRot: true
-    netsync: false
     radius: 7
     energy: 3
-    mask: /Textures/Effects/LightMasks/cone.png
-    color: "#47f8ff"
   - type: MobThresholds
     thresholds:
       120: Critical
