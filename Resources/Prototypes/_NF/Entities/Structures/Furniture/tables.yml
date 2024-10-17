@@ -9,7 +9,7 @@
   - type: SpriteFade
   - type: Clickable
   - type: InteractionOutline
-  - type: Climbable # Pointless without player-table collision, but I'll keep it
+  - type: Climbable
   - type: GlassTable
     climberDamage:
       types:
@@ -25,24 +25,24 @@
   - type: Pullable
   - type: Fixtures
     fixtures:
-      table:
+      table: # For the unfolded table
         shape:
           !type:PhysShapeAabb
           bounds: "-0.4,-0.4,0.4,0.4"
         density: 55
-        mask: # tables should collide with other tables
+        mask:
         - TableMask
         layer:
         - TableLayer
         hard: true
-      item:
+      item: # For the folded, carriable table
         shape:
           !type:PhysShapeAabb
           bounds: "-0.25,-0.25,0.25,0.25"
         density: 20
         mask:
         - ItemMask
-        restitution: 0.3  # fite me
+        restitution: 0.3
         friction: 0.2
         hard: false
   - type: Bonkable
@@ -119,8 +119,5 @@
   id: TableFoldingSpawnFolded
   suffix: folded
   components:
-  - type: InteractionOutline
-  - type: Physics
-    bodyType: Dynamic
   - type: Foldable
     folded: true
