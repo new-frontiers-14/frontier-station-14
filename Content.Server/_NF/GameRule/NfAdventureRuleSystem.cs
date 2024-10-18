@@ -37,6 +37,8 @@ using Content.Server.Bank;
 using Robust.Shared.Player;
 using Robust.Shared.Network;
 using Content.Shared.GameTicking;
+using Robust.Shared.Enums;
+using Robust.Server.Player;
 
 namespace Content.Server._NF.GameRule;
 
@@ -48,6 +50,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IConfigurationManager _configurationManager = default!;
+    [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly MapLoaderSystem _map = default!;
     [Dependency] private readonly MetaDataSystem _meta = default!;
     [Dependency] private readonly DungeonSystem _dunGen = default!;
@@ -96,6 +99,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnPlayerSpawningEvent);
         SubscribeLocalEvent<PlayerDetachedEvent>(OnPlayerDetachedEvent);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
+        _playerManager.PlayerStatusChanged += PlayerManagerOnPlayerStatusChanged;
     }
 
     protected override void AppendRoundEndText(EntityUid uid, AdventureRuleComponent component, GameRuleComponent gameRule, ref RoundEndTextAppendEvent ev)
@@ -145,6 +149,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             relayText += '\n';
             highScore.RemoveAt(0);
         }
+        relayText += '\n'; // Extra line separating the 
         relayText += Loc.GetString("adventure-list-low");
         relayText += '\n';
         highScore.Reverse();
@@ -173,15 +178,32 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
 
     private void OnPlayerDetachedEvent(PlayerDetachedEvent ev)
     {
-        if (ev.Entity is { Valid: true } mobUid)
+        if (ev.Entity is not { Valid: true } mobUid)
+            return;
+
+        if (_players.ContainsKey(mobUid))
         {
-            if (_players.ContainsKey(mobUid))
+            if (_players[mobUid].UserId == ev.Player.UserId &&
+                _bank.TryGetBalance(ev.Player, out var bankBalance))
             {
-                if (_players[mobUid].UserId == ev.Player.UserId &&
-                    _bank.TryGetBalance(ev.Player, out var bankBalance))
-                {
-                    _players[mobUid].EndBalance = bankBalance;
-                }
+                _players[mobUid].EndBalance = bankBalance;
+            }
+        }
+    }
+
+    private void PlayerManagerOnPlayerStatusChanged(object? _, SessionStatusEventArgs e)
+    {
+        // Treat all disconnections as being possibly final.
+        if (e.NewStatus != SessionStatus.Disconnected ||
+            e.Session.AttachedEntity == null)
+            return;
+
+        var mobUid = e.Session.AttachedEntity.Value;
+        if (_players.ContainsKey(mobUid))
+        {
+            if (_bank.TryGetBalance(e.Session, out var bankBalance))
+            {
+                _players[mobUid].EndBalance = bankBalance;
             }
         }
     }
