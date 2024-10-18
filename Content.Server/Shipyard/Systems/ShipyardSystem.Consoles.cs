@@ -310,8 +310,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
                 suffix: deedShuttle.ShuttleNameSuffix ?? "",
                 ownerName: shuttleOwner,
                 entityUid: _entityManager.GetNetEntity(shuttleEntityUid.Value)
-            ),
-            shipyardConsoleUid
+            )
         );
         RefreshState(shipyardConsoleUid, bank.Balance, true, name, sellValue, targetId, (ShipyardConsoleUiKey) args.UiKey, voucherUsed);
     }
