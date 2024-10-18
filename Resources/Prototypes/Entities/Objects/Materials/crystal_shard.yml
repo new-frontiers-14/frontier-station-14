@@ -39,6 +39,16 @@
         acts: [ "Destruction" ]
   - type: StaticPrice
     price: 50
+  - type: Extractable # Frontier
+    grindableSolutionName: food # Frontier
+  - type: SolutionContainerManager # Frontier
+    solutions: # Frontier
+      food: # Frontier
+        reagents: # Frontier
+        - ReagentId: Ethanol # Frontier
+          Quantity: 5 # Frontier
+        - ReagentId: Sugar # Frontier
+          Quantity: 15 # Frontier
 
 - type: entity
   parent: ShardCrystalBase
