@@ -47,6 +47,9 @@ ghost-role-information-yipyip-description = Notorious lounge lizard and bartende
 ghost-role-information-aberrant-flesh-horror-dungeon-name = Aberrant flesh horror
 ghost-role-information-aberrant-flesh-horror-dungeon-description = Defend the expedition dungeon with other flesh monstrosities!
 
+ghost-role-information-explorer-captain-dungeon-name = Explorer Captain
+ghost-role-information-explorer-captain-dungeon-description = You got to this facility first! Defend the expedition dungeon and your loot with other explorers!
+
 ghost-role-information-dungeon-boss-rules = You are a [color=red][bold]Team Antagonist[/bold][/color] with all dungeon mobs.
                                         Fight players within the dungeon, defend your dungeon.
                                         Please note that [color=yellow]all server rules still apply.[/color] Additionally:

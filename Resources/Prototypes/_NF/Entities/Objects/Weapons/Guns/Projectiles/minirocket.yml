@@ -37,3 +37,26 @@
       state: frag
     - type: StaticPrice
       price: 20
+
+# Explorer Captain Seismic Charge
+- type: entity
+  parent: BaseBulletTrigger
+  id: NFBulletSeismicCharge
+  name: seismic charge
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Bombs/seismic.rsi
+    layers:
+      - state: icon
+  - type: ExplodeOnTrigger
+  - type: Explosive # Nerfed SeismicCharge
+    explosionType: Cryo
+    totalIntensity: 30
+    intensitySlope: 2
+    maxIntensity: 10
+    canCreateVacuum: false
+  - type: PointLight
+    radius: 3.5
+    color: "#47f8ff"
+    energy: 0.5
