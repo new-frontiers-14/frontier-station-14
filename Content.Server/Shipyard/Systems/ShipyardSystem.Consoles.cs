@@ -37,9 +37,9 @@ using Content.Server.Shuttles.Components;
 using Content.Server.Station.Components;
 using System.Text.RegularExpressions;
 using Content.Shared.UserInterface;
-using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Content.Shared.Access;
+using Content.Server.Fax;
 using Content.Shared.Tiles;
 using Content.Server._NF.Smuggling.Components;
 
@@ -258,6 +258,32 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         }
         _records.Synchronize(shuttleStation!.Value);
         _records.Synchronize(station);
+
+        //Sends vessel details to all dedicated faxes
+        if (_mind.TryGetMind(args.Actor, out var _mindUid, out var _mindComp)
+            && _prefManager.GetPreferences(_mind.GetSession(_mindComp)!.UserId).SelectedCharacter is HumanoidCharacterProfile _profile)
+        {
+            var metaData = MetaData((EntityUid) shuttleStation);
+            name = metaData.EntityName;
+
+            TryComp<FingerprintComponent>(player, out var _fingerprintComponent);
+            TryComp<DnaComponent>(player, out var _dnaComponent);
+
+            var faxQuery = EntityQueryEnumerator<ShipyardRecordPaperComponent>();
+
+            string vesselClass = "Undetermined";
+            if (vessel.Classes.Count > 0)
+                vesselClass = vessel.Classes[0].ToString();
+
+            while (faxQuery.MoveNext(out var faxUid, out var recordPaperComp))
+            {
+                var ev = new ShipyardRecordPaperTransmitEvent(name, _profile.Name, _profile.Species, _profile.Gender, _profile.Age, _fingerprintComponent!.Fingerprint!, _dnaComponent!.DNA!, vessel.Category.ToString(), vesselClass, vessel.Group.ToString(), vessel.Price, vessel.Description);
+                RaiseLocalEvent(faxUid, ref ev);
+            }
+        }
+
+        //if (ShipyardConsoleUiKey.Security == (ShipyardConsoleUiKey) args.UiKey) Enable in the case we force this on every security ship
+        //    EnsureComp<StationEmpImmuneComponent>(shuttle.Owner); Enable in the case we force this on every security ship
 
         // Shuttle setup: add protected grid status if needed.
         if (vessel.GridProtection != GridProtectionFlags.None)
