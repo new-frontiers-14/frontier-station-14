@@ -182,6 +182,96 @@
     - state: locked
       map: ["enum.LockVisualLayers.Lock"]
 
+# Safety equipment: radiation protection, boihazard etc.
+- type: entity
+  categories: [ HideSpawnMenu ] # debloat spawn menu
+  id: LockerWallColorL1Fire
+  parent: LockerWallColorBase
+  name: L1 fire suit wall locker
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.StorageVisualLayers.Base"]
+      color: "#c82d2d"
+    - state: door
+      map: ["enum.StorageVisualLayers.Door"]
+      color: "#c82d2d"
+    - state: door-decal-l1-fire
+      map: [ decal1 ]
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+
+- type: entity
+  categories: [ HideSpawnMenu ] # debloat spawn menu
+  id: LockerWallColorL2Radiation
+  parent: LockerWallColorBase
+  name: L2 radiation suit wall locker
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.StorageVisualLayers.Base"]
+      color: "#ead152"
+    - state: door
+      map: ["enum.StorageVisualLayers.Door"]
+      color: "#ead152"
+    - state: door-decal-l2-rad
+      map: [ decal1 ]
+      color: "#202020"
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+
+- type: entity
+  categories: [ HideSpawnMenu ] # debloat spawn menu
+  id: LockerWallColorL3Biohazard
+  parent: LockerWallColorBase
+  name: L3 biohazard suit wall locker
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.StorageVisualLayers.Base"]
+      color: "#7c2900"
+    - state: door
+      map: ["enum.StorageVisualLayers.Door"]
+      color: "#7c2900"
+    - state: door-decal-l3-bio
+      map: [ decal1 ]
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+
+- type: entity
+  categories: [ HideSpawnMenu ] # debloat spawn menu
+  id: LockerWallColorL4Bomb
+  parent: LockerWallColorBase
+  name: L4 bomb suit wall locker
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.StorageVisualLayers.Base"]
+      color: "#3a493e"
+    - state: door
+      map: ["enum.StorageVisualLayers.Door"]
+      color: "#3a493e"
+    - state: door-decal-l4-expl
+      map: [ decal1 ]
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+
 # Other: Chemistry wall locker
 - type: entity
   id: LockerWallChemistry
