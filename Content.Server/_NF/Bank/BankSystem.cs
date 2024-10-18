@@ -244,14 +244,14 @@ public sealed partial class BankSystem : SharedBankSystem
     {
         if (!_prefsManager.TryGetCachedPreferences(session.UserId, out var prefs))
         {
-            _log.Info($"{session} has no cached prefs");
+            _log.Info($"{session.UserId} has no cached prefs");
             balance = 0;
             return false;
         }
 
         if (prefs.SelectedCharacter is not HumanoidCharacterProfile profile)
         {
-            _log.Info($"{session} has the wrong prefs type");
+            _log.Info($"{session.UserId} has the wrong prefs type");
             balance = 0;
             return false;
         }
