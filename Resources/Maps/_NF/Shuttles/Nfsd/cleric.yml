@@ -161,7 +161,7 @@ entities:
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
-- proto: AirlockGlassShuttle
+- proto: AirlockGlassShuttleNfsdLocked
   entities:
   - uid: 43
     components:
@@ -230,6 +230,13 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 0.5,-0.5
+      parent: 1
+- proto: BoxBodyBag
+  entities:
+  - uid: 51
+    components:
+    - type: Transform
+      pos: -0.8229167,0.52664566
       parent: 1
 - proto: CableApcExtension
   entities:
@@ -442,13 +449,6 @@ entities:
     - type: Transform
       pos: 3.5,1.5
       parent: 1
-- proto: CrateMedicalSupplies
-  entities:
-  - uid: 51
-    components:
-    - type: Transform
-      pos: -1.5,0.5
-      parent: 1
 - proto: DefibrillatorCabinetFilled
   entities:
   - uid: 49
@@ -462,7 +462,7 @@ entities:
   - uid: 56
     components:
     - type: Transform
-      pos: 1.4651704,1.6325955
+      pos: -0.49972308,1.5314707
       parent: 1
 - proto: GeneratorWallmountAPU
   entities:
@@ -540,13 +540,6 @@ entities:
     - type: Transform
       pos: -0.5,2.5
       parent: 1
-- proto: LockerParamedicFilledHardsuit
-  entities:
-  - uid: 52
-    components:
-    - type: Transform
-      pos: -0.5,1.5
-      parent: 1
 - proto: MedicalBed
   entities:
   - uid: 45
@@ -559,12 +552,19 @@ entities:
     - type: Transform
       pos: 0.5,-0.5
       parent: 1
-- proto: MedkitCombatFilled
+- proto: MedkitFilled
+  entities:
+  - uid: 52
+    components:
+    - type: Transform
+      pos: 1.531527,1.5206747
+      parent: 1
+- proto: Morgue
   entities:
   - uid: 57
     components:
     - type: Transform
-      pos: 1.5068371,1.5180122
+      pos: -1.5,0.5
       parent: 1
 - proto: PlastitaniumWindow
   entities:
@@ -683,6 +683,14 @@ entities:
       rot: 3.141592653589793 rad
       pos: -2.5,2.5
       parent: 1
+- proto: SpawnPointLatejoin
+  entities:
+  - uid: 50
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 0.5,0.5
+      parent: 1
 - proto: SubstationWallBasic
   entities:
   - uid: 70
@@ -731,13 +739,6 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 3.5,-1.5
-      parent: 1
-- proto: VendingMachineWallMedical
-  entities:
-  - uid: 50
-    components:
-    - type: Transform
-      pos: -1.5,1.5
       parent: 1
 - proto: WallPlastitanium
   entities:

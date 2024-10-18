@@ -88,19 +88,19 @@ entities:
         tiles:
           0,0:
             0: 34
-            2: 4096
-            1: 24576
+            1: 4096
+            2: 24576
           -1,0:
-            1: 52428
+            2: 52428
           0,1:
-            2: 1
-            1: 6
+            1: 1
+            2: 6
           -1,1:
-            1: 12
+            2: 12
           0,-1:
             0: 8994
           -1,-1:
-            1: 12
+            2: 12
             0: 34816
         uniqueMixes:
         - volume: 2500
@@ -108,6 +108,21 @@ entities:
           moles:
           - 21.824879
           - 82.10312
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          temperature: 293.15
+          moles:
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -133,32 +148,17 @@ entities:
           - 0
           - 0
           - 0
-        - volume: 2500
-          temperature: 293.15
-          moles:
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
-- proto: AirlockExternalGlassLocked
+- proto: AirlockExternalGlassNfsdLocked
   entities:
   - uid: 19
     components:
     - type: Transform
       pos: -0.5,-0.5
       parent: 1
-- proto: AirlockGlassShuttle
+- proto: AirlockGlassShuttleNfsdLocked
   entities:
   - uid: 23
     components:
@@ -769,6 +769,13 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 1.5,4.5
+      parent: 1
+- proto: SpawnPointLatejoin
+  entities:
+  - uid: 127
+    components:
+    - type: Transform
+      pos: 1.5,-0.5
       parent: 1
 - proto: SubstationWallBasic
   entities:

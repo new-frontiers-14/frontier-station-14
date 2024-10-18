@@ -157,7 +157,7 @@ entities:
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
-- proto: AirlockGlassShuttle
+- proto: AirlockGlassShuttleNfsdLocked
   entities:
   - uid: 28
     components:
@@ -439,6 +439,14 @@ entities:
     - type: Transform
       pos: -1.5,3.5
       parent: 1
+- proto: FirelockGlass
+  entities:
+  - uid: 105
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 0.5,-1.5
+      parent: 1
 - proto: GeneratorWallmountAPU
   entities:
   - uid: 48
@@ -625,6 +633,14 @@ entities:
     components:
     - type: Transform
       pos: -1.5,-1.5
+      parent: 1
+- proto: SpawnPointLatejoin
+  entities:
+  - uid: 106
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 0.5,0.5
       parent: 1
 - proto: Stool
   entities:
