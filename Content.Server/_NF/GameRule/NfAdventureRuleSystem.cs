@@ -202,7 +202,8 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         var mobUid = e.Session.AttachedEntity.Value;
         if (_players.ContainsKey(mobUid))
         {
-            if (_bank.TryGetBalance(e.Session, out var bankBalance))
+            if (_players[mobUid].UserId == e.Session.UserId &&
+                _bank.TryGetBalance(e.Session, out var bankBalance))
             {
                 _players[mobUid].EndBalance = bankBalance;
             }
