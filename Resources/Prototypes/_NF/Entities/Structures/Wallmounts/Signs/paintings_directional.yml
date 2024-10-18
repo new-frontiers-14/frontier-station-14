@@ -14,3 +14,33 @@
   components:
   - type: Sprite
     state: painting_fireaxe
+
+- type: entity
+  parent: PaintingDirectionalBase
+  id: PaintingGhostHanging
+  name: Festive Ghost Wall Hangings
+  description: "Decorative wall streamers! They look like the people you've lost the void!"
+  components:
+  - type: Sprite
+    drawdepth: Overdoors
+    state: painting_ghost
+        
+- type: entity
+  parent: PaintingDirectionalBase
+  id: PaintingBatHanging
+  name: Festive Bat Wall Hangings
+  description: "Decorative wall streamers! Bats are scary and also important polinators!"
+  components:
+  - type: Sprite
+    drawdepth: Overdoors
+    state: painting_bat
+    
+- type: entity
+  parent: PaintingDirectionalBase
+  id: PaintingPumpkinHanging
+  name: Festive Pumpkin Wall Hangings
+  description: "Decorative wall streamers! It's decorative gourd season!"
+  components:
+  - type: Sprite
+    drawdepth: Overdoors
+    state: painting_pumpkin
