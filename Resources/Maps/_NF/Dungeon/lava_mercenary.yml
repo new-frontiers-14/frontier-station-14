@@ -7334,18 +7334,6 @@ entities:
     - type: Transform
       pos: 19.5,35.5
       parent: 588
-- proto: DebugSMES
-  entities:
-  - uid: 971
-    components:
-    - type: Transform
-      pos: 22.5,32.5
-      parent: 588
-  - uid: 974
-    components:
-    - type: Transform
-      pos: 18.5,32.5
-      parent: 588
 - proto: DiseaseDiagnoser
   entities:
   - uid: 1424
@@ -8262,6 +8250,14 @@ entities:
     - type: Transform
       pos: 26.5,39.5
       parent: 588
+- proto: GrilleBroken
+  entities:
+  - uid: 1302
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 27.5,39.5
+      parent: 588
 - proto: GrilleDungeon
   entities:
   - uid: 209
@@ -8340,14 +8336,6 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 12.5,43.5
-      parent: 588
-- proto: GrilleBroken
-  entities:
-  - uid: 1302
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 27.5,39.5
       parent: 588
 - proto: HighSecArmoryLocked
   entities:
@@ -10262,6 +10250,16 @@ entities:
       parent: 588
 - proto: SMESBasic
   entities:
+  - uid: 971
+    components:
+    - type: Transform
+      pos: 22.5,32.5
+      parent: 588
+  - uid: 974
+    components:
+    - type: Transform
+      pos: 18.5,32.5
+      parent: 588
   - uid: 46
     components:
     - type: Transform
@@ -11837,6 +11835,13 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 6.5,13.5
       parent: 588
+- proto: StructurePistolRackWallmountedMercenaryFilled
+  entities:
+  - uid: 772
+    components:
+    - type: Transform
+      pos: 13.5,15.5
+      parent: 588
 - proto: SubstationBasic
   entities:
   - uid: 467
@@ -12269,7 +12274,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: 12.5,43.5
       parent: 588
-- proto: ToiletEmpty
+- proto: ToiletMemeSpawner
   entities:
   - uid: 932
     components:
@@ -12902,53 +12907,6 @@ entities:
     - type: Transform
       pos: 16.5,24.5
       parent: 588
-- proto: WeaponRackPistolWallmountedMercenary
-  entities:
-  - uid: 772
-    components:
-    - type: Transform
-      pos: 13.5,15.5
-      parent: 588
-    - type: Lock
-      locked: False
-    - type: ContainerContainer
-      containers:
-        storagebase: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        weapon1_slot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: 1613
-        weapon2_slot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        weapon3_slot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        weapon4_slot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        weapon5_slot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        weapon6_slot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-- proto: WeaponRevolverArgenti
-  entities:
-  - uid: 1613
-    components:
-    - type: Transform
-      parent: 772
-    - type: Physics
-      canCollide: False
 - proto: WindoorAssemblySecure
   entities:
   - uid: 696

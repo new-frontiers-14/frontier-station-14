@@ -15,7 +15,6 @@
   weight: 0 # Frontier: -10<0 accounted for in jobs
   roles:
   - Bartender
-  - Borg
   - Botanist
   - Boxer
   - Chaplain
@@ -47,18 +46,50 @@
   - SalvageSpecialist # Frontier
 
 - type: department
+  id: CentralCommand
+  name: department-CentralCommand
+  description: department-CentralCommand-description
+  color: "#0c344d"
+  roles:
+  - CentralCommandOfficial
+  - CBURN
+  - ERTLeader
+  - ERTChaplain
+  - ERTJanitor
+  - ERTMedical
+  - ERTSecurity
+  - ERTEngineer
+  - DeathSquad
+  - ERTMailCarrier # Frontier
+  editorHidden: true
+  weight: 120
+
+- type: department
   id: Command
   name: department-Command
   description: department-Command-description
   color: "#334E6D"
   roles:
+  # - Captain # Frontier
+  # - ChiefEngineer # Frontier
+  # - ChiefMedicalOfficer # Frontier
+  - HeadOfPersonnel # Frontier: Not shown but needed here for playtime
+  - HeadOfSecurity # Frontier: Not shown but needed here for playtime
+  # - ResearchDirector # Frontier
+  # - Quartermaster # Frontier
   - CentralCommandOfficial
-  - HeadOfPersonnel # Not shown but needed here for playtime
-  - HeadOfSecurity # Not shown but needed here for playtime
-#  - ChiefMedicalOfficer
+  - CBURN
+  - ERTLeader
+  - ERTChaplain
+  - ERTJanitor
+  - ERTMedical
+  - ERTSecurity
+  - ERTEngineer
+  - DeathSquad
   - StationRepresentative # Frontier
   - Sheriff  # Frontier
   - StationTrafficController # Frontier
+  - ERTMailCarrier # Frontier
   primary: false
   weight: 2 # Frontier: 100<2 - accounted for in jobs
 
@@ -95,7 +126,7 @@
   - PrisonGuard ##nyano
   - Brigmedic # Frontier
 #  - SecurityGuard # Frontier
-  - DetectiveNF # Frontier
+  - NFDetective # Frontier
   - Cadet # Frontier
   - Deputy # Frontier
   - Bailiff # Frontier
@@ -110,6 +141,16 @@
   color: "#D381C9"
   weight: -92
   primary: false
+  editorHidden: true # Frontier
+
+- type: department
+  id: Silicon
+  name: department-Silicon
+  description: department-Silicon-description
+  color: "#D381C9"
+  roles:
+  - Borg
+  - StationAi
   editorHidden: true # Frontier
 
 - type: department

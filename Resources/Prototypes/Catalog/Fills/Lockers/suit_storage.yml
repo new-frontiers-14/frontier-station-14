@@ -14,7 +14,6 @@
         - id: ClothingHeadHelmetEVA
         - id: ClothingMaskBreath
         - id: JetpackMiniFilled # Frontier
-        - id: HandheldGPSBasic # Frontier
 
 #Basic EVA (Big Ass Helmet)
 - type: entity
@@ -31,7 +30,6 @@
         - id: ClothingHeadHelmetEVALarge
         - id: ClothingMaskBreath
         - id: JetpackMiniFilled # Frontier
-        - id: HandheldGPSBasic # Frontier
 
 #Emergency EVA
 - type: entity
@@ -47,7 +45,6 @@
         - id: ClothingOuterSuitEmergency
         - id: ClothingMaskBreath
         - id: JetpackMiniFilled # Frontier
-        - id: HandheldGPSBasic # Frontier
 
 #Prisoner EVA
 - type: entity
@@ -78,7 +75,6 @@
         - id: ClothingHeadHelmetSyndicate
         - id: ClothingMaskGasSyndicate
         - id: JetpackBlackFilled # Frontier
-        - id: HandheldGPSBasic # Frontier
 
 #Pirate EVA
 - type: entity
@@ -94,7 +90,6 @@
         - id: ClothingOuterHardsuitPirateEVA
         - id: ClothingMaskGas
         - id: JetpackBlackFilled # Frontier
-        - id: HandheldGPSBasic # Frontier
         - id: ClothingShoesBootsMagPirateFilled # Frontier
 
 #NTSRA Voidsuit
@@ -113,7 +108,6 @@
         - id: ClothingHeadHelmetAncient
         - id: ClothingMaskBreath
         - id: JetpackMiniFilled # Frontier
-        - id: HandheldGPSBasic # Frontier
 
 #HARDSUITS
 #Basic hardsuit
@@ -130,7 +124,6 @@
         - id: ClothingOuterHardsuitBasic
         - id: ClothingMaskBreath
         - id: JetpackMiniFilled # Frontier
-        - id: HandheldGPSBasic # Frontier
 
 #Engineering hardsuit
 - type: entity
@@ -147,7 +140,6 @@
         - id: ClothingOuterHardsuitEngineering
         - id: ClothingMaskBreath
         - id: JetpackMiniFilled # Frontier
-        - id: HandheldGPSBasic # Frontier
   - type: AccessReader
     # access: [["Engineering"]] # Frontier
 
@@ -165,7 +157,6 @@
         - id: ClothingOuterHardsuitAtmos
         - id: ClothingMaskBreath
         - id: JetpackMiniFilled # Frontier
-        - id: HandheldGPSBasic # Frontier
   - type: AccessReader
     # access: [["Atmospherics"]] # Frontier
 
@@ -183,7 +174,6 @@
         - id: ClothingOuterHardsuitSecurity
         - id: ClothingMaskBreath
         - id: JetpackSecurityFilled # Frontier
-        - id: HandheldGPSBasic # Frontier
         - id: ClothingShoesBootsMagCombatFilled # Frontier
   - type: AccessReader
     access: [["Security"]]
@@ -254,7 +244,6 @@
         - id: ClothingOuterHardsuitWarden
         - id: ClothingMaskBreath
         - id: JetpackSecurityFilled # Frontier
-        - id: HandheldGPSBasic # Frontier
         - id: ClothingShoesBootsMagCombatFilled # Frontier
   - type: AccessReader
     access: [["Armory"]]
@@ -278,16 +267,10 @@
   parent: SuitStorageBase
   suffix: Salvage
   components:
-  - type: StorageFill
-    contents:
-#        - id: NitrogenTankFilled
-#        - id: OxygenTankFilled
-        - id: AirTankFilled
-        - id: ClothingShoesBootsMag
-        - id: ClothingOuterHardsuitSpatio
-        - id: ClothingMaskGasExplorer
-        - id: JetpackMiniFilled # Frontier
-        - id: HandheldGPSBasic # Frontier
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: FillSalvageSpecialistHardsuitSpatio
   - type: AccessReader
     # access: [["Salvage"]] # Frontier
 
@@ -306,7 +289,6 @@
         - id: ClothingShoesBootsMagSyndie
         - id: ClothingMaskGasSyndicate
         - id: JetpackBlackFilled # Frontier
-        - id: HandheldGPSBasic # Frontier
 
 #Pirate Captain's hardsuit
 - type: entity
@@ -323,7 +305,6 @@
         - id: ClothingMaskGas
         - id: ClothingNeckCloakPirateCap # Frontier
         - id: JetpackBlackFilled # Frontier
-        - id: HandheldGPSBasic # Frontier
         - id: ClothingShoesBootsMagPirateFilled # Frontier
 
 #Wizard
@@ -340,4 +321,3 @@
         - id: ClothingOuterHardsuitWizard
         - id: ClothingMaskBreath
         - id: JetpackBlackFilled # Frontier
-        - id: HandheldGPSBasic # Frontier

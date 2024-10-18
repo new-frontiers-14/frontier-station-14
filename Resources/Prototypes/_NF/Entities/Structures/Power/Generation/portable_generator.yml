@@ -1,42 +1,44 @@
-﻿- type: entity
-  parent: PortableGeneratorPacman
+﻿# Base generator for powered on, anchored versions for shuttles
+- type: entity
+  id: BaseGeneratorShuttle
+  abstract: true
+  components:
+  - type: Transform
+    anchored: true
+  - type: Physics
+    bodyType: Static
+  - type: PortableGenerator
+    startOnMapInit: true
+
+- type: entity
+  parent:
+  - BaseGeneratorShuttle
+  - PortableGeneratorPacman
   id: PortableGeneratorPacmanShuttle
   suffix: Plasma, 15 kW, Ship
   components:
-    - type: FuelGenerator
-      on: true
-    - type: Transform
-      anchored: true
-    - type: MaterialStorage
-      storage:
-        Plasma: 1000
-    - type: PortableGenerator
-      startOnMapInit: true
+  - type: MaterialStorage
+    storage:
+      Plasma: 1000
 
 - type: entity
-  parent: PortableGeneratorSuperPacman
+  parent:
+  - BaseGeneratorShuttle
+  - PortableGeneratorSuperPacman
   id: PortableGeneratorSuperPacmanShuttle
   suffix: Uranium, 30 kW, Ship
   components:
-    - type: FuelGenerator
-      on: true
-    - type: Transform
-      anchored: true
-    - type: MaterialStorage
-      storage:
-        Uranium: 1000
-    - type: PortableGenerator
-      startOnMapInit: true
+  - type: MaterialStorage
+    storage:
+      Uranium: 1000
 
 - type: entity
-  parent: PortableGeneratorJrPacman
+  parent:
+  - BaseGeneratorShuttle
+  - PortableGeneratorJrPacman
   id: PortableGeneratorJrPacmanShuttle
   suffix: Welding Fuel, 6 kW, Ship
   components:
-    - type: FuelGenerator
-      on: true
-    - type: Transform
-      anchored: true
     - type: SolutionContainerManager
       solutions:
         tank:
@@ -44,8 +46,6 @@
           reagents:
           - ReagentId: WeldingFuel
             Quantity: 70 # Frontier - 35<70
-    - type: PortableGenerator
-      startOnMapInit: true
 
 - type: entity
   name: H.Y.P.E.R.P.A.C.M.A.N.-type portable generator
@@ -92,6 +92,7 @@
       radiationColor: "#00bfff"
     - type: SolidFuelGeneratorAdapter
       fuelMaterial: Bananium
+      ejectedFuelProtoId: FuelBananium
     - type: MaterialStorage
       materialWhiteList: [Bananium]
     - type: PowerMonitoringDevice
@@ -104,19 +105,18 @@
       enabled: false
       sound:
         path: /Audio/Items/Geiger/ext.ogg
+    - type: PowerSupplier
+      supplyRampRate: 10000
+      supplyRampTolerance: 3000
 
 - type: entity
-  parent: PortableGeneratorHyperPacman
+  parent:
+  - BaseGeneratorShuttle
+  - PortableGeneratorHyperPacman
   id: PortableGeneratorHyperPacmanShuttle
   suffix: Bananium, 60 kW, Ship
   categories: [ HideSpawnMenu ] # Mm, start-on rad source
   components:
-    - type: FuelGenerator
-      on: true
-    - type: Transform
-      anchored: true
     - type: MaterialStorage
       storage:
         Bananium: 1000
-    - type: PortableGenerator
-      startOnMapInit: true

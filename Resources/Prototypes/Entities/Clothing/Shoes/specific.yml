@@ -99,7 +99,7 @@
     sprite: Clothing/Shoes/Specific/cult.rsi
 
 - type: entity
-  parent: ClothingShoesBase
+  parent: [ JanitorClothes, ClothingShoesBase ] # Frontier: added JanitorClothes
   id: ClothingShoesGaloshes
   name: galoshes
   description: Rubber boots.
@@ -109,6 +109,11 @@
   - type: Clothing
     sprite: Clothing/Shoes/Specific/galoshes.rsi
   - type: NoSlip
+  - type: SlowedOverSlippery
+    slowdownModifier: 0.7
+  - type: SpeedModifierContactCapClothing
+    maxContactSprintSlowdown: 0.7
+    maxContactWalkSlowdown: 0.7
 
 - type: entity
   parent: [ClothingShoesBaseButcherable, BaseC3Contraband, ContrabandClothing ] # Frontier: BaseMajorContraband<BaseC3Contraband, added ContrabandClothing
@@ -197,8 +202,6 @@
   description: Stylish black shoes.
   components:
   - type: NoSlip
-  - type: StaticPrice
-    price: 25
   - type: Contraband # Frontier
     hideValues: true # Frontier
 

@@ -4,6 +4,7 @@ using Content.Server.GameTicking;
 using Content.Shared.CCVar;
 using Content.Shared.Holiday;
 using Robust.Shared.Configuration;
+using Robust.Shared.Map.Events;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Holiday
@@ -26,6 +27,7 @@ namespace Content.Server.Holiday
             Subs.CVar(_configManager, CCVars.HolidaysEnabled, OnHolidaysEnableChange);
             SubscribeLocalEvent<GameRunLevelChangedEvent>(OnRunLevelChanged);
             SubscribeLocalEvent<HolidayVisualsComponent, ComponentInit>(OnVisualsInit);
+            SubscribeLocalEvent<BeforeEntityReadEvent>(OnBeforeRead);
         }
 
         public void RefreshCurrentHolidays()
@@ -113,6 +115,20 @@ namespace Content.Server.Holiday
                     continue;
                 _appearance.SetData(ent, HolidayVisuals.Holiday, key);
                 break;
+            }
+        }
+
+        private void OnBeforeRead(BeforeEntityReadEvent ev)
+        {
+            foreach (var holiday in _currentHolidays)
+            {
+                if (holiday.EntityReplacements is { } replacements)
+                {
+                    foreach (var (original, replacement) in replacements)
+                    {
+                        ev.RenamedPrototypes.TryAdd(original, replacement);
+                    }
+                }
             }
         }
     }

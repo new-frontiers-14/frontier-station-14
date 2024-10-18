@@ -8247,18 +8247,6 @@ entities:
     - type: Transform
       pos: 26.5,30.5
       parent: 1
-- proto: DebugSMES
-  entities:
-  - uid: 966
-    components:
-    - type: Transform
-      pos: 22.5,32.5
-      parent: 1
-  - uid: 969
-    components:
-    - type: Transform
-      pos: 18.5,32.5
-      parent: 1
 - proto: DiseaseDiagnoser
   entities:
   - uid: 1419
@@ -8273,18 +8261,6 @@ entities:
     - type: Transform
       pos: 22.5,16.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        DisposalUnit: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 551
-        disposals: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-    - type: Timer
   - uid: 724
     components:
     - type: Transform
@@ -8737,16 +8713,12 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 8.5,28.5
       parent: 1
-    - type: Fixtures
-      fixtures: {}
   - uid: 940
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 10.5,28.5
       parent: 1
-    - type: Fixtures
-      fixtures: {}
 - proto: FloraRockSolid01
   entities:
   - uid: 1954
@@ -8996,6 +8968,26 @@ entities:
     - type: Transform
       pos: 26.5,39.5
       parent: 1
+- proto: GrilleBroken
+  entities:
+  - uid: 5
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 11.5,4.5
+      parent: 1
+  - uid: 840
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 5.5,4.5
+      parent: 1
+  - uid: 1297
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 27.5,39.5
+      parent: 1
 - proto: GrilleDungeon
   entities:
   - uid: 213
@@ -9095,26 +9087,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 12.5,43.5
       parent: 1
-- proto: GrilleBroken
-  entities:
-  - uid: 5
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 11.5,4.5
-      parent: 1
-  - uid: 840
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 5.5,4.5
-      parent: 1
-  - uid: 1297
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 27.5,39.5
-      parent: 1
 - proto: HighSecArmoryLocked
   entities:
   - uid: 1592
@@ -9134,18 +9106,6 @@ entities:
       parent: 1
 - proto: HospitalCurtains
   entities:
-  - uid: 944
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 8.5,24.5
-      parent: 1
-    - type: Occluder
-      enabled: False
-    - type: Door
-      state: Open
-    - type: Physics
-      canCollide: False
   - uid: 945
     components:
     - type: Transform
@@ -9160,6 +9120,12 @@ entities:
       parent: 1
 - proto: HospitalCurtainsOpen
   entities:
+  - uid: 944
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 8.5,24.5
+      parent: 1
   - uid: 941
     components:
     - type: Transform
@@ -9329,8 +9295,6 @@ entities:
     components:
     - type: Transform
       parent: 550
-    - type: Physics
-      canCollide: False
 - proto: MedicalBed
   entities:
   - uid: 1141
@@ -9492,17 +9456,13 @@ entities:
     - type: Transform
       pos: 20.590317,3.594551
       parent: 1
-- proto: PortableGeneratorHyperPacmanShuttle
+- proto: PortableGeneratorHyperPacman
   entities:
   - uid: 2077
     components:
     - type: Transform
       pos: 32.5,20.5
       parent: 1
-    - type: FuelGenerator
-      on: False
-    - type: Physics
-      bodyType: Static
 - proto: PortableGeneratorPacman
   entities:
   - uid: 962
@@ -10541,7 +10501,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: 26.5,21.5
       parent: 1
-- proto: RadioHandheld
+- proto: RadioHandheldNF
   entities:
   - uid: 757
     components:
@@ -11395,6 +11355,16 @@ entities:
       parent: 1
 - proto: SMESBasic
   entities:
+  - uid: 966
+    components:
+    - type: Transform
+      pos: 22.5,32.5
+      parent: 1
+  - uid: 969
+    components:
+    - type: Transform
+      pos: 18.5,32.5
+      parent: 1
   - uid: 47
     components:
     - type: Transform
@@ -13674,7 +13644,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: 12.5,43.5
       parent: 1
-- proto: ToiletEmpty
+- proto: ToiletMemeSpawner
   entities:
   - uid: 927
     components:
@@ -14380,14 +14350,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 20.5,45.5
       parent: 1
-- proto: WindowDungeon
-  entities:
-  - uid: 253
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 31.5,3.5
-      parent: 1
 - proto: WindowDirectionalDungeon
   entities:
   - uid: 43
@@ -14484,6 +14446,14 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 20.5,46.5
+      parent: 1
+- proto: WindowDungeon
+  entities:
+  - uid: 253
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 31.5,3.5
       parent: 1
 - proto: WindowFrostedDirectionalDungeon
   entities:

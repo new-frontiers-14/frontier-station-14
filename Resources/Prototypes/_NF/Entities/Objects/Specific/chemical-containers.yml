@@ -1,17 +1,17 @@
 - type: entity
   parent: Jug
-  name: jug (Space Cleaner)
   id: JugSpaceCleaner
+  suffix: space cleaner
   categories: [ HideSpawnMenu ]
   components:
     - type: Label
-      currentLabel: Space Cleaner
+      currentLabel: reagent-name-space-cleaner
     - type: SolutionContainerManager
       solutions:
         beaker:
           reagents:
-            - ReagentId: SpaceCleaner
-              Quantity: 200
+          - ReagentId: SpaceCleaner
+            Quantity: 200
 
 # Frontier: an unspillable jug for welding fuel.
 - type: entity
@@ -20,83 +20,83 @@
   id: JerryCan
   description: A plastic jerry can with a spill-proof nozzle.
   components:
-    - type: SolutionContainerManager
-      solutions:
-        beaker:
-          maxVol: 200
-    - type: Sprite
-      sprite: _NF/Objects/Specific/Chemistry/jerrycan.rsi
-      layers:
-        - state: jerrycan
-        - state: jerrycan1
-          map: [ "enum.SolutionContainerLayers.Fill" ]
-          visible: false
-    - type: Item
-      size: Normal
-      sprite: _NF/Objects/Specific/Chemistry/jerrycan.rsi
-    - type: MixableSolution
-      solution: beaker
-    - type: RefillableSolution
-      solution: beaker
-    - type: DrainableSolution
-      solution: beaker
-    - type: ExaminableSolution
-      solution: beaker
-    - type: DrawableSolution
-      solution: beaker
-    - type: InjectableSolution
-      solution: beaker
-    - type: SolutionTransfer
-      canChangeTransferAmount: true
-    - type: SolutionItemStatus
-      solution: beaker
-    - type: UserInterface
-      interfaces:
-        enum.TransferAmountUiKey.Key:
-          type: TransferAmountBoundUserInterface
-    - type: Drink
-      solution: beaker
-      delay: 1.5
-      forceFeedDelay: 5
-    - type: Appearance
-    - type: SolutionContainerVisuals
-      maxFillLevels: 5
-      fillBaseName: jerrycan
-      inHandsMaxFillLevels: 5
-      inHandsFillBaseName: -fill-
-    - type: StaticPrice
-      price: 10
-    - type: Damageable
-      damageContainer: Inorganic
-    - type: Destructible
-      thresholds:
-      - trigger:
-          !type:DamageTrigger
-          damage: 200
-        behaviors:
-          - !type:DoActsBehavior
-            acts: [ "Destruction" ]
-      - trigger:
-          !type:DamageTrigger
-          damage: 20
-        behaviors:
-        - !type:PlaySoundBehavior
-          sound:
-            collection: MetalBreak
-            params:
-              volume: -4
-        - !type:SpillBehavior { }
-        - !type:SpawnEntitiesBehavior
-          spawn:
-            SheetPlastic1:
-              min: 0
-              max: 1
-          transferForensics: true
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 200
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Chemistry/jerrycan.rsi
+    layers:
+    - state: jerrycan
+    - state: jerrycan1
+      map: [ "enum.SolutionContainerLayers.Fill" ]
+      visible: false
+  - type: Item
+    size: Normal
+    sprite: _NF/Objects/Specific/Chemistry/jerrycan.rsi
+  - type: MixableSolution
+    solution: beaker
+  - type: RefillableSolution
+    solution: beaker
+  - type: DrainableSolution
+    solution: beaker
+  - type: ExaminableSolution
+    solution: beaker
+  - type: DrawableSolution
+    solution: beaker
+  - type: InjectableSolution
+    solution: beaker
+  - type: SolutionTransfer
+    canChangeTransferAmount: true
+  - type: SolutionItemStatus
+    solution: beaker
+  - type: UserInterface
+    interfaces:
+      enum.TransferAmountUiKey.Key:
+        type: TransferAmountBoundUserInterface
+  - type: Drink
+    solution: beaker
+    delay: 1.5
+    forceFeedDelay: 5
+  - type: Appearance
+  - type: SolutionContainerVisuals
+    maxFillLevels: 5
+    fillBaseName: jerrycan
+    inHandsMaxFillLevels: 5
+    inHandsFillBaseName: -fill-
+  - type: StaticPrice
+    price: 10
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
         - !type:DoActsBehavior
           acts: [ "Destruction" ]
-    - type: Label
-    - type: TrashOnSolutionEmpty # Frontier
-      solution: beaker # Frontier
+    - trigger:
+        !type:DamageTrigger
+        damage: 20
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+          params:
+            volume: -4
+      - !type:SpillBehavior { }
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetPlastic1:
+            min: 0
+            max: 1
+        transferForensics: true
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Label
+  - type: TrashOnSolutionEmpty # Frontier
+    solution: beaker # Frontier
 
 - type: entity
   parent: JerryCan
@@ -104,13 +104,71 @@
   id: JerryCanWeldingFuel
 #  categories: [ HideSpawnMenu ] # Frontier
   components:
-    - type: Label
-      currentLabel: reagent-name-welding-fuel
-    - type: SolutionContainerManager
-      solutions:
-        beaker:
-          reagents:
-            - ReagentId: WeldingFuel
-              Quantity: 200
-    - type: StaticPrice # Frontier
-      vendPrice: 500 # Frontier
+  - type: Label
+    currentLabel: reagent-name-welding-fuel
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        reagents:
+        - ReagentId: WeldingFuel
+          Quantity: 200
+  - type: StaticPrice # Frontier
+    vendPrice: 500 # Frontier
+
+# Fuel-grade items
+- type: entity
+  parent: BaseItem
+  id: FuelPlasma
+  name: fuel-grade plasma
+  description: A rod made of desaturated plasma, suitable for fuel.
+  components:
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      Plasma: 2000
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Fuel/fuelgrade_material.rsi
+    layers:
+    - state: plasma
+  - type: Appearance
+  - type: StaticPrice
+    price: 0
+    vendPrice: 1200
+
+- type: entity
+  parent: BaseItem
+  id: FuelUranium
+  name: fuel-grade uranium
+  description: A rod made of semi-processed uranium, suitable for fuel. 
+  components:
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      Uranium: 2000
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Fuel/fuelgrade_material.rsi
+    layers:
+    - state: uranium
+  - type: Appearance
+  - type: StaticPrice
+    price: 0
+    vendPrice: 2500
+
+- type: entity
+  parent: BaseItem
+  id: FuelBananium
+  name: fuel-grade bananium
+  description: A rod made from pressed bananium peels, suitable for fuel. 
+  components:
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      Bananium: 2000
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Fuel/fuelgrade_material.rsi
+    layers:
+    - state: bananium
+  - type: Appearance
+  - type: StaticPrice
+    price: 0
+    vendPrice: 5000
