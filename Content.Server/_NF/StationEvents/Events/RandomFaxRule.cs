@@ -4,7 +4,7 @@ using Content.Shared.GameTicking.Components;
 using Content.Shared.Fax.Components;
 using Content.Server.Fax;
 using Content.Server.Station.Systems;
-using Robust.Shared.Random;
+using Robust.Server.Player;
 
 namespace Content.Server.StationEvents.Events;
 
@@ -13,7 +13,7 @@ public sealed class RandomFaxRule : StationEventSystem<RandomFaxRuleComponent>
     [Dependency] private readonly IEntityManager _entMan = default!;
     [Dependency] private readonly FaxSystem _faxSystem = default!;
     [Dependency] private readonly StationSystem _stationSystem = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly IPlayerManager _playerManager = default!;
 
     private const int MaxRetries = 10;
     protected override void Added(EntityUid uid, RandomFaxRuleComponent component, GameRuleComponent gameRule, GameRuleAddedEvent args)
@@ -41,7 +41,7 @@ public sealed class RandomFaxRule : StationEventSystem<RandomFaxRuleComponent>
     {
         base.Started(uid, component, gameRule, args);
 
-        var numFaxes = _random.Next(component.MinFaxes, component.MaxFaxes);
+        var numFaxes = Math.Clamp(_playerManager.PlayerCount / component.PlayersPerFaxes, component.MinFaxes, component.MaxFaxes);
 
         List<EntityUid> stations = new();
         int retries = 0;

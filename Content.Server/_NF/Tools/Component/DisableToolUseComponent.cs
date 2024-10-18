@@ -1,7 +1,3 @@
-using Content.Shared.Tools;
-using Robust.Shared.Prototypes;
-using Robust.Shared.Utility;
-
 namespace Content.Server._NF.Tools.Components
 {
     [RegisterComponent]
@@ -30,5 +26,8 @@ namespace Content.Server._NF.Tools.Components
         public bool Rolling;
         [DataField, ViewVariables(VVAccess.ReadWrite)]
         public bool Digging;
+
+        [DataField, ViewVariables(VVAccess.ReadWrite)] // Used by events
+        public bool TemporarilyDisabled;
     }
 }

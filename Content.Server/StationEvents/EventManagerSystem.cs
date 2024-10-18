@@ -281,4 +281,11 @@ public sealed class EventManagerSystem : EntitySystem
 
         return true;
     }
+
+    public void GetEventStations(StationEventComponent stationEvent)
+    {
+        var numStations = Math.Clamp(_playerManager.PlayerCount / stationEvent.PlayersPerEvent, stationEvent.MinimumStations, stationEvent.MaximumStations);
+
+
+    }
 }
