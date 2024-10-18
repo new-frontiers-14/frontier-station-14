@@ -384,6 +384,21 @@
 
 - type: entity
   parent: CrateSecureMercenary
+  id: CrateSecureMercenaryPMCHardsuitMagBoots
+  name: PMC hardsuit crate
+  description: Contains a PMC hardsuit.
+  components:
+  - type: StorageFill
+    contents:
+    - id: DoubleEmergencyAirTankFilled
+    - id: ClothingShoesBootsMagCombat
+    - id: ClothingOuterHardsuitPMC
+    - id: ClothingMaskGasSecurity
+    - id: JetpackMiniFilled
+    - id: HandheldGPSBasic
+
+- type: entity
+  parent: CrateSecureMercenary
   id: CrateSecureMercenaryHardsuit
   name: mercenary hardsuit crate
   description: Contains a mercenary hardsuit.
@@ -406,6 +421,20 @@
     contents:
     - id: DoubleEmergencyAirTankFilled
     - id: ClothingOuterHardsuitPrivateSecurity
+    - id: ClothingMaskGasSecurity
+    - id: JetpackMiniFilled
+    - id: HandheldGPSBasic
+
+- type: entity
+  parent: CrateSecureMercenary
+  id: CrateSecureMercenaryPMCHardsuit
+  name: PMC hardsuit crate
+  description: Contains a PMC hardsuit.
+  components:
+  - type: StorageFill
+    contents:
+    - id: DoubleEmergencyAirTankFilled
+    - id: ClothingOuterHardsuitPMC
     - id: ClothingMaskGasSecurity
     - id: JetpackMiniFilled
     - id: HandheldGPSBasic
