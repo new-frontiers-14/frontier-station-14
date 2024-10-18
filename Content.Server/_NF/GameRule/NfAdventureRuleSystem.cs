@@ -171,6 +171,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         {
             EnsureComp<CargoSellBlacklistComponent>(mobUid);
 
+            // Store player info with the bank balance - we have it directly, and BankSystem won't have a cache yet.
             if (!_players.ContainsKey(mobUid))
                 _players[mobUid] = new PlayerRoundBankInformation(ev.Profile.BankBalance, MetaData(mobUid).EntityName, ev.Player.UserId);
         }
