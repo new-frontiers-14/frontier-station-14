@@ -829,15 +829,15 @@ entities:
     components:
     - type: Transform
       rot: 3.141592653589793 rad
-      pos: -4.5,1.5
+      pos: -4.4,1.5
       parent: 1
 - proto: ButtonFrameGrey
   entities:
-  - uid: 307
+  - uid: 305
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 1.5,1.5
+      rot: 3.141592653589793 rad
+      pos: -4.8,1.5
       parent: 1
 - proto: CableApcExtension
   entities:
@@ -1236,6 +1236,13 @@ entities:
     - type: Transform
       pos: -1.2326875,8.501068
       parent: 1
+- proto: ClosetWallO2N2FilledRandom
+  entities:
+  - uid: 307
+    components:
+    - type: Transform
+      pos: 4.5,1.5
+      parent: 1
 - proto: ClothingOuterWinterChef
   entities:
   - uid: 415
@@ -1276,8 +1283,6 @@ entities:
           showEnts: False
           occludes: True
           ent: null
-    - type: Physics
-      canCollide: False
     - type: ItemSlots
 - proto: CrateNPCCow
   entities:
@@ -1751,9 +1756,9 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
-- proto: GasPressurePumpOn
+- proto: GasPressurePumpOnMax
   entities:
-  - uid: 37
+  - uid: 260
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
@@ -2016,6 +2021,13 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 1.5,0.5
       parent: 1
+- proto: KitchenAssembler
+  entities:
+  - uid: 427
+    components:
+    - type: Transform
+      pos: 0.5,3.5
+      parent: 1
 - proto: KitchenDeepFryer
   entities:
   - uid: 265
@@ -2024,9 +2036,9 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -3.5,1.5
       parent: 1
-- proto: KitchenElectricGrill
+- proto: KitchenElectricRange
   entities:
-  - uid: 260
+  - uid: 422
     components:
     - type: Transform
       pos: -2.5,3.5
@@ -2145,8 +2157,7 @@ entities:
   - uid: 225
     components:
     - type: Transform
-      rot: 25.132741228718352 rad
-      pos: -3.0563135,3.7324326
+      pos: -3.3616345,3.6774707
       parent: 1
 - proto: OilJarGhee
   entities:
@@ -2182,20 +2193,16 @@ entities:
       pos: -0.5,8.5
       parent: 1
     - type: FuelGenerator
-      targetPower: 9000
+      targetPower: 10000
       on: False
-    - type: Physics
-      bodyType: Static
   - uid: 149
     components:
     - type: Transform
       pos: -2.5,8.5
       parent: 1
     - type: FuelGenerator
-      targetPower: 9000
+      targetPower: 10000
       on: False
-    - type: Physics
-      bodyType: Static
 - proto: Poweredlight
   entities:
   - uid: 244
@@ -2296,32 +2303,31 @@ entities:
   - uid: 256
     components:
     - type: Transform
-      rot: 25.132741228718352 rad
-      pos: 0.2840351,3.6642082
+      rot: 6.283185307179586 rad
+      pos: -0.64247394,3.4529877
       parent: 1
 - proto: ReagentContainerRice
   entities:
   - uid: 258
     components:
     - type: Transform
-      rot: 25.132741228718352 rad
-      pos: 0.7215351,3.6642084
+      rot: 6.283185307179586 rad
+      pos: -0.9028907,3.6509042
       parent: 1
 - proto: ReagentContainerSalt
   entities:
   - uid: 47
     components:
     - type: Transform
-      rot: 25.132741228718352 rad
-      pos: -3.5050204,3.3574338
+      pos: -3.6637177,3.5941372
       parent: 1
 - proto: ReagentContainerSugar
   entities:
   - uid: 314
     components:
     - type: Transform
-      rot: 25.132741228718352 rad
-      pos: 0.5236185,3.4662917
+      rot: 6.283185307179586 rad
+      pos: -0.9028907,3.4009042
       parent: 1
 - proto: SeedExtractor
   entities:
@@ -2351,6 +2357,14 @@ entities:
           showEnts: False
           occludes: True
           ents: []
+- proto: ShelfKitchen
+  entities:
+  - uid: 37
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 1.5,1.5
+      parent: 1
 - proto: ShuttersNormalOpen
   entities:
   - uid: 23
@@ -2641,27 +2655,41 @@ entities:
       parent: 1
 - proto: SignalButton
   entities:
-  - uid: 422
+  - uid: 423
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 1.5,1.5
+      rot: 3.141592653589793 rad
+      pos: -4.4,1.5
       parent: 1
     - type: DeviceLinkSource
       linkedPorts:
-        303:
+        17:
         - Pressed: Toggle
-        420:
+        19:
         - Pressed: Toggle
-        302:
+        18:
         - Pressed: Toggle
-        23:
+        316:
         - Pressed: Toggle
-        404:
+        25:
+        - Pressed: Toggle
+        26:
+        - Pressed: Toggle
+        27:
+        - Pressed: Toggle
+        29:
+        - Pressed: Toggle
+  - uid: 426
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -4.8,1.5
+      parent: 1
+    - type: DeviceLinkSource
+      linkedPorts:
+        172:
         - Pressed: Toggle
         183:
-        - Pressed: Toggle
-        172:
         - Pressed: Toggle
         152:
         - Pressed: Toggle
@@ -2684,34 +2712,6 @@ entities:
         30:
         - Pressed: Toggle
         28:
-        - Pressed: Toggle
-        421:
-        - Pressed: Toggle
-        419:
-        - Pressed: Toggle
-  - uid: 423
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -4.5,1.5
-      parent: 1
-    - type: DeviceLinkSource
-      linkedPorts:
-        17:
-        - Pressed: Toggle
-        19:
-        - Pressed: Toggle
-        18:
-        - Pressed: Toggle
-        316:
-        - Pressed: Toggle
-        25:
-        - Pressed: Toggle
-        26:
-        - Pressed: Toggle
-        27:
-        - Pressed: Toggle
-        29:
         - Pressed: Toggle
 - proto: Sink
   entities:
@@ -2807,12 +2807,6 @@ entities:
     components:
     - type: Transform
       pos: -3.5,3.5
-      parent: 1
-  - uid: 305
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -2.5,3.5
       parent: 1
   - uid: 309
     components:
