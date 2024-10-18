@@ -16,7 +16,6 @@
   name: punk
   abstract: true
   parent:
-  - BaseC3MobHuman
   - MobHumanoidHostileBase
   - MobVandalizer
   - MobHumanoidInvetory
@@ -31,17 +30,6 @@
   - type: Body
     prototype: NFHumanNoHands
     requiredLegs: 2
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      100: Critical
-      130: Dead
-  - type: SlowOnDamage
-    speedModifierThresholds:
-      60: 0.7
-      80: 0.5
-  - type: Stamina
-    critThreshold: 100
   - type: RechargeBasicEntityAmmo
     rechargeCooldown: 1.5
     rechargeSound:
@@ -94,8 +82,8 @@
     - PunkGangerGearPistol
   - type: BasicEntityAmmoProvider
     proto: BulletPistol
-    capacity: 2
-    count: 2
+    capacity: 1
+    count: 1
   - type: Gun
     showExamineText: false
     fireRate: 0.5
