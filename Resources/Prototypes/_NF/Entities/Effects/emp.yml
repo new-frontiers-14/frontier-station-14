@@ -1,0 +1,16 @@
+- type: entity
+  name: emp blast
+  id: EffectEmpBlast
+  description: Looking at this anomaly makes you feel an electric tingling all over your body.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EmpBlast
+  - type: TimedDespawn
+    lifetime: 1
+  - type: Tag
+    tags:
+      - HideContextMenu
+  - type: EmitSoundOnSpawn
+    sound: 
+      path: /Audio/Effects/Lightning/lightningbolt.ogg
+  - type: AnimationPlayer
