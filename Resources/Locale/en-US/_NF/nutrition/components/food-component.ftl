@@ -12,3 +12,6 @@ food-system-verb-wipe = Wipe Face
 food-system-wipe = {CAPITALIZE(THE($user))} is trying to wipe your face.
 food-system-wipe-success = {CAPITALIZE(THE($user))} wiped your face.
 food-system-wipe-success-user = You wiped {THE($target)}'s face.
+
+food-system-nasty = That food was gross.
+food-system-toxin = That food was bad.

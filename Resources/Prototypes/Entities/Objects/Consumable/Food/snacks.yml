@@ -7,6 +7,7 @@
   abstract: true
   components:
   - type: Food
+    quality: Junk # Frontier, New Food Quality System
   - type: Tag
     tags:
       - FoodSnack
@@ -517,7 +518,7 @@
 
 - type: entity
   categories: [ HideSpawnMenu ]
-  parent: BaseItem
+  parent: [ BaseItem, TrashSolutionInjector ] # Frontier: added TrashSolutionInjector
   id: FoodPacketTrash
   description: This is rubbish.
   abstract: true
