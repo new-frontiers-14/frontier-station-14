@@ -7,7 +7,6 @@ using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Content.Shared._NF.GameRule;
 using Content.Server.Procedural;
-using Content.Shared.Bank.Components;
 using Content.Server._NF.GameTicking.Events;
 using Content.Shared.Procedural;
 using Robust.Server.GameObjects;
@@ -30,10 +29,14 @@ using Content.Shared._NF.CCVar; // Frontier
 using Robust.Shared.Configuration;
 using Robust.Shared.Physics.Components;
 using Content.Server.Shuttles.Components;
+using Content.Shared._NF.Bank;
 using Content.Shared.Tiles;
 using Content.Server._NF.PublicTransit.Components;
 using Content.Server._NF.GameRule.Components;
 using Content.Server.Bank;
+using Robust.Shared.Player;
+using Robust.Shared.Network;
+using Content.Shared.GameTicking;
 
 namespace Content.Server._NF.GameRule;
 
@@ -56,8 +59,30 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
 
     private readonly HttpClient _httpClient = new();
 
+    public sealed class PlayerRoundBankInformation
+    {
+        // Initial balance, obtained on spawn
+        public int StartBalance;
+        // Ending balance, obtained on game end or detach (NOTE: multiple detaches possible), whichever happens first.
+        public int EndBalance;
+        // Entity name: used for display purposes ("The Feel of Fresh Bills earned 100,000 spesos")
+        public string Name;
+        // User ID: used to validate incoming information.
+        // If, for whatever reason, another player takes over this character, their initial balance is inaccurate.
+        public NetUserId UserId;
+
+        public PlayerRoundBankInformation(int startBalance, string name, NetUserId userId)
+        {
+            StartBalance = startBalance;
+            EndBalance = -1;
+            Name = name;
+            UserId = userId;
+        }
+    }
+
+    // A list of player bank account information stored by the controlled character's entity.
     [ViewVariables]
-    private List<(EntityUid, int)> _players = new();
+    private Dictionary<EntityUid, PlayerRoundBankInformation> _players = new();
 
     private float _distanceOffset = 1f;
     private List<Vector2> _stationCoords = new();
@@ -69,23 +94,39 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
     {
         base.Initialize();
         SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnPlayerSpawningEvent);
+        SubscribeLocalEvent<PlayerDetachedEvent>(OnPlayerDetachedEvent);
+        SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
     }
 
     protected override void AppendRoundEndText(EntityUid uid, AdventureRuleComponent component, GameRuleComponent gameRule, ref RoundEndTextAppendEvent ev)
     {
-        var profitText = Loc.GetString($"adventure-mode-profit-text");
-        var lossText = Loc.GetString($"adventure-mode-loss-text");
         ev.AddLine(Loc.GetString("adventure-list-start"));
         var allScore = new List<Tuple<string, int>>();
 
-        foreach (var player in _players)
+        foreach (var (player, playerInfo) in _players)
         {
-            if (!_bank.TryGetBalance(player.Item1, out var bankBalance) || !TryComp<MetaDataComponent>(player.Item1, out var meta))
+            var endBalance = playerInfo.EndBalance;
+            if (_bank.TryGetBalance(player, out var bankBalance))
+            {
+                endBalance = bankBalance;
+            }
+
+            // Check if endBalance is valid (non-negative)
+            if (endBalance < 0)
                 continue;
 
-            var profit = bankBalance - player.Item2;
-            ev.AddLine($"- {meta.EntityName} {profitText} {profit} Spesos");
-            allScore.Add(new Tuple<string, int>(meta.EntityName, profit));
+            var profit = endBalance - playerInfo.StartBalance;
+            string summaryText;
+            if (profit < 0)
+            {
+                summaryText = Loc.GetString("adventure-mode-list-loss", ("amount", BankSystemExtensions.ToSpesoString(-profit)));
+            }
+            else
+            {
+                summaryText = Loc.GetString("adventure-mode-list-profit", ("amount", BankSystemExtensions.ToSpesoString(profit)));
+            }
+            ev.AddLine($"- {playerInfo.Name} {summaryText}");
+            allScore.Add(new Tuple<string, int>(playerInfo.Name, profit));
         }
 
         if (!(allScore.Count >= 1))
@@ -95,20 +136,26 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         relayText += '\n';
         var highScore = allScore.OrderByDescending(h => h.Item2).ToList();
 
-        for (var i = 0; i < 10 && i < highScore.Count; i++)
+        for (var i = 0; i < 10 && highScore.Count > 0; i++)
         {
-            relayText += $"{highScore.First().Item1} {profitText} {highScore.First().Item2} Spesos";
+            if (highScore.First().Item2 < 0)
+                break;
+            var profitText = Loc.GetString("adventure-mode-top-profit", ("amount", BankSystemExtensions.ToSpesoString(highScore.First().Item2)));
+            relayText += $"{highScore.First().Item1} {profitText}";
             relayText += '\n';
-            highScore.Remove(highScore.First());
+            highScore.RemoveAt(0);
         }
         relayText += Loc.GetString("adventure-list-low");
         relayText += '\n';
         highScore.Reverse();
-        for (var i = 0; i < 10 && i < highScore.Count; i++)
+        for (var i = 0; i < 10 && highScore.Count > 0; i++)
         {
-            relayText += $"{highScore.First().Item1} {lossText} {highScore.First().Item2} Spesos";
+            if (highScore.First().Item2 > 0)
+                break;
+            var lossText = Loc.GetString("adventure-mode-top-loss", ("amount", BankSystemExtensions.ToSpesoString(-highScore.First().Item2)));
+            relayText += $"{highScore.First().Item1} {lossText}";
             relayText += '\n';
-            highScore.Remove(highScore.First());
+            highScore.RemoveAt(0);
         }
         ReportRound(relayText);
     }
@@ -117,9 +164,31 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
     {
         if (ev.Player.AttachedEntity is { Valid: true } mobUid)
         {
-            _players.Add((mobUid, ev.Profile.BankBalance));
             EnsureComp<CargoSellBlacklistComponent>(mobUid);
+
+            if (!_players.ContainsKey(mobUid))
+                _players[mobUid] = new PlayerRoundBankInformation(ev.Profile.BankBalance, MetaData(mobUid).EntityName, ev.Player.UserId);
         }
+    }
+
+    private void OnPlayerDetachedEvent(PlayerDetachedEvent ev)
+    {
+        if (ev.Entity is { Valid: true } mobUid)
+        {
+            if (_players.ContainsKey(mobUid))
+            {
+                if (_players[mobUid].UserId == ev.Player.UserId &&
+                    _bank.TryGetBalance(ev.Player, out var bankBalance))
+                {
+                    _players[mobUid].EndBalance = bankBalance;
+                }
+            }
+        }
+    }
+
+    private void OnRoundRestart(RoundRestartCleanupEvent ev)
+    {
+        _players.Clear();
     }
 
     protected override void Started(EntityUid uid, AdventureRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
@@ -441,7 +510,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         _stationCoords.Add(coords);
     }
 
-    private async Task ReportRound(String message,  int color = 0x77DDE7)
+    private async Task ReportRound(String message, int color = 0x77DDE7)
     {
         Logger.InfoS("discord", message);
         String webhookUrl = _configurationManager.GetCVar(CCVars.DiscordLeaderboardWebhook);
