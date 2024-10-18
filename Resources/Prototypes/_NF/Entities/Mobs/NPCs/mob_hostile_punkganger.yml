@@ -1,4 +1,4 @@
-- type: entity
+- type: entity # Spawns random graffiti (even if the mob is dead)
   abstract: true
   id: MobVandalizer
   components:
@@ -78,6 +78,9 @@
   id: MobPunkGangerPistol
   categories: [ HideSpawnMenu ]
   components:
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 4
+    baseSprintSpeed : 4
   - type: Loadout
     prototypes:
     - PunkGangerGearPistol
@@ -100,6 +103,9 @@
   id: MobPunkGangerShotgun
   categories: [ HideSpawnMenu ]
   components:
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 4
+    baseSprintSpeed : 4
   - type: Loadout
     prototypes:
     - PunkGangerGearShotgun
@@ -128,6 +134,7 @@
 
 - type: entity
   parent:
+  - MobHostileBossBase
   - MobPunkBase
   - MobHumanoidHostileAISimpleRanged
   id: MobPunkGangerArmoredElite
@@ -135,6 +142,9 @@
   description: It takes a formidable figure to lead a pack of street trash. These leaders usually wield scavenged SMGs and wear armor taken from unfortunate security forces. Usually high on meth and booze.
   categories: [ HideSpawnMenu ]
   components:
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 4
+    baseSprintSpeed : 4
   - type: Loadout
     prototypes:
     - PunkGangerArmoredEliteGear
@@ -146,7 +156,7 @@
     showExamineText: false
     minAngle: 10
     maxAngle: 30
-    fireRate: 3
+    fireRate: 1
     angleIncrease: 3
     angleDecay: 6
     selectedMode: FullAuto
@@ -154,3 +164,59 @@
     - FullAuto
     soundGunshot: /Audio/Weapons/Guns/Gunshots/smg.ogg
   - type: Jittering
+  # Ghost role stuff
+  - type: GhostRole
+    allowMovement: true
+    name: ghost-role-information-punk-boss-dungeon-name
+    description: ghost-role-information-punk-boss-dungeon-description
+    rules: ghost-role-information-dungeon-boss-rules
+    raffle:
+      settings: default
+  - type: GhostTakeoverAvailable
+  - type: ActionGun
+    action: ActionThrowPartyNade
+    gunProto: PartyNadeGun
+
+- type: entity
+  id: PartyNadeGun
+  name: party nade gun
+  description: Needed to shoot a nade.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 20
+    rechargeSound:
+      path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
+  - type: BasicEntityAmmoProvider
+    proto: NFBulletPartyNade
+    capacity: 1
+    count: 1
+  - type: Gun
+    minAngle: 1
+    maxAngle: 5
+    fireRate: 1
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot:
+      path: /Audio/Items/bow_pull.ogg
+    soundEmpty: null
+    projectileSpeed: 15
+  - type: UseDelay
+    delay: 20
+
+- type: entity
+  id: ActionThrowPartyNade
+  categories: [ HideSpawnMenu ]
+  name: "[color=yellow]Throw a party 'nade[/color]"
+  description: "Hurls activated party 'nade filled with party chems, explodes on contact. [color=yellow]20 second cooldown.[/color]"
+  components:
+  - type: WorldTargetAction
+    icon: { sprite : Objects/Weapons/Grenades/metalfoam.rsi, state: primed }
+    event: !type:ActionGunShootEvent
+    priority: 2
+    checkCanAccess: false
+    range: 0
+    itemIconStyle: BigAction
+  - type: UseDelay
+    delay: 20
