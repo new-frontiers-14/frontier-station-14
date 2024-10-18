@@ -53,7 +53,7 @@
         sound:
           collection: MetalBreak
   - type: StaticPrice
-    price: 10 # Frontier: 30<10
+    price: 15 # Frontier: 30<15
   - type: Climbable # Frontier - Stop AI Abuse
   - type: RCDDeconstructable # Frontier
     cost: 4 # Frontier
@@ -90,10 +90,10 @@
             - !type:SpawnEntitiesBehavior
               spawn:
                 SheetSteel1:
-                  min: 1
+                  min: 0 # Frontier: 1<0
                   max: 1
                 SheetPlasteel1:
-                  min: 1
+                  min: 0 # Frontier: 1<0
                   max: 1
             - !type:DoActsBehavior
               acts: [ "Destruction" ]
@@ -101,7 +101,7 @@
               sound:
                 collection: MetalBreak
     - type: StaticPrice
-      price: 25 # Frontier: 130<25
+      price: 70 # Frontier: 130<70
 
 - type: entity
   id: ClockworkGirder
@@ -116,7 +116,7 @@
       graph: ClockworkGirder
       node: clockGirder
     - type: StaticPrice
-      price: 25 # Frontier: 75<25 - TODO: tests at 35
+      price: 75
     - type: Destructible
       thresholds:
         - trigger:

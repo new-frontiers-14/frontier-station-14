@@ -84,7 +84,6 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         if (!_enabled)
             return;
         InitializeConsole();
-        SetupShipyard();
     }
 
     private void OnRoundRestart(RoundRestartCleanupEvent ev)
@@ -101,7 +100,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         if (value)
         {
-            SetupShipyard();
+            SetupShipyardIfNeeded();
         }
         else
         {
@@ -149,6 +148,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     private bool TryAddShuttle(string shuttlePath, [NotNullWhen(true)] out EntityUid? shuttleGrid)
     {
         shuttleGrid = null;
+        SetupShipyardIfNeeded();
         if (ShipyardMap == null)
             return false;
 
@@ -277,7 +277,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         _mapManager.DeleteMap(ShipyardMap.Value);
     }
 
-    private void SetupShipyard()
+    private void SetupShipyardIfNeeded()
     {
         if (ShipyardMap != null && _mapManager.MapExists(ShipyardMap.Value))
             return;
