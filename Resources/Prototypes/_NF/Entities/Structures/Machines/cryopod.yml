@@ -2,7 +2,7 @@
   id: MachineCryoSleepPod
   parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseMachine]
   name: cryo sleep chamber
-  description: cold pillow guaranteed
+  description: Cold pillow, guaranteed.
   components:
   - type: Sprite
     netsync: false
@@ -29,3 +29,68 @@
   - type: ContainerContainer
     containers:
       body_container: !type:ContainerSlot
+
+# WIP for a medical bounty reclaimer machine
+- type: entity
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseMachinePowered]
+  id: MachineMedicalBountyRedemption
+  name: body retrieval unit
+  description: A teleporter to return lost bodies with bounties on them. Dispenses cash on teleport.
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: _NF/Structures/Machines/body_retrieval_unit.rsi
+    layers:
+    - state: closed
+      map: ["base"]
+    - state: left_on_unlit
+      shader: unshaded
+      map: ["lights"]
+      visible: false
+  - type: UserInterface
+    interfaces:
+      enum.MedicalBountyRedemptionUiKey.Key:
+        type: MedicalBountyRedemptionBoundUserInterface
+  - type: ActivatableUI
+    key: enum.MedicalBountyRedemptionUiKey.Key
+  - type: ActivatableUIRequiresPower
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: DragInsertContainer
+    containerId: body_container
+  - type: ExitContainerOnMove
+    containerId: body_container
+  - type: ContainerContainer
+    containers:
+      body_container: !type:ContainerSlot
+  - type: MedicalBountyRedemption
+    bodyContainer: body_container
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.MedicalBountyRedemptionVisuals.Full:
+        base:
+          True: { state: closed_full }
+          False: { state: closed }
+        lights:
+          True: { state: both_on_unlit }
+          False: { state: left_on_unlit }
+      enum.PowerDeviceVisuals.Powered:
+        lights:
+          True: { visible: true }
+          False: { visible: false }
+  - type: ApcPowerReceiver
+    powerLoad: 1000 # Keeping this explicit
+  - type: Climbable
