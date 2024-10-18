@@ -194,11 +194,10 @@ entities:
             1: 49075
           -2,-2:
             0: 32768
-          -1,-2:
-            0: 4096
-            1: 17408
           -1,-1:
             1: 65524
+          -1,-2:
+            1: 17408
           -1,0:
             1: 61162
           0,-2:
@@ -246,27 +245,25 @@ entities:
     - type: BecomesStation
       id: Interceptor
     - type: SpreaderGrid
-- proto: AirCanister
+- proto: ActionToggleLight
   entities:
-  - uid: 106
+  - uid: 131
     components:
     - type: Transform
-      anchored: True
-      pos: -8.5,-0.5
-      parent: 1
-    - type: Physics
-      bodyType: Static
-- proto: AirlockGlassShuttle
+      parent: 120
+    - type: InstantAction
+      container: 120
+- proto: AirlockGlassShuttleNfsdLocked
   entities:
-  - uid: 6
-    components:
-    - type: Transform
-      pos: 0.5,-5.5
-      parent: 1
   - uid: 7
     components:
     - type: Transform
       pos: -1.5,-5.5
+      parent: 1
+  - uid: 17
+    components:
+    - type: Transform
+      pos: 0.5,-5.5
       parent: 1
 - proto: AirlockNfsdGlassLocked
   entities:
@@ -365,14 +362,7 @@ entities:
   - uid: 16
     components:
     - type: Transform
-      pos: -3.376185,-1.4098043
-      parent: 1
-- proto: BoxForensicPad
-  entities:
-  - uid: 17
-    components:
-    - type: Transform
-      pos: -3.6799874,-1.4031521
+      pos: -3.62612,-1.2769039
       parent: 1
 - proto: CableApcExtension
   entities:
@@ -634,11 +624,6 @@ entities:
       parent: 1
 - proto: ChairOfficeDark
   entities:
-  - uid: 73
-    components:
-    - type: Transform
-      pos: -8.5,-2.5
-      parent: 1
   - uid: 75
     components:
     - type: Transform
@@ -651,28 +636,26 @@ entities:
       rot: 3.141592653589793 rad
       pos: -7.5,-1.5
       parent: 1
-- proto: ComputerIFF
+- proto: ComputerTabletopIFF
   entities:
-  - uid: 78
+  - uid: 82
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -9.5,-2.5
+      pos: -8.5,-0.5
       parent: 1
-- proto: ComputerShuttle
+- proto: ComputerTabletopShuttle
   entities:
-  - uid: 220
+  - uid: 73
     components:
     - type: Transform
       pos: -7.5,-0.5
       parent: 1
-- proto: ComputerStationRecords
+- proto: ComputerTabletopStationRecords
   entities:
-  - uid: 131
+  - uid: 164
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -8.5,-3.5
+      pos: -6.5,-0.5
       parent: 1
 - proto: DefibrillatorCabinetFilled
   entities:
@@ -684,10 +667,10 @@ entities:
       parent: 1
 - proto: FaxMachineShip
   entities:
-  - uid: 26
+  - uid: 6
     components:
     - type: Transform
-      pos: -6.5,-3.5
+      pos: -9.5,-0.5
       parent: 1
 - proto: FirelockEdge
   entities:
@@ -718,13 +701,18 @@ entities:
     - type: Transform
       pos: 0.5,3.5
       parent: 1
-- proto: ForensicScanner
+- proto: GasMixerOnFlipped
   entities:
-  - uid: 84
+  - uid: 167
     components:
     - type: Transform
-      pos: -3.0549874,-1.2281519
+      pos: -7.5,-2.5
       parent: 1
+    - type: GasMixer
+      inletTwoConcentration: 0.79
+      inletOneConcentration: 0.21
+    - type: AtmosPipeColor
+      color: '#0055CCFF'
 - proto: GasPassiveVent
   entities:
   - uid: 163
@@ -761,11 +749,11 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#990000FF'
-  - uid: 178
+  - uid: 220
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -8.5,-1.5
+      rot: 1.5707963267948966 rad
+      pos: -8.5,-2.5
       parent: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
@@ -930,6 +918,14 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#990000FF'
+  - uid: 84
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -7.5,-1.5
+      parent: 1
+    - type: AtmosPipeColor
+      color: '#0055CCFF'
   - uid: 170
     components:
     - type: Transform
@@ -938,20 +934,21 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#990000FF'
-  - uid: 177
+- proto: GasPort
+  entities:
+  - uid: 21
     components:
     - type: Transform
       rot: 3.141592653589793 rad
-      pos: -7.5,-1.5
+      pos: -8.5,-3.5
       parent: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
-- proto: GasPort
-  entities:
-  - uid: 120
+  - uid: 78
     components:
     - type: Transform
-      pos: -8.5,-0.5
+      rot: 3.141592653589793 rad
+      pos: -7.5,-3.5
       parent: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
@@ -1148,19 +1145,35 @@ entities:
       parent: 1
 - proto: GyroscopeNfsd
   entities:
-  - uid: 21
-    components:
-    - type: Transform
-      pos: -9.5,-0.5
-      parent: 1
-- proto: LampGold
-  entities:
-  - uid: 119
+  - uid: 26
     components:
     - type: Transform
       rot: 3.141592653589793 rad
-      pos: -2.4816613,-1.1827465
+      pos: -9.5,-2.5
       parent: 1
+- proto: LampInterrogator
+  entities:
+  - uid: 120
+    components:
+    - type: Transform
+      pos: -3.0243516,-1.0670333
+      parent: 1
+    - type: HandheldLight
+      toggleActionEntity: 131
+    - type: ContainerContainer
+      containers:
+        cell_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        actions: !type:Container
+          showEnts: False
+          occludes: True
+          ents:
+          - 131
+    - type: Physics
+      canCollide: True
+    - type: ActionsContainer
 - proto: LockerNfsdEvidence
   entities:
   - uid: 77
@@ -1170,10 +1183,10 @@ entities:
       parent: 1
 - proto: LockerNfsdSilverDetectiveFilled
   entities:
-  - uid: 76
+  - uid: 178
     components:
     - type: Transform
-      pos: -6.5,-0.5
+      pos: -6.5,-3.5
       parent: 1
 - proto: LockerWallMaterialsFuelPlasmaFilled
   entities:
@@ -1190,33 +1203,51 @@ entities:
     - type: Transform
       pos: -2.4866343,-1.9206845
       parent: 1
+- proto: NitrogenCanister
+  entities:
+  - uid: 177
+    components:
+    - type: Transform
+      anchored: True
+      pos: -8.5,-3.5
+      parent: 1
+    - type: Physics
+      bodyType: Static
+- proto: OxygenCanister
+  entities:
+  - uid: 182
+    components:
+    - type: Transform
+      anchored: True
+      pos: -7.5,-3.5
+      parent: 1
+    - type: Physics
+      bodyType: Static
 - proto: Paper
   entities:
   - uid: 74
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -6.8602543,-3.3190503
+      pos: -9.234102,-0.380448
       parent: 1
-  - uid: 265
+  - uid: 76
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -6.6727543,-3.4754086
+      pos: -9.202852,-0.30748048
       parent: 1
 - proto: Pen
   entities:
   - uid: 122
     components:
     - type: Transform
-      pos: -3.1632028,-1.4523776
+      pos: -3.5115366,-1.527078
       parent: 1
 - proto: PinpointerUniversal
   entities:
   - uid: 123
     components:
     - type: Transform
-      pos: -8.56982,-2.4906285
+      pos: -2.4514349,-1.5361089
       parent: 1
 - proto: PortableGeneratorPacmanShuttle
   entities:
@@ -1225,10 +1256,6 @@ entities:
     - type: Transform
       pos: -10.5,-1.5
       parent: 1
-    - type: FuelGenerator
-      on: False
-    - type: Physics
-      bodyType: Static
 - proto: PosterLegitObey
   entities:
   - uid: 267
@@ -1635,6 +1662,14 @@ entities:
     - type: Transform
       pos: -2.586734,-2.0767865
       parent: 1
+- proto: SpawnPointLatejoin
+  entities:
+  - uid: 265
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -1.5,-1.5
+      parent: 1
 - proto: SubstationWallBasic
   entities:
   - uid: 179
@@ -1658,16 +1693,25 @@ entities:
       parent: 1
 - proto: TableReinforced
   entities:
-  - uid: 82
+  - uid: 106
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -6.5,-3.5
+      pos: -9.5,-0.5
       parent: 1
-  - uid: 182
+  - uid: 119
     components:
     - type: Transform
-      pos: -7.5,-3.5
+      pos: -8.5,-0.5
+      parent: 1
+  - uid: 270
+    components:
+    - type: Transform
+      pos: -7.5,-0.5
+      parent: 1
+  - uid: 271
+    components:
+    - type: Transform
+      pos: -6.5,-0.5
       parent: 1
 - proto: TableWood
   entities:
@@ -1912,6 +1956,14 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -9.5,0.5
       parent: 1
+- proto: WallWeaponCapacitorRecharger
+  entities:
+  - uid: 272
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -5.5,-3.5
+      parent: 1
 - proto: WardrobePrisonFilled
   entities:
   - uid: 218
@@ -1929,13 +1981,6 @@ entities:
       parent: 1
     - type: WarpPoint
       location: Interceptor
-- proto: WeaponCapacitorRecharger
-  entities:
-  - uid: 270
-    components:
-    - type: Transform
-      pos: -7.5,-3.5
-      parent: 1
 - proto: WeaponGrapplingGun
   entities:
   - uid: 221
