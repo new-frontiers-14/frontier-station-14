@@ -22,8 +22,10 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
     private readonly ShipyardConsoleBoundUserInterface _menu;
     private readonly List<VesselSize> _categoryStrings = new();
     private readonly List<VesselClass> _classStrings = new();
+    private readonly List<VesselEngine> _engineStrings = new();
     private VesselSize? _category;
     private VesselClass? _class;
+    private VesselEngine? _engine;
 
     private List<string> _lastAvailableProtos = new();
     private List<string> _lastUnavailableProtos = new();
@@ -39,6 +41,7 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
         SearchBar.OnTextChanged += OnSearchBarTextChanged;
         Categories.OnItemSelected += OnCategoryItemSelected;
         Classes.OnItemSelected += OnClassItemSelected;
+        Engines.OnItemSelected += OnEngineItemSelected;
         SellShipButton.OnPressed += (args) => { OnSellShip?.Invoke(args); };
     }
 
@@ -52,6 +55,12 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
     private void OnClassItemSelected(OptionButton.ItemSelectedEventArgs args)
     {
         SetClassText(args.Id);
+        PopulateProducts(_lastAvailableProtos, _lastUnavailableProtos, _freeListings, _validId);
+    }
+
+    private void OnEngineItemSelected(OptionButton.ItemSelectedEventArgs args)
+    {
+        SetEngineText(args.Id);
         PopulateProducts(_lastAvailableProtos, _lastUnavailableProtos, _freeListings, _validId);
     }
 
@@ -69,6 +78,11 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
     {
         _class = id == 0 ? null : _classStrings[id];
         Classes.SelectId(id);
+    }
+    private void SetEngineText(int id)
+    {
+        _engine = id == 0 ? null : _engineStrings[id];
+        Engines.SelectId(id);
     }
     /// <summary>
     ///     Populates the list of products that will actually be shown, using the current filters.
@@ -114,6 +128,8 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
             if (_category != null && !prototype!.Category.Equals(_category))
                 continue;
             if (_class != null && !prototype!.Classes.Contains(_class.Value))
+                continue;
+            if (_engine != null && !prototype!.Engines.Contains(_engine.Value))
                 continue;
             if (search.Length > 0 && !prototype!.Name.ToLowerInvariant().Contains(search))
                 continue;
@@ -176,6 +192,9 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
         }
     }
 
+    /// <summary>
+    ///     Populates the list classes that will actually be shown, using the current filters.
+    /// </summary>
     public void PopulateClasses(List<string> availablePrototypes, List<string> unavailablePrototypes)
     {
         _classStrings.Clear();
@@ -210,6 +229,48 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
                 if (!_classStrings.Contains(cl) && cl != VesselClass.All)
                 {
                     _classStrings.Add(cl);
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    ///     Populates the list engines that will actually be shown, using the current filters.
+    /// </summary>
+    public void PopulateEngines(List<string> availablePrototypes, List<string> unavailablePrototypes)
+    {
+        _engineStrings.Clear();
+        Engines.Clear();
+
+        AddEnginesFromPrototypes(availablePrototypes);
+        AddEnginesFromPrototypes(unavailablePrototypes);
+
+        _engineStrings.Sort();
+
+        // Add "All" category at the top of the list
+        _engineStrings.Insert(0, VesselEngine.All);
+
+        foreach (var str in _engineStrings)
+        {
+            Engines.AddItem(Loc.GetString($"shipyard-console-engine-{str}"));
+        }
+    }
+
+    /// <summary>
+    /// Adds all ship engine power type from a list of vessel prototypes to the current control's list if they are missing.
+    /// </summary>
+    private void AddEnginesFromPrototypes(IEnumerable<string> prototypes)
+    {
+        foreach (var protoId in prototypes)
+        {
+            if (!_protoManager.TryIndex<VesselPrototype>(protoId, out var prototype))
+                continue;
+
+            foreach (var cl in prototype.Engines)
+            {
+                if (!_engineStrings.Contains(cl) && cl != VesselEngine.All)
+                {
+                    _engineStrings.Add(cl);
                 }
             }
         }
