@@ -14,6 +14,7 @@ public enum MedicalBountyRedemptionStatus : byte
     NoBody,
     NoBounty,
     TooDamaged,
+    NotAlive,
     Valid,
 }
 

@@ -12,6 +12,7 @@ using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
+using Content.Shared.Mobs.Components;
 using Content.Shared.Power;
 using Content.Shared.Stacks;
 using Content.Shared.UserInterface;
@@ -224,7 +225,8 @@ public sealed partial class MedicalBountySystem : EntitySystem
 
         if (!TryComp<MedicalBountyComponent>(bountyUid, out var medicalBounty) ||
             medicalBounty.Bounty == null ||
-            !TryComp<DamageableComponent>(bountyUid, out var damageable))
+            !TryComp<DamageableComponent>(bountyUid, out var damageable) ||
+            !TryComp<MobStateComponent>(bountyUid, out var mobState))
         {
             return new MedicalBountyRedemptionUIState(MedicalBountyRedemptionStatus.NoBounty, 0);
         }
@@ -234,6 +236,11 @@ public sealed partial class MedicalBountySystem : EntitySystem
         if (damageable.TotalDamage > bounty.MaximumDamageToRedeem)
         {
             return new MedicalBountyRedemptionUIState(MedicalBountyRedemptionStatus.TooDamaged, 0);
+        }
+
+        if (mobState.CurrentState != Shared.Mobs.MobState.Alive)
+        {
+            return new MedicalBountyRedemptionUIState(MedicalBountyRedemptionStatus.NotAlive, 0);
         }
 
         // Calculate amount of reward to pay out.
