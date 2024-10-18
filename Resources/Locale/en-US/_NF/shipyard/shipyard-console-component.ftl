@@ -64,7 +64,6 @@ shipyard-console-class-Detective = Detective
 shipyard-console-class-Fighter = Fighter
 shipyard-console-class-Patrol = Patrol
 shipyard-console-class-Pursuit = Pursuit
-shipyard-console-class-Stealth = Stealth
 
 shipyard-console-engine-All = All
 shipyard-console-engine-AME = AME
