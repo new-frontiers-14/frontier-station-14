@@ -47,6 +47,12 @@ public sealed class VesselPrototype : IPrototype
     public List<VesselClass> Classes = new();
 
     /// <summary>
+    ///     The group of the engine power type. (e.g. AME, Plasma, Solar etc.)
+    /// </summary>
+    [DataField("engine")]
+    public List<VesselEngine> Engines = new();
+
+    /// <summary>
     ///     The access required to buy the product. (e.g. Command, Mail, Bailiff, etc.)
     /// </summary>
     [DataField("access")]
@@ -122,3 +128,19 @@ public enum VesselClass : byte
     Capital,
 }
 
+public enum VesselEngine : byte
+{
+    All, // Should not be used by ships, intended as a placeholder value to represent everything
+    AME,
+    TEG,
+    SM,
+    Tesla,
+    Singularity,
+    Solar,
+    RTG,
+    APU,
+    Welding,
+    Plasma,
+    Uranium,
+    Bananium,
+}
