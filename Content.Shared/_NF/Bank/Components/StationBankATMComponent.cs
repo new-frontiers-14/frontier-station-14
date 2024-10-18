@@ -13,9 +13,9 @@ public sealed partial class StationBankATMComponent : Component
     [ViewVariables(VVAccess.ReadWrite), DataField("cashType", customTypeSerializer:typeof(PrototypeIdSerializer<StackPrototype>))]
     public string CashType = "Credit";
 
-    public static string CashSlotSlotId = "station-bank-ATM-cashSlot";
+    public static string CashSlotId = "station-bank-ATM-cashSlot";
 
-    [DataField("station-bank-ATM-cashSlot")]
+    [DataField]
     public ItemSlot CashSlot = new();
 
     [DataField("soundError")]
