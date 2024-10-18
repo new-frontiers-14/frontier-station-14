@@ -54,6 +54,7 @@ guide-entry-shipyard-liquidator = Liquidator
 guide-entry-shipyard-loader = Loader
 guide-entry-shipyard-mccargo = McCargo
 guide-entry-shipyard-mcdelivery = McDelivery
+guide-entry-shipyard-omakase = Omakase
 guide-entry-shipyard-pathfinder = Pathfinder
 guide-entry-shipyard-pioneer = Pioneer
 guide-entry-shipyard-placebo = Placebo
