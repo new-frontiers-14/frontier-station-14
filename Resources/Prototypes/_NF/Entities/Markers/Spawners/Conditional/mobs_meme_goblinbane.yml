@@ -1,0 +1,107 @@
+# Possessed Toilet
+- type: entity
+  id: SpawnMobMemeGoblinbane
+  name: goblinbane spawner
+  parent: MarkerBasePlaceFree
+  suffix: AI, Hostile
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+      - sprite: _NF/Mobs/Meme/goblinbane.rsi
+        state: alive
+  - type: ConditionalSpawner
+    prototypes:
+    - MobMemeGoblinbane
+
+# Possessed Mop
+- type: entity
+  id: SpawnMobMemePossessedMop
+  name: possessed mop spawner
+  parent: MarkerBasePlaceFree
+  suffix: AI, Hostile
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+      - sprite: _NF/Mobs/Meme/goblinbane.rsi
+        state: mop_alive
+  - type: ConditionalSpawner
+    prototypes:
+    - MobMemePossessedMop
+
+# Possessed Spray
+- type: entity
+  id: SpawnMobMemePossessedSpray
+  name: possessed spray spawner
+  parent: MarkerBasePlaceFree
+  suffix: AI, Hostile
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+      - sprite: _NF/Mobs/Meme/goblinbane.rsi
+        state: spray_alive
+  - type: ConditionalSpawner
+    prototypes:
+    - MobMemePossessedSpray
+
+# Possessed Bucket
+- type: entity
+  id: SpawnMobMemePossessedBucket
+  name: possessed mop bucket spawner
+  parent: MarkerBasePlaceFree
+  suffix: AI, Hostile
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+      - sprite: _NF/Mobs/Meme/goblinbane.rsi
+        state: bucket_alive
+  - type: ConditionalSpawner
+    prototypes:
+    - MobMemePossessedBucket
+
+# Mop bucket portal
+- type: entity
+  id: SpawnMopBucketDimnsionPortal
+  name: mop bucket portal spawner
+  parent: MarkerBasePlaceFree
+  suffix: AI, Hostile
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+      - sprite: _NF/Mobs/Meme/goblinbane.rsi
+        state: bucket_portal
+        shader: unshaded
+  - type: ConditionalSpawner
+    prototypes:
+    - MopBucketDimnsionPortal
+  - type: Ammo
+    muzzleFlash: null
+
+# Randomised mob portal(bucket/mop/sprayer)
+- type: entity
+  id: SpawnCleanlinessDimensionPortal
+  name: cleanliness dimension portal spawner
+  parent: MarkerBasePlaceFree
+  suffix: AI, Hostile
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+      - sprite: _NF/Mobs/Meme/goblinbane.rsi
+        state: bucket_portal
+        shader: unshaded
+  - type: ConditionalSpawner
+    prototypes:
+    - CleanlinessDimensionPortal
+  - type: Ammo
+    muzzleFlash: null
