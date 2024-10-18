@@ -29,25 +29,25 @@ public sealed class VesselPrototype : IPrototype
     public int Price;
 
     /// <summary>
-    ///     The category of the product. (e.g. Small, Medium, Large, Emergency, Special etc.)
+    ///     The category of the vessel. (e.g. Small, Medium, Large, Emergency, Special etc.)
     /// </summary>
     [DataField("category", required: true)]
     public VesselSize Category = VesselSize.Small;
 
     /// <summary>
-    ///     The group of the product. (e.g. Civilian, Syndicate, Contraband etc.)
+    ///     The shipyard listing that of the vessel. (e.g. Civilian, Syndicate, Contraband etc.)
     /// </summary>
     [DataField("group", required: true)]
     public ShipyardConsoleUiKey Group = ShipyardConsoleUiKey.Shipyard;
 
     /// <summary>
-    ///     The group of the product. (e.g. Civilian, Syndicate, Contraband etc.)
+    ///     The purpose of the vessel. (e.g. Service, Cargo,  etc.)
     /// </summary>
     [DataField("class")]
     public List<VesselClass> Classes = new();
 
     /// <summary>
-    ///     The group of the engine power type. (e.g. AME, Plasma, Solar etc.)
+    ///     The engine type that powers the vessel. (e.g. AME, Plasma, Solar etc.)
     /// </summary>
     [DataField("engine")]
     public List<VesselEngine> Engines = new();
@@ -102,6 +102,13 @@ public enum VesselSize : byte
 public enum VesselClass : byte
 {
     All, // Should not be used by ships, intended as a placeholder value to represent everything
+    // NFSD-specific categories
+    Capital,
+    Detainment,
+    Detective,
+    Fighter,
+    Patrol,
+    Pursuit,
     // Capabilities
     Expedition,
     Scrapyard,
@@ -120,12 +127,6 @@ public enum VesselClass : byte
     // Antag ships
     Syndicate,
     Pirate,
-    // NFSD-specific categories
-    Detainment,
-    Detective,
-    Fighter,
-    Stealth,
-    Capital,
 }
 
 public enum VesselEngine : byte
@@ -133,7 +134,7 @@ public enum VesselEngine : byte
     All, // Should not be used by ships, intended as a placeholder value to represent everything
     AME,
     TEG,
-    SM,
+    Supermatter,
     Tesla,
     Singularity,
     Solar,

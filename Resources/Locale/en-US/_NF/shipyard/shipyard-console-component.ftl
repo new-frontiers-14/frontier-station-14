@@ -54,18 +54,22 @@ shipyard-console-class-Atmospherics = Atmospherics
 shipyard-console-class-Medical = Medical
 shipyard-console-class-Civilian = Civilian
 shipyard-console-class-Kitchen = Kitchen
+# Antag
 shipyard-console-class-Syndicate = Syndicate
 shipyard-console-class-Pirate = Pirate
+# NFSD
+shipyard-console-class-Capital = Capital
 shipyard-console-class-Detainment = Detainment
 shipyard-console-class-Detective = Detective
 shipyard-console-class-Fighter = Fighter
+shipyard-console-class-Patrol = Patrol
+shipyard-console-class-Pursuit = Pursuit
 shipyard-console-class-Stealth = Stealth
-shipyard-console-class-Capital = Capital
 
 shipyard-console-engine-All = All
 shipyard-console-engine-AME = AME
 shipyard-console-engine-TEG = TEG
-shipyard-console-engine-SM = SM
+shipyard-console-engine-Supermatter = Supermatter
 shipyard-console-engine-Tesla = Tesla
 shipyard-console-engine-Singularity = Singularity
 shipyard-console-engine-Solar = Solar
