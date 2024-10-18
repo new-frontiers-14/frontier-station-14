@@ -17,7 +17,7 @@ namespace Content.Client._NF.Emp.Overlays
         [Dependency] private readonly IGameTiming _gameTiming = default!;
         private TransformSystem? _transform;
 
-        private const float MaxDist = 100.0f;
+        private const float PvsDist = 25.0f;
 
         public override OverlaySpace Space => OverlaySpace.WorldSpace;
         public override bool RequestScreenTexture => true;
@@ -88,7 +88,7 @@ namespace Content.Client._NF.Emp.Overlays
             //Add all blasts that are not added yet but qualify
             while (blasts.MoveNext(out var blastEntity, out var blast))
             {
-                if (!_blasts.ContainsKey(blastEntity) && BlastQualifies(blastEntity, currentEyeLoc))
+                if (!_blasts.ContainsKey(blastEntity) && BlastQualifies(blastEntity, currentEyeLoc, blast))
                 {
                     _blasts.Add(
                             blastEntity,
@@ -109,8 +109,8 @@ namespace Content.Client._NF.Emp.Overlays
             foreach (var blastEntity in activeShaderIds) //Remove all blasts that are added and no longer qualify
             {
                 if (_entityManager.EntityExists(blastEntity) &&
-                    BlastQualifies(blastEntity, currentEyeLoc) &&
-                    _entityManager.TryGetComponent(blastEntity, out EmpBlastComponent? blast))
+                    _entityManager.TryGetComponent(blastEntity, out EmpBlastComponent? blast) &&
+                    BlastQualifies(blastEntity, currentEyeLoc, blast))
                 {
                     var shaderInstance = _blasts[blastEntity];
                     shaderInstance.instance.CurrentMapCoords = _transform.GetMapCoordinates(blastEntity);
@@ -125,12 +125,12 @@ namespace Content.Client._NF.Emp.Overlays
 
         }
 
-        private bool BlastQualifies(EntityUid blastEntity, MapCoordinates currentEyeLoc)
+        private bool BlastQualifies(EntityUid blastEntity, MapCoordinates currentEyeLoc, EmpBlastComponent blast)
         {
             var transformComponent = _entityManager.GetComponent<TransformComponent>(blastEntity);
             var transformSystem = _entityManager.System<SharedTransformSystem>();
             return transformComponent.MapID == currentEyeLoc.MapId
-                && transformSystem.InRange(transformComponent.Coordinates, transformSystem.ToCoordinates(transformComponent.ParentUid, currentEyeLoc), MaxDist);
+                && transformSystem.InRange(transformComponent.Coordinates, transformSystem.ToCoordinates(transformComponent.ParentUid, currentEyeLoc), PvsDist + blast.VisualRange);
         }
 
         private sealed record EmpShaderInstance(MapCoordinates CurrentMapCoords, float Range, TimeSpan Start, float Duration)
