@@ -427,7 +427,7 @@ public sealed partial class ServerApi : IPostInjectInit
         var message = new SharedBwoinkSystem.BwoinkTextMessage(player.UserId, SharedBwoinkSystem.SystemUserId, body.Text);
 
         // If we want to only send the message to the player
-        if (!body.useronly)
+        if (!body.UserOnly)
         {
             // Get all Online admins with the adminhelp flag
             var adminList = _serverAdminManager.ActiveAdmins
