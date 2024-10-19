@@ -205,7 +205,7 @@
         Blunt: 10
 
 - type: entity
-  parent: [ SimpleSpaceMobBase, MobCombat ]
+  parent: [ NFMobRestrictions, SimpleSpaceMobBase, MobCombat ] # Frontier: add NFMobRestrictions
   id: BaseMobFleshSalvage #This one is immune to space!
   name: aberrant flesh
   suffix: "Salvage Ruleset"
@@ -261,7 +261,6 @@
         Slash: 6
   - type: ReplacementAccent
     accent: genericAggressive
-  - type: NFSalvageMobRestrictions # Frontier
 
 - type: entity
   parent: BaseMobFleshSalvage
