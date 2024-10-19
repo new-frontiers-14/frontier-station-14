@@ -33,6 +33,12 @@ public sealed partial class CartridgeComponent : Component
     /// </summary>
     [DataField]
     public bool AutoInstall = false;
+
+    /// <summary>
+    /// Frontier: Block uninstall
+    /// </summary>
+    [DataField]
+    public bool Readonly = false;
 }
 
 [Serializable, NetSerializable]

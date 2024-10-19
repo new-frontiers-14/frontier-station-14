@@ -218,6 +218,9 @@ public sealed class CartridgeLoaderSystem : SharedCartridgeLoaderSystem
         RaiseLocalEvent(installedProgram, new CartridgeAddedEvent(loaderUid));
         UpdateUserInterfaceState(loaderUid, loader);
 
+        if (cartridge.Readonly) // Frontier: Block uninstall
+            cartridge.InstallationStatus = InstallationStatus.Readonly; // Frontier
+
         if (cartridge.Disposable) // Frontier: Delete the cartridge after install if its disposable.
             QueueDel(loader.CartridgeSlot.ContainerSlot!.ContainedEntity); // Frontier
 
