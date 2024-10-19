@@ -29,19 +29,19 @@ public sealed class VesselPrototype : IPrototype
     public int Price;
 
     /// <summary>
-    ///     The category of the vessel. (e.g. Small, Medium, Large, Emergency, Special etc.)
+    ///     The size of the vessel. (e.g. Small, Medium, Large etc.)
     /// </summary>
     [DataField("category", required: true)]
     public VesselSize Category = VesselSize.Small;
 
     /// <summary>
-    ///     The shipyard listing that of the vessel. (e.g. Civilian, Syndicate, Contraband etc.)
+    ///     The shipyard listing that the vessel should be in. (e.g. Civilian, Syndicate, Contraband etc.)
     /// </summary>
     [DataField("group", required: true)]
     public ShipyardConsoleUiKey Group = ShipyardConsoleUiKey.Shipyard;
 
     /// <summary>
-    ///     The purpose of the vessel. (e.g. Service, Cargo,  etc.)
+    ///     The purpose of the vessel. (e.g. Service, Cargo, Engineering etc.)
     /// </summary>
     [DataField("class")]
     public List<VesselClass> Classes = new();
