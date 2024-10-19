@@ -1,3 +1,4 @@
+# Full
 - type: entity
   id: HappyHonkMcCargo
   parent: HappyHonk
@@ -21,7 +22,8 @@
       orGroup: GiftPool
       prob: 0.05
   - type: StaticPrice
-    price: 40
+    price: 1
+    vendPrice: 200 # Need this to not bug out the cardbox worth...
 
 - type: entity
   id: HappyHonkMcCargoFood
@@ -211,3 +213,75 @@
     # Extra
 #    - id: FoodCondimentPacketPepper
     - id: FoodCondimentPacketSalt
+
+# Empty
+- type: entity
+  id: BoxMREEmpty
+  parent: BoxMRE
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents: []
+
+- type: entity
+  id: HappyHonkEmpty
+  parent: HappyHonk
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents: []
+
+- type: entity
+  id: HappyHonkMimeEmpty
+  parent: HappyHonkMime
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents: []
+
+- type: entity
+  id: HappyHonkNukieEmpty
+  parent: HappyHonkNukie
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents: []
+
+- type: entity
+  id: HappyHonkCluwneEmpty
+  parent: HappyHonkCluwne
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents: []
+
+- type: entity
+  id: HappyHonkMcCargoEmpty
+  parent: HappyHonkMcCargo
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents: []
+
+- type: entity
+  id: FoodBoxNuggetEmpty
+  parent: FoodBoxNugget
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents: []
+
+- type: entity
+  id: FoodContainerEggEmpty
+  parent: FoodContainerEgg
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents: []
+
+- type: entity
+  id: FoodBoxDonutEmpty
+  parent: FoodBoxDonut
+  components:
+  - type: StorageFill
+    contents: []
