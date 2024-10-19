@@ -208,8 +208,8 @@
     state: service
   - type: MachineBoard
     prototype: Biogenerator
-    requirements:
-      MatterBin: 2
+    requirements: # Frontier
+      MatterBin: 2 # Frontier stackRequirements<requirements
     tagRequirements:
       GlassBeaker:
         amount: 1
@@ -1329,9 +1329,9 @@
   components:
   - type: MachineBoard
     prototype: CutterMachine
-    requirements:
-      Capacitor: 1
-      Manipulator: 1
+    requirements: # Frontier
+      Capacitor: 1 # Frontier stackRequirements<requirements
+      Manipulator: 1 # Frontier stackRequirements<requirements
     stackRequirements:
       Steel: 2
       Cable: 1
