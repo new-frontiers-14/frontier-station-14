@@ -429,7 +429,7 @@ namespace Content.Server.Administration.Systems
 
             var payload = GeneratePayload(existingEmbed.description,
                 existingEmbed.username,
-                userId.UserId,
+                userId.UserId, // Frontier, this is used to identify the players in the webhook
                 existingEmbed.characterName);
 
             // If there is no existing embed, create a new one
@@ -505,7 +505,7 @@ namespace Content.Server.Administration.Systems
             return new WebhookPayload
             {
                 Username = username,
-                UserID = userId,
+                UserID = userId, // Frontier, this is used to identify the players in the webhook
                 AvatarUrl = string.IsNullOrWhiteSpace(_avatarUrl) ? null : _avatarUrl,
                 Embeds = new List<WebhookEmbed>
                 {
