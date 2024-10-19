@@ -51,6 +51,7 @@ public sealed partial class ServerApi : IPostInjectInit
     [Dependency] private readonly IConfigurationManager _config = default!;
     [Dependency] private readonly ISharedPlayerManager _playerManager = default!;
     [Dependency] private readonly ISharedAdminManager _adminManager = default!;
+    [Dependency] private readonly IAdminManager _serverAdminManager = default!;
     [Dependency] private readonly IGameMapManager _gameMapManager = default!;
     [Dependency] private readonly IServerNetManager _netManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
@@ -426,13 +427,10 @@ public sealed partial class ServerApi : IPostInjectInit
         var message = new SharedBwoinkSystem.BwoinkTextMessage(player.UserId, SharedBwoinkSystem.SystemUserId, body.Text);
 
         // If we want to only send the message to the player
-        if (body.useronly)
+        if (!body.useronly)
         {
-            // Get the required admin manager
-            IAdminManager aManager = default!;
-
             // Get all Online admins with the adminhelp flag
-            var adminList = aManager.ActiveAdmins
+            var adminList = _serverAdminManager.ActiveAdmins
             .Where(p => _adminManager.GetAdminData(p)?.HasFlag(AdminFlags.Adminhelp) ?? false)
             .Select(p => p.Channel)
             .ToList();
