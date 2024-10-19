@@ -47,5 +47,5 @@ public sealed partial class ShuttleRecordsConsoleComponent : Component
     /// This may be zero with different access levels, ie. if the SR uses the console.
     /// </summary>
     [DataField]
-    public double TransactionPrice { get; set; } = 10000;
+    public int TransactionPrice { get; set; } = 10000;
 }

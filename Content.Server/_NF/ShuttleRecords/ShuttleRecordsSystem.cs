@@ -1,9 +1,11 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using Content.Server._NF.SectorServices;
 using Content.Server._NF.ShuttleRecords.Components;
+using Content.Server.Administration.Logs;
 using Content.Server.Popups;
 using Content.Server.Station.Systems;
 using Content.Shared._NF.ShuttleRecords;
+using Content.Shared.Access.Systems;
 using Robust.Server.GameObjects;
 
 namespace Content.Server._NF.ShuttleRecords;
@@ -15,6 +17,8 @@ public sealed partial class ShuttleRecordsSystem : SharedShuttleRecordsSystem
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly SectorServiceSystem _sectorService = default!;
+    [Dependency] private readonly AccessReaderSystem _access = default!;
+    [Dependency] private readonly IAdminLogManager _adminLogger = default!;
 
 
     public override void Initialize()

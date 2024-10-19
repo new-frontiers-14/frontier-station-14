@@ -9,3 +9,5 @@ shuttle-records-transactions = List of Transactions
 shuttle-records-detail-title = Selected Shuttle Details
 shuttle-records-no-idcard = No ID card present.
 shuttle-records-no-record-found = No record found.
+shuttle-records-no-bank-account = Station has no bank account.
+shuttle-records-insufficient-funds = Station does not have enough funds.

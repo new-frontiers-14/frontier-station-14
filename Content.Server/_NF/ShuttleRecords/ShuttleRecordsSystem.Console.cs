@@ -1,8 +1,10 @@
 ﻿using System.Linq;
+using Content.Server.Cargo.Components;
 using Content.Shared._NF.ShuttleRecords;
 using Content.Shared._NF.ShuttleRecords.Components;
 using Content.Shared._NF.ShuttleRecords.Events;
 using Content.Shared.Access.Components;
+using Content.Shared.Database;
 using Content.Shared.Shipyard.Components;
 using Robust.Shared.Audio;
 
@@ -49,6 +51,7 @@ public sealed partial class ShuttleRecordsSystem
         if (!TryGetShuttleRecordsDataComponent(out var dataComponent))
             return;
 
+        // Check if id card is present.
         if (component.TargetIdSlot.ContainerSlot?.ContainedEntity is not { Valid: true } targetId)
         {
             _popup.PopupEntity(Loc.GetString("shuttle-records-no-idcard"), args.Actor);
@@ -56,17 +59,43 @@ public sealed partial class ShuttleRecordsSystem
             return;
         }
 
-        var record = dataComponent.ShuttleRecordsList.Select(record => record).FirstOrDefault(record => record.EntityUid == args.ShuttleNetEntity);
-        if (record != null)
+        // Check for & get station bank account.
+        var station = _station.GetOwningStation(uid);
+        if (!TryComp<StationBankAccountComponent>(station, out var stationBank))
         {
-            AssignShuttleDeedProperties(record, targetId);
-            _audioSystem.PlayPredicted(component.ConfirmSound, uid, null, AudioParams.Default.WithMaxDistance(5f));
+            _popup.PopupEntity(Loc.GetString("shuttle-records-no-bank-account"), args.Actor);
+            _audioSystem.PlayPredicted(component.ErrorSound, uid, null, AudioParams.Default.WithMaxDistance(5f));
+            return;
         }
-        else
+
+        // Ensure that after the deduction math there is more than 0 left in the account.
+        var balanceAfterTransaction = stationBank.Balance - component.TransactionPrice;
+        if (balanceAfterTransaction >= 0)
+        {
+            _popup.PopupEntity(Loc.GetString("shuttle-records-insufficient-funds"), args.Actor);
+            _audioSystem.PlayPredicted(component.ErrorSound, uid, null, AudioParams.Default.WithMaxDistance(5f));
+        }
+
+        // Check if the shuttle record exists.
+        var record = dataComponent.ShuttleRecordsList.Select(record => record).FirstOrDefault(record => record.EntityUid == args.ShuttleNetEntity);
+        if (record == null)
         {
             _popup.PopupEntity(Loc.GetString("shuttle-records-no-record-found"), args.Actor);
             _audioSystem.PlayPredicted(component.ErrorSound, uid, null, AudioParams.Default.WithMaxDistance(5f));
         }
+
+        AssignShuttleDeedProperties(record!, targetId);
+
+        // Now we can finally deduct funds since everything went well.
+        stationBank.Balance = balanceAfterTransaction;
+
+        // Add to admin logs.
+        var shuttleName = record!.Name + " " + record.Suffix;
+        _adminLogger.Add(
+            LogType.ShuttleRecordsUsage,
+            LogImpact.Low,
+            $"{ToPrettyString(args.Actor):actor} used {component.TransactionPrice} from station bank account to copy shuttle deed {shuttleName}.");
+        _audioSystem.PlayPredicted(component.ConfirmSound, uid, null, AudioParams.Default.WithMaxDistance(5f));
     }
 
     private void AssignShuttleDeedProperties(ShuttleRecord shuttleRecord, EntityUid targetId)
