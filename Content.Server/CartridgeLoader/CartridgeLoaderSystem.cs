@@ -219,7 +219,7 @@ public sealed class CartridgeLoaderSystem : SharedCartridgeLoaderSystem
         UpdateUserInterfaceState(loaderUid, loader);
 
         if (cartridge.Disposable) // Frontier: Delete the cartridge after install if its disposable.
-            EntityManager.DeleteEntity(loader.CartridgeSlot.ContainerSlot!.ContainedEntity);
+            QueueDel(loader.CartridgeSlot.ContainerSlot!.ContainedEntity); // Frontier
 
         return true;
     }
@@ -347,9 +347,10 @@ public sealed class CartridgeLoaderSystem : SharedCartridgeLoaderSystem
         if (TryComp(args.Entity, out CartridgeComponent? cartridge))
             cartridge.LoaderUid = uid;
 
-        var prototypeId = Prototype(args.Entity)?.ID; // Frontier: Try to auto install the program when inserted, QOL
-        if (prototypeId != null && cartridge != null && cartridge.AutoInstall)
-            InstallProgram(uid, prototypeId, loader: loader);
+        // Frontier: Try to auto install the program when inserted, QOL
+        if (cartridge != null && cartridge.AutoInstall)
+            InstallCartridge(uid, args.Entity, loader);
+        // End Frontier
 
         RaiseLocalEvent(args.Entity, new CartridgeAddedEvent(uid));
         base.OnItemInserted(uid, loader, args);
