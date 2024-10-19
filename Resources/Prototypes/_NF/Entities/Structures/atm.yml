@@ -8,6 +8,11 @@
     singleUser: true
   - type: Computer
     board: Null
+  - type: ItemSlots # TODO: move ItemSlot to be nullable, withdraw shouldn't have one at all
+  - type: ContainerContainer
+    containers:
+      board: !type:Container
+      bank-ATM-cashSlot: !type:ContainerSlot
 
 - type: entity
   name: bank ATM
@@ -32,11 +37,6 @@
     interfaces:
       enum.BankATMMenuUiKey.ATM:
         type: BankATMMenuBoundUserInterface
-  - type: ItemSlots
-  - type: ContainerContainer
-    containers:
-      board: !type:Container
-      bank-ATM-cashSlot: !type:ContainerSlot
 
 - type: entity
   name: withdraw-only bank ATM

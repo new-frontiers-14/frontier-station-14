@@ -113,10 +113,8 @@
 
 - type: entity
   id: MobBearSpaceSalvage
-  parent: MobBearSpace
+  parent: [NFMobRestrictions, MobBearSpace] # Frontier: add NFMobRestrictions, remove components
   suffix: "Salvage Ruleset"
-  components:
-  - type: NFSalvageMobRestrictions # Frontier
 
 - type: entity
   name: space kangaroo
@@ -268,10 +266,8 @@
 
 - type: entity
   id: MobSpiderSpaceSalvage
-  parent: MobSpiderSpace
+  parent: [NFMobRestrictions, MobSpiderSpace] # Frontier: add NFMobRestrictions, remove components
   suffix: "Salvage Ruleset"
-  components:
-  - type: NFSalvageMobRestrictions
 
 - type: entity
   name: space cobra
@@ -365,10 +361,8 @@
 
 - type: entity
   id: MobCobraSpaceSalvage
-  parent: MobCobraSpace
+  parent: [NFMobRestrictions, MobCobraSpace] # Frontier: add NFMobRestrictions, remove components
   suffix: "Salvage Ruleset"
-  components:
-    - type: NFSalvageMobRestrictions # Frontier: SalvageMobRestrictions<NFSalvageMobRestrictions
 
 - type: entity
   parent: SimpleSpaceMobBase

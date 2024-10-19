@@ -12,7 +12,7 @@
 
 - type: entity
   id: LockerNfsdSilverDetectiveFilled
-  suffix: Filled
+  suffix: Detective, Filled
   parent: LockerNfsdSilver
   components:
   - type: StorageFill
@@ -21,6 +21,8 @@
       - id: DrinkDetFlask
       - id: BoxEvidenceMarkers
       - id: HandLabeler
+  - type: AccessReader
+    access: [["Detective"]]
 
 - type: entity
   id: NFLockerSecurityFilled
@@ -49,8 +51,6 @@
   name: turret safe
   suffix: NFSD, Filled
   components:
-  - type: AccessReader
-    access: [["Security"]]
   - type: StorageFill
     contents:
     - id: WeaponCaseHeavyCdet
@@ -59,6 +59,8 @@
       amount: 1
     - id: WeaponCaseHeavyAsmgt
       amount: 1
+  - type: AccessReader
+    access: [["Security"]]
 
 - type: entity
   parent: GunSafe
@@ -66,9 +68,9 @@
   name: turret safe
   suffix: CDET, Filled
   components:
-  - type: AccessReader
-    access: [["Security"]]
   - type: StorageFill
     contents:
     - id: WeaponCaseHeavyCdet
       amount: 1
+  - type: AccessReader
+    access: [["Security"]]
