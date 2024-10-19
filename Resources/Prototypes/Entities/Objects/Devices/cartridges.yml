@@ -68,6 +68,8 @@
       icon:
         sprite: Structures/Machines/server.rsi
         state: server
+      disposable: true # Frontier
+      autoInstall: true # Frontier
     - type: NetProbeCartridge
 
 - type: entity
@@ -91,7 +93,6 @@
         state: closed
       disposable: true # Frontier
       autoInstall: true # Frontier
-      readonly: true # Frontier
     - type: LogProbeCartridge
     - type: GuideHelp
       guides:
@@ -116,6 +117,9 @@
     icon:
       sprite: Objects/Misc/books.rsi
       state: icon_magnifier
+    disposable: true # Frontier
+    autoInstall: true # Frontier
+    readonly: true # Frontier
   - type: WantedListCartridge
   - type: StealTarget
     stealGroup: WantedListCartridge
@@ -137,6 +141,8 @@
       icon:
         sprite: Objects/Specific/Medical/healthanalyzer.rsi
         state: icon
+      disposable: true # Frontier
+      autoInstall: true # Frontier
     - type: MedTekCartridge
 
 - type: entity
@@ -156,4 +162,6 @@
       icon:
         sprite: Objects/Devices/gps.rsi
         state: icon
+      disposable: true # Frontier
+      autoInstall: true # Frontier
     - type: AstroNavCartridge

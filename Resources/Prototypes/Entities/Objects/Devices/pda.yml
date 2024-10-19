@@ -85,6 +85,7 @@
       - NotekeeperCartridge
       - NewsReaderCartridge
       - BountyContractsCartridge # Frontier
+      - AstroNavCartridge # Frontier
     cartridgeSlot:
       priority: -1
       name: device-pda-slot-component-slot-name-cartridge
@@ -136,28 +137,29 @@
     - CrewManifestCartridge
     - NotekeeperCartridge
     - NewsReaderCartridge
-    - WantedListCartridge
     - BountyContractsCartridge # Frontier
+    - AstroNavCartridge # Frontier
+    - WantedListCartridge
 
 - type: entity
   parent: BasePDA
   id: BaseMedicalPDA
   abstract: true
-  components:
-  - type: CartridgeLoader
-    uiKey: enum.PdaUiKey.Key
-    preinstalled:
-      - CrewManifestCartridge
-      - NotekeeperCartridge
-      - NewsReaderCartridge
-      - MedTekCartridge
+  # components:
+  # - type: CartridgeLoader
+    # uiKey: enum.PdaUiKey.Key
+    # preinstalled:
+      # - CrewManifestCartridge
+      # - NotekeeperCartridge
+      # - NewsReaderCartridge
+      # - MedTekCartridge
 
 - type: entity
   parent: BasePDA
   id: PassengerPDA
-  categories: [ HideSpawnMenu ] # Frontier
   name: passenger PDA
   description: Why isn't it gray?
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: Pda
     id: PassengerIDCard
@@ -199,7 +201,7 @@
     - Medical Doctor
 
 - type: entity
-  parent: BasePDA
+  parent: BaseSecurityPDA
   id: SecurityCadetPDA
   name: security cadet PDA
   description: Why isn't it red?
@@ -467,7 +469,7 @@
     state: pda-library
 
 - type: entity
-  parent: [BaseSecurityPDA, BasePDA]
+  parent: BaseSecurityPDA
   id: LawyerPDA
   name: lawyer PDA
   description: For lawyers to poach dubious clients.
@@ -510,7 +512,7 @@
     state: pda-janitor
 
 - type: entity
-  parent: [BaseSecurityPDA, BasePDA]
+  parent: BaseSecurityPDA
   id: CaptainPDA
   name: captain PDA
   description: Surprisingly no different from your PDA.
@@ -685,7 +687,7 @@
     state: pda-science
 
 - type: entity
-  parent: [BaseSecurityPDA, BasePDA]
+  parent: BaseSecurityPDA
   id: HoSPDA
   name: head of security PDA
   description: Whosoever bears this PDA is the law.
@@ -700,7 +702,7 @@
     state: pda-hos
 
 - type: entity
-  parent: [BaseSecurityPDA, BasePDA]
+  parent: BaseSecurityPDA
   id: WardenPDA
   name: warden PDA
   description: The OS appears to have been jailbroken.
@@ -715,7 +717,7 @@
     state: pda-warden
 
 - type: entity
-  parent: [BaseSecurityPDA, BasePDA]
+  parent: BaseSecurityPDA
   id: SecurityPDA
   name: security PDA
   description: Red to hide the stains of passenger blood.
@@ -729,7 +731,7 @@
     state: pda-security
 
 - type: entity
-  parent: [BaseSecurityPDA, BasePDA]
+  parent: BaseSecurityPDA
   id: CentcomPDA
   name: CentComm PDA
   description: Light green sign of walking bureaucracy.
@@ -748,7 +750,7 @@
     state: pda-centcom
 
 - type: entity
-  parent: [MusicBasePDA, CentcomPDA, BaseMedicalPDA] # Frontier - Added MusicBasePDA parent
+  parent: CentcomPDA
   id: AdminPDA
   name: Admin PDA
   suffix: Admin
@@ -768,8 +770,6 @@
       - NewsReaderCartridge
       - LogProbeCartridge
       - WantedListCartridge
-      - BountyContractsCartridge # Frontier
-      - MailMetricsCartridge # Frontier
 
 - type: entity
   parent: CentcomPDA
@@ -825,9 +825,9 @@
 - type: entity
   parent: BasePDA
   id: ClearPDA
-  categories: [ HideSpawnMenu ] # Frontier
   name: clear PDA
   description: 99 and 44/100ths percent pure plastic.
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: Pda
     id: PassengerIDCard
@@ -872,7 +872,7 @@
           - Cartridge
 
 - type: entity
-  parent: [BaseSecurityPDA, BasePDA]
+  parent: BaseSecurityPDA
   id: ERTLeaderPDA
   name: ERT Leader PDA
   suffix: Leader
@@ -1024,11 +1024,11 @@
     state: pda-boxer
 
 - type: entity
-  parent: [BaseSecurityPDA, BasePDA]
+  parent: BaseSecurityPDA
   id: DetectivePDA
   name: detective PDA
-  categories: [ HideSpawnMenu ] # Frontier
   description: Smells like rain... pouring down the rooftops...
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: Pda
     id: DetectiveIDCard
@@ -1125,7 +1125,7 @@
     state: pda-seniorphysician
 
 - type: entity
-  parent: [BaseSecurityPDA, BasePDA]
+  parent: BaseSecurityPDA
   id: SeniorOfficerPDA
   name: senior officer PDA
   description: Beaten, battered and broken, but just barely useable.
@@ -1143,8 +1143,8 @@
   parent: SyndiPDA
   id: PiratePDA
   name: pirate PDA
-  categories: [ HideSpawnMenu ] # Frontier
   description: Yargh!
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: Pda
     id: PirateIDCard
