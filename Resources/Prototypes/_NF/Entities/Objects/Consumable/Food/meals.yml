@@ -275,7 +275,7 @@
     tags:
     - Vegetable
     - Fruit
-  
+
 - type: entity
   name: poached pears
   parent: FoodBowlBase
@@ -391,4 +391,170 @@
   - type: Tag
     tags:
     - Fruit
+    - Pie
+
+- type: entity
+  name: honey challah
+  parent: FoodMealBase
+  id: FoodHoneyChallah
+  description: Twisted bread with a dash of poppy seeds
+  components:
+  - type: FlavorProfile
+    flavors:
+      - honey
+      - bread
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/Baked/bread.rsi
+    state: challah
+  - type: SliceableFood
+    count: 4
+    slice: FoodChallahSlice
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 8
+        - ReagentId: Vitamin
+          Quantity: 8
+        - ReagentId: Flavorol
+          Quantity: 4
+
+- type: entity
+  name: challah slice
+  parent: ProduceSliceBase
+  id: FoodChallahSlice
+  description: A slice of poppy and honey, oh my!
+  components:
+  - type: FlavorProfile
+    flavors:
+      - honey
+      - bread
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Vitamin
+          Quantity: 2
+        - ReagentId: Flavorol
+          Quantity: 1
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/Baked/bread.rsi
+    state: challahslice
+  - type: Extractable
+    grindableSolutionName: food
+    juiceSolution:
+      reagents:
+        - ReagentId: Nutriment
+          Quantity: 3
+        - ReagentId: Vitamin
+          Quantity: 2
+        - ReagentId: Flavorol
+          Quantity: 1
+  - type: Tag
+    tags:
+      - Slice
+
+- type: entity
+  name: honey glazed ham
+  parent: FoodMealBase
+  id: FoodGlazedHam
+  description: Ham that is covered in honey with a dash of salt
+  components:
+  - type: FlavorProfile
+    flavors:
+      - honey
+      - salty
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/meat.rsi
+    state: honeyglazedham
+  - type: SliceableFood
+    count: 4
+    slice: FoodGlazedHamSlice
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 12
+        - ReagentId: Vitamin
+          Quantity: 8
+        - ReagentId: Flavorol
+          Quantity: 4
+  - type: Tag
+    tags:
+    - Meat
+
+- type: entity
+  name: honey glazed slice
+  parent: ProduceSliceBase
+  id: FoodGlazedHamSlice
+  description: A slice of wonderful ham, glazed in delicious honey
+  components:
+  - type: FlavorProfile
+    flavors:
+      - honey
+      - salty
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 3
+        - ReagentId: Vitamin
+          Quantity: 2
+        - ReagentId: Flavorol
+          Quantity: 1
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/meat.rsi
+    state: honeyglazedhamslice
+  - type: Extractable
+    grindableSolutionName: food
+    juiceSolution:
+      reagents:
+        - ReagentId: Nutriment
+          Quantity: 3
+        - ReagentId: Vitamin
+          Quantity: 2
+        - ReagentId: Flavorol
+          Quantity: 1
+  - type: Tag
+    tags:
+      - Slice
+      - Meat
+
+- type: entity
+  name: apple honey dutch baby
+  parent: FoodPieBase
+  id: FoodAppleHoneyDutchBaby
+  description: Apple and honey baked together with love
+  components:
+  - type: FlavorProfile
+    flavors:
+      - honey
+      - sweet
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/Baked/pie.rsi
+    layers:
+    - state: tin
+    - state: pearandcheese
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 15
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 6
+        - ReagentId: Vitamin
+          Quantity: 4
+        - ReagentId: Flavorol
+          Quantity: 3
+  - type: Tag
+    tags:
     - Pie
