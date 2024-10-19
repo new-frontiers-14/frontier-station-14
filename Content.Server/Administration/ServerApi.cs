@@ -7,6 +7,7 @@ using System.Text.Json;
 using System.Text.Json.Nodes;
 using System.Threading.Tasks;
 using Content.Server.Administration.Systems;
+using Content.Server.Administration.Managers;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Presets;
 using Content.Server.GameTicking.Rules.Components;
@@ -50,6 +51,7 @@ public sealed partial class ServerApi : IPostInjectInit
     [Dependency] private readonly IConfigurationManager _config = default!;
     [Dependency] private readonly ISharedPlayerManager _playerManager = default!;
     [Dependency] private readonly ISharedAdminManager _adminManager = default!;
+    [Dependency] private readonly IAdminManager _serverAdminManager = default!;
     [Dependency] private readonly IGameMapManager _gameMapManager = default!;
     [Dependency] private readonly IServerNetManager _netManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
@@ -82,7 +84,8 @@ public sealed partial class ServerApi : IPostInjectInit
         RegisterActorHandler(HttpMethod.Post, "/admin/actions/force_preset", ActionForcePreset);
         RegisterActorHandler(HttpMethod.Post, "/admin/actions/set_motd", ActionForceMotd);
         RegisterActorHandler(HttpMethod.Patch, "/admin/actions/panic_bunker", ActionPanicPunker);
-        RegisterActorHandler(HttpMethod.Post, "/admin/actions/send_bwoink", ActionSendBwoink);
+
+        RegisterHandler(HttpMethod.Post, "/admin/actions/send_bwoink", ActionSendBwoink); // Frontier - Discord Ahelp Reply
     }
 
     public void Initialize()
@@ -399,8 +402,9 @@ public sealed partial class ServerApi : IPostInjectInit
     #endregion
 
     #region Frontier
+    // Creating a region here incase more actions are added in the future
 
-    private async Task ActionSendBwoink(IStatusHandlerContext context, Actor actor)
+    private async Task ActionSendBwoink(IStatusHandlerContext context)
     {
         var body = await ReadJson<BwoinkActionBody>(context);
         if (body == null)
@@ -408,6 +412,7 @@ public sealed partial class ServerApi : IPostInjectInit
 
         await RunOnMainThread(async () =>
     {
+        // Player not online or wrong Guid
         if (!_playerManager.TryGetSessionById(new NetUserId(body.Guid), out var player))
         {
             await RespondError(
@@ -418,12 +423,27 @@ public sealed partial class ServerApi : IPostInjectInit
             return;
         }
 
+        // Message is parsed by the bot itself, we only need to make it a right component
         var message = new SharedBwoinkSystem.BwoinkTextMessage(player.UserId, SharedBwoinkSystem.SystemUserId, body.Text);
 
+        // If we want to only send the message to the player
+        if (!body.useronly)
+        {
+            // Get all Online admins with the adminhelp flag
+            var adminList = _serverAdminManager.ActiveAdmins
+            .Where(p => _adminManager.GetAdminData(p)?.HasFlag(AdminFlags.Adminhelp) ?? false)
+            .Select(p => p.Channel)
+            .ToList();
+
+            // Send the message to all online admins, so they also see it.
+            foreach (var admin in adminList)
+            {
+                _entityManager.EntityNetManager?.SendSystemNetworkMessage(message, admin);
+            }
+        }
+        // Send the message to the player
         _entityManager.EntityNetManager?.SendSystemNetworkMessage(message, player.Channel);
-        _sawmill.Debug($"Sent Bwoink to player {player.Name} by {FormatLogActor(actor)}");
-
-
+        // Respond with OK
         await RespondOk(context);
 
     });
@@ -671,6 +691,7 @@ public sealed partial class ServerApi : IPostInjectInit
     {
         public required string Text { get; init; }
         public required Guid Guid { get; init; }
+        public bool useronly { get; init; }
     }
 
     #endregion
