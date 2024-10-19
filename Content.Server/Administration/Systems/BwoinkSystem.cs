@@ -505,6 +505,7 @@ namespace Content.Server.Administration.Systems
             return new WebhookPayload
             {
                 Username = username,
+                UserID = userId,
                 AvatarUrl = string.IsNullOrWhiteSpace(_avatarUrl) ? null : _avatarUrl,
                 Embeds = new List<WebhookEmbed>
                 {
