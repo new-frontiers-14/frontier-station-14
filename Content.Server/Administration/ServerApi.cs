@@ -82,7 +82,8 @@ public sealed partial class ServerApi : IPostInjectInit
         RegisterActorHandler(HttpMethod.Post, "/admin/actions/force_preset", ActionForcePreset);
         RegisterActorHandler(HttpMethod.Post, "/admin/actions/set_motd", ActionForceMotd);
         RegisterActorHandler(HttpMethod.Patch, "/admin/actions/panic_bunker", ActionPanicPunker);
-        RegisterActorHandler(HttpMethod.Post, "/admin/actions/send_bwoink", ActionSendBwoink);
+
+        RegisterHandler(HttpMethod.Post, "/admin/actions/send_bwoink", ActionSendBwoink);
     }
 
     public void Initialize()
@@ -400,7 +401,7 @@ public sealed partial class ServerApi : IPostInjectInit
 
     #region Frontier
 
-    private async Task ActionSendBwoink(IStatusHandlerContext context, Actor actor)
+    private async Task ActionSendBwoink(IStatusHandlerContext context)
     {
         var body = await ReadJson<BwoinkActionBody>(context);
         if (body == null)
@@ -421,8 +422,7 @@ public sealed partial class ServerApi : IPostInjectInit
         var message = new SharedBwoinkSystem.BwoinkTextMessage(player.UserId, SharedBwoinkSystem.SystemUserId, body.Text);
 
         _entityManager.EntityNetManager?.SendSystemNetworkMessage(message, player.Channel);
-        _sawmill.Debug($"Sent Bwoink to player {player.Name} by {FormatLogActor(actor)}");
-
+        //_sawmill.Debug($"Sent Bwoink to player {player.Name} by {FormatLogActor(actor)}");
 
         await RespondOk(context);
 
