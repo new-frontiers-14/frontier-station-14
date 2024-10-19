@@ -34,7 +34,7 @@ public sealed partial class ShuttleRecordsSystem
         if (Transform(consoleUid).GridUid == null)
             return;
 
-        if (!TryGetShuttleRecordsDataComponent(consoleUid, out var dataComponent))
+        if (!TryGetShuttleRecordsDataComponent(out var dataComponent))
             return;
 
         var newState = new ShuttleRecordsConsoleInterfaceState(
@@ -46,7 +46,7 @@ public sealed partial class ShuttleRecordsSystem
 
     private void OnCopyDeedMessage(EntityUid uid, ShuttleRecordsConsoleComponent component, CopyDeedMessage args)
     {
-        if (!TryGetShuttleRecordsDataComponent(uid, out var dataComponent))
+        if (!TryGetShuttleRecordsDataComponent(out var dataComponent))
             return;
 
         if (component.TargetIdSlot.ContainerSlot?.ContainedEntity is not { Valid: true } targetId)
