@@ -170,3 +170,18 @@
       machine_board: !type:Container
       machine_parts: !type:Container
   - type: PowerSwitch
+
+# Frontier: Halloween special
+- type: entity
+  id: KitchenDeepFryerCauldron
+  parent: KitchenDeepFryer
+  name: cauldron
+  description: A mysterious and mystical cauldron, sputtering with magical energy. Or is that oil?
+  suffix: Holiday Special
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Machines/cauldron.rsi
+    snapCardinals: true
+  - type: SolutionContainerVisuals
+    maxFillLevels: 8
+# End Frontier

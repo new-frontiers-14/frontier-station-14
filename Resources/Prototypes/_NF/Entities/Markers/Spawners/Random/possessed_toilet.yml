@@ -1,0 +1,19 @@
+- type: entity
+  id: ToiletMemeSpawner
+  name: toilet spawner
+  suffix: Dungeon, Goblinbane
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - state: red
+        - sprite: Structures/Furniture/toilet.rsi
+          state: disposal
+    - type: RandomSpawner
+      prototypes:
+        - ToiletDirtyWater
+        - ToiletEmpty
+      chance: 1
+      rarePrototypes:
+        - MobMemeGoblinbane
+      rareChance: 0.05

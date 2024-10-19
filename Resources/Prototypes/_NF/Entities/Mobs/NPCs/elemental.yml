@@ -139,13 +139,12 @@
 - type: entity
   abstract: true
   id: MobOreCrabNF
-  parent: MobOreCrab
+  parent: [MobOreCrab, NFMobRestrictions]
   components:
   - type: NpcFactionMember
     factions:
     - SimpleHostile # Because AI stupid ass hell right now
   - type: MovementIgnoreGravity # Or they just can't do something
-  - type: NFSalvageMobRestrictions
 
 - type: entity
   parent: MobOreCrabNF
@@ -366,7 +365,7 @@
   abstract: true
   id: MobOreGolem
   name: ore golem
-  parent: [ MobElementalBase, MobCombat ]
+  parent: [ MobElementalBase, MobCombat, NFMobRestrictions ]
   components:
   - type: Sprite
     sprite: /Textures/_NF/Mobs/Elemental/golems.rsi
@@ -390,7 +389,6 @@
   - type: Damageable
     damageContainer: StructuralInorganic
   - type: MovementIgnoreGravity # Or they just can't do something
-  - type: NFSalvageMobRestrictions
   - type: Appearance # Next three components make the mob fall over when dead
   - type: StandingState
   - type: RotationVisuals
