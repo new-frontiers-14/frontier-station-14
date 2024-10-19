@@ -304,14 +304,20 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         else
             _adminLogger.Add(LogType.ShipYardUsage, LogImpact.Low, $"{ToPrettyString(player):actor} purchased shuttle {ToPrettyString(shuttleEntityUid.Value)} for {vessel.Price} credits via {ToPrettyString(component.Owner)}");
 
-        _shuttleRecordsSystem.AddRecord(
-            new ShuttleRecord(
-                name: deedShuttle.ShuttleName ?? "",
-                suffix: deedShuttle.ShuttleNameSuffix ?? "",
-                ownerName: shuttleOwner,
-                entityUid: _entityManager.GetNetEntity(shuttleEntityUid.Value)
-            )
-        );
+        // Adding the record to the shuttle records system makes them eligible to be copied.
+        // Can be set on the component of the shipyard.
+        if (component.CanTransferDeed)
+        {
+            _shuttleRecordsSystem.AddRecord(
+                new ShuttleRecord(
+                    name: deedShuttle.ShuttleName ?? "",
+                    suffix: deedShuttle.ShuttleNameSuffix ?? "",
+                    ownerName: shuttleOwner,
+                    entityUid: _entityManager.GetNetEntity(shuttleEntityUid.Value)
+                )
+            );
+        }
+
         RefreshState(shipyardConsoleUid, bank.Balance, true, name, sellValue, targetId, (ShipyardConsoleUiKey) args.UiKey, voucherUsed);
     }
 
