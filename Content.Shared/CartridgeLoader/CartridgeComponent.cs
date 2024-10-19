@@ -29,7 +29,7 @@ public sealed partial class CartridgeComponent : Component
     public bool Disposable = false;
 
     /// <summary>
-    /// Frontier: This is used for onetime use programs
+    /// Frontier: This is used to auto install on insert
     /// </summary>
     [DataField]
     public bool AutoInstall = false;
