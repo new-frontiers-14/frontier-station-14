@@ -7,7 +7,6 @@ using Content.Shared.Interaction;
 using Robust.Server.Containers;
 using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
-using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
 
@@ -218,10 +217,6 @@ public sealed class CartridgeLoaderSystem : SharedCartridgeLoaderSystem
 
         RaiseLocalEvent(installedProgram, new CartridgeAddedEvent(loaderUid));
         UpdateUserInterfaceState(loaderUid, loader);
-
-        if (cartridge.Disposable) // Frontier: Delete the cartridge after install if its disposable.
-            EntityManager.DeleteEntity(loader.CartridgeSlot.ContainerSlot!.ContainedEntity);
-
         return true;
     }
 
@@ -350,10 +345,6 @@ public sealed class CartridgeLoaderSystem : SharedCartridgeLoaderSystem
 
         RaiseLocalEvent(args.Entity, new CartridgeAddedEvent(uid));
         base.OnItemInserted(uid, loader, args);
-
-        var cartridgeUid = GetEntity(message.CartridgeUid);
-        if (cartridge != null && cartridge.AutoInstall) // Frontier: Try to auto install the program when inserted, QOL
-            InstallCartridge(uid, cartridge.LoaderUid, loader);
     }
 
     protected override void OnItemRemoved(EntityUid uid, CartridgeLoaderComponent loader, EntRemovedFromContainerMessage args)
