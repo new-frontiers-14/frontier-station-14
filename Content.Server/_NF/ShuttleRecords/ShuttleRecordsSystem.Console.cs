@@ -40,7 +40,8 @@ public sealed partial class ShuttleRecordsSystem
             return;
 
         var newState = new ShuttleRecordsConsoleInterfaceState(
-            records: dataComponent.ShuttleRecordsList
+            records: dataComponent.ShuttleRecordsList,
+            transactionCost: component.TransactionPrice
         );
 
         _ui.SetUiState(consoleUid, ShuttleRecordsUiKey.Default, newState);
@@ -70,10 +71,11 @@ public sealed partial class ShuttleRecordsSystem
 
         // Ensure that after the deduction math there is more than 0 left in the account.
         var balanceAfterTransaction = stationBank.Balance - component.TransactionPrice;
-        if (balanceAfterTransaction >= 0)
+        if (balanceAfterTransaction < 0)
         {
             _popup.PopupEntity(Loc.GetString("shuttle-records-insufficient-funds"), args.Actor);
             _audioSystem.PlayPredicted(component.ErrorSound, uid, null, AudioParams.Default.WithMaxDistance(5f));
+            return;
         }
 
         // Check if the shuttle record exists.
@@ -82,6 +84,7 @@ public sealed partial class ShuttleRecordsSystem
         {
             _popup.PopupEntity(Loc.GetString("shuttle-records-no-record-found"), args.Actor);
             _audioSystem.PlayPredicted(component.ErrorSound, uid, null, AudioParams.Default.WithMaxDistance(5f));
+            return;
         }
 
         // Check if the actor has access to the shuttle records console.
@@ -89,15 +92,16 @@ public sealed partial class ShuttleRecordsSystem
         {
             _popup.PopupEntity(Loc.GetString("shuttle-records-no-access"), args.Actor);
             _audioSystem.PlayPredicted(component.ErrorSound, uid, null, AudioParams.Default.WithMaxDistance(5f));
+            return;
         }
 
-        AssignShuttleDeedProperties(record!, targetId);
+        AssignShuttleDeedProperties(record, targetId);
 
         // Now we can finally deduct funds since everything went well.
         stationBank.Balance = balanceAfterTransaction;
 
         // Add to admin logs.
-        var shuttleName = record!.Name + " " + record.Suffix;
+        var shuttleName = record.Name + " " + record.Suffix;
         _adminLogger.Add(
             LogType.ShuttleRecordsUsage,
             LogImpact.Low,

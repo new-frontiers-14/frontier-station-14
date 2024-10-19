@@ -30,6 +30,11 @@ public sealed partial class ShuttleRecordsWindow : DefaultWindow
             listItem.OnPressed += _ => OnShuttleRecordListItemPressed(pair.ShuttleRecord);
             ShuttleRecordList.AddChild(listItem);
         }
+
+        TransactionCostLabel.Text = _loc.GetString(
+            messageId: "shuttle-records-transaction-cost",
+            arg: ("cost", state.TransactionCost)
+        );
     }
 
     public record ShuttleRecordViewStatePair(
@@ -44,7 +49,7 @@ public sealed partial class ShuttleRecordsWindow : DefaultWindow
                 new ShuttleRecordViewStatePair(
                     shuttleRecord,
                     new ShuttleRecordListItem.ViewState(
-                        shuttleRecord.Name + shuttleRecord.Suffix,
+                        shuttleRecord.Name + " " + shuttleRecord.Suffix,
                         disabled: false,
                         toolTip: ""
                     )
