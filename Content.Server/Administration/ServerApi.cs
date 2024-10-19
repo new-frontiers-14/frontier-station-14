@@ -420,6 +420,11 @@ public sealed partial class ServerApi : IPostInjectInit
 
         var message = new SharedBwoinkSystem.BwoinkTextMessage(player.UserId, SharedBwoinkSystem.SystemUserId, body.Text);
 
+        _entityManager.EntityNetManager?.SendSystemNetworkMessage(message, player.Channel);
+        _sawmill.Debug($"Sent Bwoink to player {player.Name} by {FormatLogActor(actor)}");
+
+
+        await RespondOk(context);
 
     });
 
