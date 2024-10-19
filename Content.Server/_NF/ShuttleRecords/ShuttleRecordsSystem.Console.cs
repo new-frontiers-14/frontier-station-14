@@ -84,6 +84,13 @@ public sealed partial class ShuttleRecordsSystem
             _audioSystem.PlayPredicted(component.ErrorSound, uid, null, AudioParams.Default.WithMaxDistance(5f));
         }
 
+        // Check if the actor has access to the shuttle records console.
+        if (!_access.IsAllowed(args.Actor, uid))
+        {
+            _popup.PopupEntity(Loc.GetString("shuttle-records-no-access"), args.Actor);
+            _audioSystem.PlayPredicted(component.ErrorSound, uid, null, AudioParams.Default.WithMaxDistance(5f));
+        }
+
         AssignShuttleDeedProperties(record!, targetId);
 
         // Now we can finally deduct funds since everything went well.
