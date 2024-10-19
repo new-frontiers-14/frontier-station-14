@@ -691,7 +691,7 @@ public sealed partial class ServerApi : IPostInjectInit
     {
         public required string Text { get; init; }
         public required Guid Guid { get; init; }
-        public bool useronly { get; init; }
+        public bool UserOnly { get; init; }
     }
 
     #endregion
