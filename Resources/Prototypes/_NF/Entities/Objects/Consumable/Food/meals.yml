@@ -513,7 +513,14 @@
           Quantity: 1
   - type: Sprite
     sprite: _NF/Objects/Consumable/Food/meat.rsi
-    state: honeyglazedhamslice
+    layers:
+      - state: honeyglazedhamslice
+        map: [ "Slice" ]
+  - type: RandomSprite
+    available:
+      - Slice:
+          honeyglazedhamslice: ""
+          normalhamslice: ""
   - type: Extractable
     grindableSolutionName: food
     juiceSolution:
