@@ -1,5 +1,5 @@
-using Content.Shared.CCVar;
 using Robust.Shared.Serialization;
+using CCVars = Content.Shared._EE.CCVar.EECCVars; // Frontier
 
 namespace Content.Shared.Contests;
 public sealed partial class ContestsSystem
