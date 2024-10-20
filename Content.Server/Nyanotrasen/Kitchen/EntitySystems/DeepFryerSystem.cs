@@ -4,6 +4,7 @@ using Content.Server.Administration.Logs;
 using Content.Server.Audio;
 using Content.Server.Cargo.Systems;
 using Content.Server.Chemistry.Containers.EntitySystems;
+using Content.Server.Chemistry.EntitySystems;
 using Content.Server.Construction;
 using Content.Server.DoAfter;
 using Content.Server.Fluids.EntitySystems;
@@ -14,6 +15,7 @@ using Content.Server.Nyanotrasen.Kitchen.Components;
 using Content.Server.Popups;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
+using Content.Server.Storage.EntitySystems;
 using Content.Server.Temperature.Components;
 using Content.Server.Temperature.Systems;
 using Content.Server.UserInterface;
@@ -27,7 +29,7 @@ using Content.Shared.Damage.Prototypes;
 using Content.Shared.Database;
 using Content.Shared.Destructible;
 using Content.Shared.DoAfter;
-using Content.Shared.EntityEffects; // Frontier
+using Content.Shared.EntityEffects;
 using Content.Shared.Examine;
 using Content.Shared.FixedPoint;
 using Content.Shared.Hands.Components;
@@ -43,6 +45,7 @@ using Content.Shared.Nyanotrasen.Kitchen;
 using Content.Shared.Nyanotrasen.Kitchen.Components;
 using Content.Shared.Nyanotrasen.Kitchen.UI;
 using Content.Shared.Popups;
+using Content.Shared.Power;
 using Content.Shared.Throwing;
 using Content.Shared.UserInterface;
 using Content.Shared.Whitelist;
@@ -107,7 +110,7 @@ public sealed partial class DeepFryerSystem : SharedDeepfryerSystem
         SubscribeLocalEvent<DeepFryerComponent, MachineDeconstructedEvent>(OnDeconstruct);
         SubscribeLocalEvent<DeepFryerComponent, DestructionEventArgs>(OnDestruction);
         SubscribeLocalEvent<DeepFryerComponent, ThrowHitByEvent>(OnThrowHitBy);
-        SubscribeLocalEvent<DeepFryerComponent, SolutionContainerChangedEvent>(OnSolutionChange);
+        SubscribeLocalEvent<DeepFryerComponent, SolutionChangedEvent>(OnSolutionChange);
         SubscribeLocalEvent<DeepFryerComponent, ContainerRelayMovementEntityEvent>(OnRelayMovement);
         SubscribeLocalEvent<DeepFryerComponent, InteractUsingEvent>(OnInteractUsing);
 
@@ -183,7 +186,7 @@ public sealed partial class DeepFryerSystem : SharedDeepfryerSystem
     /// </summary>
     public FixedPoint2 GetOilPurity(EntityUid uid, DeepFryerComponent component)
     {
-        if (component.Solution.Volume > 0)
+        if (component.Solution.Volume > 0) // Frontier: ensure no negative division.
             return GetOilVolume(uid, component) / component.Solution.Volume;
         return FixedPoint2.Zero;
     }
@@ -193,8 +196,8 @@ public sealed partial class DeepFryerSystem : SharedDeepfryerSystem
     /// </summary>
     public FixedPoint2 GetOilLevel(EntityUid uid, DeepFryerComponent component)
     {
-        if (component.Solution.Volume > 0)
-            return GetOilVolume(uid, component) / component.Solution.Volume;
+        if (component.Solution.MaxVolume > 0) // Frontier: ensure no negative division or division by zero.
+            return GetOilVolume(uid, component) / component.Solution.MaxVolume;
         return FixedPoint2.Zero;
     }
 
@@ -314,7 +317,7 @@ public sealed partial class DeepFryerSystem : SharedDeepfryerSystem
         // just in case the attempt is relevant to any system in the future.
         //
         // The blacklist overrides all.
-        if (component.Blacklist != null && _whitelistSystem.IsValid(component.Blacklist, item)) // Frontier: use new whitelist system
+        if (_whitelistSystem.IsBlacklistPass(component.Blacklist, item))
         {
             _popupSystem.PopupEntity(
                 Loc.GetString("deep-fryer-blacklist-item-failed",
@@ -356,7 +359,7 @@ public sealed partial class DeepFryerSystem : SharedDeepfryerSystem
                 _ => 10
             } * component.SolutionSizeCoefficient);
 
-        if (component.Whitelist != null && _whitelistSystem.IsValid(component.Whitelist, item) || // Frontier: use new whitelist system
+        if (_whitelistSystem.IsWhitelistPass(component.Whitelist, item) ||
             beingEvent.TurnIntoFood)
             MakeEdible(uid, component, item, solutionQuantity);
         else
@@ -384,7 +387,8 @@ public sealed partial class DeepFryerSystem : SharedDeepfryerSystem
         {
             //JJ Comment - not sure this works. Need to check if Reagent.ToString is correct.
             _prototypeManager.TryIndex<ReagentPrototype>(reagent.Reagent.ToString(), out var proto);
-            var effectsArgs = new EntityEffectReagentArgs(uid, // Frontier: ReagentEffectArgs<EntityEffectReagentArgs
+
+            var effectsArgs = new EntityEffectReagentArgs(uid,
                 EntityManager,
                 null,
                 component.Solution,
@@ -394,7 +398,7 @@ public sealed partial class DeepFryerSystem : SharedDeepfryerSystem
                 1f);
             foreach (var effect in component.UnsafeOilVolumeEffects)
             {
-                if (!EntityEffectExt.ShouldApply(effect, effectsArgs, _random)) // Frontier: effect.ShouldApply<EntityEffectExt.ShouldApply
+                if (!effect.ShouldApply(effectsArgs, _random))
                     continue;
                 effect.Effect(effectsArgs);
             }
@@ -497,7 +501,7 @@ public sealed partial class DeepFryerSystem : SharedDeepfryerSystem
         args.Handled = true;
     }
 
-    private void OnSolutionChange(EntityUid uid, DeepFryerComponent component, SolutionContainerChangedEvent args)
+    private void OnSolutionChange(EntityUid uid, DeepFryerComponent component, SolutionChangedEvent args)
     {
         UpdateUserInterface(uid, component);
         UpdateAmbientSound(uid, component);
@@ -506,6 +510,7 @@ public sealed partial class DeepFryerSystem : SharedDeepfryerSystem
     private void OnRelayMovement(EntityUid uid, DeepFryerComponent component,
         ref ContainerRelayMovementEntityEvent args)
     {
+
         if (!_containerSystem.Remove(args.Entity, component.Storage, destination: Transform(uid).Coordinates))
             return;
 
@@ -534,13 +539,10 @@ public sealed partial class DeepFryerSystem : SharedDeepfryerSystem
 
             var user = args.Actor;
 
-            if (user != null)
-            {
-                _handsSystem.TryPickupAnyHand(user, removedItem);
+            _handsSystem.TryPickupAnyHand(user, removedItem);
 
-                _adminLogManager.Add(LogType.Action, LogImpact.Low,
-                    $"{ToPrettyString(user)} took {ToPrettyString(args.Item)} out of {ToPrettyString(uid)}.");
-            }
+            _adminLogManager.Add(LogType.Action, LogImpact.Low,
+                $"{ToPrettyString(user)} took {ToPrettyString(args.Item)} out of {ToPrettyString(uid)}.");
 
             _audioSystem.PlayPvs(component.SoundRemoveItem, uid, AudioParamsInsertRemove);
 
@@ -612,8 +614,7 @@ public sealed partial class DeepFryerSystem : SharedDeepfryerSystem
     {
         var user = args.Actor;
 
-        if (user == null ||
-            !TryGetActiveHandSolutionContainer(uid, user, out var heldItem, out var heldSolution,
+        if (!TryGetActiveHandSolutionContainer(uid, user, out var heldItem, out var heldSolution,
                 out var transferAmount))
             return;
 
@@ -628,7 +629,7 @@ public sealed partial class DeepFryerSystem : SharedDeepfryerSystem
             return;
         }
 
-        var delay = Math.Clamp((float) wasteVolume * 0.1f, 1f, 5f);
+        var delay = TimeSpan.FromSeconds(Math.Clamp((float) wasteVolume * 0.1f, 1f, 5f));
 
         var ev = new ClearSlagDoAfterEvent(heldSolution.Value.Comp.Solution, transferAmount);
 
@@ -644,6 +645,7 @@ public sealed partial class DeepFryerSystem : SharedDeepfryerSystem
         _doAfterSystem.TryStartDoAfter(doAfterArgs);
     }
 
+    [Obsolete("Obsolete")]
     private void OnRemoveAllItems(EntityUid uid, DeepFryerComponent component, DeepFryerRemoveAllItemsMessage args)
     {
         if (component.Storage.ContainedEntities.Count == 0)
@@ -653,11 +655,8 @@ public sealed partial class DeepFryerSystem : SharedDeepfryerSystem
 
         var user = args.Actor;
 
-        if (user != null)
-        {
-            _adminLogManager.Add(LogType.Action, LogImpact.Low,
-                $"{ToPrettyString(user)} removed all items from {ToPrettyString(uid)}.");
-        }
+        _adminLogManager.Add(LogType.Action, LogImpact.Low,
+            $"{ToPrettyString(user)} removed all items from {ToPrettyString(uid)}.");
 
         _audioSystem.PlayPvs(component.SoundRemoveItem, uid, AudioParamsInsertRemove);
 

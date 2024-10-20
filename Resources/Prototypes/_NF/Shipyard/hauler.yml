@@ -1,23 +1,25 @@
 - type: vessel
-  id: hauler
+  id: Hauler
   name: NC Hauler
   description: A medium sized vessel specializing in long-haul salvage, mining, and cargo operations.
-  price: 60000
+  price: 77000
   category: Medium
   group: Shipyard
   shuttlePath: /Maps/_NF/Shuttles/hauler.yml
-  guidebookPage: Null
+  guidebookPage: ShipyardHauler
   class:
   - Cargo
   - Salvage
+  engine:
+  - Uranium
 
 - type: gameMap
-  id: hauler
+  id: Hauler
   mapName: 'NC Hauler'
   mapPath: /Maps/_NF/Shuttles/hauler.yml
   minPlayers: 0
   stations:
-    hauler:
+    Hauler:
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup

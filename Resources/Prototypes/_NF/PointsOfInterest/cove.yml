@@ -1,5 +1,5 @@
 # Author Info
-# GitHub: 
+# GitHub:
 # Discord: dvir01
 
 # Maintainer Info
@@ -13,10 +13,10 @@
   name: Pirate Cove
   rangeMin: 10000
   rangeMax: 15000
-  iffColor: "#C83737" #red the color of ebil
-  isHidden: true
-  alwaysSpawn: true
+  IFFColor: "#C83737" #red the color of ebil
+  IFFFlags: [HideLabel]
   allowIFFChanges: true
+  spawnGroup: Required
   gridPath: /Maps/_NF/POI/cove.yml
 
 - type: gameMap
@@ -30,6 +30,10 @@
       components:
         - type: StationNameSetup
           mapNameTemplate: 'Pirate Cove'
+        - type: ExtraStationInformation
+          iconPath: /Textures/_NF/Interface/Pirate/piratelogo.png
+          stationSubtext: 'frontier-lobby-pirate-subtext'
+          stationDescription: 'frontier-lobby-pirate-description'
         - type: StationJobs
           availableJobs:
             PirateCaptain: [ 1, 1 ]

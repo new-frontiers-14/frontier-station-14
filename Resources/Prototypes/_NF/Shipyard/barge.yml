@@ -12,14 +12,17 @@
   id: Barge
   name: NC Barge
   description: A medium shipping vessel repurposed into a salvage bar.
-  price: 42300
+  price: 47000 # Appraises for 42901, margin of ~10% - TODO: fix these values, getting tests to pass - Whatstone
   category: Medium
   group: Shipyard
   shuttlePath: /Maps/_NF/Shuttles/barge.yml
-  guidebookPage: Null
+  guidebookPage: ShipyardBarge
   class:
   - Cargo
   - Salvage
+  engine:
+  - Solar
+  - Plasma
 
 - type: gameMap
   id: Barge

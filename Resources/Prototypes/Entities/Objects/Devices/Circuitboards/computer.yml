@@ -24,8 +24,8 @@
 - type: entity
   parent: BaseComputerCircuitboard
   id: AlertsComputerCircuitboard
-  name: alerts computer board
-  description: A computer printed circuit board for an alerts computer.
+  name: atmospheric alerts computer board
+  description: A computer printed circuit board for an atmospheric alerts computer.
   components:
     - type: ComputerBoard
       prototype: ComputerAlert
@@ -171,18 +171,6 @@
 
 - type: entity
   parent: BaseComputerCircuitboard
-  id: SalvageShuttleConsoleCircuitboard
-  name: salvage shuttle console board
-  description: A computer printed circuit board for a salvage shuttle console.
-  categories: [ HideSpawnMenu ] # Frontier
-  components:
-    - type: ComputerBoard
-      prototype: ComputerShuttleSalvage
-    - type: StealTarget
-      stealGroup: SalvageShuttleConsoleCircuitboard
-
-- type: entity
-  parent: BaseComputerCircuitboard
   id: SurveillanceCameraMonitorCircuitboard
   name: surveillance camera monitor board
   description: A computer printed circuit board for a surveillance camera monitor.
@@ -305,7 +293,7 @@
       prototype: ComputerTabletopBodyScanner # Frontier
 
 - type: entity
-  parent: BaseComputerCircuitboard
+  parent: [BaseComputerCircuitboard, BaseC2ContrabandUnredeemable] # Frontier: BaseGrandTheftContraband<BaseC2ContrabandUnredeemable
   id: CommsComputerCircuitboard
   name: communications computer board
   description: A computer printed circuit board for a communications console.
@@ -318,7 +306,7 @@
       prototype: ComputerTabletopComms # Frontier
 
 - type: entity
-  parent: BaseComputerCircuitboard
+  parent: [ BaseComputerCircuitboard, BaseC3SyndicateContraband ] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   id: SyndicateCommsComputerCircuitboard
   name: syndicate communications computer board
   description: A computer printed circuit board for a syndicate communications console.
@@ -458,19 +446,6 @@
 
 - type: entity
   parent: BaseComputerCircuitboard
-  id: ShipyardComputerCircuitboard
-  name: shipyard computer board
-  description: A computer printed circuit board for a shipyard computer.
-  components:
-    - type: Sprite
-      state: cpu_supply
-    - type: ComputerBoard
-      prototype: ComputerShipyard
-    - type: ComputerTabletopBoard # Frontier
-      prototype: ComputerTabletopShipyard # Frontier
-
-- type: entity
-  parent: BaseComputerCircuitboard
   id: ComputerMassMediaCircuitboard
   name: news manager console board
   description: Write your message to the world!
@@ -505,3 +480,14 @@
       state: cpu_science
     - type: ComputerBoard
       prototype: ComputerRoboticsControl
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: StationAiUploadCircuitboard
+  name: AI upload console board
+  description: A computer printed circuit board for a AI upload console.
+  components:
+    - type: Sprite
+      state: cpu_science
+    - type: ComputerBoard
+      prototype: StationAiUploadComputer

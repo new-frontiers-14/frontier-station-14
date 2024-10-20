@@ -95,7 +95,7 @@
     - WhitelistChameleon
 
 - type: entity
-  parent: ClothingOuterBaseToggleable
+  parent: [ ChaplainClothes, ClothingOuterBaseToggleable ] # Frontier: added ChaplainClothes
   id: ClothingOuterHoodieChaplain
   name: chaplain's hoodie
   description: Black and strict chaplain hoodie.
@@ -219,7 +219,7 @@
     sprite: Clothing/OuterClothing/Misc/skubbody.rsi
 
 - type: entity
-  parent: ClothingOuterBase
+  parent: [ ChaplainClothes, ClothingOuterBase ] # Frontier: added ChaplainClothes
   id: ClothingOuterPlagueSuit
   name: plague doctor suit
   description: A bad omen.
@@ -230,7 +230,7 @@
     sprite: Clothing/OuterClothing/Misc/plaguedoctorsuit.rsi
 
 - type: entity
-  parent: ClothingOuterBase
+  parent: [ ChaplainClothes, ClothingOuterBase ] # Frontier: added ChaplainClothes
   id: ClothingOuterNunRobe
   name: nun robe
   description: Maximum piety in this star system.
@@ -300,7 +300,7 @@
       - state: equipped-OUTERCLOTHING-lines
         color: "#000000"
   - type: TemperatureProtection
-    coefficient: 0.3
+    coolingCoefficient: 0.3
 
 - type: entity
   parent: ClothingOuterBase
@@ -336,7 +336,7 @@
       - state: equipped-OUTERCLOTHING-lines
         color: "#000000"
   - type: TemperatureProtection
-    coefficient: 0.3
+    coolingCoefficient: 0.3
 
 - type: entity
   parent: ClothingOuterBase
@@ -372,7 +372,7 @@
       - state: equipped-OUTERCLOTHING-lines
         color: "#000000"
   - type: TemperatureProtection
-    coefficient: 0.3
+    coolingCoefficient: 0.3
 
 - type: entity
   parent: ClothingOuterBase

@@ -1,7 +1,7 @@
 # Belts that need/have visualizers
 
 - type: entity
-  parent: ClothingBeltStorageBase
+  parent: NFClothingBeltStorageBase # Frontier: ClothingBeltStorageBase<NFClothingBeltStorageBase
   id: ClothingBeltUtility
   name: utility belt
   description: Can hold various things.
@@ -11,7 +11,7 @@
   - type: Clothing
     sprite: Clothing/Belt/utility.rsi
   - type: Storage
-    maxItemSize: Normal
+    #maxItemSize: Normal# Frontier
     # TODO: Fill this out more.
     # whitelist: # Frontier: commented out whitelist
       # tags:
@@ -81,7 +81,7 @@
   - type: Appearance
 
 - type: entity
-  parent: ClothingBeltStorageBase
+  parent: NFClothingBeltStorageBase # Frontier: ClothingBeltStorageBase<NFClothingBeltStorageBase
   id: ClothingBeltChiefEngineer
   name: chief engineer's toolbelt
   description: Holds tools, looks snazzy.
@@ -161,7 +161,7 @@
   - type: Appearance
 
 - type: entity
-  parent: ClothingBeltStorageBase
+  parent: NFClothingBeltStorageBase # Frontier: ClothingBeltStorageBase<NFClothingBeltStorageBase
   id: ClothingBeltAssault
   name: assault belt
   description: A tactical assault belt.
@@ -201,7 +201,7 @@
   - type: Appearance
 
 - type: entity
-  parent: ClothingBeltStorageBase
+  parent: [ JanitorClothes, NFClothingBeltStorageBase ] # Frontier: added JanitorClothes
   id: ClothingBeltJanitor
   name: janibelt
   description: A belt used to hold most janitorial supplies.
@@ -210,7 +210,7 @@
     sprite: Clothing/Belt/janitor.rsi
   - type: Clothing
     sprite: Clothing/Belt/janitor.rsi
-  - type: Storage
+  #- type: Storage # Frontier
     # whitelist: # Frontier: commented out whitelist
       # tags:
         # - Wrench
@@ -228,7 +228,7 @@
       # components:
         # - LightReplacer
         # - SmokeOnTrigger
-    maxItemSize: Large
+    #maxItemSize: Large # Frontier
   - type: ItemMapper
     mapLayers:
       bottle:
@@ -247,7 +247,7 @@
   - type: Appearance
 
 - type: entity
-  parent: ClothingBeltStorageBase
+  parent: NFClothingBeltStorageBase # Frontier: ClothingBeltStorageBase<NFClothingBeltStorageBase
   id: ClothingBeltMedical
   name: medical belt
   description: Can hold various medical equipment.
@@ -324,7 +324,7 @@
     sprite: Clothing/Belt/emt.rsi
 
 - type: entity
-  parent: ClothingBeltStorageBase
+  parent: NFClothingBeltStorageBase # Frontier: ClothingBeltStorageBase<NFClothingBeltStorageBase
   id: ClothingBeltPlant
   name: botanical belt
   description: A belt used to hold most hydroponics supplies. Suprisingly, not green.
@@ -381,7 +381,7 @@
   - type: Appearance
 
 - type: entity
-  parent: ClothingBeltStorageBase
+  parent: NFClothingBeltStorageBase # Frontier: ClothingBeltStorageBase<NFClothingBeltStorageBase
   id: ClothingBeltChef
   name: chef belt
   description: A belt used to hold kitchen knives and condiments for quick access.
@@ -520,8 +520,8 @@
     state: sheath
   - type: Clothing
     sprite: Clothing/Belt/sheath.rsi
-  - type: Item
-    size: Ginormous
+  #- type: Item # Frontier
+    #size: Ginormous # Frontier
   - type: ItemSlots
     slots:
       item:
@@ -553,8 +553,8 @@
     sprite: Clothing/Belt/bandolier.rsi
   - type: Clothing
     sprite: Clothing/Belt/bandolier.rsi
-  - type: Item
-    size: Huge
+  #- type: Item # Frontier
+    #size: Huge # Frontier
   - type: BallisticAmmoProvider
     whitelist:
       tags:
@@ -577,7 +577,7 @@
     - Kangaroo
 
 - type: entity
-  parent: ClothingBeltStorageBase
+  parent: NFClothingBeltStorageBase # Frontier: ClothingBeltStorageBase<NFClothingBeltStorageBase
   id: ClothingBeltHolster
   name: shoulder holster
   description: 'A holster to carry a handgun and ammo. WARNING: Badasses only.'
@@ -591,7 +591,7 @@
     # - 0,0,3,1 # Frontier: commented out
 
 - type: entity
-  parent: [ClothingBeltStorageBase, BaseC3SyndicateContraband, ContrabandClothing] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband, added ContrabandClothing as parent
+  parent: [NFClothingBeltStorageBase, BaseC3SyndicateContraband, ContrabandClothing] # Frontier: ClothingBeltStorageBase<NFClothingBeltStorageBase, BaseSyndicateContraband<BaseC3SyndicateContraband, added ContrabandClothing as parent
   id: ClothingBeltSyndieHolster
   name: syndicate shoulder holster
   description: A deep shoulder holster capable of holding many types of ballistics.
@@ -600,8 +600,8 @@
     sprite: Clothing/Belt/syndieholster.rsi
   - type: Clothing
     sprite: Clothing/Belt/syndieholster.rsi
-  - type: Item
-    size: Ginormous
+  #- type: Item # Frontier
+    #size: Ginormous # Frontier
   # - type: Storage # Frontier: commented out
     # maxItemSize: Huge # Frontier: commented out
     # grid: # Frontier: commented out
@@ -613,9 +613,9 @@
         # - CartridgeAmmo
 
 - type: entity
-  parent: ClothingBeltStorageBase #Frontier - ClothingBeltSecurity<ClothingBeltStorageBase
+  parent: NFClothingBeltStorageBase # Frontier: ClothingBeltStorageBase<NFClothingBeltStorageBase
   id: ClothingBeltSecurityWebbing
-  name: security webbing
+  name: security carrier
   description: Unique and versatile chest rig, can hold security gear.
   components:
   - type: Sprite
@@ -624,8 +624,8 @@
     sprite: Clothing/Belt/securitywebbing.rsi
 
 - type: entity
-  parent: ClothingBeltStorageBase
-  id: ClothingBeltMercenaryWebbing # Frontier - Merc to Mercenary
+  parent: NFClothingBeltStorageBase # Frontier: ClothingBeltStorageBase<NFClothingBeltStorageBase, remove BaseSecurityCargoContraband
+  id: ClothingBeltMercenaryWebbing # Frontier: Merc to Mercenary
   name: mercenary webbing
   description: Ideal for storing everything from ammo to weapons and combat essentials.
   components:
@@ -635,7 +635,7 @@
     sprite: Clothing/Belt/mercwebbing.rsi
 
 - type: entity
-  parent: ClothingBeltStorageBase
+  parent: NFClothingBeltStorageBase # Frontier: ClothingBeltStorageBase<NFClothingBeltStorageBase
   id: ClothingBeltSalvageWebbing
   name: salvage rig
   description: Universal unloading system for work in space.
@@ -646,7 +646,7 @@
     sprite: Clothing/Belt/salvagewebbing.rsi
 
 - type: entity
-  parent: [ClothingBeltStorageBase, ContentsExplosionResistanceBase, BaseC1Contraband] # Frontier: BaseSyndicateContraband<BaseC1Contraband
+  parent: [NFClothingBeltStorageBase, ContentsExplosionResistanceBase, BaseC1Contraband] # Frontier: ClothingBeltStorageBase<NFClothingBeltStorageBase, BaseSyndicateContraband<BaseC1Contraband
   id: ClothingBeltMilitaryWebbing
   name: chest rig
   description: A set of tactical webbing worn by boarding parties. # Frontier
@@ -668,29 +668,39 @@
     sprite: Clothing/Belt/militarywebbingmed.rsi
   - type: Clothing
     sprite: Clothing/Belt/militarywebbingmed.rsi
-  - type: Item
-    size: Huge
+  #- type: Item # Frontier
+    #size: Huge # Frontier
   - type: ExplosionResistance
     damageCoefficient: 0.1
 
 - type: entity
-  parent: ClothingBeltBase
-  id: ClothingBeltSuspenders
-  name: suspenders
+  parent: NFClothingBeltStorageBase # Frontier: ClothingBeltStorageBase<NFClothingBeltStorageBase
+  id: ClothingBeltSuspendersRed
+  name: red suspenders
   description: For holding your pants up.
   components:
   - type: Tag
     tags:
     - MimeBelt
   - type: Sprite
-    sprite: Clothing/Belt/suspenders.rsi
+    sprite: Clothing/Belt/suspenders_red.rsi
     state: icon
   - type: Clothing
-    sprite: Clothing/Belt/suspenders.rsi
+    sprite: Clothing/Belt/suspenders_red.rsi
     quickEquip: true
 
 - type: entity
-  parent: [ClothingBeltStorageBase, BaseC3WizardContraband, ContrabandClothing] # Frontier: added BaseC3WizardContraband, ContrabandClothing as parent
+  parent: ClothingBeltSuspendersRed
+  id: ClothingBeltSuspendersBlack
+  name: black suspenders
+  components:
+  - type: Sprite
+    sprite: Clothing/Belt/suspenders_black.rsi
+  - type: Clothing
+    sprite: Clothing/Belt/suspenders_black.rsi
+
+- type: entity
+  parent: [NFClothingBeltStorageBase, BaseC3WizardContraband, ContrabandClothing] # Frontier: ClothingBeltStorageBase<NFClothingBeltStorageBase, added BaseC3WizardContraband, ContrabandClothing as parent
   id: ClothingBeltWand
   name: wizard belt # Frontier: changed the name from 'wand belt' -> 'wizard belt'
   description: A belt designed to hold various rods of power. A veritable fanny pack of exotic magic.

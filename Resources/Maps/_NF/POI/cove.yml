@@ -4912,7 +4912,7 @@ entities:
     - type: Transform
       pos: 4.5399175,2.4303112
       parent: 1
-- proto: ComputerBroken
+- proto: ComputerContrabandPalletConsolePirate
   entities:
   - uid: 686
     components:
@@ -5903,7 +5903,7 @@ entities:
       pos: 7.5,28.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -7224.6685
+      secondsUntilStateChange: -7306.7144
       state: Opening
 - proto: FenceWoodSmallCorner
   entities:
@@ -7825,6 +7825,13 @@ entities:
     - type: Transform
       pos: 9.443164,17.108042
       parent: 1
+- proto: KitchenAssembler
+  entities:
+  - uid: 675
+    components:
+    - type: Transform
+      pos: 1.5,7.5
+      parent: 1
 - proto: KitchenDeepFryer
   entities:
   - uid: 334
@@ -7833,7 +7840,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 4.5,5.5
       parent: 1
-- proto: KitchenElectricGrill
+- proto: SyndicateKitchenElectricRange
   entities:
   - uid: 774
     components:
@@ -9617,6 +9624,13 @@ entities:
     - type: Transform
       pos: 3.5,-3.5
       parent: 1
+- proto: StructurePistolRackPiratesFilled
+  entities:
+  - uid: 1875
+    components:
+    - type: Transform
+      pos: -14.5,24.5
+      parent: 1
 - proto: Stunbaton
   entities:
   - uid: 2090
@@ -9885,12 +9899,6 @@ entities:
     components:
     - type: Transform
       pos: -6.5,6.5
-      parent: 1
-  - uid: 675
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 0.5,7.5
       parent: 1
   - uid: 683
     components:
@@ -12846,32 +12854,6 @@ entities:
     - type: Transform
       pos: -3.5,7.5
       parent: 1
-- proto: WeaponDisabler
-  entities:
-  - uid: 1911
-    components:
-    - type: Transform
-      parent: 1875
-    - type: Physics
-      canCollide: False
-  - uid: 1912
-    components:
-    - type: Transform
-      parent: 1875
-    - type: Physics
-      canCollide: False
-  - uid: 1913
-    components:
-    - type: Transform
-      parent: 1875
-    - type: Physics
-      canCollide: False
-  - uid: 1914
-    components:
-    - type: Transform
-      parent: 1875
-    - type: Physics
-      canCollide: False
 - proto: WeaponGrapplingGun
   entities:
   - uid: 2063
@@ -12879,43 +12861,6 @@ entities:
     - type: Transform
       pos: 0.49590623,-4.4579954
       parent: 1
-- proto: WeaponRackPistolBase
-  entities:
-  - uid: 1875
-    components:
-    - type: Transform
-      pos: -14.5,24.5
-      parent: 1
-    - type: ContainerContainer
-      containers:
-        storagebase: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        weapon1_slot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: 1911
-        weapon2_slot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: 1914
-        weapon3_slot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: 1912
-        weapon4_slot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: 1913
-        weapon5_slot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        weapon6_slot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
 - proto: WeaponRevolverArgentiNonlethal
   entities:
   - uid: 2071

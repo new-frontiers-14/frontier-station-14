@@ -15,7 +15,9 @@
     grid:
     - 0,0,6,3
   - type: Item
-    size: Ginormous
+    size: Large # Frontier: Ginormous<Large
+    shape: # Frontier
+    - 0,0,6,3 # Frontier
   - type: MeleeWeapon
     damage:
       types:
@@ -99,6 +101,8 @@
                 max: 1
   - type: StaticPrice
     price: 1350
+  - type: Contraband # Frontier
+    hideValues: true # Frontier
 
 - type: entity
   name: artistic toolbox
@@ -148,7 +152,7 @@
   id: ToolboxThief
   name: thief undetermined toolbox
   description: This is where your favorite thief's supplies lie. Try to remember which ones.
-  parent: BaseItem
+  parent: [ BaseItem, BaseC3SyndicateContraband ] # Frontier: BaseMinorContraband<BaseC3SyndicateContraband
   components:
   - type: Sprite
     sprite: Objects/Tools/Toolboxes/toolbox_thief.rsi
@@ -169,3 +173,5 @@
     interfaces:
       enum.ThiefBackpackUIKey.Key:
         type: ThiefBackpackBoundUserInterface
+  - type: Contraband # Frontier
+    hideValues: true # Frontier

@@ -293,6 +293,7 @@ namespace Content.Server.Carrying
             _transform.AttachToGridOrMap(carried);
             _transform.SetCoordinates(carried, Transform(carrier).Coordinates);
             _transform.SetParent(carried, carrier);
+
             _virtualItemSystem.TrySpawnVirtualItemInHand(carried, carrier);
             _virtualItemSystem.TrySpawnVirtualItemInHand(carried, carrier);
             var carryingComp = EnsureComp<CarryingComponent>(carrier);

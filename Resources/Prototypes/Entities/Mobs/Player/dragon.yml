@@ -106,6 +106,7 @@
     - Pacified
     - RadiationProtection
     - Drowsiness
+    - Adrenaline
   - type: Temperature
     heatDamageThreshold: 800
   - type: Metabolizer
@@ -185,7 +186,7 @@
     projectileSpeed: 5
 
 - type: entity
-  parent: BaseMobDragon
+  parent: [NFMobRestrictions, BaseMobDragon] # Frontier: add NFMobRestrictions
   id: MobDragonDungeon
   suffix: Dungeon
   components:
@@ -217,7 +218,6 @@
   - type: ActionGun #Frontier
     action: ActionDragonsBreath #Frontier
     gunProto: DragonsBreathGun #Frontier
-  - type: NFSalvageMobRestrictions # Frontier
 
 - type: entity
   id: ActionSpawnRift
@@ -256,3 +256,4 @@
     priority: 2
     checkCanAccess: false
     range: 0
+    itemIconStyle: BigAction

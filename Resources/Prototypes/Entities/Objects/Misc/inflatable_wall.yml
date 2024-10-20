@@ -20,7 +20,7 @@
         layer:
         - WallLayer
   - type: Damageable
-    damageContainer: Inorganic
+    damageContainer: StructuralInorganic
     damageModifierSet: Inflatable
   - type: Destructible
     thresholds:
@@ -38,7 +38,6 @@
     anchored: true
   placement:
     mode: SnapgridCenter
-
 
 - type: entity
   id: InflatableDoor
@@ -69,7 +68,7 @@
     closeSound:
       path: /Audio/Misc/zip.ogg
   - type: Damageable
-    damageContainer: Inorganic
+    damageContainer: StructuralInorganic
     damageModifierSet: Inflatable
   - type: Destructible
     thresholds:

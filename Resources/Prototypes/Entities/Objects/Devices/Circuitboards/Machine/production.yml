@@ -80,6 +80,7 @@
   id: SecurityTechFabCircuitboard
   parent: BaseMachineCircuitboard
   name: security techfab machine board
+  categories: [ HideSpawnMenu ] # Frontier
   description: A machine printed circuit board for a security techfab.
   components:
     - type: Sprite
@@ -196,6 +197,23 @@
     prototype: ResearchAndDevelopmentServer
     stackRequirements:
       Plasma: 5
+
+- type: entity
+  id: BiogeneratorMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: biogenerator machine board
+  description: A machine printed circuit board for a biogenerator.
+  components:
+  - type: Sprite
+    state: service
+  - type: MachineBoard
+    prototype: Biogenerator
+    requirements: # Frontier
+      MatterBin: 2 # Frontier stackRequirements<requirements
+    tagRequirements:
+      GlassBeaker:
+        amount: 1
+        defaultPrototype: Beaker
 
 - type: entity
   id: UniformPrinterMachineCircuitboard
@@ -987,21 +1005,6 @@
       Steel: 1
 
 - type: entity
-  id: MaterialReclaimerMachineCircuitboard
-  parent: BaseMachineCircuitboard
-  name: material reclaimer machine board
-  components:
-    - type: Sprite
-      state: supply
-    - type: MachineBoard
-      prototype: MaterialReclaimer
-      requirements: # Frontier
-        Manipulator: 2 # Frontier stackRequirements<requirements
-      stackRequirements:
-        Steel: 5
-        Plastic: 5
-
-- type: entity
   id: OreProcessorMachineCircuitboard
   parent: BaseMachineCircuitboard
   name: ore processor machine board
@@ -1249,6 +1252,8 @@
   name: salvage magnet machine board
   description: A machine printed circuit board for a salvage magnet.
   components:
+  - type: Sprite
+    state: supply
   - type: MachineBoard
     prototype: SalvageMagnet
     requirements: # Frontier
@@ -1272,6 +1277,23 @@
     stackRequirements:
       Steel: 5
       CableHV: 5
+      Uranium: 2
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: StationAnchorCircuitboard
+  name: station anchor machine board
+  description: A machine printed circuit board for a station anchor.
+  components:
+  - type: MachineBoard
+    prototype: StationAnchor
+    requirements: # Frontier
+      Capacitor: 4 # Frontier stackRequirements<requirements
+      MatterBin: 3 # Frontier stackRequirements<requirements
+    stackRequirements:
+      Steel: 10
+      Glass: 5
+      CableHV: 8
       Uranium: 2
 
 - type: entity
@@ -1308,8 +1330,9 @@
   components:
   - type: MachineBoard
     prototype: CutterMachine
+    requirements: # Frontier
+      Capacitor: 1 # Frontier stackRequirements<requirements
+      Manipulator: 1 # Frontier stackRequirements<requirements
     stackRequirements:
       Steel: 2
-      Capacitor: 1
-      Manipulator: 1
       Cable: 1
