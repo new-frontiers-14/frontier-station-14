@@ -253,6 +253,21 @@
       tags:
         - Sushi
     hideStackVisualsWhenClosed: false
+  - type: ItemCounter
+    count:
+      tags: [Sushi]
+    layerStates:
+    - tray1
+    - tray2
+    - tray3
+    - tray4
+    - tray5
+    - tray6
+
+- type: entity
+  parent: FoodBoxSushi
+  id: FoodBoxSushiBad
+  components:
   - type: StorageFill
     contents:
     # Slice1
@@ -297,16 +312,6 @@
     - id: FoodMealGasBadSushiSlice
       orGroup: Slice6
       prob: 0.5
-  - type: ItemCounter
-    count:
-      tags: [Sushi]
-    layerStates:
-    - tray1
-    - tray2
-    - tray3
-    - tray4
-    - tray5
-    - tray6
 
 # Empty
 - type: entity
