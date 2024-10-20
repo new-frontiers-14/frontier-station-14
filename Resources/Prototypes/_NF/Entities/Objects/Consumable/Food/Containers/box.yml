@@ -215,7 +215,7 @@
     - id: FoodCondimentPacketSalt
 
 - type: entity
-  parent: DrinkCanPack
+  parent: [BaseStorageItem, BaseBagOpenClose]
   id: FoodBoxSushi
   name: sushi tray
   description: Plastic sushi container with lid.
@@ -225,27 +225,31 @@
     state: tray
     layers:
     - state: tray
-    - state: tray1
-      map: ["tray1"]
-      visible: false
-    - state: tray2
-      map: ["tray2"]
-      visible: false
-    - state: tray3
-      map: ["tray3"]
-      visible: false
-    - state: tray4
-      map: ["tray4"]
+    - state: tray6
+      map: ["tray6"]
       visible: false
     - state: tray5
       map: ["tray5"]
       visible: false
-    - state: tray6
-      map: ["tray6"]
+    - state: tray4
+      map: ["tray4"]
+      visible: false
+    - state: tray3
+      map: ["tray3"]
+      visible: false
+    - state: tray2
+      map: ["tray2"]
+      visible: false
+    - state: tray1
+      map: ["tray1"]
+      visible: false
+    - state: label
+      map: ["closeLayer"]
       visible: false
   - type: Item
     sprite: _NF/Objects/Consumable/Food/sushi.rsi
     scale: 0.8, 0.8
+    size: Normal
   - type: Storage
     grid:
     - 0,0,1,2
@@ -256,6 +260,7 @@
   - type: ItemCounter
     count:
       tags: [Sushi]
+    composite: true
     layerStates:
     - tray1
     - tray2
@@ -274,45 +279,33 @@
     # Slice1
     - id: FoodMealGasSafeSushiSlice
       orGroup: Slice1
-      prob: 0.5
     - id: FoodMealGasBadSushiSlice
       orGroup: Slice1
-      prob: 0.5
     # Slice2
     - id: FoodMealGasSafeSushiSlice
       orGroup: Slice2
-      prob: 0.5
     - id: FoodMealGasBadSushiSlice
       orGroup: Slice2
-      prob: 0.5
     # Slice3
     - id: FoodMealGasSafeSushiSlice
       orGroup: Slice3
-      prob: 0.5
     - id: FoodMealGasBadSushiSlice
       orGroup: Slice3
-      prob: 0.5
     # Slice4
     - id: FoodMealGasSafeSushiSlice
       orGroup: Slice4
-      prob: 0.5
     - id: FoodMealGasBadSushiSlice
       orGroup: Slice4
-      prob: 0.5
     # Slice5
     - id: FoodMealGasSafeSushiSlice
       orGroup: Slice5
-      prob: 0.5
     - id: FoodMealGasBadSushiSlice
       orGroup: Slice5
-      prob: 0.5
     # Slice6
     - id: FoodMealGasSafeSushiSlice
       orGroup: Slice6
-      prob: 0.5
     - id: FoodMealGasBadSushiSlice
       orGroup: Slice6
-      prob: 0.5
 
 # Empty
 - type: entity
