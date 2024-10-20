@@ -2559,6 +2559,13 @@ entities:
     - type: Transform
       pos: 8.5,-16.5
       parent: 2
+- proto: Autolathe
+  entities:
+  - uid: 1783
+    components:
+    - type: Transform
+      pos: 9.5,-15.5
+      parent: 2
 - proto: BannerMedical
   entities:
   - uid: 1414
@@ -5738,6 +5745,10 @@ entities:
       rot: 3.141592653589793 rad
       pos: 0.5,-19.5
       parent: 2
+    - type: DeviceLinkSource
+      linkedPorts:
+        1781:
+        - ArtifactAnalyzerSender: ArtifactAnalyzerReceiver
 - proto: ComputerFrame
   entities:
   - uid: 1048
@@ -6436,7 +6447,6 @@ entities:
   - uid: 966
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
       pos: 3.5,1.5
       parent: 2
     - type: DeviceList
@@ -6446,9 +6456,9 @@ entities:
       - 384
       - 386
       - 380
-      - 662
       - 973
       - 974
+      - 662
   - uid: 968
     components:
     - type: Transform
@@ -9415,13 +9425,6 @@ entities:
     - type: Transform
       pos: 4.5,-0.5
       parent: 2
-- proto: LockerBotanist
-  entities:
-  - uid: 1262
-    components:
-    - type: Transform
-      pos: 4.5,-8.5
-      parent: 2
 - proto: LockerCaptainFilledHardsuit
   entities:
   - uid: 1324
@@ -9594,19 +9597,55 @@ entities:
           showEnts: False
           occludes: True
           ent: null
-- proto: LockerWallChemistry
+- proto: LockerWallChemistryFilled
   entities:
-  - uid: 1568
+  - uid: 1161
     components:
     - type: Transform
       pos: -8.5,-8.5
       parent: 2
+    - type: EntityStorage
+      air:
+        volume: 200
+        immutable: False
+        temperature: 293.14923
+        moles:
+        - 1.7459903
+        - 6.568249
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+    - type: ContainerContainer
+      containers:
+        entity_storage: !type:Container
+          showEnts: False
+          occludes: True
+          ents:
+          - 1262
+        paper_label: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
 - proto: LockerWallMaterialsFuelUraniumFilled2
   entities:
   - uid: 1114
     components:
     - type: Transform
       pos: 6.5,-9.5
+      parent: 2
+- proto: MachineArtifactAnalyzer
+  entities:
+  - uid: 1781
+    components:
+    - type: Transform
+      pos: 1.5,-22.5
       parent: 2
 - proto: MaterialReclaimer
   entities:
@@ -10403,6 +10442,20 @@ entities:
       linkedPorts:
         1037:
         - Pressed: Toggle
+- proto: ResearchAndDevelopmentServerMachineCircuitboard
+  entities:
+  - uid: 1568
+    components:
+    - type: Transform
+      pos: -2.420643,-16.418638
+      parent: 2
+- proto: ResearchComputerCircuitboard
+  entities:
+  - uid: 1784
+    components:
+    - type: Transform
+      pos: 0.51849675,-16.563524
+      parent: 2
 - proto: ScreenTimer
   entities:
   - uid: 1545
@@ -10654,6 +10707,13 @@ entities:
     components:
     - type: Transform
       pos: 3.5,-1.5
+      parent: 2
+- proto: SignServer
+  entities:
+  - uid: 1782
+    components:
+    - type: Transform
+      pos: -2.5,-15.5
       parent: 2
 - proto: SignShipDock
   entities:
@@ -11632,19 +11692,6 @@ entities:
         - Left: Reverse
         - Right: Forward
         - Middle: Off
-- proto: UnfinishedMachineFrame
-  entities:
-  - uid: 1105
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -2.5,-16.5
-      parent: 2
-  - uid: 1161
-    components:
-    - type: Transform
-      pos: 1.5,-22.5
-      parent: 2
 - proto: VendingMachineBountyVend
   entities:
   - uid: 1320
@@ -11659,6 +11706,15 @@ entities:
     - type: Transform
       pos: 2.5,-9.5
       parent: 2
+- proto: VendingMachineChemicalsFlatpack
+  entities:
+  - uid: 1262
+    components:
+    - type: Transform
+      parent: 1161
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
 - proto: VendingMachineClothing
   entities:
   - uid: 1303
@@ -11700,6 +11756,13 @@ entities:
     components:
     - type: Transform
       pos: 2.5,-8.5
+      parent: 2
+- proto: VendingMachineSeedsUnlocked
+  entities:
+  - uid: 1105
+    components:
+    - type: Transform
+      pos: 4.5,-8.5
       parent: 2
 - proto: VendingMachineTankDispenserEVA
   entities:
