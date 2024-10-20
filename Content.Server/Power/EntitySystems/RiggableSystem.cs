@@ -31,6 +31,11 @@ public sealed class RiggableSystem : EntitySystem
 
     private void OnMicrowaved(Entity<RiggableComponent> entity, ref BeingMicrowavedEvent args)
     {
+        // Frontier: don't do anything if machine doesn't heat or irradiate.
+        if (!args.BeingHeated && !args.BeingIrradiated)
+            return;
+        // End Frontier
+
         if (TryComp<BatteryComponent>(entity, out var batteryComponent))
         {
             if (batteryComponent.CurrentCharge == 0)

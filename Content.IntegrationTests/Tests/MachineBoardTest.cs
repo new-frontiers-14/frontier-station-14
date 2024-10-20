@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using Content.Server.Construction.Components;
 using Content.Shared.Construction.Components;
@@ -49,6 +49,11 @@ public sealed class MachineBoardTest
                     continue;
                 var mId = mbc.Prototype;
 
+                // Frontier: we accept null as board prototypes, but this will fail the assertions.
+                if (mId == "Null")
+                    continue;
+                // End Frontier
+
                 Assert.Multiple(() =>
                 {
                     Assert.That(protoMan.TryIndex<EntityPrototype>(mId, out var mProto),
@@ -87,6 +92,11 @@ public sealed class MachineBoardTest
                 if (!p.TryGetComponent<ComputerBoardComponent>(out var cbc, compFact))
                     continue;
                 var cId = cbc.Prototype;
+
+                // Frontier: we accept null as board prototypes, but this will fail the assertions.
+                if (cId == "Null")
+                    continue;
+                // End Frontier
 
                 Assert.Multiple(() =>
                 {

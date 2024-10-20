@@ -1,0 +1,41 @@
+- type: job
+  id: NFJanitor
+  name: job-name-janitor
+  description: job-description-janitor
+  playTimeTracker: JobJanitor
+  requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 10800
+  startingGear: NFJanitorGear
+  alwaysUseSpawner: true
+  icon: "JobIconJanitor"
+  supervisors: job-supervisors-sr
+  weight: 100
+  displayWeight: 40
+  canBeAntag: false
+  access:
+  - Service
+  - Janitor
+  - Maintenance
+  - External
+  - Frontier
+  special:
+  - !type:GiveItemOnHolidaySpecial
+    holiday: GarbageDay
+    prototype: WeaponRevolverInspector
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+  - !type:GiveItemOnHolidaySpecial
+    holiday: FrontierBirthday
+    prototype: FrontierBirthdayGift
+
+- type: startingGear
+  id: NFJanitorGear
+  equipment:
+    shoes: ClothingShoesGaloshes
+    id: JanitorPDA
+    belt: ClothingBeltJanitorFilled
+  storage:
+    back:
+    - EncryptionKeyService
+    - ShipVoucherFrontierJanitor

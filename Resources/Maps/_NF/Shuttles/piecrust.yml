@@ -586,7 +586,7 @@ entities:
   - uid: 342
     components:
     - type: Transform
-      pos: 0.244216,4.626279
+      pos: -1.7697961,4.5711365
       parent: 8756
 - proto: Bucket
   entities:
@@ -1094,8 +1094,6 @@ entities:
       pos: 5.5,5.5
       parent: 8756
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 323
   - uid: 314
@@ -1104,8 +1102,6 @@ entities:
       pos: 3.5,0.5
       parent: 8756
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 323
   - uid: 315
@@ -1114,8 +1110,6 @@ entities:
       pos: 3.5,3.5
       parent: 8756
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 323
   - uid: 353
@@ -1579,8 +1573,6 @@ entities:
       pos: -3.5,-1.5
       parent: 8756
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 323
     - type: AtmosPipeColor
@@ -1592,8 +1584,6 @@ entities:
       pos: 4.5,1.5
       parent: 8756
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 323
     - type: AtmosPipeColor
@@ -1605,8 +1595,6 @@ entities:
       pos: 1.5,-1.5
       parent: 8756
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 323
     - type: AtmosPipeColor
@@ -1617,8 +1605,6 @@ entities:
       pos: 5.5,7.5
       parent: 8756
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 323
     - type: AtmosPipeColor
@@ -1629,8 +1615,6 @@ entities:
       pos: 1.5,4.5
       parent: 8756
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 323
     - type: AtmosPipeColor
@@ -1644,8 +1628,6 @@ entities:
       pos: 0.5,-0.5
       parent: 8756
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 323
     - type: AtmosPipeColor
@@ -1656,8 +1638,6 @@ entities:
       pos: 6.5,6.5
       parent: 8756
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 323
     - type: AtmosPipeColor
@@ -1669,8 +1649,6 @@ entities:
       pos: -3.5,0.5
       parent: 8756
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 323
     - type: AtmosPipeColor
@@ -1682,8 +1660,6 @@ entities:
       pos: 4.5,2.5
       parent: 8756
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 323
     - type: AtmosPipeColor
@@ -1694,8 +1670,6 @@ entities:
       pos: -0.5,4.5
       parent: 8756
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 323
     - type: AtmosPipeColor
@@ -1798,12 +1772,26 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 6.5,0.5
       parent: 8756
+- proto: KitchenAssembler
+  entities:
+  - uid: 354
+    components:
+    - type: Transform
+      pos: 0.5,4.5
+      parent: 8756
+- proto: KitchenElectricRange
+  entities:
+  - uid: 262
+    components:
+    - type: Transform
+      pos: 1.5,4.5
+      parent: 8756
 - proto: KitchenKnife
   entities:
   - uid: 341
     components:
     - type: Transform
-      pos: 0.7176666,4.579404
+      pos: -1.1456248,4.5801063
       parent: 8756
 - proto: KitchenMicrowave
   entities:
@@ -1849,7 +1837,7 @@ entities:
   - uid: 340
     components:
     - type: Transform
-      pos: 0.1562469,4.8113184
+      pos: 1.7016171,4.922699
       parent: 8756
 - proto: LockerBotanistFilled
   entities:
@@ -2030,7 +2018,7 @@ entities:
   - uid: 338
     components:
     - type: Transform
-      pos: 1.4957055,4.7544627
+      pos: 0.49917662,1.8947209
       parent: 8756
 - proto: Railing
   entities:
@@ -2069,7 +2057,7 @@ entities:
   - uid: 339
     components:
     - type: Transform
-      pos: 1.1093719,4.5769434
+      pos: 1.6943302,1.5355933
       parent: 8756
 - proto: ServiceTechFab
   entities:
@@ -2078,6 +2066,20 @@ entities:
     - type: Transform
       pos: 4.5,1.5
       parent: 8756
+    - type: ContainerContainer
+      containers:
+        machine_board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        machine_parts: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        blueprint: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
 - proto: ShuttersNormalOpen
   entities:
   - uid: 229
@@ -2344,11 +2346,6 @@ entities:
     components:
     - type: Transform
       pos: -0.5,4.5
-      parent: 8756
-  - uid: 262
-    components:
-    - type: Transform
-      pos: 1.5,4.5
       parent: 8756
   - uid: 263
     components:
