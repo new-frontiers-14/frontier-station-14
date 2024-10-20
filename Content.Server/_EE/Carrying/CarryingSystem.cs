@@ -142,15 +142,11 @@ namespace Content.Server.Carrying
 
             args.ItemUid = virtItem.BlockingEntity;
 
-            // Frontier: clamp throw range, reduce distance when heavy
-            // args.ThrowSpeed *= _contests.MassContest(uid, virtItem.BlockingEntity, false, 2f) // Frontier
-            //                 * _contests.StaminaContest(uid, virtItem.BlockingEntity); // Frontier
+            var throwSpeedCoeff = _contests.MassContest(uid, virtItem.BlockingEntity, false, 2f) // Frontier: "args.throwSpeed *="<"var throwSpeedCoeff ="
+                                * _contests.StaminaContest(uid, virtItem.BlockingEntity);
 
-            var throwSpeedCoeff = component.BaseThrowingSpeedCoeff
-                             * float.Min(
-                                _contests.MassContest(uid, virtItem.BlockingEntity, false, 2f)
-                                * _contests.StaminaContest(uid, virtItem.BlockingEntity),
-                             component.MaxContestThrowingSpeedCoeff);
+            // Frontier: sanitize our range regardless of CVar values.
+            throwSpeedCoeff = float.Min(component.BaseThrowingSpeedCoeff * throwSpeedCoeff, component.MaxThrowingSpeedCoeff);
             args.ThrowSpeed *= throwSpeedCoeff;
             if (throwSpeedCoeff < 1)
                 args.Direction *= throwSpeedCoeff; // Reduce direction vector, results in less time in air (no long, slow tosses).
@@ -254,17 +250,14 @@ namespace Content.Server.Carrying
                 return;
             }
 
-            // Frontier: comment previous version, clamp its output
-            // var length = TimeSpan.FromSeconds(component.PickupDuration
-            //             * _contests.MassContest(carriedPhysics, carrierPhysics, false, 4f)
-            //             * _contests.StaminaContest(carrier, carried)
-            //             * (_standingState.IsDown(carried) ? 0.5f : 1));
+            var length = component.PickupDuration // Frontier: removed outer TimeSpan.FromSeconds()
+                        * _contests.MassContest(carriedPhysics, carrierPhysics, false, 4f)
+                        * _contests.StaminaContest(carrier, carried)
+                        * (_standingState.IsDown(carried) ? 0.5f : 1);
 
-            var length = TimeSpan.FromSeconds(
-                float.Clamp(component.PickupDuration
-                    * _contests.MassContest(carriedPhysics, carrierPhysics, false, 4f)
-                    * _contests.StaminaContest(carrier, carried)
-                    * (_standingState.IsDown(carried) ? 0.5f : 1),
+            // Frontier: sanitize pickup time duration regardless of CVars - no near-instant pickups.
+            var duration = TimeSpan.FromSeconds(
+                float.Clamp(length,
                 component.MinPickupDuration,
                 component.MaxPickupDuration));
             // End Frontier
@@ -272,7 +265,7 @@ namespace Content.Server.Carrying
             component.CancelToken = new CancellationTokenSource();
 
             var ev = new CarryDoAfterEvent();
-            var args = new DoAfterArgs(EntityManager, carrier, length, ev, carried, target: carried)
+            var args = new DoAfterArgs(EntityManager, carrier, duration, ev, carried, target: carried) // Frontier: length<duration
             {
                 BreakOnMove = true,
                 NeedHand = true

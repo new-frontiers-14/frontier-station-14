@@ -1,11 +1,12 @@
-//using Content.Shared.Abilities.Psionics;
-using Content.Shared.CCVar;
+//using Content.Shared.Abilities.Psionics; // Frontier
+//using Content.Shared.CCVar; // Frontier
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Mobs.Systems;
-//using Content.Shared.Mood;
+//using Content.Shared.Mood; // Frontier
 using Robust.Shared.Configuration;
 using Robust.Shared.Physics.Components;
+using CCVars = Content.Shared._EE.CCVar.EECCVars; // Frontier
 
 namespace Content.Shared.Contests;
 

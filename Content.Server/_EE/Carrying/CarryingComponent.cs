@@ -16,10 +16,11 @@ namespace Content.Server.Carrying
         public float BaseThrowingSpeedCoeff = 0.5f;
 
         /// <summary>
-        ///     A maximum contest value for throwing speed.
+        ///     The maximum coefficient to multiply throwing speed by, regardless of contest parameters.
+        ///     Proportional to "the fastest this entity can lob a person"
         /// </summary>
         [DataField]
-        public float MaxContestThrowingSpeedCoeff = 2.0f;
+        public float MaxThrowingSpeedCoeff = 1.0f;
         // End Frontier: throwing parameters
     }
 }
