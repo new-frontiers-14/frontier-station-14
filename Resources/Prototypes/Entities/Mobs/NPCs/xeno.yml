@@ -2,7 +2,7 @@
 - type: entity
   name: burrower
   id: MobXeno
-  parent: SimpleSpaceMobBase
+  parent: [NFMobRestrictions, SimpleSpaceMobBase] # Frontier: add NFMobRestrictions
   description: They mostly come at night. Mostly.
   components:
   - type: Insulated
@@ -120,7 +120,6 @@
     molsPerSecondPerUnitMass: 0.0005
   - type: Speech
     speechVerb: LargeMob
-  - type: NFSalvageMobRestrictions # Frontier
   - type: ReplacementAccent # Frontier
     accent: genericAggressive # Frontier
 
@@ -364,7 +363,7 @@
 
 - type: entity
   name: space adder
-  parent: SimpleSpaceMobBase
+  parent: [NFMobRestrictions, SimpleSpaceMobBase] # Frontier: add NFMobRestrictions
   id: MobPurpleSnake
   description: A menacing purple snake from Kepler-283c.
   components:
@@ -430,7 +429,6 @@
     tags:
     - DoorBumpOpener
     - FootstepSound
-  - type: NFSalvageMobRestrictions # Frontier
   - type: ReplacementAccent # Frontier
     accent: genericAggressive # Frontier
 

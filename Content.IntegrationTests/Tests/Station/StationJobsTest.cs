@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Content.IntegrationTests.Tests._NF;
 using Content.Server.Maps;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
@@ -227,8 +228,15 @@ public sealed class StationJobsTest
 
             Assert.Multiple(() =>
             {
-                foreach (var gameMap in prototypeManager.EnumeratePrototypes<GameMapPrototype>())
+                foreach (var mapProto in FrontierConstants.GameMapPrototypes) // Frontier: EnumeratePrototypes<GameMapPrototype> < FrontierConstants.GameMapPrototypes
                 {
+                    // Frontier: get prototype from proto ID
+                    if (!prototypeManager.TryIndex<GameMapPrototype>(mapProto, out var gameMap))
+                    {
+                        Assert.Fail($"Could not find GameMapPrototype with ID {mapProto}! Is FrontierConstants up to date?");
+                    }
+                    // End Frontier
+
                     foreach (var (stationId, station) in gameMap.Stations)
                     {
                         if (!station.StationComponentOverrides.TryGetComponent(name, out var comp))

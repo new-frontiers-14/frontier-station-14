@@ -1,6 +1,7 @@
 # Frontier-specific contraband targets.
 # If you need multiple currency types, specify them in the actual object instead of inheriting multiple parents here.
 
+# region Class 1
 - type: entity
   id: BaseC1Contraband
   abstract: true
@@ -18,7 +19,9 @@
   components:
   - type: Contraband
     hideValues: true
+# endregion Class 1
 
+# region Class 2
 # Class 2 contraband: explosives, unregistered firearms, 
 
 # Specific parent for sensitive items (e.g. command headset, secway, secway keys) that should not be redeemed for FUCs
@@ -50,8 +53,9 @@
   - type: Contraband
     turnInValues: &noFUCs
       FrontierUplinkCoin: 0
+# endregion
 
-# Class 3 contraband ()
+# region Class 3 Objects
 - type: entity
   id: BaseC3ContrabandUnredeemable
   abstract: true
@@ -171,8 +175,9 @@
   - type: Contraband
     severity: Class3Wizard
     turnInValues: *oneFUC
+# endregion
 
-# Class 3 mobs
+# region Class 3 Mobs
 - type: entity
   parent: BaseC3Contraband
   id: BaseC3MobHuman # For people (should be sapients, humanoids)
@@ -192,6 +197,14 @@
     hideCarryStatus: true
 
 - type: entity
+  parent: BaseC3MobCreature
+  id: BaseC3MobCreatureNoValue # For non-humanoid/non-sapient beasts
+  abstract: true
+  components:
+  - type: Contraband
+    turnInValues: *noFUCs
+
+- type: entity
   parent: BaseC3Contraband
   id: BaseC3MobConstruct # For thinking artifacts, robots, etc.
   abstract: true
@@ -199,9 +212,9 @@
   - type: Contraband
     severity: Class3MobConstruct
     hideCarryStatus: true
+# endregion
 
-# Miscellaneous categories
-
+# region Miscellaneous
 - type: entity
   id: BasePirateTarget
   abstract: true
@@ -213,3 +226,4 @@
     turnInValues:
       Doubloon: 1
     hideCarryStatus: true
+# endregion
