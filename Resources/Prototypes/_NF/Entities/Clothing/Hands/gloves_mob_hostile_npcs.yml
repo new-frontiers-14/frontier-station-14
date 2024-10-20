@@ -308,121 +308,112 @@
       - sprite: Objects/Weapons/Guns/Battery/advancedlasergun.rsi
         state: inhand-left
 
+# This is some proper cursed stuff: due to layering of clothes sprites, gloves displayed under outer clothes
+# So in order to make wielded weapon visible, I'm using neck slot which is drawn on top of outer suit layer.
 - type: entity
-  parent: ClothingHandsGlovesColorBlackSMG
-  id: ClothingHandsGlovesWeaponWieldedGlaive
-  name: wielded weapon
-  suffix: crusher glaive
+  id: PunkHandsGlovesBaseballBat
+  parent: ClothingNeckBase
+  name: punk gloves
+  description: Colorful gloves that do not keep you from frying.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Unremoveable
+  - type: Sprite
+    sprite: Clothing/Hands/Gloves/Color/color.rsi
+    layers:
+      - state: icon
+        map: [ "gloves_decor" ]
+  - type: Clothing
+    clothingVisuals:
+      neck:
+      # Gloves
+      - sprite: Clothing/Hands/Gloves/Color/color.rsi
+        state: equipped-HAND
+        map: [ "gloves_decor" ]
+      # Weapon
+      - sprite: Objects/Weapons/Melee/baseball_bat.rsi
+        state: wielded-inhand-right
+  - type: RandomSprite
+    available:
+      - gloves_decor:
+          equipped-HAND: CyberpunkNeon
+
+- type: entity
+  id: PunkHandsGlovesFireaxe
+  parent: PunkHandsGlovesBaseballBat
   categories: [ HideSpawnMenu ]
   components:
   - type: Clothing
     clothingVisuals:
-      gloves:
-      - sprite: Objects/Weapons/Melee/crusher_glaive.rsi
+      neck:
+      # Gloves
+      - sprite: Clothing/Hands/Gloves/Color/color.rsi
+        state: equipped-HAND
+        map: [ "gloves_decor" ]
+      # Weapon
+      - sprite: Objects/Weapons/Melee/fireaxe.rsi
         state: wielded-inhand-right
 
 - type: entity
-  parent: ClothingHandsGlovesColorBlackSMG
-  id: ClothingHandsGlovesWeaponDrill
-  name: wielded weapon
-  suffix: mining drill
+  id: PunkHandsGlovesSledgehammer
+  parent: PunkHandsGlovesBaseballBat
   categories: [ HideSpawnMenu ]
   components:
   - type: Clothing
     clothingVisuals:
-      gloves:
-      - sprite: Objects/Tools/handdrill.rsi
-        state: inhand-right
-      - sprite: Objects/Tools/handdrill.rsi
-        state: inhand-left
-
-- type: entity
-  parent: ClothingHandsGlovesColorBlackSMG
-  id: ClothingHandsGlovesWeaponWieldedPickaxe
-  name: wielded weapon
-  suffix: Pickaxe
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Clothing
-    clothingVisuals:
-      gloves:
-      - sprite: Objects/Weapons/Melee/pickaxe.rsi
+      neck:
+      # Gloves
+      - sprite: Clothing/Hands/Gloves/Color/color.rsi
+        state: equipped-HAND
+        map: [ "gloves_decor" ]
+      # Weapon
+      - sprite: Objects/Weapons/Melee/sledgehammer.rsi
         state: wielded-inhand-right
 
 - type: entity
-  parent: ClothingHandsGlovesColorBlackSMG
-  id: ClothingHandsGlovesWeaponPkaFlashlight
-  name: wielded weapon
-  suffix: PKA, flashlifght
+  id: PunkHandsGlovesShotgun
+  parent: PunkHandsGlovesBaseballBat
   categories: [ HideSpawnMenu ]
   components:
   - type: Clothing
     clothingVisuals:
-      gloves:
-      - sprite: Objects/Weapons/Guns/Basic/kinetic_accelerator.rsi
-        state: inhand-right
-      - sprite: Objects/Tools/flashlight.rsi
-        state: inhand-left
-      - sprite: Objects/Tools/flashlight.rsi
-        state: inhand-left-light
-        shader: unshaded
-
-- type: entity
-  parent: ClothingHandsGlovesColorBlackSMG
-  id: ClothingHandsGlovesWeaponWieldedPka
-  name: wielded weapon
-  suffix: PKA
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Clothing
-    clothingVisuals:
-      gloves:
-      - sprite: Objects/Weapons/Guns/Basic/kinetic_accelerator.rsi
+      neck:
+      # Gloves
+      - sprite: Clothing/Hands/Gloves/Color/color.rsi
+        state: equipped-HAND
+        map: [ "gloves_decor" ]
+      # Weapon
+      - sprite: Objects/Weapons/Guns/Shotguns/pump_inhands_64x.rsi
         state: wielded-inhand-right
 
 - type: entity
-  parent: ClothingHandsGlovesColorBlackSMG
-  id: ClothingHandsGlovesWeaponSawnOffPkaDagger
-  name: wielded weapon
-  suffix: sawn-off PKA, crusher dagger
+  id: PunkHandsGlovesSmg
+  parent: PunkHandsGlovesBaseballBat
   categories: [ HideSpawnMenu ]
   components:
   - type: Clothing
     clothingVisuals:
-      gloves:
-      - sprite: _NF/Objects/Weapons/Guns/Basic/sawn_kinetic_accelerator.rsi
-        state: inhand-right
-      - sprite: Objects/Weapons/Melee/crusher_dagger.rsi
-        state: inhand-left
+      neck:
+      # Gloves
+      - sprite: Clothing/Hands/Gloves/Color/color.rsi
+        state: equipped-HAND
+        map: [ "gloves_decor" ]
+      # Weapon
+      - sprite: Objects/Weapons/Guns/SMGs/drozd.rsi
+        state: wielded-inhand-right
 
 - type: entity
-  parent: ClothingHandsGlovesColorBlackSMG
-  id: ClothingHandsGlovesWeaponSawnOffPkas
-  name: wielded weapon
-  suffix: double sawn-off PKAs
+  id: PunkHandsGlovesLaserGun
+  parent: PunkHandsGlovesBaseballBat
   categories: [ HideSpawnMenu ]
   components:
   - type: Clothing
     clothingVisuals:
-      gloves:
-      - sprite: _NF/Objects/Weapons/Guns/Basic/sawn_kinetic_accelerator.rsi
-        state: inhand-left
-      - sprite: _NF/Objects/Weapons/Guns/Basic/sawn_kinetic_accelerator.rsi
-        state: inhand-right
-
-- type: entity
-  parent: ClothingHandsGlovesColorBlackSMG
-  id: ClothingHandsGlovesWeaponEnergyPickaxe
-  name: wielded weapon
-  suffix: energy pickaxe
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Clothing
-    clothingVisuals:
-      gloves:
-      - sprite: _NF/Objects/Weapons/Melee/energy_pickaxe.rsi
-        state: inhand-left
-      - sprite: _NF/Objects/Weapons/Melee/energy_pickaxe.rsi
-        state: inhand-left-blade
-        shader: unshaded
-        color: "#e95151"
+      neck:
+      # Gloves
+      - sprite: Clothing/Hands/Gloves/Color/color.rsi
+        state: equipped-HAND
+        map: [ "gloves_decor" ]
+      # Weapon
+      - sprite: Objects/Weapons/Guns/Battery/laser_gun.rsi
+        state: wielded-inhand-right

@@ -188,7 +188,7 @@
   components:
   - type: SpawnItemsOnUse
     items:
-    - id: SpaceCash2500
+    - id: SpaceCash1000
       prob: 0.95
       amount: 1
     - id: SpaceCash1000
@@ -215,6 +215,64 @@
     - id: HoloGraffitiProjector
       amount: 1
       prob: 0.45
+    # Bonus Loot T3
+    - id: SpaceCash1000
+      prob: 0.9
+    - id: SpaceCash500
+      prob: 0.9
+    - id: SpaceCash1000
+      prob: 0.8
+    - id: SpawnDungeonLootMaterialsBasicFull
+      prob: 0.7
+    - id: SpawnDungeonLootMaterialsValuableFull
+      prob: 0.7
+    - id: SpawnDungeonLootPartsEngi
+      amount: 2
+      prob: 0.7
+    - id: SpawnDungeonLootFlatpacks
+      prob: 0.5
+    - id: SpawnDungeonLootToolsAdvancedEngineering
+      prob: 0.4
+    sound:
+      path: /Audio/Items/jumpsuit_equip.ogg
+
+- type: entity
+  parent: ClothingBackpackPunkLootA
+  id: ClothingBackpackPunkLootBoss
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: SpaceCash2500
+      prob: 0.95
+      amount: 1
+    - id: SpaceCash1000
+      prob: 0.35
+      amount: 1
+    - id: GroundCannabis
+      prob: 0.35
+      amount: 3
+    - id: SpawnDungeonClutterSyringe
+      prob: 0.65
+      amount: 4
+    - id: SpawnDungeonLootCircuitBoard
+      prob: 0.35
+      amount: 2
+    - id: SpawnDungeonClutterHypospray
+      prob: 0.35
+      amount: 1
+    - id: DrinkWhiskeyBottleFull
+      prob: 0.35
+      amount: 1
+    - id: WeaponCaseLongLaserCarbineExpedition
+      amount: 1
+      prob: 0.55
+    - id: HoloGraffitiProjector
+      amount: 1
+      prob: 0.45
+    - id: NFBlueprintPortableRecharger
+      prob: 0.1
+      amount: 1
     # Bonus Loot T4
     - id: SpaceCash2500
       prob: 0.9
