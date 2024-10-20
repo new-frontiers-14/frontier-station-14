@@ -51,6 +51,9 @@ namespace Content.Server.Carrying
         [Dependency] private readonly ContestsSystem _contests = default!;
         [Dependency] private readonly TransformSystem _transform = default!;
 
+        public const float BaseThrowingSpeedCoeff = 0.3f; // Frontier: default throwing speed reduction
+        public const float DefaultMaxThrowingSpeedCoeff = 1.0f; // Frontier: maximum throwing speed
+
         public override void Initialize()
         {
             base.Initialize();
@@ -145,8 +148,8 @@ namespace Content.Server.Carrying
             var throwSpeedCoeff = _contests.MassContest(uid, virtItem.BlockingEntity, false, 2f) // Frontier: "args.throwSpeed *="<"var throwSpeedCoeff ="
                                 * _contests.StaminaContest(uid, virtItem.BlockingEntity);
 
-            // Frontier: sanitize our range regardless of CVar values.
-            throwSpeedCoeff = float.Min(component.BaseThrowingSpeedCoeff * throwSpeedCoeff, component.MaxThrowingSpeedCoeff);
+            // Frontier: sanitize our range regardless of CVar values - TODO: variable throw speeds (via traits, etc.)
+            throwSpeedCoeff = float.Min(BaseThrowingSpeedCoeff * throwSpeedCoeff, DefaultMaxThrowingSpeedCoeff);
             args.ThrowSpeed *= throwSpeedCoeff;
             if (throwSpeedCoeff < 1)
                 args.Direction *= throwSpeedCoeff; // Reduce direction vector, results in less time in air (no long, slow tosses).
