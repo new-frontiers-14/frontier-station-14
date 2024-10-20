@@ -7,15 +7,15 @@ namespace Content.Shared.Carrying
 
     public sealed partial class CarryingSlowdownComponent : Component
     {
-        [DataField("walkModifier", required: true)] [ViewVariables(VVAccess.ReadWrite)]
+        [DataField(required: true)]
         public float WalkModifier = 1.0f;
 
-        [DataField("sprintModifier", required: true)] [ViewVariables(VVAccess.ReadWrite)]
+        [DataField(required: true)]
         public float SprintModifier = 1.0f;
     }
 
     [Serializable, NetSerializable]
-    public sealed partial class CarryingSlowdownComponentState : ComponentState
+    public sealed class CarryingSlowdownComponentState : ComponentState
     {
         public float WalkModifier;
         public float SprintModifier;
