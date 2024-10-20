@@ -9,6 +9,22 @@
     handheld: true
 
 - type: entity
+  parent: [MusicBasePDA, CentcomPDA]
+  id: NFAdminPDA
+  components:
+  - type: CartridgeLoader
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NewsReaderCartridge
+      - BountyContractsCartridge
+      - WantedListCartridge
+      - LogProbeCartridge
+      - MailMetricsCartridge
+      - ContractorAppraisalCartridge
+      - ContractorNetProbeCartridge
+
+- type: entity
   parent: BasePDA
   id: MercenaryPDA
   name: mercenary PDA
