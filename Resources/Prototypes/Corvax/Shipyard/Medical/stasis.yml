@@ -10,9 +10,9 @@
 #
 - type: vessel
   id: Stasis
-  name: FSB Stasis
+  name: FSB Стазис
   description: A medium medical vessel providing cryogenic and support medical services for the traumas of deep space operations. Designed, developed and deployed by the Far Star Biotech company to render aid wherever it is needed.
-  price: 47000 #Appraise value 40800 with 15% markup.
+  price: 67000 #Appraise value 40800 with 15% markup.
   category: Medium
   group: Shipyard
   shuttlePath: /Maps/Corvax/Shuttles/Medical/stasis.yml
@@ -22,7 +22,7 @@
 
 - type: gameMap
   id: Stasis
-  mapName: 'FSB Stasis'
+  mapName: 'FSB Стазис'
   mapPath: /Maps/Corvax/Shuttles/Medical/stasis.yml
   minPlayers: 0
   stations: 
@@ -30,7 +30,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Stasis {1}'
+          mapNameTemplate: 'Стазис {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
