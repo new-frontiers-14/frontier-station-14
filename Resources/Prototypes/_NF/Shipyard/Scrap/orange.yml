@@ -1,33 +1,33 @@
-- type: vessel
-  id: Orange
-  name: SV Обломок
-  description: Малогабаритный кусок мусора. Рекомендованный состав команды 1-2 человека.
-  price: 16000 #Appraisal is 14500
-  category: Small
-  group: Scrap
-  shuttlePath: /Maps/_NF/Shuttles/Scrap/orange.yml
-  guidebookPage: Null
-  class:
-  - Scrapyard
-  - Cargo
-  - Salvage
-
-- type: gameMap
-  id: Orange
-  mapName: 'SV Обломок'
-  mapPath: /Maps/_NF/Shuttles/Scrap/orange.yml
-  minPlayers: 0
-  stations:
-    Orange:
-      stationProto: StandardFrontierVessel
-      components:
-        - type: StationNameSetup
-          mapNameTemplate: 'Обломок {1}'
-          nameGenerator:
-            !type:NanotrasenNameGenerator
-            prefixCreator: '14'
-        - type: StationJobs
-          availableJobs:
-            Contractor: [ 0, 0 ]
-            Pilot: [ 0, 0 ]
-            Mercenary: [ 0, 0 ]
+# - type: vessel
+#   id: Orange
+#   name: SV Обломок
+#   description: Малогабаритный кусок мусора. Рекомендованный состав команды 1-2 человека.
+#   price: 16000 #Appraisal is 14500
+#   category: Small
+#   group: Scrap
+#   shuttlePath: /Maps/_NF/Shuttles/Scrap/orange.yml
+#   guidebookPage: Null
+#   class:
+#   - Scrapyard
+#   - Cargo
+#   - Salvage
+# 
+# - type: gameMap
+#   id: Orange
+#   mapName: 'SV Обломок'
+#   mapPath: /Maps/_NF/Shuttles/Scrap/orange.yml
+#   minPlayers: 0
+#   stations:
+#     Orange:
+#       stationProto: StandardFrontierVessel
+#       components:
+#         - type: StationNameSetup
+#           mapNameTemplate: 'Обломок {1}'
+#           nameGenerator:
+#             !type:NanotrasenNameGenerator
+#             prefixCreator: '14'
+#         - type: StationJobs
+#           availableJobs:
+#             Contractor: [ 0, 0 ]
+#             Pilot: [ 0, 0 ]
+#             Mercenary: [ 0, 0 ]

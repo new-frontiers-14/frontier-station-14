@@ -1,41 +1,41 @@
 # Author Info
 # GitHub: Tych0theSynth
 # Discord: Tych0
-
+# 
 # Maintainer Info
 # GitHub: Tych0theSynth
 # Discord: Tych0
-
+# 
 # Shuttle Notes:
 #
-- type: vessel
-  id: Lyrae
-  name: SBB Лира
-  description: Среднегабаритный исследовательский шаттл. Рекомендованный состав команды 2-5 человек.
-  price: 51000
-  category: Medium
-  group: Shipyard
-  shuttlePath: /Maps/_NF/Shuttles/lyrae.yml
-  guidebookPage: Null
-  class:
-  - Science
-
-- type: gameMap
-  id: Lyrae
-  mapName: 'SBB Лира'
-  mapPath: /Maps/_NF/Shuttles/lyrae.yml
-  minPlayers: 0
-  stations:
-    Lyrae:
-      stationProto: StandardFrontierVessel
-      components:
-        - type: StationNameSetup
-          mapNameTemplate: 'Лира {1}'
-          nameGenerator:
-            !type:NanotrasenNameGenerator
-            prefixCreator: '14'
-        - type: StationJobs
-          availableJobs:
-            Contractor: [ 0, 0 ]
-            Pilot: [ 0, 0 ]
-            Mercenary: [ 0, 0 ]
+# - type: vessel
+#   id: Lyrae
+#   name: SBB Лира
+#   description: Среднегабаритный исследовательский шаттл. Рекомендованный состав команды 2-5 человек.
+#   price: 51000
+#   category: Medium
+#   group: Shipyard
+#   shuttlePath: /Maps/_NF/Shuttles/lyrae.yml
+#   guidebookPage: Null
+#   class:
+#   - Science
+# 
+# - type: gameMap
+#   id: Lyrae
+#   mapName: 'SBB Лира'
+#   mapPath: /Maps/_NF/Shuttles/lyrae.yml
+#   minPlayers: 0
+#   stations:
+#     Lyrae:
+#       stationProto: StandardFrontierVessel
+#       components:
+#         - type: StationNameSetup
+#           mapNameTemplate: 'Лира {1}'
+#           nameGenerator:
+#             !type:NanotrasenNameGenerator
+#             prefixCreator: '14'
+#         - type: StationJobs
+#           availableJobs:
+#             Contractor: [ 0, 0 ]
+#             Pilot: [ 0, 0 ]
+#             Mercenary: [ 0, 0 ]

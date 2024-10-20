@@ -1,0 +1,41 @@
+# Author Info
+# GitHub: ???
+# Discord: ???
+
+# Maintainer Info
+# GitHub: ???
+# Discord: ???
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Prospector
+  name: NC Старатель
+  description: Малогабаритный добывающий шаттл. Рекомендованный состав команды 1-3 человека.
+  price: 24500
+  category: Small
+  group: Shipyard
+  shuttlePath: /Maps/Corvax/Shuttles/Salvage/prospector.yml
+  guidebookPage: ShipyardProspector
+  class:
+  - Salvage
+
+- type: gameMap
+  id: Prospector
+  mapName: 'NC Старатель'
+  mapPath: /Maps/Corvax/Shuttles/Salvage/prospector.yml
+  minPlayers: 0
+  stations:
+    Prospector:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Старатель {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]

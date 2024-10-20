@@ -1,0 +1,26 @@
+# - type: vessel
+#   id: Centurion
+#   name: NSF Центурион
+#   description: Штурмовое судно Центурион. Произведено частной военно-производственной компаний Vitezstvi по чертежам шаттла "Мародер" по спец. заказу НТ. Рекомендуемый состав команды 3-7 человек.
+#   price: 190030
+#   category: Large
+#   group: Security
+#   access: Bailiff
+#   shuttlePath: /Maps/Corvax/Shuttles/Nfsd/centurion.yml
+# 
+# - type: gameMap
+#   id: Centurion
+#   mapName: 'NSF Центурион'
+#   mapPath: /Maps/Corvax/Shuttles/Nfsd/centurion.yml
+#   minPlayers: 0
+#   stations:
+#     Centurion:
+#       stationProto: StandardFrontierSecurityVessel
+#       components:
+#         - type: StationNameSetup
+#           mapNameTemplate: 'Центурион {1}'
+#           nameGenerator:
+#             !type:NanotrasenNameGenerator
+#             prefixCreator: '14'
+#         - type: StationJobs
+#           availableJobs: {}

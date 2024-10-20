@@ -1,0 +1,42 @@
+# Author Info
+# GitHub: Kesiath (https://github.com/Kesiath)
+# Discord: ???
+
+# Maintainer Info
+# GitHub: ???
+# Discord: ???
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Anchor
+  name: KC Якорь
+  description: Крупногабаритный экспедиционный шаттл. Рекомендованный размер команды 4-8 человек.
+  price: 175300 # $81000 +30%
+  category: Large
+  group: Expedition
+  shuttlePath: /Maps/Corvax/Shuttles/Expedition/anchor.yml
+  guidebookPage: Null
+  class:
+  - Expedition
+  - Civilian
+
+- type: gameMap
+  id: Anchor
+  mapName: 'KC Якорь'
+  mapPath: /Maps/Corvax/Shuttles/Expedition/anchor.yml
+  minPlayers: 0
+  stations:
+    Anchor:
+      stationProto: StandardFrontierExpeditionVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Якорь {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]

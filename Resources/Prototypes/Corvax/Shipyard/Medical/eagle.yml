@@ -1,0 +1,42 @@
+# Author Info
+# GitHub: ThatOneGoblin25 (https://github.com/ThatOneGoblin25)
+# Discord: ???
+
+# Maintainer Info
+# GitHub: ???
+# Discord: ???
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Eagle
+  name: NM Орлан
+  description: Среднегабаритный медико-инженерный шаттл. Рекомендованный размер команды 3-5 человек.
+  price: 67950 
+  category: Medium
+  group: Shipyard
+  shuttlePath: /Maps/Corvax/Shuttles/Medical/eagle.yml
+  guidebookPage: Null
+  class:
+  - Medical
+  - Engineering
+
+- type: gameMap
+  id: Eagle
+  mapName: 'NM Орлан'
+  mapPath: /Maps/Corvax/Shuttles/Medical/eagle.yml
+  minPlayers: 0
+  stations:
+    Eagle:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Орлан {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]

@@ -1,0 +1,41 @@
+# Author Info
+# GitHub: Tych0theSynth
+# Discord: Tych0
+
+# Maintainer Info
+# GitHub: Tych0theSynth
+# Discord: Tych0
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Broadhead
+  name: NSF Авангард
+  description: Среднегабаритный шаттл ДСБФ, предназначенный для проведения раследований.
+  price: 50000
+  category: Medium
+  group: Security
+  access: Detective
+  shuttlePath: /Maps/Corvax/Shuttles/Nfsd/broadhead.yml
+  guidebookPage: Null
+  class:
+  - Detective
+
+- type: gameMap
+  id: Broadhead
+  mapName: 'NSF Авангард'
+  mapPath: /Maps/Corvax/Shuttles/Nfsd/broadhead.yml
+  minPlayers: 0
+  stations:
+    Broadhead:
+      stationProto: StandardFrontierSecurityVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Авангард {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Detective: [ 0, 0 ]
+            SecurityOfficer: [ 0, 0 ]

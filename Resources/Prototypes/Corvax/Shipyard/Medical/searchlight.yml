@@ -1,0 +1,41 @@
+# Author Info
+# GitHub: erhardsteinhauer
+# Discord: erhardsteinhauer
+
+# Maintainer Info
+# GitHub: erhardsteinhauer
+# Discord: erhardsteinhauer
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Searchlight
+  name: LVHI Прожектор
+  description: Малогабаритный медицинский шаттл. Рекомендованный состав команды 1-3 человека.
+  price: 29050 # ~26400$ on mapinit + ~2640$ from 10% markup
+  category: Small
+  group: Shipyard
+  shuttlePath: /Maps/Corvax/Shuttles/Medical/searchlight.yml
+  guidebookPage: ShipyardSearchlight
+  class:
+  - Medical
+
+- type: gameMap
+  id: Searchlight
+  mapName: 'Прожектор'
+  mapPath: /Maps/Corvax/Shuttles/Medical/searchlight.yml
+  minPlayers: 0
+  stations:
+    Searchlight:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Прожектор {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]

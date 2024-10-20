@@ -1,0 +1,42 @@
+# Author Info
+# GitHub: ???
+# Discord: ???
+
+# Maintainer Info
+# GitHub: ???
+# Discord: ???
+
+# Shuttle Notes:
+# 
+- type: vessel
+  id: Barge
+  name: NC Баржа
+  description: Среднегабаритный добывающий шаттл. Рекомендованный размер команды 3-6 человек.
+  price: 42300
+  category: Medium
+  group: Shipyard
+  shuttlePath: /Maps/Corvax/Shuttles/Salvage/barge.yml
+  guidebookPage: Null
+  class:
+  - Cargo
+  - Salvage
+
+- type: gameMap
+  id: Barge
+  mapName: 'NC Баржа'
+  mapPath: /Maps/Corvax/Shuttles/Salvage/barge.yml
+  minPlayers: 0
+  stations:
+    Barge:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Баржа {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]

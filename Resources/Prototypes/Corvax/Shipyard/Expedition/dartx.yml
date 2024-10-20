@@ -1,0 +1,38 @@
+# Author Info
+# GitHub: Checkraze???
+# Discord: ???
+
+# Maintainer Info
+# GitHub: ???
+# Discord: ???
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: DartX
+  name: NT Копьё-X
+  description: Среднегабаритный экспедиционный шаттл. Рекомендованный размер команды 3-6 человек.
+  price: 122200 # ~64000$ on mapinit + ~19200$ from 30% markup
+  category: Medium
+  group: Expedition
+  shuttlePath: /Maps/Corvax/Shuttles/Expedition/dartx.yml
+
+- type: gameMap
+  id: DartX
+  mapName: 'NT Копьё-X'
+  mapPath: /Maps/Corvax/Shuttles/Expedition/dartx.yml
+  minPlayers: 0
+  stations:
+    DartX:
+      stationProto: StandardFrontierExpeditionVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Копьё-X {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]

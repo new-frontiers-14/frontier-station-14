@@ -1,31 +1,31 @@
-- type: vessel
-  id: Placebo
-  name: NC Плацебо
-  description: Малогабаритный шаттл психолога. Рекомендуемый состав команды 1 человек.
-  price: 20000
-  category: Small
-  group: Shipyard
-  shuttlePath: /Maps/_NF/Shuttles/placebo.yml
-  guidebookPage: Null
-  class:
-  - Medical
-
-- type: gameMap
-  id: Placebo
-  mapName: 'NC Плацебо'
-  mapPath: /Maps/_NF/Shuttles/placebo.yml
-  minPlayers: 0
-  stations:
-    Placebo:
-      stationProto: StandardFrontierVessel
-      components:
-        - type: StationNameSetup
-          mapNameTemplate: 'Плацебо {1}'
-          nameGenerator:
-            !type:NanotrasenNameGenerator
-            prefixCreator: '14'
-        - type: StationJobs
-          availableJobs:
-            Contractor: [ 0, 0 ]
-            Pilot: [ 0, 0 ]
-            Mercenary: [ 0, 0 ]
+# - type: vessel
+#   id: Placebo
+#   name: NC Плацебо
+#   description: Малогабаритный шаттл психолога. Рекомендуемый состав команды 1 человек.
+#   price: 20000
+#   category: Small
+#   group: Shipyard
+#   shuttlePath: /Maps/_NF/Shuttles/placebo.yml
+#   guidebookPage: Null
+#   class:
+#   - Medical
+# 
+# - type: gameMap
+#   id: Placebo
+#   mapName: 'NC Плацебо'
+#   mapPath: /Maps/_NF/Shuttles/placebo.yml
+#   minPlayers: 0
+#   stations:
+#     Placebo:
+#       stationProto: StandardFrontierVessel
+#       components:
+#         - type: StationNameSetup
+#           mapNameTemplate: 'Плацебо {1}'
+#           nameGenerator:
+#             !type:NanotrasenNameGenerator
+#             prefixCreator: '14'
+#         - type: StationJobs
+#           availableJobs:
+#             Contractor: [ 0, 0 ]
+#             Pilot: [ 0, 0 ]
+#             Mercenary: [ 0, 0 ]

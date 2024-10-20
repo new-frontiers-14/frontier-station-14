@@ -1,0 +1,43 @@
+# Author Info
+# GitHub: https://github.com/DustScoundrel
+# Discord: 691415110282903552
+
+# Maintainer Info
+# GitHub: https://github.com/MoistBiscuits
+# Discord: 159375107855351808
+
+# Shuttle Notes:
+# 
+
+- type: vessel
+  id: Vagabond
+  name: NT Бродяга
+  description: Среднегабаритный добывающий-грузовой шаттл. Рекомендуемый состав команды 3-6 человек.
+  price: 60000
+  category: Medium
+  group: Shipyard
+  shuttlePath: /Maps/Corvax/Shuttles/Salvage/vagabond.yml
+  guidebookPage: ShipyardVagabond
+  class:
+  - Salvage
+  - Cargo
+
+- type: gameMap
+  id: Vagabond
+  mapName: 'NT Бродяга'
+  mapPath: /Maps/Corvax/Shuttles/Salvage/vagabond.yml
+  minPlayers: 0
+  stations:
+    Vagabond:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Бродяга {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]

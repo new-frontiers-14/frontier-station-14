@@ -1,0 +1,35 @@
+# Maintainer Info
+# GitHub: dvir001
+# Discord: dvir01 (84770870936997888)
+
+# Shuttle Notes:
+# 
+
+- type: vessel
+  id: McDelivery
+  name: DC Курьер
+  description: Персональный малогабаритный шаттл доставки продуктов.
+  price: 8500
+  category: Micro
+  group: Custom
+  shuttlePath: /Maps/Corvax/Shuttles/Civilian/mcdelivery.yml
+  guidebookPage: ShipyardMcDelivery
+  class:
+  - Civilian
+
+- type: gameMap
+  id: McDelivery
+  mapName: 'DC Курьер'
+  mapPath: /Maps/Corvax/Shuttles/Civilian/mcdelivery.yml
+  minPlayers: 0
+  stations:
+    McDelivery:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Курьер {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs: {}

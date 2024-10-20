@@ -1,0 +1,31 @@
+- type: vessel
+  id: Construct
+  name: NT Каркас
+  description: Чисто технически это тоже шаттл. Не рекомендуется никому.
+  price: 10500
+  category: Micro
+  group: Shipyard
+  shuttlePath: /Maps/Corvax/Shuttles/Engineering/construct.yml
+  guidebookPage: ShipyardConstruct
+  class:
+  - Engineering
+
+- type: gameMap
+  id: Construct
+  mapName: 'NT Каркас'
+  mapPath: /Maps/Corvax/Shuttles/Engineering/construct.yml
+  minPlayers: 0
+  stations:
+    Construct:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Каркас {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]

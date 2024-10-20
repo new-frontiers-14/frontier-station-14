@@ -1,0 +1,43 @@
+# Author Info
+# GitHub: YumiGumi (https://github.com/YumiGumi)
+# Discord: ???
+
+# Maintainer Info
+# GitHub: ???
+# Discord: ???
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Gourd
+  name: SLI Цукини
+  description: Крупногабаритный экспедиционный шаттл. Рекомендованный размер команды 4-8 человек.
+  price: 195000 # ~155000$ on mapinit + ~45150$ from 30% markup
+  category: Large
+  group: Expedition
+  shuttlePath: /Maps/Corvax/Shuttles/Expedition/gourd.yml
+  guidebookPage: ShipyardGourd
+  class:
+  - Expedition
+  - Science
+  - Civilian
+
+- type: gameMap
+  id: Gourd
+  mapName: 'SLI Цукини'
+  mapPath: /Maps/Corvax/Shuttles/Expedition/gourd.yml
+  minPlayers: 0
+  stations:
+    Gourd:
+      stationProto: StandardFrontierExpeditionVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Цукини {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]

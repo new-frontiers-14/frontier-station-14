@@ -1,0 +1,30 @@
+- type: vessel
+  id: Cleric
+  name: NSF Пастырь
+  description: Малогабаритный медицинский шаттл ДСБФ. Рекомендованный состав команды 1 человек.
+  price: 11800 #Appraisal is 10500
+  category: Micro
+  group: Custom
+  access: Security
+  mapchecker_group_override: Security  # Treat this as a security vessel for mapchecker purposes
+  shuttlePath: /Maps/Corvax/Shuttles/Nfsd/cleric.yml
+  guidebookPage: Null
+  class:
+  - Medical
+
+- type: gameMap
+  id: Cleric
+  mapName: 'NSF Пастырь'
+  mapPath: /Maps/Corvax/Shuttles/Nfsd/cleric.yml
+  minPlayers: 0
+  stations:
+    Cleric:
+      stationProto: StandardFrontierSecurityVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Пастырь {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs: {}

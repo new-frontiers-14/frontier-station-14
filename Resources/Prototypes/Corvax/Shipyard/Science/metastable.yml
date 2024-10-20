@@ -1,0 +1,34 @@
+# - type: vessel
+  # id: Metastable
+  # name: TC Гармония
+  # description: Среднегабаритный многоцелевой шаттл. Рекомендуемый состав команды 3-6 человек.
+  # price: 95000
+  # category: Medium
+  # group: Shipyard
+  # shuttlePath: /Maps/Corvax/Shuttles/Science/metastable.yml
+  # guidebookPage: Null
+  # class:
+  # - Science
+  # - Engineering
+  # - Medical
+  # - Civilian
+
+# - type: gameMap
+  # id: Metastable
+  # mapName: 'TC Гармония'
+  # mapPath: /Maps/Corvax/Shuttles/Science/metastable.yml
+  # minPlayers: 0
+  # stations:
+    # Metastable:
+      # stationProto: StandardFrontierVessel
+      # components:
+        # - type: StationNameSetup
+          # mapNameTemplate: 'Гармония {1}'
+          # nameGenerator:
+            # !type:NanotrasenNameGenerator
+            # prefixCreator: '14'
+        # - type: StationJobs
+          # availableJobs:
+            # Contractor: [ 0, 0 ]
+            # Pilot: [ 0, 0 ]
+            # Mercenary: [ 0, 0 ]

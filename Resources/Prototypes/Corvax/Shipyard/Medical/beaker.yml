@@ -1,0 +1,31 @@
+- type: vessel
+  id: Beaker
+  name: SBI Мензурка
+  description: Малогабаритная химическая лаборатория. Рекомендованный состав команды 1-2 человека.
+  price: 65000
+  category: Small
+  group: Shipyard
+  shuttlePath: /Maps/Corvax/Shuttles/Medical/beaker.yml
+  guidebookPage: Null
+  class:
+  - Chemistry
+
+- type: gameMap
+  id: Beaker
+  mapName: 'SBI Мензурка'
+  mapPath: /Maps/Corvax/Shuttles/Medical/beaker.yml
+  minPlayers: 0
+  stations:
+    Beaker:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Мензурка {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]

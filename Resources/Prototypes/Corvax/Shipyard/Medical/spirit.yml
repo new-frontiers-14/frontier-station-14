@@ -1,0 +1,41 @@
+# Author Info
+# GitHub: Actualcatmoment (https://github.com/Actualcatmoment)
+# Discord: @iNoahGuy
+
+# Maintainer Info
+# GitHub: dustylens
+# Discord: dustylens
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Spirit
+  name: NM Дух
+  description: Крошечный медицинский поисково-спасательный шаттл, столь же маневренный, сколь и тесный. Эксплуатационные расходы гарантированно* будут на 5% ниже, чем у конкурирующих моделей!
+  price: 20500
+  category: Small
+  group: Shipyard
+  shuttlePath: /Maps/Corvax/Shuttles/Medical/spirit.yml
+  guidebookPage: ShipyardSpirit
+  class:
+  - Medical
+
+- type: gameMap
+  id: Spirit
+  mapName: 'NM Дух'
+  mapPath: /Maps/Corvax/Shuttles/Medical/spirit.yml
+  minPlayers: 0
+  stations:
+    Spirit:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Дух {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]

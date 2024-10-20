@@ -4058,7 +4058,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -0.5,-38.5
       parent: 2
-- proto: AirlockNfsd
+- proto: AirlockNfsdLocked
   entities:
   - uid: 1141
     components:
@@ -4094,6 +4094,18 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 23.5,-1.5
       parent: 2
+- proto: AirlockNfsdBrigGlassLocked
+  entities:
+  - uid: 194
+    components:
+    - type: Transform
+      pos: -8.5,-37.5
+      parent: 2
+  - uid: 621
+    components:
+    - type: Transform
+      pos: -15.5,-33.5
+      parent: 2
 - proto: AirlockNfsdDetectiveLocked
   entities:
   - uid: 260
@@ -4102,7 +4114,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -9.5,-12.5
       parent: 2
-- proto: AirlockNfsdGlass
+- proto: AirlockNfsdBrigGlassLocked
   entities:
   - uid: 201
     components:
@@ -4234,18 +4246,6 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 13.5,3.5
-      parent: 2
-  - uid: 5170
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -8.5,-37.5
-      parent: 2
-  - uid: 5308
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -15.5,-33.5
       parent: 2
   - uid: 5355
     components:
@@ -4730,26 +4730,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -1.5,3.5
       parent: 2
-    - type: Explosive
-      totalIntensity: 120000
-      maxIntensity: 8000
-      explosionType: Default
-    - type: DamageOnToolInteract
-      weldingDamage:
-        types:
-          Heat: 10
-      tools: Welding
-    missingComponents:
-    - Construction
-  - uid: 194
-    components:
-    - type: Transform
-      anchored: False
-      rot: 1.5707963267948966 rad
-      pos: 0.015625,3.046875
-      parent: 2
-    - type: Physics
-      bodyType: Dynamic
     - type: Explosive
       totalIntensity: 120000
       maxIntensity: 8000
@@ -5364,6 +5344,11 @@ entities:
       tools: Welding
     missingComponents:
     - Construction
+  - uid: 1071
+    components:
+    - type: Transform
+      pos: -0.5,2.5
+      parent: 2
   - uid: 1639
     components:
     - type: Transform
@@ -16988,7 +16973,7 @@ entities:
       pos: -19.5,-9.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -63967.086
+      secondsUntilStateChange: -64112.523
       state: Opening
 - proto: CurtainsWhiteOpen
   entities:
@@ -27957,7 +27942,7 @@ entities:
       pos: -13.5,-21.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -59106.96
+      secondsUntilStateChange: -59252.4
       state: Closing
   - uid: 3112
     components:
@@ -27966,7 +27951,7 @@ entities:
       pos: -13.5,-19.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -59106.23
+      secondsUntilStateChange: -59251.668
       state: Closing
   - uid: 3113
     components:
@@ -27975,7 +27960,7 @@ entities:
       pos: -13.5,-17.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -59105.395
+      secondsUntilStateChange: -59250.832
       state: Closing
   - uid: 3124
     components:
@@ -27996,7 +27981,7 @@ entities:
       pos: -20.5,-13.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -59103.23
+      secondsUntilStateChange: -59248.668
       state: Closing
   - uid: 3131
     components:
@@ -28017,7 +28002,7 @@ entities:
       pos: -17.5,-13.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -59104.195
+      secondsUntilStateChange: -59249.633
       state: Closing
 - proto: HydroponicsTrayEmpty
   entities:
@@ -28636,6 +28621,13 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
+- proto: NFVendingMachineCartNfsd
+  entities:
+  - uid: 4702
+    components:
+    - type: Transform
+      pos: -1.5,-39.5
+      parent: 2
 - proto: NitrogenCanister
   entities:
   - uid: 4861
@@ -33525,13 +33517,6 @@ entities:
       parent: 2
 - proto: SignHydro1
   entities:
-  - uid: 3653
-    components:
-    - type: Transform
-      pos: -26.5,9.5
-      parent: 2
-- proto: SignHydro2
-  entities:
   - uid: 2633
     components:
     - type: Transform
@@ -33541,6 +33526,11 @@ entities:
     components:
     - type: Transform
       pos: -18.5,9.5
+      parent: 2
+  - uid: 3653
+    components:
+    - type: Transform
+      pos: -26.5,9.5
       parent: 2
 - proto: Sink
   entities:
@@ -35731,13 +35721,6 @@ entities:
     components:
     - type: Transform
       pos: -24.5,-4.5
-      parent: 2
-- proto: VendingMachineCartNfsd
-  entities:
-  - uid: 4702
-    components:
-    - type: Transform
-      pos: -1.5,-39.5
       parent: 2
 - proto: VendingMachineChefDrobe
   entities:
@@ -46025,47 +46008,6 @@ entities:
     components:
     - type: Transform
       pos: 15.484223,-24.412403
-      parent: 2
-- proto: XenoAISpawnerHard
-  entities:
-  - uid: 1071
-    components:
-    - type: Transform
-      pos: -22.5,-45.5
-      parent: 2
-  - uid: 1083
-    components:
-    - type: Transform
-      pos: -13.5,-44.5
-      parent: 2
-  - uid: 1084
-    components:
-    - type: Transform
-      pos: -19.5,-37.5
-      parent: 2
-  - uid: 1707
-    components:
-    - type: Transform
-      pos: -18.5,-40.5
-      parent: 2
-  - uid: 4070
-    components:
-    - type: Transform
-      pos: -11.5,-48.5
-      parent: 2
-- proto: XenoAISpawnerQueen
-  entities:
-  - uid: 4069
-    components:
-    - type: Transform
-      pos: -18.5,-49.5
-      parent: 2
-- proto: XenoAITimedSpawner
-  entities:
-  - uid: 621
-    components:
-    - type: Transform
-      pos: -14.5,-49.5
       parent: 2
 - proto: XenoWardingTower
   entities:

@@ -1,41 +1,41 @@
 # Author Info
 # GitHub: https://github.com/AF-Buyrcsp2
 # Discord:
-
+# 
 # Maintainer Info
 #
-
+# 
 # Shuttle Notes:
 #
-
-- type: vessel
-  id: Camper
-  name: SSS Кемпер
-  description: Персональный малогабаритный шаттл на 1 человека.
-  price: 12000
-  category: Small
-  group: Shipyard
-  shuttlePath: /Maps/_NF/Shuttles/camper.yml
-  guidebookPage: ShipyardCamper
-  class:
-  - Civilian
-
-- type: gameMap
-  id: Camper
-  mapName: 'SSS Кемпер'
-  mapPath: /Maps/_NF/Shuttles/camper.yml
-  minPlayers: 0
-  stations:
-    Camper:
-      stationProto: StandardFrontierVessel
-      components:
-        - type: StationNameSetup
-          mapNameTemplate: 'Кемпер {1}'
-          nameGenerator:
-            !type:NanotrasenNameGenerator
-            prefixCreator: '14'
-        - type: StationJobs
-          availableJobs:
-            Contractor: [ 0, 0 ]
-            Pilot: [ 0, 0 ]
-            Mercenary: [ 0, 0 ]
+# 
+# - type: vessel
+#   id: Camper
+#   name: SSS Кемпер
+#   description: Персональный малогабаритный шаттл на 1 человека.
+#   price: 12000
+#   category: Small
+#   group: Shipyard
+#   shuttlePath: /Maps/_NF/Shuttles/camper.yml
+#   guidebookPage: ShipyardCamper
+#   class:
+#   - Civilian
+# 
+# - type: gameMap
+#   id: Camper
+#   mapName: 'SSS Кемпер'
+#   mapPath: /Maps/_NF/Shuttles/camper.yml
+#   minPlayers: 0
+#   stations:
+#     Camper:
+#       stationProto: StandardFrontierVessel
+#       components:
+#         - type: StationNameSetup
+#           mapNameTemplate: 'Кемпер {1}'
+#           nameGenerator:
+#             !type:NanotrasenNameGenerator
+#             prefixCreator: '14'
+#         - type: StationJobs
+#           availableJobs:
+#             Contractor: [ 0, 0 ]
+#             Pilot: [ 0, 0 ]
+#             Mercenary: [ 0, 0 ]

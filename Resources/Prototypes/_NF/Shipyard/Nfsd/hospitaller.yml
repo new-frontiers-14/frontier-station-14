@@ -1,29 +1,29 @@
-- type: vessel
-  id: Hospitaller
-  name: NSF Лазарет
-  description: Малогабаритный медицинский шаттл. Рекомендованный состав команды 1-3 человека.
-  price: 28220
-  category: Small
-  group: Security
-  access: Security
-  shuttlePath: /Maps/_NF/Shuttles/Nfsd/hospitaller.yml
-  guidebookPage: Null
-  class:
-  - Medical
-
-- type: gameMap
-  id: Hospitaller
-  mapName: 'NSF Лазарет'
-  mapPath: /Maps/_NF/Shuttles/Nfsd/hospitaller.yml
-  minPlayers: 0
-  stations:
-    Hospitaller:
-      stationProto: StandardFrontierVessel
-      components:
-        - type: StationNameSetup
-          mapNameTemplate: 'Лазарет {1}'
-          nameGenerator:
-            !type:NanotrasenNameGenerator
-            prefixCreator: '14'
-        - type: StationJobs
-          availableJobs: {}
+# - type: vessel
+#   id: Hospitaller
+#   name: NSF Лазарет
+#   description: Малогабаритный медицинский шаттл. Рекомендованный состав команды 1-3 человека.
+#   price: 28220
+#   category: Small
+#   group: Security
+#   access: Security
+#   shuttlePath: /Maps/_NF/Shuttles/Nfsd/hospitaller.yml
+#   guidebookPage: Null
+#   class:
+#   - Medical
+# 
+# - type: gameMap
+#   id: Hospitaller
+#   mapName: 'NSF Лазарет'
+#   mapPath: /Maps/_NF/Shuttles/Nfsd/hospitaller.yml
+#   minPlayers: 0
+#   stations:
+#     Hospitaller:
+#       stationProto: StandardFrontierVessel
+#       components:
+#         - type: StationNameSetup
+#           mapNameTemplate: 'Лазарет {1}'
+#           nameGenerator:
+#             !type:NanotrasenNameGenerator
+#             prefixCreator: '14'
+#         - type: StationJobs
+#           availableJobs: {}

@@ -1,0 +1,41 @@
+# Author Info
+# GitHub: erhardsteinhauer
+# Discord: erhardsteinhauer
+
+# Maintainer Info
+# GitHub: erhardsteinhauer
+# Discord: erhardsteinhauer
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Legman
+  name: LVHI Интервьюер
+  description: Малогабаритный репортёрский шаттл. Рекомендованный размер команды 1 человек.
+  price: 10670 # 9700$ on mapinit + 970$ from 10% markup
+  category: Small
+  group: Shipyard
+  shuttlePath: /Maps/Corvax/Shuttles/Civilian/legman.yml
+  guidebookPage: ShipyardLegman
+  class:
+  - Civilian
+
+- type: gameMap
+  id: Legman
+  mapName: 'Интервьюер'
+  mapPath: /Maps/Corvax/Shuttles/Civilian/legman.yml
+  minPlayers: 0
+  stations:
+    Legman:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Интервьюер {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]

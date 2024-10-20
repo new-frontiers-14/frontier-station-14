@@ -1,41 +1,41 @@
 # Author Info
 # GitHub: kennedytcooper (https://github.com/kennedytcooper)
 # Discord: ???
-
+# 
 # Maintainer Info
 # GitHub: erhardsteinhauer
 # Discord: erhardsteinhauer
-
+# 
 # Shuttle Notes:
 #
-- type: vessel
-  id: Bocadillo
-  name: NC Фудтрак
-  description: Малогабаритный шаттл-ресторан. Рекомендованный размер команды 1-2 человека.
-  price: 19780 # 13.5% markup (+2350 from init)
-  category: Small
-  group: Shipyard
-  shuttlePath: /Maps/_NF/Shuttles/bocadillo.yml
-  guidebookPage: ShipyardBocadillo
-  class:
-  - Kitchen
-
-- type: gameMap
-  id: Bocadillo
-  mapName: 'NC Фудтрак'
-  mapPath: /Maps/_NF/Shuttles/bocadillo.yml
-  minPlayers: 0
-  stations:
-    Bocadillo:
-      stationProto: StandardFrontierVessel
-      components:
-        - type: StationNameSetup
-          mapNameTemplate: 'Фудтрак {1}'
-          nameGenerator:
-            !type:NanotrasenNameGenerator
-            prefixCreator: '14'
-        - type: StationJobs
-          availableJobs:
-            Contractor: [ 0, 0 ]
-            Pilot: [ 0, 0 ]
-            Mercenary: [ 0, 0 ]
+# - type: vessel
+#   id: Bocadillo
+#   name: NC Фудтрак
+#   description: Малогабаритный шаттл-ресторан. Рекомендованный размер команды 1-2 человека.
+#   price: 19780 # 13.5% markup (+2350 from init)
+#   category: Small
+#   group: Shipyard
+#   shuttlePath: /Maps/_NF/Shuttles/bocadillo.yml
+#   guidebookPage: ShipyardBocadillo
+#   class:
+#   - Kitchen
+# 
+# - type: gameMap
+#   id: Bocadillo
+#   mapName: 'NC Фудтрак'
+#   mapPath: /Maps/_NF/Shuttles/bocadillo.yml
+#   minPlayers: 0
+#   stations:
+#     Bocadillo:
+#       stationProto: StandardFrontierVessel
+#       components:
+#         - type: StationNameSetup
+#           mapNameTemplate: 'Фудтрак {1}'
+#           nameGenerator:
+#             !type:NanotrasenNameGenerator
+#             prefixCreator: '14'
+#         - type: StationJobs
+#           availableJobs:
+#             Contractor: [ 0, 0 ]
+#             Pilot: [ 0, 0 ]
+#             Mercenary: [ 0, 0 ]

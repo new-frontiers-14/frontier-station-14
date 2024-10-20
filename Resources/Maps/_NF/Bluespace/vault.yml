@@ -24,7 +24,7 @@ entities:
   - uid: 1
     components:
     - type: MetaData
-      name: Secure NT Vault
+      name: Защищенное хранилище NT #corvax-frontier
     - type: Transform
       pos: 0.07584572,0.026101112
       parent: invalid
@@ -2405,13 +2405,15 @@ entities:
     - type: Transform
       pos: -9.5,13.5
       parent: 1
-- proto: BookSecretDocuments
+- proto: BookSecurity
   entities:
   - uid: 358
     components:
     - type: Transform
       pos: 5.5623913,3.5869086
       parent: 1
+    - type: MetaData
+      name: Засекреченные документы
 - proto: BrutepackAdvanced1
   entities:
   - uid: 1096

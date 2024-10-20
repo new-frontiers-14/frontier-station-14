@@ -1,0 +1,39 @@
+# Author Info
+# GitHub: ???
+# Discord: ???
+
+# Maintainer Info
+# GitHub: ???
+# Discord: ???
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: MailPod
+  name: NC Ямщик
+  description: Малогабаритный почтовый шаттл, предназначенный для 1 человека.
+  price: 15000
+  category: Micro
+  group: Sr
+  access: Mail
+  shuttlePath: /Maps/Corvax/Shuttles/Service/mailpod.yml
+  guidebookPage: Null
+  class:
+  - Cargo
+
+- type: gameMap
+  id: MailPod
+  mapName: 'NC Ямщик'
+  mapPath: /Maps/Corvax/Shuttles/Service/mailpod.yml
+  minPlayers: 0
+  stations:
+    MailPod:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Ямщик {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs: {}

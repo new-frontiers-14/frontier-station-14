@@ -1,28 +1,28 @@
-- type: vessel
-  id: Crown
-  name: SBI Ворон
-  description: Малогабаритный шаттл для наёмников, рекомендуемый состав экипажа 2 человека.
-  price: 20000
-  category: Small
-  group: Shipyard
-  shuttlePath: /Maps/_NF/Shuttles/crown.yml
-
-- type: gameMap
-  id: Crown
-  mapName: 'SBI Ворон'
-  mapPath: /Maps/_NF/Shuttles/crown.yml
-  minPlayers: 0
-  stations:
-    Crown:
-      stationProto: StandardFrontierVessel
-      components:
-        - type: StationNameSetup
-          mapNameTemplate: 'Ворон {1}'
-          nameGenerator:
-            !type:NanotrasenNameGenerator
-            prefixCreator: '14'
-        - type: StationJobs
-          availableJobs:
-            Contractor: [ 0, 0 ]
-            Pilot: [ 0, 0 ]
-            Mercenary: [ 0, 0 ]
+# - type: vessel
+#   id: Crown
+#   name: SBI Ворон
+#   description: Малогабаритный шаттл для наёмников, рекомендуемый состав экипажа 2 человека.
+#   price: 20000
+#   category: Small
+#   group: Shipyard
+#   shuttlePath: /Maps/_NF/Shuttles/crown.yml
+# 
+# - type: gameMap
+#   id: Crown
+#   mapName: 'SBI Ворон'
+#   mapPath: /Maps/_NF/Shuttles/crown.yml
+#   minPlayers: 0
+#   stations:
+#     Crown:
+#       stationProto: StandardFrontierVessel
+#       components:
+#         - type: StationNameSetup
+#           mapNameTemplate: 'Ворон {1}'
+#           nameGenerator:
+#             !type:NanotrasenNameGenerator
+#             prefixCreator: '14'
+#         - type: StationJobs
+#           availableJobs:
+#             Contractor: [ 0, 0 ]
+#             Pilot: [ 0, 0 ]
+#             Mercenary: [ 0, 0 ]

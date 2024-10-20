@@ -1,41 +1,41 @@
 # Author Info
 # GitHub: https://github.com/MoistBiscuits
 # Discord: moistbiscuits
-
+# 
 # Maintainer Info
 # GitHub: https://github.com/MoistBiscuits
 # Discord: moistbiscuits
-
+# 
 # Shuttle Notes:
 #
-- type: vessel
-  id: Piecrust
-  name: NC Пирожок
-  description: Малогабаритный шаттл ресторан с зоопарком. Рекомендованный состав команды 1-2 человека.
-  price: 27500
-  category: Small
-  group: Shipyard
-  shuttlePath: /Maps/_NF/Shuttles/piecrust.yml
-  guidebookPage: Null
-  class:
-  - Kitchen
-
-- type: gameMap
-  id: Piecrust
-  mapName: 'NT Пирожок'
-  mapPath: /Maps/_NF/Shuttles/piecrust.yml
-  minPlayers: 0
-  stations:
-    Piecrust:
-      stationProto: StandardFrontierVessel
-      components:
-        - type: StationNameSetup
-          mapNameTemplate: 'Пирожок {1}'
-          nameGenerator:
-            !type:NanotrasenNameGenerator
-            prefixCreator: '14'
-        - type: StationJobs
-          availableJobs:
-            Contractor: [ 0, 0 ]
-            Pilot: [ 0, 0 ]
-            Mercenary: [ 0, 0 ]
+# - type: vessel
+#   id: Piecrust
+#   name: NC Пирожок
+#   description: Малогабаритный шаттл ресторан с зоопарком. Рекомендованный состав команды 1-2 человека.
+#   price: 27500
+#   category: Small
+#   group: Shipyard
+#   shuttlePath: /Maps/_NF/Shuttles/piecrust.yml
+#   guidebookPage: Null
+#   class:
+#   - Kitchen
+# 
+# - type: gameMap
+#   id: Piecrust
+#   mapName: 'NT Пирожок'
+#   mapPath: /Maps/_NF/Shuttles/piecrust.yml
+#   minPlayers: 0
+#   stations:
+#     Piecrust:
+#       stationProto: StandardFrontierVessel
+#       components:
+#         - type: StationNameSetup
+#           mapNameTemplate: 'Пирожок {1}'
+#           nameGenerator:
+#             !type:NanotrasenNameGenerator
+#             prefixCreator: '14'
+#         - type: StationJobs
+#           availableJobs:
+#             Contractor: [ 0, 0 ]
+#             Pilot: [ 0, 0 ]
+#             Mercenary: [ 0, 0 ]

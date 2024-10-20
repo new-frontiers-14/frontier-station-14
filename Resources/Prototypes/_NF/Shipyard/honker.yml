@@ -1,31 +1,31 @@
-- type: vessel
-  id: Honker
-  name: NT ХОНКЕР
-  description: ХОНК ХОНК ХОНК ХОНК ХОНК ХОНК
-  price: 22500
-  category: Small
-  group: Shipyard
-  shuttlePath: /Maps/_NF/Shuttles/honker.yml
-  guidebookPage: Null
-  class:
-  - Civilian
-
-- type: gameMap
-  id: Honker
-  mapName: 'NT ХОНКЕР'
-  mapPath: /Maps/_NF/Shuttles/honker.yml
-  minPlayers: 0
-  stations:
-    Honker:
-      stationProto: StandardFrontierVessel
-      components:
-        - type: StationNameSetup
-          mapNameTemplate: 'ХОНКЕР {1}'
-          nameGenerator:
-            !type:NanotrasenNameGenerator
-            prefixCreator: '14'
-        - type: StationJobs
-          availableJobs:
-            Contractor: [ 0, 0 ]
-            Pilot: [ 0, 0 ]
-            Mercenary: [ 0, 0 ]
+# - type: vessel
+#   id: Honker
+#   name: NT ХОНКЕР
+#   description: ХОНК ХОНК ХОНК ХОНК ХОНК ХОНК
+#   price: 22500
+#   category: Small
+#   group: Shipyard
+#   shuttlePath: /Maps/_NF/Shuttles/honker.yml
+#   guidebookPage: Null
+#   class:
+#   - Civilian
+# 
+# - type: gameMap
+#   id: Honker
+#   mapName: 'NT ХОНКЕР'
+#   mapPath: /Maps/_NF/Shuttles/honker.yml
+#   minPlayers: 0
+#   stations:
+#     Honker:
+#       stationProto: StandardFrontierVessel
+#       components:
+#         - type: StationNameSetup
+#           mapNameTemplate: 'ХОНКЕР {1}'
+#           nameGenerator:
+#             !type:NanotrasenNameGenerator
+#             prefixCreator: '14'
+#         - type: StationJobs
+#           availableJobs:
+#             Contractor: [ 0, 0 ]
+#             Pilot: [ 0, 0 ]
+#             Mercenary: [ 0, 0 ]

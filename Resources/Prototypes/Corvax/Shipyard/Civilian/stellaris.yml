@@ -1,0 +1,31 @@
+- type: vessel
+  id: Stellaris
+  name: NT Межзвёздный
+  description: Среднегабаритный шаттл-ресторан с театром. Рекомендованный состав команды 2-5 человек.
+  price: 65000
+  category: Medium
+  group: Shipyard
+  shuttlePath: /Maps/Corvax/Shuttles/Civilian/stellaris.yml
+  guidebookPage: Null
+  class:
+  - Civilian
+
+- type: gameMap
+  id: Stellaris
+  mapName: 'NT Межзвёздный'
+  mapPath: /Maps/Corvax/Shuttles/Civilian/stellaris.yml
+  minPlayers: 0
+  stations:
+    Stellaris:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Межзвёздный {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]

@@ -1,0 +1,41 @@
+# Author Info
+# GitHub: SurfinNinja1
+# Discord: ???
+
+# Maintainer Info
+# GitHub: ???
+# Discord: ???
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Loader
+  name: NC Такелажник
+  description: Малогабаритный грузовой шаттл. Рекомендованный состав команды 1-2 человека.
+  price: 22000
+  category: Small
+  group: Shipyard
+  shuttlePath: /Maps/Corvax/Shuttles/Civilian/loader.yml
+  guidebookPage: ShipyardLoader
+  class:
+  - Cargo
+
+- type: gameMap
+  id: Loader
+  mapName: 'NC Такелажник'
+  mapPath: /Maps/Corvax/Shuttles/Civilian/loader.yml
+  minPlayers: 0
+  stations:
+    Loader:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Такелажник {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]

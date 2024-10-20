@@ -1,41 +1,41 @@
 # Author Info
 # GitHub: erhardsteinhauer
 # Discord: erhardsteinhauer
-
+# 
 # Maintainer Info
 # GitHub: erhardsteinhauer
 # Discord: erhardsteinhauer
-
+# 
 # Shuttle Notes:
 #
-- type: vessel
-  id: harbormaster
-  name: NC Квадрон
-  description: Малогабаритный персональный шаттл. Рекомендованный размер команды 1 человек.
-  price: 28300 # ~24600$ on mapinit + ~3690$ from 15% markup
-  category: Small
-  group: Shipyard
-  shuttlePath: /Maps/_NF/Shuttles/harbormaster.yml
-  guidebookPage: ShipyardHarbormaster
-  class:
-  - Civilian
-
-- type: gameMap
-  id: harbormaster
-  mapName: 'Квадрон'
-  mapPath: /Maps/_NF/Shuttles/harbormaster.yml
-  minPlayers: 0
-  stations:
-    harbormaster:
-      stationProto: StandardFrontierVessel
-      components:
-        - type: StationNameSetup
-          mapNameTemplate: 'Квадрон {1}'
-          nameGenerator:
-            !type:NanotrasenNameGenerator
-            prefixCreator: '14'
-        - type: StationJobs
-          availableJobs:
-            Contractor: [ 0, 0 ]
-            Pilot: [ 0, 0 ]
-            Mercenary: [ 0, 0 ]
+# - type: vessel
+#   id: harbormaster
+#   name: NC Квадрон
+#   description: Малогабаритный персональный шаттл. Рекомендованный размер команды 1 человек.
+#   price: 28300 # ~24600$ on mapinit + ~3690$ from 15% markup
+#   category: Small
+#   group: Shipyard
+#   shuttlePath: /Maps/_NF/Shuttles/harbormaster.yml
+#   guidebookPage: ShipyardHarbormaster
+#   class:
+#   - Civilian
+# 
+# - type: gameMap
+#   id: harbormaster
+#   mapName: 'Квадрон'
+#   mapPath: /Maps/_NF/Shuttles/harbormaster.yml
+#   minPlayers: 0
+#   stations:
+#     harbormaster:
+#       stationProto: StandardFrontierVessel
+#       components:
+#         - type: StationNameSetup
+#           mapNameTemplate: 'Квадрон {1}'
+#           nameGenerator:
+#             !type:NanotrasenNameGenerator
+#             prefixCreator: '14'
+#         - type: StationJobs
+#           availableJobs:
+#             Contractor: [ 0, 0 ]
+#             Pilot: [ 0, 0 ]
+#             Mercenary: [ 0, 0 ]

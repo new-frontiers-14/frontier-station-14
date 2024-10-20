@@ -1,0 +1,34 @@
+# - type: vessel
+#   id: BigSkat
+#   name: NSF Большой скат
+#   description: Сверхогромный многофункциональный шаттл ДСБФ. Рекомендованный состав команды 10-16 человек.
+#   price: 520500 #Appraisal value is 440000
+#   category: Large
+#   group: Security
+#   access: Frontier
+#   shuttlePath: /Maps/Corvax/Shuttles/Nfsd/bigskat.yml
+# 
+# - type: gameMap
+#   id: BigSkat
+#   mapName: 'NSF Большой скат'
+#   mapPath: /Maps/Corvax/Shuttles/Nfsd/bigskat.yml
+#   minPlayers: 0
+#   stations:
+#     BigSkat:
+#       stationProto: StandardFrontierSecurityVessel
+#       components:
+#         - type: StationNameSetup
+#           mapNameTemplate: 'Большой скат {1}'
+#           nameGenerator:
+#             !type:NanotrasenNameGenerator
+#             prefixCreator: '14'
+#         - type: StationJobs
+#           availableJobs:
+#            PrisonGuard: [ 0, 0 ]
+#             SeniorOfficer: [ 0, 0 ]
+#             Brigmedic: [ 0, 0 ]
+#             DetectiveNF: [ 0, 0 ]
+#             Deputy: [ 0, 0 ]
+#             Cadet: [ 0, 0 ]
+#             Chef: [ 0, 0 ]
+#             Bailiff: [ 0, 0 ]

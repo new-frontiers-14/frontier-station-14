@@ -1,32 +1,32 @@
-- type: vessel
-  id: Point
-  name: SV Пунктир
-  description: Разрушенный научный шаттл. Рекомендованный состав команды 1-2 человека.
-  price: 16100
-  category: Small
-  group: Scrap
-  shuttlePath: /Maps/_NF/Shuttles/Scrap/point.yml
-  guidebookPage: Null
-  class:
-  - Scrapyard
-  - Science
-
-- type: gameMap
-  id: Point
-  mapName: 'SV Пунктир'
-  mapPath: /Maps/_NF/Shuttles/Scrap/point.yml
-  minPlayers: 0
-  stations:
-    Point:
-      stationProto: StandardFrontierVessel
-      components:
-        - type: StationNameSetup
-          mapNameTemplate: 'Пунктир {1}'
-          nameGenerator:
-            !type:NanotrasenNameGenerator
-            prefixCreator: '14'
-        - type: StationJobs
-          availableJobs:
-            Contractor: [ 0, 0 ]
-            Pilot: [ 0, 0 ]
-            Mercenary: [ 0, 0 ]
+# - type: vessel
+#   id: Point
+#   name: SV Пунктир
+#   description: Разрушенный научный шаттл. Рекомендованный состав команды 1-2 человека.
+#   price: 16100
+#   category: Small
+#   group: Scrap
+#   shuttlePath: /Maps/_NF/Shuttles/Scrap/point.yml
+#   guidebookPage: Null
+#   class:
+#   - Scrapyard
+#   - Science
+# 
+# - type: gameMap
+#   id: Point
+#   mapName: 'SV Пунктир'
+#   mapPath: /Maps/_NF/Shuttles/Scrap/point.yml
+#   minPlayers: 0
+#   stations:
+#     Point:
+#       stationProto: StandardFrontierVessel
+#       components:
+#         - type: StationNameSetup
+#           mapNameTemplate: 'Пунктир {1}'
+#           nameGenerator:
+#             !type:NanotrasenNameGenerator
+#             prefixCreator: '14'
+#         - type: StationJobs
+#           availableJobs:
+#             Contractor: [ 0, 0 ]
+#             Pilot: [ 0, 0 ]
+#             Mercenary: [ 0, 0 ]

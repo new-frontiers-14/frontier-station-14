@@ -1,0 +1,42 @@
+# Author Info
+# GitHub: YumiGumi (https://github.com/YumiGumi)
+# Discord: ???
+
+# Maintainer Info
+# GitHub: ???
+# Discord: ???
+
+# Shuttle Notes:
+# 
+- type: vessel
+  id: Bazaar
+  name: SLI Барахолка
+  description: Среднегабаритный торговый шаттл. Рекомендованный размер команды 2-4 человека.
+  price: 95555 # on init ~57005$ + 8550$ from 15% markup
+  category: Medium
+  group: Shipyard
+  shuttlePath: /Maps/Corvax/Shuttles/Civilian/bazaar.yml
+  guidebookPage: ShipyardBazaar
+  class:
+  - Cargo
+  - Civilian
+  
+- type: gameMap
+  id: Bazaar
+  mapName: 'SLI Барахолка'
+  mapPath: /Maps/Corvax/Shuttles/Civilian/bazaar.yml
+  minPlayers: 0
+  stations: 
+    Bazaar:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'SLI Барахолка {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]

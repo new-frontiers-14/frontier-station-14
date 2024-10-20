@@ -1,0 +1,27 @@
+# - type: vessel
+#   id: Warrior
+#   name: NSF Вариор
+#   description: Шаттл перехватчик Вариор. Произведено частной военно-производственной компаний Vitezstvi по спец. заказу НТ. Рекомендуемый состав команды 1-2 человека.
+#   price: 32500
+#   group: Security
+#   category: Small
+#   access: Security
+#   mapchecker_group_override: Security
+#   shuttlePath: /Maps/Corvax/Shuttles/Nfsd/warrior.yml
+# 
+# - type: gameMap
+#   id: Warrior
+#   mapName: 'NSF Вариор'
+#   mapPath: /Maps/Corvax/Shuttles/Nfsd/warrior.yml
+#   minPlayers: 0
+#   stations:
+#     Warrior:
+#       stationProto: StandardFrontierSecurityVessel
+#       components:
+#         - type: StationNameSetup
+#           mapNameTemplate: 'Вариор {1}'
+#           nameGenerator:
+#             !type:NanotrasenNameGenerator
+#             prefixCreator: '14'
+#         - type: StationJobs
+#           availableJobs: {}

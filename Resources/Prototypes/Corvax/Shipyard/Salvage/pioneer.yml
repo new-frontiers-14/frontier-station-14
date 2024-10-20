@@ -1,0 +1,41 @@
+# Author Info
+# GitHub: erhardsteinhauer
+# Discord: erhardsteinhauer
+
+# Maintainer Info
+# GitHub: erhardsteinhauer
+# Discord: erhardsteinhauer
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Pioneer
+  name: LVHI Пионер
+  description: Одноместный грузовой контейнер, переоборудованный под выход в открытый космос.
+  price: 12200 # ~10600$ on mapinit + ~1600$ from 15% markup
+  category: Small
+  group: Shipyard
+  shuttlePath: /Maps/Corvax/Shuttles/Salvage/pioneer.yml
+  guidebookPage: ShipyardPioneer
+  class:
+  - Salvage
+
+- type: gameMap
+  id: Pioneer
+  mapName: 'Пионер'
+  mapPath: /Maps/Corvax/Shuttles/Salvage/pioneer.yml
+  minPlayers: 0
+  stations:
+    Pioneer:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Пионер {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]

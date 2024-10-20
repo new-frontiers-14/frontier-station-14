@@ -1,32 +1,32 @@
-- type: vessel
-  id: hauler
-  name: NC Тягач
-  description: Среднегабаритный добывающий шаттл. Рекомендованный состав команды 3-6 человек.
-  price: 60000
-  category: Medium
-  group: Shipyard
-  shuttlePath: /Maps/_NF/Shuttles/hauler.yml
-  guidebookPage: Null
-  class:
-  - Cargo
-  - Salvage
-
-- type: gameMap
-  id: hauler
-  mapName: 'NC Тягач'
-  mapPath: /Maps/_NF/Shuttles/hauler.yml
-  minPlayers: 0
-  stations:
-    hauler:
-      stationProto: StandardFrontierVessel
-      components:
-        - type: StationNameSetup
-          mapNameTemplate: 'Тягач {1}'
-          nameGenerator:
-            !type:NanotrasenNameGenerator
-            prefixCreator: '14'
-        - type: StationJobs
-          availableJobs:
-            Contractor: [ 0, 0 ]
-            Pilot: [ 0, 0 ]
-            Mercenary: [ 0, 0 ]
+# - type: vessel
+#   id: hauler
+#   name: NC Тягач
+#   description: Среднегабаритный добывающий шаттл. Рекомендованный состав команды 3-6 человек.
+#   price: 60000
+#   category: Medium
+#   group: Shipyard
+#   shuttlePath: /Maps/_NF/Shuttles/hauler.yml
+#   guidebookPage: Null
+#   class:
+#   - Cargo
+#   - Salvage
+# 
+# - type: gameMap
+#   id: hauler
+#   mapName: 'NC Тягач'
+#   mapPath: /Maps/_NF/Shuttles/hauler.yml
+#   minPlayers: 0
+#   stations:
+#     hauler:
+#       stationProto: StandardFrontierVessel
+#       components:
+#         - type: StationNameSetup
+#           mapNameTemplate: 'Тягач {1}'
+#           nameGenerator:
+#             !type:NanotrasenNameGenerator
+#             prefixCreator: '14'
+#         - type: StationJobs
+#           availableJobs:
+#             Contractor: [ 0, 0 ]
+#             Pilot: [ 0, 0 ]
+#             Mercenary: [ 0, 0 ]

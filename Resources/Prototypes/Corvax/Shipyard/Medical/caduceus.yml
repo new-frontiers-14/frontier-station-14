@@ -1,0 +1,32 @@
+- type: vessel
+  id: caduceus
+  name: NM Кадуцей
+  description: Крупногабаритный медицинский шаттл. Рекомендованный размер команды 4-8 человек.
+  price: 135000
+  category: Large
+  group: Shipyard
+  shuttlePath: /Maps/Corvax/Shuttles/Medical/caduceus.yml
+  guidebookPage: Null
+  class:
+  - Medical
+  - Chemistry
+
+- type: gameMap
+  id: caduceus
+  mapName: 'NM Кадуцей'
+  mapPath: /Maps/Corvax/Shuttles/Medical/caduceus.yml
+  minPlayers: 0
+  stations:
+    caduceus:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Кадуцей {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]

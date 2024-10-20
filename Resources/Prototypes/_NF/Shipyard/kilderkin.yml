@@ -1,41 +1,41 @@
 # Author Info
 # GitHub: erhardsteinhauer
 # Discord: erhardsteinhauer
-
+# 
 # Maintainer Info
 # GitHub: erhardsteinhauer
 # Discord: erhardsteinhauer
-
+# 
 # Shuttle Notes:
 #
-- type: vessel
-  id: kilderkin
-  name: NC Бочка
-  description: Среднегабаритный шаттл-бар. Рекомендованный состав команды 2-4 человека.
-  price: 45900 # ~41730$ on mapinit + ~4170$ from 10% markup
-  category: Medium
-  group: Shipyard
-  shuttlePath: /Maps/_NF/Shuttles/kilderkin.yml
-  guidebookPage: ShipyardKilderkin
-  class:
-  - Civilian
-
-- type: gameMap
-  id: kilderkin
-  mapName: 'Бочка'
-  mapPath: /Maps/_NF/Shuttles/kilderkin.yml
-  minPlayers: 0
-  stations:
-    kilderkin:
-      stationProto: StandardFrontierVessel
-      components:
-        - type: StationNameSetup
-          mapNameTemplate: 'Бочка {1}'
-          nameGenerator:
-            !type:NanotrasenNameGenerator
-            prefixCreator: '14'
-        - type: StationJobs
-          availableJobs:
-            Contractor: [ 0, 0 ]
-            Pilot: [ 0, 0 ]
-            Mercenary: [ 0, 0 ]
+# - type: vessel
+#   id: kilderkin
+#   name: NC Бочка
+#   description: Среднегабаритный шаттл-бар. Рекомендованный состав команды 2-4 человека.
+#   price: 45900 # ~41730$ on mapinit + ~4170$ from 10% markup
+#   category: Medium
+#   group: Shipyard
+#   shuttlePath: /Maps/_NF/Shuttles/kilderkin.yml
+#   guidebookPage: ShipyardKilderkin
+#   class:
+#   - Civilian
+# 
+# - type: gameMap
+#   id: kilderkin
+#   mapName: 'Бочка'
+#   mapPath: /Maps/_NF/Shuttles/kilderkin.yml
+#   minPlayers: 0
+#   stations:
+#     kilderkin:
+#       stationProto: StandardFrontierVessel
+#       components:
+#         - type: StationNameSetup
+#           mapNameTemplate: 'Бочка {1}'
+#           nameGenerator:
+#             !type:NanotrasenNameGenerator
+#             prefixCreator: '14'
+#         - type: StationJobs
+#           availableJobs:
+#             Contractor: [ 0, 0 ]
+#             Pilot: [ 0, 0 ]
+#             Mercenary: [ 0, 0 ]

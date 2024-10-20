@@ -1,0 +1,38 @@
+# Maintainer Info
+# GitHub: dvir001
+# Discord: dvir01 (84770870936997888)
+
+# Shuttle Notes:
+#
+
+- type: vessel
+  id: McCargo
+  name: DC Каргония
+  description: Среднегабаритный шаттл-ресторан. Рекомендованный состав команды 3-6 человек.
+  price: 70000 # 10% up from sell
+  category: Medium
+  group: Shipyard
+  shuttlePath: /Maps/Corvax/Shuttles/Service/mccargo.yml
+  guidebookPage: ShipyardMcCargo
+  class:
+  - Kitchen
+
+- type: gameMap
+  id: McCargo
+  mapName: 'DC Каргония'
+  mapPath: /Maps/Corvax/Shuttles/Service/mccargo.yml
+  minPlayers: 0
+  stations:
+    McCargo:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Каргония {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]

@@ -1,0 +1,26 @@
+- type: constructionGraph
+  id: DefibrillatorCabinetGraph
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: DefibrillatorCabinet
+      steps:
+      - material: Steel
+        amount: 5
+        doAfter: 10
+      - material: Glass
+        amount: 5
+        doAfter: 2.5
+  - node: DefibrillatorCabinet
+    entity: DefibrillatorCabinet
+    edges:
+      - to: start
+        completed:
+        - !type:SpawnPrototype
+              prototype: SheetSteel
+              amount: 10
+        - !type:DeleteEntity {}
+        steps:
+          - tool: Welding
+            doAfter: 5

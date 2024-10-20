@@ -1,0 +1,31 @@
+#Corvax Frontier
+- type: vessel
+  id: Fang
+  name: NMS Клык
+  description: Среднегабаритный шахтерский шаттл. Рекомендованный состав команды 1-5 человек.
+  price: 34450
+  category: Medium
+  group: Shipyard
+  shuttlePath: /Maps/Corvax/Shuttles/Salvage/Fang.yml
+  class:
+  - Salvage
+
+- type: gameMap
+  id: Fang
+  mapName: 'NMS Клык'
+  mapPath: /Maps/Corvax/Shuttles/Salvage/Fang.yml
+  minPlayers: 0
+  stations:
+    Fang:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Клык {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]

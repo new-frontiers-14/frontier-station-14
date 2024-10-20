@@ -1,0 +1,41 @@
+# Author Info
+# GitHub: crystalHex (https://github.com/crystalHex)
+# Discord: ???
+
+# Maintainer Info
+# GitHub: crystalHex (https://github.com/crystalHex)
+# Discord: ???
+
+# Shuttle Notes:
+# 
+- type: vessel
+  id: Dragonfly
+  name: DYS Стрекоза
+  description: Среднегабаритный экспедиционный шаттл. Рекомендованный размер команды 2-5 человек.
+  price: 101650 # ~62075$ on mapinit + ~18650$ from 30% markup
+  category: Medium
+  group: Expedition
+  shuttlePath: /Maps/Corvax/Shuttles/Expedition/dragonfly.yml
+  guidebookPage: Null
+  class:
+  - Expedition
+
+- type: gameMap
+  id: Dragonfly
+  mapName: 'DYS Стрекоза'
+  mapPath: /Maps/Corvax/Shuttles/Expedition/dragonfly.yml
+  minPlayers: 0
+  stations:
+    Dragonfly:
+      stationProto: StandardFrontierExpeditionVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Стрекоза {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]

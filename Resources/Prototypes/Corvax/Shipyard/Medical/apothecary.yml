@@ -1,0 +1,42 @@
+# Author Info
+# GitHub: dustylens (https://github.com/dustylens)
+# Discord: dustylens
+
+# Maintainer Info
+# GitHub: dustylens (https://github.com/dustylens)
+# Discord: dustylens
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Apothecary
+  name: NM Апотекарий
+  description: Малогабаритный медицинский шаттл. Рекомендованный состав команды 1-2 человека.
+  price: 45000 
+  category: Small
+  group: Shipyard
+  shuttlePath: /Maps/Corvax/Shuttles/Medical/apothecary.yml
+  guidebookPage: ShipyardApothecary
+  class:
+  - Medical
+  - Chemistry
+
+- type: gameMap
+  id: Apothecary
+  mapName: 'NM Апотекарий'
+  mapPath: /Maps/Corvax/Shuttles/Medical/apothecary.yml
+  minPlayers: 0
+  stations:
+    Apothecary:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Апотекарий {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]
