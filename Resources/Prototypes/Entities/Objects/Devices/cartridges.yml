@@ -1,5 +1,5 @@
 ﻿- type: entity
-  parent: BaseItem
+  parent: NFBasePDACartridge # Frontier: BaseItem<NFBasePDACartridge
   id: NotekeeperCartridge
   name: notekeeper cartridge
   description: A program for keeping notes.
@@ -17,7 +17,7 @@
   - type: NotekeeperCartridge
 
 - type: entity
-  parent: BaseItem
+  parent: NFBasePDACartridge # Frontier: BaseItem<NFBasePDACartridge
   id: NewsReaderCartridge
   name: news cartridge
   description: A program for reading news.
@@ -35,7 +35,7 @@
   - type: NewsReaderCartridge
 
 - type: entity
-  parent: BaseItem
+  parent: NFBasePDACartridge # Frontier: BaseItem<NFBasePDACartridge
   id: CrewManifestCartridge
   name: crew manifest cartridge
   description: A program for listing your fellow crewmembers.
@@ -53,7 +53,7 @@
     - type: CrewManifestCartridge
 
 - type: entity
-  parent: BaseItem
+  parent: NFBasePDACartridge # Frontier: BaseItem<NFBasePDACartridge
   id: NetProbeCartridge
   name: NetProbe cartridge
   description: A program for getting the address and frequency of network devices.
@@ -68,12 +68,10 @@
       icon:
         sprite: Structures/Machines/server.rsi
         state: server
-      disposable: true # Frontier
-      autoInstall: true # Frontier
     - type: NetProbeCartridge
 
 - type: entity
-  parent: BaseItem
+  parent: NFBasePDACartridge # Frontier: BaseItem<NFBasePDACartridge
   id: LogProbeCartridge
   name: LogProbe cartridge
   description: A program for getting access logs from devices.
@@ -91,15 +89,13 @@
       icon:
         sprite: _NF/Structures/Doors/Airlocks/Standard/nfsd.rsi # Frontier: Swap security to NFSD
         state: closed
-      disposable: true # Frontier
-      autoInstall: true # Frontier
     - type: LogProbeCartridge
     - type: GuideHelp
       guides:
       - Forensics
 
 - type: entity
-  parent: BaseItem
+  parent: NFBasePDACartridge # Frontier: BaseItem<NFBasePDACartridge
   id: WantedListCartridge
   name: Wanted list cartridge
   description: A program to get a list of wanted persons.
@@ -117,15 +113,13 @@
     icon:
       sprite: Objects/Misc/books.rsi
       state: icon_magnifier
-    disposable: true # Frontier
-    autoInstall: true # Frontier
     readonly: true # Frontier
   - type: WantedListCartridge
   - type: StealTarget
     stealGroup: WantedListCartridge
 
 - type: entity
-  parent: BaseItem
+  parent: NFBasePDACartridge # Frontier: BaseItem<NFBasePDACartridge
   id: MedTekCartridge
   name: MedTek cartridge
   description: A program that provides medical diagnostic tools.
@@ -141,12 +135,10 @@
       icon:
         sprite: Objects/Specific/Medical/healthanalyzer.rsi
         state: icon
-      disposable: true # Frontier
-      autoInstall: true # Frontier
     - type: MedTekCartridge
 
 - type: entity
-  parent: BaseItem
+  parent: NFBasePDACartridge # Frontier: BaseItem<NFBasePDACartridge
   id: AstroNavCartridge
   name: AstroNav cartridge
   description: A program for navigation that provides GPS coordinates.
@@ -162,6 +154,4 @@
       icon:
         sprite: Objects/Devices/gps.rsi
         state: icon
-      disposable: true # Frontier
-      autoInstall: true # Frontier
     - type: AstroNavCartridge
