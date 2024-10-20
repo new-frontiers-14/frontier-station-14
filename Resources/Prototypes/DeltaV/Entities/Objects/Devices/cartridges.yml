@@ -1,5 +1,5 @@
 # - type: entity # Frontier - Not Merged yet
-#   parent: BaseItem
+#   parent: NFBasePDACartridge
 #   id: CrimeAssistCartridge
 #   name: crime assist cartridge
 #   description: A cartridge that helps identify crimes and see appropriate punishment.
@@ -18,29 +18,8 @@
 #       sprite: DeltaV/Icons/cri.rsi
 #       state: cri
 
-# - type: entity # Frontier - Not Merged yet
-#   parent: BaseItem
-#   id: SecWatchCartridge
-#   name: sec watch cartridge
-#   description: A cartridge that tracks the status of currently wanted individuals.
-#   components:
-#   - type: Sprite
-#     sprite: DeltaV/Objects/Devices/cartridge.rsi
-#     state: cart-cri
-#   - type: Icon
-#     sprite: DeltaV/Objects/Devices/cartridge.rsi
-#     state: cart-cri
-#   - type: UIFragment
-#     ui: !type:SecWatchUi
-#   - type: Cartridge
-#     programName: sec-watch-program-name
-#     icon:
-#       sprite: Objects/Weapons/Melee/stunbaton.rsi
-#       state: stunbaton_on
-#   - type: SecWatchCartridge
-
 - type: entity
-  parent: BaseItem
+  parent: NFBasePDACartridge
   id: MailMetricsCartridge
   name: mail metrics cartridge
   description: A cartridge that tracks statistics related to mail deliveries.
@@ -59,3 +38,4 @@
     icon:
       sprite: Nyanotrasen/Objects/Specific/Mail/mail.rsi
       state: icon
+    readonly: true # Frontier
