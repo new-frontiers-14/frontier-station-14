@@ -1,3 +1,4 @@
+//using Content.Shared.CCVar; // Frontier
 using Robust.Shared.Serialization;
 using CCVars = Content.Shared._EE.CCVar.EECCVars; // Frontier
 
