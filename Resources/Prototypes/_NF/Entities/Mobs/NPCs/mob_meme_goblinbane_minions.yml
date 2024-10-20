@@ -1,0 +1,274 @@
+# Possessed Mop
+- type: entity
+  id: MobMemePossessedMop
+  name: possessed mop
+  parent: [ BaseMobMemeGoblinbane, NFMobTimedDespawn120 ]
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HTN
+    rootTask:
+       task: MeleeFollowerCompound
+  - type: NPCImprintingOnSpawnBehaviour
+    whitelist:
+      components:
+      - Devourer
+  - type: NpcFactionMember
+    factions:
+    - GoblinbaneProvokedFaction
+  - type: Bloodstream
+    bloodReagent: Mopwata
+    chemicalMaxVolume: 100
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _NF/Mobs/Meme/goblinbane.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: mop_alive
+    - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+      state: mop_unshaded
+      shader: unshaded
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: mop_alive
+        BaseUnshaded: ghost_unshaded
+      Dead:
+        Base: mop_dead
+        BaseUnshaded: mop_dead_unshaded
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      40: Dead
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          AdvMopItem:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: MeleeWeapon
+    soundHit:
+      collection: Punch
+    angle: 30
+    animation: WeaponArcFist
+    attackRate: 1
+    damage:
+      types:
+        Blunt: 3
+        Structural: 20
+  - type: MeleeChemicalInjector
+    solution: bloodstream
+    transferAmount: 0.5
+
+# Possessed Spray
+- type: entity
+  id: MobMemePossessedSpray
+  name: possessed spray
+  parent: [ BaseMobMemeGoblinbane, NFMobTimedDespawn120 ]
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HTN
+    rootTask:
+       task: RangedFollowerCompound
+  - type: NPCImprintingOnSpawnBehaviour
+    whitelist:
+      components:
+      - Devourer
+  - type: NpcFactionMember
+    factions:
+    - GoblinbaneProvokedFaction
+  - type: Bloodstream
+    bloodReagent: SpaceCleaner
+    chemicalMaxVolume: 50
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _NF/Mobs/Meme/goblinbane.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: spray_alive
+    - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+      state: spray_unshaded
+      shader: unshaded
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: spray_alive
+        BaseUnshaded: ghost_unshaded
+      Dead:
+        Base: spray_dead
+        BaseUnshaded: spray_dead_unshaded
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      40: Dead
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SprayBottleSpaceCleaner:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 2
+    rechargeSound:
+      path: /Audio/_NF/Effects/silence.ogg
+  - type: BasicEntityAmmoProvider
+    proto: SplatterChemCleaner
+    capacity: 2
+    count: 2
+  - type: Gun
+    showExamineText: false
+    fireRate: 4
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/water_spray.ogg
+
+# Possessed Bucket
+- type: entity
+  id: MobMemePossessedBucket
+  name: possessed mop bucket
+  parent: [ BaseMobMemeGoblinbane, NFMobTimedDespawn120 ]
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HTN
+    rootTask:
+       task: MeleeFollowerCompound
+  - type: NPCImprintingOnSpawnBehaviour
+    whitelist:
+      components:
+      - Devourer
+  - type: NpcFactionMember
+    factions:
+    - GoblinbaneProvokedFaction
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _NF/Mobs/Meme/goblinbane.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: bucket_alive
+    - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+      state: bucket_unshaded
+      shader: unshaded
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: bucket_alive
+        BaseUnshaded: bucket_unshaded
+      Dead:
+        Base: bucket_dead
+        BaseUnshaded: ""
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      40: Dead
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MopBucket:
+            min: 1
+            max: 1
+          RandomSoap:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: MeleeWeapon
+    soundHit:
+      collection: Punch
+    angle: 30
+    animation: WeaponArcFist
+    attackRate: 1
+    damage:
+      types:
+        Blunt: 3
+        Structural: 20
+
+# Mop bucket dimention portal
+- type: entity
+  id: MopBucketDimnsionPortal
+  name: mop bucket portal
+  parent:  [ MobIncorporealBase, XenoWardingTower, NFMobTimedDespawn80 ]
+  description: A portal to a mop bucket dimension. Obviously. It says so on the label at the corner.
+  components:
+  - type: NpcFactionMember
+    factions:
+    - GoblinbaneProvokedFaction
+  - type: Timer
+  - type: TimedSpawner
+    prototypes:
+    - SpawnMobMemePossessedBucket
+    chance: 1
+    intervalSeconds: 20
+    minimumEntitiesSpawned: 1
+    maximumEntitiesSpawned: 2
+  - type: Sprite
+    sprite: _NF/Mobs/Meme/goblinbane.rsi
+    layers:
+    - state: bucket_portal
+      shader: unshaded
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 60
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: gib
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 60
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: gib
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          WetFloorSign:
+            min: 1
+            max: 1
+  - type: PointLight
+    radius: 2.0
+    energy: 3.5
+    color: "yellow"
+
+- type: entity
+  id: CleanlinessDimensionPortal
+  name: cleanliness dimension portal
+  parent: MopBucketDimnsionPortal
+  description: A portal to the dimension of utter cleanliness. No goblins allowed.
+  components:
+  - type: TimedSpawner
+    prototypes:
+    - SpawnRandomPossessedJaniTool

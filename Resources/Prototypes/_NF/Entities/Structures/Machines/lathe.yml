@@ -16,145 +16,433 @@
     - blueprint
 
 - type: entity
-  parent: [BaseStructureDisableToolUse, BaseLathe]
-  id: PrizeCounter
-  name: prize counter
-  description: Claim your prize and win some toys and cute plushies!
+  parent: [ BlueprintReceiverBase, BaseLatheLube ]
+  id: ScienceTechFab
+  name: science techfab
+  description: Prints equipment for use by the epistemics department.
   components:
-  - type: AmbientOnPowered
-  - type: AmbientSound
-    volume: -9
-    range: 3
-    enabled: false
-    sound:
-      path: /Audio/Ambience/Objects/vending_machine_hum.ogg
-  - type: LitOnPowered
-  - type: ApcPowerReceiver
-    powerLoad: 200
-  - type: Advertise
-    pack: CuddlyCritterAds
-  - type: PointLight
-    radius: 1.5
-    energy: 1.6
-    color: "#4b93ad"
-  - type: Transform
-    noRot: false
   - type: Sprite
-    sprite: _NF/Structures/Machines/prizecounter.rsi
-    snapCardinals: true
+    netsync: false
+    sprite: Structures/Machines/techfab.rsi
     layers:
     - state: icon
       map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: sci
     - state: unlit
       shader: unshaded
       map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: inserting
+      map: ["enum.MaterialStorageVisualLayers.Inserting"]
     - state: panel
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: ScienceTechFabCircuitboard
+  - type: Lathe
+    idleState: icon
+    runningState: icon
+    staticRecipes: 
+    # Shared lathe recipes
+    ## Basic tools
+      - Wirecutter
+      - Screwdriver
+      - Welder
+      - Wrench
+      - CrowbarGreen
+      - Multitool
+      - FlashlightLantern
+      - AppraisalTool
+      - HandLabeler
+      - Signaller
+      - ClothingMaskWeldingGas
+    ## Basic storage
+      - ToolboxArtisticNF
+      - ToolboxElectricalNF
+      - ToolboxMechanicalNF
+      - ToolboxEmergencyNF
+    ## Basic parts
+      - CableStack
+      - LightTube
+      - LedLightTube
+      - SodiumLightTube
+      - ExteriorLightTube
+      - LightBulb
+      - LedLightBulb
+      - ConveyorBeltAssembly
+      - PowerCellSmall
+      - PowerCellMedium
+    ## Basic electronics
+      - SignalTimerElectronics
+      - CellRechargerCircuitboard
+      - BorgChargerCircuitboard
+      - WeaponCapacitorRechargerCircuitboard
+    ## Basic EVA:
+      - ClothingOuterEVASuitContractor
+      - ClothingOuterEVASuitPilot
+      - AirTank
+      - HandheldGPSBasic
+    # Science techfab
+    ## Tools
+      - NodeScanner
+    ## Basic EVA:
+      - ClothingOuterEVASuitScientist
+    dynamicRecipes:
+    # Shared lathe recipes
+    ## Advanced tools
+      - WelderExperimental
+      - JawsOfLife
+      - PowerDrill
+      - JetpackVoid
+      - PowerCellHigh
+      #- PowerCellHyperNF
+      - PowerCellMicroreactor
+      - BluespaceBeaker
+      - VialBluespace
+      - CryostasisBeaker
+      - ClothingBackpackHolding
+      - ClothingBackpackSatchelHolding
+      - ClothingBackpackDuffelHolding
+      - ClothingBackpackMessengerHolding 
+      - ChemicalPayload
+      - Bucket
+      - MopItem
+      - SprayBottle
+      - FireExtinguisher
+      - CableStack
+      - CableMVStack
+      - CableHVStack
+      - ClothingOuterHardsuitBasic
+      - ClothingOuterHardsuitRd
+
+- type: entity
+  parent: [ BlueprintReceiverBase, BaseLatheLube ]
+  id: ServiceTechFab
+  name: service techfab
+  description: Prints equipment for service staff.
+  components:
+  - type: Sprite
+    netsync: false
+    sprite: Structures/Machines/techfab.rsi
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: service
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: inserting
+      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: ServiceTechFabCircuitboard
+  - type: Lathe
+    idleState: icon
+    runningState: icon
+    staticRecipes: 
+    # Shared lathe recipes
+    ## Basic tools
+      - Wirecutter
+      - Screwdriver
+      - Welder
+      - Wrench
+      - CrowbarGreen
+      - Multitool
+      - FlashlightLantern
+      - AppraisalTool
+      - HandLabeler
+      - Signaller
+      - ClothingMaskWeldingGas
+    ## Basic storage
+      - ToolboxArtisticNF
+      - ToolboxElectricalNF
+      - ToolboxMechanicalNF
+      - ToolboxEmergencyNF
+      - NFBoxMREEmpty
+      - NFHappyHonkEmpty
+      - NFHappyHonkMimeEmpty
+      - NFHappyHonkMcCargoEmpty
+      - NFFoodBoxPizza
+      - NFFoodBoxDonutEmpty
+      - NFFoodBoxNuggetEmpty
+      - NFFoodContainerEggEmpty
+    ## Basic parts
+      - CableStack
+      - LightTube
+      - LedLightTube
+      - SodiumLightTube
+      - ExteriorLightTube
+      - LightBulb
+      - LedLightBulb
+      - ConveyorBeltAssembly
+      - PowerCellSmall
+      - PowerCellMedium
+    ## Basic electronics
+      - SignalTimerElectronics
+      - CellRechargerCircuitboard
+      - BorgChargerCircuitboard
+      - WeaponCapacitorRechargerCircuitboard
+    ## Basic EVA:
+      - ClothingOuterEVASuitContractor
+      - ClothingOuterEVASuitPilot
+      - AirTank
+      - HandheldGPSBasic
+    # Service techfab
+    ## Tools
+      - LightReplacer
+      - MopBucket
+      - TrashBag
+      - Bucket
+      - MopItem
+      - SprayBottle
+      - MiniHoe
+      - HydroponicsToolScythe
+      - HydroponicsToolHatchet
+      - Spade
+      - Clippers
+      - ServiceSelectiveDropper
+      - PlantBag
+      - Beaker
+      - LargeBeaker
+      - Jug
+      - MailCapsule
+      - LanternNF
+      - PillCanister
+      - ChemistryEmptyBottle01
+      - Mousetrap
+      - Holoprojector
+      - Shovel
+    ## Kitchen
+      - DrinkMug
+      - DrinkMugMetal
+      - DrinkGlass
+      - KitchenKnife
+      - ButchCleaver
+      - ServiceRollingPin
+      - ServiceSpoon
+      - ServiceFork
+      - ServicePairedChopsticks
+      - ServiceFoodBowlBig
+      - ServiceFoodPlate
+      - ServiceFoodPlateSmall
+      - ServiceFoodPlateTin
+      - ServiceFoodKebabSkewer
+      - DrinkShotGlass
+      - DrinkGlassCoupeShaped
+      - CustomDrinkJug
+      - FoodPlatePlastic
+      - FoodPlateSmallPlastic
+      - NapkinDrum
+      - Napkin
+    ## EVA
+      - ClothingOuterEVASuitHydro
+      - ClothingOuterEVASuitJanitor
+      - ClothingOuterEVASuitServiceWorker
+      - ClothingOuterEVASuitChaplain
+      - ClothingOuterEVASuitBoxerRed
+      - ClothingOuterEVASuitBoxerGreen
+      - ClothingOuterEVASuitBoxerBlue
+      - ClothingOuterEVASuitBoxerYellow
+    ## Materials
+      - SheetPaper
+      - NFMaterialCardboard1Processed
+    ## Misc
+      - ClothingHeadHatCone
+      - FireExtinguisher
+      - WetFloorSign
+    dynamicRecipes:
+    # Shared lathe recipes
+    ## Advanced tools
+      - WelderExperimental
+      - JawsOfLife
+      - PowerDrill
+      - JetpackVoid
+      - PowerCellHigh
+      - PowerCellMicroreactor
+    # Service techfab
+      - SynthesizerInstrument
+      - ClothingOuterHardsuitBasic
+      - ClothingOuterHardsuitPilot
+      - ClothingOuterHardsuitClown
+      - ClothingOuterHardsuitMime
+      - AdvMopItem
+      - WeaponSprayNozzle
+      - ClothingBackpackWaterTank
+      - MegaSprayBottle
+      - TimerTrigger
+      - ChemicalPayload
+      - BluespaceBeaker
+      - SyringeBluespace
+      - PlantBagOfHolding
+      - PlantAnalyzer
+  - type: EmagLatheRecipes
+    emagStaticRecipes:
+      - NFHappyHonkNukieEmpty
+      - NFHappyHonkCluwneEmpty
+
+- type: entity
+  parent: [ BlueprintReceiverBase, BaseLatheLube ]
+  id: EngineeringTechFab
+  name: engineering techfab
+  description: Prints equipment for engineers.
+  components:
+  - type: Sprite
+    netsync: false
+    sprite: Structures/Machines/techfab.rsi
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: engi
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: inserting
+      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: EngineeringTechFabCircuitboard
   - type: Lathe
     idleState: icon
     runningState: icon
     staticRecipes:
-      - PrizeBallRecipe
-      - PlushieHampterRecipe
-      - PlushieVulpRecipe
-      - PlushieBeeRecipe
-      - PlushieLizardRecipe
-      - PlushieSpaceLizardRecipe
-      - PlushieVoxRecipe
-      - PlushieMoffRecipe
-      - PlushieMoffsicianRecipe
-      - PlushieMoffbarRecipe
-      - PlushieDionaRecipe
-      - PlushieSharkGreyRecipe
-      - PlushieSharkBlueRecipe
-      - PlushieSharkPinkRecipe
-      - PlushieRatvarRecipe
-      - PlushieNarRecipe
-      - PlushieSlimeRecipe
-      - PlushieSnakeRecipe
-      - PlushieCarpRecipe
-      - PlasticBananaRecipe
-      - BeachBallRecipe
-      - BasketballRecipe
-      - FootballRecipe
-      - ToyHammerRecipe
-      - WhoopieCushionRecipe
-      - ClownRecorderRecipe
-      - PonderingOrbRecipe
-      - CrayonBoxRecipe
-      - CrayonRainbowRecipe
-      - PlushieLampRecipe
-      - PlushieAtmosianRecipe
-      - PlushieRounyRecipe
-      - PlushieXenoRecipe
-      - FoamCrossbowRecipe
-      - BoxDonkSoftBoxRecipe
-      - RevolverCapGunRecipe
-      - BoxCartridgeCapRecipe
-      - ToyAmongPequenoRecipe
-      - FoamCutlassRecipe
-      - FoamBladeRecipe
-      - ToyRubberDuckRecipe
-      - ToyMouseRecipe
-      - ToyAiRecipe
-      - ToyGriffinRecipe
-      - ToyHonkRecipe
-      - ToyIanRecipe
-      - ToyMarauderRecipe
-      - ToyGygaxRecipe
-      - ToyOdysseusRecipe
-      - ToyOwlmanRecipe
-      - ToyPhazonRecipe
-      - ToyFireRipleyRecipe
-      - ToyReticenceRecipe
-      - ToyRipleyRecipe
-      - ToySeraphRecipe
-      - ToyDurandRecipe
-      - ToySkeletonRecipe
-      - FaceHuggerPlushieRecipe
-      - PetRockCarrierkRecipe
-      - PlushieGnomeRecipe
-      - PlushieLoveableRecipe
-      - PlushieDeerRecipe
-      - PlushieIpcRecipe
-      - PlushieGreyRecipe
-      - PlushieRedFoxRecipe
-      - PlushiePurpleFoxRecipe
-      - PlushiePinkFoxRecipe
-      - PlushieOrangeFoxRecipe
-      - PlushieMarbleFoxRecipe
-      - PlushieCrimsonFoxRecipe
-      - PlushieCoffeeFoxRecipe
-      - PlushieBlueFoxRecipe
-      - PlushieBlackFoxRecipe
-      - PlushieCorgiRecipe
-      - PlushieGirlyCorgiRecipe
-      - PlushieRobotCorgiRecipe
-      - PlushieCatBlackRecipe
-      - PlushieCatOrangeRecipe
-      - PlushieCatSiamesRecipe
-      - PlushieCatTabbyRecipe
-      - PlushieCatTuxedoRecipe
-      - PlushieCatWhiteRecipe
-  - type: EmagLatheRecipes
-    emagStaticRecipes:
-      - PlushieJesterRecipe
-      - PlushieJanitorRecipe
-      - PlushieNukeRecipe
-      - PlushieRGBeeRecipe
-      - BalloonCorgiRecipe
-      - BalloonSynRecipe
-      - ToyNukeRecipe
-      - ToyMaulerRecipe
-      - PlushieAbductorRecipe
-      - PlushieAbductorAgentRecipe
-  - type: MaterialStorage
-    whitelist:
-      tags:
-        - PrizeTicket
+    # Shared lathe recipes
+    ## Basic tools
+      - Wirecutter
+      - Screwdriver
+      - Welder
+      - Wrench
+      - CrowbarGreen
+      - Multitool
+      - FlashlightLantern
+      - AppraisalTool
+      - HandLabeler
+      - Signaller
+      - ClothingMaskWeldingGas
+    ## Basic storage
+      - ToolboxArtisticNF
+      - ToolboxElectricalNF
+      - ToolboxMechanicalNF
+      - ToolboxEmergencyNF
+    ## Basic parts
+      - CableStack
+      - LightTube
+      - LedLightTube
+      - SodiumLightTube
+      - ExteriorLightTube
+      - LightBulb
+      - LedLightBulb
+      - ConveyorBeltAssembly
+      - PowerCellSmall
+      - PowerCellMedium
+    ## Basic electronics
+      - SignalTimerElectronics
+      - CellRechargerCircuitboard
+      - BorgChargerCircuitboard
+      - WeaponCapacitorRechargerCircuitboard
+    ## Basic EVA
+      - ClothingOuterEVASuitContractor
+      - ClothingOuterEVASuitPilot
+      - AirTank
+      - HandheldGPSBasic
+    # Engineering techfab
+    ## Tools
+      - NetworkConfigurator
+      - SprayPainter
+      - TRayScanner
+      - GasAnalyzer
+      - Holoprojector
+      - LightReplacer
+      - WelderIndustrial
+      - WelderIndustrialAdvanced
+      - HolofanProjector
+    ## Parts
+      - MicroManipulatorStockPart
+      - MatterBinStockPart
+      - CapacitorStockPart
+      - Igniter
+      - CableMVStack
+      - CableHVStack
+    ## Electronics
+      - IntercomElectronics
+      - FirelockElectronics
+      - DoorElectronics
+      - AirAlarmElectronics
+      - StationMapElectronics
+      - FireAlarmElectronics
+      - MailingUnitElectronics
+      - APCElectronics
+      - SMESMachineCircuitboard
+      - SubstationMachineCircuitboard
+      - SmallThrusterMachineCircuitboard
+      - SmallGyroscopeMachineCircuitboard
+      - WallmountSubstationElectronics
+      - SolarControlComputerCircuitboard
+      - SolarTrackerElectronics
+      - SolarAssemblyFlatpack
+      - ShuttleConsoleCircuitboard
+      - PortableGeneratorPacmanMachineCircuitboard
+      - PortableGeneratorSuperPacmanMachineCircuitboard
+      - PortableGeneratorJrPacmanMachineCircuitboard
+      - ThrusterMachineCircuitboard
+      - GyroscopeMachineCircuitboard
+      - MiniGravityGeneratorCircuitboard
+    ## Clothing
+      - UtilityBelt
+      - ConstructionBag
+    ## EVA
+      - ClothingHeadHelmetEVA
+      - ClothingHeadHelmetEVALarge
+      - ClothingOuterEVASuitEngineer
+      - ClothingOuterEVASuitAtmosTech
+    ## Materials
+      - Durathread
+      - NFSheetRGlassProcessed
+      - NFSheetPGlass1Processed
+      - NFSheetRPGlass1Processed
+      - NFSheetPlasteel1Processed
+      - NFSheetUGlass1Processed
+      - NFSheetRUGlass1Processed
+    ## Misc
+      - ClothingHeadHatCone
+    dynamicRecipes:
+    # Shared lathe recipes
+    ## Advanced tools
+      - WelderExperimental
+      - JawsOfLife
+      - PowerDrill
+      - JetpackVoid
+      - PowerCellHigh
+      - PowerCellMicroreactor
+    # Engineering techfab
+      - Flash
+      - MicroManipulatorStockPart
+      - NanoManipulatorStockPart
+      - PicoManipulatorStockPart
+      - FemtoManipulatorStockPart
+      - MatterBinStockPart
+      - AdvancedMatterBinStockPart
+      - SuperMatterBinStockPart
+      - BluespaceMatterBinStockPart
+      - CapacitorStockPart
+      - AdvancedCapacitorStockPart
+      - SuperCapacitorStockPart
+      - QuadraticCapacitorStockPart
+      - RPED
+      - MiningDrill
+      - MiningDrillDiamond
+      - SprayBottle
+      - FireExtinguisher
+      - ShipyardRCD
+      - ShipyardRCDAmmo
+      - SignallerAdvanced
+      - ClothingOuterHardsuitBasic
+      - ClothingOuterHardsuitAtmos
+      - ClothingOuterHardsuitEngineering
+      - ClothingOuterHardsuitEngineeringWhite
+      - ConstructionBagOfHolding
 
 - type: entity
-  parent: [ BaseLatheLube, BlueprintReceiverBase ]
+  parent: [ BlueprintReceiverBase, BaseLatheLube ]
   id: SalvageTechfabNF
   name: salvage techfab
   description: Prints equipment for salvagers.
@@ -249,7 +537,6 @@
       - PowerDrill
       - JetpackVoid
       - PowerCellHigh
-      #- PowerCellHyperNF
       - PowerCellMicroreactor
     # Salvage techfab
       - CableMVStack
@@ -268,8 +555,6 @@
       - ClothingOuterHardsuitSalvage
       - ClothingOuterHardsuitLuxury
       - ClothingOuterHardsuitMaximPrototype
-      - ClothingHeadHelmetAncient
-      - ClothingOuterHardsuitAncientEVA
   - type: EmagLatheRecipes
     emagStaticRecipes:
        - ShellTranquilizer
@@ -279,12 +564,6 @@
        - MagazineBoxLightRifle
 #       - GrenadeBlast
        - ClothingHeadHelmetCosmonaut
-  - type: MaterialStorage
-    whitelist:
-      tags:
-        - Sheet
-        - RawMaterial
-        - Ingot
 
 - type: entity
   id: NfsdTechFab
@@ -310,7 +589,7 @@
 
 - type: entity
   id: MercenaryTechFab
-  parent: [ BaseLatheLube, BlueprintReceiverBase ]
+  parent: [ BlueprintReceiverBase, BaseLatheLube ]
   name: mercenary techfab
   description: Prints the bare minimum of tools of the trade that any budget mercenary or private security could need. Nothing fancy.
   components:
@@ -329,12 +608,6 @@
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: Machine
     board: MercenaryTechFabCircuitboardNF
-  - type: MaterialStorage
-    whitelist:
-      tags:
-      - Sheet
-      - RawMaterial
-      - Ingot
   - type: Lathe
     idleState: icon
     runningState: icon
@@ -553,12 +826,6 @@
       scale: 0.7, 0.7
   - type: Machine
     board: MercenaryTechFabCircuitboardHackedNF
-  - type: MaterialStorage
-    whitelist:
-      tags:
-      - Sheet
-      - RawMaterial
-      - Ingot
   - type: PointLight
     radius: 1.5
     energy: 2
@@ -672,7 +939,6 @@
       - PowerDrill
       - JetpackVoid
       - PowerCellHigh
-      # - PowerCellHyperNF
       - PowerCellMicroreactor
     # Mercenary techfab
     ## Armor
@@ -727,6 +993,144 @@
       - MagazineBoxRifleUranium
 
 - type: entity
+  parent: [BaseStructureDisableToolUse, BaseLathe]
+  id: PrizeCounter
+  name: prize counter
+  description: Claim your prize and win some toys and cute plushies!
+  components:
+  - type: AmbientOnPowered
+  - type: AmbientSound
+    volume: -9
+    range: 3
+    enabled: false
+    sound:
+      path: /Audio/Ambience/Objects/vending_machine_hum.ogg
+  - type: LitOnPowered
+  - type: ApcPowerReceiver
+    powerLoad: 200
+  - type: Advertise
+    pack: CuddlyCritterAds
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#4b93ad"
+  - type: Transform
+    noRot: false
+  - type: Sprite
+    sprite: _NF/Structures/Machines/prizecounter.rsi
+    snapCardinals: true
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Lathe
+    idleState: icon
+    runningState: icon
+    staticRecipes:
+      - PrizeBallRecipe
+      - PlushieHampterRecipe
+      - PlushieVulpRecipe
+      - PlushieBeeRecipe
+      - PlushieLizardRecipe
+      - PlushieSpaceLizardRecipe
+      - PlushieVoxRecipe
+      - PlushieMoffRecipe
+      - PlushieMoffsicianRecipe
+      - PlushieMoffbarRecipe
+      - PlushieDionaRecipe
+      - PlushieSharkGreyRecipe
+      - PlushieSharkBlueRecipe
+      - PlushieSharkPinkRecipe
+      - PlushieRatvarRecipe
+      - PlushieNarRecipe
+      - PlushieSlimeRecipe
+      - PlushieSnakeRecipe
+      - PlushieCarpRecipe
+      - PlasticBananaRecipe
+      - BeachBallRecipe
+      - BasketballRecipe
+      - FootballRecipe
+      - ToyHammerRecipe
+      - WhoopieCushionRecipe
+      - ClownRecorderRecipe
+      - PonderingOrbRecipe
+      - CrayonBoxRecipe
+      - CrayonRainbowRecipe
+      - PlushieLampRecipe
+      - PlushieAtmosianRecipe
+      - PlushieRounyRecipe
+      - PlushieXenoRecipe
+      - FoamCrossbowRecipe
+      - BoxDonkSoftBoxRecipe
+      - RevolverCapGunRecipe
+      - BoxCartridgeCapRecipe
+      - ToyAmongPequenoRecipe
+      - FoamCutlassRecipe
+      - FoamBladeRecipe
+      - ToyRubberDuckRecipe
+      - ToyMouseRecipe
+      - ToyAiRecipe
+      - ToyGriffinRecipe
+      - ToyHonkRecipe
+      - ToyIanRecipe
+      - ToyMarauderRecipe
+      - ToyGygaxRecipe
+      - ToyOdysseusRecipe
+      - ToyOwlmanRecipe
+      - ToyPhazonRecipe
+      - ToyFireRipleyRecipe
+      - ToyReticenceRecipe
+      - ToyRipleyRecipe
+      - ToySeraphRecipe
+      - ToyDurandRecipe
+      - ToySkeletonRecipe
+      - FaceHuggerPlushieRecipe
+      - PetRockCarrierkRecipe
+      - PlushieGnomeRecipe
+      - PlushieLoveableRecipe
+      - PlushieDeerRecipe
+      - PlushieIpcRecipe
+      - PlushieGreyRecipe
+      - PlushieRedFoxRecipe
+      - PlushiePurpleFoxRecipe
+      - PlushiePinkFoxRecipe
+      - PlushieOrangeFoxRecipe
+      - PlushieMarbleFoxRecipe
+      - PlushieCrimsonFoxRecipe
+      - PlushieCoffeeFoxRecipe
+      - PlushieBlueFoxRecipe
+      - PlushieBlackFoxRecipe
+      - PlushieCorgiRecipe
+      - PlushieGirlyCorgiRecipe
+      - PlushieRobotCorgiRecipe
+      - PlushieCatBlackRecipe
+      - PlushieCatOrangeRecipe
+      - PlushieCatSiamesRecipe
+      - PlushieCatTabbyRecipe
+      - PlushieCatTuxedoRecipe
+      - PlushieCatWhiteRecipe
+  - type: EmagLatheRecipes
+    emagStaticRecipes:
+      - PlushieJesterRecipe
+      - PlushieJanitorRecipe
+      - PlushieNukeRecipe
+      - PlushieRGBeeRecipe
+      - BalloonCorgiRecipe
+      - BalloonSynRecipe
+      - ToyNukeRecipe
+      - ToyMaulerRecipe
+      - PlushieAbductorRecipe
+      - PlushieAbductorAgentRecipe
+  - type: MaterialStorage
+    whitelist:
+      tags:
+        - PrizeTicket
+
+- type: entity
   id: BlueprintLithograph
   parent: BaseLatheLube
   name: blueprint lithograph
@@ -744,7 +1148,7 @@
     - state: panel
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: Machine
-    board: CircuitImprinterMachineCircuitboard
+    board: BlueprintLithographMachineCircuitboard
   - type: Lathe
     producingSound: /Audio/Machines/circuitprinter.ogg
     idleState: icon
@@ -789,10 +1193,4 @@
     - NFBlueprintWeaponLaserSvalinn
     - NFBlueprintPortableRecharger
     - BlueprintClothingOuterHardsuitScaf
-  - type: MaterialStorage
-    whitelist:
-      tags:
-        - Sheet
-        - RawMaterial
-        - Ingot
   - type: RequireProjectileTarget
