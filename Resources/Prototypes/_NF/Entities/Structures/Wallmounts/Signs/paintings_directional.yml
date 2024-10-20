@@ -10,7 +10,46 @@
   parent: PaintingDirectionalBase
   id: PaintingFireaxeCabinet
   name: The Fireaxe Cabinet
-  description: "Painting is a masterfully designed image of a fireaxe cabinet. The artwork relates to the loss of the masterwork ☼fireaxe☼ in the early winter of 2523. Oil. Canvas. Tears."
+  description: "This painting is a masterfully designed image of a fireaxe cabinet. The artwork relates to the loss of the masterwork ☼fireaxe☼ in the early winter of 2523. Oil. Canvas. Tears."
   components:
   - type: Sprite
     state: painting_fireaxe
+
+- type: entity
+  parent: PaintingDirectionalBase
+  id: PaintingGhostHanging
+  name: festive ghost streamers
+  description: "Decorative wall streamers! They look like the people you've lost to the void!"
+  components:
+  - type: Sprite
+    drawdepth: Overdoors
+    state: painting_ghost
+  - type: Construction
+    graph: PaintingGhostHangingGraph
+    node: PaintingGhostHangingNode
+
+- type: entity
+  parent: PaintingDirectionalBase
+  id: PaintingBatHanging
+  name: festive bat streamers
+  description: "Decorative wall streamers! Bats are scary and also important pollinators!"
+  components:
+  - type: Sprite
+    drawdepth: Overdoors
+    state: painting_bat
+  - type: Construction
+    graph: PaintingBatHangingGraph
+    node: PaintingBatHangingNode
+
+- type: entity
+  parent: PaintingDirectionalBase
+  id: PaintingPumpkinHanging
+  name: festive pumpkin streamers
+  description: "Decorative wall streamers! It's decorative gourd season!"
+  components:
+  - type: Sprite
+    drawdepth: Overdoors
+    state: painting_pumpkin
+  - type: Construction
+    graph: PaintingPumpkinHangingGraph
+    node: PaintingPumpkinHangingNode
