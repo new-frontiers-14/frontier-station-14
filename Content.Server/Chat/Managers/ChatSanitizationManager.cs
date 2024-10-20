@@ -30,14 +30,14 @@ public sealed class ChatSanitizationManager : IChatSanitizationManager
         { ")=", "chatsan-frowns" },
         { "]:", "chatsan-frowns" },
         { "]=", "chatsan-frowns" },
-        { ":D.", "chatsan-smiles-widely" }, // Frontier: add period
+        { ":D", "chatsan-smiles-widely" },
         { "D:", "chatsan-frowns-deeply" },
-        { ":O.", "chatsan-surprised" }, // Frontier: add period
+        { ":O", "chatsan-surprised" },
         { ":3", "chatsan-smiles" }, //nope
-        { ":S.", "chatsan-uncertain" }, // Frontier: add period
+        { ":S", "chatsan-uncertain" },
         { ":>", "chatsan-grins" },
         { ":<", "chatsan-pouts" },
-        { "xD.", "chatsan-laughs" }, // Frontier: add period
+        { "xD", "chatsan-laughs" },
         { ":'(", "chatsan-cries" },
         { ":'[", "chatsan-cries" },
         { "='(", "chatsan-cries" },
@@ -48,35 +48,35 @@ public sealed class ChatSanitizationManager : IChatSanitizationManager
         { "]'=", "chatsan-cries" },
         { ";-;", "chatsan-cries" },
         { ";_;", "chatsan-cries" },
-        { "qwq.", "chatsan-cries" }, // Frontier: add period
-        { ":u.", "chatsan-smiles-smugly" }, // Frontier: add period
-        { ":v.", "chatsan-smiles-smugly" }, // Frontier: add period
-        { ">:i.", "chatsan-annoyed" }, // Frontier: add period
-        { ":i.", "chatsan-sighs" }, // Frontier: add period
+        { "qwq", "chatsan-cries" },
+        { ":u", "chatsan-smiles-smugly" },
+        { ":v", "chatsan-smiles-smugly" },
+        { ">:i", "chatsan-annoyed" },
+        { ":i", "chatsan-sighs" },
         { ":|", "chatsan-sighs" },
-        { ":p.", "chatsan-stick-out-tongue" }, // Frontier: add period
-        { ";p.", "chatsan-stick-out-tongue" }, // Frontier: add period
-        { ":b.", "chatsan-stick-out-tongue" }, // Frontier: add period
+        { ":p", "chatsan-stick-out-tongue" },
+        { ";p", "chatsan-stick-out-tongue" },
+        { ":b", "chatsan-stick-out-tongue" },
         { "0-0", "chatsan-wide-eyed" },
-        { "o-o.", "chatsan-wide-eyed" }, // Frontier: add period
-        { "o.o.", "chatsan-wide-eyed" }, // Frontier: add period
+        { "o-o", "chatsan-wide-eyed" },
+        { "o.o", "chatsan-wide-eyed" },
         { "._.", "chatsan-surprised" },
         { ".-.", "chatsan-confused" },
         { "-_-", "chatsan-unimpressed" },
-        { "smh.", "chatsan-unimpressed" }, // Frontier: add period
+        { "smh", "chatsan-unimpressed" },
         { "o/", "chatsan-waves" },
         { "^^/", "chatsan-waves" },
         { ":/", "chatsan-uncertain" },
         { ":\\", "chatsan-uncertain" },
-        { "lmao.", "chatsan-laughs" }, // Frontier: add period
-        { "lmfao.", "chatsan-laughs" }, // Frontier: add period
-        { "lol.", "chatsan-laughs" }, // Frontier: add period
-        { "lel.", "chatsan-laughs" }, // Frontier: add period
-        { "kek.", "chatsan-laughs" }, // Frontier: add period
-        { "rofl.", "chatsan-laughs" }, // Frontier: add period
+        { "lmao", "chatsan-laughs" },
+        { "lmfao", "chatsan-laughs" },
+        { "lol", "chatsan-laughs" },
+        { "lel", "chatsan-laughs" },
+        { "kek", "chatsan-laughs" },
+        { "rofl", "chatsan-laughs" },
         { "o7", "chatsan-salutes" },
         { ";_;7", "chatsan-tearfully-salutes"},
-        { "idk.", "chatsan-shrugs" }, // Frontier: add period
+        { "idk", "chatsan-shrugs" },
         { ";)", "chatsan-winks" },
         { ";]", "chatsan-winks" },
         { "(;", "chatsan-winks" },
