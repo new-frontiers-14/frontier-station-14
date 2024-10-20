@@ -429,6 +429,7 @@ namespace Content.Server.Administration.Systems
 
             var payload = GeneratePayload(existingEmbed.description,
                 existingEmbed.username,
+                userId.UserId, // Frontier, this is used to identify the players in the webhook
                 existingEmbed.characterName);
 
             // If there is no existing embed, create a new one
@@ -478,7 +479,7 @@ namespace Content.Server.Administration.Systems
             _processingChannels.Remove(userId);
         }
 
-        private WebhookPayload GeneratePayload(string messages, string username, string? characterName = null)
+        private WebhookPayload GeneratePayload(string messages, string username, Guid userId, string? characterName = null)
         {
             // Add character name
             if (characterName != null)
@@ -504,6 +505,7 @@ namespace Content.Server.Administration.Systems
             return new WebhookPayload
             {
                 Username = username,
+                UserID = userId, // Frontier, this is used to identify the players in the webhook
                 AvatarUrl = string.IsNullOrWhiteSpace(_avatarUrl) ? null : _avatarUrl,
                 Embeds = new List<WebhookEmbed>
                 {
