@@ -23,7 +23,6 @@ namespace Content.Shared._EE.CCVar
 
         #endregion
 
-        // Start EE Code
         #region Contests System
 
         /// <summary>
@@ -78,6 +77,5 @@ namespace Content.Shared._EE.CCVar
             CVarDef.Create("contests.max_percentage", 0.25f, CVar.REPLICATED | CVar.SERVER);
 
         #endregion
-        // End EE Code
     }
 }
