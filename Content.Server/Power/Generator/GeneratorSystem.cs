@@ -74,6 +74,8 @@ public sealed class GeneratorSystem : SharedGeneratorSystem
         else
         {
             int materialAmount = _materialStorage.GetMaterialAmount(uid, component.FuelMaterial);
+            if (materialAmount <= 0) // No fuel?  Job done.
+                return;
             _materialStorage.TryChangeMaterialAmount(uid, component.FuelMaterial, -materialAmount);
 
             var ejectedUid = Spawn(component.EjectedFuelProtoId, Transform(uid).Coordinates);
