@@ -9,6 +9,9 @@ seeds-avocado-name = avocado
 seeds-avocado-display-name = avocado plants
 seeds-cucumber-name = cucumber
 seeds-cucumber-display-name = cucumber plants
+seeds-bees-name = bees
+seeds-bees-display-name = honeycomb
+
 
 # Missing upstream definitions
 seeds-lemoon-display-name = lemoon trees
