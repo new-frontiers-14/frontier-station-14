@@ -1,0 +1,33 @@
+﻿<controls:FancyWindow xmlns="https://spacestation14.io"
+                      xmlns:graphics="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+                      xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+                      Title="Join Game"
+                      SetSize="800 600">
+
+    <BoxContainer Orientation="Vertical">
+        <BoxContainer Orientation="Horizontal">
+            <Button Name="StationTabButton"
+                    MinSize="180 40">
+                <Label Name="StationTabLabel"
+                       Text="{Loc 'frontier-lobby-station-title'}"
+                       StyleClasses="FancyWindowTitle" />
+            </Button>
+            <Button Name="CrewTabButton"
+                    MinSize="180 40">
+                <Label Name="CrewTabLabel"
+                       Text="{Loc 'frontier-lobby-crew-title'}"
+                       StyleClasses="FancyWindowTitle" />
+            </Button>
+        </BoxContainer>
+        <PanelContainer VerticalExpand="True" HorizontalExpand="True">
+            <PanelContainer Name="ContentContainer" VerticalExpand="True" HorizontalExpand="True">
+                <PanelContainer.PanelOverride>
+                    <graphics:StyleBoxFlat BackgroundColor="#000000FF"
+                                           BorderColor="#5a5a5a"
+                                           BorderThickness="1 1 1 1" />
+                </PanelContainer.PanelOverride>
+            </PanelContainer>
+        </PanelContainer>
+    </BoxContainer>
+
+</controls:FancyWindow>

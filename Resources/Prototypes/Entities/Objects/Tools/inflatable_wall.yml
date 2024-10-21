@@ -5,7 +5,6 @@
   description: A folded membrane which rapidly expands into a large cubical shape on activation.
   suffix: Full
   components:
-    - type: ConstructionMaterials # Frontier
     - type: Stack
       stackType: InflatableWall
       count: 10
@@ -20,11 +19,7 @@
       doAfter: 1
       removeOnInteract: true
     - type: Clickable
-    - type: Tag
-      tags:
-        - DroneUsable
-    - type: StaticPrice
-      price: 7.5
+    - type: ConstructionMaterials # Frontier
 # TODO: Add stack sprites + visuals.
 
 - type: entity
@@ -34,7 +29,6 @@
   description: A folded membrane which rapidly expands into a large cubical shape on activation.
   suffix: Full
   components:
-    - type: ConstructionMaterials # Frontier
     - type: Stack
       stackType: InflatableDoor
       count: 4
@@ -49,11 +43,7 @@
       doAfter: 1
       removeOnInteract: true
     - type: Clickable
-    - type: Tag
-      tags:
-        - DroneUsable
-    - type: StaticPrice
-      price: 15
+    - type: ConstructionMaterials # Frontier
 # TODO: Add stack sprites + visuals.
 
 - type: entity

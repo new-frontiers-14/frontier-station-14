@@ -45,12 +45,14 @@ public sealed class RespawnSystem : EntitySystem
         SubscribeLocalEvent<MindContainerComponent, CryosleepBeforeMindRemovedEvent>(OnCryoBeforeMindRemoved);
         SubscribeLocalEvent<MindContainerComponent, CryosleepWakeUpEvent>(OnCryoWakeUp);
 
-        _admin.OnPermsChanged += OnAdminPermsChanged;
+        _admin.OnPermsChanged += OnAdminPermsChanged; // Frontier
+        _player.PlayerStatusChanged += PlayerStatusChanged; // Frontier
 
-        Subs.CVar(_cfg, NFCCVars.RespawnCryoFirstTime, OnRespawnCryoFirstTimeChanged, true);
-        Subs.CVar(_cfg, NFCCVars.RespawnTime, OnRespawnCryoTimeChanged, true);
+        Subs.CVar(_cfg, NFCCVars.RespawnCryoFirstTime, OnRespawnCryoFirstTimeChanged, true); // Frontier
+        Subs.CVar(_cfg, NFCCVars.RespawnTime, OnRespawnCryoTimeChanged, true); // Frontier
     }
 
+    // Frontier: CVar setters
     private void OnRespawnCryoFirstTimeChanged(float value)
     {
         _respawnTimeOnFirstCryo = value;
@@ -60,6 +62,7 @@ public sealed class RespawnSystem : EntitySystem
     {
         _respawnTime = value;
     }
+    // End Frontier
 
     private void OnMobStateChanged(EntityUid entity, MindContainerComponent component, MobStateChangedEvent e)
     {
@@ -172,4 +175,17 @@ public sealed class RespawnSystem : EntitySystem
             _respawnInfo[player] = new RespawnData();
         return ref CollectionsMarshal.GetValueRefOrNullRef(_respawnInfo, player);
     }
+
+    // Frontier: send ghost timer on player connection
+    private void PlayerStatusChanged(object? _, SessionStatusEventArgs args)
+    {
+        var session = args.Session;
+
+        if (args.NewStatus == Robust.Shared.Enums.SessionStatus.InGame &&
+            _respawnInfo.ContainsKey(session.UserId))
+        {
+            RaiseNetworkEvent(new RespawnResetEvent(_respawnInfo[session.UserId].RespawnTime), session);
+        }
+    }
+    // End Frontier
 }

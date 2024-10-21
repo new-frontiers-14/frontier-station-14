@@ -15,6 +15,11 @@
 #          nameGenerator:
 #            !type:NanotrasenNameGenerator
 #            prefixCreator: '14'
+        - type: ExtraStationInformation
+          iconPath: /Textures/Logo/logo.png
+          stationSubtext: 'frontier-lobby-frontier-subtext'
+          stationDescription: 'frontier-lobby-frontier-description'
+          lobbySortOrder: 1
         - type: StationJobs
           availableJobs:
             Contractor: [ -1, -1 ]
@@ -24,7 +29,7 @@
             StationTrafficController: [ 1, 1 ]
             SecurityGuard: [ 1, 1 ]
             Valet: [ 1, 1 ]
-            Janitor: [ 1, 1 ]
+            NFJanitor: [ 1, 1 ]
             MailCarrier: [ 1, 1 ]
 # Others:
 #            Borg: [ 0, 0 ]
