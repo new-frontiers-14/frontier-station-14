@@ -1,0 +1,289 @@
+# Medical bounty prototypes, unidentified corpses may spawn with one of these damage prototypes.
+- type: medicalBounty
+  id: MurderedBlunt
+  damageSets:
+    Blunt:
+      min: 150
+      max: 400
+      value: 10
+      penalty: 10
+    Asphyxiation:
+      min: 50
+      max: 200
+      value: 10
+      penalty: 10
+  baseReward: 2000 # 4K-8K
+
+- type: medicalBounty
+  id: MurderedPierce
+  damageSets:
+    Piercing:
+      min: 150
+      max: 400
+      value: 10
+      penalty: 10
+    Bloodloss:
+      min: 50
+      max: 200
+      value: 10
+      penalty: 10
+  baseReward: 2000 # 4K-8K
+
+- type: medicalBounty
+  id: MurderedSlash
+  damageSets:
+    Slash:
+      min: 150
+      max: 400
+      value: 10
+      penalty: 10
+    Bloodloss:
+      min: 50
+      max: 200
+      value: 10
+      penalty: 10
+  baseReward: 2000 # 4K-8K
+
+- type: medicalBounty
+  id: MildBruteMix
+  damageSets:
+    Blunt:
+      min: 75
+      max: 150
+      value: 10
+      penalty: 10
+    Piercing:
+      min: 75
+      max: 150
+      value: 10
+      penalty: 10
+    Slash:
+      min: 75
+      max: 150
+      value: 10
+      penalty: 10
+    Bloodloss:
+      min: 75
+      max: 150
+      value: 10
+      penalty: 10
+  baseReward: 2000 # 5K-8K
+
+- type: medicalBounty
+  id: Suffocated
+  damageSets:
+    Asphyxiation:
+      min: 150
+      max: 400
+      value: 10
+      penalty: 10
+    Bloodloss:
+      min: 50
+      max: 200
+      value: 10
+      penalty: 10
+  baseReward: 2000 # 4K-8K
+
+- type: medicalBounty
+  id: PlasmaFire
+  damageSets:
+    Heat:
+      min: 1000
+      max: 3000
+      value: 10
+      penalty: 10
+  baseReward: 2000 # 10K-32K
+
+- type: medicalBounty
+  id: Spaced
+  damageSets:
+    Blunt:
+      min: 50
+      max: 100
+      value: 10
+      penalty: 10
+    Piercing:
+      min: 50
+      max: 100
+      value: 10
+      penalty: 10
+    Slash:
+      min: 50
+      max: 100
+      value: 10
+      penalty: 10
+    Cold:
+      min: 600
+      max: 2000
+      value: 10
+      penalty: 10
+  baseReward: 1000 # 8500-24K
+
+- type: medicalBounty
+  id: MildBurnMix
+  damageSets:
+    Heat:
+      min: 50
+      max: 150
+      value: 10
+      penalty: 10
+    Cold:
+      min: 50
+      max: 150
+      value: 10
+      penalty: 10
+    Shock:
+      min: 50
+      max: 150
+      value: 10
+      penalty: 10
+    Caustic:
+      min: 50
+      max: 150
+      value: 10
+      penalty: 10
+  baseReward: 2000 # 4K-8K
+
+- type: medicalBounty
+  id: Insuls
+  damageSets:
+    Heat:
+      min: 200
+      max: 400
+      value: 10
+      penalty: 10
+    Shock:
+      min: 400
+      max: 600
+      value: 10
+      penalty: 10
+  baseReward: 1500 # 7500-11500
+
+- type: medicalBounty
+  id: AcidSlimes
+  damageSets:
+    Caustic:
+      min: 300
+      max: 500
+      value: 20
+      penalty: 20
+  baseReward: 2000 # 8K-12K
+
+- type: medicalBounty
+  id: SpiderAttackMild
+  damageSets:
+    Poison:
+      min: 100
+      max: 200
+      value: 15
+      penalty: 15
+    Asphyxiation:
+      min: 100
+      max: 200
+      value: 10
+      penalty: 10
+  reagents:
+    Mechanotoxin:
+      min: 30
+      max: 50
+      value: 20
+  baseReward: 3500 # 6600-10500
+
+- type: medicalBounty
+  id: SpiderAttack
+  damageSets:
+    Poison:
+      min: 200
+      max: 400
+      value: 15
+      penalty: 15
+  reagents:
+    Mechanotoxin:
+      min: 30
+      max: 50
+      value: 20
+  baseReward: 3500 # 7100-10500
+
+- type: medicalBounty
+  id: DeliciousMushroom
+  damageSets:
+    Poison:
+      min: 100
+      max: 200
+      value: 15
+      penalty: 15
+    Asphyxiation:
+      min: 100
+      max: 200
+      value: 10
+      penalty: 10
+  reagents:
+    Amatoxin:
+      min: 30
+      max: 50
+      value: 30
+  baseReward: 3000 # 6400-10500
+
+- type: medicalBounty
+  id: HyperpacmanGoneWrong
+  damageSets:
+    Radiation:
+      min: 150
+      max: 800
+      value: 15
+      penalty: 15
+    Cellular:
+      min: 60
+      max: 140
+      value: 25
+      penalty: 25
+    Asphyxiation:
+      min: 100
+      max: 200
+      value: 10
+      penalty: 10
+  baseReward: 1500 # ~6250-19K
+
+- type: medicalBounty
+  id: AsphyxAndCellular
+  damageSets:
+    Asphyxiation:
+      min: 200
+      max: 400
+      value: 10
+      penalty: 10
+    Cellular:
+      min: 60
+      max: 140
+      value: 25
+      penalty: 25
+  baseReward: 2000 # 5500-9500
+
+- type: medicalBounty
+  id: DeliciousUranium
+  damageSets:
+    Radiation:
+      min: 50
+      max: 300
+      value: 15
+      penalty: 15
+    Cellular:
+      min: 60
+      max: 100
+      value: 25
+      penalty: 25
+    Asphyxiation: # Value padding
+      min: 100
+      max: 200
+      value: 10
+      penalty: 10
+  reagents:
+    Uranium:
+      min: 30
+      max: 50
+      value: 25
+    Radium:
+      min: 30
+      max: 50
+      value: 25
+  baseReward: 1500 # 5300-13500
