@@ -4,6 +4,8 @@
   components:
   - type: Transform
     anchored: true
+  - type: Physics
+    bodyType: Static
   - type: DisableToolUse
     anchoring: true
     prying: true
@@ -23,6 +25,8 @@
   components:
   - type: Transform
     anchored: true
+  - type: Physics
+    bodyType: Static
   - type: DisableToolUse
     anchoring: true
 
@@ -70,16 +74,24 @@
         damage: 0
 
 - type: entity
+  parent: BaseStructureDisableAnchoring
   id: BaseStructureWallmount
   abstract: true
+  placement:
+    mode: SnapgridCenter
+    snap:
+      - Wallmount
   components:
   - type: Sprite
     drawdepth: WallMountedItems
     snapCardinals: false
   - type: WallMount
-    arc: 180
+    arc: 175
   - type: Transform
     noRot: false
+  - type: Physics
+    bodyType: Static
+    canCollide: false
   - type: Fixtures
     fixtures: {}
 
