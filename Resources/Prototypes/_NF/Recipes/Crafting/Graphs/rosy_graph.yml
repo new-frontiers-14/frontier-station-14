@@ -1,0 +1,19 @@
+- type: constructionGraph
+  id: ClothingNeckCloakRosyGraph
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: ClothingNeckCloakRosy
+      steps:    
+      - tag: MaterialHideRosyMothroach
+        icon:
+          sprite: _NF/Objects/Materials/rosymothroach.rsi
+          state: hiderosymothroach
+        name: rosy maple mothroach hide
+        doAfter: 10
+      - material: Cloth
+        amount: 10
+        doAfter: 5
+  - node: ClothingNeckCloakRosy
+    entity: ClothingNeckCloakRosy
