@@ -226,22 +226,22 @@
     state: tray
     layers:
     - state: tray
-    - state: tray6
+    - state: goodtray6
       map: ["tray6"]
       visible: false
-    - state: tray5
+    - state: goodtray5
       map: ["tray5"]
       visible: false
-    - state: tray4
+    - state: goodtray4
       map: ["tray4"]
       visible: false
-    - state: tray3
+    - state: goodtray3
       map: ["tray3"]
       visible: false
-    - state: tray2
+    - state: goodtray2
       map: ["tray2"]
       visible: false
-    - state: tray1
+    - state: goodtray1
       map: ["tray1"]
       visible: false
     - state: label
@@ -280,6 +280,33 @@
   id: FoodBoxSushiBad
   suffix: Bad
   components:
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/sushi.rsi
+    scale: 0.8, 0.8
+    state: tray
+    layers:
+    - state: tray
+    - state: tray6
+      map: ["tray6"]
+      visible: false
+    - state: tray5
+      map: ["tray5"]
+      visible: false
+    - state: tray4
+      map: ["tray4"]
+      visible: false
+    - state: tray3
+      map: ["tray3"]
+      visible: false
+    - state: tray2
+      map: ["tray2"]
+      visible: false
+    - state: tray1
+      map: ["tray1"]
+      visible: false
+    - state: label
+      map: ["closeLayer"]
+      visible: false
   - type: StorageFill
     contents:
     # Slice1
