@@ -19,4 +19,9 @@ public sealed partial class MedicalBountyComponent : Component
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
     public int MaxBountyValue;
+
+    /// <summary>
+    /// Ensures damage is only applied once, set to true on startup.
+    /// </summary>
+    public bool BountyInitialized;
 }

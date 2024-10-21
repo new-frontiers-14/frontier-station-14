@@ -46,7 +46,7 @@ public sealed partial class MedicalBountySystem : EntitySystem
 
         _proto.PrototypesReloaded += OnPrototypesReloaded;
 
-        SubscribeLocalEvent<MedicalBountyComponent, ComponentInit>(InitializeMedicalBounty);
+        SubscribeLocalEvent<MedicalBountyComponent, ComponentStartup>(InitializeMedicalBounty);
         SubscribeLocalEvent<MedicalBountyRedemptionComponent, RedeemMedicalBountyMessage>(RedeemMedicalBounty);
         SubscribeLocalEvent<MedicalBountyRedemptionComponent, EntInsertedIntoContainerMessage>(OnEntityInserted);
         SubscribeLocalEvent<MedicalBountyRedemptionComponent, EntRemovedFromContainerMessage>(OnEntityRemoved);
@@ -70,8 +70,11 @@ public sealed partial class MedicalBountySystem : EntitySystem
         _cachedPrototypes = _proto.EnumeratePrototypes<MedicalBountyPrototype>().ToList();
     }
 
-    private void InitializeMedicalBounty(EntityUid entity, MedicalBountyComponent component, ComponentInit args)
+    private void InitializeMedicalBounty(EntityUid entity, MedicalBountyComponent component, ComponentStartup args)
     {
+        if (component.BountyInitialized)
+            return;
+
         if (component.Bounty == null)
         {
             if (_cachedPrototypes.Count > 0)
@@ -112,7 +115,9 @@ public sealed partial class MedicalBountySystem : EntitySystem
                 bountyValueAccum += reagentQuantity * reagentValue.ValuePerPoint;
         }
 
+        // Bounty calculation completed, set output state.
         component.MaxBountyValue = bountyValueAccum;
+        component.BountyInitialized = true;
     }
 
     private void RedeemMedicalBounty(EntityUid uid, MedicalBountyRedemptionComponent component, RedeemMedicalBountyMessage ev)
@@ -161,10 +166,11 @@ public sealed partial class MedicalBountySystem : EntitySystem
             }
         }
 
-        // Spawn cash on the machine.
+        // Spawn cash on the machine
         if (bountyPayout > 0)
         {
-            _stack.Spawn(bountyPayout, new ProtoId<StackPrototype>("Credit"), Transform(uid).Coordinates);
+            // Use SpawnMultiple in case spesos ever have a limit.
+            _stack.SpawnMultiple(new ProtoId<StackPrototype>("Credit"), bountyPayout, Transform(uid).Coordinates);
         }
 
         QueueDel(bountyUid);
@@ -207,8 +213,7 @@ public sealed partial class MedicalBountySystem : EntitySystem
             return;
         }
 
-        var newState = GetUserInterfaceState(uid, component);
-        _ui.SetUiState(uid, MedicalBountyRedemptionUiKey.Key, newState);
+        _ui.SetUiState(uid, MedicalBountyRedemptionUiKey.Key, GetUserInterfaceState(uid, component));
     }
 
     private MedicalBountyRedemptionUIState GetUserInterfaceState(EntityUid uid, MedicalBountyRedemptionComponent component)
@@ -220,9 +225,10 @@ public sealed partial class MedicalBountySystem : EntitySystem
             return new MedicalBountyRedemptionUIState(MedicalBountyRedemptionStatus.NoBody, 0);
         }
 
-        // Assumption: only one object can be in the MedicalBountyRedemption
+        // Assumption: only one object can be stored in the MedicalBountyRedemption entity
         EntityUid bountyUid = container.ContainedEntities[0];
 
+        // We either have no value or no way to accurately calculate the value of the bounty.
         if (!TryComp<MedicalBountyComponent>(bountyUid, out var medicalBounty) ||
             medicalBounty.Bounty == null ||
             !TryComp<DamageableComponent>(bountyUid, out var damageable) ||
@@ -231,19 +237,20 @@ public sealed partial class MedicalBountySystem : EntitySystem
             return new MedicalBountyRedemptionUIState(MedicalBountyRedemptionStatus.NoBounty, 0);
         }
 
-        // Check that the entity inside is alive.
+        // Check that the entity inside is sufficiently healed.
         var bounty = medicalBounty.Bounty;
         if (damageable.TotalDamage > bounty.MaximumDamageToRedeem)
         {
             return new MedicalBountyRedemptionUIState(MedicalBountyRedemptionStatus.TooDamaged, 0);
         }
 
+        // Check that the mob is alive.
         if (mobState.CurrentState != Shared.Mobs.MobState.Alive)
         {
             return new MedicalBountyRedemptionUIState(MedicalBountyRedemptionStatus.NotAlive, 0);
         }
 
-        // Calculate amount of reward to pay out.
+        // Bounty is redeemable, calculate amount of reward to pay out.
         var bountyPayout = medicalBounty.MaxBountyValue;
         foreach (var (damageType, damageVal) in damageable.Damage.DamageDict)
         {
@@ -257,7 +264,6 @@ public sealed partial class MedicalBountySystem : EntitySystem
             }
         }
 
-        // Spawn cash on the machine.
         return new MedicalBountyRedemptionUIState(MedicalBountyRedemptionStatus.Valid, int.Max(bountyPayout, 0));
     }
 }

@@ -95,135 +95,30 @@
     factions:
     - NanoTrasen # Unsure about this one, but friendly turrets shouldn't gun them down
 
-# FIXME: redefinition vs. loadouts.yml
 - type: randomHumanoidSettings
-  parent: MedicalBounty
+  parent: [MedicalBounty, NFRandomLoadoutService]
   id: MedicalBountyService
-  components:
-  - type: Loadout
-    prototypes:
-    - NFVisitorBartender
-    - NFVisitorBartenderAlt
-    - NFVisitorBotanist
-    - NFVisitorBotanistAlt
-    - NFVisitorBoxer
-    - NFVisitorBoxerAlt
-    - NFVisitorChaplain
-    - NFVisitorChaplainAlt
-    - NFVisitorChef
-    - NFVisitorChefAlt
-    - NFVisitorClown
-    - NFVisitorJanitor
-    - NFVisitorJanitorAlt
-    - NFVisitorLawyerAltA
-    - NFVisitorLawyerAltB
-    - NFVisitorLawyerAltC
-    - NFVisitorLawyerAltD
-    - NFVisitorLawyerAltE
-    - NFVisitorLibrarian
-    - NFVisitorLibrarianAlt
-    - NFVisitorMime
-    - NFVisitorMimeAlt
-    - NFVisitorMusicianFancyAltA
-    - NFVisitorMusicianFancyAltB
-    - NFVisitorMusicianRelaxedAltA
-    - NFVisitorMusicianRelaxedAltB
-    - NFVisitorMusicianMariachi
-    - NFVisitorReporter
-    - NFVisitorReporterAlt
-    - NFVisitorServiceWorker
-    - NFVisitorServiceWorkerAlt
-    - NFVisitorZookeeper
-    - NFVisitorZookeeperAlt
 
 - type: randomHumanoidSettings
-  parent: MedicalBounty
+  parent: [MedicalBounty, NFRandomLoadoutEngineering]
   id: MedicalBountyEngineering
-  components:
-  - type: Loadout
-    prototypes:
-    - NFVisitorAtmosTech
-    - NFVisitorAtmosTechAlt
-    - NFVisitorTechnicalAssistant
-    - NFVisitorTechnicalAssistantAlt
-    - NFVisitorEngineer
-    - NFVisitorEngineerAlt
 
 - type: randomHumanoidSettings
-  parent: MedicalBounty
+  parent: [MedicalBounty, NFRandomLoadoutCargo]
   id: MedicalBountyCargo
-  components:
-  - type: Loadout
-    prototypes:
-    - NFVisitorCargoTech
-    - NFVisitorCargoTechAlt
-    - NFVisitorSalvageSpecialist
-    - NFVisitorSalvageSpecialistAlt
 
 - type: randomHumanoidSettings
-  parent: MedicalBounty
+  parent: [MedicalBounty, NFRandomLoadoutMedical]
   id: MedicalBountyMedical
-  components:
-  - type: Loadout
-    prototypes:
-    - NFVisitorChemist
-    - NFVisitorChemistAlt
-    - NFVisitorGeneticist
-    - NFVisitorGeneticistAlt
-    - NFVisitorVirologist
-    - NFVisitorVirologistAlt
-    - NFVisitorMedicalDoctor
-    - NFVisitorMedicalDoctorAlt
-    - NFVisitorDentist
-    - NFVisitorPsychologist
-    - NFVisitorPsychologistAlt
-    - NFVisitorParamedic
-    - NFVisitorParamedicAlt
-    - NFVisitorMedicalIntern
-    - NFVisitorMedicalInternAlt
-    - NFVisitorScrubsPurple
-    - NFVisitorScrubsGreen
-    - NFVisitorScrubsBlue
 
 - type: randomHumanoidSettings
-  parent: MedicalBounty
+  parent: [MedicalBounty, NFRandomLoadoutScience]
   id: MedicalBountyScience
-  components:
-  - type: Loadout
-    prototypes:
-    - NFVisitorResearchAssistant
-    - NFVisitorResearchAssistantAlt
-    - NFVisitorScientist
-    - NFVisitorScientistAlt
 
 - type: randomHumanoidSettings
-  parent: MedicalBounty
+  parent: [MedicalBounty, NFRandomLoadoutSecurity]
   id: MedicalBountySecurity
-  components:
-  - type: Loadout
-    prototypes:
-    - NFVisitorSecurityCadet
-    - NFVisitorSecurityCadetAlt
-    - NFVisitorSecurityOfficer
-    - NFVisitorSecurityOfficerAlt
-    - NFVisitorDetective
-    - NFVisitorDetectiveAlt
-    - NFVisitorWarden
-    - NFVisitorWardenAlt
 
 - type: randomHumanoidSettings
-  parent: MedicalBounty
+  parent: [MedicalBounty, NFRandomLoadoutCommand]
   id: MedicalBountyCommand
-  components:
-  - type: Loadout
-    prototypes:
-    - NFVisitorCaptain
-    - NFVisitorCaptainAlt
-    - NFVisitorCE
-    - NFVisitorCEAlt
-    - NFVisitorCMO
-    - NFVisitorCMOAlt
-    - NFVisitorRD
-    - NFVisitorRDAlt
-    - NFVisitorQM
-    - NFVisitorQMAlt

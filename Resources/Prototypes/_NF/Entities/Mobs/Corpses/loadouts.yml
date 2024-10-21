@@ -5,7 +5,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Loadout
-    prototypes:
+    prototypes: &service
     - NFVisitorBartender
     - NFVisitorBartenderAlt
     - NFVisitorBotanist
@@ -45,7 +45,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Loadout
-    prototypes:
+    prototypes: &engineering
     - NFVisitorAtmosTech
     - NFVisitorAtmosTechAlt
     - NFVisitorTechnicalAssistant
@@ -58,7 +58,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Loadout
-    prototypes:
+    prototypes: &cargo
     - NFVisitorCargoTech
     - NFVisitorCargoTechAlt
     - NFVisitorSalvageSpecialist
@@ -69,7 +69,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Loadout
-    prototypes:
+    prototypes: &medical
     - NFVisitorChemist
     - NFVisitorChemistAlt
     - NFVisitorGeneticist
@@ -94,7 +94,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Loadout
-    prototypes:
+    prototypes: &science
     - NFVisitorResearchAssistant
     - NFVisitorResearchAssistantAlt
     - NFVisitorScientist
@@ -105,7 +105,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Loadout
-    prototypes:
+    prototypes: &security
     - NFVisitorSecurityCadet
     - NFVisitorSecurityCadetAlt
     - NFVisitorSecurityOfficer
@@ -120,7 +120,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Loadout
-    prototypes:
+    prototypes: &command
     - NFVisitorCaptain
     - NFVisitorCaptainAlt
     - NFVisitorCE
@@ -132,6 +132,50 @@
     - NFVisitorQM
     - NFVisitorQMAlt
 # endregion Loadouts
+
+# region Random Humanoid Settings
+- type: randomHumanoidSettings
+  id: NFRandomLoadoutService
+  components:
+  - type: Loadout
+    prototypes: *service
+
+- type: randomHumanoidSettings
+  id: NFRandomLoadoutEngineering
+  components:
+  - type: Loadout
+    prototypes: *engineering
+
+- type: randomHumanoidSettings
+  id: NFRandomLoadoutCargo
+  components:
+  - type: Loadout
+    prototypes: *cargo
+
+- type: randomHumanoidSettings
+  id: NFRandomLoadoutMedical
+  components:
+  - type: Loadout
+    prototypes: *medical
+
+- type: randomHumanoidSettings
+  id: NFRandomLoadoutScience
+  components:
+  - type: Loadout
+    prototypes: *science
+
+- type: randomHumanoidSettings
+  id: NFRandomLoadoutSecurity
+  components:
+  - type: Loadout
+    prototypes: *security
+
+- type: randomHumanoidSettings
+  id: NFRandomLoadoutCommand
+  components:
+  - type: Loadout
+    prototypes: *command
+# endregion
 
 # LOADOUTS
 
