@@ -6,12 +6,14 @@ using Content.Server.Body.Systems;
 using Content.Server.Popups;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Stack;
+using Content.Server.Traits.Assorted;
 using Content.Shared._NF.Medical;
 using Content.Shared._NF.Medical.Prototypes;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
+using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Power;
 using Content.Shared.Stacks;
@@ -47,6 +49,8 @@ public sealed partial class MedicalBountySystem : EntitySystem
         _proto.PrototypesReloaded += OnPrototypesReloaded;
 
         SubscribeLocalEvent<MedicalBountyComponent, ComponentStartup>(InitializeMedicalBounty);
+        SubscribeLocalEvent<MedicalBountyComponent, MobStateChangedEvent>(OnMobStateChanged);
+
         SubscribeLocalEvent<MedicalBountyRedemptionComponent, RedeemMedicalBountyMessage>(RedeemMedicalBounty);
         SubscribeLocalEvent<MedicalBountyRedemptionComponent, EntInsertedIntoContainerMessage>(OnEntityInserted);
         SubscribeLocalEvent<MedicalBountyRedemptionComponent, EntRemovedFromContainerMessage>(OnEntityRemoved);
@@ -100,7 +104,7 @@ public sealed partial class MedicalBountySystem : EntitySystem
             bountyValueAccum += randomDamage * damageValue.ValuePerPoint;
             damageToApply += new DamageSpecifier(damageProto, randomDamage);
         }
-        _damageable.SetDamage(entity, damageable, damageToApply);
+        _damageable.TryChangeDamage(entity, damageToApply, true, damageable: damageable);
 
         // Inject reagents into chemical solution, if any
         foreach (var (reagentType, reagentValue) in component.Bounty.Reagents)
@@ -214,6 +218,15 @@ public sealed partial class MedicalBountySystem : EntitySystem
         }
 
         _ui.SetUiState(uid, MedicalBountyRedemptionUiKey.Key, GetUserInterfaceState(uid, component));
+    }
+
+    public void OnMobStateChanged(EntityUid uid, MedicalBountyComponent _, MobStateChangedEvent args)
+    {
+        if (args.NewMobState == MobState.Critical ||
+            args.NewMobState == MobState.Alive)
+        {
+            RemComp<StinkyTraitComponent>(uid);
+        }
     }
 
     private MedicalBountyRedemptionUIState GetUserInterfaceState(EntityUid uid, MedicalBountyRedemptionComponent component)
