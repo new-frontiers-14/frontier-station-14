@@ -36,7 +36,7 @@ public sealed partial class DocumentParsingManager
             .Assert(_tagControlParsers.ContainsKey, tag => $"unknown tag: {tag}")
             .Bind(tag => _tagControlParsers[tag]);
 
-        _controlParser = OneOf(_tagParser, TryHeaderControl, ListControlParser, TextControlParser)
+        _controlParser = OneOf(_tagParser, TryHeaderControl, TryListControl, TextControlParser) // Frontier: ListControlParser<TryListControl
             .Before(SkipWhitespaces);
 
         foreach (var typ in _reflectionManager.GetAllChildren<IDocumentTag>())
