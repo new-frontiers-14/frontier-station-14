@@ -84,6 +84,8 @@
             prob: 0.1
           - id: Window
             prob: 0.05
+          - id: MedicalPodFilled # Medical bounties
+            prob: 0.03
         Lattice: &lattice
           - prob: 2
           - id: Grille
@@ -142,21 +144,6 @@
             prob: 0.0025
           - id: Thruster
             prob: 0.005
-          # Medical bounty corpses (total weight: 0.03)
-          - id: SpawnRandomHumanoidCorpseMedicalBountyService
-            prob: 0.009
-          - id: SpawnRandomHumanoidCorpseMedicalBountyMedical
-            prob: 0.006
-          - id: SpawnRandomHumanoidCorpseMedicalBountyEngineering
-            prob: 0.004
-          - id: SpawnRandomHumanoidCorpseMedicalBountyCargo
-            prob: 0.004
-          - id: SpawnRandomHumanoidCorpseMedicalBountyScience
-            prob: 0.003
-          - id: SpawnRandomHumanoidCorpseMedicalBountySecurity
-            prob: 0.002
-          - id: SpawnRandomHumanoidCorpseMedicalBountyCommand
-            prob: 0.002
     - type: IFF
       flags: HideLabel
       color: "#88b0d1"
