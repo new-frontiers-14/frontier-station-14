@@ -61,6 +61,7 @@ public sealed partial class ServerApi : IPostInjectInit
     [Dependency] private readonly ILogManager _logManager = default!;
     [Dependency] private readonly IEntitySystemManager _entitySystemManager = default!;
     [Dependency] private readonly ILocalizationManager _loc = default!;
+    [Dependency] private readonly BwoinkSystem _serverBwoinkSystem = default!;
 
     private string _token = string.Empty;
     private ISawmill _sawmill = default!;
@@ -426,6 +427,7 @@ public sealed partial class ServerApi : IPostInjectInit
         // Message is parsed by the bot itself, we only need to make it a right component
         var message = new SharedBwoinkSystem.BwoinkTextMessage(player.UserId, SharedBwoinkSystem.SystemUserId, body.Text);
 
+
         // If we want to only send the message to the player
         if (!body.UserOnly)
         {
@@ -443,9 +445,24 @@ public sealed partial class ServerApi : IPostInjectInit
         }
         // Send the message to the player
         _entityManager.EntityNetManager?.SendSystemNetworkMessage(message, player.Channel);
+
+        var ticker = _entitySystemManager.GetEntitySystem<GameTicker>();
+        var queue = _serverBwoinkSystem._messageQueues.GetOrNew(player.UserId);
+
+        var FormattedMessage = new AHelpMessageParams(
+            player.Name,
+            body.Text,
+            true,
+            ticker.RoundDuration().ToString("hh\\:mm\\:ss"),
+            ticker.RunLevel,
+            true,
+            isDiscord: true
+            );
+
+        var FinalMessage = BwoinkSystem.GenerateAHelpMessage(FormattedMessage);
+        queue.Enqueue(FinalMessage);
         // Respond with OK
         await RespondOk(context);
-
     });
 
 

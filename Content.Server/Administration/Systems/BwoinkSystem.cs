@@ -59,7 +59,7 @@ namespace Content.Server.Administration.Systems
                 lastRunLevel)> _relayMessages = new();
 
         private Dictionary<NetUserId, string> _oldMessageIds = new();
-        private readonly Dictionary<NetUserId, Queue<string>> _messageQueues = new();
+        public readonly Dictionary<NetUserId, Queue<string>> _messageQueues = new(); // Frontier - Changed to Public
         private readonly HashSet<NetUserId> _processingChannels = new();
         private readonly Dictionary<NetUserId, (TimeSpan Timestamp, bool Typing)> _typingUpdateTimestamps = new();
         private string _overrideClientName = string.Empty;
@@ -704,7 +704,7 @@ namespace Content.Server.Administration.Systems
                 .ToList();
         }
 
-        private static string GenerateAHelpMessage(AHelpMessageParams parameters)
+        public static string GenerateAHelpMessage(AHelpMessageParams parameters) // Frontier - Changed to Public
         {
             var stringbuilder = new StringBuilder();
 
@@ -721,6 +721,9 @@ namespace Content.Server.Administration.Systems
                 stringbuilder.Append($" **{parameters.RoundTime}**");
             if (!parameters.PlayedSound)
                 stringbuilder.Append(" **(S)**");
+
+            if (parameters.IsDiscord ?? false) // Frontier - Discord Indicator
+                stringbuilder.Append(" **(DC)**");
 
             if (parameters.Icon == null)
                 stringbuilder.Append($" **{parameters.Username}:** ");
@@ -740,6 +743,7 @@ namespace Content.Server.Administration.Systems
         public GameRunLevel RoundState { get; set; }
         public bool PlayedSound { get; set; }
         public bool NoReceivers { get; set; }
+        public bool? IsDiscord { get; set; } // Frontier
         public string? Icon { get; set; }
 
         public AHelpMessageParams(
@@ -749,6 +753,7 @@ namespace Content.Server.Administration.Systems
             string roundTime,
             GameRunLevel roundState,
             bool playedSound,
+            bool isDiscord = false, // Frontier
             bool noReceivers = false,
             string? icon = null)
         {
@@ -757,6 +762,7 @@ namespace Content.Server.Administration.Systems
             IsAdmin = isAdmin;
             RoundTime = roundTime;
             RoundState = roundState;
+            IsDiscord = isDiscord; // Frontier
             PlayedSound = playedSound;
             NoReceivers = noReceivers;
             Icon = icon;
