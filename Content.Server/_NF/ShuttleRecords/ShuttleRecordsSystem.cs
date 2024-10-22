@@ -1,19 +1,13 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using Content.Server._NF.SectorServices;
 using Content.Server._NF.ShuttleRecords.Components;
-using Content.Server.Popups;
-using Content.Server.Station.Systems;
 using Content.Shared._NF.ShuttleRecords;
-using Robust.Server.GameObjects;
 
 namespace Content.Server._NF.ShuttleRecords;
 
 public sealed partial class ShuttleRecordsSystem : SharedShuttleRecordsSystem
 {
-    [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly IEntityManager _entityManager = default!;
-    [Dependency] private readonly UserInterfaceSystem _ui = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly SectorServiceSystem _sectorService = default!;
 
 
@@ -29,9 +23,9 @@ public sealed partial class ShuttleRecordsSystem : SharedShuttleRecordsSystem
         component.ShuttleRecordsList.Add(record);
     }
 
-    private bool TryGetShuttleRecordsDataComponent([NotNullWhen(true)] out ShuttleRecordsDataComponent? component)
+    private bool TryGetShuttleRecordsDataComponent([NotNullWhen(true)] out SectorShuttleRecordsComponent? component)
     {
-        if (_entityManager.EnsureComponent<ShuttleRecordsDataComponent>(
+        if (_entityManager.EnsureComponent<SectorShuttleRecordsComponent>(
                 uid: _sectorService.GetServiceEntity(),
                 out var shuttleRecordsComponent))
         {

@@ -3,11 +3,12 @@
 namespace Content.Server._NF.ShuttleRecords.Components;
 
 /// <summary>
-/// Component that is put on the console's grid that will hold all things that are sold at cargo, for that grid.
+/// A component that stores records for all shuttle purchases in the sector.
+/// Note: all purchases are currently added, will need to be filtered appropriately by viewing clients.
 /// </summary>
 [RegisterComponent]
 [Access(typeof(ShuttleRecordsSystem))]
-public sealed partial class ShuttleRecordsDataComponent : Component
+public sealed partial class SectorShuttleRecordsComponent : Component
 {
     [DataField]
     public List<ShuttleRecord> ShuttleRecordsList = [];
