@@ -14,9 +14,6 @@
       rotation: 90
   - type: RandomHumanoidSpawner
     settings: MedicalBounty
-  - type: Tag
-    tags:
-    - MedicalBounty
 
 - type: entity
   id: SpawnRandomHumanoidCorpseMedicalBountyService
@@ -97,6 +94,7 @@
   - type: NpcFactionMember
     factions:
     - NanoTrasen # Unsure about this one, but friendly turrets shouldn't gun them down
+  - type: DisableSuitSensors # Should never show up on suit sensors.
 
 - type: randomHumanoidSettings
   parent: [MedicalBounty, NFRandomLoadoutService]

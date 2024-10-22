@@ -174,7 +174,7 @@ public sealed partial class MedicalBountySystem : EntitySystem
         if (bountyPayout > 0)
         {
             // Use SpawnMultiple in case spesos ever have a limit.
-            _stack.SpawnMultiple(new ProtoId<StackPrototype>("Credit"), bountyPayout, Transform(uid).Coordinates);
+            _stack.SpawnMultiple("SpaceCash", bountyPayout, Transform(uid).Coordinates);
         }
 
         QueueDel(bountyUid);
