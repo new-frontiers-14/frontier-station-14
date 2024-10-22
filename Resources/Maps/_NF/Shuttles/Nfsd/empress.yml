@@ -13993,22 +13993,13 @@ entities:
         params:
           volume: -5
         path: /Audio/Machines/door_lock_off.ogg
-- proto: StructureMeleeWeaponRackWallmountedNfsd
+- proto: StructureMeleeWeaponRackNfsd
   entities:
   - uid: 323
     components:
     - type: Transform
       pos: 20.5,1.5
       parent: 1
-    - type: Lock
-      lockingSound: !type:SoundPathSpecifier
-        params:
-          volume: -5
-        path: /Audio/Machines/door_lock_on.ogg
-      unlockingSound: !type:SoundPathSpecifier
-        params:
-          volume: -5
-        path: /Audio/Machines/door_lock_off.ogg
 - proto: StructurePistolRackWallmountedNfsd
   entities:
   - uid: 253
