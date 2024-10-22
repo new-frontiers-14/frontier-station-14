@@ -257,11 +257,9 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         // Using invalid entity, we don't have a relevant entity to reference here.
         RaiseLocalEvent(EntityUid.Invalid, new StationsGeneratedEvent(), broadcast: true); // TODO: attach this to a meaningful entity.
 
-        var dungenTypes = _prototypeManager.EnumeratePrototypes<DungeonConfigPrototype>();
-
-        foreach (var dunGen in dungenTypes)
+        foreach (var dungeonProto in component.SpaceDungeons)
         {
-            if (dunGen.SkipDungeonGen)
+            if (!_prototypeManager.TryIndex<DungeonConfigPrototype>(dungeonProto, out var dunGen))
                 continue;
 
             var seed = _random.Next();
@@ -278,6 +276,9 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             var mapGrid = EnsureComp<MapGridComponent>(grids[0]);
             _shuttle.AddIFFFlag(grids[0], IFFFlags.HideLabel);
             _console.WriteLine(null, $"dungeon spawned at {offset}");
+
+            string dungeonName = Loc.GetString("adventure-space-dungeon-name", ("dungeonPrototype", dungeonProto));
+            _meta.SetEntityName(grids[0], dungeonName);
 
             //pls fit the grid I beg, this is so hacky
             //its better now but i think i need to do a normalization pass on the dungeon configs
