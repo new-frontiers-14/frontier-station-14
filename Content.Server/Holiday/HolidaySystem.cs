@@ -118,6 +118,7 @@ namespace Content.Server.Holiday
             }
         }
 
+        // Frontier: holiday-themed entity replacement
         private void OnBeforeRead(BeforeEntityReadEvent ev)
         {
             foreach (var holiday in _currentHolidays)
@@ -131,6 +132,7 @@ namespace Content.Server.Holiday
                 }
             }
         }
+        // End Frontier
     }
 
     /// <summary>

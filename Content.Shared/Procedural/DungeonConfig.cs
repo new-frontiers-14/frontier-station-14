@@ -53,9 +53,4 @@ public sealed class DungeonConfigPrototype : DungeonConfig, IPrototype
 {
     [IdDataField]
     public string ID { get; private set; } = default!;
-
-    // Frontier: skip dungeon generation
-    [DataField]
-    public bool SkipDungeonGen = false;
-    // End Frontier
 }

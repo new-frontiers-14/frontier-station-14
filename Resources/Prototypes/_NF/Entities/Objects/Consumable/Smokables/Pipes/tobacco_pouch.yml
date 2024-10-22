@@ -3,7 +3,7 @@
   name: tobacco pouch
   parent: [ BaseStorageItem, BaseBagOpenClose, RecyclableItemClothSmall ]
   description: A synth-leather pouch for safe storing pipe tobacco.
-  #abstract: true
+  suffix: Empty
   components:
   - type: Sprite
     sprite: _NF/Objects/Consumable/Smokeables/Pipes/tobacco_pouch.rsi
@@ -42,10 +42,6 @@
     maxItemSize: Small
     grid:
     - 0,0,1,1
-  - type: StorageFill
-    contents:
-    - id: GroundTobacco
-      amount: 10 # 2 stacks of 5, leaves 2 slots for pipe and lighter
   - type: StaticPrice
     price: 50
 
@@ -60,8 +56,8 @@
   components:
   - type: StorageFill
     contents:
-    - id: GroundTobacco
-      amount: 10
+    - id: NFGroundTobacco5
+      amount: 2 # 2 stacks of 5, leaves 2 slots for pipe and lighter
 
 - type: entity
   id: TobaccoPouchBlueFilled
@@ -96,8 +92,8 @@
         color: "#00d7ff"
   - type: StorageFill
     contents:
-    - id: GroundTobaccoStonecut
-      amount: 10
+    - id: GroundTobaccoStonecut5
+      amount: 2
 
 - type: entity
   id: TobaccoPouchRedFilled
@@ -132,8 +128,8 @@
         color: "#07ff00"
   - type: StorageFill
     contents:
-    - id: GroundTobaccoShrooms
-      amount: 10
+    - id: GroundTobaccoShrooms5
+      amount: 2
 
 - type: entity
   id: TobaccoPouchPurpleFilled
@@ -168,5 +164,5 @@
         color: "#bd66bd"
   - type: StorageFill
     contents:
-    - id: GroundTobaccoDrowsy
-      amount: 10
+    - id: GroundTobaccoDrowsy5
+      amount: 2

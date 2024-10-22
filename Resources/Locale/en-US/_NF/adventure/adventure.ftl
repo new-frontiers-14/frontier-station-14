@@ -28,3 +28,5 @@ multiauth-already-connected = Already connected to Frontier Official servers.
 
 public-transit-departure = Now departing for {$destination}. Estimated travel time: {$flytime} seconds.
 public-transit-arrival = Thank you for choosing NT Public Transit. Next transfer to {$destination} departs in {$waittime} seconds.
+
+adventure-space-dungeon-name = Space Dungeon: {$dungeonPrototype}
