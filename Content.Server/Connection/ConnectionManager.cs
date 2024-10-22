@@ -249,9 +249,21 @@ namespace Content.Server.Connection
 
                 if (showReason && !haveMinOverallTime && !bypassAllowed)
                 {
+                    // Frontier: panic bunker message, print minutes/hours depending on how much time left.
+                    double minutesNeeded = minOverallMinutes - (overallTime?.TimeSpent.TotalMinutes ?? 0.0);
+                    string reason;
+                    if (minutesNeeded > 60)
+                    {
+                        reason = Loc.GetString("panic-bunker-account-reason-nf-overall-hours", ("hours", $"{minOverallMinutes / 60.0:F1}"), ("timeLeft", $"{minutesNeeded / 60.0:F1}"));
+                    }
+                    else
+                    {
+                        reason = Loc.GetString("panic-bunker-account-reason-nf-overall-minutes", ("hours", $"{minOverallMinutes / 60.0:F1}"), ("timeLeft", $"{minutesNeeded:F0}"));
+                    }
                     return (ConnectionDenyReason.Panic,
-                        Loc.GetString("panic-bunker-account-denied-reason",
-                            ("reason", Loc.GetString("panic-bunker-account-reason-overall", ("minutes", minOverallMinutes)))), null);
+                        Loc.GetString("panic-bunker-account-denied-reason-nf",
+                            ("reason", reason)), null);
+                    // End Frontier
                 }
 
                 if (!validAccountAge || !haveMinOverallTime && !bypassAllowed)
