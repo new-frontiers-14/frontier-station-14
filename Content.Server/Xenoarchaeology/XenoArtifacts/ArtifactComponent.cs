@@ -98,7 +98,13 @@ public sealed partial class ArtifactComponent : Component
     /// Frontier: When set to true, any newly visited nodes contribute no new points.
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite)]
-    public bool ConsumeGainedPoints = false;
+    public bool RemoveGainedPoints = false;
+
+    /// <summary>
+    /// Frontier: Points being skipped (e.g. by triggering a node through spraying an artifact).
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite)]
+    public int SkippedPoints;
 }
 
 /// <summary>
