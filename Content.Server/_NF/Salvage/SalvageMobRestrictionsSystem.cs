@@ -2,7 +2,6 @@ using Content.Shared.Damage;
 using Content.Shared.Body.Components;
 using Content.Server.Body.Systems;
 using Content.Server.Explosion.EntitySystems;
-using Robust.Shared.Spawners;
 
 namespace Content.Server._NF.Salvage;
 
