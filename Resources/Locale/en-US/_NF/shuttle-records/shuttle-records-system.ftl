@@ -14,3 +14,4 @@ shuttle-records-insufficient-funds = Station does not have enough funds.
 shuttle-records-no-access = Access denied.
 shuttle-records-transaction-cost = Transaction Cost: {$cost}
 shuttle-records-search = Search ship or captain
+shuttle-records-time-of-purchase = Time of purchase: [color=white]{ $time }[/color]

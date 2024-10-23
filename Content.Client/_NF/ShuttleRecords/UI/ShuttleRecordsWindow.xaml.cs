@@ -99,13 +99,21 @@ public sealed partial class ShuttleRecordsWindow : DefaultWindow
         var shuttleStatus = ShuttleExists(netEntity: shuttleRecord.EntityUid)
             ? _loc.GetString(messageId: "shuttle-records-shuttle-status-active")
             : _loc.GetString(messageId: "shuttle-records-shuttle-status-inactive");
+        var timeOfPurchaseText = "N/A";
+        if (shuttleRecord.TimeOfPurchase != null)
+        {
+            timeOfPurchaseText = Loc.GetString("shuttle-records-time-of-purchase",
+                ("time", shuttleRecord.TimeOfPurchase.Value.ToString("hh\\:mm\\:ss")));
+        }
+
         var viewState = new ShuttleRecordDetailsControl.ViewState(
             shuttleName: _loc.GetString(messageId: "shuttle-records-shuttle-name-label",
                 arg: ("name", shuttleRecord.Name + " " + shuttleRecord.Suffix)),
             shuttleOwnerName: _loc.GetString(messageId: "shuttle-records-shuttle-owner-label",
                 arg: ("owner", shuttleRecord.OwnerName)),
             activity: _loc.GetString(messageId: "shuttle-records-shuttle-status", arg: ("status", shuttleStatus)),
-            toolTip: ""
+            toolTip: "",
+            timeOfPurchase: timeOfPurchaseText
         );
         var control = new ShuttleRecordDetailsControl(state: viewState);
         control.CopyDeedButton.OnPressed += _ =>
