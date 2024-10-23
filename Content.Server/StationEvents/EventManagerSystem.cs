@@ -9,6 +9,13 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Content.Shared.EntityTable.EntitySelectors;
 using Content.Shared.EntityTable;
+using Content.Server.Station.Systems; // Frontier
+
+using Content.Server.Station.Components;
+using Content.Shared.GameTicking.Components;
+using Content.Shared.Roles;
+using JetBrains.Annotations;
+using Content.Server._NF.Station.Components;
 
 namespace Content.Server.StationEvents;
 
@@ -21,6 +28,8 @@ public sealed class EventManagerSystem : EntitySystem
     [Dependency] private readonly EntityTableSystem _entityTable = default!;
     [Dependency] public readonly GameTicker GameTicker = default!;
     [Dependency] private readonly RoundEndSystem _roundEnd = default!;
+    [Dependency] private readonly StationJobsSystem _stationJobs = default!; // Frontier
+    [Dependency] private readonly IEntityManager _entityManager = default!;
 
     public bool EventsEnabled { get; private set; }
     private void SetEnabled(bool value) => EventsEnabled = value;
@@ -267,12 +276,29 @@ public sealed class EventManagerSystem : EntitySystem
             return false;
         }
 
-        // Frontier: max players
-        if (playerCount > stationEvent.MaximumPlayers)
+        if (playerCount > stationEvent.MaximumPlayers) // Frontier: max players
         {
             return false;
         }
-        // End Frontier
+
+        if (stationEvent.RequireSheriff) // Frontier: Require sheriff
+        {
+            var query = EntityQueryEnumerator<StationJobsComponent>();
+            while (query.MoveNext(out var station, out var comp))
+            {
+                if (EntityManager.TryGetComponent<ExtraStationInformationComponent>(station, out var extraStationInformation) && extraStationInformation.LobbySortOrder == stationEvent.StationWithSheriff)
+                {
+                    var chosenStation = station;
+
+                    var jobPrototype = _prototype.Index<JobPrototype>("Sheriff"); // Should unhardcode "Sheriff" for forks.
+                    if (_stationJobs.TryGetJobSlot(chosenStation, jobPrototype, out var slots) == false || slots <= 1)
+                    // TODO: If there is an active sheriff but also open job this count as no sheriff, this is fine since it means a sheriff is leaveing the game, but we might want to update this.
+                    {
+                        return false;
+                    }
+                }
+            }
+        }
 
         if (_roundEnd.IsRoundEndRequested() && !stationEvent.OccursDuringRoundEnd)
         {

@@ -70,8 +70,8 @@ public sealed partial class StationEventComponent : Component
     public int MinimumPlayers;
 
     /// <summary>
-    ///     Frontier - How many players need to be present on station for the event to not run, to avoid running safe events with high-pop
-    /// </remarks>
+    ///     Frontier: How many players need to be present on station for the event to not run, to avoid running safe events with high-pop
+    /// </summary>
     [DataField]
     public int MaximumPlayers = 999;
 
@@ -93,4 +93,16 @@ public sealed partial class StationEventComponent : Component
     /// </summary>
     [DataField]
     public bool OccursDuringRoundEnd = true;
+
+    /// <summary>
+    ///     Frontier: Require active sheriff to run the event.
+    /// </summary>
+    [DataField]
+    public bool RequireSheriff = false;
+
+    /// <summary>
+    ///     Frontier: Require active sheriff to run the event.
+    /// </summary>
+    [DataField]
+    public int StationWithSheriff = 2; // Probably should fix this to find the NFSD in someway.
 }
