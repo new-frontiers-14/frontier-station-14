@@ -14,6 +14,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Serialization.Manager;
 using Robust.Shared.Timing;
+using Content.Server.Station.Components; // Frontier
 
 namespace Content.Server.Xenoarchaeology.XenoArtifacts;
 
@@ -136,21 +137,27 @@ public sealed partial class ArtifactSystem : EntitySystem
     }
 
     // Frontier: randomly disintegrate an artifact.
-    public void DisintegrateArtifact(EntityUid uid, float probabilityMin, float probabilityMax, float range)
+    public void NFActivateArtifact(EntityUid uid, float probabilityBase, float range)
     {
+        if (!TryComp<ArtifactComponent>(uid, out var artifactComp))
+            return;
+
+        var disintegrate = probabilityBase;
+
         // Frontier - prevent both artifact activation and disintegration on protected grids (no grimforged in the safezone).
         var xform = Transform(uid);
         if (xform.GridUid != null)
         {
             if (TryComp<ProtectedGridComponent>(xform.GridUid.Value, out var prot) && prot.PreventArtifactTriggers)
                 return;
+
+            if (!HasComp<StationJobsComponent>(xform.GridUid.Value)) // If its not a shuttle this is probably an astroid / planet
+            {
+                disintegrate += 0.15f;
+            }
         }
 
-        // Make a chance between probabilityMin and probabilityMax
-        var randomChanceForDisintegration = _random.NextFloat(probabilityMin, probabilityMax);
-        var willDisintegrate = _random.Prob(randomChanceForDisintegration);
-
-        if (willDisintegrate)
+        if (_random.Prob(disintegrate))
         {
             var artifactCoord = _transform.GetMapCoordinates(uid);
             var flashEntity = Spawn("EffectFlashBluespace", artifactCoord);
@@ -163,6 +170,14 @@ public sealed partial class ArtifactSystem : EntitySystem
             _transform.AttachToGridOrMap(mobEntity);
 
             _entityManager.DeleteEntity(uid);
+        }
+        else
+        {
+            int pointsPerNode = artifactComp.PointsPerNode;
+
+            artifactComp.PointsPerNode = 0;
+            TryActivateArtifact(uid, uid, artifactComp);
+            artifactComp.PointsPerNode = pointsPerNode;
         }
     }
     // End Frontier
