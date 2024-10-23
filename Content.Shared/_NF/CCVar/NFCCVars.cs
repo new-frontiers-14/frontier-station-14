@@ -128,7 +128,7 @@ public sealed class NFCCVars
     public static readonly CVarDef<int> DeadDropMaxDistance =
         CVarDef.Create("nf14.smuggling.max_distance", 8000, CVar.REPLICATED);
     public static readonly CVarDef<int> DeadDropMinHints =
-        CVarDef.Create("nf14.smuggling.min_hints", 3, CVar.REPLICATED);
+        CVarDef.Create("nf14.smuggling.min_hints", 0, CVar.REPLICATED); // Used with BasicDeadDropHintVariationPass
     public static readonly CVarDef<int> DeadDropMaxHints =
-        CVarDef.Create("nf14.smuggling.max_hints", 4, CVar.REPLICATED);
+        CVarDef.Create("nf14.smuggling.max_hints", 0, CVar.REPLICATED); // Used with BasicDeadDropHintVariationPass
 }
