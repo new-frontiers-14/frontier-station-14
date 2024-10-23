@@ -281,21 +281,16 @@ public sealed class EventManagerSystem : EntitySystem
             return false;
         }
 
-        if (stationEvent.RequireSheriff) // Frontier: Require sheriff
+        // Frontier: TODO: This will require only one job of the provided list, not all.
+        foreach (var (jobProtoId, numJobs) in stationEvent.RequiredJobs) // Frontier: Required a job to be active to start event
         {
+            var jobPrototype = _prototype.Index(jobProtoId);
             var query = EntityQueryEnumerator<StationJobsComponent>();
             while (query.MoveNext(out var station, out var comp))
             {
-                if (EntityManager.TryGetComponent<ExtraStationInformationComponent>(station, out var extraStationInformation) && extraStationInformation.LobbySortOrder == stationEvent.StationWithSheriff)
-                {
-                    var chosenStation = station;
-
-                    var jobPrototype = _prototype.Index<JobPrototype>("Sheriff"); // Should unhardcode "Sheriff" for forks.
-                    if (_stationJobs.TryGetJobSlot(chosenStation, jobPrototype, out var slots) == false || slots <= 1)
-                    // TODO: If there is an active sheriff but also open job this count as no sheriff, this is fine since it means a sheriff is leaveing the game, but we might want to update this.
-                    {
-                        return false;
-                    }
+                if (_stationJobs.TryGetJobSlot(station, jobPrototype, out var slots) && slots >= 1)
+                { // If a job slot is open the player should be leaving or left.
+                    return false;
                 }
             }
         }

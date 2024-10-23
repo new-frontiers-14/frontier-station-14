@@ -1,4 +1,6 @@
+using Content.Shared.Roles; // Frontier
 using Robust.Shared.Audio;
+using Robust.Shared.Prototypes; // Frontier
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Server.StationEvents.Components;
@@ -98,11 +100,5 @@ public sealed partial class StationEventComponent : Component
     ///     Frontier: Require active sheriff to run the event.
     /// </summary>
     [DataField]
-    public bool RequireSheriff = false;
-
-    /// <summary>
-    ///     Frontier: Require active sheriff to run the event.
-    /// </summary>
-    [DataField]
-    public int StationWithSheriff = 2; // Probably should fix this to find the NFSD in someway.
+    public Dictionary<ProtoId<JobPrototype>, int> RequireJobs = new();
 }
