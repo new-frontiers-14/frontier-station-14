@@ -1,7 +1,7 @@
-station-event-bluespace-vault-start-announcement = A NanoTrasen autonomous armored vault transport has made an FTL error and will soon arrive nearby. Your sector will be rewarded for it's safe return. A No Fly Zone of three hundred meters has been established. Failure to comply will result in persecution
+station-event-bluespace-vault-start-announcement = A NanoTrasen autonomous armored vault transport has made an FTL error and will soon arrive nearby. Your sector will be rewarded for it's safe return. A No Fly Zone of 300 meters has been established. Failure to comply will result in prosecution
 station-event-bluespace-vault-end-announcement = We have successfully retrieved the vault from your sector and have reimbursed your nearby Frontier Outpost accordingly.
 
-station-event-bluespace-cache-start-announcement = A Syndicate transport has been intercepted from FTL and will soon arrive nearby. Guard the armored weapons cache until NanoTrasen can retrieve it for a reward. A No Fly Zone of three hundred meters has been established. Failure to comply will result in prosecution
+station-event-bluespace-cache-start-announcement = A Syndicate transport has been intercepted from FTL and will soon arrive nearby. Guard the armored weapons cache until NanoTrasen can retrieve it for a reward. A No Fly Zone of 300 meters has been established. Failure to comply will result in prosecution
 station-event-bluespace-cache-end-announcement = We have successfully retrieved the Syndicate weapons cache from your sector and have reimbursed your nearby Frontier Outpost accordingly.
 
 station-event-bluespace-asteroid-start-announcement = Long range scans indicate an unusually large asteroid entering the sector. NanoTrasen advises prospectors to divert operations for maximum profit potential.
