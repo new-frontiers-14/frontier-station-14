@@ -19,14 +19,15 @@
       map: ["enum.StorageVisualLayers.Base"]
     - state: window-closed
       map: ["enum.StorageVisualLayers.Door"]
-    - state: window-closed-occupied
-      map: ["occupied"]
-      visible: false
     - state: antenna-unlit
       shader: unshaded
+    - state: healthanalyzer-unlit
+      shader: unshaded
+      map: ["healthanalyzer"]
+      visible: false
     - state: occupied-unlit
       shader: unshaded
-      map: ["occupied_unlit"]
+      map: ["occupied"]
       visible: false
   - type: InteractionOutline
   - type: Fixtures
@@ -79,7 +80,6 @@
   - type: EntityStorageVisuals
     stateBaseOpen: base
     stateBaseClosed: base
-    stateDoorOpen: window-open
     stateDoorClosed: window-closed
   - type: GenericVisualizer
     visuals:
@@ -87,7 +87,7 @@
         occupied:
           True: { visible: true }
           False: { visible: false }
-        occupied_unlit:
+        healthanalyzer:
           True: { visible: true }
           False: { visible: false }
   - type: ContainerContainer
