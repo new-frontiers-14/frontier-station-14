@@ -1,23 +1,35 @@
+# Author Info
+# GitHub: ???
+# Discord: ???
+
+# Maintainer Info
+# GitHub: ???
+# Discord: ???
+
+# Shuttle Notes:
+#
 - type: vessel
-  id: phoenix
+  id: Phoenix
   name: NR Phoenix
-  description: A research and salvage vessel designed for deep space exploration
-  price: 60000
+  description: A research and salvage vessel designed for deep space exploration.
+  price: 62500 # TODO - fix this value, getting tests to pass - Whatstone
   category: Medium
   group: Shipyard
   shuttlePath: /Maps/_NF/Shuttles/phoenix.yml
-  guidebookPage: Null
+  guidebookPage: ShipyardPhoenix
   class:
   - Science
   - Engineering
+  engine:
+  - Plasma
 
 - type: gameMap
-  id: phoenix
+  id: Phoenix
   mapName: 'NR Phoenix'
   mapPath: /Maps/_NF/Shuttles/phoenix.yml
   minPlayers: 0
   stations:
-    phoenix:
+    Phoenix:
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup

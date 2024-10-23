@@ -383,15 +383,6 @@ entities:
     - type: Transform
       pos: 35.5,14.5
       parent: 1653
-- proto: BananiumOre1
-  entities:
-  - uid: 436
-    components:
-    - type: Transform
-      parent: 435
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: Barricade
   entities:
   - uid: 61
@@ -409,15 +400,6 @@ entities:
     - type: Transform
       pos: 51.5,0.5
       parent: 1653
-- proto: BikeHorn
-  entities:
-  - uid: 201
-    components:
-    - type: Transform
-      parent: 200
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: CandleRedSmallInfinite
   entities:
   - uid: 121
@@ -491,13 +473,6 @@ entities:
     - type: Transform
       pos: 9.5,28.5
       parent: 1653
-- proto: CigaretteCapsaicinOil
-  entities:
-  - uid: 322
-    components:
-    - type: Transform
-      pos: 31.649122,18.823664
-      parent: 1653
 - proto: ClothingHeadHatFlowerWreath
   entities:
   - uid: 233
@@ -505,42 +480,6 @@ entities:
     - type: Transform
       pos: 27.441708,39.437607
       parent: 1653
-- proto: ClothingHeadHatGladiator
-  entities:
-  - uid: 7
-    components:
-    - type: Transform
-      parent: 6
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-- proto: ClothingNeckCloakTrans
-  entities:
-  - uid: 332
-    components:
-    - type: Transform
-      parent: 331
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-- proto: ClothingShoesClown
-  entities:
-  - uid: 202
-    components:
-    - type: Transform
-      parent: 200
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-- proto: ClothingUniformJumpsuitGladiator
-  entities:
-  - uid: 215
-    components:
-    - type: Transform
-      parent: 214
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: ClothingUniformJumpsuitMonasticRobeDark
   entities:
   - uid: 40
@@ -714,126 +653,48 @@ entities:
       parent: 1653
 - proto: CrateCoffin
   entities:
-  - uid: 331
-    components:
-    - type: Transform
-      pos: 16.5,32.5
-      parent: 1653
-    - type: ContainerContainer
-      containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 332
-        paper_label: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-  - uid: 435
+  - uid: 6
     components:
     - type: Transform
       pos: 22.5,32.5
       parent: 1653
-    - type: ContainerContainer
-      containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 436
-        paper_label: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-  - uid: 438
+  - uid: 201
+    components:
+    - type: Transform
+      pos: 16.5,32.5
+      parent: 1653
+  - uid: 203
     components:
     - type: Transform
       pos: 23.5,32.5
       parent: 1653
-  - uid: 441
+  - uid: 214
     components:
     - type: Transform
       pos: 20.5,30.5
       parent: 1653
-    - type: ContainerContainer
-      containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 442
-        paper_label: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
 - proto: CrateWoodenGrave
   entities:
-  - uid: 6
-    components:
-    - type: Transform
-      pos: 27.5,39.5
-      parent: 1653
-    - type: ContainerContainer
-      containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 7
-        paper_label: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-  - uid: 200
+  - uid: 7
     components:
     - type: Transform
       pos: 42.5,39.5
       parent: 1653
-    - type: ContainerContainer
-      containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 202
-          - 201
-        paper_label: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-  - uid: 214
-    components:
-    - type: Transform
-      pos: 28.5,39.5
-      parent: 1653
-    - type: ContainerContainer
-      containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 215
-        paper_label: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-  - uid: 231
+  - uid: 200
     components:
     - type: Transform
       pos: 26.5,39.5
       parent: 1653
-    - type: ContainerContainer
-      containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 232
-        paper_label: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
+  - uid: 202
+    components:
+    - type: Transform
+      pos: 28.5,39.5
+      parent: 1653
+  - uid: 215
+    components:
+    - type: Transform
+      pos: 27.5,39.5
+      parent: 1653
 - proto: CrystalSpawner
   entities:
   - uid: 129
@@ -880,13 +741,6 @@ entities:
     components:
     - type: Transform
       pos: 31.5,36.5
-      parent: 1653
-- proto: DoubleEmergencyNitrogenTankFilled
-  entities:
-  - uid: 309
-    components:
-    - type: Transform
-      pos: 21.254128,38.485172
       parent: 1653
 - proto: DresserFilled
   entities:
@@ -952,13 +806,6 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 18.5,35.5
-      parent: 1653
-- proto: FireBombFuel
-  entities:
-  - uid: 203
-    components:
-    - type: Transform
-      pos: 36.443645,31.673359
       parent: 1653
 - proto: FloorWaterEntity
   entities:
@@ -1583,15 +1430,6 @@ entities:
     - type: Transform
       pos: 52.5,0.5
       parent: 1653
-- proto: MaterialWoodPlank
-  entities:
-  - uid: 442
-    components:
-    - type: Transform
-      parent: 441
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: MiningWindowDungeon
   entities:
   - uid: 155
@@ -1611,31 +1449,29 @@ entities:
       parent: 1653
 - proto: OreBox
   entities:
-  - uid: 184
+  - uid: 161
     components:
     - type: Transform
       pos: 2.5,24.5
       parent: 1653
-  - uid: 270
+  - uid: 164
     components:
     - type: Transform
       pos: 37.5,4.5
       parent: 1653
-  - uid: 283
+  - uid: 165
     components:
     - type: Transform
       pos: 17.5,8.5
       parent: 1653
-  - uid: 488
+  - uid: 184
     components:
     - type: Transform
-      pos: 29.496475,8.499265
+      pos: 29.5,8.5
       parent: 1653
-    - type: Physics
-      fixedRotation: False
 - proto: OreProcessor
   entities:
-  - uid: 269
+  - uid: 231
     components:
     - type: Transform
       pos: 24.5,10.5
@@ -1718,13 +1554,6 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 10.5,45.5
-      parent: 1653
-- proto: PuddleVomit
-  entities:
-  - uid: 229
-    components:
-    - type: Transform
-      pos: 3.5,45.5
       parent: 1653
 - proto: Rack
   entities:
@@ -1964,6 +1793,16 @@ entities:
     - type: Transform
       pos: 2.6439443,45.462845
       parent: 1653
+  - uid: 229
+    components:
+    - type: Transform
+      pos: 4.4356813,1.5142399
+      parent: 1653
+  - uid: 232
+    components:
+    - type: Transform
+      pos: 13.473847,3.4530866
+      parent: 1653
   - uid: 240
     components:
     - type: Transform
@@ -1993,6 +1832,11 @@ entities:
     components:
     - type: Transform
       pos: 31.586864,30.529964
+      parent: 1653
+  - uid: 509
+    components:
+    - type: Transform
+      pos: 14.9959345,10.159707
       parent: 1653
   - uid: 563
     components:
@@ -2622,23 +2466,6 @@ entities:
     - type: Transform
       pos: 2.6935458,19.305508
       parent: 1653
-- proto: SpawnDungeonLootMeleeT1
-  entities:
-  - uid: 503
-    components:
-    - type: Transform
-      pos: 4.279275,1.5174387
-      parent: 1653
-  - uid: 504
-    components:
-    - type: Transform
-      pos: 13.09337,3.5103157
-      parent: 1653
-  - uid: 509
-    components:
-    - type: Transform
-      pos: 14.9959345,10.159707
-      parent: 1653
 - proto: SpawnDungeonLootOresFull
   entities:
   - uid: 191
@@ -2934,22 +2761,6 @@ entities:
     - type: Transform
       pos: 4.5500164,45.666206
       parent: 1653
-- proto: SpawnMobFrog
-  entities:
-  - uid: 386
-    components:
-    - type: Transform
-      pos: 18.5,44.5
-      parent: 1653
-- proto: SpearBone
-  entities:
-  - uid: 232
-    components:
-    - type: Transform
-      parent: 231
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: SteelBench
   entities:
   - uid: 71
@@ -3013,7 +2824,7 @@ entities:
     - type: Transform
       pos: 36.5,31.5
       parent: 1653
-- proto: ToiletDirtyWater
+- proto: ToiletMemeSpawner
   entities:
   - uid: 406
     components:
@@ -3081,25 +2892,10 @@ entities:
     - type: Transform
       pos: 2.5,47.5
       parent: 1653
-  - uid: 161
-    components:
-    - type: Transform
-      pos: 1.5,44.5
-      parent: 1653
   - uid: 163
     components:
     - type: Transform
       pos: 5.5,45.5
-      parent: 1653
-  - uid: 164
-    components:
-    - type: Transform
-      pos: 1.5,46.5
-      parent: 1653
-  - uid: 165
-    components:
-    - type: Transform
-      pos: 1.5,45.5
       parent: 1653
   - uid: 247
     components:
@@ -3110,6 +2906,24 @@ entities:
     components:
     - type: Transform
       pos: 21.5,46.5
+      parent: 1653
+  - uid: 269
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 1.5,44.5
+      parent: 1653
+  - uid: 270
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 1.5,46.5
+      parent: 1653
+  - uid: 283
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 1.5,45.5
       parent: 1653
   - uid: 329
     components:

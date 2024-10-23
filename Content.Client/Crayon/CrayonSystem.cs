@@ -65,6 +65,17 @@ public sealed class CrayonSystem : SharedCrayonSystem
             }
 
             _parent.UIUpdateNeeded = false;
+
+            // Frontier: unlimited crayon
+            if (_parent.Capacity == int.MaxValue)
+            {
+                _label.SetMarkup(Robust.Shared.Localization.Loc.GetString("crayon-drawing-label-unlimited",
+                    ("color", _parent.Color),
+                    ("state", _parent.SelectedState)));
+                return;
+            }
+            // End Frontier
+
             _label.SetMarkup(Robust.Shared.Localization.Loc.GetString("crayon-drawing-label",
                 ("color",_parent.Color),
                 ("state",_parent.SelectedState),

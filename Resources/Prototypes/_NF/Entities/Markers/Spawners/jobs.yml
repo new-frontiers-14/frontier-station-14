@@ -1,15 +1,10 @@
 - type: entity
   id: SpawnPointContractor
-  parent: SpawnPointJobBase
+  parent: SpawnPointPassenger
   name: contractor
   components:
   - type: SpawnPoint
     job_id: Contractor
-  - type: Sprite
-    sprite: _NF/Markers/jobs.rsi
-    layers:
-      - state: green
-      - state: mercenary
 
 - type: entity
   id: SpawnPointMercenary
@@ -45,10 +40,19 @@
   - type: SpawnPoint
     job_id: Pirate
   - type: Sprite
-    sprite: _NF/Markers/jobs.rsi
-    layers:
-      - state: green
-      - state: pilot
+    sprite: Structures/Decoration/banner.rsi
+    state: banner-red
+
+- type: entity
+  id: SpawnPointPirateFirstMate
+  parent: SpawnPointJobBase
+  name: pirate first mate
+  components:
+  - type: SpawnPoint
+    job_id: PirateFirstMate
+  - type: Sprite
+    sprite: Structures/Decoration/banner.rsi
+    state: banner-red
 
 - type: entity
   id: SpawnPointPirateCaptain
@@ -58,28 +62,13 @@
   - type: SpawnPoint
     job_id: PirateCaptain
   - type: Sprite
-    sprite: _NF/Markers/jobs.rsi
-    layers:
-      - state: green
-      - state: pilot
-      
-- type: entity
-  id: SpawnPointPirateFirstMate
-  parent: SpawnPointJobBase
-  name: pirate first mate
-  components:
-  - type: SpawnPoint
-    job_id: PirateFirstMate
-  - type: Sprite
-    sprite: _NF/Markers/jobs.rsi
-    layers:
-      - state: green
-      - state: pilot
+    sprite: Structures/Decoration/banner.rsi
+    state: banner-red
 
 - type: entity
   id: SpawnPointStc
   parent: SpawnPointJobBase
-  name: stc
+  name: station traffic controller
   components:
   - type: SpawnPoint
     job_id: StationTrafficController
@@ -122,10 +111,6 @@
   components:
   - type: SpawnPoint
     job_id: StationRepresentative
-  - type: Sprite
-    layers:
-      - state: green
-      - state: hop
 
 - type: entity
   id: SpawnPointSheriff
@@ -134,10 +119,6 @@
   components:
   - type: SpawnPoint
     job_id: Sheriff
-  - type: Sprite
-    layers:
-      - state: green
-      - state: hos
 
 - type: entity
   id: SpawnPointBailiff
@@ -146,32 +127,50 @@
   components:
   - type: SpawnPoint
     job_id: Bailiff
-  - type: Sprite
-    layers:
-      - state: green
-      - state: warden
 
 - type: entity
-  id: SpawnPointDetectiveNF
-  parent: SpawnPointDetective
-  name: detective
-  suffix: Frontier
+  id: NFSpawnPointSeniorOfficer
+  parent: SpawnPointWarden
+  name: sergeant
   components:
   - type: SpawnPoint
-    job_id: DetectiveNF
-  - type: Sprite
-    layers:
-      - state: green
-      - state: detective
+    job_id: SeniorOfficer
+
+- type: entity
+  id: SpawnPointDeputy
+  parent: SpawnPointSecurityOfficer
+  name: deputy
+  components:
+  - type: SpawnPoint
+    job_id: Deputy
+
+- type: entity
+  id: SpawnPointCadet
+  parent: SpawnPointSecurityCadet
+  name: cadet
+  components:
+  - type: SpawnPoint
+    job_id: Cadet
+
+- type: entity
+  id: NFSpawnPointDetective
+  parent: SpawnPointDetective
+  name: detective
+  components:
+  - type: SpawnPoint
+    job_id: NFDetective
 
 - type: entity
   id: SpawnPointPublicAffairsLiaison
-  parent: SpawnPointJobBase
+  parent: SpawnPointLawyer
   name: public affairs liaison
   components:
   - type: SpawnPoint
     job_id: PublicAffairsLiaison
-  - type: Sprite
-    layers:
-      - state: green
-      - state: lawyer
+
+- type: entity
+  id: NFSpawnPointJanitor
+  parent: SpawnPointJanitor
+  components:
+  - type: SpawnPoint
+    job_id: NFJanitor
