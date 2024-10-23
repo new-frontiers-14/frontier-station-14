@@ -22,3 +22,6 @@ lathe-recipe-NFFoodBoxDonutEmpty-name  = donut box (empty)
 lathe-recipe-NFFoodBoxNuggetEmpty-name = chicken nuggets (empty)
 lathe-recipe-NFFoodContainerEggEmpty-name  = egg carton (empty)
 lathe-recipe-NFBoxMREEmpty-name = M.R.E. (empty)
+
+# Plastic
+lathe-recipe-NFFoodBoxSushi-name = sushi tray (empty)

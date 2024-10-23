@@ -22,6 +22,15 @@
     state: powderpile
     color: "#5f4d2e"
 
+- type: entity
+  parent: GroundTobaccoStonecut
+  id: GroundTobaccoStonecut5
+  suffix: 5
+  components:
+  - type: Stack
+    stackType: GroundTobaccoStonecut
+    count: 5
+
 # Shrooms
 - type: entity
   name: dried shrooms
@@ -55,6 +64,15 @@
     node: ground
 
 - type: entity
+  parent: ShroomsDried
+  id: ShroomsDried5
+  suffix: 5
+  components:
+  - type: Stack
+    stackType: ShroomsDried
+    count: 5
+
+- type: entity
   id: GroundTobaccoShrooms
   name: fungal whiff tobacco
   parent: GroundTobacco
@@ -83,6 +101,15 @@
       offset: 0.0,-0.1
       color: "#748eaf"
 
+- type: entity
+  parent: GroundTobaccoShrooms
+  id: GroundTobaccoShrooms5
+  suffix: 5
+  components:
+  - type: Stack
+    stackType: GroundTobaccoShrooms
+    count: 5
+
 # Sweet dreams
 - type: entity
   id: GroundTobaccoDrowsy
@@ -107,3 +134,23 @@
     sprite: Objects/Misc/reagent_fillings.rsi
     state: powderpile
     color: "#a865a0"
+
+- type: entity
+  parent: GroundTobaccoDrowsy
+  id: GroundTobaccoDrowsy5
+  suffix: 5
+  components:
+  - type: Stack
+    stackType: GroundTobaccoDrowsy
+    count: 5
+
+# Missing from upstream
+
+- type: entity
+  parent: GroundTobacco
+  id: NFGroundTobacco5
+  suffix: 5
+  components:
+  - type: Stack
+    stackType: GroundTobacco
+    count: 5
