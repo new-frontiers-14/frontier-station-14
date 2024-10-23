@@ -72,7 +72,8 @@ namespace Content.Server.Cloning
         [Dependency] private readonly ISerializationManager _serialization = default!;
 
         public readonly Dictionary<MindComponent, EntityUid> ClonesWaitingForMind = new();
-        public const float EasyModeCloningCost = 0.7f;
+        // Frontier: easy mod is actually hard mode now - 0.7f<5f
+        public const float EasyModeCloningCost = 5f;
 
         public override void Initialize()
         {
