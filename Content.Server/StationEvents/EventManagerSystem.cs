@@ -276,24 +276,25 @@ public sealed class EventManagerSystem : EntitySystem
             return false;
         }
 
-        if (playerCount > stationEvent.MaximumPlayers) // Frontier: max players
+        // Frontier: Check max players
+        if (playerCount > stationEvent.MaximumPlayers)
         {
             return false;
         }
 
-        // Frontier: TODO: This will require only one job of the provided list, not all.
-        foreach (var (jobProtoId, numJobs) in stationEvent.RequiredJobs) // Frontier: Required a job to be active to start event
+        // Frontier: require jobs to run event - TODO: actually count jobs, compare vs. numJobs
+        foreach (var (jobProtoId, numJobs) in stationEvent.RequiredJobs)
         {
             var jobPrototype = _prototype.Index(jobProtoId);
             var query = EntityQueryEnumerator<StationJobsComponent>();
             while (query.MoveNext(out var station, out var comp))
             {
-                if (_stationJobs.TryGetJobSlot(station, jobPrototype, out var slots) && slots >= 1)
-                { // If a job slot is open the player should be leaving or left.
+                // If a job slot is open, nobody has the job, or the player with the job should be leaving.
+                if (_stationJobs.TryGetJobSlot(station, jobPrototype, out var slots, comp) && slots >= 1)
                     return false;
-                }
             }
         }
+        // End Frontier
 
         if (_roundEnd.IsRoundEndRequested() && !stationEvent.OccursDuringRoundEnd)
         {
