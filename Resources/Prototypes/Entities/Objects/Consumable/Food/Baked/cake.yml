@@ -16,14 +16,12 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 50
+        maxVol: 30
         reagents:
         - ReagentId: Nutriment
           Quantity: 20
         - ReagentId: Vitamin
           Quantity: 5
-        - ReagentId: Flavorol
-          Quantity: 20
   - type: Item
     size: Normal
   - type: Tag
@@ -49,8 +47,6 @@
           Quantity: 4
         - ReagentId: Vitamin
           Quantity: 1
-        - ReagentId: Flavorol
-          Quantity: 4
   - type: Item
     size: Tiny
   - type: Tag
@@ -132,7 +128,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 35
+        maxVol: 30
         reagents:
         - ReagentId: JuiceCarrot
           Quantity: 15
@@ -140,8 +136,10 @@
           Quantity: 5
         - ReagentId: Vitamin
           Quantity: 5
-        - ReagentId: Flavorol
-          Quantity: 5
+  - type: Tag
+    tags:
+    - Cake
+    - Vegetable
 
 - type: entity
   name: slice of carrot cake
@@ -162,8 +160,12 @@
           Quantity: 1
         - ReagentId: Vitamin
           Quantity: 1
-        - ReagentId: Flavorol
-          Quantity: 1
+  - type: Tag
+    tags:
+    - Cake
+    - Vegetable
+    - Slice
+
 # Tastes like sweetness, cake, carrot.
 
 - type: entity
@@ -178,7 +180,10 @@
     slice: FoodCakeBrainSlice
   - type: Food # Frontier
     quality: Nasty # Frontier, New Food Quality System
-
+  - type: Tag
+    tags:
+    - Cake
+    - Meat
 
 - type: entity
   name: slice of brain cake
@@ -188,6 +193,11 @@
   components:
   - type: Sprite
     state: brain-slice
+  - type: Tag
+    tags:
+    - Cake
+    - Meat
+    - Slice
 # Tastes like sweetness, cake, brains.
 
 - type: entity
@@ -370,7 +380,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 55
+        maxVol: 35
         reagents:
         - ReagentId: Nutriment
           Quantity: 20
@@ -378,8 +388,6 @@
           Quantity: 5
         - ReagentId: Vitamin
           Quantity: 5
-        - ReagentId: Flavorol
-          Quantity: 20
 
 - type: entity
   name: slice of chocolate cake
@@ -399,8 +407,6 @@
           Quantity: 1
         - ReagentId: Vitamin
           Quantity: 1
-        - ReagentId: Flavorol
-          Quantity: 4
 # Tastes like sweetness, cake, chocolate.
 
 - type: entity
@@ -443,6 +449,10 @@
     state: slime
   - type: SliceableFood
     slice: FoodCakeSlimeSlice
+  - type: Tag
+    tags:
+    - Cake
+    - Meat
 
 - type: entity
   name: slice of slime cake
@@ -452,6 +462,11 @@
   components:
   - type: Sprite
     state: slime-slice
+  - type: Tag
+    tags:
+    - Cake
+    - Meat
+    - Slice
 # Tastes like sweetness, cake, slime.
 
 - type: entity
@@ -467,14 +482,12 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 70
+        maxVol: 50
         reagents:
         - ReagentId: Nutriment
           Quantity: 32
         - ReagentId: Vitamin
           Quantity: 11
-        - ReagentId: Flavorol
-          Quantity: 20
   - type: Tag
     tags:
     - Cake
@@ -497,8 +510,6 @@
           Quantity: 6.4
         - ReagentId: Vitamin
           Quantity: 2.2
-        - ReagentId: Flavorol
-          Quantity: 4
   - type: Tag
     tags:
     - Cake
@@ -516,6 +527,10 @@
     state: christmas
   - type: SliceableFood
     slice: FoodCakeChristmasSlice
+  - type: Tag
+    tags:
+    - Cake
+    - Fruit
 
 - type: entity
   name: slice of christmas cake
@@ -524,6 +539,11 @@
   components:
   - type: Sprite
     state: christmas-slice
+  - type: Tag
+    tags:
+    - Cake
+    - Fruit
+    - Slice
 # Tastes like sweetness, cake, christmas.
 
 - type: entity
@@ -560,7 +580,7 @@
   - type: SolutionContainerManager #TODO Sprinkles
     solutions:
       food:
-        maxVol: 65
+        maxVol: 45
         reagents:
         - ReagentId: Nutriment
           Quantity: 20
@@ -568,8 +588,6 @@
           Quantity: 5
         - ReagentId: Sugar
           Quantity: 15
-        - ReagentId: Flavorol
-          Quantity: 20
 
 - type: entity
   name: slice of vanilla cake
@@ -590,8 +608,6 @@
           Quantity: 1
         - ReagentId: Sugar
           Quantity: 3
-        - ReagentId: Flavorol
-          Quantity: 4
 # Tastes like sweetness, cake, vanilla.
 
 - type: entity
@@ -607,7 +623,7 @@
   - type: SolutionContainerManager #TODO Sprinkles
     solutions:
       food:
-        maxVol: 65
+        maxVol: 45
         reagents:
         - ReagentId: Nutriment
           Quantity: 20
@@ -615,8 +631,6 @@
           Quantity: 5
         - ReagentId: Sugar
           Quantity: 15
-        - ReagentId: Flavorol
-          Quantity: 20
 
 - type: entity
   name: slice of clown cake
@@ -637,8 +651,6 @@
           Quantity: 1
         - ReagentId: Sugar
           Quantity: 3
-        - ReagentId: Flavorol
-          Quantity: 4
 # Tastes like sweetness, cake, clown.
 
 - type: entity
@@ -660,7 +672,7 @@
           Quantity: 20
         - ReagentId: Vitamin
           Quantity: 5
-        - ReagentId: Omnizine #This is a really rare cake with healing stuff and we don't have any of its chems yet
+        - ReagentId: PolypyryliumOligomers
           Quantity: 15
 
 - type: entity
@@ -680,7 +692,7 @@
           Quantity: 4
         - ReagentId: Vitamin
           Quantity: 1
-        - ReagentId: Omnizine
+        - ReagentId: PolypyryliumOligomers
           Quantity: 3
 # Tastes like sweetness, cake, jam.
 
@@ -775,7 +787,7 @@
       food:
         maxVol: 48
         reagents:
-        - ReagentId: Flavorol
+        - ReagentId: Nutriment
           Quantity: 48
   - type: Food
     transferAmount: 12
@@ -799,7 +811,7 @@
       food:
         maxVol: 12
         reagents:
-        - ReagentId: Flavorol
+        - ReagentId: Nutriment
           Quantity: 12
   - type: Food
     transferAmount: 3

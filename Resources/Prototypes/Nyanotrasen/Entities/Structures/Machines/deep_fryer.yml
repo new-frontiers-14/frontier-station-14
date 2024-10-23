@@ -74,8 +74,6 @@
     goodReagents:
       - ReagentId: Omnizine
         Quantity: 1
-      - ReagentId: Flavorol
-        Quantity: 3
     badReagents:
       - ReagentId: Toxin
         Quantity: 2
@@ -112,15 +110,12 @@
       - OilGhee
       - OilOlive
       - OilVegetable # Frontier
-    #unsafeOilVolumeEffects: #Can't pass UninitializedSaveTest. Modifies itself on spawn. Very weird. 
+    #unsafeOilVolumeEffects: #Can't pass UninitializedSaveTest. Modifies itself on spawn. Very weird.
     #- !type:AreaReactionEffect
     #  duration: 10
     #  prototypeId: Smoke
     #  sound:
     #    path: /Audio/Effects/smoke.ogg
-    goodFlavorPriceBonus: 0.5
-    solutionSplitMax: 20
-    
   - type: SolutionContainerManager
     solutions:
       vat_oil:
@@ -155,8 +150,8 @@
           collection: MetalBreak
       - !type:SpillBehavior
         solution: vat_oil
-      - !type:ChangeConstructionNodeBehavior # Delta-V
-        node: machineFrame # Delta-V
+      - !type:ChangeConstructionNodeBehavior
+        node: machineFrame
   - type: ApcPowerReceiver
     powerLoad: 300
   - type: Machine

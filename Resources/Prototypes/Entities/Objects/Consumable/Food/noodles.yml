@@ -7,8 +7,6 @@
   abstract: true
   description: Now that's a nice pasta!
   components:
-  - type: Food # Frontier
-    quality: High # Frontier, New Food Quality System
   - type: Item
     storedRotation: -90
   - type: Sprite
@@ -16,12 +14,13 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 30
+        maxVol: 25
         reagents:
         - ReagentId: Nutriment
-          Quantity: 15
-        - ReagentId: Flavorol
-          Quantity: 10
+          Quantity: 20
+  - type: Food # Frontier
+    quality: High # Frontier, New Food Quality System
+
 # Noodles
 
 - type: entity
@@ -30,13 +29,13 @@
   id: FoodNoodlesBoiled
   description: A plain dish of noodles, this needs more ingredients.
   components:
-  - type: Food # Frontier
-    quality: Normal # Frontier, New Food Quality System
   - type: FlavorProfile
     flavors:
       - pasta
   - type: Sprite
     state: boiled
+  - type: Food # Frontier
+    quality: Normal # Frontier, New Food Quality System
 # Tastes like pasta.
 
 - type: entity
@@ -70,14 +69,12 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 30
+        maxVol: 25
         reagents:
         - ReagentId: Nutriment
-          Quantity: 7
+          Quantity: 12
         - ReagentId: Vitamin
           Quantity: 8
-        - ReagentId: Flavorol
-          Quantity: 10
 # Tastes like pasta, bad humor.
 
 - type: entity
@@ -95,14 +92,12 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 20
+        maxVol: 15
         reagents:
         - ReagentId: Nutriment
           Quantity: 8
         - ReagentId: Vitamin
           Quantity: 4
-        - ReagentId: Flavorol
-          Quantity: 5
   - type: Tag
     tags:
     - Meat
@@ -123,14 +118,12 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 20
+        maxVol: 15
         reagents:
         - ReagentId: Nutriment
           Quantity: 8
         - ReagentId: Vitamin
           Quantity: 6
-        - ReagentId: Flavorol
-          Quantity: 5
 # Tastes like pasta, meat.
 
 - type: entity
@@ -150,14 +143,12 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 26
+        maxVol: 15
         reagents:
         - ReagentId: Nutriment
           Quantity: 7
         - ReagentId: Vitamin
           Quantity: 6
-        - ReagentId: Flavorol
-          Quantity: 11
 # Tastes like pasta, tomato.
 
 - type: entity

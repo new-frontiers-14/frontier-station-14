@@ -95,9 +95,9 @@
     flavors:
       - bun
       - meaty
-  - type: Food # Frontier
-    quality: High # Frontier, New Food Quality System
+  - type: Food
     transferAmount: 5
+    quality: Normal # Frontier, New Food Quality System
   - type: Sprite
     sprite: Objects/Consumable/Food/burger.rsi
   - type: SolutionContainerManager
@@ -148,15 +148,13 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 25
+        maxVol: 20
         reagents:
         - ReagentId: Nutriment
           Quantity: 2
         - ReagentId: Protein
           Quantity: 6
         - ReagentId: Vitamin
-          Quantity: 6
-        - ReagentId: Flavorol
           Quantity: 6
   - type: Tag
     tags:
@@ -180,19 +178,15 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 40
+        maxVol: 30
         reagents:
         - ReagentId: Nutriment
           Quantity: 19
         - ReagentId: Vitamin
           Quantity: 5
-        - ReagentId: Flavorol
-          Quantity: 10
   - type: Tag
     tags:
     - Meat
-  - type: Food # Frontier
-    quality: Normal # Frontier, New Food Quality System
 # Tastes like bun, bacon.
 
 - type: entity
@@ -210,7 +204,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 20
+        maxVol: 15
         reagents:
         - ReagentId: Nutriment
           Quantity: 3
@@ -218,13 +212,9 @@
           Quantity: 5
         - ReagentId: Vitamin
           Quantity: 2
-        - ReagentId: Flavorol
-          Quantity: 5
   - type: Tag
     tags:
     - Meat
-  - type: Food # Frontier
-    quality: Normal # Frontier, New Food Quality System
 
 - type: entity
   name: bearger
@@ -241,7 +231,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 20
+        maxVol: 15
         reagents:
         - ReagentId: Nutriment
           Quantity: 3
@@ -249,13 +239,9 @@
           Quantity: 6
         - ReagentId: Vitamin
           Quantity: 5
-        - ReagentId: Flavorol
-          Quantity: 5
   - type: Tag
     tags:
     - Meat
-  - type: Food # Frontier
-    quality: Normal # Frontier, New Food Quality System
 
 - type: entity
   name: big bite burger
@@ -271,19 +257,19 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 43
+        maxVol: 33
         reagents:
         - ReagentId: Nutriment
           Quantity: 17
         - ReagentId: Vitamin
           Quantity: 9
-        - ReagentId: Flavorol
-          Quantity: 10
   - type: Sprite
     state: bigbite
   - type: Tag
     tags:
     - Meat
+  - type: Food # Frontier
+    quality: High # Frontier, New Food Quality System
 # Tastes like bun, silver, magic.
 
 - type: entity
@@ -301,7 +287,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 25
+        maxVol: 20
         reagents:
         - ReagentId: Nutriment
           Quantity: 6
@@ -309,13 +295,9 @@
           Quantity: 6
         - ReagentId: Vitamin
           Quantity: 5
-        - ReagentId: Flavorol
-          Quantity: 5
   - type: Tag
     tags:
     - Meat
-  - type: Food # Frontier
-    quality: Normal # Frontier, New Food Quality System
 # Tastes like bun, brains.
 
 - type: entity
@@ -345,8 +327,6 @@
   - type: Tag
     tags:
     - Meat
-  - type: Food # Frontier
-    quality: Normal # Frontier, New Food Quality System
 
 - type: entity
   name: cheese burger
@@ -364,7 +344,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 20
+        maxVol: 15
         reagents:
         - ReagentId: Nutriment
           Quantity: 3
@@ -372,13 +352,9 @@
           Quantity: 7
         - ReagentId: Protein
           Quantity: 1
-        - ReagentId: Flavorol
-          Quantity: 5
   - type: Tag
     tags:
     - Meat
-  - type: Food # Frontier
-    quality: Normal # Frontier, New Food Quality System
 # TODO: Make this work.
   # - type: Sprite
   #   state: plate
@@ -404,7 +380,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 20
+        maxVol: 15
         reagents:
         - ReagentId: Nutriment
           Quantity: 3
@@ -414,8 +390,6 @@
           Quantity: 1
         - ReagentId: Mayo
           Quantity: 3
-        - ReagentId: Flavorol
-          Quantity: 5
   - type: Tag
     tags:
     - Meat
@@ -436,7 +410,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 20
+        maxVol: 15
         reagents:
         - ReagentId: Nutriment
           Quantity: 4
@@ -444,8 +418,6 @@
           Quantity: 6
         - ReagentId: Vitamin
           Quantity: 6
-        - ReagentId: Flavorol
-          Quantity: 5
   - type: Tag
     tags:
     - Meat
@@ -476,6 +448,8 @@
   - type: Tag
     tags:
     - Meat
+  - type: Food # Frontier
+    quality: High # Frontier, New Food Quality System
 
 - type: entity
   name: crab burger
@@ -492,7 +466,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 20
+        maxVol: 15
         reagents:
         - ReagentId: Nutriment
           Quantity: 4
@@ -500,13 +474,9 @@
           Quantity: 5
         - ReagentId: Vitamin
           Quantity: 4
-        - ReagentId: Flavorol
-          Quantity: 5
   - type: Tag
     tags:
     - Meat
-  - type: Food # Frontier
-    quality: Normal # Frontier, New Food Quality System
 
 - type: entity
   name: crazy hamburger # Burger for you euro-cucks
@@ -556,7 +526,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 20
+        maxVol: 15
         reagents:
         - ReagentId: Nutriment
           Quantity: 3
@@ -564,8 +534,6 @@
           Quantity: 7
         - ReagentId: Vitamin
           Quantity: 1
-        - ReagentId: Flavorol
-          Quantity: 5
   - type: Tag
     tags:
     - Meat
@@ -586,16 +554,12 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 20
+        maxVol: 15
         reagents:
         - ReagentId: Nutriment
           Quantity: 8
         - ReagentId: Licoxide
           Quantity: 5
-        - ReagentId: Flavorol
-          Quantity: 5
-  - type: Food # Frontier
-    quality: Normal # Frontier, New Food Quality System
 # Tastes like bun, pure electricity.
 
 - type: entity
@@ -613,8 +577,6 @@
   - type: Tag
     tags:
     - Meat
-  - type: Food # Frontier
-    quality: Normal # Frontier, New Food Quality System
 # Tastes like bun, fish.
 
 - type: entity
@@ -632,7 +594,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 20
+        maxVol: 15
         reagents:
         - ReagentId: Nutriment
           Quantity: 6
@@ -642,10 +604,7 @@
           Quantity: 5
         - ReagentId: Vitamin
           Quantity: 1
-        - ReagentId: Flavorol
-          Quantity: 5
-  - type: Food # Frontier
-    quality: Normal # Frontier, New Food Quality System
+
 # Tastes like bun, HEAT.
 
 - type: entity
@@ -663,20 +622,16 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 30
+        maxVol: 25
         reagents:
         - ReagentId: Nutriment
           Quantity: 7
         - ReagentId: Vitamin
           Quantity: 12
-        - ReagentId: Flavorol
-          Quantity: 5
   - type: Tag
     tags:
       - ClothMade
       - Meat
-  - type: Food # Frontier
-    quality: Normal # Frontier, New Food Quality System
 # Tastes like bun, ectoplasm.
 
 - type: entity
@@ -694,15 +649,13 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 20
+        maxVol: 15
         reagents:
         - ReagentId: Nutriment
           Quantity: 2
         - ReagentId: Protein
           Quantity: 6
         - ReagentId: Vitamin
-          Quantity: 5
-        - ReagentId: Flavorol
           Quantity: 5
   - type: Tag
     tags:
@@ -725,7 +678,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 20
+        maxVol: 15
         reagents:
         - ReagentId: Nutriment
           Quantity: 2
@@ -733,8 +686,6 @@
           Quantity: 7
         - ReagentId: Vitamin
           Quantity: 1
-        - ReagentId: Flavorol
-          Quantity: 5
   - type: Tag
     tags:
     - Meat
@@ -757,7 +708,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 20
+        maxVol: 15
         reagents:
         - ReagentId: Nutriment
           Quantity: 2
@@ -767,8 +718,6 @@
           Quantity: 4
         - ReagentId: BbqSauce
           Quantity: 1
-        - ReagentId: Flavorol
-          Quantity: 5
   - type: Tag
     tags:
     - Meat
@@ -799,8 +748,6 @@
           Quantity: 4
         - ReagentId: Nothing
           Quantity: 1
-        - ReagentId: Flavorol
-          Quantity: 5
   - type: Food # Frontier
     quality: Nasty # Frontier, New Food Quality System
 # Tastes like  .
@@ -828,13 +775,9 @@
           Quantity: 6
         - ReagentId: Vitamin
           Quantity: 3
-        - ReagentId: Flavorol
-          Quantity: 5
   - type: Tag
     tags:
     - Meat
-  - type: Food # Frontier
-    quality: Normal # Frontier, New Food Quality System
 
 - type: entity
   name: rat burger
@@ -851,7 +794,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 20
+        maxVol: 15
         reagents:
         - ReagentId: Nutriment
           Quantity: 3
@@ -859,8 +802,6 @@
           Quantity: 6
         - ReagentId: Vitamin
           Quantity: 2
-        - ReagentId: Flavorol
-          Quantity: 5
   - type: Tag
     tags:
     - Meat
@@ -893,8 +834,6 @@
   - type: Tag
     tags:
     - Meat
-  - type: Food # Frontier
-    quality: Normal # Frontier, New Food Quality System
 # Tastes like bun, lettuce, sludge.
 
 - type: entity
@@ -912,7 +851,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 20
+        maxVol: 15
         reagents:
         - ReagentId: Nutriment
           Quantity: 4
@@ -920,10 +859,6 @@
           Quantity: 6
         - ReagentId: Vitamin
           Quantity: 4
-        - ReagentId: Flavorol
-          Quantity: 5
-  - type: Food # Frontier
-    quality: Normal # Frontier, New Food Quality System
 # Tastes like bun, redditors.
 
 - type: entity
@@ -941,7 +876,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 25
+        maxVol: 20
         reagents:
         - ReagentId: Nutriment
           Quantity: 4
@@ -949,10 +884,6 @@
           Quantity: 5
         - ReagentId: Vitamin
           Quantity: 10
-        - ReagentId: Flavorol
-          Quantity: 5
-  - type: Food # Frontier
-    quality: Normal # Frontier, New Food Quality System
 # Tastes like bun, silver.
 
 - type: entity
@@ -969,23 +900,23 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 60
+        maxVol: 55
         reagents:
         - ReagentId: Nutriment
-          Quantity: 29
+          Quantity: 44
         - ReagentId: Vitamin
           Quantity: 24
         - ReagentId: TableSalt
           Quantity: 5
         - ReagentId: Blackpepper
           Quantity: 5
-        - ReagentId: Flavorol
-          Quantity: 20
   - type: Sprite
     state: superbite
   - type: Tag
     tags:
     - Meat
+  - type: Food # Frontier
+    quality: High # Frontier, New Food Quality System
 # Tastes like bun, diabetes.
 
 - type: entity
@@ -1003,7 +934,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 20
+        maxVol: 15
         reagents:
         - ReagentId: Nutriment
           Quantity: 3
@@ -1011,10 +942,6 @@
           Quantity: 6
         - ReagentId: Vitamin
           Quantity: 3
-        - ReagentId: Flavorol
-          Quantity: 5
-  - type: Food # Frontier
-    quality: Normal # Frontier, New Food Quality System
 # Tastes like bun, tofu.
 
 - type: entity
@@ -1033,15 +960,13 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 20
+        maxVol: 15
         reagents:
         - ReagentId: Nutriment
           Quantity: 3
         - ReagentId: Protein
           Quantity: 6
         - ReagentId: Vitamin
-          Quantity: 5
-        - ReagentId: Flavorol
           Quantity: 5
   - type: Tag
     tags:
@@ -1081,4 +1006,4 @@
     tags:
     - Meat
   - type: Food # Frontier
-    quality: Normal # Frontier, New Food Quality System
+    quality: Nasty # Frontier, New Food Quality System
