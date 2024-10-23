@@ -15,6 +15,7 @@ namespace Content.Shared.Maps
     {
         [ValidatePrototypeId<ToolQualityPrototype>]
         public const string PryingToolQuality = "Prying";
+        public const string DiggingToolQuality = "Digging"; // Frontier
 
         public const string SpaceID = "Space";
 
@@ -46,13 +47,14 @@ namespace Content.Shared.Maps
         public PrototypeFlags<ToolQualityPrototype> DeconstructTools { get; set; } = new();
 
         // Delta V
-        [DataField("canShovel")] public bool CanShovel { get; private set; }
+        // [DataField("canShovel")] public bool CanShovel { get; private set; }
         //Delta V
 
         /// <remarks>
         /// Legacy AF but nice to have.
         /// </remarks>
         public bool CanCrowbar => DeconstructTools.Contains(PryingToolQuality);
+        public bool CanShovel => DeconstructTools.Contains(DiggingToolQuality); // Frontier
 
         /// <summary>
         /// These play when the mob has shoes on.

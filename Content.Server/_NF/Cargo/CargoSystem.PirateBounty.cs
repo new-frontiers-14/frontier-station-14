@@ -508,7 +508,7 @@ public sealed partial class CargoSystem
         component.LastRedeemAttempt = _timing.CurTime;
     }
 
-    class PirateBountyState
+    sealed class PirateBountyState
     {
         public readonly PirateBountyData Data;
         public PirateBountyPrototype Prototype;
@@ -523,7 +523,7 @@ public sealed partial class CargoSystem
         }
     }
 
-    class PirateBountyEntitySearchState
+    sealed class PirateBountyEntitySearchState
     {
         public HashSet<EntityUid> HandledEntities = new();
         public Dictionary<string, PirateBountyState> LooseObjectBounties = new();
@@ -571,8 +571,8 @@ public sealed partial class CargoSystem
                             }
 
                             // Check whitelists for the pirate bounty.
-                            if ((_whitelistSys.IsWhitelistPass(entry.Whitelist, ent) ||
-                                _entProtoIdWhitelist.IsWhitelistPass(entry.IdWhitelist, ent)) &&
+                            if (_whitelistSys.IsWhitelistPassOrNull(entry.Whitelist, ent) &&
+                                _entProtoIdWhitelist.IsWhitelistPassOrNull(entry.IdWhitelist, ent) &&
                                 _whitelistSys.IsBlacklistFailOrNull(entry.Blacklist, ent))
                             {
                                 bounty.Entries[entry.Name]++;

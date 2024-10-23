@@ -294,13 +294,13 @@ entities:
         tiles:
           0,0:
             0: 13079
-            1: 34944
+            1: 34816
           0,-1:
             0: 32563
-            1: 136
+            1: 8
           -1,0:
             0: 34828
-            1: 8736
+            1: 8704
           0,1:
             0: 3
             1: 64
@@ -309,7 +309,7 @@ entities:
             1: 64
           -1,-1:
             0: 52872
-            1: 34
+            1: 2
           0,-2:
             1: 49152
           -1,-2:
@@ -644,19 +644,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 3.5,-0.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        bank-ATM-cashSlot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-    - type: Physics
-      canCollide: False
-    - type: ItemSlots
 - proto: CurtainsOrangeOpen
   entities:
   - uid: 146
@@ -687,6 +674,20 @@ entities:
     components:
     - type: Transform
       pos: -0.5,4.5
+      parent: 1
+- proto: FirelockEdge
+  entities:
+  - uid: 162
+    components:
+    - type: Transform
+      pos: 0.5,-1.5
+      parent: 1
+- proto: FirelockGlass
+  entities:
+  - uid: 161
+    components:
+    - type: Transform
+      pos: 0.5,1.5
       parent: 1
 - proto: FloorDrain
   entities:
@@ -992,19 +993,19 @@ entities:
     - type: Transform
       pos: -1.5,5.5
       parent: 1
-- proto: LockerSecurityFilled
-  entities:
-  - uid: 114
-    components:
-    - type: Transform
-      pos: 1.5,3.5
-      parent: 1
 - proto: LockerWallMaterialsFuelPlasmaFilled
   entities:
   - uid: 105
     components:
     - type: Transform
       pos: -1.5,1.5
+      parent: 1
+- proto: NFLockerSecurityFilled
+  entities:
+  - uid: 114
+    components:
+    - type: Transform
+      pos: 1.5,3.5
       parent: 1
 - proto: NitrogenCanister
   entities:
@@ -1045,12 +1046,8 @@ entities:
     - type: Transform
       pos: -1.5,0.5
       parent: 1
-    - type: FuelGenerator
-      on: False
     - type: MaterialStorageMagnetPickup
       magnetEnabled: True
-    - type: Physics
-      bodyType: Static
 - proto: PoweredSmallLight
   entities:
   - uid: 73

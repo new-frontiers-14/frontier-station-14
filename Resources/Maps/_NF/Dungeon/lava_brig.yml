@@ -7046,18 +7046,6 @@ entities:
     - type: Transform
       pos: 7.4719925,36.539555
       parent: 588
-- proto: ClosetBombFilled
-  entities:
-  - uid: 1014
-    components:
-    - type: Transform
-      pos: 12.5,27.5
-      parent: 588
-  - uid: 1026
-    components:
-    - type: Transform
-      pos: 16.5,27.5
-      parent: 588
 - proto: ClosetWallMaintenanceFilledRandom
   entities:
   - uid: 499
@@ -7223,18 +7211,6 @@ entities:
     components:
     - type: Transform
       pos: 14.5,47.5
-      parent: 588
-- proto: DebugSMES
-  entities:
-  - uid: 971
-    components:
-    - type: Transform
-      pos: 22.5,32.5
-      parent: 588
-  - uid: 974
-    components:
-    - type: Transform
-      pos: 18.5,32.5
       parent: 588
 - proto: DeployableBarrier
   entities:
@@ -8208,6 +8184,14 @@ entities:
     - type: Transform
       pos: 26.5,39.5
       parent: 588
+- proto: GrilleBroken
+  entities:
+  - uid: 1302
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 27.5,39.5
+      parent: 588
 - proto: GrilleDungeon
   entities:
   - uid: 209
@@ -8286,14 +8270,6 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 12.5,43.5
-      parent: 588
-- proto: GrilleBroken
-  entities:
-  - uid: 1302
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 27.5,39.5
       parent: 588
 - proto: HighSecArmoryLocked
   entities:
@@ -8517,18 +8493,6 @@ entities:
     - type: Transform
       pos: 16.5,22.5
       parent: 588
-- proto: LockerSecurityFilled
-  entities:
-  - uid: 416
-    components:
-    - type: Transform
-      pos: 20.5,6.5
-      parent: 588
-  - uid: 1011
-    components:
-    - type: Transform
-      pos: 12.5,28.5
-      parent: 588
 - proto: LockerSyndicatePersonal
   entities:
   - uid: 605
@@ -8617,6 +8581,30 @@ entities:
     components:
     - type: Transform
       pos: 28.5,25.5
+      parent: 588
+- proto: NFClosetBombFilled
+  entities:
+  - uid: 1014
+    components:
+    - type: Transform
+      pos: 12.5,27.5
+      parent: 588
+  - uid: 1026
+    components:
+    - type: Transform
+      pos: 16.5,27.5
+      parent: 588
+- proto: NFLockerSecurityFilled
+  entities:
+  - uid: 416
+    components:
+    - type: Transform
+      pos: 20.5,6.5
+      parent: 588
+  - uid: 1011
+    components:
+    - type: Transform
+      pos: 12.5,28.5
       parent: 588
 - proto: OperatingTable
   entities:
@@ -10248,6 +10236,16 @@ entities:
       parent: 588
 - proto: SMESBasic
   entities:
+  - uid: 971
+    components:
+    - type: Transform
+      pos: 22.5,32.5
+      parent: 588
+  - uid: 974
+    components:
+    - type: Transform
+      pos: 18.5,32.5
+      parent: 588
   - uid: 46
     components:
     - type: Transform
@@ -12154,7 +12152,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: 12.5,43.5
       parent: 588
-- proto: ToiletEmpty
+- proto: ToiletMemeSpawner
   entities:
   - uid: 932
     components:
@@ -12808,24 +12806,13 @@ entities:
     - type: Transform
       pos: 16.5,24.5
       parent: 588
-- proto: WindoorSecureSecurityLockedDungeon
+- proto: WindoorSecureBrigLockedDungeon
   entities:
-  - uid: 696
+  - uid: 339
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 16.5,19.5
-      parent: 588
-  - uid: 697
-    components:
-    - type: Transform
-      pos: 12.5,21.5
-      parent: 588
-  - uid: 1073
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 25.5,25.5
+      rot: 1.5707963267948966 rad
+      pos: 29.5,2.5
       parent: 588
 - proto: WindoorSecureDungeon
   entities:
@@ -12840,14 +12827,6 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 26.5,47.5
-      parent: 588
-- proto: WindoorSecureBrigLockedDungeon
-  entities:
-  - uid: 339
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 29.5,2.5
       parent: 588
 - proto: WindoorSecureEngineeringLockedDungeon
   entities:
@@ -12896,6 +12875,17 @@ entities:
     - type: Transform
       pos: 0.5,3.5
       parent: 588
+  - uid: 696
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 16.5,19.5
+      parent: 588
+  - uid: 697
+    components:
+    - type: Transform
+      pos: 12.5,21.5
+      parent: 588
   - uid: 698
     components:
     - type: Transform
@@ -12912,6 +12902,12 @@ entities:
     components:
     - type: Transform
       pos: 21.5,27.5
+      parent: 588
+  - uid: 1073
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 25.5,25.5
       parent: 588
 - proto: WindowDirectionalDungeon
   entities:
