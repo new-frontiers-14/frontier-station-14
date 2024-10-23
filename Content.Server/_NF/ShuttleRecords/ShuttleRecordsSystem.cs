@@ -14,11 +14,11 @@ public sealed partial class ShuttleRecordsSystem : SharedShuttleRecordsSystem
 {
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly IEntityManager _entityManager = default!;
-    [Dependency] private readonly UserInterfaceSystem _ui = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly SectorServiceSystem _sectorService = default!;
     [Dependency] private readonly AccessReaderSystem _access = default!;
     [Dependency] private readonly IAdminLogManager _adminLogger = default!;
+    [Dependency] private readonly UserInterfaceSystem _ui = default!;
+    [Dependency] private readonly PopupSystem _popup = default!;
 
 
     public override void Initialize()
@@ -39,9 +39,9 @@ public sealed partial class ShuttleRecordsSystem : SharedShuttleRecordsSystem
         component.ShuttleRecordsList.Add(record);
     }
 
-    private bool TryGetShuttleRecordsDataComponent([NotNullWhen(true)] out ShuttleRecordsDataComponent? component)
+    private bool TryGetShuttleRecordsDataComponent([NotNullWhen(true)] out SectorShuttleRecordsComponent? component)
     {
-        if (_entityManager.EnsureComponent<ShuttleRecordsDataComponent>(
+        if (_entityManager.EnsureComponent<SectorShuttleRecordsComponent>(
                 uid: _sectorService.GetServiceEntity(),
                 out var shuttleRecordsComponent))
         {

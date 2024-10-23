@@ -24,8 +24,8 @@ public class ShuttleRecord(
     public string OwnerName { get; set; } = ownerName;
 
     /**
-     * Entity may become deleted when the ship gets sold.
-     * Use _entityManager.EntityExists(EntityUid) to check if the entity still exists.
+     * Entity is deleted when the ship gets sold.
+     * Use EntityManager.EntityExists(EntityUid) to check if the entity still exists.
      */
     [ViewVariables]
     public NetEntity EntityUid { get; set; } = entityUid;
