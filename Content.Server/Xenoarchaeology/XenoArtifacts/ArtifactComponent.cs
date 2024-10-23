@@ -93,6 +93,12 @@ public sealed partial class ArtifactComponent : Component
     };
 
     [DataField("activateActionEntity")] public EntityUid? ActivateActionEntity;
+
+    /// <summary>
+    /// Frontier: When set to true, any newly visited nodes contribute no new points.
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite)]
+    public bool ConsumeGainedPoints = false;
 }
 
 /// <summary>

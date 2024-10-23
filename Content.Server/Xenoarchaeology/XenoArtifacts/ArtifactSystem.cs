@@ -173,11 +173,11 @@ public sealed partial class ArtifactSystem : EntitySystem
         }
         else
         {
-            int pointsPerNode = artifactComp.PointsPerNode;
-
-            artifactComp.PointsPerNode = 0;
+            // Activate the artifact, but consume any points from newly visited nodes.
+            bool oldConsume = artifactComp.ConsumeGainedPoints;
+            artifactComp.ConsumeGainedPoints = true;
             TryActivateArtifact(uid, uid, artifactComp);
-            artifactComp.PointsPerNode = pointsPerNode;
+            artifactComp.ConsumeGainedPoints = oldConsume;
         }
     }
     // End Frontier

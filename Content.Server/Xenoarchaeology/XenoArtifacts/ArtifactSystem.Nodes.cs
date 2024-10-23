@@ -190,6 +190,9 @@ public sealed partial class ArtifactSystem
             EntityManager.AddComponent(uid, (Component)temp!);
         }
 
+        if (!node.Discovered && component.ConsumeGainedPoints) // Frontier: consume node value on spray
+            component.ConsumedPoints += component.PointsPerNode; // Frontier
+
         node.Discovered = true;
         RaiseLocalEvent(uid, new ArtifactNodeEnteredEvent(component.CurrentNodeId.Value));
     }

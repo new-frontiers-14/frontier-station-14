@@ -10,7 +10,7 @@ public sealed partial class NFActivateArtifact : EntityEffect
     /// Disintegrate chance
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public float ProbabilityBase = 0.5f;
+    public float ProbabilityBase = 0.05f;
 
     /// <summary>
     /// The range around the artifact that it will spawn the entity
