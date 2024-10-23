@@ -1,5 +1,5 @@
-station-event-bluespace-vault-start-announcement = A NanoTrasen autonomous armored vault transport has made an FTL error and will soon arrive nearby. Your sector will be rewarded for it's safe return. A No Fly Zone of 300 meters has been established. Failure to comply will result in prosecution
-station-event-bluespace-vault-end-announcement = We have successfully retrieved the vault from your sector and have reimbursed your nearby Frontier Outpost accordingly.
+station-event-bluespace-vault-start-announcement = A NanoTrasen armored vault is inbound to the sector. The area 300m around the vault is a No Fly Zone. Station accounts will be rewarded for its safe return.
+station-event-bluespace-vault-end-announcement = We have retrieved the vault from your sector. Station accounts have been remunerated.
 
 station-event-bluespace-cache-start-announcement = A Syndicate transport has been intercepted from FTL and will soon arrive nearby. Guard the armored weapons cache until NanoTrasen can retrieve it for a reward. A No Fly Zone of 300 meters has been established. Failure to comply will result in prosecution
 station-event-bluespace-cache-end-announcement = We have successfully retrieved the Syndicate weapons cache from your sector and have reimbursed your nearby Frontier Outpost accordingly.
