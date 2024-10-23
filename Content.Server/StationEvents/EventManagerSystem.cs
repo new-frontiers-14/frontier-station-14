@@ -10,12 +10,7 @@ using Robust.Shared.Random;
 using Content.Shared.EntityTable.EntitySelectors;
 using Content.Shared.EntityTable;
 using Content.Server.Station.Systems; // Frontier
-
-using Content.Server.Station.Components;
-using Content.Shared.GameTicking.Components;
-using Content.Shared.Roles;
-using JetBrains.Annotations;
-using Content.Server._NF.Station.Components;
+using Content.Server.Station.Components; // Frontier
 
 namespace Content.Server.StationEvents;
 
@@ -29,7 +24,6 @@ public sealed class EventManagerSystem : EntitySystem
     [Dependency] public readonly GameTicker GameTicker = default!;
     [Dependency] private readonly RoundEndSystem _roundEnd = default!;
     [Dependency] private readonly StationJobsSystem _stationJobs = default!; // Frontier
-    [Dependency] private readonly IEntityManager _entityManager = default!;
 
     public bool EventsEnabled { get; private set; }
     private void SetEnabled(bool value) => EventsEnabled = value;
