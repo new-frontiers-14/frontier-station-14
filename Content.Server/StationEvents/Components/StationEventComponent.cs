@@ -1,4 +1,6 @@
+using Content.Shared.Roles; // Frontier
 using Robust.Shared.Audio;
+using Robust.Shared.Prototypes; // Frontier
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Server.StationEvents.Components;
@@ -70,8 +72,8 @@ public sealed partial class StationEventComponent : Component
     public int MinimumPlayers;
 
     /// <summary>
-    ///     Frontier - How many players need to be present on station for the event to not run, to avoid running safe events with high-pop
-    /// </remarks>
+    ///     Frontier: How many players need to be present on station for the event to not run, to avoid running safe events with high-pop
+    /// </summary>
     [DataField]
     public int MaximumPlayers = 999;
 
@@ -93,4 +95,10 @@ public sealed partial class StationEventComponent : Component
     /// </summary>
     [DataField]
     public bool OccursDuringRoundEnd = true;
+
+    /// <summary>
+    ///     Frontier: Require active job to run the event.
+    /// </summary>
+    [DataField]
+    public Dictionary<ProtoId<JobPrototype>, int> RequiredJobs = new();
 }
