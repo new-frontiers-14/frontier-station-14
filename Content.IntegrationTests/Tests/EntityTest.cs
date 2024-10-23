@@ -310,7 +310,10 @@ namespace Content.IntegrationTests.Tests
                 // Check that the number of entities has gone back to the original value.
                 if (server.EntMan.EntityCount != count)
                 {
-                    Assert.Fail($"Server prototype {protoId} failed on deletion count didn't reset properly");
+                    // Frontier: add expected vs. actual
+                    Assert.Fail($"Server prototype {protoId} failed on deletion count didn't reset properly:\n" +
+                                $"Expected {count} and found {server.EntMan.EntityCount}.\n");
+                    // End Frontier
                 }
 
                 if (client.EntMan.EntityCount != clientCount)
