@@ -2,6 +2,7 @@ using Content.Shared.Damage;
 using Content.Shared.Body.Components;
 using Content.Server.Body.Systems;
 using Content.Server.Explosion.EntitySystems;
+using Robust.Shared.Spawners;
 
 namespace Content.Server._NF.Salvage;
 
@@ -50,6 +51,10 @@ public sealed class SalvageMobRestrictionsSystem : EntitySystem
     {
         foreach (EntityUid target in component.MobsToKill)
         {
+            // Don't destroy yourself, don't destroy things being destroyed.
+            if (uid == target || MetaData(target).EntityLifeStage >= EntityLifeStage.Terminating)
+                continue;
+
             if (TryComp(target, out BodyComponent? body))
             {
                 // Creates a pool of blood on death, but remove the organs.
