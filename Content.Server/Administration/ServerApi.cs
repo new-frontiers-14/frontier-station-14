@@ -61,7 +61,6 @@ public sealed partial class ServerApi : IPostInjectInit
     [Dependency] private readonly ILogManager _logManager = default!;
     [Dependency] private readonly IEntitySystemManager _entitySystemManager = default!;
     [Dependency] private readonly ILocalizationManager _loc = default!;
-    [Dependency] private readonly BwoinkSystem _serverBwoinkSystem = default!;
 
     private string _token = string.Empty;
     private ISawmill _sawmill = default!;
@@ -447,9 +446,10 @@ public sealed partial class ServerApi : IPostInjectInit
         _entityManager.EntityNetManager?.SendSystemNetworkMessage(message, player.Channel);
 
         var ticker = _entitySystemManager.GetEntitySystem<GameTicker>();
+        var _serverBwoinkSystem = _entitySystemManager.GetEntitySystem<BwoinkSystem>();
         var queue = _serverBwoinkSystem._messageQueues.GetOrNew(player.UserId);
 
-        var FormattedMessage = new AHelpMessageParams(
+        var formattedMessage = new AHelpMessageParams(
             player.Name,
             body.Text,
             true,
@@ -459,8 +459,8 @@ public sealed partial class ServerApi : IPostInjectInit
             isDiscord: true
             );
 
-        var FinalMessage = BwoinkSystem.GenerateAHelpMessage(FormattedMessage);
-        queue.Enqueue(FinalMessage);
+        var finalMessage = BwoinkSystem.GenerateAHelpMessage(formattedMessage);
+        queue.Enqueue(finalMessage);
         // Respond with OK
         await RespondOk(context);
     });
