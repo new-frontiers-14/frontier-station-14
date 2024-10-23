@@ -28,7 +28,6 @@ public sealed partial class MarketSystem: SharedMarketSystem
     [Dependency] private readonly PricingSystem _pricingSystem = default!;
     [Dependency] private readonly StackSystem _stackSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SectorServiceSystem _sectorService = default!;
     [Dependency] private readonly EntProtoIdWhitelistSystem _protoIdWhitelist = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly StationSystem _station = default!;

@@ -9,6 +9,8 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Content.Shared.EntityTable.EntitySelectors;
 using Content.Shared.EntityTable;
+using Content.Server.Station.Systems; // Frontier
+using Content.Server.Station.Components; // Frontier
 
 namespace Content.Server.StationEvents;
 
@@ -21,6 +23,7 @@ public sealed class EventManagerSystem : EntitySystem
     [Dependency] private readonly EntityTableSystem _entityTable = default!;
     [Dependency] public readonly GameTicker GameTicker = default!;
     [Dependency] private readonly RoundEndSystem _roundEnd = default!;
+    [Dependency] private readonly StationJobsSystem _stationJobs = default!; // Frontier
 
     public bool EventsEnabled { get; private set; }
     private void SetEnabled(bool value) => EventsEnabled = value;
@@ -267,10 +270,23 @@ public sealed class EventManagerSystem : EntitySystem
             return false;
         }
 
-        // Frontier: max players
+        // Frontier: Check max players
         if (playerCount > stationEvent.MaximumPlayers)
         {
             return false;
+        }
+
+        // Frontier: require jobs to run event - TODO: actually count jobs, compare vs. numJobs
+        foreach (var (jobProtoId, numJobs) in stationEvent.RequiredJobs)
+        {
+            var jobPrototype = _prototype.Index(jobProtoId);
+            var query = EntityQueryEnumerator<StationJobsComponent>();
+            while (query.MoveNext(out var station, out var comp))
+            {
+                // If a job slot is open, nobody has the job, or the player with the job should be leaving.
+                if (_stationJobs.TryGetJobSlot(station, jobPrototype, out var slots, comp) && slots >= 1)
+                    return false;
+            }
         }
         // End Frontier
 
