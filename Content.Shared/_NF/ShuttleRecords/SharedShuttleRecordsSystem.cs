@@ -1,4 +1,4 @@
-﻿using Content.Shared._NF.ShuttleRecords.Components;
+using Content.Shared._NF.ShuttleRecords.Components;
 using Content.Shared.Containers.ItemSlots;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Serialization;
