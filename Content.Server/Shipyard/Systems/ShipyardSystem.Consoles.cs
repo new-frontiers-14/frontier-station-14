@@ -314,7 +314,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
                     name: deedShuttle.ShuttleName ?? "",
                     suffix: deedShuttle.ShuttleNameSuffix ?? "",
                     ownerName: shuttleOwner,
-                entityUid: _entityManager.GetNetEntity(shuttleUid)
+                    entityUid: _entityManager.GetNetEntity(shuttleUid)
                 )
             );
         }
