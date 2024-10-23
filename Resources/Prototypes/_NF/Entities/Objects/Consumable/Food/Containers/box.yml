@@ -1,3 +1,4 @@
+# Full
 - type: entity
   id: HappyHonkMcCargo
   parent: HappyHonk
@@ -21,7 +22,8 @@
       orGroup: GiftPool
       prob: 0.05
   - type: StaticPrice
-    price: 40
+    price: 1
+    vendPrice: 200 # Need this to not bug out the cardbox worth...
 
 - type: entity
   id: HappyHonkMcCargoFood
@@ -211,3 +213,201 @@
     # Extra
 #    - id: FoodCondimentPacketPepper
     - id: FoodCondimentPacketSalt
+
+- type: entity
+  parent: [BaseStorageItem, BaseBagOpenClose]
+  id: FoodBoxSushi
+  name: sushi tray
+  description: Plastic sushi container with lid.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/sushi.rsi
+    scale: 0.8, 0.8
+    state: tray
+    layers:
+    - state: tray
+    - state: goodtray6
+      map: ["tray6"]
+      visible: false
+    - state: goodtray5
+      map: ["tray5"]
+      visible: false
+    - state: goodtray4
+      map: ["tray4"]
+      visible: false
+    - state: goodtray3
+      map: ["tray3"]
+      visible: false
+    - state: goodtray2
+      map: ["tray2"]
+      visible: false
+    - state: goodtray1
+      map: ["tray1"]
+      visible: false
+    - state: label
+      map: ["closeLayer"]
+      visible: false
+  - type: Item
+    sprite: _NF/Objects/Consumable/Food/sushi.rsi
+    size: Normal
+    inhandVisuals:
+      left:
+      - state: tray-inhand-left
+      right:
+      - state: tray-inhand-right
+  - type: Storage
+    grid:
+    - 0,0,1,2
+    whitelist:
+      tags:
+        - Sushi
+    storageOpenSound: /Audio/Effects/packetrip.ogg
+    hideStackVisualsWhenClosed: false
+  - type: ItemCounter
+    count:
+      tags: [Sushi]
+    composite: true
+    layerStates:
+    - tray1
+    - tray2
+    - tray3
+    - tray4
+    - tray5
+    - tray6
+
+- type: entity
+  parent: FoodBoxSushi
+  id: FoodBoxSushiBad
+  suffix: Bad
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/sushi.rsi
+    scale: 0.8, 0.8
+    state: tray
+    layers:
+    - state: tray
+    - state: tray6
+      map: ["tray6"]
+      visible: false
+    - state: tray5
+      map: ["tray5"]
+      visible: false
+    - state: tray4
+      map: ["tray4"]
+      visible: false
+    - state: tray3
+      map: ["tray3"]
+      visible: false
+    - state: tray2
+      map: ["tray2"]
+      visible: false
+    - state: tray1
+      map: ["tray1"]
+      visible: false
+    - state: label
+      map: ["closeLayer"]
+      visible: false
+  - type: StorageFill
+    contents:
+    # Slice1
+    - id: FoodMealGasSafeSushiSlice
+      orGroup: Slice1
+    - id: FoodMealGasBadSushiSlice
+      orGroup: Slice1
+    # Slice2
+    - id: FoodMealGasSafeSushiSlice
+      orGroup: Slice2
+    - id: FoodMealGasBadSushiSlice
+      orGroup: Slice2
+    # Slice3
+    - id: FoodMealGasSafeSushiSlice
+      orGroup: Slice3
+    - id: FoodMealGasBadSushiSlice
+      orGroup: Slice3
+    # Slice4
+    - id: FoodMealGasSafeSushiSlice
+      orGroup: Slice4
+    - id: FoodMealGasBadSushiSlice
+      orGroup: Slice4
+    # Slice5
+    - id: FoodMealGasSafeSushiSlice
+      orGroup: Slice5
+    - id: FoodMealGasBadSushiSlice
+      orGroup: Slice5
+    # Slice6
+    - id: FoodMealGasSafeSushiSlice
+      orGroup: Slice6
+    - id: FoodMealGasBadSushiSlice
+      orGroup: Slice6
+
+# Empty
+- type: entity
+  id: BoxMREEmpty
+  parent: BoxMRE
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents: []
+
+- type: entity
+  id: HappyHonkEmpty
+  parent: HappyHonk
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents: []
+
+- type: entity
+  id: HappyHonkMimeEmpty
+  parent: HappyHonkMime
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents: []
+
+- type: entity
+  id: HappyHonkNukieEmpty
+  parent: HappyHonkNukie
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents: []
+
+- type: entity
+  id: HappyHonkCluwneEmpty
+  parent: HappyHonkCluwne
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents: []
+
+- type: entity
+  id: HappyHonkMcCargoEmpty
+  parent: HappyHonkMcCargo
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents: []
+
+- type: entity
+  id: FoodBoxNuggetEmpty
+  parent: FoodBoxNugget
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents: []
+
+- type: entity
+  id: FoodContainerEggEmpty
+  parent: FoodContainerEgg
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents: []
+
+- type: entity
+  id: FoodBoxDonutEmpty
+  parent: FoodBoxDonut
+  components:
+  - type: StorageFill
+    contents: []

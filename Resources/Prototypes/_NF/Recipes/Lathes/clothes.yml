@@ -1,54 +1,40 @@
 # Jumpsuits
 - type: latheRecipe
   id: ClothingUniformRandomPunkTanktop
+  parent: BaseJumpsuitRecipe
   result: ClothingUniformRandomPunkTanktop
-  completetime: 3
   category: ClothesNF
-  materials:
-    Cloth: 300
+  applyMaterialDiscount: false
 
 - type: latheRecipe
   id: ClothingUniformRandomPunkTanktopShorts
+  parent: ClothingUniformRandomPunkTanktop
   result: ClothingUniformRandomPunkTanktopShorts
-  completetime: 3
-  category: ClothesNF
-  materials:
-    Cloth: 300
 
 - type: latheRecipe
   id: ClothingUniformRandomPunkCroptop
+  parent: ClothingUniformRandomPunkTanktop
   result: ClothingUniformRandomPunkCroptop
-  completetime: 3
-  category: ClothesNF
-  materials:
-    Cloth: 300
 
 - type: latheRecipe
   id: ClothingUniformRandomPunkCroptopShorts
+  parent: ClothingUniformRandomPunkTanktop
   result: ClothingUniformRandomPunkCroptopShorts
-  completetime: 3
-  category: ClothesNF
-  materials:
-    Cloth: 300
 
 # Coats
 - type: latheRecipe
   id: ClothingOuterCoatBomberRandomized
+  parent: BaseCoatRecipe
   result: ClothingOuterCoatBomberRandomized
-  completetime: 3
   category: ClothesNF
-  materials:
-    Cloth: 300
-    Durathread: 400
+  applyMaterialDiscount: false
 
 - type: latheRecipe
   id: ClothingOuterCoatLettermanRandomized
+  parent: ClothingOuterCoatBomberRandomized
   result: ClothingOuterCoatLettermanRandomized
   completetime: 3
   category: ClothesNF
-  materials:
-    Cloth: 300
-    Durathread: 400
 
 # Belts / Webbings
 - type: latheRecipe
@@ -56,40 +42,29 @@
   result: ClothingBeltSalvageWebbing
   completetime: 1
   category: ClothesNF
+  applyMaterialDiscount: false
   materials:
     Cloth: 400
 
 - type: latheRecipe
   id: ClothingBeltMercenaryWebbing
+  parent: ClothingBeltSalvageWebbing
   result: ClothingBeltMercenaryWebbing
-  completetime: 4
-  category: ClothesNF
-  materials:
-    Cloth: 400
 
 - type: latheRecipe
   id: ClothingBeltMilitaryWebbing
+  parent: ClothingBeltSalvageWebbing
   result: ClothingBeltMilitaryWebbing
-  completetime: 4
-  category: ClothesNF
-  materials:
-    Cloth: 400
 
 - type: latheRecipe
   id: ClothingBeltBandolier
+  parent: ClothingBeltSalvageWebbing
   result: ClothingBeltBandolier
-  completetime: 4
-  category: ClothesNF
-  materials:
-    Cloth: 400
 
 - type: latheRecipe
   id: ClothingBeltPunkRandomized
+  parent: ClothingBeltSalvageWebbing
   result: ClothingBeltPunkRandomized
-  completetime: 4
-  category: ClothesNF
-  materials:
-    Cloth: 400
 
 # Gloves
 - type: latheRecipe
@@ -98,7 +73,7 @@
   completetime: 3
   category: ClothesNF
   materials:
-    Cloth: 100
+    Cloth: 200
     Durathread: 100
 
 - type: latheRecipe
@@ -107,7 +82,7 @@
   completetime: 3
   category: ClothesNF
   materials:
-    Cloth: 100
+    Cloth: 200
     Durathread: 100
 
 # Boots
@@ -117,7 +92,7 @@
   completetime: 3
   category: ClothesNF
   materials:
-    Cloth: 100
+    Cloth: 200
     Durathread: 100
 
 - type: latheRecipe
@@ -126,7 +101,7 @@
   completetime: 3
   category: ClothesNF
   materials:
-    Cloth: 100
+    Cloth: 200
     Durathread: 100
 
 - type: latheRecipe
@@ -135,7 +110,7 @@
   completetime: 3
   category: ClothesNF
   materials:
-    Cloth: 100
+    Cloth: 200
     Durathread: 100
 
 - type: latheRecipe
@@ -144,7 +119,7 @@
   completetime: 3
   category: ClothesNF
   materials:
-    Cloth: 100
+    Cloth: 200
     Durathread: 100
 
 # Glasses

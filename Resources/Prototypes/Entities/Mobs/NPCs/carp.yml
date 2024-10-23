@@ -89,6 +89,7 @@
 - type: entity
   parent: BaseMobCarp
   id: MobCarp
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: Sprite
     layers:
@@ -109,6 +110,7 @@
   parent: BaseMobCarp
   id: MobCarpMagic
   description: Looks like some kind of fish. Might be magical.
+  categories: [ HideSpawnMenu ] # Frontier
   components:
     - type: Sprite
       sprite: Mobs/Aliens/Carps/magic.rsi
@@ -120,6 +122,7 @@
   parent: BaseMobCarp
   id: MobCarpHolo
   description: Carp made out of holographic energies. Sadly for you, it is very much real.
+  categories: [ HideSpawnMenu ] # Frontier
   components:
     - type: Sprite
       sprite: Mobs/Aliens/Carps/holo.rsi
@@ -143,6 +146,7 @@
   id: MobCarpRainbow
   name: rainbow carp
   description: Wow such a shiny fishie!
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: PointLight
     radius: 1.5
@@ -152,16 +156,15 @@
 
 - type: entity
   id: MobCarpSalvage
-  parent: MobCarp
+  parent: [NFMobRestrictions, MobCarp] # Frontier: add NFMobRestrictions, remove components
   suffix: "Salvage Ruleset"
-  components:
-    - type: NFSalvageMobRestrictions # Frontier
 
 - type: entity
   name: space carp
   id: MobCarpDragon
   suffix: DragonBrood
   parent: MobCarp
+  categories: [ HideSpawnMenu ] # Frontier
   components:
     - type: GhostRole
       allowMovement: true
@@ -181,6 +184,7 @@
   id: MobCarpDungeon
   parent: MobCarp
   suffix: Dungeon
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: MeleeWeapon
     damage:
@@ -192,6 +196,7 @@
   parent: BaseMobCarp
   id: MobShark
   description: A dangerous shark from the blackness of endless space, who loves to drink blood.
+  categories: [ HideSpawnMenu ] # Frontier
   components:
     - type: Sprite
       sprite: Mobs/Aliens/Carps/sharkminnow.rsi
@@ -244,7 +249,6 @@
 
 - type: entity
   id: MobSharkSalvage
-  parent: MobShark
+  parent: [NFMobRestrictions, MobShark] # Frontier: add NFMobRestrictions
   suffix: "Salvage Ruleset"
-  components:
-    - type: NFSalvageMobRestrictions
+  categories: [ HideSpawnMenu ] # Frontier
