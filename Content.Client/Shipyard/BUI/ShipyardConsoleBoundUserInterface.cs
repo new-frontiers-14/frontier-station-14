@@ -51,6 +51,7 @@ public sealed class ShipyardConsoleBoundUserInterface : BoundUserInterface
         _menu.PopulateProducts(availablePrototypes, unavailablePrototypes, freeListings, validId);
         _menu.PopulateCategories(availablePrototypes, unavailablePrototypes);
         _menu.PopulateClasses(availablePrototypes, unavailablePrototypes);
+        _menu.PopulateEngines(availablePrototypes, unavailablePrototypes);
     }
 
     protected override void UpdateState(BoundUserInterfaceState state)
