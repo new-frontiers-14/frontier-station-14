@@ -1,9 +1,20 @@
-# Helmets
+# Base prototypes
+
 - type: latheRecipe
-  id: ClothingHeadHelmetMercenary
-  result: ClothingHeadHelmetMercenary
-  completetime: 3
+  abstract: true
+  id: NFBaseArmorRecipe
+  completetime: 5
   category: ArmorNF
+  materials:
+    Durathread: 1200
+    Steel: 500
+    Plasteel: 500
+
+- type: latheRecipe
+  abstract: true
+  id: NFBaseHelmetRecipe
+  parent: NFBaseArmorRecipe
+  completetime: 3
   materials:
     Cloth: 100
     Durathread: 100
@@ -11,42 +22,43 @@
     Plasteel: 500
 
 - type: latheRecipe
-  id: ClothingHeadHelmetBasic
-  result: ClothingHeadHelmetBasic
-  completetime: 3
-  category: ArmorNF
+  abstract: true
+  id: NFBaseHelmetRecipe
+  parent: NFBaseMaskArmoredRecipe
+  completetime: 2
   materials:
-    Cloth: 100
-    Durathread: 100
-    Steel: 500
-    Plasteel: 500
+    Durathread: 300
+    Plastic: 200
+    Steel: 200
+
+# Recipes
+
+# Helmets
+- type: latheRecipe
+  id: ClothingHeadHelmetMercenary
+  parent: NFBaseHelmetRecipe
+  result: ClothingHeadHelmetMercenary
+
+- type: latheRecipe
+  id: ClothingHeadHelmetBasic
+  parent: NFBaseHelmetRecipe
+  result: ClothingHeadHelmetBasic
 
 # Vests
 - type: latheRecipe
   id: ClothingOuterVestWebMercenary
+  parent: NFBaseArmorRecipe
   result: ClothingOuterVestWebMercenary
-  completetime: 5
-  category: ArmorNF
-  materials:
-    Durathread: 1200
-    Steel: 500
-    Plasteel: 500
 
 - type: latheRecipe
   id: ClothingOuterVestWebMercenaryBlack
+  parent: NFBaseArmorRecipe
   result: ClothingOuterVestWebMercenaryBlack
-  completetime: 5
-  category: ArmorNF
-  materials:
-    Durathread: 1200
-    Steel: 500
-    Plasteel: 500
 
 - type: latheRecipe
   id: ClothingOuterArmorBulletproofNF
+  parent: NFBaseArmorRecipe
   result: ClothingOuterArmorBulletproof
-  completetime: 5
-  category: ArmorNF
   materials:
     Durathread: 500
     Steel: 300
@@ -54,53 +66,28 @@
 
 - type: latheRecipe
   id: ClothingOuterCoatBHTrench
+  parent: NFBaseArmorRecipe
   result: ClothingOuterCoatBHTrench
-  completetime: 5
-  category: ArmorNF
-  materials:
-    Durathread: 500
-    Steel: 300
-    Plasteel: 1000
 
 - type: latheRecipe
   id: ClothingOuterArmorPunkRandomized
+  parent: NFBaseArmorRecipe
   result: ClothingOuterArmorPunkRandomized
-  completetime: 5
-  category: ArmorNF
-  materials:
-    Durathread: 1200
-    Steel: 500
-    Plasteel: 500
 
 - type: latheRecipe
   id: ClothingOuterArmorPunkRed
+  parent: NFBaseArmorRecipe
   result: ClothingOuterArmorPunkRed
-  completetime: 5
-  category: ArmorNF
-  materials:
-    Durathread: 1200
-    Steel: 500
-    Plasteel: 500
 
 - type: latheRecipe
   id: ClothingOuterArmorPunkGreen
+  parent: NFBaseArmorRecipe
   result: ClothingOuterArmorPunkGreen
-  completetime: 5
-  category: ArmorNF
-  materials:
-    Durathread: 1200
-    Steel: 500
-    Plasteel: 500
 
 - type: latheRecipe
   id: ClothingOuterArmorPunkOrange
+  parent: NFBaseArmorRecipe
   result: ClothingOuterArmorPunkOrange
-  completetime: 5
-  category: ArmorNF
-  materials:
-    Durathread: 1200
-    Steel: 500
-    Plasteel: 500
 
 - type: latheRecipe
   id: ClothingOuterArmorElitePunkRandomized
@@ -108,43 +95,27 @@
   completetime: 5
   category: ArmorNF
   materials:
-    Durathread: 1200
-    Steel: 500
-    Plasteel: 500
+    Durathread: 500
+    Steel: 300
+    Plasteel: 1000
 
 # Masks
 - type: latheRecipe
   id: ClothingMaskGasMercenary
+  parent: NFBaseMaskArmoredRecipe
   result: ClothingMaskGasMercenary
-  completetime: 2
-  materials:
-    Durathread: 300
-    Plastic: 200
-    Glass: 200
 
 - type: latheRecipe
   id: ClothingMaskBreathMedicalSecurity
+  parent: NFBaseMaskArmoredRecipe
   result: ClothingMaskBreathMedicalSecurity
-  completetime: 2
-  materials:
-    Durathread: 300
-    Plastic: 200
-    Steel: 200
 
 - type: latheRecipe
   id: ClothingMaskGasSecurity
+  parent: NFBaseMaskArmoredRecipe
   result: ClothingMaskGasSecurity
-  completetime: 2
-  materials:
-    Durathread: 300
-    Plastic: 200
-    Steel: 200
 
 - type: latheRecipe
   id: ClothingMaskPunkHalf
+  parent: NFBaseMaskArmoredRecipe
   result: ClothingMaskPunkHalf
-  completetime: 2
-  materials:
-    Durathread: 300
-    Plastic: 200
-    Steel: 200
