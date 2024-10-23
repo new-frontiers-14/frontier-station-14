@@ -97,8 +97,8 @@ public sealed partial class StationEventComponent : Component
     public bool OccursDuringRoundEnd = true;
 
     /// <summary>
-    ///     Frontier: Require active sheriff to run the event.
+    ///     Frontier: Require active job to run the event.
     /// </summary>
     [DataField]
-    public Dictionary<ProtoId<JobPrototype>, int> RequireJobs = new();
+    public Dictionary<ProtoId<JobPrototype>, int> RequiredJobs = new();
 }
