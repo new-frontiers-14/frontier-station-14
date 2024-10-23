@@ -122,7 +122,6 @@
   id: ComputerShuttle
   name: shuttle console
   description: Used to pilot a shuttle.
-  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: Sprite
     layers:
@@ -843,7 +842,7 @@
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
   - type: Computer
-    board: Null # Frontier: CargoRequestComputerCircuitboard<Null
+    board: CargoRequestComputerCircuitboard
   - type: PointLight
     radius: 1.5
     energy: 1.6
