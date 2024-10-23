@@ -7,15 +7,13 @@ namespace Content.Client._NF.ShuttleRecords.UI;
 [GenerateTypedNameReferences]
 public sealed partial class ShuttleRecordDetailsControl : PanelContainer
 {
-    public sealed class ViewState(string shuttleName, string shuttleOwnerName, string activity, string toolTip = "", bool disabled = false)
+    public sealed class ViewState(string shuttleName, string shuttleOwnerName, string activity, string toolTip = "")
     {
         public string ShuttleName { get; } = shuttleName;
 
         public string ShuttleOwnerName { get; } = shuttleOwnerName;
 
         public string Activity { get; } = activity;
-
-        public bool Disabled { get; } = disabled;
 
         public string ToolTip { get; } = toolTip;
     }
@@ -27,6 +25,5 @@ public sealed partial class ShuttleRecordDetailsControl : PanelContainer
         ShuttleOwner.Text = state.ShuttleOwnerName;
         ShuttleActivity.Text = state.Activity;
         ToolTip = state.ToolTip;
-        CopyDeedButton.Disabled = state.Disabled;
     }
 }

@@ -44,7 +44,6 @@ public sealed class ShuttleRecordsConsoleBoundUserInterface(
     private void CopyDeed(ShuttleRecord shuttleRecord)
     {
         SendMessage(new CopyDeedMessage(shuttleRecord.EntityUid));
-        Close();
     }
 
 }

@@ -13,3 +13,4 @@ shuttle-records-no-bank-account = Station has no bank account.
 shuttle-records-insufficient-funds = Station does not have enough funds.
 shuttle-records-no-access = Access denied.
 shuttle-records-transaction-cost = Transaction Cost: {$cost}
+shuttle-records-search = Search ship or captain
