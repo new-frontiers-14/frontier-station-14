@@ -1,7 +1,7 @@
 - type: entity
   id: ClothingBeltArcadia
   name: arcadia webbing
-  parent: [ ClothingBeltStorageBase, BaseC3ContrabandNoValue, ContrabandClothing ]
+  parent: [ NFClothingBeltStorageBase, BaseC3ContrabandNoValue, ContrabandClothing ]
   description: A webbing created by Arcadia Industries. Seems very capable of fitting many items.
   components:
   - type: Sprite
@@ -10,7 +10,7 @@
     sprite: _NF/Clothing/Belt/arcadia.rsi
 
 - type: entity
-  parent: ClothingBeltStorageBase
+  parent: [ ChaplainClothes, NFClothingBeltStorageBase ]
   id: ClothingBeltChaplainSash
   name: chaplain sash
   description: Who knew that scarves can be also tied around your waist?
@@ -26,7 +26,7 @@
           tags:
           - Book
           components:
-          - BibleComponent
+          - Bible
           - Paper
       bottle:
         whitelist:
@@ -52,7 +52,7 @@
   - type: Appearance
 
 - type: entity
-  parent: ClothingBeltStorageBase
+  parent: NFClothingBeltStorageBase
   id: ClothingBeltPilot
   name: pilot webbing
   description: A webbing designed for someone seating a lot.

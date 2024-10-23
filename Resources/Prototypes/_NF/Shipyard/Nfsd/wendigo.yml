@@ -1,0 +1,40 @@
+# Author Info
+# GitHub: MagnusCrowe
+# Discord: MagnusCrowe
+
+# Maintainer Info
+# GitHub: MagnusCrowe
+# Discord: MagnusCrowe
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Wendigo
+  name: NSF Wendigo
+  description: A light medium ship with a recommended crew of 2 to 3 officers, the Wendigo is a dedicated interdiction vessel outfitted with a powerful EMP device for tackling escaping vessels.
+  price: 34500
+  category: Medium
+  group: Security
+  access: Sergeant
+  shuttlePath: /Maps/_NF/Shuttles/Nfsd/wendigo.yml
+  class:
+  - Pursuit
+  engine:
+  - Uranium
+
+- type: gameMap
+  id: Wendigo
+  mapName: 'NSF Wendigo'
+  mapPath: /Maps/_NF/Shuttles/Nfsd/wendigo.yml
+  minPlayers: 0
+  stations:
+    Wendigo:
+      stationProto: StandardFrontierSecurityVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Wendigo {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs: {}
