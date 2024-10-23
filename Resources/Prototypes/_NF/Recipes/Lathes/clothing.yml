@@ -17,18 +17,14 @@
 - type: latheRecipe
   abstract: true
   id: NFBaseBeltRecipe
-  category: ClothesNF
-  applyMaterialDiscount: false
-  completetime: 2
+  parent: NFBaseJumpsuitRecipe
   materials:
     Cloth: 400
 
 - type: latheRecipe
   abstract: true
   id: NFBaseBootRecipe # And gloves
-  category: ClothesNF
-  applyMaterialDiscount: false
-  completetime: 3
+  parent: NFBaseJumpsuitRecipe
   materials:
     Cloth: 200
     Durathread: 100
@@ -36,9 +32,7 @@
 - type: latheRecipe
   abstract: true
   id: NFBaseWearableDeviceRecipe
-  category: ClothesNF
-  applyMaterialDiscount: false
-  completetime: 2
+  parent: NFBaseJumpsuitRecipe
   materials:
     Steel: 200
     Plastic: 300
