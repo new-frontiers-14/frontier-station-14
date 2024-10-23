@@ -747,6 +747,7 @@
   parent: BaseLathe
   name: biocube fabricator
   description: Produces animal cubes using biomass.
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: Sprite
     sprite: Structures/Machines/biofabricator.rsi
@@ -1338,6 +1339,16 @@
     - BioGenLeft4Zed
     - BioGenEZNutrient
     - BioGenRobustHarvest
+    - CowCube # Frontier: copied from Biofabricator above
+    - GoatCube # Frontier
+    - MothroachCube # Frontier
+    - MouseCube # Frontier
+    - CockroachCube # Frontier
+  - type: EmagLatheRecipes # Frontier
+    emagStaticRecipes: # Frontier
+    - AbominationCube # Frontier
+    - SpaceCarpCube # Frontier
+    - SpaceTickCube # Frontier
 
 - type: entity
   parent: BaseLathe
