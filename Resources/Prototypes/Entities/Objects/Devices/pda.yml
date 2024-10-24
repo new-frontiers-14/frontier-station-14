@@ -133,7 +133,6 @@
   abstract: true
   components:
   - type: CartridgeLoader
-    uiKey: enum.PdaUiKey.Key
     preinstalled:
     - CrewManifestCartridge
     - NotekeeperCartridge
@@ -420,13 +419,15 @@
     accentVColor: "#8900c9"
   - type: Icon
     state: pda-miner
-  - type: CartridgeLoader
-    uiKey: enum.PdaUiKey.Key
-    preinstalled:
-      - CrewManifestCartridge
-      - NotekeeperCartridge
-      - NewsReaderCartridge
-      - AstroNavCartridge
+  # Frontier: cartridges moved to loadouts
+  # - type: CartridgeLoader
+  #   uiKey: enum.PdaUiKey.Key
+    # preinstalled:
+    #   - CrewManifestCartridge
+    #   - NotekeeperCartridge
+    #   - NewsReaderCartridge
+    #   - AstroNavCartridge
+  # End Frontier
 
 - type: entity
   parent: BasePDA
