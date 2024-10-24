@@ -129,7 +129,7 @@
     job_id: Bailiff
 
 - type: entity
-  id: SpawnPointSeniorOfficer
+  id: NFSpawnPointSeniorOfficer
   parent: SpawnPointWarden
   name: sergeant
   components:
@@ -167,3 +167,10 @@
   components:
   - type: SpawnPoint
     job_id: PublicAffairsLiaison
+
+- type: entity
+  id: NFSpawnPointJanitor
+  parent: SpawnPointJanitor
+  components:
+  - type: SpawnPoint
+    job_id: NFJanitor

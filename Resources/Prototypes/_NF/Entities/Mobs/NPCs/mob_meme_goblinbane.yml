@@ -1,0 +1,273 @@
+# Base
+- type: entity
+  abstract: true
+  id: MobIncorporealBase
+  name: incorporeal entity
+  description: You can't touch it, but it can touch you.
+  components:
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/_NF/Effects/silence.ogg
+  - type: CanMoveInAir
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.4
+        density: 10
+        mask:
+        - FlyingMobMask
+        layer:
+        - Opaque
+
+- type: entity
+  id: BaseMobMemeGoblinbane
+  name: "The Goblinbane"
+  parent: [ MobNonHumanHostileBase, MobPassiveRegenWeak, MobHumanoidHostileAIComplex ]
+  description: A Daemon of Cleanliness from the time before time (but after the first toilet was built). An ancient enemy of goblinkind.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: NPCRetaliation
+    attackMemoryLength: 90
+  - type: Advertise
+    pack: goblinbanechatter
+    minimumWait: 30
+    maximumWait: 120
+    nextAdvertisementTime: 10
+  - type: Bloodstream
+    bloodReagent: Bleach
+    chemicalMaxVolume: 100
+  - type: NpcFactionMember
+    factions:
+    - GoblinbaneFaction
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/_NF/Effects/silence.ogg
+  - type: CanMoveInAir
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.40
+        density: 100
+        mask:
+          - FlyingMobMask
+        layer:
+          - FlyingMobLayer
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _NF/Mobs/Meme/goblinbane.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: alive
+    - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+      state: alive_unshaded
+      shader: unshaded
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: alive
+        BaseUnshaded: alive_unshaded
+      Dead:
+        Base: dead
+        BaseUnshaded: dead_unshaded
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      200: Dead
+  - type: Stamina
+    critThreshold: 400
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MobMemeGoblinbaneGhost:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    damage:
+      types:
+        Blunt: 4
+        Structural: 20
+    animation: WeaponArcBite
+  - type: MeleeChemicalInjector
+    solution: bloodstream
+    transferAmount: 0.5
+  - type: PointLight
+    radius: 1.4
+    energy: 1.2
+    color: "#ff0000"
+  # Ghost role stuff
+  - type: GhostRole
+    prob: 1
+    allowMovement: true
+    name: ghost-role-information-goblinbane-name
+    description: ghost-role-information-goblinbane-description
+    rules: ghost-role-information-goblinbane-rules
+    prototype: GhostMemeGoblinbane
+    raffle:
+      settings: default
+  - type: GhostTakeoverAvailable
+  # Radar console (helps locating goblins and such)
+  - type: UserInterface
+    interfaces:
+      enum.RadarConsoleUiKey.Key:
+        type: RadarConsoleBoundUserInterface
+  - type: IntrinsicUI
+    uis:
+      enum.RadarConsoleUiKey.Key:
+        toggleAction: ActionObserverShowRadar
+  - type: RadarConsole
+    followEntity: true
+    maxIffRange: 256
+    hideCoords: true
+  - type: ComplexInteraction
+  # Abilities
+  - type: Devourer
+    foodPreference: Humanoid
+    shouldStoreDevoured: true
+    chemical: Ichor
+    healRate: 15.0
+    whitelist:
+      components:
+      - Goblin
+      - Door
+      tags:
+      - Wall
+  - type: ActionGun
+    action: ActionSpawnCleanlinessDimensionPortal
+    gunProto: CleanlinessDimensionPortalGun
+
+# Possessed Toilet
+- type: entity
+  id: MobMemeGoblinbane
+  name: "The Goblinbane"
+  parent: [ BaseMobMemeGoblinbane, NFMobRestrictions ]
+  description: A Daemon of Cleanliness from the time before time (but after the first toilet was built). An ancient enemy of goblinkind.
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  id: ActionSpawnCleanlinessDimensionPortal
+  name: "[color=orange]Open Cleanliness Portal[/color]"
+  description: "A portal to the dimension of utter cleanliness. No goblins allowed. The ability has [color=yellow]60 second cooldown.[/color]"
+  components:
+  - type: WorldTargetAction
+    icon: { sprite : _NF/Mobs/Meme/goblinbane.rsi, state: bucket_portal }
+    event: !type:ActionGunShootEvent
+    priority: 2
+    checkCanAccess: false
+    range: 0
+    itemIconStyle: BigAction
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  id: CleanlinessDimensionPortalGun
+  name: cleanliness portal Gun
+  description: Spawns the portal.
+  components:
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 60
+    rechargeSound:
+      path: /Audio/Magic/fireball.ogg
+  - type: BasicEntityAmmoProvider
+    proto: SpawnCleanlinessDimensionPortal
+    capacity: 1
+    count: 1
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Effects/teleport_arrival.ogg
+    soundEmpty: null
+    projectileSpeed: 5
+
+# Ghost form of possessed toilet
+- type: entity
+  id: MobMemeGoblinbaneGhost
+  parent: [ MobIncorporealBase, MobMemeGoblinbane ]
+  suffix: Ghost form
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: NpcFactionMember
+    factions:
+    - GoblinbaneProvokedFaction
+  - type: Bloodstream
+    bloodReagent: SoapReagent
+    chemicalMaxVolume: 100
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _NF/Mobs/Meme/goblinbane.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: ghost
+    - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+      state: ghost_unshaded
+      shader: unshaded
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: ghost
+        BaseUnshaded: ghost_unshaded
+      Dead:
+        Base: dead
+        BaseUnshaded: dead_unshaded
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      140: Dead
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MobMemePossessedMop:
+            min: 1
+            max: 2
+          MobMemePossessedSpray:
+            min: 2
+            max: 3
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: BasicEntityAmmoProvider
+    proto: SpawnMopBucketDimnsionPortal
+    capacity: 1
+    count: 1
+  - type: Gun
+    showExamineText: false
+    fireRate: 1
+    soundGunshot:
+      path: /Audio/Effects/teleport_arrival.ogg
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 60
+    rechargeSound:
+      path: /Audio/_NF/Effects/silence.ogg
+  - type: MeleeChemicalInjector
+    solution: bloodstream
+    transferAmount: 0.5
+  # Ghost role stuff
+  - type: GhostRole
+    allowMovement: true
+    name: ghost-role-information-goblinbane-ghost-name
+    description: ghost-role-information-goblinbane-description
+    rules: ghost-role-information-goblinbane-rules
+    raffle:
+      settings: default
+  - type: GhostTakeoverAvailable

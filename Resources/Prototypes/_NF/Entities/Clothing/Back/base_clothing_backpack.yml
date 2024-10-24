@@ -1,0 +1,53 @@
+
+- type: entity
+  abstract: true
+  parent: ClothingBackpack
+  id: NFClothingBackpack
+  components:
+  - type: Storage
+    maxItemSize: Large
+    defaultStorageOrientation: Vertical
+    grid:
+    - 0,0,6,3
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,6,3
+
+- type: entity
+  abstract: true
+  parent: ClothingBackpackDuffel
+  id: NFClothingDuffel
+  components:
+  - type: Storage
+    maxItemSize: Huge
+    defaultStorageOrientation: Vertical
+    grid:
+    - 0,0,7,4
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,7,5
+
+- type: entity
+  abstract: true
+  parent: NFClothingBackpack
+  id: NFClothingMessenger
+  components:  
+  ## One 4x4 pocket, four 2x2 pockets
+  - type: Storage
+    grid:
+    - 0,0,1,1
+    - 0,3,1,4
+    - 3,0,6,3
+    - 8,0,9,1
+    - 8,3,9,4
+
+  # Alternative layouts
+  ## Two 2x1 pockets, one 2x3 pocket and one 6x3 pocket
+  # - type: Storage
+    # grid:
+    # - 0,0,1,2
+    # - 3,0,8,2
+    # - 10,0,11,0
+    # - 10,2,11,2
