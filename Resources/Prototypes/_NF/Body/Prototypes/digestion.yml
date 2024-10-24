@@ -1,5 +1,6 @@
 - type: digestion
   id: Default
+  categories: [ HideSpawnMenu ]
   effects:
   - quality: High
     conversions:
@@ -37,6 +38,7 @@
 
 - type: digestion
   id: Felinid
+  categories: [ HideSpawnMenu ]
   effects:
   - conversions:
       Carpotoxin:
@@ -47,6 +49,7 @@
 
 - type: digestion
   id: Moth
+  categories: [ HideSpawnMenu ]
   effects:
   - quality: Normal
     conversions:
@@ -62,6 +65,7 @@
 
 - type: digestion
   id: Arachnid
+  categories: [ HideSpawnMenu ]
   effects:
   - quality: Normal
     conversions:
@@ -78,6 +82,7 @@
 
 - type: digestion
   id: Goblin
+  categories: [ HideSpawnMenu ]
   effects:
   # Eat trash, run fast, touch grass
   - whitelist:
@@ -119,6 +124,7 @@
 
 - type: digestion
   id: Carnivore
+  categories: [ HideSpawnMenu ]
   effects:
   - whitelist:
       tags:
@@ -135,39 +141,40 @@
         Protein: 0.9
   postDigest: Default
 
-# type: digestion
-# id: SimpleDiet
-# effects:
-# - quality: Normal
-#   conversions:
-#     Vitamin:
-#       Flavorol: 0.3
-#         Vitamin: 0.7
-#     Nutriment:
-#       Flavorol: 0.3
-#         Nutriment: 0.7
-#     Protein:
-#       Flavorol: 0.3
-#         Protein: 0.7
-# - quality: High
-#   conversions:
-#     Vitamin:
-#       Bloatamine: 0.2
-#         Vitamin: 0.8
-#     Nutriment:
-#       Bloatamine: 0.2
-#         Nutriment: 0.8
-#     Protein:
-#       Bloatamine: 0.2
-#         Protein: 0.8
-# - quality: Junk
-#   conversions:
-#     Vitamin:
-#       Bloatamine: 0.2
-#         Vitamin: 0.8
-#     Nutriment:
-#       Bloatamine: 0.2
-#         Nutriment: 0.8
-#     Protein:
-#       Bloatamine: 0.2
-#         Protein: 0.8
+# - type: digestion
+  # id: SimpleDiet
+  # categories: [ HideSpawnMenu ]
+  # effects:
+  # - quality: Normal
+    # conversions:
+      # Vitamin:
+        # Flavorol: 0.3
+          # Vitamin: 0.7
+      # Nutriment:
+        # Flavorol: 0.3
+          # Nutriment: 0.7
+      # Protein:
+        # Flavorol: 0.3
+          # Protein: 0.7
+  # - quality: High
+    # conversions:
+      # Vitamin:
+        # Bloatamine: 0.2
+          # Vitamin: 0.8
+      # Nutriment:
+        # Bloatamine: 0.2
+          # Nutriment: 0.8
+      # Protein:
+        # Bloatamine: 0.2
+          # Protein: 0.8
+  # - quality: Junk
+    # conversions:
+      # Vitamin:
+        # Bloatamine: 0.2
+          # Vitamin: 0.8
+      # Nutriment:
+        # Bloatamine: 0.2
+          # Nutriment: 0.8
+      # Protein:
+        # Bloatamine: 0.2
+          # Protein: 0.8
