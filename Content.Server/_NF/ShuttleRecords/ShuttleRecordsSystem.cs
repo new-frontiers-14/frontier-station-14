@@ -1,15 +1,35 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using Content.Server._NF.SectorServices;
 using Content.Server._NF.ShuttleRecords.Components;
+using Content.Server.Administration.Logs;
+using Content.Server.GameTicking;
+using Content.Server.Popups;
+using Content.Server.Station.Systems;
 using Content.Shared._NF.ShuttleRecords;
+using Content.Shared.Access.Systems;
+using Robust.Server.GameObjects;
+using Robust.Shared.Timing;
 
 namespace Content.Server._NF.ShuttleRecords;
 
 public sealed partial class ShuttleRecordsSystem : SharedShuttleRecordsSystem
 {
+    [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly SectorServiceSystem _sectorService = default!;
+    [Dependency] private readonly AccessReaderSystem _access = default!;
+    [Dependency] private readonly IAdminLogManager _adminLogger = default!;
+    [Dependency] private readonly UserInterfaceSystem _ui = default!;
+    [Dependency] private readonly PopupSystem _popup = default!;
+    [Dependency] private readonly IGameTiming _gameTiming = default!;
+    [Dependency] private readonly GameTicker _gameTicker = default!;
 
+
+    public override void Initialize()
+    {
+        base.Initialize();
+        InitializeShuttleRecords();
+    }
 
     /**
      * Adds a record to the shuttle records list.
@@ -20,6 +40,7 @@ public sealed partial class ShuttleRecordsSystem : SharedShuttleRecordsSystem
         if (!TryGetShuttleRecordsDataComponent(out var component))
             return;
 
+        record.TimeOfPurchase = _gameTiming.CurTime.Subtract(_gameTicker.RoundStartTimeSpan);
         component.ShuttleRecordsList.Add(record);
     }
 

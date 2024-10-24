@@ -115,14 +115,15 @@ public enum LogType
     /// Storage & entity-storage related interactions
     /// </summary>
     Storage = 93,
-    
+
     /// <summary>
     /// A player got hit by an explosion and was dealt damage.
     /// </summary>
     ExplosionHit = 94,
 
-    // Frontier Station Spesific
+    // Frontier Station Specific
     ATMUsage = 200,
     ShipYardUsage = 201,
+    ShuttleRecordsUsage = 202,
 
 }
