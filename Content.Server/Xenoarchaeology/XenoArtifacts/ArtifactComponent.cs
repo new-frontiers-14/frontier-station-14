@@ -93,6 +93,18 @@ public sealed partial class ArtifactComponent : Component
     };
 
     [DataField("activateActionEntity")] public EntityUid? ActivateActionEntity;
+
+    /// <summary>
+    /// Frontier: When set to true, any newly visited nodes contribute no new points.
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite)]
+    public bool RemoveGainedPoints = false;
+
+    /// <summary>
+    /// Frontier: Points being skipped (e.g. by triggering a node through spraying an artifact).
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite)]
+    public int SkippedPoints;
 }
 
 /// <summary>
