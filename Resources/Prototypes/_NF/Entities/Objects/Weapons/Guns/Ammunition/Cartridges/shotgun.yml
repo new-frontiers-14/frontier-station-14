@@ -1,0 +1,14 @@
+
+- type: entity
+  id: ShellShotgunNet
+  name: shell (.50 net)
+  parent: BaseShellShotgun
+  components:
+  - type: Sprite
+    layers:
+      - state: beanbag
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: CartridgeAmmo
+    proto: Bola # PelletShotgunNet
+  - type: SpentAmmoVisuals
+    state: "beanbag"

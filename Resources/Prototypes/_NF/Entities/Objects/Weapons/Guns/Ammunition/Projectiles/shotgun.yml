@@ -1,0 +1,22 @@
+
+- type: entity
+  id: PelletShotgunNet
+  name: net (.50)
+  categories: [ HideSpawnMenu ]
+  parent: BaseBullet
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    state: buckshot
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 10
+  - type: Ensnaring
+    freeTime: 2.0
+    breakoutTime: 3.5 #all bola should generally be fast to remove
+    walkSpeed: 0.7 #makeshift bola shouldn't slow too much
+    sprintSpeed: 0.7
+    staminaDamage: 20 # Sudden weight increase sapping stamina
+    #canThrowTrigger: true
+    canMoveBreakout: true
