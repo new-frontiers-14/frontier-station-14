@@ -1,0 +1,43 @@
+# Author Info
+# GitHub: SergeantEcho
+# Discord: SergeantEcho
+
+# Maintainer Info
+# GitHub: SergeantEcho
+# Discord: SergeantEcho
+
+- type: vessel
+  id: AuroraX
+  name: NC AuroraX
+  description: A used medium-class ship with all the departments of a conventional Nanotrasen station, and also to provide other ships with everything they need. Recommended for a team of 4-8 people
+  price: 122000
+  category: Medium
+  group: Scrap
+  shuttlePath: /Maps/_NF/Shuttles/Scrap/aurorax.yml
+  guidebookPage: Null
+  class:
+  - Scrapyard
+  - Civilian
+  engine:
+  - Uranium
+  - Solar
+
+- type: gameMap
+  id: AuroraX
+  mapName: 'NC AuroraX'
+  mapPath: /Maps/_NF/Shuttles/Scrap/aurorax.yml
+  minPlayers: 0
+  stations:
+    AuroraX:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'AuroraX {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]
