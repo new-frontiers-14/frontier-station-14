@@ -5,10 +5,88 @@
   parent: BaseShellShotgun
   components:
   - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
     layers:
-      - state: beanbag
+      - state: net
         map: [ "enum.AmmoVisualLayers.Base" ]
   - type: CartridgeAmmo
-    proto: Bola # PelletShotgunNet
+    proto: Bola
   - type: SpentAmmoVisuals
-    state: "beanbag"
+    state: "net"
+
+- type: entity
+  id: ShellShotgunLaser
+  name: shell (.50 laser)
+  parent: BaseShellShotgun
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
+    layers:
+      - state: energy
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: CartridgeAmmo
+    proto: BulletEnergyGunLaser
+  - type: SpentAmmoVisuals
+    state: "energy"
+
+- type: entity
+  id: ShellShotgunDisabler
+  name: shell (.50 disabler)
+  parent: BaseShellShotgun
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
+    layers:
+      - state: disabler
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: CartridgeAmmo
+    proto: BulletDisabler # 4 hits to stun (like beanbag), alt: BulletDisablerSmg - 8 hits to stun
+  - type: SpentAmmoVisuals
+    state: "disabler"
+
+- type: entity
+  id: ShellShotgunHighExSlug
+  name: shell (.50 high-ex slug)
+  parent: BaseShellShotgun
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
+    layers:
+      - state: highex
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: CartridgeAmmo
+    proto: PelletShotgunHighExSlug
+  - type: SpentAmmoVisuals
+    state: "highex"
+
+- type: entity # TODO: add chem transfer mechanics from syringe gun once available
+  id: ShellShotgunSyringe
+  name: shell (.50 syringe)
+  parent: BaseShellShotgun
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
+    layers:
+      - state: syringe
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: syringe-fill-1
+        map: ["enum.SolutionContainerLayers.Fill"]
+        visible: false
+  - type: CartridgeAmmo
+    proto: PelletShotgunTranquilizer
+  - type: ChemicalAmmo
+  - type: SolutionContainerManager
+    solutions:
+      ammo:
+        maxVol: 2
+  - type: RefillableSolution
+    solution: ammo
+  - type: DrainableSolution
+    solution: ammo
+  - type: SolutionTransfer
+    maxTransferAmount: 2
+  - type: SpentAmmoVisuals
+    state: "syringe"
+  - type: SolutionContainerVisuals
+    maxFillLevels: 4
+    fillBaseName: syringe-fill-
