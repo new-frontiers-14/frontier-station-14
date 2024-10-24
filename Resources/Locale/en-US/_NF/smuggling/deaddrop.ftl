@@ -15,3 +15,4 @@ deaddrop-faxed-hint-name = suspicious fax
 deaddrop-faxed-hint-content = 
     Not much time.
     Spinward Syndicate needs help.
+deaddrop-faxed-hint-signature = Syndicate Logistics
