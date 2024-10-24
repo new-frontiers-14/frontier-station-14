@@ -492,7 +492,7 @@
     - ProtolatheMachineCircuitboard
     - AutolatheMachineCircuitboard
     - CircuitImprinterMachineCircuitboard
-    - BiogeneratorMachineCircuitboard
+    # - BiogeneratorMachineCircuitboard # Frontier
     - OreProcessorMachineCircuitboard
     - ElectrolysisUnitMachineCircuitboard
     - CentrifugeMachineCircuitboard
@@ -524,7 +524,7 @@
       - ChemMasterMachineCircuitboard
       - ChemDispenserMachineCircuitboard
       - BiomassReclaimerMachineCircuitboard
-      - BiofabricatorMachineCircuitboard
+      - BiogeneratorMachineCircuitboard # Frontier BiofabricatorMachineCircuitboard<BiogeneratorMachineCircuitboard
       - SurveillanceCameraRouterCircuitboard
       - SurveillanceCameraMonitorCircuitboard
       - SurveillanceWirelessCameraMonitorCircuitboard
@@ -747,6 +747,7 @@
   parent: BaseLathe
   name: biocube fabricator
   description: Produces animal cubes using biomass.
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: Sprite
     sprite: Structures/Machines/biofabricator.rsi
@@ -1327,9 +1328,17 @@
     - BioGenSugar
     - BioGenMonkeyCube
     - BioGenKoboldCube
+    - CowCube # Frontier: copied from Biofabricator above
+    - GoatCube # Frontier
+    - MothroachCube # Frontier
+    - MouseCube # Frontier
+    - CockroachCube # Frontier
     - BioGenMaterialCloth1
     - BioGenMaterialCardboard1
     - BioGenPaper
+    - NFBioGenWoodPlank # Frontier
+    - NFBioGenPaperSheet # Frontier
+    - NFBioGenSheetPlastic # Frontier
     - BioGenPaperRolling1
     - BioGenCandle
     - BioGenPlantBGone
@@ -1338,6 +1347,11 @@
     - BioGenLeft4Zed
     - BioGenEZNutrient
     - BioGenRobustHarvest
+  - type: EmagLatheRecipes # Frontier
+    emagStaticRecipes: # Frontier
+    - AbominationCube # Frontier
+    - SpaceCarpCube # Frontier
+    - SpaceTickCube # Frontier
 
 - type: entity
   parent: BaseLathe

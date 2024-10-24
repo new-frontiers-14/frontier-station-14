@@ -93,7 +93,8 @@ public sealed partial class CloningPodComponent : Component
     /// amount of biomass needed to clone.
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite)]
-    public float BiomassRequirementMultiplier = 1;
+    /// Frontier: BiomassRequirementMultiplier = 1<5;
+    public float BiomassRequirementMultiplier = 5;
 
     /// <summary>
     /// The machine part that decreases the amount of material needed for cloning
