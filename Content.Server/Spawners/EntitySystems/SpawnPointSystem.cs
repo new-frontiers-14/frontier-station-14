@@ -36,7 +36,7 @@ public sealed class SpawnPointSystem : EntitySystem
             if (args.DesiredSpawnPointType != SpawnPointType.Unset)
             {
                 var isMatchingJob = spawnPoint.SpawnType == SpawnPointType.Job &&
-                    (args.Job == null || spawnPoint.Job == args.Job.Prototype);
+                    (args.Job == null || spawnPoint.Job == args.Job);
 
                 switch (args.DesiredSpawnPointType)
                 {

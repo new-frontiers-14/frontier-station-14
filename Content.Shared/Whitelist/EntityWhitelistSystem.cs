@@ -112,7 +112,29 @@ public sealed class EntityWhitelistSystem : EntitySystem
     public bool IsPrototypeValid(EntityWhitelist list, EntityPrototype prototype)
     {
         if (list.Components != null)
-            EnsureRegistrations(list);
+        {
+            var regs = StringsToRegs(list.Components);
+
+            list.Registrations ??= new List<ComponentRegistration>();
+            list.Registrations.AddRange(regs);
+        }
+
+        // FRONTIER MERGE: TODO - fix mind role prototype check
+        // if (list.MindRoles != null)
+        // {
+        //     var regs = StringsToRegs(list.MindRoles);
+
+        //     foreach (var role in regs)
+        //     {
+        //         if (_roles.MindHasRole(uid, role.Type, out _))
+        //         {
+        //             if (!list.RequireAll)
+        //                 return true;
+        //         }
+        //         else if (list.RequireAll)
+        //             return false;
+        //     }
+        // }
 
         if (list.Registrations != null)
         {
