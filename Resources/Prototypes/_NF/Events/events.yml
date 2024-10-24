@@ -184,9 +184,8 @@
 #       min: 1
 #       max: 1
 #       pickPlayer: false
-#       mindComponents:
-#       - type: DragonRole
-#         prototype: Dragon
+#       mindRoles:
+#       - MindRoleDragon
 
 # - type: entity
 #   parent: BaseGameRule
@@ -234,9 +233,8 @@
 #         nameSegments:
 #         - names_ninja_title
 #         - names_ninja
-#       mindComponents:
-#       - type: NinjaRole
-#         prototype: SpaceNinja
+#       mindRoles:
+#       - MindRoleNinja
 
 # - type: entity
 #   parent: BaseGameRule
@@ -454,9 +452,8 @@
 #       - type: ZombifyOnDeath
 #       - type: IncurableZombie
 #       - type: InitialInfected
-#       mindComponents:
-#       - type: InitialInfectedRole
-#         prototype: InitialInfected
+#      mindRoles:
+#      - MindRoleInitialInfected
 
 # - type: entity
 #   parent: BaseNukeopsRule
@@ -481,7 +478,6 @@
 #       startingGear: SyndicateLoneOperativeGearFull
 #       roleLoadout:
 #       - RoleSurvivalNukie
-
 #       components:
 #       - type: NukeOperative
 #       - type: RandomMetadata
@@ -491,9 +487,8 @@
 #       - type: NpcFactionMember
 #         factions:
 #         - Syndicate
-#       mindComponents:
-#       - type: NukeopsRole
-#         prototype: Nukeops
+#      mindRoles:
+#      - MindRoleNukeops
 
 # - type: entity
 #   parent: BaseTraitorRule
@@ -520,9 +515,8 @@
 #       blacklist:
 #         components:
 #         - AntagImmune
-#       mindComponents:
-#       - type: TraitorRole
-#         prototype: TraitorSleeper
+#      mindRoles:
+#      - MindRoleTraitorSleeper
 
 - type: entity
   id: MassHallucinations
