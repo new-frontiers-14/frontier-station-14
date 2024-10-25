@@ -41,7 +41,7 @@ public sealed class RandomFaxRule : StationEventSystem<RandomFaxRuleComponent>
     {
         base.Started(uid, component, gameRule, args);
 
-        var numFaxes = _random.Next(component.MinFaxes, component.MaxFaxes);
+        var numFaxes = _random.Next(component.MinFaxes, component.MaxFaxes + 1);
 
         List<EntityUid> stations = new();
         int retries = 0;
@@ -118,6 +118,7 @@ public sealed class RandomFaxRule : StationEventSystem<RandomFaxRuleComponent>
                 _faxSystem.Receive(faxUid, printout, recipientAddress, faxComp);
                 break;
             }
+            stations.Add(chosenStation.Value);
             faxesSent++;
         }
     }
