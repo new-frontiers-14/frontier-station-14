@@ -27,14 +27,3 @@
           steps:
             - tool: Digging
               doAfter: 5
-    - node: hydroponicsSoil
-      entity: hydroponicsSoil
-      edges:
-        - to: start
-          completed:
-            - !type:SpawnPrototype
-              prototype: HydroponicsSoilEmptyFlatpack
-              amount: 1
-          steps:
-            - tool: Digging
-              doAfter: 5
