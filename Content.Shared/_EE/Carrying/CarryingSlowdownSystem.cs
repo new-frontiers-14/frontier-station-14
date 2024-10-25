@@ -31,13 +31,12 @@ namespace Content.Shared.Carrying
 
         private void OnHandleState(EntityUid uid, CarryingSlowdownComponent component, ref ComponentHandleState args)
         {
-            if (args.Current is CarryingSlowdownComponentState state)
-            {
-                component.WalkModifier = state.WalkModifier;
-                component.SprintModifier = state.SprintModifier;
+            if (args.Current is not CarryingSlowdownComponentState state)
+                return;
 
-                _movementSpeed.RefreshMovementSpeedModifiers(uid);
-            }
+            component.WalkModifier = state.WalkModifier;
+            component.SprintModifier = state.SprintModifier;
+            _movementSpeed.RefreshMovementSpeedModifiers(uid);
         }
         private void OnRefreshMoveSpeed(EntityUid uid, CarryingSlowdownComponent component, RefreshMovementSpeedModifiersEvent args)
         {
