@@ -1,0 +1,388 @@
+# Base prototypes
+
+- type: latheRecipe
+  abstract: true
+  id: NFBaseEVASuitRecipe
+  category: EVASuits
+  applyMaterialDiscount: false
+  completetime: 5
+  materials:
+    Steel: 150
+    Cloth: 100
+    Durathread: 300
+
+- type: latheRecipe
+  abstract: true
+  id: NFBaseEVAHelmetRecipe
+  parent: NFBaseEVASuitRecipe
+  completetime: 4
+  materials:
+    Glass: 200
+    Steel: 300
+    Cloth: 50
+    Durathread: 50
+
+- type: latheRecipe
+  abstract: true
+  id: NFBaseHardSuitRecipe
+  parent: NFBaseEVASuitRecipe
+  completetime: 8
+  materials:
+    Glass: 500
+    Plastic: 2000
+    Steel: 2000
+    Durathread: 2000
+    Silver: 1500
+    Gold: 1000
+
+- type: latheRecipe
+  abstract: true
+  id: NFBaseHardSuitArmoredRecipe
+  parent: NFBaseEVASuitRecipe
+  completetime: 8
+  materials:
+    Glass: 500
+    Plastic: 2000
+    Plasteel: 2000
+    Durathread: 2000
+    Silver: 1500
+    Gold: 1000
+
+- type: latheRecipe
+  abstract: true
+  id: NFBaseMagBootsRecipe
+  parent: NFBaseEVASuitRecipe
+  completetime: 8
+  materials:
+    Silver: 1000
+    Gold: 500
+
+# Recipes
+
+# Softsuits
+
+# - type: latheRecipe
+  # id: ClothingOuterSuitEmergency
+  # parent: NFBaseEVASuitRecipe
+  # result: ClothingOuterSuitEmergency
+
+- type: latheRecipe
+  id: ClothingOuterEVASuitHydro
+  parent: NFBaseEVASuitRecipe
+  result: ClothingOuterEVASuitHydro
+
+- type: latheRecipe
+  id: ClothingOuterEVASuitMailman
+  parent: NFBaseEVASuitRecipe
+  result: ClothingOuterEVASuitMailman
+
+# - type: latheRecipe
+  # id: ClothingOuterHardsuitEVA
+  # parent: NFBaseEVASuitRecipe
+  # result: ClothingOuterHardsuitEVA
+
+- type: latheRecipe
+  id: ClothingOuterHardsuitVoidParamed
+  parent: NFBaseEVASuitRecipe
+  result: ClothingOuterHardsuitVoidParamed
+  materials:
+    Plastic: 1000
+    Steel: 1000
+    Cloth: 300
+    Durathread: 2500
+    Silver: 1000
+
+- type: latheRecipe
+  id: ClothingOuterHardsuitEVAPrisoner
+  parent: NFBaseEVASuitRecipe
+  result: ClothingOuterHardsuitEVAPrisoner
+
+- type: latheRecipe # Probably should be available via T2-T3
+  id: ClothingOuterHardsuitAncientEVA
+  parent: NFBaseEVASuitRecipe
+  result: ClothingOuterHardsuitAncientEVA
+  materials:
+    Glass: 500
+    Plasteel: 1500
+    Durathread: 2500
+
+- type: latheRecipe # EMAG
+  id: ClothingOuterHardsuitSyndicate
+  parent: NFBaseEVASuitRecipe
+  result: ClothingOuterHardsuitSyndicate
+  materials:
+    Steel: 200
+    Cloth: 300
+    Durathread: 600
+
+- type: latheRecipe
+  id: ClothingOuterEVASuitContractor
+  parent: NFBaseEVASuitRecipe
+  result: ClothingOuterEVASuitContractor
+
+- type: latheRecipe
+  id: ClothingOuterEVASuitCaptain
+  parent: NFBaseEVASuitRecipe
+  result: ClothingOuterEVASuitCaptain
+
+- type: latheRecipe
+  id: ClothingOuterEVASuitEngineer
+  parent: NFBaseEVASuitRecipe
+  result: ClothingOuterEVASuitEngineer
+
+- type: latheRecipe
+  id: ClothingOuterEVASuitAtmosTech
+  parent: NFBaseEVASuitRecipe
+  result: ClothingOuterEVASuitAtmosTech
+
+- type: latheRecipe
+  id: ClothingOuterEVASuitCargo
+  parent: NFBaseEVASuitRecipe
+  result: ClothingOuterEVASuitCargo
+
+- type: latheRecipe
+  id: ClothingOuterEVASuitSalvage
+  parent: NFBaseEVASuitRecipe
+  result: ClothingOuterEVASuitSalvage
+
+- type: latheRecipe
+  id: ClothingOuterEVASuitMedic
+  parent: NFBaseEVASuitRecipe
+  result: ClothingOuterEVASuitMedic
+
+- type: latheRecipe
+  id: ClothingOuterEVASuitScientist
+  parent: NFBaseEVASuitRecipe
+  result: ClothingOuterEVASuitScientist
+
+- type: latheRecipe
+  id: ClothingOuterEVASuitJanitor
+  parent: NFBaseEVASuitRecipe
+  result: ClothingOuterEVASuitJanitor
+
+- type: latheRecipe
+  id: ClothingOuterEVASuitServiceWorker
+  parent: NFBaseEVASuitRecipe
+  result: ClothingOuterEVASuitServiceWorker
+
+- type: latheRecipe
+  id: ClothingOuterEVASuitPilot
+  parent: NFBaseEVASuitRecipe
+  result: ClothingOuterEVASuitPilot
+
+- type: latheRecipe
+  id: ClothingOuterEVASuitMercenary
+  parent: NFBaseEVASuitRecipe
+  result: ClothingOuterEVASuitMercenary
+
+- type: latheRecipe
+  id: ClothingOuterEVASuitPrivateSec
+  parent: NFBaseEVASuitRecipe
+  result: ClothingOuterEVASuitPrivateSec
+
+- type: latheRecipe
+  id: ClothingOuterEVASuitNfsd
+  parent: NFBaseEVASuitRecipe
+  result: ClothingOuterEVASuitNfsd
+
+- type: latheRecipe
+  id: ClothingOuterEVASuitChaplain
+  parent: NFBaseEVASuitRecipe
+  result: ClothingOuterEVASuitChaplain
+
+- type: latheRecipe
+  id: ClothingOuterEVASuitBoxerRed
+  parent: NFBaseEVASuitRecipe
+  result: ClothingOuterEVASuitBoxerRed
+
+- type: latheRecipe
+  id: ClothingOuterEVASuitBoxerGreen
+  parent: NFBaseEVASuitRecipe
+  result: ClothingOuterEVASuitBoxerGreen
+
+- type: latheRecipe
+  id: ClothingOuterEVASuitBoxerBlue
+  parent: NFBaseEVASuitRecipe
+  result: ClothingOuterEVASuitBoxerBlue
+
+- type: latheRecipe
+  id: ClothingOuterEVASuitBoxerYellow
+  parent: NFBaseEVASuitRecipe
+  result: ClothingOuterEVASuitBoxerYellow
+
+# EVA helmets
+- type: latheRecipe
+  id: ClothingHeadHelmetEVA
+  parent: NFBaseEVAHelmetRecipe
+  result: ClothingHeadHelmetEVA
+
+- type: latheRecipe
+  id: ClothingHeadHelmetEVALarge
+  parent: NFBaseEVAHelmetRecipe
+  result: ClothingHeadHelmetEVALarge
+
+# - type: latheRecipe # Probably should be available via T2-T3
+  # id: ClothingHeadHelmetAncient
+  # parent: NFBaseEVAHelmetRecipe
+  # result: ClothingHeadHelmetAncient
+  # materials:
+    # Glass: 500
+    # Plasteel: 500
+    # Durathread: 100
+
+- type: latheRecipe # idk EMAG
+  id: ClothingHeadHelmetCosmonaut
+  parent: NFBaseEVAHelmetRecipe
+  result: ClothingHeadHelmetCosmonaut
+
+- type: latheRecipe # EMAG
+  id: ClothingHeadHelmetSyndicate
+  parent: NFBaseEVAHelmetRecipe
+  result: ClothingHeadHelmetSyndicate
+
+# Basic hardsuits (T1 research)
+- type: latheRecipe
+  id: ClothingOuterHardsuitBasic
+  parent: NFBaseHardSuitRecipe
+  result: ClothingOuterHardsuitBasic
+  materials:
+    Glass: 300
+    Steel: 2000
+    Cloth: 300
+    Durathread: 1500
+    Silver: 1000
+
+# Departmental hardsuits (T2 research)
+- type: latheRecipe
+  id: ClothingOuterHardsuitAtmos
+  parent: NFBaseHardSuitRecipe
+  result: ClothingOuterHardsuitAtmos
+
+- type: latheRecipe
+  id: ClothingOuterHardsuitEngineering
+  parent: NFBaseHardSuitRecipe
+  result: ClothingOuterHardsuitEngineering
+
+- type: latheRecipe
+  id: ClothingOuterHardsuitSpatio
+  parent: NFBaseHardSuitRecipe
+  result: ClothingOuterHardsuitSpatio
+
+- type: latheRecipe
+  id: ClothingOuterHardsuitSalvage
+  parent: NFBaseHardSuitRecipe
+  result: ClothingOuterHardsuitSalvage
+
+- type: latheRecipe
+  id: ClothingOuterHardsuitClown
+  parent: NFBaseHardSuitRecipe
+  result: ClothingOuterHardsuitClown
+
+- type: latheRecipe
+  id: ClothingOuterHardsuitMime
+  parent: NFBaseHardSuitRecipe
+  result: ClothingOuterHardsuitMime
+
+- type: latheRecipe # EMAG (honestly, not particularly good stats on this one)
+  id: ClothingOuterHardsuitPirateEVA
+  parent: NFBaseHardSuitRecipe
+  result: ClothingOuterHardsuitPirateEVA
+
+- type: latheRecipe
+  id: ClothingOuterHardsuitPilot
+  parent: NFBaseHardSuitRecipe
+  result: ClothingOuterHardsuitPilot
+
+- type: latheRecipe
+  id: ClothingOuterHardsuitMercenary
+  parent: NFBaseHardSuitRecipe
+  result: ClothingOuterHardsuitMercenary
+    
+- type: latheRecipe
+  id: ClothingOuterHardsuitPrivateSecurity
+  parent: NFBaseHardSuitRecipe
+  result: ClothingOuterHardsuitPrivateSecurity  
+
+- type: latheRecipe
+  id: ClothingOuterHardsuitBrigmedic
+  parent: NFBaseHardSuitRecipe
+  result: ClothingOuterHardsuitBrigmedic
+
+# Departmental heads hardsuits (T3 research)
+- type: latheRecipe
+  id: ClothingOuterHardsuitCap
+  parent: NFBaseHardSuitArmoredRecipe
+  result: ClothingOuterHardsuitCap
+
+- type: latheRecipe
+  id: ClothingOuterHardsuitScaf
+  parent: NFBaseHardSuitArmoredRecipe
+  result: ClothingOuterHardsuitScaf
+
+- type: latheRecipe
+  id: ClothingOuterHardsuitEngineeringWhite
+  parent: NFBaseHardSuitArmoredRecipe
+  result: ClothingOuterHardsuitEngineeringWhite
+
+- type: latheRecipe
+  id: ClothingOuterHardsuitMedical
+  parent: NFBaseHardSuitArmoredRecipe
+  result: ClothingOuterHardsuitMedical
+  materials:
+    Glass: 500
+    Plastic: 2000
+    Steel: 1000
+    Plasteel: 1000
+    Durathread: 2000
+    Silver: 1500
+    Gold: 1000
+
+- type: latheRecipe
+  id: ClothingOuterHardsuitRd
+  parent: NFBaseHardSuitArmoredRecipe
+  result: ClothingOuterHardsuitRd
+
+- type: latheRecipe
+  id: ClothingOuterHardsuitLuxury
+  parent: NFBaseHardSuitArmoredRecipe
+  result: ClothingOuterHardsuitLuxury
+
+- type: latheRecipe
+  id: ClothingOuterHardsuitMaximPrototype
+  parent: NFBaseHardSuitArmoredRecipe
+  result: ClothingOuterHardsuitMaximPrototype
+  materials:
+    Glass: 500
+    Plastic: 2000
+    Plasteel: 3000
+    Durathread: 2000
+    Silver: 1000
+    Gold: 2000
+
+# Better security hardsuits (T3 Research)
+
+- type: latheRecipe
+  id: ClothingOuterHardsuitSecurity
+  parent: NFBaseHardSuitArmoredRecipe
+  result: ClothingOuterHardsuitSecurity
+
+- type: latheRecipe
+  id: ClothingOuterHardsuitWarden
+  parent: NFBaseHardSuitArmoredRecipe
+  result: ClothingOuterHardsuitWarden
+
+# Magboots
+- type: latheRecipe
+  id: ClothingShoesBootsMagAdv
+  parent: NFBaseMagBootsRecipe
+  result: ClothingShoesBootsMagAdv
+
+- type: latheRecipe
+  id: ClothingShoesBootsMagCombat
+  parent: NFBaseMagBootsRecipe
+  result: ClothingShoesBootsMagCombat
+
+- type: latheRecipe
+  id: ClothingShoesBootsMagMercenary
+  parent: NFBaseMagBootsRecipe
+  result: ClothingShoesBootsMagMercenary

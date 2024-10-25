@@ -1,745 +1,515 @@
+# Base prototypes
+
+- type: latheRecipe
+  id: BasePrizeRecipe
+  applyMaterialDiscount: false
+  completetime: 4
+
+- type: latheRecipe
+  id: BasePrize10Recipe
+  parent: BasePrizeRecipe
+  materials:
+    PrizeTicket: 10
+
+- type: latheRecipe
+  id: BasePrize15Recipe
+  parent: BasePrizeRecipe
+  materials:
+    PrizeTicket: 15
+
+- type: latheRecipe
+  id: BasePrize20Recipe
+  parent: BasePrizeRecipe
+  materials:
+    PrizeTicket: 20
+
+- type: latheRecipe
+  id: BasePrize50Recipe
+  parent: BasePrizeRecipe
+  materials:
+    PrizeTicket: 50
+
+# Recipes
+
 - type: latheRecipe
   id: PrizeBallRecipe
   result: PrizeBall
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 50
+  parent: BasePrize50Recipe
 
 - type: latheRecipe
   id: PlushieHampterRecipe
   result: PlushieHampter
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 15
+  parent: BasePrize15Recipe
 
 - type: latheRecipe
   id: PlushieVulpRecipe
   result: PlushieVulp
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 15
+  parent: BasePrize15Recipe
 
 - type: latheRecipe
   id: PlushieMothRecipe
   result: PlushieMoth
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 15
+  parent: BasePrize15Recipe
 
 - type: latheRecipe
   id: PlushieBeeRecipe
   result: PlushieBee
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 15
+  parent: BasePrize15Recipe
 
 - type: latheRecipe
   id: PlushieLizardRecipe
   result: PlushieLizard
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 15
+  parent: BasePrize15Recipe
 
 - type: latheRecipe
   id: PlushieSpaceLizardRecipe
   result: PlushieSpaceLizard
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 15
+  parent: BasePrize15Recipe
 
 - type: latheRecipe
   id: PlushieVoxRecipe
   result: PlushieVox
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 15
+  parent: BasePrize15Recipe
 
 - type: latheRecipe
   id: PlushieMoffRecipe
   result: PlushieMoff
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 15
+  parent: BasePrize15Recipe
 
 - type: latheRecipe
   id: PlushieMoffsicianRecipe
   result: PlushieMoffsician
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 15
+  parent: BasePrize15Recipe
 
 - type: latheRecipe
   id: PlushieMoffbarRecipe
   result: PlushieMoffbar
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 15
+  parent: BasePrize15Recipe
 
 - type: latheRecipe
   id: PlushieDionaRecipe
   result: PlushieDiona
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 15
+  parent: BasePrize15Recipe
 
 - type: latheRecipe
   id: PlushieSharkGreyRecipe
   result: PlushieSharkGrey
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 15
+  parent: BasePrize15Recipe
 
 - type: latheRecipe
   id: PlushieSharkBlueRecipe
   result: PlushieSharkBlue
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 15
+  parent: BasePrize15Recipe
 
 - type: latheRecipe
   id: PlushieSharkPinkRecipe
   result: PlushieSharkPink
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 15
+  parent: BasePrize15Recipe
 
 - type: latheRecipe
   id: PlushieRatvarRecipe
   result: PlushieRatvar
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 15
+  parent: BasePrize15Recipe
 
 - type: latheRecipe
   id: PlushieNarRecipe
   result: PlushieNar
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 15
+  parent: BasePrize15Recipe
 
 - type: latheRecipe
   id: PlushieSlimeRecipe
   result: PlushieSlime
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 15
+  parent: BasePrize15Recipe
 
 - type: latheRecipe
   id: PlushieSnakeRecipe
   result: PlushieSnake
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 15
+  parent: BasePrize15Recipe
 
 - type: latheRecipe
   id: PlushieCarpRecipe
   result: PlushieCarp
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 15
+  parent: BasePrize15Recipe
 
 - type: latheRecipe
   id: PlasticBananaRecipe
   result: PlasticBanana
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 10
+  parent: BasePrize10Recipe
 
 - type: latheRecipe
   id: BeachBallRecipe
   result: BeachBall
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 20
+  parent: BasePrize20Recipe
 
 - type: latheRecipe
   id: BasketballRecipe
   result: Basketball
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 20
+  parent: BasePrize20Recipe
 
 - type: latheRecipe
   id: FootballRecipe
   result: Football
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 20
+  parent: BasePrize20Recipe
 
 - type: latheRecipe
   id: ToyHammerRecipe
   result: ToyHammer
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 10
+  parent: BasePrize10Recipe
 
 - type: latheRecipe
   id: WhoopieCushionRecipe
   result: WhoopieCushion
-  applyMaterialDiscount: false
-  completetime: 0.1
+  parent: BasePrizeRecipe
   materials:
     PrizeTicket: 25
 
 - type: latheRecipe
   id: ClownRecorderRecipe
   result: ClownRecorder
-  applyMaterialDiscount: false
-  completetime: 0.1
+  parent: BasePrizeRecipe
   materials:
     PrizeTicket: 25
 
 - type: latheRecipe
   id: PonderingOrbRecipe
   result: PonderingOrb
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 10
+  parent: BasePrize10Recipe
 
 - type: latheRecipe
   id: CrayonBoxRecipe
   result: CrayonBox
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 10
+  parent: BasePrize10Recipe
 
 - type: latheRecipe
   id: CrayonRainbowRecipe
   result: CrayonRainbow
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 20
+  parent: BasePrize20Recipe
 
 - type: latheRecipe
   id: PlushieLampRecipe
   result: PlushieLamp
-  applyMaterialDiscount: false
-  completetime: 0.1
+  parent: BasePrizeRecipe
   materials:
     PrizeTicket: 35
 
 - type: latheRecipe
   id: PlushieAtmosianRecipe
   result: PlushieAtmosian
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 15
+  parent: BasePrize15Recipe
 
 - type: latheRecipe
   id: PlushieRounyRecipe
   result: PlushieRouny
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 15
+  parent: BasePrize15Recipe
 
 - type: latheRecipe
   id: PlushieXenoRecipe
   result: PlushieXeno
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 15
+  parent: BasePrize15Recipe
 
 - type: latheRecipe
   id: FoamCrossbowRecipe
   result: FoamCrossbow
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 50
+  parent: BasePrize50Recipe
 
 - type: latheRecipe
   id: BoxDonkSoftBoxRecipe
   result: BoxDonkSoftBox
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 15
+  parent: BasePrize15Recipe
 
 - type: latheRecipe
   id: RevolverCapGunRecipe
   result: RevolverCapGun
-  applyMaterialDiscount: false
-  completetime: 0.1
+  parent: BasePrizeRecipe
   materials:
     PrizeTicket: 80
 
 - type: latheRecipe
   id: BoxCartridgeCapRecipe
   result: BoxCartridgeCap
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 20
+  parent: BasePrize20Recipe
 
 - type: latheRecipe
   id: ToyAmongPequenoRecipe
   result: ToyAmongPequeno
-  applyMaterialDiscount: false
-  completetime: 0.1
+  parent: BasePrizeRecipe
   materials:
     PrizeTicket: 100
 
 - type: latheRecipe
   id: FoamCutlassRecipe
   result: FoamCutlass
-  applyMaterialDiscount: false
-  completetime: 0.1
+  parent: BasePrizeRecipe
   materials:
     PrizeTicket: 30
 
 - type: latheRecipe
   id: FoamBladeRecipe
   result: FoamBlade
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 20
+  parent: BasePrize20Recipe
 
 - type: latheRecipe
   id: ToyRubberDuckRecipe
   result: ToyRubberDuck
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 10
+  parent: BasePrize10Recipe
 
 - type: latheRecipe
   id: ToyMouseRecipe
   result: ToyMouse
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 10
+  parent: BasePrize10Recipe
 
 - type: latheRecipe
   id: ToyAiRecipe
   result: ToyAi
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 10
+  parent: BasePrize10Recipe
 
 - type: latheRecipe
   id: ToyGriffinRecipe
   result: ToyGriffin
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 10
+  parent: BasePrize10Recipe
 
 - type: latheRecipe
   id: ToyHonkRecipe
   result: ToyHonk
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 10
+  parent: BasePrize10Recipe
 
 - type: latheRecipe
   id: ToyIanRecipe
   result: ToyIan
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 10
+  parent: BasePrize10Recipe
 
 - type: latheRecipe
   id: ToyMarauderRecipe
   result: ToyMarauder
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 10
+  parent: BasePrize10Recipe
 
 - type: latheRecipe
   id: ToyGygaxRecipe
   result: ToyGygax
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 10
+  parent: BasePrize10Recipe
 
 - type: latheRecipe
   id: ToyOdysseusRecipe
   result: ToyOdysseus
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 10
+  parent: BasePrize10Recipe
 
 - type: latheRecipe
   id: ToyOwlmanRecipe
   result: ToyOwlman
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 10
+  parent: BasePrize10Recipe
 
 - type: latheRecipe
   id: ToyPhazonRecipe
   result: ToyPhazon
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 10
+  parent: BasePrize10Recipe
 
 - type: latheRecipe
   id: ToyFireRipleyRecipe
   result: ToyFireRipley
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 10
+  parent: BasePrize10Recipe
 
 - type: latheRecipe
   id: ToyReticenceRecipe
   result: ToyReticence
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 10
+  parent: BasePrize10Recipe
 
 - type: latheRecipe
   id: ToyRipleyRecipe
   result: ToyRipley
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 10
+  parent: BasePrize10Recipe
 
 - type: latheRecipe
   id: ToySeraphRecipe
   result: ToySeraph
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 10
+  parent: BasePrize10Recipe
 
 - type: latheRecipe
   id: ToyDurandRecipe
   result: ToyDurand
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 10
+  parent: BasePrize10Recipe
 
 - type: latheRecipe
   id: ToySkeletonRecipe
   result: ToySkeleton
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 10
+  parent: BasePrize10Recipe
 
 - type: latheRecipe
   id: FaceHuggerPlushieRecipe
   result: FaceHuggerPlushie
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 50
+  parent: BasePrize50Recipe
 
 - type: latheRecipe
   id: PetRockCarrierkRecipe
   result: PetRockCarrier
-  applyMaterialDiscount: false
-  completetime: 0.1
+  parent: BasePrizeRecipe
   materials:
     PrizeTicket: 100
 
 - type: latheRecipe
   id: PlushieGnomeRecipe
   result: PlushieGnome
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 15
+  parent: BasePrize15Recipe
 
 - type: latheRecipe
   id: PlushieLoveableRecipe
   result: PlushieLoveable
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 15
+  parent: BasePrize15Recipe
 
 - type: latheRecipe
   id: PlushieDeerRecipe
   result: PlushieDeer
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 15
+  parent: BasePrize15Recipe
 
 - type: latheRecipe
   id: PlushieIpcRecipe
   result: PlushieIpc
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 15
+  parent: BasePrize15Recipe
 
 - type: latheRecipe
   id: PlushieGreyRecipe
   result: PlushieGrey
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 15
+  parent: BasePrize15Recipe
 
 - type: latheRecipe
   id: PlushieRedFoxRecipe
   result: PlushieRedFox
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 15
+  parent: BasePrize15Recipe
 
 - type: latheRecipe
   id: PlushiePurpleFoxRecipe
   result: PlushiePurpleFox
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 15
+  parent: BasePrize15Recipe
 
 - type: latheRecipe
   id: PlushiePinkFoxRecipe
   result: PlushiePinkFox
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 15
+  parent: BasePrize15Recipe
 
 - type: latheRecipe
   id: PlushieOrangeFoxRecipe
   result: PlushieOrangeFox
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 15
+  parent: BasePrize15Recipe
 
 - type: latheRecipe
   id: PlushieMarbleFoxRecipe
   result: PlushieMarbleFox
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 15
+  parent: BasePrize15Recipe
 
 - type: latheRecipe
   id: PlushieCrimsonFoxRecipe
   result: PlushieCrimsonFox
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 15
+  parent: BasePrize15Recipe
 
 - type: latheRecipe
   id: PlushieCoffeeFoxRecipe
   result: PlushieCoffeeFox
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 15
+  parent: BasePrize15Recipe
 
 - type: latheRecipe
   id: PlushieBlueFoxRecipe
   result: PlushieBlueFox
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 15
+  parent: BasePrize15Recipe
 
 - type: latheRecipe
   id: PlushieBlackFoxRecipe
   result: PlushieBlackFox
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 15
+  parent: BasePrize15Recipe
 
 - type: latheRecipe
   id: PlushieCorgiRecipe
   result: PlushieCorgi
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 15
+  parent: BasePrize15Recipe
 
 - type: latheRecipe
   id: PlushieGirlyCorgiRecipe
   result: PlushieGirlyCorgi
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 15
+  parent: BasePrize15Recipe
 
 - type: latheRecipe
   id: PlushieRobotCorgiRecipe
   result: PlushieRobotCorgi
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 15
+  parent: BasePrize15Recipe
 
 - type: latheRecipe
   id: PlushieCatBlackRecipe
   result: PlushieCatBlack
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 15
+  parent: BasePrize15Recipe
 
 - type: latheRecipe
   id: PlushieCatOrangeRecipe
   result: PlushieCatOrange
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 15
+  parent: BasePrize15Recipe
 
 - type: latheRecipe
   id: PlushieCatSiamesRecipe
   result: PlushieCatSiames
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 15
+  parent: BasePrize15Recipe
 
 - type: latheRecipe
   id: PlushieCatTabbyRecipe
   result: PlushieCatTabby
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 15
+  parent: BasePrize15Recipe
 
 - type: latheRecipe
   id: PlushieCatTuxedoRecipe
   result: PlushieCatTuxedo
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 15
+  parent: BasePrize15Recipe
 
 - type: latheRecipe
   id: PlushieCatWhiteRecipe
   result: PlushieCatWhite
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 15
+  parent: BasePrize15Recipe
 
 # EMAG
 
 - type: latheRecipe
   id: PlushieJesterRecipe
   result: PlushieJester
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 50
+  parent: BasePrize50Recipe
 
 - type: latheRecipe
   id: PlushieJanitorRecipe
   result: PlushieJanitor
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 50
+  parent: BasePrize50Recipe
 
 - type: latheRecipe
   id: PlushieNukeRecipe
   result: PlushieNuke
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 50
+  parent: BasePrize50Recipe
 
 - type: latheRecipe
   id: PlushieRGBeeRecipe
   result: PlushieRGBee
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 50
+  parent: BasePrize50Recipe
 
 - type: latheRecipe
   id: BalloonCorgiRecipe
   result: BalloonCorgi
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 30
+  parent: BasePrize50Recipe
 
 - type: latheRecipe
   id: BalloonSynRecipe
   result: BalloonSyn
-  applyMaterialDiscount: false
-  completetime: 0.1
+  parent: BasePrizeRecipe
   materials:
     PrizeTicket: 30
 
 - type: latheRecipe
   id: ToyNukeRecipe
   result: ToyNuke
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 10
+  parent: BasePrize10Recipe
 
 - type: latheRecipe
   id: ToyMaulerRecipe
   result: ToyMauler
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 10
+  parent: BasePrize10Recipe
 
 - type: latheRecipe
   id: PlushieAbductorRecipe
   result: PlushieAbductor
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 50
+  parent: BasePrize50Recipe
 
 - type: latheRecipe
   id: PlushieAbductorAgentRecipe
   result: PlushieAbductorAgent
-  applyMaterialDiscount: false
-  completetime: 0.1
-  materials:
-    PrizeTicket: 50
+  parent: BasePrize50Recipe
