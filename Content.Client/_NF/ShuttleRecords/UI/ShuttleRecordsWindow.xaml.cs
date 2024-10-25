@@ -16,6 +16,7 @@ public sealed partial class ShuttleRecordsWindow : DefaultWindow
     public Action<ShuttleRecord>? OnCopyDeed;
     public ShuttleRecord? SelectedShuttleRecord;
     private ShuttleRecordsConsoleInterfaceState? _lastStateUpdate;
+    private List<ShuttleRecord> _lastRecordSet = new();
     private string _searchText = "";
 
     public ShuttleRecordsWindow()
@@ -24,22 +25,24 @@ public sealed partial class ShuttleRecordsWindow : DefaultWindow
         IoCManager.InjectDependencies(this);
 
         SearchText.OnTextChanged += args => OnSearchTextChanged(args.Text);
+        ShowActiveOnlyCheckbox.OnPressed += args => UpdateStateIfExists();
         ClearSearchButton.OnPressed += ClearSearchText;
     }
 
     private void OnSearchTextChanged(string text)
     {
         _searchText = text;
-        if (_lastStateUpdate != null)
-        {
-            UpdateState(_lastStateUpdate, false);
-        }
+        UpdateStateIfExists();
     }
 
     private void ClearSearchText(BaseButton.ButtonEventArgs args)
     {
         _searchText = "";
         SearchText.Text = "";
+    }
+
+    private void UpdateStateIfExists()
+    {
         if (_lastStateUpdate != null)
         {
             UpdateState(_lastStateUpdate, false);
@@ -51,15 +54,32 @@ public sealed partial class ShuttleRecordsWindow : DefaultWindow
         if (rememberState)
         {
             _lastStateUpdate = state;
+            if (state.Records != null)
+                _lastRecordSet = state.Records;
         }
-        ShuttleRecordList.RemoveAllChildren();
-        var viewStateList = BuildShuttleRecordListItemViewStateList(state.Records);
-        foreach (var pair in viewStateList)
+
+        TargetIdButton.Text = state.IsTargetIdPresent
+            ? Loc.GetString("id-card-console-window-eject-button")
+            : Loc.GetString("id-card-console-window-insert-button");
+
+        TargetIdLabel.Text = state.TargetIdFullName;
+        ShipNameLabel.Text = state.TargetIdVesselName;
+
+        List<ShuttleRecord>? lastRecords = state.Records ?? _lastRecordSet;
+        if (lastRecords != null)
         {
-            var listItem = new ShuttleRecordListItem(pair.ViewState);
-            listItem.OnPressed += _ => OnShuttleRecordListItemPressed(pair.ShuttleRecord);
-            ShuttleRecordList.AddChild(listItem);
+            ShuttleRecordList.RemoveAllChildren();
+            var viewStateList = BuildShuttleRecordListItemViewStateList(lastRecords, ShowActiveOnlyCheckbox.Pressed);
+            foreach (var pair in viewStateList)
+            {
+                var listItem = new ShuttleRecordListItem(pair.ViewState);
+                listItem.OnPressed += _ => OnShuttleRecordListItemPressed(pair.ShuttleRecord);
+                ShuttleRecordList.AddChild(listItem);
+            }
         }
+
+        if (SelectedShuttleRecord != null)
+            UpdateSelectedShuttleRecord(SelectedShuttleRecord);
 
         TransactionCostLabel.Text = _loc.GetString(
             messageId: "shuttle-records-transaction-cost",
@@ -73,19 +93,21 @@ public sealed partial class ShuttleRecordsWindow : DefaultWindow
     );
 
     private List<ShuttleRecordViewStatePair> BuildShuttleRecordListItemViewStateList(
-        List<ShuttleRecord> shuttleRecords)
+        List<ShuttleRecord> shuttleRecords,
+        bool onlyShowActive)
     {
         return shuttleRecords
             .Where(shuttleRecord => string.IsNullOrEmpty(_searchText) ||
                                     shuttleRecord.Name.Contains(_searchText, StringComparison.CurrentCultureIgnoreCase) ||
                                     (shuttleRecord.Suffix != null && shuttleRecord.Suffix.Contains(_searchText, StringComparison.CurrentCultureIgnoreCase)) ||
                                      shuttleRecord.OwnerName.Contains(_searchText, StringComparison.CurrentCultureIgnoreCase))
+            .Where(shuttleRecord => !onlyShowActive || ShuttleExists(netEntity: shuttleRecord.EntityUid))
             .Select(shuttleRecord =>
                 new ShuttleRecordViewStatePair(
                     shuttleRecord,
                     new ShuttleRecordListItem.ViewState(
                         shuttleRecord.Name + " " + shuttleRecord.Suffix,
-                        disabled: shuttleRecord == SelectedShuttleRecord,
+                        disabled: SelectedShuttleRecord != null && shuttleRecord.EntityUid == SelectedShuttleRecord.EntityUid,
                         toolTip: ""
                     )
                 ))
@@ -94,9 +116,18 @@ public sealed partial class ShuttleRecordsWindow : DefaultWindow
 
     private void OnShuttleRecordListItemPressed(ShuttleRecord shuttleRecord)
     {
+        UpdateSelectedShuttleRecord(shuttleRecord);
+        // Need to update the UI for the selected ship
+        if (_lastStateUpdate != null)
+            UpdateState(_lastStateUpdate, false);
+    }
+
+    private void UpdateSelectedShuttleRecord(ShuttleRecord shuttleRecord)
+    {
         SelectedShuttleRecord = shuttleRecord;
         ShuttleRecordDetailsContainer.RemoveAllChildren();
-        var shuttleStatus = ShuttleExists(netEntity: shuttleRecord.EntityUid)
+        bool shuttleExists = ShuttleExists(netEntity: shuttleRecord.EntityUid);
+        var shuttleStatus = shuttleExists
             ? _loc.GetString(messageId: "shuttle-records-shuttle-status-active")
             : _loc.GetString(messageId: "shuttle-records-shuttle-status-inactive");
         var timeOfPurchaseText = "N/A";
@@ -113,9 +144,11 @@ public sealed partial class ShuttleRecordsWindow : DefaultWindow
                 arg: ("owner", shuttleRecord.OwnerName)),
             activity: _loc.GetString(messageId: "shuttle-records-shuttle-status", arg: ("status", shuttleStatus)),
             toolTip: "",
-            timeOfPurchase: timeOfPurchaseText
+            timeOfPurchase: timeOfPurchaseText,
+            voucherStatus: shuttleRecord.PurchasedWithVoucher ? _loc.GetString(messageId: "shuttle-records-purchased-voucher") : ""
         );
         var control = new ShuttleRecordDetailsControl(state: viewState);
+        control.CopyDeedButton.Disabled = !shuttleExists;
         control.CopyDeedButton.OnPressed += _ =>
         {
             // Disables the button to prevent multiple presses.

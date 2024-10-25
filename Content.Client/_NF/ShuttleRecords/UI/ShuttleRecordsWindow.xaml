@@ -5,6 +5,14 @@
 
     <BoxContainer Orientation="Vertical" Margin="5 0 5 0">
 
+        <GridContainer Columns="3" HorizontalExpand="True" Margin="5 0 5 0">
+            <Label Text="{Loc 'id-card-console-window-target-id'}" />
+            <Button Name="TargetIdButton" Access="Public"/>
+            <Label Name="TargetIdLabel" />
+            <Label Text="{Loc 'id-card-console-window-ship-name-label'}" />
+            <Label Name="ShipNameLabel" />
+        </GridContainer>
+
         <BoxContainer Orientation="Horizontal" Margin="5 0 5 0">
             <Label Text="{Loc 'shuttle-records-transactions'}" HorizontalExpand="True" />
             <BoxContainer Orientation="Horizontal">
@@ -23,7 +31,6 @@
                     <BoxContainer Orientation="Vertical"
                                   VerticalExpand="True"
                                   HorizontalExpand="True">
-
 
                         <ScrollContainer HorizontalExpand="True"
                                          VerticalExpand="True"
@@ -45,6 +52,7 @@
                     <Label Text="{Loc 'shuttle-records-detail-title'}" />
                 </BoxContainer>
                 <Label Name="TransactionCostLabel" Text="" StyleClasses="LabelBig" Margin="10"/>
+                <CheckBox Name="ShowActiveOnlyCheckbox" Text="{Loc 'shuttle-records-show-active-only'}" />
             </BoxContainer>
         </BoxContainer>
     </BoxContainer>

@@ -15,3 +15,5 @@ shuttle-records-no-access = Access denied.
 shuttle-records-transaction-cost = Transaction Cost: {$cost}
 shuttle-records-search = Search ship or captain
 shuttle-records-time-of-purchase = Time of purchase: [color=white]{ $time }[/color]
+shuttle-records-show-active-only = Only show active ships
+shuttle-records-purchased-voucher = Shuttle was purchased on a voucher.

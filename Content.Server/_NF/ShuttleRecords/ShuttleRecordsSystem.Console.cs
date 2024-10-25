@@ -7,6 +7,7 @@ using Content.Shared.Access.Components;
 using Content.Shared.Database;
 using Content.Shared.Shipyard.Components;
 using Robust.Shared.Audio;
+using Robust.Shared.Containers;
 
 namespace Content.Server._NF.ShuttleRecords;
 
@@ -16,6 +17,9 @@ public sealed partial class ShuttleRecordsSystem
     {
         SubscribeLocalEvent<ShuttleRecordsConsoleComponent, BoundUIOpenedEvent>(OnConsoleUiOpened);
         SubscribeLocalEvent<ShuttleRecordsConsoleComponent, CopyDeedMessage>(OnCopyDeedMessage);
+
+        SubscribeLocalEvent<ShuttleRecordsConsoleComponent, EntInsertedIntoContainerMessage>(OnIDSlotUpdated);
+        SubscribeLocalEvent<ShuttleRecordsConsoleComponent, EntRemovedFromContainerMessage>(OnIDSlotUpdated);
     }
 
     private void OnConsoleUiOpened(EntityUid uid, ShuttleRecordsConsoleComponent component, BoundUIOpenedEvent args)
@@ -26,8 +30,7 @@ public sealed partial class ShuttleRecordsSystem
         RefreshState(uid, component);
     }
 
-
-    private void RefreshState(EntityUid consoleUid, ShuttleRecordsConsoleComponent? component)
+    private void RefreshState(EntityUid consoleUid, ShuttleRecordsConsoleComponent? component, bool skipRecords = false)
     {
         if (!Resolve(consoleUid, ref component))
             return;
@@ -39,12 +42,80 @@ public sealed partial class ShuttleRecordsSystem
         if (!TryGetShuttleRecordsDataComponent(out var dataComponent))
             return;
 
+        var targetIdEntity = component.TargetIdSlot.ContainerSlot?.ContainedEntity;
+        bool targetIdValid = targetIdEntity is { Valid: true };
+        string? targetIdFullName = null;
+        string? targetIdVesselName = null;
+        if (targetIdValid)
+        {
+            try
+            {
+                targetIdFullName = Name(targetIdEntity!.Value);
+            }
+            catch (KeyNotFoundException)
+            {
+                targetIdFullName = "";
+            }
+        }
+
+        if (EntityManager.TryGetComponent(targetIdEntity, out ShuttleDeedComponent? shuttleDeed))
+            targetIdVesselName = shuttleDeed.ShuttleName + " " + shuttleDeed.ShuttleNameSuffix;
+
         var newState = new ShuttleRecordsConsoleInterfaceState(
-            records: dataComponent.ShuttleRecordsList,
-            transactionCost: component.TransactionPrice
+            records: skipRecords ? null : dataComponent.ShuttleRecords.Values.ToList(),
+            transactionCost: component.TransactionPrice,
+            isTargetIdPresent: targetIdValid,
+            targetIdFullName: targetIdFullName,
+            targetIdVesselName: targetIdVesselName
         );
 
         _ui.SetUiState(consoleUid, ShuttleRecordsUiKey.Default, newState);
+    }
+
+    // TODO: private interface, listen to messages that would add ship records
+    public void RefreshStateForAll(bool skipRecords = false)
+    {
+        if (!TryGetShuttleRecordsDataComponent(out var dataComponent))
+            return;
+        List<ShuttleRecord>? records = null;
+        if (!skipRecords)
+            records = dataComponent.ShuttleRecords.Values.ToList();
+        var query = EntityQueryEnumerator<ShuttleRecordsConsoleComponent>();
+        while (query.MoveNext(out var consoleUid, out var component))
+        {
+            // Ensures that when this console is no longer attached to a grid and is powered somehow, it won't work.
+            if (Transform(consoleUid).GridUid == null)
+                continue;
+
+            var targetIdEntity = component.TargetIdSlot.ContainerSlot?.ContainedEntity;
+            bool targetIdValid = targetIdEntity is { Valid: true };
+            string? targetIdFullName = null;
+            string? targetIdVesselName = null;
+            if (targetIdValid)
+            {
+                try
+                {
+                    targetIdFullName = Name(targetIdEntity!.Value);
+                }
+                catch (KeyNotFoundException)
+                {
+                    targetIdFullName = "";
+                }
+            }
+
+            if (EntityManager.TryGetComponent(targetIdEntity, out ShuttleDeedComponent? shuttleDeed))
+                targetIdVesselName = shuttleDeed.ShuttleName + " " + shuttleDeed.ShuttleNameSuffix;
+
+            var newState = new ShuttleRecordsConsoleInterfaceState(
+                records: records,
+                transactionCost: component.TransactionPrice,
+                isTargetIdPresent: targetIdValid,
+                targetIdFullName: targetIdFullName,
+                targetIdVesselName: targetIdVesselName
+            );
+
+            _ui.SetUiState(consoleUid, ShuttleRecordsUiKey.Default, newState);
+        }
     }
 
     private void OnCopyDeedMessage(EntityUid uid, ShuttleRecordsConsoleComponent component, CopyDeedMessage args)
@@ -79,7 +150,7 @@ public sealed partial class ShuttleRecordsSystem
         }
 
         // Check if the shuttle record exists.
-        var record = dataComponent.ShuttleRecordsList.Select(record => record).FirstOrDefault(record => record.EntityUid == args.ShuttleNetEntity);
+        var record = dataComponent.ShuttleRecords.Values.Select(record => record).FirstOrDefault(record => record.EntityUid == args.ShuttleNetEntity);
         if (record == null)
         {
             _popup.PopupEntity(Loc.GetString("shuttle-records-no-record-found"), args.Actor);
@@ -109,6 +180,15 @@ public sealed partial class ShuttleRecordsSystem
         _audioSystem.PlayPredicted(component.ConfirmSound, uid, null, AudioParams.Default.WithMaxDistance(5f));
     }
 
+    private void OnIDSlotUpdated(EntityUid uid, ShuttleRecordsConsoleComponent component, EntityEventArgs args)
+    {
+        if (!component.Initialized)
+            return;
+
+        // Slot updated, no need to resend entire record set
+        RefreshState(uid, component, true);
+    }
+
     private void AssignShuttleDeedProperties(ShuttleRecord shuttleRecord, EntityUid targetId)
     {
         // Ensure that this is in fact a id card.
@@ -124,5 +204,6 @@ public sealed partial class ShuttleRecordsSystem
         deed.ShuttleOwner = shuttleRecord.OwnerName;
         deed.ShuttleName = shuttleRecord.Name;
         deed.ShuttleNameSuffix = shuttleRecord.Suffix;
+        deed.PurchasedWithVoucher = shuttleRecord.PurchasedWithVoucher;
     }
 }

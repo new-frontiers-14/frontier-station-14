@@ -8,7 +8,7 @@ namespace Content.Client._NF.ShuttleRecords.UI;
 [GenerateTypedNameReferences]
 public sealed partial class ShuttleRecordDetailsControl : PanelContainer
 {
-    public sealed class ViewState(string shuttleName, string shuttleOwnerName, string activity, string toolTip, string timeOfPurchase)
+    public sealed class ViewState(string shuttleName, string shuttleOwnerName, string activity, string toolTip, string timeOfPurchase, string voucherStatus)
     {
         public string ShuttleName { get; } = shuttleName;
 
@@ -19,6 +19,8 @@ public sealed partial class ShuttleRecordDetailsControl : PanelContainer
         public string ToolTip { get; } = toolTip;
 
         public string TimeOfPurchase { get; } = timeOfPurchase;
+
+        public string VoucherStatus { get; } = voucherStatus;
     }
 
     public ShuttleRecordDetailsControl(ViewState state)
@@ -27,6 +29,7 @@ public sealed partial class ShuttleRecordDetailsControl : PanelContainer
         ShuttleName.Text = state.ShuttleName;
         ShuttleOwner.Text = state.ShuttleOwnerName;
         ShuttleActivity.Text = state.Activity;
+        VoucherStatus.Text = state.VoucherStatus;
         TimeOfPurchase.SetMarkup(state.TimeOfPurchase);
         ToolTip = state.ToolTip;
     }

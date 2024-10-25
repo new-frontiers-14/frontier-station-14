@@ -41,7 +41,38 @@ public sealed partial class ShuttleRecordsSystem : SharedShuttleRecordsSystem
             return;
 
         record.TimeOfPurchase = _gameTiming.CurTime.Subtract(_gameTicker.RoundStartTimeSpan);
-        component.ShuttleRecordsList.Add(record);
+        component.ShuttleRecords[record.EntityUid] = record;
+        RefreshStateForAll();
+    }
+
+    /**
+     * Edits an existing record if one exists for the entity given in the Record
+     * <param name="record">The record to update.</param>
+     */
+    public void TryUpdateRecord(ShuttleRecord record)
+    {
+        if (!TryGetShuttleRecordsDataComponent(out var component))
+            return;
+
+        component.ShuttleRecords[record.EntityUid] = record;
+        RefreshStateForAll();
+    }
+
+    /**
+     * Edits an existing record if one exists for the given entity
+     * <param name="record">The record to add.</param>
+     */
+    public bool TryGetRecord(NetEntity uid, [NotNullWhen(true)] out ShuttleRecord? record)
+    {
+        if (!TryGetShuttleRecordsDataComponent(out var component) ||
+            !component.ShuttleRecords.ContainsKey(uid))
+        {
+            record = null;
+            return false;
+        }
+
+        record = component.ShuttleRecords[uid];
+        return true;
     }
 
     private bool TryGetShuttleRecordsDataComponent([NotNullWhen(true)] out SectorShuttleRecordsComponent? component)

@@ -1,7 +1,8 @@
 ﻿using Content.Client._NF.ShuttleRecords.UI;
 using Content.Shared._NF.ShuttleRecords;
+using Content.Shared._NF.ShuttleRecords.Components;
 using Content.Shared._NF.ShuttleRecords.Events;
-using Robust.Client.UserInterface.Controls;
+using Content.Shared.Containers.ItemSlots;
 
 namespace Content.Client._NF.ShuttleRecords.BUI;
 
@@ -17,6 +18,8 @@ public sealed class ShuttleRecordsConsoleBoundUserInterface(
         base.Open();
         _window ??= new ShuttleRecordsWindow();
         _window.OnCopyDeed += CopyDeed;
+        _window.TargetIdButton.OnPressed += _ => SendMessage(new ItemSlotButtonPressedEvent(ShuttleRecordsConsoleComponent.TargetIdCardSlotId));
+
         _window.OpenCentered();
     }
 
@@ -43,6 +46,9 @@ public sealed class ShuttleRecordsConsoleBoundUserInterface(
 
     private void CopyDeed(ShuttleRecord shuttleRecord)
     {
+        if (!EntMan.GetEntity(shuttleRecord.EntityUid).Valid)
+            return;
+
         SendMessage(new CopyDeedMessage(shuttleRecord.EntityUid));
     }
 
