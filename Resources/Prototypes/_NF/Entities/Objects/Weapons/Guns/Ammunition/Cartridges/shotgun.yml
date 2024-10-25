@@ -1,4 +1,25 @@
+# Crafting mat
+- type: entity
+  id: BlankShellShotgun
+  name: shell (.50 empty)
+  parent: [ BaseCartridge, BaseC1Contraband ]
+  abstract: true
+  components:
+  - type: CartridgeAmmo
+    soundEject:
+      collection: ShellEject
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
+    layers:
+      - state: blank
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+    state: "blank"
+  - type: StaticPrice
+    price: 1
 
+# Actual ammo
 - type: entity
   id: ShellShotgunNet
   name: shell (.50 net)
@@ -12,7 +33,7 @@
   - type: CartridgeAmmo
     proto: Bola
   - type: SpentAmmoVisuals
-    state: "net"
+    state: "blank"
 
 - type: entity
   id: ShellShotgunLaser
@@ -85,6 +106,83 @@
     solution: ammo
   - type: SolutionTransfer
     maxTransferAmount: 2
+  - type: SpentAmmoVisuals
+    state: "syringe"
+  - type: SolutionContainerVisuals
+    maxFillLevels: 4
+    fillBaseName: syringe-fill-
+
+- type: entity
+  id: ShellShotgunCluster
+  name: shell (.50 cluster)
+  parent: BaseShellShotgun
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
+    layers:
+      - state: cluster
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: CartridgeAmmo
+    proto: PelletShotgunCluster
+  - type: SpentAmmoVisuals
+    state: "blank"
+
+- type: entity
+  id: ShellShotgunAntimateriel
+  name: shell (.50 anti-materiel)
+  parent: BaseShellShotgun
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
+    layers:
+      - state: antimateriel
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: CartridgeAmmo
+    proto: BulletAntiMaterielWeak # same damage as magnum, but has structural damage
+  - type: SpentAmmoVisuals
+    state: "antimateriel"
+
+- type: entity
+  id: ShellShotgunSoap
+  name: shell (.50 soap)
+  parent: BaseShellShotgun
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
+    layers:
+      - state: soap
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: CartridgeAmmo
+    proto: PelletShotgunSoapletSpread
+  - type: SpentAmmoVisuals
+    state: "blank"
+
+- type: entity # TODO: add chem transfer mechanics from syringe gun once available
+  id: ShellShotgunSpray
+  name: shell (.50 spray)
+  parent: BaseShellShotgun
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
+    layers:
+      - state: spray
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: syringe-fill-1
+        map: ["enum.SolutionContainerLayers.Fill"]
+        visible: false
+  - type: CartridgeAmmo
+    proto: BulletWaterShot # PelletShotgunWater # PelletShotgunWaterSpread
+  - type: ChemicalAmmo
+  - type: SolutionContainerManager
+    solutions:
+      ammo:
+        maxVol: 10
+  - type: RefillableSolution
+    solution: ammo
+  - type: DrainableSolution
+    solution: ammo
+  - type: SolutionTransfer
+    maxTransferAmount: 10
   - type: SpentAmmoVisuals
     state: "syringe"
   - type: SolutionContainerVisuals
