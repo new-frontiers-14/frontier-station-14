@@ -1,0 +1,102 @@
+- type: entity
+  parent: BaseStructure
+  id: MedicalPod
+  categories: [ HideSpawnMenu ]
+  name: emergency medical pod
+  description: A pod used for preservation of high value corpses. Something awful happened here.
+  components:
+  - type: Transform
+    noRot: true
+  - type: Anchorable
+  - type: Icon
+    sprite:  _NF/Structures/Storage/emergency_pod.rsi
+    state: icon
+  - type: Sprite
+    noRot: true
+    sprite: _NF/Structures/Storage/emergency_pod.rsi
+    layers:
+    - state: base
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: window-closed
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: antenna-unlit
+      shader: unshaded
+    - state: healthanalyzer-unlit
+      shader: unshaded
+      map: ["healthanalyzer"]
+      visible: false
+    - state: occupied-unlit
+      shader: unshaded
+      map: ["occupied"]
+      visible: false
+  - type: InteractionOutline
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.2,0.4,0.2"
+        density: 400 # Heavy, same density as high value trading crate
+        mask:
+        - CrateMask # Match crate mask/layer
+        layer:
+        - MachineLayer
+  - type: EntityStorage
+    openSound: /Audio/Mecha/mechmove03.ogg # Internals on/off
+    closeSound: /Audio/Mecha/mechmove03.ogg # Internals on/off
+    capacity: 1
+    airtight: true
+    itemCanStoreMobs: true
+    air:
+      # ~1 atm of water vapor at -10 C to prevent barotrauma and give a funny "fwoosh" when opening
+      volume: 200
+      temperature: 263.15
+      moles:
+        - 0 # oxygen
+        - 0 # nitrogen
+        - 0
+        - 0
+        - 0
+        - 10 # water vapor
+    whitelist: # Frontier - whitelist
+      components:
+      - MedicalBounty
+    forceWhitelist: true # Frontier - force whitelist
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200 # Should be relatively tanky given its weight
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseOpen: base
+    stateBaseClosed: base
+    stateDoorClosed: window-closed
+  - type: GenericVisualizer
+    visuals:
+      enum.StorageVisuals.HasContents:
+        occupied:
+          True: { visible: true }
+          False: { visible: false }
+        healthanalyzer:
+          True: { visible: true }
+          False: { visible: false }
+  - type: ContainerContainer
+    containers:
+      entity_storage: !type:Container
+  - type: StaticPrice
+    price: 50 # Frontier: 75<50 - TODO: material value rework
+  - type: RequireProjectileTarget
+  - type: AntiRottingContainer
+  - type: Construction
+    graph: MedicalPod
+    node: medicalpod

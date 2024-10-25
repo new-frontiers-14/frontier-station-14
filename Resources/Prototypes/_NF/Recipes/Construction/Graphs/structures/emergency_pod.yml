@@ -1,0 +1,25 @@
+- type: constructionGraph
+  id: MedicalPod
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: medicalpod
+          steps:
+            - material: Steel
+              amount: 30 # Currently not possible to use, should be roughly as expensive as building a freezer
+              doAfter: 5
+
+    - node: medicalpod
+      entity: MedicalPod
+      edges:
+        - to: start
+          steps:
+            - tool: Screwing
+              doAfter: 5
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 5
+            - !type:EmptyAllContainers
+            - !type:DeleteEntity

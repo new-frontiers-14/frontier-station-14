@@ -65,15 +65,13 @@ public sealed partial class SuitSensorComponent : Component
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
     [AutoPausedField]
     public TimeSpan NextUpdate = TimeSpan.Zero;
-	
-	/* -- Frontier modification
+
     /// <summary>
     ///     The station this suit sensor belongs to. If it's null the suit didn't spawn on a station and the sensor doesn't work.
     /// </summary>
-    [DataField("station")]
-    public EntityUid? StationId = null;
-	*/
-	
+    //[DataField("station")] // Frontier: comment out field
+    //public EntityUid? StationId = null; // Frontier: comment out field
+
     /// <summary>
     ///     The server the suit sensor sends it state to.
     ///     The suit sensor will try connecting to a new server when no server is connected.
@@ -94,4 +92,10 @@ public sealed partial class SuitSensorComponent : Component
     /// </summary>
     [DataField, ViewVariables]
     public bool PreviousControlsLocked = false;
+
+    /// <summary>
+    ///     Frontier: whether or not the suit sensor is "jammed" - jammed sensors should not show up on crew monitoring consoles.
+    /// </summary>
+    [DataField]
+    public bool Jammed;
 }

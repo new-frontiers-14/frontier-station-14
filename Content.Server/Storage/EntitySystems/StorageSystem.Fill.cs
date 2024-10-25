@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Server.Humanoid.Components;
 using Content.Server.Spawners.Components;
 using Content.Server.Storage.Components;
 using Content.Shared.Item;
@@ -102,6 +103,13 @@ public sealed partial class StorageSystem
             DebugTools.Assert(!_prototype.Index<EntityPrototype>(item)
                 .HasComponent(typeof(RandomSpawnerComponent)));
             var ent = Spawn(item, coordinates);
+
+            // Frontier: handle humanoid spawner cases
+            if (TryComp<RandomHumanoidSpawnerComponent>(ent, out var spawner))
+            {
+                ent = spawner.SpawnedId;
+            }
+            // End Frontier
 
             // handle depending on storage component, again this should be unified after ECS
             if (entityStorageComp != null && EntityStorage.Insert(ent, uid, entityStorageComp))

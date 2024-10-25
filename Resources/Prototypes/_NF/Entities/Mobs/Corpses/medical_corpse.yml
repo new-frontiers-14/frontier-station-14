@@ -1,0 +1,125 @@
+# Base
+- type: entity
+  id: SpawnRandomHumanoidCorpseMedicalBounty
+  name: medical bounty corpse
+  suffix: No Loadout
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+    - state: green
+    - sprite: Mobs/Species/Human/parts.rsi
+      state: full
+      rotation: 90
+  - type: RandomHumanoidSpawner
+    settings: MedicalBounty
+
+- type: entity
+  id: SpawnRandomHumanoidCorpseMedicalBountyService
+  suffix: Service
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomHumanoidSpawner
+    settings: MedicalBountyService
+
+- type: entity
+  id: SpawnRandomHumanoidCorpseMedicalBountyEngineering
+  suffix: Engineering
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomHumanoidSpawner
+    settings: MedicalBountyEngineering
+
+- type: entity
+  id: SpawnRandomHumanoidCorpseMedicalBountyCargo
+  suffix: Cargo
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomHumanoidSpawner
+    settings: MedicalBountyCargo
+
+- type: entity
+  id: SpawnRandomHumanoidCorpseMedicalBountyMedical
+  suffix: Medical
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomHumanoidSpawner
+    settings: MedicalBountyMedical
+
+- type: entity
+  id: SpawnRandomHumanoidCorpseMedicalBountyScience
+  suffix: Science
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomHumanoidSpawner
+    settings: MedicalBountyScience
+
+- type: entity
+  id: SpawnRandomHumanoidCorpseMedicalBountySecurity
+  suffix: Security
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomHumanoidSpawner
+    settings: MedicalBountySecurity
+
+- type: entity
+  id: SpawnRandomHumanoidCorpseMedicalBountyCommand
+  suffix: Command
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomHumanoidSpawner
+    settings: MedicalBountyCommand
+
+- type: randomHumanoidSettings
+  id: MedicalBounty
+  components:
+  - type: StinkyTrait
+  - type: Carriable # Carrying system from nyanotrasen.
+  - type: Butcherable
+    butcheringType: Spike
+    spawned:
+    - id: FoodMeatRotten
+      amount: 5
+  - type: TriggerOnBeingGibbed
+  - type: GibOnTrigger
+    deleteItems: true
+    deleteOrgans: true
+    gib: false
+    useArgumentEntity: true
+    # Medical bounty-specific fields
+  - type: MedicalBounty
+  - type: RandomHumanoidAppearance
+    randomizeName: true # Patients should have names (easier to remember)
+  - type: NpcFactionMember
+    factions:
+    - NanoTrasen # Unsure about this one, but friendly turrets shouldn't gun them down
+  - type: DisableSuitSensors # Should never show up on suit sensors.
+
+- type: randomHumanoidSettings
+  parent: [MedicalBounty, NFRandomLoadoutService]
+  id: MedicalBountyService
+
+- type: randomHumanoidSettings
+  parent: [MedicalBounty, NFRandomLoadoutEngineering]
+  id: MedicalBountyEngineering
+
+- type: randomHumanoidSettings
+  parent: [MedicalBounty, NFRandomLoadoutCargo]
+  id: MedicalBountyCargo
+
+- type: randomHumanoidSettings
+  parent: [MedicalBounty, NFRandomLoadoutMedical]
+  id: MedicalBountyMedical
+
+- type: randomHumanoidSettings
+  parent: [MedicalBounty, NFRandomLoadoutScience]
+  id: MedicalBountyScience
+
+- type: randomHumanoidSettings
+  parent: [MedicalBounty, NFRandomLoadoutSecurity]
+  id: MedicalBountySecurity
+
+- type: randomHumanoidSettings
+  parent: [MedicalBounty, NFRandomLoadoutCommand]
+  id: MedicalBountyCommand
