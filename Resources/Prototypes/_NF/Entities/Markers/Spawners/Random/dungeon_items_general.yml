@@ -43,7 +43,7 @@
     - FolderSpawner
     - FolderSpawner
     - SpawnDungeonLootBureaucracyPen
-    chance: 1
+    chance: 0.95
     offset: 0.0
     rarePrototypes:
     - SpawnDungeonLootVendingRestocks
@@ -81,7 +81,7 @@
     - LuxuryPen
     - PenCap
     - PenHop
-    chance: 1
+    chance: 0.95
     offset: 0.0
     rarePrototypes:
     - PenExplodingBox
@@ -127,7 +127,7 @@
     - WardrobePinkFilled
     - WardrobeWhiteFilled
     - WardrobeYellowFilled
-    chance: 1
+    chance: 0.95
     offset: 0.0
     rarePrototypes:
     - SpawnDungeonLootSuitStorageUnitsGeneral
@@ -175,7 +175,7 @@
     - SuitStorageEngi
     - SuitStorageAtmos
     - SuitStorageSalv
-    chance: 1
+    chance: 0.95
     offset: 0.0
     rarePrototypes:
     - SuitStorageNTSRA
@@ -207,7 +207,7 @@
     - ClosetFire
     - ClosetEmergencyFilledRandom
     - ClosetFireFilled
-    chance: 1
+    chance: 0.95
     offset: 0.0
     rarePrototypes:
     - ClosetBomb
@@ -246,7 +246,7 @@
     - Bed
     - DogBed
     - Bookshelf
-    chance: 1
+    chance: 0.95
     offset: 0.0
     rarePrototypes:
     - SpawnDungeonLootLockersGeneral
@@ -292,7 +292,7 @@
     - CrateSalvageAssortedGoodies
     - SalvageMaterialCrateSpawner
     - CrateFilledSpawner
-    chance: 0.9
+    chance: 0.95
     offset: 0.0
     rarePrototypes:
     - SpawnDungeonLootCrateArmoryWeapon
@@ -364,7 +364,7 @@
     - SpawnDungeonLootCrateRestockMed
     - SpawnDungeonLootCrateRestockHydro
     - SpawnDungeonLootCrateRestockService
-    chance: 1.0
+    chance: 0.95
     offset: 0.0
 
 - type: entity
@@ -392,7 +392,7 @@
     - CrateVendingMachineRestockPrideFilled
     - CrateVendingMachineRestockSalvageEquipmentFilled
     - CrateVendingMachineRestockSecTechFilled
-    chance: 1.0
+    chance: 0.95
     offset: 0.0
 
 # Machines
@@ -428,7 +428,7 @@
     - MachineFlatpacker
     - SpawnDungeonMachineFrame
     - SpawnDungeonLootFlatpacks
-    chance: 1
+    chance: 0.95
     offset: 0.0
     rarePrototypes:
     - OreProcessorIndustrial
@@ -484,7 +484,7 @@
     #- VendingMachineSnackOrange
     #- VendingMachineSnackGreen
     #- VendingMachineSnackTeal
-    chance: 1
+    chance: 0.95
     offset: 0.0
     rarePrototypes:
     # - VendingMachineChemicalsSyndicate # A bit less Syndicate loot
@@ -529,7 +529,7 @@
     - VendingMachineGeneDrobe
     - VendingMachineViroDrobe
     - VendingMachineClothingPunk
-    chance: 1
+    chance: 0.95
     offset: 0.0
     rarePrototypes:
     - VendingMachineMagivend
@@ -561,7 +561,7 @@
     - VendingMachineRobotics
     - VendingMachineYouTool
     - VendingMachineSalvage
-    chance: 1
+    chance: 0.95
     offset: 0.0
     rarePrototypes:
     - LessLethalVendingMachine
@@ -594,7 +594,7 @@
     - MachineFrameDestroyed
     - UnfinishedMachineFrame
     - MachineFrame
-    chance: 1
+    chance: 0.95
     offset: 0.0
 
 # Other
@@ -675,7 +675,7 @@
     - ComputerIFFCircuitboard
     - SpawnDungeonLootFlatpacks
     - MercenaryTechFabCircuitboardNF
-    chance: 1
+    chance: 0.95
     offset: 0.0
     rarePrototypes:
     - CloningPodMachineCircuitboard
@@ -745,7 +745,7 @@
     - SheetPlasma
     - SheetUranium
     - MaterialCloth
-    chance: 1
+    chance: 0.95
     offset: 0.0
     rarePrototypes:
     - SheetPaper
@@ -779,7 +779,7 @@
     - SheetRUGlass
     - SheetPlasteel
     - MaterialDurathread
-    chance: 0.9
+    chance: 0.95
     offset: 0.0
     rarePrototypes:
     - MaterialDiamond1
@@ -934,7 +934,7 @@
   - type: RandomSpawner
     prototypes:
     - CrateFunATV
-    chance: 1
+    chance: 0.95
     offset: 0.0
     rarePrototypes:
     - CrateFunHoverbikeNF
@@ -956,6 +956,7 @@
         color: red
   - type: RandomSpawner
     prototypes:
+    - StorageCanister
     - AirCanister
     - AmmoniaCanister
     - CarbonDioxideCanister
@@ -969,10 +970,10 @@
     offset: 0.0
     rarePrototypes:
     - FrezonCanister
+    - TritiumCanister
 #    - LiquidCarbonDioxideCanister # Abused to hell
 #    - LiquidNitrogenCanister # Abused to hell
 #    - LiquidOxygenCanister # Abused to hell
-    - TritiumCanister
     rareChance: 0.01
 
 - type: entity
