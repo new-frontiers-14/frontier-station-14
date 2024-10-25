@@ -12,8 +12,6 @@ public sealed partial class GetRandomDeadDropAction : IPreFaxAction
     private IEntityManager _entityManager = default!;
     private DeadDropSystem _deadDrop = default!;
 
-    const int MaxHintTimeErrorSeconds = 300;
-
     public void Initialize()
     {
         _entityManager = IoCManager.Resolve<IEntityManager>();
