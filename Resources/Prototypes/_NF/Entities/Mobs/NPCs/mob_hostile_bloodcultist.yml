@@ -1,17 +1,10 @@
 - type: entity
-  abstract: true
-  id: MobBloodCultistTimedDespawn
-  components:
-  - type: TimedDespawn
-    lifetime: 3000 # 50 mins (max blue space event duration involving these mobs - 40 mins)
-
-- type: entity
   name: blood cultist
   abstract: true
   parent:
   - MobHumanoidHostileBase
   - MobHumanoidInvetory
-  #- MobBloodCultistTimedDespawn
+  - NFMobRestrictions
   id: MobBloodCultistBase
   components:
   - type: NpcFactionMember
@@ -42,7 +35,7 @@
   parent:
   - MobBloodCultistBase
   - MobHumanoidHostileAISimpleRanged
-  - MobLaserReflect # Added to prevent laser abuse from players
+  #- MobLaserReflect # Added to prevent laser abuse from players
   id: MobBloodCultistPriest
   description: Enlightened by the whispers of The Void That Is, these individuals are initiated into secret rituals. They lead the blood harvest and perform rites, bringing the day when Nar'Sie rises ever closer.
   categories: [ HideSpawnMenu ]
@@ -76,7 +69,7 @@
   parent:
   - MobBloodCultistBase
   - MobHumanoidHostileAISimpleRanged
-  - MobLaserReflect # Added to prevent laser abuse from players
+  #- MobLaserReflect # Added to prevent laser abuse from players
   id: MobBloodCultistJanitor
   description: The fate of blood cults on space stations hinges on the actions of a single individual - the station janitor. This humble worker serves as the primary line of defense against the presence of blood cults, but even the most resolute individuals can be swayed by corruption.
   categories: [ HideSpawnMenu ]
@@ -111,7 +104,7 @@
   parent:
   - MobBloodCultistBase
   - MobHumanoidHostileAISimpleMelee
-  - MobLaserReflect # Added to prevent laser abuse from players
+  #- MobLaserReflect # Added to prevent laser abuse from players
   id: MobBloodCultistAcolyte
   description: |-
    The acolyte - The most trusted cult follower and bodyguard of a priest, clad in the finest armor the cult has to offer and armed with the most vile weapons: eldrich blades and unholy halberds.
@@ -203,7 +196,7 @@
   - MobNonHumanHostileBase
   - MobPassiveRegen
   - MobHumanoidHostileAISimpleMelee
-  #- MobBloodCultistTimedDespawn
+  - NFMobRestrictions
   id: MobBloodCultLeech
   description: This cultist, once human, is now a twisted and corrupted abomination, its body warped and distorted by the dark energies of Nar'Sie's influence.
   components:
@@ -253,8 +246,8 @@
   parent:
   - MobNonHumanHostileBase
   - MobHumanoidHostileAIComplex
-  - MobLaserReflect # Added to prevent laser abuse from players
-  #- MobBloodCultistTimedDespawn
+  #- MobLaserReflect # Added to prevent laser abuse from players
+  - NFMobRestrictions
   id: MobBloodCultistAscended
   components:
   - type: NpcFactionMember
@@ -352,6 +345,7 @@
   - FlyingMobBase
   - MobPassiveRegen
   - MobHumanoidHostileAISimpleMelee
+  - NFMobTimedDespawn120
   id: MobBloodCultDrainedOne
   description: A tortured soul, stripped of free will and left as a mere shadow of a human, enslaved and bound to obey its captors.
   components:
@@ -414,8 +408,6 @@
     chemicalMaxVolume: 100
   - type: Speech
     speechVerb: Ghost
-  - type: TimedDespawn
-    lifetime: 110
   - type: Ammo
     muzzleFlash: null
 
@@ -463,7 +455,10 @@
 # Drained One (summonable by players), melee
 - type: entity
   categories: [ HideSpawnMenu ]
-  parent: MobBloodCultDrainedOne
+  parent:
+  - BaseC3MobCreatureNoValue
+  - MobBloodCultDrainedOne
+  - NFMobTimedDespawn180
   id: MobBloodCultDrainedOneNanoTrasen
   components:
   - type: NPCImprintingOnSpawnBehaviour
@@ -483,8 +478,6 @@
   - type: NpcFactionMember
     factions:
     - NanoTrasen
-  - type: TimedDespawn
-    lifetime: 180
 
 # Turrets
 # blood pylon, ranged, magic bolt deals 5 slash and 2 bloodloss

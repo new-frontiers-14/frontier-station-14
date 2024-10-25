@@ -14593,7 +14593,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 8.5,10.5
       parent: 2173
-- proto: ComputerTabletopMedicalRecords
+- proto: ComputerTabletopMassMedia
   entities:
   - uid: 4815
     components:
@@ -31606,6 +31606,20 @@ entities:
     - type: Transform
       pos: 32.5,18.5
       parent: 2173
+    - type: ContainerContainer
+      containers:
+        machine_board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        machine_parts: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        blueprint: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
 - proto: SignAtmos
   entities:
   - uid: 785
@@ -31944,7 +31958,6 @@ entities:
   - uid: 1310
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
       pos: 10.5,9.5
       parent: 2173
 - proto: SignNanotrasen2
@@ -31952,7 +31965,6 @@ entities:
   - uid: 4308
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
       pos: 11.5,9.5
       parent: 2173
 - proto: SignNanotrasen3
@@ -31960,7 +31972,6 @@ entities:
   - uid: 4309
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
       pos: 12.5,9.5
       parent: 2173
 - proto: SignNanotrasen4
@@ -31968,7 +31979,6 @@ entities:
   - uid: 4310
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
       pos: 13.5,9.5
       parent: 2173
 - proto: SignNanotrasen5
@@ -31976,7 +31986,6 @@ entities:
   - uid: 4311
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
       pos: 14.5,9.5
       parent: 2173
 - proto: SignPrison
@@ -32142,7 +32151,7 @@ entities:
     - type: Transform
       pos: -5.5,1.5
       parent: 2173
-- proto: SpawnPointJanitor
+- proto: NFSpawnPointJanitor
   entities:
   - uid: 2099
     components:

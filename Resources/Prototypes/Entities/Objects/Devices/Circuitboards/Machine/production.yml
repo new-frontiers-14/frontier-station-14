@@ -80,6 +80,7 @@
   id: SecurityTechFabCircuitboard
   parent: BaseMachineCircuitboard
   name: security techfab machine board
+  categories: [ HideSpawnMenu ] # Frontier
   description: A machine printed circuit board for a security techfab.
   components:
     - type: Sprite
@@ -207,8 +208,8 @@
     state: service
   - type: MachineBoard
     prototype: Biogenerator
-    requirements:
-      MatterBin: 2
+    requirements: # Frontier
+      MatterBin: 2 # Frontier stackRequirements<requirements
     tagRequirements:
       GlassBeaker:
         amount: 1

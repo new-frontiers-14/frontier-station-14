@@ -203,6 +203,7 @@
   - type: Construction
     graph: Coffee
     node: dark roasted coffee
+    defaultTarget: Null # Overwriting light target
 
 - type: reagent
   id: OilVegetable
@@ -219,7 +220,7 @@
   metabolisms:
     Food:
       effects:
-      - !type:SatiateHunger 
+      - !type:SatiateHunger
         conditions:
         - !type:ReagentThreshold
           reagent: Nutriment

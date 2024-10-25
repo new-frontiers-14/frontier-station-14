@@ -43,3 +43,27 @@ ghost-role-information-hovertaxibot-description = Fly passengers to where they n
 # Adopted from space-wizards #26265 (Thank you, PolterTzi)
 ghost-role-information-yipyip-name = Yip Yip
 ghost-role-information-yipyip-description = Notorious lounge lizard and bartender at Bahama Mama's. This drink-slinging kobold lives to serve his patrons.
+
+ghost-role-information-aberrant-flesh-horror-dungeon-name = Aberrant flesh horror
+ghost-role-information-aberrant-flesh-horror-dungeon-description = Defend the expedition dungeon with other flesh monstrosities!
+
+ghost-role-information-dungeon-boss-rules = You are a [color=red][bold]Team Antagonist[/bold][/color] with all dungeon mobs.
+                                        Fight players within the dungeon, defend your dungeon.
+                                        Please note that [color=yellow]all server rules still apply.[/color] Additionally:
+                                        - [color=red]DO NOT[/color] damage player shuttles or their contents.
+                                        - [color=red]DO NOT[/color] hide from players to run down the expedition timer.
+                                        - [color=red]DO NOT[/color] gib players. Once they're dead, leave them be.
+                                        - [color=red]DO NOT[/color] destroy or hide valuable loot in the dungeon.
+                                        - [color=red]DO NOT[/color] leave the planet.
+
+ghost-role-information-goblinbane-name = The Goblinbane
+ghost-role-information-goblinbane-ghost-name = The Ghost of Goblinbane
+ghost-role-information-goblinbane-description = Look for people who lack personal hygiene and either convince them to change their ways or make them face the consequences.
+ghost-role-information-goblinbane-rules = You are a [color=red][bold]Solo Antagonist[/bold][/color] capable of summoning minions. [color=yellow]Do note[/color], your minions will be hostile to everyone, except you.
+                                        Search and destroy people with poor personal hygiene. [color=yellow]Consider[/color] ignoring players dressed as janitors.
+                                        Please note that [color=yellow]all server rules still apply.[/color]. Additionally:
+                                        - [color=yellow]Reminder[/color] that Frontier Outpost (the station and 200m area around it) is a safe zone.
+                                        - [color=red]DO NOT[/color] attack players on the Outpost.
+                                        - [color=red]DO NOT[/color] use your abilities on the Outpost.
+                                        - [color=red]DO NOT[/color] intentionally damage Frontier Outpost, other POIs, shuttles.
+                                        - [color=red]DO NOT[/color] devour walls and airlocks on Frontier Outpost, other POIs, shuttles.

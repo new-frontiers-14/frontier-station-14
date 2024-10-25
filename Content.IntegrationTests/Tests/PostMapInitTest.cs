@@ -17,9 +17,9 @@ using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
 using Content.Shared.Station.Components;
-using FastAccessors;
 using Robust.Shared.Utility;
 using YamlDotNet.RepresentationModel;
+using Content.IntegrationTests.Tests._NF;
 
 namespace Content.IntegrationTests.Tests
 {
@@ -27,8 +27,9 @@ namespace Content.IntegrationTests.Tests
     public sealed class PostMapInitTest
     {
         private const bool SkipTestMaps = true;
-        private const string TestMapsPath = "/Maps/Test/";
+        private const string TestMapsPath = "/Maps/_NF/Test/"; // Frontier: _NF
 
+        // Frontier: TODO - define this to our set of maps of interest
         private static readonly string[] NoSpawnMaps =
         {
             "CentComm",
@@ -37,33 +38,13 @@ namespace Content.IntegrationTests.Tests
 
         private static readonly string[] Grids =
         {
-            "/Maps/centcomm.yml",
-            "/Maps/Shuttles/cargo.yml",
-            "/Maps/Shuttles/emergency.yml",
-            "/Maps/Shuttles/infiltrator.yml",
+            // Admin
+            "/Maps/_NF/Shuttles/Admin/fishbowl.yml",
+            // Bus
+            "/Maps/_NF/Shuttles/Bus/publicts.yml",
         };
 
-        private static readonly string[] GameMaps =
-        {
-            "Dev",
-            "TestTeg",
-            "Fland",
-            "Meta",
-            "Packed",
-            "Omega",
-            "Bagel",
-            "CentComm",
-            "Box",
-            "Core",
-            "Marathon",
-            "MeteorArena",
-            "Saltern",
-            "Reach",
-            "Train",
-            "Oasis",
-            "Cog"
-        };
-
+        private static readonly string[] GameMaps = FrontierConstants.GameMapPrototypes; // Frontier: not inline constants
         /// <summary>
         /// Asserts that specific files have been saved as grids and not maps.
         /// </summary>
@@ -116,7 +97,7 @@ namespace Content.IntegrationTests.Tests
             var server = pair.Server;
 
             var resourceManager = server.ResolveDependency<IResourceManager>();
-            var mapFolder = new ResPath("/Maps");
+            var mapFolder = new ResPath("/Maps/_NF"); // Frontier: add _NF
             var maps = resourceManager
                 .ContentFindFiles(mapFolder)
                 .Where(filePath => filePath.Extension == "yml" && !filePath.Filename.StartsWith(".", StringComparison.Ordinal))
@@ -311,6 +292,14 @@ namespace Content.IntegrationTests.Tests
 
             var gameMaps = protoMan.EnumeratePrototypes<GameMapPrototype>()
                 .Where(x => !pair.IsTestPrototype(x))
+                // Frontier: FIXME - hacky test fix
+                .Where(x =>
+                    x.ID == PoolManager.TestMap || // Frontier: check test map
+                    (x.MapPath.ToString().StartsWith("/Maps/_NF") && // Frontier: check frontier maps only
+                    !x.MapPath.ToString().StartsWith("/Maps/_NF/Shuttles") && // Frontier: skip shuttles (not loaded as maps)
+                    !x.MapPath.ToString().StartsWith("/Maps/_NF/POI")) // Frontier: skip POIs (not loaded as maps)
+                    )
+                // End Frontier
                 .Select(x => x.ID)
                 .ToHashSet();
 
@@ -337,7 +326,7 @@ namespace Content.IntegrationTests.Tests
 
             var gameMaps = protoManager.EnumeratePrototypes<GameMapPrototype>().Select(o => o.MapPath).ToHashSet();
 
-            var mapFolder = new ResPath("/Maps");
+            var mapFolder = new ResPath("/Maps/_NF"); // Frontier
             var maps = resourceManager
                 .ContentFindFiles(mapFolder)
                 .Where(filePath => filePath.Extension == "yml" && !filePath.Filename.StartsWith(".", StringComparison.Ordinal))

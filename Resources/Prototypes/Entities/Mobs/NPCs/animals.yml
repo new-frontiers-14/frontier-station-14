@@ -400,6 +400,12 @@
     damage:
       types:
         Piercing: 0
+  - type: TriggerOnBeingGibbed # Frontier
+  - type: GibOnTrigger # Frontier
+    deleteItems: true # Frontier
+    deleteOrgans: true # Frontier
+    gib: false # Frontier
+    useArgumentEntity: true # Frontier
 
 - type: entity
   name: glockroach
@@ -522,6 +528,9 @@
     spawned:
     - id: FoodMeatSlime
       amount: 2
+    - id: HideMothroach # Frontier
+      amount: 1 # Frontier
+      prob: 0.3 # Frontier
   - type: Extractable
     grindableSolutionName: food
   - type: ReplacementAccent
@@ -3403,7 +3412,7 @@
   - type: HTN
     rootTask:
       task: RuminantCompound
-      
+
 - type: entity
   name: diona nymph
   parent: [SimpleMobBase, StripableInventoryBase]

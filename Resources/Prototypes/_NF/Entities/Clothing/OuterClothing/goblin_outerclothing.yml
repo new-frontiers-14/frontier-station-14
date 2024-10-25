@@ -19,7 +19,7 @@
     node: ClothingOuterCoatRobesGoblinNode
 
 - type: entity
-  parent: ClothingOuterEVASuitBaseNF
+  parent: NFClothingOuterEVASuitBase
   id: ClothingOuterEVASuitGoblin
   name: goblin EVA suit
   description: Traditional robes of goblinkind made EVA-capable. Very regal.
@@ -37,7 +37,8 @@
     slot: head
   - type: ContainerContainer
     containers:
-      toggleable-clothing: !type:ContainerSlot {}
+      toggleable-clothing: !type:ContainerSlot
+      storagebase: !type:Container
   - type: StaticPrice
     price: 65
   - type: Construction

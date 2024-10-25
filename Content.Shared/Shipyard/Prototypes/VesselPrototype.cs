@@ -29,22 +29,28 @@ public sealed class VesselPrototype : IPrototype
     public int Price;
 
     /// <summary>
-    ///     The category of the product. (e.g. Small, Medium, Large, Emergency, Special etc.)
+    ///     The size of the vessel. (e.g. Small, Medium, Large etc.)
     /// </summary>
     [DataField("category", required: true)]
     public VesselSize Category = VesselSize.Small;
 
     /// <summary>
-    ///     The group of the product. (e.g. Civilian, Syndicate, Contraband etc.)
+    ///     The shipyard listing that the vessel should be in. (e.g. Civilian, Syndicate, Contraband etc.)
     /// </summary>
     [DataField("group", required: true)]
     public ShipyardConsoleUiKey Group = ShipyardConsoleUiKey.Shipyard;
 
     /// <summary>
-    ///     The group of the product. (e.g. Civilian, Syndicate, Contraband etc.)
+    ///     The purpose of the vessel. (e.g. Service, Cargo, Engineering etc.)
     /// </summary>
     [DataField("class")]
     public List<VesselClass> Classes = new();
+
+    /// <summary>
+    ///     The engine type that powers the vessel. (e.g. AME, Plasma, Solar etc.)
+    /// </summary>
+    [DataField("engine")]
+    public List<VesselEngine> Engines = new();
 
     /// <summary>
     ///     The access required to buy the product. (e.g. Command, Mail, Bailiff, etc.)
@@ -76,6 +82,12 @@ public sealed class VesselPrototype : IPrototype
     /// </summary>
     [DataField]
     public ProtoId<GuideEntryPrototype>? GuidebookPage = default!;
+
+    /// <summary>
+    ///     The price markup of the vessel testing
+    /// </summary>
+    [DataField]
+    public float MinPriceMarkup = 1.05f;
 }
 
 public enum VesselSize : byte
@@ -90,6 +102,13 @@ public enum VesselSize : byte
 public enum VesselClass : byte
 {
     All, // Should not be used by ships, intended as a placeholder value to represent everything
+    // NFSD-specific categories
+    Capital,
+    Detainment,
+    Detective,
+    Fighter,
+    Patrol,
+    Pursuit,
     // Capabilities
     Expedition,
     Scrapyard,
@@ -108,11 +127,21 @@ public enum VesselClass : byte
     // Antag ships
     Syndicate,
     Pirate,
-    // NFSD-specific categories
-    Detainment,
-    Detective,
-    Fighter,
-    Stealth,
-    Capital,
 }
 
+public enum VesselEngine : byte
+{
+    All, // Should not be used by ships, intended as a placeholder value to represent everything
+    AME,
+    TEG,
+    Supermatter,
+    Tesla,
+    Singularity,
+    Solar,
+    RTG,
+    APU,
+    Welding,
+    Plasma,
+    Uranium,
+    Bananium,
+}

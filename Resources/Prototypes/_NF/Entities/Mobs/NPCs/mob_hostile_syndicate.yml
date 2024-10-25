@@ -1,11 +1,4 @@
 - type: entity
-  abstract: true
-  id: MobSyndicateNavalTimedDespawn
-  components:
-  - type: TimedDespawn
-    lifetime: 3000 # 50 mins (max blue space event duration involving these mobs - 40 mins)
-
-- type: entity
   name: syndicate naval agent
   abstract: true
   categories: [ HideSpawnMenu ]
@@ -13,7 +6,7 @@
   - MobHumanoidHostileBase
   - MobHumanoidInvetory
   - MobHumanoidHostileAISimpleRanged
-  #- MobSyndicateNavalTimedDespawn
+  - NFMobRestrictions
   id: MobSyndicateNavalBase
   components:
   - type: Body
@@ -514,7 +507,7 @@
   name: syndicate commander # Mega Fauna for Dungeons
   parent:
   - MobSyndicateNavalBase
-  - MobLaserReflect # Added to prevent laser abuse from players
+  #- MobLaserReflect # Added to prevent laser abuse from players
   id: MobSyndicateNavalCommanderA
   description: A regional commander of Syndicate operations, this officer holds ultimate local command and responsibility. Armed with an assault rifle and heavily armored.
   categories: [ HideSpawnMenu ]
@@ -732,7 +725,7 @@
   name: syndicate captain
   parent:
   - MobSyndicateNavalCaptainA
-  - MobLaserReflect # Added to prevent laser abuse from players
+  #- MobLaserReflect # Added to prevent laser abuse from players
   id: MobSyndicateNavalCaptainVoid
   categories: [ HideSpawnMenu ]
   components:
@@ -748,7 +741,7 @@
 - type: entity
   parent:
   - MobSyndicateNavalSecondOfficerA
-  - MobLaserReflect # Added to prevent laser abuse from players
+  #- MobLaserReflect # Added to prevent laser abuse from players
   id: MobSyndicateNavalSecondOfficerVoid
   categories: [ HideSpawnMenu ]
   components:
@@ -760,7 +753,7 @@
 - type: entity
   parent:
   - MobSyndicateNavalOperatorA
-  - MobLaserReflect # Added to prevent laser abuse from players
+  #- MobLaserReflect # Added to prevent laser abuse from players
   id: MobSyndicateNavalOperatorVoid
   categories: [ HideSpawnMenu ]
   components:
@@ -772,7 +765,7 @@
 - type: entity
   parent:
   - MobSyndicateNavalEngineerA
-  - MobLaserReflect # Added to prevent laser abuse from players
+  #- MobLaserReflect # Added to prevent laser abuse from players
   id: MobSyndicateNavalEngineerVoid
   categories: [ HideSpawnMenu ]
   components:
@@ -790,7 +783,7 @@
 - type: entity
   parent:
   - MobSyndicateNavalDeckhandA
-  - MobLaserReflect # Added to prevent laser abuse from players
+  #- MobLaserReflect # Added to prevent laser abuse from players
   id: MobSyndicateNavalDeckhandVoid
   categories: [ HideSpawnMenu ]
   components:
@@ -804,7 +797,7 @@
 - type: entity
   parent:
   - MobSyndicateNavalMedicA
-  - MobLaserReflect # Added to prevent laser abuse from players
+  #- MobLaserReflect # Added to prevent laser abuse from players
   id: MobSyndicateNavalMedicVoid
   categories: [ HideSpawnMenu ]
   components:

@@ -78,7 +78,7 @@
   components:
   - type: Sprite
     state: direction_vend
- 
+
 # Directional Station Guide Signs
 - type: entity
   parent: BaseSign
@@ -87,7 +87,7 @@
   components:
     - type: Sprite
       sprite: _NF/Structures/Wallmounts/signs.rsi
-      
+
 - type: entity
   parent: NFBaseSign
   id: SignNfsd
@@ -186,3 +186,30 @@
   components:
   - type: Sprite
     state: bus
+
+- type: entity
+  parent: NFBaseSign
+  id: NFSignShield
+  name: shield sign
+  description: A sign with a shield.
+  components:
+  - type: Sprite
+    state: shield
+
+- type: entity
+  parent: NFBaseSign
+  id: NFSignEms1
+  name: emergency medical service sign
+  description: A sign that indicates emergency medical services.
+  components:
+  - type: Sprite
+    state: ems1
+
+- type: entity
+  parent: NFBaseSign
+  id: NFSignEms2
+  name: emergency medical service sign
+  description: A sign that indicates emergency medical services.
+  components:
+  - type: Sprite
+    state: ems2

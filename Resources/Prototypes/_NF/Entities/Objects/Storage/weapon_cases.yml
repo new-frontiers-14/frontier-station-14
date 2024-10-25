@@ -12,18 +12,22 @@
       state: icon
     - state: unshaded
       shader: unshaded
-  - type: Item
-    sprite: _NF/Objects/Storage/Cases/guncaselong.rsi
   - type: GenericVisualizer
     visuals:
       enum.StorageVisuals.Open:
         base:
           True: { state: icon-open }
           False: { state: icon }
+  - type: Item
+    sprite: _NF/Objects/Storage/Cases/guncaselong.rsi
+    size: Large
+    shape:
+    - 0,0,5,3
   - type: Storage
     maxItemSize: Huge
     grid:
     - 0,0,4,3
+    - 6,0,7,3
     whitelist:
       components:
       - Gun
@@ -47,8 +51,10 @@
   - type: Sprite
     sprite: _NF/Objects/Storage/Cases/guncaseshort.rsi
   - type: Item
-    size: Large
     sprite: _NF/Objects/Storage/Cases/guncaseshort.rsi
+    size: Normal
+    shape:
+    - 0,0,3,1
   - type: Storage
     maxItemSize: Normal
     grid:
@@ -93,6 +99,27 @@
     sprite: _NF/Objects/Storage/Cases/explosivescaseshort.rsi
 
 - type: entity
+  name: document case
+  parent: WeaponCaseShortExplosives
+  id: WeaponCaseShortDocuments
+  description: A reinforced casing for storing important documents.
+  suffix: Short
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Storage/Cases/documentcaseshort.rsi
+  - type: Item
+    sprite: _NF/Objects/Storage/Cases/documentcaseshort.rsi
+  - type: Storage
+    maxItemSize: Normal
+    grid:
+    - 0,0,1,1
+    whitelist:
+      tags:
+      - BlueprintAutolathe
+      - Document
+      - Paper
+
+- type: entity
   name: weapon case
   parent: WeaponCaseLong
   id: WeaponCaseHeavy
@@ -103,8 +130,10 @@
   - type: Sprite
     sprite: _NF/Objects/Storage/Cases/guncaseheavy.rsi
   - type: Item
-    size: Ginormous
     sprite: _NF/Objects/Storage/Cases/guncaseheavy.rsi
+    size: Ginormous
+    shape:
+    - 0,0,8,3
   - type: Storage
     maxItemSize: Ginormous
     grid:

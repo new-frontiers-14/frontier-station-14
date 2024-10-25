@@ -31,16 +31,28 @@
   - type: StaticPrice # Frontier
     price: 200 # Frontier
 
+# Frontier: base stack for card stack component
 - type: entity
   parent: BaseItem
+  id: CardStackBase
+  name: stack of cards
+  abstract: true
+  components:
+  - type: Item
+    size: Small
+  - type: CardStack
+  - type: ContainerContainer # Frontier
+    containers: # Frontier
+      cardstack-container: !type:Container # Frontier
+# End Frontier
+
+- type: entity
+  parent: CardStackBase
   id: CardHandBase
   categories: [ HideSpawnMenu ]
   name: hand of cards
   components:
-  - type: Item
-    size: Small
   - type: CardHand
-  - type: CardStack
   - type: Sprite
     sprite: EstacaoPirata/Objects/Misc/cards.rsi
     state: singlecard_down_black
@@ -54,7 +66,7 @@
     price: 0.01 # Frontier
 
 - type: entity
-  parent: BaseItem
+  parent: CardStackBase
   id: CardDeckBase
   categories: [ HideSpawnMenu ]
   name: deck of cards
@@ -65,7 +77,6 @@
   - type: Item
     size: Normal
   - type: CardDeck
-  - type: CardStack
 
 
 - type: entity
@@ -771,3 +782,4 @@
   - type: Sprite
     sprite: EstacaoPirata/Objects/Misc/cards.rsi
     state: black_joker
+# endregion Black Deck

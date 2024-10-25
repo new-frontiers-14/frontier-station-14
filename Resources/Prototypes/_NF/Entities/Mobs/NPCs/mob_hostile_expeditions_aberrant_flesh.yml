@@ -3,6 +3,7 @@
   parent:
   - MobNonHumanHostileBase
   - MobHumanoidHostileAISimpleMelee
+  - NFMobRestrictions
   id: BaseMobFleshExpeditions
   name: aberrant flesh
   description: A shambling mass of flesh, animated through anomalous energy.
@@ -14,9 +15,6 @@
   - type: Sprite
     drawdepth: Mobs
     sprite: _NF/Mobs/Aliens/flesh.rsi
-  - type: MovementSpeedModifier
-    baseWalkSpeed: 3
-    baseSprintSpeed: 3.5
   - type: MobState
     allowedStates:
     - Alive
@@ -30,7 +28,7 @@
       42: 0.7
       56: 0.5
   - type: Stamina
-    critThreshold: 50
+    critThreshold: 80
   - type: Butcherable
     spawned:
     - id: FoodMeat
@@ -38,6 +36,7 @@
   - type: Bloodstream
     bloodMaxVolume: 100
   - type: MeleeWeapon
+    attackRate: 1.0
     soundHit:
       path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
     angle: 0
@@ -53,8 +52,8 @@
 - type: entity
   parent: BaseMobFleshExpeditions
   id: MobFleshJaredExpeditions
-  description: Jareds are mindless meat shields who run at threats without any concern for their survival. They seem to be more fragile than the average human.
-  categories: [ HideSpawnMenu ]
+  description: A mindless meat shield who charges threats directly. Weaker than the average human.
+  #categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:
@@ -80,7 +79,7 @@
 - type: entity
   parent: MobFleshJaredExpeditions
   id: MobFleshJaredOldExpeditions
-  categories: [ HideSpawnMenu ]
+  #categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -92,8 +91,8 @@
 - type: entity
   parent: BaseMobFleshExpeditions
   id: MobFleshGolemExpeditions
-  description: Golems are mindless brutes, similar to Jareds but with a heavier build. This makes them slightly more resilient, but less agile.
-  categories: [ HideSpawnMenu ]
+  description: A mindless brute with a heavy build. A bit more resilient than other flesh monsters, but less agile.
+  #categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:
@@ -107,14 +106,11 @@
         Base: dead
       Dead:
         Base: dead
-  - type: MovementSpeedModifier
-    baseWalkSpeed: 3
-    baseSprintSpeed: 3
 
 - type: entity
   parent: MobFleshGolemExpeditions
   id: MobFleshGolemAltExpeditions
-  categories: [ HideSpawnMenu ]
+  #categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:
@@ -132,7 +128,7 @@
 - type: entity
   parent: MobFleshGolemExpeditions
   id: MobFleshGolemOldExpeditions
-  categories: [ HideSpawnMenu ]
+  #categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -152,10 +148,10 @@
 - type: entity
   parent:
   - BaseMobFleshExpeditions
-  - MobLaserReflect # Added to prevent laser abuse from players
+  #- MobLaserReflect # Added to prevent laser abuse from players
   id: MobFleshAssimilatedMiner
   description: An unfortunate miner that was infected upon contact with aberrant flesh and has been slowly assimilated.
-  categories: [ HideSpawnMenu ]
+  #categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -199,9 +195,12 @@
   - BaseMobFleshExpeditions
   - MobHumanoidHostileAISimpleRanged
   id: MobFleshClampExpeditions
-  description: Clamps are flying variants that have mutated to shoot biological projectiles, such as bone spikes containing naturally secreted gastro toxins or small living organisms known simply as "maws".
-  categories: [ HideSpawnMenu ]
+  description: A flying flesh monster that can shoot spikes or toothy creatures that can latch on.
+  #categories: [ HideSpawnMenu ]
   components:
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 4
+    baseSprintSpeed : 4
   - type: CanMoveInAir
   - type: Fixtures
     fixtures:
@@ -247,7 +246,7 @@
     count: 1
   - type: Gun
     showExamineText: false
-    fireRate: 1
+    fireRate: 0.75
     selectedMode: SemiAuto
     availableModes:
       - SemiAuto
@@ -257,7 +256,7 @@
 - type: entity
   parent: MobFleshClampExpeditions
   id: MobFleshClampOldExpeditions
-  categories: [ HideSpawnMenu ]
+  #categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -285,9 +284,12 @@
 - type: entity
   parent: BaseMobFleshExpeditions
   id: MobFleshLoverExpeditions
-  description: The Lover shares similarities with Jareds and Golems. Its light frame makes it fragile, but capable of flight.
-  categories: [ HideSpawnMenu ]
+  description: The Lover's light frame makes it fragile, but capable of flight.
+  #categories: [ HideSpawnMenu ]
   components:
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 5
+    baseSprintSpeed : 5
   - type: CanMoveInAir
   - type: Fixtures
     fixtures:
@@ -323,18 +325,27 @@
     speedModifierThresholds:
       18: 0.7
       24: 0.5
-  - type: MovementSpeedModifier
-    baseWalkSpeed: 4
-    baseSprintSpeed: 4.5
+  - type: MeleeWeapon
+    attackRate: 1.5
+    soundHit:
+        path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    angle: 0
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Blunt: 5
 
 # EXPEDITION BOSS
 - type: entity
-  parent: BaseMobFleshExpeditions
+  parent: [ BaseMobFleshExpeditions, MobHostileBossBase ]
   id: MobHorrorExpeditions
   name: aberrant flesh horror
-  description: Tougher and more resilient than the average aberrant flesh monster, the Horror possesses sharp bone protrusions and highly developed musculature, allowing it to rend the flesh of its victims and tear through armor with efficiency.
-  categories: [ HideSpawnMenu ]
+  description: Tougher and more resilient than most aberrant flesh monsters. Has sharp, bony protrusions and highly developed musculature.
+  #categories: [ HideSpawnMenu ]
   components:
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 4.6
+    baseSprintSpeed : 4.6
   - type: Sprite
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
@@ -357,10 +368,9 @@
     speedModifierThresholds:
       120: 0.7
       160: 0.5
-  - type: MovementSpeedModifier
-    baseWalkSpeed: 3.5
-    baseSprintSpeed: 4
   - type: MeleeWeapon
+    autoAttack: true
+    attackRate: 1.5
     soundHit:
         path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
     angle: 0
@@ -368,16 +378,72 @@
     damage:
       types:
         Slash: 12
+        Structural: 30
+  # Ghost role stuff
+  - type: GhostRole
+    allowMovement: true
+    name: ghost-role-information-aberrant-flesh-horror-dungeon-name
+    description: ghost-role-information-aberrant-flesh-horror-dungeon-description
+    rules: ghost-role-information-dungeon-boss-rules
+    raffle:
+      settings: default
+  - type: GhostTakeoverAvailable
+  - type: ActionGun
+    action: ActionBoneSpike
+    gunProto: BoneSpikeGun
+
+- type: entity
+  id: BoneSpikeGun
+  name: bone spike
+  description: Shoots a short salvo of bone spikes.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 5
+    rechargeSound:
+      path: /Audio/Animals/space_dragon_roar.ogg
+  - type: BasicEntityAmmoProvider
+    proto: DartAberrantFleshHorrorSpikeSpread #DartAberrantFleshHorrorSpike
+    capacity: 2
+    count: 2
+  - type: Gun
+    minAngle: 5
+    maxAngle: 15
+    fireRate: 4
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot:
+      path: /Audio/Items/bow_pull.ogg
+    soundEmpty: null
+    projectileSpeed: 30
+
+- type: entity
+  id: ActionBoneSpike
+  categories: [ HideSpawnMenu ]
+  name: "[color=yellow]Bone Spike[/color]"
+  description: "Shoot a short salvo of bone spikes laced with toxins. [color=yellow]5 second cooldown.[/color]"
+  components:
+  - type: WorldTargetAction
+    icon: { sprite : _NF/Mobs/Aliens/flesh.rsi, state: spike }
+    event: !type:ActionGunShootEvent
+    priority: 2
+    checkCanAccess: false
+    range: 0
+    itemIconStyle: BigAction
 
 # FUNNY LITTLE GUY
 # embedable projectile that bites you until you either kill it or detach it or die (or it despawns)
 - type: entity
-  parent: BaseMobFleshExpeditions
+  parent: [ BaseMobFleshExpeditions, NFMobTimedDespawn60 ]
   id: MobMawExpeditions
   name: aberrant flesh maw
-  description: Immobile, flesh-boring creatures that are launched at victims. They'll latch on with their teeth and bite their victims until killed or shaken off. Don't put your fingers in it. Unless?..
+  description: Immobile, flesh-boring creatures that are launched at victims. Latches on until killed or shaken off. Don't put your fingers in it.
   categories: [ HideSpawnMenu ]
   components:
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 0
+    baseSprintSpeed: 0
   - type: DamageOtherOnHit
     damage:
       types:
@@ -404,11 +470,9 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      12: Dead
-  - type: MovementSpeedModifier
-    baseWalkSpeed: 0
-    baseSprintSpeed: 0
+      8: Dead
   - type: MeleeWeapon
+    attackRate: 0.3
     soundHit:
         path: /Audio/Effects/bite.ogg
     angle: 0
@@ -416,5 +480,150 @@
     damage:
       types:
         Slash: 4
-  - type: TimedDespawn
-    lifetime: 120
+
+# Newborns (spawned from assimilation sack)
+- type: entity
+  id: BaseMobFleshExpeditionsNewborn
+  parent: BaseMobFleshExpeditions
+  name: aberrant flesh newborn
+  description: This newborn monster is dripping with amniotic fluid; its movements are sluggish yet deliberate; its limbs, though weak, are lethal nonetheless.
+  abstract: true
+  components:
+  - type: MeleeWeapon
+    attackRate: 0.8
+    soundHit:
+      path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    angle: 0
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Blunt: 7
+        Structural: 20
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 3.8
+    baseSprintSpeed : 3.8
+
+- type: entity
+  id: MobFleshJaredExpeditionsNewborn
+  parent: [ BaseMobFleshExpeditionsNewborn, MobFleshJaredExpeditions ]
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: jared
+      scale: 0.8,0.8
+      color: "maroon"
+    - sprite: _NF/Effects/wet.rsi
+      state: wet
+      color: "pink"
+
+- type: entity
+  id: MobFleshJaredOldExpeditionsNewborn
+  parent: [ BaseMobFleshExpeditionsNewborn, MobFleshJaredOldExpeditions ]
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Mobs/Aliens/flesh.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: jared
+      scale: 0.8,0.8
+      color: "maroon"
+    - sprite: _NF/Effects/wet.rsi
+      state: wet
+      color: "pink"
+
+- type: entity
+  id: MobFleshGolemExpeditionsNewborn
+  parent: [ BaseMobFleshExpeditionsNewborn, MobFleshGolemExpeditions ]
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: golem
+      scale: 0.8,0.8
+      color: "maroon"
+    - sprite: _NF/Effects/wet.rsi
+      state: wet
+      color: "pink"
+
+- type: entity
+  id: MobFleshGolemAltExpeditionsNewborn
+  parent: [ BaseMobFleshExpeditionsNewborn, MobFleshGolemAltExpeditions ]
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: golem2
+      scale: 0.8,0.8
+      color: "maroon"
+    - sprite: _NF/Effects/wet.rsi
+      state: wet
+      color: "pink"
+
+- type: entity
+  id: MobFleshGolemOldExpeditionsNewborn
+  parent: [ BaseMobFleshExpeditionsNewborn, MobFleshGolemOldExpeditions ]
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Mobs/Aliens/flesh.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: golem
+      scale: 0.8,0.8
+      color: "maroon"
+    - sprite: _NF/Effects/wet.rsi
+      state: wet
+      color: "pink"
+
+- type: entity
+  id: MobFleshClampExpeditionsNewborn
+  parent: [ BaseMobFleshExpeditionsNewborn, MobFleshClampExpeditions ]
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: clamp
+      scale: 0.8,0.8
+      color: "maroon"
+    - sprite: _NF/Effects/wet.rsi
+      state: wet
+      color: "pink"
+
+- type: entity
+  id: MobFleshClampOldExpeditionsNewborn
+  parent: [ BaseMobFleshExpeditionsNewborn, MobFleshClampOldExpeditions ]
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Mobs/Aliens/flesh.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: clamp
+      scale: 0.8,0.8
+      color: "maroon"
+    - sprite: _NF/Effects/wet.rsi
+      state: wet
+      color: "pink"
+
+- type: entity
+  id: MobFleshLoverExpeditionsNewborn
+  parent: [ BaseMobFleshExpeditionsNewborn, MobFleshLoverExpeditions ]
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: lover
+      scale: 0.8,0.8
+      color: "maroon"
+    - sprite: _NF/Effects/wet.rsi
+      state: wet
+      color: "pink"

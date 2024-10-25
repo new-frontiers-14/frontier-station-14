@@ -23,7 +23,6 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 using Content.Server.Corvax.Respawn; // Frontier
-using Content.Shared.Traits.Assorted; // Frontier
 
 namespace Content.Server.GameTicking
 {

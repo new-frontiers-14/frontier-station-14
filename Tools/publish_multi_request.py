@@ -14,8 +14,8 @@ RELEASE_DIR = "release"
 # CONFIGURATION PARAMETERS
 # Forks should change these to publish to their own infrastructure.
 #
-ROBUST_CDN_URL = "https://cdn.station14.ru/"
-FORK_ID = os.environ["FORK_ID"]
+ROBUST_CDN_URL = "https://cdn.frontierstation14.com/"
+FORK_ID = "Frontier"
 
 def main():
     session = requests.Session()

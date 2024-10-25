@@ -56,8 +56,8 @@
 
 - type: entity
   parent: WeaponCaseShort
-  id: WeaponCaseShortDeckard
-  suffix: Dungeon, Deckard
+  id: WeaponCaseShortArgentiExpedition
+  suffix: Dungeon, Argenti
   categories: [ HideSpawnMenu ]
   components:
   - type: StorageFill
@@ -79,6 +79,19 @@
     - id: WeaponRevolverArgenti
       amount: 1
     - id: SpeedLoaderRifleHeavy
+      amount: 2
+
+- type: entity
+  parent: WeaponCaseShort
+  id: WeaponCaseShortDeckardExpedition
+  suffix: Dungeon, Deckard
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponRevolverDeckardExpedition
+      amount: 1
+    - id: SpeedLoaderMagnum
       amount: 2
 
 - type: entity
@@ -360,9 +373,9 @@
   components:
   - type: StorageFill
     contents:
-    - id: WeaponSVT
+    - id: WeaponRifleSVT
       amount: 1
-    - id: 10roundmagazine
+    - id: MagazineLightRifleLowCapacity
       amount: 2
 
 # Energy
@@ -425,7 +438,7 @@
 
 - type: entity
   parent: WeaponCaseLong
-  id: WeaponCaseLongLaserCannon
+  id: WeaponCaseLongLaserCannonExpedition
   suffix: Dungeon, Laser Cannon
   categories: [ HideSpawnMenu ]
   components:
@@ -436,7 +449,7 @@
 
 - type: entity
   parent: WeaponCaseLong
-  id: WeaponCaseLongXrayCannon
+  id: WeaponCaseLongXrayCannonExpedition
   suffix: Dungeon, Xray Cannon
   categories: [ HideSpawnMenu ]
   components:
@@ -650,6 +663,20 @@
     contents:
     - id: C4
       amount: 2
+
+# Turrets
+- type: entity
+  parent: WeaponCaseHeavy
+  id: WeaponCaseHeavyAsmgtExpeditions
+  suffix: packed ASMGT, Expeditions
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponTurretAsmgtHostileUniversallyPacked
+      amount: 1
+    - id: MagazineAsmgtUniversalPistol
+      amount: 4
 
 # Ammo
 ## .20 rifle
