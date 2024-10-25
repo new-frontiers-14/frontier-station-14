@@ -17,3 +17,23 @@
   components:
   - type: Sprite
     sprite: _NF/Clothing/Neck/Cloaks/sr.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckCloakRosy
+  name: rosy the maple mothroach cloak
+  description: A cloak made of pink and floof and roach.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Neck/Cloaks/rosy.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHatHoodRosyCloak
+    requiredSlot:
+    - neck
+    slot: head
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:ContainerSlot {}
+  - type: Construction
+    graph: ClothingNeckCloakRosyGraph
+    node: ClothingNeckCloakRosyNode
