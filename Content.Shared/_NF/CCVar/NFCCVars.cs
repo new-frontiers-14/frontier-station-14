@@ -113,22 +113,50 @@ public sealed class NFCCVars
     /*
      * Smuggling
      */
+    /// <summary>
+    /// The maximum number of smuggling drop pods to be out at once.
+    /// Taking another dead drop note will cause the oldest one to be destroyed.
+    /// </summary>
     public static readonly CVarDef<int> SmugglingMaxSimultaneousPods =
         CVarDef.Create("nf14.smuggling.max_simultaneous_pods", 5, CVar.REPLICATED);
+    /// <summary>
+    /// The maximum number of dead drops (places to get smuggling notes) to place at once.
+    /// </summary>
     public static readonly CVarDef<int> SmugglingMaxDeadDrops =
         CVarDef.Create("nf14.smuggling.max_sector_dead_drops", 10, CVar.REPLICATED);
+    /// <summary>
+    /// The minimum number of FUCs to spawn for anti-smuggling work.
+    /// </summary>
     public static readonly CVarDef<int> SmugglingMinFucPayout =
-        CVarDef.Create("nf14.smuggling.min_fuc_payout", 2, CVar.REPLICATED);
+        CVarDef.Create("nf14.smuggling.min_fuc_payout", 1, CVar.REPLICATED);
+    /// <summary>
+    /// The shortest time to wait before a dead drop spawns a new smuggling note.
+    /// </summary>
     public static readonly CVarDef<int> DeadDropMinTimeout =
         CVarDef.Create("nf14.smuggling.min_timeout", 900, CVar.REPLICATED);
+    /// <summary>
+    /// The longest time to wait before a dead drop spawns a new smuggling note.
+    /// </summary>
     public static readonly CVarDef<int> DeadDropMaxTimeout =
         CVarDef.Create("nf14.smuggling.max_timeout", 5400, CVar.REPLICATED);
+    /// <summary>
+    /// The shortest distance that a smuggling pod will spawn away from Frontier Outpost.
+    /// </summary>
     public static readonly CVarDef<int> DeadDropMinDistance =
         CVarDef.Create("nf14.smuggling.min_distance", 6500, CVar.REPLICATED);
+    /// <summary>
+    /// The longest distance that a smuggling pod will spawn away from Frontier Outpost.
+    /// </summary>
     public static readonly CVarDef<int> DeadDropMaxDistance =
         CVarDef.Create("nf14.smuggling.max_distance", 8000, CVar.REPLICATED);
+    /// <summary>
+    /// The smallest number of dead drop hints (paper clues to dead drop locations) at round start.
+    /// </summary>
     public static readonly CVarDef<int> DeadDropMinHints =
-        CVarDef.Create("nf14.smuggling.min_hints", 3, CVar.REPLICATED);
+        CVarDef.Create("nf14.smuggling.min_hints", 0, CVar.REPLICATED); // Used with BasicDeadDropHintVariationPass
+    /// <summary>
+    /// The largest number of dead drop hints (paper clues to dead drop locations) at round start.
+    /// </summary>
     public static readonly CVarDef<int> DeadDropMaxHints =
-        CVarDef.Create("nf14.smuggling.max_hints", 4, CVar.REPLICATED);
+        CVarDef.Create("nf14.smuggling.max_hints", 0, CVar.REPLICATED); // Used with BasicDeadDropHintVariationPass
 }
