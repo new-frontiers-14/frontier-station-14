@@ -100,10 +100,17 @@
   components:
   - type: DeadDropHint
   - type: Paper
-    content: deaddrop-faxed-hint-content
+    content: deaddrop-faxed-hint-content # Default contents, will be edited.
+    stampedBy:
+    - stampedName: deaddrop-faxed-hint-signature
+      stampedColor: "#850000"
+    stampState: null
 
 - type: entity
   id: PaperDeadDropFax
   parent: PaperDeadDropHint
   name: suspicious fax
   description: A sheet with blurry, crooked text on it. Seems to have been copied in a hurry.
+  components:
+  - type: Paper
+    stampState: paper_stamp-syndicate
