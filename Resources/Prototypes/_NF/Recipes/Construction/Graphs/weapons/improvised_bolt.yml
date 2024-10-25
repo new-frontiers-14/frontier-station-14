@@ -127,6 +127,12 @@
           sprite: Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
           state: base
         doAfter: 1
+      - component: Explosive
+        name: Firebomb
+        icon:
+          sprite: Objects/Weapons/Bombs/ied.rsi
+          state: base
+        doAfter: 1
   - node: CraftCrossbowBoltExplosive
     entity: CrossbowBoltExplosive
 
@@ -140,16 +146,25 @@
       steps:
       - material: MetalRod
         amount: 1
-        doAfter: 0.5
+        doAfter: 0.4
       - material: Cloth
         amount: 1
-        doAfter: 0.5
-      - tag: PowerCellSmall
-        name: Small power cell
+        doAfter: 0.4
+      - material: Cable
+        amount: 5
+        doAfter: 0.4
+      - component: PowerCell
+        name: Power cell
         icon:
           sprite: Objects/Power/power_cells.rsi
-          state: small
-        doAfter: 1
+          state: high
+        doAfter: 0.4
+      - component: LogicGate
+        name: Logic gate
+        icon:
+          sprite: Objects/Devices/gates.rsi
+          state: base
+        doAfter: 0.4
   - node: CraftCrossbowBoltEMP
     entity: CrossbowBoltEMP
 
@@ -175,3 +190,26 @@
         doAfter: 1
   - node: CraftCrossbowBoltIncendiary
     entity: CrossbowBoltIncendiary
+
+- type: constructionGraph
+  id: CraftCrossbowBoltShrapnel
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: CraftCrossbowBoltShrapnel
+      steps:
+      - material: MetalRod
+        amount: 1
+        doAfter: 0.5
+      - material: Cloth
+        amount: 1
+        doAfter: 0.5
+      - tag: ShellShotgun
+        name: Shotgun shell
+        icon:
+          sprite: Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
+          state: base
+        doAfter: 1
+  - node: CraftCrossbowBoltShrapnel
+    entity: CrossbowBoltShrapnel
