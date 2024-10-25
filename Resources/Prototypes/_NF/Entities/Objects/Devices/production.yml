@@ -79,6 +79,18 @@
     - type: MachineBoard
       prototype: NfsdTechFab
 
+- type: entity
+  id: NatoTechFabCircuitboard
+  parent: SecurityTechFabCircuitboard
+  name: tsf techfab machine board
+  description: A machine printed circuit board for a tsf techfab.
+  components:
+    - type: Sprite
+      sprite: _NF/Objects/Misc/module.rsi
+      state: nato
+    - type: MachineBoard
+      prototype: NatoTechFab
+
 # Thrusters
 - type: entity
   id: ThrusterSecurityMachineCircuitboard
@@ -325,7 +337,7 @@
       state: supply
     - type: MachineBoard
       prototype: MaterialReclaimer
-      requirements: 
+      requirements:
         Manipulator: 2
       stackRequirements:
         Steel: 5
