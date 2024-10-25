@@ -1,4 +1,4 @@
-
+# high-ex
 - type: entity
   id: PelletShotgunHighExSlug
   name: highex slug (.50)
@@ -24,6 +24,7 @@
     color: orange
     energy: 0.8
 
+# syringe
 - type: entity # TODO: add chem transfer mechanics from syringe gun once available
   id: PelletShotgunSyringe
   name: pellet (.50 syringe)
@@ -51,6 +52,7 @@
   - type: InjectableSolution
     solution: ammo
 
+# cluster - explodes into shrapnel upon impact
 - type: entity
   id: PelletShotgunCluster
   name: pellet cluster (.50)
@@ -60,10 +62,10 @@
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
     state: buckshot
-  - type: Projectile
-    damage:
-      types:
-        Blunt: 5
+  # - type: Projectile
+    # damage:
+      # types:
+        # Blunt: 5
   - type: ClusterGrenade
     fillPrototype: PelletShotgun
     maxGrenadesCount: 6
@@ -84,6 +86,7 @@
       types:
         Blunt: 30
 
+# Nerfed anti-materiel
 - type: entity
   categories: [ HideSpawnMenu ]
   parent: BaseBullet
@@ -96,109 +99,22 @@
         Piercing: 35 # Magnum values
         Structural: 30
 
+# Soap
 - type: entity
-  id: PelletShotgunSoaplet
+  id: Soaplet120
   categories: [ HideSpawnMenu ]
-  parent: Soap # [ SoapletSyndie, BaseBullet ]
+  parent: SoapletSyndie
   description: A tiny piece of soap.
   components:
-  - type: StepTrigger
-    intersectRatio: 0.04
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape: !type:PhysShapeCircle
-          radius: 0.2
-        density: 5
-        mask:
-        - ItemMask
-        restitution: 0.3
-        friction: 0.1
-      projectile:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-0.08,-0.06,0.08,0.06"
-        hard: false
-        mask:
-        - Impassable
-        - BulletImpassable
-  - type: Projectile
-    deleteOnCollide: false
-    onlyCollideWhenShot: false
-    damage:
-      types:
-        Blunt: 2
+  - type: TimedDespawn
+    lifetime: 120
 
 - type: entity
   id: PelletShotgunSoapletSpread
   categories: [ HideSpawnMenu ]
-  parent: PelletShotgunSoaplet
+  parent: BaseItem
   components:
   - type: ProjectileSpread
-    proto: PelletShotgunSoaplet
-    count: 6
-    spread: 15
-
-# - type: entity # TODO: add chem transfer mechanics from syringe gun once available
-  # id: PelletShotgunWater
-  # name: pellet (.50 water)
-  # categories: [ HideSpawnMenu ]
-  # parent: BulletWaterShot
-- type: entity # TODO: add chem transfer mechanics from syringe gun once available
-  id: PelletShotgunWater
-  name: pellet (.50 water)
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Clickable
-  - type: Physics
-    bodyType: Dynamic
-    linearDamping: 0
-    angularDamping: 0
-  - type: TimedDespawn
-    lifetime: 10
-  - type: Projectile
-    damage:
-      types:
-        Blunt: 0 #it's just water, bro
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/Projectiles/water_shot.rsi
-    layers:
-    - state: icon
-      map: ["enum.VaporVisualLayers.Base"]
-  - type: SolutionContainerManager
-    solutions:
-      ammo:
-        maxVol: 10
-  - type: RefillableSolution
-    solution: ammo
-  - type: DrainableSolution
-    solution: ammo
-  - type: SolutionInjectOnProjectileHit
-    transferAmount: 10
-    solution: ammo
-  - type: InjectableSolution
-    solution: ammo
-  - type: Fixtures
-    fixtures:
-      projectile:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-0.10,-0.30,0.10,0.15"
-        hard: false
-        mask:
-        - Impassable
-        - BulletImpassable
-  - type: Vapor
-    active: true
-  - type: Appearance
-  - type: VaporVisuals
-
-- type: entity
-  id: PelletShotgunWaterSpread
-  categories: [ HideSpawnMenu ]
-  parent: PelletShotgun
-  components:
-  - type: ProjectileSpread
-    proto: PelletShotgunWater # BulletWaterShot # PelletShotgunWater
-    count: 6
-    spread: 15
+    proto: Soaplet120
+    count: 8
+    spread: 25
