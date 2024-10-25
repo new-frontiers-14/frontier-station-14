@@ -3731,12 +3731,19 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -0.5,9.5
       parent: 1
+- proto: ChemDispenser
+  entities:
+  - uid: 615
+    components:
+    - type: Transform
+      pos: 3.5,-9.5
+      parent: 1
 - proto: ChemistryHotplate
   entities:
   - uid: 547
     components:
     - type: Transform
-      pos: 3.5,-9.5
+      pos: 4.5,-10.5
       parent: 1
 - proto: ChemMaster
   entities:
@@ -3930,17 +3937,6 @@ entities:
     - type: Transform
       pos: 0.5,7.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        bank-ATM-cashSlot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-    - type: ItemSlots
 - proto: CrateFreezer
   entities:
   - uid: 799
@@ -6483,8 +6479,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -1.5,-2.5
       parent: 1
-    - type: Physics
-      canCollide: False
     - type: Fixtures
       fixtures: {}
   - uid: 701
@@ -6493,8 +6487,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 8.5,-16.5
       parent: 1
-    - type: Physics
-      canCollide: False
     - type: Fixtures
       fixtures: {}
   - uid: 1184
@@ -6503,8 +6495,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -1.5,-15.5
       parent: 1
-    - type: Physics
-      canCollide: False
     - type: Fixtures
       fixtures: {}
   - uid: 1186
@@ -6513,8 +6503,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 8.5,-9.5
       parent: 1
-    - type: Physics
-      canCollide: False
     - type: Fixtures
       fixtures: {}
   - uid: 1191
@@ -6523,8 +6511,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -2.5,10.5
       parent: 1
-    - type: Physics
-      canCollide: False
     - type: Fixtures
       fixtures: {}
 - proto: KitchenKnife
@@ -6647,20 +6633,6 @@ entities:
     - type: Transform
       pos: 5.5,-10.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        machine_board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        machine_parts: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        microwave_entity_container: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
 - proto: MedicalBed
   entities:
   - uid: 694
@@ -6690,20 +6662,6 @@ entities:
     - type: Transform
       pos: 0.5,-3.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        machine_board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        machine_parts: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        blueprint: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
 - proto: MedkitFilled
   entities:
   - uid: 633
@@ -7973,11 +7931,6 @@ entities:
     components:
     - type: Transform
       pos: 3.5,-10.5
-      parent: 1
-  - uid: 615
-    components:
-    - type: Transform
-      pos: 3.5,-9.5
       parent: 1
   - uid: 620
     components:
