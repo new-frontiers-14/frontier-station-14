@@ -1,0 +1,110 @@
+# Utility effects permanently modify the entity in some way when triggered, and they generally make it 'useful' for some purpose,
+# like turning the artifact into a tool, or gun, or whatever.
+- type: artifactEffect
+  id: EffectReclaimer
+  targetDepth: 3
+  effectHint: artifact-effect-hint-multitool
+  blacklist:
+    components:
+    - Item
+  permanentComponents:
+  - type: MaterialReclaimer
+    whitelist:
+      components:
+      - PhysicalComposition
+      - SpaceGarbage
+      - Log # Frontier
+      tags:
+      - Trash
+      - Recyclable
+    blacklist:
+      components:
+      - Material
+      - Pda
+      - IdCard
+      - Brain
+      tags:
+      - HighRiskItem
+    soundCooldown: 0
+    sound:
+      path: /Audio/Ambience/Objects/crushing.ogg
+      params:
+        volume: 5
+        maxDistance: 5
+        loop: true
+    useOldSolutionLogic: true
+    solutionContainerId: output
+  - type: MaterialStorage
+    insertOnInteract: false
+  - type: SolutionContainerManager
+    solutions:
+      output:
+        maxVol: 1000 # Frontier 100<1000
+  - type: DrainableSolution
+    solution: output
+  - type: ExaminableSolution
+    solution: output
+  - type: MaterialReclaimerMagnetPickup # Frontier
+    range: 0.30
+    magnetEnabled: true
+
+- type: artifactEffect
+  id: EffectEggLayer
+  targetDepth: 2
+  effectHint: artifact-effect-hint-creation
+  blacklist:
+    components:
+    - Item
+  permanentComponents:
+  - type: EggLayer
+    eggSpawn:
+    - id: FoodEgg
+    hungerUsage: 0
+    eggLayCooldownMin: 600
+    eggLayCooldownMax: 900
+
+- type: artifactEffect
+  id: EffectInteractionPopup
+  targetDepth: 2
+  effectHint: artifact-trigger-hint-examine
+  blacklist:
+    components:
+    - Item
+  permanentComponents:
+  - type: InteractionPopup
+    successChance: 0.9
+    interactSuccessString: petting-success-bird
+    interactFailureString: petting-failure-generic
+    interactSuccessSpawn: EffectHearts
+    interactSuccessSound:
+      path: /Audio/Animals/duck_quack_happy.ogg
+
+- type: artifactEffect
+  id: EffectAdvMop
+  targetDepth: 3
+  effectHint: artifact-trigger-hint-tool
+  whitelist:
+    components:
+    - Item
+  permanentComponents:
+  - type: Spillable
+    solution: absorbed
+  - type: Absorbent
+    pickupAmount: 100
+  - type: UseDelay
+    delay: 1.0
+  - type: SolutionRegeneration
+    solution: absorbed
+    generated:
+      reagents:
+      - ReagentId: Water
+        Quantity: 5
+  - type: SolutionPurge
+    solution: absorbed
+    preserve:
+    - Water
+    quantity: 10
+  - type: SolutionContainerManager
+    solutions:
+      absorbed:
+        maxVol: 100
