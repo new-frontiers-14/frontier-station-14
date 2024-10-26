@@ -8,24 +8,24 @@
 # If you want mobs they needed to be added at specific steps due to how dungeons work at the moment.
 
 - type: dungeonConfig
-  id: VGRoid
+  id: NFVGRoid
   layers:
     - !type:PrototypeDunGen
-      proto: VGRoidBlob
+      proto: NFVGRoidBlob
     - !type:PrototypeDunGen
-      proto: VGRoidExterior
+      proto: NFVGRoidExterior
     - !type:PrototypeDunGen
-      proto: VGRoidSmaller
+      proto: NFVGRoidSmaller
     - !type:PrototypeDunGen
-      proto: VGRoidSmallPaths
+      proto: NFVGRoidSmallPaths
     - !type:EntityTableDunGen
       minCount: 7
       maxCount: 12
       table:
-        id: VGRoidInteriorRoomMarker
+        id: NFVGRoidInteriorRoomMarker
     # Fill
     - !type:PrototypeDunGen
-      proto: VGRoidFill
+      proto: NFVGRoidFill
     # Ores
     - !type:OreDunGen
       replacement: IronRock
@@ -90,7 +90,7 @@
 
 # Configs
 - type: dungeonConfig
-  id: VGRoidBlob
+  id: NFVGRoidBlob
   layers:
   - !type:NoiseDistanceDunGen
     size: 272, 272
@@ -108,7 +108,7 @@
         gain: 0.5
 
 - type: dungeonConfig
-  id: VGRoidSmaller
+  id: NFVGRoidSmaller
   minOffset: 40
   maxOffset: 60
   layers:
@@ -127,7 +127,7 @@
         gain: 0.5
 
 - type: dungeonConfig
-  id: VGRoidExterior
+  id: NFVGRoidExterior
   reserveTiles: true
   data:
     tiles:
@@ -135,11 +135,11 @@
       WidenTile: FloorAsteroidSand
   layers:
   - !type:PrototypeDunGen
-    proto: VGRoidExteriorDungeons
+    proto: NFVGRoidExteriorDungeons
   - !type:SplineDungeonConnectorDunGen
 
 - type: dungeonConfig
-  id: VGRoidExteriorDungeons
+  id: NFVGRoidExteriorDungeons
   reserveTiles: true
   minCount: 2
   maxCount: 3
@@ -184,13 +184,13 @@
       amount: 1
 
 #- type: dungeonConfig
-#  id: VGRoidInteriorDungeons
+#  id: NFVGRoidInteriorDungeons
 #  minCount: 3
 #  maxCount: 5
 #  # Just randomly spawn these in bounds, doesn't really matter if they go out.
 
 - type: dungeonConfig
-  id: VGRoidSmallPaths
+  id: NFVGRoidSmallPaths
   reserveTiles: true
   layers:
   - !type:ReplaceTileDunGen
@@ -214,11 +214,11 @@
       amount: 1
 
 #- type: dungeonConfig
-#  id: VGRoidOres
+#  id: NFVGRoidOres
 
 # Fill with rocks.
 - type: dungeonConfig
-  id: VGRoidFill
+  id: NFVGRoidFill
   data:
     entities:
       Fill: IronRock
