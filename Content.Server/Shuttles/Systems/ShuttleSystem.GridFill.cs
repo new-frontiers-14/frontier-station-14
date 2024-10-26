@@ -2,6 +2,7 @@ using System.Numerics;
 using Content.Server.Shuttles.Components;
 using Content.Server.Station.Components;
 using Content.Server.Station.Events;
+using Content.Server.Worldgen.Components.Debris;
 using Content.Shared.CCVar;
 using Content.Shared.Salvage;
 using Content.Shared.Shuttles.Components;
@@ -57,7 +58,7 @@ public sealed partial class ShuttleSystem
     private void OnComponentInit(EntityUid uid, GridSpawnComponent component, ComponentInit args) // Frontier
     {
         if (component.OnInit)
-            NFGridSpawns(uid, component);
+            GridNFSpawns(uid, component);
     }
 
     private void OnCargoSpawnPostInit(EntityUid uid, StationCargoShuttleComponent component, ref StationPostInitEvent args)
@@ -177,7 +178,7 @@ public sealed partial class ShuttleSystem
         return false;
     }
 
-    private void NFGridSpawns(EntityUid uid, GridSpawnComponent component)
+    private void GridNFSpawns(EntityUid uid, GridSpawnComponent component)
     {
         // Spawn on a dummy map and try to FTL if possible, otherwise dump it.
         _mapSystem.CreateMap(out var mapId);
@@ -193,7 +194,7 @@ public sealed partial class ShuttleSystem
                 switch (group)
                 {
                     case DungeonSpawnGroup dungeon:
-                        if (!TryDungeonSpawn(uid, dungeon, out spawned))
+                        if (!TryNFDungeonSpawn(uid, dungeon, out spawned))
                             continue;
 
                         break;
@@ -224,10 +225,46 @@ public sealed partial class ShuttleSystem
                 }
 
                 EntityManager.AddComponents(spawned, group.AddComponents);
+
+                if (TryComp<OwnedDebrisComponent>(uid, out var uidOwnedDebris))
+                {
+                    var spawnedOwnedDebris = EnsureComp<OwnedDebrisComponent>(spawned);
+                    spawnedOwnedDebris.OwningController = uidOwnedDebris.OwningController;
+                    spawnedOwnedDebris.LastKey = uidOwnedDebris.LastKey;
+                }
             }
         }
 
         _mapManager.DeleteMap(mapId);
+    }
+
+    private bool TryNFDungeonSpawn(Entity<MapGridComponent?> uid, DungeonSpawnGroup group, out EntityUid spawned)
+    {
+        spawned = EntityUid.Invalid;
+
+        // Frontier: handle empty prototype list, _random.Pick throws
+        if (group.Protos.Count <= 0)
+            return false;
+        // End Frontier
+
+        var dungeonProtoId = _random.Pick(group.Protos);
+
+        if (!_protoManager.TryIndex(dungeonProtoId, out var dungeonProto))
+        {
+            return false;
+        }
+
+        var spawnCoords = Transform(uid).Coordinates;
+
+        _mapSystem.CreateMap(out var mapId);
+
+        var spawnedGrid = _mapManager.CreateGridEntity(mapId);
+
+        _transform.SetMapCoordinates(spawnedGrid, new MapCoordinates(Vector2.Zero, mapId));
+        _dungeon.GenerateDungeon(dungeonProto, dungeonProto.ID, spawnedGrid.Owner, spawnedGrid.Comp, Vector2i.Zero, _random.Next(), spawnCoords); // Frontier: add dungeonProto.ID
+
+        spawned = spawnedGrid.Owner;
+        return true;
     }
 
     private void GridSpawns(EntityUid uid, GridSpawnComponent component)

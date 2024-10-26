@@ -1,9 +1,8 @@
 ﻿- type: entity
   id: NFBaseAsteroidDungeons
-#  parent: NFBaseDebris
   abstract: true
   components:
-  - type: MapGrid
+  - type: OwnedDebris
   - type: GridSpawn
     onInit: true
     groups:
@@ -19,16 +18,10 @@
         - type: Gravity
           enabled: true
           inherent: true
-        - type: OwnedDebris
-        - type: LocalityLoader
         - type: GCAbleObject
           queue: SpaceDebris
-        - type: IFF
-          color: "#fff700"
         protos:
         - NFVGRoid
-  - type: TimedDespawn
-    lifetime: 300
 
 - type: entity
   id: NFAsteroidDungeons
