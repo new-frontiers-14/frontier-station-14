@@ -10,6 +10,9 @@ guide-entry-frontier-rules = Server Rules
 # Security entries
 guide-entry-nfsd-smuggling = Smuggling
 
+# Medical entries
+guide-entry-medical-bounties = Medical Bounties
+
 # Reference entries
 guide-entry-medicalrecipes = Medical Recipes
 
@@ -79,7 +82,8 @@ guide-entry-frontier-rule-4 = 4. Chat
 guide-entry-frontier-rule-5 = 5. Roleplay
 guide-entry-frontier-rule-6 = 6. Safezone
 guide-entry-frontier-rule-7 = 7. Antag
-guide-entry-frontier-rule-8 = 8. Crimes
-guide-entry-frontier-rule-9 = 9. Silicons
-guide-entry-frontier-rule-10 = 10. Security
-guide-entry-frontier-rule-11 = 11. Command
+guide-entry-frontier-rule-8 = 8. Safe Zone
+guide-entry-frontier-rule-9 = 9. Security
+guide-entry-frontier-rule-10 = 10. Command
+guide-entry-frontier-rule-11 = 11. Escalation
+guide-entry-frontier-rule-12 = 12. PVP
