@@ -1,10 +1,12 @@
-# Crafting mat
+# Crafting mats
 - type: entity
-  id: BlankShellShotgun
+  id: BlankShellShotgunPrinted
   name: shell (.50 empty)
-  parent: [ BaseCartridge, BaseC1Contraband ]
+  parent: [ BaseItem, BaseC1Contraband ] # BaseCartridge
   abstract: true
   components:
+  - type: Item
+    size: Tiny
   - type: CartridgeAmmo
     soundEject:
       collection: ShellEject
@@ -80,6 +82,36 @@
   - type: SpentAmmoVisuals
     state: "highex"
 
+- type: entity
+  id: ShellShotgunFlashbangSlug
+  name: shell (.50 flashbang slug)
+  parent: BaseShellShotgun
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
+    layers:
+      - state: highex # TODO: sprite
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: CartridgeAmmo
+    proto: PelletShotgunFlashbangSlug
+  - type: SpentAmmoVisuals
+    state: "highex"
+
+- type: entity
+  id: ShellShotgunSmokeSlug
+  name: shell (.50 smoke slug)
+  parent: BaseShellShotgun
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
+    layers:
+      - state: highex # TODO: sprite
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: CartridgeAmmo
+    proto: PelletShotgunHighExSlug
+  - type: SpentAmmoVisuals
+    state: "highex"
+
 - type: entity # TODO: add chem transfer mechanics from syringe gun once available
   id: ShellShotgunSyringe
   name: shell (.50 syringe)
@@ -99,7 +131,7 @@
   - type: SolutionContainerManager
     solutions:
       ammo:
-        maxVol: 2
+        maxVol: 2 # Turns out, that 4u is OP as hell
   - type: RefillableSolution
     solution: ammo
   - type: DrainableSolution
@@ -154,5 +186,20 @@
         map: [ "enum.AmmoVisualLayers.Base" ]
   - type: CartridgeAmmo
     proto: PelletShotgunSoapletSpread
+  - type: SpentAmmoVisuals
+    state: "blank"
+
+- type: entity
+  id: ShellShotgunTrash
+  name: shell (.50 trash)
+  parent: BaseShellShotgun
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
+    layers:
+      - state: soap # TODO: sprite trash fill
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: CartridgeAmmo
+    proto: PelletShotgunTrashSpread
   - type: SpentAmmoVisuals
     state: "blank"

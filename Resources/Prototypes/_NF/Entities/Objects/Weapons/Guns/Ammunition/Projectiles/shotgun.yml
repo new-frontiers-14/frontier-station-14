@@ -17,11 +17,39 @@
     explosionType: Default
     maxIntensity: 1
     intensitySlope: 2
-    totalIntensity: 1
+    totalIntensity: 2
     maxTileBreak: 0
   - type: PointLight
     radius: 1.3
     color: orange
+    energy: 0.8
+
+# Flashbang
+- type: entity
+  id: PelletShotgunFlashbangSlug
+  name: flashbang slug (.50)
+  categories: [ HideSpawnMenu ]
+  parent: BaseBulletTrigger
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    state: buckshot
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 15
+  - type: FlashOnTrigger
+    range: 3
+  - type: StaminaDamageOnCollide
+    damage: 25
+  - type: SpawnOnTrigger
+    proto: GrenadeFlashEffect
+  - type: ActiveTimerTrigger
+    timeRemaining: 0.3
+  - type: DeleteOnTrigger
+  - type: PointLight
+    radius: 1.3
+    color: white
     energy: 0.8
 
 # syringe
@@ -52,7 +80,8 @@
   - type: InjectableSolution
     solution: ammo
 
-# cluster - explodes into shrapnel upon impact
+# cluster: should explode into shrapnel upon impact
+# doesn't work for some reason
 - type: entity
   id: PelletShotgunCluster
   name: pellet cluster (.50)
@@ -62,31 +91,16 @@
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
     state: buckshot
-  # - type: Projectile
-    # damage:
-      # types:
-        # Blunt: 5
+  - type: Projectile
+    damage:
+      types:
+       Blunt: 5
   - type: ClusterGrenade
     fillPrototype: PelletShotgun
     maxGrenadesCount: 6
     grenadeType: enum.GrenadeType.Shoot
-  - type: Damageable
-    damageContainer: Inorganic
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 10
-      behaviors:
-      - !type:TriggerBehavior
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-  - type: DamageOnLand
-    damage:
-      types:
-        Blunt: 30
 
-# Nerfed anti-materiel
+# Anti-materiel nerfed (would be too strong with shotgun rate of fire)
 - type: entity
   categories: [ HideSpawnMenu ]
   parent: BaseBullet
@@ -118,3 +132,75 @@
     proto: Soaplet120
     count: 8
     spread: 25
+
+# Trash pellets
+- type: entity
+  id: PelletShotgunTrash
+  name: propelled trash
+  categories: [ HideSpawnMenu ]
+  parent: BaseBullet
+  components:
+  - type: Fixtures
+    fixtures:
+      projectile:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.15,-0.3,0.15,0.3"
+        hard: false
+        mask:
+        - Impassable
+        - BulletImpassable
+      fly-by: &flybyfixture
+        shape: !type:PhysShapeCircle
+          radius: 1.5
+        layer:
+        - Impassable
+        - MidImpassable
+        - HighImpassable
+        - LowImpassable
+        hard: False
+  - type: Sprite
+    layers:
+    - sprite: Objects/Consumable/Food/snacks.rsi
+      state: boritos-trash
+      scale: 0.7,0.7
+      map: [ "propelledTrash" ]
+    - sprite: Effects/fire.rsi
+      state: fire
+      scale: 0.7,0.7
+      offset: -0.07,0.0
+      shader: unshaded
+  - type: Projectile
+    damage:
+      types:
+        blunt: 4
+  - type: RandomSprite
+    available:
+      - propelledTrash:
+          boritos-trash: ""
+          cheesiehonkers-trash: ""
+          chinese1: ""
+          chinese2: ""
+          chips-trash: ""
+          chocolatebar-trash: ""
+          cnds-trash: ""
+          energybar-trash: ""
+          mre-wrapper: ""
+          pistachio-trash: ""
+          popcorn-trash: ""
+          raisins-trash: ""
+          semki-trash: ""
+          susjerky-trash: ""
+          syndicakes-trash: ""
+          tatortot: ""
+          ramen: ""
+
+- type: entity
+  id: PelletShotgunTrashSpread
+  categories: [ HideSpawnMenu ]
+  parent: PelletShotgunTrash
+  components:
+  - type: ProjectileSpread
+    proto: PelletShotgunTrash
+    count: 12
+    spread: 35 # Less damage per pellet, but more pellets and narrower cone in comparison to improvised shotgun shot
