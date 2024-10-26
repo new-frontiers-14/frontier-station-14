@@ -182,21 +182,52 @@
 - type: entity
   parent: SeedBase
   name: jar of bees
-  description: Starter kit for a new apiarist
-  id: BeesSeeds
+  description: Starter kit for a new apiarist.
+  id: BeeSeeds
   components:
     - type: Seed
       seedId: bees
     - type: Sprite
       sprite: _NF/Objects/Specific/Hydroponics/bees.rsi
+    - type: Damageable
+      damageContainer: Inorganic
+      damageModifierSet: Glass
+    # "it's a jar of bees, it should break into bees"
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 3
+        behaviors:
+        - !type:PlaySoundBehavior
+          sound:
+            collection: GlassBreak
+        - !type:SpawnEntitiesBehavior
+          spawn:
+            MobAngryBeeTimed:
+              min: 1
+              max: 1
+          transferForensics: true
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - type: DamageOnLand
+      ignoreResistances: true
+      damage:
+        types:
+          Blunt: 3
+    - type: DamageOtherOnHit
+      damage:
+        types:
+          Blunt: 3
 
 - type: seed
   id: bees
   name: seeds-bees-name
-  noun: seeds-noun-seeds
+  noun: seeds-noun-nothing
+  packetName: botany-seed-jar-name
   displayName: seeds-bees-display-name
   plantRsi: _NF/Objects/Specific/Hydroponics/bees.rsi
-  packetPrototype: BeesSeeds
+  packetPrototype: BeeSeeds
   productPrototypes:
     - FoodHoneyComb
   lifespan: 60

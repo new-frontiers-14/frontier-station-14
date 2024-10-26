@@ -22,7 +22,7 @@
 - type: entity
   name: honey apple streusel pie
   parent: FoodPieBase
-  id: FoodPieAppleCrisp
+  id: FoodPieAppleHoney
   description: A pie full of honey-laced apples baked under a crumbly oat streusel topping.
   components:
   - type: FlavorProfile
@@ -47,7 +47,7 @@
         - ReagentId: Flavorol
           Quantity: 3
   - type: SliceableFood
-    slice: FoodPieAppleCrispSlice
+    slice: FoodPieAppleHoneySlice
   - type: Tag
     tags:
     - Fruit
@@ -56,7 +56,7 @@
 - type: entity
   name: slice of honey apple crumble pie
   parent: FoodPieSliceBase
-  id: FoodPieAppleCrispSlice
+  id: FoodPieAppleHoneySlice
   description: A slice of honey-laced apples baked under a crumbly oat streusel topping.
   components:
   - type: FlavorProfile
@@ -65,10 +65,11 @@
       - apple
       - oats
   - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/Baked/pie.rsi
     layers:
     - state: applecrisp-slice
     - state: alpha-slice-filling
-      color: "#e8d684"
+      color: "#e09b3a"
   - type: Tag
     tags:
     - Fruit
