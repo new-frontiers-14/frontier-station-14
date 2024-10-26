@@ -7,6 +7,7 @@ using Content.Shared.Access.Components;
 using Content.Shared.Database;
 using Content.Shared.Shipyard.Components;
 using Robust.Shared.Audio;
+using Robust.Shared.Containers;
 
 namespace Content.Server._NF.ShuttleRecords;
 
@@ -16,6 +17,8 @@ public sealed partial class ShuttleRecordsSystem
     {
         SubscribeLocalEvent<ShuttleRecordsConsoleComponent, BoundUIOpenedEvent>(OnConsoleUiOpened);
         SubscribeLocalEvent<ShuttleRecordsConsoleComponent, CopyDeedMessage>(OnCopyDeedMessage);
+        SubscribeLocalEvent<ShuttleRecordsConsoleComponent, EntInsertedIntoContainerMessage>(OnIDSlotUpdated);
+        SubscribeLocalEvent<ShuttleRecordsConsoleComponent, EntRemovedFromContainerMessage>(OnIDSlotUpdated);
     }
 
     private void OnConsoleUiOpened(EntityUid uid, ShuttleRecordsConsoleComponent component, BoundUIOpenedEvent args)
@@ -79,7 +82,7 @@ public sealed partial class ShuttleRecordsSystem
         }
 
         // Check if the shuttle record exists.
-        var record = dataComponent.ShuttleRecordsList.Select(record => record).FirstOrDefault(record => record.EntityUid == args.ShuttleNetEntity);
+        dataComponent.ShuttleRecordsList.TryGetValue(args.ShuttleNetEntity, out var record);
         if (record == null)
         {
             _popup.PopupEntity(Loc.GetString("shuttle-records-no-record-found"), args.Actor);
@@ -124,5 +127,15 @@ public sealed partial class ShuttleRecordsSystem
         deed.ShuttleOwner = shuttleRecord.OwnerName;
         deed.ShuttleName = shuttleRecord.Name;
         deed.ShuttleNameSuffix = shuttleRecord.Suffix;
+        deed.PurchasedWithVoucher = shuttleRecord.PurchasedWithVoucher;
+    }
+
+    private void OnIDSlotUpdated(EntityUid uid, ShuttleRecordsConsoleComponent component, EntityEventArgs args)
+    {
+        if (!component.Initialized)
+            return;
+
+        // Slot updated, no need to resend entire record set
+        RefreshState(uid, component, true);
     }
 }
