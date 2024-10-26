@@ -157,12 +157,6 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
                 PlayDenySound(player, shipyardConsoleUid, component);
                 return;
             }
-            else if (voucher!.ConsoleType != (ShipyardConsoleUiKey)args.UiKey)
-            {
-                ConsolePopup(args.Actor, Loc.GetString("shipyard-console-invalid-voucher-type"));
-                PlayDenySound(args.Actor, uid, component);
-                return;
-            }
             voucher.RedemptionsLeft--;
             voucherUsed = true;
         }

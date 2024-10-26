@@ -275,11 +275,6 @@ public sealed partial class SalvageSystem
                 var debrisGrid = _mapManager.CreateGridEntity(salvMap);
                 await _dungeon.GenerateDungeonAsync(debrisProto, debrisProto.ID, debrisGrid.Owner, debrisGrid.Comp, Vector2i.Zero, seed); // Frontier: debrisProto.ID
                 break;
-            case DebrisOffering debris:
-                var debrisProto = _prototypeManager.Index<DungeonConfigPrototype>(debris.Id);
-                var debrisGrid = _mapManager.CreateGridEntity(salvMap);
-                await _dungeon.GenerateDungeonAsync(debrisProto, debrisGrid.Owner, debrisGrid.Comp, Vector2i.Zero, seed);
-                break;
             case SalvageOffering wreck:
                 var salvageProto = wreck.SalvageMap;
 

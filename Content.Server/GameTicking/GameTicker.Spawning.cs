@@ -277,12 +277,6 @@ namespace Content.Server.GameTicking
                 EntityManager.AddComponent<OwOAccentComponent>(mob);
             }
 
-            // Frontier - Remove Bing Legs
-            if (player.UserId == new Guid("{8a276323-a24c-4503-ba41-916463e02de8}"))
-            {
-                EntityManager.AddComponent<LegsParalyzedComponent>(mob);
-            }
-
             _stationJobs.TryAssignJob(station, jobPrototype, player.UserId);
 
             if (lateJoin)
