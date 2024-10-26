@@ -1,9 +1,7 @@
 ﻿- type: entity
   id: NFBaseAsteroidDungeons
-  parent: NFBaseDebris
   abstract: true
   components:
-  - type: MapGrid
   - type: GridSpawn
     onInit: true
     groups:
@@ -18,13 +16,10 @@
         - type: Gravity
           enabled: true
           inherent: true
-        - type: GCAbleObject
-          queue: SpaceDebris
         protos:
         - NFVGRoid
 
 - type: entity
   id: NFAsteroidDungeons
   parent: NFBaseAsteroidDungeons
-  name: dungeon
 #  categories: [ HideSpawnMenu ]
