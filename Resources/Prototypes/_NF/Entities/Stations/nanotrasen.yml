@@ -42,11 +42,19 @@
   - BaseStationCargoMarket
   categories: [ HideSpawnMenu ]
 
+  # Station with records, for shuttle purchases and/or player spawning
 - type: entity
-  id: SpawnableFrontierOutpost
+  id: RecordsFrontierOutpost
   parent:
   - StandardFrontierOutpost
   - BaseStationRecords
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: DeadDropRecordsFrontierOutpost
+  parent:
+  - StandardFrontierOutpost
+  - BaseStationDeadDrops
   categories: [ HideSpawnMenu ]
 
 - type: entity
@@ -79,6 +87,7 @@
   components:
   - type: Transform
 
+  # FIXME: this is currently identical to StandardFrontierVessel
 - type: entity
   id: StandardFrontierSecurityVessel
   parent:
