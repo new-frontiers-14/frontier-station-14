@@ -209,7 +209,8 @@ public sealed partial class ShuttleSystem
 
                 if (_protoManager.TryIndex(group.NameDataset, out var dataset))
                 {
-                    _metadata.SetEntityName(spawned, Loc.GetString("adventure-space-dungeon-name", ("dungeonPrototype", SharedSalvageSystem.GetFTLName(dataset, _random.Next()))));
+                    string dungeonName = Loc.GetString("adventure-space-dungeon-name", ("dungeonPrototype", SharedSalvageSystem.GetFTLName(dataset, _random.Next())));
+                    _metadata.SetEntityName(spawned, dungeonName);
                 }
 
                 if (group.Hide)
