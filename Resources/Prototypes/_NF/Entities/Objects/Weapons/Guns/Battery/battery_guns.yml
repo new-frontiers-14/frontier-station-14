@@ -128,3 +128,51 @@
       - state: inhand-right
       - state: inhand-right-unshaded
         shader: unshaded
+
+- type: entity
+  id: NFWeaponEnergyPistolHoloflare
+  parent: [ BaseC1Contraband, BaseWeaponBatterySmall ]
+  name: holoflare pistol
+  suffix: Frontier
+  description: A modification of civilian-grade laser pistol that allows to project holoflares onto surfaces.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Battery/holoflare_pistol.yml
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Item
+    size: Small
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - state: inhand-left-unshaded
+        shader: unshaded
+      right:
+      - state: inhand-right
+      - state: inhand-right-unshaded
+        shader: unshaded
+  - type: Gun
+    selectedMode: SemiAuto
+    fireRate: 2
+    availableModes:
+      - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
+    projectileSpeed: 15
+  - type: Battery
+    maxCharge: 720
+    startingCharge: 720
+  - type: ProjectileBatteryAmmoProvider
+    proto: HoloFlare
+    fireCost: 240
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 10
+  - type: MagazineVisuals
+    magState: mag
+    steps: 3
+    zeroVisible: true
