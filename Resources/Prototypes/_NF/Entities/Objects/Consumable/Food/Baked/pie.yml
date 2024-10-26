@@ -1,0 +1,77 @@
+- type: entity
+  name: pear and cheese tart
+  parent: FoodPieBase
+  id: FoodTartPearCheese
+  description: The most sublime pair.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - sweet
+      - cheesy
+      - pear
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/Baked/pie.rsi
+    layers:
+    - state: tin
+    - state: pearandcheese
+  - type: Tag
+    tags:
+    - Fruit
+    - Pie
+
+- type: entity
+  name: honey apple streusel pie
+  parent: FoodPieBase
+  id: FoodPieAppleHoney
+  description: A pie full of honey-laced apples baked under a crumbly oat streusel topping.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - honey
+      - apple
+      - oats
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/Baked/pie.rsi
+    layers:
+    - state: tin
+    - state: applecrisp
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 15
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 6
+        - ReagentId: Vitamin
+          Quantity: 4
+        - ReagentId: Flavorol
+          Quantity: 3
+  - type: SliceableFood
+    slice: FoodPieAppleHoneySlice
+  - type: Tag
+    tags:
+    - Fruit
+    - Pie
+
+- type: entity
+  name: slice of honey apple crumble pie
+  parent: FoodPieSliceBase
+  id: FoodPieAppleHoneySlice
+  description: A slice of honey-laced apples baked under a crumbly oat streusel topping.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - honey
+      - apple
+      - oats
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/Baked/pie.rsi
+    layers:
+    - state: applecrisp-slice
+    - state: alpha-slice-filling
+      color: "#e09b3a"
+  - type: Tag
+    tags:
+    - Fruit
+    - Pie
+    - Slice
