@@ -4,9 +4,10 @@
   abstract: true
   components:
     - type: MapGrid
-    - type: NFGridSpawn
+    - type: GridSpawn
+      onInit: true
       groups:
-        nfvgroid: !type:NFDungeonSpawnGroup
+        nfvgroid: !type:DungeonSpawnGroup
           minimumDistance: 0
           maximumDistance: 0
           minCount: 1

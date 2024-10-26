@@ -23,7 +23,7 @@ public sealed partial class ShuttleSystem
 
         SubscribeLocalEvent<GridFillComponent, MapInitEvent>(OnGridFillMapInit);
 
-        SubscribeLocalEvent<NFGridSpawnComponent, ComponentInit>(OnComponentInit); // Frontier
+        SubscribeLocalEvent<GridSpawnComponent, ComponentInit>(OnComponentInit); // Frontier
 
         Subs.CVar(_cfg, CCVars.GridFill, OnGridFillChange);
     }
@@ -87,12 +87,11 @@ public sealed partial class ShuttleSystem
         _mapManager.DeleteMap(mapId);
     }
 
-    // Frontier
-    private void OnComponentInit(EntityUid uid, NFGridSpawnComponent component, ComponentInit args)
+    private void OnComponentInit(EntityUid uid, GridSpawnComponent component, ComponentInit args) // Frontier
     {
-        GridSpawns(uid, component);
+        if (component.OnInit)
+            GridSpawns(uid, component);
     }
-    // Frontier
 
     private bool TryDungeonSpawn(Entity<MapGridComponent?> targetGrid, DungeonSpawnGroup group, out EntityUid spawned)
     {

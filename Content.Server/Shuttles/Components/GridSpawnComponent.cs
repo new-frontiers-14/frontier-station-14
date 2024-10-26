@@ -17,6 +17,12 @@ public sealed partial class GridSpawnComponent : Component
     /// String is just an identifier to make yaml easier.
     /// </summary>
     [DataField(required: true)] public Dictionary<string, IGridSpawnGroup> Groups = new();
+
+    /// <summary>
+    /// Hide the IFF label of the grid.
+    /// </summary>
+    [DataField]
+    public bool OnInit { get; set; }
 }
 
 public interface IGridSpawnGroup
