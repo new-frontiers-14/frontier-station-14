@@ -1,5 +1,5 @@
 # Crafting mats
-- type: entity
+- type: entity # TODO: modular recipe
   id: BlankShellShotgunPrinted
   name: shell (.50 empty)
   parent: [ BaseItem, BaseC1Contraband ] # BaseCartridge
@@ -97,21 +97,6 @@
   - type: SpentAmmoVisuals
     state: "highex"
 
-- type: entity
-  id: ShellShotgunSmokeSlug
-  name: shell (.50 smoke slug)
-  parent: BaseShellShotgun
-  components:
-  - type: Sprite
-    sprite: _NF/Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
-    layers:
-      - state: highex # TODO: sprite
-        map: [ "enum.AmmoVisualLayers.Base" ]
-  - type: CartridgeAmmo
-    proto: PelletShotgunHighExSlug
-  - type: SpentAmmoVisuals
-    state: "highex"
-
 - type: entity # TODO: add chem transfer mechanics from syringe gun once available
   id: ShellShotgunSyringe
   name: shell (.50 syringe)
@@ -144,7 +129,7 @@
     maxFillLevels: 4
     fillBaseName: syringe-fill-
 
-- type: entity
+- type: entity # TODO: make it work :(
   id: ShellShotgunCluster
   name: shell (.50 cluster)
   parent: BaseShellShotgun
