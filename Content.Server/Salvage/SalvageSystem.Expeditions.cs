@@ -63,7 +63,7 @@ public sealed partial class SalvageSystem
         SubscribeLocalEvent<SalvageStructureComponent, ExaminedEvent>(OnStructureExamine);
 
         Subs.CVar(_configurationManager, CCVars.SalvageExpeditionCooldown, SetCooldownChange, true); // Frontier
-        Subs.CVar(_configurationManager, CCVars.SalvageExpeditionFailedCooldown, SetFailedCooldownChange, true); // Frontier
+        Subs.CVar(_configurationManager, NFCCVars.SalvageExpeditionFailedCooldown, SetFailedCooldownChange, true); // Frontier
     }
 
     private void OnExpeditionGetState(EntityUid uid, SalvageExpeditionComponent component, ref ComponentGetState args)
@@ -77,7 +77,7 @@ public sealed partial class SalvageSystem
     private void ShutdownExpeditions()
     {
         _configurationManager.UnsubValueChanged(CCVars.SalvageExpeditionCooldown, SetCooldownChange);
-        _configurationManager.UnsubValueChanged(CCVars.SalvageExpeditionFailedCooldown, SetFailedCooldownChange);
+        _configurationManager.UnsubValueChanged(NFCCVars.SalvageExpeditionFailedCooldown, SetFailedCooldownChange);
     }
 
     private void SetCooldownChange(float obj)

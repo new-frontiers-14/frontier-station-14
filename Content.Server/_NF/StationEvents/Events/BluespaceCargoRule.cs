@@ -53,7 +53,7 @@ public sealed class BluespaceCargoRule : StationEventSystem<BluespaceCargoRuleCo
         var xform = Transform(grid);
 
         var targetCoords = xform.Coordinates;
-        var gridBounds = gridComp.LocalAABB.Scale(_configuration.GetCVar(CCVars.CargoGenerationGridBoundsScale));
+        var gridBounds = gridComp.LocalAABB.Scale(_configuration.GetCVar(CCVars.AnomalyGenerationGridBoundsScale));
 
         for (var i = 0; i < 25; i++)
         {
