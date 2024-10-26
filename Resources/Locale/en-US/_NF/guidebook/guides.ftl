@@ -13,6 +13,9 @@ guide-entry-nfsd-smuggling = Smuggling
 # Medical entries
 guide-entry-medical-bounties = Medical Bounties
 
+# Reference entries
+guide-entry-medicalrecipes = Medical Recipes
+
 # Expedition faction entries
 guide-entry-expedition-aberrant-flesh = Aberrant Flesh
 guide-entry-expedition-argocytes = Argocytes
