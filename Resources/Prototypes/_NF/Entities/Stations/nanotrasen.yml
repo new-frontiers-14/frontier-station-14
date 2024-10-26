@@ -5,7 +5,6 @@
   - BaseStationCargo
   - BaseStationJobsSpawning
   - BaseStationRecords
-  - BaseStationShuttles
   - BaseStationAlertLevels
   - BaseStationSiliconLawFrontierStation
   - BaseStationSectorNews
@@ -51,27 +50,12 @@
   categories: [ HideSpawnMenu ]
 
 - type: entity
-  id: ShipyardFrontierOutpost
-  parent:
-  - StandardFrontierOutpost
-  - BaseStationShuttles
-  categories: [ HideSpawnMenu ]
-
-- type: entity
-  id: DeadDropShipyardFrontierOutpost
-  parent:
-  - ShipyardFrontierOutpost
-  - BaseStationDeadDrops
-  categories: [ HideSpawnMenu ]
-
-- type: entity
   id: SecurityFrontierOutpost
   parent:
   - BaseStation # Copied from StandardFrontierStation
   - BaseStationCargo # Cargo
   - BaseStationJobsSpawning # Records and jobsspawning
   - BaseStationRecords
-  - BaseStationShuttles # Can spawn shuttles via shipyard consoles
   - BaseStationAlertLevels # Has a comms console
   - BaseStationSiliconLawFrontierStation # No funny borg laws
   - BaseStationDampening
