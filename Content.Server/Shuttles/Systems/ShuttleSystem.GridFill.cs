@@ -209,7 +209,7 @@ public sealed partial class ShuttleSystem
 
                 if (_protoManager.TryIndex(group.NameDataset, out var dataset))
                 {
-                    _metadata.SetEntityName(spawned, SharedSalvageSystem.GetFTLName(dataset, _random.Next()));
+                    _metadata.SetEntityName(spawned, Loc.GetString("adventure-space-dungeon-name", ("dungeonPrototype", SharedSalvageSystem.GetFTLName(dataset, _random.Next()))));
                 }
 
                 if (group.Hide)
@@ -231,6 +231,7 @@ public sealed partial class ShuttleSystem
                     var spawnedOwnedDebris = EnsureComp<OwnedDebrisComponent>(spawned);
                     spawnedOwnedDebris.OwningController = uidOwnedDebris.OwningController;
                     spawnedOwnedDebris.LastKey = uidOwnedDebris.LastKey;
+                    Dirty(spawned, spawnedOwnedDebris);
                 }
             }
         }
@@ -262,6 +263,8 @@ public sealed partial class ShuttleSystem
 
         _transform.SetMapCoordinates(spawnedGrid, new MapCoordinates(Vector2.Zero, mapId));
         _dungeon.GenerateDungeon(dungeonProto, dungeonProto.ID, spawnedGrid.Owner, spawnedGrid.Comp, Vector2i.Zero, _random.Next(), spawnCoords); // Frontier: add dungeonProto.ID
+
+        _metadata.SetEntityName(spawnedGrid.Owner, Loc.GetString("adventure-space-dungeon-name", ("dungeonPrototype", dungeonProto)));
 
         spawned = spawnedGrid.Owner;
         return true;
