@@ -28,7 +28,7 @@ public sealed partial class RoomFillComponent : Component
     /// </summary>
     [DataField]
     public EntityWhitelist? RoomWhitelist;
-    
+
     /// <summary>
     /// Should any existing entities / decals be bulldozed first.
     /// </summary>
