@@ -78,6 +78,7 @@
 - type: entity
   id: NFBedrollAlt
   parent: NFBedroll
+  suffix: alt
   components:
   - type: Sprite
     noRot: true
@@ -95,7 +96,7 @@
 - type: entity
   parent: NFBedrollAlt
   id: NFBedrollAltFolded
-  suffix: folded
+  suffix: folded, alt
   components:
   - type: Foldable
     folded: true
@@ -164,6 +165,7 @@
   parent: NFBedrollStained
   id: NFBedrollStainedFolded
   suffix: folded, stained
+  categories: [ HideSpawnMenu ]
   components:
   - type: Foldable
     folded: true
