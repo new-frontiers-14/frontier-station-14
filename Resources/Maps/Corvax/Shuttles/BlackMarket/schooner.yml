@@ -908,8 +908,6 @@ entities:
     - type: Transform
       pos: 1.5,12.5
       parent: 1
-    - type: Physics
-      bodyType: Static
 - proto: BenchSofaMiddle
   entities:
   - uid: 26
@@ -917,8 +915,6 @@ entities:
     - type: Transform
       pos: 0.5,12.5
       parent: 1
-    - type: Physics
-      bodyType: Static
 - proto: BenchSofaRight
   entities:
   - uid: 27
@@ -926,8 +922,6 @@ entities:
     - type: Transform
       pos: -0.5,12.5
       parent: 1
-    - type: Physics
-      bodyType: Static
 - proto: ButtonFrameCaution
   entities:
   - uid: 2
@@ -2343,10 +2337,6 @@ entities:
     - type: Transform
       pos: -0.5,8.5
       parent: 1
-    - type: FuelGenerator
-      on: False
-    - type: Physics
-      bodyType: Static
 - proto: PosterContrabandDonk
   entities:
   - uid: 284
@@ -2799,24 +2789,32 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -5.5,3.5
       parent: 1
+    missingComponents:
+    - Anchorable
   - uid: 502
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -5.5,-3.5
       parent: 1
+    missingComponents:
+    - Anchorable
   - uid: 503
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 6.5,-3.5
       parent: 1
+    missingComponents:
+    - Anchorable
   - uid: 504
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 6.5,3.5
       parent: 1
+    missingComponents:
+    - Anchorable
 - proto: SignalButtonDirectional
   entities:
   - uid: 274

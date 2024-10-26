@@ -499,44 +499,34 @@ entities:
       parent: 201
 - proto: CannonBall
   entities:
-  - uid: 15
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 1.8835673,-2.403088
-      parent: 201
-  - uid: 19
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 1.6648173,-2.262463
-      parent: 201
   - uid: 72
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 1.6023173,-2.512463
+      pos: 1.4037349,-2.3940208
       parent: 201
-- proto: CannonBallGlassshot
+- proto: CannonBallEmp
   entities:
+  - uid: 15
+    components:
+    - type: Transform
+      pos: 1.4037349,-2.5816512
+      parent: 201
   - uid: 17
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 1.3054423,-2.449963
+      pos: 1.6433182,-2.362749
       parent: 201
   - uid: 20
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 1.4616923,-2.137463
+      pos: 1.1433182,-2.321054
       parent: 201
-- proto: CannonBallGrapeshot
+- proto: CannonBallGlassshot
   entities:
-  - uid: 76
+  - uid: 19
     components:
     - type: Transform
-      pos: 1.5241923,-2.309338
+      pos: 1.7579015,-2.602499
       parent: 201
 - proto: CarpetBlack
   entities:
@@ -1245,10 +1235,6 @@ entities:
     - type: Transform
       pos: 0.5,-6.5
       parent: 201
-    - type: FuelGenerator
-      on: False
-    - type: Physics
-      bodyType: Static
 - proto: PowerCellRecharger
   entities:
   - uid: 197
@@ -1424,6 +1410,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 1.5,-0.5
       parent: 201
+    missingComponents:
+    - Anchorable
 - proto: SignalButtonDirectional
   entities:
   - uid: 103

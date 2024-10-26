@@ -7,32 +7,33 @@
 # Discord: erhardsteinhauer
 
 # Shuttle Notes:
-#
+# 
 - type: vessel
-  id: Menace
-  name: Предъява
-  description: Малогабаритный штурмовой шаттл Синдиката. Рекомендованный размер команды 1-2 человека.
-  price: 21000
-  category: Small
-  group: BlackMarket
-  shuttlePath: /Maps/Corvax/Shuttles/BlackMarket/menace.yml
+  id: Broom
+  name: LVHI Метла
+  description: Тесный, но надежный шаттл для оказания услуг по уборке помещений.
+  price: 11000 # ~9650$ on mapinit + ~1450$ from 15% markup
+  category: Micro
+  group: Sr
+  access: Janitor
+  shuttlePath: /Maps/_NF/Shuttles/Sr/broom.yml
   guidebookPage: Null
   class:
-  - Pirate
+  - Civilian
   engine:
   - Plasma
 
 - type: gameMap
-  id: Menace
-  mapName: 'Menace'
-  mapPath: /Maps/Corvax/Shuttles/BlackMarket/menace.yml
+  id: Broom
+  mapName: 'Метла'
+  mapPath: /Maps/_NF/Shuttles/Sr/broom.yml
   minPlayers: 0
   stations:
-    Menace:
+    Broom:
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Предъява {1}' # Fake name eh?
+          mapNameTemplate: 'Метла {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

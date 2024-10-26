@@ -649,11 +649,6 @@ entities:
       parent: 1
 - proto: CannonBall
   entities:
-  - uid: 101
-    components:
-    - type: Transform
-      pos: 1.0542351,4.114599
-      parent: 1
   - uid: 225
     components:
     - type: Transform
@@ -663,6 +658,18 @@ entities:
     components:
     - type: Transform
       pos: 1.352911,4.131369
+      parent: 1
+- proto: CannonBallEmp
+  entities:
+  - uid: 101
+    components:
+    - type: Transform
+      pos: 0.7694856,4.3385043
+      parent: 1
+  - uid: 146
+    components:
+    - type: Transform
+      pos: 0.97781897,4.0883307
       parent: 1
 - proto: Catwalk
   entities:
@@ -1162,12 +1169,8 @@ entities:
     - type: Transform
       pos: 6.5,1.5
       parent: 1
-    - type: FuelGenerator
-      on: False
     - type: MaterialStorageMagnetPickup
       magnetEnabled: True
-    - type: Physics
-      bodyType: Static
 - proto: Poweredlight
   entities:
   - uid: 155
@@ -1380,12 +1383,16 @@ entities:
       rot: 3.141592653589793 rad
       pos: -0.5,4.5
       parent: 1
+    missingComponents:
+    - Anchorable
   - uid: 222
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 2.5,4.5
       parent: 1
+    missingComponents:
+    - Anchorable
 - proto: SignalButtonDirectional
   entities:
   - uid: 26

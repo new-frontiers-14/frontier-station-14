@@ -530,7 +530,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: 1.5,0.5
       parent: 1
-- proto: BaseComputer
+- proto: ComputerIFF
   entities:
   - uid: 69
     components:
@@ -750,6 +750,9 @@ entities:
       entities:
       - 67
       - 68
+    missingComponents:
+    - Machine
+    - Anchorable
 - proto: SignNfsd
   entities:
   - uid: 125

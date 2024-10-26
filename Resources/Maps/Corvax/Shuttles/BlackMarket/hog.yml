@@ -1854,53 +1854,17 @@ entities:
       parent: 1
 - proto: CannonBall
   entities:
-  - uid: 84
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -4.67929,4.394949
-      parent: 1
-  - uid: 621
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -4.46054,4.316824
-      parent: 1
   - uid: 622
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -4.476165,4.660574
       parent: 1
-  - uid: 624
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -4.194915,4.473074
-      parent: 1
   - uid: 625
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -4.74179,4.723074
-      parent: 1
-  - uid: 626
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 5.523835,4.348074
-      parent: 1
-  - uid: 627
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 5.273835,4.301199
-      parent: 1
-  - uid: 628
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 5.78946,4.394949
       parent: 1
   - uid: 629
     components:
@@ -1913,6 +1877,28 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 5.38321,4.566824
+      parent: 1
+- proto: CannonBallEmp
+  entities:
+  - uid: 238
+    components:
+    - type: Transform
+      pos: -4.6918826,4.376812
+      parent: 1
+  - uid: 239
+    components:
+    - type: Transform
+      pos: -4.4731326,4.3872356
+      parent: 1
+  - uid: 241
+    components:
+    - type: Transform
+      pos: 5.283502,4.5018992
+      parent: 1
+  - uid: 242
+    components:
+    - type: Transform
+      pos: 5.5855856,4.460203
       parent: 1
 - proto: Catwalk
   entities:
@@ -2255,60 +2241,34 @@ entities:
         - 0
         - 0
         - 0
+- proto: CratePirate
+  entities:
+  - uid: 84
+    components:
+    - type: Transform
+      pos: -3.5,5.5
+      parent: 1
+  - uid: 236
+    components:
+    - type: Transform
+      pos: 4.5,5.5
+      parent: 1
+  - uid: 237
+    components:
+    - type: Transform
+      pos: -3.5,3.5
+      parent: 1
+  - uid: 240
+    components:
+    - type: Transform
+      pos: 4.5,3.5
+      parent: 1
 - proto: CratePirateChest
   entities:
   - uid: 197
     components:
     - type: Transform
       pos: 0.5,2.5
-      parent: 1
-    - type: EntityStorage
-      air:
-        volume: 200
-        immutable: False
-        temperature: 293.14923
-        moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-- proto: CratePirateChestCannonBall
-  entities:
-  - uid: 637
-    components:
-    - type: Transform
-      pos: 4.5,3.5
-      parent: 1
-    - type: EntityStorage
-      air:
-        volume: 200
-        immutable: False
-        temperature: 293.14923
-        moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-  - uid: 638
-    components:
-    - type: Transform
-      pos: -3.5,3.5
       parent: 1
     - type: EntityStorage
       air:
@@ -2353,54 +2313,6 @@ entities:
         - 0
         - 0
         - 0
-- proto: CratePirateChestGlassShot
-  entities:
-  - uid: 635
-    components:
-    - type: Transform
-      pos: -3.5,5.5
-      parent: 1
-    - type: EntityStorage
-      air:
-        volume: 200
-        immutable: False
-        temperature: 293.14923
-        moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-  - uid: 639
-    components:
-    - type: Transform
-      pos: 4.5,5.5
-      parent: 1
-    - type: EntityStorage
-      air:
-        volume: 200
-        immutable: False
-        temperature: 293.14923
-        moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
 - proto: CurtainsBlack
   entities:
   - uid: 123
@@ -2409,7 +2321,7 @@ entities:
       pos: 1.5,9.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -4885.02
+      secondsUntilStateChange: -4978.725
       state: Opening
   - uid: 161
     components:
@@ -2417,7 +2329,7 @@ entities:
       pos: 0.5,9.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -3070.7441
+      secondsUntilStateChange: -3164.449
       state: Opening
   - uid: 562
     components:
@@ -2450,7 +2362,7 @@ entities:
       pos: 0.5,1.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -3640.442
+      secondsUntilStateChange: -3734.1467
       state: Closing
   - uid: 393
     components:
@@ -2486,103 +2398,6 @@ entities:
       parent: 585
     - type: Physics
       canCollide: False
-- proto: d6Dice
-  entities:
-  - uid: 237
-    components:
-    - type: Transform
-      parent: 236
-    - type: Physics
-      canCollide: False
-  - uid: 238
-    components:
-    - type: Transform
-      parent: 236
-    - type: Physics
-      canCollide: False
-  - uid: 239
-    components:
-    - type: Transform
-      parent: 236
-    - type: Physics
-      canCollide: False
-  - uid: 240
-    components:
-    - type: Transform
-      parent: 236
-    - type: Physics
-      canCollide: False
-  - uid: 241
-    components:
-    - type: Transform
-      parent: 236
-    - type: Physics
-      canCollide: False
-  - uid: 242
-    components:
-    - type: Transform
-      parent: 236
-    - type: Physics
-      canCollide: False
-  - uid: 243
-    components:
-    - type: Transform
-      parent: 236
-    - type: Physics
-      canCollide: False
-  - uid: 244
-    components:
-    - type: Transform
-      parent: 236
-    - type: Physics
-      canCollide: False
-- proto: DiceBag
-  entities:
-  - uid: 236
-    components:
-    - type: Transform
-      pos: 3.385871,-1.6798351
-      parent: 1
-    - type: Storage
-      storedItems:
-        237:
-          position: 0,0
-          _rotation: South
-        238:
-          position: 1,0
-          _rotation: South
-        239:
-          position: 2,0
-          _rotation: South
-        240:
-          position: 3,0
-          _rotation: South
-        241:
-          position: 0,1
-          _rotation: South
-        242:
-          position: 1,1
-          _rotation: South
-        243:
-          position: 2,1
-          _rotation: South
-        244:
-          position: 3,1
-          _rotation: South
-    - type: ContainerContainer
-      containers:
-        storagebase: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 237
-          - 238
-          - 239
-          - 240
-          - 241
-          - 242
-          - 243
-          - 244
 - proto: DogBed
   entities:
   - uid: 426
@@ -4527,6 +4342,63 @@ entities:
     - type: Transform
       pos: 1.5,-4.5
       parent: 1
+- proto: StructureMeleeWeaponRack
+  entities:
+  - uid: 585
+    components:
+    - type: Transform
+      pos: -1.5,12.5
+      parent: 1
+    - type: ContainerContainer
+      containers:
+        storagebase: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        weapon1_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: 586
+        weapon2_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: 587
+        weapon3_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: 588
+        weapon4_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        weapon5_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        weapon6_slot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        weapon1: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        weapon2: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        weapon3: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        weapon4: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+        weapon5: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
 - proto: SubstationBasic
   entities:
   - uid: 510
@@ -5557,41 +5429,4 @@ entities:
       rot: 3.141592653589793 rad
       pos: 1.5,4.5
       parent: 1
-- proto: WeaponRackMeleeBase
-  entities:
-  - uid: 585
-    components:
-    - type: Transform
-      pos: -1.5,12.5
-      parent: 1
-    - type: ContainerContainer
-      containers:
-        storagebase: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        weapon1_slot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: 586
-        weapon2_slot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: 587
-        weapon3_slot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: 588
-        weapon4_slot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        weapon5_slot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        weapon6_slot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
 ...

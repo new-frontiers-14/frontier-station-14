@@ -5,16 +5,21 @@
 # # a wooden pirate version of the classic Prospector
 # - type: vessel
   # id: Barnacle
-  # name: Моряк
-  # description: 'Малогабаритный пиратский шаттл.'
-  # price: 16000
+  # name: Barnacle
+  # description: 'Nobody expects the lowly barnacle'
+  # price: 17000 # Appraises for 15445, price set to 17k, margin of ~10% - TODO: review ship values - Whatstone
   # category: Small
   # group: BlackMarket
   # shuttlePath: /Maps/_NF/Shuttles/BlackMarket/barnacle.yml
+  # guidebookPage: Null
+  # class:
+  # - Pirate
+  # engine:
+  # - Plasma
 
 # - type: gameMap
   # id: Barnacle
-  # mapName: 'Моряк'
+  # mapName: 'Barnacle'
   # mapPath: /Maps/_NF/Shuttles/BlackMarket/barnacle.yml
   # minPlayers: 0
   # stations:
@@ -22,10 +27,10 @@
       # stationProto: StandardFrontierVessel
       # components:
         # - type: StationNameSetup
-          # mapNameTemplate: 'Старатель {1}' # Fake name eh?
+          # mapNameTemplate: 'Prospector {1}' # Fake name eh?
           # nameGenerator:
             # !type:NanotrasenNameGenerator
             # prefixCreator: '14'
         # - type: StationJobs
-          # availableJobs:
+          # availableJobs: 
             # Pirate: [ 0, 0 ]

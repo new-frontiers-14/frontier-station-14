@@ -1308,27 +1308,6 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-  - uid: 549
-    components:
-    - type: Transform
-      parent: 539
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 550
-    components:
-    - type: Transform
-      parent: 539
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 551
-    components:
-    - type: Transform
-      parent: 539
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: CannonBallGlassshot
   entities:
   - uid: 543
@@ -1338,51 +1317,9 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-  - uid: 545
-    components:
-    - type: Transform
-      parent: 539
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 546
-    components:
-    - type: Transform
-      parent: 539
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 547
-    components:
-    - type: Transform
-      parent: 539
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: CannonBallGrapeshot
   entities:
   - uid: 540
-    components:
-    - type: Transform
-      parent: 539
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 541
-    components:
-    - type: Transform
-      parent: 539
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 542
-    components:
-    - type: Transform
-      parent: 539
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 544
     components:
     - type: Transform
       parent: 539
@@ -1764,19 +1701,10 @@ entities:
           showEnts: False
           occludes: True
           ents:
-          - 540
-          - 541
-          - 542
-          - 543
-          - 544
-          - 545
-          - 546
-          - 547
-          - 548
           - 262
-          - 549
-          - 550
-          - 551
+          - 548
+          - 543
+          - 540
         paper_label: !type:ContainerSlot
           showEnts: False
           occludes: True
@@ -1834,28 +1762,16 @@ entities:
     - type: Transform
       pos: 5.286945,-7.6460857
       parent: 3
-    - type: ItemSlots
-    - type: ContainerContainer
-      containers:
-        paper_label: !type:ContainerSlot {}
   - uid: 236
     components:
     - type: Transform
       pos: 5.5473614,-7.3856688
       parent: 3
-    - type: ItemSlots
-    - type: ContainerContainer
-      containers:
-        paper_label: !type:ContainerSlot {}
   - uid: 239
     components:
     - type: Transform
       pos: 5.7348614,-7.6669188
       parent: 3
-    - type: ItemSlots
-    - type: ContainerContainer
-      containers:
-        paper_label: !type:ContainerSlot {}
 - proto: DrinkRumBottleFull
   entities:
   - uid: 228
@@ -2773,19 +2689,11 @@ entities:
     - type: Transform
       pos: -1.5,-8.5
       parent: 3
-    - type: FuelGenerator
-      on: False
-    - type: Physics
-      bodyType: Static
   - uid: 124
     components:
     - type: Transform
       pos: -0.5,-8.5
       parent: 3
-    - type: FuelGenerator
-      on: False
-    - type: Physics
-      bodyType: Static
 - proto: PosterLegitCarpMount
   entities:
   - uid: 225
@@ -3035,12 +2943,16 @@ entities:
       rot: 3.141592653589793 rad
       pos: 5.5,0.5
       parent: 3
+    missingComponents:
+    - Anchorable
   - uid: 192
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 4.5,0.5
       parent: 3
+    missingComponents:
+    - Anchorable
 - proto: SignalButtonDirectional
   entities:
   - uid: 152

@@ -1,0 +1,41 @@
+# Author Info
+# GitHub: ???
+# Discord: ???
+
+# Maintainer Info
+# GitHub: ???
+# Discord: ???
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Parcel
+  name: NC Парцелла
+  description: Надежный шаттл для доставки почты и посылок.
+  price: 18000
+  category: Small
+  group: Sr
+  access: Mail
+  shuttlePath: /Maps/_NF/Shuttles/Sr/parcel.yml
+  guidebookPage: Null
+  class:
+  - Cargo
+  engine:
+  - Plasma
+
+- type: gameMap
+  id: Parcel
+  mapName: 'NC Парцелла'
+  mapPath: /Maps/_NF/Shuttles/Sr/parcel.yml
+  minPlayers: 0
+  stations:
+    Parcel:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Парцелла {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs: {}
