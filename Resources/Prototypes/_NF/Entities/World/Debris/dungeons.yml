@@ -1,0 +1,34 @@
+﻿- type: entity
+  id: NFBaseAsteroidDungeons
+#  parent: NFBaseDebris
+  abstract: true
+  components:
+    - type: MapGrid
+    - type: NFGridSpawn
+      groups:
+        nfvgroid: !type:NFDungeonSpawnGroup
+          minimumDistance: 0
+          maximumDistance: 0
+          minCount: 1
+          maxCount: 999
+          nameDataset: names_borer
+          stationGrid: false
+          hide: true
+          addComponents:
+          - type: Gravity
+            enabled: true
+            inherent: true
+          # - type: OwnedDebris
+          # - type: LocalityLoader
+          # - type: GCAbleObject
+            # queue: SpaceDebris
+          - type: IFF
+            color: "#fff700"
+          protos:
+          - NFVGRoid
+
+- type: entity
+  id: NFAsteroidDungeons
+  parent: NFBaseAsteroidDungeons
+  name: dungeon
+#  categories: [ HideSpawnMenu ]
