@@ -123,11 +123,11 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             string summaryText;
             if (profit < 0)
             {
-                summaryText = Loc.GetString("adventure-mode-list-loss", ("amount", BankSystemExtensions.ToSpesoString(-profit)));
+                summaryText = Loc.GetString("adventure-list-loss", ("amount", BankSystemExtensions.ToSpesoString(-profit)));
             }
             else
             {
-                summaryText = Loc.GetString("adventure-mode-list-profit", ("amount", BankSystemExtensions.ToSpesoString(profit)));
+                summaryText = Loc.GetString("adventure-list-profit", ("amount", BankSystemExtensions.ToSpesoString(profit)));
             }
             ev.AddLine($"- {playerInfo.Name} {summaryText}");
             allScore.Add(new Tuple<string, int>(playerInfo.Name, profit));
@@ -136,7 +136,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         if (!(allScore.Count >= 1))
             return;
 
-        var relayText = Loc.GetString("adventure-list-high");
+        var relayText = Loc.GetString("adventure-webhook-list-high");
         relayText += '\n';
         var highScore = allScore.OrderByDescending(h => h.Item2).ToList();
 
@@ -144,20 +144,20 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         {
             if (highScore.First().Item2 < 0)
                 break;
-            var profitText = Loc.GetString("adventure-mode-top-profit", ("amount", BankSystemExtensions.ToSpesoString(highScore.First().Item2)));
+            var profitText = Loc.GetString("adventure-webhook-top-profit", ("amount", BankSystemExtensions.ToSpesoString(highScore.First().Item2)));
             relayText += $"{highScore.First().Item1} {profitText}";
             relayText += '\n';
             highScore.RemoveAt(0);
         }
-        relayText += '\n'; // Extra line separating the 
-        relayText += Loc.GetString("adventure-list-low");
+        relayText += '\n'; // Extra line separating the highest and lowest scores
+        relayText += Loc.GetString("adventure-webhook-list-low");
         relayText += '\n';
         highScore.Reverse();
         for (var i = 0; i < 10 && highScore.Count > 0; i++)
         {
             if (highScore.First().Item2 > 0)
                 break;
-            var lossText = Loc.GetString("adventure-mode-top-loss", ("amount", BankSystemExtensions.ToSpesoString(-highScore.First().Item2)));
+            var lossText = Loc.GetString("adventure-webhook-top-loss", ("amount", BankSystemExtensions.ToSpesoString(-highScore.First().Item2)));
             relayText += $"{highScore.First().Item1} {lossText}";
             relayText += '\n';
             highScore.RemoveAt(0);
@@ -535,7 +535,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         _stationCoords.Add(coords);
     }
 
-    private async Task ReportRound(String message, int color = 0x77DDE7)
+    private async Task ReportRound(string message, int color = 0x77DDE7)
     {
         Logger.InfoS("discord", message);
         String webhookUrl = _configurationManager.GetCVar(CCVars.DiscordLeaderboardWebhook);
@@ -548,7 +548,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             {
                 new()
                 {
-                    Title = Loc.GetString("adventure-list-start"),
+                    Title = Loc.GetString("adventure-webhook-list-start"),
                     Description = message,
                     Color = color,
                 },
