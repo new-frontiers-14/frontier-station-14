@@ -179,16 +179,6 @@ public sealed partial class ShuttleSystem
 
     private void NFGridSpawns(EntityUid uid, GridSpawnComponent component)
     {
-        if (!TryComp<StationDataComponent>(uid, out var data))
-        {
-            return;
-        }
-
-        var targetGrid = _station.GetLargestGrid(data);
-
-        if (targetGrid == null)
-            return;
-
         // Spawn on a dummy map and try to FTL if possible, otherwise dump it.
         _mapSystem.CreateMap(out var mapId);
 
@@ -203,12 +193,12 @@ public sealed partial class ShuttleSystem
                 switch (group)
                 {
                     case DungeonSpawnGroup dungeon:
-                        if (!TryDungeonSpawn(targetGrid.Value, dungeon, out spawned))
+                        if (!TryDungeonSpawn(uid, dungeon, out spawned))
                             continue;
 
                         break;
                     case GridSpawnGroup grid:
-                        if (!TryGridSpawn(targetGrid.Value, uid, mapId, grid, out spawned))
+                        if (!TryGridSpawn(uid, uid, mapId, grid, out spawned))
                             continue;
 
                         break;

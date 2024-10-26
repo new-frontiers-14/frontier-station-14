@@ -3,6 +3,7 @@
 #  parent: NFBaseDebris
   abstract: true
   components:
+  - type: MapGrid
   - type: GridSpawn
     onInit: true
     groups:
@@ -10,7 +11,7 @@
         minimumDistance: 0
         maximumDistance: 0
         minCount: 1
-        maxCount: 999
+        maxCount: 1
         nameDataset: names_borer
         stationGrid: false
         hide: true
@@ -26,12 +27,11 @@
           color: "#fff700"
         protos:
         - NFVGRoid
+  - type: TimedDespawn
+    lifetime: 300
 
 - type: entity
   id: NFAsteroidDungeons
   parent: NFBaseAsteroidDungeons
   name: dungeon
 #  categories: [ HideSpawnMenu ]
-  components:
-  - type: TimedDespawn
-    lifetime: 1
