@@ -54,6 +54,12 @@ public sealed partial class ShuttleSystem
         GridSpawns(uid, component);
     }
 
+    private void OnComponentInit(EntityUid uid, GridSpawnComponent component, ComponentInit args) // Frontier
+    {
+        if (component.OnInit)
+            NFGridSpawns(uid, component);
+    }
+
     private void OnCargoSpawnPostInit(EntityUid uid, StationCargoShuttleComponent component, ref StationPostInitEvent args)
     {
         CargoSpawn(uid, component);
@@ -85,12 +91,6 @@ public sealed partial class ShuttleSystem
         }
 
         _mapManager.DeleteMap(mapId);
-    }
-
-    private void OnComponentInit(EntityUid uid, GridSpawnComponent component, ComponentInit args) // Frontier
-    {
-        if (component.OnInit)
-            GridSpawns(uid, component);
     }
 
     private bool TryDungeonSpawn(Entity<MapGridComponent?> targetGrid, DungeonSpawnGroup group, out EntityUid spawned)
@@ -175,6 +175,69 @@ public sealed partial class ShuttleSystem
 
         Log.Error($"Error loading gridspawn for {ToPrettyString(stationUid)} / {path}");
         return false;
+    }
+
+    private void NFGridSpawns(EntityUid uid, GridSpawnComponent component)
+    {
+        if (!TryComp<StationDataComponent>(uid, out var data))
+        {
+            return;
+        }
+
+        var targetGrid = _station.GetLargestGrid(data);
+
+        if (targetGrid == null)
+            return;
+
+        // Spawn on a dummy map and try to FTL if possible, otherwise dump it.
+        _mapSystem.CreateMap(out var mapId);
+
+        foreach (var group in component.Groups.Values)
+        {
+            var count = _random.Next(group.MinCount, group.MaxCount + 1);
+
+            for (var i = 0; i < count; i++)
+            {
+                EntityUid spawned;
+
+                switch (group)
+                {
+                    case DungeonSpawnGroup dungeon:
+                        if (!TryDungeonSpawn(targetGrid.Value, dungeon, out spawned))
+                            continue;
+
+                        break;
+                    case GridSpawnGroup grid:
+                        if (!TryGridSpawn(targetGrid.Value, uid, mapId, grid, out spawned))
+                            continue;
+
+                        break;
+                    default:
+                        throw new NotImplementedException();
+                }
+
+                if (_protoManager.TryIndex(group.NameDataset, out var dataset))
+                {
+                    _metadata.SetEntityName(spawned, SharedSalvageSystem.GetFTLName(dataset, _random.Next()));
+                }
+
+                if (group.Hide)
+                {
+                    var iffComp = EnsureComp<IFFComponent>(spawned);
+                    iffComp.Flags |= IFFFlags.HideLabel;
+                    Dirty(spawned, iffComp);
+                }
+
+                if (group.StationGrid)
+                {
+                    _station.AddGridToStation(uid, spawned);
+                }
+
+                EntityManager.AddComponents(spawned, group.AddComponents);
+            }
+        }
+
+        _mapManager.DeleteMap(mapId);
     }
 
     private void GridSpawns(EntityUid uid, GridSpawnComponent component)

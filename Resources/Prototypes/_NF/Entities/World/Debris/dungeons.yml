@@ -3,33 +3,35 @@
 #  parent: NFBaseDebris
   abstract: true
   components:
-    - type: MapGrid
-    - type: GridSpawn
-      onInit: true
-      groups:
-        nfvgroid: !type:DungeonSpawnGroup
-          minimumDistance: 0
-          maximumDistance: 0
-          minCount: 1
-          maxCount: 999
-          nameDataset: names_borer
-          stationGrid: false
-          hide: true
-          addComponents:
-          - type: Gravity
-            enabled: true
-            inherent: true
-          # - type: OwnedDebris
-          # - type: LocalityLoader
-          # - type: GCAbleObject
-            # queue: SpaceDebris
-          - type: IFF
-            color: "#fff700"
-          protos:
-          - NFVGRoid
+  - type: GridSpawn
+    onInit: true
+    groups:
+      nfvgroid: !type:DungeonSpawnGroup
+        minimumDistance: 0
+        maximumDistance: 0
+        minCount: 1
+        maxCount: 999
+        nameDataset: names_borer
+        stationGrid: false
+        hide: true
+        addComponents:
+        - type: Gravity
+          enabled: true
+          inherent: true
+        - type: OwnedDebris
+        - type: LocalityLoader
+        - type: GCAbleObject
+          queue: SpaceDebris
+        - type: IFF
+          color: "#fff700"
+        protos:
+        - NFVGRoid
 
 - type: entity
   id: NFAsteroidDungeons
   parent: NFBaseAsteroidDungeons
   name: dungeon
 #  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 1

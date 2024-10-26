@@ -22,7 +22,7 @@ public sealed partial class GridSpawnComponent : Component
     /// Hide the IFF label of the grid.
     /// </summary>
     [DataField]
-    public bool OnInit { get; set; }
+    public bool OnInit = false;
 }
 
 public interface IGridSpawnGroup
