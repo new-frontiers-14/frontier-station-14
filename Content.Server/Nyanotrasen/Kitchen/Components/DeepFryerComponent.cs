@@ -13,6 +13,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Set;
+using Content.Shared.Nyanotrasen.Kitchen.Prototypes;
 
 namespace Content.Server.Nyanotrasen.Kitchen.Components
 {
@@ -236,5 +237,12 @@ namespace Content.Server.Nyanotrasen.Kitchen.Components
         [ViewVariables(VVAccess.ReadWrite)]
         [DataField("soundRemoveItem")]
         public SoundSpecifier SoundRemoveItem = new SoundPathSpecifier("/Audio/Nyanotrasen/Machines/deepfryer_basket_remove_item.ogg");
+
+        /// <summary>
+        /// Frontier: crispiness level set to use for examination and shaders
+        /// </summary>
+        [ViewVariables(VVAccess.ReadWrite)]
+        [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<CrispinessLevelSetPrototype>))]
+        public string CrispinessLevelSet = "Crispy";
     }
 }

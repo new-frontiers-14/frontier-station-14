@@ -1,0 +1,55 @@
+<Document>
+# Xenoarchaeology
+Xenoarchaeology is a field of science focused on researching and experimenting on alien artifacts.
+
+Artifacts can be found by mining asteroids found around the sector, or you can buy some from miners or salvagers.
+
+By researching the unique things each artifact can do, you gain Research Points, increase the artifact's sale value, and potentially discover a useful ability or two!
+
+## Artifact Nodes
+<Box>
+<GuideEntityEmbed Entity="ComplexXenoArtifact" Caption=""/>
+<GuideEntityEmbed Entity="SimpleXenoArtifactItem" Caption=""/>
+</Box>
+Artifacts consist of a randomly-generated tree of nodes. These nodes have a "[color=#a4885c]depth[/color]", representing how dangerous the node is, and the number of other nodes connected to it, called "[color=#a4885c]edges[/color]",
+
+Artifacts always start at depth zero, the root of the tree. Travelling the tree to find as many nodes as possible is the main goal of the scientists working on them. Knowledge is extracted from nodes to gain Research Points and increase the artifact's sale value.
+
+Each node has two components: its [color=#a4885c]stimulus[/color] and a [color=#a4885c]reaction[/color].
+
+A stimulus is the external behavior that triggers the reaction. There's a variety of these, and higher depth nodes have more difficult to accomplish stimuli. Some stimuli will need improvisation to trigger, and you may need special materials or resources to get everything you need.
+
+Some reactions are instantaneous effects while others are permanent changes. Once an artifact is triggered, the reaction causes the artifact to randomly move to another node it is linked to.
+
+With some experimental science, you can begin to grasp how the different nodes of an artifact are connected, and how to move between them by repeatedly activating nodes.
+
+All non-zero-depth nodes will have exactly one edge that leads up to its parent node. All other edges a node has lead down to the next depth.
+
+## Artifact Analyzer and Analysis Console
+<Box>
+<GuideEntityEmbed Entity="MachineArtifactAnalyzer"/>
+<GuideEntityEmbed Entity="ComputerAnalysisConsole"/>
+</Box>
+The main equipment that you'll be using for Xenoarchaeology is the [color=#a4885c]artifact analyzer[/color] and the [color=#a4885c]analysis console[/color]. You can use these to create reports that contain valuable information about an artifact.
+
+To set them up, simply link them with a network configurator and set an artifact on top of the analyzer. Every science vessel has at least one of these machines already set up.
+
+Use the console's [color=#a4885c]scan[/color] button to discover what stimulus the artifact needs and what its reaction will do. Scanning takes thirty seconds.
+
+Use the [color=#a4885c]print[/color] button to save the scan result, so you can refer to it later.
+
+Once you've discovered a new node, you can extract points from the artifact using the [color=#a4885c]Extract[/color] button.
+
+## Artifexium and You
+
+With difficult to trigger stimuli, one risky alternative is the use of [color=#a4885c]artifexium[/color]. In order to get artifexium, artifact fragments can be [color=#a4885c]ground[/color] in a [color=#a4885c]reagent grinder[/color]. This artifexium can then be [color=#a4885c]sprayed[/color] or [color=#a4885c]splashed[/color] on an artifact to cause a trigger.
+
+It is worth note that artifexium can cause unwanted reactions and reduced yield when interacting with alien artifacts. Use it sparingly, and it can be a useful tool.
+
+For reasons yet understood by science, use of artifexium is more stable when performed in laboratories than on rocks in the void. Our xenoarchaeologists suggest that these artifacts may exhibit sentient properties and be more stable in social settings.
+
+## Assembling Artifacts
+<GuideEntityEmbed Entity="ArtifactFragment" Caption="Artifact Fragment"/>
+
+It is possible to gather multiple artifact fragments and assemble them into a working artifact. You can ask for these from mining ships, who usually find these while mining asteroids or on Expeditions.
+</Document>
