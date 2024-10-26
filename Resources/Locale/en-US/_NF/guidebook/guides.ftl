@@ -10,6 +10,9 @@ guide-entry-frontier-rules = Server Rules
 # Security entries
 guide-entry-nfsd-smuggling = Smuggling
 
+# Reference entries
+guide-entry-medicalrecipes = Medical Recipes
+
 # Expedition faction entries
 guide-entry-expedition-aberrant-flesh = Aberrant Flesh
 guide-entry-expedition-argocytes = Argocytes
