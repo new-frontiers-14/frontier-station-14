@@ -1,4 +1,4 @@
-﻿[RegisterComponent]
+[RegisterComponent]
 [AutoGenerateComponentState]
 public sealed partial class InflationCargoCrateComponent : Component
 {

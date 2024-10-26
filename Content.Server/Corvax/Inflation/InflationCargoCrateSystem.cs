@@ -1,4 +1,4 @@
-﻿using Robust.Shared.Timing;
+using Robust.Shared.Timing;
 using Content.Server.Chat.Systems;
 using Content.Shared._NF.Trade.Components;
 using Content.Shared.Cargo.Components;

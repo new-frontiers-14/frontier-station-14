@@ -10,8 +10,8 @@
 #
 - type: vessel
   id: Wendigo
-  name: NSF Wendigo
-  description: A light medium ship with a recommended crew of 2 to 3 officers, the Wendigo is a dedicated interdiction vessel outfitted with a powerful EMP device for tackling escaping vessels.
+  name: NSF Вендиго
+  description: Шаттл среднего класса с рекомендуемым экипажем из 2-3 офицеров, "Вендиго" - это специализированное судно для перехвата, оснащенное мощным электромагнитным устройством для борьбы с убегающими судами.
   price: 34500
   category: Medium
   group: Security
@@ -24,7 +24,7 @@
 
 - type: gameMap
   id: Wendigo
-  mapName: 'NSF Wendigo'
+  mapName: 'NSF Вендиго'
   mapPath: /Maps/_NF/Shuttles/Nfsd/wendigo.yml
   minPlayers: 0
   stations:
@@ -32,7 +32,7 @@
       stationProto: StandardFrontierSecurityVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Wendigo {1}'
+          mapNameTemplate: 'Вендиго {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

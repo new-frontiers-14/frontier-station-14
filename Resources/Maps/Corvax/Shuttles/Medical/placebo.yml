@@ -270,8 +270,6 @@ entities:
       pos: -3.5,7.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 196
       - 235
@@ -282,8 +280,6 @@ entities:
       pos: -0.5,7.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 196
       - 235
@@ -688,6 +684,14 @@ entities:
     components:
     - type: Transform
       pos: -5.5,3.5
+      parent: 1
+- proto: DefibrillatorCabinetFilled
+  entities:
+  - uid: 248
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -6.5,4.5
       parent: 1
 - proto: DeskBell
   entities:

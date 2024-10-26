@@ -1355,7 +1355,7 @@ entities:
       pos: -8.5,-3.5
       parent: 391
       type: Transform
-- proto: ComputerIFFSyndicate
+- proto: BaseComputer #corvax-frontier
   entities:
   - uid: 112
     components:
@@ -1376,6 +1376,18 @@ entities:
     components:
     - rot: 1.5707963267948966 rad
       pos: -9.5,-2.5
+      parent: 391
+      type: Transform
+- proto: DefibrillatorCabinetFilled
+  entities:
+  - uid: 413
+    components:
+    - pos: -3.5,0.5
+      parent: 391
+      type: Transform
+  - uid: 417
+    components:
+    - pos: 0.5,0.5
       parent: 391
       type: Transform
 - proto: EncryptionKeySecurity
@@ -2565,6 +2577,13 @@ entities:
     - pos: -0.5,-1.5
       parent: 391
       type: Transform
+- proto: SecurityTechFab
+  entities:
+  - uid: 301
+    components:
+    - pos: 2.5,3.5
+      parent: 391
+      type: Transform
 - proto: ShuttersNormal
   entities:
   - uid: 349
@@ -3122,7 +3141,7 @@ entities:
     - canCollide: False
       type: Physics
     - type: InsideEntityStorage
-- proto: Zipties
+- proto: WeaponRifleLecter
   entities:
   - uid: 307
     components:
