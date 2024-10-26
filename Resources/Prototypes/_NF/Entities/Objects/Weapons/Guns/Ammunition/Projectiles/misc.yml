@@ -1,5 +1,5 @@
 - type: entity
-  id: HoloFlare
+  id: HoloFlareCyan
   name: flare
   categories: [ HideSpawnMenu ]
   components:
@@ -24,8 +24,8 @@
     lifetime: 900
   - type: AmbientSound
     enabled: true
-    volume: -15
-    range: 2
+    volume: -10
+    range: 3
     sound:
       path: /Audio/Ambience/Objects/light_hum.ogg
       params:
@@ -33,7 +33,7 @@
   - type: PointLight
     enabled: true
     color: "#c0e0f8"
-    radius: 10.0
+    radius: 9.0
     energy: 3.0
     netsync: false
   - type: Projectile
@@ -41,3 +41,39 @@
     damage:
       types:
         Heat: 0
+
+- type: entity
+  id: HoloFlareRed
+  name: flare
+  parent: HoloFlareCyan
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+    state: magicm_cyan
+    scale: 0.3,0.3
+    color: red
+  - type: PointLight
+    enabled: true
+    color: "#990000"
+    radius: 9.0
+    energy: 3.0
+    netsync: false
+
+- type: entity
+  id: HoloFlareYellow
+  name: flare
+  parent: HoloFlareCyan
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+    state: magicm_cyan
+    scale: 0.3,0.3
+    color: yellow
+  - type: PointLight
+    enabled: true
+    color: yellow
+    radius: 9.0
+    energy: 3.0
+    netsync: false

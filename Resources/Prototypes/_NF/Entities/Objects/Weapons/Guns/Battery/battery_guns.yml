@@ -141,9 +141,12 @@
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
-    - state: mag-unshaded-4
+    - state: mag-unshaded-2
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
+    - state: mode-cyan
+      shader: unshaded
+      map: [ "Firemode" ]
   - type: Item
     size: Small
     inhandVisuals:
@@ -166,15 +169,37 @@
   - type: Battery
     maxCharge: 720
     startingCharge: 720
-  - type: ProjectileBatteryAmmoProvider
-    proto: HoloFlare
-    fireCost: 240
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 10
+    autoRechargeRate: 10  
+  - type: ProjectileBatteryAmmoProvider
+    proto: HoloFlareCyan
+    fireCost: 240
+  - type: EnergyGun
+    fireModes:
+    - proto: HoloFlareCyan
+      fireCost: 240
+      name: cyan
+      state: cyan
+    - proto: HoloFlareRed
+      fireCost: 240
+      name: red
+      state: red
+    - proto: HoloFlareYellow
+      fireCost: 240
+      name: yellow
+      state: yellow
   - type: MagazineVisuals
     magState: mag
     steps: 3
     zeroVisible: true
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.EnergyGunFireModeVisuals.State:
+        Firemode:
+          cyan: { state: mode-cyan }
+          red: { state: mode-red }
+          yellow: { state: mode-yellow }
   - type: StaticPrice
-    price: 200
+    price: 250
