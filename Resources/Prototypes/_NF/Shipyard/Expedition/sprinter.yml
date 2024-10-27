@@ -1,41 +1,43 @@
-# Author Info
-# GitHub: Kesiath (https://github.com/Kesiath)
-# Discord: @kesiath
-# 
-# Maintainer Info
-# GitHub: ???
-# Discord: ???
-# 
-# Shuttle Notes:
-#
+# # Author Info
+# # GitHub: Kesiath (https://github.com/Kesiath)
+# # Discord: @kesiath
+
+# # Maintainer Info
+# # GitHub: ???
+# # Discord: ???
+
+# # Shuttle Notes:
+# #
 # - type: vessel
-#   id: Sprinter
-#   name: KC Спринтер
-#   description: Среднегабаритный экспедиционный шаттл. Рекомендованный состав команды 3-6 человек.
-#   price: 66500 # ~51200$ on mapinit + ~15360$ from 30% markup
-#   category: Medium
-#   group: Expedition
-#   shuttlePath: /Maps/_NF/Shuttles/Expedition/sprinter.yml
-#   guidebookPage: Null
-#   class:
-#   - Expedition
-# 
+  # id: Sprinter
+  # name: KC Sprinter
+  # description: A light freighter often picked by bounty hunters due to its quick acceleration, expedition capable.
+  # price: 56800 # ~$43700 on mapinit plus ~30% markup
+  # category: Medium
+  # group: Expedition
+  # shuttlePath: /Maps/_NF/Shuttles/Expedition/sprinter.yml
+  # guidebookPage: Null
+  # class:
+  # - Expedition
+  # engine:
+  # - AME
+
 # - type: gameMap
-#   id: Sprinter
-#   mapName: 'KC Спринтер'
-#   mapPath: /Maps/_NF/Shuttles/Expedition/sprinter.yml
-#   minPlayers: 0
-#   stations:
-#     Sprinter:
-#       stationProto: StandardFrontierExpeditionVessel
-#       components:
-#         - type: StationNameSetup
-#           mapNameTemplate: 'Спринтер {1}'
-#           nameGenerator:
-#             !type:NanotrasenNameGenerator
-#             prefixCreator: '14'
-#         - type: StationJobs
-#           availableJobs:
-#             Contractor: [ 0, 0 ]
-#             Pilot: [ 0, 0 ]
-#             Mercenary: [ 0, 0 ]
+  # id: Sprinter
+  # mapName: 'KC Sprinter'
+  # mapPath: /Maps/_NF/Shuttles/Expedition/sprinter.yml
+  # minPlayers: 0
+  # stations:
+    # Sprinter:
+      # stationProto: StandardFrontierExpeditionVessel
+      # components:
+        # - type: StationNameSetup
+          # mapNameTemplate: 'Sprinter {1}'
+          # nameGenerator:
+            # !type:NanotrasenNameGenerator
+            # prefixCreator: '14'
+        # - type: StationJobs
+          # availableJobs:
+            # Contractor: [ 0, 0 ]
+            # Pilot: [ 0, 0 ]
+            # Mercenary: [ 0, 0 ]

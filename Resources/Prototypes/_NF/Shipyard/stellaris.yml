@@ -1,31 +1,33 @@
 # - type: vessel
-#   id: Stellaris
-#   name: NT Межзвёздный
-#   description: Среднегабаритный шаттл-ресторан с театром. Рекомендованный состав команды 2-5 человек.
-#   price: 45000
-#   category: Medium
-#   group: Shipyard
-#   shuttlePath: /Maps/_NF/Shuttles/stellaris.yml
-#   guidebookPage: Null
-#   class:
-#   - Civilian
-# 
+  # id: Stellaris
+  # name: NT Stellaris
+  # description: A mobile theatre perfect for putting on any show.
+  # price: 48000 # Appraises for 45469, margin of 7% - TODO: fix this value, getting tests to pass - Whatstone
+  # category: Medium
+  # group: Shipyard
+  # shuttlePath: /Maps/_NF/Shuttles/stellaris.yml
+  # guidebookPage: Null
+  # class:
+  # - Civilian
+  # engine:
+  # - Plasma
+
 # - type: gameMap
-#   id: Stellaris
-#   mapName: 'NT Межзвёздный'
-#   mapPath: /Maps/_NF/Shuttles/stellaris.yml
-#   minPlayers: 0
-#   stations:
-#     Stellaris:
-#       stationProto: StandardFrontierVessel
-#       components:
-#         - type: StationNameSetup
-#           mapNameTemplate: 'Межзвёздный {1}'
-#           nameGenerator:
-#             !type:NanotrasenNameGenerator
-#             prefixCreator: '14'
-#         - type: StationJobs
-#           availableJobs:
-#             Contractor: [ 0, 0 ]
-#             Pilot: [ 0, 0 ]
-#             Mercenary: [ 0, 0 ]
+  # id: Stellaris
+  # mapName: 'NT Stellaris'
+  # mapPath: /Maps/_NF/Shuttles/stellaris.yml
+  # minPlayers: 0
+  # stations:
+    # Stellaris:
+      # stationProto: StandardFrontierVessel
+      # components:
+        # - type: StationNameSetup
+          # mapNameTemplate: 'Stellaris {1}'
+          # nameGenerator:
+            # !type:NanotrasenNameGenerator
+            # prefixCreator: '14'
+        # - type: StationJobs
+          # availableJobs:
+            # Contractor: [ 0, 0 ]
+            # Pilot: [ 0, 0 ]
+            # Mercenary: [ 0, 0 ]

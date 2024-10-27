@@ -1,41 +1,43 @@
-# Author Info
-# GitHub: erhardsteinhauer
-# Discord: erhardsteinhauer
-# 
-# Maintainer Info
-# GitHub: erhardsteinhauer
-# Discord: erhardsteinhauer
-# 
-# Shuttle Notes:
-#
+# # Author Info
+# # GitHub: erhardsteinhauer
+# # Discord: erhardsteinhauer
+
+# # Maintainer Info
+# # GitHub: erhardsteinhauer
+# # Discord: erhardsteinhauer
+
+# # Shuttle Notes:
+# #
 # - type: vessel
-#   id: Pioneer
-#   name: LVHI Пионер
-#   description: Одноместный грузовой контейнер, переоборудованный под выход в открытый космос.
-#   price: 12200 # ~10600$ on mapinit + ~1600$ from 15% markup
-#   category: Small
-#   group: Shipyard
-#   shuttlePath: /Maps/_NF/Shuttles/pioneer.yml
-#   guidebookPage: ShipyardPioneer
-#   class:
-#   - Salvage
-# 
+  # id: Pioneer
+  # name: LVHI Pioneer
+  # description: A cargo container outfitted to be space-capable and equipped for salvaging and mining either on its own or as part of a fleet. Manufactured by Langstad-Voigt Heavy Industries.
+  # price: 10000 # ~8670$ on mapinit + ~1300$ from 15% markup
+  # category: Small
+  # group: Shipyard
+  # shuttlePath: /Maps/_NF/Shuttles/pioneer.yml
+  # guidebookPage: ShipyardPioneer
+  # class:
+  # - Salvage
+  # engine:
+  # - Plasma
+
 # - type: gameMap
-#   id: Pioneer
-#   mapName: 'Пионер'
-#   mapPath: /Maps/_NF/Shuttles/pioneer.yml
-#   minPlayers: 0
-#   stations:
-#     Pioneer:
-#       stationProto: StandardFrontierVessel
-#       components:
-#         - type: StationNameSetup
-#           mapNameTemplate: 'Пионер {1}'
-#           nameGenerator:
-#             !type:NanotrasenNameGenerator
-#             prefixCreator: '14'
-#         - type: StationJobs
-#           availableJobs:
-#             Contractor: [ 0, 0 ]
-#             Pilot: [ 0, 0 ]
-#             Mercenary: [ 0, 0 ]
+  # id: Pioneer
+  # mapName: 'Pioneer'
+  # mapPath: /Maps/_NF/Shuttles/pioneer.yml
+  # minPlayers: 0
+  # stations:
+    # Pioneer:
+      # stationProto: StandardFrontierVessel
+      # components:
+        # - type: StationNameSetup
+          # mapNameTemplate: 'Pioneer {1}'
+          # nameGenerator:
+            # !type:NanotrasenNameGenerator
+            # prefixCreator: '14'
+        # - type: StationJobs
+          # availableJobs:
+            # Contractor: [ 0, 0 ]
+            # Pilot: [ 0, 0 ]
+            # Mercenary: [ 0, 0 ]

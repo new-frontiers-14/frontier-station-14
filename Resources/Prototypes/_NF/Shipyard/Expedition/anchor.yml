@@ -1,42 +1,44 @@
-# Author Info
-# GitHub: Kesiath (https://github.com/Kesiath)
-# Discord: ???
-# 
-# Maintainer Info
-# GitHub: ???
-# Discord: ???
-# 
-# Shuttle Notes:
-#
+# # Author Info
+# # GitHub: Kesiath (https://github.com/Kesiath)
+# # Discord: ???
+
+# # Maintainer Info
+# # GitHub: ???
+# # Discord: ???
+
+# # Shuttle Notes:
+# #
 # - type: vessel
-#   id: Anchor
-#   name: KC Якорь
-#   description: Крупногабаритный экспедиционный шаттл. Рекомендованный размер команды 4-8 человек.
-#   price: 105300 # $81000 +30%
-#   category: Large
-#   group: Expedition
-#   shuttlePath: /Maps/_NF/Shuttles/Expedition/anchor.yml
-#   guidebookPage: Null
-#   class:
-#   - Expedition
-#   - Civilian
-# 
+  # id: Anchor
+  # name: KC Anchor
+  # description: A large luxury cruiser capable of long ranged travel acrossed the sector, expedition capable.
+  # price: 140000 # $108432 after appraisal +30ish% (~32000)
+  # category: Large
+  # group: Expedition
+  # shuttlePath: /Maps/_NF/Shuttles/Expedition/anchor.yml
+  # guidebookPage: Null
+  # class:
+  # - Expedition
+  # - Civilian
+  # engine:
+  # - AME
+
 # - type: gameMap
-#   id: Anchor
-#   mapName: 'KC Якорь'
-#   mapPath: /Maps/_NF/Shuttles/Expedition/anchor.yml
-#   minPlayers: 0
-#   stations:
-#     Anchor:
-#       stationProto: StandardFrontierExpeditionVessel
-#       components:
-#         - type: StationNameSetup
-#           mapNameTemplate: 'Якорь {1}'
-#           nameGenerator:
-#             !type:NanotrasenNameGenerator
-#             prefixCreator: '14'
-#         - type: StationJobs
-#           availableJobs:
-#             Contractor: [ 0, 0 ]
-#             Pilot: [ 0, 0 ]
-#             Mercenary: [ 0, 0 ]
+  # id: Anchor
+  # mapName: 'KC Anchor'
+  # mapPath: /Maps/_NF/Shuttles/Expedition/anchor.yml
+  # minPlayers: 0
+  # stations:
+    # Anchor:
+      # stationProto: StandardFrontierExpeditionVessel
+      # components:
+        # - type: StationNameSetup
+          # mapNameTemplate: 'Anchor {1}'
+          # nameGenerator:
+            # !type:NanotrasenNameGenerator
+            # prefixCreator: '14'
+        # - type: StationJobs
+          # availableJobs:
+            # Contractor: [ 0, 0 ]
+            # Pilot: [ 0, 0 ]
+            # Mercenary: [ 0, 0 ]

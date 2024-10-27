@@ -1,38 +1,40 @@
-# Maintainer Info
-# GitHub: dvir001
-# Discord: dvir01 (84770870936997888)
-# 
-# Shuttle Notes:
-#
-# 
+# # Maintainer Info
+# # GitHub: dvir001
+# # Discord: dvir01 (84770870936997888)
+
+# # Shuttle Notes:
+# # 
+
 # - type: vessel
-#   id: McCargo
-#   name: DC Каргония
-#   description: Среднегабаритный шаттл-ресторан. Рекомендованный состав команды 3-6 человек.
-#   price: 70000 # 10% up from sell
-#   category: Medium
-#   group: Shipyard
-#   shuttlePath: /Maps/_NF/Shuttles/mccargo.yml
-#   guidebookPage: ShipyardMcCargo
-#   class:
-#   - Kitchen
-# 
+  # id: McCargo
+  # name: DC McCargo
+  # description: "Your very own McCargo™ franchise! Comes fully stocked and ready for production of McMeals."
+  # price: 75000 # appraises at 67456, ~10% margin - TODO: fix these values, getting tests to pass - Whatstone
+  # category: Medium
+  # group: Shipyard
+  # shuttlePath: /Maps/_NF/Shuttles/mccargo.yml
+  # guidebookPage: ShipyardMcCargo
+  # class:
+  # - Kitchen
+  # engine:
+  # - Plasma
+
 # - type: gameMap
-#   id: McCargo
-#   mapName: 'DC Каргония'
-#   mapPath: /Maps/_NF/Shuttles/mccargo.yml
-#   minPlayers: 0
-#   stations:
-#     McCargo:
-#       stationProto: StandardFrontierVessel
-#       components:
-#         - type: StationNameSetup
-#           mapNameTemplate: 'Каргония {1}'
-#           nameGenerator:
-#             !type:NanotrasenNameGenerator
-#             prefixCreator: '14'
-#         - type: StationJobs
-#           availableJobs:
-#             Contractor: [ 0, 0 ]
-#             Pilot: [ 0, 0 ]
-#             Mercenary: [ 0, 0 ]
+  # id: McCargo
+  # mapName: 'DC McCargo'
+  # mapPath: /Maps/_NF/Shuttles/mccargo.yml
+  # minPlayers: 0
+  # stations:
+    # McCargo:
+      # stationProto: StandardFrontierVessel
+      # components:
+        # - type: StationNameSetup
+          # mapNameTemplate: 'McCargo {1}'
+          # nameGenerator:
+            # !type:NanotrasenNameGenerator
+            # prefixCreator: '14'
+        # - type: StationJobs
+          # availableJobs:
+            # Contractor: [ 0, 0 ]
+            # Pilot: [ 0, 0 ]
+            # Mercenary: [ 0, 0 ]

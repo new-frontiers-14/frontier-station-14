@@ -1,41 +1,43 @@
-# Author Info
-# GitHub: SurfinNinja1
-# Discord: ???
-# 
-# Maintainer Info
-# GitHub: ???
-# Discord: ???
-# 
-# Shuttle Notes:
-#
+# # Author Info
+# # GitHub: SurfinNinja1
+# # Discord: ???
+
+# # Maintainer Info
+# # GitHub: ???
+# # Discord: ???
+
+# # Shuttle Notes:
+# #
 # - type: vessel
-#   id: Loader
-#   name: NC Такелажник
-#   description: Малогабаритный грузовой шаттл. Рекомендованный состав команды 1-2 человека.
-#   price: 18000
-#   category: Small
-#   group: Shipyard
-#   shuttlePath: /Maps/_NF/Shuttles/loader.yml
-#   guidebookPage: ShipyardLoader
-#   class:
-#   - Cargo
-# 
+  # id: Loader
+  # name: NC Loader
+  # description: A compact cargo ship designed for hauling shipments.
+  # price: 22000
+  # category: Small
+  # group: Shipyard
+  # shuttlePath: /Maps/_NF/Shuttles/loader.yml
+  # guidebookPage: ShipyardLoader
+  # class:
+  # - Cargo
+  # engine:
+  # - Plasma
+
 # - type: gameMap
-#   id: Loader
-#   mapName: 'NC Такелажник'
-#   mapPath: /Maps/_NF/Shuttles/loader.yml
-#   minPlayers: 0
-#   stations:
-#     Loader:
-#       stationProto: StandardFrontierVessel
-#       components:
-#         - type: StationNameSetup
-#           mapNameTemplate: 'Такелажник {1}'
-#           nameGenerator:
-#             !type:NanotrasenNameGenerator
-#             prefixCreator: '14'
-#         - type: StationJobs
-#           availableJobs:
-#             Contractor: [ 0, 0 ]
-#             Pilot: [ 0, 0 ]
-#             Mercenary: [ 0, 0 ]
+  # id: Loader
+  # mapName: 'NC Loader'
+  # mapPath: /Maps/_NF/Shuttles/loader.yml
+  # minPlayers: 0
+  # stations:
+    # Loader:
+      # stationProto: StandardFrontierVessel
+      # components:
+        # - type: StationNameSetup
+          # mapNameTemplate: 'Loader {1}'
+          # nameGenerator:
+            # !type:NanotrasenNameGenerator
+            # prefixCreator: '14'
+        # - type: StationJobs
+          # availableJobs:
+            # Contractor: [ 0, 0 ]
+            # Pilot: [ 0, 0 ]
+            # Mercenary: [ 0, 0 ]

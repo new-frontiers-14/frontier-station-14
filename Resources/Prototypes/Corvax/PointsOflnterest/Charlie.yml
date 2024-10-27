@@ -13,9 +13,10 @@
   name: 'Синдикатовcкий аванпост Чарли'
   rangeMin: 8150
   rangeMax: 13550
-  iffColor: "#C83737" #red the color of ebil
-  isHidden: true
-  spawnChance: 1
+  IFFColor: "#C83737" #red the color of ebil
+  IFFFlags: [HideLabel, Hide] # Invisible
+  allowIFFChanges: true
+  spawnGroup: SyndicateFOB
   gridPath: /Maps/Corvax/POI/charlie.yml
 
 - type: gameMap
@@ -31,3 +32,4 @@
           mapNameTemplate: 'Синдикатовcкий аванпост Чарли'
         - type: StationJobs
           availableJobs: {}
+        - type: StationDeadDropHintExempt

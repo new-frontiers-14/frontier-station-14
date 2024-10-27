@@ -3274,7 +3274,7 @@ Entries:
         when taking or leaving a ghost role.
       type: Tweak
     - message: >-
-        When entering cryo, your respawn timer is reduced (default 30 seconds). 
+        When entering cryo, your respawn timer is reduced (default 30 seconds).
         If you re-enter, you will receive a longer timer.
       type: Tweak
   id: 5242
@@ -4154,3 +4154,784 @@ Entries:
       message: Placed tile under Frontier docking ports.
   id: 5348
   time: '2024-09-29T09:52:47.0000000+00:00'
+- author: whatston3
+  changes:
+    - type: Add
+      message: >-
+        Dwarves now have an innate mineral scanner that senses ore out to 5
+        meters.
+  id: 5349
+  time: '2024-09-29T15:08:36.0000000+00:00'
+- author: whatston3
+  changes:
+    - type: Fix
+      message: Cyborgs should now recharge properly in cyborg recharge stations.
+  id: 5350
+  time: '2024-09-30T14:39:40.0000000+00:00'
+- author: dvir001
+  changes:
+    - type: Add
+      message: Made changes to goblins, use the guidebook for more info.
+    - type: Tweak
+      message: >-
+        Mobs that are capable of rummaging (such as the Goblins species) can do
+        so every five minutes. They will find trash in trash bins instead of
+        entire wheels of cheese.
+  id: 5351
+  time: '2024-09-30T18:13:01.0000000+00:00'
+- author: whatston3
+  changes:
+    - type: Tweak
+      message: >-
+        Pirate's Cove and LP Bravo no longer appear in the list of
+        player-accessible warp points.
+  id: 5352
+  time: '2024-09-30T18:21:28.0000000+00:00'
+- author: Radezolid and whatston3
+  changes:
+    - type: Fix
+      message: Deep fryers are now repairable, PDAs cannot be deep fried.
+  id: 5353
+  time: '2024-09-30T19:37:38.0000000+00:00'
+- author: dustylens
+  changes:
+    - type: Fix
+      message: Issues with Stasis floor tiles and SMES wiring.
+  id: 5354
+  time: '2024-10-02T09:27:03.0000000+00:00'
+- author: whatston3
+  changes:
+    - type: Tweak
+      message: Chemical medipens now have a small delay when injecting others.
+  id: 5355
+  time: '2024-10-02T18:16:07.0000000+00:00'
+- author: whatston3
+  changes:
+    - type: Tweak
+      message: >-
+        Asteroids now spawn larger ore stacks for common minerals, and their max
+        stack size has been increased.
+    - type: Tweak
+      message: >-
+        Composite materials like plasma glass have been reduced in value and are
+        not printable from the base ore processor.
+  id: 5356
+  time: '2024-10-02T18:17:03.0000000+00:00'
+- author: whatston3
+  changes:
+    - type: Fix
+      message: The time printed out for dead drop hints is now accurate to shift time.
+  id: 5357
+  time: '2024-10-02T18:44:23.0000000+00:00'
+- author: VMSolidus
+  changes:
+    - type: Add
+      message: Jetpacks now work in zero gravity.
+    - type: Add
+      message: >-
+        New CCVar "jetpack.enable_anywhere" allows server hosts to optionally
+        make it so that jetpacks can be used anywhere, even in gravity and on
+        grids.
+    - type: Add
+      message: >-
+        New CCVar "jetpack.enable_in_no_gravity" allows server hosts to
+        optionally disable jetpacks being usable in zero gravity.
+  id: 5358
+  time: '2024-10-03T00:17:24.0000000+00:00'
+- author: erhardsteinhauer
+  changes:
+    - type: Add
+      message: >-
+        Blueprints can now be printed or found on expeditions.  They unlock
+        recipes in lathes or techfabs and can be stamped, signed, burned, eaten,
+        recycled and faxed (destroying the original - exped blueprints cannot be
+        faxed).
+    - type: Add
+      message: >-
+        Added the Blueprint Lithograph, a new lathe available from the
+        FlatpackVend, science bundle, or circuit imprinter.  It prints
+        blueprints from stacks of paper.
+  id: 5359
+  time: '2024-10-03T19:53:08.0000000+00:00'
+- author: Mnemotechnician
+  changes:
+    - type: Add
+      message: The Food Recipes page in the guidebook now shows all available recipes.
+  id: 5360
+  time: '2024-10-04T17:59:04.0000000+00:00'
+- author: dvir001
+  changes:
+    - type: Tweak
+      message: >-
+        LP Bravo is now guaranteed to spawn, spawns hidden, and has clues to its
+        location spawned on smuggling pods.
+    - type: Tweak
+      message: >-
+        ContraVend inventory has been replaced with a randomly filled contraband
+        crate.
+    - type: Tweak
+      message: Player characters once again collide with hydro trays.
+  id: 5361
+  time: '2024-10-04T20:28:58.0000000+00:00'
+- author: dustylens
+  changes:
+    - type: Tweak
+      message: >-
+        Updated Skipper fans with directional version. Some changes to the
+        internal configuration.
+  id: 5362
+  time: '2024-10-05T21:07:15.0000000+00:00'
+- author: VividPups
+  changes:
+    - type: Tweak
+      message: >-
+        The RCD can now deconstruct shuttle walls, shuttle windows, and most
+        diagonal walls.
+  id: 5363
+  time: '2024-10-05T21:45:51.0000000+00:00'
+- author: spacedwarf14
+  changes:
+    - type: Fix
+      message: Artifact analyzers do not consume power when idle
+  id: 5364
+  time: '2024-10-06T13:52:27.0000000+00:00'
+- author: erhardsteinhauer
+  changes:
+    - type: Add
+      message: Aberrant flesh horror (expedition boss) is now a ghost role.
+    - type: Tweak
+      message: >-
+        Slightly rebalanced aberrant flesh mobs, updated guidebook entry on them
+        with new values.
+  id: 5365
+  time: '2024-10-06T17:33:42.0000000+00:00'
+- author: erhardsteinhauer
+  changes:
+    - type: Tweak
+      message: >-
+        Nerfed sawn-off PKA dual wielding: firing more than 1 shot per second
+        shouldn't be possible now.
+  id: 5366
+  time: '2024-10-07T13:06:50.0000000+00:00'
+- author: VividPups
+  changes:
+    - type: Fix
+      message: The ArcadiaDrobe no longer shows an error when denying vending.
+  id: 5367
+  time: '2024-10-07T15:03:56.0000000+00:00'
+- author: KyuPolaris
+  changes:
+    - type: Tweak
+      message: The Crescent now has been fitted with Air Alarms, engineers rejoice!
+  id: 5368
+  time: '2024-10-07T16:38:08.0000000+00:00'
+- author: dustylens
+  changes:
+    - type: Add
+      message: New poster for the FSB Spirit and two new EMS signs.
+  id: 5369
+  time: '2024-10-09T21:40:26.0000000+00:00'
+- author: Leander
+  changes:
+    - type: Add
+      message: >-
+        Added magic crayon and its selection on the Fun loadouts, paint the
+        world with it!
+  id: 5370
+  time: '2024-10-09T21:54:59.0000000+00:00'
+- author: dustylens
+  changes:
+    - type: Tweak
+      message: updated barge with directional fans
+  id: 5371
+  time: '2024-10-11T19:54:36.0000000+00:00'
+- author: dustylens
+  changes:
+    - type: Tweak
+      message: Updated Barnacle with directional fans.
+  id: 5372
+  time: '2024-10-11T20:05:14.0000000+00:00'
+- author: dustylens
+  changes:
+    - type: Tweak
+      message: Update Empress tiny fans with directional fans.
+  id: 5373
+  time: '2024-10-12T00:34:19.0000000+00:00'
+- author: dustylens
+  changes:
+    - type: Tweak
+      message: Replace tiny fans with directional fans.
+  id: 5374
+  time: '2024-10-12T02:04:30.0000000+00:00'
+- author: chrome-cirrus
+  changes:
+    - type: Tweak
+      message: Updated Anomalous Geode docks to use directional fans
+  id: 5375
+  time: '2024-10-12T12:53:16.0000000+00:00'
+- author: chrome-cirrus
+  changes:
+    - type: Tweak
+      message: 'Replace tiny fans in the The Pit/Arena with directional fans. '
+  id: 5376
+  time: '2024-10-12T13:15:10.0000000+00:00'
+- author: chrome-cirrus
+  changes:
+    - type: Tweak
+      message: Replace cargo depot POI tiny fans with directional fans
+  id: 5377
+  time: '2024-10-12T13:16:26.0000000+00:00'
+- author: chrome-cirrus
+  changes:
+    - type: Tweak
+      message: Replaced Anomalous Lab tiny fans with directional fans
+  id: 5378
+  time: '2024-10-12T14:11:34.0000000+00:00'
+- author: chrome-cirrus
+  changes:
+    - type: Tweak
+      message: Replaced Omnichurch Beacon tiny fans with directional fans
+  id: 5379
+  time: '2024-10-12T14:14:51.0000000+00:00'
+- author: chrome-cirrus
+  changes:
+    - type: Tweak
+      message: Replaced tiny fans with directional fans on Tinnia's Rest POI
+  id: 5380
+  time: '2024-10-12T14:22:21.0000000+00:00'
+- author: dustylens
+  changes:
+    - type: Tweak
+      message: Butter reagent can now be extracted from butter.
+  id: 5381
+  time: '2024-10-12T14:47:24.0000000+00:00'
+- author: dustylens
+  changes:
+    - type: Add
+      message: Added filled medicine and chemistry Frontier wall lockers.
+  id: 5382
+  time: '2024-10-12T16:29:52.0000000+00:00'
+- author: dustylens
+  changes:
+    - type: Tweak
+      message: Opporozidone recipe uses Mannitol instead of Cognizine.
+  id: 5383
+  time: '2024-10-12T17:54:51.0000000+00:00'
+- author: dustylens
+  changes:
+    - type: Tweak
+      message: Replace Beaker tiny fans with directional fans.
+  id: 5384
+  time: '2024-10-12T18:07:40.0000000+00:00'
+- author: dustylens
+  changes:
+    - type: Tweak
+      message: Updated Honker tiny fans with directional fans.
+  id: 5385
+  time: '2024-10-12T18:10:44.0000000+00:00'
+- author: dustylens
+  changes:
+    - type: Tweak
+      message: Replace Sparrow tiny fans with directional fans.
+  id: 5386
+  time: '2024-10-12T18:16:45.0000000+00:00'
+- author: dvir001
+  changes:
+    - type: Tweak
+      message: >-
+        Removed the lock from emitters, fixed the emitters to no longer work
+        like the PTK-800 for mining.
+  id: 5387
+  time: '2024-10-12T18:32:27.0000000+00:00'
+- author: whatston3
+  changes:
+    - type: Add
+      message: >-
+        The Food-O-Mat and electric range are now available to assemble and bake
+        food.  A medical assembler has been added for aloe cream and topical
+        recipes.
+    - type: Add
+      message: >-
+        A tier 2 civilian research now unlocks the fryer, Food-O-Mat and range,
+        and another unlocks the medical assembler.
+    - type: Tweak
+      message: >-
+        Many microwave recipes now use the range and Food-O-Mat.  Refer to the
+        Food Recipes Guidebook page for details.
+    - type: Remove
+      message: The medical techfab recipes for advanced topicals have been removed.
+  id: 5388
+  time: '2024-10-12T19:26:32.0000000+00:00'
+- author: dustylens
+  changes:
+    - type: Tweak
+      message: Replaces Anchor tiny fans with directional fans.
+  id: 5389
+  time: '2024-10-13T04:33:04.0000000+00:00'
+- author: dustylens
+  changes:
+    - type: Tweak
+      message: Replaces Falcon tiny fan with directional fans.
+  id: 5390
+  time: '2024-10-13T04:38:27.0000000+00:00'
+- author: dustylens
+  changes:
+    - type: Tweak
+      message: Updated Schooner with directional fans.
+  id: 5391
+  time: '2024-10-13T04:43:32.0000000+00:00'
+- author: chrome-cirrus
+  changes:
+    - type: Add
+      message: Added an appraisal program cartridge for PDAs
+  id: 5392
+  time: '2024-10-13T04:50:29.0000000+00:00'
+- author: chrome-cirrus
+  changes:
+    - type: Tweak
+      message: >-
+        Replaced Marauder tiny fans with directional fans. Added a fan to the
+        forward airlock. Added some atmos tools to the atmos room.
+  id: 5393
+  time: '2024-10-13T04:51:02.0000000+00:00'
+- author: PeccNeck
+  changes:
+    - type: Fix
+      message: Fixed Shovel instantly digging on cancel
+  id: 5394
+  time: '2024-10-13T05:43:10.0000000+00:00'
+- author: dustylens
+  changes:
+    - type: Add
+      message: Adds carpets to the tile cutter.
+  id: 5395
+  time: '2024-10-13T05:45:27.0000000+00:00'
+- author: Tych0theSynth
+  changes:
+    - type: Fix
+      message: 'Fixed power issues on Bahama Mama''s. '
+  id: 5396
+  time: '2024-10-13T10:01:25.0000000+00:00'
+- author: dvir001
+  changes:
+    - type: Tweak
+      message: The price of the Bocadillo is increased to $23500.
+    - type: Tweak
+      message: The amount of cloth required to craft altars has been increased to 3.
+  id: 5397
+  time: '2024-10-13T15:43:22.0000000+00:00'
+- author: GreaseMonk
+  changes:
+    - type: Remove
+      message: Removed old NFLatejoin menu
+    - type: Add
+      message: >-
+        Added new LateJoin menu with more descriptive stations and station and
+        crew separation
+  id: 5398
+  time: '2024-10-13T18:20:50.0000000+00:00'
+- author: erhardsteinhauer
+  changes:
+    - type: Tweak
+      message: Added toggleable lights to departmental EVA suit helmets.
+    - type: Tweak
+      message: Resprited departmental EVA suits.
+  id: 5399
+  time: '2024-10-14T09:56:55.0000000+00:00'
+- author: Myzumi
+  changes:
+    - type: Add
+      message: New Cyborg Modules, Advanced Mining and Advanced Paramedic
+    - type: Add
+      message: Cyborg Tool modules now have a Maintenance Jack
+  id: 5400
+  time: '2024-10-14T22:16:49.0000000+00:00'
+- author: MagnusCrowe
+  changes:
+    - type: Add
+      message: Added the Wendigo light medium interdictor!
+  id: 5401
+  time: '2024-10-14T22:21:01.0000000+00:00'
+- author: arimah
+  changes:
+    - type: Remove
+      message: The NSF Marauder is no longer available for purchase.
+  id: 5402
+  time: '2024-10-14T22:35:31.0000000+00:00'
+- author: whatston3
+  changes:
+    - type: Fix
+      message: Implanters in loadout selection are now properly labeled.
+  id: 5403
+  time: '2024-10-15T07:41:16.0000000+00:00'
+- author: dustylens
+  changes:
+    - type: Add
+      message: Skipper kitchen equipment.
+  id: 5404
+  time: '2024-10-15T07:43:15.0000000+00:00'
+- author: MisterMecky
+  changes:
+    - type: Fix
+      message: prebuilt tabletop computers can now be properly deconstructed
+  id: 5405
+  time: '2024-10-15T13:51:09.0000000+00:00'
+- author: erhardsteinhauer
+  changes:
+    - type: Tweak
+      message: >-
+        Slightly changed how wearable containers (like backpacks etc) work: now
+        it's possible (but rather pointless) to put a belt in backpack, a
+        backpack in duffel, a toolbox fits in a backpack.
+  id: 5406
+  time: '2024-10-15T21:01:40.0000000+00:00'
+- author: dvir001
+  changes:
+    - type: Remove
+      message: >-
+        The old EVA suit, emergency EVA suit, and ancient EVA suit are no longer
+        printable.
+    - type: Tweak
+      message: >-
+        Material costs for small electronics like small gyroscope circuitboards
+        were increased.
+  id: 5407
+  time: '2024-10-15T23:58:44.0000000+00:00'
+- author: whatston3
+  changes:
+    - type: Fix
+      message: Respawn timers are now properly shown on reconnect.
+  id: 5408
+  time: '2024-10-16T10:11:54.0000000+00:00'
+- author: erhardsteinhauer
+  changes:
+    - type: Add
+      message: >-
+        Added admeme mob/boss for Halloween: The Goblinbane - a possessed toiled
+        hellbent on destroying goblinkind. And felinids. And folks in chaplain
+        clothes. Can be controlled by ghosts.
+  id: 5409
+  time: '2024-10-16T10:12:38.0000000+00:00'
+- author: dustylens
+  changes:
+    - type: Add
+      message: Adds medical pen recipes to the medical assembler.
+  id: 5410
+  time: '2024-10-16T10:18:31.0000000+00:00'
+- author: MisterMecky
+  changes:
+    - type: Tweak
+      message: Ice and sandstone walls no longer spawn a girder upon their destruction
+  id: 5411
+  time: '2024-10-16T16:15:50.0000000+00:00'
+- author: dustylens
+  changes:
+    - type: Add
+      message: Added EMS and FSB Spirit posters to the Spirit.
+  id: 5412
+  time: '2024-10-17T11:48:53.0000000+00:00'
+- author: dustylens
+  changes:
+    - type: Add
+      message: Apothecary now has the Medical Assember.
+  id: 5413
+  time: '2024-10-17T12:21:07.0000000+00:00'
+- author: dustylens
+  changes:
+    - type: Tweak
+      message: Updated CAD atmos for n2/o2 compliance.
+    - type: Remove
+      message: Removed cloning from CAD for Frontier compliance.
+  id: 5414
+  time: '2024-10-17T13:09:56.0000000+00:00'
+- author: ThatOneGoblin25
+  changes:
+    - type: Tweak
+      message: Eagle has received the medical assembler and slight tweaks.
+  id: 5415
+  time: '2024-10-17T14:40:32.0000000+00:00'
+- author: whatston3
+  changes:
+    - type: Add
+      message: Ammo techfab can now receive blueprints.
+  id: 5416
+  time: '2024-10-17T15:25:48.0000000+00:00'
+- author: erhardsteinhauer
+  changes:
+    - type: Tweak
+      message: >-
+        Severely nerfed Goblinbane damage output and liquid transfer with each
+        hit. The mob should now become a nuisance at best. Mob will ignore
+        players (even goblins and felinids) who wear janitor clothes, how it'll
+        play out with ghost-controlled entities - who knows.
+  id: 5417
+  time: '2024-10-17T17:03:16.0000000+00:00'
+- author: whatston3
+  changes:
+    - type: Fix
+      message: >-
+        Machines that are missing components (like hyperlathes) now act as
+        though they have base components.
+    - type: Tweak
+      message: Hyper convection lathes now have 3x typical print time by default.
+    - type: Tweak
+      message: Lubrication now affects base and hyper lathe print times at 0.5x rates.
+  id: 5418
+  time: '2024-10-17T18:41:39.0000000+00:00'
+- author: erhardsteinhauer
+  changes:
+    - type: Add
+      message: Added foldable plastic table to compliment folding chairs.
+  id: 5419
+  time: '2024-10-17T20:59:15.0000000+00:00'
+- author: dustylens
+  changes:
+    - type: Add
+      message: FSB Stasis now boasts a medical assembler.
+  id: 5420
+  time: '2024-10-17T21:35:46.0000000+00:00'
+- author: whatston3
+  changes:
+    - type: Remove
+      message: The salvage magnet is no longer printable from the circuit imprinter.
+  id: 5421
+  time: '2024-10-17T21:55:25.0000000+00:00'
+- author: dvir001
+  changes:
+    - type: Remove
+      message: >-
+        Removed Inquisitor from the nfsd shipyard, as there are new ships to
+        replace it.
+  id: 5422
+  time: '2024-10-17T22:46:06.0000000+00:00'
+- author: Tych0theSynth
+  changes:
+    - type: Tweak
+      message: Updated the NSF Prowler.
+  id: 5423
+  time: '2024-10-17T22:55:57.0000000+00:00'
+- author: dustylens
+  changes:
+    - type: Tweak
+      message: Updated Spectre with directional fans.
+  id: 5424
+  time: '2024-10-17T23:39:14.0000000+00:00'
+- author: erhardsteinhauer
+  changes:
+    - type: Tweak
+      message: >-
+        Replaced vendomats on the Lodge' northern lobby with YouTool, EngiVend
+        and Vandomat, moved FuelVend to the northern lobby, mapped
+        LessLethalVend by BountyVend.
+  id: 5425
+  time: '2024-10-17T23:57:16.0000000+00:00'
+- author: chrome-cirrus
+  changes:
+    - type: Tweak
+      message: Updated NSF mini-shuttles to use directional fans + a few minor tweaks
+  id: 5426
+  time: '2024-10-18T12:05:18.0000000+00:00'
+- author: chrome-cirrus
+  changes: []
+  id: 5427
+  time: '2024-10-18T12:38:08.0000000+00:00'
+- author: chrome-cirrus
+  changes:
+    - type: Tweak
+      message: Modernize the Hospitaller
+  id: 5428
+  time: '2024-10-18T13:07:14.0000000+00:00'
+- author: dvir001
+  changes:
+    - type: Tweak
+      message: EMP Pulse got a new visual look.
+  id: 5429
+  time: '2024-10-18T15:18:56.0000000+00:00'
+- author: whatston3
+  changes:
+    - type: Fix
+      message: Values reported in the end of round screen are accurate again.
+  id: 5430
+  time: '2024-10-18T15:30:54.0000000+00:00'
+- author: erhardsteinhauer
+  changes:
+    - type: Add
+      message: Added wall freezers.
+    - type: Add
+      message: >-
+        Added wall lockers with safety gear (fire suits/radiation suits/biohaz
+        suits/bomb suits).
+  id: 5431
+  time: '2024-10-18T16:47:22.0000000+00:00'
+- author: dvir001
+  changes:
+    - type: Add
+      message: 'You can now print some empty cardboard boxes in service techfab. '
+  id: 5432
+  time: '2024-10-18T22:47:58.0000000+00:00'
+- author: dustylens
+  changes:
+    - type: Add
+      message: Seasonal decorations. What fun.
+  id: 5433
+  time: '2024-10-19T13:11:46.0000000+00:00'
+- author: rcoi
+  changes:
+    - type: Add
+      message: Added new lobby art cattrio
+  id: 5434
+  time: '2024-10-19T13:36:41.0000000+00:00'
+- author: KieueCaprie
+  changes:
+    - type: Fix
+      message: >-
+        Station anchors, biogenerators and cutters can now be assembled
+        properly.
+  id: 5435
+  time: '2024-10-19T16:04:02.0000000+00:00'
+- author: whatston3
+  changes:
+    - type: Fix
+      message: >-
+        Solid fuel generators now no longer spawn fuel when ejecting while
+        empty.
+  id: 5436
+  time: '2024-10-20T05:27:54.0000000+00:00'
+- author: whatston3
+  changes:
+    - type: Fix
+      message: Chatsan emotes ending in letters now work again.
+  id: 5437
+  time: '2024-10-20T13:45:51.0000000+00:00'
+- author: dvir001
+  changes:
+    - type: Tweak
+      message: >-
+        Medical PDAs no longer start with a health analyzer, all PDAs now start
+        with an inherent GPS app.
+    - type: Add
+      message: >-
+        Loadouts now have a tab for selecting PDA cartridges (e.g. a health
+        analyzer app).
+    - type: Tweak
+      message: >-
+        PDA cartridges are now consumed on install, and install on insert if not
+        already present on the device.
+  id: 5438
+  time: '2024-10-20T19:33:09.0000000+00:00'
+- author: MisterMecky
+  changes:
+    - type: Fix
+      message: Duffelbags once again slow their wearer's sprint speed by 10%.
+  id: 5439
+  time: '2024-10-21T21:44:53.0000000+00:00'
+- author: dustylens
+  changes:
+    - type: Fix
+      message: 'Fixed Hunter power issues. Brought up to spec. '
+  id: 5440
+  time: '2024-10-22T05:03:37.0000000+00:00'
+- author: dvir001
+  changes:
+    - type: Tweak
+      message: An active sheriff is now required for vaults events to showup.
+  id: 5441
+  time: '2024-10-23T15:22:04.0000000+00:00'
+- author: GreaseMonk
+  changes:
+    - type: Add
+      message: Added shuttle records system that logs everytime a ship is purchased.
+  id: 5442
+  time: '2024-10-23T15:50:02.0000000+00:00'
+- author: Ansome101
+  changes:
+    - type: Tweak
+      message: Halloween now runs from Oct. 27-November 2nd.
+  id: 5443
+  time: '2024-10-23T18:17:29.0000000+00:00'
+- author: whatston3
+  changes:
+    - type: Fix
+      message: The Empress and Wasp now have security-locked medical doors.
+    - type: Tweak
+      message: >-
+        The Empress and Wasp have been reworked.  Nicer medbays, worse kitchens,
+        less loose fuel.
+  id: 5444
+  time: '2024-10-23T19:14:53.0000000+00:00'
+- author: Tych0theSynth
+  changes:
+    - type: Add
+      message: Added the SBB Bodkin, a new medium salvage shuttle.
+  id: 5445
+  time: '2024-10-23T20:02:57.0000000+00:00'
+- author: Tych0theSynth
+  changes:
+    - type: Add
+      message: Added the SBB Tyne, a new small search and rescue shuttle.
+  id: 5446
+  time: '2024-10-23T20:03:59.0000000+00:00'
+- author: erhardsteinhauer
+  changes:
+    - type: Add
+      message: Added rainbow snake to expedition carp enemy pool.
+    - type: Tweak
+      message: >-
+        Slightly rebalanced expedition carp mobs, updated guidebook entry on
+        them with new values.
+  id: 5447
+  time: '2024-10-23T20:04:37.0000000+00:00'
+- author: dvir001
+  changes:
+    - type: Tweak
+      message: >-
+        Using artifexium to trigger artifacts now results in gaining no points
+        for any triggered nodes.
+    - type: Add
+      message: The Xenoarchaeology guidebook now has a section on using artifexium.
+  id: 5448
+  time: '2024-10-23T20:20:09.0000000+00:00'
+- author: dvir001
+  changes:
+    - type: Tweak
+      message: The syndicate started to send more faxes about smuggling now.
+  id: 5449
+  time: '2024-10-23T21:15:47.0000000+00:00'
+- author: erhardsteinhauer
+  changes:
+    - type: Tweak
+      message: >-
+        Made Goblinbane ghost role whitelisted, altered ghost role rules and
+        description so Goblinbane wouldn't have to target exclusively
+        goblins/felinids or chaplains. Every one is at risk now. When not
+        controlled by a ghost, Goblinbane is neutral towards players.
+  id: 5450
+  time: '2024-10-24T17:41:03.0000000+00:00'
+- author: erhardsteinhauer
+  changes:
+    - type: Tweak
+      message: Removed laser reflect from mobs.
+  id: 5451
+  time: '2024-10-24T17:42:15.0000000+00:00'
+- author: dvir001
+  changes:
+    - type: Tweak
+      message: Bluespace events require less players overall to show up.
+  id: 5452
+  time: '2024-10-24T21:14:11.0000000+00:00'
+- author: whatston3
+  changes:
+    - type: Add
+      message: Items fried in the cauldron now look ghostly.
+  id: 5453
+  time: '2024-10-24T22:21:18.0000000+00:00'
+- author: whatston3
+  changes:
+    - type: Fix
+      message: >-
+        News consoles have had their access removed, anyone can publish news
+        stories.
+    - type: Tweak
+      message: Frontier Outpost's bridge now has a mass media console.
+  id: 5454
+  time: '2024-10-24T23:35:42.0000000+00:00'

@@ -1,43 +1,46 @@
-# Author Info
-# GitHub: Kesiath (https://github.com/Kesiath)
-# Discord: @kesiath
-# 
-# Maintainer Info
-# GitHub: ???
-# Discord: ???
-# 
-# Shuttle Notes:
-#
+# # Author Info
+# # GitHub: Kesiath (https://github.com/Kesiath)
+# # Discord: @kesiath
+
+# # Maintainer Info
+# # GitHub: ???
+# # Discord: ???
+
+# # Shuttle Notes:
+# #
 # - type: vessel
-#   id: Crescent
-#   name: KC Полумесяц
-#   description: Крупногабаритный многоцелевой шаттл. Рекомендованный размер команды 6+ человек.
-#   price: 208020
-#   category: Large
-#   group: Shipyard
-#   shuttlePath: /Maps/_NF/Shuttles/crescent.yml
-#   guidebookPage: Null
-#   class:
-#   - Science
-#   - Chemistry
-#   - Civilian
-# 
+  # id: Crescent
+  # name: KC Crescent
+  # description: The Crescent, named for its exterior shape, is a vessel focused on providing service, medical aide, and scientific breakthroughs for smaller vessels.
+  # price: 350020 # It do be like this.
+  # category: Large
+  # group: Shipyard
+  # shuttlePath: /Maps/_NF/Shuttles/crescent.yml
+  # guidebookPage: Null
+  # class:
+  # - Science
+  # - Chemistry
+  # - Civilian
+  # engine:
+  # - AME
+
 # - type: gameMap
-#   id: Crescent
-#   mapName: 'KC Полумесяц'
-#   mapPath: /Maps/_NF/Shuttles/crescent.yml
-#   minPlayers: 0
-#   stations:
-#     Crescent:
-#       stationProto: StandardFrontierVessel
-#       components:
-#         - type: StationNameSetup
-#           mapNameTemplate: 'Полумесяц {1}'
-#           nameGenerator:
-#             !type:NanotrasenNameGenerator
-#             prefixCreator: '14'
-#         - type: StationJobs
-#           availableJobs:
-#             Contractor: [ 0, 0 ]
-#             Pilot: [ 0, 0 ]
-#             Mercenary: [ 0, 0 ]
+  # id: Crescent
+  # mapName: 'KC Crescent'
+  # mapPath: /Maps/_NF/Shuttles/crescent.yml
+  # minPlayers: 0
+  # stations:
+    # Crescent:
+      # stationProto: StandardFrontierVessel
+      # components:
+        # - type: StationNameSetup
+          # mapNameTemplate: 'Crescent {1}'
+          # nameGenerator:
+            # !type:NanotrasenNameGenerator
+            # prefixCreator: '14'
+        # - type: StationJobs
+          # availableJobs:
+            # Contractor: [ 0, 0 ]
+            # Pilot: [ 0, 0 ]
+            # Mercenary: [ 0, 0 ]
+# #            StationAi: [ 0, 1 ]

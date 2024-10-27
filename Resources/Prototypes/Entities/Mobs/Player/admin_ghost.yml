@@ -93,8 +93,9 @@
   - type: Inventory
     templateId: aghost
   - type: Loadout
-    prototypes: [ MobAghostGear ]
+    prototypes: [ NFMobAghostGear ] # Frontier MobAghostGear<NFMobAghostGear
   - type: BypassInteractionChecks
+  - type: BankAccount # Frontier
 
 - type: entity
   id: ActionAGhostShowSolar
@@ -159,7 +160,7 @@
 - type: entity
   id: ActionAGhostShowStationRecords
   name: Station Records Interface
-  description: View a station records Interface
+  description: View a station records Interface.
   components:
   - type: InstantAction
     icon: Interface/AdminPanel/records.png # Corvax-Resprite

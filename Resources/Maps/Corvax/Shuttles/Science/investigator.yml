@@ -2704,6 +2704,27 @@ entities:
       rot: 3.141592653589793 rad
       pos: 11.5,-2.5
       parent: 2
+- proto: ComputerWallmountWithdrawBankATM
+  entities:
+  - uid: 247
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 0.5,0.5
+      parent: 2
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        bank-ATM-cashSlot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
+    - type: Physics
+      canCollide: False
+    - type: ItemSlots
 - proto: ConveyorBelt
   entities:
   - uid: 3

@@ -3,5 +3,20 @@
   name: "Клиника Здоровый лис"
   rangeMin: 1000
   rangeMax: 1800
-  iffColor: "#1895a3" #yellorange for faction style
   gridPath: /Maps/Corvax/POI/Hospital.yml
+  IFFColor: "#1895a3"
+
+- type: gameMap
+  id: Hospital
+  mapName: 'Клиника Здоровый лис'
+  mapPath: /Maps/Corvax/POI/Hospital.yml
+  minPlayers: 0
+  stations:
+    Hospital:
+      stationProto: StandardFrontierOutpost
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Клиника Здоровый лис'
+        - type: StationJobs
+          availableJobs: {}
+        - type: StationDeadDropHintExempt

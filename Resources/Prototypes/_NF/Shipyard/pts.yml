@@ -1,41 +1,43 @@
-# Author Info
-# GitHub: arimah
-# Discord: arimah
-# 
-# Maintainer Info
-# GitHub: arimah
-# Discord: arimah
-# 
-# Shuttle Notes:
-#
+# # Author Info
+# # GitHub: arimah
+# # Discord: arimah
+
+# # Maintainer Info
+# # GitHub: arimah
+# # Discord: arimah
+
+# # Shuttle Notes:
+# #
 # - type: vessel
-#   id: PTS
-#   name: NC Бомбила
-#   description: Малогабаритный транспортный шаттл на 5 пассажиров. Рекомендованный состав команды 1-3 человека.
-#   price: 13000
-#   category: Small
-#   group: Shipyard
-#   shuttlePath: /Maps/_NF/Shuttles/pts.yml
-#   guidebookPage: Null
-#   class:
-#   - Civilian
-# 
+  # id: PTS
+  # name: NC Personal Transport
+  # description: A small transport shuttle with space for 4 passengers. Comes with the latest audio entertainment technology.
+  # price: 16500 # $14325 after appraisal + $1200 (~5% markup)
+  # category: Small
+  # group: Shipyard
+  # shuttlePath: /Maps/_NF/Shuttles/pts.yml
+  # guidebookPage: Null
+  # class:
+  # - Civilian
+  # engine:
+  # - Plasma
+
 # - type: gameMap
-#   id: PTS
-#   mapName: 'NC Бомбила'
-#   mapPath: /Maps/_NF/Shuttles/pts.yml
-#   minPlayers: 0
-#   stations:
-#     PTS:
-#       stationProto: StandardFrontierVessel
-#       components:
-#         - type: StationNameSetup
-#           mapNameTemplate: 'Бомбила {1}'
-#           nameGenerator:
-#             !type:NanotrasenNameGenerator
-#             prefixCreator: '14'
-#         - type: StationJobs
-#           availableJobs:
-#             Contractor: [ 0, 0 ]
-#             Pilot: [ 0, 0 ]
-#             Mercenary: [ 0, 0 ]
+  # id: PTS
+  # mapName: 'NC Personal Transport'
+  # mapPath: /Maps/_NF/Shuttles/pts.yml
+  # minPlayers: 0
+  # stations:
+    # PTS:
+      # stationProto: StandardFrontierVessel
+      # components:
+        # - type: StationNameSetup
+          # mapNameTemplate: 'PTS {1}'
+          # nameGenerator:
+            # !type:NanotrasenNameGenerator
+            # prefixCreator: '14'
+        # - type: StationJobs
+          # availableJobs:
+            # Contractor: [ 0, 0 ]
+            # Pilot: [ 0, 0 ]
+            # Mercenary: [ 0, 0 ]

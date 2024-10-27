@@ -1,0 +1,35 @@
+# Shelfs
+## Wall freezers
+- type: construction
+  id: ShelfWallFreezerWhite
+  name: wall freezer (white)
+  description: A convenient place to store perishables.
+  hide: true # TODO: Need freezer board added
+  graph: WallFreezer
+  startNode: start
+  targetNode: ShelfWallFreezerWhite
+  icon:
+    sprite: _NF/Structures/Storage/Shelfs/Departments/Service/wall_fridge.rsi
+    state: base
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: true
+  conditions:
+    - !type:WallmountCondition
+
+- type: construction
+  id: ShelfWallFreezerDark
+  name: wall freezer (dark)
+  description: A convenient place to store perishables.
+  hide: true # TODO: Need freezer board added
+  graph: WallFreezer
+  startNode: start
+  targetNode: ShelfWallFreezerDark
+  icon:
+    sprite: _NF/Structures/Storage/Shelfs/Departments/Service/wall_fridge.rsi
+    state: base
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: true
+  conditions:
+    - !type:WallmountCondition

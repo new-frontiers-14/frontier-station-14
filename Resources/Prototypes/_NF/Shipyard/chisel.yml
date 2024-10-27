@@ -1,42 +1,44 @@
-# Author Info
-# GitHub: Blackszedows (https://github.com/Blackszedows)
-# Discord: ???
-# 
-# Maintainer Info
-# GitHub: erhardsteinhauer
-# Discord: erhardsteinhauer
-# 
-# Shuttle Notes:
-# 
+# # Author Info
+# # GitHub: Blackszedows (https://github.com/Blackszedows)
+# # Discord: ???
+
+# # Maintainer Info
+# # GitHub: erhardsteinhauer
+# # Discord: erhardsteinhauer
+
+# # Shuttle Notes:
+# # 
 # - type: vessel
-#   id: Chisel
-#   name: ICR Зубило
-#   description: Среднегабаритный добывающий шаттл. Рекомендованный размер команды 2-4 человека.
-#   price: 34615 # on init 30100$, 15% markup 4515$
-#   category: Small
-#   group: Shipyard
-#   shuttlePath: /Maps/_NF/Shuttles/chisel.yml
-#   guidebookPage: ShipyardChisel
-#   class:
-#   - Salvage
-#   - Cargo #???
-# 
+  # id: Chisel
+  # name: ICR Chisel
+  # description: Standard small size multipurpose vessel , originally meant to aid in ship scrapping.
+  # price: 34615 # on init 30100$, 15% markup 4515$
+  # category: Small
+  # group: Shipyard
+  # shuttlePath: /Maps/_NF/Shuttles/chisel.yml
+  # guidebookPage: ShipyardChisel
+  # class:
+  # - Salvage
+  # - Cargo #???
+  # engine:
+  # - Plasma
+
 # - type: gameMap
-#   id: Chisel
-#   mapName: 'ICR Зубило'
-#   mapPath: /Maps/_NF/Shuttles/chisel.yml
-#   minPlayers: 0
-#   stations:
-#     Chisel:
-#       stationProto: StandardFrontierVessel
-#       components:
-#         - type: StationNameSetup
-#           mapNameTemplate: 'Зубило {1}'
-#           nameGenerator:
-#             !type:NanotrasenNameGenerator
-#             prefixCreator: '14'
-#         - type: StationJobs
-#           availableJobs:
-#             Contractor: [ 0, 0 ]
-#             Pilot: [ 0, 0 ]
-#             Mercenary: [ 0, 0 ]
+  # id: Chisel
+  # mapName: 'ICR Chisel'
+  # mapPath: /Maps/_NF/Shuttles/chisel.yml
+  # minPlayers: 0
+  # stations:
+    # Chisel:
+      # stationProto: StandardFrontierVessel
+      # components:
+        # - type: StationNameSetup
+          # mapNameTemplate: 'Chisel {1}'
+          # nameGenerator:
+            # !type:NanotrasenNameGenerator
+            # prefixCreator: '14'
+        # - type: StationJobs
+          # availableJobs:
+            # Contractor: [ 0, 0 ]
+            # Pilot: [ 0, 0 ]
+            # Mercenary: [ 0, 0 ]

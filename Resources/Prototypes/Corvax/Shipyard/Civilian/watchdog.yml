@@ -1,0 +1,40 @@
+# Author Info
+# GitHub: UncaughtEx (https://github.com/UncaughtEx/)
+# Discord: @uncaughtowl
+
+# Maintainer Info
+# GitHub: ???
+# Discord: ???
+
+# Shuttle Notes:
+# Placeholder for a Station Guard-specific ship, duplicated the SBI Crown for now.  Sorry, Eli.
+
+- type: vessel
+  id: Watchdog
+  name: SBI Сторожевой пёс
+  description: Обновленная и перекрашенная старая модель "Тамплиера" NSF, предназначенная для использования наемниками и "перепрофилированная" для станционной охраны
+  price: 20000
+  category: Small
+  group: Sr
+  access: Brig # Oddball, matches guard ID, specific enough to exclude cadets
+  shuttlePath: /Maps/_NF/Shuttles/Sr/watchdog.yml
+  guidebookPage: Null
+  class:
+  - Civilian
+  engine:
+  - Plasma
+
+- type: gameMap
+  id: Watchdog
+  mapName: 'SBI Сторожевой пёс'
+  mapPath: /Maps/_NF/Shuttles/Sr/watchdog.yml
+  minPlayers: 0
+  stations:
+    Watchdog:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Сторожевой пёс {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'

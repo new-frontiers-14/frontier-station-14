@@ -1098,9 +1098,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -5.5,4.5
       parent: 1
-    - type: DeviceNetwork
-      configurators:
-      - invalid
 - proto: APCBasic
   entities:
   - uid: 40
@@ -1211,6 +1208,7 @@ entities:
   - uid: 392
     components:
     - type: Transform
+      rot: 3.141592653589793 rad
       pos: 3.5,9.5
       parent: 1
   - uid: 394
@@ -3567,8 +3565,6 @@ entities:
       pos: -2.5,12.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 239
       - 469
@@ -4998,6 +4994,13 @@ entities:
     - type: Transform
       pos: -2.5,2.5
       parent: 1
+- proto: KitchenAssembler
+  entities:
+  - uid: 531
+    components:
+    - type: Transform
+      pos: 1.5,7.5
+      parent: 1
 - proto: KitchenDeepFryer
   entities:
   - uid: 334
@@ -5006,9 +5009,9 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 4.5,5.5
       parent: 1
-- proto: KitchenElectricGrill
+- proto: KitchenElectricRange
   entities:
-  - uid: 774
+  - uid: 675
     components:
     - type: Transform
       pos: 0.5,7.5
@@ -5026,11 +5029,6 @@ entities:
     components:
     - type: Transform
       pos: 2.5,7.5
-      parent: 1
-  - uid: 531
-    components:
-    - type: Transform
-      pos: 1.5,7.5
       parent: 1
 - proto: KitchenReagentGrinder
   entities:
@@ -5845,6 +5843,20 @@ entities:
     - type: Transform
       pos: 4.5,8.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        machine_board: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        machine_parts: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        blueprint: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
 - proto: ShelfKitchen
   entities:
   - uid: 154
@@ -6846,12 +6858,6 @@ entities:
     components:
     - type: Transform
       pos: -6.5,6.5
-      parent: 1
-  - uid: 675
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 0.5,7.5
       parent: 1
   - uid: 683
     components:

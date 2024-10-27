@@ -1,41 +1,44 @@
-# Author Info
-# GitHub: UbaserB (https://github.com/UbaserB)
-# Discord: ???
-# 
-# Maintainer Info
-# GitHub: ???
-# Discord: ???
-# 
-# Shuttle Notes:
-#
+# # Author Info
+# # GitHub: UbaserB (https://github.com/UbaserB)
+# # Discord: ???
+
+# # Maintainer Info
+# # GitHub: ???
+# # Discord: ???
+
+# # Shuttle Notes:
+# #
 # - type: vessel
-#   id: Investigator
-#   name: NR Исследователь
-#   description: Среднегабаритный исследовательский шаттл. Рекомендованный состав команды 1-2 человека.
-#   price: 42100 # ~36540$ on mapinit + ~5480$ from 15% markup
-#   category: Medium
-#   group: Shipyard
-#   shuttlePath: /Maps/_NF/Shuttles/investigator.yml
-#   guidebookPage: ShipyardInvestigator
-#   class:
-#   - Science
-# 
+  # id: Investigator
+  # name: NR Investigator
+  # description: A medium research shuttle designed for xenoarcheological studies.
+  # price: 42100 # ~36540$ on mapinit + ~5480$ from 15% markup
+  # category: Medium
+  # group: Shipyard
+  # shuttlePath: /Maps/_NF/Shuttles/investigator.yml
+  # guidebookPage: ShipyardInvestigator
+  # class:
+  # - Science
+  # engine:
+  # - Solar
+  # - Plasma
+
 # - type: gameMap
-#   id: Investigator
-#   mapName: 'NR Исследователь'
-#   mapPath: /Maps/_NF/Shuttles/investigator.yml
-#   minPlayers: 0
-#   stations:
-#     Investigator:
-#       stationProto: StandardFrontierVessel
-#       components:
-#         - type: StationNameSetup
-#           mapNameTemplate: 'Исследователь {1}'
-#           nameGenerator:
-#             !type:NanotrasenNameGenerator
-#             prefixCreator: '14'
-#         - type: StationJobs
-#           availableJobs:
-#             Contractor: [ 0, 0 ]
-#             Pilot: [ 0, 0 ]
-#             Mercenary: [ 0, 0 ]
+  # id: Investigator
+  # mapName: 'NR Investigator'
+  # mapPath: /Maps/_NF/Shuttles/investigator.yml
+  # minPlayers: 0
+  # stations:
+    # Investigator:
+      # stationProto: StandardFrontierVessel
+      # components:
+        # - type: StationNameSetup
+          # mapNameTemplate: 'Investigator {1}'
+          # nameGenerator:
+            # !type:NanotrasenNameGenerator
+            # prefixCreator: '14'
+        # - type: StationJobs
+          # availableJobs:
+            # Contractor: [ 0, 0 ]
+            # Pilot: [ 0, 0 ]
+            # Mercenary: [ 0, 0 ]

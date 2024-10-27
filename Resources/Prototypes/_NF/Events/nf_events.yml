@@ -63,7 +63,7 @@
   - type: StationEvent
     weight: 8 # Fairly common.
     duration: 35
-    earliestStart: 30
+    earliestStart: 50
     minimumPlayers: 20
     reoccurrenceDelay: 50
   - type: RandomFaxRule
@@ -72,5 +72,30 @@
     name: deaddrop-faxed-hint-name
     prototypeId: PaperDeadDropFax
     content: deaddrop-faxed-hint-content # Default contents, will be edited.
+    stampedBy:
+    - stampedName: deaddrop-faxed-hint-signature
+      stampedColor: "#850000"
+    stampState: paper_stamp-syndicate
+    preFaxActions:
+    - !type:GetRandomDeadDropAction
+
+- type: entity
+  id: SmugglingFaxBig
+  parent: BaseStationEventShortDelay
+  components:
+  - type: StationEvent
+    weight: 100 # Fairly common.
+    minimumPlayers: 10
+    duration: 35
+  - type: RandomFaxRule
+    minFaxes: 3
+    maxFaxes: 4
+    name: deaddrop-faxed-hint-name
+    prototypeId: PaperDeadDropFax
+    content: deaddrop-faxed-hint-content # Default contents, will be edited.
+    stampedBy:
+    - stampedName: deaddrop-faxed-hint-signature
+      stampedColor: "#850000"
+    stampState: paper_stamp-syndicate
     preFaxActions:
     - !type:GetRandomDeadDropAction

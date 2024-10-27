@@ -1,42 +1,44 @@
-# Author Info
-# GitHub: YumiGumi (https://github.com/YumiGumi)
-# Discord: ???
-# 
-# Maintainer Info
-# GitHub: ???
-# Discord: ???
-# 
-# Shuttle Notes:
-# 
+# # Author Info
+# # GitHub: YumiGumi (https://github.com/YumiGumi)
+# # Discord: ???
+
+# # Maintainer Info
+# # GitHub: ???
+# # Discord: ???
+
+# # Shuttle Notes:
+# # 
 # - type: vessel
-#   id: Bazaar
-#   name: SLI Барахолка
-#   description: Среднегабаритный торговый шаттл. Рекомендованный размер команды 2-4 человека.
-#   price: 65555 # on init ~57005$ + 8550$ from 15% markup
-#   category: Medium
-#   group: Shipyard
-#   shuttlePath: /Maps/_NF/Shuttles/bazaar.yml
-#   guidebookPage: ShipyardBazaar
-#   class:
-#   - Cargo
-#   - Civilian
-#   
+  # id: Bazaar
+  # name: SLI Bazaar
+  # description: The Bazaar is a personal service vessel designed to provide a platform for merchants to sell their goods, it features two locking cargo docks, a spacious cargo hold, and a mercenary post for shop security.
+  # price: 77000 # on init ~72808$ + ~5000$ from ~5% markup - TODO: fix this number, just getting tests to pass - Whatstone
+  # category: Medium
+  # group: Shipyard
+  # shuttlePath: /Maps/_NF/Shuttles/bazaar.yml
+  # guidebookPage: ShipyardBazaar
+  # class:
+  # - Cargo
+  # - Civilian
+  # engine:
+  # - Uranium
+
 # - type: gameMap
-#   id: Bazaar
-#   mapName: 'SLI Барахолка'
-#   mapPath: /Maps/_NF/Shuttles/bazaar.yml
-#   minPlayers: 0
-#   stations: 
-#     Bazaar:
-#       stationProto: StandardFrontierVessel
-#       components:
-#         - type: StationNameSetup
-#           mapNameTemplate: 'SLI Барахолка {1}'
-#           nameGenerator:
-#             !type:NanotrasenNameGenerator
-#             prefixCreator: '14'
-#         - type: StationJobs
-#           availableJobs:
-#             Contractor: [ 0, 0 ]
-#             Pilot: [ 0, 0 ]
-#             Mercenary: [ 0, 0 ]
+  # id: Bazaar
+  # mapName: 'SLI Bazaar'
+  # mapPath: /Maps/_NF/Shuttles/bazaar.yml
+  # minPlayers: 0
+  # stations: 
+    # Bazaar:
+      # stationProto: StandardFrontierVessel
+      # components:
+        # - type: StationNameSetup
+          # mapNameTemplate: 'SLI Bazaar {1}'
+          # nameGenerator:
+            # !type:NanotrasenNameGenerator
+            # prefixCreator: '14'
+        # - type: StationJobs
+          # availableJobs:
+            # Contractor: [ 0, 0 ]
+            # Pilot: [ 0, 0 ]
+            # Mercenary: [ 0, 0 ]

@@ -1,30 +1,32 @@
 # - type: vessel
-#   id: Rogue
-#   name: NSF Плут
-#   description: Малогабаритный штурмовой шаттл ДСБФ с системами активной маскировки.
-#   price: 12200 #the appraisal is 9100$
-#   category: Micro
-#   group: Custom
-#   access: Security
-#   mapchecker_group_override: Security  # Treat this as a security vessel for mapchecker purposes
-#   shuttlePath: /Maps/_NF/Shuttles/Nfsd/rogue.yml
-#   guidebookPage: Null
-#   class:
-#   - Fighter
-# 
+  # id: Rogue
+  # name: NSF Rogue
+  # description: Micro assault vessel with a toggle for going dark in deep space.
+  # price: 12200 #the appraisal is 9100$
+  # category: Micro
+  # group: Custom
+  # access: Security
+  # mapchecker_group_override: Security  # Treat this as a security vessel for mapchecker purposes
+  # shuttlePath: /Maps/_NF/Shuttles/Nfsd/rogue.yml
+  # guidebookPage: Null
+  # class:
+  # - Fighter
+  # engine:
+  # - APU
+
 # - type: gameMap
-#   id: Rogue
-#   mapName: 'NSF Плут'
-#   mapPath: /Maps/_NF/Shuttles/Nfsd/rogue.yml
-#   minPlayers: 0
-#   stations:
-#     Rogue:
-#       stationProto: StandardFrontierSecurityVessel
-#       components:
-#         - type: StationNameSetup
-#           mapNameTemplate: 'Плут {1}'
-#           nameGenerator:
-#             !type:NanotrasenNameGenerator
-#             prefixCreator: '14'
-#         - type: StationJobs
-#           availableJobs: {}
+  # id: Rogue
+  # mapName: 'NSF Rogue'
+  # mapPath: /Maps/_NF/Shuttles/Nfsd/rogue.yml
+  # minPlayers: 0
+  # stations:
+    # Rogue:
+      # stationProto: StandardFrontierSecurityVessel
+      # components:
+        # - type: StationNameSetup
+          # mapNameTemplate: 'Rogue {1}'
+          # nameGenerator:
+            # !type:NanotrasenNameGenerator
+            # prefixCreator: '14'
+        # - type: StationJobs
+          # availableJobs: {}

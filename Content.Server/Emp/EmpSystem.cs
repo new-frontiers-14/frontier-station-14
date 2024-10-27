@@ -11,6 +11,10 @@ using Content.Shared.Examine;
 using Content.Shared.Tiles; // Frontier
 using Robust.Server.GameObjects;
 using Robust.Shared.Map;
+using Content.Shared._NF.Emp.Components; // Frontier
+using Robust.Server.GameStates; // Frontier: EMP Blast PVS
+using Robust.Shared.Configuration; // Frontier: EMP Blast PVS
+using Robust.Shared; // Frontier: EMP Blast PVS
 
 namespace Content.Server.Emp;
 
@@ -18,8 +22,10 @@ public sealed class EmpSystem : SharedEmpSystem
 {
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
+    [Dependency] private readonly PvsOverrideSystem _pvs = default!; // Frontier: EMP Blast PVS
+    [Dependency] private readonly IConfigurationManager _cfg = default!; // Frontier: EMP Blast PVS
 
-    public const string EmpPulseEffectPrototype = "EffectEmpPulse";
+    public const string EmpPulseEffectPrototype = "EffectEmpBlast"; // Frontier: EffectEmpPulse
 
     public override void Initialize()
     {
@@ -40,7 +46,7 @@ public sealed class EmpSystem : SharedEmpSystem
     /// <param name="range">The range of the EMP pulse.</param>
     /// <param name="energyConsumption">The amount of energy consumed by the EMP pulse.</param>
     /// <param name="duration">The duration of the EMP effects.</param>
-    /// <param name="immuneGrids">Frontier: a list of the grids that should not be affected by the 
+    /// <param name="immuneGrids">Frontier: a list of the grids that should not be affected by the
     public void EmpPulse(MapCoordinates coordinates, float range, float energyConsumption, float duration, List<EntityUid>? immuneGrids = null)
     {
         foreach (var uid in _lookup.GetEntitiesInRange(coordinates, range))
@@ -53,16 +59,17 @@ public sealed class EmpSystem : SharedEmpSystem
                 continue;
             // End Frontier: block EMP on grid
 
-            //Corvax-Frontier start
-            if (HasComp<ElzuosaColorComponent>(uid))
-                if (TryComp(uid, out ElzuosaColorComponent? elzuosaColorComponent))
-                    elzuosaColorComponent.StannedByEmp = true;
-
-            //Corvax-Frontier end
-
             TryEmpEffects(uid, energyConsumption, duration);
         }
-        Spawn(EmpPulseEffectPrototype, coordinates);
+
+        var empBlast = Spawn(EmpPulseEffectPrototype, coordinates); // Frontier: Added visual effect
+        EnsureComp<EmpBlastComponent>(empBlast, out var empBlastComp); // Frontier
+        empBlastComp.VisualRange = range; // Frontier
+
+        if (range > _cfg.GetCVar(CVars.NetMaxUpdateRange)) // Frontier
+            _pvs.AddGlobalOverride(empBlast); // Frontier
+
+        Dirty(empBlast, empBlastComp); // Frontier
     }
 
     /// <summary>

@@ -13,10 +13,11 @@
   name: Пиратская Бухта
   rangeMin: 10000
   rangeMax: 15000
-  iffColor: "#C83737" #red the color of ebil
-  isHidden: true
-  alwaysSpawn: true
-  gridPath: /Maps/Corvax/POI/cove.yml #CorvaxFrontier
+  IFFColor: "#C83737" #red the color of ebil
+  IFFFlags: [HideLabel]
+  allowIFFChanges: true
+  spawnGroup: Required
+  gridPath: /Maps/_NF/POI/cove.yml
 
 - type: gameMap
   id: Cove
@@ -29,8 +30,15 @@
       components:
         - type: StationNameSetup
           mapNameTemplate: 'Пиратская Бухта'
+        - type: ExtraStationInformation
+          iconPath: /Textures/_NF/Interface/Pirate/piratelogo.png
+          stationSubtext: 'frontier-lobby-pirate-subtext'
+          stationDescription: 'frontier-lobby-pirate-description'
         - type: StationJobs
           availableJobs:
             PirateCaptain: [ 1, 1 ]
             PirateFirstMate: [ 1, 1 ]
             Pirate: [ 0, 0 ]
+        - type: StationDeadDropReporting
+          messageSet: Pirate
+        - type: StationDeadDropHintExempt

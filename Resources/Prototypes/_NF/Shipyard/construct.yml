@@ -1,31 +1,33 @@
 # - type: vessel
-#   id: Construct
-#   name: NT Каркас
-#   description: Чисто технически это тоже шаттл. Не рекомендуется никому.
-#   price: 10500
-#   category: Micro
-#   group: Shipyard
-#   shuttlePath: /Maps/_NF/Shuttles/construct.yml
-#   guidebookPage: ShipyardConstruct
-#   class:
-#   - Engineering
-# 
+  # id: Construct
+  # name: NT Construct
+  # description: A technically spacefaring vessel.  No livery.
+  # price: 10500
+  # category: Micro
+  # group: Shipyard
+  # shuttlePath: /Maps/_NF/Shuttles/construct.yml
+  # guidebookPage: ShipyardConstruct
+  # class:
+  # - Engineering
+  # engine:
+  # - Plasma
+
 # - type: gameMap
-#   id: Construct
-#   mapName: 'NT Каркас'
-#   mapPath: /Maps/_NF/Shuttles/construct.yml
-#   minPlayers: 0
-#   stations:
-#     Construct:
-#       stationProto: StandardFrontierVessel
-#       components:
-#         - type: StationNameSetup
-#           mapNameTemplate: 'Каркас {1}'
-#           nameGenerator:
-#             !type:NanotrasenNameGenerator
-#             prefixCreator: '14'
-#         - type: StationJobs
-#           availableJobs:
-#             Contractor: [ 0, 0 ]
-#             Pilot: [ 0, 0 ]
-#             Mercenary: [ 0, 0 ]
+  # id: Construct
+  # mapName: 'NT Construct'
+  # mapPath: /Maps/_NF/Shuttles/construct.yml
+  # minPlayers: 0
+  # stations:
+    # Construct:
+      # stationProto: StandardFrontierVessel
+      # components:
+        # - type: StationNameSetup
+          # mapNameTemplate: 'Construct {1}'
+          # nameGenerator:
+            # !type:NanotrasenNameGenerator
+            # prefixCreator: '14'
+        # - type: StationJobs
+          # availableJobs:
+            # Contractor: [ 0, 0 ]
+            # Pilot: [ 0, 0 ]
+            # Mercenary: [ 0, 0 ]

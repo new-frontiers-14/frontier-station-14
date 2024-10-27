@@ -122,7 +122,6 @@
   id: ComputerShuttle
   name: shuttle console
   description: Used to pilot a shuttle.
-  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: Sprite
     layers:
@@ -772,27 +771,6 @@
     color: "#e6e227"
 
 - type: entity
-  parent: [ComputerRadar, BaseStructureDisableToolUse] #corvax-frontier
-  id: ComputerAdvancedRadar # Frontier
-  name: radar computer
-  description: Better CPU and components gives this radar the technological and tactical advantage on detection of far away objects.
-  components:
-  - type: Computer
-    board: AdvancedRadarConsoleCircuitboard
-  - type: RadarConsole
-    maxRange: 768
-  - type: Sprite
-    layers:
-    - map: ["computerLayerBody"]
-      state: computer
-    - map: ["computerLayerKeyboard"]
-      state: generic_keyboard
-    - map: ["computerLayerScreen"]
-      state: eris_control
-    - map: ["computerLayerKeys"]
-      state: generic_keys
-
-- type: entity
   id: ComputerCargoShuttle
   parent: BaseComputerAiAccess
   name: cargo shuttle computer
@@ -864,7 +842,7 @@
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
   - type: Computer
-    board: Null # Frontier: CargoRequestComputerCircuitboard<Null
+    board: CargoRequestComputerCircuitboard
   - type: PointLight
     radius: 1.5
     energy: 1.6
@@ -1175,7 +1153,7 @@
   - type: DeviceNetworkRequiresPower
   - type: NewsWriter
   - type: AccessReader
-    access: [[ "Service" ]]
+    #access: [[ "Service" ]] # Frontier
   - type: ActivatableUI
     key: enum.NewsWriterUiKey.Key
   - type: ActivatableUIRequiresVision

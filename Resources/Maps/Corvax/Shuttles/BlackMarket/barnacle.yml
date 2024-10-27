@@ -171,16 +171,6 @@ entities:
       - 227
       - 213
       - 215
-- proto: AirCanister
-  entities:
-  - uid: 57
-    components:
-    - type: Transform
-      anchored: True
-      pos: -5.5,-2.5
-      parent: 201
-    - type: Physics
-      bodyType: Static
 - proto: AirlockExternalGlass
   entities:
   - uid: 142
@@ -228,38 +218,43 @@ entities:
     - type: Transform
       pos: 1.3489224,-4.3157334
       parent: 201
-- proto: AtmosDeviceFanTiny
+- proto: AtmosDeviceFanDirectional
   entities:
-  - uid: 11
-    components:
-    - type: Transform
-      pos: 0.5,-2.5
-      parent: 201
-  - uid: 12
-    components:
-    - type: Transform
-      pos: 0.5,-1.5
-      parent: 201
-  - uid: 13
-    components:
-    - type: Transform
-      pos: 0.5,-0.5
-      parent: 201
-  - uid: 27
-    components:
-    - type: Transform
-      pos: -6.5,-1.5
-      parent: 201
   - uid: 28
     components:
     - type: Transform
+      rot: -1.5707963267948966 rad
       pos: -6.5,0.5
       parent: 201
-  - uid: 73
+  - uid: 57
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
+      rot: -1.5707963267948966 rad
+      pos: -6.5,-1.5
+      parent: 201
+  - uid: 62
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
       pos: -6.5,-0.5
+      parent: 201
+  - uid: 122
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 0.5,-0.5
+      parent: 201
+  - uid: 166
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 0.5,-1.5
+      parent: 201
+  - uid: 226
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 0.5,-2.5
       parent: 201
 - proto: AtmosFixBlockerMarker
   entities:
@@ -504,44 +499,34 @@ entities:
       parent: 201
 - proto: CannonBall
   entities:
-  - uid: 15
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 1.8835673,-2.403088
-      parent: 201
-  - uid: 19
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 1.6648173,-2.262463
-      parent: 201
   - uid: 72
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 1.6023173,-2.512463
+      pos: 1.4037349,-2.3940208
       parent: 201
-- proto: CannonBallGlassshot
+- proto: CannonBallEmp
   entities:
+  - uid: 15
+    components:
+    - type: Transform
+      pos: 1.4037349,-2.5816512
+      parent: 201
   - uid: 17
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 1.3054423,-2.449963
+      pos: 1.6433182,-2.362749
       parent: 201
   - uid: 20
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 1.4616923,-2.137463
+      pos: 1.1433182,-2.321054
       parent: 201
-- proto: CannonBallGrapeshot
+- proto: CannonBallGlassshot
   entities:
-  - uid: 76
+  - uid: 19
     components:
     - type: Transform
-      pos: 1.5241923,-2.309338
+      pos: 1.7579015,-2.602499
       parent: 201
 - proto: CarpetBlack
   entities:
@@ -695,6 +680,13 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 1.5,2.5
       parent: 201
+- proto: DefibrillatorCabinetFilled
+  entities:
+  - uid: 206
+    components:
+    - type: Transform
+      pos: -3.5,1.5
+      parent: 201
 - proto: EmergencyLight
   entities:
   - uid: 242
@@ -739,6 +731,19 @@ entities:
     - type: Transform
       pos: -2.5,-3.5
       parent: 201
+- proto: GasMixerOn
+  entities:
+  - uid: 67
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -3.5,-0.5
+      parent: 201
+    - type: GasMixer
+      inletTwoConcentration: 0.79
+      inletOneConcentration: 0.21
+    - type: AtmosPipeColor
+      color: '#0055CCFF'
 - proto: GasPassiveVent
   entities:
   - uid: 123
@@ -793,6 +798,13 @@ entities:
       parent: 201
     - type: AtmosPipeColor
       color: '#1010FFFF'
+  - uid: 11
+    components:
+    - type: Transform
+      pos: -3.5,-1.5
+      parent: 201
+    - type: AtmosPipeColor
+      color: '#0055CCFF'
   - uid: 119
     components:
     - type: Transform
@@ -902,18 +914,6 @@ entities:
       parent: 201
     - type: AtmosPipeColor
       color: '#990000FF'
-  - uid: 225
-    components:
-    - type: Transform
-      anchored: False
-      rot: 3.141592653589793 rad
-      pos: -0.5,-3.5
-      parent: 201
-    - type: AtmosPipeColor
-      color: '#990000FF'
-    - type: Physics
-      canCollide: True
-      bodyType: Dynamic
 - proto: GasPipeTJunction
   entities:
   - uid: 117
@@ -934,6 +934,14 @@ entities:
       color: '#990000FF'
 - proto: GasPort
   entities:
+  - uid: 12
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -3.5,-2.5
+      parent: 201
+    - type: AtmosPipeColor
+      color: '#0055CCFF'
   - uid: 42
     components:
     - type: Transform
@@ -942,17 +950,9 @@ entities:
       parent: 201
     - type: AtmosPipeColor
       color: '#1010FFFF'
-- proto: GasPressurePump
+- proto: GasPressurePumpOnMax
   entities:
-  - uid: 120
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -3.5,-0.5
-      parent: 201
-    - type: AtmosPipeColor
-      color: '#1010FFFF'
-  - uid: 122
+  - uid: 73
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
@@ -1145,6 +1145,14 @@ entities:
     - type: Transform
       pos: -4.5,2.5
       parent: 201
+- proto: LockerWallMaterialsFuelPlasmaFilled
+  entities:
+  - uid: 120
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 1.5,-6.5
+      parent: 201
 - proto: MachineFrame
   entities:
   - uid: 41
@@ -1160,6 +1168,26 @@ entities:
     - type: Transform
       pos: 1.6783751,-4.3457556
       parent: 201
+- proto: NitrogenCanister
+  entities:
+  - uid: 27
+    components:
+    - type: Transform
+      anchored: True
+      pos: -3.5,-2.5
+      parent: 201
+    - type: Physics
+      bodyType: Static
+- proto: OxygenCanister
+  entities:
+  - uid: 13
+    components:
+    - type: Transform
+      anchored: True
+      pos: -5.5,-2.5
+      parent: 201
+    - type: Physics
+      bodyType: Static
 - proto: PirateFlag
   entities:
   - uid: 14
@@ -1207,10 +1235,6 @@ entities:
     - type: Transform
       pos: 0.5,-6.5
       parent: 201
-    - type: FuelGenerator
-      on: False
-    - type: Physics
-      bodyType: Static
 - proto: PowerCellRecharger
   entities:
   - uid: 197
@@ -1368,38 +1392,23 @@ entities:
       parent: 201
 - proto: RemoteSignaller
   entities:
-  - uid: 67
+  - uid: 252
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 1.5918632,-1.4668034
+      pos: 1.6242626,-1.3814762
       parent: 201
-- proto: SheetPlasma
-  entities:
-  - uid: 166
-    components:
-    - type: Transform
-      pos: 0.4796412,-5.530752
-      parent: 201
-    - type: Stack
-      count: 15
-    - type: Item
-      size: 15
+    - type: DeviceLinkSource
+      linkedPorts:
+        23:
+        - Pressed: Toggle
+        - Pressed: Trigger
 - proto: ShuttleGunPirateCannon
   entities:
   - uid: 23
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: 2.5,-2.5
-      parent: 201
-    missingComponents:
-    - Anchorable
-  - uid: 62
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 2.5,-0.5
+      pos: 1.5,-0.5
       parent: 201
     missingComponents:
     - Anchorable

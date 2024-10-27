@@ -1,34 +1,36 @@
 # - type: vessel
-#   id: Empress
-#   name: NSF Императрица
-#   description: Крупногабаритный патрульшый шаттл ДСБФ. Рекомендованный состав команды 4-8 человек.
-#   price: 170000 #Appraisal value is 150000
-#   category: Large
-#   group: Security
-#   access: Bailiff
-#   shuttlePath: /Maps/_NF/Shuttles/Nfsd/empress.yml
-#   guidebookPage: Null
-#   class:
-#   - Capital
-# 
+  # id: Empress
+  # name: NSF Empress
+  # description: A large patrol vessel capable of carrying up to 3 smaller faster attack ships. the flagship vessel of the nfsd.
+  # price: 170000 #Appraisal value is 150000
+  # category: Large
+  # group: Security
+  # access: Bailiff
+  # shuttlePath: /Maps/_NF/Shuttles/Nfsd/empress.yml
+  # guidebookPage: Null
+  # class:
+  # - Capital
+  # engine:
+  # - AME
+
 # - type: gameMap
-#   id: Empress
-#   mapName: 'NSF Императрица'
-#   mapPath: /Maps/_NF/Shuttles/Nfsd/empress.yml
-#   minPlayers: 0
-#   stations:
-#     Empress:
-#       stationProto: StandardFrontierSecurityVessel
-#       components:
-#         - type: StationNameSetup
-#           mapNameTemplate: 'Императрица {1}'
-#           nameGenerator:
-#             !type:NanotrasenNameGenerator
-#             prefixCreator: '14'
-#         - type: StationJobs
-#           availableJobs:
-#            PrisonGuard: [ 0, 0 ]
-#            SecurityOfficer: [ 0, 0 ]
-#            Warden: [ 0, 0 ]
-#            Brigmedic: [ 0, 0 ]
-#             Chef: [ 0, 0 ]
+  # id: Empress
+  # mapName: 'NSF Empress'
+  # mapPath: /Maps/_NF/Shuttles/Nfsd/empress.yml
+  # minPlayers: 0
+  # stations:
+    # Empress:
+      # stationProto: StandardFrontierSecurityVessel
+      # components:
+        # - type: StationNameSetup
+          # mapNameTemplate: 'Empress {1}'
+          # nameGenerator:
+            # !type:NanotrasenNameGenerator
+            # prefixCreator: '14'
+        # - type: StationJobs
+          # availableJobs:
+# #            PrisonGuard: [ 0, 0 ]
+# #            SecurityOfficer: [ 0, 0 ]
+# #            Warden: [ 0, 0 ]
+# #            Brigmedic: [ 0, 0 ]
+            # Chef: [ 0, 0 ]

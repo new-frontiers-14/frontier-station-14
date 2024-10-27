@@ -1,32 +1,34 @@
 # - type: vessel
-#   id: Wasp
-#   name: NSF Шершень
-#   description: Крупногабаритный каторжный шаттл. Рекомендованный состав команды 8+ человек.
-#   price: 135000
-#   category: Large
-#   group: Security
-#   access: Bailiff
-#   shuttlePath: /Maps/_NF/Shuttles/Nfsd/wasp.yml
-#   guidebookPage: Null
-#   class:
-#   - Capital
-#   - Detainment
-#   - Expedition
-# 
+  # id: Wasp
+  # name: NSF Wasp
+  # description: A large expedition oriented ship for holding prisoners and making them work planetside.
+  # price: 135000
+  # category: Large
+  # group: Security
+  # access: Bailiff
+  # shuttlePath: /Maps/_NF/Shuttles/Nfsd/wasp.yml
+  # guidebookPage: Null
+  # class:
+  # - Capital
+  # - Detainment
+  # - Expedition
+  # engine:
+  # - AME
+
 # - type: gameMap
-#   id: Wasp
-#   mapName: 'NSF Шершень'
-#   mapPath: /Maps/_NF/Shuttles/Nfsd/wasp.yml
-#   minPlayers: 0
-#   stations:
-#     Wasp:
-#       stationProto: StandardFrontierExpeditionVessel
-#       components:
-#         - type: StationNameSetup
-#           mapNameTemplate: 'Шершень {1}'
-#           nameGenerator:
-#             !type:NanotrasenNameGenerator
-#             prefixCreator: '14'
-#         - type: StationJobs
-#           availableJobs:
-#             Prisoner: [ 0, 0 ]
+  # id: Wasp
+  # mapName: 'NSF Wasp'
+  # mapPath: /Maps/_NF/Shuttles/Nfsd/wasp.yml
+  # minPlayers: 0
+  # stations:
+    # Wasp:
+      # stationProto: StandardFrontierExpeditionVessel
+      # components:
+        # - type: StationNameSetup
+          # mapNameTemplate: 'Wasp {1}'
+          # nameGenerator:
+            # !type:NanotrasenNameGenerator
+            # prefixCreator: '14'
+        # - type: StationJobs
+          # availableJobs:
+            # Prisoner: [ 0, 0 ]

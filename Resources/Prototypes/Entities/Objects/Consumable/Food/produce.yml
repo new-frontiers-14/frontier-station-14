@@ -1764,10 +1764,10 @@
       food:
         maxVol: 10
         reagents:
-        - ReagentId: Nutriment
-          Quantity: 5
+#        - ReagentId: Nutriment # Frontier
+#          Quantity: 5 # Frontier
         - ReagentId: Sulfur
-          Quantity: 5
+          Quantity: 10 # Frontier: 5<10
   - type: Sprite
     sprite: Objects/Specific/Hydroponics/gatfruit.rsi
   - type: Produce
@@ -1782,6 +1782,7 @@
     entries:
       Taco: Gatfruit
       Burger: GatfruitBurger
+  - type: BadFood # Frontier: Nope
 
 - type: entity
   name: capfruit
@@ -1797,10 +1798,10 @@
       food:
         maxVol: 10
         reagents:
-        - ReagentId: Nutriment
-          Quantity: 5
+#        - ReagentId: Nutriment # Frontier
+#          Quantity: 5 # Frontier
         - ReagentId: Sulfur
-          Quantity: 5
+          Quantity: 10 # Frontier: 5<10
   - type: Sprite
     sprite: Objects/Specific/Hydroponics/capfruit.rsi
   - type: Produce
@@ -1815,6 +1816,7 @@
     entries:
       Taco: Capfruit
       Burger: CapfruitBurger
+  - type: BadFood # Frontier: Nope
 
 - type: entity
   name: capfruit

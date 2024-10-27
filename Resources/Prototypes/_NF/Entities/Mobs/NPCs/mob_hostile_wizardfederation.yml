@@ -1,12 +1,5 @@
 ## Mob base
 - type: entity
-  abstract: true
-  id: MobWizFedTimedDespawn
-  components:
-  - type: TimedDespawn
-    lifetime: 1800 # 30 mins (max blue space event duration involving these mobs - 20 mins)
-
-- type: entity
   name: Wizard
   abstract: true
   parent:
@@ -14,8 +7,8 @@
   - MobPassiveRegen
   - MobHumanoidInvetory
   - MobHumanoidHostileAISimpleRanged
-  - MobLaserReflect # Added to prevent laser abuse from players
-  #- MobWizFedTimedDespawn
+  #- MobLaserReflect # Added to prevent laser abuse from players
+  - NFMobRestrictions
   id: MobWizFedlBase
   components:
   - type: NpcFactionMember
@@ -196,6 +189,7 @@
   parent:
   - MobNonHumanHostileBase
   - MobHumanoidHostileAISimpleMelee
+  - NFMobTimedDespawn30
   id: WaterElementalConjured
   components:
   - type: HTN
@@ -244,7 +238,5 @@
   - type: MeleeChemicalInjector
     solution: bloodstream
     transferAmount: 10
-  - type: TimedDespawn
-    lifetime: 30
   - type: Ammo
     muzzleFlash: null

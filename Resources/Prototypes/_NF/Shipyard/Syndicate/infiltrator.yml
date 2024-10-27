@@ -1,28 +1,30 @@
 # - type: vessel
-#   id: Infiltrator
-#   name: Лазутчик
-#   description: Среднегабаритный экспедиционный шаттл синдиката. Рекомендованный состав команды 2-5 человек.
-#   price: 85000
-#   category: Medium
-#   group: Syndicate
-#   shuttlePath: /Maps/_NF/Shuttles/Syndicate/infiltrator.yml
-#   guidebookPage: Null
-#   class:
-#   - Syndicate
-# 
+  # id: Infiltrator
+  # name: Infiltrator
+  # description: A Syndicate nuclear operative infiltration ship.
+  # price: 85000
+  # category: Medium
+  # group: Syndicate
+  # shuttlePath: /Maps/_NF/Shuttles/Syndicate/infiltrator.yml
+  # guidebookPage: Null
+  # class:
+  # - Syndicate
+  # engine:
+  # - AME
+
 # - type: gameMap
-#   id: Infiltrator
-#   mapName: 'Лазутчик'
-#   mapPath: /Maps/_NF/Shuttles/Syndicate/infiltrator.yml
-#   minPlayers: 0
-#   stations:
-#     Infiltrator:
-#       stationProto: StandardFrontierVessel
-#       components:
-#         - type: StationNameSetup
-#           mapNameTemplate: 'Лазутчик {1}'
-#           nameGenerator:
-#             !type:NanotrasenNameGenerator
-#             prefixCreator: '14'
-#         - type: StationJobs
-#           availableJobs: {}
+  # id: Infiltrator
+  # mapName: 'Infiltrator'
+  # mapPath: /Maps/_NF/Shuttles/Syndicate/infiltrator.yml
+  # minPlayers: 0
+  # stations:
+    # Infiltrator:
+      # stationProto: StandardFrontierVessel
+      # components:
+        # - type: StationNameSetup
+          # mapNameTemplate: 'Infiltrator {1}'
+          # nameGenerator:
+            # !type:NanotrasenNameGenerator
+            # prefixCreator: '14'
+        # - type: StationJobs
+          # availableJobs: {}

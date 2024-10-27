@@ -543,7 +543,8 @@
       amount: 5
 
 - type: entity
-  name: pill (iron 10u)
+  name: pill
+  suffix: Iron 10u
   parent: Pill
   id: PillIron
   components:
@@ -892,7 +893,7 @@
 
 # Syringes
 - type: entity
-  name: ephedrine syringe
+  suffix: ephedrine
   parent: PrefilledSyringe
   id: SyringeEphedrine
   components:
@@ -907,7 +908,7 @@
           Quantity: 15
 
 - type: entity
-  name: inaprovaline syringe
+  suffix: inaprovaline
   parent: PrefilledSyringe
   id: SyringeInaprovaline
   components:
@@ -922,7 +923,7 @@
           Quantity: 15
 
 - type: entity
-  name: tranexamic acid syringe
+  suffix: tranexamic acid
   parent: PrefilledSyringe
   id: SyringeTranexamicAcid
   components:
@@ -937,7 +938,7 @@
           Quantity: 15
 
 - type: entity
-  name: bicaridine syringe
+  suffix: bicaridine
   parent: PrefilledSyringe
   id: SyringeBicaridine
   components:
@@ -952,7 +953,7 @@
           Quantity: 15
 
 - type: entity
-  name: dermaline syringe
+  suffix: dermaline
   parent: PrefilledSyringe
   id: SyringeDermaline
   components:
@@ -967,7 +968,7 @@
           Quantity: 15
 
 - type: entity
-  name: hyronalin syringe
+  suffix: hyronalin
   parent: PrefilledSyringe
   id: SyringeHyronalin
   components:
@@ -982,7 +983,7 @@
           Quantity: 15
 
 - type: entity
-  name: ipecac syringe
+  suffix: ipecac
   parent: PrefilledSyringe
   id: SyringeIpecac
   components:
@@ -997,7 +998,7 @@
           Quantity: 15
 
 - type: entity
-  name: ambuzol syringe
+  suffix: ambuzol
   parent: PrefilledSyringe
   id: SyringeAmbuzol
   components:
@@ -1012,7 +1013,7 @@
             Quantity: 15
 
 - type: entity
-  name: sigynate syringe
+  suffix: sigynate
   parent: PrefilledSyringe
   id: SyringeSigynate
   components:
@@ -1027,7 +1028,7 @@
             Quantity: 15
 
 - type: entity
-  name: ethylredoxrazine syringe
+  suffix: ethylredoxrazine
   parent: PrefilledSyringe
   id: SyringeEthylredoxrazine
   components:
@@ -1042,7 +1043,7 @@
             Quantity: 15
 
 - type: entity
-  name: phalanximine syringe
+  suffix: phalanximine
   parent: PrefilledSyringe
   id: SyringePhalanximine
   components:
@@ -1057,7 +1058,7 @@
             Quantity: 15
 
 - type: entity
-  name: saline syringe
+  suffix: saline
   parent: PrefilledSyringe
   id: SyringeSaline
   components:
@@ -1073,8 +1074,8 @@
 
 #this is where all the syringes are so i didn't know where to put it
 - type: entity
-  name: romerol syringe
-  parent: PrefilledSyringe
+  parent: [PrefilledSyringe, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
+  suffix: romerol
   id: SyringeRomerol
   components:
   - type: Label

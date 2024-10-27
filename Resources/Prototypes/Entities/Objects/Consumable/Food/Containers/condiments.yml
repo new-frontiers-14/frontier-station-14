@@ -69,8 +69,6 @@
   - type: Tag
     tags:
       - Packet
-  - type: StaticPrice
-    price: 4.5
 
 - type: entity
   parent: BaseFoodCondimentPacket
@@ -99,6 +97,8 @@
   - type: SolutionContainerVisuals
     maxFillLevels: 2
     fillBaseName: packet-trans-
+  - type: StaticPrice # Frontier
+    price: 5 # Frontier
 
 - type: entity
   parent: BaseFoodCondimentPacket
@@ -366,8 +366,8 @@
   - type: PhysicalComposition
     materialComposition:
       Glass: 50
-  - type: StaticPrice
-    price: 13.5
+  - type: StaticPrice # Frontier
+    price: 13.5 # Frontier
 
 - type: entity
   parent: BaseFoodCondimentBottle
@@ -564,10 +564,10 @@
         acts: [ "Destruction" ]
   - type: Sprite
     state: shaker-empty
-  - type: StaticPrice
-    price: 9
   - type: RefillableSolution
     solution: food
+  - type: StaticPrice # Frontier
+    price: 9 # Frontier
 
 - type: entity
   parent: BaseFoodShaker

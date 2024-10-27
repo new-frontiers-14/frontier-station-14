@@ -1,41 +1,43 @@
-# Author Info
-# GitHub: DustScoundrel (https://github.com/DustScoundrel)
-# Discord: ???
-# 
-# Maintainer Info
-# GitHub: erhardsteinhauer
-# Discord: erhardsteinhauer
-# 
-# Shuttle Notes:
-# 
+# # Author Info
+# # GitHub: DustScoundrel (https://github.com/DustScoundrel)
+# # Discord: ???
+
+# # Maintainer Info
+# # GitHub: erhardsteinhauer
+# # Discord: erhardsteinhauer
+
+# # Shuttle Notes:
+# # 
 # - type: vessel
-#   id: Garden
-#   name: HS Розарий
-#   description: Малогабаритный ботанический шаттл. Рекомендованный размер команды 1-2 человека.
-#   price: 24750
-#   category: Small
-#   group: Shipyard
-#   shuttlePath: /Maps/_NF/Shuttles/garden.yml
-#   guidebookPage: ShipyardGarden
-#   class:
-#   - Botany
-# 
+  # id: Garden
+  # name: HS Garden
+  # description: A small botany vessel dedicated to horiticultural experimentation.
+  # price: 26000
+  # category: Small
+  # group: Shipyard
+  # shuttlePath: /Maps/_NF/Shuttles/garden.yml
+  # guidebookPage: ShipyardGarden
+  # class:
+  # - Botany
+  # engine:
+  # - Plasma
+
 # - type: gameMap
-#   id: Garden
-#   mapName: 'HS Розарий'
-#   mapPath: /Maps/_NF/Shuttles/garden.yml
-#   minPlayers: 0
-#   stations:
-#     Garden:
-#       stationProto: StandardFrontierVessel
-#       components:
-#         - type: StationNameSetup
-#           mapNameTemplate: 'Розарий {1}'
-#           nameGenerator:
-#             !type:NanotrasenNameGenerator
-#             prefixCreator: '14'
-#         - type: StationJobs
-#           availableJobs:
-#             Contractor: [ 0, 0 ]
-#             Pilot: [ 0, 0 ]
-#             Mercenary: [ 0, 0 ]
+  # id: Garden
+  # mapName: 'HS Garden'
+  # mapPath: /Maps/_NF/Shuttles/garden.yml
+  # minPlayers: 0
+  # stations:
+    # Garden:
+      # stationProto: StandardFrontierVessel
+      # components:
+        # - type: StationNameSetup
+          # mapNameTemplate: 'Garden {1}'
+          # nameGenerator:
+            # !type:NanotrasenNameGenerator
+            # prefixCreator: '14'
+        # - type: StationJobs
+          # availableJobs:
+            # Contractor: [ 0, 0 ]
+            # Pilot: [ 0, 0 ]
+            # Mercenary: [ 0, 0 ]

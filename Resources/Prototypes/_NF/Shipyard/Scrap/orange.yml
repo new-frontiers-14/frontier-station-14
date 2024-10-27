@@ -1,33 +1,35 @@
 # - type: vessel
-#   id: Orange
-#   name: SV Обломок
-#   description: Малогабаритный кусок мусора. Рекомендованный состав команды 1-2 человека.
-#   price: 16000 #Appraisal is 14500
-#   category: Small
-#   group: Scrap
-#   shuttlePath: /Maps/_NF/Shuttles/Scrap/orange.yml
-#   guidebookPage: Null
-#   class:
-#   - Scrapyard
-#   - Cargo
-#   - Salvage
-# 
+  # id: Orange
+  # name: SV Orange
+  # description: A cargo slash salvage shuttle made from scavenged wrecks, comes with some damage.
+  # price: 18000 #Appraisal is 15800, +5% margin - TODO: fix this value, getting tests to pass - Whatstone
+  # category: Small
+  # group: Scrap
+  # shuttlePath: /Maps/_NF/Shuttles/Scrap/orange.yml
+  # guidebookPage: Null
+  # class:
+  # - Scrapyard
+  # - Cargo
+  # - Salvage
+  # engine:
+  # - Uranium
+
 # - type: gameMap
-#   id: Orange
-#   mapName: 'SV Обломок'
-#   mapPath: /Maps/_NF/Shuttles/Scrap/orange.yml
-#   minPlayers: 0
-#   stations:
-#     Orange:
-#       stationProto: StandardFrontierVessel
-#       components:
-#         - type: StationNameSetup
-#           mapNameTemplate: 'Обломок {1}'
-#           nameGenerator:
-#             !type:NanotrasenNameGenerator
-#             prefixCreator: '14'
-#         - type: StationJobs
-#           availableJobs:
-#             Contractor: [ 0, 0 ]
-#             Pilot: [ 0, 0 ]
-#             Mercenary: [ 0, 0 ]
+  # id: Orange
+  # mapName: 'SV Orange'
+  # mapPath: /Maps/_NF/Shuttles/Scrap/orange.yml
+  # minPlayers: 0
+  # stations:
+    # Orange:
+      # stationProto: StandardFrontierVessel
+      # components:
+        # - type: StationNameSetup
+          # mapNameTemplate: 'Orange {1}'
+          # nameGenerator:
+            # !type:NanotrasenNameGenerator
+            # prefixCreator: '14'
+        # - type: StationJobs
+          # availableJobs:
+            # Contractor: [ 0, 0 ]
+            # Pilot: [ 0, 0 ]
+            # Mercenary: [ 0, 0 ]

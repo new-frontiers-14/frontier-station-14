@@ -1,9 +1,11 @@
 ## UI
-adventure-list-start = NT Galactic Bank
-adventure-mode-profit-text = made a total profit of: {" "}
-adventure-mode-loss-text = lost a total of: {" "}
-adventure-list-high = Today's Top Earners:
-adventure-list-low = Today's Biggest Spenders:
+adventure-list-start = [color=gold]NT Galactic Bank[/color]
+adventure-mode-list-profit = made a total profit of [color=#d19e5e]{$amount}[/color].
+adventure-mode-list-loss = lost a total of [color=#659cc9]{$amount}[/color].
+adventure-mode-top-profit = made a total profit of {$amount}.
+adventure-mode-top-loss = lost a total of {$amount}.
+adventure-list-high = This Shift's Top Earners:
+adventure-list-low = This Shift's Biggest Spenders:
 adventure-title = New Frontier Adventure Mode
 adventure-description = Join a ship crew or buy your own and explore, research, salvage, or haul your way to riches!
 currency = Spesos
@@ -26,3 +28,5 @@ multiauth-already-connected = Already connected to Frontier Official servers.
 
 public-transit-departure = Now departing for {$destination}. Estimated travel time: {$flytime} seconds.
 public-transit-arrival = Thank you for choosing NT Public Transit. Next transfer to {$destination} departs in {$waittime} seconds.
+
+adventure-space-dungeon-name = Space Dungeon: {$dungeonPrototype}

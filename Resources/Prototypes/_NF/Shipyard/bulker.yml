@@ -1,41 +1,43 @@
-# Author Info
-# GitHub: CharcoalShipyard (https://github.com/CharcoalShipyard)
-# Discord: ???
-# 
-# Maintainer Info
-# GitHub: ???
-# Discord: ???
-# 
-# Shuttle Notes:
-#
+# # Author Info
+# # GitHub: CharcoalShipyard (https://github.com/CharcoalShipyard)
+# # Discord: ???
+
+# # Maintainer Info
+# # GitHub: ???
+# # Discord: ???
+
+# # Shuttle Notes:
+# #
 # - type: vessel
-#   id: Bulker
-#   name: KL Балкер
-#   description: Среднегабаритный добывающий шаттл. Рекомендуемый размер команды 2-4 человека.
-#   price: 47500 #41245$ before the +15% (6190$) 
-#   category: Medium
-#   group: Shipyard
-#   shuttlePath: /Maps/_NF/Shuttles/bulker.yml
-#   guidebookPage: ShipyardBulker
-#   class:
-#   - Salvage
-# 
+  # id: Bulker
+  # name: KL Bulker
+  # description: A medium mining vessel designed for deep space missions
+  # price: 47500 #41245$ before the +15% (6190$) 
+  # category: Medium
+  # group: Shipyard
+  # shuttlePath: /Maps/_NF/Shuttles/bulker.yml
+  # guidebookPage: ShipyardBulker
+  # class:
+  # - Salvage
+  # engine:
+  # - Uranium
+
 # - type: gameMap
-#   id: Bulker
-#   mapName: 'KL Балкер'
-#   mapPath: /Maps/_NF/Shuttles/bulker.yml
-#   minPlayers: 0
-#   stations:
-#     Bulker:
-#       stationProto: StandardFrontierVessel
-#       components:
-#         - type: StationNameSetup
-#           mapNameTemplate: 'Балкер {1}'
-#           nameGenerator:
-#             !type:NanotrasenNameGenerator
-#             prefixCreator: '14'
-#         - type: StationJobs
-#           availableJobs:
-#             Contractor: [ 0, 0 ]
-#             Pilot: [ 0, 0 ]
-#             Mercenary: [ 0, 0 ]
+  # id: Bulker
+  # mapName: 'KL Bulker'
+  # mapPath: /Maps/_NF/Shuttles/bulker.yml
+  # minPlayers: 0
+  # stations:
+    # Bulker:
+      # stationProto: StandardFrontierVessel
+      # components:
+        # - type: StationNameSetup
+          # mapNameTemplate: 'Bulker {1}'
+          # nameGenerator:
+            # !type:NanotrasenNameGenerator
+            # prefixCreator: '14'
+        # - type: StationJobs
+          # availableJobs:
+            # Contractor: [ 0, 0 ]
+            # Pilot: [ 0, 0 ]
+            # Mercenary: [ 0, 0 ]

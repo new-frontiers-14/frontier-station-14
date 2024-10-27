@@ -17,6 +17,7 @@ entities:
       name: Вариор
     - type: Transform
       pos: -0.515625,-0.5
+      parent: invalid
     - type: BecomesStation
       id: Warrior
     - type: MapGrid
@@ -744,6 +745,30 @@ entities:
     - type: Transform
       pos: -0.5,-0.5
       parent: 2
+- proto: GrenadeEMP
+  entities:
+  - uid: 10
+    components:
+    - type: Transform
+      pos: 3.3064265,0.6250687
+      parent: 2
+  - uid: 62
+    components:
+    - type: Transform
+      pos: 3.473093,0.6250687
+      parent: 2
+  - uid: 64
+    components:
+    - type: Transform
+      pos: 3.6814265,0.6250687
+      parent: 2
+- proto: GrenadeFrag
+  entities:
+  - uid: 97
+    components:
+    - type: Transform
+      pos: 3.5251765,0.4061668
+      parent: 2
 - proto: GyroscopeNfsd
   entities:
   - uid: 18
@@ -767,10 +792,6 @@ entities:
     - type: Transform
       pos: 1.5,4.5
       parent: 2
-    - type: FuelGenerator
-      on: False
-    - type: Physics
-      bodyType: Static
 - proto: PoweredlightColoredRed
   entities:
   - uid: 104
@@ -817,39 +838,17 @@ entities:
     - type: Transform
       pos: -2.671875,-1.6678174
       parent: 2
-- proto: ShuttleMagnumRifle
+- proto: ShuttleGunFriendshipNoUse
   entities:
-  - uid: 62
+  - uid: 36
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 3.5,2.5
       parent: 2
-    - type: ContainerContainer
-      containers:
-        machine_board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        machine_parts: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        ballistic-ammo: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        gun_magazine: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-- proto: ShuttleMagnumRifleAmmoBox
-  entities:
-  - uid: 36
-    components:
-    - type: Transform
-      pos: 3.4730253,0.501276
-      parent: 2
+    missingComponents:
+    - Machine
+    - Anchorable
 - proto: SignalButton
   entities:
   - uid: 59
@@ -857,10 +856,6 @@ entities:
     - type: Transform
       pos: 0.5,5.5
       parent: 2
-    - type: DeviceLinkSource
-      linkedPorts:
-        62:
-        - Pressed: Toggle
   - uid: 60
     components:
     - type: Transform

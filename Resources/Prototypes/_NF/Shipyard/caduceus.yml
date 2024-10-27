@@ -1,32 +1,34 @@
 # - type: vessel
-#   id: caduceus
-#   name: NM Кадуцей
-#   description: Крупногабаритный медицинский шаттл. Рекомендованный размер команды 4-8 человек.
-#   price: 105000
-#   category: Large
-#   group: Shipyard
-#   shuttlePath: /Maps/_NF/Shuttles/caduceus.yml
-#   guidebookPage: Null
-#   class:
-#   - Medical
-#   - Chemistry
-# 
+  # id: Caduceus
+  # name: NM Caduceus
+  # description: A former humanitarian vessel, the Caduceus now works as the best mobile hospital money can buy.
+  # price: 109000 # TODO: fix this value, getting tests to pass - Whatstone
+  # category: Large
+  # group: Shipyard
+  # shuttlePath: /Maps/_NF/Shuttles/caduceus.yml
+  # guidebookPage: Null
+  # class:
+  # - Medical
+  # - Chemistry
+  # engine:
+  # - AME
+
 # - type: gameMap
-#   id: caduceus
-#   mapName: 'NM Кадуцей'
-#   mapPath: /Maps/_NF/Shuttles/caduceus.yml
-#   minPlayers: 0
-#   stations:
-#     caduceus:
-#       stationProto: StandardFrontierVessel
-#       components:
-#         - type: StationNameSetup
-#           mapNameTemplate: 'Кадуцей {1}'
-#           nameGenerator:
-#             !type:NanotrasenNameGenerator
-#             prefixCreator: '14'
-#         - type: StationJobs
-#           availableJobs:
-#             Contractor: [ 0, 0 ]
-#             Pilot: [ 0, 0 ]
-#             Mercenary: [ 0, 0 ]
+  # id: Caduceus
+  # mapName: 'NM Caduceus'
+  # mapPath: /Maps/_NF/Shuttles/caduceus.yml
+  # minPlayers: 0
+  # stations:
+    # Caduceus:
+      # stationProto: StandardFrontierVessel
+      # components:
+        # - type: StationNameSetup
+          # mapNameTemplate: 'Caduceus {1}'
+          # nameGenerator:
+            # !type:NanotrasenNameGenerator
+            # prefixCreator: '14'
+        # - type: StationJobs
+          # availableJobs:
+            # Contractor: [ 0, 0 ]
+            # Pilot: [ 0, 0 ]
+            # Mercenary: [ 0, 0 ]
