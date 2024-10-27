@@ -170,7 +170,7 @@
   parent: [BaseStructureDisableScrewing, BaseStructureIndestructible, BaseStructureAccessReaderImmuneToEmag, ComputerBankATMBase]
   id: BaseStationAdminBankATM
   abstract: true
-  description: Used to pay out from the station's bank account
+  description: Used to transfer funds to and from the station's bank account.
   components:
   - type: Sprite
     netsync: false
@@ -200,6 +200,8 @@
     interfaces:
       enum.BankATMMenuUiKey.ATM:
         type: StationBankATMMenuBoundUserInterface
+  - type: ActivatableUIRequiresAccess
+  - type: ActivatableUIRequiresPower
   - type: ItemSlots
   - type: ContainerContainer
     containers:
@@ -209,66 +211,17 @@
     access: [["HeadOfPersonnel"], ["HeadOfSecurity"]]
 
 - type: entity
-  name: station administration console
-  parent: [BaseStructureDisableScrewing, BaseStructureIndestructible, BaseStructureAccessReaderImmuneToEmag, ComputerBankATMBase]
-  id: BaseStationAdminBankATM
-  abstract: true
-  description: Used to pay out from the station's bank account
-  components:
-  - type: Sprite
-    netsync: false
-    sprite: Structures/Machines/computers.rsi
-    layers:
-    - map: ["computerLayerBody"]
-      state: computer
-    - map: ["computerLayerKeyboard"]
-      state: generic_keyboard
-    - map: ["computerLayerScreen"]
-      state: id
-    - map: ["computerLayerKeys"]
-      state: id_key
-  - type: StationBankATM
-    cashSlot:
-      name: station-bank-ATM-cashSlot
-      insertSound: /Audio/Machines/scanning.ogg
-      ejectSound: /Audio/Machines/tray_eject.ogg
-      ejectOnBreak: true
-      swap: false
-      whitelist:
-        components:
-          - Currency
-  - type: ActivatableUI
-    key: enum.BankATMMenuUiKey.ATM
-  - type: UserInterface
-    interfaces:
-      enum.BankATMMenuUiKey.ATM:
-        type: StationBankATMMenuBoundUserInterface
-  - type: ItemSlots
-  - type: ContainerContainer
-    containers:
-      board: !type:Container
-      station-bank-ATM-cashSlot: !type:ContainerSlot
-  - type: AccessReader
-    access: [["HeadOfPersonnel"], ["HeadOfSecurity"]]
-
-- type: entity
-  name: station administration console
   parent: BaseStationAdminBankATM
   id: StationAdminBankATMFrontier
-  description: Used to transfer funds from Frontier Outpost's bank account
+  description: Used to transfer funds to and from Frontier Outpost's bank account.
   components:
   - type: StationBankATM
     account: Frontier
-  - type: AccessReader
-    access: [["HeadOfPersonnel"], ["HeadOfSecurity"]]
 
 - type: entity
-  name: station administration console
   parent: BaseStationAdminBankATM
   id: StationAdminBankATMNfsd
-  description: Used to transfer funds from NFSD's bank account
+  description: Used to transfer funds to and from NFSD's bank account.
   components:
   - type: StationBankATM
     account: Nfsd
-  - type: AccessReader
-    access: [["HeadOfPersonnel"], ["HeadOfSecurity"]]

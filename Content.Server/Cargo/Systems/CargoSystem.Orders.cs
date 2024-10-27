@@ -229,7 +229,7 @@ namespace Content.Server.Cargo.Systems
             {
                 foreach (var taxAccount in component.TaxAccounts)
                 {
-                    _bankSystem.TryBankDeposit(taxAccount, tax);
+                    _bankSystem.TrySectorDeposit(taxAccount, tax);
                 }
             }
             _bankSystem.TryBankWithdraw(player, cost);

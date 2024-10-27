@@ -87,7 +87,7 @@ namespace Content.Server.Mail.Components
         /// </summary>
         /// <remarks>
         /// Frontier: should be non-negative.
-        /// </remarks>
+        /// /// </remarks>
         [DataField]
         public int Penalty = 0; // Frontier - -250<0
 

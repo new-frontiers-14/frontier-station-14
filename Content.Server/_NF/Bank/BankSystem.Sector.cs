@@ -22,7 +22,7 @@ public sealed partial class BankSystem : SharedBankSystem
     /// <param name="amount">The integer amount of which to decrease the bank account</param>
     /// <returns>true if the transaction was successful, false if it was not</returns>
     [PublicAPI]
-    public bool TryBankWithdraw(SectorBankAccount account, int amount)
+    public bool TrySectorWithdraw(SectorBankAccount account, int amount)
     {
         if (amount <= 0)
         {
@@ -61,7 +61,7 @@ public sealed partial class BankSystem : SharedBankSystem
     /// <param name="amount">The amount of spesos to remove from the bank account</param>
     /// <returns>true if the transaction was successful, false if it was not</returns>
     [PublicAPI]
-    public bool TryBankDeposit(SectorBankAccount account, int amount)
+    public bool TrySectorDeposit(SectorBankAccount account, int amount)
     {
         if (amount <= 0)
         {
@@ -127,7 +127,7 @@ public sealed partial class BankSystem : SharedBankSystem
         while (bank.SecondsSinceLastIncrease > AccountIncreaseInterval)
         {
             bank.SecondsSinceLastIncrease -= AccountIncreaseInterval;
-            secondsToCredit++;
+            secondsToCredit += AccountIncreaseInterval;
         }
 
         int seconds = (int)secondsToCredit;

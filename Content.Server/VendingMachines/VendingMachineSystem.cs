@@ -370,7 +370,7 @@ namespace Content.Server.VendingMachines
                     {
                         foreach (var account in component.TaxAccounts)
                         {
-                            _bankSystem.TryBankDeposit(account, tax);
+                            _bankSystem.TrySectorDeposit(account, tax);
                         }
                     }
 

@@ -153,7 +153,7 @@ public sealed partial class BankSystem
         {
             var tax = (int)(deposit * component.TaxCoefficient);
             tax = int.Clamp(tax, 0, deposit);
-            TryBankDeposit(component.TaxAccount, tax);
+            TrySectorDeposit(component.TaxAccount, tax);
             deposit -= tax; // Charge the user whether or not the deposit went through.
         }
 

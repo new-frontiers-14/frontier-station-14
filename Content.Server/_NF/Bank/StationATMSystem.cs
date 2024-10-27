@@ -82,7 +82,7 @@ public sealed partial class BankSystem
             return;
         }
 
-        if (!TryBankWithdraw(component.Account, args.Amount))
+        if (!TrySectorWithdraw(component.Account, args.Amount))
         {
             ConsolePopup(args.Actor, Loc.GetString("bank-withdraw-failed"));
             PlayDenySound(uid, component);
@@ -194,7 +194,7 @@ public sealed partial class BankSystem
             args.Amount = deposit;
         }
 
-        if (!TryBankDeposit(component.Account, args.Amount))
+        if (!TrySectorDeposit(component.Account, args.Amount))
         {
             ConsolePopup(args.Actor, Loc.GetString("bank-withdraw-failed"));
             PlayDenySound(uid, component);
@@ -235,7 +235,7 @@ public sealed partial class BankSystem
         var actorSet = _uiSystem.GetActors((uid, ui), BankATMMenuUiKey.ATM);
         bool hasAccess = false;
         if (actorSet != null)
-            hasAccess = _access.IsAllowed(uid, actorSet.First());
+            hasAccess = _access.IsAllowed(actorSet.First(), uid);
 
         if (component.CashSlot.ContainerSlot?.ContainedEntity is not { Valid: true })
         {

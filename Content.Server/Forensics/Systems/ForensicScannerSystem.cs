@@ -31,7 +31,8 @@ using Content.Shared.FixedPoint; // Frontier
 using Robust.Shared.Configuration; // Frontier
 using Content.Shared._NF.CCVar;
 using Content.Shared._NF.Bank;
-using Content.Shared.Bank.Components; // Frontier
+using Content.Shared.Bank.Components;
+using Content.Server.Bank; // Frontier
 
 // todo: remove this stinky LINQy
 
@@ -105,7 +106,7 @@ namespace Content.Server.Forensics
             _audio.PlayPvs(_audio.GetSound(confirmSound), uidOrigin);
 
             if (spesoAmount > 0)
-                _bank.TryBankDeposit(SectorBankAccount.Nfsd, spesoAmount);
+                _bank.TrySectorDeposit(SectorBankAccount.Nfsd, spesoAmount);
             else
                 spesoAmount = 0;
 

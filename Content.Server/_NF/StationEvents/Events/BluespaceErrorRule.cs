@@ -125,7 +125,7 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
 
         foreach (var account in component.RewardAccounts)
         {
-            _bank.TryBankDeposit(account, (int)(gridValue * component.RewardFactor));
+            _bank.TrySectorDeposit(account, (int)(gridValue * component.RewardFactor));
         }
     }
 }

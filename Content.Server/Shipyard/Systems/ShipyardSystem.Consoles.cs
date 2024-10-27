@@ -298,7 +298,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             if (tax > 0)
             {
                 foreach (var account in component.TaxAccounts)
-                    _bank.TryBankDeposit(account, tax);
+                    _bank.TrySectorDeposit(account, tax);
             }
         }
 
@@ -434,7 +434,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             {
                 foreach (var account in component.TaxAccounts)
                 {
-                    _bank.TryBankDeposit(account, tax);
+                    _bank.TrySectorDeposit(account, tax);
                 }
 
                 bill -= tax;

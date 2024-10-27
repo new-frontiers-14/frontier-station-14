@@ -17,3 +17,12 @@
   id: BankAccounts
   components:
     - type: SectorBank
+      accounts:
+        Frontier:
+          !type:SectorBankAccountInfo
+          balance: 8000
+          increasePerSecond: 1
+        Nfsd:
+          !type:SectorBankAccountInfo
+          balance: 8000
+          increasePerSecond: 25 # 90K per hour, about enough for minimum wage for the default NFSD size

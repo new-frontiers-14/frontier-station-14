@@ -249,7 +249,7 @@ namespace Content.Server.Mail
 
             component.IsProfitable = false;
 
-            _bank.TryBankDeposit(SectorBankAccount.Frontier, component.Bounty);
+            _bank.TrySectorDeposit(SectorBankAccount.Frontier, component.Bounty);
         }
 
         private void OnExamined(EntityUid uid, MailComponent component, ExaminedEvent args)

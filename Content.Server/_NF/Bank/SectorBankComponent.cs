@@ -21,9 +21,11 @@ public sealed partial class SectorBankAccountInfo
     /// <summary>
     /// The current balance of the account, in spesos.
     /// </summary>
+    [DataField]
     public int Balance;
     /// <summary>
     /// How much the account increases per second.
     /// </summary>
+    [DataField]
     public int IncreasePerSecond;
 }
