@@ -12,7 +12,7 @@
     - id: GasLeak
     - id: IonStorm # its calm like 90% of the time smh
     # - id: KudzuGrowth
-    - id: MassHallucinations
+    # - id: MassHallucinations # Frontier
     # - id: MimicVendorRule
     - id: MouseMigration
     - id: PowerGridCheck
@@ -308,15 +308,15 @@
   id: SolarFlare
   components:
   - type: StationEvent
-    weight: 8
+    weight: 4
     earliestStart: 15 # Frontier
     reoccurrenceDelay: 30 # Frontier
     startAnnouncement: station-event-solar-flare-start-announcement
     endAnnouncement: station-event-solar-flare-end-announcement
     startAudio:
       path: /Audio/Announcements/attention.ogg
-    duration: 120
-    maxDuration: 240
+    duration: 240 # 120 > 240 frontier
+    maxDuration: 480 # 240 > 480 frontier
   - type: SolarFlareRule
     onlyJamHeadsets: true
     affectedChannels:
@@ -332,8 +332,8 @@
     - Traffic # Frontier
     - Nfsd # Frontier
     extraCount: 2
-    lightBreakChancePerSecond: 0.0003
-    doorToggleChancePerSecond: 0.001
+    lightBreakChancePerSecond: 0.00003 # 0.0003 > 0.00003 frontier
+    doorToggleChancePerSecond: 0.0001 #0.001 > 0.0001 frontier
 
 - type: entity
   id: VentClog
@@ -525,22 +525,22 @@
 #       - type: TraitorRole
 #         prototype: TraitorSleeper
 
-- type: entity
-  id: MassHallucinations
-  parent: BaseGameRule
-  components:
-  - type: StationEvent
-    earliestStart: 15 # Frontier
-    weight: 7
-    duration: 150
-    maxDuration: 300
-    reoccurrenceDelay: 30
-  - type: MassHallucinationsRule
-    minTimeBetweenIncidents: 0.1
-    maxTimeBetweenIncidents: 300
-    maxSoundDistance: 7
-    sounds:
-      collection: Paracusia
+#- type: entity
+#  id: MassHallucinations
+#  parent: BaseGameRule
+#  components:
+#  - type: StationEvent
+#    earliestStart: 15 # Frontier
+#    weight: 7
+#    duration: 150
+#    maxDuration: 300
+#    reoccurrenceDelay: 30
+#  - type: MassHallucinationsRule
+#    minTimeBetweenIncidents: 0.1
+#    maxTimeBetweenIncidents: 300
+#    maxSoundDistance: 7
+#    sounds:
+#      collection: Paracusia
 
 - type: entity
   parent: BaseGameRule
