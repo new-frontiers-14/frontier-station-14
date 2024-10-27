@@ -17,12 +17,6 @@ public sealed partial class GridSpawnComponent : Component
     /// String is just an identifier to make yaml easier.
     /// </summary>
     [DataField(required: true)] public Dictionary<string, IGridSpawnGroup> Groups = new();
-
-    /// <summary>
-    /// Frontier: Run the generator on comp added
-    /// </summary>
-    [DataField]
-    public bool OnInit = false;
 }
 
 public interface IGridSpawnGroup
@@ -30,7 +24,7 @@ public interface IGridSpawnGroup
     /// <summary>
     /// Minimum distance to spawn away from the station.
     /// </summary>
-    public float MinimumDistance { get; }
+    public float MinimumDistance { get;  }
 
     /// <summary>
     /// Maximum distance to spawn away from the station.
