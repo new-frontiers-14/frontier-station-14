@@ -19,7 +19,7 @@ public sealed partial class GridSpawnComponent : Component
     [DataField(required: true)] public Dictionary<string, IGridSpawnGroup> Groups = new();
 
     /// <summary>
-    /// Hide the IFF label of the grid.
+    /// Frontier: Run the generator on comp added
     /// </summary>
     [DataField]
     public bool OnInit = false;
