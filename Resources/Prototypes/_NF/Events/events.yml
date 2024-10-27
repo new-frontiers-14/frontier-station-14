@@ -310,13 +310,13 @@
   - type: StationEvent
     weight: 4
     earliestStart: 15 # Frontier
-    reoccurrenceDelay: 30 # Frontier
+    reoccurrenceDelay: 45 # Frontier
     startAnnouncement: station-event-solar-flare-start-announcement
     endAnnouncement: station-event-solar-flare-end-announcement
     startAudio:
       path: /Audio/Announcements/attention.ogg
-    duration: 240 # 120 > 240 frontier
-    maxDuration: 480 # 240 > 480 frontier
+    duration: 120
+    maxDuration: 240
   - type: SolarFlareRule
     onlyJamHeadsets: true
     affectedChannels:
@@ -332,8 +332,8 @@
     - Traffic # Frontier
     - Nfsd # Frontier
     extraCount: 2
-    lightBreakChancePerSecond: 0.00003 # 0.0003 > 0.00003 frontier
-    doorToggleChancePerSecond: 0.0001 #0.001 > 0.0001 frontier
+    lightBreakChancePerSecond: 0.0003
+    doorToggleChancePerSecond: 0.001
 
 - type: entity
   id: VentClog
