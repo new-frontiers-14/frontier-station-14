@@ -24,12 +24,12 @@ public interface IGridSpawnGroup
     /// <summary>
     /// Minimum distance to spawn away from the station.
     /// </summary>
-    public float MinimumDistance { get;  }
+    public float MinimumDistance { get; }
 
     /// <summary>
     /// Maximum distance to spawn away from the station.
     /// </summary>
-    public float MaximumDistance { get; }
+    public float MaximumDistance { get;  }
 
     /// <inheritdoc />
     public ProtoId<DatasetPrototype>? NameDataset { get; }
