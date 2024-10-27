@@ -18,6 +18,6 @@ public sealed class FriedTraitSystem : EntitySystem
 
     private void SetupFriedTrait(EntityUid uid, FriedTraitComponent component, ComponentStartup args)
     {
-        _deepFryerSystem.MakeCrispy(uid);
+        _deepFryerSystem.MakeCrispy(uid, component.CrispinessLevelSet);
     }
 }
