@@ -8,7 +8,7 @@ namespace Content.Server.Worldgen.Components.Debris;
 ///     Mostly just syncs deletion.
 /// </summary>
 [RegisterComponent]
-//[Access(typeof(DebrisFeaturePlacerSystem))]
+[Access(typeof(DebrisFeaturePlacerSystem))]
 public sealed partial class OwnedDebrisComponent : Component
 {
     /// <summary>
