@@ -292,9 +292,14 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             if (TryComp<ShuttleDeedComponent>(targetId, out var deed))
                 sellValue = (int) _pricing.AppraiseGrid((EntityUid) (deed?.ShuttleUid!));
 
-            sellValue -= CalculateSalesTax(component, sellValue);
+            var tax = CalculateSalesTax(component, sellValue);
+            sellValue -= tax;
 
-            if ()
+            if (tax > 0)
+            {
+                foreach (var account in component.TaxAccounts)
+                    _bank.TryBankDeposit(account, tax);
+            }
         }
 
         SendPurchaseMessage(shipyardConsoleUid, player, name, component.ShipyardChannel, secret: false);
