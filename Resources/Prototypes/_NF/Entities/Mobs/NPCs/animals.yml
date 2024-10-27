@@ -63,3 +63,19 @@
     - id: MaterialHideRosyMothroach
       amount: 1
       prob: 0.3
+      
+- type: entity
+  name: bee
+  suffix: Angry, Timed
+  parent: [ MobAngryBee ]
+  id: MobAngryBeeTimed
+  components:
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcBite
+    damage:
+      types:
+        Piercing: 0.5
+  - type: TimedDespawn
+    lifetime: 15
+
