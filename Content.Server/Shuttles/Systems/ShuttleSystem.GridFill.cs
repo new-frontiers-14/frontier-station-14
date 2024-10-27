@@ -23,8 +23,6 @@ public sealed partial class ShuttleSystem
 
         SubscribeLocalEvent<GridFillComponent, MapInitEvent>(OnGridFillMapInit);
 
-        SubscribeLocalEvent<GridSpawnComponent, ComponentInit>(OnComponentInit); // Frontier
-
         Subs.CVar(_cfg, CCVars.GridFill, OnGridFillChange);
     }
 
@@ -52,12 +50,6 @@ public sealed partial class ShuttleSystem
     private void OnGridSpawnPostInit(EntityUid uid, GridSpawnComponent component, ref StationPostInitEvent args)
     {
         GridSpawns(uid, component);
-    }
-
-    private void OnComponentInit(EntityUid uid, GridSpawnComponent component, ComponentInit args) // Frontier
-    {
-        if (component.OnInit)
-            GridNFSpawns(uid, component);
     }
 
     private void OnCargoSpawnPostInit(EntityUid uid, StationCargoShuttleComponent component, ref StationPostInitEvent args)
@@ -175,91 +167,6 @@ public sealed partial class ShuttleSystem
 
         Log.Error($"Error loading gridspawn for {ToPrettyString(stationUid)} / {path}");
         return false;
-    }
-
-    private void GridNFSpawns(EntityUid uid, GridSpawnComponent component)
-    {
-        // Spawn on a dummy map and try to FTL if possible, otherwise dump it.
-        _mapSystem.CreateMap(out var mapId);
-
-        foreach (var group in component.Groups.Values)
-        {
-            var count = _random.Next(group.MinCount, group.MaxCount + 1);
-
-            for (var i = 0; i < count; i++)
-            {
-                EntityUid spawned;
-
-                switch (group)
-                {
-                    case DungeonSpawnGroup dungeon:
-                        if (!TryNFDungeonSpawn(uid, dungeon, out spawned))
-                            continue;
-
-                        break;
-                    case GridSpawnGroup grid:
-                        if (!TryGridSpawn(uid, uid, mapId, grid, out spawned))
-                            continue;
-
-                        break;
-                    default:
-                        throw new NotImplementedException();
-                }
-
-                if (_protoManager.TryIndex(group.NameDataset, out var dataset))
-                {
-                    string dungeonName = Loc.GetString("adventure-space-dungeon-name", ("dungeonPrototype", SharedSalvageSystem.GetFTLName(dataset, _random.Next())));
-                    _metadata.SetEntityName(spawned, dungeonName);
-                }
-
-                if (group.Hide)
-                {
-                    var iffComp = EnsureComp<IFFComponent>(spawned);
-                    iffComp.Flags |= IFFFlags.HideLabel;
-                    Dirty(spawned, iffComp);
-                }
-
-                if (group.StationGrid)
-                {
-                    _station.AddGridToStation(uid, spawned);
-                }
-
-                EntityManager.AddComponents(spawned, group.AddComponents);
-            }
-        }
-
-        _mapManager.DeleteMap(mapId);
-    }
-
-    private bool TryNFDungeonSpawn(Entity<MapGridComponent?> uid, DungeonSpawnGroup group, out EntityUid spawned)
-    {
-        spawned = EntityUid.Invalid;
-
-        // Frontier: handle empty prototype list, _random.Pick throws
-        if (group.Protos.Count <= 0)
-            return false;
-        // End Frontier
-
-        var dungeonProtoId = _random.Pick(group.Protos);
-
-        if (!_protoManager.TryIndex(dungeonProtoId, out var dungeonProto))
-        {
-            return false;
-        }
-
-        var spawnCoords = Transform(uid).Coordinates;
-
-        _mapSystem.CreateMap(out var mapId);
-
-        var spawnedGrid = _mapManager.CreateGridEntity(mapId);
-
-        _transform.SetMapCoordinates(spawnedGrid, new MapCoordinates(Vector2.Zero, mapId));
-        _dungeon.GenerateDungeon(dungeonProto, dungeonProto.ID, spawnedGrid.Owner, spawnedGrid.Comp, Vector2i.Zero, _random.Next(), spawnCoords); // Frontier: add dungeonProto.ID
-
-        _metadata.SetEntityName(spawnedGrid.Owner, Loc.GetString("adventure-space-dungeon-name", ("dungeonPrototype", dungeonProto)));
-
-        spawned = spawnedGrid.Owner;
-        return true;
     }
 
     private void GridSpawns(EntityUid uid, GridSpawnComponent component)

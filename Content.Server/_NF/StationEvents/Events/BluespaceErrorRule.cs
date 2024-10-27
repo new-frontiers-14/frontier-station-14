@@ -2,7 +2,6 @@ using System.Numerics;
 using Content.Server.Cargo.Components;
 using Content.Server.Cargo.Systems;
 using Robust.Server.GameObjects;
-using Robust.Server.Maps;
 using Robust.Shared.Map;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
@@ -12,50 +11,167 @@ using Content.Shared.Humanoid;
 using Content.Shared.Mobs.Components;
 using Robust.Shared.Random;
 using Content.Server._NF.Salvage;
+using Robust.Shared.Map.Components;
+using Content.Server.GameTicking;
+using Content.Server.Procedural;
+using Robust.Shared.Physics.Components;
+using Robust.Shared.Prototypes;
+using Content.Shared.Salvage;
+using Robust.Shared.Collections;
+using Robust.Shared.Utility;
 
 namespace Content.Server.StationEvents.Events;
 
 public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleComponent>
 {
+    [Dependency] private readonly MapSystem _mapSystem = default!;
     [Dependency] private readonly IMapManager _mapManager = default!;
-    [Dependency] private readonly MapLoaderSystem _map = default!;
-    [Dependency] private readonly ShuttleSystem _shuttle = default!;
+    [Dependency] private readonly IPrototypeManager _protoManager = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly DungeonSystem _dungeon = default!;
+    [Dependency] private readonly MapLoaderSystem _loader = default!;
+    [Dependency] private readonly MetaDataSystem _metadata = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly ShuttleSystem _shuttle = default!;
     [Dependency] private readonly PricingSystem _pricing = default!;
     [Dependency] private readonly CargoSystem _cargo = default!;
 
     private List<(Entity<TransformComponent> Entity, EntityUid MapUid, Vector2 LocalPosition)> _playerMobs = new();
+    private EntityQuery<MapGridComponent> _gridQuery;
+    private EntityQuery<PhysicsComponent> _physicsQuery;
+
+    public override void Initialize()
+    {
+        base.Initialize();
+    }
 
     protected override void Started(EntityUid uid, BluespaceErrorRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {
         base.Started(uid, component, gameRule, args);
 
-        // Select a random grid path
-        var selectedGridPath = _random.Pick(component.GridPaths);
-        var shuttleMap = _mapManager.CreateMap();
-        var options = new MapLoadOptions
+        var mapDefault = GameTicker.DefaultMap;
+        var mapUid = _mapManager.GetMapEntityId(mapDefault);
+        var spawnCoords = new EntityCoordinates(mapUid, 0, 0);
+
+        // Spawn on a dummy map and try to FTL if possible, otherwise dump it.
+        _mapSystem.CreateMap(out var mapId);
+
+        foreach (var group in component.Groups.Values)
         {
-            LoadMap = true,
-        };
+            var count = _random.Next(group.MinCount, group.MaxCount + 1);
 
-        if (!_map.TryLoad(shuttleMap, selectedGridPath, out var gridUids, options))
-            return;
+            for (var i = 0; i < count; i++)
+            {
+                EntityUid spawned;
 
-        component.GridUid = gridUids[0];
-        if (component.GridUid is not EntityUid gridUid)
-            return;
+                if (group.MinimumDistance > 0f)
+                {
+                    spawnCoords = spawnCoords.Offset(_random.NextVector2(group.MinimumDistance, group.MaximumDistance));
+                }
 
-        component.startingValue = _pricing.AppraiseGrid(gridUid);
-        _shuttle.SetIFFColor(gridUid, component.Color);
-        var offset = _random.NextVector2(1350f, 2200f);
-        var mapId = GameTicker.DefaultMap;
-        var mapUid = _mapManager.GetMapEntityId(mapId);
+                switch (group)
+                {
+                    case BluespaceDungeonSpawnGroup dungeon:
+                        if (!TryDungeonSpawn(spawnCoords, dungeon, out spawned))
+                            continue;
 
-        if (TryComp<ShuttleComponent>(component.GridUid, out var shuttle))
-        {
-            _shuttle.FTLToCoordinates(gridUid, shuttle, new EntityCoordinates(mapUid, offset), 0f, 0f, 30f);
+                        break;
+                    case BluespaceGridSpawnGroup grid:
+                        if (!TryGridSpawn(spawnCoords, uid, mapId, grid, out spawned))
+                            continue;
+
+                        break;
+                    default:
+                        throw new NotImplementedException();
+                }
+
+                if (_protoManager.TryIndex(group.NameDataset, out var dataset))
+                {
+                    string dungeonName = Loc.GetString("adventure-space-dungeon-name", ("dungeonPrototype", SharedSalvageSystem.GetFTLName(dataset, _random.Next())));
+                    _metadata.SetEntityName(spawned, dungeonName);
+                }
+
+                _shuttle.SetIFFColor(spawned, component.Color);
+
+                EntityManager.AddComponents(spawned, group.AddComponents);
+
+                component.GridUid = spawned;
+            }
         }
+
+        _mapManager.DeleteMap(mapId);
+    }
+
+    private bool TryDungeonSpawn(EntityCoordinates spawnCoords, BluespaceDungeonSpawnGroup group, out EntityUid spawned)
+    {
+        spawned = EntityUid.Invalid;
+
+        // Frontier: handle empty prototype list, _random.Pick throws
+        if (group.Protos.Count <= 0)
+            return false;
+        // End Frontier
+
+        var dungeonProtoId = _random.Pick(group.Protos);
+
+        if (!_protoManager.TryIndex(dungeonProtoId, out var dungeonProto))
+        {
+            return false;
+        }
+
+        _mapSystem.CreateMap(out var mapId);
+
+        var spawnedGrid = _mapManager.CreateGridEntity(mapId);
+
+        _transform.SetMapCoordinates(spawnedGrid, new MapCoordinates(Vector2.Zero, mapId));
+        _dungeon.GenerateDungeon(dungeonProto, dungeonProto.ID, spawnedGrid.Owner, spawnedGrid.Comp, Vector2i.Zero, _random.Next(), spawnCoords); // Frontier: add dungeonProto.ID
+
+        _metadata.SetEntityName(spawnedGrid.Owner, Loc.GetString("adventure-space-dungeon-name", ("dungeonPrototype", dungeonProto)));
+
+        spawned = spawnedGrid.Owner;
+        return true;
+    }
+
+    private bool TryGridSpawn(EntityCoordinates spawnCoords, EntityUid stationUid, MapId mapId, BluespaceGridSpawnGroup group, out EntityUid spawned)
+    {
+        spawned = EntityUid.Invalid;
+
+        if (group.Paths.Count == 0)
+        {
+            Log.Error($"Found no paths for GridSpawn");
+            return false;
+        }
+
+        var paths = new ValueList<ResPath>();
+
+        // Round-robin so we try to avoid dupes where possible.
+        if (paths.Count == 0)
+        {
+            paths.AddRange(group.Paths);
+            _random.Shuffle(paths);
+        }
+
+        var path = paths[^1];
+        paths.RemoveAt(paths.Count - 1);
+
+        if (_loader.TryLoad(mapId, path.ToString(), out var ent) && ent.Count == 1)
+        {
+            if (HasComp<ShuttleComponent>(ent[0]))
+            {
+                _shuttle.TryFTLProximity(ent[0], spawnCoords);
+            }
+
+            if (group.NameGrid)
+            {
+                var name = path.FilenameWithoutExtension;
+                _metadata.SetEntityName(ent[0], name);
+            }
+
+            spawned = ent[0];
+            return true;
+        }
+
+        Log.Error($"Error loading gridspawn for {ToPrettyString(stationUid)} / {path}");
+        return false;
     }
 
     protected override void Ended(EntityUid uid, BluespaceErrorRuleComponent component, GameRuleComponent gameRule, GameRuleEndedEvent args)
