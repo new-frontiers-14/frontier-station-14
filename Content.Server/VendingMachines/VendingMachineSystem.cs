@@ -364,11 +364,14 @@ namespace Content.Server.VendingMachines
                 if (TryEjectVendorItem(uid, type, itemId, component.CanShoot, bank.Balance, component) &&
                     _bankSystem.TryBankWithdraw(sender, totalPrice))
                 {
-                    var stationQuery = EntityQuery<StationBankAccountComponent>();
-
-                    foreach (var stationBankComp in stationQuery)
+                    // Frontier: tax cargo purchases
+                    int tax = (int)Math.Floor(totalPrice * component.TaxCoefficient);
+                    if (tax > 0)
                     {
-                        _cargo.DeductFunds(stationBankComp, (int) -(Math.Floor(totalPrice * 0.45f)));
+                        foreach (var account in component.TaxAccounts)
+                        {
+                            _bankSystem.TryBankDeposit(account, tax);
+                        }
                     }
 
                     Dirty(uid, component);

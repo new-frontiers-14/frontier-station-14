@@ -4,6 +4,7 @@ using Content.Shared.Containers.ItemSlots;
 using Robust.Shared.Prototypes;
 using Content.Shared.Radio;
 using Content.Shared.Access;
+using Content.Shared.Bank.Components;
 
 namespace Content.Shared.Shipyard.Components;
 
@@ -52,8 +53,13 @@ public sealed partial class ShipyardConsoleComponent : Component
     /// <summary>
     /// A tax rate that is imposed on the owner when a shuttle is sold. The tax is credited to
     /// the station's bank account.
-    /// Expressed as a percentage: 0.3 means the owner loses 30% of the shuttle's value.
+    /// Expressed as a fraction of shuttle value: 0.3 means the owner loses 30% of the shuttle's value.
     /// </summary>
     [DataField]
     public float SalesTax = 0;
+    /// <summary>
+    /// The accounts to receive payment for taxes taken off of ship sales.
+    /// </summary>
+    [DataField]
+    public List<SectorBankAccount> TaxAccounts = new();
 }

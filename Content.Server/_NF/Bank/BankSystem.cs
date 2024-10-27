@@ -31,6 +31,12 @@ public sealed partial class BankSystem : SharedBankSystem
         SubscribeLocalEvent<PlayerJoinedLobbyEvent>(OnPlayerLobbyJoin);
     }
 
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+        UpdateSectorBanks(frameTime);
+    }
+
     /// <summary>
     /// Attempts to remove money from a character's bank account.
     /// This should always be used instead of attempting to modify the BankAccountComponent directly.

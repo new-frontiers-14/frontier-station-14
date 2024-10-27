@@ -284,6 +284,8 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
                 sellValue = (int) _pricing.AppraiseGrid((EntityUid) (deed?.ShuttleUid!));
 
             sellValue -= CalculateSalesTax(component, sellValue);
+
+            if ()
         }
 
         SendPurchaseMessage(uid, player, name, component.ShipyardChannel, secret: false);
@@ -408,11 +410,9 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             var tax = CalculateSalesTax(component, bill);
             if (tax != 0)
             {
-                var query = EntityQueryEnumerator<StationBankAccountComponent>();
-
-                while (query.MoveNext(out _, out var comp))
+                foreach (var account in component.TaxAccounts)
                 {
-                    _cargo.DeductFunds(comp, -tax);
+                    _bank.TryBankDeposit(account, tax);
                 }
 
                 bill -= tax;

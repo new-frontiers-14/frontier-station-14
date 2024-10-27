@@ -1,0 +1,29 @@
+using Content.Shared.Bank.Components;
+
+namespace Content.Server.Bank;
+
+/// <summary>
+/// Tracks accounts of entities (e.g. Frontier Station, the NFSD)
+/// </summary>
+[RegisterComponent, Access(typeof(BankSystem))]
+public sealed partial class SectorBankComponent : Component
+{
+    [ViewVariables(VVAccess.ReadWrite), DataField]
+    public Dictionary<SectorBankAccount, SectorBankAccountInfo> Accounts = new();
+
+    [ViewVariables(VVAccess.ReadOnly)]
+    public float SecondsSinceLastIncrease = 0.0f;
+}
+
+[DataDefinition]
+public sealed partial class SectorBankAccountInfo
+{
+    /// <summary>
+    /// The current balance of the account, in spesos.
+    /// </summary>
+    public int Balance;
+    /// <summary>
+    /// How much the account increases per second.
+    /// </summary>
+    public int IncreasePerSecond;
+}

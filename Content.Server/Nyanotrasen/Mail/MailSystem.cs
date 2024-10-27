@@ -8,20 +8,14 @@ using Robust.Shared.Random;
 using Content.Server.Access.Systems;
 using Content.Server.Cargo.Components;
 using Content.Server.Cargo.Systems;
-using Content.Server.Chat.Systems;
-using Content.Server.Chemistry.Containers.EntitySystems;
 using Content.Server.Damage.Components;
 using Content.Server.DeltaV.Cargo.Components;
 using Content.Server.Destructible;
 using Content.Server.Destructible.Thresholds;
 using Content.Server.Destructible.Thresholds.Behaviors;
 using Content.Server.Destructible.Thresholds.Triggers;
-using Content.Server.Fluids.Components;
-using Content.Server.Item;
 using Content.Server.Mail.Components;
 using Content.Server.Mind;
-using Content.Server.Nutrition.Components;
-using Content.Server.Nutrition.EntitySystems;
 using Content.Server.Popups;
 using Content.Server.Power.Components;
 using Content.Server.Station.Components;
@@ -39,7 +33,6 @@ using Content.Shared.Fluids.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
-using Content.Shared.Item;
 using Content.Shared.Mail;
 using Content.Shared.Maps;
 using Content.Shared.Nutrition.Components;
@@ -52,6 +45,9 @@ using Robust.Shared.Audio.Systems;
 using Timer = Robust.Shared.Timing.Timer;
 using Content.Server.DeltaV.Cargo.Systems;
 using Content.Server._NF.SectorServices;
+using Content.Server.Bank;
+using Content.Shared.Chemistry.EntitySystems;
+using Content.Shared.Bank.Components;
 
 namespace Content.Server.Mail
 {
@@ -65,20 +61,19 @@ namespace Content.Server.Mail
         [Dependency] private readonly TagSystem _tagSystem = default!;
         [Dependency] private readonly CargoSystem _cargoSystem = default!;
         [Dependency] private readonly StationSystem _stationSystem = default!;
-        [Dependency] private readonly ChatSystem _chatSystem = default!;
         [Dependency] private readonly OpenableSystem _openable = default!;
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
         [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
-        [Dependency] private readonly SolutionContainerSystem _solutionContainerSystem = default!;
+        [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
         [Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!;
         [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
         [Dependency] private readonly DamageableSystem _damageableSystem = default!;
         [Dependency] private readonly MindSystem _mind = default!;
-        [Dependency] private readonly ItemSystem _itemSystem = default!;
         [Dependency] private readonly MindSystem _mindSystem = default!;
         [Dependency] private readonly MetaDataSystem _metaDataSystem = default!;
         [Dependency] private readonly IEntityManager _entManager = default!; // Frontier
         [Dependency] private readonly SectorServiceSystem _sectorService = default!; // Frontier
+        [Dependency] private readonly BankSystem _bank = default!;
 
         // DeltaV - system that keeps track of mail and cargo stats
         [Dependency] private readonly LogisticStatsSystem _logisticsStatsSystem = default!;
@@ -254,11 +249,7 @@ namespace Content.Server.Mail
 
             component.IsProfitable = false;
 
-            var query = EntityQueryEnumerator<StationBankAccountComponent>();
-            while (query.MoveNext(out var station, out var account))
-            {
-                _cargoSystem.UpdateBankAccount(station, account, component.Bounty);
-            }
+            _bank.TryBankDeposit(SectorBankAccount.Frontier, component.Bounty);
         }
 
         private void OnExamined(EntityUid uid, MailComponent component, ExaminedEvent args)
@@ -315,7 +306,7 @@ namespace Content.Server.Mail
                 //if (_stationSystem.GetOwningStation(uid) != station) // Frontier - No need for this test
                 //    continue;
 
-                //_cargoSystem.UpdateBankAccount(station, account, component.Penalty); // Frontier - Dont remove money.
+                //_bank.TryBankWithdraw(SectorBankAccount.Frontier, component.Penalty); // Frontier - Dont remove money.
                 return;
             }
         }

@@ -30,7 +30,8 @@ using Content.Server._NF.SectorServices; // Frontier
 using Content.Shared.FixedPoint; // Frontier
 using Robust.Shared.Configuration; // Frontier
 using Content.Shared._NF.CCVar;
-using Content.Shared._NF.Bank; // Frontier
+using Content.Shared._NF.Bank;
+using Content.Shared.Bank.Components; // Frontier
 
 // todo: remove this stinky LINQy
 
@@ -52,12 +53,12 @@ namespace Content.Server.Forensics
         [Dependency] private readonly SharedAudioSystem _audio = default!; // Frontier
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!; // Frontier
         [Dependency] private readonly RadioSystem _radio = default!; // Frontier
-        [Dependency] private readonly AccessReaderSystem _accessReader = default!; // Frontier
         [Dependency] private readonly DeadDropSystem _deadDrop = default!; // Frontier
         [Dependency] private readonly ItemSlotsSystem _itemSlots = default!; // Frontier
         [Dependency] private readonly CargoSystem _cargo = default!; // Frontier
         [Dependency] private readonly SectorServiceSystem _service = default!; // Frontier
         [Dependency] private readonly IConfigurationManager _cfg = default!; // Frontier
+        [Dependency] private readonly BankSystem _bank = default!; // Frontier
 
         // Frontier: payout constants
         // Temporary values, sane defaults, will be overwritten by CVARs.
@@ -103,15 +104,8 @@ namespace Content.Server.Forensics
             SoundSpecifier confirmSound = new SoundPathSpecifier("/Audio/Effects/Cargo/ping.ogg");
             _audio.PlayPvs(_audio.GetSound(confirmSound), uidOrigin);
 
-            // Credit the NFSD's bank account (todo: split these)
             if (spesoAmount > 0)
-            {
-                var queryBank = EntityQuery<StationBankAccountComponent>();
-                foreach (var account in queryBank)
-                {
-                    _cargo.DeductFunds(account, -spesoAmount);
-                }
-            }
+                _bank.TryBankDeposit(SectorBankAccount.Nfsd, spesoAmount);
             else
                 spesoAmount = 0;
 

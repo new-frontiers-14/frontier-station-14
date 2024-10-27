@@ -2,6 +2,7 @@ using System.Threading;
 using Robust.Shared.Audio;
 using Content.Shared.Storage;
 using Content.Shared.Mail;
+using Content.Shared.Bank.Components;
 
 namespace Content.Server.Mail.Components
 {
@@ -84,6 +85,9 @@ namespace Content.Server.Mail.Components
         /// <summary>
         /// Penalty if the mail is destroyed.
         /// </summary>
+        /// <remarks>
+        /// Frontier: should be non-negative.
+        /// </remarks>
         [DataField]
         public int Penalty = 0; // Frontier - -250<0
 

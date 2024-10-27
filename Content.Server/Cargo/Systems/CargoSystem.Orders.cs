@@ -1,6 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
-using Content.Server.Access.Systems;
-using Content.Server.Bank;
+using Content.Server.Bank; // Frontier
 using Content.Server.Cargo.Components;
 using Content.Server.Labels.Components;
 using Content.Shared.Bank.Components; // Frontier
@@ -50,6 +49,8 @@ namespace Content.Server.Cargo.Systems
             Reset();
         }
 
+        // Frontier: disabled
+        /*
         private void OnInteractUsing(EntityUid uid, CargoOrderConsoleComponent component, ref InteractUsingEvent args)
         {
             if (!HasComp<CashComponent>(args.Used))
@@ -69,6 +70,8 @@ namespace Content.Server.Cargo.Systems
             UpdateBankAccount(stationUid.Value, bank, (int) price);
             QueueDel(args.Used);
         }
+        */
+        // End Frontier
 
         private void OnInit(EntityUid uid, CargoOrderConsoleComponent orderConsole, ComponentInit args)
         {
@@ -218,14 +221,20 @@ namespace Content.Server.Cargo.Systems
             _adminLogger.Add(LogType.Action, LogImpact.Low,
                 $"{ToPrettyString(player):user} approved order [orderId:{order.OrderId}, quantity:{order.OrderQuantity}, product:{order.ProductId}, requester:{order.Requester}, reason:{order.Reason}] with balance at {bankAccount.Balance}");
 
-            // orderDatabase.Orders.Remove(order); # Frontier
+            // orderDatabase.Orders.Remove(order); // Frontier
             var stationQuery = EntityQuery<StationBankAccountComponent>();
 
-            foreach (var stationBankComp in stationQuery)
+            // Frontier: account balances, taxing vendor purchases
+            int tax = (int)Math.Floor(cost * component.TaxCoefficient);
+            if (tax > 0)
             {
-                DeductFunds(stationBankComp, (int) -(Math.Floor(cost * 0.4f)));
+                foreach (var taxAccount in component.TaxAccounts)
+                {
+                    _bankSystem.TryBankDeposit(taxAccount, tax);
+                }
             }
             _bankSystem.TryBankWithdraw(player, cost);
+            // End Frontier
 
             UpdateOrders(uid, orderDatabase);
         }

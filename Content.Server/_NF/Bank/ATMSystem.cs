@@ -149,17 +149,12 @@ public sealed partial class BankSystem
             return;
         }
 
-        if (BankATMMenuUiKey.BlackMarket == (BankATMMenuUiKey) args.UiKey)
+        if (component.TaxCoefficient > 0.0f)
         {
-            var tax = (int) (deposit * 0.30f);
-            var query = EntityQueryEnumerator<StationBankAccountComponent>();
-
-            while (query.MoveNext(out _, out var comp))
-            {
-                _cargo.DeductFunds(comp, -tax);
-            }
-
-            deposit -= tax;
+            var tax = (int)(deposit * component.TaxCoefficient);
+            tax = int.Clamp(tax, 0, deposit);
+            TryBankDeposit(component.TaxAccount, tax);
+            deposit -= tax; // Charge the user whether or not the deposit went through.
         }
 
         // try to deposit the inserted cash into a player's bank acount. Validation happens on the banking system but we still indicate error.

@@ -10,10 +10,18 @@ namespace Content.Shared.Bank.Components;
 
 public sealed partial class BankATMComponent : Component
 {
-    [ViewVariables(VVAccess.ReadWrite), DataField("cashType", customTypeSerializer:typeof(PrototypeIdSerializer<StackPrototype>))]
+    [ViewVariables(VVAccess.ReadWrite), DataField("cashType", customTypeSerializer: typeof(PrototypeIdSerializer<StackPrototype>))]
     public string CashType = "Credit";
 
     public static string CashSlotId = "bank-ATM-cashSlot";
+
+    // If positive, this fraction will be taken off of any deposits made at this ATM and deposited into the TaxAccount
+    [DataField]
+    public float TaxCoefficient = 0.0f;
+
+    // The account to deposit taxed funds into.
+    [DataField]
+    public SectorBankAccount TaxAccount = SectorBankAccount.Frontier;
 
     [DataField]
     public ItemSlot CashSlot = new();

@@ -1,4 +1,5 @@
 using Content.Shared.Actions;
+using Content.Shared.Bank.Components;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
@@ -202,6 +203,16 @@ namespace Content.Shared.VendingMachines
         [DataField("loopDeny")]
         public bool LoopDenyAnimation = true;
         #endregion
+
+        // Frontier: taxes
+        // Accounts to receive some proportion of each sale via taxation.
+        [DataField, ViewVariables(VVAccess.ReadWrite)]
+        public List<SectorBankAccount> TaxAccounts = new();
+
+        // The fraction of the sale value to deposit in all tax accounts
+        [DataField, ViewVariables(VVAccess.ReadWrite)]
+        public float TaxCoefficient = 0.0f;
+        // End Frontier: taxes
     }
 
     [Serializable, NetSerializable]
