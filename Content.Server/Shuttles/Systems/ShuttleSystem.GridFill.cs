@@ -226,14 +226,6 @@ public sealed partial class ShuttleSystem
                 }
 
                 EntityManager.AddComponents(spawned, group.AddComponents);
-
-                if (TryComp<OwnedDebrisComponent>(uid, out var uidOwnedDebris))
-                {
-                    var spawnedOwnedDebris = EnsureComp<OwnedDebrisComponent>(spawned);
-                    spawnedOwnedDebris.OwningController = uidOwnedDebris.OwningController;
-                    spawnedOwnedDebris.LastKey = uidOwnedDebris.LastKey;
-                    Dirty(spawned, spawnedOwnedDebris);
-                }
             }
         }
 
