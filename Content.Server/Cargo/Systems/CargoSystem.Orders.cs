@@ -222,7 +222,6 @@ namespace Content.Server.Cargo.Systems
                 $"{ToPrettyString(player):user} approved order [orderId:{order.OrderId}, quantity:{order.OrderQuantity}, product:{order.ProductId}, requester:{order.Requester}, reason:{order.Reason}] with balance at {bankAccount.Balance}");
 
             // orderDatabase.Orders.Remove(order); // Frontier
-            var stationQuery = EntityQuery<StationBankAccountComponent>();
 
             // Frontier: account balances, taxing vendor purchases
             int tax = (int)Math.Floor(cost * component.TaxCoefficient);

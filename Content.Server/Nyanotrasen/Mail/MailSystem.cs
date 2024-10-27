@@ -300,15 +300,8 @@ namespace Content.Server.Mail
             if (component.IsPriority)
                 _appearanceSystem.SetData(uid, MailVisuals.IsPriorityInactive, true);
 
-            var query = EntityQueryEnumerator<StationBankAccountComponent>();
-            while (query.MoveNext(out var station, out var account))
-            {
-                //if (_stationSystem.GetOwningStation(uid) != station) // Frontier - No need for this test
-                //    continue;
-
-                //_bank.TryBankWithdraw(SectorBankAccount.Frontier, component.Penalty); // Frontier - Dont remove money.
-                return;
-            }
+            // Frontier: no need for this, but this uses our sector bank accounts
+            //_bank.TryBankWithdraw(SectorBankAccount.Frontier, component.Penalty); // Frontier - Dont remove money.
         }
 
         private void OnDestruction(EntityUid uid, MailComponent component, DestructionEventArgs args)
