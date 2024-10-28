@@ -1,3 +1,4 @@
+using Content.Server._NF.Nutrition.Prototypes;
 using Content.Server.Body.Systems;
 using Content.Server.Nutrition.EntitySystems;
 using Content.Shared.Chemistry.Components;

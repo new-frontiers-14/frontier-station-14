@@ -1,4 +1,5 @@
 using Content.Server.Nutrition.Components;
+using Content.Shared.Chemistry.Reagent;
 using Content.Shared.EntityEffects;
 using Content.Shared.FixedPoint;
 using Content.Shared.Whitelist;
