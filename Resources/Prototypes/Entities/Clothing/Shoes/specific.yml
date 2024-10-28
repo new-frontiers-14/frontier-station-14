@@ -99,7 +99,7 @@
     sprite: Clothing/Shoes/Specific/cult.rsi
 
 - type: entity
-  parent: ClothingShoesBase
+  parent: [ JanitorClothes, ClothingShoesBase ] # Frontier: added JanitorClothes
   id: ClothingShoesGaloshes
   name: galoshes
   description: Rubber boots.
@@ -202,8 +202,6 @@
   description: Stylish black shoes.
   components:
   - type: NoSlip
-  - type: StaticPrice
-    price: 25
   - type: Contraband # Frontier
     hideValues: true # Frontier
 

@@ -32,6 +32,7 @@
   suffix: POI, LP Bravo
   categories: [ HideSpawnMenu ]
   components:
+  - type: SyndicateFOB # For pinpointer
   - type: WarpPoint
     location: "Listening Point: Bravo"
     adminOnly: true
@@ -181,3 +182,14 @@
   components:
   - type: WarpPoint
     location: Cave
+
+# DeadDrop
+- type: entity
+  id: WarpPointNFSyndicateSupplyDrop
+  parent: WarpPoint
+  suffix: DeadDrop
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: WarpPoint
+    location: Syndicate Supply Drop
+    adminOnly: true

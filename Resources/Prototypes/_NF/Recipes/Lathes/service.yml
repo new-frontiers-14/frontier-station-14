@@ -1,95 +1,91 @@
+# Base prototypes
+
+- type: latheRecipe
+  abstract: true
+  id: BaseServiceItemsRecipe
+  category: KitchenNF
+  completetime: 1
+  materials:
+    Steel: 75
+
+# Recipes
+
 - type: latheRecipe
   id: ServiceRollingPin
   result: RollingPin
-  category: KitchenNF
-  completetime: 1
+  parent: BaseServiceItemsRecipe
   materials:
     Wood: 200
 
 - type: latheRecipe
   id: ServiceSpoon
   result: Spoon
-  category: KitchenNF
-  completetime: 1
-  materials:
-    Steel: 75
+  parent: BaseServiceItemsRecipe
 
 - type: latheRecipe
   id: ServiceFork
   result: Fork
-  category: KitchenNF
-  completetime: 1
-  materials:
-    Steel: 75
+  parent: BaseServiceItemsRecipe
 
 - type: latheRecipe
   id: ServicePairedChopsticks
   result: PairedChopsticks
-  category: KitchenNF
-  completetime: 1
+  parent: BaseServiceItemsRecipe
   materials:
     Glass: 100
 
 - type: latheRecipe
   id: ServiceFoodBowlBig
   result: FoodBowlBig
-  category: KitchenNF
-  completetime: 1
+  parent: BaseServiceItemsRecipe
   materials:
     Glass: 100
 
 - type: latheRecipe
   id: ServiceFoodPlate
   result: FoodPlate
-  category: KitchenNF
-  completetime: 1
+  parent: BaseServiceItemsRecipe
   materials:
     Glass: 150
 
 - type: latheRecipe
   id: ServiceFoodPlateSmall
   result: FoodPlateSmall
-  category: KitchenNF
-  completetime: 1
+  parent: BaseServiceItemsRecipe
   materials:
     Glass: 75
 
 - type: latheRecipe
   id: ServiceFoodPlateTin
   result: FoodPlateTin
-  category: KitchenNF
-  completetime: 1
+  parent: BaseServiceItemsRecipe
   materials:
     Steel: 150
 
 - type: latheRecipe
   id: ServiceFoodKebabSkewer
   result: FoodKebabSkewer
-  category: KitchenNF
-  completetime: 1
-  materials:
-    Steel: 75
+  parent: BaseServiceItemsRecipe
 
 - type: latheRecipe
   id: NapkinDrum
   result: NapkinDrum
-  category: KitchenNF
-  completetime: 1
-  materials:
-    Steel: 75
+  parent: BaseServiceItemsRecipe
+  applyMaterialDiscount: false
 
 - type: latheRecipe
   id: Napkin
   result: Napkin
-  category: KitchenNF
+  parent: BaseServiceItemsRecipe
   completetime: 0.1
+  applyMaterialDiscount: false
   materials:
-    Wood: 10
+    Paper: 10
 
 - type: latheRecipe
   id: ServiceSelectiveDropper
   result: ServiceSelectiveDropper
-  completetime: 2
+  parent: BaseServiceItemsRecipe
   materials:
     Glass: 200
     Plastic: 100

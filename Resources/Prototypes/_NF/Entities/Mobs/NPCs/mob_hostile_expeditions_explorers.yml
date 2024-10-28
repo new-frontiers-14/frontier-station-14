@@ -6,6 +6,7 @@
   - MobNonHumanHostileBase
   - MobHumanoidInvetory
   - MobHumanoidHostileAISimpleRanged
+  - NFMobRestrictions
   id: MobExplorerBase
   components:
   - type: NpcFactionMember
@@ -358,7 +359,7 @@
   categories: [ HideSpawnMenu ]
   parent:
   - MobExplorerBase
-  - MobLaserReflect # Added to prevent laser abuse from players
+  #- MobLaserReflect # Added to prevent laser abuse from players
   id: MobExplorerHauler
   description: |- 
    Loaded with heavy equipment for industrial-scale looting. Pardon me, "asset recovery".

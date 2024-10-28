@@ -1059,42 +1059,42 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 9.5,-0.5
       parent: 1
-- proto: AtmosDeviceFanTiny
+- proto: AtmosDeviceFanDirectional
   entities:
   - uid: 305
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
+      rot: -1.5707963267948966 rad
       pos: -2.5,21.5
       parent: 1
   - uid: 306
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
+      rot: -1.5707963267948966 rad
       pos: -2.5,20.5
       parent: 1
   - uid: 307
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
+      rot: -1.5707963267948966 rad
       pos: -2.5,19.5
       parent: 1
   - uid: 308
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
+      rot: 1.5707963267948966 rad
       pos: 3.5,21.5
       parent: 1
   - uid: 309
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
+      rot: 1.5707963267948966 rad
       pos: 3.5,20.5
       parent: 1
   - uid: 310
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
+      rot: 1.5707963267948966 rad
       pos: 3.5,19.5
       parent: 1
   - uid: 311
@@ -1118,12 +1118,13 @@ entities:
   - uid: 323
     components:
     - type: Transform
-      pos: -23.5,4.5
+      pos: -23.5,-5.5
       parent: 1
   - uid: 373
     components:
     - type: Transform
-      pos: -23.5,-5.5
+      rot: 3.141592653589793 rad
+      pos: -23.5,4.5
       parent: 1
 - proto: Bed
   entities:

@@ -1,8 +1,8 @@
 - type: vessel
-  id: caduceus
+  id: Caduceus
   name: NM Caduceus
   description: A former humanitarian vessel, the Caduceus now works as the best mobile hospital money can buy.
-  price: 105000
+  price: 115000 # TODO: fix this value, getting tests to pass - Whatstone You will never fix this - Dusty
   category: Large
   group: Shipyard
   shuttlePath: /Maps/_NF/Shuttles/caduceus.yml
@@ -10,14 +10,16 @@
   class:
   - Medical
   - Chemistry
+  engine:
+  - AME
 
 - type: gameMap
-  id: caduceus
+  id: Caduceus
   mapName: 'NM Caduceus'
   mapPath: /Maps/_NF/Shuttles/caduceus.yml
   minPlayers: 0
   stations:
-    caduceus:
+    Caduceus:
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup

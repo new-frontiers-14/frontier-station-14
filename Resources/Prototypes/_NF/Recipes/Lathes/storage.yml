@@ -1,82 +1,150 @@
+# Base prototypes
+
+- type: latheRecipe
+  abstract: true
+  id: NFBaseToolboxRecipe
+  category: StorageNF
+  completetime: 4
+  materials:
+    Steel: 300
+
+- type: latheRecipe
+  abstract: true
+  id: NFBaseBoxRecipe
+  parent: NFBaseToolboxRecipe
+  completetime: 1
+  applyMaterialDiscount: false
+  materials:
+    Cardboard: 100
+
+# Recipes
+
 # Toolboxes
 - type: latheRecipe
   id: ToolboxArtisticNF
+  parent: NFBaseToolboxRecipe
   result: ToolboxArtistic
   name: lathe-recipe-ToolboxArtisticNF-name
-  category: StorageNF
-  completetime: 3
-  materials:
-    Steel: 300
 
 - type: latheRecipe
   id: ToolboxElectricalNF
+  parent: NFBaseToolboxRecipe
   result: ToolboxElectrical
   name: lathe-recipe-ToolboxElectricalNF-name
-  category: StorageNF
-  completetime: 3
-  materials:
-    Steel: 300
 
 - type: latheRecipe
   id: ToolboxMechanicalNF
+  parent: NFBaseToolboxRecipe
   result: ToolboxMechanical
   name: lathe-recipe-ToolboxMechanicalNF-name
-  category: StorageNF
-  completetime: 3
-  materials:
-    Steel: 300
 
 - type: latheRecipe
   id: ToolboxEmergencyNF
+  parent: NFBaseToolboxRecipe
   result: ToolboxEmergency
   name: lathe-recipe-ToolboxEmergencyNF-name
-  category: StorageNF
-  completetime: 3
-  materials:
-    Steel: 300
 
 # Weapon cases
 - type: latheRecipe
   id: WeaponCaseShort
+  parent: NFBaseToolboxRecipe
   result: WeaponCaseShort
   name: lathe-recipe-WeaponCaseShort-name
-  category: StorageNF
-  completetime: 3
-  materials:
-    Steel: 300
 
 - type: latheRecipe
   id: WeaponCaseLong
+  parent: NFBaseToolboxRecipe
   result: WeaponCaseLong
   name: lathe-recipe-WeaponCaseLong-name
-  category: StorageNF
-  completetime: 5
   materials:
     Steel: 600
 
 - type: latheRecipe
   id: WeaponCaseHeavy
+  parent: NFBaseToolboxRecipe
   result: WeaponCaseHeavy
   name: lathe-recipe-WeaponCaseHeavy-name
-  category: StorageNF
-  completetime: 8
   materials:
     Steel: 1200
 
 - type: latheRecipe
   id: WeaponCaseShortAmmo
+  parent: NFBaseToolboxRecipe
   result: WeaponCaseShortAmmo
   name: lathe-recipe-WeaponCaseShortAmmo-name
-  category: StorageNF
-  completetime: 3
-  materials:
-    Steel: 300
 
 - type: latheRecipe
   id: WeaponCaseShortExplosives
+  parent: NFBaseToolboxRecipe
   result: WeaponCaseShortExplosives
   name: lathe-recipe-WeaponCaseShortExplosives-name
-  category: StorageNF
-  completetime: 3
+
+# Cardboard boxes
+
+- type: latheRecipe
+  id: NFBoxMREEmpty
+  parent: NFBaseBoxRecipe
+  result: BoxMREEmpty
+  name: lathe-recipe-NFBoxMREEmpty-name
+
+- type: latheRecipe
+  id: NFHappyHonkEmpty
+  parent: NFBaseBoxRecipe
+  result: HappyHonkEmpty
+  name: lathe-recipe-NFHappyHonkEmpty-name
+
+- type: latheRecipe
+  id: NFHappyHonkMimeEmpty
+  parent: NFBaseBoxRecipe
+  result: HappyHonkMimeEmpty
+  name: lathe-recipe-NFHappyHonkMimeEmpty-name
+
+- type: latheRecipe
+  id: NFHappyHonkNukieEmpty
+  parent: NFBaseBoxRecipe
+  result: HappyHonkNukieEmpty
+  name: lathe-recipe-NFHappyHonkNukieEmpty-name
+
+- type: latheRecipe
+  id: NFHappyHonkMcCargoEmpty
+  parent: NFBaseBoxRecipe
+  result: HappyHonkMcCargoEmpty
+  name: lathe-recipe-NFHappyHonkMcCargoEmpty-name
+
+- type: latheRecipe
+  id: NFHappyHonkCluwneEmpty
+  parent: NFBaseBoxRecipe
+  result: HappyHonkCluwneEmpty
+  name: lathe-recipe-NFHappyHonkCluwneEmpty-name
+
+- type: latheRecipe
+  id: NFFoodBoxPizza
+  parent: NFBaseBoxRecipe
+  result: FoodBoxPizza
+  name: lathe-recipe-NFFoodBoxPizza-name
+
+- type: latheRecipe
+  id: NFFoodBoxDonutEmpty
+  parent: NFBaseBoxRecipe
+  result: FoodBoxDonutEmpty
+  name: lathe-recipe-NFFoodBoxDonutEmpty-name
+
+- type: latheRecipe
+  id: NFFoodBoxNuggetEmpty
+  parent: NFBaseBoxRecipe
+  result: FoodBoxNuggetEmpty
+  name: lathe-recipe-NFFoodBoxNuggetEmpty-name
+
+- type: latheRecipe
+  id: NFFoodContainerEggEmpty
+  parent: NFBaseBoxRecipe
+  result: FoodContainerEggEmpty
+  name: lathe-recipe-NFFoodContainerEggEmpty-name
+
+- type: latheRecipe
+  id: NFFoodBoxSushi
+  parent: NFBaseBoxRecipe
+  result: FoodBoxSushi
+  name: lathe-recipe-NFFoodBoxSushi-name
   materials:
-    Steel: 300
+    Plastic: 100

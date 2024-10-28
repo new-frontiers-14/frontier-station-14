@@ -400,6 +400,12 @@
     damage:
       types:
         Piercing: 0
+  - type: TriggerOnBeingGibbed # Frontier
+  - type: GibOnTrigger # Frontier
+    deleteItems: true # Frontier
+    deleteOrgans: true # Frontier
+    gib: false # Frontier
+    useArgumentEntity: true # Frontier
 
 - type: entity
   name: glockroach
@@ -522,6 +528,9 @@
     spawned:
     - id: FoodMeatSlime
       amount: 2
+    - id: HideMothroach # Frontier
+      amount: 1 # Frontier
+      prob: 0.3 # Frontier
   - type: Extractable
     grindableSolutionName: food
   - type: ReplacementAccent
@@ -2922,6 +2931,31 @@
   - type: NpcFactionMember # Frontier
     factions:
     - Cat
+# Frontier Start: Allow goblins to ride cats
+  - type: Strap
+    buckleOffset: "0.025, 0.2"
+    whitelist:
+      components:
+      - Goblin
+    unbuckleDistanceSquared: 0.09 # Frontier: (30 cm)^2 - seems unnecessary, but for consistency with vehicles
+  - type: Vehicle
+    southOver: true
+    westOver: true
+    eastOver: true
+    northOver: true
+    northOverride: 0.0
+    southOverride: 0.0
+    autoAnimate: false
+  - type: ItemSlots
+    slots:
+      key_slot:
+        disableEject: true
+        locked: true
+  - type: ContainerFill
+    containers:
+      key_slot:
+      - VehicleKeyATV
+# Frontier End: Allow goblins to ride cats
 
 - type: entity
   name: calico cat

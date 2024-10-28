@@ -40,13 +40,6 @@
 
 ## Mob base
 - type: entity
-  abstract: true
-  id: MobRogueSiliconTimedDespawn
-  components:
-  - type: TimedDespawn
-    lifetime: 1200 # 20 mins (because these mobs can't be encountered outside expeditions now)
-
-- type: entity
   name: hivemind unit
   abstract: true
   parent:
@@ -54,8 +47,8 @@
   - MobNonHumanHostileBase
   - MobHumanoidInvetorySimplified
   - MobRogueSiliconAISimpleRanged
-  - MobLaserReflect # Added to prevent laser abuse from players
-  #- MobRogueSiliconTimedDespawn
+  #- MobLaserReflect # Added to prevent laser abuse from players
+  - NFMobRestrictions
   id: MobRogueSiliconBase
   components:
   - type: Damageable
