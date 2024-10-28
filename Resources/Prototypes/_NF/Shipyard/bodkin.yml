@@ -1,0 +1,40 @@
+# Author Info
+# GitHub: Tych0theSynth
+# Discord: tych0
+
+# Maintainer Info
+# GitHub: Tych0theSynth
+# Discord: Tych0
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Bodkin
+  name: SBB Bodkin
+  description: The smaller sibling to the Broadhead, the SBB Bodkin is designed for rockhopping and salvage recovery.
+  price: 39000 #Grid appraises at 35693. Slapped on a ~10% markup.
+  category: Medium
+  group: Shipyard
+  shuttlePath: /Maps/_NF/Shuttles/bodkin.yml
+  class:
+  - Salvage
+
+- type: gameMap
+  id: Bodkin
+  mapName: 'SBB Bodkin'
+  mapPath: /Maps/_NF/Shuttles/bodkin.yml
+  minPlayers: 0
+  stations:
+    Bodkin:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Bodkin {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]
