@@ -213,4 +213,13 @@ public sealed class NFCCVars
 
     public static readonly CVarDef<bool> AllowMultiConnect =
         CVarDef.Create("frontier.allow_multi_connect", true, CVar.CONFIDENTIAL | CVar.SERVERONLY);
+
+    /*
+     * Events 
+     */
+    /// <summary>
+    ///     A scale factor applied to a grid's bounds when trying to find a spot to randomly generate a crate for bluespace events.
+    /// </summary>
+    public static readonly CVarDef<float> CrateGenerationGridBoundsScale =
+        CVarDef.Create("nf14.events.crate_generation_grid_bounds_scale", 0.6f, CVar.SERVERONLY);
 }
