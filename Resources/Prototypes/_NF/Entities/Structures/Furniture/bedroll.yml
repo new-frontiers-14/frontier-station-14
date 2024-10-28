@@ -4,11 +4,12 @@
   name: bedroll
   description: When there's nowhere else to sleep, you'll want to bring at least one thing of comfort. The tag on it states to unfold it before rest, but who needs rules anyway, right?
   components:
-  - type: HealOnBuckle # Regular bed values
+  - type: HealOnBuckle # Regular bed values, plus bonus cold recovery
     damage:
       types:
         Poison: -0.1
         Blunt: -0.1
+        Cold: -0.1
   - type: Transform
     noRot: true
   - type: Item
