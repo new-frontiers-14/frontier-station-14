@@ -1,87 +1,117 @@
+# Base prototypes can be found in \Resources\Prototypes\Recipes\Lathes\security.yml
+
+# Recipes
+
+- type: latheRecipe # crossbow bolt
+  id: CrossbowBolt
+  parent: BaseAmmoRecipe
+  result: CrossbowBolt
+  materials:
+    Steel: 20
+
+- type: latheRecipe # crossbow bolt
+  id: CrossbowBoltBroadhead
+  parent: BaseAmmoRecipe
+  result: CrossbowBoltBroadhead
+  materials:
+    Steel: 25
+
+- type: latheRecipe # novalite mag empty
+  id: MagazineNovaliteC1Empty
+  parent: BaseEmptyAmmoRecipe
+  result: MagazineNovaliteC1Empty
+
+- type: latheRecipe # novalite mag
+  id: MagazineNovaliteC1
+  parent: BaseAmmoRecipe
+  result: MagazineNovaliteC1
+  materials:
+    Steel: 245 # 20 [Steel per empty mag] + 15 [bullets] * 15 [Steel per bullet]
+
+- type: latheRecipe # gestio mag empty
+  id: MagazineLightRifleLowCapacityEmpty
+  parent: BaseEmptyAmmoRecipe
+  result: MagazineLightRifleLowCapacityEmpty
+
+- type: latheRecipe # gestio mag
+  id: MagazineLightRifleLowCapacity
+  parent: BaseAmmoRecipe
+  result: MagazineLightRifleLowCapacity
+  materials:
+    Steel: 245 # 20 [Steel per empty mag] + 15 [bullets] * 15 [Steel per bullet]
+
 - type: latheRecipe
   id: SpeedLoaderRifleHeavyEmpty
+  parent: BaseEmptyAmmoRecipe
   result: SpeedLoaderRifleHeavyEmpty
-  category: Ammo
-  completetime: 5
-  materials:
-    Steel: 50
 
 - type: latheRecipe
   id: SpeedLoaderRifleHeavy
+  parent: BaseAmmoRecipe
   result: SpeedLoaderRifleHeavy
-  category: Ammo
-  completetime: 5
   materials:
-    Steel: 190
+    Steel: 140 # 25 [Steel per empty mag] + 8 [bullets] * 15 [Steel per bullet]
 
 - type: latheRecipe
   id: SpeedLoaderRifleHeavyPractice
+  parent: BaseAmmoRecipe
   result: SpeedLoaderRifleHeavyPractice
-  category: Ammo
-  completetime: 5
   materials:
-    Steel: 90
+    Steel: 65 # 25 [Steel per empty mag] + 8 [bullets] * 5 [Steel per practice bullet]
 
 - type: latheRecipe
   id: SpeedLoaderRifleHeavyUranium
+  parent: BaseAmmoRecipe
   result: SpeedLoaderRifleHeavyUranium
-  category: Ammo
-  completetime: 5
   materials:
-    Steel: 50
-    Plastic: 150
-    Uranium: 110
+    Steel: 25 # 25 [Steel per empty mag]
+    Plastic: 80 # 8 [bullets] * 10 [Plastic per bullet]
+    Uranium: 80 # 8 [bullets] * 10 [Uranium per bullet]
 
 - type: latheRecipe
   id: SpeedLoaderRifleHeavyIncendiary
+  parent: BaseAmmoRecipe
   result: SpeedLoaderRifleHeavyIncendiary
-  category: Ammo
-  completetime: 5
   materials:
-    Steel: 50
-    Plastic: 150
+    Steel: 25 # 25 [Steel per empty mag]
+    Plastic: 120 # 8 [bullets] * 15 [Plastic per bullet]
 
 - type: latheRecipe
   id: MagazineBoxLightRifleRubber
+  parent: BaseAmmoRecipe
   result: MagazineBoxLightRifleRubber
-  category: Ammo
-  completetime: 5
   materials:
     Steel: 300
     Plastic: 600
 
 - type: latheRecipe
   id: MagazineBoxMagnumRubber
+  parent: BaseAmmoRecipe
   result: MagazineBoxMagnumRubber
-  category: Ammo
-  completetime: 5
   materials:
     Steel: 80
     Plastic: 160
 
 - type: latheRecipe
   id: MagazineBoxPistolRubber
+  parent: BaseAmmoRecipe
   result: MagazineBoxPistolRubber
-  category: Ammo
-  completetime: 5
   materials:
     Steel: 200
     Plastic: 400
 
 - type: latheRecipe
   id: MagazineBoxRifleRubber
+  parent: BaseAmmoRecipe
   result: MagazineBoxRifleRubber
-  category: Ammo
-  completetime: 5
   materials:
     Steel: 250
     Plastic: 500
 
 - type: latheRecipe
   id: ShellTranquilizer # Removed upstream
+  parent: BaseAmmoRecipe
   result: ShellTranquilizer
-  category: Ammo
-  completetime: 4
   materials:
     Plastic: 15
     Steel: 10
