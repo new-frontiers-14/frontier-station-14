@@ -34,9 +34,9 @@ public sealed class RoundNotificationsSystem : EntitySystem
         SubscribeLocalEvent<RoundStartedEvent>(OnRoundStarted);
         SubscribeLocalEvent<RoundEndedEvent>(OnRoundEnded);
 
-        _config.OnValueChanged(NFCCVars.DiscordRoundWebhook, value => _webhookUrl = value, true);
-        _config.OnValueChanged(NFCCVars.DiscordRoundRoleId, value => _roleId = value, true);
-        _config.OnValueChanged(NFCCVars.DiscordRoundStartOnly, value => _roundStartOnly = value, true);
+        _config.OnValueChanged(NFCCVars.DiscordRoundWebhook, value => _webhookUrl = value, true); // Frontier: namespaced CVar
+        _config.OnValueChanged(NFCCVars.DiscordRoundRoleId, value => _roleId = value, true); // Frontier: namespaced CVar
+        _config.OnValueChanged(NFCCVars.DiscordRoundStartOnly, value => _roundStartOnly = value, true); // Frontier: namespaced CVar
         _config.OnValueChanged(CVars.GameHostName, OnServerNameChanged, true);
 
         _sawmill = IoCManager.Resolve<ILogManager>().GetSawmill("notifications");
