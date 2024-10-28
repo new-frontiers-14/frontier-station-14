@@ -61,22 +61,6 @@
   postDigest: Default
 
 - type: digestion
-  id: Arachnid
-  effects:
-  - quality: Normal
-    conversions:
-      SulfuricAcid:
-        Nutriment: 0.2
-        Water: 0.8
-  - quality: High
-    conversions:
-      SulfuricAcid:
-        Flavorol: 0.3
-        Nutriment: 0.1
-        Water: 0.6
-  postDigest: Default
-
-- type: digestion
   id: Goblin
   effects:
   # Eat trash, run fast, touch grass
@@ -93,7 +77,7 @@
         Nutriment: 0.5
         Vitamin: 0.25
         Protein: 0.25
-  # Overwriting default flavorol generation.
+  # Overwriting default flavorol generation (no postDigest)
   - quality: Nasty
     conversions:
       Vitamin:

@@ -8,7 +8,7 @@
   - type: Item
     storedRotation: -90
   - type: Food
-    quality: High # Frontier, New Food Quality System
+    quality: Normal # Frontier, New Food Quality System
     trash: 
     - FoodBowlBig
     utensil: Spoon
@@ -90,7 +90,8 @@
           Quantity: 10
         - ReagentId: Vitamin
           Quantity: 5
-
+  - type: Food # Frontier
+    quality: Bland # Frontier: spammable
 # Salad
 
 - type: entity
@@ -182,6 +183,8 @@
     - Meat
     - Fruit
     - Soup
+  - type: Food # Frontier
+    quality: Bland # Frontier: easily spammable
 
 - type: entity
   name: coleslaw
@@ -335,12 +338,12 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 38
+        maxVol: 25 # Frontier: 38<25
         reagents:
         - ReagentId: Nutriment
-          Quantity: 18
+          Quantity: 10 # Frontier: 18<10
         - ReagentId: Vitamin
-          Quantity: 15
+          Quantity: 8 # Frontier: 12<8
   - type: Tag
     tags:
     - Fruit
@@ -387,6 +390,8 @@
     layers:
     - state: bowl
     - state: rice
+  - type: Food # Frontier
+    quality: Bland # Frontier
 
 - type: entity
   name: egg-fried rice
@@ -630,6 +635,8 @@
           Quantity: 5
         - ReagentId: Water
           Quantity: 10
+  - type: Food # Frontier
+    quality: Nasty # Frontier: easily spammable
 
 - type: entity
   name: tomato soup
@@ -660,6 +667,8 @@
     tags:
     - Fruit
     - Soup
+  - type: Food # Frontier
+    quality: Bland # Frontier
 
 - type: entity
   name: wing fang chu
@@ -686,6 +695,8 @@
           Quantity: 10
         - ReagentId: Vitamin
           Quantity: 7
+  - type: Food # Frontier
+    quality: High # Frontier
 
 - type: entity
   name: clown's tears
@@ -711,6 +722,8 @@
           Quantity: 9
         - ReagentId: Water
           Quantity: 10
+  - type: Food # Frontier
+    quality: High # Frontier
 
 - type: entity
   name: vegetable soup
@@ -739,6 +752,8 @@
           Quantity: 10
         - ReagentId: Oculine
           Quantity: 1
+  - type: Food # Frontier
+    quality: High # Frontier
 
 - type: entity
   name: nettle soup
@@ -934,6 +949,8 @@
     tags:
     - Fruit
     - Soup
+  - type: Food # Frontier
+    quality: Bland # Frontier
 
 - type: entity
   name: eyeball soup
@@ -1100,6 +1117,8 @@
     - Meat
     - Fruit
     - Soup
+  - type: Food # Frontier
+    quality: High # Frontier: lots of different stuff here
 
 - type: entity
   name: sweet potato soup
@@ -1176,6 +1195,8 @@
             Quantity: 6
           - ReagentId: Water
             Quantity: 5
+  - type: Food # Frontier
+    quality: High # Frontier
 # Tastes like crab.
 
 - type: entity

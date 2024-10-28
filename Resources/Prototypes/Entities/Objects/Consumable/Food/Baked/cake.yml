@@ -178,12 +178,12 @@
     state: brain
   - type: SliceableFood
     slice: FoodCakeBrainSlice
-  - type: Food # Frontier
-    quality: Nasty # Frontier, New Food Quality System
   - type: Tag
     tags:
     - Cake
     - Meat
+  - type: Food # Frontier
+    quality: Nasty # Frontier, New Food Quality System
 
 - type: entity
   name: slice of brain cake
@@ -198,6 +198,8 @@
     - Cake
     - Meat
     - Slice
+  - type: Food # Frontier
+    quality: Nasty # Frontier, New Food Quality System
 # Tastes like sweetness, cake, brains.
 
 - type: entity

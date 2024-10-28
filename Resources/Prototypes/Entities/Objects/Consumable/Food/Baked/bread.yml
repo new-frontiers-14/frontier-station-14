@@ -409,6 +409,7 @@
   description: Some plain old earthen bread.
   components:
   - type: Food
+    quality: Bland # Frontier, New Food Quality System
   - type: Sprite
     layers:
     - state: plain
@@ -422,6 +423,7 @@
   description: A slice of home.
   components:
   - type: Food
+    quality: Bland # Frontier, New Food Quality System
   - type: Sprite
     layers:
     - state: plain-slice
@@ -611,8 +613,6 @@
     flavors:
       - acid
       - bread
-  - type: Food # Frontier
-    quality: Toxin # Frontier, New Food Quality System
   - type: Sprite
     layers:
     - state: xenomeat

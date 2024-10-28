@@ -4,7 +4,7 @@ using Content.Shared.FixedPoint;
 using Content.Shared.Whitelist;
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared.Chemistry.Reagent;
+namespace Content.Server._NF.Nutrition.Prototypes;
 
 [Prototype("digestion")]
 [DataDefinition]

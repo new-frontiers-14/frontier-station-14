@@ -7,6 +7,7 @@
   abstract: true
   components:
   - type: Food
+    quality: Normal # Frontier
   - type: Sprite
     sprite: Objects/Consumable/Food/Baked/misc.rsi
   - type: SolutionContainerManager
@@ -74,6 +75,10 @@
   components:
   - type: Sprite
     state: bun-honey
+  - type: FlavorProfile # Frontier
+    flavors: # Frontier
+      - honey # Frontier
+      - bread # Frontier
 
 - type: entity
   name: hotcross bun

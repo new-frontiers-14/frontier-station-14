@@ -49,6 +49,8 @@
   - type: PhysicalComposition
     materialComposition:
       Meaterial: 300
+  - type: Food # Frontier
+    quality: Bland # Frontier
 
 - type: entity
   parent: FoodMeatBase
@@ -128,6 +130,8 @@
   - type: SliceableFood
     count: 3
     slice: FoodMeatCutlet
+  - type: Food # Frontier
+    quality: Nasty # Frontier
 
 - type: entity
   name: raw carp fillet
@@ -188,6 +192,8 @@
     graph: Bacon
     node: start
     defaultTarget: bacon
+  - type: Food # Frontier
+    quality: Nasty # Frontier
 
 - type: entity
   name: raw bear meat
@@ -311,6 +317,8 @@
     price: 750
   - type: StealTarget
     stealGroup: FoodMeatCorgi
+  - type: Food # Frontier
+    quality: Nasty # Frontier
 
 - type: entity
   name: raw crab meat
@@ -385,6 +393,8 @@
       reagents:
       - ReagentId: Ichor
         Quantity: 10
+  - type: Food # Frontier
+    quality: High # Frontier
 
 - type: entity
   name: raw rat meat
@@ -438,6 +448,8 @@
   components:
   - type: Sprite
     state: plant
+  - type: Food # Frontier
+    quality: Nasty # Frontier
 
 - type: entity
   name: rotten meat
@@ -485,8 +497,6 @@
   - type: SliceableFood
     count: 3
     slice: FoodMeatSpiderCutlet
-  - type: Food # Frontier
-    quality: Toxin # Frontier, New Food Quality System
 
 - type: entity
   name: raw spider leg
@@ -505,7 +515,7 @@
         - ReagentId: Fat
           Quantity: 3
   - type: Food # Frontier
-    quality: Toxin # Frontier, New Food Quality System
+    quality: Nasty # Frontier
 
 - type: entity
   name: meatwheat clump
@@ -524,6 +534,8 @@
         reagents:
         - ReagentId: UncookedAnimalProteins
           Quantity: 1
+  - type: Food # Frontier
+    quality: Nasty # Frontier
 
 - type: entity
   name: raw snake meat
@@ -544,6 +556,8 @@
           Quantity: 10
         - ReagentId: Toxin
           Quantity: 2
+  - type: Food # Frontier
+    quality: Nasty # Frontier
 
 - type: entity
   name: raw xeno meat
@@ -665,6 +679,8 @@
     state: clown
   - type: SliceableFood
     slice: FoodMeatSalamiSlice
+  - type: Food # Frontier
+    quality: Normal # Frontier, New Food Quality System
 
 - type: entity
   name: meatball
@@ -681,6 +697,8 @@
   - type: Construction # Frontier: Cookable meatball. Delicious.
     graph: meatballNF # Frontier: Cookable meatball. Delicious.
     node: start # Frontier: Cookable meatball. Delicious.
+  - type: Food # Frontier
+    quality: Nasty # Frontier
 
 - type: entity
   name: slimeball
@@ -697,6 +715,8 @@
     - Meat
   - type: Sprite
     state: slime
+  - type: Food # Frontier
+    quality: Nasty # Frontier
 
 - type: entity
   name: raw snail meat
@@ -751,6 +771,8 @@
   - type: Tag
     tags:
     - Meat
+  - type: Food # Frontier
+    quality: High # Frontier
 
 - type: entity
   name: steak
@@ -784,8 +806,6 @@
     entries:
       Burger: MeatSteak
       Taco: MeatSteak
-  - type: Food # Frontier
-    quality: Normal # Frontier, New Food Quality System
 
 - type: entity
   name: bacon
@@ -1514,8 +1534,6 @@
     entries:
       Burger: MeatCutlet
       Taco: MeatCutlet
-  - type: Food # Frontier
-    quality: Normal # Frontier, New Food Quality System
 
 - type: entity
   name: bear cutlet
@@ -1678,7 +1696,7 @@
       Burger: LizardCutletBurger
       Taco: LizardCutlet
   - type: Food # Frontier
-    quality: Normal # Frontier, New Food Quality System
+    quality: Nasty # Frontier, New Food Quality System
 
 - type: entity
   name: spider cutlet
@@ -1709,7 +1727,7 @@
       Burger: SpiderCutletBurger
       Taco: SpiderCutlet
   - type: Food # Frontier
-    quality: Toxin # Frontier, New Food Quality System
+    quality: Normal # Frontier, New Food Quality System
 
 - type: entity
   name: xeno cutlet
@@ -1740,4 +1758,4 @@
       Burger: XenoCutlet
       Taco: XenoCutlet
   - type: Food # Frontier
-    quality: Toxin # Frontier, New Food Quality System
+    quality: Normal # Frontier, New Food Quality System

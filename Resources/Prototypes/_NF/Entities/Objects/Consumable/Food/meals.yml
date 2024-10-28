@@ -66,12 +66,26 @@
       groups:
         Brute: 1
   - type: FriedTrait
+  - type: Food
+    quality: Normal # Should probably be high, but the griff, the griff!
+
+- type: entity
+  name: spooky
+  id: MobCatSpooky
+  parent: MobCatCrispy
+  description: A grave mistake.
+  suffix: Admeme # only way to get it at the moment
+  components:
+  - type: FriedTrait
+    crispinessLevelSet: Spectral
+  - type: Food
+    quality: Normal # Should probably be high, but the griff, the griff!
 
 - type: entity
   name: dragon omelette
   parent: FoodMealBase
   id: FoodMealDragonOmelette
-  description:
+  description: The mother of all omelettes.
   components:
   - type: FlavorProfile
     flavors:
@@ -94,11 +108,13 @@
   - type: Tag
     tags:
     - Meat
+  - type: Food
+    quality: High
 
 - type: entity
   name: avocado toast
   parent: FoodBreadSliceBase
-  id: FoodMealAvocadoToast
+  id: FoodBreadAvocadoToast
   description: It was this or home ownership.
   components:
   - type: FlavorProfile
@@ -117,6 +133,11 @@
           Quantity: 9
         - ReagentId: Vitamin
           Quantity: 6
+  - type: Tag
+    tags:
+    - Fruit
+  - type: Food
+    quality: Normal
 
 - type: entity
   name: breakfast bagel
@@ -142,6 +163,11 @@
           Quantity: 9
         - ReagentId: Vitamin
           Quantity: 6
+  - type: Tag
+    tags:
+    - Meat
+  - type: Food
+    quality: Normal
 
 - type: entity
   name: poppyseed breakfast bagel
@@ -172,6 +198,8 @@
   - type: Tag
     tags:
     - Meat
+  - type: Food
+    quality: Normal
 
 - type: entity
   name: cucumber sandwich
@@ -200,7 +228,9 @@
           Quantity: 10
   - type: Tag
     tags:
-    - Meat
+    - Vegetable
+  - type: Food
+    quality: Normal
 
 - type: entity
   name: greek salad
@@ -232,6 +262,8 @@
     tags:
     - Vegetable
     - Fruit
+  - type: Food
+    quality: Normal
 
 - type: entity
   name: avocado salad
@@ -263,7 +295,9 @@
     tags:
     - Vegetable
     - Fruit
-  
+  - type: Food
+    quality: Normal
+
 - type: entity
   name: poached pears
   parent: FoodBowlBase
@@ -292,6 +326,8 @@
   - type: Tag
     tags:
     - Fruit
+  - type: Food
+    quality: Normal
 
 - type: entity
   name: pears belle helene
@@ -323,54 +359,5 @@
   - type: Tag
     tags:
     - Fruit
-
-- type: entity
-  name: pear muffin
-  parent: FoodMealBase
-  id: FoodBakedMuffinPear
-  description: I won't tell if you just try to pick out the chocolate.
-  components:
-  - type: FlavorProfile
-    flavors:
-      - chocolate
-      - muffin
-      - pear
-  - type: Sprite
-    sprite: _NF/Objects/Consumable/Food/Baked/bread.rsi
-    state: pearmuffin
-    scale: .75, .75
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 15
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 6
-        - ReagentId: Vitamin
-          Quantity: 6
-        - ReagentId: Theobromine
-          Quantity: 1
-  - type: Tag
-    tags:
-    - Fruit
-
-- type: entity
-  name: pear and cheese tart
-  parent: FoodPieBase
-  id: FoodTartPearCheese
-  description: The most sublime pair.
-  components:
-  - type: FlavorProfile
-    flavors:
-      - sweet
-      - cheesy
-      - pear
-  - type: Sprite
-    sprite: _NF/Objects/Consumable/Food/Baked/pie.rsi
-    layers:
-    - state: tin
-    - state: pearandcheese
-  - type: Tag
-    tags:
-    - Fruit
-    - Pie
+  - type: Food
+    quality: Normal

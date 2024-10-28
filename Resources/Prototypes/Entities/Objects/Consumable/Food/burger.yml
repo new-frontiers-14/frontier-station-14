@@ -8,6 +8,7 @@
   description: A hamburger bun. Round and convenient to hold.
   components:
   - type: Food
+    quality: Normal # Frontier, New Food Quality System
   - type: Sprite
     sprite: Objects/Consumable/Food/burger.rsi
     layers:
@@ -298,6 +299,8 @@
   - type: Tag
     tags:
     - Meat
+  - type: Food # Frontier
+    quality: Nasty # Frontier, New Food Quality System
 # Tastes like bun, brains.
 
 - type: entity
@@ -421,8 +424,6 @@
   - type: Tag
     tags:
     - Meat
-  - type: Food # Frontier, New Food Quality System
-    quality: Nasty # Frontier, New Food Quality System
 
 - type: entity
   name: corger #not curger
@@ -509,7 +510,7 @@
     tags:
     - Meat
   - type: Food # Frontier
-    quality: Nasty # Frontier, New Food Quality System
+    quality: High # Frontier: this thing takes work, we reward that work
 
 - type: entity
   name: duck sandwich # Burger for you sick bastards
@@ -560,6 +561,8 @@
           Quantity: 8
         - ReagentId: Licoxide
           Quantity: 5
+  - type: Food # Frontier
+    quality: Nasty # Frontier, New Food Quality System
 # Tastes like bun, pure electricity.
 
 - type: entity
@@ -748,8 +751,6 @@
           Quantity: 4
         - ReagentId: Nothing
           Quantity: 1
-  - type: Food # Frontier
-    quality: Nasty # Frontier, New Food Quality System
 # Tastes like  .
 
 - type: entity
@@ -834,6 +835,8 @@
   - type: Tag
     tags:
     - Meat
+  - type: Food # Frontier
+    quality: Toxin # Frontier
 # Tastes like bun, lettuce, sludge.
 
 - type: entity
@@ -971,8 +974,6 @@
   - type: Tag
     tags:
     - Meat
-  - type: Food # Frontier
-    quality: Toxin # Frontier, New Food Quality System
 # Tastes like bun, acid.
 
 # Note: I would put a bunch of colored burgers here as listed in the tg .dm but

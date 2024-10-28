@@ -76,13 +76,11 @@ public sealed partial class FoodComponent : Component
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public bool RequireDead = true;
 
-    // New Frontiers - Digestion Rework - Add quality to add species-specific digestion
-    // This code is licensed under AGPLv3. See AGPLv3.txt
     /// <summary>
     /// The quality of this food, for species-specific digestion.
     /// </summary>
     [DataField, ViewVariables]
-    public FoodQuality Quality = FoodQuality.Normal;
+    public FoodQuality Quality = FoodQuality.Bland;
 
     [DataField]
     public LocId VerbEat = "food-system-verb-eat"; // Frontier
@@ -114,6 +112,7 @@ public enum FoodQuality : byte
     Toxin,
     Nasty,
     Junk,
+    Bland,
     Normal,
     High,
 }
