@@ -1301,8 +1301,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -9.5,9.5
       parent: 1
-    - type: Physics
-      bodyType: Static
 - proto: BenchSofaRight
   entities:
   - uid: 580
@@ -1311,8 +1309,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -9.5,10.5
       parent: 1
-    - type: Physics
-      bodyType: Static
 - proto: BlastDoor
   entities:
   - uid: 238
@@ -1665,70 +1661,15 @@ entities:
     - type: Transform
       pos: -10.5,2.5
       parent: 1
-  - uid: 585
-    components:
-    - type: Transform
-      pos: -13.5,8.5
-      parent: 1
-  - uid: 586
-    components:
-    - type: Transform
-      pos: -14.5,8.5
-      parent: 1
-  - uid: 587
-    components:
-    - type: Transform
-      pos: -14.5,9.5
-      parent: 1
-  - uid: 588
-    components:
-    - type: Transform
-      pos: -14.5,10.5
-      parent: 1
-  - uid: 589
-    components:
-    - type: Transform
-      pos: -14.5,11.5
-      parent: 1
   - uid: 590
     components:
     - type: Transform
       pos: -14.5,12.5
       parent: 1
-  - uid: 591
-    components:
-    - type: Transform
-      pos: -14.5,13.5
-      parent: 1
-  - uid: 592
-    components:
-    - type: Transform
-      pos: -13.5,13.5
-      parent: 1
-  - uid: 593
-    components:
-    - type: Transform
-      pos: -12.5,13.5
-      parent: 1
   - uid: 594
     components:
     - type: Transform
       pos: -11.5,13.5
-      parent: 1
-  - uid: 595
-    components:
-    - type: Transform
-      pos: -10.5,13.5
-      parent: 1
-  - uid: 596
-    components:
-    - type: Transform
-      pos: -9.5,13.5
-      parent: 1
-  - uid: 597
-    components:
-    - type: Transform
-      pos: -9.5,12.5
       parent: 1
   - uid: 598
     components:
@@ -2089,51 +2030,6 @@ entities:
     components:
     - type: Transform
       pos: 2.5,12.5
-      parent: 1
-  - uid: 1040
-    components:
-    - type: Transform
-      pos: 3.5,9.5
-      parent: 1
-  - uid: 1041
-    components:
-    - type: Transform
-      pos: 4.5,9.5
-      parent: 1
-  - uid: 1042
-    components:
-    - type: Transform
-      pos: 4.5,8.5
-      parent: 1
-  - uid: 1074
-    components:
-    - type: Transform
-      pos: 3.5,-3.5
-      parent: 1
-  - uid: 1075
-    components:
-    - type: Transform
-      pos: 4.5,-3.5
-      parent: 1
-  - uid: 1076
-    components:
-    - type: Transform
-      pos: 4.5,-2.5
-      parent: 1
-  - uid: 1077
-    components:
-    - type: Transform
-      pos: -11.5,-3.5
-      parent: 1
-  - uid: 1078
-    components:
-    - type: Transform
-      pos: -12.5,-3.5
-      parent: 1
-  - uid: 1079
-    components:
-    - type: Transform
-      pos: -12.5,-2.5
       parent: 1
 - proto: CableHV
   entities:
@@ -3776,19 +3672,6 @@ entities:
     - type: Transform
       pos: -4.5,9.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        bank-ATM-cashSlot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-    - type: Physics
-      canCollide: False
-    - type: ItemSlots
 - proto: ConveyorBelt
   entities:
   - uid: 36
@@ -4047,20 +3930,6 @@ entities:
     - type: Transform
       pos: 1.5,-0.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        machine_board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        machine_parts: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        blueprint: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
 - proto: ExtinguisherCabinetFilled
   entities:
   - uid: 446
