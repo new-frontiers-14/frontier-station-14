@@ -18,22 +18,16 @@ public sealed partial class BluespaceErrorRuleComponent : Component
     [DataField(required: true)] public Dictionary<string, IBluespaceSpawnGroup> Groups = new();
 
     /// <summary>
-    /// The color of your thing. The name should be set by the mapper when mapping.
+    /// The grid in question, set after starting the event
     /// </summary>
     [DataField]
-    public Color Color = new Color(225, 15, 155);
+    public EntityUid? GridUid = null;
 
     /// <summary>
     /// Multiplier to apply to the remaining value of a grid, to be deposited in the station account for defending
     /// </summary>
     [DataField]
     public float RewardFactor = 0f;
-
-    /// <summary>
-    /// The grid in question, set after starting the event
-    /// </summary>
-    [DataField]
-    public EntityUid? GridUid = null;
 
     /// <summary>
     /// How much the grid is appraised at upon entering into existence, set after starting the event
@@ -69,11 +63,6 @@ public interface IBluespaceSpawnGroup
     public ComponentRegistry AddComponents { get; set; }
 
     /// <summary>
-    /// Hide the IFF label of the grid.
-    /// </summary>
-    public bool Hide { get; set; }
-
-    /// <summary>
     /// Should we set the metadata name of a grid. Useful for admin purposes.
     /// </summary>
     public bool NameGrid { get; set; }
@@ -105,9 +94,6 @@ public sealed class BluespaceDungeonSpawnGroup : IBluespaceSpawnGroup
     public ComponentRegistry AddComponents { get; set; } = new();
 
     /// <inheritdoc />
-    public bool Hide { get; set; } = false;
-
-    /// <inheritdoc />
     public bool NameGrid { get; set; } = false;
 }
 
@@ -125,6 +111,5 @@ public sealed class BluespaceGridSpawnGroup : IBluespaceSpawnGroup
     public int MinCount { get; set; } = 1;
     public int MaxCount { get; set; } = 1;
     public ComponentRegistry AddComponents { get; set; } = new();
-    public bool Hide { get; set; } = false;
     public bool NameGrid { get; set; } = true;
 }
