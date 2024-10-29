@@ -43,10 +43,10 @@
   
   - Check that the AME core is properly shielded.
   - Check that the AME controller unit is anchored to the floor.
-  - Check the AME controller unit Fuel Status.
-  - Check the AME controller unit Injection Amount.
-  - Enable injection.
-  - Check power monitoring console to validate AME output level and confirm that battery draw is negligible with the AME active. In stock configuration the ship should use approximately 45kW at idle.
+  - Check the AME controller unit 'Fueling Status' readout.
+  - Check the AME controller unit 'Injection Amount' setting.
+  - Enable AME injection.
+  - Check power monitoring console to validate AME output level and confirm that battery draw is negligible with the AME active. In stock configuration the ship should consume approximately 45kW at idle.
   
   ## 2. Atmospherics
   
@@ -58,7 +58,7 @@
   </Box>
 
   - Ensure oxygen and nitrogen canisters are anchored to their connector ports.
-  - Verify atmos network gas mixer is configured to 78% on its primary port (O2) and 22% on is side port (N2).
+  - Verify atmos network gas mixer is configured to 21% on its primary port (O2) and 79% on is side port (N2).
   - Verify gas mixer is configured to circa 101kPa.
   - Enable gas mixer.
 
@@ -69,19 +69,21 @@
   </Box>
 
   - Ensure storage canister is anchored to its connector port.
-  - Inspect waste network gas filter, verify it is set to a desired gas for scavenging from waste loop
+  - Inspect and enable waste network booster pumps, located on the starboard side of the ship in the equipment bay, and transit corridor just forward of the cargo section door.
+  - Inspect waste network gas filter, verify it is set to a desired gas for scavenging from waste loop.
   - Enable waste network gas filter.
+  - Inspect and enable waste network exhaust pump, located in the starboard equipment bay corridor near the conveyor system controls.
 
   ## 2.3. Air alarm and firelock system
   <Box>
     <GuideEntityEmbed Entity="AirAlarm"/>
   </Box>
 
-  - Examine the crew section air alarm in the Bridge, ensure sensors are reading normal.
-  - Set the crew section Air Alarm in the Bridge to Filtering (Wide).
-  - Note the location of the firelocks linked to the crew section Air Alarm, which are integrated into the doors to the bridge and galley.
+  - Examine the crew section air alarm in the bridge, ensure sensors are reading normal.
+  - Set the crew section air alarm in the bridge to 'Filtering (Wide)'.
+  - Note the location of the firelocks linked to the crew section air alarm, which are integrated into the doors to the bridge and galley.
   - Examine the cargo section air alarm on the forward wall of the engineering capsule, ensure sensors are reading normal.
-  - Set the cargo section Air Alarm to Filtering (Wide).
+  - Set the cargo section air alarm to 'Filtering (Wide)'.
   - Note the location of the firelocks linked to the cargo section air alarm, which are integrated into the doors to the equipment bay.
 
   ## 3. Other checks
@@ -94,7 +96,7 @@
   <GuideEntityEmbed Entity="ConveyorBelt"/>
   </Box>
 
-  - Check that the gyroscope is anchored, powered, and enabled. This device is located in the port side engineering closet in the equipment bay.
+  - Check that the gyroscopes are anchored, powered, and enabled. These devices are located in the engineering closets in the equipment bay.
   - Check that the mini gravity generator is anchored, powered, and enabled. This device is located in the starboard side engineering closet in the equipment bay.
   - Check that the equipment bay blast doors are closed. These can be controlled by the wall switches to either side of the doors.
   - Check that the conveyor system blast doors are closed. These can be actuated by the wall switches in the corridor on each side of the engineering capsule.
