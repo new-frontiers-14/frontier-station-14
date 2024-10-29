@@ -1,279 +1,205 @@
+# Base prototypes
+
 - type: latheRecipe
-  id: FloorTileItemMetalDiamond
-  result: FloorTileItemMetalDiamond
+  id: NFBaseFloorTileRecipe
   applyMaterialDiscount: false
   completetime: 0.5
+  materials:
+    Steel: 25
+
+- type: latheRecipe
+  id: NFBaseFloorTileSilverRecipe
+  parent: NFBaseFloorTileRecipe
+  materials:
+    Silver: 25
+
+- type: latheRecipe
+  id: NFBaseFloorTileClothRecipe
+  parent: NFBaseFloorTileRecipe
+  materials:
+    Cloth: 100
+
+# Recipes
+
+- type: latheRecipe
+  id: FloorTileItemMetalDiamond
+  parent: NFBaseFloorTileRecipe
+  result: FloorTileItemMetalDiamond
   materials:
     Steel: 50
 
 - type: latheRecipe
   id: FloorTileItemFreezer
+  parent: NFBaseFloorTileRecipe
   result: FloorTileItemFreezer
-  applyMaterialDiscount: false
-  completetime: 0.5
-  materials:
-    Steel: 25
 
 - type: latheRecipe
   id: FloorTileItemShowroom
+  parent: NFBaseFloorTileRecipe
   result: FloorTileItemShowroom
-  applyMaterialDiscount: false
-  completetime: 0.5
-  materials:
-    Steel: 25
 
 - type: latheRecipe
   id: FloorTileItemGCircuit
+  parent: NFBaseFloorTileSilverRecipe
   result: FloorTileItemGCircuit
-  applyMaterialDiscount: false
-  completetime: 0.5
-  materials:
-    Silver: 25
 
 - type: latheRecipe
   id: FloorTileItemBCircuit
+  parent: NFBaseFloorTileSilverRecipe
   result: FloorTileItemBCircuit
-  applyMaterialDiscount: false
-  completetime: 0.5
-  materials:
-    Silver: 25
 
 - type: latheRecipe
   id: FloorTileItemGold
+  parent: NFBaseFloorTileRecipe
   result: FloorTileItemGold
-  applyMaterialDiscount: false
-  completetime: 0.5
   materials:
     Gold: 25
 
 - type: latheRecipe
   id: FloorTileItemMono
+  parent: NFBaseFloorTileRecipe
   result: FloorTileItemMono
-  applyMaterialDiscount: false
-  completetime: 0.5
-  materials:
-    Steel: 25
 
 - type: latheRecipe
   id: FloorTileItemLino
+  parent: NFBaseFloorTileRecipe
   result: FloorTileItemLino
-  applyMaterialDiscount: false
-  completetime: 0.5
   materials:
     Plastic: 25
 
 - type: latheRecipe
   id: FloorTileItemHydro
+  parent: NFBaseFloorTileRecipe
   result: FloorTileItemHydro
-  applyMaterialDiscount: false
-  completetime: 0.5
-  materials:
-    Steel: 25
 
 - type: latheRecipe
   id: FloorTileItemLime
+  parent: NFBaseFloorTileRecipe
   result: FloorTileItemLime
-  applyMaterialDiscount: false
-  completetime: 0.5
-  materials:
-    Steel: 25
 
 - type: latheRecipe
   id: FloorTileItemShuttleWhite
+  parent: NFBaseFloorTileSilverRecipe
   result: FloorTileItemShuttleWhite
-  applyMaterialDiscount: false
-  completetime: 0.5
-  materials:
-    Silver: 25
 
 #- type: latheRecipe
 #  id: FloorTileStackShuttleBlue
+#  parent: NFBaseFloorTileSilverRecipe
 #  result: FloorTileStackShuttleBlue
-#  applyMaterialDiscount: false
-#  completetime: 0.5
-#  materials:
-#    Silver: 25
 
 #- type: latheRecipe
 #  id: FloorTileStackShuttleOrange
+#  parent: NFBaseFloorTileSilverRecipe
 #  result: FloorTileStackShuttleOrange
-#  applyMaterialDiscount: false
-#  completetime: 0.5
-#  materials:
-#    Silver: 25
 
 - type: latheRecipe
   id: FloorTileItemShuttlePurple
+  parent: NFBaseFloorTileSilverRecipe
   result: FloorTileItemShuttlePurple
-  applyMaterialDiscount: false
-  completetime: 0.5
-  materials:
-    Silver: 25
 
 #- type: latheRecipe
 #  id: FloorTileStackShuttleRed
+#  parent: NFBaseFloorTileSilverRecipe
 #  result: FloorTileStackShuttleRed
-#  applyMaterialDiscount: false
-#  completetime: 0.5
-#  materials:
-#    Silver: 25
 
 - type: latheRecipe
   id: FloorTileItemEighties
+  parent: NFBaseFloorTileClothRecipe
   result: FloorTileItemEighties
-  applyMaterialDiscount: false
-  completetime: 1
-  materials:
-    Cloth: 100
 
 - type: latheRecipe
   id: FloorTileItemArcadeBlue
+  parent: NFBaseFloorTileClothRecipe
   result: FloorTileItemArcadeBlue
-  applyMaterialDiscount: false
-  completetime: 1
-  materials:
-    Cloth: 100
 
 - type: latheRecipe
   id: FloorTileItemArcadeBlue2
+  parent: NFBaseFloorTileClothRecipe
   result: FloorTileItemArcadeBlue2
-  applyMaterialDiscount: false
-  completetime: 1
-  materials:
-    Cloth: 100
 
 - type: latheRecipe
   id: FloorTileItemArcadeRed
+  parent: NFBaseFloorTileClothRecipe
   result: FloorTileItemArcadeRed
-  applyMaterialDiscount: false
-  completetime: 1
-  materials:
-    Cloth: 100
 
 - type: latheRecipe
   id: FloorTileItemBoxing
+  parent: NFBaseFloorTileRecipe
   result: FloorTileItemBoxing
-  applyMaterialDiscount: false
-  completetime: 0.5
-  materials:
-    Steel: 25
 
 - type: latheRecipe
   id: FloorTileItemGym
+  parent: NFBaseFloorTileRecipe
   result: FloorTileItemGym
-  applyMaterialDiscount: false
-  completetime: 0.5
-  materials:
-    Steel: 25
 
 - type: latheRecipe
   id: FloorTileItemBlue
+  parent: NFBaseFloorTileRecipe
   result: FloorTileItemBlue
-  applyMaterialDiscount: false
-  completetime: 0.5
-  materials:
-    Steel: 25
 
 - type: latheRecipe
   id: FloorTileItemMining
+  parent: NFBaseFloorTileRecipe
   result: FloorTileItemMining
-  applyMaterialDiscount: false
-  completetime: 0.5
-  materials:
-    Steel: 25
 
 - type: latheRecipe
   id: FloorTileItemMiningDark
+  parent: NFBaseFloorTileRecipe
   result: FloorTileItemMiningDark
-  applyMaterialDiscount: false
-  completetime: 0.5
-  materials:
-    Steel: 25
 
 - type: latheRecipe
   id: FloorTileItemMiningLight
+  parent: NFBaseFloorTileRecipe
   result: FloorTileItemMiningLight
-  applyMaterialDiscount: false
-  completetime: 0.5
-  materials:
-    Steel: 25
 
 - type: latheRecipe
   id: FloorTileItemBar
+  parent: NFBaseFloorTileRecipe
   result: FloorTileItemBar
-  applyMaterialDiscount: false
-  completetime: 0.5
-  materials:
-    Steel: 25
 
 - type: latheRecipe
   id: FloorTileItemClown
+  parent: NFBaseFloorTileRecipe
   result: FloorTileItemClown
-  applyMaterialDiscount: false
-  completetime: 0.5
-  materials:
-    Steel: 25
 
 - type: latheRecipe
   id: FloorTileItemMime
+  parent: NFBaseFloorTileRecipe
   result: FloorTileItemMime
-  applyMaterialDiscount: false
-  completetime: 0.5
-  materials:
-    Steel: 25
 
 - type: latheRecipe
   id: FloorTileItemKitchen
+  parent: NFBaseFloorTileRecipe
   result: FloorTileItemKitchen
-  applyMaterialDiscount: false
-  completetime: 0.5
-  materials:
-    Steel: 25
 
 - type: latheRecipe
   id: FloorTileItemLaundry
+  parent: NFBaseFloorTileRecipe
   result: FloorTileItemLaundry
-  applyMaterialDiscount: false
-  completetime: 0.5
-  materials:
-    Steel: 25
 
 - type: latheRecipe
   id: FloorTileItemSilver
+  parent: NFBaseFloorTileSilverRecipe
   result: FloorTileItemSilver
-  applyMaterialDiscount: false
-  completetime: 0.5
-  materials:
-    Silver: 25
 
 - type: latheRecipe
   id: FloorCarpetItemSkyBlue
+  parent: NFBaseFloorTileClothRecipe
   result: FloorCarpetItemSkyBlue
-  applyMaterialDiscount: false
-  completetime: 1
-  materials:
-    Cloth: 100
 
 - type: latheRecipe
   id: FloorTileItemCarpetClown
+  parent: NFBaseFloorTileClothRecipe
   result: FloorTileItemCarpetClown
-  applyMaterialDiscount: false
-  completetime: 1
-  materials:
-    Cloth: 100
 
 - type: latheRecipe
   id: FloorTileItemCarpetOffice
+  parent: NFBaseFloorTileClothRecipe
   result: FloorTileItemCarpetOffice
-  applyMaterialDiscount: false
-  completetime: 1
-  materials:
-    Cloth: 100
 
 - type: latheRecipe
   id: FloorTileItemFlesh
+  parent: NFBaseFloorTileRecipe
   result: FloorTileItemFlesh
-  applyMaterialDiscount: false
-  completetime: 1
   materials:
     Meaterial: 100
