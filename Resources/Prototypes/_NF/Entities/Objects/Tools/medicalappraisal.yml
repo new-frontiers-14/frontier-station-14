@@ -1,0 +1,26 @@
+- type: entity
+  parent: BaseItem
+  id: MedicalAppraisalTool
+  name: medical bounty scanner
+  description: Scans bodies for open medical bounties.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Tools/medical-appraisal-tool.rsi
+    layers:
+    - state: icon
+    - state: icon-unlit
+      shader: unshaded
+  - type: Item
+    sprite: _NF/Objects/Tools/medical-appraisal-tool.rsi
+  - type: MedicalPriceGun
+  - type: UseDelay
+    delay: 1
+  - type: Clothing
+    sprite: _NF/Objects/Tools/medical-appraisal-tool.rsi
+    quickEquip: false
+    slots:
+    - Belt
+  - type: Tag
+    tags:
+    - AppraisalTool
+    - Sidearm

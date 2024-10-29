@@ -508,7 +508,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
     private async Task ReportRound(string message, int color = 0x77DDE7)
     {
         Logger.InfoS("discord", message);
-        String webhookUrl = _configurationManager.GetCVar(CCVars.DiscordLeaderboardWebhook);
+        String webhookUrl = _configurationManager.GetCVar(NFCCVars.DiscordLeaderboardWebhook);
         if (webhookUrl == string.Empty)
             return;
 
