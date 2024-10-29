@@ -1,3 +1,7 @@
+station-event-bluespace-dungeon-start-announcement = dungeon spawn
+station-event-bluespace-dungeon-warning-announcement = dungeon moving away
+station-event-bluespace-dungeon-end-announcement = dungeon left
+
 station-event-bluespace-vault-start-announcement = A NanoTrasen autonomous armored vault transport has made an FTL error and will soon arrive nearby. Your sector will be rewarded for it's safe return.
 station-event-bluespace-vault-end-announcement = We have successfully retrieved the vault from your sector and have reimbursed your nearby Frontier Outpost accordingly.
 

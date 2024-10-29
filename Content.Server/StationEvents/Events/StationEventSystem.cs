@@ -9,6 +9,7 @@ using Content.Shared.GameTicking.Components;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Timing; // Frontier
 
 namespace Content.Server.StationEvents.Events;
 
@@ -22,6 +23,7 @@ public abstract class StationEventSystem<T> : GameRuleSystem<T> where T : ICompo
     [Dependency] protected readonly ChatSystem ChatSystem = default!;
     [Dependency] protected readonly SharedAudioSystem Audio = default!;
     [Dependency] protected readonly StationSystem StationSystem = default!;
+    [Dependency] private readonly IGameTiming _timing = default!; // Frontier
 
     protected ISawmill Sawmill = default!;
 
@@ -99,6 +101,8 @@ public abstract class StationEventSystem<T> : GameRuleSystem<T> where T : ICompo
     {
         base.Update(frameTime);
 
+        var curTime = _timing.CurTime; // Frontier
+
         var query = EntityQueryEnumerator<StationEventComponent, GameRuleComponent>();
         while (query.MoveNext(out var uid, out var stationEvent, out var ruleData))
         {
@@ -108,6 +112,13 @@ public abstract class StationEventSystem<T> : GameRuleSystem<T> where T : ICompo
             if (!GameTicker.IsGameRuleActive(uid, ruleData) && !HasComp<DelayedStartRuleComponent>(uid))
             {
                 GameTicker.StartGameRule(uid, ruleData);
+            }
+            else if (stationEvent.WarningAnnouncement != null && GameTicker.IsGameRuleActive(uid, ruleData) && !stationEvent.WarningAnnounced && (stationEvent.EndTime!.Value - curTime).TotalSeconds < stationEvent.WarningDurationLeft) // Frontier
+            {
+                Filter allPlayersInGame = Filter.Empty().AddWhere(GameTicker.UserHasJoinedGame); // we don't want to send to players who aren't in game (i.e. in the lobby)
+                ChatSystem.DispatchFilteredAnnouncement(allPlayersInGame, Loc.GetString(stationEvent.WarningAnnouncement), playSound: false, colorOverride: stationEvent.WarningAnnouncementColor);
+                Audio.PlayGlobal(stationEvent.WarningAudio, allPlayersInGame, true);
+                stationEvent.WarningAnnounced = true;
             }
             else if (stationEvent.EndTime != null && Timing.CurTime >= stationEvent.EndTime && GameTicker.IsGameRuleActive(uid, ruleData))
             {

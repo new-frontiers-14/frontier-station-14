@@ -101,4 +101,19 @@ public sealed partial class StationEventComponent : Component
     /// </summary>
     [DataField]
     public Dictionary<ProtoId<JobPrototype>, int> RequiredJobs = new();
+
+    [DataField]
+    public string? WarningAnnouncement;
+
+    [DataField]
+    public Color WarningAnnouncementColor = Color.Gold;
+
+    [DataField]
+    public SoundSpecifier? WarningAudio;
+
+    [DataField]
+    public int WarningDurationLeft = 601; // 5 minutes
+
+    [DataField]
+    public bool WarningAnnounced;
 }

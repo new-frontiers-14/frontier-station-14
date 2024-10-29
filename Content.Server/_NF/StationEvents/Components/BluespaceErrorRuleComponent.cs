@@ -23,11 +23,19 @@ public sealed partial class BluespaceErrorRuleComponent : Component
     [DataField]
     public EntityUid? GridUid = null;
 
+
+
+    // WarningPercentageLeft 20%
+
+    // WarningAnnucment
+
+    // Departure = true
+
     /// <summary>
     /// Multiplier to apply to the remaining value of a grid, to be deposited in the station account for defending
     /// </summary>
     [DataField]
-    public float RewardFactor = 0f;
+    public float NfsdRewardFactor = 0f;
 
     /// <summary>
     /// How much the grid is appraised at upon entering into existence, set after starting the event
