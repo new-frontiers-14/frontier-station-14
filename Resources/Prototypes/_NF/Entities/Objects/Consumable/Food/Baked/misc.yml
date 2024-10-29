@@ -28,3 +28,72 @@
     color: "#FFFFCC"
     radius: 1.25
     energy: 0.75
+
+- type: entity
+  name: pear muffin
+  parent: FoodBakedBase
+  id: FoodBakedMuffinPear
+  description: I won't tell if you just try to pick out the chocolate.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - chocolate
+      - muffin
+      - pear
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/Baked/bread.rsi
+    state: pearmuffin
+    scale: .75, .75
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 15
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 6
+        - ReagentId: Vitamin
+          Quantity: 4
+        - ReagentId: Flavorol
+          Quantity: 2
+        - ReagentId: Theobromine
+          Quantity: 1
+  - type: Tag
+    tags:
+    - Fruit
+
+- type: entity
+  name: apple strudel bite
+  parent: FoodBakedBase
+  id: FoodBakedAppleStrudelBite
+  description: Just put a little icing on top and enjoy!
+  components:
+  - type: FlavorProfile
+    flavors:
+      - honey
+      - butter
+      - bread
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/Baked/bread.rsi
+    layers:
+      - state: apple_strudel_1
+        map: [ "Variant" ]
+  - type: RandomSprite
+    available:
+      - Variant:
+          apple_strudel_1: ""
+          apple_strudel_2: ""
+          apple_strudel_3: ""
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 6
+        - ReagentId: Honey
+          Quantity: 2
+        - ReagentId: Flavorol
+          Quantity: 2
+  - type: Tag
+    tags:
+    - Fruit

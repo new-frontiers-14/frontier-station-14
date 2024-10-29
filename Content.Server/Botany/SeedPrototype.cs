@@ -100,6 +100,12 @@ public partial class SeedData
     public string Noun { get; private set; } = "";
 
     /// <summary>
+    ///     Frontier: The localized string used for a set of seeds (or equivalent)
+    /// </summary>
+    [DataField("packetName")]
+    public string PacketName { get; private set; } = "botany-seed-packet-name";
+
+    /// <summary>
     ///     Name displayed when examining the hydroponics tray. Describes the actual plant, not the seed itself.
     /// </summary>
     [DataField("displayName")]
