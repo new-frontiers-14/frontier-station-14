@@ -1,0 +1,927 @@
+# region Loadouts
+# Corpse loadout definitions
+- type: entity
+  id: NFRandomLoadoutService
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Loadout
+    prototypes: &service
+    - NFVisitorBartender
+    - NFVisitorBartenderAlt
+    - NFVisitorBotanist
+    - NFVisitorBotanistAlt
+    - NFVisitorBoxer
+    - NFVisitorBoxerAlt
+    - NFVisitorChaplain
+    - NFVisitorChaplainAlt
+    - NFVisitorChef
+    - NFVisitorChefAlt
+    - NFVisitorClown
+    - NFVisitorJanitor
+    - NFVisitorJanitorAlt
+    - NFVisitorLawyerAltA
+    - NFVisitorLawyerAltB
+    - NFVisitorLawyerAltC
+    - NFVisitorLawyerAltD
+    - NFVisitorLawyerAltE
+    - NFVisitorLibrarian
+    - NFVisitorLibrarianAlt
+    - NFVisitorMime
+    - NFVisitorMimeAlt
+    - NFVisitorMusicianFancyAltA
+    - NFVisitorMusicianFancyAltB
+    - NFVisitorMusicianRelaxedAltA
+    - NFVisitorMusicianRelaxedAltB
+    - NFVisitorMusicianMariachi
+    - NFVisitorReporter
+    - NFVisitorReporterAlt
+    - NFVisitorServiceWorker
+    - NFVisitorServiceWorkerAlt
+    - NFVisitorZookeeper
+    - NFVisitorZookeeperAlt
+
+- type: entity
+  id: NFRandomLoadoutEngineering
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Loadout
+    prototypes: &engineering
+    - NFVisitorAtmosTech
+    - NFVisitorAtmosTechAlt
+    - NFVisitorTechnicalAssistant
+    - NFVisitorTechnicalAssistantAlt
+    - NFVisitorEngineer
+    - NFVisitorEngineerAlt
+
+- type: entity
+  id: NFRandomLoadoutCargo
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Loadout
+    prototypes: &cargo
+    - NFVisitorCargoTech
+    - NFVisitorCargoTechAlt
+    - NFVisitorSalvageSpecialist
+    - NFVisitorSalvageSpecialistAlt
+
+- type: entity
+  id: NFRandomLoadoutMedical
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Loadout
+    prototypes: &medical
+    - NFVisitorChemist
+    - NFVisitorChemistAlt
+    - NFVisitorGeneticist
+    - NFVisitorGeneticistAlt
+    - NFVisitorVirologist
+    - NFVisitorVirologistAlt
+    - NFVisitorMedicalDoctor
+    - NFVisitorMedicalDoctorAlt
+    - NFVisitorDentist
+    - NFVisitorPsychologist
+    - NFVisitorPsychologistAlt
+    - NFVisitorParamedic
+    - NFVisitorParamedicAlt
+    - NFVisitorMedicalIntern
+    - NFVisitorMedicalInternAlt
+    - NFVisitorScrubsPurple
+    - NFVisitorScrubsGreen
+    - NFVisitorScrubsBlue
+
+- type: entity
+  id: NFRandomLoadoutScience
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Loadout
+    prototypes: &science
+    - NFVisitorResearchAssistant
+    - NFVisitorResearchAssistantAlt
+    - NFVisitorScientist
+    - NFVisitorScientistAlt
+
+- type: entity
+  id: NFRandomLoadoutSecurity
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Loadout
+    prototypes: &security
+    - NFVisitorSecurityCadet
+    - NFVisitorSecurityCadetAlt
+    - NFVisitorSecurityOfficer
+    - NFVisitorSecurityOfficerAlt
+    - NFVisitorDetective
+    - NFVisitorDetectiveAlt
+    - NFVisitorWarden
+    - NFVisitorWardenAlt
+
+- type: entity
+  id: NFRandomLoadoutCommand
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Loadout
+    prototypes: &command
+    - NFVisitorCaptain
+    - NFVisitorCaptainAlt
+    - NFVisitorCE
+    - NFVisitorCEAlt
+    - NFVisitorCMO
+    - NFVisitorCMOAlt
+    - NFVisitorRD
+    - NFVisitorRDAlt
+    - NFVisitorQM
+    - NFVisitorQMAlt
+# endregion Loadouts
+
+# region Random Humanoid Settings
+- type: randomHumanoidSettings
+  id: NFRandomLoadoutService
+  components:
+  - type: Loadout
+    prototypes: *service
+
+- type: randomHumanoidSettings
+  id: NFRandomLoadoutEngineering
+  components:
+  - type: Loadout
+    prototypes: *engineering
+
+- type: randomHumanoidSettings
+  id: NFRandomLoadoutCargo
+  components:
+  - type: Loadout
+    prototypes: *cargo
+
+- type: randomHumanoidSettings
+  id: NFRandomLoadoutMedical
+  components:
+  - type: Loadout
+    prototypes: *medical
+
+- type: randomHumanoidSettings
+  id: NFRandomLoadoutScience
+  components:
+  - type: Loadout
+    prototypes: *science
+
+- type: randomHumanoidSettings
+  id: NFRandomLoadoutSecurity
+  components:
+  - type: Loadout
+    prototypes: *security
+
+- type: randomHumanoidSettings
+  id: NFRandomLoadoutCommand
+  components:
+  - type: Loadout
+    prototypes: *command
+# endregion
+
+# LOADOUTS
+
+# Command
+# region Command Gear
+- type: startingGear
+  id: NFVisitorCaptain
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCaptain
+    shoes: ClothingShoesBootsLaceup
+    eyes: ClothingEyesGlassesSunglasses
+    gloves: ClothingHandsGlovesCaptain
+    head: ClothingHeadHatCaptain
+    neck: ClothingNeckCloakCap
+
+- type: startingGear
+  id: NFVisitorCaptainAlt
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCapFormal
+    shoes: ClothingShoesBootsLaceup
+    eyes: ClothingEyesGlassesSunglasses
+    gloves: ClothingHandsGlovesCaptain
+    head: ClothingHeadHatCapcap
+    neck: ClothingNeckMantleCap
+
+- type: startingGear
+  id: NFVisitorCE
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitChiefEngineer
+    shoes: ClothingShoesColorWhite
+    head: ClothingHeadHatBeretEngineering
+    neck: ClothingNeckCloakCe
+    outerClothing: ClothingOuterVestHazard
+
+- type: startingGear
+  id: NFVisitorCEAlt
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitChiefEngineerTurtle
+    shoes: ClothingShoesColorWhite
+    head: ClothingHeadHatBeretEngineering
+    neck: ClothingNeckMantleCE
+    outerClothing: ClothingOuterWinterCE
+
+- type: startingGear
+  id: NFVisitorCMO
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCMO
+    shoes: ClothingShoesColorBrown
+    gloves: ClothingHandsGlovesLatex
+    head: ClothingHeadMirror
+    neck: ClothingCloakCmo
+    outerClothing: ClothingOuterCoatLabCmo
+
+- type: startingGear
+  id: NFVisitorCMOAlt
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCMOTurtle
+    shoes: ClothingShoesColorBrown
+    gloves: ClothingHandsGlovesNitrile
+    head: ClothingHeadHatBeretCmo
+    neck: ClothingNeckMantleCMO
+    outerClothing: ClothingOuterCoatLabCmo
+
+- type: startingGear
+  id: NFVisitorRD
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitResearchDirector
+    shoes: ClothingShoesColorBrown
+    gloves: ClothingHandsGlovesLatex
+    head: ClothingHeadHatBeretRND
+    neck: ClothingNeckCloakRd
+    outerClothing: ClothingOuterCoatRD
+
+- type: startingGear
+  id: NFVisitorRDAlt
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitResearchDirector
+    shoes: ClothingShoesColorBrown
+    gloves: ClothingHandsGlovesNitrile
+    head: ClothingHeadHatBeretRND
+    neck: ClothingNeckMantleRD
+    outerClothing: ClothingOuterCoatRD
+
+- type: startingGear
+  id: NFVisitorQM
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitQMTurtleneck
+    shoes: ClothingShoesColorBrown
+    head: ClothingHeadHatQMsoft
+    neck: ClothingNeckCloakQm
+    outerClothing: ClothingOuterWinterQM
+
+- type: startingGear
+  id: NFVisitorQMAlt
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitQMFormal
+    shoes: ClothingShoesColorBrown
+    head: ClothingHeadHatBeretQM
+    neck: ClothingNeckMantleQM
+    outerClothing: ClothingOuterWinterQM
+
+# endregion Command Gear
+# region Security Gear
+
+- type: startingGear
+  id: NFVisitorSecurityCadet
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSec
+    shoes: ClothingShoesBootsCombat
+    head: ClothingHeadHelmetBasic
+    eyes: ClothingEyesGlassesSecurity
+    outerClothing: ClothingOuterArmorBasic
+
+- type: startingGear
+  id: NFVisitorSecurityCadetAlt
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSecGrey
+    shoes: ClothingShoesBootsCombat
+    head: ClothingHeadHelmetBasic
+    outerClothing: ClothingOuterArmorBasicSlim
+
+- type: startingGear
+  id: NFVisitorSecurityOfficer
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSec
+    shoes: ClothingShoesBootsCombat
+    head: ClothingHeadHelmetBasic
+    outerClothing: ClothingOuterArmorBasic
+
+- type: startingGear
+  id: NFVisitorSecurityOfficerAlt
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSecGrey
+    shoes: ClothingShoesBootsCombat
+    head: ClothingHeadHatCorpsoft
+    outerClothing: ClothingOuterArmorBasicSlim
+
+- type: startingGear
+  id: NFVisitorDetective
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitDetective
+    shoes: ClothingShoesBootsCombat
+    head: ClothingHeadHatFedoraBrown
+    neck: ClothingNeckTieDet
+    belt: ClothingBeltHolster
+    outerClothing: ClothingOuterCoatDetectiveLoadout
+
+- type: startingGear
+  id: NFVisitorDetectiveAlt
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitDetectiveGrey
+    shoes: ClothingShoesBootsCombat
+    head: ClothingHeadHatFedoraGrey
+    neck: ClothingNeckTieDet
+    belt: ClothingBeltHolster
+    outerClothing: ClothingOuterVestDetective
+
+- type: startingGear
+  id: NFVisitorWarden
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitWarden
+    shoes: ClothingShoesBootsCombat
+    gloves: ClothingHandsGlovesCombat
+    head: ClothingHeadHatBeretWarden
+    outerClothing: ClothingOuterCoatWarden
+
+- type: startingGear
+  id: NFVisitorWardenAlt
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitWarden
+    shoes: ClothingShoesBootsCombat
+    gloves: ClothingHandsGlovesCombat
+    head: ClothingHeadHatWarden
+    outerClothing: ClothingOuterWinterWarden
+
+# endregion Security Gear
+# region Cargo Gear
+
+- type: startingGear
+  id: NFVisitorCargoTech
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCargo
+    shoes: ClothingShoesColorBlack
+    head: ClothingHeadHatCargosoft
+
+- type: startingGear
+  id: NFVisitorCargoTechAlt
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCargo
+    shoes: ClothingShoesBootsWinterCargo
+    head: ClothingHeadHatCargosoft
+    outerClothing: ClothingOuterWinterCargo
+
+- type: startingGear
+  id: NFVisitorSalvageSpecialist
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSalvageSpecialist
+    shoes: ClothingShoesBootsSalvage
+    head: ClothingHeadHatCargosoftFlipped
+    belt: ClothingBeltSalvageWebbing
+
+- type: startingGear
+  id: NFVisitorSalvageSpecialistAlt
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSalvageSpecialist
+    shoes: ClothingShoesBootsSalvage
+    head: ClothingHeadHatBrownFlatcap
+    belt: ClothingBeltSalvageWebbing
+    outerClothing: ClothingOuterWinterCargo
+
+# endregion Cargo Gear
+# region Engineering Gear
+
+- type: startingGear
+  id: NFVisitorAtmosTech
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitAtmos
+    shoes: ClothingShoesColorWhite
+    gloves: ClothingHandsGlovesFingerlessInsulated
+    head: ClothingHeadHelmetFire
+    eyes: ClothingEyesGlassesMeson
+    outerClothing: ClothingOuterSuitAtmosFire
+
+- type: startingGear
+  id: NFVisitorAtmosTechAlt
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitAtmosCasual
+    shoes: ClothingShoesColorWhite
+    gloves: ClothingHandsGlovesColorYellow
+    head: ClothingHeadHatHardhatYellow
+    neck: ClothingNeckScarfStripedLightBlue
+    eyes: ClothingEyesGlassesMeson
+    outerClothing: ClothingOuterWinterAtmos
+
+- type: startingGear
+  id: NFVisitorTechnicalAssistant
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorYellow
+    shoes: ClothingShoesBootsWork
+    gloves: ClothingHandsGlovesColorYellowBudget
+    head: ClothingHeadHatWelding
+    eyes: ClothingEyesGlassesMeson
+
+- type: startingGear
+  id: NFVisitorTechnicalAssistantAlt
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitEngineeringHazard
+    shoes: ClothingShoesColorBlack
+    gloves: ClothingHandsGlovesColorYellowBudget
+    head: ClothingHeadHatCone
+    eyes: ClothingEyesGlassesMeson
+    outerClothing: ClothingOuterVestHazard
+
+- type: startingGear
+  id: NFVisitorEngineer
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitEngineering
+    shoes: ClothingShoesBootsWork
+    gloves: ClothingHandsGlovesColorYellow
+    head: ClothingHeadHatHardhatYellow
+    eyes: ClothingEyesGlassesMeson
+    outerClothing: ClothingOuterWinterEngi
+
+- type: startingGear
+  id: NFVisitorEngineerAlt
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSeniorEngineer
+    shoes: ClothingShoesBootsWork
+    gloves: ClothingHandsGlovesColorYellow
+    head: ClothingHeadHatBeretEngineering
+    eyes: ClothingEyesGlassesMeson
+
+# endregion Engineering Gear
+# region Medical Gear
+
+- type: startingGear
+  id: NFVisitorChemist
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitChemistry
+    shoes: ClothingShoesColorOrange
+    gloves: ClothingHandsGlovesLatex
+    eyes: ClothingEyesGlassesChemical
+    outerClothing: ClothingOuterCoatLabChem
+
+- type: startingGear
+  id: NFVisitorChemistAlt
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitChemistry
+    shoes: ClothingShoesColorOrange
+    head: ClothingHeadHatPaper
+    eyes: ClothingEyesGlassesChemical
+    outerClothing: ClothingOuterWinterChem
+
+- type: startingGear
+  id: NFVisitorGeneticist
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitGenetics
+    shoes: ClothingShoesColorBlue
+    gloves: ClothingHandsGlovesNitrile
+    head: ClothingHeadBandGrey
+    eyes: ClothingEyesHudMedical
+    outerClothing: ClothingOuterCoatLabGene
+
+- type: startingGear
+  id: NFVisitorGeneticistAlt
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitGenetics
+    shoes: ClothingShoesColorBlue
+    gloves: ClothingHandsGlovesLatex
+    head: ClothingHeadHatBeretBrigmedic
+    eyes: ClothingEyesHudMedical
+    outerClothing: ClothingOuterWinterGen
+
+- type: startingGear
+  id: NFVisitorVirologist
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitVirology
+    shoes: ClothingShoesColorGreen
+    gloves: ClothingHandsGlovesLatex
+    head: ClothingHeadMirror
+    eyes: ClothingEyesHudMedical
+    outerClothing: ClothingOuterCoatLabViro
+
+- type: startingGear
+  id: NFVisitorVirologistAlt
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitVirology
+    shoes: ClothingShoesColorGreen
+    gloves: ClothingHandsGlovesNitrile
+    head: ClothingHeadHatBeretSeniorPhysician
+    neck: ClothingNeckStethoscope
+    eyes: ClothingEyesHudMedical
+    outerClothing: ClothingOuterWinterViro
+
+- type: startingGear
+  id: NFVisitorMedicalDoctor
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitMedicalDoctor
+    shoes: ClothingShoesColorWhite
+    gloves: ClothingHandsGlovesNitrile
+    head: ClothingHeadHatCorpsoft
+    neck: ClothingNeckStethoscope
+    eyes: ClothingEyesHudMedical
+    outerClothing: ClothingOuterCoatLab
+
+- type: startingGear
+  id: NFVisitorMedicalDoctorAlt
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitMedicalDoctor
+    shoes: ClothingShoesBootsWinterMed
+    gloves: ClothingHandsGlovesLatex
+    head: ClothingHeadHatBeretMedic
+    neck: ClothingNeckStethoscope
+    eyes: ClothingEyesHudMedical
+    outerClothing: ClothingOuterWinterMed
+
+- type: startingGear
+  id: NFVisitorDentist
+  equipment:
+    jumpsuit: UniformScrubsColorBlue
+    shoes: ClothingShoesColorBlue
+    gloves: ClothingHandsGlovesLatex
+    head: ClothingHeadHatSurgcapBlue
+    mask: ClothingMaskBreathMedical
+    eyes: ClothingEyesGlasses
+
+- type: startingGear
+  id: NFVisitorPsychologist
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitPsychologist
+    shoes: ClothingShoesLeather
+    head: ClothingHeadHatMagician
+    neck: ClothingNeckTieRed
+    eyes: ClothingEyesHudMedical
+
+- type: startingGear
+  id: NFVisitorPsychologistAlt
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitPsychologist
+    shoes: ClothingShoesLeather
+    belt: ClothingBeltMedicalFilled
+    eyes: ClothingEyesHudMedical
+
+- type: startingGear
+  id: NFVisitorParamedic
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitParamedicNT
+    shoes: ClothingShoesSwat
+    gloves: ClothingHandsGlovesLatex
+    head: ClothingHeadHatParamedicsoft
+    neck: ClothingNeckStethoscope
+    eyes: ClothingEyesHudMedical
+    outerClothing: ClothingOuterWinterPara
+
+- type: startingGear
+  id: NFVisitorParamedicAlt
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitParamedic
+    shoes: ClothingShoesBootsWork
+    gloves: ClothingHandsGlovesNitrile
+    head: ClothingHeadHatParamedicsoftFlipped
+    neck: ClothingNeckStethoscope
+    eyes: ClothingEyesHudMedical
+    outerClothing: ClothingOuterCoatParamedicWB
+
+- type: startingGear
+  id: NFVisitorMedicalIntern
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorWhite
+    shoes: ClothingShoesColorWhite
+    head: ClothingHeadBandGreen
+    eyes: ClothingEyesHudMedical
+
+- type: startingGear
+  id: NFVisitorMedicalInternAlt
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorWhite
+    shoes: ClothingShoesColorWhite
+    head: ClothingHeadBandBlue
+    eyes: ClothingEyesHudMedical
+
+- type: startingGear
+  id: NFVisitorScrubsPurple
+  equipment:
+    jumpsuit: UniformScrubsColorPurple
+    shoes: ClothingShoesColorRed
+    gloves: ClothingHandsGlovesLatex
+    head: ClothingHeadHatSurgcapPurple
+    eyes: ClothingEyesHudMedical
+
+- type: startingGear
+  id: NFVisitorScrubsGreen
+  equipment:
+    jumpsuit: UniformScrubsColorGreen
+    shoes: ClothingShoesColorGreen
+    gloves: ClothingHandsGlovesLatex
+    head: ClothingHeadHatSurgcapGreen
+    eyes: ClothingEyesHudMedical
+
+- type: startingGear
+  id: NFVisitorScrubsBlue
+  equipment:
+    jumpsuit: UniformScrubsColorBlue
+    shoes: ClothingShoesColorBlue
+    gloves: ClothingHandsGlovesNitrile
+    head: ClothingHeadHatSurgcapBlue
+    eyes: ClothingEyesHudMedical
+
+# endregion Medical Gear
+# region Science Gear
+
+- type: startingGear
+  id: NFVisitorResearchAssistant
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorPurple
+    shoes: ClothingShoesColorBlack
+    head: ClothingHeadPaperSack
+    eyes: ClothingEyesGlasses
+
+- type: startingGear
+  id: NFVisitorResearchAssistantAlt
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCasualPurple
+    shoes: ClothingShoesColorBlack
+    neck: ClothingNeckTieSci
+    eyes: ClothingEyesGlasses
+
+- type: startingGear
+  id: NFVisitorScientist
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitScientistFormal
+    shoes: ClothingShoesColorPurple
+    head: ClothingHeadHatBeretRND
+    eyes: ClothingEyesGlasses
+
+- type: startingGear
+  id: NFVisitorScientistAlt
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitScientist
+    shoes: ClothingShoesBootsWinterSci
+    head: ClothingHeadHatPurplesoft
+    neck: ClothingNeckTieSci
+    eyes: ClothingEyesGlasses
+
+# endregion Science Gear
+# region Civilian Gear
+
+- type: startingGear
+  id: NFVisitorBartender
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitBartender
+    shoes: ClothingShoesColorBlack
+    head: ClothingHeadHatTophat
+    eyes: ClothingEyesGlassesSunglasses
+    outerClothing: ClothingOuterArmorBasicSlim
+
+- type: startingGear
+  id: NFVisitorBartenderAlt
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitBartenderPurple
+    shoes: ClothingShoesColorBlack
+    head: ClothingHeadHatBowlerHat
+    neck: ClothingNeckTieSci
+    eyes: ClothingEyesHudBeer
+    outerClothing: ClothingOuterWinterBar
+
+- type: startingGear
+  id: NFVisitorBotanist
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitHydroponics
+    shoes: ClothingShoesColorGreen
+    head: ClothingHeadBandGreen
+
+- type: startingGear
+  id: NFVisitorBotanistAlt
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitHydroponics
+    shoes: ClothingShoesColorGreen
+    head: Bucket
+
+- type: startingGear
+  id: NFVisitorBoxer
+  equipment:
+    jumpsuit: UniformShortsRedWithTop
+    shoes: ClothingShoesColorBlack
+    gloves: ClothingHandsGlovesBoxingBlue
+
+- type: startingGear
+  id: NFVisitorBoxerAlt
+  equipment:
+    jumpsuit: UniformShortsRedWithTop
+    shoes: ClothingShoesColorBlack
+    gloves: ClothingHandsGlovesBoxingRed
+
+- type: startingGear
+  id: NFVisitorChaplain
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitChaplain
+    shoes: ClothingShoesColorBlack
+    head: ClothingHeadHatPlaguedoctor
+    mask: ClothingMaskPlague
+    outerClothing: ClothingOuterPlagueSuit
+
+- type: startingGear
+  id: NFVisitorChaplainAlt
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitChaplain
+    shoes: ClothingShoesColorBlack
+    head: ClothingHeadHatHoodNunHood
+    outerClothing: ClothingOuterNunRobe
+
+- type: startingGear
+  id: NFVisitorChef
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitChef
+    shoes: ClothingShoesChef
+    head: ClothingHeadHatChef
+    outerClothing: ClothingOuterJacketChef
+
+- type: startingGear
+  id: NFVisitorChefAlt
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitChef
+    shoes: ClothingShoesColorBlack
+    head: ClothingHeadHatChef
+    outerClothing: ClothingOuterWinterChef
+
+- type: startingGear
+  id: NFVisitorClown
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitClown
+    shoes: ClothingShoesClown
+    mask: ClothingMaskClown
+
+- type: startingGear
+  id: NFVisitorJanitor
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitJanitor
+    shoes: ClothingShoesGaloshes
+    gloves: ClothingHandsGlovesJanitor
+    head: ClothingHeadFishCap
+    outerClothing: ClothingOuterWinterJani
+
+- type: startingGear
+  id: NFVisitorJanitorAlt
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitJanitor
+    shoes: ClothingShoesColorBlack
+    gloves: ClothingHandsGlovesJanitor
+    head: ClothingHeadHatHoodBioJanitor
+    outerClothing: ClothingOuterBioJanitor
+
+- type: startingGear
+  id: NFVisitorLawyerAltA
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitLawyerBlack
+    shoes: ClothingShoesColorBlack
+    head: ClothingHeadHatFedoraGrey
+    neck: ClothingNeckLawyerbadge
+
+- type: startingGear
+  id: NFVisitorLawyerAltB
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitLawyerBlue
+    shoes: ClothingShoesLeather
+    head: ClothingHeadHatFedoraBrown
+    neck: ClothingNeckLawyerbadge
+
+- type: startingGear
+  id: NFVisitorLawyerAltC
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitLawyerRed
+    shoes: ClothingShoesColorRed
+    head: ClothingHeadHatCowboyBrown
+    neck: ClothingNeckLawyerbadge
+
+- type: startingGear
+  id: NFVisitorLawyerAltD
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitLawyerPurple
+    shoes: ClothingShoesSnakeskinBoots
+    gloves: ClothingHandsGlovesColorWhite
+    head: ClothingHeadHatBeaverHat
+    neck: ClothingNeckLawyerbadge
+
+- type: startingGear
+  id: NFVisitorLawyerAltE
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitLawyerGood
+    shoes: ClothingShoesLeather
+    head: ClothingHeadHatCorpsoft
+    neck: ClothingNeckLawyerbadge
+
+- type: startingGear
+  id: NFVisitorLibrarian
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitLibrarian
+    shoes: ClothingShoesBootsLaceup
+    neck: ClothingNeckScarfStripedGreen
+    eyes: ClothingEyesGlassesJamjar
+
+- type: startingGear
+  id: NFVisitorLibrarianAlt
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCurator
+    shoes: ClothingShoesBootsLaceup
+    head: ClothingHeadHatGreyFlatcap
+    eyes: ClothingEyesGlasses
+
+- type: startingGear
+  id: NFVisitorMusicianFancyAltA
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitMusician
+    shoes: ClothingShoesBootsLaceup
+    eyes: ClothingEyesGlassesCheapSunglasses
+
+- type: startingGear
+  id: NFVisitorMusicianFancyAltB
+  equipment:
+    jumpsuit: ClothingUniformRandomShirt
+    shoes: ClothingShoesColorBrown
+    eyes: ClothingEyesGlassesCheapSunglasses
+
+- type: startingGear
+  id: NFVisitorMusicianRelaxedAltA
+  equipment:
+    jumpsuit: ClothingUniformRandomShirt
+    shoes: ClothingShoesColorBlack
+    eyes: ClothingEyesGlassesCheapSunglasses
+
+- type: startingGear
+  id: NFVisitorMusicianRelaxedAltB
+  equipment:
+    jumpsuit: ClothingUniformRandomShirt
+    shoes: ClothingShoesWizard
+    head: ClothingHeadRastaHat
+    eyes: ClothingEyesGlassesCheapSunglasses
+
+- type: startingGear
+  id: NFVisitorMusicianMariachi
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorTeal
+    shoes: ClothingShoesColorBrown
+    head: ClothingHeadHatSombrero
+    eyes: ClothingEyesGlassesCheapSunglasses
+    outerClothing: ClothingOuterPoncho
+
+- type: startingGear
+  id: NFVisitorMime
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitMime
+    shoes: ClothingShoesColorWhite
+    gloves: ClothingHandsGlovesColorWhite
+    head: ClothingHeadBandBlack
+    mask: ClothingMaskMime
+    eyes: ClothingEyesGlassesCheapSunglasses
+
+- type: startingGear
+  id: NFVisitorMimeAlt
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitMime
+    shoes: ClothingShoesColorWhite
+    gloves: ClothingHandsGlovesColorWhite
+    mask: ClothingMaskMime
+    eyes: ClothingEyesGlassesCheapSunglasses
+    outerClothing: ClothingOuterWinterMime
+
+- type: startingGear
+  id: NFVisitorReporter
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitReporter
+    shoes: ClothingShoesLeather
+
+- type: startingGear
+  id: NFVisitorReporterAlt
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitJournalist
+    shoes: ClothingShoesColorBrown
+
+- type: startingGear
+  id: NFVisitorServiceWorker
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitBartender
+    shoes: ClothingShoesColorBlack
+    head: ClothingHeadBandBlue
+
+- type: startingGear
+  id: NFVisitorServiceWorkerAlt
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorBlack
+    shoes: ClothingShoesColorBlack
+    head: ClothingHeadBandBlack
+    outerClothing: ClothingOuterApronBar
+
+- type: startingGear
+  id: NFVisitorZookeeper
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSafari
+    shoes: ClothingShoesBootsSalvage
+    head: ClothingHeadSafari
+
+- type: startingGear
+  id: NFVisitorZookeeperAlt
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSafari
+    shoes: ClothingShoesBootsWork
+    head: ClothingHeadSafari
+
+# endregion Civilian Gear

@@ -3,7 +3,7 @@ bounty-contracts-author = {$name} ({$job})
 bounty-contracts-unknown-author-name = Unknown
 bounty-contracts-unknown-author-job = Unknown
 
-# Caregories
+# Categories
 bounty-contracts-category-criminal = Wanted Criminal
 bounty-contracts-category-vacancy = Job Vacancy
 bounty-contracts-category-construction = Construction

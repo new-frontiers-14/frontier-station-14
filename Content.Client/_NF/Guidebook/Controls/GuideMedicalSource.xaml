@@ -1,0 +1,36 @@
+<BoxContainer xmlns="https://spacestation14.io"
+              Orientation="Horizontal"
+              HorizontalAlignment="Stretch"
+              HorizontalExpand="True"
+              Margin="0 0 0 5">
+    <BoxContainer Name="ReactantsContainer" Orientation="Vertical" HorizontalExpand="True" VerticalAlignment="Center">
+        <TextureRect HorizontalAlignment="Center"
+                     Name="SourceTexture"
+                     Access="Public"/>
+        <!-- Using rich label here because apparently normal labels do not support soft wrap -->
+        <RichTextLabel Name="SourceLabel"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               Access="Public"
+               Margin="2 0 0 0"/>
+    </BoxContainer>
+    <BoxContainer Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+        <BoxContainer Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalExpand="True" Name="ProcessingTextures">
+        </BoxContainer>
+        <RichTextLabel Name="ProcessingLabel"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               Access="Public"
+               Margin="2 0 0 0"/>
+    </BoxContainer>
+    <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalAlignment="Center">
+        <TextureRect HorizontalAlignment="Center"
+                     Name="OutputsTexture"
+                     Access="Public"/>
+        <RichTextLabel Name="OutputsLabel"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               Access="Public"
+               Margin="2 0 0 0"/>
+    </BoxContainer>
+</BoxContainer>
