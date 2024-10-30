@@ -1,0 +1,35 @@
+# Wallmount mass scanner telescreen
+- type: construction
+  name: mass scanner telescreen
+  id: ComputerRadarTelescreen
+  graph: ComputerRadarTelescreen
+  startNode: start
+  targetNode: Telescreen
+  category: construction-category-utilities
+  description: "A computer for detecting nearby bodies, displaying them by position and mass."
+  icon:
+    sprite: Structures/Machines/computers.rsi
+    state: telescreen_frame
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: true
+  conditions:
+  - !type:WallmountCondition {}
+
+# Wallmount advanced radar telescreen
+- type: construction
+  name: radar telescreen
+  id: ComputerAdvancedRadarTelescreen
+  graph: ComputerAdvancedRadarTelescreen
+  startNode: start
+  targetNode: Telescreen
+  category: construction-category-utilities
+  description: "This advanced radar lets you detect far away objects for an increased tactical advantage."
+  icon:
+    sprite: Structures/Machines/computers.rsi
+    state: telescreen_frame
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: true
+  conditions:
+  - !type:WallmountCondition {}
