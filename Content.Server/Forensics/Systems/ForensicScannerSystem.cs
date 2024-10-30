@@ -29,10 +29,12 @@ using Content.Server.Cargo.Components; // Frontier
 using Content.Server._NF.SectorServices; // Frontier
 using Content.Shared.FixedPoint; // Frontier
 using Robust.Shared.Configuration; // Frontier
-using Content.Shared._NF.CCVar;
-using Content.Shared._NF.Bank;
-using Content.Shared.Bank.Components;
+using Content.Shared._NF.CCVar; // Frontier
+using Content.Shared._NF.Bank; // Frontier
+using Content.Shared.Bank.Components; // Frontier
 using Content.Server.Bank; // Frontier
+using Content.Shared._NF.Bank.BUI; // Frontier
+using Content.Server._NF.Bank; // Frontier
 
 // todo: remove this stinky LINQy
 
@@ -60,6 +62,7 @@ namespace Content.Server.Forensics
         [Dependency] private readonly SectorServiceSystem _service = default!; // Frontier
         [Dependency] private readonly IConfigurationManager _cfg = default!; // Frontier
         [Dependency] private readonly BankSystem _bank = default!; // Frontier
+        [Dependency] private readonly SectorLedgerSystem _sectorLedger = default!; // Frontier
 
         // Frontier: payout constants
         // Temporary values, sane defaults, will be overwritten by CVARs.
@@ -98,7 +101,7 @@ namespace Content.Server.Forensics
         // Frontier: add dead drop rewards
         /// <summary>
         ///     Rewards the NFSD department for scanning a dead drop.
-        ///     Gives some amount of spesos and FUC to the 
+        ///     Gives some amount of spesos and FUC to the
         /// </summary>
         private void GiveReward(EntityUid uidOrigin, EntityUid target, int spesoAmount, FixedPoint2 fucAmount, string msg)
         {
@@ -106,7 +109,10 @@ namespace Content.Server.Forensics
             _audio.PlayPvs(_audio.GetSound(confirmSound), uidOrigin);
 
             if (spesoAmount > 0)
+            {
                 _bank.TrySectorDeposit(SectorBankAccount.Nfsd, spesoAmount);
+                _sectorLedger.AddLedgerEntry(SectorBankAccount.Nfsd, LedgerEntryType.AntiSmugglingBonus, spesoAmount);
+            }
             else
                 spesoAmount = 0;
 

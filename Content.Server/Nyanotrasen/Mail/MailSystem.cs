@@ -48,6 +48,8 @@ using Content.Server._NF.SectorServices;
 using Content.Server.Bank;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Bank.Components;
+using Content.Shared._NF.Bank.BUI;
+using Content.Server._NF.Bank; // Frontier
 
 namespace Content.Server.Mail
 {
@@ -73,6 +75,7 @@ namespace Content.Server.Mail
         [Dependency] private readonly MetaDataSystem _metaDataSystem = default!;
         [Dependency] private readonly IEntityManager _entManager = default!; // Frontier
         [Dependency] private readonly SectorServiceSystem _sectorService = default!; // Frontier
+        [Dependency] private readonly SectorLedgerSystem _sectorLedger = default!; // Frontier
         [Dependency] private readonly BankSystem _bank = default!;
 
         // DeltaV - system that keeps track of mail and cargo stats
@@ -250,6 +253,7 @@ namespace Content.Server.Mail
             component.IsProfitable = false;
 
             _bank.TrySectorDeposit(SectorBankAccount.Frontier, component.Bounty);
+            _sectorLedger.AddLedgerEntry(SectorBankAccount.Frontier, LedgerEntryType.MailDelivered, component.Bounty);
         }
 
         private void OnExamined(EntityUid uid, MailComponent component, ExaminedEvent args)
@@ -301,7 +305,8 @@ namespace Content.Server.Mail
                 _appearanceSystem.SetData(uid, MailVisuals.IsPriorityInactive, true);
 
             // Frontier: no need for this, but this uses our sector bank accounts
-            //_bank.TryBankWithdraw(SectorBankAccount.Frontier, component.Penalty); // Frontier - Dont remove money.
+            //_bank.TrySectorWithdraw(SectorBankAccount.Frontier, component.Penalty); // Frontier - Dont remove money.
+            //_sectorLedger.AddLedgerEntry(SectorBankAccount.Frontier, LedgerEntryType.MailPenalty, component.Penalty);
         }
 
         private void OnDestruction(EntityUid uid, MailComponent component, DestructionEventArgs args)

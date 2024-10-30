@@ -29,6 +29,7 @@ public sealed partial class BankSystem : SharedBankSystem
         SubscribeLocalEvent<BankAccountComponent, PlayerAttachedEvent>(OnPlayerAttached);
         SubscribeLocalEvent<BankAccountComponent, PlayerDetachedEvent>(OnPlayerDetached);
         SubscribeLocalEvent<PlayerJoinedLobbyEvent>(OnPlayerLobbyJoin);
+        SubscribeLocalEvent<SectorBankComponent, ComponentInit>(OnSectorInit);
     }
 
     public override void Update(float frameTime)

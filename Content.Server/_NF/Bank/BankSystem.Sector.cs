@@ -1,5 +1,6 @@
 using System.Runtime.InteropServices;
 using Content.Server._NF.SectorServices;
+using Content.Shared._NF.Bank.BUI;
 using Content.Shared.Bank;
 using Content.Shared.Bank.Components;
 using JetBrains.Annotations;
@@ -13,14 +14,21 @@ public sealed partial class BankSystem : SharedBankSystem
     // The interval between sector account increases, in seconds.
     private const float AccountIncreaseInterval = 10.0f;
 
+    // Creates ledger entries for starting account balances.
+    private void OnSectorInit(EntityUid entity, SectorBankComponent component, ComponentInit args)
+    {
+        foreach (var account in component.Accounts)
+        {
+            _sectorLedger.AddLedgerEntry(account.Key, LedgerEntryType.TickingIncome, account.Value.Balance);
+        }
+    }
+
     /// <summary>
-    /// Attempts to remove money from a character's bank account.
-    /// This should always be used instead of attempting to modify the BankAccountComponent directly.
-    /// When successful, the entity's BankAccountComponent will be updated with their current balance.
+    /// Attempts to remove money from a sector bank account.
     /// </summary>
-    /// <param name="mobUid">The UID that the bank account is attached to, typically the player controlled mob</param>
-    /// <param name="amount">The integer amount of which to decrease the bank account</param>
-    /// <returns>true if the transaction was successful, false if it was not</returns>
+    /// <param name="account">The account to be withdrawn from</param>
+    /// <param name="amount">The amount of spesos to remove from the account.</param>
+    /// <returns>true if the transaction was successful, false if it was not.</returns>
     [PublicAPI]
     public bool TrySectorWithdraw(SectorBankAccount account, int amount)
     {
@@ -55,7 +63,7 @@ public sealed partial class BankSystem : SharedBankSystem
     }
 
     /// <summary>
-    /// Attempts to add money to a character's bank account. This should always be used instead of attempting to modify the bankaccountcomponent directly
+    /// Attempts to add money to a sector bank account.
     /// </summary>
     /// <param name="mobUid">The UID that the bank account is connected to, typically the player controlled mob</param>
     /// <param name="amount">The amount of spesos to remove from the bank account</param>
@@ -137,7 +145,9 @@ public sealed partial class BankSystem : SharedBankSystem
         foreach (var accountId in bank.Accounts.Keys)
         {
             var accountRef = CollectionsMarshal.GetValueRefOrNullRef(bank.Accounts, accountId);
-            accountRef.Balance += seconds * accountRef.IncreasePerSecond;
+            var amount = seconds * accountRef.IncreasePerSecond;
+            accountRef.Balance += amount;
+            _sectorLedger.AddLedgerEntry(accountId, LedgerEntryType.TickingIncome, amount);
         }
     }
 }

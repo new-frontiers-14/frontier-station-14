@@ -21,6 +21,8 @@ using Content.Server.Administration.Logs;
 using Content.Server.Cargo.Components;
 using Content.Shared.Database;
 using Robust.Shared.Audio.Systems;
+using Content.Server._NF.Bank;
+using Content.Shared._NF.Bank.BUI;
 
 namespace Content.Server.Bank;
 
@@ -33,6 +35,7 @@ public sealed partial class BankSystem
     [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
     [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
     [Dependency] private readonly IAdminLogManager _adminLogger = default!;
+    [Dependency] private readonly SectorLedgerSystem _sectorLedger = default!;
 
     private void InitializeATM()
     {
@@ -154,6 +157,7 @@ public sealed partial class BankSystem
             var tax = (int)(deposit * component.TaxCoefficient);
             tax = int.Clamp(tax, 0, deposit);
             TrySectorDeposit(component.TaxAccount, tax);
+            _sectorLedger.AddLedgerEntry(component.TaxAccount, LedgerEntryType.BlackMarketAtmTax, tax);
             deposit -= tax; // Charge the user whether or not the deposit went through.
         }
 

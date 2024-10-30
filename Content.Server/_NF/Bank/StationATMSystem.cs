@@ -16,6 +16,7 @@ using Content.Shared.Access.Systems;
 using Content.Shared.Database;
 using Robust.Shared.Containers;
 using System.Linq;
+using Content.Shared._NF.Bank.BUI;
 
 namespace Content.Server.Bank;
 
@@ -90,6 +91,8 @@ public sealed partial class BankSystem
                 new StationBankATMMenuInterfaceState(stationBank, hasAccess, deposit));
             return;
         }
+        var enumVal = Enum.TryParse(typeof(LedgerEntryType), $"StationWithdrawal{args.Reason}", true, out var result) ? result : LedgerEntryType.StationWithdrawalOther;
+        _sectorLedger.AddLedgerEntry(component.Account, (LedgerEntryType)enumVal, args.Amount);
 
         ConsolePopup(args.Actor, Loc.GetString("bank-atm-menu-withdraw-successful"));
         PlayConfirmSound(uid, component);
@@ -202,6 +205,8 @@ public sealed partial class BankSystem
                 new StationBankATMMenuInterfaceState(stationBank, hasAccess, deposit));
             return;
         }
+        var enumVal = Enum.TryParse(typeof(LedgerEntryType), $"StationDeposit{args.Reason}", true, out var result) ? result : LedgerEntryType.StationWithdrawalOther;
+        _sectorLedger.AddLedgerEntry(component.Account, (LedgerEntryType)enumVal, args.Amount);
 
         ConsolePopup(args.Actor, Loc.GetString("bank-atm-menu-deposit-successful"));
         PlayConfirmSound(uid, component);
@@ -233,9 +238,10 @@ public sealed partial class BankSystem
         // Get whether our actor has access or not.
         TryComp(uid, out UserInterfaceComponent? ui);
         var actorSet = _uiSystem.GetActors((uid, ui), BankATMMenuUiKey.ATM);
-        bool hasAccess = false;
-        if (actorSet != null)
-            hasAccess = _access.IsAllowed(actorSet.First(), uid);
+        // Nobody accessing UI
+        if (actorSet.Count() <= 0)
+            return;
+        var hasAccess = _access.IsAllowed(actorSet.First(), uid);
 
         if (component.CashSlot.ContainerSlot?.ContainedEntity is not { Valid: true })
         {

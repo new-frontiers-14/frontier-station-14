@@ -18,6 +18,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using System.Linq;
+using Content.Shared._NF.Bank.BUI; // Frontier
 
 namespace Content.Server.Cargo.Systems
 {
@@ -230,6 +231,7 @@ namespace Content.Server.Cargo.Systems
                 foreach (var taxAccount in component.TaxAccounts)
                 {
                     _bankSystem.TrySectorDeposit(taxAccount, tax);
+                    _sectorLedger.AddLedgerEntry(taxAccount, LedgerEntryType.CargoTax, tax);
                 }
             }
             _bankSystem.TryBankWithdraw(player, cost);

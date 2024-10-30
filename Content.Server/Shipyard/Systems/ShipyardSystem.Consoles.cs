@@ -44,6 +44,8 @@ using Content.Shared.Access;
 using Content.Shared.Tiles;
 using Content.Server._NF.Smuggling.Components;
 using Content.Shared._NF.ShuttleRecords;
+using Content.Shared._NF.Bank.BUI;
+using Content.Server._NF.Bank;
 
 namespace Content.Server.Shipyard.Systems;
 
@@ -67,6 +69,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     [Dependency] private readonly UserInterfaceSystem _userInterface = default!;
     [Dependency] private readonly EntityManager _entityManager = default!;
     [Dependency] private readonly ShuttleRecordsSystem _shuttleRecordsSystem = default!;
+    [Dependency] private readonly SectorLedgerSystem _sectorLedger = default!;
 
     public void InitializeConsole()
     {
@@ -298,7 +301,10 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             if (tax > 0)
             {
                 foreach (var account in component.TaxAccounts)
+                {
                     _bank.TrySectorDeposit(account, tax);
+                    _sectorLedger.AddLedgerEntry(account, LedgerEntryType.BlackMarketShipyardTax, tax);
+                }
             }
         }
 
@@ -435,6 +441,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
                 foreach (var account in component.TaxAccounts)
                 {
                     _bank.TrySectorDeposit(account, tax);
+                    _sectorLedger.AddLedgerEntry(account, LedgerEntryType.BlackMarketShipyardTax, tax);
                 }
 
                 bill -= tax;

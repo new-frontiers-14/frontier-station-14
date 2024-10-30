@@ -1,28 +1,33 @@
 - type: sectorService
   id: PirateBounties
   components:
-    - type: SectorPirateBountyDatabase
+  - type: SectorPirateBountyDatabase
 
 - type: sectorService
   id: MailMetrics
   components:
-    - type: SectorLogisticStats
+  - type: SectorLogisticStats
 
 - type: sectorService
   id: ShuttleRecords
   components:
-    - type: SectorShuttleRecords
+  - type: SectorShuttleRecords
 
 - type: sectorService
   id: BankAccounts
   components:
-    - type: SectorBank
-      accounts:
-        Frontier:
-          !type:SectorBankAccountInfo
-          balance: 8000
-          increasePerSecond: 1
-        Nfsd:
-          !type:SectorBankAccountInfo
-          balance: 8000
-          increasePerSecond: 25 # 90K per hour, about enough for minimum wage for the default NFSD size
+  - type: SectorBank
+    accounts:
+      Frontier:
+        !type:SectorBankAccountInfo
+        balance: 8000
+        increasePerSecond: 1
+      Nfsd:
+        !type:SectorBankAccountInfo
+        balance: 8000
+        increasePerSecond: 25 # 90K per hour, about enough for minimum wage for the default NFSD size
+
+- type: sectorService
+  id: Ledger
+  components:
+  - type: SectorLedger

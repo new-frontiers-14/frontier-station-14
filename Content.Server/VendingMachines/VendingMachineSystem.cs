@@ -34,6 +34,8 @@ using Robust.Shared.Timing;
 using Robust.Shared.Audio.Systems;
 using Content.Server.Administration.Logs; // Frontier
 using Content.Shared.Database; // Frontier
+using Content.Shared._NF.Bank.BUI;
+using Content.Server._NF.Bank; // Frontier
 
 namespace Content.Server.VendingMachines
 {
@@ -53,6 +55,7 @@ namespace Content.Server.VendingMachines
         [Dependency] private readonly CargoSystem _cargo = default!; // Frontier
         [Dependency] private readonly PopupSystem _popupSystem = default!; // Frontier
         [Dependency] private readonly IAdminLogManager _adminLogger = default!; // Frontier
+        [Dependency] private readonly SectorLedgerSystem _sectorLedger = default!; // Frontier
 
         private const float WallVendEjectDistanceFromWall = 1f;
 
@@ -371,6 +374,7 @@ namespace Content.Server.VendingMachines
                         foreach (var account in component.TaxAccounts)
                         {
                             _bankSystem.TrySectorDeposit(account, tax);
+                            _sectorLedger.AddLedgerEntry(account, LedgerEntryType.VendorTax, tax);
                         }
                     }
 

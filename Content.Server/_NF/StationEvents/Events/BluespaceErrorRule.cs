@@ -13,6 +13,8 @@ using Content.Shared.Mobs.Components;
 using Robust.Shared.Random;
 using Content.Server._NF.Salvage;
 using Content.Server.Bank;
+using Content.Server._NF.Bank;
+using Content.Shared._NF.Bank.BUI;
 
 namespace Content.Server.StationEvents.Events;
 
@@ -26,6 +28,7 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
     [Dependency] private readonly PricingSystem _pricing = default!;
     [Dependency] private readonly CargoSystem _cargo = default!;
     [Dependency] private readonly BankSystem _bank = default!;
+    [Dependency] private readonly SectorLedgerSystem _sectorLedger = default!;
 
     private List<(Entity<TransformComponent> Entity, EntityUid MapUid, Vector2 LocalPosition)> _playerMobs = new();
 
@@ -123,9 +126,11 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
             _transform.SetCoordinates(mob.Entity.Owner, new EntityCoordinates(mob.MapUid, mob.LocalPosition));
         }
 
+        var reward = (int)(gridValue * component.RewardFactor);
         foreach (var account in component.RewardAccounts)
         {
-            _bank.TrySectorDeposit(account, (int)(gridValue * component.RewardFactor));
+            _bank.TrySectorDeposit(account, reward);
+            _sectorLedger.AddLedgerEntry(account, LedgerEntryType.BluespaceReward, reward);
         }
     }
 }
