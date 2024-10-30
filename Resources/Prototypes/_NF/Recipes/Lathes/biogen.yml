@@ -2,13 +2,6 @@
 
 - type: latheRecipe
   abstract: true
-  id: BioGenMaterialsRecipe
-  category: Materials
-  applyMaterialDiscount: false
-  completetime: 1
-
-- type: latheRecipe
-  abstract: true
   id: BioGenFoodRecipe
   category: Food
   completetime: 1
@@ -34,14 +27,14 @@
 - type: latheRecipe
   id: NFBioGenWoodPlank
   result: MaterialWoodPlank1
-  parent: BioGenMaterialsRecipe
+  parent: BaseMaterialsNoDiscountRecipe # Base prototype is in Resources\Prototypes\_NF\Recipes\Lathes\sheet.yml
   materials:
     Biomass: 15
 
 - type: latheRecipe
   id: NFBioGenSheetPlastic
   result: SheetPlastic1
-  parent: BioGenMaterialsRecipe
+  parent: BaseMaterialsNoDiscountRecipe
   completetime: 10
   materials:
     Biomass: 40
@@ -49,7 +42,7 @@
 - type: latheRecipe
   id: NFBioGenPaperSheet
   result: SheetPaper1
-  parent: BioGenMaterialsRecipe
+  parent: BaseMaterialsNoDiscountRecipe
   materials:
     Biomass: 10
 
