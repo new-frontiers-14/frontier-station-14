@@ -770,7 +770,7 @@
   - type: EmpOnTrigger
     range: 5
     energyConsumption: 2700000
-    disableDuration: 10
+    disableDuration: 60 # Frontier 10<60
   - type: Ammo
     muzzleFlash: null
   - type: PointLight
@@ -987,7 +987,7 @@
       - HideContextMenu
 
 - type: entity
-  name: laser bolt 
+  name: laser bolt
   id: BulletLaser
   parent: BaseBullet
   categories: [ HideSpawnMenu ]
@@ -1033,7 +1033,7 @@
   - type: ProjectileSpread
     proto: BulletLaser
     count: 5 #65 heat damage if you hit all your shots, but wide spread
-    spread: 30 
+    spread: 30
 
 - type: entity
   name: narrow laser barrage
@@ -1055,7 +1055,7 @@
   - type: ProjectileSpread
     proto: BulletDisablerSmg
     count: 3 #bit stronger than a disabler if you hit your shots you goober, still not a 2 hit stun though
-    spread: 9 
+    spread: 9
 
 # Frontier projectiles
 # The game wont allow them to sit under _NF.
@@ -1098,7 +1098,7 @@
   - type: EmpOnTrigger
     range: 0.3
     energyConsumption: 2700000
-    disableDuration: 10
+    disableDuration: 60 # Frontier 10<60
 
 - type: entity
   id: BulletRocketEmp
@@ -1154,7 +1154,7 @@
   - type: EmpOnTrigger
     range: 2
     energyConsumption: 2700000
-    disableDuration: 30
+    disableDuration: 60 # Frontier 30<60
 
 - type: entity
   id: BulletCannonBallEmp
