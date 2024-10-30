@@ -3,29 +3,29 @@
                       xmlns:custom="clr-namespace:Content.Client.Administration.UI.CustomControls">
     <BoxContainer Orientation="Vertical" VerticalExpand="True" HorizontalExpand="True">
         <ScrollContainer VerticalExpand="True" HorizontalExpand="True" VScrollEnabled="True" ReturnMeasure="True">
-            <BoxContainer Orientation="Vertical" HorizontalExpand="True" Margin="5">
+            <BoxContainer Orientation="Vertical" HorizontalExpand="True" HorizontalAlignment="Stretch">
                 <BoxContainer Orientation="Horizontal" VerticalExpand="True" HorizontalExpand="True">
                     <!-- Dynamically filled income/expense lists -->
-                    <BoxContainer Orientation="Vertical" Name="IncomeList" VerticalExpand="True" HorizontalExpand="True"/>
+                    <BoxContainer Orientation="Vertical" Name="IncomeList" VerticalExpand="True" HorizontalExpand="True" HorizontalAlignment="Stretch"/>
                     <custom:VSeparator Margin="5 0 5 0"/>
-                    <BoxContainer Orientation="Vertical" Name="ExpenseList" VerticalExpand="True" HorizontalExpand="True"/>
+                    <BoxContainer Orientation="Vertical" Name="ExpenseList" VerticalExpand="True" HorizontalExpand="True" HorizontalAlignment="Stretch"/>
                 </BoxContainer>
-            </BoxContainer>
-            <BoxContainer Orientation="Vertical" HorizontalExpand="True" Margin="5" SetHeight="30">
                 <BoxContainer Orientation="Horizontal" VerticalExpand="True" HorizontalExpand="True">
-                    <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
+                    <BoxContainer Orientation="Horizontal" HorizontalExpand="True" HorizontalAlignment="Stretch">
                         <Label Name="TotalIncome"
                             Text="{Loc 'ledger-total-income'}" />
                         <Label Name="IncomeValue"
                             Text="{Loc 'ledger-no-income'}"
+                            HorizontalExpand="True"
                             HorizontalAlignment="Right"/>
                     </BoxContainer>
                     <custom:VSeparator Margin="5 0 5 0"/>
-                    <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
+                    <BoxContainer Orientation="Horizontal" HorizontalExpand="True" HorizontalAlignment="Stretch" SetHeight="30">
                         <Label Name="TotalExpenses"
                             Text="{Loc 'ledger-total-expenses'}" />
                         <Label Name="ExpensesValue"
                             Text="{Loc 'ledger-no-expenses'}"
+                            HorizontalExpand="True"
                             HorizontalAlignment="Right"/>
                     </BoxContainer>
                 </BoxContainer>
