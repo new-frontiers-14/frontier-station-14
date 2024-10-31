@@ -1,11 +1,14 @@
 ## UI
 adventure-list-start = [color=gold]NT Galactic Bank[/color]
-adventure-mode-list-profit = made a total profit of [color=#d19e5e]{$amount}[/color].
-adventure-mode-list-loss = lost a total of [color=#659cc9]{$amount}[/color].
-adventure-mode-top-profit = made a total profit of {$amount}.
-adventure-mode-top-loss = lost a total of {$amount}.
-adventure-list-high = This Shift's Top Earners:
-adventure-list-low = This Shift's Biggest Spenders:
+adventure-list-profit = made a total profit of [color=#d19e5e]{$amount}[/color].
+adventure-list-loss = lost a total of [color=#659cc9]{$amount}[/color].
+
+adventure-webhook-list-start = NT Galactic Bank
+adventure-webhook-list-high = This Shift's Top Earners:
+adventure-webhook-list-low = This Shift's Biggest Spenders:
+adventure-webhook-top-profit = made a total profit of {$amount}.
+adventure-webhook-top-loss = lost a total of {$amount}.
+
 adventure-title = New Frontier Adventure Mode
 adventure-description = Join a ship crew or buy your own and explore, research, salvage, or haul your way to riches!
 currency = Spesos
