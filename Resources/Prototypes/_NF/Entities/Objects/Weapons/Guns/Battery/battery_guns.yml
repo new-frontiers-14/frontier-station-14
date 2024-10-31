@@ -107,7 +107,7 @@
   parent: [ BaseC1Contraband, WeaponLaserGun ]
   name: laser pistol
   suffix: Frontier
-  description: Slightly outdated design of civilian-grade laser pistol.
+  description: An older model of civilian-grade laser pistol.
   components:
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Battery/laser_pistol.rsi
@@ -134,7 +134,7 @@
   parent: [ BaseC1Contraband, BaseWeaponBatterySmall ]
   name: holoflare pistol
   suffix: Frontier
-  description: A modification of civilian-grade laser pistol that allows to project holoflares onto surfaces.
+  description: A modification of a civilian-grade laser pistol that can project holoflares onto surfaces.
   components:
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Battery/holoflare_pistol.yml
@@ -171,7 +171,7 @@
     startingCharge: 720
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 10  
+    autoRechargeRate: 10
   - type: ProjectileBatteryAmmoProvider
     proto: HoloFlareCyan
     fireCost: 240
@@ -198,8 +198,8 @@
     visuals:
       enum.EnergyGunFireModeVisuals.State:
         Firemode:
-          cyan: { state: mode-cyan }
-          red: { state: mode-red }
-          yellow: { state: mode-yellow }
+          Cyan: { state: mode-cyan }
+          Red: { state: mode-red }
+          Yellow: { state: mode-yellow }
   - type: StaticPrice
     price: 250
