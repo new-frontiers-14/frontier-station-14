@@ -107,7 +107,7 @@ public sealed partial class BotanySystem : EntitySystem
 
         var name = Loc.GetString(proto.Name);
         var noun = Loc.GetString(proto.Noun);
-        var val = Loc.GetString("botany-seed-packet-name", ("seedName", name), ("seedNoun", noun));
+        var val = Loc.GetString(proto.PacketName, ("seedName", name), ("seedNoun", noun)); // Frontier: "botany-seed-packet-name"<proto.PacketName
         _metaData.SetEntityName(seed, val);
 
         // try to automatically place in user's other hand
