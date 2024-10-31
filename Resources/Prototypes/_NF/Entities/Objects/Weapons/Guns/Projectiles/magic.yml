@@ -114,6 +114,7 @@
 # Fire magic
 # TODO: slow moving spread of fireballs, cluster fireball, cluster cluster fireball, fissure (entity, that shoots fireballs in every direction periodically)
 
+# Apprentice level "spells"
 - type: entity
   parent: BaseBulletTrigger
   id: BulletFireBolt
@@ -135,7 +136,7 @@
     fireStacks: 2
 
 - type: entity
-  id: BulletFireBoltSpread
+  id: BulletFireBoltSpreadSphere
   categories: [ HideSpawnMenu ]
   parent: BaseItem
   components:
@@ -143,7 +144,7 @@
     muzzleFlash: null
   - type: ProjectileSpread
     proto: BulletFireBolt
-    count: 6
-    spread: 35
+    count: 60
+    spread: 360
 
 # Cluster fire ball
