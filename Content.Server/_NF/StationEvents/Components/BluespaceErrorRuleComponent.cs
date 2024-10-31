@@ -21,7 +21,7 @@ public sealed partial class BluespaceErrorRuleComponent : Component
     /// The grid in question, set after starting the event
     /// </summary>
     [DataField]
-    public EntityUid? GridUid = null;
+    public List<EntityUid> GridsUid = null;
 
     /// <summary>
     /// If the grids gets deleted in the end

@@ -94,7 +94,7 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
 
                 EntityManager.AddComponents(spawned, group.AddComponents);
 
-                component.GridUid = spawned;
+                component.GridsUid += spawned.Value;
             }
         }
 
@@ -175,71 +175,74 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
     {
         base.Ended(uid, component, gameRule, args);
 
-        if (component.GridUid == null || !component.GridUid.Value.Valid)
-            return;
-
-        if (!EntityManager.TryGetComponent<TransformComponent>(component.GridUid, out var gridTransform))
+        foreach (var componentGridUid in component.GridsUid)
         {
-            Log.Error("bluespace error objective was missing transform component");
-            return;
-        }
+            if (componentGridUid == null || !componentGridUid.Value.Valid)
+                return;
 
-        if (gridTransform.GridUid is not EntityUid gridUid)
-        {
-            Log.Error("bluespace error has no associated grid?");
-            return;
-        }
-
-        if (component.Departure)
-        {
-            // Handle mobrestrictions getting deleted
-            var query = AllEntityQuery<NFSalvageMobRestrictionsComponent>();
-
-            while (query.MoveNext(out var salvUid, out var salvMob))
+            if (!EntityManager.TryGetComponent<TransformComponent>(componentGridUid, out var gridTransform))
             {
-                if (!salvMob.DespawnIfOffLinkedGrid)
+                Log.Error("bluespace error objective was missing transform component");
+                return;
+            }
+
+            if (gridTransform.GridUid is not EntityUid gridUid)
+            {
+                Log.Error("bluespace error has no associated grid?");
+                return;
+            }
+
+            if (component.Departure)
+            {
+                // Handle mobrestrictions getting deleted
+                var query = AllEntityQuery<NFSalvageMobRestrictionsComponent>();
+
+                while (query.MoveNext(out var salvUid, out var salvMob))
                 {
-                    var transform = Transform(salvUid);
-                    if (transform.GridUid != salvMob.LinkedGridEntity)
+                    if (!salvMob.DespawnIfOffLinkedGrid)
                     {
-                        RemComp<NFSalvageMobRestrictionsComponent>(salvUid);
-                        continue;
+                        var transform = Transform(salvUid);
+                        if (transform.GridUid != salvMob.LinkedGridEntity)
+                        {
+                            RemComp<NFSalvageMobRestrictionsComponent>(salvUid);
+                            continue;
+                        }
+                    }
+
+                    if (gridTransform.GridUid == salvMob.LinkedGridEntity)
+                    {
+                        QueueDel(salvUid);
                     }
                 }
 
-                if (gridTransform.GridUid == salvMob.LinkedGridEntity)
+                var mobQuery = AllEntityQuery<HumanoidAppearanceComponent, MobStateComponent, TransformComponent>();
+                _playerMobs.Clear();
+
+                while (mobQuery.MoveNext(out var mobUid, out _, out _, out var xform))
                 {
-                    QueueDel(salvUid);
+                    if (xform.GridUid == null || xform.MapUid == null || xform.GridUid != gridUid)
+                        continue;
+
+                    // Can't parent directly to map as it runs grid traversal.
+                    _playerMobs.Add(((mobUid, xform), xform.MapUid.Value, _transform.GetWorldPosition(xform)));
+                    _transform.DetachEntity(mobUid, xform);
                 }
-            }
 
-            var mobQuery = AllEntityQuery<HumanoidAppearanceComponent, MobStateComponent, TransformComponent>();
-            _playerMobs.Clear();
+                var gridValue = _pricing.AppraiseGrid(gridUid, null);
 
-            while (mobQuery.MoveNext(out var mobUid, out _, out _, out var xform))
-            {
-                if (xform.GridUid == null || xform.MapUid == null || xform.GridUid != gridUid)
-                    continue;
+                // Deletion has to happen before grid traversal re-parents players.
+                Del(gridUid);
 
-                // Can't parent directly to map as it runs grid traversal.
-                _playerMobs.Add(((mobUid, xform), xform.MapUid.Value, _transform.GetWorldPosition(xform)));
-                _transform.DetachEntity(mobUid, xform);
-            }
+                foreach (var mob in _playerMobs)
+                {
+                    _transform.SetCoordinates(mob.Entity.Owner, new EntityCoordinates(mob.MapUid, mob.LocalPosition));
+                }
 
-            var gridValue = _pricing.AppraiseGrid(gridUid, null);
-
-            // Deletion has to happen before grid traversal re-parents players.
-            Del(gridUid);
-
-            foreach (var mob in _playerMobs)
-            {
-                _transform.SetCoordinates(mob.Entity.Owner, new EntityCoordinates(mob.MapUid, mob.LocalPosition));
-            }
-
-            var queryBank = EntityQuery<StationBankAccountComponent>();
-            foreach (var account in queryBank)
-            {
-                _cargo.DeductFunds(account, (int)-(gridValue * component.NfsdRewardFactor));
+                var queryBank = EntityQuery<StationBankAccountComponent>();
+                foreach (var account in queryBank)
+                {
+                    _cargo.DeductFunds(account, (int)-(gridValue * component.NfsdRewardFactor));
+                }
             }
         }
     }
