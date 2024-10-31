@@ -94,7 +94,7 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
 
                 EntityManager.AddComponents(spawned, group.AddComponents);
 
-                component.GridsUid += spawned.Value;
+                component.GridsUid += spawned.Value; // TODO: FIX
             }
         }
 
