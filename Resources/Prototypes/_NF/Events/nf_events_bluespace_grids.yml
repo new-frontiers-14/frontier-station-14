@@ -17,6 +17,8 @@
   - type: BluespaceErrorRule
     groups:
       grid: !type:GridSpawnGroup
+        nameLoc:
+        - station-event-bluespace-name-SyndicateWeaponsCache
         minimumDistance: 1500
         maximumDistance: 2500
         addComponents:
@@ -25,6 +27,10 @@
           inherent: true
         - type: IFF
           color: "#E10F9B"
+        - type: Physics
+          bodyStatus: InAir
+          angularDamping: 999999
+          linearDamping: 999999
         paths:
         - /Maps/_NF/Bluespace/cache.yml
     nfsdRewardFactor: 1
@@ -48,6 +54,8 @@
   - type: BluespaceErrorRule
     groups:
       grid: !type:GridSpawnGroup
+        nameLoc:
+        - station-event-bluespace-name-SecureNTVault
         minimumDistance: 1500
         maximumDistance: 2500
         addComponents:
@@ -56,6 +64,10 @@
           inherent: true
         - type: IFF
           color: "#E10F9B"
+        - type: Physics
+          bodyStatus: InAir
+          angularDamping: 999999
+          linearDamping: 999999
         paths:
         - /Maps/_NF/Bluespace/vault.yml
     nfsdRewardFactor: 1
@@ -80,6 +92,8 @@
   - type: BluespaceErrorRule
     groups:
       grid: !type:GridSpawnGroup
+        nameLoc:
+        - station-event-bluespace-name-SecureNTVault
         minimumDistance: 1500
         maximumDistance: 2500
         addComponents:
@@ -88,6 +102,10 @@
           inherent: true
         - type: IFF
           color: "#E10F9B"
+        - type: Physics
+          bodyStatus: InAir
+          angularDamping: 999999
+          linearDamping: 999999
         paths:
         - /Maps/_NF/Bluespace/vaultsmall.yml
     nfsdRewardFactor: 1
@@ -110,6 +128,8 @@
   - type: BluespaceErrorRule
     groups:
       grid: !type:GridSpawnGroup
+        nameLoc:
+        - station-event-bluespace-name-UnidentifiedVessel
         minimumDistance: 1500
         maximumDistance: 2500
         addComponents:
@@ -118,6 +138,10 @@
           inherent: true
         - type: IFF
           color: "#E10F9B"
+        - type: Physics
+          bodyStatus: InAir
+          angularDamping: 999999
+          linearDamping: 999999
         paths:
         - /Maps/_NF/Bluespace/syndieftlintercept.yml
 
@@ -139,6 +163,8 @@
   - type: BluespaceErrorRule
     groups:
       grid: !type:GridSpawnGroup
+        nameLoc:
+        - station-event-bluespace-name-UnidentifiedVessel
         minimumDistance: 1500
         maximumDistance: 2500
         addComponents:
@@ -147,6 +173,10 @@
           inherent: true
         - type: IFF
           color: "#E10F9B"
+        - type: Physics
+          bodyStatus: InAir
+          angularDamping: 999999
+          linearDamping: 999999
         paths:
         - /Maps/_NF/Bluespace/wizardprobealt.yml
 
@@ -168,6 +198,8 @@
   - type: BluespaceErrorRule
     groups:
       grid: !type:GridSpawnGroup
+        nameLoc:
+        - station-event-bluespace-name-UnidentifiedVessel
         minimumDistance: 1500
         maximumDistance: 2500
         addComponents:
@@ -176,6 +208,10 @@
           inherent: true
         - type: IFF
           color: "#E10F9B"
+        - type: Physics
+          bodyStatus: InAir
+          angularDamping: 999999
+          linearDamping: 999999
         paths:
         - /Maps/_NF/Bluespace/bloodmoon.yml
 
@@ -196,6 +232,8 @@
   - type: BluespaceErrorRule
     groups:
       grid: !type:GridSpawnGroup
+        nameLoc:
+        - station-event-bluespace-name-Cave
         minimumDistance: 1500
         maximumDistance: 2500
         addComponents:
@@ -203,6 +241,10 @@
           enabled: true
           inherent: true
         - type: IFF
+        - type: Physics
+          bodyStatus: InAir
+          angularDamping: 999999
+          linearDamping: 999999
         paths:
         - /Maps/_NF/Bluespace/cave.yml
 
@@ -224,12 +266,11 @@
   - type: BluespaceErrorRule
     groups:
       grid: !type:GridSpawnGroup
+        nameLoc:
+        - station-event-bluespace-name-BrokenMcDelivery
         minimumDistance: 1500
         maximumDistance: 2500
         addComponents:
-        - type: Gravity
-          enabled: true
-          inherent: true
         - type: IFF
         paths:
         - /Maps/_NF/Bluespace/mcevent.yml

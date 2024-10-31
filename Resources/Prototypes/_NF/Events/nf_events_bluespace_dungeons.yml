@@ -12,18 +12,22 @@
     weight: 5
     duration: 120 # Temp numba
     maxDuration: 120 # Temp numba
-    WarningDurationLeft: 61 # Temp numba
+    warningDurationLeft: 60 # Temp numba
     reoccurrenceDelay: 480 # 8 hours
   - type: BluespaceErrorRule
     groups:
       vgroid: !type:DungeonSpawnGroup
+        nameDataset: names_borer
         minimumDistance: 1500
         maximumDistance: 2500
-        nameDataset: names_borer
         addComponents:
         - type: Gravity
           enabled: true
           inherent: true
         - type: IFF
+        - type: Physics
+          bodyStatus: InAir
+          angularDamping: 999999
+          linearDamping: 999999
         protos:
         - NFVGRoid

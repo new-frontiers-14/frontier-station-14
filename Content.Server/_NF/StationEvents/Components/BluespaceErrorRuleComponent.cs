@@ -23,13 +23,11 @@ public sealed partial class BluespaceErrorRuleComponent : Component
     [DataField]
     public EntityUid? GridUid = null;
 
-
-
-    // WarningPercentageLeft 20%
-
-    // WarningAnnucment
-
-    // Departure = true
+    /// <summary>
+    /// If the grids gets deleted in the end
+    /// </summary>
+    [DataField]
+    public bool Departure = true;
 
     /// <summary>
     /// Multiplier to apply to the remaining value of a grid, to be deposited in the station account for defending
@@ -55,6 +53,9 @@ public interface IBluespaceSpawnGroup
     /// Maximum distance to spawn away from the station.
     /// </summary>
     public float MaximumDistance { get; }
+
+    /// <inheritdoc />
+    public List<LocId> NameLoc { get; }
 
     /// <inheritdoc />
     public ProtoId<DatasetPrototype>? NameDataset { get; }
@@ -90,6 +91,9 @@ public sealed class BluespaceDungeonSpawnGroup : IBluespaceSpawnGroup
     public float MaximumDistance { get; }
 
     /// <inheritdoc />
+    public List<LocId> NameLoc { get; } = new();
+
+    /// <inheritdoc />
     public ProtoId<DatasetPrototype>? NameDataset { get; }
 
     /// <inheritdoc />
@@ -115,6 +119,7 @@ public sealed class BluespaceGridSpawnGroup : IBluespaceSpawnGroup
 
     /// <inheritdoc />
     public float MaximumDistance { get; }
+    public List<LocId> NameLoc { get; } = new();
     public ProtoId<DatasetPrototype>? NameDataset { get; }
     public int MinCount { get; set; } = 1;
     public int MaxCount { get; set; } = 1;

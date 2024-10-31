@@ -113,7 +113,7 @@ public abstract class StationEventSystem<T> : GameRuleSystem<T> where T : ICompo
             {
                 GameTicker.StartGameRule(uid, ruleData);
             }
-            else if (stationEvent.WarningAnnouncement != null && GameTicker.IsGameRuleActive(uid, ruleData) && !stationEvent.WarningAnnounced && (stationEvent.EndTime!.Value - curTime).TotalSeconds < stationEvent.WarningDurationLeft) // Frontier
+            else if (stationEvent.WarningAnnouncement != null && GameTicker.IsGameRuleActive(uid, ruleData) && !stationEvent.WarningAnnounced && (stationEvent.EndTime!.Value - curTime).TotalSeconds <= stationEvent.WarningDurationLeft) // Frontier
             {
                 Filter allPlayersInGame = Filter.Empty().AddWhere(GameTicker.UserHasJoinedGame); // we don't want to send to players who aren't in game (i.e. in the lobby)
                 ChatSystem.DispatchFilteredAnnouncement(allPlayersInGame, Loc.GetString(stationEvent.WarningAnnouncement), playSound: false, colorOverride: stationEvent.WarningAnnouncementColor);

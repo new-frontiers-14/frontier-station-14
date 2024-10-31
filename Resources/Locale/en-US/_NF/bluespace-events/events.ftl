@@ -25,3 +25,9 @@ station-event-bluespace-bloodmoon-end-announcement = In compliance with NanoTras
 
 station-event-bluespace-generic-ftl-start-announcement = Attention all NanoTrasen personnel! NanoTrasen Naval Command has detected an unidentified vessel entering the Frontier Sector. NanoTrasen-affiliated captains should approach with caution. NanoTrasen is not liable for damages sustained or loss of life.
 station-event-bluespace-generic-ftl-end-announcement = In compliance with NanoTrasen FTL traffic patterns, the unidentified vessel has been dissipated to ensure non-collision.
+
+station-event-bluespace-name-BrokenMcDelivery = McDelivery
+station-event-bluespace-name-Cave = Cave
+station-event-bluespace-name-UnidentifiedVessel = Unidentified Vessel
+station-event-bluespace-name-SecureNTVault = Secure NT Vault
+station-event-bluespace-name-SyndicateWeaponsCache = Syndicate Weapons Cache
