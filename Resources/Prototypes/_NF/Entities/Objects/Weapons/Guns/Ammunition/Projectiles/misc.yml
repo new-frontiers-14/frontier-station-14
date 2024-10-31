@@ -1,6 +1,6 @@
 - type: entity
   id: HoloFlareCyan
-  name: flare
+  name: cyan flare
   categories: [ HideSpawnMenu ]
   components:
   - type: Physics
@@ -21,7 +21,7 @@
     state: magicm_cyan
     scale: 0.3,0.3
   - type: TimedDespawn
-    lifetime: 900
+    lifetime: 240
   - type: AmbientSound
     enabled: true
     volume: -10
@@ -44,36 +44,28 @@
 
 - type: entity
   id: HoloFlareRed
-  name: flare
+  name: red flare
   parent: HoloFlareCyan
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
-    state: magicm_cyan
+    state: magicm_red
     scale: 0.3,0.3
-    color: red
+    color: "#ff8080"
   - type: PointLight
-    enabled: true
-    color: "#990000"
-    radius: 9.0
-    energy: 3.0
-    netsync: false
+    color: "#ff8080"
 
 - type: entity
   id: HoloFlareYellow
-  name: flare
+  name: yellow flare
   parent: HoloFlareCyan
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
-    state: magicm_cyan
+    state: magicm_yellow
     scale: 0.3,0.3
     color: yellow
   - type: PointLight
-    enabled: true
     color: yellow
-    radius: 9.0
-    energy: 3.0
-    netsync: false
