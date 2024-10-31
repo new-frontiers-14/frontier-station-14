@@ -1,5 +1,3 @@
-using Content.Server.Atmos.EntitySystems;
-
 namespace Content.Server._NF.Storage;
 
 /// <summary>
