@@ -48,8 +48,9 @@ public sealed class AnchorableStorageSystem : EntitySystem
             return;
 
         var entsToRemove = storage.StoredItems.Keys.Where(storedItem =>
-            HasComp<MindContainerComponent>(storedItem)
-            || HasComp<PseudoItemComponent>(storedItem)).ToList();
+                HasComp<MindContainerComponent>(storedItem)
+                || HasComp<PseudoItemComponent>(storedItem)
+            ).ToList();
 
         foreach (var removeUid in entsToRemove)
             _container.RemoveEntity(ent.Owner, removeUid);
