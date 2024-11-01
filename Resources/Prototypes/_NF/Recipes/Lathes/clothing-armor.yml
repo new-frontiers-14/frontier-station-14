@@ -1,0 +1,121 @@
+# Base prototypes
+
+- type: latheRecipe
+  abstract: true
+  id: NFBaseArmorRecipe
+  completetime: 5
+  category: ArmorNF
+  materials:
+    Durathread: 1200
+    Steel: 500
+    Plasteel: 500
+
+- type: latheRecipe
+  abstract: true
+  id: NFBaseHelmetRecipe
+  parent: NFBaseArmorRecipe
+  completetime: 3
+  materials:
+    Cloth: 100
+    Durathread: 100
+    Steel: 500
+    Plasteel: 500
+
+- type: latheRecipe
+  abstract: true
+  id: NFBaseMaskArmoredRecipe
+  parent: NFBaseArmorRecipe
+  completetime: 2
+  materials:
+    Durathread: 300
+    Plastic: 200
+    Steel: 200
+
+# Recipes
+
+# Helmets
+- type: latheRecipe
+  id: ClothingHeadHelmetMercenary
+  parent: NFBaseHelmetRecipe
+  result: ClothingHeadHelmetMercenary
+
+- type: latheRecipe
+  id: ClothingHeadHelmetBasic
+  parent: NFBaseHelmetRecipe
+  result: ClothingHeadHelmetBasic
+
+# Vests
+- type: latheRecipe
+  id: ClothingOuterVestWebMercenary
+  parent: NFBaseArmorRecipe
+  result: ClothingOuterVestWebMercenary
+
+- type: latheRecipe
+  id: ClothingOuterVestWebMercenaryBlack
+  parent: NFBaseArmorRecipe
+  result: ClothingOuterVestWebMercenaryBlack
+
+- type: latheRecipe
+  id: ClothingOuterArmorBulletproofNF
+  parent: NFBaseArmorRecipe
+  result: ClothingOuterArmorBulletproof
+  materials:
+    Durathread: 500
+    Steel: 300
+    Plasteel: 1000
+
+- type: latheRecipe
+  id: ClothingOuterCoatBHTrench
+  parent: NFBaseArmorRecipe
+  result: ClothingOuterCoatBHTrench
+
+- type: latheRecipe
+  id: ClothingOuterArmorPunkRandomized
+  parent: NFBaseArmorRecipe
+  result: ClothingOuterArmorPunkRandomized
+
+- type: latheRecipe
+  id: ClothingOuterArmorPunkRed
+  parent: NFBaseArmorRecipe
+  result: ClothingOuterArmorPunkRed
+
+- type: latheRecipe
+  id: ClothingOuterArmorPunkGreen
+  parent: NFBaseArmorRecipe
+  result: ClothingOuterArmorPunkGreen
+
+- type: latheRecipe
+  id: ClothingOuterArmorPunkOrange
+  parent: NFBaseArmorRecipe
+  result: ClothingOuterArmorPunkOrange
+
+- type: latheRecipe
+  id: ClothingOuterArmorElitePunkRandomized
+  result: ClothingOuterArmorElitePunkRandomized
+  completetime: 5
+  category: ArmorNF
+  materials:
+    Durathread: 500
+    Steel: 300
+    Plasteel: 1000
+
+# Masks
+- type: latheRecipe
+  id: ClothingMaskGasMercenary
+  parent: NFBaseMaskArmoredRecipe
+  result: ClothingMaskGasMercenary
+
+- type: latheRecipe
+  id: ClothingMaskBreathMedicalSecurity
+  parent: NFBaseMaskArmoredRecipe
+  result: ClothingMaskBreathMedicalSecurity
+
+- type: latheRecipe
+  id: ClothingMaskGasSecurity
+  parent: NFBaseMaskArmoredRecipe
+  result: ClothingMaskGasSecurity
+
+- type: latheRecipe
+  id: ClothingMaskPunkHalf
+  parent: NFBaseMaskArmoredRecipe
+  result: ClothingMaskPunkHalf
