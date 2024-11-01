@@ -256,36 +256,6 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
 
         // Using invalid entity, we don't have a relevant entity to reference here.
         RaiseLocalEvent(EntityUid.Invalid, new StationsGeneratedEvent(), broadcast: true); // TODO: attach this to a meaningful entity.
-
-        // TODO: Remove this for new system
-        foreach (var dungeonProto in component.SpaceDungeons)
-        {
-            if (!_prototypeManager.TryIndex<DungeonConfigPrototype>(dungeonProto, out var dunGen))
-                continue;
-
-            var seed = _random.Next();
-            var offset = GetRandomPOICoord(3000f, 8500f, true);
-            if (!_map.TryLoad(_mapId, "/Maps/_NF/Dungeon/spaceplatform.yml", out var grids,
-                    new MapLoadOptions
-                    {
-                        Offset = offset
-                    }))
-            {
-                continue;
-            }
-
-            var mapGrid = EnsureComp<MapGridComponent>(grids[0]);
-            _shuttle.AddIFFFlag(grids[0], IFFFlags.HideLabel);
-            _console.WriteLine(null, $"dungeon spawned at {offset}");
-
-            string dungeonName = Loc.GetString("adventure-space-dungeon-name", ("dungeonPrototype", dungeonProto));
-            _meta.SetEntityName(grids[0], dungeonName);
-
-            //pls fit the grid I beg, this is so hacky
-            //its better now but i think i need to do a normalization pass on the dungeon configs
-            //because they are all offset. confirmed good size grid, just need to fix all the offsets.
-            _dunGen.GenerateDungeon(dunGen, dunGen.ID, grids[0], mapGrid, new Vector2i(0, 0), seed);
-            AddStationCoordsToSet(offset);
         }
     }
 
