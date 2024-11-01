@@ -71,3 +71,6 @@ ent-ClothingBackpackDebug3 = рюкзак-впердак
 ent-ClothingBackpackDebug4 = рюкзак-коекак
     .desc = Что это за херня?
     .suffix = Дебаг
+ent-ClothingBackpackElectropack = электропак
+    .desc = Бьёт током по сигналу. Используется для того, чтобы держать под контролем особо опасных преступников.
+    .suffix = СамостоятельноНеснимаемый

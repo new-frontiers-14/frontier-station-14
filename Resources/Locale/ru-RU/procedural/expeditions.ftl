@@ -23,7 +23,7 @@ salvage-expedition-desc-mining = Собирайте ресурсы в этой �
 salvage-expedition-desc-structure =
     { $count ->
         [one] Уничтожьте { $count } { $structure } в этой зоне.
-       *[other] Уничтожьте { $count } {MAKEPLURAL($structure)} в этой зоне.
+       *[other] Уничтожьте { $count } { $structure } в этой зоне.
     }
 salvage-expedition-desc-elimination = Убейте большое и опасное существо в этой зоне.
 salvage-expedition-type-Mining = Добыча
@@ -58,3 +58,21 @@ salvage-expedition-announcement-countdown-seconds =
 salvage-expedition-reward-description = Награда за завершение миссии
 salvage-expedition-announcement-dungeon = Подземелье расположено от вас на { $direction }.
 salvage-expedition-completed = Экспедиция окончена.
+
+salvage-light-mod-daylight = Дневной
+salvage-light-mod-evening = Вечерний
+salvage-light-mod-night = Ночной
+
+salvage-temperature-mod-room-temperature = Комнатная температура
+salvage-temperature-mod-hot = Жарко
+salvage-temperature-mod-high-temperature = Высокая температура
+salvage-temperature-mod-extreme-heat = Экстремально жарко
+salvage-temperature-mod-cold = Холодно
+salvage-temperature-mod-low-temperature = Низкая температура
+salvage-temperature-mod-extreme-cold = Экстремально холодно
+
+salvage-air-mod-no-atmosphere = Без атмосферы
+salvage-air-mod-breathable-atmosphere = Пригодная для дыхания атмосфера
+salvage-air-mod-dangerous-atmosphere = Опасная атмосфера
+salvage-air-mod-toxic-atmosphere = Токсичная атмосфера
+salvage-air-mod-volatile-atmosphere = Нестабильная атмосфера

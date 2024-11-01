@@ -4,7 +4,7 @@ job-name-brigmedic = Коронер
 job-name-cadet-nf = Кадет
 job-name-contractor = Авантюрист
 job-name-deputy = Рейнджер
-job-name-detective-nf = Детектив
+job-name-nf-detective = Детектив
 job-name-ertmailcarrier = Почтальон ОБР
 job-name-mercenary = Наёмник
 job-name-pilot = Пилот
@@ -15,6 +15,7 @@ job-name-security-guard = Охранник Аванпоста
 job-name-sheriff = Шериф
 job-name-stc = Диспетчер Аванпоста
 job-name-sr = Представитель Фронтира
+job-name-pal = Представитель Юридического Департамента
 # Role timers - Make these alphabetical or I cut you
 JobERTMailCarrier = ОБР почтальон
 JobMercenary = Наёмник

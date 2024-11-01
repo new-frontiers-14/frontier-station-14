@@ -1,4 +1,10 @@
 ent-CrossbowBloodCult = арбалет кровавого культа
-    .desc = Оригинально корявый, стреляющий прямо и точно
+    .desc = { ent-BaseCrossbow.desc }
 ent-CrossbowBloodCultHand = ручной арбалет культа крови
-    .desc = { ent-CrossbowBloodCult.desc }
+    .desc = { ent-BaseCrossbow.desc }
+ent-CrossbowModern = модернизированный арбалет
+    .desc = { ent-BaseCrossbow.desc }
+ent-CrossbowModernHand = модернизированный ручной арбалет
+    .desc = { ent-BaseCrossbow.desc }
+ent-CrossbowImprovisedHand = самодельный ручной арбалет
+    .desc = { ent-BaseCrossbow.desc }

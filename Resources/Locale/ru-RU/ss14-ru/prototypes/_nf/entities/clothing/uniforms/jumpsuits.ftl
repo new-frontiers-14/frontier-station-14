@@ -48,3 +48,5 @@ ent-ClothingUniformJumpsuitPirateLuffy = Подозрительная пират
     .desc = Довольно подозрительно выглядящий комплект пиратской одежды.
 ent-ClothingUniformJumpsuitPirateSlops = Потрёпанная пиратская форма
     .desc = Потрёпанная, но удобная форма для грабежа сектора.
+ent-ClothingUniformJumpsuitPublicAffairsLiaison = костюм Представителя ЮД
+    .desc = Накрахмаленный и отглаженный костюм для сотрудника юридического департамента.

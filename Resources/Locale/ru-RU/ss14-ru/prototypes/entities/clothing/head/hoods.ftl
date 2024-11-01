@@ -84,3 +84,5 @@ ent-ClothingHeadHatHoodWinterWarden = капюшон зимней куртки �
     .desc = { ent-ClothingHeadHatHoodWinterBase.desc }
 ent-ClothingHeadHatHoodWinterWeb = капюшон паутинной зимней куртки
     .desc = { ent-ClothingHeadHatHoodWinterBase.desc }
+ent-ClothingHeadHatHoodVoidCloak = капюшон плаща пустоты
+    .desc = Капюшон плаща пустоты. Для тех, кто перешел на тёмную сторону силы.

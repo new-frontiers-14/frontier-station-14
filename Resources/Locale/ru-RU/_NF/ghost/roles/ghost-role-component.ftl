@@ -24,3 +24,5 @@ ghost-role-information-hovertaxibot-name = Ховертаксибот
 ghost-role-information-hovertaxibot-description = Доставляй пассажиров до их точки назначения, но удостоверься, что им есть чем дышать!
 ghost-role-information-clugg-name = Умник
 ghost-role-information-clugg-description = 	Угг! Умник обожает есть мясо. Найди новый дом неподалеку от космического астероида и отправляйся на большую охоту.
+ghost-role-information-yipyip-name = Ип-Ип
+ghost-role-information-yipyip-description = Печально известный лаунж-ящер и бармен в ресторане Мамины Багамы. Этот кобольд-выпивоха живёт, чтобы обслуживать своих клиентов.

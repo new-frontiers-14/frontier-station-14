@@ -9,7 +9,7 @@ smuggling-report-nfsd-general = Обнаружена активность тай
 smuggling-report-nfsd-alternative = Обнаружена тайная деятельность синдиката, возможные местоположения: {$location1} or {$location2}.
 smuggling-report-nfsd-specific = Обнаружена активность тайника Синдиката {$location}.
 smuggling-report-nfsd-pod = Обнаружена десантная капсула Синдиката. Предполагаемое местоположение: ({$x}, {$y})
-smuggling-report-pirate = Эй, грабитель! Десантная капсула синдиката была обнаружена поблизости: ({$x}, {$y})
+smuggling-report-pirate = Шевелитесь сухопутные крысы! Десантная капсула синдиката была обнаружена поблизости: ({$x}, {$y})
 
 deaddrop-faxed-hint-name = подозрительный факс
 deaddrop-faxed-hint-content = 

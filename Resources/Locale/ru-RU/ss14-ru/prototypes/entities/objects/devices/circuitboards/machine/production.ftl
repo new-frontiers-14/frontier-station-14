@@ -156,3 +156,7 @@ ent-ReagentGrinderIndustrialMachineCircuitboard = промышленный из�
     .desc = { ent-BaseMachineCircuitboard.desc }
 ent-BiogeneratorMachineCircuitboard = биогенератор (машинная плата)
     .desc = Машинная плата для биогенератора.
+ent-CutterMachineCircuitboard = резательный станок (машинная плата)
+    .desc = { ent-BaseMachineCircuitboard.desc }
+ent-StationAnchorCircuitboard = станционный якорь (машинная плата)
+    .desc = Печатная плата для станционного якоря.
