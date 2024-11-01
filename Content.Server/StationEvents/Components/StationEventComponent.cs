@@ -137,7 +137,7 @@ public sealed partial class StationEventComponent : Component
     ///     Frontier: Warning timer.
     /// </summary>
     [DataField]
-    public int WarningDurationLeft = 601; // 5 minutes
+    public int WarningDurationLeft = 300; // 5 minutes
 
     [DataField]
     public bool WarningAnnounced;
