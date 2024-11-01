@@ -10,7 +10,6 @@ using Content.Shared.GameTicking.Components;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Timing; // Frontier
 
 namespace Content.Server.StationEvents.Events;
 
@@ -24,8 +23,7 @@ public abstract class StationEventSystem<T> : GameRuleSystem<T> where T : ICompo
     [Dependency] protected readonly ChatSystem ChatSystem = default!;
     [Dependency] protected readonly SharedAudioSystem Audio = default!;
     [Dependency] protected readonly StationSystem StationSystem = default!;
-    [Dependency] protected readonly IGameTiming Timing = default!; // Frontier
-    [Dependency] protected readonly RadioSystem RadioSystem = default!;
+    [Dependency] protected readonly RadioSystem RadioSystem = default!; // Frontier
 
     protected ISawmill Sawmill = default!;
 
@@ -53,7 +51,7 @@ public abstract class StationEventSystem<T> : GameRuleSystem<T> where T : ICompo
             ChatSystem.DispatchFilteredAnnouncement(allPlayersInGame, Loc.GetString(stationEvent.StartAnnouncement), playSound: false, colorOverride: stationEvent.StartAnnouncementColor);
 
         if (stationEvent.StartRadioAnnouncement != null) // Frontier
-            RadioSystem.SendRadioMessage(uid, stationEvent.StartRadioAnnouncement, stationEvent.StartRadioAnnouncementChannel, uid, escapeMarkup: false);
+            RadioSystem.SendRadioMessage(uid, stationEvent.StartRadioAnnouncement, stationEvent.StartRadioAnnouncementChannel, uid, escapeMarkup: false); // Frontier
 
         Audio.PlayGlobal(stationEvent.StartAudio, allPlayersInGame, true);
     }
@@ -95,7 +93,7 @@ public abstract class StationEventSystem<T> : GameRuleSystem<T> where T : ICompo
             ChatSystem.DispatchFilteredAnnouncement(allPlayersInGame, Loc.GetString(stationEvent.EndAnnouncement), playSound: false, colorOverride: stationEvent.EndAnnouncementColor);
 
         if (stationEvent.EndRadioAnnouncement != null) // Frontier
-            RadioSystem.SendRadioMessage(uid, stationEvent.EndRadioAnnouncement, stationEvent.EndRadioAnnouncementChannel, uid, escapeMarkup: false);
+            RadioSystem.SendRadioMessage(uid, stationEvent.EndRadioAnnouncement, stationEvent.EndRadioAnnouncementChannel, uid, escapeMarkup: false); // Frontier
 
         Audio.PlayGlobal(stationEvent.EndAudio, allPlayersInGame, true);
     }
@@ -109,8 +107,6 @@ public abstract class StationEventSystem<T> : GameRuleSystem<T> where T : ICompo
     {
         base.Update(frameTime);
 
-        var curTime = Timing.CurTime; // Frontier
-
         var query = EntityQueryEnumerator<StationEventComponent, GameRuleComponent>();
         while (query.MoveNext(out var uid, out var stationEvent, out var ruleData))
         {
@@ -121,7 +117,7 @@ public abstract class StationEventSystem<T> : GameRuleSystem<T> where T : ICompo
             {
                 GameTicker.StartGameRule(uid, ruleData);
             }
-            else if (!stationEvent.WarningAnnounced && (stationEvent.EndTime!.Value - curTime).TotalSeconds <= stationEvent.WarningDurationLeft && GameTicker.IsGameRuleActive(uid, ruleData)) // Frontier
+            else if (!stationEvent.WarningAnnounced && stationEvent.EndTime != null && (stationEvent.EndTime!.Value - Timing.CurTime).TotalSeconds <= stationEvent.WarningDurationLeft && GameTicker.IsGameRuleActive(uid, ruleData)) // Frontier: Added Warning for events ending soon
             {
                 Filter allPlayersInGame = Filter.Empty().AddWhere(GameTicker.UserHasJoinedGame); // we don't want to send to players who aren't in game (i.e. in the lobby)
                 if (stationEvent.WarningRadioAnnouncement != null)

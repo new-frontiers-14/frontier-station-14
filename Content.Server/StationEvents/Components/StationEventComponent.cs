@@ -133,6 +133,9 @@ public sealed partial class StationEventComponent : Component
     [DataField]
     public Dictionary<ProtoId<JobPrototype>, int> RequiredJobs = new();
 
+    /// <summary>
+    ///     Frontier: Warning timer.
+    /// </summary>
     [DataField]
     public int WarningDurationLeft = 601; // 5 minutes
 
