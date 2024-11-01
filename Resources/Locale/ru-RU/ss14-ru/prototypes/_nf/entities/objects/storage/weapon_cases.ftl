@@ -13,3 +13,6 @@ ent-WeaponCaseShortAmmo = ящик боеприпасов
 ent-WeaponCaseShortExplosives = ящик взрывчатки
     .desc = Ящик для хранения взрывчатки.
     .suffix = Короткий
+ent-WeaponCaseShortDocuments = кейс для документов
+    .desc = Усиленный корпус для хранения важных документов.
+    .suffix = Короткий

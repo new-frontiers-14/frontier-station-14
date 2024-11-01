@@ -15,3 +15,6 @@ ent-RubberStampDoctor = штамп врача
 ent-RubberStampEngineer = штамп инженера
     .suffix = DO NOT MAP
     .desc = { ent-RubberStampBase.desc }
+ent-RubberStampPal = штамп представителя юридического департамента
+    .suffix = DO NOT MAP
+    .desc = { ent-RubberStampBase.desc }

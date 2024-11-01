@@ -40,3 +40,5 @@ ent-ClothingBeltSuspenders = подтяжки
     .desc = Для поддержания штанов.
 ent-ClothingBeltWand = пояс для палочек
     .desc = Пояс, предназначенный для хранения различных волшебных палочек. Поясная сумка, полная экзотической магии.
+ent-ClothingBeltSuspendersBlack = чёрные подтяжки
+    .desc = { ent-ClothingBeltSuspendersRed.desc }

@@ -1,10 +1,13 @@
 ## UI
+adventure-list-start = [color=gold]Галактический Банк NT[/color]
+adventure-list-profit = Прибыль составила: [color=#d19e5e]{$amount}[/color].
+adventure-list-loss = Убыток составил: [color=#659cc9]{$amount}[/color].
 
-adventure-list-start = Галактический Банк NT
-adventure-mode-profit-text = прибыль составила: { " " }
-adventure-mode-loss-text = убыток составил: { " " }
-adventure-list-high = Больше всего заработали:
-adventure-list-low = Больше всего потратили:
+adventure-webhook-list-start = Галактический Банк NT
+adventure-webhook-list-high = Больше всего заработали:
+adventure-webhook-list-low = Больше всего потратили:
+adventure-webhook-top-profit = Прибыль составила: {$amount}.
+adventure-webhook-top-loss = Убыток составил: {$amount}.
 adventure-title = Исследование Фронтира
 adventure-description = Исследуйте неизведанные уголки космоса, проводите научные исследования, занимайтесь спасательными операциями или транспортировкой грузов и прокладывайте свой путь к богатству!
 currency = Кредиты

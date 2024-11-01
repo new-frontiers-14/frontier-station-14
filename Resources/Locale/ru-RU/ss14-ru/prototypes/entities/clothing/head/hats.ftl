@@ -160,3 +160,7 @@ ent-ClothingHeadHatStrawHat = соломенная шляпа
     .desc = Модная шляпа для жарких деньков! Не рекомендуется носить около источников огня.
 ent-ClothingHeadHatBeretMedic = берет врача
     .desc = Белый берет, призывающий вас к чистоте.
+ent-ClothingHeadHatSecurityTrooper = шляпа патрульного
+    .desc = Широкополая шляпа Патрульных Nanotrasen, идёт в комплекте с чехлом, но вы его потеряли.
+ent-ClothingHeadHatHolyWatermelon = арбузный ореол
+    .desc = Святые угодники.

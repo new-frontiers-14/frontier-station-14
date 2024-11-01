@@ -99,3 +99,6 @@ ent-WallChromiteCobblebrick = хромитовая булыжниковая ст
     .desc = { ent-WallCobblebrick.desc }
 ent-WallAndesiteCobblebrick = андезитовая булыжниковая стена
     .desc = { ent-WallCobblebrick.desc }
+ent-WallPlastitaniumDiagonalIndestructible = пластитановая стена
+    .desc = { ent-WallShuttleDiagonal.desc }
+    .suffix = Диагональ, Неразрушимое

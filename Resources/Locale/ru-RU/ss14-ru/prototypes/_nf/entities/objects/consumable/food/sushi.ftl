@@ -6,3 +6,7 @@ ent-FoodMealAvocadoSushi = суши с авокадо
     .desc = Откуда взялись водоросли?
 ent-FoodMealAvocadoSushiSlice = ломтик суши с авокадо
     .desc = { ent-FoodMealAvocadoSushi.desc }
+ent-FoodMealGasSafeSushiSlice = суши с заправки
+    .desc = Стоит ли ради этого рисковать?
+ent-FoodMealGasBadSushiSlice = { ent-FoodMealGasSafeSushiSlice }
+    .desc = { ent-FoodMealGasSafeSushiSlice.desc }

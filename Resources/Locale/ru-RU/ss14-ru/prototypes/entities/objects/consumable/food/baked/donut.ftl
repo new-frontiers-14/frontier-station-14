@@ -53,3 +53,7 @@ ent-FoodDonutJellySlugcat = желейный слизнекотовый понч
 ent-FoodDonutPoison = { ent-FoodDonutPink }
     .desc = { ent-FoodDonutPink.desc }
     .suffix = Яд
+ent-FoodDonutBluePumpkin = синетыквенный пончик
+    .desc = Отлично сочетается с кружкой успокаивающего напитка из синей тыквы.
+ent-FoodDonutJellyBluePumpkin = синетыквенный желейный пончик
+    .desc = Отлично сочетается с кружкой успокаивающего напитка из синей тыквы.

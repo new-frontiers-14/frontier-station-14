@@ -64,3 +64,7 @@ ent-FoodBreadTwoSlice = два ломтика
     .desc = Классика.
 ent-MobBreadDog = хлебака
     .desc = Это хлеб. Это собака. Это... хлебака?
+ent-FoodBreadCotton = хлопковый хлеб
+    .desc = Хлеб, но для ниан.
+ent-FoodBreadCottonSlice = ломтик хлопкового хлеба
+    .desc = Кусочек вкуснейшего (наверное) хлопкового хлеба.

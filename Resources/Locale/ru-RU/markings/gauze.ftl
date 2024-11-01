@@ -66,3 +66,5 @@ marking-GauzeMothLowerLegRight-gauze_moth_lowerleg_r = Инсектоид, Би�
 marking-GauzeMothLowerLegRight = Инсектоид, Бинт, Перевязь голени (Правый)
 marking-GauzeMothLowerLegLeft-gauze_moth_lowerleg_l = Инсектоид, Бинт, Перевязь голени (Левый)
 marking-GauzeMothLowerLegLeft = Инсектоид, Бинт, Перевязь голени (Левый)
+marking-GauzeHead-gauze_head = Марлевая повязка на голову
+marking-GauzeHead = Марлевая повязка на голову
