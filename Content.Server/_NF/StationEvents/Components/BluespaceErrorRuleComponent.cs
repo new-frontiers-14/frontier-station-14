@@ -5,6 +5,7 @@ using Content.Shared.Dataset;
 using Content.Shared.Procedural;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using Microsoft.EntityFrameworkCore.Query;
 
 namespace Content.Server.StationEvents.Components;
 
@@ -24,13 +25,14 @@ public sealed partial class BluespaceErrorRuleComponent : Component
     public List<EntityUid> GridsUid = new();
 
     /// <summary>
-    /// If the grids gets deleted in the end
+    /// If true, the grids are deleted at the end of the event.  If false, the grids are left in the map.
     /// </summary>
     [DataField]
-    public bool Departure = true;
+    public bool DeleteGridsOnEnd = true;
 
     /// <summary>
-    /// Multiplier to apply to the remaining value of a grid, to be deposited in the station account for defending
+    /// Multiplier to apply to the remaining value of a grid, to be deposited in the station account for defending the grids.
+    /// Note:
     /// </summary>
     [DataField]
     public float NfsdRewardFactor = 0f;

@@ -139,6 +139,9 @@ public sealed partial class StationEventComponent : Component
     [DataField]
     public int WarningDurationLeft = 300; // 5 minutes
 
+    /// <summary>
+    ///     Frontier: True if the warning has already been sent off.
+    /// </summary>
     [DataField]
     public bool WarningAnnounced;
 }

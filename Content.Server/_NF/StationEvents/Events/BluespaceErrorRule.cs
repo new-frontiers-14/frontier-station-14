@@ -15,8 +15,6 @@ using Content.Server.GameTicking;
 using Content.Server.Procedural;
 using Robust.Shared.Prototypes;
 using Content.Shared.Salvage;
-using Robust.Shared.Collections;
-using Robust.Shared.Utility;
 
 namespace Content.Server.StationEvents.Events;
 
@@ -48,7 +46,7 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
         if (!_mapSystem.TryGetMap(GameTicker.DefaultMap, out var mapUid))
             return;
 
-        var spawnCoords = new EntityCoordinates(mapUid.Value, 0, 0);
+        var spawnCoords = new EntityCoordinates(mapUid.Value, Vector2.Zero);
 
         // Spawn on a dummy map and try to FTL if possible, otherwise dump it.
         _mapSystem.CreateMap(out var mapId);
@@ -69,12 +67,12 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
                 switch (group)
                 {
                     case BluespaceDungeonSpawnGroup dungeon:
-                        if (!TryDungeonSpawn(spawnCoords, dungeon, out spawned))
+                        if (!TryDungeonSpawn(spawnCoords, mapId, ref dungeon, i, out spawned))
                             continue;
 
                         break;
                     case BluespaceGridSpawnGroup grid:
-                        if (!TryGridSpawn(spawnCoords, uid, mapId, grid, out spawned))
+                        if (!TryGridSpawn(spawnCoords, uid, mapId, ref grid, i, out spawned))
                             continue;
 
                         break;
@@ -101,23 +99,26 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
         _mapManager.DeleteMap(mapId);
     }
 
-    private bool TryDungeonSpawn(EntityCoordinates spawnCoords, BluespaceDungeonSpawnGroup group, out EntityUid spawned)
+    private bool TryDungeonSpawn(EntityCoordinates spawnCoords, MapId mapId, ref BluespaceDungeonSpawnGroup group, int i, out EntityUid spawned)
     {
         spawned = EntityUid.Invalid;
 
-        // Frontier: handle empty prototype list, _random.Pick throws
+        // handle empty prototype list, _random.Pick throws
         if (group.Protos.Count <= 0)
             return false;
-        // End Frontier
 
-        var dungeonProtoId = _random.Pick(group.Protos);
+        // Enforce randomness with some round-robin-ish behaviour
+        int maxIndex = group.Protos.Count - (i % group.Protos.Count);
+        int index = _random.Next(maxIndex);
+        var dungeonProtoId = group.Protos[index];
+        // Move selected item to the end of the list
+        group.Protos.RemoveAt(index);
+        group.Protos.Add(dungeonProtoId);
 
         if (!_protoManager.TryIndex(dungeonProtoId, out var dungeonProto))
         {
             return false;
         }
-
-        _mapSystem.CreateMap(out var mapId);
 
         var spawnedGrid = _mapManager.CreateGridEntity(mapId);
 
@@ -128,7 +129,7 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
         return true;
     }
 
-    private bool TryGridSpawn(EntityCoordinates spawnCoords, EntityUid stationUid, MapId mapId, BluespaceGridSpawnGroup group, out EntityUid spawned)
+    private bool TryGridSpawn(EntityCoordinates spawnCoords, EntityUid stationUid, MapId mapId, ref BluespaceGridSpawnGroup group, int i, out EntityUid spawned)
     {
         spawned = EntityUid.Invalid;
 
@@ -138,18 +139,15 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
             return false;
         }
 
-        var paths = new ValueList<ResPath>();
+        // Enforce randomness with some round-robin-ish behaviour
+        int maxIndex = group.Paths.Count - (i % group.Paths.Count);
+        int index = _random.Next(maxIndex);
+        var path = group.Paths[index];
+        // Move selected item to the end of the list
+        group.Paths.RemoveAt(index);
+        group.Paths.Add(path);
 
-        // Round-robin so we try to avoid dupes where possible.
-        if (paths.Count == 0)
-        {
-            paths.AddRange(group.Paths);
-            _random.Shuffle(paths);
-        }
-
-        var path = paths[^1];
-        paths.RemoveAt(paths.Count - 1);
-
+        // Do we support maps with multiple grids?
         if (_loader.TryLoad(mapId, path.ToString(), out var ent) && ent.Count == 1)
         {
             if (HasComp<ShuttleComponent>(ent[0]))
@@ -192,7 +190,7 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
                 return;
             }
 
-            if (component.Departure)
+            if (component.DeleteGridsOnEnd)
             {
                 // Handle mobrestrictions getting deleted
                 var query = AllEntityQuery<NFSalvageMobRestrictionsComponent>();

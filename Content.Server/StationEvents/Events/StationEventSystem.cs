@@ -2,12 +2,12 @@ using Content.Server.Administration.Logs;
 using Content.Server.Chat.Systems;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Rules;
-using Content.Server.Radio.EntitySystems;
+using Content.Server.Radio.EntitySystems; // Frontier
 using Content.Server.Station.Systems;
 using Content.Server.StationEvents.Components;
 using Content.Shared.Database;
 using Content.Shared.GameTicking.Components;
-using Robust.Shared.Audio.Systems; // Frontier
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
@@ -117,20 +117,22 @@ public abstract class StationEventSystem<T> : GameRuleSystem<T> where T : ICompo
             {
                 GameTicker.StartGameRule(uid, ruleData);
             }
-            else if (!stationEvent.WarningAnnounced && stationEvent.EndTime != null && (stationEvent.EndTime!.Value - Timing.CurTime).TotalSeconds <= stationEvent.WarningDurationLeft && GameTicker.IsGameRuleActive(uid, ruleData)) // Frontier: Added Warning for events ending soon
-            {
-                Filter allPlayersInGame = Filter.Empty().AddWhere(GameTicker.UserHasJoinedGame); // we don't want to send to players who aren't in game (i.e. in the lobby)
-                if (stationEvent.WarningRadioAnnouncement != null)
-                    RadioSystem.SendRadioMessage(uid, stationEvent.WarningRadioAnnouncement, stationEvent.WarningRadioAnnouncementChannel, uid, escapeMarkup: false);
-                if (stationEvent.WarningAnnouncement != null)
-                    ChatSystem.DispatchFilteredAnnouncement(allPlayersInGame, Loc.GetString(stationEvent.WarningAnnouncement), playSound: false, colorOverride: stationEvent.WarningAnnouncementColor);
-                Audio.PlayGlobal(stationEvent.WarningAudio, allPlayersInGame, true);
-                stationEvent.WarningAnnounced = true;
-            }
             else if (stationEvent.EndTime != null && Timing.CurTime >= stationEvent.EndTime && GameTicker.IsGameRuleActive(uid, ruleData))
             {
                 GameTicker.EndGameRule(uid, ruleData);
             }
+            // Frontier: Added Warning for events ending soon
+            else if (!stationEvent.WarningAnnounced && stationEvent.EndTime != null && (stationEvent.EndTime.Value - Timing.CurTime).TotalSeconds <= stationEvent.WarningDurationLeft && GameTicker.IsGameRuleActive(uid, ruleData))
+            {
+                Filter allPlayersInGame = Filter.Empty().AddWhere(GameTicker.UserHasJoinedGame); // we don't want to send to players who aren't in game (i.e. in the lobby)
+                if (stationEvent.WarningAnnouncement != null)
+                    ChatSystem.DispatchFilteredAnnouncement(allPlayersInGame, Loc.GetString(stationEvent.WarningAnnouncement), playSound: false, colorOverride: stationEvent.WarningAnnouncementColor);
+                if (stationEvent.WarningRadioAnnouncement != null)
+                    RadioSystem.SendRadioMessage(uid, stationEvent.WarningRadioAnnouncement, stationEvent.WarningRadioAnnouncementChannel, uid, escapeMarkup: false);
+                Audio.PlayGlobal(stationEvent.WarningAudio, allPlayersInGame, true);
+                stationEvent.WarningAnnounced = true;
+            }
+            // End Frontier
         }
     }
 }
