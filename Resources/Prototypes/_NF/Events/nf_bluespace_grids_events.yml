@@ -253,14 +253,16 @@
     earliestStart: 20
     maximumPlayers: 20
     weight: 5
-    duration: 900
-    maxDuration: 1800
+    duration: 60 #900
+    maxDuration: 60 #1800
     reoccurrenceDelay: 240 # once per 4 hours
   - type: BluespaceErrorRule
     groups:
       grid: !type:GridSpawnGroup
         nameLoc:
         - station-event-bluespace-name-BrokenMcDelivery
+        minCount: 2
+        maxCount: 3
         minimumDistance: 1500
         maximumDistance: 2500
         addComponents:
