@@ -256,7 +256,6 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
 
         // Using invalid entity, we don't have a relevant entity to reference here.
         RaiseLocalEvent(EntityUid.Invalid, new StationsGeneratedEvent(), broadcast: true); // TODO: attach this to a meaningful entity.
-        }
     }
 
     private void GenerateDepots(List<PointOfInterestPrototype> depotPrototypes, out List<EntityUid> depotStations)
