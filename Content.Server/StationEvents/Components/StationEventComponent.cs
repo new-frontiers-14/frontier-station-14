@@ -24,16 +24,25 @@ public sealed partial class StationEventComponent : Component
     public string? StartAnnouncement;
 
     [DataField]
+    public string? WarningAnnouncement; // Frontier
+
+    [DataField]
     public string? EndAnnouncement;
 
     [DataField]
     public Color StartAnnouncementColor = Color.Gold;
 
     [DataField]
+    public Color WarningAnnouncementColor = Color.Gold; // Frontier
+
+    [DataField]
     public Color EndAnnouncementColor = Color.Gold;
 
     [DataField]
     public SoundSpecifier? StartAudio;
+
+    [DataField]
+    public SoundSpecifier? WarningAudio; // Frontier
 
     [DataField]
     public SoundSpecifier? EndAudio;
@@ -101,15 +110,6 @@ public sealed partial class StationEventComponent : Component
     /// </summary>
     [DataField]
     public Dictionary<ProtoId<JobPrototype>, int> RequiredJobs = new();
-
-    [DataField]
-    public string? WarningAnnouncement;
-
-    [DataField]
-    public Color WarningAnnouncementColor = Color.Gold;
-
-    [DataField]
-    public SoundSpecifier? WarningAudio;
 
     [DataField]
     public int WarningDurationLeft = 601; // 5 minutes
