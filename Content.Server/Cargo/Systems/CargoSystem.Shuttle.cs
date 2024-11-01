@@ -323,6 +323,10 @@ public sealed partial class CargoSystem
         // Frontier: Look for blacklisted items and stop the selling of the container.
         if (_blacklistQuery.HasComponent(uid))
             return false;
+
+        // Frontier: allow selling dead mobs
+        if (_mobQuery.TryComp(uid, out var mob) && mob.CurrentState != MobState.Dead)
+            return false;
         // End Frontier
 
         var complete = IsBountyComplete(uid, out var bountyEntities);
@@ -337,11 +341,6 @@ public sealed partial class CargoSystem
             if (!CanSell(child, _xformQuery.GetComponent(child)))
                 return false;
         }
-
-        // Frontier: allow selling dead mobs
-        if (_mobQuery.TryComp(uid, out var mob))
-            return mob.CurrentState == MobState.Dead;
-        // End Frontier
 
         return true;
     }
