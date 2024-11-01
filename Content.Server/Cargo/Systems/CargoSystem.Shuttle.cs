@@ -10,6 +10,7 @@ using Content.Shared.Mobs;
 using Robust.Shared.Map;
 using Robust.Shared.Random;
 using Robust.Shared.Audio;
+using Content.Shared.Mind.Components; // Frontier
 
 namespace Content.Server.Cargo.Systems;
 
@@ -319,15 +320,14 @@ public sealed partial class CargoSystem
 
     private bool CanSell(EntityUid uid, TransformComponent xform)
     {
-        if (_mobQuery.HasComponent(uid))
-        {
-            if (_mobQuery.GetComponent(uid).CurrentState == MobState.Alive)
-            {
-                return false;
-            }
+        // Frontier: Look for blacklisted items and stop the selling of the container.
+        if (_blacklistQuery.HasComponent(uid))
+            return false;
 
-            return true;
-        }
+        // Frontier: allow selling dead mobs
+        if (_mobQuery.TryComp(uid, out var mob) && mob.CurrentState != MobState.Dead)
+            return false;
+        // End Frontier
 
         var complete = IsBountyComplete(uid, out var bountyEntities);
 
@@ -340,12 +340,6 @@ public sealed partial class CargoSystem
 
             if (!CanSell(child, _xformQuery.GetComponent(child)))
                 return false;
-        }
-
-        // Look for blacklisted items and stop the selling of the container.
-        if (_blacklistQuery.HasComponent(uid))
-        {
-            return false;
         }
 
         return true;
