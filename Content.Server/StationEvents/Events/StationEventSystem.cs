@@ -2,6 +2,7 @@ using Content.Server.Administration.Logs;
 using Content.Server.Chat.Systems;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Rules;
+using Content.Server.Radio.EntitySystems;
 using Content.Server.Station.Systems;
 using Content.Server.StationEvents.Components;
 using Content.Shared.Database;
@@ -23,7 +24,8 @@ public abstract class StationEventSystem<T> : GameRuleSystem<T> where T : ICompo
     [Dependency] protected readonly ChatSystem ChatSystem = default!;
     [Dependency] protected readonly SharedAudioSystem Audio = default!;
     [Dependency] protected readonly StationSystem StationSystem = default!;
-    [Dependency] private readonly IGameTiming _timing = default!; // Frontier
+    [Dependency] protected readonly IGameTiming Timing = default!; // Frontier
+    [Dependency] protected readonly RadioSystem RadioSystem = default!;
 
     protected ISawmill Sawmill = default!;
 
@@ -49,6 +51,9 @@ public abstract class StationEventSystem<T> : GameRuleSystem<T> where T : ICompo
 
         if (stationEvent.StartAnnouncement != null)
             ChatSystem.DispatchFilteredAnnouncement(allPlayersInGame, Loc.GetString(stationEvent.StartAnnouncement), playSound: false, colorOverride: stationEvent.StartAnnouncementColor);
+
+        if (stationEvent.StartRadioAnnouncement != null) // Frontier
+            RadioSystem.SendRadioMessage(uid, stationEvent.StartRadioAnnouncement, stationEvent.StartRadioAnnouncementChannel, uid, escapeMarkup: false);
 
         Audio.PlayGlobal(stationEvent.StartAudio, allPlayersInGame, true);
     }
@@ -89,6 +94,9 @@ public abstract class StationEventSystem<T> : GameRuleSystem<T> where T : ICompo
         if (stationEvent.EndAnnouncement != null)
             ChatSystem.DispatchFilteredAnnouncement(allPlayersInGame, Loc.GetString(stationEvent.EndAnnouncement), playSound: false, colorOverride: stationEvent.EndAnnouncementColor);
 
+        if (stationEvent.EndRadioAnnouncement != null) // Frontier
+            RadioSystem.SendRadioMessage(uid, stationEvent.EndRadioAnnouncement, stationEvent.EndRadioAnnouncementChannel, uid, escapeMarkup: false);
+
         Audio.PlayGlobal(stationEvent.EndAudio, allPlayersInGame, true);
     }
 
@@ -101,7 +109,7 @@ public abstract class StationEventSystem<T> : GameRuleSystem<T> where T : ICompo
     {
         base.Update(frameTime);
 
-        var curTime = _timing.CurTime; // Frontier
+        var curTime = Timing.CurTime; // Frontier
 
         var query = EntityQueryEnumerator<StationEventComponent, GameRuleComponent>();
         while (query.MoveNext(out var uid, out var stationEvent, out var ruleData))
@@ -113,10 +121,13 @@ public abstract class StationEventSystem<T> : GameRuleSystem<T> where T : ICompo
             {
                 GameTicker.StartGameRule(uid, ruleData);
             }
-            else if (stationEvent.WarningAnnouncement != null && GameTicker.IsGameRuleActive(uid, ruleData) && !stationEvent.WarningAnnounced && (stationEvent.EndTime!.Value - curTime).TotalSeconds <= stationEvent.WarningDurationLeft) // Frontier
+            else if (!stationEvent.WarningAnnounced && (stationEvent.EndTime!.Value - curTime).TotalSeconds <= stationEvent.WarningDurationLeft && GameTicker.IsGameRuleActive(uid, ruleData)) // Frontier
             {
                 Filter allPlayersInGame = Filter.Empty().AddWhere(GameTicker.UserHasJoinedGame); // we don't want to send to players who aren't in game (i.e. in the lobby)
-                ChatSystem.DispatchFilteredAnnouncement(allPlayersInGame, Loc.GetString(stationEvent.WarningAnnouncement), playSound: false, colorOverride: stationEvent.WarningAnnouncementColor);
+                if (stationEvent.WarningRadioAnnouncement != null)
+                    RadioSystem.SendRadioMessage(uid, stationEvent.WarningRadioAnnouncement, stationEvent.WarningRadioAnnouncementChannel, uid, escapeMarkup: false);
+                if (stationEvent.WarningAnnouncement != null)
+                    ChatSystem.DispatchFilteredAnnouncement(allPlayersInGame, Loc.GetString(stationEvent.WarningAnnouncement), playSound: false, colorOverride: stationEvent.WarningAnnouncementColor);
                 Audio.PlayGlobal(stationEvent.WarningAudio, allPlayersInGame, true);
                 stationEvent.WarningAnnounced = true;
             }

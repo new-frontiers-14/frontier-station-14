@@ -1,3 +1,4 @@
+using Content.Shared.Radio; // Frontier
 using Content.Shared.Roles; // Frontier
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes; // Frontier
@@ -46,6 +47,27 @@ public sealed partial class StationEventComponent : Component
 
     [DataField]
     public SoundSpecifier? EndAudio;
+
+    /// <summary>
+    /// Frontier: Radio channels on which announcements are transmitted
+    /// </summary>
+    [DataField]
+    public string? StartRadioAnnouncement; // Frontier
+
+    [DataField]
+    public string? WarningRadioAnnouncement; // Frontier
+
+    [DataField]
+    public string? EndRadioAnnouncement; // Frontier
+
+    [DataField]
+    public ProtoId<RadioChannelPrototype> StartRadioAnnouncementChannel = "Supply"; // Frontier
+
+    [DataField]
+    public ProtoId<RadioChannelPrototype> WarningRadioAnnouncementChannel = "Supply"; // Frontier
+
+    [DataField]
+    public ProtoId<RadioChannelPrototype> EndRadioAnnouncementChannel = "Supply"; // Frontier
 
     /// <summary>
     ///     In minutes, when is the first round time this event can start
