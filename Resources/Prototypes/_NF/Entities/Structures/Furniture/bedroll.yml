@@ -6,6 +6,7 @@
   components:
   - type: PlaceableSurface # For bedsheets
     placeCentered: true
+    positionOffset: 0, -0.001 # Make sure the bed is placed behind the blanket
   - type: HealOnBuckle # Regular bed values, plus bonus cold recovery
     damage:
       types:
@@ -121,7 +122,6 @@
       visible: false
     - state: overlay_stain_01
       map: ["bedrollStain"]
-      alpha: 0.7
       visible: true
   - type: Appearance
   - type: GenericVisualizer
