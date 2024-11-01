@@ -61,7 +61,7 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
 
                 if (group.MinimumDistance > 0f)
                 {
-                    spawnCoords.WithPosition(_random.NextVector2(group.MinimumDistance, group.MaximumDistance));
+                    spawnCoords = spawnCoords.WithPosition(_random.NextVector2(group.MinimumDistance, group.MaximumDistance));
                 }
 
                 switch (group)
