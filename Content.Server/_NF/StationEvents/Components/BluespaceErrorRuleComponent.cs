@@ -5,11 +5,10 @@ using Content.Shared.Dataset;
 using Content.Shared.Procedural;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
-using Microsoft.EntityFrameworkCore.Query;
 
 namespace Content.Server.StationEvents.Components;
 
-[RegisterComponent, Access(typeof(BluespaceErrorRule), (typeof(ShuttleSystem)))]
+[RegisterComponent, Access(typeof(BluespaceErrorRule), typeof(ShuttleSystem))]
 public sealed partial class BluespaceErrorRuleComponent : Component
 {
     /// <summary>
