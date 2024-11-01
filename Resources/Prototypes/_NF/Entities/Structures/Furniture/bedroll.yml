@@ -4,6 +4,8 @@
   name: bedroll
   description: When there's nowhere else to sleep, you'll want to bring at least one thing of comfort. The tag on it states to unfold it before rest, but who needs rules anyway, right?
   components:
+  - type: PlaceableSurface # For bedsheets
+    placeCentered: true
   - type: HealOnBuckle # Regular bed values, plus bonus cold recovery
     damage:
       types:
@@ -57,8 +59,8 @@
   - type: Strap
     position: Down
     rotation: -90
-    buckleOffset: "0,-0.1"
-    buckleOnInteractHand: False
+    buckleOffset: "0,-0.15"
+    #buckleOnInteractHand: False
   - type: Appearance
   - type: StaticPrice
     price: 20
@@ -119,6 +121,7 @@
       visible: false
     - state: overlay_stain_01
       map: ["bedrollStain"]
+      alpha: 0.7
       visible: true
   - type: Appearance
   - type: GenericVisualizer
@@ -143,7 +146,6 @@
           overlay_stain_02: LiquidsBiological
           overlay_stain_03: LiquidsBiological
           overlay_stain_04: LiquidsBiological
-          mask_null: ""
 
 - type: entity # McHobo bed spawner
   id: McHoboBedsRandom
