@@ -1,0 +1,64 @@
+- type: reagent
+  id: CoffeeGrounds
+  name: reagent-name-coffeegrounds
+  group: Foods
+  desc: reagent-desc-coffeegrounds
+  flavor: bitter
+  color: "#4B382A"
+  physicalDesc: reagent-physical-desc-powdery
+  slippery: false
+  recognizable: true # "Waiter, there seems to be grounds in my coffee."
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateHunger
+        factor: 0.1
+      - !type:SatiateThirst
+        factor: -0.25
+
+- type: reagent
+  id: OilVegetable
+  name: reagent-name-oil-vegetable
+  group: Foods
+  desc: reagent-desc-oil-vegetable
+  physicalDesc: reagent-physical-desc-oily
+  flavor: oily
+  flavorMinimum: 0.05
+  color: "#ffff77"
+  meltingPoint: -6.0 #Taken from OilOlive
+  boilingPoint: 299.0
+  recognizable: true
+  metabolisms:
+    Food:
+      effects:
+      - !type:SatiateHunger
+        conditions:
+        - !type:ReagentThreshold
+          reagent: Nutriment
+          min: 0.1
+        factor: 1
+
+- type: reagent
+  id: Honey
+  name: reagent-name-honey
+  group: Foods
+  desc: reagent-desc-honey
+  physicalDesc: reagent-physical-desc-gloopy
+  flavor: honey
+  flavorMinimum: 0.05
+  color: "#E79A3F"
+  viscosity: 0.5
+  recognizable: true
+  metabolisms:
+    Food:
+      effects:
+      - !type:SatiateHunger
+        conditions:
+        - !type:ReagentThreshold
+          reagent: Nutriment
+          min: 0.1
+        factor: 1
+  footstepSound:
+    collection: FootstepSticky
+    params:
+      volume: 6
