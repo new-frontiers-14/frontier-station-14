@@ -40,6 +40,7 @@
       - Cat
       - PetsNT
   - type: ShowJobIcons
+  - type: CargoSellBlacklist
 
 - type: entity
   name: Clarpy
@@ -85,6 +86,7 @@
     factions:
       - Cat
       - PirateNF
+  - type: CargoSellBlacklist
 
 - type: entity
   name: Cappy
@@ -146,12 +148,13 @@
   - type: InteractionPopup
     interactSuccessSound:
       path: /Audio/_NF/Animals/nfsdcat_meow.ogg
+  - type: CargoSellBlacklist
 
 - type: entity
   name: Clugg
   parent: [NFMobPet, MobCatCaracalGhost]
   id: MobCatClugg
-  description: 
+  description:
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -180,7 +183,7 @@
   name: Mistake
   parent: MobCatGhost
   id: MobCatMistake
-  description: ???
+  description: "???"
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -257,3 +260,4 @@
           kobold: YipYipColors
       - horns:
           horns_curled: YipYipHornColors
+  - type: CargoSellBlacklist
