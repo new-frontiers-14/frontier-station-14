@@ -6,6 +6,7 @@ using Content.Server.Players.JobWhitelist;
 using Content.Shared.Administration;
 using Content.Shared.DeltaV.Administration;
 using Content.Shared.Eui;
+using Content.Shared.Ghost.Roles; // Frontier
 using Content.Shared.Roles;
 using Robust.Shared.Log;
 using Robust.Shared.Network;
@@ -27,6 +28,8 @@ public sealed class JobWhitelistsEui : BaseEui
     public string PlayerName;
 
     public HashSet<ProtoId<JobPrototype>> Whitelists = new();
+    public HashSet<ProtoId<GhostRolePrototype>> GhostRoleWhitelists = new(); // Frontier
+    public bool GlobalWhitelist = false;
 
     public JobWhitelistsEui(NetUserId playerId, string playerName)
     {
@@ -45,22 +48,23 @@ public sealed class JobWhitelistsEui : BaseEui
         {
             if (_proto.HasIndex<JobPrototype>(id))
                 Whitelists.Add(id);
+            else if (_proto.HasIndex<GhostRolePrototype>(id)) // Frontier
+                GhostRoleWhitelists.Add(id); // Frontier
         }
+
+        GlobalWhitelist = await _db.GetWhitelistStatusAsync(PlayerId); // Frontier: get global whitelist
 
         StateDirty();
     }
 
     public override EuiStateBase GetNewState()
     {
-        return new JobWhitelistsEuiState(PlayerName, Whitelists);
+        return new JobWhitelistsEuiState(PlayerName, Whitelists, GhostRoleWhitelists, GlobalWhitelist);
     }
 
     public override void HandleMessage(EuiMessageBase msg)
     {
         base.HandleMessage(msg);
-
-        if (msg is not SetJobWhitelistedMessage args)
-            return;
 
         if (!_admin.HasAdminFlag(Player, AdminFlags.Whitelist))
         {
@@ -68,22 +72,70 @@ public sealed class JobWhitelistsEui : BaseEui
             return;
         }
 
-        if (!_proto.HasIndex<JobPrototype>(args.Job))
-            return;
-
-        if (args.Whitelisting)
+        // Frontier: handle ghost role whitelist requests
+        bool added;
+        string role;
+        switch (msg)
         {
-            _jobWhitelist.AddWhitelist(PlayerId, args.Job);
-            Whitelists.Add(args.Job);
-        }
-        else
-        {
-            _jobWhitelist.RemoveWhitelist(PlayerId, args.Job);
-            Whitelists.Remove(args.Job);
+            case SetJobWhitelistedMessage:
+                var jobArgs = (SetJobWhitelistedMessage)msg;
+                if (!_proto.HasIndex(jobArgs.Job))
+                    return;
+
+                added = jobArgs.Whitelisting;
+                role = jobArgs.Job;
+                if (added)
+                {
+                    _jobWhitelist.AddWhitelist(PlayerId, jobArgs.Job);
+                    Whitelists.Add(jobArgs.Job);
+                }
+                else
+                {
+                    _jobWhitelist.RemoveWhitelist(PlayerId, jobArgs.Job);
+                    Whitelists.Remove(jobArgs.Job);
+                }
+                break;
+            case SetGhostRoleWhitelistedMessage:
+                var ghostRoleArgs = (SetGhostRoleWhitelistedMessage)msg;
+                if (!_proto.HasIndex(ghostRoleArgs.Role))
+                    return;
+
+                added = ghostRoleArgs.Whitelisting;
+                role = ghostRoleArgs.Role;
+                if (added)
+                {
+                    _jobWhitelist.AddWhitelist(PlayerId, ghostRoleArgs.Role);
+                    GhostRoleWhitelists.Add(ghostRoleArgs.Role);
+                }
+                else
+                {
+                    _jobWhitelist.RemoveWhitelist(PlayerId, ghostRoleArgs.Role);
+                    GhostRoleWhitelists.Remove(ghostRoleArgs.Role);
+                }
+                break;
+            case SetGlobalWhitelistMessage:
+                var globalArgs = (SetGlobalWhitelistMessage)msg;
+
+                added = globalArgs.Whitelisting;
+                role = "all roles";
+                if (added)
+                {
+                    _jobWhitelist.AddGlobalWhitelist(PlayerId);
+                    GlobalWhitelist = true;
+                }
+                else
+                {
+                    _jobWhitelist.RemoveGlobalWhitelist(PlayerId);
+                    GlobalWhitelist = false;
+                }
+                break;
+            default:
+                return;
         }
 
-        var verb = args.Whitelisting ? "added" : "removed";
-        _sawmill.Info($"{Player.Name} ({Player.UserId}) {verb} whitelist for {args.Job} to player {PlayerName} ({PlayerId.UserId})");
+        var verb = added ? "added" : "removed";
+        _sawmill.Info($"{Player.Name} ({Player.UserId}) {verb} whitelist for {role} to player {PlayerName} ({PlayerId.UserId})");
+        // End Frontier
 
         StateDirty();
     }

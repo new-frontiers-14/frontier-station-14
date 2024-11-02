@@ -8,7 +8,13 @@
             <BoxContainer Name="TierButtons" Orientation="Horizontal"/>
         </BoxContainer>
         <ScrollContainer VerticalExpand="True">
-            <BoxContainer Name="Departments" Orientation="Vertical"/>
+            <!-- Frontier: global checkbox -->
+            <BoxContainer Orientation="Vertical">
+                <CheckBox Name="Global" Margin="4"/>
+                <BoxContainer Name="Departments" Orientation="Vertical"/>
+                <BoxContainer Name="GhostRoles" Orientation="Vertical"/> <!-- Frontier: ghost roles -->
+            </BoxContainer>
+            <!-- End Frontier: global checkbox -->
         </ScrollContainer>
     </BoxContainer>
 </controls:FancyWindow>

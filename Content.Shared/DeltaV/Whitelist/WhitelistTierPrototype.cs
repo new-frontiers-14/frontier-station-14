@@ -1,3 +1,4 @@
+using Content.Shared.Ghost.Roles;
 using Content.Shared.Roles;
 using Robust.Shared.Prototypes;
 
@@ -17,4 +18,7 @@ public sealed class WhitelistTierPrototype : IPrototype
 
     [DataField]
     public List<ProtoId<JobPrototype>> Jobs = new();
+
+    [DataField]
+    public List<ProtoId<GhostRolePrototype>> GhostRoles = new();
 }
