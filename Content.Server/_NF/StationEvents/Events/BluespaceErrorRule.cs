@@ -12,15 +12,12 @@ using Content.Shared.Mobs.Components;
 using Robust.Shared.Random;
 using Content.Server._NF.Salvage;
 using Content.Server.Bank;
-<<<<<<< HEAD
 using Content.Server._NF.Bank;
 using Content.Shared._NF.Bank.BUI;
-=======
 using Content.Server.GameTicking;
 using Content.Server.Procedural;
 using Robust.Shared.Prototypes;
 using Content.Shared.Salvage;
->>>>>>> 2024-10-23-banks
 
 namespace Content.Server.StationEvents.Events;
 
