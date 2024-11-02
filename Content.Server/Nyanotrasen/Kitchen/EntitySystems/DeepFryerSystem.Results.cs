@@ -2,7 +2,6 @@
 using Content.Server.Atmos.Components;
 using Content.Server.Body.Components;
 using Content.Server.Ghost.Roles.Components;
-using Content.Server.Kitchen.Components;
 using Content.Server.Nutrition.Components;
 using Content.Server.Nyanotrasen.Kitchen.Components;
 using Content.Shared.Atmos.Rotting;
@@ -12,8 +11,9 @@ using Content.Shared.FixedPoint;
 using Content.Shared.Mobs.Components;
 using Content.Shared.NPC;
 using Content.Shared.Nutrition.Components;
-using Content.Shared.Nyanotrasen.Kitchen.Components;
+using Content.Shared.Nyanotrasen.Kitchen.Prototypes;
 using Content.Shared.Paper;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
 namespace Content.Server.Nyanotrasen.Kitchen.EntitySystems;
@@ -23,12 +23,23 @@ public sealed partial class DeepFryerSystem
     /// <summary>
     ///     Make an item look deep-fried.
     /// </summary>
-    public void MakeCrispy(EntityUid item)
+    public void MakeCrispy(EntityUid item, ProtoId<CrispinessLevelSetPrototype> crispiness) // Frontier: add CrispinessLevelSetPrototype
     {
         EnsureComp<AppearanceComponent>(item);
-        EnsureComp<DeepFriedComponent>(item);
+        // Frontier: apply the fryer-appropriate shader
+        var deepFried = EnsureComp<DeepFriedComponent>(item);
+        var oldCrispinessProto = deepFried.CrispinessLevelSet;
+        SetDeepFriedCrispinessLevelSet(item, deepFried, crispiness);
 
-        _appearanceSystem.SetData(item, DeepFriedVisuals.Fried, true);
+        if (_prototypeManager.TryIndex<CrispinessLevelSetPrototype>(oldCrispinessProto, out var oldCrispiness))
+        {
+            _appearanceSystem.SetData(item, oldCrispiness.Visual, false);
+        }
+        if (_prototypeManager.TryIndex<CrispinessLevelSetPrototype>(crispiness, out var newCrispiness))
+        {
+            _appearanceSystem.SetData(item, newCrispiness.Visual, true);
+        }
+        // End Frontier
     }
 
     /// <summary>

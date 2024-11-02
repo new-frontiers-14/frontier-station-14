@@ -112,10 +112,12 @@
     color: "#ff0000"
   # Ghost role stuff
   - type: GhostRole
+    prob: 1
     allowMovement: true
     name: ghost-role-information-goblinbane-name
     description: ghost-role-information-goblinbane-description
     rules: ghost-role-information-goblinbane-rules
+    prototype: GhostMemeGoblinbane
     raffle:
       settings: default
   - type: GhostTakeoverAvailable
@@ -132,7 +134,6 @@
     followEntity: true
     maxIffRange: 256
     hideCoords: true
-  - type: ComplexInteraction
   # Abilities
   - type: Devourer
     foodPreference: Humanoid

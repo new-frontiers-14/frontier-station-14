@@ -1,4 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using Robust.Server.GameObjects;
@@ -21,7 +21,7 @@ public sealed class MapMigrationSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _protoMan = default!;
     [Dependency] private readonly IResourceManager _resMan = default!;
 
-    private const string MigrationFile = "/migration.yml";
+    private static readonly string[] MigrationFiles = { "/migration.yml", "/_NF/migration.yml" }; // Frontier: use array of migration files
 
     public override void Initialize()
     {
@@ -29,23 +29,50 @@ public sealed class MapMigrationSystem : EntitySystem
         SubscribeLocalEvent<BeforeEntityReadEvent>(OnBeforeReadEvent);
 
 #if DEBUG
-        if (!TryReadFile(out var mappings))
+        if (!TryReadFiles(out var mappings)) // Frontier: TryReadFile<TryReadFiles
             return;
 
         // Verify that all of the entries map to valid entity prototypes.
-        foreach (var node in mappings.Values)
+        // Delta-V: use list of migrations
+        foreach (var mapping in mappings)
         {
-            var newId = ((ValueDataNode) node).Value;
-            if (!string.IsNullOrEmpty(newId) && newId != "null")
-                DebugTools.Assert(_protoMan.HasIndex<EntityPrototype>(newId), $"{newId} is not an entity prototype.");
+            foreach (var node in mapping.Values)
+            {
+                var newId = ((ValueDataNode)node).Value;
+                if (!string.IsNullOrEmpty(newId) && newId != "null")
+                    DebugTools.Assert(_protoMan.HasIndex<EntityPrototype>(newId),
+                        $"{newId} is not an entity prototype.");
+            }
         }
+        // End Delta-V
 #endif
     }
 
-    private bool TryReadFile([NotNullWhen(true)] out MappingDataNode? mappings)
+    // Frontier: wrap single file reader
+    private bool TryReadFiles([NotNullWhen(true)] out List<MappingDataNode>? mappings)
     {
         mappings = null;
-        var path = new ResPath(MigrationFile);
+
+        if (MigrationFiles.Count() <= 0)
+            return false;
+
+        foreach (var migrationFile in MigrationFiles)
+        {
+            if (!TryReadFile(migrationFile, out var mapping))
+                continue;
+
+            mappings = mappings ?? new List<MappingDataNode>();
+            mappings.Add(mapping);
+        }
+
+        return mappings != null && mappings.Count > 0;
+    }
+    // End Frontier
+
+    private bool TryReadFile(string migrationFile, [NotNullWhen(true)] out MappingDataNode? mappings) // Frontier: add migrationFile
+    {
+        mappings = null;
+        var path = new ResPath(migrationFile); // Frontier: MigrationFile<migrationFile
         if (!_resMan.TryContentFileRead(path, out var stream))
             return false;
 
@@ -61,18 +88,23 @@ public sealed class MapMigrationSystem : EntitySystem
 
     private void OnBeforeReadEvent(BeforeEntityReadEvent ev)
     {
-        if (!TryReadFile(out var mappings))
+        if (!TryReadFiles(out var mappings))
             return;
 
-        foreach (var (key, value) in mappings)
+        // Delta-V: apply a set of mappings
+        foreach (var mapping in mappings)
         {
-            if (key is not ValueDataNode keyNode || value is not ValueDataNode valueNode)
-                continue;
+            foreach (var (key, value) in mapping)
+            {
+                if (key is not ValueDataNode keyNode || value is not ValueDataNode valueNode)
+                    continue;
 
-            if (string.IsNullOrWhiteSpace(valueNode.Value) || valueNode.Value == "null")
-                ev.DeletedPrototypes.Add(keyNode.Value);
-            else
-                ev.RenamedPrototypes.Add(keyNode.Value, valueNode.Value);
+                if (string.IsNullOrWhiteSpace(valueNode.Value) || valueNode.Value == "null")
+                    ev.DeletedPrototypes.Add(keyNode.Value);
+                else
+                    ev.RenamedPrototypes.Add(keyNode.Value, valueNode.Value);
+            }
         }
+        // End Delta-V
     }
 }
