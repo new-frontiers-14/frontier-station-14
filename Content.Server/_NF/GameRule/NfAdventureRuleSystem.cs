@@ -33,7 +33,7 @@ using Content.Shared._NF.Bank;
 using Content.Shared.Tiles;
 using Content.Server._NF.PublicTransit.Components;
 using Content.Server._NF.GameRule.Components;
-using Content.Server.Bank;
+using Content.Server._NF.Bank;
 using Robust.Shared.Player;
 using Robust.Shared.Network;
 using Content.Shared.GameTicking;
@@ -404,7 +404,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         uniqueStations = new List<EntityUid>();
         foreach (var prototypeList in uniquePrototypes.Values)
         {
-            // Try to spawn 
+            // Try to spawn
             _random.Shuffle(prototypeList);
             foreach (var proto in prototypeList)
             {

@@ -5,14 +5,6 @@
     Margin="5"
     VerticalExpand="True"
     Orientation="Vertical">
-    <!--<PanelContainer StyleClasses="BackgroundDark"/>-->
-    <controls:StripeBack Name="LedgerHeader">
-        <PanelContainer>
-            <Label Name="LeaderHeader"
-                Align="Center"
-                Text="{Loc 'ledger-header'}" />
-        </PanelContainer>
-    </controls:StripeBack>
     <!-- Dynamically populated tab list for all accounts -->
     <TabContainer Name="Tabs" Access="Public"/>
 </cartridges:LedgerUiFragment>

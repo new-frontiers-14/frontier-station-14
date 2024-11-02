@@ -1,7 +1,7 @@
 using Content.Server.Access.Systems;
 using Content.Server.Popups;
 using Content.Server.Radio.EntitySystems;
-using Content.Server.Bank;
+using Content.Server._NF.Bank;
 using Content.Server.Shipyard.Components;
 using Content.Shared._NF.GameRule;
 using Content.Shared.Bank.Components;
@@ -18,7 +18,6 @@ using Robust.Shared.Prototypes;
 using Content.Shared.Radio;
 using System.Linq;
 using Content.Server.Administration.Logs;
-using Content.Server.Cargo.Components;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Server.Maps;
@@ -38,14 +37,12 @@ using Content.Server.Station.Components;
 using System.Text.RegularExpressions;
 using Content.Server._NF.ShuttleRecords;
 using Content.Shared.UserInterface;
-using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Content.Shared.Access;
 using Content.Shared.Tiles;
 using Content.Server._NF.Smuggling.Components;
 using Content.Shared._NF.ShuttleRecords;
 using Content.Shared._NF.Bank.BUI;
-using Content.Server._NF.Bank;
 
 namespace Content.Server.Shipyard.Systems;
 
@@ -69,7 +66,6 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     [Dependency] private readonly UserInterfaceSystem _userInterface = default!;
     [Dependency] private readonly EntityManager _entityManager = default!;
     [Dependency] private readonly ShuttleRecordsSystem _shuttleRecordsSystem = default!;
-    [Dependency] private readonly SectorLedgerSystem _sectorLedger = default!;
 
     public void InitializeConsole()
     {
@@ -301,10 +297,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             if (tax > 0)
             {
                 foreach (var account in component.TaxAccounts)
-                {
-                    _bank.TrySectorDeposit(account, tax);
-                    _sectorLedger.AddLedgerEntry(account, LedgerEntryType.BlackMarketShipyardTax, tax);
-                }
+                    _bank.TrySectorDeposit(account, tax, LedgerEntryType.BlackMarketShipyardTax);
             }
         }
 
@@ -439,10 +432,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             if (tax != 0)
             {
                 foreach (var account in component.TaxAccounts)
-                {
-                    _bank.TrySectorDeposit(account, tax);
-                    _sectorLedger.AddLedgerEntry(account, LedgerEntryType.BlackMarketShipyardTax, tax);
-                }
+                    _bank.TrySectorDeposit(account, tax, LedgerEntryType.BlackMarketShipyardTax);
 
                 bill -= tax;
             }

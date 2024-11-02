@@ -8,7 +8,6 @@ using Content.Server.Cargo.Systems; // Frontier
 using Content.Server.Radio.EntitySystems; // Frontier
 using Content.Shared.UserInterface;
 using Content.Shared.DoAfter;
-using Content.Shared.Fluids.Components;
 using Content.Shared.Forensics;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
@@ -16,25 +15,21 @@ using Content.Shared.Paper;
 using Content.Shared.Verbs;
 using Content.Shared.Stacks; // Frontier
 using Content.Shared.Radio; // Frontier
-using Content.Shared.Access.Systems; // Frontier
 using Robust.Shared.Prototypes; // Frontier
 using Content.Shared.Tag;
 using Robust.Shared.Audio.Systems;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Timing;
-using Content.Server.Chemistry.Containers.EntitySystems;
 using Content.Shared.Containers.ItemSlots; // Frontier
-using Content.Server.Cargo.Components; // Frontier
 using Content.Server._NF.SectorServices; // Frontier
 using Content.Shared.FixedPoint; // Frontier
 using Robust.Shared.Configuration; // Frontier
 using Content.Shared._NF.CCVar; // Frontier
 using Content.Shared._NF.Bank; // Frontier
 using Content.Shared.Bank.Components; // Frontier
-using Content.Server.Bank; // Frontier
-using Content.Shared._NF.Bank.BUI; // Frontier
 using Content.Server._NF.Bank; // Frontier
+using Content.Shared._NF.Bank.BUI; // Frontier
 
 // todo: remove this stinky LINQy
 
@@ -62,7 +57,6 @@ namespace Content.Server.Forensics
         [Dependency] private readonly SectorServiceSystem _service = default!; // Frontier
         [Dependency] private readonly IConfigurationManager _cfg = default!; // Frontier
         [Dependency] private readonly BankSystem _bank = default!; // Frontier
-        [Dependency] private readonly SectorLedgerSystem _sectorLedger = default!; // Frontier
 
         // Frontier: payout constants
         // Temporary values, sane defaults, will be overwritten by CVARs.
@@ -109,10 +103,7 @@ namespace Content.Server.Forensics
             _audio.PlayPvs(_audio.GetSound(confirmSound), uidOrigin);
 
             if (spesoAmount > 0)
-            {
-                _bank.TrySectorDeposit(SectorBankAccount.Nfsd, spesoAmount);
-                _sectorLedger.AddLedgerEntry(SectorBankAccount.Nfsd, LedgerEntryType.AntiSmugglingBonus, spesoAmount);
-            }
+                _bank.TrySectorDeposit(SectorBankAccount.Nfsd, spesoAmount, LedgerEntryType.AntiSmugglingBonus);
             else
                 spesoAmount = 0;
 

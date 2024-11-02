@@ -5,7 +5,7 @@ using Content.Shared.Bank;
 using Content.Shared.Bank.Components;
 using JetBrains.Annotations;
 
-namespace Content.Server.Bank;
+namespace Content.Server._NF.Bank;
 
 public sealed partial class BankSystem : SharedBankSystem
 {
@@ -18,9 +18,7 @@ public sealed partial class BankSystem : SharedBankSystem
     private void OnSectorInit(EntityUid entity, SectorBankComponent component, ComponentInit args)
     {
         foreach (var account in component.Accounts)
-        {
-            _sectorLedger.AddLedgerEntry(account.Key, LedgerEntryType.TickingIncome, account.Value.Balance);
-        }
+            AddLedgerEntry(account.Key, LedgerEntryType.TickingIncome, account.Value.Balance);
     }
 
     /// <summary>
@@ -30,7 +28,7 @@ public sealed partial class BankSystem : SharedBankSystem
     /// <param name="amount">The amount of spesos to remove from the account.</param>
     /// <returns>true if the transaction was successful, false if it was not.</returns>
     [PublicAPI]
-    public bool TrySectorWithdraw(SectorBankAccount account, int amount)
+    public bool TrySectorWithdraw(SectorBankAccount account, int amount, LedgerEntryType reason, SectorBankComponent? bank = null)
     {
         if (amount <= 0)
         {
@@ -39,7 +37,7 @@ public sealed partial class BankSystem : SharedBankSystem
         }
 
         // Lookup sector banks
-        if (!TryComp(_sectorService.GetServiceEntity(), out SectorBankComponent? bank))
+        if (bank == null && !TryComp(_sectorService.GetServiceEntity(), out bank))
         {
             _log.Info($"TryBankWithdraw: no bank component");
             return false;
@@ -59,6 +57,7 @@ public sealed partial class BankSystem : SharedBankSystem
         }
 
         bankAccount.Balance -= amount;
+        AddLedgerEntry(account, reason, amount);
         return true;
     }
 
@@ -67,9 +66,10 @@ public sealed partial class BankSystem : SharedBankSystem
     /// </summary>
     /// <param name="mobUid">The UID that the bank account is connected to, typically the player controlled mob</param>
     /// <param name="amount">The amount of spesos to remove from the bank account</param>
+    /// <param name="reason">The purpose of this withdrawal</param>
     /// <returns>true if the transaction was successful, false if it was not</returns>
     [PublicAPI]
-    public bool TrySectorDeposit(SectorBankAccount account, int amount)
+    public bool TrySectorDeposit(SectorBankAccount account, int amount, LedgerEntryType reason, SectorBankComponent? bank=null)
     {
         if (amount <= 0)
         {
@@ -78,7 +78,7 @@ public sealed partial class BankSystem : SharedBankSystem
         }
 
         // Lookup sector banks
-        if (!TryComp(_sectorService.GetServiceEntity(), out SectorBankComponent? bank))
+        if (bank == null && !TryComp(_sectorService.GetServiceEntity(), out bank))
         {
             _log.Info($"TryBankDeposit: no bank component");
             return false;
@@ -92,6 +92,7 @@ public sealed partial class BankSystem : SharedBankSystem
 
         var bankAccount = CollectionsMarshal.GetValueRefOrNullRef(bank.Accounts, account);
         bankAccount.Balance += amount;
+        AddLedgerEntry(account, reason, amount);
         return true;
     }
 
@@ -142,12 +143,7 @@ public sealed partial class BankSystem : SharedBankSystem
         if (seconds <= 0)
             return;
 
-        foreach (var accountId in bank.Accounts.Keys)
-        {
-            var accountRef = CollectionsMarshal.GetValueRefOrNullRef(bank.Accounts, accountId);
-            var amount = seconds * accountRef.IncreasePerSecond;
-            accountRef.Balance += amount;
-            _sectorLedger.AddLedgerEntry(accountId, LedgerEntryType.TickingIncome, amount);
-        }
+        foreach (var (accountId, accountInfo) in bank.Accounts)
+            TrySectorDeposit(accountId, seconds * accountInfo.IncreasePerSecond, LedgerEntryType.TickingIncome, bank);
     }
 }

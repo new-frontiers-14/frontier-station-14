@@ -45,11 +45,10 @@ using Robust.Shared.Audio.Systems;
 using Timer = Robust.Shared.Timing.Timer;
 using Content.Server.DeltaV.Cargo.Systems;
 using Content.Server._NF.SectorServices;
-using Content.Server.Bank;
+using Content.Server._NF.Bank; // Frontier
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Bank.Components;
 using Content.Shared._NF.Bank.BUI;
-using Content.Server._NF.Bank; // Frontier
 
 namespace Content.Server.Mail
 {
@@ -75,8 +74,7 @@ namespace Content.Server.Mail
         [Dependency] private readonly MetaDataSystem _metaDataSystem = default!;
         [Dependency] private readonly IEntityManager _entManager = default!; // Frontier
         [Dependency] private readonly SectorServiceSystem _sectorService = default!; // Frontier
-        [Dependency] private readonly SectorLedgerSystem _sectorLedger = default!; // Frontier
-        [Dependency] private readonly BankSystem _bank = default!;
+        [Dependency] private readonly BankSystem _bank = default!; // Frontier
 
         // DeltaV - system that keeps track of mail and cargo stats
         [Dependency] private readonly LogisticStatsSystem _logisticsStatsSystem = default!;
@@ -252,8 +250,7 @@ namespace Content.Server.Mail
 
             component.IsProfitable = false;
 
-            _bank.TrySectorDeposit(SectorBankAccount.Frontier, component.Bounty);
-            _sectorLedger.AddLedgerEntry(SectorBankAccount.Frontier, LedgerEntryType.MailDelivered, component.Bounty);
+            _bank.TrySectorDeposit(SectorBankAccount.Frontier, component.Bounty, LedgerEntryType.MailDelivered);
         }
 
         private void OnExamined(EntityUid uid, MailComponent component, ExaminedEvent args)
@@ -305,8 +302,7 @@ namespace Content.Server.Mail
                 _appearanceSystem.SetData(uid, MailVisuals.IsPriorityInactive, true);
 
             // Frontier: no need for this, but this uses our sector bank accounts
-            //_bank.TrySectorWithdraw(SectorBankAccount.Frontier, component.Penalty); // Frontier - Dont remove money.
-            //_sectorLedger.AddLedgerEntry(SectorBankAccount.Frontier, LedgerEntryType.MailPenalty, component.Penalty);
+            //_bank.TrySectorWithdraw(SectorBankAccount.Frontier, component.Penalty, LedgerEntryType.MailPenalty); // Frontier - Dont remove money.
         }
 
         private void OnDestruction(EntityUid uid, MailComponent component, DestructionEventArgs args)

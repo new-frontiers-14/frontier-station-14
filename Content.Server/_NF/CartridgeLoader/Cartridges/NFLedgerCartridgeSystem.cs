@@ -1,9 +1,9 @@
 using Content.Server.CartridgeLoader;
 using Content.Shared.CartridgeLoader;
 using Content.Server._NF.SectorServices;
-using Content.Server._NF.Bank;
 using Content.Shared._NF.Bank.BUI;
 using System.Diagnostics.CodeAnalysis;
+using Content.Server._NF.Bank;
 
 namespace Content.Server._NF.CartridgeLoader.Cartridges;
 
@@ -49,7 +49,7 @@ public sealed class NFLedgerCartridgeSystem : EntitySystem
     private bool GetUIState([NotNullWhen(true)] out NFLedgerState? uiState)
     {
         uiState = null;
-        if (!TryComp<SectorLedgerComponent>(_sectorService.GetServiceEntity(), out var ledger))
+        if (!TryComp(_sectorService.GetServiceEntity(), out SectorBankComponent? ledger))
             return false;
 
         var ledgerCount = ledger.AccountLedgerEntries.Count;

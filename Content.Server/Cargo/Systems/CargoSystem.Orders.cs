@@ -1,5 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
-using Content.Server.Bank; // Frontier
+using Content.Server._NF.Bank; // Frontier
 using Content.Server.Cargo.Components;
 using Content.Server.Labels.Components;
 using Content.Shared.Bank.Components; // Frontier
@@ -229,10 +229,7 @@ namespace Content.Server.Cargo.Systems
             if (tax > 0)
             {
                 foreach (var taxAccount in component.TaxAccounts)
-                {
-                    _bankSystem.TrySectorDeposit(taxAccount, tax);
-                    _sectorLedger.AddLedgerEntry(taxAccount, LedgerEntryType.CargoTax, tax);
-                }
+                    _bankSystem.TrySectorDeposit(taxAccount, tax, LedgerEntryType.CargoTax);
             }
             _bankSystem.TryBankWithdraw(player, cost);
             // End Frontier

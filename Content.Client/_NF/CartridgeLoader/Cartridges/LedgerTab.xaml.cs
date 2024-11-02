@@ -15,6 +15,10 @@ public sealed partial class LedgerTab : Control
     private int _totalExpenses = 0;
     private bool _hasIncome = false;
     private bool _hasExpenses = false;
+
+    private static readonly Color IncomeColor = Color.FromHex("#80FF80");
+    private static readonly Color ExpenseColor = Color.FromHex("#FF8080");
+
     public LedgerTab()
     {
         RobustXamlLoader.Load(this);
@@ -58,6 +62,7 @@ public sealed partial class LedgerTab : Control
         var ledgerEntry = new LedgerEntry();
         ledgerEntry.Description.Text = Loc.GetString($"ledger-entry-type-{type}");
         ledgerEntry.Value.Text = BankSystemExtensions.ToSpesoString(amount);
+        ledgerEntry.Value.FontColorOverride = isExpense ? ExpenseColor : IncomeColor;
 
         list.AddChild(ledgerEntry);
         list.InvalidateMeasure();
@@ -76,7 +81,11 @@ public sealed partial class LedgerTab : Control
             ExpensesValue.Text = Loc.GetString("ledger-no-expenses");
 
         if (_hasIncome || _hasExpenses)
-            BalanceValue.Text = BankSystemExtensions.ToSpesoString(_totalIncome - _totalExpenses);
+        {
+            int totalBalance = _totalIncome - _totalExpenses;
+            BalanceValue.Text = BankSystemExtensions.ToSpesoString(totalBalance);
+            BalanceValue.FontColorOverride = totalBalance < 0 ? ExpenseColor : IncomeColor;
+        }
         else
             BalanceValue.Text = Loc.GetString("ledger-no-balance");
     }

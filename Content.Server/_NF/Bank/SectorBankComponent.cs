@@ -1,6 +1,7 @@
+using Content.Shared._NF.Bank.BUI;
 using Content.Shared.Bank.Components;
 
-namespace Content.Server.Bank;
+namespace Content.Server._NF.Bank;
 
 /// <summary>
 /// Tracks accounts of entities (e.g. Frontier Station, the NFSD)
@@ -13,6 +14,9 @@ public sealed partial class SectorBankComponent : Component
 
     [ViewVariables(VVAccess.ReadOnly)]
     public float SecondsSinceLastIncrease = 0.0f;
+
+    [ViewVariables(VVAccess.ReadWrite)]
+    public Dictionary<(SectorBankAccount Account, LedgerEntryType Type), int> AccountLedgerEntries { get; set; } = new();
 }
 
 [DataDefinition]

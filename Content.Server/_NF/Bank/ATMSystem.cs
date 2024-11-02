@@ -5,7 +5,6 @@
  */
 using Content.Server.Popups;
 using Content.Server.Stack;
-using Content.Shared.Bank;
 using Content.Shared.Bank.BUI;
 using Content.Shared.Bank.Components;
 using Content.Shared.Bank.Events;
@@ -15,16 +14,12 @@ using Content.Shared.UserInterface;
 using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Player;
-using System.Linq;
 using Content.Server.Administration.Logs;
-using Content.Server.Cargo.Components;
 using Content.Shared.Database;
 using Robust.Shared.Audio.Systems;
-using Content.Server._NF.Bank;
 using Content.Shared._NF.Bank.BUI;
 
-namespace Content.Server.Bank;
+namespace Content.Server._NF.Bank;
 
 public sealed partial class BankSystem
 {
@@ -35,7 +30,6 @@ public sealed partial class BankSystem
     [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
     [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
     [Dependency] private readonly IAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly SectorLedgerSystem _sectorLedger = default!;
 
     private void InitializeATM()
     {
@@ -156,8 +150,7 @@ public sealed partial class BankSystem
         {
             var tax = (int)(deposit * component.TaxCoefficient);
             tax = int.Clamp(tax, 0, deposit);
-            TrySectorDeposit(component.TaxAccount, tax);
-            _sectorLedger.AddLedgerEntry(component.TaxAccount, LedgerEntryType.BlackMarketAtmTax, tax);
+            TrySectorDeposit(component.TaxAccount, tax, LedgerEntryType.BlackMarketAtmTax);
             deposit -= tax; // Charge the user whether or not the deposit went through.
         }
 

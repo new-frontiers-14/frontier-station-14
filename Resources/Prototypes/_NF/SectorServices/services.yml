@@ -21,13 +21,8 @@
       Frontier:
         !type:SectorBankAccountInfo
         balance: 8000
-        increasePerSecond: 1
+        increasePerSecond: 1 # TODO: move to ~65K per hour (~18/s), about enough for minimum wage for Frontier employees
       Nfsd:
         !type:SectorBankAccountInfo
         balance: 8000
         increasePerSecond: 25 # 90K per hour, about enough for minimum wage for the default NFSD size
-
-- type: sectorService
-  id: Ledger
-  components:
-  - type: SectorLedger

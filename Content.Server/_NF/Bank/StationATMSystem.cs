@@ -10,7 +10,6 @@ using Content.Shared.Coordinates;
 using Content.Shared.Stacks;
 using Content.Server.Station.Systems;
 using Content.Server.Cargo.Systems;
-using Content.Server.Cargo.Components;
 using Content.Shared.Bank.BUI;
 using Content.Shared.Access.Systems;
 using Content.Shared.Database;
@@ -18,7 +17,7 @@ using Robust.Shared.Containers;
 using System.Linq;
 using Content.Shared._NF.Bank.BUI;
 
-namespace Content.Server.Bank;
+namespace Content.Server._NF.Bank;
 
 public sealed partial class BankSystem
 {
@@ -83,7 +82,8 @@ public sealed partial class BankSystem
             return;
         }
 
-        if (!TrySectorWithdraw(component.Account, args.Amount))
+        var enumVal = ParseLedgerType($"StationWithdrawal{args.Reason}", false);
+        if (!TrySectorWithdraw(component.Account, args.Amount, enumVal))
         {
             ConsolePopup(args.Actor, Loc.GetString("bank-withdraw-failed"));
             PlayDenySound(uid, component);
@@ -91,8 +91,6 @@ public sealed partial class BankSystem
                 new StationBankATMMenuInterfaceState(stationBank, hasAccess, deposit));
             return;
         }
-        var enumVal = Enum.TryParse(typeof(LedgerEntryType), $"StationWithdrawal{args.Reason}", true, out var result) ? result : LedgerEntryType.StationWithdrawalOther;
-        _sectorLedger.AddLedgerEntry(component.Account, (LedgerEntryType)enumVal, args.Amount);
 
         ConsolePopup(args.Actor, Loc.GetString("bank-atm-menu-withdraw-successful"));
         PlayConfirmSound(uid, component);
@@ -197,7 +195,8 @@ public sealed partial class BankSystem
             args.Amount = deposit;
         }
 
-        if (!TrySectorDeposit(component.Account, args.Amount))
+        var enumVal = ParseLedgerType($"StationDeposit{args.Reason}", true);
+        if (!TrySectorDeposit(component.Account, args.Amount, enumVal))
         {
             ConsolePopup(args.Actor, Loc.GetString("bank-withdraw-failed"));
             PlayDenySound(uid, component);
@@ -205,8 +204,6 @@ public sealed partial class BankSystem
                 new StationBankATMMenuInterfaceState(stationBank, hasAccess, deposit));
             return;
         }
-        var enumVal = Enum.TryParse(typeof(LedgerEntryType), $"StationDeposit{args.Reason}", true, out var result) ? result : LedgerEntryType.StationWithdrawalOther;
-        _sectorLedger.AddLedgerEntry(component.Account, (LedgerEntryType)enumVal, args.Amount);
 
         ConsolePopup(args.Actor, Loc.GetString("bank-atm-menu-deposit-successful"));
         PlayConfirmSound(uid, component);
@@ -222,6 +219,15 @@ public sealed partial class BankSystem
 
         _uiSystem.SetUiState(uid, args.UiKey,
             new StationBankATMMenuInterfaceState(stationBank + args.Amount, hasAccess, leftAmount));
+    }
+
+    private LedgerEntryType ParseLedgerType(string name, bool isDeposit)
+    {
+        if (Enum.TryParse(typeof(LedgerEntryType), name, true, out var result))
+            return (LedgerEntryType)result;
+
+        // Unknown value, return default enum value.
+        return isDeposit ? LedgerEntryType.StationDepositOther : LedgerEntryType.StationWithdrawalOther;
     }
 
     private void OnCashSlotChanged(EntityUid uid, StationBankATMComponent component, ContainerModifiedMessage args)
