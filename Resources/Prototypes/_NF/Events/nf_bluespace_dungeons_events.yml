@@ -1,5 +1,5 @@
 - type: entity
-  id: BluespaceDungeonBasalt
+  id: BluespaceDungeonBase
   parent: BaseStationEventShortDelay
   name: NT
   categories: [ HideSpawnMenu ]
@@ -16,6 +16,16 @@
     duration: 1200 # Temp
     maxDuration: 1200 # Temp
     reoccurrenceDelay: 60 # 1 hour
+  - type: ActiveRadio
+    channels:
+    - Supply
+
+- type: entity
+  id: BluespaceDungeonBasalt
+  parent: BaseStationEventBase
+  name: NT
+  categories: [ HideSpawnMenu ]
+  components:
   - type: BluespaceErrorRule
     groups:
       vgroid: !type:DungeonSpawnGroup
@@ -32,6 +42,3 @@
           linearDamping: 999999
         protos:
         - NFVGRoidBasalt
-  - type: ActiveRadio
-    channels:
-    - Supply
