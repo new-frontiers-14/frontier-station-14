@@ -26,11 +26,18 @@
     # Fill
     - !type:PrototypeDunGen
       proto: NFVGRoidFillBasalt
+    # "WarpPoint"
+    - !type:OreDunGen
+      replacement: WallRockBasalt
+      entity: WarpPointNFDengeonBasalt
+      count: 1
+      minGroupSize: 1
+      maxGroupSize: 1
     # "Ores"
     - !type:OreDunGen
       replacement: WallRockBasalt
       entity: BasaltElementalSpawner
-      count: 50
+      count: 200
       minGroupSize: 1
       maxGroupSize: 1
     - !type:OreDunGen
@@ -91,9 +98,9 @@
     - !type:OreDunGen
       replacement: WallRockBasalt
       entity: WallBasaltCobblebrickNF
-      count: 35
-      minGroupSize: 4
-      maxGroupSize: 8
+      count: 100
+      minGroupSize: 6
+      maxGroupSize: 16
     - !type:OreDunGen
       replacement: WallRockBasalt
       entity: WallRockBasaltArtifactFragment
@@ -156,7 +163,7 @@
   reserveTiles: true
   data:
     tiles:
-      FallbackTile: PlatingAsteroid
+      FallbackTile: FloorGrayConcreteMono
       WidenTile: FloorBasalt
   layers:
   - !type:PrototypeDunGen

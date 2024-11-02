@@ -20,8 +20,8 @@ public sealed partial class RoomFillComponent : Component
     /// <summary>
     /// Size of the room to fill.
     /// </summary>
-    [DataField(required: true)]
-    public Vector2i Size;
+    [DataField]
+    public Vector2i? Size;
 
     /// <summary>
     /// Rooms allowed for the marker.
@@ -33,5 +33,5 @@ public sealed partial class RoomFillComponent : Component
     /// Should any existing entities / decals be bulldozed first.
     /// </summary>
     [DataField]
-    public bool ClearExisting;
+    public bool ClearExisting = true;
 }

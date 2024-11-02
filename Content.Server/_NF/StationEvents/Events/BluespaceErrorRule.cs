@@ -50,7 +50,6 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
 
         // Spawn on a dummy map and try to FTL if possible, otherwise dump it.
         _mapSystem.CreateMap(out var mapId);
-        component.MapsUid.Add(mapId); // Just in case we have an issue with grid generator we add it to a list to be removed anyway
 
         foreach (var group in component.Groups.Values)
         {
@@ -128,8 +127,8 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
         _transform.SetMapCoordinates(spawnedGrid, new MapCoordinates(Vector2.Zero, mapId));
         _dungeon.GenerateDungeon(dungeonProto, dungeonProto.ID, spawnedGrid.Owner, spawnedGrid.Comp, Vector2i.Zero, _random.Next(), spawnCoords); // Frontier: add dungeonProto.ID
 
-        component.MapsUid.Add(mapId);
         spawned = spawnedGrid.Owner;
+        component.MapsUid.Add(mapId);
         return true;
     }
 
