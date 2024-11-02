@@ -1,0 +1,23 @@
+- type: constructionGraph
+  id: GraphNFBedrollFolded
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: NFBedrollFolded
+      steps:
+      - material: Cloth
+        amount: 4
+        doAfter: 3
+
+    - to: NFBedrollAltFolded
+      steps:
+      - material: Cloth
+        amount: 4
+        doAfter: 3
+
+  - node: NFBedrollFolded
+    entity: NFBedrollFolded
+
+  - node: NFBedrollAltFolded
+    entity: NFBedrollAltFolded

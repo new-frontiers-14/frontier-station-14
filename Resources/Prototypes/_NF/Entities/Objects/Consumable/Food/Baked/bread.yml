@@ -1,0 +1,51 @@
+- type: entity
+  name: honey challah
+  parent: FoodBreadBase
+  id: FoodBreadChallah
+  description: Twisted bread sprinkled with poppy seeds.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - bread
+      - honey
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/Baked/bread.rsi
+    state: challah
+  - type: SliceableFood
+    slice: FoodBreadChallahSlice
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 31
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 12
+        - ReagentId: Vitamin
+          Quantity: 8
+        - ReagentId: Flavorol
+          Quantity: 5
+
+- type: entity
+  name: challah slice
+  parent: FoodBreadSliceBase
+  id: FoodBreadChallahSlice
+  description: A slice of poppy and honey, oh my!
+  components:
+  - type: FlavorProfile
+    flavors:
+      - bread
+      - honey
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 6.2
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2.4
+        - ReagentId: Vitamin
+          Quantity: 1.6
+        - ReagentId: Flavorol
+          Quantity: 1
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/Baked/bread.rsi
+    state: challahslice
