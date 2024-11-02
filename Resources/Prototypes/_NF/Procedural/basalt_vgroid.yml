@@ -8,16 +8,16 @@
 # If you want mobs they needed to be added at specific steps due to how dungeons work at the moment.
 
 - type: dungeonConfig
-  id: NFVGRoid
+  id: NFVGRoidBasalt
   layers:
     - !type:PrototypeDunGen
-      proto: NFVGRoidBlob
+      proto: NFVGRoidBlobBasalt
     - !type:PrototypeDunGen
-      proto: NFVGRoidExterior
+      proto: NFVGRoidExteriorBasalt
     - !type:PrototypeDunGen
-      proto: NFVGRoidSmaller
+      proto: NFVGRoidSmallerBasalt
     - !type:PrototypeDunGen
-      proto: NFVGRoidSmallPaths
+      proto: NFVGRoidSmallPathsBasalt
     - !type:EntityTableDunGen
       minCount: 7
       maxCount: 12
@@ -25,79 +25,98 @@
         id: NFVGRoidInteriorRoomMarker
     # Fill
     - !type:PrototypeDunGen
-      proto: NFVGRoidFill
+      proto: NFVGRoidFillBasalt
+    # "Ores"
+    - !type:OreDunGen
+      replacement: WallRockBasalt
+      entity: BasaltElementalSpawner
+      count: 50
+      minGroupSize: 1
+      maxGroupSize: 1
     # Ores
     - !type:OreDunGen
-      replacement: IronRock
-      entity: IronRockIron
+      replacement: WallRockBasalt
+      entity: WallRockBasaltTin
       count: 50
       minGroupSize: 10
       maxGroupSize: 15
     - !type:OreDunGen
-      replacement: IronRock
-      entity: IronRockCoal
+      replacement: WallRockBasalt
+      entity: WallRockBasaltCoal
       count: 50
       minGroupSize: 8
       maxGroupSize: 12
     - !type:OreDunGen
-      replacement: IronRock
-      entity: IronRockQuartz
+      replacement: WallRockBasalt
+      entity: WallRockBasaltQuartz
       count: 50
       minGroupSize: 10
       maxGroupSize: 15
     - !type:OreDunGen
-      replacement: IronRock
-      entity: IronRockSalt
+      replacement: WallRockBasalt
+      entity: WallRockBasaltSalt
       count: 50
       minGroupSize: 8
       maxGroupSize: 12
     - !type:OreDunGen
-      replacement: IronRock
-      entity: IronRockGold
+      replacement: WallRockBasalt
+      entity: WallRockBasaltGold
       count: 40
       minGroupSize: 8
       maxGroupSize: 12
     - !type:OreDunGen
-      replacement: IronRock
-      entity: IronRockSilver
+      replacement: WallRockBasalt
+      entity: WallRockBasaltSilver
       count: 40
       minGroupSize: 8
       maxGroupSize: 12
     - !type:OreDunGen
-      replacement: IronRock
-      entity: IronRockPlasma
+      replacement: WallRockBasalt
+      entity: WallRockBasaltPlasma
       count: 35
       minGroupSize: 4
       maxGroupSize: 8
     - !type:OreDunGen
-      replacement: IronRock
-      entity: IronRockUranium
+      replacement: WallRockBasalt
+      entity: WallRockBasaltUranium
       count: 35
       minGroupSize: 4
       maxGroupSize: 8
     - !type:OreDunGen
-      replacement: IronRock
-      entity: IronRockArtifactFragment
+      replacement: WallRockBasalt
+      entity: WallBasaltCobblebrickNF
+      count: 35
+      minGroupSize: 4
+      maxGroupSize: 8
+    - !type:OreDunGen
+      replacement: WallRockBasalt
+      entity: WallRockBasaltArtifactFragment
       count: 25
       minGroupSize: 1
       maxGroupSize: 3
     - !type:OreDunGen
-      replacement: IronRock
-      entity: IronRockDiamond
+      replacement: WallRockBasalt
+      entity: WallRockBasaltDiamond
       count: 15
       minGroupSize: 1
       maxGroupSize: 2
+    - !type:OreDunGen
+      replacement: WallRockBasalt
+      entity: WallRockBasaltBluespace
+      count: 10
+      minGroupSize: 1
+      maxGroupSize: 1
 
 # Configs
 - type: dungeonConfig
-  id: NFVGRoidBlob
+  id: NFVGRoidBlobBasalt
   layers:
   - !type:NoiseDistanceDunGen
     size: 272, 272
     distanceConfig: !type:DunGenEuclideanSquaredDistance
       blendWeight: 0.80
     layers:
-    - tile: FloorAsteroidSand
+    - tile: FloorBasalt
       threshold: 0.50
       noise:
         frequency: 0.010
@@ -108,7 +127,7 @@
         gain: 0.5
 
 - type: dungeonConfig
-  id: NFVGRoidSmaller
+  id: NFVGRoidSmallerBasalt
   minOffset: 40
   maxOffset: 60
   layers:
@@ -116,7 +135,7 @@
     size: 150, 150
     distanceConfig: !type:DunGenEuclideanSquaredDistance
     layers:
-    - tile: FloorAsteroidSand
+    - tile: FloorBasalt
       threshold: 0.50
       noise:
         frequency: 0.080
@@ -127,25 +146,25 @@
         gain: 0.5
 
 - type: dungeonConfig
-  id: NFVGRoidExterior
+  id: NFVGRoidExteriorBasalt
   reserveTiles: true
   data:
     tiles:
       FallbackTile: PlatingAsteroid
-      WidenTile: FloorAsteroidSand
+      WidenTile: FloorBasalt
   layers:
   - !type:PrototypeDunGen
-    proto: NFVGRoidExteriorDungeons
+    proto: NFVGRoidExteriorDungeonsBasalt
   - !type:SplineDungeonConnectorDunGen
 
 - type: dungeonConfig
-  id: NFVGRoidExteriorDungeons
+  id: NFVGRoidExteriorDungeonsBasalt
   reserveTiles: true
   minCount: 2
   maxCount: 3
   layers:
   - !type:ExteriorDunGen
-    proto: Experiment
+    proto: LavaMercenary
   - !type:EntityTableDunGen
     minCount: 25
     maxCount: 40
@@ -180,22 +199,22 @@
     minCount: 8
     maxCount: 15
     groups:
-    - id: SalvageSpawnerMobMiningAsteroid
+    - id: SpawnMobMercenaryT2
       amount: 1
 
 #- type: dungeonConfig
-#  id: NFVGRoidInteriorDungeons
+#  id: NFVGRoidInteriorDungeonsBasalt
 #  minCount: 3
 #  maxCount: 5
 #  # Just randomly spawn these in bounds, doesn't really matter if they go out.
 
 - type: dungeonConfig
-  id: NFVGRoidSmallPaths
+  id: NFVGRoidSmallPathsBasalt
   reserveTiles: true
   layers:
   - !type:ReplaceTileDunGen
     layers:
-    - tile: FloorAsteroidSand
+    - tile: FloorBasalt
       threshold: 0.75
       noise:
         frequency: 0.040
@@ -210,7 +229,7 @@
     minCount: 25
     maxCount: 35
     groups:
-    - id: SalvageSpawnerMobMiningAsteroid
+    - id: SpawnMobMercenaryT3
       amount: 1
 
 #- type: dungeonConfig
@@ -218,11 +237,11 @@
 
 # Fill with rocks.
 - type: dungeonConfig
-  id: NFVGRoidFill
+  id: NFVGRoidFillBasalt
   data:
     entities:
-      Fill: IronRock
+      Fill: WallRockBasalt
   layers:
   - !type:FillGridDunGen
     allowedTiles:
-    - FloorAsteroidSand
+    - FloorBasalt
