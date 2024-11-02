@@ -51,7 +51,10 @@ public abstract class StationEventSystem<T> : GameRuleSystem<T> where T : ICompo
             ChatSystem.DispatchFilteredAnnouncement(allPlayersInGame, Loc.GetString(stationEvent.StartAnnouncement), playSound: false, colorOverride: stationEvent.StartAnnouncementColor);
 
         if (stationEvent.StartRadioAnnouncement != null) // Frontier
-            RadioSystem.SendRadioMessage(uid, stationEvent.StartRadioAnnouncement, stationEvent.StartRadioAnnouncementChannel, uid, escapeMarkup: false); // Frontier
+        {
+            var message = Loc.GetString(stationEvent.StartRadioAnnouncement);
+            RadioSystem.SendRadioMessage(uid, message, stationEvent.StartRadioAnnouncementChannel, uid, escapeMarkup: false);
+        }
 
         Audio.PlayGlobal(stationEvent.StartAudio, allPlayersInGame, true);
     }
@@ -93,7 +96,10 @@ public abstract class StationEventSystem<T> : GameRuleSystem<T> where T : ICompo
             ChatSystem.DispatchFilteredAnnouncement(allPlayersInGame, Loc.GetString(stationEvent.EndAnnouncement), playSound: false, colorOverride: stationEvent.EndAnnouncementColor);
 
         if (stationEvent.EndRadioAnnouncement != null) // Frontier
-            RadioSystem.SendRadioMessage(uid, stationEvent.EndRadioAnnouncement, stationEvent.EndRadioAnnouncementChannel, uid, escapeMarkup: false); // Frontier
+        {
+            var message = Loc.GetString(stationEvent.EndRadioAnnouncement);
+            RadioSystem.SendRadioMessage(uid, message, stationEvent.EndRadioAnnouncementChannel, uid, escapeMarkup: false); // Frontier
+        }
 
         Audio.PlayGlobal(stationEvent.EndAudio, allPlayersInGame, true);
     }
@@ -128,7 +134,10 @@ public abstract class StationEventSystem<T> : GameRuleSystem<T> where T : ICompo
                 if (stationEvent.WarningAnnouncement != null)
                     ChatSystem.DispatchFilteredAnnouncement(allPlayersInGame, Loc.GetString(stationEvent.WarningAnnouncement), playSound: false, colorOverride: stationEvent.WarningAnnouncementColor);
                 if (stationEvent.WarningRadioAnnouncement != null)
-                    RadioSystem.SendRadioMessage(uid, stationEvent.WarningRadioAnnouncement, stationEvent.WarningRadioAnnouncementChannel, uid, escapeMarkup: false);
+                {
+                    var message = Loc.GetString(stationEvent.WarningRadioAnnouncement);
+                    RadioSystem.SendRadioMessage(uid, message, stationEvent.WarningRadioAnnouncementChannel, uid, escapeMarkup: false);
+                }
                 Audio.PlayGlobal(stationEvent.WarningAudio, allPlayersInGame, true);
                 stationEvent.WarningAnnounced = true;
             }
