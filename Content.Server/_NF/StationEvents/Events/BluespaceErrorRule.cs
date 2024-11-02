@@ -244,9 +244,10 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
                     _transform.SetCoordinates(mob.Entity.Owner, new EntityCoordinates(mob.MapUid, mob.LocalPosition));
                 }
 
+                var reward = (int)(gridValue * component.RewardFactor);
                 foreach (var account in component.RewardAccounts)
                 {
-                    _bank.TrySectorDeposit(account, (int)(gridValue * component.RewardFactor));
+                    _bank.TrySectorDeposit(account, reward);
                     _sectorLedger.AddLedgerEntry(account, LedgerEntryType.BluespaceReward, reward);
                 }
             }
