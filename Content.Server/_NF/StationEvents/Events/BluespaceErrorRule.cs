@@ -50,6 +50,7 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
 
         // Spawn on a dummy map and try to FTL if possible, otherwise dump it.
         _mapSystem.CreateMap(out var mapId);
+        component.MapsUid.Add(mapId); // Just in case we have an issue with grid generator we add it to a list to be removed anyway
 
         foreach (var group in component.Groups.Values)
         {
@@ -67,7 +68,7 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
                 switch (group)
                 {
                     case BluespaceDungeonSpawnGroup dungeon:
-                        if (!TryDungeonSpawn(spawnCoords, mapId, ref dungeon, i, out spawned))
+                        if (!TryDungeonSpawn(spawnCoords, component, ref dungeon, i, out spawned))
                             continue;
 
                         break;
@@ -99,7 +100,7 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
         _mapManager.DeleteMap(mapId);
     }
 
-    private bool TryDungeonSpawn(EntityCoordinates spawnCoords, MapId mapId, ref BluespaceDungeonSpawnGroup group, int i, out EntityUid spawned)
+    private bool TryDungeonSpawn(EntityCoordinates spawnCoords, BluespaceErrorRuleComponent component, ref BluespaceDungeonSpawnGroup group, int i, out EntityUid spawned)
     {
         spawned = EntityUid.Invalid;
 
@@ -120,11 +121,14 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
             return false;
         }
 
+        _mapSystem.CreateMap(out var mapId);
+
         var spawnedGrid = _mapManager.CreateGridEntity(mapId);
 
         _transform.SetMapCoordinates(spawnedGrid, new MapCoordinates(Vector2.Zero, mapId));
         _dungeon.GenerateDungeon(dungeonProto, dungeonProto.ID, spawnedGrid.Owner, spawnedGrid.Comp, Vector2i.Zero, _random.Next(), spawnCoords); // Frontier: add dungeonProto.ID
 
+        component.MapsUid.Add(mapId);
         spawned = spawnedGrid.Owner;
         return true;
     }
@@ -242,6 +246,11 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
                     _cargo.DeductFunds(account, (int)-(gridValue * component.NfsdRewardFactor));
                 }
             }
+        }
+
+        foreach (MapId mapId in component.MapsUid)
+        {
+            _mapManager.DeleteMap(mapId);
         }
     }
 }
