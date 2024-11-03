@@ -23,7 +23,6 @@
 - type: entity
   id: BluespaceDungeonBasalt
   parent: BaseStationEventBase
-  name: NT
   categories: [ HideSpawnMenu ]
   components:
   - type: BluespaceErrorRule
@@ -42,3 +41,47 @@
           linearDamping: 999999
         protos:
         - NFVGRoidBasalt
+
+# - type: entity
+  # id: BluespaceDungeonSnow
+  # parent: BaseStationEventBase
+  # categories: [ HideSpawnMenu ]
+  # components:
+  # - type: BluespaceErrorRule
+    # groups:
+      # vgroid: !type:DungeonSpawnGroup
+        # nameDataset: names_borer
+        # minimumDistance: 1500
+        # maximumDistance: 2500
+        # addComponents:
+        # - type: Gravity
+          # enabled: true
+          # inherent: true
+        # - type: IFF
+        # - type: Shuttle
+          # angularDamping: 999999
+          # linearDamping: 999999
+        # protos:
+        # - NFVGRoidSnow
+
+# - type: entity
+  # id: BluespaceDungeonRock
+  # parent: BaseStationEventBase
+  # categories: [ HideSpawnMenu ]
+  # components:
+  # - type: BluespaceErrorRule
+    # groups:
+      # vgroid: !type:DungeonSpawnGroup
+        # nameDataset: names_borer
+        # minimumDistance: 1500
+        # maximumDistance: 2500
+        # addComponents:
+        # - type: Gravity
+          # enabled: true
+          # inherent: true
+        # - type: IFF
+        # - type: Shuttle
+          # angularDamping: 999999
+          # linearDamping: 999999
+        # protos:
+        # - NFVGRoidRock
