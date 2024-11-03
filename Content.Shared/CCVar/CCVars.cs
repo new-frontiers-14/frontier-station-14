@@ -18,19 +18,19 @@ namespace Content.Shared.CCVar
         ///     Change this to have the changelog and rules "last seen" date stored separately.
         /// </summary>
         public static readonly CVarDef<string> ServerId =
-            CVarDef.Create("server.id", "new_frontier", CVar.REPLICATED | CVar.SERVER);
+            CVarDef.Create("server.id", "new_frontier", CVar.REPLICATED | CVar.SERVER); // Frontier: new_frontier
 
         /// <summary>
         ///     Guide Entry Prototype ID to be displayed as the server rules.
         /// </summary>
         public static readonly CVarDef<string> RulesFile =
-            CVarDef.Create("server.rules_file", "FrontierRuleset", CVar.REPLICATED | CVar.SERVER);
+            CVarDef.Create("server.rules_file", "FrontierRuleset", CVar.REPLICATED | CVar.SERVER); // Frontier: Rules
 
         /// <summary>
         ///     A loc string for what should be displayed as the title on the Rules window.
         /// </summary>
         public static readonly CVarDef<string> RulesHeader =
-            CVarDef.Create("server.rules_header", "Frontier Server Rules", CVar.REPLICATED | CVar.SERVER);
+            CVarDef.Create("server.rules_header", "Frontier Server Rules", CVar.REPLICATED | CVar.SERVER); // Frontier: Rules
 
         /// <summary>
         ///     Guide entry that is displayed by default when a guide is opened.
@@ -136,7 +136,7 @@ namespace Content.Shared.CCVar
         ///     Controls the duration of the lobby timer in seconds. Defaults to 2 minutes and 30 seconds.
         /// </summary>
         public static readonly CVarDef<int>
-            GameLobbyDuration = CVarDef.Create("game.lobbyduration", 180, CVar.ARCHIVE);
+            GameLobbyDuration = CVarDef.Create("game.lobbyduration", 180, CVar.ARCHIVE); // Frontier: 150<180
 
         /// <summary>
         ///     Controls if players can latejoin at all.
@@ -148,7 +148,7 @@ namespace Content.Shared.CCVar
         ///     Controls the default game preset.
         /// </summary>
         public static readonly CVarDef<string>
-            GameLobbyDefaultPreset = CVarDef.Create("game.defaultpreset", "adventure", CVar.ARCHIVE);
+            GameLobbyDefaultPreset = CVarDef.Create("game.defaultpreset", "adventure", CVar.ARCHIVE); // Frontier: secret<adventure
 
         /// <summary>
         ///     Controls if the game can force a different preset if the current preset's criteria are not met.
@@ -210,7 +210,7 @@ namespace Content.Shared.CCVar
         /// Is map rotation enabled?
         /// </summary>
         public static readonly CVarDef<bool>
-            GameMapRotation = CVarDef.Create("game.map_rotation", false, CVar.SERVERONLY);
+            GameMapRotation = CVarDef.Create("game.map_rotation", false, CVar.SERVERONLY); // Frontier: false
 
         /// <summary>
         /// If roles should be restricted based on time.
@@ -319,7 +319,7 @@ namespace Content.Shared.CCVar
         /// <summary>
         /// Whether the baby jail is currently enabled.
         /// </summary>
-        public static readonly CVarDef<bool> BabyJailEnabled  =
+        public static readonly CVarDef<bool> BabyJailEnabled =
             CVarDef.Create("game.baby_jail.enabled", false, CVar.NOTIFY | CVar.REPLICATED | CVar.SERVER);
 
         /// <summary>
@@ -466,30 +466,6 @@ namespace Content.Shared.CCVar
             CVarDef.Create("discord.ahelp_avatar", string.Empty, CVar.SERVERONLY);
 
         /// <summary>
-        ///     URL of the Discord webhook which will send round status notifications.
-        /// </summary>
-        public static readonly CVarDef<string> DiscordRoundWebhook =
-            CVarDef.Create("discord.round_webhook", string.Empty, CVar.SERVERONLY);
-
-        /// <summary>
-        ///     Discord ID of role which will be pinged on new round start message.
-        /// </summary>
-        public static readonly CVarDef<string> DiscordRoundRoleId =
-            CVarDef.Create("discord.round_roleid", string.Empty, CVar.SERVERONLY);
-
-        /// <summary>
-        ///     Send notifications only about a new round begins.
-        /// </summary>
-        public static readonly CVarDef<bool> DiscordRoundStartOnly =
-            CVarDef.Create("discord.round_start_only", false, CVar.SERVERONLY);
-
-        /// <summary>
-        /// URL of the Discord webhook which will relay all round end messages.
-        /// </summary>
-        public static readonly CVarDef<string> DiscordLeaderboardWebhook =
-            CVarDef.Create("discord.leaderboard_webhook", string.Empty, CVar.SERVERONLY);
-
-        /// <summary>
         /// URL of the Discord webhook which will relay all custom votes. If left empty, disables the webhook.
         /// </summary>
         public static readonly CVarDef<string> DiscordVoteWebhook =
@@ -520,7 +496,7 @@ namespace Content.Shared.CCVar
         ///     The dataset prototype to use when selecting a random tip.
         /// </summary>
         public static readonly CVarDef<string> TipsDataset =
-            CVarDef.Create("tips.dataset", "TipsNF");
+            CVarDef.Create("tips.dataset", "NFTips"); // Frontier: Tips<NFTips
 
         /// <summary>
         ///     The number of seconds between each tip being displayed when the round is not actively going
@@ -1008,7 +984,7 @@ namespace Content.Shared.CCVar
         ///     Actual area may be larger, as it currently doesn't terminate mid neighbor finding. I.e., area may be that of a ~51 tile radius circle instead.
         /// </remarks>
         public static readonly CVarDef<int> ExplosionMaxArea =
-            CVarDef.Create("explosion.max_area", (int) 3.14f * 256 * 256, CVar.SERVERONLY);
+            CVarDef.Create("explosion.max_area", (int)3.14f * 256 * 256, CVar.SERVERONLY);
 
         /// <summary>
         ///     Upper limit on the number of neighbor finding steps for the explosion system neighbor-finding algorithm.
@@ -1140,7 +1116,7 @@ namespace Content.Shared.CCVar
         ///     Whether gas differences will move entities.
         /// </summary>
         public static readonly CVarDef<bool> SpaceWind =
-            CVarDef.Create("atmos.space_wind", true, CVar.SERVERONLY);
+            CVarDef.Create("atmos.space_wind", true, CVar.SERVERONLY); // Frontier: true
 
         /// <summary>
         ///     Divisor from maxForce (pressureDifference * 2.25f) to force applied on objects.
@@ -1166,7 +1142,7 @@ namespace Content.Shared.CCVar
         ///     A "throwing" atmospheric pressure difference ignores this limit, but not the max. velocity limit.
         /// </summary>
         public static readonly CVarDef<float> SpaceWindMaxPushForce =
-            CVarDef.Create("atmos.space_wind_max_push_force", 25f, CVar.SERVERONLY);
+            CVarDef.Create("atmos.space_wind_max_push_force", 25f, CVar.SERVERONLY); // Frontier 20<25
 
         /// <summary>
         ///     Whether monstermos tile equalization is enabled.
@@ -1189,7 +1165,7 @@ namespace Content.Shared.CCVar
 		///     Also looks weird on slow spacing for unrelated reasons. If you do want to enable this, you should probably turn on instaspacing.
         /// </summary>
         public static readonly CVarDef<bool> MonstermosRipTiles =
-            CVarDef.Create("atmos.monstermos_rip_tiles", false, CVar.SERVERONLY);
+            CVarDef.Create("atmos.monstermos_rip_tiles", false, CVar.SERVERONLY); // Frontier TODO: Update this to true after atmos changeups
 
         /// <summary>
         ///     Whether explosive depressurization will cause the grid to gain an impulse.
@@ -1203,7 +1179,7 @@ namespace Content.Shared.CCVar
         ///     1.0 for instant spacing, 0.2 means 20% of remaining air lost each time
         /// </summary>
         public static readonly CVarDef<float> AtmosSpacingEscapeRatio =
-            CVarDef.Create("atmos.mmos_spacing_speed", 0.15f, CVar.SERVERONLY); // Frontier: Changed to 0.15 in June merge from original 0.5
+            CVarDef.Create("atmos.mmos_spacing_speed", 0.15f, CVar.SERVERONLY);
 
         /// <summary>
         ///     Minimum amount of air allowed on a spaced tile before it is reset to 0 immediately in kPa
@@ -1211,7 +1187,7 @@ namespace Content.Shared.CCVar
         ///     unless we truncate it somewhere.
         /// </summary>
         public static readonly CVarDef<float> AtmosSpacingMinGas =
-            CVarDef.Create("atmos.mmos_min_gas", 1.0f, CVar.SERVERONLY);
+            CVarDef.Create("atmos.mmos_min_gas", 1.0f, CVar.SERVERONLY); // Frontier 2.0<1.0
 
         /// <summary>
         ///     How much wind can go through a single tile before that tile doesn't depressurize itself
@@ -1267,14 +1243,14 @@ namespace Content.Shared.CCVar
         ///     in-game.
         /// </summary>
         public static readonly CVarDef<float> AtmosSpeedup =
-            CVarDef.Create("atmos.speedup", 2f, CVar.SERVERONLY);
+            CVarDef.Create("atmos.speedup", 2f, CVar.SERVERONLY); // Frontier 8f<2f
 
         /// <summary>
         ///     Like atmos.speedup, but only for gas and reaction heat values. 64x means
         ///     gases heat up and cool down 64x faster than real life.
         /// </summary>
         public static readonly CVarDef<float> AtmosHeatScale =
-            CVarDef.Create("atmos.heat_scale", 2f, CVar.SERVERONLY);
+            CVarDef.Create("atmos.heat_scale", 2f, CVar.SERVERONLY); // Frontier 8f<2f
 
         /// <summary>
         /// Maximum explosion radius for explosions caused by bursting a gas tank ("max caps").
@@ -1390,13 +1366,13 @@ namespace Content.Shared.CCVar
         ///     See vote.enabled, but specific to restart votes
         /// </summary>
         public static readonly CVarDef<bool> VoteRestartEnabled =
-            CVarDef.Create("vote.restart_enabled", false, CVar.SERVERONLY);
+            CVarDef.Create("vote.restart_enabled", false, CVar.SERVERONLY); // Frontier: false
 
         /// <summary>
         ///     Config for when the restart vote should be allowed to be called regardless with less than this amount of players.
         /// </summary>
         public static readonly CVarDef<int> VoteRestartMaxPlayers =
-            CVarDef.Create("vote.restart_max_players", 4, CVar.SERVERONLY);
+            CVarDef.Create("vote.restart_max_players", 20, CVar.SERVERONLY);
 
         /// <summary>
         ///     Config for when the restart vote should be allowed to be called based on percentage of ghosts.
@@ -1408,7 +1384,7 @@ namespace Content.Shared.CCVar
         ///     See vote.enabled, but specific to preset votes
         /// </summary>
         public static readonly CVarDef<bool> VotePresetEnabled =
-            CVarDef.Create("vote.preset_enabled", false, CVar.SERVERONLY);
+            CVarDef.Create("vote.preset_enabled", false, CVar.SERVERONLY); // Frontier: false
 
         /// <summary>
         ///     See vote.enabled, but specific to map votes
@@ -1420,7 +1396,7 @@ namespace Content.Shared.CCVar
         ///     The required ratio of the server that must agree for a restart round vote to go through.
         /// </summary>
         public static readonly CVarDef<float> VoteRestartRequiredRatio =
-            CVarDef.Create("vote.restart_required_ratio", 0.90f, CVar.SERVERONLY);
+            CVarDef.Create("vote.restart_required_ratio", 0.85f, CVar.SERVERONLY);
 
         /// <summary>
         /// Whether or not to prevent the restart vote from having any effect when there is an online admin
@@ -1432,7 +1408,7 @@ namespace Content.Shared.CCVar
         ///     The delay which two votes of the same type are allowed to be made by separate people, in seconds.
         /// </summary>
         public static readonly CVarDef<float> VoteSameTypeTimeout =
-            CVarDef.Create("vote.same_type_timeout", 600f, CVar.SERVERONLY);
+            CVarDef.Create("vote.same_type_timeout", 240f, CVar.SERVERONLY);
 
 
         /// <summary>
@@ -1445,7 +1421,7 @@ namespace Content.Shared.CCVar
         ///     Sets the duration of the restart vote timer.
         /// </summary>
         public static readonly CVarDef<int>
-            VoteTimerRestart = CVarDef.Create("vote.timerrestart", 300, CVar.SERVERONLY);
+            VoteTimerRestart = CVarDef.Create("vote.timerrestart", 60, CVar.SERVERONLY);
 
         /// <summary>
         ///     Sets the duration of the gamemode/preset vote timer.
@@ -1501,7 +1477,7 @@ namespace Content.Shared.CCVar
         /// Whether the arrivals shuttle is enabled.
         /// </summary>
         public static readonly CVarDef<bool> ArrivalsShuttles =
-            CVarDef.Create("shuttle.arrivals", false, CVar.SERVERONLY);
+            CVarDef.Create("shuttle.arrivals", false, CVar.SERVERONLY); // Frontier: false
 
         /// <summary>
         /// The map to use for the arrivals station.
@@ -1538,16 +1514,7 @@ namespace Content.Shared.CCVar
         /// Whether to automatically spawn escape shuttles.
         /// </summary>
         public static readonly CVarDef<bool> GridFill =
-            CVarDef.Create("shuttle.grid_fill", false, CVar.SERVERONLY);
-
-        public static readonly CVarDef<bool> CargoShuttles =
-            CVarDef.Create("shuttle.cargo", false, CVar.SERVERONLY);
-
-        /// <summary>
-        /// Whether the Shipyard is enabled.
-        /// </summary>
-        public static readonly CVarDef<bool> Shipyard =
-            CVarDef.Create("shuttle.shipyard", true, CVar.SERVERONLY);
+            CVarDef.Create("shuttle.grid_fill", false, CVar.SERVERONLY); // Frontier: false
 
         /// <summary>
         /// Whether to automatically preloading grids by GridPreloaderSystem
@@ -1606,7 +1573,7 @@ namespace Content.Shared.CCVar
         /// How long the emergency shuttle remains docked with the station, in seconds.
         /// </summary>
         public static readonly CVarDef<float> EmergencyShuttleDockTime =
-            CVarDef.Create("shuttle.emergency_dock_time", 300f, CVar.SERVERONLY);
+            CVarDef.Create("shuttle.emergency_dock_time", 300f, CVar.SERVERONLY); // Frontier: 180f<300f
 
         /// <summary>
         /// If the emergency shuttle can't dock at a priority port, the dock time will be multiplied with this value.
@@ -1631,39 +1598,39 @@ namespace Content.Shared.CCVar
         /// Actual minimum travel time cannot be less than <see cref="ShuttleSystem.DefaultArrivalTime"/>
         /// </summary>
         public static readonly CVarDef<float> EmergencyShuttleMinTransitTime =
-            CVarDef.Create("shuttle.emergency_transit_time_min", 300f, CVar.SERVERONLY);
+            CVarDef.Create("shuttle.emergency_transit_time_min", 300f, CVar.SERVERONLY); // Frontier: 60f<300f
 
         /// <summary>
         /// The maximum time for the emergency shuttle to arrive at centcomm.
         /// </summary>
         public static readonly CVarDef<float> EmergencyShuttleMaxTransitTime =
-            CVarDef.Create("shuttle.emergency_transit_time_max", 600f, CVar.SERVERONLY);
+            CVarDef.Create("shuttle.emergency_transit_time_max", 600f, CVar.SERVERONLY); // Frontier: 180f<600f
 
         /// <summary>
         /// Whether the emergency shuttle is enabled or should the round just end.
         /// </summary>
         public static readonly CVarDef<bool> EmergencyShuttleEnabled =
-            CVarDef.Create("shuttle.emergency", false, CVar.SERVERONLY);
+            CVarDef.Create("shuttle.emergency", false, CVar.SERVERONLY); // Frontier: false
 
         /// <summary>
         ///     The percentage of time passed from the initial call to when the shuttle can no longer be recalled.
         ///     ex. a call time of 10min and turning point of 0.5 means the shuttle cannot be recalled after 5 minutes.
         /// </summary>
         public static readonly CVarDef<float> EmergencyRecallTurningPoint =
-            CVarDef.Create("shuttle.recall_turning_point", 0.1f, CVar.SERVERONLY);
+            CVarDef.Create("shuttle.recall_turning_point", 0.5f, CVar.SERVERONLY);
 
         /// <summary>
         ///     Time in minutes after round start to auto-call the shuttle. Set to zero to disable.
         /// </summary>
         public static readonly CVarDef<int> EmergencyShuttleAutoCallTime =
-            CVarDef.Create("shuttle.auto_call_time", 360, CVar.SERVERONLY);
+            CVarDef.Create("shuttle.auto_call_time", 360, CVar.SERVERONLY); // Frontier: 90<360
 
         /// <summary>
         ///     Time in minutes after the round was extended (by recalling the shuttle) to call
         ///     the shuttle again.
         /// </summary>
         public static readonly CVarDef<int> EmergencyShuttleAutoCallExtensionTime =
-            CVarDef.Create("shuttle.auto_call_extension_time", 55, CVar.SERVERONLY);
+            CVarDef.Create("shuttle.auto_call_extension_time", 45, CVar.SERVERONLY);
 
         /*
          * Crew Manifests
@@ -1707,18 +1674,6 @@ namespace Content.Shared.CCVar
         /// </summary>
         public static readonly CVarDef<float> AnomalyGenerationGridBoundsScale =
             CVarDef.Create("anomaly.generation_grid_bounds_scale", 0.6f, CVar.SERVERONLY);
-
-        /// <summary>
-        ///     A scale factor applied to a grid's bounds when trying to find a spot to randomly generate cargo crate.
-        /// </summary>
-        public static readonly CVarDef<float> CargoGenerationGridBoundsScale =
-            CVarDef.Create("cargo.generation_grid_bounds_scale", 0.6f, CVar.SERVERONLY);
-
-        /// <summary>
-        ///     A scale factor applied to a grid's bounds when trying to find a spot to randomly generate syndicate crate.
-        /// </summary>
-        public static readonly CVarDef<float> SyndicateCrateGenerationGridBoundsScale =
-            CVarDef.Create("syndicatecrate.generation_grid_bounds_scale", 0.6f, CVar.SERVERONLY);
 
         /*
          * VIEWPORT
@@ -1890,13 +1845,13 @@ namespace Content.Shared.CCVar
         /// Allows flavor text (character descriptions)
         /// </summary>
         public static readonly CVarDef<bool> FlavorText =
-            CVarDef.Create("ic.flavor_text", true, CVar.SERVER | CVar.REPLICATED);
+            CVarDef.Create("ic.flavor_text", true, CVar.SERVER | CVar.REPLICATED); // Frontier: true
 
         /// <summary>
         /// Adds a period at the end of a sentence if the sentence ends in a letter.
         /// </summary>
         public static readonly CVarDef<bool> ChatPunctuation =
-            CVarDef.Create("ic.punctuation", true, CVar.SERVER);
+            CVarDef.Create("ic.punctuation", true, CVar.SERVER); // Frontier: true
 
         /// <summary>
         /// Enables automatically forcing IC name rules. Uppercases the first letter of the first and last words of the name
@@ -1927,13 +1882,16 @@ namespace Content.Shared.CCVar
          */
 
         /// <summary>
-        /// Cooldown for successful missions.
+        /// Duration for missions
         /// </summary>
         public static readonly CVarDef<float>
-            SalvageExpeditionCooldown = CVarDef.Create("salvage.expedition_cooldown", 300f, CVar.REPLICATED);
+            SalvageExpeditionDuration = CVarDef.Create("salvage.expedition_duration", 900f, CVar.REPLICATED); // Frontier: This is not used, look for SalvageTimeMod
 
+        /// <summary>
+        /// Cooldown for missions. Frontier: SalvageExpeditionFailedCooldown for failed missions
+        /// </summary>
         public static readonly CVarDef<float>
-            SalvageExpeditionFailedCooldown = CVarDef.Create("salvage.expedition_failed_cooldown", 600f, CVar.REPLICATED);
+            SalvageExpeditionCooldown = CVarDef.Create("salvage.expedition_cooldown", 300f, CVar.REPLICATED); // Frontier: 780f<300f TODO: return this up in another PR
 
         /*
          * Flavor
@@ -2009,7 +1967,7 @@ namespace Content.Shared.CCVar
         /// This is useful to free some space automatically. Auto-deletion runs only on server boot.
         /// </summary>
         public static readonly CVarDef<int> ResourceUploadingStoreDeletionDays =
-            CVarDef.Create("netres.store_deletion_days", 0, CVar.SERVER | CVar.SERVERONLY);
+            CVarDef.Create("netres.store_deletion_days", 0, CVar.SERVER | CVar.SERVERONLY); // Frontier 30<0
 
         /*
          * Controls
@@ -2035,7 +1993,7 @@ namespace Content.Shared.CCVar
         /// Whether or not the storage UI is static and bound to the hotbar, or unbound and allowed to be dragged anywhere.
         /// </summary>
         public static readonly CVarDef<bool> StaticStorageUI =
-            CVarDef.Create("control.static_storage_ui", false, CVar.CLIENTONLY | CVar.ARCHIVE);
+            CVarDef.Create("control.static_storage_ui", false, CVar.CLIENTONLY | CVar.ARCHIVE); // Frontier: false
 
         /// <summary>
         /// Whether or not the storage window uses a transparent or opaque sprite.
@@ -2061,7 +2019,7 @@ namespace Content.Shared.CCVar
         /// The time you must spend reading the rules, before the "Request" button is enabled
         /// </summary>
         public static readonly CVarDef<float> GhostRoleTime =
-            CVarDef.Create("ghost.role_time", 5f, CVar.REPLICATED | CVar.SERVER);
+            CVarDef.Create("ghost.role_time", 3f, CVar.REPLICATED | CVar.SERVER);
 
         /// <summary>
         /// If ghost role lotteries should be made near-instanteous.
@@ -2189,7 +2147,7 @@ namespace Content.Shared.CCVar
         ///     Whether or not world generation is enabled.
         /// </summary>
         public static readonly CVarDef<bool> WorldgenEnabled =
-            CVarDef.Create("worldgen.enabled", true, CVar.SERVERONLY); // Frontier: false<true
+            CVarDef.Create("worldgen.enabled", true, CVar.SERVERONLY); // Frontier: true
 
         /// <summary>
         ///     The worldgen config to use.
@@ -2201,7 +2159,7 @@ namespace Content.Shared.CCVar
         ///     The maximum amount of time the entity GC can process, in ms.
         /// </summary>
         public static readonly CVarDef<int> GCMaximumTimeMs =
-            CVarDef.Create("entgc.maximum_time_ms", 10, CVar.SERVERONLY);
+            CVarDef.Create("entgc.maximum_time_ms", 10, CVar.SERVERONLY); // Frontier: 5<10
 
         /*
          * Replays
@@ -2247,11 +2205,11 @@ namespace Content.Shared.CCVar
          */
 
         public static readonly CVarDef<bool> GatewayGeneratorEnabled =
-            CVarDef.Create("gateway.generator_enabled", false);
+            CVarDef.Create("gateway.generator_enabled", false); // Frontier: false
 
         // Clippy!
         public static readonly CVarDef<string> TippyEntity =
-            CVarDef.Create("tippy.entity", "TippyClippy", CVar.SERVER | CVar.REPLICATED); // Frontier - Tippy<TippyClippy
+            CVarDef.Create("tippy.entity", "NFTippy", CVar.SERVER | CVar.REPLICATED); // Frontier - Tippy<NFTippy
 
         /// <summary>
         ///     The number of seconds that must pass for a single entity to be able to point at something again.
@@ -2259,11 +2217,6 @@ namespace Content.Shared.CCVar
         public static readonly CVarDef<float> PointingCooldownSeconds =
             CVarDef.Create("pointing.cooldown_seconds", 0.5f, CVar.SERVERONLY);
 
-        public static readonly CVarDef<string> ServerAuthList =
-            CVarDef.Create("frontier.auth_servers", "", CVar.CONFIDENTIAL | CVar.SERVERONLY);
-
-        public static readonly CVarDef<bool> AllowMultiConnect =
-            CVarDef.Create("frontier.allow_multi_connect", true, CVar.CONFIDENTIAL | CVar.SERVERONLY);
         /*
          * DEBUG
          */

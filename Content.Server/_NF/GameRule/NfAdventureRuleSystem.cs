@@ -257,6 +257,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         // Using invalid entity, we don't have a relevant entity to reference here.
         RaiseLocalEvent(EntityUid.Invalid, new StationsGeneratedEvent(), broadcast: true); // TODO: attach this to a meaningful entity.
 
+        // TODO: Remove this for new system
         foreach (var dungeonProto in component.SpaceDungeons)
         {
             if (!_prototypeManager.TryIndex<DungeonConfigPrototype>(dungeonProto, out var dunGen))
@@ -538,7 +539,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
     private async Task ReportRound(string message, int color = 0x77DDE7)
     {
         Logger.InfoS("discord", message);
-        String webhookUrl = _configurationManager.GetCVar(CCVars.DiscordLeaderboardWebhook);
+        String webhookUrl = _configurationManager.GetCVar(NFCCVars.DiscordLeaderboardWebhook);
         if (webhookUrl == string.Empty)
             return;
 
