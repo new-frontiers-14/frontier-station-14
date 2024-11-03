@@ -171,6 +171,28 @@
     #groups:
     #- AllAccess
 
+- type: entity
+  abstract: true
+  id: MobIncorporealBase
+  name: incorporeal entity
+  description: You can't touch it, but it can touch you.
+  components:
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/_NF/Effects/silence.ogg
+  - type: CanMoveInAir
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.4
+        density: 10
+        mask:
+        - FlyingMobMask
+        layer:
+        - Opaque
+
 # Dungeon boss
 - type: entity
   id: MobHostileBossBase
