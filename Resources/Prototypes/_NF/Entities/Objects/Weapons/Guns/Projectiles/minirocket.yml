@@ -37,3 +37,62 @@
       state: frag
     - type: StaticPrice
       price: 20
+
+# Explorer Captain Seismic Charge
+- type: entity
+  parent: BaseBulletTrigger
+  id: NFBulletSeismicCharge
+  name: seismic charge
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Bombs/seismic.rsi
+    layers:
+    - state: primed
+  - type: ExplodeOnTrigger
+  - type: Explosive # Nerfed SeismicCharge
+    explosionType: Cryo
+    totalIntensity: 30
+    intensitySlope: 2
+    maxIntensity: 10
+    canCreateVacuum: false
+  - type: PointLight
+    radius: 3.5
+    color: "#47f8ff"
+    energy: 0.5
+
+# Punk leader grenade
+- type: entity
+  parent: BaseBulletTrigger
+  id: NFBulletPartyNade
+  name: party 'nade
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Grenades/metalfoam.rsi
+    layers:
+    - state: primed
+  - type: SmokeOnTrigger
+    duration: 20
+    spreadAmount: 110
+    solution:
+      reagents:
+      - ReagentId: Desoxyephedrine
+        Quantity: 10
+      - ReagentId: THC
+        Quantity: 30
+      - ReagentId: Happiness
+        Quantity: 5
+      - ReagentId: SpaceDrugs
+        Quantity: 5
+      - ReagentId: Absinthe
+        Quantity: 20
+      - ReagentId: TearGas
+        Quantity: 20
+      - ReagentId: Diphenhydramine # Heals toxin damage you get from all the sh.. stuff above
+        Quantity: 20
+  - type: PointLight
+    radius: 3.5
+    energy: 0.5
+  - type: RgbLightController
+    layers: [ 0 ]
