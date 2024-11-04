@@ -1,0 +1,58 @@
+- type: entity
+  name: Boiled Dough Dango Ball
+  parent: FoodBakingBase
+  id: BoiledDoughDangoBall
+  description: A boiled ball of dough.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - dough
+  - type: Sprite
+    sprite: Corvax/Objects/Consumable/Food/ingredients.rsi
+    state: boileddoughdangoball
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+
+- type: entity
+  name: Raw Dough Dango Ball
+  parent: FoodBakingBase
+  id: RawDoughDangoBall
+  description: A raw ball of dough.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - dough
+  - type: Sprite
+    sprite: Corvax/Objects/Consumable/Food/ingredients.rsi
+    state: rawdoughdangoball
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 1
+
+- type: entity
+  name: Raw Ramen Noodles
+  parent: FoodBakingBase
+  id: RawRamenNoodles
+  description: A raw ramen.
+  components:
+  - type: FlavorProfile
+  - type: Sprite
+    sprite: Corvax/Objects/Consumable/Food/ingredients.rsi
+    state: rawramennoodles
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 1
+

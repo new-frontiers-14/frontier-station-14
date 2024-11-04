@@ -1,5 +1,5 @@
 - type: reaction
-  id: CreateDangoDough
+  id: createrawdangodough
   impact: Low
   quantized: true
   conserveEnergy: false
@@ -12,16 +12,16 @@
       amount: 5
   effects:
     - !type:CreateEntityReactionEffect
-      entity: Doughdangoball
+      entity: RawDoughDangoBall
 
 - type: reaction
-  id: CreateRawRamen
+  id: createrawramen
   impact: Low
   quantized: true
   conserveEnergy: false
   reactants:
     Flour:
-      amount: 10 
+      amount: 5 
     TableSalt:
       amount: 5
     OilOlive:
@@ -32,4 +32,4 @@
       amount: 5
   effects:
     - !type:CreateEntityReactionEffect
-      entity: rawramennoodles
+      entity: RawRamenNoodles

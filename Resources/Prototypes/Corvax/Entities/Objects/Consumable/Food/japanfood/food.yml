@@ -1,0 +1,201 @@
+- type: entity
+  name: Chocolate Pocky
+  parent: FoodBakedBase
+  id: ChocoPocky
+  description: Don't forget to play the game with your date...
+  components:
+  - type: FlavorProfile
+    flavors:
+      - sweet
+  - type: Item
+    storedRotation: -90
+  - type: Food
+  - type: Sprite
+    sprite: Corvax/Objects/Consumable/Food/japanfood.rsi
+    state: chocopocky
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 15
+        reagents:
+          - ReagentId: Nutriment
+            Quantity: 10
+          - ReagentId: Theobromine
+            Quantity: 3
+          - ReagentId: CocoaPowder
+            Quantity: 1
+  - type: Tag
+    tags:
+    - Cigarette
+  - type: Clothing
+    sprite: Corvax\Objects\Consumable\Food\pockypacks.rsi
+    slots: [ mask ]
+    equippedPrefix: unlit
+
+- type: entity
+  name: Tricolor Dango
+  parent: FoodBakedBase
+  id: HanamiDango
+  description: You like that colors, don't you?
+  components:
+  - type: Item
+    size: Small
+    storedRotation: -90
+  - type: FlavorProfile
+    flavors:
+      - sweet
+  - type: Food
+  - type: Sprite
+    sprite: Corvax/Objects/Consumable/Food/japanfood.rsi
+    state: hanamidango
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+          - ReagentId: Nutriment
+            Quantity: 15
+          - ReagentId: Rice
+            Quantity: 5
+          - ReagentId: Sugar
+            Quantity: 2
+          - ReagentId: Vitamin
+            Quantity: 2
+          - ReagentId: GreenTea
+            Quantity: 2
+          - ReagentId: MelonLiquor
+            Quantity: 2
+            
+- type: entity
+  name: Mitarashi Dango
+  parent: FoodBakedBase
+  id: MitarashiDango
+  description: Rice sweetness that beckons
+  components:
+  - type: Item
+    size: Small
+    storedRotation: -90
+  - type: FlavorProfile
+    flavors:
+      - sweet
+  - type: Food
+  - type: Sprite
+    sprite: Corvax/Objects/Consumable/Food/japanfood.rsi
+    state: mitarashidango
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+          - ReagentId: Nutriment
+            Quantity: 15
+          - ReagentId: Rice
+            Quantity: 5
+          - ReagentId: Sugar
+            Quantity: 2
+
+- type: entity
+  name: Onigiri
+  parent: FoodBakedBase
+  id: Onigiri
+  description: Best fried geometric shape in the galaxy
+  components:
+  - type: FlavorProfile
+    flavors:
+      - meaty
+  - type: Item
+    size: Small
+    storedRotation: -90
+  - type: Food
+  - type: Sprite
+    sprite: Corvax/Objects/Consumable/Food/japanfood.rsi
+    state: onigiri
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 35
+        reagents:
+          - ReagentId: Nutriment
+            Quantity: 20 
+          - ReagentId: Rice
+            Quantity: 5
+          - ReagentId: Protein
+            Quantity: 5
+          - ReagentId: Mayo
+            Quantity: 2
+          - ReagentId: Flavorol
+            Quantity: 5
+  - type: Tag
+    tags:
+    - Meat
+    
+- type: entity
+  name: Pork Ramen
+  parent: FoodBowlBase
+  id: PorkRamenNoodles
+  description: Ah, I See You're a Man of Culture As Well...
+  components:
+  - type: FlavorProfile
+    flavors:
+      - oily
+  - type: Item
+  - type: Food
+    utensil: Fork
+  - type: Sprite
+    sprite: Corvax/Objects/Consumable/Food/japanfood.rsi
+    state: porkramen
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 35
+        reagents:
+          - ReagentId: Nutriment    
+            Quantity: 20
+          - ReagentId: Protein
+            Quantity: 5
+          - ReagentId: Flavorol
+            Quantity: 5
+          - ReagentId: Soysauce
+            Quantity: 2
+          - ReagentId: CapsaicinOil
+            Quantity: 2
+  - type: Tag
+    tags:
+    - Meat
+    - Soup
+
+- type: entity
+  name: Spicy Ramen
+  parent: FoodBowlBase
+  id: SpicyPorkRamenNoodles
+  description: So hot and so cute!
+  components:
+  - type: FlavorProfile
+    flavors:
+      - spicy
+      - oily
+  - type: Item
+  - type: Food
+    utensil: Fork
+  - type: Sprite
+    sprite: Corvax/Objects/Consumable/Food/japanfood.rsi
+    state: spicyporkramen
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 40
+        reagents:
+          - ReagentId: Nutriment
+            Quantity: 25
+          - ReagentId: Protein
+            Quantity: 5
+          - ReagentId: Flavorol
+            Quantity: 5        
+          - ReagentId: CapsaicinOil
+            Quantity: 2
+          - ReagentId: Soysauce
+            Quantity: 2
+  - type: Tag
+    tags:
+    - Meat
+    - Soup
