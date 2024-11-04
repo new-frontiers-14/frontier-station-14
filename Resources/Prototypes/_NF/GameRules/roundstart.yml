@@ -30,7 +30,7 @@
     - id: BluespaceBloodMoon
 
 - type: entity
-  id: BluespaceEventScheduler
+  id: BluespaceDungeonEventScheduler
   parent: BaseGameRule
   components:
   - type: BasicStationEventScheduler
@@ -46,6 +46,7 @@
   table: !type:AllSelector # we need to pass a list of rules, since rules have further restrictions to consider via StationEventComp
     children:
     - id: BluespaceDungeonBasalt
+    - id: BluespaceDungeonChromite
 
 - type: entity
   id: SmugglingEventScheduler

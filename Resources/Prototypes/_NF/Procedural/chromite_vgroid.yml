@@ -8,133 +8,133 @@
 # If you want mobs they needed to be added at specific steps due to how dungeons work at the moment.
 
 - type: dungeonConfig
-  id: NFVGRoidBasalt
+  id: NFVGRoidChromite
   layers:
     - !type:PrototypeDunGen
-      proto: NFVGRoidBlobBasalt
+      proto: NFVGRoidBlobChromite
     - !type:PrototypeDunGen
-      proto: NFVGRoidExteriorBasalt
+      proto: NFVGRoidExteriorChromite
     - !type:PrototypeDunGen
-      proto: NFVGRoidSmallerBasalt
+      proto: NFVGRoidSmallerChromite
     - !type:PrototypeDunGen
-      proto: NFVGRoidSmallPathsBasalt
+      proto: NFVGRoidSmallPathsChromite
     - !type:EntityTableDunGen
       minCount: 7
       maxCount: 12
       table:
         id: NFVGRoidInteriorRoomMarker
     - !type:BiomeDunGen
-      biomeTemplate: NFVGRoidLava
+      biomeTemplate: NFVGRoidShadow
       tileMask:
-      - FloorBasalt
+      - FloorChromite
     # Fill
     # - !type:PrototypeDunGen
-      # proto: NFVGRoidFillBasalt
+      # proto: NFVGRoidFillChromite
     # "WarpPoint"
     - !type:OreDunGen
       tileMask:
-      - FloorBasalt
-      entity: WarpPointNFDengeonBasalt
+      - FloorChromite
+      entity: WarpPointNFDengeonChromite
       count: 1
       minGroupSize: 1
       maxGroupSize: 1
     # "Ores"
     - !type:OreDunGen
       entityMask:
-      - WallRockBasalt
-      entity: BasaltElementalSpawner
+      - WallRockChromite
+      entity: ChromiteElementalSpawner
       count: 200
       minGroupSize: 1
       maxGroupSize: 1
     # Ores
     - !type:OreDunGen
       entityMask:
-      - WallRockBasalt
-      entity: WallRockBasaltTin
+      - WallRockChromite
+      entity: WallRockChromiteTin
       count: 50
       minGroupSize: 10
       maxGroupSize: 15
     - !type:OreDunGen
       entityMask:
-      - WallRockBasalt
-      entity: WallRockBasaltCoal
+      - WallRockChromite
+      entity: WallRockChromiteCoal
       count: 50
       minGroupSize: 8
       maxGroupSize: 12
     - !type:OreDunGen
       entityMask:
-      - WallRockBasalt
-      entity: WallRockBasaltQuartz
+      - WallRockChromite
+      entity: WallRockChromiteQuartz
       count: 50
       minGroupSize: 10
       maxGroupSize: 15
     - !type:OreDunGen
       entityMask:
-      - WallRockBasalt
-      entity: WallRockBasaltSalt
+      - WallRockChromite
+      entity: WallRockChromiteSalt
       count: 50
       minGroupSize: 8
       maxGroupSize: 12
     - !type:OreDunGen
       entityMask:
-      - WallRockBasalt
-      entity: WallRockBasaltGold
+      - WallRockChromite
+      entity: WallRockChromiteGold
       count: 40
       minGroupSize: 8
       maxGroupSize: 12
     - !type:OreDunGen
       entityMask:
-      - WallRockBasalt
-      entity: WallRockBasaltSilver
+      - WallRockChromite
+      entity: WallRockChromiteSilver
       count: 40
       minGroupSize: 8
       maxGroupSize: 12
     - !type:OreDunGen
       entityMask:
-      - WallRockBasalt
-      entity: WallRockBasaltPlasma
+      - WallRockChromite
+      entity: WallRockChromitePlasma
       count: 35
       minGroupSize: 4
       maxGroupSize: 8
     - !type:OreDunGen
       entityMask:
-      - WallRockBasalt
-      entity: WallRockBasaltUranium
+      - WallRockChromite
+      entity: WallRockChromiteUranium
       count: 35
       minGroupSize: 4
       maxGroupSize: 8
     - !type:OreDunGen
       entityMask:
-      - WallRockBasalt
-      entity: WallBasaltCobblebrickNF
+      - WallRockChromite
+      entity: WallChromiteCobblebrickNF
       count: 100
       minGroupSize: 6
       maxGroupSize: 16
     - !type:OreDunGen
       entityMask:
-      - WallRockBasalt
-      entity: WallRockBasaltArtifactFragment
+      - WallRockChromite
+      entity: WallRockChromiteArtifactFragment
       count: 25
       minGroupSize: 1
       maxGroupSize: 3
     - !type:OreDunGen
       entityMask:
-      - WallRockBasalt
-      entity: WallRockBasaltDiamond
+      - WallRockChromite
+      entity: WallRockChromiteDiamond
       count: 15
       minGroupSize: 1
       maxGroupSize: 2
     - !type:OreDunGen
       entityMask:
-      - WallRockBasalt
-      entity: WallRockBasaltBluespace
+      - WallRockChromite
+      entity: WallRockChromiteBluespace
       count: 10
       minGroupSize: 1
       maxGroupSize: 1
     # Decoration
     # - !type:OreDunGen
       # tileMask:
-      # - FloorBasalt
+      # - FloorChromite
       # entity: FloraRockSolid01
       # count: 20
       # minGroupSize: 1
@@ -142,22 +142,22 @@
     # Mobs
     - !type:OreDunGen
       tileMask:
-      - FloorBasalt
-      entity: SpawnMobMercenaryT3
+      - FloorChromite
+      entity: SpawnMobBloodCultLeech
       count: 25
       minGroupSize: 1
       maxGroupSize: 1
 
 # Configs
 - type: dungeonConfig
-  id: NFVGRoidBlobBasalt
+  id: NFVGRoidBlobChromite
   layers:
   - !type:NoiseDistanceDunGen
     size: 272, 272
     distanceConfig: !type:DunGenEuclideanSquaredDistance
       blendWeight: 0.80
     layers:
-    - tile: FloorBasalt
+    - tile: FloorChromite
       threshold: 0.50
       noise:
         frequency: 0.010
@@ -168,7 +168,7 @@
         gain: 0.5
 
 - type: dungeonConfig
-  id: NFVGRoidSmallerBasalt
+  id: NFVGRoidSmallerChromite
   minOffset: 40
   maxOffset: 60
   layers:
@@ -176,7 +176,7 @@
     size: 150, 150
     distanceConfig: !type:DunGenEuclideanSquaredDistance
     layers:
-    - tile: FloorBasalt
+    - tile: FloorChromite
       threshold: 0.50
       noise:
         frequency: 0.080
@@ -187,25 +187,25 @@
         gain: 0.5
 
 - type: dungeonConfig
-  id: NFVGRoidExteriorBasalt
+  id: NFVGRoidExteriorChromite
   reserveTiles: true
   data:
     tiles:
-      FallbackTile: FloorGrayConcreteMono
-      WidenTile: FloorBasalt
+      FallbackTile: FloorDarkHerringbone
+      WidenTile: FloorChromite
   layers:
   - !type:PrototypeDunGen
-    proto: NFVGRoidExteriorDungeonsBasalt
+    proto: NFVGRoidExteriorDungeonsChromite
   - !type:SplineDungeonConnectorDunGen
 
 - type: dungeonConfig
-  id: NFVGRoidExteriorDungeonsBasalt
+  id: NFVGRoidExteriorDungeonsChromite
   reserveTiles: true
   minCount: 2
   maxCount: 3
   layers:
   - !type:ExteriorDunGen
-    proto: LavaMercenary
+    proto: VirologyLab
   - !type:EntityTableDunGen
     minCount: 25
     maxCount: 40
@@ -237,25 +237,49 @@
     table: !type:NestedSelector
       tableId: SalvageEquipmentSpawnerValuable
   - !type:MobsDunGen
-    minCount: 8
-    maxCount: 15
+    minCount: 2
+    maxCount: 4
     groups:
-    - id: SpawnMobMercenaryT2
+    - id: SpawnMobBloodCultistPriest
+      amount: 1
+  - !type:MobsDunGen
+    minCount: 2
+    maxCount: 4
+    groups:
+    - id: SpawnMobBloodCultistAcolyte
+      amount: 1
+  - !type:MobsDunGen
+    minCount: 2
+    maxCount: 4
+    groups:
+    - id: SpawnMobBloodCultistZealotMelee
+      amount: 1
+  - !type:MobsDunGen
+    minCount: 2
+    maxCount: 4
+    groups:
+    - id: SpawnMobBloodCultistZealotRanged
+      amount: 1
+  - !type:MobsDunGen
+    minCount: 2
+    maxCount: 4
+    groups:
+    - id: SpawnMobBloodCultistCaster
       amount: 1
 
 #- type: dungeonConfig
-#  id: NFVGRoidInteriorDungeonsBasalt
+#  id: NFVGRoidInteriorDungeonsChromite
 #  minCount: 3
 #  maxCount: 5
 #  # Just randomly spawn these in bounds, doesn't really matter if they go out.
 
 - type: dungeonConfig
-  id: NFVGRoidSmallPathsBasalt
+  id: NFVGRoidSmallPathsChromite
   reserveTiles: true
   layers:
   - !type:ReplaceTileDunGen
     layers:
-    - tile: FloorBasalt
+    - tile: FloorChromite
       threshold: 0.75
       noise:
         frequency: 0.040
@@ -265,86 +289,70 @@
         octaves: 2
         gain: 2.0
 
-# Lava
+# Shadow -> Derived from lava
 - type: biomeTemplate
-  id: NFVGRoidLava
+  id: NFVGRoidShadow
   layers:
     - !type:BiomeEntityLayer
-      threshold: 0.9
+      threshold: 0.70
+      noise:
+        frequency: 1
+        seed: 3
+      allowedTiles:
+        - FloorChromite
+      entities:
+        - ShadowBasaltOne
+        - ShadowBasaltTwo
+        - ShadowBasaltThree
+        - ShadowBasaltFour
+        - ShadowBasaltFive
+    - !type:BiomeEntityLayer
+      threshold: 0.97
       noise:
         frequency: 1
         seed: 2
       allowedTiles:
-        - FloorBasalt
+        - FloorChromite
       entities:
-        - BasaltOne
-        - BasaltTwo
-        - BasaltThree
-        - BasaltFour
-        - BasaltFive
-    - !type:BiomeDecalLayer
-      allowedTiles:
-        - FloorBasalt
-      threshold: 0.9
-      divisions: 1
+        - CrystalPink
+    - !type:BiomeEntityLayer
+      threshold: 0.97
       noise:
         seed: 1
-        frequency: 1
-      decals:
-        - Basalt1
-        - Basalt2
-        - Basalt3
-        - Basalt4
-        - Basalt5
-        - Basalt6
-        - Basalt7
-        - Basalt8
-        - Basalt9
-    - !type:BiomeEntityLayer
-      threshold: 0.95
-      noise:
-        seed: 0
         noiseType: OpenSimplex2
         frequency: 1
       allowedTiles:
-        - FloorBasalt
+        - FloorChromite
       entities:
-        - FloraRockSolid01
-        - FloraRockSolid02
-        - FloraRockSolid03
-        - CrystalOrange
-    - !type:BiomeEntityLayer
-      threshold: 0.2
-      noise:
-        seed: 0
-        frequency: 0.02
-        fractalType: FBm
-        octaves: 5
-        lacunarity: 2
-        gain: 0.4
-      allowedTiles:
-        - FloorBasalt
-      entities:
-        - FloorLavaEntity
+        - ShadowTree01
+        - ShadowTree02
+        - ShadowTree03
+        - ShadowTree04
+        - ShadowTree05
+        - ShadowTree06
+        - CrystalPink
+        - CrystalPink
+        - CrystalPink
+        - CrystalPink
+        - CrystalPink
     # Rock formations
     - !type:BiomeEntityLayer
-      allowedTiles:
-        - FloorBasalt
-      threshold: -0.30
+      threshold: -0.2
+      invert: true
       noise:
         seed: 0
-        noiseType: Cellular
-        frequency: 0.05
-        lacunarity: 2
+        noiseType: Perlin
         fractalType: FBm
-        octaves: 5
-        cellularDistanceFunction: Euclidean
-        cellularReturnType: Distance2
+        octaves: 3
+        frequency: 0.3
+        gain: 0
+      allowedTiles:
+        - FloorChromite
       entities:
-        - WallRockBasalt
+        - WallRockChromite
     - !type:BiomeDummyLayer
       id: Loot
-    # Fill basalt
+    # Fill chromite
     - !type:BiomeTileLayer
       threshold: -1
-      tile: FloorBasalt
+      tile: FloorChromite
