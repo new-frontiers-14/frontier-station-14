@@ -1,16 +1,25 @@
-﻿- type: latheRecipe
-  id: WelderIndustrial
-  result: WelderIndustrialEmpty
+﻿# Base prototypes
+
+- type: latheRecipe
+  abstract: true
+  id: NFBaseToolsRecipe
   category: Tools
   completetime: 3.5
+
+# Recipes
+
+- type: latheRecipe
+  id: WelderIndustrial
+  parent: NFBaseToolsRecipe
+  result: WelderIndustrialEmpty
   materials:
     Steel: 600
     Glass: 400
 
 - type: latheRecipe
   id: WelderIndustrialAdvanced
+  parent: NFBaseToolsRecipe
   result: WelderIndustrialAdvancedEmpty
-  category: Tools
   completetime: 5
   materials:
     Steel: 600
@@ -19,7 +28,15 @@
 
 - type: latheRecipe
   id: ContrabandAppraisalTool
+  parent: NFBaseToolsRecipe
   result: ContrabandAppraisalTool
+  materials:
+    Steel: 500
+    Glass: 300
+
+- type: latheRecipe
+  id: MedicalAppraisalTool
+  result: MedicalAppraisalTool
   category: Tools
   completetime: 3.5
   materials:
@@ -28,9 +45,8 @@
 
 - type: latheRecipe
   id: PinpointerUniversalNF
+  parent: NFBaseToolsRecipe
   result: PinpointerUniversal
-  category: Tools
-  completetime: 3.5
   materials:
     Steel: 500
     Glass: 500
@@ -39,35 +55,31 @@
 
 - type: latheRecipe
   id: RadioHandheldNF
+  parent: NFBaseToolsRecipe
   result: RadioHandheldNF
-  completetime: 1
-  category: Tools
   materials:
     Plastic: 500
 
 - type: latheRecipe
   id: OreBag
+  parent: NFBaseToolsRecipe
   result: OreBag
-  completetime: 1
-  category: Tools
   materials:
     Steel: 500
     Cloth: 500
 
 - type: latheRecipe
   id: ConstructionBag
+  parent: NFBaseToolsRecipe
   result: ConstructionBag
-  completetime: 1
-  category: Tools
   materials:
     Steel: 500
     Cloth: 500
 
 - type: latheRecipe
   id: PlantBag
+  parent: NFBaseToolsRecipe
   result: PlantBag
-  completetime: 1
-  category: Tools
   materials:
     Steel: 500
     Cloth: 500
@@ -75,7 +87,7 @@
 - type: latheRecipe
   id: ShipyardRCD
   result: ShipyardRCDEmpty
-  category: Tools
+  parent: NFBaseToolsRecipe
   completetime: 4
   materials:
     Steel: 1000
@@ -84,7 +96,7 @@
 - type: latheRecipe
   id: ShipyardRCDAmmo
   result: ShipyardRCDAmmo
-  category: Tools
+  parent: NFBaseToolsRecipe
   completetime: 2.4
   materials:
     Steel: 500
@@ -93,8 +105,8 @@
 # Migrated from Recipes/Lathes/tools.yml
 - type: latheRecipe
   id: RPED
+  parent: NFBaseToolsRecipe
   result: RPED
-  category: Tools
   completetime: 10
   materials:
     Steel: 650

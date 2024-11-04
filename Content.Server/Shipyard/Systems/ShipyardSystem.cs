@@ -10,6 +10,7 @@ using Robust.Server.GameObjects;
 using Robust.Server.Maps;
 using Robust.Shared.Map;
 using Content.Shared.CCVar;
+using Content.Shared._NF.CCVar;
 using Robust.Shared.Configuration;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
@@ -62,8 +63,8 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     public override void Initialize()
     {
         base.Initialize();
-        _enabled = _configManager.GetCVar(CCVars.Shipyard);
-        _configManager.OnValueChanged(CCVars.Shipyard, SetShipyardEnabled, true);
+        _enabled = _configManager.GetCVar(NFCCVars.Shipyard);
+        _configManager.OnValueChanged(NFCCVars.Shipyard, SetShipyardEnabled, true);
         _sawmill = Logger.GetSawmill("shipyard");
 
         SubscribeLocalEvent<ShipyardConsoleComponent, ComponentStartup>(OnShipyardStartup);
@@ -77,7 +78,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     }
     public override void Shutdown()
     {
-        _configManager.UnsubValueChanged(CCVars.Shipyard, SetShipyardEnabled);
+        _configManager.UnsubValueChanged(NFCCVars.Shipyard, SetShipyardEnabled);
     }
     private void OnShipyardStartup(EntityUid uid, ShipyardConsoleComponent component, ComponentStartup args)
     {
