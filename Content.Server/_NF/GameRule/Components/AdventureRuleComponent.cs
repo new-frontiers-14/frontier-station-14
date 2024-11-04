@@ -13,6 +13,6 @@ public sealed partial class AdventureRuleComponent : Component
     public List<EntityUid> OptionalPois = new();
     public List<EntityUid> UniquePois = new();
 
-    [DataField(customTypeSerializer: typeof(PrototypeIdListSerializer<DungeonConfigPrototype>))]
+    [DataField(customTypeSerializer: typeof(PrototypeIdListSerializer<DungeonConfigPrototype>))] // TODO: Remove this for new system
     public List<string> SpaceDungeons = new();
 }
