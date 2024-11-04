@@ -3148,10 +3148,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 16.5,42.5
       parent: 1653
-    - type: Physics
-      canCollide: False
-    - type: Fixtures
-      fixtures: {}
 - proto: BenchSofaCorpLeft
   entities:
   - uid: 699
@@ -7949,37 +7945,27 @@ entities:
     - type: Transform
       pos: 0.5,47.5
       parent: 1653
-    - type: Fixtures
-      fixtures: {}
   - uid: 796
     components:
     - type: Transform
       pos: 8.5,24.5
       parent: 1653
-    - type: Fixtures
-      fixtures: {}
   - uid: 896
     components:
     - type: Transform
       pos: 0.5,22.5
       parent: 1653
-    - type: Fixtures
-      fixtures: {}
   - uid: 1074
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 34.5,22.5
       parent: 1653
-    - type: Fixtures
-      fixtures: {}
   - uid: 1732
     components:
     - type: Transform
       pos: 43.5,39.5
       parent: 1653
-    - type: Fixtures
-      fixtures: {}
 - proto: GasMixer
   entities:
   - uid: 483
@@ -8640,6 +8626,13 @@ entities:
     - type: Transform
       pos: 0.5,16.5
       parent: 1653
+- proto: MachineFrame
+  entities:
+  - uid: 864
+    components:
+    - type: Transform
+      pos: 20.5,25.5
+      parent: 1653
 - proto: MaintenanceFluffSpawner
   entities:
   - uid: 1983
@@ -8974,31 +8967,23 @@ entities:
       rot: 3.141592653589793 rad
       pos: 10.5,38.5
       parent: 1653
-    - type: ApcPowerReceiver
-      powerLoad: 0
   - uid: 513
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 2.5,38.5
       parent: 1653
-    - type: ApcPowerReceiver
-      powerLoad: 0
   - uid: 634
     components:
     - type: Transform
       pos: 2.5,36.5
       parent: 1653
-    - type: ApcPowerReceiver
-      powerLoad: 0
   - uid: 635
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 8.5,34.5
       parent: 1653
-    - type: ApcPowerReceiver
-      powerLoad: 0
   - uid: 652
     components:
     - type: Transform
@@ -9016,82 +9001,60 @@ entities:
     - type: Transform
       pos: 14.5,36.5
       parent: 1653
-    - type: ApcPowerReceiver
-      powerLoad: 0
   - uid: 676
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 31.5,34.5
       parent: 1653
-    - type: ApcPowerReceiver
-      powerLoad: 0
   - uid: 680
     components:
     - type: Transform
       pos: 27.5,36.5
       parent: 1653
-    - type: ApcPowerReceiver
-      powerLoad: 0
   - uid: 704
     components:
     - type: Transform
       pos: 11.5,32.5
       parent: 1653
-    - type: ApcPowerReceiver
-      powerLoad: 0
   - uid: 770
     components:
     - type: Transform
       pos: 15.5,32.5
       parent: 1653
-    - type: ApcPowerReceiver
-      powerLoad: 0
   - uid: 771
     components:
     - type: Transform
       pos: 24.5,32.5
       parent: 1653
-    - type: ApcPowerReceiver
-      powerLoad: 0
   - uid: 944
     components:
     - type: Transform
       pos: 15.5,22.5
       parent: 1653
-    - type: ApcPowerReceiver
-      powerLoad: 0
   - uid: 945
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 13.5,18.5
       parent: 1653
-    - type: ApcPowerReceiver
-      powerLoad: 0
   - uid: 1011
     components:
     - type: Transform
       pos: 18.5,22.5
       parent: 1653
-    - type: ApcPowerReceiver
-      powerLoad: 0
   - uid: 1012
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 22.5,18.5
       parent: 1653
-    - type: ApcPowerReceiver
-      powerLoad: 0
   - uid: 1052
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 25.5,18.5
       parent: 1653
-    - type: ApcPowerReceiver
-      powerLoad: 0
   - uid: 1320
     components:
     - type: Transform
@@ -9103,16 +9066,12 @@ entities:
     - type: Transform
       pos: 27.5,4.5
       parent: 1653
-    - type: ApcPowerReceiver
-      powerLoad: 0
   - uid: 1593
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 34.5,19.5
       parent: 1653
-    - type: ApcPowerReceiver
-      powerLoad: 0
   - uid: 1923
     components:
     - type: Transform
@@ -9133,16 +9092,12 @@ entities:
       rot: 3.141592653589793 rad
       pos: 1.5,30.5
       parent: 1653
-    - type: ApcPowerReceiver
-      powerLoad: 0
   - uid: 738
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 14.5,34.5
       parent: 1653
-    - type: ApcPowerReceiver
-      powerLoad: 0
 - proto: PoweredlightLED
   entities:
   - uid: 24
@@ -9223,94 +9178,70 @@ entities:
       rot: 3.141592653589793 rad
       pos: 9.5,42.5
       parent: 1653
-    - type: ApcPowerReceiver
-      powerLoad: 0
   - uid: 587
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 14.5,44.5
       parent: 1653
-    - type: ApcPowerReceiver
-      powerLoad: 0
   - uid: 588
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 8.5,44.5
       parent: 1653
-    - type: ApcPowerReceiver
-      powerLoad: 0
   - uid: 714
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 2.5,25.5
       parent: 1653
-    - type: ApcPowerReceiver
-      powerLoad: 0
   - uid: 903
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 0.5,19.5
       parent: 1653
-    - type: ApcPowerReceiver
-      powerLoad: 0
   - uid: 904
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 2.5,22.5
       parent: 1653
-    - type: ApcPowerReceiver
-      powerLoad: 0
   - uid: 949
     components:
     - type: Transform
       pos: 6.5,10.5
       parent: 1653
-    - type: ApcPowerReceiver
-      powerLoad: 0
   - uid: 991
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 1.5,6.5
       parent: 1653
-    - type: ApcPowerReceiver
-      powerLoad: 0
   - uid: 992
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 9.5,6.5
       parent: 1653
-    - type: ApcPowerReceiver
-      powerLoad: 0
   - uid: 1156
     components:
     - type: Transform
       pos: 11.5,14.5
       parent: 1653
-    - type: ApcPowerReceiver
-      powerLoad: 0
   - uid: 1157
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 8.5,14.5
       parent: 1653
-    - type: ApcPowerReceiver
-      powerLoad: 0
   - uid: 1158
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 14.5,14.5
       parent: 1653
-    - type: ApcPowerReceiver
-      powerLoad: 0
   - uid: 1199
     components:
     - type: Transform
@@ -9328,39 +9259,29 @@ entities:
       rot: 3.141592653589793 rad
       pos: 20.5,0.5
       parent: 1653
-    - type: ApcPowerReceiver
-      powerLoad: 0
   - uid: 1445
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 24.5,0.5
       parent: 1653
-    - type: ApcPowerReceiver
-      powerLoad: 0
   - uid: 1446
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 28.5,0.5
       parent: 1653
-    - type: ApcPowerReceiver
-      powerLoad: 0
   - uid: 1447
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 32.5,0.5
       parent: 1653
-    - type: ApcPowerReceiver
-      powerLoad: 0
   - uid: 1595
     components:
     - type: Transform
       pos: 38.5,16.5
       parent: 1653
-    - type: ApcPowerReceiver
-      powerLoad: 0
   - uid: 1874
     components:
     - type: Transform
@@ -9410,17 +9331,12 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 18.5,26.5
       parent: 1653
-    - type: ApcPowerReceiver
-      powerLoad: 0
   - uid: 1594
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 34.5,12.5
       parent: 1653
-    - type: ApcPowerReceiver
-      powerLoad: 0
-    - type: Timer
   - uid: 2195
     components:
     - type: Transform
@@ -9983,13 +9899,6 @@ entities:
     components:
     - type: Transform
       pos: 10.5,1.5
-      parent: 1653
-- proto: MachineFrame
-  entities:
-  - uid: 864
-    components:
-    - type: Transform
-      pos: 20.5,25.5
       parent: 1653
 - proto: SeedExtractor
   entities:
@@ -12787,52 +12696,6 @@ entities:
     - type: Transform
       pos: 29.5,9.5
       parent: 1653
-- proto: SurveillanceCameraMedical
-  entities:
-  - uid: 2095
-    components:
-    - type: Transform
-      pos: 2.5,0.5
-      parent: 1653
-  - uid: 2096
-    components:
-    - type: Transform
-      pos: 10.5,0.5
-      parent: 1653
-  - uid: 2097
-    components:
-    - type: Transform
-      pos: 21.5,0.5
-      parent: 1653
-  - uid: 2098
-    components:
-    - type: Transform
-      pos: 31.5,0.5
-      parent: 1653
-  - uid: 2099
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 34.5,22.5
-      parent: 1653
-  - uid: 2100
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 4.5,27.5
-      parent: 1653
-  - uid: 2101
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 6.5,43.5
-      parent: 1653
-  - uid: 2102
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 0.5,47.5
-      parent: 1653
 - proto: SurveillanceCameraRouterGeneral
   entities:
   - uid: 868
@@ -13499,14 +13362,6 @@ entities:
       parent: 1653
 - proto: ToiletEmpty
   entities:
-  - uid: 1924
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 52.5,0.5
-      parent: 1653
-- proto: ToiletEmpty
-  entities:
   - uid: 799
     components:
     - type: Transform
@@ -13530,6 +13385,12 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 4.5,18.5
+      parent: 1653
+  - uid: 1924
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 52.5,0.5
       parent: 1653
 - proto: ToolboxGoldFilled
   entities:
