@@ -68,3 +68,7 @@ ent-FoodBreadCotton = хлопковый хлеб
     .desc = Хлеб, но для ниан.
 ent-FoodBreadCottonSlice = ломтик хлопкового хлеба
     .desc = Кусочек вкуснейшего (наверное) хлопкового хлеба.
+ent-FoodBreadChallah = хала с медом
+    .desc = Скрученный хлеб, посыпанный маком.
+ent-FoodBreadChallahSlice = ломтик халы с медом
+    .desc = Кусочек мака с медом, о боже!

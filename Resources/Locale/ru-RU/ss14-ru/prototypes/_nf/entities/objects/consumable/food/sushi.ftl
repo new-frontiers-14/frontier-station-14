@@ -1,12 +1,12 @@
-ent-FoodMealCarpSushi = суши с карпом
+ent-FoodMealCarpSushi = ролл с карпом
     .desc = Определенно стоит рискнуть.
-ent-FoodMealCarpSushiSlice = кусочек суши с карпом
+ent-FoodMealCarpSushiSlice = ломтик ролла с карпом
     .desc = Определенно стоит рискнуть.
-ent-FoodMealAvocadoSushi = суши с авокадо
+ent-FoodMealAvocadoSushi = ролл с авокадо
     .desc = Откуда взялись водоросли?
-ent-FoodMealAvocadoSushiSlice = ломтик суши с авокадо
+ent-FoodMealAvocadoSushiSlice = ломтик ролла с авокадо
     .desc = { ent-FoodMealAvocadoSushi.desc }
-ent-FoodMealGasSafeSushiSlice = суши с заправки
+ent-FoodMealGasSafeSushiSlice = ролл с заправки
     .desc = Стоит ли ради этого рисковать?
 ent-FoodMealGasBadSushiSlice = { ent-FoodMealGasSafeSushiSlice }
     .desc = { ent-FoodMealGasSafeSushiSlice.desc }

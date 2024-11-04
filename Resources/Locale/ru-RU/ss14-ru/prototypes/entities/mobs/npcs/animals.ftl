@@ -152,3 +152,5 @@ ent-MobDionaNymph = нимфа дионы
 ent-MobDionaNymphAccent = { ent-MobDionaNymph }
     .suffix = Акцент
     .desc = { ent-MobDionaNymph.desc }
+ent-MobAngryBeeTimed = { ent-MobAngryBee }
+    .desc = { ent-MobAngryBee.desc }

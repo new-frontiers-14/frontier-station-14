@@ -23,6 +23,7 @@ ent-PortableGeneratorSuperPacmanFlatpack = упакованный С.У.П.Е.Р
 ent-GeneratorRTGFlatpack = упаковка РИТЭГа
     .desc = Универсально-сборная упаковка, используемая для сборки РИТЭГа.
 ent-GeneratorRTGDamagedFlatpack = упаковка РИТЭГа
+    .suffix = Повреждённый
     .desc = Универсально-сборная упаковка, используемая для сборки РИТЭГа. Упаковка выглядит повреждённой...
 ent-AmeControllerUnanchoredFlatpack = упакованный контроллер ДАМ
     .desc = Упаковка, при помощи которой можно создать контроллер ДАМ

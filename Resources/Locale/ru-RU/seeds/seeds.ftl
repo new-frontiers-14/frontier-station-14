@@ -116,3 +116,5 @@ seeds-cotton-name = хлопок
 seeds-cotton-display-name = куст хлопка
 seeds-pyrotton-name = пирохлопок
 seeds-pyrotton-display-name = куст пирохлопка
+seeds-goldenapple-name = золотое яблоко
+seeds-goldenapple-display-name = золотая яблоня

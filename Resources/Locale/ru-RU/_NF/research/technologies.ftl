@@ -14,3 +14,6 @@ research-technology-arsenal-style = Панк прикил
 research-techology-advanced-topicals = Продвинутое 
 research-technology-magnets-tech-advanced = Продвинутый магнетизм
 research-technology-magnets-tech-combat = Боевой магнетизм
+research-technology-excavation = Массовая экскавация
+research-technology-advanced-food-service = Современное ресторанное обслуживание
+research-technology-industrial-medicine = Промышленная медицина

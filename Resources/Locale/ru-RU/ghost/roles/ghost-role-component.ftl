@@ -206,3 +206,5 @@ ghost-role-information-artifact-name = Разумный артефакт
 ghost-role-information-artifact-description = Осуществляйте свои инопланетные прихоти. Принудительно активируйте свои узлы во благо или во зло.
 ghost-role-information-syndie-assaultborg-name = Штурмовой киборг Синдиката
 ghost-role-information-syndie-assaultborg-description = Ядерным оперативникам требуется подкрепление. Вы, хладнокремниевая машина для убийств, будете им помогать. Больше дакки!
+ghost-role-information-snail-name = Улитка
+ghost-role-information-snail-description = Маленькая улитка, которая не против немного побыть на свободе. Только не убегай за пределы клетки!

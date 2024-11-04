@@ -12,3 +12,7 @@ reagent-name-bees-knees = пчелиные колени
 reagent-desc-bees-knees = ПИИИИИИИИИИИИИИИИИИИИ!!! Имеет вонючий запах.
 reagent-name-cucumber-water = огуречная вода
 reagent-desc-cucumber-water = Самая причудливая из водоемов.
+reagent-name-honey = мёд
+reagent-desc-honey = Густой, золотистый и липкий, оригинальный подсластитель.
+reagent-name-honey-iced-tea = холодный чай с медом
+reagent-desc-honey-iced-tea = Чай с капелькой меда.

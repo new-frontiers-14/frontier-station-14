@@ -1,3 +1,5 @@
+seeds-noun-nothing = {""}
+
 # Seeds
 seeds-spesos-name = кредиты
 seeds-spesos-display-name = кредиты
@@ -9,3 +11,8 @@ seeds-avocado-name = авокадо
 seeds-avocado-display-name = растения авокадо
 seeds-cucumber-name = огурец
 seeds-cucumber-display-name = растения огурца
+seeds-bees-name = пчёлы
+seeds-bees-display-name = соты
+
+# Should be in seed-component
+botany-seed-jar-name = банка с {$seedName} {$seedNoun}
