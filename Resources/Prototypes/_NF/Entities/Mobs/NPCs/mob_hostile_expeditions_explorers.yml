@@ -80,19 +80,33 @@
     # Body
     - sprite: _NF/Mobs/Species/Templates/human.rsi
       state: human
-    # Jumpsuit
-    - sprite: Clothing/Uniforms/Jumpsuit/salvage.rsi
-      state: equipped-INNERCLOTHING
-    # Mask
-    - sprite: Clothing/Mask/gasexplorer.rsi
-      state: equipped-MASK
-    # Helmet
-    - sprite: _NF/Clothing/Head/Hats/pilot.rsi
-      state: equipped-HELMET
-    # Hands
-    - sprite: Clothing/Hands/Gloves/Color/color.rsi
-      state: equipped-HAND
-      color: "#535353"
+    # Softsuit
+    - sprite: _NF/Clothing/OuterClothing/Suits/eva_color.rsi
+      state: equipped-base
+      color: "#deb733"
+    - sprite: _NF/Clothing/OuterClothing/Suits/eva_color.rsi
+      state: equipped-decals-01
+      color: "#ad2aea"
+    - sprite: _NF/Clothing/OuterClothing/Suits/eva_color.rsi
+      state: equipped-reinforced-points
+      color: "#786243"
+    - sprite: _NF/Clothing/OuterClothing/Suits/eva_color.rsi
+      state: equipped-breathing-gear
+    - sprite: _NF/Clothing/OuterClothing/Suits/eva_color.rsi
+      state: equipped-unshaded
+      shader: unshaded
+    - sprite: _NF/Clothing/Head/Helmets/eva_color.rsi
+      state: equipped-head-base
+      color: "#deb733"
+    - sprite: _NF/Clothing/Head/Helmets/eva_color.rsi
+      state: equipped-head-reinforced-points
+      color: "#ad2aea"
+    - sprite: _NF/Clothing/Head/Helmets/eva_color.rsi
+      state: equipped-head-visor
+      color: "#adcfd5"
+    - sprite: _NF/Clothing/Head/Helmets/eva_color.rsi
+      state: equipped-head-light
+      color: "#47f8ff"
     # Weapons
     - sprite: Objects/Weapons/Melee/pickaxe.rsi
       state: wielded-inhand-right
@@ -134,18 +148,33 @@
     # Body
     - sprite: _NF/Mobs/Species/Templates/human.rsi
       state: human
-    # Jumpsuit
-    - sprite: Clothing/Uniforms/Jumpsuit/salvage.rsi
-      state: equipped-INNERCLOTHING
-    # Mask
-    - sprite: Clothing/Mask/gasexplorer.rsi
-      state: equipped-MASK
-    # Helmet
-    - sprite: Clothing/Head/Hoods/Coat/hoodminer.rsi
-      state: equipped-HELMET
-    # Suit
-    - sprite: Clothing/OuterClothing/WinterCoats/coat.rsi
-      state: MINER-equipped-OUTERCLOTHING
+    # Softsuit
+    - sprite: _NF/Clothing/OuterClothing/Suits/eva_color.rsi
+      state: equipped-base
+      color: "#deb733"
+    - sprite: _NF/Clothing/OuterClothing/Suits/eva_color.rsi
+      state: equipped-decals-01
+      color: "#ad2aea"
+    - sprite: _NF/Clothing/OuterClothing/Suits/eva_color.rsi
+      state: equipped-reinforced-points
+      color: "#786243"
+    - sprite: _NF/Clothing/OuterClothing/Suits/eva_color.rsi
+      state: equipped-breathing-gear
+    - sprite: _NF/Clothing/OuterClothing/Suits/eva_color.rsi
+      state: equipped-unshaded
+      shader: unshaded
+    - sprite: _NF/Clothing/Head/Helmets/eva_color.rsi
+      state: equipped-head-base
+      color: "#deb733"
+    - sprite: _NF/Clothing/Head/Helmets/eva_color.rsi
+      state: equipped-head-reinforced-points
+      color: "#ad2aea"
+    - sprite: _NF/Clothing/Head/Helmets/eva_color.rsi
+      state: equipped-head-visor
+      color: "#adcfd5"
+    - sprite: _NF/Clothing/Head/Helmets/eva_color.rsi
+      state: equipped-head-light
+      color: "#47f8ff"
     # Hands
     - sprite: Clothing/Hands/Gloves/Color/color.rsi
       state: equipped-HAND
@@ -402,7 +431,7 @@
   - MobHumanoidHostileAISimpleMelee
   #- MobLaserReflect # Added to prevent laser abuse from players
   id: MobExplorerHauler
-  description: |- 
+  description: |-
    Loaded with heavy equipment for industrial-scale looting. Pardon me, "asset recovery".
   components:
   - type: Loadout
