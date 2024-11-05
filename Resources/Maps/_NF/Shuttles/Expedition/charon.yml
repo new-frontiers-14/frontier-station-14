@@ -81,7 +81,6 @@ entities:
             127: -12,-11
             128: -12,-12
             242: 3,-9
-            267: 2,10
         - node:
             color: '#334E6DC8'
             id: BrickCornerOverlayNE
@@ -356,6 +355,7 @@ entities:
             255: -2,-7
             256: -1,-7
             264: -3,-7
+            295: 2,10
         - node:
             color: '#FFFFFFFF'
             id: DirtHeavyMonotile
@@ -388,6 +388,8 @@ entities:
             221: -6,8
             239: -14,-10
             260: 2,-13
+            296: 3,10
+            297: 3,2
         - node:
             color: '#FFFFFFFF'
             id: DirtMedium
@@ -397,8 +399,6 @@ entities:
             168: -12,-7
             169: 3,-5
             170: 0,1
-            171: -12,3
-            172: 3,10
             190: -6,-13
             191: -3,-11
             192: 0,-7
@@ -407,6 +407,7 @@ entities:
             213: -12,5
             214: -1,10
             259: 2,-11
+            298: -12,3
         - node:
             color: '#334E6DC8'
             id: MiniTileInnerOverlayNE
@@ -442,11 +443,25 @@ entities:
             id: WarnCornerNE
           decals:
             222: -11,-13
+            290: -12,3
         - node:
             color: '#FFFFFFFF'
             id: WarnCornerNW
           decals:
             263: 2,-13
+            289: 3,3
+        - node:
+            color: '#FFFFFFFF'
+            id: WarnCornerSE
+          decals:
+            291: -12,2
+            293: 3,10
+        - node:
+            color: '#FFFFFFFF'
+            id: WarnCornerSW
+          decals:
+            288: 3,2
+            292: 1,10
         - node:
             color: '#FFFFFFFF'
             id: WarnEndE
@@ -462,6 +477,11 @@ entities:
             id: WarnLineE
           decals:
             226: -11,-14
+        - node:
+            color: '#FFFFFFFF'
+            id: WarnLineN
+          decals:
+            294: 2,10
         - node:
             color: '#FFFFFFFF'
             id: WarnLineS
@@ -6303,19 +6323,26 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -9.5,13.5
       parent: 1
-- proto: SheetGlass
+- proto: SalvageTechfabNF
   entities:
-  - uid: 986
+  - uid: 590
     components:
     - type: Transform
-      pos: 1.5199459,-2.379863
+      pos: 1.5,-2.5
+      parent: 1
+- proto: SheetGlass
+  entities:
+  - uid: 589
+    components:
+    - type: Transform
+      pos: 1.3595917,-1.3978007
       parent: 1
 - proto: SheetSteel
   entities:
-  - uid: 982
+  - uid: 591
     components:
     - type: Transform
-      pos: 1.5199459,-1.535527
+      pos: 1.6252167,-1.507251
       parent: 1
 - proto: ShipyardCharonInfo
   entities:
@@ -6605,11 +6632,6 @@ entities:
     components:
     - type: Transform
       pos: 1.5,-1.5
-      parent: 1
-  - uid: 985
-    components:
-    - type: Transform
-      pos: 1.5,-2.5
       parent: 1
   - uid: 988
     components:
