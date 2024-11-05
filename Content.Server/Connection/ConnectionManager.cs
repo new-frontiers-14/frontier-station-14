@@ -7,6 +7,7 @@ using Content.Server.Database;
 using Content.Server.GameTicking;
 using Content.Server.Preferences.Managers;
 using Content.Shared.CCVar;
+using Content.Shared._NF.CCVar; // Frontier
 using Content.Shared.GameTicking;
 using Content.Shared.Players.PlayTimeTracking;
 using Robust.Server.Player;
@@ -322,9 +323,9 @@ namespace Content.Server.Connection
             //This is our little chunk that serves as a dAuth. It takes in a comma seperated list of IP:PORT, and chekcs
             //the requesting player against the list of players logged in to other servers. It is intended to be failsafe.
             //In the case of Admins, it shares the same bypass setting as the soft_max_player_limit
-            if (!_cfg.GetCVar(CCVars.AllowMultiConnect) && !adminBypass)
+            if (!_cfg.GetCVar(NFCCVars.AllowMultiConnect) && !adminBypass)
             {
-                var serverListString = _cfg.GetCVar(CCVars.ServerAuthList);
+                var serverListString = _cfg.GetCVar(NFCCVars.ServerAuthList);
                 var serverList = serverListString.Split(",");
                 foreach (var server in serverList)
                 {
