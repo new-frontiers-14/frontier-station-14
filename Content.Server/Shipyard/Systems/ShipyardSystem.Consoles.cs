@@ -301,9 +301,9 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         PlayConfirmSound(player, shipyardConsoleUid, component);
         if (voucherUsed)
-            _adminLogger.Add(LogType.ShipYardUsage, LogImpact.Low, $"{ToPrettyString(player):actor} purchased shuttle {ToPrettyString(shuttleUid)} with a voucher via {ToPrettyString(component.Owner)}");
+            _adminLogger.Add(LogType.ShipYardUsage, LogImpact.Low, $"{ToPrettyString(player):actor} used {ToPrettyString(targetId)} to purchase shuttle {ToPrettyString(shuttleUid)} with a voucher via {ToPrettyString(component.Owner)}");
         else
-            _adminLogger.Add(LogType.ShipYardUsage, LogImpact.Low, $"{ToPrettyString(player):actor} purchased shuttle {ToPrettyString(shuttleUid)} for {vessel.Price} credits via {ToPrettyString(component.Owner)}");
+            _adminLogger.Add(LogType.ShipYardUsage, LogImpact.Low, $"{ToPrettyString(player):actor} used {ToPrettyString(targetId)} to purchase shuttle {ToPrettyString(shuttleUid)} for {vessel.Price} credits via {ToPrettyString(component.Owner)}");
 
         _shuttleRecordsSystem.AddRecord(
             new ShuttleRecord(
@@ -448,7 +448,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         if (voucherUsed)
         {
-            _adminLogger.Add(LogType.ShipYardUsage, LogImpact.Low, $"{ToPrettyString(player):actor} sold {shuttleName} (purchased with voucher) via {ToPrettyString(component.Owner)}");
+            _adminLogger.Add(LogType.ShipYardUsage, LogImpact.Low, $"{ToPrettyString(player):actor} used {ToPrettyString(targetId)} to sell {shuttleName} (purchased with voucher) via {ToPrettyString(component.Owner)}");
 
             // No uses on the voucher left, destroy it.
             if (voucher!.RedemptionsLeft <= 0 && voucher!.DestroyOnEmpty)
@@ -458,7 +458,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             }
         }
         else
-            _adminLogger.Add(LogType.ShipYardUsage, LogImpact.Low, $"{ToPrettyString(player):actor} sold {shuttleName} for {bill} credits via {ToPrettyString(component.Owner)}");
+            _adminLogger.Add(LogType.ShipYardUsage, LogImpact.Low, $"{ToPrettyString(player):actor} used {ToPrettyString(targetId)} to sell {shuttleName} for {bill} credits via {ToPrettyString(component.Owner)}");
 
         RefreshState(uid, bank.Balance, true, null, 0, refreshId, (ShipyardConsoleUiKey) args.UiKey, voucherUsed);
     }
