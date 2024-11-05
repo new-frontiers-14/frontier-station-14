@@ -1,8 +1,8 @@
 - type: entity
   name: spawn punk
-  id: SpawnMobPunkMelee
+  id: SpawnMobPunkT1
   parent: MarkerBasePlaceFree
-  suffix: AI, Hostile, Melee
+  suffix: AI, Hostile, T1
   components:
   - type: Sprite
     layers:
@@ -12,33 +12,60 @@
     - state: ai
   - type: RandomSpawner
     prototypes:
-    - MobPunkGangerMelee
-    chance: 1
-    offset: 0.0
-    rarePrototypes:
-    - MobPunkGangerArmoredMelee
-    rareChance: 0.2
-
-- type: entity
-  name: spawn punk
-  id: SpawnMobPunkRanged
-  parent: MarkerBasePlaceFree
-  suffix: AI, Hostile, Ranged
-  components:
-  - type: Sprite
-    layers:
-    - state: red
-    - sprite: Objects/Weapons/Melee/baseball_bat.rsi
-      state: icon
-    - state: ai
-  - type: RandomSpawner
-    prototypes:
+    - MobPunkGangerMeleeT1
+    - MobPunkGangerMeleeT1
     - MobPunkGangerPistol
     chance: 1
     offset: 0.0
     rarePrototypes:
+    - SpawnMobPunkT2
+    rareChance: 0.05
+
+- type: entity
+  name: spawn punk
+  id: SpawnMobPunkT2
+  parent: MarkerBasePlaceFree
+  suffix: AI, Hostile, T2
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Objects/Weapons/Melee/baseball_bat.rsi
+      state: icon
+    - state: ai
+  - type: RandomSpawner
+    prototypes:
+    - MobPunkGangerMeleeT2
+    - MobPunkGangerMeleeT2
     - MobPunkGangerShotgun
-    rareChance: 0.1
+    chance: 1
+    offset: 0.0
+    rarePrototypes:
+    - SpawnMobPunkT3
+    rareChance: 0.05
+
+- type: entity
+  name: spawn punk
+  id: SpawnMobPunkT3
+  parent: MarkerBasePlaceFree
+  suffix: AI, Hostile, T3
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Objects/Weapons/Melee/baseball_bat.rsi
+      state: icon
+    - state: ai
+  - type: RandomSpawner
+    prototypes:
+    - MobPunkGangerMeleeT3
+    - MobPunkGangerMeleeT3
+    - MobPunkGangerSmg
+    chance: 1
+    offset: 0.0
+    #rarePrototypes:
+    #- SpawnMobPunkT3
+    #rareChance: 0.05
 
 - type: entity
   name: spawn punk leader
@@ -54,6 +81,6 @@
     - state: ai
   - type: RandomSpawner
     prototypes:
-    - MobPunkGangerArmoredElite
+    - MobPunkGangerLeader
     chance: 1
     offset: 0.0
