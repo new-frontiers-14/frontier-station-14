@@ -1,59 +1,70 @@
-﻿<DefaultWindow xmlns="https://spacestation14.io"
-               xmlns:graphics="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
-               Title="{Loc 'shuttle-records-console-window-title'}"
-               MinSize="700 300">
+﻿<controls:FancyWindow xmlns="https://spacestation14.io"
+                      xmlns:graphics="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+                      xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+                      Title="{Loc 'shuttle-records-console-window-title'}"
+                      MinSize="700 300">
 
-    <BoxContainer Orientation="Vertical" Margin="5 0 5 0">
+    <BoxContainer Orientation="Vertical">
 
-        <GridContainer Columns="3" HorizontalExpand="True" Margin="5 0 5 0">
-            <Label Text="{Loc 'id-card-console-window-target-id'}" />
-            <Button Name="TargetIdButton" Access="Public"/>
-            <Label Name="TargetIdLabel" />
-            <Label Text="{Loc 'id-card-console-window-ship-name-label'}" />
-            <Label Name="ShipNameLabel" />
-        </GridContainer>
+        <PanelContainer>
+            <PanelContainer.PanelOverride>
+                <graphics:StyleBoxFlat BackgroundColor="#1B1E1B" />
+            </PanelContainer.PanelOverride>
 
-        <BoxContainer Orientation="Horizontal" Margin="5 0 5 0">
-            <Label Text="{Loc 'shuttle-records-transactions'}" HorizontalExpand="True" />
-            <BoxContainer Orientation="Horizontal">
-                <Label Text="{Loc 'shuttle-records-search'}" StyleClasses="LabelSubText" Margin="0 0 5 0" />
-                <LineEdit Name="SearchText" Access="Public" MinHeight="30" MinWidth="120" />
-            </BoxContainer>
-            <Button Name="ClearSearchButton" Access="Public" Text="✖" />
-        </BoxContainer>
+            <GridContainer Columns="3" HorizontalExpand="True" Margin="10">
+                <Label Text="{Loc 'id-card-console-window-target-id'}" />
+                <Button Name="TargetIdButton" Access="Public" />
+                <Label Name="TargetIdLabel" />
+                <Label Text="{Loc 'id-card-console-window-ship-name-label'}" />
+                <Label Name="ShipNameLabel" />
+            </GridContainer>
+        </PanelContainer>
 
-        <BoxContainer HorizontalExpand="True" VerticalExpand="True" Orientation="Horizontal" Margin="5">
-            <BoxContainer Orientation="Vertical" MinSize="250 300">
-                <PanelContainer VerticalExpand="True" HorizontalExpand="True" Margin="10">
-                    <PanelContainer.PanelOverride>
-                        <graphics:StyleBoxFlat BorderThickness="2" BorderColor="#777777" />
-                    </PanelContainer.PanelOverride>
-                    <BoxContainer Orientation="Vertical"
-                                  VerticalExpand="True"
-                                  HorizontalExpand="True">
+        <BoxContainer HorizontalExpand="True" VerticalExpand="True" Orientation="Horizontal" Margin="10">
 
-                        <ScrollContainer HorizontalExpand="True"
-                                         VerticalExpand="True"
-                                         VScrollEnabled="True">
-                            <BoxContainer Name="ShuttleRecordList"
-                                          Orientation="Vertical"
-                                          HorizontalExpand="True"
-                                          VerticalExpand="True"
-                                          MinSize="50 50"
-                                          Margin="4">
-                            </BoxContainer>
-                        </ScrollContainer>
+            <BoxContainer Orientation="Vertical" Margin="0 0 10 0">
+                <BoxContainer Orientation="Vertical" Margin="0 0 0 5">
+                    <Label Text="{Loc 'shuttle-records-search'}" StyleClasses="LabelSubText" Margin="0 0 5 0" />
+                    <BoxContainer Orientation="Horizontal">
+                        <LineEdit Name="SearchText" Access="Public" MinHeight="30" SetWidth="200" />
+                        <Button Name="ClearSearchButton" Access="Public" Text="✖" Margin="5 0 0 0" />
                     </BoxContainer>
-                </PanelContainer>
+                    <CheckBox Name="ShowActiveOnlyCheckbox" Text="{Loc 'shuttle-records-show-active-only'}" />
+                </BoxContainer>
+
+                <BoxContainer Orientation="Vertical" MinSize="250 300">
+                    <PanelContainer VerticalExpand="True" HorizontalExpand="True">
+                        <PanelContainer.PanelOverride>
+                            <graphics:StyleBoxFlat BorderThickness="2" BorderColor="#777777" />
+                        </PanelContainer.PanelOverride>
+                        <BoxContainer Orientation="Vertical"
+                                      VerticalExpand="True"
+                                      HorizontalExpand="True"
+                                      SetWidth="240">
+
+                            <ScrollContainer HorizontalExpand="True"
+                                             VerticalExpand="True"
+                                             VScrollEnabled="True">
+                                <BoxContainer Name="ShuttleRecordList"
+                                              Orientation="Vertical"
+                                              HorizontalExpand="True"
+                                              VerticalExpand="True"
+                                              MinSize="50 50"
+                                              Margin="4">
+                                </BoxContainer>
+                            </ScrollContainer>
+                        </BoxContainer>
+                    </PanelContainer>
+                </BoxContainer>
             </BoxContainer>
+
 
             <BoxContainer Orientation="Vertical">
-                <BoxContainer Name="ShuttleRecordDetailsContainer" Orientation="Vertical" MinSize="250 300" Margin="10">
+                <BoxContainer Name="ShuttleRecordDetailsContainer" Orientation="Vertical" MinSize="250 250" VerticalExpand="True">
                     <Label Text="{Loc 'shuttle-records-detail-title'}" />
                 </BoxContainer>
-                <Label Name="TransactionCostLabel" Text="" StyleClasses="LabelBig" Margin="10"/>
-                <CheckBox Name="ShowActiveOnlyCheckbox" Text="{Loc 'shuttle-records-show-active-only'}" />
+                <Label Name="TransactionCostLabel" Text="" StyleClasses="LabelBig" />
             </BoxContainer>
         </BoxContainer>
     </BoxContainer>
-</DefaultWindow>
+</controls:FancyWindow>
