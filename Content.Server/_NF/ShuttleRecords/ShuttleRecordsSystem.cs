@@ -6,7 +6,6 @@ using Content.Server.GameTicking;
 using Content.Server.Popups;
 using Content.Server.Station.Systems;
 using Content.Shared._NF.ShuttleRecords;
-using Content.Shared._NF.ShuttleRecords.Components;
 using Content.Shared.Access.Systems;
 using Robust.Server.GameObjects;
 using Robust.Shared.Timing;
@@ -42,39 +41,8 @@ public sealed partial class ShuttleRecordsSystem : SharedShuttleRecordsSystem
             return;
 
         record.TimeOfPurchase = _gameTiming.CurTime.Subtract(_gameTicker.RoundStartTimeSpan);
-        component.ShuttleRecordsList[record.EntityUid] = record;
+        component.ShuttleRecordsList.Add(record);
     }
-
-    /**
-     * Edits an existing record if one exists for the entity given in the Record
-     * <param name="record">The record to update.</param>
-     */
-    public void TryUpdateRecord(ShuttleRecord record)
-    {
-        if (!TryGetShuttleRecordsDataComponent(out var component))
-            return;
-
-        component.ShuttleRecordsList[record.EntityUid] = record;
-        RefreshStateForAll();
-    }
-
-    /**
-     * Edits an existing record if one exists for the given entity
-     * <param name="record">The record to add.</param>
-     */
-    public bool TryGetRecord(NetEntity uid, [NotNullWhen(true)] out ShuttleRecord? record)
-    {
-        if (!TryGetShuttleRecordsDataComponent(out var component) ||
-            !component.ShuttleRecordsList.ContainsKey(uid))
-        {
-            record = null;
-            return false;
-        }
-
-        record = component.ShuttleRecordsList[uid];
-        return true;
-    }
-
 
     private bool TryGetShuttleRecordsDataComponent([NotNullWhen(true)] out SectorShuttleRecordsComponent? component)
     {
@@ -89,5 +57,4 @@ public sealed partial class ShuttleRecordsSystem : SharedShuttleRecordsSystem
         component = null;
         return false;
     }
-
 }

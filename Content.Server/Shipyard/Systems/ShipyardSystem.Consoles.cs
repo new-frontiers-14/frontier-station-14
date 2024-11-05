@@ -220,10 +220,10 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         var deedID = EnsureComp<ShuttleDeedComponent>(targetId);
 
         var shuttleOwner = Name(player).Trim();
-        AssignShuttleDeedProperties(deedID, shuttleUid, name, shuttleOwner, voucherUsed);
+        AssignShuttleDeedProperties(deedID, shuttleUid, name, shuttleOwner);
 
         var deedShuttle = EnsureComp<ShuttleDeedComponent>(shuttleUid);
-        AssignShuttleDeedProperties(deedShuttle, shuttleUid, name, shuttleOwner, voucherUsed);
+        AssignShuttleDeedProperties(deedShuttle, shuttleUid, name, shuttleOwner);
 
         if (!voucherUsed)
         {
@@ -314,8 +314,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
                     name: deedShuttle.ShuttleName ?? "",
                     suffix: deedShuttle.ShuttleNameSuffix ?? "",
                     ownerName: shuttleOwner,
-                    entityUid: _entityManager.GetNetEntity(shuttleUid),
-                    purchasedWithVoucher: voucherUsed
+                    entityUid: _entityManager.GetNetEntity(shuttleUid)
                 )
             );
         }
@@ -356,7 +355,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             return;
         }
 
-        var voucherUsed = voucher is not null;
+        bool voucherUsed = voucher is not null;
 
         if (!TryComp<ShuttleDeedComponent>(targetId, out var deed) || deed.ShuttleUid is not { Valid: true } shuttleUid)
         {
@@ -781,12 +780,11 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         _ui.SetUiState(uid, uiKey, newState);
     }
 
-    void AssignShuttleDeedProperties(ShuttleDeedComponent deed, EntityUid? shuttleUid, string? shuttleName, string? shuttleOwner, bool voucherUsed)
+    void AssignShuttleDeedProperties(ShuttleDeedComponent deed, EntityUid? shuttleUid, string? shuttleName, string? shuttleOwner)
     {
         deed.ShuttleUid = shuttleUid;
         TryParseShuttleName(deed, shuttleName!);
         deed.ShuttleOwner = shuttleOwner;
-        deed.PurchasedWithVoucher = voucherUsed;
     }
 
     private int CalculateSalesTax(ShipyardConsoleComponent component, int sellValue)

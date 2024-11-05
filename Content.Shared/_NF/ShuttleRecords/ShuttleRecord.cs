@@ -12,8 +12,7 @@ public class ShuttleRecord(
     string suffix,
     string ownerName,
     NetEntity entityUid,
-    TimeSpan? timeOfPurchase = null,
-    bool purchasedWithVoucher = false
+    TimeSpan? timeOfPurchase = null
 )
 {
     [ViewVariables]
@@ -34,7 +33,4 @@ public class ShuttleRecord(
 
     [ViewVariables]
     public TimeSpan? TimeOfPurchase { get; set; } = timeOfPurchase;
-
-    [ViewVariables]
-    public bool PurchasedWithVoucher { get; set; } = purchasedWithVoucher;
 }
