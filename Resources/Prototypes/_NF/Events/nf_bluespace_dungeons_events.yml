@@ -30,7 +30,7 @@
         nameDataset: names_borer
         minimumDistance: 1500
         maximumDistance: 2500
-        addComponents:
+        addComponents: &dungeonComponents
         - type: Gravity
           enabled: true
           inherent: true
@@ -53,15 +53,7 @@
         nameDataset: names_borer
         minimumDistance: 1500
         maximumDistance: 2500
-        addComponents:
-        - type: Gravity
-          enabled: true
-          inherent: true
-        - type: IFF
-        - type: Shuttle
-          angularDamping: 999999
-          linearDamping: 999999
-        - type: LinkedLifecycleGridParent
+        addComponents: *dungeonComponents
         protos:
         - NFVGRoidSnow
 
@@ -76,15 +68,7 @@
         nameDataset: names_borer
         minimumDistance: 1500
         maximumDistance: 2500
-        addComponents:
-        - type: Gravity
-          enabled: true
-          inherent: true
-        - type: IFF
-        - type: Shuttle
-          angularDamping: 999999
-          linearDamping: 999999
-        - type: LinkedLifecycleGridParent
+        addComponents: *dungeonComponents
         protos:
         - NFVGRoidCave
 
@@ -99,14 +83,6 @@
         nameDataset: names_borer
         minimumDistance: 1500
         maximumDistance: 2500
-        addComponents:
-        - type: Gravity
-          enabled: true
-          inherent: true
-        - type: IFF
-        - type: Shuttle
-          angularDamping: 999999
-          linearDamping: 999999
-        - type: LinkedLifecycleGridParent
+        addComponents: *dungeonComponents
         protos:
         - NFVGRoidChromite
