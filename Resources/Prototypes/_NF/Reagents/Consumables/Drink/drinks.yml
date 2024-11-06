@@ -181,3 +181,20 @@
   metamorphicMaxFillLevels: 4
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
+
+- type: reagent
+  id: HoneyIcedTea
+  name: reagent-name-honey-iced-tea
+  parent: BaseDrink
+  desc: reagent-desc-honey-iced-tea
+  physicalDesc: reagent-physical-desc-aromatic
+  flavor: honey
+  color: "#E79A3F"
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 0.6
+  metamorphicSprite:
+    sprite: _NF/Objects/Consumable/Drinks/honeyicedtea.rsi
+    state: icon

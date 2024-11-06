@@ -107,7 +107,7 @@
   parent: [ BaseC1Contraband, WeaponLaserGun ]
   name: laser pistol
   suffix: Frontier
-  description: Slightly outdated design of civilian-grade laser pistol.
+  description: An older model of civilian-grade laser pistol.
   components:
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Battery/laser_pistol.rsi
@@ -128,3 +128,78 @@
       - state: inhand-right
       - state: inhand-right-unshaded
         shader: unshaded
+
+- type: entity
+  id: NFWeaponHoloflareGun
+  parent: [ BaseC1Contraband, BaseWeaponBatterySmall ]
+  name: holoflare pistol
+  suffix: Frontier
+  description: A modification of a civilian-grade laser pistol that can project holoflares onto surfaces.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Battery/holoflare_pistol.yml
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-2
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+    - state: mode-cyan
+      shader: unshaded
+      map: [ "Firemode" ]
+  - type: Item
+    size: Small
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - state: inhand-left-unshaded
+        shader: unshaded
+      right:
+      - state: inhand-right
+      - state: inhand-right-unshaded
+        shader: unshaded
+  - type: Gun
+    selectedMode: SemiAuto
+    fireRate: 2
+    availableModes:
+      - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/flaregun.ogg
+    projectileSpeed: 15
+  - type: Battery
+    maxCharge: 720
+    startingCharge: 720
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 10
+  - type: ProjectileBatteryAmmoProvider
+    proto: HoloFlareCyan
+    fireCost: 240
+  - type: EnergyGun
+    fireModes:
+    - proto: HoloFlareCyan
+      fireCost: 240
+      name: cyan
+      state: cyan
+    - proto: HoloFlareRed
+      fireCost: 240
+      name: red
+      state: red
+    - proto: HoloFlareYellow
+      fireCost: 240
+      name: yellow
+      state: yellow
+  - type: MagazineVisuals
+    magState: mag
+    steps: 3
+    zeroVisible: true
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.EnergyGunFireModeVisuals.State:
+        Firemode:
+          Cyan: { state: mode-cyan }
+          Red: { state: mode-red }
+          Yellow: { state: mode-yellow }
+  - type: StaticPrice
+    price: 250
