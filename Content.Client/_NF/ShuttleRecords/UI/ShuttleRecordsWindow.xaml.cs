@@ -40,6 +40,7 @@ public sealed partial class ShuttleRecordsWindow : FancyWindow
     {
         _searchText = "";
         SearchText.Text = "";
+        UpdateStateIfExists();
     }
 
     private void UpdateStateIfExists()
