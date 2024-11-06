@@ -5,7 +5,6 @@
   parent:
   - MobNonHumanHostileBase
   - MobHumanoidInvetory
-  - MobHumanoidHostileAISimpleRanged
   - NFMobRestrictions
   id: MobExplorerBase
   components:
@@ -21,8 +20,6 @@
     speedModifierThresholds:
       60: 0.7
       80: 0.5
-  - type: Stamina
-    critThreshold: 100
   - type: DamageStateVisuals
     rotate: true
   - type: RotationVisuals
@@ -44,7 +41,7 @@
     angle: 0
     damage:
       types:
-        Slash: 15
+        Slash: 10
         Structural: 30
     soundHit:
       collection: MetalThud
@@ -56,10 +53,11 @@
   - type: AutoWakeUp
   - type: PointLight
     enabled: true
-    autoRot: false
+    autoRot: true
     netsync: false
     radius: 3
     energy: 1
+    mask: /Textures/Effects/LightMasks/cone.png
     color: "#47f8ff"
 
 # Variations
@@ -79,14 +77,40 @@
   - type: Sprite
     drawdepth: Mobs
     layers:
+    # Body
     - sprite: _NF/Mobs/Species/Templates/human.rsi
       state: human
-    - sprite: Clothing/Uniforms/Jumpsuit/salvage.rsi
-      state: equipped-INNERCLOTHING
-    - sprite: Clothing/Mask/gasexplorer.rsi
-      state: equipped-MASK
-    - sprite: _NF/Clothing/Head/Hats/pilot.rsi
-      state: equipped-HELMET
+    # Softsuit
+    - sprite: _NF/Clothing/OuterClothing/Suits/eva_color.rsi
+      state: equipped-base
+      color: "#deb733"
+    - sprite: _NF/Clothing/OuterClothing/Suits/eva_color.rsi
+      state: equipped-decals-01
+      color: "#ad2aea"
+    - sprite: _NF/Clothing/OuterClothing/Suits/eva_color.rsi
+      state: equipped-reinforced-points
+      color: "#786243"
+    - sprite: _NF/Clothing/OuterClothing/Suits/eva_color.rsi
+      state: equipped-breathing-gear
+    - sprite: _NF/Clothing/OuterClothing/Suits/eva_color.rsi
+      state: equipped-unshaded
+      shader: unshaded
+    - sprite: _NF/Clothing/Head/Helmets/eva_color.rsi
+      state: equipped-head-base
+      color: "#deb733"
+    - sprite: _NF/Clothing/Head/Helmets/eva_color.rsi
+      state: equipped-head-reinforced-points
+      color: "#ad2aea"
+    - sprite: _NF/Clothing/Head/Helmets/eva_color.rsi
+      state: equipped-head-visor
+      color: "#adcfd5"
+    - sprite: _NF/Clothing/Head/Helmets/eva_color.rsi
+      state: equipped-head-light
+      color: "#47f8ff"
+    # Weapons
+    - sprite: Objects/Weapons/Melee/pickaxe.rsi
+      state: wielded-inhand-right
+    # Fluff
     - sprite: Objects/Tools/lantern.rsi
       state: on-equipped-BELT
       shader: unshaded
@@ -97,8 +121,8 @@
     angle: 0
     damage:
       types:
-        Blunt: 7.5
-        Piercing: 7.5
+        Blunt: 6
+        Piercing: 6
         Structural: 30
     soundHit:
       collection: MetalThud
@@ -107,32 +131,69 @@
   name: scrapper
   parent:
   - MobExplorerBase
+  - MobHumanoidHostileAISimpleRanged
   id: MobExplorerRangedT1
   description: Proto-kinetic accelerator in one hand, flashlight in the other, beer in the belly. That's how you explore.
   categories: [ HideSpawnMenu ]
   components:
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 4
+    baseSprintSpeed : 4
   - type: Loadout
     prototypes:
     - MobHumanoidExplorerGearRangedT1
   - type: Sprite
     drawdepth: Mobs
     layers:
+    # Body
     - sprite: _NF/Mobs/Species/Templates/human.rsi
       state: human
-    - sprite: Clothing/Uniforms/Jumpsuit/salvage.rsi
-      state: equipped-INNERCLOTHING
-    - sprite: Clothing/OuterClothing/WinterCoats/coat.rsi
-      state: MINER-equipped-OUTERCLOTHING
-    - sprite: Clothing/Mask/gasexplorer.rsi
-      state: equipped-MASK
-    - sprite: Clothing/Head/Hoods/Coat/hoodminer.rsi
-      state: equipped-HELMET
+    # Softsuit
+    - sprite: _NF/Clothing/OuterClothing/Suits/eva_color.rsi
+      state: equipped-base
+      color: "#deb733"
+    - sprite: _NF/Clothing/OuterClothing/Suits/eva_color.rsi
+      state: equipped-decals-01
+      color: "#ad2aea"
+    - sprite: _NF/Clothing/OuterClothing/Suits/eva_color.rsi
+      state: equipped-reinforced-points
+      color: "#786243"
+    - sprite: _NF/Clothing/OuterClothing/Suits/eva_color.rsi
+      state: equipped-breathing-gear
+    - sprite: _NF/Clothing/OuterClothing/Suits/eva_color.rsi
+      state: equipped-unshaded
+      shader: unshaded
+    - sprite: _NF/Clothing/Head/Helmets/eva_color.rsi
+      state: equipped-head-base
+      color: "#deb733"
+    - sprite: _NF/Clothing/Head/Helmets/eva_color.rsi
+      state: equipped-head-reinforced-points
+      color: "#ad2aea"
+    - sprite: _NF/Clothing/Head/Helmets/eva_color.rsi
+      state: equipped-head-visor
+      color: "#adcfd5"
+    - sprite: _NF/Clothing/Head/Helmets/eva_color.rsi
+      state: equipped-head-light
+      color: "#47f8ff"
+    # Hands
+    - sprite: Clothing/Hands/Gloves/Color/color.rsi
+      state: equipped-HAND
+      color: "#535353"
+    # Weapons
+    - sprite: Objects/Weapons/Guns/Basic/kinetic_accelerator.rsi
+      state: inhand-right
+    # Fluff
+    - sprite: Objects/Tools/flashlight.rsi
+      state: inhand-left
+    - sprite: Objects/Tools/flashlight.rsi
+      state: inhand-left-light
+      shader: unshaded
   - type: RechargeBasicEntityAmmo
-    rechargeCooldown: 0.75
+    rechargeCooldown: 1
     rechargeSound:
       path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
   - type: BasicEntityAmmoProvider
-    proto: BulletKinetic
+    proto: BulletKineticLowPower
     capacity: 1
     count: 1
   - type: Gun
@@ -144,14 +205,6 @@
     availableModes:
     - SemiAuto
     soundGunshot: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
-  - type: PointLight
-    enabled: true
-    autoRot: true
-    netsync: false
-    radius: 3
-    energy: 1
-    mask: /Textures/Effects/LightMasks/cone.png
-    color: "#47f8ff"
 
 ## Tier 2
 - type: entity
@@ -167,12 +220,11 @@
     prototypes:
     - MobHumanoidExplorerGearMeleeT2
   - type: Damageable
-    damageModifierSet: MobHostileDamageModifierSetLow
+    damageModifierSet: MobHostileDamageModifierSetMedium
   - type: Sprite
     drawdepth: Mobs
     layers:
-    - sprite: _NF/Mobs/Species/Templates/human.rsi
-      state: human
+    # Helmet
     - sprite: Clothing/Head/Hardsuits/spatiohelm.rsi
       state: equipped-head
     - sprite: Clothing/Head/Hardsuits/spatiohelm.rsi
@@ -182,23 +234,22 @@
       state: equipped-head-light
       shader: unshaded
       color: "#47f8ff"
-  - type: PointLight
-    enabled: true
-    autoRot: true
-    netsync: false
-    radius: 3
-    energy: 1
-    mask: /Textures/Effects/LightMasks/cone.png
-    color: "#47f8ff"
+    # Suit
+    - sprite: Clothing/OuterClothing/Hardsuits/spatio.rsi
+      state: equipped-OUTERCLOTHING
+    # Weapons
+    - sprite: Objects/Weapons/Melee/crusher_glaive.rsi
+      state: wielded-inhand-right
+    # Fluff
   - type: MeleeWeapon
-    attackRate: 1.0
+    attackRate: 1.5
     altDisarm: false
     animation: WeaponArcPunch
     angle: 0
     damage:
       types:
-        Blunt: 7.5
-        Slash: 5.5
+        Blunt: 7
+        Slash: 6
         Structural: 30
     soundHit:
       collection: MetalThud
@@ -207,20 +258,23 @@
   name: salvager
   parent:
   - MobExplorerBase
+  - MobHumanoidHostileAISimpleRanged
   id: MobExplorerRangedT2
   description: Sawn-off proto-kinetic accelerator in one hand, crusher dagger in the other, magm-ale both in the belly and in the hardsuit's boots.
   categories: [ HideSpawnMenu ]
   components:
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 4
+    baseSprintSpeed : 4
   - type: Loadout
     prototypes:
     - MobHumanoidExplorerGearRangedT2
   - type: Damageable
-    damageModifierSet: MobHostileDamageModifierSetLow
+    damageModifierSet: MobHostileDamageModifierSetMedium
   - type: Sprite
     drawdepth: Mobs
     layers:
-    - sprite: _NF/Mobs/Species/Templates/human.rsi
-      state: human
+    # Helmet
     - sprite: Clothing/Head/Hardsuits/spatiohelm.rsi
       state: equipped-head
     - sprite: Clothing/Head/Hardsuits/spatiohelm.rsi
@@ -230,31 +284,32 @@
       state: equipped-head-light
       shader: unshaded
       color: "#47f8ff"
+    # Suit
+    - sprite: Clothing/OuterClothing/Hardsuits/spatio.rsi
+      state: equipped-OUTERCLOTHING
+    # Weapons
+    - sprite: _NF/Objects/Weapons/Guns/Basic/sawn_kinetic_accelerator.rsi
+      state: inhand-right
+    - sprite: Objects/Weapons/Melee/crusher_dagger.rsi
+      state: inhand-left
+    # Fluff
   - type: RechargeBasicEntityAmmo
-    rechargeCooldown: 0.75
+    rechargeCooldown: 1
     rechargeSound:
       path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
   - type: BasicEntityAmmoProvider
-    proto: BulletKinetic
+    proto: BulletKineticLowPower
     capacity: 1
     count: 1
   - type: Gun
     showExamineText: false
-    fireRate: 6
+    fireRate: 0.75
     selectedMode: FullAuto
     minAngle: 31
     maxAngle: 45
     availableModes:
     - FullAuto
     soundGunshot: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
-  - type: PointLight
-    enabled: true
-    autoRot: true
-    netsync: false
-    radius: 3
-    energy: 1
-    mask: /Textures/Effects/LightMasks/cone.png
-    color: "#47f8ff"
 
 # Tier 3
 - type: entity
@@ -270,18 +325,29 @@
     prototypes:
     - MobHumanoidExplorerGearMeleeT3
   - type: Damageable
-    damageModifierSet: MobHostileDamageModifierSetMedium
+    damageModifierSet: MobHostileDamageModifierSetHigh
   - type: Sprite
     drawdepth: Mobs
     layers:
-    - sprite: _NF/Mobs/Species/Templates/human.rsi
-      state: human
+    # Helmet
     - sprite: Clothing/Head/Hardsuits/salvage.rsi
-      state: off-equipped-HELMET
+      state: on-equipped-HELMET
     - sprite: Clothing/Head/Hardsuits/spatiohelm.rsi
       state: equipped-head-light
       shader: unshaded
       color: "#47f8ff"
+    # Suit
+    - sprite: Clothing/OuterClothing/Hardsuits/salvage.rsi
+      state: equipped-OUTERCLOTHING
+    # Weapons
+    - sprite: Objects/Tools/handdrill.rsi
+      state: inhand-right
+    - sprite: Objects/Tools/handdrill.rsi
+      state: inhand-left
+    # Fluff
+    - sprite: Objects/Tools/lantern.rsi
+      state: on-equipped-BELT
+      shader: unshaded
   - type: MeleeWeapon
     autoAttack: true
     angle: 0
@@ -292,53 +358,61 @@
     damage:
       types:
         Blunt: 2
-        Slash: 1
+        Slash: 2
         Piercing: 2
         Structural: 25
   - type: PointLight
-    enabled: true
-    autoRot: true
-    netsync: false
     radius: 7
     energy: 3
-    mask: /Textures/Effects/LightMasks/cone.png
-    color: "#47f8ff"
 
 - type: entity
   name: explorer
   parent:
   - MobExplorerBase
+  - MobHumanoidHostileAISimpleRanged
   id: MobExplorerRangedT3
   description: Veteran scrappers, these salvagers are wealthy enough to explore abandoned ruins for the adrenaline rush and adventure alone.
   categories: [ HideSpawnMenu ]
   components:
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 4
+    baseSprintSpeed : 4
   - type: Loadout
     prototypes:
     - MobHumanoidExplorerGearRangedT3
   - type: Damageable
-    damageModifierSet: MobHostileDamageModifierSetMedium
+    damageModifierSet: MobHostileDamageModifierSetHigh
   - type: Sprite
     drawdepth: Mobs
     layers:
-    - sprite: _NF/Mobs/Species/Templates/human.rsi
-      state: human
+    # Helmet
     - sprite: Clothing/Head/Hardsuits/luxury.rsi
       state: off-equipped-HELMET
     - sprite: Clothing/Head/Hardsuits/spatiohelm.rsi
       state: equipped-head-light
       shader: unshaded
       color: "#47f8ff"
+    # Suit
+    - sprite: Clothing/OuterClothing/Hardsuits/luxury.rsi
+      state: equipped-OUTERCLOTHING
+    # Weapons
+    - sprite: Objects/Weapons/Guns/Basic/kinetic_accelerator.rsi
+      state: wielded-inhand-right
+    # Fluff
+    - sprite: Objects/Tools/lantern.rsi
+      state: on-equipped-BELT
+      shader: unshaded
   - type: RechargeBasicEntityAmmo
-    rechargeCooldown: 0.75
+    rechargeCooldown: 1
     rechargeSound:
       path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
   - type: BasicEntityAmmoProvider
-    proto: BulletKinetic
+    proto: BulletKineticMediumPower
     capacity: 1
     count: 1
   - type: Gun
     showExamineText: false
-    fireRate: 0.5
+    fireRate: 0.75
     minAngle: 1
     maxAngle: 5
     selectedMode: SemiAuto
@@ -346,22 +420,18 @@
     - SemiAuto
     soundGunshot: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
   - type: PointLight
-    enabled: true
-    autoRot: true
-    netsync: false
     radius: 7
     energy: 3
-    mask: /Textures/Effects/LightMasks/cone.png
-    color: "#47f8ff"
 
 - type: entity
   name: hauler
   categories: [ HideSpawnMenu ]
   parent:
   - MobExplorerBase
+  - MobHumanoidHostileAISimpleMelee
   #- MobLaserReflect # Added to prevent laser abuse from players
   id: MobExplorerHauler
-  description: |- 
+  description: |-
    Loaded with heavy equipment for industrial-scale looting. Pardon me, "asset recovery".
   components:
   - type: Loadout
@@ -396,37 +466,52 @@
       160: 0.5
   - type: Stamina
     critThreshold: 600
-  - type: MovementSpeedModifier
-    baseWalkSpeed: 2.75
-    baseSprintSpeed: 4
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 195
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SpawnMobExplorerT2:
+            min: 1
+            max: 1
+          RipleyChassis:
+            min: 1
+            max: 1
+          RipleyCentralElectronics:
+            min: 1
+            max: 1
+          RipleyPeripheralsElectronics:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
   - type: FootstepModifier
     footstepSoundCollection:
       path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
-  - type: Repairable
-    fuelCost: 25
-    doAfterDelay: 10
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
     damage:
       types:
-        Blunt: 15
+        Blunt: 20
         Structural: 20
     soundHit:
       collection: MetalThud
   - type: PointLight
-    enabled: true
-    autoRot: true
-    netsync: false
     radius: 5
     energy: 2
-    mask: /Textures/Effects/LightMasks/cone.png
-    color: "#47f8ff"
 
 # Tier 4 - Boss
 - type: entity
   name: explorer captain
   parent:
+  - MobHostileBossBase
   - MobExplorerBase
   - MobHumanoidHostileAISimpleMelee
   id: MobExplorerBoss
@@ -439,26 +524,34 @@
     prototypes:
     - MobHumanoidExplorerGearBoss
   - type: Damageable
-    damageModifierSet: MobHostileDamageModifierSetHigh
+    damageModifierSet: MobHostileDamageModifierSetBoss
   - type: Sprite
     drawdepth: Mobs
     layers:
-    - sprite: _NF/Mobs/Species/Templates/human.rsi
-      state: human
+    # Helmet
     - sprite: _NF/Clothing/Head/Hardsuits/maxim_prototype.rsi
       state: off-equipped-HELMET
     - sprite: Clothing/Head/Hardsuits/spatiohelm.rsi
       state: equipped-head-light
       shader: unshaded
       color: "#47f8ff"
+    # Suit
+    - sprite: _NF/Clothing/OuterClothing/Hardsuits/maxim_prototype.rsi
+      state: equipped-OUTERCLOTHING
+    # Weapons
+    - sprite: _NF/Objects/Weapons/Melee/energy_pickaxe.rsi
+      state: inhand-left
+    - sprite: _NF/Objects/Weapons/Melee/energy_pickaxe.rsi
+      state: inhand-left-blade
+      shader: unshaded
+      color: "#e95151"
+    # Fluff
+    - sprite: Objects/Tools/lantern.rsi
+      state: on-equipped-BELT
+      shader: unshaded
   - type: PointLight
-    enabled: true
-    autoRot: true
-    netsync: false
     radius: 7
     energy: 3
-    mask: /Textures/Effects/LightMasks/cone.png
-    color: "#47f8ff"
   - type: MobThresholds
     thresholds:
       120: Critical
@@ -467,19 +560,72 @@
     speedModifierThresholds:
       60: 0.7
       80: 0.5
-  - type: MovementSpeedModifier
-    baseWalkSpeed: 4
-    baseSprintSpeed: 5.25
   - type: MeleeWeapon
     hidden: true
-    attackRate: 0.8
+    attackRate: 2
     damage:
       types:
-        Heat: 12.5
-        Piercing: 2.5
+        Heat: 16
+        Piercing: 4
         Structural: 40
     soundHit:
       path: /Audio/Weapons/eblade1.ogg
       params:
         variation: 0.250
         volume: -10
+  # Ghost role stuff
+  - type: GhostRole
+    allowMovement: true
+    name: ghost-role-information-explorer-captain-dungeon-name
+    description: ghost-role-information-explorer-captain-dungeon-description
+    rules: ghost-role-information-dungeon-boss-rules
+    raffle:
+      settings: default
+  - type: GhostTakeoverAvailable
+  - type: ActionGun
+    action: ActionSeismicCharge
+    gunProto: SeismicChargeGun
+
+- type: entity
+  id: SeismicChargeGun
+  name: seismic charge gun
+  description: Needed to shoot the charge.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 50
+    rechargeSound:
+      path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
+  - type: BasicEntityAmmoProvider
+    proto: NFBulletSeismicCharge
+    capacity: 1
+    count: 1
+  - type: Gun
+    minAngle: 1
+    maxAngle: 5
+    fireRate: 1
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot:
+      path: /Audio/Items/bow_pull.ogg
+    soundEmpty: null
+    projectileSpeed: 15
+  - type: UseDelay
+    delay: 50
+
+- type: entity
+  id: ActionSeismicCharge
+  categories: [ HideSpawnMenu ]
+  name: "[color=yellow]Throw Seismic Charge[/color]"
+  description: "Hurls activated seismic charge, that explodes on contact. [color=yellow]50 second cooldown.[/color]"
+  components:
+  - type: WorldTargetAction
+    icon: { sprite : Objects/Weapons/Bombs/seismic.rsi, state: icon }
+    event: !type:ActionGunShootEvent
+    priority: 2
+    checkCanAccess: false
+    range: 0
+    itemIconStyle: BigAction
+  - type: UseDelay
+    delay: 50
