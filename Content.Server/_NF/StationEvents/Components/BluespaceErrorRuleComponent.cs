@@ -1,11 +1,11 @@
 using Content.Server.StationEvents.Events;
-using Content.Shared.Storage;
 using Content.Server.Shuttles.Systems;
 using Content.Shared.Dataset;
 using Content.Shared.Procedural;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using Content.Shared.Bank.Components;
+using Robust.Shared.Map;
 
 namespace Content.Server.StationEvents.Components;
 
@@ -31,6 +31,11 @@ public sealed partial class BluespaceErrorRuleComponent : Component
     public List<EntityUid> GridsUid = new();
 
     /// <summary>
+    /// All the added maps that should be removed on event end
+    /// </summary>
+    public List<MapId> MapsUid = new();
+
+    /// <summary>
     /// If true, the grids are deleted at the end of the event.  If false, the grids are left in the map.
     /// </summary>
     [DataField]
@@ -46,7 +51,6 @@ public sealed partial class BluespaceErrorRuleComponent : Component
     /// <summary>
     /// How much the grid is appraised at upon entering into existence, set after starting the event
     /// </summary>
-    [DataField]
     public double StartingValue = 0;
 }
 

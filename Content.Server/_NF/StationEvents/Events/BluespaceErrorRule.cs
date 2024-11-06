@@ -69,7 +69,7 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
                 switch (group)
                 {
                     case BluespaceDungeonSpawnGroup dungeon:
-                        if (!TryDungeonSpawn(spawnCoords, mapId, ref dungeon, i, out spawned))
+                        if (!TryDungeonSpawn(spawnCoords, component, ref dungeon, i, out spawned))
                             continue;
 
                         break;
@@ -101,7 +101,7 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
         _mapManager.DeleteMap(mapId);
     }
 
-    private bool TryDungeonSpawn(EntityCoordinates spawnCoords, MapId mapId, ref BluespaceDungeonSpawnGroup group, int i, out EntityUid spawned)
+    private bool TryDungeonSpawn(EntityCoordinates spawnCoords, BluespaceErrorRuleComponent component, ref BluespaceDungeonSpawnGroup group, int i, out EntityUid spawned)
     {
         spawned = EntityUid.Invalid;
 
@@ -122,12 +122,15 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
             return false;
         }
 
+        _mapSystem.CreateMap(out var mapId);
+
         var spawnedGrid = _mapManager.CreateGridEntity(mapId);
 
         _transform.SetMapCoordinates(spawnedGrid, new MapCoordinates(Vector2.Zero, mapId));
         _dungeon.GenerateDungeon(dungeonProto, dungeonProto.ID, spawnedGrid.Owner, spawnedGrid.Comp, Vector2i.Zero, _random.Next(), spawnCoords); // Frontier: add dungeonProto.ID
 
         spawned = spawnedGrid.Owner;
+        component.MapsUid.Add(mapId);
         return true;
     }
 
@@ -244,6 +247,11 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
                     _bank.TrySectorDeposit(account, reward, LedgerEntryType.BluespaceReward);
                 }
             }
+        }
+
+        foreach (MapId mapId in component.MapsUid)
+        {
+            _mapManager.DeleteMap(mapId);
         }
     }
 }
