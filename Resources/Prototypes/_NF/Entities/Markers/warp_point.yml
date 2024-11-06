@@ -175,6 +175,15 @@
 
 # Events
 - type: entity
+  id: WarpPointNFMcDelivery
+  parent: WarpPoint
+  suffix: Event, McDelivery
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: WarpPoint
+    location: McDelivery
+
+- type: entity
   id: WarpPointNFCave
   parent: WarpPoint
   suffix: Event, Cave
@@ -182,6 +191,43 @@
   components:
   - type: WarpPoint
     location: Cave
+
+# Dungeon
+- type: entity
+  id: WarpPointNFDengeonBasalt
+  parent: WarpPoint
+  suffix: Dungeon, Basalt
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: WarpPoint
+    location: Dungeon (Basalt)
+
+- type: entity
+  id: WarpPointNFDengeonSnow
+  parent: WarpPoint
+  suffix: Dungeon, Snow
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: WarpPoint
+    location: Dungeon (Snow)
+
+- type: entity
+  id: WarpPointNFDengeonCave
+  parent: WarpPoint
+  suffix: Dungeon, Cave
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: WarpPoint
+    location: Dungeon (Cave)
+
+- type: entity
+  id: WarpPointNFDengeonChromite
+  parent: WarpPoint
+  suffix: Dungeon, Chromite
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: WarpPoint
+    location: Dungeon (Chromite)
 
 # DeadDrop
 - type: entity
