@@ -171,6 +171,28 @@
     #groups:
     #- AllAccess
 
+- type: entity
+  abstract: true
+  id: MobIncorporealBase
+  name: incorporeal entity
+  description: You can't touch it, but it can touch you.
+  components:
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/_NF/Effects/silence.ogg
+  - type: CanMoveInAir
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.4
+        density: 10
+        mask:
+        - FlyingMobMask
+        layer:
+        - Opaque
+
 # Dungeon boss
 - type: entity
   id: MobHostileBossBase
@@ -196,7 +218,7 @@
   - type: FTLKnockdownImmune
 
 # Inventories
-- type: entity
+- type: entity # All slots are fillable, most of them are "hidden"
   save: false
   id: MobHumanoidInvetory
   abstract: true
@@ -210,7 +232,7 @@
       enum.StrippingUiKey.Key:
         type: StrippableBoundUserInterface
 
-- type: entity
+- type: entity # Slots for loot containers: pockets, belt, back
   save: false
   id: MobHumanoidInvetorySimplified
   abstract: true
@@ -292,7 +314,7 @@
   id: MobHumanoidHostileBase
   components:
   - type: MovementSpeedModifier
-    baseWalkSpeed : 3.5
+    baseWalkSpeed : 4.5
     baseSprintSpeed : 4.5
   - type: NPCRetaliation
     attackMemoryLength: 10
@@ -356,7 +378,7 @@
   id: MobNonHumanHostileBase
   components:
   - type: MovementSpeedModifier
-    baseWalkSpeed : 3.5
+    baseWalkSpeed : 4.5
     baseSprintSpeed : 4.5
   - type: NPCRetaliation
     attackMemoryLength: 10
