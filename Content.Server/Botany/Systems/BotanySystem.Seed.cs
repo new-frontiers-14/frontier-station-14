@@ -102,6 +102,7 @@ public sealed partial class BotanySystem : EntitySystem
     public EntityUid SpawnSeedPacket(SeedData proto, EntityCoordinates coords, EntityUid user, float? healthOverride = null)
     {
         var seed = Spawn(proto.PacketPrototype, coords);
+        _transform.DropNextTo(seed, user); // Frontier
         var seedComp = EnsureComp<SeedComponent>(seed);
         seedComp.Seed = proto;
         seedComp.HealthOverride = healthOverride;
