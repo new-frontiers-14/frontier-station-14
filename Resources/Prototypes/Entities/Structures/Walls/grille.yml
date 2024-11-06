@@ -191,10 +191,10 @@
               - "-0.5,-0.5"
               - "0.5,0.5"
               - "0.5,-0.5"
-          mask:
-          - FullTileMask
+          # mask: # Frontier
+          # - FullTileMask # Frontier
           layer:
-          - WallLayer
+          - GlassLayer # Frontier: WallLayer<GlassLayer
     - type: Construction
       graph: GrilleDiagonal
       node: grilleDiagonal
@@ -226,10 +226,10 @@
               - "-0.5,-0.5"
               - "0.5,0.5"
               - "0.5,-0.5"
-          mask:
-          - FullTileMask
+          # mask: # Frontier
+          # - FullTileMask # Frontier
           layer:
-          - WallLayer
+          - GlassLayer # Frontier: WallLayer<GlassLayer
     - type: Construction
       graph: GrilleDiagonal
       node: clockworkGrilleDiagonal
