@@ -7,6 +7,7 @@ using Content.Server.Station.Systems;
 using Content.Server.StationEvents.Components;
 using Content.Shared.Database;
 using Content.Shared.GameTicking.Components;
+using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -24,6 +25,7 @@ public abstract class StationEventSystem<T> : GameRuleSystem<T> where T : ICompo
     [Dependency] protected readonly SharedAudioSystem Audio = default!;
     [Dependency] protected readonly StationSystem StationSystem = default!;
     [Dependency] protected readonly RadioSystem RadioSystem = default!; // Frontier
+    [Dependency] protected readonly MapSystem MapSystem = default!; // Frontier
 
     protected ISawmill Sawmill = default!;
 
@@ -50,8 +52,13 @@ public abstract class StationEventSystem<T> : GameRuleSystem<T> where T : ICompo
         if (stationEvent.StartAnnouncement != null)
             ChatSystem.DispatchFilteredAnnouncement(allPlayersInGame, Loc.GetString(stationEvent.StartAnnouncement), playSound: false, colorOverride: stationEvent.StartAnnouncementColor);
 
-        if (stationEvent.StartRadioAnnouncement != null) // Frontier
-            RadioSystem.SendRadioMessage(uid, stationEvent.StartRadioAnnouncement, stationEvent.StartRadioAnnouncementChannel, uid, escapeMarkup: false); // Frontier
+        // Frontier
+        if (stationEvent.StartRadioAnnouncement != null)
+        {
+            var message = Loc.GetString(stationEvent.StartRadioAnnouncement);
+            var mapUid = MapSystem.GetMap(GameTicker.DefaultMap); // Hack: need a reference to a valid entity on the default map - the map itself works.
+            RadioSystem.SendRadioMessage(uid, message, stationEvent.StartRadioAnnouncementChannel, mapUid, escapeMarkup: false);
+        }
 
         Audio.PlayGlobal(stationEvent.StartAudio, allPlayersInGame, true);
     }
@@ -92,8 +99,14 @@ public abstract class StationEventSystem<T> : GameRuleSystem<T> where T : ICompo
         if (stationEvent.EndAnnouncement != null)
             ChatSystem.DispatchFilteredAnnouncement(allPlayersInGame, Loc.GetString(stationEvent.EndAnnouncement), playSound: false, colorOverride: stationEvent.EndAnnouncementColor);
 
-        if (stationEvent.EndRadioAnnouncement != null) // Frontier
-            RadioSystem.SendRadioMessage(uid, stationEvent.EndRadioAnnouncement, stationEvent.EndRadioAnnouncementChannel, uid, escapeMarkup: false); // Frontier
+        // Frontier: radio announcements
+        if (stationEvent.EndRadioAnnouncement != null)
+        {
+            var message = Loc.GetString(stationEvent.EndRadioAnnouncement);
+            var mapUid = MapSystem.GetMap(GameTicker.DefaultMap); // Hack: need a reference to a valid entity on the default map - the map itself works.
+            RadioSystem.SendRadioMessage(uid, message, stationEvent.EndRadioAnnouncementChannel, mapUid, escapeMarkup: false);
+        }
+        // End Frontier
 
         Audio.PlayGlobal(stationEvent.EndAudio, allPlayersInGame, true);
     }
@@ -128,7 +141,11 @@ public abstract class StationEventSystem<T> : GameRuleSystem<T> where T : ICompo
                 if (stationEvent.WarningAnnouncement != null)
                     ChatSystem.DispatchFilteredAnnouncement(allPlayersInGame, Loc.GetString(stationEvent.WarningAnnouncement), playSound: false, colorOverride: stationEvent.WarningAnnouncementColor);
                 if (stationEvent.WarningRadioAnnouncement != null)
-                    RadioSystem.SendRadioMessage(uid, stationEvent.WarningRadioAnnouncement, stationEvent.WarningRadioAnnouncementChannel, uid, escapeMarkup: false);
+                {
+                    var message = Loc.GetString(stationEvent.WarningRadioAnnouncement);
+                    var mapUid = MapSystem.GetMap(GameTicker.DefaultMap); // Hack: need a reference to a valid entity on the default map - the map itself works.
+                    RadioSystem.SendRadioMessage(uid, message, stationEvent.WarningRadioAnnouncementChannel, mapUid, escapeMarkup: false);
+                }
                 Audio.PlayGlobal(stationEvent.WarningAudio, allPlayersInGame, true);
                 stationEvent.WarningAnnounced = true;
             }
