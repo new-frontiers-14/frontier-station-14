@@ -477,7 +477,7 @@ namespace Content.Server.Administration.Systems
             _processingChannels.Remove(userId);
         }
 
-        private WebhookPayload GeneratePayload(string messages, string username, Guid userId, string? characterName = null)
+        private WebhookPayload GeneratePayload(string messages, string username, Guid userId, string? characterName = null) // Frontier: added Guid
         {
             // Add character name
             if (characterName != null)
@@ -720,7 +720,7 @@ namespace Content.Server.Administration.Systems
             if (!parameters.PlayedSound)
                 stringbuilder.Append(" **(S)**");
 
-            if (parameters.IsDiscord ?? false) // Frontier - Discord Indicator
+            if (parameters.IsDiscord) // Frontier - Discord Indicator
                 stringbuilder.Append(" **(DC)**");
 
             if (parameters.Icon == null)
@@ -741,7 +741,7 @@ namespace Content.Server.Administration.Systems
         public GameRunLevel RoundState { get; set; }
         public bool PlayedSound { get; set; }
         public bool NoReceivers { get; set; }
-        public bool? IsDiscord { get; set; } // Frontier
+        public bool IsDiscord { get; set; } // Frontier
         public string? Icon { get; set; }
 
         public AHelpMessageParams(

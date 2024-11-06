@@ -717,7 +717,7 @@ public sealed partial class ServerApi : IPostInjectInit
         public required string TextFormatted { get; init; }
         public required Guid Guid { get; init; }
         public bool UserOnly { get; init; }
-        public required bool webhookupdate { get; init; }
+        public required bool WebhookUpdate { get; init; }
     }
 
     #endregion
