@@ -21,6 +21,21 @@ public abstract class SharedShuttleRecordsSystem : EntitySystem
     {
         _itemSlotsSystem.AddItemSlot(uid, ShuttleRecordsConsoleComponent.TargetIdCardSlotId, component.TargetIdSlot);
     }
+
+    /// <summary>
+    /// Get the transaction cost for the given shipyard and sell value.
+    /// </summary>
+    /// <param name="percent">The percentage of the shuttle to use as a base for the cost</param>
+    /// <param name="min">The maximum price for a deed copy</param>
+    /// <param name="max">The minimum price for a deed copy</param>
+    /// <param name="fixedPrice">Optionally, the fixed price for a deed copy</param>
+    /// <param name="vesselPrice">The cost to purchase the ship</param>
+    /// <returns>The transaction cost for this ship.</returns>
+    public static uint GetTransactionCost(double percent, uint min, uint max, uint vesselPrice, uint? fixedPrice)
+    {
+        var cost = fixedPrice ?? (uint)(vesselPrice * percent);
+        return Math.Clamp(cost, min, max);
+    }
 }
 
 [NetSerializable, Serializable]

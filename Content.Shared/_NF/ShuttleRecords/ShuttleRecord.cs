@@ -13,6 +13,7 @@ public class ShuttleRecord(
     string ownerName,
     NetEntity entityUid,
     bool purchasedWithVoucher,
+    uint purchasePrice,
     TimeSpan? timeOfPurchase = null
 )
 {
@@ -34,6 +35,10 @@ public class ShuttleRecord(
 
     [ViewVariables]
     public TimeSpan? TimeOfPurchase { get; set; } = timeOfPurchase;
+
+    // The amount of spesos it had costed to purchase this vessel.
+    [ViewVariables]
+    public uint PurchasePrice { get; set; } = purchasePrice;
 
     [ViewVariables]
     public bool PurchasedWithVoucher { get; set; } = purchasedWithVoucher;

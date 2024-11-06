@@ -15,9 +15,27 @@ public sealed partial class ShuttleRecordsConsoleComponent : Component
     public SoundSpecifier ConfirmSound = new SoundPathSpecifier("/Audio/Effects/Cargo/ping.ogg");
 
     /// <summary>
-    /// The cost of making a new id card.
-    /// This may be zero with different access levels, ie. if the SR uses the console.
+    /// This percentage is used to calculate the amount of spesos required to make a new copy using the
+    /// shuttle records system. This allows large ships to cost more than smaller ships.
     /// </summary>
     [DataField]
-    public int TransactionPrice { get; set; } = 10000;
+    public double TransactionPercentage = 0.2f;
+
+    /// <summary>
+    /// This value is used if the resulting transaction cost is lower than this value.
+    /// </summary>
+    [DataField]
+    public uint MinTransactionPrice = 5000;
+
+    /// <summary>
+    /// This value is used if the resulting transaction cost is higher than this value.
+    /// </summary>
+    [DataField]
+    public uint MaxTransactionPrice = 50000;
+
+    /// <summary>
+    /// This value is used if it is given, overriding everything.
+    /// </summary>
+    [DataField]
+    public uint? FixedTransactionPrice;
 }

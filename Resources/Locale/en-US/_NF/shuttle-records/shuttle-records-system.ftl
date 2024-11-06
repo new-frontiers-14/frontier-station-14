@@ -2,6 +2,7 @@
 shuttle-records-copy-deed-button = Copy Deed to ID Card
 shuttle-records-shuttle-name-label = Shuttle Name: {$name}
 shuttle-records-shuttle-owner-label = Purchased by: {$owner}
+shuttle-records-shuttle-price-label = Purchase price: {$price}
 shuttle-records-shuttle-status = Shuttle Status: {$status}
 shuttle-records-shuttle-status-active = Active in sector
 shuttle-records-shuttle-status-inactive = Sold or deleted
@@ -12,6 +13,7 @@ shuttle-records-no-record-found = No record found.
 shuttle-records-no-bank-account = Station has no bank account.
 shuttle-records-insufficient-funds = Station does not have enough funds.
 shuttle-records-no-access = Access denied.
+shuttle-records-transaction-confirm = Are you sure?
 shuttle-records-transaction-cost = Transaction Cost: {$cost}
 shuttle-records-search = Search ship or captain
 shuttle-records-time-of-purchase = Time of purchase: [color=white]{ $time }[/color]

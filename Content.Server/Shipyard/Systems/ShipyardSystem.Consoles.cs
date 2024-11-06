@@ -290,7 +290,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
                 prot.PreventArtifactTriggers = true;
         }
 
-        int sellValue = 0;
+        var sellValue = 0;
         if (!voucherUsed)
         {
             if (TryComp<ShuttleDeedComponent>(targetId, out var deed))
@@ -319,7 +319,8 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
                     suffix: deedShuttle.ShuttleNameSuffix ?? "",
                     ownerName: shuttleOwner,
                     entityUid: _entityManager.GetNetEntity(shuttleUid),
-                    purchasedWithVoucher: voucherUsed
+                    purchasedWithVoucher: voucherUsed,
+                    purchasePrice: (uint)vessel.Price
                 )
             );
         }

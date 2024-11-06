@@ -63,10 +63,13 @@ public sealed partial class ShuttleRecordsSystem
 
         var newState = new ShuttleRecordsConsoleInterfaceState(
             records: skipRecords ? null : dataComponent.ShuttleRecords.Values.ToList(),
-            transactionCost: component.TransactionPrice,
             isTargetIdPresent: targetIdValid,
             targetIdFullName: targetIdFullName,
-            targetIdVesselName: targetIdVesselName
+            targetIdVesselName: targetIdVesselName,
+            transactionPercentage: component.TransactionPercentage,
+            minTransactionPrice: component.MinTransactionPrice,
+            maxTransactionPrice: component.MaxTransactionPrice,
+            fixedTransactionPrice: component.FixedTransactionPrice
         );
 
         _ui.SetUiState(consoleUid, ShuttleRecordsUiKey.Default, newState);
@@ -108,10 +111,13 @@ public sealed partial class ShuttleRecordsSystem
 
             var newState = new ShuttleRecordsConsoleInterfaceState(
                 records: records,
-                transactionCost: component.TransactionPrice,
                 isTargetIdPresent: targetIdValid,
                 targetIdFullName: targetIdFullName,
-                targetIdVesselName: targetIdVesselName
+                targetIdVesselName: targetIdVesselName,
+                transactionPercentage: component.TransactionPercentage,
+                minTransactionPrice: component.MinTransactionPrice,
+                maxTransactionPrice: component.MaxTransactionPrice,
+                fixedTransactionPrice: component.FixedTransactionPrice
             );
 
             _ui.SetUiState(consoleUid, ShuttleRecordsUiKey.Default, newState);
@@ -140,11 +146,10 @@ public sealed partial class ShuttleRecordsSystem
             return;
         }
 
-        // Ensure that after the deduction math there is more than 0 left in the account.
-        var balanceAfterTransaction = stationBank.Balance - component.TransactionPrice;
-        if (balanceAfterTransaction < 0)
+        // Check if the actor has access to the shuttle records console.
+        if (!_access.IsAllowed(args.Actor, uid))
         {
-            _popup.PopupEntity(Loc.GetString("shuttle-records-insufficient-funds"), args.Actor);
+            _popup.PopupEntity(Loc.GetString("shuttle-records-no-access"), args.Actor);
             _audioSystem.PlayPredicted(component.ErrorSound, uid, null, AudioParams.Default.WithMaxDistance(5f));
             return;
         }
@@ -158,10 +163,12 @@ public sealed partial class ShuttleRecordsSystem
             return;
         }
 
-        // Check if the actor has access to the shuttle records console.
-        if (!_access.IsAllowed(args.Actor, uid))
+        // Ensure that after the deduction math there is more than 0 left in the account.
+        var transactionPrice = GetTransactionCost(component, record.PurchasePrice);
+        var balanceAfterTransaction = stationBank.Balance - transactionPrice;
+        if (balanceAfterTransaction < 0)
         {
-            _popup.PopupEntity(Loc.GetString("shuttle-records-no-access"), args.Actor);
+            _popup.PopupEntity(Loc.GetString("shuttle-records-insufficient-funds"), args.Actor);
             _audioSystem.PlayPredicted(component.ErrorSound, uid, null, AudioParams.Default.WithMaxDistance(5f));
             return;
         }
@@ -169,14 +176,14 @@ public sealed partial class ShuttleRecordsSystem
         AssignShuttleDeedProperties(record, targetId);
 
         // Now we can finally deduct funds since everything went well.
-        stationBank.Balance = balanceAfterTransaction;
+        stationBank.Balance = (int)balanceAfterTransaction;
 
         // Add to admin logs.
         var shuttleName = record.Name + " " + record.Suffix;
         _adminLogger.Add(
             LogType.ShuttleRecordsUsage,
             LogImpact.Low,
-            $"{ToPrettyString(args.Actor):actor} used {component.TransactionPrice} from station bank account to copy shuttle deed {shuttleName}.");
+            $"{ToPrettyString(args.Actor):actor} used {transactionPrice} from station bank account to copy shuttle deed {shuttleName}.");
         _audioSystem.PlayPredicted(component.ConfirmSound, uid, null, AudioParams.Default.WithMaxDistance(5f));
     }
 
@@ -205,5 +212,22 @@ public sealed partial class ShuttleRecordsSystem
         deed.ShuttleName = shuttleRecord.Name;
         deed.ShuttleNameSuffix = shuttleRecord.Suffix;
         deed.PurchasedWithVoucher = shuttleRecord.PurchasedWithVoucher;
+    }
+
+    /// <summary>
+    /// Get the transaction cost for the given shipyard and sell value.
+    /// </summary>
+    /// <param name="component">The shuttle records console component</param>
+    /// <param name="vesselPrice">The cost to purchase the ship</param>
+    /// <returns>The transaction cost for this ship.</returns>
+    public static uint GetTransactionCost(ShuttleRecordsConsoleComponent component, uint vesselPrice)
+    {
+        return GetTransactionCost(
+            percent: component.TransactionPercentage,
+            min: component.MinTransactionPrice,
+            max: component.MaxTransactionPrice,
+            fixedPrice: component.FixedTransactionPrice,
+            vesselPrice: vesselPrice
+        );
     }
 }

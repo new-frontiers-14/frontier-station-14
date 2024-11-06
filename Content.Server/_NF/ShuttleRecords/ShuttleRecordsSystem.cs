@@ -7,6 +7,7 @@ using Content.Server.Popups;
 using Content.Server.Station.Systems;
 using Content.Shared._NF.ShuttleRecords;
 using Content.Shared.Access.Systems;
+using Content.Shared.Shipyard.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Timing;
 
