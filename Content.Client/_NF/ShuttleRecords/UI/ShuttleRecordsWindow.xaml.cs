@@ -141,7 +141,7 @@ public sealed partial class ShuttleRecordsWindow : FancyWindow
         var transactionPrice = SharedShuttleRecordsSystem.GetTransactionCost(
             percent: _lastStateUpdate?.TransactionPercentage ?? 0,
             min: _lastStateUpdate?.MinTransactionPrice ?? 0,
-            max: _lastStateUpdate?.MaxTransactionPrice ?? 0,
+            max: _lastStateUpdate?.MaxTransactionPrice ?? uint.MaxValue,
             vesselPrice: shuttleRecord.PurchasePrice,
             fixedPrice: _lastStateUpdate?.FixedTransactionPrice
         );
