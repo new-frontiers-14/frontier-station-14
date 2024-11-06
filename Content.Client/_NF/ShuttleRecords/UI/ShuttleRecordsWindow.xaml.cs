@@ -166,7 +166,7 @@ public sealed partial class ShuttleRecordsWindow : FancyWindow
             if (ButtonResetOn is null)
             {
                 ButtonResetOn = _gameTiming.CurTime.Add(TimeSpan.FromSeconds(3));
-                control.CopyDeedButton.ModulateSelfOverride = StyleNano.DangerousRedFore;
+                control.CopyDeedButton.AddStyleClass(StyleBase.ButtonCaution);
                 control.CopyDeedButtonLabel.Text = Loc.GetString("shuttle-records-transaction-confirm");
                 return;
             }
