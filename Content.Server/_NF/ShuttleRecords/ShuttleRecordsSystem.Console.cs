@@ -178,6 +178,10 @@ public sealed partial class ShuttleRecordsSystem
         // Now we can finally deduct funds since everything went well.
         stationBank.Balance = (int)balanceAfterTransaction;
 
+        // Refreshing the state, so that the newly applied deed is shown in the UI.
+        // We cannot do this client side because of the checks that we have to do serverside.
+        RefreshState(uid, component);
+
         // Add to admin logs.
         var shuttleName = record.Name + " " + record.Suffix;
         _adminLogger.Add(
