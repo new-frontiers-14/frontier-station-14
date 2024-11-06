@@ -740,7 +740,7 @@ public sealed class PlantHolderSystem : EntitySystem
         if (component.Seed == null || !component.Harvest)
             return;
 
-        _botany.AutoHarvest(component.Seed, Transform(uid).Coordinates);
+        _botany.AutoHarvest(component.Seed, uid); // Frontier: Transform(uid).Coordinates < uid
         AfterHarvest(uid, component);
     }
 

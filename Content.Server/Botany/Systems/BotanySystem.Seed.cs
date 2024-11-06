@@ -30,6 +30,7 @@ public sealed partial class BotanySystem : EntitySystem
     [Dependency] private readonly MetaDataSystem _metaData = default!;
     [Dependency] private readonly FixtureSystem _fixtureSystem = default!;
     [Dependency] private readonly RandomHelperSystem _randomHelper = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!; // Frontier
 
     public override void Initialize()
     {
@@ -115,11 +116,11 @@ public sealed partial class BotanySystem : EntitySystem
         return seed;
     }
 
-    public IEnumerable<EntityUid> AutoHarvest(SeedData proto, EntityCoordinates position, int yieldMod = 1)
+    public IEnumerable<EntityUid> AutoHarvest(SeedData proto, EntityUid uid, int yieldMod = 1) // Frontier: EntityCoordinates position < EntityUid uid
     {
-        if (position.IsValid(EntityManager) &&
+        if (uid.Valid && // Frontier: position.IsValid(EntityManager) < uid.Valid
             proto.ProductPrototypes.Count > 0)
-            return GenerateProduct(proto, position, yieldMod);
+            return GenerateProduct(proto, uid, yieldMod); // Frontier: position<uid
 
         return Enumerable.Empty<EntityUid>();
     }
@@ -134,10 +135,10 @@ public sealed partial class BotanySystem : EntitySystem
 
         var name = Loc.GetString(proto.DisplayName);
         _popupSystem.PopupCursor(Loc.GetString("botany-harvest-success-message", ("name", name)), user, PopupType.Medium);
-        return GenerateProduct(proto, Transform(user).Coordinates, yieldMod);
+        return GenerateProduct(proto, user, yieldMod); // Frontier: Transform(user).Coordinates < user
     }
 
-    public IEnumerable<EntityUid> GenerateProduct(SeedData proto, EntityCoordinates position, int yieldMod = 1)
+    public IEnumerable<EntityUid> GenerateProduct(SeedData proto, EntityUid spawnTarget, int yieldMod = 1) // Frontier: EntityCoordinates position < EntityUid spawnTarget
     {
         var totalYield = 0;
         if (proto.Yield > -1)
@@ -159,7 +160,8 @@ public sealed partial class BotanySystem : EntitySystem
         {
             var product = _robustRandom.Pick(proto.ProductPrototypes);
 
-            var entity = Spawn(product, position);
+            var entity = Spawn(product); // Frontier: remove position
+            _transform.DropNextTo(entity, spawnTarget); // Frontier: drop entity - get UID through coordinates to avoid API changes
             _randomHelper.RandomOffset(entity, 0.25f);
             products.Add(entity);
 
