@@ -30,7 +30,6 @@ public sealed partial class BotanySystem : EntitySystem
     [Dependency] private readonly MetaDataSystem _metaData = default!;
     [Dependency] private readonly FixtureSystem _fixtureSystem = default!;
     [Dependency] private readonly RandomHelperSystem _randomHelper = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!; // Frontier
 
     public override void Initialize()
     {
@@ -101,8 +100,7 @@ public sealed partial class BotanySystem : EntitySystem
     /// </summary>
     public EntityUid SpawnSeedPacket(SeedData proto, EntityCoordinates coords, EntityUid user, float? healthOverride = null)
     {
-        var seed = Spawn(proto.PacketPrototype, coords);
-        _transform.DropNextTo(seed, user); // Frontier
+        var seed = SpawnAtPosition(proto.PacketPrototype, coords); // Frontier: Spawn<SpawnAtPosition
         var seedComp = EnsureComp<SeedComponent>(seed);
         seedComp.Seed = proto;
         seedComp.HealthOverride = healthOverride;
@@ -117,11 +115,11 @@ public sealed partial class BotanySystem : EntitySystem
         return seed;
     }
 
-    public IEnumerable<EntityUid> AutoHarvest(SeedData proto, EntityUid uid, int yieldMod = 1) // Frontier: EntityCoordinates position < EntityUid uid
+    public IEnumerable<EntityUid> AutoHarvest(SeedData proto, EntityCoordinates position, int yieldMod = 1)
     {
-        if (uid.Valid && // Frontier: position.IsValid(EntityManager) < uid.Valid
+        if (position.IsValid(EntityManager) &&
             proto.ProductPrototypes.Count > 0)
-            return GenerateProduct(proto, uid, yieldMod); // Frontier: position<uid
+            return GenerateProduct(proto, position, yieldMod);
 
         return Enumerable.Empty<EntityUid>();
     }
@@ -136,10 +134,10 @@ public sealed partial class BotanySystem : EntitySystem
 
         var name = Loc.GetString(proto.DisplayName);
         _popupSystem.PopupCursor(Loc.GetString("botany-harvest-success-message", ("name", name)), user, PopupType.Medium);
-        return GenerateProduct(proto, user, yieldMod); // Frontier: Transform(user).Coordinates < user
+        return GenerateProduct(proto, Transform(user).Coordinates, yieldMod);
     }
 
-    public IEnumerable<EntityUid> GenerateProduct(SeedData proto, EntityUid spawnTarget, int yieldMod = 1) // Frontier: EntityCoordinates position < EntityUid spawnTarget
+    public IEnumerable<EntityUid> GenerateProduct(SeedData proto, EntityCoordinates position, int yieldMod = 1)
     {
         var totalYield = 0;
         if (proto.Yield > -1)
@@ -161,8 +159,7 @@ public sealed partial class BotanySystem : EntitySystem
         {
             var product = _robustRandom.Pick(proto.ProductPrototypes);
 
-            var entity = Spawn(product); // Frontier: remove position
-            _transform.DropNextTo(entity, spawnTarget); // Frontier: drop entity - get UID through coordinates to avoid API changes
+            var entity = SpawnAtPosition(product, position); // Frontier: Spawn<SpawnAtPosition
             _randomHelper.RandomOffset(entity, 0.25f);
             products.Add(entity);
 
