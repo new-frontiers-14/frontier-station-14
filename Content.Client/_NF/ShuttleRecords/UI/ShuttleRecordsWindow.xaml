@@ -22,7 +22,7 @@
 
         <BoxContainer HorizontalExpand="True" VerticalExpand="True" Orientation="Horizontal" Margin="10">
 
-            <BoxContainer Orientation="Vertical" Margin="0 0 10 0">
+            <BoxContainer Orientation="Vertical" Margin="0 0 10 0" VerticalExpand="True">
                 <BoxContainer Orientation="Vertical" Margin="0 0 0 5">
                     <Label Text="{Loc 'shuttle-records-search'}" StyleClasses="LabelSubText" Margin="0 0 5 0" />
                     <BoxContainer Orientation="Horizontal">
@@ -32,7 +32,7 @@
                     <CheckBox Name="ShowActiveOnlyCheckbox" Text="{Loc 'shuttle-records-show-active-only'}" />
                 </BoxContainer>
 
-                <BoxContainer Orientation="Vertical" MinSize="250 300">
+                <BoxContainer Orientation="Vertical" MinSize="250 300" VerticalExpand="True">
                     <PanelContainer VerticalExpand="True" HorizontalExpand="True">
                         <PanelContainer.PanelOverride>
                             <graphics:StyleBoxFlat BorderThickness="2" BorderColor="#777777" />
