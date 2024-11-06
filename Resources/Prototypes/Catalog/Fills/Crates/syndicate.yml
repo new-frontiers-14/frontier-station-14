@@ -1,11 +1,13 @@
 - type: entity
   id: CrateSyndicateSurplusBundle
-  parent: [ CrateSyndicate, StorePresetUplink, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
+  parent: [ CrateSyndicate, StorePresetUplink ] # Frontier: Removed BaseSyndicateContraband
   name: Syndicate surplus crate
   description: Contains 50 telecrystals worth of completely random Syndicate items. It can be useless junk or really good.
   components:
     - type: SurplusBundle
       totalPrice: 50
+    - type: StaticPrice # Frontier
+      vendPrice: 300000 # Frontier
 
 - type: entity
   id: CrateCybersunJuggernautBundle
@@ -24,7 +26,7 @@
 
 - type: entity
   id: CrateSyndicateSuperSurplusBundle
-  parent: [ CrateSyndicate, StorePresetUplink, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
+  parent: [ CrateSyndicate, StorePresetUplink ] # Frontier: Removed BaseSyndicateContraband
   name: Syndicate super surplus crate
   description: Contains 125 telecrystals worth of completely random Syndicate items.
   components:

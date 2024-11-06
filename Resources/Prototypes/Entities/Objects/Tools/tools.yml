@@ -328,7 +328,7 @@
       Steel: 600
       Plastic: 100
   - type: StaticPrice
-    price: 100
+    price: 110
     vendPrice: 5000 # Frontier
   - type: UserInterface
     interfaces:
@@ -485,10 +485,12 @@
   - type: Tool
     qualities:
       - Digging
+    speedModifier: 0.5 # Frontier
     useSound:
       path: /Audio/Nyanotrasen/Items/shovel_dig.ogg
-  - type: EarthDigging
+  # - type: EarthDigging # Frontier
   - type: Shovel
+  - type: ToolTileCompatible # Frontier
 
 - type: entity
   parent: BaseItem

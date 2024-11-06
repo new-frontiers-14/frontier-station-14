@@ -25,6 +25,11 @@
   - Trinkets
   - GroupSpeciesBreathTool
 
+# Silicons
+- type: roleLoadout
+  id: JobStationAi
+  nameDataset: names_ai
+
 # Civilian
 - type: roleLoadout
   id: JobPassenger
@@ -95,17 +100,13 @@
   id: JobLawyer
   groups:
   - GroupTankHarness
-  - LawyerNFNeck # Frontier
-  - LawyerNFJumpsuit # Frontier
-  - ContractorBackpack # Frontier
-  - ContractorGlasses # Frontier
-  - ContractorFace # Frontier
-  - ContractorBoxSurvival # Frontier
-  - ContractorEncryptionKey # Frontier
-  - ContractorImplanter # Frontier
-  - ContractorFun # Frontier
-  - ContractorTrinkets # Frontier
-  # - GroupSpeciesBreathTool # Frontier
+  - LawyerNeck
+  - LawyerJumpsuit
+  - CommonBackpack
+  - Glasses
+  - Survival
+  - Trinkets
+  - GroupSpeciesBreathTool
 
 - type: roleLoadout
   id: JobChaplain
@@ -126,21 +127,16 @@
   id: JobJanitor
   groups:
   - GroupTankHarness
-  - JanitorNFHead # Frontier
-  - JanitorNFJumpsuit # Frontier
-  - JanitorNFGloves # Frontier
-  - ContractorBackpack # Frontier
-  - JanitorNFOuterClothing # Frontier
-  - ContractorFace # Frontier
-  - ContractorGlasses # Frontier
-  - ContractorEars # Frontier
-  - ContractorEncryptionKey # Frontier
-  - ContractorBoxSurvival # Frontier
-  - ContractorImplanter # Frontier
-  - ContractorFun # Frontier
-  - ContractorTrinkets # Frontier
-  #- JanitorPlunger # Frontier
-  #- GroupSpeciesBreathTool # Frontier
+  - JanitorHead
+  - JanitorJumpsuit
+  - JanitorGloves
+  - CommonBackpack
+  - JanitorOuterClothing
+  - Glasses
+  - Survival
+  - Trinkets
+  - JanitorPlunger
+  - GroupSpeciesBreathTool
 
 - type: roleLoadout
   id: JobBotanist
@@ -177,8 +173,9 @@
   - MimeJumpsuit
   - MimeBackpack
   - MimeOuterClothing
+  - MimeBelt
   - Glasses
-  - Survival
+  - SurvivalMime
   - Trinkets
 
 - type: roleLoadout
@@ -526,6 +523,12 @@
 # They will be used without player configuration, thus they will only ever apply what is forced by MinLimit
 
 - type: roleLoadout
+  id: RoleSurvivalVoxSupport
+  groups:
+  - GroupSpeciesBreathTool
+  - GroupTankHarness
+
+- type: roleLoadout
   id: RoleSurvivalStandard
   groups:
   - Survival
@@ -565,6 +568,13 @@
   - SurvivalSyndicate
   - GroupSpeciesBreathTool
   - GroupTankHarness
+
+- type: roleLoadout
+  id: RoleSurvivalNukie
+  groups:
+  - SurvivalSyndicate
+  - GroupSpeciesBreathTool
+  - GroupPocketTankDouble
 
 - type: roleLoadout
   id: RoleSurvivalEVA

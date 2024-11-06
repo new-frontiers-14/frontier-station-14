@@ -10,6 +10,12 @@ guide-entry-frontier-rules = Server Rules
 # Security entries
 guide-entry-nfsd-smuggling = Smuggling
 
+# Medical entries
+guide-entry-medical-bounties = Medical Bounties
+
+# Reference entries
+guide-entry-medicalrecipes = Medical Recipes
+
 # Expedition faction entries
 guide-entry-expedition-aberrant-flesh = Aberrant Flesh
 guide-entry-expedition-argocytes = Argocytes
@@ -27,6 +33,7 @@ guide-entry-expedition-xenos = Xenos
 guide-entry-shipyard-akupara = Akupara
 guide-entry-shipyard-ambition = Ambition
 guide-entry-shipyard-apothecary = Apothecary
+guide-entry-shipyard-barge = Barge
 guide-entry-shipyard-bazaar = Bazaar
 guide-entry-shipyard-bocadillo = Bocadillo
 guide-entry-shipyard-bookworm = Bookworm
@@ -37,11 +44,14 @@ guide-entry-shipyard-ceres = Ceres
 guide-entry-shipyard-chisel = Chisel
 guide-entry-shipyard-comet = Comet
 guide-entry-shipyard-construct = Construct
+guide-entry-shipyard-eagle = Eagle
 guide-entry-shipyard-garden = Garden
 guide-entry-shipyard-gasbender = Gasbender
 guide-entry-shipyard-gourd = Gourd
 guide-entry-shipyard-hammer = Hammer
+guide-entry-shipyard-hauler = Hauler
 guide-entry-shipyard-harbormaster = Harbormaster
+guide-entry-shipyard-honker = Honker
 guide-entry-shipyard-investigator = Investigator
 guide-entry-shipyard-kestrel = Kestrel
 guide-entry-shipyard-kilderkin = Kilderkin
@@ -52,21 +62,25 @@ guide-entry-shipyard-loader = Loader
 guide-entry-shipyard-mccargo = McCargo
 guide-entry-shipyard-mcdelivery = McDelivery
 guide-entry-shipyard-pathfinder = Pathfinder
+guide-entry-shipyard-phoenix = Phoenix
 guide-entry-shipyard-pioneer = Pioneer
+guide-entry-shipyard-placebo = Placebo
 guide-entry-shipyard-prospector = Prospector
 guide-entry-shipyard-searchlight = Searchlight
+guide-entry-shipyard-sparrow = Sparrow
+guide-entry-shipyard-skipper = Skipper
 guide-entry-shipyard-spirit = Spirit
 guide-entry-shipyard-stasis = Stasis
 guide-entry-shipyard-vagabond = Vagabond
 
 # Rules entries
-guide-entry-frontier-rule-0 = 0. Admin
-guide-entry-frontier-rule-1 = 1. ERP
-guide-entry-frontier-rule-2 = 2. Community
-guide-entry-frontier-rule-3 = 3. IC Info
-guide-entry-frontier-rule-4 = 4. Respawning
-guide-entry-frontier-rule-5 = 5. Chat
-guide-entry-frontier-rule-6 = 6. Roleplay
+guide-entry-frontier-rule-zero-tolerance = Zero Tolerance
+guide-entry-frontier-rule-1 = 1. Community
+guide-entry-frontier-rule-2 = 2. IC Info
+guide-entry-frontier-rule-3 = 3. Escalation
+guide-entry-frontier-rule-4 = 4. Chat
+guide-entry-frontier-rule-5 = 5. Roleplay
+guide-entry-frontier-rule-6 = 6. Safezone
 guide-entry-frontier-rule-7 = 7. Antag
 guide-entry-frontier-rule-8 = 8. Safe Zone
 guide-entry-frontier-rule-9 = 9. Security

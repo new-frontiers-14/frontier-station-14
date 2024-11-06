@@ -1,4 +1,4 @@
-#FUEL
+# region Fuel
 - type: entity
   parent: [ LockerWallColorFuelPlasma, StorageFillMaterialsFuelPlasma ]
   id: LockerWallMaterialsFuelPlasmaFilled
@@ -33,8 +33,9 @@
   parent: [ LockerWallColorWelding, StorageFillMaterialsFuelWelding ]
   id: LockerWallMaterialsFuelWeldingFilled
   suffix: Filled, Welding Fuel (x2)
+# endregion Fuel
 
-#MATERIALS
+# region Materials
 - type: entity
   parent: [ LockerWallColorMaterials, StorageFillMaterialsBasic ]
   id: LockerWallMaterialsBasicFilled
@@ -44,8 +45,9 @@
   parent: [ LockerWallColorMaterials, StorageFillMaterialsBasic10 ]
   id: LockerWallMaterialsBasic10Filled
   suffix: Filled, Basic Materials (10)
+# endregion Materials
 
-#SOFTSUITS
+# region Softsuits
 - type: entity
   parent: [ LockerWallEVAColorGeneric, StorageFillEVASuitGoblin ]
   id: LockerWallEVAColorGoblinFilled
@@ -178,7 +180,18 @@
   id: LockerWallEVAColorNfsdFilled
   suffix: Filled
 
-# Emergency
+- type: entity
+  parent: [ LockerWallEVAColorEmergency, StorageFillEVASuitEmergency ]
+  id: LockerWallEVAColorEmergencyFilled
+  suffix: Frontier, Filled
+
+- type: entity
+  parent: [ LockerWallEVAColorLvhi, StorageFillEVASuitLvhi ]
+  id: LockerWallEVAColorLvhiFilled
+  suffix: Frontier, Filled
+# endregion
+
+# region Emergency
 - type: entity
   parent: [ ClosetWallN2, StorageFillN2Random ]
   id: ClosetWallN2FilledRandom
@@ -188,3 +201,60 @@
   parent: [ ClosetWallO2N2, StorageFillO2N2Random ]
   id: ClosetWallO2N2FilledRandom
   suffix: Filled, Random
+# endregion
+
+# region Safety gear
+- type: entity
+  parent: [ LockerWallColorL1Fire, StorageFillL1FireSuit ]
+  id: LockerWallColorL1FireFilled
+  suffix: Frontier, Filled
+
+- type: entity
+  parent: [ LockerWallColorL2Radiation, StorageFillL2RadiationSuit ]
+  id: LockerWallColorL2RadiationFilled
+  suffix: Frontier, Filled
+
+- type: entity
+  parent: [ LockerWallColorL3Biohazard, StorageFillL3BiohazardSuit ]
+  id: LockerWallColorL3BiohazardFilled
+  suffix: Frontier, Filled
+
+- type: entity
+  parent: [ LockerWallColorL4Bomb, StorageFillL4BombSuit ]
+  id: LockerWallColorL4BombFilled
+  suffix: Frontier, Filled
+# endregion
+
+# region Medical
+- type: entity
+  id: LockerWallColorMedicalDoctorFilled
+  parent:
+  - LockerWallColorMedical
+  - BaseStructureWallmount
+  - LockerMedicalFilled
+  name: medical doctor's wall locker
+  suffix: Filled, Frontier
+
+- type: entity
+  id: LockerWallColorMedicalFilled
+  parent:
+  - LockerWallColorMedical
+  - LockerWallMedicalFilled
+  name: medicine wall locker
+  suffix: Filled, Frontier
+# endregion
+
+# region Chemistry
+- type: entity
+  id: LockerWallChemistryFilled
+  parent: [LockerWallChemistry, LockerChemistryFilled]
+
+- type: entity
+  id: LockerWallColorChemistryFilled
+  suffix: Filled, Frontier
+  parent:
+  - LockerWallColorChemistry
+  - BaseStructureWallmount
+  - LockerChemistryFilled
+  name: chemistry wall locker
+# endregion

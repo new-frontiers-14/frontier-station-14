@@ -85,9 +85,14 @@ public sealed partial class ShuttleSystem
         _mapManager.DeleteMap(mapId);
     }
 
-    private bool TryDungeonSpawn(Entity<MapGridComponent?> targetGrid, MapId mapId, DungeonSpawnGroup group, out EntityUid spawned)
+    private bool TryDungeonSpawn(Entity<MapGridComponent?> targetGrid, DungeonSpawnGroup group, out EntityUid spawned)
     {
         spawned = EntityUid.Invalid;
+
+        // Frontier: handle empty prototype list, _random.Pick throws
+        if (group.Protos.Count <= 0)
+            return false;
+        // End Frontier
 
         if (!_gridQuery.Resolve(targetGrid.Owner, ref targetGrid.Comp))
         {
@@ -110,11 +115,12 @@ public sealed partial class ShuttleSystem
             spawnCoords = spawnCoords.Offset(_random.NextVector2(distancePadding + group.MinimumDistance, distancePadding + group.MaximumDistance));
         }
 
-        var spawnMapCoords = _transform.ToMapCoordinates(spawnCoords);
+        _mapSystem.CreateMap(out var mapId);
+
         var spawnedGrid = _mapManager.CreateGridEntity(mapId);
 
-        _transform.SetMapCoordinates(spawnedGrid, spawnMapCoords);
-        _dungeon.GenerateDungeon(dungeonProto, spawnedGrid.Owner, spawnedGrid.Comp, Vector2i.Zero, _random.Next());
+        _transform.SetMapCoordinates(spawnedGrid, new MapCoordinates(Vector2.Zero, mapId));
+        _dungeon.GenerateDungeon(dungeonProto, dungeonProto.ID, spawnedGrid.Owner, spawnedGrid.Comp, Vector2i.Zero, _random.Next(), spawnCoords); // Frontier: add dungeonProto.ID
 
         spawned = spawnedGrid.Owner;
         return true;
@@ -192,7 +198,7 @@ public sealed partial class ShuttleSystem
                 switch (group)
                 {
                     case DungeonSpawnGroup dungeon:
-                        if (!TryDungeonSpawn(targetGrid.Value, mapId, dungeon, out spawned))
+                        if (!TryDungeonSpawn(targetGrid.Value, dungeon, out spawned))
                             continue;
 
                         break;

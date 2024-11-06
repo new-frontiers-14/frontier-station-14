@@ -61,10 +61,10 @@
       - id: BoxBeaker
         prob: 0.1
         #  - Heh
-      - id: SpawnDungeonRandomHumanCorpse # Frontier - replaced SalvageHumanCorpse
-        prob: 0.1
-#      - id: LidSalami
-#        prob: 0.1
+      # - id: SalvageHumanCorpse # Frontier - removed, confuses medical corpse bounties
+      #   prob: 0.1 # Frontier - removed, confuses medical corpse bounties
+#      - id: LidSalami # Frontier
+#        prob: 0.1 # Frontier
         # Interesting (1%)
         #  - Ammo
       - id: MagazineBoxMagnum
@@ -111,8 +111,10 @@
         orGroup: DripLoot
       - id: ClothingBeltBandolier
         orGroup: DripLoot
-      - id: ClothingBeltSuspenders
-        orGroup: DripLoot
+      - id: ClothingBeltSuspendersRed # Frontier
+        orGroup: DripLoot # Frontier
+      - id: ClothingBeltSuspendersBlack # Frontier
+        orGroup: DripLoot # Frontier
       - id: ClothingEyesGlassesGar
         orGroup: DripLoot
       - id: ClothingEyesGlassesGarOrange

@@ -13,8 +13,8 @@
   name: 'NFSD Outpost'
   rangeMin: 750
   rangeMax: 1000
-  iffColor: "#8e6444" #brown to match the color of uniform and the color of the pants of the nearest pirates
-  alwaysSpawn: true
+  IFFColor: "#8e6444" #brown to match the color of uniform and the color of the pants of the nearest pirates
+  spawnGroup: Required
   gridPath: /Maps/_NF/POI/nfsd.yml
   gridProtection:
   - EmpEvents
@@ -30,13 +30,18 @@
       components:
         - type: StationNameSetup
           mapNameTemplate: 'NFSD Outpost'
+        - type: ExtraStationInformation
+          iconPath: /Textures/_NF/Structures/Decoration/banner.rsi/nfsd-banner.png
+          stationSubtext: 'frontier-lobby-nfsd-subtext'
+          stationDescription: 'frontier-lobby-nfsd-description'
+          lobbySortOrder: 2
         - type: StationJobs
           availableJobs:
             Sheriff: [ 1, 1 ]
             Bailiff: [ 1, 1 ]
             SeniorOfficer: [ 1, 1 ]
             Brigmedic: [ 0, 0 ]
-            DetectiveNF: [ 0, 0 ]
+            NFDetective: [ 0, 0 ]
             Deputy: [ 3, 3 ]
             Cadet: [ 0, 0 ]
             # Others:

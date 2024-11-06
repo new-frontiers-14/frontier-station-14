@@ -81,6 +81,15 @@
   parent: [PetCarrier, FillNPCEmotionalSupportSafe]
 
 - type: entity
+  id: CrateWoodCageClugg
+  parent: CrateWoodCage
+  suffix: Filled, Clugg
+  components:
+  - type: StorageFill
+    contents:
+      - id: MobCatClugg
+
+- type: entity
   id: CrateNPCPoultryCube
   parent: CrateGenericSteel
   name: poultry cube crate

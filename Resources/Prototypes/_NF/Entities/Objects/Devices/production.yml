@@ -116,7 +116,7 @@
     stackRequirements:
       Steel: 5
   - type: StaticPrice
-    price: 12.5
+    price: 18 # 12.5<18
   - type: Tag # Frontier
     tags: # Frontier
     - SmallThrusterMachineCircuitboard # Frontier
@@ -176,7 +176,7 @@
     stackRequirements:
       Glass: 2
   - type: StaticPrice
-    price: 12.5
+    price: 18 # 12.5<18
 
 - type: entity
   id: SmallGyroscopeMachineCircuitboard
@@ -191,7 +191,7 @@
     stackRequirements:
       Glass: 2
   - type: StaticPrice
-    price: 12.5
+    price: 17.5
 
 - type: entity
   parent: BaseMachineCircuitboard
@@ -211,6 +211,7 @@
   id: PortableGeneratorHyperPacmanMachineCircuitboard
   parent: BaseMachineCircuitboard
   name: H.Y.P.E.R.P.A.C.M.A.N.-type portable generator machine board
+  description: A machine printed circuit board for a shredder.
   components:
     - type: Sprite
       state: engineering
@@ -227,3 +228,105 @@
         Silicon: 20
     - type: StaticPrice
       price: 40
+
+- type: entity
+  id: BlueprintLithographMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: blueprint lithograph machine board
+  description: A machine printed circuit board for a blueprint lithograph.
+  components:
+  - type: Sprite
+    state: science
+  - type: MachineBoard
+    prototype: BlueprintLithograph
+    requirements:
+      MatterBin: 1
+      Manipulator: 1
+    tagRequirements:
+      GlassBeaker:
+        amount: 2
+        defaultPrototype: Beaker
+
+- type: entity
+  id: ElectricRangeMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: electric range machine board
+  description: A machine printed circuit board for an electric range.
+  components:
+    - type: Sprite
+      state: service
+    - type: MachineBoard
+      prototype: KitchenElectricRange
+      requirements:
+        Capacitor: 3
+      stackRequirements:
+        Steel: 5
+        Glass: 2
+        Cable: 4
+
+- type: entity
+  id: SyndicateElectricRangeMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: syndicate electric range machine board
+  description: A machine printed circuit board for an syndicate electric range.
+  components:
+    - type: Sprite
+      state: service
+    - type: MachineBoard
+      prototype: SyndicateKitchenElectricRange
+      requirements:
+        Capacitor: 3
+      stackRequirements:
+        Steel: 5
+        Glass: 2
+        Cable: 4
+
+- type: entity
+  id: KitchenAssemblerMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: food-o-mat machine board
+  description: A machine printed circuit board for a Food-O-Mat, suitable for a kitchen.
+  components:
+    - type: Sprite
+      state: service
+    - type: MachineBoard
+      prototype: KitchenAssembler
+      requirements:
+        Capacitor: 1
+      stackRequirements:
+        Glass: 2
+        Cable: 2
+
+- type: entity
+  id: MedicalAssemblerMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: medical assembler machine board
+  description: A machine printed circuit board for a medical assembler.
+  components:
+    - type: Sprite
+      state: medical
+    - type: MachineBoard
+      prototype: MedicalAssembler
+      requirements:
+        Capacitor: 3
+      stackRequirements:
+        Steel: 5
+        Glass: 2
+        Cable: 4
+
+# Removed from upstream definitions
+- type: entity
+  id: MaterialReclaimerMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: material reclaimer machine board
+  description: A machine printed circuit board for a material reclaimer.
+  components:
+    - type: Sprite
+      state: supply
+    - type: MachineBoard
+      prototype: MaterialReclaimer
+      requirements: 
+        Manipulator: 2
+      stackRequirements:
+        Steel: 5
+        Plastic: 5

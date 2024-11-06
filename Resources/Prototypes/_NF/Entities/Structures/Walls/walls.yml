@@ -9,6 +9,14 @@
     spread: 10 # Narrow spread, need to balance vs. max projectile distance
     reflects:
     - ShuttleKinetic # Only reflects PTK (otherwise RIP miners)
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1000
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
 
 - type: entity
   parent: [AsteroidWallNF, WallIce]

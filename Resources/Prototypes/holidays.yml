@@ -324,11 +324,17 @@
 - type: holiday
   id: Halloween
   name: holiday-name-halloween
-  beginDay: 31
+  beginDay: 27 # Frontier: 31<27
   beginMonth: October
+  endDay: 2 # Frontier
+  endMonth: November # Frontier
   greet:
     !type:Custom
     text: holiday-custom-halloween
+  entityReplacements: # Frontier
+    KitchenDeepFryer: KitchenDeepFryerCauldron # Frontier
+    KitchenDeepFryerPOI: KitchenDeepFryerCauldronPOI # Frontier
+    RandomPainting: RandomPaintingHalloween # Frontier
 
 - type: holiday
   id: VeganDay
@@ -421,7 +427,7 @@
 - type: holiday
   id: FestiveSeason
   name: holiday-name-festive-season
-  beginDay: 1
+  beginDay: 3 # Frontier: 1<3
   endDay: 31
   beginMonth: November
   endMonth: December

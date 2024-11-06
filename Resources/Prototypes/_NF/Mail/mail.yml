@@ -1355,6 +1355,17 @@
 - type: entity
   categories: [ HideSpawnMenu ]
   parent: BaseMailLarge
+  id: MailNFRGBBGun
+  suffix: RGBB gun
+  components:
+  - type: Mail
+    contents:
+    - id: WeaponRifleBBEmpty
+    - id: BoxCartridgeRGBB
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: BaseMailLarge
   id: MailNFDAW
   suffix: DAW
   components:
@@ -1642,6 +1653,8 @@
       - id: ClothingEyesGlassesOutlawGlasses
         orGroup: Clothes
       - id: ClothingOuterSuitCarp
+        orGroup: Clothes
+      - id: ClothingNeckCloakRosy
         orGroup: Clothes
 
 - type: entity
@@ -2077,7 +2090,7 @@
   components:
   - type: Mail
     contents:
-    - id: Handcuffs
+    - id: Zipties
     - id: ClothingMaskMuzzle
     - id: ClothingEyesBlindfold
 

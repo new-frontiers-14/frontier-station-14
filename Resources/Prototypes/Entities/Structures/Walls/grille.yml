@@ -12,7 +12,7 @@
     - type: RCDDeconstructable
       cost: 6
       delay: 4
-      fx: EffectRCDDeconstruct4  
+      fx: EffectRCDDeconstruct4
     - type: CanBuildWindowOnTop
     - type: Sprite
       drawdepth: Walls
@@ -134,7 +134,7 @@
       bodyType: Static
       canCollide: false
     - type: Damageable
-      damageContainer: Inorganic
+      damageContainer: StructuralInorganic
       damageModifierSet: FlimsyMetallic
     - type: Destructible
       thresholds:
@@ -191,10 +191,10 @@
               - "-0.5,-0.5"
               - "0.5,0.5"
               - "0.5,-0.5"
-          mask:
-          - FullTileMask
+          # mask: # Frontier
+          # - FullTileMask # Frontier
           layer:
-          - WallLayer
+          - GlassLayer # Frontier: WallLayer<GlassLayer
     - type: Construction
       graph: GrilleDiagonal
       node: grilleDiagonal
@@ -226,11 +226,11 @@
               - "-0.5,-0.5"
               - "0.5,0.5"
               - "0.5,-0.5"
-          mask:
-          - FullTileMask
+          # mask: # Frontier
+          # - FullTileMask # Frontier
           layer:
-          - WallLayer
+          - GlassLayer # Frontier: WallLayer<GlassLayer
     - type: Construction
       graph: GrilleDiagonal
       node: clockworkGrilleDiagonal
-      
+

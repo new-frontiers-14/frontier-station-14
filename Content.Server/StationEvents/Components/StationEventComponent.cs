@@ -1,4 +1,7 @@
+using Content.Shared.Radio; // Frontier
+using Content.Shared.Roles; // Frontier
 using Robust.Shared.Audio;
+using Robust.Shared.Prototypes; // Frontier
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Server.StationEvents.Components;
@@ -22,10 +25,16 @@ public sealed partial class StationEventComponent : Component
     public string? StartAnnouncement;
 
     [DataField]
+    public string? WarningAnnouncement; // Frontier
+
+    [DataField]
     public string? EndAnnouncement;
 
     [DataField]
     public Color StartAnnouncementColor = Color.Gold;
+
+    [DataField]
+    public Color WarningAnnouncementColor = Color.Gold; // Frontier
 
     [DataField]
     public Color EndAnnouncementColor = Color.Gold;
@@ -34,7 +43,31 @@ public sealed partial class StationEventComponent : Component
     public SoundSpecifier? StartAudio;
 
     [DataField]
+    public SoundSpecifier? WarningAudio; // Frontier
+
+    [DataField]
     public SoundSpecifier? EndAudio;
+
+    /// <summary>
+    /// Frontier: Radio channels on which announcements are transmitted
+    /// </summary>
+    [DataField]
+    public string? StartRadioAnnouncement; // Frontier
+
+    [DataField]
+    public string? WarningRadioAnnouncement; // Frontier
+
+    [DataField]
+    public string? EndRadioAnnouncement; // Frontier
+
+    [DataField]
+    public ProtoId<RadioChannelPrototype> StartRadioAnnouncementChannel = "Supply"; // Frontier
+
+    [DataField]
+    public ProtoId<RadioChannelPrototype> WarningRadioAnnouncementChannel = "Supply"; // Frontier
+
+    [DataField]
+    public ProtoId<RadioChannelPrototype> EndRadioAnnouncementChannel = "Supply"; // Frontier
 
     /// <summary>
     ///     In minutes, when is the first round time this event can start
@@ -70,8 +103,8 @@ public sealed partial class StationEventComponent : Component
     public int MinimumPlayers;
 
     /// <summary>
-    ///     Frontier - How many players need to be present on station for the event to not run, to avoid running safe events with high-pop
-    /// </remarks>
+    ///     Frontier: How many players need to be present on station for the event to not run, to avoid running safe events with high-pop
+    /// </summary>
     [DataField]
     public int MaximumPlayers = 999;
 
@@ -93,4 +126,22 @@ public sealed partial class StationEventComponent : Component
     /// </summary>
     [DataField]
     public bool OccursDuringRoundEnd = true;
+
+    /// <summary>
+    ///     Frontier: Require active job to run the event.
+    /// </summary>
+    [DataField]
+    public Dictionary<ProtoId<JobPrototype>, int> RequiredJobs = new();
+
+    /// <summary>
+    ///     Frontier: Warning timer.
+    /// </summary>
+    [DataField]
+    public int WarningDurationLeft = 300; // 5 minutes
+
+    /// <summary>
+    ///     Frontier: True if the warning has already been sent off.
+    /// </summary>
+    [DataField]
+    public bool WarningAnnounced;
 }

@@ -9,6 +9,7 @@
 #    - id: CargoSaleComputerCircuitboard # Frontier
 #    - id: CargoShuttleComputerCircuitboard # Frontier
 #    - id: CargoShuttleConsoleCircuitboard # Frontier
+#    - id: SalvageMagnetMachineCircuitboard # Frontier
 #    - id: CigPackGreen # Frontier
 #      prob: 0.50 # Frontier
     - id: ClothingHeadsetAltCargo
@@ -16,7 +17,6 @@
     - id: RubberStampApproved
     - id: RubberStampDenied
     - id: RubberStampQm
-#    - id: SalvageShuttleConsoleCircuitboard # Frontier
     - id: ClothingBeltUtilityEngineering # Frontier
 
 - type: entity
@@ -50,6 +50,7 @@
     - id: RubberStampCaptain
 #    - id: SpaceCash1000 # Frontier
 #    - id: WeaponDisabler # Frontier
+#    - id: ClothingEyesGlassesCommand # Frontier
 
 # No laser table + Laser table
 - type: entityTable
@@ -71,7 +72,6 @@
 #    - id: OxygenTankFilled # Frontier
     - id: AirTankFilled # Frontier
     - id: JetpackMiniFilled # Frontier
-    - id: HandheldGPSBasic # Frontier
 
 # No laser locker, used when the antique laser is placed in the special display crate
 - type: entity
@@ -135,6 +135,7 @@
     - id: RubberStampDenied
 #    - id: RubberStampHop # Frontier
 #    - id: WeaponDisabler # Frontier
+#    - id: ClothingEyesHudCommand # Frontier
 
 - type: entity
   id: LockerHeadOfPersonnelFilled
@@ -180,7 +181,6 @@
 #    - id: OxygenTankFilled # Frontier
     - id: AirTankFilled # Frontier
     - id: JetpackMiniFilled # Frontier
-    - id: HandheldGPSBasic # Frontier
 
 # No hardsuit locker
 - type: entity
@@ -228,6 +228,7 @@
 #    - id: MedicalTechFabCircuitboard # Frontier - bloat
 #    - id: MedkitFilled # Frontier - bloat
     - id: RubberStampCMO
+    - id: MedTekCartridge
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable
@@ -239,7 +240,6 @@
 #    - id: OxygenTankFilled # Frontier
     - id: AirTankFilled # Frontier
     - id: JetpackMiniFilled # Frontier
-    - id: HandheldGPSBasic # Frontier
 
 # No hardsuit locker
 - type: entity
@@ -277,7 +277,6 @@
     - id: ClothingBeltUtilityEngineering # Frontier: ClothingBeltUtilityFilled<ClothingBeltUtilityEngineering
     - id: ClothingHeadsetAltScience
 #    - id: DoorRemoteResearch # Frontier
-#    - id: EncryptionKeyBinary # Frontier
 #    - id: HandTeleporter # Frontier
 #    - id: ProtolatheMachineCircuitboard # Frontier
 #    - id: ResearchComputerCircuitboard # Frontier
@@ -293,7 +292,6 @@
 #    - id: OxygenTankFilled # Frontier
     - id: AirTankFilled # Frontier
     - id: JetpackMiniFilled # Frontier
-    - id: HandheldGPSBasic # Frontier
 
 # No hardsuit locker
 - type: entity
@@ -326,7 +324,7 @@
   id: LockerFillHeadOfSecurityNoHardsuit
   table: !type:AllSelector
     children:
-#    - id: BookSecretDocuments # Frontier
+#    - id: WeaponEnergyShotgun # Frontier
     - id: HyperlinkBookSpaceLaw # Frontier: BookSpaceLaw<HyperlinkBookSpaceLaw
 #    - id: BoxEncryptionKeySecurity # Frontier
 #    - id: CigarGoldCase # Frontier
@@ -363,7 +361,6 @@
     - id: JetpackSecurityFilled
 #    - id: OxygenTankFilled # Frontier
     - id: AirTankFilled # Frontier
-    - id: HandheldGPSBasic # Frontier
     - id: ClothingShoesBootsMagCombatFilled # Frontier
 
 # No hardsuit locker

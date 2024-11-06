@@ -27,6 +27,21 @@
 
 - type: entity
   save: false
+  id: MobPassiveRegenWeak
+  abstract: true
+  components:
+  - type: PassiveDamage
+    allowedStates:
+    - Alive
+    damageCap: 500
+    damage:
+      groups:
+        Brute: -0.5
+        Burn: -0.5
+        Airloss: -1
+
+- type: entity
+  save: false
   id: MobPassiveRegen
   abstract: true
   components:
@@ -34,14 +49,12 @@
     allowedStates:
     - Alive
     - Critical
-    damageCap: 400
+    damageCap: 500
     damage:
       groups:
-        Brute: -1
-        Burn: -10
+        Brute: -0.5
+        Burn: -0.5
         Airloss: -1
-        Toxin: -7
-        Genetic: -7
 
 - type: entity
   save: false
@@ -71,6 +84,68 @@
       - Energy
 
 - type: entity
+  abstract: true
+  id: NFMobRestrictions
+  components:
+  - type: NFSalvageMobRestrictions
+
+- type: entity
+  abstract: true
+  id: NFMobTimedDespawn30
+  components:
+  - type: TimedDespawn
+    lifetime: 30
+
+- type: entity
+  abstract: true
+  id: NFMobTimedDespawn60
+  components:
+  - type: TimedDespawn
+    lifetime: 60
+
+- type: entity
+  abstract: true
+  id: NFMobTimedDespawn80
+  components:
+  - type: TimedDespawn
+    lifetime: 80
+
+- type: entity
+  abstract: true
+  id: NFMobTimedDespawn120
+  components:
+  - type: TimedDespawn
+    lifetime: 120
+
+- type: entity
+  abstract: true
+  id: NFMobTimedDespawn180
+  components:
+  - type: TimedDespawn
+    lifetime: 180
+
+- type: entity
+  abstract: true
+  id: NFMobTimedDespawn1200
+  components:
+  - type: TimedDespawn
+    lifetime: 1200
+
+- type: entity
+  abstract: true
+  id: NFMobTimedDespawn1800
+  components:
+  - type: TimedDespawn
+    lifetime: 1800
+
+- type: entity
+  abstract: true
+  id: NFMobTimedDespawn3000
+  components:
+  - type: TimedDespawn
+    lifetime: 3000
+
+- type: entity
   save: false
   id: MobEnhancedMovement
   abstract: true
@@ -78,7 +153,7 @@
   - type: MovementAlwaysTouching
   - type: MovementIgnoreGravity
   - type: NoSlip
-  - type: StepTriggerImmune
+  - type: ProtectedFromStepTriggers
   - type: Climbing
   - type: Tool
     speedModifier: 1.5
@@ -96,8 +171,54 @@
     #groups:
     #- AllAccess
 
-# Inventories
 - type: entity
+  abstract: true
+  id: MobIncorporealBase
+  name: incorporeal entity
+  description: You can't touch it, but it can touch you.
+  components:
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/_NF/Effects/silence.ogg
+  - type: CanMoveInAir
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.4
+        density: 10
+        mask:
+        - FlyingMobMask
+        layer:
+        - Opaque
+
+# Dungeon boss
+- type: entity
+  id: MobHostileBossBase
+  abstract: true
+  parent:
+  - MobEnhancedMovement
+  - MobPassiveRegenWeak
+  - NFMobRestrictions
+  components:
+  - type: Hands
+  - type: Puller
+  - type: Stamina
+    critThreshold: 999
+  - type: MobPrice
+    price: 4000
+    deathPenalty: 0.5
+  - type: Tag
+    tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - CannotSuicide
+  - type: FTLKnockdownImmune
+
+# Inventories
+- type: entity # All slots are fillable, most of them are "hidden"
   save: false
   id: MobHumanoidInvetory
   abstract: true
@@ -111,7 +232,7 @@
       enum.StrippingUiKey.Key:
         type: StrippableBoundUserInterface
 
-- type: entity
+- type: entity # Slots for loot containers: pockets, belt, back
   save: false
   id: MobHumanoidInvetorySimplified
   abstract: true
@@ -192,6 +313,9 @@
   - BaseC3MobHuman
   id: MobHumanoidHostileBase
   components:
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 4.5
+    baseSprintSpeed : 4.5
   - type: NPCRetaliation
     attackMemoryLength: 10
   - type: MobMover
@@ -227,7 +351,6 @@
     minimumWait: 120 # 1 * 2
     maximumWait: 240 # 2 * 60
     nextAdvertisementTime: 0
-  - type: NFSalvageMobRestrictions
   - type: FTLKnockdownImmune
   - type: Respirator
     updateInterval: 99999 # Shouldn't run often, if ever.
@@ -254,6 +377,9 @@
   - BaseC3MobCreature
   id: MobNonHumanHostileBase
   components:
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 4.5
+    baseSprintSpeed : 4.5
   - type: NPCRetaliation
     attackMemoryLength: 10
   - type: Reactive
@@ -261,9 +387,6 @@
       Flammable: [Touch]
       Extinguish: [Touch]
       Acidic: [Touch, Ingestion]
-  - type: MovementSpeedModifier
-    baseWalkSpeed : 4
-    baseSprintSpeed : 4
   - type: StatusEffects
     allowed:
     - SlowedDown
@@ -272,6 +395,8 @@
     - ForcedSleep
     - TemporaryBlindness
     - Pacified
+    - Drowsiness
+    - Adrenaline
   - type: Buckle
   - type: StandingState
   - type: InputMover
@@ -304,10 +429,10 @@
   - type: MobPrice
     price: 1500
     deathPenalty: 0.5
-  - type: NFSalvageMobRestrictions
   - type: Tag
     tags:
     - CanPilot
     - FootstepSound
     - DoorBumpOpener
+    - CannotSuicide
   - type: FTLKnockdownImmune

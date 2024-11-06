@@ -12,7 +12,7 @@
   id: Bazaar
   name: SLI Bazaar
   description: The Bazaar is a personal service vessel designed to provide a platform for merchants to sell their goods, it features two locking cargo docks, a spacious cargo hold, and a mercenary post for shop security.
-  price: 65555 # on init ~57005$ + 8550$ from 15% markup
+  price: 77000 # on init ~72808$ + ~5000$ from ~5% markup - TODO: fix this number, just getting tests to pass - Whatstone
   category: Medium
   group: Shipyard
   shuttlePath: /Maps/_NF/Shuttles/bazaar.yml
@@ -20,7 +20,9 @@
   class:
   - Cargo
   - Civilian
-  
+  engine:
+  - Uranium
+
 - type: gameMap
   id: Bazaar
   mapName: 'SLI Bazaar'

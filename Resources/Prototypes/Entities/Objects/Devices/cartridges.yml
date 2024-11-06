@@ -1,5 +1,5 @@
 ﻿- type: entity
-  parent: BaseItem
+  parent: NFBasePDACartridge # Frontier: BaseItem<NFBasePDACartridge
   id: NotekeeperCartridge
   name: notekeeper cartridge
   description: A program for keeping notes.
@@ -17,7 +17,7 @@
   - type: NotekeeperCartridge
 
 - type: entity
-  parent: BaseItem
+  parent: NFBasePDACartridge # Frontier: BaseItem<NFBasePDACartridge
   id: NewsReaderCartridge
   name: news cartridge
   description: A program for reading news.
@@ -35,7 +35,7 @@
   - type: NewsReaderCartridge
 
 - type: entity
-  parent: BaseItem
+  parent: NFBasePDACartridge # Frontier: BaseItem<NFBasePDACartridge
   id: CrewManifestCartridge
   name: crew manifest cartridge
   description: A program for listing your fellow crewmembers.
@@ -53,7 +53,7 @@
     - type: CrewManifestCartridge
 
 - type: entity
-  parent: BaseItem
+  parent: NFBasePDACartridge # Frontier: BaseItem<NFBasePDACartridge
   id: NetProbeCartridge
   name: NetProbe cartridge
   description: A program for getting the address and frequency of network devices.
@@ -71,7 +71,7 @@
     - type: NetProbeCartridge
 
 - type: entity
-  parent: BaseItem
+  parent: NFBasePDACartridge # Frontier: BaseItem<NFBasePDACartridge
   id: LogProbeCartridge
   name: LogProbe cartridge
   description: A program for getting access logs from devices.
@@ -87,9 +87,71 @@
     - type: Cartridge
       programName: log-probe-program-name
       icon:
-        sprite: Structures/Doors/Airlocks/Standard/security.rsi
+        sprite: _NF/Structures/Doors/Airlocks/Standard/nfsd.rsi # Frontier: Swap security to NFSD
         state: closed
     - type: LogProbeCartridge
     - type: GuideHelp
       guides:
       - Forensics
+
+- type: entity
+  parent: NFBasePDACartridge # Frontier: BaseItem<NFBasePDACartridge
+  id: WantedListCartridge
+  name: Wanted list cartridge
+  description: A program to get a list of wanted persons.
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/cartridge.rsi
+    state: cart-sec
+  - type: Icon
+    sprite: Objects/Devices/cartridge.rsi
+    state: cart-sec
+  - type: UIFragment
+    ui: !type:WantedListUi
+  - type: Cartridge
+    programName: wanted-list-program-name
+    icon:
+      sprite: Objects/Misc/books.rsi
+      state: icon_magnifier
+    readonly: true # Frontier
+  - type: WantedListCartridge
+  - type: StealTarget
+    stealGroup: WantedListCartridge
+
+- type: entity
+  parent: NFBasePDACartridge # Frontier: BaseItem<NFBasePDACartridge
+  id: MedTekCartridge
+  name: MedTek cartridge
+  description: A program that provides medical diagnostic tools.
+  components:
+    - type: Sprite
+      sprite: Objects/Devices/cartridge.rsi
+      state: cart-med
+    - type: Icon
+      sprite: Objects/Devices/cartridge.rsi
+      state: cart-med
+    - type: Cartridge
+      programName: med-tek-program-name
+      icon:
+        sprite: Objects/Specific/Medical/healthanalyzer.rsi
+        state: icon
+    - type: MedTekCartridge
+
+- type: entity
+  parent: NFBasePDACartridge # Frontier: BaseItem<NFBasePDACartridge
+  id: AstroNavCartridge
+  name: AstroNav cartridge
+  description: A program for navigation that provides GPS coordinates.
+  components:
+    - type: Sprite
+      sprite: Objects/Devices/cartridge.rsi
+      state: cart-nav
+    - type: Icon
+      sprite: Objects/Devices/cartridge.rsi
+      state: cart-nav
+    - type: Cartridge
+      programName: astro-nav-program-name
+      icon:
+        sprite: Objects/Devices/gps.rsi
+        state: icon
+    - type: AstroNavCartridge

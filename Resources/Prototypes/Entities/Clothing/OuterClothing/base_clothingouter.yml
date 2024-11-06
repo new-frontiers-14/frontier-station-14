@@ -109,7 +109,8 @@
     highPressureMultiplier: 0.3
     lowPressureMultiplier: 1000
   - type: TemperatureProtection
-    coefficient: 0.01
+    heatingCoefficient: 0.01
+    coolingCoefficient: 0.01
   - type: ClothingSpeedModifier
     walkModifier: 0.4
     sprintModifier: 0.6
@@ -136,11 +137,11 @@
     - WhitelistChameleon
     - HidesHarpyWings #Frontier, needed for Harpies
   - type: PhysicalComposition # Frontier
-    materialComposition:
-      Durathread: 300
-      Cloth: 100
-      Steel: 100
-  - type: ClothingRequiredStepTriggerImmune
+    materialComposition: # Frontier
+      Durathread: 300 # Frontier
+      Cloth: 100 # Frontier
+      Steel: 100 # Frontier
+  - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
   - type: DamageOnInteractProtection
     damageProtection:
@@ -158,24 +159,25 @@
     highPressureMultiplier: 0.6
     lowPressureMultiplier: 1000
   - type: TemperatureProtection
-    coefficient: 0.01 # Not complete protection from fire
+    heatingCoefficient: 0.01 # Not complete protection from fire
+    coolingCoefficient: 0.01
   - type: ClothingSpeedModifier
     walkModifier: 0.8
     sprintModifier: 0.8
   - type: HeldSpeedModifier
   - type: Item
     size: Huge
-  - type: ClothingRequiredStepTriggerImmune
+  - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
   - type: DamageOnInteractProtection
     damageProtection:
       flatReductions:
         Heat: 10 # the average lightbulb only does around four damage!
     slots: OUTERCLOTHING
-  - type: PhysicalComposition # Frontier
-    materialComposition: # Frontier
-      Durathread: 100 # Frontier
-      Cloth: 100 # Frontier
+#  - type: PhysicalComposition # Frontier
+#    materialComposition: # Frontier
+#      Durathread: 100 # Frontier
+#      Cloth: 50 # Frontier
 
 - type: entity
   parent: ClothingOuterBase

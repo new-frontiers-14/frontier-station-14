@@ -137,6 +137,7 @@
   id: GeneratorRTGDamagedFlatpack
   name: RTG generator flatpack
   description: A flatpack used for constructing a Radioisotope Thermoelectric Generator. The packaging seems to be somewhat damaged.
+  suffix: Damaged
   components:
   - type: Flatpack
     entity: GeneratorRTGDamaged
@@ -293,6 +294,15 @@
   components:
   - type: Flatpack
     entity: MachineAnomalyGenerator
+
+- type: entity
+  parent: ExosuitFabricatorFlatpack
+  id: BlueprintLithographFlatpack
+  name: blueprint lithograph flatpack
+  description: A flatpack used for constructing a blueprint lithograph.
+  components:
+  - type: Flatpack
+    entity: BlueprintLithograph
 
 # Service
 - type: entity

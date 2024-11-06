@@ -1,9 +1,31 @@
 - type: entity
+  parent: ComputerRadar
+  id: ComputerAdvancedRadar # Frontier
+  name: radar computer
+  description: This advanced radar lets you detect far away objects for an increased tactical advantage.
+  components:
+  - type: Computer
+    board: AdvancedRadarConsoleCircuitboard
+  - type: RadarConsole
+    maxRange: 768
+    maxIffRange: null # Frontier
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: eris_control
+    - map: ["computerLayerKeys"]
+      state: generic_keys
+
+- type: entity
   name: cargo sale computer
   suffix: Normal
-  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseComputer]
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseComputerAiAccess]
   id: ComputerPalletConsoleNFMarket
-  description: Used to sell goods loaded onto cargo pallets
+  description: Used to sell goods loaded onto cargo pallets.
   abstract: true
   components:
   - type: Sprite
@@ -27,6 +49,8 @@
     interfaces:
       enum.CargoPalletConsoleUiKey.Sale:
         type: CargoPalletConsoleBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
   - type: Computer
     board: Null
   - type: MarketModifier
@@ -74,9 +98,9 @@
 
 - type: entity
   name: contraband exchange computer
-  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseComputer]
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseComputerAiAccess]
   id: ComputerContrabandPalletConsole
-  description: Used to exchange contraband
+  description: Used to exchange contraband for Frontier Uplink Coins.
   components:
   - type: Sprite
     sprite: _NF/Structures/Machines/computers.rsi
@@ -96,6 +120,8 @@
     interfaces:
       enum.ContrabandPalletConsoleUiKey.Contraband:
         type: ContrabandPalletConsoleBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
   - type: Computer
     board: Null
 
@@ -135,6 +161,8 @@
     interfaces:
       enum.IFFConsoleUiKey.Key:
         type: IFFConsoleBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
   - type: Computer
     board: Null
 
@@ -143,7 +171,7 @@
   abstract: true
   parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseStructureComputer]
   id: ComputerMarketConsoleNFBase
-  description: Used to buy goods from the station's market system
+  description: Used to buy goods from the station's market system.
   placement:
     mode: SnapgridCenter
   components:
@@ -199,6 +227,8 @@
       interfaces:
         enum.MarketConsoleUiKey.Default:
           type: MarketConsoleBoundUserInterface
+        enum.WiresUiKey.Key:
+          type: WiresBoundUserInterface
     - type: MarketModifier
       mod: 1
       
@@ -222,7 +252,7 @@
 
 - type: entity
   id: ComputerPirateBounty
-  parent: BaseComputer
+  parent: BaseComputerAiAccess
   name: pirate bounty computer
   description: Avast, get ye pirate bounties here.
   components:
@@ -249,6 +279,8 @@
     interfaces:
       enum.PirateConsoleUiKey.Bounty:
         type: PirateBountyConsoleBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
   - type: Computer
     board: Null # Really shouldn't spawn anything on destruction
   - type: PointLight
@@ -307,6 +339,8 @@
     interfaces:
       enum.PirateConsoleUiKey.BountyRedemption:
         type: PirateBountyRedemptionConsoleBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
   - type: Computer
     board: Null
   - type: PointLight
@@ -347,6 +381,9 @@
   - type: AccessReader
     access: [["StationTrafficController"]]
   - type: ActivatableUIRequiresAccess
+  - type: WorldLoader
+    disabled: true
+    radius: 0 # Just in case.
 
 - type: entity
   parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseStructureAccessReaderImmuneToEmag, BaseComputerShuttle, BaseComputerTraffic]

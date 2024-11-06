@@ -36,7 +36,7 @@
   - type: TrashOnSolutionEmpty
     solution: drink
   - type: StaticPrice
-    price: 12.5
+    price: 20 # Frontier: 12.5<20
 
 - type: entity
   parent: FlaskBase
@@ -100,3 +100,25 @@
   components:
   - type: Sprite
     sprite: Objects/Consumable/Drinks/vacuumflask.rsi
+
+- type: entity
+  parent: FlaskBase
+  id: Pitcher
+  name: metal pitcher
+  description: A stainless steel insulated pitcher. Everyone's best friend in the morning.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 60
+  - type: Sprite
+    sprite: Objects/Consumable/Drinks/pitcher.rsi
+    layers:
+      - state: icon
+      - state: fill-6
+        map: ["enum.SolutionContainerLayers.Fill"]
+        visible: false
+  - type: Appearance
+  - type: SolutionContainerVisuals
+    maxFillLevels: 6
+    fillBaseName: fill-

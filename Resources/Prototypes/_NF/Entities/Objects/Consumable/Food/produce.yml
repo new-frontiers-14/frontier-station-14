@@ -2,7 +2,7 @@
   name: pear
   parent: FoodProduceBase
   id: FoodPear
-  description: it's peary good.
+  description: It's peary good.
   components:
   - type: FlavorProfile
     flavors:
@@ -23,15 +23,10 @@
   - type: Tag
     tags:
       - Fruit
-  - type: FoodSequenceElement # Frontier
-    sprite:
-      sprite: _NF/Objects/Specific/Hydroponics/pear.rsi
-      state: produce
+  - type: FoodSequenceElement
     entries:
-      burger:
-        name: food-sequence-content-pear
-      taco:
-        name: food-sequence-content-pear
+      Burger: Pear
+      Taco: Pear
 
 - type: entity
   name: coffee berries
@@ -266,3 +261,34 @@
     tags:
       - Vegetable
       - Slice
+
+- type: entity
+  name: honeycomb
+  parent: FoodProduceBase
+  id: FoodHoneyComb
+  description: Crispy container of honey.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - honeycomb
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Honey
+          Quantity: 5
+        - ReagentId: Vitamin
+          Quantity: 5
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Hydroponics/bees.rsi
+    state: produce
+  - type: Extractable
+    grindableSolutionName: food
+    juiceSolution:
+      reagents:
+      - ReagentId: Honey
+        Quantity: 5
+  - type: Tag
+    tags:
+      - Vegetable

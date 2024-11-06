@@ -14,8 +14,6 @@
     - SuitEVA
     - MonkeyWearable
     - WhitelistChameleon
-  - type: StaticPrice
-    price: 65
 
 #Syndicate EVA
 - type: entity
@@ -50,7 +48,8 @@
     sprintModifier: 0.7
   - type: HeldSpeedModifier
   - type: TemperatureProtection
-    coefficient: 0.5
+    heatingCoefficient: 0.75
+    coolingCoefficient: 0.5
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetEVALarge
     slot: head
@@ -111,7 +110,8 @@
     sprintModifier: 0.9
   - type: HeldSpeedModifier
   - type: TemperatureProtection
-    coefficient: 0.1
+    heatingCoefficient: 0.1
+    coolingCoefficient: 0.1
   - type: Armor
     modifiers:
       coefficients:
@@ -119,8 +119,6 @@
         Radiation: 0.75
         Caustic: 0.5
   - type: GroupExamine
-  - type: StaticPrice # Frontier
-    price: 50
   - type: StealTarget
     stealGroup: ClothingOuterHardsuitVoidParamed
   - type: ToggleableClothing

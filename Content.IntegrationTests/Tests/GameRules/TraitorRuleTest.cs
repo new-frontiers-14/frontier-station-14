@@ -22,6 +22,7 @@ public sealed class TraitorRuleTest
     private const string TraitorAntagRoleName = "Traitor";
 
     [Test]
+    [Ignore("Traitor role selection isn't used on Frontier.")] // Frontier
     public async Task TestTraitorObjectives()
     {
         await using var pair = await PoolManager.GetServerClient(new PoolSettings()

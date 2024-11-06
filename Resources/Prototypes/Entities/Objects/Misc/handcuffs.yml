@@ -2,7 +2,7 @@
   name: handcuffs
   description: Used to detain criminals and other assholes.
   id: Handcuffs
-  parent: [BaseItem, BaseC2ContrabandUnredeemable] # Frontier: BaseRestrictedContraband<BaseC2ContrabandUnredeemable
+  parent: [BaseItem, BaseC2ContrabandUnredeemable] # Frontier: BaseSecurityCommandContraband<BaseC2ContrabandUnredeemable
   components:
   - type: Item
     size: Small
@@ -118,7 +118,7 @@
     materialComposition:
       Plastic: 25
   - type: StaticPrice
-    price: 1
+    price: 3 # Frontier: 1<3
 
 - type: entity
   name: broken zipties

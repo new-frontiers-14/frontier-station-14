@@ -1,7 +1,6 @@
 ﻿- type: entity
-  id: BaseScrapDebrisNF
-  parent: BaseDebrisNF
-  name: Scrap Debris
+  id: NFBaseScrapDebris
+  parent: NFBaseDebris
   abstract: true
   components:
     - type: MapGrid
@@ -13,11 +12,9 @@
         - FloorSteel
         - Lattice
       blobDrawProb: 0.5
-      radius: 6
-      floorPlacements: 16
     - type: SimpleFloorPlanPopulator
       entries:
-        Plating:
+        Plating: &plating
           - prob: 3.5 # Intentional blank.
           - id: SalvageMaterialCrateSpawner
             prob: 0.7
@@ -87,7 +84,9 @@
             prob: 0.1
           - id: Window
             prob: 0.05
-        Lattice:
+          - id: MedicalPodFilled # Medical bounties
+            prob: 0.05
+        Lattice: &lattice
           - prob: 2
           - id: Grille
             prob: 0.3
@@ -95,7 +94,7 @@
             prob: 0.3
           - id: SalvageCanisterSpawner
             prob: 0.2
-        FloorSteel:
+        FloorSteel: &floor
           - prob: 3 # Intentional blank.
           - id: CrateFilledSpawner
             prob: 0.2
@@ -146,72 +145,101 @@
           - id: Thruster
             prob: 0.005
     - type: IFF
+      flags: HideLabel
       color: "#88b0d1"
 
 - type: entity
-  id: ScrapDebrisNFSmall
-  parent: BaseScrapDebrisNF
-  name: Scrap Debris Small
+  id: NFBaseScrapDebrisBrass
+  parent: NFBaseScrapDebris
+  abstract: true
+  components:
+    - type: BlobFloorPlanBuilder
+      floorTileset:
+        - PlatingBrass
+        - PlatingBrass
+        - PlatingBrass
+        - FloorBrassFilled
+        - FloorBrassReebe
+      blobDrawProb: 0.5
+    - type: SimpleFloorPlanPopulator
+      entries:
+        PlatingBrass: *plating
+        FloorBrassReebe: *lattice
+        FloorBrassFilled: *floor
+    - type: IFF
+      color: "#E1C16E"
+
+- type: entity
+  id: NFScrapDebrisSmall
+  parent: NFBaseScrapDebris
+  name: scrap debris small
   categories: [ HideSpawnMenu ]
   components:
-    - type: MapGrid
     - type: BlobFloorPlanBuilder
       floorPlacements: 16
+      radius: 6
 
 - type: entity
-  id: ScrapDebrisNFMedium
-  parent: BaseScrapDebrisNF
-  name: Scrap Debris Medium
+  id: NFScrapDebrisMedium
+  parent: NFBaseScrapDebris
+  name: scrap debris medium
   categories: [ HideSpawnMenu ]
   components:
-    - type: MapGrid
     - type: BlobFloorPlanBuilder
       floorPlacements: 24
+      radius: 8
 
 - type: entity
-  id: ScrapDebrisNFLarge
-  parent: BaseScrapDebrisNF
-  name: Scrap Debris Large
+  id: NFScrapDebrisLarge
+  parent: NFBaseScrapDebris
+  name: scrap debris large
   categories: [ HideSpawnMenu ]
   components:
-    - type: MapGrid
     - type: BlobFloorPlanBuilder
-      radius: 12
       floorPlacements: 36
-      blobDrawProb: 0.625
+      radius: 10
 
 - type: entity
-  id: ScrapDebrisNFExtraLarge
-  parent: BaseScrapDebrisNF
-  name: Scrap Debris Extra Large
+  id: NFScrapDebrisExtraLarge
+  parent: NFBaseScrapDebris
+  name: scrap debris large extra large
   categories: [ HideSpawnMenu ]
   components:
-    - type: MapGrid
     - type: BlobFloorPlanBuilder
+      floorPlacements: 52
+      radius: 12
+
+- type: entity
+  id: NFScrapDebrisHuge
+  parent: NFBaseScrapDebris
+  name: scrap debris huge
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: BlobFloorPlanBuilder
+      floorPlacements: 72
+      radius: 14
+
+- type: entity
+  id: NFScrapDebrisExtraHuge
+  parent: NFBaseScrapDebris
+  name: scrap debris extra huge
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: BlobFloorPlanBuilder
+      floorPlacements: 96
+      radius: 16
+
+- type: entity
+  id: NFScrapDebrisEnormous
+  parent: NFBaseScrapDebris
+  name: scrap debris enormous
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: BlobFloorPlanBuilder
+      floorPlacements: 124
       radius: 18
-      floorPlacements: 54
-      blobDrawProb: 0.675
 
 - type: entity
-  id: ScrapDebrisNFExtraLargeScattered
-  parent: BaseScrapDebrisNF
-  name: Scrap Debris Extra Large Scattered
+  id: NFScrapDebrisBrassLarge
+  parent: [NFBaseScrapDebrisBrass, NFScrapDebrisLarge]
   categories: [ HideSpawnMenu ]
-  components:
-    - type: MapGrid
-    - type: BlobFloorPlanBuilder
-      radius: 18
-      floorPlacements: 54
-      blobDrawProb: 0.3
-
-- type: entity
-  id: ScrapDebrisNFHuge
-  parent: BaseScrapDebrisNF
-  name: Scrap Debris Huge
-  categories: [ HideSpawnMenu ]
-  components:
-    - type: MapGrid
-    - type: BlobFloorPlanBuilder
-      radius: 24
-      floorPlacements: 80
-      blobDrawProb: 0.75

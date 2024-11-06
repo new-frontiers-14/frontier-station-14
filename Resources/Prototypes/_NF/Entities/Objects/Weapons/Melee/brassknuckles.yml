@@ -31,21 +31,9 @@
     - WhitelistChameleon
   - type: PhysicalComposition
     materialComposition:
-      Brass: 1000
+      Brass: 300 # 1000<300
   - type: StaticPrice
-    price: 30 # Ensures these can be sold and have a reasonable vending value.
-
-- type: entity
-  name: improvised brass knuckles
-  parent: WeaponBrassKnuckles
-  id: WeaponBrassKnucklesImprovised
-  description: Ever wanted to punch just a little harder?
-  components:
-  - type: MeleeWeapon
-    attackRate: 1.6 # ~9.6 dps
-  - type: Construction
-    graph: GraphWeaponBrassKnucklesImprovised
-    node: WeaponBrassKnucklesImprovised
+    price: 30 # Ensures these can be sold and have a reasonable vending value
 
 - type: entity
   name: crass knuckles

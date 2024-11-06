@@ -1,0 +1,94 @@
+<Document>
+  # SPARROW-CLASS RESEARCH SHUTTLE
+  <Box>
+  <GuideEntityEmbed Entity="VariedXenoArtifactItem"/>
+  <GuideEntityEmbed Entity="MachineArtifactAnalyzer"/>
+  <GuideEntityEmbed Entity="ComputerTabletopAnalysisConsole"/>
+  <GuideEntityEmbed Entity="ResearchAndDevelopmentServer"/>
+  <GuideEntityEmbed Entity="TechnologyDisk" Caption="tech disk"/>
+  </Box>
+  <Box>
+  <GuideEntityEmbed Entity="ShuttleMapSparrow" Caption=""/>
+  </Box>
+    [color=#a4885c]Ship Size:[/color] Small
+	
+	[color=#a4885c]Recommended Crew:[/color] 1-2
+	
+	[color=#a4885c]Power Gen Type:[/color] Plasma
+	
+	[color=#a4885c]Expeditions:[/color] None
+	
+	[color=#a4885c]IFF Console:[/color] None
+	
+  "A small research and engineering vessel."
+    
+  # PREFLIGHT CHECKLIST
+  
+  ## 1. Power supply
+  
+  ## 1.1. Battery units
+  <Box>
+  <GuideEntityEmbed Entity="SMESBasic"/>
+  <GuideEntityEmbed Entity="SubstationBasic"/>
+  <GuideEntityEmbed Entity="APCBasic"/>
+  </Box>
+  
+  - Check that the SMES unit is anchored to the floor.
+  - Check that the substation unit is anchored to the floor.
+  - Check that the APC unit's Main Breaker is toggled on.
+  - Check the APC unit's current Load* (W).
+  
+  ## 1.2. P.A.C.M.A.N. generator units
+  <Box>
+  <GuideEntityEmbed Entity="PortableGeneratorPacmanShuttle"/>
+  <GuideEntityEmbed Entity="SheetPlasma"/>
+  </Box>
+  
+  - Check that the P.A.C.M.A.N. generator units are anchored to the floor.
+  - Check that the P.A.C.M.A.N. generator units have fuel. For extended flights make sure that you have enough fuel stockpiled to sustain prolonged power generation during flight.
+  - Check that the P.A.C.M.A.N. generator units are set to HV output.
+  - Set Target Power for 19** [bold]kW[/bold].
+  - Ensure that the P.A.C.M.A.N. generator units are enabled.
+  
+  ## 2. Atmospherics
+  
+  ## 2.1. Distribution Loop
+  <Box>
+  <GuideEntityEmbed Entity="OxygenCanister"/>
+  <GuideEntityEmbed Entity="NitrogenCanister"/>
+  <GuideEntityEmbed Entity="GasPort"/>
+  <GuideEntityEmbed Entity="GasMixer"/>
+  </Box>
+  
+  - Check that the O2 canister is anchored to connector port.
+  - Check that the N2 canister is anchored to connector port.
+  - Check that the gas mixer is set to the correct mixing ratio (21% Oxygen, 79% Nitrogen).
+  - Check that the gas mixer is set to 101kPa.
+  - Ensure that the gas mixer is enabled.
+  
+  ## 2.2. Waste Loop
+  <Box>
+  <GuideEntityEmbed Entity="GasPressurePump"/>
+  <GuideEntityEmbed Entity="AirAlarm"/>
+  </Box>
+    
+  - Ensure that the waste loop pump is enabled.
+  - Disable Auto Mode on any Air Alarms.
+  - Set the Air Alarms to Filtering (Wide).
+  
+  ## 3. Other checks
+  <Box>
+  <GuideEntityEmbed Entity="Gyroscope"/>
+  <GuideEntityEmbed Entity="GravityGeneratorMini"/>
+  </Box>
+  
+  - Check that the gyroscope is anchored, powered, and enabled.
+  - Check that the mini gravity generator is anchored, powered, and enabled.
+  
+  ## Sidenotes
+  
+  * - Sparrow-class research ships are equipped with two APC units that can be used to appraise the ship's total power consumption. An unmodified Sparrow-class ship requires 36.1 kW of power to remain operational.
+  
+  ** - Sparrow-class research ships have higher power demand than standard P.A.C.M.A.N. generator units can provide at optimal settings. Unanchoring the artifact analyzer when not used will allow for the generator units to be set to as low as 13 kW.
+
+</Document>
