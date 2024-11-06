@@ -50,8 +50,7 @@ public sealed partial class ServerApi : IPostInjectInit
     [Dependency] private readonly IStatusHost _statusHost = default!;
     [Dependency] private readonly IConfigurationManager _config = default!;
     [Dependency] private readonly ISharedPlayerManager _playerManager = default!;
-    [Dependency] private readonly ISharedAdminManager _adminManager = default!;
-    [Dependency] private readonly IAdminManager _serverAdminManager = default!;
+    [Dependency] private readonly IAdminManager _adminManager = default!; // Frontier: ISharedAdminManager<IAdminManager>
     [Dependency] private readonly IGameMapManager _gameMapManager = default!;
     [Dependency] private readonly IServerNetManager _netManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
@@ -432,7 +431,7 @@ public sealed partial class ServerApi : IPostInjectInit
         if (!body.UserOnly)
         {
             // Get all Online admins with the adminhelp flag
-            var adminList = _serverAdminManager.ActiveAdmins
+            var adminList = _adminManager.ActiveAdmins
             .Where(p => _adminManager.GetAdminData(p)?.HasFlag(AdminFlags.Adminhelp) ?? false)
             .Select(p => p.Channel)
             .ToList();
@@ -448,7 +447,7 @@ public sealed partial class ServerApi : IPostInjectInit
 
         // This saves me a headache of making the bot remembering every message it send and adding it to the embed.
         // So i just let the existing system handle it
-        if (body.webhookupdate)
+        if (body.WebhookUpdate)
         {
             var ticker = _entitySystemManager.GetEntitySystem<GameTicker>();
             var serverBwoinkSystem = _entitySystemManager.GetEntitySystem<BwoinkSystem>();
