@@ -3,6 +3,7 @@ using Content.Client.Computer;
 using Content.Client.Stylesheets;
 using Content.Client.UserInterface.Controls;
 using Content.Shared.CCVar;
+using Content.Shared._NF.CCVar; // Frontier
 using Content.Shared.Parallax.Biomes;
 using Content.Shared.Salvage;
 using Content.Shared.Salvage.Expeditions;
@@ -303,7 +304,7 @@ public sealed partial class SalvageExpeditionWindow : FancyWindow,
         else
         {
             var cooldown = _cooldown
-                ? TimeSpan.FromSeconds(_cfgManager.GetCVar(CCVars.SalvageExpeditionFailedCooldown))
+                ? TimeSpan.FromSeconds(_cfgManager.GetCVar(NFCCVars.SalvageExpeditionFailedCooldown))
                 : TimeSpan.FromSeconds(_cfgManager.GetCVar(CCVars.SalvageExpeditionCooldown));
 
             NextOfferBar.Value = 1f - (float) (remaining / cooldown);

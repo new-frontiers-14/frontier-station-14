@@ -12,3 +12,37 @@
     soundHit:
       collection: WeakHit
     forceSound: true
+
+- type: entity
+  id: BulletKineticLowPower
+  name: kinetic bolt
+  parent: BulletKinetic
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    impactEffect: BulletImpactEffectKinetic
+    damage:
+      types:
+        Blunt: 12
+        Structural: 30
+  - type: Ammo
+    muzzleFlash: HitscanEffect
+  - type: TimedDespawn
+    lifetime: 1.5
+  - type: PointLight
+    radius: 2.5
+    color: white
+    energy: 0.5
+
+- type: entity
+  id: BulletKineticMediumPower
+  name: kinetic bolt
+  parent: BulletKineticLowPower
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    impactEffect: BulletImpactEffectKinetic
+    damage:
+      types:
+        Blunt: 16
+        Structural: 30

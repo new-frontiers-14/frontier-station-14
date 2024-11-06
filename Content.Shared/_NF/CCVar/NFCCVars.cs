@@ -5,6 +5,9 @@ namespace Content.Shared._NF.CCVar;
 [CVarDefs]
 public sealed class NFCCVars
 {
+    /*
+     *  Respawn
+    */
     /// <summary>
     /// Whether or not respawning is enabled.
     /// </summary>
@@ -102,6 +105,15 @@ public sealed class NFCCVars
         CVarDef.Create("nf14.worldgen.poi_placement_retries", 10, CVar.SERVERONLY);
 
     /*
+    * Shipyard
+    */
+    /// <summary>
+    /// Whether the Shipyard is enabled.
+    /// </summary>
+    public static readonly CVarDef<bool> Shipyard =
+        CVarDef.Create("shuttle.shipyard", true, CVar.SERVERONLY);
+
+    /*
      * Salvage
      */
     /// <summary>
@@ -109,6 +121,12 @@ public sealed class NFCCVars
     /// </summary>
     public static readonly CVarDef<int> SalvageExpeditionMaxActive =
         CVarDef.Create("nf14.salvage.expedition_max_active", 15, CVar.REPLICATED);
+
+    /// <summary>
+    /// Cooldown for failed missions.
+    /// </summary>
+    public static readonly CVarDef<float> SalvageExpeditionFailedCooldown =
+        CVarDef.Create("salvage.expedition_failed_cooldown", 1800f, CVar.REPLICATED);
 
     /*
      * Smuggling
@@ -159,4 +177,49 @@ public sealed class NFCCVars
     /// </summary>
     public static readonly CVarDef<int> DeadDropMaxHints =
         CVarDef.Create("nf14.smuggling.max_hints", 0, CVar.REPLICATED); // Used with BasicDeadDropHintVariationPass
+
+    /*
+    * Discord
+    */
+    /// <summary>
+    ///     URL of the Discord webhook which will send round status notifications.
+    /// </summary>
+    public static readonly CVarDef<string> DiscordRoundWebhook =
+        CVarDef.Create("discord.round_webhook", string.Empty, CVar.SERVERONLY);
+
+    /// <summary>
+    ///     Discord ID of role which will be pinged on new round start message.
+    /// </summary>
+    public static readonly CVarDef<string> DiscordRoundRoleId =
+        CVarDef.Create("discord.round_roleid", string.Empty, CVar.SERVERONLY);
+
+    /// <summary>
+    ///     Send notifications only about a new round begins.
+    /// </summary>
+    public static readonly CVarDef<bool> DiscordRoundStartOnly =
+        CVarDef.Create("discord.round_start_only", false, CVar.SERVERONLY);
+
+    /// <summary>
+    /// URL of the Discord webhook which will relay all round end messages.
+    /// </summary>
+    public static readonly CVarDef<string> DiscordLeaderboardWebhook =
+        CVarDef.Create("discord.leaderboard_webhook", string.Empty, CVar.SERVERONLY);
+
+    /*
+    * Auth
+    */
+    public static readonly CVarDef<string> ServerAuthList =
+        CVarDef.Create("frontier.auth_servers", "", CVar.CONFIDENTIAL | CVar.SERVERONLY);
+
+    public static readonly CVarDef<bool> AllowMultiConnect =
+        CVarDef.Create("frontier.allow_multi_connect", true, CVar.CONFIDENTIAL | CVar.SERVERONLY);
+
+    /*
+     * Events 
+     */
+    /// <summary>
+    ///     A scale factor applied to a grid's bounds when trying to find a spot to randomly generate a crate for bluespace events.
+    /// </summary>
+    public static readonly CVarDef<float> CrateGenerationGridBoundsScale =
+        CVarDef.Create("nf14.events.crate_generation_grid_bounds_scale", 0.6f, CVar.SERVERONLY);
 }

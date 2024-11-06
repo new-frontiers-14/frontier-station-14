@@ -1,0 +1,205 @@
+# Base prototypes
+
+- type: latheRecipe
+  id: NFBaseFloorTileRecipe
+  applyMaterialDiscount: false
+  completetime: 0.5
+  materials:
+    Steel: 25
+
+- type: latheRecipe
+  id: NFBaseFloorTileSilverRecipe
+  parent: NFBaseFloorTileRecipe
+  materials:
+    Silver: 25
+
+- type: latheRecipe
+  id: NFBaseFloorTileClothRecipe
+  parent: NFBaseFloorTileRecipe
+  materials:
+    Cloth: 100
+
+# Recipes
+
+- type: latheRecipe
+  id: FloorTileItemMetalDiamond
+  parent: NFBaseFloorTileRecipe
+  result: FloorTileItemMetalDiamond
+  materials:
+    Steel: 50
+
+- type: latheRecipe
+  id: FloorTileItemFreezer
+  parent: NFBaseFloorTileRecipe
+  result: FloorTileItemFreezer
+
+- type: latheRecipe
+  id: FloorTileItemShowroom
+  parent: NFBaseFloorTileRecipe
+  result: FloorTileItemShowroom
+
+- type: latheRecipe
+  id: FloorTileItemGCircuit
+  parent: NFBaseFloorTileSilverRecipe
+  result: FloorTileItemGCircuit
+
+- type: latheRecipe
+  id: FloorTileItemBCircuit
+  parent: NFBaseFloorTileSilverRecipe
+  result: FloorTileItemBCircuit
+
+- type: latheRecipe
+  id: FloorTileItemGold
+  parent: NFBaseFloorTileRecipe
+  result: FloorTileItemGold
+  materials:
+    Gold: 25
+
+- type: latheRecipe
+  id: FloorTileItemMono
+  parent: NFBaseFloorTileRecipe
+  result: FloorTileItemMono
+
+- type: latheRecipe
+  id: FloorTileItemLino
+  parent: NFBaseFloorTileRecipe
+  result: FloorTileItemLino
+  materials:
+    Plastic: 25
+
+- type: latheRecipe
+  id: FloorTileItemHydro
+  parent: NFBaseFloorTileRecipe
+  result: FloorTileItemHydro
+
+- type: latheRecipe
+  id: FloorTileItemLime
+  parent: NFBaseFloorTileRecipe
+  result: FloorTileItemLime
+
+- type: latheRecipe
+  id: FloorTileItemShuttleWhite
+  parent: NFBaseFloorTileSilverRecipe
+  result: FloorTileItemShuttleWhite
+
+#- type: latheRecipe
+#  id: FloorTileStackShuttleBlue
+#  parent: NFBaseFloorTileSilverRecipe
+#  result: FloorTileStackShuttleBlue
+
+#- type: latheRecipe
+#  id: FloorTileStackShuttleOrange
+#  parent: NFBaseFloorTileSilverRecipe
+#  result: FloorTileStackShuttleOrange
+
+- type: latheRecipe
+  id: FloorTileItemShuttlePurple
+  parent: NFBaseFloorTileSilverRecipe
+  result: FloorTileItemShuttlePurple
+
+#- type: latheRecipe
+#  id: FloorTileStackShuttleRed
+#  parent: NFBaseFloorTileSilverRecipe
+#  result: FloorTileStackShuttleRed
+
+- type: latheRecipe
+  id: FloorTileItemEighties
+  parent: NFBaseFloorTileClothRecipe
+  result: FloorTileItemEighties
+
+- type: latheRecipe
+  id: FloorTileItemArcadeBlue
+  parent: NFBaseFloorTileClothRecipe
+  result: FloorTileItemArcadeBlue
+
+- type: latheRecipe
+  id: FloorTileItemArcadeBlue2
+  parent: NFBaseFloorTileClothRecipe
+  result: FloorTileItemArcadeBlue2
+
+- type: latheRecipe
+  id: FloorTileItemArcadeRed
+  parent: NFBaseFloorTileClothRecipe
+  result: FloorTileItemArcadeRed
+
+- type: latheRecipe
+  id: FloorTileItemBoxing
+  parent: NFBaseFloorTileRecipe
+  result: FloorTileItemBoxing
+
+- type: latheRecipe
+  id: FloorTileItemGym
+  parent: NFBaseFloorTileRecipe
+  result: FloorTileItemGym
+
+- type: latheRecipe
+  id: FloorTileItemBlue
+  parent: NFBaseFloorTileRecipe
+  result: FloorTileItemBlue
+
+- type: latheRecipe
+  id: FloorTileItemMining
+  parent: NFBaseFloorTileRecipe
+  result: FloorTileItemMining
+
+- type: latheRecipe
+  id: FloorTileItemMiningDark
+  parent: NFBaseFloorTileRecipe
+  result: FloorTileItemMiningDark
+
+- type: latheRecipe
+  id: FloorTileItemMiningLight
+  parent: NFBaseFloorTileRecipe
+  result: FloorTileItemMiningLight
+
+- type: latheRecipe
+  id: FloorTileItemBar
+  parent: NFBaseFloorTileRecipe
+  result: FloorTileItemBar
+
+- type: latheRecipe
+  id: FloorTileItemClown
+  parent: NFBaseFloorTileRecipe
+  result: FloorTileItemClown
+
+- type: latheRecipe
+  id: FloorTileItemMime
+  parent: NFBaseFloorTileRecipe
+  result: FloorTileItemMime
+
+- type: latheRecipe
+  id: FloorTileItemKitchen
+  parent: NFBaseFloorTileRecipe
+  result: FloorTileItemKitchen
+
+- type: latheRecipe
+  id: FloorTileItemLaundry
+  parent: NFBaseFloorTileRecipe
+  result: FloorTileItemLaundry
+
+- type: latheRecipe
+  id: FloorTileItemSilver
+  parent: NFBaseFloorTileSilverRecipe
+  result: FloorTileItemSilver
+
+- type: latheRecipe
+  id: FloorCarpetItemSkyBlue
+  parent: NFBaseFloorTileClothRecipe
+  result: FloorCarpetItemSkyBlue
+
+- type: latheRecipe
+  id: FloorTileItemCarpetClown
+  parent: NFBaseFloorTileClothRecipe
+  result: FloorTileItemCarpetClown
+
+- type: latheRecipe
+  id: FloorTileItemCarpetOffice
+  parent: NFBaseFloorTileClothRecipe
+  result: FloorTileItemCarpetOffice
+
+- type: latheRecipe
+  id: FloorTileItemFlesh
+  parent: NFBaseFloorTileRecipe
+  result: FloorTileItemFlesh
+  materials:
+    Meaterial: 100

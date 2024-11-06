@@ -1,0 +1,21 @@
+<BoxContainer xmlns="https://spacestation14.io"
+              Orientation="Horizontal"
+              HorizontalAlignment="Stretch"
+              HorizontalExpand="True"
+              Margin="0 0 0 5">
+    <BoxContainer Name="DamageContainer" Orientation="Vertical" HorizontalExpand="True" VerticalAlignment="Center">
+        <RichTextLabel Name="DamageLabel"
+               HorizontalExpand="True"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Center"
+               Access="Public"
+               Margin="25 0 0 0"/> <!-- Frontier: left margin 2<25 - matches reagent plant metabolism's stacked margins with GuideFoodEmbed -->
+    </BoxContainer>
+    <BoxContainer Orientation="Vertical" VerticalAlignment="Center">
+        <RichTextLabel Name="AmountLabel"
+               HorizontalAlignment="Right"
+               VerticalAlignment="Center"
+               Access="Public"
+               Margin="10 0 0 0"/> <!-- Frontier: left margin 2<10 -->
+    </BoxContainer>
+</BoxContainer>
