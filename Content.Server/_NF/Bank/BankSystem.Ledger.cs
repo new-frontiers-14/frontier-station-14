@@ -32,12 +32,25 @@ public sealed partial class BankSystem : SharedBankSystem
         RaiseLocalEvent(new SectorLedgerUpdatedEvent());
     }
 
-    class AccountInfo
+    sealed class AccountInfo
     {
         public int TotalIncome;
         public int TotalExpenses;
         public List<(LedgerEntryType Type, int Value)> Income = new();
         public List<(LedgerEntryType Type, int Value)> Expenses = new();
+    }
+
+    static string GetAccountName(SectorBankAccount account)
+    {
+        switch (account)
+        {
+            case SectorBankAccount.Frontier:
+                return "Frontier Outpost";
+            case SectorBankAccount.Nfsd:
+                return "NFSD";
+            default:
+                return account.ToString();
+        }
     }
 
     public string GetLedgerPrintout()
@@ -74,7 +87,7 @@ public sealed partial class BankSystem : SharedBankSystem
         // Build our printouts
         foreach (var (account, accountInfo) in accountDict)
         {
-            builder.AppendLine(Loc.GetString("ledger-printout-account", ("account", account)));
+            builder.AppendLine(Loc.GetString("ledger-printout-account", ("account", GetAccountName(account))));
             builder.AppendLine(Loc.GetString("ledger-printout-income-header"));
             foreach (var income in accountInfo.Income)
             {
@@ -100,7 +113,7 @@ public sealed partial class BankSystem : SharedBankSystem
             }
             builder.AppendLine(
                 Loc.GetString("ledger-printout-total-expenses",
-                    ("amount", BankSystemExtensions.ToSpesoString(accountInfo.TotalIncome))
+                    ("amount", BankSystemExtensions.ToSpesoString(accountInfo.TotalExpenses))
                 ));
             builder.AppendLine(
                 Loc.GetString("ledger-printout-balance",

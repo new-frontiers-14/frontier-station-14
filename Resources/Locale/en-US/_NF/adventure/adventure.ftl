@@ -9,6 +9,8 @@ adventure-webhook-list-low = This Shift's Biggest Spenders:
 adventure-webhook-top-profit = made a total profit of {$amount}.
 adventure-webhook-top-loss = lost a total of {$amount}.
 
+adventure-webhook-ledger-start = Ledger Summary
+
 adventure-title = New Frontier Adventure Mode
 adventure-description = Join a ship crew or buy your own and explore, research, salvage, or haul your way to riches!
 currency = Spesos

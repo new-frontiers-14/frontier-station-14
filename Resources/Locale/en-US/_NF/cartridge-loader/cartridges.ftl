@@ -38,7 +38,7 @@ ledger-entry-type-StationWithdrawalOther = Misc. Expenses
 
 ledger-printout-account = __**{$account}**__
 ledger-printout-income-header = **Income:**
-ledger-printout-expenses-header = **Expenses:**
+ledger-printout-expense-header = **Expenses:**
 ledger-printout-line-item = {$entryType}: {$amount}
 ledger-printout-total-income = **Total Income: {$amount}**
 ledger-printout-total-expenses = **Total Expenses: {$amount}**
