@@ -15,6 +15,7 @@ using Content.Server.GameTicking;
 using Content.Server.Procedural;
 using Robust.Shared.Prototypes;
 using Content.Shared.Salvage;
+using Content.Server.Warps;
 
 namespace Content.Server.StationEvents.Events;
 
@@ -88,6 +89,24 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
                 if (_protoManager.TryIndex(group.NameDataset, out var dataset))
                 {
                     _metadata.SetEntityName(spawned, SharedSalvageSystem.GetFTLName(dataset, _random.Next()));
+                }
+
+                if (group.NameWarp)
+                {
+                    // update all warp points that belong to this station grid
+                    var query = EntityQueryEnumerator<WarpPointComponent>();
+                    while (query.MoveNext(out var spawned, out var warp))
+                    {
+
+                        _metadata.GetEntityName(spawned);
+
+                        var warpStationUid = _stationSystem.GetOwningStation(uid);
+                        if (warpStationUid != stationUid)
+                            continue;
+
+                        var stationName = Name(warpStationUid.Value);
+                        warp.Location = stationName;
+                    }
                 }
 
                 EntityManager.AddComponents(spawned, group.AddComponents);
