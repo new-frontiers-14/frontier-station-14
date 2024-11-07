@@ -1,4 +1,9 @@
-station-event-bluespace-vault-start-announcement = A NanoTrasen armored vault is inbound to the sector. The area 300m around the vault is a No Fly Zone. Station accounts will be rewarded for its safe return.
+
+station-event-bluespace-dungeon-start-announcement = Signatures of a large inbound object have been detected. Investigate with caution, NanoTrasen is not liable for damages sustained or loss of life.
+station-event-bluespace-dungeon-warning-announcement = Bluespace instability detected on foreign object, five minutes until estimated departure.
+station-event-bluespace-dungeon-end-announcement = Critical bluespace instability detected, the foreign object has exited the sector.
+
+station-event-bluespace-vault-start-announcement = A NanoTrasen autonomous armored vault transport has made an FTL error and will soon arrive nearby. Your sector will be rewarded for it's safe return.
 station-event-bluespace-vault-warning-announcement = Remote FTL procedures initialized, five minutes until vault extraction.
 station-event-bluespace-vault-end-announcement = We have retrieved the vault from your sector. Station accounts have been remunerated.
 
@@ -9,10 +14,6 @@ station-event-bluespace-cache-end-announcement = We have retrieved the Syndicate
 station-event-bluespace-asteroid-start-announcement = Long range scans indicate an unusually large asteroid entering the sector. NanoTrasen advises prospectors to divert operations for maximum profit potential.
 station-event-bluespace-asteroid-warning-announcement = Bluespace instability detected on asteroid, five minutes until estimated departure.
 station-event-bluespace-asteroid-end-announcement = Critical bluespace instability detected, the asteroid has exited the sector.
-
-station-event-bluespace-dungeon-start-announcement = Inbound facility-class bluespace signatures have been detected. Investigate with caution, NanoTrasen is not liable for damages sustained or loss of life.
-station-event-bluespace-dungeon-warning-announcement = Bluespace instability detected on facility, five minutes until estimated departure.
-station-event-bluespace-dungeon-end-announcement = Critical bluespace instability detected, the facility has exited the sector.
 
 station-event-bluespace-ship-start-announcement = We have detected an unusual FTL signature - long range scans indicate an unknown ship. NanoTrasen cannot confirm safety for prospectors within its vicinity, be advised.
 station-event-bluespace-ship-warning-announcement = Remote FTL procedures initialized, five minutes until ship dissipation.
