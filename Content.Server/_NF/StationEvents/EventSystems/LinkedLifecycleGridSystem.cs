@@ -1,9 +1,15 @@
+using System.Numerics;
 using Content.Server.StationEvents.Components;
+using Content.Shared.Humanoid;
+using Content.Shared.Mobs.Components;
+using Robust.Shared.Map;
 
 namespace Content.Server.StationEvents.Events;
 
 public sealed class LinkedLifecycleGridSystem : EntitySystem
 {
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -48,6 +54,30 @@ public sealed class LinkedLifecycleGridSystem : EntitySystem
 
         // Destroy child entities
         foreach (var entity in component.LinkedEntities)
-            QueueDel(entity);
+            DeleteGrid(entity);
+    }
+
+    public void DeleteGrid(EntityUid grid)
+    {
+        var mobQuery = AllEntityQuery<HumanoidAppearanceComponent, MobStateComponent, TransformComponent>();
+        List<(Entity<TransformComponent> Entity, EntityUid MapUid, Vector2 LocalPosition)> playerMobs = new();
+
+        while (mobQuery.MoveNext(out var mobUid, out _, out _, out var xform))
+        {
+            if (xform.GridUid == null || xform.MapUid == null || xform.GridUid != grid)
+                continue;
+
+            // Can't parent directly to map as it runs grid traversal.
+            playerMobs.Add(((mobUid, xform), xform.MapUid.Value, _transform.GetWorldPosition(xform)));
+            _transform.DetachEntity(mobUid, xform);
+        }
+
+        // Deletion has to happen before grid traversal re-parents players.
+        Del(grid);
+
+        foreach (var mob in playerMobs)
+        {
+            _transform.SetCoordinates(mob.Entity.Owner, new EntityCoordinates(mob.MapUid, mob.LocalPosition));
+        }
     }
 }

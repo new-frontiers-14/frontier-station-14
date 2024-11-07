@@ -32,8 +32,6 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
     [Dependency] private readonly PricingSystem _pricing = default!;
     [Dependency] private readonly CargoSystem _cargo = default!;
 
-    private List<(Entity<TransformComponent> Entity, EntityUid MapUid, Vector2 LocalPosition)> _playerMobs = new();
-
     public override void Initialize()
     {
         base.Initialize();
@@ -217,7 +215,7 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
                 }
 
                 var mobQuery = AllEntityQuery<HumanoidAppearanceComponent, MobStateComponent, TransformComponent>();
-                _playerMobs.Clear();
+                List<(Entity<TransformComponent> Entity, EntityUid MapUid, Vector2 LocalPosition)> playerMobs = new();
 
                 while (mobQuery.MoveNext(out var mobUid, out _, out _, out var xform))
                 {
@@ -225,7 +223,7 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
                         continue;
 
                     // Can't parent directly to map as it runs grid traversal.
-                    _playerMobs.Add(((mobUid, xform), xform.MapUid.Value, _transform.GetWorldPosition(xform)));
+                    playerMobs.Add(((mobUid, xform), xform.MapUid.Value, _transform.GetWorldPosition(xform)));
                     _transform.DetachEntity(mobUid, xform);
                 }
 
@@ -234,7 +232,7 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
                 // Deletion has to happen before grid traversal re-parents players.
                 Del(gridUid);
 
-                foreach (var mob in _playerMobs)
+                foreach (var mob in playerMobs)
                 {
                     _transform.SetCoordinates(mob.Entity.Owner, new EntityCoordinates(mob.MapUid, mob.LocalPosition));
                 }
