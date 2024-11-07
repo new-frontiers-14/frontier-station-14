@@ -51,15 +51,8 @@ public sealed partial class ShipyardConsoleComponent : Component
     public List<ProtoId<AccessLevelPrototype>> NewAccessLevels = new();
 
     /// <summary>
-    /// A tax rate that is imposed on the owner when a shuttle is sold. The tax is credited to
-    /// the station's bank account.
-    /// Expressed as a fraction of shuttle value: 0.3 means the owner loses 30% of the shuttle's value.
+    /// The accounts to receive payment, and the tax rate to apply for ship sales from this console.
     /// </summary>
     [DataField]
-    public float SalesTax = 0;
-    /// <summary>
-    /// The accounts to receive payment for taxes taken off of ship sales.
-    /// </summary>
-    [DataField]
-    public List<SectorBankAccount> TaxAccounts = new();
+    public Dictionary<SectorBankAccount, float> TaxAccounts = new();
 }

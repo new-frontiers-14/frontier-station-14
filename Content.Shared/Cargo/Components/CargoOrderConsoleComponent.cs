@@ -34,10 +34,6 @@ public sealed partial class CargoOrderConsoleComponent : Component
     // Frontier: station taxes
     // Accounts to receive tax value (each currently receives the entirety of the taxed value)
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public List<SectorBankAccount> TaxAccounts = new();
-
-    // Tax coefficient on vendor 
-    [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public float TaxCoefficient = 0.4f;
+    public Dictionary<SectorBankAccount, float> TaxAccounts = new();
     // End Frontier
 }

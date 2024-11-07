@@ -35,3 +35,11 @@ ledger-entry-type-StationWithdrawalWorkOrder = Work Orders
 ledger-entry-type-StationWithdrawalSupplies = Supply Expenses
 ledger-entry-type-StationWithdrawalBounty = Bounties
 ledger-entry-type-StationWithdrawalOther = Misc. Expenses
+
+ledger-printout-account = __**{$account}**__
+ledger-printout-income-header = **Income:**
+ledger-printout-expenses-header = **Expenses:**
+ledger-printout-line-item = {$entryType}: {$amount}
+ledger-printout-total-income = **Total Income: {$amount}**
+ledger-printout-total-expenses = **Total Expenses: {$amount}**
+ledger-printout-balance = **Ending Balance: {$amount}**

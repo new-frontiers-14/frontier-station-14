@@ -206,12 +206,8 @@ namespace Content.Shared.VendingMachines
 
         // Frontier: taxes
         // Accounts to receive some proportion of each sale via taxation.
-        [DataField, ViewVariables(VVAccess.ReadWrite)]
-        public List<SectorBankAccount> TaxAccounts = new();
-
-        // The fraction of the sale value to deposit in all tax accounts
-        [DataField, ViewVariables(VVAccess.ReadWrite)]
-        public float TaxCoefficient = 0.0f;
+        [DataField(serverOnly: true), ViewVariables(VVAccess.ReadWrite)]
+        public Dictionary<SectorBankAccount, float> TaxAccounts = new();
         // End Frontier: taxes
     }
 

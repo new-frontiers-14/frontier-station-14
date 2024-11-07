@@ -111,8 +111,9 @@
     hintText: dead-drop-hint-vendor # Frontier
   - type: VendingMachine # Frontier
     pack: "" # Frontier
-    taxCoefficient: 0.45 # Frontier
-    taxAccounts: [Frontier] # Frontier
+    taxAccounts: # Frontier
+      Frontier: 0.25 # Frontier
+      Nfsd: 0.15 # Frontier
 
 - type: entity
   parent: VendingMachine

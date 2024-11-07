@@ -15,13 +15,9 @@ public sealed partial class BankATMComponent : Component
 
     public static string CashSlotId = "bank-ATM-cashSlot";
 
-    // If positive, this fraction will be taken off of any deposits made at this ATM and deposited into the TaxAccount
+    // A dictionary of the accounts to credit, and fractions to remove from each deposit.
     [DataField]
-    public float TaxCoefficient = 0.0f;
-
-    // The account to deposit taxed funds into.
-    [DataField]
-    public SectorBankAccount TaxAccount = SectorBankAccount.Frontier;
+    public Dictionary<SectorBankAccount, float> TaxAccounts = new();
 
     [DataField]
     public ItemSlot CashSlot = new();

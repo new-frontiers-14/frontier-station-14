@@ -146,13 +146,14 @@ public sealed partial class BankSystem
             return;
         }
 
-        if (component.TaxCoefficient > 0.0f)
+        var originalDeposit = deposit;
+        foreach (var (account, taxCoeff) in component.TaxAccounts)
         {
-            var tax = (int)(deposit * component.TaxCoefficient);
-            tax = int.Clamp(tax, 0, deposit);
-            TrySectorDeposit(component.TaxAccount, tax, LedgerEntryType.BlackMarketAtmTax);
+            var tax = (int)Math.Floor(originalDeposit * taxCoeff);
+            TrySectorDeposit(account, tax, LedgerEntryType.BlackMarketAtmTax);
             deposit -= tax; // Charge the user whether or not the deposit went through.
         }
+        deposit = int.Max(0, deposit);
 
         // try to deposit the inserted cash into a player's bank acount. Validation happens on the banking system but we still indicate error.
         if (!TryBankDeposit(player, deposit))

@@ -225,11 +225,10 @@ namespace Content.Server.Cargo.Systems
             // orderDatabase.Orders.Remove(order); // Frontier
 
             // Frontier: account balances, taxing vendor purchases
-            int tax = (int)Math.Floor(cost * component.TaxCoefficient);
-            if (tax > 0)
+            foreach (var (account, taxCoeff) in component.TaxAccounts)
             {
-                foreach (var taxAccount in component.TaxAccounts)
-                    _bankSystem.TrySectorDeposit(taxAccount, tax, LedgerEntryType.CargoTax);
+                var tax = (int)Math.Floor(cost * taxCoeff);
+                _bankSystem.TrySectorDeposit(account, tax, LedgerEntryType.CargoTax);
             }
             _bankSystem.TryBankWithdraw(player, cost);
             // End Frontier

@@ -31,7 +31,6 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly ShuttleSystem _shuttle = default!;
     [Dependency] private readonly PricingSystem _pricing = default!;
-    [Dependency] private readonly CargoSystem _cargo = default!;
     [Dependency] private readonly BankSystem _bank = default!;
 
     private List<(Entity<TransformComponent> Entity, EntityUid MapUid, Vector2 LocalPosition)> _playerMobs = new();
@@ -241,9 +240,9 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
                     _transform.SetCoordinates(mob.Entity.Owner, new EntityCoordinates(mob.MapUid, mob.LocalPosition));
                 }
 
-                var reward = (int)(gridValue * component.RewardFactor);
-                foreach (var account in component.RewardAccounts)
+                foreach (var (account, rewardCoeff) in component.RewardAccounts)
                 {
+                    var reward = (int)(gridValue * rewardCoeff);
                     _bank.TrySectorDeposit(account, reward, LedgerEntryType.BluespaceReward);
                 }
             }

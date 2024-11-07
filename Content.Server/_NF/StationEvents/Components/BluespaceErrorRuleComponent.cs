@@ -19,10 +19,11 @@ public sealed partial class BluespaceErrorRuleComponent : Component
     [DataField(required: true)] public Dictionary<string, IBluespaceSpawnGroup> Groups = new();
 
     /// <summary>
-    /// Sector accounts to be credited on event completion.
+    /// Sector accounts and factor to be credited on event completion.
+    /// Each account will be awarded with a fraction of the grid's total value at the end of the event.
     /// </summary>
     [DataField]
-    public List<SectorBankAccount> RewardAccounts = new();
+    public Dictionary<SectorBankAccount, float> RewardAccounts = new();
 
     /// <summary>
     /// The grid in question, set after starting the event
@@ -40,13 +41,6 @@ public sealed partial class BluespaceErrorRuleComponent : Component
     /// </summary>
     [DataField]
     public bool DeleteGridsOnEnd = true;
-
-    /// <summary>
-    /// Multiplier to apply to the remaining value of a grid, to be deposited in the station account for defending the grids.
-    /// Note:
-    /// </summary>
-    [DataField]
-    public float RewardFactor = 0f;
 
     /// <summary>
     /// How much the grid is appraised at upon entering into existence, set after starting the event

@@ -365,11 +365,10 @@ namespace Content.Server.VendingMachines
                     _bankSystem.TryBankWithdraw(sender, totalPrice))
                 {
                     // Frontier: tax cargo purchases
-                    int tax = (int)Math.Floor(totalPrice * component.TaxCoefficient);
-                    if (tax > 0)
+                    foreach (var (account, taxCoeff) in component.TaxAccounts)
                     {
-                        foreach (var account in component.TaxAccounts)
-                            _bankSystem.TrySectorDeposit(account, tax, LedgerEntryType.VendorTax);
+                        var tax = (int)Math.Floor(totalPrice * taxCoeff);
+                        _bankSystem.TrySectorDeposit(account, tax, LedgerEntryType.VendorTax);
                     }
 
                     Dirty(uid, component);

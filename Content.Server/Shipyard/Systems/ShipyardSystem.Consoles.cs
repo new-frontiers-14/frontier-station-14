@@ -291,14 +291,8 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             if (TryComp<ShuttleDeedComponent>(targetId, out var deed))
                 sellValue = (int) _pricing.AppraiseGrid((EntityUid) (deed?.ShuttleUid!));
 
-            var tax = CalculateSalesTax(component, sellValue);
+            var tax = CalculateTotalSalesTax(component, sellValue);
             sellValue -= tax;
-
-            if (tax > 0)
-            {
-                foreach (var account in component.TaxAccounts)
-                    _bank.TrySectorDeposit(account, tax, LedgerEntryType.BlackMarketShipyardTax);
-            }
         }
 
         SendPurchaseMessage(shipyardConsoleUid, player, name, component.ShipyardChannel, secret: false);
@@ -428,14 +422,14 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         if (!voucherUsed)
         {
-            var tax = CalculateSalesTax(component, bill);
-            if (tax != 0)
+            int originalBill = bill;
+            foreach (var (account, taxCoeff) in component.TaxAccounts)
             {
-                foreach (var account in component.TaxAccounts)
-                    _bank.TrySectorDeposit(account, tax, LedgerEntryType.BlackMarketShipyardTax);
-
+                var tax = CalculateSalesTax(originalBill, taxCoeff);
+                _bank.TrySectorDeposit(account, tax, LedgerEntryType.BlackMarketShipyardTax);
                 bill -= tax;
             }
+            bill = int.Max(0, bill);
 
             _bank.TryBankDeposit(player, bill);
             PlayConfirmSound(player, uid, component);
@@ -500,7 +494,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         if (deed?.ShuttleUid != null)
             sellValue = (int) _pricing.AppraiseGrid((EntityUid) (deed?.ShuttleUid!));
 
-        sellValue -= CalculateSalesTax(component, sellValue);
+        sellValue -= CalculateTotalSalesTax(component, sellValue);
 
         var fullName = deed != null ? GetFullName(deed) : null;
         RefreshState(uid, bank.Balance, true, fullName, sellValue, targetId, (ShipyardConsoleUiKey) args.UiKey, voucherUsed);
@@ -590,9 +584,9 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
             int sellValue = 0;
             if (deed?.ShuttleUid != null)
-                sellValue = (int) _pricing.AppraiseGrid((EntityUid) (deed?.ShuttleUid!));
+                sellValue = (int) _pricing.AppraiseGrid(deed.ShuttleUid.Value);
 
-            sellValue -= CalculateSalesTax(component, sellValue);
+            sellValue -= CalculateTotalSalesTax(component, sellValue);
 
             var fullName = deed != null ? GetFullName(deed) : null;
             RefreshState(uid,
@@ -783,11 +777,19 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         deed.ShuttleOwner = shuttleOwner;
     }
 
-    private int CalculateSalesTax(ShipyardConsoleComponent component, int sellValue)
+    private int CalculateTotalSalesTax(ShipyardConsoleComponent component, int sellValue)
     {
-        if (float.IsFinite(component.SalesTax) && component.SalesTax != 0f)
+        int salesTax = 0;
+        foreach (var (account, taxCoeff) in component.TaxAccounts)
+            salesTax += CalculateSalesTax(sellValue, taxCoeff);
+        return salesTax;
+    }
+
+    private int CalculateSalesTax(int sellValue, float taxRate)
+    {
+        if (float.IsFinite(taxRate) && taxRate > 0f)
         {
-            return (int) (sellValue * component.SalesTax);
+            return (int) (sellValue * taxRate);
         }
         return 0;
     }

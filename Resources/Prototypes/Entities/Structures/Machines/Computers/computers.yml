@@ -829,9 +829,9 @@
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
   - type: CargoOrderConsole
-    taxCoefficient: 0.4 # Frontier
     taxAccounts: # Frontier
-    - Frontier # Frontier
+      Frontier: 0.25 # Frontier
+      Nfsd: 0.15 # Frontier
   - type: BankClient
 #  - type: ActiveRadio # Frontier
 #    channels: # Frontier
