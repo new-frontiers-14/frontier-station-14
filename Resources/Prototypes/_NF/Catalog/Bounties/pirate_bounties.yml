@@ -349,11 +349,11 @@
   description: pirate-bounty-description-generic
   entries:
   - name: pirate-bounty-item-diamond
-    amount: 5 # TODO: fix amount - should use stack quantity
+    amount: 10
     idWhitelist:
       id:
       - MaterialDiamond
-      matchParents: true
+      matchParents: true # Singular vs. multiple diamonds
 
 - type: pirateBounty
   id: PirateBountyGold
@@ -361,12 +361,12 @@
   description: pirate-bounty-description-generic
   entries:
   - name: pirate-bounty-item-gold
-    amount: 5 # TODO: fix amount - should use stack quantity
+    amount: 100
     idWhitelist:
       id:
       - GoldOre
       - IngotGold
-      matchParents: true
+      matchParents: true # Singular vs. multiple gold ore/ingot stacks
 
 - type: pirateBounty
   id: PirateBountyPlasmaCanister
@@ -382,16 +382,16 @@
 
 - type: pirateBounty
   id: PirateBountyContraCrate
-  reward: 3
+  reward: 8 # Bonus of 2 doubloons vs. individual turn-in.
   description: pirate-bounty-description-generic
   spawnChest: false
   entries:
   - name: pirate-bounty-item-contracrate
-    amount: 1
+    amount: 3
     idWhitelist:
       id:
       - CrateTradeBaseSecureContraband
-      matchParents: true # Filled variants and non-filled ones
+      matchParents: true # Should match trading crates and more valuable contraband crates
 
 - type: pirateBounty
   id: PirateBountyHydroTray
