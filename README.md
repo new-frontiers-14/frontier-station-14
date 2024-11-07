@@ -28,6 +28,7 @@ Any changes made to files belonging to our upstream should be properly marked in
 1. Clone this repo.
 2. Run `RUN_THIS.py` to init submodules and download the engine.
 3. Compile the solution.
+4.TEST
 
 [More detailed instructions on building the project.](https://docs.spacestation14.com/en/general-development/setup.html)
 
