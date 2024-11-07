@@ -106,10 +106,9 @@
   entries:
   - name: pirate-bounty-item-thruster
     amount: 3
-    idWhitelist:
-      id:
-      - BaseThruster
-      matchParents: true
+    whitelist:
+      components:
+      - Thruster
 
 - type: pirateBounty
   id: PirateBountyGravGen
@@ -262,9 +261,9 @@
       id:
       - ArtifactAnalyzerMachineCircuitboard
 
-- type: pirateBounty
+- type: pirateBounty # FIXME: hotplate has no hard fixture
   id: PirateBountyHotplate
-  reward: 5
+  reward: 3
   description: pirate-bounty-description-generic
   spawnChest: false
   entries:
@@ -317,7 +316,7 @@
     amount: 1
     idWhitelist:
       id:
-      - Hypospray
+      - HypoMini
       matchParents: true # NFSD/Limited Edition versions fine
 
 - type: pirateBounty
@@ -344,17 +343,17 @@
       id:
       - Autolathe
 
-# needs work
-# - type: pirateBounty
-#   id: PirateBountyDiamond
-#   reward: 4
-#   description: pirate-bounty-description-generic
-#   entries:
-#   - name: pirate-bounty-item-diamond
-#     amount: 5
-#     idWhitelist:
-#       id:
-#       - MaterialDiamond
+- type: pirateBounty
+  id: PirateBountyDiamond
+  reward: 4
+  description: pirate-bounty-description-generic
+  entries:
+  - name: pirate-bounty-item-diamond
+    amount: 5 # TODO: fix amount - should use stack quantity
+    idWhitelist:
+      id:
+      - MaterialDiamond
+      matchParents: true
 
 - type: pirateBounty
   id: PirateBountyGold
@@ -362,11 +361,12 @@
   description: pirate-bounty-description-generic
   entries:
   - name: pirate-bounty-item-gold
-    amount: 5
+    amount: 5 # TODO: fix amount - should use stack quantity
     idWhitelist:
       id:
-      - GoldOre1
+      - GoldOre
       - IngotGold
+      matchParents: true
 
 - type: pirateBounty
   id: PirateBountyPlasmaCanister
@@ -390,9 +390,7 @@
     amount: 1
     idWhitelist:
       id:
-      - CrateTradeContrabandSecureNormal
-      - CrateTradeContrabandSecureDonk
-      - CrateTradeContrabandSecureCyberSun
+      - CrateTradeBaseSecureContraband
       matchParents: true # Filled variants and non-filled ones
 
 - type: pirateBounty

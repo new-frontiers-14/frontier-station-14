@@ -413,7 +413,7 @@ public sealed partial class CargoSystem
         foreach (var (palletUid, _) in GetContrabandPallets(gridUid))
         {
             foreach (var ent in _lookup.GetEntitiesIntersecting(palletUid,
-                         LookupFlags.Dynamic | LookupFlags.Sundries | LookupFlags.Approximate))
+                         LookupFlags.Dynamic | LookupFlags.Sundries | LookupFlags.Approximate | LookupFlags.Sensors))
             {
                 // Dont match:
                 // - anything anchored (e.g. light fixtures)
@@ -489,7 +489,6 @@ public sealed partial class CargoSystem
 
         if (amount > 0)
         {
-            // TODO: play a sound here, ideally the "deposit money" chime used on ATMs
             _stack.SpawnMultiple("Doubloon", amount, Transform(uid).Coordinates);
             _audio.PlayPvs(component.AcceptSound, uid);
             _popup.PopupEntity(Loc.GetString("pirate-bounty-redemption-success", ("bounties", redeemedBounties), ("amount", amount)), args.Actor);
