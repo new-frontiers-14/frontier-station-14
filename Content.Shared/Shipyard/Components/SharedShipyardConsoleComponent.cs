@@ -51,6 +51,12 @@ public sealed partial class ShipyardConsoleComponent : Component
     public List<ProtoId<AccessLevelPrototype>> NewAccessLevels = new();
 
     /// <summary>
+    /// Indicates that the deeds that come from this console can be copied and transferred.
+    /// </summary>
+    [DataField]
+    public bool CanTransferDeed = true;
+
+    /// <summary>
     /// The accounts to receive payment, and the tax rate to apply for ship sales from this console.
     /// </summary>
     [DataField]

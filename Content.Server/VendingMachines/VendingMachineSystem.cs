@@ -367,6 +367,8 @@ namespace Content.Server.VendingMachines
                     // Frontier: tax cargo purchases
                     foreach (var (account, taxCoeff) in component.TaxAccounts)
                     {
+                        if (!float.IsFinite(taxCoeff) || taxCoeff <= 0.0f)
+                            continue;
                         var tax = (int)Math.Floor(totalPrice * taxCoeff);
                         _bankSystem.TrySectorDeposit(account, tax, LedgerEntryType.VendorTax);
                     }
