@@ -2,6 +2,10 @@ station-event-bluespace-dungeon-start-announcement = Inbound facility-class blue
 station-event-bluespace-dungeon-warning-announcement = Bluespace instability detected on facility, five minutes until estimated departure.
 station-event-bluespace-dungeon-end-announcement = Critical bluespace instability detected, the facility has exited the sector.
 
+station-event-bluespace-scrap-start-announcement = Storms detected in bluespace lanes, expect inbound wreckage shortly. Wrecked ships are valid salvage targets.
+station-event-bluespace-scrap-warning-announcement = Bluespace instability detected on wreckage, five minutes until expected departure.
+station-event-bluespace-scrap-end-announcement = Critical bluespace instability detected, storm wreckage has exited the sector.
+
 station-event-bluespace-vault-start-announcement = A NanoTrasen autonomous armored vault transport has made an FTL error and will soon arrive nearby. Your sector will be rewarded for it's safe return.
 station-event-bluespace-vault-warning-announcement = Remote FTL procedures initialized, five minutes until vault extraction.
 station-event-bluespace-vault-end-announcement = We have successfully retrieved the vault from your sector and have reimbursed your nearby Frontier Outpost accordingly.
