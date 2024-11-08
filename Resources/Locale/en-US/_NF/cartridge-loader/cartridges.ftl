@@ -30,6 +30,7 @@ ledger-entry-type-StationDepositDonation = Donations
 ledger-entry-type-StationDepositAssetsSold = Sold Assets
 ledger-entry-type-StationDepositOther = Misc. Deposits
 ledger-entry-type-MailPenalty = Mail Penalties
+ledger-entry-type-ShuttleRecordFees = Shuttle Record Fees
 ledger-entry-type-StationWithdrawalPayroll = Payroll
 ledger-entry-type-StationWithdrawalWorkOrder = Work Orders
 ledger-entry-type-StationWithdrawalSupplies = Supply Expenses

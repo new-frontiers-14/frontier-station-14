@@ -38,6 +38,7 @@ public enum LedgerEntryType : byte
     StationDepositOther,
     // Expense entries
     MailPenalty,
+    ShuttleRecordFees,
     StationWithdrawalPayroll,
     StationWithdrawalWorkOrder,
     StationWithdrawalSupplies,
