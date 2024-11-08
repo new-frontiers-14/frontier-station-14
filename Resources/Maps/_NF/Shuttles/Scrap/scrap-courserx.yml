@@ -366,31 +366,29 @@ entities:
           0,-1:
             0: 65535
           -2,-3:
-            1: 8192
-            0: 52428
+            0: 60620
           -2,-2:
             0: 61166
           -2,-4:
-            1: 18560
-            0: 32768
+            0: 51328
           -1,-4:
             0: 65535
           -1,-3:
-            0: 65535
+            0: 32767
+            1: 32768
           -1,-2:
             0: 65535
           0,-4:
             0: 65535
           0,-3:
-            0: 65535
+            0: 61439
+            1: 4096
           0,-2:
             0: 65535
           1,-4:
-            1: 8464
-            0: 4096
+            0: 12560
           1,-3:
-            0: 13107
-            1: 16384
+            0: 29491
           1,-2:
             0: 30583
           1,-1:
@@ -398,23 +396,21 @@ entities:
           -2,0:
             0: 61166
           -2,1:
-            0: 52974
-            1: 8192
+            0: 61166
           -2,2:
-            0: 36044
-            1: 16384
+            0: 52428
           -2,3:
-            0: 8
-            1: 128
+            0: 136
           -1,0:
             0: 65535
           -1,1:
-            0: 65535
+            0: 65531
+            1: 4
           -1,2:
-            0: 65535
-          -1,3:
             0: 61439
-            1: 4096
+            2: 4096
+          -1,3:
+            0: 65535
           0,0:
             0: 65535
           0,1:
@@ -422,25 +418,19 @@ entities:
           0,2:
             0: 65535
           0,3:
-            0: 32767
-            1: 32768
+            0: 65535
           1,0:
             0: 30583
           1,1:
-            0: 14199
-            1: 16384
+            0: 30583
           1,2:
-            0: 4915
-            1: 8192
+            0: 13107
           1,3:
-            0: 1
-            1: 16
+            0: 17
           -1,-5:
-            1: 4384
-            0: 61120
+            0: 65504
           0,-5:
-            0: 30512
-            1: 34880
+            0: 65392
         uniqueMixes:
         - volume: 2500
           temperature: 293.15
@@ -458,10 +448,25 @@ entities:
           - 0
           - 0
         - volume: 2500
-          temperature: 293.15
+          temperature: 147.92499
           moles:
           - 0
           - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          temperature: 293.15
+          moles:
+          - 1.5960307
+          - 6.0041156
           - 0
           - 0
           - 0
@@ -638,17 +643,15 @@ entities:
     - type: Transform
       pos: 2.5,8.5
       parent: 1
-  - uid: 227
-    components:
-    - type: Transform
-      pos: 2.5,13.5
-      parent: 1
-- proto: AsteroidRockIronGolem
-  entities:
   - uid: 35
     components:
     - type: Transform
       pos: 1.5,9.5
+      parent: 1
+  - uid: 227
+    components:
+    - type: Transform
+      pos: 2.5,13.5
       parent: 1
 - proto: AsteroidRockPlasma
   entities:
@@ -828,8 +831,6 @@ entities:
     - type: Transform
       pos: 0.5,2.5
       parent: 1
-    - type: Physics
-      bodyType: Static
 - proto: BenchSofaCorpRight
   entities:
   - uid: 53
@@ -837,8 +838,6 @@ entities:
     - type: Transform
       pos: -0.5,2.5
       parent: 1
-    - type: Physics
-      bodyType: Static
 - proto: BookRandom
   entities:
   - uid: 57
@@ -2563,24 +2562,6 @@ entities:
     - type: Transform
       pos: -3.5,11.5
       parent: 1
-    - type: EntityStorage
-      air:
-        volume: 200
-        immutable: False
-        temperature: 293.14917
-        moles:
-        - 1.734816
-        - 6.5262127
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
 - proto: LockerEngineerFilled
   entities:
   - uid: 465
@@ -2588,24 +2569,6 @@ entities:
     - type: Transform
       pos: 2.5,-13.5
       parent: 1
-    - type: EntityStorage
-      air:
-        volume: 200
-        immutable: False
-        temperature: 293.1496
-        moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
 - proto: LockerMedicalFilled
   entities:
   - uid: 466
@@ -2613,24 +2576,6 @@ entities:
     - type: Transform
       pos: -1.5,-6.5
       parent: 1
-    - type: EntityStorage
-      air:
-        volume: 200
-        immutable: False
-        temperature: 293.1496
-        moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
 - proto: LockerMedicineFilled
   entities:
   - uid: 467
@@ -2638,24 +2583,6 @@ entities:
     - type: Transform
       pos: -0.5,-6.5
       parent: 1
-    - type: EntityStorage
-      air:
-        volume: 200
-        immutable: False
-        temperature: 293.1496
-        moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
 - proto: LockerMercenaryFilled
   entities:
   - uid: 450
@@ -2760,8 +2687,6 @@ entities:
       anchored: True
       pos: -0.5,-12.5
       parent: 1
-    - type: Physics
-      bodyType: Static
 - proto: OxygenCanister
   entities:
   - uid: 339
@@ -2770,8 +2695,6 @@ entities:
       anchored: True
       pos: 0.5,-12.5
       parent: 1
-    - type: Physics
-      bodyType: Static
 - proto: PaperCaptainsThoughts
   entities:
   - uid: 474
@@ -2958,13 +2881,6 @@ entities:
     - type: Transform
       pos: -4.5,-5.5
       parent: 1
-- proto: RandomEngineerCorpseSpawner
-  entities:
-  - uid: 116
-    components:
-    - type: Transform
-      pos: 1.5,-12.5
-      parent: 1
 - proto: RandomInstruments
   entities:
   - uid: 518
@@ -2978,20 +2894,6 @@ entities:
     components:
     - type: Transform
       pos: 3.5,-4.5
-      parent: 1
-- proto: RandomMedicCorpseSpawner
-  entities:
-  - uid: 63
-    components:
-    - type: Transform
-      pos: 0.5,-5.5
-      parent: 1
-- proto: RandomServiceCorpseSpawner
-  entities:
-  - uid: 166
-    components:
-    - type: Transform
-      pos: -2.5,-1.5
       parent: 1
 - proto: RandomSpawner
   entities:
@@ -3143,23 +3045,6 @@ entities:
     components:
     - type: Transform
       pos: 5.5,0.5
-      parent: 1
-- proto: SalvageHumanCorpseSpawner
-  entities:
-  - uid: 82
-    components:
-    - type: Transform
-      pos: -1.5,12.5
-      parent: 1
-  - uid: 161
-    components:
-    - type: Transform
-      pos: -4.5,-9.5
-      parent: 1
-  - uid: 174
-    components:
-    - type: Transform
-      pos: -0.5,5.5
       parent: 1
 - proto: SalvageMaterialCrateSpawner
   entities:
@@ -3400,7 +3285,7 @@ entities:
     - type: Transform
       pos: 1.5,-3.5
       parent: 1
-- proto: soda_dispenser
+- proto: SodaDispenser
   entities:
   - uid: 572
     components:
@@ -3550,39 +3435,29 @@ entities:
       rot: 3.141592653589793 rad
       pos: 5.5,-12.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
   - uid: 623
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 6.5,-8.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
   - uid: 624
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -6.5,-8.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
   - uid: 625
     components:
     - type: Transform
       pos: -4.5,13.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
   - uid: 630
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 3.5,-17.5
       parent: 1
-    - type: Thruster
-      originalPowerLoad: 1500
 - proto: VendingMachineCigs
   entities:
   - uid: 634
@@ -3982,7 +3857,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: 4.5,-13.5
       parent: 1
-- proto: WarpPointNFScrap
+- proto: WarpPoint
   entities:
   - uid: 269
     components:

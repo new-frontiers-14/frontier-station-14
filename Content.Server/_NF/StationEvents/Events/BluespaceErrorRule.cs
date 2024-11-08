@@ -16,6 +16,7 @@ using Content.Server.Procedural;
 using Robust.Shared.Prototypes;
 using Content.Shared.Salvage;
 using Content.Server.Warps;
+using Content.Server.Station.Systems;
 
 namespace Content.Server.StationEvents.Events;
 
@@ -32,6 +33,7 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
     [Dependency] private readonly ShuttleSystem _shuttle = default!;
     [Dependency] private readonly PricingSystem _pricing = default!;
     [Dependency] private readonly CargoSystem _cargo = default!;
+    [Dependency] private readonly StationSystem _stationSystem = default!;
 
     private List<(Entity<TransformComponent> Entity, EntityUid MapUid, Vector2 LocalPosition)> _playerMobs = new();
 
@@ -95,16 +97,13 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
                 {
                     // update all warp points that belong to this station grid
                     var query = EntityQueryEnumerator<WarpPointComponent>();
-                    while (query.MoveNext(out var spawned, out var warp))
+                    while (query.MoveNext(out var warpUid, out var warp))
                     {
-
-                        _metadata.GetEntityName(spawned);
-
-                        var warpStationUid = _stationSystem.GetOwningStation(uid);
-                        if (warpStationUid != stationUid)
+                        var warpStationUid = _stationSystem.GetOwningStation(warpUid);
+                        if (warpStationUid != spawned)
                             continue;
 
-                        var stationName = Name(warpStationUid.Value);
+                        var stationName = Name(spawned);
                         warp.Location = stationName;
                     }
                 }

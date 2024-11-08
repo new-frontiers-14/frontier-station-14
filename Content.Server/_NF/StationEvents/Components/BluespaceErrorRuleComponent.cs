@@ -119,7 +119,7 @@ public sealed class BluespaceDungeonSpawnGroup : IBluespaceSpawnGroup
     public bool NameGrid { get; set; } = false;
 
     /// <inheritdoc />
-    public bool NameWarp { get; set; } = false;
+    public bool NameWarp { get; set; } = true;
 }
 
 [DataRecord]

@@ -509,88 +509,99 @@ entities:
       version: 2
       data:
         tiles:
+          -2,-4:
+            0: 8746
+          -2,-5:
+            0: 26342
+          -2,-3:
+            0: 8268
+            1: 34816
+          -2,-2:
+            1: 52428
           -2,-1:
-            0: 52462
-            1: 8704
+            1: 2220
+            0: 8704
+          -1,-4:
+            1: 52811
+            0: 12564
+          -1,-3:
+            1: 65055
+            0: 256
+          -1,-2:
+            1: 65531
+            0: 4
           -1,-1:
-            0: 65535
+            1: 20455
+            0: 24
+          -1,0:
+            1: 55291
+            0: 10244
+          -1,-5:
+            1: 61028
+            0: 129
+          0,-4:
+            1: 29267
+            0: 256
+          0,-3:
+            1: 57155
+            0: 8324
+          0,-2:
+            1: 60133
+            0: 1024
           0,-1:
-            0: 65535
+            1: 60190
+            0: 1024
+          0,-5:
+            1: 12819
+            0: 388
+          0,0:
+            1: 60102
+            0: 1064
+          1,-4:
+            0: 13090
+          1,-3:
+            0: 4097
+          1,-2:
+            1: 4353
+            0: 18
           1,-1:
+            0: 1
+            1: 4384
+          1,0:
+            1: 4883
+          1,-5:
             0: 13107
           -2,0:
-            1: 26214
-            0: 34952
-          -1,0:
-            0: 65535
-          0,0:
-            0: 65535
-          1,0:
-            0: 13107
-          -2,-4:
-            1: 26146
-            0: 34816
-          -2,-3:
-            0: 52872
-            1: 8260
-          -2,-2:
-            0: 61166
-          -1,-4:
-            0: 65535
-          -1,-3:
-            0: 65535
-          -1,-2:
-            0: 65535
-          0,-4:
-            0: 65399
-          0,-3:
-            0: 65535
-          0,-2:
-            0: 65535
-          1,-4:
-            1: 13090
-          1,-3:
-            1: 8209
-            0: 4864
-          1,-2:
-            0: 13107
+            0: 41472
+            1: 18432
           -2,1:
-            0: 35470
-            1: 17504
-          -1,1:
-            0: 65535
-          -1,2:
-            1: 1
-            0: 14
-          0,1:
-            0: 65535
-          0,2:
-            0: 3
+            0: 17504
             1: 4
+          -1,1:
+            1: 53076
+            0: 160
+          -1,2:
+            0: 1
+            1: 2
+          0,1:
+            0: 3328
+            1: 21198
+          0,2:
+            0: 4
           1,1:
-            0: 787
-            1: 4128
+            1: 16
+            0: 32
           -2,-6:
-            1: 25668
-          -2,-5:
-            1: 26342
-          -1,-5:
-            1: 1
-            0: 65534
+            0: 25668
           -1,-6:
-            0: 57344
+            1: 8192
           0,-6:
-            0: 12288
-          0,-5:
-            0: 30579
-            1: 132
+            1: 8192
           1,-6:
-            1: 12561
-          1,-5:
-            1: 13107
+            0: 12561
         uniqueMixes:
         - volume: 2500
-          temperature: 293.15
+          immutable: True
           moles:
           - 0
           - 0
@@ -607,8 +618,8 @@ entities:
         - volume: 2500
           temperature: 293.15
           moles:
-          - 0
-          - 0
+          - 21.824879
+          - 82.10312
           - 0
           - 0
           - 0
@@ -673,8 +684,6 @@ entities:
       anchored: True
       pos: 1.5,-15.5
       parent: 70
-    - type: Physics
-      bodyType: Static
 - proto: AirlockCargoGlass
   entities:
   - uid: 570
@@ -1075,17 +1084,11 @@ entities:
     - type: Transform
       pos: 5.5,-0.5
       parent: 70
-    - type: DeviceLinkSink
-      links:
-      - 529
   - uid: 85
     components:
     - type: Transform
       pos: 5.5,3.5
       parent: 70
-    - type: DeviceLinkSink
-      links:
-      - 529
 - proto: CableApcExtension
   entities:
   - uid: 10
@@ -2039,99 +2042,66 @@ entities:
       rot: 3.141592653589793 rad
       pos: 1.5,-3.5
       parent: 70
-    - type: DeviceLinkSink
-      links:
-      - 577
   - uid: 216
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 1.5,-2.5
       parent: 70
-    - type: DeviceLinkSink
-      links:
-      - 577
   - uid: 217
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 1.5,-1.5
       parent: 70
-    - type: DeviceLinkSink
-      links:
-      - 577
   - uid: 218
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 4.5,-0.5
       parent: 70
-    - type: DeviceLinkSink
-      links:
-      - 362
   - uid: 220
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 5.5,-0.5
       parent: 70
-    - type: DeviceLinkSink
-      links:
-      - 362
   - uid: 221
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 4.5,3.5
       parent: 70
-    - type: DeviceLinkSink
-      links:
-      - 362
   - uid: 230
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 5.5,3.5
       parent: 70
-    - type: DeviceLinkSink
-      links:
-      - 362
   - uid: 247
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 3.5,3.5
       parent: 70
-    - type: DeviceLinkSink
-      links:
-      - 362
   - uid: 248
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 3.5,-0.5
       parent: 70
-    - type: DeviceLinkSink
-      links:
-      - 362
   - uid: 249
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 1.5,-4.5
       parent: 70
-    - type: DeviceLinkSink
-      links:
-      - 577
   - uid: 250
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 1.5,-5.5
       parent: 70
-    - type: DeviceLinkSink
-      links:
-      - 577
 - proto: DefibrillatorCabinetFilled
   entities:
   - uid: 609
@@ -3295,8 +3265,6 @@ entities:
     - type: Transform
       pos: -3.5,8.5
       parent: 70
-    - type: Thruster
-      originalPowerLoad: 1500
 - proto: HandLabeler
   entities:
   - uid: 579
@@ -3325,24 +3293,6 @@ entities:
     - type: Transform
       pos: -3.5,6.5
       parent: 70
-    - type: EntityStorage
-      air:
-        volume: 200
-        immutable: False
-        temperature: 293.14954
-        moles:
-        - 1.6495836
-        - 6.2055764
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
 - proto: LockerSalvageSpecialistFilled
   entities:
   - uid: 367
@@ -3350,24 +3300,6 @@ entities:
     - type: Transform
       pos: -2.5,-1.5
       parent: 70
-    - type: EntityStorage
-      air:
-        volume: 200
-        immutable: False
-        temperature: 293.14957
-        moles:
-        - 1.6971024
-        - 6.3843384
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
   - uid: 375
     components:
     - type: Transform
@@ -3550,18 +3482,6 @@ entities:
     - type: Transform
       pos: 1.5,-16.5
       parent: 70
-- proto: RandomCargoCorpseSpawner
-  entities:
-  - uid: 68
-    components:
-    - type: Transform
-      pos: 3.5,-4.5
-      parent: 70
-  - uid: 72
-    components:
-    - type: Transform
-      pos: -2.5,1.5
-      parent: 70
 - proto: RandomCargoSpawner
   entities:
   - uid: 416
@@ -3583,13 +3503,6 @@ entities:
     components:
     - type: Transform
       pos: 2.5,0.5
-      parent: 70
-- proto: RandomEngineerCorpseSpawner
-  entities:
-  - uid: 75
-    components:
-    - type: Transform
-      pos: -0.5,-17.5
       parent: 70
 - proto: RandomSpawner
   entities:
@@ -3875,43 +3788,26 @@ entities:
     - type: Transform
       pos: 0.5,1.5
       parent: 70
-    - type: DeviceLinkSink
-      links:
-      - 544
   - uid: 252
     components:
     - type: Transform
       pos: 0.5,2.5
       parent: 70
-    - type: DeviceLinkSink
-      links:
-      - 544
   - uid: 253
     components:
     - type: Transform
       pos: 0.5,3.5
       parent: 70
-    - type: DeviceLinkSink
-      links:
-      - 544
   - uid: 261
     components:
     - type: Transform
       pos: 1.5,-2.5
       parent: 70
-    - type: DeviceLinkSink
-      links:
-      - 528
-      - 539
   - uid: 263
     components:
     - type: Transform
       pos: 2.5,-2.5
       parent: 70
-    - type: DeviceLinkSink
-      links:
-      - 528
-      - 539
 - proto: ShuttleWindow
   entities:
   - uid: 5
@@ -4115,14 +4011,14 @@ entities:
     - type: Transform
       pos: 1.5,-14.5
       parent: 70
-- proto: SignMinerDock
+- proto: SignShipDock
   entities:
   - uid: 610
     components:
     - type: Transform
       pos: -5.5,-0.5
       parent: 70
-- proto: soda_dispenser
+- proto: SodaDispenser
   entities:
   - uid: 596
     components:
@@ -4488,54 +4384,40 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -6.5,-1.5
       parent: 70
-    - type: Thruster
-      originalPowerLoad: 1500
   - uid: 59
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -3.5,-19.5
       parent: 70
-    - type: Thruster
-      originalPowerLoad: 1500
   - uid: 61
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -5.5,-10.5
       parent: 70
-    - type: Thruster
-      originalPowerLoad: 1500
   - uid: 62
     components:
     - type: Transform
       pos: -5.5,7.5
       parent: 70
-    - type: Thruster
-      originalPowerLoad: 1500
   - uid: 308
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 2.5,-19.5
       parent: 70
-    - type: Thruster
-      originalPowerLoad: 1500
   - uid: 374
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -6.5,-8.5
       parent: 70
-    - type: Thruster
-      originalPowerLoad: 1500
   - uid: 540
     components:
     - type: Transform
       pos: -6.5,5.5
       parent: 70
-    - type: Thruster
-      originalPowerLoad: 1500
 - proto: TwoWayLever
   entities:
   - uid: 362
@@ -4797,7 +4679,7 @@ entities:
     - type: Transform
       pos: -4.5,4.5
       parent: 70
-- proto: WarpPointNFScrap
+- proto: WarpPoint
   entities:
   - uid: 477
     components:
