@@ -1,6 +1,6 @@
-station-event-bluespace-dungeon-start-announcement = Inbound facility-class bluespace signatures have been detected. Investigate with caution, NanoTrasen is not liable for damages sustained or loss of life.
-station-event-bluespace-dungeon-warning-announcement = Bluespace instability detected on facility, five minutes until estimated departure.
-station-event-bluespace-dungeon-end-announcement = Critical bluespace instability detected, the facility has exited the sector.
+station-event-bluespace-dungeon-start-announcement = Signatures of a large inbound object have been detected. Investigate with caution, NanoTrasen is not liable for damages sustained or loss of life.
+station-event-bluespace-dungeon-warning-announcement = Bluespace instability detected on foreign object, five minutes until estimated departure.
+station-event-bluespace-dungeon-end-announcement = Critical bluespace instability detected, the foreign object has exited the sector.
 
 station-event-bluespace-scrap-start-announcement = Storms detected in bluespace lanes, expect inbound wreckage shortly. Wrecked ships are valid salvage targets.
 station-event-bluespace-scrap-warning-announcement = Bluespace instability detected on wreckage, five minutes until expected departure.
