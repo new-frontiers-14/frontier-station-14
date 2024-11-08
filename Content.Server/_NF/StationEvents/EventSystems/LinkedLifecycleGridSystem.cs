@@ -1,7 +1,12 @@
 using System.Numerics;
 using Content.Server.StationEvents.Components;
+using Content.Shared.Buckle.Components;
 using Content.Shared.Humanoid;
+using Content.Shared.Mech.Components;
+using Content.Shared.Mind;
+using Content.Shared.Mind.Components;
 using Content.Shared.Mobs.Components;
+using Content.Shared.Vehicle.Components;
 using Robust.Shared.Map;
 
 namespace Content.Server.StationEvents.Events;
@@ -9,6 +14,7 @@ namespace Content.Server.StationEvents.Events;
 public sealed class LinkedLifecycleGridSystem : EntitySystem
 {
     [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly SharedMindSystem _mind = default!;
 
     public override void Initialize()
     {
@@ -54,30 +60,96 @@ public sealed class LinkedLifecycleGridSystem : EntitySystem
 
         // Destroy child entities
         foreach (var entity in component.LinkedEntities)
-            DeleteGrid(entity);
+            UnparentPlayersFromGrid(entity, true);
     }
 
-    public void DeleteGrid(EntityUid grid)
+    // Try to get parent of entity where appropriate.
+    private (EntityUid, TransformComponent) GetParentToReparent(EntityUid uid, TransformComponent xform)
     {
-        var mobQuery = AllEntityQuery<HumanoidAppearanceComponent, MobStateComponent, TransformComponent>();
-        List<(Entity<TransformComponent> Entity, EntityUid MapUid, Vector2 LocalPosition)> playerMobs = new();
+        if (TryComp<RiderComponent>(uid, out var rider) && rider.Vehicle != null)
+        {
+            var vehicleXform = Transform(rider.Vehicle.Value);
+            if (vehicleXform.MapUid != null)
+            {
+                return (rider.Vehicle.Value, vehicleXform);
+            }
+        }
+        if (TryComp<MechPilotComponent>(uid, out var mechPilot))
+        {
+            var mechXform = Transform(mechPilot.Mech);
+            if (mechXform.MapUid != null)
+            {
+                return (mechPilot.Mech, mechXform);
+            }
+        }
+        return (uid, xform);
+    }
 
+    // Returns a list of entities to reparent on a grid.
+    // Useful if you need to do your own bookkeeping.
+    public List<(Entity<TransformComponent> Entity, EntityUid MapUid, Vector2 LocalPosition)> GetEntitiesToReparent(EntityUid grid)
+    {
+        List<(Entity<TransformComponent> Entity, EntityUid MapUid, Vector2 LocalPosition)> reparentEntities = new();
+        HashSet<EntityUid> handledEntities = new();
+
+        // Get humanoids
+        var mobQuery = AllEntityQuery<HumanoidAppearanceComponent, MobStateComponent, TransformComponent>();
         while (mobQuery.MoveNext(out var mobUid, out _, out _, out var xform))
+        {
+            handledEntities.Add(mobUid);
+
+            if (xform.GridUid == null || xform.MapUid == null || xform.GridUid != grid)
+                continue;
+
+            var (targetUid, targetXform) = GetParentToReparent(mobUid, xform);
+
+            reparentEntities.Add(((targetUid, targetXform), targetXform.MapUid!.Value, _transform.GetWorldPosition(targetXform)));
+        }
+
+        // Get occupied MindContainers
+        var mindQuery = AllEntityQuery<MindContainerComponent, TransformComponent>();
+        while (mindQuery.MoveNext(out var mobUid, out var mindContainer, out var xform))
         {
             if (xform.GridUid == null || xform.MapUid == null || xform.GridUid != grid)
                 continue;
 
-            // Can't parent directly to map as it runs grid traversal.
-            playerMobs.Add(((mobUid, xform), xform.MapUid.Value, _transform.GetWorldPosition(xform)));
-            _transform.DetachEntity(mobUid, xform);
+            // Not player-controlled, nothing to lose
+            if (_mind.GetMind(mobUid, mindContainer) == null)
+                continue;
+
+            // Already handled
+            if (handledEntities.Contains(mobUid))
+                continue;
+
+            var (targetUid, targetXform) = GetParentToReparent(mobUid, xform);
+
+            reparentEntities.Add(((targetUid, targetXform), targetXform.MapUid!.Value, _transform.GetWorldPosition(targetXform)));
+        }
+
+        return reparentEntities;
+    }
+
+    // Deletes a grid, reparenting every humanoid and player character that's on it.
+    public void UnparentPlayersFromGrid(EntityUid grid, bool deleteGrid)
+    {
+        if (MetaData(grid).EntityLifeStage >= EntityLifeStage.Terminating)
+            return;
+
+        var reparentEntities = GetEntitiesToReparent(grid);
+
+        foreach (var target in reparentEntities)
+        {
+            // Move the target and all of its children (for bikes, mechs, etc.)
+            _transform.DetachEntity(target.Entity.Owner, target.Entity.Comp);
         }
 
         // Deletion has to happen before grid traversal re-parents players.
-        Del(grid);
+        if (deleteGrid)
+            Del(grid);
 
-        foreach (var mob in playerMobs)
+        foreach (var target in reparentEntities)
         {
-            _transform.SetCoordinates(mob.Entity.Owner, new EntityCoordinates(mob.MapUid, mob.LocalPosition));
+            _transform.SetCoordinates(target.Entity.Owner, new EntityCoordinates(target.MapUid, target.LocalPosition));
         }
     }
 }

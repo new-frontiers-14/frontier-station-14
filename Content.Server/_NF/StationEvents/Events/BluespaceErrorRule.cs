@@ -31,6 +31,7 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
     [Dependency] private readonly ShuttleSystem _shuttle = default!;
     [Dependency] private readonly PricingSystem _pricing = default!;
     [Dependency] private readonly CargoSystem _cargo = default!;
+    [Dependency] private readonly LinkedLifecycleGridSystem _linkedLifecycleGrid = default!;
 
     public override void Initialize()
     {
@@ -214,17 +215,10 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
                     }
                 }
 
-                var mobQuery = AllEntityQuery<HumanoidAppearanceComponent, MobStateComponent, TransformComponent>();
-                List<(Entity<TransformComponent> Entity, EntityUid MapUid, Vector2 LocalPosition)> playerMobs = new();
-
-                while (mobQuery.MoveNext(out var mobUid, out _, out _, out var xform))
+                var playerMobs = _linkedLifecycleGrid.GetEntitiesToReparent(gridUid);
+                foreach (var mob in playerMobs)
                 {
-                    if (xform.GridUid == null || xform.MapUid == null || xform.GridUid != gridUid)
-                        continue;
-
-                    // Can't parent directly to map as it runs grid traversal.
-                    playerMobs.Add(((mobUid, xform), xform.MapUid.Value, _transform.GetWorldPosition(xform)));
-                    _transform.DetachEntity(mobUid, xform);
+                    _transform.DetachEntity(mob.Entity.Owner, mob.Entity.Comp);
                 }
 
                 var gridValue = _pricing.AppraiseGrid(gridUid, null);
