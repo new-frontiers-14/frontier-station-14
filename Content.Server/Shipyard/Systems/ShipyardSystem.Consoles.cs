@@ -42,6 +42,7 @@ using Content.Shared.Access;
 using Content.Shared.Tiles;
 using Content.Server._NF.Smuggling.Components;
 using Content.Shared._NF.ShuttleRecords;
+using Content.Server.StationEvents.Components;
 using Content.Shared._NF.Bank.BUI;
 
 namespace Content.Server.Shipyard.Systems;
@@ -289,6 +290,9 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
                 prot.PreventArtifactTriggers = true;
         }
 
+        // Ensure cleanup on ship sale
+        EnsureComp<LinkedLifecycleGridParentComponent>(shuttleUid);
+
         var sellValue = 0;
         if (!voucherUsed)
         {
@@ -305,9 +309,9 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         PlayConfirmSound(player, shipyardConsoleUid, component);
         if (voucherUsed)
-            _adminLogger.Add(LogType.ShipYardUsage, LogImpact.Low, $"{ToPrettyString(player):actor} purchased shuttle {ToPrettyString(shuttleUid)} with a voucher via {ToPrettyString(shipyardConsoleUid)}");
+            _adminLogger.Add(LogType.ShipYardUsage, LogImpact.Low, $"{ToPrettyString(player):actor} used {ToPrettyString(targetId)} to purchase shuttle {ToPrettyString(shuttleUid)} with a voucher via {ToPrettyString(component.Owner)}");
         else
-            _adminLogger.Add(LogType.ShipYardUsage, LogImpact.Low, $"{ToPrettyString(player):actor} purchased shuttle {ToPrettyString(shuttleUid)} for {vessel.Price} credits via {ToPrettyString(shipyardConsoleUid)}");
+            _adminLogger.Add(LogType.ShipYardUsage, LogImpact.Low, $"{ToPrettyString(player):actor} used {ToPrettyString(targetId)} to purchase shuttle {ToPrettyString(shuttleUid)} for {vessel.Price} credits via {ToPrettyString(component.Owner)}");
 
         // Adding the record to the shuttle records system makes them eligible to be copied.
         // Can be set on the component of the shipyard.
@@ -455,9 +459,9 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         EntityUid? refreshId = targetId;
 
         if (voucherUsed)
-            _adminLogger.Add(LogType.ShipYardUsage, LogImpact.Low, $"{ToPrettyString(player):actor} sold {shuttleName} (purchased with voucher) via {ToPrettyString(uid)}");
+            _adminLogger.Add(LogType.ShipYardUsage, LogImpact.Low, $"{ToPrettyString(player):actor} used {ToPrettyString(targetId)} to sell {shuttleName} (purchased with voucher) via {ToPrettyString(component.Owner)}");
         else
-            _adminLogger.Add(LogType.ShipYardUsage, LogImpact.Low, $"{ToPrettyString(player):actor} sold {shuttleName} for {bill} credits via {ToPrettyString(uid)}");
+            _adminLogger.Add(LogType.ShipYardUsage, LogImpact.Low, $"{ToPrettyString(player):actor} used {ToPrettyString(targetId)} to sell {shuttleName} for {bill} credits via {ToPrettyString(component.Owner)}");
 
         // No uses on the voucher left, destroy it.
         if (voucher != null
