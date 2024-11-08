@@ -4,17 +4,6 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: AdventureRule
-    spaceDungeons: # TODO: Remove with new system
-    - CaveFactory
-    - MedSci
-    - FactoryDorms
-    - LavaMercenary
-    - VirologyLab
-    - SalvageOutpost
-    # Upstream definitions
-    - Experiment
-    - SnowyLabs
-    - LavaBrig # Skipping Mineshaft, Haunted; they're in caves
 
 - type: entity
   id: BluespaceEventScheduler
@@ -39,6 +28,27 @@
     - id: BluespaceSyndicateFTLInterception
     - id: BluespaceWizardFederationScout
     - id: BluespaceBloodMoon
+
+- type: entity
+  id: BluespaceDungeonEventScheduler
+  parent: BaseGameRule
+  components:
+  - type: BasicStationEventScheduler
+    scheduledGameRules: !type:NestedSelector
+      tableId: DungeonBluespaceEventsTable
+    minimumTimeUntilFirstEvent: 600 # 10 minutes
+    minMaxEventTiming:
+      min: 2100 # 35 minutes between events
+      max: 2400 # 40 minutes between events
+
+- type: entityTable
+  id: DungeonBluespaceEventsTable
+  table: !type:AllSelector # we need to pass a list of rules, since rules have further restrictions to consider via StationEventComp
+    children:
+    - id: BluespaceDungeonBasalt
+    - id: BluespaceDungeonChromite
+    - id: BluespaceDungeonSnow
+    - id: BluespaceDungeonCave
 
 - type: entity
   id: SmugglingEventScheduler
