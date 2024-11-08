@@ -1,0 +1,27 @@
+- type: entity
+  parent: PlushieOrangeFox
+  id: HolyPlushieOrangeFox
+  name: holy fox plushie
+  description: A cute plushie that look like a foxxo! Hmm.. This is very strange.. 
+  components:
+  - type: PointLight
+    color: "#FFD700FF"
+    energy: 5
+    radius: 3
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Effects/hallelujah.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Effects/hallelujah.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Effects/hallelujah.ogg
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Effects/hallelujah.ogg
+  - type: Sprite
+    sprite: _NF/Objects/Fun/foxplushie.rsi
+    state: holy
+  - type: UseDelay
+    delay: 2.0
