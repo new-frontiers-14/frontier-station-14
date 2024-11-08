@@ -44,6 +44,7 @@ using Content.Shared.Access;
 using Content.Shared.Tiles;
 using Content.Server._NF.Smuggling.Components;
 using Content.Shared._NF.ShuttleRecords;
+using Content.Server.StationEvents.Components;
 
 namespace Content.Server.Shipyard.Systems;
 
@@ -289,6 +290,9 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             if (vessel.GridProtection.HasFlag(GridProtectionFlags.ArtifactTriggers))
                 prot.PreventArtifactTriggers = true;
         }
+
+        // Ensure cleanup on ship sale
+        EnsureComp<LinkedLifecycleGridParentComponent>(shuttleUid);
 
         var sellValue = 0;
         if (!voucherUsed)
