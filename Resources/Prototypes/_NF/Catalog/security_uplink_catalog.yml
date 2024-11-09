@@ -421,7 +421,7 @@
       whitelist:
         - Sheriff
 
-- type: listing
+- type: listing # Corvax-Frontier
   id: UplinkSecurityKS23
   name:  uplink-security-ks23-name
   description: uplink-security-ks23-desc
@@ -584,7 +584,7 @@
         tags:
           - SecurityUplink
 
-- type: listing
+- type: listing # Corvax-Frontier
   id: UplinkSecurityKS23Flashbang
   name: uplink-security-magazineks23flashbang-name
   description: uplink-security-magazineks23flashbang-desc
@@ -600,7 +600,7 @@
         tags:
           - SecurityUplink
 
-- type: listing
+- type: listing # Corvax-Frontier
   id: UplinkSecurityKS23Smoke
   name: uplink-security-magazineks23smoke-name
   description: uplink-security-magazineks23smoke-desc
@@ -1361,4 +1361,25 @@
           - SecurityUplink
     - !type:BuyerJobCondition
       whitelist:
+        - Sheriff
+
+- type: listing # Corvax-Frontier
+  id: UplinkSecurityResearchDisk10000
+  name:  uplink-security-research-disk-10000-name
+  description: uplink-security-research-disk-10000-desc
+  productEntity: ResearchDisk10000
+  icon: { sprite: Objects/Specific/Research/researchdisk.rsi, state: icon }
+  cost:
+    FrontierUplinkCoin: 5
+  categories:
+    - UplinkSecurityUtility
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Bailiff
+        - SeniorOfficer
         - Sheriff
