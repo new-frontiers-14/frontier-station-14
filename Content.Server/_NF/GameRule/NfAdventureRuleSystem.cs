@@ -55,6 +55,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
     [Dependency] private readonly ShuttleSystem _shuttle = default!;
     [Dependency] private readonly PhysicsSystem _physics = default!;
     [Dependency] private readonly BankSystem _bank = default!;
+    [Dependency] private readonly StationRenameWarpsSystems _renameWarps = default!;
 
     private readonly HttpClient _httpClient = new();
 
@@ -369,7 +370,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         uniqueStations = new List<EntityUid>();
         foreach (var prototypeList in uniquePrototypes.Values)
         {
-            // Try to spawn 
+            // Try to spawn
             _random.Shuffle(prototypeList);
             foreach (var proto in prototypeList)
             {
@@ -402,9 +403,10 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
 
             string stationName = string.IsNullOrEmpty(overrideName) ? proto.Name : overrideName;
 
+            EntityUid? stationUid = null;
             if (_prototypeManager.TryIndex<GameMapPrototype>(proto.ID, out var stationProto))
             {
-                _station.InitializeNewStation(stationProto.Stations[proto.ID], mapUids, stationName);
+                stationUid = _station.InitializeNewStation(stationProto.Stations[proto.ID], mapUids, stationName);
             }
 
             // Cache our damping strength
@@ -414,26 +416,6 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             {
                 var meta = EnsureComp<MetaDataComponent>(grid);
                 _meta.SetEntityName(grid, stationName, meta);
-
-                if (proto.NameWarp)
-                {
-                    // update all warp points that belong to this station grid
-                    var query = EntityQueryEnumerator<WarpPointComponent>();
-                    while (query.MoveNext(out var warpUid, out var warp))
-                    {
-                        var warpStationUid = _station.GetOwningStation(warpUid);
-
-                        if (warpStationUid != grid)
-                        {
-                            Console.WriteLine($"Skipping warpUid: {warpUid}, grid: {warpStationUid} isnt {grid}");
-                            continue;
-                        }
-                        Console.WriteLine($"Updating warpUid: {warpUid}, stationName: {stationName}");
-                        warp.Location = stationName;
-                        if (proto.HideWarp)
-                            warp.AdminOnly = true;
-                    }
-                }
 
                 EnsureComp<IFFComponent>(grid);
                 _shuttle.SetIFFColor(grid, proto.IFFColor);
@@ -476,6 +458,23 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
                         prot.PreventArtifactTriggers = true;
                 }
             }
+
+            // Rename warp points after set up if needed
+            if (proto.NameWarp)
+            {
+                List<Entity<WarpPointComponent>> warpEnts;
+                if (stationUid != null)
+                    warpEnts = _renameWarps.SyncWarpPointsToStation(stationUid.Value);
+                else
+                    warpEnts = _renameWarps.SyncWarpPointsToGrids(mapUids);
+
+                foreach (var warp in warpEnts)
+                {
+                    if (proto.HideWarp)
+                        warp.Comp.AdminOnly = true;
+                }
+            }
+
             gridUid = mapUids[0];
             return true;
         }

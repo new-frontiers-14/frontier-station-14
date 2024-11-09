@@ -35,6 +35,7 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
     [Dependency] private readonly CargoSystem _cargo = default!;
     [Dependency] private readonly LinkedLifecycleGridSystem _linkedLifecycleGrid = default!;
     [Dependency] private readonly StationSystem _stationSystem = default!;
+    [Dependency] private readonly StationRenameWarpsSystems _renameWarps = default!;
 
     public override void Initialize()
     {
@@ -95,25 +96,11 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
 
                 if (group.NameWarp)
                 {
-                    var stationName = MetaData(spawned).EntityName;
-                    var query = EntityQueryEnumerator<WarpPointComponent, TransformComponent>();
-
-                    switch (group)
+                    var warps = _renameWarps.SyncWarpPointsToGrid(spawned);
+                    foreach (var warp in warps)
                     {
-                        case BluespaceDungeonSpawnGroup dungeon:
-                            break;
-                        case BluespaceGridSpawnGroup grid:
-                            while (query.MoveNext(out var warpUid, out var warp, out var xform))
-                            {
-                                if (xform.ParentUid != spawned)
-                                    continue;
-                                warp.Location = stationName;
-                                if (group.HideWarp)
-                                    warp.AdminOnly = true;
-                            }
-                            break;
-                        default:
-                            throw new NotImplementedException();
+                        if (group.HideWarp)
+                            warp.Comp.AdminOnly = true;
                     }
                 }
 
@@ -269,7 +256,8 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
 
         foreach (MapId mapId in component.MapsUid)
         {
-            _mapManager.DeleteMap(mapId);
+            if (_mapManager.MapExists(mapId))
+                _mapManager.DeleteMap(mapId);
         }
     }
 }

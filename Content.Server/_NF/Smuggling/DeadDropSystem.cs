@@ -50,6 +50,7 @@ public sealed class DeadDropSystem : EntitySystem
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly SharedGameTicker _ticker = default!;
     [Dependency] private readonly LinkedLifecycleGridSystem _linkedLifecycleGrid = default!;
+    [Dependency] private readonly StationRenameWarpsSystems _stationRenameWarps = default!;
     private ISawmill _sawmill = default!;
 
     private readonly Queue<EntityUid> _drops = [];
@@ -474,14 +475,7 @@ public sealed class DeadDropSystem : EntitySystem
         var meta = EnsureComp<MetaDataComponent>(gridUids[0]);
         _meta.SetEntityName(gridUids[0], stationName, meta);
 
-        // update all warp points that belong to this station grid
-        var query = EntityQueryEnumerator<WarpPointComponent, TransformComponent>();
-        while (query.MoveNext(out var warpUid, out var warp, out var xform))
-        {
-            if (xform.ParentUid != gridUids[0])
-                continue;
-            warp.Location = stationName;
-        }
+        _stationRenameWarps.SyncWarpPointsToGrids(gridUids);
 
         // Get sector info (with sane defaults if it doesn't exist)
         int maxSimultaneousPods = 5;
