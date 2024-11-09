@@ -80,6 +80,11 @@ public interface IBluespaceSpawnGroup
     /// Should we set the metadata name of a grid. Useful for admin purposes.
     /// </summary>
     public bool NameGrid { get; set; }
+
+    /// <summary>
+    /// Should we set the warppoint name based on the grid name.
+    /// </summary>
+    public bool NameWarp { get; set; }
 }
 
 [DataRecord]
@@ -112,6 +117,9 @@ public sealed class BluespaceDungeonSpawnGroup : IBluespaceSpawnGroup
 
     /// <inheritdoc />
     public bool NameGrid { get; set; } = false;
+
+    /// <inheritdoc />
+    public bool NameWarp { get; set; } = true;
 }
 
 [DataRecord]
@@ -130,4 +138,6 @@ public sealed class BluespaceGridSpawnGroup : IBluespaceSpawnGroup
     public int MaxCount { get; set; } = 1;
     public ComponentRegistry AddComponents { get; set; } = new();
     public bool NameGrid { get; set; } = true;
+
+    public bool NameWarp { get; set; } = true;
 }

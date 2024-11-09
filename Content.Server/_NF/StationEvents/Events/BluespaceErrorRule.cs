@@ -15,6 +15,8 @@ using Content.Server.GameTicking;
 using Content.Server.Procedural;
 using Robust.Shared.Prototypes;
 using Content.Shared.Salvage;
+using Content.Server.Warps;
+using Content.Server.Station.Systems;
 
 namespace Content.Server.StationEvents.Events;
 
@@ -31,6 +33,7 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
     [Dependency] private readonly ShuttleSystem _shuttle = default!;
     [Dependency] private readonly PricingSystem _pricing = default!;
     [Dependency] private readonly CargoSystem _cargo = default!;
+    [Dependency] private readonly StationSystem _stationSystem = default!;
 
     private List<(Entity<TransformComponent> Entity, EntityUid MapUid, Vector2 LocalPosition)> _playerMobs = new();
 
@@ -83,11 +86,28 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
                 if (group.NameLoc != null && group.NameLoc.Count > 0)
                 {
                     _metadata.SetEntityName(spawned, Loc.GetString(_random.Pick(group.NameLoc)));
+
                 }
 
                 if (_protoManager.TryIndex(group.NameDataset, out var dataset))
                 {
                     _metadata.SetEntityName(spawned, SharedSalvageSystem.GetFTLName(dataset, _random.Next()));
+                }
+
+                if (group.NameWarp)
+                {
+                    // update all warp points that belong to this station grid
+                    var query = EntityQueryEnumerator<WarpPointComponent, TransformComponent>();
+                    while (query.MoveNext(out var warpUid, out var warp, out var xform))
+                    {
+                        if (xform.GridUid != spawned)
+                        {
+                            //Console.WriteLine($"Skipping warpUid: {warpUid}, warpStationUid: {xform.GridUid} not {spawned}");
+                            continue;
+                        }
+                        //Console.WriteLine($"Updating warpUid: {warpUid}, stationName: {stationName}");
+                        warp.Location = MetaData(spawned).EntityName;
+                    }
                 }
 
                 EntityManager.AddComponents(spawned, group.AddComponents);
