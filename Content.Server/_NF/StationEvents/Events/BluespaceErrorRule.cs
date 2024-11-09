@@ -96,17 +96,21 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
 
                 if (group.NameWarp)
                 {
+                    var stationName = MetaData(spawned).EntityName;
+
                     // update all warp points that belong to this station grid
                     var query = EntityQueryEnumerator<WarpPointComponent, TransformComponent>();
                     while (query.MoveNext(out var warpUid, out var warp, out var xform))
                     {
-                        if (xform.GridUid != spawned)
+                        if (xform.ParentUid != spawned)
                         {
-                            //Console.WriteLine($"Skipping warpUid: {warpUid}, warpStationUid: {xform.GridUid} not {spawned}");
+                            Console.WriteLine($"Skipping warpUid: {warpUid}, grid: {xform.ParentUid} not {spawned}");
                             continue;
                         }
-                        //Console.WriteLine($"Updating warpUid: {warpUid}, stationName: {stationName}");
-                        warp.Location = MetaData(spawned).EntityName;
+                        Console.WriteLine($"Updating warpUid: {warpUid}, stationName: {stationName}");
+                        warp.Location = stationName;
+                        if (group.HideWarp)
+                            warp.AdminOnly = true;
                     }
                 }
 

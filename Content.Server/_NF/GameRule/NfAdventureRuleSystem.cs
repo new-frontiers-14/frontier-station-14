@@ -39,6 +39,7 @@ using Robust.Shared.Network;
 using Content.Shared.GameTicking;
 using Robust.Shared.Enums;
 using Robust.Server.Player;
+using Content.Server.Warps;
 
 namespace Content.Server._NF.GameRule;
 
@@ -418,6 +419,26 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             {
                 var meta = EnsureComp<MetaDataComponent>(grid);
                 _meta.SetEntityName(grid, stationName, meta);
+
+                if (proto.NameWarp)
+                {
+                    // update all warp points that belong to this station grid
+                    var query = EntityQueryEnumerator<WarpPointComponent>();
+                    while (query.MoveNext(out var warpUid, out var warp))
+                    {
+                        var warpStationUid = _station.GetOwningStation(warpUid);
+
+                        if (warpStationUid != grid)
+                        {
+                            Console.WriteLine($"Skipping warpUid: {warpUid}, grid: {warpStationUid} isnt {grid}");
+                            continue;
+                        }
+                        Console.WriteLine($"Updating warpUid: {warpUid}, stationName: {stationName}");
+                        warp.Location = stationName;
+                        if (proto.HideWarp)
+                            warp.AdminOnly = true;
+                    }
+                }
 
                 EnsureComp<IFFComponent>(grid);
                 _shuttle.SetIFFColor(grid, proto.IFFColor);

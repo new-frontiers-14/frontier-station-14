@@ -10,6 +10,7 @@ using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
+using Content.Server.Warps;
 using Content.Shared._NF.CCVar;
 using Content.Shared._NF.Smuggling.Prototypes;
 using Content.Shared.Database;
@@ -180,6 +181,20 @@ public sealed class DeadDropSystem : EntitySystem
         if (TryComp<SectorDeadDropComponent>(_sectorService.GetServiceEntity(), out var deadDrop))
         {
             deadDrop.DeadDropStationNames[stationUid] = MetaData(stationUid).EntityName;
+
+            // update all warp points that belong to this station grid
+            var query = EntityQueryEnumerator<WarpPointComponent, TransformComponent>();
+            while (query.MoveNext(out var warpUid, out var warp, out var xform))
+            {
+                if (xform.GridUid != stationUid)
+                {
+                    Console.WriteLine($"Skipping warpUid: {warpUid}, grid: {xform.GridUid} not {stationUid}");
+                    continue;
+                }
+                Console.WriteLine($"Updating warpUid: {warpUid}, stationName: {deadDrop.DeadDropStationNames[stationUid]}");
+                warp.Location = MetaData(stationUid).EntityName;
+                warp.AdminOnly = true;
+            }
         }
     }
 
