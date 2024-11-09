@@ -86,6 +86,7 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
                 if (group.NameLoc != null && group.NameLoc.Count > 0)
                 {
                     _metadata.SetEntityName(spawned, Loc.GetString(_random.Pick(group.NameLoc)));
+
                 }
 
                 if (_protoManager.TryIndex(group.NameDataset, out var dataset))
@@ -96,15 +97,16 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
                 if (group.NameWarp)
                 {
                     // update all warp points that belong to this station grid
-                    var query = EntityQueryEnumerator<WarpPointComponent>();
-                    while (query.MoveNext(out var warpUid, out var warp))
+                    var query = EntityQueryEnumerator<WarpPointComponent, TransformComponent>();
+                    while (query.MoveNext(out var warpUid, out var warp, out var xform))
                     {
-                        var warpStationUid = _stationSystem.GetOwningStation(warpUid);
-                        if (warpStationUid != spawned)
+                        if (xform.GridUid != spawned)
+                        {
+                            //Console.WriteLine($"Skipping warpUid: {warpUid}, warpStationUid: {xform.GridUid} not {spawned}");
                             continue;
-
-                        var stationName = Name(spawned);
-                        warp.Location = stationName;
+                        }
+                        //Console.WriteLine($"Updating warpUid: {warpUid}, stationName: {stationName}");
+                        warp.Location = MetaData(spawned).EntityName;
                     }
                 }
 
