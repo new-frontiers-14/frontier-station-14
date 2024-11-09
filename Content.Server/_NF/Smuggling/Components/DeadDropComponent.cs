@@ -11,6 +11,12 @@ namespace Content.Server._NF.Smuggling.Components;
 public sealed partial class DeadDropComponent : Component
 {
     /// <summary>
+    ///     The name for the deaddrop pod
+    /// </summary>
+    [DataField]
+    public LocId Name = "deaddrop-shuttle-name";
+
+    /// <summary>
     ///     When the next drop will occur. Used internally.
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadOnly)]
