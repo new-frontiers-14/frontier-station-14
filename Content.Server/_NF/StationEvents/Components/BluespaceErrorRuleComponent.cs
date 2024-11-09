@@ -124,7 +124,7 @@ public sealed class BluespaceDungeonSpawnGroup : IBluespaceSpawnGroup
     public bool NameGrid { get; set; } = false;
 
     /// <inheritdoc />
-    public bool NameWarp { get; set; } = true;
+    public bool NameWarp { get; set; } = false; // Loads in too late, cannot name warps, use WarpPointDungeon instead.
 
     /// <inheritdoc />
     public bool HideWarp { get; set; } = false;
