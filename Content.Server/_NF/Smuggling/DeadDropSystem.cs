@@ -10,6 +10,7 @@ using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
+using Content.Server.StationEvents.Events;
 using Content.Shared._NF.CCVar;
 using Content.Shared._NF.Smuggling.Prototypes;
 using Content.Shared.Database;
@@ -47,6 +48,7 @@ public sealed class DeadDropSystem : EntitySystem
     [Dependency] private readonly SectorServiceSystem _sectorService = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly SharedGameTicker _ticker = default!;
+    [Dependency] private readonly LinkedLifecycleGridSystem _linkedLifecycleGrid = default!;
     private ISawmill _sawmill = default!;
 
     private readonly Queue<EntityUid> _drops = [];
@@ -490,7 +492,7 @@ public sealed class DeadDropSystem : EntitySystem
                 //removes the first element of the queue
                 var entityToRemove = _drops.Dequeue();
                 _adminLogger.Add(LogType.Action, LogImpact.Medium, $"{entityToRemove} queued for deletion");
-                EntityManager.QueueDeleteEntity(entityToRemove);
+                _linkedLifecycleGrid.UnparentPlayersFromGrid(entityToRemove, true);
             }
         }
 
@@ -611,7 +613,7 @@ public sealed class DeadDropSystem : EntitySystem
         }
     }
 
-    // Generates a random hint from a given set of entities (grabs the first N, N randomly generated between min/max), 
+    // Generates a random hint from a given set of entities (grabs the first N, N randomly generated between min/max),
     public string GenerateRandomHint(List<(EntityUid station, EntityUid ent)>? entityList = null)
     {
         if (entityList == null)

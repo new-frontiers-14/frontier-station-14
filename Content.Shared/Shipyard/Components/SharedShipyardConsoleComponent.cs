@@ -56,4 +56,10 @@ public sealed partial class ShipyardConsoleComponent : Component
     /// </summary>
     [DataField]
     public float SalesTax = 0;
+
+    /// <summary>
+    /// Indicates that the deeds that come from this console can be copied and transferred.
+    /// </summary>
+    [DataField]
+    public bool CanTransferDeed = true;
 }
