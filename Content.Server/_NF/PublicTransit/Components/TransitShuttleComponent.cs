@@ -11,7 +11,7 @@ namespace Content.Server._NF.PublicTransit.Components;
 public sealed partial class TransitShuttleComponent : Component
 {
     /// <summary>
-    ///     The name of this point of interest
+    ///     The name for the bus
     /// </summary>
     [DataField]
     public LocId Name = "public-transit-shuttle-name";

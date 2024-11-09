@@ -183,20 +183,6 @@ public sealed class DeadDropSystem : EntitySystem
         if (TryComp<SectorDeadDropComponent>(_sectorService.GetServiceEntity(), out var deadDrop))
         {
             deadDrop.DeadDropStationNames[stationUid] = MetaData(stationUid).EntityName;
-
-            // update all warp points that belong to this station grid
-            var query = EntityQueryEnumerator<WarpPointComponent, TransformComponent>();
-            while (query.MoveNext(out var warpUid, out var warp, out var xform))
-            {
-                if (xform.GridUid != stationUid)
-                {
-                    Console.WriteLine($"Skipping warpUid: {warpUid}, grid: {xform.GridUid} not {stationUid}");
-                    continue;
-                }
-                Console.WriteLine($"Updating warpUid: {warpUid}, stationName: {deadDrop.DeadDropStationNames[stationUid]}");
-                warp.Location = MetaData(stationUid).EntityName;
-                warp.AdminOnly = true;
-            }
         }
     }
 
@@ -481,6 +467,20 @@ public sealed class DeadDropSystem : EntitySystem
         if (!_mapManager.TryGetMap(mapId, out var mapUid))
         {
             return;
+        }
+
+        var stationName = Loc.GetString(component.Name);
+
+        var meta = EnsureComp<MetaDataComponent>(gridUids[0]);
+        _meta.SetEntityName(gridUids[0], stationName, meta);
+
+        // update all warp points that belong to this station grid
+        var query = EntityQueryEnumerator<WarpPointComponent, TransformComponent>();
+        while (query.MoveNext(out var warpUid, out var warp, out var xform))
+        {
+            if (xform.ParentUid != gridUids[0])
+                continue;
+            warp.Location = stationName;
         }
 
         // Get sector info (with sane defaults if it doesn't exist)
