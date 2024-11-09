@@ -147,15 +147,11 @@ entities:
             151: -3,9
             152: 0,5
         - node:
-            color: '#A4610696'
-            id: BrickCornerOverlaySE
-          decals:
-            96: 1,-5
-        - node:
             color: '#EFB34196'
             id: BrickCornerOverlaySE
           decals:
             72: -4,-4
+            335: 1,-5
         - node:
             color: '#334E6DC8'
             id: BrickCornerOverlaySW
@@ -188,8 +184,12 @@ entities:
             color: '#A4610696'
             id: BrickEndOverlayN
           decals:
-            102: 1,-1
             103: -10,-1
+        - node:
+            color: '#EFB34196'
+            id: BrickEndOverlayN
+          decals:
+            330: 1,-1
         - node:
             color: '#334E6DC8'
             id: BrickLineOverlayE
@@ -214,9 +214,6 @@ entities:
             color: '#A4610696'
             id: BrickLineOverlayE
           decals:
-            99: 1,-4
-            100: 1,-3
-            101: 1,-2
             107: -10,-2
             108: -10,-3
         - node:
@@ -227,6 +224,9 @@ entities:
             82: -4,-2
             83: -4,-3
             272: 1,1
+            331: 1,-2
+            332: 1,-3
+            333: 1,-4
         - node:
             color: '#334E6DC8'
             id: BrickLineOverlayN
@@ -261,13 +261,13 @@ entities:
             id: BrickLineOverlayS
           decals:
             97: -9,-5
-            98: 0,-5
         - node:
             color: '#EFB34196'
             id: BrickLineOverlayS
           decals:
             75: -7,-1
             76: -6,-1
+            344: 0,-5
         - node:
             color: '#334E6DC8'
             id: BrickLineOverlayW
@@ -297,8 +297,6 @@ entities:
             104: -10,-2
             105: -10,-3
             106: -10,-4
-            109: 1,-2
-            110: 1,-3
         - node:
             color: '#EFB34196'
             id: BrickLineOverlayW
@@ -306,6 +304,8 @@ entities:
             79: -5,-3
             80: -5,-2
             271: -10,1
+            337: 1,-2
+            338: 1,-3
         - node:
             color: '#9FED5896'
             id: BrickTileWhiteInnerNe
@@ -356,6 +356,7 @@ entities:
             256: -1,-7
             264: -3,-7
             295: 2,10
+            340: 1,-5
         - node:
             color: '#FFFFFFFF'
             id: DirtHeavyMonotile
@@ -375,7 +376,6 @@ entities:
             196: -6,10
             197: 3,1
             198: 2,-7
-            199: 0,-5
             201: -10,-5
             208: -15,1
             209: 5,1
@@ -390,6 +390,12 @@ entities:
             260: 2,-13
             296: 3,10
             297: 3,2
+            341: 1,-4
+            342: 1,-1
+            345: 0,-5
+            346: 2,-1
+            347: 2,-2
+            348: 2,-10
         - node:
             color: '#FFFFFFFF'
             id: DirtMedium
@@ -419,10 +425,10 @@ entities:
           decals:
             112: -10,-4
         - node:
-            color: '#A4610696'
+            color: '#EFB34196'
             id: MiniTileInnerOverlayNW
           decals:
-            111: 1,-4
+            339: 1,-4
         - node:
             color: '#334E6DC8'
             id: MiniTileInnerOverlaySE
@@ -2562,6 +2568,13 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -4.5,-0.5
       parent: 1
+- proto: CapacitorStockPart
+  entities:
+  - uid: 589
+    components:
+    - type: Transform
+      pos: 1.3028102,-1.328778
+      parent: 1
 - proto: CarpetPurple
   entities:
   - uid: 1010
@@ -3524,10 +3537,10 @@ entities:
       parent: 1
 - proto: CircuitImprinter
   entities:
-  - uid: 979
+  - uid: 591
     components:
     - type: Transform
-      pos: -9.5,-1.5
+      pos: 1.5,-0.5
       parent: 1
 - proto: ClosetWallFireFilledRandom
   entities:
@@ -3568,13 +3581,6 @@ entities:
     components:
     - type: Transform
       pos: -7.5,4.5
-      parent: 1
-- proto: ClothingEyesGlassesMeson
-  entities:
-  - uid: 969
-    components:
-    - type: Transform
-      pos: -4.429061,-3.5862086
       parent: 1
 - proto: ComputerPowerMonitoring
   entities:
@@ -3780,24 +3786,18 @@ entities:
       parent: 1
 - proto: CrateMaterials
   entities:
-  - uid: 981
+  - uid: 816
     components:
     - type: Transform
-      pos: -11.5,-1.5
-      parent: 1
-- proto: CrateMaterialSteel
-  entities:
-  - uid: 987
-    components:
-    - type: Transform
-      pos: -11.5,-0.5
+      pos: 3.5,-2.5
       parent: 1
 - proto: CrowbarGreen
   entities:
-  - uid: 454
+  - uid: 590
     components:
     - type: Transform
-      pos: -11.463087,-10.531208
+      rot: 1.5707963267948966 rad
+      pos: -10.66682,-12.7192
       parent: 1
 - proto: DefaultStationBeaconAME
   entities:
@@ -3883,10 +3883,10 @@ entities:
       startingCharge: 30000
 - proto: EngineeringTechFab
   entities:
-  - uid: 983
+  - uid: 978
     components:
     - type: Transform
-      pos: 1.5,-0.5
+      pos: 3.5,-7.5
       parent: 1
 - proto: ExtinguisherCabinetFilled
   entities:
@@ -3994,6 +3994,14 @@ entities:
     components:
     - type: Transform
       pos: -0.1718061,5.5434813
+      parent: 1
+- proto: FuelDispenser
+  entities:
+  - uid: 454
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 4.5,-11.5
       parent: 1
 - proto: GasFilterOxygenOnFlipped
   entities:
@@ -5661,9 +5669,9 @@ entities:
       parent: 393
     - type: Physics
       canCollide: False
-- proto: LockerAtmosphericsFilledHardsuit
+- proto: LockerAtmosphericsFilled
   entities:
-  - uid: 977
+  - uid: 592
     components:
     - type: Transform
       pos: -0.5,0.5
@@ -5689,6 +5697,13 @@ entities:
     - type: Transform
       pos: -2.5,11.5
       parent: 1
+- proto: LockerSalvageSpecialistFilled
+  entities:
+  - uid: 593
+    components:
+    - type: Transform
+      pos: -9.5,-1.5
+      parent: 1
 - proto: LockerWallColorCaptain
   entities:
   - uid: 111
@@ -5711,6 +5726,14 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -2.5,6.5
       parent: 1
+- proto: LockerWallEVAColorSalvageFilled
+  entities:
+  - uid: 263
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -10.5,-14.5
+      parent: 1
 - proto: LockerWallMaterialsFuelAmeJarFilled
   entities:
   - uid: 1019
@@ -5719,12 +5742,12 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -8.5,0.5
       parent: 1
-- proto: MachineFlatpacker
+- proto: MicroManipulatorStockPart
   entities:
-  - uid: 980
+  - uid: 945
     components:
     - type: Transform
-      pos: -9.5,-0.5
+      pos: 1.5528102,-2.126207
       parent: 1
 - proto: MopItem
   entities:
@@ -5807,6 +5830,20 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -9.5,-2.5
       parent: 1
+- proto: PoweredLEDLightPostSmall
+  entities:
+  - uid: 594
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 1.5,-17.5
+      parent: 1
+  - uid: 595
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -9.5,-17.5
+      parent: 1
 - proto: PoweredLEDSmallLight
   entities:
   - uid: 37
@@ -5886,16 +5923,6 @@ entities:
     components:
     - type: Transform
       pos: -7.5,6.5
-      parent: 1
-  - uid: 1022
-    components:
-    - type: Transform
-      pos: 1.5,-17.5
-      parent: 1
-  - uid: 1031
-    components:
-    - type: Transform
-      pos: -9.5,-17.5
       parent: 1
 - proto: PoweredlightLED
   entities:
@@ -6140,15 +6167,20 @@ entities:
       parent: 1
 - proto: RandomPosterAny
   entities:
-  - uid: 263
+  - uid: 596
     components:
     - type: Transform
-      pos: -12.5,-11.5
+      pos: -12.5,-5.5
       parent: 1
   - uid: 795
     components:
     - type: Transform
       pos: -7.5,9.5
+      parent: 1
+  - uid: 876
+    components:
+    - type: Transform
+      pos: 2.5,-14.5
       parent: 1
   - uid: 1007
     components:
@@ -6325,24 +6357,17 @@ entities:
       parent: 1
 - proto: SalvageTechfabNF
   entities:
-  - uid: 590
+  - uid: 977
     components:
     - type: Transform
-      pos: 1.5,-2.5
+      pos: -11.5,-8.5
       parent: 1
-- proto: SheetGlass
+- proto: Screwdriver
   entities:
-  - uid: 589
+  - uid: 979
     components:
     - type: Transform
-      pos: 1.3595917,-1.3978007
-      parent: 1
-- proto: SheetSteel
-  entities:
-  - uid: 591
-    components:
-    - type: Transform
-      pos: 1.6252167,-1.507251
+      pos: 1.4590602,-2.470196
       parent: 1
 - proto: ShipyardCharonInfo
   entities:
@@ -6620,6 +6645,13 @@ entities:
     - type: Transform
       pos: -3.5,-2.5
       parent: 1
+- proto: SuitStorageSalv
+  entities:
+  - uid: 597
+    components:
+    - type: Transform
+      pos: -9.5,-0.5
+      parent: 1
 - proto: Table
   entities:
   - uid: 258
@@ -6627,6 +6659,11 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -11.5,5.5
+      parent: 1
+  - uid: 796
+    components:
+    - type: Transform
+      pos: 1.5,-2.5
       parent: 1
   - uid: 984
     components:
@@ -7005,10 +7042,10 @@ entities:
       parent: 1
 - proto: VendingMachineTankDispenserEVA
   entities:
-  - uid: 1122
+  - uid: 969
     components:
     - type: Transform
-      pos: 3.5,-10.5
+      pos: -11.5,-11.5
       parent: 1
 - proto: VendingMachineYouTool
   entities:
