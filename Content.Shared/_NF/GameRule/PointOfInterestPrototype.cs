@@ -19,7 +19,7 @@ public sealed partial class PointOfInterestPrototype : IPrototype
     /// <summary>
     ///     The name of this point of interest
     /// </summary>
-    [DataField]
+    [DataField(required: true)]
     public string Name { get; private set; } = "";
 
     /// <summary>

@@ -13,6 +13,7 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Map;
 using Robust.Shared.Timing;
 using TimedDespawnComponent = Robust.Shared.Spawners.TimedDespawnComponent;
+using Content.Server.Warps;
 
 namespace Content.Server._NF.PublicTransit;
 
@@ -28,6 +29,7 @@ public sealed class PublicTransitSystem : EntitySystem
     [Dependency] private readonly MapLoaderSystem _loader = default!;
     [Dependency] private readonly ShuttleSystem _shuttles = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
+    [Dependency] private readonly MetaDataSystem _meta = default!;
 
     /// <summary>
     /// If enabled then spawns the bus and sets up the bus line.
@@ -121,6 +123,20 @@ public sealed class PublicTransitSystem : EntitySystem
         prot.PreventFloorPlacement = true;
         prot.PreventFloorRemoval = true;
         prot.PreventRCDUse = true;
+
+        var stationName = Loc.GetString(component.Name);
+
+        var meta = EnsureComp<MetaDataComponent>(uid);
+        _meta.SetEntityName(uid, stationName, meta);
+
+        // update all warp points that belong to this station grid
+        var query = EntityQueryEnumerator<WarpPointComponent, TransformComponent>();
+        while (query.MoveNext(out var warpUid, out var warp, out var xform))
+        {
+            if (xform.ParentUid != uid)
+                continue;
+            warp.Location = stationName;
+        }
     }
 
     /// <summary>
