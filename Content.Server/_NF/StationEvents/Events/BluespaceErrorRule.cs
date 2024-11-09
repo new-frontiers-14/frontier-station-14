@@ -96,20 +96,24 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
                 if (group.NameWarp)
                 {
                     var stationName = MetaData(spawned).EntityName;
-
-                    // update all warp points that belong to this station grid
                     var query = EntityQueryEnumerator<WarpPointComponent, TransformComponent>();
-                    while (query.MoveNext(out var warpUid, out var warp, out var xform))
+
+                    switch (group)
                     {
-                        if (xform.ParentUid != spawned)
-                        {
-                            Console.WriteLine($"Skipping warpUid: {warpUid}, grid: {xform.ParentUid} not {spawned}");
-                            continue;
-                        }
-                        Console.WriteLine($"Updating warpUid: {warpUid}, stationName: {stationName}");
-                        warp.Location = stationName;
-                        if (group.HideWarp)
-                            warp.AdminOnly = true;
+                        case BluespaceDungeonSpawnGroup dungeon:
+                            break;
+                        case BluespaceGridSpawnGroup grid:
+                            while (query.MoveNext(out var warpUid, out var warp, out var xform))
+                            {
+                                if (xform.ParentUid != spawned)
+                                    continue;
+                                warp.Location = stationName;
+                                if (group.HideWarp)
+                                    warp.AdminOnly = true;
+                            }
+                            break;
+                        default:
+                            throw new NotImplementedException();
                     }
                 }
 
