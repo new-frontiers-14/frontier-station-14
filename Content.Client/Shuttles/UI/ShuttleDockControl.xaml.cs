@@ -224,11 +224,13 @@ public sealed partial class ShuttleDockControl : BaseShuttleControl
 
                 if (HighlightedDock == dock.Entity)
                 {
-                    otherDockColor = Color.ToSrgb(Color.Magenta);
+                    //otherDockColor = Color.ToSrgb(Color.Magenta); // Frontier
+                    otherDockColor = Color.ToSrgb(dock.HighlightedRadarColor); // Frontier
                 }
                 else
                 {
-                    otherDockColor = Color.ToSrgb(Color.Purple);
+                    // otherDockColor = Color.ToSrgb(Color.Purple); // Frontier
+                    otherDockColor = Color.ToSrgb(dock.RadarColor);
                 }
 
                 /*

@@ -1,9 +1,12 @@
+# Giant mess of a YAML definition but largely based on GasBinaryBase and Airlock
 - type: entity
   parent: [GasBinaryBase, BaseStructure]
   id: Gaslock
   suffix: Docking
   name: external gaslock
-  description: Connects gas tanks on separate ships or stations together to allow gas transfer. Both stages must be set up to accept flow.
+  description: Connects gas pipes on separate ships or stations together to allow gas transfer. Both sides must be docked and pumping in the same direction to accept flow.
+  placement:
+    mode: SnapgridCenter
   components:
   - type: Transform
     noRot: false
@@ -15,6 +18,13 @@
   - type: DeviceLinkSource
     ports:
       - DockStatus
+  # - type: DeviceLinkSink
+  #   ports:
+      # - PumpOn
+      # - PumpOff
+      # - DirectionIn
+      # - DirectionOut
+      # - ToggleDirection
   - type: Fixtures
     fixtures:
       fix1:
@@ -34,12 +44,16 @@
         hard: false
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Standard/shuttle.rsi
-    snapCardinals: false
+    granularLayersRendering: true
+    drawdepth: Doors
     layers:
     - state: closed
       map: ["enum.DoorVisualLayers.Base"]
+    - state: closed_unlit
+      shader: unshaded
+      map: ["enum.DoorVisualLayers.BaseUnlit"]
     - sprite: Structures/Piping/Atmospherics/pipe.rsi
-      state: pipeHalf
+      state: pipeStraight
       map: [ "enum.PipeVisualLayers.Pipe" ]
     - sprite: Structures/Piping/Atmospherics/pump.rsi
       state: pumpPressure
@@ -48,20 +62,23 @@
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: Wires
     layoutId: Docking
+  - type: WiresVisuals
+  - type: WiresPanel
+  - type: WiresPanelSecurity
   - type: Airtight
   - type: Tag
     tags:
       - ForceNoFixRotations
   - type: PaintableAirlock
-    group: Shuttle
+    group: External
     department: null
   # - type: Construction
   #   graph: AirlockShuttle
   #   node: airlock
   - type: StaticPrice
     price: 350
-  # - type: ApcPowerReceiver
-  #   powerLoad: 200
+  - type: ApcPowerReceiver
+    powerLoad: 500
   - type: Appearance
   - type: GenericVisualizer
     visuals:
@@ -89,6 +106,23 @@
   - type: DockablePump
     dockNodeName: outlet
     internalNodeName: inlet
+  - type: AmbientSound
+    enabled: false
+    volume: -9
+    range: 5
+    sound:
+      path: /Audio/Ambience/Objects/gas_pump.ogg
+  - type: BlockWeather
+  - type: PlacementReplacement
+    key: walls
+  - type: IconSmooth
+    key: walls
+    mode: NoSprite
+  - type: Occluder
+  - type: InteractionOutline
+  - type: StationAiWhitelist
+  - type: RadiationBlocker
+    resistance: 3
 
 - type: entity
   parent: Gaslock

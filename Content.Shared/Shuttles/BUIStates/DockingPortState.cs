@@ -17,4 +17,9 @@ public sealed class DockingPortState
     public bool Connected => GridDockedWith != null;
 
     public NetEntity? GridDockedWith;
+
+    // Frontier: colors
+    public Color RadarColor;
+    public Color HighlightedRadarColor;
+    // End Frontier
 }
