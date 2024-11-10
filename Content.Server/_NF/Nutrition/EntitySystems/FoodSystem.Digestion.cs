@@ -13,7 +13,7 @@ using Content.Shared.Chemistry;
 namespace Content.Server.Nutrition.EntitySystems;
 
 // Frontier: extending food system to handle species-specific digestion quirks.
-public sealed partial class FoodSystem : EntitySystem // Frontier: sealed<partial
+public sealed partial class FoodSystem : EntitySystem
 {
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
@@ -43,10 +43,11 @@ public sealed partial class FoodSystem : EntitySystem // Frontier: sealed<partia
             foreach (var effect in digestion.Effects)
             {
                 // Precondition: match food quality and/or whitelist.
-                if (effect.Quality != null && effect.Quality != food.Comp.Quality)
+                if (effect.Quality.Contains(food.Comp.Quality))
                     continue;
 
-                if (_whitelistSystem.IsWhitelistFail(effect.Whitelist, food.Owner))
+                if (_whitelistSystem.IsWhitelistFail(effect.Whitelist, food.Owner)
+                    || _whitelistSystem.IsBlacklistPass(effect.Whitelist, food.Owner))
                     continue;
 
                 // Run reagent conversions

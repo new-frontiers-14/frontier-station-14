@@ -1099,51 +1099,6 @@
           Quantity: 0.25
 # Tastes like crust, pesto, cheese
 
-- type: entity
-  name: cotton pizza
-  parent: FoodPizzaBase
-  id: FoodMothPizzaCotton
-  description: A crime to some, a delicious pizza to others. Cotton and cheese.
-  components:
-  - type: FlavorProfile
-    flavors:
-      - bread
-      - cotton
-      - cheesy
-  - type: SliceableFood
-    slice: FoodMothPizzaCottonSlice
-  - type: Sprite
-    sprite: Nyanotrasen/Objects/Consumable/Food/moth.rsi
-    state: pizza-cotton
-  - type: Tag
-    tags:
-    - MothFood
-  - type: Food
-    requiresSpecialDigestion: true
-    quality: Normal
-
-- type: entity
-  name: slice of cotton pizza
-  parent: FoodPizzaSliceBase
-  id: FoodMothPizzaCottonSlice
-  description: White as a sheet of paper.
-  components:
-  - type: FlavorProfile
-    flavors:
-      - bread
-      - cotton
-      - cheesy
-  - type: Sprite
-    sprite: Nyanotrasen/Objects/Consumable/Food/moth.rsi
-    state: pizza-cotton-slice
-  - type: Tag
-    tags:
-    - MothFood
-  - type: Food
-    requiresSpecialDigestion: true
-    quality: Normal
-# Tastes like crust, cotton, cheese
-
 # Sweets
 
 - type: entity
@@ -1199,13 +1154,12 @@
           Quantity: 10
         - ReagentId: Sugar
           Quantity: 10
-  - type: Tag
-    tags:
-    - MothFood
-  - type: Food
+  - type: Tag # Frontier
+    tags: # Frontier
+    - MothFood # Frontier
+  - type: Food # Frontier
     requiresSpecialDigestion: true # Frontier
     quality: Normal # Frontier, New Food Quality System
-
 #Tastes like vanilla and clouds.
 
 - type: entity
@@ -1231,13 +1185,12 @@
           Quantity: 4
         - ReagentId: Sugar
           Quantity: 2
-  - type: Tag
-    tags:
-    - MothFood
-  - type: Food
+  - type: Tag # Frontier
+    tags: # Frontier
+    - MothFood # Frontier
+  - type: Food # Frontier
     requiresSpecialDigestion: true # Frontier
     quality: Normal # Frontier, New Food Quality System
-
 #Tastes like vanilla and clouds.
 
 - type: entity
@@ -1280,5 +1233,4 @@
   - type: Food
     requiresSpecialDigestion: true # Frontier
     quality: Normal # Frontier, New Food Quality System
-
 #Tastes like muffin, dust and lint

@@ -82,6 +82,8 @@
     - state: margherita
   - type: SliceableFood
     slice: FoodPizzaMargheritaSlice
+  - type: Food # Frontier
+    quality: Normal # Frontier
 
 - type: entity
   name: slice of margherita pizza
@@ -158,6 +160,8 @@
     - state: mushroom
   - type: SliceableFood
     slice: FoodPizzaMushroomSlice
+  - type: Food # Frontier
+    quality: Normal # Frontier
 
 - type: entity
   name: slice of mushroom pizza
@@ -173,6 +177,8 @@
   - type: Sprite
     layers:
     - state: mushroom-slice
+  - type: Food # Frontier
+    quality: Normal # Frontier
 # Tastes like crust, tomato, cheese, mushroom.
 
 - type: entity
@@ -205,6 +211,8 @@
           Quantity: 5
         - ReagentId: Vitamin
           Quantity: 5
+  - type: Food # Frontier
+    quality: Gourmet # Frontier
 
 - type: entity
   name: slice of vegetable pizza
@@ -235,6 +243,8 @@
           Quantity: 1
         - ReagentId: Vitamin
           Quantity: 1
+  - type: Food # Frontier
+    quality: Gourmet # Frontier
 
 # Tastes like crust, tomato, cheese, carrot.
 
@@ -418,6 +428,8 @@
     tags:
     - Meat
     - Pizza
+  - type: Food # Frontier
+    quality: Gourmet # Frontier
 
 - type: entity
   name: slice of Hawaiian pizza
@@ -440,6 +452,8 @@
     - Meat
     - Pizza
     - Slice
+  - type: Food # Frontier
+    quality: Gourmet # Frontier: gauntlet thrown
 # Tastes like crust, tomato, cheese, pineapple, ham.
 
 #TODO: This is a meme pizza from /tg/. It has specially coded mechanics.
@@ -513,6 +527,8 @@
     - Meat
     - Pizza
     - Slice
+  - type: Food # Frontier
+    quality: Awful # Frontier
 # Tastes like crust, tomato, cheese, pepperoni, 9 millimeter bullets.
 
 #TODO: Make this do poison damage and make cut pizza slices eventually rot into this.
@@ -546,7 +562,7 @@
         - ReagentId: Vitamin
           Quantity: 1
   - type: Food # Frontier
-    quality: Toxin # Frontier, New Food Quality System
+    quality: Awful # Frontier
 # Tastes like stale crust, rancid cheese, mushroom.
 
 - type: entity
@@ -584,6 +600,8 @@
           Quantity: 4
         - ReagentId: Uranium
           Quantity: 16
+  - type: Food # Frontier
+    quality: Awful # Frontier
 
 - type: entity
   name: slice of spicy rock pizza
@@ -619,6 +637,8 @@
           Quantity: 0.5
         - ReagentId: Uranium
           Quantity: 2
+  - type: Food # Frontier
+    quality: Awful # Frontier
 
 # Tastes like crust, tomato, cheese, radiation.
 
@@ -643,6 +663,7 @@
     tags:
     - ClothMade
     - Pizza
+    - MothFood # Frontier
   - type: SolutionContainerManager
     solutions:
       food:
@@ -673,6 +694,7 @@
     - ClothMade
     - Pizza
     - Slice
+    - MothFood # Frontier
   - type: SolutionContainerManager
     solutions:
       food:

@@ -1,18 +1,18 @@
 - type: digestion
   id: Default
   effects:
-  - quality: High
+  - quality: Normal
     conversions:
       Vitamin:
-        Flavorol: 0.4
-        Vitamin: 0.6
+        Flavorol: 0.1
+        Vitamin: 0.9
       Nutriment:
-        Flavorol: 0.4
-        Nutriment: 0.6
+        Flavorol: 0.1
+        Nutriment: 0.9
       Protein:
-        Flavorol: 0.4
-        Protein: 0.6
-  - quality: Normal
+        Flavorol: 0.1
+        Protein: 0.9
+  - quality: High
     conversions:
       Vitamin:
         Flavorol: 0.2
@@ -23,6 +23,17 @@
       Protein:
         Flavorol: 0.2
         Protein: 0.8
+  - quality: Gourmet
+    conversions:
+      Vitamin:
+        Flavorol: 0.4
+        Vitamin: 0.6
+      Nutriment:
+        Flavorol: 0.4
+        Nutriment: 0.6
+      Protein:
+        Flavorol: 0.4
+        Protein: 0.6
   - quality: Junk
     conversions:
       Vitamin:
@@ -34,6 +45,17 @@
       Protein:
         Bloatamine: 0.2
         Protein: 0.8
+  - quality: SuperJunk
+    conversions:
+      Vitamin:
+        Bloatamine: 0.4
+        Vitamin: 0.6
+      Nutriment:
+        Bloatamine: 0.4
+        Nutriment: 0.6
+      Protein:
+        Bloatamine: 0.4
+        Protein: 0.6
 
 - type: digestion
   id: Felinid
@@ -51,9 +73,14 @@
   - quality: Normal
     conversions:
       Fiber:
+        Nutriment: 0.1
+        Fiber: 0.9
+  - quality: High
+    conversions:
+      Fiber:
         Nutriment: 0.2
         Fiber: 0.8
-  - quality: High
+  - quality: Gourmet
     conversions:
       Fiber:
         Nutriment: 0.4
@@ -81,6 +108,17 @@
   - quality: Nasty
     conversions:
       Vitamin:
+        Flavorol: 0.1
+        Vitamin: 0.9
+      Nutriment:
+        Flavorol: 0.1
+        Nutriment: 0.9
+      Protein:
+        Flavorol: 0.1
+        Protein: 0.9
+  - quality: Awful
+    conversions:
+      Vitamin:
         Flavorol: 0.2
         Vitamin: 0.8
       Nutriment:
@@ -89,6 +127,17 @@
       Protein:
         Flavorol: 0.2
         Protein: 0.8
+  - quality: GoblinGourmet
+    conversions:
+      Vitamin:
+        Flavorol: 0.4
+        Vitamin: 0.6
+      Nutriment:
+        Flavorol: 0.4
+        Nutriment: 0.6
+      Protein:
+        Flavorol: 0.4
+        Protein: 0.6
   - quality: Junk
     conversions:
       Vitamin:
@@ -100,6 +149,17 @@
       Protein:
         Bloatamine: 0.2
         Protein: 0.8
+  - quality: SuperJunk
+    conversions:
+      Vitamin:
+        Bloatamine: 0.4
+        Vitamin: 0.6
+      Nutriment:
+        Bloatamine: 0.4
+        Nutriment: 0.6
+      Protein:
+        Bloatamine: 0.4
+        Protein: 0.6
 
 - type: digestion
   id: Carnivore
@@ -107,7 +167,10 @@
   - whitelist:
       tags:
       - Meat
-    quality: High
+    quality:
+    - Normal
+    - High
+    - Gourmet
     conversions:
       Vitamin:
         Flavorol: 0.1
@@ -118,18 +181,31 @@
       Protein:
         Flavorol: 0.1
         Protein: 0.9
-  - whitelist:
+  # non-meat bland foods (bread, vegetables)
+  - blacklist:
       tags:
       - Meat
-    quality: Normal
+    quality:
+    - Bland
     conversions:
       Vitamin:
-        Flavorol: 0.1
-        Vitamin: 0.9
+        Vitamin: 0.5
       Nutriment:
-        Flavorol: 0.1
-        Nutriment: 0.9
-      Protein:
-        Flavorol: 0.1
-        Protein: 0.9
+        Nutriment: 0.5
   postDigest: Default
+
+# Keep cows, pigs, etc. fed longer
+- type: digestion
+  id: Ruminant
+  - whitelist:
+      components:
+      - Produce
+    quality:
+    - Bland
+    conversions:
+      Vitamin:
+        Vitamin: 2
+      Nutriment:
+        Nutriment: 2
+      Protein:
+        Protein: 2

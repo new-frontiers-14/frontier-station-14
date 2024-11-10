@@ -35,13 +35,19 @@ public sealed partial class DigestionEffect
     /// The quality of food this effect occurs on.
     /// </summary>
     [DataField]
-    public FoodQuality? Quality { get; private set; } = null;
+    public List<FoodQuality> Quality { get; private set; } = new();
 
     /// <summary>
     /// A whitelist on the food item this bite was taken from.
     /// </summary>
     [DataField]
     public EntityWhitelist? Whitelist { get; private set; } = null;
+
+    /// <summary>
+    /// A blacklist on the food item this bite was taken from.
+    /// </summary>
+    [DataField]
+    public EntityWhitelist? Blacklist { get; private set; } = null;
 
     /// <summary>
     /// A list of reagent effects that happen on the stomach solution

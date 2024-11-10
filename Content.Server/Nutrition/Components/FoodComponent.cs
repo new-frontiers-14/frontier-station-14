@@ -109,11 +109,18 @@ public sealed partial class FoodComponent : Component
 /// </summary>
 public enum FoodQuality : byte
 {
-    Toxin,
-    Nasty,
-    Junk,
+    // Run of the mill foods, spammable things
     Bland,
+    // Goblin-friendly recipes
+    Nasty,
+    Awful,
+    GoblinGourmet,
+    // Regular recipes
     Normal,
     High,
+    Gourmet,
+    // Completely inedible
+    Junk,
+    SuperJunk,
 }
 // End of modified code

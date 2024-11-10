@@ -69,8 +69,6 @@
     entity: FoodMeatRotten
     # once it would say bloated, turn into the rotten prototype
     stage: 1
-  - type: Food # Frontier
-    quality: Nasty # Frontier, New Food Quality System
 
 # bruh
 - type: Tag
@@ -130,8 +128,6 @@
   - type: SliceableFood
     count: 3
     slice: FoodMeatCutlet
-  - type: Food # Frontier
-    quality: Nasty # Frontier
 
 - type: entity
   name: raw carp fillet
@@ -160,8 +156,6 @@
       reagents:
       - ReagentId: CarpoToxin
         Quantity: 5
-  - type: Food # Frontier, New Food Quality System
-    quality: Toxin # Frontier, New Food Quality System
 
 - type: entity
   name: raw bacon
@@ -192,8 +186,6 @@
     graph: Bacon
     node: start
     defaultTarget: bacon
-  - type: Food # Frontier
-    quality: Nasty # Frontier
 
 - type: entity
   name: raw bear meat
@@ -317,8 +309,6 @@
     price: 750
   - type: StealTarget
     stealGroup: FoodMeatCorgi
-  - type: Food # Frontier
-    quality: Nasty # Frontier
 
 - type: entity
   name: raw crab meat
@@ -448,8 +438,6 @@
   components:
   - type: Sprite
     state: plant
-  - type: Food # Frontier
-    quality: Nasty # Frontier
 
 - type: entity
   name: rotten meat
@@ -475,8 +463,6 @@
           Quantity: 4
         - ReagentId: Fat
           Quantity: 4
-  - type: Food # Frontier
-    quality: Toxin # Frontier, New Food Quality System
 
 - type: entity
   name: raw spider meat
