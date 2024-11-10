@@ -23,4 +23,7 @@ public sealed partial class ShuttleDeedComponent : Component
 
     [DataField]
     public string? ShuttleOwner = "Unknown";
+
+    [DataField]
+    public bool PurchasedWithVoucher;
 }
