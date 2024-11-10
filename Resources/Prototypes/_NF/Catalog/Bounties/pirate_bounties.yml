@@ -106,10 +106,9 @@
   entries:
   - name: pirate-bounty-item-thruster
     amount: 3
-    idWhitelist:
-      id:
-      - BaseThruster
-      matchParents: true
+    whitelist:
+      components:
+      - Thruster
 
 - type: pirateBounty
   id: PirateBountyGravGen
@@ -262,9 +261,9 @@
       id:
       - ArtifactAnalyzerMachineCircuitboard
 
-- type: pirateBounty
+- type: pirateBounty # FIXME: hotplate has no hard fixture
   id: PirateBountyHotplate
-  reward: 5
+  reward: 3
   description: pirate-bounty-description-generic
   spawnChest: false
   entries:
@@ -317,7 +316,7 @@
     amount: 1
     idWhitelist:
       id:
-      - Hypospray
+      - HypoMini
       matchParents: true # NFSD/Limited Edition versions fine
 
 - type: pirateBounty
@@ -344,17 +343,17 @@
       id:
       - Autolathe
 
-# needs work
-# - type: pirateBounty
-#   id: PirateBountyDiamond
-#   reward: 4
-#   description: pirate-bounty-description-generic
-#   entries:
-#   - name: pirate-bounty-item-diamond
-#     amount: 5
-#     idWhitelist:
-#       id:
-#       - MaterialDiamond
+- type: pirateBounty
+  id: PirateBountyDiamond
+  reward: 4
+  description: pirate-bounty-description-generic
+  entries:
+  - name: pirate-bounty-item-diamond
+    amount: 10
+    idWhitelist:
+      id:
+      - MaterialDiamond
+      matchParents: true # Singular vs. multiple diamonds
 
 - type: pirateBounty
   id: PirateBountyGold
@@ -362,11 +361,12 @@
   description: pirate-bounty-description-generic
   entries:
   - name: pirate-bounty-item-gold
-    amount: 5
+    amount: 100
     idWhitelist:
       id:
-      - GoldOre1
+      - GoldOre
       - IngotGold
+      matchParents: true # Singular vs. multiple gold ore/ingot stacks
 
 - type: pirateBounty
   id: PirateBountyPlasmaCanister
@@ -382,18 +382,16 @@
 
 - type: pirateBounty
   id: PirateBountyContraCrate
-  reward: 3
+  reward: 8 # Bonus of 2 doubloons vs. individual turn-in.
   description: pirate-bounty-description-generic
   spawnChest: false
   entries:
   - name: pirate-bounty-item-contracrate
-    amount: 1
+    amount: 3
     idWhitelist:
       id:
-      - CrateTradeContrabandSecureNormal
-      - CrateTradeContrabandSecureDonk
-      - CrateTradeContrabandSecureCyberSun
-      matchParents: true # Filled variants and non-filled ones
+      - CrateTradeBaseSecureContraband
+      matchParents: true # Should match trading crates and more valuable contraband crates
 
 - type: pirateBounty
   id: PirateBountyHydroTray

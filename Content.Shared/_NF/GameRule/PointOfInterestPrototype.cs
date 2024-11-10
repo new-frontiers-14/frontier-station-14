@@ -19,8 +19,20 @@ public sealed partial class PointOfInterestPrototype : IPrototype
     /// <summary>
     ///     The name of this point of interest
     /// </summary>
-    [DataField]
+    [DataField(required: true)]
     public string Name { get; private set; } = "";
+
+    /// <summary>
+    /// Should we set the warppoint name based on the grid name.
+    /// </summary>
+    [DataField]
+    public bool NameWarp { get; set; } = true;
+
+    /// <summary>
+    /// Should we set the warppoint name based on the grid name.
+    /// </summary>
+    [DataField]
+    public bool HideWarp { get; set; } = false;
 
     /// <summary>
     ///     Minimum range to spawn this POI at

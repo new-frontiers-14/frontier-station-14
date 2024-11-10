@@ -193,9 +193,9 @@
   table: !type:GroupSelector
     children:
     - id: OreBag
-    - id: HandheldGPSBasic
+#    - id: HandheldGPSBasic # Frontier - Useless
     - id: PowerCellHighPrinted
-    - id: RadioHandheld
+    - id: RadioHandheldNF # Frontier RadioHandheld<RadioHandheldNF
     - id: ClothingBeltUtility
     - id: Floodlight
     - id: WeaponProtoKineticAccelerator
@@ -212,15 +212,16 @@
         weight: 0.25
       - id: ClothingHeadHatWeldingMaskPainted
         weight: 0.1
+    - id: ClothingBeltQuiverCrossbowFilledBolt # Frontier
 
 - type: entityTable
   id: SalvageEquipmentRare
   table: !type:GroupSelector
     children:
-    - id: FultonBeacon
-    - id: Fulton
-      amount: !type:RangeNumberSelector
-        range: 1, 3
+#    - id: FultonBeacon # Frontier
+#    - id: Fulton # Frontier
+#      amount: !type:RangeNumberSelector # Frontier
+#        range: 1, 3 # Frontier
     - id: HandHeldMassScanner
     - id: WeaponCrusherDagger
     - id: MiningDrill
@@ -234,19 +235,21 @@
     - !type:GroupSelector
       children:
       - id: JetpackBlue
-      - id: JetpackBlack
+      - id: JetpackMini # Frontier JetpackBlack<JetpackMini
+    - id: MysterySpaceBladeBox # Frontier
+    - id: CrossbowModernHand # Frontier
 
 - type: entityTable
   id: SalvageEquipmentLegendary
   table: !type:GroupSelector
     children:
     - id: AdvancedMineralScanner
-    - id: BlueprintFulton
-    - id: BlueprintSeismicCharge
+#    - id: BlueprintFulton # Frontier
+#    - id: BlueprintSeismicCharge # Frontier
     - id: WeaponCrusherGlaive
     - id: ClothingOuterHardsuitSalvage
     - id: OmnizineChemistryBottle
     - !type:GroupSelector
       children:
       - id: JetpackBlueFilled
-      - id: JetpackBlackFilled
+      - id: JetpackMiniFilled # Frontier JetpackBlackFilled<JetpackMiniFilled
