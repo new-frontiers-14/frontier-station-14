@@ -1,7 +1,7 @@
 - type: entity
   name: handheld radio
   description: A handy handheld radio.
-  parent: BaseItem
+  parent: [BaseItem, RecyclableItemDeviceSmall] # Frontier: added RecyclableItemDeviceSmall
   id: RadioHandheld
   components:
   - type: TelecomExempt
