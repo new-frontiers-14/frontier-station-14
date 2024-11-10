@@ -15,7 +15,7 @@
     price: 2
 
 - type: entity
-  parent: EncryptionKey
+  parent: [EncryptionKey, RecyclableItemDeviceTiny] # Frontier: added RecyclableItemDeviceTiny
   id: EncryptionKeyCommon
   name: common encryption key
   description: An encryption key used by anyone.
@@ -30,7 +30,7 @@
     - state: common_label
 
 - type: entity
-  parent: EncryptionKey # Frontier: removed BaseCargoContraband
+  parent: [EncryptionKey, RecyclableItemDeviceTiny] # Frontier: added RecyclableItemDeviceTiny, removed BaseCargoContraband
   id: EncryptionKeyCargo
   name: cargo encryption key
   suffix: DO NOT MAP # Frontier - Add DO NOT MAP suffix
@@ -103,7 +103,7 @@
     - state: com_label
 
 - type: entity
-  parent: EncryptionKey # Frontier: removed BaseEngineeringContraband
+  parent: [EncryptionKey, RecyclableItemDeviceTiny] # Frontier: added RecyclableItemDeviceTiny, removed BaseEngineeringContraband
   id: EncryptionKeyEngineering
   name: engineering encryption key
   suffix: DO NOT MAP # Frontier - Add DO NOT MAP suffix
@@ -119,7 +119,7 @@
     - state: eng_label
 
 - type: entity
-  parent: EncryptionKey # Frontier: removed BaseMedicalContraband
+  parent: [EncryptionKey, RecyclableItemDeviceTiny] # Frontier: added RecyclableItemDeviceTiny, removed BaseMedicalContraband
   id: EncryptionKeyMedical
   name: medical encryption key
   description: An encryption key used by those who save lives.
@@ -134,7 +134,7 @@
     - state: med_label
 
 - type: entity
-  parent: EncryptionKey # Frontier: removed BaseMedicalScienceContraband
+  parent: [EncryptionKey, RecyclableItemDeviceTiny] # Frontier: added RecyclableItemDeviceTiny, removed BaseMedicalScienceContraband
   id: EncryptionKeyMedicalScience
   name: med-sci encryption key
   suffix: DO NOT MAP # Frontier - Add DO NOT MAP suffix
@@ -151,7 +151,7 @@
     - state: medsci_label
 
 - type: entity
-  parent: EncryptionKey # Frontier: removed BaseScienceContraband
+  parent: [EncryptionKey, RecyclableItemDeviceTiny] # Frontier: added RecyclableItemDeviceTiny, removed BaseScienceContraband
   id: EncryptionKeyScience
   name: science encryption key
   suffix: DO NOT MAP # Frontier - Add DO NOT MAP suffix
@@ -167,7 +167,7 @@
     - state: sci_label
 
 - type: entity
-  parent: EncryptionKey # Frontier: removed BaseScienceContraband
+  parent: [EncryptionKey, RecyclableItemDeviceTiny] # Frontier: added RecyclableItemDeviceTiny, removed BaseScienceContraband
   id: EncryptionKeyRobo
   name: robotech encryption key
   suffix: DO NOT MAP # Frontier - Add DO NOT MAP suffix
@@ -199,7 +199,7 @@
     - state: sec_label
 
 - type: entity
-  parent: EncryptionKey # Frontier: removed BaseCivilianContraband
+  parent: [EncryptionKey, RecyclableItemDeviceTiny] # Frontier: added RecyclableItemDeviceTiny, removed BaseCivilianContraband
   id: EncryptionKeyService
   name: service encryption key
   suffix: DO NOT MAP # Frontier - Add DO NOT MAP suffix
@@ -231,7 +231,7 @@
     - state: synd_label
 
 - type: entity
-  parent: EncryptionKey # Frontier: removed BaseSiliconScienceContraband
+  parent: [EncryptionKey, RecyclableItemDeviceTiny] # Frontier: added RecyclableItemDeviceTiny, removed BaseSiliconScienceContraband
   id: EncryptionKeyBinary
   name: binary translator key
   suffix: DO NOT MAP # Frontier - Add DO NOT MAP suffix

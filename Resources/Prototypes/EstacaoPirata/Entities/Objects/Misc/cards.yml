@@ -33,7 +33,7 @@
 
 # Frontier: base stack for card stack component
 - type: entity
-  parent: BaseItem
+  parent: [BaseItem, RecyclableItemNoMats] # Frontier: added RecyclableItemNoMats
   id: CardStackBase
   name: stack of cards
   abstract: true
