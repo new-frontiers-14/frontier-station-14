@@ -1,10 +1,10 @@
 using Content.Server.StationEvents.Events;
-using Content.Shared.Storage;
 using Content.Server.Shuttles.Systems;
 using Content.Shared.Dataset;
 using Content.Shared.Procedural;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using Robust.Shared.Map;
 
 namespace Content.Server.StationEvents.Components;
 
@@ -24,6 +24,11 @@ public sealed partial class BluespaceErrorRuleComponent : Component
     public List<EntityUid> GridsUid = new();
 
     /// <summary>
+    /// All the added maps that should be removed on event end
+    /// </summary>
+    public List<MapId> MapsUid = new();
+
+    /// <summary>
     /// If true, the grids are deleted at the end of the event.  If false, the grids are left in the map.
     /// </summary>
     [DataField]
@@ -39,7 +44,6 @@ public sealed partial class BluespaceErrorRuleComponent : Component
     /// <summary>
     /// How much the grid is appraised at upon entering into existence, set after starting the event
     /// </summary>
-    [DataField]
     public double StartingValue = 0;
 }
 
@@ -76,6 +80,16 @@ public interface IBluespaceSpawnGroup
     /// Should we set the metadata name of a grid. Useful for admin purposes.
     /// </summary>
     public bool NameGrid { get; set; }
+
+    /// <summary>
+    /// Should we set the warppoint name based on the grid name.
+    /// </summary>
+    public bool NameWarp { get; set; }
+
+    /// <summary>
+    /// Should we set the warppoint to be seen only by admins.
+    /// </summary>
+    public bool HideWarp { get; set; }
 }
 
 [DataRecord]
@@ -108,6 +122,12 @@ public sealed class BluespaceDungeonSpawnGroup : IBluespaceSpawnGroup
 
     /// <inheritdoc />
     public bool NameGrid { get; set; } = false;
+
+    /// <inheritdoc />
+    public bool NameWarp { get; set; } = false; // Loads in too late, cannot name warps, use WarpPointDungeon instead.
+
+    /// <inheritdoc />
+    public bool HideWarp { get; set; } = false;
 }
 
 [DataRecord]
@@ -126,4 +146,6 @@ public sealed class BluespaceGridSpawnGroup : IBluespaceSpawnGroup
     public int MaxCount { get; set; } = 1;
     public ComponentRegistry AddComponents { get; set; } = new();
     public bool NameGrid { get; set; } = true;
+    public bool NameWarp { get; set; } = true;
+    public bool HideWarp { get; set; } = false;
 }

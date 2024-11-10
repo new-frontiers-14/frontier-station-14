@@ -57,9 +57,9 @@ namespace Content.Client.Access.UI
             };
             JobTitleSaveButton.OnPressed += _ => SubmitData();
 
-            ShipNameLineEdit.OnTextChanged += _ => EnsureValidShuttleName();
-            ShipSuffixLineEdit.OnTextChanged += _ => EnsureValidShuttleName();
-            ShipNameSaveButton.OnPressed += _ => SubmitShuttleData();
+            ShipNameLineEdit.OnTextChanged += _ => EnsureValidShuttleName(); // Frontier
+            ShipSuffixLineEdit.OnTextChanged += _ => EnsureValidShuttleName(); // Frontier
+            ShipNameSaveButton.OnPressed += _ => SubmitShuttleData(); // Frontier
 
             var jobs = _prototypeManager.EnumeratePrototypes<JobPrototype>().ToList();
             jobs.Sort((x, y) => string.Compare(x.LocalizedName, y.LocalizedName, StringComparison.CurrentCulture));
