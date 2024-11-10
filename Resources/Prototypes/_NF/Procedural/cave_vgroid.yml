@@ -8,96 +8,156 @@
 # If you want mobs they needed to be added at specific steps due to how dungeons work at the moment.
 
 - type: dungeonConfig
-  id: NFVGRoid
+  id: NFVGRoidCave
   layers:
     - !type:PrototypeDunGen
-      proto: NFVGRoidBlob
+      proto: NFVGRoidBlobCave
     - !type:PrototypeDunGen
-      proto: NFVGRoidExterior
+      proto: NFVGRoidExteriorCave
     - !type:PrototypeDunGen
-      proto: NFVGRoidSmaller
+      proto: NFVGRoidSmallerCave
     - !type:PrototypeDunGen
-      proto: NFVGRoidSmallPaths
+      proto: NFVGRoidSmallPathsCave
     - !type:EntityTableDunGen
       minCount: 7
       maxCount: 12
       table:
         id: NFVGRoidInteriorRoomMarker
+    - !type:BiomeDunGen
+      biomeTemplate: NFVGRoidCaves
+      tileMask:
+      - FloorCaveDrought
     # Fill
-    - !type:PrototypeDunGen
-      proto: NFVGRoidFill
+    # - !type:PrototypeDunGen
+      # proto: NFVGRoidFillCave
+    # "WarpPoint"
+    - !type:OreDunGen
+      tileMask:
+      - FloorCaveDrought
+      entity: WarpPointDungeon
+      count: 1
+      minGroupSize: 1
+      maxGroupSize: 1
+    # "Ores"
+    - !type:OreDunGen
+      entityMask:
+      - WallRock
+      entity: RockElementalSpawner
+      count: 100
+      minGroupSize: 1
+      maxGroupSize: 1
     # Ores
     - !type:OreDunGen
-      replacement: IronRock
-      entity: IronRockIron
+      entityMask:
+      - WallRock
+      entity: WallRockTin
       count: 50
       minGroupSize: 10
       maxGroupSize: 15
     - !type:OreDunGen
-      replacement: IronRock
-      entity: IronRockCoal
+      entityMask:
+      - WallRock
+      entity: WallRockCoal
       count: 50
       minGroupSize: 8
       maxGroupSize: 12
     - !type:OreDunGen
-      replacement: IronRock
-      entity: IronRockQuartz
+      entityMask:
+      - WallRock
+      entity: WallRockQuartz
       count: 50
       minGroupSize: 10
       maxGroupSize: 15
     - !type:OreDunGen
-      replacement: IronRock
-      entity: IronRockSalt
+      entityMask:
+      - WallRock
+      entity: WallRockSalt
       count: 50
       minGroupSize: 8
       maxGroupSize: 12
     - !type:OreDunGen
-      replacement: IronRock
-      entity: IronRockGold
+      entityMask:
+      - WallRock
+      entity: WallRockGold
       count: 40
       minGroupSize: 8
       maxGroupSize: 12
     - !type:OreDunGen
-      replacement: IronRock
-      entity: IronRockSilver
+      entityMask:
+      - WallRock
+      entity: WallRockSilver
       count: 40
       minGroupSize: 8
       maxGroupSize: 12
     - !type:OreDunGen
-      replacement: IronRock
-      entity: IronRockPlasma
+      entityMask:
+      - WallRock
+      entity: WallRockPlasma
       count: 35
       minGroupSize: 4
       maxGroupSize: 8
     - !type:OreDunGen
-      replacement: IronRock
-      entity: IronRockUranium
+      entityMask:
+      - WallRock
+      entity: WallRockUranium
       count: 35
       minGroupSize: 4
       maxGroupSize: 8
     - !type:OreDunGen
-      replacement: IronRock
-      entity: IronRockArtifactFragment
+      entityMask:
+      - WallRock
+      entity: WallCobblebrickNF
+      count: 100
+      minGroupSize: 6
+      maxGroupSize: 16
+    - !type:OreDunGen
+      entityMask:
+      - WallRock
+      entity: WallRockArtifactFragment
       count: 25
       minGroupSize: 1
       maxGroupSize: 3
     - !type:OreDunGen
-      replacement: IronRock
-      entity: IronRockDiamond
+      entityMask:
+      - WallRock
+      entity: WallRockDiamond
       count: 15
       minGroupSize: 1
       maxGroupSize: 2
+    - !type:OreDunGen
+      entityMask:
+      - WallRock
+      entity: WallRockBluespace
+      count: 10
+      minGroupSize: 1
+      maxGroupSize: 1
+    # Decoration
+    # - !type:OreDunGen
+      # tileMask:
+      # - FloorCaveDrought
+      # entity: FloraRockSolid01
+      # count: 20
+      # minGroupSize: 1
+      # maxGroupSize: 1
+    # Mobs
+    - !type:OreDunGen
+      tileMask:
+      - FloorCaveDrought
+      entity: SpawnMobExplorerT3
+      count: 25
+      minGroupSize: 1
+      maxGroupSize: 1
 
 # Configs
 - type: dungeonConfig
-  id: NFVGRoidBlob
+  id: NFVGRoidBlobCave
   layers:
   - !type:NoiseDistanceDunGen
     size: 272, 272
     distanceConfig: !type:DunGenEuclideanSquaredDistance
       blendWeight: 0.80
     layers:
-    - tile: FloorAsteroidSand
+    - tile: FloorCaveDrought
       threshold: 0.50
       noise:
         frequency: 0.010
@@ -108,7 +168,7 @@
         gain: 0.5
 
 - type: dungeonConfig
-  id: NFVGRoidSmaller
+  id: NFVGRoidSmallerCave
   minOffset: 40
   maxOffset: 60
   layers:
@@ -116,7 +176,7 @@
     size: 150, 150
     distanceConfig: !type:DunGenEuclideanSquaredDistance
     layers:
-    - tile: FloorAsteroidSand
+    - tile: FloorCaveDrought
       threshold: 0.50
       noise:
         frequency: 0.080
@@ -127,25 +187,25 @@
         gain: 0.5
 
 - type: dungeonConfig
-  id: NFVGRoidExterior
+  id: NFVGRoidExteriorCave
   reserveTiles: true
   data:
     tiles:
       FallbackTile: PlatingAsteroid
-      WidenTile: FloorAsteroidSand
+      WidenTile: FloorCaveDrought
   layers:
   - !type:PrototypeDunGen
-    proto: NFVGRoidExteriorDungeons
+    proto: NFVGRoidExteriorDungeonsCave
   - !type:SplineDungeonConnectorDunGen
 
 - type: dungeonConfig
-  id: NFVGRoidExteriorDungeons
+  id: NFVGRoidExteriorDungeonsCave
   reserveTiles: true
   minCount: 2
   maxCount: 3
   layers:
   - !type:ExteriorDunGen
-    proto: Experiment
+    proto: SalvageOutpost
   - !type:EntityTableDunGen
     minCount: 25
     maxCount: 40
@@ -180,22 +240,22 @@
     minCount: 8
     maxCount: 15
     groups:
-    - id: SalvageSpawnerMobMiningAsteroid
+    - id: SpawnMobExplorerT2
       amount: 1
 
 #- type: dungeonConfig
-#  id: NFVGRoidInteriorDungeons
+#  id: NFVGRoidInteriorDungeonsCave
 #  minCount: 3
 #  maxCount: 5
 #  # Just randomly spawn these in bounds, doesn't really matter if they go out.
 
 - type: dungeonConfig
-  id: NFVGRoidSmallPaths
+  id: NFVGRoidSmallPathsCave
   reserveTiles: true
   layers:
   - !type:ReplaceTileDunGen
     layers:
-    - tile: FloorAsteroidSand
+    - tile: FloorCaveDrought
       threshold: 0.75
       noise:
         frequency: 0.040
@@ -204,25 +264,56 @@
         lacunarity: 1.5
         octaves: 2
         gain: 2.0
-  # Mobs
-  # If you want exterior dungeon mobs add them under the prototype.
-  - !type:MobsDunGen
-    minCount: 25
-    maxCount: 35
-    groups:
-    - id: SalvageSpawnerMobMiningAsteroid
-      amount: 1
 
-#- type: dungeonConfig
-#  id: NFVGRoidOres
-
-# Fill with rocks.
-- type: dungeonConfig
-  id: NFVGRoidFill
-  data:
-    entities:
-      Fill: IronRock
+# Caves
+- type: biomeTemplate
+  id: NFVGRoidCaves
   layers:
-  - !type:FillGridDunGen
-    allowedTiles:
-    - FloorAsteroidSand
+    - !type:BiomeEntityLayer
+      threshold: 0.85
+      noise:
+        seed: 2
+        noiseType: OpenSimplex2
+        fractalType: PingPong
+      allowedTiles:
+        - FloorCaveDrought
+      entities:
+        - CrystalGreen
+        - CrystalPink
+        - CrystalOrange
+        - CrystalBlue
+        - CrystalCyan
+    - !type:BiomeEntityLayer
+      threshold: 0.95
+      noise:
+        seed: 1
+        noiseType: OpenSimplex2
+        frequency: 1
+      allowedTiles:
+      - FloorCaveDrought
+      entities:
+      - FloraStalagmite1
+      - FloraStalagmite2
+      - FloraStalagmite3
+      - FloraStalagmite4
+      - FloraStalagmite5
+      - FloraStalagmite6
+    - !type:BiomeEntityLayer
+      threshold: -0.5
+      invert: true
+      noise:
+        seed: 0
+        noiseType: Perlin
+        fractalType: Ridged
+        octaves: 1
+        frequency: 0.1
+        gain: 0.5
+      allowedTiles:
+        - FloorCaveDrought
+      entities:
+        - WallRock
+    - !type:BiomeDummyLayer
+      id: Loot
+    - !type:BiomeTileLayer
+      threshold: -1.0
+      tile: FloorCaveDrought

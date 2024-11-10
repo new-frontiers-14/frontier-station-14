@@ -1,6 +1,4 @@
-using Content.Shared.Procedural;
 using Content.Shared.Whitelist;
-using Robust.Shared.Prototypes;
 
 namespace Content.Server.Procedural;
 
@@ -20,8 +18,8 @@ public sealed partial class RoomFillComponent : Component
     /// <summary>
     /// Size of the room to fill.
     /// </summary>
-    [DataField(required: true)]
-    public Vector2i Size;
+    [DataField]
+    public Vector2i? Size;
 
     /// <summary>
     /// Rooms allowed for the marker.
