@@ -82,9 +82,14 @@ public interface IBluespaceSpawnGroup
     public bool NameGrid { get; set; }
 
     /// <summary>
-    /// Should we set the warppoint name of a based on grid name.
+    /// Should we set the warppoint name based on the grid name.
     /// </summary>
     public bool NameWarp { get; set; }
+
+    /// <summary>
+    /// Should we set the warppoint to be seen only by admins.
+    /// </summary>
+    public bool HideWarp { get; set; }
 }
 
 [DataRecord]
@@ -119,7 +124,10 @@ public sealed class BluespaceDungeonSpawnGroup : IBluespaceSpawnGroup
     public bool NameGrid { get; set; } = false;
 
     /// <inheritdoc />
-    public bool NameWarp { get; set; } = true;
+    public bool NameWarp { get; set; } = false; // Loads in too late, cannot name warps, use WarpPointDungeon instead.
+
+    /// <inheritdoc />
+    public bool HideWarp { get; set; } = false;
 }
 
 [DataRecord]
@@ -138,6 +146,6 @@ public sealed class BluespaceGridSpawnGroup : IBluespaceSpawnGroup
     public int MaxCount { get; set; } = 1;
     public ComponentRegistry AddComponents { get; set; } = new();
     public bool NameGrid { get; set; } = true;
-
     public bool NameWarp { get; set; } = true;
+    public bool HideWarp { get; set; } = false;
 }
