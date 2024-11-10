@@ -1,6 +1,7 @@
 using System.Linq;
 using System.Text;
 using System.Threading;
+using Content.Server._NF.PacifiedZone;
 using Content.Server.Administration.Managers;
 using Robust.Shared.CPUJob.JobQueues;
 using Robust.Shared.CPUJob.JobQueues.Queues;
@@ -15,7 +16,8 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using Content.Server.Worldgen; // Frontier
 using Content.Server.Worldgen.Components; // Frontier
-using Content.Server.Worldgen.Systems; // Frontier
+using Content.Server.Worldgen.Systems;
+using Content.Shared.Tiles; // Frontier
 using Robust.Server.GameObjects; // Frontier
 
 namespace Content.Server.NPC.HTN;
@@ -72,7 +74,7 @@ public sealed class HTNSystem : EntitySystem
         // Clear all NPCs in case they're hanging onto stale tasks
         var query = AllEntityQuery<HTNComponent>();
 
-        while (query.MoveNext(out var comp))
+        while (query.MoveNext(out var comp)) // Frontier
         {
             comp.PlanningToken?.Cancel();
             comp.PlanningToken = null;
@@ -166,6 +168,11 @@ public sealed class HTNSystem : EntitySystem
                 break;
 
             if (!IsNPCActive(uid))  // Frontier
+                continue;
+
+            // Frontier: Disable hostile AI in pacified zones
+            var grid = Transform(uid).GridUid;
+            if (grid != null && EntityManager.TryGetComponent<ProtectedGridComponent>(grid, out _))
                 continue;
 
             if (comp.PlanningJob != null)
