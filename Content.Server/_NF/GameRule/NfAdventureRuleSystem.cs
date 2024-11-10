@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 using Content.Shared._NF.GameRule;
 using Content.Server.Procedural;
 using Content.Server._NF.GameTicking.Events;
-using Content.Shared.Procedural;
 using Robust.Server.GameObjects;
 using Robust.Server.Maps;
 using Robust.Shared.Console;
@@ -16,7 +15,6 @@ using Content.Shared.GameTicking.Components;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
-using Robust.Shared.Map.Components;
 using Content.Shared.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Cargo.Components;
@@ -24,7 +22,6 @@ using Content.Server.GameTicking;
 using Content.Server.GameTicking.Rules;
 using Content.Server.Maps;
 using Content.Server.Station.Systems;
-using Content.Shared.CCVar;
 using Content.Shared._NF.CCVar; // Frontier
 using Robust.Shared.Configuration;
 using Robust.Shared.Physics.Components;
@@ -39,6 +36,7 @@ using Robust.Shared.Network;
 using Content.Shared.GameTicking;
 using Robust.Shared.Enums;
 using Robust.Server.Player;
+using Content.Server.Warps;
 
 namespace Content.Server._NF.GameRule;
 
@@ -53,12 +51,11 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly MapLoaderSystem _map = default!;
     [Dependency] private readonly MetaDataSystem _meta = default!;
-    [Dependency] private readonly DungeonSystem _dunGen = default!;
-    [Dependency] private readonly IConsoleHost _console = default!;
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly ShuttleSystem _shuttle = default!;
     [Dependency] private readonly PhysicsSystem _physics = default!;
     [Dependency] private readonly BankSystem _bank = default!;
+    [Dependency] private readonly StationRenameWarpsSystems _renameWarps = default!;
 
     private readonly HttpClient _httpClient = new();
 
@@ -256,37 +253,6 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
 
         // Using invalid entity, we don't have a relevant entity to reference here.
         RaiseLocalEvent(EntityUid.Invalid, new StationsGeneratedEvent(), broadcast: true); // TODO: attach this to a meaningful entity.
-
-        // TODO: Remove this for new system
-        foreach (var dungeonProto in component.SpaceDungeons)
-        {
-            if (!_prototypeManager.TryIndex<DungeonConfigPrototype>(dungeonProto, out var dunGen))
-                continue;
-
-            var seed = _random.Next();
-            var offset = GetRandomPOICoord(3000f, 8500f, true);
-            if (!_map.TryLoad(_mapId, "/Maps/_NF/Dungeon/spaceplatform.yml", out var grids,
-                    new MapLoadOptions
-                    {
-                        Offset = offset
-                    }))
-            {
-                continue;
-            }
-
-            var mapGrid = EnsureComp<MapGridComponent>(grids[0]);
-            _shuttle.AddIFFFlag(grids[0], IFFFlags.HideLabel);
-            _console.WriteLine(null, $"dungeon spawned at {offset}");
-
-            string dungeonName = Loc.GetString("adventure-space-dungeon-name", ("dungeonPrototype", dungeonProto));
-            _meta.SetEntityName(grids[0], dungeonName);
-
-            //pls fit the grid I beg, this is so hacky
-            //its better now but i think i need to do a normalization pass on the dungeon configs
-            //because they are all offset. confirmed good size grid, just need to fix all the offsets.
-            _dunGen.GenerateDungeon(dunGen, dunGen.ID, grids[0], mapGrid, new Vector2i(0, 0), seed);
-            AddStationCoordsToSet(offset);
-        }
     }
 
     private void GenerateDepots(List<PointOfInterestPrototype> depotPrototypes, out List<EntityUid> depotStations)
@@ -404,7 +370,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         uniqueStations = new List<EntityUid>();
         foreach (var prototypeList in uniquePrototypes.Values)
         {
-            // Try to spawn 
+            // Try to spawn
             _random.Shuffle(prototypeList);
             foreach (var proto in prototypeList)
             {
@@ -437,9 +403,10 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
 
             string stationName = string.IsNullOrEmpty(overrideName) ? proto.Name : overrideName;
 
+            EntityUid? stationUid = null;
             if (_prototypeManager.TryIndex<GameMapPrototype>(proto.ID, out var stationProto))
             {
-                _station.InitializeNewStation(stationProto.Stations[proto.ID], mapUids, stationName);
+                stationUid = _station.InitializeNewStation(stationProto.Stations[proto.ID], mapUids, stationName);
             }
 
             // Cache our damping strength
@@ -491,6 +458,23 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
                         prot.PreventArtifactTriggers = true;
                 }
             }
+
+            // Rename warp points after set up if needed
+            if (proto.NameWarp)
+            {
+                List<Entity<WarpPointComponent>> warpEnts;
+                if (stationUid != null)
+                    warpEnts = _renameWarps.SyncWarpPointsToStation(stationUid.Value);
+                else
+                    warpEnts = _renameWarps.SyncWarpPointsToGrids(mapUids);
+
+                foreach (var warp in warpEnts)
+                {
+                    if (proto.HideWarp)
+                        warp.Comp.AdminOnly = true;
+                }
+            }
+
             gridUid = mapUids[0];
             return true;
         }
