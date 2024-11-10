@@ -88,11 +88,20 @@ public sealed partial class CloningPodComponent : Component
     [DataField("partRatingMaterialMultiplier")]
     public float PartRatingMaterialMultiplier = 0.85f;
 
+    // Frontier: machine part upgrades
+    /// <summary>
+    /// The base multiplier on the body weight, which determines the
+    /// amount of biomass needed to clone, and is affected by part upgrades.
+    /// </summary>
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public float BaseBiomassRequirementMultiplier = 1;
+
+    // Frontier: machine part upgrades
     /// <summary>
     /// The current multiplier on the body weight, which determines the
     /// amount of biomass needed to clone.
     /// </summary>
-    [ViewVariables(VVAccess.ReadWrite)]
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
     public float BiomassRequirementMultiplier = 1;
 
     /// <summary>

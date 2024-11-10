@@ -1,34 +1,88 @@
-# Example use case of a DunGen-based bluespace event
+- type: entity
+  id: BluespaceDungeonBase
+  parent: BaseStationEventShortDelay
+  name: NT Bluespace Monitoring # This name shows up in the radio messages.
+  abstract: true
+  components:
+  - type: StationEvent
+    startRadioAnnouncement: station-event-bluespace-dungeon-start-announcement
+    startRadioAnnouncementChannel: Supply
+    warningRadioAnnouncement: station-event-bluespace-dungeon-warning-announcement
+    warningRadioAnnouncementChannel: Supply
+    endRadioAnnouncement: station-event-bluespace-dungeon-end-announcement
+    endRadioAnnouncementChannel: Supply
+    weight: 5
+    duration: 1800 # 30 minutes
+    maxDuration: 1800 # 30 minutes
+    reoccurrenceDelay: 120 # 2 hours (some variety - at worst, alternates between four dungeon types)
+  - type: ActiveRadio
+    channels:
+    - Supply
 
-# - type: entity
-#   id: BluespaceDungeon
-#   parent: BaseStationEventShortDelay
-#   components:
-#   - type: StationEvent
-#     startAnnouncement: station-event-bluespace-dungeon-start-announcement
-#     startAudio:
-#       path: /Audio/Announcements/attention.ogg
-#     warningAnnouncement: station-event-bluespace-dungeon-warning-announcement
-#     endAnnouncement: station-event-bluespace-dungeon-end-announcement
-#     earliestStart: 100
-#     weight: 5
-#     duration: 120 # Temp
-#     maxDuration: 120 # Temp
-#     warningDurationLeft: 60 # Temp
-#     reoccurrenceDelay: 480 # 8 hours
-#   - type: BluespaceErrorRule
-#     groups:
-#       vgroid: !type:DungeonSpawnGroup
-#         nameDataset: names_borer
-#         minimumDistance: 1500
-#         maximumDistance: 2500
-#         addComponents:
-#         - type: Gravity
-#           enabled: true
-#           inherent: true
-#         - type: IFF
-#         - type: Shuttle
-#           angularDamping: 999999
-#           linearDamping: 999999
-#         protos:
-#         - NFVGRoid
+- type: entity
+  id: BluespaceDungeonBasalt
+  parent: BluespaceDungeonBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: BluespaceErrorRule
+    groups:
+      vgroid: !type:DungeonSpawnGroup
+        nameDataset: names_borer
+        minimumDistance: 1500
+        maximumDistance: 2500
+        addComponents: &dungeonComponents
+        - type: Gravity
+          enabled: true
+          inherent: true
+        - type: IFF
+        - type: Shuttle
+          angularDamping: 999999
+          linearDamping: 999999
+        - type: LinkedLifecycleGridParent
+        protos:
+        - NFVGRoidBasalt
+
+- type: entity
+  id: BluespaceDungeonSnow
+  parent: BluespaceDungeonBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: BluespaceErrorRule
+    groups:
+      vgroid: !type:DungeonSpawnGroup
+        nameDataset: names_borer
+        minimumDistance: 1500
+        maximumDistance: 2500
+        addComponents: *dungeonComponents
+        protos:
+        - NFVGRoidSnow
+
+- type: entity
+  id: BluespaceDungeonCave
+  parent: BluespaceDungeonBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: BluespaceErrorRule
+    groups:
+      vgroid: !type:DungeonSpawnGroup
+        nameDataset: names_borer
+        minimumDistance: 1500
+        maximumDistance: 2500
+        addComponents: *dungeonComponents
+        protos:
+        - NFVGRoidCave
+
+- type: entity
+  id: BluespaceDungeonChromite
+  parent: BluespaceDungeonBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: BluespaceErrorRule
+    groups:
+      vgroid: !type:DungeonSpawnGroup
+        nameDataset: names_borer
+        minimumDistance: 1500
+        maximumDistance: 2500
+        addComponents: *dungeonComponents
+        protos:
+        - NFVGRoidChromite

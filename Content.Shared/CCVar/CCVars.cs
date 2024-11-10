@@ -1891,7 +1891,7 @@ namespace Content.Shared.CCVar
         /// Cooldown for missions. Frontier: SalvageExpeditionFailedCooldown for failed missions
         /// </summary>
         public static readonly CVarDef<float>
-            SalvageExpeditionCooldown = CVarDef.Create("salvage.expedition_cooldown", 300f, CVar.REPLICATED); // Frontier: 780f<300f TODO: return this up in another PR
+            SalvageExpeditionCooldown = CVarDef.Create("salvage.expedition_cooldown", 1200f, CVar.REPLICATED); // Frontier: 780f<1200f TODO: return this up in another PR
 
         /*
          * Flavor

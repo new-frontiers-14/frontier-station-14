@@ -1,0 +1,319 @@
+# Okay so my general thought is this:
+# 1. Generate the large mass
+# 2. Generate smaller masses offset
+# 3. Generate N normal dungeons around the larger mass, preferably near the border
+# 4. Generate large paths / small paths around the place
+# 5. Spawn ores + fill the rest and the normal stuff
+
+# If you want mobs they needed to be added at specific steps due to how dungeons work at the moment.
+
+- type: dungeonConfig
+  id: NFVGRoidCave
+  layers:
+    - !type:PrototypeDunGen
+      proto: NFVGRoidBlobCave
+    - !type:PrototypeDunGen
+      proto: NFVGRoidExteriorCave
+    - !type:PrototypeDunGen
+      proto: NFVGRoidSmallerCave
+    - !type:PrototypeDunGen
+      proto: NFVGRoidSmallPathsCave
+    - !type:EntityTableDunGen
+      minCount: 7
+      maxCount: 12
+      table:
+        id: NFVGRoidInteriorRoomMarker
+    - !type:BiomeDunGen
+      biomeTemplate: NFVGRoidCaves
+      tileMask:
+      - FloorCaveDrought
+    # Fill
+    # - !type:PrototypeDunGen
+      # proto: NFVGRoidFillCave
+    # "WarpPoint"
+    - !type:OreDunGen
+      tileMask:
+      - FloorCaveDrought
+      entity: WarpPointDungeon
+      count: 1
+      minGroupSize: 1
+      maxGroupSize: 1
+    # "Ores"
+    - !type:OreDunGen
+      entityMask:
+      - WallRock
+      entity: RockElementalSpawner
+      count: 100
+      minGroupSize: 1
+      maxGroupSize: 1
+    # Ores
+    - !type:OreDunGen
+      entityMask:
+      - WallRock
+      entity: WallRockTin
+      count: 50
+      minGroupSize: 10
+      maxGroupSize: 15
+    - !type:OreDunGen
+      entityMask:
+      - WallRock
+      entity: WallRockCoal
+      count: 50
+      minGroupSize: 8
+      maxGroupSize: 12
+    - !type:OreDunGen
+      entityMask:
+      - WallRock
+      entity: WallRockQuartz
+      count: 50
+      minGroupSize: 10
+      maxGroupSize: 15
+    - !type:OreDunGen
+      entityMask:
+      - WallRock
+      entity: WallRockSalt
+      count: 50
+      minGroupSize: 8
+      maxGroupSize: 12
+    - !type:OreDunGen
+      entityMask:
+      - WallRock
+      entity: WallRockGold
+      count: 40
+      minGroupSize: 8
+      maxGroupSize: 12
+    - !type:OreDunGen
+      entityMask:
+      - WallRock
+      entity: WallRockSilver
+      count: 40
+      minGroupSize: 8
+      maxGroupSize: 12
+    - !type:OreDunGen
+      entityMask:
+      - WallRock
+      entity: WallRockPlasma
+      count: 35
+      minGroupSize: 4
+      maxGroupSize: 8
+    - !type:OreDunGen
+      entityMask:
+      - WallRock
+      entity: WallRockUranium
+      count: 35
+      minGroupSize: 4
+      maxGroupSize: 8
+    - !type:OreDunGen
+      entityMask:
+      - WallRock
+      entity: WallCobblebrickNF
+      count: 100
+      minGroupSize: 6
+      maxGroupSize: 16
+    - !type:OreDunGen
+      entityMask:
+      - WallRock
+      entity: WallRockArtifactFragment
+      count: 25
+      minGroupSize: 1
+      maxGroupSize: 3
+    - !type:OreDunGen
+      entityMask:
+      - WallRock
+      entity: WallRockDiamond
+      count: 15
+      minGroupSize: 1
+      maxGroupSize: 2
+    - !type:OreDunGen
+      entityMask:
+      - WallRock
+      entity: WallRockBluespace
+      count: 10
+      minGroupSize: 1
+      maxGroupSize: 1
+    # Decoration
+    # - !type:OreDunGen
+      # tileMask:
+      # - FloorCaveDrought
+      # entity: FloraRockSolid01
+      # count: 20
+      # minGroupSize: 1
+      # maxGroupSize: 1
+    # Mobs
+    - !type:OreDunGen
+      tileMask:
+      - FloorCaveDrought
+      entity: SpawnMobExplorerT3
+      count: 25
+      minGroupSize: 1
+      maxGroupSize: 1
+
+# Configs
+- type: dungeonConfig
+  id: NFVGRoidBlobCave
+  layers:
+  - !type:NoiseDistanceDunGen
+    size: 272, 272
+    distanceConfig: !type:DunGenEuclideanSquaredDistance
+      blendWeight: 0.80
+    layers:
+    - tile: FloorCaveDrought
+      threshold: 0.50
+      noise:
+        frequency: 0.010
+        noiseType: OpenSimplex2
+        fractalType: FBm
+        octaves: 5
+        lacunarity: 2
+        gain: 0.5
+
+- type: dungeonConfig
+  id: NFVGRoidSmallerCave
+  minOffset: 40
+  maxOffset: 60
+  layers:
+  - !type:NoiseDistanceDunGen
+    size: 150, 150
+    distanceConfig: !type:DunGenEuclideanSquaredDistance
+    layers:
+    - tile: FloorCaveDrought
+      threshold: 0.50
+      noise:
+        frequency: 0.080
+        noiseType: OpenSimplex2
+        fractalType: FBm
+        octaves: 5
+        lacunarity: 1.5
+        gain: 0.5
+
+- type: dungeonConfig
+  id: NFVGRoidExteriorCave
+  reserveTiles: true
+  data:
+    tiles:
+      FallbackTile: PlatingAsteroid
+      WidenTile: FloorCaveDrought
+  layers:
+  - !type:PrototypeDunGen
+    proto: NFVGRoidExteriorDungeonsCave
+  - !type:SplineDungeonConnectorDunGen
+
+- type: dungeonConfig
+  id: NFVGRoidExteriorDungeonsCave
+  reserveTiles: true
+  minCount: 2
+  maxCount: 3
+  layers:
+  - !type:ExteriorDunGen
+    proto: SalvageOutpost
+  - !type:EntityTableDunGen
+    minCount: 25
+    maxCount: 40
+    table: !type:NestedSelector
+      tableId: SalvageScrapSpawnerCommon
+  - !type:EntityTableDunGen
+    minCount: 30
+    maxCount: 40
+    table: !type:NestedSelector
+      tableId: SalvageScrapSpawnerValuable
+  - !type:EntityTableDunGen
+    minCount: 15
+    maxCount: 25
+    table: !type:NestedSelector
+      tableId: SalvageTreasureSpawnerCommon
+  - !type:EntityTableDunGen
+    minCount: 15
+    maxCount: 25
+    table: !type:NestedSelector
+      tableId: SalvageEquipmentSpawnerCommon
+  - !type:EntityTableDunGen
+    minCount: 15
+    maxCount: 20
+    table: !type:NestedSelector
+      tableId: SalvageTreasureSpawnerValuable
+  - !type:EntityTableDunGen
+    minCount: 15
+    maxCount: 20
+    table: !type:NestedSelector
+      tableId: SalvageEquipmentSpawnerValuable
+  - !type:MobsDunGen
+    minCount: 8
+    maxCount: 15
+    groups:
+    - id: SpawnMobExplorerT2
+      amount: 1
+
+#- type: dungeonConfig
+#  id: NFVGRoidInteriorDungeonsCave
+#  minCount: 3
+#  maxCount: 5
+#  # Just randomly spawn these in bounds, doesn't really matter if they go out.
+
+- type: dungeonConfig
+  id: NFVGRoidSmallPathsCave
+  reserveTiles: true
+  layers:
+  - !type:ReplaceTileDunGen
+    layers:
+    - tile: FloorCaveDrought
+      threshold: 0.75
+      noise:
+        frequency: 0.040
+        noiseType: OpenSimplex2
+        fractalType: Ridged
+        lacunarity: 1.5
+        octaves: 2
+        gain: 2.0
+
+# Caves
+- type: biomeTemplate
+  id: NFVGRoidCaves
+  layers:
+    - !type:BiomeEntityLayer
+      threshold: 0.85
+      noise:
+        seed: 2
+        noiseType: OpenSimplex2
+        fractalType: PingPong
+      allowedTiles:
+        - FloorCaveDrought
+      entities:
+        - CrystalGreen
+        - CrystalPink
+        - CrystalOrange
+        - CrystalBlue
+        - CrystalCyan
+    - !type:BiomeEntityLayer
+      threshold: 0.95
+      noise:
+        seed: 1
+        noiseType: OpenSimplex2
+        frequency: 1
+      allowedTiles:
+      - FloorCaveDrought
+      entities:
+      - FloraStalagmite1
+      - FloraStalagmite2
+      - FloraStalagmite3
+      - FloraStalagmite4
+      - FloraStalagmite5
+      - FloraStalagmite6
+    - !type:BiomeEntityLayer
+      threshold: -0.5
+      invert: true
+      noise:
+        seed: 0
+        noiseType: Perlin
+        fractalType: Ridged
+        octaves: 1
+        frequency: 0.1
+        gain: 0.5
+      allowedTiles:
+        - FloorCaveDrought
+      entities:
+        - WallRock
+    - !type:BiomeDummyLayer
+      id: Loot
+    - !type:BiomeTileLayer
+      threshold: -1.0
+      tile: FloorCaveDrought
