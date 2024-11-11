@@ -1,0 +1,36 @@
+# Author Info
+# GitHub: sergeantecho
+# Discord: sergeantecho
+
+- type: vessel
+  id: Atlas
+  name: NC Атлас
+  description: Бывший в эксплуатации мобильный научный комплекс, который был переделан под длительные экспедиции и автономность, рекомендуется для команды из 6-12 человек.
+  price: 175000
+  category: Large
+  group: Expedition
+  shuttlePath: /Maps/Corvax/Shuttles/Expedition/Atlas.yml
+  guidebookPage: Null
+  class:
+  - Expedition
+  - Civilian
+
+- type: gameMap
+  id: Atlas
+  mapName: 'NC Atlas'
+  mapPath: /Maps/Corvax/Shuttles/Expedition/Atlas.yml
+  minPlayers: 0
+  stations:
+     Atlas:
+      stationProto: StandardFrontierExpeditionVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Атлас {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]
