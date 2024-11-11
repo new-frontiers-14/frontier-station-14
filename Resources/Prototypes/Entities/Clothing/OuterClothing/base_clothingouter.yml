@@ -1,6 +1,6 @@
 - type: entity
   abstract: true
-  parent: [ Clothing, AllowSuitStorageClothing ] # Frontier: added AllowSuitStorageClothing
+  parent: [ Clothing, AllowSuitStorageClothing, RecyclableItemClothDurable ] # Frontier: added AllowSuitStorageClothing and RecyclableItemClothDurable
   id: ClothingOuterBase
   components:
   - type: Clothing
@@ -45,7 +45,7 @@
 
 - type: entity
   abstract: true
-  parent: [ClothingOuterStorageBase, BaseFoldable]
+  parent: [RecyclableItemClothBasic, ClothingOuterStorageBase, BaseFoldable] # Frontier: added RecyclableItemClothBasic
   id: ClothingOuterStorageFoldableBase
   components:
   - type: Appearance
@@ -101,7 +101,7 @@
 
 - type: entity
   abstract: true
-  parent: [ClothingOuterBase, GeigerCounterClothing, AllowSuitStorageClothing]
+  parent: [RecyclableItemClothHardsuit, ClothingOuterBase, GeigerCounterClothing, AllowSuitStorageClothing] # Frontier: added RecyclableItemClothHardsuit
   id: ClothingOuterHardsuitBase
   name: base hardsuit
   components:
@@ -135,6 +135,7 @@
     tags:
     - Hardsuit
     - WhitelistChameleon
+    - HidesHarpyWings #Frontier, needed for Harpies
   - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
   - type: DamageOnInteractProtection
@@ -169,6 +170,10 @@
       flatReductions:
         Heat: 10 # the average lightbulb only does around four damage!
     slots: OUTERCLOTHING
+#  - type: PhysicalComposition # Frontier
+#    materialComposition: # Frontier
+#      Durathread: 100 # Frontier
+#      Cloth: 50 # Frontier
 
 - type: entity
   parent: ClothingOuterBase
