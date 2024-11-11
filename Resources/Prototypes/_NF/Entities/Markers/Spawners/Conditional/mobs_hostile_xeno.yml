@@ -109,3 +109,57 @@
   - type: ConditionalSpawner
     prototypes:
     - MobXenoQueenDungeon
+
+- type: entity
+  name: xeno spawner
+  suffix: AI, Hostile, T1
+  parent: MarkerBase
+  id: SpawnMobXenoT1
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Mobs/Aliens/Xenos/drone.rsi
+      state: crit
+    - state: ai
+  - type: RandomSpawner
+    prototypes:
+    - MobXenoBurrowerExpeditions
+    - MobXenoDroneExpeditions
+    rarePrototypes:
+    - MobXenoPraetorianExpeditions
+    - MobXenoRunnerExpeditions
+    - MobXenoSpitterExpeditions
+    rareChance: 0.10
+
+- type: entity
+  suffix: AI, Hostile, T2
+  parent: SpawnMobXenoT1
+  id: SpawnMobXenoT2
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - MobXenoBurrowerExpeditions
+    - MobXenoPraetorianExpeditions
+    - MobXenoDroneExpeditions
+    - MobXenoRunnerExpeditions
+    - MobXenoSpitterExpeditions
+    rarePrototypes:
+    - MobXenoRavagerExpeditions
+    rareChance: 0.10
+
+- type: entity
+  suffix: AI, Hostile, T3
+  parent: SpawnMobXenoT1
+  id: SpawnMobXenoT3
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - MobXenoPraetorianExpeditions
+    - MobXenoRunnerExpeditions
+    - MobXenoSpitterExpeditions
+    - MobXenoRavagerExpeditions
+    rarePrototypes:
+    - MobXenoDroneExpeditions
+    - MobXenoBurrowerExpeditions
+    rareChance: 0.10
