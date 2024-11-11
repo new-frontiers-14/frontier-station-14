@@ -123,22 +123,3 @@
         reagents:
         - ReagentId: Fresium
           Quantity: 7 # needs 40u in bloodstream for special effect
-
-# Meme: Possessed Spray
-- type: entity
-  parent: SplatterChemBase
-  id: SplatterChemCleaner
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: SolutionContainerManager
-    solutions:
-      vapor:
-        maxVol: 50
-        canReact: false
-        reagents:
-        - ReagentId: SpaceCleaner
-          Quantity: 20
-        - ReagentId: SoapReagent
-          Quantity: 5
-        - ReagentId: Fresium
-          Quantity: 4
