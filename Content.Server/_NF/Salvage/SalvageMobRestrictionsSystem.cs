@@ -2,6 +2,16 @@ using Content.Shared.Damage;
 using Content.Shared.Body.Components;
 using Content.Server.Body.Systems;
 using Content.Server.Explosion.EntitySystems;
+using Content.Shared.Mobs;
+using Content.Shared.Damage.Prototypes;
+using Robust.Shared.Prototypes;
+using Content.Shared.Tag;
+using Content.Shared.Electrocution;
+using Content.Shared.Weapons.Reflect;
+using Content.Shared.Movement.Components;
+using Content.Server.Traits.Assorted;
+using Content.Shared.Tools.Components;
+using Content.Shared.Prying.Components;
 
 namespace Content.Server._NF.Salvage;
 
@@ -10,6 +20,7 @@ public sealed class SalvageMobRestrictionsSystem : EntitySystem
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly BodySystem _body = default!;
     [Dependency] private readonly ExplosionSystem _explosion = default!;
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 
     public override void Initialize()
     {
@@ -18,6 +29,7 @@ public sealed class SalvageMobRestrictionsSystem : EntitySystem
         SubscribeLocalEvent<NFSalvageMobRestrictionsComponent, ComponentInit>(OnInit);
         SubscribeLocalEvent<NFSalvageMobRestrictionsComponent, ComponentRemove>(OnRemove);
         SubscribeLocalEvent<SalvageMobRestrictionsGridComponent, ComponentRemove>(OnRemoveGrid);
+        SubscribeLocalEvent<NFSalvageMobRestrictionsComponent, MobStateChangedEvent>(OnMobState);
     }
 
     private void OnInit(EntityUid uid, NFSalvageMobRestrictionsComponent component, ComponentInit args)
@@ -67,11 +79,24 @@ public sealed class SalvageMobRestrictionsSystem : EntitySystem
                 _explosion.QueueExplosion(target, ExplosionSystem.DefaultExplosionPrototypeId, 5, 10, 5);
                 Del(target);
             }
-            // Old implementation
-            //else if (TryComp(target, out DamageableComponent? dc))
-            //{
-            //    _damageableSystem.SetAllDamage(target, dc, 200);
-            //}
+        }
+    }
+
+    private void OnMobState(EntityUid uid, NFSalvageMobRestrictionsComponent component, MobStateChangedEvent args)
+    {
+        if (args.NewMobState == MobState.Dead && component.CleanCompsOnMobDeath)
+        {
+            RemComp<InsulatedComponent>(uid);
+            RemComp<ReflectComponent>(uid);
+            RemComp<MovementIgnoreGravityComponent>(uid);
+            RemComp<ToolComponent>(uid);
+            RemComp<PryingComponent>(uid);
+            RemComp<CanMoveInAirComponent>(uid);
+            RemComp<TagComponent>(uid);
+            EnsureComp<UncloneableComponent>(uid);
+            EnsureComp<UnrevivableComponent>(uid);
+            var damageSpec = new DamageSpecifier(_prototypeManager.Index<DamageGroupPrototype>("Genetic"), 300);
+            _damageableSystem.TryChangeDamage(uid, damageSpec);
         }
     }
 }
