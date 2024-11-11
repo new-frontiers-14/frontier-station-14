@@ -17,9 +17,7 @@ entities:
   - uid: 8756
     components:
     - type: MetaData
-      name: Public Transport Shuttle
     - type: Transform
-      parent: invalid
     - type: MapGrid
       chunks:
         -1,-1:
@@ -447,6 +445,8 @@ entities:
     - type: Transform
       pos: 0.5,1.5
       parent: 8756
+    - type: WorldLoader
+      disabled: true
 - proto: DefibrillatorCabinetFilled
   entities:
   - uid: 27
@@ -961,6 +961,4 @@ entities:
     - type: Transform
       pos: -0.5,-1.5
       parent: 8756
-    - type: WarpPoint
-      location: Public Transport Shuttle
 ...

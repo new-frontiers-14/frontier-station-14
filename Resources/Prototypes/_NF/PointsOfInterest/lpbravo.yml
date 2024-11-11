@@ -16,6 +16,7 @@
   IFFColor: "#C83737" #red the color of ebil
   IFFFlags: [HideLabel, Hide] # Invisible
   allowIFFChanges: true
+  hideWarp: true
   spawnGroup: SyndicateFOB
   gridPath: /Maps/_NF/POI/lpbravo.yml
 
@@ -26,6 +27,7 @@
   minPlayers: 0
   stations:
     LPBravo:
+      # FIXME: no records despite shipyard console, could currently be gamed
       stationProto: StandardFrontierOutpost
       components:
         - type: StationNameSetup
