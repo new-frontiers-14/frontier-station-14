@@ -1,0 +1,111 @@
+- type: entity
+  id: SpawnMobXenoBurrowerExpeditions
+  name: xeno burrower spawner
+  parent: MarkerBase
+  suffix: AI, Hostile
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+      - sprite: Mobs/Aliens/Xenos/burrower.rsi
+        state: running
+  - type: ConditionalSpawner
+    prototypes:
+    - MobXenoBurrowerExpeditions
+
+- type: entity
+  id: SpawnMobXenoDroneExpeditions
+  name: xeno drone spawner
+  parent: MarkerBase
+  suffix: AI, Hostile
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+      - sprite: Mobs/Aliens/Xenos/drone.rsi
+        state: running
+  - type: ConditionalSpawner
+    prototypes:
+    - MobXenoDroneExpeditions
+
+- type: entity
+  id: SpawnMobXenoPraetorianExpeditions
+  name: xeno praetorian spawner
+  parent: MarkerBase
+  suffix: AI, Hostile
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+      - sprite: Mobs/Aliens/Xenos/praetorian.rsi
+        state: running
+  - type: ConditionalSpawner
+    prototypes:
+    - MobXenoPraetorianExpeditions
+
+- type: entity
+  id: SpawnMobXenoRavagerExpeditions
+  name: xeno ravager spawner
+  parent: MarkerBase
+  suffix: AI, Hostile
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+      - sprite: Mobs/Aliens/Xenos/ravager.rsi
+        state: running
+  - type: ConditionalSpawner
+    prototypes:
+    - MobXenoRavagerExpeditions
+
+- type: entity
+  id: SpawnMobXenoRunnerExpeditions
+  name: xeno runner spawner
+  parent: MarkerBase
+  suffix: AI, Hostile
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+      - sprite: Mobs/Aliens/Xenos/runner.rsi
+        state: running
+  - type: ConditionalSpawner
+    prototypes:
+    - MobXenoRunnerExpeditions
+
+- type: entity
+  id: SpawnMobXenoSpitterExpeditions
+  name: xeno spitter spawner
+  parent: MarkerBase
+  suffix: AI, Hostile
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+      - sprite: Mobs/Aliens/Xenos/spitter.rsi
+        state: running
+  - type: ConditionalSpawner
+    prototypes:
+    - MobXenoSpitterExpeditions
+
+- type: entity
+  id: SpawnMobXenoQueenDungeon
+  name: xeno queen spawner
+  parent: MarkerBase
+  suffix: AI, Hostile
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+      - sprite: Mobs/Aliens/Xenos/queen.rsi
+        state: running
+  - type: ConditionalSpawner
+    prototypes:
+    - MobXenoQueenDungeon
