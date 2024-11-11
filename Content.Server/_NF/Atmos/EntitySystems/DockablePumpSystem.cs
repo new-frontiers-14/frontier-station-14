@@ -4,7 +4,6 @@ using Content.Server.NodeContainer;
 using Content.Server.NodeContainer.EntitySystems;
 using Content.Server.NodeContainer.Nodes;
 using Content.Server.Shuttles.Events;
-using Robust.Shared.Timing;
 
 namespace Content.Server._NF.Atmos.EntitySystems;
 
@@ -54,6 +53,17 @@ public sealed partial class DockablePumpSystem : EntitySystem
     }
 
     private void OnUndock(EntityUid uid, DockablePumpComponent component, ref UndockEvent args)
+    {
+        // Clean up node?
+        if (string.IsNullOrEmpty(component.DockNodeName) ||
+            !TryComp(uid, out NodeContainerComponent? nodeContainer) ||
+            !_nodeContainer.TryGetNode(nodeContainer, component.DockNodeName, out DockablePipeNode? dockablePipe))
+            return;
+
+        _nodeGroup.QueueNodeRemove(dockablePipe);
+    }
+
+    private void OnAppearanceChange(EntityUid uid, DockablePumpComponent component, ref UndockEvent args)
     {
         // Clean up node?
         if (string.IsNullOrEmpty(component.DockNodeName) ||

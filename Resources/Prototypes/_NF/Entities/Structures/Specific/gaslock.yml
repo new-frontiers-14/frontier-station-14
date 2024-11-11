@@ -1,6 +1,6 @@
-# Giant mess of a YAML definition but largely based on GasBinaryBase and Airlock
+# Giant mess of a YAML definition but largely based on GasPressurePump and AirlockShuttle
 - type: entity
-  parent: [GasBinaryBase, BaseStructure]
+  parent: BaseStructure
   id: Gaslock
   suffix: Docking
   name: external gaslock
@@ -10,6 +10,7 @@
   components:
   - type: Transform
     noRot: false
+  - type: Anchorable
   - type: Rotatable
   - type: Docking
     radarColor: darkcyan
@@ -44,20 +45,23 @@
         hard: false
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Standard/shuttle.rsi
-    granularLayersRendering: true
+    # granularLayersRendering: true
     drawdepth: Doors
     layers:
     - state: closed
-      map: ["enum.DoorVisualLayers.Base"]
     - state: closed_unlit
       shader: unshaded
-      map: ["enum.DoorVisualLayers.BaseUnlit"]
+      map: ["enum.GaslockVisualLayers.Docked"]
     - sprite: Structures/Piping/Atmospherics/pipe.rsi
       state: pipeStraight
       map: [ "enum.PipeVisualLayers.Pipe" ]
     - sprite: Structures/Piping/Atmospherics/pump.rsi
       state: pumpPressure
-      map: [ "enum.SubfloorLayers.FirstLayer", "enabled" ]
+      map: [ "enabled" ]
+    - sprite: Structures/Piping/Atmospherics/pump.rsi
+      state: pumpPressureOnOut
+      map: [ "enabled-unlit" ]
+      shader: unshaded
     - state: panel_open
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: Wires
@@ -66,9 +70,6 @@
   - type: WiresPanel
   - type: WiresPanelSecurity
   - type: Airtight
-  - type: Tag
-    tags:
-      - ForceNoFixRotations
   - type: PaintableAirlock
     group: External
     department: null
@@ -79,13 +80,22 @@
     price: 350
   - type: ApcPowerReceiver
     powerLoad: 500
+  - type: ExtensionCableReceiver
   - type: Appearance
   - type: GenericVisualizer
     visuals:
       enum.PumpVisuals.Enabled:
-        enabled:
-          True: { state: pumpPressureOn }
-          False: { state: pumpPressure }
+        enabled-unlit:
+          True: { visible: true }
+          False: { visible: false }
+      enum.DockablePumpVisuals.Docked:
+        enum.GaslockVisualLayers.Docked:
+          True: { visible: true }
+          False: { visible: false }
+      enum.DockablePumpVisuals.PumpingOutward:
+        enum.GaslockVisualLayers.Docked:
+          True: { state: pumpPressureOnOut }
+          False: { state: pumpPressureOnIn }
   - type: PipeColorVisuals
   - type: GasPressurePump
     enabled: false
@@ -123,6 +133,16 @@
   - type: StationAiWhitelist
   - type: RadiationBlocker
     resistance: 3
+  - type: AtmosDevice
+  - type: Tag
+    tags:
+      - Unstackable
+      - Pipe
+      - ForceNoFixRotations
+  - type: PipeAppearance
+  - type: PipeRestrictOverlap
+  - type: AtmosUnsafeUnanchor
+  - type: AtmosPipeColor
 
 - type: entity
   parent: Gaslock
