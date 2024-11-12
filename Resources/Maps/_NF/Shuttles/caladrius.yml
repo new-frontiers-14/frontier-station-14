@@ -121,7 +121,6 @@ entities:
             id: BoxGreyscale
           decals:
             2064: -7,-11
-            2066: -6,-11
             2068: -5,-11
             2070: -4,-11
             3793: -7,-10
@@ -1363,6 +1362,68 @@ entities:
             4472: -6,-25
             4473: -6,-26
             4474: -6,-27
+        - node:
+            cleanable: True
+            color: '#FFFFFFFF'
+            id: DirtHeavy
+          decals:
+            4626: -10,-13
+            4627: -7,-15
+            4645: -5,-14
+            4651: -8,-16
+            4652: -13,-13
+        - node:
+            cleanable: True
+            color: '#FFFFFFFF'
+            id: DirtHeavyMonotile
+          decals:
+            4653: -6,-11
+            4654: -5,-10
+            4655: -5,-11
+            4656: -7,-11
+            4657: -7,-11
+            4658: -7,-11
+            4659: -4,-11
+            4660: -4,-10
+            4661: -4,-10
+            4668: -6,-10
+        - node:
+            cleanable: True
+            color: '#FFFFFFFF'
+            id: DirtLight
+          decals:
+            4637: -6,-12
+            4638: -13,-15
+            4639: -11,-15
+            4641: -4,-13
+            4642: -5,-14
+            4643: -5,-15
+            4644: -5,-15
+            4646: -13,-13
+            4647: -9,-12
+            4648: -11,-16
+            4649: -10,-16
+            4650: -10,-16
+            4662: -10,-15
+            4663: -6,-15
+            4664: -7,-13
+            4665: -9,-13
+            4666: -9,-15
+            4667: -9,-15
+        - node:
+            cleanable: True
+            color: '#FFFFFFFF'
+            id: DirtMedium
+          decals:
+            4628: -12,-13
+            4629: -10,-12
+            4630: -8,-12
+            4631: -6,-12
+            4633: -5,-12
+            4634: -13,-15
+            4635: -7,-16
+            4636: -10,-16
+            4640: -4,-13
         - node:
             color: '#DE3A3AD8'
             id: HalfTileOverlayGreyscale
@@ -3333,13 +3394,6 @@ entities:
     components:
     - type: Transform
       pos: 3.5,-28.5
-      parent: 1
-- proto: Autolathe
-  entities:
-  - uid: 273
-    components:
-    - type: Transform
-      pos: -9.5,-15.5
       parent: 1
 - proto: BannerMedical
   entities:
@@ -6427,6 +6481,13 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 5.5322566,-21.362753
+      parent: 1
+- proto: CircuitImprinterMachineCircuitboard
+  entities:
+  - uid: 432
+    components:
+    - type: Transform
+      pos: -3.3773413,-14.037733
       parent: 1
 - proto: ClosetL3VirologyFilled
   entities:
@@ -12380,6 +12441,18 @@ entities:
     - type: Transform
       pos: 5.5,-7.5
       parent: 1
+- proto: MachineFrame
+  entities:
+  - uid: 273
+    components:
+    - type: Transform
+      pos: -9.5,-15.5
+      parent: 1
+  - uid: 301
+    components:
+    - type: Transform
+      pos: -8.5,-15.5
+      parent: 1
 - proto: Matchbox
   entities:
   - uid: 880
@@ -13527,13 +13600,6 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 2.5,11.5
-      parent: 1
-- proto: SalvageTechfabNF
-  entities:
-  - uid: 956
-    components:
-    - type: Transform
-      pos: -8.5,-15.5
       parent: 1
 - proto: SeedExtractor
   entities:
@@ -15878,10 +15944,22 @@ entities:
       parent: 1
 - proto: ToolboxElectricalFilled
   entities:
+  - uid: 2028
+    components:
+    - type: Transform
+      pos: -5.468517,-15.33166
+      parent: 1
   - uid: 2368
     components:
     - type: Transform
       pos: -11.47965,-23.544147
+      parent: 1
+- proto: ToolboxMechanicalFilled
+  entities:
+  - uid: 956
+    components:
+    - type: Transform
+      pos: -5.4893503,-15.529577
       parent: 1
 - proto: ToyFigurineChemist
   entities:
