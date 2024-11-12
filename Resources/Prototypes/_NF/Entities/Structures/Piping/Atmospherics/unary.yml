@@ -1,0 +1,65 @@
+- type: entity
+  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  id: GasMiningDrill
+  name: gas mining drill
+  description: A powerful, luggable drill for mining gas deposits on asteroids. Outputs gas through a pipe.
+  abstract: true
+  placement:
+    mode: SnapgridCenter
+  components:
+    - type: Appearance
+    - type: PipeColorVisuals
+    - type: Rotatable
+    - type: AtmosPipeColor
+    - type: AtmosDevice
+    # - type: UserInterface # FIXME
+    #   interfaces: # FIXME
+    #     enum.ThermomachineUiKey.Key: # FIXME
+    #       type: GasThermomachineBoundUserInterface # FIXME
+    - type: ActivatableUI
+      inHandsOnly: false
+      # key: enum.ThermomachineUiKey.Key # FIXME
+    - type: WiresPanel
+    - type: WiresVisuals
+    - type: PipeRestrictOverlap
+    - type: NodeContainer
+      nodes:
+        pipe:
+          !type:PipeNode
+          nodeGroupID: Pipe
+          pipeDirection: South
+    - type: Transform
+      noRot: false
+    - type: DeviceNetwork
+      deviceNetId: AtmosDevices
+      receiveFrequencyId: AtmosMonitor
+      transmitFrequencyId: AtmosMonitor
+      sendBroadcastAttemptEvent: true
+      examinableAddress: true
+    - type: WiredNetworkConnection
+    - type: PowerSwitch
+    - type: StationAiWhitelist
+    - type: Sprite
+      sprite: Structures/Piping/Atmospherics/thermomachine.rsi
+      snapCardinals: true
+      granularLayersRendering: true
+      layers:
+        - state: freezerOff
+          map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+        - state: freezerPanelOpen
+          map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+        - state: pipe
+          map: [ "enum.PipeVisualLayers.Pipe" ]
+          renderingStrategy: Default
+    - type: GenericVisualizer
+      visuals:
+        enum.PowerDeviceVisuals.Powered:
+          enum.PowerDeviceVisualLayers.Powered:
+            True: { state: freezerOn }
+            False: { state: freezerOff }
+    - type: ApcPowerReceiver
+      load: 4000
+    - type: Machine
+      board: Null # FIXME
+    - type: DeviceNetwork
+      prefix: device-address-prefix-gas-drill

@@ -60,6 +60,23 @@
     - type: IFF
       flags: HideLabel
       color: "#d67e27"
+    - type: RandomEntityPopulator
+      entries: &gasDeposits
+      - params:
+          min: 0
+          max: 2
+          canBeAirSealed: true
+        entries:
+        - OxygenGasDeposit
+        - NitrogenGasDeposit
+        - CarbonDioxideGasDeposit
+        - PlasmaGasDeposit
+        - AmmoniaGasDeposit
+        - TritiumGasDeposit
+        - WaterVaporGasDeposit
+        - NitrousOxideGasDeposit
+        - FrezonGasDeposit
+        - AirGasDeposit
 
 # Snow
 - type: entity
@@ -120,6 +137,8 @@
             orGroup: rock
     - type: IFF
       color: "#d6fffc"
+    - type: RandomEntityPopulator
+      entries: *gasDeposits
 
 # Andesite
 - type: entity
@@ -180,6 +199,8 @@
             orGroup: rock
     - type: IFF
       color: "#95c280"
+    - type: RandomEntityPopulator
+      entries: *gasDeposits
 
 # Basalt
 - type: entity
@@ -240,6 +261,8 @@
             orGroup: rock
     - type: IFF
       color: "#b5b5b5"
+    - type: RandomEntityPopulator
+      entries: *gasDeposits
 
 # Sand
 - type: entity
@@ -300,6 +323,8 @@
             orGroup: rock
     - type: IFF
       color: "#cad17b"
+    - type: RandomEntityPopulator
+      entries: *gasDeposits
 
 # Chromite
 - type: entity
@@ -360,6 +385,8 @@
             orGroup: rock
     - type: IFF
       color: "#8178cc"
+    - type: RandomEntityPopulator
+      entries: *gasDeposits
 
 # Asteroid Asteroid Debris, because yes, base asteroid is made NOT from asteroid
 - type: entity
@@ -420,6 +447,8 @@
             orGroup: rock
     - type: IFF
       color: "#BF8C5C"
+    - type: RandomEntityPopulator
+      entries: *gasDeposits
 
 # Concrete asteroids (Base type)
 - type: entity

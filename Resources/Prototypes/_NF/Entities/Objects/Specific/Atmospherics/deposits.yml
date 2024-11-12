@@ -1,0 +1,108 @@
+# TODO move all of this to tiles once tile smoothing is supported
+- type: entity
+  id: BaseGasDeposit
+  name: gas deposit
+  description: Solidified deposits of an element, normally a gas at room temperature, can be drilled, heated and piped out."
+  abstract: true
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: Clickable
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+  - type: RandomGasDeposit
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Atmospherics/deposit.rsi
+    layers:
+    - state: deposit
+
+- type: entity
+  parent: BaseGasDeposit
+  id: OxygenGasDeposit
+  components:
+  - type: RandomGasDeposit
+    deposit: MostlyOxygen
+  - type: Sprite
+    color: "#DDDDEE"
+
+- type: entity
+  parent: BaseGasDeposit
+  id: NitrogenGasDeposit
+  components:
+  - type: RandomGasDeposit
+    deposit: MostlyNitrogen
+  - type: Sprite
+    color: "#FFCCCC"
+
+- type: entity
+  parent: BaseGasDeposit
+  id: CarbonDioxideGasDeposit
+  components:
+  - type: RandomGasDeposit
+    deposit: MostlyCarbonDioxide
+  - type: Sprite
+    color: "#CCCCCC"
+
+- type: entity
+  parent: BaseGasDeposit
+  id: PlasmaGasDeposit
+  components:
+  - type: RandomGasDeposit
+    deposit: MostlyPlasma
+  - type: Sprite
+    color: "#FFCCFF"
+
+- type: entity
+  parent: BaseGasDeposit
+  id: AmmoniaGasDeposit
+  components:
+  - type: RandomGasDeposit
+    deposit: MostlyAmmonia
+  - type: Sprite
+    color: "#FFFFCC"
+
+- type: entity
+  parent: BaseGasDeposit
+  id: TritiumGasDeposit
+  components:
+  - type: RandomGasDeposit
+    deposit: MostlyTritium
+  - type: Sprite
+    color: "#CCFFCC"
+
+- type: entity
+  parent: BaseGasDeposit
+  id: WaterVaporGasDeposit
+  components:
+  - type: RandomGasDeposit
+    deposit: MostlyWaterVapor
+  - type: Sprite
+    color: "#DDEEEE"
+
+- type: entity
+  parent: BaseGasDeposit
+  id: NitrousOxideGasDeposit
+  components:
+  - type: RandomGasDeposit
+    deposit: MostlyNitrousOxide
+  - type: Sprite
+    color: "#EEDDDD"
+
+- type: entity
+  parent: BaseGasDeposit
+  id: FrezonGasDeposit
+  components:
+  - type: RandomGasDeposit
+    deposit: MostlyFrezon
+  - type: Sprite
+    color: "#CCCCFF"
+
+- type: entity
+  parent: BaseGasDeposit
+  id: AirGasDeposit
+  components:
+  - type: RandomGasDeposit
+    deposit: AirLike
