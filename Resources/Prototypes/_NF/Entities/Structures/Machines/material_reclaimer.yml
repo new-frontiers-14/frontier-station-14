@@ -67,9 +67,14 @@
       - PhysicalComposition
       - SpaceGarbage
       - Log # Frontier
+      - Cartridge # PDA app cartriges
       tags:
       - Trash
       - Recyclable
+      - Cartridge # Bullets
+      - Book
+      - Pen
+      - Handcuffs
     blacklist:
       components:
       - Material
@@ -107,5 +112,5 @@
   - type: ApcPowerReceiver # Frontier
     powerLoad: 500 # Allows us to not use the 1000 baseline
   - type: MaterialReclaimerMagnetPickup # Frontier
-    range: 0.30
+    range: 0.50 # 0.3<0.50
     magnetEnabled: true
