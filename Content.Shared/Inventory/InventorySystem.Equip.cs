@@ -321,7 +321,7 @@ public abstract partial class InventorySystem
         ClothingComponent? clothing = null,
         bool reparent = true,
         bool checkDoafter = false,
-        bool child = false)
+        bool child = false) // Frontier: raise DroppedEvent on all children
     {
         return TryUnequip(uid, uid, slot, silent, force, predicted, inventory, clothing, reparent, checkDoafter, child); // Frontier: add child
     }
@@ -337,7 +337,7 @@ public abstract partial class InventorySystem
         ClothingComponent? clothing = null,
         bool reparent = true,
         bool checkDoafter = false,
-        bool child = false) // Frontier: spawn DroppedEvent on all children
+        bool child = false) // Frontier: raise DroppedEvent on all children
     {
         return TryUnequip(actor, target, slot, out _, silent, force, predicted, inventory, clothing, reparent, checkDoafter, child); // Frontier: add child
     }
@@ -353,7 +353,7 @@ public abstract partial class InventorySystem
         ClothingComponent? clothing = null,
         bool reparent = true,
         bool checkDoafter = false,
-        bool child = false) // Frontier: spawn DroppedEvent on all children
+        bool child = false) // Frontier: raise DroppedEvent on all children
     {
         return TryUnequip(uid, uid, slot, out removedItem, silent, force, predicted, inventory, clothing, reparent, checkDoafter, child); // Frontier: add child
     }
@@ -370,7 +370,7 @@ public abstract partial class InventorySystem
         ClothingComponent? clothing = null,
         bool reparent = true,
         bool checkDoafter = false,
-        bool child = false) // Frontier: spawn DroppedEvent on all children
+        bool child = false) // Frontier: raise DroppedEvent on all children
     {
         removedItem = null;
 
@@ -443,7 +443,8 @@ public abstract partial class InventorySystem
 
         // Frontier: spawn dropped events for children
         if (child)
-            RaiseLocalEvent(removedItem.Value, new DroppedEvent(actor), true); // Gas tank internals etc.
+            RaiseLocalEvent(removedItem.Value, new DroppedEvent(actor), true);
+        // End Frontier
 
         // TODO: Inventory needs a hot cleanup hoo boy
         // Check if something else (AKA toggleable) dumped it into a container.
