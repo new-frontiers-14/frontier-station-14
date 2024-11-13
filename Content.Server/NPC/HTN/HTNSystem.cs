@@ -17,6 +17,8 @@ using Robust.Shared.Utility;
 using Content.Server.Worldgen; // Frontier
 using Content.Server.Worldgen.Components; // Frontier
 using Content.Server.Worldgen.Systems;
+using Content.Shared.NPC.Components;
+using Content.Shared.NPC.Systems;
 using Content.Shared.Tiles; // Frontier
 using Robust.Server.GameObjects; // Frontier
 
@@ -33,6 +35,7 @@ public sealed class HTNSystem : EntitySystem
     [Dependency] private readonly TransformSystem _transform = default!;
     private EntityQuery<WorldControllerComponent> _mapQuery;
     private EntityQuery<LoadedChunkComponent> _loadedQuery;
+    [Dependency] private readonly NpcFactionSystem _npcFaction = default!;
     // Frontier
 
     private readonly JobQueue _planQueue = new(0.004);
@@ -161,7 +164,7 @@ public sealed class HTNSystem : EntitySystem
         _planQueue.Process();
         var query = EntityQueryEnumerator<ActiveNPCComponent, HTNComponent>();
 
-        while(query.MoveNext(out var uid, out _, out var comp))
+        while(query.MoveNext(out var uid, out var activeNpcComponent, out var comp))
         {
             // If we're over our max count or it's not MapInit then ignore the NPC.
             if (count >= maxUpdates)
@@ -173,7 +176,13 @@ public sealed class HTNSystem : EntitySystem
             // Frontier: Disable hostile AI in pacified zones
             var grid = Transform(uid).GridUid;
             if (grid != null && EntityManager.TryGetComponent<ProtectedGridComponent>(grid, out _))
-                continue;
+            {
+                if (EntityManager.TryGetComponent<NpcFactionMemberComponent>(uid, out var npcFactionMemberComponent))
+                {
+                    if (_npcFaction.IsFactionHostile("NanoTrasen", (uid, npcFactionMemberComponent)))
+                        continue;
+                }
+            }
 
             if (comp.PlanningJob != null)
             {
