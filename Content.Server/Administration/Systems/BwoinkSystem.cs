@@ -42,6 +42,8 @@ namespace Content.Server.Administration.Systems
         [Dependency] private readonly IAfkManager _afkManager = default!;
         [Dependency] private readonly IServerDbManager _dbManager = default!;
         [Dependency] private readonly PlayerRateLimitManager _rateLimit = default!;
+        [Dependency] private readonly IPlayerLocator _locator = default!;
+        [Dependency] private readonly IServerDbManager _db = default!;
 
         [GeneratedRegex(@"^https://discord\.com/api/webhooks/(\d+)/((?!.*/).*)$")]
         private static partial Regex DiscordRegex();
@@ -727,8 +729,157 @@ namespace Content.Server.Administration.Systems
             stringbuilder.Append(parameters.Message);
             return stringbuilder.ToString();
         }
-    }
 
+        public async void DiscordAhelpSendMessage(BwoinkTextMessage message, EntitySessionEventArgs eventArgs)
+        {
+            base.OnBwoinkTextMessage(message, eventArgs);
+            _activeConversations[message.UserId] = DateTime.Now;
+            var senderSession = eventArgs.SenderSession;
+            var data = await _locator.LookupIdByNameOrIdAsync($"{message.TrueSender}");
+            if (data != null)
+            {
+                var adminNickname = data.Username;
+                // TODO: Sanitize text?
+                // Confirm that this person is actually allowed to send a message here.
+                var personalChannel = senderSession.UserId == message.UserId;
+                var senderAdmin = _adminManager.GetAdminData(senderSession);
+                var senderAHelpAdmin = senderAdmin?.HasFlag(AdminFlags.Adminhelp) ?? false;
+                var authorized = personalChannel || senderAHelpAdmin;
+                if (!authorized)
+                {
+                    // Unauthorized bwoink (log?)
+                    return;
+                }
+
+                if (_rateLimit.CountAction(eventArgs.SenderSession, RateLimitKey) != RateLimitStatus.Allowed)
+                    return;
+
+                var escapedText = FormattedMessage.EscapeText(message.Text);
+
+                string bwoinkText;
+                string adminPrefix = "";
+
+                //Getting an administrator position
+                if (_config.GetCVar(CCVars.AhelpAdminPrefix) && senderAdmin is not null &&
+                    senderAdmin.Title is not null)
+                {
+                    adminPrefix = $"[bold]\\[{senderAdmin.Title}\\][/bold] ";
+                }
+
+                if (senderAdmin is not null &&
+                    senderAdmin.Flags ==
+                    AdminFlags.Adminhelp) // Mentor. Not full admin. That's why it's colored differently.
+                {
+                    bwoinkText = $"[color=purple]{adminPrefix}{adminNickname}[/color]";
+                }
+                else if (senderAdmin is not null && senderAdmin.HasFlag(AdminFlags.Adminhelp))
+                {
+                    bwoinkText = $"[color=red]{adminPrefix}{adminNickname}[/color]";
+                }
+                else
+                {
+                    bwoinkText = $"[color=blue]{adminNickname}[/color]";
+                }
+
+                bwoinkText = $"{(message.PlaySound ? "" : "(S) ")}(Discord){bwoinkText}: {escapedText}";
+
+                // If it's not an admin / admin chooses to keep the sound then play it.
+                var playSound = !senderAHelpAdmin || message.PlaySound;
+                var msg = new BwoinkTextMessage(message.UserId, senderSession.UserId, bwoinkText, playSound: playSound);
+
+                LogBwoink(msg);
+
+                var admins = GetTargetAdmins();
+
+                // Notify all admins
+                foreach (var channel in admins)
+                {
+                    RaiseNetworkEvent(msg, channel);
+                }
+
+                string adminPrefixWebhook = "";
+
+                if (_config.GetCVar(CCVars.AhelpAdminPrefixWebhook) && senderAdmin is not null &&
+                    senderAdmin.Title is not null)
+                {
+                    adminPrefixWebhook = $"[bold]\\[{senderAdmin.Title}\\][/bold] ";
+                }
+
+                // Notify player
+                if (_playerManager.TryGetSessionById(message.UserId, out var session))
+                {
+                    if (!admins.Contains(session.Channel))
+                    {
+                        // If _overrideClientName is set, we generate a new message with the override name. The admins name will still be the original name for the webhooks.
+                        if (_overrideClientName != string.Empty)
+                        {
+                            string overrideMsgText;
+                            // Doing the same thing as above, but with the override name. Theres probably a better way to do this.
+                            if (senderAdmin is not null &&
+                                senderAdmin.Flags ==
+                                AdminFlags.Adminhelp) // Mentor. Not full admin. That's why it's colored differently.
+                            {
+                                overrideMsgText = $"[color=purple]{adminPrefixWebhook}{_overrideClientName}[/color]";
+                            }
+                            else if (senderAdmin is not null && senderAdmin.HasFlag(AdminFlags.Adminhelp))
+                            {
+                                overrideMsgText = $"[color=red]{adminPrefixWebhook}{_overrideClientName}[/color]";
+                            }
+                            else
+                            {
+                                overrideMsgText = $"[color=blue]{senderSession.Name}[/color]"; // Not an admin, name is not overridden.
+                            }
+
+                            overrideMsgText = $"{(message.PlaySound ? "" : "(S) ")}(Discord){overrideMsgText}: {escapedText}";
+
+                            RaiseNetworkEvent(new BwoinkTextMessage(message.UserId,
+                                    senderSession.UserId,
+                                    overrideMsgText,
+                                    playSound: playSound),
+                                session.Channel);
+                        }
+                        else
+                            RaiseNetworkEvent(msg, session.Channel);
+                    }
+                }
+
+                var sendsWebhook = _webhookUrl != string.Empty;
+                if (sendsWebhook)
+                {
+                    if (!_messageQueues.ContainsKey(msg.UserId))
+                        _messageQueues[msg.UserId] = new Queue<string>();
+
+                    var str = message.Text;
+                    var unameLength = senderSession.Name.Length;
+
+                    if (unameLength + str.Length + _maxAdditionalChars > DescriptionMax)
+                    {
+                        str = str[..(DescriptionMax - _maxAdditionalChars - unameLength)];
+                    }
+
+                    var nonAfkAdmins = GetNonAfkAdmins();
+                    var messageParams = new AHelpMessageParams(
+                        senderSession.Name,
+                        str,
+                        !personalChannel,
+                        _gameTicker.RoundDuration().ToString("hh\\:mm\\:ss"),
+                        _gameTicker.RunLevel,
+                        playedSound: playSound,
+                        noReceivers: nonAfkAdmins.Count == 0
+                    );
+                    _messageQueues[msg.UserId].Enqueue(GenerateAHelpMessage(messageParams));
+                }
+
+                if (admins.Count != 0 || sendsWebhook)
+                    return;
+
+                // No admin online, let the player know
+                var systemText = Loc.GetString("bwoink-system-starmute-message-no-other-users");
+                var starMuteMsg = new BwoinkTextMessage(message.UserId, SystemUserId, systemText);
+                RaiseNetworkEvent(starMuteMsg, senderSession.Channel);
+            }
+        }
+    }
     public sealed class AHelpMessageParams
     {
         public string Username { get; set; }
