@@ -18,4 +18,10 @@ public sealed partial class RandomGasDepositComponent : Component
     /// </summary>
     [ViewVariables]
     public GasMixture Deposit = new();
+
+    /// <summary>
+    /// The maximum number of moles for this deposit to be considered "mostly depleted".
+    /// </summary>
+    [ViewVariables]
+    public float LowMoles;
 }

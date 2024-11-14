@@ -23,7 +23,7 @@
     - type: PipeRestrictOverlap
     - type: NodeContainer
       nodes:
-        port:
+        outlet:
           !type:PipeNode
           nodeGroupID: Pipe
           pipeDirection: South
@@ -40,27 +40,47 @@
     - type: PowerSwitch
     - type: StationAiWhitelist
     - type: Sprite
-      sprite: Structures/Piping/Atmospherics/thermomachine.rsi
+      sprite: _NF/Objects/Specific/Atmospherics/extractor.rsi
       snapCardinals: true
       granularLayersRendering: true
       layers:
-        - state: freezerOff
-          map: [ "enum.PowerDeviceVisualLayers.Powered" ]
-        - state: freezerPanelOpen
-          map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
-        - state: pipe
+        - sprite: Structures/Piping/Atmospherics/pipe.rsi
+          state: pipeHalf
           map: [ "enum.PipeVisualLayers.Pipe" ]
           renderingStrategy: Default
+        - state: drill-off
+          map: [ "drill" ]
+        - state: base
+        - state: base-powered
+          shader: unshaded
+          map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+        - state: drill-empty-unlit
+          shader: unshaded
+          map: [ "light" ]
     - type: GenericVisualizer
       visuals:
         enum.PowerDeviceVisuals.Powered:
           enum.PowerDeviceVisualLayers.Powered:
-            True: { state: freezerOn }
-            False: { state: freezerOff }
+            True: { visible: true }
+            False: { visible: false }
+        enum.GasDepositExtractorVisuals.State:
+          drill:
+            Off: { state: drill-off }
+            Blocked: { state: drill-off }
+            Empty: { state: drill-off }
+            Low: { state: drill }
+            On: { state: drill }
+          light:
+            Off: { visible: false }
+            Blocked: { state: drill-blocked-unlit, visible: true }
+            Empty: { state: drill-empty-unlit, visible: true }
+            Low: { state: drill-low-unlit, visible: true }
+            On: { state: drill-on-unlit, visible: true }
     - type: ApcPowerReceiver
       load: 4000
     - type: Machine
       board: Null # FIXME
     - type: GasDepositExtractor
       extractionRate: 20
-      port: port
+      port: outlet
+    - type: PipeAppearance

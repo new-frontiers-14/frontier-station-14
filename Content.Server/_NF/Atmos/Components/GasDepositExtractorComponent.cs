@@ -1,3 +1,4 @@
+using Content.Shared._NF.Atmos.Visuals;
 using Content.Shared.Atmos;
 
 namespace Content.Server._NF.Atmos.Components;
@@ -43,4 +44,8 @@ public sealed partial class GasDepositExtractorComponent : Component
 
     [DataField("port")]
     public string PortName { get; set; } = "port";
+
+    // Storing the last
+    [ViewVariables]
+    public GasDepositExtractorState LastState { get; set; } = GasDepositExtractorState.Off;
 }

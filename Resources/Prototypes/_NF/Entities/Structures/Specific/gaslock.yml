@@ -113,11 +113,11 @@
     - state: closed
     - state: closed_unlit
       shader: unshaded
-      map: ["enum.GaslockVisualLayers.Docked"]
-    - state: pipeStraight
+      map: ["docked-unlit"]
+    - sprite: Structures/Piping/Atmospherics/pipe.rsi
+      state: pipeStraight
       map: [ "enum.PipeVisualLayers.Pipe" ]
     - state: pumpPressure
-      map: [ "enabled" ]
     - state: pumpPressureOnOut
       map: [ "enabled-unlit" ]
       shader: unshaded
@@ -130,11 +130,11 @@
           True: { visible: true }
           False: { visible: false }
       enum.DockablePumpVisuals.Docked:
-        enum.GaslockVisualLayers.Docked:
+        docked-unlit:
           True: { visible: true }
           False: { visible: false }
-      enum.DockablePumpVisuals.PumpingOutward:
-        enum.GaslockVisualLayers.Docked:
+      enum.DockablePumpVisuals.PumpingOutwards:
+        enabled-unlit:
           True: { state: pumpPressureOnOut }
           False: { state: pumpPressureOnIn }
   - type: StaticPrice
@@ -182,12 +182,12 @@
     - state: frame_struts
     - state: closed_unlit
       shader: unshaded
-      map: ["enum.GaslockVisualLayers.Docked"]
+      map: ["docked-unlit"]
+    - sprite: Structures/Piping/Atmospherics/pipe.rsi
       state: pipeStraight
       map: [ "enum.PipeVisualLayers.Pipe" ]
-      state: pumpPressure
-      map: [ "enabled" ]
-      state: pumpPressureOnOut
+    - state: pumpPressure
+    - state: pumpPressureOnOut
       map: [ "enabled-unlit" ]
       shader: unshaded
     - state: panel_open
@@ -199,11 +199,11 @@
           True: { visible: true }
           False: { visible: false }
       enum.DockablePumpVisuals.Docked:
-        enum.GaslockVisualLayers.Docked:
+        docked-unlit:
           True: { visible: true }
           False: { visible: false }
-      enum.DockablePumpVisuals.PumpingOutward:
-        enum.GaslockVisualLayers.Docked:
+      enum.DockablePumpVisuals.PumpingOutwards:
+        enabled-unlit:
           True: { state: pumpPressureOnOut }
           False: { state: pumpPressureOnIn }
   - type: StaticPrice
