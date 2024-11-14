@@ -215,11 +215,18 @@ public sealed class NFCCVars
         CVarDef.Create("frontier.allow_multi_connect", true, CVar.CONFIDENTIAL | CVar.SERVERONLY);
 
     /*
-     * Events 
+     * Events
      */
     /// <summary>
     ///     A scale factor applied to a grid's bounds when trying to find a spot to randomly generate a crate for bluespace events.
     /// </summary>
     public static readonly CVarDef<float> CrateGenerationGridBoundsScale =
         CVarDef.Create("nf14.events.crate_generation_grid_bounds_scale", 0.6f, CVar.SERVERONLY);
+
+    /// <summary>
+    /// A modifier that changes the amount of science points gained from xenoarcheology and anomalies.
+    /// This does not affect tech disks or other sources of science points.
+    /// </summary>
+    public static readonly CVarDef<float> SciencePointGainModifier =
+        CVarDef.Create("frontier.science_modifier", 1.2f, CVar.SERVERONLY);
 }
