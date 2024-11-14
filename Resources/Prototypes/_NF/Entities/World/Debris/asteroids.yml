@@ -63,20 +63,31 @@
     - type: RandomEntityPopulator
       entries: &gasDeposits
       - params:
+          prob: 0.5
           min: 0
           max: 2
           canBeAirSealed: true
         entries:
-        - OxygenGasDeposit
-        - NitrogenGasDeposit
-        - CarbonDioxideGasDeposit
-        - PlasmaGasDeposit
-        - AmmoniaGasDeposit
-        - TritiumGasDeposit
-        - WaterVaporGasDeposit
-        - NitrousOxideGasDeposit
-        - FrezonGasDeposit
-        - AirGasDeposit
+        - id: OxygenGasDeposit
+          orGroup: deposit
+        - id: NitrogenGasDeposit
+          orGroup: deposit
+        - id: CarbonDioxideGasDeposit
+          orGroup: deposit
+        - id: PlasmaGasDeposit
+          orGroup: deposit
+        - id: AmmoniaGasDeposit
+          orGroup: deposit
+        - id: TritiumGasDeposit
+          orGroup: deposit
+        - id: WaterVaporGasDeposit
+          orGroup: deposit
+        - id: NitrousOxideGasDeposit
+          orGroup: deposit
+        - id: FrezonGasDeposit
+          orGroup: deposit
+        - id: AirGasDeposit
+          orGroup: deposit
 
 # Snow
 - type: entity

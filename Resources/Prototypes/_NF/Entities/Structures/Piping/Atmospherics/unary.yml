@@ -12,19 +12,19 @@
     - type: Rotatable
     - type: AtmosPipeColor
     - type: AtmosDevice
-    # - type: UserInterface # FIXME
-    #   interfaces: # FIXME
-    #     enum.ThermomachineUiKey.Key: # FIXME
-    #       type: GasThermomachineBoundUserInterface # FIXME
+    - type: UserInterface
+      interfaces:
+        enum.GasPressurePumpUiKey.Key:
+          type: GasPressurePumpBoundUserInterface
     - type: ActivatableUI
       inHandsOnly: false
-      # key: enum.ThermomachineUiKey.Key # FIXME
+      key: enum.GasPressurePumpUiKey.Key
     - type: WiresPanel
     - type: WiresVisuals
     - type: PipeRestrictOverlap
     - type: NodeContainer
       nodes:
-        pipe:
+        port:
           !type:PipeNode
           nodeGroupID: Pipe
           pipeDirection: South
@@ -63,3 +63,6 @@
       board: Null # FIXME
     - type: DeviceNetwork
       prefix: device-address-prefix-gas-drill
+    - type: GasDepositExtractor
+      extractionRate: 20
+      port: port

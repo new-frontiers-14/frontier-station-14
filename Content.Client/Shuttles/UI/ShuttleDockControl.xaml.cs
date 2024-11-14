@@ -230,7 +230,7 @@ public sealed partial class ShuttleDockControl : BaseShuttleControl
                 else
                 {
                     // otherDockColor = Color.ToSrgb(Color.Purple); // Frontier
-                    otherDockColor = Color.ToSrgb(dock.RadarColor);
+                    otherDockColor = Color.ToSrgb(dock.RadarColor); // Frontier
                 }
 
                 /*

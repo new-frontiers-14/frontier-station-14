@@ -55,6 +55,9 @@ public sealed partial class RandomEntityParameters
     public int Max = 1;
     [DataField]
     public bool CanBeAirSealed = false;
+    // The probability to generate this set of entities.
+    [DataField]
+    public float Prob = 1.0f;
 }
 
 [DataDefinition]

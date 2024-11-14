@@ -1,11 +1,16 @@
 using Content.Server._NF.Atmos.Components;
+using Content.Server.Administration.Logs;
+using Content.Server.Atmos.EntitySystems;
 using Content.Server.Atmos.Piping.Components;
+using Content.Server.Audio;
 using Content.Server.NodeContainer.EntitySystems;
 using Content.Server.NodeContainer.Nodes;
 using Content.Server.Popups;
 using Content.Server.Power.Components;
 using Content.Shared.Atmos;
+using Content.Shared.Atmos.Piping.Binary.Components;
 using Content.Shared.Construction.Components;
+using Content.Shared.Database;
 using Robust.Server.GameObjects;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
@@ -23,6 +28,9 @@ public sealed class GasDepositSystem : EntitySystem
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly NodeContainerSystem _nodeContainer = default!;
     [Dependency] private readonly AmbientSoundSystem _ambientSound = default!;
+    [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
+    [Dependency] private readonly AdminLogManager _adminLog = default!;
+    [Dependency] private readonly UserInterfaceSystem _ui = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -33,6 +41,11 @@ public sealed class GasDepositSystem : EntitySystem
 
         SubscribeLocalEvent<GasDepositExtractorComponent, AnchorAttemptEvent>(OnAnchorAttempt);
         SubscribeLocalEvent<GasDepositExtractorComponent, AnchorStateChangedEvent>(OnAnchorChanged);
+        SubscribeLocalEvent<GasDepositExtractorComponent, AtmosDeviceUpdateEvent>(OnExtractorUpdate);
+
+        SubscribeLocalEvent<GasDepositExtractorComponent, GasPressurePumpChangeOutputPressureMessage>(OnOutputPressureChangeMessage);
+        SubscribeLocalEvent<GasDepositExtractorComponent, GasPressurePumpToggleStatusMessage>(OnToggleStatusMessage);
+
     }
 
     public void OnAnchorAttempt(EntityUid uid, GasDepositExtractorComponent component, AnchorAttemptEvent args)
@@ -58,9 +71,9 @@ public sealed class GasDepositSystem : EntitySystem
                 continue;
 
             // Is another storage entity is already anchored here?
-            if (HasComp<RandomGasDepositComponent>(otherEnt))
+            if (TryComp<RandomGasDepositComponent>(otherEnt, out var deposit))
             {
-                component.DepositEntity = otherEnt;
+                component.DepositEntity = (otherEnt.Value, deposit);
                 return;
             }
         }
@@ -73,17 +86,6 @@ public sealed class GasDepositSystem : EntitySystem
     {
         if (!args.Anchored)
             component.DepositEntity = null;
-    }
-
-    public override void Update(float frameTime)
-    {
-        base.Update(frameTime);
-
-        var query = EntityQueryEnumerator<GasDepositExtractorComponent, TransformComponent>();
-
-        while (query.MoveNext(out var ent, out var drill, out var xform))
-        {
-        }
     }
 
     public void OnDepositInit(EntityUid uid, RandomGasDepositComponent component, ComponentInit args)
@@ -101,20 +103,22 @@ public sealed class GasDepositSystem : EntitySystem
         }
     }
 
-    private void OnDrillUpdate(EntityUid uid, GasDepositExtractorComponent drill, ref AtmosDeviceUpdateEvent args)
+    private void OnExtractorUpdate(EntityUid uid, GasDepositExtractorComponent extractor, ref AtmosDeviceUpdateEvent args)
     {
-        if (!drill.Enabled
+        if (!extractor.Enabled
+            || extractor.DepositEntity == null
             || TryComp<ApcPowerReceiverComponent>(uid, out var power) && !power.Powered
-            || !_nodeContainer.TryGetNode(uid, drill.PortName, out PipeNode? port))
+            || !_nodeContainer.TryGetNode(uid, extractor.PortName, out PipeNode? port))
         {
             _ambientSound.SetAmbience(uid, false);
             return;
         }
 
+        var targetPressure = float.Clamp(extractor.TargetPressure, 0, extractor.MaxOutputPressure);
+
         // How many moles could we theoretically spawn. Cap by pressure and amount.
-        var allowableMoles = Math.Max(
-            (drill.MaxOutputPressure - port.Air.Pressure) * port.Air.Volume / (drill.SpawnTemperature * Atmospherics.R),
-            0);
+        var allowableMoles = float.Max(0,
+            (targetPressure - port.Air.Pressure) * port.Air.Volume / (extractor.OutputTemperature * Atmospherics.R));
 
         if (allowableMoles < Atmospherics.GasMinMoles)
         {
@@ -122,8 +126,34 @@ public sealed class GasDepositSystem : EntitySystem
             return;
         }
 
-        var toSpawnReal = Math.Clamp(allowableMoles, , toSpawnTarget);
+        var removed = extractor.DepositEntity.Value.Comp.Deposit.Remove(allowableMoles);
+        _atmosphere.Merge(port.Air, removed);
 
-        _ambientSoundSystem.SetAmbience(uid, toSpawnReal > 0f);
+        _ambientSound.SetAmbience(uid, true);
+    }
+
+    private void OnToggleStatusMessage(EntityUid uid, GasDepositExtractorComponent extractor, GasPressurePumpToggleStatusMessage args)
+    {
+        extractor.Enabled = args.Enabled;
+        _adminLog.Add(LogType.AtmosPowerChanged, LogImpact.Low,
+            $"{ToPrettyString(args.Actor):player} set the power on {ToPrettyString(uid):device} to {args.Enabled}");
+        DirtyUI(uid, extractor);
+    }
+
+    private void OnOutputPressureChangeMessage(EntityUid uid, GasDepositExtractorComponent extractor, GasPressurePumpChangeOutputPressureMessage args)
+    {
+        extractor.TargetPressure = Math.Clamp(args.Pressure, 0f, Atmospherics.MaxOutputPressure);
+        _adminLog.Add(LogType.AtmosPressureChanged, LogImpact.Medium,
+            $"{ToPrettyString(args.Actor):player} set the pressure on {ToPrettyString(uid):device} to {args.Pressure}kPa");
+        DirtyUI(uid, extractor);
+    }
+
+    private void DirtyUI(EntityUid uid, GasDepositExtractorComponent? extractor)
+    {
+        if (!Resolve(uid, ref extractor))
+            return;
+
+        _ui.SetUiState(uid, GasPressurePumpUiKey.Key,
+            new GasPressurePumpBoundUserInterfaceState(EntityManager.GetComponent<MetaDataComponent>(uid).EntityName, extractor.TargetPressure, extractor.Enabled));
     }
 }

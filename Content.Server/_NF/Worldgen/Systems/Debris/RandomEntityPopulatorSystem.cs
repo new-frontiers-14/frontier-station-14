@@ -31,6 +31,9 @@ public sealed class RandomEntityPopulatorSystem : BaseWorldSystem
         // For each entity populator in the set, select a number between min and max
         foreach (var (paramSet, cache) in component.Caches)
         {
+            if (!_random.Prob(paramSet.Prob))
+                continue;
+
             var numToGenerate = _random.Next(paramSet.Min, paramSet.Max + 1);
             for (int i = 0; i < numToGenerate; i++)
             {

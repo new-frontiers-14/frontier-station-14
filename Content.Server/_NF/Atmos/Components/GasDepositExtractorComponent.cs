@@ -1,3 +1,5 @@
+using Content.Shared.Atmos;
+
 namespace Content.Server._NF.Atmos.Components;
 
 [RegisterComponent]
@@ -19,13 +21,25 @@ public sealed partial class GasDepositExtractorComponent : Component
     /// The maximum pressure output, in kPa.
     /// </summary>
     [DataField]
-    public float MaxOutputPressure;
+    public float MaxOutputPressure = Atmospherics.MaxOutputPressure;
+
+    [DataField]
+    public float TargetPressure = Atmospherics.OneAtmosphere;
+
+    /// <summary>
+    /// The output temperature, in K.
+    /// </summary>
+    [DataField]
+    public float OutputTemperature = Atmospherics.T20C;
 
     /// <summary>
     /// The entity to be extracted from.
     /// </summary>
+    /// <remarks>
+    /// Should abstract into a general GasDepositComponent later.
+    /// </remarks>
     [DataField]
-    public EntityUid? DepositEntity;
+    public Entity<RandomGasDepositComponent>? DepositEntity;
 
     [DataField("port")]
     public string PortName { get; set; } = "port";

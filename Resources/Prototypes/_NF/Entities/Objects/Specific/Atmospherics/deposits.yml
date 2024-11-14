@@ -106,3 +106,15 @@
   components:
   - type: RandomGasDeposit
     deposit: AirLike
+
+# Debug item for detecting gas deposits
+- type: entity
+  parent: PinpointerSyndicateNuclear
+  id: PinpointerGasDeposit
+  name: gas deposit pinpointer
+  description: Pointing to the nearest gas deposit.
+  suffix: DEBUG
+  components:
+  - type: Pinpointer
+    component: RandomGasDeposit
+    targetName: RandomGasDeposit
