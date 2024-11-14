@@ -14,11 +14,9 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Serialization.Manager;
 using Robust.Shared.Timing;
-using Content.Server.Station.Components; // Frontier
 using Content.Server.Station.Systems;
 using Content.Shared._NF.CCVar;
-using FastAccessors;
-using Microsoft.Extensions.Configuration; // Frontier
+using Robust.Shared.Configuration; // Frontier
 
 namespace Content.Server.Xenoarchaeology.XenoArtifacts;
 
@@ -83,7 +81,7 @@ public sealed partial class ArtifactSystem : EntitySystem
         var fullyExploredBonus = component.NodeTree.All(x => x.Triggered) || getMaxPrice ? 1.25f : 1;
 
         // Frontier
-        float cvarModifier = _configuration.GetCVar(NFCCVars.SciencePointGainModifier);
+        var cvarModifier = _configuration.GetCVar(NFCCVars.SciencePointGainModifier);
 
         return (int) (sumValue * fullyExploredBonus * cvarModifier) - component.ConsumedPoints - component.SkippedPoints; // Frontier: subtract SkippedPoints
     }
