@@ -81,6 +81,7 @@ public sealed partial class ServerApi : IPostInjectInit
 
         // Post
         RegisterActorHandler(HttpMethod.Post, "/admin/actions/round/start", ActionRoundStart);
+        RegisterActorHandler(HttpMethod.Post, "/admin/actions/ahelp/send", ActionAhelpSend);
         RegisterActorHandler(HttpMethod.Post, "/admin/actions/round/end", ActionRoundEnd);
         RegisterActorHandler(HttpMethod.Post, "/admin/actions/round/restartnow", ActionRoundRestartNow);
         RegisterActorHandler(HttpMethod.Post, "/admin/actions/kick", ActionKick);
