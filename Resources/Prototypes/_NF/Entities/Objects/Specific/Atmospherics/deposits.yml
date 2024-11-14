@@ -15,6 +15,7 @@
   - type: Fixtures
   - type: RandomGasDeposit
   - type: Sprite
+    drawdepth: FloorTiles
     sprite: _NF/Objects/Specific/Atmospherics/deposit.rsi
     layers:
     - state: deposit
@@ -24,7 +25,7 @@
   id: OxygenGasDeposit
   components:
   - type: RandomGasDeposit
-    deposit: MostlyOxygen
+    depositPrototype: MostlyOxygen
   - type: Sprite
     color: "#DDDDEE"
 
@@ -33,7 +34,7 @@
   id: NitrogenGasDeposit
   components:
   - type: RandomGasDeposit
-    deposit: MostlyNitrogen
+    depositPrototype: MostlyNitrogen
   - type: Sprite
     color: "#FFCCCC"
 
@@ -42,7 +43,7 @@
   id: CarbonDioxideGasDeposit
   components:
   - type: RandomGasDeposit
-    deposit: MostlyCarbonDioxide
+    depositPrototype: MostlyCarbonDioxide
   - type: Sprite
     color: "#CCCCCC"
 
@@ -51,7 +52,7 @@
   id: PlasmaGasDeposit
   components:
   - type: RandomGasDeposit
-    deposit: MostlyPlasma
+    depositPrototype: MostlyPlasma
   - type: Sprite
     color: "#FFCCFF"
 
@@ -60,7 +61,7 @@
   id: AmmoniaGasDeposit
   components:
   - type: RandomGasDeposit
-    deposit: MostlyAmmonia
+    depositPrototype: MostlyAmmonia
   - type: Sprite
     color: "#FFFFCC"
 
@@ -69,7 +70,7 @@
   id: TritiumGasDeposit
   components:
   - type: RandomGasDeposit
-    deposit: MostlyTritium
+    depositPrototype: MostlyTritium
   - type: Sprite
     color: "#CCFFCC"
 
@@ -78,7 +79,7 @@
   id: WaterVaporGasDeposit
   components:
   - type: RandomGasDeposit
-    deposit: MostlyWaterVapor
+    depositPrototype: MostlyWaterVapor
   - type: Sprite
     color: "#DDEEEE"
 
@@ -87,7 +88,7 @@
   id: NitrousOxideGasDeposit
   components:
   - type: RandomGasDeposit
-    deposit: MostlyNitrousOxide
+    depositPrototype: MostlyNitrousOxide
   - type: Sprite
     color: "#EEDDDD"
 
@@ -96,7 +97,7 @@
   id: FrezonGasDeposit
   components:
   - type: RandomGasDeposit
-    deposit: MostlyFrezon
+    depositPrototype: MostlyFrezon
   - type: Sprite
     color: "#CCCCFF"
 
@@ -105,7 +106,7 @@
   id: AirGasDeposit
   components:
   - type: RandomGasDeposit
-    deposit: AirLike
+    depositPrototype: AirLike
 
 # Debug item for detecting gas deposits
 - type: entity

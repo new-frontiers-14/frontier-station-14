@@ -1,5 +1,6 @@
 namespace Content.Server._NF.Atmos.Components;
 
+[RegisterComponent]
 public sealed partial class DockablePumpComponent : Component
 {
     /// <summary>

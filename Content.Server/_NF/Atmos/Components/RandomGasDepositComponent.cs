@@ -17,5 +17,5 @@ public sealed partial class RandomGasDepositComponent : Component
     /// Gases left in the deposit.
     /// </summary>
     [ViewVariables]
-    public GasMixture Deposit;
+    public GasMixture Deposit = new();
 }

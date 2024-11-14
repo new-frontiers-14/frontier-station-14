@@ -28,6 +28,7 @@ public sealed class RandomEntityPopulatorSystem : BaseWorldSystem
             return;
 
         var placeables = new List<string?>(4);
+        List<Vector2i>? validTileIndices = null;
         // For each entity populator in the set, select a number between min and max
         foreach (var (paramSet, cache) in component.Caches)
         {
@@ -38,7 +39,7 @@ public sealed class RandomEntityPopulatorSystem : BaseWorldSystem
             for (int i = 0; i < numToGenerate; i++)
             {
                 // Then find a spot (if we can) - on any failure, assume the asteroid is full and move onto the next one, which may have different parameters
-                if (!SelectRandomTile(uid, mapGrid, paramSet.CanBeAirSealed, out var coords))
+                if (!SelectRandomTile(uid, mapGrid, paramSet.CanBeAirSealed, ref validTileIndices, out var coords))
                     break;
 
                 cache.GetSpawns(_random, ref placeables);
@@ -57,28 +58,36 @@ public sealed class RandomEntityPopulatorSystem : BaseWorldSystem
     private bool SelectRandomTile(EntityUid gridUid,
         MapGridComponent mapComp,
         bool canBeAirSealed,
+        ref List<Vector2i>? tileIndices,
         out EntityCoordinates targetCoords)
     {
         targetCoords = default;
 
-        var aabb = mapComp.LocalAABB;
+        if (tileIndices == null)
+        {
+            var tileIterator = _map.GetAllTiles(gridUid, mapComp, ignoreEmpty: true);
+            tileIndices = new List<Vector2i>();
+            foreach (var tile in tileIterator)
+            {
+                tileIndices.Add(tile.GridIndices);
+            }
+        }
 
         bool found = false;
-        // Try to place on the local bounding box - this may fail.
-        for (var i = 0; i < 25; i++)
+        for (var i = 0; i < 10; i++)
         {
-            var randomX = _random.Next((int)aabb.Left, (int)aabb.Right);
-            var randomY = _random.Next((int)aabb.Bottom, (int)aabb.Top);
+            if (tileIndices.Count <= 0)
+                return false;
 
-            var tile = new Vector2i(randomX, randomY);
-            if (_atmosphere.IsTileSpace(gridUid, Transform(gridUid).MapUid, tile)
-                || !canBeAirSealed && _atmosphere.IsTileAirBlocked(gridUid, tile, mapGridComp: mapComp))
+            var idx = _random.Next(tileIndices.Count);
+            if (!canBeAirSealed && _atmosphere.IsTileAirBlocked(gridUid, tileIndices[idx], mapGridComp: mapComp))
             {
                 continue;
             }
 
             found = true;
-            targetCoords = _map.GridTileToLocal(gridUid, mapComp, tile);
+            targetCoords = _map.GridTileToLocal(gridUid, mapComp, tileIndices[idx]);
+            tileIndices.RemoveAt(idx);
             break;
         }
 

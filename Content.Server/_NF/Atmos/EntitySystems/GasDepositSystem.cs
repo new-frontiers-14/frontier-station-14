@@ -23,13 +23,13 @@ public sealed class GasDepositSystem : EntitySystem
 {
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly MapSystem _map = default!;
-    [Dependency] private readonly PrototypeManager _prototype = default!;
-    [Dependency] private readonly RobustRandom _random = default!;
+    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly NodeContainerSystem _nodeContainer = default!;
     [Dependency] private readonly AmbientSoundSystem _ambientSound = default!;
     [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
-    [Dependency] private readonly AdminLogManager _adminLog = default!;
+    [Dependency] private readonly IAdminLogManager _adminLog = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
 
     /// <inheritdoc/>
@@ -55,7 +55,7 @@ public sealed class GasDepositSystem : EntitySystem
 
         if (!TryComp(uid, out TransformComponent? xform)
             || xform.GridUid is not { Valid: true } grid
-            || !TryComp(uid, out MapGridComponent? gridComp))
+            || !TryComp(grid, out MapGridComponent? gridComp))
         {
             args.Cancel();
             return;
@@ -127,6 +127,7 @@ public sealed class GasDepositSystem : EntitySystem
         }
 
         var removed = extractor.DepositEntity.Value.Comp.Deposit.Remove(allowableMoles);
+        removed.Temperature = extractor.OutputTemperature;
         _atmosphere.Merge(port.Air, removed);
 
         _ambientSound.SetAmbience(uid, true);

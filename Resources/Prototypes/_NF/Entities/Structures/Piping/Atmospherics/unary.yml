@@ -3,7 +3,6 @@
   id: GasMiningDrill
   name: gas mining drill
   description: A powerful, luggable drill for mining gas deposits on asteroids. Outputs gas through a pipe.
-  abstract: true
   placement:
     mode: SnapgridCenter
   components:
@@ -36,6 +35,7 @@
       transmitFrequencyId: AtmosMonitor
       sendBroadcastAttemptEvent: true
       examinableAddress: true
+      prefix: device-address-prefix-gas-drill
     - type: WiredNetworkConnection
     - type: PowerSwitch
     - type: StationAiWhitelist
@@ -61,8 +61,6 @@
       load: 4000
     - type: Machine
       board: Null # FIXME
-    - type: DeviceNetwork
-      prefix: device-address-prefix-gas-drill
     - type: GasDepositExtractor
       extractionRate: 20
       port: port
