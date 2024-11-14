@@ -44,8 +44,7 @@
       snapCardinals: true
       granularLayersRendering: true
       layers:
-        - sprite: Structures/Piping/Atmospherics/pipe.rsi
-          state: pipeHalf
+        - state: pipe
           map: [ "enum.PipeVisualLayers.Pipe" ]
           renderingStrategy: Default
         - state: drill-off
@@ -83,4 +82,3 @@
     - type: GasDepositExtractor
       extractionRate: 20
       port: outlet
-    - type: PipeAppearance

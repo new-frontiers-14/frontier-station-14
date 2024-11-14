@@ -26,7 +26,6 @@ namespace Content.Server._NF.Atmos.EntitySystems;
 // System for handling gas deposits and machines for extracting from gas deposits
 public sealed class GasDepositSystem : EntitySystem
 {
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly MapSystem _map = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
@@ -37,6 +36,8 @@ public sealed class GasDepositSystem : EntitySystem
     [Dependency] private readonly IAdminLogManager _adminLog = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly AppearanceSystem _appearance = default!;
+
+    private const float LowMoleCoefficient = 0.25f;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -141,6 +142,7 @@ public sealed class GasDepositSystem : EntitySystem
             var gasRange = depositPrototype!.Gases[i];
             component.Deposit.SetMoles(i, gasRange[0] + _random.NextFloat() * (gasRange[1] - gasRange[0]));
         }
+        component.LowMoles = component.Deposit.TotalMoles * LowMoleCoefficient;
     }
 
     private void OnExtractorUpdate(EntityUid uid, GasDepositExtractorComponent extractor, ref AtmosDeviceUpdateEvent args)
