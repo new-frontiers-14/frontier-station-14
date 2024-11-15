@@ -13,6 +13,8 @@ using Content.Server.Traits.Assorted;
 using Content.Shared.Tools.Components;
 using Content.Shared.Prying.Components;
 using Content.Shared.Access.Components;
+using Content.Server.Spawners.Components;
+using Content.Server.Advertise.Components;
 
 namespace Content.Server._NF.Salvage;
 
@@ -95,8 +97,11 @@ public sealed class SalvageMobRestrictionsSystem : EntitySystem
             RemComp<CanMoveInAirComponent>(uid);
             RemComp<TagComponent>(uid);
             RemComp<AccessComponent>(uid);
+            RemComp<TimedSpawnerComponent>(uid);
+            RemComp<AdvertiseComponent>(uid);
             EnsureComp<UncloneableComponent>(uid);
             EnsureComp<UnrevivableComponent>(uid);
+
             var damageSpec = new DamageSpecifier(_prototypeManager.Index<DamageGroupPrototype>("Genetic"), 300);
             _damageableSystem.TryChangeDamage(uid, damageSpec);
         }
