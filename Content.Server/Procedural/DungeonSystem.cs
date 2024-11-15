@@ -33,7 +33,6 @@ public sealed partial class DungeonSystem : SharedDungeonSystem
     [Dependency] private readonly AnchorableSystem _anchorable = default!;
     [Dependency] private readonly DecalSystem _decals = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly TagSystem _tag = default!;
     [Dependency] private readonly TileSystem _tile = default!;
     [Dependency] private readonly MapLoaderSystem _loader = default!;
     [Dependency] private readonly SharedMapSystem _maps = default!;
@@ -184,11 +183,17 @@ public sealed partial class DungeonSystem : SharedDungeonSystem
         return mapId;
     }
 
-    public void GenerateDungeon(DungeonConfigPrototype gen,
+    /// <summary>
+    /// Generates a dungeon in the background with the specified config.
+    /// </summary>
+    /// <param name="coordinates">Coordinates to move the dungeon to afterwards. Will delete the original map</param>
+    public void GenerateDungeon(DungeonConfig gen,
+        string genID, // Frontier
         EntityUid gridUid,
         MapGridComponent grid,
         Vector2i position,
-        int seed)
+        int seed,
+        EntityCoordinates? coordinates = null)
     {
         var cancelToken = new CancellationTokenSource();
         var job = new DungeonJob.DungeonJob(
@@ -208,6 +213,8 @@ public sealed partial class DungeonSystem : SharedDungeonSystem
             gridUid,
             seed,
             position,
+            genID, // Frontier
+            coordinates,
             cancelToken.Token);
 
         _dungeonJobs.Add(job, cancelToken);
@@ -215,7 +222,8 @@ public sealed partial class DungeonSystem : SharedDungeonSystem
     }
 
     public async Task<List<Dungeon>> GenerateDungeonAsync(
-        DungeonConfigPrototype gen,
+        DungeonConfig gen,
+        string genID, // Frontier
         EntityUid gridUid,
         MapGridComponent grid,
         Vector2i position,
@@ -239,6 +247,8 @@ public sealed partial class DungeonSystem : SharedDungeonSystem
             gridUid,
             seed,
             position,
+            genID, // Frontier
+            null,
             cancelToken.Token);
 
         _dungeonJobs.Add(job, cancelToken);

@@ -2,13 +2,144 @@
 
 - type: microwaveMealRecipe
   id: RecipeClurgerBurger
-  name: clippy burger recipe
+  name: clurger recipe
   result: FoodBurgerClurger
   time: 10
   solids:
     FoodBreadBun: 1
     ClothingHeadMailCarrier: 1
     FoodMeatCat: 1
+  recipeType:
+  - Oven
+
+- type: microwaveMealRecipe
+  id: RecipeRosyMothRoachburger
+  name: rosy mothroachburger recipe
+  result: FoodBurgerRosyMothRoach
+  time: 10
+  solids:
+    FoodBreadBun: 1
+    MobRosyMothroach: 1
+  recipeType:
+  - Oven
+
+#Breads & Sandwiches
+
+- type: microwaveMealRecipe
+  id: RecipeAvocadoToast
+  name: avocado toast recipe
+  result: FoodBreadAvocadoToast
+  time: 5
+  solids:
+    FoodBreadPlainSlice: 1
+    FoodAvocadoSlice: 1
+  recipeType:
+  - Oven
+
+- type: microwaveMealRecipe
+  id: RecipeBreakfastBagel
+  name: breakfast bagel recipe
+  result: FoodMealBreakfastBagel
+  time: 5
+  solids:
+    FoodBagel: 1
+    FoodEgg: 2
+    FoodAvocadoSlice: 1
+    FoodCheeseSlice: 1
+  recipeType:
+  - Oven
+
+- type: microwaveMealRecipe
+  id: RecipeBreakfastBagelPoppy
+  name: poppyseed breakfast bagel recipe
+  result: FoodMealBreakfastBagelPoppy
+  time: 5
+  solids:
+    FoodBagelPoppy: 1
+    FoodEgg: 2
+    FoodAvocadoSlice: 1
+    FoodCheeseSlice: 1
+  recipeType:
+  - Oven
+
+- type: microwaveMealRecipe
+  id: RecipeCucumberSandwich
+  name: cucumber sandwich recipe
+  result: FoodMealCucumberSandwich
+  time: 5
+  solids:
+    FoodBreadPlainSlice: 2
+    FoodCucumberSlice: 4
+    FoodChevreSlice: 1
+  reagents:
+    Mayo: 5
+  recipeType:
+  - Assembler
+
+# Sushi
+
+- type: microwaveMealRecipe
+  id: RecipeAvocadoSushi
+  name: avocado sushi recipe
+  result: FoodMealAvocadoSushi
+  time: 5
+  solids:
+    FoodAvocadoSlice: 2
+    FoodCarrot: 1
+    FoodCucumberSlice: 2
+  reagents:
+    Rice: 15
+    Water: 10
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeCarpSushi
+  name: carp sushi recipe
+  result: FoodMealCarpSushi
+  time: 5
+  solids:
+    FoodAvocadoSlice: 2
+    FoodCucumberSlice: 2
+    FoodMeatFish: 1
+  reagents:
+    Rice: 15
+    Water: 10
+  recipeType:
+  - Assembler
+
+# Salad
+
+- type: microwaveMealRecipe
+  id: RecipeGreekSalad
+  name: greek salad recipe
+  result: FoodSaladGreek
+  time: 5
+  reagents:
+    Vinaigrette: 5
+  solids:
+    FoodBowlBig: 1
+    FoodCucumber: 1
+    FoodTomato: 1
+    FoodChevreSlice: 1
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeAvocadoSalad
+  name: avocado salad recipe
+  result: FoodSaladAvocado
+  time: 5
+  reagents:
+    OilOlive: 5
+    JuiceLime: 5
+  solids:
+    FoodBowlBig: 1
+    FoodCucumber: 1
+    FoodAvocado: 1
+    FoodTomato: 1
+  recipeType:
+  - Assembler
 
 #Other
 
@@ -24,6 +155,8 @@
     FoodMealFries: 1
     FoodOnionRings: 1
     OrganAnimalHeart: 1
+  recipeType:
+  - Assembler
 
 - type: microwaveMealRecipe
   id: RecipeDragonOmelette
@@ -37,3 +170,168 @@
     Egg: 12
     TableSalt: 5
     Blackpepper: 5
+  recipeType:
+  - Oven
+  - Microwave
+
+- type: microwaveMealRecipe
+  id: RecipeRaisins
+  name: raisins recipe
+  result: ReagentContainerRaisin # A little bit cursed, spawning a bag
+  time: 30
+  solids:
+    FoodGrape: 5
+  recipeType:
+  - Oven
+  - Microwave
+
+- type: microwaveMealRecipe
+  id: RecipePickle
+  name: pickle recipe
+  result: FoodPickle
+  time: 5
+  solids:
+    FoodCucumber: 1
+  reagents:
+    Saline: 10
+  recipeType:
+  - Microwave
+
+- type: microwaveMealRecipe
+  id: RecipePoachedPears
+  name: poached pears recipe
+  result: FoodMealPoachedPears
+  time: 10
+  solids:
+    FoodBowlBig: 1
+    FoodPear: 3
+    FoodOrange: 2
+  reagents:
+    Wine: 10
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipePearsBelleHelene
+  name: pears belle helene recipe
+  result: FoodMealPearsBelleHelene
+  time: 10
+  solids:
+    FoodBowlBig: 1
+    FoodPear: 3
+    FoodSnackChocolateBar: 2
+    FoodLemon: 1
+  reagents:
+    Cream: 5
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipePearMuffin
+  name: pear muffin recipe
+  result: FoodBakedMuffinPear
+  time: 10
+  solids:
+    FoodPear: 1
+    FoodSnackChocolateBar: 1
+  reagents:
+    Flour: 5
+    Oats: 5
+    Sugar: 5
+  recipeType:
+  - Oven
+
+- type: microwaveMealRecipe
+  id: RecipePearCheeseTart
+  name: pear and cheese tart recipe
+  result: FoodTartPearCheese
+  time: 15
+  solids:
+    FoodPlateTin: 1
+    FoodDoughPie: 1
+    FoodPear: 2
+    FoodChevre: 1
+  recipeType:
+  - Oven
+
+- type: microwaveMealRecipe
+  id: RecipeHoneyBun
+  name: honey bun recipe
+  result: FoodBakedBunHoney
+  time: 5
+  solids:
+    FoodBreadBun: 1
+  reagents:
+    Honey: 5
+  recipeType:
+  - Oven
+
+- type: microwaveMealRecipe
+  id: RecipeHoneyChallah
+  name: honey challah recipe
+  result: FoodBreadChallah
+  time: 15
+  solids:
+    FoodDoughRope: 3
+    PoppySeeds: 1
+  reagents:
+    Honey: 10
+  recipeType:
+  - Oven
+
+- type: microwaveMealRecipe
+  id: RecipeGlazedHam
+  name: honey glazed ham recipe
+  result: FoodMeatGlazedHam
+  time: 15
+  solids:
+    FoodMeat: 2
+  reagents:
+    Honey: 10
+    TableSalt: 5
+  recipeType:
+  - Oven
+
+- type: microwaveMealRecipe
+  id: RecipeAppleHoneyDutchBaby
+  name: honey apple streusel pie
+  result: FoodPieAppleHoney
+  time: 15
+  solids:
+    FoodPlateTin: 1
+    FoodDoughPie: 1
+    FoodApple: 2
+  reagents:
+    Honey: 10
+    Oats: 10
+  recipeType:
+  - Oven
+
+- type: microwaveMealRecipe
+  id: RecipeAppleStrudelBite
+  name: apple strudel bite
+  result: FoodBakedAppleStrudelBite
+  time: 5
+  solids:
+    FoodCroissantRaw: 1
+    FoodApple: 1
+    FoodButterSlice: 1
+  reagents:
+    Honey: 5
+  recipeType:
+  - Oven
+
+# NOT ACTUAL FOOD
+
+- type: microwaveMealRecipe
+  id: RecipeDriedShrooms
+  name: dried shrooms recipe
+  result: ShroomsDried
+  time: 15
+  solids:
+    FoodSpaceshroom: 1
+    FoodMushroom: 1
+    FoodFlyAmanita: 1
+  recipeType:
+  - Oven
+  - Microwave

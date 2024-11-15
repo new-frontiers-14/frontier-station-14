@@ -26,10 +26,7 @@ entities:
   - uid: 2
     components:
     - type: MetaData
-      name: Arena
     - type: Transform
-      pos: 0.10035038,0.17291927
-      parent: invalid
     - type: MapGrid
       chunks:
         0,0:
@@ -139,6 +136,8 @@ entities:
       angularDamping: 999999
       linearDamping: 999999
     - type: GridPathfinding
+    - type: BecomesStation
+      id: Arena
     - type: Gravity
       gravityShakeSound: !type:SoundPathSpecifier
         path: /Audio/Effects/alert.ogg
@@ -2733,49 +2732,49 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 3.5,-17.5
       parent: 2
-- proto: AtmosDeviceFanTiny
+- proto: AtmosDeviceFanDirectional
   entities:
   - uid: 591
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
+      rot: 1.5707963267948966 rad
       pos: 23.5,11.5
       parent: 2
   - uid: 592
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 23.5,10.5
+      rot: 1.5707963267948966 rad
+      pos: 23.5,12.5
       parent: 2
   - uid: 593
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 23.5,-11.5
+      rot: 1.5707963267948966 rad
+      pos: 23.5,-12.5
       parent: 2
   - uid: 594
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 23.5,12.5
+      rot: 1.5707963267948966 rad
+      pos: 23.5,10.5
       parent: 2
   - uid: 595
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 23.5,-12.5
+      rot: 1.5707963267948966 rad
+      pos: 23.5,-11.5
       parent: 2
   - uid: 596
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
+      rot: 1.5707963267948966 rad
       pos: 9.5,15.5
       parent: 2
   - uid: 597
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 23.5,-10.5
+      rot: 1.5707963267948966 rad
+      pos: 9.5,-15.5
       parent: 2
   - uid: 1370
     components:
@@ -2787,7 +2786,7 @@ entities:
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
-      pos: -21.5,12.5
+      pos: -21.5,10.5
       parent: 2
   - uid: 1372
     components:
@@ -2799,13 +2798,13 @@ entities:
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
-      pos: -21.5,10.5
+      pos: -21.5,12.5
       parent: 2
   - uid: 1374
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
-      pos: -21.5,-10.5
+      pos: -21.5,-12.5
       parent: 2
   - uid: 1375
     components:
@@ -2817,7 +2816,7 @@ entities:
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
-      pos: -21.5,-12.5
+      pos: -21.5,-10.5
       parent: 2
   - uid: 1377
     components:
@@ -2828,13 +2827,13 @@ entities:
   - uid: 1378
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 9.5,-15.5
+      rot: 1.5707963267948966 rad
+      pos: 23.5,-10.5
       parent: 2
   - uid: 1432
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
+      rot: 3.141592653589793 rad
       pos: -10.5,-6.5
       parent: 2
 - proto: AtmosFixFreezerMarker
@@ -3491,8 +3490,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 10.5,-8.5
       parent: 2
-    - type: Anchorable
-      delay: 999999
+    - type: DisableToolUse
+      anchoring: True
 - proto: BoxCartridgeBB
   entities:
   - uid: 2641
@@ -10687,22 +10686,22 @@ entities:
     - type: Transform
       pos: -17.5,-6.5
       parent: 2
-    - type: Anchorable
-      delay: 999999
+    - type: DisableToolUse
+      anchoring: True
   - uid: 2310
     components:
     - type: Transform
       pos: 19.5,-6.5
       parent: 2
-    - type: Anchorable
-      delay: 999999
+    - type: DisableToolUse
+      anchoring: True
   - uid: 2311
     components:
     - type: Transform
       pos: 16.5,13.5
       parent: 2
-    - type: Anchorable
-      delay: 999999
+    - type: DisableToolUse
+      anchoring: True
 - proto: ComputerSolarControl
   entities:
   - uid: 708
@@ -10711,8 +10710,8 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -8.5,5.5
       parent: 2
-    - type: Anchorable
-      delay: 999999
+    - type: DisableToolUse
+      anchoring: True
 - proto: ComputerTelevision
   entities:
   - uid: 685
@@ -10751,8 +10750,13 @@ entities:
     - type: ContainerContainer
       containers:
         board: !type:Container
+          showEnts: False
+          occludes: True
           ents: []
-        bank-ATM-cashSlot: !type:ContainerSlot {}
+        bank-ATM-cashSlot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
     - type: ItemSlots
   - uid: 2305
     components:
@@ -10763,8 +10767,13 @@ entities:
     - type: ContainerContainer
       containers:
         board: !type:Container
+          showEnts: False
+          occludes: True
           ents: []
-        bank-ATM-cashSlot: !type:ContainerSlot {}
+        bank-ATM-cashSlot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
     - type: ItemSlots
   - uid: 2306
     components:
@@ -10775,8 +10784,13 @@ entities:
     - type: ContainerContainer
       containers:
         board: !type:Container
+          showEnts: False
+          occludes: True
           ents: []
-        bank-ATM-cashSlot: !type:ContainerSlot {}
+        bank-ATM-cashSlot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
     - type: ItemSlots
   - uid: 2307
     components:
@@ -10787,8 +10801,13 @@ entities:
     - type: ContainerContainer
       containers:
         board: !type:Container
+          showEnts: False
+          occludes: True
           ents: []
-        bank-ATM-cashSlot: !type:ContainerSlot {}
+        bank-ATM-cashSlot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
     - type: ItemSlots
 - proto: CrateFunBoxing
   entities:
@@ -14896,8 +14915,8 @@ entities:
     - type: Transform
       pos: -8.5,4.5
       parent: 2
-    - type: Anchorable
-      delay: 999999
+    - type: DisableToolUse
+      anchoring: True
 - proto: Grille
   entities:
   - uid: 3
@@ -15691,8 +15710,8 @@ entities:
     - type: Transform
       pos: -8.5,-8.5
       parent: 2
-    - type: Anchorable
-      delay: 999999
+    - type: DisableToolUse
+      anchoring: True
 - proto: KitchenReagentGrinder
   entities:
   - uid: 1664
@@ -15700,8 +15719,8 @@ entities:
     - type: Transform
       pos: -8.5,-7.5
       parent: 2
-    - type: Anchorable
-      delay: 999999
+    - type: DisableToolUse
+      anchoring: True
 - proto: KitchenSpike
   entities:
   - uid: 807
@@ -15750,6 +15769,48 @@ entities:
     components:
     - type: Transform
       pos: 4.433182,-7.4173126
+      parent: 2
+- proto: NFSignDock
+  entities:
+  - uid: 2976
+    components:
+    - type: Transform
+      pos: -21.5,-13.5
+      parent: 2
+  - uid: 2977
+    components:
+    - type: Transform
+      pos: -21.5,-9.5
+      parent: 2
+  - uid: 2978
+    components:
+    - type: Transform
+      pos: -21.5,9.5
+      parent: 2
+  - uid: 2979
+    components:
+    - type: Transform
+      pos: -21.5,13.5
+      parent: 2
+  - uid: 2980
+    components:
+    - type: Transform
+      pos: 23.5,13.5
+      parent: 2
+  - uid: 2981
+    components:
+    - type: Transform
+      pos: 23.5,9.5
+      parent: 2
+  - uid: 2982
+    components:
+    - type: Transform
+      pos: 23.5,-13.5
+      parent: 2
+  - uid: 2983
+    components:
+    - type: Transform
+      pos: 23.5,-9.5
       parent: 2
 - proto: NitrogenCanister
   entities:
@@ -15877,23 +15938,23 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -0.5,-11.5
       parent: 2
-    - type: Anchorable
-      delay: 999999
+    - type: DisableToolUse
+      anchoring: True
   - uid: 2268
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 2.5,11.5
       parent: 2
-    - type: Anchorable
-      delay: 999999
+    - type: DisableToolUse
+      anchoring: True
   - uid: 2476
     components:
     - type: Transform
       pos: -8.5,2.5
       parent: 2
-    - type: Anchorable
-      delay: 999999
+    - type: DisableToolUse
+      anchoring: True
 - proto: Poweredlight
   entities:
   - uid: 1614
@@ -16417,7 +16478,7 @@ entities:
     - type: Transform
       pos: 11.5,7.5
       parent: 2
-- proto: RadioHandheld
+- proto: RadioHandheldNF
   entities:
   - uid: 3010
     components:
@@ -17327,7 +17388,7 @@ entities:
     - type: Transform
       pos: 11.5,7.5
       parent: 2
-- proto: RandomPosterContraband
+- proto: RandomPosterContrabandDeadDrop
   entities:
   - uid: 2984
     components:
@@ -17459,8 +17520,6 @@ entities:
     - type: Transform
       pos: -9.5,-14.5
       parent: 2
-- proto: RandomPosterContrabandDeadDrop
-  entities:
   - uid: 3128
     components:
     - type: Transform
@@ -18013,56 +18072,6 @@ entities:
     - type: Transform
       pos: -12.5,-1.5
       parent: 2
-- proto: SignShipDock
-  entities:
-  - uid: 2976
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -21.5,-13.5
-      parent: 2
-  - uid: 2977
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -21.5,-9.5
-      parent: 2
-  - uid: 2978
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -21.5,9.5
-      parent: 2
-  - uid: 2979
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -21.5,13.5
-      parent: 2
-  - uid: 2980
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 23.5,13.5
-      parent: 2
-  - uid: 2981
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 23.5,9.5
-      parent: 2
-  - uid: 2982
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 23.5,-13.5
-      parent: 2
-  - uid: 2983
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 23.5,-9.5
-      parent: 2
 - proto: SinkStemlessWater
   entities:
   - uid: 1117
@@ -18084,15 +18093,15 @@ entities:
     - type: Transform
       pos: -10.5,5.5
       parent: 2
-    - type: Anchorable
-      delay: 999999
+    - type: DisableToolUse
+      anchoring: True
   - uid: 707
     components:
     - type: Transform
       pos: -10.5,4.5
       parent: 2
-    - type: Anchorable
-      delay: 999999
+    - type: DisableToolUse
+      anchoring: True
 - proto: SodaDispenser
   entities:
   - uid: 815
@@ -18101,8 +18110,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 10.5,-7.5
       parent: 2
-    - type: Anchorable
-      delay: 999999
+    - type: DisableToolUse
+      anchoring: True
 - proto: SolarPanel
   entities:
   - uid: 1100
@@ -18879,14 +18888,21 @@ entities:
     - type: Transform
       pos: -9.5,-4.5
       parent: 2
-    - type: Anchorable
-      delay: 999999
+    - type: DisableToolUse
+      anchoring: True
 - proto: VendingMachineCigs
   entities:
   - uid: 2336
     components:
     - type: Transform
       pos: 10.5,7.5
+      parent: 2
+- proto: VendingMachineCiviMedPlus
+  entities:
+  - uid: 1551
+    components:
+    - type: Transform
+      pos: -10.5,2.5
       parent: 2
 - proto: VendingMachineCuddlyCritterVend
   entities:
@@ -18902,17 +18918,8 @@ entities:
     - type: Transform
       pos: -10.5,-4.5
       parent: 2
-    - type: Anchorable
-      delay: 999999
-- proto: VendingMachineMedical
-  entities:
-  - uid: 1551
-    components:
-    - type: Transform
-      pos: -10.5,2.5
-      parent: 2
-    - type: Anchorable
-      delay: 999999
+    - type: DisableToolUse
+      anchoring: True
 - proto: WallGold
   entities:
   - uid: 8
@@ -20832,7 +20839,7 @@ entities:
           showEnts: False
           occludes: True
           ent: null
-- proto: WarpPointNFArena
+- proto: WarpPoint
   entities:
   - uid: 2346
     components:
@@ -20859,16 +20866,16 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 2.5,-11.5
       parent: 2
-    - type: Anchorable
-      delay: 999999
+    - type: DisableToolUse
+      anchoring: True
   - uid: 2267
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -0.5,11.5
       parent: 2
-    - type: Anchorable
-      delay: 999999
+    - type: DisableToolUse
+      anchoring: True
 - proto: WeaponDisablerPractice
   entities:
   - uid: 1772

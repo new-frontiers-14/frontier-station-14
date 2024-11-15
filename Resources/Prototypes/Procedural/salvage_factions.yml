@@ -1,5 +1,6 @@
 - type: salvageFaction
   id: Xenos # Frontier
+  desc: salvage-faction-xenos
   cost: 3
   groups:
   - entries:
@@ -44,17 +45,27 @@
     Megafauna: MobXenoQueenDungeon # Frontier
 
 - type: salvageFaction
-  id: Carp
+  id: Carps
+  desc: salvage-faction-carps
   cost: 1
   groups:
   - entries:
     - id: MobCarpExpeditions # Frontier
       amount: 1
-      maxAmount: 4
+      maxAmount: 2
+    - id: MobCarpRainbowExpeditions # Frontier
+      amount: 0 # Frontier
+      maxAmount: 2 # Frontier
+    - id: MobSnakeExpeditions # Frontier
+      amount: 0 # Frontier
+      maxAmount: 1 # Frontier
   - entries:
     - id: MobCarpMagicExpeditions # Frontier
       amount: 1
       maxAmount: 3
+    - id: MobSnakeExpeditions # Frontier
+      amount: 0 # Frontier
+      maxAmount: 1 # Frontier
     prob: 0.1
   - entries:
     - id: MobSharkExpeditions # Frontier
@@ -70,6 +81,9 @@
     - id: MobCarpRainbowExpeditions # Frontier
       amount: 1
       maxAmount: 1
+    - id: MobSnakeExpeditions # Frontier
+      amount: 0 # Frontier
+      maxAmount: 1 # Frontier
     prob: 0.05
   configs:
     DefenseStructure: CarpStatue
@@ -79,6 +93,7 @@
 # Frontier (everything below)
 - type: salvageFaction
   id: Syndicate
+  desc: salvage-faction-syndicate
   cost: 8
   groups:
   - entries:
@@ -121,6 +136,7 @@
 
 - type: salvageFaction
   id: Cultists
+  desc: salvage-faction-cultists
   cost: 7
   groups:
   - entries:
@@ -166,39 +182,40 @@
 
 - type: salvageFaction
   id: Flesh
+  desc: salvage-faction-flesh
   cost: 1
   groups:
   - entries:
     - id: SpawnMobAberrantFleshExpeditions
       amount: 1
-      maxAmount: 3
+      maxAmount: 2
     - id: SpawnMobAberrantFleshExpeditions
       amount: 1
-      maxAmount: 3
+      maxAmount: 2
     prob: 0.5
   - entries:
     - id: SpawnMobAberrantFleshExpeditions
       amount: 1
-      maxAmount: 3
+      maxAmount: 2
     - id: SpawnMobAberrantFleshExpeditions
       amount: 1
-      maxAmount: 3
+      maxAmount: 2
     prob: 0.25
   - entries:
     - id: SpawnMobAberrantFleshExpeditions
       amount: 1
-      maxAmount: 3
+      maxAmount: 2
     - id: SpawnMobAberrantFleshExpeditions
       amount: 1
-      maxAmount: 3
+      maxAmount: 2
     prob: 0.25
   - entries:
     - id: SpawnMobAberrantFleshExpeditions
-      amount: 2
-      maxAmount: 4
+      amount: 1
+      maxAmount: 2
     - id: SpawnMobAberrantFleshExpeditions
-      amount: 2
-      maxAmount: 4
+      amount: 1
+      maxAmount: 2
     prob: 0.1
   configs:
     DefenseStructure: AberrantFleshDigestiveSack
@@ -208,6 +225,7 @@
 - type: salvageFaction
   id: Argocytes
   cost: 4
+  desc: salvage-faction-argocytes
   groups:
   - entries:
     - id: SpawnMobArgocyteTiny
@@ -251,6 +269,7 @@
 - type: salvageFaction
   id: Dinosaurs
   cost: 3
+  desc: salvage-faction-dinosaurs
   groups:
   - entries:
     - id: SpawnMobDinosaurSmall
@@ -290,6 +309,7 @@
 - type: salvageFaction
   id: Mercenaries
   cost: 6
+  desc: salvage-faction-mercenaries
   groups:
   - entries:
     - id: SpawnMobMercenaryT1
@@ -335,6 +355,7 @@
 - type: salvageFaction
   id: Explorers
   cost: 3
+  desc: salvage-faction-explorers
   groups:
   - entries:
     - id: SpawnMobExplorerT1
@@ -384,6 +405,7 @@
 - type: salvageFaction
   id: Silicons
   cost: 6
+  desc: salvage-faction-silicons
   groups:
   - entries:
     - id: SpawnMobRogueScapT1
@@ -447,30 +469,46 @@
 
 - type: salvageFaction
   id: Punks
-  cost: 5
+  cost: 3
+  desc: salvage-faction-punks
   groups:
   - entries:
-    - id: SpawnMobPunkMelee
-      amount: 1
-      maxAmount: 3
-    - id: SpawnMobPunkMelee
-      amount: 1
-  - entries:
-    - id: SpawnMobPunkRanged
-      amount: 1
-      maxAmount: 1
-    prob: 0.5
-  - entries:
-    - id: SpawnMobPunkRanged
+    - id: SpawnMobPunkT1
       amount: 1
       maxAmount: 2
+  - entries:
+    - id: SpawnMobPunkT1
+      amount: 2
+      maxAmount: 4
+    prob: 0.75
+  - entries:
+    - id: SpawnMobPunkT2
+      amount: 1
+      maxAmount: 2
+    prob: 0.5
+  - entries:
+    - id: SpawnMobPunkT2
+      amount: 2
+      maxAmount: 3
     prob: 0.25
   - entries:
-    - id: SpawnMobPunkMelee
-      amount: 3
-      maxAmount: 6
+    - id: SpawnMobPunkT1
+      amount: 1
+    prob: 0.3
+  - entries:
+    - id: SpawnMobPunkT2
+      amount: 1
+    prob: 0.25
+  - entries:
+    - id: SpawnMobPunkT3
+      amount: 1
     prob: 0.1
+  - entries:
+    - id: SpawnMobPunkT1
+      amount: 2
+      maxAmount: 4
+    prob: 0.05
   configs:
     DefenseStructure: PunkPartySupplies
     Mining: Punks
-    Megafauna: MobPunkGangerArmoredElite
+    Megafauna: MobPunkGangerLeader

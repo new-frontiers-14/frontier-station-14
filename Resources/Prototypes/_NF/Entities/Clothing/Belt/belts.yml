@@ -1,9 +1,7 @@
 - type: entity
-  parent:
-  - ClothingBeltStorageBase
-  - ContrabandClothing
   id: ClothingBeltArcadia
   name: arcadia webbing
+  parent: [ NFClothingBeltStorageBase, BaseC3ContrabandNoValue, ContrabandClothing ]
   description: A webbing created by Arcadia Industries. Seems very capable of fitting many items.
   components:
   - type: Sprite
@@ -12,7 +10,7 @@
     sprite: _NF/Clothing/Belt/arcadia.rsi
 
 - type: entity
-  parent: ClothingBeltStorageBase
+  parent: NFClothingBeltStorageBase
   id: ClothingBeltChaplainSash
   name: chaplain sash
   description: Who knew that scarves can be also tied around your waist?
@@ -28,7 +26,7 @@
           tags:
           - Book
           components:
-          - BibleComponent
+          - Bible
           - Paper
       bottle:
         whitelist:
@@ -54,7 +52,7 @@
   - type: Appearance
 
 - type: entity
-  parent: ClothingBeltStorageBase
+  parent: NFClothingBeltStorageBase
   id: ClothingBeltPilot
   name: pilot webbing
   description: A webbing designed for someone seating a lot.
@@ -65,7 +63,7 @@
     sprite: _NF/Clothing/Belt/pilot.rsi
 
 - type: entity
-  parent: ClothingBeltAssault
+  parent: [ BaseC2ContrabandUnredeemable, ClothingBeltAssault ]
   id: ClothingBeltNfsd
   name: nfsd belt
   description: A tactical assault belt.
@@ -76,7 +74,7 @@
     sprite: _NF/Clothing/Belt/nfsd_belt.rsi
 
 - type: entity
-  parent: ClothingBeltSecurityWebbing
+  parent: [ BaseC2ContrabandUnredeemable, ClothingBeltSecurityWebbing ]
   id: ClothingBeltNfsdWebbing
   name: nfsd webbing
   description: A tactical assault webbing.
@@ -85,6 +83,4 @@
     sprite: _NF/Clothing/Belt/nfsd_webbing.rsi
   - type: Clothing
     sprite: _NF/Clothing/Belt/nfsd_webbing.rsi
-  - type: Tag
-    tags:
-    - CatWearable # Frontier
+  - type: CatWearable

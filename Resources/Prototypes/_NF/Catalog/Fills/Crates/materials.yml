@@ -11,3 +11,25 @@
       - id: SheetSteel
       - id: SheetPlasma
       - id: SheetPlasteel
+
+- type: entity
+  id: CrateMaterialMetalRods
+  parent: CrateGenericSteel
+  name: metal rods crate
+  description: 90 metal rods, packed with reckless abandon.
+  components:
+  - type: StorageFill
+    contents:
+    - id: PartRodMetal
+      amount: 3
+
+- type: entity
+  id: CrateMaterialBiomass
+  parent: CrateFreezer
+  name: biomass crate
+  description: 300 units of biomass. Yum.
+  components:
+  - type: StorageFill
+    contents:
+    - id: MaterialBiomass
+      amount: 3

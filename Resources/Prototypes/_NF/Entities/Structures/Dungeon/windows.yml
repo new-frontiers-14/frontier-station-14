@@ -1,0 +1,262 @@
+# Special windows for dungeons that block lasers
+# Base
+- type: entity
+  id: WindowMurkyDungeon
+  abstract: true
+  suffix: DO NOT MAP, Dungeon only
+  description: A murky glass window, it's hard to see what's on the other side.
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb {}
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer # Blocks lasers, but not LoS
+
+- type: entity
+  id: WindowDirectionalMurkyDungeon
+  abstract: true
+  suffix: DO NOT MAP, Dungeon only
+  description: A murky glass window, it's hard to see what's on the other side.
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,-0.36"
+        density: 1500
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer # Blocks lasers, but not LoS
+
+# Common window
+- type: entity
+  id: WindowDungeon
+  parent:
+  - WindowMurkyDungeon
+  - Window
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: WallTops
+    sprite: Structures/Windows/window.rsi
+    color: "#ffd38c"
+  - type: Icon
+    sprite: Structures/Windows/window.rsi
+    state: full
+    color: "#ffd38c"
+
+# Reinforced window
+- type: entity
+  id: ReinforcedWindowDungeon
+  parent:
+  - WindowMurkyDungeon
+  - ReinforcedWindow
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: WallTops
+    sprite: Structures/Windows/reinforced_window.rsi
+    color: "#ffd38c"
+  - type: Icon
+    sprite: Structures/Windows/reinforced_window.rsi
+    color: "#ffd38c"
+
+# Mining window
+- type: entity
+  id: MiningWindowDungeon
+  parent:
+  - WindowMurkyDungeon
+  - MiningWindow
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: WallTops
+    sprite: Structures/Windows/mining.rsi
+    color: "#ffd38c"
+  - type: Icon
+    sprite: Structures/Windows/mining.rsi
+    color: "#ffd38c"
+  - type: Destructible # Made it as durable as common window
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WindowShatter
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlass:
+            min: 1
+            max: 2
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+# Plasma window
+- type: entity
+  id: PlasmaWindowDungeon
+  parent:
+  - WindowMurkyDungeon
+  - PlasmaWindow
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: WallTops
+    sprite: Structures/Windows/plasma_window.rsi
+    color: "#ffd38c"
+  - type: Icon
+    sprite: Structures/Windows/plasma_window.rsi
+    color: "#ffd38c"
+
+# Plasma reinforced window
+- type: entity
+  id: ReinforcedPlasmaWindowDungeon
+  parent:
+  - WindowMurkyDungeon
+  - ReinforcedPlasmaWindow
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: WallTops
+    sprite: Structures/Windows/reinforced_plasma_window.rsi
+    color: "#ffd38c"
+  - type: Icon
+    sprite: Structures/Windows/reinforced_plasma_window.rsi
+    color: "#ffd38c"
+
+# Uranium reinforced window
+- type: entity
+  id: ReinforcedUraniumWindowDungeon
+  parent:
+  - WindowMurkyDungeon
+  - ReinforcedUraniumWindow
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: WallTops
+    sprite: Structures/Windows/reinforced_uranium_window.rsi
+    color: "#ffd38c"
+  - type: Icon
+    sprite: Structures/Windows/reinforced_uranium_window.rsi
+    color: "#ffd38c"
+
+# Directional
+- type: entity
+  id: WindowDirectionalDungeon
+  parent:
+  - WindowDirectionalMurkyDungeon
+  - WindowDirectional
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Structures/Windows/directional.rsi
+    state: window
+    color: "#ffd38c"
+  - type: Icon
+    sprite: Structures/Windows/directional.rsi
+    state: window
+    color: "#ffd38c"
+
+- type: entity
+  id: WindowFrostedDirectionalDungeon
+  parent:
+  - WindowDirectionalMurkyDungeon
+  - WindowFrostedDirectional
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Structures/Windows/directional.rsi
+    state: frosted_window
+    color: "#ffd38c"
+  - type: Icon
+    sprite: Structures/Windows/directional.rsi
+    state: frosted_window
+    color: "#ffd38c"
+
+- type: entity
+  id: WindowReinforcedDirectionalDungeon
+  parent:
+  - WindowDirectionalMurkyDungeon
+  - WindowReinforcedDirectional
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Structures/Windows/directional.rsi
+    state: reinforced_window
+    color: "#ffd38c"
+  - type: Icon
+    sprite: Structures/Windows/directional.rsi
+    state: reinforced_window
+    color: "#ffd38c"
+
+- type: entity
+  id: PlasmaWindowDirectionalDungeon
+  parent:
+  - WindowDirectionalMurkyDungeon
+  - PlasmaWindowDirectional
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Structures/Windows/directional.rsi
+    state: plasma_window
+    color: "#ffd38c"
+  - type: Icon
+    sprite: Structures/Windows/directional.rsi
+    state: plasma_window
+    color: "#ffd38c"
+
+- type: entity
+  id: PlasmaReinforcedWindowDirectionalDungeon
+  parent:
+  - WindowDirectionalMurkyDungeon
+  - PlasmaReinforcedWindowDirectional
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Structures/Windows/directional.rsi
+    state: plasma_reinforced_window
+    color: "#ffd38c"
+  - type: Icon
+    sprite: Structures/Windows/directional.rsi
+    state: plasma_reinforced_window
+    color: "#ffd38c"
+
+- type: entity
+  id: UraniumWindowDirectionalDungeon
+  parent:
+  - WindowDirectionalMurkyDungeon
+  - UraniumWindowDirectional
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Structures/Windows/directional.rsi
+    state: uranium_window
+    color: "#ffd38c"
+  - type: Icon
+    sprite: Structures/Windows/directional.rsi
+    state: uranium_window
+    color: "#ffd38c"
+
+- type: entity
+  id: UraniumReinforcedWindowDirectionalDungeon
+  parent:
+  - WindowDirectionalMurkyDungeon
+  - UraniumReinforcedWindowDirectional
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Structures/Windows/directional.rsi
+    state: uranium_reinforced_window
+    color: "#ffd38c"
+  - type: Icon
+    sprite: Structures/Windows/directional.rsi
+    state: uranium_reinforced_window
+    color: "#ffd38c"

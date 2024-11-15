@@ -1,7 +1,7 @@
+using Content.Shared._NF.GameRule;
+using Content.Shared.Guidebook;
 using Content.Shared.Store;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 using Robust.Shared.Utility;
 
 namespace Content.Shared.Shipyard.Prototypes;
@@ -29,16 +29,28 @@ public sealed class VesselPrototype : IPrototype
     public int Price;
 
     /// <summary>
-    ///     The category of the product. (e.g. Small, Medium, Large, Emergency, Special etc.)
+    ///     The size of the vessel. (e.g. Small, Medium, Large etc.)
     /// </summary>
-    [DataField("category")]
-    public string Category = string.Empty;
+    [DataField("category", required: true)]
+    public VesselSize Category = VesselSize.Small;
 
     /// <summary>
-    ///     The group of the product. (e.g. Civilian, Syndicate, Contraband etc.)
+    ///     The shipyard listing that the vessel should be in. (e.g. Civilian, Syndicate, Contraband etc.)
     /// </summary>
-    [DataField("group")]
-    public string Group = string.Empty;
+    [DataField("group", required: true)]
+    public ShipyardConsoleUiKey Group = ShipyardConsoleUiKey.Shipyard;
+
+    /// <summary>
+    ///     The purpose of the vessel. (e.g. Service, Cargo, Engineering etc.)
+    /// </summary>
+    [DataField("class")]
+    public List<VesselClass> Classes = new();
+
+    /// <summary>
+    ///     The engine type that powers the vessel. (e.g. AME, Plasma, Solar etc.)
+    /// </summary>
+    [DataField("engine")]
+    public List<VesselEngine> Engines = new();
 
     /// <summary>
     ///     The access required to buy the product. (e.g. Command, Mail, Bailiff, etc.)
@@ -59,4 +71,77 @@ public sealed class VesselPrototype : IPrototype
     [DataField("shuttlePath", required: true)]
     public ResPath ShuttlePath = default!;
 
+    /// <summary>
+    ///     Grid protections for a given ship. Should be None in _most_ cases.
+    /// </summary>
+    [DataField("gridProtection")]
+    public GridProtectionFlags GridProtection = GridProtectionFlags.None;
+
+    /// <summary>
+    ///     Guidebook page associated with a shuttle
+    /// </summary>
+    [DataField]
+    public ProtoId<GuideEntryPrototype>? GuidebookPage = default!;
+
+    /// <summary>
+    ///     The price markup of the vessel testing
+    /// </summary>
+    [DataField]
+    public float MinPriceMarkup = 1.05f;
+}
+
+public enum VesselSize : byte
+{
+    All, // Should not be used by ships, intended as a placeholder value to represent everything
+    Micro,
+    Small,
+    Medium,
+    Large
+}
+
+public enum VesselClass : byte
+{
+    All, // Should not be used by ships, intended as a placeholder value to represent everything
+    // NFSD-specific categories
+    Capital,
+    Detainment,
+    Detective,
+    Fighter,
+    Patrol,
+    Pursuit,
+    // Capabilities
+    Expedition,
+    Scrapyard,
+    // General
+    Salvage,
+    Science,
+    Cargo,
+    Chemistry,
+    Botany,
+    Engineering,
+    Atmospherics,
+    Mercenary,
+    Medical,
+    Civilian, // Service catch-all - reporter, legal, entertainment, misc. ships
+    Kitchen,
+    // Antag ships
+    Syndicate,
+    Pirate,
+}
+
+public enum VesselEngine : byte
+{
+    All, // Should not be used by ships, intended as a placeholder value to represent everything
+    AME,
+    TEG,
+    Supermatter,
+    Tesla,
+    Singularity,
+    Solar,
+    RTG,
+    APU,
+    Welding,
+    Plasma,
+    Uranium,
+    Bananium,
 }

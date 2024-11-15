@@ -3,9 +3,11 @@
   name: mercenary
   abstract: true
   parent:
+  - BaseC3MobHuman
   - MobNonHumanHostileBase
   - MobHumanoidInvetorySimplified
   - MobHumanoidHostileAISimpleRanged
+  - NFMobRestrictions
   id: MobMercenaryBase
   description: A mercenary, merc, soldier of fortune, hired gun, dog of war.
   components:
@@ -68,7 +70,7 @@
   - MobHumanoidHostileAISimpleMelee
   id: MobMercenarySoldierKnife
   description: Low-ranking soldiers armed with a variety of surplus weapons.
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Loadout
     prototypes:
@@ -111,7 +113,7 @@
   parent: MobMercenaryBase
   id: MobMercenarySoldierPistol
   description: Low-ranking soldiers armed with a variety of surplus weapons.
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Loadout
     prototypes:
@@ -153,7 +155,7 @@
   parent: MobMercenaryBase
   id: MobMercenarySoldierNovalite # No mosin: novalite rifle now
   description: Low-ranking soldiers armed with a variety of surplus weapons.
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Loadout
     prototypes:
@@ -200,7 +202,7 @@
   - MobHumanoidHostileAISimpleMelee
   id: MobMercenaryBreacherMachete
   description: Shock troopers that specialize in using the element of surprise and swift, aggressive action to achieve their objectives.
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Loadout
     prototypes:
@@ -244,7 +246,7 @@
   parent: MobMercenaryBase
   id: MobMercenarySoldierRevolver
   description: Shock troopers that specialize in using the element of surprise and swift, aggressive action to achieve their objectives.
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Loadout
     prototypes:
@@ -290,7 +292,7 @@
   parent: MobMercenaryBase
   id: MobMercenaryBreacherShotgun
   description: Shock troopers that specialize in using the element of surprise and swift, aggressive action to achieve their objectives.
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Loadout
     prototypes:
@@ -339,7 +341,7 @@
   parent: MobMercenaryBase
   id: MobMercenarySpecialistMedic
   description: Experienced mercenaries, specialists are practised and proficient in combat or support roles, possibly both.
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Loadout
     prototypes:
@@ -400,7 +402,7 @@
   name: mercenary ranger
   parent: MobMercenaryBase
   id: MobMercenarySpecialistAssault
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Loadout
     prototypes:
@@ -452,7 +454,7 @@
   parent: MobMercenaryBase
   id: MobMercenaryCaptain
   description: The leaders of these bands of brigands, a mercenary captain is both cruel and lethally effective. Exercise caution.
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Loadout
     prototypes:

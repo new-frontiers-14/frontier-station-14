@@ -1,0 +1,121 @@
+  #pen recycling recipes
+
+- type: microwaveMealRecipe
+  id: RecipeCleanEmergencyMedipen
+  name: sterilize and reset pen
+  result: BlankMediPen
+  time: 10
+  solids:
+    EmergencyMedipen: 1
+  reagents:
+    SpaceCleaner: 1
+  recipeType: MedicalAssembler # Frontier
+
+- type: microwaveMealRecipe
+  id: RecipeCleanAntiPoisonMedipen
+  name: sterilize and reset pen
+  result: BlankMediPen
+  time: 10
+  solids:
+    AntiPoisonMedipen: 1
+  reagents:
+    SpaceCleaner: 5
+  recipeType: MedicalAssembler # Frontier
+
+- type: microwaveMealRecipe
+  id: RecipeCleanBruteAutoInjector
+  name: sterilize and reset pen
+  result: BlankMediPen
+  time: 10
+  solids:
+    BruteAutoInjector: 1
+  reagents:
+    SpaceCleaner: 5
+  recipeType: MedicalAssembler # Frontier
+
+- type: microwaveMealRecipe
+  id: RecipeCleanBurnAutoInjector
+  name: sterilize and reset pen
+  result: BlankMediPen
+  time: 10
+  solids:
+    BurnAutoInjector: 1
+  reagents:
+    SpaceCleaner: 5
+  recipeType: MedicalAssembler # Frontier
+
+- type: microwaveMealRecipe
+  id: RecipeCleanRadAutoInjector
+  name: sterilize and reset pen
+  result: BlankMediPen
+  time: 10
+  solids:
+    RadAutoInjector: 1
+  reagents:
+    SpaceCleaner: 5
+  recipeType: MedicalAssembler # Frontier
+
+  #pen recipes
+  #Upstream recipes
+
+- type: microwaveMealRecipe
+  id: RecipeEmergencyMedipen
+  name: emergency medipen
+  result: EmergencyMedipen
+  time: 10
+  solids:
+    BlankMediPen: 1
+  reagents:
+    Epinephrine: 12
+    TranexamicAcid: 3
+  recipeType: MedicalAssembler # Frontier
+
+- type: microwaveMealRecipe
+  id: RecipeAntiPoisonMedipen
+  name: poison auto-injector
+  result: AntiPoisonMedipen
+  time: 10
+  solids:
+    BlankMediPen: 1
+  reagents:
+    Ultravasculine: 10
+    Epinephrine: 5
+  recipeType: MedicalAssembler # Frontier
+
+- type: microwaveMealRecipe
+  id: RecipeBruteAutoInjector
+  name: brute auto-injector
+  result: BruteAutoInjector
+  time: 10
+  solids:
+    BlankMediPen: 1
+  reagents:
+    Bicaridine: 15
+    TranexamicAcid: 5
+  recipeType: MedicalAssembler # Frontier
+
+- type: microwaveMealRecipe
+  id: RecipeBurnAutoInjector
+  name: burn auto-injector
+  result: BurnAutoInjector
+  time: 10
+  solids:
+    BlankMediPen: 1
+  reagents:
+    Dermaline: 10
+    Leporazine: 10
+  recipeType: MedicalAssembler # Frontier
+
+- type: microwaveMealRecipe
+  id: RecipeRadAutoInjector
+  name: rad auto-injector
+  result: RadAutoInjector
+  time: 10
+  solids:
+    BlankMediPen: 1
+  reagents:
+    Arithrazine: 15
+    Bicaridine: 5
+  recipeType: MedicalAssembler # Frontier
+
+#Frontier pen recipes

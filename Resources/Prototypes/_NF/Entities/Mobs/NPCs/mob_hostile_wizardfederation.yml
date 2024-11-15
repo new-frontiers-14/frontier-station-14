@@ -1,12 +1,5 @@
 ## Mob base
 - type: entity
-  abstract: true
-  id: MobWizFedTimedDespawn
-  components:
-  - type: TimedDespawn
-    lifetime: 1800 # 30 mins (max blue space event duration involving these mobs - 20 mins)
-
-- type: entity
   name: Wizard
   abstract: true
   parent:
@@ -14,7 +7,8 @@
   - MobPassiveRegen
   - MobHumanoidInvetory
   - MobHumanoidHostileAISimpleRanged
-  #- MobWizFedTimedDespawn
+  #- MobLaserReflect # Added to prevent laser abuse from players
+  - NFMobRestrictions
   id: MobWizFedlBase
   components:
   - type: NpcFactionMember
@@ -24,9 +18,6 @@
     rechargeCooldown: 3
     rechargeSound:
       path: /Audio/_NF/Effects/silence.ogg
-  - type: Reflect
-    reflectProb: .3
-    spread: 90
   - type: Flammable
     fireSpread: true
     canResistFire: true
@@ -63,7 +54,7 @@
   name: Blue Wizard
   parent: MobWizFedlBase
   id: MobWizFedWizardBlue
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Loadout
     prototypes:
@@ -88,7 +79,7 @@
   name: Red Wizard
   parent: MobWizFedlBase
   id: MobWizFedWizardRed
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Loadout
     prototypes:
@@ -109,7 +100,7 @@
   name: Violet Wizard
   parent: MobWizFedlBase
   id: MobWizFedWizardViolet
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Loadout
     prototypes:
@@ -134,7 +125,7 @@
   name: Soap Wizard
   parent: MobWizFedlBase
   id: MobWizFedWizardSoap
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Loadout
     prototypes:
@@ -154,7 +145,7 @@
   name: Blue Wizard
   parent: MobWizFedWizardBlue
   id: MobWizFedWizardBlueHardsuit
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Loadout
     prototypes:
@@ -164,7 +155,7 @@
   name: Red Wizard
   parent: MobWizFedWizardRed
   id: MobWizFedWizardRedHardsuit
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Loadout
     prototypes:
@@ -174,7 +165,7 @@
   name: Violet Wizard
   parent: MobWizFedWizardViolet
   id: MobWizFedWizardVioletHardsuit
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Loadout
     prototypes:
@@ -185,7 +176,7 @@
   suffix: AI, Hardsuit
   parent: MobWizFedWizardSoap
   id: MobWizFedWizardSoapHardsuit
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Loadout
     prototypes:
@@ -194,10 +185,11 @@
 # Conjured Creatures
 - type: entity
   name: Blue Curacao Elemental
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent:
   - MobNonHumanHostileBase
   - MobHumanoidHostileAISimpleMelee
+  - NFMobTimedDespawn30
   id: WaterElementalConjured
   components:
   - type: HTN
@@ -246,7 +238,5 @@
   - type: MeleeChemicalInjector
     solution: bloodstream
     transferAmount: 10
-  - type: TimedDespawn
-    lifetime: 30
   - type: Ammo
     muzzleFlash: null

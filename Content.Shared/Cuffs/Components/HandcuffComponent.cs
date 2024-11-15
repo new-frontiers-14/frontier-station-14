@@ -10,12 +10,6 @@ namespace Content.Shared.Cuffs.Components;
 public sealed partial class HandcuffComponent : Component
 {
     /// <summary>
-    /// Whether or not the entity can rot when cuffed (for spooder cocoon)
-    /// </summary>
-    [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public bool NoRot = false;
-
-    /// <summary>
     ///     The time it takes to cuff an entity.
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]

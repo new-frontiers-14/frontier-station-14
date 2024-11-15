@@ -1,0 +1,94 @@
+- type: entity
+  id: SpawnMobCarpExpeditions
+  name: carp spawner
+  parent: MarkerBase
+  suffix: AI, Hostile
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+      - sprite: Mobs/Aliens/Carps/space.rsi
+        state: alive
+      - sprite: Mobs/Aliens/Carps/space.rsi
+        state: mouth
+        shader: unshaded
+  - type: ConditionalSpawner
+    prototypes:
+    - MobCarpExpeditions
+
+- type: entity
+  id: SpawnMobCarpMagicExpeditions
+  name: magicarp spawner
+  parent: MarkerBase
+  suffix: AI, Hostile
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+      - sprite: _NF/Mobs/Aliens/Carps/magic.rsi
+        state: alive
+      - sprite: _NF/Mobs/Aliens/Carps/magic.rsi
+        state: mouth
+        shader: unshaded
+  - type: ConditionalSpawner
+    prototypes:
+    - MobCarpMagicExpeditions
+
+- type: entity
+  id: SpawnMobCarpHoloExpeditions
+  name: holocarp spawner
+  parent: MarkerBase
+  suffix: AI, Hostile
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+      - sprite: _NF/Mobs/Aliens/Carps/holo.rsi
+        state: alive
+      - sprite: _NF/Mobs/Aliens/Carps/holo.rsi
+        state: mouth
+        shader: unshaded
+  - type: ConditionalSpawner
+    prototypes:
+    - MobCarpHoloExpeditions
+
+- type: entity
+  id: SpawnMobSharkExpeditions
+  name: magicarp spawner
+  parent: MarkerBase
+  suffix: AI, Hostile
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+      - sprite: Mobs/Aliens/Carps/sharkminnow.rsi
+        state: alive
+      - sprite: Mobs/Aliens/Carps/sharkminnow.rsi
+        state: mouth
+        shader: unshaded
+  - type: ConditionalSpawner
+    prototypes:
+    - MobSharkExpeditions
+
+- type: entity
+  id: SpawnMobSnakeExpeditions
+  name: snake spawner
+  parent: MarkerBase
+  suffix: AI, Hostile
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - state: ai
+      - sprite: _NF/Mobs/Aliens/snake.rsi
+        state: alive
+      - sprite: _NF/Mobs/Aliens/snake.rsi
+        state: mouth
+        shader: unshaded
+  - type: ConditionalSpawner
+    prototypes:
+    - MobSnakeExpeditions

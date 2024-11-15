@@ -5,3 +5,5 @@ job-supervisors-sergeant = the sergeant
 job-supervisors-cadet = all higher ranking nfsd personnel
 job-supervisors-prisoner = all nfsd personnel
 job-supervisors-nfsd = deputies, the bailiff, and the sheriff
+job-supervisors-pirate = the first mate and captain
+job-supervisors-nobody = nobody

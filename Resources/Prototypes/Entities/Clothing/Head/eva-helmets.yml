@@ -13,8 +13,6 @@
     tags:
     - HelmetEVA
     - WhitelistChameleon
-  - type: StaticPrice
-    price: 25
 
 #Large EVA Helmet
 - type: entity
@@ -30,7 +28,7 @@
 
 #Syndicate EVA Helmet
 - type: entity
-  parent: [ClothingHeadEVAHelmetBase, ContrabandClothing] # Frontier: added ContrabandClothing as parent
+  parent: [ClothingHeadEVAHelmetBase, BaseC3SyndicateContraband, ContrabandClothing] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband, added ContrabandClothing as parent
   id: ClothingHeadHelmetSyndicate
   name: syndicate EVA helmet
   description: A simple, stylish EVA helmet. Designed for maximum humble space-badassery.
@@ -64,21 +62,20 @@
   - type: Clothing
     sprite: Clothing/Head/Helmets/paramedhelm.rsi
   - type: TemperatureProtection
-    coefficient: 0.1
+    heatingCoefficient: 0.1
+    coolingCoefficient: 0.1
   - type: Armor
     modifiers:
       coefficients:
         Heat: 0.90
         Radiation: 0.75
-  - type: StaticPrice
-    price: 25
 
 #Ancient Void Helmet
 - type: entity
   parent: ClothingHeadEVAHelmetBase
   id: ClothingHeadHelmetAncient
   name: NTSRA void helmet
-  description: An ancient space helmet, designed by the NTSRA branch of CentCom.
+  description: An ancient space helmet, designed by the NTSRA branch of CentComm.
   components:
   - type: Sprite
     sprite: Clothing/Head/Helmets/ancientvoidsuit.rsi

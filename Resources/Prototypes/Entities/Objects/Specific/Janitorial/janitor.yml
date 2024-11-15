@@ -1,5 +1,5 @@
 - type: entity
-  parent: BaseItem
+  parent: [BaseItem, RecyclableItemPlasticMedium] # Frontier: added RecyclableItemPlasticMedium
   name: mop
   id: MopItem
   description: A mop that can't be stopped, viscera cleanup detail awaits.
@@ -50,6 +50,7 @@
   - type: GuideHelp
     guides:
     - Janitorial
+  - type: DnaSubstanceTrace
 
 - type: entity
   parent: BaseItem
@@ -109,6 +110,7 @@
       tags:
         - Mop
         - MopAdv
+    - type: DnaSubstanceTrace
 
 - type: entity
   name: wet floor sign
@@ -191,7 +193,7 @@
 - type: entity
   name: plunger
   id: Plunger
-  parent: BaseItem
+  parent: [BaseItem, RecyclableItemPlasticSmall] # Frontier: added RecyclableItemPlasticSmall
   description: A plunger with a red plastic suction-cup and a wooden handle. Used to unclog drains.
   components:
   - type: Tag
@@ -288,7 +290,7 @@
     MaintenanceToolSpawner: 5
 
 - type: entity
-  parent: BaseItem
+  parent: [BaseItem, RecyclableItemClothSmall] # Frontier: added RecyclableItemClothSmall
   name: damp rag
   id: RagItem
   description: For cleaning up messes, you suppose.
@@ -332,3 +334,4 @@
     - type: CleansForensics
     - type: Fiber
       fiberColor: fibers-white
+    - type: DnaSubstanceTrace

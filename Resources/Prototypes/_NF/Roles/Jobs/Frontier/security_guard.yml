@@ -1,0 +1,45 @@
+- type: job
+  id: SecurityGuard
+  name: job-name-security-guard
+  description: job-description-security-guard
+  playTimeTracker: JobSecurityGuard
+  requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 36000 # Frontier - 10 hrs
+  startingGear: SecurityGuardGear
+  alwaysUseSpawner: true
+  icon: "JobIconSecurityGuard"
+  supervisors: job-supervisors-sr
+  weight: 80
+  displayWeight: 20 # Second from the bottom
+  canBeAntag: false
+  access:
+  - Security
+  - Brig
+  - Maintenance
+  - Service
+  - External
+  - Mercenary
+  - Captain
+  - Frontier
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant, TrackingImplant ]
+  - !type:GiveItemOnHolidaySpecial
+    holiday: FrontierBirthday
+    prototype: FrontierBirthdayGift
+
+- type: startingGear
+  id: SecurityGuardGear
+  equipment:
+    eyes: ClothingEyesGlassesSunglasses #ClothingEyesGlassesSecurity
+    pocket1: WeaponPistolMk58 #WeaponPistolMk58Nonlethal
+    pocket2: MagazinePistol
+  storage:
+    back:
+    - EncryptionKeyService
+    - EncryptionKeySecurity
+    - Flash
+    - MagazinePistol
+    - MagazinePistolRubber
+    - ShipVoucherFrontierGuard

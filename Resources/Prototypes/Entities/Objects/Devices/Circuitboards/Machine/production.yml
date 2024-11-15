@@ -2,7 +2,7 @@
   id: AutolatheMachineCircuitboard
   parent: BaseMachineCircuitboard
   name: autolathe machine board
-  description: A machine printed circuit board for an autolathe
+  description: A machine printed circuit board for an autolathe.
   components:
     - type: MachineBoard
       prototype: Autolathe
@@ -16,7 +16,7 @@
   parent: BaseMachineCircuitboard
   id: AutolatheHyperConvectionMachineCircuitboard
   name: hyper convection autolathe machine board
-  description: A machine printed circuit board for a hyper convection autolathe
+  description: A machine printed circuit board for a hyper convection autolathe.
   components:
   - type: MachineBoard
     prototype: AutolatheHyperConvection
@@ -66,8 +66,8 @@
 - type: entity
   id: BiofabricatorMachineCircuitboard
   parent: BaseMachineCircuitboard
-  name: biofabricator machine board
-  description: A machine printed circuit board for a biofabricator.
+  name: biocube fabricator machine board
+  description: A machine printed circuit board for a biocube fabricator.
   components:
     - type: MachineBoard
       prototype: Biofabricator
@@ -80,6 +80,7 @@
   id: SecurityTechFabCircuitboard
   parent: BaseMachineCircuitboard
   name: security techfab machine board
+  categories: [ HideSpawnMenu ] # Frontier
   description: A machine printed circuit board for a security techfab.
   components:
     - type: Sprite
@@ -98,7 +99,7 @@
   id: AmmoTechFabCircuitboard
   parent: BaseMachineCircuitboard
   name: ammo techfab circuit board
-  description: A machine printed circuit board for an ammo techfab
+  description: A machine printed circuit board for an ammo techfab.
   components:
     - type: Sprite
       state: security
@@ -196,6 +197,23 @@
     prototype: ResearchAndDevelopmentServer
     stackRequirements:
       Plasma: 5
+
+- type: entity
+  id: BiogeneratorMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: biogenerator machine board
+  description: A machine printed circuit board for a biogenerator.
+  components:
+  - type: Sprite
+    state: service
+  - type: MachineBoard
+    prototype: Biogenerator
+    requirements: # Frontier
+      MatterBin: 2 # Frontier stackRequirements<requirements
+    tagRequirements:
+      GlassBeaker:
+        amount: 1
+        defaultPrototype: Beaker
 
 - type: entity
   id: UniformPrinterMachineCircuitboard
@@ -987,21 +1005,6 @@
       Steel: 1
 
 - type: entity
-  id: MaterialReclaimerMachineCircuitboard
-  parent: BaseMachineCircuitboard
-  name: material reclaimer machine board
-  components:
-    - type: Sprite
-      state: supply
-    - type: MachineBoard
-      prototype: MaterialReclaimer
-      requirements: # Frontier
-        Manipulator: 2 # Frontier stackRequirements<requirements
-      stackRequirements:
-        Steel: 5
-        Plastic: 5
-
-- type: entity
   id: OreProcessorMachineCircuitboard
   parent: BaseMachineCircuitboard
   name: ore processor machine board
@@ -1249,6 +1252,8 @@
   name: salvage magnet machine board
   description: A machine printed circuit board for a salvage magnet.
   components:
+  - type: Sprite
+    state: supply
   - type: MachineBoard
     prototype: SalvageMagnet
     requirements: # Frontier
@@ -1272,6 +1277,23 @@
     stackRequirements:
       Steel: 5
       CableHV: 5
+      Uranium: 2
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: StationAnchorCircuitboard
+  name: station anchor machine board
+  description: A machine printed circuit board for a station anchor.
+  components:
+  - type: MachineBoard
+    prototype: StationAnchor
+    requirements: # Frontier
+      Capacitor: 4 # Frontier stackRequirements<requirements
+      MatterBin: 3 # Frontier stackRequirements<requirements
+    stackRequirements:
+      Steel: 10
+      Glass: 5
+      CableHV: 8
       Uranium: 2
 
 - type: entity
@@ -1300,3 +1322,17 @@
       Steel: 2
       Glass: 5
       Cable: 2
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: CutterMachineCircuitboard
+  name: cutter machine board
+  components:
+  - type: MachineBoard
+    prototype: CutterMachine
+    requirements: # Frontier
+      Capacitor: 1 # Frontier stackRequirements<requirements
+      Manipulator: 1 # Frontier stackRequirements<requirements
+    stackRequirements:
+      Steel: 2
+      Cable: 1

@@ -143,11 +143,39 @@ public sealed partial class FaxMachineComponent : Component
     public float PrintingTime = 2.3f;
 
     /// <summary>
+    ///     The prototype ID to use for faxed or copied entities if we can't get one from
+    ///     the paper entity for whatever reason.
+    /// </summary>
+    [DataField]
+    public EntProtoId PrintPaperId = "Paper";
+
+    /// <summary>
+    ///     The prototype ID to use for faxed or copied entities if we can't get one from
+    ///     the paper entity for whatever reason of the Office type.
+    /// </summary>
+    [DataField]
+    public EntProtoId PrintOfficePaperId = "PaperOffice";
+
+    /// <summary>
     /// Frontier - If true, will sync fax name with a station name.
     /// </summary>
     [ViewVariables]
     [DataField]
     public bool UseStationName { get; set; }
+
+    /// <summary>
+    /// Frontier - If added with UseStationName will add a Prefix to the name
+    /// </summary>
+    [ViewVariables]
+    [DataField]
+    public string? StationNamePrefix { get; set; } = null;
+
+    /// <summary>
+    /// Frontier - If added with UseStationName will add a suffix to the name
+    /// </summary>
+    [ViewVariables]
+    [DataField]
+    public string? StationNameSuffix { get; set; } = null;
 }
 
 [DataDefinition]

@@ -1,6 +1,6 @@
 # PSB, Prepacked Sustenance Bar. With variety.
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: FoodPacketTrash
   id: FoodPSBTrash
   name: psb wrapper
@@ -13,9 +13,9 @@
 
 - type: entity
   name: prepacked sustenance bar
-  parent: FoodSnackBase
+  parent: BaseItem
   id: FoodPSB
-  description: The PSB is a densely packed, nutrient rich, artificially flavored and colored food bar specifically made to accomodate all morphotypes during food shortages.
+  description: The PSB is a densely packed, nutrient-rich, artificially flavored and colored food bar specifically made to accomodate all species during food shortages.
   components:
   - type: Sprite
     sprite: Nyanotrasen/Objects/Consumable/Food/ration.rsi
@@ -81,7 +81,7 @@
   name: soy sustenance bar
   parent: FoodPSBBase
   id: FoodPSBBarSoy
-  description: A densely packed, nutrient rich sustenance bar. This one is mixed-herb flavoured.
+  description: A densely packed, nutrient-rich sustenance bar. This one is mixed-herb flavored.
   components:
   - type: FlavorProfile
     flavors:
@@ -94,7 +94,7 @@
   name: neapolitan sustenance bar
   parent: FoodPSBBase
   id: FoodPSBBarNeapolitan
-  description: A densely packed, nutrient rich sustenance bar. This one is neapolitan flavoured- strawberry, vanilla, and chocolate.
+  description: "A densely packed, nutrient-rich sustenance bar. This one is neapolitan flavored: strawberry, vanilla, and chocolate."
   components:
   - type: FlavorProfile
     flavors:
@@ -109,7 +109,7 @@
   name: brownie sustenance bar
   parent: FoodPSBBase
   id: FoodPSBBarBrownie
-  description: A densely packed, nutrient rich sustenance bar. This one is brownie flavored.
+  description: A densely packed, nutrient-rich sustenance bar. This one is brownie flavored.
   components:
   - type: FlavorProfile
     flavors:
@@ -122,7 +122,7 @@
   name: cheese sustenance bar
   parent: FoodPSBBase
   id: FoodPSBBarCheese
-  description: A densely packed, nutrient rich sustenance bar. This one is three-cheese flavoured- parmesan, mozzarella, and cheddar.
+  description: "A densely packed, nutrient-rich sustenance bar. This one is three-cheese flavored: parmesan, mozzarella, and cheddar."
   components:
   - type: FlavorProfile
     flavors:
@@ -135,7 +135,7 @@
   name: meat sustenance bar
   parent: FoodPSBBase
   id: FoodPSBBarMeat
-  description: A densely packed, nutrient rich sustenance bar. This one is meat and pepper flavored.
+  description: A densely packed, nutrient-rich sustenance bar. This one is meat and pepper flavored.
   components:
   - type: FlavorProfile
     flavors:
@@ -149,7 +149,7 @@
   name: vegetable sustenance bar
   parent: FoodPSBBase
   id: FoodPSBBarVegetable
-  description: A densely packed, nutrient rich sustenance bar. This one is vegetable flavoured- lettuce, carrots and potato.
+  description: "A densely packed, nutrient-rich sustenance bar. This one is vegetable flavored: lettuce, carrots and potato."
   components:
   - type: FlavorProfile
     flavors:
@@ -164,7 +164,7 @@
   name: mint sustenance bar
   parent: FoodPSBBase
   id: FoodPSBBarMint
-  description: A densely packed, nutrient rich sustenance bar. This one is mint choc chip flavoured- peppermint, dark chocolate, and potato chips.
+  description: "A densely packed, nutrient-rich sustenance bar. This one is mint choco chip flavored: peppermint, dark chocolate, and potato chips."
   components:
   - type: FlavorProfile
     flavors:
@@ -179,7 +179,7 @@
   name: banana sustenance bar
   parent: FoodPSBBase
   id: FoodPSBBarBanana
-  description: A densely packed, nutrient rich sustenance bar. This one is banana milkshake flavoured- banana and milk.
+  description: "A densely packed, nutrient-rich sustenance bar. This one is banana milkshake flavored: banana and milk."
   components:
   - type: FlavorProfile
     flavors:
@@ -193,7 +193,7 @@
   name: wonka sustenance bar
   parent: FoodPSBBase
   id: FoodPSBBarWonka
-  description: A densely packed, nutrient rich sustenance bar. This one is split into three flavours, making up a typical meal- tomato soup, roast pumpkin, and blueberry pie.
+  description: "A densely packed, nutrient-rich sustenance bar. This one is split into three flavors, making up a typical meal: tomato soup, roast pumpkin, and blueberry pie."
   components:
   - type: FlavorProfile
     flavors:

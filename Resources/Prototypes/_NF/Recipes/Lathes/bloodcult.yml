@@ -1,18 +1,16 @@
 # Weapons
 - type: latheRecipe
   id: RitualDagger
-  result: RitualDagger
-  completetime: 1
-  category: Weapons
+  parent: BaseWeaponRecipe
+  result: RitualDaggerPrinted
   materials:
     Bones: 100
     Steel: 500
 
 - type: latheRecipe
   id: EldritchBlade
-  result: EldritchBlade
-  completetime: 1
-  category: Weapons
+  parent: BaseWeaponRecipeLong
+  result: EldritchBladePrinted
   materials:
     Bones: 200
     Steel: 700
@@ -20,9 +18,8 @@
 
 - type: latheRecipe
   id: UnholyHalberd
-  result: UnholyHalberd
-  completetime: 1
-  category: Weapons
+  parent: BaseWeaponRecipeLong
+  result: UnholyHalberdPrinted
   materials:
     Bones: 1000
     Steel: 1000
@@ -30,9 +27,8 @@
 
 - type: latheRecipe
   id: WizardStaffMeleeBlood
-  result: WizardStaffMeleeBlood
-  completetime: 1
-  category: Weapons
+  parent: BaseWeaponRecipeLong
+  result: WizardStaffMeleeBloodPrinted
   materials:
     Bones: 500
     Plasteel: 500
@@ -40,9 +36,8 @@
 
 - type: latheRecipe
   id: SpearBone
+  parent: BaseWeaponRecipe
   result: SpearBone
-  completetime: 1
-  category: Weapons
   materials:
     Bones: 400
     Cloth: 100
@@ -50,9 +45,8 @@
 # Armor
 - type: latheRecipe
   id: ClothingHeadHelmetCultJanitor
-  result: ClothingHeadHelmetCultJanitor
-  completetime: 1
-  category: ArmorNF
+  parent: NFBaseArmorRecipe
+  result: ClothingHeadHelmetCultJanitorPrinted
   materials:
     Bones: 200
     Cloth: 100
@@ -62,9 +56,8 @@
 
 - type: latheRecipe
   id: ClothingMaskCultJanitor
-  result: ClothingMaskCultJanitor
-  completetime: 1
-  category: ArmorNF
+  parent: NFBaseArmorRecipe
+  result: ClothingMaskCultJanitorPrinted
   materials:
     Bones: 200
     Cloth: 100
@@ -74,9 +67,8 @@
 
 - type: latheRecipe
   id: ClothingOuterCoatCultJanitor
-  result: ClothingOuterCoatCultJanitor
-  completetime: 1
-  category: ArmorNF
+  parent: NFBaseArmorRecipe
+  result: ClothingOuterCoatCultJanitorPrinted
   materials:
     Bones: 1000
     Cloth: 300
@@ -86,9 +78,8 @@
 
 - type: latheRecipe
   id: ClothingHeadHelmetCult
-  result: ClothingHeadHelmetCult
-  completetime: 1
-  category: ArmorNF
+  parent: NFBaseArmorRecipe
+  result: ClothingHeadHelmetCultPrinted
   materials:
     Bones: 200
     Cloth: 100
@@ -98,9 +89,8 @@
 
 - type: latheRecipe
   id: ClothingOuterArmorCult
-  result: ClothingOuterArmorCult
-  completetime: 1
-  category: ArmorNF
+  parent: NFBaseArmorRecipe
+  result: ClothingOuterArmorCultPrinted
   materials:
     Bones: 1000
     Cloth: 300
@@ -110,9 +100,8 @@
 
 - type: latheRecipe
   id: ClothingShoesCult
-  result: ClothingShoesCult
-  completetime: 1
-  category: ArmorNF
+  parent: NFBaseArmorRecipe
+  result: ClothingShoesCultPrinted
   materials:
     Bones: 200
     Cloth: 100
@@ -122,9 +111,8 @@
 
 - type: latheRecipe
   id: ClothingOuterCoatBloodCultRobes
-  result: ClothingOuterCoatBloodCultRobes
-  completetime: 1
-  category: ArmorNF
+  parent: NFBaseArmorRecipe
+  result: ClothingOuterCoatBloodCultRobesPrinted
   materials:
     Bones: 200
     Cloth: 600
@@ -133,43 +121,38 @@
 
 - type: latheRecipe
   id: ClothingHeadHelmetBone
-  result: ClothingHeadHelmetBone
-  completetime: 1
-  category: ArmorNF
+  parent: NFBaseArmorRecipe
+  result: ClothingHeadHelmetBonePrinted
   materials:
     Bones: 400
 
 - type: latheRecipe
   id: ClothingOuterArmorBone
-  result: ClothingOuterArmorBone
-  completetime: 1
-  category: ArmorNF
+  parent: NFBaseArmorRecipe
+  result: ClothingOuterArmorBonePrinted
   materials:
     Bones: 600
 
 - type: latheRecipe
   id: ClothingBackpackMessengerBloodCult
-  result: ClothingBackpackMessengerBloodCult
-  completetime: 1
-  category: ArmorNF
+  parent: NFBaseArmorRecipe
+  result: ClothingBackpackMessengerBloodCultPrinted
   materials:
     Cloth: 400
 
 # Tools
 - type: latheRecipe
   id: PumpkinLanternSmall
+  parent: NFBaseToolsRecipe
   result: PumpkinLanternSmall
-  completetime: 1
-  category: Tools
   materials:
     Bones: 400
     Steel: 200
 
 - type: latheRecipe
   id: CandleRedInfinite
+  parent: NFBaseToolsRecipe
   result: CandleRedInfinite
-  completetime: 1
-  category: Tools
   materials:
     Bones: 400
     Durathread: 100

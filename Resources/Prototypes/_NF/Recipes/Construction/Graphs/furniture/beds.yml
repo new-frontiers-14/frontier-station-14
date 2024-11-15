@@ -47,3 +47,16 @@
           steps:
             - tool: Screwing
               doAfter: 1
+
+- type: entity
+  parent: WebBed
+  id: WebNest
+  name: web nest
+  description: You got webbed.
+  components:
+  - type: Sprite
+    sprite: Structures/Web/nest.rsi
+    state: icon
+  - type: Construction
+    graph: WebStructures
+    node: nest

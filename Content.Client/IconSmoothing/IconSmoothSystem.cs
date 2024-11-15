@@ -1,4 +1,6 @@
 using System.Numerics;
+using Content.Client.Anomaly.Ui;
+using Content.Client.Overlays;
 using Content.Shared.IconSmoothing;
 using JetBrains.Annotations;
 using Robust.Client.GameObjects;
@@ -16,6 +18,8 @@ namespace Content.Client.IconSmoothing
     [UsedImplicitly]
     public sealed partial class IconSmoothSystem : EntitySystem
     {
+        [Dependency] private readonly SharedMapSystem _mapSystem = default!;
+
         private readonly Queue<EntityUid> _dirtyEntities = new();
         private readonly Queue<EntityUid> _anchorChangedEntities = new();
 
@@ -46,7 +50,7 @@ namespace Content.Client.IconSmoothing
             if (xform.Anchored)
             {
                 component.LastPosition = TryComp<MapGridComponent>(xform.GridUid, out var grid)
-                    ? (xform.GridUid.Value, grid.TileIndicesFor(xform.Coordinates))
+                    ? (xform.GridUid.Value, _mapSystem.TileIndicesFor(xform.GridUid.Value, grid, xform.Coordinates))
                     : (null, new Vector2i(0, 0));
 
                 DirtyNeighbours(uid, component);
@@ -54,6 +58,33 @@ namespace Content.Client.IconSmoothing
 
             if (component.Mode != IconSmoothingMode.Corners || !TryComp(uid, out SpriteComponent? sprite))
                 return;
+
+            SetCornerLayers(sprite, component);
+
+            if (component.Shader != null)
+            {
+                sprite.LayerSetShader(CornerLayers.SE, component.Shader);
+                sprite.LayerSetShader(CornerLayers.NE, component.Shader);
+                sprite.LayerSetShader(CornerLayers.NW, component.Shader);
+                sprite.LayerSetShader(CornerLayers.SW, component.Shader);
+            }
+        }
+
+        public void SetStateBase(EntityUid uid, IconSmoothComponent component, string newState)
+        {
+            if (!TryComp<SpriteComponent>(uid, out var sprite))
+                return;
+
+            component.StateBase = newState;
+            SetCornerLayers(sprite, component);
+        }
+
+        private void SetCornerLayers(SpriteComponent sprite, IconSmoothComponent component)
+        {
+            sprite.LayerMapRemove(CornerLayers.SE);
+            sprite.LayerMapRemove(CornerLayers.NE);
+            sprite.LayerMapRemove(CornerLayers.NW);
+            sprite.LayerMapRemove(CornerLayers.SW);
 
             var state0 = $"{component.StateBase}0";
             sprite.LayerMapSet(CornerLayers.SE, sprite.AddLayerState(state0));
@@ -64,14 +95,6 @@ namespace Content.Client.IconSmoothing
             sprite.LayerSetDirOffset(CornerLayers.NW, DirectionOffset.Flip);
             sprite.LayerMapSet(CornerLayers.SW, sprite.AddLayerState(state0));
             sprite.LayerSetDirOffset(CornerLayers.SW, DirectionOffset.Clockwise);
-
-            if (component.Shader != null)
-            {
-                sprite.LayerSetShader(CornerLayers.SE, component.Shader);
-                sprite.LayerSetShader(CornerLayers.NE, component.Shader);
-                sprite.LayerSetShader(CornerLayers.NW, component.Shader);
-                sprite.LayerSetShader(CornerLayers.SW, component.Shader);
-            }
         }
 
         private void OnShutdown(EntityUid uid, IconSmoothComponent component, ComponentShutdown args)
@@ -132,9 +155,12 @@ namespace Content.Client.IconSmoothing
 
             Vector2i pos;
 
+            EntityUid entityUid;
+
             if (transform.Anchored && TryComp<MapGridComponent>(transform.GridUid, out var grid))
             {
-                pos = grid.CoordinatesToTile(transform.Coordinates);
+                entityUid = transform.GridUid.Value;
+                pos = _mapSystem.CoordinatesToTile(transform.GridUid.Value, grid, transform.Coordinates);
             }
             else
             {
@@ -145,21 +171,22 @@ namespace Content.Client.IconSmoothing
                 if (!TryComp(gridId, out grid))
                     return;
 
+                entityUid = gridId;
                 pos = oldPos;
             }
 
             // Yes, we updates ALL smoothing entities surrounding us even if they would never smooth with us.
-            DirtyEntities(grid.GetAnchoredEntitiesEnumerator(pos + new Vector2i(1, 0)));
-            DirtyEntities(grid.GetAnchoredEntitiesEnumerator(pos + new Vector2i(-1, 0)));
-            DirtyEntities(grid.GetAnchoredEntitiesEnumerator(pos + new Vector2i(0, 1)));
-            DirtyEntities(grid.GetAnchoredEntitiesEnumerator(pos + new Vector2i(0, -1)));
+            DirtyEntities(_mapSystem.GetAnchoredEntitiesEnumerator(entityUid, grid, pos + new Vector2i(1, 0)));
+            DirtyEntities(_mapSystem.GetAnchoredEntitiesEnumerator(entityUid, grid, pos + new Vector2i(-1, 0)));
+            DirtyEntities(_mapSystem.GetAnchoredEntitiesEnumerator(entityUid, grid, pos + new Vector2i(0, 1)));
+            DirtyEntities(_mapSystem.GetAnchoredEntitiesEnumerator(entityUid, grid, pos + new Vector2i(0, -1)));
 
-            if (comp.Mode is IconSmoothingMode.Corners or IconSmoothingMode.NoSprite or IconSmoothingMode.Diagonal)
+            if (comp.Mode is IconSmoothingMode.Corners or IconSmoothingMode.NoSprite or IconSmoothingMode.Diagonal or IconSmoothingMode.DiagonalNF) // Frontier: add DiagonalNF
             {
-                DirtyEntities(grid.GetAnchoredEntitiesEnumerator(pos + new Vector2i(1, 1)));
-                DirtyEntities(grid.GetAnchoredEntitiesEnumerator(pos + new Vector2i(-1, -1)));
-                DirtyEntities(grid.GetAnchoredEntitiesEnumerator(pos + new Vector2i(-1, 1)));
-                DirtyEntities(grid.GetAnchoredEntitiesEnumerator(pos + new Vector2i(1, -1)));
+                DirtyEntities(_mapSystem.GetAnchoredEntitiesEnumerator(entityUid, grid, pos + new Vector2i(1, 1)));
+                DirtyEntities(_mapSystem.GetAnchoredEntitiesEnumerator(entityUid, grid, pos + new Vector2i(-1, -1)));
+                DirtyEntities(_mapSystem.GetAnchoredEntitiesEnumerator(entityUid, grid, pos + new Vector2i(-1, 1)));
+                DirtyEntities(_mapSystem.GetAnchoredEntitiesEnumerator(entityUid, grid, pos + new Vector2i(1, -1)));
             }
         }
 
@@ -187,7 +214,7 @@ namespace Content.Client.IconSmoothing
             IconSmoothComponent? smooth = null)
         {
             TransformComponent? xform;
-            MapGridComponent? grid = null;
+            Entity<MapGridComponent>? gridEntity = null;
 
             // The generation check prevents updating an entity multiple times per tick.
             // As it stands now, it's totally possible for something to get queued twice.
@@ -204,17 +231,20 @@ namespace Content.Client.IconSmoothing
                 {
                     var directions = DirectionFlag.None;
 
-                    if (TryComp(xform.GridUid, out grid))
+                    if (TryComp(xform.GridUid, out MapGridComponent? grid))
                     {
-                        var pos = grid.TileIndicesFor(xform.Coordinates);
+                        var gridUid = xform.GridUid.Value;
+                        var pos = _mapSystem.TileIndicesFor(gridUid, grid, xform.Coordinates);
 
-                        if (MatchingEntity(smooth, grid.GetAnchoredEntitiesEnumerator(pos.Offset(Direction.North)), smoothQuery))
+                        gridEntity = (gridUid, grid);
+
+                        if (MatchingEntity(smooth, _mapSystem.GetAnchoredEntitiesEnumerator(gridUid, grid, pos.Offset(Direction.North)), smoothQuery, new(0, 1))) // Frontier: added (0, 1) vector
                             directions |= DirectionFlag.North;
-                        if (MatchingEntity(smooth, grid.GetAnchoredEntitiesEnumerator(pos.Offset(Direction.South)), smoothQuery))
+                        if (MatchingEntity(smooth, _mapSystem.GetAnchoredEntitiesEnumerator(gridUid, grid, pos.Offset(Direction.South)), smoothQuery, new(0, -1))) // Frontier: added (0, -1) vector
                             directions |= DirectionFlag.South;
-                        if (MatchingEntity(smooth, grid.GetAnchoredEntitiesEnumerator(pos.Offset(Direction.East)), smoothQuery))
+                        if (MatchingEntity(smooth, _mapSystem.GetAnchoredEntitiesEnumerator(gridUid, grid, pos.Offset(Direction.East)), smoothQuery, new(1, 0))) // Frontier: added (1, 0) vector
                             directions |= DirectionFlag.East;
-                        if (MatchingEntity(smooth, grid.GetAnchoredEntitiesEnumerator(pos.Offset(Direction.West)), smoothQuery))
+                        if (MatchingEntity(smooth, _mapSystem.GetAnchoredEntitiesEnumerator(gridUid, grid, pos.Offset(Direction.West)), smoothQuery, new(-1, 0))) // Frontier: added (-1, 0) vector
                             directions |= DirectionFlag.West;
                     }
 
@@ -238,7 +268,11 @@ namespace Content.Client.IconSmoothing
 
             if (xform.Anchored)
             {
-                if (!TryComp(xform.GridUid, out grid))
+                if (TryComp(xform.GridUid, out MapGridComponent? grid))
+                {
+                    gridEntity = (xform.GridUid.Value, grid);
+                }
+                else
                 {
                     Log.Error($"Failed to calculate IconSmoothComponent sprite in {uid} because grid {xform.GridUid} was missing.");
                     return;
@@ -248,27 +282,33 @@ namespace Content.Client.IconSmoothing
             switch (smooth.Mode)
             {
                 case IconSmoothingMode.Corners:
-                    CalculateNewSpriteCorners(grid, smooth, spriteEnt, xform, smoothQuery);
+                    CalculateNewSpriteCorners(gridEntity, smooth, spriteEnt, xform, smoothQuery);
                     break;
                 case IconSmoothingMode.CardinalFlags:
-                    CalculateNewSpriteCardinal(grid, smooth, spriteEnt, xform, smoothQuery);
+                    CalculateNewSpriteCardinal(gridEntity, smooth, spriteEnt, xform, smoothQuery);
                     break;
                 case IconSmoothingMode.Diagonal:
-                    CalculateNewSpriteDiagonal(grid, smooth, spriteEnt, xform, smoothQuery);
+                    CalculateNewSpriteDiagonal(gridEntity, smooth, spriteEnt, xform, smoothQuery);
                     break;
+                case IconSmoothingMode.DiagonalNF: // Frontier
+                    CalculateNewSpriteDiagonalNF(gridEntity, smooth, spriteEnt, xform, smoothQuery); // Frontier
+                    break; // Frontier
                 default:
                     throw new ArgumentOutOfRangeException();
             }
         }
 
-        private void CalculateNewSpriteDiagonal(MapGridComponent? grid, IconSmoothComponent smooth,
+        private void CalculateNewSpriteDiagonal(Entity<MapGridComponent>? gridEntity, IconSmoothComponent smooth,
             Entity<SpriteComponent> sprite, TransformComponent xform, EntityQuery<IconSmoothComponent> smoothQuery)
         {
-            if (grid == null)
+            if (gridEntity == null)
             {
                 sprite.Comp.LayerSetState(0, $"{smooth.StateBase}0");
                 return;
             }
+
+            var gridUid = gridEntity.Value.Owner;
+            var grid = gridEntity.Value.Comp;
 
             var neighbors = new Vector2[]
             {
@@ -277,14 +317,14 @@ namespace Content.Client.IconSmoothing
                 new(0, -1),
             };
 
-            var pos = grid.TileIndicesFor(xform.Coordinates);
+            var pos = _mapSystem.TileIndicesFor(gridUid, grid, xform.Coordinates);
             var rotation = xform.LocalRotation;
             var matching = true;
 
             for (var i = 0; i < neighbors.Length; i++)
             {
-                var neighbor = (Vector2i) rotation.RotateVec(neighbors[i]);
-                matching = matching && MatchingEntity(smooth, grid.GetAnchoredEntitiesEnumerator(pos + neighbor), smoothQuery);
+                var neighbor = (Vector2i)rotation.RotateVec(neighbors[i]);
+                matching = matching && MatchingEntity(smooth, _mapSystem.GetAnchoredEntitiesEnumerator(gridUid, grid, pos + neighbor), smoothQuery, pos); // Frontier: add pos
             }
 
             if (matching)
@@ -297,27 +337,95 @@ namespace Content.Client.IconSmoothing
             }
         }
 
-        private void CalculateNewSpriteCardinal(MapGridComponent? grid, IconSmoothComponent smooth, Entity<SpriteComponent> sprite, TransformComponent xform, EntityQuery<IconSmoothComponent> smoothQuery)
-        {
-            var dirs = CardinalConnectDirs.None;
+        // New Frontiers - Better icon smoothing - icon smoothing that supports more diagonal window states
+        //      and respects the empty sides of diagonal walls/windows
+        // This code is licensed under AGPLv3. See AGPLv3.txt
 
-            if (grid == null)
+        // Frontier: 5-state diagonal windows
+        private void CalculateNewSpriteDiagonalNF(Entity<MapGridComponent>? gridEntity, IconSmoothComponent smooth,
+            Entity<SpriteComponent> sprite, TransformComponent xform, EntityQuery<IconSmoothComponent> smoothQuery)
+        {
+            if (gridEntity == null)
             {
-                sprite.Comp.LayerSetState(0, $"{smooth.StateBase}{(int) dirs}");
+                sprite.Comp.LayerSetState(0, $"{smooth.StateBase}0");
                 return;
             }
 
-            var pos = grid.TileIndicesFor(xform.Coordinates);
-            if (MatchingEntity(smooth, grid.GetAnchoredEntitiesEnumerator(pos.Offset(Direction.North)), smoothQuery))
+            var gridUid = gridEntity.Value.Owner;
+            var grid = gridEntity.Value.Comp;
+
+            var neighbors = new Vector2[]
+            {
+                new(1, 0),
+                new(0, -1),
+            };
+
+            var pos = _mapSystem.TileIndicesFor(gridUid, grid, xform.Coordinates);
+            var rotation = xform.LocalRotation;
+            int value = 0;
+
+            for (var i = 0; i < neighbors.Length; i++)
+            {
+                var neighbor = (Vector2i)rotation.RotateVec(neighbors[i]);
+                if (MatchingEntity(smooth, _mapSystem.GetAnchoredEntitiesEnumerator(gridUid, grid, pos + neighbor), smoothQuery, neighbor))
+                    value |= 1 << i;
+            }
+
+            // both walls checked, check the corner
+            if (value == 3)
+            {
+                var neighbor = (Vector2i)rotation.RotateVec(new(1, -1));
+                if (MatchingEntity(smooth, _mapSystem.GetAnchoredEntitiesEnumerator(gridUid, grid, pos + neighbor), smoothQuery, neighbor))
+                    value = 4;
+            }
+
+            sprite.Comp.LayerSetState(0, $"{smooth.StateBase}{value}");
+        }
+
+        // Check if a particular window/wall allows smoothing on a given edge
+        private bool EntityIsSmoothOnEdge(EntityUid? target, IconSmoothComponent targetComp, Vector2 sourceDir)
+        {
+            var xformQuery = GetEntityQuery<TransformComponent>();
+            xformQuery.TryGetComponent(target, out var xform);
+            if (xform is null)
+                return false;
+
+            if (targetComp.Mode is IconSmoothingMode.Diagonal or IconSmoothingMode.DiagonalNF)
+            {
+                var rot = -xform.LocalRotation; // Source direction must be transformed into our reference.
+                var angle = new Angle(rot.RotateVec(-sourceDir)); // Direction is given from sourge to target, we need the direction from target to source.
+                angle += Math.PI / 2; // Cardinal directions start at north(?), but positive X angle is 0.
+                var dir = angle.GetCardinalDir();
+                return dir is Direction.South or Direction.SouthEast or Direction.East;
+            }
+            return true; // All other target components use all sides
+        }
+        // End of modified code
+
+        private void CalculateNewSpriteCardinal(Entity<MapGridComponent>? gridEntity, IconSmoothComponent smooth, Entity<SpriteComponent> sprite, TransformComponent xform, EntityQuery<IconSmoothComponent> smoothQuery)
+        {
+            var dirs = CardinalConnectDirs.None;
+
+            if (gridEntity == null)
+            {
+                sprite.Comp.LayerSetState(0, $"{smooth.StateBase}{(int)dirs}");
+                return;
+            }
+
+            var gridUid = gridEntity.Value.Owner;
+            var grid = gridEntity.Value.Comp;
+
+            var pos = _mapSystem.TileIndicesFor(gridUid, grid, xform.Coordinates);
+            if (MatchingEntity(smooth, _mapSystem.GetAnchoredEntitiesEnumerator(gridUid, grid, pos.Offset(Direction.North)), smoothQuery, new(0, 1))) // Frontier: add vector
                 dirs |= CardinalConnectDirs.North;
-            if (MatchingEntity(smooth, grid.GetAnchoredEntitiesEnumerator(pos.Offset(Direction.South)), smoothQuery))
+            if (MatchingEntity(smooth, _mapSystem.GetAnchoredEntitiesEnumerator(gridUid, grid, pos.Offset(Direction.South)), smoothQuery, new(0, -1))) // Frontier: add vector
                 dirs |= CardinalConnectDirs.South;
-            if (MatchingEntity(smooth, grid.GetAnchoredEntitiesEnumerator(pos.Offset(Direction.East)), smoothQuery))
+            if (MatchingEntity(smooth, _mapSystem.GetAnchoredEntitiesEnumerator(gridUid, grid, pos.Offset(Direction.East)), smoothQuery, new(1, 0))) // Frontier: add vector
                 dirs |= CardinalConnectDirs.East;
-            if (MatchingEntity(smooth, grid.GetAnchoredEntitiesEnumerator(pos.Offset(Direction.West)), smoothQuery))
+            if (MatchingEntity(smooth, _mapSystem.GetAnchoredEntitiesEnumerator(gridUid, grid, pos.Offset(Direction.West)), smoothQuery, new(-1, 0))) // Frontier: add vector
                 dirs |= CardinalConnectDirs.West;
 
-            sprite.Comp.LayerSetState(0, $"{smooth.StateBase}{(int) dirs}");
+            sprite.Comp.LayerSetState(0, $"{smooth.StateBase}{(int)dirs}");
 
             var directions = DirectionFlag.None;
 
@@ -333,13 +441,14 @@ namespace Content.Client.IconSmoothing
             CalculateEdge(sprite, directions, sprite);
         }
 
-        private bool MatchingEntity(IconSmoothComponent smooth, AnchoredEntitiesEnumerator candidates, EntityQuery<IconSmoothComponent> smoothQuery)
+        private bool MatchingEntity(IconSmoothComponent smooth, AnchoredEntitiesEnumerator candidates, EntityQuery<IconSmoothComponent> smoothQuery, Vector2 offset)
         {
             while (candidates.MoveNext(out var entity))
             {
                 if (smoothQuery.TryGetComponent(entity, out var other) &&
                     other.SmoothKey == smooth.SmoothKey &&
-                    other.Enabled)
+                    other.Enabled &&
+                    EntityIsSmoothOnEdge(entity, other, offset)) // Frontier: added EntityIsSmo
                 {
                     return true;
                 }
@@ -348,11 +457,11 @@ namespace Content.Client.IconSmoothing
             return false;
         }
 
-        private void CalculateNewSpriteCorners(MapGridComponent? grid, IconSmoothComponent smooth, Entity<SpriteComponent> spriteEnt, TransformComponent xform, EntityQuery<IconSmoothComponent> smoothQuery)
+        private void CalculateNewSpriteCorners(Entity<MapGridComponent>? gridEntity, IconSmoothComponent smooth, Entity<SpriteComponent> spriteEnt, TransformComponent xform, EntityQuery<IconSmoothComponent> smoothQuery)
         {
-            var (cornerNE, cornerNW, cornerSW, cornerSE) = grid == null
+            var (cornerNE, cornerNW, cornerSW, cornerSE) = gridEntity == null
                 ? (CornerFill.None, CornerFill.None, CornerFill.None, CornerFill.None)
-                : CalculateCornerFill(grid, smooth, xform, smoothQuery);
+                : CalculateCornerFill(gridEntity.Value, smooth, xform, smoothQuery);
 
             // TODO figure out a better way to set multiple sprite layers.
             // This will currently re-calculate the sprite bounding box 4 times.
@@ -360,10 +469,10 @@ namespace Content.Client.IconSmoothing
             // At the very least each event currently only queues a sprite for updating.
             // Oh god sprite component is a mess.
             var sprite = spriteEnt.Comp;
-            sprite.LayerSetState(CornerLayers.NE, $"{smooth.StateBase}{(int) cornerNE}");
-            sprite.LayerSetState(CornerLayers.SE, $"{smooth.StateBase}{(int) cornerSE}");
-            sprite.LayerSetState(CornerLayers.SW, $"{smooth.StateBase}{(int) cornerSW}");
-            sprite.LayerSetState(CornerLayers.NW, $"{smooth.StateBase}{(int) cornerNW}");
+            sprite.LayerSetState(CornerLayers.NE, $"{smooth.StateBase}{(int)cornerNE}");
+            sprite.LayerSetState(CornerLayers.SE, $"{smooth.StateBase}{(int)cornerSE}");
+            sprite.LayerSetState(CornerLayers.SW, $"{smooth.StateBase}{(int)cornerSW}");
+            sprite.LayerSetState(CornerLayers.NW, $"{smooth.StateBase}{(int)cornerNW}");
 
             var directions = DirectionFlag.None;
 
@@ -382,17 +491,20 @@ namespace Content.Client.IconSmoothing
             CalculateEdge(spriteEnt, directions, sprite);
         }
 
-        private (CornerFill ne, CornerFill nw, CornerFill sw, CornerFill se) CalculateCornerFill(MapGridComponent grid, IconSmoothComponent smooth, TransformComponent xform, EntityQuery<IconSmoothComponent> smoothQuery)
+        private (CornerFill ne, CornerFill nw, CornerFill sw, CornerFill se) CalculateCornerFill(Entity<MapGridComponent> gridEntity, IconSmoothComponent smooth, TransformComponent xform, EntityQuery<IconSmoothComponent> smoothQuery)
         {
-            var pos = grid.TileIndicesFor(xform.Coordinates);
-            var n = MatchingEntity(smooth, grid.GetAnchoredEntitiesEnumerator(pos.Offset(Direction.North)), smoothQuery);
-            var ne = MatchingEntity(smooth, grid.GetAnchoredEntitiesEnumerator(pos.Offset(Direction.NorthEast)), smoothQuery);
-            var e = MatchingEntity(smooth, grid.GetAnchoredEntitiesEnumerator(pos.Offset(Direction.East)), smoothQuery);
-            var se = MatchingEntity(smooth, grid.GetAnchoredEntitiesEnumerator(pos.Offset(Direction.SouthEast)), smoothQuery);
-            var s = MatchingEntity(smooth, grid.GetAnchoredEntitiesEnumerator(pos.Offset(Direction.South)), smoothQuery);
-            var sw = MatchingEntity(smooth, grid.GetAnchoredEntitiesEnumerator(pos.Offset(Direction.SouthWest)), smoothQuery);
-            var w = MatchingEntity(smooth, grid.GetAnchoredEntitiesEnumerator(pos.Offset(Direction.West)), smoothQuery);
-            var nw = MatchingEntity(smooth, grid.GetAnchoredEntitiesEnumerator(pos.Offset(Direction.NorthWest)), smoothQuery);
+            var gridUid = gridEntity.Owner;
+            var grid = gridEntity.Comp;
+
+            var pos = _mapSystem.TileIndicesFor(gridUid, grid, xform.Coordinates);
+            var n = MatchingEntity(smooth, _mapSystem.GetAnchoredEntitiesEnumerator(gridUid, grid, pos.Offset(Direction.North)), smoothQuery, new(0, 1)); // Frontier: add vector
+            var ne = MatchingEntity(smooth, _mapSystem.GetAnchoredEntitiesEnumerator(gridUid, grid, pos.Offset(Direction.NorthEast)), smoothQuery, new(1, 1)); // Frontier: add vector
+            var e = MatchingEntity(smooth, _mapSystem.GetAnchoredEntitiesEnumerator(gridUid, grid, pos.Offset(Direction.East)), smoothQuery, new(1, 0)); // Frontier: add vector
+            var se = MatchingEntity(smooth, _mapSystem.GetAnchoredEntitiesEnumerator(gridUid, grid, pos.Offset(Direction.SouthEast)), smoothQuery, new(1, -1)); // Frontier: add vector
+            var s = MatchingEntity(smooth, _mapSystem.GetAnchoredEntitiesEnumerator(gridUid, grid, pos.Offset(Direction.South)), smoothQuery, new(0, -1)); // Frontier: add vector
+            var sw = MatchingEntity(smooth, _mapSystem.GetAnchoredEntitiesEnumerator(gridUid, grid, pos.Offset(Direction.SouthWest)), smoothQuery, new(-1, -1)); // Frontier: add vector
+            var w = MatchingEntity(smooth, _mapSystem.GetAnchoredEntitiesEnumerator(gridUid, grid, pos.Offset(Direction.West)), smoothQuery, new(-1, 0)); // Frontier: add vector
+            var nw = MatchingEntity(smooth, _mapSystem.GetAnchoredEntitiesEnumerator(gridUid, grid, pos.Offset(Direction.NorthWest)), smoothQuery, new(-1, 1)); // Frontier: add vector
 
             // ReSharper disable InconsistentNaming
             var cornerNE = CornerFill.None;

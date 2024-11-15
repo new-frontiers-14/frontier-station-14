@@ -122,6 +122,24 @@
     state: mattress
   - type: Damageable
     damageModifierSet: Inflatable
+  # Frontier: deconstruct into just cloth, no free steel
+  - type: Construction
+    graph: bedNF
+    node: mattress
+  # Frontier: break into cloth, not steel.
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 75
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialCloth1:
+            min: 1
+            max: 2
 
 - type: entity
   parent: Bed
@@ -179,16 +197,3 @@
           MaterialWoodPlank:
             min: 2
             max: 2
-
-- type: entity
-  parent: WebBed
-  id: WebNest
-  name: web nest
-  description: You got webbed.
-  components:
-  - type: Sprite
-    sprite: Structures/Web/nest.rsi
-    state: icon
-  - type: Construction
-    graph: WebStructures
-    node: nest

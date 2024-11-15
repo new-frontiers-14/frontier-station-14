@@ -1,0 +1,39 @@
+- type: job
+  id: StationTrafficController
+  name: job-name-stc
+  description: job-description-stc
+  playTimeTracker: JobStc
+  startingGear: StcGear
+  alwaysUseSpawner: true
+  requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 72000 # 20 hrs
+    - !type:RoleTimeRequirement
+      role: JobSecurityGuard
+      time: 10800 # 3 hrs as security guard
+  canBeAntag: false
+  icon: "JobIconStc" 
+  supervisors: job-supervisors-sr
+  weight: 160
+  displayWeight: 50 # Second from the top
+  setPreference: true
+  access:
+  - Service
+  - Maintenance
+  - External
+  - Frontier
+  - StationTrafficController
+  special:
+  - !type:GiveItemOnHolidaySpecial
+    holiday: FrontierBirthday
+    prototype: FrontierBirthdayGift
+
+- type: startingGear
+  id: StcGear
+  equipment:
+    id: StcPDA
+  storage:
+    back:
+    - Flash
+    - RubberStampStc
+    - EncryptionKeyStationMaster

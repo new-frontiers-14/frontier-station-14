@@ -217,6 +217,13 @@ public sealed class CartridgeLoaderSystem : SharedCartridgeLoaderSystem
 
         RaiseLocalEvent(installedProgram, new CartridgeAddedEvent(loaderUid));
         UpdateUserInterfaceState(loaderUid, loader);
+
+        if (cartridge.Readonly) // Frontier: Block uninstall
+            cartridge.InstallationStatus = InstallationStatus.Readonly; // Frontier
+
+        if (cartridge.Disposable) // Frontier: Delete the cartridge after install if its disposable.
+            QueueDel(loader.CartridgeSlot.ContainerSlot!.ContainedEntity); // Frontier
+
         return true;
     }
 
@@ -340,6 +347,14 @@ public sealed class CartridgeLoaderSystem : SharedCartridgeLoaderSystem
         if (args.Container.ID != InstalledContainerId && args.Container.ID != loader.CartridgeSlot.ID)
             return;
 
+        if (TryComp(args.Entity, out CartridgeComponent? cartridge))
+            cartridge.LoaderUid = uid;
+
+        // Frontier: Try to auto install the program when inserted, QOL
+        if (cartridge != null && cartridge.AutoInstall)
+            InstallCartridge(uid, args.Entity, loader);
+        // End Frontier
+
         RaiseLocalEvent(args.Entity, new CartridgeAddedEvent(uid));
         base.OnItemInserted(uid, loader, args);
     }
@@ -359,6 +374,9 @@ public sealed class CartridgeLoaderSystem : SharedCartridgeLoaderSystem
 
         if (deactivate)
             RaiseLocalEvent(args.Entity, new CartridgeDeactivatedEvent(uid));
+
+        if (TryComp(args.Entity, out CartridgeComponent? cartridge))
+            cartridge.LoaderUid = null;
 
         RaiseLocalEvent(args.Entity, new CartridgeRemovedEvent(uid));
         base.OnItemRemoved(uid, loader, args);

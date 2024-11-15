@@ -50,6 +50,11 @@ using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 using Timer = Robust.Shared.Timing.Timer;
+using Robust.Shared.Audio.Systems; // Frontier
+using Robust.Shared.Audio; // Frontier
+using Content.Server._NF.Speech.Components; // Frontier
+using Content.Shared.Damage.Prototypes; // Frontier
+using Content.Shared.Bed.Sleep; // Frontier
 
 namespace Content.Server.Administration.Systems;
 
@@ -79,6 +84,9 @@ public sealed partial class AdminVerbSystem
     [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
     [Dependency] private readonly SuperBonkSystem _superBonkSystem = default!;
     [Dependency] private readonly SlipperySystem _slipperySystem = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!; // Frontier
+    [Dependency] private readonly DamageableSystem _damageable = default!; // Frontier
+    [Dependency] private readonly SleepingSystem _sleep = default!; // Frontier
 
     // All smite verbs have names so invokeverb works.
     private void AddSmiteVerbs(GetVerbsEvent<Verb> args)
@@ -105,7 +113,7 @@ public sealed partial class AdminVerbSystem
                 var coords = _transformSystem.GetMapCoordinates(args.Target);
                 Timer.Spawn(_gameTiming.TickPeriod,
                     () => _explosionSystem.QueueExplosion(coords, ExplosionSystem.DefaultExplosionPrototypeId,
-                        4, 1, 2, maxTileBreak: 0), // it gibs, damage doesn't need to be high.
+                        4, 1, 2, args.Target, maxTileBreak: 0), // it gibs, damage doesn't need to be high.
                     CancellationToken.None);
 
                 _bodySystem.GibBody(args.Target);
@@ -285,18 +293,18 @@ public sealed partial class AdminVerbSystem
             {
                 Text = "admin-smite-remove-hands-name",
                 Category = VerbCategory.Smite,
-                Icon = new SpriteSpecifier.Rsi(new ("/Textures/Fluids/vomit_toxin.rsi"), "vomit_toxin-1"),
+                Icon = new SpriteSpecifier.Rsi(new("/Textures/Fluids/vomit_toxin.rsi"), "vomit_toxin-1"),
                 Act = () =>
                 {
                     _vomitSystem.Vomit(args.Target, -1000, -1000); // You feel hollow!
-                    var organs = _bodySystem.GetBodyOrganComponents<TransformComponent>(args.Target, body);
+                    var organs = _bodySystem.GetBodyOrganEntityComps<TransformComponent>((args.Target, body));
                     var baseXform = Transform(args.Target);
-                    foreach (var (xform, organ) in organs)
+                    foreach (var organ in organs)
                     {
-                        if (HasComp<BrainComponent>(xform.Owner) || HasComp<EyeComponent>(xform.Owner))
+                        if (HasComp<BrainComponent>(organ.Owner) || HasComp<EyeComponent>(organ.Owner))
                             continue;
 
-                        _transformSystem.AttachToGridOrMap(organ.Owner);
+                        _transformSystem.PlaceNextTo((organ.Owner, organ.Comp1), (args.Target, baseXform));
                     }
 
                     _popupSystem.PopupEntity(Loc.GetString("admin-smite-vomit-organs-self"), args.Target,
@@ -361,9 +369,9 @@ public sealed partial class AdminVerbSystem
                 Icon = new SpriteSpecifier.Rsi(new ("/Textures/Mobs/Species/Human/organs.rsi"), "stomach"),
                 Act = () =>
                 {
-                    foreach (var (component, _) in _bodySystem.GetBodyOrganComponents<StomachComponent>(args.Target, body))
+                    foreach (var entity in _bodySystem.GetBodyOrganEntityComps<StomachComponent>((args.Target, body)))
                     {
-                        QueueDel(component.Owner);
+                        QueueDel(entity.Owner);
                     }
 
                     _popupSystem.PopupEntity(Loc.GetString("admin-smite-stomach-removal-self"), args.Target,
@@ -381,9 +389,9 @@ public sealed partial class AdminVerbSystem
                 Icon = new SpriteSpecifier.Rsi(new ("/Textures/Mobs/Species/Human/organs.rsi"), "lung-r"),
                 Act = () =>
                 {
-                    foreach (var (component, _) in _bodySystem.GetBodyOrganComponents<LungComponent>(args.Target, body))
+                    foreach (var entity in _bodySystem.GetBodyOrganEntityComps<LungComponent>((args.Target, body)))
                     {
-                        QueueDel(component.Owner);
+                        QueueDel(entity.Owner);
                     }
 
                     _popupSystem.PopupEntity(Loc.GetString("admin-smite-lung-removal-self"), args.Target,
@@ -555,6 +563,8 @@ public sealed partial class AdminVerbSystem
             };
             args.Verbs.Add(cluwne);
 
+            // Frontier: remove maid smite due to weird ID perms
+            /*
             Verb maiden = new()
             {
                 Text = "admin-smite-remove-gravity-name",
@@ -573,6 +583,7 @@ public sealed partial class AdminVerbSystem
                 Message = Loc.GetString("admin-smite-maid-description")
             };
             args.Verbs.Add(maiden);
+            */
         }
 
         Verb angerPointingArrows = new()
@@ -849,5 +860,62 @@ public sealed partial class AdminVerbSystem
             Message = Loc.GetString("admin-smite-super-slip-description")
         };
         args.Verbs.Add(superslip);
+
+        // Frontier
+        Verb caveman = new()
+        {
+            Text = "admin-smite-caveman-name",
+            Category = VerbCategory.Smite,
+            Icon = new SpriteSpecifier.Rsi(new("_NF/Objects/Weapons/Melee/caveman_club.rsi"), "icon"),
+            Act = () =>
+            {
+                // Remove whatever they're holding, summon & pickup the funny club, destroy on failure
+                var hand = _handsSystem.GetActiveHand(args.Target);
+                if (hand != null)
+                {
+                    _handsSystem.TryDrop(args.Target, hand);
+                    var club = EntityManager.SpawnNextToOrDrop("CavemanClubCursed", args.Target);
+                    if (club.Valid &&
+                        !_handsSystem.TryPickupAnyHand(args.Target, club, false))
+                    {
+                        QueueDel(club);
+                    }
+                }
+
+                if (_prototypeManager.TryIndex<DamageTypePrototype>("Blunt", out var bluntProto))
+                {
+                    var bluntDamage = new DamageSpecifier(bluntProto, 10);
+                    _damageable.TryChangeDamage(args.Target, bluntDamage, true);
+                }
+
+                // Make them slip and fall.
+                var hadSlipComponent = EnsureComp(args.Target, out SlipperyComponent slipComponent);
+                if (!hadSlipComponent)
+                {
+                    slipComponent.SuperSlippery = true;
+                    slipComponent.ParalyzeTime = 10;
+                    slipComponent.LaunchForwardsMultiplier = 1;
+                }
+
+                _slipperySystem.TrySlip(args.Target, slipComponent, args.Target, requiresContact: false);
+                if (!hadSlipComponent)
+                {
+                    RemComp(args.Target, slipComponent);
+                }
+
+                // Fall asleep
+                _sleep.TrySleeping(args.Target);
+
+                // Play a noise, they bonked their head
+                _popup.PopupEntity(Loc.GetString("admin-smite-caveman-self"), args.Target, player, PopupType.LargeCaution);
+                _audio.PlayPvs(new SoundPathSpecifier("/Audio/_NF/Effects/bonk.ogg"), args.Target, AudioParams.Default.WithMaxDistance(30.0f).WithVolume(3.0f));
+
+                EnsureComp<CavemanAccentComponent>(args.Target);
+            },
+            Impact = LogImpact.Extreme,
+            Message = Loc.GetString("admin-smite-caveman-description")
+        };
+        args.Verbs.Add(caveman);
+        // End Frontier
     }
 }

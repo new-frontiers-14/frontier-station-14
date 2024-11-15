@@ -42,66 +42,6 @@
       [bold]/END FAX/[/bold]
 
 - type: entity
-  id: PaperWrittenNfsdDutyLog
-  name: duty log
-  suffix: MappedPaper
-  parent: Paper
-  components:
-  - type: Paper
-    content: |2
-        [color=#cc0000]◥[bold]N[/bold]◣ [bold]New Frontier Sheriff's Department[/bold][/color]
-        [color=#cc0000]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
-        [head=1]NFSD Duty Log[/head]
-
-        Sheriff: [italic]n/a[/italic]
-
-        Officers:
-        - Urist McBeatsUpPrisoners (Signed on .... shift time)
-        ...
-
-- type: entity
-  id: PaperWrittenNfsdArrestWarrant
-  name: arrest warrant
-  suffix: MappedPaper
-  parent: Paper
-  components:
-  - type: Paper
-    content: |2
-        [color=#cc0000]◥[bold]N[/bold]◣ [bold]New Frontier Sheriff's Department[/bold][/color]
-        [color=#cc0000]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
-        [head=1]Personnel arrest warrant[/head]
-
-        Subject:
-        Charges:
-
-        Requesting officer:
-        Authorising command:
-        Authorised at:
-
-        This warrant is only valid when requested by a member of the NFSD ranked Bailiff or above, or a Station Representative. Additionally, it is only valid when authorised by a member of the NFSD ranked Sheriff, or a Station Representative. Both must provide both their stamp and signature, and they may not be the same person unless this is impossible at the time of authorisation of this warrant.
-
-- type: entity
-  id: PaperWrittenNfsdSearchWarrant
-  name: search warrant
-  suffix: MappedPaper
-  parent: Paper
-  components:
-  - type: Paper
-    content: |2
-        [color=#cc0000]◥[bold]N[/bold]◣ [bold]New Frontier Sheriff's Department[/bold][/color]
-        [color=#cc0000]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
-        [head=1]Search warrant[/head]
-
-        Subject (Person/Ship):
-        Reason:
-
-        Requesting officer:
-        Authorising command:
-        Authorised at:
-
-        This warrant is only valid when requested by a member of the NFSD ranked Bailiff or above, or a Station Representative. Additionally, it is only valid when authorised by a member of the NFSD ranked Sheriff, or a Station Representative. Both must provide both their stamp and signature, and they may not be the same person unless this is impossible at the time of authorisation of this warrant.
-
-- type: entity
   id: PaperWrittenGriftyScript
   name: grifty's script
   suffix: MappedPaper
@@ -109,23 +49,23 @@
   components:
   - type: Paper
     content: |2
-        [color=#1b67a5]█▄ █ ▀█▀    [head=3]Grifty's Script[/head]
-        █ ▀█     █       Grifty's Gas and Grub
+      [color=#1b67a5]█▄ █ ▀█▀    [head=3]Grifty's Script[/head]
+      █ ▀█     █       Grifty's Gas and Grub
 
-        [bold]ATTENTION STORE ASSOCIATE! FOLLOW THIS SCRIPT[/bold]
+      [bold]ATTENTION STORE ASSOCIATE! FOLLOW THIS SCRIPT[/bold]
 
-        Greeting our guests:
-        "Hi there! Welcome to Grifty's! Can I interest you in our Gas n' Grub deal? Get a free box of donkpockets with every full tank of plasma!"
+      Greeting our guests:
+      "Hi there! Welcome to Grifty's! Can I interest you in our Gas n' Grub deal? Get a free box of donkpockets with every full tank of plasma!"
 
-        For every transaction, ensure you follow the Grifty Guide! Add a 5% implied Grift Fee. Do not mention the Grift Fee.
+      For every transaction, ensure you follow the Grifty Guide! Add a 5% implied Grift Fee. Do not mention the Grift Fee.
 
-        If the customer complains about the Grift Fee, say:
-        "We here at Grifty's are committed to your grift experience. Have a nice day!"
+      If the customer complains about the Grift Fee, say:
+      "We here at Grifty's are committed to your grift experience. Have a nice day!"
 
-        Do not respond to additional complaints. If the guest becomes belligerent, say:
-        "I'm sorry your experience has been suboptimal. Let me get our customer service resolver to help you with your needs."
+      Do not respond to additional complaints. If the guest becomes belligerent, say:
+      "I'm sorry your experience has been suboptimal. Let me get our customer service resolver to help you with your needs."
 
-        Retrieve the Customer Service Resolver. Resolve your problem.
+      Retrieve the Customer Service Resolver. Resolve your problem.
 
 - type: entity
   id: PaperWrittenGriftyWindow
@@ -135,6 +75,39 @@
   components:
   - type: Paper
     content: |2
-        Hey boss,
+      Hey boss,
 
-        The crack in the plasma chamber's gettin' bigger, and I'm worried about the containment unit. What happens if the glass breaks?
+      The crack in the plasma chamber's gettin' bigger, and I'm worried about the containment unit. What happens if the glass breaks?
+        
+- type: entity
+  id: PaperWrittenPartyProcedure
+  name: official party preparation procedure
+  parent: Paper
+  components:
+  - type: Paper
+    stampState: paper_stamp-centcom
+    stampedBy:
+    - stampedColor: '#004200FF'
+      stampedName: Frontier Department of Recreation
+      stampType: RubberStamp
+    - stampedColor: '#333333FF'
+      stampedName: Plans-The-Party
+      stampType: Signature
+    content: |2
+      [color=#1a6295]◥[bold]N[/bold]◣ [bold]Department of Recreation[/bold][/color]
+      [color=#1a6295]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
+      [head=3]Official Party Preparation Procedure[/head]
+        
+      Thank you for purchasing your official, NT-approved party crate.
+
+      The first step to any time-efficient party is preparedness. Make sure to consult a caterer or your NT Guidebook for a recipe to make a tasty cake.
+
+      The next step is inviting guests. Make sure to find a happy medium between too few and too many people for an optimal morale boost. Be sure to fax or radio any prospective guests beforehand.
+
+      Be sure to keep noise to a reasonable level, and do not engage in unnecessary carousing or drunkenness. Remember, hangovers are bad for both morale and profits. Find moderation in all things.
+
+      Use the materials included to the best of your ability to entertain your guests. Ingenuity, resourcefulness, leadership and service are all critical to proper party procedure.
+
+      Have fun! Remember to recycle all expended material upon party completion.
+
+      [italic]Disclaimer: Nanotrasen is not responsible for any loss of profit that was caused by the purchase of this crate. Any medical costs accrued due to the use of this crate and the items it contains will not be covered for by Nanotrasen. Nanotrasen does not make any guarantees that the use of the items in this crate will result in having fun.[/italic]

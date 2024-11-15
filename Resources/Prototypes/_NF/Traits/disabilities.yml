@@ -1,14 +1,4 @@
 - type: trait
-  id: Pious
-  name: trait-pious-name
-  description: trait-pious-desc
-  category: Disabilities
-  traitGear: Bible
-  components:
-    - type: BibleUser
-    - type: Pacified # if this wasn't so debilitating, this trait would be elsewhere
-
-- type: trait
   id: Stinky
   name: trait-stinky-name
   description: trait-stinky-desc
@@ -16,34 +6,19 @@
   components:
     - type: StinkyTrait
 
-# Remove later for slider
 - type: trait
-  id: Tall
-  name: trait-tall-name
+  id: Clumsy
+  name: trait-clumsy-name
+  description: trait-clumsy-desc
   category: Disabilities
-  whitelist:
-    components:
-      - SizeAttributeWhitelist
-  blacklist:
-    components:
-      - SizeAttribute
   components:
-    - type: SizeAttribute
-      tall: true
-
-- type: trait
-  id: Short
-  name: trait-short-name
-  category: Disabilities
-  whitelist:
-    components:
-      - SizeAttributeWhitelist
-  blacklist:
-    components:
-      - SizeAttribute
-  components:
-    - type: SizeAttribute
-      short: true
+    - type: Clumsy
+      clumsyDamage:
+        types:
+          Blunt: 5
+          Piercing: 4
+        groups:
+          Burn: 3
 
 # Upstream
 - type: trait

@@ -77,9 +77,6 @@
         behaviors:
           - !type:DoActsBehavior
             acts: [ "Destruction" ]
-  - type: StaticPrice
-    price: 20
-    vendPrice: 12000 # Frontier
 
 - type: entity
   id: Fulton1
@@ -92,7 +89,7 @@
 
 - type: entity
   id: FultonEffect
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   name: fulton effect
   components:
   - type: TimedDespawn

@@ -30,8 +30,6 @@
   suffix: Voice Mask, Chameleon, Radio Unknown Name # Frontier - Extended suffix
   components:
     - type: VoiceMasker
-    - type: StaticPrice
-      price: 500
     - type: HideLayerClothing
       slots:
       - Snout
@@ -64,3 +62,54 @@
   - type: HideLayerClothing
     slots:
     - Snout
+
+- type: entity
+  parent: ClothingMaskBase
+  id: ClothingMaskGoldenCursed
+  name: golden mask
+  description: An ancient-looking mask bearing the visage of some simian monarch. You swear it looks cursed. # Frontier: doesn't contort, not really cursed
+  components:
+  - type: Sprite
+    sprite: Clothing/Mask/goldenmask.rsi
+    layers:
+    - state: icon
+      map: [ "mask" ]
+  - type: Clothing
+    sprite: Clothing/Mask/goldenmask.rsi
+  - type: Appearance
+  # Frontier: replace visualizer with random state
+  # - type: GenericVisualizer
+  #   visuals:
+  #     enum.CursedMaskVisuals.State:
+  #       mask:
+  #         Neutral: { state: icon }
+  #         Despair: { state: icon-despair }
+  #         Joy: { state: icon-joy }
+  #         Anger: { state: icon-anger }
+  # End Frontier
+  - type: Tag
+    tags: [] # ignore "WhitelistChameleon" tag
+  # Frontier: too much trouble for something that can insta-ghost you for wearing it.
+  # - type: SelfEquipOnly
+  # - type: CursedMask
+  #   despairDamageModifier: # Frontier
+  #     coefficients: # Frontier
+  #       Blunt: 0.6 # Frontier
+  #       Slash: 0.6 # Frontier
+  #       Piercing: 0.4 # Frontier
+  # End Frontier
+  - type: HideLayerClothing
+    slots:
+    - Snout
+  - type: IngestionBlocker
+  - type: StaticPrice
+    price: 5000
+  # Frontier: pick random sprite on spawn
+  - type: RandomSprite
+    available:
+      - mask:
+          icon: ""
+          icon-despair: ""
+          icon-joy: ""
+          icon-anger: ""
+  # End Frontier: random sprite on spawn

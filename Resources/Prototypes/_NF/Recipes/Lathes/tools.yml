@@ -1,39 +1,126 @@
-﻿- type: entity
-  name: Shipyard RCD Ammo
-  parent: BaseItem
-  id: ShipyardRCDAmmo
-  description: Ammo cartridge for a Shipyard RCD.
-  components:
-    - type: RCDAmmo
-      isShipyardRCDAmmo: true
-    - type: Sprite
-      sprite: Objects/Tools/rcd.rsi
-      state: ammo-shipyard
-    - type: Item
-      sprite: Objects/Tools/rcd.rsi
-      heldPrefix: ammo-shipyard
-    - type: PhysicalComposition
-      materialComposition:
-        Steel: 1000
-        Plastic: 1000
-    - type: StaticPrice
-      price: 100
+﻿# Base prototypes
+
+- type: latheRecipe
+  abstract: true
+  id: NFBaseToolsRecipe
+  category: Tools
+  completetime: 3.5
+
+# Recipes
 
 - type: latheRecipe
   id: WelderIndustrial
+  parent: NFBaseToolsRecipe
   result: WelderIndustrialEmpty
-  category: Tools
-  completetime: 3.5
   materials:
     Steel: 600
     Glass: 400
 
 - type: latheRecipe
   id: WelderIndustrialAdvanced
+  parent: NFBaseToolsRecipe
   result: WelderIndustrialAdvancedEmpty
-  category: Tools
   completetime: 5
   materials:
     Steel: 600
     Glass: 200
     Plastic: 200
+
+- type: latheRecipe
+  id: ContrabandAppraisalTool
+  parent: NFBaseToolsRecipe
+  result: ContrabandAppraisalTool
+  materials:
+    Steel: 500
+    Glass: 300
+
+- type: latheRecipe
+  id: MedicalAppraisalTool
+  result: MedicalAppraisalTool
+  category: Tools
+  completetime: 3.5
+  materials:
+    Steel: 500
+    Glass: 300
+
+- type: latheRecipe
+  id: PinpointerUniversalNF
+  parent: NFBaseToolsRecipe
+  result: PinpointerUniversal
+  materials:
+    Steel: 500
+    Glass: 500
+    Plastic: 500
+    Silver: 500
+
+- type: latheRecipe
+  id: RadioHandheldNF
+  parent: NFBaseToolsRecipe
+  result: RadioHandheldNF
+  materials:
+    Plastic: 500
+
+- type: latheRecipe
+  id: OreBag
+  parent: NFBaseToolsRecipe
+  result: OreBag
+  materials:
+    Steel: 500
+    Cloth: 500
+
+- type: latheRecipe
+  id: ConstructionBag
+  parent: NFBaseToolsRecipe
+  result: ConstructionBag
+  materials:
+    Steel: 500
+    Cloth: 500
+
+- type: latheRecipe
+  id: PlantBag
+  parent: NFBaseToolsRecipe
+  result: PlantBag
+  materials:
+    Steel: 500
+    Cloth: 500
+
+- type: latheRecipe
+  id: ShipyardRCD
+  result: ShipyardRCDEmpty
+  parent: NFBaseToolsRecipe
+  completetime: 4
+  materials:
+    Steel: 1000
+    Plastic: 300
+
+- type: latheRecipe
+  id: ShipyardRCDAmmo
+  result: ShipyardRCDAmmo
+  parent: NFBaseToolsRecipe
+  completetime: 2.4
+  materials:
+    Steel: 500
+    Plastic: 250
+
+# Migrated from Recipes/Lathes/tools.yml
+- type: latheRecipe
+  id: RPED
+  parent: NFBaseToolsRecipe
+  result: RPED
+  completetime: 10
+  materials:
+    Steel: 650
+    Plastic: 150
+    Gold: 50
+
+# Holopickaxe
+- type: latheRecipe
+  id: NFEnergyPickaxe
+  result: NFEnergyPickaxe
+  category: Tools
+  completetime: 4
+  materials:
+    Steel: 1000
+    Plastic: 500
+    Glass: 500
+    Gold: 800

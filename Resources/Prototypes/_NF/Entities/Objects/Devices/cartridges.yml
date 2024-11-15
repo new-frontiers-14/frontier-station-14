@@ -1,8 +1,17 @@
 - type: entity
   parent: BaseItem
+  id: NFBasePDACartridge
+  abstract: true
+  components:
+  - type: Cartridge
+    disposable: true
+    autoInstall: true
+
+- type: entity
+  parent: NFBasePDACartridge
   id: BountyContractsCartridge
   name: bounty contracts cartridge
-  description: A program for tracking and placing bounty contracts
+  description: A program for tracking and placing bounty contracts.
   components:
     - type: Sprite
       sprite: Objects/Devices/cartridge.rsi
@@ -18,3 +27,40 @@
     - type: BountyContractsCartridge
     - type: AccessReader
       access: [["HeadOfSecurity"], ["HeadOfPersonnel"]]
+
+- type: entity
+  parent: NFBasePDACartridge
+  id: AppraisalCartridge
+  name: AppraiseAll cartridge
+  description: A program for appraising the monetary value of items.
+  components:
+    - type: Sprite
+      sprite: _NF/Objects/Devices/cartridge.rsi
+      state: cart-appraisal
+    - type: Icon
+      sprite: _NF/Objects/Devices/cartridge.rsi
+      state: cart-appraisal
+    - type: UIFragment
+      ui: !type:AppraisalUi
+    - type: Cartridge
+      programName: appraisal-program-name
+      icon: Objects/Tools/appraisal-tool.rsi/icon.png
+    - type: AppraisalCartridge
+
+# Not a PDA cartridge (then why is this here)
+- type: entity
+  parent: BaseItem
+  id: ContrabandForensicsModule
+  name: contraband forensics module
+  description: A program for scanning and reporting contraband dead drops and pods for bounties.
+  components:
+    - type: Sprite
+      sprite: _NF/Objects/Devices/cartridge.rsi
+      state: contraband_forensics
+    - type: Icon
+      sprite: _NF/Objects/Devices/cartridge.rsi
+      state: contraband_forensics
+    - type: ForensicsCartridge
+    - type: GuideHelp
+      guides:
+      - Forensics

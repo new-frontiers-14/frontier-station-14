@@ -1,84 +1,91 @@
+# Base prototypes
+
+- type: latheRecipe
+  abstract: true
+  id: BaseServiceItemsRecipe
+  category: KitchenNF
+  completetime: 1
+  materials:
+    Steel: 75
+
+# Recipes
+
 - type: latheRecipe
   id: ServiceRollingPin
   result: RollingPin
-  completetime: 1
+  parent: BaseServiceItemsRecipe
   materials:
     Wood: 200
 
 - type: latheRecipe
   id: ServiceSpoon
   result: Spoon
-  completetime: 1
-  materials:
-    Steel: 75
+  parent: BaseServiceItemsRecipe
 
 - type: latheRecipe
   id: ServiceFork
   result: Fork
-  completetime: 1
-  materials:
-    Steel: 75
+  parent: BaseServiceItemsRecipe
 
 - type: latheRecipe
   id: ServicePairedChopsticks
   result: PairedChopsticks
-  completetime: 1
+  parent: BaseServiceItemsRecipe
   materials:
     Glass: 100
 
 - type: latheRecipe
   id: ServiceFoodBowlBig
   result: FoodBowlBig
-  completetime: 1
+  parent: BaseServiceItemsRecipe
   materials:
     Glass: 100
 
 - type: latheRecipe
   id: ServiceFoodPlate
   result: FoodPlate
-  completetime: 1
+  parent: BaseServiceItemsRecipe
   materials:
     Glass: 150
 
 - type: latheRecipe
   id: ServiceFoodPlateSmall
   result: FoodPlateSmall
-  completetime: 1
+  parent: BaseServiceItemsRecipe
   materials:
     Glass: 75
 
 - type: latheRecipe
   id: ServiceFoodPlateTin
   result: FoodPlateTin
-  completetime: 1
+  parent: BaseServiceItemsRecipe
   materials:
     Steel: 150
 
 - type: latheRecipe
   id: ServiceFoodKebabSkewer
   result: FoodKebabSkewer
-  completetime: 1
-  materials:
-    Steel: 75
+  parent: BaseServiceItemsRecipe
 
 - type: latheRecipe
   id: NapkinDrum
   result: NapkinDrum
-  completetime: 1
-  materials:
-    Steel: 75
+  parent: BaseServiceItemsRecipe
+  applyMaterialDiscount: false
 
 - type: latheRecipe
   id: Napkin
   result: Napkin
+  parent: BaseServiceItemsRecipe
   completetime: 0.1
+  applyMaterialDiscount: false
   materials:
-    Wood: 10
+    Paper: 10
 
 - type: latheRecipe
   id: ServiceSelectiveDropper
   result: ServiceSelectiveDropper
-  completetime: 2
+  parent: BaseServiceItemsRecipe
   materials:
     Glass: 200
     Plastic: 100

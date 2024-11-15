@@ -8,6 +8,9 @@ ghost-role-information-emotional-support-rules = You are an [color=lightpink][bo
 ghost-role-information-clippy-name = Clippy
 ghost-role-information-clippy-description = The Station Representative's loyal worker, smells like cardboard and papers.
 
+ghost-role-information-clugg-name = Clugg
+ghost-role-information-clugg-description = Ugg! Clugg love eat meat. Find new home off space rock, make big hunt.
+
 ghost-role-information-clarpy-name = Clarpy
 ghost-role-information-clarpy-description = Avast ye mail! wanted by Nanotrasen for crimes against mice.
 ghost-role-information-clarpy-rules = You are a [color=red][bold]Team Antagonist[/bold][/color] with all other pirates.
@@ -24,12 +27,37 @@ ghost-role-information-mistake-description = Ymg' ph'nglui ah li.
 ghost-role-information-ert-mailcarrier-name = ERT Mail Carrier
 ghost-role-information-ert-mailcarrier-description = Assist with delivery efforts to resolve the station's issues.
 
-ghost-role-information-jerma-name = Jerma
-ghost-role-information-jerma-description = Pog moment
-
 ghost-role-information-baby-dragon-name = Baby space dragon
 ghost-role-information-baby-dragon-description = Hatch from your egg and go on incredible adventures with your mom and their crew!
 ghost-role-information-baby-dragon-rules = You are a [color=#6495ed][bold]Familiar[/bold][/color]. Serve the interests of your new mom, whatever those may be.
                                         You don't remember any of your previous life, and you don't remember anything you learned as a ghost.
                                         You are allowed to remember knowledge about the game in general, such as how to cook, how to use objects, etc.
                                         You are absolutely [color=red]NOT[/color] allowed to remember, say, the name, appearance, etc. of your previous character.
+
+ghost-role-information-taxibot-name = Taxibot
+ghost-role-information-taxibot-description = Drive passengers to where they need to go.
+
+ghost-role-information-hovertaxibot-name = Hovertaxibot
+ghost-role-information-hovertaxibot-description = Fly passengers to where they need to go, remember to check they can breathe!
+
+# Adopted from space-wizards #26265 (Thank you, PolterTzi)
+ghost-role-information-yipyip-name = Yip Yip
+ghost-role-information-yipyip-description = Notorious lounge lizard and bartender at Bahama Mama's. This drink-slinging kobold lives to serve his patrons.
+
+ghost-role-information-aberrant-flesh-horror-dungeon-name = Aberrant flesh horror
+ghost-role-information-aberrant-flesh-horror-dungeon-description = Defend the expedition dungeon with other flesh monstrosities!
+
+ghost-role-information-explorer-captain-dungeon-name = Explorer Captain
+ghost-role-information-explorer-captain-dungeon-description = You got to this facility first! Defend the expedition dungeon and your loot with other explorers!
+
+ghost-role-information-punk-boss-dungeon-name = Punk gang leader
+ghost-role-information-punk-boss-dungeon-description = Defend the expedition dungeon and your loot with other punks from NT squares!
+
+ghost-role-information-dungeon-boss-rules = You are a [color=red][bold]Team Antagonist[/bold][/color] with all dungeon mobs.
+                                        Fight players within the dungeon, defend your dungeon.
+                                        Please note that [color=yellow]all server rules still apply.[/color] Additionally:
+                                        - [color=red]DO NOT[/color] damage player shuttles or their contents.
+                                        - [color=red]DO NOT[/color] hide from players to run down the expedition timer.
+                                        - [color=red]DO NOT[/color] gib players. Once they're dead, leave them be.
+                                        - [color=red]DO NOT[/color] destroy or hide valuable loot in the dungeon.
+                                        - [color=red]DO NOT[/color] leave the planet.

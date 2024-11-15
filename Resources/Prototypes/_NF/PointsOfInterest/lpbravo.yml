@@ -1,0 +1,37 @@
+# Author Info
+# GitHub: 
+# Discord: Checkraze
+
+# Maintainer Info
+# GitHub: ???
+# Discord: ???
+
+# Notes:
+# just a little loot n shoot POI. Pretty much the second POI to even exist
+- type: pointOfInterest
+  id: LPBravo
+  name: 'Listening Point Bravo'
+  rangeMin: 4000
+  rangeMax: 6000
+  IFFColor: "#C83737" #red the color of ebil
+  IFFFlags: [HideLabel, Hide] # Invisible
+  allowIFFChanges: true
+  hideWarp: true
+  spawnGroup: SyndicateFOB
+  gridPath: /Maps/_NF/POI/lpbravo.yml
+
+- type: gameMap
+  id: LPBravo
+  mapName: 'Listening Point Bravo'
+  mapPath: /Maps/_NF/POI/lpbravo.yml
+  minPlayers: 0
+  stations:
+    LPBravo:
+      # FIXME: no records despite shipyard console, could currently be gamed
+      stationProto: StandardFrontierOutpost
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Listening Point Bravo'
+        - type: StationJobs
+          availableJobs: {}
+        - type: StationDeadDropHintExempt

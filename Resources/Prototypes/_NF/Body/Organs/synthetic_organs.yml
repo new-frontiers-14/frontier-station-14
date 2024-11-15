@@ -1,7 +1,7 @@
 # Organs with boosted metabolizm
 - type: entity
   id: OrganSyntheticHeart
-  parent: BaseHumanOrgan
+  parent: [BaseHumanOrgan, BaseC3SyndicateContraband] # Frontier: add BaseC3SyndicateContraband
   name: synthetic heart
   description: "Whirrs and pumps blood."
   components:
@@ -16,11 +16,10 @@
 #    - id: Poison
 #    - id: Narcotic
 #    - id: Toxins
-  - type: Contraband
 
 - type: entity
   id: OrganSyntheticLiver
-  parent: BaseHumanOrgan
+  parent: [BaseHumanOrgan, BaseC3SyndicateContraband] # Frontier: add BaseC3SyndicateContraband
   name: synthetic liver
   description: "Filters toxins from the bloodstream at higher rate than old 'ganic liver."
   components:
@@ -38,11 +37,10 @@
       rateModifier: 10 # removes Narcotic fast
 #    - id: Toxins # Frontier - Restore this later
 #      rateModifier: 20 # removes Toxins fast
-  - type: Contraband
 
 - type: entity
   id: OrganSyntheticKidneys
-  parent: BaseHumanOrgan
+  parent: [BaseHumanOrgan, BaseC3SyndicateContraband] # Frontier: add BaseC3SyndicateContraband
   name: synthetic kidneys
   description: "Filters toxins from the bloodstream at higher rate than old 'ganic liver."
   components:
@@ -54,4 +52,3 @@
     maxReagents: 5
     metabolizerTypes: [Human]
     removeEmpty: true
-  - type: Contraband

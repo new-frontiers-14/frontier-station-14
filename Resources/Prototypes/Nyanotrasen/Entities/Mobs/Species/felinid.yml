@@ -55,6 +55,11 @@
   - type: TypingIndicator
     proto: felinid
   - type: PseudoItem
+    storedOffset: 0,17
+    shape:
+      - 0,0,1,4
+      - 0,2,3,4
+      - 4,0,5,4
   - type: Vocal
     wilhelm: "/Audio/Nyanotrasen/Voice/Felinid/cat_wilhelm.ogg"
     sounds:
@@ -66,9 +71,6 @@
     factions:
     - NanoTrasen
     - Felinid # Frontier
-  - type: SizeAttributeWhitelist # Frontier
-    tall: true
-    tallscale: 1
   - type: Reactive
     groups:
       Flammable: [ Touch ]
@@ -85,13 +87,15 @@
         emote: Scream
         probability: 0.2
   - type: NoShoesSilentFootsteps
+  - type: TallWhitelist # Frontier
+    scale: 1 # Frontier
 
 - type: entity
   save: false
   name: Urist McFelinid
   parent: MobHumanDummy
   id: MobFelinidDummy
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   description: A dummy felinid meant to be used in character setup.
   components:
   - type: HumanoidAppearance

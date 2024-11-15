@@ -271,7 +271,9 @@
 
 # NFSD
 - type: entity
-  parent: VehicleHoverbikeMailcarrier
+  parent:
+  - VehicleHoverbikeMailcarrier
+  - BaseC2ContrabandUnredeemable
   id: VehicleHoverbikeNfsd
   name: nfsd hoverbike
   description: An NFSD issued turbine with bike handles. Very safe.
@@ -366,7 +368,9 @@
 
 # Pirate
 - type: entity
-  parent: VehicleHoverbikeMailcarrier
+  parent:
+  - VehicleHoverbikeMailcarrier
+  - BaseC3PirateContraband
   id: VehicleHoverbikePirate
   name: pirate hoverbike
   description: Yarr! Dis be me sovereign space shuttle. Now, whaur me rum?
@@ -414,7 +418,6 @@
             - Gun
     sprite: _NF/Objects/Vehicles/hoverbike.rsi
   - type: Appearance
-  - type: Contraband
 
 - type: entity
   parent: VehicleHoverbikePirate
@@ -445,7 +448,9 @@
 
 # Syndicate
 - type: entity
-  parent: VehicleHoverbikeMailcarrier
+  parent:
+  - VehicleHoverbikeMailcarrier
+  - BaseC3SyndicateContraband
   id: VehicleHoverbikeSyndicate
   name: syndicate hoverbike
   description: This thing screams style. And war crimes.
@@ -497,7 +502,6 @@
     color: green
     radius: 6
     energy: 3
-  - type: Contraband
 
 - type: entity
   parent: VehicleHoverbikeSyndicate

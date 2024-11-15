@@ -5,23 +5,34 @@
   playTimeTracker: JobHeadOfSecurity
   requirements:
     - !type:OverallPlaytimeRequirement
-      time: 129600 # Frontier - 36 hours
-    - !type:RoleTimeRequirement
-      role: JobSeniorOfficer
-      time: 43200 # Frontier - 12 hrs
-    - !type:RoleTimeRequirement
-      role: JobWarden
-      time: 43200 # Frontier - 12 hrs
+      time: 129600 # 36 hours
     - !type:DepartmentTimeRequirement
       department: Security
-      time: 43200 # 12 hrs
+      time: 86400 # 24 hours
+    - !type:RoleTimeRequirement
+      role: JobWarden
+      time: 21600 # 6 hours
+    - !type:RoleTimeRequirement
+      role: JobSeniorOfficer
+      time: 43200 # 12 hours
+  alternateRequirementSets:
+    longerPlaytimeLessSec:
+    - !type:OverallPlaytimeRequirement
+      time: 1080000 # 300 hours
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 64800 # 18 hours
+    - !type:RoleTimeRequirement
+      role: JobWarden
+      time: 21600 # 6 hours
   whitelisted: true
-  weight: 10
   startingGear: SheriffGear
   alwaysUseSpawner: true
-  icon: "JobIconHeadOfSecurity" # Frontier
+  icon: JobIconSheriff
   requireAdminNotify: true
   supervisors: job-supervisors-centcom
+  weight: 180
+  displayWeight: 70
   whitelistRequired: true
   canBeAntag: false
   accessGroups:
@@ -39,14 +50,13 @@
 - type: startingGear
   id: SheriffGear
   equipment:
-    ears: ClothingHeadsetAltNfsdCreamandBrown # Frontier
     pocket1: WeaponPistolMk58 #WeaponPistolMk58Nonlethal
-    pocket2: HoloprojectorNfsd # Frontier
+    pocket2: WeaponEnergyGunMultiphase # DeltaV gun
   storage:
     back:
     - NfsdTechFabFlatpack
     - Multitool
-    - WeaponEnergyGunMultiphase # Frontier - DeltaV gun
+    - HoloprojectorNfsd
     - DoorRemoteNfsd
     - BaseSecurityUplinkRadioSheriff
     - ClothingNeckNfsdBadgeSheriff

@@ -1,0 +1,133 @@
+# Special glass airlocks for dungeons that block lasers
+# Base
+- type: entity
+  id: AirlockGlassMurkyDungeon
+  abstract: true
+  suffix: DO NOT MAP, Dungeon only
+  description: An airlock with murky glass windows, it's hard to see what's on the other side.
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,0.49"
+        density: 100
+        mask:
+        - FullTileMask
+        layer:
+        - AirlockLayer # Blocks lasers, but not LoS
+
+# Basic airlock
+- type: entity
+  id: AirlockGlassDungeon
+  parent:
+  - AirlockGlassMurkyDungeon
+  - AirlockGlass
+  categories: [ HideSpawnMenu ]
+
+# Maint airlock
+- type: entity
+  id: AirlockMaintGlassLockedDungeon
+  parent:
+  - AirlockGlassMurkyDungeon
+  - AirlockMaintGlassLocked
+  categories: [ HideSpawnMenu ]
+
+# Engineering airlocks
+- type: entity
+  id: AirlockEngineeringGlassDungeon
+  parent:
+  - AirlockGlassMurkyDungeon
+  - AirlockEngineeringGlass
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: AirlockEngineeringGlassLockedDungeon
+  parent:
+  - AirlockGlassMurkyDungeon
+  - AirlockEngineeringGlassLocked
+  categories: [ HideSpawnMenu ]
+
+# Security airlocks
+- type: entity
+  id: AirlockSecurityGlassDungeon
+  parent:
+  - AirlockGlassMurkyDungeon
+  - AirlockSecurityGlass
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: AirlockSecurityGlassLockedDungeon
+  parent:
+  - AirlockGlassMurkyDungeon
+  - AirlockSecurityGlassLocked
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: AirlockBrigGlassLockedDungeon
+  parent:
+  - AirlockGlassMurkyDungeon
+  - AirlockBrigGlassLocked
+  categories: [ HideSpawnMenu ]
+
+# Mining airlocks
+- type: entity
+  id: AirlockMiningGlassDungeon
+  parent:
+  - AirlockGlassMurkyDungeon
+  - AirlockMiningGlass
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: AirlockMiningGlassLockedDungeon
+  parent:
+  - AirlockGlassMurkyDungeon
+  - AirlockMiningGlassLocked
+  categories: [ HideSpawnMenu ]
+
+# Virology airlocks
+- type: entity
+  id: AirlockVirologyGlassDungeon
+  parent:
+  - AirlockGlassMurkyDungeon
+  - AirlockVirologyGlass
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: AirlockVirologyGlassLockedDungeon
+  parent:
+  - AirlockGlassMurkyDungeon
+  - AirlockVirologyGlassLocked
+  categories: [ HideSpawnMenu ]
+
+# Mercenary airlocks
+- type: entity
+  id: AirlockMercenaryGlassDungeon
+  parent:
+  - AirlockGlassMurkyDungeon
+  - AirlockMercenaryGlass
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: AirlockMercenaryGlassLockedDungeon
+  parent:
+  - AirlockGlassMurkyDungeon
+  - AirlockMercenaryGlassLocked
+  categories: [ HideSpawnMenu ]
+
+# Science airlock
+- type: entity
+  id: AirlockScienceGlassLockedDungeon
+  parent:
+  - AirlockGlassMurkyDungeon
+  - AirlockScienceGlassLocked
+  categories: [ HideSpawnMenu ]
+
+# Hydroponics ailock
+- type: entity
+  id: AirlockHydroGlassLockedDungeon
+  parent:
+  - AirlockGlassMurkyDungeon
+  - AirlockHydroGlassLocked
+  categories: [ HideSpawnMenu ]

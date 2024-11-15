@@ -1,6 +1,5 @@
 using Content.Shared.Salvage.Expeditions;
 using JetBrains.Annotations;
-using Robust.Client.GameObjects;
 
 namespace Content.Client.Salvage.UI;
 
@@ -25,6 +24,7 @@ public sealed class SalvageExpeditionConsoleBoundUserInterface : BoundUserInterf
                 Index = index,
             });
         };
+        _window.FinishMission += () => SendMessage(new FinishSalvageMessage()); // Frontier
         _window.OnClose += Close;
         _window?.OpenCenteredLeft();
     }

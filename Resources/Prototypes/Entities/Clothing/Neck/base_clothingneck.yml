@@ -1,6 +1,6 @@
 - type: entity
   abstract: true
-  parent: Clothing
+  parent: [Clothing, RecyclableItemClothSmall] # Frontier: added RecyclableItemClothSmall
   id: ClothingNeckBase
   components:
   - type: Item
@@ -38,3 +38,5 @@
   - type: Tag
     tags:
     - Scarf
+    - ClothMade
+    - WhitelistChameleon

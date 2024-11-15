@@ -38,9 +38,12 @@
   - type: ItemSlots
   - type: ContainerContainer
     containers:
-      ShipyardConsole-targetId: !type:ContainerSlot {}
+      board: !type:Container
+      ShipyardConsole-targetId: !type:ContainerSlot
+  - type: Computer
+    board: Null
 
-# Hardcoded consoles
+# Concrete consoles
 - type: entity
   parent: ComputerShipyardBase
   id: ComputerShipyard
@@ -104,7 +107,7 @@
 
 - type: entity
   id: ComputerShipyardSyndicate
-  parent: [BaseStructureDisableToolUse, BaseStructureDestructible, ComputerShipyard]
+  parent: [BaseStructureDisableToolUse, BaseStructureDestructible, ComputerShipyardBase]
   name: syndicate shipyard console
   description: Used to buy ships not available through other means. Has a sticker that says SALES TAX 30%
   components:
@@ -129,10 +132,11 @@
     shipyardChannel: Syndicate
     secretShipyardChannel: Nfsd
     salesTax: 0.3
+    canTransferDeed: false
 
 - type: entity
   id: ComputerShipyardBlackMarket
-  parent: [BaseStructureDisableToolUse, BaseStructureDestructible, ComputerShipyard]
+  parent: [BaseStructureDisableToolUse, BaseStructureDestructible, ComputerShipyardBase]
   name: black market shipyard console
   description: Used to buy ships not available through other means. Has a sticker that says SALES TAX 30%
   components:
@@ -157,6 +161,7 @@
     shipyardChannel: Freelance
     secretShipyardChannel: Nfsd
     salesTax: 0.3
+    canTransferDeed: false
 
 - type: entity
   id: ComputerShipyardExpedition
@@ -208,9 +213,9 @@
 
 - type: entity
   id: ComputerShipyardSr
-  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerShipyard]
-  name: sr shipyard console
-  description: Used to buy vessels exclusive to the station representative
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerShipyardBase]
+  name: frontier staff shipyard console
+  description: Used to buy vessels exclusive to Frontier Outpost personnel.
   components:
   - type: ActivatableUI
     key: enum.ShipyardConsoleUiKey.Sr

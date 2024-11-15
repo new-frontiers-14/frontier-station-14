@@ -1,3 +1,4 @@
+# region Standard
 - type: entity
   parent: Airlock
   id: AirlockMercenary
@@ -15,8 +16,9 @@
   components:
   - type: Sprite
     sprite: _NF/Structures/Doors/Airlocks/Standard/nfsd.rsi
+# endregion
 
-# Glass
+# region Glass
 - type: entity
   parent: AirlockGlass
   id: AirlockMercenaryGlass
@@ -29,7 +31,6 @@
   - type: Wires
     layoutId: AirlockSecurity
 
-#Glass
 - type: entity
   parent: AirlockGlass
   id: AirlockNfsdGlass
@@ -44,9 +45,32 @@
     layoutId: AirlockSecurity
 
 - type: entity
+  parent: AirlockMedicalGlass
+  id: AirlockMedicalGlassLockedSecurity
+  suffix: Locked, Security
+  components:
+  - type: Wires
+    layoutId: AirlockSecurity
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSecurity ]
+# endregion
+
+# region External
+- type: entity
   parent: AirlockGlassShuttle
   id: AirlockExternalGlassShuttleTransit
   suffix: External, PubTrans, Glass, Docking
   components:
-    - type: PriorityDock
-      tag: DockTransit
+  - type: PriorityDock
+    tag: DockTransit
+
+- type: entity
+  parent: AirlockGlassShuttle
+  id: AirlockExternalGlassShuttleMcCargo
+  suffix: External, McCargo, Glass, Docking
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Docking
+    name: McDrive Thru
+# endregion

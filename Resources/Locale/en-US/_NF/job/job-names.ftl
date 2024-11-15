@@ -4,7 +4,7 @@ job-name-brigmedic = Brigmedic
 job-name-cadet-nf = Cadet
 job-name-contractor = Contractor
 job-name-deputy = Deputy
-job-name-detective-nf = Detective
+job-name-nf-detective = Detective
 job-name-ertmailcarrier = ERT Mail Carrier
 job-name-mercenary = Mercenary
 job-name-pilot = Pilot
@@ -15,6 +15,7 @@ job-name-security-guard = Security Guard
 job-name-sheriff = Sheriff
 job-name-stc = Station Traffic Controller
 job-name-sr = Station Representative
+job-name-pal = Public Affairs Liaison
 
 # Role timers - Make these alphabetical or I cut you
 JobERTMailCarrier = ERT Mail Carrier

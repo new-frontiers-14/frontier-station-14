@@ -1,6 +1,7 @@
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Shared.Audio.Jukebox;
+using Content.Shared.Power;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Components;
@@ -56,6 +57,12 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
             }
 
             component.AudioStream = Audio.PlayPvs(jukeboxProto.Path, uid, AudioParams.Default.WithMaxDistance(10f))?.Entity;
+            // Frontier: wallmount jukebox
+            if (TryComp<TransformComponent>(component.AudioStream, out var xform))
+            {
+                xform.LocalPosition = component.AudioOffset;
+            }
+            // End Frontier
             Dirty(uid, component);
         }
     }

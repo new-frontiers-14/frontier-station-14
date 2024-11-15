@@ -1,0 +1,87 @@
+# Special windoors for dungeons that block lasers
+# Base
+- type: entity
+  id: WindoorMurkyDungeon
+  abstract: true
+  suffix: DO NOT MAP, Dungeon only
+  description: A windoor with murky glass, it's hard to see what's on the other side.
+  components:
+  - type: Sprite
+    sprite: Structures/Doors/Windoors/windoor.rsi
+    color: "#ffd38c"
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,-0.36"
+        density: 1500
+        mask:
+        - TabletopMachineMask
+        layer:
+        - AirlockLayer # Blocks lasers, but not LoS
+
+# Common windoor
+- type: entity
+  id: WindoorDungeon
+  parent:
+  - WindoorMurkyDungeon
+  - Windoor
+  categories: [ HideSpawnMenu ]
+
+# Secure windoor
+- type: entity
+  id: WindoorSecureDungeon
+  parent:
+  - WindoorMurkyDungeon
+  - WindoorSecure
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: WindoorSecureEngineeringLockedDungeon
+  parent:
+  - WindoorMurkyDungeon
+  - WindoorSecureEngineeringLocked
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: WindoorSecureBrigLockedDungeon
+  parent:
+  - WindoorMurkyDungeon
+  - WindoorSecureBrigLocked
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: WindoorSecureMedicalLockedDungeon
+  parent:
+  - WindoorMurkyDungeon
+  - WindoorSecureMedicalLocked
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: WindoorSecureSecurityLockedDungeon
+  parent:
+  - WindoorMurkyDungeon
+  - WindoorSecureSecurityLocked
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: WindoorSecureMercenaryLockedDungeon
+  parent:
+  - WindoorMurkyDungeon
+  - WindoorSecureMercenaryLocked
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: WindoorPlasmaDungeon
+  parent:
+  - WindoorMurkyDungeon
+  - WindoorPlasma
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: WindoorSecurePlasmaDungeon
+  parent:
+  - WindoorMurkyDungeon
+  - WindoorSecurePlasma
+  categories: [ HideSpawnMenu ]

@@ -68,10 +68,20 @@
   - type: FriedTrait
 
 - type: entity
+  name: spooky
+  id: MobCatSpooky
+  parent: MobCatCrispy
+  description: A grave mistake.
+  suffix: Admeme # only way to get it at the moment
+  components:
+  - type: FriedTrait
+    crispinessLevelSet: Spectral
+
+- type: entity
   name: dragon omelette
   parent: FoodMealBase
   id: FoodMealDragonOmelette
-  description:
+  description: The mother of all omelettes.
   components:
   - type: FlavorProfile
     flavors:
@@ -96,3 +106,246 @@
   - type: Tag
     tags:
     - Meat
+
+- type: entity
+  name: avocado toast
+  parent: FoodBreadSliceBase
+  id: FoodBreadAvocadoToast
+  description: It was this or home ownership.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - avocado
+      - bread
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/Baked/bread.rsi
+    state: avocadotoast
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 25
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 9
+        - ReagentId: Vitamin
+          Quantity: 5
+        - ReagentId: Flavorol
+          Quantity: 1
+
+- type: entity
+  name: breakfast bagel
+  parent: FoodBagelBase
+  id: FoodMealBreakfastBagel
+  description: For when your morning egg sandwich needs a touch of green and quadruple the asking price.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - avocado
+      - bread
+      - egg
+      - cheese
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/Baked/bread.rsi
+    state: breakfastbagel
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 25
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 9
+        - ReagentId: Vitamin
+          Quantity: 5
+        - ReagentId: Flavorol
+          Quantity: 1
+
+- type: entity
+  name: poppyseed breakfast bagel
+  parent: FoodBagelPoppy
+  id: FoodMealBreakfastBagelPoppy
+  description: The miners breakfast. Take a bite everytime you get punched in the face.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - avocado
+      - bread
+      - egg
+      - cheese
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/Baked/bread.rsi
+    state: breakfastbagelpoppy
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 25
+        reagents:
+        - ReagentId: Bicaridine
+          Quantity: 5
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: Protein
+          Quantity: 7
+        - ReagentId: Flavorol
+          Quantity: 5
+  - type: Tag
+    tags:
+    - Meat
+
+- type: entity
+  name: cucumber sandwich
+  parent: FoodBagelBase
+  id: FoodMealCucumberSandwich
+  description: They forgot to cut the crusts off AGAIN.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - cucumber
+      - bread
+      - mayonnaise
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/Baked/bread.rsi
+    state: cucumbersandwich
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 25
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 9
+        - ReagentId: Vitamin
+          Quantity: 5
+        - ReagentId: CucumberWater
+          Quantity: 10
+  - type: Tag
+    tags:
+    - Meat
+
+- type: entity
+  name: greek salad
+  parent: FoodBowlBase
+  id: FoodSaladGreek
+  description: This is the salad everyone is eating in those commercials.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - cheesy
+      - cucumber
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/bowl.rsi
+    layers:
+    - state: bowl
+    - state: greek
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 8
+        - ReagentId: Vitamin
+          Quantity: 6
+        - ReagentId: Flavorol
+          Quantity: 5
+        - ReagentId: CucumberWater
+          Quantity: 10
+  - type: Tag
+    tags:
+    - Vegetable
+    - Fruit
+
+- type: entity
+  name: avocado salad
+  parent: FoodBowlBase
+  id: FoodSaladAvocado
+  description: You were so close to making guacamole. So close.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - avocado
+      - cucumber
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/bowl.rsi
+    layers:
+    - state: bowl
+    - state: avocado
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 8
+        - ReagentId: Vitamin
+          Quantity: 6
+        - ReagentId: Flavorol
+          Quantity: 5
+        - ReagentId: CucumberWater
+          Quantity: 10
+  - type: Tag
+    tags:
+    - Vegetable
+    - Fruit
+
+- type: entity
+  name: poached pears
+  parent: FoodBowlBase
+  id: FoodMealPoachedPears
+  description: The classiest use for a can of wine.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - fruity
+      - alcohol
+      - pear
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/bowl.rsi
+    layers:
+    - state: bowl
+    - state: poachedpear
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 25
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 12
+        - ReagentId: Vitamin
+          Quantity: 5
+        - ReagentId: Flavorol
+          Quantity: 8
+  - type: Tag
+    tags:
+    - Fruit
+
+- type: entity
+  name: pears belle helene
+  parent: FoodBowlBase
+  id: FoodMealPearsBelleHelene
+  description: The delicate flavor of the immaculate pear drenched in chocolate.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - chocolate
+      - pear
+      - creamy
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/bowl.rsi
+    layers:
+    - state: bowl
+    - state: bellepear
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 35
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 12
+        - ReagentId: Vitamin
+          Quantity: 8
+        - ReagentId: Flavorol
+          Quantity: 8
+        - ReagentId: Theobromine
+          Quantity: 3
+  - type: Tag
+    tags:
+    - Fruit

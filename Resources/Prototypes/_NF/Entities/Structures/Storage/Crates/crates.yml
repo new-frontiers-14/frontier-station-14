@@ -2,6 +2,7 @@
   parent: CrateBaseWeldable
   id: CratePlasticBiodegradable
   name: biodegradable plastic crate
+  description: Feels incredibly flimsy.
   components:
   - type: Icon
     sprite: Structures/Storage/Crates/plastic.rsi
@@ -13,7 +14,7 @@
     containers:
     - entity_storage
   - type: StaticPrice
-    price: 0
+    price: 15 # 12 spesos at 0.75x, proportional to the plastic crate if deconstructable for 1 sheet
 
 - type: entity
   parent: CrateBaseSecure
@@ -29,7 +30,7 @@
   parent: CrateTradeBaseSecure
   id: CrateTradeBaseSecureNormal
   name: cargo steel crate
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Icon
     sprite: _NF/Structures/Storage/Crates/tradedark.rsi
@@ -55,7 +56,7 @@
   parent: CrateTradeBaseSecure
   id: CrateTradeBaseSecureHigh
   name: high value cargo steel crate
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Icon
     sprite: _NF/Structures/Storage/Crates/tradelight.rsi
@@ -78,15 +79,14 @@
     price: 2000
 
 - type: entity
-  parent: CrateTradeBaseSecure
-  id: CrateTradeContrabandSecureNormal
+  parent:
+  - CrateTradeBaseSecure
+  - BaseC3SyndicateContraband
+  id: CrateTradeBaseSecureContraband
   name: Syndicate contraband crate
-  noSpawn: true
+  description: Contains goods made in the Spinward sector, ready to be smuggled to a cargo depot for profit. MAKE SURE THE CRATE IS INTACT.
+  abstract: true
   components:
-  - type: Icon
-    sprite: _NF/Structures/Storage/Crates/contraband_crate.rsi
-  - type: Sprite
-    sprite: _NF/Structures/Storage/Crates/contraband_crate.rsi
   - type: EntityStorage
     deleteContentsOnDestruction: true
   - type: Fixtures
@@ -95,71 +95,82 @@
         shape:
           !type:PhysShapeAabb
           bounds: "-0.4,-0.4,0.4,0.29"
-        density: 150 # Heavy
+        density: 400 # Very heavy
         mask:
         - SmallMobMask
         layer:
         - MachineLayer
+  - type: Contraband
+    turnInValues:
+      FrontierUplinkCoin: 3
+      Doubloon: 2
+  - type: DisableShipyardSale
+    reason: shipyard-console-contraband-onboard
+    allowedShipyardTypes:
+    - Syndicate
+    - BlackMarket
+
+- type: entity
+  parent: CrateTradeBaseSecureContraband
+  id: CrateTradeContrabandSecure1
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Icon
+    sprite: _NF/Structures/Storage/Crates/contraband1_crate.rsi
+  - type: Sprite
+    sprite: _NF/Structures/Storage/Crates/contraband1_crate.rsi
+  - type: StaticPrice
+    price: 3000
+
+- type: entity
+  parent: CrateTradeBaseSecureContraband
+  id: CrateTradeContrabandSecure2
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Icon
+    sprite: _NF/Structures/Storage/Crates/contraband2_crate.rsi
+  - type: Sprite
+    sprite: _NF/Structures/Storage/Crates/contraband2_crate.rsi
+  - type: StaticPrice
+    price: 5000
+
+- type: entity
+  parent: CrateTradeBaseSecureContraband
+  id: CrateTradeContrabandSecure3
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Icon
+    sprite: _NF/Structures/Storage/Crates/contraband3_crate.rsi
+  - type: Sprite
+    sprite: _NF/Structures/Storage/Crates/contraband3_crate.rsi
   - type: StaticPrice
     price: 7500
-  - type: Contraband
-    value: 5
 
 - type: entity
-  parent: CrateTradeBaseSecure
-  id: CrateTradeContrabandSecureDonk
+  parent: CrateTradeBaseSecureContraband
+  id: CrateTradeContrabandSecure4
   name: Donk Co. contraband crate
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Icon
     sprite: _NF/Structures/Storage/Crates/donkco_crate.rsi
   - type: Sprite
     sprite: _NF/Structures/Storage/Crates/donkco_crate.rsi
-  - type: EntityStorage
-    deleteContentsOnDestruction: true
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-0.4,-0.4,0.4,0.29"
-        density: 400 # Very heavy
-        mask:
-        - SmallMobMask
-        layer:
-        - MachineLayer
   - type: StaticPrice
     price: 15000
-  - type: Contraband
-    value: 5
 
 - type: entity
-  parent: CrateTradeBaseSecure
-  id: CrateTradeContrabandSecureCyberSun
+  parent: CrateTradeBaseSecureContraband
+  id: CrateTradeContrabandSecure5
   name: Cybersun Industries contraband crate
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Icon
     sprite: _NF/Structures/Storage/Crates/cybersun_crate.rsi
   - type: Sprite
     sprite: _NF/Structures/Storage/Crates/cybersun_crate.rsi
-  - type: EntityStorage
-    deleteContentsOnDestruction: true
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-0.4,-0.4,0.4,0.29"
-        density: 400 # Very heavy
-        mask:
-        - SmallMobMask
-        layer:
-        - MachineLayer
   - type: StaticPrice
     price: 15000
-  - type: Contraband
-    value: 5
 
 - type: entity
   parent: CrateSecgear
@@ -198,6 +209,16 @@
     access: [["Security"]]
 
 - type: entity
+  parent: CrateGenericSteel
+  id: CrateAmmoGeneric
+  name: ammo crate
+  components:
+  - type: Icon
+    sprite: _NF/Structures/Storage/Crates/ammo.rsi
+  - type: Sprite
+    sprite: _NF/Structures/Storage/Crates/ammo.rsi
+
+- type: entity
   parent: CratePirate
   id: CratePirateGrey
   name: pirate chest
@@ -229,3 +250,68 @@
     sprite: _NF/Structures/Storage/Crates/mccargo.rsi
   - type: Sprite
     sprite: _NF/Structures/Storage/Crates/mccargo.rsi
+
+# Mercenary
+- type: entity
+  parent: CrateBaseSecure
+  id: CrateSecureMercenary
+  name: mercenary crate
+  components:
+  - type: Icon
+    sprite: _NF/Structures/Storage/Crates/secure_mercenary.rsi
+  - type: Sprite
+    sprite: _NF/Structures/Storage/Crates/secure_mercenary.rsi
+  - type: AccessReader
+    access: [["Mercenary"]]
+
+- type: entity
+  parent: CrateBaseSecure
+  id: CrateSecureMercenaryPrivateSec
+  name: private security crate
+  components:
+  - type: Icon
+    sprite: _NF/Structures/Storage/Crates/secure_privatesec.rsi
+  - type: Sprite
+    sprite: _NF/Structures/Storage/Crates/secure_privatesec.rsi
+  - type: AccessReader
+    access: [["Mercenary"]]
+
+- type: entity
+  parent: CrateBaseSecure
+  id: CrateAmmoSecureMercenary
+  name: secure ammo crate
+  components:
+  - type: Icon
+    sprite: _NF/Structures/Storage/Crates/secure_ammo.rsi
+  - type: Sprite
+    sprite: _NF/Structures/Storage/Crates/secure_ammo.rsi
+  - type: AccessReader
+    access: [["Mercenary"]]
+
+- type: entity
+  parent: CrateWeaponSecure
+  id: CrateFirearmsSecure
+  name: secure firearms crate
+  components:
+  - type: Icon
+    sprite: _NF/Structures/Storage/Crates/secure_firearms.rsi
+  - type: Sprite
+    sprite: _NF/Structures/Storage/Crates/secure_firearms.rsi
+
+- type: entity
+  parent: CrateLivestock
+  id: CrateWoodCage
+  name: wooden cage
+  description: Looks like somebody made this in a cave, with a box of scraps.
+  components:
+  - type: EntityStorage
+    airtight: false # Keep this explicit in case the parent changes.
+  - type: Sprite
+    sprite: _NF/Structures/Storage/Crates/woodcage.rsi
+    layers:
+    - state: base
+    - state: closed
+      map: ["enum.StorageVisualLayers.Door"]
+  - type: Icon
+    sprite: _NF/Structures/Storage/Crates/woodcage.rsi
+    state: base

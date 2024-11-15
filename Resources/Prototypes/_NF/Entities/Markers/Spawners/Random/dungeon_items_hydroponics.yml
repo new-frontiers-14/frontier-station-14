@@ -80,19 +80,30 @@
   - type: RandomSpawner
     prototypes:
     # Empty crates
-    - SpawnDungeonLootCrateEmptyHydro
+    - CrateHydroponics
+    - CrateHydroSecure
+    - CratePlastic
+    - CratePlasticBiodegradable
     # Restocks
-    - SpawnDungeonLootCrateRestockHydro
+    - CrateVendingMachineRestockNutriMaxFilled
+    - CrateVendingMachineRestockSeedsFilled
+    # Mats
+    - CrateMaterialGlass
+    - CrateMaterialSteel
+    - CrateMaterialPlastic
+    - CrateMaterialWood
+    - CrateMaterialTextiles
+    - CrateMaterialBiomass
     # Filled crates
     - CrateHydroponicsTools
     - CrateHydroponicsSeeds
     - CrateHydroponicsSeedsExotic
     - CrateHydroponicsSeedsMedicinal
-    chance: 0.95
+    chance: 0.9
     offset: 0.0
     rarePrototypes:
     - CrateServiceKitHydroponics
-    rareChance: 0.05
+    rareChance: 0.005
 
 - type: entity
   name: random crate (restock)

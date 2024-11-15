@@ -1,0 +1,50 @@
+- type: entity
+  parent: BoxCardboard
+  name: poultry cube box
+  id: PoultryCubeBox
+  description: Drymate brand poultry cubes, chicken and duck. Just add water!
+  components:
+  - type: StorageFill
+    contents:
+    - id: ChickenCubeWrapped
+      amount: 6
+    - id: DuckCubeWrapped
+      amount: 2
+  - type: Sprite
+    sprite: _NF/Objects/Misc/monkeycube.rsi
+    state: box_poultry
+  - type: StaticPrice
+    price: 20
+    vendPrice: 800 # Meat only worth 180 at a depot, but can produce eggs and more poultry for free
+
+- type: entity
+  parent: MonkeyCubeWrapped
+  name: chicken cube
+  suffix: Wrapped
+  id: ChickenCubeWrapped
+  description: Unwrap this to get a chicken cube.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: ChickenCube
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+  - type: Sprite
+    sprite: _NF/Objects/Misc/monkeycube.rsi
+    state: wrapper_chicken
+
+- type: entity
+  parent: MonkeyCubeWrapped
+  name: duck cube
+  suffix: Wrapped
+  id: DuckCubeWrapped
+  description: Unwrap this to get a duck cube.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: DuckCube
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+  - type: Sprite
+    sprite: _NF/Objects/Misc/monkeycube.rsi
+    state: wrapper_duck

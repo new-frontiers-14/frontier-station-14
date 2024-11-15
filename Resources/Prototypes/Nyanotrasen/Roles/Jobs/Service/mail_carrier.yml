@@ -10,6 +10,8 @@
       time: 10800
   icon: "JobIconMailCarrier"
   supervisors: job-supervisors-sr
+  weight: 90 # Frontier
+  displayWeight: 30 # Frontier
   canBeAntag: false
   access:
   - External # Frontier
@@ -29,9 +31,12 @@
   equipment:
     head: ClothingHeadMailCarrier
     eyes: ClothingEyesHudMail
-    id: MailCarrierPDA
-    ears: ClothingHeadsetService # Frontier - ClothingHeadsetCargo<ClothingHeadsetService
+    id: CourierPDA
+#    ears: ClothingHeadsetService # Frontier - ClothingHeadsetCargo<ClothingHeadsetService
     belt: MailBag
   storage:
     back:
-    - HandheldCrewMonitor
+    - EncryptionKeyService # Frontier
+    - HandheldCrewMonitor # Frontier
+    - ShipVoucherFrontierMailCarrier # Frontier
+    - MailMetricsCartridge # Frontier

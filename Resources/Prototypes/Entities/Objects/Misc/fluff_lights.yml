@@ -51,8 +51,6 @@
     canCollide: false
   - type: StealTarget
     stealGroup: LAMP
-  - type: StaticPrice
-    price: 5
 
 - type: entity
   name: lamp
@@ -134,7 +132,7 @@
   name: interrogator lamp
   id: LampInterrogator
   parent: BaseLamp
-  description: Ultra-bright lamp for the bad cop
+  description: Ultra-bright lamp for the bad cop.
   components:
   - type: Sprite
     sprite: Objects/Misc/Lights/lampint.rsi
@@ -221,7 +219,7 @@
         startingItem: PowerCellMedium
   - type: Anchorable
   - type: Damageable
-    damageContainer: Inorganic
+    damageContainer: StructuralInorganic
     damageModifierSet: Metallic
   - type: Destructible
     thresholds:
@@ -239,8 +237,6 @@
             max: 1
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-  - type: StaticPrice
-    price: 75
 
 - type: entity
   name: broken floodlight
@@ -253,7 +249,7 @@
     state: floodlight_broken
   - type: Anchorable
   - type: Damageable
-    damageContainer: Inorganic
+    damageContainer: StructuralInorganic
     damageModifierSet: Metallic
   - type: Destructible
     thresholds:
@@ -286,8 +282,4 @@
           bounds: "-0.2, -0.5, 0.2, 0.5"
         density: 50
         mask:
-        - MachineMask
-        layer:
-        - MachineLayer
-  - type: StaticPrice
-    price: 3
+        - HighImpassable

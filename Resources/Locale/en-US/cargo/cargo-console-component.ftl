@@ -5,7 +5,6 @@ cargo-console-menu-account-name-none-text = None
 cargo-console-menu-shuttle-name-label = Shuttle name:{" "}
 cargo-console-menu-shuttle-name-none-text = None
 cargo-console-menu-points-label = Spesos:{" "}
-cargo-console-menu-points-amount = ${$amount}
 cargo-console-menu-shuttle-status-label = Shuttle status:{" "}
 cargo-console-menu-shuttle-status-away-text = Away
 cargo-console-menu-order-capacity-label = Order capacity:{" "}
@@ -30,7 +29,7 @@ cargo-console-snip-snip = Order trimmed to capacity
 cargo-console-insufficient-funds = Insufficient funds (require {$cost})
 cargo-console-unfulfilled = No room to fulfill order
 cargo-console-trade-station = Sent to {$destination}
-cargo-console-unlock-approved-order-broadcast = [bold]{$productName} x{$orderAmount}[/bold], which cost [bold]{$cost}[/bold], was approved by [bold]{$approverName}, {$approverJob}[/bold]
+cargo-console-unlock-approved-order-broadcast = [bold]{$productName} x{$orderAmount}[/bold], which cost [bold]{$cost}[/bold], was approved by [bold]{$approver}[/bold]
 
 cargo-console-paper-print-name = Order #{$orderNumber}
 cargo-console-paper-print-text =

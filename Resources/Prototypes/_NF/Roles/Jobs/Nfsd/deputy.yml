@@ -5,16 +5,22 @@
   playTimeTracker: JobSecurityOfficer
   requirements:
     - !type:OverallPlaytimeRequirement
-      time: 43200 # Frontier - 12 hrs
+      time: 43200 # 12 hours
     - !type:DepartmentTimeRequirement
       department: Security
-      time: 21600 # Frontier - 6 hrs
+      time: 21600 # 6 hours
+  alternateRequirementSets:
+    longerPlaytimeLessSec:
+    - !type:OverallPlaytimeRequirement
+      time: 360000 # 100 hours
   startingGear: DeputyGear
-  icon: "JobIconSecurityOfficer" # Frontier
+  icon: JobIconDeputy
   supervisors: job-supervisors-sergeant
+  weight: 130
+  displayWeight: 40
   canBeAntag: false
-  accessGroups: # Frontier
-  - GeneralNfsdAccess # Frontier
+  accessGroups:
+  - GeneralNfsdAccess
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant, TrackingImplant ]
@@ -25,7 +31,6 @@
 - type: startingGear
   id: DeputyGear
   equipment:
-    ears: ClothingHeadsetNfsdBrown # Frontier
     pocket1: WeaponPistolMk58 #WeaponPistolMk58Nonlethal
   storage:
     back:

@@ -1,6 +1,8 @@
 # BASE
 - type: entity # 'Gun', 'AmmoProvider' and 'ContainerContainer' components are not defined in this one
-  parent: BaseStructure
+  parent:
+  - BaseStructure
+  - MobLaserReflect # Preventing laser abuse from players, prototype is in \Resources\Prototypes\_NF\Entities\Mobs\NPCs\mob_hostile_base.yml
   id: BaseWeaponTurretNF
   name: turret
   suffix: Frontier
@@ -75,7 +77,13 @@
   - type: NoRotateOnMove
   - type: Input
     context: "human"
-  - type: MobState # Frontier (otherwise NPCs won't attack the entity)
+  - type: MobState # otherwise NPCs won't attack the entity
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      500: Dead # bandaid fix, value here should be high enough to prevent situations when mob(turret) changes it's state before being destoyed
+  - type: StaticPrice
+    price: 1080
 
 - type: entity # A search light for turrets
   id: BaseTurretSearchBeam
@@ -173,3 +181,5 @@
   - type: BatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 5
+  # - type: StaticPrice # for arbitrage tests
+  #   price: 50

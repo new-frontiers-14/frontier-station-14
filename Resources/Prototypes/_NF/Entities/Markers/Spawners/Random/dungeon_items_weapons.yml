@@ -1,44 +1,10 @@
 # T1: common
 - type: entity
   name: random weapon
-  id: SpawnInhandMeleeWeaponPunkGangLow
-  parent: MarkerBase
-  suffix: "Punk, Melee, T1"
-  noSpawn: true
-  components:
-  - type: Sprite
-    layers:
-      - state: green
-        scale: 0.7, 0.7
-      - sprite: Objects/Weapons/Melee/cult_blade.rsi
-        state: icon
-  - type: RandomSpawner
-    prototypes:
-    - BrokenBottle
-    - ButchCleaver
-    - Screwdriver
-    - Crowbar
-    - Shiv
-    - ReinforcedShiv
-    - PlasmaShiv
-    - UraniumShiv
-    - ScalpelShiv
-    - BaseBallBat
-    - Machete
-    - KukriKnife
-    chance: 1.0
-    offset: 0.0
-    rarePrototypes:
-    - Katana
-    - Truncheon
-    rareChance: 0.05
-
-- type: entity
-  name: random weapon
   id: SpawnDungeonLootMeleeT1
   parent: MarkerBasePlaceFree
   suffix: "Dungeon, Melee, T1"
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:
@@ -73,7 +39,7 @@
   id: SpawnDungeonLootGunT1
   parent: MarkerBasePlaceFree
   suffix: "Dungeon, Gun, T1"
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:
@@ -104,7 +70,7 @@
   id: SpawnDungeonLootExplosivesT1
   parent: MarkerBasePlaceFree
   suffix: "Dungeon, Explosives, T1"
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:
@@ -130,7 +96,7 @@
   id: SpawnDungeonLootMeleeT2
   parent: MarkerBasePlaceFree
   suffix: "Dungeon, Melee, T2"
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:
@@ -154,14 +120,14 @@
     offset: 0.0
     rarePrototypes:
     - SpawnDungeonLootMeleeT3
-    rareChance: 0.1
+    rareChance: 0.15
 
 - type: entity
   name: random weapon
   id: SpawnDungeonLootGunT2
   parent: MarkerBasePlaceFree
   suffix: "Dungeon, Gun, T2"
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:
@@ -188,14 +154,14 @@
     offset: 0.0
     rarePrototypes:
     - SpawnDungeonLootGunT3
-    rareChance: 0.1
+    rareChance: 0.15
 
 - type: entity
   name: random weapon
   id: SpawnDungeonLootExplosivesT2
   parent: MarkerBasePlaceFree
   suffix: "Dungeon, Explosives, T2"
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:
@@ -221,7 +187,7 @@
   id: SpawnDungeonLootMeleeT3
   parent: MarkerBasePlaceFree
   suffix: "Dungeon, Melee, T3"
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:
@@ -243,14 +209,14 @@
     offset: 0.0
     rarePrototypes:
     - SpawnDungeonLootMeleeT4
-    rareChance: 0.1
+    rareChance: 0.15
 
 - type: entity
   name: random weapon
   id: SpawnDungeonLootGunT3
   parent: MarkerBasePlaceFree
   suffix: "Dungeon, Gun, T3"
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:
@@ -270,19 +236,21 @@
     - WeaponCaseLongLecterExpedition
     - WeaponCaseLongLaserCarbineExpedition
     - WeaponCaseLongHristovExpedition
+    - WeaponCaseShortSvalinnExpedition
+    - WeaponCaseShortAdvancedLaserExpedition
     #- WeaponCaseLongMusketExpedition
     chance: 1.0
     offset: 0.0
     rarePrototypes:
     - SpawnDungeonLootGunT4
-    rareChance: 0.1
+    rareChance: 0.15
 
 - type: entity
   name: random weapon
   id: SpawnDungeonLootExplosivesT3
   parent: MarkerBasePlaceFree
   suffix: "Dungeon, Explosives, T3"
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:
@@ -308,7 +276,7 @@
   id: SpawnDungeonLootMeleeT4
   parent: MarkerBasePlaceFree
   suffix: "Dungeon, Melee, T4"
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:
@@ -330,14 +298,14 @@
     offset: 0.0
     rarePrototypes:
     - SpawnDungeonLootMeleeT5
-    rareChance: 0.01
+    rareChance: 0.05
 
 - type: entity
   name: random weapon
   id: SpawnDungeonLootGunT4
   parent: MarkerBasePlaceFree
   suffix: "Dungeon, Gun, T4"
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:
@@ -354,8 +322,6 @@
     - WeaponCaseLongM90Expedition
     - WeaponCaseLongC20r
     - WeaponCaseLongAkExpedition
-    - WeaponCaseShortSvalinnExpedition
-    - WeaponCaseShortAdvancedLaserExpedition
     - WeaponCaseHeavyAsmgtExpeditions
     - WeaponCaseLongEnforcerExpedition
     - WeaponCaseLongLaserCannonExpedition
@@ -363,14 +329,14 @@
     offset: 0.0
     rarePrototypes:
     - SpawnDungeonLootGunT5
-    rareChance: 0.01
+    rareChance: 0.1
 
 - type: entity
   name: random weapon
   id: SpawnDungeonLootExplosivesT4
   parent: MarkerBasePlaceFree
   suffix: "Dungeon, Explosives, T4"
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:
@@ -396,7 +362,7 @@
   id: SpawnDungeonLootMeleeT5
   parent: MarkerBasePlaceFree
   suffix: "Dungeon, Melee, T5"
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:
@@ -418,7 +384,7 @@
   id: SpawnDungeonLootGunT5
   parent: MarkerBasePlaceFree
   suffix: "Dungeon, Gun, T5"
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:
@@ -446,7 +412,7 @@
   id: SpawnDungeonLootExplosivesT5
   parent: MarkerBasePlaceFree
   suffix: "Dungeon, Explosives, T5"
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:
@@ -461,4 +427,142 @@
     prototypes:
     - WeaponCaseShortC4
     chance: 0.3
+    offset: 0.0
+
+# Ammo
+- type: entity
+  name: random ammo
+  id: SpawnDungeonLootAmmoLethal
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Ammo, Lethal"
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+      scale: 0.7, 0.7
+    - sprite: _NF/Objects/Storage/Cases/ammocaseshort.rsi
+      state: icon
+  - type: RandomSpawner
+    prototypes:
+    - WeaponCaseShortAmmoBoxLethal20
+    - WeaponCaseShortAmmoBoxLethal30
+    - WeaponCaseShortAmmoBoxLethal35
+    - WeaponCaseShortAmmoBoxLethal25
+    - WeaponCaseShortAmmoBoxLethalShotgun
+    - WeaponCaseShortAmmoBoxSlugShotgun
+    - WeaponCaseShortAmmoBoxLethal45
+    chance: 0.8
+    offset: 0.0
+    rarePrototypes:
+    - WeaponCaseShortAmmoBoxBigLethal20
+    - WeaponCaseShortAmmoBoxBigLethal30
+    - WeaponCaseShortAmmoBoxBigLethal25
+    - WeaponCaseShortAmmoBoxEmp35
+    - WeaponCaseShortAmmoBoxFlareShotgun
+    - SpawnDungeonLootAmmoRubber
+    - SpawnDungeonLootAmmoPractice
+    - SpawnDungeonLootAmmoIncendiary
+    - SpawnDungeonLootAmmoUranium
+    rareChance: 0.01
+
+- type: entity
+  name: random ammo
+  id: SpawnDungeonLootAmmoRubber
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Ammo, Rubber"
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+      scale: 0.7, 0.7
+    - sprite: _NF/Objects/Storage/Cases/ammocaseshort.rsi
+      state: icon
+  - type: RandomSpawner
+    prototypes:
+    - WeaponCaseShortAmmoBoxRubber20
+    - WeaponCaseShortAmmoBoxRubber30
+    - WeaponCaseShortAmmoBoxRubber35
+    - WeaponCaseShortAmmoBoxRubber25
+    - WeaponCaseShortAmmoBoxRubberShotgun
+    - WeaponCaseShortAmmoBoxRubber45
+    chance: 0.7
+    offset: 0.0
+    rarePrototypes:
+    - WeaponCaseShortAmmoBoxBigRubber20
+    - WeaponCaseShortAmmoBoxBigRubber25
+    rareChance: 0.01
+
+- type: entity
+  name: random ammo
+  id: SpawnDungeonLootAmmoPractice
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Ammo, Practice"
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+      scale: 0.7, 0.7
+    - sprite: _NF/Objects/Storage/Cases/ammocaseshort.rsi
+      state: icon
+  - type: RandomSpawner
+    prototypes:
+    - WeaponCaseShortAmmoBoxPractice20
+    - WeaponCaseShortAmmoBoxPractice30
+    - WeaponCaseShortAmmoBoxPractice35
+    - WeaponCaseShortAmmoBoxPractice25
+    - WeaponCaseShortAmmoBoxPracticeShotgun
+    - WeaponCaseShortAmmoBoxPractice45
+    chance: 0.6
+    offset: 0.0
+
+- type: entity
+  name: random ammo
+  id: SpawnDungeonLootAmmoIncendiary
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Ammo, Incendiary"
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+      scale: 0.7, 0.7
+    - sprite: _NF/Objects/Storage/Cases/ammocaseshort.rsi
+      state: icon
+  - type: RandomSpawner
+    prototypes:
+    - WeaponCaseShortAmmoBoxIncendiary20
+    - WeaponCaseShortAmmoBoxIncendiary30
+    - WeaponCaseShortAmmoBoxIncendiary35
+    - WeaponCaseShortAmmoBoxIncendiaryShotgun
+    - WeaponCaseShortAmmoBoxIncendiary45
+    chance: 0.5
+    offset: 0.0
+    rarePrototypes:
+    - SpawnDungeonLootAmmoUranium
+    rareChance: 0.01
+
+- type: entity
+  name: random ammo
+  id: SpawnDungeonLootAmmoUranium
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Ammo, Uranium"
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+      scale: 0.7, 0.7
+    - sprite: _NF/Objects/Storage/Cases/ammocaseshort.rsi
+      state: icon
+  - type: RandomSpawner
+    prototypes:
+    - WeaponCaseShortAmmoBoxUranium20
+    - WeaponCaseShortAmmoBoxUranium30
+    - WeaponCaseShortAmmoBoxUranium35
+    - WeaponCaseShortAmmoBoxUraniumShotgun
+    - WeaponCaseShortAmmoBoxUranium45
+    chance: 0.4
     offset: 0.0

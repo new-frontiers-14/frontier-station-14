@@ -47,9 +47,14 @@
             <ContainerButton Name="StationAlertLevelInstructionsButton">
                 <RichTextLabel Name="StationAlertLevelInstructions" Access="Public"/>
             </ContainerButton>
+            <!-- Frontier -->
             <ContainerButton Name="BalanceButton">
                 <RichTextLabel Name="BalanceLabel" Access="Public"/>
             </ContainerButton>
+            <ContainerButton Name="ShuttleDeedButton">
+                <RichTextLabel Name="ShuttleDeedLabel" Access="Public"/>
+            </ContainerButton>
+            <!-- End Frontier -->
         </BoxContainer>
         <ScrollContainer HorizontalExpand="True" VerticalExpand="True" HScrollEnabled="True">
             <BoxContainer Orientation="Vertical"
@@ -71,14 +76,17 @@
                                        Description="{Loc 'comp-pda-ui-ringtone-button-description'}"/>
                 <pda:PdaSettingsButton Name="ActivateMusicButton"
                                        Access="Public"
+                                       Visible="False"
                                        Text="{Loc 'pda-bound-user-interface-music-button'}"
                                        Description="{Loc 'pda-bound-user-interface-music-button-description'}"/>
                 <pda:PdaSettingsButton Name="ShowUplinkButton"
                                        Access="Public"
+                                       Visible="False"
                                        Text="{Loc 'pda-bound-user-interface-show-uplink-title'}"
                                        Description="{Loc 'pda-bound-user-interface-show-uplink-description'}"/>
                 <pda:PdaSettingsButton Name="LockUplinkButton"
                                        Access="Public"
+                                       Visible="False"
                                        Text="{Loc 'pda-bound-user-interface-lock-uplink-title'}"
                                        Description="{Loc 'pda-bound-user-interface-lock-uplink-description'}"/>
             </BoxContainer>

@@ -1,3 +1,4 @@
+using Content.Server.Chat.Systems; // Frontier: InGameICChatType
 using Content.Server.Radio.EntitySystems;
 using Content.Shared.Chat;
 using Content.Shared.Radio;
@@ -24,4 +25,11 @@ public sealed partial class RadioSpeakerComponent : Component
 
     [DataField("enabled")]
     public bool Enabled;
+
+    //Frontier: radio output volume
+    /// <summary>
+    /// The output chat type when a message is received.
+    /// </summary>
+    [DataField]
+    public InGameICChatType OutputChatType = InGameICChatType.Whisper;
 }

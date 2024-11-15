@@ -1,6 +1,6 @@
 - type: entity
   abstract: true
-  parent: [BaseItem, PowerCellSlotSmallItem]
+  parent: [BaseItem, PowerCellSlotSmallItem, RecyclableItemDeviceSmall] # Frontier: added RecyclableItemDeviceSmall
   id: BaseHandheldComputer
   components:
   - type: ActivatableUIRequiresPowerCell
@@ -9,3 +9,4 @@
   - type: PowerCellDraw
     drawRate: 0
     useRate: 20
+  - type: ToggleCellDraw

@@ -85,7 +85,7 @@ namespace Content.Server.Mail.Components
         /// Penalty if the mail is destroyed.
         /// </summary>
         [DataField]
-        public int Penalty = -250;
+        public int Penalty = 0; // Frontier - -250<0
 
         /// <summary>
         /// The sound that's played when the mail's lock is broken.

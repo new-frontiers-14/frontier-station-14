@@ -1,17 +1,10 @@
 - type: entity
-  abstract: true
-  id: MobBloodCultistTimedDespawn
-  components:
-  - type: TimedDespawn
-    lifetime: 3000 # 50 mins (max blue space event duration involving these mobs - 40 mins)
-
-- type: entity
   name: blood cultist
   abstract: true
   parent:
   - MobHumanoidHostileBase
   - MobHumanoidInvetory
-  #- MobBloodCultistTimedDespawn
+  - NFMobRestrictions
   id: MobBloodCultistBase
   components:
   - type: NpcFactionMember
@@ -42,9 +35,10 @@
   parent:
   - MobBloodCultistBase
   - MobHumanoidHostileAISimpleRanged
+  #- MobLaserReflect # Added to prevent laser abuse from players
   id: MobBloodCultistPriest
   description: Enlightened by the whispers of The Void That Is, these individuals are initiated into secret rituals. They lead the blood harvest and perform rites, bringing the day when Nar'Sie rises ever closer.
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Inventory
     templateId: human
@@ -75,9 +69,10 @@
   parent:
   - MobBloodCultistBase
   - MobHumanoidHostileAISimpleRanged
+  #- MobLaserReflect # Added to prevent laser abuse from players
   id: MobBloodCultistJanitor
   description: The fate of blood cults on space stations hinges on the actions of a single individual - the station janitor. This humble worker serves as the primary line of defense against the presence of blood cults, but even the most resolute individuals can be swayed by corruption.
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Inventory
     templateId: human
@@ -106,13 +101,14 @@
 # Blood Cult Acolyte, melee mob armed with eldritch sword (16 slash)
 - type: entity
   name: blood cult acolyte
-  parent: 
+  parent:
   - MobBloodCultistBase
   - MobHumanoidHostileAISimpleMelee
+  #- MobLaserReflect # Added to prevent laser abuse from players
   id: MobBloodCultistAcolyte
-  description: |- 
+  description: |-
    The acolyte - The most trusted cult follower and bodyguard of a priest, clad in the finest armor the cult has to offer and armed with the most vile weapons: eldrich blades and unholy halberds.
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Loadout
     prototypes:
@@ -121,12 +117,12 @@
 # Blood Cult Zealot, melee mob armed with ritual dagger (12 slash)
 - type: entity
   name: blood cult zealot
-  parent: 
+  parent:
   - MobBloodCultistBase
   - MobHumanoidHostileAISimpleMelee
   id: MobBloodCultistZealotMelee
   description: Adorned in matching red robes symbolizing devotion to their dark deity, each member is eager to prove their loyalty in the most gruesome ways.
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Loadout
     prototypes:
@@ -136,12 +132,12 @@
 # Look for crossbow bolt here: \Resources\Prototypes\_NF\Entities\Objects\Weapons\Guns\Projectiles\crossbow_bolts.yml
 - type: entity
   name: blood cult zealot
-  parent: 
+  parent:
   - MobBloodCultistBase
   - MobHumanoidHostileAISimpleRanged
   id: MobBloodCultistZealotRanged
   description: Adorned in matching red robes symbolizing devotion to their dark deity, each member is eager to prove their loyalty in the most gruesome ways.
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Loadout
     prototypes:
@@ -168,12 +164,12 @@
 # Look for magic bolt here:\Resources\Prototypes\_NF\Entities\Objects\Weapons\Guns\Projectiles\magic.yml
 - type: entity
   name: blood cult zealot
-  parent: 
+  parent:
   - MobBloodCultistBase
   - MobHumanoidHostileAISimpleRanged
   id: MobBloodCultistCaster
   description: Adorned in matching red robes symbolizing devotion to their dark deity, each member is eager to prove their loyalty in the most gruesome ways.
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Loadout
     prototypes:
@@ -195,12 +191,12 @@
 # Blood Leech, melee, fast, has moderate health regen
 - type: entity
   name: blood leech
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent:
   - MobNonHumanHostileBase
   - MobPassiveRegen
   - MobHumanoidHostileAISimpleMelee
-  #- MobBloodCultistTimedDespawn
+  - NFMobRestrictions
   id: MobBloodCultLeech
   description: This cultist, once human, is now a twisted and corrupted abomination, its body warped and distorted by the dark energies of Nar'Sie's influence.
   components:
@@ -246,11 +242,12 @@
 - type: entity
   name: ascended cultist
   description: Elevated above their mortal forms by Nar'Sie herself as a reward for their devotion.
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent:
   - MobNonHumanHostileBase
   - MobHumanoidHostileAIComplex
-  #- MobBloodCultistTimedDespawn
+  #- MobLaserReflect # Added to prevent laser abuse from players
+  - NFMobRestrictions
   id: MobBloodCultistAscended
   components:
   - type: NpcFactionMember
@@ -273,9 +270,6 @@
       path: /Audio/_NF/Effects/silence.ogg
   - type: Advertise
     pack: bloodcultisthumanoidchatter
-  - type: Reflect
-    reflectProb: .3
-    spread: 90
   - type: Sprite
     drawdepth: Mobs
     sprite: _NF/Mobs/BloodCult/ascended_cultist.rsi
@@ -345,12 +339,13 @@
 # Drained One, melee
 - type: entity
   name: drained one
-  noSpawn: true
-  parent: 
+  categories: [ HideSpawnMenu ]
+  parent:
   - MobNonHumanHostileBase
   - FlyingMobBase
   - MobPassiveRegen
   - MobHumanoidHostileAISimpleMelee
+  - NFMobTimedDespawn120
   id: MobBloodCultDrainedOne
   description: A tortured soul, stripped of free will and left as a mere shadow of a human, enslaved and bound to obey its captors.
   components:
@@ -413,14 +408,12 @@
     chemicalMaxVolume: 100
   - type: Speech
     speechVerb: Ghost
-  - type: TimedDespawn
-    lifetime: 110
   - type: Ammo
     muzzleFlash: null
 
 - type: entity
   name: cultist shade
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: MobBloodCultDrainedOne
   id: MobBloodCultShade
   description: A cultist's shade, brought back to reality through foul means to gather more blood.
@@ -458,11 +451,14 @@
     softness: 1
     color: "#ff0000"
     castShadows: true
-  
+
 # Drained One (summonable by players), melee
 - type: entity
-  noSpawn: true
-  parent: MobBloodCultDrainedOne
+  categories: [ HideSpawnMenu ]
+  parent:
+  - BaseC3MobCreatureNoValue
+  - MobBloodCultDrainedOne
+  - NFMobTimedDespawn180
   id: MobBloodCultDrainedOneNanoTrasen
   components:
   - type: NPCImprintingOnSpawnBehaviour
@@ -482,14 +478,13 @@
   - type: NpcFactionMember
     factions:
     - NanoTrasen
-  - type: TimedDespawn
-    lifetime: 180
 
 # Turrets
 # blood pylon, ranged, magic bolt deals 5 slash and 2 bloodloss
 # Look for magic bolt here:\Resources\Prototypes\_NF\Entities\Objects\Weapons\Guns\Projectiles\magic.yml
 - type: entity
   parent:
+  - BaseC3CultContraband
   - BaseWeaponTurret
   #- MobBloodCultistTimedDespawn
   id: BloodCultTurret

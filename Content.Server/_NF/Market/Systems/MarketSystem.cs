@@ -2,6 +2,7 @@
 using Content.Server.Bank;
 using Content.Server.Cargo.Systems;
 using Content.Server.Stack;
+using Content.Server.Station.Systems;
 using Content.Shared._NF.Market;
 using Content.Shared.Popups;
 using Content.Shared.Storage.EntitySystems;
@@ -27,9 +28,9 @@ public sealed partial class MarketSystem: SharedMarketSystem
     [Dependency] private readonly PricingSystem _pricingSystem = default!;
     [Dependency] private readonly StackSystem _stackSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SectorServiceSystem _sectorService = default!;
     [Dependency] private readonly EntProtoIdWhitelistSystem _protoIdWhitelist = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly StationSystem _station = default!;
 
     public override void Initialize()
     {

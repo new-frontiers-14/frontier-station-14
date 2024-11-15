@@ -1,6 +1,6 @@
 # BASE
 - type: entity
-  parent: MobNonHumanHostileBase
+  parent: [ MobNonHumanHostileBase, NFMobRestrictions ]
   id: BaseMobXenoExpeditions
   name: xeno
   description: They mostly come at night. Mostly.
@@ -284,7 +284,6 @@
   - type: Tag
     tags:
     - CannotSuicide
-  - type: SalvageMobRestrictionsNF
   - type: ReplacementAccent
     accent: xeno
   - type: GhostRole

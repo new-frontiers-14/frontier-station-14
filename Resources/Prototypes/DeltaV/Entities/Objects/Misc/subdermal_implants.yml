@@ -1,9 +1,9 @@
 - type: entity
-  parent: BaseSubdermalImplant
+  parent: [BaseSubdermalImplant, BaseC3SyndicateContraband] # Frontier: added BaseC3SyndicateContraband
   id: BionicSyrinxImplant
   name: bionic syrinx implant
   description: This implant lets a harpy adjust their voice to whoever they can think of.
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
     - type: SubdermalImplant
       implantAction: ActionSyrinxChangeVoiceMask

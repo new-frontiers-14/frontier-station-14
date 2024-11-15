@@ -68,8 +68,8 @@
   beginMonth: March
 
 - type: holiday
-  id: holiday-name-easter
-  name: Easter
+  id: Easter
+  name: holiday-name-easter
   shouldCelebrate:
     !type:Computus { }
 
@@ -322,13 +322,19 @@
     weekday: Thursday
 
 - type: holiday
-  id: holiday-name-halloween
-  name: Halloween
-  beginDay: 31
+  id: Halloween
+  name: holiday-name-halloween
+  beginDay: 27 # Frontier: 31<27
   beginMonth: October
+  endDay: 2 # Frontier
+  endMonth: November # Frontier
   greet:
     !type:Custom
     text: holiday-custom-halloween
+  entityReplacements: # Frontier
+    KitchenDeepFryer: KitchenDeepFryerCauldron # Frontier
+    KitchenDeepFryerPOI: KitchenDeepFryerCauldronPOI # Frontier
+    RandomPainting: RandomPaintingHalloween # Frontier
 
 - type: holiday
   id: VeganDay
@@ -385,8 +391,8 @@
     weekday: Thursday
 
 - type: holiday
-  id: holiday-name-sinterklaas
-  name: Sinterklaas
+  id: Sinterklaas
+  name: holiday-name-sinterklaas
   beginDay: 5
   beginMonth: December
 
@@ -409,8 +415,8 @@
   beginMonth: December
 
 - type: holiday
-  id: holiday-name-christmas
-  name: Christmas
+  id: Christmas
+  name: holiday-name-christmas
   beginDay: 24
   endDay: 26
   beginMonth: December
@@ -421,7 +427,7 @@
 - type: holiday
   id: FestiveSeason
   name: holiday-name-festive-season
-  beginDay: 1
+  beginDay: 3 # Frontier: 1<3
   endDay: 31
   beginMonth: November
   endMonth: December

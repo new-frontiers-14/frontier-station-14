@@ -18,6 +18,7 @@ namespace Content.Shared.PDA
         public bool CanPlayMusic;
         public string? Address;
         public int Balance; // Frontier
+        public string? OwnedShipName; // Frontier
 
         public PdaUpdateState(
             List<NetEntity> programs,
@@ -28,6 +29,7 @@ namespace Content.Shared.PDA
             bool hasBook,
             PdaIdInfoText pdaOwnerInfo,
             int balance, // Frontier
+            string? ownedShipName, // Frontier
             string? stationName,
             bool hasUplink = false,
             bool canPlayMusic = false,
@@ -44,6 +46,7 @@ namespace Content.Shared.PDA
             StationName = stationName;
             Address = address;
             Balance = balance; // Frontier
+            OwnedShipName = ownedShipName; // Frontier
         }
     }
 

@@ -24,3 +24,72 @@
     price: 750
 #  - type: StealTarget
 #    stealGroup: FoodMeatCat
+
+- type: entity
+  name: honey glazed ham
+  parent: FoodMeatBase
+  id: FoodMeatGlazedHam
+  description: A slow-cooked ham, glazed in caramelized honey and cured with salt.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - meat
+      - honey
+      - salty
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/meat.rsi
+    state: honeyglazedham
+  - type: SliceableFood
+    count: 4
+    slice: FoodMeatGlazedHamSlice
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 12
+        - ReagentId: Vitamin
+          Quantity: 8
+        - ReagentId: Flavorol
+          Quantity: 4
+  - type: Tag
+    tags:
+    - Meat
+
+- type: entity
+  name: honey glazed ham slice
+  parent: FoodMeatBase
+  id: FoodMeatGlazedHamSlice
+  description: A slice of wonderful ham, glazed in delicious honey.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - meat
+      - honey
+      - salty
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 7.5
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 3
+        - ReagentId: Vitamin
+          Quantity: 2
+        - ReagentId: Flavorol
+          Quantity: 1
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/meat.rsi
+    layers:
+      - state: honeyglazedhamslice
+        map: [ "Slice" ]
+  - type: RandomSprite
+    available:
+      - Slice:
+          honeyglazedhamslice: ""
+          normalhamslice: ""
+  - type: Tag
+    tags:
+      - Slice
+      - Meat

@@ -1,11 +1,12 @@
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: BaseAPC
   name: APC
   description: A control terminal for the area's electrical systems.
   placement:
     mode: SnapgridCenter
   components:
+  - type: StationAiWhitelist
   - type: AmbientOnPowered
   - type: AmbientSound
     volume: -9
@@ -91,16 +92,16 @@
     graph: APC
     node: apc
   - type: PowerNetworkBattery
-    maxSupply: 10000
+    maxSupply: 15000 # Frontier: 10000<15000
     maxChargeRate: 5000
-    supplyRampTolerance: 1000
+    supplyRampTolerance: 15000 # Frontier: 1000<15000
     supplyRampRate: 500
   - type: WallMount
   - type: WiresPanel
   - type: WiresVisuals
   - type: Damageable
-    damageContainer: Inorganic
-    damageModifierSet: StrongMetallic
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallicStrong
   - type: Destructible
     thresholds:
     - trigger:
@@ -141,7 +142,7 @@
 
 # APC under construction
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: APCFrame
   name: APC frame
   description: A control terminal for the area's electrical systems, lacking the electronics.
@@ -161,8 +162,8 @@
     node: apcFrame
   - type: WallMount
   - type: Damageable
-    damageContainer: Inorganic
-    damageModifierSet: Metallic
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallic
   - type: Destructible
     thresholds:
     - trigger:

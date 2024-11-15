@@ -1,0 +1,26 @@
+- type: job
+  id: Mercenary
+  name: job-name-mercenary
+  description: job-description-mercenary
+  playTimeTracker: JobMercenary
+  requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 108000
+  startingGear: MercenaryGear
+  canBeAntag: true
+  icon: "JobIconMercenary"
+  supervisors: job-supervisors-hire
+  weight: -1 # Prioritize station & department jobs
+  displayWeight: 20 # Second from the bottom
+  setPreference: true
+  access:
+  - Mercenary
+  accessGroups: # Frontier
+  - GeneralAccess
+  special:
+  - !type:GiveItemOnHolidaySpecial
+    holiday: FrontierBirthday
+    prototype: FrontierBirthdayGift
+
+- type: startingGear
+  id: MercenaryGear

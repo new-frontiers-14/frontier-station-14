@@ -53,8 +53,8 @@
         !type:CableDeviceNode
         nodeGroupID: MVPower
   - type: Damageable
-    damageContainer: Inorganic
-    damageModifierSet: StrongMetallic
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallicStrong
   - type: Destructible
     thresholds:
       - trigger:
@@ -87,7 +87,7 @@
   - type: LockedAnchorable
   - type: LockedWiresPanel
   - type: AccessReader
-    access: [[ "Engineering" ]]
+    # access: [[ "Engineering" ]] # Frontier
   - type: Machine
     board: EmitterCircuitboard
   - type: GuideHelp
