@@ -11,5 +11,5 @@ namespace Content.Server._NF.ShuttleRecords.Components;
 public sealed partial class SectorShuttleRecordsComponent : Component
 {
     [DataField]
-    public List<ShuttleRecord> ShuttleRecordsList = [];
+    public Dictionary<NetEntity, ShuttleRecord> ShuttleRecords = [];
 }
