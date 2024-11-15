@@ -203,25 +203,26 @@
   - type: Construction
     graph: Coffee
     node: dark roasted coffee
+    defaultTarget: Null # Overwriting light target
 
-- type: reagent
-  id: OilVegetable
-  name: reagent-name-oil-vegetable
-  group: Foods
-  desc: reagent-desc-oil-vegetable
-  physicalDesc: reagent-physical-desc-oily
-  flavor: oily
-  flavorMinimum: 0.05
-  color: "#ffff77"
-  meltingPoint: -6.0 #Taken from OilOlive
-  boilingPoint: 299.0
-  recognizable: true
-  metabolisms:
-    Food:
-      effects:
-      - !type:SatiateHunger 
-        conditions:
-        - !type:ReagentThreshold
-          reagent: Nutriment
-          min: 0.1
-        factor: 1
+- type: entity
+  parent: [ReagentPacketBase, ItemHeftyBase]
+  id: ReagentContainerHoney
+  name: honey bottle
+  description: A big squeeze bottle of honey. Great for sweetening up your day!
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/ingredients.rsi
+    state: honeybottle
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: Honey
+          Quantity: 30
+  - type: Drink
+    solution: food
+    useSound:
+      path: /Audio/Items/eating_1.ogg
+

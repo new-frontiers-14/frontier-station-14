@@ -29,10 +29,7 @@ entities:
   - uid: 2
     components:
     - type: MetaData
-      name: Bahama Mama's
     - type: Transform
-      pos: -0.53125,-0.5
-      parent: invalid
     - type: MapGrid
       chunks:
         0,0:
@@ -103,6 +100,20 @@ entities:
       chunkCollection:
         version: 2
         nodes:
+        - node:
+            color: '#0096FFFF'
+            id: BotGreyscale
+          decals:
+            321: -6,16
+            322: -5,16
+        - node:
+            color: '#FF0000FF'
+            id: BotGreyscale
+          decals:
+            317: -4,16
+            318: -3,16
+            319: -2,16
+            320: -1,16
         - node:
             color: '#FFFFFFFF'
             id: BrickTileDarkCornerNe
@@ -7233,6 +7244,16 @@ entities:
     components:
     - type: Transform
       pos: 2.5,16.5
+      parent: 2
+  - uid: 2101
+    components:
+    - type: Transform
+      pos: 3.5,13.5
+      parent: 2
+  - uid: 2102
+    components:
+    - type: Transform
+      pos: 4.5,13.5
       parent: 2
 - proto: CableMV
   entities:
@@ -19237,6 +19258,13 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 12.5,10.5
       parent: 2
+- proto: ToolboxMechanicalFilled
+  entities:
+  - uid: 2159
+    components:
+    - type: Transform
+      pos: 4.4002657,16.811377
+      parent: 2
 - proto: TwoWayLever
   entities:
   - uid: 831
@@ -20229,7 +20257,7 @@ entities:
     - type: Transform
       pos: -7.5,2.5
       parent: 2
-- proto: WarpPointNFBahama
+- proto: WarpPoint
   entities:
   - uid: 3365
     components:

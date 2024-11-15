@@ -51,8 +51,6 @@
     canCollide: false
   - type: StealTarget
     stealGroup: LAMP
-  - type: StaticPrice
-    price: 5
 
 - type: entity
   name: lamp
@@ -239,8 +237,6 @@
             max: 1
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-  - type: StaticPrice
-    price: 75
 
 - type: entity
   name: broken floodlight
@@ -286,8 +282,4 @@
           bounds: "-0.2, -0.5, 0.2, 0.5"
         density: 50
         mask:
-        - MachineMask
-        layer:
-        - MachineLayer
-  - type: StaticPrice
-    price: 3
+        - HighImpassable

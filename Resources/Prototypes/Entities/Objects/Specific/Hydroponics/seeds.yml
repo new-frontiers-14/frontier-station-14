@@ -1,5 +1,5 @@
 - type: entity
-  parent: BaseItem
+  parent: [BaseItem, RecyclableItemOrganicTiny] # Frontier: added RecyclableItemOrganicTiny
   id: SeedBase
   abstract: true
   components:
@@ -502,7 +502,7 @@
       sprite: Objects/Specific/Hydroponics/fly_amanita.rsi
 
 - type: entity
-  parent: [SeedBase, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
+  parent: [SeedBase, BaseC3SyndicateContrabandUnredeemable] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContrabandUnredeemable
   name: packet of gatfruit seeds
   description: "These are no peashooters."
   id: GatfruitSeeds

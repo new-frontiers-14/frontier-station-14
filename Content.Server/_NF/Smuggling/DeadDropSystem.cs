@@ -10,6 +10,8 @@ using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
+using Content.Server.StationEvents.Events;
+using Content.Server.Warps;
 using Content.Shared._NF.CCVar;
 using Content.Shared._NF.Smuggling.Prototypes;
 using Content.Shared.Database;
@@ -47,6 +49,8 @@ public sealed class DeadDropSystem : EntitySystem
     [Dependency] private readonly SectorServiceSystem _sectorService = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly SharedGameTicker _ticker = default!;
+    [Dependency] private readonly LinkedLifecycleGridSystem _linkedLifecycleGrid = default!;
+    [Dependency] private readonly StationRenameWarpsSystems _stationRenameWarps = default!;
     private ISawmill _sawmill = default!;
 
     private readonly Queue<EntityUid> _drops = [];
@@ -195,10 +199,18 @@ public sealed class DeadDropSystem : EntitySystem
 
     public void CompromiseDeadDrop(EntityUid uid, DeadDropComponent _)
     {
-        //Get our station.
-        var station = _station.GetOwningStation(uid);
-        //Remove the dead drop.
+        // Remove the dead drop.
         RemComp<DeadDropComponent>(uid);
+
+        var station = _station.GetOwningStation(uid);
+        // If station is terminating, or if we aren't on one, nothing to do here.
+        if (station == null ||
+            !station.Value.Valid ||
+            MetaData(station.Value).EntityLifeStage >= EntityLifeStage.Terminating)
+        {
+            return;
+        }
+
         //Find a new potential dead drop to spawn.
         var deadDropQuery = EntityManager.EntityQueryEnumerator<PotentialDeadDropComponent>();
         List<(EntityUid ent, PotentialDeadDropComponent comp)> potentialDeadDrops = new();
@@ -215,10 +227,16 @@ public sealed class DeadDropSystem : EntitySystem
             potentialDeadDrops.Add((ent, potentialDeadDrop));
         }
 
-        // We have a potential dead drop, 
+        // We have a potential dead drop, spawn an actual one
         if (potentialDeadDrops.Count > 0)
         {
             var item = _random.Pick(potentialDeadDrops);
+
+            // If the item is tearing down, do nothing for now.
+            // FIXME: separate sector-wide scheduler?
+            if (MetaData(item.ent).EntityLifeStage >= EntityLifeStage.Terminating)
+                return;
+
             AddDeadDrop(item.ent);
             _sawmill.Debug($"Dead drop at {uid} compromised, new drop at {item.ent}!");
         }
@@ -452,6 +470,13 @@ public sealed class DeadDropSystem : EntitySystem
             return;
         }
 
+        var stationName = Loc.GetString(component.Name);
+
+        var meta = EnsureComp<MetaDataComponent>(gridUids[0]);
+        _meta.SetEntityName(gridUids[0], stationName, meta);
+
+        _stationRenameWarps.SyncWarpPointsToGrids(gridUids);
+
         // Get sector info (with sane defaults if it doesn't exist)
         int maxSimultaneousPods = 5;
         int deadDropsThisHour = 0;
@@ -476,7 +501,7 @@ public sealed class DeadDropSystem : EntitySystem
                 //removes the first element of the queue
                 var entityToRemove = _drops.Dequeue();
                 _adminLogger.Add(LogType.Action, LogImpact.Medium, $"{entityToRemove} queued for deletion");
-                EntityManager.QueueDeleteEntity(entityToRemove);
+                _linkedLifecycleGrid.UnparentPlayersFromGrid(entityToRemove, true);
             }
         }
 
@@ -597,7 +622,7 @@ public sealed class DeadDropSystem : EntitySystem
         }
     }
 
-    // Generates a random hint from a given set of entities (grabs the first N, N randomly generated between min/max), 
+    // Generates a random hint from a given set of entities (grabs the first N, N randomly generated between min/max),
     public string GenerateRandomHint(List<(EntityUid station, EntityUid ent)>? entityList = null)
     {
         if (entityList == null)

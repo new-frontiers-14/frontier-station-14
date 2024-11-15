@@ -118,6 +118,8 @@
     graph: StorageFurnitureGraph
     node: LockerWoodenGenericNode
   - type: AccessReader
+  - type: StaticPrice
+    price: 75 # Frontier: 75
 
 # NFSD - Evidence
 - type: entity
@@ -151,7 +153,8 @@
 - type: entity
   id: LockerNfsdCopper
   parent: LockerBaseSecure
-  name: nfsd cadet locker
+  name: nfsd locker
+  suffix: Copper
   components:
   - type: Appearance
   - type: EntityStorageVisuals
@@ -179,7 +182,8 @@
 - type: entity
   id: LockerNfsdSilver
   parent: LockerBaseSecure
-  name: nfsd deputy locker
+  name: nfsd locker
+  suffix: Silver
   components:
   - type: Appearance
   - type: EntityStorageVisuals
@@ -207,7 +211,8 @@
 - type: entity
   id: LockerNfsdBrigmedic
   parent: LockerBaseSecure
-  name: nfsd brigmedic locker
+  name: nfsd locker
+  suffix: Brigmedic
   components:
   - type: Appearance
   - type: EntityStorageVisuals
@@ -235,7 +240,8 @@
 - type: entity
   id: LockerNfsdSergeant
   parent: LockerBaseSecure
-  name: nfsd sergeant locker
+  name: nfsd locker
+  suffix: Sergeant
   components:
   - type: Appearance
   - type: EntityStorageVisuals
@@ -262,36 +268,16 @@
 # NFSD Gold - Bailiff
 - type: entity
   id: LockerNfsdBailiff
-  parent: LockerBaseSecure
-  name: nfsd bailiff locker
-  components:
-  - type: Appearance
-  - type: EntityStorageVisuals
-    stateBaseClosed: nfsd_gold
-    stateDoorOpen: nfsd_gold_open
-    stateDoorClosed: nfsd_gold_door
-  - type: Sprite
-    sprite: _NF/Structures/Storage/closet.rsi
-    noRot: true
-    layers:
-    - state: generic
-      map: ["enum.StorageVisualLayers.Base"]
-    - state: generic_door
-      map: ["enum.StorageVisualLayers.Door"]
-    - state: locked
-      map: ["enum.LockVisualLayers.Lock"]
-      shader: unshaded
-    - state: welded
-      visible: false
-      map: ["enum.WeldableLayers.BaseWelded"]
-  - type: AccessReader
-    access: [["Security"]]
+  parent: LockerNfsdSergeant
+  name: nfsd locker
+  suffix: Bailiff
 
 # NFSD Sheriff
 - type: entity
   id: LockerNfsdSheriff
   parent: LockerBaseSecure
-  name: nfsd sheriff's locker
+  name: nfsd locker
+  suffix: Sheriff
   components:
   - type: Appearance
   - type: EntityStorageVisuals

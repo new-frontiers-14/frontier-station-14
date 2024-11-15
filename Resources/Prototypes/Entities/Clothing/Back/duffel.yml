@@ -3,6 +3,7 @@
   id: ClothingBackpackDuffel
   name: duffel bag
   description: A large duffel bag for holding extra things.
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: Sprite
     sprite: Clothing/Back/Duffels/duffel.rsi
@@ -16,7 +17,7 @@
   - type: HeldSpeedModifier
 
 - type: entity
-  parent: ClothingBackpackDuffel
+  parent: NFClothingDuffel # Frontier: ClothingBackpackDuffelNFClothingDuffel
   id: ClothingBackpackDuffelEngineering
   name: engineering duffel bag
   description: A large duffel bag for holding extra tools and supplies.
@@ -25,7 +26,7 @@
       sprite: Clothing/Back/Duffels/engineering.rsi
 
 - type: entity
-  parent: ClothingBackpackDuffel
+  parent: NFClothingDuffel # Frontier: ClothingBackpackDuffelNFClothingDuffel
   id: ClothingBackpackDuffelAtmospherics
   name: atmospherics duffel bag
   description: A large duffel bag made of fire resistant fibers. Smells like plasma.
@@ -34,7 +35,7 @@
       sprite: Clothing/Back/Duffels/atmospherics.rsi
 
 - type: entity
-  parent: ClothingBackpackDuffel
+  parent: NFClothingDuffel # Frontier: ClothingBackpackDuffelNFClothingDuffel
   id: ClothingBackpackDuffelMedical
   name: medical duffel bag
   description: A large duffel bag for holding extra medical supplies.
@@ -43,7 +44,7 @@
       sprite: Clothing/Back/Duffels/medical.rsi
 
 - type: entity
-  parent: ClothingBackpackDuffel # Frontier: removed BaseCommandContraband
+  parent: NFClothingDuffel # Frontier: ClothingBackpackDuffelNFClothingDuffel # Frontier: removed BaseCommandContraband
   id: ClothingBackpackDuffelCaptain
   name: captain's duffel bag
   description: A large duffel bag for holding extra captainly goods.
@@ -52,7 +53,7 @@
       sprite: Clothing/Back/Duffels/captain.rsi
 
 - type: entity
-  parent: ClothingBackpackDuffel
+  parent: NFClothingDuffel # Frontier: ClothingBackpackDuffelNFClothingDuffel
   id: ClothingBackpackDuffelClown
   name: clown duffel bag
   description: A large duffel bag for holding extra honk goods.
@@ -64,7 +65,7 @@
         collection: BikeHorn
 
 - type: entity
-  parent: [ClothingBackpackDuffel, BaseC2Contraband ] # Frontier: BaseRestrictedContraband<BaseC2Contraband
+  parent: [NFClothingDuffel, BaseC2Contraband ] # Frontier: BaseRestrictedContraband<BaseC2Contraband, ClothingBackpackDuffel<NFClothingDuffel
   id: ClothingBackpackDuffelSecurity
   name: security duffel bag
   description: A large duffel bag for holding extra security related goods.
@@ -73,7 +74,7 @@
       sprite: Clothing/Back/Duffels/security.rsi
 
 - type: entity
-  parent: [ClothingBackpackDuffel, BaseC2Contraband ] # Frontier: BaseRestrictedContraband<BaseC2Contraband
+  parent: [NFClothingDuffel, BaseC2Contraband ] # Frontier: BaseRestrictedContraband<BaseC2Contraband, ClothingBackpackDuffel<NFClothingDuffel
   id: ClothingBackpackDuffelBrigmedic
   name: brigmedic duffel bag
   description: A large duffel bag for holding extra medical related goods.
@@ -82,7 +83,7 @@
       sprite: Clothing/Back/Duffels/brigmedic.rsi
 
 - type: entity
-  parent: ClothingBackpackDuffel
+  parent: NFClothingDuffel # Frontier: ClothingBackpackDuffelNFClothingDuffel
   id: ClothingBackpackDuffelChemistry
   name: chemistry duffel bag
   description: A large duffel bag for holding extra beakers and test tubes.
@@ -91,7 +92,7 @@
       sprite: Clothing/Back/Duffels/chemistry.rsi
 
 - type: entity
-  parent: ClothingBackpackDuffel
+  parent: NFClothingDuffel # Frontier: ClothingBackpackDuffelNFClothingDuffel
   id: ClothingBackpackDuffelVirology
   name: virology duffel bag
   description: A large duffel bag made of hypo-allergenic fibers. It's designed to help prevent the spread of disease. Smells like monkey.
@@ -100,7 +101,7 @@
       sprite: Clothing/Back/Duffels/virology.rsi
 
 - type: entity
-  parent: ClothingBackpackDuffel
+  parent: NFClothingDuffel # Frontier: ClothingBackpackDuffelNFClothingDuffel
   id: ClothingBackpackDuffelGenetics
   name: genetics duffel bag
   description: A large duffel bag for holding extra genetic mutations.
@@ -109,7 +110,7 @@
       sprite: Clothing/Back/Duffels/genetics.rsi
 
 - type: entity
-  parent: ClothingBackpackDuffel
+  parent: NFClothingDuffel # Frontier: ClothingBackpackDuffelNFClothingDuffel
   id: ClothingBackpackDuffelMime
   name: mime duffel bag
   description: A large duffel bag for holding... mime... stuff.
@@ -122,7 +123,7 @@
         collection: null
 
 - type: entity
-  parent: ClothingBackpackDuffel
+  parent: NFClothingDuffel # Frontier: ClothingBackpackDuffelNFClothingDuffel
   id: ClothingBackpackDuffelScience
   name: science duffel bag
   description: A large duffel bag for holding extra science related goods.
@@ -131,7 +132,7 @@
       sprite: Clothing/Back/Duffels/science.rsi
 
 - type: entity
-  parent: ClothingBackpackDuffel
+  parent: NFClothingDuffel # Frontier: ClothingBackpackDuffelNFClothingDuffel
   id: ClothingBackpackDuffelHydroponics
   name: hydroponics duffel bag
   description: A large duffel bag for holding extra gardening tools.
@@ -140,7 +141,7 @@
       sprite: Clothing/Back/Duffels/hydroponics.rsi
 
 - type: entity
-  parent: ClothingBackpackDuffel
+  parent: NFClothingDuffel # Frontier: ClothingBackpackDuffelNFClothingDuffel
   id: ClothingBackpackDuffelCargo
   name: cargo duffel bag
   description: A large duffel bag for stealing cargo's precious loot.
@@ -149,7 +150,7 @@
       sprite: Clothing/Back/Duffels/cargo.rsi
 
 - type: entity
-  parent: ClothingBackpackDuffel
+  parent: NFClothingDuffel # Frontier: ClothingBackpackDuffelNFClothingDuffel
   id: ClothingBackpackDuffelSalvage
   name: salvage duffel bag
   description: A large duffel bag for holding extra exotic treasures.
@@ -158,7 +159,7 @@
       sprite: Clothing/Back/Duffels/salvage.rsi
 
 - type: entity
-  parent: [ClothingBackpackDuffel, BaseC3Contraband, ContrabandClothing] # Frontier: BaseSyndicateContraband<BaseC3Contraband, added ContrabandClothing as parent
+  parent: [NFClothingDuffel, BaseC3Contraband, ContrabandClothing] # Frontier: BaseSyndicateContraband<BaseC3Contraband, added ContrabandClothing as parent
   id: ClothingBackpackDuffelSyndicate
   name: syndicate duffel bag
   description: A large duffel bag for holding various traitor goods.
@@ -172,7 +173,7 @@
     - 0,0,8,4
 
 - type: entity
-  parent: ClothingBackpackDuffelSyndicate
+  parent: NFClothingDuffel # Frontier: ClothingBackpackDuffelNFClothingDuffelSyndicate
   id: ClothingBackpackDuffelSyndicateBundle
   abstract: true
   components:
@@ -180,7 +181,7 @@
       tags: [] # ignore "WhitelistChameleon" tag
 
 - type: entity
-  parent: ClothingBackpackDuffelSyndicate
+  parent: NFClothingDuffel # Frontier: ClothingBackpackDuffelNFClothingDuffelSyndicate
   id: ClothingBackpackDuffelSyndicateAmmo
   name: syndicate duffel bag
   components:
@@ -193,7 +194,7 @@
       equippedPrefix: ammo
 
 - type: entity
-  parent: ClothingBackpackDuffelSyndicateAmmo
+  parent: NFClothingDuffel # Frontier: ClothingBackpackDuffelNFClothingDuffelSyndicateAmmo
   id: ClothingBackpackDuffelSyndicateAmmoBundle
   abstract: true
   components:
@@ -201,7 +202,7 @@
       tags: [] # ignore "WhitelistChameleon" tag
 
 - type: entity
-  parent: ClothingBackpackDuffelSyndicate
+  parent: NFClothingDuffel # Frontier: ClothingBackpackDuffelNFClothingDuffelSyndicate
   id: ClothingBackpackDuffelSyndicateMedical
   name: syndicate duffel bag
   components:
@@ -214,7 +215,7 @@
       equippedPrefix: med
 
 - type: entity
-  parent: ClothingBackpackDuffelSyndicateMedical
+  parent: NFClothingDuffel # Frontier: ClothingBackpackDuffelNFClothingDuffelSyndicateMedical
   id: ClothingBackpackDuffelSyndicateMedicalBundle
   abstract: true
   components:
@@ -222,7 +223,7 @@
       tags: [] # ignore "WhitelistChameleon" tag
 
 - type: entity
-  parent: ClothingBackpackDuffel
+  parent: NFClothingDuffel # Frontier: ClothingBackpackDuffelNFClothingDuffel
   id: ClothingBackpackDuffelHolding
   name: duffelbag of holding
   description: A duffelbag that opens into a localized pocket of bluespace.
@@ -261,7 +262,7 @@
         shader: unshaded # Frontier
 
 - type: entity
-  parent: [ ClothingBackpackDuffel, BaseCentcommContraband ]
+  parent: [ NFClothingDuffel, BaseCentcommContraband ] # Frontier: ClothingBackpackDuffel<NFClothingDuffel
   id: ClothingBackpackDuffelCBURN
   name: CBURN duffel bag
   description: A duffel bag containing a variety of biological containment equipment.

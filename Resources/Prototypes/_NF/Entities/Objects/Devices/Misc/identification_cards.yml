@@ -198,6 +198,13 @@
     - state: idvalet
 
 - type: entity
+  parent: JanitorIDCard
+  id: NFJanitorIDCard
+  components:
+  - type: PresetIdCard
+    job: NFJanitor
+
+- type: entity
   parent: PassengerIDCard
   id: ContractorIDCard
   name: contractor ID card
