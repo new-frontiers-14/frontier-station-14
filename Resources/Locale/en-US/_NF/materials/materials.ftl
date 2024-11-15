@@ -2,4 +2,4 @@
 materials-scrap = scrap
 
 # Ores
-materials-raw-scrap = raw scrap
+materials-raw-scrap = unsorted scrap

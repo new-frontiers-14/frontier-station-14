@@ -16,7 +16,21 @@
     materialComposition:
       RawScrap: 100
 
+# Ore vein
+- type: ore
+  id: NFOreScrap
+  oreEntity: ScrapOre5
+  minOreYield: 1
+  maxOreYield: 5
+
 # Stacks
+- type: stack
+  id: ScrapOre
+  name: scrap ore
+  icon: { sprite: /Textures/_NF/Objects/Materials/ore.rsi, state: scrapore }
+  spawn: ScrapOre1
+  maxCount: 100
+  
 - type: entity
   parent: ScrapOre
   id: ScrapOre1
@@ -25,13 +39,14 @@
   - type: Stack
     count: 1
 
-- type: stack
-  id: ScrapOre
-  name: scrap ore
-  icon: { sprite: /Textures/_NF/Objects/Materials/ore.rsi, state: scrapore }
-  spawn: ScrapOre1
-  maxCount: 100
-  
+- type: entity
+  parent: ScrapOre
+  id: ScrapOre5
+  suffix: 5
+  components:
+  - type: Stack
+    count: 5
+
 - type: material
   id: RawScrap
   stackEntity: ScrapOre1
@@ -60,7 +75,7 @@
     prototypes:
     - SpawnDungeonLootOresSingle
     - SpawnDungeonLootMaterialsBasicSingle
-    chance: 0.95
+    chance: 1.0
     offset: 0.0
     rarePrototypes:
     - MaterialBananium1
