@@ -526,6 +526,49 @@
       types:
         Blunt: 30 # Should prevent re-using
 
+- type: Tag
+  id: CrossbowBoltShrapnel
+
+- type: entity
+  parent: BaseCrossbowBoltTrigger
+  id: CrossbowBoltShrapnel
+  name: shrapnel bolt
+  description: A bolt with a buckshot shotgun shell attached to it.
+  components:
+  - type: Tag
+    tags:
+    - CrossbowBoltShrapnel
+  - type: Sprite
+    layers:
+    - state: tail
+      color: "#9b0048"
+    - state: rod
+      color: "#767676"
+    - state: charge
+      color: "#801000"
+    - state: tip
+    - state: solution1
+      map: ["enum.SolutionContainerLayers.Fill"]
+      visible: false
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 5
+  - type: ClusterGrenade
+    fillPrototype: PelletShotgun
+    maxGrenadesCount: 6
+    grenadeType: enum.GrenadeType.Shoot
+  - type: Construction
+    graph: CraftCrossbowBoltShrapnel
+    node: CraftCrossbowBoltShrapnel
+  - type: DamageOnLand
+    damage:
+      types:
+        Blunt: 30 # Should prevent re-using
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+
 # Blood cult
 - type: entity
   parent:
