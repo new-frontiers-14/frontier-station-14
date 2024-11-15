@@ -1,0 +1,48 @@
+﻿- type: entity
+  name: shuttle records console
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseComputer]
+  id: ComputerShuttleRecordsBase
+  description: Used to browse shuttle records and recover or reassign shuttle ownership to IDs.
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: shipyard
+    - map: ["computerLayerKeys"]
+      state: telesci_key
+  - type: ShuttleRecordsConsole
+    targetIdSlot:
+      name: id-card-console-target-id
+      ejectSound: /Audio/Machines/id_swipe.ogg
+      insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+      ejectOnBreak: true
+      swap: true
+      whitelist:
+        components:
+        - IdCard
+  - type: ActivatableUI
+    singleUser: true
+    key: enum.ShuttleRecordsUiKey.Default
+  - type: UserInterface
+    interfaces:
+      enum.ShuttleRecordsUiKey.Default:
+        type: ShuttleRecordsConsoleBoundUserInterface
+  - type: ItemSlots
+  - type: ContainerContainer
+    containers:
+      ShuttleRecordsConsole-targetId: !type:ContainerSlot {}
+  - type: AccessReader
+    access: [[ "HeadOfPersonnel" ]]
+
+# Concrete consoles
+- type: entity
+  parent: ComputerShuttleRecordsBase
+  id: ComputerShuttleRecords
+  components:
+  - type: ShuttleRecordsConsole

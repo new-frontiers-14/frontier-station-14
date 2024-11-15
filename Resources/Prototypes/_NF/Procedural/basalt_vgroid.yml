@@ -1,0 +1,350 @@
+# Okay so my general thought is this:
+# 1. Generate the large mass
+# 2. Generate smaller masses offset
+# 3. Generate N normal dungeons around the larger mass, preferably near the border
+# 4. Generate large paths / small paths around the place
+# 5. Spawn ores + fill the rest and the normal stuff
+
+# If you want mobs they needed to be added at specific steps due to how dungeons work at the moment.
+
+- type: dungeonConfig
+  id: NFVGRoidBasalt
+  layers:
+    - !type:PrototypeDunGen
+      proto: NFVGRoidBlobBasalt
+    - !type:PrototypeDunGen
+      proto: NFVGRoidExteriorBasalt
+    - !type:PrototypeDunGen
+      proto: NFVGRoidSmallerBasalt
+    - !type:PrototypeDunGen
+      proto: NFVGRoidSmallPathsBasalt
+    - !type:EntityTableDunGen
+      minCount: 7
+      maxCount: 12
+      table:
+        id: NFVGRoidInteriorRoomMarker
+    - !type:BiomeDunGen
+      biomeTemplate: NFVGRoidLava
+      tileMask:
+      - FloorBasalt
+    # Fill
+    # - !type:PrototypeDunGen
+      # proto: NFVGRoidFillBasalt
+    # "WarpPoint"
+    - !type:OreDunGen
+      tileMask:
+      - FloorBasalt
+      entity: WarpPointDungeon
+      count: 1
+      minGroupSize: 1
+      maxGroupSize: 1
+    # "Ores"
+    - !type:OreDunGen
+      entityMask:
+      - WallRockBasalt
+      entity: BasaltElementalSpawner
+      count: 100
+      minGroupSize: 1
+      maxGroupSize: 1
+    # Ores
+    - !type:OreDunGen
+      entityMask:
+      - WallRockBasalt
+      entity: WallRockBasaltTin
+      count: 50
+      minGroupSize: 10
+      maxGroupSize: 15
+    - !type:OreDunGen
+      entityMask:
+      - WallRockBasalt
+      entity: WallRockBasaltCoal
+      count: 50
+      minGroupSize: 8
+      maxGroupSize: 12
+    - !type:OreDunGen
+      entityMask:
+      - WallRockBasalt
+      entity: WallRockBasaltQuartz
+      count: 50
+      minGroupSize: 10
+      maxGroupSize: 15
+    - !type:OreDunGen
+      entityMask:
+      - WallRockBasalt
+      entity: WallRockBasaltSalt
+      count: 50
+      minGroupSize: 8
+      maxGroupSize: 12
+    - !type:OreDunGen
+      entityMask:
+      - WallRockBasalt
+      entity: WallRockBasaltGold
+      count: 40
+      minGroupSize: 8
+      maxGroupSize: 12
+    - !type:OreDunGen
+      entityMask:
+      - WallRockBasalt
+      entity: WallRockBasaltSilver
+      count: 40
+      minGroupSize: 8
+      maxGroupSize: 12
+    - !type:OreDunGen
+      entityMask:
+      - WallRockBasalt
+      entity: WallRockBasaltPlasma
+      count: 35
+      minGroupSize: 4
+      maxGroupSize: 8
+    - !type:OreDunGen
+      entityMask:
+      - WallRockBasalt
+      entity: WallRockBasaltUranium
+      count: 35
+      minGroupSize: 4
+      maxGroupSize: 8
+    - !type:OreDunGen
+      entityMask:
+      - WallRockBasalt
+      entity: WallBasaltCobblebrickNF
+      count: 100
+      minGroupSize: 6
+      maxGroupSize: 16
+    - !type:OreDunGen
+      entityMask:
+      - WallRockBasalt
+      entity: WallRockBasaltArtifactFragment
+      count: 25
+      minGroupSize: 1
+      maxGroupSize: 3
+    - !type:OreDunGen
+      entityMask:
+      - WallRockBasalt
+      entity: WallRockBasaltDiamond
+      count: 15
+      minGroupSize: 1
+      maxGroupSize: 2
+    - !type:OreDunGen
+      entityMask:
+      - WallRockBasalt
+      entity: WallRockBasaltBluespace
+      count: 10
+      minGroupSize: 1
+      maxGroupSize: 1
+    # Decoration
+    # - !type:OreDunGen
+      # tileMask:
+      # - FloorBasalt
+      # entity: FloraRockSolid01
+      # count: 20
+      # minGroupSize: 1
+      # maxGroupSize: 1
+    # Mobs
+    - !type:OreDunGen
+      tileMask:
+      - FloorBasalt
+      entity: SpawnMobMercenaryT3
+      count: 25
+      minGroupSize: 1
+      maxGroupSize: 1
+
+# Configs
+- type: dungeonConfig
+  id: NFVGRoidBlobBasalt
+  layers:
+  - !type:NoiseDistanceDunGen
+    size: 272, 272
+    distanceConfig: !type:DunGenEuclideanSquaredDistance
+      blendWeight: 0.80
+    layers:
+    - tile: FloorBasalt
+      threshold: 0.50
+      noise:
+        frequency: 0.010
+        noiseType: OpenSimplex2
+        fractalType: FBm
+        octaves: 5
+        lacunarity: 2
+        gain: 0.5
+
+- type: dungeonConfig
+  id: NFVGRoidSmallerBasalt
+  minOffset: 40
+  maxOffset: 60
+  layers:
+  - !type:NoiseDistanceDunGen
+    size: 150, 150
+    distanceConfig: !type:DunGenEuclideanSquaredDistance
+    layers:
+    - tile: FloorBasalt
+      threshold: 0.50
+      noise:
+        frequency: 0.080
+        noiseType: OpenSimplex2
+        fractalType: FBm
+        octaves: 5
+        lacunarity: 1.5
+        gain: 0.5
+
+- type: dungeonConfig
+  id: NFVGRoidExteriorBasalt
+  reserveTiles: true
+  data:
+    tiles:
+      FallbackTile: FloorGrayConcreteMono
+      WidenTile: FloorBasalt
+  layers:
+  - !type:PrototypeDunGen
+    proto: NFVGRoidExteriorDungeonsBasalt
+  - !type:SplineDungeonConnectorDunGen
+
+- type: dungeonConfig
+  id: NFVGRoidExteriorDungeonsBasalt
+  reserveTiles: true
+  minCount: 2
+  maxCount: 3
+  layers:
+  - !type:ExteriorDunGen
+    proto: LavaMercenary
+  - !type:EntityTableDunGen
+    minCount: 25
+    maxCount: 40
+    table: !type:NestedSelector
+      tableId: SalvageScrapSpawnerCommon
+  - !type:EntityTableDunGen
+    minCount: 30
+    maxCount: 40
+    table: !type:NestedSelector
+      tableId: SalvageScrapSpawnerValuable
+  - !type:EntityTableDunGen
+    minCount: 15
+    maxCount: 25
+    table: !type:NestedSelector
+      tableId: SalvageTreasureSpawnerCommon
+  - !type:EntityTableDunGen
+    minCount: 15
+    maxCount: 25
+    table: !type:NestedSelector
+      tableId: SalvageEquipmentSpawnerCommon
+  - !type:EntityTableDunGen
+    minCount: 15
+    maxCount: 20
+    table: !type:NestedSelector
+      tableId: SalvageTreasureSpawnerValuable
+  - !type:EntityTableDunGen
+    minCount: 15
+    maxCount: 20
+    table: !type:NestedSelector
+      tableId: SalvageEquipmentSpawnerValuable
+  - !type:MobsDunGen
+    minCount: 8
+    maxCount: 15
+    groups:
+    - id: SpawnMobMercenaryT2
+      amount: 1
+
+#- type: dungeonConfig
+#  id: NFVGRoidInteriorDungeonsBasalt
+#  minCount: 3
+#  maxCount: 5
+#  # Just randomly spawn these in bounds, doesn't really matter if they go out.
+
+- type: dungeonConfig
+  id: NFVGRoidSmallPathsBasalt
+  reserveTiles: true
+  layers:
+  - !type:ReplaceTileDunGen
+    layers:
+    - tile: FloorBasalt
+      threshold: 0.75
+      noise:
+        frequency: 0.040
+        noiseType: OpenSimplex2
+        fractalType: Ridged
+        lacunarity: 1.5
+        octaves: 2
+        gain: 2.0
+
+# Lava
+- type: biomeTemplate
+  id: NFVGRoidLava
+  layers:
+    - !type:BiomeEntityLayer
+      threshold: 0.9
+      noise:
+        frequency: 1
+        seed: 2
+      allowedTiles:
+        - FloorBasalt
+      entities:
+        - BasaltOne
+        - BasaltTwo
+        - BasaltThree
+        - BasaltFour
+        - BasaltFive
+    - !type:BiomeDecalLayer
+      allowedTiles:
+        - FloorBasalt
+      threshold: 0.9
+      divisions: 1
+      noise:
+        seed: 1
+        frequency: 1
+      decals:
+        - Basalt1
+        - Basalt2
+        - Basalt3
+        - Basalt4
+        - Basalt5
+        - Basalt6
+        - Basalt7
+        - Basalt8
+        - Basalt9
+    - !type:BiomeEntityLayer
+      threshold: 0.95
+      noise:
+        seed: 0
+        noiseType: OpenSimplex2
+        frequency: 1
+      allowedTiles:
+        - FloorBasalt
+      entities:
+        - FloraRockSolid01
+        - FloraRockSolid02
+        - FloraRockSolid03
+        - CrystalOrange
+    - !type:BiomeEntityLayer
+      threshold: 0.2
+      noise:
+        seed: 0
+        frequency: 0.02
+        fractalType: FBm
+        octaves: 5
+        lacunarity: 2
+        gain: 0.4
+      allowedTiles:
+        - FloorBasalt
+      entities:
+        - FloorLavaEntity
+    # Rock formations
+    - !type:BiomeEntityLayer
+      allowedTiles:
+        - FloorBasalt
+      threshold: -0.30
+      noise:
+        seed: 0
+        noiseType: Cellular
+        frequency: 0.05
+        lacunarity: 2
+        fractalType: FBm
+        octaves: 5
+        cellularDistanceFunction: Euclidean
+        cellularReturnType: Distance2
+      entities:
+        - WallRockBasalt
+    - !type:BiomeDummyLayer
+      id: Loot
+    # Fill basalt
+    - !type:BiomeTileLayer
+      threshold: -1
+      tile: FloorBasalt
