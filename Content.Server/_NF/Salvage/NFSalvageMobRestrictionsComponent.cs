@@ -23,31 +23,25 @@ public sealed partial class NFSalvageMobRestrictionsComponent : Component
     public bool DespawnIfOffLinkedGrid = true;
 
     /// <summary>
-    /// On death removes active comps and gives genetic damage to prevent cloning, reduce this to allow cloning.
-    /// </summary>
-    [DataField]
-    public bool CleanCompsOnMobDeath = true;
-
-    /// <summary>
-    /// Components to be .
+    /// Components to be added on death.
     /// </summary>
     [DataField]
     public ComponentRegistry AddComponentsOnDeath { get; set; } = new();
 
     /// <summary>
-    /// Components to be .
+    /// Components to be removed on death.
     /// </summary>
     [DataField]
     public ComponentRegistry RemoveComponentsOnDeath { get; set; } = new();
 
     /// <summary>
-    /// Components to be .
+    /// Components to be added on revivel.
     /// </summary>
     [DataField]
     public ComponentRegistry AddComponentsOnRevival { get; set; } = new();
 
     /// <summary>
-    /// Components to be .
+    /// Components to be removed on revival.
     /// </summary>
     [DataField]
     public ComponentRegistry RemoveComponentsOnRevival { get; set; } = new();
