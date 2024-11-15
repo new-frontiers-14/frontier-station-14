@@ -1,6 +1,7 @@
 # Base prototypes
 
 - type: latheRecipe
+  abstract: true
   id: NFBaseFloorTileRecipe
   applyMaterialDiscount: false
   completetime: 0.5
@@ -8,12 +9,14 @@
     Steel: 25
 
 - type: latheRecipe
+  abstract: true
   id: NFBaseFloorTileSilverRecipe
   parent: NFBaseFloorTileRecipe
   materials:
     Silver: 25
 
 - type: latheRecipe
+  abstract: true
   id: NFBaseFloorTileClothRecipe
   parent: NFBaseFloorTileRecipe
   materials:
