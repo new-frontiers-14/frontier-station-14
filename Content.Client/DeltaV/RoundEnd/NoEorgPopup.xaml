@@ -3,7 +3,7 @@
                       Title="{Loc 'no-eorg-popup-title'}"
                       MinSize="520 423"
                       MaxSize="520 423"> <!-- Frontier: height: 450<423 -->
-    <BoxContainer Orientation="Vertical" Margin="15">
+    <BoxContainer Orientation="Vertical" Margin="15"> <!-- Frontier: margin: 20<15 -->
         <Label Name="TitleLabel"
                StyleClasses="LabelBig"
                HorizontalAlignment="Center"
@@ -19,7 +19,7 @@
             <CheckBox Name="SkipCheckBox"
                       Text="{Loc 'no-eorg-popup-skip-checkbox'}"
                       HorizontalAlignment="Center"
-                      Margin="0 0 0 15" />
+                      Margin="0 0 0 15" /> <!-- Frontier: bottom margin 10<15 -->
             <Button Name="NoEorgCloseButton"
                     HorizontalAlignment="Center"
                     MinWidth="150" />
