@@ -38,7 +38,7 @@
     offset: 0.1,0.1
   - type: ThrowingAngle
     angle: 0
-  
+
 - type: entity
   id: BaseBoltProjectile
   parent: BaseItem
@@ -236,8 +236,7 @@
     - state: rod
       color: "#959595"
     - state: tip
-      color: "#65b9e9"
-      alpha: 0.8
+      color: "#65b9e9cc"
     - state: solution1
       map: ["enum.SolutionContainerLayers.Fill"]
       visible: false
@@ -522,6 +521,46 @@
   - type: Construction
     graph: CraftCrossbowBoltIncendiary
     node: CraftCrossbowBoltIncendiary
+  - type: DamageOnLand
+    damage:
+      types:
+        Blunt: 30 # Should prevent re-using
+
+- type: Tag
+  id: CrossbowBoltShrapnel
+
+- type: entity
+  parent: BaseCrossbowBoltTrigger
+  id: CrossbowBoltShrapnel
+  name: shrapnel bolt
+  description: A bolt with a buckshot shotgun shell attached to it.
+  components:
+  - type: Tag
+    tags:
+    - CrossbowBoltShrapnel
+  - type: Sprite
+    layers:
+    - state: tail
+      color: "#9b0048"
+    - state: rod
+      color: "#767676"
+    - state: charge
+      color: "#801000"
+    - state: tip
+    - state: solution1
+      map: ["enum.SolutionContainerLayers.Fill"]
+      visible: false
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 5
+  - type: ClusterGrenade
+    fillPrototype: PelletShotgun
+    maxGrenadesCount: 6
+    grenadeType: enum.GrenadeType.Shoot
+  - type: Construction
+    graph: CraftCrossbowBoltShrapnel
+    node: CraftCrossbowBoltShrapnel
   - type: DamageOnLand
     damage:
       types:

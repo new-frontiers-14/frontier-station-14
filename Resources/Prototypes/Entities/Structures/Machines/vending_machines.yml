@@ -1374,7 +1374,7 @@
   description: A dwarf's best friend!
   components:
   - type: VendingMachine
-    pack: SalvageEquipmentInventory
+    pack: NFSalvageEquipmentInventory # Frontier SalvageEquipmentInventory<NFSalvageEquipmentInventory
     offState: off
     brokenState: broken
     normalState: normal-unshaded
@@ -1398,6 +1398,8 @@
   # - type: GuideHelp # Frontier: removed guidebook entry
   #   guides: # Frontier: removed guidebook entry
   #   - Salvage # Frontier: removed guidebook entry
+  - type: MarketModifier # Frontier
+    mod: 15 # Frontier
 
 - type: entity
   parent: VendingMachine

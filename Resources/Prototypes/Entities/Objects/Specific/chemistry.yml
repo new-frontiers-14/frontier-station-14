@@ -269,7 +269,7 @@
 
 - type: entity
   name: dropper
-  parent: BaseItem
+  parent: [BaseItem, RecyclableItemGlassTiny] # Frontier: added RecyclableItemGlassTiny
   description: Used to transfer small amounts of chemical solution between containers.
   id: Dropper
   components:
@@ -462,7 +462,7 @@
 
 - type: entity
   name: pill
-  parent: BaseItem
+  parent: [BaseItem, RecyclableItemNoMats] # Frontier: added RecyclableItemNoMats
   id: Pill
   description: It's not a suppository.
   components:
@@ -510,7 +510,7 @@
 - type: entity
   name: pill canister
   id: PillCanister
-  parent: BaseStorageItem
+  parent: [BaseStorageItem, RecyclableItemPlasticTiny] # Frontier: added RecyclableItemPlasticTiny
   description: Holds up to 10 pills.
   components:
   - type: Item
