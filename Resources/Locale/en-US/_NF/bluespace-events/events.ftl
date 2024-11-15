@@ -7,7 +7,7 @@ station-event-bluespace-vault-start-announcement = A NanoTrasen autonomous armor
 station-event-bluespace-vault-warning-announcement = Remote FTL procedures initialized, five minutes until vault extraction.
 station-event-bluespace-vault-end-announcement = We have retrieved the vault from your sector. Station accounts have been remunerated.
 
-station-event-bluespace-cache-start-announcement = A Syndicate weapons cache is inbound to the sector. The area 300m around the cache is a No Fly Zone. Station accounts will be rewarded for guarding the cache.
+station-event-bluespace-cache-start-announcement = A Syndicate weapons cache is inbound to the sector. The NFSD may declare the cache a No Fly Zone. Station accounts will be rewarded for guarding the cache.
 station-event-bluespace-cache-warning-announcement = Remote FTL procedures initialized, five minutes until weapons cache extraction.
 station-event-bluespace-cache-end-announcement = We have retrieved the Syndicate weapons cache from your sector. Station accounts have been remunerated.
 
