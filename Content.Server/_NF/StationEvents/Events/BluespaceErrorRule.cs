@@ -15,6 +15,8 @@ using Content.Server.GameTicking;
 using Content.Server.Procedural;
 using Robust.Shared.Prototypes;
 using Content.Shared.Salvage;
+using Content.Server.Warps;
+using Content.Server.Station.Systems;
 
 namespace Content.Server.StationEvents.Events;
 
@@ -31,8 +33,9 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
     [Dependency] private readonly ShuttleSystem _shuttle = default!;
     [Dependency] private readonly PricingSystem _pricing = default!;
     [Dependency] private readonly CargoSystem _cargo = default!;
-
-    private List<(Entity<TransformComponent> Entity, EntityUid MapUid, Vector2 LocalPosition)> _playerMobs = new();
+    [Dependency] private readonly LinkedLifecycleGridSystem _linkedLifecycleGrid = default!;
+    [Dependency] private readonly StationSystem _stationSystem = default!;
+    [Dependency] private readonly StationRenameWarpsSystems _renameWarps = default!;
 
     public override void Initialize()
     {
@@ -83,11 +86,22 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
                 if (group.NameLoc != null && group.NameLoc.Count > 0)
                 {
                     _metadata.SetEntityName(spawned, Loc.GetString(_random.Pick(group.NameLoc)));
+
                 }
 
                 if (_protoManager.TryIndex(group.NameDataset, out var dataset))
                 {
                     _metadata.SetEntityName(spawned, SharedSalvageSystem.GetFTLName(dataset, _random.Next()));
+                }
+
+                if (group.NameWarp)
+                {
+                    var warps = _renameWarps.SyncWarpPointsToGrid(spawned);
+                    foreach (var warp in warps)
+                    {
+                        if (group.HideWarp)
+                            warp.Comp.AdminOnly = true;
+                    }
                 }
 
                 EntityManager.AddComponents(spawned, group.AddComponents);
@@ -216,17 +230,10 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
                     }
                 }
 
-                var mobQuery = AllEntityQuery<HumanoidAppearanceComponent, MobStateComponent, TransformComponent>();
-                _playerMobs.Clear();
-
-                while (mobQuery.MoveNext(out var mobUid, out _, out _, out var xform))
+                var playerMobs = _linkedLifecycleGrid.GetEntitiesToReparent(gridUid);
+                foreach (var mob in playerMobs)
                 {
-                    if (xform.GridUid == null || xform.MapUid == null || xform.GridUid != gridUid)
-                        continue;
-
-                    // Can't parent directly to map as it runs grid traversal.
-                    _playerMobs.Add(((mobUid, xform), xform.MapUid.Value, _transform.GetWorldPosition(xform)));
-                    _transform.DetachEntity(mobUid, xform);
+                    _transform.DetachEntity(mob.Entity.Owner, mob.Entity.Comp);
                 }
 
                 var gridValue = _pricing.AppraiseGrid(gridUid, null);
@@ -234,7 +241,7 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
                 // Deletion has to happen before grid traversal re-parents players.
                 Del(gridUid);
 
-                foreach (var mob in _playerMobs)
+                foreach (var mob in playerMobs)
                 {
                     _transform.SetCoordinates(mob.Entity.Owner, new EntityCoordinates(mob.MapUid, mob.LocalPosition));
                 }
@@ -249,7 +256,8 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
 
         foreach (MapId mapId in component.MapsUid)
         {
-            _mapManager.DeleteMap(mapId);
+            if (_mapManager.MapExists(mapId))
+                _mapManager.DeleteMap(mapId);
         }
     }
 }
