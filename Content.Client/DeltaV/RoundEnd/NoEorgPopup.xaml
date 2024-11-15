@@ -1,8 +1,8 @@
 <controls:FancyWindow xmlns="https://spacestation14.io"
                       xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
                       Title="{Loc 'no-eorg-popup-title'}"
-                      MinSize="520 450"
-                      MaxSize="520 450">
+                      MinSize="520 438"
+                      MaxSize="520 438"> <!-- Frontier: height: 450<438 -->
     <BoxContainer Orientation="Vertical" Margin="20">
         <Label Name="TitleLabel"
                StyleClasses="LabelBig"
@@ -10,10 +10,9 @@
                Margin="0 0 0 5" />
         <PanelContainer StyleClasses="BackgroundDark" Margin="0 0 0 10">
             <BoxContainer Orientation="Vertical" Margin="10">
-                <RichTextLabel Name="MessageLabel" HorizontalAlignment="Center" />
-                <Control MinSize="0 5" />
-                <RichTextLabel Name="RuleLabel" HorizontalAlignment="Center" />
-                <RichTextLabel Name="RuleTextLabel" HorizontalAlignment="Center" Margin="0 5 0 0" />
+                <RichTextLabel Name="MessageLabel" HorizontalAlignment="Center" Margin="0 5 0 10"/> <!-- Frontier: added margins, removed blank Control -->
+                <RichTextLabel Name="RuleLabel" HorizontalAlignment="Center" Margin="0 5 0 10"/> <!-- Frontier: added margins -->
+                <RichTextLabel Name="RuleTextLabel" HorizontalAlignment="Center" Margin="0 5 0 0" /> <!-- Frontier: added margins -->
             </BoxContainer>
         </PanelContainer>
         <BoxContainer Orientation="Vertical" VerticalAlignment="Bottom" Margin="0 10 0 0">
