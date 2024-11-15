@@ -1,0 +1,26 @@
+# Mass scanner telescreen
+- type: entity
+  parent: [BaseStructureComputerWallmount, ComputerRadar]
+  id: ComputerWallmountRadar
+  components:
+  - type: Sprite
+    drawdepth: WallMountedItems
+    sprite: _NF/Structures/Machines/computer_wallmount.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer_wallmount
+    - map: ["computerLayerScreen"]
+      state: screen_mass
+
+- type: entity
+  parent: [BaseStructureComputerWallmount, ComputerAdvancedRadar]
+  id: ComputerWallmountAdvancedRadar
+  components:
+  - type: Sprite
+    drawdepth: WallMountedItems
+    sprite: _NF/Structures/Machines/computer_wallmount.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer_wallmount
+    - map: ["computerLayerScreen"]
+      state: screen_radar
