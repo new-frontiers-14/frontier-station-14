@@ -75,3 +75,22 @@
       amount: 3
     - id: SheetPlasteel1
       amount: 3
+
+- type: entity
+  id: RecyclableItemClothHardsuit
+  abstract: true
+  components:
+  - type: PhysicalComposition
+    materialComposition:
+      Durathread: 200
+      Cloth: 100
+      Steel: 100
+  - type: Butcherable
+    butcheringType: Knife
+    spawned:
+    - id: MaterialDurathread1
+      amount: 3
+    - id: SheetSteel1
+      amount: 2
+    - id: MaterialCloth1
+      amount: 3

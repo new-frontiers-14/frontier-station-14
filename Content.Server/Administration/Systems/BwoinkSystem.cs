@@ -859,7 +859,7 @@ namespace Content.Server.Administration.Systems
 
                     var nonAfkAdmins = GetNonAfkAdmins();
                     var messageParams = new AHelpMessageParams(
-                        senderSession.Name,
+                        adminNickname,
                         str,
                         !personalChannel,
                         _gameTicker.RoundDuration().ToString("hh\\:mm\\:ss"),

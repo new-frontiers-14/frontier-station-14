@@ -34,7 +34,7 @@
     - !type:OreDunGen
       tileMask:
       - FloorSnow
-      entity: WarpPointNFDengeonSnow
+      entity: WarpPointDungeon
       count: 1
       minGroupSize: 1
       maxGroupSize: 1
@@ -251,40 +251,10 @@
     table: !type:NestedSelector
       tableId: SalvageEquipmentSpawnerValuable
   - !type:MobsDunGen
-    minCount: 2
-    maxCount: 4
+    minCount: 8
+    maxCount: 15
     groups:
-    - id: MobXenoBurrowerExpeditions
-      amount: 1
-  - !type:MobsDunGen
-    minCount: 2
-    maxCount: 4
-    groups:
-    - id: MobXenoDroneExpeditions
-      amount: 1
-  - !type:MobsDunGen
-    minCount: 2
-    maxCount: 4
-    groups:
-    - id: MobXenoPraetorianExpeditions
-      amount: 1
-  - !type:MobsDunGen
-    minCount: 2
-    maxCount: 4
-    groups:
-    - id: MobXenoRavagerExpeditions
-      amount: 1
-  - !type:MobsDunGen
-    minCount: 2
-    maxCount: 4
-    groups:
-    - id: MobXenoRunnerExpeditions
-      amount: 1
-  - !type:MobsDunGen
-    minCount: 2
-    maxCount: 4
-    groups:
-    - id: MobXenoSpitterExpeditions
+    - id: SpawnMobXenoT2
       amount: 1
 
 #- type: dungeonConfig
