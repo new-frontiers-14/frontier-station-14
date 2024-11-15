@@ -3,18 +3,7 @@ using Content.Shared.Body.Components;
 using Content.Server.Body.Systems;
 using Content.Server.Explosion.EntitySystems;
 using Content.Shared.Mobs;
-using Content.Shared.Damage.Prototypes;
 using Robust.Shared.Prototypes;
-using Content.Shared.Tag;
-using Content.Shared.Electrocution;
-using Content.Shared.Weapons.Reflect;
-using Content.Shared.Movement.Components;
-using Content.Server.Traits.Assorted;
-using Content.Shared.Tools.Components;
-using Content.Shared.Prying.Components;
-using Content.Shared.Access.Components;
-using Content.Server.Spawners.Components;
-using Content.Server.Advertise.Components;
 
 namespace Content.Server._NF.Salvage;
 
@@ -87,23 +76,15 @@ public sealed class SalvageMobRestrictionsSystem : EntitySystem
 
     private void OnMobState(EntityUid uid, NFSalvageMobRestrictionsComponent component, MobStateChangedEvent args)
     {
-        if (args.NewMobState == MobState.Dead && component.CleanCompsOnMobDeath)
+        if (args.NewMobState == MobState.Dead)
         {
-            RemComp<InsulatedComponent>(uid);
-            RemComp<ReflectComponent>(uid);
-            RemComp<MovementIgnoreGravityComponent>(uid);
-            RemComp<ToolComponent>(uid);
-            RemComp<PryingComponent>(uid);
-            RemComp<CanMoveInAirComponent>(uid);
-            RemComp<TagComponent>(uid);
-            RemComp<AccessComponent>(uid);
-            RemComp<TimedSpawnerComponent>(uid);
-            RemComp<AdvertiseComponent>(uid);
-            EnsureComp<UncloneableComponent>(uid);
-            EnsureComp<UnrevivableComponent>(uid);
-
-            var damageSpec = new DamageSpecifier(_prototypeManager.Index<DamageGroupPrototype>("Genetic"), 300);
-            _damageableSystem.TryChangeDamage(uid, damageSpec);
+            EntityManager.AddComponents(uid, component.AddComponentsOnDeath);
+            EntityManager.RemoveComponents(uid, component.RemoveComponentsOnDeath);
+        }
+        else if (args.OldMobState == MobState.Dead)
+        {
+            EntityManager.AddComponents(uid, component.AddComponentsOnRevival);
+            EntityManager.RemoveComponents(uid, component.RemoveComponentsOnRevival);
         }
     }
 }

@@ -1,3 +1,5 @@
+using Robust.Shared.Prototypes;
+
 namespace Content.Server._NF.Salvage;
 
 /// <summary>
@@ -25,4 +27,28 @@ public sealed partial class NFSalvageMobRestrictionsComponent : Component
     /// </summary>
     [DataField]
     public bool CleanCompsOnMobDeath = true;
+
+    /// <summary>
+    /// Components to be .
+    /// </summary>
+    [DataField]
+    public ComponentRegistry AddComponentsOnDeath { get; set; } = new();
+
+    /// <summary>
+    /// Components to be .
+    /// </summary>
+    [DataField]
+    public ComponentRegistry RemoveComponentsOnDeath { get; set; } = new();
+
+    /// <summary>
+    /// Components to be .
+    /// </summary>
+    [DataField]
+    public ComponentRegistry AddComponentsOnRevival { get; set; } = new();
+
+    /// <summary>
+    /// Components to be .
+    /// </summary>
+    [DataField]
+    public ComponentRegistry RemoveComponentsOnRevival { get; set; } = new();
 }
