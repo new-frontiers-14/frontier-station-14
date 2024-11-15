@@ -100,6 +100,9 @@ public sealed class WorldControllerSystem : EntitySystem
 
         while (loaderEnum.MoveNext(out var uid, out var worldLoader, out var xform))
         {
+            if (worldLoader.Disabled) // Frontier: disable world loading
+                continue; // Frontier
+
             var mapOrNull = xform.MapUid;
             if (mapOrNull is null)
                 continue;
