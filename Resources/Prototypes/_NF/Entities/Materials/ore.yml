@@ -1,0 +1,69 @@
+
+- type: entity
+  parent: OreBase
+  id: ScrapOre
+  name: scrap ore
+  suffix: Full
+  components:
+  - type: Stack
+    stackType: ScrapOre
+  - type: Sprite
+    layers:
+    - sprite: _NF/Objects/Materials/ore.rsi
+      state: scrapore
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      RawScrap: 100
+
+# Stacks
+- type: entity
+  parent: ScrapOre
+  id: ScrapOre1
+  suffix: Single
+  components:
+  - type: Stack
+    count: 1
+
+- type: stack
+  id: ScrapOre
+  name: scrap ore
+  icon: { sprite: /Textures/_NF/Objects/Materials/ore.rsi, state: scrapore }
+  spawn: ScrapOre1
+  maxCount: 100
+  
+- type: material
+  id: RawScrap
+  stackEntity: ScrapOre1
+  name: materials-raw-scrap
+  unit: materials-unit-chunk
+  icon: { sprite: /Textures/_NF/Objects/Materials/ore.rsi, state: scrapore }
+  color: "#FFD700"
+  price: 0.2
+
+# Spawner for lather: yield random mats if processed in ore processor
+- type: entity
+  name: refined scrap
+  id: SpawnRandomRefinedScrap
+  parent: MarkerBasePlaceFree
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _NF/Objects/Materials/ore.rsi
+        state: scrapore
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - SpawnDungeonLootOresSingle
+    - SpawnDungeonLootMaterialsBasicSingle
+    chance: 0.95
+    offset: 0.0
+    rarePrototypes:
+    - MaterialBananium1
+    - MaterialBones1
+    - SpawnDungeonLootMaterialsValuableSingle
+    rareChance: 0.005
