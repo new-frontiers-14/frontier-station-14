@@ -263,6 +263,10 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         bill = (int) _pricing.AppraiseGrid(shuttleUid);
         _mapManager.DeleteGrid(shuttleUid);
         _sawmill.Info($"Sold shuttle {shuttleUid} for {bill}");
+
+        // Update all record UI (skip records, no new records)
+        _shuttleRecordsSystem.RefreshStateForAll(true);
+
         result.Error = ShipyardSaleError.Success;
         return result;
     }
@@ -316,6 +320,15 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         {
             _sawmill.Error($"Could not rename shuttle {ToPrettyString(shuttle):entity} to {newName}");
             return false;
+        }
+
+        //TODO: move this to an event that others hook into.
+        if (TryGetNetEntity(shuttleDeed.ShuttleUid, out var shuttleNetEntity) &&
+            _shuttleRecordsSystem.TryGetRecord(shuttleNetEntity.Value, out var record))
+        {
+            record.Name = newName ?? "";
+            record.Suffix = newSuffix ?? "";
+            _shuttleRecordsSystem.TryUpdateRecord(record);
         }
 
         return true;
