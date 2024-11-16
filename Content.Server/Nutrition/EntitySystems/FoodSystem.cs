@@ -38,7 +38,7 @@ namespace Content.Server.Nutrition.EntitySystems;
 /// <summary>
 /// Handles feeding attempts both on yourself and on the target.
 /// </summary>
-public partial class FoodSystem : EntitySystem // Frontier: sealed<partial
+public sealed partial class FoodSystem : EntitySystem // Frontier: add partial
 {
     [Dependency] private readonly BodySystem _body = default!;
     [Dependency] private readonly FlavorProfileSystem _flavorProfile = default!;
@@ -244,9 +244,8 @@ public partial class FoodSystem : EntitySystem // Frontier: sealed<partial
         var split = _solutionContainer.SplitSolution(soln.Value, transferAmount);
 
         // Frontier: food digestion
-        if (!CheckDigestablePrereqs(entity, entity.Comp, stomachs)) {
+        if (!CheckDigestablePrereqs(entity, entity.Comp, stomachs))
             return;
-        }
 
         // Get the stomach with the highest available solution volume
         var highestAvailable = FixedPoint2.Zero;

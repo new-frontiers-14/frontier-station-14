@@ -98,12 +98,6 @@
     - !type:AdjustReagent
       reagent: Stimulants
       amount: 0.5
-  # High gobbo cuisine (moth equivalent without tags)
-  - conversions:
-      TrashJuice:
-        Nutriment: 0.5
-        Vitamin: 0.25
-        Protein: 0.25
   # Overwriting default flavorol generation (no postDigest)
   - quality: Nasty
     conversions:
@@ -128,16 +122,16 @@
         Flavorol: 0.2
         Protein: 0.8
   - quality: GoblinGourmet
-    conversions:
+    conversions: # lower values in some concession for trash stims
       Vitamin:
-        Flavorol: 0.4
-        Vitamin: 0.6
+        Flavorol: 0.3
+        Vitamin: 0.7
       Nutriment:
-        Flavorol: 0.4
-        Nutriment: 0.6
+        Flavorol: 0.3
+        Nutriment: 0.7
       Protein:
-        Flavorol: 0.4
-        Protein: 0.6
+        Flavorol: 0.3
+        Protein: 0.7
   - quality: Junk
     conversions:
       Vitamin:

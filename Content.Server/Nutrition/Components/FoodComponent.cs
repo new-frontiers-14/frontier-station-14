@@ -4,11 +4,10 @@ using Content.Server.Nutrition.EntitySystems;
 using Content.Shared.FixedPoint;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
-using Content.Server.Mail; // Frontier
 
 namespace Content.Server.Nutrition.Components;
 
-[RegisterComponent, Access(typeof(FoodSystem), typeof(FoodSequenceSystem), typeof(MailSystem))] // Frontier
+[RegisterComponent, Access(typeof(FoodSystem), typeof(FoodSequenceSystem))] // Frontier
 public sealed partial class FoodComponent : Component
 {
     [DataField]

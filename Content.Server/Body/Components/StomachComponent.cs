@@ -1,11 +1,11 @@
-using Content.Server._NF.Nutrition.Prototypes;
 using Content.Server.Body.Systems;
 using Content.Server.Nutrition.EntitySystems;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Whitelist;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
+using Content.Server._NF.Nutrition.Prototypes; // Frontier
+using Robust.Shared.Prototypes; // Frontier
 
 namespace Content.Server.Body.Components
 {
