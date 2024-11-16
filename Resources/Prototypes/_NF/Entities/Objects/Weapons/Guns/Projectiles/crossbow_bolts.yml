@@ -405,13 +405,6 @@
       types:
         Piercing: 15
     deleteOnCollide: true
-  - type: PointLight
-    radius: 1.3
-    color: orange
-    energy: 0.8
-  - type: Construction
-    graph: CraftCrossbowBoltExplosive
-    node: CraftCrossbowBoltExplosive
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: Default
@@ -419,6 +412,13 @@
     intensitySlope: 1
     totalIntensity: 2.5
     maxTileBreak: 1
+  - type: PointLight
+    radius: 1.3
+    color: orange
+    energy: 0.8
+  - type: Construction
+    graph: CraftCrossbowBoltExplosive
+    node: CraftCrossbowBoltExplosive
 
 - type: Tag
   id: CrossbowBoltEMP
@@ -457,6 +457,10 @@
     deleteOnCollide: true
   - type: StaminaDamageOnCollide
     damage: 20
+  - type: EmpOnTrigger
+    range: 0.5
+    energyConsumption: 2700000
+    disableDuration: 10
   - type: PointLight
     radius: 1.3
     color: cyan
@@ -464,10 +468,6 @@
   - type: Construction
     graph: CraftCrossbowBoltEMP
     node: CraftCrossbowBoltEMP
-  - type: EmpOnTrigger
-    range: 0.5
-    energyConsumption: 2700000
-    disableDuration: 10
 
 - type: Tag
   id: CrossbowBoltIncendiary
@@ -503,6 +503,8 @@
       types:
         Piercing: 15
     deleteOnCollide: true
+  - type: IgniteOnProjectileHit
+    fireStacks: 0.5
   - type: PointLight
     enabled: true
     color: "#ff4300"
@@ -511,8 +513,6 @@
   - type: Construction
     graph: CraftCrossbowBoltIncendiary
     node: CraftCrossbowBoltIncendiary
-  - type: IgniteOnProjectileHit
-    fireStacks: 0.5
 
 - type: Tag
   id: CrossbowBoltShrapnel
@@ -543,14 +543,11 @@
       types:
         Blunt: 5
     deleteOnCollide: true
+  - type: SpawnOnTrigger
+    proto: CrossbowBoltShrapnelSpread
   - type: Construction
     graph: CraftCrossbowBoltShrapnel
     node: CraftCrossbowBoltShrapnel
-  - type: SpawnOnTrigger
-    proto: CrossbowBoltShrapnelSpread
-  - type: ContainerContainer
-    containers:
-      cluster-payload: !type:Container
 
 - type: entity
   id: CrossbowBoltShrapnelSpread
@@ -562,6 +559,9 @@
     grenadeType: enum.GrenadeType.Shoot
     baseTriggerDelay: 0
   - type: TriggerOnSpawn
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
 
 # Blood cult
 - type: entity
