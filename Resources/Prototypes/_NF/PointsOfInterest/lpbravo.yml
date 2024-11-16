@@ -11,13 +11,19 @@
 - type: pointOfInterest
   id: LPBravo
   name: 'Listening Point Bravo'
-  rangeMin: 2150
-  rangeMax: 4850
-  IFFColor: "#C83737" #red the color of ebil
-  IFFFlags: [HideLabel, Hide] # Invisible
-  allowIFFChanges: true
+  minimumDistance: 4000
+  maximumDistance: 6000
   spawnGroup: SyndicateFOB
   gridPath: /Maps/_NF/POI/lpbravo.yml
+  hideWarp: true
+  addComponents:
+  - type: IFF
+    color: "#C83737"
+    flags: [HideLabel, Hide]
+  - type: Shuttle
+    angularDamping: 999999
+    linearDamping: 999999
+  - type: SyndicateFOB # For pinpointer
 
 - type: gameMap
   id: LPBravo
@@ -26,6 +32,7 @@
   minPlayers: 0
   stations:
     LPBravo:
+      # FIXME: no records despite shipyard console, could currently be gamed
       stationProto: StandardFrontierOutpost
       components:
         - type: StationNameSetup

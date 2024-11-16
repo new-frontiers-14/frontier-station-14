@@ -137,6 +137,7 @@
   id: GeneratorRTGDamagedFlatpack
   name: RTG generator flatpack
   description: A flatpack used for constructing a Radioisotope Thermoelectric Generator. The packaging seems to be somewhat damaged.
+  suffix: Damaged
   components:
   - type: Flatpack
     entity: GeneratorRTGDamaged
@@ -374,6 +375,30 @@
   components:
   - type: Flatpack
     entity: KitchenMicrowave
+
+- type: entity
+  parent: UniformPrinterFlatpack
+  id: HydroponicsSoilNutritionFlatpack
+  name: crate with fertile soil
+  description: A crate with fertile soil used for constructing a soil bed for growing.
+  components:
+  - type: Flatpack
+    entity: HydroponicsSoilNutrition
+  - type: Sprite
+    layers:
+    - state: soil
+
+- type: entity
+  parent: UniformPrinterFlatpack
+  id: HydroponicsSoilEmptyFlatpack
+  name: crate with soil
+  description: A crate with soil used for constructing a soil bed for growing.
+  components:
+  - type: Flatpack
+    entity: HydroponicsSoilEmpty
+  - type: Sprite
+    layers:
+    - state: soil
 
 # Medical
 - type: entity
