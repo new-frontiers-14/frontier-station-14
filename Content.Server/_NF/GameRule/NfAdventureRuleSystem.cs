@@ -6,16 +6,13 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Content.Shared._NF.GameRule;
-using Content.Server.Procedural;
 using Content.Server._NF.GameTicking.Events;
 using Robust.Server.GameObjects;
 using Robust.Server.Maps;
-using Robust.Shared.Console;
 using Content.Shared.GameTicking.Components;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
-using Content.Shared.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Cargo.Components;
 using Content.Server.GameTicking;
@@ -24,11 +21,7 @@ using Content.Server.Maps;
 using Content.Server.Station.Systems;
 using Content.Shared._NF.CCVar; // Frontier
 using Robust.Shared.Configuration;
-using Robust.Shared.Physics.Components;
-using Content.Server.Shuttles.Components;
 using Content.Shared._NF.Bank;
-using Content.Shared.Tiles;
-using Content.Server._NF.PublicTransit.Components;
 using Content.Server._NF.GameRule.Components;
 using Content.Server.Bank;
 using Robust.Shared.Player;
@@ -269,7 +262,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         for (int i = 0; i < depotCount && depotPrototypes.Count > 0; i++)
         {
             var proto = _random.Pick(depotPrototypes);
-            Vector2i offset = new Vector2i((int) (_random.Next(proto.RangeMin, proto.RangeMax) * _distanceOffset), 0);
+            Vector2i offset = new Vector2i((int) (_random.Next(proto.MinimumDistance, proto.MaximumDistance) * _distanceOffset), 0);
             offset = offset.Rotate(rotationOffset);
             rotationOffset += rotation;
             // Append letter to depot name.
@@ -302,7 +295,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             if (marketsAdded >= marketCount)
                 break;
 
-            var offset = GetRandomPOICoord(proto.RangeMin, proto.RangeMax, true);
+            var offset = GetRandomPOICoord(proto.MinimumDistance, proto.MaximumDistance, true);
 
             if (TrySpawnPoiGrid(proto, offset, out var marketUid) && marketUid is { Valid: true } market)
             {
@@ -328,7 +321,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             if (optionalsAdded >= optionalCount)
                 break;
 
-            var offset = GetRandomPOICoord(proto.RangeMin, proto.RangeMax, true);
+            var offset = GetRandomPOICoord(proto.MinimumDistance, proto.MaximumDistance, true);
 
             if (TrySpawnPoiGrid(proto, offset, out var optionalUid) && optionalUid is { Valid: true } uid)
             {
@@ -348,7 +341,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         requiredStations = new List<EntityUid>();
         foreach (var proto in requiredPrototypes)
         {
-            var offset = GetRandomPOICoord(proto.RangeMin, proto.RangeMax, true);
+            var offset = GetRandomPOICoord(proto.MinimumDistance, proto.MaximumDistance, true);
 
             if (TrySpawnPoiGrid(proto, offset, out var requiredUid) && requiredUid is { Valid: true } uid)
             {
@@ -377,7 +370,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
                 var chance = _random.NextFloat(0, 1);
                 if (chance <= proto.SpawnChance)
                 {
-                    var offset = GetRandomPOICoord(proto.RangeMin, proto.RangeMax, true);
+                    var offset = GetRandomPOICoord(proto.MinimumDistance, proto.MaximumDistance, true);
 
                     if (TrySpawnPoiGrid(proto, offset, out var optionalUid) && optionalUid is { Valid: true } uid)
                     {
@@ -409,54 +402,12 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
                 stationUid = _station.InitializeNewStation(stationProto.Stations[proto.ID], mapUids, stationName);
             }
 
-            // Cache our damping strength
-            float dampingStrength = proto.CanMove ? 0.05f : 999999f;
-
             foreach (var grid in mapUids)
             {
                 var meta = EnsureComp<MetaDataComponent>(grid);
                 _meta.SetEntityName(grid, stationName, meta);
 
-                EnsureComp<IFFComponent>(grid);
-                _shuttle.SetIFFColor(grid, proto.IFFColor);
-                _shuttle.AddIFFFlag(grid, proto.Flags);
-
-                if (!proto.AllowIFFChanges)
-                {
-                    _shuttle.SetIFFReadOnly(grid, true);
-                }
-
-                // Ensure damping for each grid in the POI - set the shuttle component if it exists just to be safe
-                var physics = EnsureComp<PhysicsComponent>(grid);
-                _physics.SetAngularDamping(grid, physics, dampingStrength);
-                _physics.SetLinearDamping(grid, physics, dampingStrength);
-                if (TryComp<ShuttleComponent>(grid, out var shuttle))
-                {
-                    shuttle.AngularDamping = dampingStrength;
-                    shuttle.LinearDamping = dampingStrength;
-                }
-
-                if (proto.BusStop)
-                {
-                    EnsureComp<StationTransitComponent>(grid);
-                }
-
-                if (proto.GridProtection != GridProtectionFlags.None)
-                {
-                    var prot = EnsureComp<ProtectedGridComponent>(grid);
-                    if (proto.GridProtection.HasFlag(GridProtectionFlags.FloorRemoval))
-                        prot.PreventFloorRemoval = true;
-                    if (proto.GridProtection.HasFlag(GridProtectionFlags.FloorPlacement))
-                        prot.PreventFloorPlacement = true;
-                    if (proto.GridProtection.HasFlag(GridProtectionFlags.RcdUse))
-                        prot.PreventRCDUse = true;
-                    if (proto.GridProtection.HasFlag(GridProtectionFlags.EmpEvents))
-                        prot.PreventEmpEvents = true;
-                    if (proto.GridProtection.HasFlag(GridProtectionFlags.Explosions))
-                        prot.PreventExplosions = true;
-                    if (proto.GridProtection.HasFlag(GridProtectionFlags.ArtifactTriggers))
-                        prot.PreventArtifactTriggers = true;
-                }
+                EntityManager.AddComponents(grid, proto.AddComponents);
             }
 
             // Rename warp points after set up if needed
