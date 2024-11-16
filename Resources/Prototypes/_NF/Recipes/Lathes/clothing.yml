@@ -1,0 +1,157 @@
+# Base prototypes
+
+- type: latheRecipe
+  abstract: true
+  id: NFBaseJumpsuitRecipe
+  parent: BaseJumpsuitRecipe
+  category: ClothesNF
+  applyMaterialDiscount: false
+
+- type: latheRecipe
+  abstract: true
+  id: NFBaseCoatRecipe
+  parent: BaseCoatRecipe
+  category: ClothesNF
+  applyMaterialDiscount: false
+
+- type: latheRecipe
+  abstract: true
+  id: NFBaseBeltRecipe
+  parent: NFBaseJumpsuitRecipe
+  materials:
+    Cloth: 400
+
+- type: latheRecipe
+  abstract: true
+  id: NFBaseBootRecipe # And gloves
+  parent: NFBaseJumpsuitRecipe
+  materials:
+    Cloth: 200
+    Durathread: 100
+
+- type: latheRecipe
+  abstract: true
+  id: NFBaseWearableDeviceRecipe
+  parent: NFBaseJumpsuitRecipe
+  materials:
+    Steel: 200
+    Plastic: 300
+    Glass: 500
+
+# Recipes
+
+# Jumpsuits
+- type: latheRecipe
+  id: ClothingUniformRandomPunkTanktop
+  parent: NFBaseJumpsuitRecipe
+  result: ClothingUniformRandomPunkTanktop
+
+- type: latheRecipe
+  id: ClothingUniformRandomPunkTanktopShorts
+  parent: NFBaseJumpsuitRecipe
+  result: ClothingUniformRandomPunkTanktopShorts
+
+- type: latheRecipe
+  id: ClothingUniformRandomPunkCroptop
+  parent: NFBaseJumpsuitRecipe
+  result: ClothingUniformRandomPunkCroptop
+
+- type: latheRecipe
+  id: ClothingUniformRandomPunkCroptopShorts
+  parent: NFBaseJumpsuitRecipe
+  result: ClothingUniformRandomPunkCroptopShorts
+
+# Coats
+- type: latheRecipe
+  id: ClothingOuterCoatBomberRandomized
+  parent: NFBaseCoatRecipe
+  result: ClothingOuterCoatBomberRandomized
+
+- type: latheRecipe
+  id: ClothingOuterCoatLettermanRandomized
+  parent: NFBaseCoatRecipe
+  result: ClothingOuterCoatLettermanRandomized
+
+# Belts / Webbings
+- type: latheRecipe
+  id: ClothingBeltSalvageWebbing
+  parent: NFBaseBeltRecipe
+  result: ClothingBeltSalvageWebbing
+
+- type: latheRecipe
+  id: ClothingBeltMercenaryWebbing
+  parent: NFBaseBeltRecipe
+  result: ClothingBeltMercenaryWebbing
+
+- type: latheRecipe
+  id: ClothingBeltMilitaryWebbing
+  parent: NFBaseBeltRecipe
+  result: ClothingBeltMilitaryWebbing
+
+- type: latheRecipe
+  id: ClothingBeltBandolier
+  parent: NFBaseBeltRecipe
+  result: ClothingBeltBandolier
+
+- type: latheRecipe
+  id: ClothingBeltPunkRandomized
+  parent: NFBaseBeltRecipe
+  result: ClothingBeltPunkRandomized
+
+# Gloves
+- type: latheRecipe
+  id: ClothingHandsMercenaryGlovesCombat
+  parent: NFBaseBootRecipe
+  result: ClothingHandsMercenaryGlovesCombat
+
+- type: latheRecipe
+  id: ClothingHandsGlovesCombat
+  parent: NFBaseBootRecipe
+  result: ClothingHandsGlovesCombat
+
+# Boots
+- type: latheRecipe
+  id: ClothingShoesBootsMercenary
+  parent: NFBaseBootRecipe
+  result: ClothingShoesBootsMercenary
+
+- type: latheRecipe
+  id: ClothingShoesBootsCombat
+  parent: NFBaseBootRecipe
+  result: ClothingShoesBootsCombat
+
+- type: latheRecipe
+  id: ClothingShoesBootsJack
+  parent: NFBaseBootRecipe
+  result: ClothingShoesBootsJack
+
+- type: latheRecipe
+  id: ClothingShoesBootsPunkRandomized
+  parent: NFBaseBootRecipe
+  result: ClothingShoesBootsPunkRandomized
+
+# Glasses
+- type: latheRecipe
+  id: ClothingEyesGlassesMercenary
+  parent: NFBaseWearableDeviceRecipe
+  result: ClothingEyesGlassesMercenary
+
+- type: latheRecipe
+  id: ClothingEyesGlassesSunglasses
+  parent: NFBaseWearableDeviceRecipe
+  result: ClothingEyesGlassesSunglasses
+
+- type: latheRecipe
+  id: ClothingEyesHudBountyHunter
+  parent: NFBaseWearableDeviceRecipe
+  result: ClothingEyesHudBountyHunter
+
+- type: latheRecipe
+  id: ClothingEyesPunkGoggles
+  parent: NFBaseWearableDeviceRecipe
+  result: ClothingEyesPunkGoggles
+
+- type: latheRecipe
+  id: ClothingEyesPunkInfoShades
+  parent: NFBaseWearableDeviceRecipe
+  result: ClothingEyesPunkInfoShades

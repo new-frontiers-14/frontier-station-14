@@ -12,7 +12,7 @@
     - id: GasLeak
     - id: IonStorm # its calm like 90% of the time smh
     # - id: KudzuGrowth
-    - id: MassHallucinations
+    # - id: MassHallucinations # Frontier
     # - id: MimicVendorRule
     - id: MouseMigration
     - id: PowerGridCheck
@@ -308,8 +308,9 @@
   id: SolarFlare
   components:
   - type: StationEvent
-    weight: 8
+    weight: 4
     earliestStart: 15 # Frontier
+    reoccurrenceDelay: 45 # Frontier
     startAnnouncement: station-event-solar-flare-start-announcement
     endAnnouncement: station-event-solar-flare-end-announcement
     startAudio:
