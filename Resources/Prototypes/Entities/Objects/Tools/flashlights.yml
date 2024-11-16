@@ -1,6 +1,6 @@
 ﻿- type: entity
   name: flashlight
-  parent: BaseItem
+  parent: [BaseItem, RecyclableItemDeviceSmall] # Frontier: added RecyclableItemDeviceSmall
   id: FlashlightLantern
   description: It lights the way to freedom.
   components:
@@ -65,7 +65,7 @@
     netsync: false
   - type: Appearance
   - type: StaticPrice
-    price: 15.5
+    price: 15.5 # Frontier: 40<15.5
   - type: StealTarget
     stealGroup: LAMP
   - type: Clothing

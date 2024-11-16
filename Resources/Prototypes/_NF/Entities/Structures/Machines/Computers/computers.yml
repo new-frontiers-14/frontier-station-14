@@ -23,7 +23,7 @@
 - type: entity
   name: cargo sale computer
   suffix: Normal
-  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseComputerAiAccess]
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseComputer]
   id: ComputerPalletConsoleNFMarket
   description: Used to sell goods loaded onto cargo pallets.
   abstract: true
@@ -98,7 +98,7 @@
 
 - type: entity
   name: contraband exchange computer
-  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseComputerAiAccess]
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseComputer]
   id: ComputerContrabandPalletConsole
   description: Used to exchange contraband for Frontier Uplink Coins.
   components:
@@ -169,68 +169,25 @@
 - type: entity
   name: cargo market computer
   abstract: true
-  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseStructureComputer]
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseComputer]
   id: ComputerMarketConsoleNFBase
   description: Used to buy goods from the station's market system.
   placement:
     mode: SnapgridCenter
   components:
-    - type: MeleeSound
-      soundGroups:
-        Brute:
-          collection: MetalGlassBreak
-    - type: Computer
-    - type: ApcPowerReceiver
-      powerLoad: 200
-    - type: ExtensionCableReceiver
-    - type: ActivatableUIRequiresPower
-    - type: Sprite
-      netsync: false
-      noRot: true
-      sprite: Structures/Machines/computers.rsi
-      layers:
-        - map: ["computerLayerBody"]
-          state: computer
-        - map: ["computerLayerKeyboard"]
-          state: generic_keyboard
-        - map: ["computerLayerScreen"]
-          state: request
-        - map: ["computerLayerKeys"]
-          state: tech_key
-    - type: Appearance
-    - type: GenericVisualizer
-      visuals:
-        enum.ComputerVisuals.Powered:
-          computerLayerScreen:
-            True: { visible: true, shader: unshaded }
-            False: { visible: false }
-          computerLayerKeys:
-            True: { visible: true, shader: unshaded }
-            False: { visible: true, shader: shaded }
-    - type: LitOnPowered
-    - type: PointLight
-      radius: 1.5
-      energy: 1.6
-      color: "#b89f25"
-      enabled: false
-      mask: /Textures/Effects/LightMasks/cone.png
-      autoRot: true
-      offset: "0, 0.4" # shine from the top, not bottom of the computer
-      castShadows: false
-    - type: EmitSoundOnUIOpen
-      sound:
-        collection: Keyboard
-    - type: MarketConsole
-    - type: ActivatableUI
-      key: enum.MarketConsoleUiKey.Default
-    - type: UserInterface
-      interfaces:
-        enum.MarketConsoleUiKey.Default:
-          type: MarketConsoleBoundUserInterface
-        enum.WiresUiKey.Key:
-          type: WiresBoundUserInterface
-    - type: MarketModifier
-      mod: 1
+  - type: MarketConsole
+  - type: ActivatableUI
+    key: enum.MarketConsoleUiKey.Default
+  - type: UserInterface
+    interfaces:
+      enum.MarketConsoleUiKey.Default:
+        type: MarketConsoleBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+  - type: MarketModifier
+    mod: 1
+  - type: Computer
+    board: Null
 
 - type: entity
   name: cargo market computer
@@ -252,7 +209,7 @@
 
 - type: entity
   id: ComputerPirateBounty
-  parent: BaseComputerAiAccess
+  parent: BaseComputer
   name: pirate bounty computer
   description: Avast, get ye pirate bounties here.
   components:

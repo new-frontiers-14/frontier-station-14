@@ -6,6 +6,7 @@ using Content.Shared.Hands;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
+using Content.Shared.Interaction.Events;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Item;
 using Content.Shared.Movement.Systems;
@@ -319,9 +320,10 @@ public abstract partial class InventorySystem
         InventoryComponent? inventory = null,
         ClothingComponent? clothing = null,
         bool reparent = true,
-        bool checkDoafter = false)
+        bool checkDoafter = false,
+        bool child = false) // Frontier: raise DroppedEvent on all children
     {
-        return TryUnequip(uid, uid, slot, silent, force, predicted, inventory, clothing, reparent, checkDoafter);
+        return TryUnequip(uid, uid, slot, silent, force, predicted, inventory, clothing, reparent, checkDoafter, child); // Frontier: add child
     }
 
     public bool TryUnequip(
@@ -334,9 +336,10 @@ public abstract partial class InventorySystem
         InventoryComponent? inventory = null,
         ClothingComponent? clothing = null,
         bool reparent = true,
-        bool checkDoafter = false)
+        bool checkDoafter = false,
+        bool child = false) // Frontier: raise DroppedEvent on all children
     {
-        return TryUnequip(actor, target, slot, out _, silent, force, predicted, inventory, clothing, reparent, checkDoafter);
+        return TryUnequip(actor, target, slot, out _, silent, force, predicted, inventory, clothing, reparent, checkDoafter, child); // Frontier: add child
     }
 
     public bool TryUnequip(
@@ -349,9 +352,10 @@ public abstract partial class InventorySystem
         InventoryComponent? inventory = null,
         ClothingComponent? clothing = null,
         bool reparent = true,
-        bool checkDoafter = false)
+        bool checkDoafter = false,
+        bool child = false) // Frontier: raise DroppedEvent on all children
     {
-        return TryUnequip(uid, uid, slot, out removedItem, silent, force, predicted, inventory, clothing, reparent, checkDoafter);
+        return TryUnequip(uid, uid, slot, out removedItem, silent, force, predicted, inventory, clothing, reparent, checkDoafter, child); // Frontier: add child
     }
 
     public bool TryUnequip(
@@ -365,7 +369,8 @@ public abstract partial class InventorySystem
         InventoryComponent? inventory = null,
         ClothingComponent? clothing = null,
         bool reparent = true,
-        bool checkDoafter = false)
+        bool checkDoafter = false,
+        bool child = false) // Frontier: raise DroppedEvent on all children
     {
         removedItem = null;
 
@@ -429,12 +434,17 @@ public abstract partial class InventorySystem
             if (slotDef != slotDefinition && slotDef.DependsOn == slotDefinition.Name)
             {
                 //this recursive call might be risky
-                TryUnequip(actor, target, slotDef.Name, true, true, predicted, inventory, reparent: reparent);
+                TryUnequip(actor, target, slotDef.Name, true, true, predicted, inventory, reparent: reparent, child: true); // Frontier: add child
             }
         }
 
         if (!_containerSystem.Remove(removedItem.Value, slotContainer, force: force, reparent: reparent))
             return false;
+
+        // Frontier: spawn dropped events for children
+        if (child)
+            RaiseLocalEvent(removedItem.Value, new DroppedEvent(actor), true);
+        // End Frontier
 
         // TODO: Inventory needs a hot cleanup hoo boy
         // Check if something else (AKA toggleable) dumped it into a container.
