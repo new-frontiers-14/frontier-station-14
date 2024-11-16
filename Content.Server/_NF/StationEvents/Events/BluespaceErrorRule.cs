@@ -96,12 +96,8 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
 
                 if (group.NameWarp)
                 {
-                    var warps = _renameWarps.SyncWarpPointsToGrid(spawned);
-                    foreach (var warp in warps)
-                    {
-                        if (group.HideWarp)
-                            warp.Comp.AdminOnly = true;
-                    }
+                    bool? adminOnly = group.HideWarp ? true : null;
+                    var warps = _renameWarps.SyncWarpPointsToGrid(spawned, forceAdminOnly: adminOnly);
                 }
 
                 EntityManager.AddComponents(spawned, group.AddComponents);

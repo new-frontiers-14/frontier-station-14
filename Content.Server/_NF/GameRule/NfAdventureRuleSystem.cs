@@ -462,17 +462,11 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             // Rename warp points after set up if needed
             if (proto.NameWarp)
             {
-                List<Entity<WarpPointComponent>> warpEnts;
+                bool? hideWarp = proto.HideWarp ? true : null;
                 if (stationUid != null)
-                    warpEnts = _renameWarps.SyncWarpPointsToStation(stationUid.Value);
+                    _renameWarps.SyncWarpPointsToStation(stationUid.Value, forceAdminOnly: hideWarp);
                 else
-                    warpEnts = _renameWarps.SyncWarpPointsToGrids(mapUids);
-
-                foreach (var warp in warpEnts)
-                {
-                    if (proto.HideWarp)
-                        warp.Comp.AdminOnly = true;
-                }
+                    _renameWarps.SyncWarpPointsToGrids(mapUids, forceAdminOnly: hideWarp);
             }
 
             gridUid = mapUids[0];

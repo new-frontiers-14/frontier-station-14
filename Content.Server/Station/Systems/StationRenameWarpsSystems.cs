@@ -26,13 +26,16 @@ public sealed class StationRenameWarpsSystems : EntitySystem
         SyncWarpPointsToStation(uid);
     }
 
-    public List<Entity<WarpPointComponent>> SyncWarpPointsToStation(EntityUid stationUid)
+    public List<Entity<WarpPointComponent>> SyncWarpPointsToStation(EntityUid stationUid, bool? forceAdminOnly = null)
     {
         List<Entity<WarpPointComponent>> ret = new();
         // update all warp points that belong to this station grid
         var query = AllEntityQuery<WarpPointComponent>();
         while (query.MoveNext(out var uid, out var warp))
         {
+            if (forceAdminOnly != null)
+                warp.AdminOnly = forceAdminOnly.Value;
+
             if (!warp.UseStationName)
                 continue;
 
@@ -47,13 +50,16 @@ public sealed class StationRenameWarpsSystems : EntitySystem
         return ret;
     }
 
-    public List<Entity<WarpPointComponent>> SyncWarpPointsToStations(IEnumerable<EntityUid> stationUids)
+    public List<Entity<WarpPointComponent>> SyncWarpPointsToStations(IEnumerable<EntityUid> stationUids, bool? forceAdminOnly = null)
     {
         List<Entity<WarpPointComponent>> ret = new();
         // update all warp points that belong to this station grid
         var query = AllEntityQuery<WarpPointComponent>();
         while (query.MoveNext(out var uid, out var warp))
         {
+            if (forceAdminOnly != null)
+                warp.AdminOnly = forceAdminOnly.Value;
+
             if (!warp.UseStationName)
                 continue;
 
@@ -69,13 +75,16 @@ public sealed class StationRenameWarpsSystems : EntitySystem
     }
 
     // Grid name functions
-    public List<Entity<WarpPointComponent>> SyncWarpPointsToGrid(EntityUid gridUid)
+    public List<Entity<WarpPointComponent>> SyncWarpPointsToGrid(EntityUid gridUid, bool? forceAdminOnly = null)
     {
         List<Entity<WarpPointComponent>> ret = new();
         // update all warp points that belong to this station grid
         var query = AllEntityQuery<WarpPointComponent, TransformComponent>();
         while (query.MoveNext(out var uid, out var warp, out var xform))
         {
+            if (forceAdminOnly != null)
+                warp.AdminOnly = forceAdminOnly.Value;
+
             if (!warp.UseStationName)
                 continue;
 
@@ -91,13 +100,16 @@ public sealed class StationRenameWarpsSystems : EntitySystem
         return ret;
     }
 
-    public List<Entity<WarpPointComponent>> SyncWarpPointsToGrids(IEnumerable<EntityUid> gridUids)
+    public List<Entity<WarpPointComponent>> SyncWarpPointsToGrids(IEnumerable<EntityUid> gridUids, bool? forceAdminOnly = null)
     {
         List<Entity<WarpPointComponent>> ret = new();
         // update all warp points that belong to this station grid
         var query = AllEntityQuery<WarpPointComponent, TransformComponent>();
         while (query.MoveNext(out var uid, out var warp, out var xform))
         {
+            if (forceAdminOnly != null)
+                warp.AdminOnly = forceAdminOnly.Value;
+
             if (!warp.UseStationName)
                 continue;
 
