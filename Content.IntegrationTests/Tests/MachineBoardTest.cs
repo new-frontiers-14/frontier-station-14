@@ -93,11 +93,6 @@ public sealed class MachineBoardTest
                     continue;
                 var cId = cbc.Prototype;
 
-                // Frontier: we accept null as board prototypes, but this will fail the assertions.
-                if (cId == "Null")
-                    continue;
-                // End Frontier
-
                 Assert.Multiple(() =>
                 {
                     Assert.That(cId, Is.Not.Null, $"Computer board \"{p.ID}\" does not have a corresponding computer.");
