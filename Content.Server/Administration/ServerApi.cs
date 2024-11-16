@@ -6,12 +6,15 @@ using System.Text;
 using System.Text.Json;
 using System.Text.Json.Nodes;
 using System.Threading.Tasks;
+using Content.Server.Administration.Managers;
 using Content.Server.Administration.Systems;
+using Content.Server.Database;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Presets;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Maps;
 using Content.Server.RoundEnd;
+using Content.Shared.Administration;
 using Content.Shared.Administration.Managers;
 using Content.Shared.CCVar;
 using Content.Shared.GameTicking.Components;
@@ -19,6 +22,7 @@ using Content.Shared.Prototypes;
 using Robust.Server.ServerStatus;
 using Robust.Shared.Asynchronous;
 using Robust.Shared.Configuration;
+using Robust.Shared.Console;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -58,6 +62,10 @@ public sealed partial class ServerApi : IPostInjectInit
     [Dependency] private readonly ILogManager _logManager = default!;
     [Dependency] private readonly IEntitySystemManager _entitySystemManager = default!;
     [Dependency] private readonly ILocalizationManager _loc = default!;
+    [Dependency] private readonly IPlayerLocator _locator = default!;
+    [Dependency] private readonly IConsoleHost _shell = default!;
+    [Dependency] private readonly IServerDbManager _db = default!;
+    [Dependency] private readonly IBanManager _bans = default!;
 
     private string _token = string.Empty;
     private ISawmill _sawmill = default!;
@@ -73,6 +81,7 @@ public sealed partial class ServerApi : IPostInjectInit
 
         // Post
         RegisterActorHandler(HttpMethod.Post, "/admin/actions/round/start", ActionRoundStart);
+        RegisterActorHandler(HttpMethod.Post, "/admin/actions/ahelp/send", ActionAhelpSend);
         RegisterActorHandler(HttpMethod.Post, "/admin/actions/round/end", ActionRoundEnd);
         RegisterActorHandler(HttpMethod.Post, "/admin/actions/round/restartnow", ActionRoundRestartNow);
         RegisterActorHandler(HttpMethod.Post, "/admin/actions/kick", ActionKick);
@@ -395,6 +404,35 @@ public sealed partial class ServerApi : IPostInjectInit
         });
     }
 
+    private async Task ActionAhelpSend(IStatusHandlerContext context, Actor actor)
+    {
+        var body = await ReadJson<DiscordAhelpBody>(context);
+        if (body == null)
+            return;
+        if (body.Text == null)
+        {
+            await context.RespondErrorAsync(HttpStatusCode.BadRequest);
+            return;
+        }
+        var bwoinkSystem = _entitySystemManager.GetEntitySystem<BwoinkSystem>();
+        var data = await _locator.LookupIdByNameOrIdAsync($"{body.PlayerNickname}");
+        if (data != null)
+        {
+            var playerUserId = new NetUserId(data.UserId);
+
+            var senderUserId = new NetUserId(body.SenderUserId);
+            var message = new SharedBwoinkSystem.BwoinkTextMessage(playerUserId, senderUserId, body.Text);
+            await RunOnMainThread(async () =>
+            {
+                if (_playerManager.TryGetSessionById(playerUserId, out var session))
+                {
+                    bwoinkSystem.DiscordAhelpSendMessage(message, new EntitySessionEventArgs(session));
+                    await RespondOk(context);
+                }
+            });
+        }
+    }
+
     #endregion
 
     #region Fetching
@@ -603,7 +641,12 @@ public sealed partial class ServerApi : IPostInjectInit
     }
 
     #region From Client
-
+    private sealed class DiscordAhelpBody
+    {
+        public required string PlayerNickname { get; init; }
+        public required Guid SenderUserId { get; init; }
+        public string? Text { get; init; }
+    }
     private sealed class Actor
     {
         public required Guid Guid { get; init; }
