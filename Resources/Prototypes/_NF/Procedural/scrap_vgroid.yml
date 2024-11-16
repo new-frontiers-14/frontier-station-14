@@ -15,8 +15,6 @@
     - !type:PrototypeDunGen
       proto: NFVGRoidExteriorScrap
     - !type:PrototypeDunGen
-      proto: NFVGRoidSmallerScrap
-    - !type:PrototypeDunGen
       proto: NFVGRoidSmallPathsScrap
     - !type:EntityTableDunGen
       minCount: 7
@@ -165,25 +163,6 @@
         fractalType: FBm
         octaves: 5
         lacunarity: 2
-        gain: 0.5
-
-- type: dungeonConfig
-  id: NFVGRoidSmallerScrap
-  minOffset: 40
-  maxOffset: 60
-  layers:
-  - !type:NoiseDistanceDunGen
-    size: 150, 150
-    distanceConfig: !type:DunGenEuclideanSquaredDistance
-    layers:
-    - tile: Plating
-      threshold: 0.50
-      noise:
-        frequency: 0.080
-        noiseType: OpenSimplex2
-        fractalType: FBm
-        octaves: 5
-        lacunarity: 1.5
         gain: 0.5
 
 - type: dungeonConfig
