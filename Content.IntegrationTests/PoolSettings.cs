@@ -93,7 +93,7 @@ public sealed class PoolSettings
     /// <summary>
     /// Frontier: the preset to run the game in.
     /// </summary>
-    public string GameLobbyDefaultPreset { get; set; }
+    public string? GameLobbyDefaultPreset { get; set; }
 
     #region Inferred Properties
 

@@ -63,7 +63,7 @@ public static partial class PoolManager
             if (cfg.IsCVarRegistered(CVars.NetInterp.Name))
                 cfg.SetCVar(CVars.NetInterp, !settings.DisableInterpolate);
 
-            if (cfg.IsCVarRegistered(CCVars.GameLobbyDefaultPreset.Name)) // Frontier
+            if (cfg.IsCVarRegistered(CCVars.GameLobbyDefaultPreset.Name) && !string.IsNullOrEmpty(settings.GameLobbyDefaultPreset)) // Frontier
                 cfg.SetCVar(CCVars.GameLobbyDefaultPreset, settings.GameLobbyDefaultPreset); // Frontier
         });
     }
