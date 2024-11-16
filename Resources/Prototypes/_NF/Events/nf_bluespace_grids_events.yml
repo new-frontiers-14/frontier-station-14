@@ -249,6 +249,39 @@
         - /Maps/_NF/Bluespace/cave.yml
 
 - type: entity
+  id: BluespaceCargoCarrier
+  parent: BaseStationEventShortDelay
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-bluespace-cargocarrier-start-announcement
+    startAudio:
+      path: /Audio/Announcements/attention.ogg
+    warningAnnouncement: station-event-bluespace-cargocarrier-warning-announcement
+    endAnnouncement: station-event-bluespace-cargocarrier-end-announcement
+    earliestStart: 20
+    weight: 1
+    duration: 1800
+    maxDuration: 2400
+    reoccurrenceDelay: 480 # 8 hours
+  - type: BluespaceErrorRule
+    groups:
+      grid: !type:GridSpawnGroup
+        nameLoc:
+        - station-event-bluespace-name-CargoCarrier
+        minimumDistance: 1500
+        maximumDistance: 2500
+        addComponents:
+        - type: Gravity
+          enabled: true
+          inherent: true
+        - type: IFF
+        - type: Shuttle
+          angularDamping: 999999
+          linearDamping: 999999
+        paths:
+        - /Maps/_NF/Bluespace/cargocarrier.yml
+
+- type: entity
   id: BluespaceBrokenMcDelivery
   parent: BaseStationEventShortDelay
   components:

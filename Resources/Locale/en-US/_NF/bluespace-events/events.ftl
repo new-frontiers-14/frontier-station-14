@@ -14,6 +14,10 @@ station-event-bluespace-asteroid-start-announcement = Long range scans indicate 
 station-event-bluespace-asteroid-warning-announcement = Bluespace instability detected on asteroid, five minutes until estimated departure.
 station-event-bluespace-asteroid-end-announcement = Critical bluespace instability detected, the asteroid has exited the sector.
 
+station-event-bluespace-cargocarrier-start-announcement = A Nanotransen-affiliated Bulk Cargo Carrier will be arriving in this sector for restocking shortly. Contractors will be compensated at a higher rate for selling goods and materials at the carrier.
+station-event-bluespace-cargocarrier-warning-announcement = The Bulk Cargo Carrier has finished restocking and will depart in approximately five minutes.
+station-event-bluespace-cargocarrier-end-announcement = The Bulk Cargo Carrier has finished restocking and has left the sector. Nanotrasen thanks all contractors for their contribution.
+
 station-event-bluespace-ship-start-announcement = We have detected an unusual FTL signature - long range scans indicate an unknown ship. NanoTrasen cannot confirm safety for prospectors within its vicinity, be advised.
 station-event-bluespace-ship-warning-announcement = Remote FTL procedures initialized, five minutes until ship dissipation.
 station-event-bluespace-ship-end-announcement = In compliance with NanoTrasen FTL traffic patterns, the unknown ship has been dissipated to ensure non-collision.
@@ -36,6 +40,7 @@ station-event-bluespace-generic-ftl-end-announcement = In compliance with NanoTr
 
 station-event-bluespace-name-BrokenMcDelivery = McDelivery
 station-event-bluespace-name-Cave = Cave
+station-event-bluespace-name-CargoCarrier = Bulk Cargo Carrier
 station-event-bluespace-name-UnidentifiedVessel = Unidentified Vessel
 station-event-bluespace-name-SecureNTVault = Secure NT Vault
 station-event-bluespace-name-SyndicateWeaponsCache = Syndicate Weapons Cache
