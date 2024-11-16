@@ -121,8 +121,7 @@
   id: BaseCrossbowBoltTrigger
   abstract: true
   components:
-  - type: TriggerOnCollide
-    fixtureID: projectile
+  - type: TriggerOnProjectileHit
 
 # Lathe-printable variations
 - type: entity
@@ -191,6 +190,7 @@
     damage:
       types:
         Piercing: 20
+    deleteOnCollide: true
   - type: SolutionContainerManager
     solutions:
       injector:
@@ -211,10 +211,6 @@
     maxTransferAmount: 5
     transferAmount: 5
     toggleState: Draw
-  - type: DamageOnLand
-    damage:
-      types:
-        Blunt: 30 # Should prevent re-using
 
 # Craftable variations
 - type: Tag
@@ -342,13 +338,10 @@
     damage:
       types:
         Piercing: 15
+    deleteOnCollide: true
   - type: Construction
     graph: CraftCrossbowBoltSyringe
     node: CraftCrossbowBoltSyringe
-  - type: DamageOnLand
-    damage:
-      types:
-        Blunt: 30 # Should prevent re-using
 
 - type: Tag
   id: CrossbowBoltPlasteel
@@ -411,13 +404,7 @@
     damage:
       types:
         Piercing: 15
-  - type: ExplodeOnTrigger
-  - type: Explosive
-    explosionType: Default
-    maxIntensity: 1.25
-    intensitySlope: 1
-    totalIntensity: 2.5
-    maxTileBreak: 1
+    deleteOnCollide: true
   - type: PointLight
     radius: 1.3
     color: orange
@@ -425,6 +412,13 @@
   - type: Construction
     graph: CraftCrossbowBoltExplosive
     node: CraftCrossbowBoltExplosive
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 1.25
+    intensitySlope: 1
+    totalIntensity: 2.5
+    maxTileBreak: 1
 
 - type: Tag
   id: CrossbowBoltEMP
@@ -460,12 +454,9 @@
       types:
         Shock: 5
         Blunt: 10
+    deleteOnCollide: true
   - type: StaminaDamageOnCollide
     damage: 20
-  - type: EmpOnTrigger
-    range: 0.5
-    energyConsumption: 2700000
-    disableDuration: 10
   - type: PointLight
     radius: 1.3
     color: cyan
@@ -473,16 +464,16 @@
   - type: Construction
     graph: CraftCrossbowBoltEMP
     node: CraftCrossbowBoltEMP
-  - type: DamageOnLand
-    damage:
-      types:
-        Blunt: 30 # Should prevent re-using
+  - type: EmpOnTrigger
+    range: 0.5
+    energyConsumption: 2700000
+    disableDuration: 10
 
 - type: Tag
   id: CrossbowBoltIncendiary
 
 - type: entity
-  parent: [ BaseC3ContrabandNoValue, BaseCrossbowBoltTrigger ]
+  parent: [ BaseC3ContrabandNoValue, BaseCrossbowBolt ]
   id: CrossbowBoltIncendiary
   name: incendiary bolt
   description: A bolt with a flare attached to it.
@@ -511,8 +502,7 @@
     damage:
       types:
         Piercing: 15
-  - type: IgniteOnCollide
-    fireStacks: 0.5
+    deleteOnCollide: true
   - type: PointLight
     enabled: true
     color: "#ff4300"
@@ -521,10 +511,8 @@
   - type: Construction
     graph: CraftCrossbowBoltIncendiary
     node: CraftCrossbowBoltIncendiary
-  - type: DamageOnLand
-    damage:
-      types:
-        Blunt: 30 # Should prevent re-using
+  - type: IgniteOnProjectileHit
+    fireStacks: 0.5
 
 - type: Tag
   id: CrossbowBoltShrapnel
@@ -554,17 +542,23 @@
     damage:
       types:
         Blunt: 5
+    deleteOnCollide: true
+  - type: Construction
+    graph: CraftCrossbowBoltShrapnel
+    node: CraftCrossbowBoltShrapnel
+  - type: SpawnOnTrigger
+    proto: CrossbowBoltShrapnelSpread
+
+- type: entity
+  id: CrossbowBoltShrapnelSpread
+  categories: [ HideSpawnMenu ]
+  components:
   - type: ClusterGrenade
     fillPrototype: PelletShotgun
     maxGrenadesCount: 6
     grenadeType: enum.GrenadeType.Shoot
-  - type: Construction
-    graph: CraftCrossbowBoltShrapnel
-    node: CraftCrossbowBoltShrapnel
-  - type: DamageOnLand
-    damage:
-      types:
-        Blunt: 30 # Should prevent re-using
+    baseTriggerDelay: 0
+  - type: TriggerOnSpawn
 
 # Blood cult
 - type: entity
