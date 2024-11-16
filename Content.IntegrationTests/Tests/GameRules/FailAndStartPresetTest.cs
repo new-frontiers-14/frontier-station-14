@@ -113,7 +113,7 @@ public sealed class FailAndStartPresetTest
         ticker.SetGamePreset((GamePresetPrototype?) null);
         server.CfgMan.SetCVar(CCVars.GridFill, false);
         server.CfgMan.SetCVar(CCVars.GameLobbyFallbackEnabled, true);
-        server.CfgMan.SetCVar(CCVars.GameLobbyDefaultPreset, "adventure"); // Frontier: secret<adventure - we use adventure gamemode by default
+        server.CfgMan.SetCVar(CCVars.GameLobbyDefaultPreset, "secret"); // Frontier - NOTE: used for testing (faster setup/teardown), main mode is adventure
         server.System<TestRuleSystem>().Run = false;
         await pair.CleanReturnAsync();
     }

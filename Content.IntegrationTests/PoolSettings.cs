@@ -90,6 +90,11 @@ public sealed class PoolSettings
     /// </summary>
     public int? ClientSeed { get; set; }
 
+    /// <summary>
+    /// Frontier: the preset to run the game in.
+    /// </summary>
+    public string GameLobbyDefaultPreset { get; set; }
+
     #region Inferred Properties
 
     /// <summary>
@@ -128,6 +133,7 @@ public sealed class PoolSettings
         return !ShouldBeConnected == !nextSettings.ShouldBeConnected
                && UseDummyTicker == nextSettings.UseDummyTicker
                && Map == nextSettings.Map
-               && InLobby == nextSettings.InLobby;
+               && InLobby == nextSettings.InLobby
+               && GameLobbyDefaultPreset == nextSettings.GameLobbyDefaultPreset; // Frontier: swappable presets
     }
 }
