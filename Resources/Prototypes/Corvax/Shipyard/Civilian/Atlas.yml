@@ -1,0 +1,35 @@
+# Corvax Frontier
+# Author: SergeantEcho
+# Discord: @sergeantecho 
+- type: vessel
+  id: Atlas
+  name: NC Атлас
+  description: Бывший в эксплуатации мобильный научный комплекс, который переделан под автомномные и длительные путешествия, рекомендуется для команды из 6-12 человек.
+  price: 176000
+  category: Large
+  group: Shipyard
+  shuttlePath: /Maps/Corvax/Shuttles/Civilian/Atlas.yml
+  class:
+  - Science
+  - Chemistry
+  - Civilian
+
+- type: gameMap
+  id: Atlas
+  mapName: 'NC Атлас'
+  mapPath: /Maps/Corvax/Shuttles/Civilian/Atlas.yml
+  minPlayers: 0
+  stations:
+     Atlas:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Атлас {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]
