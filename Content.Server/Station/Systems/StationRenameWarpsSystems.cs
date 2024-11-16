@@ -33,17 +33,17 @@ public sealed class StationRenameWarpsSystems : EntitySystem
         var query = AllEntityQuery<WarpPointComponent>();
         while (query.MoveNext(out var uid, out var warp))
         {
+            var warpStationUid = _stationSystem.GetOwningStation(uid) ?? EntityUid.Invalid;
+            if (!warpStationUid.Valid || warpStationUid != stationUid)
+                continue;
+
             if (forceAdminOnly != null)
                 warp.AdminOnly = forceAdminOnly.Value;
 
             if (!warp.UseStationName)
                 continue;
 
-            var warpStationUid = _stationSystem.GetOwningStation(uid);
-            if (warpStationUid != stationUid)
-                continue;
-
-            var stationName = Name(warpStationUid.Value);
+            var stationName = Name(warpStationUid);
             warp.Location = stationName;
             ret.Add((uid, warp));
         }
@@ -57,14 +57,14 @@ public sealed class StationRenameWarpsSystems : EntitySystem
         var query = AllEntityQuery<WarpPointComponent>();
         while (query.MoveNext(out var uid, out var warp))
         {
+            var warpStationUid = _stationSystem.GetOwningStation(uid) ?? EntityUid.Invalid;
+            if (!warpStationUid.Valid || !stationUids.Contains(warpStationUid))
+                continue;
+
             if (forceAdminOnly != null)
                 warp.AdminOnly = forceAdminOnly.Value;
 
             if (!warp.UseStationName)
-                continue;
-
-            var warpStationUid = _stationSystem.GetOwningStation(uid) ?? EntityUid.Invalid;
-            if (!warpStationUid.Valid || !stationUids.Contains(warpStationUid))
                 continue;
 
             var stationName = Name(warpStationUid);
@@ -82,15 +82,15 @@ public sealed class StationRenameWarpsSystems : EntitySystem
         var query = AllEntityQuery<WarpPointComponent, TransformComponent>();
         while (query.MoveNext(out var uid, out var warp, out var xform))
         {
+            var warpGridUid = xform.GridUid ?? EntityUid.Invalid;
+
+            if (!warpGridUid.Valid || gridUid != warpGridUid)
+                continue;
+
             if (forceAdminOnly != null)
                 warp.AdminOnly = forceAdminOnly.Value;
 
             if (!warp.UseStationName)
-                continue;
-
-            var warpGridUid = xform.GridUid ?? EntityUid.Invalid;
-
-            if (!warpGridUid.Valid || gridUid != warpGridUid)
                 continue;
 
             var gridName = Name(warpGridUid);
@@ -107,15 +107,15 @@ public sealed class StationRenameWarpsSystems : EntitySystem
         var query = AllEntityQuery<WarpPointComponent, TransformComponent>();
         while (query.MoveNext(out var uid, out var warp, out var xform))
         {
+            var warpGridUid = xform.GridUid ?? EntityUid.Invalid;
+
+            if (!warpGridUid.Valid || !gridUids.Contains(warpGridUid))
+                continue;
+
             if (forceAdminOnly != null)
                 warp.AdminOnly = forceAdminOnly.Value;
 
             if (!warp.UseStationName)
-                continue;
-
-            var warpGridUid = xform.GridUid ?? EntityUid.Invalid;
-
-            if (!warpGridUid.Valid || !gridUids.Contains(warpGridUid))
                 continue;
 
             var gridName = Name(warpGridUid);
