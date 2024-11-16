@@ -12,11 +12,17 @@
 - type: pointOfInterest
   id: McHobo
   name: Derelict McCargo
-  rangeMin: 3250
-  rangeMax: 5600
-  IFFColor: "#ffa600" #yellorange for faction style
+  minimumDistance: 3250
+  maximumDistance: 5600
   spawnGroup: Scrapyard
   gridPath: /Maps/_NF/POI/mchobo.yml
+  addComponents:
+  - type: IFF
+    color: "#ffa600"
+    readOnly: true
+  - type: Shuttle
+    angularDamping: 999999
+    linearDamping: 999999
 
 - type: gameMap
   id: McHobo
@@ -25,7 +31,7 @@
   minPlayers: 0
   stations:
     McHobo:
-      stationProto: DeadDropShipyardFrontierOutpost
+      stationProto: DeadDropRecordsFrontierOutpost
       components:
         - type: StationNameSetup
           mapNameTemplate: "Derelict McCargo"

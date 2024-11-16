@@ -1,0 +1,153 @@
+# Mostly ignores crafting composition of items making recycling wildly inefficient
+# and occasionally ignores item sizes too (eg toolbox is ginormous item, but is treated as RecyclableItemSteelMedium nonetheless)
+# Item sizes: Tiny, Small, Medium, Large, Huge, Ginormous
+
+# No materials
+- type: entity
+  id: RecyclableItemNoMats
+  abstract: true
+  components:
+  - type: PhysicalComposition
+  - type: Tag
+    tags:
+    - Trash
+    - Recyclable
+
+# Cardboard
+- type: entity # Boxes
+  id: RecyclableItemCardboard
+  abstract: true
+  components:
+  - type: PhysicalComposition
+    materialComposition:
+      Cardboard: 100
+
+# Paper
+- type: entity # Books
+  id: RecyclableItemPaper
+  abstract: true
+  components:
+  - type: PhysicalComposition
+    materialComposition:
+      Paper: 50
+
+# Glass
+## Tiny
+- type: entity # Dropper etc
+  id: RecyclableItemGlassTiny
+  abstract: true
+  components:
+  - type: PhysicalComposition
+    materialComposition:
+      Glass: 10
+
+# Steel
+## Tiny
+- type: entity # Flares idk
+  id: RecyclableItemSteelTiny
+  abstract: true
+  components:
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 10
+
+## Small
+- type: entity # Weapon magazines, grenades idk
+  id: RecyclableItemSteelSmall
+  abstract: true
+  components:
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 20
+
+## Medium
+- type: entity # Jaws of life, toolboxes idk
+  id: RecyclableItemSteelMedium
+  abstract: true
+  components:
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 200
+
+# Plastic
+## Tiny
+- type: entity # Pill canisters, swabs, dice, capacitors etc.
+  id: RecyclableItemPlasticTiny
+  abstract: true
+  components:
+  - type: PhysicalComposition
+    materialComposition:
+      Plastic: 10
+
+## Small
+- type: entity # Spray bottles, glue/lube tubes, plungers etc
+  id: RecyclableItemPlasticSmall
+  abstract: true
+  components:
+  - type: PhysicalComposition
+    materialComposition:
+      Plastic: 25
+
+## Medium
+- type: entity # Spray bottles, glue/lube tubes, plungers etc
+  id: RecyclableItemPlasticMedium
+  abstract: true
+  components:
+  - type: PhysicalComposition
+    materialComposition:
+      Plastic: 50
+
+# Simple Devices
+## Tiny
+- type: entity # Machine parts, encryption keys etc
+  id: RecyclableItemDeviceTiny
+  abstract: true
+  components:
+  - type: PhysicalComposition
+    materialComposition:
+      Plastic: 10
+      Steel: 10
+
+## Small
+- type: entity # Light replacers, sign projectors, flashlights, power cells etc
+  id: RecyclableItemDeviceSmall
+  abstract: true
+  components:
+  - type: PhysicalComposition
+    materialComposition:
+      Plastic: 25
+      Steel: 25
+      Glass: 25
+
+# Complex Devices
+## Normal
+- type: entity # Flatpacks etc
+  id: RecyclableItemDeviceComplexNormal
+  abstract: true
+  components:
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 100
+      Glass: 50
+      Silver: 20
+      Gold: 10
+
+# Organic
+## Tiny
+- type: entity # Soap, candles, seeds etc
+  id: RecyclableItemOrganicTiny
+  abstract: true
+  components:
+  - type: PhysicalComposition
+    materialComposition:
+      Biomass: 1
+
+# Wood
+## Medium
+- type: entity # Musical instruments etc
+  id: RecyclableItemWoodMedium
+  abstract: true
+  components:
+  - type: PhysicalComposition
+    materialComposition:
+      Wood: 200

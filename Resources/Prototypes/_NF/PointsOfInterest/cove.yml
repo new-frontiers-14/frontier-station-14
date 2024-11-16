@@ -11,13 +11,18 @@
 - type: pointOfInterest
   id: Cove
   name: Pirate Cove
-  rangeMin: 10000
-  rangeMax: 15000
-  IFFColor: "#C83737" #red the color of ebil
-  IFFFlags: [HideLabel]
-  allowIFFChanges: true
+  minimumDistance: 10000
+  maximumDistance: 15000
   spawnGroup: Required
   gridPath: /Maps/_NF/POI/cove.yml
+  hideWarp: true
+  addComponents:
+  - type: IFF
+    color: "#C83737"
+    flags: [HideLabel]
+  - type: Shuttle
+    angularDamping: 999999
+    linearDamping: 999999
 
 - type: gameMap
   id: Cove
@@ -26,7 +31,7 @@
   minPlayers: 0
   stations:
     Cove:
-      stationProto: SpawnableFrontierOutpost
+      stationProto: RecordsFrontierOutpost
       components:
         - type: StationNameSetup
           mapNameTemplate: 'Pirate Cove'
