@@ -88,6 +88,64 @@
   id: NFMobRestrictions
   components:
   - type: NFSalvageMobRestrictions
+    addComponentsOnDeath:
+    - type: Uncloneable
+    - type: Unrevivable
+    - type: Strippable
+    - type: UserInterface
+      interfaces:
+        enum.StrippingUiKey.Key:
+         type: StrippableBoundUserInterface
+    removeComponentsOnDeath:
+    - type: Insulated
+    - type: Reflect
+    - type: MovementIgnoreGravity
+    - type: Tool
+    - type: Prying
+    - type: CanMoveInAir
+    - type: Tag
+    - type: Access
+    - type: Timer
+    - type: TimedSpawner
+    - type: Advertise
+      pack: FuelVendAds # placeholder, required field, unused
+
+- type: entity
+  abstract: true
+  id: NFMobRestrictionsSilicon
+  components:
+  - type: NFSalvageMobRestrictions
+    addComponentsOnDeath:
+    - type: Strippable
+    - type: UserInterface
+      interfaces:
+        enum.StrippingUiKey.Key:
+         type: StrippableBoundUserInterface
+    removeComponentsOnDeath:
+#    - type: Pullable # TODO: This makes the mob stuck to your hand if it dies when you pull it
+    - type: Carriable # Carrying system from nyanotrasen.
+    - type: Tool
+    - type: Prying
+    - type: MovementIgnoreGravity
+    addComponentsOnRevival:
+#    - type: Pullable # TODO: This makes the mob stuck to your hand if it dies when you pull it
+    - type: Carriable # Carrying system from nyanotrasen.
+    - type: Tool
+      speedModifier: 1.5
+      qualities:
+        - Prying
+    - type: Prying
+      pryPowered: !type:Bool
+        true
+      force: !type:Bool
+        true
+      useSound:
+        path: /Audio/Items/crowbar.ogg
+      speedModifier: 10.0
+    - type: MovementIgnoreGravity
+    removeComponentsOnRevival:
+    - type: Strippable
+    - type: UserInterface
 
 - type: entity
   abstract: true
@@ -226,11 +284,6 @@
   - type: Inventory
     templateId: hostilehumanoid # Supports loadouts
   - type: InventorySlots
-  - type: Strippable
-  - type: UserInterface
-    interfaces:
-      enum.StrippingUiKey.Key:
-        type: StrippableBoundUserInterface
 
 - type: entity # Slots for loot containers: pockets, belt, back
   save: false
@@ -240,11 +293,6 @@
   - type: Inventory
     templateId: hostilehumanoidsimplified # Does not support loadouts
   - type: InventorySlots
-  - type: Strippable
-  - type: UserInterface
-    interfaces:
-      enum.StrippingUiKey.Key:
-        type: StrippableBoundUserInterface
 
 # AI packages
 - type: entity
