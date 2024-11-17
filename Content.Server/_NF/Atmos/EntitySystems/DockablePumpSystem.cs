@@ -68,7 +68,7 @@ public sealed partial class DockablePumpSystem : EntitySystem
             return;
 
         _nodeGroup.QueueNodeRemove(dockablePipe);
-        _atmosphere.ReleaseGasTo(dockablePipe.Air, null, dockablePipe.Air.Pressure);
+        dockablePipe.Air.Clear();
         _appearance.SetData(uid, DockablePumpVisuals.Docked, false);
     }
 }
