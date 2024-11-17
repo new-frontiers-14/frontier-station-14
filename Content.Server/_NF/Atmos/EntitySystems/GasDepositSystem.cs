@@ -4,6 +4,7 @@ using Content.Server.Atmos.EntitySystems;
 using Content.Server.Atmos.Piping.Components;
 using Content.Server.Audio;
 using Content.Server.NodeContainer.EntitySystems;
+using Content.Server.NodeContainer.NodeGroups;
 using Content.Server.NodeContainer.Nodes;
 using Content.Server.Popups;
 using Content.Server.Power.Components;
@@ -150,7 +151,8 @@ public sealed class GasDepositSystem : EntitySystem
         if (!extractor.Enabled
             || extractor.DepositEntity == null
             || TryComp<ApcPowerReceiverComponent>(uid, out var power) && !power.Powered
-            || !_nodeContainer.TryGetNode(uid, extractor.PortName, out PipeNode? port))
+            || !_nodeContainer.TryGetNode(uid, extractor.PortName, out PipeNode? port)
+            || port.NodeGroup is not PipeNet { NodeCount: > 1 } net)
         {
             _ambientSound.SetAmbience(uid, false);
             SetDepositState(uid, GasDepositExtractorState.Off, extractor);
@@ -169,7 +171,7 @@ public sealed class GasDepositSystem : EntitySystem
 
         // How many moles could we theoretically spawn. Cap by pressure and amount.
         var allowableMoles = float.Max(0,
-            (targetPressure - port.Air.Pressure) * port.Air.Volume / (extractor.OutputTemperature * Atmospherics.R));
+            (targetPressure - net.Air.Pressure) * net.Air.Volume / (extractor.OutputTemperature * Atmospherics.R));
 
         if (allowableMoles < Atmospherics.GasMinMoles)
         {
@@ -180,7 +182,7 @@ public sealed class GasDepositSystem : EntitySystem
 
         var removed = depositComp.Deposit.Remove(allowableMoles);
         removed.Temperature = extractor.OutputTemperature;
-        _atmosphere.Merge(port.Air, removed);
+        _atmosphere.Merge(net.Air, removed);
 
         _ambientSound.SetAmbience(uid, true);
         if (depositComp.Deposit.TotalMoles <= depositComp.LowMoles)
