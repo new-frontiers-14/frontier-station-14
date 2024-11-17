@@ -69,13 +69,15 @@
     Paper: 100
 
 # Scrap ore
+# See the table for pricing here: https://docs.google.com/spreadsheets/d/1iXhlXwGOCthbExhnvaG8Q1KeVUp2pEptO8rXSRtYxvI/edit?usp=sharing
+# Final price is rounded up to the nearest even number multiple of 100
 
 - type: latheRecipe
   id: ScrapPartRodMetal1
   result: PartRodMetal1
   parent: BaseMaterialsNoDiscountRecipe
   materials:
-    RawScrap: 250
+    RawScrap: 500 # ~0.5 of steel sheet
 
 - type: latheRecipe
   id: ScrapPartRodMetal30
@@ -83,14 +85,14 @@
   parent: BaseMaterialsNoDiscountRecipe
   completetime: 2
   materials:
-    RawScrap: 7500
+    RawScrap: 15000 # ~0.5 of full steel sheet stack
 
 - type: latheRecipe
   id: ScrapSheetSteel1
   result: SheetSteel1
   parent: BaseMaterialsNoDiscountRecipe
   materials:
-    RawScrap: 500
+    RawScrap: 900
 
 - type: latheRecipe
   id: ScrapSheetSteel30
@@ -98,14 +100,14 @@
   parent: BaseMaterialsNoDiscountRecipe
   completetime: 2
   materials:
-    RawScrap: 15000
+    RawScrap: 27000
 
 - type: latheRecipe
   id: ScrapSheetGlass1
   result: SheetGlass1
   parent: BaseMaterialsNoDiscountRecipe
   materials:
-    RawScrap: 750
+    RawScrap: 1200
 
 - type: latheRecipe
   id: ScrapSheetGlass30
@@ -113,14 +115,29 @@
   parent: BaseMaterialsNoDiscountRecipe
   completetime: 2
   materials:
-    RawScrap: 22500
+    RawScrap: 36000
+
+- type: latheRecipe
+  id: ScrapSheetBrass1
+  result: SheetBrass1
+  parent: BaseMaterialsNoDiscountRecipe
+  materials:
+    RawScrap: 1500
+
+- type: latheRecipe
+  id: ScrapSheetBrass30
+  result: SheetBrass
+  parent: BaseMaterialsNoDiscountRecipe
+  completetime: 2
+  materials:
+    RawScrap: 45000
 
 - type: latheRecipe
   id: ScrapSheetRGlass1
   result: SheetRGlass1
   parent: BaseMaterialsNoDiscountRecipe
   materials:
-    RawScrap: 1000
+    RawScrap: 1300
 
 - type: latheRecipe
   id: ScrapSheetRGlass30
@@ -128,14 +145,14 @@
   parent: BaseMaterialsNoDiscountRecipe
   completetime: 2
   materials:
-    RawScrap: 30000
+    RawScrap: 39000
 
 - type: latheRecipe
   id: ScrapSheetPlasteel1
   result: SheetPlasteel1
   parent: BaseMaterialsNoDiscountRecipe
   materials:
-    RawScrap: 1000
+    RawScrap: 4000
 
 - type: latheRecipe
   id: ScrapSheetPlasteel30
@@ -143,14 +160,14 @@
   parent: BaseMaterialsNoDiscountRecipe
   completetime: 2
   materials:
-    RawScrap: 30000
+    RawScrap: 120000
 
 - type: latheRecipe
   id: ScrapSheetPlastic1
   result: SheetPlastic1
   parent: BaseMaterialsNoDiscountRecipe
   materials:
-    RawScrap: 1000
+    RawScrap: 1500
 
 - type: latheRecipe
   id: ScrapSheetPlastic30
@@ -158,14 +175,14 @@
   parent: BaseMaterialsNoDiscountRecipe
   completetime: 2
   materials:
-    RawScrap: 30000
+    RawScrap: 45000
 
 - type: latheRecipe
   id: ScrapSheetPlasma1
   result: SheetPlasma1
   parent: BaseMaterialsNoDiscountRecipe
   materials:
-    RawScrap: 1500
+    RawScrap: 3000
 
 - type: latheRecipe
   id: ScrapSheetPlasma30
@@ -173,14 +190,14 @@
   parent: BaseMaterialsNoDiscountRecipe
   completetime: 2
   materials:
-    RawScrap: 45000
+    RawScrap: 90000
 
 - type: latheRecipe
   id: ScrapSheetUranium1
   result: SheetUranium1
   parent: BaseMaterialsNoDiscountRecipe
   materials:
-    RawScrap: 1500
+    RawScrap: 3000
 
 - type: latheRecipe
   id: ScrapSheetUranium30
@@ -188,14 +205,14 @@
   parent: BaseMaterialsNoDiscountRecipe
   completetime: 2
   materials:
-    RawScrap: 45000
+    RawScrap: 90000
 
 - type: latheRecipe
   id: ScrapIngotSilver1
   result: IngotSilver1
   parent: BaseMaterialsNoDiscountRecipe
   materials:
-    RawScrap: 3000
+    RawScrap: 2300
 
 - type: latheRecipe
   id: ScrapIngotSilver30
@@ -203,14 +220,14 @@
   parent: BaseMaterialsNoDiscountRecipe
   completetime: 2
   materials:
-    RawScrap: 60000
+    RawScrap: 69000
 
 - type: latheRecipe
   id: ScrapIngotGold1
   result: IngotGold1
   parent: BaseMaterialsNoDiscountRecipe
   materials:
-    RawScrap: 4500
+    RawScrap: 3000
 
 - type: latheRecipe
   id: ScrapIngotGold30
@@ -218,14 +235,14 @@
   parent: BaseMaterialsNoDiscountRecipe
   completetime: 2
   materials:
-    RawScrap: 75000
+    RawScrap: 90000
 
 - type: latheRecipe
   id: ScrapMaterialBananium1
   result: MaterialBananium1
   parent: BaseMaterialsNoDiscountRecipe
   materials:
-    RawScrap: 4500
+    RawScrap: 6500
 
 - type: latheRecipe
   id: ScrapMaterialBananium30
@@ -233,4 +250,4 @@
   parent: BaseMaterialsNoDiscountRecipe
   completetime: 2
   materials:
-    RawScrap: 75000
+    RawScrap: 195000
