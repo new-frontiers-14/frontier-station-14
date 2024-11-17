@@ -27,3 +27,237 @@
   components:
   - type: GasVolumePump
     startOnMapInit: true
+
+# Giant mess of a YAML definition but largely based on GasPressurePump and AirlockShuttle
+- type: entity
+  parent: BaseStructure
+  id: BaseGaslock
+  suffix: Docking
+  name: external gaslock
+  description: Connects gas pipes on separate ships or stations together to allow gas transfer. Both sides must be docked and pumping in the same direction to accept flow.
+  components:
+  - type: Transform
+    noRot: false
+  - type: Anchorable
+  - type: Rotatable
+  - type: Docking
+    radarColor: darkcyan
+    highlightedRadarColor: cyan
+  - type: DockingSignalControl
+  - type: DeviceLinkSource
+    ports:
+      - DockStatus
+  # - type: DeviceLinkSink
+  #   ports:
+      # - PumpOn
+      # - PumpOff
+      # - DirectionIn
+      # - DirectionOut
+      # - ToggleDirection
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,0.49" # don't want this colliding with walls or they won't close
+        density: 100
+        mask:
+          - FullTileMask
+        layer:
+          - AirlockLayer
+      docking:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.2
+          position: "0,-0.5"
+        hard: false
+  - type: Wires
+    layoutId: Docking
+  - type: WiresVisuals
+  - type: WiresPanel
+  - type: WiresPanelSecurity
+  - type: PaintableAirlock
+    group: External
+    department: null
+  # - type: Construction
+  #   graph: AirlockShuttle
+  #   node: airlock
+  - type: ApcPowerReceiver
+    powerLoad: 500
+  - type: ExtensionCableReceiver
+  - type: Appearance
+  - type: PipeColorVisuals
+  - type: GasPressurePump
+    enabled: false
+  - type: NodeContainer
+    nodes:
+      inlet:
+        !type:PipeNode
+        nodeGroupID: Pipe
+        pipeDirection: North
+      outlet:
+        !type:DockablePipeNode
+        nodeGroupID: Pipe
+        pipeDirection: South
+  - type: UserInterface
+    interfaces:
+        enum.GasPressurePumpUiKey.Key:
+          type: GasPressurePumpBoundUserInterface
+  - type: DockablePump
+    dockNodeName: outlet
+    internalNodeName: inlet
+  - type: AmbientSound
+    enabled: false
+    volume: -9
+    range: 5
+    sound:
+      path: /Audio/Ambience/Objects/gas_pump.ogg
+  - type: InteractionOutline
+  - type: StationAiWhitelist
+  - type: AtmosDevice
+    joinSystem: true # Any pipe system on an asteroid should update.
+  - type: Tag
+    tags:
+      - Unstackable
+      - Pipe
+  - type: PipeAppearance
+  - type: PipeRestrictOverlap
+  - type: AtmosUnsafeUnanchor
+  - type: AtmosPipeColor
+
+- type: entity
+  parent: BaseGaslock
+  id: Gaslock
+  suffix: Airtight
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Airtight
+  - type: RadiationBlocker
+    resistance: 3
+  - type: Occluder
+  - type: Sprite
+    sprite: _NF/Structures/Piping/Atmospherics/gaslock.rsi
+    # granularLayersRendering: true
+    drawdepth: Doors
+    layers:
+    - state: closed
+    - state: closed_unlit
+      shader: unshaded
+      map: ["docked-unlit"]
+    - sprite: Structures/Piping/Atmospherics/pipe.rsi
+      state: pipeStraight
+      map: [ "enum.PipeVisualLayers.Pipe" ]
+    - state: pumpPressure
+    - state: pumpPressureOnOut
+      map: [ "enabled-unlit" ]
+      shader: unshaded
+    - state: panel_open
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: GenericVisualizer
+    visuals:
+      enum.PumpVisuals.Enabled:
+        enabled-unlit:
+          True: { visible: true }
+          False: { visible: false }
+      enum.DockablePumpVisuals.Docked:
+        docked-unlit:
+          True: { visible: true }
+          False: { visible: false }
+      enum.DockablePumpVisuals.PumpingOutwards:
+        enabled-unlit:
+          True: { state: pumpPressureOnOut }
+          False: { state: pumpPressureOnIn }
+  - type: StaticPrice
+    price: 350
+  - type: Tag
+    tags:
+      - Unstackable
+      - Pipe
+      - ForceNoFixRotations
+  - type: BlockWeather
+  - type: PlacementReplacement
+    key: walls
+  - type: IconSmooth
+    key: walls
+    mode: NoSprite
+
+- type: entity
+  parent: Gaslock
+  id: GaslockReversed
+  suffix: Airtight, Reversed
+  description: Connects gas tanks on separate ships or stations together to allow gas transfer. Both stages must be set up to accept flow.
+  components:
+  - type: GasPressurePump
+    inlet: outlet
+    outlet: inlet
+  - type: DockablePump
+    pumpingInwards: true
+
+- type: entity
+  parent: BaseGaslock
+  id: GaslockFrame
+  suffix: Docking
+  name: gas staging port
+  description: Connects gas pipes on separate ships or stations together to allow gas transfer. Both sides must be docked and pumping in the same direction to accept flow.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Piping/Atmospherics/gaslock.rsi
+    # granularLayersRendering: true
+    drawdepth: Doors
+    layers:
+    - sprite: Structures/Walls/solid.rsi
+      state: wall_girder
+    - state: frame_struts
+    - state: closed_unlit
+      shader: unshaded
+      map: ["docked-unlit"]
+    - sprite: Structures/Piping/Atmospherics/pipe.rsi
+      state: pipeStraight
+      map: [ "enum.PipeVisualLayers.Pipe" ]
+    - state: pumpPressure
+    - state: pumpPressureOnOut
+      map: [ "enabled-unlit" ]
+      shader: unshaded
+    - state: panel_open
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: GenericVisualizer
+    visuals:
+      enum.PumpVisuals.Enabled:
+        enabled-unlit:
+          True: { visible: true }
+          False: { visible: false }
+      enum.DockablePumpVisuals.Docked:
+        docked-unlit:
+          True: { visible: true }
+          False: { visible: false }
+      enum.DockablePumpVisuals.PumpingOutwards:
+        enabled-unlit:
+          True: { state: pumpPressureOnOut }
+          False: { state: pumpPressureOnIn }
+  - type: StaticPrice
+    price: 100
+  - type: Tag
+    tags:
+      - Unstackable
+      - Pipe
+      - ForceNoFixRotations
+  - type: BlockWeather
+  - type: PlacementReplacement
+    key: walls
+  - type: IconSmooth
+    key: walls
+    mode: NoSprite
+
+- type: entity
+  parent: GaslockFrame
+  id: GaslockFrameReversed
+  suffix: Docking, Reversed
+  components:
+  - type: GasPressurePump
+    inlet: outlet
+    outlet: inlet
+  - type: DockablePump
+    pumpingInwards: true
