@@ -23,7 +23,7 @@ using Content.Shared._NF.CCVar; // Frontier
 using Robust.Shared.Configuration;
 using Content.Shared._NF.Bank;
 using Content.Server._NF.GameRule.Components;
-using Content.Server.Bank;
+using Content.Server._NF.Bank;
 using Robust.Shared.Player;
 using Robust.Shared.Network;
 using Content.Shared.GameTicking;
@@ -153,6 +153,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
             highScore.RemoveAt(0);
         }
         ReportRound(relayText);
+        ReportLedger();
     }
 
     private void OnPlayerSpawningEvent(PlayerSpawnCompleteEvent ev)
@@ -468,7 +469,7 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
     private async Task ReportRound(string message, int color = 0x77DDE7)
     {
         Logger.InfoS("discord", message);
-        String webhookUrl = _configurationManager.GetCVar(NFCCVars.DiscordLeaderboardWebhook);
+        string webhookUrl = _configurationManager.GetCVar(NFCCVars.DiscordLeaderboardWebhook);
         if (webhookUrl == string.Empty)
             return;
 
@@ -484,7 +485,37 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
                 },
             },
         };
+        await SendWebhookPayload(webhookUrl, payload);
+    }
 
+    private async Task ReportLedger(int color = 0xBF863F)
+    {
+        string webhookUrl = _configurationManager.GetCVar(NFCCVars.DiscordLeaderboardWebhook);
+        if (webhookUrl == string.Empty)
+            return;
+
+        var ledgerPrintout = _bank.GetLedgerPrintout();
+        if (string.IsNullOrEmpty(ledgerPrintout))
+            return;
+        Logger.InfoS("discord", ledgerPrintout);
+
+        var payload = new WebhookPayload
+        {
+            Embeds = new List<Embed>
+            {
+                new()
+                {
+                    Title = Loc.GetString("adventure-webhook-ledger-start"),
+                    Description = ledgerPrintout,
+                    Color = color,
+                },
+            },
+        };
+        await SendWebhookPayload(webhookUrl, payload);
+    }
+
+    private async Task SendWebhookPayload(string webhookUrl, WebhookPayload payload)
+    {
         var ser_payload = JsonSerializer.Serialize(payload);
         var content = new StringContent(ser_payload, Encoding.UTF8, "application/json");
         var request = await _httpClient.PostAsync($"{webhookUrl}?wait=true", content);
