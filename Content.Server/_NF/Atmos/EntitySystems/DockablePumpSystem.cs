@@ -14,7 +14,6 @@ public sealed partial class DockablePumpSystem : EntitySystem
 {
     [Dependency] private readonly NodeContainerSystem _nodeContainer = default!;
     [Dependency] private readonly NodeGroupSystem _nodeGroup = default!;
-    [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
     [Dependency] private readonly AppearanceSystem _appearance = default!;
 
 

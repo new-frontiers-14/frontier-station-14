@@ -6,5 +6,27 @@ namespace Content.Shared.Shuttles.Components
         // and I was too lazy to delete it.
 
         public abstract bool Docked { get; }
+
+        /// <summary>
+        /// Frontier: type of dock.
+        /// </summary>
+        [ViewVariables(VVAccess.ReadWrite), DataField]
+        public DockType DockType = DockType.Airlock;
+
+        /// <summary>
+        /// Frontier: if true, can only receive docking, cannot initialize.
+        /// </summary>
+        [ViewVariables(VVAccess.ReadWrite), DataField]
+        public bool ReceiveOnly = false;
     }
+
+    // Frontier: prevent mismatched dock types from docking
+    [Flags]
+    public enum DockType : byte
+    {
+        None = 0,
+        Airlock = 1 << 0,
+        Gas = 1 << 1,
+    }
+    // End Frontier
 }

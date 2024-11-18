@@ -43,6 +43,7 @@
   - type: Docking
     radarColor: darkcyan
     highlightedRadarColor: cyan
+    dockType: Gas
   - type: DockingSignalControl
   - type: DeviceLinkSource
     ports:
@@ -250,6 +251,8 @@
   - type: IconSmooth
     key: walls
     mode: NoSprite
+  - type: Docking
+    receiveOnly: true
 
 - type: entity
   parent: GaslockFrame
@@ -261,3 +264,10 @@
     outlet: inlet
   - type: DockablePump
     pumpingInwards: true
+
+- type: entity
+  parent: [ BaseGaslock ]
+  id: GasSalePoint
+  name: gas sale point
+  description: Gas piped into here can be sold using the linked console. Bluespace linked to massive storage vaults off-site.
+  # TODO: fill this out
