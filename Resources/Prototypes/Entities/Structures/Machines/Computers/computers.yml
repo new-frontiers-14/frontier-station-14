@@ -829,6 +829,9 @@
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
   - type: CargoOrderConsole
+    taxAccounts: # Frontier
+      Frontier: 0.25 # Frontier
+      Nfsd: 0.15 # Frontier
   - type: BankClient
 #  - type: ActiveRadio # Frontier
 #    channels: # Frontier
@@ -1153,7 +1156,7 @@
   - type: DeviceNetworkRequiresPower
   - type: NewsWriter
   - type: AccessReader
-    access: [[ "Service" ]]
+    #access: [[ "Service" ]] # Frontier
   - type: ActivatableUI
     key: enum.NewsWriterUiKey.Key
   - type: ActivatableUIRequiresVision

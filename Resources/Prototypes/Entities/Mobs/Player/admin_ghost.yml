@@ -72,6 +72,9 @@
     hideCoords: false # Frontier
     maxIffRange: null # Frontier
   - type: CargoOrderConsole
+    taxAccounts: # Frontier
+      Frontier: 0.25 # Frontier
+      Nfsd: 0.15 # Frontier
   - type: BankClient
   - type: CrewMonitoringConsole
   - type: GeneralStationRecordConsole
@@ -93,7 +96,7 @@
   - type: Inventory
     templateId: aghost
   - type: Loadout
-    prototypes: [ MobAghostGear ]
+    prototypes: [ NFMobAghostGear ] # Frontier MobAghostGear<NFMobAghostGear
   - type: BypassInteractionChecks
   - type: BankAccount # Frontier
 

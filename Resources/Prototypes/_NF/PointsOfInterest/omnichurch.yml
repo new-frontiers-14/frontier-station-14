@@ -11,7 +11,13 @@
 - type: pointOfInterest
   id: Omnichurch
   name: "Omnichurch Beacon"
-  rangeMin: 2200
-  rangeMax: 4900
-  IFFColor: "#ffa600" #yellorange for faction style
+  minimumDistance: 2200
+  maximumDistance: 4900
   gridPath: /Maps/_NF/POI/beacon.yml
+  addComponents:
+  - type: IFF
+    color: "#ffa600"
+    readOnly: true
+  - type: Shuttle
+    angularDamping: 999999
+    linearDamping: 999999

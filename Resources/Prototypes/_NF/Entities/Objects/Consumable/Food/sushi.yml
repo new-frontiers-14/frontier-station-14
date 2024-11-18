@@ -1,6 +1,16 @@
 - type: entity
+  id: FoodBaseSushi
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/sushi.rsi
+  - type: Tag
+    tags:
+      - Sushi
+
+- type: entity
   name: avocado sushi
-  parent: FoodMealBase
+  parent: [FoodBaseSushi, FoodMealBase]
   id: FoodMealAvocadoSushi
   description: Where did the seaweed come from?
   components:
@@ -9,26 +19,23 @@
       - cucumber
       - avocado
   - type: Sprite
-    sprite: _NF/Objects/Consumable/Food/sushi.rsi
     state: avocadosushi
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 40
+        maxVol: 42
         reagents:
         - ReagentId: Nutriment
-          Quantity: 20
-        - ReagentId: Flavorol
-          Quantity: 10
+          Quantity: 30
         - ReagentId: CucumberWater
-          Quantity: 2
+          Quantity: 3
   - type: SliceableFood
-    count: 5
+    count: 6
     slice: FoodMealAvocadoSushiSlice
 
 - type: entity
   name: avocado sushi
-  parent: FoodInjectableBase
+  parent: [FoodBaseSushi, FoodInjectableBase]
   id: FoodMealAvocadoSushiSlice
   description: Where did the seaweed come from?
   components:
@@ -37,23 +44,22 @@
       - cucumber
       - avocado
   - type: Sprite
-    sprite: _NF/Objects/Consumable/Food/sushi.rsi
     state: avocadosushislice
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 8
+        maxVol: 7
         reagents:
         - ReagentId: Nutriment
-          Quantity: 4
-        - ReagentId: Flavorol
-          Quantity: 2
+          Quantity: 5
         - ReagentId: CucumberWater
-          Quantity: .4
+          Quantity: .5
+  - type: Item
+    size: Tiny
 
 - type: entity
   name: carp sushi
-  parent: FoodMealBase
+  parent: [FoodBaseSushi, FoodMealBase]
   id: FoodMealCarpSushi
   description: Certainly worth the risk.
   components:
@@ -62,28 +68,25 @@
       - cucumber
       - fishy
   - type: Sprite
-    sprite: _NF/Objects/Consumable/Food/sushi.rsi
     state: carpsushi
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 45
+        maxVol: 48
         reagents:
         - ReagentId: Nutriment
-          Quantity: 20
-        - ReagentId: Flavorol
-          Quantity: 10
+          Quantity: 30
         - ReagentId: CarpoToxin
-          Quantity: 5
+          Quantity: 6
         - ReagentId: CucumberWater
-          Quantity: 2
+          Quantity: 3
   - type: SliceableFood
-    count: 5
+    count: 6
     slice: FoodMealCarpSushiSlice
 
 - type: entity
   name: carp sushi
-  parent: FoodInjectableBase
+  parent: [FoodBaseSushi, FoodInjectableBase]
   id: FoodMealCarpSushiSlice
   description: Certainly worth the smaller risk.
   components:
@@ -92,18 +95,54 @@
       - cucumber
       - fishy
   - type: Sprite
-    sprite: _NF/Objects/Consumable/Food/sushi.rsi
     state: carpsushislice
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 9
+        maxVol: 8
         reagents:
         - ReagentId: Nutriment
-          Quantity: 4
-        - ReagentId: Flavorol
-          Quantity: 2
+          Quantity: 5
         - ReagentId: CarpoToxin
           Quantity: 1
         - ReagentId: CucumberWater
-          Quantity: .4
+          Quantity: .5
+  - type: Item
+    size: Tiny
+
+- type: entity
+  name: gas station sushi
+  parent: [FoodBaseSushi, FoodInjectableBase]
+  id: FoodMealGasSafeSushiSlice
+  suffix: Safe
+  description: Is it worth the risk?
+  components:
+  - type: FlavorProfile
+    flavors:
+      - fishy
+      - cheap
+      - bitter
+  - type: Sprite
+    state: gassushislice
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+  - type: Item
+    size: Tiny
+
+- type: entity
+  parent: [FoodBaseSushi, FoodMealGasSafeSushiSlice]
+  id: FoodMealGasBadSushiSlice
+  suffix: Bad
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: GastroToxin
+          Quantity: 5

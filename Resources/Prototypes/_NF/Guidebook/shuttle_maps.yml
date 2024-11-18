@@ -132,6 +132,18 @@
 
 - type: entity
   parent: PosterBase
+  id: ShuttleMapEagle
+  name: "NM Eagle"
+  description: "Detailed map of an Eagle shuttle."
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
+    state: eagle
+    scale: 1.2, 1.2
+
+- type: entity
+  parent: PosterBase
   id: ShuttleMapGarden
   name: "NT Garden"
   description: "Detailed map of a Garden shuttle."
@@ -284,6 +296,18 @@
   - type: Sprite
     sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
     state: pathfinder
+    scale: 1.2, 1.2
+
+- type: entity
+  parent: PosterBase
+  id: ShuttleMapPhoenix
+  name: "NR Phoenix"
+  description: "Detailed map of a Phoenix shuttle."
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _NF/Guidebook/shuttle_maps/128x96.rsi
+    state: phoenix
     scale: 1.2, 1.2
 
 - type: entity

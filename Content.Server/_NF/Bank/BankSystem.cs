@@ -7,8 +7,9 @@ using Content.Shared.Preferences;
 using Robust.Shared.Player;
 using System.Diagnostics.CodeAnalysis;
 using Content.Shared._NF.Bank.Events;
+using Content.Shared.GameTicking;
 
-namespace Content.Server.Bank;
+namespace Content.Server._NF.Bank;
 
 public sealed partial class BankSystem : SharedBankSystem
 {
@@ -29,6 +30,20 @@ public sealed partial class BankSystem : SharedBankSystem
         SubscribeLocalEvent<BankAccountComponent, PlayerAttachedEvent>(OnPlayerAttached);
         SubscribeLocalEvent<BankAccountComponent, PlayerDetachedEvent>(OnPlayerDetached);
         SubscribeLocalEvent<PlayerJoinedLobbyEvent>(OnPlayerLobbyJoin);
+        SubscribeLocalEvent<SectorBankComponent, ComponentInit>(OnSectorInit);
+
+        SubscribeLocalEvent<RoundRestartCleanupEvent>(OnCleanup);
+    }
+
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+        UpdateSectorBanks(frameTime);
+    }
+
+    public void OnCleanup(RoundRestartCleanupEvent _)
+    {
+        CleanupLedger();
     }
 
     /// <summary>
@@ -208,11 +223,11 @@ public sealed partial class BankSystem : SharedBankSystem
     }
 
     /// <summary>
-    /// Attempts to add money to a character's bank account. This should always be used instead of attempting to modify the bankaccountcomponent directly
+    /// Retrieves a character's balance via its in-game entity, if it has one.
     /// </summary>
     /// <param name="ent">The UID that the bank account is connected to, typically the player controlled mob</param>
-    /// <param name="balance">The amount of spesos to add into the bank account</param>
-    /// <returns>true if the transaction was successful, false if it was not</returns>
+    /// <param name="balance">When successful, contains the account balance in spesos. Otherwise, set to 0.</param>
+    /// <returns>true if the account was successfully queried.</returns>
     public bool TryGetBalance(EntityUid ent, out int balance)
     {
         if (!_playerManager.TryGetSessionByEntity(ent, out var session) ||
@@ -226,6 +241,32 @@ public sealed partial class BankSystem : SharedBankSystem
         if (prefs.SelectedCharacter is not HumanoidCharacterProfile profile)
         {
             _log.Info($"{ent} has the wrong prefs type");
+            balance = 0;
+            return false;
+        }
+
+        balance = profile.BankBalance;
+        return true;
+    }
+
+    /// <summary>
+    /// Retrieves a character's balance via a player's session.
+    /// </summary>
+    /// <param name="session">The session of the player character to query.</param>
+    /// <param name="balance">When successful, contains the account balance in spesos. Otherwise, set to 0.</param>
+    /// <returns>true if the account was successfully queried.</returns>
+    public bool TryGetBalance(ICommonSession session, out int balance)
+    {
+        if (!_prefsManager.TryGetCachedPreferences(session.UserId, out var prefs))
+        {
+            _log.Info($"{session.UserId} has no cached prefs");
+            balance = 0;
+            return false;
+        }
+
+        if (prefs.SelectedCharacter is not HumanoidCharacterProfile profile)
+        {
+            _log.Info($"{session.UserId} has the wrong prefs type");
             balance = 0;
             return false;
         }
