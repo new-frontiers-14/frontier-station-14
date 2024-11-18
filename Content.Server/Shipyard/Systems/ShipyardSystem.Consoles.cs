@@ -272,23 +272,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         _records.Synchronize(shuttleStation!.Value);
         _records.Synchronize(station);
 
-        // Shuttle setup: add protected grid status if needed.
-        if (vessel.GridProtection != GridProtectionFlags.None)
-        {
-            var prot = EnsureComp<ProtectedGridComponent>(shuttleUid);
-            if (vessel.GridProtection.HasFlag(GridProtectionFlags.FloorRemoval))
-                prot.PreventFloorRemoval = true;
-            if (vessel.GridProtection.HasFlag(GridProtectionFlags.FloorPlacement))
-                prot.PreventFloorPlacement = true;
-            if (vessel.GridProtection.HasFlag(GridProtectionFlags.RcdUse))
-                prot.PreventRCDUse = true;
-            if (vessel.GridProtection.HasFlag(GridProtectionFlags.EmpEvents))
-                prot.PreventEmpEvents = true;
-            if (vessel.GridProtection.HasFlag(GridProtectionFlags.Explosions))
-                prot.PreventExplosions = true;
-            if (vessel.GridProtection.HasFlag(GridProtectionFlags.ArtifactTriggers))
-                prot.PreventArtifactTriggers = true;
-        }
+        EntityManager.AddComponents(shuttleUid, vessel.AddComponents);
 
         // Ensure cleanup on ship sale
         EnsureComp<LinkedLifecycleGridParentComponent>(shuttleUid);

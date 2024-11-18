@@ -6,8 +6,6 @@ using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Server.StationEvents.Components;
 using Content.Shared.GameTicking.Components;
-using Content.Shared.Humanoid;
-using Content.Shared.Mobs.Components;
 using Robust.Shared.Random;
 using Content.Server._NF.Salvage;
 using Content.Server._NF.Bank;
@@ -98,12 +96,8 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
 
                 if (group.NameWarp)
                 {
-                    var warps = _renameWarps.SyncWarpPointsToGrid(spawned);
-                    foreach (var warp in warps)
-                    {
-                        if (group.HideWarp)
-                            warp.Comp.AdminOnly = true;
-                    }
+                    bool? adminOnly = group.HideWarp ? true : null;
+                    _renameWarps.SyncWarpPointsToGrid(spawned, forceAdminOnly: adminOnly);
                 }
 
                 EntityManager.AddComponents(spawned, group.AddComponents);
