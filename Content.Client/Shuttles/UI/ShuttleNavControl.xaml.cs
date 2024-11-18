@@ -44,7 +44,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
 
     // Frontier
 
-    private static Color _dockLabelColor = Color.FromHex("#84D3FF");
+    private static Color _dockLabelColor = Color.White;
 
     /// <summary>
     ///   If present, called for every IFF. Must determine if it should or should not be shown.
