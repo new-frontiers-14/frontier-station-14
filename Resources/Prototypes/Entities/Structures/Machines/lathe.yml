@@ -139,7 +139,7 @@
       - CableStack
       - CableMVStack
       - CableHVStack
-      - HandheldGPSBasic
+#      - HandheldGPSBasic # Frontier
       - TRayScanner
       - AirTank
       - GasAnalyzer
@@ -207,13 +207,8 @@
       - WetFloorSign
       - ClothingHeadHatCone
       - Flare
+      - BoxDispenserFlare # Frontier
       - Durathread # Frontier
-#      - ClothingOuterSuitEmergency # Frontier
-      - ClothingHeadHelmetEVA # Frontier
-      - ClothingHeadHelmetEVALarge # Frontier
-#      - ClothingOuterHardsuitEVA # Frontier
-      - ClothingOuterEVASuitContractor # Frontier
-      - ClothingOuterEVASuitPilot # Frontier
   - type: EmagLatheRecipes
     emagStaticRecipes:
       - BoxLethalshot
@@ -388,7 +383,6 @@
       - UtilityBeltChiefEngineer
       - JetpackVoid # Frontier
       - ClothingShoesBootsMagAdv # Frontier
-      - ClothingOuterHardsuitBasic # Frontier
       - ClothingOuterHardsuitAtmos # Frontier
       - ClothingOuterHardsuitEngineering # Frontier
       - ClothingOuterHardsuitSpatio # Frontier
@@ -405,8 +399,6 @@
       - ClothingOuterHardsuitScaf # Frontier
       - ClothingOuterHardsuitPilot # Frontier
       - ClothingOuterHardsuitMaximPrototype # Frontier
-#      - ClothingHeadHelmetAncient # Frontier
-#      - ClothingOuterHardsuitAncientEVA # Frontier
       - ConstructionBagOfHolding # Frontier
       - ServiceSelectiveDropper # Frontier
       - PlantAnalyzer # Frontier
@@ -492,7 +484,7 @@
     - ProtolatheMachineCircuitboard
     - AutolatheMachineCircuitboard
     - CircuitImprinterMachineCircuitboard
-    - BiogeneratorMachineCircuitboard
+    # - BiogeneratorMachineCircuitboard # Frontier
     - OreProcessorMachineCircuitboard
     - ElectrolysisUnitMachineCircuitboard
     - CentrifugeMachineCircuitboard
@@ -524,7 +516,7 @@
       - ChemMasterMachineCircuitboard
       - ChemDispenserMachineCircuitboard
       - BiomassReclaimerMachineCircuitboard
-      - BiofabricatorMachineCircuitboard
+      - BiogeneratorMachineCircuitboard # Frontier BiofabricatorMachineCircuitboard<BiogeneratorMachineCircuitboard
       - SurveillanceCameraRouterCircuitboard
       - SurveillanceCameraMonitorCircuitboard
       - SurveillanceWirelessCameraMonitorCircuitboard
@@ -747,6 +739,7 @@
   parent: BaseLathe
   name: biocube fabricator
   description: Produces animal cubes using biomass.
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: Sprite
     sprite: Structures/Machines/biofabricator.rsi
@@ -858,10 +851,6 @@
       - WeaponLaserCarbinePractice
       - Zipties
       - ThrusterSecurityMachineCircuitboard # Frontier
-#      - ClothingOuterSuitEmergency # Frontier
-      - ClothingOuterEVASuitNfsd # Frontier
-      - ClothingHeadHelmetEVA # Frontier
-      - ClothingHeadHelmetEVALarge # Frontier
       - ClothingOuterHardsuitEVAPrisoner # Frontier
     dynamicRecipes:
       - BoxBeanbag
@@ -1043,9 +1032,6 @@
       - Hemostat
       - ClothingEyesGlassesChemical
       - WhiteCane
-      - ClothingOuterEVASuitMedic # Frontier
-#      - ClothingOuterSuitEmergency # Frontier
-      - ClothingOuterHardsuitVoidParamed # Frontier
       - BaseChemistryEmptyVial # Frontier
       - PowerCellSmall # Frontier
       - BlankMediPen # Frontier
@@ -1323,14 +1309,36 @@
     - BioGenEthanol
     - BioGenCream
     - BioGenBlackpepper
+    - BioGenAstrotame # Frontier
+    - BioGenBbq # Frontier
+    - BioGenCornoil # Frontier
+    - BioGenFrostoil # Frontier
+    - BioGenHotsauce # Frontier
+    - BioGenHorseradishSauce # Frontier
+    - BioGenKetchup # Frontier
+    - BioGenMustard # Frontier
+    - BioGenSoysauce # Frontier
+    - BioGenOilOlive # Frontier
     - BioGenEnzyme
     - BioGenFlour
+    - BioGenCornmeal # Frontier
     - BioGenSugar
+    - NFBioGenFoodMeat # Frontier
     - BioGenMonkeyCube
     - BioGenKoboldCube
+    - CowCube # Frontier: copied from Biofabricator above
+    - GoatCube # Frontier
+    - BioGenChickenCube # Frontier
+    - BioGenDuckCube # Frontier
+    - MothroachCube # Frontier
+    - MouseCube # Frontier
+    - CockroachCube # Frontier
     - BioGenMaterialCloth1
     - BioGenMaterialCardboard1
     - BioGenPaper
+    - NFBioGenWoodPlank # Frontier
+    - NFBioGenPaperSheet # Frontier
+    - NFBioGenSheetPlastic # Frontier
     - BioGenPaperRolling1
     - BioGenCandle
     - BioGenPlantBGone
@@ -1339,6 +1347,12 @@
     - BioGenLeft4Zed
     - BioGenEZNutrient
     - BioGenRobustHarvest
+    - NFBioGenHydroponicsSoilNutritionFlatpack
+  - type: EmagLatheRecipes # Frontier
+    emagStaticRecipes: # Frontier
+    - AbominationCube # Frontier
+    - SpaceCarpCube # Frontier
+    - SpaceTickCube # Frontier
 
 - type: entity
   parent: BaseLathe
@@ -1569,3 +1583,4 @@
         - Wooden
         - RawMaterial
         - Plastic
+        - Ingot # Frontier

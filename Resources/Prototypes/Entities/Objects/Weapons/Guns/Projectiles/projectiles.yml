@@ -423,12 +423,12 @@
     impactEffect: BulletImpactEffectKinetic
     damage:
       types:
-        Blunt: 30
-        Structural: 35
+        Blunt: 0.5 # Frontier 30<0.5
+        Structural: 1 # Frontier 35<1
   - type: Ammo
     muzzleFlash: HitscanEffect
   - type: TimedDespawn
-    lifetime: 1.5
+    lifetime: 1 # Frontier 1.5<1
   - type: PointLight
     radius: 2.5
     color: white
