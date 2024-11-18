@@ -20,5 +20,5 @@ public sealed partial class EmpOnTriggerComponent : Component
     /// How long it disables targets in seconds
     /// </summary>
     [DataField("disableDuration"), ViewVariables(VVAccess.ReadWrite)]
-    public float DisableDuration = 10f;
+    public float DisableDuration = 60f;
 }

@@ -13,10 +13,10 @@ using Robust.Shared.Map;
 using Content.Shared._NF.Emp.Components; // Frontier
 using Robust.Server.GameStates; // Frontier: EMP Blast PVS
 using Robust.Shared.Configuration; // Frontier: EMP Blast PVS
-using Robust.Shared; // Frontier: examine verb
+using Robust.Shared; // Frontier: EMP Blast PVS
 using Content.Shared.Verbs; // Frontier: examine verb
 using Robust.Shared.Utility; // Frontier: examine verb
-using Content.Server.Examine; // Frontier: EMP Blast PVS
+using Content.Server.Examine; // Frontier: examine verb
 
 namespace Content.Server.Emp;
 
@@ -26,7 +26,7 @@ public sealed class EmpSystem : SharedEmpSystem
     [Dependency] private readonly TransformSystem _transform = default!;
     [Dependency] private readonly PvsOverrideSystem _pvs = default!; // Frontier: EMP Blast PVS
     [Dependency] private readonly IConfigurationManager _cfg = default!; // Frontier: EMP Blast PVS
-    [Dependency] private readonly ExamineSystem _examine = default!; // Frontier: EMP Blast PVS
+    [Dependency] private readonly ExamineSystem _examine = default!; // Frontier: examine verb
 
     public const string EmpPulseEffectPrototype = "EffectEmpBlast"; // Frontier: EffectEmpPulse
 
@@ -51,7 +51,7 @@ public sealed class EmpSystem : SharedEmpSystem
     /// <param name="range">The range of the EMP pulse.</param>
     /// <param name="energyConsumption">The amount of energy consumed by the EMP pulse.</param>
     /// <param name="duration">The duration of the EMP effects.</param>
-    /// <param name="immuneGrids">Frontier: a list of the grids that should not be affected by the
+    /// <param name="immuneGrids">Frontier: a list of the grids that should not be affected by the pulse.</param>
     public void EmpPulse(MapCoordinates coordinates, float range, float energyConsumption, float duration, List<EntityUid>? immuneGrids = null)
     {
         foreach (var uid in _lookup.GetEntitiesInRange(coordinates, range))
