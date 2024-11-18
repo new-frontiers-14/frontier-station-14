@@ -1,24 +1,27 @@
 namespace Content.Server.Emp;
 
 /// <summary>
-/// Upon being triggered will EMP area around it.
+/// Generates an EMP description for an entity that won't otherwise get one.
 /// </summary>
 [RegisterComponent]
 [Access(typeof(EmpSystem))]
-public sealed partial class EmpOnTriggerComponent : Component
+public sealed partial class EmpDescriptionComponent : Component
 {
-    [DataField("range"), ViewVariables(VVAccess.ReadWrite)]
+    /// <summary>
+    /// The range of the EMP blast, in meters
+    /// </summary>
+    [DataField]
     public float Range = 1.0f;
 
     /// <summary>
     /// How much energy will be consumed per battery in range
     /// </summary>
-    [DataField("energyConsumption"), ViewVariables(VVAccess.ReadWrite)]
+    [DataField]
     public float EnergyConsumption;
 
     /// <summary>
     /// How long it disables targets in seconds
     /// </summary>
-    [DataField("disableDuration"), ViewVariables(VVAccess.ReadWrite)]
+    [DataField]
     public float DisableDuration = 10f;
 }
