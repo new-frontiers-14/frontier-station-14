@@ -1,0 +1,44 @@
+- type: entity
+  parent: MedicalPod
+  id: MedicalPodFilled
+  suffix: Filled, Random
+  components:
+  - type: StorageFill
+    contents:
+    - id: SpawnRandomHumanoidCorpseMedicalBountyService
+      orGroup: body
+      prob: 0.25
+    - id: SpawnRandomHumanoidCorpseMedicalBountyMedical
+      orGroup: body
+      prob: 0.2
+    - id: SpawnRandomHumanoidCorpseMedicalBountyCargo
+      orGroup: body
+      prob: 0.15
+    - id: SpawnRandomHumanoidCorpseMedicalBountyEngineering
+      orGroup: body
+      prob: 0.15
+    - id: SpawnRandomHumanoidCorpseMedicalBountyScience
+      orGroup: body
+      prob: 0.1
+    - id: SpawnRandomHumanoidCorpseMedicalBountySecurity
+      orGroup: body
+      prob: 0.1
+    - id: SpawnRandomHumanoidCorpseMedicalBountyCommand
+      orGroup: body
+      prob: 0.05
+  - type: Sprite # Fix our initial state (occupied, occupied-unlit visible).  This sucks.
+    noRot: true
+    sprite: _NF/Structures/Storage/emergency_pod.rsi
+    layers:
+    - state: base
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: window-closed
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: antenna-unlit
+      shader: unshaded
+    - state: healthanalyzer-unlit
+      shader: unshaded
+      map: ["healthanalyzer"]
+    - state: occupied-unlit
+      shader: unshaded
+      map: ["occupied"]
