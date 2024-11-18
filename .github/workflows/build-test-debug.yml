@@ -54,7 +54,7 @@ jobs:
       shell: pwsh
       run: |
         $env:DOTNET_gcServer=1
-        dotnet test --no-build --configuration DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj --filter FullyQualifiedName!~ShipyardTest && FullyQualifiedName!~TestWindows && FullyQualifiedName!~UiInteractTest && FullyQualifiedName!~SpawnAndDeleteEntityCountTest && FullyQualifiedName!~SpawnAndDirtyAllEntities -- NUnit.ConsoleOut=0 NUnit.MapWarningTo=Failed
+        dotnet test --no-build --configuration DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj --filter "FullyQualifiedName!~ShipyardTest&FullyQualifiedName!~TestWindows&FullyQualifiedName!~UiInteractTest&FullyQualifiedName!~SpawnAndDeleteEntityCountTest&FullyQualifiedName!~SpawnAndDirtyAllEntities" -- NUnit.ConsoleOut=0 NUnit.MapWarningTo=Failed
   ci-success:
     name: Build & Test Debug
     needs:
