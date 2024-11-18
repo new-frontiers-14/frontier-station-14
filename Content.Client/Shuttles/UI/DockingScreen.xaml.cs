@@ -90,6 +90,7 @@ public sealed partial class DockingScreen : BoxContainer
         // Build the dock buttons for our docks.
         foreach (var dock in shuttleDocks)
         {
+            if (dock.)
             idx++;
             dockText.Clear();
             dockText.Append(dock.Name);
@@ -105,11 +106,13 @@ public sealed partial class DockingScreen : BoxContainer
             button.OnMouseEntered += args =>
             {
                 DockingControl.HighlightedDock = dock.Entity;
+                DockingControl.HighlightedDockState = dock; // Frontier
             };
 
             button.OnMouseExited += args =>
             {
                 DockingControl.HighlightedDock = null;
+                DockingControl.HighlightedDockState = null; // Frontier
             };
 
             button.Label.Margin = new Thickness(3f);

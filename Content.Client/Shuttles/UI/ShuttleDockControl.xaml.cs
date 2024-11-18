@@ -24,6 +24,7 @@ public sealed partial class ShuttleDockControl : BaseShuttleControl
     private readonly SharedTransformSystem _xformSystem;
 
     public NetEntity? HighlightedDock;
+    public DockingPortState? HighlightedDockState; // Frontier
 
     public NetEntity? ViewedDock => _viewedState?.Entity;
     private DockingPortState? _viewedState;
@@ -320,7 +321,7 @@ public sealed partial class ShuttleDockControl : BaseShuttleControl
             ScalePosition(Vector2.Transform(new Vector2(-0.5f, 0.5f), rotation)),
             ScalePosition(Vector2.Transform(new Vector2(0.5f, -0.5f), rotation)));
 
-        var dockColor = Color.Magenta;
+        var dockColor = _viewedState?.HighlightedRadarColor ?? Color.Magenta;
         var connectionColor = Color.Pink;
 
         handle.DrawRect(ourDockConnection, connectionColor.WithAlpha(0.2f));
