@@ -42,9 +42,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
     public float MaximumIFFDistance { get; set; } = -1f; // Frontier
     public bool HideCoords { get; set; } = false; // Frontier
 
-    // Frontier
-
-    private static Color _dockLabelColor = Color.White;
+    private static Color _dockLabelColor = Color.White; // Frontier
 
     /// <summary>
     ///   If present, called for every IFF. Must determine if it should or should not be shown.
@@ -378,10 +376,9 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
 
                 handle.DrawPrimitives(DrawPrimitiveTopology.TriangleFan, verts, color.WithAlpha(0.8f));
                 handle.DrawPrimitives(DrawPrimitiveTopology.LineStrip, verts, color);
-                // Frontier: draw dock label
             }
 
-            // Frontier: draw dock labels (done last to appear on top of all docks)
+            // Frontier: draw dock labels (done last to appear on top of all docks, still fights with other grids)
             var labeled = new HashSet<string>(); // Frontier
             foreach (var state in docks)
             {

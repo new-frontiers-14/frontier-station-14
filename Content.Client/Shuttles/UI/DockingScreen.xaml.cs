@@ -86,7 +86,7 @@ public sealed partial class DockingScreen : BoxContainer
         var buttonGroup = new ButtonGroup();
         var idx = 0;
         var selected = false;
-        DockingPortState? firstState = null;
+        DockingPortState? firstState = null; // Frontier
 
         // Build the dock buttons for our docks.
         foreach (var dock in shuttleDocks.OrderBy(x => x.LabelName ?? x.Name)) // Frontier: order by name
