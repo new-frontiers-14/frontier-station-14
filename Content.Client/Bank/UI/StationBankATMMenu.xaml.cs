@@ -14,31 +14,83 @@ namespace Content.Client.Bank.UI;
 [GenerateTypedNameReferences]
 public sealed partial class StationBankATMMenu : FancyWindow
 {
+    // TODO: reduce redundancy
     public Action? WithdrawRequest;
+    public string? WithdrawalReason;
+    public string? WithdrawalDescription;
+    private readonly List<string> _withdrawalReasonStrings = new();
+    public int WithdrawalAmount;
     public Action? DepositRequest;
-    public int Amount;
-    private readonly List<string> _reasonStrings = new();
-    public string? Reason;
-    public string? Description;
+    public string? DepositReason;
+    public string? DepositDescription;
+    private readonly List<string> _depositReasonStrings = new();
+    public int DepositAmount;
+    public bool Enabled;
+
+    public static (string, string)[] WithdrawalReasonArray = {
+        ("default", Loc.GetString("station-bank-required")),
+        ("payroll", Loc.GetString("station-bank-payroll")),
+        ("workorder", Loc.GetString("station-bank-work-order")),
+        ("supplies", Loc.GetString("station-bank-supplies")),
+        ("bounty", Loc.GetString("station-bank-bounty")),
+        ("other", Loc.GetString("station-bank-other"))
+    };
+
+    public static (string, string)[] DepositReasonArray = {
+        ("default", Loc.GetString("station-bank-required")),
+        ("fines", Loc.GetString("station-bank-fines")),
+        ("donation", Loc.GetString("station-bank-donation")),
+        ("assetssold", Loc.GetString("station-bank-assets-sold")),
+        ("other", Loc.GetString("station-bank-other"))
+    };
     public StationBankATMMenu()
     {
         RobustXamlLoader.Load(this);
-        WithdrawButton.OnPressed += OnWithdrawPressed;
         DepositButton.OnPressed += OnDepositPressed;
+        DepositReasons.OnItemSelected += OnDepositReasonSelected;
+        DepositAmountDescription.OnTextChanged += OnDepositDescChanged;
+
         Title = Loc.GetString("station-bank-atm-menu-title");
-        WithdrawEdit.OnTextChanged += OnAmountChanged;
-        Reasons.OnItemSelected += OnReasonSelected;
-        AmountDescription.OnTextChanged += OnDescChanged;
+
+        WithdrawButton.OnPressed += OnWithdrawPressed;
+        WithdrawalReasons.OnItemSelected += OnWithdrawalReasonSelected;
+        WithdrawalAmountDescription.OnTextChanged += OnWithdrawalDescChanged;
+        WithdrawEdit.OnTextChanged += OnWithdrawalAmountChanged;
+
+        // Update button status to default state.
+        UpdateWithdrawalButtonStatus();
+        UpdateDepositButtonStatus();
     }
 
-    private void SetReasonText(int id)
+    private void SetWithdrawalReasonText(int id)
     {
-        Reason = id == 0 ? null : _reasonStrings[id];
-        Reasons.SelectId(id);
+        WithdrawalReason = id == 0 ? null : _withdrawalReasonStrings[id];
+        WithdrawalReasons.SelectId(id);
     }
-    private void OnReasonSelected(OptionButton.ItemSelectedEventArgs args)
+    private void SetDepositReasonText(int id)
     {
-        SetReasonText(args.Id);
+        DepositReason = id == 0 ? null : _depositReasonStrings[id];
+        DepositReasons.SelectId(id);
+    }
+    private void OnWithdrawalReasonSelected(OptionButton.ItemSelectedEventArgs args)
+    {
+        SetWithdrawalReasonText(args.Id);
+        UpdateWithdrawalButtonStatus();
+    }
+    private void OnDepositReasonSelected(OptionButton.ItemSelectedEventArgs args)
+    {
+        SetDepositReasonText(args.Id);
+        UpdateDepositButtonStatus();
+    }
+    private void OnWithdrawalDescChanged(LineEdit.LineEditEventArgs args)
+    {
+        WithdrawalDescription = args.Text;
+        UpdateWithdrawalButtonStatus();
+    }
+    private void OnDepositDescChanged(LineEdit.LineEditEventArgs args)
+    {
+        DepositDescription = args.Text;
+        UpdateDepositButtonStatus();
     }
     public void SetBalance(int amount)
     {
@@ -47,17 +99,29 @@ public sealed partial class StationBankATMMenu : FancyWindow
 
     public void SetDeposit(int amount)
     {
-        DepositButton.Disabled = amount <= 0;
         if (amount >= 0) // Valid
             DepositLabel.Text = BankSystemExtensions.ToSpesoString(amount);
         else
             DepositLabel.Text = Loc.GetString("bank-atm-menu-cash-error");
+        DepositAmount = amount;
+        UpdateDepositButtonStatus();
     }
 
     public void SetEnabled(bool enabled)
     {
-        WithdrawButton.Disabled = !enabled;
-        DepositButton.Disabled = !enabled;
+        Enabled = enabled;
+        UpdateWithdrawalButtonStatus();
+        UpdateDepositButtonStatus();
+    }
+
+    private void UpdateWithdrawalButtonStatus()
+    {
+        WithdrawButton.Disabled = !Enabled || WithdrawalAmount <= 0 || WithdrawalReason == null || string.IsNullOrEmpty(WithdrawalDescription);
+    }
+
+    private void UpdateDepositButtonStatus()
+    {
+        DepositButton.Disabled = !Enabled || DepositAmount <= 0 || DepositReason == null || string.IsNullOrEmpty(DepositDescription);
     }
 
     private void OnWithdrawPressed(BaseButton.ButtonEventArgs obj)
@@ -70,35 +134,34 @@ public sealed partial class StationBankATMMenu : FancyWindow
         DepositRequest?.Invoke();
     }
 
-    private void OnAmountChanged(LineEdit.LineEditEventArgs args)
+    private void OnWithdrawalAmountChanged(LineEdit.LineEditEventArgs args)
     {
         if (int.TryParse(args.Text, out var amount))
-        {
-            Amount = amount;
-        }
-    }
-
-    private void OnDescChanged(LineEdit.LineEditEventArgs args)
-    {
-        Description = args.Text;
+            WithdrawalAmount = amount;
+        else
+            WithdrawalAmount = 0;
+        UpdateWithdrawalButtonStatus();
     }
 
     public void PopulateReasons()
     {
-        _reasonStrings.Clear();
-        Reasons.Clear();
-        //todo: think of a better way/place to store the petty cash reason strings. this is mostly for rp, and a little bit of admin qol
-        _reasonStrings.Add("default");
-        _reasonStrings.Add("payroll");
-        _reasonStrings.Add("workorder");
-        _reasonStrings.Add("supplies");
-        _reasonStrings.Add("bounty");
-        _reasonStrings.Add("other");
-        Reasons.AddItem(Loc.GetString("station-bank-required"), 0);
-        Reasons.AddItem(Loc.GetString("station-bank-payroll"), 1);
-        Reasons.AddItem(Loc.GetString("station-bank-workorder"), 2);
-        Reasons.AddItem(Loc.GetString("station-bank-supplies"), 3);
-        Reasons.AddItem(Loc.GetString("station-bank-bounty"), 4);
-        Reasons.AddItem(Loc.GetString("station-bank-other"), 5);
+        _withdrawalReasonStrings.Clear();
+        WithdrawalReasons.Clear();
+
+        var index = 0;
+        foreach (var withdrawalReason in WithdrawalReasonArray)
+        {
+            _withdrawalReasonStrings.Add(withdrawalReason.Item1);
+            WithdrawalReasons.AddItem(withdrawalReason.Item2, index);
+            index++;
+        }
+
+        index = 0;
+        foreach (var depositReason in DepositReasonArray)
+        {
+            _depositReasonStrings.Add(depositReason.Item1);
+            DepositReasons.AddItem(depositReason.Item2, index);
+            index++;
+        }
     }
 }
