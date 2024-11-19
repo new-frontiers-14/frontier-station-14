@@ -5,7 +5,6 @@
  */
 using Content.Server.Popups;
 using Content.Server.Stack;
-using Content.Shared.Bank;
 using Content.Shared.Bank.BUI;
 using Content.Shared.Bank.Components;
 using Content.Shared.Bank.Events;
@@ -15,14 +14,12 @@ using Content.Shared.UserInterface;
 using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Player;
-using System.Linq;
 using Content.Server.Administration.Logs;
-using Content.Server.Cargo.Components;
 using Content.Shared.Database;
 using Robust.Shared.Audio.Systems;
+using Content.Shared._NF.Bank.BUI;
 
-namespace Content.Server.Bank;
+namespace Content.Server._NF.Bank;
 
 public sealed partial class BankSystem
 {
@@ -149,18 +146,16 @@ public sealed partial class BankSystem
             return;
         }
 
-        if (BankATMMenuUiKey.BlackMarket == (BankATMMenuUiKey) args.UiKey)
+        var originalDeposit = deposit;
+        foreach (var (account, taxCoeff) in component.TaxAccounts)
         {
-            var tax = (int) (deposit * 0.30f);
-            var query = EntityQueryEnumerator<StationBankAccountComponent>();
-
-            while (query.MoveNext(out _, out var comp))
-            {
-                _cargo.DeductFunds(comp, -tax);
-            }
-
-            deposit -= tax;
+            if (!float.IsFinite(taxCoeff) || taxCoeff <= 0.0f)
+                continue;
+            var tax = (int)Math.Floor(originalDeposit * taxCoeff);
+            TrySectorDeposit(account, tax, LedgerEntryType.BlackMarketAtmTax);
+            deposit -= tax; // Charge the user whether or not the deposit went through.
         }
+        deposit = int.Max(0, deposit);
 
         // try to deposit the inserted cash into a player's bank acount. Validation happens on the banking system but we still indicate error.
         if (!TryBankDeposit(player, deposit))
