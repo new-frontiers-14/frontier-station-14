@@ -1,5 +1,5 @@
-# Utility effects permanently modify the entity in some way when triggered, and they generally make it 'useful' for some purpose,
-# like turning the artifact into a tool, or gun, or whatever.
+# # Utility effects permanently modify the entity in some way when triggered, and they generally make it 'useful' for some purpose,
+# # like turning the artifact into a tool, or gun, or whatever.
 - type: artifactEffect
   id: EffectReclaimer
   targetDepth: 3
@@ -34,6 +34,7 @@
         loop: true
     useOldSolutionLogic: true
     solutionContainerId: output
+    powered: true
   - type: MaterialStorage
     insertOnInteract: false
   - type: SolutionContainerManager
