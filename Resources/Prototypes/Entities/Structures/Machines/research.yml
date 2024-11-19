@@ -1,3 +1,4 @@
+# Frontier: made this into a decorative object, each grid now ensures the comp without needing servers.
 - type: entity
   id: ResearchAndDevelopmentServer
   parent: [ BaseMachinePowered, ConstructibleMachine ]
@@ -11,20 +12,21 @@
       - state: variant-research
       - state: server_o
         map: ["enum.WiresVisualLayers.MaintenancePanel"]
-  - type: ResearchServer
-  - type: TechnologyDatabase
-    supportedDisciplines:
-    - Industrial
-    - Arsenal
-    - Experimental
-    - CivilianServices
+# Frontier
+#  - type: ResearchServer
+#  - type: TechnologyDatabase
+#    supportedDisciplines:
+#    - Industrial
+#    - Arsenal
+#    - Experimental
+#    - CivilianServices
   - type: ApcPowerReceiver
-    powerLoad: 200
+    powerLoad: 1 # Frontier:  200 < 1 - now a decorative object that makes sound for ambiance.
   - type: ExtensionCableReceiver
   - type: WiresPanel
   - type: WiresVisuals
   - type: Machine
-    board: ResearchAndDevelopmentServerMachineCircuitboard
+    board: null
   - type: Destructible
     thresholds:
     - trigger:
@@ -54,13 +56,14 @@
     range: 5
     sound:
       path: /Audio/Ambience/Objects/server_fans.ogg
-  - type: ContainerContainer
-    containers:
-      machine_board: !type:Container
-      machine_parts: !type:Container
-  - type: GuideHelp
-    guides:
-    - Science
+# Frontier
+#  - type: ContainerContainer
+#    containers:
+#      machine_board: !type:Container
+#      machine_parts: !type:Container
+#  - type: GuideHelp
+#    guides:
+#    - Science
 
 - type: entity
   id: BaseResearchAndDevelopmentPointSource
