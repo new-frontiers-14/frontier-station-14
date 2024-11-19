@@ -1,9 +1,9 @@
-# Utility effects permanently modify the entity in some way when triggered, and they generally make it 'useful' for some purpose,
-# like turning the artifact into a tool, or gun, or whatever.
+# # Utility effects permanently modify the entity in some way when triggered, and they generally make it 'useful' for some purpose,
+# # like turning the artifact into a tool, or gun, or whatever.
 - type: artifactEffect
   id: EffectReclaimer
   targetDepth: 3
-  effectHint: artifact-effect-hint-multitool
+  effectHint: artifact-effect-hint-reclaimer
   blacklist:
     components:
     - Item
@@ -34,6 +34,7 @@
         loop: true
     useOldSolutionLogic: true
     solutionContainerId: output
+    powered: true
   - type: MaterialStorage
     insertOnInteract: false
   - type: SolutionContainerManager
@@ -51,23 +52,23 @@
 - type: artifactEffect
   id: EffectInteractionPopup
   targetDepth: 2
-  effectHint: artifact-trigger-hint-examine
+  effectHint: artifact-trigger-hint-petting
   blacklist:
     components:
     - Item
   permanentComponents:
   - type: InteractionPopup
-    successChance: 0.9
-    interactSuccessString: petting-success-bird
-    interactFailureString: petting-failure-generic
+    successChance: 0.5
+    interactSuccessString: petting-success-artifact
+    interactFailureString: petting-failure-artifact
     interactSuccessSpawn: EffectHearts
     interactSuccessSound:
-      path: /Audio/Animals/duck_quack_happy.ogg
+      collection: RadiationPulse
 
 - type: artifactEffect
   id: EffectAdvMop
   targetDepth: 3
-  effectHint: artifact-trigger-hint-tool
+  effectHint: artifact-trigger-hint-mop
   whitelist:
     components:
     - Item
