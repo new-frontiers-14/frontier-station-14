@@ -10,13 +10,13 @@ public sealed partial class NFActivateArtifact : EntityEffect
     /// Disintegrate chance
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public float ProbabilityBase = 0.0f; // 0.05f before change
+    public float ProbabilityBase = 0.05f; // 5%
 
     /// <summary>
     /// Disintegrate chance bonus on grids that are not a station
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public float ProbabilityBonusOffStationGrid = 0.0f; // 0.15f before change
+    public float ProbabilityBonusOffStationGrid = 0.15f; // 15%
 
     /// <summary>
     /// The range around the artifact that it will spawn the entity
