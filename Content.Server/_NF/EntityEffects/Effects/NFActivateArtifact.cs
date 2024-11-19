@@ -10,7 +10,13 @@ public sealed partial class NFActivateArtifact : EntityEffect
     /// Disintegrate chance
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public float ProbabilityBase = 0.05f;
+    public float ProbabilityBase = 0.05f; // 5%
+
+    /// <summary>
+    /// Disintegrate chance bonus on grids that are not a station
+    /// </summary>
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public float ProbabilityBonusOffStationGrid = 0.15f; // 15%
 
     /// <summary>
     /// The range around the artifact that it will spawn the entity
@@ -23,7 +29,7 @@ public sealed partial class NFActivateArtifact : EntityEffect
         if (args is not EntityEffectReagentArgs reagentArgs)
             return;
         var artifact = args.EntityManager.EntitySysManager.GetEntitySystem<ArtifactSystem>();
-        artifact.NFActivateArtifact(reagentArgs.TargetEntity, ProbabilityBase, Range);
+        artifact.NFActivateArtifact(reagentArgs.TargetEntity, ProbabilityBase, ProbabilityBonusOffStationGrid, Range);
     }
 
     protected override string? ReagentEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys) =>
