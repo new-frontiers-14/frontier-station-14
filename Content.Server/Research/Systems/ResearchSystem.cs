@@ -130,6 +130,8 @@ namespace Content.Server.Research.Systems
             db.SupportedDisciplines.Add("Experimental");
             db.SupportedDisciplines.Add("CivilianServices");
 
+            UpdateTechnologyCards(gridUid, db);
+
             return comp;
         }
 
