@@ -151,7 +151,8 @@ public abstract class SharedResearchSystem : EntitySystem
         bool includeCost = true,
         bool includeTier = true,
         bool includePrereqs = false,
-        TechDisciplinePrototype? disciplinePrototype = null)
+        TechDisciplinePrototype? disciplinePrototype = null,
+        float costModifier = 1.0f) // Frontier: add costModifier
     {
         var description = new FormattedMessage();
         if (includeTier)
@@ -164,7 +165,7 @@ public abstract class SharedResearchSystem : EntitySystem
 
         if (includeCost)
         {
-            description.AddMarkupOrThrow(Loc.GetString("research-console-cost", ("amount", technology.Cost)));
+            description.AddMarkupOrThrow(Loc.GetString("research-console-cost", ("amount", (int) (technology.Cost * costModifier)))); // Frontier: add costModifier
             description.PushNewline();
         }
 

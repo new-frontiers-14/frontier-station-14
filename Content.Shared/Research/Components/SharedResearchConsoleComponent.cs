@@ -29,9 +29,12 @@ namespace Content.Shared.Research.Components
     public sealed class ResearchConsoleBoundInterfaceState : BoundUserInterfaceState
     {
         public int Points;
-        public ResearchConsoleBoundInterfaceState(int points)
+        public float CostModifier; // Frontier: add cost modifier
+
+        public ResearchConsoleBoundInterfaceState(int points, float costModifier)
         {
             Points = points;
+            CostModifier = costModifier;
         }
     }
 }

@@ -1,3 +1,4 @@
+using Content.Shared._NF.CCVar;
 using Content.Shared.Database;
 using Content.Shared.Research.Components;
 using Content.Shared.Research.Prototypes;
@@ -79,9 +80,16 @@ public sealed partial class ResearchSystem
         if (!CanServerUnlockTechnology(client, prototype, clientDatabase, component))
             return false;
 
+        // Frontier: increase point cost by unlocked technologies count
+        var cvarModifier = _configuration.GetCVar(NFCCVars.ScienceIncreasingUnlockModifier);
+        var isIncreasingUnlockCostEnabled = _configuration.GetCVar(NFCCVars.ScienceIncreasingUnlockCost);
+        var points = prototype.Cost;
+        if (isIncreasingUnlockCostEnabled)
+            points = (int) (points * (cvarModifier * clientDatabase.UnlockedTechnologies.Count + 1f));
+
         AddTechnology(serverEnt.Value, prototype);
         TrySetMainDiscipline(prototype, serverEnt.Value);
-        ModifyServerPoints(serverEnt.Value, -prototype.Cost);
+        ModifyServerPoints(serverEnt.Value, -points); // Frontier: add modifier
         UpdateTechnologyCards(serverEnt.Value);
 
         _adminLog.Add(LogType.Action, LogImpact.Medium,

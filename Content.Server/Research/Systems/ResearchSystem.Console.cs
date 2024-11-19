@@ -1,5 +1,6 @@
 using Content.Server.Power.EntitySystems;
 using Content.Server.Research.Components;
+using Content.Shared._NF.CCVar;
 using Content.Shared.UserInterface;
 using Content.Shared.Access.Components;
 using Content.Shared.Emag.Components;
@@ -62,21 +63,29 @@ public sealed partial class ResearchSystem
         SyncClientWithServer(uid);
     }
 
-    private void UpdateConsoleInterface(EntityUid uid, ResearchConsoleComponent? component = null, ResearchClientComponent? clientComponent = null)
+    private void UpdateConsoleInterface(EntityUid uid, ResearchConsoleComponent? component = null, ResearchClientComponent? clientComponent = null, TechnologyDatabaseComponent? clientDatabase = null)
     {
-        if (!Resolve(uid, ref component, ref clientComponent, false))
+        if (!Resolve(uid, ref component, ref clientComponent, ref clientDatabase, false))
             return;
 
         ResearchConsoleBoundInterfaceState state;
 
+        // Frontier: increase point cost by unlocked technologies count
+        var cvarModifier = _configuration.GetCVar(NFCCVars.ScienceIncreasingUnlockModifier);
+        var isIncreasingUnlockCostEnabled = _configuration.GetCVar(NFCCVars.ScienceIncreasingUnlockCost);
+        var unlockCostModifier = 1f;
+        if (isIncreasingUnlockCostEnabled)
+            unlockCostModifier = cvarModifier * clientDatabase.UnlockedTechnologies.Count + 1f;
+
+
         if (TryGetClientServer(uid, out _, out var serverComponent, clientComponent))
         {
             var points = clientComponent.ConnectedToServer ? serverComponent.Points : 0;
-            state = new ResearchConsoleBoundInterfaceState(points);
+            state = new ResearchConsoleBoundInterfaceState(points, unlockCostModifier); // Frontier: add modifier
         }
         else
         {
-            state = new ResearchConsoleBoundInterfaceState(default);
+            state = new ResearchConsoleBoundInterfaceState(default, unlockCostModifier); // Frontier: add modifier
         }
 
         _uiSystem.SetUiState(uid, ResearchConsoleUiKey.Key, state);

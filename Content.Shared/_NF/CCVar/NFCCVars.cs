@@ -229,4 +229,19 @@ public sealed class NFCCVars
     /// </summary>
     public static readonly CVarDef<float> SciencePointGainModifier =
         CVarDef.Create("frontier.science_modifier", 1.2f, CVar.SERVERONLY);
+
+    /// <summary>
+    /// A modifier that changes the amount of science points gained from xenoarcheology and anomalies.
+    /// This does not affect tech disks or other sources of science points.
+    /// </summary>
+    public static readonly CVarDef<bool> ScienceIncreasingUnlockCost =
+        CVarDef.Create("frontier.science_increasing_unlock_cost", true, CVar.SERVERONLY);
+
+    /// <summary>
+    /// A modifier that changes the amount of science points required after unlocking each technology.
+    /// point cost = initial cost × (multiplier ^ number of purchases)
+    /// 0.0143 ensures the cost doubles every 50 unlocks.
+    /// </summary>
+    public static readonly CVarDef<float> ScienceIncreasingUnlockModifier =
+        CVarDef.Create("frontier.science_increasing_unlock_cost_modifier", 0.0143f, CVar.SERVERONLY);
 }
