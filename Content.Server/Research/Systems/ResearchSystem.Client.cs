@@ -25,11 +25,19 @@ public sealed partial class ResearchSystem
 
     private void OnClientSelected(EntityUid uid, ResearchClientComponent component, ResearchClientServerSelectedMessage args)
     {
-        if (!TryGetServerById(args.ServerId, out var serveruid, out var serverComponent))
+        // Frontier
+        // if (!TryGetServerById(args.ServerId, out var serveruid, out var serverComponent))
+        //     return;
+
+        var stationUid = _station.GetOwningStation(uid);
+        if (stationUid == null)
             return;
 
+        // The station is the server. EnsureComp returns it guaranteed.
+        var serverComponent = EnsureComp<ResearchServerComponent>(stationUid.Value);
+
         UnregisterClient(uid, component);
-        RegisterClient(uid, serveruid.Value, component, serverComponent);
+        RegisterClient(uid, stationUid.Value, component, serverComponent);
     }
 
     private void OnClientDeselected(EntityUid uid, ResearchClientComponent component, ResearchClientServerDeselectedMessage args)

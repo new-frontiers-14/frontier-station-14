@@ -101,40 +101,36 @@ namespace Content.Server.Research.Systems
         /// <returns></returns>
         public string[] GetNFServerNames(EntityUid gridUid)
         {
-            var allServers = EntityQueryEnumerator<ResearchServerComponent>();
-            var list = new List<string>();
-            var station = _station.GetOwningStation(gridUid);
+            var grid = _station.GetOwningStation(gridUid);
+            if (grid == null)
+                return [];
 
-            if (station is { } stationUid)
-            {
-                while (allServers.MoveNext(out var uid, out var comp))
-                {
-                    if (_station.GetOwningStation(uid) == stationUid)
-                        list.Add(comp.ServerName);
-                }
-            }
-
-            var serverList = list.ToArray();
-            return serverList;
+            var comp = GetOrSetupResearchServer(grid.Value);
+            return [comp.ServerName];
         }
 
-        public int[] GetNFServerIds(EntityUid gridUid)
+        private int[] GetNFServerIds(EntityUid gridUid)
         {
-            var allServers = EntityQueryEnumerator<ResearchServerComponent>();
-            var list = new List<int>();
-            var station = _station.GetOwningStation(gridUid);
+            var grid = _station.GetOwningStation(gridUid);
+            if (grid == null)
+                return [];
 
-            if (station is { } stationUid)
-            {
-                while (allServers.MoveNext(out var uid, out var comp))
-                {
-                    if (_station.GetOwningStation(uid) == stationUid)
-                        list.Add(comp.Id);
-                }
-            }
+            var comp = GetOrSetupResearchServer(grid.Value);
+            return [comp.Id];
+        }
 
-            var serverList = list.ToArray();
-            return serverList;
+        private ResearchServerComponent GetOrSetupResearchServer(EntityUid gridUid)
+        {
+            if (TryComp<ResearchServerComponent>(gridUid, out var comp))
+                return comp;
+            comp = EnsureComp<ResearchServerComponent>(gridUid);
+            var db = EnsureComp<TechnologyDatabaseComponent>(gridUid);
+            db.SupportedDisciplines.Add("Industrial");
+            db.SupportedDisciplines.Add("Arsenal");
+            db.SupportedDisciplines.Add("Experimental");
+            db.SupportedDisciplines.Add("CivilianServices");
+
+            return comp;
         }
 
         public override void Update(float frameTime)
