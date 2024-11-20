@@ -28,34 +28,19 @@
   - type: GasVolumePump
     startOnMapInit: true
 
-# Giant mess of a YAML definition but largely based on GasPressurePump and AirlockShuttle
+# All entities for gas transfer between grids should be based off this.
 - type: entity
   parent: BaseStructure
   id: BaseGaslock
-  suffix: Docking
-  name: external gaslock
-  description: Connects gas pipes on separate ships or stations together to allow gas transfer. Both sides must be docked and pumping in the same direction to accept flow.
+  name: gaslock
   components:
-  - type: Transform
-    noRot: false
   - type: Anchorable
   - type: Rotatable
   - type: Docking
     radarColor: darkcyan
     highlightedRadarColor: cyan
-    highlightedRadarColor: lightcyan
     dockType: Gas
   - type: DockingSignalControl
-  - type: DeviceLinkSource
-    ports:
-      - DockStatus
-  # - type: DeviceLinkSink
-  #   ports:
-      # - PumpOn
-      # - PumpOff
-      # - DirectionIn
-      # - DirectionOut
-      # - ToggleDirection
   - type: Fixtures
     fixtures:
       fix1:
@@ -73,22 +58,50 @@
           radius: 0.2
           position: "0,-0.5"
         hard: false
-  - type: Wires
-    layoutId: Docking
   - type: WiresVisuals
   - type: WiresPanel
   - type: WiresPanelSecurity
-  - type: PaintableAirlock
-    group: External
-    department: null
+  - type: Appearance
+  - type: PipeColorVisuals
+  - type: InteractionOutline
+  - type: AtmosDevice
+    joinSystem: true # Any pipe system on an asteroid should update.
+  - type: Tag
+    tags:
+      - Unstackable
+      - Pipe
+  - type: PipeRestrictOverlap
+  - type: AtmosUnsafeUnanchor
+  - type: AtmosPipeColor
+  - type: StationAiWhitelist
+  - type: DeviceNetwork
+    deviceNetId: AtmosDevices
+    receiveFrequencyId: AtmosMonitor
+    transmitFrequencyId: AtmosMonitor
+    sendBroadcastAttemptEvent: true
+    examinableAddress: true
+    prefix: device-address-prefix-gaslock
+
+- type: entity
+  parent: BaseGaslock
+  id: BasePumpGaslock
+  suffix: Docking
+  name: external gaslock
+  description: Connects gas pipes on separate ships or stations together to allow gas transfer. Both sides must be docked and pumping in the same direction to accept flow.
+  components:
+  - type: Transform
+    noRot: false
+  - type: DeviceLinkSource
+    ports:
+      - DockStatus
+  - type: Wires
+    layoutId: Docking
   # - type: Construction
   #   graph: AirlockShuttle
   #   node: airlock
   - type: ApcPowerReceiver
     powerLoad: 500
   - type: ExtensionCableReceiver
-  - type: Appearance
-  - type: PipeColorVisuals
   - type: GasPressurePump
     enabled: false
   - type: NodeContainer
@@ -114,21 +127,10 @@
     range: 5
     sound:
       path: /Audio/Ambience/Objects/gas_pump.ogg
-  - type: InteractionOutline
-  - type: StationAiWhitelist
-  - type: AtmosDevice
-    joinSystem: true # Any pipe system on an asteroid should update.
-  - type: Tag
-    tags:
-      - Unstackable
-      - Pipe
   - type: PipeAppearance
-  - type: PipeRestrictOverlap
-  - type: AtmosUnsafeUnanchor
-  - type: AtmosPipeColor
 
 - type: entity
-  parent: BaseGaslock
+  parent: BasePumpGaslock
   id: Gaslock
   suffix: Airtight
   placement:
@@ -183,6 +185,9 @@
   - type: IconSmooth
     key: walls
     mode: NoSprite
+  - type: PaintableAirlock
+    group: External
+    department: null
 
 - type: entity
   parent: Gaslock
@@ -197,7 +202,7 @@
     pumpingInwards: true
 
 - type: entity
-  parent: BaseGaslock
+  parent: BasePumpGaslock
   id: GaslockFrame
   suffix: Docking
   name: gas staging port
@@ -246,14 +251,10 @@
       - Unstackable
       - Pipe
       - ForceNoFixRotations
-  - type: BlockWeather
-  - type: PlacementReplacement
-    key: walls
-  - type: IconSmooth
-    key: walls
-    mode: NoSprite
   - type: Docking
     receiveOnly: true
+  - type: DeviceNetwork
+    prefix: device-address-prefix-staging-port
 
 - type: entity
   parent: GaslockFrame
@@ -265,10 +266,3 @@
     outlet: inlet
   - type: DockablePump
     pumpingInwards: true
-
-- type: entity
-  parent: [ BaseGaslock ]
-  id: GasSalePoint
-  name: gas sale point
-  description: Gas piped into here can be sold using the linked console. Bluespace linked to massive storage vaults off-site.
-  # TODO: fill this out

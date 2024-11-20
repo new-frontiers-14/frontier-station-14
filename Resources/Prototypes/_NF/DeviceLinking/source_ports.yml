@@ -1,0 +1,11 @@
+- type: sourcePort
+  id: GasSalePointSender
+  name: signal-port-name-gas-sale-point-sender
+  description: signal-port-description-sale-point-sender
+  defaultLinks: [ GasSaleConsoleReceiver ]
+
+- type: sourcePort
+  id: GasSaleConsoleSender
+  name: signal-port-name-gas-sale-console-sender
+  description: signal-port-description-sale-console-sender
+  defaultLinks: [ GasSalePointReceiver ]

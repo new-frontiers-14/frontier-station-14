@@ -6,80 +6,149 @@
   placement:
     mode: SnapgridCenter
   components:
-    - type: Appearance
-    - type: PipeColorVisuals
-    - type: Rotatable
-    - type: AtmosPipeColor
-    - type: AtmosDevice
-      joinSystem: true
-    - type: UserInterface
-      interfaces:
-        enum.GasPressurePumpUiKey.Key:
-          type: GasPressurePumpBoundUserInterface
-    - type: ActivatableUI
-      inHandsOnly: false
-      key: enum.GasPressurePumpUiKey.Key
-    - type: WiresPanel
-    - type: WiresVisuals
-    - type: PipeRestrictOverlap
-    - type: NodeContainer
-      nodes:
-        outlet:
-          !type:PipeNode
-          nodeGroupID: Pipe
-          pipeDirection: South
-    - type: Transform
-      noRot: false
-    - type: DeviceNetwork
-      deviceNetId: AtmosDevices
-      receiveFrequencyId: AtmosMonitor
-      transmitFrequencyId: AtmosMonitor
-      sendBroadcastAttemptEvent: true
-      examinableAddress: true
-      prefix: device-address-prefix-gas-drill
-    - type: WiredNetworkConnection
-    - type: PowerSwitch
-    - type: StationAiWhitelist
-    - type: Sprite
-      sprite: _NF/Objects/Specific/Atmospherics/extractor.rsi
-      snapCardinals: true
-      granularLayersRendering: true
-      layers:
-        - state: pipe
-          map: [ "enum.PipeVisualLayers.Pipe" ]
-          renderingStrategy: Default
-        - state: drill-off
-          map: [ "drill" ]
-        - state: base
-        - state: base-powered
-          shader: unshaded
-          map: [ "enum.PowerDeviceVisualLayers.Powered" ]
-        - state: drill-empty-unlit
-          shader: unshaded
-          map: [ "light" ]
-    - type: GenericVisualizer
-      visuals:
-        enum.PowerDeviceVisuals.Powered:
-          enum.PowerDeviceVisualLayers.Powered:
-            True: { visible: true }
-            False: { visible: false }
-        enum.GasDepositExtractorVisuals.State:
-          drill:
-            Off: { state: drill-off }
-            Blocked: { state: drill-off }
-            Empty: { state: drill-off }
-            Low: { state: drill }
-            On: { state: drill }
-          light:
-            Off: { visible: false }
-            Blocked: { state: drill-blocked-unlit, visible: true }
-            Empty: { state: drill-empty-unlit, visible: true }
-            Low: { state: drill-low-unlit, visible: true }
-            On: { state: drill-on-unlit, visible: true }
-    - type: ApcPowerReceiver
-      load: 4000
-    - type: Machine
-      board: Null # FIXME
-    - type: GasDepositExtractor
-      extractionRate: 20
-      port: outlet
+  - type: Appearance
+  - type: PipeColorVisuals
+  - type: Rotatable
+  - type: AtmosPipeColor
+  - type: AtmosDevice
+    joinSystem: true
+  - type: UserInterface
+    interfaces:
+      enum.GasPressurePumpUiKey.Key:
+        type: GasPressurePumpBoundUserInterface
+  - type: ActivatableUI
+    inHandsOnly: false
+    key: enum.GasPressurePumpUiKey.Key
+  - type: WiresPanel
+  - type: WiresVisuals
+  - type: PipeRestrictOverlap
+  - type: NodeContainer
+    nodes:
+      outlet:
+        !type:PipeNode
+        nodeGroupID: Pipe
+        pipeDirection: South
+  - type: Transform
+    noRot: false
+  - type: DeviceNetwork
+    deviceNetId: AtmosDevices
+    receiveFrequencyId: AtmosMonitor
+    transmitFrequencyId: AtmosMonitor
+    sendBroadcastAttemptEvent: true
+    examinableAddress: true
+    prefix: device-address-prefix-gas-drill
+  - type: WiredNetworkConnection
+  - type: PowerSwitch
+  - type: StationAiWhitelist
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Atmospherics/extractor.rsi
+    snapCardinals: true
+    granularLayersRendering: true
+    layers:
+      - state: pipe
+        map: [ "enum.PipeVisualLayers.Pipe" ]
+        renderingStrategy: Default
+      - state: drill-off
+        map: [ "drill" ]
+      - state: base
+      - state: base-powered
+        shader: unshaded
+        map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+      - state: drill-empty-unlit
+        shader: unshaded
+        map: [ "light" ]
+  - type: GenericVisualizer
+    visuals:
+      enum.PowerDeviceVisuals.Powered:
+        enum.PowerDeviceVisualLayers.Powered:
+          True: { visible: true }
+          False: { visible: false }
+      enum.GasDepositExtractorVisuals.State:
+        drill:
+          Off: { state: drill-off }
+          Blocked: { state: drill-off }
+          Empty: { state: drill-off }
+          Low: { state: drill }
+          On: { state: drill }
+        light:
+          Off: { visible: false }
+          Blocked: { state: drill-blocked-unlit, visible: true }
+          Empty: { state: drill-empty-unlit, visible: true }
+          Low: { state: drill-low-unlit, visible: true }
+          On: { state: drill-on-unlit, visible: true }
+  - type: ApcPowerReceiver
+    load: 4000
+  - type: Machine
+    board: Null # FIXME
+  - type: GasDepositExtractor
+    extractionRate: 20
+    port: outlet
+
+- type: entity
+  parent: [ BaseStructureIndestructible, BaseStructureDisableToolUse, BaseGaslock ]
+  id: GasSalePoint
+  name: gas sale point
+  description: Gas piped into here can be sold using the linked console. Bluespace linked to massive storage vaults off-site.
+  components:
+  - type: NodeContainer
+    nodes:
+      inlet:
+        !type:DockablePipeNode
+        nodeGroupID: Pipe
+        pipeDirection: South
+  - type: DeviceNetwork
+    prefix: device-address-prefix-sale-point
+  - type: WiredNetworkConnection
+  - type: Sprite
+    sprite: _NF/Structures/Piping/Atmospherics/salepoint.rsi
+    snapCardinals: true
+    granularLayersRendering: true
+    layers:
+      - state: base
+      - state: base-unlit
+        shader: unshaded
+      - state: docked-unlit
+        shader: unshaded
+        map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+      - state: on-unlit
+        shader: unshaded
+        map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+  # - type: GenericVisualizer # TODO: fill this in
+  - type: ApcPowerReceiver
+    load: 1000
+  - type: Machine
+    board: Null # FIXME
+  - type: GasSalePoint
+  - type: CargoSellBlacklist # just in case
+  - type: DeviceLinkSink
+    ports:
+      - GasSalePointReceiver
+  - type: DeviceLinkSource
+    ports:
+      - GasSalePointSender
+
+- type: entity
+  parent: [ BaseStructureIndestructible, BaseStructureDisableToolUse, BaseComputer ]
+  id: GasSaleConsole
+  name: gas sale console
+  description: Sells gas pumped into a linked gas sale point.
+  components:
+  - type: GasSaleConsole
+  - type: ActivatableUI
+    key: enum.GasSaleConsoleUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.GasSaleConsoleUiKey.Key:
+        type: GasSaleConsoleBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+  - type: Computer
+    board: Null # FIXME
+  - type: MarketModifier
+    mod: 1
+  - type: DeviceLinkSink
+    ports:
+      - GasSaleConsoleReceiver
+  - type: DeviceLinkSource
+    ports:
+      - GasSaleConsoleSender

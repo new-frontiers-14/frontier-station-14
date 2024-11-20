@@ -243,6 +243,8 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
                     null,
                 RadarColor = comp.RadarColor, // Frontier
                 HighlightedRadarColor = comp.HighlightedRadarColor, // Frontier
+                DockType = comp.DockType, // Frontier
+                ReceiveOnly = comp.ReceiveOnly, // Frontier
             };
 
             gridDocks.Add(state);
