@@ -9,10 +9,10 @@
       - dough
       - sweet
   - type: Sprite
-    sprite: _NF/Objects/Consumable/Food/donut.rsi
+    sprite: _NF/Objects/Consumable/Food/Baked/donut.rsi
     state: uncooked
   - type: SolutionContainerManager
-    solutions:
+    solutions: &uncookedSolution
       food:
         maxVol: 5
         reagents:
@@ -23,18 +23,24 @@
   - type: DeepFrySpawn
     cycles: 2
     output: FoodDonutPlain
+  - type: Construction
+    graph: NFDonut
+    node: donut
 
 - type: entity
   name: uncooked jelly donut
-  parent: FoodDonutUncooked
+  parent: FoodDonutBase
   id: FoodDonutUncookedJelly
   components:
   - type: FlavorProfile
     flavors:
+      - dough
       - sweet
+  - type: SolutionContainerManager
+    solutions: *uncookedSolution
   - type: Sprite
-    sprite: _NF/Objects/Consumable/Food/donut.rsi
-    state: uncooked
+    sprite: _NF/Objects/Consumable/Food/Baked/donut.rsi
+    state: jelly-uncooked
   - type: DeepFrySpawn
     cycles: 2
-    output: FoodDonutPlainJelly
+    output: FoodDonutJellyPlain

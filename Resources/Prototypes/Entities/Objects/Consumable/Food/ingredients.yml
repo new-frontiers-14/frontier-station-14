@@ -451,13 +451,13 @@
   parent: FoodBakingBase
   id: FoodDoughPastryBaseRaw
   # description: Must be cooked before use. # Frontier: return when we have things using cooked pastry base
-  description:
+  description: A starting point for donuts and pastries.
   components:
   - type: Sprite
     state: dough-pastry
-  - type: SliceableFood # Frontier
-    count: 3 # Frontier
-    slice: FoodDonutUncooked # Frontier
+  - type: Construction # Frontier
+    graph: NFDonut # Frontier
+    node: start # Frontier
 
 - type: entity
   name: pastry base
