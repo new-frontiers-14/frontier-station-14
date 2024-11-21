@@ -1,5 +1,4 @@
 using System.Numerics;
-using Content.Server.Cargo.Components;
 using Content.Server.Cargo.Systems;
 using Robust.Server.GameObjects;
 using Robust.Shared.Map;
@@ -7,10 +6,10 @@ using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Server.StationEvents.Components;
 using Content.Shared.GameTicking.Components;
-using Content.Shared.Humanoid;
-using Content.Shared.Mobs.Components;
 using Robust.Shared.Random;
 using Content.Server._NF.Salvage;
+using Content.Server._NF.Bank;
+using Content.Shared._NF.Bank.BUI;
 using Content.Server.GameTicking;
 using Content.Server.Procedural;
 using Robust.Shared.Prototypes;
@@ -36,6 +35,7 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
     [Dependency] private readonly LinkedLifecycleGridSystem _linkedLifecycleGrid = default!;
     [Dependency] private readonly StationSystem _stationSystem = default!;
     [Dependency] private readonly StationRenameWarpsSystems _renameWarps = default!;
+    [Dependency] private readonly BankSystem _bank = default!;
 
     public override void Initialize()
     {
@@ -96,12 +96,8 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
 
                 if (group.NameWarp)
                 {
-                    var warps = _renameWarps.SyncWarpPointsToGrid(spawned);
-                    foreach (var warp in warps)
-                    {
-                        if (group.HideWarp)
-                            warp.Comp.AdminOnly = true;
-                    }
+                    bool? adminOnly = group.HideWarp ? true : null;
+                    _renameWarps.SyncWarpPointsToGrid(spawned, forceAdminOnly: adminOnly);
                 }
 
                 EntityManager.AddComponents(spawned, group.AddComponents);
@@ -246,10 +242,10 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
                     _transform.SetCoordinates(mob.Entity.Owner, new EntityCoordinates(mob.MapUid, mob.LocalPosition));
                 }
 
-                var queryBank = EntityQuery<StationBankAccountComponent>();
-                foreach (var account in queryBank)
+                foreach (var (account, rewardCoeff) in component.RewardAccounts)
                 {
-                    _cargo.DeductFunds(account, (int)-(gridValue * component.NfsdRewardFactor));
+                    var reward = (int)(gridValue * rewardCoeff);
+                    _bank.TrySectorDeposit(account, reward, LedgerEntryType.BluespaceReward);
                 }
             }
         }

@@ -9,6 +9,7 @@ using Content.Shared.Inventory.VirtualItem;
 using Content.Shared.Item;
 using Content.Shared.Light.Components;
 using Content.Shared.Movement.Components;
+using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Tag;
@@ -135,6 +136,18 @@ public abstract partial class SharedVehicleSystem : EntitySystem
         var riderUid = args.Buckle.Owner;
         if (component.UseHand == true)
         {
+            // Frontier: no pulling when riding
+            if (TryComp<PullerComponent>(riderUid, out var puller) && puller.Pulling != null)
+            {
+                if (_netManager.IsServer)
+                {
+                    _popupSystem.PopupEntity(Loc.GetString("vehicle-cannot-pull", ("object", puller.Pulling), ("vehicle", uid)), uid, riderUid);
+                }
+                args.Cancelled = true;
+                return;
+            }
+            // End Frontier
+
             // Add a virtual item to rider's hand, cancel if we can't.
             if (!_virtualItemSystem.TrySpawnVirtualItemInHand(uid, riderUid))
             {

@@ -11,11 +11,17 @@
 - type: pointOfInterest
   id: AnomalousLab
   name: 'Anomalous Lab'
-  rangeMin: 2100
-  rangeMax: 3800
-  IFFColor: "#ffa600" #yellorange for nuetral civillian
+  minimumDistance: 2100
+  maximumDistance: 3800
   spawnGroup: ScienceLab
   gridPath: /Maps/_NF/POI/anomalouslab.yml
+  addComponents:
+  - type: IFF
+    color: "#ffa600"
+    readOnly: true
+  - type: Shuttle
+    angularDamping: 999999
+    linearDamping: 999999
 
 - type: gameMap
   id: AnomalousLab
