@@ -26,6 +26,32 @@
 #    stealGroup: FoodMeatCat
 
 - type: entity
+  name: battered chicken
+  parent: FoodMeatChicken
+  id: FoodMeatChickenBattered
+  description: Chicken dredged in a gloopy flour and egg mixture.
+  components:
+  - type: Sprite
+    state: chicken-battered
+  - type: DeepFrySpawn
+    cycles: 2
+    output: FoodMeatChickenFried
+
+- type: entity
+  name: battered chicken cutlet
+  parent: FoodMeatChickenCutler
+  id: FoodMeatChickenCutletBattered
+  description: A cut of chicken, dredged in a gloopy flour and egg mixture.
+  components:
+  - type: Sprite
+    state: chicken-battered
+  - type: DeepFrySpawn
+    cycles: 1
+    output: FoodBakedNugget
+
+# Cooked
+
+- type: entity
   name: honey glazed ham
   parent: FoodMeatBase
   id: FoodMeatGlazedHam

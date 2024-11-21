@@ -1,0 +1,40 @@
+- type: entity
+  name: uncooked donut
+  parent: FoodDonutBase
+  id: FoodDonutUncooked
+  description: Needs a moment in the deep fryer, then it'll be good to eat.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - dough
+      - sweet
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/donut.rsi
+    state: uncooked
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: GastroToxin
+          Quantity: 1
+  - type: DeepFrySpawn
+    cycles: 2
+    output: FoodDonutPlain
+
+- type: entity
+  name: uncooked jelly donut
+  parent: FoodDonutUncooked
+  id: FoodDonutUncookedJelly
+  components:
+  - type: FlavorProfile
+    flavors:
+      - sweet
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/donut.rsi
+    state: uncooked
+  - type: DeepFrySpawn
+    cycles: 2
+    output: FoodDonutPlainJelly
