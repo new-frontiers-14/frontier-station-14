@@ -39,6 +39,13 @@
   components:
   - type: StationSectorServiceHost
 
+# Makes Outpost gain extra copy of record from character latejoining no matter the location(station)
+- type: entity
+  id: BaseSectorStationRecords
+  abstract: true
+  components:
+  - type: SectorStationRecord
+
 - type: entity
   id: BaseStationDampening
   abstract: true

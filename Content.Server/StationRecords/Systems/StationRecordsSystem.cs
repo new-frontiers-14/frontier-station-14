@@ -3,6 +3,7 @@ using System.IO;
 using Content.Server.Access.Systems;
 using Content.Server.Forensics;
 using Content.Server.GameTicking;
+using Content.Server.Station.Components; // Frontier
 using Content.Shared.Access.Components;
 using Content.Shared.Inventory;
 using Content.Shared.PDA;
@@ -11,6 +12,7 @@ using Content.Shared.Roles;
 using Content.Shared.StationRecords;
 using Robust.Shared.Enums;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Random; //Frontier modification
 
 namespace Content.Server.StationRecords.Systems;
 
@@ -39,6 +41,7 @@ public sealed class StationRecordsSystem : SharedStationRecordsSystem
     [Dependency] private readonly StationRecordKeyStorageSystem _keyStorage = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IdCardSystem _idCard = default!;
+    [Dependency] private readonly IRobustRandom _robustRandom = default!; // Frontier
 
     public override void Initialize()
     {
@@ -54,6 +57,28 @@ public sealed class StationRecordsSystem : SharedStationRecordsSystem
             return;
 
         CreateGeneralRecord(args.Station, args.Mob, args.Profile, args.JobId, stationRecords);
+
+        /*var query = EntityQueryEnumerator<SectorStationRecordComponent>();
+
+        while (query.MoveNext(out var stationGridUid, out var comp))
+        {
+            if (TryComp<StationMemberComponent>(stationGridUid, out var stationMemberComponent))
+            {
+                var stationEntityUid = stationMemberComponent.Station;
+
+                CreateGeneralRecord(stationEntityUid, args.Mob, args.Profile, args.JobId, stationRecords);
+
+                /*
+                if (TryComp<StationRecordKeyStorageComponent>(targetId, out var keyStorage)
+                && stationEntityUid != null
+                && keyStorage.Key != null)
+                {
+                    if (!TryGetRecord<GeneralStationRecord>(Key.Value, out var record))
+                        continue;
+            }
+            }
+
+        }*/
     }
 
     private void OnRename(ref EntityRenamedEvent ev)
@@ -95,6 +120,44 @@ public sealed class StationRecordsSystem : SharedStationRecordsSystem
         TryComp<DnaComponent>(player, out var dnaComponent);
 
         CreateGeneralRecord(station, idUid.Value, profile.Name, profile.Age, profile.Species, profile.Gender, jobId, fingerprintComponent?.Fingerprint, dnaComponent?.DNA, profile, records);
+
+        var query = EntityQueryEnumerator<SectorStationRecordComponent>();
+
+        while (query.MoveNext(out var stationEntityUid, out var comp))
+        {
+            if (!TryComp<IgnoreSectorStationRecordComponent>(player, out var playerComp))
+            {
+                var stationList = EntityQueryEnumerator<StationRecordsComponent>();
+
+                while (stationList.MoveNext(out var stationUid, out var stationRecComp))
+                {
+                    if (TryComp<StationRecordKeyStorageComponent>(idUid.Value, out var keyStorage)
+                    && stationEntityUid != null
+                    && keyStorage.Key != null)
+                    {
+                        if (!TryGetRecord<GeneralStationRecord>(keyStorage.Key.Value, out var record))
+                            continue;
+
+                        AddRecordEntry((EntityUid) stationEntityUid, record);
+                        break;
+                    }
+                }
+
+                TryComp<StationRecordsComponent>(stationEntityUid, out var stationRec);
+
+                //Checks if certain information should be faked, is yes then will randomise it
+                string playerJob = jobId;
+                if(TryComp<FakeSectorStationRecordComponent>(player, out var playerComponent))
+                {
+                    string[] jobs = { "Contractor", "Pilot", "Mercenary" };
+                    // Randomises job
+                    var random = _robustRandom.Next(jobs.Length);
+                    playerJob = jobs[random];
+                }
+                CreateGeneralRecord(stationEntityUid, idUid.Value, profile.Name, profile.Age, profile.Species, profile.Gender, playerJob, fingerprintComponent?.Fingerprint, dnaComponent?.DNA, profile, stationRec!);
+            }
+
+        }
     }
 
 
