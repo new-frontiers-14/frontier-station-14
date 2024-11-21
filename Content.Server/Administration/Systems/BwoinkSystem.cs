@@ -743,7 +743,7 @@ namespace Content.Server.Administration.Systems
                 .ToList();
         }
 
-        private static string GenerateAHelpMessage(AHelpMessageParams parameters) // Frontier - Changed to Public
+        private static string GenerateAHelpMessage(AHelpMessageParams parameters)
         {
             var stringbuilder = new StringBuilder();
 
