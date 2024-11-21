@@ -59,7 +59,7 @@ namespace Content.Server.Administration.Systems
                 lastRunLevel)> _relayMessages = new();
 
         private Dictionary<NetUserId, string> _oldMessageIds = new();
-        public readonly Dictionary<NetUserId, Queue<string>> _messageQueues = new(); // Frontier - Changed to Public
+        private readonly Dictionary<NetUserId, Queue<string>> _messageQueues = new();
         private readonly HashSet<NetUserId> _processingChannels = new();
         private readonly Dictionary<NetUserId, (TimeSpan Timestamp, bool Typing)> _typingUpdateTimestamps = new();
         private string _overrideClientName = string.Empty;
