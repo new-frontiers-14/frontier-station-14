@@ -291,16 +291,18 @@ public sealed partial class DeepFryerSystem : SharedDeepfryerSystem
         // Frontier: deep fryer-specific "recipes"
         if (TryComp<DeepFrySpawnComponent>(item, out var deepFriable))
         {
-            deepFriable.Cycles -= 1;
+            deepFriable.Cycles--;
             if (deepFriable.Cycles <= 0)
             {
+                // Get oil volume to spawn before deleting item.
+                var friableVolume = GetOilAndWasteVolumeForItem(uid, component, item);
+
                 var spawn = Spawn(deepFriable.Output, Transform(uid).Coordinates);
                 EnsureComp<PreventCrispingComponent>(spawn);
                 _containerSystem.Insert(spawn, component.Storage);
                 Del(item);
 
                 // Reduce volume, replace waste
-                var friableVolume = GetOilAndWasteVolumeForItem(uid, component, item);
                 component.Solution.RemoveSolution(friableVolume);
                 component.WasteToAdd += friableVolume;
             }
