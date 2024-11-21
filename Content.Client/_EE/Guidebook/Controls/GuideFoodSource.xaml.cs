@@ -190,7 +190,7 @@ public sealed partial class GuideFoodSource : BoxContainer, ISearchableControl
         TextureRect processingTexture;
 
         processingTexture = new TextureRect();
-        processingTexture.Texture = GetRsiTexture("/Nyanotrasen/Structures/Machines/deep_fryer.rsi", "off-0");
+        processingTexture.Texture = GetRsiTexture("/Textures/Nyanotrasen/Structures/Machines/deep_fryer.rsi", "off-0");
         ProcessingTextures.AddChild(processingTexture);
 
         ProcessingLabel.Text = Loc.GetString("guidebook-food-processing-deep-fry", ("processingTypes", Loc.GetString("guidebook-food-processing-type-deepfryer")), ("time", entry.Cycles));
