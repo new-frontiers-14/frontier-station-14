@@ -5,11 +5,7 @@ using Content.Shared.Eui;
 using Content.Shared.Ghost.Roles;
 using JetBrains.Annotations;
 using Robust.Client.GameObjects;
-<<<<<<< HEAD
 using Robust.Shared.Prototypes; // Frontier
-using Robust.Shared.Utility;
-=======
->>>>>>> 895648aa2c753181c261a6bed8461730f4248ec8
 
 namespace Content.Client.UserInterface.Systems.Ghost.Controls.Roles
 {

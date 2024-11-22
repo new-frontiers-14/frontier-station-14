@@ -373,7 +373,7 @@ public abstract partial class InventorySystem
     {
         var itemsDropped = 0;
         return TryUnequip(actor, target, slot, out removedItem, ref itemsDropped,
-            silent, force, predicted, inventory, clothing, reparent, checkDoafter);
+            silent, force, predicted, inventory, clothing, reparent, checkDoafter, child); // Frontier: add child
     }
 
     private bool TryUnequip(
@@ -388,7 +388,8 @@ public abstract partial class InventorySystem
         InventoryComponent? inventory = null,
         ClothingComponent? clothing = null,
         bool reparent = true,
-        bool checkDoafter = false)
+        bool checkDoafter = false,
+        bool child = false) // Frontier: raise DroppedEvent on all children
     {
         removedItem = null;
 
@@ -459,11 +460,7 @@ public abstract partial class InventorySystem
             if (slotDef != slotDefinition && slotDef.DependsOn == slotDefinition.Name)
             {
                 //this recursive call might be risky
-<<<<<<< HEAD
-                TryUnequip(actor, target, slotDef.Name, true, true, predicted, inventory, reparent: reparent, child: true); // Frontier: add child
-=======
-                TryUnequip(actor, target, slotDef.Name, out _, ref itemsDropped, true, true, predicted, inventory, reparent: reparent);
->>>>>>> 895648aa2c753181c261a6bed8461730f4248ec8
+                TryUnequip(actor, target, slotDef.Name, out _, ref itemsDropped, true, true, predicted, inventory, reparent: reparent, child: true); // Frontier: add child
             }
         }
 
