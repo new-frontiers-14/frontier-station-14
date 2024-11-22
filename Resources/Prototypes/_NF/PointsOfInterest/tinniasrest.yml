@@ -11,12 +11,18 @@
 - type: pointOfInterest
   id: Tinnia
   name: "Tinnia's Rest"
-  rangeMin: 1200
-  rangeMax: 2900
-  IFFColor: "#ffa600" #yellorange for faction style
+  minimumDistance: 1200
+  maximumDistance: 2900
   spawnGroup: RestStop
   gridPath: /Maps/_NF/POI/tinnia.yml
-  busStop: true
+  addComponents:
+  - type: IFF
+    color: "#ffa600"
+    readOnly: true
+  - type: Shuttle
+    angularDamping: 999999
+    linearDamping: 999999
+  - type: StationTransit
 
 - type: gameMap
   id: Tinnia
