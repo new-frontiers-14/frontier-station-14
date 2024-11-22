@@ -41,6 +41,7 @@
     # - id: RevenantSpawn # Frontier: empty list
     # - id: SleeperAgents # Frontier: empty list
     # - id: ZombieOutbreak # Frontier: empty list
+    # - id: LoneOpsSpawn # Frontier: empty list
 
 - type: entity
   id: BaseStationEvent
@@ -453,8 +454,8 @@
 #       - type: ZombifyOnDeath
 #       - type: IncurableZombie
 #       - type: InitialInfected
-#      mindRoles:
-#      - MindRoleInitialInfected
+#       mindRoles:
+#       - MindRoleInitialInfected
 
 # - type: entity
 #   parent: BaseNukeopsRule
@@ -467,7 +468,7 @@
 #     duration: 1
 #   - type: RuleGrids
 #   - type: LoadMapRule
-#     preloadedGrid: ShuttleStriker
+#     mapPath: /Maps/Shuttles/ShuttleEvent/striker.yml
 #   - type: NukeopsRule
 #     roundEndBehavior: Nothing
 #   - type: AntagSelection
@@ -488,8 +489,8 @@
 #       - type: NpcFactionMember
 #         factions:
 #         - Syndicate
-#      mindRoles:
-#      - MindRoleNukeops
+#       mindRoles:
+#       - MindRoleNukeops
 
 # - type: entity
 #   parent: BaseTraitorRule
@@ -516,8 +517,8 @@
 #       blacklist:
 #         components:
 #         - AntagImmune
-#      mindRoles:
-#      - MindRoleTraitorSleeper
+#       mindRoles:
+#       - MindRoleTraitorSleeper
 
 - type: entity
   id: MassHallucinations
