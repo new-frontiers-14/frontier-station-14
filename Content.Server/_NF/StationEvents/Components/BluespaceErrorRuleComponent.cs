@@ -60,11 +60,22 @@ public interface IBluespaceSpawnGroup
     /// </summary>
     public float MaximumDistance { get; }
 
-    /// <inheritdoc />
+    /// <summary>
+    /// A localized name. Overrides other name fields.
+    /// </summary>
     public List<LocId> NameLoc { get; }
 
-    /// <inheritdoc />
+    /// <summary>
+    /// A dataset to pick a random name from.
+    /// </summary>
+
     public ProtoId<DatasetPrototype>? NameDataset { get; }
+
+    /// <summary>
+    /// The type of name the dataset holds.
+    /// Determines how the name is transformed (e.g. to get "Albion-75-A" vs. "Albion NX-123")
+    /// </summary>
+    public BluespaceDatasetNameType NameDatasetType { get; set; }
 
     /// <inheritdoc />
     int MinCount { get; set; }
@@ -93,6 +104,13 @@ public interface IBluespaceSpawnGroup
     public bool HideWarp { get; set; }
 }
 
+public enum BluespaceDatasetNameType
+{
+    FTL, // FTL names (similar to vgroids)
+    Nanotrasen, // NT names (similar to shuttles)
+    Verbatim, // No modification (use strings as-is)
+}
+
 [DataRecord]
 public sealed class BluespaceDungeonSpawnGroup : IBluespaceSpawnGroup
 {
@@ -101,7 +119,9 @@ public sealed class BluespaceDungeonSpawnGroup : IBluespaceSpawnGroup
     /// </summary>
     public List<ProtoId<DungeonConfigPrototype>> Protos = new();
 
-    /// <inheritdoc />
+    /// <summary>
+    /// Minimum distance from the map's origin to
+    /// </summary>
     public float MinimumDistance { get; }
 
     public float MaximumDistance { get; }
@@ -111,6 +131,9 @@ public sealed class BluespaceDungeonSpawnGroup : IBluespaceSpawnGroup
 
     /// <inheritdoc />
     public ProtoId<DatasetPrototype>? NameDataset { get; }
+
+    /// <inheritdoc />
+    public BluespaceDatasetNameType NameDatasetType { get; set; } = BluespaceDatasetNameType.FTL;
 
     /// <inheritdoc />
     public int MinCount { get; set; } = 1;
@@ -143,6 +166,9 @@ public sealed class BluespaceGridSpawnGroup : IBluespaceSpawnGroup
     public float MaximumDistance { get; }
     public List<LocId> NameLoc { get; } = new();
     public ProtoId<DatasetPrototype>? NameDataset { get; }
+
+    /// <inheritdoc />
+    public BluespaceDatasetNameType NameDatasetType { get; set; } = BluespaceDatasetNameType.FTL;
     public int MinCount { get; set; } = 1;
     public int MaxCount { get; set; } = 1;
     public ComponentRegistry AddComponents { get; set; } = new();
