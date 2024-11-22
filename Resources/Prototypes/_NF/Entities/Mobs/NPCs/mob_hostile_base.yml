@@ -109,6 +109,20 @@
     - type: TimedSpawner
     - type: Advertise
       pack: FuelVendAds # placeholder, required field, unused
+    - type: Jittering
+
+- type: entity
+  abstract: true
+  id: NFMobBossRestrictions
+  components:
+  - type: NFSalvageMobRestrictions
+    addComponentsLeaveGrid:
+    - type: TimedDespawn
+      lifetime: 30
+    - type: Pacified
+    removeComponentsReturnGrid:
+    - type: TimedDespawn
+    - type: Pacified
 
 - type: entity
   abstract: true
