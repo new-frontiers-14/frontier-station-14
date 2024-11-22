@@ -3,7 +3,7 @@
 
 #Basic armor vest
 - type: entity
-  parent: [RecyclableItemClothArmor, ClothingOuterBaseMedium, AllowSuitStorageClothing, BaseC1Contraband] # Frontier: BaseRestrictedContraband<BaseC1Contraband, added RecyclableItemClothArmor
+  parent: [RecyclableItemClothArmor, ClothingOuterBaseMedium, AllowSuitStorageClothing, BaseC1Contraband, ClothingOuterStorageBase] # Frontier: BaseRestrictedContraband<BaseC1Contraband, added RecyclableItemClothArmor,ClothingOuterStorageBase
   id: ClothingOuterArmorBasic
   name: armor vest
   description: A standard Type I armored vest that provides decent protection against most types of damage.
@@ -259,7 +259,7 @@
     sprite: Clothing/OuterClothing/Armor/magusred.rsi
 
 - type: entity
-  parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing, BaseC1Contraband] # Frontier: BaseCommandContraband<BaseC1Contraband
+  parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing, BaseC1Contraband, ClothingOuterArmorBasic] # Frontier: BaseCommandContraband<BaseC1Contraband added ClothingOuterArmorBasic
   id: ClothingOuterArmorCaptainCarapace
   name: "captain's carapace"
   description: "An armored chestpiece that provides protection whilst still offering maximum mobility and flexibility. Issued only to the captains of luxury vessels." # Frontier
@@ -268,19 +268,20 @@
     sprite: Clothing/OuterClothing/Armor/captain_carapace.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Armor/captain_carapace.rsi
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.7 # Frontier 0.5<0.7
-        Slash: 0.7 # Frontier 0.5<0.7
-        Piercing: 0.7 # Frontier 0.6<0.7
-        Heat: 0.8 # Frontier 0.5<0.8
-        Caustic: 0.9
-  - type: ClothingSpeedModifier
-    walkModifier: 1.0
-    sprintModifier: 1.0
-  - type: ExplosionResistance
-    damageCoefficient: 0.9 # Frontier 0.65<0.9
+  # - type: Armor # Frontier
+    # modifiers: # Frontier
+      # coefficients: # Frontier
+        # Blunt: 0.5 # Frontier
+        # Slash: 0.5 # Frontier
+        # Piercing: 0.6 # Frontier
+        # Heat: 0.5 # Frontier
+        # Caustic: 0.9 # Frontier
+  # - type: ClothingSpeedModifier # Frontier
+    # walkModifier: 1.0 # Frontier
+    # sprintModifier: 1.0 # Frontier
+#  - type: HeldSpeedModifier # Frontier
+  # - type: ExplosionResistance # Frontier
+    # damageCoefficient: 0.65 # Frontier
   - type: GroupExamine
 
 - type: entity
