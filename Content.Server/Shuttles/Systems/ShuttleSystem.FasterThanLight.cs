@@ -67,7 +67,7 @@ public sealed partial class ShuttleSystem
     /// <summary>
     /// How many times we try to proximity warp close to something before falling back to map-wideAABB.
     /// </summary>
-    private const int FTLProximityIterations = 5;
+    private const int FTLProximityIterations = 10; // Frontier: 5<10
 
     private readonly HashSet<EntityUid> _lookupEnts = new();
     private readonly HashSet<EntityUid> _immuneEnts = new();
@@ -627,7 +627,7 @@ public sealed partial class ShuttleSystem
             {
                 if (!_statusQuery.TryGetComponent(child, out var status))
                     continue;
-                
+
                 if (HasComp<FTLKnockdownImmuneComponent>(child)) // Frontier: NPC knockdown immunity
                     continue; // Frontier: NPC knockdown immunity
 
@@ -808,58 +808,27 @@ public sealed partial class ShuttleSystem
             .TransformBox(targetLocalAABB)
             .Enlarged(expansionAmount);
 
+        // Frontier: replace union jank with outward step jank
         var iteration = 0;
-        var lastCount = nearbyGrids.Count;
         var mapId = targetXform.MapID;
         var grids = new List<Entity<MapGridComponent>>();
-
+        // Find a direction to push this box outwards
+        Angle outwardsAngle = targetAABB.Center.ToWorldAngle();
+        if (!double.IsFinite(outwardsAngle.Theta))
+            outwardsAngle = Angle.Zero;
+        Vector2 outwardsDirection = outwardsAngle.ToWorldVec();
+        float stepSize = float.Min(200, (targetAABB.Height + targetAABB.Width) / 2 + maxOffset);
         while (iteration < FTLProximityIterations)
         {
-            grids.Clear();
-            // We pass in an expanded offset here so we can safely do a random offset later.
-            // We don't include this in the actual targetAABB because then we would be double-expanding it.
-            // Once in this loop, then again when placing the shuttle later.
-            // Note that targetAABB already has expansionAmount factored in already.
             _mapManager.FindGridsIntersecting(mapId, targetAABB.Enlarged(maxOffset), ref grids);
 
-            foreach (var grid in grids)
-            {
-                if (!nearbyGrids.Add(grid))
-                    continue;
-
-                // Include the other grid's AABB (expanded by ours) as well.
-                targetAABB = targetAABB.Union(
-                    _transform.GetWorldMatrix(grid)
-                    .TransformBox(Comp<MapGridComponent>(grid).LocalAABB.Enlarged(expansionAmount)));
-            }
-
-            // Can do proximity
-            if (nearbyGrids.Count == lastCount)
-            {
+            if (grids.Count == 0)
                 break;
-            }
-
+            targetAABB.BottomLeft += outwardsDirection * stepSize;
+            targetAABB.TopRight += outwardsDirection * stepSize;
             iteration++;
-            lastCount = nearbyGrids.Count;
-
-            // Mishap moment, dense asteroid field or whatever
-            if (iteration != FTLProximityIterations)
-                continue;
-
-            var query = AllEntityQuery<MapGridComponent>();
-            while (query.MoveNext(out var uid, out var grid))
-            {
-                // Don't add anymore as it is irrelevant, but that doesn't mean we need to re-do existing work.
-                if (nearbyGrids.Contains(uid))
-                    continue;
-
-                targetAABB = targetAABB.Union(
-                    _transform.GetWorldMatrix(uid)
-                    .TransformBox(Comp<MapGridComponent>(uid).LocalAABB.Enlarged(expansionAmount)));
-            }
-
-            break;
         }
+        // End Frontier
 
         // Now we have a targetAABB. This has already been expanded to account for our fat ass.
         Vector2 spawnPos;
