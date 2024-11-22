@@ -4,6 +4,7 @@ using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Station.Components;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Random.Helpers;
+using Content.Shared.Station.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Collections;
 using Robust.Shared.Map;

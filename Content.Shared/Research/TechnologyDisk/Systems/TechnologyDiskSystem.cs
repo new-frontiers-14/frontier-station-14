@@ -7,6 +7,7 @@ using Content.Shared.Research.Components;
 using Content.Shared.Research.Prototypes;
 using Content.Shared.Research.Systems;
 using Content.Shared.Research.TechnologyDisk.Components;
+using Content.Shared.Station.Systems;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -21,6 +22,7 @@ public sealed class TechnologyDiskSystem : EntitySystem
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedResearchSystem _research = default!;
     [Dependency] private readonly SharedLatheSystem _lathe = default!;
+    [Dependency] private readonly StationSystem _station = default!;
 
     public override void Initialize()
     {
@@ -63,7 +65,21 @@ public sealed class TechnologyDiskSystem : EntitySystem
         if (args.Handled || !args.CanReach || args.Target is not { } target)
             return;
 
-        if (!HasComp<ResearchServerComponent>(target) || !TryComp<TechnologyDatabaseComponent>(target, out var database))
+        // Frontier: Make disk console the new way to insert points and tech disks.
+        // Restrict adding points to disk consoles only.
+        if (!TryComp<DiskConsoleComponent>(args.Target, out _))
+            return;
+
+        // Frontier: Get the current grid.
+        if (args.Target == null)
+            return;
+        var station = _station.GetOwningStation(args.Target.Value);
+
+        // Frontier: Server is on the grid.
+        if (!TryComp<ResearchServerComponent>(station, out var server))
+            return;
+
+        if (!TryComp<TechnologyDatabaseComponent>(station, out var database))
             return;
 
         if (ent.Comp.Recipes != null)

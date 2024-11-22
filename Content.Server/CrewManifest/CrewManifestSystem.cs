@@ -10,6 +10,7 @@ using Content.Shared.CCVar;
 using Content.Shared.CrewManifest;
 using Content.Shared.GameTicking;
 using Content.Shared.Roles;
+using Content.Shared.Station.Components;
 using Content.Shared.StationRecords;
 using Robust.Shared.Configuration;
 using Robust.Shared.Console;

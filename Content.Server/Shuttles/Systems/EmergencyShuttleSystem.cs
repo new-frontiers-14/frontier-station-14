@@ -26,6 +26,7 @@ using Content.Shared.GameTicking;
 using Content.Shared.Localizations;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Shuttles.Events;
+using Content.Shared.Station.Components;
 using Content.Shared.Tag;
 using Content.Shared.Tiles;
 using Robust.Server.GameObjects;

@@ -1,8 +1,7 @@
-﻿using Content.Server.Maps.NameGenerators;
-using JetBrains.Annotations;
+﻿using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 
-namespace Content.Server.Station;
+namespace Content.Shared.Station;
 
 /// <summary>
 /// A config for a station. Specifies name and component modifications.

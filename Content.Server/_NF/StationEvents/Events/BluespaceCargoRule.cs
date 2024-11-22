@@ -9,6 +9,7 @@ using Robust.Shared.Configuration;
 using Content.Server.Atmos.EntitySystems;
 using Content.Shared.GameTicking.Components;
 using Content.Shared._NF.CCVar;
+using Content.Shared.Station.Components;
 
 namespace Content.Server.StationEvents.Events;
 

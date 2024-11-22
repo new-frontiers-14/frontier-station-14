@@ -6,6 +6,7 @@ using Content.Server.Station.Events;
 using Content.Shared.CCVar;
 using Content.Shared.Station;
 using Content.Shared.Station.Components;
+using Content.Shared.Station.Systems;
 using JetBrains.Annotations;
 using Robust.Server.GameObjects;
 using Robust.Server.Player;
@@ -26,7 +27,7 @@ namespace Content.Server.Station.Systems;
 /// For jobs, look at StationJobSystem. For spawning, look at StationSpawningSystem.
 /// </summary>
 [PublicAPI]
-public sealed class StationSystem : EntitySystem
+public sealed class StationSystem : SharedStationSystem
 {
     [Dependency] private readonly ILogManager _logManager = default!;
     [Dependency] private readonly IPlayerManager _player = default!;

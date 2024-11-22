@@ -3,6 +3,7 @@ using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Shared.Localizations;
+using Content.Shared.Station.Components;
 using Robust.Server.GameObjects;
 
 namespace Content.Server.GameTicking.Rules;

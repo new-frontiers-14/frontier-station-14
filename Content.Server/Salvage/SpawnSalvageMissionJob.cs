@@ -28,6 +28,7 @@ using Content.Shared.Salvage;
 using Content.Shared.Salvage.Expeditions;
 using Content.Shared.Salvage.Expeditions.Modifiers;
 using Content.Shared.Shuttles.Components;
+using Content.Shared.Station.Components;
 using Content.Shared.Storage;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;

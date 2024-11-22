@@ -20,6 +20,7 @@ using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Paper;
 using Content.Shared.Shuttles.Components;
+using Content.Shared.Station.Components;
 using Content.Shared.Verbs;
 using Robust.Server.GameObjects;
 using Robust.Server.Maps;

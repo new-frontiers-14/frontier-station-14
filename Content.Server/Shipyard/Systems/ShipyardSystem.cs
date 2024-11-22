@@ -20,6 +20,7 @@ using Content.Shared.Shipyard.Events;
 using Content.Shared.Mobs.Components;
 using Robust.Shared.Containers;
 using Content.Server._NF.Smuggling.Components;
+using Content.Shared.Station.Components;
 using Robust.Shared.Map.Components;
 
 namespace Content.Server.Shipyard.Systems;

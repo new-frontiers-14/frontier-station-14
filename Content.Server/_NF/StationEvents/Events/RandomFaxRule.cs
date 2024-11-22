@@ -4,6 +4,7 @@ using Content.Shared.GameTicking.Components;
 using Content.Shared.Fax.Components;
 using Content.Server.Fax;
 using Content.Server.Station.Systems;
+using Content.Shared.Station.Components;
 using Robust.Shared.Random;
 
 namespace Content.Server.StationEvents.Events;

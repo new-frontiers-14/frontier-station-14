@@ -52,6 +52,7 @@ using Robust.Shared.Audio.Systems;
 using Timer = Robust.Shared.Timing.Timer;
 using Content.Server.DeltaV.Cargo.Systems;
 using Content.Server._NF.SectorServices;
+using Content.Shared.Station.Components;
 
 namespace Content.Server.Mail
 {

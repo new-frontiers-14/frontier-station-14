@@ -6,6 +6,7 @@ using Content.Server.Station.Systems;
 using Content.Server.StationEvents.Components;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Random.Helpers;
+using Content.Shared.Station.Components;
 using Robust.Server.Audio;
 using Robust.Shared.Map;
 using Robust.Shared.Physics.Components;

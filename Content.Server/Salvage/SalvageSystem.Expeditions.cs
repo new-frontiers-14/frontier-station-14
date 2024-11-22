@@ -25,7 +25,8 @@ using Content.Shared.Salvage.Expeditions;
 using Robust.Shared.GameStates;
 using Robust.Shared.Random;
 using Robust.Shared.Map;
-using Content.Shared.Shuttles.Components; // Frontier
+using Content.Shared.Shuttles.Components;
+using Content.Shared.Station.Components; // Frontier
 
 namespace Content.Server.Salvage;
 

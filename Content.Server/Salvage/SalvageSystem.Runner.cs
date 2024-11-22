@@ -17,6 +17,7 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
 using Content.Shared.Coordinates;
+using Content.Shared.Station.Components;
 
 namespace Content.Server.Salvage;
 

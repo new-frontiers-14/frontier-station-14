@@ -12,7 +12,8 @@ using Content.Shared.Mobs.Components; // Frontier
 using Content.Shared.NPC.Components; // Frontier
 using Content.Shared.IdentityManagement; // Frontier
 using Content.Shared.NPC; // Frontier
-using Content.Server._NF.Salvage; // Frontier
+using Content.Server._NF.Salvage;
+using Content.Shared.Station.Components; // Frontier
 
 namespace Content.Server.Salvage;
 

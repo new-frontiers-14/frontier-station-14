@@ -13,6 +13,7 @@ using Robust.Shared.Collections;
 using Robust.Shared.Player;
 using System.Xml.Schema;
 using Content.Server.Station.Components;
+using Content.Shared.Station.Components;
 using Robust.Shared.Random;
 
 namespace Content.Server.Cargo.Systems;

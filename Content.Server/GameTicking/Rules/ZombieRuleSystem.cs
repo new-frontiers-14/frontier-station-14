@@ -17,6 +17,7 @@ using Content.Shared.Zombies;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
 using System.Globalization;
+using Content.Shared.Station.Components;
 
 namespace Content.Server.GameTicking.Rules;
 

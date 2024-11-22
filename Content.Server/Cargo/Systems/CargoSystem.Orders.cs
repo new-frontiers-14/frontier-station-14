@@ -19,6 +19,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using System.Linq;
+using Content.Shared.Station.Components;
 
 namespace Content.Server.Cargo.Systems
 {
