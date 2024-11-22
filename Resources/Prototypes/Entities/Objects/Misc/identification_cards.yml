@@ -25,7 +25,7 @@
   - type: StealTarget
     stealGroup: IDCard
   - type: StaticPrice # Frontier
-    price: 5 # The card need to cost less then the PDA that comes with a card and a pen in it.
+    price: 5 # Frontier The card need to cost less then the PDA that comes with a card and a pen in it.
   - type: CargoSellBlacklist # Frontier
 
 #IDs with layers
@@ -285,6 +285,7 @@
   parent: IDCardStandard
   id: JanitorIDCard
   name: janitor ID card
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: Sprite
     layers:

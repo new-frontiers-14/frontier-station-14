@@ -586,6 +586,8 @@ public sealed partial class AdminVerbSystem
             };
             args.Verbs.Add(cluwne);
 
+            // Frontier: remove maid smite due to weird ID perms
+            /*
             var maidenName = Loc.GetString("admin-smite-maid-name").ToLowerInvariant();
             Verb maiden = new()
             {
@@ -605,6 +607,7 @@ public sealed partial class AdminVerbSystem
                 Message = string.Join(": ", maidenName, Loc.GetString("admin-smite-maid-description"))
             };
             args.Verbs.Add(maiden);
+            */
         }
 
         var angerPointingArrowsName = Loc.GetString("admin-smite-anger-pointing-arrows-name").ToLowerInvariant();

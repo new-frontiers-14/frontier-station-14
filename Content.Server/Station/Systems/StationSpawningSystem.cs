@@ -29,7 +29,7 @@ using Robust.Shared.Random;
 using Robust.Shared.Utility;
 using Content.Server.Spawners.Components;
 using Content.Shared.Bank.Components; // DeltaV
-using Content.Server.Bank; // Frontier
+using Content.Server._NF.Bank; // Frontier
 using Content.Server.Preferences.Managers; // Frontier
 using System.Linq; // Frontier
 

@@ -55,16 +55,20 @@ namespace Content.Server.EntityEffects.Effects
                 if (relevantTypes.Count != group.DamageTypes.Count)
                     continue;
 
-                var sum = FixedPoint2.Zero;
-                foreach (var type in group.DamageTypes)
+                // Frontier: explicitly check that all damage types have the same amount
+                var firstValue = relevantTypes.FirstOrDefault().Value;
+                bool allValuesEqual = true;
+                foreach (var type in relevantTypes)
                 {
-                    sum += damageSpec.DamageDict.GetValueOrDefault(type);
+                    if (FixedPoint2.Abs(type.Value - firstValue) >= 0.02) // Need to account for remainder issues
+                    {
+                        allValuesEqual = false;
+                        break;
+                    }
                 }
-
-                // if the total sum of all the types equal the damage amount,
-                // assume that they're evenly distributed.
-                if (sum != amount)
+                if (!allValuesEqual)
                     continue;
+                // End Frontier
 
                 var sign = FixedPoint2.Sign(amount);
 

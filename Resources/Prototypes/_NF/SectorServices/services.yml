@@ -1,14 +1,28 @@
 - type: sectorService
   id: PirateBounties
   components:
-    - type: SectorPirateBountyDatabase
+  - type: SectorPirateBountyDatabase
 
 - type: sectorService
   id: MailMetrics
   components:
-    - type: SectorLogisticStats
+  - type: SectorLogisticStats
 
 - type: sectorService
   id: ShuttleRecords
   components:
-    - type: SectorShuttleRecords
+  - type: SectorShuttleRecords
+
+- type: sectorService
+  id: BankAccounts
+  components:
+  - type: SectorBank
+    accounts:
+      Frontier:
+        !type:SectorBankAccountInfo
+        balance: 8000
+        increasePerSecond: 1 # TODO: move to ~65K per hour (~18/s), about enough for minimum wage for Frontier employees
+      Nfsd:
+        !type:SectorBankAccountInfo
+        balance: 8000
+        increasePerSecond: 20 # 72K per hour, about enough for minimum wage for the default NFSD size
