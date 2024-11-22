@@ -36,7 +36,7 @@ public sealed class RadioDeviceSystem : EntitySystem
     [Dependency] private readonly AccessReaderSystem _access = default!; // Frontier: access
 
     // Used to prevent a shitter from using a bunch of radios to spam chat.
-    private HashSet<(string, EntityUid)> _recentlySent = new();
+    private HashSet<(string, EntityUid, RadioChannelPrototype)> _recentlySent = new();
 
     // Frontier: minimum, maximum radio frequencies
     private const int MinRadioFrequency = 1000;
@@ -133,7 +133,7 @@ public sealed class RadioDeviceSystem : EntitySystem
     {
         if (args.Powered)
             return;
-        SetMicrophoneEnabled(uid, null, false,  true, component);
+        SetMicrophoneEnabled(uid, null, false, true, component);
     }
 
     public void SetMicrophoneEnabled(EntityUid uid, EntityUid? user, bool enabled, bool quiet = false, RadioMicrophoneComponent? component = null)
@@ -210,8 +210,9 @@ public sealed class RadioDeviceSystem : EntitySystem
         if (HasComp<RadioSpeakerComponent>(args.Source))
             return; // no feedback loops please.
 
-        if (_recentlySent.Add((args.Message, args.Source)))
-            _radio.SendRadioMessage(args.Source, args.Message, _protoMan.Index<RadioChannelPrototype>(component.BroadcastChannel), uid, /*Nuclear-14-start*/ frequency: component.Frequency /*Nuclear-14-end*/);
+        var channel = _protoMan.Index<RadioChannelPrototype>(component.BroadcastChannel)!;
+        if (_recentlySent.Add((args.Message, args.Source, channel)))
+            _radio.SendRadioMessage(args.Source, args.Message, channel, uid, /*Nuclear-14-start*/ frequency: component.Frequency /*Nuclear-14-end*/);
     }
 
     private void OnAttemptListen(EntityUid uid, RadioMicrophoneComponent component, ListenAttemptEvent args)
@@ -308,7 +309,7 @@ public sealed class RadioDeviceSystem : EntitySystem
                 mic.Frequency = _radio.GetFrequency(ent, channelProto); // Frontier
         }
         if (TryComp<RadioSpeakerComponent>(ent, out var speaker))
-            speaker.Channels = new(){ channel };
+            speaker.Channels = new() { channel };
         Dirty(ent);
     }
 
