@@ -7,9 +7,6 @@ on:
   pull_request:
     types: [ opened, reopened, synchronize, ready_for_review ]
     branches: [ master ]
-  pull_request_target: # Frontier: only run tests on C# changes
-    paths: # Frontier
-      - "**/*.cs" # Frontier
 
 jobs:
   build:
