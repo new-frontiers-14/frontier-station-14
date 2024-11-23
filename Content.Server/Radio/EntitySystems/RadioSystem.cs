@@ -98,7 +98,6 @@ public sealed class RadioSystem : EntitySystem
         RaiseLocalEvent(messageSource, evt);
 
         // Frontier: add name transform event
-        // FRONTIER MERGE: use TransformSpeakerNameEvent above on the intercom, make sure it happens after the voice mask component
         var transformEv = new RadioTransformMessageEvent(channel, radioSource, evt.VoiceName, message, messageSource);
         RaiseLocalEvent(radioSource, ref transformEv);
         message = transformEv.Message;

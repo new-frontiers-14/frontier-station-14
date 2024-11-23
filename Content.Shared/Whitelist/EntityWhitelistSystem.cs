@@ -119,7 +119,7 @@ public sealed class EntityWhitelistSystem : EntitySystem
             list.Registrations.AddRange(regs);
         }
 
-        // FRONTIER MERGE: TODO - fix mind role prototype check
+        // TODO - fix or deprecate mind role check with prototypes
         // if (list.MindRoles != null)
         // {
         //     var regs = StringsToRegs(list.MindRoles);
