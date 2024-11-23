@@ -1296,7 +1296,7 @@ namespace Content.Shared.CCVar
         /// Setting this to zero disables the explosion but still allows the tank to burst and leak.
         /// </summary>
         public static readonly CVarDef<float> AtmosTankFragment =
-            CVarDef.Create("atmos.max_explosion_range", 26f, CVar.SERVERONLY);
+            CVarDef.Create("atmos.max_explosion_range", 5f, CVar.SERVERONLY); // Frontier: 26<5 (matches wizden TOMLs)
 
         /*
          * MIDI instruments
@@ -1568,7 +1568,7 @@ namespace Content.Shared.CCVar
             CVarDef.Create("votekick.ban_duration", 180, CVar.SERVERONLY);
 
         /// <summary>
-        ///     Whether the ghost requirement settings for votekicks should be ignored for the lobby. 
+        ///     Whether the ghost requirement settings for votekicks should be ignored for the lobby.
         /// </summary>
         public static readonly CVarDef<bool> VotekickIgnoreGhostReqInLobby =
             CVarDef.Create("votekick.ignore_ghost_req_in_lobby", true, CVar.SERVERONLY);
