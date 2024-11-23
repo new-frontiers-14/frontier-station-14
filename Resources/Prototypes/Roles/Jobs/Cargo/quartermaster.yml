@@ -12,15 +12,17 @@
   icon: "JobIconQuarterMaster"
   supervisors: job-supervisors-captain
   canBeAntag: false
-  access:
-  - Cargo
-  - Salvage
-  - Quartermaster
-  - Maintenance
-  - External
-  - Command
-  - Brig
-  - Cryogenics
+  # access: # Frontier
+  # - Cargo # Frontier
+  # - Salvage # Frontier
+  # - Quartermaster # Frontier
+  # - Maintenance # Frontier
+  # - External # Frontier
+  # - Command # Frontier
+  # - Brig # Frontier
+  # - Cryogenics # Frontier
+  accessGroups: # Frontier
+  - GeneralAccess # Frontier
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
