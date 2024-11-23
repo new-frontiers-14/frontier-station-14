@@ -40,6 +40,10 @@ public sealed class ContrabandSystem : EntitySystem
 
         contraband.Severity = other.Severity;
         contraband.AllowedDepartments = other.AllowedDepartments;
+        contraband.AllowedDepartments = other.AllowedDepartments;
+        contraband.TurnInValues = other.TurnInValues; // Frontier
+        contraband.HideValues = other.HideValues; // Frontier
+        contraband.HideCarryStatus = other.HideCarryStatus; // Frontier
         Dirty(uid, contraband);
     }
 
