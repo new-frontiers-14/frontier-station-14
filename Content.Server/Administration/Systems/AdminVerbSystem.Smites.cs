@@ -904,9 +904,10 @@ public sealed partial class AdminVerbSystem
         args.Verbs.Add(superslip);
 
         // Frontier
+        var cavemanName = Loc.GetString("admin-smite-caveman-name").ToLowerInvariant();
         Verb caveman = new()
         {
-            Text = "admin-smite-caveman-name",
+            Text = cavemanName,
             Category = VerbCategory.Smite,
             Icon = new SpriteSpecifier.Rsi(new("_NF/Objects/Weapons/Melee/caveman_club.rsi"), "icon"),
             Act = () =>
@@ -955,7 +956,7 @@ public sealed partial class AdminVerbSystem
                 EnsureComp<CavemanAccentComponent>(args.Target);
             },
             Impact = LogImpact.Extreme,
-            Message = Loc.GetString("admin-smite-caveman-description")
+            Message = string.Join(": ", cavemanName, Loc.GetString("admin-smite-caveman-description"))
         };
         args.Verbs.Add(caveman);
         // End Frontier
