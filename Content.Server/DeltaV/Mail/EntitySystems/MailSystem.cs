@@ -47,16 +47,15 @@ using Timer = Robust.Shared.Timing.Timer;
 using Content.Server._NF.Bank; // Frontier
 using Content.Server._NF.SectorServices; // Frontier
 using Content.Server.Station.Components; // Frontier
-using Robust.Shared.GameStates; // Frontier
 using Robust.Shared.Enums; // Frontier
+using Content.Shared.Bank.Components; // Frontier
+using Content.Shared._NF.Bank.BUI; // Frontier
 
 namespace Content.Server.DeltaV.Mail.EntitySystems
 {
     public sealed class MailSystem : EntitySystem
     {
         [Dependency] private readonly AccessReaderSystem _accessSystem = default!;
-        [Dependency] private readonly CargoSystem _cargoSystem = default!;
-        [Dependency] private readonly ChatSystem _chatSystem = default!;
         [Dependency] private readonly DamageableSystem _damageableSystem = default!;
         [Dependency] private readonly EntityLookupSystem _lookup = default!;
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
@@ -73,7 +72,6 @@ namespace Content.Server.DeltaV.Mail.EntitySystems
         [Dependency] private readonly SharedSolutionContainerSystem _solution = default!;
         [Dependency] private readonly StationSystem _stationSystem = default!;
         [Dependency] private readonly TagSystem _tagSystem = default!;
-        [Dependency] private readonly IEntityManager _entManager = default!; // Frontier
         [Dependency] private readonly SectorServiceSystem _sectorService = default!; // Frontier
         [Dependency] private readonly BankSystem _bank = default!; // Frontier
 
@@ -236,7 +234,7 @@ namespace Content.Server.DeltaV.Mail.EntitySystems
                 return;
             }
 
-            //_popupSystem.PopupEntity(Loc.GetString("mail-unlocked-reward", ("bounty", component.Bounty)), uid, args.User); // Frontier - Remove the mention of station income
+            _popupSystem.PopupEntity(Loc.GetString("mail-unlocked-reward", ("bounty", component.Bounty)), uid, args.User); // Frontier - Remove the mention of station income
             component.IsProfitable = false;
 
             _bank.TrySectorDeposit(SectorBankAccount.Frontier, component.Bounty, LedgerEntryType.MailDelivered);

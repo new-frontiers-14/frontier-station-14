@@ -1,5 +1,6 @@
 using Content.Shared.DeltaV.Mail;
 using Content.Shared.StatusIcon;
+using Robust.Client.GameObjects;
 using Robust.Shared.Prototypes;
 
 namespace Content.Client.DeltaV.Mail;
@@ -30,30 +31,30 @@ public sealed class MailJobVisualizerSystem : VisualizerSystem<MailComponent>
 
     protected override void OnAppearanceChange(EntityUid uid, MailComponent component, ref AppearanceChangeEvent args)
     {
-        [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-        [Dependency] private readonly SpriteSystem _spriteSystem = default!;
-        [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+        if (args.Sprite == null)
+            return;
 
-        protected override void OnAppearanceChange(EntityUid uid, MailComponent component, ref AppearanceChangeEvent args)
+        _appearance.TryGetData(uid, MailVisuals.JobIcon, out string job, args.Component);
+
+        if (string.IsNullOrEmpty(job))
+            job = "JobIconUnknown";
+
+        if (!_prototypeManager.TryIndex<JobIconPrototype>(job, out var icon))
         {
-            if (args.Sprite == null)
-                return;
-
-            if (!_appearance.TryGetData(uid, MailVisuals.JobIcon, out string job) ||
-                !_prototypeManager.TryIndex<JobIconPrototype>(job, out var icon))
-                return;
-
-            args.Sprite.LayerSetTexture(MailVisualLayers.JobStamp, _spriteSystem.Frame0(icon.Icon));
+            args.Sprite.LayerSetTexture(MailVisualLayers.JobStamp, _spriteSystem.Frame0(_prototypeManager.Index("JobIconUnknown")));
+            return;
         }
-    }
 
-    public enum MailVisualLayers : byte
-    {
-        Icon,
-        Lock,
-        FragileStamp,
-        JobStamp,
-        PriorityTape,
-        Breakage,
+        args.Sprite.LayerSetTexture(MailVisualLayers.JobStamp, _spriteSystem.Frame0(icon.Icon));
     }
+}
+
+public enum MailVisualLayers : byte
+{
+    Icon,
+    Lock,
+    FragileStamp,
+    JobStamp,
+    PriorityTape,
+    Breakage
 }
