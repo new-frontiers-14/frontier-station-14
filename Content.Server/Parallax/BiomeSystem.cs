@@ -320,7 +320,7 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
 
     private bool CanLoad(EntityUid uid)
     {
-        return !_ghostQuery.HasComp(uid);
+        return !_ghostQuery.TryComp(uid, out var ghost) || ghost.CanGhostInteract; // Frontier: Allow admin ghost to still see planets
     }
 
     public override void Update(float frameTime)
