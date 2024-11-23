@@ -765,8 +765,9 @@ public sealed partial class ChatSystem : SharedChatSystem
         if (punctuate)
             newMessage = SanitizeMessagePeriod(newMessage);
 
-        return newMessage;
+        return prefix + newMessage;
     }
+
     private string SanitizeInGameOOCMessage(string message)
     {
         var newMessage = message.Trim();
