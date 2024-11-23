@@ -12,21 +12,25 @@
   icon: "JobIconChiefEngineer"
   supervisors: job-supervisors-captain
   canBeAntag: false
-  access:
-  - Maintenance
-  - Engineering
-  - Command
-  - External
-  - ChiefEngineer
-  - Atmospherics
-  - Brig
-  - Cryogenics
-  special:
-  - !type:AddImplantSpecial
-    implants: [ MindShieldImplant ]
-  - !type:AddComponentSpecial
-    components:
-      - type: CommandStaff
+  ## Frontier: commented everything below out
+  # access:
+  # - Maintenance
+  # - Engineering
+  # - Command
+  # - External
+  # - ChiefEngineer
+  # - Atmospherics
+  # - Brig
+  # - Cryogenics
+  # special:
+  # - !type:AddImplantSpecial
+  #   implants: [ MindShieldImplant ]
+  # - !type:AddComponentSpecial
+  #   components:
+  #     - type: CommandStaff
+  ## End Frontier: commented everything above out
+  accessGroups: # Frontier
+  - GeneralAccess # Frontier
 
 - type: startingGear
   id: ChiefEngineerGear

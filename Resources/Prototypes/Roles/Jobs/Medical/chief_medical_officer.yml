@@ -14,20 +14,24 @@
   icon: "JobIconChiefMedicalOfficer"
   supervisors: job-supervisors-captain
   canBeAntag: false
-  access:
-  - Medical
-  - Command
-  - Maintenance
-  - Chemistry
-  - ChiefMedicalOfficer
-  - Brig
-  - Cryogenics
-  special:
-  - !type:AddImplantSpecial
-    implants: [ MindShieldImplant ]
-  - !type:AddComponentSpecial
-    components:
-      - type: CommandStaff
+  ## Frontier: commented everything below out
+  # access:
+  # - Medical
+  # - Command
+  # - Maintenance
+  # - Chemistry
+  # - ChiefMedicalOfficer
+  # - Brig
+  # - Cryogenics
+  # special:
+  # - !type:AddImplantSpecial
+  #   implants: [ MindShieldImplant ]
+  # - !type:AddComponentSpecial
+  #   components:
+  #     - type: CommandStaff
+  ## Frontier: commented everything above out
+  accessGroups: # Frontier
+  - GeneralAccess # Frontier
 
 - type: startingGear
   id: CMOGear

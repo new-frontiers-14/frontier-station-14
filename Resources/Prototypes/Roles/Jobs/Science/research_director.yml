@@ -12,19 +12,23 @@
   icon: "JobIconResearchDirector"
   supervisors: job-supervisors-captain
   canBeAntag: false
-  access:
-  - Research
-  - Command
-  - Maintenance
-  - ResearchDirector
-  - Brig
-  - Cryogenics
-  special:
-  - !type:AddImplantSpecial
-    implants: [ MindShieldImplant ]
-  - !type:AddComponentSpecial
-    components:
-      - type: CommandStaff
+  ## Frontier: commented stuff below out
+  # access:
+  # - Research
+  # - Command
+  # - Maintenance
+  # - ResearchDirector
+  # - Brig
+  # - Cryogenics
+  # special:
+  # - !type:AddImplantSpecial
+  #   implants: [ MindShieldImplant ]
+  # - !type:AddComponentSpecial
+  #   components:
+  #     - type: CommandStaff
+  ## End Frontier: commented stuff above out
+  accessGroups: # Frontier
+  - GeneralAccess # Frontier
 
 - type: startingGear
   id: ResearchDirectorGear
