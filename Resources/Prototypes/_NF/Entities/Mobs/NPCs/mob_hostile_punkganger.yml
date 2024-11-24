@@ -1,6 +1,6 @@
-- type: entity
-  abstract: true
+- type: entity # Spawns random graffiti (even if the mob is dead)
   id: MobVandalizer
+  abstract: true
   components:
   - type: Timer
   - type: TimedSpawner
@@ -12,30 +12,25 @@
     maximumEntitiesSpawned: 1
 
 - type: entity
+  id: MobPunkBase
   name: punk
   abstract: true
   parent:
   - MobHumanoidHostileBase
   - MobVandalizer
+  - MobHumanoidInvetory
   - NFMobRestrictions
-  id: MobPunkBase
   description: |-
    "Criminally-inclined individuals", as NT Security documents call them, these are armed with a variety of weapons. These weapons range from makeshift shivs and machined truncheons to rusty pistols and shotguns. Some may be armored, so plan appropriately.
   components:
+  - type: RandomHumanoidAppearance
+    randomizeName: true
   - type: NpcFactionMember
     factions:
     - StreetGangNF
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      100: Critical
-      130: Dead
-  - type: SlowOnDamage
-    speedModifierThresholds:
-      60: 0.7
-      80: 0.5
-  - type: Stamina
-    critThreshold: 100
+  - type: Body
+    prototype: NFHumanNoHands
+    requiredLegs: 2
   - type: RechargeBasicEntityAmmo
     rechargeCooldown: 1.5
     rechargeSound:
@@ -47,8 +42,8 @@
     animation: WeaponArcPunch
     damage:
       types:
-        Slash: 10
-        Structural: 20
+        Blunt: 12
+        Structural: 30
     soundHit:
       path: /Audio/Weapons/bladeslice.ogg
   - type: ReplacementAccent
@@ -61,31 +56,35 @@
   - type: AutoWakeUp
 
 # Humans
+## Tier 1
 - type: entity
+  id: MobPunkGangerMeleeT1
   parent:
   - MobPunkBase
   - MobHumanoidHostileAISimpleMelee
-  id: MobPunkGangerMelee
   categories: [ HideSpawnMenu ]
   components:
   - type: Loadout
     prototypes:
-    - PunkGangerGearMelee
+    - PunkGangerGearMeleeT1
 
 - type: entity
+  id: MobPunkGangerPistol
   parent:
   - MobPunkBase
   - MobHumanoidHostileAISimpleRanged
-  id: MobPunkGangerPistol
   categories: [ HideSpawnMenu ]
   components:
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 4
+    baseSprintSpeed : 4
   - type: Loadout
     prototypes:
     - PunkGangerGearPistol
   - type: BasicEntityAmmoProvider
     proto: BulletPistol
-    capacity: 2
-    count: 2
+    capacity: 1
+    count: 1
   - type: Gun
     showExamineText: false
     fireRate: 0.5
@@ -94,13 +93,33 @@
     - FullAuto
     soundGunshot: /Audio/Weapons/Guns/Gunshots/pistol.ogg
 
+## Tier 2
 - type: entity
+  id: MobPunkGangerMeleeT2
+  parent:
+  - MobPunkBase
+  - MobHumanoidHostileAISimpleMelee
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Loadout
+    prototypes:
+    - PunkGangerGearMeleeT2
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 16
+        Structural: 30
+
+- type: entity
+  id: MobPunkGangerShotgun
   parent:
   - MobPunkBase
   - MobHumanoidHostileAISimpleRanged
-  id: MobPunkGangerShotgun
   categories: [ HideSpawnMenu ]
   components:
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 4
+    baseSprintSpeed : 4
   - type: Loadout
     prototypes:
     - PunkGangerGearShotgun
@@ -116,29 +135,36 @@
     - FullAuto
     soundGunshot: /Audio/Weapons/Guns/Gunshots/pistol.ogg
 
+## Tier 3
 - type: entity
+  id: MobPunkGangerMeleeT3
   parent:
   - MobPunkBase
   - MobHumanoidHostileAISimpleMelee
-  id: MobPunkGangerArmoredMelee
   categories: [ HideSpawnMenu ]
   components:
   - type: Loadout
     prototypes:
-    - PunkGangerArmoredGearMelee
+    - PunkGangerGearMeleeT3
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 18
+        Structural: 30
 
 - type: entity
   parent:
   - MobPunkBase
   - MobHumanoidHostileAISimpleRanged
-  id: MobPunkGangerArmoredElite
-  name: punk gang leader
-  description: It takes a formidable figure to lead a pack of street trash. These leaders usually wield scavenged SMGs and wear armor taken from unfortunate security forces. Usually high on meth and booze.
+  id: MobPunkGangerSmg
   categories: [ HideSpawnMenu ]
   components:
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 4
+    baseSprintSpeed : 4
   - type: Loadout
     prototypes:
-    - PunkGangerArmoredEliteGear
+    - PunkGangerGearSmg
   - type: BasicEntityAmmoProvider
     proto: BulletPistol
     capacity: 6
@@ -147,11 +173,103 @@
     showExamineText: false
     minAngle: 10
     maxAngle: 30
-    fireRate: 3
+    fireRate: 1
     angleIncrease: 3
     angleDecay: 6
     selectedMode: FullAuto
     availableModes:
     - FullAuto
     soundGunshot: /Audio/Weapons/Guns/Gunshots/smg.ogg
+
+## Tier 4 - Dungeon boss
+- type: entity
+  id: MobPunkGangerLeader
+  parent:
+  - MobHostileBossBase
+  - MobPunkBase
+  - MobHumanoidHostileAISimpleRanged
+  name: punk gang leader
+  description: It takes a formidable figure to lead a pack of street trash. These leaders usually wield scavenged SMGs and wear armor taken from unfortunate security forces. Usually high on meth and booze.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 4
+    baseSprintSpeed : 4
+  - type: Loadout
+    prototypes:
+    - PunkGangerGearLaser
+  - type: HitscanBatteryAmmoProvider
+    proto: RedLaser
+    fireCost: 100
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 50
+  - type: Battery
+    maxCharge: 600
+    startingCharge: 600
+  - type: Gun
+    showExamineText: false
+    fireRate: 1
+    minAngle: 5
+    maxAngle: 10
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
   - type: Jittering
+  # Ghost role stuff
+  - type: GhostRole
+    allowMovement: true
+    name: ghost-role-information-punk-boss-dungeon-name
+    description: ghost-role-information-punk-boss-dungeon-description
+    rules: ghost-role-information-dungeon-boss-rules
+    raffle:
+      settings: default
+  - type: GhostTakeoverAvailable
+  - type: ActionGun
+    action: ActionThrowPartyNade
+    gunProto: PartyNadeGun
+
+- type: entity
+  id: PartyNadeGun
+  name: party nade gun
+  description: Needed to shoot a nade.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 20
+    rechargeSound:
+      path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
+  - type: BasicEntityAmmoProvider
+    proto: NFBulletPartyNade
+    capacity: 1
+    count: 1
+  - type: Gun
+    minAngle: 1
+    maxAngle: 5
+    fireRate: 1
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot:
+      path: /Audio/Items/bow_pull.ogg
+    soundEmpty: null
+    projectileSpeed: 15
+  - type: UseDelay
+    delay: 20
+
+- type: entity
+  id: ActionThrowPartyNade
+  categories: [ HideSpawnMenu ]
+  name: "[color=yellow]Throw a party 'nade[/color]"
+  description: "Hurls activated party 'nade filled with party chems, explodes on contact. [color=yellow]20 second cooldown.[/color]"
+  components:
+  - type: WorldTargetAction
+    icon: { sprite : Objects/Weapons/Grenades/metalfoam.rsi, state: primed }
+    event: !type:ActionGunShootEvent
+    priority: 2
+    checkCanAccess: false
+    range: 0
+    itemIconStyle: BigAction
+  - type: UseDelay
+    delay: 20
