@@ -473,6 +473,50 @@
     - AstroNavCartridge
     - MailMetricsCartridge
     - LedgerCartridge
+        
+- type: entity
+  parent: BaseSecurityPDA
+  id: MomPDA
+  name: medical operations manager PDA
+  description: It smells like disinfectant.
+  components:
+  - type: Pda
+    id: MomIDCard
+    state: pda-mom
+    penSlot:
+      startingItem: PenCentcom
+      priority: -1
+      whitelist:
+        tags:
+        - Write
+  - type: PdaBorderColor
+    borderColor: "#789876"
+    accentHColor: "#447987"
+  - type: Sprite
+    sprite: _NF/Objects/Devices/pda.rsi
+    layers:
+    - map: [ "enum.PdaVisualLayers.Base" ]
+    - state: "light_overlay"
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+      shader: "unshaded"
+      visible: false
+    - state: "id_overlay"
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+      shader: "unshaded"
+      visible: false
+  - type: Icon
+    sprite: _NF/Objects/Devices/pda.rsi
+    state: pda-mom
+  - type: CartridgeLoader
+    preinstalled:
+    - CrewManifestCartridge
+    - NotekeeperCartridge
+    - NewsReaderCartridge
+    - BountyContractsCartridge
+    - AstroNavCartridge
+    - MailMetricsCartridge
+    - LedgerCartridge
+    - MedTekCartridge #medtek preloaded. Should be ok.
 
 - type: entity
   parent: PiratePDA

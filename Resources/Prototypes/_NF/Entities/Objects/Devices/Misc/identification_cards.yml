@@ -268,6 +268,23 @@
   - type: PresetIdCard
     name: Yip Yip
 
+- type: entity
+  parent: IDCardStandard
+  id: MomIDCard
+  name: medical operations manager ID card
+  components:
+  - type: PresetIdCard
+    job: MedicalOperationsManager
+  - type: Sprite
+    sprite: _NF/Objects/Misc/id_cards.rsi
+    layers:
+    - state: medic
+    - state: idmedicmom
+  - type: Clothing
+    sprite: _NF/Objects/Misc/id_cards.rsi
+  - type: Item
+    heldPrefix: medic #temporary to OBSERVE
+
 # Cats
 - type: entity
   parent: CourierIDCard

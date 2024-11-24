@@ -1,0 +1,40 @@
+- type: job
+  id: MedicalOperationsManager
+  name: job-name-mom
+  description: job-description-mom
+  playTimeTracker: JobMedicalOperationsManager
+  requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 0 # 72000 # 20 hrs
+  whitelisted: true
+  startingGear: MomGear
+  alwaysUseSpawner: true
+  icon: "JobIconMom"
+  requireAdminNotify: true
+  supervisors: job-supervisors-centcom
+  weight: 170
+  displayWeight: 60 # Top
+  whitelistRequired: true
+  canBeAntag: false
+  accessGroups:
+  - AllAccess
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant, TrackingImplant ]
+  - !type:AddComponentSpecial
+    components:
+      - type: CommandStaff
+  - !type:GiveItemOnHolidaySpecial
+    holiday: FrontierBirthday
+    prototype: FrontierBirthdayGift
+
+- type: startingGear
+  id: MomGear
+  equipment:
+    pocket1: WeaponDisabler    
+  storage:
+    back:
+    - Flash
+    - RubberStampMom 
+    
+    
