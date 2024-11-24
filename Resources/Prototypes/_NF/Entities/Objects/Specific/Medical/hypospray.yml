@@ -140,57 +140,7 @@
           Quantity: 10
   - type: Tag
     tags: []
-	
-- type: entity
-  name: caustic auto-injector
-  parent: ChemicalMedipen
-  id: CausticAutoInjector
-  description: A rapid dose of dermatalogical stimulants. Contains Siderlac.
-  components:
-  - type: Sprite
-    sprite: _NF/Objects/Specific/Medical/medipen.rsi
-    layers:
-    - state: causticpen
-      map: ["enum.SolutionContainerLayers.Fill"]
-  - type: SolutionContainerVisuals
-    maxFillLevels: 1
-    changeColor: false
-    emptySpriteName: causticpen_empty
-  - type: SolutionContainerManager
-    solutions:
-      pen:
-        maxVol: 20
-        reagents:
-        - ReagentId: Siderlac
-          Quantity: 15        
-  - type: Tag
-    tags: []
 
-- type: entity
-  name: caustic auto-injector
-  parent: ChemicalMedipen
-  id: CausticAutoInjector
-  description: A rapid dose of dermatalogical stimulants. Contains Sigynate.
-  components:
-  - type: Sprite
-    sprite: _NF/Objects/Specific/Medical/medipen.rsi
-    layers:
-    - state: causticpen
-      map: ["enum.SolutionContainerLayers.Fill"]
-  - type: SolutionContainerVisuals
-    maxFillLevels: 1
-    changeColor: false
-    emptySpriteName: causticpen_empty
-  - type: SolutionContainerManager
-    solutions:
-      pen:
-        maxVol: 20
-        reagents:
-        - ReagentId: Sigynate
-          Quantity: 15        
-  - type: Tag
-    tags: []
-    
 - type: entity
   name: lacerinol auto-injector
   parent: ChemicalMedipen
@@ -198,14 +148,14 @@
   description: A rapid dose of lacerinol and tranexamic acid, intended for combat applications.
   components:
   - type: Sprite
-    sprite: Objects/Specific/Medical/medipen.rsi
+    sprite: _NF/Objects/Specific/Medical/medipen.rsi
     layers:
-    - state: punctpen
+    - state: lacerpen
       map: ["enum.SolutionContainerLayers.Fill"]
   - type: SolutionContainerVisuals
     maxFillLevels: 1
     changeColor: false
-    emptySpriteName: punctpen_empty
+    emptySpriteName: lacerpen_empty
   - type: Hypospray
     solutionName: pen
     transferAmount: 15
@@ -230,14 +180,14 @@
   description: A rapid dose of bruizine and tranexamic acid, intended for combat applications.
   components:
   - type: Sprite
-    sprite: Objects/Specific/Medical/medipen.rsi
+    sprite: _NF/Objects/Specific/Medical/medipen.rsi
     layers:
-    - state: punctpen
+    - state: bruizpen
       map: ["enum.SolutionContainerLayers.Fill"]
   - type: SolutionContainerVisuals
     maxFillLevels: 1
     changeColor: false
-    emptySpriteName: punctpen_empty
+    emptySpriteName: bruizpen_empty
   - type: Hypospray
     solutionName: pen
     transferAmount: 15
