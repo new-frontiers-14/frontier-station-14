@@ -4,7 +4,7 @@
   id: RecipeCleanEmergencyMedipen
   name: sterilize and reset pen
   result: BlankMediPen
-  time: 10
+  time: 5
   solids:
     EmergencyMedipen: 1
   reagents:
@@ -15,7 +15,7 @@
   id: RecipeCleanAntiPoisonMedipen
   name: sterilize and reset pen
   result: BlankMediPen
-  time: 10
+  time: 5
   solids:
     AntiPoisonMedipen: 1
   reagents:
@@ -26,7 +26,7 @@
   id: RecipeCleanBruteAutoInjector
   name: sterilize and reset pen
   result: BlankMediPen
-  time: 10
+  time: 5
   solids:
     BruteAutoInjector: 1
   reagents:
@@ -37,7 +37,7 @@
   id: RecipeCleanBurnAutoInjector
   name: sterilize and reset pen
   result: BlankMediPen
-  time: 10
+  time: 5
   solids:
     BurnAutoInjector: 1
   reagents:
@@ -48,7 +48,7 @@
   id: RecipeCleanRadAutoInjector
   name: sterilize and reset pen
   result: BlankMediPen
-  time: 10
+  time: 5
   solids:
     RadAutoInjector: 1
   reagents:
@@ -62,7 +62,7 @@
   id: RecipeEmergencyMedipen
   name: emergency medipen
   result: EmergencyMedipen
-  time: 10
+  time: 5
   solids:
     BlankMediPen: 1
   reagents:
@@ -74,7 +74,7 @@
   id: RecipeAntiPoisonMedipen
   name: poison auto-injector
   result: AntiPoisonMedipen
-  time: 10
+  time: 5
   solids:
     BlankMediPen: 1
   reagents:
@@ -86,7 +86,7 @@
   id: RecipeBruteAutoInjector
   name: brute auto-injector
   result: BruteAutoInjector
-  time: 10
+  time: 5
   solids:
     BlankMediPen: 1
   reagents:
@@ -98,7 +98,7 @@
   id: RecipeBurnAutoInjector
   name: burn auto-injector
   result: BurnAutoInjector
-  time: 10
+  time: 5
   solids:
     BlankMediPen: 1
   reagents:
@@ -110,7 +110,7 @@
   id: RecipeRadAutoInjector
   name: rad auto-injector
   result: RadAutoInjector
-  time: 10
+  time: 5
   solids:
     BlankMediPen: 1
   reagents:
@@ -119,3 +119,15 @@
   recipeType: MedicalAssembler # Frontier
 
 #Frontier pen recipes
+
+  - type: microwaveMealRecipe
+  id: RecipePenCoagulate
+  name: coagulate auto-injector
+  result: CoagulateAutoInjector
+  time: 5
+  solids:
+    BlankMediPen: 1
+  reagents:
+    TranexamicAcid: 5
+    Saline: 15
+  recipeType: MedicalAssembler # Frontier

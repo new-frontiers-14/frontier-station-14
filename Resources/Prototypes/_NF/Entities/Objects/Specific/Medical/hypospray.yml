@@ -59,3 +59,199 @@
     state: medipen
   - type: Item
     sprite: _NF/Objects/Specific/Medical/medipen.rsi
+
+- type: entity
+  name: coagulate auto-injector
+  parent: ChemicalMedipen
+  id: CoagulateAutoInjector
+  description: A rapid dose of coagulates and circulatory fluids. Contains tranexamic acid and saline.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Medical/medipen.rsi
+    layers:
+    - state: coagulatepen
+      map: ["enum.SolutionContainerLayers.Fill"]
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    changeColor: false
+    emptySpriteName: coagulatepen_empty
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 20
+        reagents:
+        - ReagentId: TranexamicAcid
+          Quantity: 5
+        - ReagentId: Saline
+          Quantity: 15
+  - type: Tag
+    tags: []
+    
+- type: entity
+  name: epinine auto-injector
+  parent: ChemicalMedipen
+  id: EpinineAutoInjector
+  description: A rapid dose of potent stimulants and governing agents. Contains Desoxyephedrine and Dylovene. Use with extreme caution.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Medical/medipen.rsi
+    layers:
+    - state: epininepen
+      map: ["enum.SolutionContainerLayers.Fill"]
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    changeColor: false
+    emptySpriteName: epininepen_empty
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 20
+        reagents:
+        - ReagentId: Desoxyephedrine
+          Quantity: 10
+        - ReagentId: Dylovene
+          Quantity: 10
+  - type: Tag
+    tags: []
+            
+- type: entity
+  name: crisis auto-injector
+  parent: ChemicalMedipen
+  id: CrisisAutoInjector
+  description: A rapid dose of stabilizers and vasodialaters for use on critically injured patients. Contains Inaprovaline and Dexalin Plus.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Medical/medipen.rsi
+    layers:
+    - state: crisispen
+      map: ["enum.SolutionContainerLayers.Fill"]
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    changeColor: false
+    emptySpriteName: crisispen_empty
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 20
+        reagents:
+        - ReagentId: Inaprovaline
+          Quantity: 10
+        - ReagentId: Dexalin+
+          Quantity: 10
+  - type: Tag
+    tags: []
+	
+- type: entity
+  name: caustic auto-injector
+  parent: ChemicalMedipen
+  id: CausticAutoInjector
+  description: A rapid dose of dermatalogical stimulants. Contains Siderlac.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Medical/medipen.rsi
+    layers:
+    - state: causticpen
+      map: ["enum.SolutionContainerLayers.Fill"]
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    changeColor: false
+    emptySpriteName: causticpen_empty
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 20
+        reagents:
+        - ReagentId: Siderlac
+          Quantity: 15        
+  - type: Tag
+    tags: []
+
+- type: entity
+  name: caustic auto-injector
+  parent: ChemicalMedipen
+  id: CausticAutoInjector
+  description: A rapid dose of dermatalogical stimulants. Contains Sigynate.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Medical/medipen.rsi
+    layers:
+    - state: causticpen
+      map: ["enum.SolutionContainerLayers.Fill"]
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    changeColor: false
+    emptySpriteName: causticpen_empty
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 20
+        reagents:
+        - ReagentId: Sigynate
+          Quantity: 15        
+  - type: Tag
+    tags: []
+    
+- type: entity
+  name: lacerinol auto-injector
+  parent: ChemicalMedipen
+  id: LacerAutoInjector
+  description: A rapid dose of lacerinol and tranexamic acid, intended for combat applications.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Medical/medipen.rsi
+    layers:
+    - state: punctpen
+      map: ["enum.SolutionContainerLayers.Fill"]
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    changeColor: false
+    emptySpriteName: punctpen_empty
+  - type: Hypospray
+    solutionName: pen
+    transferAmount: 15
+    onlyAffectsMobs: false
+    injectOnly: true
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 15
+        reagents:
+        - ReagentId: Lacerinol
+          Quantity: 10
+        - ReagentId: TranexamicAcid
+          Quantity: 5
+  - type: Tag
+    tags: []
+    
+- type: entity
+  name: bruizine auto-injector
+  parent: ChemicalMedipen
+  id: BruizAutoInjector
+  description: A rapid dose of bruizine and tranexamic acid, intended for combat applications.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Medical/medipen.rsi
+    layers:
+    - state: punctpen
+      map: ["enum.SolutionContainerLayers.Fill"]
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    changeColor: false
+    emptySpriteName: punctpen_empty
+  - type: Hypospray
+    solutionName: pen
+    transferAmount: 15
+    onlyAffectsMobs: false
+    injectOnly: true
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 15
+        reagents:
+        - ReagentId: Bruizine
+          Quantity: 10
+        - ReagentId: TranexamicAcid
+          Quantity: 5
+  - type: Tag
+    tags: []
+
