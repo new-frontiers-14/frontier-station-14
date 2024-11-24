@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Item;
+using Content.Shared.Roles;
 using Content.Shared.Tag;
 using Robust.Shared.Prototypes;
 
@@ -8,6 +9,7 @@ namespace Content.Shared.Whitelist;
 public sealed class EntityWhitelistSystem : EntitySystem
 {
     [Dependency] private readonly IComponentFactory _factory = default!;
+    [Dependency] private readonly SharedRoleSystem _roles = default!;
     [Dependency] private readonly TagSystem _tag = default!;
 
     private EntityQuery<ItemComponent> _itemQuery;
@@ -47,9 +49,30 @@ public sealed class EntityWhitelistSystem : EntitySystem
     public bool IsValid(EntityWhitelist list, EntityUid uid)
     {
         if (list.Components != null)
-            EnsureRegistrations(list);
+        {
+            var regs = StringsToRegs(list.Components);
 
-        if (list.Registrations != null)
+            list.Registrations ??= new List<ComponentRegistration>();
+            list.Registrations.AddRange(regs);
+        }
+
+        if (list.MindRoles != null)
+        {
+            var regs = StringsToRegs(list.MindRoles);
+
+            foreach (var role in regs)
+            {
+                if ( _roles.MindHasRole(uid, role.Type, out _))
+                {
+                    if (!list.RequireAll)
+                        return true;
+                }
+                else if (list.RequireAll)
+                    return false;
+            }
+        }
+
+        if (list.Registrations != null && list.Registrations.Count > 0)
         {
             foreach (var reg in list.Registrations)
             {
@@ -89,7 +112,29 @@ public sealed class EntityWhitelistSystem : EntitySystem
     public bool IsPrototypeValid(EntityWhitelist list, EntityPrototype prototype)
     {
         if (list.Components != null)
-            EnsureRegistrations(list);
+        {
+            var regs = StringsToRegs(list.Components);
+
+            list.Registrations ??= new List<ComponentRegistration>();
+            list.Registrations.AddRange(regs);
+        }
+
+        // TODO - fix or deprecate mind role check with prototypes
+        // if (list.MindRoles != null)
+        // {
+        //     var regs = StringsToRegs(list.MindRoles);
+
+        //     foreach (var role in regs)
+        //     {
+        //         if (_roles.MindHasRole(uid, role.Type, out _))
+        //         {
+        //             if (!list.RequireAll)
+        //                 return true;
+        //         }
+        //         else if (list.RequireAll)
+        //             return false;
+        //     }
+        // }
 
         if (list.Registrations != null)
         {
@@ -307,24 +352,27 @@ public sealed class EntityWhitelistSystem : EntitySystem
         return IsWhitelistFailOrNull(blacklist, uid);
     }
 
-    private void EnsureRegistrations(EntityWhitelist list)
+    private List<ComponentRegistration> StringsToRegs(string[]? input)
     {
-        if (list.Components == null)
-            return;
+        var list = new List<ComponentRegistration>();
 
-        list.Registrations = new List<ComponentRegistration>();
-        foreach (var name in list.Components)
+        if (input == null || input.Length == 0)
+            return list;
+
+        foreach (var name in input)
         {
             var availability = _factory.GetComponentAvailability(name);
             if (_factory.TryGetRegistration(name, out var registration)
                 && availability == ComponentAvailability.Available)
             {
-                list.Registrations.Add(registration);
+                list.Add(registration);
             }
             else if (availability == ComponentAvailability.Unknown)
             {
-                Log.Warning($"Unknown component name {name} passed to EntityWhitelist!");
+                Log.Error($"StringsToRegs failed: Unknown component name {name} passed to EntityWhitelist!");
             }
         }
+
+        return list;
     }
 }
