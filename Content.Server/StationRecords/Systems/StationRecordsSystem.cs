@@ -12,7 +12,7 @@ using Content.Shared.Roles;
 using Content.Shared.StationRecords;
 using Robust.Shared.Enums;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Random; //Frontier modification
+using Robust.Shared.Random; // Frontier
 
 namespace Content.Server.StationRecords.Systems;
 
@@ -121,6 +121,7 @@ public sealed class StationRecordsSystem : SharedStationRecordsSystem
 
         CreateGeneralRecord(station, idUid.Value, profile.Name, profile.Age, profile.Species, profile.Gender, jobId, fingerprintComponent?.Fingerprint, dnaComponent?.DNA, profile, records);
 
+        /// Frontier block of code starts here
         var query = EntityQueryEnumerator<SectorStationRecordComponent>();
 
         while (query.MoveNext(out var stationEntityUid, out var comp))
@@ -156,8 +157,8 @@ public sealed class StationRecordsSystem : SharedStationRecordsSystem
                 }
                 CreateGeneralRecord(stationEntityUid, idUid.Value, profile.Name, profile.Age, profile.Species, profile.Gender, playerJob, fingerprintComponent?.Fingerprint, dnaComponent?.DNA, profile, stationRec!);
             }
-
         }
+        /// Frontier block of code ends here
     }
 
 
