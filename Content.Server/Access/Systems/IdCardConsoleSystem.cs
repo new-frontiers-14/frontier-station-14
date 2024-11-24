@@ -122,9 +122,9 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
                 PrivilegedIdIsAuthorized(uid, component),
                 true,
                 targetIdComponent.FullName,
-                targetIdComponent.JobTitle,
-                hasShuttle,
-                shuttleNameParts,
+                targetIdComponent.LocalizedJobTitle,
+                hasShuttle, // Frontier
+                shuttleNameParts, // Frontier
                 targetAccessComponent.Tags.ToList(),
                 possibleAccess,
                 jobProto,

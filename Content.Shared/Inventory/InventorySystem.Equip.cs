@@ -48,7 +48,7 @@ public abstract partial class InventorySystem
 
     private void OnEntRemoved(EntityUid uid, InventoryComponent component, EntRemovedFromContainerMessage args)
     {
-        if(!TryGetSlot(uid, args.Container.ID, out var slotDef, inventory: component))
+        if (!TryGetSlot(uid, args.Container.ID, out var slotDef, inventory: component))
             return;
 
         var unequippedEvent = new DidUnequipEvent(uid, args.Entity, slotDef);
@@ -60,8 +60,8 @@ public abstract partial class InventorySystem
 
     private void OnEntInserted(EntityUid uid, InventoryComponent component, EntInsertedIntoContainerMessage args)
     {
-        if(!TryGetSlot(uid, args.Container.ID, out var slotDef, inventory: component))
-           return;
+        if (!TryGetSlot(uid, args.Container.ID, out var slotDef, inventory: component))
+            return;
 
         var equippedEvent = new DidEquipEvent(uid, args.Entity, slotDef);
         RaiseLocalEvent(uid, equippedEvent, true);
@@ -110,8 +110,7 @@ public abstract partial class InventorySystem
         // before we drop the item, check that it can be equipped in the first place.
         if (!CanEquip(actor, held.Value, ev.Slot, out var reason))
         {
-            if (_gameTiming.IsFirstTimePredicted)
-                _popup.PopupCursor(Loc.GetString(reason));
+            _popup.PopupCursor(Loc.GetString(reason));
             return;
         }
 
@@ -120,7 +119,7 @@ public abstract partial class InventorySystem
 
         RaiseLocalEvent(held.Value, new HandDeselectedEvent(actor));
 
-        TryEquip(actor, actor, held.Value, ev.Slot, predicted: true, inventory: inventory, force: true, checkDoafter:true);
+        TryEquip(actor, actor, held.Value, ev.Slot, predicted: true, inventory: inventory, force: true, checkDoafter: true);
     }
 
     public bool TryEquip(EntityUid uid, EntityUid itemUid, string slot, bool silent = false, bool force = false, bool predicted = false,
@@ -132,7 +131,7 @@ public abstract partial class InventorySystem
     {
         if (!Resolve(target, ref inventory, false))
         {
-            if(!silent && _gameTiming.IsFirstTimePredicted)
+            if(!silent)
                 _popup.PopupCursor(Loc.GetString("inventory-component-can-equip-cannot"));
             return false;
         }
@@ -143,14 +142,14 @@ public abstract partial class InventorySystem
 
         if (!TryGetSlotContainer(target, slot, out var slotContainer, out var slotDefinition, inventory))
         {
-            if(!silent && _gameTiming.IsFirstTimePredicted)
+            if(!silent)
                 _popup.PopupCursor(Loc.GetString("inventory-component-can-equip-cannot"));
             return false;
         }
 
         if (!force && !CanEquip(actor, target, itemUid, slot, out var reason, slotDefinition, inventory, clothing))
         {
-            if(!silent && _gameTiming.IsFirstTimePredicted)
+            if(!silent)
                 _popup.PopupCursor(Loc.GetString(reason));
             return false;
         }
@@ -180,7 +179,7 @@ public abstract partial class InventorySystem
 
         if (!_containerSystem.Insert(itemUid, slotContainer))
         {
-            if(!silent && _gameTiming.IsFirstTimePredicted)
+            if(!silent)
                 _popup.PopupCursor(Loc.GetString("inventory-component-can-unequip-cannot"));
             return false;
         }
@@ -372,6 +371,26 @@ public abstract partial class InventorySystem
         bool checkDoafter = false,
         bool child = false) // Frontier: raise DroppedEvent on all children
     {
+        var itemsDropped = 0;
+        return TryUnequip(actor, target, slot, out removedItem, ref itemsDropped,
+            silent, force, predicted, inventory, clothing, reparent, checkDoafter, child); // Frontier: add child
+    }
+
+    private bool TryUnequip(
+        EntityUid actor,
+        EntityUid target,
+        string slot,
+        [NotNullWhen(true)] out EntityUid? removedItem,
+        ref int itemsDropped,
+        bool silent = false,
+        bool force = false,
+        bool predicted = false,
+        InventoryComponent? inventory = null,
+        ClothingComponent? clothing = null,
+        bool reparent = true,
+        bool checkDoafter = false,
+        bool child = false) // Frontier: raise DroppedEvent on all children
+    {
         removedItem = null;
 
         if (TerminatingOrDeleted(target))
@@ -379,14 +398,14 @@ public abstract partial class InventorySystem
 
         if (!Resolve(target, ref inventory, false))
         {
-            if(!silent && _gameTiming.IsFirstTimePredicted)
+            if(!silent)
                 _popup.PopupCursor(Loc.GetString("inventory-component-can-unequip-cannot"));
             return false;
         }
 
         if (!TryGetSlotContainer(target, slot, out var slotContainer, out var slotDefinition, inventory))
         {
-            if(!silent && _gameTiming.IsFirstTimePredicted)
+            if(!silent)
                 _popup.PopupCursor(Loc.GetString("inventory-component-can-unequip-cannot"));
             return false;
         }
@@ -398,7 +417,7 @@ public abstract partial class InventorySystem
 
         if (!force && !CanUnequip(actor, target, slot, out var reason, slotContainer, slotDefinition, inventory))
         {
-            if(!silent && _gameTiming.IsFirstTimePredicted)
+            if(!silent)
                 _popup.PopupCursor(Loc.GetString(reason));
             return false;
         }
@@ -429,17 +448,27 @@ public abstract partial class InventorySystem
             return false;
         }
 
+        if (!_containerSystem.Remove(removedItem.Value, slotContainer, force: force, reparent: reparent))
+            return false;
+
+        // this is in order to keep track of whether this is the first instance of a recursion call
+        var firstRun = itemsDropped == 0;
+        ++itemsDropped;
+
         foreach (var slotDef in inventory.Slots)
         {
             if (slotDef != slotDefinition && slotDef.DependsOn == slotDefinition.Name)
             {
                 //this recursive call might be risky
-                TryUnequip(actor, target, slotDef.Name, true, true, predicted, inventory, reparent: reparent, child: true); // Frontier: add child
+                TryUnequip(actor, target, slotDef.Name, out _, ref itemsDropped, true, true, predicted, inventory, reparent: reparent, child: true); // Frontier: add child
             }
         }
 
-        if (!_containerSystem.Remove(removedItem.Value, slotContainer, force: force, reparent: reparent))
-            return false;
+        // we check if any items were dropped, and make a popup if they were.
+        // the reason we check for > 1 is because the first item is always the one we are trying to unequip,
+        // whereas we only want to notify for extra dropped items.
+        if (!silent && _gameTiming.IsFirstTimePredicted && firstRun && itemsDropped > 1)
+            _popup.PopupClient(Loc.GetString("inventory-component-dropped-from-unequip", ("items", itemsDropped - 1)), target, target);
 
         // Frontier: spawn dropped events for children
         if (child)
@@ -477,7 +506,7 @@ public abstract partial class InventorySystem
         if ((containerSlot == null || slotDefinition == null) && !TryGetSlotContainer(target, slot, out containerSlot, out slotDefinition, inventory))
             return false;
 
-        if (containerSlot.ContainedEntity is not {} itemUid)
+        if (containerSlot.ContainedEntity is not { } itemUid)
             return false;
 
         if (!_containerSystem.CanRemove(itemUid, containerSlot))
