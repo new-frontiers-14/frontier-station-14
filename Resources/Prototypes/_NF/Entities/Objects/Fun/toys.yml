@@ -24,8 +24,8 @@
   - type: StinkyTrait
 
 - type: entity
-  parent: PlushieSpaceLizard
-  id: Plushie_Botanist #Weh!
+  parent: PlushieLizard
+  id: NFPlushieBotanist #Weh!
   name: botanist plushie
   description: You need food and it just wont stop making rainbow weed.
   components:
@@ -34,8 +34,8 @@
     state: plushie_botanist
 
 - type: entity
-  parent: PlushieSpaceLizard
-  id: Plushie_Engineer #Weh!
+  parent: PlushieLizard
+  id: NFPlushieEngineer #Weh!
   name: engineer plushie
   description: The poor thing is just sitting there with nothing to do! Give it a hug!
   components:
@@ -44,8 +44,8 @@
     state: plushie_engineer
 
 - type: entity
-  parent: PlushieSpaceLizard
-  id: Plushie_Construction #Weh!
+  parent: PlushieLizard
+  id: NFPlushieConstruction #Weh!
   name: construction plushie
   description: It doubles as a hammer!
   components:
@@ -54,14 +54,33 @@
     state: plushie_construction
 
 - type: entity
-  parent: PlushieSpaceLizard
-  id: Plushie_Cmo #Weh!
+  parent: PlushieLizard
+  id: NFPlushieCmo #Weh!
   name: chief medical officer plushie
   description: This plushie is in charge of all of the other plushies!
   components:
   - type: Sprite
     sprite: _NF/Objects/Fun/toys.rsi
     state: plushie_cmo
+        
+- type: entity
+  parent: PlushieCarp
+  id: NFPlushieSharkMinnow
+  name: sharkminnow plushie
+  description: It's killed you! It's killed your friends! Now this source of PTSD is a Pretty Terrific Stuffed Doodad!
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/sharkminnow.rsi
+    state: sharkminnowplush
+  - type: Item
+    heldPrefix: sharkminnowplush
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        shader: unshaded
+      right:
+      - state: inhand-right
+        shader: unshaded
 
 - type: entity
   parent: BasePlushie
@@ -512,25 +531,6 @@
   - type: Sprite
     sprite: _NF/Objects/Fun/catplushie.rsi
     state: white
-
-- type: entity
-  parent: PlushieCarp
-  id: Plushie_SharkmMinnow
-  name: sharkminnow plushie
-  description: It's killed you! It's killed your friends! Now this source of PTSD is a Pretty Terrific Stuffed Doodad!
-  components:
-  - type: Sprite
-    sprite: _NF/Objects/Fun/sharkminnow.rsi
-    state: sharkminnowplush
-  - type: Item
-    heldPrefix: sharkminnowplush
-    inhandVisuals:
-      left:
-      - state: inhand-left
-        shader: unshaded
-      right:
-      - state: inhand-right
-        shader: unshaded
 
 - type: entity
   name: Emotional support RPG
