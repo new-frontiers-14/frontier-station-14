@@ -597,6 +597,62 @@
     chance: 1
     offset: 0.0
 
+- type: entity
+  name: random computer frame
+  id: SpawnDungeonComputerFrame
+  parent: MarkerBase
+  suffix: Dungeon
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Machines/VendingMachines/youtool.rsi
+        state: off
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - MachineFrameDestroyed
+    - ComputerFrame
+    - ComputerBroken
+    chance: 1
+    offset: 0.0
+
+- type: entity
+  name: random canister broken
+  id: SpawnDungeonCanisterBroken
+  parent: MarkerBase
+  suffix: Dungeon
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Machines/VendingMachines/youtool.rsi
+        state: off
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - GasCanisterBrokenBase
+    - LiquidOxygenCanisterBroken
+    - LiquidNitrogenCanisterBroken
+    - LiquidCarbonDioxideCanisterBroken
+    - AmmoniaCanisterBroken
+    - FrezonCanisterBroken
+    - NitrogenCanisterBroken
+    - NitrousOxideCanisterBroken
+    - PlasmaCanisterBroken
+    - TritiumCanisterBroken
+    - StorageCanisterBroken
+    - WaterVaporCanisterBroken
+    - OxygenCanisterBroken
+    chance: 1
+    offset: 0.0
+
 # Other
 - type: entity
   name: random machine board
