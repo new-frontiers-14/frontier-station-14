@@ -1171,3 +1171,77 @@
     - NFBlueprintPortableRecharger
     - BlueprintClothingOuterHardsuitScaf
   - type: RequireProjectileTarget
+
+- type: entity
+  id: ScrapProcessor
+  parent: BaseLatheLube
+  name: scrap processor
+  description: It produces sheets and ingots using scrap.
+  components:
+  - type: Sprite
+    sprite: _NF/Structures/Machines/scrap_processor.rsi
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: unshaded
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: inserting
+      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: NFScrapProcessorCircuitboard
+  - type: MaterialStorage
+    whitelist:
+      tags:
+      - Ore
+  - type: Lathe
+    idleState: icon
+    runningState: building
+    unlitIdleState: unshaded
+    unlitRunningState: building-unshaded
+    staticRecipes:
+    - SmeltScrap
+    - ScrapPartRodMetal1
+    - ScrapSheetSteel1
+    - ScrapSheetGlass1
+    - ScrapSheetBrass1
+    - ScrapSheetRGlass1
+    - ScrapSheetPlasteel1
+    - ScrapSheetPlastic1
+    - ScrapSheetPlasma1
+    - ScrapSheetUranium1
+    - ScrapIngotSilver1
+    - ScrapIngotGold1
+    - ScrapMaterialBananium1
+    - ScrapMaterialCloth1
+    - ScrapMaterialDurathread1
+    - ScrapSheetUGlass1
+    - ScrapSheetPGlass1
+    - ScrapSheetRUGlass1
+    - ScrapSheetRPGlass1
+    - ScrapSheetClockworkGlass1
+    - ScrapMaterialBluespace1
+    - ScrapMaterialDiamond1
+    - ScrapPartRodMetal30
+    - ScrapSheetSteel30
+    - ScrapSheetGlass30
+    - ScrapSheetBrass30
+    - ScrapSheetRGlass30
+    - ScrapSheetPlasteel30
+    - ScrapSheetPlastic30
+    - ScrapSheetPlasma30
+    - ScrapSheetUranium30
+    - ScrapIngotSilver30
+    - ScrapIngotGold30
+    - ScrapMaterialBananium30
+    - ScrapMaterialCloth30
+    - ScrapMaterialDurathread30
+    - ScrapSheetUGlass30
+    - ScrapSheetPGlass30
+    - ScrapSheetRUGlass30
+    - ScrapSheetRPGlass30
+    - ScrapSheetClockworkGlass30
+    - ScrapMaterialBluespace30
+    - ScrapMaterialDiamond30
