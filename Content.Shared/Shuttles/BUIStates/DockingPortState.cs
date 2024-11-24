@@ -17,4 +17,6 @@ public sealed class DockingPortState
     public bool Connected => GridDockedWith != null;
 
     public NetEntity? GridDockedWith;
+
+    public string? LabelName; // Frontier: label name
 }
