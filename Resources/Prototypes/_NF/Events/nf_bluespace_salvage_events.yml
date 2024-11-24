@@ -1,0 +1,46 @@
+- type: entity
+  id: BluespaceSalvage
+  parent: BaseStationEventShortDelay
+  name: NT Bluespace Monitoring # This name shows up in the radio messages.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StationEvent
+    startRadioAnnouncement: station-event-bluespace-scrap-start-announcement
+    startRadioAnnouncementChannel: Engineering
+    warningRadioAnnouncement: station-event-bluespace-scrap-warning-announcement
+    warningRadioAnnouncementChannel: Engineering
+    endRadioAnnouncement: station-event-bluespace-scrap-end-announcement
+    endRadioAnnouncementChannel: Engineering
+    weight: 5
+    duration: 1800 # 30 minutes
+    maxDuration: 1800 # 30 minutes
+  - type: BluespaceErrorRule
+    groups:
+      grid: !type:GridSpawnGroup
+        nameDataset: names_scrap
+        nameDatasetType: Nanotrasen # they're shuttles
+        minCount: 2
+        maxCount: 3
+        minimumDistance: 1000
+        maximumDistance: 2000
+        addComponents:
+        - type: IFF
+          color: "#AAAAAA"
+        paths:
+        - /Maps/_NF/Shuttles/Scrap/bison.yml
+#        - /Maps/_NF/Shuttles/Scrap/canister.yml # Too small
+        - /Maps/_NF/Shuttles/Scrap/disciple.yml
+        - /Maps/_NF/Shuttles/Scrap/nugget.yml
+        - /Maps/_NF/Shuttles/Scrap/orange.yml
+        - /Maps/_NF/Shuttles/Scrap/point.yml
+        - /Maps/_NF/Shuttles/Scrap/tide.yml
+        - /Maps/_NF/Shuttles/Scrap/scrap-investigator.yml # Please replace all this maps ones we finish some automated system
+        - /Maps/_NF/Shuttles/Scrap/scrap-hauler.yml
+        - /Maps/_NF/Shuttles/Scrap/scrap-crescent.yml
+        - /Maps/_NF/Shuttles/Scrap/scrap-barge.yml
+        - /Maps/_NF/Shuttles/Scrap/scrap-courserx.yml
+        - /Maps/_NF/Shuttles/Scrap/scrap-comet.yml
+        - /Maps/_NF/Shuttles/Scrap/scrap-sprinter.yml
+  - type: ActiveRadio
+    channels:
+    - Engineering
