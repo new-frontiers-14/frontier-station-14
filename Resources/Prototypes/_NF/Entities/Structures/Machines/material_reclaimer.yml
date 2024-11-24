@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ BaseLatheLube ]
+  parent: [ BaseMachinePowered, ConstructibleMachine ]
   id: MaterialReclaimer
   name: material reclaimer
   description: Cannot reclaim immaterial things, like motivation.
@@ -92,6 +92,8 @@
         loop: true
     useOldSolutionLogic: true
     solutionContainerId: output
+  - type: MaterialStorage
+    insertOnInteract: false
   - type: ContainerContainer
     containers:
       active-material-reclaimer-container: !type:Container
@@ -112,56 +114,3 @@
   - type: MaterialReclaimerMagnetPickup
     range: 0.50 # 0.3<0.50
     magnetEnabled: true
-  - type: MaterialStorage
-    #insertOnInteract: false
-    whitelist:
-      tags:
-      - Ore
-  - type: Lathe
-    idleState: icon
-    runningState: gear-active
-    unlitIdleState: unlit
-    unlitRunningState: gear-active
-    staticRecipes:
-    #- ScrapPartRodMetal1
-    - ScrapSheetSteel1
-    - ScrapSheetGlass1
-    - ScrapSheetBrass1
-    - ScrapSheetRGlass1
-    - ScrapSheetPlasteel1
-    - ScrapSheetPlastic1
-    - ScrapSheetPlasma1
-    - ScrapSheetUranium1
-    - ScrapIngotSilver1
-    - ScrapIngotGold1
-    - ScrapMaterialBananium1
-    - ScrapMaterialCloth1
-    - ScrapMaterialDurathread1
-    - ScrapSheetUGlass1
-    - ScrapSheetPGlass1
-    - ScrapSheetRUGlass1
-    - ScrapSheetRPGlass1
-    - ScrapSheetClockworkGlass1
-    - ScrapMaterialBluespace1
-    - ScrapMaterialDiamond1
-    #- ScrapPartRodMetal30
-    - ScrapSheetSteel30
-    - ScrapSheetGlass30
-    - ScrapSheetBrass30
-    - ScrapSheetRGlass30
-    - ScrapSheetPlasteel30
-    - ScrapSheetPlastic30
-    - ScrapSheetPlasma30
-    - ScrapSheetUranium30
-    - ScrapIngotSilver30
-    - ScrapIngotGold30
-    - ScrapMaterialBananium30
-    - ScrapMaterialCloth30
-    - ScrapMaterialDurathread30
-    - ScrapSheetUGlass30
-    - ScrapSheetPGlass30
-    - ScrapSheetRUGlass30
-    - ScrapSheetRPGlass30
-    - ScrapSheetClockworkGlass30
-    - ScrapMaterialBluespace30
-    - ScrapMaterialDiamond30
