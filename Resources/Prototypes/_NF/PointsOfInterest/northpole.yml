@@ -1,5 +1,5 @@
 # Author Info
-# GitHub: 
+# GitHub:
 # Discord: Checkraze
 
 # Maintainer Info
@@ -13,11 +13,14 @@
   name: "Полярная Звезда"
   rangeMin: 2150
   rangeMax: 4850
-  IFFColor: "#C83737" #red the color of ebil
-  IFFFlags: [HideLabel]
-  allowIFFChanges: true
-  hideWarp: true
   spawnGroup: Christmas
   spawnChance: 0
   gridPath: /Maps/_NF/POI/northpole.yml
-
+  hideWarp: true
+  addComponents:
+  - type: IFF
+    color: "#C83737"
+    flags: [HideLabel]
+  - type: Shuttle
+    angularDamping: 999999
+    linearDamping: 999999

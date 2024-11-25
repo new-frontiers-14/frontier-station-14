@@ -7,7 +7,7 @@
 # Discord: ???
 
 # Notes:
-# 
+#
 - type: pointOfInterest
   id: Courthouse
   name: "Суд"
@@ -16,6 +16,13 @@
   IFFColor: "#8e6444" #brown
   spawnGroup: Required
   gridPath: /Maps/_NF/POI/courthouse.yml
+  addComponents:
+  - type: IFF
+    color: "#8e6444"
+    readOnly: true
+  - type: Shuttle
+    angularDamping: 999999
+    linearDamping: 999999
 
 - type: gameMap
   id: Courthouse

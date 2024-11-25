@@ -285,7 +285,16 @@
     stateBaseClosed: med
     stateDoorOpen: med_open
     stateDoorClosed: chem_door
-
+  - type: ContainerContainer
+    containers:
+      entity_storage: !type:Container
+        showEnts: False
+        occludes: True
+        ents: []
+      paper_label: !type:ContainerSlot
+        showEnts: False
+        occludes: True
+        ent: null
 
 - type: entity
   id: ClosetWallN2

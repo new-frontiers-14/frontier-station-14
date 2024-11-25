@@ -13,10 +13,16 @@
   name: 'Экспедиционная База'
   rangeMin: 1650
   rangeMax: 3400
-  IFFColor: "#3737C8" #blue the color of NT
   spawnGroup: Required
   gridPath: /Maps/_NF/POI/lodge.yml
-  busStop: true
+  addComponents:
+  - type: IFF
+    color: "#3737C8"
+    readOnly: true
+  - type: Shuttle
+    angularDamping: 999999
+    linearDamping: 999999
+  - type: StationTransit
 
 - type: gameMap
   id: Lodge
