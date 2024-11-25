@@ -43,4 +43,33 @@
             Cellular: 1
           groups:
             Brute: 3
-          
+
+- type: reagent
+  id: BloodPlasma
+  name: reagent-name-bloodplasma
+  group: Medicine
+  desc: reagent-desc-bloodplasma
+  physicalDesc: reagent-physical-desc-viscous
+  flavor: metallic
+  color: "#d50505"  
+  metabolisms:
+    Medicine:
+      effects:
+        - !type:ModifyBloodLevel
+          amount: 6
+
+- type: reagent
+  id: TreatedBlood
+  name: reagent-name-treatedblood
+  group: Medicine
+  desc: reagent-desc-treatedblood
+  flavor: metallic
+  physicalDesc: reagent-physical-desc-viscous
+  color: "#8a0303"
+  recognizable: true
+  slippery: false
+  metabolisms:
+    Drink: 
+      effects:
+        - !type:SatiateThirst
+          factor: -0.5
