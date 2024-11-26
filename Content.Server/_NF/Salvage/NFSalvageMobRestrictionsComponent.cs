@@ -22,6 +22,35 @@ public sealed partial class NFSalvageMobRestrictionsComponent : Component
     [DataField]
     public bool DespawnIfOffLinkedGrid = true;
 
+    // On walking off grid
+    [DataField]
+    public string LeaveGridPopup = "dungeon-boss-grid-warning";
+
+    /// <summary>
+    /// Components to be added when the mob leave the grid.
+    /// </summary>
+    [DataField]
+    public ComponentRegistry AddComponentsLeaveGrid { get; set; } = new();
+
+    /// <summary>
+    /// Components to be removed when the mob leave the grid.
+    /// </summary>
+    [DataField]
+    public ComponentRegistry RemoveComponentsLeaveGrid { get; set; } = new();
+
+    /// <summary>
+    /// Components to be added when the mob return to the grid.
+    /// </summary>
+    [DataField]
+    public ComponentRegistry AddComponentsReturnGrid { get; set; } = new();
+
+    /// <summary>
+    /// Components to be removed when the mob return to the grid.
+    /// </summary>
+    [DataField]
+    public ComponentRegistry RemoveComponentsReturnGrid { get; set; } = new();
+
+    // On death
     /// <summary>
     /// Components to be added on death.
     /// </summary>
