@@ -67,7 +67,10 @@
         Brute: 1
   - type: Appearance
   - type: DeepFried
+    crispinessLevelSet: Crispy
+    originalName: crispy
   - type: FriedTrait
+    crispinessLevelSet: Crispy
 
 - type: entity
   name: spooky
@@ -76,11 +79,15 @@
   description: A grave mistake.
   suffix: Admeme # only way to get it at the moment
   components:
-  - type: FriedTrait
-    crispinessLevelSet: Spectral
   - type: FlavorProfile
     flavors:
       - spooky
+  - type: DeepFried
+    crispinessLevelSet: Spectral
+    originalName: spooky
+  - type: FriedTrait
+    crispinessLevelSet: Spectral
+  - type: Spectral
 
 - type: entity
   name: dragon omelette
