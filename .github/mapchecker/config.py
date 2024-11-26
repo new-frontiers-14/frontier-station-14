@@ -53,4 +53,7 @@ CONDITIONALLY_ILLEGAL_MATCHES = {
     "Sr": [
         "ButtonFrameCautionSecurity",  # Decal.
     ]
+    "Medical": [
+        "ButtonFrameCautionSecurity",  # Decal.
+    ]
 }
