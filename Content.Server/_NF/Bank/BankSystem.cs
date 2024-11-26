@@ -7,8 +7,9 @@ using Content.Shared.Preferences;
 using Robust.Shared.Player;
 using System.Diagnostics.CodeAnalysis;
 using Content.Shared._NF.Bank.Events;
+using Content.Shared.GameTicking;
 
-namespace Content.Server.Bank;
+namespace Content.Server._NF.Bank;
 
 public sealed partial class BankSystem : SharedBankSystem
 {
@@ -29,6 +30,20 @@ public sealed partial class BankSystem : SharedBankSystem
         SubscribeLocalEvent<BankAccountComponent, PlayerAttachedEvent>(OnPlayerAttached);
         SubscribeLocalEvent<BankAccountComponent, PlayerDetachedEvent>(OnPlayerDetached);
         SubscribeLocalEvent<PlayerJoinedLobbyEvent>(OnPlayerLobbyJoin);
+        SubscribeLocalEvent<SectorBankComponent, ComponentInit>(OnSectorInit);
+
+        SubscribeLocalEvent<RoundRestartCleanupEvent>(OnCleanup);
+    }
+
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+        UpdateSectorBanks(frameTime);
+    }
+
+    public void OnCleanup(RoundRestartCleanupEvent _)
+    {
+        CleanupLedger();
     }
 
     /// <summary>

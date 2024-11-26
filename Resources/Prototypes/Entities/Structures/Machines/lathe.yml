@@ -139,7 +139,7 @@
       - CableStack
       - CableMVStack
       - CableHVStack
-      - HandheldGPSBasic
+#      - HandheldGPSBasic # Frontier
       - TRayScanner
       - AirTank
       - GasAnalyzer
@@ -170,6 +170,7 @@
       - FoodPlateSmallPlastic
       - FoodBowlBig
       - FoodPlateTin
+      - FoodPlateMuffinTin
       - FoodKebabSkewer
       - SprayBottle
       - MopItem
@@ -207,18 +208,12 @@
       - WetFloorSign
       - ClothingHeadHatCone
       - Flare
+      - FreezerElectronics
       - BoxDispenserFlare # Frontier
       - Durathread # Frontier
-#      - ClothingOuterSuitEmergency # Frontier
-      - ClothingHeadHelmetEVA # Frontier
-      - ClothingHeadHelmetEVALarge # Frontier
-#      - ClothingOuterHardsuitEVA # Frontier
-      - ClothingOuterEVASuitContractor # Frontier
-      - ClothingOuterEVASuitPilot # Frontier
   - type: EmagLatheRecipes
     emagStaticRecipes:
       - BoxLethalshot
-      - BoxShotgunFlare
       - BoxShotgunSlug
       - CombatKnife
       - MagazineBoxLightRifle
@@ -389,7 +384,6 @@
       - UtilityBeltChiefEngineer
       - JetpackVoid # Frontier
       - ClothingShoesBootsMagAdv # Frontier
-      - ClothingOuterHardsuitBasic # Frontier
       - ClothingOuterHardsuitAtmos # Frontier
       - ClothingOuterHardsuitEngineering # Frontier
       - ClothingOuterHardsuitSpatio # Frontier
@@ -406,8 +400,6 @@
       - ClothingOuterHardsuitScaf # Frontier
       - ClothingOuterHardsuitPilot # Frontier
       - ClothingOuterHardsuitMaximPrototype # Frontier
-#      - ClothingHeadHelmetAncient # Frontier
-#      - ClothingOuterHardsuitAncientEVA # Frontier
       - ConstructionBagOfHolding # Frontier
       - ServiceSelectiveDropper # Frontier
       - PlantAnalyzer # Frontier
@@ -502,6 +494,7 @@
     - UniformPrinterMachineCircuitboard
     - FloorGreenCircuit
     - FloorBlueCircuit
+    - FloorRedCircuit
     - MicrowaveMachineCircuitboard
     - ReagentGrinderMachineCircuitboard
     - ElectricGrillMachineCircuitboard
@@ -512,6 +505,7 @@
     - StationAnchorCircuitboard
     # - SalvageMagnetMachineCircuitboard # Frontier
     - SalvageTechFabCircuitboardNF # Frontier
+    - NFScrapProcessorCircuitboard # Frontier
     - BlueprintLithographMachineCircuitboard # Frontier
     dynamicRecipes:
       - ThermomachineFreezerMachineCircuitBoard
@@ -818,7 +812,6 @@
     runningState: icon
     staticRecipes:
       - BoxLethalshot
-      - BoxShotgunFlare
       - BoxShotgunPractice
       - BoxShotgunSlug
       - ClothingEyesHudSecurity
@@ -857,13 +850,10 @@
       - TargetHuman
       - TargetSyndicate
       - WeaponDisablerPractice
+      - WeaponFlareGunSecurity
       - WeaponLaserCarbinePractice
       - Zipties
       - ThrusterSecurityMachineCircuitboard # Frontier
-#      - ClothingOuterSuitEmergency # Frontier
-      - ClothingOuterEVASuitNfsd # Frontier
-      - ClothingHeadHelmetEVA # Frontier
-      - ClothingHeadHelmetEVALarge # Frontier
       - ClothingOuterHardsuitEVAPrisoner # Frontier
     dynamicRecipes:
       - BoxBeanbag
@@ -956,7 +946,6 @@
       runningState: icon
       staticRecipes:
         - BoxLethalshot
-        - BoxShotgunFlare
         - BoxShotgunSlug
         - BoxShellTranquilizer
         - MagazineBoxLightRifle
@@ -1045,9 +1034,7 @@
       - Hemostat
       - ClothingEyesGlassesChemical
       - WhiteCane
-      - ClothingOuterEVASuitMedic # Frontier
-#      - ClothingOuterSuitEmergency # Frontier
-      - ClothingOuterHardsuitVoidParamed # Frontier
+      - ClothingOuterEVASuitMedic #Frontier
       - BaseChemistryEmptyVial # Frontier
       - PowerCellSmall # Frontier
       - BlankMediPen # Frontier
@@ -1300,8 +1287,6 @@
   - type: Machine
     board: BiogeneratorMachineCircuitboard
   - type: MaterialStorage
-    insertOnInteract: false
-    canEjectStoredMaterials: false
   - type: ProduceMaterialExtractor
   - type: ItemSlots
     slots:
@@ -1549,6 +1534,7 @@
       - FloorTileItemShowroom # Frontier
       - FloorTileItemGCircuit # Frontier
       - FloorTileItemBCircuit # Frontier
+      - FloorTileItemRCircuit # Frontier
       - FloorTileItemGold # Frontier
       - FloorTileItemSilver # Frontier
       - FloorTileItemMono # Frontier
@@ -1599,3 +1585,4 @@
         - Wooden
         - RawMaterial
         - Plastic
+        - Ingot # Frontier
