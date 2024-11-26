@@ -1,5 +1,5 @@
 - type: entity
-  parent: [BaseItem, BaseC2ContrabandUnredeemable] # Frontier: BaseRestrictedContraband<BaseC2ContrabandUnredeemable
+  parent: [BaseItem, BaseC2ContrabandUnredeemable, RecyclableItemSteelMedium] # Frontier: BaseRestrictedContraband<BaseC2ContrabandUnredeemable added RecyclableItemSteelMedium
   id: ClusterBang
   name: clusterbang
   description: Can be used only with flashbangs. Explodes several times.
@@ -118,7 +118,7 @@
       cluster-payload: !type:Container
 
 - type: entity
-  parent: [GrenadeBase, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
+  parent: [GrenadeBase, BaseC3SyndicateContraband] # Frontier: BaseSecurityContraband<BaseC3SyndicateContraband
   id: GrenadeStinger
   name: stinger grenade
   description: Nothing to see here, please disperse.

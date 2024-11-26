@@ -4,6 +4,7 @@ using Content.Shared.Containers.ItemSlots;
 using Robust.Shared.Prototypes;
 using Content.Shared.Radio;
 using Content.Shared.Access;
+using Content.Shared.Bank.Components;
 
 namespace Content.Shared.Shipyard.Components;
 
@@ -50,10 +51,14 @@ public sealed partial class ShipyardConsoleComponent : Component
     public List<ProtoId<AccessLevelPrototype>> NewAccessLevels = new();
 
     /// <summary>
-    /// A tax rate that is imposed on the owner when a shuttle is sold. The tax is credited to
-    /// the station's bank account.
-    /// Expressed as a percentage: 0.3 means the owner loses 30% of the shuttle's value.
+    /// Indicates that the deeds that come from this console can be copied and transferred.
     /// </summary>
     [DataField]
-    public float SalesTax = 0;
+    public bool CanTransferDeed = true;
+
+    /// <summary>
+    /// The accounts to receive payment, and the tax rate to apply for ship sales from this console.
+    /// </summary>
+    [DataField]
+    public Dictionary<SectorBankAccount, float> TaxAccounts = new();
 }
