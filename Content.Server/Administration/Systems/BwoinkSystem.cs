@@ -142,7 +142,7 @@ namespace Content.Server.Administration.Systems
             var webhookId = match.Groups[1].Value;
             var webhookToken = match.Groups[2].Value;
 
-            _onCallData = await GetWebhookData(webhookId, webhookToken);
+            _onCallData = await GetWebhookData(url);
         }
 
         private void PlayerRateLimitedAction(ICommonSession obj)
@@ -351,7 +351,7 @@ namespace Content.Server.Administration.Systems
             {
                 // TODO: Ideally, CVar validation during setting should be better integrated
                 Log.Warning("Webhook URL does not appear to be valid. Using anyways...");
-                await SetWebhookData(url); // Frontier - Support for Custom URLS, we still want to see if theres Webhook data available
+                await GetWebhookData(url); // Frontier - Support for Custom URLS, we still want to see if theres Webhook data available
                 return;
             }
 
@@ -362,7 +362,7 @@ namespace Content.Server.Administration.Systems
             }
 
             // Fire and forget
-            await SetWebhookData(url); // Frontier - Support for Custom URLS
+            await GetWebhookData(url); // Frontier - Support for Custom URLS
         }
 
         private async Task<WebhookData?> GetWebhookData(string url)
@@ -545,7 +545,7 @@ namespace Content.Server.Administration.Systems
                             $"**[Go to ahelp](https://discord.com/channels/{guildId}/{channelId}/{existingEmbed.Id})**");
                     }
 
-                    payload = GeneratePayload(message.ToString(), existingEmbed.Username, existingEmbed.CharacterName);
+                    payload = GeneratePayload(message.ToString(), existingEmbed.Username, userId, existingEmbed.CharacterName);
 
                     var request = await _httpClient.PostAsync($"{_onCallUrl}?wait=true",
                         new StringContent(JsonSerializer.Serialize(payload), Encoding.UTF8, "application/json"));
