@@ -42,6 +42,8 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
     public float MaximumIFFDistance { get; set; } = -1f; // Frontier
     public bool HideCoords { get; set; } = false; // Frontier
 
+    private static Color _dockLabelColor = Color.White; // Frontier
+
     /// <summary>
     ///   If present, called for every IFF. Must determine if it should or should not be shown.
     /// </summary>
@@ -375,6 +377,27 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
                 handle.DrawPrimitives(DrawPrimitiveTopology.TriangleFan, verts, color.WithAlpha(0.8f));
                 handle.DrawPrimitives(DrawPrimitiveTopology.LineStrip, verts, color);
             }
+
+            // Frontier: draw dock labels (done last to appear on top of all docks, still fights with other grids)
+            var labeled = new HashSet<string>(); // Frontier
+            foreach (var state in docks)
+            {
+                var position = state.Coordinates.Position;
+                var uiPosition = Vector2.Transform(position, matrix);
+
+                if (uiPosition.Length() > (WorldRange * 2f) - DockScale)
+                    continue;
+
+                if (state.LabelName != null && !labeled.Contains(state.LabelName))
+                {
+                    var uiPositionNegY = new Vector2(uiPosition.X, -uiPosition.Y);
+                    var labelPosition = ScalePosition(uiPositionNegY) / UIScale;
+                    labeled.Add(state.LabelName);
+                    var labelDimensions = handle.GetDimensions(Font, state.LabelName, 1.0f);
+                    handle.DrawString(Font, (labelPosition - labelDimensions / 2) * UIScale, state.LabelName, UIScale * 1.0f, _dockLabelColor);
+                }
+            }
+            // End Frontier
         }
     }
 

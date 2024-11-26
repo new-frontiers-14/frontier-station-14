@@ -226,3 +226,35 @@
     useSound:
       path: /Audio/Items/eating_1.ogg
 
+- type: entity
+  parent: FoodDoughFlat
+  id: FoodDoughFlatButtered
+  name: buttered flat dough
+  description: A buttered, flattened dough.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - dough
+      - butter
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/ingredients.rsi
+    state: dough-flat-buttered
+  - type: Construction
+    graph: Pizza
+    node: flat-butter
+
+- type: entity
+  parent: FoodDoughFlat
+  id: FoodDoughFlatPastry
+  name: pastry dough
+  description: A buttery, rolled out pastry dough.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/ingredients.rsi
+    state: dough-pastry-flat
+  - type: Construction
+    graph: Pizza
+    node: pastry
+  - type: SliceableFood
+    count: 3
+    slice: FoodDoughPastryBaseRaw
