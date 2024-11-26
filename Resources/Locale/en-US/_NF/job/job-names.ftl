@@ -18,6 +18,9 @@ job-name-sr = Station Representative
 job-name-pal = Public Affairs Liaison
 job-name-mom = Medical Operations Manager
 
+# Job titles
+job-title-ert-mail-carrier = ERT Mail Carrier
+
 # Role timers - Make these alphabetical or I cut you
 JobERTMailCarrier = ERT Mail Carrier
 JobMercenary = Mercenary
