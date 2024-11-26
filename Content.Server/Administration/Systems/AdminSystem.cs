@@ -33,7 +33,7 @@ using Robust.Shared.Enums;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Content.Shared._NF.Bank.Events; // Frontier
-using Content.Server.Bank; // Frontier
+using Content.Server._NF.Bank; // Frontier
 
 namespace Content.Server.Administration.Systems;
 
