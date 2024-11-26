@@ -81,6 +81,10 @@ public sealed class SalvageMobRestrictionsSystem : EntitySystem
 
     private void OnMobState(EntityUid uid, NFSalvageMobRestrictionsComponent component, MobStateChangedEvent args)
     {
+        // If this entity is being destroyed, no need to fiddle with components
+        if (Terminating(uid))
+            return;
+
         if (args.NewMobState == MobState.Dead)
         {
             EntityManager.AddComponents(uid, component.AddComponentsOnDeath);
@@ -95,6 +99,10 @@ public sealed class SalvageMobRestrictionsSystem : EntitySystem
 
     private void OnParentChanged(EntityUid uid, NFSalvageMobRestrictionsComponent component, ref EntParentChangedMessage args)
     {
+        // If this entity is being destroyed, no need to fiddle with components
+        if (Terminating(uid))
+            return;
+
         var gridUid = Transform(uid).GridUid;
         var popupMessage = Loc.GetString(component.LeaveGridPopup);
 
@@ -125,6 +133,12 @@ public sealed class SalvageMobRestrictionsSystem : EntitySystem
             _adminLogger.Add(LogType.AdminMessage, LogImpact.Low, $"{ToPrettyString(actor.PlayerSession.AttachedEntity.Value):player} left the dungeon grid");
             _popupSystem.PopupEntity(popupMessage, actor.PlayerSession.AttachedEntity.Value, actor.PlayerSession, PopupType.MediumCaution);
         }
+    }
+
+    // Returns true if the given entity is invalid or terminating
+    private bool Terminating(EntityUid uid)
+    {
+        return !TryComp(uid, out MetaDataComponent? meta) || meta.EntityLifeStage >= EntityLifeStage.Terminating;
     }
 }
 
