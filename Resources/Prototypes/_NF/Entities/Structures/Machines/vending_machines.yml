@@ -735,3 +735,13 @@
   components:
   - type: VendingMachine
     pack: TankDispenserEVAPOIInventory
+
+# Dungeon versions of upstream machines
+
+- type: entity
+  parent: VendingMachineChefvend
+  id: VendingMachineChefvendDungeon
+  suffix: Dungeon
+  components:
+  - type: VendingMachine
+    initialStockQuality: 0 # This isnt actully empty, just always missing stuff.
