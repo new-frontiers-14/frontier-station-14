@@ -1,7 +1,7 @@
 using Content.Server.Access.Systems;
 using Content.Server.Popups;
 using Content.Server.Radio.EntitySystems;
-using Content.Server.Bank;
+using Content.Server._NF.Bank;
 using Content.Server.Shipyard.Components;
 using Content.Shared._NF.GameRule;
 using Content.Shared.Bank.Components;
@@ -18,7 +18,6 @@ using Robust.Shared.Prototypes;
 using Content.Shared.Radio;
 using System.Linq;
 using Content.Server.Administration.Logs;
-using Content.Server.Cargo.Components;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Server.Maps;
@@ -38,13 +37,13 @@ using Content.Server.Station.Components;
 using System.Text.RegularExpressions;
 using Content.Server._NF.ShuttleRecords;
 using Content.Shared.UserInterface;
-using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Content.Shared.Access;
 using Content.Shared.Tiles;
 using Content.Server._NF.Smuggling.Components;
 using Content.Shared._NF.ShuttleRecords;
 using Content.Server.StationEvents.Components;
+using Content.Shared._NF.Bank.BUI;
 
 namespace Content.Server.Shipyard.Systems;
 
@@ -273,23 +272,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         _records.Synchronize(shuttleStation!.Value);
         _records.Synchronize(station);
 
-        // Shuttle setup: add protected grid status if needed.
-        if (vessel.GridProtection != GridProtectionFlags.None)
-        {
-            var prot = EnsureComp<ProtectedGridComponent>(shuttleUid);
-            if (vessel.GridProtection.HasFlag(GridProtectionFlags.FloorRemoval))
-                prot.PreventFloorRemoval = true;
-            if (vessel.GridProtection.HasFlag(GridProtectionFlags.FloorPlacement))
-                prot.PreventFloorPlacement = true;
-            if (vessel.GridProtection.HasFlag(GridProtectionFlags.RcdUse))
-                prot.PreventRCDUse = true;
-            if (vessel.GridProtection.HasFlag(GridProtectionFlags.EmpEvents))
-                prot.PreventEmpEvents = true;
-            if (vessel.GridProtection.HasFlag(GridProtectionFlags.Explosions))
-                prot.PreventExplosions = true;
-            if (vessel.GridProtection.HasFlag(GridProtectionFlags.ArtifactTriggers))
-                prot.PreventArtifactTriggers = true;
-        }
+        EntityManager.AddComponents(shuttleUid, vessel.AddComponents);
 
         // Ensure cleanup on ship sale
         EnsureComp<LinkedLifecycleGridParentComponent>(shuttleUid);
@@ -300,7 +283,8 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             if (TryComp<ShuttleDeedComponent>(targetId, out var deed))
                 sellValue = (int)_pricing.AppraiseGrid((EntityUid)(deed?.ShuttleUid!));
 
-            sellValue -= CalculateSalesTax(component, sellValue);
+            var tax = CalculateTotalSalesTax(component, sellValue);
+            sellValue -= tax;
         }
 
         SendPurchaseMessage(shipyardConsoleUid, player, name, component.ShipyardChannel, secret: false);
@@ -438,18 +422,14 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         if (!voucherUsed)
         {
-            var tax = CalculateSalesTax(component, bill);
-            if (tax != 0)
+            int originalBill = bill;
+            foreach (var (account, taxCoeff) in component.TaxAccounts)
             {
-                var query = EntityQueryEnumerator<StationBankAccountComponent>();
-
-                while (query.MoveNext(out _, out var comp))
-                {
-                    _cargo.DeductFunds(comp, -tax);
-                }
-
+                var tax = CalculateSalesTax(originalBill, taxCoeff);
+                _bank.TrySectorDeposit(account, tax, LedgerEntryType.BlackMarketShipyardTax);
                 bill -= tax;
             }
+            bill = int.Max(0, bill);
 
             _bank.TryBankDeposit(player, bill);
             PlayConfirmSound(player, uid, component);
@@ -514,7 +494,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         if (deed?.ShuttleUid != null)
             sellValue = (int)_pricing.AppraiseGrid((EntityUid)(deed?.ShuttleUid!));
 
-        sellValue -= CalculateSalesTax(component, sellValue);
+        sellValue -= CalculateTotalSalesTax(component, sellValue);
 
         var fullName = deed != null ? GetFullName(deed) : null;
         RefreshState(uid, bank.Balance, true, fullName, sellValue, targetId, (ShipyardConsoleUiKey)args.UiKey, voucherUsed);
@@ -604,9 +584,9 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
             int sellValue = 0;
             if (deed?.ShuttleUid != null)
-                sellValue = (int)_pricing.AppraiseGrid((EntityUid)(deed?.ShuttleUid!));
+                sellValue = (int) _pricing.AppraiseGrid(deed.ShuttleUid.Value);
 
-            sellValue -= CalculateSalesTax(component, sellValue);
+            sellValue -= CalculateTotalSalesTax(component, sellValue);
 
             var fullName = deed != null ? GetFullName(deed) : null;
             RefreshState(uid,
@@ -798,11 +778,21 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         deed.PurchasedWithVoucher = purchasedWithVoucher;
     }
 
-    private int CalculateSalesTax(ShipyardConsoleComponent component, int sellValue)
+    // Calculates total sales tax over all accounts.
+    private int CalculateTotalSalesTax(ShipyardConsoleComponent component, int sellValue)
     {
-        if (float.IsFinite(component.SalesTax) && component.SalesTax != 0f)
+        int salesTax = 0;
+        foreach (var (account, taxCoeff) in component.TaxAccounts)
+            salesTax += CalculateSalesTax(sellValue, taxCoeff);
+        return salesTax;
+    }
+
+    // Calculates sales tax for a particular account.
+    private int CalculateSalesTax(int sellValue, float taxRate)
+    {
+        if (float.IsFinite(taxRate) && taxRate > 0f)
         {
-            return (int)(sellValue * component.SalesTax);
+            return (int)(sellValue * taxRate);
         }
         return 0;
     }

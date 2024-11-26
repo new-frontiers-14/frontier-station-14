@@ -597,6 +597,62 @@
     chance: 1
     offset: 0.0
 
+- type: entity
+  name: random computer frame
+  id: SpawnDungeonComputerFrame
+  parent: MarkerBase
+  suffix: Dungeon
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Machines/VendingMachines/youtool.rsi
+        state: off
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - MachineFrameDestroyed
+    - ComputerFrame
+    - ComputerBroken
+    chance: 1
+    offset: 0.0
+
+- type: entity
+  name: random canister broken
+  id: SpawnDungeonCanisterBroken
+  parent: MarkerBase
+  suffix: Dungeon
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Structures/Machines/VendingMachines/youtool.rsi
+        state: off
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - GasCanisterBrokenBase
+    - LiquidOxygenCanisterBroken
+    - LiquidNitrogenCanisterBroken
+    - LiquidCarbonDioxideCanisterBroken
+    - AmmoniaCanisterBroken
+    - FrezonCanisterBroken
+    - NitrogenCanisterBroken
+    - NitrousOxideCanisterBroken
+    - PlasmaCanisterBroken
+    - TritiumCanisterBroken
+    - StorageCanisterBroken
+    - WaterVaporCanisterBroken
+    - OxygenCanisterBroken
+    chance: 1
+    offset: 0.0
+
 # Other
 - type: entity
   name: random machine board
@@ -939,41 +995,6 @@
     rarePrototypes:
     - CrateFunHoverbikeNF
     rareChance: 0.35
-
-- type: entity
-  name: random canister
-  id: SpawnDungeonLootCanister
-  parent: MarkerBase
-  suffix: Dungeon
-  components:
-  - type: Sprite
-    layers:
-      - state: green
-      - sprite: Structures/Storage/canister.rsi
-        state: greenys
-      - sprite: _NF/Markers/general.rsi
-        state: questionmark
-        color: red
-  - type: RandomSpawner
-    prototypes:
-    - AirCanister
-    - AmmoniaCanister
-    - CarbonDioxideCanister
-    - NitrogenCanister
-    - NitrousOxideCanister
-    - OxygenCanister
-    - PlasmaCanister
-    - StorageCanister
-    - WaterVaporCanister
-    chance: 0.95
-    offset: 0.0
-    rarePrototypes:
-    - FrezonCanister
-#    - LiquidCarbonDioxideCanister # Abused to hell
-#    - LiquidNitrogenCanister # Abused to hell
-#    - LiquidOxygenCanister # Abused to hell
-    - TritiumCanister
-    rareChance: 0.01
 
 - type: entity
   name: random briefcase
