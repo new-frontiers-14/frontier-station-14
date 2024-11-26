@@ -1,6 +1,6 @@
 - type: entity
   name: pickaxe
-  parent: BaseItem
+  parent: [ BaseItem, RecyclableItemWoodMedium ] # Frontier: added RecyclableItemWoodMedium
   id: Pickaxe
   description: Notched to perfection, for jamming it into rocks.
   components:
@@ -88,7 +88,7 @@
 
 - type: entity
   abstract: true
-  parent: BaseItem
+  parent: [ BaseItem, BaseC1Contraband ] # Frontier: BaseSecurityCargoContraband<BaseC1Contraband
   id: BaseWeaponCrusher # Crusher? But I...
   name: crusher
   description: An early design of the proto-kinetic accelerator.
@@ -99,8 +99,6 @@
     color: "#ffeead"
     enabled: false
     radius: 4
-  - type: StaticPrice
-    price: 255
 
 - type: entity
   parent: [BaseWeaponCrusher, BaseC1Contraband] # Frontier: BaseSecurityCargoContraband<BaseC1Contraband
@@ -137,8 +135,8 @@
     wideAnimationRotation: -135
     damage:
       types:
-        Blunt: 5
-        Slash: 3
+        Blunt: 10
+        Slash: 5
     soundHit:
       collection: MetalThud
   - type: Wieldable
@@ -151,16 +149,14 @@
   - type: GunRequiresWield
   - type: Item
     size: Ginormous
+    sprite: Objects/Weapons/Melee/crusher-inhands.rsi
   - type: DisarmMalus
-  - type: Tool
-    qualities:
-      - Prying
-  - type: Clothing
-    quickEquip: false
-    slots:
-    - back
-    - suitStorage
   - type: Prying
+  - type: Clothing # Frontier
+    quickEquip: false # Frontier
+    slots: # Frontier
+    - back # Frontier
+    - suitStorage # Frontier
 
 - type: entity
   parent: [ BaseWeaponCrusher, BaseC1Contraband] # Frontier: BaseSecurityCargoContraband<BaseC1Contraband
@@ -177,12 +173,10 @@
     attackRate: 2
     damage:
       types:
-        Slash: 7
+        Slash: 15
   - type: Tag
     tags:
     - Knife
-  - type: StaticPrice
-    price: 95.5
 
 # Like a crusher... but better
 - type: entity
@@ -198,15 +192,11 @@
   - type: LeechOnMarker
     leech:
       groups:
-        Brute: -12
+        Brute: -21
   - type: MeleeWeapon
   - type: Tag
     tags:
       - Pickaxe
-  - type: StaticPrice
-    price: 285
-  - type: Clothing
-    quickEquip: false
-    slots:
-    - back
-    - suitStorage
+  - type: Item
+    size: Ginormous
+    sprite: Objects/Weapons/Melee/crusher_glaive-inhands.rsi

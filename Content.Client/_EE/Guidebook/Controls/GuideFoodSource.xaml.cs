@@ -46,6 +46,11 @@ public sealed partial class GuideFoodSource : BoxContainer, ISearchableControl
             case FoodReactionData reaction:
                 GenerateControl(reaction);
                 break;
+            // Frontier: deep fryer recipes
+            case DeepFryerRecipeData reaction:
+                GenerateControl(reaction);
+                break;
+            // End Frontier
             default:
                 throw new ArgumentOutOfRangeException(nameof(entry), entry, null);
         }
@@ -169,6 +174,28 @@ public sealed partial class GuideFoodSource : BoxContainer, ISearchableControl
         ProcessingTextures.AddChild(processingTexture); // Frontier
         ProcessingLabel.Text = Loc.GetString("guidebook-food-processing-reaction");
     }
+
+    // Frontier: deep fryer recipes
+    private void GenerateControl(DeepFryerRecipeData entry)
+    {
+        if (!_protoMan.TryIndex<EntityPrototype>(entry.StartingEntity, out var proto))
+        {
+            SourceLabel.Text = Loc.GetString("guidebook-food-unknown-proto", ("id", entry.Result)); // Frontier: SetMessage<Text
+            return;
+        }
+
+        var combinedIngredients = FormatIngredient(proto, 1);
+        SourceLabel.Text = Loc.GetString("guidebook-food-processing-recipe", ("ingredients", combinedIngredients)); // Frontier: SetMessage<Text
+
+        TextureRect processingTexture;
+
+        processingTexture = new TextureRect();
+        processingTexture.Texture = GetRsiTexture("/Textures/Nyanotrasen/Structures/Machines/deep_fryer.rsi", "off-0");
+        ProcessingTextures.AddChild(processingTexture);
+
+        ProcessingLabel.Text = Loc.GetString("guidebook-food-processing-deep-fry", ("processingTypes", Loc.GetString("guidebook-food-processing-type-deepfryer")), ("time", entry.Cycles));
+    }
+    // End Frontier
 
     private Texture GetRsiTexture(string path, string state)
     {

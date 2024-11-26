@@ -41,7 +41,7 @@
 
 - type: entity
   abstract: true
-  parent: ReagentContainerBase
+  parent: [ReagentContainerBase, RecyclableItemCardboard] # Frontier: added RecyclableItemCardboard
   id: ReagentPacketBase
   components:
   - type: Openable
@@ -450,10 +450,14 @@
   name: raw pastry base
   parent: FoodBakingBase
   id: FoodDoughPastryBaseRaw
-  description: Must be cooked before use.
+  # description: Must be cooked before use. # Frontier: return when we have things using cooked pastry base
+  description: A starting point for donuts and pastries.
   components:
   - type: Sprite
     state: dough-pastry
+  - type: Construction # Frontier
+    graph: NFDonut # Frontier
+    node: start # Frontier
 
 - type: entity
   name: pastry base
@@ -564,6 +568,10 @@
     slice: FoodButterSlice
   - type: Extractable # Frontier
     grindableSolutionName: food # Frontier
+  - type: Tag # Frontier
+    tags: # Frontier
+      - Ingredient # Frontier
+      - NFButterStick # Frontier
 
 - type: entity
   name: butter slice
