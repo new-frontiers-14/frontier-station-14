@@ -59,7 +59,7 @@ namespace Content.Server.Administration.Systems
                 lastRunLevel)> _relayMessages = new();
 
         private Dictionary<NetUserId, string> _oldMessageIds = new();
-        public readonly Dictionary<NetUserId, Queue<string>> _messageQueues = new(); // Frontier - Changed to Public
+        private readonly Dictionary<NetUserId, Queue<string>> _messageQueues = new();
         private readonly HashSet<NetUserId> _processingChannels = new();
         private readonly Dictionary<NetUserId, (TimeSpan Timestamp, bool Typing)> _typingUpdateTimestamps = new();
         private string _overrideClientName = string.Empty;
@@ -541,10 +541,20 @@ namespace Content.Server.Administration.Systems
             }
         }
 
+        // Frontier: webhook text messages
+        public void OnWebhookBwoinkTextMessage(BwoinkTextMessage message, ServerApi.BwoinkActionBody body)
+        {
+            // Note for forks:
+            AdminData webhookAdminData = new();
+
+            // TODO: fix args
+            OnBwoinkInternal(message, SystemUserId, webhookAdminData, body.Username, null, body.UserOnly, body.WebhookUpdate, true);
+        }
+
         protected override void OnBwoinkTextMessage(BwoinkTextMessage message, EntitySessionEventArgs eventArgs)
         {
             base.OnBwoinkTextMessage(message, eventArgs);
-            _activeConversations[message.UserId] = DateTime.Now;
+
             var senderSession = eventArgs.SenderSession;
 
             // TODO: Sanitize text?
@@ -562,6 +572,23 @@ namespace Content.Server.Administration.Systems
             if (_rateLimit.CountAction(eventArgs.SenderSession, RateLimitKey) != RateLimitStatus.Allowed)
                 return;
 
+            OnBwoinkInternal(message, eventArgs.SenderSession.UserId, senderAdmin, eventArgs.SenderSession.Name, eventArgs.SenderSession.Channel, false, true, false);
+        }
+
+        /// <summary>
+        /// Sends a bwoink. Common to both internal messages (sent via the ahelp or admin interface) and webhook messages (sent through the webhook, e.g. via Discord)
+        /// </summary>
+        /// <param name="message">The message being sent.</param>
+        /// <param name="senderId">The network GUID of the person sending the message.</param>
+        /// <param name="senderAdmin">The admin privileges of the person sending the message.</param>
+        /// <param name="senderName">The name of the person sending the message.</param>
+        /// <param name="senderChannel">The channel to send a message to, e.g. in case of failure to send</param>
+        /// <param name="sendWebhook">If true, message should be sent off through the webhook if possible</param>
+        /// <param name="fromWebhook">Message originated from a webhook (e.g. Discord)</param>
+        private void OnBwoinkInternal(BwoinkTextMessage message, NetUserId senderId, AdminData? senderAdmin, string senderName, INetChannel? senderChannel, bool userOnly, bool sendWebhook, bool fromWebhook)
+        {
+            _activeConversations[message.UserId] = DateTime.Now;
+
             var escapedText = FormattedMessage.EscapeText(message.Text);
 
             string bwoinkText;
@@ -577,31 +604,37 @@ namespace Content.Server.Administration.Systems
                 senderAdmin.Flags ==
                 AdminFlags.Adminhelp) // Mentor. Not full admin. That's why it's colored differently.
             {
-                bwoinkText = $"[color=purple]{adminPrefix}{senderSession.Name}[/color]";
+                bwoinkText = $"[color=purple]{adminPrefix}{senderName}[/color]";
             }
-            else if (senderAdmin is not null && senderAdmin.HasFlag(AdminFlags.Adminhelp))
+            else if (fromWebhook || senderAdmin is not null && senderAdmin.HasFlag(AdminFlags.Adminhelp)) // Frontier: anything sent via webhooks are from an admin.
             {
-                bwoinkText = $"[color=red]{adminPrefix}{senderSession.Name}[/color]";
+                bwoinkText = $"[color=red]{adminPrefix}{senderName}[/color]";
             }
             else
             {
-                bwoinkText = $"{senderSession.Name}";
+                bwoinkText = $"{senderName}";
             }
+
+            if (fromWebhook)
+                bwoinkText = $"(DC) {bwoinkText}";
 
             bwoinkText = $"{(message.PlaySound ? "" : "(S) ")}{bwoinkText}: {escapedText}";
 
             // If it's not an admin / admin chooses to keep the sound then play it.
-            var playSound = !senderAHelpAdmin || message.PlaySound;
-            var msg = new BwoinkTextMessage(message.UserId, senderSession.UserId, bwoinkText, playSound: playSound);
+            var playSound = senderAdmin == null || message.PlaySound;
+            var msg = new BwoinkTextMessage(message.UserId, senderId, bwoinkText, playSound: playSound);
 
             LogBwoink(msg);
 
             var admins = GetTargetAdmins();
 
             // Notify all admins
-            foreach (var channel in admins)
+            if (!userOnly)
             {
-                RaiseNetworkEvent(msg, channel);
+                foreach (var channel in admins)
+                {
+                    RaiseNetworkEvent(msg, channel);
+                }
             }
 
             string adminPrefixWebhook = "";
@@ -633,13 +666,16 @@ namespace Content.Server.Administration.Systems
                         }
                         else
                         {
-                            overrideMsgText = $"{senderSession.Name}"; // Not an admin, name is not overridden.
+                            overrideMsgText = $"{senderName}"; // Not an admin, name is not overridden.
                         }
+
+                        if (fromWebhook)
+                            overrideMsgText = $"(DC) {overrideMsgText}";
 
                         overrideMsgText = $"{(message.PlaySound ? "" : "(S) ")}{overrideMsgText}: {escapedText}";
 
                         RaiseNetworkEvent(new BwoinkTextMessage(message.UserId,
-                                senderSession.UserId,
+                                senderId,
                                 overrideMsgText,
                                 playSound: playSound),
                             session.Channel);
@@ -650,13 +686,13 @@ namespace Content.Server.Administration.Systems
             }
 
             var sendsWebhook = _webhookUrl != string.Empty;
-            if (sendsWebhook)
+            if (sendsWebhook && sendWebhook)
             {
                 if (!_messageQueues.ContainsKey(msg.UserId))
                     _messageQueues[msg.UserId] = new Queue<string>();
 
                 var str = message.Text;
-                var unameLength = senderSession.Name.Length;
+                var unameLength = senderName.Length;
 
                 if (unameLength + str.Length + _maxAdditionalChars > DescriptionMax)
                 {
@@ -665,12 +701,13 @@ namespace Content.Server.Administration.Systems
 
                 var nonAfkAdmins = GetNonAfkAdmins();
                 var messageParams = new AHelpMessageParams(
-                    senderSession.Name,
+                    senderName,
                     str,
-                    !personalChannel,
+                    senderId != message.UserId,
                     _gameTicker.RoundDuration().ToString("hh\\:mm\\:ss"),
                     _gameTicker.RunLevel,
                     playedSound: playSound,
+                    isDiscord: fromWebhook,
                     noReceivers: nonAfkAdmins.Count == 0
                 );
                 _messageQueues[msg.UserId].Enqueue(GenerateAHelpMessage(messageParams));
@@ -680,10 +717,14 @@ namespace Content.Server.Administration.Systems
                 return;
 
             // No admin online, let the player know
-            var systemText = Loc.GetString("bwoink-system-starmute-message-no-other-users");
-            var starMuteMsg = new BwoinkTextMessage(message.UserId, SystemUserId, systemText);
-            RaiseNetworkEvent(starMuteMsg, senderSession.Channel);
+            if (senderChannel != null)
+            {
+                var systemText = Loc.GetString("bwoink-system-starmute-message-no-other-users");
+                var starMuteMsg = new BwoinkTextMessage(message.UserId, SystemUserId, systemText);
+                RaiseNetworkEvent(starMuteMsg, senderChannel);
+            }
         }
+        // End Frontier:
 
         private IList<INetChannel> GetNonAfkAdmins()
         {
@@ -702,7 +743,7 @@ namespace Content.Server.Administration.Systems
                 .ToList();
         }
 
-        public static string GenerateAHelpMessage(AHelpMessageParams parameters) // Frontier - Changed to Public
+        private static string GenerateAHelpMessage(AHelpMessageParams parameters)
         {
             var stringbuilder = new StringBuilder();
 

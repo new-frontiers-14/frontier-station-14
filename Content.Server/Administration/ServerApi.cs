@@ -422,51 +422,10 @@ public sealed partial class ServerApi : IPostInjectInit
             return;
         }
 
-        // Message is parsed by the bot itself, we only need to make it a right component
-        var message = new SharedBwoinkSystem.BwoinkTextMessage(player.UserId, SharedBwoinkSystem.SystemUserId, body.TextFormatted);
+        var serverBwoinkSystem = _entitySystemManager.GetEntitySystem<BwoinkSystem>();
+        var message = new SharedBwoinkSystem.BwoinkTextMessage(player.UserId, SharedBwoinkSystem.SystemUserId, body.Text);
+        serverBwoinkSystem.OnWebhookBwoinkTextMessage(message, body);
 
-
-
-        // If we want to only send the message to the player
-        if (!body.UserOnly)
-        {
-            // Get all Online admins with the adminhelp flag
-            var adminList = _adminManager.ActiveAdmins
-            .Where(p => _adminManager.GetAdminData(p)?.HasFlag(AdminFlags.Adminhelp) ?? false)
-            .Select(p => p.Channel)
-            .ToList();
-
-            // Send the message to all online admins, so they also see it.
-            foreach (var admin in adminList)
-            {
-                _entityManager.EntityNetManager?.SendSystemNetworkMessage(message, admin);
-            }
-        }
-        // Send the message to the player
-        _entityManager.EntityNetManager?.SendSystemNetworkMessage(message, player.Channel);
-
-        // This saves me a headache of making the bot remembering every message it send and adding it to the embed.
-        // So i just let the existing system handle it
-        if (body.WebhookUpdate)
-        {
-            var ticker = _entitySystemManager.GetEntitySystem<GameTicker>();
-            var serverBwoinkSystem = _entitySystemManager.GetEntitySystem<BwoinkSystem>();
-            var queue = serverBwoinkSystem._messageQueues.GetOrNew(player.UserId);
-
-            var formattedMessage = new AHelpMessageParams(
-                player.Name,
-                body.TextRaw,
-                true,
-                ticker.RoundDuration().ToString("hh\\:mm\\:ss"),
-                ticker.RunLevel,
-                true,
-                isDiscord: true
-                );
-
-            var finalMessage = BwoinkSystem.GenerateAHelpMessage(formattedMessage);
-            queue.Enqueue(finalMessage);
-
-        }
         // Respond with OK
         await RespondOk(context);
     });
@@ -710,10 +669,10 @@ public sealed partial class ServerApi : IPostInjectInit
         public required string Motd { get; init; }
     }
 
-    private sealed class BwoinkActionBody
+    public sealed class BwoinkActionBody
     {
-        public required string TextRaw { get; init; }
-        public required string TextFormatted { get; init; }
+        public required string Text { get; init; }
+        public required string Username { get; init; }
         public required Guid Guid { get; init; }
         public bool UserOnly { get; init; }
         public required bool WebhookUpdate { get; init; }
