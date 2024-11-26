@@ -8,11 +8,10 @@
   - type: EncryptionKey
   - type: Item
     sprite: Objects/Devices/encryption_keys.rsi
-    size: Tiny # Frontier - 5 to 2 size
   - type: Sprite
     sprite: Objects/Devices/encryption_keys.rsi
-  - type: StaticPrice
-    price: 2
+  - type: StaticPrice # Frontier
+    price: 2 # Frontier
 
 - type: entity
   parent: [EncryptionKey, RecyclableItemDeviceTiny] # Frontier: added RecyclableItemDeviceTiny
@@ -244,7 +243,7 @@
   - type: Sprite
     layers:
     - state: crypt_silver
-    - state: borg_label
+    - state: ai_label
 
 - type: entity
   parent: [ EncryptionKey, BaseC3SyndicateContrabandNoValue ] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContrabandNoValue
@@ -259,7 +258,7 @@
   - type: Sprite
     layers:
     - state: crypt_red
-    - state: borg_label
+    - state: ai_label
 
 - type: entity
   parent: [EncryptionKey, BaseC3PirateContraband] # Frontier: added BaseC3PirateContraband

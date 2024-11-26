@@ -1,5 +1,4 @@
 using System.Numerics;
-using Content.Server.Cargo.Components;
 using Content.Server.Cargo.Systems;
 using Robust.Server.GameObjects;
 using Robust.Shared.Map;
@@ -7,21 +6,23 @@ using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Server.StationEvents.Components;
 using Content.Shared.GameTicking.Components;
-using Content.Shared.Humanoid;
-using Content.Shared.Mobs.Components;
 using Robust.Shared.Random;
 using Content.Server._NF.Salvage;
+using Content.Server._NF.Bank;
+using Content.Shared._NF.Bank.BUI;
 using Content.Server.GameTicking;
 using Content.Server.Procedural;
 using Robust.Shared.Prototypes;
 using Content.Shared.Salvage;
 using Content.Server.Warps;
 using Content.Server.Station.Systems;
+using Content.Server.Maps.NameGenerators;
 
 namespace Content.Server.StationEvents.Events;
 
 public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleComponent>
 {
+    NanotrasenNameGenerator _nameGenerator = new();
     [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly SharedMapSystem _mapSystem = default!;
     [Dependency] private readonly IPrototypeManager _protoManager = default!;
@@ -32,10 +33,9 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly ShuttleSystem _shuttle = default!;
     [Dependency] private readonly PricingSystem _pricing = default!;
-    [Dependency] private readonly CargoSystem _cargo = default!;
     [Dependency] private readonly LinkedLifecycleGridSystem _linkedLifecycleGrid = default!;
-    [Dependency] private readonly StationSystem _stationSystem = default!;
     [Dependency] private readonly StationRenameWarpsSystems _renameWarps = default!;
+    [Dependency] private readonly BankSystem _bank = default!;
 
     public override void Initialize()
     {
@@ -88,20 +88,30 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
                     _metadata.SetEntityName(spawned, Loc.GetString(_random.Pick(group.NameLoc)));
 
                 }
-
-                if (_protoManager.TryIndex(group.NameDataset, out var dataset))
+                else if (_protoManager.TryIndex(group.NameDataset, out var dataset))
                 {
-                    _metadata.SetEntityName(spawned, SharedSalvageSystem.GetFTLName(dataset, _random.Next()));
+                    string gridName;
+                    switch (group.NameDatasetType)
+                    {
+                        case BluespaceDatasetNameType.FTL:
+                            gridName = SharedSalvageSystem.GetFTLName(dataset, _random.Next());
+                            break;
+                        case BluespaceDatasetNameType.Nanotrasen:
+                            gridName = _nameGenerator.FormatName(_random.Pick(dataset.Values) + " {1}"); // We need the prefix.
+                            break;
+                        case BluespaceDatasetNameType.Verbatim:
+                        default:
+                            gridName = _random.Pick(dataset.Values);
+                            break;
+                    }
+
+                    _metadata.SetEntityName(spawned, gridName);
                 }
 
                 if (group.NameWarp)
                 {
-                    var warps = _renameWarps.SyncWarpPointsToGrid(spawned);
-                    foreach (var warp in warps)
-                    {
-                        if (group.HideWarp)
-                            warp.Comp.AdminOnly = true;
-                    }
+                    bool? adminOnly = group.HideWarp ? true : null;
+                    _renameWarps.SyncWarpPointsToGrid(spawned, forceAdminOnly: adminOnly);
                 }
 
                 EntityManager.AddComponents(spawned, group.AddComponents);
@@ -246,10 +256,10 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
                     _transform.SetCoordinates(mob.Entity.Owner, new EntityCoordinates(mob.MapUid, mob.LocalPosition));
                 }
 
-                var queryBank = EntityQuery<StationBankAccountComponent>();
-                foreach (var account in queryBank)
+                foreach (var (account, rewardCoeff) in component.RewardAccounts)
                 {
-                    _cargo.DeductFunds(account, (int)-(gridValue * component.NfsdRewardFactor));
+                    var reward = (int)(gridValue * rewardCoeff);
+                    _bank.TrySectorDeposit(account, reward, LedgerEntryType.BluespaceReward);
                 }
             }
         }

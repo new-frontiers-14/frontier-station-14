@@ -11,3 +11,20 @@
   icon:
     sprite: _NF/Structures/Machines/computer_tabletop.rsi
     state: computer_tabletop_frame
+
+- type: construction
+  name: computer (wallmount)
+  id: ConstructionComputerWallmount
+  graph: ComputerWallmount
+  startNode: start
+  targetNode: wallmount computer
+  category: construction-category-machines
+  description: A frame used to construct anything with a computer circuitboard.
+  icon:
+    sprite: _NF/Structures/Machines/computer_wallmount.rsi
+    state: computer_wallmount_frame
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: true
+  conditions:
+  - !type:WallmountCondition {}

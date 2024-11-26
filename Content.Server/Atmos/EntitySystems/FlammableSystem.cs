@@ -28,6 +28,7 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Random;
+using Content.Server._NF.Atmos.Components; // Frontier
 
 namespace Content.Server.Atmos.EntitySystems
 {
@@ -79,6 +80,8 @@ namespace Content.Server.Atmos.EntitySystems
 
             SubscribeLocalEvent<IgniteOnMeleeHitComponent, MeleeHitEvent>(OnMeleeHit);
 
+            SubscribeLocalEvent<IgniteOnProjectileHitComponent, ProjectileHitEvent>(OnProjectileHit); // Frontier
+
             SubscribeLocalEvent<ExtinguishOnInteractComponent, ActivateInWorldEvent>(OnExtinguishActivateInWorld);
 
             SubscribeLocalEvent<IgniteOnHeatDamageComponent, DamageChangedEvent>(OnDamageChanged);
@@ -96,6 +99,18 @@ namespace Content.Server.Atmos.EntitySystems
                     Ignite(entity, args.Weapon, flammable, args.User);
             }
         }
+
+        // Frontier: ignition on projectile hit event
+        private void OnProjectileHit(EntityUid uid, IgniteOnProjectileHitComponent component, ProjectileHitEvent args)
+        {
+            if (!TryComp<FlammableComponent>(args.Target, out var flammable))
+                return;
+
+            AdjustFireStacks(args.Target, component.FireStacks, flammable);
+            if (component.FireStacks >= 0)
+                Ignite(args.Target, uid, flammable, args.Shooter);
+        }
+        // End Frontier
 
         private void OnIgniteLand(EntityUid uid, IgniteOnCollideComponent component, ref LandEvent args)
         {
