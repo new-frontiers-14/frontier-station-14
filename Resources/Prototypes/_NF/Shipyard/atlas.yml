@@ -1,0 +1,46 @@
+# Author Info
+# GitHub: SergeantEcho
+# Discord: @sergeantecho
+
+# Maintainer Info
+# GitHub: ???
+# Discord: ???
+
+# Shuttle Notes:
+# -
+
+- type: vessel
+  id: Atlas
+  name: NC Atlas
+  description: The former mobile scientific complex, which has been converted into autonomous shuttle and long-term travel, is recommended for a team of 6-12 people.
+  price: 176000
+  category: Large
+  group: Shipyard
+  shuttlePath: /Maps/_NF/Shuttles/atlas.yml
+  class:
+  - Science
+  - Chemistry
+  - Civilian
+  engine:
+  - Uranium
+  - Solar
+
+- type: gameMap
+  id: Atlas
+  mapName: 'NC Atlas'
+  mapPath: /Maps/_NF/Shuttles/atlas.yml
+  minPlayers: 0
+  stations:
+     Atlas:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Atlas {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]
