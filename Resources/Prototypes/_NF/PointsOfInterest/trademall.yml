@@ -11,14 +11,20 @@
 - type: pointOfInterest
   id: TradeMall
   name: Trade Mall
-  rangeMin: 1500
-  rangeMax: 2500
-  IFFColor: "#37C837"
+  minimumDistance: 1500
+  maximumDistance: 2500
   spawnGroup: MarketStation
   gridPath: /Maps/_NF/POI/trademall.yml
-  busStop: true
-  gridProtection:
-    - ArtifactTriggers
+  addComponents:
+  - type: IFF
+    color: "#37C837"
+    readOnly: true
+  - type: Shuttle
+    angularDamping: 999999
+    linearDamping: 999999
+  - type: StationTransit
+  - type: ProtectedGrid
+    preventArtifactTriggers: true
 
 - type: gameMap
   id: TradeMall
