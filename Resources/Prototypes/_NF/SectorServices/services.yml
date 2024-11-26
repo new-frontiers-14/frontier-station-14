@@ -8,7 +8,8 @@
   components:
   - type: SectorLogisticStats
 
+ # A global source of character records (DNA, fingerprints, criminal records, etc.)
 - type: sectorService
   id: SectorRecords
   components:
-  - type: SectorStationRecord # Allows the NFSD criminal records to properly function
+  - type: StationRecords

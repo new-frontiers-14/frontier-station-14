@@ -1,9 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
-using System.IO;
 using Content.Server.Access.Systems;
 using Content.Server.Forensics;
 using Content.Server.GameTicking;
-using Content.Server.Station.Components; // Frontier
 using Content.Shared.Access.Components;
 using Content.Shared.Inventory;
 using Content.Shared.PDA;
@@ -13,6 +11,7 @@ using Content.Shared.StationRecords;
 using Robust.Shared.Enums;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random; // Frontier
+using Content.Server._NF.SectorServices; // Frontier
 
 namespace Content.Server.StationRecords.Systems;
 
@@ -42,6 +41,10 @@ public sealed class StationRecordsSystem : SharedStationRecordsSystem
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IdCardSystem _idCard = default!;
     [Dependency] private readonly IRobustRandom _robustRandom = default!; // Frontier
+    [Dependency] private readonly SectorServiceSystem _sectorService = default!; // Frontier
+    [Dependency] private readonly ForensicsSystem _forensics = default!; // Frontier
+
+    static readonly ProtoId<JobPrototype>[] FakeJobIds = [ "Contractor", "Pilot", "Mercenary" ]; // Frontier
 
     public override void Initialize()
     {
@@ -57,28 +60,6 @@ public sealed class StationRecordsSystem : SharedStationRecordsSystem
             return;
 
         CreateGeneralRecord(args.Station, args.Mob, args.Profile, args.JobId, stationRecords);
-
-        /*var query = EntityQueryEnumerator<SectorStationRecordComponent>();
-
-        while (query.MoveNext(out var stationGridUid, out var comp))
-        {
-            if (TryComp<StationMemberComponent>(stationGridUid, out var stationMemberComponent))
-            {
-                var stationEntityUid = stationMemberComponent.Station;
-
-                CreateGeneralRecord(stationEntityUid, args.Mob, args.Profile, args.JobId, stationRecords);
-
-                /*
-                if (TryComp<StationRecordKeyStorageComponent>(targetId, out var keyStorage)
-                && stationEntityUid != null
-                && keyStorage.Key != null)
-                {
-                    if (!TryGetRecord<GeneralStationRecord>(Key.Value, out var record))
-                        continue;
-            }
-            }
-
-        }*/
     }
 
     private void OnRename(ref EntityRenamedEvent ev)
@@ -121,44 +102,29 @@ public sealed class StationRecordsSystem : SharedStationRecordsSystem
 
         CreateGeneralRecord(station, idUid.Value, profile.Name, profile.Age, profile.Species, profile.Gender, jobId, fingerprintComponent?.Fingerprint, dnaComponent?.DNA, profile, records);
 
-        /// Frontier block of code starts here
-        var query = EntityQueryEnumerator<SectorStationRecordComponent>();
+        /// Frontier: generate sector-wide station record
+        if (TryComp<SpecialSectorStationRecordComponent>(player, out var specialRecord) && specialRecord.RecordGeneration == RecordGenerationType.NoRecord)
+            return;
 
-        while (query.MoveNext(out var stationEntityUid, out var comp))
+        EntityUid serviceEnt = _sectorService.GetServiceEntity();
+
+        if (TryComp(serviceEnt, out StationRecordsComponent? stationRecords))
         {
-            if (!TryComp<IgnoreSectorStationRecordComponent>(player, out var playerComp))
+            //Checks if certain information should be faked, if so, fake it.
+            string playerJob = jobId;
+            string? fingerprint = fingerprintComponent?.Fingerprint;
+            string? dna = dnaComponent?.DNA;
+            if (specialRecord != null
+                && specialRecord.RecordGeneration == RecordGenerationType.FalseRecord)
             {
-                var stationList = EntityQueryEnumerator<StationRecordsComponent>();
-
-                while (stationList.MoveNext(out var stationUid, out var stationRecComp))
-                {
-                    if (TryComp<StationRecordKeyStorageComponent>(idUid.Value, out var keyStorage)
-                    && stationEntityUid != null
-                    && keyStorage.Key != null)
-                    {
-                        if (!TryGetRecord<GeneralStationRecord>(keyStorage.Key.Value, out var record))
-                            continue;
-
-                        AddRecordEntry((EntityUid) stationEntityUid, record);
-                        break;
-                    }
-                }
-
-                TryComp<StationRecordsComponent>(stationEntityUid, out var stationRec);
-
-                //Checks if certain information should be faked, is yes then will randomise it
-                string playerJob = jobId;
-                if(TryComp<FakeSectorStationRecordComponent>(player, out var playerComponent))
-                {
-                    string[] jobs = { "Contractor", "Pilot", "Mercenary" };
-                    // Randomises job
-                    var random = _robustRandom.Next(jobs.Length);
-                    playerJob = jobs[random];
-                }
-                CreateGeneralRecord(stationEntityUid, idUid.Value, profile.Name, profile.Age, profile.Species, profile.Gender, playerJob, fingerprintComponent?.Fingerprint, dnaComponent?.DNA, profile, stationRec!);
+                playerJob = _robustRandom.Pick(FakeJobIds);
+                fingerprint = _forensics.GenerateFingerprint();
+                dna = _forensics.GenerateDNA();
             }
+
+            CreateGeneralRecord(serviceEnt, idUid.Value, profile.Name, profile.Age, profile.Species, profile.Gender, playerJob, fingerprint, dna, profile, stationRecords);
         }
-        /// Frontier block of code ends here
+        /// End Frontier
     }
 
 
