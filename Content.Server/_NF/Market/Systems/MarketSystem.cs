@@ -1,5 +1,5 @@
 ﻿using Content.Server._NF.SectorServices;
-using Content.Server.Bank;
+using Content.Server._NF.Bank;
 using Content.Server.Cargo.Systems;
 using Content.Server.Stack;
 using Content.Server.Station.Systems;

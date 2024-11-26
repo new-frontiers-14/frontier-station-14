@@ -1,0 +1,173 @@
+# Base prototypes
+
+- type: latheRecipe
+  abstract: true
+  id: BioGenFoodRecipe
+  category: Food
+  completetime: 1
+
+- type: latheRecipe
+  abstract: true
+  id: BioGenCondimentRecipe
+  parent: BioGenFoodRecipe
+  materials:
+    Biomass: 18
+
+# Recipes
+
+- type: latheRecipe
+  id: NFBioGenHydroponicsSoilNutritionFlatpack
+  result: HydroponicsSoilNutritionFlatpack
+  category: Tools
+  completetime: 360
+  applyMaterialDiscount: false
+  materials:
+    Biomass: 1600
+
+- type: latheRecipe
+  id: NFBioGenWoodPlank
+  result: MaterialWoodPlank1
+  parent: BaseMaterialsNoDiscountRecipe # Base prototype is in Resources\Prototypes\_NF\Recipes\Lathes\sheet.yml
+  materials:
+    Biomass: 15
+
+- type: latheRecipe
+  id: NFBioGenSheetPlastic
+  result: SheetPlastic1
+  parent: BaseMaterialsNoDiscountRecipe
+  completetime: 10
+  materials:
+    Biomass: 40
+
+- type: latheRecipe
+  id: NFBioGenPaperSheet
+  result: SheetPaper1
+  parent: BaseMaterialsNoDiscountRecipe
+  materials:
+    Biomass: 10
+
+- type: latheRecipe
+  id: NFBioGenFoodMeat
+  result: FoodMeat
+  parent: BioGenFoodRecipe
+  applyMaterialDiscount: false
+  completetime: 10
+  materials:
+    Biomass: 35
+
+- type: latheRecipe
+  id: BioGenChickenCube
+  result: ChickenCube
+  parent: BioGenFoodRecipe
+  completetime: 300
+  materials:
+    Biomass: 45
+
+- type: latheRecipe
+  id: BioGenDuckCube
+  result: DuckCube
+  parent: BioGenFoodRecipe
+  completetime: 300
+  materials:
+    Biomass: 45
+
+# Condiments
+
+- type: latheRecipe
+  id: BioGenAstrotame
+  parent: BioGenCondimentRecipe
+  resultReagents:
+    Astrotame: 10
+  icon:
+    sprite: Objects/Consumable/Food/condiments.rsi
+    state: packet-astrotame
+
+- type: latheRecipe
+  id: BioGenBbq
+  parent: BioGenCondimentRecipe
+  resultReagents:
+    BbqSauce: 10
+  icon:
+    sprite: Objects/Consumable/Food/condiments.rsi
+    state: packet-bbq
+
+- type: latheRecipe
+  id: BioGenCornoil
+  parent: BioGenCondimentRecipe
+  resultReagents:
+    Cornoil: 10
+  icon:
+    sprite: Objects/Consumable/Food/condiments.rsi
+    state: packet-cornoil
+
+- type: latheRecipe
+  id: BioGenFrostoil
+  parent: BioGenCondimentRecipe
+  resultReagents:
+    Frostoil: 10
+  icon:
+    sprite: Objects/Consumable/Food/condiments.rsi
+    state: packet-frostoil
+
+- type: latheRecipe
+  id: BioGenHotsauce
+  parent: BioGenCondimentRecipe
+  resultReagents:
+    Hotsauce: 10
+  icon:
+    sprite: Objects/Consumable/Food/condiments.rsi
+    state: packet-hotsauce
+
+- type: latheRecipe
+  id: BioGenHorseradishSauce
+  parent: BioGenCondimentRecipe
+  resultReagents:
+    HorseradishSauce: 10
+  icon:
+    sprite: Objects/Consumable/Food/condiments.rsi
+    state: packet-greygoo
+
+- type: latheRecipe
+  id: BioGenKetchup
+  parent: BioGenCondimentRecipe
+  resultReagents:
+    Ketchup: 10
+  icon:
+    sprite: Objects/Consumable/Food/condiments.rsi
+    state: packet-ketchup
+
+- type: latheRecipe
+  id: BioGenMustard
+  parent: BioGenCondimentRecipe
+  resultReagents:
+    Mustard: 10
+  icon:
+    sprite: Objects/Consumable/Food/condiments.rsi
+    state: packet-mustard
+
+- type: latheRecipe
+  id: BioGenSoysauce
+  parent: BioGenCondimentRecipe
+  resultReagents:
+    Soysauce: 10
+  icon:
+    sprite: Objects/Consumable/Food/condiments.rsi
+    state: packet-soysauce
+
+- type: latheRecipe
+  id: BioGenOilOlive
+  parent: BioGenCondimentRecipe
+  resultReagents:
+    OilOlive: 10
+  icon:
+    sprite: Objects/Consumable/Food/ingredients.rsi
+    state: oliveoil
+
+- type: latheRecipe
+  id: BioGenCornmeal
+  parent: BioGenCondimentRecipe
+  resultReagents:
+    Cornmeal: 10
+  icon:
+    sprite: Objects/Consumable/Food/ingredients.rsi
+    state: cornmeal-big

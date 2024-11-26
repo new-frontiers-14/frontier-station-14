@@ -25,7 +25,7 @@
   - type: StealTarget
     stealGroup: IDCard
   - type: StaticPrice # Frontier
-    price: 5 # The card need to cost less then the PDA that comes with a card and a pen in it.
+    price: 5 # Frontier The card need to cost less then the PDA that comes with a card and a pen in it.
   - type: CargoSellBlacklist # Frontier
 
 #IDs with layers
@@ -285,6 +285,7 @@
   parent: IDCardStandard
   id: JanitorIDCard
   name: janitor ID card
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: Sprite
     layers:
@@ -446,7 +447,7 @@
     - state: default
     - state: idvisitor
   - type: IdCard
-    jobTitle: Visitor
+    jobTitle: job-title-visitor
     jobIcon: JobIconVisitor
   - type: PresetIdCard
     job: Visitor
@@ -750,7 +751,7 @@
     - state: default
     - state: idcluwne
   - type: IdCard
-    jobTitle: Cluwne
+    jobTitle: job-title-cluwne
   - type: Unremoveable
 
 - type: entity
@@ -812,7 +813,7 @@
   - type: Item
     heldPrefix: green
   - type: IdCard
-    jobTitle: Universal
+    jobTitle: job-title-universal
     jobIcon: JobIconAdmin
   - type: Access
     groups:

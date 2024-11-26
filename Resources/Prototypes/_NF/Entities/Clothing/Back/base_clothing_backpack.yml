@@ -1,7 +1,19 @@
 
 - type: entity
   abstract: true
-  parent: ClothingBackpack
+  id: NFBackpackHiddenStash
+  components:
+  - type: Appearance
+  - type: SubFloorHide
+  - type: Anchorable
+  - type: CollideOnAnchor
+    enable: false
+  - type: Transform
+    anchored: false
+  - type: AnchorableStorage
+
+- type: entity
+  parent: [ ClothingBackpack, NFBackpackHiddenStash ]
   id: NFClothingBackpack
   components:
   - type: Storage
@@ -15,8 +27,7 @@
     - 0,0,6,3
 
 - type: entity
-  abstract: true
-  parent: ClothingBackpackDuffel
+  parent: [ ClothingBackpackDuffel, NFBackpackHiddenStash ]
   id: NFClothingDuffel
   components:
   - type: Storage
@@ -33,7 +44,7 @@
   abstract: true
   parent: NFClothingBackpack
   id: NFClothingMessenger
-  components:  
+  components:
   ## One 4x4 pocket, four 2x2 pockets
   - type: Storage
     grid:

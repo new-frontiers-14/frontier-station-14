@@ -846,8 +846,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -10.5,-4.5
       parent: 1
-    - type: Physics
-      bodyType: Static
 - proto: BenchSofaMiddle
   entities:
   - uid: 359
@@ -856,8 +854,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -9.5,-4.5
       parent: 1
-    - type: Physics
-      bodyType: Static
 - proto: BenchSofaRight
   entities:
   - uid: 356
@@ -866,8 +862,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -8.5,-4.5
       parent: 1
-    - type: Physics
-      bodyType: Static
 - proto: BlastDoor
   entities:
   - uid: 16
@@ -1412,6 +1406,14 @@ entities:
     components:
     - type: Transform
       pos: -5.5,1.5
+      parent: 1
+- proto: CableTerminal
+  entities:
+  - uid: 523
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -8.5,1.5
       parent: 1
 - proto: Catwalk
   entities:
@@ -2998,10 +3000,6 @@ entities:
     - type: Transform
       pos: -8.5,1.5
       parent: 1
-    - type: FuelGenerator
-      on: False
-    - type: Physics
-      bodyType: Static
 - proto: PosterContrabandKosmicheskayaStantsiya
   entities:
   - uid: 651
@@ -4333,7 +4331,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: -11.5,-0.5
       parent: 1
-- proto: WarpPointShip
+- proto: WarpPoint
   entities:
   - uid: 683
     components:

@@ -19,10 +19,7 @@ entities:
   - uid: 2
     components:
     - type: MetaData
-      name: CaseysCasino
     - type: Transform
-      pos: -0.5187805,-0.50625
-      parent: invalid
     - type: MapGrid
       chunks:
         0,0:
@@ -810,57 +807,61 @@ entities:
     - type: Transform
       pos: 14.5,4.5
       parent: 2
-- proto: AtmosDeviceFanTiny
+- proto: AtmosDeviceFanDirectional
   entities:
-  - uid: 1296
+  - uid: 798
     components:
     - type: Transform
+      rot: -1.5707963267948966 rad
       pos: -15.5,-5.5
       parent: 2
-  - uid: 1297
+  - uid: 905
     components:
     - type: Transform
+      rot: -1.5707963267948966 rad
       pos: -15.5,-7.5
       parent: 2
-  - uid: 1298
-    components:
-    - type: Transform
-      pos: -10.5,-13.5
-      parent: 2
-  - uid: 1299
+  - uid: 1137
     components:
     - type: Transform
       pos: -8.5,-13.5
       parent: 2
-  - uid: 1300
+  - uid: 1247
     components:
     - type: Transform
-      pos: -0.5,-13.5
+      pos: -10.5,-13.5
       parent: 2
-  - uid: 1301
+  - uid: 1248
     components:
     - type: Transform
       pos: 1.5,-13.5
       parent: 2
-  - uid: 1302
+  - uid: 1249
     components:
     - type: Transform
-      pos: 9.5,-13.5
+      pos: -0.5,-13.5
       parent: 2
-  - uid: 1303
+  - uid: 1262
     components:
     - type: Transform
       pos: 11.5,-13.5
       parent: 2
-  - uid: 1304
+  - uid: 1296
     components:
     - type: Transform
-      pos: 16.5,-7.5
+      pos: 9.5,-13.5
       parent: 2
-  - uid: 1305
+  - uid: 1297
     components:
     - type: Transform
+      rot: 1.5707963267948966 rad
       pos: 16.5,-5.5
+      parent: 2
+  - uid: 1298
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 16.5,-7.5
       parent: 2
 - proto: BarSignTheHarmbaton
   entities:
@@ -877,8 +878,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -0.5,8.5
       parent: 2
-    - type: Physics
-      bodyType: Static
 - proto: BenchSofaCorpMiddle
   entities:
   - uid: 157
@@ -887,8 +886,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 0.5,8.5
       parent: 2
-    - type: Physics
-      bodyType: Static
 - proto: BenchSofaCorpRight
   entities:
   - uid: 1071
@@ -897,8 +894,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 1.5,8.5
       parent: 2
-    - type: Physics
-      bodyType: Static
 - proto: BenchSteelLeft
   entities:
   - uid: 549
@@ -906,16 +901,12 @@ entities:
     - type: Transform
       pos: -11.5,0.5
       parent: 2
-    - type: Physics
-      bodyType: Static
   - uid: 1119
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -9.5,-3.5
       parent: 2
-    - type: Physics
-      bodyType: Static
 - proto: BenchSteelMiddle
   entities:
   - uid: 1120
@@ -924,8 +915,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -9.5,-4.5
       parent: 2
-    - type: Physics
-      bodyType: Static
 - proto: BenchSteelRight
   entities:
   - uid: 548
@@ -933,16 +922,12 @@ entities:
     - type: Transform
       pos: -10.5,0.5
       parent: 2
-    - type: Physics
-      bodyType: Static
   - uid: 1117
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -9.5,-5.5
       parent: 2
-    - type: Physics
-      bodyType: Static
 - proto: BlastDoorOpen
   entities:
   - uid: 123
@@ -6098,10 +6083,45 @@ entities:
       parent: 2
 - proto: RandomPosterContrabandDeadDrop
   entities:
+  - uid: 257
+    components:
+    - type: Transform
+      pos: -6.5,-7.5
+      parent: 2
+  - uid: 423
+    components:
+    - type: Transform
+      pos: -0.5,7.5
+      parent: 2
   - uid: 443
     components:
     - type: Transform
       pos: 3.5,13.5
+      parent: 2
+  - uid: 446
+    components:
+    - type: Transform
+      pos: 6.5,-8.5
+      parent: 2
+  - uid: 505
+    components:
+    - type: Transform
+      pos: 5.5,-8.5
+      parent: 2
+  - uid: 524
+    components:
+    - type: Transform
+      pos: 14.5,-3.5
+      parent: 2
+  - uid: 526
+    components:
+    - type: Transform
+      pos: -4.5,7.5
+      parent: 2
+  - uid: 747
+    components:
+    - type: Transform
+      pos: 4.5,2.5
       parent: 2
   - uid: 944
     components:
@@ -6114,50 +6134,15 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 4.5,7.5
       parent: 2
-  - uid: 526
+  - uid: 1143
     components:
     - type: Transform
-      pos: -4.5,7.5
-      parent: 2
-  - uid: 423
-    components:
-    - type: Transform
-      pos: -0.5,7.5
-      parent: 2
-  - uid: 257
-    components:
-    - type: Transform
-      pos: -6.5,-7.5
-      parent: 2
-  - uid: 505
-    components:
-    - type: Transform
-      pos: 5.5,-8.5
+      pos: -6.5,-1.5
       parent: 2
   - uid: 1150
     components:
     - type: Transform
       pos: 5.5,2.5
-      parent: 2
-  - uid: 524
-    components:
-    - type: Transform
-      pos: 14.5,-3.5
-      parent: 2
-  - uid: 747
-    components:
-    - type: Transform
-      pos: 4.5,2.5
-      parent: 2
-  - uid: 446
-    components:
-    - type: Transform
-      pos: 6.5,-8.5
-      parent: 2
-  - uid: 1143
-    components:
-    - type: Transform
-      pos: -6.5,-1.5
       parent: 2
 - proto: ReinforcedPlasmaWindow
   entities:
@@ -8253,7 +8238,7 @@ entities:
     - type: Transform
       pos: 4.5,-8.5
       parent: 2
-- proto: WarpPointNFCasino
+- proto: WarpPoint
   entities:
   - uid: 1147
     components:

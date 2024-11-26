@@ -1,3 +1,4 @@
+# Frontier: all entries capitalized
 marking-LizardFrillsShort-frills_short = Lizard Frills (Short)
 marking-LizardFrillsShort = Lizard Frills (Short)
 
@@ -105,8 +106,8 @@ marking-LizardHornsFloppyKoboldEars = Lizard Ears (Floppy Kobold)
 marking-LizardChestUnderbelly-body_underbelly = Lizard Chest (Underbelly)
 marking-LizardChestUnderbelly = Lizard Chest (Underbelly)
 
-marking-LizardChestBackspikes-body_backspikes = Lizard Back spikes (Four)
-marking-LizardChestBackspikes = Lizard Back spikes (Four)
+marking-LizardChestBackspikes-body_backspikes = Lizard Back Spikes (Four)
+marking-LizardChestBackspikes = Lizard Back Spikes (Four)
 
 marking-LizardSnoutSplotch = Lizard Snout (Splotch)
 marking-LizardSnoutSplotch-snout_splotch_primary = Muzzle

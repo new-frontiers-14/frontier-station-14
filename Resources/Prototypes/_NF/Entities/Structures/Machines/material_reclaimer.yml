@@ -66,10 +66,15 @@
       components:
       - PhysicalComposition
       - SpaceGarbage
-      - Log # Frontier
+      - Log
+      - Cartridge # PDA app cartriges
       tags:
       - Trash
       - Recyclable
+      - Cartridge # Bullets
+      - Book
+      - Pen
+      - Handcuffs
     blacklist:
       components:
       - Material
@@ -97,15 +102,15 @@
   - type: SolutionContainerManager
     solutions:
       output:
-        maxVol: 1000 # Frontier 100<1000
+        maxVol: 1000
   - type: DrainableSolution
     solution: output
   - type: ExaminableSolution
     solution: output
   - type: StaticPrice
     price: 500
-  - type: ApcPowerReceiver # Frontier
+  - type: ApcPowerReceiver
     powerLoad: 500 # Allows us to not use the 1000 baseline
-  - type: MaterialReclaimerMagnetPickup # Frontier
-    range: 0.30
+  - type: MaterialReclaimerMagnetPickup
+    range: 0.50 # 0.3<0.50
     magnetEnabled: true

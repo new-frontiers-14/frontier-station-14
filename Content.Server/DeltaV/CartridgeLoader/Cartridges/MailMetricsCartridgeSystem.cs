@@ -3,7 +3,7 @@ using Content.Server.DeltaV.Cargo.Systems;
 using Content.Server.CartridgeLoader;
 using Content.Shared.CartridgeLoader;
 using Content.Shared.CartridgeLoader.Cartridges;
-using Content.Server.Mail.Components;
+using Content.Server.DeltaV.Mail.Components;
 using Content.Server._NF.SectorServices; // Frontier
 
 namespace Content.Server.DeltaV.CartridgeLoader.Cartridges;

@@ -1,6 +1,4 @@
-using Content.Shared._NF.GameRule;
 using Content.Shared.Guidebook;
-using Content.Shared.Store;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
@@ -72,12 +70,6 @@ public sealed class VesselPrototype : IPrototype
     public ResPath ShuttlePath = default!;
 
     /// <summary>
-    ///     Grid protections for a given ship. Should be None in _most_ cases.
-    /// </summary>
-    [DataField("gridProtection")]
-    public GridProtectionFlags GridProtection = GridProtectionFlags.None;
-
-    /// <summary>
     ///     Guidebook page associated with a shuttle
     /// </summary>
     [DataField]
@@ -88,6 +80,12 @@ public sealed class VesselPrototype : IPrototype
     /// </summary>
     [DataField]
     public float MinPriceMarkup = 1.05f;
+
+    /// <summary>
+    /// Components to be added to any spawned grids.
+    /// </summary>
+    [DataField]
+    public ComponentRegistry AddComponents { get; set; } = new();
 }
 
 public enum VesselSize : byte

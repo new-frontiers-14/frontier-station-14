@@ -1,6 +1,6 @@
 - type: entity
   abstract: true
-  parent: Clothing
+  parent: [Clothing, RecyclableItemClothDevice] # Frontier: added RecyclableItemClothDevice
   id: ClothingMaskBase
   components:
   - type: Sprite
@@ -9,8 +9,8 @@
     size: Small
   - type: Clothing
     slots: [mask]
-  # - type: StaticPrice # Frontier: TODO - material value rework
-  #   price: 25 # Frontier
+  - type: StaticPrice
+    price: 25
 
 - type: entity
   abstract: true

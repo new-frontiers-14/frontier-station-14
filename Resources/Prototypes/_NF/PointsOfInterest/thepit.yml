@@ -11,11 +11,17 @@
 - type: pointOfInterest
   id: ThePit
   name: "The Pit"
-  rangeMin: 2200
-  rangeMax: 4200
+  minimumDistance: 2200
+  maximumDistance: 4200
   spawnGroup: Arena
-  IFFColor: "#ffa600" #yellorange for faction style
   gridPath: /Maps/_NF/POI/arena.yml
+  addComponents:
+  - type: IFF
+    color: "#ffa600"
+    readOnly: true
+  - type: Shuttle
+    angularDamping: 999999
+    linearDamping: 999999
 
 - type: gameMap
   id: ThePit

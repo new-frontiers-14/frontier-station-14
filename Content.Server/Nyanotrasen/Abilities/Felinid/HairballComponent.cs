@@ -1,8 +1,7 @@
-namespace Content.Server.Abilities.Felinid
+namespace Content.Server.Abilities.Felinid;
+
+[RegisterComponent]
+public sealed partial class HairballComponent : Component
 {
-    [RegisterComponent]
-    public sealed partial class HairballComponent : Component
-    {
-        public string SolutionName = "hairball";
-    }
+    public string SolutionName = "hairball";
 }

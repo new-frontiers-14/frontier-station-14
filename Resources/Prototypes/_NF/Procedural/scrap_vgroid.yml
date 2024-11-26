@@ -1,0 +1,320 @@
+# Okay so my general thought is this:
+# 1. Generate the large mass
+# 2. Generate smaller masses offset
+# 3. Generate N normal dungeons around the larger mass, preferably near the border
+# 4. Generate large paths / small paths around the place
+# 5. Spawn ores + fill the rest and the normal stuff
+
+# If you want mobs they needed to be added at specific steps due to how dungeons work at the moment.
+
+- type: dungeonConfig
+  id: NFVGRoidScrap
+  layers:
+    - !type:PrototypeDunGen
+      proto: NFVGRoidBlobScrap
+    - !type:PrototypeDunGen
+      proto: NFVGRoidExteriorScrap
+    - !type:PrototypeDunGen
+      proto: NFVGRoidSmallPathsScrap
+    - !type:EntityTableDunGen
+      minCount: 7
+      maxCount: 12
+      table:
+        id: NFVGRoidInteriorRoomMarker
+    - !type:BiomeDunGen
+      biomeTemplate: NFVGRoidScrapyard
+      tileMask:
+      - Plating
+    # Fill
+    # - !type:PrototypeDunGen
+      # proto: NFVGRoidFillScrap
+    # "WarpPoint"
+    - !type:OreDunGen
+      tileMask:
+      - Plating
+      entity: WarpPointDungeon
+      count: 1
+      minGroupSize: 1
+      maxGroupSize: 1
+    # "Ores"
+    - !type:OreDunGen
+      entityMask:
+      - WallRockScrapPile
+      entity: WallRockScrapPile # ScrapElementalSpawner
+      count: 100
+      minGroupSize: 1
+      maxGroupSize: 1
+    # Ores
+    - !type:OreDunGen
+      entityMask:
+      - WallRockScrapPile
+      entity: WallRockScrapPileIron
+      count: 30
+      minGroupSize: 10
+      maxGroupSize: 15
+    - !type:OreDunGen
+      entityMask:
+      - WallRockScrapPile
+      entity: WallRockScrapPileCoal
+      count: 30
+      minGroupSize: 8
+      maxGroupSize: 12
+    - !type:OreDunGen
+      entityMask:
+      - WallRockScrapPile
+      entity: WallRockScrapPileQuartz
+      count: 10
+      minGroupSize: 10
+      maxGroupSize: 15
+    - !type:OreDunGen
+      entityMask:
+      - WallRockScrapPile
+      entity: WallRockScrapPileSalt
+      count: 10
+      minGroupSize: 8
+      maxGroupSize: 12
+    - !type:OreDunGen
+      entityMask:
+      - WallRockScrapPile
+      entity: WallRockScrapPileGold
+      count: 15
+      minGroupSize: 8
+      maxGroupSize: 12
+    - !type:OreDunGen
+      entityMask:
+      - WallRockScrapPile
+      entity: WallRockScrapPileSilver
+      count: 15
+      minGroupSize: 8
+      maxGroupSize: 12
+    - !type:OreDunGen
+      entityMask:
+      - WallRockScrapPile
+      entity: WallRockScrapPilePlasma
+      count: 20
+      minGroupSize: 4
+      maxGroupSize: 8
+    - !type:OreDunGen
+      entityMask:
+      - WallRockScrapPile
+      entity: WallRockScrapPileUranium
+      count: 20
+      minGroupSize: 4
+      maxGroupSize: 8
+    - !type:OreDunGen
+      entityMask:
+      - WallRockScrapPile
+      entity: WallSolidRust
+      count: 70
+      minGroupSize: 6
+      maxGroupSize: 16
+    - !type:OreDunGen
+      entityMask:
+      - WallRockScrapPile
+      entity: WallRockScrapPileArtifactFragment
+      count: 15
+      minGroupSize: 1
+      maxGroupSize: 3
+    - !type:OreDunGen
+      entityMask:
+      - WallRockScrapPile
+      entity: WallRockScrapPileDiamond
+      count: 5
+      minGroupSize: 1
+      maxGroupSize: 2
+    - !type:OreDunGen
+      entityMask:
+      - WallRockScrapPile
+      entity: WallRockScrapPileBluespace
+      count: 10
+      minGroupSize: 1
+      maxGroupSize: 1
+    # Decoration
+    # - !type:OreDunGen
+      # tileMask:
+      # - Plating
+      # entity: FloraRockSolid01
+      # count: 20
+      # minGroupSize: 1
+      # maxGroupSize: 1
+    # Mobs
+    - !type:OreDunGen
+      tileMask:
+      - Plating
+      entity: SpawnMobRogueScapT1
+      count: 25
+      minGroupSize: 1
+      maxGroupSize: 1
+
+# Configs
+- type: dungeonConfig
+  id: NFVGRoidBlobScrap
+  layers:
+  - !type:NoiseDistanceDunGen
+    size: 272, 272
+    distanceConfig: !type:DunGenEuclideanSquaredDistance
+      blendWeight: 0.80
+    layers:
+    - tile: Plating
+      threshold: 0.50
+      noise:
+        frequency: 0.010
+        noiseType: OpenSimplex2
+        fractalType: FBm
+        octaves: 5
+        lacunarity: 2
+        gain: 0.5
+
+- type: dungeonConfig
+  id: NFVGRoidExteriorScrap
+  reserveTiles: true
+  data:
+    tiles:
+      FallbackTile: FloorTechMaint3
+      WidenTile: Lattice # Plating
+  layers:
+  - !type:PrototypeDunGen
+    proto: NFVGRoidExteriorDungeonsScrap
+  - !type:SplineDungeonConnectorDunGen
+
+- type: dungeonConfig
+  id: NFVGRoidExteriorDungeonsScrap
+  reserveTiles: true
+  minCount: 2
+  maxCount: 3
+  layers:
+  - !type:ExteriorDunGen
+    proto: SalvageOutpost
+  - !type:EntityTableDunGen
+    minCount: 25
+    maxCount: 40
+    table: !type:NestedSelector
+      tableId: SalvageScrapSpawnerCommon
+  - !type:EntityTableDunGen
+    minCount: 30
+    maxCount: 40
+    table: !type:NestedSelector
+      tableId: SalvageScrapSpawnerValuable
+  - !type:EntityTableDunGen
+    minCount: 15
+    maxCount: 25
+    table: !type:NestedSelector
+      tableId: SalvageTreasureSpawnerCommon
+  - !type:EntityTableDunGen
+    minCount: 15
+    maxCount: 25
+    table: !type:NestedSelector
+      tableId: SalvageEquipmentSpawnerCommon
+  - !type:EntityTableDunGen
+    minCount: 15
+    maxCount: 20
+    table: !type:NestedSelector
+      tableId: SalvageTreasureSpawnerValuable
+  - !type:EntityTableDunGen
+    minCount: 15
+    maxCount: 20
+    table: !type:NestedSelector
+      tableId: SalvageEquipmentSpawnerValuable
+  - !type:MobsDunGen
+    minCount: 1
+    maxCount: 2
+    groups:
+    - id: SpawnMobRogueSiliconsT3
+      amount: 1
+  - !type:MobsDunGen
+    minCount: 1
+    maxCount: 2
+    groups:
+    - id: SpawnMobRogueSiliconsT2
+      amount: 1
+  - !type:MobsDunGen
+    minCount: 1
+    maxCount: 2
+    groups:
+    - id: SpawnMobRogueScapT1
+      amount: 1
+  - !type:MobsDunGen
+    minCount: 1
+    maxCount: 2
+    groups:
+    - id: SpawnMobRogueScapT1
+      amount: 1
+  - !type:MobsDunGen
+    minCount: 1
+    maxCount: 2
+    groups:
+    - id: SpawnMobRogueSiliconsT2
+      amount: 1
+
+#- type: dungeonConfig
+#  id: NFVGRoidInteriorDungeonsScrap
+#  minCount: 3
+#  maxCount: 5
+#  # Just randomly spawn these in bounds, doesn't really matter if they go out.
+
+- type: dungeonConfig
+  id: NFVGRoidSmallPathsScrap
+  reserveTiles: true
+  layers:
+  - !type:ReplaceTileDunGen
+    layers:
+    - tile: Plating
+      threshold: 0.75
+      noise:
+        frequency: 0.040
+        noiseType: OpenSimplex2
+        fractalType: Ridged
+        lacunarity: 1.5
+        octaves: 2
+        gain: 2.0
+
+# Scrapyard -> Derived from Shadow
+- type: biomeTemplate
+  id: NFVGRoidScrapyard
+  layers:
+    - !type:BiomeEntityLayer
+      threshold: 0.97
+      noise:
+        frequency: 1
+        seed: 2
+      allowedTiles:
+        - Lattice # Plating
+      entities:
+        - SpawnDungeonCanisterBroken # TODO: replace with light fixture
+    - !type:BiomeEntityLayer
+      threshold: -0.35
+      noise:
+        seed: 1
+        noiseType: OpenSimplex2
+        frequency: 1
+      allowedTiles:
+        - Lattice
+      entities:
+        - ComputerBroken
+        - WeaponTurretSyndicateBroken
+        - SpawnDungeonMachineFrame
+        - SpawnDungeonComputerFrame
+        - SolarPanelBroken
+        - SpawnDungeonCanisterBroken
+        - SalvageCanisterSpawner
+    # Rock formations
+    - !type:BiomeEntityLayer
+      threshold: -0.2
+      invert: true
+      noise:
+        seed: 0
+        noiseType: Perlin
+        fractalType: FBm
+        octaves: 3
+        frequency: 0.3
+        gain: 0
+      allowedTiles:
+        - Lattice # Plating
+      entities:
+        - WallRockScrapPile
+    - !type:BiomeDummyLayer
+      id: Loot
+    # Fill scrap
+    - !type:BiomeTileLayer
+      threshold: -1
+      tile: Lattice # Plating

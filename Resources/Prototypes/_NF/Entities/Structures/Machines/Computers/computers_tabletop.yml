@@ -648,8 +648,8 @@
       state: tech_key
 
 - type: entity
-  parent: [BaseStructureIndestructible, BaseStructureComputerTabletop, StationAdminBankATM]
-  id: ComputerTabletopStationAdminBankATM
+  parent: [BaseStructureIndestructible, BaseStructureComputerTabletop, BaseStationAdminBankATM]
+  id: BaseComputerTabletopStationAdminBankATM
   components:
   - type: Sprite
     drawdepth: SmallObjects
@@ -666,6 +666,24 @@
     - map: ["computerLayerKeys"]
       sprite: Structures/Machines/computers.rsi
       state: id_key
+
+- type: entity
+  name: station administration console
+  parent: BaseComputerTabletopStationAdminBankATM
+  id: ComputerTabletopStationAdminBankATMFrontier
+  description: Used to transfer funds from Frontier Outpost's bank account
+  components:
+  - type: StationBankATM
+    account: Frontier
+
+- type: entity
+  name: station administration console
+  parent: BaseComputerTabletopStationAdminBankATM
+  id: ComputerTabletopStationAdminBankATMNfsd
+  description: Used to transfer funds from NFSD's bank account
+  components:
+  - type: StationBankATM
+    account: Nfsd
 
 - type: entity
   parent: [BaseStructureIndestructible, BaseStructureComputerTabletop, ComputerContrabandPalletConsole]

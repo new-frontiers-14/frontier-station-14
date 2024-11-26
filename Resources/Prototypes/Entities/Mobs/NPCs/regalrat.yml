@@ -168,6 +168,8 @@
   description: He's da mini rat. He don't make da roolz.
   categories: [ HideSpawnMenu ] #Must be configured to a King or the AI breaks.
   components:
+  - type: Carriable #DeltaV
+    freeHandsRequired: 1
   - type: CombatMode
   - type: MovementSpeedModifier
     baseWalkSpeed : 3.5
@@ -290,9 +292,14 @@
   # - type: GuideHelp # Frontier: guidebook removed
   #   guides: # Frontier: guidebook removed
   #   - MinorAntagonists # Frontier: guidebook removed
+  - type: FelinidFood # Nyanotrasen - Felinid, ability to eat rat, see Content.Server/Nyanotrasen/Abilities/Felinid/FelinidSystem.cs
+  - type: Food # Delta V - Make them edible and pickable.
+  - type: Item # Delta V - Make them edible and pickable.
+    size: Tiny # Delta V - Make them edible and pickable.
   - type: FireVisuals
     sprite: Mobs/Effects/onfire.rsi
     normalState: Mouse_burning
+
 
 - type: weightedRandomEntity
   id: RatKingLoot

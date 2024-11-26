@@ -95,20 +95,22 @@ namespace Content.Server.Cloning
             _signalSystem.EnsureSinkPorts(uid, CloningPodComponent.PodPort);
         }
 
+        // Frontier: machine parts upgrades
         private void OnPartsRefreshed(EntityUid uid, CloningPodComponent component, RefreshPartsEvent args)
         {
             var materialRating = args.PartRatings[component.MachinePartMaterialUse];
             var speedRating = args.PartRatings[component.MachinePartCloningSpeed];
 
-            component.BiomassRequirementMultiplier = MathF.Pow(component.PartRatingMaterialMultiplier, materialRating - 1);
+            component.BiomassRequirementMultiplier = component.BaseBiomassRequirementMultiplier * MathF.Pow(component.PartRatingMaterialMultiplier, materialRating - 1);
             component.CloningTime = component.BaseCloningTime * MathF.Pow(component.PartRatingSpeedMultiplier, speedRating - 1);
         }
 
         private void OnUpgradeExamine(EntityUid uid, CloningPodComponent component, UpgradeExamineEvent args)
         {
             args.AddPercentageUpgrade("cloning-pod-component-upgrade-speed", component.BaseCloningTime / component.CloningTime);
-            args.AddPercentageUpgrade("cloning-pod-component-upgrade-biomass-requirement", component.BiomassRequirementMultiplier);
+            args.AddPercentageUpgrade("cloning-pod-component-upgrade-biomass-requirement", component.BiomassRequirementMultiplier / component.BaseBiomassRequirementMultiplier);
         }
+        // End Frontier
 
         internal void TransferMindToClone(EntityUid mindId, MindComponent mind)
         {
@@ -289,7 +291,7 @@ namespace Content.Server.Cloning
 
             // TODO: Ideally, components like this should be components on the mind entity so this isn't necessary.
             // Add on special job components to the mob.
-            if (_jobs.MindTryGetJob(mindEnt, out _, out var prototype))
+            if (_jobs.MindTryGetJob(mindEnt, out var prototype))
             {
                 foreach (var special in prototype.Special)
                 {

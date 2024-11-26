@@ -184,6 +184,6 @@ namespace Content.Server.GameTicking
             => UserHasJoinedGame(session.UserId);
 
         public bool UserHasJoinedGame(NetUserId userId)
-            => PlayerGameStatuses[userId] == PlayerGameStatus.JoinedGame;
+            => PlayerGameStatuses.ContainsKey(userId) && PlayerGameStatuses[userId] == PlayerGameStatus.JoinedGame; // Frontier: add ContainsKey check.
     }
 }

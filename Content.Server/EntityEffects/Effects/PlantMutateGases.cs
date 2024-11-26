@@ -25,12 +25,28 @@ public sealed partial class PlantMutateExudeGasses : EntityEffect
         if (plantholder.Seed == null)
             return;
 
+        // Frontier: List of gasses
+        Gas[] gasList =
+        {
+          Gas.Oxygen,
+          Gas.Nitrogen,
+          Gas.CarbonDioxide,
+          Gas.NitrousOxide,
+          Gas.Ammonia,
+          Gas.Plasma,
+          Gas.WaterVapor,
+          //Gas.Tritium,
+          //Gas.Frezon,
+        };
+        // End Frontier: List of gasses
+
         var random = IoCManager.Resolve<IRobustRandom>();
         var gasses = plantholder.Seed.ExudeGasses;
 
         // Add a random amount of a random gas to this gas dictionary
         float amount = random.NextFloat(MinValue, MaxValue);
-        Gas gas = random.Pick(Enum.GetValues(typeof(Gas)).Cast<Gas>().ToList());
+        //Gas gas = random.Pick(Enum.GetValues(typeof(Gas)).Cast<Gas>().ToList()); // Frontier
+        Gas gas = random.Pick(gasList); // Frontier
         if (gasses.ContainsKey(gas))
         {
             gasses[gas] += amount;
@@ -65,7 +81,7 @@ public sealed partial class PlantMutateConsumeGasses : EntityEffect
             return;
 
         // Frontier: List of gasses
-        Gas[] GassesList =
+        Gas[] gasList =
         {
           Gas.Oxygen,
           Gas.Nitrogen,
@@ -77,7 +93,7 @@ public sealed partial class PlantMutateConsumeGasses : EntityEffect
           //Gas.Tritium,
           //Gas.Frezon,
         };
-        // Frontier: List of gasses
+        // End Frontier: List of gasses
 
         var random = IoCManager.Resolve<IRobustRandom>();
         var gasses = plantholder.Seed.ConsumeGasses;
@@ -85,7 +101,7 @@ public sealed partial class PlantMutateConsumeGasses : EntityEffect
         // Add a random amount of a random gas to this gas dictionary
         float amount = random.NextFloat(MinValue, MaxValue);
         //Gas gas = random.Pick(Enum.GetValues(typeof(Gas)).Cast<Gas>().ToList()); // Frontier
-        Gas gas = random.Pick(GassesList); // Frontier
+        Gas gas = random.Pick(gasList); // Frontier
         if (gasses.ContainsKey(gas))
         {
             gasses[gas] += amount;

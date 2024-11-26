@@ -2,6 +2,7 @@
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Reagent;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.List;
+using Content.Shared.FixedPoint; // Frontier
 
 namespace Content.Server.Xenoarchaeology.XenoArtifacts.Effects.Components;
 
@@ -29,4 +30,10 @@ public sealed partial class ChemicalPuddleArtifactComponent : Component
     /// </summary>
     [DataField("chemAmount")]
     public int ChemAmount = 3;
+
+    /// <summary>
+    /// Frontier: the total maximum volume of chemicals to spawn.
+    /// </summary>
+    [DataField]
+    public FixedPoint2 MaximumVolume = 100.0f;
 }

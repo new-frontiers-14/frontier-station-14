@@ -1,0 +1,29 @@
+- type: constructionGraph
+  id: soil
+  start: start
+  graph:
+    - node: start
+      actions:
+        - !type:DestroyEntity {}
+    - node: HydroponicsSoilNutrition
+      entity: HydroponicsSoilNutrition
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: HydroponicsSoilEmptyFlatpack
+              amount: 1
+          steps:
+            - tool: Digging
+              doAfter: 5
+    - node: HydroponicsSoilEmpty
+      entity: HydroponicsSoilEmpty
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: HydroponicsSoilEmptyFlatpack
+              amount: 1
+          steps:
+            - tool: Digging
+              doAfter: 5

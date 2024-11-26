@@ -11,11 +11,16 @@
 - type: pointOfInterest
   id: NorthPole
   name: "The North Pole"
-  rangeMin: 2150
-  rangeMax: 4850
-  IFFColor: "#C83737" #red the color of ebil
-  IFFFlags: [HideLabel]
+  minimumDistance: 2150
+  maximumDistance: 4850
   spawnGroup: Christmas
   spawnChance: 0
   gridPath: /Maps/_NF/POI/northpole.yml
-
+  hideWarp: true
+  addComponents:
+  - type: IFF
+    color: "#C83737"
+    flags: [HideLabel]
+  - type: Shuttle
+    angularDamping: 999999
+    linearDamping: 999999

@@ -18,6 +18,7 @@ using Robust.Shared.Containers;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using Content.Shared.Stacks;
 
 namespace Content.Server.Cargo.Systems; // Needs to collide with base namespace
 
@@ -413,7 +414,7 @@ public sealed partial class CargoSystem
         foreach (var (palletUid, _) in GetContrabandPallets(gridUid))
         {
             foreach (var ent in _lookup.GetEntitiesIntersecting(palletUid,
-                         LookupFlags.Dynamic | LookupFlags.Sundries | LookupFlags.Approximate))
+                         LookupFlags.Dynamic | LookupFlags.Sundries | LookupFlags.Approximate | LookupFlags.Sensors))
             {
                 // Dont match:
                 // - anything anchored (e.g. light fixtures)
@@ -489,7 +490,6 @@ public sealed partial class CargoSystem
 
         if (amount > 0)
         {
-            // TODO: play a sound here, ideally the "deposit money" chime used on ATMs
             _stack.SpawnMultiple("Doubloon", amount, Transform(uid).Coordinates);
             _audio.PlayPvs(component.AcceptSound, uid);
             _popup.PopupEntity(Loc.GetString("pirate-bounty-redemption-success", ("bounties", redeemedBounties), ("amount", amount)), args.Actor);
@@ -560,26 +560,7 @@ public sealed partial class CargoSystem
                     }
                     else
                     {
-                        // Check entry against bounties
-                        foreach (var entry in bounty.Prototype.Entries)
-                        {
-                            // Should add an assertion here, entry.Name should exist.
-                            // Entry already fulfilled, skip this entity.
-                            if (bounty.Entries[entry.Name] >= entry.Amount)
-                            {
-                                continue;
-                            }
-
-                            // Check whitelists for the pirate bounty.
-                            if (_whitelistSys.IsWhitelistPassOrNull(entry.Whitelist, ent) &&
-                                _entProtoIdWhitelist.IsWhitelistPassOrNull(entry.IdWhitelist, ent) &&
-                                _whitelistSys.IsBlacklistFailOrNull(entry.Blacklist, ent))
-                            {
-                                bounty.Entries[entry.Name]++;
-                                bounty.Entities.Add(ent);
-                                break;
-                            }
-                        }
+                        AdjustBountyForEntity(ent, bounty);
                         state.HandledEntities.Add(ent);
                     }
                 }
@@ -601,30 +582,40 @@ public sealed partial class CargoSystem
         else
         {
             // 3b. If not tagged as labelled, check contents against non-create bounties.  If it satisfies any of them, increase the quantity.
-            foreach (var (id, bounty) in state.LooseObjectBounties)
+            foreach (var (_, bounty) in state.LooseObjectBounties)
             {
-                foreach (var entry in bounty.Prototype.Entries)
-                {
-                    // Should add an assertion here, entry.Name should exist.
-                    // Entry already fulfilled, skip this entity.
-                    if (bounty.Entries[entry.Name] >= entry.Amount)
-                    {
-                        continue;
-                    }
-
-                    // Check whitelists for the pirate bounty.
-                    if ((_whitelistSys.IsWhitelistPass(entry.Whitelist, uid) ||
-                        _entProtoIdWhitelist.IsWhitelistPass(entry.IdWhitelist, uid)) &&
-                        _whitelistSys.IsBlacklistFailOrNull(entry.Blacklist, uid))
-                    {
-                        bounty.Entries[entry.Name]++;
-                        bounty.Entities.Add(uid);
-                        state.HandledEntities.Add(uid);
-                        return;
-                    }
-                }
+                if (AdjustBountyForEntity(uid, bounty))
+                    break;
             }
         }
         state.HandledEntities.Add(uid);
+    }
+
+    // Checks an object against a bounty, adjusts the bounty's state and returns true if it matches.
+    private bool AdjustBountyForEntity(EntityUid target, PirateBountyState bounty)
+    {
+        foreach (var entry in bounty.Prototype.Entries)
+        {
+            // Should add an assertion here, entry.Name should exist.
+            // Entry already fulfilled, skip this entity.
+            if (bounty.Entries[entry.Name] >= entry.Amount)
+            {
+                continue;
+            }
+
+            // Check whitelists for the pirate bounty.
+            if ((_whitelistSys.IsWhitelistPass(entry.Whitelist, target) ||
+                _entProtoIdWhitelist.IsWhitelistPass(entry.IdWhitelist, target)) &&
+                _whitelistSys.IsBlacklistFailOrNull(entry.Blacklist, target))
+            {
+                if (TryComp<StackComponent>(target, out var stack))
+                    bounty.Entries[entry.Name] += stack.Count;
+                else
+                    bounty.Entries[entry.Name]++;
+                bounty.Entities.Add(target);
+                return true;
+            }
+        }
+        return false;
     }
 }

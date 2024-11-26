@@ -90,6 +90,13 @@ public sealed class PoolSettings
     /// </summary>
     public int? ClientSeed { get; set; }
 
+    /// <summary>
+    /// Frontier: the preset to run the game in.
+    /// Set to secret for upstream tests to mimic upstream behaviour.
+    /// If you need to check adventure game rule things, set this to Adventure.
+    /// </summary>
+    public string GameLobbyDefaultPreset { get; set; } = "secret";
+
     #region Inferred Properties
 
     /// <summary>
@@ -128,6 +135,7 @@ public sealed class PoolSettings
         return !ShouldBeConnected == !nextSettings.ShouldBeConnected
                && UseDummyTicker == nextSettings.UseDummyTicker
                && Map == nextSettings.Map
-               && InLobby == nextSettings.InLobby;
+               && InLobby == nextSettings.InLobby
+               && GameLobbyDefaultPreset == nextSettings.GameLobbyDefaultPreset; // Frontier: swappable presets
     }
 }

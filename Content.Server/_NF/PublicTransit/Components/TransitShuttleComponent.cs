@@ -10,9 +10,15 @@ namespace Content.Server._NF.PublicTransit.Components;
 [RegisterComponent, Access(typeof(PublicTransitSystem))]
 public sealed partial class TransitShuttleComponent : Component
 {
-    [DataField("nextStation")]
+    /// <summary>
+    ///     The name for the bus
+    /// </summary>
+    [DataField]
+    public LocId Name = "public-transit-shuttle-name";
+
+    [DataField]
     public EntityUid NextStation;
 
-    [DataField("nextTransfer", customTypeSerializer:typeof(TimeOffsetSerializer))]
+    [DataField(customTypeSerializer:typeof(TimeOffsetSerializer))]
     public TimeSpan NextTransfer;
 }

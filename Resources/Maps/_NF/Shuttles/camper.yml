@@ -233,6 +233,11 @@ entities:
       rot: 3.141592653589793 rad
       pos: -1.5,-5.5
       parent: 1
+    - type: DeviceList
+      devices:
+      - 88
+      - 87
+      - 5
 - proto: AirlockExternal
   entities:
   - uid: 3
@@ -257,6 +262,9 @@ entities:
       rot: 3.141592653589793 rad
       pos: -2.5,4.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 2
 - proto: APCBasic
   entities:
   - uid: 6
@@ -814,6 +822,9 @@ entities:
     - type: Transform
       pos: -1.5,3.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 2
     - type: AtmosPipeColor
       color: '#0055CCFF'
 - proto: GasVentScrubber
@@ -823,6 +834,9 @@ entities:
     - type: Transform
       pos: -2.5,0.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 2
     - type: AtmosPipeColor
       color: '#CC1111FF'
 - proto: GravityGeneratorMini
@@ -1486,7 +1500,7 @@ entities:
     - type: Transform
       pos: -2.5,-2.5
       parent: 1
-- proto: WarpPointShip
+- proto: WarpPoint
   entities:
   - uid: 189
     components:

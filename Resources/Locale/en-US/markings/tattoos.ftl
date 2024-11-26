@@ -1,7 +1,8 @@
+# Frontier: all entries capitalized
 marking-TattooHiveChest-tattoo_hive_chest = Back Tattoo (Hive)
 marking-TattooHiveChest = Back Tattoo (Hive)
 
-marking-TattooNightlingChest-tattoo_nightling = Chest Tattoo (nightling)
+marking-TattooNightlingChest-tattoo_nightling = Chest Tattoo (Nightling)
 marking-TattooNightlingChest = Chest Tattoo (Nightling)
 
 marking-TattooSilverburghLeftLeg-tattoo_silverburgh_l_leg = Left Leg Tattoo (Silverburg)

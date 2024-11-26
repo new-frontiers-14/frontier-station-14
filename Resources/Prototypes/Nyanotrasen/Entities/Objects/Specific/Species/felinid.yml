@@ -5,8 +5,7 @@
   description: Felinids, man...
   components:
   - type: Sprite
-    netsync: false
-    sprite: Objects/Specific/Species/felinid.rsi
+    sprite: Nyanotrasen/Objects/Specific/Species/felinid.rsi
     state: icon
   - type: Hairball
   - type: SolutionContainerManager
@@ -16,15 +15,15 @@
         reagents:
         - ReagentId: Protein
           Quantity: 2
-  - type: FoodSequenceElement # Frontier
-    entries:
-      Burger: Hairball
-      Taco: Hairball
-      Skewer: Hairball
-    solution: hairball # Frontier
   - type: Extractable
     grindableSolutionName: hairball
   - type: Tag
     tags:
     - Recyclable
     - Trash
+  - type: FoodSequenceElement # Frontier
+    entries:
+      Burger: Hairball
+      Taco: Hairball
+      Skewer: Hairball
+    solution: hairball # Frontier

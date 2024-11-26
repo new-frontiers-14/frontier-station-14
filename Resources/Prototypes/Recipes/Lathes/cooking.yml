@@ -1,108 +1,96 @@
 - type: latheRecipe
+  parent: BaseToolRecipe
   id: ButchCleaver
   result: ButchCleaver
   category: KitchenNF # Frontier
-  completetime: 2
   materials:
     Steel: 300
     Plastic: 50
 
 - type: latheRecipe
+  parent: BaseToolRecipe
   id: KitchenKnife
   result: KitchenKnife
   category: KitchenNF # Frontier
-  completetime: 2
   materials:
     Steel: 200
     Plastic: 50
 
 - type: latheRecipe
-  id: DrinkMug
-  result: DrinkMug
-  category: KitchenNF # Frontier
+  abstract: true
+  id: BaseGlasswareRecipe
   completetime: 0.8
+  category: KitchenNF # Frontier
   materials:
     Glass: 100
 
 - type: latheRecipe
+  parent: BaseGlasswareRecipe
+  id: DrinkMug
+  result: DrinkMug
+
+- type: latheRecipe
+  parent: DrinkMug
   id: DrinkMugMetal
   result: DrinkMugMetal
-  category: KitchenNF # Frontier
-  completetime: 0.8
   materials:
     Steel: 100
 
 - type: latheRecipe
+  parent: DrinkMug
   id: DrinkGlass
   result: DrinkGlass
-  category: KitchenNF # Frontier
-  completetime: 0.8
-  materials:
-    Glass: 100
 
 - type: latheRecipe
+  parent: DrinkMug
   id: DrinkShotGlass
   result: DrinkShotGlass
-  category: KitchenNF # Frontier
   completetime: 0.4
-  materials:
-    Glass: 100
 
 - type: latheRecipe
+  parent: DrinkMug
   id: DrinkGlassCoupeShaped
   result: DrinkGlassCoupeShaped
-  category: KitchenNF # Frontier
-  completetime: 0.8
-  materials:
-    Glass: 100
 
-- type: latheRecipe 
-  id: CustomDrinkJug 
-  result: CustomDrinkJug 
-  category: KitchenNF # Frontier
-  completetime: 2 
-  materials: 
-    Plastic: 200
-    
 - type: latheRecipe
+  id: CustomDrinkJug
+  result: CustomDrinkJug
+  category: KitchenNF # Frontier
+  completetime: 2
+  materials:
+    Plastic: 200
+
+- type: latheRecipe
+  parent: BaseGlasswareRecipe
   id: FoodPlate
   result: FoodPlate
-  category: KitchenNF # Frontier
-  completetime: 0.8
-  materials:
-    Glass: 100
 
 - type: latheRecipe
   id: FoodPlateSmall
   result: FoodPlateSmall
-  category: KitchenNF # Frontier
   completetime: 0.4
+  category: KitchenNF # Frontier
   materials:
     Glass: 50
 
 - type: latheRecipe
+  parent: FoodPlate
   id: FoodPlatePlastic
   result: FoodPlatePlastic
-  category: KitchenNF # Frontier
-  completetime: 0.8
   materials:
     Plastic: 100
 
 - type: latheRecipe
+  parent: FoodPlateSmall
   id: FoodPlateSmallPlastic
   result: FoodPlateSmallPlastic
-  category: KitchenNF # Frontier
-  completetime: 0.4
   materials:
     Plastic: 50
 
 - type: latheRecipe
+  parent: FoodPlate
   id: FoodBowlBig
   result: FoodBowlBig
-  category: KitchenNF # Frontier
-  completetime: 0.8
-  materials:
-    Glass: 100
 
 - type: latheRecipe
   id: FoodPlateTin
@@ -111,6 +99,13 @@
   completetime: 0.4
   materials:
     Steel: 100
+
+- type: latheRecipe
+  parent: FoodPlateTin
+  id: FoodPlateMuffinTin
+  result: FoodPlateMuffinTin
+  materials:
+    Steel: 50
 
 - type: latheRecipe
   id: FoodKebabSkewer

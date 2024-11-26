@@ -1,4 +1,5 @@
-﻿using Content.Shared.Containers.ItemSlots;
+﻿using Content.Shared.Bank.Components;
+using Content.Shared.Containers.ItemSlots;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 
@@ -38,4 +39,10 @@ public sealed partial class ShuttleRecordsConsoleComponent : Component
     /// </summary>
     [DataField]
     public uint? FixedTransactionPrice;
+
+    /// <summary>
+    /// The account to withdraw funds from for these services.
+    /// </summary>
+    [DataField]
+    public SectorBankAccount Account;
 }

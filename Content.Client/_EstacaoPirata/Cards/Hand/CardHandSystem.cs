@@ -35,8 +35,16 @@ public sealed class CardHandSystem : EntitySystem
 
         var cardCount = Math.Min(cardStack.Cards.Count, comp.CardLimit);
 
-        // Frontier: one card case.
-        if (cardCount <= 1)
+        // Frontier: zero/one card case
+        if (cardCount <= 0)
+        {
+            // Placeholder - we need to have a valid sprite.
+            sprite.LayerSetVisible(0, true);
+            sprite.LayerSetState(0, "singlecard_down_black");
+            sprite.LayerSetOffset(0, new Vector2(0f, 0f));
+            sprite.LayerSetScale(0, new Vector2(1f, 1f));
+        }
+        else if (cardCount == 1)
         {
             _cardSpriteSystem.TryHandleLayerConfiguration(
                 (uid, sprite, cardStack),

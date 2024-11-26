@@ -33,7 +33,7 @@ public sealed partial class CartridgeLoaderComponent : Component
     /// The maximum amount of programs that can be installed on the cartridge loader entity
     /// </summary>
     [DataField]
-    public int DiskSpace = 10; // Frontier 5<10
+    public int DiskSpace = 12; // Frontier 8<12
 
     /// <summary>
     /// Controls whether the cartridge loader will play notifications if it supports it at all

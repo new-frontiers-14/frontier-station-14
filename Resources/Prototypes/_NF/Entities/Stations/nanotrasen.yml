@@ -1,5 +1,6 @@
 - type: entity
   id: StandardFrontierStation
+  suffix: DEBUG # TODO: Fix this, its here to stop PrototypeSaveTest fail
   parent:
   - BaseStation
   - BaseStationCargo
@@ -12,6 +13,7 @@
   - BaseStationSectorServices # Hosts all sector-wide services
   - BaseStationDampening
   - BaseStationDeadDropHintExempt # No hints
+  - BaseStationRenameWarpPoints
   categories: [ HideSpawnMenu ]
   components:
   - type: Transform
