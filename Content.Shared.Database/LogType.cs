@@ -127,4 +127,8 @@ public enum LogType
     ShuttleRecordsUsage = 202,
     AtmosDirectionChanged = 203,
 
+    /// <summary>
+    /// An admin spawns a refund for a player.
+    /// </summary>
+    AdminRefund = 203,
 }

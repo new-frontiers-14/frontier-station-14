@@ -170,6 +170,7 @@
       - FoodPlateSmallPlastic
       - FoodBowlBig
       - FoodPlateTin
+      - FoodPlateMuffinTin
       - FoodKebabSkewer
       - SprayBottle
       - MopItem
@@ -207,12 +208,12 @@
       - WetFloorSign
       - ClothingHeadHatCone
       - Flare
+      - FreezerElectronics
       - BoxDispenserFlare # Frontier
       - Durathread # Frontier
   - type: EmagLatheRecipes
     emagStaticRecipes:
       - BoxLethalshot
-      - BoxShotgunFlare
       - BoxShotgunSlug
       - CombatKnife
       - MagazineBoxLightRifle
@@ -493,6 +494,7 @@
     - UniformPrinterMachineCircuitboard
     - FloorGreenCircuit
     - FloorBlueCircuit
+    - FloorRedCircuit
     - MicrowaveMachineCircuitboard
     - ReagentGrinderMachineCircuitboard
     - ElectricGrillMachineCircuitboard
@@ -503,6 +505,7 @@
     - StationAnchorCircuitboard
     # - SalvageMagnetMachineCircuitboard # Frontier
     - SalvageTechFabCircuitboardNF # Frontier
+    - NFScrapProcessorCircuitboard # Frontier
     - BlueprintLithographMachineCircuitboard # Frontier
     dynamicRecipes:
       - ThermomachineFreezerMachineCircuitBoard
@@ -809,7 +812,6 @@
     runningState: icon
     staticRecipes:
       - BoxLethalshot
-      - BoxShotgunFlare
       - BoxShotgunPractice
       - BoxShotgunSlug
       - ClothingEyesHudSecurity
@@ -848,6 +850,7 @@
       - TargetHuman
       - TargetSyndicate
       - WeaponDisablerPractice
+      - WeaponFlareGunSecurity
       - WeaponLaserCarbinePractice
       - Zipties
       - ThrusterSecurityMachineCircuitboard # Frontier
@@ -943,7 +946,6 @@
       runningState: icon
       staticRecipes:
         - BoxLethalshot
-        - BoxShotgunFlare
         - BoxShotgunSlug
         - BoxShellTranquilizer
         - MagazineBoxLightRifle
@@ -1032,6 +1034,7 @@
       - Hemostat
       - ClothingEyesGlassesChemical
       - WhiteCane
+      - ClothingOuterEVASuitMedic #Frontier
       - BaseChemistryEmptyVial # Frontier
       - PowerCellSmall # Frontier
       - BlankMediPen # Frontier
@@ -1284,8 +1287,6 @@
   - type: Machine
     board: BiogeneratorMachineCircuitboard
   - type: MaterialStorage
-    insertOnInteract: false
-    canEjectStoredMaterials: false
   - type: ProduceMaterialExtractor
   - type: ItemSlots
     slots:
@@ -1533,6 +1534,7 @@
       - FloorTileItemShowroom # Frontier
       - FloorTileItemGCircuit # Frontier
       - FloorTileItemBCircuit # Frontier
+      - FloorTileItemRCircuit # Frontier
       - FloorTileItemGold # Frontier
       - FloorTileItemSilver # Frontier
       - FloorTileItemMono # Frontier

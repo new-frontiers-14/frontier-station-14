@@ -19,7 +19,8 @@ public sealed class DockingPortState
 
     public NetEntity? GridDockedWith;
 
-    // Frontier: colors, type, receive only
+    // Frontier: label, colors, type, receive only
+    public string? LabelName;
     public Color RadarColor;
     public Color HighlightedRadarColor;
     public bool ReceiveOnly;

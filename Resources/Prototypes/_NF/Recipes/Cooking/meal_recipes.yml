@@ -141,7 +141,336 @@
   recipeType:
   - Assembler
 
-#Other
+# Fryer Prep
+
+- type: microwaveMealRecipe
+  id: RecipeBatteredChicken
+  name: battered chicken recipe
+  result: FoodMeatChickenBattered
+  time: 5
+  reagents:
+    Flour: 5
+    Egg: 6
+  solids:
+    FoodMeatChicken: 1
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeBatteredChickenCutlet
+  name: battered chicken cutlet recipe
+  result: FoodMeatChickenCutletBattered
+  time: 2 # ~5 seconds for three
+  reagents:
+    Flour: 1.5 # ~1/3 of a click
+    Egg: 2 # 1/3 of an egg
+  solids:
+    FoodMeatChickenCutlet: 1
+  recipeType:
+  - Assembler
+
+# Donuts (uncooked as well as glazed) - frying handled by DeepFrySpawnComponent per-entity
+
+- type: microwaveMealRecipe
+  id: RecipeDonutUncookedJelly
+  name: uncooked jelly donut recipe
+  result: FoodDonutUncookedJelly
+  time: 5
+  reagents:
+    JuiceBerry: 2
+    Sugar: 2
+  solids:
+    FoodDonutUncooked: 1
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeDonutHomer
+  name: donut recipe
+  result: FoodDonutHomer
+  time: 5
+  reagents:
+    JuiceBerry: 2
+    Sugar: 2
+  solids:
+    FoodDonutPlain: 1
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeDonutChaos
+  name: chaos donut recipe
+  result: FoodDonutChaos
+  time: 5
+  solids:
+    MaterialBluespace: 1
+    FoodDonutPlain: 1
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeDonutMeat
+  name: meat donut recipe
+  result: FoodDonutMeat
+  time: 5
+  solids:
+    FoodMeatCutletCooked: 1
+    FoodDonutPlain: 1
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeDonutPink
+  name: pink donut recipe
+  result: FoodDonutPink
+  time: 5
+  reagents:
+    JuiceBerry: 2
+  solids:
+    FoodDonutPlain: 1
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeDonutSpacemen
+  name: spaceman's donut recipe
+  result: FoodDonutSpaceman
+  time: 5
+  reagents:
+    PolypyryliumOligomers: 2
+  solids:
+    FoodSpacemansTrumpet: 1
+    FoodDonutPlain: 1
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeDonutApple
+  name: apple donut recipe
+  result: FoodDonutApple
+  time: 5
+  reagents:
+    JuiceApple: 2
+  solids:
+    FoodDonutPlain: 1
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeDonutCaramel
+  name: caramel donut recipe
+  result: FoodDonutCaramel
+  time: 5
+  reagents:
+    Cream: 2
+    Sugar: 2
+  solids:
+    FoodDonutPlain: 1
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeDonutChocolate
+  name: chocolate donut recipe
+  result: FoodDonutChocolate
+  time: 5
+  reagents:
+    CocoaPowder: 2
+    Sugar: 2
+  solids:
+    FoodDonutPlain: 1
+  recipeType:
+  - Assembler
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeDonutBluePumpkin
+  name: blue pumpkin donut recipe
+  result: FoodDonutBluePumpkin
+  time: 5
+  reagents:
+    JuiceBluePumpkin: 2
+  solids:
+    FoodDonutPlain: 1
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeDonutBungo
+  name: bungo donut recipe
+  result: FoodDonutBungo
+  time: 5
+  reagents:
+    JuiceBungo: 2
+  solids:
+    FoodDonutPlain: 1
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeDonutMatcha
+  name: matcha donut recipe
+  result: FoodDonut
+  time: 5
+  reagents:
+    TeaPowder: 2
+    Sugar: 2
+  solids:
+    FoodDonutPlain: 1
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeDonutSweetpea
+  name: sweet pea donut recipe
+  result: FoodDonutSweetpea
+  time: 5
+  reagents:
+    LaughinSyrup: 2
+  solids:
+    FoodDonutPlain: 1
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeDonutJellyHomer
+  name: jelly-donut recipe
+  result: FoodDonutJellyHomer
+  time: 5
+  reagents:
+    PinkDrink: 2
+    Sugar: 2
+  solids:
+    FoodDonutJellyPlain: 1
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeDonutJellyPink
+  name: pink jelly-donut recipe
+  result: FoodDonutJellyPink
+  time: 5
+  reagents:
+    PinkDrink: 2
+  solids:
+    FoodDonutJellyPlain: 1
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeDonutJellySpaceman
+  name: spaceman's jelly-donut recipe
+  result: FoodDonutJellySpaceman
+  time: 5
+  reagents:
+    PolypyryliumOligomers: 2
+  solids:
+    FoodDonutJellyPlain: 1
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeDonutJellyApple
+  name: apple jelly-donut recipe
+  result: FoodDonutJellyApple
+  time: 5
+  reagents:
+    JuiceApple: 2
+  solids:
+    FoodDonutJellyPlain: 1
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeDonutJellyCaramel
+  name: caramel jelly-donut recipe
+  result: FoodDonutJellyCaramel
+  time: 5
+  reagents:
+    Cream: 2
+    Sugar: 2
+  solids:
+    FoodDonutJellyPlain: 1
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeDonutJellyChocolate
+  name: chocolate jelly-donut recipe
+  result: FoodDonutJellyChocolate
+  time: 5
+  reagents:
+    CocoaPowder: 2
+    Sugar: 2
+  solids:
+    FoodDonutJellyPlain: 1
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeDonutJellyBluePumpkin
+  name: blue pumpkin jelly-donut
+  result: FoodDonutJellyBluePumpkin
+  time: 5
+  reagents:
+    JuiceBluePumpkin: 2
+  solids:
+    FoodDonutJellyPlain: 1
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeDonutJellyBungo
+  name: bungo jelly-donut
+  result: FoodDonutJellyBungo
+  time: 5
+  reagents:
+    JuiceBungo: 2
+  solids:
+    FoodDonutJellyPlain: 1
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeDonutJellyMatcha
+  name: matcha jelly-donut
+  result: FoodDonutJelly
+  time: 5
+  reagents:
+    TeaPowder: 2
+    Sugar: 2
+  solids:
+    FoodDonutJellyPlain: 1
+  recipeType:
+  - Assembler
+
+- type: microwaveMealRecipe
+  id: RecipeDonutJellySweetpea
+  name: sweet pea jelly-donut
+  result: FoodDonutJellySweetpea
+  time: 5
+  reagents:
+    LaughinSyrup: 2
+  solids:
+    FoodDonutJellyPlain: 1
+  recipeType:
+  - Assembler
+
+# Would like to have this recipe, no idea what to use to ice it.
+# - type: microwaveMealRecipe
+#   id: RecipeDonutJellySlugcat
+#   name: slugcat jelly-donut
+#   result: FoodDonutJellySweetpea
+#   time: 5
+#   reagents:
+#     Happiness: 1
+#     Pax: 1
+#   solids:
+#     FoodDonutJellyPlain: 1
+#   recipeType:
+#   - Assembler
+
+# Other
 
 - type: microwaveMealRecipe
   id: RecipeCatCrispy
