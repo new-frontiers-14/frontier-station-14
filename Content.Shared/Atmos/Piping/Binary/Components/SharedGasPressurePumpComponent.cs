@@ -6,6 +6,7 @@ namespace Content.Shared.Atmos.Piping.Binary.Components
     public enum GasPressurePumpUiKey
     {
         Key,
+        BidiKey, // Frontier: bidirectional pumps
     }
 
     [Serializable, NetSerializable]
@@ -14,12 +15,14 @@ namespace Content.Shared.Atmos.Piping.Binary.Components
         public string PumpLabel { get; }
         public float OutputPressure { get; }
         public bool Enabled { get; }
+        public bool Inward { get; } // Frontier
 
-        public GasPressurePumpBoundUserInterfaceState(string pumpLabel, float outputPressure, bool enabled)
+        public GasPressurePumpBoundUserInterfaceState(string pumpLabel, float outputPressure, bool enabled, bool inward = false) // Frontier: added inward
         {
             PumpLabel = pumpLabel;
             OutputPressure = outputPressure;
             Enabled = enabled;
+            Inward = inward; // Frontier
         }
     }
 

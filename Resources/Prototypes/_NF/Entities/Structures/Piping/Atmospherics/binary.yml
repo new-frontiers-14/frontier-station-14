@@ -104,6 +104,8 @@
   - type: ExtensionCableReceiver
   - type: GasPressurePump
     enabled: false
+    uiKey: BidiKey
+    settableDirection: true
   - type: NodeContainer
     nodes:
       inlet:
@@ -116,8 +118,10 @@
         pipeDirection: South
   - type: UserInterface
     interfaces:
-        enum.GasPressurePumpUiKey.Key:
-          type: GasPressurePumpBoundUserInterface
+        enum.GasPressurePumpUiKey.BidiKey:
+          type: BidiGasPressurePumpBoundUserInterface
+  - type: ActivatableUI
+    key: enum.GasPressurePumpUiKey.BidiKey
   - type: DockablePump
     dockNodeName: outlet
     internalNodeName: inlet
@@ -149,6 +153,7 @@
     - state: closed_unlit
       shader: unshaded
       map: ["docked-unlit"]
+      visible: false
     - sprite: Structures/Piping/Atmospherics/pipe.rsi
       state: pipeStraight
       map: [ "enum.PipeVisualLayers.Pipe" ]
@@ -168,10 +173,10 @@
         docked-unlit:
           True: { visible: true }
           False: { visible: false }
-      enum.DockablePumpVisuals.PumpingOutwards:
+      enum.PumpVisuals.PumpingInwards:
         enabled-unlit:
-          True: { state: pumpPressureOnOut }
-          False: { state: pumpPressureOnIn }
+          True: { state: pumpPressureOnIn }
+          False: { state: pumpPressureOnOut }
   - type: StaticPrice
     price: 350
   - type: Tag
@@ -221,6 +226,7 @@
     - state: closed_unlit
       shader: unshaded
       map: ["docked-unlit"]
+      visible: false
     - sprite: Structures/Piping/Atmospherics/pipe.rsi
       state: pipeStraight
       map: [ "enum.PipeVisualLayers.Pipe" ]
@@ -240,10 +246,10 @@
         docked-unlit:
           True: { visible: true }
           False: { visible: false }
-      enum.DockablePumpVisuals.PumpingOutwards:
+      enum.PumpVisuals.PumpingInwards:
         enabled-unlit:
-          True: { state: pumpPressureOnOut }
-          False: { state: pumpPressureOnIn }
+          True: { state: pumpPressureOnIn }
+          False: { state: pumpPressureOnOut }
   - type: StaticPrice
     price: 100
   - type: Tag

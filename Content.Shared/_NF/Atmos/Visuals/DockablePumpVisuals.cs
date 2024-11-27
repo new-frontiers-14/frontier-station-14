@@ -6,5 +6,4 @@ namespace Content.Shared.Atmos.Visuals;
 public enum DockablePumpVisuals : byte
 {
     Docked, // bool
-    PumpingOutwards, // bool
 }

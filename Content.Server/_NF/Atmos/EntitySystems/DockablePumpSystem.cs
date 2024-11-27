@@ -25,27 +25,6 @@ public sealed partial class DockablePumpSystem : EntitySystem
         SubscribeLocalEvent<DockablePumpComponent, UndockEvent>(OnUndock);
     }
 
-    public void SetPipeDirection(EntityUid uid, DockablePumpComponent component, bool inwards)
-    {
-        if (component.PumpingInwards == inwards)
-            return;
-
-        if (TryComp(uid, out GasPressurePumpComponent? pressurePump))
-        {
-            pressurePump.InletName = inwards ? component.DockNodeName : component.InternalNodeName;
-            pressurePump.OutletName = inwards ? component.InternalNodeName : component.DockNodeName;
-        }
-        else if (TryComp(uid, out GasVolumePumpComponent? volumePump))
-        {
-            volumePump.InletName = inwards ? component.DockNodeName : component.InternalNodeName;
-            volumePump.OutletName = inwards ? component.InternalNodeName : component.DockNodeName;
-        }
-        else return; // Not a pump type we support.
-
-        component.PumpingInwards = inwards;
-        _appearance.SetData(uid, DockablePumpVisuals.PumpingOutwards, !inwards);
-    }
-
     private void OnDock(EntityUid uid, DockablePumpComponent component, ref DockEvent args)
     {
         // Reflood node?

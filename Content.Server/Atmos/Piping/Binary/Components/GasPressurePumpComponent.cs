@@ -1,4 +1,6 @@
+using Content.Server.Atmos.Piping.Binary.EntitySystems;
 using Content.Shared.Atmos;
+using Content.Shared.Atmos.Piping.Binary.Components; // Frontier
 
 namespace Content.Server.Atmos.Piping.Binary.Components
 {
@@ -33,5 +35,24 @@ namespace Content.Server.Atmos.Piping.Binary.Components
         /// </summary>
         [DataField]
         public bool StartOnMapInit { get; set; } = false;
+
+        /// <summary>
+        /// Frontier - UI key to open
+        /// </summary>
+        [DataField]
+        public GasPressurePumpUiKey UiKey = GasPressurePumpUiKey.Key;
+
+        /// <summary>
+        /// Frontier - if true, the pump can have its direction changed (bidirectional pump)
+        /// </summary>
+        [DataField]
+        public bool SettableDirection { get; private set; }
+
+        /// <summary>
+        /// Frontier - if true, the pump is currently pumping inwards
+        /// </summary>
+        [DataField]
+        [Access(typeof(GasPressurePumpSystem))]
+        public bool PumpingInwards { get; set; }
     }
 }

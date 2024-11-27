@@ -125,5 +125,6 @@ public enum LogType
     ATMUsage = 200,
     ShipYardUsage = 201,
     ShuttleRecordsUsage = 202,
+    AtmosDirectionChanged = 203,
 
 }
