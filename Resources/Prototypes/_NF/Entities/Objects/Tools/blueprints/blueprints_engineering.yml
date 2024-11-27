@@ -31,6 +31,16 @@
 
 - type: entity
   parent: NFBaseBlueprintEngineering
+  id: NFBlueprintShipyardRCD
+  name: shipyard RCD blueprint
+  description: A blueprint with a schematic of a shipyard RCD. It can be inserted into an autolathe or a techfab.
+  components:
+  - type: Blueprint
+    providedRecipes:
+    - ShipyardRCD
+
+- type: entity
+  parent: NFBaseBlueprintEngineering
   id: NFBlueprintShipyardRCDAmmo
   name: shipyard compressed matter blueprint
   description: A blueprint with a schematic of a shipyard compressed matter. It can be inserted into an autolathe or a techfab.
@@ -49,6 +59,16 @@
   - type: Blueprint
     providedRecipes:
     - PowerCellMedium
+
+- type: entity
+  parent: NFBaseBlueprintEngineering
+  id: NFBlueprintPowerCellHighPrinted
+  name: high-capacity power cell blueprint
+  description: A blueprint with a schematic of a high-capacity power cell. It can be inserted into an autolathe or a techfab.
+  components:
+  - type: Blueprint
+    providedRecipes:
+    - PowerCellHigh
 
 - type: entity
   parent: NFBaseBlueprintEngineering
