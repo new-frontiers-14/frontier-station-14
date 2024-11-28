@@ -85,7 +85,7 @@ public sealed class DiskConsoleSystem : EntitySystem
             else if (console.DiskAllResearch) // Frontier
             {
                 var diskUid = Spawn(console.DiskPrototypeBundled, xform.Coordinates);
-                EjectResearchIntoBundle(diskUid, uid);
+                TransferResearch(diskUid, uid, true);
             }
             else
                 Spawn(console.DiskPrototype, xform.Coordinates);
@@ -181,13 +181,15 @@ public sealed class DiskConsoleSystem : EntitySystem
     }
 
     /// <summary>
-    /// Moves all research from the console to the disk and erases source research.
+    /// Moves all research between the console and the disk based on the direction specified.
     /// </summary>
-    /// <param name="diskUid"></param>
-    /// <param name="consoleUid"></param>
-    private void EjectResearchIntoBundle(
+    /// <param name="diskUid">The disk entity UID.</param>
+    /// <param name="consoleUid">The console entity UID.</param>
+    /// <param name="toDisk">If true, moves research from the console to the disk; otherwise, moves research from the disk to the console.</param>
+    private void TransferResearch(
         EntityUid diskUid,
-        EntityUid consoleUid)
+        EntityUid consoleUid,
+        bool toDisk)
     {
         if (!_entityManager.TryGetComponent<DiskConsoleComponent>(consoleUid, out var component) ||
             !_research.TryGetClientServer(consoleUid, out var server, out var serverComp) ||
@@ -196,7 +198,15 @@ public sealed class DiskConsoleSystem : EntitySystem
 
         var targetDatabase = _entityManager.EnsureComponent<TechnologyDatabaseComponent>(diskUid);
         serverComp.Points = 0;
-        _sharedResearch.MoveResearch(databaseComponent, targetDatabase);
+
+        if (toDisk)
+        {
+            _sharedResearch.MoveResearch(databaseComponent, targetDatabase);
+        }
+        else
+        {
+            _sharedResearch.MoveResearch(targetDatabase, databaseComponent);
+        }
 
         // Finally, update the UI to reflect the change in points
         UpdateUserInterface(consoleUid, component);
