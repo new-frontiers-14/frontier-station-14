@@ -1,6 +1,7 @@
 using System.Linq;
 using Content.Server.Power.Components;
 using Content.Server.Research.Systems;
+using Content.Server.Station.Systems;
 using Content.Shared.UserInterface;
 using Content.Server.Xenoarchaeology.Equipment.Components;
 using Content.Server.Xenoarchaeology.XenoArtifacts;
@@ -42,6 +43,7 @@ public sealed class ArtifactAnalyzerSystem : EntitySystem
     [Dependency] private readonly ResearchSystem _research = default!;
     [Dependency] private readonly MetaDataSystem _metaSystem = default!;
     [Dependency] private readonly TraversalDistorterSystem _traversalDistorter = default!;
+    [Dependency] private readonly StationSystem _station = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -218,8 +220,21 @@ public sealed class ArtifactAnalyzerSystem : EntitySystem
                 points = _artifact.GetResearchPointValue(current);
         }
 
+
+        // Frontier
+        TryComp<ResearchClientComponent>(uid, out var client);
+
+        // Frontier
+        var stationUid = _station.GetOwningStation(uid);
+        if (stationUid != null && client != null && client.Server == null)
+        {
+            client.Server = stationUid;
+        }
+        // Frontier -  end
+
+
         var analyzerConnected = component.AnalyzerEntity != null;
-        var serverConnected = TryComp<ResearchClientComponent>(uid, out var client) && client.ConnectedToServer;
+        var serverConnected = client is { ConnectedToServer: true }; // Frontier
 
         var scanning = TryComp<ActiveArtifactAnalyzerComponent>(component.AnalyzerEntity, out var active);
         var paused = active != null ? active.AnalysisPaused : false;

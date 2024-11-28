@@ -11,6 +11,7 @@ using Content.Shared.Shipyard.Components;
 using Content.Shared.Station.Systems;
 using Robust.Server.Audio;
 using Robust.Server.GameObjects;
+using Robust.Shared.Containers;
 using Robust.Shared.Timing;
 
 namespace Content.Server.Research.TechnologyDisk.Systems;
@@ -41,8 +42,15 @@ public sealed class DiskConsoleSystem : EntitySystem
         SubscribeLocalEvent<DiskConsoleComponent, ResearchServerPointsChangedEvent>(OnPointsChanged);
         SubscribeLocalEvent<DiskConsoleComponent, ResearchRegistrationChangedEvent>(OnRegistrationChanged);
         SubscribeLocalEvent<DiskConsoleComponent, BeforeActivatableUIOpenEvent>(OnBeforeUiOpen);
+        SubscribeLocalEvent<DiskConsoleComponent, EntInsertedIntoContainerMessage> (OnItemInserted); // Frontier
 
         SubscribeLocalEvent<DiskConsolePrintingComponent, ComponentShutdown>(OnShutdown);
+    }
+
+    private void OnItemInserted(EntityUid uid, DiskConsoleComponent component, EntInsertedIntoContainerMessage args) // Frontier
+    {
+        // Update ui when inserting / ejecting ID card
+        UpdateUserInterface(uid, component);
     }
 
     /// <summary>
@@ -226,8 +234,8 @@ public sealed class DiskConsoleSystem : EntitySystem
         var canPrintRare = !(TryComp<DiskConsolePrintingComponent>(uid, out var printingRare) && printingRare.FinishTime >= _timing.CurTime) &&
                        totalPoints >= component.PricePerRareDisk;
 
-        var idInside = component.TargetIdSlot.ContainerSlot?.ContainedEntity is not { Valid: true };
-        var canPrintAllResearch = !(TryComp<DiskConsolePrintingComponent>(uid, out var printingAllResearch) && printingAllResearch.FinishTime >= _timing.CurTime) && idInside;
+        var hasId = component.TargetIdSlot.ContainerSlot?.ContainedEntity is { Valid: true };
+        var canPrintAllResearch = !(TryComp<DiskConsolePrintingComponent>(uid, out var printingAllResearch) && printingAllResearch.FinishTime >= _timing.CurTime) && hasId;
 
         var state = new DiskConsoleBoundUserInterfaceState(totalPoints, component.PricePerDisk, component.PricePerRareDisk, canPrint, canPrintRare, canPrintAllResearch);
         _ui.SetUiState(uid, DiskConsoleUiKey.Key, state);
