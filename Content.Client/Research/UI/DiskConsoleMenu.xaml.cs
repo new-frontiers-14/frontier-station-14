@@ -13,7 +13,7 @@ public sealed partial class DiskConsoleMenu : FancyWindow
     public event Action? OnPrintRareButtonPressed; // Frontier - Added for mass point use
 
     public event Action? OnEjectResearchButtonPressed; // Frontier - Ejects all research
-
+    public event Action? OnImportResearchButtonPressed; // Frontier - Imports research
     public event Action? OnInsertOrEjectIdCardButtonPressed; // Frontier - Added for ID card use
 
     public DiskConsoleMenu()
@@ -23,7 +23,8 @@ public sealed partial class DiskConsoleMenu : FancyWindow
         ServerButton.OnPressed += _ => OnServerButtonPressed?.Invoke();
         PrintButton.OnPressed += _ => OnPrintButtonPressed?.Invoke();
         PrintRareButton.OnPressed += _ => OnPrintRareButtonPressed?.Invoke(); // Frontier - Added for mass point use
-        EjectResearchButton.OnPressed += _ => OnEjectResearchButtonPressed?.Invoke();
+        EjectResearchButton.OnPressed += _ => OnEjectResearchButtonPressed?.Invoke(); // Frontier - Ejects all research
+        ImportResearchButton.OnPressed += _ => OnImportResearchButtonPressed?.Invoke(); // Frontier - Imports research
         InsertOrEjectIdCardButton.OnPressed += _ => OnInsertOrEjectIdCardButtonPressed?.Invoke(); // Frontier - Added for ID card use
     }
 
@@ -32,6 +33,7 @@ public sealed partial class DiskConsoleMenu : FancyWindow
         PrintButton.Disabled = !state.CanPrint;
         PrintRareButton.Disabled = !state.CanPrintRare; // Frontier - Added for mass point use
         EjectResearchButton.Disabled = !state.CanPrintAllResearch; // Frontier - Ejects all research
+        ImportResearchButton.Disabled = !state.CanImportResearch; // Frontier - Imports research
         TotalLabel.Text = Loc.GetString("tech-disk-ui-total-label", ("amount", state.ServerPoints));
         //CostLabel.Text = Loc.GetString("tech-disk-ui-cost-label", ("amount", state.PointCost));
         PrintButton.Text = Loc.GetString("tech-disk-ui-print-button", ("amount", state.PointCost)); // Frontier

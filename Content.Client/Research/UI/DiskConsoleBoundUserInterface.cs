@@ -39,6 +39,10 @@ namespace Content.Client.Research.UI
             {
                 SendMessage(new DiskConsoleEjectResearchMessage());
             };
+            _menu.OnImportResearchButtonPressed += () =>
+            {
+                SendMessage(new DiskConsoleImportResearchMessage());
+            };
             _menu.OnInsertOrEjectIdCardButtonPressed += () =>
             {
                 SendMessage(new ItemSlotButtonPressedEvent("DiskConsole-targetId"));

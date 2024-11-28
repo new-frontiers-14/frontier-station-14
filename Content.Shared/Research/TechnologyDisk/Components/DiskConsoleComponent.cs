@@ -10,12 +10,19 @@ public sealed partial class DiskConsoleComponent : Component
 {
 
     public static string TargetIdCardSlotId = "DiskConsole-targetId";
+    public static string TargetBundleDiskSlotId = "DiskConsole-targetBundleDisk";
 
     /// <summary>
     /// The slot where the target ID card is stored
     /// </summary>
     [DataField("targetIdSlot")]
     public ItemSlot TargetIdSlot = new();
+
+    /// <summary>
+    /// The slot where the bundle disk is stored.
+    /// </summary>
+    [DataField("targetBundleDiskSlot")]
+    public ItemSlot TargetBundleDiskSlot = new();
 
     [DataField("soundError")]
     public SoundSpecifier ErrorSound =
@@ -62,4 +69,7 @@ public sealed partial class DiskConsoleComponent : Component
     /// </summary>
     [DataField("printSound")]
     public SoundSpecifier PrintSound = new SoundPathSpecifier("/Audio/Machines/printer.ogg");
+
+    [DataField("soundConfirm")]
+    public SoundSpecifier ConfirmSound = new SoundPathSpecifier("/Audio/Effects/Cargo/ping.ogg");
 }
