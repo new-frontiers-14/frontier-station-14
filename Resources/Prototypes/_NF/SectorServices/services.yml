@@ -26,3 +26,9 @@
         !type:SectorBankAccountInfo
         balance: 8000
         increasePerSecond: 20 # 72K per hour, about enough for minimum wage for the default NFSD size
+
+- type: sectorService
+  id: Alerts
+  components:
+  - type: AlertLevel
+    alertLevelPrototype: stationAlerts
