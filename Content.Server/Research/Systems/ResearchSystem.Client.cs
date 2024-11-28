@@ -1,6 +1,4 @@
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Threading.Tasks;
 using Content.Server.Power.EntitySystems;
 using Content.Shared.Research.Components;
 
@@ -119,16 +117,18 @@ public sealed partial class ResearchSystem
         server = null;
         serverComponent = null;
 
-        if (!Resolve(uid, ref component, false))
+        var stationUid = _station.GetOwningStation(uid);
+        if (stationUid == null)
             return false;
 
-        if (component.Server == null)
+        if (!_entityManager.TryGetComponent(stationUid, out serverComponent))
             return false;
 
-        if (!TryComp(component.Server, out serverComponent))
-            return false;
+        server = stationUid;
 
-        server = component.Server;
+        if (component != null)
+            component.Server = stationUid;
+
         return true;
     }
 }

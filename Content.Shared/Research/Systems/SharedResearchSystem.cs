@@ -47,6 +47,16 @@ public abstract class SharedResearchSystem : EntitySystem
         Dirty(uid, component);
     }
 
+    public void MoveResearch(
+        TechnologyDatabaseComponent source,
+        TechnologyDatabaseComponent target)
+    {
+        target.MainDiscipline = source.MainDiscipline;
+        target.SupportedDisciplines = source.SupportedDisciplines;
+        target.UnlockedRecipes = source.UnlockedRecipes;
+        target.CurrentTechnologyCards = source.CurrentTechnologyCards;
+    }
+
     public List<TechnologyPrototype> GetAvailableTechnologies(EntityUid uid, TechnologyDatabaseComponent? component = null)
     {
         if (!Resolve(uid, ref component, false))

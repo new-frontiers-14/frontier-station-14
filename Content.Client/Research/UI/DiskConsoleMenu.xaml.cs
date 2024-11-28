@@ -12,6 +12,10 @@ public sealed partial class DiskConsoleMenu : FancyWindow
     public event Action? OnPrintButtonPressed;
     public event Action? OnPrintRareButtonPressed; // Frontier - Added for mass point use
 
+    public event Action? OnEjectResearchButtonPressed; // Frontier - Ejects all research
+
+    public event Action? OnInsertOrEjectIdCardButtonPressed; // Frontier - Added for ID card use
+
     public DiskConsoleMenu()
     {
         RobustXamlLoader.Load(this);
@@ -19,12 +23,15 @@ public sealed partial class DiskConsoleMenu : FancyWindow
         ServerButton.OnPressed += _ => OnServerButtonPressed?.Invoke();
         PrintButton.OnPressed += _ => OnPrintButtonPressed?.Invoke();
         PrintRareButton.OnPressed += _ => OnPrintRareButtonPressed?.Invoke(); // Frontier - Added for mass point use
+        EjectResearchButton.OnPressed += _ => OnEjectResearchButtonPressed?.Invoke();
+        InsertOrEjectIdCardButton.OnPressed += _ => OnInsertOrEjectIdCardButtonPressed?.Invoke(); // Frontier - Added for ID card use
     }
 
     public void Update(DiskConsoleBoundUserInterfaceState state)
     {
         PrintButton.Disabled = !state.CanPrint;
         PrintRareButton.Disabled = !state.CanPrintRare; // Frontier - Added for mass point use
+        EjectResearchButton.Disabled = !state.CanPrintAllResearch; // Frontier - Ejects all research
         TotalLabel.Text = Loc.GetString("tech-disk-ui-total-label", ("amount", state.ServerPoints));
         //CostLabel.Text = Loc.GetString("tech-disk-ui-cost-label", ("amount", state.PointCost));
         PrintButton.Text = Loc.GetString("tech-disk-ui-print-button", ("amount", state.PointCost)); // Frontier

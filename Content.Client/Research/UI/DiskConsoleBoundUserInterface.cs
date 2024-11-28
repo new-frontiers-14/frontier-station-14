@@ -1,3 +1,4 @@
+using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Research;
 using Content.Shared.Research.Components;
 using Robust.Client.GameObjects;
@@ -32,6 +33,17 @@ namespace Content.Client.Research.UI
             {
                 SendMessage(new DiskConsolePrintRareDiskMessage());
             };
+
+            // Frontier
+            _menu.OnEjectResearchButtonPressed += () =>
+            {
+                SendMessage(new DiskConsoleEjectResearchMessage());
+            };
+            _menu.OnInsertOrEjectIdCardButtonPressed += () =>
+            {
+                SendMessage(new ItemSlotButtonPressedEvent("DiskConsole-targetId"));
+            };
+            // Frontier - end
         }
 
         protected override void UpdateState(BoundUserInterfaceState state)

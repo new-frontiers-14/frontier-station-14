@@ -1,3 +1,4 @@
+using Content.Shared.Containers.ItemSlots;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
@@ -7,6 +8,19 @@ namespace Content.Shared.Research.TechnologyDisk.Components;
 [RegisterComponent]
 public sealed partial class DiskConsoleComponent : Component
 {
+
+    public static string TargetIdCardSlotId = "DiskConsole-targetId";
+
+    /// <summary>
+    /// The slot where the target ID card is stored
+    /// </summary>
+    [DataField("targetIdSlot")]
+    public ItemSlot TargetIdSlot = new();
+
+    [DataField("soundError")]
+    public SoundSpecifier ErrorSound =
+        new SoundPathSpecifier("/Audio/Effects/Cargo/buzz_sigh.ogg");
+
     /// <summary>
     /// How much it costs to print a disk
     /// </summary>
@@ -28,8 +42,14 @@ public sealed partial class DiskConsoleComponent : Component
     [DataField("diskPrototypeRare", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>)), ViewVariables(VVAccess.ReadWrite)]
     public string DiskPrototypeRare = "TechnologyDiskRare";
 
+    [DataField("diskPrototypeBundled", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>)), ViewVariables(VVAccess.ReadWrite)]
+    public string DiskPrototypeBundled = "TechnologyDiskBundled";
+
     [DataField("diskRare"), ViewVariables(VVAccess.ReadWrite)]
     public bool DiskRare = false;
+
+    [DataField("diskAllResearch"), ViewVariables(VVAccess.ReadWrite)]
+    public bool DiskAllResearch = false;
 
     /// <summary>
     /// How long it takes to print <see cref="DiskPrototype"/>

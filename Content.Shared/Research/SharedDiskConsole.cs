@@ -13,14 +13,16 @@ public sealed class DiskConsoleBoundUserInterfaceState : BoundUserInterfaceState
 {
     public bool CanPrint;
     public bool CanPrintRare;
+    public bool CanPrintAllResearch;
     public int PointCost;
     public int PointCostRare;
     public int ServerPoints;
 
-    public DiskConsoleBoundUserInterfaceState(int serverPoints, int pointCost, int pointCostRare, bool canPrint, bool canPrintRare)
+    public DiskConsoleBoundUserInterfaceState(int serverPoints, int pointCost, int pointCostRare, bool canPrint, bool canPrintRare, bool canPrintAllResearch)
     {
         CanPrint = canPrint;
         CanPrintRare = canPrintRare;
+        CanPrintAllResearch = canPrintAllResearch;
         PointCost = pointCost;
         PointCostRare = pointCostRare;
         ServerPoints = serverPoints;
@@ -38,3 +40,10 @@ public sealed class DiskConsolePrintRareDiskMessage : BoundUserInterfaceMessage
 {
 
 }
+
+[Serializable, NetSerializable]
+public sealed class DiskConsoleEjectResearchMessage : BoundUserInterfaceMessage
+{
+
+}
+

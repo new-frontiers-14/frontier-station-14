@@ -72,3 +72,17 @@
   components:
   - type: TechnologyDisk
     tierWeightPrototype: RareTechDiskTierWeights # Frontier
+
+- type: entity
+  parent: BaseItem
+  id: TechnologyDiskBundled
+  name: bundled research disk
+  description: A disk containing a bundle of technologies. There's no telling what's on it.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Misc/bundled_research.rsi
+    layers:
+    - state: bundled_research
+      map: ["enum.DamageStateVisualLayers.Base"]
+  - type: StaticPrice
+    price: 0

@@ -24,6 +24,7 @@ namespace Content.Server.Research.Systems
         [Dependency] private readonly RadioSystem _radio = default!;
         [Dependency] private readonly StationSystem _station = default!;
         [Dependency] private readonly EntityLookupSystem _lookup = default!;
+        [Dependency] private readonly EntityManager _entityManager = default!; // Frontier
 
         public override void Initialize()
         {

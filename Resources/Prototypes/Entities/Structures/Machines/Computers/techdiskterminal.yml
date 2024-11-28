@@ -13,6 +13,15 @@
     - map: ["computerLayerScreen"]
       state: unshaded
   - type: DiskConsole
+    targetIdSlot:
+      name: id-card-console-target-id
+      ejectSound: /Audio/Machines/id_swipe.ogg
+      insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+      ejectOnBreak: true
+      swap: true
+      whitelist:
+        components:
+        - IdCard
   - type: ResearchClient
   - type: ActivatableUI
     key: enum.DiskConsoleUiKey.Key
@@ -30,6 +39,10 @@
     radius: 0.8
     energy: 0.5
     color: "#b53ca1"
+  - type: ContainerContainer
+    containers:
+      board: !type:Container
+      DiskConsole-targetId: !type:ContainerSlot
 
 - type: weightedRandom
   id: TechDiskTierWeights
