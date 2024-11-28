@@ -21,8 +21,8 @@ alert-level-blue-instructions = Crews are advised to be vigilant and report susp
 alert-level-red = Red
 # alert-level-red-announcement = There is an immediate threat to the station. Security should prepare to use lethal force if necessary. Crewmembers should find a safe place to shelter in, and are advised to follow any present authorities.
 # alert-level-red-instructions = Crewmembers should find a safe place to shelter in, and are advised to follow any present authorities.
-alert-level-blue-announcement = There is an immediate threat to the sector. Security should prepare to use lethal force if necessary. Crews should cooperate to ensure mutual safety, and are advised to follow any present authorities.
-alert-level-blue-instructions = Crews should cooperate to ensure mutual safety, and are advised to follow any present authorities.
+alert-level-red-announcement = There is an immediate threat to the sector. Security should prepare to use lethal force if necessary. Crews should cooperate to ensure mutual safety, and are advised to follow any present authorities.
+alert-level-red-instructions = Crews should cooperate to ensure mutual safety, and are advised to follow any present authorities.
 
 alert-level-violet = Violet
 # alert-level-violet-announcement = There is a viral threat on the station. Medical staff are advised to isolate crewmembers with any symptoms. Crewmembers are advised to distance themselves from others and perform safety measures to prevent further spread.
