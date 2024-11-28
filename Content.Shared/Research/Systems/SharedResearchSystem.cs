@@ -55,6 +55,11 @@ public abstract class SharedResearchSystem : EntitySystem
         target.SupportedDisciplines = source.SupportedDisciplines;
         target.UnlockedRecipes = source.UnlockedRecipes;
         target.CurrentTechnologyCards = source.CurrentTechnologyCards;
+
+        source.MainDiscipline = null;
+        source.SupportedDisciplines = [];
+        source.UnlockedRecipes = [];
+        source.CurrentTechnologyCards = [];
     }
 
     public List<TechnologyPrototype> GetAvailableTechnologies(EntityUid uid, TechnologyDatabaseComponent? component = null)
