@@ -1,4 +1,1 @@
-﻿# station-event-vent-creatures-start-announcement = Attention. A large influx of unknown life forms have been detected residing within the station's ventilation systems. Please be rid of these creatures before it begins to affect productivity.
-
-## Frontier
-station-event-vent-creatures-start-announcement = Attention. A large influx of unknown life forms have been detected residing within the ventilation systems of some shuttles. Please be rid of these creatures before it begins to affect productivity.
+﻿station-event-vent-creatures-nf-start-announcement = Attention. A large influx of unknown life forms have been detected residing within shuttle ventilation systems. Please be rid of these creatures before it begins to affect productivity.
