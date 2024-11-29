@@ -158,12 +158,11 @@ public sealed class DiskConsoleSystem : EntitySystem
             return;
         }
 
-        var st = Transform(consoleUid).GridUid;
-        if (st == null)
-            return;
-        var stationUid = _station.GetLargestGrid(Comp<StationDataComponent>(st.Value));
         var owningStationUid = _station.GetOwningStation(consoleUid);
-        if (stationUid == null || owningStationUid == null)
+        if (owningStationUid == null)
+            return;
+        var stationUid = _station.GetLargestGrid(Comp<StationDataComponent>(owningStationUid.Value));
+        if (stationUid == null)
         {
             _popup.PopupEntity(Loc.GetString("tech-disk-console-no-server"), consoleUid);
             _audio.PlayEntity(component.ErrorSound, player, consoleUid);
@@ -189,7 +188,7 @@ public sealed class DiskConsoleSystem : EntitySystem
 
         _audio.PlayPvs(component.ConfirmSound, consoleUid);
 
-        TransferResearch(targetDisk, owningStationUid.Value, false);
+        TransferResearch(targetDisk, consoleUid, false);
         UpdateUserInterface(consoleUid, component);
     }
 
@@ -257,16 +256,17 @@ public sealed class DiskConsoleSystem : EntitySystem
             !_entityManager.TryGetComponent<TechnologyDatabaseComponent>(server.Value, out var databaseComponent))
             return;
 
-        var targetDatabase = _entityManager.EnsureComponent<TechnologyDatabaseComponent>(diskUid);
-        serverComp.Points = 0;
-
         if (toDisk)
         {
-            _sharedResearch.MoveResearch(databaseComponent, targetDatabase);
+            var targetDatabase = _entityManager.EnsureComponent<TechnologyDatabaseComponent>(diskUid);
+            serverComp.Points = 0;
+            _sharedResearch.MoveResearch(ref databaseComponent, ref targetDatabase);
         }
         else
         {
-            _sharedResearch.MoveResearch(targetDatabase, databaseComponent);
+            var targetDatabase = _entityManager.EnsureComponent<TechnologyDatabaseComponent>(server.Value);
+            serverComp.Points = 0;
+            _sharedResearch.MoveResearch(ref targetDatabase, ref databaseComponent);
         }
 
         // Finally, update the UI to reflect the change in points

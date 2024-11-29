@@ -121,13 +121,9 @@ public sealed partial class ResearchSystem
         if (stationUid == null)
             return false;
 
-        if (!_entityManager.TryGetComponent(stationUid, out serverComponent))
-            return false;
+        serverComponent = GetOrSetupResearchServer(stationUid.Value);
 
         server = stationUid;
-
-        if (component != null)
-            component.Server = stationUid;
 
         return true;
     }

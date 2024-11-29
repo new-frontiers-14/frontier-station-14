@@ -17,10 +17,10 @@ public sealed partial class ResearchSystem
             return;
 
         primaryDb.MainDiscipline = otherDb.MainDiscipline;
-        primaryDb.CurrentTechnologyCards = otherDb.CurrentTechnologyCards;
-        primaryDb.SupportedDisciplines = otherDb.SupportedDisciplines;
-        primaryDb.UnlockedTechnologies = otherDb.UnlockedTechnologies;
-        primaryDb.UnlockedRecipes = otherDb.UnlockedRecipes;
+        primaryDb.CurrentTechnologyCards = [..otherDb.CurrentTechnologyCards];
+        primaryDb.SupportedDisciplines = [..otherDb.SupportedDisciplines];
+        primaryDb.UnlockedTechnologies = [..otherDb.UnlockedTechnologies];
+        primaryDb.UnlockedRecipes = [..otherDb.UnlockedRecipes];
 
         Dirty(primaryUid, primaryDb);
 

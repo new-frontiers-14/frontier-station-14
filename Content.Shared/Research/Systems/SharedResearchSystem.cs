@@ -48,18 +48,18 @@ public abstract class SharedResearchSystem : EntitySystem
     }
 
     public void MoveResearch(
-        TechnologyDatabaseComponent source,
-        TechnologyDatabaseComponent target)
+        ref TechnologyDatabaseComponent source,
+        ref TechnologyDatabaseComponent target)
     {
         target.MainDiscipline = source.MainDiscipline;
-        target.SupportedDisciplines = source.SupportedDisciplines;
-        target.UnlockedRecipes = source.UnlockedRecipes;
-        target.CurrentTechnologyCards = source.CurrentTechnologyCards;
+        target.SupportedDisciplines = new List<string>(source.SupportedDisciplines);
+        target.UnlockedRecipes = new List<string>(source.UnlockedRecipes);
+        target.CurrentTechnologyCards = new List<string>(source.CurrentTechnologyCards);
 
         source.MainDiscipline = null;
-        source.SupportedDisciplines = [];
-        source.UnlockedRecipes = [];
-        source.CurrentTechnologyCards = [];
+        source.SupportedDisciplines.Clear();
+        source.UnlockedRecipes.Clear();
+        source.CurrentTechnologyCards.Clear();
     }
 
     public List<TechnologyPrototype> GetAvailableTechnologies(EntityUid uid, TechnologyDatabaseComponent? component = null)
@@ -235,15 +235,15 @@ public abstract class SharedResearchSystem : EntitySystem
 
     public void TrySetMainDiscipline(TechnologyPrototype prototype, EntityUid uid, TechnologyDatabaseComponent? component = null)
     {
-        return;
-        if (!Resolve(uid, ref component))
-            return;
-
-        var discipline = PrototypeManager.Index(prototype.Discipline);
-        if (prototype.Tier < discipline.LockoutTier)
-            return;
-        component.MainDiscipline = prototype.Discipline;
-        Dirty(uid, component);
+        // Frontier: we dont use main disciplines anymore
+        // if (!Resolve(uid, ref component))
+        //     return;
+        //
+        // var discipline = PrototypeManager.Index(prototype.Discipline);
+        // if (prototype.Tier < discipline.LockoutTier)
+        //     return;
+        // component.MainDiscipline = prototype.Discipline;
+        // Dirty(uid, component);
     }
 
     /// <summary>

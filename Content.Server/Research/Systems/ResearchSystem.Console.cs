@@ -10,15 +10,24 @@ using Content.Shared.Research.Prototypes;
 
 namespace Content.Server.Research.Systems;
 
+/// <summary>
+/// ResearchSystem is due for a rewrite it is made in 2022 and i am suffering changing anything in this shitcode
+/// REEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+/// </summary>
 public sealed partial class ResearchSystem
 {
     private void InitializeConsole()
     {
         SubscribeLocalEvent<ResearchConsoleComponent, ConsoleUnlockTechnologyMessage>(OnConsoleUnlock);
-        SubscribeLocalEvent<ResearchConsoleComponent, BeforeActivatableUIOpenEvent>(OnConsoleBeforeUiOpened);
         SubscribeLocalEvent<ResearchConsoleComponent, ResearchServerPointsChangedEvent>(OnPointsChanged);
+        SubscribeLocalEvent<ResearchConsoleComponent, BeforeActivatableUIOpenEvent>(OnConsoleBeforeUiOpened);
         SubscribeLocalEvent<ResearchConsoleComponent, ResearchRegistrationChangedEvent>(OnConsoleRegistrationChanged);
         SubscribeLocalEvent<ResearchConsoleComponent, TechnologyDatabaseModifiedEvent>(OnConsoleDatabaseModified);
+    }
+
+    private void OnConsoleBeforeUiOpened(EntityUid uid, ResearchConsoleComponent component, BeforeActivatableUIOpenEvent args)
+    {
+        SyncClientWithServer(uid);
     }
 
     private void OnConsoleUnlock(EntityUid uid, ResearchConsoleComponent component, ConsoleUnlockTechnologyMessage args)
@@ -40,27 +49,21 @@ public sealed partial class ResearchSystem
         if (!UnlockTechnology(uid, args.Id, act))
             return;
 
-        if (false && !HasComp<EmaggedComponent>(uid)) // Frontier: add false - silent R&D computers
-        {
-            var getIdentityEvent = new TryGetIdentityShortInfoEvent(uid, act);
-            RaiseLocalEvent(getIdentityEvent);
-
-            var message = Loc.GetString(
-                "research-console-unlock-technology-radio-broadcast",
-                ("technology", Loc.GetString(technologyPrototype.Name)),
-                ("amount", technologyPrototype.Cost),
-                ("approver", getIdentityEvent.Title ?? string.Empty)
-            );
-            _radio.SendRadioMessage(uid, message, component.AnnouncementChannel, uid, escapeMarkup: false);
-        }
-
         SyncClientWithServer(uid);
+        // if (false && !HasComp<EmaggedComponent>(uid)) // Frontier: add false - silent R&D computers
+        // {
+        //     var getIdentityEvent = new TryGetIdentityShortInfoEvent(uid, act);
+        //     RaiseLocalEvent(getIdentityEvent);
+        //
+        //     var message = Loc.GetString(
+        //         "research-console-unlock-technology-radio-broadcast",
+        //         ("technology", Loc.GetString(technologyPrototype.Name)),
+        //         ("amount", technologyPrototype.Cost),
+        //         ("approver", getIdentityEvent.Title ?? string.Empty)
+        //     );
+        //     _radio.SendRadioMessage(uid, message, component.AnnouncementChannel, uid, escapeMarkup: false);
+        // }
         UpdateConsoleInterface(uid, component);
-    }
-
-    private void OnConsoleBeforeUiOpened(EntityUid uid, ResearchConsoleComponent component, BeforeActivatableUIOpenEvent args)
-    {
-        SyncClientWithServer(uid);
     }
 
     private void UpdateConsoleInterface(EntityUid uid, ResearchConsoleComponent? component = null, ResearchClientComponent? clientComponent = null, TechnologyDatabaseComponent? clientDatabase = null)
@@ -70,18 +73,24 @@ public sealed partial class ResearchSystem
 
         ResearchConsoleBoundInterfaceState state;
 
+        var station = _station.GetOwningStation(uid);
+        if (station == null)
+            return;
+
+        if (!TryComp<TechnologyDatabaseComponent>(station.Value, out var serverDatabase))
+            return;
+
         // Frontier: increase point cost by unlocked technologies count
         var cvarModifier = _configuration.GetCVar(NFCCVars.ScienceIncreasingUnlockModifier);
         var isIncreasingUnlockCostEnabled = _configuration.GetCVar(NFCCVars.ScienceIncreasingUnlockCost);
         var unlockCostModifier = 1f;
         if (isIncreasingUnlockCostEnabled)
-            unlockCostModifier = cvarModifier * clientDatabase.UnlockedTechnologies.Count + 1f;
+            unlockCostModifier = cvarModifier * serverDatabase.UnlockedTechnologies.Count + 1f;
 
 
         if (TryGetClientServer(uid, out _, out var serverComponent, clientComponent))
         {
-            var points = clientComponent.ConnectedToServer ? serverComponent.Points : 0;
-            state = new ResearchConsoleBoundInterfaceState(points, unlockCostModifier); // Frontier: add modifier
+            state = new ResearchConsoleBoundInterfaceState(serverComponent.Points, unlockCostModifier); // Frontier: add modifier
         }
         else
         {
@@ -100,7 +109,6 @@ public sealed partial class ResearchSystem
 
     private void OnConsoleRegistrationChanged(EntityUid uid, ResearchConsoleComponent component, ref ResearchRegistrationChangedEvent args)
     {
-        SyncClientWithServer(uid);
         UpdateConsoleInterface(uid, component);
     }
 

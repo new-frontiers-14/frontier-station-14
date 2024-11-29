@@ -60,8 +60,11 @@ public sealed partial class ResearchSystem
     /// <param name="clientComponent"></param>
     /// <param name="serverComponent"></param>
     /// <param name="dirtyServer">Whether or not to dirty the server component after registration</param>
-    public void RegisterClient(EntityUid client, EntityUid server, ResearchClientComponent? clientComponent = null,
-        ResearchServerComponent? serverComponent = null,  bool dirtyServer = true)
+    public void RegisterClient(EntityUid client,
+        EntityUid server,
+        ResearchClientComponent? clientComponent = null,
+        ResearchServerComponent? serverComponent = null,
+        bool dirtyServer = true)
     {
         if (!Resolve(client, ref clientComponent) || !Resolve(server, ref serverComponent))
             return;
