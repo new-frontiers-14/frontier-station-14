@@ -51,6 +51,24 @@
     - id: BluespaceDungeonCave
 
 - type: entity
+  id: BluespaceSalvageEventScheduler
+  parent: BaseGameRule
+  components:
+  - type: BasicStationEventScheduler
+    scheduledGameRules: !type:NestedSelector
+      tableId: SalvageBluespaceEventsTable
+    minimumTimeUntilFirstEvent: 420 # 7 minutes
+    minMaxEventTiming:
+      min: 2100 # 35 minutes between events
+      max: 2400 # 40 minutes between events
+
+- type: entityTable
+  id: SalvageBluespaceEventsTable
+  table: !type:AllSelector # we need to pass a list of rules, since rules have further restrictions to consider via StationEventComp
+    children:
+    - id: BluespaceSalvage
+
+- type: entity
   id: SmugglingEventScheduler
   parent: BaseGameRule
   components:

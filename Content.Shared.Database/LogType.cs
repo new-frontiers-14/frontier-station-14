@@ -126,4 +126,8 @@ public enum LogType
     ShipYardUsage = 201,
     ShuttleRecordsUsage = 202,
 
+    /// <summary>
+    /// An admin spawns a refund for a player.
+    /// </summary>
+    AdminRefund = 203,
 }
