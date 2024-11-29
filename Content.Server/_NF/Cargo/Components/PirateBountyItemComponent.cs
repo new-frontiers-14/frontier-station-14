@@ -6,6 +6,6 @@ namespace Content.Server.Cargo.Systems; // Needs to collide with base namespace
 public sealed partial class PirateBountyItemComponent : Component
 {
     // The ID of the category to match.
-    [DataField(required: true)]
+    [DataField("id", required: true)]
     public string ID;
 }
