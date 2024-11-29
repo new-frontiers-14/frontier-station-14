@@ -53,7 +53,7 @@ public readonly partial record struct PirateBountyItemEntry()
     /// <summary>
     /// An internal ID for matching, should be used in PirateBountyItemComponent
     /// </summary>
-    [DataField]
+    [IdDataField]
     public string ID { get; init; } = default!;
 
     /// <summary>

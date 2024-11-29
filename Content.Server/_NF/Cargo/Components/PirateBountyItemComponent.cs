@@ -1,3 +1,5 @@
+using Robust.Shared.Prototypes;
+
 namespace Content.Server.Cargo.Systems; // Needs to collide with base namespace
 
 // Component to identify an item as matching a pirate bounty.
@@ -6,6 +8,6 @@ namespace Content.Server.Cargo.Systems; // Needs to collide with base namespace
 public sealed partial class PirateBountyItemComponent : Component
 {
     // The ID of the category to match.
-    [DataField("id", required: true)]
+    [IdDataField]
     public string ID;
 }
