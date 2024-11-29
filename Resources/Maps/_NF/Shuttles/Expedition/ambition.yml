@@ -8483,13 +8483,6 @@ entities:
     - type: Transform
       pos: 6.5,2.5
       parent: 1
-- proto: GasCanisterBrokenBase
-  entities:
-  - uid: 1948
-    components:
-    - type: Transform
-      pos: -8.5,24.5
-      parent: 1
 - proto: GasFilter
   entities:
   - uid: 734
@@ -8547,6 +8540,7 @@ entities:
     - type: GasMixer
       inletTwoConcentration: 0.79
       inletOneConcentration: 0.21
+      enabled: True
 - proto: GasOutletInjector
   entities:
   - uid: 738
@@ -8931,6 +8925,12 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#947507FF'
+  - uid: 1948
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 11.5,-0.5
+      parent: 1
   - uid: 1951
     components:
     - type: Transform
@@ -11302,6 +11302,11 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -3.5,12.5
       parent: 1
+  - uid: 1886
+    components:
+    - type: Transform
+      pos: 11.5,0.5
+      parent: 1
   - uid: 1933
     components:
     - type: Transform
@@ -11358,12 +11363,6 @@ entities:
     components:
     - type: Transform
       pos: 10.5,0.5
-      parent: 1
-  - uid: 2563
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 11.5,-0.5
       parent: 1
 - proto: GasPressurePump
   entities:
@@ -12520,11 +12519,11 @@ entities:
     - type: Transform
       pos: -4.5,30.5
       parent: 1
-  - uid: 2564
+  - uid: 2430
     components:
     - type: Transform
       anchored: True
-      pos: 11.5,-0.5
+      pos: 11.5,0.5
       parent: 1
     - type: Physics
       bodyType: Static
@@ -14488,10 +14487,11 @@ entities:
       parent: 1
 - proto: Sink
   entities:
-  - uid: 1886
+  - uid: 2432
     components:
     - type: Transform
-      pos: -5.5,-5.5
+      rot: -1.5707963267948966 rad
+      pos: -4.5,-5.5
       parent: 1
 - proto: SMESBasic
   entities:
@@ -17144,7 +17144,7 @@ entities:
     - type: Transform
       pos: -10.5,9.5
       parent: 1
-- proto: WarpPointShip
+- proto: WarpPoint
   entities:
   - uid: 2366
     components:
