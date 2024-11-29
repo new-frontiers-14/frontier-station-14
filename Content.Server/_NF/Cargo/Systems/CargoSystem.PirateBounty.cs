@@ -601,8 +601,7 @@ public sealed partial class CargoSystem
             }
 
             // Check whitelists for the pirate bounty.
-            if (_whitelistSys.IsWhitelistPass(entry.Whitelist, target) ||
-                _whitelistSys.IsBlacklistFailOrNull(entry.Blacklist, target))
+            if (TryComp<PirateBountyItemComponent>(target, out var targetBounty) && targetBounty.ID == entry.ID)
             {
                 if (TryComp<StackComponent>(target, out var stack))
                     bounty.Entries[entry.Name] += stack.Count;
