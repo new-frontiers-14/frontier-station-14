@@ -41,13 +41,14 @@
 
 - type: entity
   parent: NFBaseBlueprintArmory
-  id: NFBlueprinthandcuffs
+  id: NFBlueprintHandcuffs
   name: handcuffs blueprint
   description: A blueprint with a schematic of handcuffs. It can be inserted into an autolathe or a techfab.
   components:
   - type: Blueprint
     providedRecipes:
-    - handcuffs
+    - Handcuffs
+
 - type: entity
   parent: NFBaseBlueprintArmory
   id: NFBlueprintWeaponShotgunKammererNF
@@ -57,3 +58,13 @@
   - type: Blueprint
     providedRecipes:
     - WeaponShotgunKammererNF
+
+- type: entity
+  parent: NFBaseBlueprintArmory
+  id: NFBlueprintTelescopicShield 
+  name: telescopic shield blueprint
+  description: A blueprint with a schematic of a telescopic shield. It can be inserted into an autolathe or a techfab.
+  components:
+  - type: Blueprint
+    providedRecipes:
+    - TelescopicShield
