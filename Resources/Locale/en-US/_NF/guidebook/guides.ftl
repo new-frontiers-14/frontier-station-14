@@ -12,6 +12,7 @@ guide-entry-nfsd-smuggling = Smuggling
 
 # Medical entries
 guide-entry-medical-bounties = Medical Bounties
+guide-entry-medical-mom = Medical Operations Manager
 
 # Reference entries
 guide-entry-medicalrecipes = Medical Recipes
