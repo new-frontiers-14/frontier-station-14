@@ -20,6 +20,8 @@
     - id: PaperWrittenMedicalFormPrescription
     - id: PaperWrittenMedicalFormHealthInsurance
     - id: PaperWrittenMedicalFormServiceInvoice
+    - id: PaperWrittenMedicalFormReceiptInvoice
+    - id: PaperWrittenMedicalFormRelease
     - id: Paper
       prob: 0.5
     - id: Paper
@@ -178,3 +180,72 @@
 
 
       [color=#AAAAAA]This Form is void without the signature and stamp of a medical specialist.[/color]
+            
+- type: entity
+  id: PaperWrittenMedicalFormReceiptInvoice
+  name: medical receipt invoice
+  categories: [ HideSpawnMenu ]
+  parent: Paper
+  components:
+  - type: Paper
+    content: |2
+      [color=#52B4E9]◥[bold]N[/bold]◣ [bold]Medical Operations Manager Payroll[/bold][/color]
+      [color=#52B4E9]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
+      [head=2]Medical Service Invoice[/head]
+
+      [head=3]Receipt of service for compensation. [/head]
+
+      [head=3]Contractor Information[/head]
+            [bold]Name:[/bold] 
+            [bold]Species:[/bold] 
+            [bold]Occupation:[/bold] 
+
+      [head=3]Service Provided[/head]
+          \[  ] Medical Bounty Delivery:
+          \[  ] Material Delivery:
+          \[  ] Service:
+          \[  ] Other:
+
+      [head=3]Relevant Description[/head]
+
+
+      ____________
+      $XXX,XXX - Grand Total
+      
+      [color=#AAAAAA]This Form is void without the signature and stamp of the Medical Operations Manager. This form does not constitute a contract. Compensation for services provided is at the discretion of the Medical Operations Manager.[/color]
+
+- type: entity
+  id: PaperWrittenMedicalFormRelease
+  name: medical release form
+  categories: [ HideSpawnMenu ]
+  parent: Paper
+  components:
+  - type: Paper
+    content: |2
+      [color=#52B4E9]◥[bold]N[/bold]◣ [bold]Medical Operations Manager Payroll[/bold][/color]
+      [color=#52B4E9]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
+      [head=2]Medical Release Form[/head]
+
+      [head=3]Patient Information[/head]
+            [bold]Name:[/bold] 
+            [bold]Species:[/bold]             
+            [bold]Occupation:[/bold] 
+
+      [head=3]Responder Information[/head]
+            [bold]Name:[/bold] 
+            [bold]Vessel IFF:[/bold] 
+            [bold]Shift Time:[/bold] 
+
+      [head=3]Services Provided[/head]
+
+
+
+      [head=3]Relevant Description[/head]
+      
+
+
+      [head=3]I, the undersigned, agree that the services listed above are accurate and consent to release.[/head]
+
+
+
+      [color=#AAAAAA]This Form is void without the signature and stamp of the Medical Operations Manager. This form does not constitute a contract. Compensation for services provided is at the discretion of the Medical Operations Manager.[/color]
