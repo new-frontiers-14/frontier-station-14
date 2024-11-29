@@ -1,0 +1,24 @@
+
+- type: entity
+  parent: hydroponicsSoil
+  id: HydroponicsSoilEmpty
+  suffix: Empty
+  components:
+  - type: PlantHolder
+    waterLevel: 0
+    nutritionLevel: 0
+  - type: Construction
+    graph: soil
+    node: HydroponicsSoilEmpty
+
+- type: entity
+  parent: hydroponicsSoil
+  id: HydroponicsSoilNutrition
+  suffix: "0 water, 100 nutrition"
+  components:
+  - type: PlantHolder
+    waterLevel: 0
+    nutritionLevel: 100
+  - type: Construction
+    graph: soil
+    node: HydroponicsSoilNutrition

@@ -11,11 +11,17 @@
 - type: pointOfInterest
   id: Grifty
   name: "Grifty's Gas n Grub"
-  rangeMin: 3250
-  rangeMax: 5600
-  IFFColor: "#ffa600" #yellorange for faction style
+  minimumDistance: 3250
+  maximumDistance: 5600
   spawnGroup: Scrapyard
   gridPath: /Maps/_NF/POI/grifty.yml
+  addComponents:
+  - type: IFF
+    color: "#ffa600"
+    readOnly: true
+  - type: Shuttle
+    angularDamping: 999999
+    linearDamping: 999999
 
 - type: gameMap
   id: Grifty
@@ -24,7 +30,7 @@
   minPlayers: 0
   stations:
     Grifty:
-      stationProto: DeadDropShipyardFrontierOutpost
+      stationProto: DeadDropRecordsFrontierOutpost
       components:
         - type: StationNameSetup
           mapNameTemplate: "Grifty's Gas n Grub"
