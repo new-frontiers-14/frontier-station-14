@@ -59,11 +59,27 @@ public sealed partial class CryoSleepSystem
             return ReturnToBodyStatus.NotAGhost;
 
         var cryopod = storedBody!.Value.Cryopod;
-        if (!Exists(cryopod) || Deleted(cryopod) || !TryComp<CryoSleepComponent>(cryopod, out var cryoComp))
-            return ReturnToBodyStatus.CryopodMissing;
-
         var body = storedBody.Value.Body;
-        if (IsOccupied(cryoComp) || !_container.Insert(body, cryoComp.BodyContainer))
+        if (!Exists(cryopod) || Deleted(cryopod) || !TryComp<CryoSleepComponent>(cryopod, out var cryoComp))
+        {
+            var fallbackQuery = EntityQueryEnumerator<CryoSleepFallbackComponent, CryoSleepComponent>();
+            bool foundFallback = false;
+            while (fallbackQuery.MoveNext(out var uid, out _, out cryoComp))
+            {
+                if (!IsOccupied(cryoComp) && _container.Insert(body, cryoComp.BodyContainer))
+                {
+                    foundFallback = true;
+                    break;
+                }
+            }
+
+            // No valid cryopod, all fallbacks occupied or missing.
+            if (!foundFallback)
+                return ReturnToBodyStatus.NoCryopodAvailable;
+        }
+
+        // NOTE: if the pod is occupied but still exists, do not let the user teleport.
+        if (IsOccupied(cryoComp!) || !_container.Insert(body, cryoComp!.BodyContainer))
             return ReturnToBodyStatus.Occupied;
 
         _storedBodies.Remove(id.Value);
