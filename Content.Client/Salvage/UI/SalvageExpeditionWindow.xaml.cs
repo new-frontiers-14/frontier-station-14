@@ -3,6 +3,7 @@ using Content.Client.Computer;
 using Content.Client.Stylesheets;
 using Content.Client.UserInterface.Controls;
 using Content.Shared.CCVar;
+using Content.Shared._NF.CCVar; // Frontier
 using Content.Shared.Parallax.Biomes;
 using Content.Shared.Salvage;
 using Content.Shared.Salvage.Expeditions;
@@ -30,6 +31,7 @@ public sealed partial class SalvageExpeditionWindow : FancyWindow,
     private readonly SharedSalvageSystem _salvage;
 
     public event Action<ushort>? ClaimMission;
+    public event Action? FinishMission; // Frontier
     private bool _claimed;
     private bool _cooldown;
     private TimeSpan _nextOffer;
@@ -134,7 +136,10 @@ public sealed partial class SalvageExpeditionWindow : FancyWindow,
                 Text = Loc.GetString("salvage-expedition-window-hostiles")
             });
 
-            var faction = mission.Faction;
+            // Get faction name from description if possible, fallback to ID string
+            if (!_prototype.TryIndex<SalvageFactionPrototype>(mission.Faction, out var factionProto) ||
+                    !Loc.TryGetString(factionProto.Description, out var faction))
+                faction = mission.Faction;
 
             lBox.AddChild(new Label
             {
@@ -190,28 +195,32 @@ public sealed partial class SalvageExpeditionWindow : FancyWindow,
                 Margin = new Thickness(0f, 0f, 0f, 5f),
             });
 
-            lBox.AddChild(new Label()
+            // Frontier: wrap in rewards > 0 , otherwise dont show "rewards" text
+            if (mission.Rewards.Count > 0)
             {
-                Text = Loc.GetString("salvage-expedition-window-rewards")
-            });
+                lBox.AddChild(new Label()
+                {
+                    Text = Loc.GetString("salvage-expedition-window-rewards")
+                });
 
-            var rewards = new Dictionary<string, int>();
-            foreach (var reward in mission.Rewards)
-            {
-                var name = _prototype.Index<EntityPrototype>(reward).Name;
-                var count = rewards.GetOrNew(name);
-                count++;
-                rewards[name] = count;
+                var rewards = new Dictionary<string, int>();
+                foreach (var reward in mission.Rewards)
+                {
+                    var name = _prototype.Index<EntityPrototype>(reward).Name;
+                    var count = rewards.GetOrNew(name);
+                    count++;
+                    rewards[name] = count;
+                }
+
+                // there will always be 3 or more rewards so no need for 0 check
+                lBox.AddChild(new Label()
+                {
+                    Text = string.Join("\n", rewards.Select(o => "- " + o.Key + (o.Value > 1 ? $" x {o.Value}" : ""))).TrimEnd(),
+                    FontColorOverride = StyleNano.ConcerningOrangeFore,
+                    HorizontalAlignment = HAlignment.Left,
+                    Margin = new Thickness(0f, 0f, 0f, 5f)
+                });
             }
-
-            // there will always be 3 or more rewards so no need for 0 check
-            lBox.AddChild(new Label()
-            {
-                Text = string.Join("\n", rewards.Select(o => "- " + o.Key + (o.Value > 1 ? $" x {o.Value}" : ""))).TrimEnd(),
-                FontColorOverride = StyleNano.ConcerningOrangeFore,
-                HorizontalAlignment = HAlignment.Left,
-                Margin = new Thickness(0f, 0f, 0f, 5f)
-            });
 
             // Claim
             var claimButton = new Button()
@@ -266,6 +275,16 @@ public sealed partial class SalvageExpeditionWindow : FancyWindow,
 
             Container.AddChild(box);
         }
+
+        // Frontier
+        Finish.OnPressed += _ =>
+        {
+            Finish.Disabled = true;
+            FinishMission?.Invoke();
+        };
+
+        Finish.Disabled = !state.CanFinish;
+        // Frontier
     }
 
     protected override void FrameUpdate(FrameEventArgs args)
@@ -289,7 +308,7 @@ public sealed partial class SalvageExpeditionWindow : FancyWindow,
         else
         {
             var cooldown = _cooldown
-                ? TimeSpan.FromSeconds(_cfgManager.GetCVar(CCVars.SalvageExpeditionFailedCooldown))
+                ? TimeSpan.FromSeconds(_cfgManager.GetCVar(NFCCVars.SalvageExpeditionFailedCooldown))
                 : TimeSpan.FromSeconds(_cfgManager.GetCVar(CCVars.SalvageExpeditionCooldown));
 
             NextOfferBar.Value = 1f - (float) (remaining / cooldown);

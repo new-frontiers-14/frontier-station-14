@@ -1,0 +1,56 @@
+# Base prototypes
+
+- type: latheRecipe
+  abstract: true
+  id: NFBaseAdvancedPartRecipe
+  parent: BasePartRecipe
+  completetime: 2.5
+  materials:
+    Steel: 80
+    Plastic: 80
+    Plasma: 75
+
+- type: latheRecipe
+  abstract: true
+  id: NFBaseSuperPartRecipe
+  parent: NFBaseAdvancedPartRecipe
+  completetime: 3
+  materials:
+    Steel: 150
+    Plastic: 150
+    Plasma: 75
+    Gold: 75
+
+# Recipes
+
+# Rating 2
+- type: latheRecipe
+  id: AdvancedCapacitorStockPart
+  parent: NFBaseAdvancedPartRecipe
+  result: AdvancedCapacitorStockPart
+
+- type: latheRecipe
+  id: AdvancedMatterBinStockPart
+  parent: NFBaseAdvancedPartRecipe
+  result: AdvancedMatterBinStockPart
+
+- type: latheRecipe
+  id: NanoManipulatorStockPart
+  parent: NFBaseAdvancedPartRecipe
+  result: NanoManipulatorStockPart
+
+# Rating 3
+- type: latheRecipe
+  id: SuperCapacitorStockPart
+  parent: NFBaseSuperPartRecipe
+  result: SuperCapacitorStockPart
+
+- type: latheRecipe
+  id: SuperMatterBinStockPart
+  parent: NFBaseSuperPartRecipe
+  result: SuperMatterBinStockPart
+
+- type: latheRecipe
+  id: PicoManipulatorStockPart
+  parent: NFBaseSuperPartRecipe
+  result: PicoManipulatorStockPart

@@ -1,0 +1,1 @@
+intercom-verb = Open Intercom

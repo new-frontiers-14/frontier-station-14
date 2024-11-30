@@ -15,10 +15,12 @@
 # Contraband (unregistered) weaponry crates for expeditions
 - type: entity
   id: CrateArmorySMGExpedition
-  parent: [ CrateFirearmsSecure, UnregisteredFirearmBase ]
+  parent:
+  - BaseC2ExpeditionContraband
+  - CrateFirearmsSecure
   name: SMG crate
   description: Contains two high-powered, SMGs with four mags. Requires Armory access to open. Unregistered.
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: StorageFill
     contents:
@@ -29,10 +31,12 @@
 
 - type: entity
   id: CrateArmoryShotgunExpedition
-  parent: [ CrateFirearmsSecure, UnregisteredFirearmBase ]
+  parent:
+  - BaseC2ExpeditionContraband
+  - CrateFirearmsSecure
   name: shotgun crate
   description: For when the enemy absolutely needs to be replaced with lead. Contains two Enforcer Combat Shotguns, and some standard shotgun shells. Requires Armory access to open. Unregistered.
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: StorageFill
     contents:
@@ -43,10 +47,12 @@
 
 - type: entity
   id: CrateArmoryLaserExpedition
-  parent: [ CrateFirearmsSecure, UnregisteredFirearmBase ]
+  parent:
+  - BaseC2ExpeditionContraband
+  - CrateFirearmsSecure
   name: lasers crate
   description: Contains three standard-issue laser carbines. Requires Armory access to open. Unregistered.
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: StorageFill
     contents:
@@ -55,10 +61,12 @@
 
 - type: entity
   id: CrateArmoryEnergyGunExpedition
-  parent: [ CrateFirearmsSecure, UnregisteredFirearmBase ]
+  parent:
+  - BaseC2ExpeditionContraband
+  - CrateFirearmsSecure
   name: energy guns crate
   description: Contains three energy guns. Requires Armory access to open. Unregistered.
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: StorageFill
     contents:
@@ -67,10 +75,12 @@
 
 - type: entity
   id: CrateArmoryPistolsExpedition
-  parent: [ CrateFirearmsSecure, UnregisteredFirearmBase ]
+  parent:
+  - BaseC2ExpeditionContraband
+  - CrateFirearmsSecure
   name: pistols crate
   description: Contains two standard NT pistols with four mags. Requires Armory access to open. Unregistered.
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: StorageFill
     contents:
@@ -81,10 +91,12 @@
 
 - type: entity
   id: CrateArmoryRifleGestioExpedition
-  parent: [ CrateFirearmsSecure, UnregisteredFirearmBase ]
+  parent:
+  - BaseC2ExpeditionContraband
+  - CrateFirearmsSecure
   name: gestio rifle crate
   description: Contains two old prototype, burst-fire rifles with six low capacity mags. Requires Armory access to open. Unregistered.
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: StorageFill
     contents:
@@ -95,10 +107,12 @@
 
 - type: entity
   id: CrateArmoryRifleNovaliteC1Expedition
-  parent: [ CrateFirearmsSecure, UnregisteredFirearmBase ]
+  parent:
+  - BaseC2ExpeditionContraband
+  - CrateFirearmsSecure
   name: novalite rifle crate
   description: Contains two civilian grade rifles with six low capacity clips. Requires Armory access to open. Unregistered.
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: StorageFill
     contents:
@@ -114,49 +128,49 @@
   - CrateAmmoSecureMercenary
   - StorageFillAmmoBoxLethal20
   id: CrateAmmoBoxLethal20
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
 
 - type: entity
   parent:
   - CrateAmmoSecureMercenary
   - StorageFillAmmoBoxBigLethal20
   id: CrateAmmoBoxBigLethal20
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
 
 - type: entity
   parent:
   - CrateAmmoSecureMercenary
   - StorageFillAmmoBoxRubber20
   id: CrateAmmoBoxRubber20
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
 
 - type: entity
   parent:
   - CrateAmmoSecureMercenary
   - StorageFillAmmoBoxBigRubber20
   id: CrateAmmoBoxBigRubber20
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
 
 - type: entity
   parent:
   - CrateAmmoSecureMercenary
   - StorageFillAmmoBoxPractice20
   id: CrateAmmoBoxPractice20
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
 
 - type: entity
   parent:
   - CrateAmmoSecureMercenary
   - StorageFillAmmoBoxIncendiary20
   id: CrateAmmoBoxIncendiary20
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
 
 - type: entity
   parent:
   - CrateAmmoSecureMercenary
   - StorageFillAmmoBoxUranium20
   id: CrateAmmoBoxUranium20
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
 
 ## .30 rifle
 - type: entity
@@ -164,42 +178,42 @@
   - CrateAmmoSecureMercenary
   - StorageFillAmmoBoxLethal30
   id: CrateAmmoBoxLethal30
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
 
 - type: entity
   parent:
   - CrateAmmoSecureMercenary
   - StorageFillAmmoBoxBigLethal30
   id: CrateAmmoBoxBigLethal30
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
 
 - type: entity
   parent:
   - CrateAmmoSecureMercenary
   - StorageFillAmmoBoxRubber30
   id: CrateAmmoBoxRubber30
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
 
 - type: entity
   parent:
   - CrateAmmoSecureMercenary
   - StorageFillAmmoBoxPractice30
   id: CrateAmmoBoxPractice30
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
 
 - type: entity
   parent:
   - CrateAmmoSecureMercenary
   - StorageFillAmmoBoxIncendiary30
   id: CrateAmmoBoxIncendiary30
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
 
 - type: entity
   parent:
   - CrateAmmoSecureMercenary
   - StorageFillAmmoBoxUranium30
   id: CrateAmmoBoxUranium30
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
 
 ## .35 pistol
 - type: entity
@@ -207,42 +221,42 @@
   - CrateAmmoSecureMercenary
   - StorageFillAmmoBoxLethal35
   id: CrateAmmoBoxLethal35
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
 
 - type: entity
   parent:
   - CrateAmmoSecureMercenary
   - StorageFillAmmoBoxRubber35
   id: CrateAmmoBoxRubber35
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
 
 - type: entity
   parent:
   - CrateAmmoSecureMercenary
   - StorageFillAmmoBoxPractice35
   id: CrateAmmoBoxPractice35
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
 
 - type: entity
   parent:
   - CrateAmmoSecureMercenary
   - StorageFillAmmoBoxIncendiary35
   id: CrateAmmoBoxIncendiary35
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
 
 - type: entity
   parent:
   - CrateAmmoSecureMercenary
   - StorageFillAmmoBoxUranium35
   id: CrateAmmoBoxUranium35
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
 
 - type: entity
   parent:
   - CrateAmmoSecureMercenary
   - StorageFillAmmoBoxEmp35
   id: CrateAmmoBoxEmp35
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
 
 ## .25 caseless
 - type: entity
@@ -250,35 +264,35 @@
   - CrateAmmoSecureMercenary
   - StorageFillAmmoBoxLethal25
   id: CrateAmmoBoxLethal25
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
 
 - type: entity
   parent:
   - CrateAmmoSecureMercenary
   - StorageFillAmmoBoxBigLethal25
   id: CrateAmmoBoxBigLethal25
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
 
 - type: entity
   parent:
   - CrateAmmoSecureMercenary
   - StorageFillAmmoBoxRubber25
   id: CrateAmmoBoxRubber25
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
 
 - type: entity
   parent:
   - CrateAmmoSecureMercenary
   - StorageFillAmmoBoxBigRubber25
   id: CrateAmmoBoxBigRubber25
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
 
 - type: entity
   parent:
   - CrateAmmoSecureMercenary
   - StorageFillAmmoBoxPractice25
   id: CrateAmmoBoxPractice25
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
 
 ## Shotgun
 - type: entity
@@ -286,49 +300,49 @@
   - CrateAmmoSecureMercenary
   - StorageFillAmmoBoxLethalShotgun
   id: CrateAmmoBoxLethalShotgun
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
 
 - type: entity
   parent:
   - CrateAmmoSecureMercenary
   - StorageFillAmmoBoxRubberShotgun
   id: CrateAmmoBoxRubberShotgun
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
 
 - type: entity
   parent:
   - CrateAmmoSecureMercenary
   - StorageFillAmmoBoxPracticeShotgun
   id: CrateAmmoBoxPracticeShotgun
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
 
 - type: entity
   parent:
   - CrateAmmoSecureMercenary
   - StorageFillAmmoBoxIncendiaryShotgun
   id: CrateAmmoBoxIncendiaryShotgun
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
 
 - type: entity
   parent:
   - CrateAmmoSecureMercenary
   - StorageFillAmmoBoxUraniumShotgun
   id: CrateAmmoBoxUraniumShotgun
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
 
 - type: entity
   parent:
   - CrateAmmoSecureMercenary
   - StorageFillAmmoBoxSlugShotgun
   id: CrateAmmoBoxSlugShotgun
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
 
 - type: entity
   parent:
   - CrateAmmoSecureMercenary
   - StorageFillAmmoBoxFlareShotgun
   id: CrateAmmoBoxFlareShotgun
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
 
 ## .45 ammo
 - type: entity
@@ -336,32 +350,32 @@
   - CrateAmmoSecureMercenary
   - StorageFillAmmoBoxLethal45
   id: CrateAmmoBoxLethal45
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
 
 - type: entity
   parent:
   - CrateAmmoSecureMercenary
   - StorageFillAmmoBoxRubber45
   id: CrateAmmoBoxRubber45
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
 
 - type: entity
   parent:
   - CrateAmmoSecureMercenary
   - StorageFillAmmoBoxPractice45
   id: CrateAmmoBoxPractice45
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
 
 - type: entity
   parent:
   - CrateAmmoSecureMercenary
   - StorageFillAmmoBoxIncendiary45
   id: CrateAmmoBoxIncendiary45
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
 
 - type: entity
   parent:
   - CrateAmmoSecureMercenary
   - StorageFillAmmoBoxUranium45
   id: CrateAmmoBoxUranium45
-  noSpawn: true
+  categories: [ HideSpawnMenu ]

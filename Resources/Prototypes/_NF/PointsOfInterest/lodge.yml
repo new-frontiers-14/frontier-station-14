@@ -1,5 +1,5 @@
 # Author Info
-# GitHub: 
+# GitHub:
 # Discord: Checkraze
 
 # Maintainer Info
@@ -11,11 +11,18 @@
 - type: pointOfInterest
   id: Lodge
   name: 'Expeditionary Lodge'
-  rangeMin: 1650
-  rangeMax: 3400
-  iffColor: "#3737C8" #blue the color of NT
-  alwaysSpawn: true
+  minimumDistance: 1650
+  maximumDistance: 3400
+  spawnGroup: Required
   gridPath: /Maps/_NF/POI/lodge.yml
+  addComponents:
+  - type: IFF
+    color: "#3737C8"
+    readOnly: true
+  - type: Shuttle
+    angularDamping: 999999
+    linearDamping: 999999
+  - type: StationTransit
 
 - type: gameMap
   id: Lodge
@@ -24,11 +31,18 @@
   minPlayers: 0
   stations:
     Lodge:
-      stationProto: SpawnableFrontierOutpost
+      stationProto: RecordsFrontierOutpost
       components:
         - type: StationNameSetup
           mapNameTemplate: 'Expeditionary Lodge'
+        - type: ExtraStationInformation
+          iconPath: /Textures/_NF/Markers/jobs.rsi/mercenary.png
+          stationSubtext: 'frontier-lobby-exped-subtext'
+          stationDescription: 'frontier-lobby-exped-description'
+          lobbySortOrder: 3
         - type: StationJobs
           availableJobs:
             Pilot: [ -1, -1 ]
             Mercenary: [ -1, -1 ]
+        - type: StationDeadDrop
+          maxDeadDrops: 1 # Fewer here, players start here.

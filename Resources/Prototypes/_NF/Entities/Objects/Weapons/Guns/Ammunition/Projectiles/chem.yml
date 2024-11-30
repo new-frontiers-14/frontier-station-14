@@ -1,10 +1,9 @@
-# Syndicate Chemwarrior Projectiles
+# Base
 - type: entity
-#  parent: BaseBulletPractice
   parent: BulletWaterShot
   id: SplatterChemBase
   name: chemical splatter
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Ammo
     muzzleFlash: null
@@ -38,11 +37,11 @@
   - type: Appearance
   - type: VaporVisuals
 
+# Syndicate Chemwarrior Projectiles
 - type: entity
   parent: SplatterChemBase
   id: SplatterChemPhlogNapalm
-  name: chemical splatter
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: SolutionContainerManager
     solutions:
@@ -62,8 +61,7 @@
 - type: entity
   parent: SplatterChemBase
   id: SplatterChemDrugs
-  name: chemical splatter
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: SolutionContainerManager
     solutions:
@@ -81,8 +79,7 @@
 - type: entity
   parent: SplatterChemBase
   id: SplatterChemMute
-  name: chemical splatter
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: SolutionContainerManager
     solutions:
@@ -100,8 +97,7 @@
 - type: entity
   parent: SplatterChemBase
   id: SplatterChemWeh
-  name: chemical splatter
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: SolutionContainerManager
     solutions:
@@ -117,8 +113,7 @@
 - type: entity
   parent: SplatterChemBase
   id: SplatterChemCold
-  name: chemical splatter
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: SolutionContainerManager
     solutions:

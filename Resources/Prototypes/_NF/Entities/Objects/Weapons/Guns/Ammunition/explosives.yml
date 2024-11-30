@@ -15,24 +15,19 @@
     proto: BulletRocketEmp
     deleteOnSpawn: true
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
     state: rpg-emp
 
-# Grenades
-
+# Cannon Balls
 - type: entity
-  id: GrenadeEmp
-  name: emp grenade # Chinalake EMP
-  parent: BaseGrenade
+  id: CannonBallEmp
+  name: shockshot
+  suffix: EMP
+  parent: BaseCannonBall
   components:
   - type: CartridgeAmmo
-    proto: BulletGrenadeEmp
+    proto: BulletCannonBallEmp
+    deleteOnSpawn: true
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
-    layers:
-    - state: emp
-      map: ["enum.AmmoVisualLayers.Base"]
-  - type: Appearance
-  - type: SpentAmmoVisuals
-    state: emp
-    suffix: false
+    sprite: _NF/Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    state: ball-emp

@@ -32,7 +32,7 @@ namespace Content.Shared.Preferences
         public const int MaxNameLength = 32;
         public const int MaxDescLength = 512;
 
-        public const int DefaultBalance = 25000;
+        public const int DefaultBalance = 30000;
 
         //private readonly Dictionary<string, JobPriority> _jobPriorities; // Frontier: commented out during merge.
         //private readonly List<string> _antagPreferences; // Frontier: commented out during merge.
@@ -570,11 +570,11 @@ namespace Content.Shared.Preferences
             string flavortext;
             if (FlavorText.Length > MaxDescLength)
             {
-                flavortext = FormattedMessage.RemoveMarkup(FlavorText)[..MaxDescLength];
+                flavortext = FormattedMessage.RemoveMarkupOrThrow(FlavorText)[..MaxDescLength];
             }
             else
             {
-                flavortext = FormattedMessage.RemoveMarkup(FlavorText);
+                flavortext = FormattedMessage.RemoveMarkupOrThrow(FlavorText);
             }
 
             // Frontier

@@ -4,23 +4,29 @@
   description: job-description-detective
   playTimeTracker: JobDetectiveOld
   requirements:
-  - !type:DepartmentTimeRequirement
-    department: Security
-    time: 54000 # 15 hours
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 54000 # 15 hours
   startingGear: DetectiveGear
   icon: "JobIconDetective"
   supervisors: job-supervisors-hos
   canBeAntag: false
-  access:
-  - Security
-  - Brig
-  - Maintenance
-  - Service
-  - Detective
-  special:
-  - !type:AddImplantSpecial
-    implants: [ MindShieldImplant ]
+  ## Frontier: commented stuff out below
+  # access:
+  # - Security
+  # - Brig
+  # - Maintenance
+  # - Service
+  # - Detective
+  # - Cryogenics
+  # - External
+  # special:
+  # - !type:AddImplantSpecial
+  #   implants: [ MindShieldImplant ]
+  ## Frontier: commented stuff out above
   setPreference: false # Frontier
+  accessGroups: # Frontier
+  - GeneralAccess # Frontier
 
 - type: startingGear
   id: DetectiveGear

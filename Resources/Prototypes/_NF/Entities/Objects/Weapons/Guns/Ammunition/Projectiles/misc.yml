@@ -1,0 +1,71 @@
+- type: entity
+  id: HoloFlareCyan
+  name: cyan flare
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Physics
+    bodyType: Dynamic
+    fixedRotation: false
+  - type: EmbeddableProjectile
+    deleteOnRemove: true
+  - type: Fixtures
+    fixtures:
+      projectile:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.1,-0.1,0.1,0.1"
+        mask:
+          - ItemMask # BulletImpassable
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+    state: magicm_cyan
+    scale: 0.3,0.3
+  - type: TimedDespawn
+    lifetime: 230 # Same as normal flare
+  - type: AmbientSound
+    enabled: true
+    volume: -10
+    range: 3
+    sound:
+      path: /Audio/Ambience/Objects/light_hum.ogg
+      params:
+        loop: true
+  - type: PointLight
+    enabled: true
+    color: "#c0e0f8"
+    radius: 9.0
+    energy: 3.0
+    netsync: false
+  - type: Projectile
+    deleteOnCollide: false
+    damage:
+      types:
+        Heat: 0
+
+- type: entity
+  id: HoloFlareRed
+  name: red flare
+  parent: HoloFlareCyan
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+    state: magicm_red
+    scale: 0.3,0.3
+    color: "#ff8080"
+  - type: PointLight
+    color: "#ff8080"
+
+- type: entity
+  id: HoloFlareYellow
+  name: yellow flare
+  parent: HoloFlareCyan
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+    state: magicm_yellow
+    scale: 0.3,0.3
+    color: yellow
+  - type: PointLight
+    color: yellow

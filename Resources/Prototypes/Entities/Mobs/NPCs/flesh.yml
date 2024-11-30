@@ -13,6 +13,11 @@
         true
       NavSmash: !type:Bool
         true
+  - type: NPCImprintingOnSpawnBehaviour
+    spawnFriendsSearchRadius: 10
+    whitelist:
+      components:
+      - Anomaly # Friendly to inner anomaly host
   - type: NpcFactionMember
     factions:
     - SimpleHostile
@@ -58,6 +63,7 @@
 - type: entity
   parent: BaseMobFlesh
   id: MobFleshJared
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: Sprite
     layers:
@@ -83,6 +89,7 @@
 - type: entity
   parent: BaseMobFlesh
   id: MobFleshGolem
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: Sprite
     layers:
@@ -112,6 +119,7 @@
 - type: entity
   parent: BaseMobFlesh
   id: MobFleshClamp
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: Sprite
     layers:
@@ -136,6 +144,7 @@
 - type: entity
   parent: BaseMobFlesh
   id: MobFleshLover
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: Sprite
     layers:
@@ -196,7 +205,7 @@
         Blunt: 10
 
 - type: entity
-  parent: [ SimpleSpaceMobBase, MobCombat ]
+  parent: [ NFMobRestrictions, SimpleSpaceMobBase, MobCombat ] # Frontier: add NFMobRestrictions
   id: BaseMobFleshSalvage #This one is immune to space!
   name: aberrant flesh
   suffix: "Salvage Ruleset"
@@ -252,11 +261,11 @@
         Slash: 6
   - type: ReplacementAccent
     accent: genericAggressive
-  - type: SalvageMobRestrictionsNF
 
 - type: entity
   parent: BaseMobFleshSalvage
   id: MobFleshJaredSalvage
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: Sprite
     layers:
@@ -282,6 +291,7 @@
 - type: entity
   parent: BaseMobFleshSalvage
   id: MobFleshGolemSalvage
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: Sprite
     layers:
@@ -311,6 +321,7 @@
 - type: entity
   parent: BaseMobFleshSalvage
   id: MobFleshClampSalvage
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: Sprite
     layers:
@@ -335,6 +346,7 @@
 - type: entity
   parent: BaseMobFleshSalvage
   id: MobFleshLoverSalvage
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: Sprite
     layers:

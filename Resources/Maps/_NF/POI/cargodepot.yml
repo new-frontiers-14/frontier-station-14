@@ -18,64 +18,7 @@ entities:
   - uid: 10
     components:
     - type: MetaData
-      name: Cargo Depot
     - type: Transform
-      pos: -0.5,-0.5208335
-      parent: invalid
-      # FIXME: remove this to a cargo depot station pending #1737
-    - type: CargoMarketData
-      whitelist:
-        tags:
-          - Ore
-          - Sheet
-          - Metal
-          - Ingot
-          - RawMaterial
-          - ClothMade
-          - CrystalRed
-          - CrystalGreen
-          - CrystalPink
-          - CrystalOrange
-          - CrystalBlue
-          - CrystalCyan
-        components:
-          - Material
-          - ConstructionMaterials
-          - ToolRefinable
-          - MachinePart
-          - VendingMachineRestock
-          - Seed
-      blacklist:
-        tags:
-          - Trash
-          - Mail
-          - Paper
-        components:
-          - Anchorable # No structures, they won't fit in crates
-          - Food
-          - Currency # No selling money.
-          - SpaceGarbage
-          - Contraband
-          - Gun
-          - Ammo
-          - Drink
-          - GasTank # Default containers won't be empty
-          - Explosive
-          - Actor
-          - Mind # Players
-          - MindContainer # Positronic brains
-          - Body # No corpses
-          - MobPrice # Animals (live or dead) and the like
-          - Artifact # Unique, abusable for research points
-          - RCD # Dup charges
-          - Storage # Till fixed
-          - StorageFill # Till fixed
-          - ContainerContainer # Till fixed
-      overrideList:
-        matchParents: true
-        id:
-          - SheetUranium # Counts as food
-      # END FIXME: remove this to a cargo depot station pending #1737
     - type: MapGrid
       chunks:
         0,0:
@@ -119,6 +62,8 @@ entities:
     - type: Gravity
       gravityShakeSound: !type:SoundPathSpecifier
         path: /Audio/Effects/alert.ogg
+    - type: BecomesStation
+      id: CargoDepot
     - type: DecalGrid
       chunkCollection:
         version: 2
@@ -980,32 +925,35 @@ entities:
     - type: Transform
       pos: 7.5,7.5
       parent: 10
-- proto: AtmosDeviceFanTiny
+- proto: AtmosDeviceFanDirectional
   entities:
   - uid: 225
     components:
     - type: Transform
-      pos: -12.5,1.5
+      rot: 1.5707963267948966 rad
+      pos: 13.5,-0.5
       parent: 10
   - uid: 226
     components:
     - type: Transform
-      pos: -12.5,-0.5
+      rot: 1.5707963267948966 rad
+      pos: 13.5,1.5
       parent: 10
   - uid: 227
     components:
     - type: Transform
-      pos: 13.5,1.5
+      rot: -1.5707963267948966 rad
+      pos: -12.5,-0.5
       parent: 10
   - uid: 228
     components:
     - type: Transform
-      pos: 13.5,-0.5
+      rot: -1.5707963267948966 rad
+      pos: -12.5,1.5
       parent: 10
-  - uid: 859
+  - uid: 467
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
       pos: 0.5,-15.5
       parent: 10
 - proto: BannerCargo
@@ -7394,12 +7342,11 @@ entities:
     - type: Transform
       pos: 3.5,-2.5
       parent: 10
-- proto: WarpPointNFCargo
+- proto: WarpPoint
   entities:
   - uid: 292
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: 0.5,0.5
       parent: 10
 ...

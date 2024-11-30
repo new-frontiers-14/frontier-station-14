@@ -138,7 +138,7 @@ public sealed class GatewayGeneratorSystem : EntitySystem
         // Create the gateway.
         var gatewayUid = SpawnAtPosition(generator.Proto, originCoords);
         var gatewayComp = Comp<GatewayComponent>(gatewayUid);
-        _gateway.SetDestinationName(gatewayUid, FormattedMessage.FromMarkup($"[color=#D381C996]{gatewayName}[/color]"), gatewayComp);
+        _gateway.SetDestinationName(gatewayUid, FormattedMessage.FromMarkupOrThrow($"[color=#D381C996]{gatewayName}[/color]"), gatewayComp);
         _gateway.SetEnabled(gatewayUid, true, gatewayComp);
         generator.Generated.Add(mapUid);
     }
@@ -184,7 +184,7 @@ public sealed class GatewayGeneratorSystem : EntitySystem
         var dungeonRotation = _dungeon.GetDungeonRotation(seed);
         var dungeonPosition = (origin + dungeonRotation.RotateVec(new Vector2i(0, dungeonDistance))).Floored();
 
-        _dungeon.GenerateDungeon(_protoManager.Index<DungeonConfigPrototype>("Experiment"), args.MapUid, grid, dungeonPosition, seed);
+        _dungeon.GenerateDungeon(_protoManager.Index<DungeonConfigPrototype>("Experiment"), "Experiment", args.MapUid, grid, dungeonPosition, seed); // Frontier: added "Experiment"
 
         // TODO: Dungeon mobs + loot.
 

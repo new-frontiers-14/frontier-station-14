@@ -1,11 +1,11 @@
 - type: entity
   name: cardboard box
-  parent: BoxBase
+  parent: [BoxBase, RecyclableItemCardboard] # Frontier: added RecyclableItemCardboard
   id: BoxCardboard
   description: A cardboard box for storing things.
   components:
   - type: Item
-    size: Large
+    size: Normal # Frontier Large<Normal
     shape:
     - 0,0,2,2
   - type: Storage
@@ -17,6 +17,7 @@
   - type: Tag
     tags:
     - BoxCardboard
+    - Trash # Frontier
 
 - type: entity
   name: mousetrap box
@@ -340,7 +341,7 @@
 
 - type: entity
   name: syndicate encryption key box
-  parent: BoxEncryptionKeyPassenger
+  parent: [BoxEncryptionKeyPassenger, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   id: BoxEncryptionKeySyndie
   description: Two syndicate encryption keys for the price of one. Miniaturized for ease of use.
   components:
@@ -432,3 +433,17 @@
       - id: DartYellow
         amount: 2
 
+- type: entity
+  name: envelope box
+  parent: BoxCardboard
+  id: BoxEnvelope
+  description: A box filled with envelopes.
+  components:
+  - type: Sprite
+    layers:
+      - state: box
+      - state: envelope
+  - type: StorageFill
+    contents:
+      - id: Envelope
+        amount: 9

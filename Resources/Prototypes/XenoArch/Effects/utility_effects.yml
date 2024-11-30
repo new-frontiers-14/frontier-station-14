@@ -50,10 +50,6 @@
   permanentComponents:
   - type: Item
     size: Huge
-  - type: ContainerContainer
-    containers:
-      storagebase: !type:Container
-        ents: [ ]
   - type: Storage
     maxItemSize: Huge
     grid:
@@ -164,9 +160,6 @@
     components:
     - Item
   permanentComponents:
-  - type: ContainerContainer
-    containers:
-      revolver-ammo: !type:Container
   - type: RevolverAmmoProvider
     whitelist:
       tags:
@@ -202,6 +195,8 @@
     name: ghost-role-information-artifact-name
     description: ghost-role-information-artifact-description
     rules: ghost-role-information-freeagent-rules
+    raffle:
+      settings: default
   - type: GhostTakeoverAvailable
   - type: MovementSpeedModifier
     baseWalkSpeed: 0.25

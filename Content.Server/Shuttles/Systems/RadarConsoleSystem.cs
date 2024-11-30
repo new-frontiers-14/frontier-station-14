@@ -21,6 +21,7 @@ public sealed class RadarConsoleSystem : SharedRadarConsoleSystem
     {
         base.Initialize();
         SubscribeLocalEvent<RadarConsoleComponent, ComponentStartup>(OnRadarStartup);
+        SubscribeLocalEvent<RadarConsoleComponent, BoundUIOpenedEvent>(OnUIOpened); // Frontier
     }
 
     private void OnRadarStartup(EntityUid uid, RadarConsoleComponent component, ComponentStartup args)
@@ -28,24 +29,23 @@ public sealed class RadarConsoleSystem : SharedRadarConsoleSystem
         UpdateState(uid, component);
     }
 
+    // Frontier
+    private void OnUIOpened(EntityUid uid, RadarConsoleComponent component, ref BoundUIOpenedEvent args)
+    {
+        UpdateState(uid, component);
+    }
+    // End Frontier
+
     protected override void UpdateState(EntityUid uid, RadarConsoleComponent component)
     {
         var xform = Transform(uid);
         var onGrid = xform.ParentUid == xform.GridUid;
         EntityCoordinates? coordinates = onGrid ? xform.Coordinates : null;
         Angle? angle = onGrid ? xform.LocalRotation : null;
-        
-        // Frontier - For handheld mass scanner, PR 484
-        if (HasComp<PowerCellDrawComponent>(uid))
-        {
-            coordinates = new EntityCoordinates(uid, Vector2.Zero);
-            angle = Angle.Zero + MathHelper.DegreesToRadians(180);
-        }
-
         if (component.FollowEntity)
         {
             coordinates = new EntityCoordinates(uid, Vector2.Zero);
-            angle = Angle.Zero;
+            angle = Angle.FromDegrees(180); // Frontier: Angle.Zero<Angle.FromDegrees(180)
         }
 
         if (_uiSystem.HasUi(uid, RadarConsoleUiKey.Key))
@@ -61,6 +61,14 @@ public sealed class RadarConsoleSystem : SharedRadarConsoleSystem
             {
                 state = _console.GetNavState(uid, docks);
             }
+
+            state.RotateWithEntity = !component.FollowEntity;
+
+            // Frontier: ghost radar restrictions
+            if (component.MaxIffRange != null)
+                state.MaxIffRange = component.MaxIffRange.Value;
+            state.HideCoords = component.HideCoords;
+            // End Frontier
 
             _uiSystem.SetUiState(uid, RadarConsoleUiKey.Key, new NavBoundUserInterfaceState(state));
         }

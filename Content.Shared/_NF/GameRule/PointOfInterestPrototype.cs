@@ -1,16 +1,14 @@
-using Content.Shared.Guidebook;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 using Robust.Shared.Utility;
 
-namespace Content._NF.Shared.GameRule;
+namespace Content.Shared._NF.GameRule;
 
 /// <summary>
 ///     Describes information for a single point of interest to be spawned in the world
 /// </summary>
 [Prototype("pointOfInterest")]
-[Serializable, NetSerializable]
+[Serializable]
 public sealed partial class PointOfInterestPrototype : IPrototype
 {
     /// <inheritdoc/>
@@ -20,63 +18,64 @@ public sealed partial class PointOfInterestPrototype : IPrototype
     /// <summary>
     ///     The name of this point of interest
     /// </summary>
-    [DataField("name")]
+    [DataField(required: true)]
     public string Name { get; private set; } = "";
+
+    /// <summary>
+    /// Should we set the warppoint name based on the grid name.
+    /// </summary>
+    [DataField]
+    public bool NameWarp { get; set; } = true;
+
+    /// <summary>
+    /// If true, makes the warp point admin-only (hiding it for players).
+    /// </summary>
+    [DataField]
+    public bool HideWarp { get; set; } = false;
 
     /// <summary>
     ///     Minimum range to spawn this POI at
     /// </summary>
-    [DataField("rangeMin")]
-    public int RangeMin { get; private set; } = 5000;
+    [DataField]
+    public int MinimumDistance { get; private set; } = 5000;
 
     /// <summary>
     ///     Maximum range to spawn this POI at
     /// </summary>
-    [DataField("rangeMax")]
-    public int RangeMax { get; private set; } = 10000;
+    [DataField]
+    public int MaximumDistance { get; private set; } = 10000;
 
     /// <summary>
-    ///     The color to display the grid and name tag as in the radar screen
+    /// Components to be added to any spawned grids.
     /// </summary>
-    [DataField("iffColor")]
-    public Color IffColor { get; private set; } = (100, 100, 100, 100);
-
-    /// <summary>
-    ///     Whether or not the POI is shown on IFF.
-    /// </summary>
-    [DataField("isHidden")]
-    public bool IsHidden { get; private set; }
-
-    /// <summary>
-    ///     Must this POI always spawn? This is independent of spawn chance. If it always spawns,
-    ///     it will be excluded from any kind of random lists, for places like the sheriff's department etc.
-    /// </summary>
-    [DataField("alwaysSpawn")]
-    public bool AlwaysSpawn { get; private set; }
+    [DataField]
+    public ComponentRegistry AddComponents { get; set; } = new();
 
     /// <summary>
     ///     If the POI does not belong to a pre-defined group, it will default to the "unique" internal category and will
     ///     use this float from 0-1 as a raw chance to spawn each round.
     /// </summary>
-    [DataField("spawnChance")]
+    [DataField]
     public float SpawnChance { get; private set; } = 1;
 
     /// <summary>
     ///     The group that this POI belongs to. Currently, the default groups are:
     ///     "CargoDepot"
     ///     "MarketStation"
+    ///     "Required"
     ///     "Optional"
-    ///     These three have corresponding CVARS by default, that set an optional # of this group to spawn.
+    ///     Each POI labeled in the Required group will be spawned in every round.
+    ///     Apart from that, each of thesehave corresponding CVARS by default, that set an optional # of this group to spawn.
     ///     Traditionally, it is 2 cargo depots, 1 trade station, and 8 optional POIs.
     ///     Dynamically added groups will default to 1 option chosen in that group, using the SpawnChance as a weighted chance
     ///     for the entire group to spawn on a per-POI basis.
     /// </summary>
-    [DataField("spawnGroup")]
+    [DataField]
     public string SpawnGroup { get; private set; } = "Optional";
 
     /// <summary>
     ///     the path to the grid
     /// </summary>
-    [DataField("gridPath", required: true)]
+    [DataField(required: true)]
     public ResPath GridPath { get; private set; } = default!;
 }

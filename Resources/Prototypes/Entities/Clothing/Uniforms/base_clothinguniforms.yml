@@ -1,6 +1,6 @@
 - type: entity
   abstract: true
-  parent: Clothing
+  parent: [Clothing, RecyclableItemClothBasic] # Frontier: added RecyclableItemClothBasic
   id: UnsensoredClothingUniformBase
   components:
   - type: Sprite
@@ -47,9 +47,10 @@
   - type: DeviceNetwork
     deviceNetId: Wireless
     transmitFrequencyId: SuitSensor
-#  - type: WirelessNetworkConnection # Frontier - Remove range for long space sensors
-#    range: 1200 # Frontier - Remove range for long space sensors
-#  - type: StationLimitedNetwork # Frontier - Remove range for long space sensors
+    savableAddress: false
+  # - type: WirelessNetworkConnection # Frontier - Remove range for long space sensors
+  #   range: 1200 # Frontier - Remove range for long space sensors
+  # - type: StationLimitedNetwork # Frontier - Remove range for long space sensors
 
 - type: entity
   abstract: true

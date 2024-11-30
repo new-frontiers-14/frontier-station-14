@@ -1,0 +1,148 @@
+- type: entity
+  id: FoodBaseSushi
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/sushi.rsi
+  - type: Tag
+    tags:
+      - Sushi
+
+- type: entity
+  name: avocado sushi
+  parent: [FoodBaseSushi, FoodMealBase]
+  id: FoodMealAvocadoSushi
+  description: Where did the seaweed come from?
+  components:
+  - type: FlavorProfile
+    flavors:
+      - cucumber
+      - avocado
+  - type: Sprite
+    state: avocadosushi
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 42
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 30
+        - ReagentId: CucumberWater
+          Quantity: 3
+  - type: SliceableFood
+    count: 6
+    slice: FoodMealAvocadoSushiSlice
+
+- type: entity
+  name: avocado sushi
+  parent: [FoodBaseSushi, FoodInjectableBase]
+  id: FoodMealAvocadoSushiSlice
+  description: Where did the seaweed come from?
+  components:
+  - type: FlavorProfile
+    flavors:
+      - cucumber
+      - avocado
+  - type: Sprite
+    state: avocadosushislice
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 7
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: CucumberWater
+          Quantity: .5
+  - type: Item
+    size: Tiny
+
+- type: entity
+  name: carp sushi
+  parent: [FoodBaseSushi, FoodMealBase]
+  id: FoodMealCarpSushi
+  description: Certainly worth the risk.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - cucumber
+      - fishy
+  - type: Sprite
+    state: carpsushi
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 48
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 30
+        - ReagentId: CarpoToxin
+          Quantity: 6
+        - ReagentId: CucumberWater
+          Quantity: 3
+  - type: SliceableFood
+    count: 6
+    slice: FoodMealCarpSushiSlice
+
+- type: entity
+  name: carp sushi
+  parent: [FoodBaseSushi, FoodInjectableBase]
+  id: FoodMealCarpSushiSlice
+  description: Certainly worth the smaller risk.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - cucumber
+      - fishy
+  - type: Sprite
+    state: carpsushislice
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 8
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: CarpoToxin
+          Quantity: 1
+        - ReagentId: CucumberWater
+          Quantity: .5
+  - type: Item
+    size: Tiny
+
+- type: entity
+  name: gas station sushi
+  parent: [FoodBaseSushi, FoodInjectableBase]
+  id: FoodMealGasSafeSushiSlice
+  suffix: Safe
+  description: Is it worth the risk?
+  components:
+  - type: FlavorProfile
+    flavors:
+      - fishy
+      - cheap
+      - bitter
+  - type: Sprite
+    state: gassushislice
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+  - type: Item
+    size: Tiny
+
+- type: entity
+  parent: [FoodBaseSushi, FoodMealGasSafeSushiSlice]
+  id: FoodMealGasBadSushiSlice
+  suffix: Bad
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: GastroToxin
+          Quantity: 5

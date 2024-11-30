@@ -1,10 +1,32 @@
+# Base prototypes
+
 - type: latheRecipe
-  id: ClothingShoesBootsMagAdv
-  result: ClothingShoesBootsMagAdv 
-  completetime: 12
+  abstract: true
+  id: NFBaseLightTubeRecipe
+  category: Lights
+  completetime: 2
   materials:
-    Silver: 1000
-    Gold: 500
+    Steel: 50
+    Glass: 50
+
+- type: latheRecipe
+  abstract: true
+  id: NFBaseGlowstickRecipe
+  parent: NFBaseLightTubeRecipe
+  completetime: 0.5
+  materials:
+    Plastic: 50
+
+- type: latheRecipe
+  abstract: true
+  id: NFWearableIFFRecipe
+  parent: NFBaseLightTubeRecipe
+  materials:
+    Steel: 500
+    Plastic: 500
+    Silver: 100
+
+# Recipes
 
 - type: latheRecipe
   id: MailCapsule
@@ -14,20 +36,28 @@
     Glass: 100
     Plastic: 100
 
-# Salvage Techfab
 - type: latheRecipe
-  id: RadioHandheld
-  result: RadioHandheld
-  completetime: 1
-  category: Tools
+  id: LanternNF
+  result: Lantern
+  parent: NFBaseLightTubeRecipe
   materials:
-    Plastic: 500
+    Steel: 100
+    Glass: 100
+    Plastic: 100
 
 - type: latheRecipe
   id: Floodlight
   result: Floodlight
-  completetime: 1
-  category: Tools
+  parent: NFBaseLightTubeRecipe
+  materials:
+    Glass: 500
+    Plastic: 1000
+    Steel: 1500
+
+- type: latheRecipe
+  id: FlashlightSecliteNF
+  result: FlashlightSeclite
+  parent: NFBaseLightTubeRecipe
   materials:
     Glass: 500
     Plastic: 1000
@@ -36,133 +66,83 @@
 - type: latheRecipe
   id: FlareLathe
   result: Flare
-  completetime: 0.5
-  category: Tools
+  parent: NFBaseLightTubeRecipe
   materials:
     Steel: 150
 
 - type: latheRecipe
+  id: BoxDispenserFlare
+  result: BoxDispenserFlare
+  parent: NFBaseLightTubeRecipe
+  materials:
+    Steel: 1800
+
+- type: latheRecipe
   id: GlowstickBlue
   result: GlowstickBlue
-  completetime: 0.5
-  category: Tools
-  materials:
-    Plastic: 50
+  parent: NFBaseGlowstickRecipe
 
 - type: latheRecipe
   id: GlowstickBase
   result: GlowstickBase
-  completetime: 0.5
-  category: Tools
-  materials:
-    Plastic: 50
+  parent: NFBaseGlowstickRecipe
 
 - type: latheRecipe
   id: GlowstickPurple
   result: GlowstickPurple
-  completetime: 0.5
-  category: Tools
-  materials:
-    Plastic: 50
+  parent: NFBaseGlowstickRecipe
 
 - type: latheRecipe
   id: GlowstickRedLathe
   result: GlowstickRed
-  completetime: 0.5
-  category: Tools
-  materials:
-    Plastic: 50
+  parent: NFBaseGlowstickRecipe
 
 - type: latheRecipe
   id: GlowstickYellow
   result: GlowstickYellow
-  completetime: 0.5
-  category: Tools
-  materials:
-    Plastic: 50
-
-- type: latheRecipe
-  id: ClothingBeltSalvageWebbing
-  result: ClothingBeltSalvageWebbing
-  completetime: 1
-  category: Tools
-  materials:
-    Steel: 500
-
-- type: latheRecipe
-  id: OreBag
-  result: OreBag
-  completetime: 1
-  category: Tools
-  materials:
-    Steel: 500
-    Cloth: 500
-
-- type: latheRecipe
-  id: ConstructionBag
-  result: ConstructionBag
-  completetime: 1
-  category: Tools
-  materials:
-    Steel: 500
-    Cloth: 500
+  parent: NFBaseGlowstickRecipe
 
 - type: latheRecipe
   id: ClothingNeckIFFNeutral
   result: ClothingNeckIFFNeutral
-  completetime: 1
-  category: Tools
-  materials:
-    Steel: 500
-    Plastic: 500
-    Silver: 100
+  parent: NFWearableIFFRecipe
 
 - type: latheRecipe
   id: ClothingNeckIFFGreen
   result: ClothingNeckIFFGreen
-  completetime: 1
-  category: Tools
-  materials:
-    Steel: 500
-    Plastic: 500
-    Silver: 100
+  parent: NFWearableIFFRecipe
 
 - type: latheRecipe
   id: ClothingNeckIFFRed
   result: ClothingNeckIFFRed
-  completetime: 1
-  category: Tools
-  materials:
-    Steel: 500
-    Plastic: 500
-    Silver: 100
+  parent: NFWearableIFFRecipe
 
 - type: latheRecipe
   id: ClothingNeckIFFBlue
   result: ClothingNeckIFFBlue
-  completetime: 1
-  category: Tools
-  materials:
-    Steel: 500
-    Plastic: 500
-    Silver: 100
+  parent: NFWearableIFFRecipe
 
 - type: latheRecipe
   id: ClothingNeckIFFOrange
   result: ClothingNeckIFFOrange
-  completetime: 1
-  category: Tools
-  materials:
-    Steel: 500
-    Plastic: 500
-    Silver: 100
+  parent: NFWearableIFFRecipe
 
 - type: latheRecipe
   id: ClothingNeckIFFPurple
   result: ClothingNeckIFFPurple
-  completetime: 1
-  category: Tools
-  materials:
-    Steel: 500
-    Plastic: 500
-    Silver: 100
+  parent: NFWearableIFFRecipe
+
+- type: latheRecipe
+  id: ColoredLightTubeRedNF
+  result: ColoredLightTubeRed
+  parent: NFBaseLightTubeRecipe
+
+- type: latheRecipe
+  id: ColoredLightTubeBlackLightNF
+  result: ColoredLightTubeBlackLight
+  parent: NFBaseLightTubeRecipe
+
+- type: latheRecipe
+  id: ColoredLightTubeFrostyBlueNF
+  result: ColoredLightTubeFrostyBlue
+  parent: NFBaseLightTubeRecipe

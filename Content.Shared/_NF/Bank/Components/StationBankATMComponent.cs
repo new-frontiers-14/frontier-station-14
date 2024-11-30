@@ -13,10 +13,13 @@ public sealed partial class StationBankATMComponent : Component
     [ViewVariables(VVAccess.ReadWrite), DataField("cashType", customTypeSerializer:typeof(PrototypeIdSerializer<StackPrototype>))]
     public string CashType = "Credit";
 
-    public static string CashSlotSlotId = "station-bank-ATM-cashSlot";
+    public static string CashSlotId = "station-bank-ATM-cashSlot";
 
-    [DataField("station-bank-ATM-cashSlot")]
+    [DataField]
     public ItemSlot CashSlot = new();
+
+    [DataField]
+    public SectorBankAccount Account = SectorBankAccount.Invalid;
 
     [DataField("soundError")]
     public SoundSpecifier ErrorSound =
@@ -25,4 +28,11 @@ public sealed partial class StationBankATMComponent : Component
     [DataField("soundConfirm")]
     public SoundSpecifier ConfirmSound =
         new SoundPathSpecifier("/Audio/Effects/Cargo/ping.ogg");
+}
+
+public enum SectorBankAccount : byte
+{
+    Invalid, // No assigned account.
+    Frontier,
+    Nfsd
 }

@@ -11,18 +11,57 @@
 - type: pointOfInterest
   id: CargoDepot
   name: Cargo Depot
-  rangeMin: 4500
-  rangeMax: 6000
-  iffColor: "#37C837" #green like the color of money
+  minimumDistance: 4500
+  maximumDistance: 6000
   spawnGroup: CargoDepot
   gridPath: /Maps/_NF/POI/cargodepot.yml
-  
+  addComponents:
+  - type: IFF
+    color: "#37C837"
+    readOnly: true
+  - type: Shuttle
+    angularDamping: 999999
+    linearDamping: 999999
+  - type: ProtectedGrid
+    preventArtifactTriggers: true
+
 - type: pointOfInterest
   id: CargoDepotAlt
   name: Cargo Depot
-  rangeMin: 4500
-  rangeMax: 6000
-  iffColor: "#37C837" #green like the color of money
+  minimumDistance: 4500
+  maximumDistance: 6000
   spawnGroup: CargoDepot
   gridPath: /Maps/_NF/POI/cargodepotalt.yml
-  
+  addComponents:
+  - type: IFF
+    color: "#37C837"
+    readOnly: true
+  - type: Shuttle
+    angularDamping: 999999
+    linearDamping: 999999
+  - type: ProtectedGrid
+    preventArtifactTriggers: true
+
+- type: gameMap
+  id: CargoDepot
+  mapName: 'Cargo Depot' # Has a letter appended in NfAdventureSystem
+  mapPath: /Maps/_NF/POI/cargodepotalt.yml
+  minPlayers: 0
+  stations:
+    CargoDepot:
+      stationProto: MarketFrontierOutpost
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Cargo Depot' # Has a letter appended in NfAdventureSystem
+
+- type: gameMap
+  id: CargoDepotAlt
+  mapName: 'Cargo Depot' # Has a letter appended in NfAdventureSystem
+  mapPath: /Maps/_NF/POI/cargodepotalt.yml
+  minPlayers: 0
+  stations:
+    CargoDepotAlt:
+      stationProto: MarketFrontierOutpost
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Cargo Depot' # Has a letter appended in NfAdventureSystem

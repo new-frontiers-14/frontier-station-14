@@ -75,6 +75,7 @@
     deviceNetId: Wireless
     receiveFrequencyId: PDA
     prefix: device-address-prefix-console
+    savableAddress: false
 #  - type: WirelessNetworkConnection # Frontier
 #    range: 500 # Frontier
   - type: CartridgeLoader
@@ -83,7 +84,8 @@
       - CrewManifestCartridge
       - NotekeeperCartridge
       - NewsReaderCartridge
-      - BountyContractsCartridge
+      - BountyContractsCartridge # Frontier
+      - AstroNavCartridge # Frontier
     cartridgeSlot:
       priority: -1
       name: device-pda-slot-component-slot-name-cartridge
@@ -112,29 +114,56 @@
     - DoorBumpOpener
   - type: Input
     context: "human"
-  - type: StaticPrice
-    price: 20 # The card need to cost less then the PDA that comes with a card and a pen in it.
-  - type: CargoSellBlacklist # Liltenhead moment
+  - type: SentienceTarget # sentient PDA = pAI lite
+    flavorKind: station-event-random-sentience-flavor-mechanical
+    weight: 0.001 # 1,000 PDAs = as likely to be picked as 1 regular animal
+  - type: BlockMovement
+    blockInteraction: false # lets the PDA toggle its own flashlight
+  - type: TypingIndicator
+    proto: robot
+  - type: Speech
+    speechVerb: Robotic
+  - type: StaticPrice # Frontier
+    price: 20 # Frontier: The card need to cost less then the PDA that comes with a card and a pen in it.
+  - type: CargoSellBlacklist # Frontier: Liltenhead moment
+  - type: PirateBountyItem
+    id: Pda
+
+- type: entity
+  parent: BasePDA
+  id: BaseSecurityPDA
+  abstract: true
+  components:
+  - type: CartridgeLoader
+    preinstalled:
+    - CrewManifestCartridge
+    - NotekeeperCartridge
+    - NewsReaderCartridge
+    - BountyContractsCartridge # Frontier
+    - AstroNavCartridge # Frontier
+    - WantedListCartridge
 
 - type: entity
   parent: BasePDA
   id: BaseMedicalPDA
   abstract: true
-  components:
-  - type: ItemToggle
-    toggleLight: false
-    onUse: false
-  - type: HealthAnalyzer
-    scanDelay: 1
-    scanningEndSound:
-      path: "/Audio/Items/Medical/healthscanner.ogg"
+  # Frontier: cartridges moved to loadouts
+  # components:
+  # - type: CartridgeLoader
+    # uiKey: enum.PdaUiKey.Key
+    # preinstalled:
+      # - CrewManifestCartridge
+      # - NotekeeperCartridge
+      # - NewsReaderCartridge
+      # - MedTekCartridge
+  # End Frontier
 
 - type: entity
   parent: BasePDA
   id: PassengerPDA
-  noSpawn: true # Frontier
   name: passenger PDA
   description: Why isn't it gray?
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: Pda
     id: PassengerIDCard
@@ -161,7 +190,7 @@
   parent: BaseMedicalPDA
   id: MedicalInternPDA
   name: medical intern PDA
-  description: Why isn't it white? Has a built-in health analyzer.
+  description: Why isn't it white?
   components:
   - type: Pda
     id: MedicalInternIDCard
@@ -176,7 +205,7 @@
     - Medical Doctor
 
 - type: entity
-  parent: BasePDA
+  parent: BaseSecurityPDA
   id: SecurityCadetPDA
   name: security cadet PDA
   description: Why isn't it red?
@@ -233,6 +262,8 @@
     borderColor: "#d7d7d0"
   - type: Icon
     state: pda-cook
+  - type: ReplacementAccent # for random sentience event
+    accent: italian
 
 - type: entity
   parent: BasePDA
@@ -261,6 +292,7 @@
     penSlot:
       startingItem: CrayonOrange # no pink crayon?!?
       # ^ Still unacceptable.
+      # ^ I would have to concur.
       ejectSound: /Audio/Items/bikehorn.ogg
       priority: -1
       whitelist:
@@ -270,9 +302,7 @@
     borderColor: "#C18199"
   - type: Icon
     state: pda-clown
-  - type: Slippery
-    paralyzeTime: 4
-    launchForwardsMultiplier: 1.5
+  - type: Slippery # secretly made of bananium
   - type: StepTrigger
   - type: CollisionWake
     enabled: false
@@ -296,6 +326,15 @@
         - ItemMask
 
 - type: entity
+  parent: ClownPDA
+  id: VisitorClownPDA
+  suffix: Visitor
+  components:
+  - type: Pda
+    id: VisitorIDCard
+    state: pda-clown
+
+- type: entity
   parent: BasePDA
   id: MimePDA
   name: mime PDA
@@ -314,6 +353,7 @@
     accentHColor: "#333333"
   - type: Icon
     state: pda-mime
+  - type: Muted # for random sentience event
 
 - type: entity
   name: chaplain PDA
@@ -327,6 +367,15 @@
   - type: PdaBorderColor
     borderColor: "#333333"
   - type: Icon
+    state: pda-chaplain
+
+- type: entity
+  parent: ChaplainPDA
+  id: VisitorChaplainPDA
+  suffix: Visitor
+  components:
+  - type: Pda
+    id: VisitorIDCard
     state: pda-chaplain
 
 - type: entity
@@ -372,6 +421,15 @@
     accentVColor: "#8900c9"
   - type: Icon
     state: pda-miner
+  # Frontier: cartridges moved to loadouts
+  # - type: CartridgeLoader
+  #   uiKey: enum.PdaUiKey.Key
+    # preinstalled:
+    #   - CrewManifestCartridge
+    #   - NotekeeperCartridge
+    #   - NewsReaderCartridge
+    #   - AstroNavCartridge
+  # End Frontier
 
 - type: entity
   parent: BasePDA
@@ -408,7 +466,16 @@
     state: pda-library
 
 - type: entity
-  parent: BasePDA
+  parent: LibrarianPDA
+  id: VisitorLibrarianPDA
+  suffix: Visitor
+  components:
+  - type: Pda
+    id: VisitorIDCard
+    state: pda-library
+
+- type: entity
+  parent: BaseSecurityPDA
   id: LawyerPDA
   name: lawyer PDA
   description: For lawyers to poach dubious clients.
@@ -428,10 +495,20 @@
     state: pda-lawyer
 
 - type: entity
+  parent: LawyerPDA
+  id: VisitorLawyerPDA
+  suffix: Visitor
+  components:
+  - type: Pda
+    id: VisitorIDCard
+    state: pda-lawyer
+
+- type: entity
   parent: BasePDA
   id: JanitorPDA
   name: janitor PDA
   description: Smells like bleach.
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: Pda
     id: JanitorIDCard
@@ -516,7 +593,7 @@
   parent: BaseMedicalPDA
   id: CMOPDA
   name: chief medical officer PDA
-  description: Extraordinarily shiny and sterile. Has a built-in health analyzer.
+  description: Extraordinarily shiny and sterile.
   components:
   - type: Pda
     id: CMOIDCard
@@ -532,7 +609,7 @@
   parent: BaseMedicalPDA
   id: MedicalPDA
   name: medical PDA
-  description: Shiny and sterile. Has a built-in health analyzer.
+  description: Shiny and sterile.
   components:
   - type: Pda
     id: MedicalIDCard
@@ -547,10 +624,19 @@
     - Medical Doctor
 
 - type: entity
+  parent: MedicalPDA
+  id: VisitorMedicalPDA
+  suffix: Visitor
+  components:
+  - type: Pda
+    id: VisitorIDCard
+    state: pda-medical
+
+- type: entity
   parent: BaseMedicalPDA
   id: ParamedicPDA
   name: paramedic PDA
-  description: Shiny and sterile. Has a built-in rapid health analyzer.
+  description: Shiny and sterile.
   components:
   - type: Pda
     id: ParamedicIDCard
@@ -608,7 +694,7 @@
     state: pda-science
 
 - type: entity
-  parent: BasePDA
+  parent: BaseSecurityPDA
   id: HoSPDA
   name: head of security PDA
   description: Whosoever bears this PDA is the law.
@@ -621,9 +707,16 @@
     accentHColor: "#447987"
   - type: Icon
     state: pda-hos
+  - type: CartridgeLoader
+    preinstalled:
+    - CrewManifestCartridge
+    - NotekeeperCartridge
+    - NewsReaderCartridge
+    - WantedListCartridge
+    - LogProbeCartridge
 
 - type: entity
-  parent: BasePDA
+  parent: BaseSecurityPDA
   id: WardenPDA
   name: warden PDA
   description: The OS appears to have been jailbroken.
@@ -638,7 +731,7 @@
     state: pda-warden
 
 - type: entity
-  parent: BasePDA
+  parent: BaseSecurityPDA
   id: SecurityPDA
   name: security PDA
   description: Red to hide the stains of passenger blood.
@@ -652,9 +745,9 @@
     state: pda-security
 
 - type: entity
-  parent: BasePDA
+  parent: BaseSecurityPDA
   id: CentcomPDA
-  name: CentCom PDA
+  name: CentComm PDA
   description: Light green sign of walking bureaucracy.
   components:
   - type: Pda
@@ -669,18 +762,30 @@
     borderColor: "#00842e"
   - type: Icon
     state: pda-centcom
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NewsReaderCartridge
+      - MedTekCartridge
+      - WantedListCartridge
+      - LogProbeCartridge
+      - AstroNavCartridge
 
 - type: entity
-  parent: [MusicBasePDA, CentcomPDA, BaseMedicalPDA] # Frontier - Added MusicBasePDA parent
+  parent: CentcomPDA
   id: AdminPDA
   name: Admin PDA
   suffix: Admin
+  categories: [ HideSpawnMenu ] # Frontier: use NF variant
   description: If you are not an admin please return this PDA to the nearest admin.
   components:
   - type: Pda
     id: UniversalIDCard
   - type: HealthAnalyzer
     scanDelay: 0
+    silent: true
   - type: CartridgeLoader
     uiKey: enum.PdaUiKey.Key
     notificationsEnabled: false
@@ -689,15 +794,9 @@
       - NotekeeperCartridge
       - NewsReaderCartridge
       - LogProbeCartridge
-      - BountyContractsCartridge
-
-- type: entity
-  parent: CentcomPDA
-  id: CentcomPDAFake
-  suffix: Fake
-  components:
-  - type: Pda
-    id: CentcomIDCardSyndie
+      - WantedListCartridge
+      - MedTekCartridge
+      - AstroNavCartridge
 
 - type: entity
   parent: CentcomPDA
@@ -727,6 +826,15 @@
     program: 2
 
 - type: entity
+  parent: MusicianPDA
+  id: VisitorMusicianPDA
+  suffix: Visitor
+  components:
+  - type: Pda
+    id: VisitorIDCard
+    state: pda-musician
+
+- type: entity
   parent: BasePDA
   id: AtmosPDA
   name: atmos PDA
@@ -744,9 +852,9 @@
 - type: entity
   parent: BasePDA
   id: ClearPDA
-  noSpawn: true # Frontier
   name: clear PDA
   description: 99 and 44/100ths percent pure plastic.
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: Pda
     id: PassengerIDCard
@@ -755,6 +863,14 @@
     borderColor: "#288e4d"
   - type: Icon
     state: pda-clear
+
+- type: entity
+  parent: ClearPDA
+  id: VisitorPDA
+  components:
+  - type: Pda
+    id: VisitorIDCard
+    state: pda
 
 - type: entity
   parent: BasePDA
@@ -773,17 +889,9 @@
     uiKey: enum.PdaUiKey.Key
     preinstalled:
       - NotekeeperCartridge
-    cartridgeSlot:
-      priority: -1
-      name: Cartridge
-      ejectSound: /Audio/Machines/id_swipe.ogg
-      insertSound: /Audio/Machines/id_insert.ogg
-      whitelist:
-        components:
-          - Cartridge
 
 - type: entity
-  parent: BasePDA
+  parent: BaseSecurityPDA
   id: ERTLeaderPDA
   name: ERT Leader PDA
   suffix: Leader
@@ -798,6 +906,17 @@
     accentVColor: "#447987"
   - type: Icon
     state: pda-ert
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NewsReaderCartridge
+      - MedTekCartridge
+      - WantedListCartridge
+      - LogProbeCartridge
+      - AstroNavCartridge
+      - MailMetricsCartridge # Frontier
 
 - type: entity
   parent: ERTLeaderPDA
@@ -834,14 +953,10 @@
   id: ERTMedicPDA
   name: ERT Medic PDA
   suffix: Medic
-  description: Red for firepower, it's shiny and sterile. Has a built-in rapid health analyzer.
+  description: Red for firepower, it's shiny and sterile.
   components:
   - type: Pda
     id: ERTMedicIDCard
-  - type: HealthAnalyzer
-    scanDelay: 1
-    scanningEndSound:
-      path: "/Audio/Items/Medical/healthscanner.ogg"
 
 - type: entity
   parent: ERTLeaderPDA
@@ -931,11 +1046,11 @@
     state: pda-boxer
 
 - type: entity
-  parent: BasePDA
+  parent: BaseSecurityPDA
   id: DetectivePDA
   name: detective PDA
-  noSpawn: true # Frontier
   description: Smells like rain... pouring down the rooftops...
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: Pda
     id: DetectiveIDCard
@@ -944,12 +1059,19 @@
     borderColor: "#774705"
   - type: Icon
     state: pda-detective
+  - type: CartridgeLoader
+    preinstalled:
+    - CrewManifestCartridge
+    - NotekeeperCartridge
+    - NewsReaderCartridge
+    - WantedListCartridge
+    - LogProbeCartridge
 
 - type: entity
   parent: BaseMedicalPDA
   id: BrigmedicPDA
   name: brigmedic PDA
-  description: I wonder whose pulse is on the screen? I hope he doesnt stop... PDA has a built-in health analyzer.
+  description: I wonder whose pulse is on the screen? I hope it doesn't stop...
   components:
   - type: Pda
     id: BrigmedicIDCard
@@ -960,6 +1082,13 @@
     accentVColor: "#d7d7d0"
   - type: Icon
     state: pda-brigmedic
+  - type: CartridgeLoader
+    preinstalled:
+    - CrewManifestCartridge
+    - NotekeeperCartridge
+    - NewsReaderCartridge
+    - WantedListCartridge
+    - MedTekCartridge
 
 - type: entity
   parent: ClownPDA
@@ -1019,7 +1148,7 @@
   parent: BaseMedicalPDA
   id: SeniorPhysicianPDA
   name: senior physician PDA
-  description: Smells faintly like iron and chemicals. Has a built-in health analyzer.
+  description: Smells faintly like iron and chemicals.
   components:
   - type: Pda
     id: SeniorPhysicianIDCard
@@ -1032,7 +1161,7 @@
     state: pda-seniorphysician
 
 - type: entity
-  parent: BasePDA
+  parent: BaseSecurityPDA
   id: SeniorOfficerPDA
   name: senior officer PDA
   description: Beaten, battered and broken, but just barely useable.
@@ -1050,8 +1179,8 @@
   parent: SyndiPDA
   id: PiratePDA
   name: pirate PDA
-  noSpawn: true # Frontier
   description: Yargh!
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: Pda
     id: PirateIDCard
@@ -1076,11 +1205,4 @@
     uiKey: enum.PdaUiKey.Key
     preinstalled:
       - NotekeeperCartridge
-    cartridgeSlot:
-      priority: -1
-      name: Cartridge
-      ejectSound: /Audio/Machines/id_swipe.ogg
-      insertSound: /Audio/Machines/id_insert.ogg
-      whitelist:
-        components:
-          - Cartridge
+      - MedTekCartridge

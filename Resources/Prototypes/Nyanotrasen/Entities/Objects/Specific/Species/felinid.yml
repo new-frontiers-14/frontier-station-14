@@ -2,11 +2,10 @@
   parent: BaseItem
   id: Hairball
   name: hairball
-  description: Felinids, man... Placeholder sprite.
+  description: Felinids, man...
   components:
   - type: Sprite
-    netsync: false
-    sprite: Objects/Specific/Species/felinid.rsi
+    sprite: Nyanotrasen/Objects/Specific/Species/felinid.rsi
     state: icon
   - type: Hairball
   - type: SolutionContainerManager
@@ -22,3 +21,9 @@
     tags:
     - Recyclable
     - Trash
+  - type: FoodSequenceElement # Frontier
+    entries:
+      Burger: Hairball
+      Taco: Hairball
+      Skewer: Hairball
+    solution: hairball # Frontier

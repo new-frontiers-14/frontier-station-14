@@ -25,6 +25,14 @@ public sealed partial class IFFComponent : Component
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite), DataField, AutoNetworkedField]
     public Color Color = IFFColor;
+
+    // Frontier: POI IFF protection
+    /// <summary>
+    /// Whether or not this entity's IFF can be changed.
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite), DataField(serverOnly: true)]
+    public bool ReadOnly;
+    // End Frontier
 }
 
 [Flags]
@@ -44,7 +52,7 @@ public enum IFFFlags : byte
     Hide = 2,
 
     /// <summary>
-    /// Is this a player shuttle
+    /// Frontier - Is this a player shuttle
     /// </summary>
     IsPlayerShuttle = 4,
 

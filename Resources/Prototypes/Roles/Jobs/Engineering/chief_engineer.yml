@@ -6,21 +6,31 @@
   setPreference: false # Frontier
   requirements:
     - !type:OverallPlaytimeRequirement
-      time: 10800
+      time: 144000 #40 hrs
   weight: 10
   startingGear: ChiefEngineerGear
   icon: "JobIconChiefEngineer"
-#  requireAdminNotify: true
-  supervisors: job-supervisors-hire # Frontier
-#  canBeAntag: false
+  supervisors: job-supervisors-captain
+  canBeAntag: false
+  ## Frontier: commented everything below out
+  # access:
+  # - Maintenance
+  # - Engineering
+  # - Command
+  # - External
+  # - ChiefEngineer
+  # - Atmospherics
+  # - Brig
+  # - Cryogenics
+  # special:
+  # - !type:AddImplantSpecial
+  #   implants: [ MindShieldImplant ]
+  # - !type:AddComponentSpecial
+  #   components:
+  #     - type: CommandStaff
+  ## End Frontier: commented everything above out
   accessGroups: # Frontier
   - GeneralAccess # Frontier
-#  special:
-#  - !type:AddImplantSpecial
-#    implants: [ MindShieldImplant ]
-#  - !type:AddComponentSpecial
-#    components:
-#      - type: CommandStaff
 
 - type: startingGear
   id: ChiefEngineerGear

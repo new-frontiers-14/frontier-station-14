@@ -12,11 +12,16 @@
   id: Broadhead
   name: NSF Broadhead
   description: A medium size detective ship with facilities for autopsies, interrogations and detailed investigations.
-  price: 50000
+  price: 60000 # TODO: fix these values, getting tests to pass - Whatstone
   category: Medium
   group: Security
   access: Detective
   shuttlePath: /Maps/_NF/Shuttles/Nfsd/broadhead.yml
+  guidebookPage: Null
+  class:
+  - Detective
+  engine:
+  - Uranium
 
 - type: gameMap
   id: Broadhead
@@ -33,6 +38,4 @@
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
         - type: StationJobs
-          availableJobs:
-            Detective: [ 0, 0 ]
-            SecurityOfficer: [ 0, 0 ]
+          availableJobs: {}

@@ -11,7 +11,7 @@
   description: Used for free shuttle rentals from a shipyard.
   components:
   - type: Sprite
-    sprite: Objects/Misc/id_cards.rsi
+    sprite: _NF/Objects/Misc/shipyard_voucher.rsi
   - type: Item
     size: Small
     heldPrefix: default
@@ -21,42 +21,102 @@
     price: 0
   - type: CargoSellBlacklist
 
+# NFSD vouchers
 - type: entity
   parent: BaseShipVoucher
-  id: NfsdSergeantShipVoucher
+  id: ShipVoucherNfsdSergeant
   name: nfsd sergeant ship voucher
   description: Allows for one free small to medium NFSD ship purchase. Destroyed on sale.
   components:
   - type: Sprite
-    sprite: _NF/Objects/Misc/id_cards.rsi
     layers:
-    - state: nfsdvoucher
-    - state: vouchernfsdsergeant
+    - state: nfsd
+    - state: vouchersergeant
   - type: Item
     heldPrefix: nfsd
   - type: ShipyardVoucher
     destroyOnEmpty: true
+    consoleType: Security
     access:
     - Sergeant # Frontier
     accessGroups: # Frontier
     - GeneralNfsdAccess # Frontier
 
 - type: entity
-  parent: NfsdSergeantShipVoucher
-  id: NfsdBailiffShipVoucher
+  parent: ShipVoucherNfsdSergeant
+  id: ShipVoucherNfsdBailiff
   name: nfsd bailiff ship voucher
   description: Allows for one free small to capital NFSD ship purchase. Destroyed on sale.
   components:
   - type: Sprite
-    sprite: _NF/Objects/Misc/id_cards.rsi
     layers:
-    - state: nfsdvoucher
-    - state: vouchernfsdbailiff
+    - state: nfsd
+    - state: voucherbailiff
   - type: ShipyardVoucher
-    destroyOnEmpty: true
     access:
     - Armory
     - Sergeant # Frontier
     - Bailiff # Frontier
     accessGroups: # Frontier
     - GeneralNfsdAccess # Frontier
+
+# Frontier vouchers
+- type: entity
+  parent: BaseShipVoucher
+  id: ShipVoucherFrontierJanitor
+  name: janitor ship voucher
+  description: Allows for one free janitorial ship purchase from the Frontier Staff Shipyard. Destroyed on sale.
+  components:
+  - type: Sprite
+    layers:
+    - state: blue
+    - state: voucherjanitor
+  - type: Item
+    heldPrefix: blue
+  - type: ShipyardVoucher
+    destroyOnEmpty: true
+    consoleType: Sr
+    access:
+    - Janitor
+
+- type: entity
+  parent: ShipVoucherFrontierJanitor
+  id: ShipVoucherFrontierValet
+  name: valet ship voucher
+  description: Allows for one free valet ship purchase from the Frontier Staff Shipyard. Destroyed on sale.
+  components:
+  - type: Sprite
+    layers:
+    - state: blue
+    - state: vouchervalet
+  - type: ShipyardVoucher
+    access:
+    - Service
+
+- type: entity
+  parent: ShipVoucherFrontierJanitor
+  id: ShipVoucherFrontierMailCarrier
+  name: mail carrier ship voucher
+  description: Allows for one free mail ship purchase from the Frontier Staff Shipyard. Destroyed on sale.
+  components:
+  - type: Sprite
+    layers:
+    - state: blue
+    - state: vouchermailcarrier
+  - type: ShipyardVoucher
+    access:
+    - Mail
+
+- type: entity
+  parent: ShipVoucherFrontierJanitor
+  id: ShipVoucherFrontierGuard
+  name: station guard ship voucher
+  description: Allows for one free guard ship purchase from the Frontier Staff Shipyard. Destroyed on sale.
+  components:
+  - type: Sprite
+    layers:
+    - state: blue
+    - state: voucherstationguard
+  - type: ShipyardVoucher
+    access:
+    - Brig # odd, but potentially restricts cadets in lieu of a security guard-only access level

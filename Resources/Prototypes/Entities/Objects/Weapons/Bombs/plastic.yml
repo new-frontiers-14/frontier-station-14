@@ -39,7 +39,7 @@
 - type: entity
   name: composition C-4
   description: Used to put holes in specific areas without too much extra hole. A saboteur's favorite.
-  parent: BasePlasticExplosive
+  parent: [BasePlasticExplosive, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   id: C4
   components:
   - type: Sprite
@@ -55,10 +55,10 @@
     beepSound: /Audio/Machines/Nuke/general_beep.ogg
     startOnStick: true
     canToggleStartOnStick: true
-  - type: TriggerOnSignal
+  - type: TimerStartOnSignal
   - type: DeviceLinkSink
     ports:
-      - Trigger
+      - Timer
   - type: Explosive # Powerful explosion in a very small radius. Doesn't break underplating.
     explosionType: DemolitionCharge
     totalIntensity: 60
@@ -73,7 +73,6 @@
   - type: HolidayRsiSwap
     sprite:
       festive: Objects/Weapons/Bombs/c4gift.rsi
-  - type: Contraband #frontier
 
 - type: entity
   name: seismic charge

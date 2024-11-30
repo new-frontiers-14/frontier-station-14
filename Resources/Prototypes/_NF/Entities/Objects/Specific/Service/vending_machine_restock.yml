@@ -1,12 +1,13 @@
 - type: entity
   parent: BaseVendingMachineRestock
   id: VendingMachineRestockAstroVend
-  name: Astro Vendor restock box
-  description: Rock and stone! A label reads THE BOX IS TAMPER PROOF AND WILL DESTROY IT'S CONTENT ON HARM.
+  name: AstroVend restock box
+  description: Rock and stone! A restock for the AstroVend. A label reads "THE BOX IS TAMPER-PROOF AND WILL DESTROY ITS CONTENT ON HARM."
   components:
   - type: VendingMachineRestock
     canRestock:
     - AstroVendInventory
+    - AstroVendPOIInventory # Infinite stock apart from clothing.
   - type: Sprite
     layers:
     - state: base
@@ -17,8 +18,8 @@
 - type: entity
   parent: BaseVendingMachineRestock
   id: VendingMachineRestockAmmo
-  name: Ammo restock box
-  description: A box full of ammo and guns, usefull when there's too many pirates, 2TH AMENDMENT, A label reads THE BOX IS TAMPER PROOF AND WILL DESTROY IT'S CONTENT ON HARM.
+  name: Liberation Station restock box
+  description: A box full of ammo and guns for the Liberation Station. 2TH AMENDMENT. A label reads "THE BOX IS TAMPER-PROOF AND WILL DESTROY ITS CONTENT ON HARM."
   components:
   - type: VendingMachineRestock
     canRestock:
@@ -32,25 +33,9 @@
 
 - type: entity
   parent: BaseVendingMachineRestock
-  id: VendingMachineRestockFlatpackVend
-  name: FlatpackVend restock box
-  description: A box full of flatpacks for various computers. Load it into a FlatpackVend to begin. A label reads THE BOX IS TAMPER PROOF AND WILL DESTROY IT'S CONTENT ON HARM.
-  components:
-  - type: VendingMachineRestock
-    canRestock:
-    - FlatpackVendInventory
-  - type: Sprite
-    layers:
-    - state: base
-    - state: green_bit
-      shader: unshaded
-    - state: refill_parts # Update this later with a new sprite
-
-- type: entity
-  parent: BaseVendingMachineRestock
   id: VendingMachineRestockCuddlyCritterVend
   name: CuddlyCritterVend restock box
-  description: A box containing toys and plushies for the Cuddly Critter vending machine. A label reads THE BOX IS TAMPER PROOF AND WILL DESTROY IT'S CONTENT ON HARM.
+  description: A box containing toys and plushies for the CuddlyCritterVend machine. A label reads "THE BOX IS TAMPER-PROOF AND WILL DESTROY ITS CONTENT ON HARM."
   components:
   - type: VendingMachineRestock
     canRestock:
@@ -66,7 +51,7 @@
   parent: BaseVendingMachineRestock
   id: VendingMachineRestockLessLethalVend
   name: LessLethalVend restock box
-  description: A box containing rubber bullets and disruptors for the Less Lethal vending machine. A label reads THE BOX IS TAMPER PROOF AND WILL DESTROY IT'S CONTENT ON HARM.
+  description: A box containing rubber bullets and disruptors for the LessLethalVend machine. A label reads "THE BOX IS TAMPER-PROOF AND WILL DESTROY ITS CONTENT ON HARM."
   components:
   - type: VendingMachineRestock
     canRestock:
@@ -83,7 +68,7 @@
   parent: BaseVendingMachineRestock
   id: VendingMachineRestockNonLethalVend
   name: NonLethalVend restock box
-  description: A box containing practice bullets for the Non Lethal vending machine. A label reads THE BOX IS TAMPER PROOF AND WILL DESTROY IT'S CONTENT ON HARM.
+  description: A box containing practice bullets for the NonLethalVend machine. A label reads "THE BOX IS TAMPER-PROOF AND WILL DESTROY ITS CONTENT ON HARM."
   components:
   - type: VendingMachineRestock
     canRestock:
@@ -100,7 +85,7 @@
   parent: BaseVendingMachineRestock
   id: VendingMachineRestockAutoTuneVend
   name: AutoTuneVend restock box
-  description: A box containing music and stuff for the Auto Tune vending machine. A label reads THE BOX IS TAMPER PROOF AND WILL DESTROY IT'S CONTENT ON HARM.
+  description: A box containing music and stuff for the AutoTuneVend machine. A label reads "THE BOX IS TAMPER-PROOF AND WILL DESTROY ITS CONTENT ON HARM."
   components:
   - type: VendingMachineRestock
     canRestock:
@@ -117,7 +102,7 @@
   parent: BaseVendingMachineRestock
   id: VendingMachineRestockPottedPlantVend
   name: Plant-O-Matic restock box
-  description: A box containing potted plants for the Plant-O-Matic vending machine. A label reads THE BOX IS TAMPER PROOF AND WILL DESTROY IT'S CONTENT ON HARM.
+  description: A box containing potted plants for the Plant-O-Matic vending machine. A label reads "THE BOX IS TAMPER-PROOF AND WILL DESTROY ITS CONTENT ON HARM."
   components:
   - type: VendingMachineRestock
     canRestock:
@@ -134,7 +119,7 @@
   parent: BaseVendingMachineRestock
   id: VendingMachineRestockSyndieContraband
   name: contravend restock box
-  description: A box containing best ilegal tools for the ContraVend machine. A label reads THE BOX IS TAMPER PROOF AND WILL DESTROY IT'S CONTENT ON HARM.
+  description: A box containing the best illegal tools for the ContraVend machine. A label reads "THE BOX IS TAMPER-PROOF AND WILL DESTROY ITS CONTENT ON HARM."
   components:
   - type: VendingMachineRestock
     canRestock:
@@ -146,20 +131,3 @@
     - state: green_bit
       shader: unshaded
     - state: refill_contravend
-        
-- type: entity
-  parent: BaseVendingMachineRestock
-  id: VendingMachineRestockCiviMedVend
-  name: CiviMed restock box
-  description: A box containing medical supplies for the CiviMed vending machine. A label reads THE BOX IS TAMPER PROOF AND WILL DESTROY IT'S CONTENT ON HARM.
-  components:
-  - type: VendingMachineRestock
-    canRestock:
-    - CiviMedVendInventory
-  - type: Sprite
-    sprite: _NF/Objects/Specific/Service/vending_machine_restock.rsi
-    layers:
-    - state: base
-    - state: green_bit
-      shader: unshaded
-    - state: refill_civimed

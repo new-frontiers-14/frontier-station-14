@@ -1,15 +1,15 @@
 - type: entity
   id: CrateServiceJanitorialSupplies
-  parent: CratePlastic
+  parent: CratePlasticBiodegradable # Frontier: CratePlastic<CratePlasticBiodegradable
   name: janitorial supplies crate
-  description: Fight back against dirt and grime with Nanotrasen's Janitorial Essentials(tm)! Contains three buckets, caution signs, and cleaner grenades. Also has a single mop, broom, spray cleaner, rag, and trash bag.
+  description: Fight back against dirt and grime with Nanotrasen's Janitorial Essentials Plus™! Contains a bucket and two caution signs, a mop, broom, two spray bottles of cleaner, soap, a plunger, and a light replacer. # Frontier: match crate contents
   components:
   - type: StorageFill
     contents:
       - id: MopItem
       - id: MopBucket
       - id: Bucket
-        amount: 3
+        amount: 1 # Frontier 3<1
       - id: WetFloorSign
         amount: 2
       - id: Soap
@@ -92,7 +92,8 @@
     - id: ClothingUniformJumpskirtOldDress
     - id: BikeHorn
     - id: ClownRecorder
-    - id: ClothingBeltSuspenders
+    - id: ClothingBeltSuspendersRed
+    - id: ClothingBeltSuspendersBlack
 
 - type: entity
   id: CrateServiceCustomSmokable
@@ -129,7 +130,8 @@
     - id: BoxFolderRed
     - id: BoxFolderYellow
     - id: NewtonCradle
-    - id: RubberStampCaptain
+    - id: BoxEnvelope
+    - id: RubberStampCaptain # Frontier
 
 - type: entity
   id: CrateServiceFaxMachine
@@ -237,7 +239,7 @@
 
 - type: entity
   id: CrateServiceBox
-  parent: CratePlastic
+  parent: CratePlasticBiodegradable # Frontier: CratePlastic<CratePlasticBiodegradable
   name: boxes crate
   description: Contains 6 empty multipurpose boxes.
   components:
@@ -248,7 +250,7 @@
 
 - type: entity
   id: CrateJanitorBiosuit
-  parent: CratePlastic
+  parent: CratePlasticBiodegradable # Frontier: CratePlastic<CratePlasticBiodegradable
   name: janitor bio suit crate
   description: Contains 2 biohazard suits to ensure that no disease will distract you from cleaning.
   components:
@@ -269,12 +271,12 @@
     - type: StorageFill
       contents:
           # Creatures
-        - id: MobCockroach
-          prob: 0.05
-        - id: MobMothroach
-          prob: 0.03
-        - id: MobMouse
-          prob: 0.05
+#        - id: MobCockroach # Frontier
+#          prob: 0.05 # Frontier
+#        - id: MobMothroach # Frontier
+#          prob: 0.03 # Frontier
+#        - id: MobMouse # Frontier
+#          prob: 0.05 # Frontier
           # Food Packaging
         - id: FoodPacketBoritosTrash
           prob: 0.1
@@ -311,10 +313,10 @@
         - id: CigaretteSpent
           prob: 0.15
           # Bacteria
-        - id: FoodBreadMoldySlice
-          prob: 0.15
-        - id: FoodPizzaMoldySlice
-          prob: 0.15
+#        - id: FoodBreadMoldySlice # Frontier
+#          prob: 0.15 # Frontier
+#        - id: FoodPizzaMoldySlice # Frontier
+#          prob: 0.15 # Frontier
           # Botanical Waste
         - id: TrashBananaPeel
           prob: 0.15
@@ -329,9 +331,22 @@
           prob: 0.15
         - id: LightBulbBroken
           prob: 0.15
-        - id: MobMouseDead
-          prob: 0.1
+#        - id: MobMouseDead # Frontier
+#          prob: 0.1 # Frontier
         - id: Syringe
           prob: 0.1
         - id: ShardGlassPlasma
           prob: 0.1
+
+- type: entity
+  id: CrateCandles
+  parent: CrateGenericSteel
+  name: candles crate
+  description: Contains 4 boxes of candles, 2 large and 2 small. For atmosphere or something.
+  components:
+  - type: StorageFill
+    contents:
+      - id: BoxCandle
+        amount: 2
+      - id: BoxCandleSmall
+        amount: 2

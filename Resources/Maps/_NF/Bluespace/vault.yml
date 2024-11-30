@@ -24,10 +24,7 @@ entities:
   - uid: 1
     components:
     - type: MetaData
-      name: Secure NT Vault
     - type: Transform
-      pos: 0.07584572,0.026101112
-      parent: invalid
     - type: MapGrid
       chunks:
         0,0:
@@ -2404,13 +2401,6 @@ entities:
     components:
     - type: Transform
       pos: -9.5,13.5
-      parent: 1
-- proto: BookSecretDocuments
-  entities:
-  - uid: 358
-    components:
-    - type: Transform
-      pos: 5.5623913,3.5869086
       parent: 1
 - proto: BrutepackAdvanced1
   entities:
@@ -6101,7 +6091,7 @@ entities:
     - type: Transform
       pos: 2.5,12.5
       parent: 1
-- proto: LockerSecurityFilled
+- proto: NFLockerSecurityFilled
   entities:
   - uid: 1062
     components:
@@ -7594,13 +7584,6 @@ entities:
     - type: Transform
       pos: -5.5,-13.5
       parent: 1
-- proto: VendingMachineCentDrobe
-  entities:
-  - uid: 1162
-    components:
-    - type: Transform
-      pos: 6.5,3.5
-      parent: 1
 - proto: WallPlastitanium
   entities:
   - uid: 3
@@ -8954,11 +8937,8 @@ entities:
   - uid: 4
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
       pos: 4.5,12.5
       parent: 1
-    - type: WarpPoint
-      location: The Vault
 - proto: WeaponTurretHostile
   entities:
   - uid: 104

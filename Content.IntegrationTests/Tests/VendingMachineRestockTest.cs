@@ -104,6 +104,7 @@ namespace Content.IntegrationTests.Tests
 ";
 
         [Test]
+        [Ignore("Frontier: restocks for vendors are intentionally unpurchaseable.")] // Frontier
         public async Task TestAllRestocksAreAvailableToBuy()
         {
             await using var pair = await PoolManager.GetServerClient();
@@ -245,16 +246,17 @@ namespace Content.IntegrationTests.Tests
                         "Machine inventory is empty before emptying.");
                 });
 
+                /* Frontier TODO: Restore this ones we add bank to the dummy
                 // Empty the inventory.
                 systemMachine.EjectRandom(machine, false, true, machineComponent);
                 Assert.That(systemMachine.GetAvailableInventory(machine, machineComponent), Has.Count.EqualTo(0),
                     "Machine inventory is not empty after ejecting.");
-
+                
                 // Test that the inventory is actually restocked.
                 systemMachine.TryRestockInventory(machine, machineComponent);
                 Assert.That(systemMachine.GetAvailableInventory(machine, machineComponent), Has.Count.GreaterThan(0),
                     "Machine available inventory count is not greater than zero after restock.");
-
+                */
                 mapManager.DeleteMap(testMap.MapId);
             });
 

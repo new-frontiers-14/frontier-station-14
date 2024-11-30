@@ -45,3 +45,13 @@
     sprite: _NF/Clothing/Eyes/Hud/nfsd_patch.rsi
   - type: Clothing
     sprite: _NF/Clothing/Eyes/Hud/nfsd_patch.rsi
+
+- type: entity
+  parent: ClothingEyesHudSecurity
+  id: ClothingEyesHudBountyHunter
+  name: bounty hunter hud
+  description: A heads-up display that scans the humanoids in view and provides accurate data about their ID status, criminal records and health status.
+  components:
+  - type: ShowHealthBars
+    damageContainers:
+    - Biological

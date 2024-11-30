@@ -1,6 +1,6 @@
 - type: entity
   name: energy gun
-  parent: BaseWeaponBattery
+  parent: [BaseWeaponBattery, BaseC2ContrabandUnredeemable] # Frontier: added BaseC2ContrabandUnredeemable
   id: WeaponEnergyGun
   description: "A basic hybrid energy gun with two settings: disable and kill. On the handle is a label that says 'for authorized use only.'"
   components:
@@ -58,7 +58,7 @@
 - type: entity
   name: x-01 multiphase energy gun
   suffix: DO NOT MAP # Frontier - Add DO NOT MAP, this is the sheriff's gun
-  parent: BaseWeaponBatterySmall
+  parent: [BaseWeaponBatterySmall, BaseC2ContrabandUnredeemable] # Frontier: added BaseC2ContrabandUnredeemable
   id: WeaponEnergyGunMultiphase
   description: This is an expensive, modern recreation of an antique laser gun. This gun has several unique firemodes, but lacks the ability to recharge over time. On the handle is a label that says 'for authorized use only.'
   components:

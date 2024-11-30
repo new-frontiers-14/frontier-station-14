@@ -3,29 +3,35 @@
 - type: entity
   id: DelayedSmoke
   parent: BaseItem
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   name: delayed smoke
   suffix: "(10s)"
   components:
+  - type: Sprite
+    sprite: error.rsi
+    state: error
   - type: DelayedItem
     item: AdminInstantEffectSmoke10
 
 - type: entity
   id: AdminInstantEffectEMP7
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   suffix: EMP, 7 meters
   parent: AdminInstantEffectBase
   components:
   - type: EmpOnTrigger
     range: 7
-    energyConsumption: 50000
+    energyConsumption: 2700000
 
 - type: entity
   id: DelayedEMP
   parent: BaseItem
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   name: delayed EMP (7 meters)
   components:
+  - type: Sprite
+    sprite: error.rsi
+    state: error
   - type: DelayedItem
     item: AdminInstantEffectEMP7
 
@@ -35,17 +41,22 @@
 - type: entity
   id: DelayedPetCarrierNPCEmotionalSupportSafe
   parent: BaseItem
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   name: delayed emotional support pet
   components:
+  - type: Sprite
+    sprite: error.rsi
+    state: error
   - type: DelayedItem
     item: PetCarrierNPCEmotionalSupportSafe
 
 - type: entity
   id: SyringeCognizine
   parent: PrefilledSyringe
-  name: cognizine syringe
+  suffix: cognizine
   components:
+  - type: Label
+    currentLabel: reagent-name-cognizine
   - type: SolutionContainerManager
     solutions:
       injector:
@@ -57,8 +68,10 @@
 - type: entity
   id: SyringeOpporozidone
   parent: PrefilledSyringe
-  name: opporozidone syringe
+  suffix: opporozidone
   components:
+  - type: Label
+    currentLabel: reagent-name-opporozidone
   - type: SolutionContainerManager
     solutions:
       injector:
@@ -70,8 +83,10 @@
 - type: entity
   id: NecrosolChemistryBottle
   parent: BaseChemistryBottleFilled
-  name: necrosol bottle
+  suffix: necrosol
   components:
+  - type: Label
+    currentLabel: reagent-name-necrosol
   - type: SolutionContainerManager
     solutions:
       drink:
@@ -169,7 +184,7 @@
   - type: Storage
     maxItemSize: Ginormous
     grid:
-    - 0,0,3,3
+    - 0,0,6,4
     whitelist:
       components:
         - HumanoidAppearance

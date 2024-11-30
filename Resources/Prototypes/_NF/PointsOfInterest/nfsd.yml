@@ -11,11 +11,19 @@
 - type: pointOfInterest
   id: Nfsd
   name: 'NFSD Outpost'
-  rangeMin: 500
-  rangeMax: 750
-  iffColor: "#8e6444" #brown to match the color of uniform and the color of the pants of the nearest pirates
-  alwaysSpawn: true
+  minimumDistance: 750
+  maximumDistance: 1000
+  spawnGroup: Required
   gridPath: /Maps/_NF/POI/nfsd.yml
+  addComponents:
+  - type: IFF
+    color: "#8e6444"
+    readOnly: true
+  - type: Shuttle
+    angularDamping: 999999
+    linearDamping: 999999
+  - type: ProtectedGrid
+    preventEmpEvents: true
 
 - type: gameMap
   id: Nfsd
@@ -28,14 +36,22 @@
       components:
         - type: StationNameSetup
           mapNameTemplate: 'NFSD Outpost'
+        - type: ExtraStationInformation
+          iconPath: /Textures/_NF/Structures/Decoration/banner.rsi/nfsd-banner.png
+          stationSubtext: 'frontier-lobby-nfsd-subtext'
+          stationDescription: 'frontier-lobby-nfsd-description'
+          lobbySortOrder: 2
         - type: StationJobs
           availableJobs:
             Sheriff: [ 1, 1 ]
             Bailiff: [ 1, 1 ]
             SeniorOfficer: [ 1, 1 ]
             Brigmedic: [ 0, 0 ]
-            DetectiveNF: [ 0, 0 ]
+            NFDetective: [ 0, 0 ]
             Deputy: [ 3, 3 ]
             Cadet: [ 0, 0 ]
             # Others:
-            Lawyer: [ 0, 0 ]
+            PublicAffairsLiaison: [ 1, 1 ]
+        - type: StationDeadDropReporting
+          messageSet: Nfsd
+        - type: StationDeadDropHintExempt

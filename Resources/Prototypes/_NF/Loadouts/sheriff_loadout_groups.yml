@@ -7,13 +7,16 @@
   fallbacks:
   - SheriffClothingUniformJumpsuitSheriff
   - SheriffClothingUniformJumpskirtSheriff
-  
+
 - type: loadoutGroup
   id: SheriffOuterClothing
   name: loadout-group-contractor-outerclothing
   minLimit: 0
   loadouts:
+  - ContractorClothingOuterVestTank
   - SheriffOuterClothing
+  fallbacks:
+  - ContractorClothingOuterVestTank
 
 - type: loadoutGroup
   id: SheriffHead
@@ -46,3 +49,13 @@
   - SheriffClothingMaskSheriff
   fallbacks:
   - SheriffClothingMaskSheriff
+
+- type: loadoutGroup
+  id: SheriffEars
+  name: loadout-group-contractor-ears
+  loadouts:
+  - SheriffClothingHeadsetAltNfsdBrownCentcom
+  - SheriffClothingHeadsetAltNfsdCreamandBrownCentcom
+  - SheriffClothingHeadsetAltNfsdGreenCentcom
+  fallbacks:
+  - SheriffClothingHeadsetAltNfsdCreamandBrownCentcom

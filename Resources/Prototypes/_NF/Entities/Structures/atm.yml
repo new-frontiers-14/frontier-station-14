@@ -6,6 +6,13 @@
   - type: ActivatableUIRequiresPower
   - type: ActivatableUI
     singleUser: true
+  - type: Computer
+    board: Null
+  - type: ItemSlots # TODO: move ItemSlot to be nullable, withdraw shouldn't have one at all
+  - type: ContainerContainer
+    containers:
+      board: !type:Container
+      bank-ATM-cashSlot: !type:ContainerSlot
 
 - type: entity
   name: bank ATM
@@ -15,7 +22,7 @@
   abstract: true
   components:
   - type: BankATM
-    bank-ATM-cashSlot:
+    cashSlot:
       name: bank-ATM-cashSlot
       insertSound: /Audio/Machines/scanning.ogg
       ejectSound: /Audio/Machines/tray_eject.ogg
@@ -30,10 +37,6 @@
     interfaces:
       enum.BankATMMenuUiKey.ATM:
         type: BankATMMenuBoundUserInterface
-  - type: ItemSlots
-  - type: ContainerContainer
-    containers:
-      bank-ATM-cashSlot: !type:ContainerSlot {}
 
 - type: entity
   name: withdraw-only bank ATM
@@ -43,7 +46,7 @@
   abstract: true
   components:
   - type: BankATM
-    bank-ATM-cashSlot:
+    cashSlot:
       name: bank-ATM-cashSlot
       insertSound: /Audio/Machines/scanning.ogg
       ejectSound: /Audio/Machines/tray_eject.ogg
@@ -134,6 +137,9 @@
     interfaces:
       enum.BankATMMenuUiKey.BlackMarket:
         type: BankATMMenuBoundUserInterface
+  - type: BankATM
+    taxAccounts:
+      Frontier: 0.3 # The scandal!
 
 - type: entity
   suffix: Wallmount, BlackMarket
@@ -155,12 +161,16 @@
     interfaces:
       enum.BankATMMenuUiKey.BlackMarket:
         type: BankATMMenuBoundUserInterface
+  - type: BankATM
+    taxAccounts:
+      Frontier: 0.3 # The scandal!
 
 - type: entity
   name: station administration console
-  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseStructureAccessReaderImmuneToEmag, ComputerBankATMBase]
-  id: StationAdminBankATM
-  description: Used to pay out from the station's bank account
+  parent: [BaseStructureDisableScrewing, BaseStructureIndestructible, BaseStructureAccessReaderImmuneToEmag, ComputerBankATMBase]
+  id: BaseStationAdminBankATM
+  abstract: true
+  description: Used to transfer funds to and from the station's bank account.
   components:
   - type: Sprite
     netsync: false
@@ -175,7 +185,7 @@
     - map: ["computerLayerKeys"]
       state: id_key
   - type: StationBankATM
-    station-bank-ATM-cashSlot:
+    cashSlot:
       name: station-bank-ATM-cashSlot
       insertSound: /Audio/Machines/scanning.ogg
       ejectSound: /Audio/Machines/tray_eject.ogg
@@ -190,9 +200,28 @@
     interfaces:
       enum.BankATMMenuUiKey.ATM:
         type: StationBankATMMenuBoundUserInterface
+  - type: ActivatableUIRequiresAccess
+  - type: ActivatableUIRequiresPower
   - type: ItemSlots
   - type: ContainerContainer
     containers:
-      station-bank-ATM-cashSlot: !type:ContainerSlot {}
+      board: !type:Container
+      station-bank-ATM-cashSlot: !type:ContainerSlot
   - type: AccessReader
     access: [["HeadOfPersonnel"], ["HeadOfSecurity"]]
+
+- type: entity
+  parent: BaseStationAdminBankATM
+  id: StationAdminBankATMFrontier
+  description: Used to transfer funds to and from Frontier Outpost's bank account.
+  components:
+  - type: StationBankATM
+    account: Frontier
+
+- type: entity
+  parent: BaseStationAdminBankATM
+  id: StationAdminBankATMNfsd
+  description: Used to transfer funds to and from NFSD's bank account.
+  components:
+  - type: StationBankATM
+    account: Nfsd

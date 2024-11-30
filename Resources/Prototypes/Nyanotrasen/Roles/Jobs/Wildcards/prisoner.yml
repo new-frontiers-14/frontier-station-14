@@ -3,6 +3,12 @@
   name: job-name-prisoner
   description: job-description-prisoner
   playTimeTracker: JobPrisoner
+  requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 86400 # 24 hours
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 10800 # 3 hrs
   whitelisted: true
   startingGear: PrisonerGear
   alwaysUseSpawner: true

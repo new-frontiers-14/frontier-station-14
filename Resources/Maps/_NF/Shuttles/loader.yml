@@ -303,25 +303,25 @@ entities:
       rot: 3.141592653589793 rad
       pos: -1.5,-1.5
       parent: 1
-- proto: AtmosDeviceFanTiny
+- proto: AtmosDeviceFanDirectional
   entities:
+  - uid: 177
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -3.5,3.5
+      parent: 1
+  - uid: 221
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -3.5,2.5
+      parent: 1
   - uid: 239
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
+      rot: -1.5707963267948966 rad
       pos: -3.5,0.5
-      parent: 1
-  - uid: 240
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -3.5,2.5
-      parent: 1
-  - uid: 241
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -3.5,3.5
       parent: 1
 - proto: AtmosFixBlockerMarker
   entities:
@@ -403,9 +403,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -3.5,3.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 206
 - proto: BlockGameArcade
   entities:
   - uid: 114
@@ -722,32 +719,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 0.5,5.5
       parent: 1
-- proto: ClosetWall
-  entities:
-  - uid: 221
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -2.5,-4.5
-      parent: 1
-    - type: EntityStorage
-      air:
-        volume: 200
-        immutable: False
-        temperature: 293.14923
-        moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
 - proto: ClosetWallEmergencyFilledRandom
   entities:
   - uid: 106
@@ -769,6 +740,14 @@ entities:
     - type: Transform
       pos: 1.5,6.5
       parent: 1
+- proto: ComputerWallmountWithdrawBankATM
+  entities:
+  - uid: 255
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -3.5,-0.5
+      parent: 1
 - proto: ConveyorBelt
   entities:
   - uid: 78
@@ -777,27 +756,18 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -3.5,3.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 81
   - uid: 79
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -2.5,3.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 81
   - uid: 80
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -1.5,3.5
       parent: 1
-    - type: DeviceLinkSink
-      links:
-      - 81
 - proto: DefibrillatorCabinetFilled
   entities:
   - uid: 109
@@ -1442,6 +1412,14 @@ entities:
     - type: Transform
       pos: -0.5,5.5
       parent: 1
+- proto: LockerWallMaterialsFuelPlasmaFilled
+  entities:
+  - uid: 240
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -2.5,-4.5
+      parent: 1
 - proto: NitrogenCanister
   entities:
   - uid: 222
@@ -1490,10 +1468,6 @@ entities:
     - type: Transform
       pos: -1.5,-2.5
       parent: 1
-    - type: FuelGenerator
-      on: False
-    - type: Physics
-      bodyType: Static
 - proto: Poweredlight
   entities:
   - uid: 126
@@ -1526,14 +1500,6 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -2.5,-2.5
-      parent: 1
-- proto: SheetPlasma
-  entities:
-  - uid: 177
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -1.4592319,-2.5398252
       parent: 1
 - proto: ShuttleWindow
   entities:
@@ -1731,6 +1697,13 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -3.5,-5.5
+      parent: 1
+- proto: ToolboxMechanicalFilled
+  entities:
+  - uid: 241
+    components:
+    - type: Transform
+      pos: -0.51249325,-4.1238565
       parent: 1
 - proto: TwoWayLever
   entities:
@@ -1944,7 +1917,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 2.5,7.5
       parent: 1
-- proto: WarpPointShip
+- proto: WarpPoint
   entities:
   - uid: 2
     components:

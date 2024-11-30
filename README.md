@@ -1,6 +1,6 @@
 <p align="center"> <img alt="Frontier Station 14" width="880" height="300" src="https://github.com/new-frontiers-14/frontier-station-14/blob/30cdc70d8fcbf52f949337150bf42338ececbd80/Resources/Textures/Logo/logo.png?raw=true" /></p>
 
-Frontier Station 14 is a fork of [Space Station 14](https://github.com/space-wizards/space-station-14) that runs on [Robust Toolbox](https://github.com/space-wizards/RobustToolbox), our homegrown engine written in C#.
+Frontier Station 14 is a fork of [Space Station 14](https://github.com/space-wizards/space-station-14) that runs on [Robust Toolbox](https://github.com/space-wizards/RobustToolbox) engine written in C#.
 
 This is the primary repo for Frontier Station 14.
 

@@ -1,0 +1,123 @@
+
+- type: entity
+  parent: BaseDeployFoldable
+  id: TableFolding
+  name: folding table
+  description: If you carry six of these you become the coolest kid at church.
+  components:
+  # Table bits
+  - type: SpriteFade
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Climbable
+  - type: GlassTable
+    climberDamage:
+      types:
+        Blunt: 15
+    tableDamage:
+      types:
+        Blunt: 25
+    tableMassLimit: 60
+  - type: PlaceableSurface
+  - type: Physics
+    bodyType: Dynamic
+    fixedRotation: true
+  - type: Pullable
+  - type: Fixtures
+    fixtures:
+      table: # For the unfolded table
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.4"
+        density: 55
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+        hard: true
+      item: # For the folded, carriable table
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.25,0.25,0.25"
+        density: 20
+        mask:
+        - ItemMask
+        restitution: 0.3
+        friction: 0.2
+        hard: false
+  - type: Bonkable
+    bonkDamage:
+      types:
+        Blunt: 4
+    bonkSound: !type:SoundCollectionSpecifier
+      collection: TrayHit
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepHull
+  # Item bits
+  - type: MovedByPressure
+  - type: Item
+    size: Huge
+  - type: Sprite
+    sprite: _NF/Structures/Furniture/folding_table.rsi
+    layers:
+    - state: folding
+      map: ["unfoldedLayer"]
+    - state: folding_folded
+      map: ["foldedLayer"]
+      visible: false
+    noRot: true
+  - type: Appearance
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 8
+    soundHit:
+      collection: MetalThud
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 15
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+        - !type:PlaySoundBehavior
+          sound:
+            collection: MetalBreak
+    - trigger:
+        !type:DamageTrigger
+        damage: 5
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetPlastic1:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: StaticPrice
+    price: 40
+  - type: Construction
+    graph: TableFoldingGraph
+    node: TableFolding
+  - type: DamageExaminable
+  - type: FoldableFixture
+    foldedFixtures:
+    - item
+    unfoldedFixtures:
+    - table
+
+- type: entity
+  parent: TableFolding
+  id: TableFoldingSpawnFolded
+  suffix: folded
+  components:
+  - type: Foldable
+    folded: true

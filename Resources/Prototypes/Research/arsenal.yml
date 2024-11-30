@@ -63,8 +63,8 @@
   cost: 5000
   recipeUnlocks:
   - MagazineShotgunBeanbag
-  - BoxShellTranquilizer 
-  - BoxBeanbag 
+  - BoxShellTranquilizer
+  - BoxBeanbag
   - WeaponDisabler
   - MagazineBoxLightRifleRubber # Frontier
   - MagazineBoxMagnumRubber # Frontier
@@ -124,6 +124,19 @@
   - FlashPayload
   - ExplosivePayload
   - ChemicalPayload
+  - NFBlueprintSignallerAdvanced # Frontier
+
+- type: technology
+  id: SpecialMeans
+  name: research-technology-special-means
+  icon:
+    sprite: Clothing/Back/Backpacks/electropack.rsi
+    state: icon
+  discipline: Arsenal
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - ClothingBackpackElectropack
 
 # Tier 2
 
@@ -187,6 +200,9 @@
   recipeUnlocks:
   - WeaponAdvancedLaser
   - PortableRecharger
+  - WeaponAntiqueLaserNF # Frontier
+  - NFBlueprintWeaponAntiqueLaser # Frontier
+  - NFBlueprintPortableRecharger # Frontier
 
 - type: technology
   id: ExperimentalBatteryAmmo
@@ -199,6 +215,7 @@
   cost: 15000
   recipeUnlocks:
   - WeaponLaserSvalinn
+  - NFBlueprintWeaponLaserSvalinn # Frontier
 
 - type: technology
   id: AdvancedShuttleWeapon

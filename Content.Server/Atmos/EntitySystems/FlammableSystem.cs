@@ -28,6 +28,7 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Random;
+using Content.Server._NF.Atmos.Components; // Frontier
 
 namespace Content.Server.Atmos.EntitySystems
 {
@@ -72,11 +73,14 @@ namespace Content.Server.Atmos.EntitySystems
             SubscribeLocalEvent<FlammableComponent, IsHotEvent>(OnIsHot);
             SubscribeLocalEvent<FlammableComponent, TileFireEvent>(OnTileFire);
             SubscribeLocalEvent<FlammableComponent, RejuvenateEvent>(OnRejuvenate);
+            SubscribeLocalEvent<FlammableComponent, ResistFireAlertEvent>(OnResistFireAlert);
 
             SubscribeLocalEvent<IgniteOnCollideComponent, StartCollideEvent>(IgniteOnCollide);
             SubscribeLocalEvent<IgniteOnCollideComponent, LandEvent>(OnIgniteLand);
 
             SubscribeLocalEvent<IgniteOnMeleeHitComponent, MeleeHitEvent>(OnMeleeHit);
+
+            SubscribeLocalEvent<IgniteOnProjectileHitComponent, ProjectileHitEvent>(OnProjectileHit); // Frontier
 
             SubscribeLocalEvent<ExtinguishOnInteractComponent, ActivateInWorldEvent>(OnExtinguishActivateInWorld);
 
@@ -95,6 +99,18 @@ namespace Content.Server.Atmos.EntitySystems
                     Ignite(entity, args.Weapon, flammable, args.User);
             }
         }
+
+        // Frontier: ignition on projectile hit event
+        private void OnProjectileHit(EntityUid uid, IgniteOnProjectileHitComponent component, ProjectileHitEvent args)
+        {
+            if (!TryComp<FlammableComponent>(args.Target, out var flammable))
+                return;
+
+            AdjustFireStacks(args.Target, component.FireStacks, flammable);
+            if (component.FireStacks >= 0)
+                Ignite(args.Target, uid, flammable, args.Shooter);
+        }
+        // End Frontier
 
         private void OnIgniteLand(EntityUid uid, IgniteOnCollideComponent component, ref LandEvent args)
         {
@@ -250,6 +266,15 @@ namespace Content.Server.Atmos.EntitySystems
             Extinguish(uid, component);
         }
 
+        private void OnResistFireAlert(Entity<FlammableComponent> ent, ref ResistFireAlertEvent args)
+        {
+            if (args.Handled)
+                return;
+
+            Resist(ent, ent);
+            args.Handled = true;
+        }
+
         public void UpdateAppearance(EntityUid uid, FlammableComponent? flammable = null, AppearanceComponent? appearance = null)
         {
             if (!Resolve(uid, ref flammable, ref appearance))
@@ -286,7 +311,7 @@ namespace Content.Server.Atmos.EntitySystems
             }
             else
             {
-                flammable.OnFire = ignite;
+                flammable.OnFire |= ignite;
                 UpdateAppearance(uid, flammable);
             }
         }

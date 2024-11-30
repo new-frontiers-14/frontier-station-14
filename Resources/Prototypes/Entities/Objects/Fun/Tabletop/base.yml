@@ -1,5 +1,5 @@
 - type: entity
-  parent: BaseItem
+  parent: [BaseItem, RecyclableItemCardboard] # Frontier: added RecyclableItemCardboard
   id: BaseBoardEntity # Board item
   name: board
   abstract: true
@@ -16,7 +16,7 @@
 
 - type: entity
   id: BaseTabletopPiece # Board piece
-  parent: BaseItem
+  parent: [BaseItem, RecyclableItemPlasticTiny] # Frontier: added RecyclableItemPlasticTiny
   abstract: true
   components:
   - type: TabletopDraggable
@@ -31,7 +31,7 @@
   id: BaseBoardTabletop
   name: baseboard
   abstract: true
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Tag
     tags:
@@ -39,3 +39,6 @@
   - type: Sprite
     noRot: false
     drawdepth: FloorTiles
+  - type: PhysicalComposition # Frontier
+    materialComposition: # Frontier
+      Cardboard: 100 # Frontier

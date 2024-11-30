@@ -137,6 +137,7 @@
   id: GeneratorRTGDamagedFlatpack
   name: RTG generator flatpack
   description: A flatpack used for constructing a Radioisotope Thermoelectric Generator. The packaging seems to be somewhat damaged.
+  suffix: Damaged
   components:
   - type: Flatpack
     entity: GeneratorRTGDamaged
@@ -294,6 +295,15 @@
   - type: Flatpack
     entity: MachineAnomalyGenerator
 
+- type: entity
+  parent: ExosuitFabricatorFlatpack
+  id: BlueprintLithographFlatpack
+  name: blueprint lithograph flatpack
+  description: A flatpack used for constructing a blueprint lithograph.
+  components:
+  - type: Flatpack
+    entity: BlueprintLithograph
+
 # Service
 - type: entity
   parent: BaseNFFlatpack
@@ -341,12 +351,12 @@
 
 - type: entity
   parent: UniformPrinterFlatpack
-  id: TilePrinterNFFlatpack
-  name: tile-meister 5000 flatpack
+  id: CutterMachineFlatpack
+  name: cutter machine flatpack
   description: A flatpack used for constructing a tile-meister 5000.
   components:
   - type: Flatpack
-    entity: TilePrinterNF
+    entity: CutterMachine
 
 - type: entity
   parent: UniformPrinterFlatpack
@@ -365,6 +375,30 @@
   components:
   - type: Flatpack
     entity: KitchenMicrowave
+
+- type: entity
+  parent: UniformPrinterFlatpack
+  id: HydroponicsSoilNutritionFlatpack
+  name: crate with fertile soil
+  description: A crate with fertile soil used for constructing a soil bed for growing.
+  components:
+  - type: Flatpack
+    entity: HydroponicsSoilNutrition
+  - type: Sprite
+    layers:
+    - state: soil
+
+- type: entity
+  parent: UniformPrinterFlatpack
+  id: HydroponicsSoilEmptyFlatpack
+  name: crate with soil
+  description: A crate with soil used for constructing a soil bed for growing.
+  components:
+  - type: Flatpack
+    entity: HydroponicsSoilEmpty
+  - type: Sprite
+    layers:
+    - state: soil
 
 # Medical
 - type: entity
@@ -500,12 +534,36 @@
 
 - type: entity
   parent: OreProcessorFlatpack
+  id: ScrapProcessorFlatpack
+  name: scrap processor flatpack
+  description: A flatpack used for constructing a scrap processor.
+  components:
+  - type: Flatpack
+    entity: ScrapProcessor
+
+# Mercenary
+- type: entity
+  parent: BaseNFFlatpack
   id: AmmoTechFabFlatpack
   name: ammo techfab flatpack
   description: A flatpack used for constructing an ammo techfab.
   components:
   - type: Flatpack
     entity: AmmoTechFab
+  - type: Sprite
+    layers:
+    - state: mercenary
+
+- type: entity
+  parent: AmmoTechFabFlatpack
+  id: MercenaryTechFabFlatpack
+  name: mercenary techfab flatpack
+  description: A flatpack used for constructing a mercenary techfab.
+  components:
+  - type: Flatpack
+    entity: MercenaryTechFab
+  - type: StaticPrice
+    price: 600
 
 # Consoles
 - type: entity

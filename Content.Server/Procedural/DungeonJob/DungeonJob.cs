@@ -4,6 +4,7 @@ using Content.Server.Decals;
 using Content.Server.NPC.Components;
 using Content.Server.NPC.HTN;
 using Content.Server.NPC.Systems;
+using Content.Server.Shuttles.Systems;
 using Content.Shared.Construction.EntitySystems;
 using Content.Shared.Maps;
 using Content.Shared.Procedural;
@@ -44,14 +45,17 @@ public sealed partial class DungeonJob : Job<List<Dungeon>>
     private EntityQuery<PhysicsComponent> _physicsQuery;
     private EntityQuery<TransformComponent> _xformQuery;
 
-    private readonly DungeonConfigPrototype _gen;
+    private readonly DungeonConfig _gen;
     private readonly int _seed;
     private readonly Vector2i _position;
 
     private readonly EntityUid _gridUid;
     private readonly MapGridComponent _grid;
 
+    private readonly EntityCoordinates? _targetCoordinates;
+
     private readonly ISawmill _sawmill;
+    private readonly string _genId; // Frontier: add ID
 
     public DungeonJob(
         ISawmill sawmill,
@@ -65,11 +69,13 @@ public sealed partial class DungeonJob : Job<List<Dungeon>>
         EntityLookupSystem lookup,
         TileSystem tile,
         SharedTransformSystem transform,
-        DungeonConfigPrototype gen,
+        DungeonConfig gen,
         MapGridComponent grid,
         EntityUid gridUid,
         int seed,
         Vector2i position,
+        string genID, // Frontier
+        EntityCoordinates? targetCoordinates = null,
         CancellationToken cancellation = default) : base(maxTime, cancellation)
     {
         _sawmill = sawmill;
@@ -94,6 +100,8 @@ public sealed partial class DungeonJob : Job<List<Dungeon>>
         _gridUid = gridUid;
         _seed = seed;
         _position = position;
+        _targetCoordinates = targetCoordinates;
+        _genId = genID; // Frontier
     }
 
     /// <summary>
@@ -102,7 +110,7 @@ public sealed partial class DungeonJob : Job<List<Dungeon>>
     /// <param name="reserve">Should we reserve tiles even if the config doesn't specify.</param>
     private async Task<List<Dungeon>> GetDungeons(
         Vector2i position,
-        DungeonConfigPrototype config,
+        DungeonConfig config,
         DungeonData data,
         List<IDunGenLayer> layers,
         HashSet<Vector2i> reservedTiles,
@@ -139,7 +147,7 @@ public sealed partial class DungeonJob : Job<List<Dungeon>>
 
     protected override async Task<List<Dungeon>?> Process()
     {
-        _sawmill.Info($"Generating dungeon {_gen.ID} with seed {_seed} on {_entManager.ToPrettyString(_gridUid)}");
+        _sawmill.Info($"Generating dungeon {_genId} with seed {_seed} on {_entManager.ToPrettyString(_gridUid)}"); // Frontier: _gen<_genId
         _grid.CanSplit = false;
         var random = new Random(_seed);
         var position = (_position + random.NextPolarVector2(_gen.MinOffset, _gen.MaxOffset)).Floored();
@@ -151,6 +159,12 @@ public sealed partial class DungeonJob : Job<List<Dungeon>>
         // To make it slightly more deterministic treat this RNG as separate ig.
 
         // Post-processing after finishing loading.
+        if (_targetCoordinates != null)
+        {
+            var oldMap = _xformQuery.Comp(_gridUid).MapUid;
+            _entManager.System<ShuttleSystem>().TryFTLProximity(_gridUid, _targetCoordinates.Value);
+            _entManager.DeleteEntity(oldMap);
+        }
 
         // Defer splitting so they don't get spammed and so we don't have to worry about tracking the grid along the way.
         _grid.CanSplit = true;
@@ -177,7 +191,7 @@ public sealed partial class DungeonJob : Job<List<Dungeon>>
         int seed,
         Random random)
     {
-        _sawmill.Debug($"Doing postgen {layer.GetType()} for {_gen.ID} with seed {_seed}");
+        _sawmill.Debug($"Doing postgen {layer.GetType()} for {_gen} with seed {_seed}");
 
         // If there's a way to just call the methods directly for the love of god tell me.
         // Some of these don't care about reservedtiles because they only operate on dungeon tiles (which should
@@ -219,7 +233,7 @@ public sealed partial class DungeonJob : Job<List<Dungeon>>
                 dungeons.AddRange(await GenerateExteriorDungen(position, exterior, reservedTiles, random));
                 break;
             case FillGridDunGen fill:
-                dungeons.Add(await GenerateFillDunGen(data, reservedTiles));
+                dungeons.Add(await GenerateFillDunGen(fill, data, reservedTiles));
                 break;
             case JunctionDunGen junc:
                 await PostGen(junc, data, dungeons[^1], reservedTiles, random);
@@ -238,6 +252,9 @@ public sealed partial class DungeonJob : Job<List<Dungeon>>
                 break;
             case MobsDunGen mob:
                 await PostGen(mob, dungeons[^1], random);
+                break;
+            case EntityTableDunGen entityTable:
+                await PostGen(entityTable, dungeons[^1], random);
                 break;
             case NoiseDistanceDunGen distance:
                 dungeons.Add(await GenerateNoiseDistanceDunGen(position, distance, reservedTiles, seed, random));

@@ -9,11 +9,11 @@ using Content.Shared.Database;
 using Content.Shared.Decals;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
+using Content.Shared.Paper; // Frontier
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.GameStates;
-using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Crayon;
@@ -73,9 +73,14 @@ public sealed class CrayonSystem : SharedCrayonSystem
         if (component.UseSound != null)
             _audio.PlayPvs(component.UseSound, uid, AudioParams.Default.WithVariation(0.125f));
 
-        // Decrease "Ammo"
-        component.Charges--;
-        Dirty(uid, component);
+        // Frontier: check if crayon is infinite
+        if (component.Charges != int.MaxValue)
+        {
+            // Decrease "Ammo"
+            component.Charges--;
+            Dirty(uid, component);
+        }
+        // End Frontier
 
         _adminLogger.Add(LogType.CrayonDraw, LogImpact.Low, $"{EntityManager.ToPrettyString(args.User):user} drew a {component.Color:color} {component.SelectedState}");
         args.Handled = true;
@@ -121,6 +126,12 @@ public sealed class CrayonSystem : SharedCrayonSystem
         component.Color = args.Color;
         Dirty(uid, component);
 
+        // Frontier: ensure signature colour is consistent
+        if (TryComp<StampComponent>(uid, out var stamp))
+        {
+            stamp.StampedColor = args.Color;
+        }
+        // End Frontier
     }
 
     private void OnCrayonInit(EntityUid uid, CrayonComponent component, ComponentInit args)

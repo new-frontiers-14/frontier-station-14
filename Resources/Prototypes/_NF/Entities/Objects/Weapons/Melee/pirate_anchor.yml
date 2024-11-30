@@ -1,0 +1,38 @@
+- type: entity
+  name: pirate anchor
+  parent: [BaseC3PirateContraband, SecBreachingHammer]
+  id: PirateBreachingAnchor
+  description: A large, heavy anchor to beat down anyone and anything standing between you and your plunder.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Melee/pirate_anchor.rsi
+    state: icon
+    scale: 1.25, 1.25
+  - type: Item
+    size: Huge
+  - type: MeleeWeapon
+    attackRate: 0.75
+    range: 1.70
+    damage:
+      types:
+        Blunt: 10
+        Piercing: 3
+        Structural: 10
+    bluntStaminaDamageFactor: 1.50 # 15 stamina damage
+  - type: Wieldable
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Blunt: 5
+        Piercing: 2
+        Structural: 25
+  - type: Tool
+    qualities:
+      - Prying
+  - type: ToolTileCompatible
+  - type: Clothing
+    sprite: Nyanotrasen/Objects/Weapons/Melee/breaching_hammer.rsi
+    quickEquip: false
+    slots:
+    - back
+    - suitStorage # Frontier - Same as axe

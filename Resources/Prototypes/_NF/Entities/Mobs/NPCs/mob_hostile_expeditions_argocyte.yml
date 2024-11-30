@@ -1,6 +1,6 @@
 # BASE
 - type: entity
-  parent: MobNonHumanHostileBase
+  parent: [ MobNonHumanHostileBase, NFMobRestrictions ]
   id: BaseMobArgocyteExpeditions
   name: argocyte
   description: |-
@@ -499,7 +499,7 @@
       amount: 7
 
 - type: entity
-  parent: BaseMobArgocyteExpeditions
+  parent: [ BaseMobArgocyteExpeditions, NFMobBossRestrictions ]
   id: MobArgocyteLeviathingExpeditions
   name: leviathing
   description: The final known lifecycle stage of the Guardian morphotype. These hulking beasts lead attacks on the hive's enemies.

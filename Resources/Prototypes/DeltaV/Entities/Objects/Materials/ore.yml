@@ -1,0 +1,25 @@
+- type: entity
+  parent: OreBase
+  id: BluespaceOre
+  name: bluespace ore
+  suffix: Full
+  components:
+  - type: Stack
+    stackType: BluespaceOre
+  - type: Sprite
+    sprite: _NF/Objects/Materials/ore.rsi
+    state: bluespace
+  - type: Item
+    sprite: _NF/Objects/Materials/ore.rsi
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      RawBluespace: 100
+
+- type: entity
+  parent: BluespaceOre
+  id: BluespaceOre1
+  suffix: Single
+  components:
+  - type: Stack
+    count: 1

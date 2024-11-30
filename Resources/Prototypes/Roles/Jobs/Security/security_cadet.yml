@@ -14,22 +14,26 @@
   icon: "JobIconSecurityCadet"
   supervisors: job-supervisors-security
   canBeAntag: false
-  access:
-  - Security
-  - Brig
-  - Maintenance
-  - Service
-  - External
-  - Cryogenics
-  special:
-  - !type:AddImplantSpecial
-    implants: [ MindShieldImplant ]
+  ## Frontier: commented out stuff below
+  # access:
+  # - Security
+  # - Brig
+  # - Maintenance
+  # - Service
+  # - External
+  # - Cryogenics
+  # special:
+  # - !type:AddImplantSpecial
+  #   implants: [ MindShieldImplant ]
+  ## End Frontier: commented out stuff above
   setPreference: false # Frontier
+  accessGroups: # Frontier
+  - GeneralAccess # Frontier
 
 - type: startingGear
   id: SecurityCadetGear
   equipment:
-    shoes: ClothingShoesBootsCombatFilled
+    shoes: ClothingShoesBootsJackFilled
     outerClothing: ClothingOuterArmorBasic
     id: SecurityCadetPDA
     ears: ClothingHeadsetSecurity

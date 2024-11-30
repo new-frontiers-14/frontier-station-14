@@ -5,13 +5,16 @@
   playTimeTracker: JobHeadOfPersonnel
   requirements:
     - !type:OverallPlaytimeRequirement
-      time: 36000
+      time: 72000 # 20 hrs
+    - !type:RoleTimeRequirement
+      role: JobSecurityGuard
+      time: 10800 # 3 hrs as security guard
   whitelisted: true
   startingGear: SrGear
   alwaysUseSpawner: true
   icon: "JobIconHeadOfPersonnel"
   requireAdminNotify: true
-  supervisors: job-supervisors-centcom 
+  supervisors: job-supervisors-centcom
   weight: 170
   displayWeight: 60 # Top
   canBeAntag: false
@@ -30,8 +33,6 @@
 - type: startingGear
   id: SrGear
   equipment:
-    id: SrPDA
-    ears: ClothingHeadsetAltCentCom
     pocket1: WeaponDisabler
   storage:
     back:
@@ -39,4 +40,5 @@
     - RubberStampSr
     - DoorRemoteCommand
     - AccessConfigurator
-    - PhoneInstrument
+    - EncryptionKeyStationMaster
+    - EncryptionKeyCentCom

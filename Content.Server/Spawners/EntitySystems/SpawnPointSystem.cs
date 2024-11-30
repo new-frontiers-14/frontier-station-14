@@ -36,7 +36,7 @@ public sealed class SpawnPointSystem : EntitySystem
             if (args.DesiredSpawnPointType != SpawnPointType.Unset)
             {
                 var isMatchingJob = spawnPoint.SpawnType == SpawnPointType.Job &&
-                    (args.Job == null || spawnPoint.Job == args.Job.Prototype);
+                    (args.Job == null || spawnPoint.Job == args.Job);
 
                 switch (args.DesiredSpawnPointType)
                 {
@@ -57,7 +57,7 @@ public sealed class SpawnPointSystem : EntitySystem
 
             if (_gameTicker.RunLevel != GameRunLevel.InRound &&
                 spawnPoint.SpawnType == SpawnPointType.Job &&
-                (args.Job == null || spawnPoint.Job == args.Job.Prototype))
+                (args.Job == null || spawnPoint.Job == args.Job))
             {
                 possiblePositions.Add(xform.Coordinates);
             }
@@ -86,6 +86,7 @@ public sealed class SpawnPointSystem : EntitySystem
             spawnLoc,
             args.Job,
             args.HumanoidCharacterProfile,
-            args.Station);
+            args.Station,
+            session: args.Session); // Frontier
     }
 }

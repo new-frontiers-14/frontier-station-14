@@ -1,0 +1,46 @@
+- type: entity
+  name: handicomms
+  description: A handy handheld radio with adjustible frequency.
+  parent: RadioHandheld
+  id: RadioHandheldNF
+  components:
+  - type: RadioMicrophone
+    broadcastChannel: Handheld
+    toggleOnInteract: false # Nuclear-14
+    frequency: 1330 # Nuclear-14
+  - type: RadioSpeaker
+    toggleOnInteract: false # Nuclear-14
+  - type: Sprite
+    sprite: _NF/Objects/Devices/communication.rsi
+    layers:
+    - state: base
+    - state: broadcasting
+      map: ["enum.RadioDeviceVisualLayers.Broadcasting"]
+      shader: unshaded
+      visible: false
+    - state: speaker
+      map: ["enum.RadioDeviceVisualLayers.Speaker"]
+      shader: unshaded
+      visible: false
+  - type: Item
+    sprite: _NF/Objects/Devices/communication.rsi
+    heldPrefix: walkietalkie
+  # Nuclear-14-Start
+  - type: ActivatableUI
+    key: enum.HandheldRadioUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.HandheldRadioUiKey.Key:
+        type: HandheldRadioBoundUserInterface
+  # Nuclear-14-End
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.RadioDeviceVisuals.Broadcasting:
+        enum.RadioDeviceVisualLayers.Broadcasting:
+          True: { visible: true }
+          False: { visible: false }
+      enum.RadioDeviceVisuals.Speaker:
+        enum.RadioDeviceVisualLayers.Speaker:
+          True: { visible: true }
+          False: { visible: false }

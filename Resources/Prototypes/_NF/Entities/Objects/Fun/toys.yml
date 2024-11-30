@@ -24,6 +24,65 @@
   - type: StinkyTrait
 
 - type: entity
+  parent: PlushieLizard
+  id: NFPlushieBotanist #Weh!
+  name: botanist plushie
+  description: You need food and it just wont stop making rainbow weed.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/toys.rsi
+    state: plushie_botanist
+
+- type: entity
+  parent: PlushieLizard
+  id: NFPlushieEngineer #Weh!
+  name: engineer plushie
+  description: The poor thing is just sitting there with nothing to do! Give it a hug!
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/toys.rsi
+    state: plushie_engineer
+
+- type: entity
+  parent: PlushieLizard
+  id: NFPlushieConstruction #Weh!
+  name: construction plushie
+  description: A work in progress. A shame it had to end this way.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/toys.rsi
+    state: plushie_construction
+
+- type: entity
+  parent: PlushieLizard
+  id: NFPlushieCmo #Weh!
+  name: chief medical officer plushie
+  description: Just a weh away.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/toys.rsi
+    state: plushie_cmo
+        
+- type: entity
+  parent: PlushieCarp
+  id: NFPlushieSharkMinnow
+  name: sharkminnow plushie
+  description: It's killed you! It's killed your friends! Now this source of PTSD is a Pretty Terrific Stuffed Doodad!
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/sharkminnow.rsi
+    state: sharkminnowplush
+  - type: Item
+    heldPrefix: sharkminnowplush
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        shader: unshaded
+      right:
+      - state: inhand-right
+        shader: unshaded
+
+- type: entity
   parent: BasePlushie
   id: PlushieJanitor
   name: janitor plushie
@@ -473,36 +532,6 @@
     sprite: _NF/Objects/Fun/catplushie.rsi
     state: white
 
-# Rubber Throngler.
-# Essentially a rubber hammer but with explosion noises and RSI
-- type: entity
-  name: The Throngler
-  parent: ToyHammer
-  id: ThronglerToy
-  suffix: Toy
-  description: Why would you make this?
-  components:
-    - type: Sprite
-      sprite: Objects/Weapons/Melee/Throngler2.rsi
-      state: icon
-    - type: StaminaDamageOnHit
-      damage: 0.8
-    - type: MeleeWeapon
-      wideAnimationRotation: -135
-      attackRate: 10
-      damage:
-        types:
-          Blunt: 0
-      soundHit:
-        path: /Audio/Effects/explosion_small1.ogg
-      soundNoDamage:
-        path: /Audio/Effects/explosion_small1.ogg
-    - type: Item
-      size: Ginormous
-      sprite: Objects/Weapons/Melee/Throngler-in-hand.rsi
-    - type: DisarmMalus
-      malus: 0
-
 - type: entity
   name: Emotional support RPG
   parent: WeaponLauncherRocket
@@ -539,3 +568,13 @@
     steps: 2
     zeroVisible: false
   - type: Appearance
+
+# Grown cap gun, in toys.yml for consistency with fake parent
+- type: entity
+  parent: [BaseC3SyndicateContrabandNoValue, RevolverCapGunFake] # Frontier: added BaseC3SyndicateContraband
+  id: RevolverCapGunFakeGrown
+  categories: [ HideSpawnMenu ]
+  suffix: Fake, Grown
+  components:
+  - type: RevolverAmmoProvider
+    proto: CartridgeMagnum # Base has AP rounds

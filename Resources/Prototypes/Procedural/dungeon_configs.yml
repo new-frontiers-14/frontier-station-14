@@ -125,27 +125,31 @@
       Entrance: LavaBrigEntrance
       EntranceFlank: BaseWindow
       Junction: BaseAirlock
-      WallMounts: ScienceLabsWalls
+      WallMounts: NanoTrasenFacilityWallmounts # Frontier: ScienceLabsWalls<NanoTrasenFacilityWallmounts
       Window: BaseWindow
+    tiles:
+      FallbackTile: FloorDark
     whitelists:
       Rooms:
         tags:
         - LavaBrig
   layers:
   - !type:PrototypeDunGen
-    proto: PlanetBase
+    proto: Everything # Frontier: PlanetBase<Everything
 
 - type: dungeonConfig
   id: Mineshaft
   data:
     entities:
       Walls: WallRock # Frontier: enclose the mineshaft in rock
+      CornerWalls: WallRock # Frontier: CornerWalls: WallRock
       Cabling: Catwalk
     spawnGroups:
       CornerClutter: MineshaftClutter
       Entrance: BaseWoodWall
       EntranceFlank: BaseWoodWall
       Junction: BaseWoodSupport
+      WallMounts: NanoTrasenFacilityWallmounts # Frontier:added WallMounts: NanoTrasenFacilityWallmounts
       Window: BaseWoodWall
     tiles:
       FallbackTile: FloorCaveDrought
@@ -155,7 +159,7 @@
         - Mineshaft
   layers:
   - !type:PrototypeDunGen
-    proto: PlanetBase
+    proto: Everything # Frontier: PlanetBase<Everything
 
 - type: dungeonConfig
   id: SnowyLabs
@@ -200,7 +204,7 @@
 - type: entitySpawnEntry
   id: BaseWindow
   entries:
-  - id: GrilleDungeon # Frontier: Grille<GrilleDungeon
+  - id: GrilleDungeon # Frontier: GrilleDungeon<GrilleDungeon
   - id: WindowDungeon # Frontier: Window<WindowDungeon
 
 # Lava brig

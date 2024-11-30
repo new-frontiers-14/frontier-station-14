@@ -169,6 +169,11 @@
   - type: ExplosionResistance
     damageCoefficient: 0.50
   - type: AntiRottingContainer
+  - type: Construction
+    graph: ClosetFreezer
+    node: done
+    containers:
+    - entity_storage
 
 - type: entity
   id: LockerFreezer
@@ -295,7 +300,7 @@
 # HoS
 - type: entity
   id: LockerHeadOfSecurity
-  parent: [BaseStructureIndestructible, BaseStructureLockImmuneToEmag, BaseStructureAccessReaderImmuneToEmag, BaseStructureDisableToolUse, BaseStructureUnanchorable, LockerBaseSecure] # Frontier
+  parent: [BaseStructureIndestructible, BaseStructureLockImmuneToEmag, BaseStructureAccessReaderImmuneToEmag, BaseStructureDisableToolUse, LockerBaseSecure] # Frontier: add BaseStructureIndestructible, BaseStructureLockImmuneToEmag, BaseStructureAccessReaderImmuneToEmag, BaseStructureDisableToolUse
   name: head of security's locker
   components:
   - type: Appearance
@@ -309,7 +314,7 @@
 # Warden
 - type: entity
   id: LockerWarden
-  parent: [BaseStructureIndestructible, BaseStructureLockImmuneToEmag, BaseStructureAccessReaderImmuneToEmag, BaseStructureDisableToolUse, BaseStructureUnanchorable, LockerBaseSecure] # Frontier
+  parent: [BaseStructureIndestructible, BaseStructureLockImmuneToEmag, BaseStructureAccessReaderImmuneToEmag, BaseStructureDisableToolUse, LockerBaseSecure] # Frontier: add BaseStructureIndestructible, BaseStructureLockImmuneToEmag, BaseStructureAccessReaderImmuneToEmag, BaseStructureDisableToolUse
   name: warden's locker
   components:
   - type: Appearance

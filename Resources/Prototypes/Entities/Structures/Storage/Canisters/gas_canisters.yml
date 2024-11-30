@@ -99,9 +99,9 @@
           components:
             - GasTank
     - type: StaticPrice
-      price: 100
+      price: 1000 # Frontier: 200<1000
     - type: AccessReader
-#      access: [["Atmospherics"], ["Engineering"], ["Research"], ["Captain"]]
+#      access: [["Atmospherics"], ["Engineering"], ["Research"], ["Captain"]] # Frontier
     - type: Lock
       locked: true
 
@@ -247,8 +247,8 @@
       moles:
         - 18710.71051 # oxygen
       temperature: 72
-#  - type: AccessReader
-#    access: [["Atmospherics"]]
+#  - type: AccessReader # Frontier
+#    access: [["Atmospherics"]] # Frontier
   - type: Destructible # Frontier
     thresholds:
     - trigger:
@@ -329,8 +329,8 @@
         - 0 # oxygen
         - 18710.71051 # nitrogen
       temperature: 72
-#  - type: AccessReader
-#    access: [["Atmospherics"]]
+#  - type: AccessReader # Frontier
+#    access: [["Atmospherics"]] # Frontier
   - type: Destructible
     thresholds:
     - trigger:
@@ -395,8 +395,8 @@
         - !type:DoActsBehavior
           acts: [ "Destruction" ]
         - !type:DumpCanisterBehavior
-#    - type: Lock
-#      locked: true
+#    - type: Lock # Frontier
+#      locked: true # Frontier
 
 - type: entity
   id: LiquidCarbonDioxideCanister
@@ -415,8 +415,8 @@
         - 0 # nitrogen
         - 18710.71051 # CO2
       temperature: 72
-#  - type: AccessReader
-#    access: [["Atmospherics"]]
+#  - type: AccessReader # Frontier
+#    access: [["Atmospherics"]] # Frontier
   - type: Destructible
     thresholds:
     - trigger:
@@ -482,8 +482,10 @@
         - !type:DoActsBehavior
           acts: [ "Destruction" ]
         - !type:DumpCanisterBehavior
-#    - type: Lock
-#      locked: true
+#    - type: Lock # Frontier
+#      locked: true # Frontier
+    - type: PirateBountyItem # Frontier
+      id: PlasmaCanister # Frontier
 
 - type: entity
   parent: GasCanister
@@ -770,12 +772,12 @@
       materialComposition:
         Steel: 500
     - type: StaticPrice
-      price: 60
+      price: 60 # Frontier: 125<60 - TODO: material value rework
 
 - type: entity
   parent: GasCanisterBrokenBase
   id: StorageCanisterBroken
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     state: storage-1 # Frontier
@@ -783,7 +785,7 @@
 - type: entity
   parent: GasCanisterBrokenBase
   id: AirCanisterBroken
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     state: air-1 # Frontier
@@ -791,7 +793,7 @@
 - type: entity
   parent: GasCanisterBrokenBase
   id: OxygenCanisterBroken
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     state: oxygen-1 # Frontier
@@ -799,7 +801,7 @@
 - type: entity
   parent: GasCanisterBrokenBase
   id: NitrogenCanisterBroken
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     state: nitrogen-1 # Frontier
@@ -807,7 +809,7 @@
 - type: entity
   parent: GasCanisterBrokenBase
   id: CarbonDioxideCanisterBroken
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     state: carbon-1 # Frontier
@@ -815,7 +817,7 @@
 - type: entity
   parent: GasCanisterBrokenBase
   id: PlasmaCanisterBroken
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     state: plasma-1 # Frontier
@@ -823,7 +825,7 @@
 - type: entity
   parent: GasCanisterBrokenBase
   id: TritiumCanisterBroken
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     state: tritium-1 # Frontier
@@ -832,7 +834,7 @@
   parent: GasCanisterBrokenBase
   id: WaterVaporCanisterBroken
   name: broken water vapor canister
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     state: water_vapor-1
@@ -840,7 +842,7 @@
 - type: entity
   parent: GasCanisterBrokenBase
   id: AmmoniaCanisterBroken
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     state: ammonia-1
@@ -848,7 +850,7 @@
 - type: entity
   parent: GasCanisterBrokenBase
   id: NitrousOxideCanisterBroken
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     state: nitrous_oxide-1 # Frontier
@@ -856,7 +858,7 @@
 - type: entity
   parent: GasCanisterBrokenBase
   id: FrezonCanisterBroken
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     state: frezon-1

@@ -1,6 +1,6 @@
 - type: entity
   id: FtlVisualizerEntity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   description: Visualizer for shuttles arriving. You shouldn't see this!
   components:
   - type: FtlVisualizer
@@ -10,3 +10,5 @@
   - type: Tag
     tags:
     - HideContextMenu
+  - type: TimedDespawn # Frontier
+    lifetime: 5 # Frontier

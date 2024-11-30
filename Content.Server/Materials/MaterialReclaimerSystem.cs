@@ -1,40 +1,43 @@
-using Content.Server.Chemistry.Containers.EntitySystems;
-using Content.Server.Chemistry.EntitySystems;
 using Content.Server.Construction;
+using Content.Server.Administration.Logs;
 using Content.Server.Fluids.EntitySystems;
-using Content.Server.GameTicking;
+using Content.Server.Ghost;
 using Content.Server.Popups;
-using Content.Server.Power.Components;
+using Content.Server.Repairable;
 using Content.Server.Stack;
 using Content.Server.Wires;
 using Content.Shared.Body.Systems;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.EntitySystems;
+using Content.Shared.Database;
+using Content.Shared.Destructible;
+using Content.Shared.Emag.Components;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Materials;
 using Content.Shared.Mind;
 using Content.Shared.Nutrition.EntitySystems;
+using Content.Shared.Power;
 using Robust.Server.GameObjects;
 using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using System.Linq;
-using Content.Server.Administration.Logs;
-using Content.Shared.Database;
 
 namespace Content.Server.Materials;
 
 /// <inheritdoc/>
 public sealed class MaterialReclaimerSystem : SharedMaterialReclaimerSystem
 {
+    [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly AppearanceSystem _appearance = default!;
-    [Dependency] private readonly GameTicker _ticker = default!;
+    [Dependency] private readonly GhostSystem _ghostSystem = default!;
     [Dependency] private readonly MaterialStorageSystem _materialStorage = default!;
     [Dependency] private readonly OpenableSystem _openable = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly SolutionContainerSystem _solutionContainer = default!;
+    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
     [Dependency] private readonly SharedBodySystem _body = default!; //bobby
     [Dependency] private readonly PuddleSystem _puddle = default!;
     [Dependency] private readonly StackSystem _stack = default!;
@@ -46,18 +49,16 @@ public sealed class MaterialReclaimerSystem : SharedMaterialReclaimerSystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<MaterialReclaimerComponent, ComponentStartup>(OnStartup);
-        SubscribeLocalEvent<MaterialReclaimerComponent, RefreshPartsEvent>(OnRefreshParts);
-        SubscribeLocalEvent<MaterialReclaimerComponent, UpgradeExamineEvent>(OnUpgradeExamine);
+        SubscribeLocalEvent<MaterialReclaimerComponent, RefreshPartsEvent>(OnRefreshParts); // Frontier: machine components
+        SubscribeLocalEvent<MaterialReclaimerComponent, UpgradeExamineEvent>(OnUpgradeExamine); // Frontier: machine components
         SubscribeLocalEvent<MaterialReclaimerComponent, PowerChangedEvent>(OnPowerChanged);
         SubscribeLocalEvent<MaterialReclaimerComponent, InteractUsingEvent>(OnInteractUsing,
-            before: new []{typeof(WiresSystem), typeof(SolutionTransferSystem)});
-        SubscribeLocalEvent<MaterialReclaimerComponent, SuicideEvent>(OnSuicide);
+            before: [typeof(WiresSystem), typeof(SolutionTransferSystem)]);
+        SubscribeLocalEvent<MaterialReclaimerComponent, SuicideByEnvironmentEvent>(OnSuicideByEnvironment);
         SubscribeLocalEvent<ActiveMaterialReclaimerComponent, PowerChangedEvent>(OnActivePowerChanged);
-    }
-    private void OnStartup(Entity<MaterialReclaimerComponent> entity, ref ComponentStartup args)
-    {
-        _solutionContainer.EnsureSolution(entity.Owner, entity.Comp.SolutionContainerId);
+
+        SubscribeLocalEvent<MaterialReclaimerComponent, BreakageEventArgs>(OnBreakage);
+        SubscribeLocalEvent<MaterialReclaimerComponent, RepairedEvent>(OnRepaired);
     }
 
     private void OnUpgradeExamine(Entity<MaterialReclaimerComponent> entity, ref UpgradeExamineEvent args)
@@ -103,35 +104,61 @@ public sealed class MaterialReclaimerSystem : SharedMaterialReclaimerSystem
         args.Handled = TryStartProcessItem(entity.Owner, args.Used, entity.Comp, args.User);
     }
 
-    private void OnSuicide(Entity<MaterialReclaimerComponent> entity, ref SuicideEvent args)
+    private void OnSuicideByEnvironment(Entity<MaterialReclaimerComponent> entity, ref SuicideByEnvironmentEvent args)
     {
         if (args.Handled)
             return;
 
-        args.SetHandled(SuicideKind.Bloodloss);
         var victim = args.Victim;
         if (TryComp(victim, out ActorComponent? actor) &&
             _mind.TryGetMind(actor.PlayerSession, out var mindId, out var mind))
         {
-            _ticker.OnGhostAttempt(mindId, false, mind: mind);
+            _ghostSystem.OnGhostAttempt(mindId, false, mind: mind);
             if (mind.OwnedEntity is { Valid: true } suicider)
             {
                 _popup.PopupEntity(Loc.GetString("recycler-component-suicide-message"), suicider);
             }
         }
 
-        _popup.PopupEntity(Loc.GetString("recycler-component-suicide-message-others", ("victim", Identity.Entity(victim, EntityManager))),
+        _popup.PopupEntity(Loc.GetString("recycler-component-suicide-message-others",
+                ("victim", Identity.Entity(victim, EntityManager))),
             victim,
-            Filter.PvsExcept(victim, entityManager: EntityManager), true);
+            Filter.PvsExcept(victim, entityManager: EntityManager),
+            true);
 
         _body.GibBody(victim, true);
         _appearance.SetData(entity.Owner, RecyclerVisuals.Bloody, true);
+        args.Handled = true;
     }
 
     private void OnActivePowerChanged(Entity<ActiveMaterialReclaimerComponent> entity, ref PowerChangedEvent args)
     {
         if (!args.Powered)
             TryFinishProcessItem(entity, null, entity.Comp);
+    }
+
+    private void OnBreakage(Entity<MaterialReclaimerComponent> ent, ref BreakageEventArgs args)
+    {
+        //un-emags itself when it breaks
+        RemComp<EmaggedComponent>(ent);
+        SetBroken(ent, true);
+    }
+
+    private void OnRepaired(Entity<MaterialReclaimerComponent> ent, ref RepairedEvent args)
+    {
+        SetBroken(ent, false);
+    }
+
+    public void SetBroken(Entity<MaterialReclaimerComponent> ent, bool val)
+    {
+        if (ent.Comp.Broken == val)
+            return;
+
+        _appearance.SetData(ent, RecyclerVisuals.Broken, val);
+        SetReclaimerEnabled(ent, false);
+
+        ent.Comp.Broken = val;
+        Dirty(ent);
     }
 
     /// <inheritdoc/>
@@ -151,7 +178,8 @@ public sealed class MaterialReclaimerSystem : SharedMaterialReclaimerSystem
 
         // scales the output if the process was interrupted.
         var completion = 1f - Math.Clamp((float) Math.Round((active.EndTime - Timing.CurTime) / active.Duration),
-            0f, 1f);
+            0f,
+            1f);
         Reclaim(uid, item, completion, component);
 
         return true;
@@ -208,7 +236,8 @@ public sealed class MaterialReclaimerSystem : SharedMaterialReclaimerSystem
 
         foreach (var (storedMaterial, storedAmount) in storage.Storage)
         {
-            var stacks = _materialStorage.SpawnMultipleFromMaterial(storedAmount, storedMaterial,
+            var stacks = _materialStorage.SpawnMultipleFromMaterial(storedAmount,
+                storedMaterial,
                 xform.Coordinates,
                 out var materialOverflow);
             var amountConsumed = storedAmount - materialOverflow;
@@ -230,8 +259,6 @@ public sealed class MaterialReclaimerSystem : SharedMaterialReclaimerSystem
     {
         if (!Resolve(reclaimer, ref reclaimerComponent, ref xform))
             return;
-        if (!_solutionContainer.TryGetSolution(reclaimer, reclaimerComponent.SolutionContainerId, out var outputSolution))
-            return;
 
         efficiency *= reclaimerComponent.Efficiency;
 
@@ -247,7 +274,10 @@ public sealed class MaterialReclaimerSystem : SharedMaterialReclaimerSystem
         }
 
         // if the item we inserted has reagents, add it in.
-        if (TryComp<SolutionContainerManagerComponent>(item, out var solutionContainer))
+
+        // Frontier: use old material reclaimer code
+        if (reclaimerComponent.UseOldSolutionLogic &&
+            TryComp<SolutionContainerManagerComponent>(item, out var solutionContainer))
         {
             foreach (var (_, soln) in _solutionContainer.EnumerateSolutions((item, solutionContainer)))
             {
@@ -258,9 +288,27 @@ public sealed class MaterialReclaimerSystem : SharedMaterialReclaimerSystem
                 }
             }
         }
+        // End Frontier: use old material reclaimer code
+        else if (reclaimerComponent.OnlyReclaimDrainable) // Frontier: add else
+        {
+            // Are we a recycler? Only use drainable solution.
+            if (_solutionContainer.TryGetDrainableSolution(item, out _, out var drainableSolution))
+            {
+                totalChemicals.AddSolution(drainableSolution, _prototype);
+            }
+        }
+        else
+        {
+            // Are we an industrial reagent grinder? Use extractable solution.
+            if (_solutionContainer.TryGetExtractableSolution(item, out _, out var extractableSolution))
+            {
+                totalChemicals.AddSolution(extractableSolution, _prototype);
+            }
+        }
 
-        _solutionContainer.TryTransferSolution(outputSolution.Value, totalChemicals, totalChemicals.Volume);
-        if (totalChemicals.Volume > 0)
+        if (!_solutionContainer.TryGetSolution(reclaimer, reclaimerComponent.SolutionContainerId, out var outputSolution) ||
+            !_solutionContainer.TryTransferSolution(outputSolution.Value, totalChemicals, totalChemicals.Volume) ||
+            totalChemicals.Volume > 0)
         {
             _puddle.TrySpillAt(reclaimer, totalChemicals, out _, sound, transformComponent: xform);
         }

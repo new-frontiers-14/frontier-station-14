@@ -6,14 +6,29 @@
   setPreference: false # Frontier
   requirements:
     - !type:OverallPlaytimeRequirement
-      time: 10800
+      time: 144000 #40 hrs
   weight: 10
   startingGear: QuartermasterGear
   icon: "JobIconQuarterMaster"
-  supervisors: job-supervisors-hire # Frontier
-#  canBeAntag: false
+  supervisors: job-supervisors-captain
+  canBeAntag: false
+  # access: # Frontier
+  # - Cargo # Frontier
+  # - Salvage # Frontier
+  # - Quartermaster # Frontier
+  # - Maintenance # Frontier
+  # - External # Frontier
+  # - Command # Frontier
+  # - Brig # Frontier
+  # - Cryogenics # Frontier
   accessGroups: # Frontier
   - GeneralAccess # Frontier
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+  - !type:AddComponentSpecial
+    components:
+      - type: CommandStaff
 
 - type: startingGear
   id: QuartermasterGear

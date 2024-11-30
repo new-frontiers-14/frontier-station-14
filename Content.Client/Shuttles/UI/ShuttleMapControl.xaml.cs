@@ -25,6 +25,7 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IInputManager _inputs = default!;
     [Dependency] private readonly IMapManager _mapManager = default!;
+    [Dependency] private readonly IEntityManager _entManager = default!; // Frontier
     private readonly ShuttleSystem _shuttles;
     private readonly SharedTransformSystem _xformSystem;
 
@@ -212,7 +213,7 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
         foreach (var mapObj in mapObjects)
         {
             // If it's a grid-map skip it.
-            if (mapObj is GridMapObject gridObj && EntManager.HasComponent<MapComponent>(gridObj.Entity))
+            if (mapObj is GridMapObject gridObj && (EntManager.HasComponent<MapComponent>(gridObj.Entity) || !_entManager.EntityExists(gridObj.Entity))) // Frontier: add EntityExists
                 continue;
 
             var mapCoords = _shuttles.GetMapCoordinates(mapObj);
@@ -519,7 +520,7 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
             if (mapO is not ShuttleBeaconObject beacon)
                 continue;
 
-            var beaconCoords = EntManager.GetCoordinates(beacon.Coordinates).ToMap(EntManager, _xformSystem);
+            var beaconCoords = _xformSystem.ToMapCoordinates(EntManager.GetCoordinates(beacon.Coordinates));
             var position = Vector2.Transform(beaconCoords.Position, mapTransform);
             var localPos = ScalePosition(position with {Y = -position.Y});
 
