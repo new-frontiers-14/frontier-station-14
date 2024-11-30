@@ -188,7 +188,7 @@
     mod: 1
   - type: Computer
     board: Null
-    
+
 - type: entity
   name: cargo market computer
   parent: ComputerMarketConsoleNFBase
@@ -312,6 +312,33 @@
   components:
     - type: SalvageExpeditionConsole
       debug: true
+
+- type: entity
+  name: gas transfer console
+  parent: [BaseComputer]
+  id: ComputerGasTransfer
+  description: Used to remotely control gaslocks and pressure
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: GaslockConsole
+  - type: ActivatableUI
+    key: enum.GaslockConsoleUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.GaslockConsoleUiKey.Key:
+        type: GaslockConsoleBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+  - type: Computer
+    board: Null
+
+- type: entity
+  name: gas transfer console
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerGasTransfer]
+  id: ComputerGasTransferPOI
+  description: Used to remotely control gaslocks and pressure
+  suffix: POI
 
 # Station Traffic Controller consoles
 - type: entity
