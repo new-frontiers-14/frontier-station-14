@@ -436,6 +436,9 @@
     tags:
     - Ingredient
     - ClothMade
+    - MothFood # Frontier
+  - type: Food # Frontier
+    requiresSpecialDigestion: true # Frontier
   - type: SolutionContainerManager
     solutions:
       food:
@@ -503,6 +506,11 @@
   - type: Construction
     graph: CottonPizza
     node: flat
+  - type: Tag
+    tags: # Frontier
+    - MothFood # Frontier
+  - type: Food # Frontier
+    requiresSpecialDigestion: true
 
 - type: entity
   name: pizza bread

@@ -69,5 +69,11 @@ namespace Content.Server.Body.Components
 
             public void Increment(TimeSpan delta) => Lifetime += delta;
         }
+
+        /// <summary>
+        ///     Frontier: If false, food that is not special-digestible only is edible by this entity.
+        /// </summary>
+        [DataField]
+        public bool SpecialDigestibleOnly = false;
     }
 }
