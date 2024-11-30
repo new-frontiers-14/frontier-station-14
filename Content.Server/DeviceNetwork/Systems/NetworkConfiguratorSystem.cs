@@ -52,7 +52,10 @@ public sealed class NetworkConfiguratorSystem : SharedNetworkConfiguratorSystem
         //Verbs
         SubscribeLocalEvent<NetworkConfiguratorComponent, GetVerbsEvent<UtilityVerb>>(OnAddInteractVerb);
         SubscribeLocalEvent<DeviceNetworkComponent, GetVerbsEvent<AlternativeVerb>>(OnAddAlternativeSaveDeviceVerb);
+        SubscribeLocalEvent<DeviceLinkSinkComponent, GetVerbsEvent<AlternativeVerb>>(OnAddAlternativeSinkVerb);
+        SubscribeLocalEvent<DeviceLinkSourceComponent, GetVerbsEvent<AlternativeVerb>>(OnAddAlternativeSourceVerb);
         SubscribeLocalEvent<NetworkConfiguratorComponent, GetVerbsEvent<AlternativeVerb>>(OnAddSwitchModeVerb);
+
 
         //UI
         SubscribeLocalEvent<NetworkConfiguratorComponent, BoundUIClosedEvent>(OnUiClosed);
@@ -384,6 +387,13 @@ public sealed class NetworkConfiguratorSystem : SharedNetworkConfiguratorSystem
             args.Verbs.Add(verb);
             return;
         }
+    }
+
+    private void OnAddAlternativeSinkVerb(EntityUid uid, DeviceLinkSinkComponent component, GetVerbsEvent<AlternativeVerb> args)
+    {
+        if (!args.CanAccess || !args.CanInteract || !args.Using.HasValue
+            || !TryComp<NetworkConfiguratorComponent>(args.Using.Value, out var configurator))
+            return;
 
         if (configurator is { LinkModeActive: true, ActiveDeviceLink: { } }
         && (HasComp<DeviceLinkSinkComponent>(args.Target) || HasComp<DeviceLinkSourceComponent>(args.Target)))
@@ -398,6 +408,27 @@ public sealed class NetworkConfiguratorSystem : SharedNetworkConfiguratorSystem
             args.Verbs.Add(verb);
         }
     }
+
+    private void OnAddAlternativeSourceVerb(EntityUid uid, DeviceLinkSourceComponent component, GetVerbsEvent<AlternativeVerb> args)
+    {
+        if (!args.CanAccess || !args.CanInteract || !args.Using.HasValue
+            || !TryComp<NetworkConfiguratorComponent>(args.Using.Value, out var configurator))
+            return;
+
+        if (configurator is { LinkModeActive: true, ActiveDeviceLink: { } }
+        && (HasComp<DeviceLinkSinkComponent>(args.Target) || HasComp<DeviceLinkSourceComponent>(args.Target)))
+        {
+            AlternativeVerb verb = new()
+            {
+                Text = Loc.GetString("network-configurator-link-defaults"),
+                Icon = new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/VerbIcons/in.svg.192dpi.png")),
+                Act = () => TryLinkDefaults(args.Using.Value, configurator, args.Target, args.User),
+                Impact = LogImpact.Low
+            };
+            args.Verbs.Add(verb);
+        }
+    }
+
 
     private void OnAddSwitchModeVerb(EntityUid uid, NetworkConfiguratorComponent configurator, GetVerbsEvent<AlternativeVerb> args)
     {
