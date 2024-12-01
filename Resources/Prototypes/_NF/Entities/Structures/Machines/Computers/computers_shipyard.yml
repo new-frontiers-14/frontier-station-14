@@ -131,7 +131,9 @@
   - type: ShipyardConsole
     shipyardChannel: Syndicate
     secretShipyardChannel: Nfsd
-    salesTax: 0.3
+    taxAccounts:
+      Frontier: 0.3 # The scandal!
+    canTransferDeed: false
 
 - type: entity
   id: ComputerShipyardBlackMarket
@@ -159,7 +161,9 @@
   - type: ShipyardConsole
     shipyardChannel: Freelance
     secretShipyardChannel: Nfsd
-    salesTax: 0.3
+    taxAccounts:
+      Frontier: 0.3 # The scandal!
+    canTransferDeed: false
 
 - type: entity
   id: ComputerShipyardExpedition

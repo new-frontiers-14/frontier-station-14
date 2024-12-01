@@ -86,13 +86,17 @@ public sealed partial class DockingScreen : BoxContainer
         var buttonGroup = new ButtonGroup();
         var idx = 0;
         var selected = false;
+        DockingPortState? firstState = null; // Frontier
 
         // Build the dock buttons for our docks.
-        foreach (var dock in shuttleDocks)
+        foreach (var dock in shuttleDocks.OrderBy(x => x.LabelName ?? x.Name)) // Frontier: order by name
         {
+            if (idx == 0) // Frontier: get first element
+                firstState = dock; // Frontier: get first element
+
             idx++;
             dockText.Clear();
-            dockText.Append(dock.Name);
+            dockText.Append(dock.LabelName ?? dock.Name); // Frontier: prefer label name
 
             var button = new Button()
             {
@@ -132,8 +136,11 @@ public sealed partial class DockingScreen : BoxContainer
         // Button group needs one selected so just show the first one.
         if (!selected)
         {
-            var buttonOne = shuttleDocks[0];
-            OnDockPress(buttonOne);
+            // Frontier: press first button in alphabetical order
+            // var buttonOne = shuttleDocks[0];
+            // OnDockPress(buttonOne);
+            OnDockPress(firstState!);
+            // End Frontier
         }
 
         var shuttleContainers = new Dictionary<NetEntity, DockObject>();

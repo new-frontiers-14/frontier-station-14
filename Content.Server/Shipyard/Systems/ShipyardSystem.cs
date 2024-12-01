@@ -10,6 +10,7 @@ using Robust.Server.GameObjects;
 using Robust.Server.Maps;
 using Robust.Shared.Map;
 using Content.Shared.CCVar;
+using Content.Shared._NF.CCVar;
 using Robust.Shared.Configuration;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
@@ -62,8 +63,8 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     public override void Initialize()
     {
         base.Initialize();
-        _enabled = _configManager.GetCVar(CCVars.Shipyard);
-        _configManager.OnValueChanged(CCVars.Shipyard, SetShipyardEnabled, true);
+        _enabled = _configManager.GetCVar(NFCCVars.Shipyard);
+        _configManager.OnValueChanged(NFCCVars.Shipyard, SetShipyardEnabled, true);
         _sawmill = Logger.GetSawmill("shipyard");
 
         SubscribeLocalEvent<ShipyardConsoleComponent, ComponentStartup>(OnShipyardStartup);
@@ -77,7 +78,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     }
     public override void Shutdown()
     {
-        _configManager.UnsubValueChanged(CCVars.Shipyard, SetShipyardEnabled);
+        _configManager.UnsubValueChanged(NFCCVars.Shipyard, SetShipyardEnabled);
     }
     private void OnShipyardStartup(EntityUid uid, ShipyardConsoleComponent component, ComponentStartup args)
     {
@@ -262,6 +263,10 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         bill = (int) _pricing.AppraiseGrid(shuttleUid);
         _mapManager.DeleteGrid(shuttleUid);
         _sawmill.Info($"Sold shuttle {shuttleUid} for {bill}");
+
+        // Update all record UI (skip records, no new records)
+        _shuttleRecordsSystem.RefreshStateForAll(true);
+
         result.Error = ShipyardSaleError.Success;
         return result;
     }
@@ -315,6 +320,15 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         {
             _sawmill.Error($"Could not rename shuttle {ToPrettyString(shuttle):entity} to {newName}");
             return false;
+        }
+
+        //TODO: move this to an event that others hook into.
+        if (TryGetNetEntity(shuttleDeed.ShuttleUid, out var shuttleNetEntity) &&
+            _shuttleRecordsSystem.TryGetRecord(shuttleNetEntity.Value, out var record))
+        {
+            record.Name = newName ?? "";
+            record.Suffix = newSuffix ?? "";
+            _shuttleRecordsSystem.TryUpdateRecord(record);
         }
 
         return true;

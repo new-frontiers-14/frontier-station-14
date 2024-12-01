@@ -1,7 +1,7 @@
 #HUMANOID FIGURINES
 
 - type: entity
-  parent: BaseItem
+  parent: [BaseItem, RecyclableItemPlasticTiny] # Frontier: added RecyclableItemPlasticTiny
   id: BaseFigurine
   name: figurine
   description: A small miniature.
@@ -17,8 +17,6 @@
   - type: Tag
     tags:
     - Figurine
-  - type: StealTarget
-    stealGroup: Figurines
   - type: UseDelay
     delay: 10
   - type: Speech
