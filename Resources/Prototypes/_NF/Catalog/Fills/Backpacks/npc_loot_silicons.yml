@@ -27,7 +27,30 @@
     sound:
       path: /Audio/Machines/windoor_open.ogg
 
-# EXPLORER NPC LOOT
+# ROGUE SILICON NPC LOOT
+## TIER 0
+- type: entity
+  parent: RogueSiliconGiftBox
+  id: ClothingBackpackRogueSiliconT0
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    # Parts
+    - id: AdvancedCapacitorStockPart
+      prob: 0.3
+    - id: AdvancedMatterBinStockPart
+      prob: 0.3
+    - id: SpawnDungeonLootPowerCell
+      prob: 0.5
+    - id: SpawnDungeonLootPartsEngi
+      prob: 0.5
+    # Circuit boards
+    - id: SpawnDungeonLootCircuitBoardEngi
+      prob: 0.5
+    sound:
+      path: /Audio/Machines/windoor_open.ogg
+
 ## TIER 1
 - type: entity
   parent: RogueSiliconGiftBox
