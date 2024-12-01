@@ -112,7 +112,7 @@
       - OilGhee
       - OilOlive
       - OilVegetable # Frontier
-    #unsafeOilVolumeEffects: #Can't pass UninitializedSaveTest. Modifies itself on spawn. Very weird. 
+    #unsafeOilVolumeEffects: #Can't pass UninitializedSaveTest. Modifies itself on spawn. Very weird.
     #- !type:AreaReactionEffect
     #  duration: 10
     #  prototypeId: Smoke
@@ -120,7 +120,7 @@
     #    path: /Audio/Effects/smoke.ogg
     goodFlavorPriceBonus: 0.5
     solutionSplitMax: 20
-    
+
   - type: SolutionContainerManager
     solutions:
       vat_oil:
@@ -170,6 +170,8 @@
       machine_board: !type:Container
       machine_parts: !type:Container
   - type: PowerSwitch
+  - type: PirateBountyItem # Frontier
+    id: KitchenDeepFryer # Frontier
 
 # Frontier: Halloween special
 - type: entity
