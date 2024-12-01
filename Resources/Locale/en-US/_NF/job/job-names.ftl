@@ -16,7 +16,7 @@ job-name-sheriff = Sheriff
 job-name-stc = Station Traffic Controller
 job-name-sr = Station Representative
 job-name-pal = Public Affairs Liaison
-job-name-mom = Medical Operations Manager
+job-name-mom = Medical Ops. Manager
 
 # Job titles
 job-title-ert-mail-carrier = ERT Mail Carrier
