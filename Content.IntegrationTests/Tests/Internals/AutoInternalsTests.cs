@@ -9,7 +9,6 @@ namespace Content.IntegrationTests.Tests.Internals;
 [TestOf(typeof(InternalsSystem))]
 public sealed class AutoInternalsTests
 {
-    [Test]
     [Ignore("Preventing CI tests from failing")] // Frontier: FIXME
     public async Task TestInternalsAutoActivateInSpaceForStationSpawn()
     {
@@ -36,7 +35,6 @@ public sealed class AutoInternalsTests
         await pair.CleanReturnAsync();
     }
 
-    [Test]
     [Ignore("Preventing CI tests from failing")] // Frontier: FIXME
     public async Task TestInternalsAutoActivateInSpaceForEntitySpawn()
     {
