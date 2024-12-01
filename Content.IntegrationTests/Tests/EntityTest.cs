@@ -18,7 +18,6 @@ namespace Content.IntegrationTests.Tests
         private static readonly ProtoId<EntityCategoryPrototype> SpawnerCategory = "Spawner";
 
         [Test]
-        [Ignore("Preventing CI tests from failing")] // Frontier: FIXME - unsure which entities are currently failing
         public async Task SpawnAndDeleteAllEntitiesOnDifferentMaps()
         {
             // This test dirties the pair as it simply deletes ALL entities when done. Overhead of restarting the round
@@ -81,7 +80,6 @@ namespace Content.IntegrationTests.Tests
         }
 
         [Test]
-        [Ignore("Preventing CI tests from failing")] // Frontier: FIXME - unsure which entities are currently failing
         public async Task SpawnAndDeleteAllEntitiesInTheSameSpot()
         {
             // This test dirties the pair as it simply deletes ALL entities when done. Overhead of restarting the round
@@ -140,7 +138,6 @@ namespace Content.IntegrationTests.Tests
         ///     all components on every entity.
         /// </summary>
         [Test]
-        [Ignore("Preventing CI tests from failing")] // Frontier: FIXME - unsure which entities are currently failing
         public async Task SpawnAndDirtyAllEntities()
         {
             // This test dirties the pair as it simply deletes ALL entities when done. Overhead of restarting the round
@@ -222,7 +219,6 @@ namespace Content.IntegrationTests.Tests
         /// bugs, where spawning some entity starts spawning unrelated entities in null space.
         /// </remarks>
         [Test]
-        [Ignore("Preventing CI tests from failing")] // Frontier: FIXME - unsure which entities are currently failing
         public async Task SpawnAndDeleteEntityCountTest()
         {
             var settings = new PoolSettings { Connected = true, Dirty = true };
@@ -240,6 +236,100 @@ namespace Content.IntegrationTests.Tests
 
                 // makes an announcement on mapInit.
                 "AnnounceOnSpawn",
+
+                // For testing
+                "TransferMindOnDespawnComponent", // Frontier
+                "AdventureRuleComponent",
+                "AnchorableStorage",
+                "AppraisalCartridge",
+                "BluespaceCargoRule",
+                "BluespaceErrorRule",
+                "BountyContractData",
+                "CargoMarketData",
+                "CavemanAccent",
+                "ComputerTabletopBoard",
+                "ComputerWallmountBoard",
+                "ContrabandPallet",
+                "ContrabandPodGrid",
+                "ContrabandPriceGun",
+                "CryoSleep",
+                "DeadDrop",
+                "DeadDropHint",
+                "DeadDropHintVariationPass",
+                "DisableSuitSensors",
+                "DisableToolUse",
+                "ExtraStationInformation",
+                "ForensicsCartridge",
+                "FTLKnockdownImmune",
+                "GoblinAccent",
+                "IgniteOnProjectileHit",
+                "LinkedLifecycleGridChild",
+                "M_EmpGenerator",
+                "MarketConsole",
+                "MedicalBountyRedemption",
+                "NFDroneConsole",
+                "NFSalvageMobRestrictions",
+                "PacifiedByZone",
+                "PacifiedZoneGenerator",
+                "ParrotSpeech",
+                "PartExchanger",
+                "PirateBountyLabel",
+                "PlantAnalyzer",
+                "PotentialDeadDrop",
+                "PreventCrisping",
+                "RandomFaxRule",
+                "SalvageMobRestrictionsGrid",
+                "SectorBank",
+                "SectorDeadDrop",
+                "SectorPirateBountyDatabase",
+                "SectorShuttleRecords",
+                "ShuttleIntercom",
+                "SizeAttribute",
+                "StationDampening",
+                "StationDeadDrop",
+                "StationDeadDropHintExempt",
+                "StationDeadDropReporting",
+                "StationRenameFaxes",
+                "StationRenameWarps",
+                "StationSectorServiceHost",
+                "StationTransit",
+                "StreetpunkAccent",
+                "SyndicateFOB",
+                "TransferMindOnDespawn",
+                "TransitShuttle",
+                "TriggerOnBeingGibbed",
+                "TriggerOnProjectileHit",
+
+                "OpenTriggeredStorageFill", // Why
+                "Card",
+                "CardDeck",
+                "CardHand",
+                "CardStack",
+
+                "EmpBlast",
+                "FoldableFixture",
+                "InnateMiningScannerViewer",
+                "MachinePart",
+                "MarketModifier",
+                "MedicalBounty",
+                "MedicalPriceGun",
+                "PirateBountyConsole",
+                "PirateBountyRedemptionConsole",
+                "ReagentWhitelistChange",
+                "SectorNews",
+                "SharedM_Emp",
+                "SharedM_EmpGenerator",
+                "ShortWhitelist",
+                "ShuttleFTL",
+                "ShuttleRecordsConsole",
+                "SpaceDebris",
+                "StackLayerThreshold",
+                "StationBankATM",
+                "TallWhitelist",
+                "TradeCrate",
+                "VehicleHorn",
+
+                "M_Emp"
             };
 
             Assert.That(server.CfgMan.GetCVar(CVars.NetPVS), Is.False);
@@ -352,6 +442,99 @@ namespace Content.IntegrationTests.Tests
                 "LoadedChunk", // Worldgen chunk loading malding.
                 "BiomeSelection", // Whaddya know, requires config.
                 "ActivatableUI", // Requires enum key
+
+                // For testing
+                "AdventureRuleComponent",
+                "AnchorableStorage",
+                "AppraisalCartridge",
+                "BluespaceCargoRule",
+                "BluespaceErrorRule",
+                "BountyContractData",
+                "CargoMarketData",
+                "CavemanAccent",
+                "ComputerTabletopBoard",
+                "ComputerWallmountBoard",
+                "ContrabandPallet",
+                "ContrabandPodGrid",
+                "ContrabandPriceGun",
+                "CryoSleep",
+                "DeadDrop",
+                "DeadDropHint",
+                "DeadDropHintVariationPass",
+                "DisableSuitSensors",
+                "DisableToolUse",
+                "ExtraStationInformation",
+                "ForensicsCartridge",
+                "FTLKnockdownImmune",
+                "GoblinAccent",
+                "IgniteOnProjectileHit",
+                "LinkedLifecycleGridChild",
+                "M_EmpGenerator",
+                "MarketConsole",
+                "MedicalBountyRedemption",
+                "NFDroneConsole",
+                "NFSalvageMobRestrictions",
+                "PacifiedByZone",
+                "PacifiedZoneGenerator",
+                "ParrotSpeech",
+                "PartExchanger",
+                "PirateBountyLabel",
+                "PlantAnalyzer",
+                "PotentialDeadDrop",
+                "PreventCrisping",
+                "RandomFaxRule",
+                "SalvageMobRestrictionsGrid",
+                "SectorBank",
+                "SectorDeadDrop",
+                "SectorPirateBountyDatabase",
+                "SectorShuttleRecords",
+                "ShuttleIntercom",
+                "SizeAttribute",
+                "StationDampening",
+                "StationDeadDrop",
+                "StationDeadDropHintExempt",
+                "StationDeadDropReporting",
+                "StationRenameFaxes",
+                "StationRenameWarps",
+                "StationSectorServiceHost",
+                "StationTransit",
+                "StreetpunkAccent",
+                "SyndicateFOB",
+                "TransferMindOnDespawn",
+                "TransitShuttle",
+                "TriggerOnBeingGibbed",
+                "TriggerOnProjectileHit",
+
+                "OpenTriggeredStorageFill", // Why
+                "Card",
+                "CardDeck",
+                "CardHand",
+                "CardStack",
+
+                "EmpBlast",
+                "FoldableFixture",
+                "InnateMiningScannerViewer",
+                "MachinePart",
+                "MarketModifier",
+                "MedicalBounty",
+                "MedicalPriceGun",
+                "PirateBountyConsole",
+                "PirateBountyRedemptionConsole",
+                "ReagentWhitelistChange",
+                "SectorNews",
+                "SharedM_Emp",
+                "SharedM_EmpGenerator",
+                "ShortWhitelist",
+                "ShuttleFTL",
+                "ShuttleRecordsConsole",
+                "SpaceDebris",
+                "StackLayerThreshold",
+                "StationBankATM",
+                "TallWhitelist",
+                "TradeCrate",
+                "VehicleHorn",
+
+                "M_Emp"
             };
 
             // TODO TESTS
