@@ -12,11 +12,9 @@ using Content.Shared.Access.Components;
 using Content.Shared.Database;
 using Content.Shared.NameIdentifier;
 using Content.Shared.Paper;
-using Content.Shared.Whitelist;
 using JetBrains.Annotations;
 using Robust.Shared.Containers;
 using Robust.Shared.Random;
-using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Content.Shared.Stacks;
 
@@ -28,7 +26,6 @@ public sealed partial class CargoSystem
     private const string PirateBountyNameIdentifierGroup = "Bounty"; // Use the bounty name ID group (0-999) for now.
 
     private EntityQuery<PirateBountyLabelComponent> _pirateBountyLabelQuery;
-    [Dependency] private EntProtoIdWhitelistSystem _entProtoIdWhitelist = default!;
 
     private readonly TimeSpan _redemptionDelay = TimeSpan.FromSeconds(2);
 
@@ -604,9 +601,7 @@ public sealed partial class CargoSystem
             }
 
             // Check whitelists for the pirate bounty.
-            if ((_whitelistSys.IsWhitelistPass(entry.Whitelist, target) ||
-                _entProtoIdWhitelist.IsWhitelistPass(entry.IdWhitelist, target)) &&
-                _whitelistSys.IsBlacklistFailOrNull(entry.Blacklist, target))
+            if (TryComp<PirateBountyItemComponent>(target, out var targetBounty) && targetBounty.ID == entry.ID)
             {
                 if (TryComp<StackComponent>(target, out var stack))
                     bounty.Entries[entry.Name] += stack.Count;
