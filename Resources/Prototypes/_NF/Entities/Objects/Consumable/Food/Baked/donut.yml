@@ -1,8 +1,59 @@
+  name: uncooked donut
+  parent: FoodDonutBase
+  id: FoodDonutUncooked
+  description: Needs a moment in the deep fryer, then it'll be good to eat.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - dough
+      - sweet
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/Baked/donut.rsi
+    state: uncooked
+  - type: SolutionContainerManager
+    solutions: &uncookedSolution
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: GastroToxin
+          Quantity: 1
+  - type: DeepFrySpawn
+    cycles: 2
+    output: FoodDonutPlain
+  - type: Construction
+    graph: NFDonut
+    node: donut
+  - type: Food
+    quality: Bland
+
+- type: entity
+  name: uncooked jelly donut
+  parent: FoodDonutBase
+  id: FoodDonutUncookedJelly
+  description: Needs a moment in the deep fryer, then it'll be good to eat.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - dough
+      - sweet
+  - type: SolutionContainerManager
+    solutions: *uncookedSolution
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/Baked/donut.rsi
+    state: jelly-uncooked
+  - type: DeepFrySpawn
+    cycles: 2
+    output: FoodDonutJellyPlain
+  - type: Food
+    quality: Bland
+
 - type: entity
   name: stale plain donut
   parent: FoodDonutPlain
   id: FoodDonutPlainVendor
-  description: Goes great with lukewarm microwaved coffee.
+  description: Goes "great" with lukewarm microwaved coffee.
   components:
   - type: Food # Frontier
     quality: Junk # Frontier
@@ -11,7 +62,7 @@
   name: stale pink donut
   parent: FoodDonutPink
   id: FoodDonutPinkVendor
-  description: Goes great with a day-old soy latte.
+  description: Goes "great" with a day-old soy latte.
   components:
   - type: Food # Frontier
     quality: Junk # Frontier
@@ -20,7 +71,7 @@
   name: stale apple donut
   parent: FoodDonutApple
   id: FoodDonutAppleVendor
-  description: Goes great with cold gas-station decaf.
+  description: Goes "great" with cold gas station decaf.
   components:
   - type: Food # Frontier
     quality: Junk # Frontier
@@ -29,7 +80,7 @@
   name: stale bungo donut
   parent: FoodDonutBungo
   id: FoodDonutBungoVendor
-  description: Goes great with an expired can of Dr. Gibb.
+  description: Goes "great" with an expired can of Dr. Gibb.
   components:
   - type: Food # Frontier
     quality: Junk # Frontier
@@ -38,7 +89,7 @@
   name: stale chocolate donut
   parent: FoodDonutChocolate
   id: FoodDonutChocolateVendor
-  description: Goes great with a glass of questionable milk.
+  description: Goes "great" with a glass of spoiled milk.
   components:
   - type: Food # Frontier
     quality: Junk # Frontier
