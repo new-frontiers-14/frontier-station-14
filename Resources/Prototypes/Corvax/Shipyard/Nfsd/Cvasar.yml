@@ -1,0 +1,27 @@
+- type: vessel
+  id: Cvasar
+  name: NSF Квазар
+  description: Шаттл перехватчик Квазар. Произведен частной военно-производственной компаний Vitezstvi по спец. заказу НТ. Рекомендуемый состав команды 1-2 человека.
+  price: 31000
+  group: Security
+  category: Small
+  access: Security
+  mapchecker_group_override: Security
+  shuttlePath: /Maps/Corvax/Shuttles/Nfsd/Cvasar.yml
+
+- type: gameMap
+  id: Cvasar
+  mapName: 'NSF Квазар'
+  mapPath: /Maps/Corvax/Shuttles/Nfsd/Cvasar.yml
+  minPlayers: 0
+  stations:
+    Cvasar:
+      stationProto: StandardFrontierSecurityVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Квазар {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs: {}

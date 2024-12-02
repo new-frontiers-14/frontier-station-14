@@ -1,0 +1,26 @@
+- type: vessel
+  id: SalvationUnion
+  name: Союз Спасения
+  description: Малый пиратский шаттл. Рекомендованный состав команды 1-2 человека.
+  price: 39000
+  category: Small
+  group: BlackMarket
+  shuttlePath: /Maps/Corvax/Shuttles/BlackMarket/SalvationUnion.yml
+
+- type: gameMap
+  id: SalvationUnion
+  mapName: 'SalvationUnion'
+  mapPath: /Maps/Corvax/Shuttles/BlackMarket/SalvationUnion.yml
+  minPlayers: 0
+  stations:
+    SalvationUnion:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Союз Спасения {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Pirate: [ 0, 0 ]
