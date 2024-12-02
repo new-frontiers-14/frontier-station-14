@@ -10,11 +10,11 @@ using Content.Server.DeltaV.Mail.EntitySystems;
 namespace Content.Server.DeltaV.Mail;
 
 [AdminCommand(AdminFlags.Fun)]
-public sealed class MailToCommand : IConsoleCommand
+public sealed class MailToCommand : LocalizedCommands
 {
-    public string Command => "mailto";
-    public string Description => Loc.GetString("command-mailto-description", ("requiredComponent", nameof(MailReceiverComponent)));
-    public string Help => Loc.GetString("command-mailto-help", ("command", Command));
+    public override string Command => "mailto";
+    public override string Description => Loc.GetString("command-mailto-description", ("requiredComponent", nameof(MailReceiverComponent)));
+    public override string Help => Loc.GetString("command-mailto-help", ("command", Command));
 
     [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
@@ -26,7 +26,7 @@ public sealed class MailToCommand : IConsoleCommand
     private const string MailContainer = "contents";
 
 
-    public async void Execute(IConsoleShell shell, string argStr, string[] args)
+    public override void Execute(IConsoleShell shell, string argStr, string[] args)
     {
         if (args.Length < 4)
         {
@@ -84,11 +84,13 @@ public sealed class MailToCommand : IConsoleCommand
             return;
         }
 
-        if (!containerSystem.TryGetContainer(containerUid, Container, out var targetContainer))
-        {
-            shell.WriteLine(Loc.GetString("command-mailto-invalid-container", ("requiredContainer", Container)));
-            return;
-        }
+        // Frontier: box optional
+        // if (!containerSystem.TryGetContainer(containerUid, Container, out var targetContainer))
+        // {
+        //     shell.WriteLine(Loc.GetString("command-mailto-invalid-container", ("requiredContainer", Container)));
+        //     return;
+        // }
+        // End Frontier
 
         if (!mailSystem.TryGetMailRecipientForReceiver(recipientUid, out var recipient))
         {
@@ -111,10 +113,19 @@ public sealed class MailToCommand : IConsoleCommand
             return;
         }
 
-        foreach (var entity in targetContainer.ContainedEntities.ToArray())
+        // Frontier: box optional
+        if (containerSystem.TryGetContainer(containerUid, Container, out var targetContainer))
         {
-            containerSystem.Insert(entity, mailContents);
+            foreach (var entity in targetContainer.ContainedEntities.ToArray())
+            {
+                containerSystem.Insert(entity, mailContents);
+            }
         }
+        else
+        {
+            containerSystem.Insert(containerUid, mailContents);
+        }
+        // End Frontier
 
         mailComponent.IsFragile = isFragile;
         mailComponent.IsPriority = isPriority;
@@ -126,6 +137,27 @@ public sealed class MailToCommand : IConsoleCommand
         containerSystem.Insert(mailUid, teleporterQueue);
         shell.WriteLine(Loc.GetString("command-mailto-success", ("timeToTeleport", teleporterComponent.TeleportInterval.TotalSeconds - teleporterComponent.Accumulator)));
     }
+
+    // Frontier: completion
+    public override CompletionResult GetCompletion(IConsoleShell shell, string[] args)
+    {
+        switch (args.Length)
+        {
+            case 1:
+                return CompletionResult.FromHint(Loc.GetString("command-mailto-completion-recipient"));
+            case 2:
+                return CompletionResult.FromHint(Loc.GetString("command-mailto-completion-container"));
+            case 3:
+                return CompletionResult.FromHint(Loc.GetString("command-mailto-completion-fragile"));
+            case 4:
+                return CompletionResult.FromHint(Loc.GetString("command-mailto-completion-priority"));
+            case 5:
+                return CompletionResult.FromHint(Loc.GetString("command-mailto-completion-large"));
+            default:
+                return CompletionResult.Empty;
+        }
+    }
+    // End Frontier
 }
 
 [AdminCommand(AdminFlags.Fun)]
