@@ -46,6 +46,14 @@ public abstract class SharedStationSpawningSystem : EntitySystem
     /// </remarks>
     public void EquipRoleLoadout(EntityUid entity, RoleLoadout loadout, RoleLoadoutPrototype roleProto)
     {
+        // Frontier: Make absolutely sure the given loadout has all of the expected loadout groups from the prototype.
+        foreach (var group in roleProto!.Groups)
+        {
+            if (!loadout.SelectedLoadouts.ContainsKey(group))
+                loadout.SelectedLoadouts[group] = new();
+        }
+        // End Frontier
+
         // Order loadout selections by the order they appear on the prototype.
         foreach (var group in loadout.SelectedLoadouts.OrderBy(x => roleProto.Groups.FindIndex(e => e == x.Key)))
         {
