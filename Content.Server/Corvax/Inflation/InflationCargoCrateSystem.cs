@@ -40,9 +40,9 @@ public sealed class InflationCargoCrateSystem : EntitySystem
                 else if (numberCrates >= 20 && numberCrates <= 29)
                     modifier = 0.8;
                 else if (numberCrates >= 30 && numberCrates <= 49)
-                    modifier = 0.6;
+                    modifier = 0.75;
                 else if (numberCrates >= 50)
-                    modifier = 0.5;
+                    modifier = 0.68;
 
                 foreach (var iterator in _entManager.EntityQuery<TradeCrateComponent>(true))
                 {
