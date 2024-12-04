@@ -81,20 +81,34 @@ namespace Content.Client.IconSmoothing
 
         private void SetCornerLayers(SpriteComponent sprite, IconSmoothComponent component)
         {
-            sprite.LayerMapRemove(CornerLayers.SE);
-            sprite.LayerMapRemove(CornerLayers.NE);
-            sprite.LayerMapRemove(CornerLayers.NW);
-            sprite.LayerMapRemove(CornerLayers.SW);
+            // Frontier: ed why did you do this
+            // sprite.LayerMapRemove(CornerLayers.SE);
+            // sprite.LayerMapRemove(CornerLayers.NE);
+            // sprite.LayerMapRemove(CornerLayers.NW);
+            // sprite.LayerMapRemove(CornerLayers.SW);
 
             var state0 = $"{component.StateBase}0";
-            sprite.LayerMapSet(CornerLayers.SE, sprite.AddLayerState(state0));
+            if (sprite.LayerMapTryGet(CornerLayers.SE, out var seLayer))
+                sprite.LayerSetState(seLayer, state0);
+            else
+                sprite.LayerMapSet(CornerLayers.SE, sprite.AddLayerState(state0));
             sprite.LayerSetDirOffset(CornerLayers.SE, DirectionOffset.None);
-            sprite.LayerMapSet(CornerLayers.NE, sprite.AddLayerState(state0));
+            if (sprite.LayerMapTryGet(CornerLayers.NE, out var neLayer))
+                sprite.LayerSetState(neLayer, state0);
+            else
+                sprite.LayerMapSet(CornerLayers.NE, sprite.AddLayerState(state0));
             sprite.LayerSetDirOffset(CornerLayers.NE, DirectionOffset.CounterClockwise);
-            sprite.LayerMapSet(CornerLayers.NW, sprite.AddLayerState(state0));
+            if (sprite.LayerMapTryGet(CornerLayers.NW, out var nwLayer))
+                sprite.LayerSetState(nwLayer, state0);
+            else
+                sprite.LayerMapSet(CornerLayers.NW, sprite.AddLayerState(state0));
             sprite.LayerSetDirOffset(CornerLayers.NW, DirectionOffset.Flip);
-            sprite.LayerMapSet(CornerLayers.SW, sprite.AddLayerState(state0));
+            if (sprite.LayerMapTryGet(CornerLayers.SW, out var swLayer))
+                sprite.LayerSetState(swLayer, state0);
+            else
+                sprite.LayerMapSet(CornerLayers.SW, sprite.AddLayerState(state0));
             sprite.LayerSetDirOffset(CornerLayers.SW, DirectionOffset.Clockwise);
+            // End Frontier: ed why did you do this
         }
 
         private void OnShutdown(EntityUid uid, IconSmoothComponent component, ComponentShutdown args)

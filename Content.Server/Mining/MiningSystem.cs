@@ -29,6 +29,11 @@ public sealed class MiningSystem : EntitySystem
         if (component.CurrentOre == null)
             return;
 
+        // Frontier
+        if (component.PreventSpawning)
+            return;
+        // End Frontier
+
         var proto = _proto.Index<OrePrototype>(component.CurrentOre);
 
         if (proto.OreEntity == null)

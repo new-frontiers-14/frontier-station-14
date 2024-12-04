@@ -1,69 +1,518 @@
-# Partially reflective 
+# region Base walls
 - type: entity
   parent: BaseStructureDisableToolUse
-  id: AsteroidWallNF
+  id: NFAsteroidWall
+  name: supercompacted rock
+  description: Harder than hard. You'll need some special equipment to blast through this.
   abstract: true
   components:
-  - type: Reflect
-    reflectProb: 0.4
-    spread: 10 # Narrow spread, need to balance vs. max projectile distance
-    reflects:
-    - ShuttleKinetic # Only reflects PTK (otherwise RIP miners)
   - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 1000
-      behaviors:
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
+    thresholds: []
+  - type: SoundOnGather
+  - type: Gatherable
+    toolWhitelist:
+      components: # Frontier
+      - MiningGatheringHard # Frontier
+  - type: MiningScannerViewable
 
 - type: entity
-  parent: [AsteroidWallNF, WallIce]
-  id: WallIceNF
+  parent: [NFAsteroidWall, WallIce]
+  id: NFWallIce
+  name: supercompacted ice # special name
   categories: [ HideSpawnMenu ]
 
 - type: entity
-  parent: [AsteroidWallNF, WallSandstone]
-  id: WallSandstoneNF
+  parent: [NFAsteroidWall, WallSandstone]
+  id: NFWallSandstone
   categories: [ HideSpawnMenu ]
 
 - type: entity
-  parent: [AsteroidWallNF, WallNecropolis]
-  id: WallNecropolisNF
+  parent: [NFAsteroidWall, WallNecropolis]
+  id: NFWallNecropolis
   categories: [ HideSpawnMenu ]
 
 - type: entity
-  parent: [AsteroidWallNF, WallCobblebrick]
-  id: WallCobblebrickNF
+  parent: [NFAsteroidWall, WallCobblebrick]
+  id: NFWallCobblebrick
   categories: [ HideSpawnMenu ]
 
 - type: entity
-  parent: [AsteroidWallNF, WallBasaltCobblebrick]
-  id: WallBasaltCobblebrickNF
+  parent: [NFAsteroidWall, WallBasaltCobblebrick]
+  id: NFWallBasaltCobblebrick
   categories: [ HideSpawnMenu ]
 
 - type: entity
-  parent: [AsteroidWallNF, WallSnowCobblebrick]
-  id: WallSnowCobblebrickNF
+  parent: [NFAsteroidWall, WallSnowCobblebrick]
+  id: NFWallSnowCobblebrick
   categories: [ HideSpawnMenu ]
 
 - type: entity
-  parent: [AsteroidWallNF, WallAsteroidCobblebrick]
-  id: WallAsteroidCobblebrickNF
+  parent: [NFAsteroidWall, WallAsteroidCobblebrick]
+  id: NFWallAsteroidCobblebrick
   categories: [ HideSpawnMenu ]
 
 - type: entity
-  parent: [AsteroidWallNF, WallSandCobblebrick]
-  id: WallSandCobblebrickNF
+  parent: [NFAsteroidWall, WallSandCobblebrick]
+  id: NFWallSandCobblebrick
   categories: [ HideSpawnMenu ]
 
 - type: entity
-  parent: [AsteroidWallNF, WallChromiteCobblebrick]
-  id: WallChromiteCobblebrickNF
+  parent: [NFAsteroidWall, WallChromiteCobblebrick]
+  id: NFWallChromiteCobblebrick
   categories: [ HideSpawnMenu ]
 
 - type: entity
-  parent: [AsteroidWallNF, WallAndesiteCobblebrick]
-  id: WallAndesiteCobblebrickNF
+  parent: [NFAsteroidWall, WallAndesiteCobblebrick]
+  id: NFWallAndesiteCobblebrick
   categories: [ HideSpawnMenu ]
+
+# region Ore varieties
+
+# Ore veins
+- type: entity
+  id: NFWallIceBananium
+  parent: NFWallIce
+  description: A dense ore vein rich with bananium. Extremely hard.
+  suffix: Bananium
+  components:
+    - type: OreVein
+      oreChance: 1.0
+      currentOre: NFOreBananium # Frontier: NF prefix
+    - type: Sprite
+      layers:
+        - map: [ "enum.CornerLayers.SE" ]
+          state: ice0
+        - map: [ "enum.CornerLayers.SW" ]
+          state: ice0
+        - map: [ "enum.CornerLayers.NE" ]
+          state: ice0
+        - map: [ "enum.CornerLayers.NW" ]
+          state: ice0
+        - state: rock_bananium
+          sprite: Structures/Walls/rock.rsi
+          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
+
+- type: entity
+  id: NFWallIceBluespace
+  parent: NFWallIce
+  description: A dense ore vein rich with bluespace. Extremely hard.
+  suffix: Bluespace
+  components:
+    - type: OreVein
+      oreChance: 1.0
+      currentOre: NFOreBluespace
+    - type: Sprite
+      layers:
+        - map: [ "enum.CornerLayers.SE" ]
+          state: ice0
+        - map: [ "enum.CornerLayers.SW" ]
+          state: ice0
+        - map: [ "enum.CornerLayers.NE" ]
+          state: ice0
+        - map: [ "enum.CornerLayers.NW" ]
+          state: ice0
+        - state: rock_bluespace
+          sprite: _NF/Structures/Walls/rock.rsi
+          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
+
+- type: entity
+  id: NFWallIceCoal
+  parent: NFWallIce
+  name: supercompacted coal
+  description: A dense ore vein rich with coal. Extremely hard.
+  suffix: Coal
+  components:
+    - type: OreVein
+      oreChance: 1.0
+      currentOre: NFOreCoalDense
+    - type: Sprite
+      layers: # Hack to get these layers set up
+        - map: [ "enum.CornerLayers.SE" ]
+          state: ice0
+        - map: [ "enum.CornerLayers.SW" ]
+          state: ice0
+        - map: [ "enum.CornerLayers.NE" ]
+          state: ice0
+        - map: [ "enum.CornerLayers.NW" ]
+          state: ice0
+        - state: rock_coal
+          sprite: Structures/Walls/rock.rsi
+          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
+
+- type: entity
+  id: NFWallIceDiamond
+  parent: NFWallIce
+  description: A dense ore vein rich with diamonds. Extremely hard.
+  suffix: Diamond
+  components:
+    - type: OreVein
+      oreChance: 1.0
+      currentOre: OreDiamondDense
+    - type: Sprite
+      layers:
+        - map: [ "enum.CornerLayers.SE" ]
+          state: ice0
+        - map: [ "enum.CornerLayers.SW" ]
+          state: ice0
+        - map: [ "enum.CornerLayers.NE" ]
+          state: ice0
+        - map: [ "enum.CornerLayers.NW" ]
+          state: ice0
+        - state: rock_diamond
+          sprite: Structures/Walls/rock.rsi
+          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
+
+- type: entity
+  id: NFWallIceGold
+  parent: NFWallIce
+  description: A dense ore vein rich with gold. Extremely hard.
+  suffix: Gold
+  components:
+    - type: OreVein
+      oreChance: 1.0
+      currentOre: NFOreGoldDense
+    - type: Sprite
+      layers:
+        - map: [ "enum.CornerLayers.SE" ]
+          state: ice0
+        - map: [ "enum.CornerLayers.SW" ]
+          state: ice0
+        - map: [ "enum.CornerLayers.NE" ]
+          state: ice0
+        - map: [ "enum.CornerLayers.NW" ]
+          state: ice0
+        - state: rock_gold
+          sprite: Structures/Walls/rock.rsi
+          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
+
+- type: entity
+  id: NFWallIceTin
+  parent: NFWallIce
+  description: An ore vein rich with iron.
+  suffix: Iron
+  components:
+    - type: OreVein
+      oreChance: 1.0
+      currentOre: NFOreSteel
+    - type: Sprite
+      layers:
+        - map: [ "enum.CornerLayers.SE" ]
+          state: ice0
+        - map: [ "enum.CornerLayers.SW" ]
+          state: ice0
+        - map: [ "enum.CornerLayers.NE" ]
+          state: ice0
+        - map: [ "enum.CornerLayers.NW" ]
+          state: ice0
+        - state: rock_tin
+          sprite: Structures/Walls/rock.rsi
+          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
+
+- type: entity
+  id: NFWallIcePlasma
+  parent: NFWallIce
+  description: A dense ore vein rich with plasma. Extremely hard.
+  suffix: Plasma
+  components:
+    - type: OreVein
+      oreChance: 1.0
+      currentOre: NFOrePlasmaDense
+    - type: Sprite
+      layers:
+        - map: [ "enum.CornerLayers.SE" ]
+          state: ice0
+        - map: [ "enum.CornerLayers.SW" ]
+          state: ice0
+        - map: [ "enum.CornerLayers.NE" ]
+          state: ice0
+        - map: [ "enum.CornerLayers.NW" ]
+          state: ice0
+        - state: rock_phoron
+          sprite: Structures/Walls/rock.rsi
+          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
+
+- type: entity
+  id: NFWallIceQuartz
+  parent: NFWallIce
+  description: A dense ore vein rich with quartz. Extremely hard.
+  suffix: Quartz
+  components:
+    - type: OreVein
+      oreChance: 1.0
+      currentOre: NFOreSpaceQuartzDense
+    - type: Sprite
+      layers:
+        - map: [ "enum.CornerLayers.SE" ]
+          state: ice0
+        - map: [ "enum.CornerLayers.SW" ]
+          state: ice0
+        - map: [ "enum.CornerLayers.NE" ]
+          state: ice0
+        - map: [ "enum.CornerLayers.NW" ]
+          state: ice0
+        - state: rock_quartz
+          sprite: Structures/Walls/rock.rsi
+          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
+
+- type: entity
+  id: NFWallIceSalt
+  parent: NFWallIce
+  description: A dense ore vein rich with salt. Extremely hard.
+  suffix: Salt
+  components:
+    - type: OreVein
+      oreChance: 1.0
+      currentOre: NFOreSaltDense
+    - type: Sprite
+      layers:
+        - map: [ "enum.CornerLayers.SE" ]
+          state: ice0
+        - map: [ "enum.CornerLayers.SW" ]
+          state: ice0
+        - map: [ "enum.CornerLayers.NE" ]
+          state: ice0
+        - map: [ "enum.CornerLayers.NW" ]
+          state: ice0
+        - state: rock_salt
+          sprite: Structures/Walls/rock.rsi
+          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
+
+- type: entity
+  id: NFWallIceSilver
+  parent: NFWallIce
+  description: A dense ore vein rich with silver. Extremely hard.
+  suffix: Silver
+  components:
+    - type: OreVein
+      oreChance: 1.0
+      currentOre: NFOreSilverDense
+    - type: Sprite
+      layers:
+        - map: [ "enum.CornerLayers.SE" ]
+          state: ice0
+        - map: [ "enum.CornerLayers.SW" ]
+          state: ice0
+        - map: [ "enum.CornerLayers.NE" ]
+          state: ice0
+        - map: [ "enum.CornerLayers.NW" ]
+          state: ice0
+        - state: rock_silver
+          sprite: Structures/Walls/rock.rsi
+          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
+
+- type: entity
+  id: NFWallIceUranium
+  parent: NFWallIce
+  description: A dense ore vein rich with uranium. Extremely hard.
+  suffix: Uranium
+  components:
+    - type: OreVein
+      oreChance: 1.0
+      currentOre: NFOreUraniumDense # Frontier: NF prefix
+    - type: Sprite
+      layers:
+        - map: [ "enum.CornerLayers.SE" ]
+          state: ice0
+        - map: [ "enum.CornerLayers.SW" ]
+          state: ice0
+        - map: [ "enum.CornerLayers.NE" ]
+          state: ice0
+        - map: [ "enum.CornerLayers.NW" ]
+          state: ice0
+        - state: rock_uranium
+          sprite: Structures/Walls/rock.rsi
+          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
+
+- type: entity
+  id: NFWallIceArtifactFragment
+  parent: NFWallIce
+  description: Harder than hard. You'll need some special equipment to- what's that sticking out of it?
+  suffix: Artifact Fragment
+  components:
+    - type: OreVein
+      oreChance: 1.0
+      currentOre: OreArtifactFragment
+    - type: Sprite
+      layers:
+        - map: [ "enum.CornerLayers.SE" ]
+          state: ice0
+        - map: [ "enum.CornerLayers.SW" ]
+          state: ice0
+        - map: [ "enum.CornerLayers.NE" ]
+          state: ice0
+        - map: [ "enum.CornerLayers.NW" ]
+          state: ice0
+        - state: rock_artifact_fragment
+          sprite: Structures/Walls/rock.rsi
+          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
+
+- type: entity
+  id: NFWallIceBananiumCrab
+  parent: NFWallIceBananium
+  suffix: Bananium Crab
+  components:
+    - type: OreVein
+      oreChance: 1.0
+      currentOre: OreBananiumCrabNF
+
+- type: entity
+  id: NFWallIceCoalCrab
+  parent: NFWallIceCoal
+  suffix: Coal Crab
+  components:
+    - type: OreVein
+      oreChance: 1.0
+      currentOre: OreCoalCrabNF
+
+- type: entity
+  id: NFWallIceDiamondCrab
+  parent: NFWallIceDiamond
+  suffix: Diamond Crab
+  components:
+    - type: OreVein
+      oreChance: 1.0
+      currentOre: OreDiamondCrabNF
+
+- type: entity
+  id: NFWallIceGoldCrab
+  parent: NFWallIceGold
+  suffix: Gold Crab
+  components:
+    - type: OreVein
+      oreChance: 1.0
+      currentOre: OreGoldCrabNF
+
+- type: entity
+  id: NFWallIceTinCrab
+  parent: NFWallIceTin
+  suffix: Iron Crab
+  components:
+    - type: OreVein
+      oreChance: 1.0
+      currentOre: OreIronCrabNF
+
+- type: entity
+  id: NFWallIcePlasmaCrab
+  parent: NFWallIcePlasma
+  suffix: Plasma Crab
+  components:
+    - type: OreVein
+      oreChance: 1.0
+      currentOre: OrePlasmaCrabNF
+
+- type: entity
+  id: NFWallIceQuartzCrab
+  parent: NFWallIceQuartz
+  suffix: Quartz Crab
+  components:
+    - type: OreVein
+      oreChance: 1.0
+      currentOre: OreQuartzCrabNF
+
+- type: entity
+  id: NFWallIceSaltCrab
+  parent: NFWallIceSalt
+  suffix: Salt Crab
+  components:
+    - type: OreVein
+      oreChance: 1.0
+      currentOre: OreSaltCrabNF
+
+- type: entity
+  id: NFWallIceSilverCrab
+  parent: NFWallIceSilver
+  suffix: Silver Crab
+  components:
+    - type: OreVein
+      oreChance: 1.0
+      currentOre: OreSilverCrabNF
+
+- type: entity
+  id: NFWallIceUraniumCrab
+  parent: NFWallIceUranium
+  suffix: Uranium Crab
+  components:
+    - type: OreVein
+      oreChance: 1.0
+      currentOre: OreUraniumCrabNF
+
+- type: entity
+  id: NFWallIceBananiumGolem
+  parent: NFWallIceBananium
+  suffix: Bananium Golem
+  components:
+    - type: OreVein
+      oreChance: 1.0
+      currentOre: OreBananiumGolem
+
+- type: entity
+  id: NFWallIceCoalGolem
+  parent: NFWallIceCoal
+  suffix: Coal Golem
+  components:
+    - type: OreVein
+      oreChance: 1.0
+      currentOre: OreCoalGolem
+
+- type: entity
+  id: NFWallIceDiamondGolem
+  parent: NFWallIceDiamond
+  suffix: Diamond Golem
+  components:
+    - type: OreVein
+      oreChance: 1.0
+      currentOre: OreDiamondGolem
+
+- type: entity
+  id: NFWallIceGoldGolem
+  parent: NFWallIceGold
+  suffix: Gold Golem
+  components:
+    - type: OreVein
+      oreChance: 1.0
+      currentOre: OreGoldGolem
+
+- type: entity
+  id: NFWallIceTinGolem
+  parent: NFWallIceTin
+  suffix: Iron Golem
+  components:
+    - type: OreVein
+      oreChance: 1.0
+      currentOre: OreIronGolem
+
+- type: entity
+  id: NFWallIcePlasmaGolem
+  parent: NFWallIcePlasma
+  suffix: Plasma Golem
+  components:
+    - type: OreVein
+      oreChance: 1.0
+      currentOre: OrePlasmaGolem
+
+- type: entity
+  id: NFWallIceQuartzGolem
+  parent: NFWallIceQuartz
+  suffix: Quartz Golem
+  components:
+    - type: OreVein
+      oreChance: 1.0
+      currentOre: OreQuartzGolem
+
+- type: entity
+  id: NFWallIceSilverGolem
+  parent: NFWallIceSilver
+  suffix: Silver Golem
+  components:
+    - type: OreVein
+      oreChance: 1.0
+      currentOre: OreSilverGolem
+
+- type: entity
+  id: NFWallIceUraniumGolem
+  parent: NFWallIceUranium
+  suffix: Uranium Golem
+  components:
+    - type: OreVein
+      oreChance: 1.0
+      currentOre: OreUraniumGolem

@@ -326,6 +326,42 @@
     offset: 0.2
 
 - type: entity
+  name: Ice Elemental Spawner
+  id: IceElementalSpawner
+  parent: MarkerBase
+  suffix: 45
+  components:
+    - type: Sprite
+      layers:
+        - state: red
+        - sprite: /Textures/Mobs/Elemental/orecrab.rsi
+          state: uranium_crab
+    - type: RandomSpawner
+      rarePrototypes:
+      - NFWallIceBananiumGolem
+      - NFWallIceCoalGolem
+      - NFWallIceGoldGolem
+      - NFWallIceIronGolem
+      - NFWallIcePlasmaGolem
+      - NFWallIceQuartzGolem
+      - NFWallIceSaltGolem
+      - NFWallIceSilverGolem
+      - NFWallIceUraniumGolem
+      rareChance: 0.1
+      prototypes:
+        - NFWallIceBananiumCrab
+        - NFWallIceCoalCrab
+        - NFWallIceGoldCrab
+        - NFWallIceTinCrab
+        - NFWallIcePlasmaCrab
+        - NFWallIceQuartzCrab
+        - NFWallIceSaltCrab
+        - NFWallIceSilverCrab
+        - NFWallIceUraniumCrab
+      chance: 0.45
+      offset: 0.2
+
+- type: entity
   name: Salvage Tank Spawner
   id: SalvageTankSpawner
   parent: MarkerBase
