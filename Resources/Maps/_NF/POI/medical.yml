@@ -2556,15 +2556,15 @@ entities:
       parent: 1
 - proto: BedsheetMedical
   entities:
-  - uid: 482
+  - uid: 104
     components:
     - type: Transform
-      pos: -4.5,5.5
+      pos: -2.5,8.5
       parent: 1
-  - uid: 547
+  - uid: 1760
     components:
     - type: Transform
-      pos: -4.5,6.5
+      pos: -2.5,7.5
       parent: 1
 - proto: BenchBlueComfy
   entities:
@@ -2747,6 +2747,14 @@ entities:
     components:
     - type: Transform
       pos: 9.670095,7.529811
+      parent: 1
+- proto: BoxFolderMedicalDoctor
+  entities:
+  - uid: 1761
+    components:
+    - type: Transform
+      rot: -6.283185307179586 rad
+      pos: 7.468828,-7.255939
       parent: 1
 - proto: Bucket
   entities:
@@ -4494,6 +4502,13 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -6.500247,-7.61372
       parent: 1
+- proto: ClothingShoesBootsWinterCMO
+  entities:
+  - uid: 1764
+    components:
+    - type: Transform
+      pos: 8.847186,-11.146078
+      parent: 1
 - proto: ComfyChair
   entities:
   - uid: 504
@@ -5455,15 +5470,10 @@ entities:
       parent: 1
 - proto: EmergencyRollerBed
   entities:
-  - uid: 336
+  - uid: 101
     components:
     - type: Transform
-      pos: -2.6218243,7.487378
-      parent: 1
-  - uid: 478
-    components:
-    - type: Transform
-      pos: -2.6452618,8.401441
+      pos: -3.509685,5.58031
       parent: 1
 - proto: ExtinguisherCabinetFilled
   entities:
@@ -5811,6 +5821,15 @@ entities:
     - type: Transform
       pos: -4.5,3.5
       parent: 1
+- proto: FloorDrain
+  entities:
+  - uid: 1759
+    components:
+    - type: Transform
+      pos: 8.5,8.5
+      parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: FoodBakedCookieOatmeal
   entities:
   - uid: 1610
@@ -9379,15 +9398,25 @@ entities:
       rot: 3.141592653589793 rad
       pos: -2.5,6.5
       parent: 1
+  - uid: 336
+    components:
+    - type: Transform
+      pos: -4.5,6.5
+      parent: 1
   - uid: 481
     components:
     - type: Transform
       pos: -4.5,5.5
       parent: 1
-  - uid: 483
+  - uid: 1762
     components:
     - type: Transform
-      pos: -4.5,6.5
+      pos: -2.5,8.5
+      parent: 1
+  - uid: 1763
+    components:
+    - type: Transform
+      pos: -2.5,7.5
       parent: 1
 - proto: JukeboxWallmount
   entities:
@@ -9428,6 +9457,11 @@ entities:
       parent: 1
 - proto: MachineCryoSleepPod
   entities:
+  - uid: 14
+    components:
+    - type: Transform
+      pos: -4.5,5.5
+      parent: 1
   - uid: 132
     components:
     - type: Transform
@@ -9437,6 +9471,11 @@ entities:
     components:
     - type: Transform
       pos: -2.5,6.5
+      parent: 1
+  - uid: 482
+    components:
+    - type: Transform
+      pos: -4.5,6.5
       parent: 1
 - proto: MachineMedicalBountyRedemption
   entities:
@@ -9476,15 +9515,15 @@ entities:
       parent: 1
 - proto: MedicalBed
   entities:
-  - uid: 540
+  - uid: 144
     components:
     - type: Transform
-      pos: -4.5,6.5
+      pos: -2.5,7.5
       parent: 1
-  - uid: 546
+  - uid: 478
     components:
     - type: Transform
-      pos: -4.5,5.5
+      pos: -2.5,8.5
       parent: 1
 - proto: MedkitFilled
   entities:
@@ -12019,13 +12058,6 @@ entities:
     - type: Transform
       pos: -1.5,-7.5
       parent: 1
-- proto: VendingMachineChemDrobe
-  entities:
-  - uid: 101
-    components:
-    - type: Transform
-      pos: 0.5,-8.5
-      parent: 1
 - proto: VendingMachineCigs
   entities:
   - uid: 893
@@ -12061,19 +12093,31 @@ entities:
     - type: Transform
       pos: 4.5,1.5
       parent: 1
-- proto: VendingMachineGeneDrobe
+- proto: VendingMachineGames
   entities:
-  - uid: 144
-    components:
-    - type: Transform
-      pos: 0.5,-7.5
-      parent: 1
-- proto: VendingMachineMediDrobe
-  entities:
-  - uid: 104
+  - uid: 546
     components:
     - type: Transform
       pos: 0.5,-6.5
+      parent: 1
+- proto: VendingMachineMediDrobe
+  entities:
+  - uid: 540
+    components:
+    - type: Transform
+      pos: 0.5,-8.5
+      parent: 1
+  - uid: 547
+    components:
+    - type: Transform
+      pos: 0.5,-5.5
+      parent: 1
+- proto: VendingMachinePottedPlantVend
+  entities:
+  - uid: 483
+    components:
+    - type: Transform
+      pos: 0.5,-7.5
       parent: 1
 - proto: VendingMachineTankDispenserEVAPOI
   entities:
@@ -12081,13 +12125,6 @@ entities:
     components:
     - type: Transform
       pos: 4.5,3.5
-      parent: 1
-- proto: VendingMachineViroDrobe
-  entities:
-  - uid: 14
-    components:
-    - type: Transform
-      pos: 0.5,-5.5
       parent: 1
 - proto: VendingMachineYouToolPOI
   entities:
