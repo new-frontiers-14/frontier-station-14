@@ -1423,8 +1423,7 @@
   components:
     # make the player a traitor once its taken
   - type: AutoTraitor
-    giveUplink: false
-    giveObjectives: false
+    profile: TraitorReinforcement
 
 - type: entity
   id: MobMonkeySyndicateAgentNukeops # Reinforcement exclusive to nukeops uplink
@@ -1448,11 +1447,14 @@
   - type: Speech
     speechSounds: Lizard
     speechVerb: Reptilian
+    allowedEmotes: ['Thump']
   - type: Vocal
     sounds:
       Male: MaleReptilian
       Female: FemaleReptilian
       Unsexed: MaleReptilian
+  - type: BodyEmotes
+    soundsId: ReptilianBodyEmotes
   - type: TypingIndicator
     proto: lizard
   - type: InteractionPopup
@@ -1582,8 +1584,7 @@
   components:
     # make the player a traitor once its taken
   - type: AutoTraitor
-    giveUplink: false
-    giveObjectives: false
+    profile: TraitorReinforcement
 
 - type: entity
   id: MobKoboldSyndicateAgentNukeops # Reinforcement exclusive to nukeops uplink
@@ -1800,6 +1801,11 @@
   # intended for swarms that eat pills so only temporary
   - type: TimedDespawn
     lifetime: 60
+  - type: Hunger
+    baseDecayRate: 10 # always hungry
+    starvingSlowdownModifier: 1
+  - type: Thirst
+    baseDecayRate: 10 # always thirsty
 
 - type: entity
   parent: MobMouse
@@ -2932,31 +2938,6 @@
   - type: NpcFactionMember # Frontier
     factions:
     - Cat
-# Frontier Start: Allow goblins to ride cats
-  - type: Strap
-    buckleOffset: "0.025, 0.2"
-    whitelist:
-      components:
-      - Goblin
-    unbuckleDistanceSquared: 0.09 # Frontier: (30 cm)^2 - seems unnecessary, but for consistency with vehicles
-  - type: Vehicle
-    southOver: true
-    westOver: true
-    eastOver: true
-    northOver: true
-    northOverride: 0.0
-    southOverride: 0.0
-    autoAnimate: false
-  - type: ItemSlots
-    slots:
-      key_slot:
-        disableEject: true
-        locked: true
-  - type: ContainerFill
-    containers:
-      key_slot:
-      - VehicleKeyATV
-# Frontier End: Allow goblins to ride cats
 
 - type: entity
   name: calico cat
@@ -3438,7 +3419,7 @@
   - type: HTN
     rootTask:
       task: RuminantCompound
-      
+
 - type: entity
   name: diona nymph
   parent: [SimpleMobBase, StripableInventoryBase]
