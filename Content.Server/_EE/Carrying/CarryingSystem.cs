@@ -51,8 +51,9 @@ namespace Content.Server.Carrying
         [Dependency] private readonly ContestsSystem _contests = default!;
         [Dependency] private readonly TransformSystem _transform = default!;
 
-        public const float BaseThrowingSpeedCoeff = 0.3f; // Frontier: default throwing speed reduction
-        public const float DefaultMaxThrowingSpeedCoeff = 1.0f; // Frontier: maximum throwing speed
+        public const float BaseDistanceCoeff = 0.5f; // Frontier: default throwing speed reduction
+        public const float MaxDistanceCoeff = 1.0f; // Frontier: default throwing speed reduction
+        public const float DefaultMaxThrowDistance = 4.0f; // Frontier: maximum throwing distance
 
         public override void Initialize()
         {
@@ -145,14 +146,13 @@ namespace Content.Server.Carrying
 
             args.ItemUid = virtItem.BlockingEntity;
 
-            var throwSpeedCoeff = _contests.MassContest(uid, virtItem.BlockingEntity, false, 2f) // Frontier: "args.throwSpeed *="<"var throwSpeedCoeff ="
+            var contestCoeff = _contests.MassContest(uid, virtItem.BlockingEntity, false, 2f) // Frontier: "args.throwSpeed *="<"var contestCoeff ="
                                 * _contests.StaminaContest(uid, virtItem.BlockingEntity);
 
-            // Frontier: sanitize our range regardless of CVar values - TODO: variable throw speeds (via traits, etc.)
-            throwSpeedCoeff = float.Min(BaseThrowingSpeedCoeff * throwSpeedCoeff, DefaultMaxThrowingSpeedCoeff);
-            args.ThrowSpeed *= throwSpeedCoeff;
-            if (throwSpeedCoeff < 1)
-                args.Direction *= throwSpeedCoeff; // Reduce direction vector, results in less time in air (no long, slow tosses).
+            // Frontier: sanitize our range regardless of CVar values - TODO: variable throw distance ranges (via traits, etc.)
+            contestCoeff = float.Min(BaseDistanceCoeff * contestCoeff, MaxDistanceCoeff);
+            if (args.Direction.Length() > DefaultMaxThrowDistance * contestCoeff)
+                args.Direction = args.Direction.Normalized() * DefaultMaxThrowDistance * contestCoeff;
             // End Frontier
         }
 
