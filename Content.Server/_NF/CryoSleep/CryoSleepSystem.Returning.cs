@@ -59,12 +59,30 @@ public sealed partial class CryoSleepSystem
             return ReturnToBodyStatus.NotAGhost;
 
         var cryopod = storedBody!.Value.Cryopod;
-        if (!Exists(cryopod) || Deleted(cryopod) || !TryComp<CryoSleepComponent>(cryopod, out var cryoComp))
-            return ReturnToBodyStatus.CryopodMissing;
-
         var body = storedBody.Value.Body;
-        if (IsOccupied(cryoComp) || !_container.Insert(body, cryoComp.BodyContainer))
-            return ReturnToBodyStatus.Occupied;
+        if (!Exists(cryopod) || Deleted(cryopod) || !TryComp<CryoSleepComponent>(cryopod, out var cryoComp))
+        {
+            var fallbackQuery = EntityQueryEnumerator<CryoSleepFallbackComponent, CryoSleepComponent>();
+            bool foundFallback = false;
+            while (fallbackQuery.MoveNext(out cryopod, out _, out cryoComp))
+            {
+                if (!IsOccupied(cryoComp) && _container.Insert(body, cryoComp.BodyContainer))
+                {
+                    foundFallback = true;
+                    break;
+                }
+            }
+
+            // No valid cryopod, all fallbacks occupied or missing.
+            if (!foundFallback)
+                return ReturnToBodyStatus.NoCryopodAvailable;
+        }
+        else
+        {
+            // NOTE: if the pod is occupied but still exists, do not let the user teleport.
+            if (IsOccupied(cryoComp!) || !_container.Insert(body, cryoComp!.BodyContainer))
+                return ReturnToBodyStatus.Occupied;
+        }
 
         _storedBodies.Remove(id.Value);
         _mind.ControlMob(id.Value, body);
@@ -74,7 +92,7 @@ public sealed partial class CryoSleepSystem
 
         _popup.PopupEntity(Loc.GetString("cryopod-wake-up", ("entity", body)), body);
 
-        RaiseLocalEvent(body, new CryosleepWakeUpEvent(storedBody.Value.Cryopod, id), true);
+        RaiseLocalEvent(body, new CryosleepWakeUpEvent(cryopod, id), true);
 
         _adminLogger.Add(LogType.LateJoin, LogImpact.Medium, $"{id.Value} has returned from cryosleep!");
         return ReturnToBodyStatus.Success;
