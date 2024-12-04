@@ -357,11 +357,11 @@
       - !type:NestedSelector
         tableId: MaintFluffTable
     # 1% chance of syndie maintenance loot
-    - !type:GroupSelector
-      weight: 1
-      children:
-      - !type:NestedSelector
-        tableId: SyndieMaintLoot
+#    - !type:GroupSelector # Frontier
+#      weight: 1 # Frontier
+#      children: # Frontier
+#      - !type:NestedSelector # Frontier
+#        tableId: SyndieMaintLoot # Frontier
 
 - type: entity
   parent: MarkerBase
@@ -388,8 +388,8 @@
   - type: Sprite
     layers:
     - state: pink
-    - sprite: Structures/Storage/canister.rsi
-      state: blue
+    - sprite: _NF/Structures/Storage/canister.rsi # Frontier
+      state: oxygen # Frontier blue<oxygen
   - type: EntityTableSpawner
     table: !type:GroupSelector
       prob: 0.9
@@ -402,6 +402,19 @@
         weight: 0.25
       - id: NitrousOxideCanister
         weight: 0.25
+      - id: TritiumCanister # Frontier
+        weight: 0.05 # Frontier
+      - id: FrezonCanister # Frontier
+        weight: 0.03 # Frontier
+      - id: StorageCanister # Frontier
+      - id: AmmoniaCanister # Frontier
+      - id: WaterVaporCanister # Frontier
+#      - id: LiquidCarbonDioxideCanister # Frontier: Abused to hell
+#        weight: 0.01 # Frontier
+#      - id: LiquidNitrogenCanister # Frontier: Abused to hell
+#        weight: 0.01 # Frontier
+#      - id: LiquidOxygenCanister # Frontier: Abused to hell
+#        weight: 0.01 # Frontier
 
 - type: entityTable
   id: SalvageMagnetMobTable

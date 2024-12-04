@@ -1,8 +1,17 @@
 - type: entity
   parent: BaseItem
+  id: NFBasePDACartridge
+  abstract: true
+  components:
+  - type: Cartridge
+    disposable: true
+    autoInstall: true
+
+- type: entity
+  parent: NFBasePDACartridge
   id: BountyContractsCartridge
   name: bounty contracts cartridge
-  description: A program for tracking and placing bounty contracts
+  description: A program for tracking and placing bounty contracts.
   components:
     - type: Sprite
       sprite: Objects/Devices/cartridge.rsi
@@ -20,23 +29,43 @@
       access: [["HeadOfSecurity"], ["HeadOfPersonnel"]]
 
 - type: entity
-  parent: BaseItem
+  parent: NFBasePDACartridge
   id: AppraisalCartridge
-  name: appraisal cartridge
-  description: A program for appraising the monetary value of items
+  name: AppraiseAll cartridge
+  description: A program for appraising the monetary value of items.
   components:
     - type: Sprite
-      sprite: Objects/Devices/cartridge.rsi
-      state: cart-y
+      sprite: _NF/Objects/Devices/cartridge.rsi
+      state: cart-appraisal
     - type: Icon
-      sprite: Objects/Devices/cartridge.rsi
-      state: cart-y
+      sprite: _NF/Objects/Devices/cartridge.rsi
+      state: cart-appraisal
     - type: UIFragment
       ui: !type:AppraisalUi
     - type: Cartridge
       programName: appraisal-program-name
-      icon: Interface/Actions/shop.png
+      icon: Objects/Tools/appraisal-tool.rsi/icon.png
     - type: AppraisalCartridge
+
+- type: entity
+  parent: NFBasePDACartridge
+  id: LedgerCartridge
+  name: SpesoFlow Lite cartridge
+  description: A program for keeping track of sector bank accounts.
+  components:
+    - type: Sprite
+      sprite: _NF/Objects/Devices/cartridge.rsi
+      state: cart-ledger
+    - type: Icon
+      sprite: _NF/Objects/Devices/cartridge.rsi
+      state: cart-ledger
+    - type: UIFragment
+      ui: !type:LedgerUi
+    - type: Cartridge
+      programName: ledger-program-name
+      icon: _NF/Interface/icons.rsi/ledger.png
+      readonly: true
+    - type: NFLedgerCartridge
 
 # Not a PDA cartridge (then why is this here)
 - type: entity

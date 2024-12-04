@@ -151,7 +151,9 @@
     tags:
     - CannotSuicide
     - DoorBumpOpener
-
+  - type: Puller
+    needsHands: false
+    
 - type: entity
   parent: BaseMobDragon
   id: MobDragon
@@ -186,13 +188,13 @@
     projectileSpeed: 5
 
 - type: entity
-  parent: [NFMobRestrictions, BaseMobDragon] # Frontier: add NFMobRestrictions
+  parent: [NFMobRestrictions, BaseMobDragon, MobNonHumanHostileBase, NFMobBossRestrictions ] # Frontier: add NFMobRestrictions, MobNonHumanHostileBase, NFMobBossRestrictions
   id: MobDragonDungeon
   suffix: Dungeon
   components:
   - type: GhostRole
     description: ghost-role-information-space-dragon-dungeon-description
-    rules: ghost-role-information-space-dragon-dungeon-rules
+    rules: ghost-role-information-dungeon-boss-rules # Frontier: ghost-role-information-space-dragon-dungeon-rules<ghost-role-information-dungeon-boss-rules
     raffle:
       settings: default
   - type: SlowOnDamage
@@ -201,7 +203,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      200: Dead
+      250: Dead # Frontier: 200<250
   # less meat spawned since it's a lot easier to kill
   - type: Butcherable
     spawned:
@@ -214,7 +216,7 @@
   - type: MeleeWeapon
     damage:
       groups:
-        Brute: 12
+        Brute: 15 # Frontier: 12<15
   - type: ActionGun #Frontier
     action: ActionDragonsBreath #Frontier
     gunProto: DragonsBreathGun #Frontier

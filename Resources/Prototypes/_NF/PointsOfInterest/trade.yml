@@ -1,5 +1,5 @@
 # Author Info
-# GitHub: 
+# GitHub: MagnusCrowe
 # Discord: MagnusCrowe
 
 # Maintainer Info
@@ -11,15 +11,21 @@
 - type: pointOfInterest
   id: Trade
   name: Trade Outpost
-  rangeMin: 1500
-  rangeMax: 2500
-  IFFColor: "#37C837" 
+  minimumDistance: 1500
+  maximumDistance: 2500
   spawnGroup: MarketStation
   gridPath: /Maps/_NF/POI/trade.yml
-  busStop: true
-  gridProtection:
-    - ArtifactTriggers
-  
+  addComponents:
+  - type: IFF
+    color: "#37C837"
+    readOnly: true
+  - type: Shuttle
+    angularDamping: 999999
+    linearDamping: 999999
+  - type: StationTransit
+  - type: ProtectedGrid
+    preventArtifactTriggers: true
+
 - type: gameMap
   id: Trade
   mapName: 'Trade Outpost'
@@ -33,4 +39,3 @@
           mapNameTemplate: 'Trade Outpost'
         - type: StationDeadDrop
           maxDeadDrops: 3 # Many here, it's huge.
- 

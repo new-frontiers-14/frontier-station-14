@@ -5,7 +5,8 @@ concurrency:
 
 on:
   workflow_dispatch:
-  schedule:
+  # Frontier: re-enabled autopublish
+   schedule:
     - cron: '0 10 * * *'
 
 jobs:

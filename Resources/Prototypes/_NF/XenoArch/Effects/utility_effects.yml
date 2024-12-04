@@ -1,0 +1,96 @@
+# # Utility effects permanently modify the entity in some way when triggered, and they generally make it 'useful' for some purpose,
+# # like turning the artifact into a tool, or gun, or whatever.
+- type: artifactEffect
+  id: EffectReclaimer
+  targetDepth: 3
+  effectHint: artifact-effect-hint-reclaimer
+  blacklist:
+    components:
+    - Item
+  permanentComponents:
+  - type: MaterialReclaimer
+    whitelist:
+      components:
+      - PhysicalComposition
+      - SpaceGarbage
+      - Log # Frontier
+      tags:
+      - Trash
+      - Recyclable
+    blacklist:
+      components:
+      - Material
+      - Pda
+      - IdCard
+      - Brain
+      tags:
+      - HighRiskItem
+    soundCooldown: 0
+    sound:
+      path: /Audio/Ambience/Objects/crushing.ogg
+      params:
+        volume: 5
+        maxDistance: 5
+        loop: true
+    useOldSolutionLogic: true
+    solutionContainerId: output
+    powered: true
+  - type: MaterialStorage
+    insertOnInteract: false
+  - type: SolutionContainerManager
+    solutions:
+      output:
+        maxVol: 1000 # Frontier 100<1000
+  - type: DrainableSolution
+    solution: output
+  - type: ExaminableSolution
+    solution: output
+  - type: MaterialReclaimerMagnetPickup # Frontier
+    range: 0.30
+    magnetEnabled: true
+
+- type: artifactEffect
+  id: EffectInteractionPopup
+  targetDepth: 2
+  effectHint: artifact-effect-hint-petting
+  blacklist:
+    components:
+    - Item
+  permanentComponents:
+  - type: InteractionPopup
+    successChance: 0.5
+    interactSuccessString: petting-success-artifact
+    interactFailureString: petting-failure-artifact
+    interactSuccessSpawn: EffectHearts
+    interactSuccessSound:
+      collection: RadiationPulse
+
+- type: artifactEffect
+  id: EffectAdvMop
+  targetDepth: 3
+  effectHint: artifact-effect-hint-mop
+  whitelist:
+    components:
+    - Item
+  permanentComponents:
+  - type: Spillable
+    solution: absorbed
+  - type: Absorbent
+    pickupAmount: 100
+  - type: UseDelay
+    delay: 1.0
+  - type: SolutionRegeneration
+    solution: absorbed
+    generated:
+      reagents:
+      - ReagentId: Water
+        Quantity: 5
+  - type: SolutionPurge
+    solution: absorbed
+    preserve:
+    - Water
+    quantity: 10
+  - type: SolutionContainerManager
+    solutions:
+      absorbed:
+        maxVol: 100

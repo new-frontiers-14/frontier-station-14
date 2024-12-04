@@ -1543,7 +1543,7 @@
     - id: BiomassReclaimerMachineCircuitboard
       orGroup: Board
       prob: 0.25
-    - id: BiofabricatorMachineCircuitboard
+    - id: BiogeneratorMachineCircuitboard # Frontier BiofabricatorMachineCircuitboard<BiogeneratorMachineCircuitboard
       orGroup: Board
       prob: 0.25
     - id: TurboItemRechargerCircuitboard
@@ -1653,6 +1653,8 @@
       - id: ClothingEyesGlassesOutlawGlasses
         orGroup: Clothes
       - id: ClothingOuterSuitCarp
+        orGroup: Clothes
+      - id: ClothingNeckCloakRosy
         orGroup: Clothes
 
 - type: entity
@@ -1815,6 +1817,17 @@
       - id: SmokingPipeFilledTobacco
       - id: DrinkAtomicBombGlass
       - id: PaperMailNFPipebombIntern
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: BaseMail
+  id: MailCommandNFWristwatchGold
+  suffix: gold wristwatch
+  components:
+  - type: Mail
+    isFragile: true
+    contents:
+      - id: MailCommandNFWristwatchGold
 
 - type: entity
   categories: [ HideSpawnMenu ]

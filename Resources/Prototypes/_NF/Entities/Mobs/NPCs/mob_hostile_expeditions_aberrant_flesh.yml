@@ -148,7 +148,7 @@
 - type: entity
   parent:
   - BaseMobFleshExpeditions
-  - MobLaserReflect # Added to prevent laser abuse from players
+  #- MobLaserReflect # Added to prevent laser abuse from players
   id: MobFleshAssimilatedMiner
   description: An unfortunate miner that was infected upon contact with aberrant flesh and has been slowly assimilated.
   #categories: [ HideSpawnMenu ]
@@ -337,7 +337,7 @@
 
 # EXPEDITION BOSS
 - type: entity
-  parent: [ BaseMobFleshExpeditions, MobHostileBossBase ]
+  parent: [ BaseMobFleshExpeditions, MobHostileBossBase, NFMobBossRestrictions ]
   id: MobHorrorExpeditions
   name: aberrant flesh horror
   description: Tougher and more resilient than most aberrant flesh monsters. Has sharp, bony protrusions and highly developed musculature.

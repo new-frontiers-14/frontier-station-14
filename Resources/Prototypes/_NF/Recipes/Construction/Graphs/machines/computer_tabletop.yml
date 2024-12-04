@@ -36,7 +36,7 @@
               amount: 5
             - !type:DeleteEntity {}
           steps:
-            - tool: Welding
+            - tool: Screwing
               doAfter: 2
 
     - node: boardUnsecured
@@ -119,7 +119,9 @@
             - tool: Prying
 
     - node: tabletop computer
-      entity: !type:BoardNodeEntity { container: board }
+      entity: !type:BoardNodeEntity
+        container: board
+        computer: Tabletop
       edges:
         - to: monitorUnsecured
           conditions:

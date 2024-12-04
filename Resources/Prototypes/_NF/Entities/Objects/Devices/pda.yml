@@ -9,6 +9,24 @@
     handheld: true
 
 - type: entity
+  parent: [MusicBasePDA, AdminPDA]
+  id: NFAdminPDA
+  components:
+  - type: CartridgeLoader
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NewsReaderCartridge
+      - BountyContractsCartridge
+      - AstroNavCartridge
+      - WantedListCartridge
+      - LedgerCartridge
+      - LogProbeCartridge
+      - MailMetricsCartridge
+      - AppraisalCartridge
+      - NetProbeCartridge
+
+- type: entity
   parent: BasePDA
   id: MercenaryPDA
   name: mercenary PDA
@@ -65,7 +83,7 @@
     state: pda-pilot
 
 - type: entity
-  parent: BasePDA
+  parent: BaseSecurityPDA
   id: StcPDA
   name: station traffic controller PDA
   description: Declare emergencies in style!
@@ -93,7 +111,7 @@
     state: pda-stc
 
 - type: entity
-  parent: SecurityPDA
+  parent: BaseSecurityPDA
   id: SecurityGuardPDA
   name: security guard PDA
   description: Red to hide the stains of passenger blood.
@@ -121,7 +139,7 @@
         - Write
 
 - type: entity
-  parent: BasePDA
+  parent: BaseSecurityPDA
   id: SheriffPDA
   name: sheriff PDA
   description: Whosoever bears this PDA is the law.
@@ -154,9 +172,18 @@
   - type: Icon
     sprite: _NF/Objects/Devices/pda.rsi
     state: pda-sheriff
+  - type: CartridgeLoader # Extended with the ledger
+    preinstalled:
+    - CrewManifestCartridge
+    - NotekeeperCartridge
+    - NewsReaderCartridge
+    - BountyContractsCartridge
+    - AstroNavCartridge
+    - WantedListCartridge
+    - LedgerCartridge
 
 - type: entity
-  parent: BasePDA
+  parent: BaseSecurityPDA
   id: CadetPDA
   name: cadet PDA
   description: Whosoever bears this PDA could be the law.
@@ -191,7 +218,7 @@
     state: pda-cadet
 
 - type: entity
-  parent: BasePDA
+  parent: BaseSecurityPDA
   id: DeputyPDA
   name: deputy PDA
   description: Whosoever bears this PDA is close to being the law.
@@ -226,7 +253,7 @@
     state: pda-deputy
 
 - type: entity
-  parent: BaseMedicalPDA
+  parent: BaseSecurityPDA
   id: BrigmedicNFPDA
   name: brigmedic PDA
   description: Whosoever bears this PDA heals the law.
@@ -261,7 +288,7 @@
     state: pda-brigmed
 
 - type: entity
-  parent: BasePDA
+  parent: BaseSecurityPDA
   id: SergeantPDA
   name: sergeant PDA
   description: Whosoever bears this PDA puts the law on their back.
@@ -296,7 +323,7 @@
     state: pda-sergeant
 
 - type: entity
-  parent: BasePDA
+  parent: BaseSecurityPDA
   id: BailiffPDA
   name: bailiff PDA
   description: Whosoever bears this PDA puts the law on their back.
@@ -331,7 +358,7 @@
     state: pda-bailiff
 
 - type: entity
-  parent: BasePDA
+  parent: BaseSecurityPDA
   id: NFDetectivePDA
   name: detective PDA
   description: Smells like rain... pouring down the rooftops...
@@ -365,7 +392,7 @@
     state: pda-nfdetective
 
 - type: entity
-  parent: BasePDA
+  parent: BaseSecurityPDA
   id: PublicAffairsLiaisonPDA
   name: public affairs liaison PDA
   description: Paperwork, paperwork, paperwork!
@@ -406,7 +433,7 @@
     state: pda-pal
 
 - type: entity
-  parent: HoPPDA
+  parent: BaseSecurityPDA
   id: SrPDA
   name: station representative PDA
   description: Looks like it's been clawed on.
@@ -440,11 +467,13 @@
     state: pda-sr
   - type: CartridgeLoader
     preinstalled:
-      - CrewManifestCartridge
-      - NotekeeperCartridge
-      - NewsReaderCartridge
-      - BountyContractsCartridge
-      - MailMetricsCartridge # DeltaV - Courier Performance
+    - CrewManifestCartridge
+    - NotekeeperCartridge
+    - NewsReaderCartridge
+    - BountyContractsCartridge
+    - AstroNavCartridge
+    - LedgerCartridge
+    - MailMetricsCartridge
 
 - type: entity
   parent: PiratePDA
@@ -489,3 +518,11 @@
   - type: Pda
     id: ContractorIDCard
     state: pda-clear
+
+- type: entity
+  parent: JanitorPDA
+  id: NFJanitorPDA
+  components:
+  - type: Pda
+    id: NFJanitorIDCard
+    state: pda-janitor

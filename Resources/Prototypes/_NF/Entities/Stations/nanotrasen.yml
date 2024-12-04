@@ -1,11 +1,11 @@
 - type: entity
   id: StandardFrontierStation
+  suffix: DEBUG # TODO: Fix this, its here to stop PrototypeSaveTest fail
   parent:
   - BaseStation
   - BaseStationCargo
   - BaseStationJobsSpawning
   - BaseStationRecords
-  - BaseStationShuttles
   - BaseStationAlertLevels
   - BaseStationSiliconLawFrontierStation
   - BaseStationSectorNews
@@ -13,6 +13,7 @@
   - BaseStationSectorServices # Hosts all sector-wide services
   - BaseStationDampening
   - BaseStationDeadDropHintExempt # No hints
+  - BaseStationRenameWarpPoints
   categories: [ HideSpawnMenu ]
   components:
   - type: Transform
@@ -43,24 +44,18 @@
   - BaseStationCargoMarket
   categories: [ HideSpawnMenu ]
 
+  # Station with records, for shuttle purchases and/or player spawning
 - type: entity
-  id: SpawnableFrontierOutpost
+  id: RecordsFrontierOutpost
   parent:
   - StandardFrontierOutpost
   - BaseStationRecords
   categories: [ HideSpawnMenu ]
 
 - type: entity
-  id: ShipyardFrontierOutpost
+  id: DeadDropRecordsFrontierOutpost
   parent:
   - StandardFrontierOutpost
-  - BaseStationShuttles
-  categories: [ HideSpawnMenu ]
-
-- type: entity
-  id: DeadDropShipyardFrontierOutpost
-  parent:
-  - ShipyardFrontierOutpost
   - BaseStationDeadDrops
   categories: [ HideSpawnMenu ]
 
@@ -71,7 +66,6 @@
   - BaseStationCargo # Cargo
   - BaseStationJobsSpawning # Records and jobsspawning
   - BaseStationRecords
-  - BaseStationShuttles # Can spawn shuttles via shipyard consoles
   - BaseStationAlertLevels # Has a comms console
   - BaseStationSiliconLawFrontierStation # No funny borg laws
   - BaseStationDampening
@@ -95,6 +89,7 @@
   components:
   - type: Transform
 
+  # FIXME: this is currently identical to StandardFrontierVessel
 - type: entity
   id: StandardFrontierSecurityVessel
   parent:

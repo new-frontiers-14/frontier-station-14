@@ -5,6 +5,9 @@ namespace Content.Shared._NF.CCVar;
 [CVarDefs]
 public sealed class NFCCVars
 {
+    /*
+     *  Respawn
+    */
     /// <summary>
     /// Whether or not respawning is enabled.
     /// </summary>
@@ -102,6 +105,15 @@ public sealed class NFCCVars
         CVarDef.Create("nf14.worldgen.poi_placement_retries", 10, CVar.SERVERONLY);
 
     /*
+    * Shipyard
+    */
+    /// <summary>
+    /// Whether the Shipyard is enabled.
+    /// </summary>
+    public static readonly CVarDef<bool> Shipyard =
+        CVarDef.Create("shuttle.shipyard", true, CVar.SERVERONLY);
+
+    /*
      * Salvage
      */
     /// <summary>
@@ -110,25 +122,104 @@ public sealed class NFCCVars
     public static readonly CVarDef<int> SalvageExpeditionMaxActive =
         CVarDef.Create("nf14.salvage.expedition_max_active", 15, CVar.REPLICATED);
 
+    /// <summary>
+    /// Cooldown for failed missions.
+    /// </summary>
+    public static readonly CVarDef<float> SalvageExpeditionFailedCooldown =
+        CVarDef.Create("salvage.expedition_failed_cooldown", 1200f, CVar.REPLICATED);
+
     /*
      * Smuggling
      */
+    /// <summary>
+    /// The maximum number of smuggling drop pods to be out at once.
+    /// Taking another dead drop note will cause the oldest one to be destroyed.
+    /// </summary>
     public static readonly CVarDef<int> SmugglingMaxSimultaneousPods =
         CVarDef.Create("nf14.smuggling.max_simultaneous_pods", 5, CVar.REPLICATED);
+    /// <summary>
+    /// The maximum number of dead drops (places to get smuggling notes) to place at once.
+    /// </summary>
     public static readonly CVarDef<int> SmugglingMaxDeadDrops =
         CVarDef.Create("nf14.smuggling.max_sector_dead_drops", 10, CVar.REPLICATED);
+    /// <summary>
+    /// The minimum number of FUCs to spawn for anti-smuggling work.
+    /// </summary>
     public static readonly CVarDef<int> SmugglingMinFucPayout =
-        CVarDef.Create("nf14.smuggling.min_fuc_payout", 2, CVar.REPLICATED);
+        CVarDef.Create("nf14.smuggling.min_fuc_payout", 1, CVar.REPLICATED);
+    /// <summary>
+    /// The shortest time to wait before a dead drop spawns a new smuggling note.
+    /// </summary>
     public static readonly CVarDef<int> DeadDropMinTimeout =
         CVarDef.Create("nf14.smuggling.min_timeout", 900, CVar.REPLICATED);
+    /// <summary>
+    /// The longest time to wait before a dead drop spawns a new smuggling note.
+    /// </summary>
     public static readonly CVarDef<int> DeadDropMaxTimeout =
         CVarDef.Create("nf14.smuggling.max_timeout", 5400, CVar.REPLICATED);
+    /// <summary>
+    /// The shortest distance that a smuggling pod will spawn away from Frontier Outpost.
+    /// </summary>
     public static readonly CVarDef<int> DeadDropMinDistance =
         CVarDef.Create("nf14.smuggling.min_distance", 6500, CVar.REPLICATED);
+    /// <summary>
+    /// The longest distance that a smuggling pod will spawn away from Frontier Outpost.
+    /// </summary>
     public static readonly CVarDef<int> DeadDropMaxDistance =
         CVarDef.Create("nf14.smuggling.max_distance", 8000, CVar.REPLICATED);
+    /// <summary>
+    /// The smallest number of dead drop hints (paper clues to dead drop locations) at round start.
+    /// </summary>
     public static readonly CVarDef<int> DeadDropMinHints =
-        CVarDef.Create("nf14.smuggling.min_hints", 3, CVar.REPLICATED);
+        CVarDef.Create("nf14.smuggling.min_hints", 0, CVar.REPLICATED); // Used with BasicDeadDropHintVariationPass
+    /// <summary>
+    /// The largest number of dead drop hints (paper clues to dead drop locations) at round start.
+    /// </summary>
     public static readonly CVarDef<int> DeadDropMaxHints =
-        CVarDef.Create("nf14.smuggling.max_hints", 4, CVar.REPLICATED);
+        CVarDef.Create("nf14.smuggling.max_hints", 0, CVar.REPLICATED); // Used with BasicDeadDropHintVariationPass
+
+    /*
+    * Discord
+    */
+    /// <summary>
+    ///     URL of the Discord webhook which will send round status notifications.
+    /// </summary>
+    public static readonly CVarDef<string> DiscordRoundWebhook =
+        CVarDef.Create("discord.round_webhook", string.Empty, CVar.SERVERONLY);
+
+    /// <summary>
+    ///     Discord ID of role which will be pinged on new round start message.
+    /// </summary>
+    public static readonly CVarDef<string> DiscordRoundRoleId =
+        CVarDef.Create("discord.round_roleid", string.Empty, CVar.SERVERONLY);
+
+    /// <summary>
+    ///     Send notifications only about a new round begins.
+    /// </summary>
+    public static readonly CVarDef<bool> DiscordRoundStartOnly =
+        CVarDef.Create("discord.round_start_only", false, CVar.SERVERONLY);
+
+    /// <summary>
+    /// URL of the Discord webhook which will relay all round end messages.
+    /// </summary>
+    public static readonly CVarDef<string> DiscordLeaderboardWebhook =
+        CVarDef.Create("discord.leaderboard_webhook", string.Empty, CVar.SERVERONLY);
+
+    /*
+    * Auth
+    */
+    public static readonly CVarDef<string> ServerAuthList =
+        CVarDef.Create("frontier.auth_servers", "", CVar.CONFIDENTIAL | CVar.SERVERONLY);
+
+    public static readonly CVarDef<bool> AllowMultiConnect =
+        CVarDef.Create("frontier.allow_multi_connect", true, CVar.CONFIDENTIAL | CVar.SERVERONLY);
+
+    /*
+     * Events
+     */
+    /// <summary>
+    ///     A scale factor applied to a grid's bounds when trying to find a spot to randomly generate a crate for bluespace events.
+    /// </summary>
+    public static readonly CVarDef<float> CrateGenerationGridBoundsScale =
+        CVarDef.Create("nf14.events.crate_generation_grid_bounds_scale", 0.6f, CVar.SERVERONLY);
 }

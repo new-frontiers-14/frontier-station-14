@@ -65,13 +65,35 @@
     damage:
       groups:
         Brute: 1
+  - type: Appearance
+  - type: DeepFried
+    crispinessLevelSet: Crispy
+    originalName: crispy
   - type: FriedTrait
+    crispinessLevelSet: Crispy
+
+- type: entity
+  name: spooky
+  id: MobCatSpooky
+  parent: MobCatCrispy
+  description: A grave mistake.
+  suffix: Admeme # only way to get it at the moment
+  components:
+  - type: FlavorProfile
+    flavors:
+      - spooky
+  - type: DeepFried
+    crispinessLevelSet: Spectral
+    originalName: spooky
+  - type: FriedTrait
+    crispinessLevelSet: Spectral
+  - type: Spectral
 
 - type: entity
   name: dragon omelette
   parent: FoodMealBase
   id: FoodMealDragonOmelette
-  description:
+  description: The mother of all omelettes.
   components:
   - type: FlavorProfile
     flavors:
@@ -100,7 +122,7 @@
 - type: entity
   name: avocado toast
   parent: FoodBreadSliceBase
-  id: FoodMealAvocadoToast
+  id: FoodBreadAvocadoToast
   description: It was this or home ownership.
   components:
   - type: FlavorProfile
@@ -275,7 +297,7 @@
     tags:
     - Vegetable
     - Fruit
-  
+
 - type: entity
   name: poached pears
   parent: FoodBowlBase
@@ -339,56 +361,3 @@
   - type: Tag
     tags:
     - Fruit
-
-- type: entity
-  name: pear muffin
-  parent: FoodMealBase
-  id: FoodBakedMuffinPear
-  description: I won't tell if you just try to pick out the chocolate.
-  components:
-  - type: FlavorProfile
-    flavors:
-      - chocolate
-      - muffin
-      - pear
-  - type: Sprite
-    sprite: _NF/Objects/Consumable/Food/Baked/bread.rsi
-    state: pearmuffin
-    scale: .75, .75
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 15
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 6
-        - ReagentId: Vitamin
-          Quantity: 4
-        - ReagentId: Flavorol
-          Quantity: 2
-        - ReagentId: Theobromine
-          Quantity: 1
-  - type: Tag
-    tags:
-    - Fruit
-
-- type: entity
-  name: pear and cheese tart
-  parent: FoodPieBase
-  id: FoodTartPearCheese
-  description: The most sublime pair.
-  components:
-  - type: FlavorProfile
-    flavors:
-      - sweet
-      - cheesy
-      - pear
-  - type: Sprite
-    sprite: _NF/Objects/Consumable/Food/Baked/pie.rsi
-    layers:
-    - state: tin
-    - state: pearandcheese
-  - type: Tag
-    tags:
-    - Fruit
-    - Pie

@@ -1,3 +1,4 @@
+deaddrop-shuttle-name = Syndicate Supply Drop
 deaddrop-search-text = Search closer
 deaddrop-hint-pretext = A Syndicate drop pod will be dispatched to the following coordinates:
 deaddrop-hint-posttext = Our agents on the inside will pay anyone willing to smuggle these goods into NT territory.
@@ -15,3 +16,4 @@ deaddrop-faxed-hint-name = suspicious fax
 deaddrop-faxed-hint-content = 
     Not much time.
     Spinward Syndicate needs help.
+deaddrop-faxed-hint-signature = Syndicate Logistics

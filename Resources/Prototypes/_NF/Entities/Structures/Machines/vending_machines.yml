@@ -128,7 +128,7 @@
     ejectDelay: 3
     ejectRandomMax: 0
     ejectRandomCounter: 0
-    initialStockQuality: 0.5
+#    initialStockQuality: 0.5
   - type: Advertise
     pack: SyndieDrobeAds
   - type: Sprite
@@ -724,7 +724,7 @@
   suffix: POI
   components:
   - type: VendingMachine
-    pack: SalvageEquipmentPOIInventory
+    pack: NFSalvageEquipmentPOIInventory
 
 # Gas Tank Dispenser
 
@@ -735,3 +735,13 @@
   components:
   - type: VendingMachine
     pack: TankDispenserEVAPOIInventory
+
+# Dungeon versions of upstream machines
+
+- type: entity
+  parent: VendingMachineChefvend
+  id: VendingMachineChefvendDungeon
+  suffix: Dungeon
+  components:
+  - type: VendingMachine
+    initialStockQuality: 0 # This isnt actully empty, just always missing stuff.

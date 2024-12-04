@@ -82,14 +82,11 @@
   parent:
   - CrateTradeBaseSecure
   - BaseC3SyndicateContraband
-  id: CrateTradeContrabandSecureNormal
+  id: CrateTradeBaseSecureContraband
   name: Syndicate contraband crate
-  categories: [ HideSpawnMenu ]
+  description: Contains goods made in the Spinward sector, ready to be smuggled to a cargo depot for profit. MAKE SURE THE CRATE IS INTACT.
+  abstract: true
   components:
-  - type: Icon
-    sprite: _NF/Structures/Storage/Crates/contraband_crate.rsi
-  - type: Sprite
-    sprite: _NF/Structures/Storage/Crates/contraband_crate.rsi
   - type: EntityStorage
     deleteContentsOnDestruction: true
   - type: Fixtures
@@ -98,13 +95,11 @@
         shape:
           !type:PhysShapeAabb
           bounds: "-0.4,-0.4,0.4,0.29"
-        density: 150 # Heavy
+        density: 400 # Very heavy
         mask:
         - SmallMobMask
         layer:
         - MachineLayer
-  - type: StaticPrice
-    price: 7500
   - type: Contraband
     turnInValues:
       FrontierUplinkCoin: 3
@@ -114,12 +109,48 @@
     allowedShipyardTypes:
     - Syndicate
     - BlackMarket
+  - type: PirateBountyItem
+    id: ContrabandCrate
 
 - type: entity
-  parent:
-  - CrateTradeBaseSecure
-  - BaseC3SyndicateContraband
-  id: CrateTradeContrabandSecureDonk
+  parent: CrateTradeBaseSecureContraband
+  id: CrateTradeContrabandSecure1
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Icon
+    sprite: _NF/Structures/Storage/Crates/contraband1_crate.rsi
+  - type: Sprite
+    sprite: _NF/Structures/Storage/Crates/contraband1_crate.rsi
+  - type: StaticPrice
+    price: 3000
+
+- type: entity
+  parent: CrateTradeBaseSecureContraband
+  id: CrateTradeContrabandSecure2
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Icon
+    sprite: _NF/Structures/Storage/Crates/contraband2_crate.rsi
+  - type: Sprite
+    sprite: _NF/Structures/Storage/Crates/contraband2_crate.rsi
+  - type: StaticPrice
+    price: 5000
+
+- type: entity
+  parent: CrateTradeBaseSecureContraband
+  id: CrateTradeContrabandSecure3
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Icon
+    sprite: _NF/Structures/Storage/Crates/contraband3_crate.rsi
+  - type: Sprite
+    sprite: _NF/Structures/Storage/Crates/contraband3_crate.rsi
+  - type: StaticPrice
+    price: 7500
+
+- type: entity
+  parent: CrateTradeBaseSecureContraband
+  id: CrateTradeContrabandSecure4
   name: Donk Co. contraband crate
   categories: [ HideSpawnMenu ]
   components:
@@ -127,36 +158,12 @@
     sprite: _NF/Structures/Storage/Crates/donkco_crate.rsi
   - type: Sprite
     sprite: _NF/Structures/Storage/Crates/donkco_crate.rsi
-  - type: EntityStorage
-    deleteContentsOnDestruction: true
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-0.4,-0.4,0.4,0.29"
-        density: 400 # Very heavy
-        mask:
-        - SmallMobMask
-        layer:
-        - MachineLayer
   - type: StaticPrice
     price: 15000
-  - type: Contraband
-    turnInValues:
-      FrontierUplinkCoin: 3
-      Doubloon: 2
-  - type: DisableShipyardSale
-    reason: shipyard-console-contraband-onboard
-    allowedShipyardTypes:
-    - Syndicate
-    - BlackMarket
 
 - type: entity
-  parent:
-  - CrateTradeBaseSecure
-  - BaseC3SyndicateContraband
-  id: CrateTradeContrabandSecureCyberSun
+  parent: CrateTradeBaseSecureContraband
+  id: CrateTradeContrabandSecure5
   name: Cybersun Industries contraband crate
   categories: [ HideSpawnMenu ]
   components:
@@ -164,30 +171,8 @@
     sprite: _NF/Structures/Storage/Crates/cybersun_crate.rsi
   - type: Sprite
     sprite: _NF/Structures/Storage/Crates/cybersun_crate.rsi
-  - type: EntityStorage
-    deleteContentsOnDestruction: true
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-0.4,-0.4,0.4,0.29"
-        density: 400 # Very heavy
-        mask:
-        - SmallMobMask
-        layer:
-        - MachineLayer
   - type: StaticPrice
     price: 15000
-  - type: Contraband
-    turnInValues:
-      FrontierUplinkCoin: 3
-      Doubloon: 2
-  - type: DisableShipyardSale
-    reason: shipyard-console-contraband-onboard
-    allowedShipyardTypes:
-    - Syndicate
-    - BlackMarket
 
 - type: entity
   parent: CrateSecgear
