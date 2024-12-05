@@ -63,24 +63,24 @@
     sprite: _NF/Objects/Specific/Medical/medipen.rsi
 
 - type: entity
-  name: coagulate auto-injector
+  name: hemostasis auto-injector
   parent: ChemicalMedipen
-  id: CoagulateAutoInjector
-  description: A rapid dose of coagulates and circulatory fluids. Contains tranexamic acid and saline.
+  id: HemostasisAutoInjector
+  description: A rapid dose of coagulants and circulatory fluids. Contains tranexamic acid and saline.
   components:
   - type: Sprite
     sprite: _NF/Objects/Specific/Medical/medipen.rsi
     layers:
-    - state: coagulatepen
+    - state: hemostasispen
       map: ["enum.SolutionContainerLayers.Fill"]
   - type: SolutionContainerVisuals
     maxFillLevels: 1
     changeColor: false
-    emptySpriteName: coagulatepen_empty
+    emptySpriteName: hemostasispen_empty
   - type: SolutionContainerManager
     solutions:
       pen:
-        maxVol: 25
+        maxVol: 20
         reagents:
         - ReagentId: TranexamicAcid
           Quantity: 5
@@ -90,20 +90,20 @@
     tags: []
 
 - type: entity
-  name: epinine auto-injector
+  name: stimulant auto-injector
   parent: ChemicalMedipen
-  id: EpinineAutoInjector
+  id: StimulantAutoInjector
   description: A rapid dose of potent stimulants and governing agents. Contains desoxyephedrine and dylovene. Use with extreme caution.
   components:
   - type: Sprite
     sprite: _NF/Objects/Specific/Medical/medipen.rsi
     layers:
-    - state: epininepen
+    - state: stimulantpen
       map: ["enum.SolutionContainerLayers.Fill"]
   - type: SolutionContainerVisuals
     maxFillLevels: 1
     changeColor: false
-    emptySpriteName: epininepen_empty
+    emptySpriteName: stimulantpen_empty
   - type: SolutionContainerManager
     solutions:
       pen:
