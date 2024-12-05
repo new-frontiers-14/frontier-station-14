@@ -286,6 +286,14 @@
           scraprock07: ""
 
 - type: entity
+  id: WallRockScrapPileBot
+  parent: WallRockScrapPile
+  components:
+  - type: OreVein
+    oreChance: 1.0
+    currentOre: OreScrapBot
+
+- type: entity
   id: WallRockScrapPileCoal
   parent: WallRockScrapPile
   description: An ore vein with coal.
@@ -309,6 +317,14 @@
     - sprite: Structures/Walls/rock.rsi
       state: rock_coal
       map: [ "enum.MiningScannerVisualLayers.Overlay" ]
+
+- type: entity
+  id: WallRockScrapPileCoalBot
+  parent: WallRockScrapPileCoal
+  components:
+  - type: OreVein
+    oreChance: 1.0
+    currentOre: OreScrapBot
 
 - type: entity
   id: WallRockScrapPileGold
@@ -336,6 +352,14 @@
       map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
+  id: WallRockScrapPileGoldBot
+  parent: WallRockScrapPileGold
+  components:
+  - type: OreVein
+    oreChance: 1.0
+    currentOre: OreScrapBot
+
+- type: entity
   id: WallRockScrapPileDiamond
   parent: WallRockScrapPile
   description: An ore vein with diamond.
@@ -359,6 +383,14 @@
     - sprite: Structures/Walls/rock.rsi
       state: rock_diamond
       map: [ "enum.MiningScannerVisualLayers.Overlay" ]
+
+- type: entity
+  id: WallRockScrapPileDiamondBot
+  parent: WallRockScrapPileDiamond
+  components:
+  - type: OreVein
+    oreChance: 1.0
+    currentOre: OreScrapBot
 
 - type: entity
   id: WallRockScrapPilePlasma
@@ -386,6 +418,14 @@
       map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
+  id: WallRockScrapPilePlasmaBot
+  parent: WallRockScrapPilePlasma
+  components:
+  - type: OreVein
+    oreChance: 1.0
+    currentOre: OreScrapBot
+
+- type: entity
   id: WallRockScrapPileQuartz
   parent: WallRockScrapPile
   description: An ore vein with quartz.
@@ -409,6 +449,14 @@
     - sprite: Structures/Walls/rock.rsi
       state: rock_quartz
       map: [ "enum.MiningScannerVisualLayers.Overlay" ]
+
+- type: entity
+  id: WallRockScrapPileQuartzBot
+  parent: WallRockScrapPileQuartz
+  components:
+  - type: OreVein
+    oreChance: 1.0
+    currentOre: OreScrapBot
 
 - type: entity
   id: WallRockScrapPileSilver
@@ -436,6 +484,14 @@
       map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
+  id: WallRockScrapPileSilverBot
+  parent: WallRockScrapPileSilver
+  components:
+  - type: OreVein
+    oreChance: 1.0
+    currentOre: OreScrapBot
+
+- type: entity
   id: WallRockScrapPileIron
   parent: WallRockScrapPile
   description: An ore vein with iron.
@@ -459,6 +515,14 @@
     - sprite: Structures/Walls/rock.rsi
       state: rock_tin
       map: [ "enum.MiningScannerVisualLayers.Overlay" ]
+
+- type: entity
+  id: WallRockScrapPileIronBot
+  parent: WallRockScrapPileIron
+  components:
+  - type: OreVein
+    oreChance: 1.0
+    currentOre: OreScrapBot
 
 - type: entity
   id: WallRockScrapPileUranium
@@ -486,6 +550,14 @@
       map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
+  id: WallRockScrapPileUraniumBot
+  parent: WallRockScrapPileUranium
+  components:
+  - type: OreVein
+    oreChance: 1.0
+    currentOre: OreScrapBot
+
+- type: entity
   id: WallRockScrapPileBananium
   parent: WallRockScrapPile
   description: An ore vein with bananium.
@@ -509,6 +581,14 @@
     - sprite: Structures/Walls/rock.rsi
       state: rock_bananium
       map: [ "enum.MiningScannerVisualLayers.Overlay" ]
+
+- type: entity
+  id: WallRockScrapPileBananiumBot
+  parent: WallRockScrapPileBananium
+  components:
+  - type: OreVein
+    oreChance: 1.0
+    currentOre: OreScrapBot
 
 - type: entity
   id: WallRockScrapPileSalt
@@ -536,6 +616,14 @@
       map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
+  id: WallRockScrapPileSaltBot
+  parent: WallRockScrapPileSalt
+  components:
+  - type: OreVein
+    oreChance: 1.0
+    currentOre: OreScrapBot
+
+- type: entity
   id: WallRockScrapPileArtifactFragment
   parent: WallRockScrapPile
   description: A scrap pile. What's that sticking out of it?
@@ -561,6 +649,14 @@
       map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
+  id: WallRockScrapPileArtifactFragmentBot
+  parent: WallRockScrapPileArtifactFragment
+  components:
+  - type: OreVein
+    oreChance: 1.0
+    currentOre: OreScrapBot
+
+- type: entity
   id: WallRockScrapPileBluespace
   parent: WallRockScrapPile
   description: An ore vein with bluespace.
@@ -583,6 +679,14 @@
       state: scraprock_west
     - state: rock_bluespace
       map: [ "enum.MiningScannerVisualLayers.Overlay" ]
+
+- type: entity
+  id: WallRockScrapPileBluespaceBot
+  parent: WallRockScrapPileBluespace
+  components:
+  - type: OreVein
+    oreChance: 1.0
+    currentOre: OreScrapBot
 
 - type: entity
   id: AsteroidScrapPileMining
