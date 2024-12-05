@@ -1,0 +1,15 @@
+# coffee
+- type: constructionGraph
+  id: NFDonut
+  start: start
+  graph:
+  - node: start
+    entity: FoodDoughPastryBaseRaw
+    edges:
+    - to: donut
+      steps:
+      - tool: Rolling
+        doAfter: 1
+
+  - node: donut
+    entity: FoodDonutUncooked

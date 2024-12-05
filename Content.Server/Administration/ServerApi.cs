@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Content.Server.Administration.Managers;
 using Content.Server.Administration.Systems;
 using Content.Server.Database;
+using Content.Server.Administration.Managers;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Presets;
 using Content.Server.GameTicking.Rules.Components;
@@ -16,6 +17,7 @@ using Content.Server.Maps;
 using Content.Server.RoundEnd;
 using Content.Shared.Administration;
 using Content.Shared.Administration.Managers;
+using Content.Shared.Administration;
 using Content.Shared.CCVar;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Prototypes;
@@ -52,7 +54,7 @@ public sealed partial class ServerApi : IPostInjectInit
     [Dependency] private readonly IStatusHost _statusHost = default!;
     [Dependency] private readonly IConfigurationManager _config = default!;
     [Dependency] private readonly ISharedPlayerManager _playerManager = default!;
-    [Dependency] private readonly ISharedAdminManager _adminManager = default!;
+    [Dependency] private readonly IAdminManager _adminManager = default!; // Frontier: ISharedAdminManager<IAdminManager>
     [Dependency] private readonly IGameMapManager _gameMapManager = default!;
     [Dependency] private readonly IServerNetManager _netManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
@@ -90,6 +92,8 @@ public sealed partial class ServerApi : IPostInjectInit
         RegisterActorHandler(HttpMethod.Post, "/admin/actions/force_preset", ActionForcePreset);
         RegisterActorHandler(HttpMethod.Post, "/admin/actions/set_motd", ActionForceMotd);
         RegisterActorHandler(HttpMethod.Patch, "/admin/actions/panic_bunker", ActionPanicPunker);
+
+        RegisterHandler(HttpMethod.Post, "/admin/actions/send_bwoink", ActionSendBwoink); // Frontier - Discord Ahelp Reply
     }
 
     public void Initialize()
@@ -403,6 +407,40 @@ public sealed partial class ServerApi : IPostInjectInit
             await RespondOk(context);
         });
     }
+    #endregion
+
+    #region Frontier
+    // Creating a region here incase more actions are added in the future
+
+    private async Task ActionSendBwoink(IStatusHandlerContext context)
+    {
+        var body = await ReadJson<BwoinkActionBody>(context);
+        if (body == null)
+            return;
+
+        await RunOnMainThread(async () =>
+    {
+        // Player not online or wrong Guid
+        if (!_playerManager.TryGetSessionById(new NetUserId(body.Guid), out var player))
+        {
+            await RespondError(
+                context,
+                ErrorCode.PlayerNotFound,
+                HttpStatusCode.UnprocessableContent,
+                "Player not found");
+            return;
+        }
+
+        var serverBwoinkSystem = _entitySystemManager.GetEntitySystem<BwoinkSystem>();
+        var message = new SharedBwoinkSystem.BwoinkTextMessage(player.UserId, SharedBwoinkSystem.SystemUserId, body.Text);
+        serverBwoinkSystem.OnWebhookBwoinkTextMessage(message, body);
+
+        // Respond with OK
+        await RespondOk(context);
+    });
+
+
+    }
 
     private async Task ActionAhelpSend(IStatusHandlerContext context, Actor actor)
     {
@@ -672,6 +710,15 @@ public sealed partial class ServerApi : IPostInjectInit
     private sealed class MotdActionBody
     {
         public required string Motd { get; init; }
+    }
+
+    public sealed class BwoinkActionBody
+    {
+        public required string Text { get; init; }
+        public required string Username { get; init; }
+        public required Guid Guid { get; init; }
+        public bool UserOnly { get; init; }
+        public required bool WebhookUpdate { get; init; }
     }
 
     #endregion
