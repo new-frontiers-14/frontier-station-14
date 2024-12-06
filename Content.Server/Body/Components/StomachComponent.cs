@@ -71,7 +71,7 @@ namespace Content.Server.Body.Components
         }
 
         /// <summary>
-        ///     Frontier: If false, food that is not special-digestible only is edible by this entity.
+        ///     Frontier: If false, this entity can eat anything with FoodComponent.RequiresSpecialDigestion set to false.  If true, it can only eat items matching its specialDigestion criteria.
         /// </summary>
         [DataField]
         public bool SpecialDigestibleOnly = false;
