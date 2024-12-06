@@ -166,7 +166,7 @@
       - WallRockSnowSaltGolem
       - WallRockSnowSilverGolem
       - WallRockSnowUraniumGolem
-      rareChance: 0.1 
+      rareChance: 0.1
       prototypes:
         - WallRockSnowBananiumCrabNF
         - WallRockSnowCoalCrabNF
@@ -249,6 +249,81 @@
         - AsteroidRockSaltCrabNF
         - AsteroidRockSilverCrabNF
         - AsteroidRockUraniumCrabNF
+
+- type: entity
+  name: Asteroid Scrap Bot Spawner
+  id: AsteroidScrapBotSpawner
+  parent: MarkerBase
+  suffix: 45
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - state: ai
+    - sprite: _NF/Mobs/RogueSilicons/drones.rsi
+      state: base
+    - sprite: _NF/Mobs/RogueSilicons/drones.rsi
+      state: decor_department
+      color: "#990000"
+    - sprite: _NF/Mobs/RogueSilicons/drones.rsi
+      state: decor_department_accent
+      color: "#ffff00"
+    - sprite: _NF/Mobs/RogueSilicons/drones.rsi
+      state: base_eyes
+      shader: unshaded
+      color: "#990000"
+  - type: RandomSpawner
+    rarePrototypes:
+    - MobRogueSiliconScrapThrustersRangedAsteroid
+    rareChance: 0.1
+    prototypes:
+    - MobRogueSiliconScrapAsteroid
+    - MobRogueSiliconScrapThreadsAsteroid
+    - MobRogueSiliconScrapThrustersAsteroid
+    chance: 0.45
+    offset: 0.2
+
+- type: entity
+  name: Asteroid Scrap Bot Rock Spawner
+  id: AsteroidScrapBotWallSpawner
+  parent: MarkerBase
+  suffix: 45
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - state: ai
+    - sprite: _NF/Mobs/RogueSilicons/drones.rsi
+      state: base
+    - sprite: _NF/Mobs/RogueSilicons/drones.rsi
+      state: decor_department
+      color: "#990000"
+    - sprite: _NF/Mobs/RogueSilicons/drones.rsi
+      state: decor_department_accent
+      color: "#ffff00"
+    - sprite: _NF/Mobs/RogueSilicons/drones.rsi
+      state: base_eyes
+      shader: unshaded
+      color: "#990000"
+  - type: RandomSpawner
+    rarePrototypes:
+    - WallRockScrapPileSaltBot
+    - WallRockScrapPileIronBot
+    - WallRockScrapPileSilverBot
+    - WallRockScrapPileQuartzBot
+    - WallRockScrapPilePlasmaBot
+    - WallRockScrapPileDiamondBot
+    - WallRockScrapPileGoldBot
+    - WallRockScrapPileCoalBot
+    - WallRockScrapPileBananiumBot
+    - WallRockScrapPileUraniumBot
+    - WallRockScrapPileBluespaceBot
+    - WallRockScrapPileArtifactFragmentBot
+    rareChance: 0.1
+    prototypes:
+    - WallRockScrapPileBot
+    chance: 0.45
+    offset: 0.2
 
 - type: entity
   name: Salvage Tank Spawner
