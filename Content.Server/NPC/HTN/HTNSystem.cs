@@ -1,7 +1,6 @@
 using System.Linq;
 using System.Text;
 using System.Threading;
-using Content.Server._NF.PacifiedZone;
 using Content.Server.Administration.Managers;
 using Robust.Shared.CPUJob.JobQueues;
 using Robust.Shared.CPUJob.JobQueues.Queues;
@@ -16,15 +15,13 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using Content.Server.Worldgen; // Frontier
 using Content.Server.Worldgen.Components; // Frontier
-using Content.Server.Worldgen.Systems;
-using Content.Shared.Body.Systems;
-using Content.Shared.Coordinates;
-using Content.Shared.Gibbing.Systems;
-using Content.Shared.NPC.Components;
-using Content.Shared.NPC.Systems;
-using Content.Shared.Popups;
+using Content.Server.Worldgen.Systems; // Frontier
+using Content.Shared.Body.Systems; // Frontier
+using Content.Shared.NPC.Components; // Frontier
+using Content.Shared.NPC.Systems; // Frontier
+using Content.Shared.Popups; // Frontier
 using Content.Shared.Tiles; // Frontier
-using Robust.Server.GameObjects;
+using Robust.Server.GameObjects; // Frontier
 using Robust.Shared.Audio.Systems; // Frontier
 
 namespace Content.Server.NPC.HTN;
@@ -172,7 +169,7 @@ public sealed class HTNSystem : EntitySystem
         _planQueue.Process();
         var query = EntityQueryEnumerator<ActiveNPCComponent, HTNComponent>();
 
-        while(query.MoveNext(out var uid, out var activeNpcComponent, out var comp))
+        while(query.MoveNext(out var uid, out _, out var comp))
         {
             // If we're over our max count or it's not MapInit then ignore the NPC.
             if (count >= maxUpdates)
@@ -198,6 +195,7 @@ public sealed class HTNSystem : EntitySystem
                 }
                 continue;
             }
+            // End Frontier: Disable hostile AI in pacified zones
 
             if (comp.PlanningJob != null)
             {
