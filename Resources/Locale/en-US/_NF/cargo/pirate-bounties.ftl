@@ -23,7 +23,7 @@ pirate-bounty-item-artifactanalyzer = Artifact Analyzer Board
 pirate-bounty-item-hotplate = Hotplate
 pirate-bounty-item-deepfryer = Deep Fryer
 pirate-bounty-item-keycommon = Common Encryption Key
-pirate-bounty-item-medicalfabboard = Medical Tech Fab Board
+pirate-bounty-item-medicalfabboard = Medical Techfab Board
 pirate-bounty-item-orebox = Ore Box
 pirate-bounty-item-autolathe = Autolathe
 pirate-bounty-item-gold = Gold
@@ -32,5 +32,7 @@ pirate-bounty-item-plasmacanister = Plasma Canister
 pirate-bounty-item-contracrate = Contraband Crate
 pirate-bounty-item-hydrotray = Hydroponics Tray
 pirate-bounty-item-hypo = Hypospray
+pirate-bounty-item-akms = AKMS
+pirate-bounty-item-enforcer = Enforcer
 
 pirate-bounty-description-generic = Go now, ye goon! Plunder me this!
