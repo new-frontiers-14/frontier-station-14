@@ -1,0 +1,206 @@
+- type: digestion
+  id: Default
+  effects:
+  - quality: Normal
+    conversions:
+      Vitamin:
+        Flavorol: 0.1
+        Vitamin: 0.9
+      Nutriment:
+        Flavorol: 0.1
+        Nutriment: 0.9
+      Protein:
+        Flavorol: 0.1
+        Protein: 0.9
+  - quality: High
+    conversions:
+      Vitamin:
+        Flavorol: 0.2
+        Vitamin: 0.8
+      Nutriment:
+        Flavorol: 0.2
+        Nutriment: 0.8
+      Protein:
+        Flavorol: 0.2
+        Protein: 0.8
+  - quality: Gourmet
+    conversions:
+      Vitamin:
+        Flavorol: 0.4
+        Vitamin: 0.6
+      Nutriment:
+        Flavorol: 0.4
+        Nutriment: 0.6
+      Protein:
+        Flavorol: 0.4
+        Protein: 0.6
+  - quality: Junk
+    conversions:
+      Vitamin:
+        Bloatamine: 0.2
+        Vitamin: 0.8
+      Nutriment:
+        Bloatamine: 0.2
+        Nutriment: 0.8
+      Protein:
+        Bloatamine: 0.2
+        Protein: 0.8
+  - quality: SuperJunk
+    conversions:
+      Vitamin:
+        Bloatamine: 0.4
+        Vitamin: 0.6
+      Nutriment:
+        Bloatamine: 0.4
+        Nutriment: 0.6
+      Protein:
+        Bloatamine: 0.4
+        Protein: 0.6
+
+- type: digestion
+  id: Felinid
+  effects:
+  - conversions:
+      CarpoToxin:
+        Nutriment: 0.5
+        Vitamin: 0.25
+        Protein: 0.25
+  postDigest: Default
+
+- type: digestion
+  id: Moth
+  effects:
+  - quality: Normal
+    conversions:
+      Fiber:
+        Nutriment: 0.1
+        Fiber: 0.9
+  - quality: High
+    conversions:
+      Fiber:
+        Nutriment: 0.2
+        Fiber: 0.8
+  - quality: Gourmet
+    conversions:
+      Fiber:
+        Nutriment: 0.4
+        Fiber: 0.6
+  postDigest: Default
+
+- type: digestion
+  id: Goblin
+  effects:
+  # Eat trash, run fast, touch grass
+  - whitelist:
+      tags:
+      - Trash
+    effects:
+    - !type:AdjustReagent
+      reagent: Stimulants
+      amount: 0.5
+  # Overwriting default flavorol generation (no postDigest)
+  - quality: Nasty
+    conversions:
+      Vitamin:
+        Flavorol: 0.1
+        Vitamin: 0.9
+      Nutriment:
+        Flavorol: 0.1
+        Nutriment: 0.9
+      Protein:
+        Flavorol: 0.1
+        Protein: 0.9
+  - quality: Awful
+    conversions:
+      Vitamin:
+        Flavorol: 0.2
+        Vitamin: 0.8
+      Nutriment:
+        Flavorol: 0.2
+        Nutriment: 0.8
+      Protein:
+        Flavorol: 0.2
+        Protein: 0.8
+  - quality: GoblinGourmet
+    conversions: # lower values in some concession for trash stims
+      Vitamin:
+        Flavorol: 0.3
+        Vitamin: 0.7
+      Nutriment:
+        Flavorol: 0.3
+        Nutriment: 0.7
+      Protein:
+        Flavorol: 0.3
+        Protein: 0.7
+  - quality: Junk
+    conversions:
+      Vitamin:
+        Bloatamine: 0.2
+        Vitamin: 0.8
+      Nutriment:
+        Bloatamine: 0.2
+        Nutriment: 0.8
+      Protein:
+        Bloatamine: 0.2
+        Protein: 0.8
+  - quality: SuperJunk
+    conversions:
+      Vitamin:
+        Bloatamine: 0.4
+        Vitamin: 0.6
+      Nutriment:
+        Bloatamine: 0.4
+        Nutriment: 0.6
+      Protein:
+        Bloatamine: 0.4
+        Protein: 0.6
+
+- type: digestion
+  id: Carnivore
+  effects:
+  - whitelist:
+      tags:
+      - Meat
+    quality:
+    - Normal
+    - High
+    - Gourmet
+    conversions:
+      Vitamin:
+        Flavorol: 0.1
+        Vitamin: 0.9
+      Nutriment:
+        Flavorol: 0.1
+        Nutriment: 0.9
+      Protein:
+        Flavorol: 0.1
+        Protein: 0.9
+  # non-meat bland foods (bread, vegetables)
+  - blacklist:
+      tags:
+      - Meat
+    quality:
+    - Bland
+    conversions:
+      Vitamin:
+        Vitamin: 0.5
+      Nutriment:
+        Nutriment: 0.5
+  postDigest: Default
+
+# Keep cows, pigs, etc. fed longer
+- type: digestion
+  id: Ruminant
+  effects:
+  - whitelist:
+      components:
+      - Produce
+    quality:
+    - Bland
+    conversions:
+      Vitamin:
+        Vitamin: 2
+      Nutriment:
+        Nutriment: 2
+      Protein:
+        Protein: 2

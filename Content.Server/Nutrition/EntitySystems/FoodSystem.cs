@@ -40,7 +40,7 @@ namespace Content.Server.Nutrition.EntitySystems;
 /// <summary>
 /// Handles feeding attempts both on yourself and on the target.
 /// </summary>
-public sealed class FoodSystem : EntitySystem
+public sealed partial class FoodSystem : EntitySystem // Frontier: add partial
 {
     [Dependency] private readonly BodySystem _body = default!;
     [Dependency] private readonly FlavorProfileSystem _flavorProfile = default!;
@@ -245,12 +245,21 @@ public sealed class FoodSystem : EntitySystem
 
         var split = _solutionContainer.SplitSolution(soln.Value, transferAmount);
 
+        // Frontier: food digestion
+        if (!CheckDigestablePrereqs(entity, entity.Comp, stomachs))
+            return;
+
         // Get the stomach with the highest available solution volume
         var highestAvailable = FixedPoint2.Zero;
         Entity<StomachComponent>? stomachToUse = null;
         foreach (var ent in stomachs)
         {
             var owner = ent.Owner;
+
+            // Frontier: check specific-stomach digestion
+            if (!IsFoodDigestibleByStomach(args.Used.Value, entity.Comp, ent.Comp1)) // Frontier: make sure food is processed by a stomach that can digest it
+                continue;
+
             if (!_stomach.CanTransferSolution(owner, split, ent.Comp1))
                 continue;
 
@@ -272,6 +281,8 @@ public sealed class FoodSystem : EntitySystem
             return;
         }
 
+        var digestion = DigestFood(entity, stomachToUse.Value, split, args.Target.Value, args.User); // Frontier: species-specific digestion
+
         _reaction.DoEntityReaction(args.Target.Value, solution, ReactionMethod.Ingestion);
         _stomach.TryTransferSolution(stomachToUse!.Value.Owner, split, stomachToUse);
 
@@ -279,9 +290,12 @@ public sealed class FoodSystem : EntitySystem
 
         if (forceFeed)
         {
-            var targetName = Identity.Entity(args.Target.Value, EntityManager);
+            var targetName = Identity.Entity(args.Target!.Value, EntityManager);
             var userName = Identity.Entity(args.User, EntityManager);
-            _popup.PopupEntity(Loc.GetString(entity.Comp.ForceFeedSuccessMessage, ("user", userName), ("flavors", flavors)), args.Target.Value, args.Target.Value); // Frontier: entity.Owner->args.Target.Value
+
+            // TODO: revise this with napkin work
+            if (digestion.ShowFlavors) // Frontier
+                _popup.PopupEntity(Loc.GetString(entity.Comp.ForceFeedSuccessMessage, ("user", userName), ("flavors", flavors)), args.Target.Value, args.Target.Value); // Frontier: entity.Owner->args.Target.Value
 
             _popup.PopupEntity(Loc.GetString(entity.Comp.ForceFeedSuccessUserMessage, ("target", targetName)), args.User, args.User);
 
@@ -290,7 +304,8 @@ public sealed class FoodSystem : EntitySystem
         }
         else
         {
-            _popup.PopupEntity(Loc.GetString(entity.Comp.EatMessage, ("food", entity.Owner), ("flavors", flavors)), args.User, args.User);
+            if (digestion.ShowFlavors) // Frontier
+                _popup.PopupEntity(Loc.GetString(entity.Comp.EatMessage, ("food", entity.Owner), ("flavors", flavors)), args.User, args.User);
 
             // log successful voluntary eating
             _adminLogger.Add(LogType.Ingestion, LogImpact.Low, $"{ToPrettyString(args.User):target} ate {ToPrettyString(entity.Owner):food}");
@@ -420,29 +435,49 @@ public sealed class FoodSystem : EntitySystem
     /// </summary>
     private bool IsDigestibleBy(EntityUid food, FoodComponent component, List<Entity<StomachComponent, OrganComponent>> stomachs)
     {
-        var digestible = true;
+        return GetDigestableStomach(food, component, stomachs) is not null; // Frontier: removed
+    }
 
-        // Does the mob have enough stomachs?
-        if (stomachs.Count < component.RequiredStomachs)
+    private bool CheckDigestablePrereqs(EntityUid food, FoodComponent component, List<Entity<StomachComponent, OrganComponent>> stomachs)
+    {
+        return stomachs.Count >= component.RequiredStomachs;
+    }
+
+    private bool IsFoodDigestibleByStomach(EntityUid food, FoodComponent component, StomachComponent stomach)
+    {
+        if (!component.RequiresSpecialDigestion)
+            return true;
+
+        // Check if the food is in the whitelist
+        if (_whitelistSystem.IsWhitelistPass(stomach.SpecialDigestible, food))
+            return true;
+        else
             return false;
+    }
 
+    private StomachComponent? GetDigestableStomach(EntityUid food, FoodComponent component, List<Entity<StomachComponent, OrganComponent>> stomachs)
+    {
+        if (!CheckDigestablePrereqs(food, component, stomachs)) {
+            return null;
+        }
         // Run through the mobs' stomachs
         foreach (var ent in stomachs)
         {
-            // Find a stomach with a SpecialDigestible
-            if (ent.Comp1.SpecialDigestible == null)
-                continue;
-            // Check if the food is in the whitelist
-            if (_whitelistSystem.IsWhitelistPass(ent.Comp1.SpecialDigestible, food))
-                return true;
-            // They can only eat whitelist food and the food isn't in the whitelist. It's not edible.
-            return false;
+            if (IsFoodDigestibleByStomach(food, component, ent.Comp1)) {
+                return ent.Comp1;
+            }
+
+            // // Find a stomach with a SpecialDigestible
+            // if (ent.Comp1.SpecialDigestible == null)
+            //     continue;
+            // // Check if the food is in the whitelist
+            // if (_whitelistSystem.IsWhitelistPass(ent.Comp1.SpecialDigestible, food))
+            //     return true;
+            // // They can only eat whitelist food and the food isn't in the whitelist. It's not edible.
+            // return false;
         }
 
-        if (component.RequiresSpecialDigestion)
-            return false;
-
-        return digestible;
+        return null;
     }
 
     private bool TryGetRequiredUtensils(EntityUid user, FoodComponent component,

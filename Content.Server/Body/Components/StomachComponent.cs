@@ -4,6 +4,8 @@ using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Whitelist;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
+using Content.Server._NF.Nutrition.Prototypes; // Frontier
+using Robust.Shared.Prototypes; // Frontier
 
 namespace Content.Server.Body.Components
 {
@@ -69,5 +71,11 @@ namespace Content.Server.Body.Components
 
             public void Increment(TimeSpan delta) => Lifetime += delta;
         }
+
+        /// <summary>
+        ///     Frontier: digestion prototype (used for species-specific reagent replacement/effects)
+        /// </summary>
+        [DataField]
+        public ProtoId<DigestionPrototype>? Digestion = "Default";
     }
 }

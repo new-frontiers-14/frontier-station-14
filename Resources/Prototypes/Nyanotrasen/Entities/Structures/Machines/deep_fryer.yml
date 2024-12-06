@@ -74,8 +74,6 @@
     goodReagents:
       - ReagentId: Omnizine
         Quantity: 1
-      - ReagentId: Flavorol
-        Quantity: 3
     badReagents:
       - ReagentId: Toxin
         Quantity: 2
@@ -120,7 +118,6 @@
     #    path: /Audio/Effects/smoke.ogg
     goodFlavorPriceBonus: 0.5
     solutionSplitMax: 20
-
   - type: SolutionContainerManager
     solutions:
       vat_oil:
@@ -155,8 +152,8 @@
           collection: MetalBreak
       - !type:SpillBehavior
         solution: vat_oil
-      - !type:ChangeConstructionNodeBehavior # Delta-V
-        node: machineFrame # Delta-V
+      - !type:ChangeConstructionNodeBehavior
+        node: machineFrame
   - type: ApcPowerReceiver
     powerLoad: 300
   - type: Machine

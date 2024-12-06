@@ -65,6 +65,8 @@
     damage:
       groups:
         Brute: 1
+  - type: Food
+    quality: Normal # Should probably be high, but the griff, the griff!
   - type: Appearance
   - type: DeepFried
     crispinessLevelSet: Crispy
@@ -110,14 +112,14 @@
         maxVol: 40
         reagents:
         - ReagentId: Nutriment
-          Quantity: 15
-        - ReagentId: Flavorol
-          Quantity: 10
+          Quantity: 25
         - ReagentId: Ichor
           Quantity: 12
   - type: Tag
     tags:
     - Meat
+  - type: Food
+    quality: High
 
 - type: entity
   name: avocado toast
@@ -140,9 +142,12 @@
         - ReagentId: Nutriment
           Quantity: 9
         - ReagentId: Vitamin
-          Quantity: 5
-        - ReagentId: Flavorol
-          Quantity: 1
+          Quantity: 6
+  - type: Tag
+    tags:
+    - Fruit
+  - type: Food
+    quality: Normal
 
 - type: entity
   name: breakfast bagel
@@ -167,9 +172,12 @@
         - ReagentId: Nutriment
           Quantity: 9
         - ReagentId: Vitamin
-          Quantity: 5
-        - ReagentId: Flavorol
-          Quantity: 1
+          Quantity: 6
+  - type: Tag
+    tags:
+    - Meat
+  - type: Food
+    quality: Normal
 
 - type: entity
   name: poppyseed breakfast bagel
@@ -194,14 +202,14 @@
         - ReagentId: Bicaridine
           Quantity: 5
         - ReagentId: Nutriment
-          Quantity: 5
+          Quantity: 10
         - ReagentId: Protein
           Quantity: 7
-        - ReagentId: Flavorol
-          Quantity: 5
   - type: Tag
     tags:
     - Meat
+  - type: Food
+    quality: Normal
 
 - type: entity
   name: cucumber sandwich
@@ -230,7 +238,9 @@
           Quantity: 10
   - type: Tag
     tags:
-    - Meat
+    - Vegetable
+  - type: Food
+    quality: Normal
 
 - type: entity
   name: greek salad
@@ -255,15 +265,15 @@
         - ReagentId: Nutriment
           Quantity: 8
         - ReagentId: Vitamin
-          Quantity: 6
-        - ReagentId: Flavorol
-          Quantity: 5
+          Quantity: 11
         - ReagentId: CucumberWater
           Quantity: 10
   - type: Tag
     tags:
     - Vegetable
     - Fruit
+  - type: Food
+    quality: Normal
 
 - type: entity
   name: avocado salad
@@ -288,15 +298,15 @@
         - ReagentId: Nutriment
           Quantity: 8
         - ReagentId: Vitamin
-          Quantity: 6
-        - ReagentId: Flavorol
-          Quantity: 5
+          Quantity: 11
         - ReagentId: CucumberWater
           Quantity: 10
   - type: Tag
     tags:
     - Vegetable
     - Fruit
+  - type: Food
+    quality: Normal
 
 - type: entity
   name: poached pears
@@ -322,12 +332,12 @@
         - ReagentId: Nutriment
           Quantity: 12
         - ReagentId: Vitamin
-          Quantity: 5
-        - ReagentId: Flavorol
-          Quantity: 8
+          Quantity: 13
   - type: Tag
     tags:
     - Fruit
+  - type: Food
+    quality: Normal
 
 - type: entity
   name: pears belle helene
@@ -353,11 +363,11 @@
         - ReagentId: Nutriment
           Quantity: 12
         - ReagentId: Vitamin
-          Quantity: 8
-        - ReagentId: Flavorol
-          Quantity: 8
+          Quantity: 16
         - ReagentId: Theobromine
           Quantity: 3
   - type: Tag
     tags:
     - Fruit
+  - type: Food
+    quality: Normal

@@ -1,4 +1,3 @@
-- type: entity
   name: uncooked donut
   parent: FoodDonutBase
   id: FoodDonutUncooked
@@ -26,11 +25,14 @@
   - type: Construction
     graph: NFDonut
     node: donut
+  - type: Food
+    quality: Bland
 
 - type: entity
   name: uncooked jelly donut
   parent: FoodDonutBase
   id: FoodDonutUncookedJelly
+  description: Needs a moment in the deep fryer, then it'll be good to eat.
   components:
   - type: FlavorProfile
     flavors:
@@ -44,3 +46,50 @@
   - type: DeepFrySpawn
     cycles: 2
     output: FoodDonutJellyPlain
+  - type: Food
+    quality: Bland
+
+- type: entity
+  name: stale plain donut
+  parent: FoodDonutPlain
+  id: FoodDonutPlainVendor
+  description: Goes "great" with lukewarm microwaved coffee.
+  components:
+  - type: Food # Frontier
+    quality: Junk # Frontier
+
+- type: entity
+  name: stale pink donut
+  parent: FoodDonutPink
+  id: FoodDonutPinkVendor
+  description: Goes "great" with a day-old soy latte.
+  components:
+  - type: Food # Frontier
+    quality: Junk # Frontier
+
+- type: entity
+  name: stale apple donut
+  parent: FoodDonutApple
+  id: FoodDonutAppleVendor
+  description: Goes "great" with cold gas station decaf.
+  components:
+  - type: Food # Frontier
+    quality: Junk # Frontier
+
+- type: entity
+  name: stale bungo donut
+  parent: FoodDonutBungo
+  id: FoodDonutBungoVendor
+  description: Goes "great" with an expired can of Dr. Gibb.
+  components:
+  - type: Food # Frontier
+    quality: Junk # Frontier
+
+- type: entity
+  name: stale chocolate donut
+  parent: FoodDonutChocolate
+  id: FoodDonutChocolateVendor
+  description: Goes "great" with a glass of spoiled milk.
+  components:
+  - type: Food # Frontier
+    quality: Junk # Frontier

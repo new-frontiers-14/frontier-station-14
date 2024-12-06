@@ -33,6 +33,32 @@
   pricePerUnit: 10
 
 - type: reagent
+  id: Bloatamine
+  name: reagent-name-bloatamine
+  group: Foods
+  desc: reagent-desc-bloatamine
+  physicalDesc: reagent-physical-desc-putrid
+  flavor: horrible
+  color: "#302522"
+  metabolisms:
+    Food:
+      metabolismRate: 0.05
+      effects:
+      - !type:MovespeedModifier
+        walkSpeedModifier: 0.85
+        sprintSpeedModifier: 0.85 # SLOW
+        conditions:
+        - !type:ReagentThreshold
+          min: 3
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentThreshold
+          min: 10
+        damage:
+          groups:
+            Genetic: 0.05
+
+- type: reagent
   id: Raisins
   name: reagent-name-raisins
   group: Foods

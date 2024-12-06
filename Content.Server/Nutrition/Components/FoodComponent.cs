@@ -7,7 +7,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server.Nutrition.Components;
 
-[RegisterComponent, Access(typeof(FoodSystem), typeof(FoodSequenceSystem))]
+[RegisterComponent, Access(typeof(FoodSystem), typeof(FoodSequenceSystem))] // Frontier
 public sealed partial class FoodComponent : Component
 {
     [DataField]
@@ -75,6 +75,12 @@ public sealed partial class FoodComponent : Component
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public bool RequireDead = true;
 
+    /// <summary>
+    /// The quality of this food, for species-specific digestion.
+    /// </summary>
+    [DataField, ViewVariables]
+    public FoodQuality Quality = FoodQuality.Bland;
+
     [DataField]
     public LocId VerbEat = "food-system-verb-eat"; // Frontier
 
@@ -96,3 +102,24 @@ public sealed partial class FoodComponent : Component
     [DataField]
     public LocId CannotEatAnyMoreOtherMessage = "food-system-you-cannot-eat-any-more-other"; // Frontier
 }
+
+/// <summary>
+/// An enumeration of the quality of given pieces of food.
+/// </summary>
+public enum FoodQuality : byte
+{
+    // Run of the mill foods, spammable things
+    Bland,
+    // Goblin-friendly recipes
+    Nasty,
+    Awful,
+    GoblinGourmet,
+    // Regular recipes
+    Normal,
+    High,
+    Gourmet,
+    // Completely inedible
+    Junk,
+    SuperJunk,
+}
+// End of modified code

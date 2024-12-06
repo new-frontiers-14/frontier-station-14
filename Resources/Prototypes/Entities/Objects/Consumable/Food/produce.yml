@@ -354,7 +354,7 @@
 
 - type: entity
   name: banana peel
-  parent: BaseItem
+  parent: [ BaseItem, TrashSolutionInjector ] # Frontier
   id: TrashBananaPeel
   components:
   - type: Sprite
@@ -1132,7 +1132,7 @@
 
 - type: entity
   name: corn cob
-  parent: BaseItem
+  parent: [ BaseItem, TrashSolutionInjector ] # Frontier
   id: FoodCornTrash
   description: Not a dang kernel left.
   components:
@@ -1150,7 +1150,7 @@
         maxVol: 20
         reagents:
         - ReagentId: Cornmeal
-          Quantity: 10
+          Quantity: 3 # Frontier: 10<3
 
 - type: entity
   name: onion
@@ -1749,6 +1749,8 @@
     entries:
       Taco: FlyAmanita
       Burger: FlyAmanita
+  - type: Food # Frontier
+    quality: Bland # Frontier, New Food Quality System
 
 - type: entity
   name: gatfruit
@@ -2466,6 +2468,7 @@
     tags:
     - ClothMade
     - CottonBoll
+    - MothFood # Frontier
 
 - type: entity
   name: pyrotton boll
@@ -2497,6 +2500,7 @@
     tags:
     - ClothMade
     - CottonBoll
+    - MothFood # Frontier
   - type: Extractable
     grindableSolutionName: food
 

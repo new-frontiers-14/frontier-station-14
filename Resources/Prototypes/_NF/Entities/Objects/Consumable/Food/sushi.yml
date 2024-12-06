@@ -7,6 +7,8 @@
   - type: Tag
     tags:
       - Sushi
+  - type: Food
+    quality: High
 
 - type: entity
   name: avocado sushi
@@ -133,9 +135,11 @@
           Quantity: 5
   - type: Item
     size: Tiny
+  - type: Food
+    quality: Junk
 
 - type: entity
-  parent: [FoodBaseSushi, FoodMealGasSafeSushiSlice]
+  parent: [FoodMealGasSafeSushiSlice, FoodBaseSushi]
   id: FoodMealGasBadSushiSlice
   suffix: Bad
   components:

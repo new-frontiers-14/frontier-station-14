@@ -10,6 +10,7 @@
     flavors:
       - bread
   - type: Food
+    quality: Normal # Frontier, New Food Quality System
   - type: Sprite
     sprite: Objects/Consumable/Food/Baked/bread.rsi
   - type: Tag
@@ -18,12 +19,10 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 31
+        maxVol: 26
         reagents:
         - ReagentId: Nutriment
           Quantity: 20
-        - ReagentId: Flavorol
-          Quantity: 5
 
 - type: entity
   parent: FoodBreadBase
@@ -42,12 +41,11 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 9
+        maxVol: 8
         reagents:
         - ReagentId: Nutriment
           Quantity: 4
-        - ReagentId: Flavorol
-          Quantity: 1
+
 # Custom Bread Example
 
 - type: entity
@@ -145,6 +143,7 @@
     tags:
     - ClothMade
     - Bread
+    - MothFood # Frontier
   - type: SolutionContainerManager
     solutions:
       food:
@@ -175,6 +174,7 @@
     - ClothMade
     - Bread
     - Slice
+    - MothFood # Frontier
   - type: SolutionContainerManager
     solutions:
       food:
@@ -204,12 +204,10 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 25
+        maxVol: 20
         reagents:
         - ReagentId: Nutriment
           Quantity: 15
-        - ReagentId: Flavorol
-          Quantity: 5
 # Tastes like bread, banana, nut.
 
 - type: entity
@@ -229,12 +227,10 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 6
+        maxVol: 5
         reagents:
         - ReagentId: Nutriment
           Quantity: 3
-        - ReagentId: Flavorol
-          Quantity: 1
 
 - type: entity
   name: cream cheese bread
@@ -256,13 +252,11 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 40
+        maxVol: 35
         reagents:
         - ReagentId: Nutriment
           Quantity: 20
         - ReagentId: Vitamin
-          Quantity: 5
-        - ReagentId: Flavorol
           Quantity: 5
 # Tastes like bread, cheese.
 
@@ -290,8 +284,6 @@
           Quantity: 4
         - ReagentId: Vitamin
           Quantity: 1.2
-        - ReagentId: Flavorol
-          Quantity: 1.5
 
 - type: entity
   name: meat bread
@@ -312,14 +304,12 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 50
+        maxVol: 45
         reagents:
         - ReagentId: Nutriment
           Quantity: 30
         - ReagentId: Vitamin
           Quantity: 5
-        - ReagentId: Flavorol
-          Quantity: 10
   - type: Tag
     tags:
     - Meat
@@ -349,8 +339,6 @@
           Quantity: 6
         - ReagentId: Vitamin
           Quantity: 1.2
-        - ReagentId: Flavorol
-          Quantity: 2
   - type: Tag
     tags:
     - Meat
@@ -376,7 +364,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 45
+        maxVol: 40
         reagents:
         - ReagentId: Nutriment
           Quantity: 15
@@ -385,8 +373,6 @@
         - ReagentId: Nothing
           Quantity: 5
         - ReagentId: MuteToxin
-          Quantity: 5
-        - ReagentId: Flavorol
           Quantity: 5
 # Tastes like bread, cheese.
 
@@ -417,8 +403,6 @@
           Quantity: 1
         - ReagentId: MuteToxin
           Quantity: 1
-        - ReagentId: Flavorol
-          Quantity: 1
 
 - type: entity
   name: bread
@@ -427,6 +411,7 @@
   description: Some plain old earthen bread.
   components:
   - type: Food
+    quality: Bland # Frontier, New Food Quality System
   - type: Sprite
     layers:
     - state: plain
@@ -440,6 +425,7 @@
   description: A slice of home.
   components:
   - type: Food
+    quality: Bland # Frontier, New Food Quality System
   - type: Sprite
     layers:
     - state: plain-slice
@@ -471,8 +457,6 @@
           Quantity: 5
         - ReagentId: Protein
           Quantity: 5
-        - ReagentId: Flavorol
-          Quantity: 5
   - type: Tag
     tags:
     - Meat
@@ -503,8 +487,6 @@
           Quantity: 1
         - ReagentId: Protein
           Quantity: 1
-        - ReagentId: Flavorol
-          Quantity: 2
   - type: Tag
     tags:
     - Meat
@@ -521,7 +503,8 @@
     flavors:
       - cobwebs
       - bread
-  - type: Food
+  - type: Food # Frontier
+    quality: Toxin # Frontier, New Food Quality System
   - type: Sprite
     layers:
     - state: spidermeat
@@ -530,21 +513,16 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 60
+        maxVol: 45
         reagents:
         - ReagentId: Nutriment
           Quantity: 30
         - ReagentId: Vitamin
           Quantity: 5
-        - ReagentId: Toxin
-          Quantity: 5
-        - ReagentId: Flavorol
-          Quantity: 10
   - type: Tag
     tags:
     - Meat
     - Bread
-# Tastes like bread, cobwebs.
 
 - type: entity
   name: spider meat bread slice
@@ -556,23 +534,20 @@
     flavors:
       - cobwebs
       - bread
-  - type: Food
+  - type: Food # Frontier
+    quality: Nasty # Frontier, New Food Quality System
   - type: Sprite
     layers:
     - state: spidermeat-slice
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 15
+        maxVol: 12
         reagents:
         - ReagentId: Nutriment
           Quantity: 6
         - ReagentId: Vitamin
           Quantity: 1.2
-        - ReagentId: Toxin
-          Quantity: .5
-        - ReagentId: Flavorol
-          Quantity: 2
   - type: Tag
     tags:
     - Meat
@@ -598,14 +573,12 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 62
+        maxVol: 48
         reagents:
         - ReagentId: Nutriment
           Quantity: 30
         - ReagentId: Protein
           Quantity: 12
-        - ReagentId: Flavorol
-          Quantity: 15
 # Tastes like bread, tofu.
 
 - type: entity
@@ -631,8 +604,6 @@
           Quantity: 6
         - ReagentId: Vitamin
           Quantity: 2.4
-        - ReagentId: Flavorol
-          Quantity: 3
 
 - type: entity
   name: xeno meat bread
@@ -644,7 +615,6 @@
     flavors:
       - acid
       - bread
-  - type: Food
   - type: Sprite
     layers:
     - state: xenomeat
@@ -659,8 +629,6 @@
           Quantity: 30
         - ReagentId: Vitamin
           Quantity: 5
-        - ReagentId: Flavorol
-          Quantity: 10
   - type: Tag
     tags:
     - Meat
@@ -690,8 +658,6 @@
           Quantity: 6
         - ReagentId: Vitamin
           Quantity: 1.2
-        - ReagentId: Flavorol
-          Quantity: 2.4
   - type: Tag
     tags:
     - Meat
@@ -714,7 +680,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 20
+        maxVol: 15
         reagents:
         - ReagentId: Nutriment
           Quantity: 6
@@ -724,8 +690,6 @@
           Quantity: 1
         - ReagentId: Blackpepper
           Quantity: 1
-        - ReagentId: Flavorol # Frontier
-          Quantity: 5 # Frontier
   - type: Clothing
     slots: [ BELT ]
     equippedPrefix: baguette
@@ -786,8 +750,6 @@
           Quantity: 5
         - ReagentId: Vitamin
           Quantity: 1
-        - ReagentId: Flavorol
-          Quantity: 1
 # Tastes like bread, butter.
 
 - type: entity
@@ -805,14 +767,12 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 12
+        maxVol: 10
         reagents:
         - ReagentId: Nutriment
           Quantity: 4
         - ReagentId: Vitamin
           Quantity: 2
-        - ReagentId: Flavorol
-          Quantity: 1
 # Tastes like bread, butter.
 
 - type: entity
@@ -821,6 +781,8 @@
   id: FoodBreadGarlicSlice
   description: Alas, it is limited.
   components:
+  - type: Food # Frontier
+    quality: High # Frontier, New Food Quality System
   - type: FlavorProfile
     flavors:
       - bread
@@ -831,13 +793,11 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 20
+        maxVol: 15
         reagents:
         - ReagentId: Nutriment
           Quantity: 6
         - ReagentId: Vitamin
-          Quantity: 5
-        - ReagentId: Flavorol
           Quantity: 5
 # Tastes like garlic, Italy.
 
@@ -857,14 +817,12 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 12
+        maxVol: 10
         reagents:
         - ReagentId: Nutriment
           Quantity: 4
         - ReagentId: Vitamin
           Quantity: 4
-        - ReagentId: Flavorol
-          Quantity: 2
 # Tastes like garlic, Italy.
 
 - type: entity
@@ -888,6 +846,8 @@
           Quantity: 4
         - ReagentId: Mold
           Quantity: 7
+  - type: Food # Frontier
+    quality: Toxin # Frontier, New Food Quality System
 # Tastes like decaying fungus.
 
 - type: entity
@@ -976,3 +936,5 @@
     damage:
       groups:
         Brute: 1
+  - type: Food # Frontier
+    quality: High # Frontier

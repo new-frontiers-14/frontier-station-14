@@ -24,6 +24,20 @@
     price: 750
 #  - type: StealTarget
 #    stealGroup: FoodMeatCat
+  - type: Food
+    quality: Nasty
+
+- type: entity
+  parent: FoodMeatRotten
+  id: FoodMeatGoblin
+  name: raw goblin meat
+  description: Just look at that marbling! Oh, wait, is that plastic?
+  components:
+  - type: Sprite
+    state: rotten
+    color: lime
+  - type: Food
+    quality: Toxin
 
 - type: entity
   name: breaded chicken
@@ -87,6 +101,8 @@
   - type: Tag
     tags:
     - Meat
+  - type: Food
+    quality: Normal
 
 - type: entity
   name: honey glazed ham slice
@@ -124,3 +140,14 @@
     tags:
       - Slice
       - Meat
+  - type: Food
+    quality: Normal
+
+- type: entity
+  name: corpse meat
+  parent: FoodMeatRotten
+  id: FoodMeatRottenCorpse
+  description: How long's this been sitting around?
+  components:
+  - type: Food
+    quality: SuperJunk
