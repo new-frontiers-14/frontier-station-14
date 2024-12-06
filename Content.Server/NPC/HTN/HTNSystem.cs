@@ -82,7 +82,7 @@ public sealed class HTNSystem : EntitySystem
         // Clear all NPCs in case they're hanging onto stale tasks
         var query = AllEntityQuery<HTNComponent>();
 
-        while (query.MoveNext(out var comp)) // Frontier
+        while (query.MoveNext(out var comp))
         {
             comp.PlanningToken?.Cancel();
             comp.PlanningToken = null;
