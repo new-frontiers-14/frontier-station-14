@@ -37,10 +37,6 @@ public sealed class HTNSystem : EntitySystem
     [Dependency] private readonly TransformSystem _transform = default!;
     private EntityQuery<WorldControllerComponent> _mapQuery;
     private EntityQuery<LoadedChunkComponent> _loadedQuery;
-    [Dependency] private readonly NpcFactionSystem _npcFaction = default!;
-    [Dependency] private readonly SharedBodySystem _sharedBodySystem = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
     // Frontier
 
     private readonly JobQueue _planQueue = new(0.004);
@@ -177,25 +173,6 @@ public sealed class HTNSystem : EntitySystem
 
             if (!IsNPCActive(uid))  // Frontier
                 continue;
-
-            // Frontier: Disable hostile AI in pacified zones
-            var grid = Transform(uid).GridUid;
-            if (grid != null
-                && TryComp<ProtectedGridComponent>(grid, out var protectedGrid)
-                && TryComp<NpcFactionMemberComponent>(uid, out var npcFactionMember)
-                && _npcFaction.IsFactionHostile("NanoTrasen", (uid, npcFactionMember)))
-            {
-                if (protectedGrid.KillHostileMobs)
-                {
-                    _audio.PlayPredicted(protectedGrid.HostileMobKillSound, Transform(uid).Coordinates, null);
-                    _sharedBodySystem.GibBody(uid);
-                    Spawn("Ash", Transform(uid).Coordinates);
-                    _popup.PopupEntity(Loc.GetString("admin-smite-turned-ash-other", ("name", uid)), uid, PopupType.LargeCaution);
-                    EntityManager.QueueDeleteEntity(uid);
-                }
-                continue;
-            }
-            // End Frontier: Disable hostile AI in pacified zones
 
             if (comp.PlanningJob != null)
             {
