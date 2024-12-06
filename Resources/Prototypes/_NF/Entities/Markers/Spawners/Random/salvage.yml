@@ -1,5 +1,6 @@
 # Frontier
 
+# region Elemental Spawners
 - type: entity
   name: andesite elemental spawner
   id: AndesiteElementalSpawner
@@ -251,79 +252,40 @@
         - AsteroidRockUraniumCrabNF
 
 - type: entity
-  name: Asteroid Scrap Bot Spawner
-  id: AsteroidScrapBotSpawner
+  name: Cobblebrick Elemental Spawner
+  id: CobblebrickElementalSpawner
   parent: MarkerBase
   suffix: 45
   components:
-  - type: Sprite
-    layers:
-    - state: red
-    - state: ai
-    - sprite: _NF/Mobs/RogueSilicons/drones.rsi
-      state: base
-    - sprite: _NF/Mobs/RogueSilicons/drones.rsi
-      state: decor_department
-      color: "#990000"
-    - sprite: _NF/Mobs/RogueSilicons/drones.rsi
-      state: decor_department_accent
-      color: "#ffff00"
-    - sprite: _NF/Mobs/RogueSilicons/drones.rsi
-      state: base_eyes
-      shader: unshaded
-      color: "#990000"
-  - type: RandomSpawner
-    rarePrototypes:
-    - MobRogueSiliconScrapThrustersRangedAsteroid
-    rareChance: 0.1
-    prototypes:
-    - MobRogueSiliconScrapAsteroid
-    - MobRogueSiliconScrapThreadsAsteroid
-    - MobRogueSiliconScrapThrustersAsteroid
-    chance: 0.45
-    offset: 0.2
-
-- type: entity
-  name: Asteroid Scrap Bot Rock Spawner
-  id: AsteroidScrapBotWallSpawner
-  parent: MarkerBase
-  suffix: 45
-  components:
-  - type: Sprite
-    layers:
-    - state: red
-    - state: ai
-    - sprite: _NF/Mobs/RogueSilicons/drones.rsi
-      state: base
-    - sprite: _NF/Mobs/RogueSilicons/drones.rsi
-      state: decor_department
-      color: "#990000"
-    - sprite: _NF/Mobs/RogueSilicons/drones.rsi
-      state: decor_department_accent
-      color: "#ffff00"
-    - sprite: _NF/Mobs/RogueSilicons/drones.rsi
-      state: base_eyes
-      shader: unshaded
-      color: "#990000"
-  - type: RandomSpawner
-    rarePrototypes:
-    - WallRockScrapPileSaltBot
-    - WallRockScrapPileIronBot
-    - WallRockScrapPileSilverBot
-    - WallRockScrapPileQuartzBot
-    - WallRockScrapPilePlasmaBot
-    - WallRockScrapPileDiamondBot
-    - WallRockScrapPileGoldBot
-    - WallRockScrapPileCoalBot
-    - WallRockScrapPileBananiumBot
-    - WallRockScrapPileUraniumBot
-    - WallRockScrapPileBluespaceBot
-    - WallRockScrapPileArtifactFragmentBot
-    rareChance: 0.1
-    prototypes:
-    - WallRockScrapPileBot
-    chance: 0.45
-    offset: 0.2
+    - type: Sprite
+      layers:
+        - state: red
+        - sprite: /Textures/Mobs/Elemental/orecrab.rsi
+          state: uranium_crab
+    - type: RandomSpawner
+      rarePrototypes:
+      - NFWallCobblebrickBananiumGolem
+      - NFWallCobblebrickCoalGolem
+      - NFWallCobblebrickGoldGolem
+      - NFWallCobblebrickIronGolem
+      - NFWallCobblebrickPlasmaGolem
+      - NFWallCobblebrickQuartzGolem
+      - NFWallCobblebrickSaltGolem
+      - NFWallCobblebrickSilverGolem
+      - NFWallCobblebrickUraniumGolem
+      rareChance: 0.1
+      prototypes:
+        - NFWallCobblebrickBananiumCrab
+        - NFWallCobblebrickCoalCrab
+        - NFWallCobblebrickGoldCrab
+        - NFWallCobblebrickTinCrab
+        - NFWallCobblebrickPlasmaCrab
+        - NFWallCobblebrickQuartzCrab
+        - NFWallCobblebrickSaltCrab
+        - NFWallCobblebrickSilverCrab
+        - NFWallCobblebrickUraniumCrab
+      chance: 0.45
+      offset: 0.2
 
 - type: entity
   name: Ice Elemental Spawner
@@ -358,6 +320,186 @@
         - NFWallIceSaltCrab
         - NFWallIceSilverCrab
         - NFWallIceUraniumCrab
+      chance: 0.45
+      offset: 0.2
+
+- type: entity
+  name: Andesite Cobblebrick Elemental Spawner
+  id: AndesiteCobblebrickElementalSpawner
+  parent: MarkerBase
+  suffix: 45
+  components:
+    - type: Sprite
+      layers:
+        - state: red
+        - sprite: /Textures/Mobs/Elemental/orecrab.rsi
+          state: uranium_crab
+    - type: RandomSpawner
+      rarePrototypes:
+      - NFWallAndesiteCobblebrickBananiumGolem
+      - NFWallAndesiteCobblebrickCoalGolem
+      - NFWallAndesiteCobblebrickGoldGolem
+      - NFWallAndesiteCobblebrickIronGolem
+      - NFWallAndesiteCobblebrickPlasmaGolem
+      - NFWallAndesiteCobblebrickQuartzGolem
+      - NFWallAndesiteCobblebrickSaltGolem
+      - NFWallAndesiteCobblebrickSilverGolem
+      - NFWallAndesiteCobblebrickUraniumGolem
+      rareChance: 0.1
+      prototypes:
+        - NFWallAndesiteCobblebrickBananiumCrab
+        - NFWallAndesiteCobblebrickCoalCrab
+        - NFWallAndesiteCobblebrickGoldCrab
+        - NFWallAndesiteCobblebrickTinCrab
+        - NFWallAndesiteCobblebrickPlasmaCrab
+        - NFWallAndesiteCobblebrickQuartzCrab
+        - NFWallAndesiteCobblebrickSaltCrab
+        - NFWallAndesiteCobblebrickSilverCrab
+        - NFWallAndesiteCobblebrickUraniumCrab
+      chance: 0.45
+      offset: 0.2
+
+- type: entity
+  name: Basalt Cobblebrick Elemental Spawner
+  id: BasaltCobblebrickElementalSpawner
+  parent: MarkerBase
+  suffix: 45
+  components:
+    - type: Sprite
+      layers:
+        - state: red
+        - sprite: /Textures/Mobs/Elemental/orecrab.rsi
+          state: uranium_crab
+    - type: RandomSpawner
+      rarePrototypes:
+      - NFWallBasaltCobblebrickBananiumGolem
+      - NFWallBasaltCobblebrickCoalGolem
+      - NFWallBasaltCobblebrickGoldGolem
+      - NFWallBasaltCobblebrickIronGolem
+      - NFWallBasaltCobblebrickPlasmaGolem
+      - NFWallBasaltCobblebrickQuartzGolem
+      - NFWallBasaltCobblebrickSaltGolem
+      - NFWallBasaltCobblebrickSilverGolem
+      - NFWallBasaltCobblebrickUraniumGolem
+      rareChance: 0.1
+      prototypes:
+        - NFWallBasaltCobblebrickBananiumCrab
+        - NFWallBasaltCobblebrickCoalCrab
+        - NFWallBasaltCobblebrickGoldCrab
+        - NFWallBasaltCobblebrickTinCrab
+        - NFWallBasaltCobblebrickPlasmaCrab
+        - NFWallBasaltCobblebrickQuartzCrab
+        - NFWallBasaltCobblebrickSaltCrab
+        - NFWallBasaltCobblebrickSilverCrab
+        - NFWallBasaltCobblebrickUraniumCrab
+      chance: 0.45
+      offset: 0.2
+
+- type: entity
+  name: Sandstone Cobblebrick Elemental Spawner
+  id: SandstoneCobblebrickElementalSpawner
+  parent: MarkerBase
+  suffix: 45
+  components:
+    - type: Sprite
+      layers:
+        - state: red
+        - sprite: /Textures/Mobs/Elemental/orecrab.rsi
+          state: uranium_crab
+    - type: RandomSpawner
+      rarePrototypes:
+      - NFWallSandstoneBananiumGolem
+      - NFWallSandstoneCoalGolem
+      - NFWallSandstoneGoldGolem
+      - NFWallSandstoneIronGolem
+      - NFWallSandstonePlasmaGolem
+      - NFWallSandstoneQuartzGolem
+      - NFWallSandstoneSaltGolem
+      - NFWallSandstoneSilverGolem
+      - NFWallSandstoneUraniumGolem
+      rareChance: 0.1
+      prototypes:
+        - NFWallSandstoneBananiumCrab
+        - NFWallSandstoneCoalCrab
+        - NFWallSandstoneGoldCrab
+        - NFWallSandstoneTinCrab
+        - NFWallSandstonePlasmaCrab
+        - NFWallSandstoneQuartzCrab
+        - NFWallSandstoneSaltCrab
+        - NFWallSandstoneSilverCrab
+        - NFWallSandstoneUraniumCrab
+      chance: 0.45
+      offset: 0.2
+
+- type: entity
+  name: Chromite Cobblebrick Elemental Spawner
+  id: ChromiteCobblebrickElementalSpawner
+  parent: MarkerBase
+  suffix: 45
+  components:
+    - type: Sprite
+      layers:
+        - state: red
+        - sprite: /Textures/Mobs/Elemental/orecrab.rsi
+          state: uranium_crab
+    - type: RandomSpawner
+      rarePrototypes:
+      - NFWallChromiteCobblebrickBananiumGolem
+      - NFWallChromiteCobblebrickCoalGolem
+      - NFWallChromiteCobblebrickGoldGolem
+      - NFWallChromiteCobblebrickIronGolem
+      - NFWallChromiteCobblebrickPlasmaGolem
+      - NFWallChromiteCobblebrickQuartzGolem
+      - NFWallChromiteCobblebrickSaltGolem
+      - NFWallChromiteCobblebrickSilverGolem
+      - NFWallChromiteCobblebrickUraniumGolem
+      rareChance: 0.1
+      prototypes:
+        - NFWallChromiteCobblebrickBananiumCrab
+        - NFWallChromiteCobblebrickCoalCrab
+        - NFWallChromiteCobblebrickGoldCrab
+        - NFWallChromiteCobblebrickTinCrab
+        - NFWallChromiteCobblebrickPlasmaCrab
+        - NFWallChromiteCobblebrickQuartzCrab
+        - NFWallChromiteCobblebrickSaltCrab
+        - NFWallChromiteCobblebrickSilverCrab
+        - NFWallChromiteCobblebrickUraniumCrab
+      chance: 0.45
+      offset: 0.2
+
+- type: entity
+  name: Necropolis Elemental Spawner
+  id: NecropolisElementalSpawner
+  parent: MarkerBase
+  suffix: 45
+  components:
+    - type: Sprite
+      layers:
+        - state: red
+        - sprite: /Textures/Mobs/Elemental/orecrab.rsi
+          state: uranium_crab
+    - type: RandomSpawner
+      rarePrototypes:
+      - NFWallNecropolisBananiumGolem
+      - NFWallNecropolisCoalGolem
+      - NFWallNecropolisGoldGolem
+      - NFWallNecropolisIronGolem
+      - NFWallNecropolisPlasmaGolem
+      - NFWallNecropolisQuartzGolem
+      - NFWallNecropolisSaltGolem
+      - NFWallNecropolisSilverGolem
+      - NFWallNecropolisUraniumGolem
+      rareChance: 0.1
+      prototypes:
+        - NFWallNecropolisBananiumCrab
+        - NFWallNecropolisCoalCrab
+        - NFWallNecropolisGoldCrab
+        - NFWallNecropolisTinCrab
+        - NFWallNecropolisPlasmaCrab
+        - NFWallNecropolisQuartzCrab
+        - NFWallNecropolisSaltCrab
+        - NFWallNecropolisSilverCrab
+        - NFWallNecropolisUraniumCrab
       chance: 0.45
       offset: 0.2
 
@@ -488,3 +630,81 @@
         - PirateHandyFlag
       chance: 0.9
       offset: 0.0
+# endregion Elemental Spawners
+
+# region Scrap Spawners
+- type: entity
+  name: Asteroid Scrap Bot Spawner
+  id: AsteroidScrapBotSpawner
+  parent: MarkerBase
+  suffix: 45
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - state: ai
+    - sprite: _NF/Mobs/RogueSilicons/drones.rsi
+      state: base
+    - sprite: _NF/Mobs/RogueSilicons/drones.rsi
+      state: decor_department
+      color: "#990000"
+    - sprite: _NF/Mobs/RogueSilicons/drones.rsi
+      state: decor_department_accent
+      color: "#ffff00"
+    - sprite: _NF/Mobs/RogueSilicons/drones.rsi
+      state: base_eyes
+      shader: unshaded
+      color: "#990000"
+  - type: RandomSpawner
+    rarePrototypes:
+    - MobRogueSiliconScrapThrustersRangedAsteroid
+    rareChance: 0.1
+    prototypes:
+    - MobRogueSiliconScrapAsteroid
+    - MobRogueSiliconScrapThreadsAsteroid
+    - MobRogueSiliconScrapThrustersAsteroid
+    chance: 0.45
+    offset: 0.2
+
+- type: entity
+  name: Asteroid Scrap Bot Rock Spawner
+  id: AsteroidScrapBotWallSpawner
+  parent: MarkerBase
+  suffix: 45
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - state: ai
+    - sprite: _NF/Mobs/RogueSilicons/drones.rsi
+      state: base
+    - sprite: _NF/Mobs/RogueSilicons/drones.rsi
+      state: decor_department
+      color: "#990000"
+    - sprite: _NF/Mobs/RogueSilicons/drones.rsi
+      state: decor_department_accent
+      color: "#ffff00"
+    - sprite: _NF/Mobs/RogueSilicons/drones.rsi
+      state: base_eyes
+      shader: unshaded
+      color: "#990000"
+  - type: RandomSpawner
+    rarePrototypes:
+    - WallRockScrapPileSaltBot
+    - WallRockScrapPileIronBot
+    - WallRockScrapPileSilverBot
+    - WallRockScrapPileQuartzBot
+    - WallRockScrapPilePlasmaBot
+    - WallRockScrapPileDiamondBot
+    - WallRockScrapPileGoldBot
+    - WallRockScrapPileCoalBot
+    - WallRockScrapPileBananiumBot
+    - WallRockScrapPileUraniumBot
+    - WallRockScrapPileBluespaceBot
+    - WallRockScrapPileArtifactFragmentBot
+    rareChance: 0.1
+    prototypes:
+    - WallRockScrapPileBot
+    chance: 0.45
+    offset: 0.2
+# endregion Scrap Spawners

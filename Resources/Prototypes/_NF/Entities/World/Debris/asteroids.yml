@@ -1,4 +1,5 @@
 ﻿# Asteroid types & loot tables
+# region Asteroid Table
 - type: entity
   id: NFBaseAsteroidDebris
   parent: NFBaseDebris
@@ -57,11 +58,51 @@
           - id: NFWallCobblebrick
             prob: 0.06
             orGroup: rock
+          - id: NFWallCobblebrickCoal
+            prob: 0.01
+            orGroup: rock
+          - id: NFWallCobblebrickTin
+            prob: 0.016
+            orGroup: rock
+          - id: NFWallCobblebrickQuartz
+            prob: 0.006
+            orGroup: rock
+          - id: NFWallCobblebrickSalt
+            prob: 0.006
+            orGroup: rock
+          - id: NFWallCobblebrickGold
+            prob: 0.001
+            orGroup: rock
+          - id: NFWallCobblebrickSilver
+            prob: 0.004
+            orGroup: rock
+          - id: NFWallCobblebrickPlasma
+            prob: 0.007
+            orGroup: rock
+          - id: NFWallCobblebrickUranium
+            prob: 0.004
+            orGroup: rock
+          - id: NFWallCobblebrickBananium
+            prob: 0.001
+            orGroup: rock
+          - id: NFWallCobblebrickArtifactFragment
+            prob: 0.001
+            orGroup: rock
+          # - id: NFWallCobblebrickDiamond
+          #   prob: 0.0002
+          #   orGroup: rock
+          - id: NFWallCobblebrickBluespace
+            prob: 0.0003
+            orGroup: rock
+          - id: CobblebrickElementalSpawner
+            prob: 0.006
+            orGroup: rock
     - type: IFF
       flags: HideLabel
       color: "#d67e27"
+# endregion Asteroid Table
 
-# Snow
+# region Snow Table
 - type: entity
   id: NFBaseAsteroidIceDebris
   parent: NFBaseAsteroidDebris
@@ -148,9 +189,9 @@
           - id: NFWallIceArtifactFragment
             prob: 0.004
             orGroup: rock
-          - id: NFWallIceDiamond
-            prob: 0.0002
-            orGroup: rock
+          # - id: NFWallIceDiamond
+          #   prob: 0.0002
+          #   orGroup: rock
           - id: NFWallIceBluespace
             prob: 0.001
             orGroup: rock
@@ -159,8 +200,9 @@
             orGroup: rock
     - type: IFF
       color: "#d6fffc"
+# endregion Snow Table
 
-# Andesite
+# region Andesite Table
 - type: entity
   id: NFBaseAsteroidAndesiteDebris
   parent: NFBaseAsteroidDebris
@@ -217,10 +259,50 @@
           - id: NFWallAndesiteCobblebrick
             prob: 0.1
             orGroup: rock
+          - id: NFWallAndesiteCobblebrickCoal
+            prob: 0.004
+            orGroup: rock
+          - id: NFWallAndesiteCobblebrickTin
+            prob: 0.008
+            orGroup: rock
+          - id: NFWallAndesiteCobblebrickQuartz
+            prob: 0.005
+            orGroup: rock
+          - id: NFWallAndesiteCobblebrickSalt
+            prob: 0.001
+            orGroup: rock
+          - id: NFWallAndesiteCobblebrickGold
+            prob: 0.001
+            orGroup: rock
+          - id: NFWallAndesiteCobblebrickSilver
+            prob: 0.001
+            orGroup: rock
+          - id: NFWallAndesiteCobblebrickPlasma
+            prob: 0.001
+            orGroup: rock
+          - id: NFWallAndesiteCobblebrickUranium
+            prob: 0.001
+            orGroup: rock
+          - id: NFWallAndesiteCobblebrickBananium
+            prob: 0.0005
+            orGroup: rock
+          - id: NFWallAndesiteCobblebrickArtifactFragment
+            prob: 0.001
+            orGroup: rock
+          # - id: NFWallAndesiteCobblebrickDiamond
+          #   prob: 0.0012
+          #   orGroup: rock
+          - id: NFWallAndesiteCobblebrickBluespace
+            prob: 0.0002
+            orGroup: rock
+          - id: AndesiteCobblebrickElementalSpawner
+            prob: 0.008
+            orGroup: rock
     - type: IFF
       color: "#95c280"
+# endregion Andesite Table
 
-# Basalt
+# region Basalt Table
 - type: entity
   id: NFBaseAsteroidBasaltDebris
   parent: NFBaseAsteroidDebris
@@ -277,10 +359,50 @@
           - id: NFWallBasaltCobblebrick
             prob: 0.08
             orGroup: rock
+          - id: NFWallBasaltCobblebrickCoal
+            prob: 0.002
+            orGroup: rock
+          - id: NFWallBasaltCobblebrickTin
+            prob: 0.005
+            orGroup: rock
+          - id: NFWallBasaltCobblebrickQuartz
+            prob: 0.001
+            orGroup: rock
+          - id: NFWallBasaltCobblebrickSalt
+            prob: 0.001
+            orGroup: rock
+          - id: NFWallBasaltCobblebrickGold
+            prob: 0.001
+            orGroup: rock
+          - id: NFWallBasaltCobblebrickSilver
+            prob: 0.003
+            orGroup: rock
+          - id: NFWallBasaltCobblebrickPlasma
+            prob: 0.01
+            orGroup: rock
+          - id: NFWallBasaltCobblebrickUranium
+            prob: 0.005
+            orGroup: rock
+          - id: NFWallBasaltCobblebrickBananium
+            prob: 0.0005
+            orGroup: rock
+          - id: NFWallBasaltCobblebrickArtifactFragment
+            prob: 0.001
+            orGroup: rock
+          # - id: NFWallBasaltCobblebrickDiamond
+          #   prob: 0.0005
+          #   orGroup: rock
+          - id: NFWallBasaltCobblebrickBluespace
+            prob: 0.0005
+            orGroup: rock
+          - id: BasaltCobblebrickElementalSpawner
+            prob: 0.005
+            orGroup: rock
     - type: IFF
       color: "#b5b5b5"
+# endregion Basalt Table
 
-# Sand
+# region Sand Table
 - type: entity
   id: NFBaseAsteroidSandDebris
   parent: NFBaseAsteroidDebris
@@ -337,10 +459,50 @@
           - id: NFWallSandstone
             prob: 0.08
             orGroup: rock
+          - id: NFWallSandstoneCoal
+            prob: 0.001
+            orGroup: rock
+          - id: NFWallSandstoneTin
+            prob: 0.0015
+            orGroup: rock
+          - id: NFWallSandstoneQuartz
+            prob: 0.012
+            orGroup: rock
+          - id: NFWallSandstoneSalt
+            prob: 0.001
+            orGroup: rock
+          - id: NFWallSandstoneSilver
+            prob: 0.008
+            orGroup: rock
+          - id: NFWallSandstoneGold
+            prob: 0.007
+            orGroup: rock
+          - id: NFWallSandstonePlasma
+            prob: 0.001
+            orGroup: rock
+          - id: NFWallSandstoneUranium
+            prob: 0.001
+            orGroup: rock
+          - id: NFWallSandstoneBananium
+            prob: 0.001
+            orGroup: rock
+          - id: NFWallSandstoneArtifactFragment
+            prob: 0.001
+            orGroup: rock
+          # - id: NFWallSandstoneDiamond
+          #   prob: 0.0002
+          #   orGroup: rock
+          - id: NFWallSandstoneBluespace
+            prob: 0.0002
+            orGroup: rock
+          - id: SandstoneCobblebrickElementalSpawner
+            prob: 0.008
+            orGroup: rock
     - type: IFF
       color: "#cad17b"
+# endregion Sand Table
 
-# Chromite
+# region Chromite Table
 - type: entity
   id: NFBaseAsteroidChromiteDebris
   parent: NFBaseAsteroidDebris
@@ -397,10 +559,50 @@
           - id: NFWallChromiteCobblebrick
             prob: 0.08
             orGroup: rock
+          - id: NFWallChromiteCobblebrickCoal
+            prob: 0.001
+            orGroup: rock
+          - id: NFWallChromiteCobblebrickTin
+            prob: 0.003
+            orGroup: rock
+          - id: NFWallChromiteCobblebrickQuartz
+            prob: 0.001
+            orGroup: rock
+          - id: NFWallChromiteCobblebrickSalt
+            prob: 0.004
+            orGroup: rock
+          - id: NFWallChromiteCobblebrickGold
+            prob: 0.001
+            orGroup: rock
+          - id: NFWallChromiteCobblebrickSilver
+            prob: 0.001
+            orGroup: rock
+          - id: NFWallChromiteCobblebrickPlasma
+            prob: 0.004
+            orGroup: rock
+          - id: NFWallChromiteCobblebrickUranium
+            prob: 0.009
+            orGroup: rock
+          - id: NFWallChromiteCobblebrickBananium
+            prob: 0.0015
+            orGroup: rock
+          - id: NFWallChromiteCobblebrickArtifactFragment
+            prob: 0.001
+            orGroup: rock
+          # - id: NFWallChromiteCobblebrickDiamond
+          #   prob: 0.0005
+          #   orGroup: rock
+          - id: NFWallChromiteCobblebrickBluespace
+            prob: 0.00025
+            orGroup: rock
+          - id: ChromiteCobblebrickElementalSpawner
+            prob: 0.005
+            orGroup: rock
     - type: IFF
       color: "#8178cc"
+# endregion Chromite Table
 
-# Asteroid Asteroid Debris, because yes, base asteroid is made NOT from asteroid
+# region AsteroidRock Table
 - type: entity
   id: NFBaseAsteroidRockDebris
   parent: NFBaseAsteroidDebris
@@ -457,10 +659,50 @@
           - id: NFWallNecropolis
             prob: 0.1
             orGroup: rock
+          - id: NFWallNecropolisCoal
+            prob: 0.004
+            orGroup: rock
+          - id: NFWallNecropolisTin
+            prob: 0.006
+            orGroup: rock
+          - id: NFWallNecropolisQuartz
+            prob: 0.01
+            orGroup: rock
+          - id: NFWallNecropolisSalt
+            prob: 0.015
+            orGroup: rock
+          - id: NFWallNecropolisGold
+            prob: 0.006
+            orGroup: rock
+          - id: NFWallNecropolisSilver
+            prob: 0.003
+            orGroup: rock
+          - id: NFWallNecropolisPlasma
+            prob: 0.007
+            orGroup: rock
+          - id: NFWallNecropolisUranium
+            prob: 0.004
+            orGroup: rock
+          - id: NFWallNecropolisBananium
+            prob: 0.004
+            orGroup: rock
+          - id: NFWallNecropolisArtifactFragment
+            prob: 0.001
+            orGroup: rock
+          - id: NFWallNecropolisBluespace
+            prob: 0.0002
+            orGroup: rock
+          # - id: NFWallNecropolisDiamond
+          #   prob: 0.001
+          #   orGroup: rock
+          - id: NecropolisElementalSpawner
+            prob: 0.008
+            orGroup: rock
     - type: IFF
       color: "#BF8C5C"
+# endregion AsteroidRock Table
 
-# Scrap
+# region Scrap Table
 - type: entity
   id: NFBaseAsteroidScrapDebris
   parent: NFBaseAsteroidDebris
@@ -519,8 +761,9 @@
             orGroup: rock
     - type: IFF
       color: "#fcdec7"
+# endregion Scrap Table
 
-# Concrete asteroids (Base type)
+# region Asteroid Entities
 - type: entity
   id: NFAsteroidDebrisSmall
   parent: NFBaseAsteroidDebris
@@ -640,8 +883,9 @@
     - type: BlobFloorPlanBuilder
       floorPlacements: 324
       radius: 28
+# endregion Asteroid Entities
 
-# Ice asteroids
+# region Ice Entities
 - type: entity
   id: NFAsteroidIceDebrisSmall
   parent: [NFBaseAsteroidIceDebris, NFAsteroidDebrisSmall]
@@ -701,8 +945,9 @@
   id: NFAsteroidIceDebrisExtraGigantic
   parent: [NFBaseAsteroidIceDebris, NFAsteroidDebrisExtraGigantic]
   categories: [ HideSpawnMenu ]
+# endregion Ice Entities
 
-# Andesite asteroids
+# region Andesite Entities
 - type: entity
   id: NFAsteroidAndesiteDebrisSmall
   parent: [NFBaseAsteroidAndesiteDebris, NFAsteroidDebrisSmall]
@@ -762,8 +1007,9 @@
   id: NFAsteroidAndesiteDebrisExtraGigantic
   parent: [NFBaseAsteroidAndesiteDebris, NFAsteroidDebrisExtraGigantic]
   categories: [ HideSpawnMenu ]
+# endregion Andesite Entities
 
-# Basalt asteroids
+# region Basalt Entities
 - type: entity
   id: NFAsteroidBasaltDebrisSmall
   parent: [NFBaseAsteroidBasaltDebris, NFAsteroidDebrisSmall]
@@ -823,8 +1069,9 @@
   id: NFAsteroidBasaltDebrisExtraGigantic
   parent: [NFBaseAsteroidBasaltDebris, NFAsteroidDebrisExtraGigantic]
   categories: [ HideSpawnMenu ]
+# endregion Basalt Entities
 
-# Sand asteroids
+# region Sand Entities
 - type: entity
   id: NFAsteroidSandDebrisSmall
   parent: [NFBaseAsteroidSandDebris, NFAsteroidDebrisSmall]
@@ -884,8 +1131,9 @@
   id: NFAsteroidSandDebrisExtraGigantic
   parent: [NFBaseAsteroidSandDebris, NFAsteroidDebrisExtraGigantic]
   categories: [ HideSpawnMenu ]
+# endregion Sand Entities
 
-# Chromite asteroids
+# region Chromite Entities
 - type: entity
   id: NFAsteroidChromiteDebrisSmall
   parent: [NFBaseAsteroidChromiteDebris, NFAsteroidDebrisSmall]
@@ -945,8 +1193,9 @@
   id: NFAsteroidChromiteDebrisExtraGigantic
   parent: [NFBaseAsteroidChromiteDebris, NFAsteroidDebrisExtraGigantic]
   categories: [ HideSpawnMenu ]
+# endregion Chromite Entities
 
-# Rock asteroids
+# region AsteroidRock Entities
 - type: entity
   id: NFAsteroidRockDebrisSmall
   parent: [NFBaseAsteroidRockDebris, NFAsteroidDebrisSmall]
@@ -1006,8 +1255,9 @@
   id: NFAsteroidRockDebrisExtraGigantic
   parent: [NFBaseAsteroidRockDebris, NFAsteroidDebrisExtraGigantic]
   categories: [ HideSpawnMenu ]
+# endregion AsteroidRock Entities
 
-# Scrap asteroids
+# region Scrap Entities
 - type: entity
   id: NFAsteroidScrapDebrisSmall
   parent: [NFBaseAsteroidScrapDebris, NFAsteroidDebrisSmall]
@@ -1067,3 +1317,4 @@
   id: NFAsteroidScrapDebrisExtraGigantic
   parent: [NFBaseAsteroidScrapDebris, NFAsteroidDebrisExtraGigantic]
   categories: [ HideSpawnMenu ]
+# endregion Scrap Entities
