@@ -85,10 +85,10 @@
           - PillCanister
   - type: SolutionContainerManager
     solutions:
-      buffer: {}
+      buffer: {maxVol: 3000} # Frontier: Set to 3000
   - type: DumpableSolution
     solution: buffer
-    unlimited: true
+    unlimited: false # Frontier: true<false
   - type: GuideHelp
     guides:
     - Chemicals
