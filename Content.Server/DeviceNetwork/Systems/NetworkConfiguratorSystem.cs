@@ -52,10 +52,9 @@ public sealed class NetworkConfiguratorSystem : SharedNetworkConfiguratorSystem
         //Verbs
         SubscribeLocalEvent<NetworkConfiguratorComponent, GetVerbsEvent<UtilityVerb>>(OnAddInteractVerb);
         SubscribeLocalEvent<DeviceNetworkComponent, GetVerbsEvent<AlternativeVerb>>(OnAddAlternativeSaveDeviceVerb);
-        SubscribeLocalEvent<DeviceLinkSinkComponent, GetVerbsEvent<AlternativeVerb>>(OnAddAlternativeSinkVerb);         // Frontier
-        SubscribeLocalEvent<DeviceLinkSourceComponent, GetVerbsEvent<AlternativeVerb>>(OnAddAlternativeSourceVerb);     // Frontier
+        SubscribeLocalEvent<DeviceLinkSinkComponent, GetVerbsEvent<AlternativeVerb>>(OnAddAlternativeSinkVerb);     // Frontier
+        SubscribeLocalEvent<DeviceLinkSourceComponent, GetVerbsEvent<AlternativeVerb>>(OnAddAlternativeSourceVerb); // Frontier
         SubscribeLocalEvent<NetworkConfiguratorComponent, GetVerbsEvent<AlternativeVerb>>(OnAddSwitchModeVerb);
-
 
         //UI
         SubscribeLocalEvent<NetworkConfiguratorComponent, BoundUIClosedEvent>(OnUiClosed);
@@ -394,12 +393,13 @@ public sealed class NetworkConfiguratorSystem : SharedNetworkConfiguratorSystem
             args.Verbs.Add(verb);
             return;
         }
+
+        // Frontier: removed check for DeviceSource/DeviceSink into separate verb functions.
     }
 
-    /// Frontier
+    /// Frontier: DeviceSource/DeviceSink verbs
     /// <summary>
-    /// Adds link default alt verb to devices with LinkSource or LinkSink components.
-    /// If a device has both, only add it during the LinkSource check, to avoid duplicating verbs in the rightclick menu
+    /// Adds link default alt verb to devices with LinkSource components.
     /// </summary>
 
     private void OnAddAlternativeSourceVerb(EntityUid uid, DeviceLinkSourceComponent component, GetVerbsEvent<AlternativeVerb> args)
@@ -421,7 +421,9 @@ public sealed class NetworkConfiguratorSystem : SharedNetworkConfiguratorSystem
         }
     }
 
-    /// Frontier
+    /// <summary>
+    /// Adds link default alt verb to devices with LinkSink components if they aren't a LinkSource (to prevent duplicates).
+    /// </summary>
     private void OnAddAlternativeSinkVerb(EntityUid uid, DeviceLinkSinkComponent component, GetVerbsEvent<AlternativeVerb> args)
     {
         if (!args.CanAccess || !args.CanInteract || !args.Using.HasValue
@@ -441,7 +443,7 @@ public sealed class NetworkConfiguratorSystem : SharedNetworkConfiguratorSystem
             args.Verbs.Add(verb);
         }
     }
-
+    /// End Frontier: DeviceSource/DeviceSink verbs
 
     private void OnAddSwitchModeVerb(EntityUid uid, NetworkConfiguratorComponent configurator, GetVerbsEvent<AlternativeVerb> args)
     {
