@@ -429,6 +429,8 @@ public sealed class FoodSystem : EntitySystem
         // Run through the mobs' stomachs
         foreach (var ent in stomachs)
         {
+            if (!component.RequiresSpecialDigestion && !ent.Comp1.SpecialDigestibleOnly) // Frontier: stomachs that can digest "normal food"
+                return true; // Frontier
             // Find a stomach with a SpecialDigestible
             if (ent.Comp1.SpecialDigestible == null)
                 continue;
