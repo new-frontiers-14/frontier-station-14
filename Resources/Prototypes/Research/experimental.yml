@@ -45,17 +45,17 @@
   - AnalysisComputerCircuitboard
   - ArtifactAnalyzerMachineCircuitboard
 
-- type: technology
-  id: AlternativeResearch
-  name: research-technology-alternative-research
-  icon:
-    sprite: Structures/Machines/tech_disk_printer.rsi
-    state: display
-  discipline: Experimental
-  tier: 1
-  cost: 5000
-  recipeUnlocks:
-  - TechDiskComputerCircuitboard
+# - type: technology # Frontier
+  # id: AlternativeResearch
+  # name: research-technology-alternative-research
+  # icon:
+    # sprite: Structures/Machines/tech_disk_printer.rsi
+    # state: display
+  # discipline: Experimental
+  # tier: 1
+  # cost: 5000
+  # recipeUnlocks:
+  # - TechDiskComputerCircuitboard
 
 - type: technology
   id: MagnetsTech
@@ -126,18 +126,18 @@
   technologyPrerequisites:
   - BasicAnomalousResearch
 
-# - type: technology
-  # id: DeterrenceTechnologies
-  # name: research-technology-deterrence
-  # icon:
-    # sprite: Objects/Weapons/Guns/Battery/particle_decelerator.rsi
-    # state: base
-  # discipline: Experimental
-  # tier: 2
-  # cost: 7500
-  # recipeUnlocks:
-  # - WeaponParticleDecelerator
-  # - HoloprojectorField
+- type: technology
+  id: DeterrenceTechnologies
+  name: research-technology-deterrence
+  icon:
+    sprite: Objects/Devices/Holoprojectors/field.rsi # Frontier particle_decelerator.rsi<field.rsi
+    state: icon # Frontier base<icon
+  discipline: Experimental
+  tier: 2
+  cost: 7500
+  recipeUnlocks:
+  # - WeaponParticleDecelerator # Frontier - Cancer gun that skip walls
+  - HoloprojectorField
 
 # Tier 3
 
