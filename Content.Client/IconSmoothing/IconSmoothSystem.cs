@@ -81,35 +81,25 @@ namespace Content.Client.IconSmoothing
 
         private void SetCornerLayers(SpriteComponent sprite, IconSmoothComponent component)
         {
-            // Frontier: ed why did you do this
-            // sprite.LayerMapRemove(CornerLayers.SE);
-            // sprite.LayerMapRemove(CornerLayers.NE);
-            // sprite.LayerMapRemove(CornerLayers.NW);
-            // sprite.LayerMapRemove(CornerLayers.SW);
-
+            // Frontier: Allow overlays on entities using CornerLayers smoothing - don't remove layers, adjust existing ones or create new ones.
             var state0 = $"{component.StateBase}0";
-            if (sprite.LayerMapTryGet(CornerLayers.SE, out var seLayer))
-                sprite.LayerSetState(seLayer, state0);
-            else
-                sprite.LayerMapSet(CornerLayers.SE, sprite.AddLayerState(state0));
-            sprite.LayerSetDirOffset(CornerLayers.SE, DirectionOffset.None);
-            if (sprite.LayerMapTryGet(CornerLayers.NE, out var neLayer))
-                sprite.LayerSetState(neLayer, state0);
-            else
-                sprite.LayerMapSet(CornerLayers.NE, sprite.AddLayerState(state0));
-            sprite.LayerSetDirOffset(CornerLayers.NE, DirectionOffset.CounterClockwise);
-            if (sprite.LayerMapTryGet(CornerLayers.NW, out var nwLayer))
-                sprite.LayerSetState(nwLayer, state0);
-            else
-                sprite.LayerMapSet(CornerLayers.NW, sprite.AddLayerState(state0));
-            sprite.LayerSetDirOffset(CornerLayers.NW, DirectionOffset.Flip);
-            if (sprite.LayerMapTryGet(CornerLayers.SW, out var swLayer))
-                sprite.LayerSetState(swLayer, state0);
-            else
-                sprite.LayerMapSet(CornerLayers.SW, sprite.AddLayerState(state0));
-            sprite.LayerSetDirOffset(CornerLayers.SW, DirectionOffset.Clockwise);
-            // End Frontier: ed why did you do this
+            SetCornerLayerState(sprite, CornerLayers.SE, DirectionOffset.None, state0);
+            SetCornerLayerState(sprite, CornerLayers.NE, DirectionOffset.CounterClockwise, state0);
+            SetCornerLayerState(sprite, CornerLayers.NW, DirectionOffset.Flip, state0);
+            SetCornerLayerState(sprite, CornerLayers.SW, DirectionOffset.Clockwise, state0);
+            // End Frontier: Allow overlays on entities using CornerLayers smoothing - don't remove layers, adjust existing ones or create new ones.
         }
+
+        // Frontier: set layer function to remove redundancy
+        private void SetCornerLayerState(SpriteComponent sprite, CornerLayers corner, DirectionOffset offset, string state)
+        {
+            if (sprite.LayerMapTryGet(corner, out var layer))
+                sprite.LayerSetState(layer, state);
+            else
+                sprite.LayerMapSet(corner, sprite.AddLayerState(state));
+            sprite.LayerSetDirOffset(corner, offset);
+        }
+        // End Frontier: set layer function to remove redundancy
 
         private void OnShutdown(EntityUid uid, IconSmoothComponent component, ComponentShutdown args)
         {
