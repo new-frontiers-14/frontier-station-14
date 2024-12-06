@@ -10,11 +10,11 @@ using Content.Server.DeltaV.Mail.EntitySystems;
 namespace Content.Server.DeltaV.Mail;
 
 [AdminCommand(AdminFlags.Fun)]
-public sealed class MailToCommand : LocalizedCommands
+public sealed class MailToCommand : LocalizedCommands // Frontier: IConsoleCommand < LocalizedCommands
 {
-    public override string Command => "mailto";
-    public override string Description => Loc.GetString("command-mailto-description", ("requiredComponent", nameof(MailReceiverComponent)));
-    public override string Help => Loc.GetString("command-mailto-help", ("command", Command));
+    public override string Command => "mailto"; // Frontier: add override
+    public override string Description => Loc.GetString("command-mailto-description", ("requiredComponent", nameof(MailReceiverComponent))); // Frontier: add override
+    public override string Help => Loc.GetString("command-mailto-help", ("command", Command)); // Frontier: add override
 
     [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
@@ -26,7 +26,7 @@ public sealed class MailToCommand : LocalizedCommands
     private const string MailContainer = "contents";
 
 
-    public override void Execute(IConsoleShell shell, string argStr, string[] args)
+    public override void Execute(IConsoleShell shell, string argStr, string[] args) // Frontier: async < override
     {
         if (args.Length < 4)
         {
