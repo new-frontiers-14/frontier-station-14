@@ -791,8 +791,8 @@
   id: SecurityTechFab
   parent: BaseLatheLube
   name: security techfab
-  categories: [ HideSpawnMenu ] # Frontier
   description: Prints equipment for use by security crew.
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: Sprite
     sprite: Structures/Machines/techfab.rsi
@@ -845,8 +845,6 @@
       - RiotShield
       - SpeedLoaderMagnum
       - SpeedLoaderMagnumEmpty
-      - SpeedLoaderRifleHeavy # Frontier
-      - SpeedLoaderRifleHeavyEmpty # Frontier
       - Stunbaton
       - TargetClown
       - TargetHuman
@@ -855,16 +853,8 @@
       - WeaponFlareGunSecurity
       - WeaponLaserCarbinePractice
       - Zipties
-      - ThrusterSecurityMachineCircuitboard # Frontier
-      - ClothingOuterHardsuitEVAPrisoner # Frontier
-      - BoxBeanbag # Frontier
-      - MagazineBoxLightRifleRubber # Frontier
-      - MagazineBoxMagnumRubber # Frontier
-      - MagazineBoxPistolRubber # Frontier
-      - MagazineBoxRifleRubber # Frontier
-      - MagazineShotgunBeanbag # Frontier
     dynamicRecipes:
-      # - BoxBeanbag # Frontier: moved to static
+      - BoxBeanbag
       - BoxShotgunIncendiary
       - BoxShotgunUranium
       - BoxShellTranquilizer
@@ -890,7 +880,7 @@
       - MagazinePistolUranium
       - MagazineRifleIncendiary
       - MagazineRifleUranium
-      # - MagazineShotgunBeanbag # Frontier: moved to static
+      - MagazineShotgunBeanbag
       - MagazineShotgunIncendiary
       - PortableRecharger
       - PowerCageHigh
@@ -914,9 +904,6 @@
       - WeaponLaserCannon
       - WeaponLaserCarbine
       - WeaponXrayCannon
-      - ContrabandAppraisalTool # Frontier
-      - SpeedLoaderRifleHeavyIncendiary # Frontier
-      - SpeedLoaderRifleHeavyUranium # Frontier
   - type: MaterialStorage
     whitelist:
       tags:
