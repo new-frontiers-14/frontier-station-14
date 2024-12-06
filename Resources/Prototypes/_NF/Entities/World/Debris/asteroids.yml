@@ -421,6 +421,66 @@
     - type: IFF
       color: "#BF8C5C"
 
+# Scrap
+- type: entity
+  id: NFBaseAsteroidScrapDebris
+  parent: NFBaseAsteroidDebris
+  abstract: true
+  components:
+    - type: BlobFloorPlanBuilder
+      floorTileset:
+      - Lattice
+    - type: SimpleFloorPlanPopulator
+      entries:
+        Lattice:
+          - id: WallRockScrapPile
+            prob: 0.5
+            orGroup: rock
+          - id: WallRockScrapPileCoal
+            prob: 0.02
+            orGroup: rock
+          - id: WallRockScrapPileIron
+            prob: 0.04
+            orGroup: rock
+          - id: WallRockScrapPileQuartz
+            prob: 0.01
+            orGroup: rock
+          - id: WallRockScrapPileSalt
+            prob: 0.01
+            orGroup: rock
+          - id: WallRockScrapPileGold
+            prob: 0.02
+            orGroup: rock
+          - id: WallRockScrapPileSilver
+            prob: 0.02
+            orGroup: rock
+          - id: WallRockScrapPilePlasma
+            prob: 0.05
+            orGroup: rock
+          - id: WallRockScrapPileUranium
+            prob: 0.01
+            orGroup: rock
+          - id: WallRockScrapPileBananium
+            prob: 0.005
+            orGroup: rock
+          - id: WallRockScrapPileArtifactFragment
+            prob: 0.02
+            orGroup: rock
+          - id: WallRockScrapPileDiamond
+            prob: 0.002
+            orGroup: rock
+          - id: WallRockScrapPileBluespace
+            prob: 0.003
+            orGroup: rock
+          - id: AsteroidScrapBotWallSpawner
+            prob: 0.06
+            orGroup: rock
+          - id: WallSolidRust
+            prob: 0.05
+            orGroup: rock
+    - type: IFF
+      color: "#fcdec7"
+
 # Concrete asteroids (Base type)
 - type: entity
   id: NFAsteroidDebrisSmall
@@ -906,4 +966,65 @@
 - type: entity
   id: NFAsteroidRockDebrisExtraGigantic
   parent: [NFBaseAsteroidRockDebris, NFAsteroidDebrisExtraGigantic]
+  categories: [ HideSpawnMenu ]
+
+# Scrap asteroids
+- type: entity
+  id: NFAsteroidScrapDebrisSmall
+  parent: [NFBaseAsteroidScrapDebris, NFAsteroidDebrisSmall]
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: NFAsteroidScrapDebrisMedium
+  parent: [NFBaseAsteroidScrapDebris, NFAsteroidDebrisMedium]
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: NFAsteroidScrapDebrisLarge
+  parent: [NFBaseAsteroidScrapDebris, NFAsteroidDebrisLarge]
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: NFAsteroidScrapDebrisExtraLarge
+  parent: [NFBaseAsteroidScrapDebris, NFAsteroidDebrisExtraLarge]
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: NFAsteroidScrapDebrisHuge
+  parent: [NFBaseAsteroidScrapDebris, NFAsteroidDebrisHuge]
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: NFAsteroidScrapDebrisExtraHuge
+  parent: [NFBaseAsteroidScrapDebris, NFAsteroidDebrisExtraHuge]
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: NFAsteroidScrapDebrisEnormous
+  parent: [NFBaseAsteroidScrapDebris, NFAsteroidDebrisEnormous]
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: NFAsteroidScrapDebrisExtraEnormous
+  parent: [NFBaseAsteroidScrapDebris, NFAsteroidDebrisExtraEnormous]
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: NFAsteroidScrapDebrisMassive
+  parent: [NFBaseAsteroidScrapDebris, NFAsteroidDebrisMassive]
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: NFAsteroidScrapDebrisExtraMassive
+  parent: [NFBaseAsteroidScrapDebris, NFAsteroidDebrisExtraMassive]
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: NFAsteroidScrapDebrisGigantic
+  parent: [NFBaseAsteroidScrapDebris, NFAsteroidDebrisGigantic]
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: NFAsteroidScrapDebrisExtraGigantic
+  parent: [NFBaseAsteroidScrapDebris, NFAsteroidDebrisExtraGigantic]
   categories: [ HideSpawnMenu ]
