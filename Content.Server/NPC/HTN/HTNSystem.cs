@@ -17,10 +17,15 @@ using Robust.Shared.Utility;
 using Content.Server.Worldgen; // Frontier
 using Content.Server.Worldgen.Components; // Frontier
 using Content.Server.Worldgen.Systems;
+using Content.Shared.Body.Systems;
+using Content.Shared.Coordinates;
+using Content.Shared.Gibbing.Systems;
 using Content.Shared.NPC.Components;
 using Content.Shared.NPC.Systems;
+using Content.Shared.Popups;
 using Content.Shared.Tiles; // Frontier
-using Robust.Server.GameObjects; // Frontier
+using Robust.Server.GameObjects;
+using Robust.Shared.Audio.Systems; // Frontier
 
 namespace Content.Server.NPC.HTN;
 
@@ -36,6 +41,9 @@ public sealed class HTNSystem : EntitySystem
     private EntityQuery<WorldControllerComponent> _mapQuery;
     private EntityQuery<LoadedChunkComponent> _loadedQuery;
     [Dependency] private readonly NpcFactionSystem _npcFaction = default!;
+    [Dependency] private readonly SharedBodySystem _sharedBodySystem = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
     // Frontier
 
     private readonly JobQueue _planQueue = new(0.004);
@@ -175,13 +183,20 @@ public sealed class HTNSystem : EntitySystem
 
             // Frontier: Disable hostile AI in pacified zones
             var grid = Transform(uid).GridUid;
-            if (grid != null && EntityManager.TryGetComponent<ProtectedGridComponent>(grid, out _))
+            if (grid != null
+                && TryComp<ProtectedGridComponent>(grid, out var protectedGrid)
+                && TryComp<NpcFactionMemberComponent>(uid, out var npcFactionMember)
+                && _npcFaction.IsFactionHostile("NanoTrasen", (uid, npcFactionMember)))
             {
-                if (EntityManager.TryGetComponent<NpcFactionMemberComponent>(uid, out var npcFactionMemberComponent))
+                if (protectedGrid.KillHostileMobs)
                 {
-                    if (_npcFaction.IsFactionHostile("NanoTrasen", (uid, npcFactionMemberComponent)))
-                        continue;
+                    _audio.PlayPredicted(protectedGrid.HostileMobKillSound, Transform(uid).Coordinates, null);
+                    _sharedBodySystem.GibBody(uid);
+                    Spawn("Ash", Transform(uid).Coordinates);
+                    _popup.PopupEntity(Loc.GetString("admin-smite-turned-ash-other", ("name", uid)), uid, PopupType.LargeCaution);
+                    EntityManager.QueueDeleteEntity(uid);
                 }
+                continue;
             }
 
             if (comp.PlanningJob != null)

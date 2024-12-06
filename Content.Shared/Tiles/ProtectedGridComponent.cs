@@ -1,3 +1,4 @@
+using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 
 namespace Content.Shared.Tiles;
@@ -21,5 +22,13 @@ public sealed partial class ProtectedGridComponent : Component
     public bool PreventExplosions = false;
     [DataField]
     public bool PreventArtifactTriggers = false;
+    [DataField]
+    public bool KillHostileMobs = true;
+
+    /// <summary>
+    /// The sound made when spawning a coordinates disk
+    /// </summary>
+    [DataField]
+    public SoundSpecifier HostileMobKillSound = new SoundPathSpecifier("/Audio/Effects/holy.ogg");
     // End Frontier
 }
