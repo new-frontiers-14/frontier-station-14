@@ -47,29 +47,22 @@ public sealed class SectorServiceSystem : EntitySystem
     private void OnComponentRemove(EntityUid uid, StationSectorServiceHostComponent component, ComponentRemove args)
     {
         Log.Debug($"ComponentRemove called! Entity: {_entity}");
-        if (_entity != EntityUid.Invalid)
-        {
-            foreach (var servicePrototype in _prototypeManager.EnumeratePrototypes<SectorServicePrototype>())
-            {
-                Log.Debug($"Removing component for service {servicePrototype.ID}");
-                _entityManager.RemoveComponents(_entity, servicePrototype.Components);
-            }
-            _entity = EntityUid.Invalid;
-        }
+        DeleteServiceEntity();
     }
 
     public void OnCleanup(RoundRestartCleanupEvent _)
     {
         Log.Debug($"RoundRestartCleanup called! Entity: {_entity}");
-        if (_entity != EntityUid.Invalid)
+        DeleteServiceEntity();
+    }
+
+    private void DeleteServiceEntity()
+    {
+        if (EntityManager.EntityExists(_entity) && !Terminating(_entity))
         {
-            foreach (var servicePrototype in _prototypeManager.EnumeratePrototypes<SectorServicePrototype>())
-            {
-                Log.Debug($"Removing component for service {servicePrototype.ID}");
-                _entityManager.RemoveComponents(_entity, servicePrototype.Components);
-            }
-            _entity = EntityUid.Invalid;
+            QueueDel(_entity);
         }
+        _entity = EntityUid.Invalid;
     }
 
     public EntityUid GetServiceEntity()
