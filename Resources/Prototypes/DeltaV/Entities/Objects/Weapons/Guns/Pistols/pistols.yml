@@ -1,0 +1,81 @@
+- type: entity
+  name: Mk32 "Universal"
+  parent: [BaseWeaponPistol, BaseC1Contraband]
+  id: WeaponPistolUniversal
+  description: The Mark 32 Offensive Handgun, produced by NanoTrasen's Small Arms Division. Uses .45 magnum ammo. # DeltaV - update Mk32
+  components:
+  - type: Sprite
+    sprite: DeltaV/Objects/Weapons/Guns/Pistols/universal.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: DeltaV/Objects/Weapons/Guns/Pistols/universal.rsi
+  - type: Gun
+    fireRate: 3
+    availableModes:
+    - SemiAuto
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazinePistol
+        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazinePistol
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgePistol
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgePistol
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+
+- type: entity
+  name: pollock
+  parent: [BaseWeaponPistol, BaseC1Contraband]
+  id: WeaponPistolPollock
+  description: A compact and mass-produced combat pistol. Uses .35 auto ammo.
+  components:
+  - type: Sprite
+    sprite: DeltaV/Objects/Weapons/Guns/Pistols/pollock.rsi
+  - type: Clothing
+    sprite: DeltaV/Objects/Weapons/Guns/Pistols/pollock.rsi
+  - type: Gun
+    fireRate: 5
+    availableModes:
+    - SemiAuto
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazinePistol
+        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazinePistol
+            - MagazinePistolHighCapacity
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgePistol
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgePistol
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: StaticPrice
+    price: 500

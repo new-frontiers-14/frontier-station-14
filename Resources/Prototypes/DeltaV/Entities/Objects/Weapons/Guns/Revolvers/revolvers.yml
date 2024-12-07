@@ -1,0 +1,67 @@
+- type: entity
+  name: fitz special
+  parent: [BaseWeaponRevolver, BaseC1Contraband]
+  id: WeaponRevolverFitz
+  description: A compact and concealable self defence snub revolver. Uses .38 special ammo.
+  components:
+  - type: Sprite
+    sprite: DeltaV/Objects/Weapons/Guns/Revolvers/fitz.rsi
+  - type: Clothing
+    sprite: DeltaV/Objects/Weapons/Guns/Revolvers/fitz.rsi
+  - type: Gun
+    selectedMode: SemiAuto
+    fireRate: 1.75
+    availableModes:
+    - SemiAuto
+  - type: RevolverAmmoProvider
+    proto: CartridgeMagnum
+    capacity: 6
+    chambers: [ True, True, True, True, True, True ]
+    ammoSlots: [ null, null, null, null, null, null ]
+  - type: StaticPrice
+    price: 340
+
+- type: entity
+  name: faith
+  parent: [BaseWeaponRevolver, BaseC1Contraband]
+  id: WeaponRevolverFaith
+  description: Delivers blessings in bullet form. Uses .38 special ammo.
+  components:
+  - type: Sprite
+    sprite: DeltaV/Objects/Weapons/Guns/Revolvers/faith.rsi
+  - type: Clothing
+    sprite: DeltaV/Objects/Weapons/Guns/Revolvers/faith.rsi
+  - type: Gun
+    selectedMode: SemiAuto
+    fireRate: 1.5
+    availableModes:
+    - SemiAuto
+  - type: RevolverAmmoProvider
+    proto: CartridgeMagnum
+    capacity: 4
+    chambers: [ True, True, True, True ]
+    ammoSlots: [ null, null, null, null ]
+  - type: StaticPrice
+    price: 240
+
+- type: entity
+  name: lucky 37
+  parent: [BaseWeaponRevolver, BaseC1Contraband]
+  id: WeaponRevolverLucky
+  description: Luck always beats skill, ya weasel. Uses .38 special ammo.
+  components:
+  - type: Sprite
+    sprite: DeltaV/Objects/Weapons/Guns/Revolvers/lucky.rsi
+  - type: Clothing
+    sprite: DeltaV/Objects/Weapons/Guns/Revolvers/lucky.rsi
+  - type: Gun
+    selectedMode: SemiAuto
+    fireRate: 2
+    availableModes:
+    - SemiAuto
+    proto: CartridgeMagnum
+    capacity: 6
+    chambers: [ True, True, True, True, True, True ]
+    ammoSlots: [ null, null, null, null, null, null ]
+  - type: StaticPrice
+    price: 750
