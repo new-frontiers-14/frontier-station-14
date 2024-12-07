@@ -1,5 +1,6 @@
+# Mimic
 - type: entity
-  name: Mimic
+  name: mimic
   id: NFMimic
   parent: [NFMobRestrictions, SimpleSpaceMobBase]
   description: ????
@@ -37,7 +38,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 15
+        damage: 25
       behaviors:
 #      - !type:PlaySoundBehavior
 #        sound:
@@ -88,12 +89,14 @@
   - type: SpawnOnTrigger
     proto: MobSpawnNFMimic
   - type: TriggerOnProximity
-    enabled: true
     shape:
       !type:PhysShapeCircle
         radius: 3
     repeating: false
     requiresAnchored: false
+    whitelist:
+      components:
+        - Actor
   - type: DeleteOnTrigger
   - type: Destructible
     thresholds:
@@ -109,6 +112,68 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
 
+# Greater mimic
+- type: entity
+  name: greater mimic
+  id: NFGreaterMimic
+  parent: NFMimic
+  description: ????
+  components:
+  - type: Sprite
+    scale: 1.2, 1.2
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 3
+    baseSprintSpeed : 5
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.24
+        density: 24
+        mask:
+        - SmallMobMask
+        layer:
+        - SmallMobLayer
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+#      - !type:PlaySoundBehavior
+#        sound:
+#          collection: GlassBreak
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 4
+
+- type: entity
+  id: MobSpawnNFGreaterMimic
+  parent: MobSpawnNFMimic
+  categories: [ HideSpawnMenu, Spawner ]
+  components:
+  - type: Sprite
+    scale: 1.2, 1.2
+  - type: SpawnOnDespawn
+    prototype: NFGreaterMimic
+
+- type: entity
+  id: NFGreaterMimicBase
+  parent: NFMimicBase
+  suffix: Mimic
+  abstract: true
+  components:
+  - type: SpawnOnTrigger
+    proto: MobSpawnNFGreaterMimic
+
+# Small entity
+
+  
+# Large entity
 - type: entity
   id: NFMimicAirCanister
-  parent: [NFMimicBase, AirCanister]
+  parent: [NFGreaterMimicBase, AirCanister]
