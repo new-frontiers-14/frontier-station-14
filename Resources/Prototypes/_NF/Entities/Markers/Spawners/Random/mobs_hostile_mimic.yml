@@ -1,0 +1,101 @@
+- type: entity
+  name: Mimic
+  id: NFMimic
+  parent: [NFMobRestrictions, SimpleSpaceMobBase]
+  description: ????
+  components:
+  - type: InputMover
+  - type: MobMover
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: alive
+      sprite: _NF/Mobs/Aliens/mimic.rsi
+  - type: Physics
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 4
+    baseSprintSpeed : 6
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.20
+        density: 20
+        mask:
+        - SmallMobMask
+        layer:
+        - SmallMobLayer
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 15
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: MovementAlwaysTouching
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: alive
+  - type: CombatMode
+  - type: MeleeWeapon
+    soundHit:
+        path: /Audio/Effects/bite.ogg
+    angle: 0
+    animation: WeaponArcBite
+    damage:
+      types:
+        Slash: 2
+  - type: ReplacementAccent
+    accent: genericAggressive
+  - type: Speech
+    speechVerb: SmallMob
+  - type: NonSpreaderZombie
+
+- type: entity
+  id: MobSpawnNFMimic
+  categories: [ HideSpawnMenu, Spawner ]
+  components:
+  - type: InteractionOutline
+  - type: TimedDespawn
+    lifetime: 0.85
+  - type: Sprite
+    sprite: /Textures/_NF/Mobs/Aliens/mimic.rsi
+    state: spawn
+  - type: SpawnOnDespawn
+    prototype: NFMimic
+
+- type: entity
+  id: NFMimicBase
+  suffix: Mimic
+  abstract: true
+  components:
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/Weapons/flash.ogg
+  - type: SpawnOnTrigger
+    proto: MobSpawnNFMimic
+  - type: TriggerOnProximity
+    enabled: true
+    shape:
+      !type:PhysShapeCircle
+        radius: 2
+    repeating: false
+    requiresAnchored: false
+  - type: DeleteOnTrigger
+
+- type: entity
+  id: NFMimicAirCanister
+  parent: [NFMimicBase, AirCanister]
