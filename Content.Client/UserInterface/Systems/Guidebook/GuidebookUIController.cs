@@ -210,7 +210,7 @@ public sealed class GuidebookUIController : UIController, IOnStateEntered<LobbyS
 
         // Expand up to depth-2.
         _guideWindow.Tree.SetAllExpanded(false);
-        _guideWindow.Tree.SetAllExpanded(true, 1);
+        _guideWindow.Tree.SetAllExpanded(true, 0); // Frontier: 1->0 (too many entries at depth 2)
 
         _guideWindow.OpenCenteredRight();
     }
