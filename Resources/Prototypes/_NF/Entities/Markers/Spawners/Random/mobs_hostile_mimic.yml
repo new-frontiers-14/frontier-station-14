@@ -91,10 +91,23 @@
     enabled: true
     shape:
       !type:PhysShapeCircle
-        radius: 2
+        radius: 3
     repeating: false
     requiresAnchored: false
   - type: DeleteOnTrigger
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MobSpawnNFMimic:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
 
 - type: entity
   id: NFMimicAirCanister
