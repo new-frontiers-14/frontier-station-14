@@ -10,7 +10,7 @@ using Content.Server.GameTicking;
 using Content.Server.Station.Systems;
 using Content.Shared.CartridgeLoader;
 using Content.Shared.CartridgeLoader.Cartridges;
-using Content.Server._NF.SectorServices;
+using Content.Server._NF.SectorServices; // Frontier
 
 namespace Content.Server.CriminalRecords.Systems;
 
@@ -28,7 +28,7 @@ public sealed class CriminalRecordsSystem : SharedCriminalRecordsSystem
     [Dependency] private readonly StationRecordsSystem _records = default!;
     // [Dependency] private readonly StationSystem _station = default!; // Frontier
     [Dependency] private readonly CartridgeLoaderSystem _cartridge = default!;
-    [Dependency] private readonly SectorServiceSystem _sectorService = default!;
+    [Dependency] private readonly SectorServiceSystem _sectorService = default!; // Frontier
 
     public override void Initialize()
     {
