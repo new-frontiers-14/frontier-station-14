@@ -413,10 +413,12 @@
     minimumSpeed: 3
     removalTime: 0.25
     embedOnThrow: false
-  - type: SolutionContainerManager # DeltaV - Nerfs the max volume to 5 (was 15)
+  # DeltaV - Nerfs the max volume to 5 (was 15)
+  - type: SolutionContainerManager
     solutions:
       injector:
-        maxVol: 5 
+        maxVol: 5
+  # End DeltaV
   - type: SolutionInjectWhileEmbedded
     transferAmount: 1
     solution: injector
@@ -596,7 +598,7 @@
     areaInsertRadius: 1
     storageInsertSound: /Audio/Effects/pill_insert.ogg
     storageRemoveSound: /Audio/Effects/pill_remove.ogg
-    whitelist: 
+    whitelist:
       tags:
       - Pill
   - type: Dumpable
