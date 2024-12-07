@@ -20,29 +20,38 @@ public sealed partial class HostileNPCDeletionSystem : EntitySystem
 
     public override void Initialize()
     {
+        SubscribeLocalEvent<ActiveNPCComponent, ComponentStartup>(OnActiveNPCStartup);
         SubscribeLocalEvent<ActiveNPCComponent, EntParentChangedMessage>(OnActiveNPCParentChanged);
     }
 
+    private void OnActiveNPCStartup(EntityUid uid, ActiveNPCComponent comp, ComponentStartup args)
+    {
+        DestroyEntityIfHostileOnProtectedGrid(uid);
+    }
+
     private void OnActiveNPCParentChanged(EntityUid uid, ActiveNPCComponent comp, EntParentChangedMessage args)
+    {
+        DestroyEntityIfHostileOnProtectedGrid(uid);
+    }
+
+    private void DestroyEntityIfHostileOnProtectedGrid(EntityUid uid)
     {
         // If this entity is being destroyed, no need to fiddle with components
         if (Terminating(uid))
             return;
 
-        var gridUid = Transform(uid).GridUid;
-        if (TryComp<ProtectedGridComponent>(gridUid, out var protectedGrid))
+        var xform = Transform(uid);
+        if (TryComp<ProtectedGridComponent>(xform.GridUid, out var protectedGrid))
         {
-            if (TryComp<NpcFactionMemberComponent>(uid, out var npcFactionMember)
+            if (protectedGrid.KillHostileMobs
+                && TryComp<NpcFactionMemberComponent>(uid, out var npcFactionMember)
                 && _npcFaction.IsFactionHostile("NanoTrasen", (uid, npcFactionMember)))
             {
-                if (protectedGrid.KillHostileMobs)
-                {
-                    _audio.PlayPredicted(protectedGrid.HostileMobKillSound, Transform(uid).Coordinates, null);
-                    _sharedBodySystem.GibBody(uid);
-                    Spawn("Ash", Transform(uid).Coordinates);
-                    _popup.PopupEntity(Loc.GetString("admin-smite-turned-ash-other", ("name", uid)), uid, PopupType.LargeCaution);
-                    EntityManager.QueueDeleteEntity(uid);
-                }
+                _audio.PlayPredicted(protectedGrid.HostileMobKillSound, xform.Coordinates, null);
+                _sharedBodySystem.GibBody(uid);
+                Spawn("Ash", xform.Coordinates);
+                _popup.PopupCoordinates(Loc.GetString("admin-smite-turned-ash-other", ("name", uid)), xform.Coordinates, PopupType.LargeCaution);
+                QueueDel(uid);
             }
         }
     }
