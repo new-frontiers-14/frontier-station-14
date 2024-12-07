@@ -24,6 +24,65 @@
   - type: StinkyTrait
 
 - type: entity
+  parent: PlushieLizard
+  id: NFPlushieBotanist #Weh!
+  name: botanist plushie
+  description: You need food and it just wont stop making rainbow weed.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/toys.rsi
+    state: plushie_botanist
+
+- type: entity
+  parent: PlushieLizard
+  id: NFPlushieEngineer #Weh!
+  name: engineer plushie
+  description: The poor thing is just sitting there with nothing to do! Give it a hug!
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/toys.rsi
+    state: plushie_engineer
+
+- type: entity
+  parent: PlushieLizard
+  id: NFPlushieConstruction #Weh!
+  name: construction plushie
+  description: A work in progress. A shame it had to end this way.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/toys.rsi
+    state: plushie_construction
+
+- type: entity
+  parent: PlushieLizard
+  id: NFPlushieCmo #Weh!
+  name: chief medical officer plushie
+  description: Just a weh away.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/toys.rsi
+    state: plushie_cmo
+        
+- type: entity
+  parent: PlushieCarp
+  id: NFPlushieSharkMinnow
+  name: sharkminnow plushie
+  description: It's killed you! It's killed your friends! Now this source of PTSD is a Pretty Terrific Stuffed Doodad!
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/sharkminnow.rsi
+    state: sharkminnowplush
+  - type: Item
+    heldPrefix: sharkminnowplush
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        shader: unshaded
+      right:
+      - state: inhand-right
+        shader: unshaded
+
+- type: entity
   parent: BasePlushie
   id: PlushieJanitor
   name: janitor plushie
@@ -475,7 +534,7 @@
 
 - type: entity
   name: Emotional support RPG
-  parent: WeaponLauncherRocket
+  parent: [BaseClearContraband, WeaponLauncherRocket]
   id: WeaponLauncherRocketToy
   suffix: Toy
   description: A deactived RPG modified to only allow foam RPG warheads. "When in times of trouble and stressed out as can be, DON'T worry now because S.E.S.W.C has what you need!"
