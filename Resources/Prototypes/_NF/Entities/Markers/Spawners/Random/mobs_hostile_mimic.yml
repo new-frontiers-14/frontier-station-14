@@ -39,9 +39,9 @@
         !type:DamageTrigger
         damage: 15
       behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: GlassBreak
+#      - !type:PlaySoundBehavior
+#        sound:
+#          collection: GlassBreak
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: MovementAlwaysTouching
@@ -82,9 +82,9 @@
   suffix: Mimic
   abstract: true
   components:
-  - type: EmitSoundOnTrigger
-    sound:
-      path: /Audio/Weapons/flash.ogg
+#  - type: EmitSoundOnTrigger
+#    sound:
+#      path: /Audio/Weapons/flash.ogg
   - type: SpawnOnTrigger
     proto: MobSpawnNFMimic
   - type: TriggerOnProximity
