@@ -234,7 +234,6 @@
         color: red
   - type: RandomSpawner
     prototypes:
-        - SalvageSeedSpawnerLow # \Resources\Prototypes\Nyanotrasen\Markers\Spawners\Random\seeds.yml
         - WheatSeeds
         - SpesosTreeSeeds
         - OatSeeds
@@ -262,17 +261,14 @@
         - TobaccoSeeds
         - CannabisSeeds
         - NettleSeeds
-        - BlueTomatoSeeds
         - OrangeSeeds
         - LimeSeeds
         - LemoonSeeds
         - GarlicSeeds
         - CabbageSeeds
         - SugarcaneSeeds
-        - BloodTomatoSeeds
         - ChillySeeds
         - LilySeeds
-        - GatfruitSeeds
         - RiceSeeds
         - SoybeanSeeds
         - SpacemansTrumpetSeeds
@@ -286,14 +282,14 @@
         - PumpkinSeeds
         - CottonSeeds
         - MimanaSeeds
-        - LaughinPeaSeeds
-        - SteelcapSeeds
-        - KillerTomatoSeeds
-        - DeathNettleSeeds
     chance: 0.95
     offset: 0.0
-    #rarePrototypes: # !!FUN!!
-        #- WeakKudzu
-        #- KudzuFlowerAngry
-        #- KudzuFlowerFriendly
-    #rareChance: 0.01
+      rarePrototypes:
+        - KillerTomatoSeeds
+        - DeathNettleSeeds
+        - SteelcapSeeds
+        - LaughinPeaSeeds
+        - BlueTomatoSeeds
+        - BloodTomatoSeeds
+        - GatfruitSeeds
+      rareChance: 0.05
