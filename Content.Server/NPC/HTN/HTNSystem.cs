@@ -16,13 +16,7 @@ using Robust.Shared.Utility;
 using Content.Server.Worldgen; // Frontier
 using Content.Server.Worldgen.Components; // Frontier
 using Content.Server.Worldgen.Systems; // Frontier
-using Content.Shared.Body.Systems; // Frontier
-using Content.Shared.NPC.Components; // Frontier
-using Content.Shared.NPC.Systems; // Frontier
-using Content.Shared.Popups; // Frontier
-using Content.Shared.Tiles; // Frontier
 using Robust.Server.GameObjects; // Frontier
-using Robust.Shared.Audio.Systems; // Frontier
 
 namespace Content.Server.NPC.HTN;
 
