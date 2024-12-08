@@ -187,22 +187,13 @@ public sealed class CriminalRecordsConsoleSystem : SharedCriminalRecordsConsoleS
     private void UpdateUserInterface(Entity<CriminalRecordsConsoleComponent> ent)
     {
         var (uid, console) = ent;
-        // Frontier: sector-wide records
-        // var owningStation = _station.GetOwningStation(uid);
-
-        // if (!TryComp<StationRecordsComponent>(owningStation, out var stationRecords))
-        // {
-        //     _ui.SetUiState(uid, CriminalRecordsConsoleKey.Key, new CriminalRecordsConsoleState());
-        //     return;
-        // }
-        var owningStation = _sectorService.GetServiceEntity();
+        var owningStation = _sectorService.GetServiceEntity(); // Frontier: _station.GetOwningStation < _sectorService.GetServiceEntity
 
         if (!TryComp<StationRecordsComponent>(owningStation, out var stationRecords))
         {
             _ui.SetUiState(uid, CriminalRecordsConsoleKey.Key, new CriminalRecordsConsoleState());
             return;
         }
-        // End Frontier
 
         var listing = _records.BuildListing((owningStation, stationRecords), console.Filter); // Frontier: owningStation.Value<owningStation
 
