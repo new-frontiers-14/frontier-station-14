@@ -15,7 +15,7 @@
   - type: SimpleFloorPlanPopulator
     entries:
       FloorSteel: &floor
-        - prob: 3 # Intentional blank.
+        - prob: 1 # Intentional blank.
         # Walls
         - id: Girder
           prob: 0.15
@@ -25,18 +25,38 @@
           prob: 0.10
         - id: AirlockMaint
           prob: 0.05
-        # Loot
-        - id: CrateFilledSpawner
+        # Floor loot
+        - id: SalvageSpawnerScrapCommon
+          prob: 0.7
+        - id: SalvageSpawnerTreasure
           prob: 0.2
-        - id: SalvagePartsSpawnerLow
-          prob: 0.4
+        - id: SalvageSpawnerTreasureValuable
+          prob: 0.1
+        - id: SalvageSpawnerEquipment
+          prob: 0.05
+        - id: SalvageSpawnerEquipmentValuable
+          prob: 0.03
+        # Machine upgrades
+        - id: SalvagePartsT2Spawner
+          prob: 0.1
+        - id: SalvagePartsT3Spawner
+          prob: 0.02
+        - id: SalvagePartsT4Spawner
+          prob: 0.01
+        # Big loot
+        - id: SalvageMaterialCrateSpawner
+          prob: 0.9
         - id: SalvageCanisterSpawner
+          prob: 0.2
+        - id: SalvageLockerSpawner
           prob: 0.2
         - id: SalvageTankSpawner
           prob: 0.15
         - id: SalvageGeneratorSpawner
           prob: 0.1
         - id: SalvageFurnitureSpawner
+          prob: 0.1
+        - id: SalvageSuitStorageSpawner
           prob: 0.1
         - id: RandomArtifactSpawner
           prob: 0.05
@@ -45,14 +65,7 @@
           prob: 0.05
         # Mobs
         - id: NFSalvageMobSpawner
-          prob: 0.3
-       # # Loot
-       # - id: SalvageMaterialCrateSpawner
-         # prob: 0.7
-       # - id: SalvageLockerSpawner
-         # prob: 0.15
-       # - id: SalvageSuitStorageSpawner
-         # prob: 0.05
+          prob: 0.1
       Plating: *floor
       Lattice: &lattice
         - prob: 1 # Intentional blank.

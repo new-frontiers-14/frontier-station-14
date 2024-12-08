@@ -359,33 +359,32 @@
       state: alien
   - type: RandomSpawner
     prototypes:
-    - ClosetL3Filled
-    - LockerSalvageSpecialistFilled
     - ClosetToolFilled
     - LockerElectricalSuppliesFilled
     - LockerWeldingSuppliesFilled
-    - LockerEngineerFilled
-    - ClosetRadiationSuitFilled
-    - LockerMedicineFilled
-    - LockerMedicalFilled
-    - LockerChemistryFilled
-    - LockerParamedicFilled
-    - ClosetEmergencyFilledRandom
-    - ClosetFireFilled
+#    - ClosetEmergencyFilledRandom # Medical gameplay anyone?
     - ClosetMaintenanceFilledRandom
-    - LockerScienceFilled
-    - ClosetJanitorFilled
-    - LockerBotanistFilled
-#    - WardrobeMixedFilled
     chance: 0.95
     rarePrototypes:
+#    - LockerMedicineFilled # Medical gameplay anyone?
+#    - LockerMedicalFilled # Medical gameplay anyone?
+#    - LockerChemistryFilled # Medical gameplay anyone?
+#    - LockerParamedicFilled # Medical gameplay anyone?
     - LockerAtmosphericsFilledHardsuit
     - LockerAtmosphericsFilled
     - LockerSalvageSpecialistFilledHardsuit
     - LockerEngineerFilledHardsuit
     - NFLockerSecurityFilled
     - NFClosetBombFilled
-    rareChance: 0.15
+    - ClosetFireFilled
+    - LockerScienceFilled
+    - ClosetJanitorFilled
+    - LockerBotanistFilled
+    - LockerEngineerFilled
+    - ClosetRadiationSuitFilled
+    - LockerSalvageSpecialistFilled
+    - ClosetL3Filled
+    rareChance: 0.25
     offset: 0.0
 
 - type: entity
@@ -396,16 +395,17 @@
   - type: Sprite
     layers:
     - state: red
-    - sprite: Structures/Storage/suit_storage.rsi
+    - sprite: Structures/Furniture/bookshelf.rsi
       state: base
   - type: RandomSpawner
     prototypes:
     - TableFrame
     - Table
-    - rack
-#    - Dresser
+    - Rack
+#    - Dresser # WardrobeMixedFilled
     - WardrobeMixedFilled
-    - Bookshelf
+#    - Bookshelf # BookshelfFilled
+    - BookshelfFilled
     - Bed
     - SuitStorageSalv
     - Floodlight
@@ -488,29 +488,62 @@
     offset: 0.0
 
 - type: entity
+  parent: MarkerBase
+  id: RandomBook
+  name: random book spawner
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Objects/Misc/books.rsi
+      state: book_icon
+  - type: RandomSpawner
+    prototypes:
+    - BookRandomStory
+    chance: 1.0
+    offset: 0.0
+
+- type: entity
+  name: Antag Vehicle Spawner
+  id: SpawnVehicleAntagVehicle
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Objects/Vehicles/syndicatesegway.rsi
+      state: keys
+  - type: RandomSpawner
+    prototypes:
+    - VehicleSyndicateSegway
+    - VehicleSkeletonMotorcycle
+    chance: 1.0
+    offset: 0.0
+
+- type: entity
   id: NFSalvageMobSpawner
   parent: SalvageMobSpawner
   suffix: 95
   components:
-    - type: RandomSpawner
-      prototypes:
-      - MobCarpSalvage
-      - MobCarpSalvage
-      - MobCarpSalvage
-      - MobCarpSalvage
-      - MobCarpSalvage
-#      - MobTickSalvage
-#      - MobTickSalvage
-#      - MobTickSalvage
-      - SpawnMobBearSalvage
-      - SpawnMobSpiderSalvage
-      - SpawnMobKangarooSalvage
-#      - SpawnMobSmallPurpleSnake # Why are they xeno
-      - PlushieCarp
-      - DehydratedSpaceCarp
-      chance: 0.95
-      rarePrototypes:
-      - MobSharkSalvage
-#      - SpawnMobPurpleSnake # Why are they xeno
-      rareChance: 0.2
-      offset: 0.0
+  - type: RandomSpawner
+    prototypes:
+    - MobCarpSalvage
+    - MobCarpSalvage
+    - MobCarpSalvage
+    - MobCarpSalvage
+    - MobCarpSalvage
+#    - MobTickSalvage
+#    - MobTickSalvage
+#    - MobTickSalvage
+    - SpawnMobBearSalvage
+    - SpawnMobSpiderSalvage
+    - SpawnMobKangarooSalvage
+#    - SpawnMobSmallPurpleSnake # Why are they xeno
+    - PlushieCarp
+    - DehydratedSpaceCarp
+    chance: 0.95
+    rarePrototypes:
+    - MobSharkSalvage
+#    - SpawnMobPurpleSnake # Why are they xeno
+    rareChance: 0.2
+    offset: 0.0
