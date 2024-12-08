@@ -170,6 +170,7 @@
       - FoodPlateSmallPlastic
       - FoodBowlBig
       - FoodPlateTin
+      - FoodPlateMuffinTin
       - FoodKebabSkewer
       - SprayBottle
       - MopItem
@@ -207,12 +208,12 @@
       - WetFloorSign
       - ClothingHeadHatCone
       - Flare
+      - FreezerElectronics
       - BoxDispenserFlare # Frontier
       - Durathread # Frontier
   - type: EmagLatheRecipes
     emagStaticRecipes:
       - BoxLethalshot
-      - BoxShotgunFlare
       - BoxShotgunSlug
       - CombatKnife
       - MagazineBoxLightRifle
@@ -249,6 +250,8 @@
   - type: EmptyOnMachineDeconstruct
     containers:
     - blueprint
+  - type: PirateBountyItem # Frontier
+    id: Autolathe # Frontier
 
 - type: entity
   id: AutolatheHyperConvection
@@ -505,6 +508,7 @@
     - UniformPrinterMachineCircuitboard
     - FloorGreenCircuit
     - FloorBlueCircuit
+    - FloorRedCircuit
     - MicrowaveMachineCircuitboard
     - ReagentGrinderMachineCircuitboard
     - ElectricGrillMachineCircuitboard
@@ -515,6 +519,7 @@
     - StationAnchorCircuitboard
     # - SalvageMagnetMachineCircuitboard # Frontier
     - SalvageTechFabCircuitboardNF # Frontier
+    - NFScrapProcessorCircuitboard # Frontier
     - BlueprintLithographMachineCircuitboard # Frontier
     dynamicRecipes:
       - ThermomachineFreezerMachineCircuitBoard
@@ -798,8 +803,8 @@
   id: SecurityTechFab
   parent: BaseLatheLube
   name: security techfab
-  categories: [ HideSpawnMenu ] # Frontier
   description: Prints equipment for use by security crew.
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: Sprite
     sprite: Structures/Machines/techfab.rsi
@@ -821,7 +826,6 @@
     runningState: icon
     staticRecipes:
       - BoxLethalshot
-      - BoxShotgunFlare
       - BoxShotgunPractice
       - BoxShotgunSlug
       - ClothingEyesHudSecurity
@@ -853,13 +857,12 @@
       - RiotShield
       - SpeedLoaderMagnum
       - SpeedLoaderMagnumEmpty
-      - SpeedLoaderRifleHeavy # Frontier
-      - SpeedLoaderRifleHeavyEmpty # Frontier
       - Stunbaton
       - TargetClown
       - TargetHuman
       - TargetSyndicate
       - WeaponDisablerPractice
+      - WeaponFlareGunSecurity
       - WeaponLaserCarbinePractice
       - Zipties
       #Corvax-Frontier Start
@@ -928,13 +931,6 @@
       - WeaponLaserCannon
       - WeaponLaserCarbine
       - WeaponXrayCannon
-      - ContrabandAppraisalTool # Frontier
-      - SpeedLoaderRifleHeavyIncendiary # Frontier
-      - SpeedLoaderRifleHeavyUranium # Frontier
-      - MagazineBoxLightRifleRubber # Frontier
-      - MagazineBoxMagnumRubber # Frontier
-      - MagazineBoxPistolRubber # Frontier
-      - MagazineBoxRifleRubber # Frontier
   - type: MaterialStorage
     whitelist:
       tags:
@@ -968,7 +964,6 @@
       runningState: icon
       staticRecipes:
         - BoxLethalshot
-        - BoxShotgunFlare
         - BoxShotgunSlug
         - BoxShellTranquilizer
         - MagazineBoxLightRifle
@@ -1057,6 +1052,7 @@
       - Hemostat
       - ClothingEyesGlassesChemical
       - WhiteCane
+      - ClothingOuterEVASuitMedic #Frontier
       - BaseChemistryEmptyVial # Frontier
       - PowerCellSmall # Frontier
       - BlankMediPen # Frontier
@@ -1309,8 +1305,6 @@
   - type: Machine
     board: BiogeneratorMachineCircuitboard
   - type: MaterialStorage
-    insertOnInteract: false
-    canEjectStoredMaterials: false
   - type: ProduceMaterialExtractor
   - type: ItemSlots
     slots:
@@ -1558,6 +1552,7 @@
       - FloorTileItemShowroom # Frontier
       - FloorTileItemGCircuit # Frontier
       - FloorTileItemBCircuit # Frontier
+      - FloorTileItemRCircuit # Frontier
       - FloorTileItemGold # Frontier
       - FloorTileItemSilver # Frontier
       - FloorTileItemMono # Frontier

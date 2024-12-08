@@ -35,7 +35,8 @@
     - map: ["computerLayerKeyboard"]
       state: generic_keyboard
     - map: ["computerLayerScreen"]
-      state: request
+      sprite: _NF/Structures/Machines/computers.rsi
+      state: cargo_sale
     - map: ["computerLayerKeys"]
       state: tech_key
   - type: PointLight
@@ -175,6 +176,17 @@
   placement:
     mode: SnapgridCenter
   components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      sprite: _NF/Structures/Machines/computers.rsi
+      state: cargo_market
+    - map: ["computerLayerKeys"]
+      state: tech_key
   - type: MarketConsole
   - type: ActivatableUI
     key: enum.MarketConsoleUiKey.Default
@@ -228,7 +240,7 @@
     spawnChestSound:
       path: /Audio/Effects/Lightning/lightningbolt.ogg
       params:
-        volume: -2
+        volume: -5
         variation: 0.2
   - type: ActivatableUI
     key: enum.PirateConsoleUiKey.Bounty

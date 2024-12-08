@@ -951,6 +951,7 @@
   - MobRogueSiliconDroneBase
   - MobPassiveRegenStrong
   - MobRogueSiliconHitscanBatteryAmmo
+  - NFMobBossRestrictions
   id: MobRogueSiliconGuardian
   name: guardian unit
   description: An advanced security silicon, typically used to safeguard high-security areas such as vaults and server rooms. After being hacked, this unit carries out the AI's will.
@@ -1069,3 +1070,233 @@
   - type: FootstepModifier
     footstepSoundCollection:
       path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+
+
+### Asteroid scrap bots: no regen
+## Tier 1
+- type: entity
+  parent:
+  - MobRogueSiliconScrapBase
+  - MobRogueSiliconAISimpleMelee
+  id: MobRogueSiliconScrapAsteroid
+  name: malfunctionnig scrap unit
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 3.6 # -20% from normal speed
+    baseSprintSpeed : 3.6 # -20% from normal speed
+  - type: Loadout
+    prototypes:
+    - MobRogueSiliconLootT0
+  - type: RandomSprite
+    available:
+      - body:
+          body_generic: ""
+          body_light: ""
+          body_servo: ""
+        head:
+          head_generic: ""
+          head_heavy: ""
+          head_light: ""
+          head_sturdy: ""
+          head_servo: ""
+        eyes:
+          head_generic_eye: Emagged
+          head_heavy_eye: Emagged
+          head_light_eye: Emagged
+          head_sturdy_eye: Emagged
+          head_servo_eye: Emagged
+        leftArm:
+          l_arm_generic: ""
+          l_arm_heavy: ""
+          l_arm_light: ""
+          l_arm_sturdy: ""
+          l_arm_servo: ""
+          mask_null: ""
+        rightArm:
+          r_arm_generic: ""
+          r_arm_heavy: ""
+          r_arm_light: ""
+          r_arm_sturdy: ""
+          r_arm_servo: ""
+          mask_null: ""
+        leftLeg:
+          l_leg_generic: ""
+          l_leg_light: ""
+          l_leg_thruster: ""
+          l_leg_treads: ""
+          l_leg_servo: ""
+        rightLeg:
+          r_leg_generic: ""
+          r_leg_light: ""
+          r_leg_thruster: ""
+          r_leg_treads: ""
+          r_leg_servo: ""
+        decor:
+          mask_null: ""
+        overlay:
+          overlay_openbrain: ""
+          overlay_openmodule: ""
+          overlay_openwires: ""
+          mask_null: ""
+        overlayUnshaded:
+          overlay_critdmg: ""
+
+- type: entity
+  parent:
+  - MobRogueSiliconScrapBase
+  - MobRogueSiliconAISimpleMelee
+  id: MobRogueSiliconScrapThreadsAsteroid
+  name: malfunctionnig scrap unit
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 3.6 # -20% from normal speed
+    baseSprintSpeed : 3.6 # -20% from normal speed
+  - type: Loadout
+    prototypes:
+    - MobRogueSiliconLootT0
+  - type: RandomSprite
+    available:
+      - body:
+          body_generic: ""
+          body_light: ""
+        head:
+          head_generic: ""
+          head_heavy: ""
+          head_light: ""
+          head_sturdy: ""
+        eyes:
+          head_generic_eye: Emagged
+          head_heavy_eye: Emagged
+          head_light_eye: Emagged
+          head_sturdy_eye: Emagged
+        leftArm:
+          l_arm_generic: ""
+          l_arm_heavy: ""
+          l_arm_light: ""
+          l_arm_sturdy: ""
+          mask_null: ""
+        rightArm:
+          r_arm_generic: ""
+          r_arm_heavy: ""
+          r_arm_light: ""
+          r_arm_sturdy: ""
+          mask_null: ""
+        leftLeg:
+          mask_null: ""
+        rightLeg:
+          mask_null: ""
+        decor:
+          leg_treads: ""
+        overlay:
+          overlay_openbrain: ""
+          overlay_openmodule: ""
+          overlay_openwires: ""
+          mask_null: ""
+        overlayUnshaded:
+          overlay_critdmg: ""
+
+- type: entity
+  parent:
+  - MobRogueSiliconScrapBase
+  - MobRogueSiliconAISimpleMelee
+  id: MobRogueSiliconScrapThrustersAsteroid
+  name: malfunctionnig scrap unit
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 3.6 # -20% from normal speed
+    baseSprintSpeed : 3.6 # -20% from normal speed
+  - type: Loadout
+    prototypes:
+    - MobRogueSiliconLootT0
+  - type: RandomSprite
+    available:
+      - body:
+          body_generic: ""
+          body_light: ""
+        head:
+          head_generic: ""
+          head_heavy: ""
+          head_light: ""
+          head_sturdy: ""
+        eyes:
+          head_generic_eye: Emagged
+          head_heavy_eye: Emagged
+          head_light_eye: Emagged
+          head_sturdy_eye: Emagged
+        leftArm:
+          l_arm_generic: ""
+          l_arm_heavy: ""
+          l_arm_light: ""
+          l_arm_sturdy: ""
+          mask_null: ""
+        rightArm:
+          r_arm_generic: ""
+          r_arm_heavy: ""
+          r_arm_light: ""
+          r_arm_sturdy: ""
+          mask_null: ""
+        leftLeg:
+          mask_null: ""
+        rightLeg:
+          mask_null: ""
+        decor:
+          leg_thruster: ""
+        overlay:
+          overlay_openbrain: ""
+          overlay_openmodule: ""
+          overlay_openwires: ""
+          mask_null: ""
+        overlayUnshaded:
+          overlay_critdmg: ""
+  - type: PointLight
+    radius: 2.5
+    color: orange
+    energy: 0.5
+  - type: CanMoveInAir
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.30 # Lowered the value, to allow them to fit through the airlocks
+        density: 100
+        mask:
+          - FlyingMobMask
+        layer:
+          - FlyingMobLayer
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/_NF/Effects/silence.ogg
+  - type: SoundWhileAlive
+  - type: AmbientSound
+    volume: -9
+    range: 5
+    sound: /Audio/Effects/shuttle_thruster.ogg
+
+- type: entity
+  parent:
+  - MobRogueSiliconScrapThrustersAsteroid
+  id: MobRogueSiliconScrapThrustersRangedAsteroid
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Loadout
+    prototypes:
+    - MobRogueSiliconLootT1
+  - type: HitscanBatteryAmmoProvider
+    proto: RedLaser
+    fireCost: 100
+  - type: Gun
+    showExamineText: false
+    fireRate: 0.7
+    minAngle: 5
+    maxAngle: 10
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser.ogg
+      params:
+        variation: 0.2

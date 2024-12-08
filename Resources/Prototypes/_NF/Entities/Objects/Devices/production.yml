@@ -17,7 +17,7 @@
   id: SalvageTechFabCircuitboardNF
   parent: BaseMachineCircuitboard
   name: salvage techfab machine board
-  description: A machine printed circuit board for a salvage techfab
+  description: A machine printed circuit board for a salvage techfab.
   components:
     - type: Sprite
       state: supply
@@ -35,7 +35,7 @@
   id: MercenaryTechFabCircuitboardNF
   parent: SecurityTechFabCircuitboard
   name: mercenary techfab machine board
-  description: A machine printed circuit board for a mercenary techfab
+  description: A machine printed circuit board for a mercenary techfab.
   components:
     - type: MachineBoard
       prototype: MercenaryTechFab
@@ -58,6 +58,24 @@
       state: hacked-merc-fab-board
     - type: MachineBoard
       prototype: MercenaryTechFabHacked
+      requirements:
+        MatterBin: 2
+        Manipulator: 2
+      tagRequirements:
+        GlassBeaker:
+          amount: 2
+          defaultPrototype: Beaker
+
+- type: entity
+  id: NFScrapProcessorCircuitboard
+  parent: BaseMachineCircuitboard
+  name: scrap processor machine board
+  description: A machine printed circuit board for a scrap processor.
+  components:
+    - type: Sprite
+      state: supply
+    - type: MachineBoard
+      prototype: ScrapProcessor
       requirements:
         MatterBin: 2
         Manipulator: 2
@@ -148,7 +166,7 @@
     stackRequirements:
       Glass: 2
   - type: StaticPrice
-    price: 12.5
+    price: 20
 
 - type: entity
   id: GyroscopeNfsdMachineCircuitboard

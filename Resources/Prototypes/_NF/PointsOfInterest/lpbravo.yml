@@ -13,12 +13,17 @@
   name: 'Прослушивающий пункт Браво'
   rangeMin: 4000
   rangeMax: 6000
-  IFFColor: "#C83737" #red the color of ebil
-  IFFFlags: [HideLabel, Hide] # Invisible
-  allowIFFChanges: true
-  hideWarp: true
   spawnGroup: SyndicateFOB
   gridPath: /Maps/_NF/POI/lpbravo.yml
+  hideWarp: true
+  addComponents:
+  - type: IFF
+    color: "#C83737"
+    flags: [HideLabel, Hide]
+  - type: Shuttle
+    angularDamping: 999999
+    linearDamping: 999999
+  - type: SyndicateFOB # For pinpointer
 
 - type: gameMap
   id: LPBravo

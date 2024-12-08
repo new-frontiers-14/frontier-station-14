@@ -13,9 +13,15 @@
   name: "Заправка Зекинса"
   rangeMin: 3250
   rangeMax: 5600
-  IFFColor: "#ffa600" #yellorange for faction style
   spawnGroup: Scrapyard
   gridPath: /Maps/_NF/POI/grifty.yml
+  addComponents:
+  - type: IFF
+    color: "#ffa600"
+    readOnly: true
+  - type: Shuttle
+    angularDamping: 999999
+    linearDamping: 999999
 
 - type: gameMap
   id: Grifty

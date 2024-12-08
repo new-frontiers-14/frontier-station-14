@@ -79,12 +79,8 @@
     speechVerb: Robotic
     speechSounds: Vending
   - type: IntrinsicRadioReceiver
-  - type: IntrinsicRadioTransmitter
-    channels:
-    - Binary
   - type: ActiveRadio
     channels:
-    - Binary
     - Common
   - type: DoAfter
   - type: Electrified
@@ -109,6 +105,13 @@
     mod: 10 # Frontier
   - type: PotentialDeadDrop # Frontier
     hintText: dead-drop-hint-vendor # Frontier
+  - type: VendingMachine # Frontier
+    pack: "" # Frontier
+    taxAccounts: # Frontier
+      Frontier: 0.25 # Frontier
+      Nfsd: 0.15 # Frontier
+  - type: PirateBountyItem # Frontier
+    id: VendingMachine # Frontier
 
 - type: entity
   parent: VendingMachine
