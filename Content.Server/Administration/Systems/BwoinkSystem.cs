@@ -1024,7 +1024,7 @@ namespace Content.Server.Administration.Systems
                 if (sendsWebhook)
                 {
                     if (!_messageQueues.ContainsKey(msg.UserId))
-                        _messageQueues[msg.UserId] = new Queue<string>();
+                        _messageQueues[msg.UserId] = new Queue<DiscordRelayedData>();
 
                     var str = message.Text;
                     var unameLength = senderSession.Name.Length;
