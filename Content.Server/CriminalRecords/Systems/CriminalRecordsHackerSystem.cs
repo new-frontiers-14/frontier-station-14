@@ -9,6 +9,7 @@ using Content.Shared.Security;
 using Content.Shared.StationRecords;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Content.Server._NF.SectorServices; // Frontier
 
 namespace Content.Server.CriminalRecords.Systems;
 
@@ -18,8 +19,9 @@ public sealed class CriminalRecordsHackerSystem : SharedCriminalRecordsHackerSys
     [Dependency] private readonly CriminalRecordsSystem _criminalRecords = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly StationSystem _station = default!;
+    // [Dependency] private readonly StationSystem _station = default!; // Frontier
     [Dependency] private readonly StationRecordsSystem _records = default!;
+    [Dependency] private readonly SectorServiceSystem _sectorService = default!;
 
     public override void Initialize()
     {
@@ -33,8 +35,12 @@ public sealed class CriminalRecordsHackerSystem : SharedCriminalRecordsHackerSys
         if (args.Cancelled || args.Handled || args.Target == null)
             return;
 
-        if (_station.GetOwningStation(ent) is not {} station)
+        // Frontier: sector-wide records
+        // if (_station.GetOwningStation(ent) is not {} station)
+        //     return;
+        if (_sectorService.GetServiceEntity() is not { Valid: true} station)
             return;
+        // End Frontier: sector-wide records
 
         var reasons = _proto.Index<DatasetPrototype>(ent.Comp.Reasons);
         foreach (var (key, record) in _records.GetRecordsOfType<CriminalRecord>(station))
