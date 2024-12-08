@@ -1,4 +1,5 @@
 using Content.Server.Radio.EntitySystems;
+using Content.Server.BoomBox;
 using Content.Shared.Chat;
 using Content.Shared.Radio;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
@@ -10,7 +11,7 @@ namespace Content.Server.Radio.Components;
 ///     Listens for local chat messages and relays them to some radio frequency
 /// </summary>
 [RegisterComponent]
-[Access(typeof(RadioDeviceSystem))]
+[Access(typeof(RadioDeviceSystem), typeof(BoomBoxSystem))]
 public sealed partial class RadioMicrophoneComponent : Component
 {
     [ViewVariables(VVAccess.ReadWrite)]
