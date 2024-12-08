@@ -9,7 +9,7 @@
     handheld: true
 
 - type: entity
-  parent: [MusicBasePDA, CentcomPDA]
+  parent: [MusicBasePDA, AdminPDA]
   id: NFAdminPDA
   components:
   - type: CartridgeLoader
@@ -18,12 +18,13 @@
       - NotekeeperCartridge
       - NewsReaderCartridge
       - BountyContractsCartridge
+      - AstroNavCartridge
       - WantedListCartridge
+      - LedgerCartridge
       - LogProbeCartridge
       - MailMetricsCartridge
       - AppraisalCartridge
       - NetProbeCartridge
-      - LedgerCartridge
 
 - type: entity
   parent: BasePDA
@@ -471,8 +472,8 @@
     - NewsReaderCartridge
     - BountyContractsCartridge
     - AstroNavCartridge
-    - MailMetricsCartridge
     - LedgerCartridge
+    - MailMetricsCartridge
 
 - type: entity
   parent: PiratePDA

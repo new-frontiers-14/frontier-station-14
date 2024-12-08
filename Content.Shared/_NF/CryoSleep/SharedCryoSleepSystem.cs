@@ -64,7 +64,7 @@ public abstract partial class SharedCryoSleepSystem : EntitySystem
         Success,
         Occupied,
         BodyMissing,
-        CryopodMissing,
+        NoCryopodAvailable,
         NotAGhost,
         Disabled
     }
