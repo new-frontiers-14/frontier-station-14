@@ -15,34 +15,34 @@
   - type: SimpleFloorPlanPopulator
     entries:
       FloorSteel: &floor
-        - prob: 1 # Intentional blank.
+        - prob: 2 # Intentional blank.
         # Walls
         - id: Girder
-          prob: 0.15
+          prob: 0.3
         - id: WallSolid
-          prob: 0.15
+          prob: 0.3
         - id: WallReinforced
-          prob: 0.10
+          prob: 0.2
         - id: AirlockMaint
-          prob: 0.05
+          prob: 0.1
         # Floor loot
         - id: SalvageSpawnerScrapCommon
-          prob: 0.7
+          prob: 0.9
         - id: SalvageSpawnerTreasure
-          prob: 0.2
+          prob: 0.3
         - id: SalvageSpawnerTreasureValuable
-          prob: 0.1
+          prob: 0.15
         - id: SalvageSpawnerEquipment
           prob: 0.05
         - id: SalvageSpawnerEquipmentValuable
           prob: 0.03
         # Machine upgrades
         - id: SalvagePartsT2Spawner
-          prob: 0.1
-        - id: SalvagePartsT3Spawner
-          prob: 0.02
-        - id: SalvagePartsT4Spawner
           prob: 0.01
+        - id: SalvagePartsT3Spawner
+          prob: 0.005
+        - id: SalvagePartsT4Spawner
+          prob: 0.002
         # Big loot
         - id: SalvageMaterialCrateSpawner
           prob: 0.9
@@ -59,10 +59,10 @@
         - id: SalvageSuitStorageSpawner
           prob: 0.1
         - id: RandomArtifactSpawner
-          prob: 0.05
+          prob: 0.03
         # Medical
         - id: MedicalPodFilled # Medical bounties
-          prob: 0.05
+          prob: 0.03
         # Mobs
         - id: NFSalvageMobSpawner
           prob: 0.1
