@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Server._NF.Market.Components;
 using Content.Server._NF.Market.Extensions;
 using Content.Server._NF.SectorServices;
@@ -91,9 +91,9 @@ public sealed partial class MarketSystem
             return;
 
         // Check whitelist/blacklist for particular prototype
-        if (_whitelistSystem.IsPrototypeWhitelistPassOrNull(marketDataComponent.Whitelist, entityPrototype) &&
-            _whitelistSystem.IsPrototypeBlacklistFailOrNull(marketDataComponent.Blacklist, entityPrototype) ||
-            _protoIdWhitelist.IsPrototypeWhitelistPassOrNull(marketDataComponent.OverrideList, entityPrototype))
+        if (_whitelistSystem.IsWhitelistPassOrNull(marketDataComponent.Whitelist, sold) &&
+            _whitelistSystem.IsBlacklistFailOrNull(marketDataComponent.Blacklist, sold) ||
+            _whitelistSystem.IsWhitelistPassOrNull(marketDataComponent.WhitelistOverride, sold))
         {
             var estimatedPrice = _pricingSystem.GetPrice(sold) / count;
 
