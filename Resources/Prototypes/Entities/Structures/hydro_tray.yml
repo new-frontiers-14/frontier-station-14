@@ -69,6 +69,11 @@
           False: { visible: false }
   - type: PlantHolder
     drawWarnings: true
+    wateringSound:
+      path: /Audio/Effects/Fluids/slosh.ogg
+      params:
+        volume: -6
+        variation: 0.20
   - type: Destructible
     thresholds:
     - trigger:
@@ -94,6 +99,8 @@
     guides:
     - Botany
     - Chemicals
+  - type: PirateBountyItem # Frontier
+    id: HydroponicsTray # Frontier
 
 - type: entity
   parent: hydroponicsTray
