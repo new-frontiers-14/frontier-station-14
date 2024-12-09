@@ -13,6 +13,7 @@ using Robust.Server.GameObjects;
 using System.Diagnostics.CodeAnalysis;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Security.Components;
+using Content.Server._NF.SectorServices; // Frontier
 
 namespace Content.Server.CriminalRecords.Systems;
 
@@ -26,8 +27,9 @@ public sealed class CriminalRecordsConsoleSystem : SharedCriminalRecordsConsoleS
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly RadioSystem _radio = default!;
     [Dependency] private readonly StationRecordsSystem _records = default!;
-    [Dependency] private readonly StationSystem _station = default!;
+    // [Dependency] private readonly StationSystem _station = default!; // Frontier
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
+    [Dependency] private readonly SectorServiceSystem _sectorService = default!; // Frontier
 
     public override void Initialize()
     {
@@ -185,7 +187,7 @@ public sealed class CriminalRecordsConsoleSystem : SharedCriminalRecordsConsoleS
     private void UpdateUserInterface(Entity<CriminalRecordsConsoleComponent> ent)
     {
         var (uid, console) = ent;
-        var owningStation = _station.GetOwningStation(uid);
+        var owningStation = _sectorService.GetServiceEntity(); // Frontier: _station.GetOwningStation < _sectorService.GetServiceEntity
 
         if (!TryComp<StationRecordsComponent>(owningStation, out var stationRecords))
         {
@@ -193,13 +195,13 @@ public sealed class CriminalRecordsConsoleSystem : SharedCriminalRecordsConsoleS
             return;
         }
 
-        var listing = _records.BuildListing((owningStation.Value, stationRecords), console.Filter);
+        var listing = _records.BuildListing((owningStation, stationRecords), console.Filter); // Frontier: owningStation.Value<owningStation
 
         var state = new CriminalRecordsConsoleState(listing, console.Filter);
         if (console.ActiveKey is { } id)
         {
             // get records to display when a crewmember is selected
-            var key = new StationRecordKey(id, owningStation.Value);
+            var key = new StationRecordKey(id, owningStation); // Frontier: owningStation.Value<owningStation
             _records.TryGetRecord(key, out state.StationRecord, stationRecords);
             _records.TryGetRecord(key, out state.CriminalRecord, stationRecords);
             state.SelectedKey = id;
@@ -227,9 +229,15 @@ public sealed class CriminalRecordsConsoleSystem : SharedCriminalRecordsConsoleS
         if (ent.Comp.ActiveKey is not { } id)
             return false;
 
+        // Frontier: sector-wide records
         // checking the console's station since the user might be off-grid using on-grid console
-        if (_station.GetOwningStation(ent) is not { } station)
+        // if (_station.GetOwningStation(ent) is not { } station)
+        //     return false;
+        var station = _sectorService.GetServiceEntity();
+
+        if (!TryComp<StationRecordsComponent>(station, out var stationRecords))
             return false;
+        // End Frontier
 
         key = new StationRecordKey(id, station);
         mob = user;
@@ -245,12 +253,17 @@ public sealed class CriminalRecordsConsoleSystem : SharedCriminalRecordsConsoleS
         var name = Identity.Name(uid, EntityManager);
         var xform = Transform(uid);
 
+        // Frontier: sector-wide records
         // TODO use the entity's station? Not the station of the map that it happens to currently be on?
-        var station = _station.GetStationInMap(xform.MapID);
+        // var station = _station.GetStationInMap(xform.MapID);
+        // // var owningStation = _station.GetOwningStation(uid);
 
-        if (station != null && _records.GetRecordByName(station.Value, name) is { } id)
+        var station = _sectorService.GetServiceEntity();
+        // End Frontier
+
+        if (station.IsValid() && _records.GetRecordByName(station, name) is { } id) // Frontier: "station != null" < station.IsValid(), station.Value < station
         {
-            if (_records.TryGetRecord<CriminalRecord>(new StationRecordKey(id, station.Value),
+            if (_records.TryGetRecord<CriminalRecord>(new StationRecordKey(id, station), // Frontier: station.Value<station
                     out var record))
             {
                 if (record.Status != SecurityStatus.None)
