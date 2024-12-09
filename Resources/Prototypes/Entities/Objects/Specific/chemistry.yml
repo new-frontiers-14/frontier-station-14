@@ -420,11 +420,11 @@
         maxVol: 5
   # End DeltaV
   - type: SolutionInjectWhileEmbedded
-    transferAmount: 1
+    transferAmount: 0.5 # Frontier: 1 < 0.5
     solution: injector
     updateInterval: 2
   - type: SolutionInjectOnEmbed
-    transferAmount: 2
+    transferAmount: 0.5 # Frontier: 2 < 0.5
     solution: injector
   - type: Fixtures
     fixtures:
