@@ -1,0 +1,105 @@
+<Document>
+  # CHARON CLASS RO-RO EQUIPMENT TRANSPORT
+  <Box>
+  <GuideEntityEmbed Entity="BannerEngineering"/>
+  <GuideEntityEmbed Entity="EngineeringTechFab"/>
+  <GuideEntityEmbed Entity="ShipyardRCD"/>
+  <GuideEntityEmbed Entity="ClothingBeltUtilityEngineering"/>
+  </Box>
+  [color=#a4885c]Ship Size:[/color] Medium
+
+  [color=#a4885c]Recommended Crew:[/color] 2-4
+
+  [color=#a4885c]Power Gen Type:[/color] AME
+
+  [color=#a4885c]Expeditions:[/color] Yes
+
+  [color=#a4885c]IFF Console:[/color] None
+
+  Originally built as a roll-on, roll-off transport for heavy terraforming equipment. Since its obsolescence and appearance on the secondary market, the Charon has become a favorite of upfitters for the broad possibilities afforded by its open equipment bay. A product of Endurance Industrial Shipyards.
+
+  # PREFLIGHT CHECKLIST
+
+  ## 1. Power supply
+
+  ## 1.1. Battery units
+  <Box>
+  <GuideEntityEmbed Entity="SMESBasic"/>
+  <GuideEntityEmbed Entity="SubstationBasic"/>
+  <GuideEntityEmbed Entity="APCBasic"/>
+  </Box>
+  
+  - Check that the SMES units are anchored to the floor, verify charge level and status.
+  - Check that the substation unit is anchored to the floor, verify charge level and status.
+  - Check each APC unit and verify its breaker is on, and that the unit is charging. There are four total, two in the equipment bay, one on the forward wall of the AME room, and one in the bridge.
+  - Verify each APC unit registers some load, if not this may indicate problems.
+  
+  ## 1.2. AME generator unit.
+  <Box>
+  <GuideEntityEmbed Entity="AmeController"/>
+  <GuideEntityEmbed Entity="AmeJar"/>
+  <GuideEntityEmbed Entity="ComputerPowerMonitoring"/>
+  </Box>
+  
+  - Check that the AME core is properly shielded.
+  - Check that the AME controller unit is anchored to the floor.
+  - Check the AME controller unit 'Fueling Status' readout.
+  - Check the AME controller unit 'Injection Amount' setting.
+  - Enable AME injection.
+  - Check power monitoring console to validate AME output level and confirm that battery draw is negligible with the AME active. In stock configuration the ship should consume approximately 45kW at idle.
+  
+  ## 2. Atmospherics
+  
+  ## 2.1. Distribution Network
+  <Box>
+  <GuideEntityEmbed Entity="GasMixer"/>
+  <GuideEntityEmbed Entity="OxygenCanister"/>
+  <GuideEntityEmbed Entity="NitrogenCanister"/>
+  </Box>
+
+  - Ensure oxygen and nitrogen canisters are anchored to their connector ports.
+  - Verify atmos network gas mixer is configured to 21% on its primary port (O2) and 79% on is side port (N2).
+  - Verify gas mixer is configured to circa 101kPa.
+  - Enable gas mixer.
+
+  ## 2.2. Waste Network
+  <Box>
+  <GuideEntityEmbed Entity="GasFilter"/>
+  <GuideEntityEmbed Entity="StorageCanister"/>
+  </Box>
+
+  - Ensure storage canister is anchored to its connector port.
+  - Inspect and enable waste network booster pumps, located on the starboard side of the ship in the equipment bay, and transit corridor just forward of the cargo section door.
+  - Inspect waste network gas filter, verify it is set to a desired gas for scavenging from waste loop.
+  - Enable waste network gas filter.
+  - Inspect and enable waste network exhaust pump, located in the starboard equipment bay corridor near the conveyor system controls.
+
+  ## 2.3. Air alarm and firelock system
+  <Box>
+    <GuideEntityEmbed Entity="AirAlarm"/>
+  </Box>
+
+  - Examine the crew section air alarm in the bridge, ensure sensors are reading normal.
+  - Set the crew section air alarm in the bridge to 'Filtering (Wide)'.
+  - Note the location of the firelocks linked to the crew section air alarm, which are integrated into the doors to the bridge and galley.
+  - Examine the cargo section air alarm on the forward wall of the engineering capsule, ensure sensors are reading normal.
+  - Set the cargo section air alarm to 'Filtering (Wide)'.
+  - Note the location of the firelocks linked to the cargo section air alarm, which are integrated into the doors to the equipment bay.
+
+  ## 3. Other checks
+  <Box>
+  <GuideEntityEmbed Entity="Gyroscope"/>
+  <GuideEntityEmbed Entity="GravityGeneratorMini"/>
+  </Box>
+  <Box>
+  <GuideEntityEmbed Entity="BlastDoor"/>
+  <GuideEntityEmbed Entity="ConveyorBelt"/>
+  </Box>
+
+  - Check that the gyroscopes are anchored, powered, and enabled. These devices are located in the engineering closets in the equipment bay.
+  - Check that the mini gravity generator is anchored, powered, and enabled. This device is located in the starboard side engineering closet in the equipment bay.
+  - Check that the equipment bay blast doors are closed. These can be controlled by the wall switches to either side of the doors.
+  - Check that the conveyor system blast doors are closed. These can be actuated by the wall switches in the corridor on each side of the engineering capsule.
+  - Check that the conveyor belts on each side of the ship are in good order. These can be operated with the floor levers in the corridor on either side of the engineering capsule.
+
+</Document>
