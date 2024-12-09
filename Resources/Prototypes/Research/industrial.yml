@@ -43,6 +43,7 @@
   cost: 7500
   recipeUnlocks:
   - PowerCellHigh
+  - NFBlueprintPowerCellHigh #Frontier 
   - TurboItemRechargerCircuitboard
 
 - type: technology
@@ -194,7 +195,20 @@
     - NFBlueprintMiningDrillDiamond # Frontier
     - NFBlueprintAdvancedMineralScannerEmpty # Frontier
     - BorgModuleAdvancedMining # Frontier
-
+- type: technology
+  id: RapidConstruction
+  name: research-technology-rapid-construction
+  icon:
+    sprite: _NF/Objects/Tools/rcd.rsi
+    state: icon-shipyard # Frontier
+  discipline: Industrial
+  tier: 2
+  cost: 10000
+  recipeUnlocks:
+    - ShipyardRCD # Frontier
+    - ShipyardRCDAmmo # Frontier
+    - NFBlueprintShipyardRCDAmmo # Frontier
+    - NFBlueprintShipyardRCD #Frontier
 # Tier 3
 
 - type: technology
@@ -231,16 +245,4 @@
   technologyPrerequisites:
   - AdvancedPowercells
 
-- type: technology
-  id: RapidConstruction
-  name: research-technology-rapid-construction
-  icon:
-    sprite: _NF/Objects/Tools/rcd.rsi
-    state: icon-shipyard # Frontier
-  discipline: Industrial
-  tier: 2
-  cost: 10000
-  recipeUnlocks:
-    - ShipyardRCD # Frontier
-    - ShipyardRCDAmmo # Frontier
-    - NFBlueprintShipyardRCDAmmo # Frontier
+
