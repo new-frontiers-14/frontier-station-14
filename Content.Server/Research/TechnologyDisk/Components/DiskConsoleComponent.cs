@@ -26,10 +26,10 @@ public sealed partial class DiskConsoleComponent : Component
     public string DiskPrototype = "TechnologyDisk";
 
     [DataField("diskPrototypeRare", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>)), ViewVariables(VVAccess.ReadWrite)] // Frontier
-    public string DiskPrototypeRare = "TechnologyDiskRare";
+    public string DiskPrototypeRare = "TechnologyDiskRare"; // Frontier
 
     [DataField, ViewVariables(VVAccess.ReadWrite)] // Frontier
-    public bool DiskRare = false;
+    public bool DiskRare = false; // Frontier
 
     /// <summary>
     /// How long it takes to print <see cref="DiskPrototype"/>

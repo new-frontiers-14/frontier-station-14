@@ -17,7 +17,7 @@ public sealed class DiskConsoleBoundUserInterfaceState : BoundUserInterfaceState
     public int PointCostRare; // Frontier
     public int ServerPoints;
 
-    public DiskConsoleBoundUserInterfaceState(int serverPoints, int pointCost, int pointCostRare, bool canPrint, bool canPrintRare) // Frontier: pointCostRare, CanPrintRare
+    public DiskConsoleBoundUserInterfaceState(int serverPoints, int pointCost, int pointCostRare, bool canPrint, bool canPrintRare) // Frontier: add pointCostRare, canPrintRare
     {
         CanPrint = canPrint;
         CanPrintRare = canPrintRare; // Frontier
