@@ -576,13 +576,15 @@ namespace Content.Server.DeltaV.Mail.EntitySystems
         public bool TryGetMailTeleporterForReceiver(EntityUid receiverUid, [NotNullWhen(true)] out MailTeleporterComponent? teleporterComponent, [NotNullWhen(true)] out EntityUid? teleporterUid)
         {
             var query = EntityQueryEnumerator<MailTeleporterComponent>();
-            var receiverStation = _stationSystem.GetOwningStation(receiverUid);
+            //var receiverStation = _stationSystem.GetOwningStation(receiverUid); // Frontier: skip station checks
 
             while (query.MoveNext(out var uid, out var mailTeleporter))
             {
-                var teleporterStation = _stationSystem.GetOwningStation(uid);
-                if (receiverStation != teleporterStation)
-                    continue;
+                // Frontier: skip station checks
+                // var teleporterStation = _stationSystem.GetOwningStation(uid);
+                // if (receiverStation != teleporterStation)
+                //     continue;
+                // End Frontier
                 teleporterComponent = mailTeleporter;
                 teleporterUid = uid;
                 return true;
