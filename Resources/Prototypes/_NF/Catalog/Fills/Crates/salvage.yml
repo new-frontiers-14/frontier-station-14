@@ -76,28 +76,6 @@
       orGroup: Meds
     - prob: 1 # Empty
       orGroup: Meds
-      # - Engineering?
-    - id: WelderIndustrial
-      prob: 0.01
-      orGroup: Tools
-    - id: WelderIndustrialAdvanced
-      prob: 0.01
-      orGroup: Tools
-    - id: MaintenanceJack
-      prob: 0.01
-      orGroup: Tools
-    - id: CableApcStack
-      prob: 0.01
-      orGroup: Tools
-    - id: CableMVStack
-      prob: 0.01
-      orGroup: Tools
-    - id: CableHVStack
-      prob: 0.01
-      orGroup: Tools
-    - prob: 1 # Empty
-      orGroup: Tools
-      # Just no (0.1%)
     - id: ClothingShoesBootsMagBlinding
       prob: 0.00001
       #  - Drip - this is a mess, replace with some random
@@ -187,8 +165,6 @@
       orGroup: DripLoot
     - id: ClothingHeadHatPaper
       orGroup: DripLoot
-    - id: ClothingHeadHatPirate
-      orGroup: DripLoot
     - id: ClothingHeadHatTophat
       orGroup: DripLoot
     - id: ClothingHeadHatUshanka
@@ -200,8 +176,6 @@
     - id: ClothingHeadFishCap
       orGroup: DripLoot
     - id: ClothingHeadSafari
-      orGroup: DripLoot
-    - id: ClothingHeadHatPirateTricord
       orGroup: DripLoot
     - id: ClothingHeadHatHoodGoliathCloak
       orGroup: DripLoot
@@ -247,12 +221,9 @@
       orGroup: DripLoot
     - id: ClothingNeckCloakAdmin
       orGroup: DripLoot
-      prob: 0.5
+      prob: 0.00001
     - id: ClothingNeckCloakTrans
       orGroup: DripLoot
-    - id: ClothingNeckCloakPirateCap
-      orGroup: DripLoot
-      prob: 0.25
     - id: ClothingNeckHeadphones
       orGroup: DripLoot
     - id: ClothingNeckBling
@@ -267,11 +238,7 @@
       orGroup: DripLoot
     - id: ClothingOuterCoatJensen
       orGroup: DripLoot
-    - id: ClothingOuterCoatPirate
-      orGroup: DripLoot
     - id: ClothingOuterDameDane
-      orGroup: DripLoot
-    - id: ClothingOuterDogi
       orGroup: DripLoot
     - id: ClothingOuterHoodieBlack
       orGroup: DripLoot
@@ -327,8 +294,6 @@
       orGroup: DripLoot
     - id: ClothingUniformJumpsuitDameDane
       orGroup: DripLoot
-    - id: ClothingUniformJumpsuitPirate
-      orGroup: DripLoot
     - id: ClothingUniformJumpsuitCossack
       orGroup: DripLoot
       prob: 0.01
@@ -338,3 +303,10 @@
     - id: ClothingHeadHatCatEars
       prob: 0.00001
       orGroup: DripLoot
+    - prob: 40 # Empty
+      orGroup: DripLoot
+
+- type: entity
+  id: NFCrateSalvageAssortedGoodiesPlastic
+  categories: [ HideSpawnMenu ]
+  parent: [ CratePlastic, NFCrateSalvageAssortedGoodies ]
