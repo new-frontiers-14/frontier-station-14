@@ -1340,7 +1340,7 @@
     contents:
     - id: WeaponLauncherRocketToy
     - id: BulletFoamRPG
-      amount: 1
+      amount: 2
 
 - type: entity
   categories: [ HideSpawnMenu ]
@@ -1817,6 +1817,17 @@
       - id: SmokingPipeFilledTobacco
       - id: DrinkAtomicBombGlass
       - id: PaperMailNFPipebombIntern
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: BaseMail
+  id: MailCommandNFWristwatchGold
+  suffix: gold wristwatch
+  components:
+  - type: Mail
+    isFragile: true
+    contents:
+      - id: WristwatchGold
 
 - type: entity
   categories: [ HideSpawnMenu ]

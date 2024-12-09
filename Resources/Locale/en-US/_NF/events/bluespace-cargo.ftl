@@ -1,1 +1,1 @@
-bluespace-cargo-event-announcement = An error in bluespace telemetry has caused a random crate to teleport to an unknown location.
+bluespace-cargo-event-announcement = An error in bluespace shipping telemetry has caused random crates to teleport into the sector.
