@@ -1,0 +1,20 @@
+<controls:FancyWindow
+        xmlns="https://spacestation14.io"
+        xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+        Title="{Loc player-panel-job-whitelists}" MinSize="750 600">
+    <BoxContainer Orientation="Vertical">
+        <Label Name="PlayerName" Margin="4"/>
+        <BoxContainer Orientation="Horizontal" Margin="4">
+            <BoxContainer Name="TierButtons" Orientation="Horizontal"/>
+        </BoxContainer>
+        <ScrollContainer VerticalExpand="True">
+            <!-- Frontier: global checkbox -->
+            <BoxContainer Orientation="Vertical">
+                <CheckBox Name="Global" Margin="4"/>
+                <BoxContainer Name="Departments" Orientation="Vertical"/>
+                <BoxContainer Name="GhostRoles" Orientation="Vertical"/> <!-- Frontier: ghost roles -->
+            </BoxContainer>
+            <!-- End Frontier: global checkbox -->
+        </ScrollContainer>
+    </BoxContainer>
+</controls:FancyWindow>
