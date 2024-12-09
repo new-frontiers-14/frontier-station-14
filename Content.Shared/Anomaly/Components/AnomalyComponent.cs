@@ -268,7 +268,7 @@ public sealed partial class AnomalyComponent : Component
     public int PointsEarned = 0;
 
     /// <summary>
-    ///     Frontier: the last time this anomaly earned points.  Prevents double counting.
+    ///     Frontier: the last time this anomaly earned points. Prevents double counting.
     /// </summary>
     [ViewVariables]
     public GameTick LastTickPointsEarned = GameTick.Zero;

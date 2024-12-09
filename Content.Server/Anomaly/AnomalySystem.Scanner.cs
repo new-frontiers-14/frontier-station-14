@@ -180,6 +180,7 @@ public sealed partial class AnomalySystem
             msg.AddMarkupOrThrow(Loc.GetString("anomaly-scanner-point-earned-unknown"));
         else
             msg.AddMarkupOrThrow(Loc.GetString("anomaly-scanner-point-earned", ("point", anomalyComp.PointsEarned)));
+        // End Frontier
         msg.PushNewline();
         msg.PushNewline();
 
