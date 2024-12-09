@@ -20,8 +20,8 @@
   components:
   - type: ResearchDisk
     points: 5000
-  - type: StaticPrice
-    price: 1500 # Frontier - To be fair, its worth half a tech disk, but we still require tech to print it so its lower.
+  - type: StaticPrice # Frontier
+    price: 1000 # Frontier - To be fair, its worth half a tech disk, but we still require tech to print it so its lower.
 
 - type: entity
   parent: ResearchDisk
@@ -31,8 +31,8 @@
   components:
   - type: ResearchDisk
     points: 10000
-  - type: StaticPrice
-    price: 3000 # Frontier - To be fair, its worth a tech disk, but we still require tech to print it so its lower.
+  - type: StaticPrice # Frontier
+    price: 2000 # Frontier - To be fair, its worth a tech disk, but we still require tech to print it so its lower.
 
 - type: entity
   parent: ResearchDisk
@@ -63,7 +63,9 @@
   - type: TechnologyDisk
     tierWeightPrototype: TechDiskTierWeights # Frontier
   - type: StaticPrice
-    price: 5000 # Frontier - Rebalance
+    price: 0 # Frontier 100<0
+  - type: StealTarget
+    stealGroup: TechnologyDisk
   - type: PirateBountyItem # Frontier
     id: TechnologyDisk # Frontier
 
@@ -73,4 +75,4 @@
   suffix: rare.
   components:
   - type: TechnologyDisk
-    tierWeightPrototype: RareTechDiskTierWeights # Frontier
+    tierWeightPrototype: RareTechDiskTierWeights
