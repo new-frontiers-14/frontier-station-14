@@ -5,6 +5,7 @@
   name: Salvage Material Crate Spawner
   id: SalvageMaterialCrateSpawner
   parent: MarkerBase
+  categories: [ HideSpawnMenu ] # Frontier: NFSalvageMaterialCrateSpawner
   components:
     - type: Sprite
       layers:
@@ -13,7 +14,7 @@
           state: icon
     - type: RandomSpawner
       rarePrototypes:
-#        - SalvageHumanCorpse # Frontier
+        - SalvageHumanCorpse
         - CrateMaterialPlasteel
         - CrateMaterialWood
         - CrateMaterialPlastic
@@ -23,27 +24,19 @@
         - CrateServiceJanitorialSupplies
         - CrateHydroponicsSeedsMedicinal
         - CrateEmergencyInternals
-#        - CrateFoodMRE # Frontier
+        - CrateFoodMRE
         - CrateMaterialTextiles
-#        - CrateMedicalSupplies # Frontier
-        - CrateEngineeringCableBulk # Frontier
-        - CrateMaterialCardboard # Frontier
-        - CrateServiceBooks # Frontier
-        - CrateServiceSmokeables # Frontier
-        - CrateTrashCartFilled # Frontier
-        - CrateServiceReplacementLights # Frontier
-        - CrateServiceBureaucracy # Frontier
-        - CrateMaterialPlasteel # Frontier
-        - CrateFunArtSupplies # Frontier
-        - CrateEmergencyFire # Frontier
-        - CrateEmergencyInflatablewall # Frontier
-        - CrateHydroponicsTools # Frontier
-        - CrateHydroponicsSeeds # Frontier
-        - CrateMaterialPlasma # Frontier
-        - CrateHydroponicsSeedsExotic # Frontier
+        - CrateMedicalSupplies
+        - CrateEngineeringCableBulk
+        - CrateMaterialCardboard
+        - CrateServiceBooks
+        - CrateServiceSmokeables
+        - CrateTrashCartFilled
+        - ClosetMaintenanceFilledRandom
+        - ClosetEmergencyFilledRandom
       rareChance: 0.4
       prototypes:
-        - NFCrateSalvageAssortedGoodies # Frontier: use NF variant
+        - CrateSalvageAssortedGoodies
       chance: 0.9
       offset: 0.0
 
