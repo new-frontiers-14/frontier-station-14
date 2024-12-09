@@ -436,6 +436,8 @@
     tags:
     - Ingredient
     - ClothMade
+  - type: Food # Frontier
+    requiresSpecialDigestion: true # Frontier
   - type: SolutionContainerManager
     solutions:
       food:
@@ -445,6 +447,7 @@
           Quantity: 5
         - ReagentId: Fiber
           Quantity: 10
+  - type: MothFood # Frontier
 
 - type: entity
   name: raw pastry base
@@ -503,6 +506,9 @@
   - type: Construction
     graph: CottonPizza
     node: flat
+  - type: Food # Frontier
+    requiresSpecialDigestion: true # Frontier
+  - type: MothFood # Frontier
 
 - type: entity
   name: pizza bread

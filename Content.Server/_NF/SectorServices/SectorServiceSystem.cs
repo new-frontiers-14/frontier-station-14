@@ -1,4 +1,5 @@
 using Content.Shared._NF.SectorServices.Prototypes;
+using Content.Shared.GameTicking;
 using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 
@@ -12,8 +13,8 @@ namespace Content.Server._NF.SectorServices;
 [PublicAPI]
 public sealed class SectorServiceSystem : EntitySystem
 {
-    [Robust.Shared.IoC.Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Robust.Shared.IoC.Dependency] private readonly IEntityManager _entityManager = default!;
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly IEntityManager _entityManager = default!;
 
     [ViewVariables(VVAccess.ReadOnly)]
     private EntityUid _entity = EntityUid.Invalid; // The station entity that's storing our services.
@@ -22,16 +23,18 @@ public sealed class SectorServiceSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<StationSectorServiceHostComponent, ComponentStartup>(OnComponentStartup);
-        SubscribeLocalEvent<StationSectorServiceHostComponent, ComponentShutdown>(OnComponentShutdown);
+        SubscribeLocalEvent<StationSectorServiceHostComponent, ComponentInit>(OnComponentInit);
+        SubscribeLocalEvent<StationSectorServiceHostComponent, ComponentRemove>(OnComponentRemove);
+        SubscribeLocalEvent<RoundRestartCleanupEvent>(OnCleanup);
     }
 
-    private void OnComponentStartup(EntityUid uid, StationSectorServiceHostComponent component, ComponentStartup args)
+    private void OnComponentInit(EntityUid uid, StationSectorServiceHostComponent component, ComponentInit args)
     {
         Log.Debug($"OnComponentStartup! Entity: {uid} internal: {_entity}");
         if (_entity == EntityUid.Invalid)
         {
-            _entity = uid;
+            _entity = Spawn();
+            component.SectorUid = _entity;
 
             foreach (var servicePrototype in _prototypeManager.EnumeratePrototypes<SectorServicePrototype>())
             {
@@ -41,18 +44,25 @@ public sealed class SectorServiceSystem : EntitySystem
         }
     }
 
-    private void OnComponentShutdown(EntityUid uid, StationSectorServiceHostComponent component, ComponentShutdown args)
+    private void OnComponentRemove(EntityUid uid, StationSectorServiceHostComponent component, ComponentRemove args)
     {
-        Log.Debug($"OnComponentShutdown! Entity: {_entity}");
-        if (_entity != EntityUid.Invalid)
+        Log.Debug($"ComponentRemove called! Entity: {_entity}");
+        DeleteServiceEntity();
+    }
+
+    public void OnCleanup(RoundRestartCleanupEvent _)
+    {
+        Log.Debug($"RoundRestartCleanup called! Entity: {_entity}");
+        DeleteServiceEntity();
+    }
+
+    private void DeleteServiceEntity()
+    {
+        if (EntityManager.EntityExists(_entity) && !Terminating(_entity))
         {
-            foreach (var servicePrototype in _prototypeManager.EnumeratePrototypes<SectorServicePrototype>())
-            {
-                Log.Debug($"Removing component for service {servicePrototype.ID}");
-                _entityManager.RemoveComponents(_entity, servicePrototype.Components);
-            }
-            _entity = EntityUid.Invalid;
+            QueueDel(_entity);
         }
+        _entity = EntityUid.Invalid;
     }
 
     public EntityUid GetServiceEntity()
