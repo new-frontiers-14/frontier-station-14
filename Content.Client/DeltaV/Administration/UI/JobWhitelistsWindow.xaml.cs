@@ -9,6 +9,7 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Prototypes;
+using Content.Shared.Ghost.Roles;
 
 namespace Content.Client.DeltaV.Administration.UI;
 
@@ -23,6 +24,8 @@ public sealed partial class JobWhitelistsWindow : FancyWindow
     [Dependency] private readonly IPrototypeManager _proto = default!;
 
     public Action<ProtoId<JobPrototype>, bool>? OnSetJob;
+    public Action<ProtoId<GhostRolePrototype>, bool>? OnSetGhostRole; // Frontier
+    public Action<bool>? OnSetGlobal; // Frontier
 
     public JobWhitelistsWindow()
     {
@@ -31,6 +34,12 @@ public sealed partial class JobWhitelistsWindow : FancyWindow
 
         PlayerName.Text = "???";
         InitializeTierButtons();
+
+        // Frontier: global whitelist button
+        Global.Text = Loc.GetString("player-panel-global-whitelist");
+        Global.OnPressed += _ => OnSetGlobal?.Invoke(Global.Pressed);
+        Global.Modulate = Color.FromHex("#f0c65d");
+        // End Frontier
     }
 
     private void InitializeTierButtons()
@@ -55,18 +64,45 @@ public sealed partial class JobWhitelistsWindow : FancyWindow
             OnSetJob?.Invoke(jobId, true);
         }
 
+        // Frontier: ghost role prototypes
+        foreach (var ghostRoleId in tier.GhostRoles)
+        {
+            OnSetGhostRole?.Invoke(ghostRoleId, true);
+        }
+        // End Frontier
     }
 
     public void HandleState(JobWhitelistsEuiState state)
     {
         PlayerName.Text = state.PlayerName;
 
+        // Frontier: global whitelist
+        Global.Pressed = state.GlobalWhitelist;
+        // End Frontier
+
         Departments.RemoveAllChildren();
         foreach (var proto in _proto.EnumeratePrototypes<DepartmentPrototype>())
         {
-            var panel = new DepartmentWhitelistPanel(proto, _proto, state.Whitelists);
+            // Frontier: skip empty departments
+            if (proto.Roles.Count <= 0)
+                continue;
+            // End Frontier
+
+            var panel = new DepartmentWhitelistPanel(proto, _proto, state.Whitelists, state.GlobalWhitelist);
             panel.OnSetJob += (id, whitelisting) => OnSetJob?.Invoke(id, whitelisting);
             Departments.AddChild(panel);
         }
+        // Frontier: ghost role prototypes
+        GhostRoles.RemoveAllChildren();
+        List<ProtoId<GhostRolePrototype>> ghostRoles = new();
+        foreach (var proto in _proto.EnumeratePrototypes<GhostRolePrototype>())
+        {
+            if (proto.Whitelisted)
+                ghostRoles.Add(proto.ID);
+        }
+        var ghostRolePanel = new GhostRoleSetWhitelistPanel(ghostRoles, Loc.GetString("player-panel-ghost-role-whitelists"), Color.FromHex("#71f0ca"), _proto, state.GhostRoleWhitelists, state.GlobalWhitelist);
+        ghostRolePanel.OnSetGhostRole += (id, whitelisting) => OnSetGhostRole?.Invoke(id, whitelisting);
+        GhostRoles.AddChild(ghostRolePanel);
+        // End Frontier
     }
 }
