@@ -6,6 +6,7 @@ using Content.Shared.Weapons.Melee.Components;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Timing;
+using Robust.Shared.Network; // Frontier
 
 namespace Content.Shared.Anomaly;
 
@@ -17,6 +18,7 @@ public sealed class SharedAnomalyCoreSystem : EntitySystem
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
+    [Dependency] private readonly INetManager _net = default!; // Frontier
 
     public override void Initialize()
     {
@@ -109,4 +111,15 @@ public sealed class SharedAnomalyCoreSystem : EntitySystem
         component.IsDecayed = true;
         Dirty(uid, component);
     }
+
+    // Frontier: set value
+    public void SetValue(EntityUid uid, AnomalyCoreComponent component, int startPrice, int endPrice)
+    {
+        if (!_net.IsServer)
+            return;
+
+        component.StartPrice = startPrice;
+        component.EndPrice = endPrice;
+    }
+    // End Frontier
 }

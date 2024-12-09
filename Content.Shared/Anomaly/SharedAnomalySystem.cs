@@ -34,6 +34,7 @@ public abstract class SharedAnomalySystem : EntitySystem
     [Dependency] protected readonly SharedPopupSystem Popup = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly SharedAnomalyCoreSystem _anomalyCore = default!; // Frontier
 
     public override void Initialize()
     {
@@ -189,6 +190,14 @@ public abstract class SharedAnomalySystem : EntitySystem
         {
             var core = Spawn(supercritical ? component.CorePrototype : component.CoreInertPrototype, Transform(uid).Coordinates);
             _transform.PlaceNextTo(core, uid);
+
+            // Frontier: set value to points retrieved
+            if (TryComp<AnomalyCoreComponent>(core, out var coreComp))
+            {
+                var anomalyPrice = int.Clamp(component.PointsEarned, 0, 30000);
+                _anomalyCore.SetValue(core, coreComp, anomalyPrice, anomalyPrice);
+            }
+            // End Frontier
         }
 
         if (component.DeleteEntity)
