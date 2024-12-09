@@ -4,7 +4,13 @@
   rangeMin: 1000
   rangeMax: 1800
   gridPath: /Maps/Corvax/POI/Hospital.yml
-  IFFColor: "#1895a3"
+  addComponents:
+  - type: IFF
+    color: "#1895a3"
+    readOnly: true
+  - type: Shuttle
+    angularDamping: 999999
+    linearDamping: 999999
 
 - type: gameMap
   id: Hospital

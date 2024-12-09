@@ -13,11 +13,17 @@
   name: 'Синдикатовcкий аванпост Чарли'
   rangeMin: 8150
   rangeMax: 13550
-  IFFColor: "#C83737" #red the color of ebil
-  IFFFlags: [HideLabel, Hide] # Invisible
-  allowIFFChanges: true
-  spawnGroup: SyndicateFOB
+  hideWarp: true
   gridPath: /Maps/Corvax/POI/charlie.yml
+  addComponents:
+  - type: IFF
+    color: "#C83737"
+    flags: [HideLabel, Hide]
+  - type: Shuttle
+    angularDamping: 999999
+    linearDamping: 999999
+  - type: SyndicateFOB # For pinpointer
+
 
 - type: gameMap
   id: Charlie
