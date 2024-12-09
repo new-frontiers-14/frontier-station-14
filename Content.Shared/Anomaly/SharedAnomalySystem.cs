@@ -48,6 +48,8 @@ public abstract class SharedAnomalySystem : EntitySystem
     {
         if (!TryComp<CorePoweredThrowerComponent>(args.Used, out var corePowered) || !TryComp<PhysicsComponent>(ent, out var body))
             return;
+        if (HasComp<InnerBodyAnomalyComponent>(ent.Owner)) // Frontier
+            return; // Frontier
         _physics.SetBodyType(ent, BodyType.Dynamic, body: body);
         ChangeAnomalyStability(ent, Random.NextFloat(corePowered.StabilityPerThrow.X, corePowered.StabilityPerThrow.Y), ent.Comp);
     }
