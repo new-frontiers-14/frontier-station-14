@@ -194,8 +194,7 @@ public abstract class SharedAnomalySystem : EntitySystem
             // Frontier: set value to points retrieved
             if (TryComp<AnomalyCoreComponent>(core, out var coreComp))
             {
-                var anomalyPrice = int.Clamp(component.PointsEarned, 0, 30000);
-                _anomalyCore.SetValue(core, coreComp, anomalyPrice, anomalyPrice);
+                _anomalyCore.SetValueFromPointsEarned(core, coreComp, component.PointsEarned);
             }
             // End Frontier
         }

@@ -334,22 +334,22 @@
       PlasmaGlass: 15
       MetalRod: 4
 
-# - type: entity
-#   parent: BaseMachineCircuitboard
-#   id: AnomalySynchronizerCircuitboard
-#   name: anomaly synchronizer machine board
-#   description: A machine printed circuit board for an anomaly synchronizer.
-#   components:
-#     - type: Sprite
-#       state: science
-#     - type: MachineBoard
-#       prototype: MachineAnomalySynchronizer
-#       requirements: # Frontier
-#         Manipulator: 2 # Frontier stackRequirements<requirements
-#         Capacitor: 5 # Frontier stackRequirements<requirements
-#       stackRequirements:
-#         PlasmaGlass: 5
-#         Cable: 5
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: AnomalySynchronizerCircuitboard
+  name: anomaly synchronizer machine board
+  description: A machine printed circuit board for an anomaly synchronizer.
+  components:
+    - type: Sprite
+      state: science
+    - type: MachineBoard
+      prototype: MachineAnomalySynchronizer
+      requirements: # Frontier
+        Manipulator: 2 # Frontier stackRequirements<requirements
+        Capacitor: 5 # Frontier stackRequirements<requirements
+      stackRequirements:
+        PlasmaGlass: 5
+        Cable: 5
 
 - type: entity
   parent: BaseMachineCircuitboard
