@@ -6,7 +6,7 @@ using Content.Shared.Weapons.Melee.Components;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Timing;
-using Robust.Shared.Network;
+using Robust.Shared.Network; // Frontier
 using Content.Shared.Anomaly.Effects; // Frontier
 
 namespace Content.Shared.Anomaly;
@@ -113,7 +113,7 @@ public sealed class SharedAnomalyCoreSystem : EntitySystem
         Dirty(uid, component);
     }
 
-    // Frontier: settable value
+    // Frontier: settable anomaly price
     /// <summary>
     ///  Sets the value of an anomaly core based on the number of points it earned.
     /// </summary>
@@ -131,5 +131,5 @@ public sealed class SharedAnomalyCoreSystem : EntitySystem
         component.StartPrice = price;
         component.EndPrice = price;
     }
-    // End Frontier: settable anomaly value
+    // End Frontier: settable anomaly price
 }
