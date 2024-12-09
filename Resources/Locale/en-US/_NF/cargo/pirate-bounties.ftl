@@ -4,7 +4,6 @@ pirate-bounty-item-extinguisher = Fire Extinguisher
 pirate-bounty-item-captainGloves = Captain Gloves
 pirate-bounty-item-gyro = Gyroscope (any)
 pirate-bounty-item-defib = Defibrillator
-pirate-bounty-item-researchDisk = Technology Disk
 pirate-bounty-item-alcohol = Booze Dispenser
 pirate-bounty-item-thruster = Thruster
 pirate-bounty-item-gravGen = Gravity Generator
