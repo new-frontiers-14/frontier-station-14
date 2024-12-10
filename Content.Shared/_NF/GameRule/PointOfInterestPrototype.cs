@@ -55,7 +55,7 @@ public sealed partial class PointOfInterestPrototype : IPrototype
     /// What gamepresets ID this POI is allowed to spawn on.
     /// </summary>
     [DataField]
-    public string[] SpawnGamePreset { get; private set; } = { "NFAdventure", "NFPirate" };
+    public string[] SpawnGamePreset { get; private set; } = [];
 
     /// <summary>
     /// If the POI does not belong to a pre-defined group, it will default to the "unique" internal category and will
