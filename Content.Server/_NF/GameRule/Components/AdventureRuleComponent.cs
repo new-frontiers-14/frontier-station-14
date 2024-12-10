@@ -1,9 +1,6 @@
-using Content.Shared.Procedural;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.List;
-
 namespace Content.Server._NF.GameRule.Components;
 
-[RegisterComponent, Access(typeof(NfAdventureRuleSystem))]
+[RegisterComponent, Access(typeof(NFAdventureRuleSystem))]
 public sealed partial class AdventureRuleComponent : Component
 {
     public List<EntityUid> NFPlayerMinds = new();

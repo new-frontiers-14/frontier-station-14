@@ -1,22 +1,22 @@
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.List;
+using System.Collections.Immutable;
 
 namespace Content.Shared._NF.GameRule;
 
 /// <summary>
-///     Describes information for a single point of interest to be spawned in the world
+/// Describes information for a single point of interest to be spawned in the world
 /// </summary>
 [Prototype("pointOfInterest")]
 [Serializable]
 public sealed partial class PointOfInterestPrototype : IPrototype
 {
-    /// <inheritdoc/>
     [IdDataField]
     public string ID { get; private set; } = default!;
 
     /// <summary>
-    ///     The name of this point of interest
+    /// The name of this point of interest
     /// </summary>
     [DataField(required: true)]
     public string Name { get; private set; } = "";
@@ -34,13 +34,13 @@ public sealed partial class PointOfInterestPrototype : IPrototype
     public bool HideWarp { get; set; } = false;
 
     /// <summary>
-    ///     Minimum range to spawn this POI at
+    /// Minimum range to spawn this POI at
     /// </summary>
     [DataField]
     public int MinimumDistance { get; private set; } = 5000;
 
     /// <summary>
-    ///     Maximum range to spawn this POI at
+    /// Maximum range to spawn this POI at
     /// </summary>
     [DataField]
     public int MaximumDistance { get; private set; } = 10000;
@@ -52,29 +52,35 @@ public sealed partial class PointOfInterestPrototype : IPrototype
     public ComponentRegistry AddComponents { get; set; } = new();
 
     /// <summary>
-    ///     If the POI does not belong to a pre-defined group, it will default to the "unique" internal category and will
-    ///     use this float from 0-1 as a raw chance to spawn each round.
+    /// What gamepresets ID this POI is allowed to spawn on.
+    /// </summary>
+    [DataField]
+    public string[] SpawnGamePreset { get; private set; } = { "Adventure", "Pirates" };
+
+    /// <summary>
+    /// If the POI does not belong to a pre-defined group, it will default to the "unique" internal category and will
+    /// use this float from 0-1 as a raw chance to spawn each round.
     /// </summary>
     [DataField]
     public float SpawnChance { get; private set; } = 1;
 
     /// <summary>
-    ///     The group that this POI belongs to. Currently, the default groups are:
-    ///     "CargoDepot"
-    ///     "MarketStation"
-    ///     "Required"
-    ///     "Optional"
-    ///     Each POI labeled in the Required group will be spawned in every round.
-    ///     Apart from that, each of thesehave corresponding CVARS by default, that set an optional # of this group to spawn.
-    ///     Traditionally, it is 2 cargo depots, 1 trade station, and 8 optional POIs.
-    ///     Dynamically added groups will default to 1 option chosen in that group, using the SpawnChance as a weighted chance
-    ///     for the entire group to spawn on a per-POI basis.
+    /// The group that this POI belongs to. Currently, the default groups are:
+    /// "CargoDepot"
+    /// "MarketStation"
+    /// "Required"
+    /// "Optional"
+    /// Each POI labeled in the Required group will be spawned in every round.
+    /// Apart from that, each of thesehave corresponding CVARS by default, that set an optional # of this group to spawn.
+    /// Traditionally, it is 2 cargo depots, 1 trade station, and 8 optional POIs.
+    /// Dynamically added groups will default to 1 option chosen in that group, using the SpawnChance as a weighted chance
+    /// for the entire group to spawn on a per-POI basis.
     /// </summary>
     [DataField]
     public string SpawnGroup { get; private set; } = "Optional";
 
     /// <summary>
-    ///     the path to the grid
+    /// the path to the grid
     /// </summary>
     [DataField(required: true)]
     public ResPath GridPath { get; private set; } = default!;

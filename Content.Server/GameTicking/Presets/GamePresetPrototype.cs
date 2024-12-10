@@ -7,7 +7,7 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototy
 namespace Content.Server.GameTicking.Presets
 {
     /// <summary>
-    ///     A round-start setup preset, such as which antagonists to spawn.
+    /// A round-start setup preset, such as which antagonists to spawn.
     /// </summary>
     [Prototype("gamePreset")]
     public sealed partial class GamePresetPrototype : IPrototype
