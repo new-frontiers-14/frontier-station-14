@@ -61,5 +61,13 @@ namespace Content.Server.Chemistry.Components
 
         [ViewVariables(VVAccess.ReadWrite)]
         public ReagentDispenserDispenseAmount DispenseAmount = ReagentDispenserDispenseAmount.U10;
+
+        // Frontier: whether or not this entity can auto-label items
+        [DataField]
+        public bool CanAutoLabel;
+
+        // Frontier: whether or not this entity is currently auto-labeling items
+        [ViewVariables]
+        public bool AutoLabel;
     }
 }
