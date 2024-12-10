@@ -30,6 +30,8 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
+using Content.Shared.Cargo.Components;
+using Content.Server._NF.Contraband.Systems; // Frontier
 
 namespace Content.Server.Lathe
 {
@@ -51,6 +53,7 @@ namespace Content.Server.Lathe
         [Dependency] private readonly SharedSolutionContainerSystem _solution = default!;
         [Dependency] private readonly StackSystem _stack = default!;
         [Dependency] private readonly TransformSystem _transform = default!;
+        [Dependency] private readonly ContrabandTurnInSystem _contraband = default!; // Frontier
 
         /// <summary>
         /// Per-tick cache
@@ -234,6 +237,30 @@ namespace Content.Server.Lathe
                 if (comp.CurrentRecipe.Result is { } resultProto)
                 {
                     var result = Spawn(resultProto, Transform(uid).Coordinates);
+
+                    // Frontier: adjust price before merge (stack prices changed once)
+                    if (result.Valid)
+                    {
+                        if (comp.ProductValueModifier != null
+                        && float.IsFinite(comp.ProductValueModifier.Value)
+                        && comp.ProductValueModifier >= 0f)
+                        {
+                            if (TryComp<StackPriceComponent>(result, out var stackPrice))
+                            {
+                                if (stackPrice.Price > 0)
+                                    stackPrice.Price *= comp.ProductValueModifier.Value;
+                            }
+                            if (TryComp<StaticPriceComponent>(result, out var staticPrice))
+                            {
+                                if (staticPrice.Price > 0)
+                                    staticPrice.Price *= comp.ProductValueModifier.Value;
+                            }
+                        }
+
+                        _contraband.ClearContrabandValue(result);
+                    }
+                    // End Frontier
+
                     _stack.TryMergeToContacts(result);
                 }
 
