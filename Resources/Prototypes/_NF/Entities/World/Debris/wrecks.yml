@@ -24,10 +24,10 @@
         - id: WallReinforced
           prob: 0.2
         - id: AirlockMaint
-          prob: 0.1
+          prob: 0.01
         # Floor loot
         - id: SalvageSpawnerScrapCommon
-          prob: 2
+          prob: 3.5
         - id: SalvageSpawnerTreasure
           prob: 0.3
         - id: SalvageSpawnerTreasureValuable
@@ -66,6 +66,9 @@
         # Mobs
         - id: NFSalvageMobSpawner
           prob: 0.1
+        # Room
+        - id: WreckRoomMarker
+          prob: 0.01
       Plating: *floor
       Lattice: &lattice
         - prob: 1 # Intentional blank.
