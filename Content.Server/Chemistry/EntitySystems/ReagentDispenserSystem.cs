@@ -13,6 +13,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using Content.Shared.Labels.Components;
+using Content.Server.Construction;
 
 namespace Content.Server.Chemistry.EntitySystems
 {
@@ -40,6 +41,8 @@ namespace Content.Server.Chemistry.EntitySystems
             SubscribeLocalEvent<ReagentDispenserComponent, EntInsertedIntoContainerMessage>(SubscribeUpdateUiState);
             SubscribeLocalEvent<ReagentDispenserComponent, EntRemovedFromContainerMessage>(SubscribeUpdateUiState);
             SubscribeLocalEvent<ReagentDispenserComponent, BoundUIOpenedEvent>(SubscribeUpdateUiState);
+            SubscribeLocalEvent<ReagentDispenserComponent, RefreshPartsEvent>(OnRefreshParts); // Frontier
+            SubscribeLocalEvent<ReagentDispenserComponent, UpgradeExamineEvent>(OnUpgradeExamine); // Frontier
 
             SubscribeLocalEvent<ReagentDispenserComponent, ReagentDispenserSetDispenseAmountMessage>(OnSetDispenseAmountMessage);
             SubscribeLocalEvent<ReagentDispenserComponent, ReagentDispenserDispenseReagentMessage>(OnDispenseReagentMessage);
@@ -168,6 +171,7 @@ namespace Content.Server.Chemistry.EntitySystems
         /// </summary>
         private void OnMapInit(EntityUid uid, ReagentDispenserComponent component, MapInitEvent args)
         {
+            /* // Frontier: no need to change slots, already done through RefreshParts
             // Get list of pre-loaded containers
             List<string> preLoad = new List<string>();
             if (component.PackPrototypeId is not null
@@ -196,6 +200,57 @@ namespace Content.Server.Chemistry.EntitySystems
             }
 
             _itemSlotsSystem.AddItemSlot(uid, SharedReagentDispenser.OutputSlotName, component.BeakerSlot);
+            */ // End Frontier: no need to change slots, already done through RefreshParts
+
+            // Frontier: spawn slot contents
+            if (component.PackPrototypeId is not null
+                && _prototypeManager.TryIndex(component.PackPrototypeId, out ReagentDispenserInventoryPrototype? packPrototype))
+            {
+                for (var i = 0; i < packPrototype.Inventory.Count && i < component.StorageSlots.Count; i++)
+                {
+                    var item = Spawn(packPrototype.Inventory[i], Transform(uid).Coordinates);
+                    if (!_itemSlotsSystem.TryInsert(uid, component.StorageSlots[i].ID!, item, null, excludeUserAudio: true))
+                        QueueDel(item);
+                }
+            }
+            // End Frontier
         }
+
+        // Frontier: upgradable parts
+        private void OnRefreshParts(EntityUid uid, ReagentDispenserComponent component, RefreshPartsEvent args)
+        {
+            if (!args.PartRatings.TryGetValue(component.SlotUpgradeMachinePart, out float partRating))
+                partRating = 1.0f;
+
+            component.NumSlots = component.BaseNumStorageSlots + (int)(component.ExtraSlotsPerTier * (partRating - 1.0f));
+            // Not enough?
+            for (int i = component.StorageSlots.Count; i < component.NumSlots; i++)
+            {
+                var storageSlotId = ReagentDispenserComponent.BaseStorageSlotId + i;
+
+                ItemSlot storageComponent = new();
+                storageComponent.Whitelist = component.StorageWhitelist;
+                storageComponent.Swap = false;
+                storageComponent.EjectOnBreak = true;
+
+                component.StorageSlotIds.Add(storageSlotId);
+                component.StorageSlots.Add(storageComponent);
+                component.StorageSlots[i].Name = "Storage Slot " + (i+1);
+                _itemSlotsSystem.AddItemSlot(uid, component.StorageSlotIds[i], component.StorageSlots[i]);
+            }
+            // Too many?
+            for (int i = component.StorageSlots.Count - 1; i >= component.NumSlots; i--)
+            {
+                _itemSlotsSystem.RemoveItemSlot(uid, component.StorageSlots[i]);
+                component.StorageSlotIds.RemoveAt(i);
+                component.StorageSlots.RemoveAt(i);
+            }
+        }
+
+        private void OnUpgradeExamine(EntityUid uid, ReagentDispenserComponent component, UpgradeExamineEvent args)
+        {
+            args.AddNumberUpgrade("reagent-dispenser-component-extra-slots", component.NumSlots - component.BaseNumStorageSlots);
+        }
+        // End Frontier
     }
 }
