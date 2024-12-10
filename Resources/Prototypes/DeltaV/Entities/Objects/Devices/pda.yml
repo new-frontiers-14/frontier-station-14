@@ -2,120 +2,120 @@
 # Copyright (c) 2024 Delta-V Contributors
 # See AGPLv3.txt for details.
 
-- type: entity
-  parent: BasePDA
-  id: BaseJusticePDA
-  abstract: true
-  components:
-  - type: Pda
-    penSlot:
-      startingItem: LuxuryPen
-      priority: -1
-      whitelist:
-        tags:
-        - Write
-  - type: CartridgeLoader
-    diskSpace: 7
-    preinstalled:
-    - CrewManifestCartridge
-    - NotekeeperCartridge
-    - NewsReaderCartridge
-    - CrimeAssistCartridge
-    - SecWatchCartridge
+# - type: entity
+  # parent: BasePDA
+  # id: BaseJusticePDA
+  # abstract: true
+  # components:
+  # - type: Pda
+    # penSlot:
+      # startingItem: LuxuryPen
+      # priority: -1
+      # whitelist:
+        # tags:
+        # - Write
+  # - type: CartridgeLoader
+    # diskSpace: 7
+    # preinstalled:
+    # - CrewManifestCartridge
+    # - NotekeeperCartridge
+    # - NewsReaderCartridge
+    # - CrimeAssistCartridge
+    # - SecWatchCartridge
 
-- type: entity
-  parent: BaseJusticePDA
-  id: ChiefJusticePDA
-  name: chief justice PDA
-  description: Whosoever bears this PDA is the law.
-  components:
-  - type: Sprite
-    sprite: DeltaV/Objects/Devices/pda.rsi
-    layers:
-    - map: [ "enum.PdaVisualLayers.Base" ]
-    - state: "light_overlay"
-      map: [ "enum.PdaVisualLayers.Flashlight" ]
-      shader: "unshaded"
-      visible: false
-    - state: "id_overlay"
-      map: [ "enum.PdaVisualLayers.IdLight" ]
-      shader: "unshaded"
-      visible: false
-  - type: Pda
-    id: ChiefJusticeIDCard
-    state: pda-chiefjustice
-  - type: PdaBorderColor
-    borderColor: "#470823"
-  - type: Icon
-    sprite: DeltaV/Objects/Devices/pda.rsi
-    state: pda-chiefjustice
+# - type: entity
+  # parent: BaseJusticePDA
+  # id: ChiefJusticePDA
+  # name: chief justice PDA
+  # description: Whosoever bears this PDA is the law.
+  # components:
+  # - type: Sprite
+    # sprite: DeltaV/Objects/Devices/pda.rsi
+    # layers:
+    # - map: [ "enum.PdaVisualLayers.Base" ]
+    # - state: "light_overlay"
+      # map: [ "enum.PdaVisualLayers.Flashlight" ]
+      # shader: "unshaded"
+      # visible: false
+    # - state: "id_overlay"
+      # map: [ "enum.PdaVisualLayers.IdLight" ]
+      # shader: "unshaded"
+      # visible: false
+  # - type: Pda
+    # id: ChiefJusticeIDCard
+    # state: pda-chiefjustice
+  # - type: PdaBorderColor
+    # borderColor: "#470823"
+  # - type: Icon
+    # sprite: DeltaV/Objects/Devices/pda.rsi
+    # state: pda-chiefjustice
 
-- type: entity
-  parent: BaseJusticePDA
-  id: ClerkPDA
-  name: clerk PDA
-  description: It has the stamp to prove it's been officially notarized!
-  components:
-  - type: Sprite
-    sprite: DeltaV/Objects/Devices/pda.rsi
-    layers:
-    - map: [ "enum.PdaVisualLayers.Base" ]
-    - state: "light_overlay"
-      map: [ "enum.PdaVisualLayers.Flashlight" ]
-      shader: "unshaded"
-      visible: false
-    - state: "id_overlay"
-      map: [ "enum.PdaVisualLayers.IdLight" ]
-      shader: "unshaded"
-      visible: false
-  - type: Pda
-    id: ClerkIDCard
-    state: pda-clerk
-  - type: PdaBorderColor
-    borderColor: "#611528"
-  - type: Icon
-    sprite: DeltaV/Objects/Devices/pda.rsi
-    state: pda-clerk
+# - type: entity
+  # parent: BaseJusticePDA
+  # id: ClerkPDA
+  # name: clerk PDA
+  # description: It has the stamp to prove it's been officially notarized!
+  # components:
+  # - type: Sprite
+    # sprite: DeltaV/Objects/Devices/pda.rsi
+    # layers:
+    # - map: [ "enum.PdaVisualLayers.Base" ]
+    # - state: "light_overlay"
+      # map: [ "enum.PdaVisualLayers.Flashlight" ]
+      # shader: "unshaded"
+      # visible: false
+    # - state: "id_overlay"
+      # map: [ "enum.PdaVisualLayers.IdLight" ]
+      # shader: "unshaded"
+      # visible: false
+  # - type: Pda
+    # id: ClerkIDCard
+    # state: pda-clerk
+  # - type: PdaBorderColor
+    # borderColor: "#611528"
+  # - type: Icon
+    # sprite: DeltaV/Objects/Devices/pda.rsi
+    # state: pda-clerk
 
-- type: entity
-  parent: BaseJusticePDA
-  id: ProsecutorPDA
-  name: prosecutor PDA
-  description: Sharp. Looks like it could prosecute you all on its own.
-  components:
-  - type: Sprite
-    sprite: DeltaV/Objects/Devices/pda.rsi
-    layers:
-    - map: [ "enum.PdaVisualLayers.Base" ]
-    - state: "light_overlay"
-      map: [ "enum.PdaVisualLayers.Flashlight" ]
-      shader: "unshaded"
-      visible: false
-    - state: "id_overlay"
-      map: [ "enum.PdaVisualLayers.IdLight" ]
-      shader: "unshaded"
-      visible: false
-  - type: Pda
-    id: ProsecutorIDCard
-    state: pda-prosecutor
-  - type: PdaBorderColor
-    borderColor: "#6f6192"
-  - type: Icon
-    sprite: DeltaV/Objects/Devices/pda.rsi
-    state: pda-prosecutor
+# - type: entity
+  # parent: BaseJusticePDA
+  # id: ProsecutorPDA
+  # name: prosecutor PDA
+  # description: Sharp. Looks like it could prosecute you all on its own.
+  # components:
+  # - type: Sprite
+    # sprite: DeltaV/Objects/Devices/pda.rsi
+    # layers:
+    # - map: [ "enum.PdaVisualLayers.Base" ]
+    # - state: "light_overlay"
+      # map: [ "enum.PdaVisualLayers.Flashlight" ]
+      # shader: "unshaded"
+      # visible: false
+    # - state: "id_overlay"
+      # map: [ "enum.PdaVisualLayers.IdLight" ]
+      # shader: "unshaded"
+      # visible: false
+  # - type: Pda
+    # id: ProsecutorIDCard
+    # state: pda-prosecutor
+  # - type: PdaBorderColor
+    # borderColor: "#6f6192"
+  # - type: Icon
+    # sprite: DeltaV/Objects/Devices/pda.rsi
+    # state: pda-prosecutor
 
-- type: entity
-  parent: SyndiPDA
-  id: SyndiListeningPostPDA
-  components:
-  - type: Pda
-    id: SyndicateIDCard
-    state: pda-syndi-agent
-    penSlot:
-      startingItem: CyberPen
-      whitelist:
-        tags:
-        - Write
+# - type: entity
+  # parent: SyndiPDA
+  # id: SyndiListeningPostPDA
+  # components:
+  # - type: Pda
+    # id: SyndicateIDCard
+    # state: pda-syndi-agent
+    # penSlot:
+      # startingItem: CyberPen
+      # whitelist:
+        # tags:
+        # - Write
 
 - type: entity
   parent: BasePDA
