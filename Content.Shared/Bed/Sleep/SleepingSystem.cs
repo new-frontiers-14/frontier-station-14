@@ -333,7 +333,10 @@ public sealed partial class SleepingSystem : EntitySystem
         while (query.MoveNext(out var uid, out var wakeUp, out var sleeping))
         {
             if (curTime >= wakeUp.NextWakeUp)
+            {
                 Wake((uid, sleeping));
+                _statusEffectsSystem.TryRemoveStatusEffect(uid, "Drowsiness");
+            }
         }
     }
 
