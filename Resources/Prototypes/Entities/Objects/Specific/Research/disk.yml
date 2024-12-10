@@ -51,6 +51,7 @@
   id: TechnologyDisk
   name: technology disk
   description: A disk for the R&D server containing research technology.
+  categories: [ HideSpawnMenu ] # Frontier: no tech disks
   components:
   - type: Sprite
     sprite: Objects/Misc/module.rsi
@@ -75,6 +76,7 @@
   parent: TechnologyDisk
   id: TechnologyDiskRare
   suffix: rare.
+  categories: [ HideSpawnMenu ] # Frontier: no tech disks
   components:
   - type: TechnologyDisk
     tierWeightPrototype: RareTechDiskTierWeights
