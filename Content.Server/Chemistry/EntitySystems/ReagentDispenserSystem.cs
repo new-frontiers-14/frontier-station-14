@@ -13,7 +13,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using Content.Shared.Labels.Components;
-using Content.Server.Construction;
+using Content.Server.Construction; // Frontier
 
 namespace Content.Server.Chemistry.EntitySystems
 {
