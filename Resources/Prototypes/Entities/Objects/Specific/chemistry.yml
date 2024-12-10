@@ -413,12 +413,18 @@
     minimumSpeed: 3
     removalTime: 0.25
     embedOnThrow: false
+  # DeltaV - Nerfs the max volume to 5 (was 15)
+  - type: SolutionContainerManager
+    solutions:
+      injector:
+        maxVol: 5
+  # End DeltaV
   - type: SolutionInjectWhileEmbedded
-    transferAmount: 1
+    transferAmount: 0.5 # Frontier: 1 < 0.5
     solution: injector
     updateInterval: 2
   - type: SolutionInjectOnEmbed
-    transferAmount: 2
+    transferAmount: 0.5 # Frontier: 2 < 0.5
     solution: injector
   - type: Fixtures
     fixtures:
@@ -449,6 +455,9 @@
     - Syringe
     - Trash
     - SyringeGunAmmo
+  - type: Injector # Frontier
+    maxTransferAmount: 5 # Frontier
+    transferAmount: 5 # Frontier
 
 - type: entity
   parent: BaseSyringe
@@ -592,7 +601,7 @@
     areaInsertRadius: 1
     storageInsertSound: /Audio/Effects/pill_insert.ogg
     storageRemoveSound: /Audio/Effects/pill_remove.ogg
-    whitelist: 
+    whitelist:
       tags:
       - Pill
   - type: Dumpable
