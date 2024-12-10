@@ -7,15 +7,12 @@ using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Content.Shared._NF.GameRule;
 using Content.Server._NF.GameTicking.Events;
-using Robust.Server.GameObjects;
 using Content.Shared.GameTicking.Components;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Random;
 using Content.Server.Cargo.Components;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Rules;
-using Content.Server.Station.Systems;
 using Content.Shared._NF.CCVar; // Frontier
 using Robust.Shared.Configuration;
 using Content.Shared._NF.Bank;
@@ -26,6 +23,8 @@ using Robust.Shared.Network;
 using Content.Shared.GameTicking;
 using Robust.Shared.Enums;
 using Robust.Server.Player;
+using Robust.Server.GameObjects;
+using Robust.Shared.Collections;
 
 namespace Content.Server._NF.GameRule;
 
@@ -35,14 +34,9 @@ namespace Content.Server._NF.GameRule;
 public sealed class NFAdventureRuleSystem : GameRuleSystem<AdventureRuleComponent>
 {
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IConfigurationManager _configurationManager = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly MapLoaderSystem _map = default!;
-    [Dependency] private readonly MetaDataSystem _meta = default!;
-    [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly BankSystem _bank = default!;
-    [Dependency] private readonly StationRenameWarpsSystems _renameWarps = default!;
     [Dependency] private readonly PointOfInterestSystem _poi = default!;
 
     private readonly HttpClient _httpClient = new();
@@ -71,11 +65,6 @@ public sealed class NFAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
     // A list of player bank account information stored by the controlled character's entity.
     [ViewVariables]
     private Dictionary<EntityUid, PlayerRoundBankInformation> _players = new();
-
-    private float _distanceOffset = 1f;
-    private List<Vector2> _stationCoords = new();
-
-    private MapId _mapId;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -203,10 +192,7 @@ public sealed class NFAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
 
     protected override void Started(EntityUid uid, AdventureRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {
-        _mapId = GameTicker.DefaultMap;
-
-        _distanceOffset = _configurationManager.GetCVar(NFCCVars.POIDistanceModifier);
-        _stationCoords = new List<Vector2>();
+        var mapUid = GameTicker.DefaultMap;
 
         //First, we need to grab the list and sort it into its respective spawning logics
         List<PointOfInterestPrototype> depotProtos = new();
@@ -232,11 +218,11 @@ public sealed class NFAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
                 remainingUniqueProtosBySpawnGroup[location.SpawnGroup].Add(location);
             }
         }
-        _poi.GenerateDepots(depotProtos, out component.CargoDepots);
-        _poi.GenerateMarkets(marketProtos, out component.MarketStations);
-        _poi.GenerateRequireds(requiredProtos, out component.RequiredPois);
-        _poi.GenerateOptionals(optionalProtos, out component.OptionalPois);
-        _poi.GenerateUniques(remainingUniqueProtosBySpawnGroup, out component.UniquePois);
+        _poi.GenerateDepots(mapUid, depotProtos, out component.CargoDepots);
+        _poi.GenerateMarkets(mapUid, marketProtos, out component.MarketStations);
+        _poi.GenerateRequireds(mapUid, requiredProtos, out component.RequiredPois);
+        _poi.GenerateOptionals(mapUid, optionalProtos, out component.OptionalPois);
+        _poi.GenerateUniques(mapUid, remainingUniqueProtosBySpawnGroup, out component.UniquePois);
 
         base.Started(uid, component, gameRule, args);
 

@@ -26,16 +26,14 @@ public sealed class PointOfInterestSystem : EntitySystem
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly StationRenameWarpsSystems _renameWarps = default!;
 
-    private float _distanceOffset = 1f;
     private List<Vector2> _stationCoords = new();
-    private MapId _mapId;
 
     private void AddStationCoordsToSet(Vector2 coords)
     {
         _stationCoords.Add(coords);
     }
 
-    public void GenerateDepots(List<PointOfInterestPrototype> depotPrototypes, out List<EntityUid> depotStations)
+    public void GenerateDepots(MapId mapUid, List<PointOfInterestPrototype> depotPrototypes, out List<EntityUid> depotStations)
     {
         //For depots, we want them to fill a circular type dystance formula to try to keep them as far apart as possible
         //Therefore, we will be taking our range properties and treating them as magnitudes of a direction vector divided
@@ -49,7 +47,7 @@ public sealed class PointOfInterestSystem : EntitySystem
         for (int i = 0; i < depotCount && depotPrototypes.Count > 0; i++)
         {
             var proto = _random.Pick(depotPrototypes);
-            Vector2i offset = new Vector2i((int) (_random.Next(proto.MinimumDistance, proto.MaximumDistance) * _distanceOffset), 0);
+            Vector2i offset = new Vector2i((int) _random.Next(proto.MinimumDistance, proto.MaximumDistance), 0);
             offset = offset.Rotate(rotationOffset);
             rotationOffset += rotation;
             // Append letter to depot name.
@@ -59,7 +57,7 @@ public sealed class PointOfInterestSystem : EntitySystem
                 overrideName += $" {(char) ('A' + i)}"; // " A" ... " Z"
             else
                 overrideName += $" {i + 1}"; // " 27", " 28"...
-            if (TrySpawnPoiGrid(proto, offset, out var depotUid, overrideName: overrideName) && depotUid is { Valid: true } depot)
+            if (TrySpawnPoiGrid(mapUid, proto, offset, out var depotUid, overrideName: overrideName) && depotUid is { Valid: true } depot)
             {
                 depotStations.Add(depot);
                 AddStationCoordsToSet(offset); // adjust list of actual station coords
@@ -67,7 +65,7 @@ public sealed class PointOfInterestSystem : EntitySystem
         }
     }
 
-    public void GenerateMarkets(List<PointOfInterestPrototype> marketPrototypes, out List<EntityUid> marketStations)
+    public void GenerateMarkets(MapId mapUid, List<PointOfInterestPrototype> marketPrototypes, out List<EntityUid> marketStations)
     {
         //For market stations, we are going to allow for a bit of randomness and a different offset configuration. We dont
         //want copies of this one, since these can be more themed and duplicate names, for instance, can make for a less
@@ -82,9 +80,9 @@ public sealed class PointOfInterestSystem : EntitySystem
             if (marketsAdded >= marketCount)
                 break;
 
-            var offset = GetRandomPOICoord(proto.MinimumDistance, proto.MaximumDistance, true);
+            var offset = GetRandomPOICoord(proto.MinimumDistance, proto.MaximumDistance);
 
-            if (TrySpawnPoiGrid(proto, offset, out var marketUid) && marketUid is { Valid: true } market)
+            if (TrySpawnPoiGrid(mapUid, proto, offset, out var marketUid) && marketUid is { Valid: true } market)
             {
                 marketStations.Add(market);
                 marketsAdded++;
@@ -93,7 +91,7 @@ public sealed class PointOfInterestSystem : EntitySystem
         }
     }
 
-    public void GenerateOptionals(List<PointOfInterestPrototype> optionalPrototypes, out List<EntityUid> optionalStations)
+    public void GenerateOptionals(MapId mapUid, List<PointOfInterestPrototype> optionalPrototypes, out List<EntityUid> optionalStations)
     {
         //Stations that do not have a defined grouping in their prototype get a default of "Optional" and get put into the
         //generic random rotation of POIs. This should include traditional places like Tinnia's rest, the Science Lab, The Pit,
@@ -108,9 +106,9 @@ public sealed class PointOfInterestSystem : EntitySystem
             if (optionalsAdded >= optionalCount)
                 break;
 
-            var offset = GetRandomPOICoord(proto.MinimumDistance, proto.MaximumDistance, true);
+            var offset = GetRandomPOICoord(proto.MinimumDistance, proto.MaximumDistance);
 
-            if (TrySpawnPoiGrid(proto, offset, out var optionalUid) && optionalUid is { Valid: true } uid)
+            if (TrySpawnPoiGrid(mapUid, proto, offset, out var optionalUid) && optionalUid is { Valid: true } uid)
             {
                 optionalStations.Add(uid);
                 AddStationCoordsToSet(offset);
@@ -118,7 +116,7 @@ public sealed class PointOfInterestSystem : EntitySystem
         }
     }
 
-    public void GenerateRequireds(List<PointOfInterestPrototype> requiredPrototypes, out List<EntityUid> requiredStations)
+    public void GenerateRequireds(MapId mapUid, List<PointOfInterestPrototype> requiredPrototypes, out List<EntityUid> requiredStations)
     {
         //Stations are required are ones that are vital to function but otherwise still follow a generic random spawn logic
         //Traditionally these would be stations like Expedition Lodge, NFSD station, Prison/Courthouse POI, etc.
@@ -128,9 +126,9 @@ public sealed class PointOfInterestSystem : EntitySystem
         requiredStations = new List<EntityUid>();
         foreach (var proto in requiredPrototypes)
         {
-            var offset = GetRandomPOICoord(proto.MinimumDistance, proto.MaximumDistance, true);
+            var offset = GetRandomPOICoord(proto.MinimumDistance, proto.MaximumDistance);
 
-            if (TrySpawnPoiGrid(proto, offset, out var requiredUid) && requiredUid is { Valid: true } uid)
+            if (TrySpawnPoiGrid(mapUid, proto, offset, out var requiredUid) && requiredUid is { Valid: true } uid)
             {
                 requiredStations.Add(uid);
                 AddStationCoordsToSet(offset);
@@ -138,7 +136,7 @@ public sealed class PointOfInterestSystem : EntitySystem
         }
     }
 
-    public void GenerateUniques(Dictionary<string, List<PointOfInterestPrototype>> uniquePrototypes, out List<EntityUid> uniqueStations)
+    public void GenerateUniques(MapId mapUid, Dictionary<string, List<PointOfInterestPrototype>> uniquePrototypes, out List<EntityUid> uniqueStations)
     {
         //Unique locations are semi-dynamic groupings of POIs that rely each independantly on the SpawnChance per POI prototype
         //Since these are the remainder, and logically must have custom-designated groupings, we can then know to subdivide
@@ -157,9 +155,9 @@ public sealed class PointOfInterestSystem : EntitySystem
                 var chance = _random.NextFloat(0, 1);
                 if (chance <= proto.SpawnChance)
                 {
-                    var offset = GetRandomPOICoord(proto.MinimumDistance, proto.MaximumDistance, true);
+                    var offset = GetRandomPOICoord(proto.MinimumDistance, proto.MaximumDistance);
 
-                    if (TrySpawnPoiGrid(proto, offset, out var optionalUid) && optionalUid is { Valid: true } uid)
+                    if (TrySpawnPoiGrid(mapUid, proto, offset, out var optionalUid) && optionalUid is { Valid: true } uid)
                     {
                         uniqueStations.Add(uid);
                         AddStationCoordsToSet(offset);
@@ -170,10 +168,10 @@ public sealed class PointOfInterestSystem : EntitySystem
         }
     }
 
-    private bool TrySpawnPoiGrid(PointOfInterestPrototype proto, Vector2 offset, out EntityUid? gridUid, string? overrideName = null)
+    private bool TrySpawnPoiGrid(MapId mapUid, PointOfInterestPrototype proto, Vector2 offset, out EntityUid? gridUid, string? overrideName = null)
     {
         gridUid = null;
-        if (_map.TryLoad(_mapId, proto.GridPath.ToString(), out var mapUids,
+        if (_map.TryLoad(mapUid, proto.GridPath.ToString(), out var mapUids,
                 new MapLoadOptions
                 {
                     Offset = offset,
@@ -214,14 +212,12 @@ public sealed class PointOfInterestSystem : EntitySystem
         return false;
     }
 
-    private Vector2 GetRandomPOICoord(float unscaledMinRange, float unscaledMaxRange, bool scaleRange)
+    private Vector2 GetRandomPOICoord(float unscaledMinRange, float unscaledMaxRange)
     {
         int numRetries = int.Max(_configurationManager.GetCVar(NFCCVars.POIPlacementRetries), 0);
         float minDistance = float.Max(_configurationManager.GetCVar(NFCCVars.MinPOIDistance), 0); // Constant at the end to avoid NaN weirdness
 
         Vector2 coords = _random.NextVector2(unscaledMinRange, unscaledMaxRange);
-        if (scaleRange)
-            coords *= _distanceOffset;
         for (int i = 0; i < numRetries; i++)
         {
             bool positionIsValid = true;
@@ -240,8 +236,6 @@ public sealed class PointOfInterestSystem : EntitySystem
 
             // No vector yet, get next value.
             coords = _random.NextVector2(unscaledMinRange, unscaledMaxRange);
-            if (scaleRange)
-                coords *= _distanceOffset;
         }
 
         return coords;
