@@ -9,6 +9,9 @@ using Content.Server.Maps;
 using Content.Server.Station.Systems;
 using Content.Shared._NF.CCVar; // Frontier
 using Robust.Shared.Configuration;
+using Content.Server.GameTicking.Presets;
+using Content.Server.GameTicking;
+using System.Linq;
 
 namespace Content.Server._NF.GameRule;
 
@@ -25,6 +28,7 @@ public sealed class PointOfInterestSystem : EntitySystem
     [Dependency] private readonly MetaDataSystem _meta = default!;
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly StationRenameWarpsSystems _renameWarps = default!;
+    [Dependency] private readonly GameTicker _ticker = default!;
 
     private List<Vector2> _stationCoords = new();
 
@@ -47,6 +51,11 @@ public sealed class PointOfInterestSystem : EntitySystem
         for (int i = 0; i < depotCount && depotPrototypes.Count > 0; i++)
         {
             var proto = _random.Pick(depotPrototypes);
+            var currentPreset = _ticker.CurrentPreset!.ID;
+
+            if (!proto.SpawnGamePreset.Contains(currentPreset))
+                continue;
+
             Vector2i offset = new Vector2i((int) _random.Next(proto.MinimumDistance, proto.MaximumDistance), 0);
             offset = offset.Rotate(rotationOffset);
             rotationOffset += rotation;
@@ -77,6 +86,11 @@ public sealed class PointOfInterestSystem : EntitySystem
         int marketsAdded = 0;
         foreach (var proto in marketPrototypes)
         {
+            var currentPreset = _ticker.CurrentPreset!.ID;
+
+            if (!proto.SpawnGamePreset.Contains(currentPreset))
+                continue;
+
             if (marketsAdded >= marketCount)
                 break;
 
@@ -103,6 +117,11 @@ public sealed class PointOfInterestSystem : EntitySystem
         int optionalsAdded = 0;
         foreach (var proto in optionalPrototypes)
         {
+            var currentPreset = _ticker.CurrentPreset!.ID;
+
+            if (!proto.SpawnGamePreset.Contains(currentPreset))
+                continue;
+
             if (optionalsAdded >= optionalCount)
                 break;
 
@@ -126,6 +145,11 @@ public sealed class PointOfInterestSystem : EntitySystem
         requiredStations = new List<EntityUid>();
         foreach (var proto in requiredPrototypes)
         {
+            var currentPreset = _ticker.CurrentPreset!.ID;
+
+            if (!proto.SpawnGamePreset.Contains(currentPreset))
+                continue;
+
             var offset = GetRandomPOICoord(proto.MinimumDistance, proto.MaximumDistance);
 
             if (TrySpawnPoiGrid(mapUid, proto, offset, out var requiredUid) && requiredUid is { Valid: true } uid)
@@ -152,6 +176,11 @@ public sealed class PointOfInterestSystem : EntitySystem
             _random.Shuffle(prototypeList);
             foreach (var proto in prototypeList)
             {
+                var currentPreset = _ticker.CurrentPreset!.ID;
+
+                if (!proto.SpawnGamePreset.Contains(currentPreset))
+                    continue;
+
                 var chance = _random.NextFloat(0, 1);
                 if (chance <= proto.SpawnChance)
                 {

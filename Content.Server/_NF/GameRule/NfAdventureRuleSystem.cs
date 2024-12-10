@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 using Content.Shared._NF.GameRule;
 using Content.Server._NF.GameTicking.Events;
 using Content.Shared.GameTicking.Components;
-using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Content.Server.Cargo.Components;
 using Content.Server.GameTicking;
@@ -23,15 +22,13 @@ using Robust.Shared.Network;
 using Content.Shared.GameTicking;
 using Robust.Shared.Enums;
 using Robust.Server.Player;
-using Robust.Server.GameObjects;
-using Robust.Shared.Collections;
 
 namespace Content.Server._NF.GameRule;
 
 /// <summary>
 /// This handles the dungeon and trading post spawning, as well as round end capitalism summary
 /// </summary>
-public sealed class NFAdventureRuleSystem : GameRuleSystem<AdventureRuleComponent>
+public sealed class NFAdventureRuleSystem : GameRuleSystem<NFAdventureRuleComponent>
 {
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IConfigurationManager _configurationManager = default!;
@@ -76,7 +73,7 @@ public sealed class NFAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         _playerManager.PlayerStatusChanged += PlayerManagerOnPlayerStatusChanged;
     }
 
-    protected override void AppendRoundEndText(EntityUid uid, AdventureRuleComponent component, GameRuleComponent gameRule, ref RoundEndTextAppendEvent ev)
+    protected override void AppendRoundEndText(EntityUid uid, NFAdventureRuleComponent component, GameRuleComponent gameRule, ref RoundEndTextAppendEvent ev)
     {
         ev.AddLine(Loc.GetString("adventure-list-start"));
         var allScore = new List<Tuple<string, int>>();
@@ -190,7 +187,7 @@ public sealed class NFAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
         _players.Clear();
     }
 
-    protected override void Started(EntityUid uid, AdventureRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
+    protected override void Started(EntityUid uid, NFAdventureRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {
         var mapUid = GameTicker.DefaultMap;
 
