@@ -5,10 +5,10 @@ reagent-dispenser-component-cannot-put-entity-message = You can't put this in th
 
 # Frontier
 reagent-dispenser-component-impure-auto-label = {$reagent} ({$purity}%)
-reagent-dispenser-component-set-auto-label-on-verb = Turn on auto-labeller
-reagent-dispenser-component-set-auto-label-off-verb = Turn off auto-labeller
-reagent-dispenser-component-examine-auto-label-on = The auto-labeller is turned [color=green]on[/color].
-reagent-dispenser-component-examine-auto-label-off = The auto-labeller is turned [color=red]off[/color].
+reagent-dispenser-component-set-auto-label-on-verb = Turn on auto-labeler
+reagent-dispenser-component-set-auto-label-off-verb = Turn off auto-labeler
+reagent-dispenser-component-examine-auto-label-on = The auto-labeler is turned [color=green]on[/color].
+reagent-dispenser-component-examine-auto-label-off = The auto-labeler is turned [color=red]off[/color].
 
 ## Bound UI
 
