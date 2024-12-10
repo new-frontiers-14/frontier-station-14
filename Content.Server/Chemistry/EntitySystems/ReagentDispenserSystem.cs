@@ -198,9 +198,9 @@ namespace Content.Server.Chemistry.EntitySystems
                 component.StorageSlots[i].Name = "Storage Slot " + (i+1);
                 _itemSlotsSystem.AddItemSlot(uid, component.StorageSlotIds[i], component.StorageSlots[i]);
             }
+            */ // End Frontier: no need to change slots, already done through RefreshParts
 
             _itemSlotsSystem.AddItemSlot(uid, SharedReagentDispenser.OutputSlotName, component.BeakerSlot);
-            */ // End Frontier: no need to change slots, already done through RefreshParts
 
             // Frontier: spawn slot contents
             if (component.PackPrototypeId is not null
