@@ -17,6 +17,7 @@ using Content.Shared.Whitelist;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Prototypes;
+using Robust.Server.GameObjects; // Frontier
 
 namespace Content.Server.Anomaly.Effects;
 
@@ -35,6 +36,8 @@ public sealed class InnerBodyAnomalySystem : SharedInnerBodyAnomalySystem
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly StunSystem _stun = default!;
+    [Dependency] private readonly TransformSystem _transform = default!; // Frontier
+    [Dependency] private readonly SharedAnomalyCoreSystem _anomalyCore = default!; // Frontier
 
     private readonly Color _messageColor = Color.FromSrgb(new Color(201, 22, 94));
 
