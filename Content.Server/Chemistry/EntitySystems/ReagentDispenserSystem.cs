@@ -13,6 +13,12 @@ using Robust.Shared.Audio;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using Content.Shared.Labels.Components;
+using Content.Shared.Chemistry.Components.SolutionManager; // Frontier
+using Content.Shared.Chemistry.Components; // Frontier
+using Content.Shared.Chemistry.Reagent; // Frontier
+using Content.Server.Labels; // Frontier
+using Content.Shared.Verbs; // Frontier
+using Content.Shared.Examine; // Frontier
 using Content.Server.Construction; // Frontier
 
 namespace Content.Server.Chemistry.EntitySystems
@@ -31,6 +37,7 @@ namespace Content.Server.Chemistry.EntitySystems
         [Dependency] private readonly UserInterfaceSystem _userInterfaceSystem = default!;
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
         [Dependency] private readonly OpenableSystem _openable = default!;
+        [Dependency] private readonly LabelSystem _label = default!; // Frontier
 
         public override void Initialize()
         {
@@ -38,9 +45,12 @@ namespace Content.Server.Chemistry.EntitySystems
 
             SubscribeLocalEvent<ReagentDispenserComponent, ComponentStartup>(SubscribeUpdateUiState);
             SubscribeLocalEvent<ReagentDispenserComponent, SolutionContainerChangedEvent>(SubscribeUpdateUiState);
-            SubscribeLocalEvent<ReagentDispenserComponent, EntInsertedIntoContainerMessage>(SubscribeUpdateUiState);
+            SubscribeLocalEvent<ReagentDispenserComponent, EntInsertedIntoContainerMessage>(OnEntInserted); // Frontier: SubscribeUpdateUiState < OnEntInserted
             SubscribeLocalEvent<ReagentDispenserComponent, EntRemovedFromContainerMessage>(SubscribeUpdateUiState);
             SubscribeLocalEvent<ReagentDispenserComponent, BoundUIOpenedEvent>(SubscribeUpdateUiState);
+
+            SubscribeLocalEvent<ReagentDispenserComponent, GetVerbsEvent<AlternativeVerb>>(OnAlternateVerb); // Frontier
+            SubscribeLocalEvent<ReagentDispenserComponent, ExaminedEvent>(OnExamined); // Frontier
             SubscribeLocalEvent<ReagentDispenserComponent, RefreshPartsEvent>(OnRefreshParts); // Frontier
             SubscribeLocalEvent<ReagentDispenserComponent, UpgradeExamineEvent>(OnUpgradeExamine); // Frontier
 
@@ -55,6 +65,64 @@ namespace Content.Server.Chemistry.EntitySystems
         {
             UpdateUiState(ent);
         }
+
+        // Frontier: auto-label on insert
+        private void OnEntInserted(Entity<ReagentDispenserComponent> ent, ref EntInsertedIntoContainerMessage ev)
+        {
+            if (ent.Comp.AutoLabel && _solutionContainerSystem.TryGetDrainableSolution(ev.Entity, out _, out var sol))
+            {
+                ReagentId? reagentId = sol.GetPrimaryReagentId();
+                if (reagentId != null && _prototypeManager.TryIndex<ReagentPrototype>(reagentId.Value.Prototype, out var reagent))
+                {
+                    var reagentQuantity = sol.GetReagentQuantity(reagentId.Value);
+                    var totalQuantity = sol.Volume;
+                    if (reagentQuantity == totalQuantity)
+                        _label.Label(ev.Entity, reagent.LocalizedName);
+                    else
+                        _label.Label(ev.Entity, Loc.GetString("reagent-dispenser-component-impure-auto-label", ("reagent", reagent.LocalizedName), ("purity", 100.0f * reagentQuantity / totalQuantity)));
+                }
+            }
+
+            UpdateUiState(ent);
+        }
+
+        private void OnAlternateVerb(Entity<ReagentDispenserComponent> ent, ref GetVerbsEvent<AlternativeVerb> args)
+        {
+            if (!ent.Comp.CanAutoLabel)
+                return;
+
+            args.Verbs.Add(new AlternativeVerb()
+            {
+                Act = () =>
+                {
+                    SetAutoLabel(ent, !ent.Comp.AutoLabel);
+                },
+                Text = ent.Comp.AutoLabel ?
+                Loc.GetString("reagent-dispenser-component-set-auto-label-off-verb")
+                : Loc.GetString("reagent-dispenser-component-set-auto-label-on-verb"),
+                Priority = -1, //Not important, low priority.
+            });
+        }
+
+        private void SetAutoLabel(Entity<ReagentDispenserComponent> ent, bool autoLabel)
+        {
+            if (!ent.Comp.CanAutoLabel)
+                return;
+
+            ent.Comp.AutoLabel = autoLabel;
+        }
+
+        private void OnExamined(Entity<ReagentDispenserComponent> ent, ref ExaminedEvent args)
+        {
+            if (!args.IsInDetailsRange || !ent.Comp.CanAutoLabel)
+                return;
+
+            if (ent.Comp.AutoLabel)
+                args.PushMarkup(Loc.GetString("reagent-dispenser-component-examine-auto-label-on"));
+            else
+                args.PushMarkup(Loc.GetString("reagent-dispenser-component-examine-auto-label-off"));
+        }
+        // End Frontier
 
         private void UpdateUiState(Entity<ReagentDispenserComponent> reagentDispenser)
         {
@@ -171,6 +239,9 @@ namespace Content.Server.Chemistry.EntitySystems
         /// </summary>
         private void OnMapInit(EntityUid uid, ReagentDispenserComponent component, MapInitEvent args)
         {
+            // Frontier: set auto-labeller
+            component.AutoLabel = component.CanAutoLabel;
+
             /* // Frontier: no need to change slots, already done through RefreshParts
             // Get list of pre-loaded containers
             List<string> preLoad = new List<string>();
@@ -249,7 +320,7 @@ namespace Content.Server.Chemistry.EntitySystems
 
         private void OnUpgradeExamine(EntityUid uid, ReagentDispenserComponent component, UpgradeExamineEvent args)
         {
-            args.AddNumberUpgrade("reagent-dispenser-component-extra-slots", component.NumSlots - component.BaseNumStorageSlots);
+            args.AddNumberUpgrade("reagent-dispenser-component-examine-extra-slots", component.NumSlots - component.BaseNumStorageSlots);
         }
         // End Frontier
     }
