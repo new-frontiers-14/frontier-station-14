@@ -70,13 +70,6 @@ public sealed partial class BuckleComponent : Component
     /// Used for client rendering
     /// </summary>
     [ViewVariables] public int? OriginalDrawDepth;
-
-    /// <summary>
-    /// Frontier - True if the entity is blocked from buckling.
-    /// </summary>
-    [DataField]
-    [ViewVariables(VVAccess.ReadWrite)]
-    public bool Disable;
 }
 
 public sealed partial class UnbuckleAlertEvent : BaseAlertEvent;
