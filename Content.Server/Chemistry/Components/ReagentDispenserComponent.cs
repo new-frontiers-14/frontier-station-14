@@ -5,6 +5,8 @@ using Content.Shared.Chemistry;
 using Content.Shared.Chemistry.Dispenser;
 using Robust.Shared.Audio;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
+using Robust.Shared.Prototypes; // Frontier
+using Content.Shared.Construction.Prototypes; // Frontier
 
 namespace Content.Server.Chemistry.Components
 {
@@ -61,5 +63,31 @@ namespace Content.Server.Chemistry.Components
 
         [ViewVariables(VVAccess.ReadWrite)]
         public ReagentDispenserDispenseAmount DispenseAmount = ReagentDispenserDispenseAmount.U10;
+
+        // Frontier: whether or not this entity can auto-label items
+        [DataField]
+        public bool CanAutoLabel;
+
+        // Frontier: whether or not this entity is currently auto-labeling items
+        [ViewVariables]
+        public bool AutoLabel;
+
+        /// <summary>
+        /// Frontier: the number of storage slots a machine with base parts should have.
+        /// </summary>
+        [DataField]
+        public int BaseNumStorageSlots = 25;
+
+        /// <summary>
+        /// Frontier: the number of extra slots a machine gets per tier of upgrades.
+        /// </summary>
+        [DataField]
+        public int ExtraSlotsPerTier = 5;
+
+        /// <summary>
+        /// Frontier: the machine part type that upgrades the number of slots in the machine.
+        /// </summary>
+        [DataField]
+        public ProtoId<MachinePartPrototype> SlotUpgradeMachinePart = "MatterBin";
     }
 }
