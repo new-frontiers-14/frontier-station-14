@@ -177,7 +177,8 @@ namespace Content.Client.Chemistry.UI
             bufferHBox.AddChild(bufferLabel);
             var bufferVol = new Label
             {
-                Text = $"{state.BufferCurrentVolume}u",
+                //Text = $"{state.BufferCurrentVolume}u", // Frontier
+                Text = state.BufferMaxVolume != null ? $"{state.BufferCurrentVolume}/{state.BufferMaxVolume}" : $"{state.BufferCurrentVolume}u", // Frontier
                 StyleClasses = {StyleNano.StyleClassLabelSecondaryColor}
             };
             bufferHBox.AddChild(bufferVol);

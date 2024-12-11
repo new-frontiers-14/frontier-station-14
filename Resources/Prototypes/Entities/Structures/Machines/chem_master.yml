@@ -19,6 +19,8 @@
     state: mixer_loaded
   - type: ChemMaster
     pillDosageLimit: 20
+    pillDosageLimitPerTier: [ 20, 25, 32, 40 ] # Frontier
+    maxVolumePerTier: [ 1000, 1500, 2000, 3000 ] # Frontier
   - type: Physics
     bodyType: Static
   - type: Fixtures
@@ -85,10 +87,11 @@
           - PillCanister
   - type: SolutionContainerManager
     solutions:
-      buffer: {}
+      buffer: # Frontier: remove {}
+        maxVol: 1000 # Frontier
   - type: DumpableSolution
     solution: buffer
-    unlimited: true
+    unlimited: false # Frontier: true<false
   - type: GuideHelp
     guides:
     - Chemicals

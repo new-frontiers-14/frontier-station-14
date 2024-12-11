@@ -19,6 +19,7 @@ using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Server.Construction; // Frontier
 
 namespace Content.Server.Chemistry.EntitySystems
 {
@@ -57,6 +58,9 @@ namespace Content.Server.Chemistry.EntitySystems
             SubscribeLocalEvent<ChemMasterComponent, ChemMasterReagentAmountButtonMessage>(OnReagentButtonMessage);
             SubscribeLocalEvent<ChemMasterComponent, ChemMasterCreatePillsMessage>(OnCreatePillsMessage);
             SubscribeLocalEvent<ChemMasterComponent, ChemMasterOutputToBottleMessage>(OnOutputToBottleMessage);
+
+            SubscribeLocalEvent<ChemMasterComponent, RefreshPartsEvent>(OnRefreshParts); // Frontier
+            SubscribeLocalEvent<ChemMasterComponent, UpgradeExamineEvent>(OnUpgradeExamine); // Frontier
         }
 
         private void SubscribeUpdateUiState<T>(Entity<ChemMasterComponent> ent, ref T ev)
@@ -77,7 +81,7 @@ namespace Content.Server.Chemistry.EntitySystems
 
             var state = new ChemMasterBoundUserInterfaceState(
                 chemMaster.Mode, BuildInputContainerInfo(inputContainer), BuildOutputContainerInfo(outputContainer),
-                bufferReagents, bufferCurrentVolume, chemMaster.PillType, chemMaster.PillDosageLimit, updateLabel);
+                bufferReagents, bufferCurrentVolume, chemMaster.MaxVolume, chemMaster.PillType, chemMaster.PillDosageLimit, updateLabel); // Frontier: add chemMaster.MaxVolume
 
             _userInterfaceSystem.SetUiState(owner, ChemMasterUiKey.Key, state);
         }
@@ -348,5 +352,36 @@ namespace Content.Server.Chemistry.EntitySystems
                 Reagents = solution.Contents
             };
         }
+
+        // Frontier: upgradeable parts
+        private void OnRefreshParts(EntityUid uid, ChemMasterComponent component, ref RefreshPartsEvent args)
+        {
+            if (!args.PartRatings.TryGetValue(component.PillDosageMachinePart, out var pillDosageRating))
+                pillDosageRating = 1.0f;
+
+            if (!args.PartRatings.TryGetValue(component.MaxVolumeMachinePart, out var maxVolumeRating))
+                maxVolumeRating = 1.0f;
+
+            if (component.MaxVolumePerTier.Length > 0)
+            {
+                component.MaxVolume = component.MaxVolumePerTier[int.Clamp((int)(maxVolumeRating - 1.0f), 0, component.MaxVolumePerTier.Length - 1)];
+                if (_solutionContainerSystem.TryGetSolution(uid, SharedChemMaster.BufferSolutionName, out _, out var bufferSolution))
+                    bufferSolution.MaxVolume = component.MaxVolume;
+            }
+            if (component.PillDosageLimitPerTier.Length > 0)
+            {
+                component.PillDosageLimit = component.PillDosageLimitPerTier[int.Clamp((int)(pillDosageRating - 1.0f), 0, component.PillDosageLimitPerTier.Length - 1)];
+            }
+            UpdateUiState((uid, component));
+        }
+
+        private void OnUpgradeExamine(EntityUid uid, ChemMasterComponent component, ref UpgradeExamineEvent args)
+        {
+            var volumeIncrease = component.MaxVolumePerTier.Length > 0 ? component.MaxVolume - component.MaxVolumePerTier[0] : 0;
+            var dosageIncrease = component.PillDosageLimitPerTier.Length > 0 ? component.PillDosageLimit - component.PillDosageLimitPerTier[0] : 0;
+            args.AddNumberUpgrade("chem-master-component-examine-maximum-volume", (int)volumeIncrease);
+            args.AddNumberUpgrade("chem-master-component-examine-maximum-pill-dosage", (int)dosageIncrease);
+        }
+        // End Frontier
     }
 }

@@ -1,6 +1,8 @@
 using Content.Server.Chemistry.EntitySystems;
 using Content.Shared.Chemistry;
+using Content.Shared.Construction.Prototypes;
 using Robust.Shared.Audio;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Chemistry.Components
 {
@@ -23,5 +25,22 @@ namespace Content.Server.Chemistry.Components
 
         [DataField("clickSound"), ViewVariables(VVAccess.ReadWrite)]
         public SoundSpecifier ClickSound = new SoundPathSpecifier("/Audio/Machines/machine_switch.ogg");
+
+        // Frontier: upgrade fields
+        [DataField]
+        public uint[] PillDosageLimitPerTier;
+
+        [DataField]
+        public ProtoId<MachinePartPrototype> PillDosageMachinePart = "Manipulator";
+
+        [ViewVariables]
+        public uint MaxVolume;
+
+        [DataField]
+        public uint[] MaxVolumePerTier;
+
+        [DataField]
+        public ProtoId<MachinePartPrototype> MaxVolumeMachinePart = "MatterBin";
+        // End Frontier
     }
 }
