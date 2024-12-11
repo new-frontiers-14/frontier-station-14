@@ -3,6 +3,9 @@
 reagent-dispenser-component-activate-no-hands = You have no hands.
 reagent-dispenser-component-cannot-put-entity-message = You can't put this in the dispenser!
 
+# Frontier
+reagent-dispenser-component-extra-slots = Number of jug slots
+
 ## Bound UI
 
 reagent-dispenser-bound-user-interface-title = Reagent dispenser
