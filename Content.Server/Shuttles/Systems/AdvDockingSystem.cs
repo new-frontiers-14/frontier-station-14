@@ -4,6 +4,8 @@ using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Shuttles.Components;
 using Content.Server.Doors.Systems;
+using Content.Server.Atmos.Components;
+using Content.Server.Atmos.EntitySystems;
 using Content.Shared.Damage;
 using Content.Shared.Examine;
 using Content.Shared.Interaction;
@@ -33,11 +35,28 @@ namespace Content.Server.Shuttles.Systems
         [Dependency] private readonly SharedMapSystem _mapSystem = default!;
         [Dependency] private readonly ITileDefinitionManager _tileDefManager = default!;
         [Dependency] private readonly DoorSystem _doorSystem = default!;
+        [Dependency] private readonly AirtightSystem _airtightSystem = default!;
         public override void Initialize()
         {
             SubscribeLocalEvent<AdvDockingComponent, PowerChangedEvent>(OnPowerChange);
             SubscribeLocalEvent<AdvDockingComponent, AnchorStateChangedEvent>(OnAnchorChange);
-            SubscribeLocalEvent<ShuttleComponent, TileChangedEvent>(OnShuttleTileChange);
+            //SubscribeLocalEvent<ShuttleComponent, TileChangedEvent>(OnShuttleTileChange);
+            SubscribeLocalEvent<AdvDockingComponent, ComponentInit>(OnDockInit);
+        }
+
+        private void OnDockInit(EntityUid uid, AdvDockingComponent component, ComponentInit args)
+        {
+            if (TryComp<ApcPowerReceiverComponent>(uid, out var apcPower) && component.OriginalLoad == 0) { component.OriginalLoad = apcPower.Load; } // Frontier
+
+            if (!component.IsOn)
+            {
+                return;
+            }
+
+            if (CanEnable(uid, component))
+            {
+                EnableAirtightness(uid, component);
+            }
         }
 
 
@@ -120,9 +139,8 @@ namespace Content.Server.Shuttles.Systems
             if (TryComp(uid, out DoorComponent? door))
                 door.ChangeAirtight = false;
 
-            if (!EntityManager.TryGetComponent(xform.GridUid, out ShuttleComponent? shuttleComponent))
-                return;
-
+            if (TryComp(uid, out AirtightComponent? airtight))
+                _airtightSystem.SetAirblocked((uid, airtight), true);
         }
 
 
@@ -147,19 +165,10 @@ namespace Content.Server.Shuttles.Systems
             component.IsOn = false;
             if (TryComp(uid, out DoorComponent? door))
                 door.ChangeAirtight = true;
-
-            if (!EntityManager.TryGetComponent(gridId, out ShuttleComponent? shuttleComponent))
-                return;
         }
 
         public bool CanEnable(EntityUid uid, AdvDockingComponent component)
         {
-            if (!component.Enabled)
-                return false;
-
-            if (component.LifeStage > ComponentLifeStage.Running)
-                return false;
-
             var xform = Transform(uid);
 
             if (!xform.Anchored || !this.IsPowered(uid, EntityManager))
@@ -175,7 +184,7 @@ namespace Content.Server.Shuttles.Systems
             if (xform.GridUid == null)
                 return true;
 
-            var (x, y) = xform.LocalPosition + xform.LocalRotation.Opposite().ToWorldVec();
+            var (x, y) = xform.LocalPosition + xform.LocalRotation.ToWorldVec();
             var mapGrid = Comp<MapGridComponent>(xform.GridUid.Value);
             var tile = _mapSystem.GetTileRef(xform.GridUid.Value, mapGrid, new Vector2i((int)Math.Floor(x), (int)Math.Floor(y)));
 

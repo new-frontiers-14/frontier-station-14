@@ -8,8 +8,11 @@ namespace Content.Server.Shuttles.Components
     public sealed partial class AdvDockingComponent : Component
     {
         [DataField, ViewVariables(VVAccess.ReadWrite)]
-        public bool Enabled { get; set; } = true;
+        public bool IsOn { get; set; } = true;
 
-        public bool IsOn;
+        /// <summary>
+        ///     Frontier - Amount of charge this needs from an APC per second to function.
+        /// </summary>
+        public float OriginalLoad { get; set; } = 0;
     }
 }
