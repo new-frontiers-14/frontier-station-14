@@ -1,23 +1,23 @@
 - type: vessel
-  id: Poli
+  id: pole
   name: Полюс
-  description: Среднегабаритный пиратский шаттл. Рекомендованный состав команды 2-8 человека.
+  description: Большой пиратский шаттл.
   price: 100000
-  category: Medium
+  category: Large
   group: BlackMarket
-  shuttlePath: /Maps/Corvax/Shuttles/BlackMarket/Poli.yml
+  shuttlePath: /Maps/Corvax/Shuttles/BlackMarket/pole.yml
 
 - type: gameMap
-  id: Poli
-  mapName: 'Poli'
-  mapPath: /Maps/Corvax/Shuttles/BlackMarket/Poli.yml
+  id: pole
+  mapName: 'pole'
+  mapPath: /Maps/Corvax/Shuttles/BlackMarket/pole.yml
   minPlayers: 0
   stations:
-    Poli:
+    pole:
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Полюс {1}'
+          mapNameTemplate: 'Газовый Гигант {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
