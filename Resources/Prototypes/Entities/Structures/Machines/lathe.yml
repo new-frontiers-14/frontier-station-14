@@ -18,6 +18,7 @@
         layer:
           - MachineLayer
   - type: Lathe
+    productValueModifier: 0.3 # Frontier
   - type: MaterialStorage
     whitelist: # Frontier
       tags: # Frontier
@@ -1227,8 +1228,8 @@
       - FloorTileItemArcadeBlue # Frontier
       - FloorTileItemArcadeBlue2 # Frontier
       - FloorTileItemArcadeRed # Frontier
-#  - type: EmagLatheRecipes # Frontier
-#    emagStaticRecipes: # Frontier
+  - type: EmagLatheRecipes
+    emagStaticRecipes:
 #      - ClothingHeadHatCentcomcap # Frontier
 #      - ClothingHeadHatCentcom # Frontier
 #      - ClothingUniformJumpsuitCentcomAgent # Frontier
@@ -1236,21 +1237,21 @@
 #      - ClothingUniformJumpskirtCentcomFormalDress # Frontier
 #      - ClothingUniformJumpsuitCentcomOfficer # Frontier
 #      - ClothingUniformJumpsuitCentcomOfficial # Frontier
-#      - ClothingHeadHatSyndieMAA # Frontier
-#      - ClothingHeadHatSyndie # Frontier
-#      - ClothingUniformJumpsuitOperative # Frontier
-#      - ClothingUniformJumpskirtOperative # Frontier
-#      - ClothingUniformJumpsuitSyndieFormal # Frontier
-#      - ClothingUniformJumpskirtSyndieFormalDress # Frontier
-#      - ClothingHeadPyjamaSyndicateBlack # Frontier
-#      - ClothingUniformJumpsuitPyjamaSyndicateBlack # Frontier
-#      - ClothingHeadPyjamaSyndicatePink # Frontier
-#      - ClothingUniformJumpsuitPyjamaSyndicatePink # Frontier
-#      - ClothingHeadPyjamaSyndicateRed # Frontier
-#      - ClothingUniformJumpsuitPyjamaSyndicateRed # Frontier
+      - ClothingHeadHatSyndieMAA
+      - ClothingHeadHatSyndie
+      - ClothingUniformJumpsuitOperative
+      - ClothingUniformJumpskirtOperative
+      - ClothingUniformJumpsuitSyndieFormal
+      - ClothingUniformJumpskirtSyndieFormalDress
+      - ClothingHeadPyjamaSyndicateBlack
+      - ClothingUniformJumpsuitPyjamaSyndicateBlack
+      - ClothingHeadPyjamaSyndicatePink
+      - ClothingUniformJumpsuitPyjamaSyndicatePink
+      - ClothingHeadPyjamaSyndicateRed
+      - ClothingUniformJumpsuitPyjamaSyndicateRed
 #      - ClothingOuterWinterCentcom # Frontier
-#      - ClothingOuterWinterSyndie # Frontier
-#      - ClothingOuterWinterSyndieCap # Frontier
+      - ClothingOuterWinterSyndie
+      - ClothingOuterWinterSyndieCap
   - type: MaterialStorage
     whitelist:
       tags:
@@ -1377,6 +1378,7 @@
       idleState: icon
       runningState: building
       defaultProductionAmount: 10
+      productValueModifier: null # Frontier
       staticRecipes:
         - SheetSteel
         - SheetGlass1
