@@ -1,13 +1,13 @@
 - type: vessel
-  id: Corsair
-  name: NSF Corsair
+  id: Vitalis
+  name: NSF Vitalis
   description: Medium Medical Support Vessel for the NFSD, Designed for Cryo Deployment in the Field.
   price: 60000 #Appraisal is 48680
   category: Medium
   group: Security
   access: Security
   mapchecker_group_override: Security  # Treat this as a security vessel for mapchecker purposes
-  shuttlePath: /Maps/_NF/Shuttles/Nfsd/corsair.yml
+  shuttlePath: /Maps/_NF/Shuttles/Nfsd/vitalis.yml
   guidebookPage: Null
   class:
   - Medical
@@ -15,16 +15,16 @@
   - Uranium
 
 - type: gameMap
-  id: Corsair
-  mapName: 'NSF Corsair'
-  mapPath: /Maps/_NF/Shuttles/Nfsd/corsair.yml
+  id: Vitalis
+  mapName: 'NSF Vitalis'
+  mapPath: /Maps/_NF/Shuttles/Nfsd/vitalis.yml
   minPlayers: 0
   stations:
-    Corsair:
+    Vitalis:
       stationProto: StandardFrontierSecurityVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Corsair {1}'
+          mapNameTemplate: 'Vitalis {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
