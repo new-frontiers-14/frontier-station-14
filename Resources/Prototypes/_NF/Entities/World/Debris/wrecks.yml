@@ -97,7 +97,7 @@
   - type: SimpleFloorPlanPopulator
     entries:
       FloorBrassFilled: &floorBrass
-        - prob: 1 # Intentional blank.
+        - prob: 3 # Intentional blank.
         # Walls
         - id: ClockworkGirder
           prob: 0.3
@@ -107,31 +107,29 @@
           prob: 0.2
         - id: PinionAirlock
           prob: 0.01
+        - id: WindoorClockwork
+          prob: 0.005
         # Floor loot
-        - id: SalvageSpawnerScrapCommon
-          prob: 3.5
-        - id: SalvageSpawnerEquipment
-          prob: 0.1
-        - id: SalvageSpawnerEquipmentValuable
-          prob: 0.06
+        - id: SalvageSpawnerScrapBrass75
+          prob: 1
         # Machine upgrades
         - id: SalvagePartsT2Spawner
-          prob: 0.02
+          prob: 0.1
         - id: SalvagePartsT3Spawner
-          prob: 0.01
+          prob: 0.05
         - id: SalvagePartsT4Spawner
-          prob: 0.004
+          prob: 0.01
         # Big loot
         - id: SalvageBrassFurnitureSpawner
-          prob: 0.1
+          prob: 0.03
         - id: AltarTechnology
           prob: 0.03
         # "Medical"
         - id: RipleyChassis # Build it yourself
           prob: 0.03
-        # Mobs
-        - id: NFSalvageMobSpawner
-          prob: 0.1
+        # "Mobs"
+        - id: PlushieRatvar # Yes
+          prob: 0.005
       PlatingBrass: *floorBrass
       FloorBrassReebe:
         - prob: 1 # Intentional blank.
