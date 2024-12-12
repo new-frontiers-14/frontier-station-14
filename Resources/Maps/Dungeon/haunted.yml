@@ -527,6 +527,17 @@ entities:
     - pos: 31.649122,18.823664
       parent: 1653
       type: Transform
+- proto: CigaretteSyndicate
+  entities:
+  - uid: 439
+    components:
+    - flags: InContainer
+      type: MetaData
+    - parent: 438
+      type: Transform
+    - canCollide: False
+      type: Physics
+    - type: InsideEntityStorage
 - proto: ClothingBackpackDuffelCargo
   entities:
   - uid: 288
@@ -865,6 +876,13 @@ entities:
     - pos: 28.5,8.5
       parent: 1653
       type: Transform
+- proto: CrateNPCPenguin
+  entities:
+  - uid: 474
+    components:
+    - pos: 13.5,25.5
+      parent: 1653
+      type: Transform
 - proto: CrateWoodenGrave
   entities:
   - uid: 6
@@ -1058,7 +1076,7 @@ entities:
     - pos: 16.286905,3.5055985
       parent: 1653
       type: Transform
-- proto: FloorWaterEntity
+- proto: FloorChasmEntity
   entities:
   - uid: 3
     components:
