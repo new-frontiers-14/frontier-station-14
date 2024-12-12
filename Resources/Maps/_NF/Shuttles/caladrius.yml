@@ -4014,13 +4014,12 @@ entities:
     - type: Transform
       pos: -14.5,-11.5
       parent: 1
-- proto: BoozeDispenser
+- proto: BookshelfFilled
   entities:
-  - uid: 847
+  - uid: 658
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -4.5,-18.5
+      pos: -3.5,-23.5
       parent: 1
 - proto: BoxCandleSmall
   entities:
@@ -4029,13 +4028,6 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -4.9982533,-7.706293
-      parent: 1
-- proto: BoxLightMixed
-  entities:
-  - uid: 1009
-    components:
-    - type: Transform
-      pos: -3.4151607,-15.397464
       parent: 1
 - proto: Bucket
   entities:
@@ -7049,31 +7041,45 @@ entities:
       parent: 1
 - proto: CrateChemistryD
   entities:
-  - uid: 477
-    components:
-    - type: Transform
-      pos: -3.5,-9.5
-      parent: 1
-- proto: CrateChemistryP
-  entities:
-  - uid: 540
-    components:
-    - type: Transform
-      pos: -4.5,-9.5
-      parent: 1
-- proto: CrateChemistryS
-  entities:
   - uid: 613
     components:
     - type: Transform
-      pos: -5.5,-9.5
+      pos: -3.5,-10.5
       parent: 1
-- proto: CrateHydroponicsSeedsMedicinal
+- proto: CrateChemistryP
   entities:
   - uid: 314
     components:
     - type: Transform
-      pos: -6.5,-9.5
+      pos: -4.5,-10.5
+      parent: 1
+- proto: CrateChemistryS
+  entities:
+  - uid: 847
+    components:
+    - type: Transform
+      pos: -5.5,-10.5
+      parent: 1
+- proto: CrateHydroponicsSeedsMedicinal
+  entities:
+  - uid: 1009
+    components:
+    - type: Transform
+      pos: -6.5,-10.5
+      parent: 1
+- proto: CrateServiceBoozeDispenser
+  entities:
+  - uid: 555
+    components:
+    - type: Transform
+      pos: -4.5,-9.5
+      parent: 1
+- proto: CrateServiceSodaDispenser
+  entities:
+  - uid: 540
+    components:
+    - type: Transform
+      pos: -3.5,-9.5
       parent: 1
 - proto: CrateSurgery
   entities:
@@ -15781,14 +15787,6 @@ entities:
     - type: Transform
       pos: -3.343198,-27.533453
       parent: 1
-- proto: SodaDispenser
-  entities:
-  - uid: 658
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -4.5,-17.5
-      parent: 1
 - proto: Spaceshroom
   entities:
   - uid: 2394
@@ -16559,6 +16557,13 @@ entities:
     - type: Transform
       pos: 6.5713396,-4.7161374
       parent: 1
+- proto: ToyFigurineCargoTech
+  entities:
+  - uid: 477
+    components:
+    - type: Transform
+      pos: -3.439869,-15.349311
+      parent: 1
 - proto: ToyFigurineChemist
   entities:
   - uid: 1048
@@ -16656,13 +16661,6 @@ entities:
     components:
     - type: Transform
       pos: -4.5,-19.5
-      parent: 1
-- proto: VendingMachineCigs
-  entities:
-  - uid: 555
-    components:
-    - type: Transform
-      pos: -3.5,-23.5
       parent: 1
 - proto: VendingMachineMedical
   entities:
@@ -18703,7 +18701,7 @@ entities:
   - uid: 2411
     components:
     - type: Transform
-      pos: -3.4151607,-14.881839
+      pos: -3.4032516,-14.8882065
       parent: 1
 - proto: WindoorSecure
   entities:
