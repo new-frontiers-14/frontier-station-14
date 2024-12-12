@@ -70,7 +70,7 @@
         - id: WreckRoomMarker
           prob: 0.01
       Plating: *floor
-      Lattice: &lattice
+      Lattice:
         - prob: 1 # Intentional blank.
         # Walls
         - id: Grille
@@ -96,9 +96,50 @@
     blobDrawProb: 0.5
   - type: SimpleFloorPlanPopulator
     entries:
-      FloorBrassFilled: *floor
-      PlatingBrass: *floor
-      FloorBrassReebe: *lattice
+      FloorBrassFilled: &floorBrass
+        - prob: 1 # Intentional blank.
+        # Walls
+        - id: ClockworkGirder
+          prob: 0.3
+        - id: WallClock
+          prob: 0.3
+        - id: ClockworkWindow
+          prob: 0.2
+        - id: PinionAirlock
+          prob: 0.01
+        # Floor loot
+        - id: SalvageSpawnerScrapCommon
+          prob: 3.5
+        - id: SalvageSpawnerEquipment
+          prob: 0.1
+        - id: SalvageSpawnerEquipmentValuable
+          prob: 0.06
+        # Machine upgrades
+        - id: SalvagePartsT2Spawner
+          prob: 0.02
+        - id: SalvagePartsT3Spawner
+          prob: 0.01
+        - id: SalvagePartsT4Spawner
+          prob: 0.004
+        # Big loot
+        - id: SalvageBrassFurnitureSpawner
+          prob: 0.1
+        - id: AltarTechnology
+          prob: 0.03
+        # "Medical"
+        - id: RipleyChassis # Build it yourself
+          prob: 0.03
+        # Mobs
+        - id: NFSalvageMobSpawner
+          prob: 0.1
+      PlatingBrass: *floorBrass
+      FloorBrassReebe:
+        - prob: 1 # Intentional blank.
+        # Walls
+        - id: ClockworkGrille
+          prob: 0.75
+        - id: ClockworkGrilleBroken
+          prob: 0.25
   - type: IFF
     color: "#E1C16E"
 

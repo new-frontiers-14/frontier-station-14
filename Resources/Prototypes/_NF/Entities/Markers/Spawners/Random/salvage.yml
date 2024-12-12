@@ -451,6 +451,23 @@
     offset: 0.0
 
 - type: entity
+  name: salvage random brass furniture spawner
+  id: SalvageBrassFurnitureSpawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Structures/Furniture/chairs.rsi
+      state: brass_chair
+  - type: RandomSpawner
+    prototypes:
+    - TableBrass
+    - ChairBrass
+    chance: 0.1
+    offset: 0.0
+
+- type: entity
   name: salvage suit storage spawner
   id: SalvageSuitStorageSpawner
   parent: MarkerBase
