@@ -533,7 +533,7 @@
 
 # region Scrap Spawners
 - type: entity
-  name: Asteroid Scrap Bot Spawner
+  name: asteroid scrap bot spawner
   id: AsteroidScrapBotSpawner
   components:
   - type: Sprite
@@ -564,7 +564,7 @@
     offset: 0.2
 
 - type: entity
-  name: Asteroid Scrap Bot Rock Spawner
+  name: asteroid scrap bot rock spawner
   id: AsteroidScrapBotWallSpawner
   parent: MarkerBase
   suffix: 45
@@ -607,6 +607,33 @@
 # endregion Scrap Spawners
 
 # region Wreck/Expedition Spawners
+- type: entity
+  name: Salvage Material Crate Spawner
+  id: NFSalvageMaterialCrateSpawner
+  parent: SalvageMaterialCrateSpawner
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - NFCrateSalvageAssortedGoodies
+    - NFCrateSalvageAssortedGoodiesPlastic
+    chance: 0.95
+    rarePrototypes:
+    - CrateSalvageEquipment
+    - CrateServiceJanitorialSupplies
+    - CrateEmergencyInternals
+    - CrateServiceSmokeables
+    - CrateTrashCartFilled
+    - CrateServiceReplacementLights
+    - CrateServiceBureaucracy
+    - CrateEmergencyFire
+    - CrateEmergencyInflatablewall
+    - CrateHydroponicsTools
+    - CrateHydroponicsSeeds
+    - CrateHydroponicsSeedsMedicinal
+    - CrateHydroponicsSeedsExotic
+    rareChance: 0.1
+    offset: 0.0
+
 - type: entity
   name: salvage tank spawner
   id: SalvageTankSpawner
@@ -771,20 +798,20 @@
   id: SalvageHandheldFlagSpawner
   parent: MarkerBase
   components:
-    - type: Sprite
-      layers:
-        - state: red
-        - sprite: Objects/Misc/Handy_Flags/blank_handy_flag.rsi
-          state: icon
-    - type: RandomSpawner
-      prototypes:
-        - NTHandyFlag
-        - BlankHandyFlag
-        - SyndieHandyFlag
-        - LGBTQHandyFlag
-        - PirateHandyFlag
-      chance: 0.9
-      offset: 0.0
+  - type: Sprite
+    layers:
+      - state: red
+      - sprite: Objects/Misc/Handy_Flags/blank_handy_flag.rsi
+        state: icon
+  - type: RandomSpawner
+    prototypes:
+      - NTHandyFlag
+      - BlankHandyFlag
+      - SyndieHandyFlag
+      - LGBTQHandyFlag
+      - PirateHandyFlag
+    chance: 0.5
+    offset: 0.0
 
 - type: entity
   parent: MarkerBase
