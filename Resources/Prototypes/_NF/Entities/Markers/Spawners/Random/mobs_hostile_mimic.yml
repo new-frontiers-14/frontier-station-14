@@ -1,0 +1,180 @@
+# Mimic
+- type: entity
+  name: mimic
+  id: NFMimic
+  parent: [NFMobRestrictions, SimpleSpaceMobBase]
+  description: ????
+  components:
+  - type: InputMover
+  - type: MobMover
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: alive
+      sprite: _NF/Mobs/Aliens/mimic.rsi
+  - type: Physics
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 4
+    baseSprintSpeed : 6
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.20
+        density: 20
+        mask:
+        - SmallMobMask
+        layer:
+        - SmallMobLayer
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 25
+      behaviors:
+#      - !type:PlaySoundBehavior
+#        sound:
+#          collection: GlassBreak
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: MovementAlwaysTouching
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: alive
+  - type: CombatMode
+  - type: MeleeWeapon
+    soundHit:
+        path: /Audio/Effects/bite.ogg
+    angle: 0
+    animation: WeaponArcBite
+    damage:
+      types:
+        Slash: 2
+  - type: ReplacementAccent
+    accent: genericAggressive
+  - type: Speech
+    speechVerb: SmallMob
+  - type: NonSpreaderZombie
+  - type: Jittering
+
+- type: entity
+  id: MobSpawnNFMimic
+  categories: [ HideSpawnMenu, Spawner ]
+  components:
+  - type: InteractionOutline
+  - type: TimedDespawn
+    lifetime: 0.85
+  - type: Sprite
+    sprite: /Textures/_NF/Mobs/Aliens/mimic.rsi
+    state: spawn
+  - type: SpawnOnDespawn
+    prototype: NFMimic
+
+- type: entity
+  id: NFMimicBase
+  suffix: Mimic
+  abstract: true
+  components:
+#  - type: EmitSoundOnTrigger
+#    sound:
+#      path: /Audio/Weapons/flash.ogg
+  - type: SpawnOnTrigger
+    proto: MobSpawnNFMimic
+  - type: TriggerOnProximity
+    shape:
+      !type:PhysShapeCircle
+        radius: 3
+    repeating: false
+    requiresAnchored: false
+    whitelist:
+      components:
+        - Actor
+  - type: DeleteOnTrigger
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MobSpawnNFMimic:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+# Greater mimic
+- type: entity
+  name: greater mimic
+  id: NFGreaterMimic
+  parent: NFMimic
+  description: ????
+  components:
+  - type: Sprite
+    scale: 1.2, 1.2
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 3
+    baseSprintSpeed : 5
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.24
+        density: 24
+        mask:
+        - SmallMobMask
+        layer:
+        - SmallMobLayer
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+#      - !type:PlaySoundBehavior
+#        sound:
+#          collection: GlassBreak
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 4
+
+- type: entity
+  id: MobSpawnNFGreaterMimic
+  parent: MobSpawnNFMimic
+  categories: [ HideSpawnMenu, Spawner ]
+  components:
+  - type: Sprite
+    scale: 1.2, 1.2
+  - type: SpawnOnDespawn
+    prototype: NFGreaterMimic
+
+- type: entity
+  id: NFGreaterMimicBase
+  parent: NFMimicBase
+  suffix: Mimic
+  abstract: true
+  components:
+  - type: SpawnOnTrigger
+    proto: MobSpawnNFGreaterMimic
+
+# Small entity
+
+  
+# Large entity
+- type: entity
+  id: NFMimicAirCanister
+  parent: [NFGreaterMimicBase, AirCanister]
