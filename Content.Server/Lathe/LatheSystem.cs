@@ -30,7 +30,7 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
-using Content.Shared.Cargo.Components;
+using Content.Shared.Cargo.Components; // Frontier
 using Content.Server._NF.Contraband.Systems; // Frontier
 
 namespace Content.Server.Lathe
