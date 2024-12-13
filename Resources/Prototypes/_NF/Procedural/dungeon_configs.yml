@@ -296,11 +296,23 @@
       Decals: "#ffa64d96"
     spawnGroups:
       WallMounts: NFCaveFactoryWallMounts
+    entities:
+      Cabling: CableApcExtension
+      CornerWalls: WallReinforced
+      Walls: WallSolid
+    spawnGroups:
+      CornerClutter: BaseClutterNF
+      Entrance: BaseAirlockNF
+      EntranceFlank: BaseWindowNF
+      Junction: BaseAirlockNF
+      WallMounts: BaseWallMountsNF
+      Window: BaseWindowNF
+    tiles:
+      FallbackTile: FloorSteel
     whitelists:
       Rooms:
         tags:
         - NFCaveFactory
-
   layers:
   - !type:PrototypeDunGen
     proto: NFPlanetBase
@@ -328,30 +340,44 @@
       Rooms:
         tags:
         - NFSalvageExperiment
-
+    entities:
+      Cabling: CableApcExtension
+      CornerWalls: WallReinforced
+      Walls: WallSolid
+    spawnGroups:
+      CornerClutter: BaseClutterNF
+      Entrance: BaseAirlockNF
+      EntranceFlank: BaseWindowNF
+      Junction: BaseAirlockNF
+      WallMounts: BaseWallMountsNF
+      Window: BaseWindowNF
+    tiles:
+      FallbackTile: FloorSteel
+    whitelists:
+      Rooms:
+        tags:
+        - NFSalvageExperiment
   layers:
   - !type:PrototypeDunGen
     proto: NFPlanetBase
-
-- type: entitySpawnEntry
-  id: NFMedSciWallMounts
-  entries:
-    - id: RandomPosterLegit
-      orGroup: content
-    - id: ExtinguisherCabinetFilled
-      prob: 0.2
-      orGroup: content
-    - id: RandomPainting
-      prob: 0.05
-      orGroup: content
-    - id: DefibrillatorCabinetFilled
-      prob: 0.2
-      orGroup: content
 
 # FactoryDorms prototypes
 - type: dungeonConfig
   id: NFFactoryDorms
   data:
+    entities:
+      Cabling: CableApcExtension
+      CornerWalls: WallReinforced
+      Walls: WallSolid
+    spawnGroups:
+      CornerClutter: BaseClutterNF
+      Entrance: BaseAirlockNF
+      EntranceFlank: BaseWindowNF
+      Junction: BaseAirlockNF
+      WallMounts: BaseWallMountsNF
+      Window: BaseWindowNF
+    tiles:
+      FallbackTile: FloorSteel
     whitelists:
       Rooms:
         tags:
@@ -387,25 +413,6 @@
   - !type:PrototypeDunGen
     proto: NFPlanetBase
 
-- type: entitySpawnEntry
-  id: NFMercenaryAirlock
-  entries:
-    - id: CableApcExtension
-    - id: AirlockMercenaryGlassDungeon
-
-- type: entitySpawnEntry
-  id: NFLavaMercenaryWallMounts
-  entries:
-    # Posters
-    - id: RandomPosterContraband
-      orGroup: content
-    - id: ExtinguisherCabinetFilled
-      prob: 0.2
-      orGroup: content
-    - id: RandomPainting
-      prob: 0.05
-      orGroup: content
-
 # VirologyLab prototypes
 - type: dungeonConfig
   id: NFVirologyLab
@@ -418,16 +425,9 @@
       Rooms:
         tags:
         - NFVirologyLab
-
   layers:
   - !type:PrototypeDunGen
     proto: NFPlanetBase
-
-- type: entitySpawnEntry
-  id: NFVirologyAirlock
-  entries:
-    - id: CableApcExtension
-    - id: AirlockVirologyGlassDungeon
 
 # NFSalvageOutpost prototypes
 - type: dungeonConfig
@@ -451,16 +451,41 @@
     proto: NFPlanetBase
 
 - type: entitySpawnEntry
+  id: NFVirologyAirlock
+  entries:
+    - id: CableApcExtension
+    - id: AirlockVirologyGlassDungeon
+
+- type: entitySpawnEntry
   id: NFMiningAirlock
   entries:
     - id: CableApcExtension
     - id: AirlockMiningGlassDungeon
 
 - type: entitySpawnEntry
+  id: NFMercenaryAirlock
+  entries:
+    - id: CableApcExtension
+    - id: AirlockMercenaryGlassDungeon
+
+- type: entitySpawnEntry
   id: NFMiningWindow
   entries:
     - id: GrilleDungeon
     - id: MiningWindowDungeon
+
+- type: entitySpawnEntry
+  id: NFLavaMercenaryWallMounts
+  entries:
+    # Posters
+    - id: RandomPosterContraband
+      orGroup: content
+    - id: ExtinguisherCabinetFilled
+      prob: 0.2
+      orGroup: content
+    - id: RandomPainting
+      prob: 0.05
+      orGroup: content
 
 ## Wallmounts
 - type: entitySpawnEntry
@@ -492,4 +517,19 @@
       orGroup: content
     - id: DefibrillatorCabinetFilled
       prob: 0.1
+      orGroup: content
+
+- type: entitySpawnEntry
+  id: NFMedSciWallMounts
+  entries:
+    - id: RandomPosterLegit
+      orGroup: content
+    - id: ExtinguisherCabinetFilled
+      prob: 0.2
+      orGroup: content
+    - id: RandomPainting
+      prob: 0.05
+      orGroup: content
+    - id: DefibrillatorCabinetFilled
+      prob: 0.2
       orGroup: content
