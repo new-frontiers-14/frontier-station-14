@@ -361,6 +361,8 @@
       Junction: NFVirologyAirlock
       WallMounts: NFBaseWallMounts
       Window: NFBaseWindow
+    tiles:
+      FallbackTile: FloorSteel
     whitelists:
       Rooms:
         tags:
@@ -376,12 +378,17 @@
     colors:
       Decals: "#9A54BF"
     entities:
+      Cabling: CableApcExtension
       CornerWalls: WallMining
       Walls: WallMining
     spawnGroups:
+      CornerClutter: NFBaseClutter
       Entrance: NFMiningAirlock
       EntranceFlank: NFMiningWindow
+      WallMounts: NFBaseWallMounts
       Window: NFMiningWindow
+    tiles:
+      FallbackTile: FloorMining
     whitelists:
       Rooms:
         tags:
