@@ -1,4 +1,4 @@
-# Wizden edited: Base configs
+# Base configs
 - type: dungeonConfig
   id: NFPlanetBase
   layers:
@@ -186,67 +186,6 @@
   layers:
   - !type:PrototypeDunGen
     proto: NFPlanetBase
-
-# Spawn groups
-# Basic
-- type: entitySpawnEntry
-  id: NFBaseClutter
-  entries:
-  - id: PottedPlantRandom
-    amount: 1
-
-- type: entitySpawnEntry
-  id: NFBaseAirlock
-  entries:
-  - id: CableApcExtension
-  - id: AirlockGlassDungeon
-
-- type: entitySpawnEntry
-  id: NFBaseWindow
-  entries:
-  - id: GrilleDungeon
-  - id: WindowDungeon
-
-# Lava brig
-- type: entitySpawnEntry
-  id: NFLavaBrigEntrance
-  entries:
-  - id: CableApcExtension
-  - id: AirlockSecurityGlassDungeon
-
-# Mineshaft
-- type: entitySpawnEntry
-  id: NFBaseWoodWall
-  entries:
-  - id: RandomWoodenWall
-
-- type: entitySpawnEntry
-  id: NFBaseWoodSupport
-  entries:
-  - id: RandomWoodenSupport
-
-- type: entitySpawnEntry
-  id: NFMineshaftClutter
-  entries:
-  - id: RandomStalagmiteOrCrystal
-    amount: 1
-
-- type: entitySpawnEntry
-  id: NFMineshaftWalls
-  entries:
-  # Ore
-  - id: WallRockSalt
-    prob: 0.6
-    orGroup: content
-  - id: WallRockCoal
-    prob: 0.6
-    orGroup: content
-  - id: WallRockTin
-    prob: 0.4
-    orGroup: content
-  - id: WallMining
-    prob: 0.8
-    orGroup: content
 
 # Science lab
 - type: entitySpawnEntry
@@ -450,44 +389,26 @@
   - !type:PrototypeDunGen
     proto: NFPlanetBase
 
+# Spawn groups
+# Basic
 - type: entitySpawnEntry
-  id: NFVirologyAirlock
+  id: NFBaseClutter
   entries:
-    - id: CableApcExtension
-    - id: AirlockVirologyGlassDungeon
+  - id: PottedPlantRandom
+    amount: 1
 
 - type: entitySpawnEntry
-  id: NFMiningAirlock
+  id: NFBaseAirlock
   entries:
-    - id: CableApcExtension
-    - id: AirlockMiningGlassDungeon
+  - id: CableApcExtension
+  - id: AirlockGlassDungeon
 
 - type: entitySpawnEntry
-  id: NFMercenaryAirlock
+  id: NFBaseWindow
   entries:
-    - id: CableApcExtension
-    - id: AirlockMercenaryGlassDungeon
+  - id: GrilleDungeon
+  - id: WindowDungeon
 
-- type: entitySpawnEntry
-  id: NFMiningWindow
-  entries:
-    - id: GrilleDungeon
-    - id: MiningWindowDungeon
-
-- type: entitySpawnEntry
-  id: NFLavaMercenaryWallMounts
-  entries:
-    # Posters
-    - id: RandomPosterContraband
-      orGroup: content
-    - id: ExtinguisherCabinetFilled
-      prob: 0.2
-      orGroup: content
-    - id: RandomPainting
-      prob: 0.05
-      orGroup: content
-
-## Wallmounts
 - type: entitySpawnEntry
   id: NFNanoTrasenFacilityWallmounts
   entries:
@@ -519,6 +440,88 @@
       prob: 0.1
       orGroup: content
 
+# Lava brig
+- type: entitySpawnEntry
+  id: NFLavaBrigEntrance
+  entries:
+  - id: CableApcExtension
+  - id: AirlockSecurityGlassDungeon
+
+# Mineshaft
+- type: entitySpawnEntry
+  id: NFBaseWoodWall
+  entries:
+  - id: RandomWoodenWall
+
+- type: entitySpawnEntry
+  id: NFBaseWoodSupport
+  entries:
+  - id: RandomWoodenSupport
+
+- type: entitySpawnEntry
+  id: NFMineshaftClutter
+  entries:
+  - id: RandomStalagmiteOrCrystal
+    amount: 1
+
+- type: entitySpawnEntry
+  id: NFMineshaftWalls
+  entries:
+  # Ore
+  - id: WallRockSalt
+    prob: 0.6
+    orGroup: content
+  - id: WallRockCoal
+    prob: 0.6
+    orGroup: content
+  - id: WallRockTin
+    prob: 0.4
+    orGroup: content
+  - id: WallMining
+    prob: 0.8
+    orGroup: content
+
+# Virology
+- type: entitySpawnEntry
+  id: NFVirologyAirlock
+  entries:
+    - id: CableApcExtension
+    - id: AirlockVirologyGlassDungeon
+
+# Mining
+- type: entitySpawnEntry
+  id: NFMiningAirlock
+  entries:
+    - id: CableApcExtension
+    - id: AirlockMiningGlassDungeon
+
+- type: entitySpawnEntry
+  id: NFMiningWindow
+  entries:
+    - id: GrilleDungeon
+    - id: MiningWindowDungeon
+
+# Mercenary
+- type: entitySpawnEntry
+  id: NFMercenaryAirlock
+  entries:
+    - id: CableApcExtension
+    - id: AirlockMercenaryGlassDungeon
+
+- type: entitySpawnEntry
+  id: NFLavaMercenaryWallMounts
+  entries:
+    # Posters
+    - id: RandomPosterContraband
+      orGroup: content
+    - id: ExtinguisherCabinetFilled
+      prob: 0.2
+      orGroup: content
+    - id: RandomPainting
+      prob: 0.05
+      orGroup: content
+
+# MedSci
 - type: entitySpawnEntry
   id: NFMedSciWallMounts
   entries:
