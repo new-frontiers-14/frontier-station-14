@@ -125,7 +125,7 @@
       Entrance: NFLavaBrigEntrance
       EntranceFlank: NFBaseWindow
       Junction: NFBaseAirlock
-      WallMounts: NFNanoTrasenFacilityWallmounts # Frontier: NFScienceLabsWalls<NFNanoTrasenFacilityWallmounts
+      WallMounts: NFNanoTrasenFacilityWallmounts
       Window: NFBaseWindow
     tiles:
       FallbackTile: FloorDark
@@ -299,28 +299,11 @@
     whitelists:
       Rooms:
         tags:
-          - NFCaveFactory
+        - NFCaveFactory
 
   layers:
   - !type:PrototypeDunGen
     proto: NFPlanetBase
-
-  - !type:CorridorDecalSkirtingDunGen
-    cardinalDecals:
-      South: BrickTileWhiteLineS
-      East: BrickTileWhiteLineE
-      North: BrickTileWhiteLineN
-      West: BrickTileWhiteLineW
-    cornerDecals:
-      SouthEast: BrickTileWhiteCornerSe
-      SouthWest: BrickTileWhiteCornerSw
-      NorthEast: BrickTileWhiteCornerNe
-      NorthWest: BrickTileWhiteCornerNw
-    pocketDecals:
-      SouthWest: BrickTileWhiteInnerSw
-      SouthEast: BrickTileWhiteInnerSe
-      NorthWest: BrickTileWhiteInnerNw
-      NorthEast: BrickTileWhiteInnerNe
 
 - type: entitySpawnEntry
   id: NFCaveFactoryWallMounts
@@ -344,7 +327,7 @@
     whitelists:
       Rooms:
         tags:
-          - NFSalvageExperiment
+        - NFSalvageExperiment
 
   layers:
   - !type:PrototypeDunGen
@@ -372,7 +355,7 @@
     whitelists:
       Rooms:
         tags:
-          - NFCaveFactory
+        - NFCaveFactory
   layers:
   - !type:PrototypeDunGen
     proto: NFPlanetBase
@@ -394,30 +377,15 @@
       Junction: NFMercenaryAirlock
       WallMounts: NFLavaMercenaryWallMounts
       Window: NFBaseWindow
+    tiles:
+      FallbackTile: FloorDark
     whitelists:
       Rooms:
         tags:
-          - NFLavaMercenary
+        - NFLavaMercenary
   layers:
   - !type:PrototypeDunGen
     proto: NFPlanetBase
-
-  - !type:CorridorDecalSkirtingDunGen
-    cardinalDecals:
-      South: BrickTileWhiteLineS
-      East: BrickTileWhiteLineE
-      North: BrickTileWhiteLineN
-      West: BrickTileWhiteLineW
-    cornerDecals:
-      SouthEast: BrickTileWhiteCornerSe
-      SouthWest: BrickTileWhiteCornerSw
-      NorthEast: BrickTileWhiteCornerNe
-      NorthWest: BrickTileWhiteCornerNw
-    pocketDecals:
-      SouthWest: BrickTileWhiteInnerSw
-      SouthEast: BrickTileWhiteInnerSe
-      NorthWest: BrickTileWhiteInnerNw
-      NorthEast: BrickTileWhiteInnerNe
 
 - type: entitySpawnEntry
   id: NFMercenaryAirlock
@@ -449,28 +417,11 @@
     whitelists:
       Rooms:
         tags:
-          - NFVirologyLab
+        - NFVirologyLab
 
   layers:
   - !type:PrototypeDunGen
     proto: NFPlanetBase
-
-  - !type:CorridorDecalSkirtingDunGen
-    cardinalDecals:
-      South: BrickTileWhiteLineS
-      East: BrickTileWhiteLineE
-      North: BrickTileWhiteLineN
-      West: BrickTileWhiteLineW
-    cornerDecals:
-      SouthEast: BrickTileWhiteCornerSe
-      SouthWest: BrickTileWhiteCornerSw
-      NorthEast: BrickTileWhiteCornerNe
-      NorthWest: BrickTileWhiteCornerNw
-    pocketDecals:
-      SouthWest: BrickTileWhiteInnerSw
-      SouthEast: BrickTileWhiteInnerSe
-      NorthWest: BrickTileWhiteInnerNw
-      NorthEast: BrickTileWhiteInnerNe
 
 - type: entitySpawnEntry
   id: NFVirologyAirlock
@@ -494,27 +445,10 @@
     whitelists:
       Rooms:
         tags:
-          - NFSalvageOutpost
+        - NFSalvageOutpost
   layers:
   - !type:PrototypeDunGen
     proto: NFPlanetBase
-
-  - !type:CorridorDecalSkirtingDunGen
-    cardinalDecals:
-      South: BrickTileWhiteLineS
-      East: BrickTileWhiteLineE
-      North: BrickTileWhiteLineN
-      West: BrickTileWhiteLineW
-    cornerDecals:
-      SouthEast: BrickTileWhiteCornerSe
-      SouthWest: BrickTileWhiteCornerSw
-      NorthEast: BrickTileWhiteCornerNe
-      NorthWest: BrickTileWhiteCornerNw
-    pocketDecals:
-      SouthWest: BrickTileWhiteInnerSw
-      SouthEast: BrickTileWhiteInnerSe
-      NorthWest: BrickTileWhiteInnerNw
-      NorthEast: BrickTileWhiteInnerNe
 
 - type: entitySpawnEntry
   id: NFMiningAirlock
