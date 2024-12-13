@@ -135,3 +135,22 @@
     rarePrototypes:
     - MobRogueSiliconGuardian
     rareChance: 0.05
+
+- type: entity
+  name: rogue silicon boss spawner
+  id: SpawnMobRogueSiliconBossRandom
+  parent: MarkerBase
+  suffix: AI, Hostile, Random
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - state: ai
+    - sprite: _NF/Mobs/RogueSilicons/netguardian.rsi
+      state: netguardian
+  - type: RandomSpawner
+    prototypes:
+    - MobRogueSiliconBoss
+    - MobRogueSiliconGuardian
+    chance: 1
+    offset: 0.0
