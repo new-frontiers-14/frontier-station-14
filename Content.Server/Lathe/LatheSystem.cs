@@ -32,6 +32,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Content.Shared.Cargo.Components; // Frontier
 using Content.Server._NF.Contraband.Systems; // Frontier
+using Robust.Shared.Containers; // Frontier
 
 namespace Content.Server.Lathe
 {
@@ -78,8 +79,9 @@ namespace Content.Server.Lathe
             SubscribeLocalEvent<EmagLatheRecipesComponent, LatheGetRecipesEvent>(GetEmagLatheRecipes);
             SubscribeLocalEvent<LatheHeatProducingComponent, LatheStartPrintingEvent>(OnHeatStartPrinting);
 
-            //Frontier Upgrade Code Restore
+            //Frontier: upgradeable parts
             SubscribeLocalEvent<LatheComponent, RefreshPartsEvent>(OnPartsRefresh);
+            SubscribeLocalEvent<LatheComponent, UpgradeExamineEvent>(OnUpgradeExamine);
             SubscribeLocalEvent<LatheComponent, UpgradeExamineEvent>(OnUpgradeExamine);
         }
         public override void Update(float frameTime)
@@ -241,21 +243,7 @@ namespace Content.Server.Lathe
                     // Frontier: adjust price before merge (stack prices changed once)
                     if (result.Valid)
                     {
-                        if (comp.ProductValueModifier != null
-                        && float.IsFinite(comp.ProductValueModifier.Value)
-                        && comp.ProductValueModifier >= 0f)
-                        {
-                            if (TryComp<StackPriceComponent>(result, out var stackPrice))
-                            {
-                                if (stackPrice.Price > 0)
-                                    stackPrice.Price *= comp.ProductValueModifier.Value;
-                            }
-                            if (TryComp<StaticPriceComponent>(result, out var staticPrice))
-                            {
-                                if (staticPrice.Price > 0)
-                                    staticPrice.Price *= comp.ProductValueModifier.Value;
-                            }
-                        }
+                        ModifyPrintedEntityPrice(uid, comp, result);
 
                         _contraband.ClearContrabandValue(result);
                     }
@@ -452,6 +440,39 @@ namespace Content.Server.Lathe
             args.AddPercentageUpgrade("lathe-component-upgrade-speed", 1 / component.FinalTimeMultiplier);
             args.AddPercentageUpgrade("lathe-component-upgrade-material-use", component.FinalMaterialUseMultiplier);
         }
-        // End of modified code
+
+        // Frontier: modify item value
+        private void ModifyPrintedEntityPrice(EntityUid uid, LatheComponent component, EntityUid target)
+        {
+            // Cannot reduce value, leave item as-is
+            if (component.ProductValueModifier == null
+            || !float.IsFinite(component.ProductValueModifier.Value)
+            || component.ProductValueModifier < 0f)
+                return;
+
+            if (TryComp<StackPriceComponent>(target, out var stackPrice))
+            {
+                if (stackPrice.Price > 0)
+                    stackPrice.Price *= component.ProductValueModifier.Value;
+            }
+            if (TryComp<StaticPriceComponent>(target, out var staticPrice))
+            {
+                if (staticPrice.Price > 0)
+                    staticPrice.Price *= component.ProductValueModifier.Value;
+            }
+
+            // Recurse into contained entities
+            if (TryComp<ContainerManagerComponent>(target, out var containers))
+            {
+                foreach (var container in containers.Containers.Values)
+                {
+                    foreach (var ent in container.ContainedEntities)
+                    {
+                        ModifyPrintedEntityPrice(uid, component, ent);
+                    }
+                }
+            }
+        }
+        // End Frontier
     }
 }
