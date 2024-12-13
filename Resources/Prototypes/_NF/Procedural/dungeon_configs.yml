@@ -233,8 +233,6 @@
   data:
     colors:
       Decals: "#ffa64d96"
-    spawnGroups:
-      WallMounts: NFCaveFactoryWallMounts
     entities:
       Cabling: CableApcExtension
       CornerWalls: WallReinforced
@@ -244,7 +242,7 @@
       Entrance: BaseAirlockNF
       EntranceFlank: BaseWindowNF
       Junction: BaseAirlockNF
-      WallMounts: BaseWallMountsNF
+      WallMounts: NFCaveFactoryWallMounts
       Window: BaseWindowNF
     tiles:
       FallbackTile: FloorSteel
@@ -273,8 +271,6 @@
 - type: dungeonConfig
   id: NFMedSci
   data:
-    spawnGroups:
-      WallMounts: NFMedSciWallMounts
     whitelists:
       Rooms:
         tags:
@@ -288,7 +284,7 @@
       Entrance: BaseAirlockNF
       EntranceFlank: BaseWindowNF
       Junction: BaseAirlockNF
-      WallMounts: BaseWallMountsNF
+      WallMounts: NFMedSciWallMounts
       Window: BaseWindowNF
     tiles:
       FallbackTile: FloorSteel
@@ -358,8 +354,17 @@
   data:
     colors:
       Decals: "#467b41"
+    entities:
+      Cabling: CableApcExtension
+      CornerWalls: WallReinforced
+      Walls: WallSolid
     spawnGroups:
+      CornerClutter: NFBaseClutter
       Entrance: NFVirologyAirlock
+      EntranceFlank: NFBaseWindow
+      Junction: NFVirologyAirlock
+      WallMounts: NFBaseWallMounts
+      Window: NFBaseWindow
     whitelists:
       Rooms:
         tags:
