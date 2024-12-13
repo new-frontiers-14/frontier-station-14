@@ -1,4 +1,3 @@
-using Content.Server._NF.Auth;
 using Content.Server.Administration;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
@@ -30,6 +29,7 @@ using Content.Shared.Chat;
 using Content.Shared.Kitchen;
 using Content.Shared.Players.PlayTimeTracking;
 using Content.Shared.Players.RateLimiting;
+using Content.Server._RMC14.Mentor; // RMC14
 
 namespace Content.Server.IoC
 {
@@ -75,6 +75,9 @@ namespace Content.Server.IoC
             IoCManager.Register<SharedPlayerRateLimitManager, PlayerRateLimitManager>();
             IoCManager.Register<MappingManager>();
             IoCManager.Register<MiniAuthManager>(); //Frontier
+
+            // RMC14
+            IoCManager.Register<MentorManager>();
         }
     }
 }
