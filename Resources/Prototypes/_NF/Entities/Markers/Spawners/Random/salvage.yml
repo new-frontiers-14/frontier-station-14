@@ -508,6 +508,7 @@
 - type: entity
   name: asteroid scrap bot spawner
   id: AsteroidScrapBotSpawner
+  parent: MarkerBase
   components:
   - type: Sprite
     layers:
@@ -773,16 +774,16 @@
   components:
   - type: Sprite
     layers:
-      - state: red
-      - sprite: Objects/Misc/Handy_Flags/blank_handy_flag.rsi
-        state: icon
+    - state: red
+    - sprite: Objects/Misc/Handy_Flags/blank_handy_flag.rsi
+      state: icon
   - type: RandomSpawner
     prototypes:
-      - NTHandyFlag
-      - BlankHandyFlag
-      - SyndieHandyFlag
-      - LGBTQHandyFlag
-      - PirateHandyFlag
+    - NTHandyFlag
+    - BlankHandyFlag
+    - SyndieHandyFlag
+    - LGBTQHandyFlag
+    - PirateHandyFlag
     chance: 0.5
     offset: 0.0
 
