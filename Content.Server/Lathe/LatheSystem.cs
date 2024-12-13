@@ -82,7 +82,6 @@ namespace Content.Server.Lathe
             //Frontier: upgradeable parts
             SubscribeLocalEvent<LatheComponent, RefreshPartsEvent>(OnPartsRefresh);
             SubscribeLocalEvent<LatheComponent, UpgradeExamineEvent>(OnUpgradeExamine);
-            SubscribeLocalEvent<LatheComponent, UpgradeExamineEvent>(OnUpgradeExamine);
         }
         public override void Update(float frameTime)
         {
