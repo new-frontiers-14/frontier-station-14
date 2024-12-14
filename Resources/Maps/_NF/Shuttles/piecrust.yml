@@ -380,7 +380,7 @@ entities:
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: BecomesStation
-      id: PTS
+      id: Piecrust
     - type: SpreaderGrid
     - type: NavMap
 - proto: AirAlarm
@@ -608,6 +608,14 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 3.5,8.5
+      parent: 8756
+- proto: ButtonFrameCautionSecurity
+  entities:
+  - uid: 357
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 3.5,5.5
       parent: 8756
 - proto: ButtonFrameGrey
   entities:
@@ -913,29 +921,11 @@ entities:
       parent: 8756
 - proto: ClosetChefFilled
   entities:
-  - uid: 151
+  - uid: 355
     components:
     - type: Transform
-      pos: -1.5,2.5
+      pos: -1.7735012,2.4642923
       parent: 8756
-    - type: EntityStorage
-      air:
-        volume: 200
-        immutable: False
-        temperature: 293.14923
-        moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
 - proto: ClosetWallO2N2FilledRandom
   entities:
   - uid: 35
@@ -966,19 +956,6 @@ entities:
     - type: Transform
       pos: -1.5,1.5
       parent: 8756
-    - type: ContainerContainer
-      containers:
-        board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        bank-ATM-cashSlot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-    - type: Physics
-      canCollide: False
-    - type: ItemSlots
 - proto: CrateFreezer
   entities:
   - uid: 321
@@ -1779,6 +1756,13 @@ entities:
     - type: Transform
       pos: 0.5,4.5
       parent: 8756
+- proto: KitchenDeepFryer
+  entities:
+  - uid: 151
+    components:
+    - type: Transform
+      pos: 2.5,4.5
+      parent: 8756
 - proto: KitchenElectricRange
   entities:
   - uid: 262
@@ -1848,10 +1832,10 @@ entities:
       parent: 8756
 - proto: LockerFreezerBase
   entities:
-  - uid: 261
+  - uid: 356
     components:
     - type: Transform
-      pos: 2.5,4.5
+      pos: -1.2630844,2.4642923
       parent: 8756
 - proto: LockerWallMaterialsBasic10Filled
   entities:
@@ -1923,10 +1907,6 @@ entities:
     - type: Transform
       pos: 6.5,6.5
       parent: 8756
-    - type: FuelGenerator
-      on: False
-    - type: Physics
-      bodyType: Static
 - proto: PosterContrabandEAT
   entities:
   - uid: 265
@@ -2066,20 +2046,13 @@ entities:
     - type: Transform
       pos: 4.5,1.5
       parent: 8756
-    - type: ContainerContainer
-      containers:
-        machine_board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        machine_parts: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        blueprint: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
+- proto: ShelfKitchen
+  entities:
+  - uid: 261
+    components:
+    - type: Transform
+      pos: -1.5,5.5
+      parent: 8756
 - proto: ShuttersNormalOpen
   entities:
   - uid: 229
@@ -2193,6 +2166,24 @@ entities:
         351:
         - Pressed: Toggle
         350:
+        - Pressed: Toggle
+  - uid: 358
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 3.5,5.5
+      parent: 8756
+    - type: DeviceLinkSource
+      linkedPorts:
+        243:
+        - Pressed: Toggle
+        7:
+        - Pressed: Toggle
+        17:
+        - Pressed: Toggle
+        147:
+        - Pressed: Toggle
+        118:
         - Pressed: Toggle
 - proto: SignalButtonDirectional
   entities:
@@ -2803,7 +2794,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 3.5,9.5
       parent: 8756
-- proto: WarpPointShip
+- proto: WarpPoint
   entities:
   - uid: 305
     components:
