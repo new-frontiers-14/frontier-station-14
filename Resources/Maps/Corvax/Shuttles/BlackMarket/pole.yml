@@ -1205,95 +1205,6 @@ entities:
     - type: RadiationGridResistance
     - type: BecomesStation
       id: pole
-  - uid: 5
-    components:
-    - type: MetaData
-      name: solution - beaker
-    - type: Transform
-      parent: 4
-    - type: Solution
-      solution:
-        temperature: 266.11798
-        maxVol: 200
-        name: beaker
-        reagents:
-        - data: []
-          ReagentId: Cryoxadone
-          Quantity: 200
-    - type: ContainedSolution
-      containerName: beaker
-      container: 4
-  - uid: 7
-    components:
-    - type: MetaData
-      name: solution - beaker
-    - type: Transform
-      parent: 6
-    - type: Solution
-      solution:
-        maxVol: 100
-        name: beaker
-        reagents: []
-    - type: ContainedSolution
-      containerName: beaker
-      container: 6
-  - uid: 9
-    components:
-    - type: MetaData
-      name: solution - beaker
-    - type: Transform
-      parent: 8
-    - type: Solution
-      solution:
-        maxVol: 30
-        name: beaker
-        reagents:
-        - data: []
-          ReagentId: Sigynate
-          Quantity: 15
-        - data: []
-          ReagentId: Aloe
-          Quantity: 15
-    - type: ContainedSolution
-      containerName: beaker
-      container: 8
-  - uid: 11
-    components:
-    - type: MetaData
-      name: solution - beaker
-    - type: Transform
-      parent: 10
-    - type: Solution
-      solution:
-        maxVol: 30
-        name: beaker
-        reagents:
-        - data: []
-          ReagentId: Sigynate
-          Quantity: 15
-        - data: []
-          ReagentId: Aloe
-          Quantity: 15
-    - type: ContainedSolution
-      containerName: beaker
-      container: 10
-  - uid: 13
-    components:
-    - type: MetaData
-      name: solution - food
-    - type: Transform
-      parent: 12
-    - type: Solution
-      solution:
-        maxVol: 1
-        name: food
-        reagents:
-        - data: []
-          ReagentId: Fiber
-          Quantity: 1
-    - type: ContainedSolution
-      containerName: food
-      container: 12
   - uid: 26
     components:
     - type: MetaData
@@ -2374,42 +2285,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 6.5,-0.5
       parent: 1
-- proto: BaseChemistryEmptyVial
-  entities:
-  - uid: 8
-    components:
-    - type: Transform
-      parent: 3
-    - type: Tag
-      tags:
-      - CentrifugeCompatible
-    - type: SolutionContainerManager
-      solutions: null
-      containers:
-      - beaker
-    - type: Physics
-      canCollide: False
-    - type: ContainerContainer
-      containers:
-        solution@beaker: !type:ContainerSlot
-          ent: 9
-  - uid: 10
-    components:
-    - type: Transform
-      parent: 3
-    - type: Tag
-      tags:
-      - CentrifugeCompatible
-    - type: SolutionContainerManager
-      solutions: null
-      containers:
-      - beaker
-    - type: Physics
-      canCollide: False
-    - type: ContainerContainer
-      containers:
-        solution@beaker: !type:ContainerSlot
-          ent: 11
 - proto: BenchParkLeft
   entities:
   - uid: 217
@@ -2673,62 +2548,6 @@ entities:
           occludes: True
           ents:
           - 256
-- proto: BoxBeaker
-  entities:
-  - uid: 3
-    components:
-    - type: MetaData
-      desc: полный набор для криотерпии
-      name: Набор для криотерпии
-    - type: Transform
-      parent: 2
-    - type: Storage
-      storedItems:
-        8:
-          position: 1,2
-          _rotation: South
-        4:
-          position: 2,0
-          _rotation: South
-        6:
-          position: 0,0
-          _rotation: South
-        14:
-          position: 0,2
-          _rotation: East
-        10:
-          position: 2,2
-          _rotation: South
-        12:
-          position: 3,2
-          _rotation: South
-    - type: ContainerContainer
-      containers:
-        storagebase: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 4
-          - 6
-          - 14
-          - 8
-          - 10
-          - 12
-    - type: Physics
-      canCollide: False
-    - type: UseDelay
-      delays:
-        default:
-          endTime: 267848.8619778
-          startTime: 270916.8996614
-          length: 1
-        quickInsert:
-          length: 0.5
-        storage:
-          endTime: 267847.8619778
-          startTime: 270897.666405
-    - type: ActiveUserInterface
-    - type: InsideEntityStorage
 - proto: BoxPaperCaptainsThoughts
   entities:
   - uid: 258
@@ -5137,7 +4956,7 @@ entities:
       pos: 4.5,-0.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -9765.829
+      secondsUntilStateChange: -10036.257
       state: Opening
 - proto: CurtainsPurple
   entities:
@@ -5391,14 +5210,6 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: Dropper
-  entities:
-  - uid: 14
-    components:
-    - type: Transform
-      parent: 3
-    - type: Physics
-      canCollide: False
 - proto: EmergencyLight
   entities:
   - uid: 670
@@ -7067,22 +6878,6 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: Jug
-  entities:
-  - uid: 4
-    components:
-    - type: Transform
-      parent: 3
-    - type: SolutionContainerManager
-      solutions: null
-      containers:
-      - beaker
-    - type: Physics
-      canCollide: False
-    - type: ContainerContainer
-      containers:
-        solution@beaker: !type:ContainerSlot
-          ent: 5
 - proto: JukeboxShip
   entities:
   - uid: 885
@@ -7097,26 +6892,6 @@ entities:
     - type: Transform
       pos: -0.5,-3.5
       parent: 1
-- proto: LargeBeaker
-  entities:
-  - uid: 6
-    components:
-    - type: Transform
-      parent: 3
-    - type: SolutionContainerManager
-      solutions: null
-      containers:
-      - beaker
-    - type: Tag
-      tags:
-      - GlassBeaker
-      - Trash
-    - type: Physics
-      canCollide: False
-    - type: ContainerContainer
-      containers:
-        solution@beaker: !type:ContainerSlot
-          ent: 7
 - proto: LaughinPeaSeeds
   entities:
   - uid: 73
@@ -7200,16 +6975,15 @@ entities:
           showEnts: False
           occludes: True
           ents:
-          - 21
-          - 23
-          - 22
-          - 19
-          - 20
-          - 16
-          - 15
-          - 3
-          - 17
           - 18
+          - 17
+          - 15
+          - 16
+          - 20
+          - 23
+          - 19
+          - 22
+          - 21
 - proto: LockerWoodenGeneric
   entities:
   - uid: 257
@@ -7516,113 +7290,6 @@ entities:
     - type: Transform
       pos: 1.5,14.5
       parent: 1
-- proto: Paper
-  entities:
-  - uid: 12
-    components:
-    - type: MetaData
-      name: Инструкция
-    - type: Transform
-      parent: 3
-    - type: Paper
-      stampState: paper_stamp-cap
-      stampedBy:
-      - reapply: False
-        stampType: RubberStamp
-        stampedColor: '#1256A6FF'
-        stampedName: Хуйня переделывай
-      content: >
-        [color=black]██████████████████████[/color]
-
-        [color=black]██████░░░░░░░░████████[/color]
-
-        [color=black]█████░░█░░░░░█░░██████[/color]
-
-        [head=3]Бланк документа[/head]
-
-        [color=black]██████░░░░░░░░░███████[/color]
-
-        [head=3]Пиратская бухта[/head]
-
-        [color=black]████████░░░░░█████████[/color]
-
-        [head=3]"Полюс" GF-217[/head]
-
-        [color=black]████████░█░█░█████████[/color]
-
-        [head=3]        ПД-КОМ [/head]
-
-        [color=black]██████████████████████[/color]
-
-
-        =============================================
-                             ИНСТРУКЦИЯ К КРИОКАМЕРЕ
-        =============================================
-
-        Время от начала смены и дата:░░░░░░░
-
-        Должность составителя:
-
-        ░░░░░░░
-
-        Йо-хо-хо отщепенцы! Мы ту с командой украли из хранилища кoрпоратов эту морозилку и капитан попросил оставить для будущего поколения инструкцию по её использованию!
-
-        1)Проверьте чтоб смешивалки смешивали, насосы насосили,а фильтры фильтровали [bold] Диоксид углерода[/bold]
-
-        2)Ну температурку на охладителе кельвинов [bold] 190[/bold] чтоб на выходе был здоровый пират, а не полуфабрикат АХАХАХАХА!!!
-
-        3) Вставляем мензурку с синей жижей и лечим( Ну при условии, что наш сокомандник ещё дышит)
-
-        P.S. В шкафчике лежит какая-то чача. При смешивании с синей жижей 4 к 1 получите смягчающее на вид вещество. Оно лечит физические повреждения у мёртвых собутыльников.
-
-
-        Попутного ветра парни!
-
-        =============================================
-    - type: SolutionContainerManager
-      solutions: null
-      containers:
-      - food
-    - type: Physics
-      canCollide: False
-    - type: Fixtures
-      fixtures:
-        fix1:
-          shape: !type:PolygonShape
-            radius: 0.01
-            vertices:
-            - -0.25,-0.25
-            - 0.25,-0.25
-            - 0.25,0.25
-            - -0.25,0.25
-          mask:
-          - Impassable
-          - HighImpassable
-          layer: []
-          density: 20
-          hard: True
-          restitution: 0.3
-          friction: 0.2
-        flammable:
-          shape: !type:PhysShapeCircle
-            radius: 0.35
-            position: 0,0
-          mask:
-          - TableLayer
-          - HighImpassable
-          - LowImpassable
-          - BulletImpassable
-          - InteractImpassable
-          - Opaque
-          layer: []
-          density: 1
-          hard: False
-          restitution: 0
-          friction: 0.4
-    - type: ContainerContainer
-      containers:
-        solution@food: !type:ContainerSlot
-          ent: 13
 - proto: PaperDoor
   entities:
   - uid: 924
@@ -10249,7 +9916,7 @@ entities:
       lastSignals:
         DoorStatus: True
     - type: Door
-      secondsUntilStateChange: -11581.555
+      secondsUntilStateChange: -11851.982
       state: Opening
 - proto: WindowReinforcedDirectional
   entities:
