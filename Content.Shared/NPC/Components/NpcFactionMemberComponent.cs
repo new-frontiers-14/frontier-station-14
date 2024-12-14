@@ -38,4 +38,10 @@ public sealed partial class NpcFactionMemberComponent : Component
     /// </summary>
     [DataField, ViewVariables]
     public HashSet<ProtoId<NpcFactionPrototype>>? AddHostileFactions;
+
+    /// <summary>
+    /// Frontier: used to track temporary factions (e.g. those gained from worn clothing)
+    /// </summary>
+    [DataField]
+    public HashSet<ProtoId<NpcFactionPrototype>> TemporaryFactions = new();
 }
