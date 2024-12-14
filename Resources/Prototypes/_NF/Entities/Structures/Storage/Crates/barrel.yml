@@ -56,6 +56,7 @@
 - type: entity
   parent: StorageTank
   id: BaseBarrel
+  name: metal barrel
   abstract: true
   components:
   - type: Sprite
@@ -81,6 +82,7 @@
     solution: tank
   - type: Spillable
     solution: tank
+    spillDelay: 10
   - type: DumpableSolution
     solution: tank
   - type: StaticPrice
@@ -170,7 +172,7 @@
       tank:
         reagents:
           - ReagentId: WeldingFuel
-            Quantity: 500
+            Quantity: 1000
   - type: DamageOnToolInteract
     tools: Welding
     weldingDamage:
@@ -184,7 +186,7 @@
 - type: entity
   parent: BaseBarrel
   id: ChemicalBarrelCarbon
-  name: chemical barrel (carbon)
+  suffix: Carbon
   components:
   - type: StaticPrice
     price: 500
@@ -199,12 +201,12 @@
       tank:
         reagents:
           - ReagentId: Carbon
-            Quantity: 500
+            Quantity: 1000
 
 - type: entity
   parent: ChemicalBarrelCarbon
   id: ChemicalBarrelIodine
-  name: chemical barrel (iodine)
+  suffix: Iodine
   components:
   - type: Label
     currentLabel: reagent-name-iodine
@@ -217,12 +219,12 @@
       tank:
         reagents:
           - ReagentId: Iodine
-            Quantity: 500
+            Quantity: 1000
 
 - type: entity
   parent: ChemicalBarrelCarbon
   id: ChemicalBarrelFluorine
-  name: chemical barrel (fluorine)
+  suffix: Fluorine
   components:
   - type: Label
     currentLabel: reagent-name-fluorine
@@ -235,12 +237,12 @@
       tank:
         reagents:
           - ReagentId: Fluorine
-            Quantity: 500
+            Quantity: 1000
 
 - type: entity
   parent: ChemicalBarrelCarbon
   id: ChemicalBarrelChlorine
-  name: chemical barrel (chlorine)
+  suffix: Chlorine
   components:
   - type: Label
     currentLabel: reagent-name-chlorine
@@ -253,12 +255,12 @@
       tank:
         reagents:
           - ReagentId: Chlorine
-            Quantity: 500
+            Quantity: 1000
 
 - type: entity
   parent: ChemicalBarrelCarbon
   id: ChemicalBarrelAluminium
-  name: chemical barrel (aluminium)
+  suffix: Aluminium
   components:
   - type: Label
     currentLabel: reagent-name-aluminium
@@ -267,12 +269,12 @@
       tank:
         reagents:
           - ReagentId: Aluminium
-            Quantity: 500
+            Quantity: 1000
 
 - type: entity
   parent: ChemicalBarrelCarbon
   id: ChemicalBarrelPhosphorus
-  name: chemical barrel (phosphorus)
+  suffix: Phosphorus
   components:
   - type: Label
     currentLabel: reagent-name-phosphorus
@@ -285,12 +287,12 @@
       tank:
         reagents:
           - ReagentId: Phosphorus
-            Quantity: 500
+            Quantity: 1000
 
 - type: entity
   parent: ChemicalBarrelCarbon
   id: ChemicalBarrelSulfur
-  name: chemical barrel (sulfur)
+  suffix: Sulfur
   components:
   - type: Label
     currentLabel: reagent-name-sulfur
@@ -303,12 +305,12 @@
       tank:
         reagents:
           - ReagentId: Sulfur
-            Quantity: 500
+            Quantity: 1000
 
 - type: entity
   parent: ChemicalBarrelCarbon
   id: ChemicalBarrelSilicon
-  name: chemical barrel (silicon)
+  suffix: Silicon
   components:
   - type: Label
     currentLabel: reagent-name-silicon
@@ -317,12 +319,12 @@
       tank:
         reagents:
           - ReagentId: Silicon
-            Quantity: 500
+            Quantity: 1000
 
 - type: entity
   parent: ChemicalBarrelCarbon
   id: ChemicalBarrelHydrogen
-  name: chemical barrel (hydrogen)
+  suffix: Hydrogen
   components:
   - type: Label
     currentLabel: reagent-name-hydrogen
@@ -335,12 +337,12 @@
       tank:
         reagents:
           - ReagentId: Hydrogen
-            Quantity: 500
+            Quantity: 1000
 
 - type: entity
   parent: ChemicalBarrelCarbon
   id: ChemicalBarrelLithium
-  name: chemical barrel (lithium)
+  suffix: Lithium
   components:
   - type: Label
     currentLabel: reagent-name-lithium
@@ -349,12 +351,12 @@
       tank:
         reagents:
           - ReagentId: Lithium
-            Quantity: 500
+            Quantity: 1000
 
 - type: entity
   parent: ChemicalBarrelCarbon
   id: ChemicalBarrelSodium
-  name: chemical barrel (sodium)
+  suffix: Sodium
   components:
   - type: Label
     currentLabel: reagent-name-sodium
@@ -363,12 +365,12 @@
       tank:
         reagents:
           - ReagentId: Sodium
-            Quantity: 500
+            Quantity: 1000
 
 - type: entity
   parent: ChemicalBarrelCarbon
   id: ChemicalBarrelPotassium
-  name: chemical barrel (potassium)
+  suffix: Potassium
   components:
   - type: Label
     currentLabel: reagent-name-potassium
@@ -381,12 +383,12 @@
       tank:
         reagents:
           - ReagentId: Potassium
-            Quantity: 500
+            Quantity: 1000
 
 - type: entity
   parent: ChemicalBarrelCarbon
   id: ChemicalBarrelRadium
-  name: chemical barrel (radium)
+  suffix: Radium
   components:
   - type: Label
     currentLabel: reagent-name-radium
@@ -399,12 +401,12 @@
       tank:
         reagents:
           - ReagentId: Radium
-            Quantity: 500
+            Quantity: 1000
 
 - type: entity
   parent: ChemicalBarrelCarbon
   id: ChemicalBarrelIron
-  name: chemical barrel (iron)
+  suffix: Iron
   components:
   - type: Label
     currentLabel: reagent-name-iron
@@ -413,12 +415,12 @@
       tank:
         reagents:
           - ReagentId: Iron
-            Quantity: 500
+            Quantity: 1000
 
 - type: entity
   parent: ChemicalBarrelCarbon
   id: ChemicalBarrelCopper
-  name: chemical barrel (copper)
+  suffix: Copper
   components:
   - type: Label
     currentLabel: reagent-name-copper
@@ -431,12 +433,12 @@
       tank:
         reagents:
           - ReagentId: Copper
-            Quantity: 500
+            Quantity: 1000
 
 - type: entity
   parent: ChemicalBarrelCarbon
   id: ChemicalBarrelGold
-  name: chemical barrel (gold)
+  suffix: Gold
   components:
   - type: Label
     currentLabel: reagent-name-gold
@@ -449,12 +451,12 @@
       tank:
         reagents:
           - ReagentId: Gold
-            Quantity: 500
+            Quantity: 1000
 
 - type: entity
   parent: ChemicalBarrelCarbon
   id: ChemicalBarrelMercury
-  name: chemical barrel (mercury)
+  suffix: Mercury
   components:
   - type: Label
     currentLabel: reagent-name-mercury
@@ -463,12 +465,12 @@
       tank:
         reagents:
           - ReagentId: Mercury
-            Quantity: 500
+            Quantity: 1000
 
 - type: entity
   parent: ChemicalBarrelCarbon
   id: ChemicalBarrelSilver
-  name: chemical barrel (silver)
+  suffix: Silver
   components:
   - type: Label
     currentLabel: reagent-name-silver
@@ -477,12 +479,12 @@
       tank:
         reagents:
           - ReagentId: Silver
-            Quantity: 500
+            Quantity: 1000
 
 - type: entity
   parent: ChemicalBarrelCarbon
   id: ChemicalBarrelEthanol
-  name: chemical barrel (ethanol)
+  suffix: Ethanol
   components:
   - type: Label
     currentLabel: reagent-name-ethanol
@@ -495,12 +497,12 @@
       tank:
         reagents:
           - ReagentId: Ethanol
-            Quantity: 500
+            Quantity: 1000
 
 - type: entity
   parent: ChemicalBarrelCarbon
   id: ChemicalBarrelSugar
-  name: chemical barrel (sugar)
+  suffix: Sugar
   components:
   - type: Label
     currentLabel: reagent-name-sugar
@@ -513,12 +515,12 @@
       tank:
         reagents:
           - ReagentId: Sugar
-            Quantity: 500
+            Quantity: 1000
 
 - type: entity
   parent: ChemicalBarrelCarbon
   id: ChemicalBarrelNitrogen
-  name: chemical barrel (nitrogen)
+  suffix: Nitrogen
   components:
   - type: Label
     currentLabel: reagent-name-nitrogen
@@ -531,12 +533,12 @@
       tank:
         reagents:
           - ReagentId: Nitrogen
-            Quantity: 500
+            Quantity: 1000
 
 - type: entity
   parent: ChemicalBarrelCarbon
   id: ChemicalBarrelOxygen
-  name: chemical barrel (oxygen)
+  suffix: Oxygen
   components:
   - type: Label
     currentLabel: reagent-name-oxygen
@@ -549,4 +551,4 @@
       tank:
         reagents:
           - ReagentId: Oxygen
-            Quantity: 500
+            Quantity: 1000
