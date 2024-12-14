@@ -187,24 +187,22 @@ entities:
             color: '#D381C9FF'
             id: BrickTileWhiteCornerNe
           decals:
-            77: 3,-13
+            1099: 3,-13
         - node:
-            cleanable: True
             color: '#D381C9FF'
             id: BrickTileWhiteCornerNw
           decals:
-            1035: 2,-13
+            1098: 2,-13
         - node:
-            cleanable: True
             color: '#D381C9FF'
             id: BrickTileWhiteCornerSe
           decals:
-            1037: 3,-15
+            1100: 3,-15
         - node:
             color: '#D381C9FF'
             id: BrickTileWhiteCornerSw
           decals:
-            79: 2,-15
+            1101: 2,-15
         - node:
             color: '#D381C9FF'
             id: BrickTileWhiteInnerNe
@@ -230,12 +228,7 @@ entities:
             id: BrickTileWhiteLineE
           decals:
             113: 10,-18
-        - node:
-            cleanable: True
-            color: '#D381C9FF'
-            id: BrickTileWhiteLineE
-          decals:
-            1036: 3,-14
+            1102: 3,-14
         - node:
             color: '#D381C9FF'
             id: BrickTileWhiteLineN
@@ -252,8 +245,8 @@ entities:
             color: '#D381C9FF'
             id: BrickTileWhiteLineW
           decals:
-            81: 2,-14
             118: 16,-18
+            1103: 2,-14
         - node:
             color: '#FFFFFFFF'
             id: BushAThree
@@ -517,10 +510,11 @@ entities:
             1017: 6,-9
             1018: 7,-9
             1019: 8,-9
-            1038: 2,-13
-            1039: 3,-15
             1057: 15,-18
             1074: -15,-3
+            1104: 2,-13
+            1105: 2,-14
+            1106: 3,-14
         - node:
             cleanable: True
             color: '#FFFFFFFF'
@@ -2089,7 +2083,7 @@ entities:
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: BecomesStation
-      id: metastable2
+      id: Metastable
 - proto: AirAlarm
   entities:
   - uid: 274
@@ -7414,6 +7408,11 @@ entities:
       rot: 3.141592653589793 rad
       pos: -0.4323871,0.6781124
       parent: 1
+  - uid: 1789
+    components:
+    - type: Transform
+      pos: -8.447298,6.5929465
+      parent: 1
   - uid: 2185
     components:
     - type: Transform
@@ -7863,11 +7862,11 @@ entities:
       parent: 1
 - proto: CrescentMothershipComputer
   entities:
-  - uid: 1671
+  - uid: 2818
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -10.5,5.5
+      rot: 1.5707963267948966 rad
+      pos: -9.5,6.5
       parent: 1
 - proto: CrewMonitoringServer
   entities:
@@ -10042,14 +10041,6 @@ entities:
     - type: Transform
       pos: 7.5,11.5
       parent: 1
-  - uid: 1789
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 11.5,6.5
-      parent: 1
-    - type: AtmosPipeColor
-      color: '#0055CCFF'
   - uid: 1790
     components:
     - type: Transform
@@ -11482,6 +11473,14 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#990000FF'
+  - uid: 2819
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 10.5,6.5
+      parent: 1
+    - type: AtmosPipeColor
+      color: '#0055CCFF'
 - proto: GasPipeTJunction
   entities:
   - uid: 1124
@@ -11489,6 +11488,14 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -7.5,-0.5
+      parent: 1
+    - type: AtmosPipeColor
+      color: '#0055CCFF'
+  - uid: 1444
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 11.5,6.5
       parent: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
@@ -13725,6 +13732,11 @@ entities:
       parent: 1
 - proto: PottedPlantRandom
   entities:
+  - uid: 1190
+    components:
+    - type: Transform
+      pos: -10.5,5.5
+      parent: 1
   - uid: 2662
     components:
     - type: Transform
@@ -13755,11 +13767,6 @@ entities:
     - type: Transform
       pos: -2.5,-2.5
       parent: 1
-  - uid: 2739
-    components:
-    - type: Transform
-      pos: -11.5,5.5
-      parent: 1
   - uid: 2774
     components:
     - type: Transform
@@ -13767,16 +13774,22 @@ entities:
       parent: 1
 - proto: PowerCellRecharger
   entities:
-  - uid: 1190
+  - uid: 1671
     components:
     - type: Transform
-      pos: -7.5,5.5
+      rot: 1.5707963267948966 rad
+      pos: 1.5,-13.5
       parent: 1
-  - uid: 1444
+  - uid: 2739
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 1.5,-8.5
+      rot: 1.5707963267948966 rad
+      pos: -7.5,-11.5
+      parent: 1
+  - uid: 2817
+    components:
+    - type: Transform
+      pos: -8.5,5.5
       parent: 1
 - proto: Poweredlight
   entities:
@@ -15775,10 +15788,6 @@ entities:
         - Pressed: DoorBolt
         2268:
         - Pressed: DoorBolt
-        2385:
-        - Pressed: Close
-        2386:
-        - Pressed: Close
         2266:
         - Pressed: DoorBolt
         2263:
@@ -16614,6 +16623,13 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
+- proto: SignArmory
+  entities:
+  - uid: 2814
+    components:
+    - type: Transform
+      pos: -0.5,14.5
+      parent: 1
 - proto: SignAtmos
   entities:
   - uid: 1568
@@ -16928,6 +16944,13 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 17.5,3.5
+      parent: 1
+- proto: SignXenobio
+  entities:
+  - uid: 2815
+    components:
+    - type: Transform
+      pos: 6.5,-16.5
       parent: 1
 - proto: SinkStemlessWater
   entities:
@@ -17329,6 +17352,11 @@ entities:
     components:
     - type: Transform
       pos: 1.5,-8.5
+      parent: 1
+  - uid: 2816
+    components:
+    - type: Transform
+      pos: -8.5,5.5
       parent: 1
 - proto: TableBrass
   entities:
