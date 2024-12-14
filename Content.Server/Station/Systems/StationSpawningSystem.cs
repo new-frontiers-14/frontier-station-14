@@ -133,6 +133,7 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
             {
                 loadout = new RoleLoadout(jobLoadout);
                 loadout.SetDefault(profile, _actors.GetSession(entity), _prototypeManager);
+                loadout.EnsureValid(profile!, session, _dependencyCollection); // Frontier - profile must not be null, but if it was, TryGetValue above should fail
             }
         }
 
@@ -182,8 +183,8 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
 
         if (loadout != null)
         {
+            /// Frontier: overwriting EquipRoleLoadout
             //EquipRoleLoadout(entity.Value, loadout, roleProto!);
-            // Frontier: overwriting EquipRoleLoadout
             var initialBankBalance = profile!.BankBalance; //Frontier
             var bankBalance = profile!.BankBalance; //Frontier
             bool hasBalance = false; // Frontier
@@ -254,7 +255,6 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
                             break;
                     }
                 }
-                // End Frontier
             }
 
             // Frontier: do not re-equip roleLoadout, make sure we equip job startingGear,
@@ -268,7 +268,7 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
             {
                 _bank.TryBankWithdraw(session!, prefs!, profile!, initialBankBalance - bankBalance, out var newBalance);
             }
-            // End Frontier
+            /// End Frontier: overwriting EquipRoleLoadout
         }
 
         var gearEquippedEv = new StartingGearEquippedEvent(entity.Value);

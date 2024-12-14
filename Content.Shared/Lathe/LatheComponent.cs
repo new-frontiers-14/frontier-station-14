@@ -115,6 +115,14 @@ namespace Content.Shared.Lathe
         [DataField]
         public float PartRatingMaterialUseMultiplier = DefaultPartRatingMaterialUseMultiplier;
         // End Frontier
+
+        // Frontier: restored for machine part upgrades
+        /// <summary>
+        /// If not null, finite and non-negative, modifies values on spawned items
+        /// </summary>
+        [DataField]
+        public float? ProductValueModifier = 0.3f;
+        // End Frontier
         #endregion
     }
 
