@@ -10,9 +10,9 @@
           color: "#FFFFFF"
   sprites:
   - sprite: _NF/Mobs/Customization/underwear.rsi
-    state: bra_even
+    state: bra
   - sprite: _NF/Mobs/Customization/underwear.rsi
-    state: bra_odd
+    state: bra_stripes
     
 - type: marking
   id: Panties
@@ -26,9 +26,9 @@
           color: "#FFFFFF"
   sprites:
   - sprite: _NF/Mobs/Customization/underwear.rsi
-    state: panties_even
+    state: panties
   - sprite: _NF/Mobs/Customization/underwear.rsi
-    state: panties_odd
+    state: panties_stripes
   
 - type: marking
   id: Shorts
@@ -57,3 +57,65 @@
   sprites:
   - sprite: _NF/Mobs/Customization/underwear.rsi
     state: binder
+
+- type: marking
+  id: Briefs
+  bodyPart: LLeg, RLeg
+  markingCategory: Overlay
+  speciesRestriction: [Dwarf, Human, Arachnid, Felinid, Oni, Vulpkanin, Harpy, Rodentia, Goblin, Reptilian, Moth, SlimePerson, Vox]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+          color: "#FFFFFF"
+  sprites:
+  - sprite: _NF/Mobs/Customization/underwear.rsi
+    state: briefs
+  - sprite: _NF/Mobs/Customization/underwear.rsi
+    state: briefs_stripes
+
+- type: marking
+  id: SumoBelt
+  bodyPart: LLeg, RLeg
+  markingCategory: Overlay
+  speciesRestriction: [Dwarf, Human, Arachnid, Felinid, Oni, Vulpkanin, Harpy, Rodentia, Goblin, Reptilian, Moth, SlimePerson, Vox]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+          color: "#FFFFFF"
+  sprites:
+  - sprite: _NF/Mobs/Customization/underwear.rsi
+    state: sumo_belt
+    
+- type: marking
+  id: LSock
+  bodyPart: LFoot
+  markingCategory: Overlay
+  speciesRestriction: [Dwarf, Human, Arachnid, Felinid, Oni, Vulpkanin, Rodentia, Goblin, Reptilian, Moth, SlimePerson]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+          color: "#FFFFFF"
+  sprites:
+  - sprite: _NF/Mobs/Customization/underwear.rsi
+    state: l_sock
+  - sprite: _NF/Mobs/Customization/underwear.rsi
+    state: l_sock_stripes
+
+- type: marking
+  id: RSock
+  bodyPart: RFoot
+  markingCategory: Overlay
+  speciesRestriction: [Dwarf, Human, Arachnid, Felinid, Oni, Vulpkanin, Rodentia, Goblin, Reptilian, Moth, SlimePerson]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+          color: "#FFFFFF"
+  sprites:
+  - sprite: _NF/Mobs/Customization/underwear.rsi
+    state: r_sock
+  - sprite: _NF/Mobs/Customization/underwear.rsi
+    state: r_sock_stripes
