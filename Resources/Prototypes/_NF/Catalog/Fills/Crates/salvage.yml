@@ -6,14 +6,6 @@
   components:
   - type: StorageFill
     contents:
-    - id: OxygenTankFilled
-      prob: 0.1
-      orGroup: Gas
-    - id: NitrogenTankFilled
-      prob: 0.1
-      orGroup: Gas
-    - prob: 2.0 # Empty
-      orGroup: Gas
    # - id: ResearchDisk
     #  prob: 0.1
     #  orGroup: RD
@@ -39,8 +31,6 @@
       prob: 0.1
     - id: SheetUranium
       prob: 0.1
-    - id: SheetBrass
-      prob: 0.1
     - id: SheetPlasteel
       prob: 0.1
     - id: MaterialWoodPlank
@@ -53,6 +43,14 @@
       prob: 0.01
     - id: SheetPaper
       prob: 0.01
+    - id: SheetBrass
+      prob: 0.01
+    - id: MaterialBananium
+      prob: 0.0001
+    - id: MaterialDiamond
+      prob: 0.00001
+    - id: MaterialBluespace
+      prob: 0.000001
       #  - Service
     - id: CrayonBox
       prob: 0.001
@@ -302,7 +300,7 @@
     - id: ClothingHeadHatCatEars
       prob: 0.00001
       orGroup: DripLoot
-    - prob: 40 # Empty
+    - prob: 50 # Empty
       orGroup: DripLoot
 
 - type: entity
