@@ -226,17 +226,13 @@
       - !type:PlaySoundBehavior
         sound:
           collection: MetalGlassBreak
+      - !type:EmptyAllContainersBehaviour
       - !type:ExplodeBehavior
       - !type:SpawnEntitiesBehavior # in future should also emit a cloud of hot gas
         spawn:
           VehicleJanicartDestroyed:
             min: 1
             max: 1
-    - trigger:
-        !type:DamageTrigger
-        damage: 200
-      behaviors:
-      - !type:EmptyAllContainersBehaviour
   - type: ItemSlots
     slots:
       mop_slot:
@@ -269,6 +265,7 @@
         whitelist:
           tags:
             - TrashBag
+        priority: 3 # Higher than drinking priority
   - type: ItemMapper
     mapLayers:
       storage:
