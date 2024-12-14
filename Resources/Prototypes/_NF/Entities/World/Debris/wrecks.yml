@@ -3,171 +3,143 @@
   parent: NFBaseDebris
   abstract: true
   components:
-    - type: MapGrid
-    - type: BlobFloorPlanBuilder
-      floorTileset:
-        - Plating
-        - Plating
-        - Plating
-        - FloorSteel
-        - Lattice
-      blobDrawProb: 0.5
-    - type: SimpleFloorPlanPopulator
-      entries:
-        Plating: &plating
-          - prob: 3.5 # Intentional blank.
-          - id: SalvageMaterialCrateSpawner
-            prob: 0.7
-          - id: RandomArtifactSpawner20
-            prob: 0.3
-          - id: SalvageCanisterSpawner
-            prob: 0.3
-          - id: SalvageTankSpawner
-            prob: 0.15
-          - id: SalvageLockerSpawner
-            prob: 0.15
-          - id: SalvageSuitStorageSpawner
-            prob: 0.05
-          - id: PottedPlantRandomPlastic
-            prob: 0.1
-          - id: SalvageGeneratorSpawner
-            prob: 0.1
-          - id: SalvageMobSpawner
-            prob: 0.3
-          - id: SpawnMobBearSalvage
-            prob: 0.02
-          - id: SpawnMobSpiderSalvage
-            prob: 0.02
-          - id: SpawnMobKangarooSalvage
-            prob: 0.02
-          - id: SpawnMobSmallPurpleSnake
-            prob: 0.03
-          - id: SpawnMobPurpleSnake
-            prob: 0.02
-          - id: TableFrame
-            prob: 0.2
-          - id: MedicalBed
-            prob: 0.025
-          - id: Bed
-            prob: 0.05
-          - id: Bookshelf
-            prob: 0.025
-          - id: Dresser
-            prob: 0.025
-          - id: RollerBedSpawnFolded
-            prob: 0.02
-          - id: RollerBed
-            prob: 0.02
-          - id: CheapRollerBed
-            prob: 0.02
-          - id: EmergencyRollerBed
-            prob: 0.02
-          - id: RandomBox
-            prob: 0.2
-          - id: SalvageHandheldFlagSpawner
-            prob: 0.02
-          - id: Girder
-            prob: 1.7
-          - id: WallSolid
-            prob: 1.5
-          - id: Grille
-            prob: 0.4
-          - id: WindowDirectional
-            prob: 0.05
-          - id: WindowReinforcedDirectional
-            prob: 0.1
-          - id: PlasmaWindowDirectional
-            prob: 0.005
-          - id: PlasmaWindow
-            prob: 0.005
-          - id: ReinforcedWindow
-            prob: 0.1
-          - id: Window
-            prob: 0.05
-          - id: MedicalPodFilled # Medical bounties
-            prob: 0.05
-        Lattice: &lattice
-          - prob: 2
-          - id: Grille
-            prob: 0.3
-          - id: SalvageMaterialCrateSpawner
-            prob: 0.3
-          - id: SalvageCanisterSpawner
-            prob: 0.2
-        FloorSteel: &floor
-          - prob: 3 # Intentional blank.
-          - id: CrateFilledSpawner
-            prob: 0.2
-          - id: SalvagePartsSpawnerLow
-            prob: 0.4
-          - id: RandomAmmoBox
-            prob: 0.2
-          - id: ChairFolding
-            prob: 0.05
-          - id: ChairWood
-            prob: 0.05
-          - id: ComfyChair
-            prob: 0.05
-          - id: ChairOfficeDark
-            prob: 0.05
-          - id: ChairOfficeLight
-            prob: 0.05
-          - id: ChairPilotSeat
-            prob: 0.05
-          - id: Stool
-            prob: 0.05
-          - id: RandomBook
-            prob: 0.2
-          - id: RandomBox
-            prob: 0.2
-          - id: RandomItem
-            prob: 0.6
-          - id: SchoolgirlUniformSpawner
-            prob: 0.1
-          - id: SalvageSeedSpawnerLow
-            prob: 0.2
-          - id: SalvageCanisterSpawner
-            prob: 0.2
-          - id: SalvageMobSpawner
-            prob: 0.3
-          - id: SpawnMobBearSalvage
-            prob: 0.02
-          - id: SpawnMobSpiderSalvage
-            prob: 0.02
-          - id: SpawnMobKangarooSalvage
-            prob: 0.02
-          - id: SpawnMobSmallPurpleSnake
-            prob: 0.03
-          - id: SpawnMobPurpleSnake
-            prob: 0.02
-          - id: Gyroscope
-            prob: 0.0025
-          - id: Thruster
-            prob: 0.005
-    - type: IFF
-      flags: HideLabel
-      color: "#88b0d1"
+  - type: MapGrid
+  - type: BlobFloorPlanBuilder
+    floorTileset:
+      - Plating
+      - Plating
+      - Plating
+      - FloorSteel
+      - Lattice
+    blobDrawProb: 0.5
+  - type: SimpleFloorPlanPopulator
+    entries:
+      FloorSteel: &floor
+        - prob: 1 # Intentional blank.
+        # Walls
+        - id: Girder
+          prob: 0.3
+        - id: WallSolid
+          prob: 0.3
+        - id: WallReinforced
+          prob: 0.2
+        - id: AirlockMaint
+          prob: 0.01
+        # Floor loot
+        - id: SalvageSpawnerScrapCommon
+          prob: 3.5
+        - id: SalvageSpawnerTreasure
+          prob: 0.3
+        - id: SalvageSpawnerTreasureValuable
+          prob: 0.05
+        - id: SalvageSpawnerEquipment
+          prob: 0.05
+        - id: SalvageSpawnerEquipmentValuable
+          prob: 0.03
+        # Machine upgrades
+        - id: SalvagePartsT2Spawner
+          prob: 0.01
+        - id: SalvagePartsT3Spawner
+          prob: 0.005
+        - id: SalvagePartsT4Spawner
+          prob: 0.002
+        # Big loot
+        - id: NFSalvageMaterialCrateSpawner
+          prob: 0.9
+        - id: SalvageCanisterSpawner
+          prob: 0.2
+        - id: SalvageLockerSpawner
+          prob: 0.2
+        - id: SalvageTankSpawner
+          prob: 0.15
+        - id: SalvageGeneratorSpawner
+          prob: 0.1
+        - id: SalvageFurnitureSpawner
+          prob: 0.1
+        - id: SalvageSuitStorageSpawner
+          prob: 0.1
+        - id: RandomArtifactSpawner
+          prob: 0.03
+        # Medical
+        - id: MedicalPodFilled # Medical bounties
+          prob: 0.03
+        # Mobs
+        - id: NFSalvageMobSpawner
+          prob: 0.1
+        # Room
+        - id: NFWreckRoomMarker
+          prob: 0.01
+      Plating: *floor
+      Lattice:
+        - prob: 1 # Intentional blank.
+        # Walls
+        - id: Grille
+          prob: 0.75
+        - id: GrilleBroken
+          prob: 0.25
+  - type: IFF
+    flags: HideLabel
+    color: "#88b0d1"
 
 - type: entity
   id: NFBaseScrapDebrisBrass
   parent: NFBaseScrapDebris
   abstract: true
   components:
-    - type: BlobFloorPlanBuilder
-      floorTileset:
-        - PlatingBrass
-        - PlatingBrass
-        - PlatingBrass
-        - FloorBrassFilled
-        - FloorBrassReebe
-      blobDrawProb: 0.5
-    - type: SimpleFloorPlanPopulator
-      entries:
-        PlatingBrass: *plating
-        FloorBrassReebe: *lattice
-        FloorBrassFilled: *floor
-    - type: IFF
-      color: "#E1C16E"
+  - type: BlobFloorPlanBuilder
+    floorTileset:
+      - PlatingBrass
+      - PlatingBrass
+      - PlatingBrass
+      - FloorBrassFilled
+      - FloorBrassReebe
+    blobDrawProb: 0.5
+  - type: SimpleFloorPlanPopulator
+    entries:
+      FloorBrassFilled: &floorBrass
+        - prob: 3 # Intentional blank.
+        # Walls
+        - id: ClockworkGirder
+          prob: 0.3
+        - id: WallClock
+          prob: 0.3
+        - id: ClockworkWindow
+          prob: 0.2
+        - id: PinionAirlock
+          prob: 0.01
+        - id: WindoorClockwork
+          prob: 0.005
+        # Floor loot
+        - id: SalvageSpawnerScrapBrass75
+          prob: 1
+        # Machine upgrades
+        - id: SalvagePartsT2Spawner
+          prob: 0.1
+        - id: SalvagePartsT3Spawner
+          prob: 0.05
+        - id: SalvagePartsT4Spawner
+          prob: 0.01
+        # Big loot
+        - id: SalvageBrassFurnitureSpawner
+          prob: 0.03
+        - id: AltarTechnology
+          prob: 0.03
+        # "Medical"
+        - id: RipleyChassis # Build it yourself
+          prob: 0.03
+        # "Mobs"
+        - id: PlushieRatvar # Yes
+          prob: 0.005
+      PlatingBrass: *floorBrass
+      FloorBrassReebe:
+        - prob: 1 # Intentional blank.
+        # Walls
+        - id: ClockworkGrille
+          prob: 0.75
+        - id: ClockworkGrilleBroken
+          prob: 0.25
+  - type: IFF
+    color: "#E1C16E"
 
 - type: entity
   id: NFScrapDebrisSmall
@@ -175,9 +147,9 @@
   name: scrap debris small
   categories: [ HideSpawnMenu ]
   components:
-    - type: BlobFloorPlanBuilder
-      floorPlacements: 16
-      radius: 6
+  - type: BlobFloorPlanBuilder
+    floorPlacements: 52
+    radius: 12
 
 - type: entity
   id: NFScrapDebrisMedium
@@ -185,9 +157,9 @@
   name: scrap debris medium
   categories: [ HideSpawnMenu ]
   components:
-    - type: BlobFloorPlanBuilder
-      floorPlacements: 24
-      radius: 8
+  - type: BlobFloorPlanBuilder
+    floorPlacements: 72
+    radius: 14
 
 - type: entity
   id: NFScrapDebrisLarge
@@ -195,9 +167,9 @@
   name: scrap debris large
   categories: [ HideSpawnMenu ]
   components:
-    - type: BlobFloorPlanBuilder
-      floorPlacements: 36
-      radius: 10
+  - type: BlobFloorPlanBuilder
+    floorPlacements: 96
+    radius: 16
 
 - type: entity
   id: NFScrapDebrisExtraLarge
@@ -205,9 +177,9 @@
   name: scrap debris large extra large
   categories: [ HideSpawnMenu ]
   components:
-    - type: BlobFloorPlanBuilder
-      floorPlacements: 52
-      radius: 12
+  - type: BlobFloorPlanBuilder
+    floorPlacements: 124
+    radius: 18
 
 - type: entity
   id: NFScrapDebrisHuge
@@ -215,9 +187,9 @@
   name: scrap debris huge
   categories: [ HideSpawnMenu ]
   components:
-    - type: BlobFloorPlanBuilder
-      floorPlacements: 72
-      radius: 14
+  - type: BlobFloorPlanBuilder
+    floorPlacements: 156
+    radius: 20
 
 - type: entity
   id: NFScrapDebrisExtraHuge
@@ -225,9 +197,9 @@
   name: scrap debris extra huge
   categories: [ HideSpawnMenu ]
   components:
-    - type: BlobFloorPlanBuilder
-      floorPlacements: 96
-      radius: 16
+  - type: BlobFloorPlanBuilder
+    floorPlacements: 192
+    radius: 22
 
 - type: entity
   id: NFScrapDebrisEnormous
@@ -235,9 +207,9 @@
   name: scrap debris enormous
   categories: [ HideSpawnMenu ]
   components:
-    - type: BlobFloorPlanBuilder
-      floorPlacements: 124
-      radius: 18
+  - type: BlobFloorPlanBuilder
+    floorPlacements: 232
+    radius: 24
 
 - type: entity
   id: NFScrapDebrisBrassLarge

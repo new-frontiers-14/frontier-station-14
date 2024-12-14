@@ -5,6 +5,7 @@
   name: Salvage Material Crate Spawner
   id: SalvageMaterialCrateSpawner
   parent: MarkerBase
+  categories: [ HideSpawnMenu ] # Frontier: NFSalvageMaterialCrateSpawner
   components:
     - type: Sprite
       layers:
@@ -13,7 +14,7 @@
           state: icon
     - type: RandomSpawner
       rarePrototypes:
-#        - SalvageHumanCorpse # Frontier
+        - SalvageHumanCorpse
         - CrateMaterialPlasteel
         - CrateMaterialWood
         - CrateMaterialPlastic
@@ -23,7 +24,7 @@
         - CrateServiceJanitorialSupplies
         - CrateHydroponicsSeedsMedicinal
         - CrateEmergencyInternals
-#        - CrateFoodMRE # Frontier
+        - CrateFoodMRE
         - CrateMaterialTextiles
         - CrateMedicalSupplies
         - CrateEngineeringCableBulk
