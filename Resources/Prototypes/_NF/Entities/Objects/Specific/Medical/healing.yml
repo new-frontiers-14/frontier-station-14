@@ -15,3 +15,36 @@
   - type: Stack
     lingering: true
     count: 10
+
+- type: entity
+  parent: PillCanister
+  id: NFPillCanisterMannitol
+  suffix: Mannitol 10u, 10, Clarpy
+  description: Take two pills daily.
+  components:
+  - type: Label
+    currentLabel: medicine-label-mannitol-clarpy
+  - type: StorageFill
+    contents:
+    - id: NFPillMannitol
+      amount: 10
+
+- type: entity
+  name: pill
+  suffix: Mannitol 10u
+  parent: Pill
+  id: NFPillMannitol
+  components:
+  - type: Pill
+    pillType: 13
+  - type: Sprite
+    state: pill14
+  - type: Label
+    currentLabel: mannitol 10u
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Mannitol
+          Quantity: 10
