@@ -15,7 +15,7 @@ ghost-role-information-clarpy-name = Clarpy
 ghost-role-information-clarpy-description = Avast ye mail! wanted by Nanotrasen for crimes against mice.
 ghost-role-information-clarpy-rules = You are a [color=red][bold]Team Antagonist[/bold][/color] with all other pirates.
 
-ghost-role-information-cult-cat-name = Cult Cat
+ghost-role-information-cult-cat-name = Blood Cult Cat
 ghost-role-information-cult-cat-description = Founded the Blood Cult out of boredoom.
 ghost-role-information-cult-cat-rules = You are a [color=red][bold]Free Agent[/bold][/color] and free to choose your course of actions.
                                         Please note that [color=yellow]all server rules still apply.[/color] Additionally:

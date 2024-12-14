@@ -224,9 +224,9 @@
       - Cat
 
 - type: entity
-  name: cult cat
+  name: blood cult cat
   parent: [NFMobPet, MobCatGhost]
-  id: MobCatCult
+  id: MobCatBloodCult
   description: Founded the Blood Cult out of boredoom.
   components:
   - type: Sprite
@@ -253,21 +253,20 @@
     name: ghost-role-information-cult-cat-name
     description: ghost-role-information-cult-cat-description
     rules: ghost-role-information-cult-cat-rules
-    prototype: CatCult
-  - type: Loadout
-    prototypes: [ MobCatCultGear ]
+    prototype: CatBloodCult
   - type: RandomMetadata
     nameSegments: [ names_cat_cult ]
   - type: AutoImplant
     implants:
     - MedicalTrackingImplant
-    - LightImplant
+    - RedLightImplant
+    - DissonantWhispersImplant
   - type: IntrinsicRadioTransmitter
     channels:
-    - Freelance
+    - Science
   - type: ActiveRadio
     channels:
-    - Freelance
+    - Science
   - type: NpcFactionMember
     factions:
       - Cat
@@ -277,6 +276,43 @@
     addComponentsOnDeath: []
     removeComponentsOnDeath: []
   - type: CargoSellBlacklist
+  - type: ActionGun
+    action: ActionEldritchPush
+    gunProto: EldritchPushGun
+
+- type: entity
+  id: EldritchPushGun
+  name: eldritch hand gun
+  description: Shoots eldritch hand.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 180
+    rechargeSound:
+      path: /Audio/Magic/fireball.ogg
+  - type: BasicEntityAmmoProvider
+    proto: BulletEldritchHand
+    capacity: 1
+    count: 1
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Effects/teleport_arrival.ogg
+    soundEmpty: null
+    projectileSpeed: 3
+
+- type: entity
+  id: ActionEldritchPush
+  categories: [ HideSpawnMenu ]
+  name: "[color=yellow]Force Push[/color]"
+  description: "Summon forth an eldritch hand. [color=yellow]3 minutes cooldown.[/color]"
+  components:
+  - type: WorldTargetAction
+    icon: { sprite : _NF/Effects/bloodcultprojectiles.rsi, state: hand }
+    event: !type:ActionGunShootEvent
+    priority: 2
+    checkCanAccess: false
+    range: 0
+    itemIconStyle: BigAction
 
 # Adopted from space-wizards #26265 (Thank you, PolterTzi)
 - type: entity
