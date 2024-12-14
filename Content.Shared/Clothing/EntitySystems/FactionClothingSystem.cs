@@ -53,7 +53,7 @@ public sealed class FactionClothingSystem : EntitySystem
 
     private void OnUnequipped(Entity<FactionClothingComponent> ent, ref GotUnequippedEvent args)
     {
-        // Frontier: entity
+        // Reset the component, should be false when unworn.
         if (ent.Comp.AlreadyMember)
         {
             ent.Comp.AlreadyMember = false;
