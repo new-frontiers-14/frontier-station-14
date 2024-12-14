@@ -229,6 +229,14 @@
   id: MobCatBloodCult
   description: Founded the Blood Cult out of boredoom.
   components:
+  - type: Body
+    prototype: Bloodsucker
+    requiredLegs: 1
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 1
+        Bloodloss: 1
   - type: Sprite
     drawdepth: Mobs
     sprite: _NF/Mobs/Pets/cat.rsi
@@ -313,6 +321,7 @@
     checkCanAccess: false
     range: 0
     itemIconStyle: BigAction
+    useDelay: 180
 
 # Adopted from space-wizards #26265 (Thank you, PolterTzi)
 - type: entity
