@@ -223,6 +223,61 @@
     factions:
       - Cat
 
+- type: entity
+  name: cult cat
+  parent: [NFMobPet, MobCatGhost]
+  id: MobCatCult
+  description: Founded the Blood Cult out of boredoom.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _NF/Mobs/Pets/cat.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: cultcat
+    - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+      state: cultcat_unshaded
+      shader: unshaded
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: cultcat
+        BaseUnshaded: cultcat_unshaded
+      Critical:
+        Base: cultcat_dead
+        BaseUnshaded: mask_null
+      Dead:
+        Base: cultcat_dead
+        BaseUnshaded: mask_null
+  - type: GhostRole
+    name: ghost-role-information-cult-cat-name
+    description: ghost-role-information-cult-cat-description
+    rules: ghost-role-information-cult-cat-rules
+    prototype: CatCult
+  - type: Loadout
+    prototypes: [ MobCatCultGear ]
+  - type: RandomMetadata
+    nameSegments: [ names_cat_cult ]
+  - type: AutoImplant
+    implants:
+    - MedicalTrackingImplant
+    - LightImplant
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Freelance
+  - type: ActiveRadio
+    channels:
+    - Freelance
+  - type: NpcFactionMember
+    factions:
+      - Cat
+      - BloodCultNF
+  - type: NFSalvageMobRestrictions
+    despawnIfOffLinkedGrid: false
+    addComponentsOnDeath: []
+    removeComponentsOnDeath: []
+  - type: CargoSellBlacklist
+
 # Adopted from space-wizards #26265 (Thank you, PolterTzi)
 - type: entity
   name: Yip Yip
