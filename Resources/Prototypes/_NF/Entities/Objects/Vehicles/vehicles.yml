@@ -303,6 +303,46 @@
       mop_slot: !type:ContainerSlot {}
       bucket_slot: !type:ContainerSlot {}
 
+- type: entity
+  parent: VehicleJanicartNF
+  id: VehicleJanicartNFKey
+  suffix: With key
+  components:
+  - type: ItemSlots
+    slots:
+      mop_slot:
+        name: janitorial-trolley-slot-component-slot-name-mop
+        whitelist:
+          tags:
+            - Mop
+        insertOnInteract: false # or it conflicts with bucket logic
+        priority: 9 # Higher than bucket slot
+      bucket_slot:
+        name: janitorial-trolley-slot-component-slot-name-bucket
+        whitelist:
+          tags:
+            - Bucket
+        insertOnInteract: false # or it also conflicts with bucket logic
+        priority: 4 # Higher than trash bag slot
+      key_slot:
+        name: vehicle-slot-component-slot-name-keys
+        whitelist:
+          requireAll: true
+          tags:
+          - VehicleKey
+          - JanicartKeys
+        startingItem: VehicleKeyJanicart
+        insertSound:
+          path: /Audio/Effects/Vehicle/vehiclestartup.ogg
+          params:
+            volume: -3
+      trashbag_slot:
+        name: janitorial-trolley-slot-component-slot-name-trashbag
+        whitelist:
+          tags:
+            - TrashBag
+        priority: 3 # Higher than drinking priority
+
 # Mail carrier
 - type: entity
   parent: VehicleSkeletonMotorcycleNF
