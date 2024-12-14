@@ -361,3 +361,53 @@
   - type: Tag
     tags:
     - Fruit
+
+- type: entity
+  name: grilled cheese
+  parent: FoodBreadSliceBase
+  id: FoodGrilledCheese
+  description: A classic of sandwhich craft, now if you could just get a bowl of tomate soup.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - cheese
+      - bread
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/Baked/bread.rsi
+    state: cucumbersandwich
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 25
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 9
+        - ReagentId: Vitamin
+          Quantity: 5
+        - ReagentId: Flavorol
+          Quantity: 1
+
+- type: entity
+  name: goat grilled cheese
+  parent: FoodBreadSliceBase
+  id: FoodGrilledCheese
+  description: This is also a classic of sandwhich craft though it seems smoother.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - creamy
+      - bread
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/Baked/bread.rsi
+    state: cucumbersandwich
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 25
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 9
+        - ReagentId: Vitamin
+          Quantity: 5
+        - ReagentId: Flavorol
+          Quantity: 1
