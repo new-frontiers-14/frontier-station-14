@@ -13,6 +13,47 @@
           - ReagentId: SpaceCleaner
             Quantity: 200
 
+- type: entity
+  name: bluespace jug
+  parent: Jug
+  id: JugBluespace
+  description: Uses bluespace technology to contain an impossible amount of liquid.
+  components:
+    - type: SolutionContainerManager
+      solutions:
+        beaker:
+          maxVol: 1000
+    - type: Sprite
+      sprite: _NF/Objects/Specific/Chemistry/jug_bluespace.rsi
+      layers:
+        - state: jug
+        - state: jug-unlit
+          shader: unshaded
+        - state: jug1
+          map: [ "enum.SolutionContainerLayers.Fill" ]
+          visible: false
+    - type: Item
+      sprite: _NF/Objects/Specific/Chemistry/jug_bluespace.rsi
+      inhandVisuals:
+        left:
+        - state: inhand-left
+        - state: inhand-left-unlit
+          shader: unshaded
+        - state: inhand-left-fill-1
+          map: [ "enum.SolutionContainerLayers.Fill" ]
+          visible: false
+        right:
+        - state: inhand-right
+        - state: inhand-right-unlit
+          shader: unshaded
+        - state: inhand-right-fill-1
+          map: [ "enum.SolutionContainerLayers.Fill" ]
+          visible: false
+    - type: StaticPrice
+      price: 30 # Consistent with BaseBeakerMetallic
+    - type: Destructible # Hacky - takes damage, but shouldn't be destructible
+      thresholds: []
+
 # Frontier: an unspillable jug for welding fuel.
 - type: entity
   name: jerry can

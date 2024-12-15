@@ -360,6 +360,7 @@
       - HolofanProjector
       - BluespaceBeaker
       - SyringeBluespace
+      - JugBluespace # Frontier
       - VialBluespace # Frontier
       - Jug
       - WeaponCrusher
@@ -460,6 +461,10 @@
       - MagazineBoxVector45Uranium #Corvax-Frontier
       - MagazineVector45Incendiary #Corvax-Frontier
       - MagazineVector45Uranium #Corvax-Frontier
+      # Begin DeltaV additions
+      - LauncherSyringe
+      - MiniSyringe
+      # End DeltaV additions
 
 - type: entity
   id: ProtolatheHyperConvection
@@ -558,7 +563,7 @@
       - SheetifierMachineCircuitboard
       - ShuttleConsoleCircuitboard
       - RadarConsoleCircuitboard
-      - TechDiskComputerCircuitboard
+      # - TechDiskComputerCircuitboard # Frontier: no tech disks
       - DawInstrumentMachineCircuitboard
       - CloningConsoleComputerCircuitboard
       - StasisBedMachineCircuitboard
@@ -587,7 +592,7 @@
       - ExosuitFabricatorMachineCircuitboard
       - AnomalyVesselCircuitboard
       - AnomalyVesselExperimentalCircuitboard
-      - AnomalySynchronizerCircuitboard
+      # - AnomalySynchronizerCircuitboard # Frontier: doesn't make sense for Frontier gameplay
       - APECircuitboard
       - ArtifactAnalyzerMachineCircuitboard
       - ArtifactCrusherMachineCircuitboard
@@ -1058,14 +1063,19 @@
       - BlankMediPen # Frontier
       - MedicalAppraisalTool # Frontier
     dynamicRecipes:
-      - VialBluespace # Frontier
       - ChemicalPayload
       - CryostasisBeaker
       - BluespaceBeaker
+      - JugBluespace # Frontier
       - SyringeBluespace
       - Jug
       - SyringeCryostasis
+      - VialBluespace # Frontier
       - ClothingOuterHardsuitMedical # Frontier
+      # Begin DeltaV additions
+      - LauncherSyringe
+      - MiniSyringe
+      # End DeltaV additions
   - type: Machine
     board: MedicalTechFabCircuitboard
   - type: StealTarget

@@ -18,6 +18,14 @@ public sealed class AnomalyCoreSystem : EntitySystem
 
     private void OnGetPrice(Entity<AnomalyCoreComponent> core, ref PriceCalculationEvent args)
     {
+        // Frontier: quick path
+        if (core.Comp.EndPrice == core.Comp.StartPrice)
+        {
+            args.Price = core.Comp.EndPrice;
+            return;
+        }
+        // End Frontier
+
         var timeLeft = core.Comp.DecayMoment - _gameTiming.CurTime;
         var lerp = timeLeft.TotalSeconds / core.Comp.TimeToDecay;
         lerp = Math.Clamp(lerp, 0, 1);

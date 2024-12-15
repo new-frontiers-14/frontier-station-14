@@ -1,5 +1,4 @@
 using System.Diagnostics.CodeAnalysis;
-using System.IO;
 using Content.Server.Access.Systems;
 using Content.Server.Forensics;
 using Content.Server.GameTicking;
@@ -11,6 +10,8 @@ using Content.Shared.Roles;
 using Content.Shared.StationRecords;
 using Robust.Shared.Enums;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Random; // Frontier
+using Content.Server._NF.SectorServices; // Frontier
 
 namespace Content.Server.StationRecords.Systems;
 
@@ -39,6 +40,11 @@ public sealed class StationRecordsSystem : SharedStationRecordsSystem
     [Dependency] private readonly StationRecordKeyStorageSystem _keyStorage = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IdCardSystem _idCard = default!;
+    [Dependency] private readonly IRobustRandom _robustRandom = default!; // Frontier
+    [Dependency] private readonly SectorServiceSystem _sectorService = default!; // Frontier
+    [Dependency] private readonly ForensicsSystem _forensics = default!; // Frontier
+
+    static readonly ProtoId<JobPrototype>[] FakeJobIds = [ "Contractor", "Pilot", "Mercenary" ]; // Frontier
 
     public override void Initialize()
     {
@@ -95,6 +101,30 @@ public sealed class StationRecordsSystem : SharedStationRecordsSystem
         TryComp<DnaComponent>(player, out var dnaComponent);
 
         CreateGeneralRecord(station, idUid.Value, profile.Name, profile.Age, profile.Species, profile.Gender, jobId, fingerprintComponent?.Fingerprint, dnaComponent?.DNA, profile, records);
+
+        /// Frontier: generate sector-wide station record
+        if (TryComp<SpecialSectorStationRecordComponent>(player, out var specialRecord) && specialRecord.RecordGeneration == RecordGenerationType.NoRecord)
+            return;
+
+        EntityUid serviceEnt = _sectorService.GetServiceEntity();
+
+        if (TryComp(serviceEnt, out StationRecordsComponent? stationRecords))
+        {
+            //Checks if certain information should be faked, if so, fake it.
+            string playerJob = jobId;
+            string? fingerprint = fingerprintComponent?.Fingerprint;
+            string? dna = dnaComponent?.DNA;
+            if (specialRecord != null
+                && specialRecord.RecordGeneration == RecordGenerationType.FalseRecord)
+            {
+                playerJob = _robustRandom.Pick(FakeJobIds);
+                fingerprint = _forensics.GenerateFingerprint();
+                dna = _forensics.GenerateDNA();
+            }
+
+            CreateGeneralRecord(serviceEnt, idUid.Value, profile.Name, profile.Age, profile.Species, profile.Gender, playerJob, fingerprint, dna, profile, stationRecords);
+        }
+        /// End Frontier
     }
 
 
