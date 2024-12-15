@@ -11,7 +11,4 @@ public sealed partial class FuelGradeAdapterComponent : Component
 
     [DataField]
     public ProtoId<MaterialPrototype> OutputMaterial = "FuelGradePlasma";
-
-    [DataField]
-    public float ConversionRate = 1.0f;
 }
