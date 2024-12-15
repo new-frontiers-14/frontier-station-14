@@ -267,6 +267,7 @@ entities:
             4530: -1,7
             4531: -3,6
             4677: -4,-19
+            4682: -9,-6
         - node:
             cleanable: True
             color: '#FFFFFFFF'
@@ -280,6 +281,7 @@ entities:
             3596: -9,-14
             4532: -1,7
             4533: 1,6
+            4683: -9,-6
         - node:
             cleanable: True
             color: '#FFFFFFFF'
@@ -296,6 +298,7 @@ entities:
             4311: 7,-8
             4534: -3,8
             4535: -1,7
+            4684: -9,-6
         - node:
             cleanable: True
             color: '#FFFFFFFF'
@@ -310,6 +313,7 @@ entities:
             4536: 1,8
             4537: -1,7
             4672: -4,-20
+            4685: -9,-6
         - node:
             cleanable: True
             color: '#FFFFFFFF'
@@ -1582,6 +1586,11 @@ entities:
             4308: 7,-8
             4309: 7,-9
         - node:
+            color: '#FFFFFFFF'
+            id: MiniTileDarkBox
+          decals:
+            4680: -9,-6
+        - node:
             color: '#7915007F'
             id: MiniTileDiagonalCheckerBOverlay
           decals:
@@ -1691,6 +1700,11 @@ entities:
             3057: 3,-12
             3058: 3,-11
             3059: 4,-11
+        - node:
+            color: '#FFFFFFFF'
+            id: OffsetCheckerBOverlay
+          decals:
+            4681: -9,-6
         - node:
             color: '#37789B7F'
             id: OffsetOverlay
@@ -2546,7 +2560,7 @@ entities:
         2275:
         - AirDanger: Close
         2276:
-        - AirWarning: Close
+        - AirDanger: Close
         384:
         - AirDanger: Close
         408:
@@ -3835,18 +3849,6 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 4.5,-19.5
-      parent: 1
-- proto: BedsheetWhite
-  entities:
-  - uid: 557
-    components:
-    - type: Transform
-      pos: 12.5,-11.5
-      parent: 1
-  - uid: 1390
-    components:
-    - type: Transform
-      pos: 12.5,-14.5
       parent: 1
 - proto: BenchBlueComfy
   entities:
@@ -6784,13 +6786,6 @@ entities:
     - type: Transform
       pos: -3.3621745,-13.957428
       parent: 1
-- proto: ClosetL3VirologyFilled
-  entities:
-  - uid: 569
-    components:
-    - type: Transform
-      pos: 8.5,-15.5
-      parent: 1
 - proto: ClosetWallO2N2FilledRandom
   entities:
   - uid: 586
@@ -7217,13 +7212,6 @@ entities:
     components:
     - type: Transform
       pos: 4.5,-9.5
-      parent: 1
-- proto: DiseaseDiagnoser
-  entities:
-  - uid: 558
-    components:
-    - type: Transform
-      pos: 9.5,-15.5
       parent: 1
 - proto: DisposalBend
   entities:
@@ -7748,22 +7736,22 @@ entities:
   - uid: 2270
     components:
     - type: Transform
-      pos: -2.634695,-18.59371
+      pos: -4.717062,-17.331741
       parent: 1
   - uid: 2430
     components:
     - type: Transform
-      pos: -2.4634666,-19.119625
+      pos: -4.326437,-17.300491
       parent: 1
   - uid: 2431
     components:
     - type: Transform
-      pos: -2.6469254,-20.073612
+      pos: -4.310812,-17.737991
       parent: 1
   - uid: 2432
     components:
     - type: Transform
-      pos: -2.5857725,-19.584389
+      pos: -4.748312,-17.722366
       parent: 1
   - uid: 2433
     components:
@@ -8308,6 +8296,20 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -9.5,-7.5
+      parent: 1
+    - type: Fixtures
+      fixtures: {}
+  - uid: 557
+    components:
+    - type: Transform
+      pos: 12.5,-11.5
+      parent: 1
+    - type: Fixtures
+      fixtures: {}
+  - uid: 976
+    components:
+    - type: Transform
+      pos: 12.5,-14.5
       parent: 1
     - type: Fixtures
       fixtures: {}
@@ -12753,46 +12755,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 6.5,-7.5
       parent: 1
-- proto: LockerWallColorGenericBlue
-  entities:
-  - uid: 233
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 7.5,-19.5
-      parent: 1
-  - uid: 1594
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -8.5,-25.5
-      parent: 1
-  - uid: 1722
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 7.5,-25.5
-      parent: 1
-- proto: LockerWallColorGenericGreen
-  entities:
-  - uid: 1604
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -8.5,-26.5
-      parent: 1
-  - uid: 1719
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 7.5,-26.5
-      parent: 1
-  - uid: 1738
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 6.5,-20.5
-      parent: 1
 - proto: LockerWallColorL2RadiationFilled
   entities:
   - uid: 988
@@ -12859,13 +12821,6 @@ entities:
     components:
     - type: Transform
       pos: -12.5,-24.5
-      parent: 1
-- proto: LockerWeldingSuppliesFilled
-  entities:
-  - uid: 2402
-    components:
-    - type: Transform
-      pos: 8.5,-27.5
       parent: 1
 - proto: MachineCentrifuge
   entities:
@@ -12971,10 +12926,20 @@ entities:
       parent: 1
 - proto: MedicalBed
   entities:
+  - uid: 233
+    components:
+    - type: Transform
+      pos: 12.5,-11.5
+      parent: 1
   - uid: 251
     components:
     - type: Transform
       pos: -5.5,-1.5
+      parent: 1
+  - uid: 569
+    components:
+    - type: Transform
+      pos: 12.5,-14.5
       parent: 1
   - uid: 630
     components:
@@ -13000,16 +12965,6 @@ entities:
     components:
     - type: Transform
       pos: -7.5,0.5
-      parent: 1
-  - uid: 1782
-    components:
-    - type: Transform
-      pos: 12.5,-14.5
-      parent: 1
-  - uid: 1991
-    components:
-    - type: Transform
-      pos: 12.5,-11.5
       parent: 1
 - proto: MedicalTechFab
   entities:
@@ -13357,11 +13312,6 @@ entities:
     components:
     - type: Transform
       pos: -8.5,-5.5
-      parent: 1
-  - uid: 1607
-    components:
-    - type: Transform
-      pos: 4.5,-11.5
       parent: 1
 - proto: OxygenCanister
   entities:
@@ -14560,7 +14510,7 @@ entities:
       pos: 11.5,-1.5
       parent: 1
     - type: DeviceLinkSink
-      invokeCounter: 1
+      invokeCounter: 2
   - uid: 2376
     components:
     - type: Transform
@@ -15848,6 +15798,11 @@ entities:
       parent: 1
 - proto: StasisBed
   entities:
+  - uid: 558
+    components:
+    - type: Transform
+      pos: 4.5,-11.5
+      parent: 1
   - uid: 1856
     components:
     - type: Transform
