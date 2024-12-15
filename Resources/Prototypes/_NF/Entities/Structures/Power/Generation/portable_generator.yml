@@ -19,7 +19,7 @@
   components:
   - type: MaterialStorage
     storage:
-      Plasma: 1000
+      FuelGradePlasma: 1000
 
 - type: entity
   parent:
@@ -30,7 +30,7 @@
   components:
   - type: MaterialStorage
     storage:
-      Uranium: 1000
+      FuelGradeUranium: 1000
 
 - type: entity
   parent:
@@ -91,11 +91,9 @@
       fuelEfficiencyConstant: 0.75
       radiationColor: "#00bfff"
     - type: SolidFuelGeneratorAdapter
-      fuelMaterial: Bananium
-      ejectedFuelProtoId: FuelBananium
+      fuelMaterial: FuelGradeBananium
     - type: MaterialStorage
-      materialWhiteList: [Bananium]
-      dropOnDeconstruct: False # Frontier
+      materialWhiteList: [Bananium, FuelGradeBananium]
     - type: PowerMonitoringDevice
       sprite: _NF/Structures/Power/Generation/portable_generator.rsi
       state: portgen1
@@ -109,6 +107,9 @@
     - type: PowerSupplier
       supplyRampRate: 10000
       supplyRampTolerance: 3000
+    - type: FuelGradeAdapter
+      inputMaterial: Bananium
+      outputMaterial: FuelGradeBananium
 
 - type: entity
   parent:
@@ -120,4 +121,4 @@
   components:
     - type: MaterialStorage
       storage:
-        Bananium: 1000
+        FuelGradeBananium: 1000
