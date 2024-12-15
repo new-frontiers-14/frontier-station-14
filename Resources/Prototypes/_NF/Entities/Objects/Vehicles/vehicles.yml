@@ -185,7 +185,7 @@
 
 # Enhanced version of the vanilla Janicart that adds a bucket and mop slot.
 - type: entity
-  id: VehicleJanicartNF
+  id: NFVehicleJanicart
   parent: BaseVehicleRideable
   name: janicart
   description: The janitor's trusty steed.
@@ -304,8 +304,8 @@
       bucket_slot: !type:ContainerSlot {}
 
 - type: entity
-  parent: VehicleJanicartNF
-  id: VehicleJanicartNFKey
+  parent: NFVehicleJanicart
+  id: NFVehicleJanicartKey
   suffix: With key
   components:
   - type: ItemSlots
