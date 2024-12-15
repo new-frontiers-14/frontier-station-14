@@ -590,9 +590,10 @@ public sealed class DeadDropSystem : EntitySystem
                         output = Loc.GetString(messageLoc, ("location", MetaData(sender).EntityName));
                         break;
                     case SmugglingReportMessageType.DeadDropStationWithRandomAlt:
-                        if (sectorDeadDrop is not null)
+                        if (sectorDeadDrop is not null && sectorDeadDrop.DeadDropStationNames.Count >= 2)
                         {
-                            string[] names = [MetaData(sender).EntityName, _random.Pick<string>(sectorDeadDrop.DeadDropStationNames.Values)];
+                            var entName = MetaData(sender).EntityName;
+                            string[] names = [entName, _random.Pick<string>(sectorDeadDrop.DeadDropStationNames.Values.Where(x => x != entName).ToList())];
                             _random.Shuffle(names);
                             output = Loc.GetString(messageLoc, ("location1", names[0]), ("location2", names[1]));
                         }
