@@ -51,7 +51,7 @@
         - MachineLayer
   - type: Climbable
   - type: StaticPrice
-    price: 50
+    price: 500
 
 - type: entity
   parent: StorageTank
@@ -62,7 +62,7 @@
   - type: Sprite
     sprite: _NF/Objects/Storage/barrel.rsi
     layers:
-    - state: base
+    - state: metal_grey
       map: ["enum.StorageVisualLayers.Base"]
   - type: SolutionContainerManager
     solutions:
@@ -102,10 +102,10 @@
     damageContainer: StructuralInorganic
     damageModifierSet: Metallic
   - type: StaticPrice
-    price: 50
+    price: 500
 
 - type: entity
-  id: MetalBarrelGrey
+  id: BaseBarrel
   name: metal barrel
   parent: BaseBarrel
   description: A metal barrel. It can be filled with liquid.
