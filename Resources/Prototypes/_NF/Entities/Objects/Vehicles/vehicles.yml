@@ -235,20 +235,6 @@
             max: 1
   - type: ItemSlots
     slots:
-      mop_slot:
-        name: janitorial-trolley-slot-component-slot-name-mop
-        whitelist:
-          tags:
-            - Mop
-        insertOnInteract: false # or it conflicts with bucket logic
-        priority: 9 # Higher than bucket slot
-      bucket_slot:
-        name: janitorial-trolley-slot-component-slot-name-bucket
-        whitelist:
-          tags:
-            - Bucket
-        insertOnInteract: false # or it also conflicts with bucket logic
-        priority: 4 # Higher than trash bag slot
       key_slot:
         name: vehicle-slot-component-slot-name-keys
         whitelist:
@@ -260,6 +246,64 @@
           path: /Audio/Effects/Vehicle/vehiclestartup.ogg
           params:
             volume: -3
+        priority: 9
+      mop_slot:
+        name: janitorial-trolley-slot-component-slot-name-mop
+        whitelist:
+          tags:
+            - Mop
+        insertOnInteract: false # or it conflicts with bucket logic
+        priority: 9 # Higher than bucket slot
+      plunger_slot:
+        name: janitorial-trolley-slot-component-slot-name-plunger
+        whitelist:
+          tags:
+            - Plunger
+        priority: 8
+      wetfloorsign_slot4:
+        name: janitorial-trolley-slot-component-slot-name-sign
+        whitelist:
+          tags:
+            - WetFloorSign
+        priority: 7
+      wetfloorsign_slot3:
+        name: janitorial-trolley-slot-component-slot-name-sign
+        whitelist:
+          tags:
+            - WetFloorSign
+        priority: 7
+      wetfloorsign_slot2:
+        name: janitorial-trolley-slot-component-slot-name-sign
+        whitelist:
+          tags:
+            - WetFloorSign
+        priority: 7
+      wetfloorsign_slot1:
+        name: janitorial-trolley-slot-component-slot-name-sign
+        whitelist:
+          tags:
+            - WetFloorSign
+        priority: 7
+      lightreplacer_slot:
+        name: janitorial-trolley-slot-component-slot-name-lightreplacer
+        whitelist:
+          components:
+            - LightReplacer
+        priority: 6
+      spraybottle_slot:
+        name: janitorial-trolley-slot-component-slot-name-spray
+        whitelist:
+          tags:
+            - Spray
+        insertOnInteract: false # or it conflicts with bucket logic
+        priority: 5 # Higher than bucket slot
+      bucket_slot:
+        name: janitorial-trolley-slot-component-slot-name-bucket
+        whitelist:
+          tags:
+            - Bucket
+        insertOnInteract: false # or it also conflicts with bucket logic
+        priority: 4 # Higher than trash bag slot
       trashbag_slot:
         name: janitorial-trolley-slot-component-slot-name-trashbag
         whitelist:
@@ -310,20 +354,6 @@
   components:
   - type: ItemSlots
     slots:
-      mop_slot:
-        name: janitorial-trolley-slot-component-slot-name-mop
-        whitelist:
-          tags:
-            - Mop
-        insertOnInteract: false # or it conflicts with bucket logic
-        priority: 9 # Higher than bucket slot
-      bucket_slot:
-        name: janitorial-trolley-slot-component-slot-name-bucket
-        whitelist:
-          tags:
-            - Bucket
-        insertOnInteract: false # or it also conflicts with bucket logic
-        priority: 4 # Higher than trash bag slot
       key_slot:
         name: vehicle-slot-component-slot-name-keys
         whitelist:
@@ -336,6 +366,64 @@
           path: /Audio/Effects/Vehicle/vehiclestartup.ogg
           params:
             volume: -3
+        priority: 9
+      mop_slot:
+        name: janitorial-trolley-slot-component-slot-name-mop
+        whitelist:
+          tags:
+            - Mop
+        insertOnInteract: false # or it conflicts with bucket logic
+        priority: 9 # Higher than bucket slot
+      plunger_slot:
+        name: janitorial-trolley-slot-component-slot-name-plunger
+        whitelist:
+          tags:
+            - Plunger
+        priority: 8
+      wetfloorsign_slot4:
+        name: janitorial-trolley-slot-component-slot-name-sign
+        whitelist:
+          tags:
+            - WetFloorSign
+        priority: 7
+      wetfloorsign_slot3:
+        name: janitorial-trolley-slot-component-slot-name-sign
+        whitelist:
+          tags:
+            - WetFloorSign
+        priority: 7
+      wetfloorsign_slot2:
+        name: janitorial-trolley-slot-component-slot-name-sign
+        whitelist:
+          tags:
+            - WetFloorSign
+        priority: 7
+      wetfloorsign_slot1:
+        name: janitorial-trolley-slot-component-slot-name-sign
+        whitelist:
+          tags:
+            - WetFloorSign
+        priority: 7
+      lightreplacer_slot:
+        name: janitorial-trolley-slot-component-slot-name-lightreplacer
+        whitelist:
+          components:
+            - LightReplacer
+        priority: 6
+      spraybottle_slot:
+        name: janitorial-trolley-slot-component-slot-name-spray
+        whitelist:
+          tags:
+            - Spray
+        insertOnInteract: false # or it conflicts with bucket logic
+        priority: 5 # Higher than bucket slot
+      bucket_slot:
+        name: janitorial-trolley-slot-component-slot-name-bucket
+        whitelist:
+          tags:
+            - Bucket
+        insertOnInteract: false # or it also conflicts with bucket logic
+        priority: 4 # Higher than trash bag slot
       trashbag_slot:
         name: janitorial-trolley-slot-component-slot-name-trashbag
         whitelist:
