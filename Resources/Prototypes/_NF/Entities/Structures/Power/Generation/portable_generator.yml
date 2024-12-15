@@ -53,7 +53,7 @@
     Next gen generator for powering stations.
     Runs off bananium and is rated for up to 100 kW.
     Very radioactive without protection.
-  parent: 
+  parent:
   - PortableGeneratorSuperPacman
   - BaseC3Contraband # Why will you have this thing?
   id: PortableGeneratorHyperPacman
@@ -95,6 +95,7 @@
       ejectedFuelProtoId: FuelBananium
     - type: MaterialStorage
       materialWhiteList: [Bananium]
+      dropOnDeconstruct: False # Frontier
     - type: PowerMonitoringDevice
       sprite: _NF/Structures/Power/Generation/portable_generator.rsi
       state: portgen1
