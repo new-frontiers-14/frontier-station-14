@@ -333,23 +333,19 @@
   - type: RandomSpawner
     prototypes:
     - NFCrateSalvageAssortedGoodies
+    - NFCrateSalvageAssortedGoodies
+    - NFCrateSalvageAssortedGoodies
     - NFCrateSalvageAssortedGoodiesPlastic
+    - NFCrateSalvageAssortedGoodiesPlastic
+    - NFCrateSalvageAssortedGoodiesTrashCart
     chance: 0.95
     rarePrototypes:
+    - CrateTradeSecureNormalFilled
+    - CrateTradeSecureHighFilled
     - CrateSalvageEquipment
-    - CrateServiceJanitorialSupplies
-    - CrateEmergencyInternals
-    - CrateServiceSmokeables
     - CrateTrashCartFilled
-    - CrateServiceReplacementLights
-    - CrateServiceBureaucracy
-    - CrateEmergencyFire
-    - CrateEmergencyInflatablewall
-    - CrateHydroponicsTools
-    - CrateHydroponicsSeeds
-    - CrateHydroponicsSeedsMedicinal
-    - CrateHydroponicsSeedsExotic
-    rareChance: 0.1
+    - CrateArtifactContainer
+    rareChance: 0.03
     offset: 0.0
 
 - type: entity
@@ -430,13 +426,9 @@
     - Table
     - Rack
 #    - Dresser # WardrobeMixedFilled
-    - WardrobeMixedFilled
-#    - Bookshelf # BookshelfFilled
+    - NFWardrobeMixedFilled
     - BookshelfFilled
     - Bed
-    - SuitStorageSalv
-    - Floodlight
-    - PottedPlantRandomPlastic
     chance: 0.95
     rarePrototypes:
     - MedicalBed
@@ -447,6 +439,10 @@
     - ComfyChair
     - ChairWood
     - ChairFolding
+    - ComputerBroken
+    - MachineFrameDestroyed
+    - VehicleJanicartDestroyed
+    - PottedPlantRandomPlastic
     rareChance: 0.1
     offset: 0.0
 
@@ -489,6 +485,9 @@
     - SuitStorageAtmos
     - SuitStorageSalv
     chance: 0.95
+    rarePrototypes:
+    - SuitStorageBase
+    rareChance: 0.05
     offset: 0.0
 
 - type: entity
