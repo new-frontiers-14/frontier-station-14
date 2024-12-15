@@ -602,10 +602,15 @@ public sealed class DeadDropSystem : EntitySystem
                                 output = Loc.GetString(messageLoc, ("location1", names[0]), ("location2", names[1]));
                                 alternatesOutput = true;
                             }
+                            else
+                            {
+                                // No valid alternate, just output where the dead drop is
+                                output = Loc.GetString(messageLoc, ("location1", actualStationName));
+                            }
                         }
-                        // No valid alternate, just output where the dead drop is
-                        if (!alternatesOutput)
+                        else
                         {
+                            // No valid alternate, just output where the dead drop is
                             output = Loc.GetString(messageLoc, ("location1", actualStationName));
                         }
                         break;
