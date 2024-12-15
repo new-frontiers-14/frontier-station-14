@@ -590,7 +590,6 @@ public sealed class DeadDropSystem : EntitySystem
                         output = Loc.GetString(messageLoc, ("location", MetaData(sender).EntityName));
                         break;
                     case SmugglingReportMessageType.DeadDropStationWithRandomAlt:
-                        var alternatesOutput = false;
                         var actualStationName = MetaData(sender).EntityName;
                         if (sectorDeadDrop is not null)
                         {
@@ -600,7 +599,6 @@ public sealed class DeadDropSystem : EntitySystem
                                 string[] names = [actualStationName, _random.Pick<string>(otherStationList)];
                                 _random.Shuffle(names);
                                 output = Loc.GetString(messageLoc, ("location1", names[0]), ("location2", names[1]));
-                                alternatesOutput = true;
                             }
                             else
                             {
