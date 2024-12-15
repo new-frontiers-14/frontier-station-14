@@ -66,7 +66,7 @@ public sealed class JobWhitelistsEui : BaseEui
     {
         base.HandleMessage(msg);
 
-        if (!_admin.HasAdminFlag(Player, AdminFlags.Whitelist))
+        if (!_admin.HasAdminFlag(Player, AdminFlags.Ban))
         {
             _sawmill.Warning($"{Player.Name} ({Player.UserId}) tried to change role whitelists for {PlayerName} without whitelists flag");
             return;

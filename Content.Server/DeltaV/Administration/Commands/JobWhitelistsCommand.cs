@@ -9,7 +9,7 @@ namespace Content.Server.DeltaV.Administration.Commands;
 /// Opens the job whitelists panel for editing player whitelists.
 /// To use this ingame it's easiest to first open the player panel, then hit Job Whitelists.
 /// </summary>
-[AdminCommand(AdminFlags.Whitelist)]
+[AdminCommand(AdminFlags.Ban)]
 public sealed class JobWhitelistsCommand : LocalizedCommands
 {
     [Dependency] private readonly EuiManager _eui = default!;

@@ -10,7 +10,7 @@ using Robust.Shared.Network;
 
 namespace Content.Server.Whitelist;
 
-[AdminCommand(AdminFlags.Whitelist)] // DeltaV - Custom permission for whitelist
+[AdminCommand(AdminFlags.Ban)]
 public sealed class AddWhitelistCommand : LocalizedCommands
 {
     [Dependency] private readonly JobWhitelistManager _jobWhitelist = default!; // Frontier

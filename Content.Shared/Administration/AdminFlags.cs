@@ -125,11 +125,6 @@ namespace Content.Shared.Administration
         NameColor = 1 << 21,
 
         /// <summary>
-        ///     DeltaV - The ability to whitelist people. Either this permission or +BAN is required for remove.
-        /// </summary>
-        Whitelist = 1 << 25,
-
-        /// <summary>
         ///     Dangerous host permissions like scsi.
         /// </summary>
         Host = 1u << 31,
