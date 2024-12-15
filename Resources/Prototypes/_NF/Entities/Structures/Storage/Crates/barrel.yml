@@ -38,8 +38,6 @@
     node: woodenbarrel
     containers:
     - entity_storage
-  - type: StaticPrice
-    price: 50
   - type: Fixtures
     fixtures:
       fix1:
@@ -52,6 +50,8 @@
         layer:
         - MachineLayer
   - type: Climbable
+  - type: StaticPrice
+    price: 50
 
 - type: entity
   parent: StorageTank
@@ -85,8 +85,6 @@
     spillDelay: 10
   - type: DumpableSolution
     solution: tank
-  - type: StaticPrice
-    price: 50
   - type: Fixtures
     fixtures:
       fix1:
@@ -103,6 +101,8 @@
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: Metallic
+  - type: StaticPrice
+    price: 50
 
 - type: entity
   id: MetalBarrelGrey
