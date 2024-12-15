@@ -606,7 +606,7 @@ public sealed class DeadDropSystem : EntitySystem
                         // No valid alternate, just output where the dead drop is
                         if (!alternatesOutput)
                         {
-                            output = Loc.GetString(messageLoc, ("location1", actualStationName)); // Looks strange, but still has a proper value.
+                            output = Loc.GetString(messageLoc, ("location1", actualStationName));
                         }
                         break;
                     case SmugglingReportMessageType.PodLocation:
