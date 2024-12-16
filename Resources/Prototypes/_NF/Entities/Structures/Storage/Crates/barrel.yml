@@ -972,3 +972,340 @@
   components:
   - type: Paper
     content: reagent-label-space-cleaner
+
+- type: entity
+  parent: MetalBarrelBlue
+  id: ChemicalBarrelWater
+  suffix: Water
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+          - ReagentId: Water
+            Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelWater
+
+- type: entity
+  id: LabelWater
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-water
+
+- type: entity
+  parent: MetalBarrelYellow
+  id: ChemicalBarrelWhiskey
+  suffix: Whiskey
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+          - ReagentId: Whiskey
+            Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelWhiskey
+
+- type: entity
+  id: LabelWhiskey
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-whiskey
+
+- type: entity
+  parent: MetalBarrelWhite
+  id: ChemicalBarrelVodka
+  suffix: Vodka
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+          - ReagentId: Vodka
+            Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelVodka
+
+- type: entity
+  id: LabelVodka
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-vodka
+
+- type: entity
+  parent: MetalBarrelGreen
+  id: ChemicalBarrelTequila
+  suffix: Tequila
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+          - ReagentId: Tequila
+            Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelTequila
+
+- type: entity
+  id: LabelTequila
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-tequila
+
+- type: entity
+  parent: MetalBarrelRed
+  id: ChemicalBarrelRum
+  suffix: Rum
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+          - ReagentId: Rum
+            Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelRum
+
+- type: entity
+  id: LabelRum
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-rum
+
+- type: entity
+  parent: MetalBarrelBlue
+  id: ChemicalBarrelGin
+  suffix: Gin
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+          - ReagentId: Gin
+            Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelGin
+
+- type: entity
+  id: LabelGin
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-gin
+
+- type: entity
+  parent: MetalBarrelRed
+  id: ChemicalBarrelCoffeeLiqueur
+  suffix: Coffee Liqeueur
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+          - ReagentId: CoffeeLiqueur
+            Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelCoffeeLiqueur
+
+- type: entity
+  id: LabelCoffeeLiqueur
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-coffeeliqueur
+
+- type: entity
+  parent: MetalBarrelGreen
+  id: ChemicalBarrelAbsinthe
+  suffix: Absinthe
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+          - ReagentId: Absinthe
+            Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelAbsinthe
+
+- type: entity
+  id: LabelAbsinthe
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-absinthe
+
+- type: entity
+  parent: MetalBarrelRed
+  id: ChemicalBarrelAle
+  suffix: Ale
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+          - ReagentId: Ale
+            Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelAle
+
+- type: entity
+  id: LabelAle
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-ale
+
+- type: entity
+  parent: MetalBarrelGreen
+  id: ChemicalBarrelVermouth
+  suffix: Vermouth
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+          - ReagentId: Vermouth
+            Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelVermouth
+
+- type: entity
+  id: LabelVermouth
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-vermouth
+
+- type: entity
+  parent: MetalBarrelRed
+  id: ChemicalBarrelWine
+  suffix: Wine
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+          - ReagentId: Wine
+            Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelWine
+
+- type: entity
+  id: LabelWine
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-wine
+
+- type: entity
+  parent: MetalBarrelGrey
+  id: ChemicalBarrelBeer
+  suffix: Beer
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+          - ReagentId: Beer
+            Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelBeer
+
+- type: entity
+  id: LabelBeer
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-beer
+
+- type: entity
+  parent: MetalBarrelBlack
+  id: ChemicalBarrelCognac
+  suffix: Cognac
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+          - ReagentId: Cognac
+            Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelCognac
+
+- type: entity
+  id: LabelCognac
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-cognac
+
+- type: entity
+  parent: MetalBarrelYellow
+  id: ChemicalBarrelMead
+  suffix: Mead
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+          - ReagentId: Mead
+            Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelMead
+
+- type: entity
+  id: LabelMead
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-mead
+

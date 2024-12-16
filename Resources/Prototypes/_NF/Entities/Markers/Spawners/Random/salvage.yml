@@ -350,8 +350,9 @@
 
 - type: entity
   name: salvage tank spawner
-  id: SalvageTankSpawner
+  id: SalvageTankSpawnerHighCapacity
   parent: MarkerBase
+  suffix: High Capacity, 95%
   components:
   - type: Sprite
     layers:
@@ -360,15 +361,9 @@
       state: fueltank
   - type: RandomSpawner
     prototypes:
-    - WaterTankFull
-    - WeldingFuelTankFull
-#    - WaterCooler
-    chance: 0.95
-    rarePrototypes:
     - WeldingFuelTankHighCapacity
     - WaterTankHighCapacity
-    rareChance: 0.05
-    offset: 0.0
+    chance: 0.95
 
 - type: entity
   name: salvage locker spawner
@@ -598,7 +593,7 @@
     offset: 0.0
 
 - type: entity
-  id: NFSalvageBarrelSpawner
+  id: NFSalvageChemicalBarrelSpawner
   parent: MarkerBase
   components:
   - type: Sprite
@@ -608,7 +603,6 @@
       state: icon
   - type: RandomSpawner
     prototypes: # Filled versions
-    - ChemicalBarrelExplosiveFilled
     - ChemicalBarrelCarbon
     - ChemicalBarrelIodine
     - ChemicalBarrelFluorine
@@ -631,6 +625,20 @@
     - ChemicalBarrelSugar
     - ChemicalBarrelNitrogen
     - ChemicalBarrelOxygen
+    chance: 0.95
+    offset: 0.1 # Little offset, it's free-standing
+
+- type: entity
+  id: NFSalvageServiceBarrelSpawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: _NF/Objects/Storage/Barrels/grey.rsi
+      state: icon
+  - type: RandomSpawner
+    prototypes: # Filled versions
     - ChemicalBarrelOil
     - ChemicalBarrelDiethylamine
     - ChemicalBarrelMustard
@@ -641,7 +649,50 @@
     - ChemicalBarrelSpaceLube
     - ChemicalBarrelSpaceCleaner
     chance: 0.95
-    rarePrototypes: # RARE FIND! Empty barrel.
+    offset: 0.1 # Little offset, it's free-standing
+
+- type: entity
+  id: NFSalvageDrinkableBarrelSpawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: _NF/Objects/Storage/Barrels/red.rsi
+      state: icon
+  - type: RandomSpawner
+    prototypes: # Filled versions
+    - ChemicalBarrelWater
+    rarePrototypes:
+    - ChemicalBarrelAbsinthe
+    - ChemicalBarrelAle
+    - ChemicalBarrelBeer
+    - ChemicalBarrelCoffeeLiqueur
+    - ChemicalBarrelCognac
+    - ChemicalBarrelGin
+    - ChemicalBarrelMead
+    - ChemicalBarrelRum
+    - ChemicalBarrelTequila
+    - ChemicalBarrelVermouth
+    - ChemicalBarrelVodka
+    - ChemicalBarrelWhiskey
+    - ChemicalBarrelWine
+    rareChance: 0.5
+    chance: 0.95
+    offset: 0.1 # Little offset, it's free-standing
+
+
+- type: entity
+  id: NFSalvageEmptyBarrelSpawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: _NF/Objects/Storage/Barrels/red.rsi
+      state: icon
+  - type: RandomSpawner
+    prototypes:
     - MetalBarrelGrey
     - MetalBarrelBlue
     - MetalBarrelRed
@@ -650,5 +701,4 @@
     - MetalBarrelWhite
     - MetalBarrelBlack
     - ChemicalBarrelExplosiveEmpty
-    rareChance: 0.2
     offset: 0.1 # Little offset, it's free-standing
