@@ -7,7 +7,7 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototy
 namespace Content.Server.GameTicking.Presets
 {
     /// <summary>
-    /// A round-start setup preset, such as which antagonists to spawn.
+    ///     A round-start setup preset, such as which antagonists to spawn.
     /// </summary>
     [Prototype("gamePreset")]
     public sealed partial class GamePresetPrototype : IPrototype
@@ -37,8 +37,8 @@ namespace Content.Server.GameTicking.Presets
         public IReadOnlyList<string> Rules { get; private set; } = Array.Empty<string>();
 
         /// <summary>
-        /// If specified, the gamemode will only be run with these maps.
-        /// If none are elligible, the global fallback will be used.
+        ///     If specified, the gamemode will only be run with these maps.
+        ///     If none are elligible, the global fallback will be used.
         /// </summary>
         [DataField("supportedMaps", customTypeSerializer: typeof(PrototypeIdSerializer<GameMapPoolPrototype>))]
         public string? MapPool;
