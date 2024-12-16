@@ -65,6 +65,8 @@
     layers:
     - state: metal_grey
       map: ["enum.StorageVisualLayers.Base"]
+    - state: paper
+      map: ["enum.PaperLabelVisuals.Layer"]
   - type: SolutionContainerManager
     solutions:
       tank:
@@ -102,6 +104,29 @@
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: Metallic
+  - type: GenericVisualizer
+    visuals:
+      enum.PaperLabelVisuals.HasLabel:
+        enum.PaperLabelVisuals.Layer:
+          True: { visible: true }
+          False: { visible: false }
+      enum.PaperLabelVisuals.LabelType:
+        enum.PaperLabelVisuals.Layer:
+          Paper: { state: paper }
+          Bounty: { state: paper }
+          CaptainsPaper: { state: paper }
+          Invoice: { state: paper }
+  - type: PaperLabel
+    labelSlot:
+      insertVerbText: Attach Label
+      ejectVerbText: Remove Label
+      whitelist:
+        components:
+        - Paper
+  - type: ItemSlots
+  - type: ContainerContainer
+    containers:
+      paper_label: !type:ContainerSlot
   - type: StaticPrice
     price: 500
 
@@ -184,7 +209,7 @@
   - type: Sprite
     layers:
     - state: metal_grey
-    - state: metal_warning_label
+    - state: paper
   - type: Label
     currentLabel: reagent-name-carbon
   - type: SolutionContainerManager
@@ -204,7 +229,7 @@
   - type: Sprite
     layers:
     - state: metal_red
-    - state: metal_warning_label
+    - state: paper
   - type: SolutionContainerManager
     solutions:
       tank:
@@ -222,7 +247,7 @@
   - type: Sprite
     layers:
     - state: metal_blue
-    - state: metal_warning_label
+    - state: paper
   - type: SolutionContainerManager
     solutions:
       tank:
@@ -240,7 +265,7 @@
   - type: Sprite
     layers:
     - state: metal_green
-    - state: metal_warning_label
+    - state: paper
   - type: SolutionContainerManager
     solutions:
       tank:
@@ -272,7 +297,7 @@
   - type: Sprite
     layers:
     - state: metal_red
-    - state: metal_warning_label
+    - state: paper
   - type: SolutionContainerManager
     solutions:
       tank:
@@ -290,7 +315,7 @@
   - type: Sprite
     layers:
     - state: metal_yellow
-    - state: metal_warning_label
+    - state: paper
   - type: SolutionContainerManager
     solutions:
       tank:
@@ -322,7 +347,7 @@
   - type: Sprite
     layers:
     - state: metal_red
-    - state: metal_warning_label
+    - state: paper
   - type: SolutionContainerManager
     solutions:
       tank:
@@ -368,7 +393,7 @@
   - type: Sprite
     layers:
     - state: metal_yellow
-    - state: metal_warning_label
+    - state: paper
   - type: SolutionContainerManager
     solutions:
       tank:
@@ -386,7 +411,7 @@
   - type: Sprite
     layers:
     - state: metal_green
-    - state: metal_warning_label
+    - state: paper
   - type: SolutionContainerManager
     solutions:
       tank:
@@ -418,7 +443,7 @@
   - type: Sprite
     layers:
     - state: metal_red
-    - state: metal_warning_label
+    - state: paper
   - type: SolutionContainerManager
     solutions:
       tank:
@@ -436,7 +461,7 @@
   - type: Sprite
     layers:
     - state: metal_yellow
-    - state: metal_warning_label
+    - state: paper
   - type: SolutionContainerManager
     solutions:
       tank:
@@ -482,7 +507,7 @@
   - type: Sprite
     layers:
     - state: metal_blue
-    - state: metal_warning_label
+    - state: paper
   - type: SolutionContainerManager
     solutions:
       tank:
@@ -500,7 +525,7 @@
   - type: Sprite
     layers:
     - state: metal_blue
-    - state: metal_warning_label
+    - state: paper
   - type: SolutionContainerManager
     solutions:
       tank:
@@ -518,7 +543,7 @@
   - type: Sprite
     layers:
     - state: metal_red
-    - state: metal_warning_label
+    - state: paper
   - type: SolutionContainerManager
     solutions:
       tank:
@@ -536,7 +561,7 @@
   - type: Sprite
     layers:
     - state: metal_blue
-    - state: metal_warning_label
+    - state: paper
   - type: SolutionContainerManager
     solutions:
       tank:
