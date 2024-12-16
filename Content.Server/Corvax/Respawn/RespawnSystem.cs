@@ -117,7 +117,7 @@ public sealed class RespawnSystem : EntitySystem
         }
     }
 
-    // Frontier: respawn handler: adjusts
+    // Frontier: respawn handler: adjusts respawn and cryo timers.
     public void Respawn(ICommonSession session)
     {
         var respawnData = GetRespawnData(session.UserId);
