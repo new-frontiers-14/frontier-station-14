@@ -51,7 +51,7 @@
         - MachineLayer
   - type: Climbable
   - type: StaticPrice
-    price: 500
+    price: 50
 
 - type: entity
   parent: StorageTank
@@ -228,8 +228,6 @@
   id: ChemicalBarrelCarbon
   suffix: Carbon
   components:
-  - type: StaticPrice
-    price: 500
   - type: Label
     currentLabel: reagent-name-carbon
   - type: SolutionContainerManager
@@ -559,4 +557,102 @@
       tank:
         reagents:
           - ReagentId: Diethylamine
+            Quantity: 1000
+
+- type: entity
+  parent: MetalBarrelYellow
+  id: ChemicalBarrelMustard
+  suffix: Mustard
+  components:
+  - type: Label
+    currentLabel: reagent-name-mustard
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+          - ReagentId: Mustard
+            Quantity: 1000
+
+- type: entity
+  parent: MetalBarrelRed
+  id: ChemicalBarrelKetchup
+  suffix: Ketchup
+  components:
+  - type: Label
+    currentLabel: reagent-name-ketchup
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+          - ReagentId: Ketchup
+            Quantity: 1000
+
+- type: entity
+  parent: MetalBarrelWhite
+  id: ChemicalBarrelMayonnaise
+  suffix: Mayonnaise
+  components:
+  - type: Label
+    currentLabel: reagent-name-mayo
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+          - ReagentId: Mayo
+            Quantity: 1000
+
+- type: entity
+  parent: MetalBarrelYellow
+  id: ChemicalBarrelCornoil
+  suffix: Cornoil
+  components:
+  - type: Label
+    currentLabel: reagent-name-cornoil
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+          - ReagentId: Cornoil
+            Quantity: 1000
+
+- type: entity
+  parent: MetalBarrelGreen
+  id: ChemicalBarrelOliveoil
+  suffix: Olive Oil
+  components:
+  - type: Label
+    currentLabel: reagent-name-oil-olive
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+          - ReagentId: OilOlive
+            Quantity: 1000
+
+- type: entity
+  parent: MetalBarrelGreen
+  id: ChemicalBarrelSpaceLube
+  suffix: Space Lube
+  components:
+  - type: Label
+    currentLabel: reagent-name-space-lube
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+          - ReagentId: SpaceLube
+            Quantity: 1000 # approx. 55 gallons
+
+- type: entity
+  parent: MetalBarrelBlue
+  id: ChemicalBarrelSpaceCleaner
+  suffix: Space Cleaner
+  components:
+  - type: Label
+    currentLabel: reagent-name-space-cleaner
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+          - ReagentId: SpaceCleaner
             Quantity: 1000

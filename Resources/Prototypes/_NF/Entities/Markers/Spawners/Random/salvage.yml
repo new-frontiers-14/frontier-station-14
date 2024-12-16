@@ -596,3 +596,59 @@
 #    - SpawnMobPurpleSnake # Why are they xeno
     rareChance: 0.2
     offset: 0.0
+
+- type: entity
+  id: NFSalvageBarrelSpawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: _NF/Objects/Storage/Barrels/grey.rsi
+      state: icon
+  - type: RandomSpawner
+    prototypes: # Filled versions
+    - ChemicalBarrelExplosiveFilled
+    - ChemicalBarrelCarbon
+    - ChemicalBarrelIodine
+    - ChemicalBarrelFluorine
+    - ChemicalBarrelChlorine
+    - ChemicalBarrelAluminium
+    - ChemicalBarrelPhosphorus
+    - ChemicalBarrelSulfur
+    - ChemicalBarrelSilicon
+    - ChemicalBarrelHydrogen
+    - ChemicalBarrelLithium
+    - ChemicalBarrelSodium
+    - ChemicalBarrelPotassium
+    - ChemicalBarrelRadium
+    - ChemicalBarrelIron
+    - ChemicalBarrelCopper
+    - ChemicalBarrelGold
+    - ChemicalBarrelMercury
+    - ChemicalBarrelSilver
+    - ChemicalBarrelEthanol
+    - ChemicalBarrelSugar
+    - ChemicalBarrelNitrogen
+    - ChemicalBarrelOxygen
+    - ChemicalBarrelOil
+    - ChemicalBarrelDiethylamine
+    - ChemicalBarrelMustard
+    - ChemicalBarrelKetchup
+    - ChemicalBarrelMayonnaise
+    - ChemicalBarrelCornoil
+    - ChemicalBarrelOliveOil
+    - ChemicalBarrelSpaceLube
+    - ChemicalBarrelSpaceCleaner
+    chance: 0.95
+    rarePrototypes: # RARE FIND! Empty barrel.
+    - MetalBarrelGrey
+    - MetalBarrelBlue
+    - MetalBarrelRed
+    - MetalBarrelYellow
+    - MetalBarrelGreen
+    - MetalBarrelWhite
+    - MetalBarrelBlack
+    - ChemicalBarrelExplosiveEmpty
+    rareChance: 0.2
+    offset: 0.1 # Little offset, it's free-standing
