@@ -189,5 +189,11 @@ public sealed class RespawnSystem : EntitySystem
             RaiseNetworkEvent(new RespawnResetEvent(_respawnInfo[session.UserId].RespawnTime), session);
         }
     }
+
+    // Frontier: reset game state, we have a new round.
+    private void OnRoundRestart(RoundRestartCleanupEvent ev)
+    {
+        _respawnInfo.Clear();
+    }
     // End Frontier
 }
