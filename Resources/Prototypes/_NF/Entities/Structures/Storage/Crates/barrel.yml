@@ -62,10 +62,8 @@
   components:
   - type: Sprite
     sprite: _NF/Objects/Storage/Barrels/grey.rsi
-    state: icon
     layers:
     - state: icon
-      map: ["enum.StorageVisualLayers.Base"]
     - state: paper
       map: ["enum.PaperLabelVisuals.Layer"]
   - type: SolutionContainerManager
@@ -137,6 +135,7 @@
   components:
   - type: Sprite
     sprite: _NF/Objects/Storage/Barrels/grey.rsi
+    state: icon
 
 - type: entity
   id: MetalBarrelBlue
@@ -144,6 +143,7 @@
   components:
   - type: Sprite
     sprite: _NF/Objects/Storage/Barrels/blue.rsi
+    state: icon
 
 - type: entity
   id: MetalBarrelRed
@@ -151,6 +151,7 @@
   components:
   - type: Sprite
     sprite: _NF/Objects/Storage/Barrels/red.rsi
+    state: icon
 
 - type: entity
   id: MetalBarrelYellow
@@ -158,6 +159,7 @@
   components:
   - type: Sprite
     sprite: _NF/Objects/Storage/Barrels/yellow.rsi
+    state: icon
 
 - type: entity
   id: MetalBarrelGreen
@@ -165,6 +167,7 @@
   components:
   - type: Sprite
     sprite: _NF/Objects/Storage/Barrels/green.rsi
+    state: icon
 
 - type: entity
   id: ChemicalBarrelExplosiveEmpty
@@ -176,6 +179,7 @@
   - type: Sprite
     sprite: _NF/Objects/Storage/Barrels/red.rsi
     layers:
+    - state: icon
     - state: metal_explosive_label
 
 - type: entity
@@ -262,7 +266,7 @@
             Quantity: 1000
 
 - type: entity
-  parent: ChemicalBarrelCarbon
+  parent: MetalBarrelGrey
   id: ChemicalBarrelAluminium
   suffix: Aluminium
   components:
@@ -304,7 +308,7 @@
             Quantity: 1000
 
 - type: entity
-  parent: ChemicalBarrelCarbon
+  parent: MetalBarrelGrey
   id: ChemicalBarrelSilicon
   suffix: Silicon
   components:
@@ -332,7 +336,7 @@
             Quantity: 1000
 
 - type: entity
-  parent: ChemicalBarrelCarbon
+  parent: MetalBarrelGrey
   id: ChemicalBarrelLithium
   suffix: Lithium
   components:
@@ -346,7 +350,7 @@
             Quantity: 1000
 
 - type: entity
-  parent: ChemicalBarrelCarbon
+  parent: MetalBarrelGrey
   id: ChemicalBarrelSodium
   suffix: Sodium
   components:
@@ -388,7 +392,7 @@
             Quantity: 1000
 
 - type: entity
-  parent: ChemicalBarrelCarbon
+  parent: MetalBarrelGrey
   id: ChemicalBarrelIron
   suffix: Iron
   components:
@@ -430,7 +434,7 @@
             Quantity: 1000
 
 - type: entity
-  parent: ChemicalBarrelCarbon
+  parent: MetalBarrelGrey
   id: ChemicalBarrelMercury
   suffix: Mercury
   components:
@@ -444,7 +448,7 @@
             Quantity: 1000
 
 - type: entity
-  parent: ChemicalBarrelCarbon
+  parent: MetalBarrelGrey
   id: ChemicalBarrelSilver
   suffix: Silver
   components:
