@@ -57,6 +57,7 @@
   parent: StorageTank
   id: BaseBarrel
   name: metal barrel
+  description: A metal barrel. It can be filled with liquid.
   abstract: true
   components:
   - type: Sprite
@@ -103,16 +104,6 @@
     damageModifierSet: Metallic
   - type: StaticPrice
     price: 500
-
-- type: entity
-  id: BaseBarrel
-  name: metal barrel
-  parent: BaseBarrel
-  description: A metal barrel. It can be filled with liquid.
-  components:
-  - type: Sprite
-    layers:
-    - state: metal_grey
 
 - type: entity
   id: MetalBarrelBlue
