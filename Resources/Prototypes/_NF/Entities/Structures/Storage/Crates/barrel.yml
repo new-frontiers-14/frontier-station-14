@@ -170,6 +170,22 @@
     state: icon
 
 - type: entity
+  id: MetalBarrelWhite
+  parent: BaseBarrel
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Storage/Barrels/white.rsi
+    state: icon
+
+- type: entity
+  id: MetalBarrelBlack
+  parent: BaseBarrel
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Storage/Barrels/black.rsi
+    state: icon
+
+- type: entity
   id: ChemicalBarrelExplosiveEmpty
   parent: MetalBarrelRed
   name: explosive barrel
@@ -208,7 +224,7 @@
     totalIntensity: 80
 
 - type: entity
-  parent: MetalBarrelGrey
+  parent: MetalBarrelBlack
   id: ChemicalBarrelCarbon
   suffix: Carbon
   components:
@@ -266,7 +282,7 @@
             Quantity: 1000
 
 - type: entity
-  parent: MetalBarrelGrey
+  parent: MetalBarrelWhite
   id: ChemicalBarrelAluminium
   suffix: Aluminium
   components:
@@ -308,7 +324,7 @@
             Quantity: 1000
 
 - type: entity
-  parent: MetalBarrelGrey
+  parent: MetalBarrelBlack
   id: ChemicalBarrelSilicon
   suffix: Silicon
   components:
@@ -322,7 +338,7 @@
             Quantity: 1000
 
 - type: entity
-  parent: MetalBarrelRed
+  parent: MetalBarrelWhite
   id: ChemicalBarrelHydrogen
   suffix: Hydrogen
   components:
@@ -448,7 +464,7 @@
             Quantity: 1000
 
 - type: entity
-  parent: MetalBarrelGrey
+  parent: MetalBarrelWhite
   id: ChemicalBarrelSilver
   suffix: Silver
   components:
@@ -476,7 +492,7 @@
             Quantity: 1000
 
 - type: entity
-  parent: MetalBarrelBlue
+  parent: MetalBarrelWhite
   id: ChemicalBarrelSugar
   suffix: Sugar
   components:
@@ -515,4 +531,32 @@
       tank:
         reagents:
           - ReagentId: Oxygen
+            Quantity: 1000
+
+- type: entity
+  parent: MetalBarrelBlack
+  id: ChemicalBarrelOil
+  suffix: Oil
+  components:
+  - type: Label
+    currentLabel: reagent-name-oil
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+          - ReagentId: Oil
+            Quantity: 1000
+
+- type: entity
+  parent: MetalBarrelGreen
+  id: ChemicalBarrelOxygen
+  suffix: Diethylamine
+  components:
+  - type: Label
+    currentLabel: reagent-name-diethylamine
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+          - ReagentId: Diethylamine
             Quantity: 1000
