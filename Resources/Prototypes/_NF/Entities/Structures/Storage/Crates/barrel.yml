@@ -66,6 +66,7 @@
     - state: icon
     - state: paper
       map: ["enum.PaperLabelVisuals.Layer"]
+      visible: false
   - type: SolutionContainerManager
     solutions:
       tank:
@@ -115,6 +116,7 @@
           Bounty: { state: paper }
           CaptainsPaper: { state: paper }
           Invoice: { state: paper }
+  - type: Appearance
   - type: PaperLabel
     labelSlot:
       insertVerbText: Attach Label
@@ -135,7 +137,6 @@
   components:
   - type: Sprite
     sprite: _NF/Objects/Storage/Barrels/grey.rsi
-    state: icon
 
 - type: entity
   id: MetalBarrelBlue
@@ -143,7 +144,6 @@
   components:
   - type: Sprite
     sprite: _NF/Objects/Storage/Barrels/blue.rsi
-    state: icon
 
 - type: entity
   id: MetalBarrelRed
@@ -151,7 +151,6 @@
   components:
   - type: Sprite
     sprite: _NF/Objects/Storage/Barrels/red.rsi
-    state: icon
 
 - type: entity
   id: MetalBarrelYellow
@@ -159,7 +158,6 @@
   components:
   - type: Sprite
     sprite: _NF/Objects/Storage/Barrels/yellow.rsi
-    state: icon
 
 - type: entity
   id: MetalBarrelGreen
@@ -167,7 +165,6 @@
   components:
   - type: Sprite
     sprite: _NF/Objects/Storage/Barrels/green.rsi
-    state: icon
 
 - type: entity
   id: MetalBarrelWhite
@@ -175,7 +172,6 @@
   components:
   - type: Sprite
     sprite: _NF/Objects/Storage/Barrels/white.rsi
-    state: icon
 
 - type: entity
   id: MetalBarrelBlack
@@ -183,7 +179,6 @@
   components:
   - type: Sprite
     sprite: _NF/Objects/Storage/Barrels/black.rsi
-    state: icon
 
 - type: entity
   id: ChemicalBarrelExplosiveEmpty
@@ -197,16 +192,15 @@
     layers:
     - state: icon
     - state: metal_explosive_label
+    - state: paper
+      map: ["enum.PaperLabelVisuals.Layer"]
+      visible: false
 
 - type: entity
   id: ChemicalBarrelExplosiveFilled
   parent: ChemicalBarrelExplosiveEmpty
   suffix: Filled
   components:
-  - type: StaticPrice
-    price: 300
-  - type: Label
-    currentLabel: reagent-name-welding-fuel
   - type: SolutionContainerManager
     solutions:
       tank:
@@ -222,437 +216,759 @@
   - type: Explosive
     explosionType: Default
     totalIntensity: 80
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelWeldingFuel
+
+- type: entity
+  id: LabelWeldingFuel
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-welding-fuel
 
 - type: entity
   parent: MetalBarrelBlack
   id: ChemicalBarrelCarbon
   suffix: Carbon
   components:
-  - type: Label
-    currentLabel: reagent-name-carbon
   - type: SolutionContainerManager
     solutions:
       tank:
         reagents:
           - ReagentId: Carbon
             Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelCarbon
+
+- type: entity
+  id: LabelCarbon
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-carbon
 
 - type: entity
   parent: MetalBarrelRed
   id: ChemicalBarrelIodine
   suffix: Iodine
   components:
-  - type: Label
-    currentLabel: reagent-name-iodine
   - type: SolutionContainerManager
     solutions:
       tank:
         reagents:
           - ReagentId: Iodine
             Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelIodine
+
+- type: entity
+  id: LabelIodine
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-iodine
 
 - type: entity
   parent: MetalBarrelBlue
   id: ChemicalBarrelFluorine
   suffix: Fluorine
   components:
-  - type: Label
-    currentLabel: reagent-name-fluorine
   - type: SolutionContainerManager
     solutions:
       tank:
         reagents:
           - ReagentId: Fluorine
             Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelFluorine
+
+- type: entity
+  id: LabelFluorine
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-fluorine
 
 - type: entity
   parent: MetalBarrelGreen
   id: ChemicalBarrelChlorine
   suffix: Chlorine
   components:
-  - type: Label
-    currentLabel: reagent-name-chlorine
   - type: SolutionContainerManager
     solutions:
       tank:
         reagents:
           - ReagentId: Chlorine
             Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelChlorine
+
+- type: entity
+  id: LabelChlorine
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-chlorine
 
 - type: entity
   parent: MetalBarrelWhite
   id: ChemicalBarrelAluminium
   suffix: Aluminium
   components:
-  - type: Label
-    currentLabel: reagent-name-aluminium
   - type: SolutionContainerManager
     solutions:
       tank:
         reagents:
           - ReagentId: Aluminium
             Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelAluminium
+
+- type: entity
+  id: LabelAluminium
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-aluminium
 
 - type: entity
   parent: MetalBarrelRed
   id: ChemicalBarrelPhosphorus
   suffix: Phosphorus
   components:
-  - type: Label
-    currentLabel: reagent-name-phosphorus
   - type: SolutionContainerManager
     solutions:
       tank:
         reagents:
           - ReagentId: Phosphorus
             Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelPhosphorus
+
+- type: entity
+  id: LabelPhosphorus
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-phosphorus
 
 - type: entity
   parent: MetalBarrelYellow
   id: ChemicalBarrelSulfur
   suffix: Sulfur
   components:
-  - type: Label
-    currentLabel: reagent-name-sulfur
   - type: SolutionContainerManager
     solutions:
       tank:
         reagents:
           - ReagentId: Sulfur
             Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelSulfur
+
+- type: entity
+  id: LabelSulfur
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-sulfur
 
 - type: entity
   parent: MetalBarrelBlack
   id: ChemicalBarrelSilicon
   suffix: Silicon
   components:
-  - type: Label
-    currentLabel: reagent-name-silicon
   - type: SolutionContainerManager
     solutions:
       tank:
         reagents:
           - ReagentId: Silicon
             Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelSilicon
+
+- type: entity
+  id: LabelSilicon
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-silicon
 
 - type: entity
   parent: MetalBarrelWhite
   id: ChemicalBarrelHydrogen
   suffix: Hydrogen
   components:
-  - type: Label
-    currentLabel: reagent-name-hydrogen
   - type: SolutionContainerManager
     solutions:
       tank:
         reagents:
           - ReagentId: Hydrogen
             Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelHydrogen
+
+- type: entity
+  id: LabelHydrogen
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-hydrogen
 
 - type: entity
   parent: MetalBarrelGrey
   id: ChemicalBarrelLithium
   suffix: Lithium
   components:
-  - type: Label
-    currentLabel: reagent-name-lithium
   - type: SolutionContainerManager
     solutions:
       tank:
         reagents:
           - ReagentId: Lithium
             Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelLithium
+
+- type: entity
+  id: LabelLithium
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-lithium
 
 - type: entity
   parent: MetalBarrelGrey
   id: ChemicalBarrelSodium
   suffix: Sodium
   components:
-  - type: Label
-    currentLabel: reagent-name-sodium
   - type: SolutionContainerManager
     solutions:
       tank:
         reagents:
           - ReagentId: Sodium
             Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelSodium
+
+- type: entity
+  id: LabelSodium
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-sodium
 
 - type: entity
   parent: MetalBarrelYellow
   id: ChemicalBarrelPotassium
   suffix: Potassium
   components:
-  - type: Label
-    currentLabel: reagent-name-potassium
   - type: SolutionContainerManager
     solutions:
       tank:
         reagents:
           - ReagentId: Potassium
             Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelPotassium
+
+- type: entity
+  id: LabelPotassium
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-potassium
 
 - type: entity
   parent: MetalBarrelGreen
   id: ChemicalBarrelRadium
   suffix: Radium
   components:
-  - type: Label
-    currentLabel: reagent-name-radium
   - type: SolutionContainerManager
     solutions:
       tank:
         reagents:
           - ReagentId: Radium
             Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelRadium
+
+- type: entity
+  id: LabelRadium
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-radium
 
 - type: entity
   parent: MetalBarrelGrey
   id: ChemicalBarrelIron
   suffix: Iron
   components:
-  - type: Label
-    currentLabel: reagent-name-iron
   - type: SolutionContainerManager
     solutions:
       tank:
         reagents:
           - ReagentId: Iron
             Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelIron
+
+- type: entity
+  id: LabelIron
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-iron
 
 - type: entity
   parent: MetalBarrelRed
   id: ChemicalBarrelCopper
   suffix: Copper
   components:
-  - type: Label
-    currentLabel: reagent-name-copper
   - type: SolutionContainerManager
     solutions:
       tank:
         reagents:
           - ReagentId: Copper
             Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelCopper
+
+- type: entity
+  id: LabelCopper
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-copper
 
 - type: entity
   parent: MetalBarrelYellow
   id: ChemicalBarrelGold
   suffix: Gold
   components:
-  - type: Label
-    currentLabel: reagent-name-gold
   - type: SolutionContainerManager
     solutions:
       tank:
         reagents:
           - ReagentId: Gold
             Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelGold
+
+- type: entity
+  id: LabelGold
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-gold
 
 - type: entity
   parent: MetalBarrelGrey
   id: ChemicalBarrelMercury
   suffix: Mercury
   components:
-  - type: Label
-    currentLabel: reagent-name-mercury
   - type: SolutionContainerManager
     solutions:
       tank:
         reagents:
           - ReagentId: Mercury
             Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelMercury
+
+- type: entity
+  id: LabelMercury
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-mercury
 
 - type: entity
   parent: MetalBarrelWhite
   id: ChemicalBarrelSilver
   suffix: Silver
   components:
-  - type: Label
-    currentLabel: reagent-name-silver
   - type: SolutionContainerManager
     solutions:
       tank:
         reagents:
           - ReagentId: Silver
             Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelSilver
+
+- type: entity
+  id: LabelSilver
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-silver
 
 - type: entity
   parent: MetalBarrelBlue
   id: ChemicalBarrelEthanol
   suffix: Ethanol
   components:
-  - type: Label
-    currentLabel: reagent-name-ethanol
   - type: SolutionContainerManager
     solutions:
       tank:
         reagents:
           - ReagentId: Ethanol
             Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelEthanol
+
+- type: entity
+  id: LabelEthanol
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-ethanol
 
 - type: entity
   parent: MetalBarrelWhite
   id: ChemicalBarrelSugar
   suffix: Sugar
   components:
-  - type: Label
-    currentLabel: reagent-name-sugar
   - type: SolutionContainerManager
     solutions:
       tank:
         reagents:
           - ReagentId: Sugar
             Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelSugar
+
+- type: entity
+  id: LabelSugar
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-sugar
 
 - type: entity
   parent: MetalBarrelRed
   id: ChemicalBarrelNitrogen
   suffix: Nitrogen
   components:
-  - type: Label
-    currentLabel: reagent-name-nitrogen
   - type: SolutionContainerManager
     solutions:
       tank:
         reagents:
           - ReagentId: Nitrogen
             Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelNitrogen
+
+- type: entity
+  id: LabelNitrogen
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-nitrogen
 
 - type: entity
   parent: MetalBarrelBlue
   id: ChemicalBarrelOxygen
   suffix: Oxygen
   components:
-  - type: Label
-    currentLabel: reagent-name-oxygen
   - type: SolutionContainerManager
     solutions:
       tank:
         reagents:
           - ReagentId: Oxygen
             Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelOxygen
+
+- type: entity
+  id: LabelOxygen
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-oxygen
 
 - type: entity
   parent: MetalBarrelBlack
   id: ChemicalBarrelOil
   suffix: Oil
   components:
-  - type: Label
-    currentLabel: reagent-name-oil
   - type: SolutionContainerManager
     solutions:
       tank:
         reagents:
           - ReagentId: Oil
             Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelOil
+
+- type: entity
+  id: LabelOil
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-oil
 
 - type: entity
   parent: MetalBarrelGreen
   id: ChemicalBarrelDiethylamine
   suffix: Diethylamine
   components:
-  - type: Label
-    currentLabel: reagent-name-diethylamine
   - type: SolutionContainerManager
     solutions:
       tank:
         reagents:
           - ReagentId: Diethylamine
             Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelDiethylamine
+
+- type: entity
+  id: LabelDiethylamine
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-diethylamine
 
 - type: entity
   parent: MetalBarrelYellow
   id: ChemicalBarrelMustard
   suffix: Mustard
   components:
-  - type: Label
-    currentLabel: reagent-name-mustard
   - type: SolutionContainerManager
     solutions:
       tank:
         reagents:
           - ReagentId: Mustard
             Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelMustard
+
+- type: entity
+  id: LabelMustard
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-mustard
 
 - type: entity
   parent: MetalBarrelRed
   id: ChemicalBarrelKetchup
   suffix: Ketchup
   components:
-  - type: Label
-    currentLabel: reagent-name-ketchup
   - type: SolutionContainerManager
     solutions:
       tank:
         reagents:
           - ReagentId: Ketchup
             Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelKetchup
+
+- type: entity
+  id: LabelKetchup
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-ketchup
 
 - type: entity
   parent: MetalBarrelWhite
-  id: ChemicalBarrelMayonnaise
-  suffix: Mayonnaise
+  id: ChemicalBarrelMayo
+  suffix: Mayo
   components:
-  - type: Label
-    currentLabel: reagent-name-mayo
   - type: SolutionContainerManager
     solutions:
       tank:
         reagents:
           - ReagentId: Mayo
             Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelMayo
+
+- type: entity
+  id: LabelMayo
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-mayo
 
 - type: entity
   parent: MetalBarrelYellow
   id: ChemicalBarrelCornoil
   suffix: Cornoil
   components:
-  - type: Label
-    currentLabel: reagent-name-cornoil
   - type: SolutionContainerManager
     solutions:
       tank:
         reagents:
           - ReagentId: Cornoil
             Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelCornoil
+
+- type: entity
+  id: LabelCornoil
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-cornoil
 
 - type: entity
   parent: MetalBarrelGreen
   id: ChemicalBarrelOliveoil
   suffix: Olive Oil
   components:
-  - type: Label
-    currentLabel: reagent-name-oil-olive
   - type: SolutionContainerManager
     solutions:
       tank:
         reagents:
           - ReagentId: OilOlive
             Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelOilOlive
+
+- type: entity
+  id: LabelOilOlive
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-oil-olive
 
 - type: entity
   parent: MetalBarrelGreen
   id: ChemicalBarrelSpaceLube
   suffix: Space Lube
   components:
-  - type: Label
-    currentLabel: reagent-name-space-lube
   - type: SolutionContainerManager
     solutions:
       tank:
         reagents:
           - ReagentId: SpaceLube
-            Quantity: 1000 # approx. 55 gallons
+            Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelSpaceLube
+
+- type: entity
+  id: LabelSpaceLube
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-space-lube
 
 - type: entity
   parent: MetalBarrelBlue
   id: ChemicalBarrelSpaceCleaner
   suffix: Space Cleaner
   components:
-  - type: Label
-    currentLabel: reagent-name-space-cleaner
   - type: SolutionContainerManager
     solutions:
       tank:
         reagents:
           - ReagentId: SpaceCleaner
             Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelSpaceCleaner
+
+- type: entity
+  id: LabelSpaceCleaner
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-space-cleaner
