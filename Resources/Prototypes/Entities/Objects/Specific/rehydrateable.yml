@@ -144,10 +144,10 @@
   - type: SolutionContainerManager
     solutions:
       cube:
-        maxVol: 10 # needs room for more blood
-        reagents:
-        - ReagentId: Blood
-          Quantity: 9
+        maxVol: 1 # needs room for more blood # Frontier: 10 < 1
+        reagents: [] # Frontier: add empty list
+        # - ReagentId: Blood # Frontier
+        #   Quantity: 9 # Frontier
   - type: Reactive
     reactions:
     - reagents: [Blood]
@@ -231,7 +231,7 @@
     solutions:
       cube:
         maxVol: 1 # needs room for water # Frontier: 11 < 1
-        reagents:
+        reagents: [] # Frontier: empty list
         # - ReagentId: Nutriment # Frontier
         #   Quantity: 10 # Frontier
   - type: Food
