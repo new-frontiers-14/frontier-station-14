@@ -110,12 +110,10 @@ public sealed class FoodSequenceSystem : SharedFoodSequenceSystem
     private bool TryAddFoodElement(Entity<FoodSequenceStartPointComponent> start, Entity<FoodSequenceElementComponent> element, EntityUid? user = null)
     {
         // we can't add a live mouse to a burger.
-        // Frontier: allow non-food components
-        if (TryComp<FoodComponent>(element, out var elementFood) // Frontier: inverted
-                && elementFood.RequireDead &&
-                _mobState.IsAlive(element))
+        if (!TryComp<FoodComponent>(element, out var elementFood))
             return false;
-        // End Frontier: allow non-food components
+        if (elementFood.RequireDead && _mobState.IsAlive(element))
+            return false;
 
         //looking for a suitable FoodSequence prototype
         if (!element.Comp.Entries.TryGetValue(start.Comp.Key, out var elementProto))
