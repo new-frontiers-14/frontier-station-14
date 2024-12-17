@@ -39,8 +39,6 @@ entities:
     - type: MetaData
       name: Omakase
     - type: Transform
-      rot: 5.202034950256348 rad
-      pos: 495.7152,-393.1801
       parent: invalid
     - type: MapGrid
       chunks:
@@ -866,7 +864,7 @@ entities:
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: BecomesStation
-      id: 1
+      id: Omakase
 - proto: AirAlarm
   entities:
   - uid: 2
@@ -1056,6 +1054,11 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 0.5,-9.5
       parent: 1
+  - uid: 718
+    components:
+    - type: Transform
+      pos: 27.5,-9.5
+      parent: 1
 - proto: AirlockGlassShuttle
   entities:
   - uid: 24
@@ -1066,73 +1069,61 @@ entities:
   - uid: 25
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
       pos: 29.5,-6.5
       parent: 1
   - uid: 26
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
       pos: 29.5,-7.5
       parent: 1
   - uid: 27
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
       pos: 29.5,-8.5
       parent: 1
   - uid: 28
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
       pos: -1.5,-6.5
       parent: 1
   - uid: 29
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
       pos: -1.5,-8.5
       parent: 1
   - uid: 30
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
       pos: -1.5,-7.5
       parent: 1
   - uid: 31
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: 0.5,-2.5
       parent: 1
   - uid: 32
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: 1.5,-2.5
       parent: 1
   - uid: 33
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: 2.5,-2.5
       parent: 1
   - uid: 34
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: 25.5,-2.5
       parent: 1
   - uid: 35
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: 26.5,-2.5
       parent: 1
   - uid: 36
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: 27.5,-2.5
       parent: 1
 - proto: AirlockMaint
@@ -6156,13 +6147,6 @@ entities:
     components:
     - type: Transform
       pos: 25.5,-21.5
-      parent: 1
-- proto: HighSecDoor
-  entities:
-  - uid: 718
-    components:
-    - type: Transform
-      pos: 27.5,-9.5
       parent: 1
 - proto: hydroponicsTrayAnchored
   entities:
