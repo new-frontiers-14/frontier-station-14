@@ -9,10 +9,10 @@
   - type: SolutionContainerManager
     solutions:
       cube:
-        maxVol: 11 # needs room for water
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 10
+        maxVol: 1 # needs room for water # Frontier: 11<1
+        reagents: [] # Frontier: add empty list
+        # - ReagentId: Nutriment # Frontier
+        #   Quantity: 10 # Frontier
   - type: Food
     solution: cube
   - type: FlavorProfile
@@ -170,10 +170,10 @@
   - type: SolutionContainerManager
     solutions:
       plushie:
-        maxVol: 11 # needs room for water
-        reagents:
-        - ReagentId: Nutriment #contains nutriment like other dehydrated animals, but isn't edible? Who is grinding dehydrated carp to eat them??
-          Quantity: 10
+        maxVol: 1 # needs room for water # Frontier: 11 < 1
+        reagents: [] # Frontier: add empty list
+        # - ReagentId: Nutriment #contains nutriment like other dehydrated animals, but isn't edible? Who is grinding dehydrated carp to eat them?? # Frontier
+        #   Quantity: 10 # Frontier
   - type: RefillableSolution
     solution: plushie
   - type: Reactive
@@ -230,10 +230,10 @@
   - type: SolutionContainerManager
     solutions:
       cube:
-        maxVol: 11 # needs room for water
+        maxVol: 1 # needs room for water # Frontier: 11 < 1
         reagents:
-        - ReagentId: Nutriment
-          Quantity: 10
+        # - ReagentId: Nutriment # Frontier
+        #   Quantity: 10 # Frontier
   - type: Food
     solution: cube
   - type: FlavorProfile
