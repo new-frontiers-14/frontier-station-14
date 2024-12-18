@@ -39,7 +39,7 @@
 # stuff common to all military boots
 - type: entity
   abstract: true
-  parent: [ClothingShoesBase, ClothingSlotBase]
+  parent: [ClothingShoesBase, ClothingSlotBase, BaseC1Contraband]
   id: ClothingShoesMilitaryBase
   components:
   - type: Matchbox
@@ -51,6 +51,10 @@
           tags:
           - Knife
           - Sidearm
+  # Begin Frontier modifications - Added reduction of injured slowness to military boots.
+  - type: ClothingSlowOnDamageModifier
+    modifier: 0.5
+  # End Frontier modifications
 
 - type: entity
   abstract: true
