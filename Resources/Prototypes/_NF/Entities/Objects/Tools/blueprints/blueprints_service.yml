@@ -28,3 +28,35 @@
   - type: Blueprint
     providedRecipes:
     - PlantBagOfHolding
+
+
+- type: entity
+  parent: NFBaseBlueprintService
+  id: NFBlueprintWeaponSprayNozzle
+  name: spray nozzle blueprint
+  description: A blueprint with a schematic of a spray nozzle. It can be inserted into an autolathe or a techfab.
+  components:
+  - type: Blueprint
+    providedRecipes:
+    - WeaponSprayNozzle
+
+- type: entity
+  parent: NFBaseBlueprintService
+  id: NFBlueprintClothingBackpackWaterTank
+  name: backpack water tank blueprint
+  description: A blueprint with a schematic of a backpack water tank. It can be inserted into an autolathe or a techfab.
+  components:
+  - type: Blueprint
+    providedRecipes:
+    - ClothingBackpackWaterTank
+
+
+- type: entity
+  parent: NFBaseBlueprintService
+  id: NFBlueprintClothingShoesBootsSpeed
+  name: speed boots blueprint
+  description: A blueprint with a schematic of speed boots. It can be inserted into an autolathe or a techfab.
+  components:
+  - type: Blueprint
+    providedRecipes:
+    - ClothingShoesBootsSpeed
