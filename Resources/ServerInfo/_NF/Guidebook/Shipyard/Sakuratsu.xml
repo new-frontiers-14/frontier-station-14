@@ -1,0 +1,90 @@
+<Document>
+  # SAKURATSU-CLASS SALVAGE SHUTTLE
+  <Box>
+  <GuideEntityEmbed Entity="WeaponProtoKineticAccelerator"/>
+  <GuideEntityEmbed Entity="MiningDrill"/>
+  <GuideEntityEmbed Entity="OreProcessor"/>
+  </Box>  
+    [color=#a4885c]Ship Size:[/color] Medium
+	
+	[color=#a4885c]Recommended Crew:[/color] 2-4
+	
+	[color=#a4885c]Power Gen Type:[/color] Uranium
+	
+	[color=#a4885c]Expeditions:[/color] None
+	
+	[color=#a4885c]IFF Console:[/color] None
+	
+	[color=#a4885c]Available Roles:[/color] Contractor, Pilot, Mercenary
+	
+  "The Sakuratsu is a shuttle that has capabilities for salvage, and light cargo transport. Many open areas that can be rennovated if you wish."
+
+  # PREFLIGHT CHECKLIST
+  
+  ## 1. Power supply
+  
+  ## 1.1. Battery units
+  <Box>
+  <GuideEntityEmbed Entity="SMESBasic"/>
+  <GuideEntityEmbed Entity="SubstationBasic"/>
+  <GuideEntityEmbed Entity="APCBasic"/>
+  </Box>
+
+  - Check if the APC units are charged.
+  - Check if all APC units are toggled on.
+
+  ## 1.2. S.U.P.E.R.P.A.C.M.A.N. generator unit
+  <Box>
+  <GuideEntityEmbed Entity="PortableGeneratorSuperPacmanShuttle"/>
+  <GuideEntityEmbed Entity="SheetUranium"/>
+  </Box>
+
+  - Check if the S.U.P.E.R.P.A.C.M.A.N. generator units is anchored to the floor.
+  - Check if the S.U.P.E.R.P.A.C.M.A.N. generator units is set to HV output.
+  - Set Target Power for 35** [bold]k[/bold]W on all 2.
+  - Start the S.U.P.E.R.P.A.C.M.A.N. generator units.
+  - Ensure that radiation shielding in the dorm room is closed.
+
+  ## 2. Atmospherics
+
+  ## 2.1. Distribution Loop
+  <Box>
+  <GuideEntityEmbed Entity="OxygenCanister"/>
+  <GuideEntityEmbed Entity="NitrogenCanister"/>
+  <GuideEntityEmbed Entity="GasPort"/>
+  <GuideEntityEmbed Entity="GasPressurePump"/>
+  </Box>
+  
+  - Check if the canisters for oxygen and nitrogen is anchored to the ports in the engineering section of the ship.
+  - Check if the distribution pump is set to normal pressure (101kPa).
+  - Enable the distribution pump.
+  - If swapping canisters for distro, ensure that the nitrogen/oxygen mix is at 79/21 with the gas mixer.
+  
+  ## 2.2. Waste Loop
+  <Box>
+  <GuideEntityEmbed Entity="GasPressurePump"/>
+  <GuideEntityEmbed Entity="AirAlarm"/>
+  </Box>
+
+  - Enable waste loop pump.
+  - Disable Auto Mode on the Air Alarms around the ship.
+  - Set the Air Alarms in the compartments to FILTERING.
+  - If there is a dangerous gas in the atmosphere of a compartment, set the Air Alarm in the compartment to PANIC.
+  - If a room is lacking sufficient atmosphere of a compartment, set the Air Alarm in the compartment to FILL.
+
+  ## 3. Other checks
+  <Box>
+  <GuideEntityEmbed Entity="Gyroscope"/>
+  <GuideEntityEmbed Entity="GravityGeneratorMini"/>
+  </Box>
+
+  - Check if the gyroscope is anchored, powered, and enabled.
+  - Check if the mini gravity generator is anchored, powered, and enabled.
+
+  ## Sidenotes
+
+  * - The door for the salvage bay is on the right and left side of the aft. There is additionally a airlock on the left wing.
+
+  ** - The highest power usage the vessel can support is 100 [bold]k[/bold]W
+
+</Document>
