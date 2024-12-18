@@ -97,7 +97,7 @@ public sealed class CryosleepWakeupWindow : DefaultWindow, IEntityEventSubscribe
         DenyButton.Disabled = false;
         if (response.Status == ReturnToBodyStatus.Occupied)
             Label.SetMessage(Loc.GetString("cryo-wakeup-result-occupied"));
-        else if (response.Status == ReturnToBodyStatus.CryopodMissing)
+        else if (response.Status == ReturnToBodyStatus.NoCryopodAvailable)
             Label.SetMessage(Loc.GetString("cryo-wakeup-result-no-cryopod"));
         else if (response.Status == ReturnToBodyStatus.BodyMissing)
             Label.SetMessage(Loc.GetString("cryo-wakeup-result-no-body"));
