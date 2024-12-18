@@ -1,6 +1,7 @@
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.List;
+using System.Collections.Immutable;
 
 namespace Content.Shared._NF.GameRule;
 
@@ -11,7 +12,6 @@ namespace Content.Shared._NF.GameRule;
 [Serializable]
 public sealed partial class PointOfInterestPrototype : IPrototype
 {
-    /// <inheritdoc/>
     [IdDataField]
     public string ID { get; private set; } = default!;
 
@@ -22,13 +22,13 @@ public sealed partial class PointOfInterestPrototype : IPrototype
     public string Name { get; private set; } = "";
 
     /// <summary>
-    /// Should we set the warppoint name based on the grid name.
+    ///     Should we set the warppoint name based on the grid name.
     /// </summary>
     [DataField]
     public bool NameWarp { get; set; } = true;
 
     /// <summary>
-    /// If true, makes the warp point admin-only (hiding it for players).
+    ///     If true, makes the warp point admin-only (hiding it for players).
     /// </summary>
     [DataField]
     public bool HideWarp { get; set; } = false;
@@ -46,10 +46,16 @@ public sealed partial class PointOfInterestPrototype : IPrototype
     public int MaximumDistance { get; private set; } = 10000;
 
     /// <summary>
-    /// Components to be added to any spawned grids.
+    ///     Components to be added to any spawned grids.
     /// </summary>
     [DataField]
     public ComponentRegistry AddComponents { get; set; } = new();
+
+    /// <summary>
+    ///     What gamepresets ID this POI is allowed to spawn on.
+    /// </summary>
+    [DataField]
+    public string[] SpawnGamePreset { get; private set; } = [];
 
     /// <summary>
     ///     If the POI does not belong to a pre-defined group, it will default to the "unique" internal category and will
