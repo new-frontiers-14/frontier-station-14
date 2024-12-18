@@ -30,7 +30,7 @@ public abstract partial class EntityTableSelector
         IEntityManager entMan,
         IPrototypeManager proto)
     {
-        var rolls = Rolls.Get(rand, entMan, proto);
+        var rolls = Math.Floor(Rolls.Get(rand, entMan, proto)); // Frontier: add Math.Floor
         for (var i = 0; i < rolls; i++)
         {
             if (!rand.Prob(Prob))
