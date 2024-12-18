@@ -2333,15 +2333,17 @@ entities:
     - type: Transform
       pos: -10.5,0.5
       parent: 1
-  - uid: 1797
-    components:
-    - type: Transform
-      pos: -8.5,0.5
-      parent: 1
   - uid: 2299
     components:
     - type: Transform
       pos: -14.5,4.5
+      parent: 1
+- proto: AirlockCaptainLocked
+  entities:
+  - uid: 545
+    components:
+    - type: Transform
+      pos: -8.5,0.5
       parent: 1
 - proto: AirlockCargoGlass
   entities:
@@ -2715,13 +2717,22 @@ entities:
     - type: Transform
       pos: 14.5,3.5
       parent: 1
+    - type: AmeController
+      injecting: True
+    - type: ContainerContainer
+      containers:
+        fuelSlot: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: 2716
 - proto: AmeJar
   entities:
   - uid: 2716
     components:
     - type: Transform
-      pos: 13.70727,3.4029362
-      parent: 1
+      parent: 2196
+    - type: Physics
+      canCollide: False
 - proto: AmeShielding
   entities:
   - uid: 102
@@ -2739,6 +2750,9 @@ entities:
     - type: Transform
       pos: 14.5,5.5
       parent: 1
+    - type: PointLight
+      radius: 2
+      enabled: True
   - uid: 109
     components:
     - type: Transform
@@ -7613,13 +7627,6 @@ entities:
     components:
     - type: Transform
       pos: -14.646676,-4.594288
-      parent: 1
-- proto: ComputerCrewMonitoring
-  entities:
-  - uid: 2731
-    components:
-    - type: Transform
-      pos: -7.5,-6.5
       parent: 1
 - proto: ComputerPowerMonitoring
   entities:
@@ -13213,11 +13220,6 @@ entities:
       parent: 1
 - proto: hydroponicsTrayAnchored
   entities:
-  - uid: 705
-    components:
-    - type: Transform
-      pos: 5.5,-9.5
-      parent: 1
   - uid: 706
     components:
     - type: Transform
@@ -13577,16 +13579,6 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-- proto: PaperOffice
-  entities:
-  - uid: 2535
-    components:
-    - type: Transform
-      pos: 1.2946401,14.036885
-      parent: 1
-    - type: Paper
-      content: >
-        One day we will have mappable weapon safes and sec gear. One day.
 - proto: ParchisBoard
   entities:
   - uid: 1024
@@ -14103,25 +14095,20 @@ entities:
       parent: 1
 - proto: ProximitySensor
   entities:
+  - uid: 2535
+    components:
+    - type: Transform
+      pos: 1.3878393,-15.708715
+      parent: 1
   - uid: 2548
     components:
     - type: Transform
       pos: 1.1288288,-15.694885
       parent: 1
-  - uid: 2549
-    components:
-    - type: Transform
-      pos: 1.3475788,-15.80426
-      parent: 1
   - uid: 2550
     components:
     - type: Transform
       pos: 1.5663288,-15.694885
-      parent: 1
-  - uid: 2551
-    components:
-    - type: Transform
-      pos: 1.7850788,-15.80426
       parent: 1
 - proto: PuddleVomit
   entities:
@@ -17694,6 +17681,13 @@ entities:
     - type: Transform
       pos: 4.6963315,-8.194381
       parent: 1
+- proto: TowercapSeeds
+  entities:
+  - uid: 1797
+    components:
+    - type: Transform
+      pos: 12.614276,-7.276494
+      parent: 1
 - proto: TwoWayLever
   entities:
   - uid: 2313
@@ -19365,6 +19359,18 @@ entities:
     - type: Transform
       pos: -2.5,13.5
       parent: 1
+- proto: WeaponDisabler
+  entities:
+  - uid: 705
+    components:
+    - type: Transform
+      pos: 0.70833397,14.265399
+      parent: 1
+  - uid: 1553
+    components:
+    - type: Transform
+      pos: 0.64583397,14.557066
+      parent: 1
 - proto: WeldingFuelTankFull
   entities:
   - uid: 2460
@@ -20038,5 +20044,17 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -3.5,-15.5
+      parent: 1
+- proto: Zipties
+  entities:
+  - uid: 2549
+    components:
+    - type: Transform
+      pos: 1.4892116,14.747771
+      parent: 1
+  - uid: 2551
+    components:
+    - type: Transform
+      pos: 1.6350446,14.247771
       parent: 1
 ...
