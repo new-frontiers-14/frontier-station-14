@@ -24,6 +24,7 @@ namespace Content.Shared.Atmos.Piping
     public enum PumpVisuals : byte
     {
         Enabled,
+        PumpingInwards, // Frontier: bidirectional pump visuals
     }
 
     [Serializable, NetSerializable]
