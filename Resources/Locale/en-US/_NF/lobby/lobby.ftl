@@ -1,4 +1,4 @@
-﻿frontier-lobby-station-title = Station
+frontier-lobby-station-title = Station
 frontier-lobby-available-jobs = Available Jobs
 frontier-lobby-no-stations-available = There are no stations available at this time.
 frontier-lobby-no-crews-available = Currently there are no captains looking for crews.
@@ -21,6 +21,13 @@ frontier-lobby-exped-description = This is base camp for mercenaries and alike. 
    - Purchase weapons and gear
    - Purchase expedition-ready ships
    - Socialize with other mercenaries - or not.
+frontier-lobby-medical-subtext = The medical dispatch hub and retrieval logistics center.
+frontier-lobby-medical-description = Frontier's medical dispatch hub. Here you can:
+   - Start or find a medical response crew
+   - Socialize with other medics
+   - Purchase medical specialist ships
+   - Drop off medical bounties  
+ Some of the roles on this station are whitelist-only and require an application in the discord to be accepted.
 frontier-lobby-nfsd-description = The New Frontier Security Department is the center of operations for the Sheriffs department. Here you can:
    - Join the Sheriffs department
    - Apply for a bounty hunting license
