@@ -164,7 +164,14 @@ namespace Content.Server.Shuttles.Systems
 
             component.IsOn = false;
             if (TryComp(uid, out DoorComponent? door))
+            {
                 door.ChangeAirtight = true;
+                if (door.State == DoorState.Open && TryComp(uid, out AirtightComponent? airtight)) //If the door's open, goodbye air
+                {
+                    _airtightSystem.SetAirblocked((uid, airtight), false);
+                }
+            }
+
         }
 
         public bool CanEnable(EntityUid uid, AdvDockingComponent component)
