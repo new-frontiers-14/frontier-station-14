@@ -54,6 +54,7 @@
       - HandLabeler
       - Signaller
       - ClothingMaskWeldingGas
+      - FireExtinguisher
     ## Basic storage
       - ToolboxArtisticNF
       - ToolboxElectricalNF
@@ -70,6 +71,9 @@
       - ConveyorBeltAssembly
       - PowerCellSmall
       - PowerCellMedium
+      - CableStack
+      - CableMVStack
+      - CableHVStack
     ## Basic electronics
       - SignalTimerElectronics
       - CellRechargerCircuitboard
@@ -80,14 +84,11 @@
     ## Tools
       - NodeScanner
     dynamicRecipes:
-    # Shared lathe recipes
-    ## Advanced tools
       - WelderExperimental
       - JawsOfLife
       - PowerDrill
       - JetpackVoid
       - PowerCellHigh
-      #- PowerCellHyperNF
       - PowerCellMicroreactor
       - BluespaceBeaker
       - VialBluespace
@@ -100,10 +101,7 @@
       - Bucket
       - MopItem
       - SprayBottle
-      - FireExtinguisher
-      - CableStack
-      - CableMVStack
-      - CableHVStack
+      - FireExtinguisherBluespace # DeltaV
       - ClothingOuterHardsuitBasic
       - ClothingOuterHardsuitRd
 
@@ -268,6 +266,7 @@
       - SyringeBluespace
       - PlantBagOfHolding
       - PlantAnalyzer
+      - FireExtinguisherBluespace # DeltaV
   - type: EmagLatheRecipes
     emagStaticRecipes:
       - NFHappyHonkNukieEmpty
@@ -345,6 +344,7 @@
       - WelderIndustrial
       - WelderIndustrialAdvanced
       - HolofanProjector
+      - FireExtinguisher
     ## Parts
       - MicroManipulatorStockPart
       - MatterBinStockPart
@@ -419,7 +419,6 @@
       - MiningDrill
       - MiningDrillDiamond
       - SprayBottle
-      - FireExtinguisher
       - ShipyardRCD
       - ShipyardRCDAmmo
       - SignallerAdvanced
@@ -428,6 +427,7 @@
       - ClothingOuterHardsuitEngineering
       - ClothingOuterHardsuitEngineeringWhite
       - ConstructionBagOfHolding
+      - FireExtinguisherBluespace # DeltaV
 
 - type: entity
   parent: [ BlueprintReceiverBase, BaseLatheLube ]
