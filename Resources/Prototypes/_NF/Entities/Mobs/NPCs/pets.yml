@@ -59,9 +59,9 @@
       Alive:
         Base: piratecat
       Critical:
-        Base: piratecat_dead
+        Base: piratecat
       Dead:
-        Base: piratecat_dead
+        Base: piratecat
   - type: GhostRole
     name: ghost-role-information-clarpy-name
     description: ghost-role-information-clarpy-description
@@ -229,6 +229,105 @@
   - type: NpcFactionMember
     factions:
       - Cat
+
+- type: entity
+  name: blood cult cat
+  parent: [NFMobPet, MobCatGhost]
+  id: MobCatBloodCult
+  description: Founded the Blood Cult out of boredom.
+  components:
+  - type: Body
+    prototype: Bloodsucker
+    requiredLegs: 1
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 1
+        Bloodloss: 1
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _NF/Mobs/Pets/cat.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: cultcat
+    - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+      state: cultcat_unshaded
+      shader: unshaded
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: cultcat
+        BaseUnshaded: cultcat_unshaded
+      Critical:
+        Base: cultcat
+        BaseUnshaded: mask_null
+      Dead:
+        Base: cultcat
+        BaseUnshaded: mask_null
+  - type: GhostRole
+    name: ghost-role-information-cult-cat-name
+    description: ghost-role-information-cult-cat-description
+    rules: ghost-role-information-cult-cat-rules
+    prototype: CatBloodCult
+  - type: RandomMetadata
+    nameSegments: [ names_cat_cult ]
+  - type: AutoImplant
+    implants:
+    - MedicalTrackingImplant
+    - RedLightImplant
+    - DissonantWhispersImplant
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Science
+  - type: ActiveRadio
+    channels:
+    - Science
+  - type: NpcFactionMember
+    factions:
+      - Cat
+  - type: NFSalvageMobRestrictions
+    despawnIfOffLinkedGrid: false
+    addComponentsOnDeath: []
+    removeComponentsOnDeath: []
+  - type: CargoSellBlacklist
+  - type: ActionGun
+    action: ActionEldritchPush
+    gunProto: EldritchPushGun
+
+- type: entity
+  id: EldritchPushGun
+  name: eldritch hand gun
+  description: Shoots an eldritch hand.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 300
+    rechargeSound:
+      path: /Audio/Magic/fireball.ogg
+  - type: BasicEntityAmmoProvider
+    proto: BulletEldritchHand
+    capacity: 1
+    count: 1
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Effects/teleport_arrival.ogg
+    soundEmpty: null
+    projectileSpeed: 3
+
+- type: entity
+  id: ActionEldritchPush
+  categories: [ HideSpawnMenu ]
+  name: "[color=yellow]Force Push[/color]"
+  description: "Summon forth an eldritch hand. [color=yellow]5 minute cooldown.[/color]"
+  components:
+  - type: WorldTargetAction
+    icon: { sprite : _NF/Effects/bloodcultprojectiles.rsi, state: hand }
+    event: !type:ActionGunShootEvent
+    priority: 2
+    checkCanAccess: false
+    range: 0
+    itemIconStyle: BigAction
+    useDelay: 300
 
 # Adopted from space-wizards #26265 (Thank you, PolterTzi)
 - type: entity
