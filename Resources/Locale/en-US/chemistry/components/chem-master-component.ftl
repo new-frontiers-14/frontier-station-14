@@ -3,6 +3,10 @@
 chem-master-component-activate-no-hands = You have no hands.
 chem-master-component-cannot-put-entity-message = You can't put this in the ChemMaster!
 
+# Frontier
+chem-master-component-examine-maximum-volume = Maximum volume
+chem-master-component-examine-maximum-pill-dosage = Maximum pill dosage
+
 ## Bound UI
 chem-master-bound-user-interface-title = ChemMaster 4000
 
