@@ -375,7 +375,7 @@ public sealed class RadioDeviceSystem : EntitySystem
     /// </summary>
     private void OnGetAltVerbs(EntityUid uid, RadioMicrophoneComponent microphone, GetVerbsEvent<AlternativeVerb> args)
     {
-        if (!args.CanInteract || !args.CanAccess || args.Hands == null)
+        if (!args.CanInteract || !args.CanAccess)
             return;
 
         AlternativeVerb verb = new()
