@@ -26,3 +26,9 @@
         !type:SectorBankAccountInfo
         balance: 8000
         increasePerSecond: 20 # 72K per hour, about enough for minimum wage for the default NFSD size
+
+ # A global source of character records (DNA, fingerprints, criminal records, etc.)
+- type: sectorService
+  id: SectorRecords
+  components:
+  - type: StationRecords

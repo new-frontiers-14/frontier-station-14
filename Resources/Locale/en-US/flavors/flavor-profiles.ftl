@@ -114,7 +114,8 @@ flavor-complex-corn = like corn
 flavor-complex-banana = like bananas
 flavor-complex-apple = like apples
 flavor-complex-pear = like pears
-flavor-complex-cotton = like cottons
+# Frontier: cottons<cotton
+flavor-complex-cotton = like cotton
 flavor-complex-bungo = like tropical sweetness
 flavor-complex-raisins = like dried grapes
 flavor-complex-orange = like oranges
