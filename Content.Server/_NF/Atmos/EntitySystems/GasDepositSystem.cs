@@ -106,18 +106,14 @@ public sealed class GasDepositSystem : EntitySystem
         if (!EntityManager.GetComponent<TransformComponent>(uid).Anchored || !args.IsInDetailsRange)
             return;
 
-        if (Loc.TryGetString("gas-deposit-drill-system-examined", out var str,
-                    ("statusColor", "lightblue"),
-                    ("rate", extractor.TargetPressure)
-        ))
-            args.PushMarkup(str);
+        args.PushMarkup(Loc.GetString("gas-deposit-drill-system-examined",
+                ("statusColor", "lightblue"),
+                ("rate", extractor.TargetPressure)));
         if (extractor.DepositEntity != null)
         {
-            if (Loc.TryGetString("gas-deposit-drill-system-examined-amount", out str,
-                        ("statusColor", "lightblue"),
-                        ("rate", extractor.DepositEntity.Value.Comp.Deposit.TotalMoles)
-            ))
-                args.PushMarkup(str);
+            args.PushMarkup(Loc.GetString("gas-deposit-drill-system-examined-amount",
+                    ("statusColor", "lightblue"),
+                    ("rate", extractor.DepositEntity.Value.Comp.Deposit.TotalMoles)));
         }
     }
 
