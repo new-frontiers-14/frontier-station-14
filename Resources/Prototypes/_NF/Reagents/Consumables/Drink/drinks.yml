@@ -198,3 +198,42 @@
   metamorphicSprite:
     sprite: _NF/Objects/Consumable/Drinks/honeyicedtea.rsi
     state: icon
+
+- type: reagent
+  id: WassailMulledAle
+  name: reagent-name-wassail
+  parent: BaseAlcohol
+  desc: reagent-desc-wassail
+  physicalDesc: reagent-physical-desc-spicy
+  flavor: wassail
+  color: "#AD2D00"
+  metabolisms:
+    Drink:
+      effects:
+      - !type:PopupMessage # a nice warm soothing drink
+        type: Local
+        visualType: Medium
+        messages:
+        - "drinks-effect-nf-wassail"
+        probability: 0.1
+  metamorphicSprite:
+    sprite: _NF/Objects/Consumable/Drinks/wassail.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 4
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
+
+- type: reagent
+  id: Eggnog
+  name: reagent-name-eggnog
+  parent: BaseAlcohol
+  desc: reagent-desc-eggnog
+  physicalDesc: reagent-physical-desc-thick
+  flavor: creamy
+  color: "#ffebc4"
+  metamorphicSprite:
+    sprite: _NF/Objects/Consumable/Drinks/eggnog.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 8
+  metamorphicFillBaseName: fill
+  metamorphicChangeColor: false
