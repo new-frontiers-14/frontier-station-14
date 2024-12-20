@@ -162,11 +162,13 @@ public sealed class PointOfInterestSystem : EntitySystem
         //Traditionally these would be stations like Expedition Lodge, NFSD station, Prison/Courthouse POI, etc.
         //There are no limit to these, and any prototype marked alwaysSpawn = true will get pulled out of any list that isnt Markets/Depots
         //And will always appear every time, and also will not be included in other optional/dynamic lists
+
+        requiredStations = new List<EntityUid>();
+
         if (_ticker.CurrentPreset is null)
             return;
         var currentPreset = _ticker.CurrentPreset!.ID;
 
-        requiredStations = new List<EntityUid>();
         foreach (var proto in requiredPrototypes)
         {
             if (!proto.SpawnGamePreset.Contains(currentPreset))
@@ -190,11 +192,13 @@ public sealed class PointOfInterestSystem : EntitySystem
         //To do this with an equal distribution on a per-POI, per-round percentage basis, we are going to ensure a random
         //pick order of which we analyze our weighted chances to spawn, and if successful, remove every entry of that group
         //entirely.
+
+        uniqueStations = new List<EntityUid>();
+
         if (_ticker.CurrentPreset is null)
             return;
         var currentPreset = _ticker.CurrentPreset!.ID;
 
-        uniqueStations = new List<EntityUid>();
         foreach (var prototypeList in uniquePrototypes.Values)
         {
             // Try to spawn
