@@ -19,6 +19,10 @@
           - id: NFRockMineralHard
             orGroup: rock
             prob: 0.1223
+          # Room
+          - id: NFAsteroidRoomMarker
+            orGroup: rock
+            prob: 0.0001
     - type: IFF
       flags: HideLabel
       color: "#d67e27"
@@ -42,6 +46,10 @@
           - id: NFIceMineralHard
             orGroup: rock
             prob: 0.1305
+          # Room
+          - id: NFSnowRoomMarker
+            orGroup: rock
+            prob: 0.0001
     - type: IFF
       color: "#d6fffc"
 # endregion Snow Table
@@ -64,6 +72,10 @@
           - id: NFAndesiteMineralHard
             orGroup: rock
             prob: 0.1317
+          # Room
+          - id: NFAndesiteRoomMarker
+            orGroup: rock
+            prob: 0.0001
     - type: IFF
       color: "#95c280"
 # endregion Andesite Table
@@ -86,6 +98,10 @@
           - id: NFBasaltMineralHard
             orGroup: rock
             prob: 0.115
+          # Room
+          - id: NFBasaltRoomMarker
+            orGroup: rock
+            prob: 0.0001
     - type: IFF
       color: "#b5b5b5"
 # endregion Basalt Table
@@ -105,9 +121,13 @@
           - id: NFSandMineralSoft
             orGroup: rock
             prob: 0.899
-          - id: NFBasaltMineralHard
+          - id: NFSandMineralHard
             orGroup: rock
             prob: 0.1227
+          # Room
+          - id: NFSandRoomMarker
+            orGroup: rock
+            prob: 0.0001
     - type: IFF
       color: "#cad17b"
 # endregion Sand Table
@@ -125,11 +145,15 @@
       entries:
         FloorChromite:
           - id: NFChromiteMineralSoft
+            orGroup: rock
             prob: 0.8225
-            orGroup: rock
           - id: NFChromiteMineralHard
-            prob: 0.11175
             orGroup: rock
+            prob: 0.11175
+          # Room
+          - id: NFChromiteRoomMarker
+            orGroup: rock
+            prob: 0.0001
     - type: IFF
       color: "#8178cc"
 # endregion Chromite Table
@@ -147,11 +171,15 @@
       entries:
         FloorAsteroidSand:
           - id: NFAsteroidMineralSoft
+            orGroup: rock
             prob: 1.392
-            orGroup: rock
           - id: NFAsteroidMineralHard
-            prob: 0.1682
             orGroup: rock
+            prob: 0.1682
+          # Room
+          - id: NFAsteroidRockRoomMarker
+            orGroup: rock
+            prob: 0.0001
     - type: IFF
       color: "#BF8C5C"
 # endregion AsteroidRock Table
@@ -169,11 +197,11 @@
       entries:
         Lattice:
           - id: NFScrapMineralSoft
+            orGroup: rock
             prob: 0.77
-            orGroup: rock
           - id: WallSolidRust
-            prob: 0.05
             orGroup: rock
+            prob: 0.05
     - type: IFF
       color: "#fcdec7"
 # endregion Scrap Table
