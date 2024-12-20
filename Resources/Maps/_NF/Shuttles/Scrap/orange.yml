@@ -546,7 +546,7 @@ entities:
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: BecomesStation
-      id: svorange
+      id: Orange
 - proto: AirlockCargoGlass
   entities:
   - uid: 2
@@ -1223,31 +1223,6 @@ entities:
     - type: Transform
       pos: -1.5,5.5
       parent: 1
-    - type: Fixtures
-      fixtures:
-        fix1:
-          shape: !type:PolygonShape
-            radius: 0.01
-            vertices:
-            - -0.4,-0.4
-            - 0.4,-0.4
-            - 0.4,0.29
-            - -0.4,0.29
-          mask:
-          - Impassable
-          - LowImpassable
-          layer:
-          - BulletImpassable
-          - Opaque
-          density: 50
-          hard: True
-          restitution: 0
-          friction: 0.4
-    - type: EntityStorage
-      open: True
-      removedMasks: 20
-    - type: PlaceableSurface
-      isPlaceable: True
 - proto: DrinkWaterCup
   entities:
   - uid: 118
@@ -2219,7 +2194,7 @@ entities:
     - type: Transform
       pos: 9.5,6.5
       parent: 1
-- proto: WarpPointShip
+- proto: WarpPoint
   entities:
   - uid: 284
     components:

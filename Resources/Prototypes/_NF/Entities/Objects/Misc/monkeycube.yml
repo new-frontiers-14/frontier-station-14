@@ -2,7 +2,7 @@
   parent: BoxCardboard
   name: poultry cube box
   id: PoultryCubeBox
-  description: Drymate brand poultry cubes, chicken and duck. Just add water!
+  description: "A box of poultry cubes: chickens and ducks! Just add water!"
   components:
   - type: StorageFill
     contents:
@@ -21,7 +21,7 @@
   parent: VariantCubeBox
   name: ruminant cube box
   id: RuminantCubeBox
-  description: Drymate brand ruminant cubes, cow, pig and goats. Just add water!
+  description: "A box of ruminant cubes: a cow, a pig and goats! Just add water!"
   components:
   - type: StorageFill
     contents:
@@ -31,9 +31,9 @@
       amount: 1
     - id: CowCubeWrapped
       amount: 1
-#  - type: Sprite
-#    sprite: _NF/Objects/Misc/monkeycube.rsi
-#    state: box_poultry
+  - type: Sprite
+    sprite: _NF/Objects/Misc/monkeycube.rsi
+    state: box_ruminant
   - type: StaticPrice
     price: 20
     vendPrice: 2000 # Meat only worth 607 at a depot, but can produce more stuff from extra goats + milk
@@ -76,9 +76,9 @@
   - type: SpawnItemsOnUse
     items:
     - id: GoatCube
-#  - type: Sprite
-#    sprite: Objects/Misc/monkeycube.rsi
-#    state: wrapper_goat
+  - type: Sprite
+    sprite: _NF/Objects/Misc/monkeycube.rsi
+    state: wrapper_goat
 
 - type: entity
   parent: MonkeyCubeWrapped
@@ -90,9 +90,9 @@
   - type: SpawnItemsOnUse
     items:
     - id: PigCube
-#  - type: Sprite
-#    sprite: _NF/Objects/Misc/monkeycube.rsi
-#    state: wrapper_pig
+  - type: Sprite
+    sprite: _NF/Objects/Misc/monkeycube.rsi
+    state: wrapper_pig
 
 - type: entity
   parent: MonkeyCubeWrapped
@@ -104,6 +104,6 @@
   - type: SpawnItemsOnUse
     items:
     - id: CowCube
-#  - type: Sprite
-#    sprite: _NF/Objects/Misc/monkeycube.rsi
-#    state: wrapper_cow
+  - type: Sprite
+    sprite: _NF/Objects/Misc/monkeycube.rsi
+    state: wrapper_cow
