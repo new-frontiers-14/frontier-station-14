@@ -1,9 +1,8 @@
+using Content.Server.GameTicking.Presets;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.List;
-using System.Collections.Immutable;
 
-namespace Content.Shared._NF.GameRule;
+namespace Content.Server._NF.GameRule;
 
 /// <summary>
 ///     Describes information for a single point of interest to be spawned in the world
@@ -55,7 +54,7 @@ public sealed partial class PointOfInterestPrototype : IPrototype
     ///     What gamepresets ID this POI is allowed to spawn on.
     /// </summary>
     [DataField]
-    public string[] SpawnGamePreset { get; private set; } = [];
+    public ProtoId<GamePresetPrototype>[] SpawnGamePreset { get; private set; } = [];
 
     /// <summary>
     ///     If the POI does not belong to a pre-defined group, it will default to the "unique" internal category and will

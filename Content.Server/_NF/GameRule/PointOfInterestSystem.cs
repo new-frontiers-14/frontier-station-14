@@ -1,17 +1,16 @@
+using System.Linq;
 using System.Numerics;
-using Content.Shared._NF.GameRule;
 using Robust.Server.GameObjects;
 using Robust.Server.Maps;
+using Robust.Shared.Configuration;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Content.Server.Maps;
 using Content.Server.Station.Systems;
-using Content.Shared._NF.CCVar; // Frontier
-using Robust.Shared.Configuration;
-using Content.Server.GameTicking.Presets;
 using Content.Server.GameTicking;
-using System.Linq;
+using Content.Shared._NF.CCVar;
+using Content.Shared.GameTicking;
 
 namespace Content.Server._NF.GameRule;
 
@@ -31,6 +30,18 @@ public sealed class PointOfInterestSystem : EntitySystem
     [Dependency] private readonly GameTicker _ticker = default!;
 
     private List<Vector2> _stationCoords = new();
+
+    public override void Initialize()
+    {
+        base.Initialize();
+
+        SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
+    }
+
+    private void OnRoundRestart(RoundRestartCleanupEvent ev)
+    {
+        _stationCoords.Clear();
+    }
 
     private void AddStationCoordsToSet(Vector2 coords)
     {
@@ -63,7 +74,7 @@ public sealed class PointOfInterestSystem : EntitySystem
 
             string overrideName = proto.Name;
             if (i < 26)
-                overrideName += $" {(char) ('A' + i)}"; // " A" ... " Z"
+                overrideName += $" {(char)('A' + i)}"; // " A" ... " Z"
             else
                 overrideName += $" {i + 1}"; // " 27", " 28"...
             if (TrySpawnPoiGrid(mapUid, proto, offset, out var depotUid, overrideName: overrideName) && depotUid is { Valid: true } depot)
