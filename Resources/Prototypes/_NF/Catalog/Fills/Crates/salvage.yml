@@ -4,308 +4,64 @@
   categories: [ HideSpawnMenu ]
   parent: CrateGenericSteel
   components:
-  - type: StorageFill
-    contents:
-    - id: OxygenTankFilled
-      prob: 0.1
-      orGroup: Gas
-    - id: NitrogenTankFilled
-      prob: 0.1
-      orGroup: Gas
-    - prob: 2.0 # Empty
-      orGroup: Gas
-   # - id: ResearchDisk
-    #  prob: 0.1
-    #  orGroup: RD
-    - id: ResearchDisk5000
-      prob: 0.01
-      orGroup: RD
-    - id: ResearchDisk10000
-      prob: 0.005
-      orGroup: RD
-    - id: ResearchDisk10000
-      prob: 0.0025
-      orGroup: RD
-    - prob: 2 # Empty
-      orGroup: RD
-    # Normal (10%)
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: NFSalvageAssortedGoodies
+        rolls: !type:RangeNumberSelector
+          range: -1, 3 # -1 used because of strange counting, actual values: [0, 1, 2, 3], ~25% chance of each.
+
+- type: entityTable
+  id: NFSalvageAssortedGoodies
+  table: !type:GroupSelector
+    children:
+    # Mats
+    - id: SheetSteel
+      weight: 0.15
+    - id: SheetGlass
+      weight: 0.15
     - id: SheetPlasma
-      prob: 0.1
+      weight: 0.1
     - id: IngotGold
-      prob: 0.1
+      weight: 0.1
     - id: IngotSilver
-      prob: 0.1
+      weight: 0.1
     - id: SheetPlastic
-      prob: 0.1
+      weight: 0.1
     - id: SheetUranium
-      prob: 0.1
-    - id: SheetBrass
-      prob: 0.1
+      weight: 0.1
     - id: SheetPlasteel
-      prob: 0.1
+      weight: 0.1
     - id: MaterialWoodPlank
-      prob: 0.1
+      weight: 0.1
     - id: MaterialCloth
-      prob: 0.1
+      weight: 0.1
     - id: MaterialDurathread
-      prob: 0.01
+      weight: 0.01
     - id: MaterialCardboard
-      prob: 0.01
+      weight: 0.01
     - id: SheetPaper
-      prob: 0.01
-      #  - Service
-    - id: CrayonBox
-      prob: 0.001
-      orGroup: MarineFood
-    - id: CrayonMagic
-      prob: 0.0001
-      orGroup: MarineFood
-    - prob: 1 # Empty
-      orGroup: MarineFood
-    # Rare (~1%)
-      #  - Medical
-    - id: Brutepack1
-      prob: 0.005
-      orGroup: Meds
-    - id: Gauze1
-      prob: 0.005
-      orGroup: Meds
-    - id: Ointment1
-      prob: 0.005
-      orGroup: Meds
-    - prob: 1 # Empty
-      orGroup: Meds
-    - id: ClothingShoesBootsMagBlinding
-      prob: 0.00001
-      #  - Drip - this is a mess, replace with some random
-    - id: ClothingBeltStorageWaistbag
-      orGroup: DripLoot
-    - id: ClothingBeltBandolier
-      orGroup: DripLoot
-    - id: ClothingBeltSuspendersRed # Frontier
-      orGroup: DripLoot # Frontier
-    - id: ClothingBeltSuspendersBlack # Frontier
-      orGroup: DripLoot # Frontier
-    - id: ClothingEyesGlassesGar
-      orGroup: DripLoot
-    - id: ClothingEyesGlassesGarOrange
-      orGroup: DripLoot
-    - id: ClothingEyesGlassesGarGiga
-      orGroup: DripLoot
-    - id: ClothingEyesGlasses
-      orGroup: DripLoot
-    - id: ClothingEyesGlassesSunglasses
-      orGroup: DripLoot
-    - id: ClothingEyesEyepatch
-      orGroup: DripLoot
-    - id: ClothingEyesBlindfold
-      orGroup: DripLoot
-    - id: ClothingHandsGlovesColorPurple
-      orGroup: DripLoot
-    - id: ClothingHandsGlovesColorRed
-      orGroup: DripLoot
-    - id: ClothingHandsGlovesColorBlack
-      orGroup: DripLoot
-    - id: ClothingHandsGlovesColorBlue
-      orGroup: DripLoot
-    - id: ClothingHandsGlovesColorBrown
-      orGroup: DripLoot
-    - id: ClothingHandsGlovesColorGray
-      orGroup: DripLoot
-    - id: ClothingHandsGlovesColorGreen
-      orGroup: DripLoot
-    - id: ClothingHandsGlovesColorLightBrown
-      orGroup: DripLoot
-    - id: ClothingHandsGlovesColorOrange
-      orGroup: DripLoot
-    - id: ClothingHandsGlovesColorWhite
-      orGroup: DripLoot
-    - id: ClothingHandsGlovesColorYellowBudget
-      orGroup: DripLoot
-    - id: ClothingHandsGlovesPowerglove
-      orGroup: DripLoot
-    - id: ClothingHandsGlovesRobohands
-      orGroup: DripLoot
-    - id: ClothingHeadHatAnimalCat
-      orGroup: DripLoot
-    - id: ClothingHeadHatAnimalCatBrown
-      orGroup: DripLoot
-    - id: ClothingHeadHatAnimalCatBlack
-      orGroup: DripLoot
-    - id: ClothingHeadHatAnimalHeadslime
-      orGroup: DripLoot
-    - id: ClothingHeadHatAnimalMonkey
-      orGroup: DripLoot
-    - id: ClothingHeadBandBlack
-      orGroup: DripLoot
-    - id: ClothingHeadBandBlue
-      orGroup: DripLoot
-    - id: ClothingHeadBandGrey
-      orGroup: DripLoot
-    - id: ClothingHeadBandBrown
-      orGroup: DripLoot
-    - id: ClothingHeadHatBeaverHat
-      orGroup: DripLoot
-    - id: ClothingHeadHatBeret
-      orGroup: DripLoot
-    - id: ClothingHeadHatCasa
-      orGroup: DripLoot
-    - id: ClothingHeadHatBowlerHat
-      orGroup: DripLoot
-    - id: ClothingHeadHatCardborg
-      orGroup: DripLoot
-    - id: ClothingHeadHatFedoraBrown
-      orGroup: DripLoot
-    - id: ClothingHeadHatFedoraGrey
-      orGroup: DripLoot
-    - id: ClothingHeadHatFez
-      orGroup: DripLoot
-    - id: ClothingHeadHatWitch1
-      orGroup: DripLoot
-    - id: ClothingHeadHatPaper
-      orGroup: DripLoot
-    - id: ClothingHeadHatTophat
-      orGroup: DripLoot
-    - id: ClothingHeadHatUshanka
-      orGroup: DripLoot
-    - id: ClothingHeadHatWitch
-      orGroup: DripLoot
-    - id: ClothingHeadHatTrucker
-      orGroup: DripLoot
-    - id: ClothingHeadFishCap
-      orGroup: DripLoot
-    - id: ClothingHeadSafari
-      orGroup: DripLoot
-    - id: ClothingHeadHatHoodGoliathCloak
-      orGroup: DripLoot
-    - id: ClothingHeadHatBluesoft
-      orGroup: DripLoot
-    - id: ClothingHeadHatBluesoftFlipped
-      orGroup: DripLoot
-    - id: ClothingHeadHatCorpsoft
-      orGroup: DripLoot
-    - id: ClothingHeadHatCorpsoftFlipped
-      orGroup: DripLoot
-    - id: ClothingHeadHatGreensoft
-      orGroup: DripLoot
-    - id: ClothingHeadHatGreensoftFlipped
-      orGroup: DripLoot
-    - id: ClothingHeadHatGreysoft
-      orGroup: DripLoot
-    - id: ClothingHeadHatGreysoftFlipped
-      orGroup: DripLoot
-    - id: ClothingHeadHatOrangesoft
-      orGroup: DripLoot
-    - id: ClothingHeadHatOrangesoftFlipped
-      orGroup: DripLoot
-    - id: ClothingHeadHatPurplesoft
-      orGroup: DripLoot
-    - id: ClothingHeadHatPurplesoftFlipped
-      orGroup: DripLoot
-    - id: ClothingMaskRat
-      orGroup: DripLoot
-    - id: ClothingMaskFox
-      orGroup: DripLoot
-    - id: ClothingMaskBee
-      orGroup: DripLoot
-    - id: ClothingMaskBear
-      orGroup: DripLoot
-    - id: ClothingMaskRaven
-      orGroup: DripLoot
-    - id: ClothingMaskJackal
-      orGroup: DripLoot
-    - id: ClothingMaskBat
-      orGroup: DripLoot
-    - id: ClothingNeckCloakHerald
-      orGroup: DripLoot
-    - id: ClothingNeckCloakAdmin
-      orGroup: DripLoot
-      prob: 0.00001
-    - id: ClothingNeckCloakTrans
-      orGroup: DripLoot
-    - id: ClothingNeckHeadphones
-      orGroup: DripLoot
-    - id: ClothingNeckBling
-      orGroup: DripLoot
-    - id: ClothingNeckTieRed
-      orGroup: DripLoot
-    - id: ClothingNeckTieSci
-      orGroup: DripLoot
-    - id: ClothingOuterCoatBomber
-      orGroup: DripLoot
-    - id: ClothingOuterCoatGentle
-      orGroup: DripLoot
-    - id: ClothingOuterCoatJensen
-      orGroup: DripLoot
-    - id: ClothingOuterDameDane
-      orGroup: DripLoot
-    - id: ClothingOuterHoodieBlack
-      orGroup: DripLoot
-    - id: ClothingOuterHoodieGrey
-      orGroup: DripLoot
-    - id: ClothingOuterCardborg
-      orGroup: DripLoot
-    - id: ClothingOuterGhostSheet
-      orGroup: DripLoot
-    - id: ClothingShoesBootsWork
-      orGroup: DripLoot
-    - id: ClothingShoesBootsLaceup
-      orGroup: DripLoot
-    - id: ClothingShoesColorBlack
-      orGroup: DripLoot
-    - id: ClothingShoesColorBlue
-      orGroup: DripLoot
-    - id: ClothingShoesColorBrown
-      orGroup: DripLoot
-    - id: ClothingShoesColorGreen
-      orGroup: DripLoot
-    - id: ClothingShoesColorOrange
-      orGroup: DripLoot
-    - id: ClothingShoesColorPurple
-      orGroup: DripLoot
-    - id: ClothingShoesColorRed
-      orGroup: DripLoot
-    - id: ClothingShoesColorWhite
-      orGroup: DripLoot
-    - id: ClothingShoesColorYellow
-      orGroup: DripLoot
-    - id: ClothingShoesFlippers
-      orGroup: DripLoot
-    - id: ClothingShoesLeather
-      orGroup: DripLoot
-    - id: ClothingShoesSlippers
-      orGroup: DripLoot
-    - id: ClothingShoeSlippersDuck
-      orGroup: DripLoot
-    - id: ClothingShoesTourist
-      orGroup: DripLoot
-    - id: ClothingShoesDameDane
-      orGroup: DripLoot
-    - id: ClothingUnderSocksBee
-      orGroup: DripLoot
-    - id: ClothingUnderSocksCoder
-      orGroup: DripLoot
-    - id: ClothingUniformJumpsuitKimono
-      orGroup: DripLoot
-    - id: ClothingUniformOveralls
-      orGroup: DripLoot
-    - id: ClothingUniformJumpsuitSafari
-      orGroup: DripLoot
-    - id: ClothingUniformJumpsuitDameDane
-      orGroup: DripLoot
-    - id: ClothingUniformJumpsuitCossack
-      orGroup: DripLoot
-      prob: 0.01
-    - id: ClothingHeadHatDogEars
-      orGroup: DripLoot
-      prob: 0.00001
-    - id: ClothingHeadHatCatEars
-      prob: 0.00001
-      orGroup: DripLoot
-    - prob: 40 # Empty
-      orGroup: DripLoot
+      weight: 0.01
+    - id: SheetBrass
+      weight: 0.01
+    - id: MaterialBananium
+      weight: 0.00001
+    - id: MaterialDiamond
+      weight: 0.0000001
+    - id: MaterialBluespace
+      weight: 0.00000001 # Yes I mean it
+      # Disk
+    - id: ResearchDisk5000
+      weight: 0.001
+    - id: ResearchDisk10000
+      weight: 0.0005
 
 - type: entity
   id: NFCrateSalvageAssortedGoodiesPlastic
   categories: [ HideSpawnMenu ]
   parent: [ CratePlastic, NFCrateSalvageAssortedGoodies ]
+
+- type: entity
+  id: NFCrateSalvageAssortedGoodiesTrashCart
+  categories: [ HideSpawnMenu ]
+  parent: [ CrateTrashCart, NFCrateSalvageAssortedGoodies ]
