@@ -59,10 +59,14 @@ public sealed class PointOfInterestSystem : EntitySystem
         var rotation = 2 * Math.PI / depotCount;
         var rotationOffset = _random.NextAngle() / depotCount;
 
+        if (_ticker.CurrentPreset is null)
+            return;
+
+        var currentPreset = _ticker.CurrentPreset.ID;
+
         for (int i = 0; i < depotCount && depotPrototypes.Count > 0; i++)
         {
             var proto = _random.Pick(depotPrototypes);
-            var currentPreset = _ticker.CurrentPreset!.ID;
 
             if (!proto.SpawnGamePreset.Contains(currentPreset))
                 continue;
@@ -95,10 +99,13 @@ public sealed class PointOfInterestSystem : EntitySystem
         var marketCount = _configurationManager.GetCVar(NFCCVars.MarketStations);
         _random.Shuffle(marketPrototypes);
         int marketsAdded = 0;
+
+        if (_ticker.CurrentPreset is null)
+            return;
+        var currentPreset = _ticker.CurrentPreset.ID;
+
         foreach (var proto in marketPrototypes)
         {
-            var currentPreset = _ticker.CurrentPreset!.ID;
-
             if (!proto.SpawnGamePreset.Contains(currentPreset))
                 continue;
 
@@ -126,10 +133,13 @@ public sealed class PointOfInterestSystem : EntitySystem
         var optionalCount = _configurationManager.GetCVar(NFCCVars.OptionalStations);
         _random.Shuffle(optionalPrototypes);
         int optionalsAdded = 0;
+
+        if (_ticker.CurrentPreset is null)
+            return;
+        var currentPreset = _ticker.CurrentPreset.ID;
+
         foreach (var proto in optionalPrototypes)
         {
-            var currentPreset = _ticker.CurrentPreset!.ID;
-
             if (!proto.SpawnGamePreset.Contains(currentPreset))
                 continue;
 
@@ -152,12 +162,13 @@ public sealed class PointOfInterestSystem : EntitySystem
         //Traditionally these would be stations like Expedition Lodge, NFSD station, Prison/Courthouse POI, etc.
         //There are no limit to these, and any prototype marked alwaysSpawn = true will get pulled out of any list that isnt Markets/Depots
         //And will always appear every time, and also will not be included in other optional/dynamic lists
+        if (_ticker.CurrentPreset is null)
+            return;
+        var currentPreset = _ticker.CurrentPreset!.ID;
 
         requiredStations = new List<EntityUid>();
         foreach (var proto in requiredPrototypes)
         {
-            var currentPreset = _ticker.CurrentPreset!.ID;
-
             if (!proto.SpawnGamePreset.Contains(currentPreset))
                 continue;
 
@@ -179,6 +190,9 @@ public sealed class PointOfInterestSystem : EntitySystem
         //To do this with an equal distribution on a per-POI, per-round percentage basis, we are going to ensure a random
         //pick order of which we analyze our weighted chances to spawn, and if successful, remove every entry of that group
         //entirely.
+        if (_ticker.CurrentPreset is null)
+            return;
+        var currentPreset = _ticker.CurrentPreset!.ID;
 
         uniqueStations = new List<EntityUid>();
         foreach (var prototypeList in uniquePrototypes.Values)
@@ -187,8 +201,6 @@ public sealed class PointOfInterestSystem : EntitySystem
             _random.Shuffle(prototypeList);
             foreach (var proto in prototypeList)
             {
-                var currentPreset = _ticker.CurrentPreset!.ID;
-
                 if (!proto.SpawnGamePreset.Contains(currentPreset))
                     continue;
 
