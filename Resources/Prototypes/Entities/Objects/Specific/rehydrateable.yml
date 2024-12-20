@@ -9,10 +9,10 @@
   - type: SolutionContainerManager
     solutions:
       cube:
-        maxVol: 1 # needs room for water # Frontier: 11<1
-        reagents: [] # Frontier: add empty list
-        # - ReagentId: Nutriment # Frontier
-        #   Quantity: 10 # Frontier
+        maxVol: 11 # needs room for water
+        reagents: []
+        - ReagentId: Enzyme # Nutriment<Enzyme
+          Quantity: 10
   - type: Food
     solution: cube
   - type: FlavorProfile
@@ -144,10 +144,10 @@
   - type: SolutionContainerManager
     solutions:
       cube:
-        maxVol: 1 # needs room for more blood # Frontier: 10 < 1
-        reagents: [] # Frontier: add empty list
-        # - ReagentId: Blood # Frontier
-        #   Quantity: 9 # Frontier
+        maxVol: 10 # needs room for more blood
+        reagents:
+        - ReagentId: Blood
+          Quantity: 9
   - type: Reactive
     reactions:
     - reagents: [Blood]
@@ -170,10 +170,10 @@
   - type: SolutionContainerManager
     solutions:
       plushie:
-        maxVol: 1 # needs room for water # Frontier: 11 < 1
-        reagents: [] # Frontier: add empty list
-        # - ReagentId: Nutriment #contains nutriment like other dehydrated animals, but isn't edible? Who is grinding dehydrated carp to eat them?? # Frontier
-        #   Quantity: 10 # Frontier
+        maxVol: 11 # needs room for water
+        reagents:
+        - ReagentId: CarpoToxin #Frontier Nutriment<CarpoToxin
+          Quantity: 10
   - type: RefillableSolution
     solution: plushie
   - type: Reactive
@@ -230,10 +230,10 @@
   - type: SolutionContainerManager
     solutions:
       cube:
-        maxVol: 1 # needs room for water # Frontier: 11 < 1
-        reagents: [] # Frontier: empty list
-        # - ReagentId: Nutriment # Frontier
-        #   Quantity: 10 # Frontier
+        maxVol: 11 # needs room for water
+        reagents: []
+        - ReagentId: Ipecac # Nutriment<Ipecac
+          Quantity: 10
   - type: Food
     solution: cube
   - type: FlavorProfile
