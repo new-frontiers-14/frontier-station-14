@@ -23,6 +23,7 @@ public sealed class LoadoutSystem : EntitySystem
     [Dependency] private readonly SharedStationSpawningSystem _station = default!;
     [Dependency] private readonly IPrototypeManager _protoMan = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly IDependencyCollection _dependencies = default!; // Frontier
 
     public override void Initialize()
     {
@@ -160,7 +161,12 @@ public sealed class LoadoutSystem : EntitySystem
         var id = _random.Pick(loadoutGroups);
         var proto = _protoMan.Index(id);
         var loadout = new RoleLoadout(id);
-        loadout.SetDefault(GetProfile(uid), _actors.GetSession(uid), _protoMan, true);
+        // Frontier: cache, ensure valid loadouts.
+        var profile = GetProfile(uid);
+        var session = _actors.GetSession(uid);
+        loadout.SetDefault(profile, session, _protoMan, true);
+        loadout.EnsureValid(profile, session, _dependencies);
+        // End Frontier
         _station.EquipRoleLoadout(uid, loadout, proto);
 
         GearEquipped(uid);
