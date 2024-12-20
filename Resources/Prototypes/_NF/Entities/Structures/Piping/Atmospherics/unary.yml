@@ -128,6 +128,17 @@
   - type: ContainerContainer
     containers:
       board: !type:Container
+        showEnts: False
+        occludes: True
+        ents: []
+      machine_board: !type:Container
+        showEnts: False
+        occludes: True
+        ents: []
+      machine_parts: !type:Container
+        showEnts: False
+        occludes: True
+        ents: []
 
 - type: entity
   parent: [ BaseStructureIndestructible, BaseStructureDisableToolUse, BaseComputer ]
