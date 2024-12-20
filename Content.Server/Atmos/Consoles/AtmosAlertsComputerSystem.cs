@@ -466,7 +466,7 @@ public sealed class AtmosAlertsComputerSystem : SharedAtmosAlertsComputerSystem
 
         var gasData = new Dictionary<Gas, (float, float)>();
         if (TryComp<DockablePumpComponent>(focusDevice.Value, out var dockablePump) &&
-        _nodeContainer.TryGetNode(uid, dockablePump.InternalNodeName, out PipeNode? port))
+        _nodeContainer.TryGetNode(focusDevice.Value, dockablePump.InternalNodeName, out PipeNode? port))
         {
             if (port.Air.TotalMoles > 1e-8)
             {
