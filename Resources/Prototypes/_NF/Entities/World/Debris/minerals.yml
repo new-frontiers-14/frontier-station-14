@@ -34,6 +34,15 @@
       weight: 0.06
 
 - type: entity
+  id: NFRockMineralSoft
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0
+    table: !type:NestedSelector
+      tableId: NFRockMineralSoft
+
+- type: entityTable
   id: NFRockMineralHard
   table: !type:GroupSelector
     children:
@@ -63,10 +72,19 @@
       weight: 0.0003
     - id: CobblebrickElementalSpawner
       weight: 0.006
+
+- type: entity
+  id: NFRockMineralHard
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0
+    table: !type:NestedSelector
+      tableId: NFRockMineralHard
 # endregion Rock Spawners
 
 # region Ice Spawners
-- type: entity
+- type: entityTable
   id: NFIceMineralSoft
   table: !type:GroupSelector
     children:
@@ -100,6 +118,15 @@
       weight: 0.07
 
 - type: entity
+  id: NFRockMineralSoft
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0
+    table: !type:NestedSelector
+      tableId: NFRockMineralSoft
+
+- type: entityTable
   id: NFIceMineralHard
   table: !type:GroupSelector
     children:
@@ -131,10 +158,19 @@
       weight: 0.001
     - id: IceElementalSpawner
       weight: 0.007
+
+- type: entity
+  id: NFRockMineralHard
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0
+    table: !type:NestedSelector
+      tableId: NFRockMineralHard
 # endregion Ice Spawners
 
 # region Andesite Spawners
-- type: entity
+- type: entityTable
   id: NFAndesiteMineralSoft
   table: !type:GroupSelector
     children:
@@ -168,6 +204,15 @@
       weight: 0.08
 
 - type: entity
+  id: NFAndesiteMineralSoft
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0
+    table: !type:NestedSelector
+      tableId: NFAndesiteMineralSoft
+
+- type: entityTable
   id: NFAndesiteMineralHard
   table: !type:GroupSelector
     children:
@@ -199,10 +244,19 @@
       weight: 0.0002
     - id: AndesiteCobblebrickElementalSpawner
       weight: 0.008
+
+- type: entity
+  id: NFAndesiteMineralHard
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0
+    table: !type:NestedSelector
+      tableId: NFAndesiteMineralHard
 # endregion Andesite Spawners
 
 # region Basalt Spawners
-- type: entity
+- type: entityTable
   id: NFBasaltMineralSoft
   table: !type:GroupSelector
     children:
@@ -236,6 +290,15 @@
       weight: 0.05
 
 - type: entity
+  id: NFBasaltMineralSoft
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0
+    table: !type:NestedSelector
+      tableId: NFBasaltMineralSoft
+
+- type: entityTable
   id: NFBasaltMineralHard
   table: !type:GroupSelector
     children:
@@ -267,10 +330,19 @@
       weight: 0.0005
     - id: BasaltCobblebrickElementalSpawner
       weight: 0.005
+
+- type: entity
+  id: NFBasaltMineralHard
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0
+    table: !type:NestedSelector
+      tableId: NFBasaltMineralHard
 # endregion Basalt Spawners
 
 # region Sand Spawners
-- type: entity
+- type: entityTable
   id: NFSandMineralSoft
   table: !type:GroupSelector
     children:
@@ -304,6 +376,15 @@
       weight: 0.05
 
 - type: entity
+  id: NFSandMineralSoft
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0
+    table: !type:NestedSelector
+      tableId: NFSandMineralSoft
+
+- type: entityTable
   id: NFSandMineralHard
   table: !type:GroupSelector
     children:
@@ -336,10 +417,18 @@
     - id: SandstoneCobblebrickElementalSpawner
       weight: 0.008
 
+- type: entity
+  id: NFSandMineralHard
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0
+    table: !type:NestedSelector
+      tableId: NFSandMineralHard
 # endregion Sand Spawners
 
 # region Chromite Spawners
-- type: entity
+- type: entityTable
   id: NFChromiteMineralSoft
   table: !type:GroupSelector
     children:
@@ -373,6 +462,15 @@
       weight: 0.05
 
 - type: entity
+  id: NFChromiteMineralSoft
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0
+    table: !type:NestedSelector
+      tableId: NFChromiteMineralSoft
+
+- type: entityTable
   id: NFChromiteMineralHard
   table: !type:GroupSelector
     children:
@@ -404,10 +502,19 @@
       weight: 0.00025
     - id: ChromiteCobblebrickElementalSpawner
       weight: 0.005
+
+- type: entity
+  id: NFChromiteMineralHard
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0
+    table: !type:NestedSelector
+      tableId: NFChromiteMineralHard
 # endregion Chromite Spawners
 
 # region AsteroidRock Spawners
-- type: entity
+- type: entityTable
   id: NFAsteroidMineralSoft
   table: !type:GroupSelector
     children:
@@ -441,6 +548,15 @@
       weight: 0.08
 
 - type: entity
+  id: NFAsteroidMineralSoft
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0
+    table: !type:NestedSelector
+      tableId: NFAsteroidMineralSoft
+
+- type: entityTable
   id: NFAsteroidMineralHard
   table: !type:GroupSelector
     children:
@@ -472,10 +588,19 @@
     #   weight: 0.001
     - id: NecropolisElementalSpawner
       weight: 0.008
+
+- type: entity
+  id: NFAsteroidMineralHard
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0
+    table: !type:NestedSelector
+      tableId: NFAsteroidMineralHard
 # endregion AsteroidRock Spawners
 
 # region Scrap Spawners
-- type: entity
+- type: entityTable
   id: NFScrapMineralSoft
   table: !type:GroupSelector
     children:
@@ -505,4 +630,13 @@
       prob: 0.002
     - id: WallRockScrapPileBluespace
       prob: 0.003
+
+- type: entity
+  id: NFScrapMineralSoft
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTableSpawner
+    offset: 0
+    table: !type:NestedSelector
+      tableId: NFScrapMineralSoft
 # endregion Scrap Spawners
