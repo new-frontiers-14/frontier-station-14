@@ -240,3 +240,28 @@
     transferAmount: 10
   - type: Ammo
     muzzleFlash: null
+
+- type: entity
+  noSpawn: true
+  parent: WaterElementalConjured
+  id: WaterElementalConjuredStaff
+  components:
+  - type: NPCImprintingOnSpawnBehaviour
+    whitelist:
+      components:
+      - HumanoidAppearance
+  - type: HTN
+    rootTask:
+       task: KillerTomatoCompound
+    blackboard:
+      NavClimb: !type:Bool
+        false
+      NavInteract: !type:Bool
+        true
+      NavPry: !type:Bool
+        true
+  #- type: NpcFactionMember
+    #factions:
+    #- NanoTrasen
+  - type: TimedDespawn
+    lifetime: 180

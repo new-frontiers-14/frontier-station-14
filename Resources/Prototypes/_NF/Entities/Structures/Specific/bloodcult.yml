@@ -224,7 +224,7 @@
       shader: unshaded
 
 - type: entity
-  parent: Autolathe
+  parent: BaseLatheLube
   id: BloodCultProp02
   name: blood cult forge
   description: A forge for weapon and armor production.
@@ -242,6 +242,8 @@
       map: ["enum.MaterialStorageVisualLayers.Inserting"]
     - state: panel
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: ScrollCultForge
   - type: MaterialStorage
     whitelist:
       tags:
