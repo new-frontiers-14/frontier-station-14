@@ -19,6 +19,8 @@ entities:
     components:
     - type: MetaData
       name: Point
+    - type: BecomesStation
+      id: Point
     - type: Transform
       pos: -0.39584857,-0.47913614
       parent: invalid
@@ -321,50 +323,67 @@ entities:
       data:
         tiles:
           0,0:
-            0: 253
-            1: 28672
-            2: 32768
+            0: 245
+            1: 8
+            2: 28672
+            3: 32768
           0,-1:
             0: 4096
           0,1:
-            2: 389
-            1: 90
+            3: 389
+            2: 90
             0: 51200
           -1,0:
-            1: 34336
-            2: 16452
+            2: 34336
+            3: 16452
           -1,1:
-            1: 10822
-            2: 17440
+            2: 10822
+            3: 17440
           0,2:
             0: 3839
           -1,2:
             0: 2184
-            2: 16898
-            1: 32
+            3: 16898
+            2: 32
           1,0:
-            0: 34995
-            1: 4096
-            2: 8192
+            0: 34963
+            4: 32
+            2: 4096
+            3: 8192
           1,1:
             0: 4096
-            2: 1664
-            1: 18432
+            3: 1664
+            2: 18432
           1,2:
             0: 817
-            2: 18560
+            3: 18560
           1,-1:
-            2: 49152
+            3: 49152
           2,2:
-            1: 16
+            2: 16
           2,-1:
-            2: 4096
+            3: 4096
         uniqueMixes:
         - volume: 2500
           temperature: 293.15
           moles:
           - 21.824879
           - 82.10312
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          temperature: 293.14996
+          moles:
+          - 20.078888
+          - 75.53487
           - 0
           - 0
           - 0
@@ -405,19 +424,24 @@ entities:
           - 0
           - 0
           - 0
+        - volume: 2500
+          temperature: 293.15
+          moles:
+          - 21.6852
+          - 81.57766
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
-    - type: BecomesStation
-      id: Sart
-- proto: ActionToggleInternals
-  entities:
-  - uid: 157
-    components:
-    - type: Transform
-      parent: 281
-    - type: InstantAction
-      container: 281
 - proto: AirAlarm
   entities:
   - uid: 4
@@ -777,17 +801,6 @@ entities:
     - type: Transform
       pos: 3.4712796,0.6513945
       parent: 1
-    - type: ContainerContainer
-      containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 253
-        paper_label: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
 - proto: BookScientistsGuidebook
   entities:
   - uid: 368
@@ -1096,24 +1109,6 @@ entities:
     - type: Transform
       pos: 5.5,2.5
       parent: 1
-    - type: EntityStorage
-      air:
-        volume: 200
-        immutable: False
-        temperature: 293.14923
-        moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
 - proto: ClothingNeckTieSci
   entities:
   - uid: 336
@@ -1189,14 +1184,6 @@ entities:
     - type: Transform
       pos: 6.5197377,7.444345
       parent: 1
-    - type: GasTank
-      toggleActionEntity: 157
-    - type: ActionsContainer
-    - type: ContainerContainer
-      containers:
-        actions: !type:Container
-          ents:
-          - 157
 - proto: EmptyFlashlightLantern
   entities:
   - uid: 280
@@ -1251,19 +1238,12 @@ entities:
     - type: Transform
       pos: -2.5,2.5
       parent: 1
-- proto: FoodPizzaMoldySlice
-  entities:
-  - uid: 366
-    components:
-    - type: Transform
-      pos: -2.670964,4.43563
-      parent: 1
 - proto: FoodTinPeachesMaintTrash
   entities:
   - uid: 82
     components:
     - type: Transform
-      pos: 3.698707,0.64521134
+      pos: 3.5443187,0.48683766
       parent: 1
 - proto: GasPassiveVent
   entities:
@@ -1796,19 +1776,11 @@ entities:
     - type: Transform
       pos: 4.5,3.5
       parent: 1
-    - type: FuelGenerator
-      on: False
-    - type: Physics
-      bodyType: Static
   - uid: 204
     components:
     - type: Transform
       pos: 2.5,5.5
       parent: 1
-    - type: FuelGenerator
-      on: False
-    - type: Physics
-      bodyType: Static
 - proto: PosterBroken
   entities:
   - uid: 243
@@ -1974,37 +1946,16 @@ entities:
       parent: 1
 - proto: SheetPlasma
   entities:
-  - uid: 260
+  - uid: 163
     components:
     - type: Transform
-      pos: 4.510438,8.501066
+      pos: 2.4938529,5.483985
       parent: 1
-    - type: Stack
-      count: 15
-    - type: Item
-      size: 15
-- proto: SheetPlasma1
-  entities:
-  - uid: 253
+  - uid: 177
     components:
     - type: Transform
-      parent: 252
-    - type: Stack
-      count: 10
-    - type: Item
-      size: 10
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 259
-    components:
-    - type: Transform
-      pos: -0.5031796,10.492655
+      pos: 4.4834366,3.5451386
       parent: 1
-    - type: Stack
-      count: 5
-    - type: Item
-      size: 5
 - proto: SignScience
   entities:
   - uid: 364
@@ -2266,7 +2217,7 @@ entities:
     - type: Transform
       pos: 0.5,11.5
       parent: 1
-- proto: WarpPointShip
+- proto: WarpPoint
   entities:
   - uid: 264
     components:

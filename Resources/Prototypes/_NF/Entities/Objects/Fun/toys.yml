@@ -24,6 +24,63 @@
   - type: StinkyTrait
 
 - type: entity
+  parent: PlushieLizard
+  id: NFPlushieBotanist #Weh!
+  name: botanist plushie
+  description: You need food and it just wont stop making rainbow weed.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/toys.rsi
+    state: plushie_botanist
+
+- type: entity
+  parent: PlushieLizard
+  id: NFPlushieEngineer #Weh!
+  name: engineer plushie
+  description: The poor thing is just sitting there with nothing to do! Give it a hug!
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/toys.rsi
+    state: plushie_engineer
+
+- type: entity
+  parent: PlushieLizard
+  id: NFPlushieConstruction #Weh!
+  name: construction plushie
+  description: A work in progress. A shame it had to end this way.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/toys.rsi
+    state: plushie_construction
+
+- type: entity
+  parent: PlushieLizard
+  id: NFPlushieCmo #Weh!
+  name: chief medical officer plushie
+  description: Just a weh away.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/toys.rsi
+    state: plushie_cmo
+
+- type: entity
+  parent: PlushieCarp
+  id: NFPlushieSharkMinnow
+  name: sharkminnow plushie
+  description: It's killed you! It's killed your friends! Now this source of PTSD is a Pretty Terrific Stuffed Doodad!
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/sharkminnow.rsi
+    state: sharkminnowplush
+  - type: Item
+    heldPrefix: sharkminnowplush
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      right:
+      - state: inhand-right
+
+- type: entity
   parent: BasePlushie
   id: PlushieJanitor
   name: janitor plushie
@@ -474,41 +531,56 @@
     state: white
 
 - type: entity
-  name: Emotional support RPG
-  parent: WeaponLauncherRocket
+  name: toy RPG
+  parent: [BaseClearContraband, WeaponLauncherRocket]
   id: WeaponLauncherRocketToy
   suffix: Toy
-  description: A deactived RPG modified to only allow foam RPG warheads. "When in times of trouble and stressed out as can be, DON'T worry now because S.E.S.W.C has what you need!"
+  description: A plush toy, this launches foam "grenades". There are stitches on the side that spell out "SAM".
   components:
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Launchers/rocket.rsi
-    layers:
+    sprite: _NF/Objects/Fun/emotional_support_rpg.rsi
+    layers: # explicit just in case the base changes.
       - state: base
         map: ["enum.GunVisualLayers.Base"]
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: Objects/Weapons/Guns/Launchers/rocket.rsi
+    sprite: _NF/Objects/Fun/emotional_support_rpg.rsi
   - type: Gun
-    fireRate: 0.5
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/rpgfire.ogg
+      path: /Audio/Effects/thunk.ogg
+    soundEmpty:
+      collection: ToySqueak
   - type: BallisticAmmoProvider
     whitelist:
       tags:
-        - BulletFoam
+        - NFFoamRPG
     proto: BulletFoamRPG
-    capacity: 1
     soundInsert:
-      path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+      collection: ToySqueak
   - type: EmitSoundOnCollide
     sound:
-      path: /Audio/DeltaV/Voice/Vulpkanin/dog_bark1.ogg
-  - type: MagazineVisuals
-    magState: mag
-    steps: 2
-    zeroVisible: false
-  - type: Appearance
+      collection: ToySqueak
+
+- type: entity
+  id: BulletFoamRPG
+  description: Looks like the REAL THING... if you squint. I hope your target's wearing face protection.
+  name: foam RPG rocket
+  parent: BaseItem
+  components:
+    - type: Tag
+      tags:
+        - NFFoamRPG
+        - Trash
+    - type: Ammo
+    - type: Sprite
+      sprite: _NF/Objects/Fun/emotional_support_rocket.rsi
+      state: icon
+    - type: EmitSoundOnCollide
+      sound:
+       path: /Audio/Weapons/rubberhammer.ogg
+    - type: StaminaDamageOnCollide
+      damage: 20
 
 # Grown cap gun, in toys.yml for consistency with fake parent
 - type: entity
