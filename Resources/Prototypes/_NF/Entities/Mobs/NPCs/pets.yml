@@ -4,6 +4,7 @@
   components:
   - type: GhostRole
   - type: IntrinsicRadioReceiver
+  - type: CargoSellBlacklist
 
 - type: entity
   name: Clippy
@@ -40,7 +41,6 @@
       - Cat
       - PetsNT
   - type: ShowJobIcons
-  - type: CargoSellBlacklist
 
 - type: entity
   name: Clarpy
@@ -86,7 +86,6 @@
     factions:
       - Cat
       - PirateNF
-  - type: CargoSellBlacklist
   - type: PirateAccent
   - type: Speech
     audioParams:
@@ -154,7 +153,6 @@
   - type: InteractionPopup
     interactSuccessSound:
       path: /Audio/_NF/Animals/nfsdcat_meow.ogg
-  - type: CargoSellBlacklist
   - type: PirateBountyItem
     id: Cappy
   - type: SouthernAccent
@@ -197,8 +195,6 @@
   description: "???"
   components:
   - type: Sprite
-    drawdepth: Mobs
-    sprite: _NF/Mobs/Pets/cat.rsi
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: mistakecat
@@ -224,15 +220,19 @@
     successChance: 0.0
     interactFailureString: petting-failure-mistake
   - type: MovementSpeedModifier
-    baseWalkSpeed : 8
-    baseSprintSpeed : 8
+    baseWalkSpeed : 6
+    baseSprintSpeed : 6
+  - type: NFSalvageMobRestrictions
+    despawnIfOffLinkedGrid: false
+    addComponentsOnDeath: []
+    removeComponentsOnDeath: []
   - type: NpcFactionMember
     factions:
       - Cat
 
 - type: entity
   name: blood cult cat
-  parent: [NFMobPet, MobCatGhost]
+  parent: [NFMobPet, MobCatMistake]
   id: MobCatBloodCult
   description: Founded the Blood Cult out of boredom.
   components:
@@ -273,23 +273,15 @@
     nameSegments: [ names_cat_cult ]
   - type: AutoImplant
     implants:
-    - MedicalTrackingImplant
     - RedLightImplant
     - DissonantWhispersImplant
+    - MedicalTrackingImplant
   - type: IntrinsicRadioTransmitter
     channels:
     - Science
   - type: ActiveRadio
     channels:
     - Science
-  - type: NpcFactionMember
-    factions:
-      - Cat
-  - type: NFSalvageMobRestrictions
-    despawnIfOffLinkedGrid: false
-    addComponentsOnDeath: []
-    removeComponentsOnDeath: []
-  - type: CargoSellBlacklist
   - type: ActionGun
     action: ActionEldritchPush
     gunProto: EldritchPushGun
@@ -332,7 +324,7 @@
 # Adopted from space-wizards #26265 (Thank you, PolterTzi)
 - type: entity
   name: Yip Yip
-  parent: MobKobold
+  parent: [NFMobPet, MobKobold]
   id: MobKoboldYipyip
   description: He lives in a pineapple on the Frontier!
   components:
