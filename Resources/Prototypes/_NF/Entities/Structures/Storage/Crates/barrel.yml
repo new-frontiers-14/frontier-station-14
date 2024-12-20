@@ -64,6 +64,9 @@
     sprite: _NF/Objects/Storage/Barrels/grey.rsi
     layers:
     - state: icon
+    - state: icon_open
+      map: ["enum.OpenableVisuals.Layer"]
+      visible: false
     - state: paper
       map: ["enum.PaperLabelVisuals.Layer"]
       visible: false
@@ -80,8 +83,6 @@
   - type: DrawableSolution
     solution: tank
   - type: InjectableSolution
-    solution: tank
-  - type: Drink
     solution: tank
   - type: Spillable
     solution: tank
@@ -106,6 +107,10 @@
     damageModifierSet: Metallic
   - type: GenericVisualizer
     visuals:
+      enum.OpenableVisuals.Opened:
+        enum.OpenableVisuals.Layer:
+          True: { visible: true }
+          False: { visible: false }
       enum.PaperLabelVisuals.HasLabel:
         enum.PaperLabelVisuals.Layer:
           True: { visible: true }
@@ -128,6 +133,13 @@
   - type: ContainerContainer
     containers:
       paper_label: !type:ContainerSlot
+  - type: Openable
+    sound:
+      collection: valveSqueak
+    closeable: true
+    closeSound:
+      collection: valveSqueak
+  - type: Sealable
   - type: StaticPrice
     price: 500
 
@@ -191,6 +203,9 @@
     sprite: _NF/Objects/Storage/Barrels/red.rsi
     layers:
     - state: icon
+    - state: icon_open
+      map: ["enum.OpenableVisuals.Layer"]
+      visible: false
     - state: metal_explosive_label
     - state: paper
       map: ["enum.PaperLabelVisuals.Layer"]
@@ -213,9 +228,9 @@
       types:
         Heat: 10
   - type: PacifismDangerousAttack
-  - type: Explosive
+  - type: Explosive # This is dumb since you can refill it with water and it will still explode, so be it.
     explosionType: Default
-    totalIntensity: 80
+    totalIntensity: 60
   - type: ContainerFill
     containers:
       paper_label:
