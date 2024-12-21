@@ -35,6 +35,13 @@ public sealed class MentorManager : IPostInjectInit
         var userId = player.UserId;
         var isMentor = await _db.IsJobWhitelisted(player.UserId, MentorJob, cancel);
 
+        // Frontier: check global whitelist
+        if (!isMentor && !cancel.IsCancellationRequested)
+        {
+            isMentor = await _db.GetWhitelistStatusAsync(player.UserId);
+        }
+        // End Frontier
+
         if (!isMentor)
         {
             var dbData = await _db.GetAdminDataForAsync(userId, cancel);
