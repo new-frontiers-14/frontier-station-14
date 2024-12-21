@@ -1,0 +1,39 @@
+# Author Info
+# GitHub: AF-Buyrcsp2
+# Discord: Buyrcsp2
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: Omakase
+  name: SSS Omakase
+  description: A medium-size, high-end japanese-style restaurant ship with a large dining area, and equally large kitchen.
+  price: 91000 # ~79000 after purchase, ~15% markup
+  category: Medium
+  group: Shipyard
+  shuttlePath: /Maps/_NF/Shuttles/omakase.yml
+  guidebookPage: ShipyardOmakase
+  class:
+  - Kitchen
+  engine:
+  - Uranium
+
+- type: gameMap
+  id: Omakase
+  mapName: 'SSS Omakase'
+  mapPath: /Maps/_NF/Shuttles/omakase.yml
+  minPlayers: 0
+  stations:
+    Omakase:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Omakase {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]
