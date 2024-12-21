@@ -17,6 +17,7 @@ using Content.Shared.Power;
 using JetBrains.Annotations;
 using Robust.Server.GameObjects;
 using Robust.Shared.Player;
+using Content.Shared._NF.Atmos.Piping.Binary.Components; // Frontier
 
 namespace Content.Server.Atmos.Piping.Binary.EntitySystems
 {
@@ -44,6 +45,7 @@ namespace Content.Server.Atmos.Piping.Binary.EntitySystems
             // Bound UI subscriptions
             SubscribeLocalEvent<GasPressurePumpComponent, GasPressurePumpChangeOutputPressureMessage>(OnOutputPressureChangeMessage);
             SubscribeLocalEvent<GasPressurePumpComponent, GasPressurePumpToggleStatusMessage>(OnToggleStatusMessage);
+            SubscribeLocalEvent<GasPressurePumpComponent, GasPressurePumpChangePumpDirectionMessage>(OnPumpSetDirectionMessage); // Frontier
 
             SubscribeLocalEvent<GasPressurePumpComponent, MapInitEvent>(OnMapInit); // Frontier
         }
@@ -132,7 +134,7 @@ namespace Content.Server.Atmos.Piping.Binary.EntitySystems
             args.Handled = true;
         }
 
-        private void OnToggleStatusMessage(EntityUid uid, GasPressurePumpComponent pump, GasPressurePumpToggleStatusMessage args)
+        public void OnToggleStatusMessage(EntityUid uid, GasPressurePumpComponent pump, GasPressurePumpToggleStatusMessage args) // Frontier: private<public (hacked interface)
         {
             pump.Enabled = args.Enabled;
             _adminLogger.Add(LogType.AtmosPowerChanged, LogImpact.Medium,
@@ -141,13 +143,12 @@ namespace Content.Server.Atmos.Piping.Binary.EntitySystems
             UpdateAppearance(uid, pump);
         }
 
-        private void OnOutputPressureChangeMessage(EntityUid uid, GasPressurePumpComponent pump, GasPressurePumpChangeOutputPressureMessage args)
+        public void OnOutputPressureChangeMessage(EntityUid uid, GasPressurePumpComponent pump, GasPressurePumpChangeOutputPressureMessage args) // Frontier: private<public (hacked interface)
         {
             pump.TargetPressure = Math.Clamp(args.Pressure, 0f, Atmospherics.MaxOutputPressure);
             _adminLogger.Add(LogType.AtmosPressureChanged, LogImpact.Medium,
                 $"{ToPrettyString(args.Actor):player} set the pressure on {ToPrettyString(uid):device} to {args.Pressure}kPa");
             DirtyUI(uid, pump);
-
         }
 
         private void DirtyUI(EntityUid uid, GasPressurePumpComponent? pump)
@@ -155,8 +156,8 @@ namespace Content.Server.Atmos.Piping.Binary.EntitySystems
             if (!Resolve(uid, ref pump))
                 return;
 
-            _userInterfaceSystem.SetUiState(uid, GasPressurePumpUiKey.Key,
-                new GasPressurePumpBoundUserInterfaceState(EntityManager.GetComponent<MetaDataComponent>(uid).EntityName, pump.TargetPressure, pump.Enabled));
+            _userInterfaceSystem.SetUiState(uid, pump.UiKey, // Frontier: PressurePumpUiKey.Key < pump.UiKey
+                new GasPressurePumpBoundUserInterfaceState(EntityManager.GetComponent<MetaDataComponent>(uid).EntityName, pump.TargetPressure, pump.Enabled, pump.PumpingInwards)); // Frontier: added pump.PumpingInwards
         }
 
         private void UpdateAppearance(EntityUid uid, GasPressurePumpComponent? pump = null, AppearanceComponent? appearance = null)
@@ -166,9 +167,12 @@ namespace Content.Server.Atmos.Piping.Binary.EntitySystems
 
             bool pumpOn = pump.Enabled && (TryComp<ApcPowerReceiverComponent>(uid, out var power) && power.Powered);
             _appearance.SetData(uid, PumpVisuals.Enabled, pumpOn, appearance);
+            _appearance.SetData(uid, PumpVisuals.PumpingInwards, pump.PumpingInwards, appearance); // Frontier
         }
 
-        private void OnMapInit(EntityUid uid, GasPressurePumpComponent pump, MapInitEvent args) // Frontier - Init on map
+        // Begin Frontier
+        // Frontier - Init with map
+        private void OnMapInit(EntityUid uid, GasPressurePumpComponent pump, MapInitEvent args)
         {
             if (pump.StartOnMapInit)
             {
@@ -176,8 +180,26 @@ namespace Content.Server.Atmos.Piping.Binary.EntitySystems
                 UpdateAppearance(uid, pump);
 
                 DirtyUI(uid, pump);
-                _userInterfaceSystem.CloseUi(uid, GasPressurePumpUiKey.Key);
+                _userInterfaceSystem.CloseUi(uid, pump.UiKey);
             }
         }
+
+        // Frontier - bidirectional pumps
+        public void OnPumpSetDirectionMessage(EntityUid uid, GasPressurePumpComponent pump, GasPressurePumpChangePumpDirectionMessage args)
+        {
+            if (!pump.SettableDirection || pump.PumpingInwards == args.Inwards)
+                return;
+
+            var temp = pump.OutletName;
+            pump.OutletName = pump.InletName;
+            pump.InletName = temp;
+
+            pump.PumpingInwards = args.Inwards;
+            _adminLogger.Add(LogType.AtmosDirectionChanged, LogImpact.Medium,
+                $"{ToPrettyString(args.Actor):player} set the direction on {ToPrettyString(uid):device} to {(args.Inwards ? "in" : "out")}");
+            DirtyUI(uid, pump);
+            UpdateAppearance(uid, pump);
+        }
+        // End Frontier
     }
 }
