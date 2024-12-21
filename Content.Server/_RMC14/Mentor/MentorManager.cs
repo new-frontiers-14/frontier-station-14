@@ -1,3 +1,4 @@
+using System.Configuration;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -8,7 +9,9 @@ using Content.Shared._RMC14.Mentor;
 using Content.Shared.Administration;
 using Content.Shared.Players.RateLimiting;
 using Content.Shared.Roles;
+using Microsoft.Extensions.Configuration;
 using Robust.Server.Player;
+using Robust.Shared;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -23,6 +26,7 @@ public sealed class MentorManager : IPostInjectInit
     [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly PlayerRateLimitManager _rateLimit = default!;
     [Dependency] private readonly UserDbDataManager _userDb = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
 
     private const string RateLimitKey = "MentorHelp";
     private static readonly ProtoId<JobPrototype> MentorJob = "StationRepresentative";
@@ -195,13 +199,19 @@ public sealed class MentorManager : IPostInjectInit
         _userDb.AddOnLoadPlayer(LoadData);
         _userDb.AddOnFinishLoad(FinishLoad);
         _userDb.AddOnPlayerDisconnect(ClientDisconnected);
-        _rateLimit.Register(
-            RateLimitKey,
-            new RateLimitRegistration(
-                RMCCVars.RMCMentorHelpRateLimitPeriod,
-                RMCCVars.RMCMentorHelpRateLimitCount,
-                _ => { }
-            )
-        );
+        // Frontier: prevent Content.Tests failures
+        if (_cfg.IsCVarRegistered(RMCCVars.RMCMentorHelpRateLimitPeriod.Name) &&
+            _cfg.IsCVarRegistered(RMCCVars.RMCMentorHelpRateLimitCount.Name))
+        {
+            _rateLimit.Register(
+                RateLimitKey,
+                new RateLimitRegistration(
+                    RMCCVars.RMCMentorHelpRateLimitPeriod,
+                    RMCCVars.RMCMentorHelpRateLimitCount,
+                    _ => { }
+                )
+            );
+        }
+        // End Frontier: prevent Content.Tests failures
     }
 }
