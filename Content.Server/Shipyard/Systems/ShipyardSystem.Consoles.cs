@@ -3,7 +3,6 @@ using Content.Server.Popups;
 using Content.Server.Radio.EntitySystems;
 using Content.Server._NF.Bank;
 using Content.Server.Shipyard.Components;
-using Content.Shared._NF.GameRule;
 using Content.Shared.Bank.Components;
 using Content.Shared.Shipyard.Events;
 using Content.Shared.Shipyard.BUI;
