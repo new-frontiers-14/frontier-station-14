@@ -1,0 +1,17 @@
+- type: entity
+  name: ice picker
+  parent: UtensilBase
+  id: FreezeWand
+  description: A cool tool that can turn water into ice! It is powered by science. It doesn't seem to work on other liquids.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Misc/freeze_wand.rsi
+    state: freeze_wand
+  - type: Item
+    sprite: _NF/Objects/Misc/freeze_wand.rsi
+    heldPrefix: freeze_wand
+  - type: ReactionMixer    
+    reactionTypes:
+    - Freeze
+  - type: StaticPrice
+    price: 25
