@@ -381,6 +381,7 @@
           - SecurityUplink
     - !type:BuyerJobCondition
       whitelist:
+        - Bailiff
         - Sheriff
 
 - type: listing
@@ -400,6 +401,7 @@
           - SecurityUplink
     - !type:BuyerJobCondition
       whitelist:
+        - Bailiff
         - Sheriff
 
 - type: listing
@@ -602,6 +604,44 @@
           - SecurityUplink
     - !type:BuyerJobCondition
       whitelist:
+        - Bailiff
+        - Sheriff
+
+- type: listing
+  id: UplinkSecurityPistolMagazineRubber
+  name:  uplink-security-magazinepistol-rubber-name
+  description: uplink-security-magazinepistol-rubber-desc
+  productEntity: BoxMagazinePistolRubber
+  icon: { sprite: Objects/Storage/boxes.rsi, state: box }
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+    - UplinkSecurityAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+
+- type: listing
+  id: UplinkSecurity20RifleMagazineRubber
+  name: uplink-security-20riflemagazine-rubber-name
+  description: uplink-security-20riflemagazine-rubber-desc
+  productEntity: BoxMagazineRifleRubber
+  icon: { sprite: Objects/Storage/boxes.rsi, state: box }
+  cost:
+    FrontierUplinkCoin: 1
+  categories:
+    - UplinkSecurityAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - SecurityUplink
+    - !type:BuyerJobCondition
+      whitelist:
+        - Bailiff
+        - SeniorOfficer
         - Sheriff
 
 - type: listing
