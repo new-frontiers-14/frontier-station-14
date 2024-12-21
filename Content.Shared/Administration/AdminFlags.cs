@@ -130,7 +130,7 @@ namespace Content.Shared.Administration
         Whitelist = 1 << 25,
 
         /// <summary>
-        ///     Lets you use the mentor help system.
+        ///     RMC14 - Lets you use the mentor help system.
         /// </summary>
         MentorHelp = 1 << 30,
 
