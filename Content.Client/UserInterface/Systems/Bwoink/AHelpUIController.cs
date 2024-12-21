@@ -89,7 +89,7 @@ public sealed class AHelpUIController: UIController, IOnSystemChanged<BwoinkSyst
     {
         // EnsureUIHelper(); // RMC14
         // UIHelper!.ToggleWindow(); // RMC14
-        _staffHelp.ToggleWindow();
+        _staffHelp.ToggleWindow(); // RMC14
     }
 
     public void OnSystemLoaded(BwoinkSystem system)
