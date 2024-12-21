@@ -259,9 +259,9 @@ public sealed class EmergencyLightSystem : SharedEmergencyLightSystem
 
         entity.Comp.ForciblyEnabled = details.ForceEnableEmergencyLights;
         if (details.ForceEnableEmergencyLights)
-            TurnOn(entity);
+            TurnOn(entity, details.EmergencyLightColor);
         else
-            TurnOff(entity);
+            TurnOff(entity, details.EmergencyLightColor);
     }
     // End Frontier
 }
