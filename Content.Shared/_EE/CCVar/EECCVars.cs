@@ -1,11 +1,10 @@
-using Robust.Shared;
 using Robust.Shared.Configuration;
 
 namespace Content.Shared._EE.CCVar
 {
     // ReSharper disable once InconsistentNaming
     [CVarDefs]
-    public sealed class EECCVars : CVars
+    public sealed class EECCVars
     {
         #region Jetpack System
 
