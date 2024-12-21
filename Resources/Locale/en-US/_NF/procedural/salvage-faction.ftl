@@ -1,3 +1,4 @@
+dungeon-boss-grid-warning = Return to the dungeon.
 
 salvage-faction-syndicate = Syndicate
 salvage-faction-cultists = Cultists

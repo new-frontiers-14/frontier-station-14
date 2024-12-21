@@ -1,0 +1,41 @@
+# Author Info
+# GitHub: Cheackraze, PeccNeck
+# Discord: Checkraze, mariusdemeier, trucy_deuxy
+
+# Maintainer Info
+# GitHub: ???
+# Discord: ???
+
+# Notes:
+# Basic Trade Outpost buying point for economy and great wealth
+- type: pointOfInterest
+  id: TradeMall
+  name: Trade Mall
+  minimumDistance: 1500
+  maximumDistance: 2500
+  spawnGroup: MarketStation
+  gridPath: /Maps/_NF/POI/trademall.yml
+  addComponents:
+  - type: IFF
+    color: "#37C837"
+    readOnly: true
+  - type: Shuttle
+    angularDamping: 999999
+    linearDamping: 999999
+  - type: StationTransit
+  - type: ProtectedGrid
+    preventArtifactTriggers: true
+
+- type: gameMap
+  id: TradeMall
+  mapName: 'Trade Mall'
+  mapPath: /Maps/_NF/POI/trademall.yml
+  minPlayers: 0
+  stations:
+    TradeMall:
+      stationProto: MarketFrontierOutpost
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Trade Mall'
+        - type: StationDeadDrop
+          maxDeadDrops: 2 # A few, its not as big as the original trade outpost

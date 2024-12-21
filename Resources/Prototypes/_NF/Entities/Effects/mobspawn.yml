@@ -193,7 +193,7 @@
     state: golem
   - type: SpawnOnDespawn
     prototype: MobCoalGolem
-    
+
 - type: entity
   id: MobSpawnGoldGolem
   parent: MobSpawnCrabNFQuartz
@@ -270,3 +270,52 @@
     state: golem
   - type: SpawnOnDespawn
     prototype: MobUraniumGolem
+
+# Scrapbots
+- type: entity
+  id: MobSpawnScrapbot
+  parent: MobSpawnCrabNFQuartz
+  name: mobspawner scrapbot
+  components:
+  - type: Jittering
+  - type: Sprite
+    sprite: /Textures/_NF/Effects/mobspawn.rsi
+    state: scrapbot
+  - type: SpawnOnDespawn
+    prototype: MobRogueSiliconScrapAsteroid
+
+- type: entity
+  id: MobSpawnScrapbotThreads
+  parent: MobSpawnCrabNFQuartz
+  name: mobspawner scrapbot
+  components:
+  - type: Jittering
+  - type: Sprite
+    sprite: /Textures/_NF/Effects/mobspawn.rsi
+    state: scrapbot_threads
+  - type: SpawnOnDespawn
+    prototype: MobRogueSiliconScrapThreadsAsteroid
+
+- type: entity
+  id: MobSpawnScrapbotThrusters
+  parent: MobSpawnCrabNFQuartz
+  name: mobspawner scrapbot
+  components:
+  - type: Jittering
+  - type: Sprite
+    sprite: /Textures/_NF/Effects/mobspawn.rsi
+    state: scrapbot_thrusters
+  - type: SpawnOnDespawn
+    prototype: MobRogueSiliconScrapThrustersAsteroid
+
+- type: entity
+  id: MobSpawnScrapbotLaser
+  parent: MobSpawnCrabNFQuartz
+  name: mobspawner scrapbot
+  components:
+  - type: Jittering
+  - type: Sprite
+    sprite: /Textures/_NF/Effects/mobspawn.rsi
+    state: scrapbot_laser
+  - type: SpawnOnDespawn
+    prototype: MobRogueSiliconScrapThrustersRangedAsteroid
