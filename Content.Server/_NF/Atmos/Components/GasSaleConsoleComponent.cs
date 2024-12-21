@@ -1,5 +1,6 @@
 using Content.Server._NF.Atmos.EntitySystems;
 using Content.Shared.Atmos;
+using Content.Shared.DeviceLinking;
 using Content.Shared.Stacks;
 using Robust.Shared.Prototypes;
 
@@ -10,11 +11,11 @@ public sealed partial class GasSaleConsoleComponent : Component
 {
     // Source port for commands (query, sell).
     [DataField]
-    public string CommandPortName = "command";
+    public ProtoId<SourcePortPrototype> CommandPortName = "GasSaleConsoleSender";
 
     // Sink port for contents (contents)
     [DataField]
-    public string ResponsePortName = "response";
+    public ProtoId<SinkPortPrototype> ResponsePortName = "GasSaleConsoleReceiver";
 
     // Currency type to spawn on sold
     [DataField]

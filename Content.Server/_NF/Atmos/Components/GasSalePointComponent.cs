@@ -1,5 +1,7 @@
 using Content.Server._NF.Atmos.EntitySystems;
 using Content.Shared.Atmos;
+using Content.Shared.DeviceLinking;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server._NF.Atmos.Components;
 
@@ -15,9 +17,9 @@ public sealed partial class GasSalePointComponent : Component
 
     // Sink port for clear commands.
     [DataField]
-    public string CommandPortName = "command";
+    public ProtoId<SinkPortPrototype> CommandPortName = "GasSalePointReceiver";
 
     // Source port for responses.
     [DataField]
-    public string ResponsePortName = "response";
+    public ProtoId<SourcePortPrototype> ResponsePortName = "GasSalePointSender";
 }
