@@ -537,6 +537,12 @@
     - id: PlushieJester
       prob: 0.05
       orGroup: Plushie
+    - id: PlushieMailVulp
+      prob: 0.05
+      orGroup: Plushie
+    - id: PlushieYarrMoth
+      prob: 0.05
+      orGroup: Plushie
 
 - type: entity
   categories: [ HideSpawnMenu ]
@@ -989,9 +995,6 @@
     - id: FoodMeatSpiderlegCooked
       amount: 3
       orGroup: Food
-    - id: FoodMeatMeatballCooked
-      amount: 4
-      orGroup: Food
 
 # Needs a buff?
 - type: entity
@@ -1004,9 +1007,6 @@
     isPriority: true
     isFragile: true
     contents:
-    - id: FoodBakedBunHoney
-      amount: 2
-      orGroup: Food
     - id: FoodBakedBunHotX
       amount: 2
       orGroup: Food
@@ -1017,78 +1017,6 @@
       amount: 2
       orGroup: Food
     - id: FoodBakedCannoli
-      amount: 2
-      orGroup: Food
-    - id: FoodDonutPlain
-      amount: 2
-      orGroup: Food
-    - id: FoodDonutJellyPlain
-      amount: 2
-      orGroup: Food
-    - id: FoodDonutHomer
-      amount: 2
-      orGroup: Food
-    - id: FoodDonutChaos
-      amount: 2
-      orGroup: Food
-    - id: FoodDonutMeat
-      amount: 2
-      orGroup: Food
-    - id: FoodDonutPink
-      amount: 2
-      orGroup: Food
-    - id: FoodDonutSpaceman
-      amount: 2
-      orGroup: Food
-    - id: FoodDonutApple
-      amount: 2
-      orGroup: Food
-    - id: FoodDonutCaramel
-      amount: 2
-      orGroup: Food
-    - id: FoodDonutChocolate
-      amount: 2
-      orGroup: Food
-    - id: FoodDonutBluePumpkin
-      amount: 2
-      orGroup: Food
-    - id: FoodDonutBungo
-      amount: 2
-      orGroup: Food
-    - id: FoodDonut
-      amount: 2
-      orGroup: Food
-    - id: FoodDonutSweetpea
-      amount: 2
-      orGroup: Food
-    - id: FoodDonutJellyHomer
-      amount: 2
-      orGroup: Food
-    - id: FoodDonutJellyPink
-      amount: 2
-      orGroup: Food
-    - id: FoodDonutJellySpaceman
-      amount: 2
-      orGroup: Food
-    - id: FoodDonutJellyApple
-      amount: 2
-      orGroup: Food
-    - id: FoodDonutJellyCaramel
-      amount: 2
-      orGroup: Food
-    - id: FoodDonutJellyChocolate
-      amount: 2
-      orGroup: Food
-    - id: FoodDonutJellyBluePumpkin
-      amount: 2
-      orGroup: Food
-    - id: FoodDonutJellyBungo
-      amount: 2
-      orGroup: Food
-    - id: FoodDonutJelly
-      amount: 2
-      orGroup: Food
-    - id: FoodDonutJellySweetpea
       amount: 2
       orGroup: Food
     - id: FoodDonutJellySlugcat
@@ -1340,7 +1268,7 @@
     contents:
     - id: WeaponLauncherRocketToy
     - id: BulletFoamRPG
-      amount: 1
+      amount: 2
 
 - type: entity
   categories: [ HideSpawnMenu ]
@@ -1817,6 +1745,17 @@
       - id: SmokingPipeFilledTobacco
       - id: DrinkAtomicBombGlass
       - id: PaperMailNFPipebombIntern
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: BaseMail
+  id: MailCommandNFWristwatchGold
+  suffix: gold wristwatch
+  components:
+  - type: Mail
+    isFragile: true
+    contents:
+      - id: WristwatchGold
 
 - type: entity
   categories: [ HideSpawnMenu ]

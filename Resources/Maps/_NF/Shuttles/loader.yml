@@ -15,6 +15,8 @@ entities:
     components:
     - type: MetaData
       name: Loader
+    - type: BecomesStation
+      id: Loader
     - type: Transform
       pos: -0.48958334,-0.53125
       parent: invalid
@@ -740,6 +742,14 @@ entities:
     - type: Transform
       pos: 1.5,6.5
       parent: 1
+- proto: ComputerWallmountWithdrawBankATM
+  entities:
+  - uid: 255
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -3.5,-0.5
+      parent: 1
 - proto: ConveyorBelt
   entities:
   - uid: 78
@@ -1460,10 +1470,6 @@ entities:
     - type: Transform
       pos: -1.5,-2.5
       parent: 1
-    - type: FuelGenerator
-      on: False
-    - type: Physics
-      bodyType: Static
 - proto: Poweredlight
   entities:
   - uid: 126
@@ -1913,7 +1919,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 2.5,7.5
       parent: 1
-- proto: WarpPointShip
+- proto: WarpPoint
   entities:
   - uid: 2
     components:

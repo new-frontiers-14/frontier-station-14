@@ -12,6 +12,7 @@ using Robust.Shared.Enums;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using Content.Shared._NF.Kitchen.Components; // Frontier
 
 namespace Content.Server.Nutrition.EntitySystems;
 
@@ -86,6 +87,13 @@ public sealed class FoodGuideDataSystem : SharedFoodGuideDataSystem
             {
                 _sources.GetOrNew(slicable.Slice).Add(new FoodSlicingData(ent, slicable.Slice.Value, slicable.TotalCount));
             }
+
+            // Frontier: deep fryer recipes
+            if (ent.TryGetComponent<DeepFrySpawnComponent>(out var deepfry))
+            {
+                _sources.GetOrNew(deepfry.Output).Add(new DeepFryerRecipeData(ent, deepfry));
+            }
+            // End Frontier
         }
 
         // Recipes
