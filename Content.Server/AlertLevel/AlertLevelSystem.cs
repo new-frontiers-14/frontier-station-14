@@ -172,8 +172,7 @@ public sealed class AlertLevelSystem : EntitySystem
             return;
         // End Frontier
 
-        if (!Resolve(station, ref dataComponent) // Frontier: remove component
-            || component.AlertLevels == null
+        if (component.AlertLevels == null // Frontier: remove component, resolve station to data component later
             || !component.AlertLevels.Levels.TryGetValue(level, out var detail)
             || component.CurrentLevel == level)
         {
@@ -196,7 +195,7 @@ public sealed class AlertLevelSystem : EntitySystem
         component.CurrentLevel = level;
         component.IsLevelLocked = locked;
 
-        var stationName = dataComponent.EntityName;
+        //var stationName = dataComponent.EntityName; // Frontier: remove station name
 
         var name = level.ToLower();
 
@@ -232,8 +231,9 @@ public sealed class AlertLevelSystem : EntitySystem
             }
         }
 
-        if (announce)
+        if (announce && Resolve(station, ref dataComponent)) // Frontier: add Resolve for dataComponent
         {
+            var stationName = dataComponent.EntityName; // Frontier: moved down
             _chatSystem.DispatchStationAnnouncement(station, announcementFull, playDefaultSound: playDefault,
                 colorOverride: detail.Color, sender: stationName);
         }
