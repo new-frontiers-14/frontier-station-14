@@ -32,6 +32,8 @@ public sealed class EmergencyLightSystem : SharedEmergencyLightSystem
         SubscribeLocalEvent<AlertLevelChangedEvent>(OnAlertLevelChanged);
         SubscribeLocalEvent<EmergencyLightComponent, ExaminedEvent>(OnEmergencyExamine);
         SubscribeLocalEvent<EmergencyLightComponent, PowerChangedEvent>(OnEmergencyPower);
+
+        SubscribeLocalEvent<EmergencyLightComponent, MapInitEvent>(OnMapInit); // Frontier
     }
 
     private void OnEmergencyPower(Entity<EmergencyLightComponent> entity, ref PowerChangedEvent args)
@@ -245,4 +247,21 @@ public sealed class EmergencyLightSystem : SharedEmergencyLightSystem
         _appearance.SetData(entity.Owner, EmergencyLightVisuals.On, true);
         _ambient.SetAmbience(entity.Owner, true);
     }
+
+    // Frontier: ensure the lights are accurate to the station
+    private void OnMapInit(Entity<EmergencyLightComponent> entity, ref MapInitEvent ev)
+    {
+        if (!TryComp<AlertLevelComponent>(_sectorService.GetServiceEntity(), out var alert))
+            return;
+
+        if (alert.AlertLevels == null || !alert.AlertLevels.Levels.TryGetValue(alert.CurrentLevel, out var details))
+            return;
+
+        entity.Comp.ForciblyEnabled = details.ForceEnableEmergencyLights;
+        if (details.ForceEnableEmergencyLights)
+            TurnOn(entity, details.EmergencyLightColor);
+        else
+            TurnOff(entity, details.EmergencyLightColor);
+    }
+    // End Frontier
 }
