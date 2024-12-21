@@ -1,0 +1,42 @@
+# Creator Info
+# GitHub: RangerXVII
+# Discord: ranger147
+
+# Size: 31 x 27
+# Tile Count: 561
+
+# Things I did that are hard to notice:
+# -That pen in the bridge looks so weird but I love it. (well that's pretty easy to notice but...)
+# -I changed the target power of the generator so it isn't at a power deficit when purchased.
+
+- type: vessel
+  id: Osprey
+  name: IX Osprey
+  description: Originally designed for salvaging, a lot of captains have put it to more lucrative uses.
+  price: 70000 #Appraises at ~61000, added a ~15% markup.
+  category: Medium
+  group: Shipyard
+  shuttlePath: /Maps/_NF/Shuttles/osprey.yml
+  class:
+  - Salvage
+  engine:
+  - Uranium
+
+- type: gameMap
+  id: Osprey
+  mapName: 'IX Osprey'
+  mapPath: /Maps/_NF/Shuttles/osprey.yml
+  minPlayers: 0
+  stations:
+    Osprey:
+      stationProto: StandardFrontierVessel
+      components:
+      - type: StationNameSetup
+        mapNameTemplate: 'Osprey {1}'
+        nameGenerator: !type:NanotrasenNameGenerator
+          prefixCreator: '14'
+      - type: StationJobs
+        availableJobs:
+          Contractor: [ 0, 0 ]
+          Pilot: [ 0, 0 ]
+          Mercenary: [ 0, 0 ]
