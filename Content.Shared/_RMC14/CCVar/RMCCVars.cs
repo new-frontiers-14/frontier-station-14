@@ -1,10 +1,9 @@
-using Robust.Shared;
 using Robust.Shared.Configuration;
 
 namespace Content.Shared._RMC14.CCVar;
 
 [CVarDefs]
-public sealed class RMCCVars : CVars
+public sealed class RMCCVars
 {
     public static readonly CVarDef<float> RMCMentorHelpRateLimitPeriod =
         CVarDef.Create("rmc.mentor_help_rate_limit_period", 2f, CVar.SERVERONLY);
