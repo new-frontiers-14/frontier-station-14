@@ -186,53 +186,8 @@
 # Enhanced version of the vanilla Janicart that adds a bucket and mop slot.
 - type: entity
   id: NFVehicleJanicart
-  parent: BaseVehicleRideable
-  name: janicart
-  description: The janitor's trusty steed.
+  parent: VehicleJanicart
   components:
-  - type: Vehicle
-    southOver: true
-    westOver: true
-    eastOver: true
-    northOverride: -0.15
-    southOverride: 0.22
-  - type: Sprite
-    sprite: Objects/Vehicles/janicart.rsi
-    layers:
-    - state: vehicle
-      map: ["enum.VehicleVisualLayers.AutoAnimate"]
-    noRot: true
-  - type: UnpoweredFlashlight
-  - type: PointLight
-    enabled: false
-    radius: 3.5
-    softness: 2
-    mask: /Textures/Effects/LightMasks/cone.png
-    autoRot: true
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 500
-      behaviors:
-        - !type:DoActsBehavior
-          acts: [ "Destruction" ]
-    - trigger:
-        !type:DamageTrigger
-        damage: 250
-      behaviors:
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalGlassBreak
-      - !type:EmptyAllContainersBehaviour
-      - !type:ExplodeBehavior
-      - !type:SpawnEntitiesBehavior # in future should also emit a cloud of hot gas
-        spawn:
-          VehicleJanicartDestroyed:
-            min: 1
-            max: 1
   - type: ItemSlots
     slots:
       key_slot:
@@ -246,65 +201,50 @@
           path: /Audio/Effects/Vehicle/vehiclestartup.ogg
           params:
             volume: -3
-        priority: 9
-      mop_slot:
+        priority: 10
+      mop_slot: &mopSlot
         name: janitorial-trolley-slot-component-slot-name-mop
         whitelist:
           tags:
             - Mop
         insertOnInteract: false # or it conflicts with bucket logic
         priority: 9 # Higher than bucket slot
-      plunger_slot:
+      plunger_slot: &plungerSlot
         name: janitorial-trolley-slot-component-slot-name-plunger
         whitelist:
           tags:
             - Plunger
         priority: 8
-      wetfloorsign_slot4:
+      wetfloorsign_slot4: &wetFloorSignSlot
         name: janitorial-trolley-slot-component-slot-name-sign
         whitelist:
           tags:
             - WetFloorSign
         priority: 7
-      wetfloorsign_slot3:
-        name: janitorial-trolley-slot-component-slot-name-sign
-        whitelist:
-          tags:
-            - WetFloorSign
-        priority: 7
-      wetfloorsign_slot2:
-        name: janitorial-trolley-slot-component-slot-name-sign
-        whitelist:
-          tags:
-            - WetFloorSign
-        priority: 7
-      wetfloorsign_slot1:
-        name: janitorial-trolley-slot-component-slot-name-sign
-        whitelist:
-          tags:
-            - WetFloorSign
-        priority: 7
-      lightreplacer_slot:
+      wetfloorsign_slot3: *wetFloorSignSlot
+      wetfloorsign_slot2: *wetFloorSignSlot
+      wetfloorsign_slot1: *wetFloorSignSlot
+      lightreplacer_slot: &lightReplacerSlot
         name: janitorial-trolley-slot-component-slot-name-lightreplacer
         whitelist:
           components:
             - LightReplacer
         priority: 6
-      spraybottle_slot:
+      spraybottle_slot: &sprayBottleSlot
         name: janitorial-trolley-slot-component-slot-name-spray
         whitelist:
           tags:
             - Spray
         insertOnInteract: false # or it conflicts with bucket logic
         priority: 5 # Higher than bucket slot
-      bucket_slot:
+      bucket_slot: &bucketSlot
         name: janitorial-trolley-slot-component-slot-name-bucket
         whitelist:
           tags:
             - Bucket
         insertOnInteract: false # or it also conflicts with bucket logic
         priority: 4 # Higher than trash bag slot
-      trashbag_slot:
+      trashbag_slot: &trashBagSlot
         name: janitorial-trolley-slot-component-slot-name-trashbag
         whitelist:
           tags:
@@ -326,9 +266,6 @@
     solutions:
       bucket:
         maxVol: 800
-        reagents:
-          - ReagentId: Water
-            Quantity: 800
   - type: DrainableSolution
     solution: bucket
   - type: RefillableSolution
@@ -345,7 +282,15 @@
       storagebase: !type:Container
         ents: []
       mop_slot: !type:ContainerSlot {}
+      plunger_slot: !type:ContainerSlot {}
+      wetfloorsign_slot4: !type:ContainerSlot {}
+      wetfloorsign_slot3: !type:ContainerSlot {}
+      wetfloorsign_slot2: !type:ContainerSlot {}
+      wetfloorsign_slot1: !type:ContainerSlot {}
+      lightreplacer_slot: !type:ContainerSlot {}
+      spraybottle_slot: !type:ContainerSlot {}
       bucket_slot: !type:ContainerSlot {}
+      trashbag_slot: !type:ContainerSlot {}
 
 - type: entity
   parent: NFVehicleJanicart
@@ -367,69 +312,16 @@
           params:
             volume: -3
         priority: 9
-      mop_slot:
-        name: janitorial-trolley-slot-component-slot-name-mop
-        whitelist:
-          tags:
-            - Mop
-        insertOnInteract: false # or it conflicts with bucket logic
-        priority: 9 # Higher than bucket slot
-      plunger_slot:
-        name: janitorial-trolley-slot-component-slot-name-plunger
-        whitelist:
-          tags:
-            - Plunger
-        priority: 8
-      wetfloorsign_slot4:
-        name: janitorial-trolley-slot-component-slot-name-sign
-        whitelist:
-          tags:
-            - WetFloorSign
-        priority: 7
-      wetfloorsign_slot3:
-        name: janitorial-trolley-slot-component-slot-name-sign
-        whitelist:
-          tags:
-            - WetFloorSign
-        priority: 7
-      wetfloorsign_slot2:
-        name: janitorial-trolley-slot-component-slot-name-sign
-        whitelist:
-          tags:
-            - WetFloorSign
-        priority: 7
-      wetfloorsign_slot1:
-        name: janitorial-trolley-slot-component-slot-name-sign
-        whitelist:
-          tags:
-            - WetFloorSign
-        priority: 7
-      lightreplacer_slot:
-        name: janitorial-trolley-slot-component-slot-name-lightreplacer
-        whitelist:
-          components:
-            - LightReplacer
-        priority: 6
-      spraybottle_slot:
-        name: janitorial-trolley-slot-component-slot-name-spray
-        whitelist:
-          tags:
-            - Spray
-        insertOnInteract: false # or it conflicts with bucket logic
-        priority: 5 # Higher than bucket slot
-      bucket_slot:
-        name: janitorial-trolley-slot-component-slot-name-bucket
-        whitelist:
-          tags:
-            - Bucket
-        insertOnInteract: false # or it also conflicts with bucket logic
-        priority: 4 # Higher than trash bag slot
-      trashbag_slot:
-        name: janitorial-trolley-slot-component-slot-name-trashbag
-        whitelist:
-          tags:
-            - TrashBag
-        priority: 3 # Higher than drinking priority
+      mop_slot: *mopSlot
+      plunger_slot: *plungerSlot
+      wetfloorsign_slot4: *wetFloorSignSlot
+      wetfloorsign_slot3: *wetFloorSignSlot
+      wetfloorsign_slot2: *wetFloorSignSlot
+      wetfloorsign_slot1: *wetFloorSignSlot
+      lightreplacer_slot: *lightReplacerSlot
+      spraybottle_slot: *sprayBottleSlot
+      bucket_slot: *bucketSlot
+      trashbag_slot: *trashBagSlot
 
 # Mail carrier
 - type: entity
