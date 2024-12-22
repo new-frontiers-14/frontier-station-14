@@ -49,15 +49,19 @@
         - SmallMobMask
         layer:
         - MachineLayer
-  - type: StaticPrice
-    price: 1000
 
 - type: entity
   parent: CrateTradeBaseSecure
   id: CrateTradeBaseSecureHigh
-  name: high value cargo steel crate
+  name: express cargo steel crate
   categories: [ HideSpawnMenu ]
   components:
+  - type: TradeCrate
+    valueAtDestination: 2000
+    valueElsewhere: 800
+    expressDeliveryTime: 600 # ten minutes, go go
+    expressOnTimeBonus: 1000
+    expressLatePenalty: 600 # 200/1400
   - type: Icon
     sprite: _NF/Structures/Storage/Crates/tradelight.rsi
   - type: Sprite
@@ -75,8 +79,6 @@
         - SmallMobMask
         layer:
         - MachineLayer
-  - type: StaticPrice
-    price: 2000
 
 - type: entity
   parent:
@@ -121,8 +123,9 @@
     sprite: _NF/Structures/Storage/Crates/contraband1_crate.rsi
   - type: Sprite
     sprite: _NF/Structures/Storage/Crates/contraband1_crate.rsi
-  - type: StaticPrice
-    price: 3000
+  - type: TradeCrate
+    valueAtDestination: 3000
+    valueElsewhere: 1500
 
 - type: entity
   parent: CrateTradeBaseSecureContraband
@@ -133,8 +136,12 @@
     sprite: _NF/Structures/Storage/Crates/contraband2_crate.rsi
   - type: Sprite
     sprite: _NF/Structures/Storage/Crates/contraband2_crate.rsi
-  - type: StaticPrice
-    price: 5000
+  - type: TradeCrate
+    valueAtDestination: 5000
+    valueElsewhere: 2500
+    expressDeliveryTime: 1200 # twenty minutes, go go
+    expressOnTimeBonus: 2000
+    expressLatePenalty: 1500
 
 - type: entity
   parent: CrateTradeBaseSecureContraband
@@ -145,8 +152,12 @@
     sprite: _NF/Structures/Storage/Crates/contraband3_crate.rsi
   - type: Sprite
     sprite: _NF/Structures/Storage/Crates/contraband3_crate.rsi
-  - type: StaticPrice
-    price: 7500
+  - type: TradeCrate
+    valueAtDestination: 7500
+    valueElsewhere: 3750
+    expressDeliveryTime: 1200 # twenty minutes, go go
+    expressOnTimeBonus: 2500
+    expressLatePenalty: 2000
 
 - type: entity
   parent: CrateTradeBaseSecureContraband
@@ -158,8 +169,12 @@
     sprite: _NF/Structures/Storage/Crates/donkco_crate.rsi
   - type: Sprite
     sprite: _NF/Structures/Storage/Crates/donkco_crate.rsi
-  - type: StaticPrice
-    price: 15000
+  - type: TradeCrate
+    valueAtDestination: 10000
+    valueElsewhere: 5000
+    expressDeliveryTime: 1200 # twenty minutes, go go
+    expressOnTimeBonus: 5000
+    expressLatePenalty: 2500
 
 - type: entity
   parent: CrateTradeBaseSecureContraband
@@ -171,8 +186,12 @@
     sprite: _NF/Structures/Storage/Crates/cybersun_crate.rsi
   - type: Sprite
     sprite: _NF/Structures/Storage/Crates/cybersun_crate.rsi
-  - type: StaticPrice
-    price: 15000
+  - type: TradeCrate
+    valueAtDestination: 10000
+    valueElsewhere: 5000
+    expressDeliveryTime: 1200 # twenty minutes, go go
+    expressOnTimeBonus: 5000
+    expressLatePenalty: 2500
 
 - type: entity
   parent: CrateSecgear

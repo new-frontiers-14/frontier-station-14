@@ -29,7 +29,7 @@ using Robust.Shared.Network;
 using Content.Shared.GameTicking;
 using Robust.Shared.Enums;
 using Robust.Server.Player;
-using Content.Server.Warps;
+using Content.Server._NF.Trade;
 
 namespace Content.Server._NF.GameRule;
 
@@ -270,11 +270,20 @@ public sealed class NfAdventureRuleSystem : GameRuleSystem<AdventureRuleComponen
 
             string overrideName = proto.Name;
             if (i < 26)
-                overrideName += $" {(char) ('A' + i)}"; // " A" ... " Z"
+                overrideName += $" {(char)('A' + i)}"; // " A" ... " Z"
             else
                 overrideName += $" {i + 1}"; // " 27", " 28"...
             if (TrySpawnPoiGrid(proto, offset, out var depotUid, overrideName: overrideName) && depotUid is { Valid: true } depot)
             {
+                // Nasty jank: set up destination in the station.
+                var depotStation = _station.GetOwningStation(depot);
+                if (TryComp<TradeCrateDestinationComponent>(depotStation, out var destComp))
+                {
+                    if (i < 26)
+                        destComp.DestinationProto = $"Cargo{(char)('A' + i)}";
+                    else
+                        destComp.DestinationProto = "CargoOther";
+                }
                 depotStations.Add(depot);
                 AddStationCoordsToSet(offset); // adjust list of actual station coords
             }

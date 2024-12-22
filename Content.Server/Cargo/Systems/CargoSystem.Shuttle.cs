@@ -374,6 +374,7 @@ public sealed partial class CargoSystem
     private void OnRoundRestart(RoundRestartCleanupEvent ev)
     {
         Reset();
+        CleanupTradeCrateDestinations(ev); // Frontier
     }
 }
 

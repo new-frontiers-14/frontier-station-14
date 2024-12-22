@@ -4,11 +4,22 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: TradeCrate
+    valueAtDestination: 1500
+    valueElsewhere: 400
   - type: AccessReader
     access: [["NuclearOperative"]]
   - type: Icon
     sprite: Structures/Storage/Crates/secure.rsi
-    state: icon
+    layers:
+    - state: icon
+    - sprite: _NF/Interface/Misc/cargo_destination_icons.rsi
+      state: cargo_other
+      map: ["enum.TradeCrateDestinationLayers.Icon"]
+      visible: false
+    - sprite: _NF/Interface/Misc/cargo_destination_icons.rsi
+      state: cargo_priority_inactive
+      map: ["enum.TradeCrateDestinationLayers.Priority"]
+      visible: false
   - type: Sprite
     sprite: Structures/Storage/Crates/secure.rsi
   - type: Damageable
@@ -35,3 +46,4 @@
   - type: SentienceTarget
     flavorKind: station-event-random-sentience-flavor-inanimate
     weight: 0.01 # 100 trade crates = 1 animal
+  - type: Appearance
