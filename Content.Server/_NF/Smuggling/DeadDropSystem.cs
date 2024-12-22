@@ -590,15 +590,26 @@ public sealed class DeadDropSystem : EntitySystem
                         output = Loc.GetString(messageLoc, ("location", MetaData(sender).EntityName));
                         break;
                     case SmugglingReportMessageType.DeadDropStationWithRandomAlt:
+                        var actualStationName = MetaData(sender).EntityName;
                         if (sectorDeadDrop is not null)
                         {
-                            string[] names = [MetaData(sender).EntityName, _random.Pick<string>(sectorDeadDrop.DeadDropStationNames.Values)];
-                            _random.Shuffle(names);
-                            output = Loc.GetString(messageLoc, ("location1", names[0]), ("location2", names[1]));
+                            var otherStationList = sectorDeadDrop.DeadDropStationNames.Values.Where(x => x != actualStationName).ToList();
+                            if (otherStationList.Count > 0)
+                            {
+                                string[] names = [actualStationName, _random.Pick<string>(otherStationList)];
+                                _random.Shuffle(names);
+                                output = Loc.GetString(messageLoc, ("location1", names[0]), ("location2", names[1]));
+                            }
+                            else
+                            {
+                                // No valid alternate, just output where the dead drop is
+                                output = Loc.GetString(messageLoc, ("location1", actualStationName));
+                            }
                         }
                         else
                         {
-                            output = Loc.GetString(messageLoc, ("location1", MetaData(sender).EntityName)); // Looks strange, but still has a proper value.
+                            // No valid alternate, just output where the dead drop is
+                            output = Loc.GetString(messageLoc, ("location1", actualStationName));
                         }
                         break;
                     case SmugglingReportMessageType.PodLocation:

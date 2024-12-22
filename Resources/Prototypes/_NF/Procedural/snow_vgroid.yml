@@ -161,6 +161,13 @@
       count: 5
       minGroupSize: 1
       maxGroupSize: 1
+    - !type:OreDunGen
+      tileMask:
+      - FloorSnow
+      entity: SpawnMobArgocyteLeviathingExpeditions
+      count: 1
+      minGroupSize: 0
+      maxGroupSize: 1
 
 # Configs
 - type: dungeonConfig
@@ -255,6 +262,12 @@
     maxCount: 15
     groups:
     - id: SpawnMobXenoT2
+      amount: 1
+  - !type:MobsDunGen
+    minCount: 1
+    maxCount: 1
+    groups:
+    - id: SpawnMobXenoQueenDungeon
       amount: 1
 
 #- type: dungeonConfig
