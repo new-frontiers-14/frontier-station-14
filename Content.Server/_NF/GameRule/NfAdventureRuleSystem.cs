@@ -10,7 +10,7 @@ using Robust.Shared.Prototypes;
 using Content.Server.Cargo.Components;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Rules;
-using Content.Shared._NF.CCVar; // Frontier
+using Content.Shared._NF.CCVar;
 using Robust.Shared.Configuration;
 using Content.Shared._NF.Bank;
 using Content.Server._NF.GameRule.Components;

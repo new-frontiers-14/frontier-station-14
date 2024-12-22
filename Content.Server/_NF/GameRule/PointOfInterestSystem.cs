@@ -11,6 +11,7 @@ using Content.Server.Station.Systems;
 using Content.Server.GameTicking;
 using Content.Shared._NF.CCVar;
 using Content.Shared.GameTicking;
+using Content.Server._NF.Trade;
 
 namespace Content.Server._NF.GameRule;
 
