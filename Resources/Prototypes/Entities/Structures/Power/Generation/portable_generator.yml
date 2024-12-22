@@ -164,12 +164,11 @@
       # a decent curve
       fuelEfficiencyConstant: 0.95
     - type: SolidFuelGeneratorAdapter
-      fuelMaterial: Plasma
-      ejectedFuelProtoId: FuelPlasma # Frontier
+      fuelMaterial: FuelGradePlasma # Frontier: Plasma<FuelGradePlasma
       multiplier: 0.01
     - type: MaterialStorage
       storageLimit: 3000
-      materialWhiteList: [Plasma]
+      materialWhiteList: [Plasma, FuelGradePlasma] # Frontier: add FuelGradePlasma
     - type: PortableGenerator
       startChance: 0.8
     - type: UpgradePowerSupplier
@@ -191,6 +190,9 @@
       supplyRampTolerance: 1500
     - type: MaterialStorageMagnetPickup # Frontier
       range: 0.30 # Frontier
+    - type: FuelGradeAdapter # Frontier
+      inputMaterial: Plasma # Frontier
+      outputMaterial: FuelGradePlasma # Frontier
 
 - type: entity
   name: S.U.P.E.R.P.A.C.M.A.N.-type portable generator
@@ -231,12 +233,11 @@
       # still decent power curve
       fuelEfficiencyConstant: 0.75
     - type: SolidFuelGeneratorAdapter
-      fuelMaterial: Uranium
-      ejectedFuelProtoId: FuelUranium # Frontier
+      fuelMaterial: FuelGradeUranium # Frontier: Uranium<FuelGradeUranium
       multiplier: 0.01
     - type: MaterialStorage
       storageLimit: 3000
-      materialWhiteList: [Uranium]
+      materialWhiteList: [Uranium, FuelGradeUranium] # Frontier: add FuelGradeUranium
     - type: PortableGenerator
     - type: UpgradePowerSupplier
       powerSupplyMultiplier: 1.25
@@ -253,6 +254,9 @@
       supplyRampTolerance: 2500
     - type: MaterialStorageMagnetPickup # Frontier
       range: 0.30 # Frontier
+    - type: FuelGradeAdapter # Frontier
+      inputMaterial: Uranium # Frontier
+      outputMaterial: FuelGradeUranium # Frontier
 
 - type: entity
   name: J.R.P.A.C.M.A.N.-type portable generator

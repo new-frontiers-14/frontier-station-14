@@ -333,29 +333,26 @@
   - type: RandomSpawner
     prototypes:
     - NFCrateSalvageAssortedGoodies
+    - NFCrateSalvageAssortedGoodies
+    - NFCrateSalvageAssortedGoodies
     - NFCrateSalvageAssortedGoodiesPlastic
+    - NFCrateSalvageAssortedGoodiesPlastic
+    - NFCrateSalvageAssortedGoodiesTrashCart
     chance: 0.95
     rarePrototypes:
+    - CrateTradeSecureNormalFilled
+    - CrateTradeSecureHighFilled
     - CrateSalvageEquipment
-    - CrateServiceJanitorialSupplies
-    - CrateEmergencyInternals
-    - CrateServiceSmokeables
     - CrateTrashCartFilled
-    - CrateServiceReplacementLights
-    - CrateServiceBureaucracy
-    - CrateEmergencyFire
-    - CrateEmergencyInflatablewall
-    - CrateHydroponicsTools
-    - CrateHydroponicsSeeds
-    - CrateHydroponicsSeedsMedicinal
-    - CrateHydroponicsSeedsExotic
-    rareChance: 0.1
+    - CrateArtifactContainer
+    rareChance: 0.03
     offset: 0.0
 
 - type: entity
   name: salvage tank spawner
-  id: SalvageTankSpawner
+  id: SalvageTankSpawnerHighCapacity
   parent: MarkerBase
+  suffix: High Capacity, 95%
   components:
   - type: Sprite
     layers:
@@ -364,15 +361,9 @@
       state: fueltank
   - type: RandomSpawner
     prototypes:
-    - WaterTankFull
-    - WeldingFuelTankFull
-#    - WaterCooler
-    chance: 0.95
-    rarePrototypes:
-    - WeldingFuelTankHighCapacity
+#    - WeldingFuelTankHighCapacity
     - WaterTankHighCapacity
-    rareChance: 0.05
-    offset: 0.0
+    chance: 0.95
 
 - type: entity
   name: salvage locker spawner
@@ -430,13 +421,9 @@
     - Table
     - Rack
 #    - Dresser # WardrobeMixedFilled
-    - WardrobeMixedFilled
-#    - Bookshelf # BookshelfFilled
+    - NFWardrobeMixedFilled
     - BookshelfFilled
     - Bed
-    - SuitStorageSalv
-    - Floodlight
-    - PottedPlantRandomPlastic
     chance: 0.95
     rarePrototypes:
     - MedicalBed
@@ -447,6 +434,10 @@
     - ComfyChair
     - ChairWood
     - ChairFolding
+    - ComputerBroken
+    - MachineFrameDestroyed
+    - VehicleJanicartDestroyed
+    - PottedPlantRandomPlastic
     rareChance: 0.1
     offset: 0.0
 
@@ -489,6 +480,9 @@
     - SuitStorageAtmos
     - SuitStorageSalv
     chance: 0.95
+    rarePrototypes:
+    - SuitStorageBase
+    rareChance: 0.05
     offset: 0.0
 
 - type: entity
@@ -597,3 +591,113 @@
 #    - SpawnMobPurpleSnake # Why are they xeno
     rareChance: 0.2
     offset: 0.0
+
+- type: entity
+  id: NFSalvageChemicalBarrelSpawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: _NF/Objects/Storage/Barrels/grey.rsi
+      state: icon
+  - type: RandomSpawner
+    prototypes: # Filled versions
+    - ChemicalBarrelCarbon
+    - ChemicalBarrelIodine
+    - ChemicalBarrelFluorine
+    - ChemicalBarrelChlorine
+    - ChemicalBarrelAluminium
+    - ChemicalBarrelPhosphorus
+    - ChemicalBarrelSulfur
+    - ChemicalBarrelSilicon
+    - ChemicalBarrelHydrogen
+    - ChemicalBarrelLithium
+    - ChemicalBarrelSodium
+    - ChemicalBarrelPotassium
+    - ChemicalBarrelRadium
+    - ChemicalBarrelIron
+    - ChemicalBarrelCopper
+    - ChemicalBarrelGold
+    - ChemicalBarrelMercury
+    - ChemicalBarrelSilver
+    - ChemicalBarrelEthanol
+    - ChemicalBarrelSugar
+    - ChemicalBarrelNitrogen
+    - ChemicalBarrelOxygen
+    chance: 0.95
+    offset: 0.1 # Little offset, it's free-standing
+
+- type: entity
+  id: NFSalvageServiceBarrelSpawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: _NF/Objects/Storage/Barrels/grey.rsi
+      state: icon
+  - type: RandomSpawner
+    prototypes: # Filled versions
+    - ChemicalBarrelOil
+    - ChemicalBarrelDiethylamine
+    - ChemicalBarrelMustard
+    - ChemicalBarrelKetchup
+    - ChemicalBarrelMayo
+    - ChemicalBarrelCornoil
+    - ChemicalBarrelOliveoil
+    - ChemicalBarrelSpaceLube
+    - ChemicalBarrelSpaceCleaner
+    chance: 0.95
+    offset: 0.1 # Little offset, it's free-standing
+
+- type: entity
+  id: NFSalvageDrinkableBarrelSpawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: _NF/Objects/Storage/Barrels/red.rsi
+      state: icon
+  - type: RandomSpawner
+    prototypes: # Filled versions
+    - ChemicalBarrelWater
+    rarePrototypes:
+    - ChemicalBarrelAbsinthe
+    - ChemicalBarrelAle
+    - ChemicalBarrelBeer
+    - ChemicalBarrelCoffeeLiqueur
+    - ChemicalBarrelCognac
+    - ChemicalBarrelGin
+    - ChemicalBarrelMead
+    - ChemicalBarrelRum
+    - ChemicalBarrelTequila
+    - ChemicalBarrelVermouth
+    - ChemicalBarrelVodka
+    - ChemicalBarrelWhiskey
+    - ChemicalBarrelWine
+    rareChance: 0.5
+    chance: 0.95
+    offset: 0.1 # Little offset, it's free-standing
+
+- type: entity
+  id: NFSalvageEmptyBarrelSpawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: _NF/Objects/Storage/Barrels/red.rsi
+      state: icon
+  - type: RandomSpawner
+    prototypes:
+    - MetalBarrelGrey
+    - MetalBarrelBlue
+    - MetalBarrelRed
+    - MetalBarrelYellow
+    - MetalBarrelGreen
+    - MetalBarrelWhite
+    - MetalBarrelBlack
+    - ChemicalBarrelExplosiveEmpty
+    offset: 0.1 # Little offset, it's free-standing

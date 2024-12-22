@@ -25,16 +25,26 @@
           prob: 0.2
         - id: AirlockMaint
           prob: 0.01
+        - id: Barricade
+          prob: 0.01
         # Floor loot
         - id: SalvageSpawnerScrapCommon
           prob: 3.5
         - id: SalvageSpawnerTreasure
           prob: 0.3
+        - id: SpawnDungeonLootSeed
+          prob: 0.1
         - id: SalvageSpawnerTreasureValuable
           prob: 0.05
         - id: SalvageSpawnerEquipment
           prob: 0.05
         - id: SalvageSpawnerEquipmentValuable
+          prob: 0.03
+        - id: SpawnDungeonClutterMedsSingle
+          prob: 0.03
+        - id: SpawnDungeonLootBureaucracy
+          prob: 0.03
+        - id: SpawnDungeonLootToolsHydroponics
           prob: 0.03
         # Machine upgrades
         - id: SalvagePartsT2Spawner
@@ -46,12 +56,18 @@
         # Big loot
         - id: NFSalvageMaterialCrateSpawner
           prob: 0.9
+        - id: NFSalvageChemicalBarrelSpawner
+          prob: 0.08
+        - id: NFSalvageServiceBarrelSpawner
+          prob: 0.02
+        - id: NFSalvageDrinkableBarrelSpawner
+          prob: 0.02
+        - id: NFSalvageEmptyBarrelSpawner
+          prob: 0.03
         - id: SalvageCanisterSpawner
           prob: 0.2
         - id: SalvageLockerSpawner
           prob: 0.2
-        - id: SalvageTankSpawner
-          prob: 0.15
         - id: SalvageGeneratorSpawner
           prob: 0.1
         - id: SalvageFurnitureSpawner
@@ -59,7 +75,9 @@
         - id: SalvageSuitStorageSpawner
           prob: 0.1
         - id: RandomArtifactSpawner
-          prob: 0.03
+          prob: 0.05
+        - id: SalvageTankSpawnerHighCapacity
+          prob: 0.0005
         # Medical
         - id: MedicalPodFilled # Medical bounties
           prob: 0.03
