@@ -13,7 +13,7 @@ public sealed class TradeCrateVisualizerSystem : VisualizerSystem<TradeCrateComp
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly SpriteSystem _spriteSystem = default!;
 
-    private const string FallbackIconID = "CargoUnknown";
+    private const string FallbackIconID = "CargoOther";
     private const string CargoPriorityActiveState = "cargo_priority";
     private const string CargoPriorityInactiveState = "cargo_priority_inactive";
 
