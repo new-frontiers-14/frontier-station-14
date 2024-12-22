@@ -1570,6 +1570,21 @@ entities:
     - type: Transform
       pos: 4.5,-5.5
       parent: 1
+  - uid: 575
+    components:
+    - type: Transform
+      pos: -8.5,-5.5
+      parent: 1
+  - uid: 576
+    components:
+    - type: Transform
+      pos: -9.5,-5.5
+      parent: 1
+  - uid: 577
+    components:
+    - type: Transform
+      pos: -10.5,-5.5
+      parent: 1
   - uid: 700
     components:
     - type: Transform
@@ -1584,6 +1599,11 @@ entities:
     components:
     - type: Transform
       pos: 11.5,-17.5
+      parent: 1
+  - uid: 707
+    components:
+    - type: Transform
+      pos: -11.5,-5.5
       parent: 1
   - uid: 729
     components:
@@ -2725,10 +2745,10 @@ entities:
       parent: 1
 - proto: FlippoEngravedLighter
   entities:
-  - uid: 340
+  - uid: 130
     components:
     - type: Transform
-      pos: -7.736739,-1.428129
+      pos: -7.7536135,-1.424459
       parent: 1
 - proto: FoodMothMothmallowSlice
   entities:
@@ -4341,49 +4361,11 @@ entities:
       parent: 1
 - proto: LuxuryPen
   entities:
-  - uid: 130
+  - uid: 340
     components:
     - type: Transform
-      rot: 7.060250362421624 rad
-      pos: -0.484375,1.06875
+      pos: -0.31416976,1.0136567
       parent: 1
-    - type: Physics
-      bodyStatus: InAir
-    - type: Fixtures
-      fixtures:
-        fix1:
-          shape: !type:PolygonShape
-            radius: 0.01
-            vertices:
-            - -0.25,-0.25
-            - 0.25,-0.25
-            - 0.25,0.25
-            - -0.25,0.25
-          mask:
-          - Impassable
-          - HighImpassable
-          layer: []
-          density: 20
-          hard: True
-          restitution: 0.3
-          friction: 0.2
-        throw-fixture:
-          shape: !type:PolygonShape
-            radius: 0.01
-            vertices:
-            - -0.25,-0.25
-            - 0.25,-0.25
-            - 0.25,0.25
-            - -0.25,0.25
-          mask:
-          - Impassable
-          - HighImpassable
-          - BulletImpassable
-          layer: []
-          density: 1
-          hard: False
-          restitution: 0
-          friction: 0.4
 - proto: MinimoogInstrument
   entities:
   - uid: 695
@@ -4464,7 +4446,7 @@ entities:
       pos: -10.5,-12.5
       parent: 1
     - type: FuelGenerator
-      targetPower: 36000
+      targetPower: 38000
 - proto: PottedPlant21
   entities:
   - uid: 771
@@ -5239,34 +5221,12 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 11.5,-18.5
       parent: 1
-- proto: SpawnPointContractor
-  entities:
-  - uid: 575
-    components:
-    - type: Transform
-      pos: -0.5,-7.5
-      parent: 1
 - proto: SpawnPointLatejoin
   entities:
   - uid: 693
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: 0.5,-7.5
-      parent: 1
-- proto: SpawnPointMercenary
-  entities:
-  - uid: 577
-    components:
-    - type: Transform
-      pos: 0.5,-8.5
-      parent: 1
-- proto: SpawnPointPilot
-  entities:
-  - uid: 576
-    components:
-    - type: Transform
-      pos: 1.5,-7.5
       parent: 1
 - proto: SubstationBasic
   entities:
