@@ -100,6 +100,39 @@
     offset: 0
     table: !type:NestedSelector
       tableId: NFRockMineralHard
+
+- type: entityTable
+  id: NFRockMineralHardRich
+  table: !type:GroupSelector
+    children:
+    - id: NFWallCobblebrick
+      weight: 0.3
+    - id: NFWallCobblebrickArtifactFragment
+      weight: 0.1
+    - id: NFWallCobblebrickBluespace
+      weight: 0.3
+    - id: NFWallCobblebrickDiamond
+      weight: 0.3
+
+- type: entity
+  id: NFRockMineralHardRich
+  parent: NFRockMineralSoft
+  suffix: Hard, Rich
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - sprite: Structures/Walls/cobblebrick.rsi
+      state: full
+    - state: green
+    - sprite: Objects/Materials/materials.rsi
+      state: diamond
+    - sprite: Objects/Tools/handdrilldiamond.rsi
+      state: handdrill
+  - type: EntityTableSpawner
+    offset: 0
+    table: !type:NestedSelector
+      tableId: NFRockMineralHardRich
 # endregion Rock Spawners
 
 # region Ice Spawners
@@ -205,6 +238,39 @@
     offset: 0
     table: !type:NestedSelector
       tableId: NFIceMineralHard
+
+- type: entityTable
+  id: NFIceMineralHardRich
+  table: !type:GroupSelector
+    children:
+    - id: NFWallIce
+      weight: 0.3
+    - id: NFWallIceArtifactFragment
+      weight: 0.5
+    - id: NFWallIceBluespace
+      weight: 0.1
+    - id: NFWallIceDiamond
+      weight: 0.1
+
+- type: entity
+  id: NFIceMineralHardRich
+  parent: NFIceMineralSoft
+  suffix: Hard, Rich
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - sprite: Structures/Walls/ice.rsi
+      state: full
+    - state: green
+    - sprite: Objects/Materials/materials.rsi
+      state: diamond
+    - sprite: Objects/Tools/handdrilldiamond.rsi
+      state: handdrill
+  - type: EntityTableSpawner
+    offset: 0
+    table: !type:NestedSelector
+      tableId: NFIceMineralHardRich
 # endregion Ice Spawners
 
 # region Andesite Spawners
@@ -310,6 +376,39 @@
     offset: 0
     table: !type:NestedSelector
       tableId: NFAndesiteMineralHard
+
+- type: entityTable
+  id: NFAndesiteMineralHardRich
+  table: !type:GroupSelector
+    children:
+    - id: NFWallAndesiteCobblebrick
+      weight: 0.3
+    - id: NFWallAndesiteCobblebrickArtifactFragment
+      weight: 0.1
+    - id: NFWallAndesiteCobblebrickBluespace
+      weight: 0.1
+    - id: NFWallAndesiteCobblebrickDiamond
+      weight: 0.5
+
+- type: entity
+  id: NFAndesiteMineralHardRich
+  parent: NFAndesiteMineralSoft
+  suffix: Hard, Rich
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - sprite: Structures/Walls/cobblebrick_andesite.rsi
+      state: full
+    - state: green
+    - sprite: Objects/Materials/materials.rsi
+      state: diamond
+    - sprite: Objects/Tools/handdrilldiamond.rsi
+      state: handdrill
+  - type: EntityTableSpawner
+    offset: 0
+    table: !type:NestedSelector
+      tableId: NFAndesiteMineralHardRich
 # endregion Andesite Spawners
 
 # region Basalt Spawners
@@ -415,6 +514,39 @@
     offset: 0
     table: !type:NestedSelector
       tableId: NFBasaltMineralHard
+
+- type: entityTable
+  id: NFBasaltMineralHardRich
+  table: !type:GroupSelector
+    children:
+    - id: NFWallBasaltCobblebrick
+      weight: 0.3
+    - id: NFWallBasaltCobblebrickArtifactFragment
+      weight: 0.25
+    - id: NFWallBasaltCobblebrickBluespace
+      weight: 0.25
+    - id: NFWallBasaltCobblebrickDiamond
+      weight: 0.2
+
+- type: entity
+  id: NFBasaltMineralHardRich
+  parent: NFBasaltMineralSoft
+  suffix: Hard, Rich
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - sprite: Structures/Walls/cobblebrick_basalt.rsi
+      state: full
+    - state: green
+    - sprite: Objects/Materials/materials.rsi
+      state: diamond
+    - sprite: Objects/Tools/handdrilldiamond.rsi
+      state: handdrill
+  - type: EntityTableSpawner
+    offset: 0
+    table: !type:NestedSelector
+      tableId: NFBasaltMineralHardRich
 # endregion Basalt Spawners
 
 # region Sand Spawners
@@ -520,6 +652,39 @@
     offset: 0
     table: !type:NestedSelector
       tableId: NFSandMineralHard
+
+- type: entityTable
+  id: NFSandMineralHardRich
+  table: !type:GroupSelector
+    children:
+    - id: NFWallBasaltCobblebrick
+      weight: 0.3
+    - id: NFWallBasaltCobblebrickArtifactFragment
+      weight: 0.3
+    - id: NFWallBasaltCobblebrickBluespace
+      weight: 0.1
+    - id: NFWallBasaltCobblebrickDiamond
+      weight: 0.3
+
+- type: entity
+  id: NFSandMineralHardRich
+  parent: NFSandMineralSoft
+  suffix: Hard, Rich
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - sprite: Structures/Walls/sandstone.rsi
+      state: full
+    - state: green
+    - sprite: Objects/Materials/materials.rsi
+      state: diamond
+    - sprite: Objects/Tools/handdrilldiamond.rsi
+      state: handdrill
+  - type: EntityTableSpawner
+    offset: 0
+    table: !type:NestedSelector
+      tableId: NFSandMineralHardRich
 # endregion Sand Spawners
 
 # region Chromite Spawners
@@ -625,6 +790,39 @@
     offset: 0
     table: !type:NestedSelector
       tableId: NFChromiteMineralHard
+
+- type: entityTable
+  id: NFChromiteMineralHardRich
+  table: !type:GroupSelector
+    children:
+    - id: NFWallBasaltCobblebrick
+      weight: 0.3
+    - id: NFWallBasaltCobblebrickArtifactFragment
+      weight: 0.25
+    - id: NFWallBasaltCobblebrickBluespace
+      weight: 0.25
+    - id: NFWallBasaltCobblebrickDiamond
+      weight: 0.2
+
+- type: entity
+  id: NFChromiteMineralHardRich
+  parent: NFChromiteMineralSoft
+  suffix: Hard, Rich
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - sprite: Structures/Walls/cobblebrick_chromite.rsi
+      state: full
+    - state: green
+    - sprite: Objects/Materials/materials.rsi
+      state: diamond
+    - sprite: Objects/Tools/handdrilldiamond.rsi
+      state: handdrill
+  - type: EntityTableSpawner
+    offset: 0
+    table: !type:NestedSelector
+      tableId: NFChromiteMineralHardRich
 # endregion Chromite Spawners
 
 # region AsteroidRock Spawners
@@ -730,6 +928,39 @@
     offset: 0
     table: !type:NestedSelector
       tableId: NFAsteroidMineralHard
+
+- type: entityTable
+  id: NFAsteroidMineralHardRich
+  table: !type:GroupSelector
+    children:
+    - id: NFWallNecropolis
+      weight: 0.3
+    - id: NFWallNecropolisArtifactFragment
+      weight: 0.2
+    - id: NFWallNecropolisBluespace
+      weight: 0.25
+    - id: NFWallNecropolisDiamond
+      weight: 0.25
+
+- type: entity
+  id: NFAsteroidMineralHardRich
+  parent: NFAsteroidMineralSoft
+  suffix: Hard, Rich
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - sprite: Structures/Walls/necropolis.rsi
+      state: full
+    - state: green
+    - sprite: Objects/Materials/materials.rsi
+      state: diamond
+    - sprite: Objects/Tools/handdrilldiamond.rsi
+      state: handdrill
+  - type: EntityTableSpawner
+    offset: 0
+    table: !type:NestedSelector
+      tableId: NFAsteroidMineralHardRich
 # endregion AsteroidRock Spawners
 
 # region Scrap Spawners
