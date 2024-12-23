@@ -32,17 +32,13 @@ public sealed partial class CargoSystem
 
     private void OnTradeCrateInit(EntityUid uid, TradeCrateComponent component, ref ComponentInit ev)
     {
+        // If there are no available destinations, tough luck.
         if (_destinations.Count > 0)
         {
             var destination = _destinations[_random.Next(_destinations.Count)];
             component.DestinationStation = destination;
             if (TryComp<TradeCrateDestinationComponent>(destination, out var destComp))
                 _appearance.SetData(uid, TradeCrateVisuals.DestinationIcon, destComp.DestinationProto);
-        }
-        else
-        {
-            // No destination, everywhere is elsewhere, throw the courier a bone.
-            component.ValueElsewhere = component.ValueAtDestination;
         }
 
         if (component.ExpressDeliveryDuration > TimeSpan.Zero)
