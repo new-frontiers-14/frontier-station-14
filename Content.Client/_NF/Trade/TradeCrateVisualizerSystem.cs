@@ -14,7 +14,7 @@ public sealed class TradeCrateVisualizerSystem : VisualizerSystem<TradeCrateComp
     [Dependency] private readonly SpriteSystem _spriteSystem = default!;
 
     private const string FallbackIconID = "CargoOther";
-    private const string CargoPriorityActiveState = "cargo_priority";
+    private const string CargoPriorityActiveState = "cargo_priority_active";
     private const string CargoPriorityInactiveState = "cargo_priority_inactive";
 
     protected override void OnAppearanceChange(EntityUid uid, TradeCrateComponent component, ref AppearanceChangeEvent args)
@@ -31,6 +31,7 @@ public sealed class TradeCrateVisualizerSystem : VisualizerSystem<TradeCrateComp
             icon = _prototypeManager.Index<TradeCrateDestinationPrototype>(FallbackIconID);
 
         args.Sprite.LayerSetTexture(TradeCrateVisualLayers.Icon, _spriteSystem.Frame0(icon.Icon));
+        args.Sprite.LayerSetVisible(TradeCrateVisualLayers.Icon, true);
         if (_appearance.TryGetData(uid, TradeCrateVisuals.IsPriority, out bool isPriority) && isPriority)
         {
             args.Sprite.LayerSetVisible(TradeCrateVisualLayers.Priority, true);
