@@ -35,8 +35,18 @@
 
 - type: entity
   id: NFRockMineralSoft
+  parent: MarkerBase
+  name: rock mineral spawner
+  suffix: Soft
   categories: [ HideSpawnMenu ]
   components:
+  - type: Sprite
+    layers:
+    - sprite: Structures/Walls/rock.rsi
+      state: rock
+    - state: green
+    - sprite: Objects/Weapons/Melee/pickaxe.rsi
+      state: pickaxe
   - type: EntityTableSpawner
     offset: 0
     table: !type:NestedSelector
@@ -75,8 +85,17 @@
 
 - type: entity
   id: NFRockMineralHard
+  parent: NFRockMineralSoft
+  suffix: Hard
   categories: [ HideSpawnMenu ]
   components:
+  - type: Sprite
+    layers:
+    - sprite: Structures/Walls/cobblebrick.rsi
+      state: full
+    - state: green
+    - sprite: Objects/Tools/handdrilldiamond.rsi
+      state: handdrill
   - type: EntityTableSpawner
     offset: 0
     table: !type:NestedSelector
@@ -119,8 +138,18 @@
 
 - type: entity
   id: NFIceMineralSoft
+  parent: MarkerBase
+  name: ice mineral spawner
+  suffix: Soft
   categories: [ HideSpawnMenu ]
   components:
+  - type: Sprite
+    layers:
+    - sprite: Structures/Walls/rock.rsi
+      state: rock_snow
+    - state: green
+    - sprite: Objects/Weapons/Melee/pickaxe.rsi
+      state: pickaxe
   - type: EntityTableSpawner
     offset: 0
     table: !type:NestedSelector
@@ -161,8 +190,17 @@
 
 - type: entity
   id: NFIceMineralHard
+  parent: NFIceMineralSoft
+  suffix: Hard
   categories: [ HideSpawnMenu ]
   components:
+  - type: Sprite
+    layers:
+    - sprite: Structures/Walls/ice.rsi
+      state: full
+    - state: green
+    - sprite: Objects/Tools/handdrilldiamond.rsi
+      state: handdrill
   - type: EntityTableSpawner
     offset: 0
     table: !type:NestedSelector
@@ -205,8 +243,18 @@
 
 - type: entity
   id: NFAndesiteMineralSoft
+  parent: MarkerBase
+  name: andesite mineral spawner
+  suffix: Soft
   categories: [ HideSpawnMenu ]
   components:
+  - type: Sprite
+    layers:
+    - sprite: Structures/Walls/rock.rsi
+      state: rock_andesite
+    - state: green
+    - sprite: Objects/Weapons/Melee/pickaxe.rsi
+      state: pickaxe
   - type: EntityTableSpawner
     offset: 0
     table: !type:NestedSelector
@@ -247,8 +295,17 @@
 
 - type: entity
   id: NFAndesiteMineralHard
+  parent: NFAndesiteMineralSoft
+  suffix: Hard
   categories: [ HideSpawnMenu ]
   components:
+  - type: Sprite
+    layers:
+    - sprite: Structures/Walls/cobblebrick_andesite.rsi
+      state: full
+    - state: green
+    - sprite: Objects/Tools/handdrilldiamond.rsi
+      state: handdrill
   - type: EntityTableSpawner
     offset: 0
     table: !type:NestedSelector
@@ -291,8 +348,18 @@
 
 - type: entity
   id: NFBasaltMineralSoft
+  parent: MarkerBase
+  name: basalt mineral spawner
+  suffix: Soft
   categories: [ HideSpawnMenu ]
   components:
+  - type: Sprite
+    layers:
+    - sprite: Structures/Walls/rock.rsi
+      state: rock_wall
+    - state: green
+    - sprite: Objects/Weapons/Melee/pickaxe.rsi
+      state: pickaxe
   - type: EntityTableSpawner
     offset: 0
     table: !type:NestedSelector
@@ -333,8 +400,17 @@
 
 - type: entity
   id: NFBasaltMineralHard
+  parent: NFBasaltMineralSoft
+  suffix: Hard
   categories: [ HideSpawnMenu ]
   components:
+  - type: Sprite
+    layers:
+    - sprite: Structures/Walls/cobblebrick_basalt.rsi
+      state: full
+    - state: green
+    - sprite: Objects/Tools/handdrilldiamond.rsi
+      state: handdrill
   - type: EntityTableSpawner
     offset: 0
     table: !type:NestedSelector
@@ -377,8 +453,18 @@
 
 - type: entity
   id: NFSandMineralSoft
+  parent: MarkerBase
+  name: sand mineral spawner
+  suffix: Soft
   categories: [ HideSpawnMenu ]
   components:
+  - type: Sprite
+    layers:
+    - sprite: Structures/Walls/rock.rsi
+      state: rock_sand
+    - state: green
+    - sprite: Objects/Weapons/Melee/pickaxe.rsi
+      state: pickaxe
   - type: EntityTableSpawner
     offset: 0
     table: !type:NestedSelector
@@ -419,8 +505,17 @@
 
 - type: entity
   id: NFSandMineralHard
+  parent: NFSandMineralSoft
+  suffix: Hard
   categories: [ HideSpawnMenu ]
   components:
+  - type: Sprite
+    layers:
+    - sprite: Structures/Walls/sandstone.rsi
+      state: full
+    - state: green
+    - sprite: Objects/Tools/handdrilldiamond.rsi
+      state: handdrill
   - type: EntityTableSpawner
     offset: 0
     table: !type:NestedSelector
@@ -463,8 +558,18 @@
 
 - type: entity
   id: NFChromiteMineralSoft
+  parent: MarkerBase
+  name: chromite mineral spawner
+  suffix: Soft
   categories: [ HideSpawnMenu ]
   components:
+  - type: Sprite
+    layers:
+    - sprite: Structures/Walls/rock.rsi
+      state: rock_chromite
+    - state: green
+    - sprite: Objects/Weapons/Melee/pickaxe.rsi
+      state: pickaxe
   - type: EntityTableSpawner
     offset: 0
     table: !type:NestedSelector
@@ -505,8 +610,17 @@
 
 - type: entity
   id: NFChromiteMineralHard
+  parent: NFChromiteMineralSoft
+  suffix: Hard
   categories: [ HideSpawnMenu ]
   components:
+  - type: Sprite
+    layers:
+    - sprite: Structures/Walls/cobblebrick_chromite.rsi
+      state: full
+    - state: green
+    - sprite: Objects/Tools/handdrilldiamond.rsi
+      state: handdrill
   - type: EntityTableSpawner
     offset: 0
     table: !type:NestedSelector
@@ -549,8 +663,18 @@
 
 - type: entity
   id: NFAsteroidMineralSoft
+  parent: MarkerBase
+  name: asteroid mineral spawner
+  suffix: Soft
   categories: [ HideSpawnMenu ]
   components:
+  - type: Sprite
+    layers:
+    - sprite: Structures/Walls/rock.rsi
+      state: rock_asteroid
+    - state: green
+    - sprite: Objects/Weapons/Melee/pickaxe.rsi
+      state: pickaxe
   - type: EntityTableSpawner
     offset: 0
     table: !type:NestedSelector
@@ -591,8 +715,17 @@
 
 - type: entity
   id: NFAsteroidMineralHard
+  parent: NFAsteroidMineralSoft
+  suffix: Hard
   categories: [ HideSpawnMenu ]
   components:
+  - type: Sprite
+    layers:
+    - sprite: Structures/Walls/necropolis.rsi
+      state: full
+    - state: green
+    - sprite: Objects/Tools/handdrilldiamond.rsi
+      state: handdrill
   - type: EntityTableSpawner
     offset: 0
     table: !type:NestedSelector
@@ -633,8 +766,18 @@
 
 - type: entity
   id: NFScrapMineralSoft
+  parent: MarkerBase
+  name: scrap mineral spawner
+  suffix: Soft
   categories: [ HideSpawnMenu ]
   components:
+  - type: Sprite
+    layers:
+    - sprite: _NF/Structures/Walls/rock.rsi
+      state: scraprock01
+    - state: green
+    - sprite: Objects/Weapons/Melee/pickaxe.rsi
+      state: pickaxe
   - type: EntityTableSpawner
     offset: 0
     table: !type:NestedSelector
