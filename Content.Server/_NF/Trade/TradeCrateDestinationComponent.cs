@@ -1,6 +1,5 @@
 using Content.Shared._NF.Trade;
-using Robust.Shared.GameStates;
-using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Server._NF.Trade;
 
@@ -10,6 +9,6 @@ namespace Content.Server._NF.Trade;
 [RegisterComponent]
 public sealed partial class TradeCrateDestinationComponent : Component
 {
-    [DataField]
-    public ProtoId<TradeCrateDestinationPrototype> DestinationProto;
+    [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<TradeCrateDestinationPrototype>))]
+    public string DestinationProto;
 }
