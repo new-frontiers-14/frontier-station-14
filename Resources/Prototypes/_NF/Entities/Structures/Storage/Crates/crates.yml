@@ -29,7 +29,6 @@
 - type: entity
   parent: CrateTradeBaseSecure
   id: CrateTradeBaseSecureNormal
-  name: cargo steel crate
   categories: [ HideSpawnMenu ]
   components:
   - type: Icon
@@ -48,6 +47,10 @@
       offset: 0.025,-0.265
       map: ["enum.TradeCrateVisualLayers.Priority"]
       visible: false
+    - state: paper
+      sprite: Structures/Storage/Crates/labels.rsi
+      offset: "-0.5,0"
+      map: ["enum.PaperLabelVisuals.Layer"]
   - type: EntityStorage
     deleteContentsOnDestruction: true
   - type: Fixtures
@@ -73,7 +76,7 @@
     valueElsewhere: 800
     expressDeliveryDuration: 600 # ten minutes, go go
     expressOnTimeBonus: 1000
-    expressLatePenalty: 600 # 200/1400
+    expressLatePenalty: 1000 # 0/1000
   - type: Icon
     sprite: _NF/Structures/Storage/Crates/tradelight.rsi
   - type: Sprite
@@ -90,6 +93,10 @@
       offset: 0.025,-0.265
       map: ["enum.TradeCrateVisualLayers.Priority"]
       visible: false
+    - state: paper
+      sprite: Structures/Storage/Crates/labels.rsi
+      offset: "-0.5,0"
+      map: ["enum.PaperLabelVisuals.Layer"]
   - type: EntityStorage
     deleteContentsOnDestruction: true
   - type: Fixtures
@@ -159,6 +166,10 @@
       offset: 0.025,-0.265
       map: ["enum.TradeCrateVisualLayers.Priority"]
       visible: false
+    - state: paper
+      sprite: Structures/Storage/Crates/labels.rsi
+      offset: "-0.5,0"
+      map: ["enum.PaperLabelVisuals.Layer"]
   - type: TradeCrate
     valueAtDestination: 3000
     valueElsewhere: 1500
@@ -184,6 +195,10 @@
       offset: 0.025,-0.265
       map: ["enum.TradeCrateVisualLayers.Priority"]
       visible: false
+    - state: paper
+      sprite: Structures/Storage/Crates/labels.rsi
+      offset: "-0.5,0"
+      map: ["enum.PaperLabelVisuals.Layer"]
   - type: TradeCrate
     valueAtDestination: 5000
     valueElsewhere: 2500
@@ -212,6 +227,10 @@
       offset: 0.025,-0.265
       map: ["enum.TradeCrateVisualLayers.Priority"]
       visible: false
+    - state: paper
+      sprite: Structures/Storage/Crates/labels.rsi
+      offset: "-0.5,0"
+      map: ["enum.PaperLabelVisuals.Layer"]
   - type: TradeCrate
     valueAtDestination: 7500
     valueElsewhere: 3750
@@ -241,6 +260,10 @@
       offset: 0.025,-0.265
       map: ["enum.TradeCrateVisualLayers.Priority"]
       visible: false
+    - state: paper
+      sprite: Structures/Storage/Crates/labels.rsi
+      offset: "-0.5,0"
+      map: ["enum.PaperLabelVisuals.Layer"]
   - type: TradeCrate
     valueAtDestination: 10000
     valueElsewhere: 5000
@@ -270,6 +293,10 @@
       offset: 0.025,-0.265
       map: ["enum.TradeCrateVisualLayers.Priority"]
       visible: false
+    - state: paper
+      sprite: Structures/Storage/Crates/labels.rsi
+      offset: "-0.5,0"
+      map: ["enum.PaperLabelVisuals.Layer"]
   - type: TradeCrate
     valueAtDestination: 10000
     valueElsewhere: 5000

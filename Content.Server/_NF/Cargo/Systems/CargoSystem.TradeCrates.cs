@@ -1,7 +1,9 @@
 using System.Threading;
 using Content.Server._NF.Trade;
 using Content.Shared._NF.Trade;
+using Content.Shared.Examine;
 using Content.Shared.GameTicking;
+using Robust.Shared.GameObjects;
 using Timer = Robust.Shared.Timing.Timer;
 
 namespace Content.Server.Cargo.Systems; // Needs to collide with base namespace
@@ -15,6 +17,7 @@ public sealed partial class CargoSystem
         SubscribeLocalEvent<TradeCrateComponent, PriceCalculationEvent>(OnTradeCrateGetPriceEvent);
         SubscribeLocalEvent<TradeCrateComponent, ComponentInit>(OnTradeCrateInit);
         SubscribeLocalEvent<TradeCrateComponent, ComponentRemove>(OnTradeCrateRemove);
+        SubscribeLocalEvent<TradeCrateComponent, ExaminedEvent>(OnTradeCrateExamined);
 
         SubscribeLocalEvent<TradeCrateDestinationComponent, ComponentInit>(OnDestinationInit);
         SubscribeLocalEvent<TradeCrateDestinationComponent, ComponentRemove>(OnDestinationRemove);
@@ -26,8 +29,12 @@ public sealed partial class CargoSystem
         ev.Price = isDestinated ? component.ValueAtDestination : component.ValueElsewhere;
         if (component.ExpressDeliveryTime != null)
         {
-            ev.Price += _timing.CurTime <= component.ExpressDeliveryTime ? component.ExpressOnTimeBonus : component.ExpressLatePenalty;
+            if (_timing.CurTime <= component.ExpressDeliveryTime && isDestinated)
+                ev.Price += component.ExpressOnTimeBonus;
+            else if (_timing.CurTime > component.ExpressDeliveryTime)
+                ev.Price -= component.ExpressLatePenalty;
         }
+        ev.Price = double.Max(0.0, ev.Price); // Ensure non-negative values.
     }
 
     private void OnTradeCrateInit(EntityUid uid, TradeCrateComponent component, ref ComponentInit ev)
@@ -56,6 +63,21 @@ public sealed partial class CargoSystem
     private void OnTradeCrateRemove(EntityUid uid, TradeCrateComponent component, ref ComponentRemove ev)
     {
         component.PriorityCancelToken?.Cancel();
+    }
+
+    private void OnTradeCrateExamined(EntityUid uid, TradeCrateComponent component, ref ExaminedEvent ev)
+    {
+        if (!TryComp(component.DestinationStation, out MetaDataComponent? metadata))
+            return;
+
+        ev.PushMarkup(Loc.GetString("trade-crate-destination-station", ("destination", metadata.EntityName)));
+        if (component.ExpressDeliveryTime != null)
+        {
+            if (component.ExpressDeliveryTime >= _timing.CurTime)
+                ev.PushMarkup(Loc.GetString("trade-crate-priority-active"));
+            else
+                ev.PushMarkup(Loc.GetString("trade-crate-priority-inactive"));
+        }
     }
 
     private void DisableTradeCratePriority(EntityUid uid, TradeCrateComponent component)
