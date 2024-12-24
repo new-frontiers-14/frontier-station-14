@@ -7,15 +7,15 @@
   components:
   - type: Sprite
     layers:
-      - state: green
-        scale: 0.7, 0.7
-      - sprite: Objects/Tools/Hydroponics/spade.rsi
-        state: icon
-      - sprite: Objects/Tools/Hydroponics/hatchet.rsi
-        state: icon
-      - sprite: _NF/Markers/general.rsi
-        state: questionmark
-        color: red
+    - state: green
+      scale: 0.7, 0.7
+    - sprite: Objects/Tools/Hydroponics/spade.rsi
+      state: icon
+    - sprite: Objects/Tools/Hydroponics/hatchet.rsi
+      state: icon
+    - sprite: _NF/Markers/general.rsi
+      state: questionmark
+      color: red
   - type: RandomSpawner
     prototypes:
     - SpawnDungeonLootSeed
@@ -37,15 +37,15 @@
   components:
   - type: Sprite
     layers:
-      - state: green
-        scale: 0.7, 0.7
-      - sprite: Objects/Tools/Hydroponics/spade.rsi
-        state: icon
-      - sprite: Objects/Tools/Hydroponics/hatchet.rsi
-        state: icon
-      - sprite: _NF/Markers/general.rsi
-        state: questionmark
-        color: red
+    - state: green
+      scale: 0.7, 0.7
+    - sprite: Objects/Tools/Hydroponics/spade.rsi
+      state: icon
+    - sprite: Objects/Tools/Hydroponics/hatchet.rsi
+      state: icon
+    - sprite: _NF/Markers/general.rsi
+      state: questionmark
+      color: red
   - type: RandomSpawner
     prototypes:
     - HydroponicsToolMiniHoe
@@ -71,12 +71,12 @@
   components:
   - type: Sprite
     layers:
-      - state: green
-      - sprite: Structures/Storage/Crates/hydroponics.rsi
-        state: icon
-      - sprite: _NF/Markers/general.rsi
-        state: questionmark
-        color: red
+    - state: green
+    - sprite: Structures/Storage/Crates/hydroponics.rsi
+      state: icon
+    - sprite: _NF/Markers/general.rsi
+      state: questionmark
+      color: red
   - type: RandomSpawner
     prototypes:
     # Empty crates
@@ -113,12 +113,12 @@
   components:
   - type: Sprite
     layers:
-      - state: green
-      - sprite: Structures/Storage/Crates/plastic.rsi
-        state: icon
-      - sprite: _NF/Markers/general.rsi
-        state: questionmark
-        color: red
+    - state: green
+    - sprite: Structures/Storage/Crates/plastic.rsi
+      state: icon
+    - sprite: _NF/Markers/general.rsi
+      state: questionmark
+      color: red
   - type: RandomSpawner
     prototypes:
     - CrateVendingMachineRestockNutriMaxFilled
@@ -134,12 +134,12 @@
   components:
   - type: Sprite
     layers:
-      - state: green
-      - sprite: Structures/Storage/Crates/plastic.rsi
-        state: icon
-      - sprite: _NF/Markers/general.rsi
-        state: questionmark
-        color: red
+    - state: green
+    - sprite: Structures/Storage/Crates/plastic.rsi
+      state: icon
+    - sprite: _NF/Markers/general.rsi
+      state: questionmark
+      color: red
   - type: RandomSpawner
     prototypes:
     - CrateHydroponics
@@ -158,13 +158,13 @@
   components:
   - type: Sprite
     layers:
-      - state: green
-        scale: 0.7, 0.7
-      - sprite: Clothing/Uniforms/Jumpsuit/hydro.rsi
-        state: icon
-      - sprite: _NF/Markers/general.rsi
-        state: questionmark
-        color: red
+    - state: green
+      scale: 0.7, 0.7
+    - sprite: Clothing/Uniforms/Jumpsuit/hydro.rsi
+      state: icon
+    - sprite: _NF/Markers/general.rsi
+      state: questionmark
+      color: red
   - type: RandomSpawner
     prototypes:
     - ClothingUniformJumpsuitHydroponics
@@ -194,13 +194,13 @@
   components:
   - type: Sprite
     layers:
-      - state: green
-        scale: 0.7, 0.7
-      - sprite: Objects/Specific/Chemistry/beaker.rsi
-        state: beaker
-      - sprite: _NF/Markers/general.rsi
-        state: questionmark
-        color: red
+    - state: green
+      scale: 0.7, 0.7
+    - sprite: Objects/Specific/Chemistry/beaker.rsi
+      state: beaker
+    - sprite: _NF/Markers/general.rsi
+      state: questionmark
+      color: red
   - type: RandomSpawner
     prototypes:
     - PestSpray
@@ -225,75 +225,71 @@
   components:
   - type: Sprite
     layers:
-      - state: green
-        scale: 0.7, 0.7
-      - sprite: Objects/Specific/Hydroponics/seeds.rsi
-        state: seed-alien3
-      - sprite: _NF/Markers/general.rsi
-        state: questionmark
-        color: red
+    - state: green
+      scale: 0.7, 0.7
+    - sprite: Objects/Specific/Hydroponics/seeds.rsi
+      state: seed-alien3
+    - sprite: _NF/Markers/general.rsi
+      state: questionmark
+      color: red
   - type: RandomSpawner
     prototypes:
-        - SalvageSeedSpawnerLow # \Resources\Prototypes\Nyanotrasen\Markers\Spawners\Random\seeds.yml
-        - WheatSeeds
-        - SpesosTreeSeeds
-        - OatSeeds
-        - BananaSeeds
-        - CarrotSeeds
-        - LemonSeeds
-        - PotatoSeeds
-        - SugarcaneSeeds
-        - TowercapSeeds
-        - TomatoSeeds
-        - EggplantSeeds
-        - AppleSeeds
-        - CornSeeds
-        - ChanterelleSeeds
-        - ChiliSeeds
-        - AloeSeeds
-        - PoppySeeds
-        - LingzhiSeeds
-        - AmbrosiaVulgarisSeeds
-        - GalaxythistleSeeds
-        - FlyAmanitaSeeds
-        - OnionSeeds
-        - PineappleSeeds
-        - EggySeeds
-        - TobaccoSeeds
-        - CannabisSeeds
-        - NettleSeeds
-        - BlueTomatoSeeds
-        - OrangeSeeds
-        - LimeSeeds
-        - LemoonSeeds
-        - GarlicSeeds
-        - CabbageSeeds
-        - SugarcaneSeeds
-        - BloodTomatoSeeds
-        - ChillySeeds
-        - LilySeeds
-        - GatfruitSeeds
-        - RiceSeeds
-        - SoybeanSeeds
-        - SpacemansTrumpetSeeds
-        - KoibeanSeeds
-        - OnionRedSeeds
-        - WatermelonSeeds
-        - GrapeSeeds
-        - BerrySeeds
-        - BungoSeeds
-        - PeaSeeds
-        - PumpkinSeeds
-        - CottonSeeds
-        - MimanaSeeds
-        - LaughinPeaSeeds
-        - SteelcapSeeds
-        - KillerTomatoSeeds
-        - DeathNettleSeeds
+    - WheatSeeds
+    - SpesosTreeSeeds
+    - OatSeeds
+    - BananaSeeds
+    - CarrotSeeds
+    - LemonSeeds
+    - PotatoSeeds
+    - SugarcaneSeeds
+    - TowercapSeeds
+    - TomatoSeeds
+    - EggplantSeeds
+    - AppleSeeds
+    - CornSeeds
+    - ChanterelleSeeds
+    - ChiliSeeds
+    - AloeSeeds
+    - PoppySeeds
+    - LingzhiSeeds
+    - AmbrosiaVulgarisSeeds
+    - GalaxythistleSeeds
+    - FlyAmanitaSeeds
+    - OnionSeeds
+    - PineappleSeeds
+    - EggySeeds
+    - TobaccoSeeds
+    - CannabisSeeds
+    - NettleSeeds
+    - OrangeSeeds
+    - LimeSeeds
+    - LemoonSeeds
+    - GarlicSeeds
+    - CabbageSeeds
+    - SugarcaneSeeds
+    - ChillySeeds
+    - LilySeeds
+    - RiceSeeds
+    - SoybeanSeeds
+    - SpacemansTrumpetSeeds
+    - KoibeanSeeds
+    - OnionRedSeeds
+    - WatermelonSeeds
+    - GrapeSeeds
+    - BerrySeeds
+    - BungoSeeds
+    - PeaSeeds
+    - PumpkinSeeds
+    - CottonSeeds
+    - MimanaSeeds
     chance: 0.95
     offset: 0.0
-    #rarePrototypes: # !!FUN!!
-        #- WeakKudzu
-        #- KudzuFlowerAngry
-        #- KudzuFlowerFriendly
-    #rareChance: 0.01
+    rarePrototypes:
+    - KillerTomatoSeeds
+    - DeathNettleSeeds
+    - SteelcapSeeds
+    - LaughinPeaSeeds
+    - BlueTomatoSeeds
+    - BloodTomatoSeeds
+    - GatfruitSeeds
+    rareChance: 0.05
