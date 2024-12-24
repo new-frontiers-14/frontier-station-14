@@ -25,7 +25,8 @@ public sealed partial class CargoSystem
 
     private void OnTradeCrateGetPriceEvent(EntityUid uid, TradeCrateComponent component, ref PriceCalculationEvent ev)
     {
-        bool isDestinated = component.DestinationStation != EntityUid.Invalid && _station.GetOwningStation(uid) == component.DestinationStation;
+        var owningStation = _station.GetOwningStation(uid);
+        bool isDestinated = component.DestinationStation != EntityUid.Invalid && owningStation == component.DestinationStation || HasComp<TradeCrateWildcardDestinationComponent>(owningStation);
         ev.Price = isDestinated ? component.ValueAtDestination : component.ValueElsewhere;
         if (component.ExpressDeliveryTime != null)
         {
