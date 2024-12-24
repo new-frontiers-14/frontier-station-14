@@ -28,7 +28,8 @@ comp-pda-ui-footer = Personal Digital Assistant
 
 comp-pda-ui-station = Station: [color=white]{$station}[/color]
 
-comp-pda-ui-station-alert-level = Alert Level: [color={ $color }]{ $level }[/color]
+# Frontier: add "Sector"
+comp-pda-ui-station-alert-level = Sector Alert Level: [color={ $color }]{ $level }[/color]
 
 comp-pda-ui-station-alert-level-instructions = Instructions: [color=white]{ $instructions }[/color]
 
