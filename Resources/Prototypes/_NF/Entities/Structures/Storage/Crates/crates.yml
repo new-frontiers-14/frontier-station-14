@@ -72,11 +72,11 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: TradeCrate
-    valueAtDestination: 2000
+    valueAtDestination: 2500
     valueElsewhere: 800
-    expressDeliveryDuration: 600 # ten minutes, go go
-    expressOnTimeBonus: 1000
-    expressLatePenalty: 1000 # 0/1000
+    expressDeliveryDuration: 900 # fifteen minutes, go go
+    expressOnTimeBonus: 1500
+    expressLatePenalty: 1500 # 0/1000
   - type: Icon
     sprite: _NF/Structures/Storage/Crates/tradelight.rsi
   - type: Sprite
@@ -171,8 +171,8 @@
       offset: "-0.5,0"
       map: ["enum.PaperLabelVisuals.Layer"]
   - type: TradeCrate
-    valueAtDestination: 3000
-    valueElsewhere: 1500
+    valueAtDestination: 5000
+    valueElsewhere: 2500
 
 - type: entity
   parent: CrateTradeBaseSecureContraband
@@ -200,9 +200,9 @@
       offset: "-0.5,0"
       map: ["enum.PaperLabelVisuals.Layer"]
   - type: TradeCrate
-    valueAtDestination: 5000
+    valueAtDestination: 6000
     valueElsewhere: 2500
-    expressDeliveryDuration: 1200 # twenty minutes, go go
+    expressDeliveryDuration: 2400 # forty minutes, go go (timeout mostly for pirates & NFSD)
     expressOnTimeBonus: 2000
     expressLatePenalty: 1500
 
@@ -232,11 +232,11 @@
       offset: "-0.5,0"
       map: ["enum.PaperLabelVisuals.Layer"]
   - type: TradeCrate
-    valueAtDestination: 7500
-    valueElsewhere: 3750
-    expressDeliveryDuration: 1200 # twenty minutes, go go
-    expressOnTimeBonus: 2500
-    expressLatePenalty: 2000
+    valueAtDestination: 8000
+    valueElsewhere: 4000
+    expressDeliveryDuration: 2400 # forty minutes, go go (timeout mostly for pirates & NFSD)
+    expressOnTimeBonus: 4000
+    expressLatePenalty: 3000
 
 - type: entity
   parent: CrateTradeBaseSecureContraband
@@ -265,11 +265,11 @@
       offset: "-0.5,0"
       map: ["enum.PaperLabelVisuals.Layer"]
   - type: TradeCrate
-    valueAtDestination: 10000
+    valueAtDestination: 12000
     valueElsewhere: 5000
-    expressDeliveryDuration: 1200 # twenty minutes, go go
-    expressOnTimeBonus: 5000
-    expressLatePenalty: 2500
+    expressDeliveryDuration: 2400 # forty minutes, go go (timeout mostly for pirates & NFSD)
+    expressOnTimeBonus: 6000
+    expressLatePenalty: 3000
 
 - type: entity
   parent: CrateTradeBaseSecureContraband
@@ -298,11 +298,11 @@
       offset: "-0.5,0"
       map: ["enum.PaperLabelVisuals.Layer"]
   - type: TradeCrate
-    valueAtDestination: 10000
-    valueElsewhere: 5000
-    expressDeliveryDuration: 1200 # twenty minutes, go go
-    expressOnTimeBonus: 5000
-    expressLatePenalty: 2500
+    valueAtDestination: 12000
+    valueElsewhere: 6000
+    expressDeliveryDuration: 2400 # forty minutes, go go (timeout mostly for pirates & NFSD)
+    expressOnTimeBonus: 6000
+    expressLatePenalty: 3000
 
 - type: entity
   parent: CrateSecgear

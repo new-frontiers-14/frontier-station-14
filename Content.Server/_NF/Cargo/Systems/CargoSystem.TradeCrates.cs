@@ -42,7 +42,13 @@ public sealed partial class CargoSystem
         // If there are no available destinations, tough luck.
         if (_destinations.Count > 0)
         {
-            var destination = _destinations[_random.Next(_destinations.Count)];
+            var randomIndex = _random.Next(_destinations.Count);
+            // Better have more than one destination.
+            if (_station.GetOwningStation(uid) == _destinations[randomIndex])
+            {
+                randomIndex = (randomIndex + 1 + _random.Next(_destinations.Count - 1)) % _destinations.Count;
+            }
+            var destination = _destinations[randomIndex];
             component.DestinationStation = destination;
             if (TryComp<TradeCrateDestinationComponent>(destination, out var destComp))
                 _appearance.SetData(uid, TradeCrateVisuals.DestinationIcon, destComp.DestinationProto);
