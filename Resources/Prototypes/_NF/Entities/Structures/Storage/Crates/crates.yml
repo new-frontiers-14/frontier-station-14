@@ -28,8 +28,9 @@
 
 - type: entity
   parent: CrateTradeBaseSecure
-  id: CrateTradeBaseSecureNormal
-  categories: [ HideSpawnMenu ]
+  id: CrateTradeSecureNormal
+  name: cargo trading crate
+  description: Contains goods made in the Frontier sector, ready to be sold at a cargo depot for higher value. MAKE SURE THE CRATE IS INTACT.
   components:
   - type: Icon
     sprite: _NF/Structures/Storage/Crates/tradedark.rsi
@@ -67,13 +68,13 @@
 
 - type: entity
   parent: CrateTradeBaseSecure
-  id: CrateTradeBaseSecureHigh
-  name: express cargo steel crate
-  categories: [ HideSpawnMenu ]
+  id: CrateTradeSecureHigh
+  name: express cargo trading crate
+  description: An urgent crate of goods made in the Frontier sector, ready to be quickly sold at a cargo depot for higher value. MAKE SURE THE CRATE IS INTACT.
   components:
   - type: TradeCrate
     valueAtDestination: 2500
-    valueElsewhere: 800
+    valueElsewhere: 1200
     expressDeliveryDuration: 900 # fifteen minutes, go go
     expressOnTimeBonus: 1500
     expressLatePenalty: 1500 # 0/1000
