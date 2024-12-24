@@ -879,6 +879,17 @@
   - type: StaticPrice
     price: 750
 
+- type: entity
+  parent: BaseNFFlatpack
+  id: JanicartFlatpack
+  name: janicart flatpack
+  description: A flatpack used for constructing a Janicart. Keys already slotted in the ignition. Mop sold separately.
+  components:
+  - type: Flatpack
+    entity: NFVehicleJanicartKey
+  - type: StaticPrice
+    price: 375 # 1.25 * base value of input materials
+
 # Vendomats
 - type: entity
   parent: UniformPrinterFlatpack
