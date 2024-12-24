@@ -1,5 +1,5 @@
 # Author Info
-# GitHub: 
+# GitHub:
 # Discord: Terezi (??)
 
 # Maintainer Info
@@ -11,10 +11,17 @@
 - type: pointOfInterest
   id: CaseysCasino
   name: "Crazy Casey's Casino"
-  rangeMin: 3250
-  rangeMax: 5600
-  IFFColor: "#ffa600" #yellorange for faction style
+  minimumDistance: 3250
+  maximumDistance: 5600
+  spawnGamePreset: [ NFAdventure, NFPirate ]
   gridPath: /Maps/_NF/POI/caseyscasino.yml
+  addComponents:
+  - type: IFF
+    color: "#ffa600"
+    readOnly: true
+  - type: Shuttle
+    angularDamping: 999999
+    linearDamping: 999999
 
 - type: gameMap
   id: CaseysCasino

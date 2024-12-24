@@ -3,6 +3,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Content.Shared.Radio;
 using Robust.Shared.Prototypes;
+using Content.Shared.Bank.Components;
 
 namespace Content.Shared.Cargo.Components;
 
@@ -29,5 +30,10 @@ public sealed partial class CargoOrderConsoleComponent : Component
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public ProtoId<RadioChannelPrototype> AnnouncementChannel = "Supply";
-}
 
+    // Frontier: station taxes
+    // Accounts to receive tax value (each currently receives the entirety of the taxed value)
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public Dictionary<SectorBankAccount, float> TaxAccounts = new();
+    // End Frontier
+}

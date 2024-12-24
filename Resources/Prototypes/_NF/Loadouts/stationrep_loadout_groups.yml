@@ -8,7 +8,7 @@
   fallbacks:
   - StationRepClothingUniformJumpsuitSr
   - StationRepClothingUniformJumpskirtSr
-  
+
 - type: loadoutGroup
   id: StationRepOuterClothing
   name: loadout-group-contractor-outerclothing
@@ -21,7 +21,7 @@
   - ContractorClothingOuterCoatSpaceAsshole
   fallbacks:
   - ContractorClothingOuterVestTank
-  
+
 - type: loadoutGroup
   id: StationRepBackpack
   name: loadout-group-contractor-backpack
@@ -71,3 +71,12 @@
   loadouts:
   - StationRepClothingNeckCloakSr
   - StationRepClothingNeckMantleSr
+
+- type: loadoutGroup
+  id: StationRepPDA
+  name: loadout-group-contractor-id
+  hidden: true # No point in showing this, it gets auto-selected.
+  loadouts:
+  - StationRepSrPDA
+  fallbacks:
+  - StationRepSrPDA

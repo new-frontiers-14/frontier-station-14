@@ -1,3 +1,5 @@
+using Robust.Shared.Prototypes;
+
 namespace Content.Server._NF.Salvage;
 
 /// <summary>
@@ -19,4 +21,57 @@ public sealed partial class NFSalvageMobRestrictionsComponent : Component
     /// </summary>
     [DataField]
     public bool DespawnIfOffLinkedGrid = true;
+
+    // On walking off grid
+    [DataField]
+    public string LeaveGridPopup = "dungeon-boss-grid-warning";
+
+    /// <summary>
+    /// Components to be added when the mob leave the grid.
+    /// </summary>
+    [DataField]
+    public ComponentRegistry AddComponentsLeaveGrid { get; set; } = new();
+
+    /// <summary>
+    /// Components to be removed when the mob leave the grid.
+    /// </summary>
+    [DataField]
+    public ComponentRegistry RemoveComponentsLeaveGrid { get; set; } = new();
+
+    /// <summary>
+    /// Components to be added when the mob return to the grid.
+    /// </summary>
+    [DataField]
+    public ComponentRegistry AddComponentsReturnGrid { get; set; } = new();
+
+    /// <summary>
+    /// Components to be removed when the mob return to the grid.
+    /// </summary>
+    [DataField]
+    public ComponentRegistry RemoveComponentsReturnGrid { get; set; } = new();
+
+    // On death
+    /// <summary>
+    /// Components to be added on death.
+    /// </summary>
+    [DataField]
+    public ComponentRegistry AddComponentsOnDeath { get; set; } = new();
+
+    /// <summary>
+    /// Components to be removed on death.
+    /// </summary>
+    [DataField]
+    public ComponentRegistry RemoveComponentsOnDeath { get; set; } = new();
+
+    /// <summary>
+    /// Components to be added on revivel.
+    /// </summary>
+    [DataField]
+    public ComponentRegistry AddComponentsOnRevival { get; set; } = new();
+
+    /// <summary>
+    /// Components to be removed on revival.
+    /// </summary>
+    [DataField]
+    public ComponentRegistry RemoveComponentsOnRevival { get; set; } = new();
 }

@@ -9,8 +9,14 @@ adventure-webhook-list-low = This Shift's Biggest Spenders:
 adventure-webhook-top-profit = made a total profit of {$amount}.
 adventure-webhook-top-loss = lost a total of {$amount}.
 
-adventure-title = New Frontier Adventure Mode
-adventure-description = Join a ship crew or buy your own and explore, research, salvage, or haul your way to riches!
+adventure-webhook-ledger-start = Ledger Summary
+
+nf-adventure-title = Adventure
+nf-adventure-description = Join a ship crew or buy your own and explore, research, salvage, or haul your way to riches!
+
+nf-pirate-title = Pirates
+nf-pirate-description = A gang of pirates is on the loose! Take care out in space and try not to get plundered!
+
 currency = Spesos
 
 shipyard-rules-default1 =
@@ -32,4 +38,3 @@ multiauth-already-connected = Already connected to Frontier Official servers.
 public-transit-shuttle-name = Public Transport Shuttle
 public-transit-departure = Now departing for {$destination}. Estimated travel time: {$flytime} seconds.
 public-transit-arrival = Thank you for choosing NT Public Transit. Next transfer to {$destination} departs in {$waittime} seconds.
-

@@ -1,0 +1,66 @@
+<cartridges:LedgerTab xmlns="https://spacestation14.io"
+                      xmlns:cartridges="clr-namespace:Content.Client._NF.CartridgeLoader.Cartridges"
+                      xmlns:custom="clr-namespace:Content.Client.Administration.UI.CustomControls">
+    <BoxContainer Orientation="Vertical" VerticalExpand="True" HorizontalExpand="True">
+        <ScrollContainer VerticalExpand="True" HorizontalExpand="True" VScrollEnabled="True" ReturnMeasure="True">
+            <BoxContainer Orientation="Vertical" HorizontalExpand="True" HorizontalAlignment="Stretch">
+                <BoxContainer Orientation="Horizontal" VerticalExpand="True" HorizontalExpand="True">
+                    <!-- Dynamically filled income/expense lists -->
+                    <BoxContainer Orientation="Vertical"
+                                  Name="IncomeList"
+                                  VerticalExpand="True"
+                                  HorizontalExpand="True"
+                                  HorizontalAlignment="Stretch"
+                                  Margin="5 0 5 0"/>
+                    <custom:VSeparator/>
+                    <BoxContainer Orientation="Vertical"
+                                  Name="ExpenseList"
+                                  VerticalExpand="True"
+                                  HorizontalExpand="True"
+                                  HorizontalAlignment="Stretch"
+                                  Margin="5 0 5 0"/>
+                </BoxContainer>
+                <BoxContainer Orientation="Horizontal" VerticalExpand="True" HorizontalExpand="True">
+                    <BoxContainer Orientation="Horizontal" HorizontalExpand="True" HorizontalAlignment="Stretch" Margin="5 0 5 5">
+                        <Label Name="TotalIncome"
+                            Text="{Loc 'ledger-total-income'}"
+                               StyleClasses="LabelKeyText"/>
+                        <Label Name="IncomeValue"
+                               Text="{Loc 'ledger-no-income'}"
+                               HorizontalExpand="True"
+                               HorizontalAlignment="Right"
+                               StyleClasses="LabelKeyText"
+                               FontColorOverride="#80FF80"/>
+                    </BoxContainer>
+                    <custom:VSeparator/>
+                    <BoxContainer Orientation="Horizontal" HorizontalExpand="True" HorizontalAlignment="Stretch" Margin="5 0 5 5">
+                        <Label Name="TotalExpenses"
+                               Text="{Loc 'ledger-total-expenses'}"
+                               StyleClasses="LabelKeyText"/>
+                        <Label Name="ExpensesValue"
+                               Text="{Loc 'ledger-no-expenses'}"
+                               HorizontalExpand="True"
+                               HorizontalAlignment="Right"
+                               StyleClasses="LabelKeyText"
+                               FontColorOverride="#FF8080"/>
+                    </BoxContainer>
+                </BoxContainer>
+            </BoxContainer>
+        </ScrollContainer>
+        <!-- Summary text along the window bottom-->
+        <custom:HSeparator Margin="0 0 0 5"/>
+        <BoxContainer Orientation="Horizontal" HorizontalExpand="True" SetHeight="25" HorizontalAlignment="Center">
+            <Label Name="Balance"
+                   HorizontalExpand="True"
+                   Text="{Loc 'ledger-balance'}"
+                   HorizontalAlignment="Right"
+                   StyleClasses="LabelKeyText"/>
+            <Label Name="BalanceValue"
+                   HorizontalExpand="True"
+                   Text="{Loc 'ledger-no-balance'}"
+                   Margin="8 0 0 0"
+                   StyleClasses="LabelKeyText"
+                   FontColorOverride="#80FF80"/>
+        </BoxContainer>
+    </BoxContainer>
+</cartridges:LedgerTab>

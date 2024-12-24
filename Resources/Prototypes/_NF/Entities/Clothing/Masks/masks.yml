@@ -2,7 +2,7 @@
   id: ClothingMaskArcadia
   name: arcadia battle mask
   parent: [ ClothingMaskGasExplorer, BaseC3ContrabandNoValue, ContrabandClothing ]
-  description: A close-fitting high tech mask designed by Arcadia Industries for space faring battlers.
+  description: A close-fitting high tech mask designed by Arcadia Industries for spacefaring operators.
   components:
   - type: Sprite
     sprite: _NF/Clothing/Mask/arcadia.rsi
@@ -13,13 +13,14 @@
     - Hair
 
 - type: entity
-  parent: ClothingMaskBase
+  parent: [PlushieXeno, ClothingMaskBase]
   id: FaceHuggerPlushie
   name: facehugger plushie
   description: The perfect plushie to scare your friends with aliens!
   components:
   - type: Sprite
     sprite: _NF/Clothing/Mask/facehuggerplushie.rsi
+    state: icon
   - type: Clothing
     sprite: _NF/Clothing/Mask/facehuggerplushie.rsi
   - type: IdentityBlocker
@@ -29,22 +30,23 @@
     replacement: mumble
 
 - type: entity
-  parent: ClothingMaskPullableBase
+  parent: ClothingMaskGas
   id: ClothingMaskPilot
-  name: pilot breathing mask
-  description: A close-fitting breathing mask designed for, it would seems, minimal comfort of wearer.
+  name: pilot breath mask
+  description: A close-fitting breath mask designed for, it would seem, minimal comfort for the wearer.
   components:
   - type: Sprite
     sprite: _NF/Clothing/Mask/pilot.rsi
   - type: Clothing
     sprite: _NF/Clothing/Mask/pilot.rsi
-  - type: BreathMask
+  - type: IdentityBlocker
+    coverage: MOUTH
 
 - type: entity
   parent: [ BaseC2ContrabandUnredeemable, ClothingMaskGasSecurity ]
   id: ClothingMaskGasNfsd
   name: nfsd gas mask
-  description: A standard issue nfsd gas mask.
+  description: A standard issue NFSD gas mask.
   components:
   - type: Sprite
     sprite: _NF/Clothing/Mask/nfsd.rsi
@@ -67,7 +69,7 @@
   parent: [ BaseC3CultContrabandUnredeemable, ContrabandClothing, ClothingMaskGasExplorer ]
   id: ClothingMaskCultJanitor
   name: cult janitor mask
-  description: A close-fitting imposing breathing mask designed for acursed custodians who value style.
+  description: A close-fitting, imposing breath mask designed for accursed custodians who value style.
   components:
   - type: Sprite
     sprite: _NF/Clothing/Mask/cult_janitor_mask.rsi
@@ -81,7 +83,7 @@
   id: ClothingMaskPunkHalf
   parent: [ ClothingMaskGasExplorer, RecyclableItemClothDevice ]
   name: punk halfmask
-  description: A close-fitting breathing mask with gamer lights!
+  description: A close-fitting breath mask with gamer lights!
   suffix: Random visuals
   components:
   - type: Sprite
@@ -111,3 +113,5 @@
         equipped-MASK: CyberpunkDark
       mask_decor:
         decor-equipped-MASK: CyberpunkNeon
+  - type: IdentityBlocker
+    coverage: MOUTH

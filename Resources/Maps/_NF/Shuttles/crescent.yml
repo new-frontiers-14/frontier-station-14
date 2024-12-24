@@ -2676,15 +2676,11 @@ entities:
       rot: 3.141592653589793 rad
       pos: -3.5,-0.5
       parent: 1
-    - type: Physics
-      bodyType: Static
   - uid: 183
     components:
     - type: Transform
       pos: 4.5,1.5
       parent: 1
-    - type: Physics
-      bodyType: Static
 - proto: BenchSteelMiddle
   entities:
   - uid: 186
@@ -2692,31 +2688,23 @@ entities:
     - type: Transform
       pos: -4.5,1.5
       parent: 1
-    - type: Physics
-      bodyType: Static
   - uid: 187
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -4.5,-0.5
       parent: 1
-    - type: Physics
-      bodyType: Static
   - uid: 188
     components:
     - type: Transform
       pos: 5.5,1.5
       parent: 1
-    - type: Physics
-      bodyType: Static
   - uid: 189
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 5.5,-0.5
       parent: 1
-    - type: Physics
-      bodyType: Static
 - proto: BenchSteelRight
   entities:
   - uid: 191
@@ -2724,16 +2712,12 @@ entities:
     - type: Transform
       pos: -3.5,1.5
       parent: 1
-    - type: Physics
-      bodyType: Static
   - uid: 192
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 4.5,-0.5
       parent: 1
-    - type: Physics
-      bodyType: Static
 - proto: BenchSteelWhiteLeft
   entities:
   - uid: 185
@@ -2742,16 +2726,12 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -10.5,12.5
       parent: 1
-    - type: Physics
-      bodyType: Static
   - uid: 1264
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -8.5,13.5
       parent: 1
-    - type: Physics
-      bodyType: Static
 - proto: BenchSteelWhiteRight
   entities:
   - uid: 193
@@ -2760,16 +2740,12 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -8.5,12.5
       parent: 1
-    - type: Physics
-      bodyType: Static
   - uid: 194
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -10.5,13.5
       parent: 1
-    - type: Physics
-      bodyType: Static
 - proto: BiomassReclaimer
   entities:
   - uid: 195
@@ -2812,25 +2788,6 @@ entities:
     - type: Transform
       pos: 29.5,25.5
       parent: 1
-- proto: BluespaceBeaker
-  entities:
-  - uid: 202
-    components:
-    - type: Transform
-      parent: 201
-    - type: SolutionContainerManager
-      solutions:
-        beaker:
-          temperature: 293.15
-          canReact: True
-          maxVol: 300
-          name: null
-          reagents:
-          - data: null
-            ReagentId: Cryoxadone
-            Quantity: 300
-    - type: Physics
-      canCollide: False
 - proto: BookAtmosWaste
   entities:
   - uid: 136
@@ -7643,56 +7600,17 @@ entities:
     - type: Transform
       pos: 0.5,2.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        bank-ATM-cashSlot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-    - type: Physics
-      canCollide: False
-    - type: ItemSlots
   - uid: 1234
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -17.5,6.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        bank-ATM-cashSlot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-    - type: Physics
-      canCollide: False
-    - type: ItemSlots
   - uid: 1235
     components:
     - type: Transform
       pos: 26.5,17.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        bank-ATM-cashSlot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-    - type: Physics
-      canCollide: False
-    - type: ItemSlots
 - proto: ComputerWithdrawBankATM
   entities:
   - uid: 2473
@@ -7700,17 +7618,6 @@ entities:
     - type: Transform
       pos: -5.5,35.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        bank-ATM-cashSlot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-    - type: ItemSlots
 - proto: CrateArtifactContainer
   entities:
   - uid: 1236
@@ -7844,16 +7751,6 @@ entities:
     - type: Transform
       pos: -5.5,38.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        ShipyardConsole-targetId: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
 - proto: CryoPod
   entities:
   - uid: 201
@@ -7861,24 +7758,6 @@ entities:
     - type: Transform
       pos: -28.5,32.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        scanner-body: !type:ContainerSlot
-          showEnts: True
-          occludes: True
-          ent: null
-        beakerSlot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: 202
-        machine_board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        machine_parts: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
 - proto: DefibrillatorCabinet
   entities:
   - uid: 1249
@@ -16399,6 +16278,8 @@ entities:
     - type: Transform
       pos: 3.5,30.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: IntercomMedical
   entities:
   - uid: 2221
@@ -16406,11 +16287,15 @@ entities:
     - type: Transform
       pos: -17.5,9.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 2222
     components:
     - type: Transform
       pos: -24.5,25.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: IntercomScience
   entities:
   - uid: 2224
@@ -16418,11 +16303,15 @@ entities:
     - type: Transform
       pos: 27.5,23.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 2225
     components:
     - type: Transform
       pos: 26.5,34.5
       parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: KitchenElectricGrill
   entities:
   - uid: 911
@@ -18251,20 +18140,6 @@ entities:
     - type: Transform
       pos: 24.5,22.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        machine_board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        machine_parts: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        blueprint: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
 - proto: SeedExtractor
   entities:
   - uid: 2515
@@ -18279,20 +18154,6 @@ entities:
     - type: Transform
       pos: 4.5,5.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        machine_board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        machine_parts: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        blueprint: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
 - proto: ShuttersNormal
   entities:
   - uid: 2521
@@ -23683,7 +23544,7 @@ entities:
     - type: Transform
       pos: 16.5,5.5
       parent: 1
-- proto: WarpPointShip
+- proto: WarpPoint
   entities:
   - uid: 3426
     components:

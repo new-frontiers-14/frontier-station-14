@@ -244,6 +244,459 @@
         state: rock_bluespace
         map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
+# Frontier - scrap pile with ore
+
+- type: entity
+  id: WallRockScrapPile
+  parent: WallRockAndesite
+  name: scrap pile
+  description: A pile of scrap.
+  suffix: Scrap
+  components:
+  - type: OreVein
+    oreChance: 1.0
+    currentOre: NFOreScrap
+  - type: Icon
+    sprite: _NF/Structures/Walls/rock.rsi
+    state: scraprock01
+  - type: Sprite
+    sprite: _NF/Structures/Walls/rock.rsi
+    layers:
+    - state: scraprock01
+      map: [ "scraprock_variant" ]
+    - map: [ "enum.EdgeLayer.South" ]
+      state: scraprock_south
+    - map: [ "enum.EdgeLayer.East" ]
+      state: scraprock_east
+    - map: [ "enum.EdgeLayer.North" ]
+      state: scraprock_north
+    - map: [ "enum.EdgeLayer.West" ]
+      state: scraprock_west
+    - state: rock_scrap
+      map: [ "enum.MiningScannerVisualLayers.Overlay" ]
+  - type: RandomSprite
+    available:
+      - scraprock_variant:
+          scraprock01: ""
+          scraprock02: ""
+          scraprock03: ""
+          scraprock04: ""
+          scraprock05: ""
+          scraprock06: ""
+          scraprock07: ""
+
+- type: entity
+  id: WallRockScrapPileBot
+  parent: WallRockScrapPile
+  components:
+  - type: OreVein
+    oreChance: 1.0
+    currentOre: OreScrapBot
+
+- type: entity
+  id: WallRockScrapPileCoal
+  parent: WallRockScrapPile
+  description: An ore vein with coal.
+  suffix: Coal
+  components:
+  - type: OreVein
+    oreChance: 1.0
+    currentOre: NFOreCoal
+  - type: Sprite
+    layers:
+    - state: scraprock01
+      map: [ "scraprock_variant" ]
+    - map: [ "enum.EdgeLayer.South" ]
+      state: scraprock_south
+    - map: [ "enum.EdgeLayer.East" ]
+      state: scraprock_east
+    - map: [ "enum.EdgeLayer.North" ]
+      state: scraprock_north
+    - map: [ "enum.EdgeLayer.West" ]
+      state: scraprock_west
+    - sprite: Structures/Walls/rock.rsi
+      state: rock_coal
+      map: [ "enum.MiningScannerVisualLayers.Overlay" ]
+
+- type: entity
+  id: WallRockScrapPileCoalBot
+  parent: WallRockScrapPileCoal
+  components:
+  - type: OreVein
+    oreChance: 1.0
+    currentOre: OreScrapBot
+
+- type: entity
+  id: WallRockScrapPileGold
+  parent: WallRockScrapPile
+  description: An ore vein with gold.
+  suffix: Gold
+  components:
+  - type: OreVein
+    oreChance: 1.0
+    currentOre: NFOreGold
+  - type: Sprite
+    layers:
+    - state: scraprock01
+      map: [ "scraprock_variant" ]
+    - map: [ "enum.EdgeLayer.South" ]
+      state: scraprock_south
+    - map: [ "enum.EdgeLayer.East" ]
+      state: scraprock_east
+    - map: [ "enum.EdgeLayer.North" ]
+      state: scraprock_north
+    - map: [ "enum.EdgeLayer.West" ]
+      state: scraprock_west
+    - sprite: Structures/Walls/rock.rsi
+      state: rock_gold
+      map: [ "enum.MiningScannerVisualLayers.Overlay" ]
+
+- type: entity
+  id: WallRockScrapPileGoldBot
+  parent: WallRockScrapPileGold
+  components:
+  - type: OreVein
+    oreChance: 1.0
+    currentOre: OreScrapBot
+
+- type: entity
+  id: WallRockScrapPileDiamond
+  parent: WallRockScrapPile
+  description: An ore vein with diamond.
+  suffix: Diamond
+  components:
+  - type: OreVein
+    oreChance: 1.0
+    currentOre: OreDiamond
+  - type: Sprite
+    layers:
+    - state: scraprock01
+      map: [ "scraprock_variant" ]
+    - map: [ "enum.EdgeLayer.South" ]
+      state: scraprock_south
+    - map: [ "enum.EdgeLayer.East" ]
+      state: scraprock_east
+    - map: [ "enum.EdgeLayer.North" ]
+      state: scraprock_north
+    - map: [ "enum.EdgeLayer.West" ]
+      state: scraprock_west
+    - sprite: Structures/Walls/rock.rsi
+      state: rock_diamond
+      map: [ "enum.MiningScannerVisualLayers.Overlay" ]
+
+- type: entity
+  id: WallRockScrapPileDiamondBot
+  parent: WallRockScrapPileDiamond
+  components:
+  - type: OreVein
+    oreChance: 1.0
+    currentOre: OreScrapBot
+
+- type: entity
+  id: WallRockScrapPilePlasma
+  parent: WallRockScrapPile
+  description: An ore vein with plasma.
+  suffix: Plasma
+  components:
+  - type: OreVein
+    oreChance: 1.0
+    currentOre: NFOrePlasma
+  - type: Sprite
+    layers:
+    - state: scraprock01
+      map: [ "scraprock_variant" ]
+    - map: [ "enum.EdgeLayer.South" ]
+      state: scraprock_south
+    - map: [ "enum.EdgeLayer.East" ]
+      state: scraprock_east
+    - map: [ "enum.EdgeLayer.North" ]
+      state: scraprock_north
+    - map: [ "enum.EdgeLayer.West" ]
+      state: scraprock_west
+    - sprite: Structures/Walls/rock.rsi
+      state: rock_phoron
+      map: [ "enum.MiningScannerVisualLayers.Overlay" ]
+
+- type: entity
+  id: WallRockScrapPilePlasmaBot
+  parent: WallRockScrapPilePlasma
+  components:
+  - type: OreVein
+    oreChance: 1.0
+    currentOre: OreScrapBot
+
+- type: entity
+  id: WallRockScrapPileQuartz
+  parent: WallRockScrapPile
+  description: An ore vein with quartz.
+  suffix: Quartz
+  components:
+  - type: OreVein
+    oreChance: 1.0
+    currentOre: NFOreSpaceQuartz
+  - type: Sprite
+    layers:
+    - state: scraprock01
+      map: [ "scraprock_variant" ]
+    - map: [ "enum.EdgeLayer.South" ]
+      state: scraprock_south
+    - map: [ "enum.EdgeLayer.East" ]
+      state: scraprock_east
+    - map: [ "enum.EdgeLayer.North" ]
+      state: scraprock_north
+    - map: [ "enum.EdgeLayer.West" ]
+      state: scraprock_west
+    - sprite: Structures/Walls/rock.rsi
+      state: rock_quartz
+      map: [ "enum.MiningScannerVisualLayers.Overlay" ]
+
+- type: entity
+  id: WallRockScrapPileQuartzBot
+  parent: WallRockScrapPileQuartz
+  components:
+  - type: OreVein
+    oreChance: 1.0
+    currentOre: OreScrapBot
+
+- type: entity
+  id: WallRockScrapPileSilver
+  parent: WallRockScrapPile
+  description: An ore vein with silver.
+  suffix: Silver
+  components:
+  - type: OreVein
+    oreChance: 1.0
+    currentOre: NFOreSilver
+  - type: Sprite
+    layers:
+    - state: scraprock01
+      map: [ "scraprock_variant" ]
+    - map: [ "enum.EdgeLayer.South" ]
+      state: scraprock_south
+    - map: [ "enum.EdgeLayer.East" ]
+      state: scraprock_east
+    - map: [ "enum.EdgeLayer.North" ]
+      state: scraprock_north
+    - map: [ "enum.EdgeLayer.West" ]
+      state: scraprock_west
+    - sprite: Structures/Walls/rock.rsi
+      state: rock_silver
+      map: [ "enum.MiningScannerVisualLayers.Overlay" ]
+
+- type: entity
+  id: WallRockScrapPileSilverBot
+  parent: WallRockScrapPileSilver
+  components:
+  - type: OreVein
+    oreChance: 1.0
+    currentOre: OreScrapBot
+
+- type: entity
+  id: WallRockScrapPileIron
+  parent: WallRockScrapPile
+  description: An ore vein with iron.
+  suffix: Iron
+  components:
+  - type: OreVein
+    oreChance: 1.0
+    currentOre: NFOreSteel
+  - type: Sprite
+    layers:
+    - state: scraprock01
+      map: [ "scraprock_variant" ]
+    - map: [ "enum.EdgeLayer.South" ]
+      state: scraprock_south
+    - map: [ "enum.EdgeLayer.East" ]
+      state: scraprock_east
+    - map: [ "enum.EdgeLayer.North" ]
+      state: scraprock_north
+    - map: [ "enum.EdgeLayer.West" ]
+      state: scraprock_west
+    - sprite: Structures/Walls/rock.rsi
+      state: rock_tin
+      map: [ "enum.MiningScannerVisualLayers.Overlay" ]
+
+- type: entity
+  id: WallRockScrapPileIronBot
+  parent: WallRockScrapPileIron
+  components:
+  - type: OreVein
+    oreChance: 1.0
+    currentOre: OreScrapBot
+
+- type: entity
+  id: WallRockScrapPileUranium
+  parent: WallRockScrapPile
+  description: An ore vein with uranium.
+  suffix: Uranium
+  components:
+  - type: OreVein
+    oreChance: 1.0
+    currentOre: NFOreUranium
+  - type: Sprite
+    layers:
+    - state: scraprock01
+      map: [ "scraprock_variant" ]
+    - map: [ "enum.EdgeLayer.South" ]
+      state: scraprock_south
+    - map: [ "enum.EdgeLayer.East" ]
+      state: scraprock_east
+    - map: [ "enum.EdgeLayer.North" ]
+      state: scraprock_north
+    - map: [ "enum.EdgeLayer.West" ]
+      state: scraprock_west
+    - sprite: Structures/Walls/rock.rsi
+      state: rock_uranium
+      map: [ "enum.MiningScannerVisualLayers.Overlay" ]
+
+- type: entity
+  id: WallRockScrapPileUraniumBot
+  parent: WallRockScrapPileUranium
+  components:
+  - type: OreVein
+    oreChance: 1.0
+    currentOre: OreScrapBot
+
+- type: entity
+  id: WallRockScrapPileBananium
+  parent: WallRockScrapPile
+  description: An ore vein with bananium.
+  suffix: Bananium
+  components:
+  - type: OreVein
+    oreChance: 1.0
+    currentOre: NFOreBananium
+  - type: Sprite
+    layers:
+    - state: scraprock01
+      map: [ "scraprock_variant" ]
+    - map: [ "enum.EdgeLayer.South" ]
+      state: scraprock_south
+    - map: [ "enum.EdgeLayer.East" ]
+      state: scraprock_east
+    - map: [ "enum.EdgeLayer.North" ]
+      state: scraprock_north
+    - map: [ "enum.EdgeLayer.West" ]
+      state: scraprock_west
+    - sprite: Structures/Walls/rock.rsi
+      state: rock_bananium
+      map: [ "enum.MiningScannerVisualLayers.Overlay" ]
+
+- type: entity
+  id: WallRockScrapPileBananiumBot
+  parent: WallRockScrapPileBananium
+  components:
+  - type: OreVein
+    oreChance: 1.0
+    currentOre: OreScrapBot
+
+- type: entity
+  id: WallRockScrapPileSalt
+  parent: WallRockScrapPile
+  description: An ore vein with salt.
+  suffix: Salt
+  components:
+  - type: OreVein
+    oreChance: 1.0
+    currentOre: NFOreSalt
+  - type: Sprite
+    layers:
+    - state: scraprock01
+      map: [ "scraprock_variant" ]
+    - map: [ "enum.EdgeLayer.South" ]
+      state: scraprock_south
+    - map: [ "enum.EdgeLayer.East" ]
+      state: scraprock_east
+    - map: [ "enum.EdgeLayer.North" ]
+      state: scraprock_north
+    - map: [ "enum.EdgeLayer.West" ]
+      state: scraprock_west
+    - sprite: Structures/Walls/rock.rsi
+      state: rock_salt
+      map: [ "enum.MiningScannerVisualLayers.Overlay" ]
+
+- type: entity
+  id: WallRockScrapPileSaltBot
+  parent: WallRockScrapPileSalt
+  components:
+  - type: OreVein
+    oreChance: 1.0
+    currentOre: OreScrapBot
+
+- type: entity
+  id: WallRockScrapPileArtifactFragment
+  parent: WallRockScrapPile
+  description: A scrap pile. What's that sticking out of it?
+  suffix: Artifact Fragment
+  components:
+  - type: OreVein
+    oreChance: 1.0
+    currentOre: OreArtifactFragment
+  - type: Sprite
+    layers:
+    - state: scraprock01
+      map: [ "scraprock_variant" ]
+    - map: [ "enum.EdgeLayer.South" ]
+      state: scraprock_south
+    - map: [ "enum.EdgeLayer.East" ]
+      state: scraprock_east
+    - map: [ "enum.EdgeLayer.North" ]
+      state: scraprock_north
+    - map: [ "enum.EdgeLayer.West" ]
+      state: scraprock_west
+    - sprite: Structures/Walls/rock.rsi
+      state: rock_artifact_fragment
+      map: [ "enum.MiningScannerVisualLayers.Overlay" ]
+
+- type: entity
+  id: WallRockScrapPileArtifactFragmentBot
+  parent: WallRockScrapPileArtifactFragment
+  components:
+  - type: OreVein
+    oreChance: 1.0
+    currentOre: OreScrapBot
+
+- type: entity
+  id: WallRockScrapPileBluespace
+  parent: WallRockScrapPile
+  description: An ore vein with bluespace.
+  suffix: Bluespace
+  components:
+  - type: OreVein
+    oreChance: 1.0
+    currentOre: OreBluespace
+  - type: Sprite
+    layers:
+    - state: scraprock01
+      map: [ "scraprock_variant" ]
+    - map: [ "enum.EdgeLayer.South" ]
+      state: scraprock_south
+    - map: [ "enum.EdgeLayer.East" ]
+      state: scraprock_east
+    - map: [ "enum.EdgeLayer.North" ]
+      state: scraprock_north
+    - map: [ "enum.EdgeLayer.West" ]
+      state: scraprock_west
+    - state: rock_bluespace
+      map: [ "enum.MiningScannerVisualLayers.Overlay" ]
+
+- type: entity
+  id: WallRockScrapPileBluespaceBot
+  parent: WallRockScrapPileBluespace
+  components:
+  - type: OreVein
+    oreChance: 1.0
+    currentOre: OreScrapBot
+
+- type: entity
+  id: AsteroidScrapPileMining
+  parent: WallRockScrapPile
+  suffix: higher ore yield .33
+  components:
+  - type: OreVein
+    oreChance: 0.33
+    oreRarityPrototypeId: RandomOreDistributionStandard
+
 # Frontier - Mobs
 - type: entity
   id: AsteroidRockQuartzCrabNF
@@ -660,7 +1113,7 @@
     - type: OreVein
       oreChance: 1.0
       currentOre: OreGoldGolem
-      
+
 - type: entity
   id: WallRockChromiteGoldGolem
   parent: WallRockChromiteGold
@@ -791,7 +1244,7 @@
     - type: OreVein
       oreChance: 1.0
       currentOre: OreIronGolem
-      
+
 # Plasma
 ## Plasma crabs
 
@@ -857,7 +1310,7 @@
     - type: OreVein
       oreChance: 1.0
       currentOre: OrePlasmaCrabNF
-      
+
 ## Plasma golems
 
 - type: entity

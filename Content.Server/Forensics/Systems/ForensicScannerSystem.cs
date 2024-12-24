@@ -8,7 +8,6 @@ using Content.Server.Cargo.Systems; // Frontier
 using Content.Server.Radio.EntitySystems; // Frontier
 using Content.Shared.UserInterface;
 using Content.Shared.DoAfter;
-using Content.Shared.Fluids.Components;
 using Content.Shared.Forensics;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
@@ -16,21 +15,21 @@ using Content.Shared.Paper;
 using Content.Shared.Verbs;
 using Content.Shared.Stacks; // Frontier
 using Content.Shared.Radio; // Frontier
-using Content.Shared.Access.Systems; // Frontier
 using Robust.Shared.Prototypes; // Frontier
 using Content.Shared.Tag;
 using Robust.Shared.Audio.Systems;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Timing;
-using Content.Server.Chemistry.Containers.EntitySystems;
 using Content.Shared.Containers.ItemSlots; // Frontier
-using Content.Server.Cargo.Components; // Frontier
 using Content.Server._NF.SectorServices; // Frontier
 using Content.Shared.FixedPoint; // Frontier
 using Robust.Shared.Configuration; // Frontier
-using Content.Shared._NF.CCVar;
+using Content.Shared._NF.CCVar; // Frontier
 using Content.Shared._NF.Bank; // Frontier
+using Content.Shared.Bank.Components; // Frontier
+using Content.Server._NF.Bank; // Frontier
+using Content.Shared._NF.Bank.BUI; // Frontier
 
 // todo: remove this stinky LINQy
 
@@ -52,12 +51,12 @@ namespace Content.Server.Forensics
         [Dependency] private readonly SharedAudioSystem _audio = default!; // Frontier
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!; // Frontier
         [Dependency] private readonly RadioSystem _radio = default!; // Frontier
-        [Dependency] private readonly AccessReaderSystem _accessReader = default!; // Frontier
         [Dependency] private readonly DeadDropSystem _deadDrop = default!; // Frontier
         [Dependency] private readonly ItemSlotsSystem _itemSlots = default!; // Frontier
         [Dependency] private readonly CargoSystem _cargo = default!; // Frontier
         [Dependency] private readonly SectorServiceSystem _service = default!; // Frontier
         [Dependency] private readonly IConfigurationManager _cfg = default!; // Frontier
+        [Dependency] private readonly BankSystem _bank = default!; // Frontier
 
         // Frontier: payout constants
         // Temporary values, sane defaults, will be overwritten by CVARs.
@@ -96,22 +95,15 @@ namespace Content.Server.Forensics
         // Frontier: add dead drop rewards
         /// <summary>
         ///     Rewards the NFSD department for scanning a dead drop.
-        ///     Gives some amount of spesos and FUC to the 
+        ///     Gives some amount of spesos and FUC to the
         /// </summary>
         private void GiveReward(EntityUid uidOrigin, EntityUid target, int spesoAmount, FixedPoint2 fucAmount, string msg)
         {
             SoundSpecifier confirmSound = new SoundPathSpecifier("/Audio/Effects/Cargo/ping.ogg");
             _audio.PlayPvs(_audio.GetSound(confirmSound), uidOrigin);
 
-            // Credit the NFSD's bank account (todo: split these)
             if (spesoAmount > 0)
-            {
-                var queryBank = EntityQuery<StationBankAccountComponent>();
-                foreach (var account in queryBank)
-                {
-                    _cargo.DeductFunds(account, -spesoAmount);
-                }
-            }
+                _bank.TrySectorDeposit(SectorBankAccount.Nfsd, spesoAmount, LedgerEntryType.AntiSmugglingBonus);
             else
                 spesoAmount = 0;
 

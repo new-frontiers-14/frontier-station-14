@@ -446,12 +446,12 @@
     selectedMode: Burst
     availableModes:
     - Burst
-    soundGunshot: /Audio/Weapons/Guns/Gunshots/rifle3.ogg
+    soundGunshot: /Audio/_NF/Weapons/Guns/Gunshots/rifle.ogg
 
 ## Tier 4 - Boss
 - type: entity
   name: mercenary captain
-  parent: MobMercenaryBase
+  parent: [ MobMercenaryBase, NFMobBossRestrictions ]
   id: MobMercenaryCaptain
   description: The leaders of these bands of brigands, a mercenary captain is both cruel and lethally effective. Exercise caution.
   categories: [ HideSpawnMenu ]

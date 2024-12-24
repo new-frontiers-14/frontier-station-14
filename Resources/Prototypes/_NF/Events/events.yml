@@ -41,6 +41,7 @@
     # - id: RevenantSpawn # Frontier: empty list
     # - id: SleeperAgents # Frontier: empty list
     # - id: ZombieOutbreak # Frontier: empty list
+    # - id: LoneOpsSpawn # Frontier: empty list
 
 - type: entity
   id: BaseStationEvent
@@ -184,9 +185,8 @@
 #       min: 1
 #       max: 1
 #       pickPlayer: false
-#       mindComponents:
-#       - type: DragonRole
-#         prototype: Dragon
+#       mindRoles:
+#       - MindRoleDragon
 
 # - type: entity
 #   parent: BaseGameRule
@@ -234,9 +234,8 @@
 #         nameSegments:
 #         - names_ninja_title
 #         - names_ninja
-#       mindComponents:
-#       - type: NinjaRole
-#         prototype: SpaceNinja
+#       mindRoles:
+#       - MindRoleNinja
 
 # - type: entity
 #   parent: BaseGameRule
@@ -267,10 +266,10 @@
   parent: BaseStationEventShortDelay
   components:
   - type: StationEvent
-    startAnnouncement: station-event-gas-leak-start-announcement
+    startAnnouncement: station-event-gas-leak-nf-start-announcement # Frontier: add nf-
     startAudio:
       path: /Audio/Announcements/attention.ogg
-    endAnnouncement: station-event-gas-leak-end-announcement
+    endAnnouncement: station-event-gas-leak-nf-end-announcement # Frontier: add nf-
     weight: 8
     earliestStart: 15 # Frontier
   - type: GasLeakRule
@@ -293,8 +292,8 @@
   - type: StationEvent
     weight: 5
     earliestStart: 15 # Frontier
-    startAnnouncement: station-event-power-grid-check-start-announcement
-    endAnnouncement: station-event-power-grid-check-end-announcement
+    startAnnouncement: station-event-power-grid-check-nf-start-announcement # Frontier: add nf-
+    endAnnouncement: station-event-power-grid-check-nf-end-announcement # Frontier: add nf-
     startAudio:
       path: /Audio/Announcements/power_off.ogg
       params:
@@ -311,8 +310,8 @@
     weight: 4
     earliestStart: 15 # Frontier
     reoccurrenceDelay: 45 # Frontier
-    startAnnouncement: station-event-solar-flare-start-announcement
-    endAnnouncement: station-event-solar-flare-end-announcement
+    startAnnouncement: station-event-solar-flare-nf-start-announcement # Frontier: add nf-
+    endAnnouncement: station-event-solar-flare-nf-end-announcement # Frontier: add nf-
     startAudio:
       path: /Audio/Announcements/attention.ogg
     duration: 120
@@ -340,7 +339,7 @@
   parent: BaseStationEventLongDelay
   components:
   - type: StationEvent
-    startAnnouncement: station-event-vent-clog-start-announcement
+    startAnnouncement: station-event-vent-clog-nf-start-announcement # Frontier: add nf-
     startAudio:
       path: /Audio/Announcements/attention.ogg
     earliestStart: 15
@@ -455,9 +454,8 @@
 #       - type: ZombifyOnDeath
 #       - type: IncurableZombie
 #       - type: InitialInfected
-#       mindComponents:
-#       - type: InitialInfectedRole
-#         prototype: InitialInfected
+#       mindRoles:
+#       - MindRoleInitialInfected
 
 # - type: entity
 #   parent: BaseNukeopsRule
@@ -470,7 +468,7 @@
 #     duration: 1
 #   - type: RuleGrids
 #   - type: LoadMapRule
-#     preloadedGrid: ShuttleStriker
+#     mapPath: /Maps/Shuttles/ShuttleEvent/striker.yml
 #   - type: NukeopsRule
 #     roundEndBehavior: Nothing
 #   - type: AntagSelection
@@ -482,7 +480,6 @@
 #       startingGear: SyndicateLoneOperativeGearFull
 #       roleLoadout:
 #       - RoleSurvivalNukie
-
 #       components:
 #       - type: NukeOperative
 #       - type: RandomMetadata
@@ -492,9 +489,8 @@
 #       - type: NpcFactionMember
 #         factions:
 #         - Syndicate
-#       mindComponents:
-#       - type: NukeopsRole
-#         prototype: Nukeops
+#       mindRoles:
+#       - MindRoleNukeops
 
 # - type: entity
 #   parent: BaseTraitorRule
@@ -521,9 +517,8 @@
 #       blacklist:
 #         components:
 #         - AntagImmune
-#       mindComponents:
-#       - type: TraitorRole
-#         prototype: TraitorSleeper
+#       mindRoles:
+#       - MindRoleTraitorSleeper
 
 - type: entity
   id: MassHallucinations

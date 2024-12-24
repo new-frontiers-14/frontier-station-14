@@ -99,9 +99,9 @@
           components:
             - GasTank
     - type: StaticPrice
-      price: 100 # Frontier: 200<100
+      price: 1000 # Frontier: 200<1000
     - type: AccessReader
-#      access: [["Atmospherics"], ["Engineering"], ["Research"], ["Captain"]]
+#      access: [["Atmospherics"], ["Engineering"], ["Research"], ["Captain"]] # Frontier
     - type: Lock
       locked: true
 
@@ -247,8 +247,8 @@
       moles:
         - 18710.71051 # oxygen
       temperature: 72
-#  - type: AccessReader
-#    access: [["Atmospherics"]]
+#  - type: AccessReader # Frontier
+#    access: [["Atmospherics"]] # Frontier
   - type: Destructible # Frontier
     thresholds:
     - trigger:
@@ -329,8 +329,8 @@
         - 0 # oxygen
         - 18710.71051 # nitrogen
       temperature: 72
-#  - type: AccessReader
-#    access: [["Atmospherics"]]
+#  - type: AccessReader # Frontier
+#    access: [["Atmospherics"]] # Frontier
   - type: Destructible
     thresholds:
     - trigger:
@@ -395,8 +395,8 @@
         - !type:DoActsBehavior
           acts: [ "Destruction" ]
         - !type:DumpCanisterBehavior
-#    - type: Lock
-#      locked: true
+#    - type: Lock # Frontier
+#      locked: true # Frontier
 
 - type: entity
   id: LiquidCarbonDioxideCanister
@@ -415,8 +415,8 @@
         - 0 # nitrogen
         - 18710.71051 # CO2
       temperature: 72
-#  - type: AccessReader
-#    access: [["Atmospherics"]]
+#  - type: AccessReader # Frontier
+#    access: [["Atmospherics"]] # Frontier
   - type: Destructible
     thresholds:
     - trigger:
@@ -482,8 +482,10 @@
         - !type:DoActsBehavior
           acts: [ "Destruction" ]
         - !type:DumpCanisterBehavior
-#    - type: Lock
-#      locked: true
+#    - type: Lock # Frontier
+#      locked: true # Frontier
+    - type: PirateBountyItem # Frontier
+      id: PlasmaCanister # Frontier
 
 - type: entity
   parent: GasCanister

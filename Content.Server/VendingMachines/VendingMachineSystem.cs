@@ -1,5 +1,5 @@
 using System.Linq;
-using Content.Server.Bank;
+using Content.Server._NF.Bank;
 using System.Numerics;
 using Content.Server.Advertise;
 using Content.Server.Advertise.Components;
@@ -34,6 +34,8 @@ using Robust.Shared.Timing;
 using Robust.Shared.Audio.Systems;
 using Content.Server.Administration.Logs; // Frontier
 using Content.Shared.Database; // Frontier
+using Content.Shared._NF.Bank.BUI; // Frontier
+using Content.Server._NF.Contraband.Systems; // Frontier
 
 namespace Content.Server.VendingMachines
 {
@@ -50,9 +52,9 @@ namespace Content.Server.VendingMachines
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!; // Frontier
         [Dependency] private readonly SharedAudioSystem _audioSystem = default!; // Frontier
         [Dependency] private readonly BankSystem _bankSystem = default!; // Frontier
-        [Dependency] private readonly CargoSystem _cargo = default!; // Frontier
         [Dependency] private readonly PopupSystem _popupSystem = default!; // Frontier
         [Dependency] private readonly IAdminLogManager _adminLogger = default!; // Frontier
+        [Dependency] private readonly ContrabandTurnInSystem _contraband = default!; // Frontier
 
         private const float WallVendEjectDistanceFromWall = 1f;
 
@@ -218,6 +220,18 @@ namespace Content.Server.VendingMachines
             component.CanShoot = canShoot;
         }
 
+        /// <summary>
+        /// Sets the <see cref="VendingMachineComponent.Contraband"/> property of the vending machine.
+        /// </summary>
+        public void SetContraband(EntityUid uid, bool contraband, VendingMachineComponent? component = null)
+        {
+            if (!Resolve(uid, ref component))
+                return;
+
+            component.Contraband = contraband;
+            Dirty(uid, component);
+        }
+
         public void Deny(EntityUid uid, VendingMachineComponent? vendComponent = null)
         {
             if (!Resolve(uid, ref vendComponent))
@@ -364,11 +378,13 @@ namespace Content.Server.VendingMachines
                 if (TryEjectVendorItem(uid, type, itemId, component.CanShoot, bank.Balance, component) &&
                     _bankSystem.TryBankWithdraw(sender, totalPrice))
                 {
-                    var stationQuery = EntityQuery<StationBankAccountComponent>();
-
-                    foreach (var stationBankComp in stationQuery)
+                    // Frontier: tax cargo purchases
+                    foreach (var (account, taxCoeff) in component.TaxAccounts)
                     {
-                        _cargo.DeductFunds(stationBankComp, (int) -(Math.Floor(totalPrice * 0.45f)));
+                        if (!float.IsFinite(taxCoeff) || taxCoeff <= 0.0f)
+                            continue;
+                        var tax = (int)Math.Floor(totalPrice * taxCoeff);
+                        _bankSystem.TrySectorDeposit(account, tax, LedgerEntryType.VendorTax);
                     }
 
                     Dirty(uid, component);
@@ -376,7 +392,7 @@ namespace Content.Server.VendingMachines
                     _adminLogger.Add(LogType.Action, LogImpact.Low, // Frontier - Vending machine log
                         $"{ToPrettyString(sender):user} bought from [vendingMachine:{ToPrettyString(uid!)}, product:{proto.Name}, cost:{totalPrice},  with balance at {bank.Balance}"); // Frontier - Vending machine log
                 }
-                // Frontier
+                // End Frontier
             }
         }
 
@@ -492,6 +508,8 @@ namespace Content.Server.VendingMachines
             }
 
             var ent = Spawn(vendComponent.NextItemToEject, spawnCoordinates);
+
+            _contraband.ClearContrabandValue(ent); // Frontier
 
             if (vendComponent.ThrowNextItem)
             {

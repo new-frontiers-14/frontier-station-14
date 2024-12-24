@@ -33,8 +33,8 @@ public abstract class SharedAnomalySystem : EntitySystem
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] protected readonly SharedPopupSystem Popup = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly SharedAnomalyCoreSystem _anomalyCore = default!; // Frontier
 
     public override void Initialize()
     {
@@ -48,6 +48,8 @@ public abstract class SharedAnomalySystem : EntitySystem
     {
         if (!TryComp<CorePoweredThrowerComponent>(args.Used, out var corePowered) || !TryComp<PhysicsComponent>(ent, out var body))
             return;
+        if (HasComp<InnerBodyAnomalyComponent>(ent.Owner)) // Frontier
+            return; // Frontier
         _physics.SetBodyType(ent, BodyType.Dynamic, body: body);
         ChangeAnomalyStability(ent, Random.NextFloat(corePowered.StabilityPerThrow.X, corePowered.StabilityPerThrow.Y), ent.Comp);
     }
@@ -190,6 +192,13 @@ public abstract class SharedAnomalySystem : EntitySystem
         {
             var core = Spawn(supercritical ? component.CorePrototype : component.CoreInertPrototype, Transform(uid).Coordinates);
             _transform.PlaceNextTo(core, uid);
+
+            // Frontier: set value to points retrieved
+            if (TryComp<AnomalyCoreComponent>(core, out var coreComp))
+            {
+                _anomalyCore.SetValueFromPointsEarned(core, coreComp, component.PointsEarned);
+            }
+            // End Frontier
         }
 
         if (component.DeleteEntity)
@@ -372,7 +381,7 @@ public abstract class SharedAnomalySystem : EntitySystem
             if (tilerefs.Count == 0)
                 break;
 
-            var tileref = _random.Pick(tilerefs);
+            var tileref = Random.Pick(tilerefs);
             var distance = MathF.Sqrt(MathF.Pow(tileref.X - xform.LocalPosition.X, 2) + MathF.Pow(tileref.Y - xform.LocalPosition.Y, 2));
 
             //cut outer & inner circle

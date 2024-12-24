@@ -270,15 +270,6 @@
 
 - type: entity
   parent: ExosuitFabricatorFlatpack
-  id: MachineAnomalySynchronizerFlatpack
-  name: anomaly synchronizer flatpack
-  description: A flatpack used for constructing an anomaly synchronizer.
-  components:
-  - type: Flatpack
-    entity: MachineAnomalySynchronizer
-
-- type: entity
-  parent: ExosuitFabricatorFlatpack
   id: MachineAnomalyVesselExperimentalFlatpack
   name: experimental anomaly vessel flatpack
   description: A flatpack used for constructing an experimental anomaly vessel.
@@ -531,6 +522,15 @@
   components:
   - type: Flatpack
     entity: OreProcessorIndustrial
+
+- type: entity
+  parent: OreProcessorFlatpack
+  id: ScrapProcessorFlatpack
+  name: scrap processor flatpack
+  description: A flatpack used for constructing a scrap processor.
+  components:
+  - type: Flatpack
+    entity: ScrapProcessor
 
 # Mercenary
 - type: entity
@@ -878,6 +878,17 @@
     entity: VehicleHoverbikeSyndicateKey
   - type: StaticPrice
     price: 750
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: JanicartFlatpack
+  name: janicart flatpack
+  description: A flatpack used for constructing a Janicart. Keys already slotted in the ignition. Mop sold separately.
+  components:
+  - type: Flatpack
+    entity: NFVehicleJanicartKey
+  - type: StaticPrice
+    price: 375 # 1.25 * base value of input materials
 
 # Vendomats
 - type: entity

@@ -1,6 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
-using Content.Server.Access.Systems;
-using Content.Server.Bank;
+using Content.Server._NF.Bank; // Frontier
 using Content.Server.Cargo.Components;
 using Content.Server.Labels.Components;
 using Content.Shared.Bank.Components; // Frontier
@@ -19,6 +18,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using System.Linq;
+using Content.Shared._NF.Bank.BUI; // Frontier
 
 namespace Content.Server.Cargo.Systems
 {
@@ -50,6 +50,8 @@ namespace Content.Server.Cargo.Systems
             Reset();
         }
 
+        // Frontier: disabled
+        /*
         private void OnInteractUsing(EntityUid uid, CargoOrderConsoleComponent component, ref InteractUsingEvent args)
         {
             if (!HasComp<CashComponent>(args.Used))
@@ -69,6 +71,8 @@ namespace Content.Server.Cargo.Systems
             UpdateBankAccount(stationUid.Value, bank, (int) price);
             QueueDel(args.Used);
         }
+        */
+        // End Frontier
 
         private void OnInit(EntityUid uid, CargoOrderConsoleComponent orderConsole, ComponentInit args)
         {
@@ -218,14 +222,18 @@ namespace Content.Server.Cargo.Systems
             _adminLogger.Add(LogType.Action, LogImpact.Low,
                 $"{ToPrettyString(player):user} approved order [orderId:{order.OrderId}, quantity:{order.OrderQuantity}, product:{order.ProductId}, requester:{order.Requester}, reason:{order.Reason}] with balance at {bankAccount.Balance}");
 
-            // orderDatabase.Orders.Remove(order); # Frontier
-            var stationQuery = EntityQuery<StationBankAccountComponent>();
+            // orderDatabase.Orders.Remove(order); // Frontier
 
-            foreach (var stationBankComp in stationQuery)
+            // Frontier: account balances, taxing vendor purchases
+            foreach (var (account, taxCoeff) in component.TaxAccounts)
             {
-                DeductFunds(stationBankComp, (int) -(Math.Floor(cost * 0.4f)));
+                if (!float.IsFinite(taxCoeff) || taxCoeff <= 0.0f)
+                    continue;
+                var tax = (int)Math.Floor(cost * taxCoeff);
+                _bankSystem.TrySectorDeposit(account, tax, LedgerEntryType.CargoTax);
             }
             _bankSystem.TryBankWithdraw(player, cost);
+            // End Frontier
 
             UpdateOrders(uid, orderDatabase);
         }

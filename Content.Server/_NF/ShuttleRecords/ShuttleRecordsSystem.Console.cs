@@ -1,5 +1,7 @@
 ﻿using System.Linq;
+using Content.Server._NF.Bank;
 using Content.Server.Cargo.Components;
+using Content.Shared._NF.Bank.BUI;
 using Content.Shared._NF.ShuttleRecords;
 using Content.Shared._NF.ShuttleRecords.Components;
 using Content.Shared._NF.ShuttleRecords.Events;
@@ -13,6 +15,7 @@ namespace Content.Server._NF.ShuttleRecords;
 
 public sealed partial class ShuttleRecordsSystem
 {
+    [Dependency] private readonly BankSystem _bank = default!;
     public void InitializeShuttleRecords()
     {
         SubscribeLocalEvent<ShuttleRecordsConsoleComponent, BoundUIOpenedEvent>(OnConsoleUiOpened);
@@ -137,15 +140,6 @@ public sealed partial class ShuttleRecordsSystem
             return;
         }
 
-        // Check for & get station bank account.
-        var station = _station.GetOwningStation(uid);
-        if (!TryComp<StationBankAccountComponent>(station, out var stationBank))
-        {
-            _popup.PopupEntity(Loc.GetString("shuttle-records-no-bank-account"), args.Actor);
-            _audioSystem.PlayPredicted(component.ErrorSound, uid, null, AudioParams.Default.WithMaxDistance(5f));
-            return;
-        }
-
         // Check if the actor has access to the shuttle records console.
         if (!_access.IsAllowed(args.Actor, uid))
         {
@@ -165,8 +159,7 @@ public sealed partial class ShuttleRecordsSystem
 
         // Ensure that after the deduction math there is more than 0 left in the account.
         var transactionPrice = GetTransactionCost(component, record.PurchasePrice);
-        var balanceAfterTransaction = stationBank.Balance - transactionPrice;
-        if (balanceAfterTransaction < 0)
+        if (!_bank.TrySectorWithdraw(component.Account, (int)transactionPrice, LedgerEntryType.ShuttleRecordFees))
         {
             _popup.PopupEntity(Loc.GetString("shuttle-records-insufficient-funds"), args.Actor);
             _audioSystem.PlayPredicted(component.ErrorSound, uid, null, AudioParams.Default.WithMaxDistance(5f));
@@ -174,9 +167,6 @@ public sealed partial class ShuttleRecordsSystem
         }
 
         AssignShuttleDeedProperties(record, targetId);
-
-        // Now we can finally deduct funds since everything went well.
-        stationBank.Balance = (int)balanceAfterTransaction;
 
         // Refreshing the state, so that the newly applied deed is shown in the UI.
         // We cannot do this client side because of the checks that we have to do serverside.

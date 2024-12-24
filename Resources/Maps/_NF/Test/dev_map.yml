@@ -112,7 +112,7 @@ entities:
           -4,3:
             1: 8738
           -4,4:
-            1: 230
+            1: 238
           -3,0:
             0: 65524
           -3,1:
@@ -120,8 +120,7 @@ entities:
           -3,2:
             1: 35071
           -3,-1:
-            2: 17
-            0: 56780
+            0: 56797
           -2,0:
             0: 65534
           -2,1:
@@ -156,9 +155,14 @@ entities:
             1: 4352
           -4,-2:
             0: 65535
+          -5,-2:
+            0: 34952
+            1: 8704
+          -5,-1:
+            0: 34952
+            1: 8738
           -3,-2:
-            0: 52477
-            3: 4352
+            0: 56829
           -2,-2:
             0: 3838
           -2,-4:
@@ -185,7 +189,7 @@ entities:
             1: 17
             0: 3276
           -1,4:
-            1: 240
+            1: 255
           0,5:
             0: 52428
           0,6:
@@ -236,14 +240,15 @@ entities:
             1: 8738
           2,1:
             1: 2
+            0: 60928
           2,-1:
             1: 8738
+          3,1:
+            0: 56780
           3,2:
             0: 36828
           3,0:
             0: 36590
-          3,1:
-            0: 52428
           3,-1:
             0: 36044
           4,0:
@@ -271,9 +276,11 @@ entities:
           2,-5:
             1: 57344
           3,-4:
-            1: 13107
+            1: 13105
+            0: 2
           3,-5:
-            1: 12288
+            1: 4096
+            0: 8192
           3,-2:
             0: 52224
           4,-2:
@@ -303,13 +310,9 @@ entities:
           8,-1:
             0: 819
           -5,0:
-            1: 17476
-          -5,-1:
-            1: 17476
+            1: 17506
           -5,1:
             1: 17476
-          -5,-2:
-            1: 16384
           5,1:
             0: 48051
           5,2:
@@ -323,9 +326,9 @@ entities:
           6,3:
             0: 626
           -3,4:
-            1: 240
+            1: 255
           -2,4:
-            1: 240
+            1: 255
         uniqueMixes:
         - volume: 2500
           temperature: 293.15
@@ -347,36 +350,6 @@ entities:
           moles:
           - 0
           - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-        - volume: 2500
-          temperature: 293.15
-          moles:
-          - 22.831823
-          - 85.89114
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-        - volume: 2500
-          temperature: 293.14996
-          moles:
-          - 20.078888
-          - 75.53487
           - 0
           - 0
           - 0
@@ -988,6 +961,13 @@ entities:
     components:
     - type: Transform
       pos: -2.5,-16.5
+      parent: 179
+- proto: BlueprintLithograph
+  entities:
+  - uid: 1088
+    components:
+    - type: Transform
+      pos: 13.5,17.5
       parent: 179
 - proto: BluespaceMatterBinStockPart
   entities:
@@ -2936,12 +2916,6 @@ entities:
     - type: Transform
       pos: -0.5,-5.5
       parent: 179
-    - type: ContainerContainer
-      containers:
-        machine_board: !type:Container
-          ents: []
-        machine_parts: !type:Container
-          ents: []
 - proto: Catwalk
   entities:
   - uid: 2
@@ -3527,6 +3501,13 @@ entities:
     - type: Transform
       pos: -15.5,1.5
       parent: 179
+- proto: ComputerAdvancedRadar
+  entities:
+  - uid: 694
+    components:
+    - type: Transform
+      pos: -1.5,3.5
+      parent: 179
 - proto: ComputerAnalysisConsole
   entities:
   - uid: 1083
@@ -3753,6 +3734,13 @@ entities:
     - type: Transform
       pos: 0.5,-11.5
       parent: 179
+- proto: ComputerShuttle
+  entities:
+  - uid: 693
+    components:
+    - type: Transform
+      pos: -2.5,3.5
+      parent: 179
 - proto: ComputerStationRecords
   entities:
   - uid: 1227
@@ -3768,13 +3756,6 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -8.5,1.5
-      parent: 179
-- proto: ComputerTechnologyDiskTerminal
-  entities:
-  - uid: 1088
-    components:
-    - type: Transform
-      pos: 13.5,16.5
       parent: 179
 - proto: ComputerWallmountBankATM
   entities:
@@ -3800,17 +3781,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -16.5,3.5
       parent: 179
-    - type: ContainerContainer
-      containers:
-        board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        bank-ATM-cashSlot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-    - type: ItemSlots
 - proto: ComputerWithdrawBankATM
   entities:
   - uid: 701
@@ -3819,17 +3789,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -15.5,4.5
       parent: 179
-    - type: ContainerContainer
-      containers:
-        board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        bank-ATM-cashSlot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-    - type: ItemSlots
 - proto: ContrabandPallet
   entities:
   - uid: 1284
@@ -3929,26 +3888,8 @@ entities:
   - uid: 692
     components:
     - type: Transform
-      pos: -0.5,3.5
+      pos: 1.5,3.5
       parent: 179
-    - type: EntityStorage
-      air:
-        volume: 200
-        immutable: False
-        temperature: 293.14957
-        moles:
-        - 2.9923203
-        - 11.2568245
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
 - proto: CrateFoodMcCargo
   entities:
   - uid: 1476
@@ -4063,10 +4004,10 @@ entities:
       parent: 179
 - proto: CrateScienceLabBundle
   entities:
-  - uid: 1428
+  - uid: 1504
     components:
     - type: Transform
-      pos: 13.5,17.5
+      pos: 13.5,19.5
       parent: 179
 - proto: CrewMonitoringServer
   entities:
@@ -4286,20 +4227,6 @@ entities:
     - type: Transform
       pos: -14.5,-7.5
       parent: 179
-    - type: ContainerContainer
-      containers:
-        machine_board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        machine_parts: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        blueprint: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
 - proto: ExGrenade
   entities:
   - uid: 433
@@ -4484,6 +4411,11 @@ entities:
     - type: Transform
       pos: 4.4732866,-0.48882532
       parent: 179
+  - uid: 1492
+    components:
+    - type: Transform
+      pos: 1.1525452,4.598274
+      parent: 179
 - proto: GasFilter
   entities:
   - uid: 480
@@ -4661,7 +4593,7 @@ entities:
   - uid: 759
     components:
     - type: Transform
-      pos: 1.760596,4.5697265
+      pos: 1.8003306,4.661284
       parent: 179
 - proto: GeneratorBasic15kW
   entities:
@@ -4792,6 +4724,14 @@ entities:
     components:
     - type: Transform
       pos: -0.982072,-3.4785347
+      parent: 179
+- proto: HoloGraffitiProjector
+  entities:
+  - uid: 1495
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -0.00722605,4.669485
       parent: 179
 - proto: HolosignWetFloor
   entities:
@@ -5393,20 +5333,6 @@ entities:
     - type: Transform
       pos: -15.5,-7.5
       parent: 179
-    - type: ContainerContainer
-      containers:
-        machine_board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        machine_parts: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        blueprint: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
 - proto: MedicalTrackingImplanter
   entities:
   - uid: 1453
@@ -5439,20 +5365,13 @@ entities:
     - type: Transform
       pos: -16.5,-5.5
       parent: 179
-    - type: ContainerContainer
-      containers:
-        machine_board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        machine_parts: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        blueprint: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
+- proto: MercenaryTechFabHacked
+  entities:
+  - uid: 1508
+    components:
+    - type: Transform
+      pos: -14.5,-5.5
+      parent: 179
 - proto: MicroManipulatorStockPart
   entities:
   - uid: 712
@@ -5519,6 +5438,13 @@ entities:
     - type: Transform
       pos: -6.3051395,8.791253
       parent: 179
+- proto: NFEnergyPickaxe
+  entities:
+  - uid: 1497
+    components:
+    - type: Transform
+      pos: -3.6757717,-2.0560873
+      parent: 179
 - proto: NfsdTechFab
   entities:
   - uid: 498
@@ -5526,20 +5452,6 @@ entities:
     - type: Transform
       pos: -16.5,-6.5
       parent: 179
-    - type: ContainerContainer
-      containers:
-        machine_board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        machine_parts: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        blueprint: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
 - proto: NFSpawnPointDetective
   entities:
   - uid: 1487
@@ -5547,6 +5459,42 @@ entities:
     - type: Transform
       pos: -3.5,2.5
       parent: 179
+- proto: NFSpawnPointJanitor
+  entities:
+  - uid: 1488
+    components:
+    - type: Transform
+      pos: -3.5,2.5
+      parent: 179
+- proto: NFSpawnPointSeniorOfficer
+  entities:
+  - uid: 382
+    components:
+    - type: Transform
+      pos: -3.5,2.5
+      parent: 179
+- proto: NFTelecomServerFilled
+  entities:
+  - uid: 963
+    components:
+    - type: Transform
+      pos: -3.5,10.5
+      parent: 179
+- proto: NFWeaponHoloflareGun
+  entities:
+  - uid: 1496
+    components:
+    - type: Transform
+      pos: -3.8007717,-2.545206
+      parent: 179
+    - type: Item
+      heldPrefix: cyan
+    - type: EnergyGun
+      currentFireMode:
+        state: cyan
+        name: cyan
+        fireCost: 240
+        proto: HoloFlareCyan
 - proto: NitrogenCanister
   entities:
   - uid: 459
@@ -5712,8 +5660,6 @@ entities:
     - type: Transform
       pos: -5.5,-12.5
       parent: 179
-    - type: FuelGenerator
-      on: False
 - proto: PortableGeneratorPacmanShuttle
   entities:
   - uid: 1274
@@ -5721,8 +5667,6 @@ entities:
     - type: Transform
       pos: -6.5,-9.5
       parent: 179
-    - type: FuelGenerator
-      on: False
 - proto: PortableGeneratorSuperPacmanShuttle
   entities:
   - uid: 1273
@@ -5730,8 +5674,6 @@ entities:
     - type: Transform
       pos: -6.5,-10.5
       parent: 179
-    - type: FuelGenerator
-      on: False
 - proto: PowerCellAntiqueProto
   entities:
   - uid: 1255
@@ -6135,6 +6077,11 @@ entities:
       rot: 3.141592653589793 rad
       pos: 0.5,17.5
       parent: 179
+  - uid: 1231
+    components:
+    - type: Transform
+      pos: 21.5,14.5
+      parent: 179
   - uid: 1232
     components:
     - type: Transform
@@ -6147,11 +6094,11 @@ entities:
       parent: 179
 - proto: RailingCorner
   entities:
-  - uid: 1231
+  - uid: 1428
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
-      pos: 21.5,14.5
+      pos: 20.5,14.5
       parent: 179
 - proto: RailingCornerSmall
   entities:
@@ -6217,6 +6164,13 @@ entities:
     - type: Transform
       pos: 10.5,16.5
       parent: 179
+- proto: RemoteSignallerAdvanced
+  entities:
+  - uid: 1490
+    components:
+    - type: Transform
+      pos: -0.98269427,4.8303733
+      parent: 179
 - proto: ResearchAndDevelopmentServer
   entities:
   - uid: 17
@@ -6266,20 +6220,6 @@ entities:
     - type: Transform
       pos: -11.5,-7.5
       parent: 179
-    - type: ContainerContainer
-      containers:
-        machine_board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        machine_parts: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        blueprint: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
 - proto: ScienceTechFab
   entities:
   - uid: 263
@@ -6287,20 +6227,40 @@ entities:
     - type: Transform
       pos: -13.5,-7.5
       parent: 179
-    - type: ContainerContainer
-      containers:
-        machine_board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        machine_parts: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        blueprint: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
+- proto: ScrapOre
+  entities:
+  - uid: 1499
+    components:
+    - type: Transform
+      pos: 3.3558059,17.606743
+      parent: 179
+  - uid: 1500
+    components:
+    - type: Transform
+      pos: 3.5589309,17.528618
+      parent: 179
+  - uid: 1501
+    components:
+    - type: Transform
+      pos: 3.3401809,17.294243
+      parent: 179
+  - uid: 1502
+    components:
+    - type: Transform
+      pos: 3.6995559,17.731743
+      parent: 179
+  - uid: 1503
+    components:
+    - type: Transform
+      pos: 3.8089309,17.247368
+      parent: 179
+- proto: ScrapProcessor
+  entities:
+  - uid: 1498
+    components:
+    - type: Transform
+      pos: 3.5,18.5
+      parent: 179
 - proto: Screen
   entities:
   - uid: 1192
@@ -6313,7 +6273,7 @@ entities:
   - uid: 431
     components:
     - type: Transform
-      pos: -0.57820785,4.6355553
+      pos: 0.15561569,4.42027
       parent: 179
 - proto: SeedExtractor
   entities:
@@ -6329,20 +6289,6 @@ entities:
     - type: Transform
       pos: -12.5,-7.5
       parent: 179
-    - type: ContainerContainer
-      containers:
-        machine_board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        machine_parts: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        blueprint: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
 - proto: SheetGlass
   entities:
   - uid: 354
@@ -6388,6 +6334,18 @@ entities:
     components:
     - type: Transform
       pos: -11.5,-5.5
+      parent: 179
+- proto: SheetPaper
+  entities:
+  - uid: 1506
+    components:
+    - type: Transform
+      pos: 13.352237,16.538458
+      parent: 179
+  - uid: 1507
+    components:
+    - type: Transform
+      pos: 13.695987,16.538458
       parent: 179
 - proto: SheetPGlass
   entities:
@@ -6707,6 +6665,13 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -10.425851,2.3130608
       parent: 179
+- proto: SpawnMobCatBloodCult
+  entities:
+  - uid: 1493
+    components:
+    - type: Transform
+      pos: 20.5,14.5
+      parent: 179
 - proto: SpawnMobCatCappy
   entities:
   - uid: 1230
@@ -6843,13 +6808,6 @@ entities:
     - type: Transform
       pos: -3.5,2.5
       parent: 179
-- proto: NFSpawnPointJanitor
-  entities:
-  - uid: 1488
-    components:
-    - type: Transform
-      pos: -3.5,2.5
-      parent: 179
 - proto: SpawnPointLatejoin
   entities:
   - uid: 961
@@ -6934,13 +6892,6 @@ entities:
     - type: Transform
       pos: -3.5,2.5
       parent: 179
-- proto: NFSpawnPointSeniorOfficer
-  entities:
-  - uid: 382
-    components:
-    - type: Transform
-      pos: -3.5,2.5
-      parent: 179
 - proto: SpawnPointSheriff
   entities:
   - uid: 1455
@@ -6997,7 +6948,7 @@ entities:
     - type: Transform
       pos: 6.985283,16.424004
       parent: 179
-- proto: StationAdminBankATM
+- proto: StationAdminBankATMFrontier
   entities:
   - uid: 1226
     components:
@@ -7437,6 +7388,11 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -0.5,8.5
       parent: 179
+  - uid: 1505
+    components:
+    - type: Transform
+      pos: 13.5,16.5
+      parent: 179
 - proto: TableGlass
   entities:
   - uid: 964
@@ -7481,13 +7437,6 @@ entities:
     - type: Transform
       pos: -6.5,-1.5
       parent: 179
-- proto: TelecomServerFilled
-  entities:
-  - uid: 963
-    components:
-    - type: Transform
-      pos: -3.5,10.5
-      parent: 179
 - proto: TelecomServerFilledFreelance
   entities:
   - uid: 1467
@@ -7525,20 +7474,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 0.5,12.5
       parent: 179
-- proto: ToolboxElectricalFilled
-  entities:
-  - uid: 365
-    components:
-    - type: Transform
-      pos: 0.4993378,3.429311
-      parent: 179
-- proto: ToolboxMechanicalFilled
-  entities:
-  - uid: 364
-    components:
-    - type: Transform
-      pos: 1.452203,3.4605832
-      parent: 179
 - proto: ToyRubberDuck
   entities:
   - uid: 723
@@ -7551,7 +7486,7 @@ entities:
   - uid: 758
     components:
     - type: Transform
-      pos: 1.354346,4.548879
+      pos: 1.5086639,4.5466213
       parent: 179
 - proto: TwoWayLever
   entities:
@@ -9520,10 +9455,10 @@ entities:
     - type: Transform
       pos: 4.5,18.5
       parent: 179
-  - uid: 694
+  - uid: 365
     components:
     - type: Transform
-      pos: -2.5,3.5
+      pos: -0.5,3.5
       parent: 179
 - proto: WeaponCapacitorRecharger
   entities:
@@ -9552,6 +9487,13 @@ entities:
     components:
     - type: Transform
       pos: -3.433327,-1.5
+      parent: 179
+- proto: WeaponLaserTurboNF
+  entities:
+  - uid: 1494
+    components:
+    - type: Transform
+      pos: -3.471971,0.6138556
       parent: 179
 - proto: WeaponLauncherMultipleRocket
   entities:
@@ -9616,10 +9558,10 @@ entities:
       parent: 179
 - proto: WeldingFuelTankFull
   entities:
-  - uid: 693
+  - uid: 364
     components:
     - type: Transform
-      pos: -1.5,3.5
+      pos: 0.5,3.5
       parent: 179
 - proto: Window
   entities:

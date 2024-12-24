@@ -27,17 +27,17 @@
 # Frontier
 - type: entity
   name: Gestio
-  parent: [ BaseC1Contraband, BaseWeaponRifle ]
+  parent: [ BaseWeaponRifle, BaseC1Contraband ]
   id: WeaponRifleGestio
   description: An old prototype burst-fire NanoTrasen marksman rifle. Manufactured by Silver Industries. It never left the trials. Given its antiquity it is considered a civilian grade weapon.  Uses .30 rifle ammo.
   components:
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Rifles/gestio.rsi
     layers:
-      - state: base
-        map: ["enum.GunVisualLayers.Base"]
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
   - type: Clothing
     sprite: _NF/Objects/Weapons/Guns/Rifles/gestio.rsi
   - type: Gun
@@ -51,7 +51,7 @@
     availableModes:
       - Burst
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/rifle3.ogg
+      path: /Audio/_NF/Weapons/Guns/Gunshots/rifle.ogg
       params:
         volume: -5
   - type: Wieldable
@@ -86,6 +86,7 @@
     magState: mag
     steps: 1
     zeroVisible: true
+  - type: Appearance
 
 - type: entity
   parent: WeaponRifleGestio
@@ -112,7 +113,7 @@
             - CartridgeLightRifle
 
 - type: entity
-  parent: [ BaseC1Contraband, BaseWeaponRifle ]
+  parent: [ BaseWeaponRifle, BaseC1Contraband ]
   id: WeaponRifleNovaliteC1
   name: Novalite C1
   description: A modification to the Lecter from SW LLC, a civilian grade semi-automatic rifle with an internal magazine. Nanotrasen Representatives can not stress how compliant this rifle is. Uses .20 rifle ammo.
@@ -120,10 +121,10 @@
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Rifles/novalitec1.rsi
     layers:
-      - state: base
-        map: ["enum.GunVisualLayers.Base"]
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
   - type: Clothing
     sprite: _NF/Objects/Weapons/Guns/Rifles/novalitec1.rsi
   - type: Gun
@@ -161,6 +162,7 @@
     magState: mag
     steps: 1
     zeroVisible: true
+  - type: Appearance
 
 - type: entity
   parent: WeaponRifleNovaliteC1
@@ -189,17 +191,17 @@
 - type: entity
   id: WeaponRifleSVT
   name: SVT-40
-  parent: [ BaseC1Contraband, BaseWeaponRifle ]
+  parent: [ BaseWeaponRifle, BaseC1Contraband ]
   description: |-
    Once a weapon used in war, now a civilian hunting rifle brought to you by S.E.S.W.C., "Retreating is Considered Treason" is etched on one side.
   components:
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Rifles/svt40.rsi
     layers:
-      - state: base
-        map: ["enum.GunVisualLayers.Base"]
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
   - type: Clothing
     sprite: _NF/Objects/Weapons/Guns/Rifles/svt40.rsi
     quickEquip: false
@@ -242,3 +244,4 @@
     magState: mag
     steps: 1
     zeroVisible: true
+  - type: Appearance

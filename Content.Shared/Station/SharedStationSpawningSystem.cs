@@ -183,6 +183,7 @@ public abstract class SharedStationSpawningSystem : EntitySystem
 
             foreach (var (slot, entProtos) in startingGear.Storage)
             {
+                ents.Clear();
                 if (entProtos.Count == 0)
                     continue;
 
