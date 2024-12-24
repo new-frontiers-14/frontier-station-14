@@ -382,11 +382,28 @@ public sealed class RadioDeviceSystem : EntitySystem
         {
             Text = Loc.GetString("handheld-radio-component-toggle"),
             Icon = new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/VerbIcons/settings.svg.192dpi.png")),
-            Act = () => ToggleRadioMicrophone(uid, args.User, false, microphone)
+            Act = () => ToggleRadioOrIntercomMic(uid, microphone, args.User)
         };
         args.Verbs.Add(verb);
     }
 
+    /// <summary>
+    ///     A mic toggle for both radios and intercoms.
+    /// </summary>
+    private void ToggleRadioOrIntercomMic(EntityUid uid, RadioMicrophoneComponent microphone, EntityUid user)
+    {
+        if (!_access.IsAllowed(user, uid))
+            return;
+        if (microphone.PowerRequired && !this.IsPowered(uid, EntityManager))
+            return;
+
+        ToggleRadioMicrophone(uid, user, false, microphone);
+        if (TryComp<IntercomComponent>(uid, out var intercom))
+        {
+            intercom.MicrophoneEnabled = microphone.Enabled;
+            Dirty<IntercomComponent>((uid, intercom));
+        }
+    }
     // Frontier End
 
 
