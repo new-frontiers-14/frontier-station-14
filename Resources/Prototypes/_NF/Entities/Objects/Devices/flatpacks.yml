@@ -673,9 +673,12 @@
   components:
   - type: Flatpack
     entity: AirlockShuttle
+  - type: Sprite
+    layers:
+    - state: command_airlock_directional
 
 - type: entity
-  parent: AirlockFlatpack
+  parent: AirlockShuttleFlatpack
   id: AirlockGlassShuttleFlatpack
   name: docking glass airlock flatpack
   description: A flatpack used for constructing a glass docking airlock.
