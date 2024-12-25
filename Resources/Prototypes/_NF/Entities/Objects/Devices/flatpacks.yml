@@ -494,8 +494,8 @@
 - type: entity
   parent: BaseNFFlatpack
   id: ShuttleGunKineticFlatpack
-  name: PTK-800 "Matter Dematerializer" flatpack
-  description: A flatpack used for constructing a PTK-800 "Matter Dematerializer".
+  name: PTK-1500e "Matter Dematerializer" flatpack
+  description: A flatpack used for constructing a PTK-1500e "Matter Dematerializer".
   components:
   - type: Flatpack
     entity: ShuttleGunKinetic
@@ -878,6 +878,17 @@
     entity: VehicleHoverbikeSyndicateKey
   - type: StaticPrice
     price: 750
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: JanicartFlatpack
+  name: janicart flatpack
+  description: A flatpack used for constructing a Janicart. Keys already slotted in the ignition. Mop sold separately.
+  components:
+  - type: Flatpack
+    entity: NFVehicleJanicartKey
+  - type: StaticPrice
+    price: 375 # 1.25 * base value of input materials
 
 # Vendomats
 - type: entity
