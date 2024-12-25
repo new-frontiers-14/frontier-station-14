@@ -1,0 +1,33 @@
+
+- type: vessel
+  id: Ugol
+  name: WSE Ugol
+  description: A ship designed as a mobile home, with space for user modifications. Fast and comfortable.
+  price: 25000
+  category: Small
+  group: Shipyard
+  shuttlePath: /Maps/_NF/Shuttles/ugol.yml
+  class:
+  - Civilian
+  engine:
+  - Uranium
+
+- type: gameMap
+  id: Ugol
+  mapName: 'WSE Ugol'
+  mapPath: /Maps/_NF/Shuttles/ugol.yml
+  minPlayers: 0
+  stations:
+    Ugol:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Ugol {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]
