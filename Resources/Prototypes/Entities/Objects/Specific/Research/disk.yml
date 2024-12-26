@@ -11,6 +11,8 @@
   - type: GuideHelp
     guides:
     - Science
+  - type: StaticPrice # Frontier
+    price: 200 # Frontier
 
 - type: entity
   parent: ResearchDisk
@@ -20,8 +22,8 @@
   components:
   - type: ResearchDisk
     points: 5000
-  - type: StaticPrice
-    price: 1500 # Frontier - To be fair, its worth half a tech disk, but we still require tech to print it so its lower.
+  - type: StaticPrice # Frontier
+    price: 1000 # Frontier
 
 - type: entity
   parent: ResearchDisk
@@ -31,8 +33,8 @@
   components:
   - type: ResearchDisk
     points: 10000
-  - type: StaticPrice
-    price: 3000 # Frontier - To be fair, its worth a tech disk, but we still require tech to print it so its lower.
+  - type: StaticPrice # Frontier
+    price: 2000 # Frontier
 
 - type: entity
   parent: ResearchDisk
@@ -49,6 +51,7 @@
   id: TechnologyDisk
   name: technology disk
   description: A disk for the R&D server containing research technology.
+  categories: [ HideSpawnMenu ] # Frontier: no tech disks
   components:
   - type: Sprite
     sprite: Objects/Misc/module.rsi
@@ -63,12 +66,17 @@
   - type: TechnologyDisk
     tierWeightPrototype: TechDiskTierWeights # Frontier
   - type: StaticPrice
-    price: 5000 # Frontier - Rebalance
+    price: 0.01 # Frontier 100<0.01 - research points are a means to an end, not an end of their own
+  - type: StealTarget
+    stealGroup: TechnologyDisk
+  - type: PirateBountyItem # Frontier
+    id: TechnologyDisk # Frontier
 
 - type: entity
   parent: TechnologyDisk
   id: TechnologyDiskRare
   suffix: rare.
+  categories: [ HideSpawnMenu ] # Frontier: no tech disks
   components:
   - type: TechnologyDisk
-    tierWeightPrototype: RareTechDiskTierWeights # Frontier
+    tierWeightPrototype: RareTechDiskTierWeights

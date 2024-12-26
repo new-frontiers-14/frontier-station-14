@@ -24,6 +24,8 @@ entities:
     components:
     - type: MetaData
       name: Infiltrator
+    - type: BecomesStation
+      id: Infiltrator
     - type: Transform
       pos: 0.64252126,4.1776605
       parent: invalid
@@ -799,19 +801,19 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 1.5,-8.5
       parent: 1
-- proto: AtmosDeviceFanTiny
+- proto: AtmosDeviceFanDirectional
   entities:
-  - uid: 509
+  - uid: 34
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 8.5,-16.5
+      parent: 1
+  - uid: 35
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -9.5,-16.5
-      parent: 1
-  - uid: 510
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 8.5,-16.5
       parent: 1
 - proto: AtmosFixBlockerMarker
   entities:
@@ -5649,7 +5651,7 @@ entities:
     - type: Transform
       pos: 4.5,-18.5
       parent: 1
-- proto: WarpPointShip
+- proto: WarpPoint
   entities:
   - uid: 634
     components:
