@@ -61,17 +61,21 @@
     - cash_100
     - cash_500
     - cash_1000
-    - cash_5000 # Frontier: larger denominations
-    - cash_10000 # Frontier: larger denominations
-    - cash_25000 # Frontier: larger denominations
-    - cash_50000 # Frontier: larger denominations
-    - cash_100000 # Frontier: larger denominations
-    - cash_250000 # Frontier: larger denominations (cash_1000000<cash_250000)
-    layerFunction: Threshold # Frontier: multicolour cash
-  - type: StackLayerThreshold # Frontier
-    thresholds: [10, 100, 500, 1000, 5000, 10000, 25000, 50000, 100000, 250000] # Frontier
+    - cash_5000
+    - cash_10000
+    - cash_25000
+    - cash_50000
+    - cash_100000
+    - cash_250000
+    layerFunction: Threshold
+  - type: UserInterface
+    interfaces:
+      enum.StackCustomSplitUiKey.Key:
+        type: StackCustomSplitBoundUserInterface
+  - type: StackLayerThreshold
+    thresholds: [10, 100, 500, 1000, 5000, 10000, 25000, 50000, 100000, 250000]
   - type: Sprite
-    sprite: _NF/Objects/Economy/counterfeit_cash.rsi # Frontier: larger denominations
+    sprite: _NF/Objects/Economy/counterfeit_cash.rsi
     state: cash
     layers:
     - state: cash
@@ -95,13 +99,13 @@
   name: spesso
   unit: materials-unit-bill
   stackEntity: SpaceCashCounterfeit
-  icon: { sprite: _NF/Objects/Economy/counterfeit_cash.rsi, state: cash } # Frontier: use Frontier sprite set
+  icon: { sprite: _NF/Objects/Economy/counterfeit_cash.rsi, state: cash }
   price: 0
 
 - type: stack
   id: CreditCounterfeit
   name: spesso
-  icon: { sprite: _NF/Objects/Economy/counterfeit_cash.rsi, state: cash } # Frontier: use Frontier sprite set
+  icon: { sprite: _NF/Objects/Economy/counterfeit_cash.rsi, state: cash }
   spawn: SpaceCashCounterfeit
 
 - type: currency
