@@ -23,11 +23,11 @@ public sealed class PointOfInterestSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IConfigurationManager _configurationManager = default!;
+    [Dependency] private readonly GameTicker _ticker = default!;
     [Dependency] private readonly MapLoaderSystem _map = default!;
     [Dependency] private readonly MetaDataSystem _meta = default!;
-    [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly StationRenameWarpsSystems _renameWarps = default!;
-    [Dependency] private readonly GameTicker _ticker = default!;
+    [Dependency] private readonly StationSystem _station = default!;
 
     private List<Vector2> _stationCoords = new();
 
