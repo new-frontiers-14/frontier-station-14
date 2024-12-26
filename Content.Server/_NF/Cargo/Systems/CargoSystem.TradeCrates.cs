@@ -2,15 +2,13 @@ using System.Threading;
 using Content.Server._NF.Trade;
 using Content.Shared._NF.Trade;
 using Content.Shared.Examine;
-using Content.Shared.GameTicking;
-using Robust.Shared.GameObjects;
 using Timer = Robust.Shared.Timing.Timer;
 
 namespace Content.Server.Cargo.Systems; // Needs to collide with base namespace
 
 public sealed partial class CargoSystem
 {
-    private List<EntityUid> _destinations = new();
+    private readonly List<EntityUid> _destinations = new();
 
     private void InitializeTradeCrates()
     {
@@ -23,87 +21,89 @@ public sealed partial class CargoSystem
         SubscribeLocalEvent<TradeCrateDestinationComponent, ComponentRemove>(OnDestinationRemove);
     }
 
-    private void OnTradeCrateGetPriceEvent(EntityUid uid, TradeCrateComponent component, ref PriceCalculationEvent ev)
+    private void OnTradeCrateGetPriceEvent(Entity<TradeCrateComponent> ent, ref PriceCalculationEvent ev)
     {
-        var owningStation = _station.GetOwningStation(uid);
-        bool isDestinated = component.DestinationStation != EntityUid.Invalid && owningStation == component.DestinationStation || HasComp<TradeCrateWildcardDestinationComponent>(owningStation);
-        ev.Price = isDestinated ? component.ValueAtDestination : component.ValueElsewhere;
-        if (component.ExpressDeliveryTime != null)
+        var owningStation = _station.GetOwningStation(ent.Owner);
+        var atDestination = ent.Comp.DestinationStation != EntityUid.Invalid
+                           && owningStation == ent.Comp.DestinationStation
+                           || HasComp<TradeCrateWildcardDestinationComponent>(owningStation);
+        ev.Price = atDestination ? ent.Comp.ValueAtDestination : ent.Comp.ValueElsewhere;
+        if (ent.Comp.ExpressDeliveryTime != null)
         {
-            if (_timing.CurTime <= component.ExpressDeliveryTime && isDestinated)
-                ev.Price += component.ExpressOnTimeBonus;
-            else if (_timing.CurTime > component.ExpressDeliveryTime)
-                ev.Price -= component.ExpressLatePenalty;
+            if (_timing.CurTime <= ent.Comp.ExpressDeliveryTime && atDestination)
+                ev.Price += ent.Comp.ExpressOnTimeBonus;
+            else if (_timing.CurTime > ent.Comp.ExpressDeliveryTime)
+                ev.Price -= ent.Comp.ExpressLatePenalty;
         }
         ev.Price = double.Max(0.0, ev.Price); // Ensure non-negative values.
     }
 
-    private void OnTradeCrateInit(EntityUid uid, TradeCrateComponent component, ref ComponentInit ev)
+    private void OnTradeCrateInit(Entity<TradeCrateComponent> ent, ref ComponentInit ev)
     {
         // If there are no available destinations, tough luck.
         if (_destinations.Count > 0)
         {
             var randomIndex = _random.Next(_destinations.Count);
             // Better have more than one destination.
-            if (_station.GetOwningStation(uid) == _destinations[randomIndex])
+            if (_station.GetOwningStation(ent.Owner) == _destinations[randomIndex])
             {
                 randomIndex = (randomIndex + 1 + _random.Next(_destinations.Count - 1)) % _destinations.Count;
             }
             var destination = _destinations[randomIndex];
-            component.DestinationStation = destination;
+            ent.Comp.DestinationStation = destination;
             if (TryComp<TradeCrateDestinationComponent>(destination, out var destComp))
-                _appearance.SetData(uid, TradeCrateVisuals.DestinationIcon, destComp.DestinationProto);
+                _appearance.SetData(ent.Owner, TradeCrateVisuals.DestinationIcon, destComp.DestinationProto.Id);
         }
 
-        if (component.ExpressDeliveryDuration > TimeSpan.Zero)
+        if (ent.Comp.ExpressDeliveryDuration > TimeSpan.Zero)
         {
-            component.ExpressDeliveryTime = _timing.CurTime + component.ExpressDeliveryDuration;
-            _appearance.SetData(uid, TradeCrateVisuals.IsPriority, true);
+            ent.Comp.ExpressDeliveryTime = _timing.CurTime + ent.Comp.ExpressDeliveryDuration;
+            _appearance.SetData(ent.Owner, TradeCrateVisuals.IsPriority, true);
 
-            component.PriorityCancelToken = new CancellationTokenSource();
-            Timer.Spawn((int)component.ExpressDeliveryDuration.TotalMilliseconds,
-                () => DisableTradeCratePriority(uid, component),
-                component.PriorityCancelToken.Token);
+            ent.Comp.ExpressCancelToken = new CancellationTokenSource();
+            Timer.Spawn((int)ent.Comp.ExpressDeliveryDuration.TotalMilliseconds,
+                () => DisableTradeCratePriority(ent.Owner),
+                ent.Comp.ExpressCancelToken.Token);
         }
     }
 
-    private void OnTradeCrateRemove(EntityUid uid, TradeCrateComponent component, ref ComponentRemove ev)
+    private void OnTradeCrateRemove(Entity<TradeCrateComponent> ent, ref ComponentRemove ev)
     {
-        component.PriorityCancelToken?.Cancel();
+        ent.Comp.ExpressCancelToken?.Cancel();
     }
 
-    private void OnTradeCrateExamined(EntityUid uid, TradeCrateComponent component, ref ExaminedEvent ev)
+    private void OnTradeCrateExamined(Entity<TradeCrateComponent> ent, ref ExaminedEvent ev)
     {
-        if (!TryComp(component.DestinationStation, out MetaDataComponent? metadata))
+        if (!TryComp(ent.Comp.DestinationStation, out MetaDataComponent? metadata))
             return;
 
         ev.PushMarkup(Loc.GetString("trade-crate-destination-station", ("destination", metadata.EntityName)));
-        if (component.ExpressDeliveryTime != null)
+        if (ent.Comp.ExpressDeliveryTime != null)
         {
-            if (component.ExpressDeliveryTime >= _timing.CurTime)
+            if (ent.Comp.ExpressDeliveryTime >= _timing.CurTime)
                 ev.PushMarkup(Loc.GetString("trade-crate-priority-active"));
             else
                 ev.PushMarkup(Loc.GetString("trade-crate-priority-inactive"));
         }
     }
 
-    private void DisableTradeCratePriority(EntityUid uid, TradeCrateComponent component)
+    private void DisableTradeCratePriority(EntityUid uid)
     {
         _appearance.SetData(uid, TradeCrateVisuals.IsPriorityInactive, true);
     }
 
-    private void OnDestinationInit(EntityUid uid, TradeCrateDestinationComponent component, ref ComponentInit ev)
+    private void OnDestinationInit(Entity<TradeCrateDestinationComponent> ent, ref ComponentInit ev)
     {
-        if (!_destinations.Contains(uid))
-            _destinations.Add(uid);
+        if (!_destinations.Contains(ent.Owner))
+            _destinations.Add(ent.Owner);
     }
 
-    private void OnDestinationRemove(EntityUid uid, TradeCrateDestinationComponent component, ref ComponentRemove ev)
+    private void OnDestinationRemove(Entity<TradeCrateDestinationComponent> ent, ref ComponentRemove ev)
     {
-        _destinations.Remove(uid);
+        _destinations.Remove(ent.Owner);
     }
 
-    private void CleanupTradeCrateDestinations(RoundRestartCleanupEvent ev)
+    private void CleanupTradeCrateDestinations()
     {
         _destinations.Clear();
     }
