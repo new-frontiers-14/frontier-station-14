@@ -78,13 +78,13 @@ public sealed partial class CargoSystem
             return;
 
         ev.PushMarkup(Loc.GetString("trade-crate-destination-station", ("destination", metadata.EntityName)));
-        if (ent.Comp.ExpressDeliveryTime != null)
-        {
-            if (ent.Comp.ExpressDeliveryTime >= _timing.CurTime)
-                ev.PushMarkup(Loc.GetString("trade-crate-priority-active"));
-            else
-                ev.PushMarkup(Loc.GetString("trade-crate-priority-inactive"));
-        }
+
+        if (ent.Comp.ExpressDeliveryTime == null)
+            return;
+
+        ev.PushMarkup(ent.Comp.ExpressDeliveryTime >= _timing.CurTime ?
+            Loc.GetString("trade-crate-priority-active") :
+            Loc.GetString("trade-crate-priority-inactive"));
     }
 
     private void DisableTradeCratePriority(EntityUid uid)
