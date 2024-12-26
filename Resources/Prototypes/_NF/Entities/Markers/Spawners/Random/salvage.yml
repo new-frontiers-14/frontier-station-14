@@ -37,7 +37,7 @@
       offset: 0.2
 
 - type: entity
-  name: Basalt Elemental Spawner
+  name: basalt elemental spawner
   id: BasaltElementalSpawner
   parent: MarkerBase
   suffix: 45
@@ -73,7 +73,7 @@
       offset: 0.2
 
 - type: entity
-  name: Rock Elemental Spawner
+  name: rock elemental spawner
   id: RockElementalSpawner
   parent: MarkerBase
   suffix: 45
@@ -109,7 +109,7 @@
       offset: 0.2
 
 - type: entity
-  name: Sand Elemental Spawner
+  name: sand elemental spawner
   id: SandElementalSpawner
   parent: MarkerBase
   suffix: 45
@@ -145,7 +145,7 @@
       offset: 0.2
 
 - type: entity
-  name: Snow Elemental Spawner
+  name: snow elemental spawner
   id: SnowElementalSpawner
   parent: MarkerBase
   suffix: 45
@@ -166,7 +166,7 @@
       - WallRockSnowSaltGolem
       - WallRockSnowSilverGolem
       - WallRockSnowUraniumGolem
-      rareChance: 0.1 
+      rareChance: 0.1
       prototypes:
         - WallRockSnowBananiumCrabNF
         - WallRockSnowCoalCrabNF
@@ -181,7 +181,7 @@
       offset: 0.2
 
 - type: entity
-  name: Chromite Elemental Spawner
+  name: chromite elemental spawner
   id: ChromiteElementalSpawner
   parent: MarkerBase
   suffix: 45
@@ -217,7 +217,7 @@
       offset: 0.2
 
 - type: entity
-  name: Asteroid Rock Elemental Spawner
+  name: asteroid rock elemental spawner
   id: AsteroidRockElementalSpawner
   parent: MarkerBase
   suffix: 45
@@ -251,129 +251,348 @@
         - AsteroidRockUraniumCrabNF
 
 - type: entity
-  name: Salvage Tank Spawner
+  name: asteroid scrap bot spawner
+  id: AsteroidScrapBotSpawner
+  parent: MarkerBase
+  suffix: 45
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - state: ai
+    - sprite: _NF/Mobs/RogueSilicons/drones.rsi
+      state: base
+    - sprite: _NF/Mobs/RogueSilicons/drones.rsi
+      state: decor_department
+      color: "#990000"
+    - sprite: _NF/Mobs/RogueSilicons/drones.rsi
+      state: decor_department_accent
+      color: "#ffff00"
+    - sprite: _NF/Mobs/RogueSilicons/drones.rsi
+      state: base_eyes
+      shader: unshaded
+      color: "#990000"
+  - type: RandomSpawner
+    rarePrototypes:
+    - MobSpawnScrapbotLaser
+    rareChance: 0.05
+    prototypes:
+    - MobSpawnScrapbot
+    - MobSpawnScrapbotThreads
+    - MobSpawnScrapbotThrusters
+    chance: 0.45
+    offset: 0.2
+
+- type: entity
+  name: asteroid scrap bot rock spawner
+  id: AsteroidScrapBotWallSpawner
+  parent: MarkerBase
+  suffix: 45
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - state: ai
+    - sprite: _NF/Mobs/RogueSilicons/drones.rsi
+      state: base
+    - sprite: _NF/Mobs/RogueSilicons/drones.rsi
+      state: decor_department
+      color: "#990000"
+    - sprite: _NF/Mobs/RogueSilicons/drones.rsi
+      state: decor_department_accent
+      color: "#ffff00"
+    - sprite: _NF/Mobs/RogueSilicons/drones.rsi
+      state: base_eyes
+      shader: unshaded
+      color: "#990000"
+  - type: RandomSpawner
+    rarePrototypes:
+    - WallRockScrapPileSaltBot
+    - WallRockScrapPileIronBot
+    - WallRockScrapPileSilverBot
+    - WallRockScrapPileQuartzBot
+    - WallRockScrapPilePlasmaBot
+    - WallRockScrapPileDiamondBot
+    - WallRockScrapPileGoldBot
+    - WallRockScrapPileCoalBot
+    - WallRockScrapPileBananiumBot
+    - WallRockScrapPileUraniumBot
+    - WallRockScrapPileBluespaceBot
+    - WallRockScrapPileArtifactFragmentBot
+    rareChance: 0.1
+    prototypes:
+    - WallRockScrapPileBot
+    chance: 0.45
+    offset: 0.2
+
+- type: entity
+  name: Salvage Material Crate Spawner
+  id: NFSalvageMaterialCrateSpawner
+  parent: SalvageMaterialCrateSpawner
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - NFCrateSalvageAssortedGoodies
+    - NFCrateSalvageAssortedGoodies
+    - NFCrateSalvageAssortedGoodies
+    - NFCrateSalvageAssortedGoodiesPlastic
+    - NFCrateSalvageAssortedGoodiesPlastic
+    - NFCrateSalvageAssortedGoodiesTrashCart
+    chance: 0.95
+    rarePrototypes:
+    - CrateTradeSecureNormalFilled
+    - CrateTradeSecureHighFilled
+    - CrateSalvageEquipment
+    - CrateTrashCartFilled
+    - CrateArtifactContainer
+    rareChance: 0.03
+    offset: 0.0
+
+- type: entity
+  name: salvage tank spawner
   id: SalvageTankSpawner
   parent: MarkerBase
   components:
-    - type: Sprite
-      layers:
-        - state: red
-        - sprite: Structures/Storage/tanks.rsi
-          state: fueltank
-    - type: RandomSpawner
-      rarePrototypes:
-        - WeldingFuelTankHighCapacity
-        - WaterTankHighCapacity
-      rareChance: 0.03
-      prototypes:
-        - WaterTankFull
-        - WeldingFuelTankFull
-        - WaterCooler
-      chance: 0.9
-      offset: 0.0
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Structures/Storage/tanks.rsi
+      state: fueltank
+  - type: RandomSpawner
+    prototypes:
+    - WaterTankFull
+    - WeldingFuelTankFull
+#    - WaterCooler
+    chance: 0.95
+    rarePrototypes:
+    - WeldingFuelTankHighCapacity
+    - WaterTankHighCapacity
+    rareChance: 0.05
+    offset: 0.0
 
 - type: entity
-  name: Salvage Locker Spawner
+  name: salvage locker spawner
   id: SalvageLockerSpawner
   parent: MarkerBase
   components:
-    - type: Sprite
-      layers:
-        - state: red
-        - sprite: Structures/Storage/closet.rsi
-          state: alien
-    - type: RandomSpawner
-      rarePrototypes:
-        - LockerAtmosphericsFilledHardsuit
-        - LockerAtmosphericsFilled
-        - LockerSalvageSpecialistFilledHardsuit
-        - LockerEngineerFilledHardsuit
-        - NFLockerSecurityFilled
-        - NFClosetBombFilled
-        - LockerBoozeFilled
-        - ClosetChefFilled
-      rareChance: 0.15
-      prototypes:
-        - ClosetL3Filled
-        - LockerSalvageSpecialistFilled
-        - ClosetToolFilled
-        - LockerElectricalSuppliesFilled
-        - LockerWeldingSuppliesFilled
-        - LockerEngineerFilled
-        - ClosetRadiationSuitFilled
-        - LockerMedicineFilled
-        - LockerMedicalFilled
-        - LockerChemistryFilled
-        - LockerParamedicFilled
-        - ClosetEmergencyFilledRandom
-        - ClosetFireFilled
-        - ClosetMaintenanceFilledRandom
-        - LockerScienceFilled
-        - ClosetJanitorFilled
-        - LockerBotanistFilled
-        - WardrobeMixedFilled
-      chance: 0.8
-      offset: 0.0
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Structures/Storage/closet.rsi
+      state: alien
+  - type: RandomSpawner
+    prototypes:
+    - ClosetToolFilled
+    - LockerElectricalSuppliesFilled
+    - LockerWeldingSuppliesFilled
+#    - ClosetEmergencyFilledRandom # Medical gameplay anyone?
+    - ClosetMaintenanceFilledRandom
+    chance: 0.95
+    rarePrototypes:
+#    - LockerMedicineFilled # Medical gameplay anyone?
+#    - LockerMedicalFilled # Medical gameplay anyone?
+#    - LockerChemistryFilled # Medical gameplay anyone?
+#    - LockerParamedicFilled # Medical gameplay anyone?
+    - LockerAtmosphericsFilledHardsuit
+    - LockerAtmosphericsFilled
+    - LockerSalvageSpecialistFilledHardsuit
+    - LockerEngineerFilledHardsuit
+    - NFLockerSecurityFilled
+    - NFClosetBombFilled
+    - ClosetFireFilled
+    - LockerScienceFilled
+    - ClosetJanitorFilled
+    - LockerBotanistFilled
+    - LockerEngineerFilled
+    - ClosetRadiationSuitFilled
+    - LockerSalvageSpecialistFilled
+    - ClosetL3Filled
+    rareChance: 0.25
+    offset: 0.0
 
 - type: entity
-  name: Salvage Suit Storage Spawner
+  name: salvage random furniture spawner
+  id: SalvageFurnitureSpawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Structures/Furniture/bookshelf.rsi
+      state: base
+  - type: RandomSpawner
+    prototypes:
+    - TableFrame
+    - Table
+    - Rack
+#    - Dresser # WardrobeMixedFilled
+    - NFWardrobeMixedFilled
+    - BookshelfFilled
+    - Bed
+    chance: 0.95
+    rarePrototypes:
+    - MedicalBed
+    - Stool
+    - ChairPilotSeat
+    - ChairOfficeLight
+    - ChairOfficeDark
+    - ComfyChair
+    - ChairWood
+    - ChairFolding
+    - ComputerBroken
+    - MachineFrameDestroyed
+    - VehicleJanicartDestroyed
+    - PottedPlantRandomPlastic
+    rareChance: 0.1
+    offset: 0.0
+
+- type: entity
+  name: salvage random brass furniture spawner
+  id: SalvageBrassFurnitureSpawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Structures/Furniture/chairs.rsi
+      state: brass_chair
+  - type: RandomSpawner
+    prototypes:
+    - TableBrass
+    - ChairBrass
+    chance: 0.95
+    offset: 0.0
+
+- type: entity
+  name: salvage suit storage spawner
   id: SalvageSuitStorageSpawner
   parent: MarkerBase
   components:
-    - type: Sprite
-      layers:
-        - state: red
-        - sprite: Structures/Storage/suit_storage.rsi
-          state: base
-    - type: RandomSpawner
-      prototypes:
-        - SuitStorageEVA
-        - SuitStorageEVAAlternate
-        - SuitStorageEVAEmergency
-#        - SuitStorageEVAPrisoner
-#        - SuitStorageEVAPirate
-        - SuitStorageBasic
-        - SuitStorageEngi
-        - SuitStorageAtmos
-        - SuitStorageSalv
-      offset: 0.0
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Structures/Storage/suit_storage.rsi
+      state: base
+  - type: RandomSpawner
+    prototypes:
+    - SuitStorageEVA
+    - SuitStorageEVAAlternate
+    - SuitStorageEVAEmergency
+#    - SuitStorageEVAPrisoner
+#    - SuitStorageEVAPirate
+    - SuitStorageBasic
+    - SuitStorageEngi
+    - SuitStorageAtmos
+    - SuitStorageSalv
+    chance: 0.95
+    rarePrototypes:
+    - SuitStorageBase
+    rareChance: 0.05
+    offset: 0.0
 
 - type: entity
-  name: Salvage Generator Spawner
+  name: salvage generator spawner
   id: SalvageGeneratorSpawner
   parent: MarkerBase
   components:
-    - type: Sprite
-      layers:
-        - state: red
-        - sprite: Structures/Power/Generation/portable_generator.rsi
-          state: portgen0
-    - type: RandomSpawner
-      rarePrototypes:
-        - PortableGeneratorSuperPacman
-        - PortableGeneratorJrPacman
-      rareChance: 0.3
-      prototypes:
-        - PortableGeneratorJrPacman
-      chance: 0.6
-      offset: 0.0
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Structures/Power/Generation/portable_generator.rsi
+      state: portgen0
+  - type: RandomSpawner
+    prototypes:
+    - PortableGeneratorJrPacman
+    chance: 0.5
+    rarePrototypes:
+    - PortableGeneratorSuperPacman
+    - PortableGeneratorJrPacman
+    rareChance: 0.3
+    offset: 0.0
 
 - type: entity
-  name: Salvage Handheld Flag Spawner
+  name: salvage handheld flag spawner
   id: SalvageHandheldFlagSpawner
   parent: MarkerBase
   components:
-    - type: Sprite
-      layers:
-        - state: red
-        - sprite: Objects/Misc/Handy_Flags/blank_handy_flag.rsi
-          state: icon
-    - type: RandomSpawner
-      prototypes:
-        - NTHandyFlag
-        - BlankHandyFlag
-        - SyndieHandyFlag
-        - LGBTQHandyFlag
-        - PirateHandyFlag
-      chance: 0.9
-      offset: 0.0
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Objects/Misc/Handy_Flags/blank_handy_flag.rsi
+      state: icon
+  - type: RandomSpawner
+    prototypes:
+    - NTHandyFlag
+    - BlankHandyFlag
+    - SyndieHandyFlag
+    - LGBTQHandyFlag
+    - PirateHandyFlag
+    chance: 0.5
+    offset: 0.0
+
+- type: entity
+  parent: MarkerBase
+  id: RandomBook
+  name: random book spawner
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Objects/Misc/books.rsi
+      state: book_icon
+  - type: RandomSpawner
+    prototypes:
+    - BookRandomStory
+    chance: 1.0
+    offset: 0.0
+
+- type: entity
+  name: Antag Vehicle Spawner
+  id: SpawnVehicleAntagVehicle
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Objects/Vehicles/syndicatesegway.rsi
+      state: keys
+  - type: RandomSpawner
+    prototypes:
+    - VehicleSyndicateSegway
+    - VehicleSkeletonMotorcycle
+    chance: 1.0
+    offset: 0.0
+
+- type: entity
+  id: NFSalvageMobSpawner
+  parent: SalvageMobSpawner
+  suffix: 95
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - MobCarpSalvage
+    - MobCarpSalvage
+    - MobCarpSalvage
+    - MobCarpSalvage
+    - MobCarpSalvage
+    - SpawnMobBearSalvage
+    - SpawnMobSpiderSalvage
+    - SpawnMobKangarooSalvage
+    - PlushieCarp
+    - DehydratedSpaceCarp
+#    - MobTickSalvage
+#    - MobTickSalvage
+#    - MobTickSalvage
+#    - SpawnMobSmallPurpleSnake # Why are they xeno
+    chance: 0.95
+    rarePrototypes:
+    - MobSharkSalvage
+    - MobSharkSalvage
+    - MobSharkSalvage
+    - MobSharkSalvage
+    - MobSharkSalvage
+    - NFPlushieSharkMinnow
+    - DehydratedSharkMinnow
+#    - SpawnMobPurpleSnake # Why are they xeno
+    rareChance: 0.2
+    offset: 0.0

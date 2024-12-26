@@ -50,5 +50,6 @@ public sealed partial class MakeSentient : EntityEffect
         var entityData = entityManager.GetComponent<MetaDataComponent>(uid);
         ghostRole.RoleName = entityData.EntityName;
         ghostRole.RoleDescription = Loc.GetString("ghost-role-information-cognizine-description");
+        ghostRole.RoleRules = Loc.GetString("ghost-role-information-freeagent-rules"); // Frontier
     }
 }
