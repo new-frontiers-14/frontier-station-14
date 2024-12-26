@@ -20,9 +20,9 @@ namespace Content.Server._NF.GameRule;
 //[Access(typeof(NfAdventureRuleSystem))]
 public sealed class PointOfInterestSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IConfigurationManager _configurationManager = default!;
     [Dependency] private readonly GameTicker _ticker = default!;
     [Dependency] private readonly MapLoaderSystem _map = default!;
     [Dependency] private readonly MetaDataSystem _meta = default!;
@@ -55,7 +55,7 @@ public sealed class PointOfInterestSystem : EntitySystem
         //by the number of depots set in our corresponding cvar
 
         depotStations = new List<EntityUid>();
-        var depotCount = _configurationManager.GetCVar(NFCCVars.CargoDepots);
+        var depotCount = _cfg.GetCVar(NFCCVars.CargoDepots);
         var rotation = 2 * Math.PI / depotCount;
         var rotationOffset = _random.NextAngle() / depotCount;
 
@@ -243,7 +243,7 @@ public sealed class PointOfInterestSystem : EntitySystem
             string stationName = string.IsNullOrEmpty(overrideName) ? proto.Name : overrideName;
 
             EntityUid? stationUid = null;
-            if (_prototypeManager.TryIndex<GameMapPrototype>(proto.ID, out var stationProto))
+            if (_proto.TryIndex<GameMapPrototype>(proto.ID, out var stationProto))
             {
                 stationUid = _station.InitializeNewStation(stationProto.Stations[proto.ID], mapUids, stationName);
             }
@@ -275,8 +275,8 @@ public sealed class PointOfInterestSystem : EntitySystem
 
     private Vector2 GetRandomPOICoord(float unscaledMinRange, float unscaledMaxRange)
     {
-        int numRetries = int.Max(_configurationManager.GetCVar(NFCCVars.POIPlacementRetries), 0);
-        float minDistance = float.Max(_configurationManager.GetCVar(NFCCVars.MinPOIDistance), 0); // Constant at the end to avoid NaN weirdness
+        int numRetries = int.Max(_cfg.GetCVar(NFCCVars.POIPlacementRetries), 0);
+        float minDistance = float.Max(_cfg.GetCVar(NFCCVars.MinPOIDistance), 0); // Constant at the end to avoid NaN weirdness
 
         Vector2 coords = _random.NextVector2(unscaledMinRange, unscaledMaxRange);
         for (int i = 0; i < numRetries; i++)
