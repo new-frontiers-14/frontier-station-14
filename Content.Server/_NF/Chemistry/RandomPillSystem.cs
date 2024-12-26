@@ -5,22 +5,22 @@ namespace Content.Server._NF.Chemistry;
 
 public sealed class RandomPillSystem : EntitySystem
 {
-    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
 
-    public const int MaxPill = 21;
+    public const int MaxPillType = 21;
 
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<PillComponent, ComponentInit>(OnInit);
+        SubscribeLocalEvent<PillComponent, MapInitEvent>(OnMapInit);
     }
 
-    private void OnInit(EntityUid uid, PillComponent component, ref ComponentInit componentInit)
+    private void OnMapInit(Entity<PillComponent> ent, ref MapInitEvent componentInit)
     {
-        if (component.Random)
+        if (ent.Comp.Random)
         {
-            component.PillType = (uint)_random.Next(MaxPill);
-            Dirty(uid, component);
+            ent.Comp.PillType = (uint)_random.Next(MaxPillType);
+            Dirty(ent);
         }
     }
 }

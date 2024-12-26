@@ -16,6 +16,6 @@ public sealed partial class PillComponent : Component
     /// <summary>
     /// Frontier: if true, pill appearance will be randomly generated on init.
     /// </summary>
-    [DataField("random", serverOnly: true)]
+    [DataField(serverOnly: true)]
     public bool Random;
 }
