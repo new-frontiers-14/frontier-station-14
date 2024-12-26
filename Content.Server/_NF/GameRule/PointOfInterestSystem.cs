@@ -68,7 +68,8 @@ public sealed class PointOfInterestSystem : EntitySystem
         {
             var proto = _random.Pick(depotPrototypes);
 
-            if (!proto.SpawnGamePreset.Contains(currentPreset))
+            // Safety check: ensure selected POIs are either fine in any preset or accepts this current one.
+            if (proto.SpawnGamePreset.Length > 0 && !proto.SpawnGamePreset.Contains(currentPreset))
                 continue;
 
             Vector2i offset = new Vector2i((int) _random.Next(proto.MinimumDistance, proto.MaximumDistance), 0);
@@ -106,7 +107,8 @@ public sealed class PointOfInterestSystem : EntitySystem
 
         foreach (var proto in marketPrototypes)
         {
-            if (!proto.SpawnGamePreset.Contains(currentPreset))
+            // Safety check: ensure selected POIs are either fine in any preset or accepts this current one.
+            if (proto.SpawnGamePreset.Length > 0 && !proto.SpawnGamePreset.Contains(currentPreset))
                 continue;
 
             if (marketsAdded >= marketCount)
@@ -140,7 +142,8 @@ public sealed class PointOfInterestSystem : EntitySystem
 
         foreach (var proto in optionalPrototypes)
         {
-            if (!proto.SpawnGamePreset.Contains(currentPreset))
+            // Safety check: ensure selected POIs are either fine in any preset or accepts this current one.
+            if (proto.SpawnGamePreset.Length > 0 && !proto.SpawnGamePreset.Contains(currentPreset))
                 continue;
 
             if (optionalsAdded >= optionalCount)
@@ -171,7 +174,8 @@ public sealed class PointOfInterestSystem : EntitySystem
 
         foreach (var proto in requiredPrototypes)
         {
-            if (!proto.SpawnGamePreset.Contains(currentPreset))
+            // Safety check: ensure selected POIs are either fine in any preset or accepts this current one.
+            if (proto.SpawnGamePreset.Length > 0 && !proto.SpawnGamePreset.Contains(currentPreset))
                 continue;
 
             var offset = GetRandomPOICoord(proto.MinimumDistance, proto.MaximumDistance);
@@ -205,7 +209,8 @@ public sealed class PointOfInterestSystem : EntitySystem
             _random.Shuffle(prototypeList);
             foreach (var proto in prototypeList)
             {
-                if (!proto.SpawnGamePreset.Contains(currentPreset))
+                // Safety check: ensure selected POIs are either fine in any preset or accepts this current one.
+                if (proto.SpawnGamePreset.Length > 0 && !proto.SpawnGamePreset.Contains(currentPreset))
                     continue;
 
                 var chance = _random.NextFloat(0, 1);

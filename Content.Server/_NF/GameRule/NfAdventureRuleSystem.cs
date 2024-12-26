@@ -20,6 +20,7 @@ using Robust.Shared.Network;
 using Content.Shared.GameTicking;
 using Robust.Shared.Enums;
 using Robust.Server.Player;
+using Content.Server.GameTicking.Presets;
 
 namespace Content.Server._NF.GameRule;
 
@@ -28,13 +29,16 @@ namespace Content.Server._NF.GameRule;
 /// </summary>
 public sealed class NFAdventureRuleSystem : GameRuleSystem<NFAdventureRuleComponent>
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IConfigurationManager _configurationManager = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly BankSystem _bank = default!;
+    [Dependency] private readonly GameTicker _ticker = default!;
     [Dependency] private readonly PointOfInterestSystem _poi = default!;
 
     private readonly HttpClient _httpClient = new();
+
+    private readonly ProtoId<GamePresetPrototype> FallbackPresetID = "NFPirates";
 
     public sealed class PlayerRoundBankInformation
     {
@@ -196,8 +200,14 @@ public sealed class NFAdventureRuleSystem : GameRuleSystem<NFAdventureRuleCompon
         List<PointOfInterestPrototype> optionalProtos = new();
         Dictionary<string, List<PointOfInterestPrototype>> remainingUniqueProtosBySpawnGroup = new();
 
+        var currentPreset = _ticker.CurrentPreset?.ID ?? FallbackPresetID;
+
         foreach (var location in _prototypeManager.EnumeratePrototypes<PointOfInterestPrototype>())
         {
+            // Check if any preset is accepted (empty) or if current preset is supported.
+            if (location.SpawnGamePreset.Length > 0 && !location.SpawnGamePreset.Contains(currentPreset))
+                continue;
+
             if (location.SpawnGroup == "CargoDepot")
                 depotProtos.Add(location);
             else if (location.SpawnGroup == "MarketStation")
