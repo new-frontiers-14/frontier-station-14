@@ -255,6 +255,11 @@ public sealed class AbsorbentSystem : SharedAbsorbentSystem
             {
                 _popups.PopupEntity(Loc.GetString("mopping-system-full", ("used", target)), user, user);
             }
+            // Frontier: out-only refillable solutions
+            else if (TryComp<RefillableSolutionComponent>(refillableSoln.Owner, out var refillableSolnComp) && refillableSolnComp.PreventTransferOut)
+            {
+            }
+            // End Frontier
             else
             {
                 // transfer as much contaminants to refillable as will fit
