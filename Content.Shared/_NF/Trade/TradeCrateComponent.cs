@@ -1,5 +1,6 @@
 using System.Threading;
 using Content.Shared.Cargo;
+using Robust.Shared.GameStates;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Shared._NF.Trade;
@@ -7,7 +8,7 @@ namespace Content.Shared._NF.Trade;
 /// <summary>
 /// This is used to mark an entity to be used as a trade crate
 /// </summary>
-[RegisterComponent, AutoGenerateComponentState, AutoGenerateComponentPause, Access(typeof(SharedCargoSystem))]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState, AutoGenerateComponentPause, Access(typeof(SharedCargoSystem))]
 public sealed partial class TradeCrateComponent : Component
 {
     /// <summary>
