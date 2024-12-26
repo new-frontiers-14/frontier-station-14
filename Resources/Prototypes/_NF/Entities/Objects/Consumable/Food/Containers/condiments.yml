@@ -78,3 +78,38 @@
     state: squeeze-bottle-mustard
   - type: Icon
     state: squeeze-bottle-mustard
+
+- type: entity
+  parent: [DrinkBottleVisualsAll, DrinkBottleGlassBaseFull]
+  id: FoodCondimentBottleSoysauce
+  name: soy sauce bottle
+  description: Used to season dishes to umami perfection. With extra sodium!
+  components:
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: Soysauce
+          Quantity: 30
+  - type: SolutionTransfer
+    playTransferSound: false
+    canChangeTransferAmount: true
+    minTransferAmount: 1
+    maxTransferAmount: 5
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/soysauce.rsi
+    state: icon
+  - type: Openable
+    closeable: true
+    layers:
+      - state: icon
+        map: ["enum.OpenableVisuals.Layer"]
+      - state: fill-1
+        map: ["enum.SolutionContainerLayers.Fill"]
+        visible: false
+  - type: SolutionContainerVisuals
+    maxFillLevels: 5
+    fillBaseName: fill-
