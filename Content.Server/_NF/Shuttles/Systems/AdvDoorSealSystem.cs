@@ -17,20 +17,12 @@ using Content.Shared.Doors;
 using Content.Shared.Doors.Components;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
-using Robust.Shared.Physics.Collision.Shapes;
-using Robust.Shared.Physics.Components;
-using Robust.Shared.Physics.Events;
-using Robust.Shared.Physics.Systems;
-using Robust.Shared.Timing;
-using Robust.Shared.Utility;
 using Content.Shared.Localizations;
 using Content.Shared.Power;
-using Content.Server.Construction; // Frontier
-using Content.Server.DeviceLinking.Events; // Frontier
 namespace Content.Server.Shuttles.Systems
 {
 
-    public sealed class AdvDockingSystem : EntitySystem
+    public sealed class AdvDoorSealSystem : EntitySystem
     {
         [Dependency] private readonly SharedMapSystem _mapSystem = default!;
         [Dependency] private readonly ITileDefinitionManager _tileDefManager = default!;
@@ -38,13 +30,13 @@ namespace Content.Server.Shuttles.Systems
         [Dependency] private readonly AirtightSystem _airtightSystem = default!;
         public override void Initialize()
         {
-            SubscribeLocalEvent<AdvDockingComponent, PowerChangedEvent>(OnPowerChange);
-            SubscribeLocalEvent<AdvDockingComponent, AnchorStateChangedEvent>(OnAnchorChange);
+            SubscribeLocalEvent<AdvDoorSealComponent, PowerChangedEvent>(OnPowerChange);
+            SubscribeLocalEvent<AdvDoorSealComponent, AnchorStateChangedEvent>(OnAnchorChange);
             //SubscribeLocalEvent<ShuttleComponent, TileChangedEvent>(OnShuttleTileChange);
-            SubscribeLocalEvent<AdvDockingComponent, ComponentInit>(OnDockInit);
+            SubscribeLocalEvent<AdvDoorSealComponent, ComponentInit>(OnDockInit);
         }
 
-        private void OnDockInit(EntityUid uid, AdvDockingComponent component, ComponentInit args)
+        private void OnDockInit(EntityUid uid, AdvDoorSealComponent component, ComponentInit args)
         {
             if (TryComp<ApcPowerReceiverComponent>(uid, out var apcPower) && component.OriginalLoad == 0) { component.OriginalLoad = apcPower.Load; } // Frontier
 
@@ -69,7 +61,7 @@ namespace Content.Server.Shuttles.Systems
             var tilePos = args.NewTile.GridIndices;
             var grid = Comp<MapGridComponent>(uid);
             var xformQuery = GetEntityQuery<TransformComponent>();
-            var dockQuery = GetEntityQuery<AdvDockingComponent>();
+            var dockQuery = GetEntityQuery<AdvDoorSealComponent>();
 
             for (var x = -1; x <= 1; x++)
             {
@@ -99,7 +91,7 @@ namespace Content.Server.Shuttles.Systems
             }
         }
 
-        private void OnPowerChange(EntityUid uid, AdvDockingComponent component, ref PowerChangedEvent args)
+        private void OnPowerChange(EntityUid uid, AdvDoorSealComponent component, ref PowerChangedEvent args)
         {
             if (args.Powered && CanEnable(uid, component))
             {
@@ -111,7 +103,7 @@ namespace Content.Server.Shuttles.Systems
             }
         }
 
-        private void OnAnchorChange(EntityUid uid, AdvDockingComponent component, ref AnchorStateChangedEvent args)
+        private void OnAnchorChange(EntityUid uid, AdvDoorSealComponent component, ref AnchorStateChangedEvent args)
         {
             if (args.Anchored && CanEnable(uid, component))
             {
@@ -127,7 +119,7 @@ namespace Content.Server.Shuttles.Systems
         /// <summary>
         /// Tries to enable the seals and turn it on. If it's already enabled it does nothing.
         /// </summary>
-        public void EnableAirtightness(EntityUid uid, AdvDockingComponent component, TransformComponent? xform = null)
+        public void EnableAirtightness(EntityUid uid, AdvDoorSealComponent component, TransformComponent? xform = null)
         {
             if (component.IsOn ||
                 !Resolve(uid, ref xform))
@@ -144,7 +136,7 @@ namespace Content.Server.Shuttles.Systems
         }
 
 
-        public void DisableAirtightness(EntityUid uid, AdvDockingComponent component, TransformComponent? xform = null)
+        public void DisableAirtightness(EntityUid uid, AdvDoorSealComponent component, TransformComponent? xform = null)
         {
             if (!Resolve(uid, ref xform)) return;
             DisableAirtightness(uid, component, xform.GridUid, xform);
@@ -154,7 +146,7 @@ namespace Content.Server.Shuttles.Systems
         /// <summary>
         /// Tries to disable the seals
         /// </summary>
-        public void DisableAirtightness(EntityUid uid, AdvDockingComponent component, EntityUid? gridId, TransformComponent? xform = null)
+        public void DisableAirtightness(EntityUid uid, AdvDoorSealComponent component, EntityUid? gridId, TransformComponent? xform = null)
         {
             if (!component.IsOn ||
                 !Resolve(uid, ref xform))
@@ -174,7 +166,7 @@ namespace Content.Server.Shuttles.Systems
 
         }
 
-        public bool CanEnable(EntityUid uid, AdvDockingComponent component)
+        public bool CanEnable(EntityUid uid, AdvDoorSealComponent component)
         {
             var xform = Transform(uid);
 

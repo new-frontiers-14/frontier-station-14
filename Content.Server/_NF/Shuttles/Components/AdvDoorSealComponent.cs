@@ -4,8 +4,8 @@ using Content.Server.Shuttles.Systems;
 namespace Content.Server.Shuttles.Components
 {
     [RegisterComponent]
-    [Access(typeof(AdvDockingSystem))]
-    public sealed partial class AdvDockingComponent : Component
+    [Access(typeof(AdvDoorSealSystem))]
+    public sealed partial class AdvDoorSealComponent : Component
     {
         [DataField, ViewVariables(VVAccess.ReadWrite)]
         public bool IsOn { get; set; } = true;
