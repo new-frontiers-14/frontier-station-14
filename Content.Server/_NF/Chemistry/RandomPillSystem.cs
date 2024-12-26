@@ -1,7 +1,7 @@
 using Content.Shared.Chemistry.Components;
 using Robust.Shared.Random;
 
-namespace Content.Server._NF.Chemistry.EntitySystems;
+namespace Content.Server._NF.Chemistry;
 
 public sealed class RandomPillSystem : EntitySystem
 {
