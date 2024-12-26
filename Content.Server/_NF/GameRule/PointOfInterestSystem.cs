@@ -97,7 +97,7 @@ public sealed class PointOfInterestSystem : EntitySystem
         //ideal world
 
         marketStations = new List<EntityUid>();
-        var marketCount = _configurationManager.GetCVar(NFCCVars.MarketStations);
+        var marketCount = _cfg.GetCVar(NFCCVars.MarketStations);
         _random.Shuffle(marketPrototypes);
         int marketsAdded = 0;
 
@@ -132,7 +132,7 @@ public sealed class PointOfInterestSystem : EntitySystem
         //and most RP places. This will essentially put them all into a pool to pull from, and still does not use the RNG function.
 
         optionalStations = new List<EntityUid>();
-        var optionalCount = _configurationManager.GetCVar(NFCCVars.OptionalStations);
+        var optionalCount = _cfg.GetCVar(NFCCVars.OptionalStations);
         _random.Shuffle(optionalPrototypes);
         int optionalsAdded = 0;
 
