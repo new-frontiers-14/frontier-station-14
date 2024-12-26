@@ -76,36 +76,6 @@
           Quantity: 50
 
 - type: entity
-  parent: DrinkKegPlastic
-  id: DrinkKegPlasticKetchup
-  name: ketchup keg
-  components:
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 600
-        reagents:
-        - ReagentId: Ketchup
-          Quantity: 600
-  - type: StaticPrice
-    price: 60
-
-- type: entity
-  parent: DrinkKegPlastic
-  id: DrinkKegPlasticMustard
-  name: mustard keg
-  components:
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 600
-        reagents:
-        - ReagentId: Mustard
-          Quantity: 600
-  - type: StaticPrice
-    price: 60
-
-- type: entity
   name: raw coffee beans
   parent: FoodProduceBase
   id: FoodCoffeeBeansRaw

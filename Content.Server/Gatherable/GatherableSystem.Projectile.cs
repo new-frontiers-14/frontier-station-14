@@ -1,4 +1,5 @@
 using Content.Server.Gatherable.Components;
+using Content.Shared.Mining.Components;
 using Content.Shared.Projectiles;
 using Robust.Shared.Physics.Events;
 
@@ -20,6 +21,21 @@ public sealed partial class GatherableSystem
         {
             return;
         }
+
+        // Frontier: gathering changes
+        // bad gatherer - not strong enough
+        if (_whitelistSystem.IsWhitelistFail(gatherable.ToolWhitelist, gathering.Owner))
+        {
+            QueueDel(gathering);
+            return;
+        }
+        // Too strong (e.g. overpen) - gathers ore but destroys it
+        if (TryComp<OreVeinComponent>(args.OtherEntity, out var oreVein)
+            && _whitelistSystem.IsWhitelistPass(oreVein.GatherDestructionWhitelist, gathering.Owner))
+        {
+            oreVein.PreventSpawning = true;
+        }
+        // End Frontier: gathering changes
 
         Gather(args.OtherEntity, gathering, gatherable);
         gathering.Comp.Amount--;
