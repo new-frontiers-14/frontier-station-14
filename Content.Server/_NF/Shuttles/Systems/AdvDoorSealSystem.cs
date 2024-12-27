@@ -1,5 +1,3 @@
-using System.Numerics;
-using Content.Server.Audio;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Shuttles.Components;
@@ -7,20 +5,14 @@ using Content.Server.Shuttles.Events;
 using Content.Server.Doors.Systems;
 using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
-using Content.Shared.Damage;
 using Content.Shared.Examine;
-using Content.Shared.Interaction;
 using Content.Shared.Maps;
-using Content.Shared.Physics;
-using Content.Shared.Shuttles.Components;
-using Content.Shared.Temperature;
-using Content.Shared.Doors;
 using Content.Shared.Doors.Components;
-
-using Robust.Shared.Map;
-using Robust.Shared.Map.Components;
 using Content.Shared.Localizations;
 using Content.Shared.Power;
+using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
+
 namespace Content.Server.Shuttles.Systems
 {
 
@@ -90,32 +82,32 @@ namespace Content.Server.Shuttles.Systems
         }
 
 
-    private void OnDoorExamine(EntityUid uid, AdvDoorSealComponent component, ExaminedEvent args)
-    {
-        // Powered is already handled by other power components
-        var enabled = Loc.GetString(component.IsOn ? "adv-door-seal-comp-enabled" : "adv-door-seal-comp-disabled");
-
-        using (args.PushGroup(nameof(AdvDoorSealComponent)))
+        private void OnDoorExamine(EntityUid uid, AdvDoorSealComponent component, ExaminedEvent args)
         {
-            args.PushMarkup(enabled);
+            // Powered is already handled by other power components
+            var enabled = Loc.GetString(component.IsOn ? "adv-door-seal-comp-enabled" : "adv-door-seal-comp-disabled");
 
-            if (EntityManager.TryGetComponent(uid, out TransformComponent? xform) && xform.Anchored)
+            using (args.PushGroup(nameof(AdvDoorSealComponent)))
             {
-                var doorLocalization = ContentLocalizationManager.FormatDirection(xform.LocalRotation.ToWorldVec().GetDir()).ToLower();
-                var doorDir = Loc.GetString("adv-door-seal-comp-door-direction",
-                    ("direction", doorLocalization));
+                args.PushMarkup(enabled);
 
-                args.PushMarkup(doorDir);
+                if (EntityManager.TryGetComponent(uid, out TransformComponent? xform) && xform.Anchored)
+                {
+                    var doorLocalization = ContentLocalizationManager.FormatDirection(xform.LocalRotation.ToWorldVec().GetDir()).ToLower();
+                    var doorDir = Loc.GetString("adv-door-seal-comp-door-direction",
+                        ("direction", doorLocalization));
 
-                var exposed = DockExposed(xform);
+                    args.PushMarkup(doorDir);
 
-                var doorText =
-                    Loc.GetString(exposed ? "adv-door-seal-comp-door-exposed" : "adv-door-seal-comp-door-not-exposed");
+                    var exposed = DockExposed(xform);
 
-                args.PushMarkup(doorText);
+                    var doorText =
+                        Loc.GetString(exposed ? "adv-door-seal-comp-door-exposed" : "adv-door-seal-comp-door-not-exposed");
+
+                    args.PushMarkup(doorText);
+                }
             }
         }
-    }
 
         /// <summary>
         /// Tries to enable the seals and turn it on. If it's already enabled it does nothing.
