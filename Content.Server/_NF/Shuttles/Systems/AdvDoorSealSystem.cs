@@ -36,6 +36,7 @@ namespace Content.Server.Shuttles.Systems
             SubscribeLocalEvent<AdvDoorSealComponent, AnchorStateChangedEvent>(OnAnchorChange);
             SubscribeLocalEvent<AdvDoorSealComponent, UpdateSpacedEvent>(OnTileChange);
             SubscribeLocalEvent<AdvDoorSealComponent, ComponentInit>(OnComponentInit);
+            SubscribeLocalEvent<AdvDoorSealComponent, ExaminedEvent>(OnDoorExamine);
         }
 
         private void OnComponentInit(EntityUid uid, AdvDoorSealComponent component, ComponentInit args)
@@ -88,6 +89,33 @@ namespace Content.Server.Shuttles.Systems
             }
         }
 
+
+    private void OnDoorExamine(EntityUid uid, AdvDoorSealComponent component, ExaminedEvent args)
+    {
+        // Powered is already handled by other power components
+        var enabled = Loc.GetString(component.IsOn ? "adv-door-seal-comp-enabled" : "adv-door-seal-comp-disabled");
+
+        using (args.PushGroup(nameof(AdvDoorSealComponent)))
+        {
+            args.PushMarkup(enabled);
+
+            if (EntityManager.TryGetComponent(uid, out TransformComponent? xform) && xform.Anchored)
+            {
+                var doorLocalization = ContentLocalizationManager.FormatDirection(xform.LocalRotation.ToWorldVec().GetDir()).ToLower();
+                var doorDir = Loc.GetString("adv-door-seal-comp-door-direction",
+                    ("direction", doorLocalization));
+
+                args.PushMarkup(doorDir);
+
+                var exposed = DockExposed(xform);
+
+                var doorText =
+                    Loc.GetString(exposed ? "adv-door-seal-comp-door-exposed" : "adv-door-seal-comp-door-not-exposed");
+
+                args.PushMarkup(doorText);
+            }
+        }
+    }
 
         /// <summary>
         /// Tries to enable the seals and turn it on. If it's already enabled it does nothing.
