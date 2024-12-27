@@ -8,11 +8,11 @@ namespace Content.Shared._NF.Trade;
 /// <summary>
 /// This is used to mark an entity to be used as a trade crate
 /// </summary>
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState, AutoGenerateComponentPause, Access(typeof(SharedCargoSystem))]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentPause, Access(typeof(SharedCargoSystem))]
 public sealed partial class TradeCrateComponent : Component
 {
     /// <summary>
-    /// The value of the crate, in spesos, when at its destination.
+    /// The value of the crate, in spesos, when delivered to its destination.
     /// </summary>
     [DataField(serverOnly: true)]
     public int ValueAtDestination;
@@ -32,13 +32,15 @@ public sealed partial class TradeCrateComponent : Component
     /// <summary>
     /// If non-null, the package must be redeemed before this time to arrive unpenalized.
     /// </summary>
-    [ViewVariables, AutoNetworkedField, AutoPausedField]
+    [ViewVariables, AutoPausedField]
     public TimeSpan? ExpressDeliveryTime;
+
     /// <summary>
     /// The bonus this package will receive if delivered on-time.
     /// </summary>
     [DataField(serverOnly: true)]
     public int ExpressOnTimeBonus;
+
     /// <summary>
     /// The penalty this package will receive if delivered late.
     /// </summary>

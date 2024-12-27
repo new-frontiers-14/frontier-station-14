@@ -23,7 +23,7 @@ public sealed partial class CargoSystem
 
     private void OnTradeCrateGetPriceEvent(Entity<TradeCrateComponent> ent, ref PriceCalculationEvent ev)
     {
-        var owningStation = _station.GetOwningStation(ent.Owner);
+        var owningStation = _station.GetOwningStation(ent);
         var atDestination = ent.Comp.DestinationStation != EntityUid.Invalid
                            && owningStation == ent.Comp.DestinationStation
                            || HasComp<TradeCrateWildcardDestinationComponent>(owningStation);
@@ -45,24 +45,24 @@ public sealed partial class CargoSystem
         {
             var randomIndex = _random.Next(_destinations.Count);
             // Better have more than one destination.
-            if (_station.GetOwningStation(ent.Owner) == _destinations[randomIndex])
+            if (_station.GetOwningStation(ent) == _destinations[randomIndex])
             {
                 randomIndex = (randomIndex + 1 + _random.Next(_destinations.Count - 1)) % _destinations.Count;
             }
             var destination = _destinations[randomIndex];
             ent.Comp.DestinationStation = destination;
             if (TryComp<TradeCrateDestinationComponent>(destination, out var destComp))
-                _appearance.SetData(ent.Owner, TradeCrateVisuals.DestinationIcon, destComp.DestinationProto.Id);
+                _appearance.SetData(ent, TradeCrateVisuals.DestinationIcon, destComp.DestinationProto.Id);
         }
 
         if (ent.Comp.ExpressDeliveryDuration > TimeSpan.Zero)
         {
             ent.Comp.ExpressDeliveryTime = _timing.CurTime + ent.Comp.ExpressDeliveryDuration;
-            _appearance.SetData(ent.Owner, TradeCrateVisuals.IsPriority, true);
+            _appearance.SetData(ent, TradeCrateVisuals.IsPriority, true);
 
             ent.Comp.ExpressCancelToken = new CancellationTokenSource();
             Timer.Spawn((int)ent.Comp.ExpressDeliveryDuration.TotalMilliseconds,
-                () => DisableTradeCratePriority(ent.Owner),
+                () => DisableTradeCratePriority(ent),
                 ent.Comp.ExpressCancelToken.Token);
         }
     }
@@ -72,6 +72,7 @@ public sealed partial class CargoSystem
         ent.Comp.ExpressCancelToken?.Cancel();
     }
 
+    // TODO: move to shared, share delivery time?
     private void OnTradeCrateExamined(Entity<TradeCrateComponent> ent, ref ExaminedEvent ev)
     {
         if (!TryComp(ent.Comp.DestinationStation, out MetaDataComponent? metadata))
