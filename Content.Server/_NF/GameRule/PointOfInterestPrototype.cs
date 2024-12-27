@@ -52,6 +52,7 @@ public sealed partial class PointOfInterestPrototype : IPrototype
 
     /// <summary>
     ///     What gamepresets ID this POI is allowed to spawn on.
+    ///     If left empty, all presets are allowed.
     /// </summary>
     [DataField]
     public ProtoId<GamePresetPrototype>[] SpawnGamePreset { get; private set; } = [];
