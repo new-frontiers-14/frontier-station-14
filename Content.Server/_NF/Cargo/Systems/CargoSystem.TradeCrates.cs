@@ -95,13 +95,13 @@ public sealed partial class CargoSystem
 
     private void OnDestinationInit(Entity<TradeCrateDestinationComponent> ent, ref ComponentInit ev)
     {
-        if (!_destinations.Contains(ent.Owner))
-            _destinations.Add(ent.Owner);
+        if (!_destinations.Contains(ent))
+            _destinations.Add(ent);
     }
 
     private void OnDestinationRemove(Entity<TradeCrateDestinationComponent> ent, ref ComponentRemove ev)
     {
-        _destinations.Remove(ent.Owner);
+        _destinations.Remove(ent);
     }
 
     private void CleanupTradeCrateDestinations()
