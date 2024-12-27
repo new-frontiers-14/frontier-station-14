@@ -287,7 +287,7 @@ namespace Content.Server.Shuttles.Systems
                         _doorSystem.SetBoltsDown((dockAUid, airlockA), true);
                     }
                 }
-                //doorA.ChangeAirtight = false;    //testing docked airtightness
+                doorA.ChangeAirtight = false;
             }
 
             if (TryComp(dockBUid, out DoorComponent? doorB))
@@ -299,7 +299,7 @@ namespace Content.Server.Shuttles.Systems
                         _doorSystem.SetBoltsDown((dockBUid, airlockB), true);
                     }
                 }
-                //doorB.ChangeAirtight = false;    //testing docked airtightness
+                doorB.ChangeAirtight = false;
             }
 
             if (_pathfinding.TryCreatePortal(dockAXform.Coordinates, dockBXform.Coordinates, out var handle))
@@ -352,10 +352,8 @@ namespace Content.Server.Shuttles.Systems
             if (TryComp<DoorBoltComponent>(dockUid, out var airlock))
                 _doorSystem.SetBoltsDown((dockUid, airlock), false);
 
-
-
-            //if (TryComp(dockUid, out DoorComponent? door) && _doorSystem.TryClose(dockUid, door))
-            //    door.ChangeAirtight = false;
+            if (TryComp(dockUid, out DoorComponent? door) && _doorSystem.TryClose(dockUid, door))
+                door.ChangeAirtight = true;
         }
 
         private void OnRequestUndock(EntityUid uid, ShuttleConsoleComponent component, UndockRequestMessage args)
