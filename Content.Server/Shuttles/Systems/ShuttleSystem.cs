@@ -5,12 +5,14 @@ using Content.Server.GameTicking;
 using Content.Server.Parallax;
 using Content.Server.Procedural;
 using Content.Server.Shuttles.Components;
+using Content.Server.Shuttles.Events; // Frontier
 using Content.Server.Station.Systems;
 using Content.Server.Stunnable;
 using Content.Shared.GameTicking;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Shuttles.Systems;
 using Content.Shared.Throwing;
+using Content.Shared.Maps; // Frontier
 using JetBrains.Annotations;
 using Robust.Server.GameObjects;
 using Robust.Server.GameStates;
@@ -80,6 +82,7 @@ public sealed partial class ShuttleSystem : SharedShuttleSystem
 
         SubscribeLocalEvent<GridInitializeEvent>(OnGridInit);
         SubscribeLocalEvent<FixturesComponent, GridFixtureChangeEvent>(OnGridFixtureChange);
+        SubscribeLocalEvent<ShuttleComponent, TileChangedEvent>(OnShuttleTileChange); // Frontier
 
         NfInitialize(); // Frontier Initialization for the ShuttleSystem
 
@@ -97,6 +100,35 @@ public sealed partial class ShuttleSystem : SharedShuttleSystem
         {
             _physics.SetDensity(uid, fixture.Key, fixture.Value, TileMassMultiplier, false, manager);
             _fixtures.SetRestitution(uid, fixture.Key, fixture.Value, 0.1f, false, manager);
+        }
+    }
+
+    private void OnShuttleTileChange(EntityUid uid, ShuttleComponent component, ref TileChangedEvent args)
+    {
+        // Stop checking if the IsSpace didn't change
+        if (args.NewTile.IsSpace(_tileDefManager) == args.OldTile.IsSpace(_tileDefManager))
+            return;
+
+        var tilePos = args.NewTile.GridIndices;
+        var grid = Comp<MapGridComponent>(uid);
+        var xformQuery = GetEntityQuery<TransformComponent>();
+        var thrusterQuery = GetEntityQuery<ThrusterComponent>();
+
+        for (var x = -1; x <= 1; x++)
+        {
+            for (var y = -1; y <= 1; y++)
+            {
+                if (x != 0 && y != 0)
+                    continue;
+
+                var checkPos = tilePos + new Vector2i(x, y);
+                var enumerator = _mapSystem.GetAnchoredEntitiesEnumerator(uid, grid, checkPos);
+
+                while (enumerator.MoveNext(out var ent))
+                {
+                    RaiseLocalEvent(ent.Value, new UpdateSpacedEvent { });
+                }
+            }
         }
     }
 

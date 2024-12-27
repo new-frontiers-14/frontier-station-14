@@ -3,6 +3,7 @@ using Content.Server.Audio;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Shuttles.Components;
+using Content.Server.Shuttles.Events; // Frontier
 using Content.Shared.Damage;
 using Content.Shared.Examine;
 using Content.Shared.Interaction;
@@ -56,7 +57,7 @@ public sealed class ThrusterSystem : EntitySystem
 
         SubscribeLocalEvent<ThrusterComponent, ExaminedEvent>(OnThrusterExamine);
 
-        SubscribeLocalEvent<ShuttleComponent, TileChangedEvent>(OnShuttleTileChange);
+        SubscribeLocalEvent<ThrusterComponent, UpdateSpacedEvent>(OnTileChange); // Frontier
 
         SubscribeLocalEvent<ThrusterComponent, RefreshPartsEvent>(OnRefreshParts);
         SubscribeLocalEvent<ThrusterComponent, UpgradeExamineEvent>(OnUpgradeExamine);
@@ -124,42 +125,22 @@ public sealed class ThrusterSystem : EntitySystem
         args.IsHot = component.Type != ThrusterType.Angular && component.IsOn;
     }
 
-    private void OnShuttleTileChange(EntityUid uid, ShuttleComponent component, ref TileChangedEvent args)
+    private void OnTileChange(EntityUid uid, ThrusterComponent component, ref UpdateSpacedEvent args)
     {
-        // If the old tile was space but the new one isn't then disable all adjacent thrusters
-        if (args.NewTile.IsSpace(_tileDefManager) || !args.OldTile.IsSpace(_tileDefManager))
-            return;
+        var canEnable = CanEnable(uid, component);
 
-        var tilePos = args.NewTile.GridIndices;
-        var grid = Comp<MapGridComponent>(uid);
-        var xformQuery = GetEntityQuery<TransformComponent>();
-        var thrusterQuery = GetEntityQuery<ThrusterComponent>();
-
-        for (var x = -1; x <= 1; x++)
+        // Enable it if it was turned off but new tile is valid
+        if (!component.IsOn && canEnable)
         {
-            for (var y = -1; y <= 1; y++)
-            {
-                if (x != 0 && y != 0)
-                    continue;
+            EnableThruster(uid, component);
+            return;
+        }
 
-                var checkPos = tilePos + new Vector2i(x, y);
-                var enumerator = _mapSystem.GetAnchoredEntitiesEnumerator(uid, grid, checkPos);
-
-                while (enumerator.MoveNext(out var ent))
-                {
-                    if (!thrusterQuery.TryGetComponent(ent.Value, out var thruster) || !thruster.RequireSpace)
-                        continue;
-
-                    // Work out if the thruster is facing this direction
-                    var xform = xformQuery.GetComponent(ent.Value);
-                    var direction = xform.LocalRotation.ToWorldVec();
-
-                    if (new Vector2i((int)direction.X, (int)direction.Y) != new Vector2i(x, y))
-                        continue;
-
-                    DisableThruster(ent.Value, thruster, xform.GridUid);
-                }
-            }
+        // Disable if new tile invalid
+        if (component.IsOn && !canEnable)
+        {
+            DisableThruster(uid, component);
+            return;
         }
     }
 

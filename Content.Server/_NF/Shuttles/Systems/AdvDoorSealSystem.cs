@@ -33,21 +33,18 @@ namespace Content.Server.Shuttles.Systems
             SubscribeLocalEvent<AdvDoorSealComponent, PowerChangedEvent>(OnPowerChange);
             SubscribeLocalEvent<AdvDoorSealComponent, AnchorStateChangedEvent>(OnAnchorChange);
             //SubscribeLocalEvent<ShuttleComponent, TileChangedEvent>(OnShuttleTileChange);
-            SubscribeLocalEvent<AdvDoorSealComponent, ComponentInit>(OnDockInit);
+            SubscribeLocalEvent<AdvDoorSealComponent, ComponentInit>(OnComponentInit);
         }
 
-        private void OnDockInit(EntityUid uid, AdvDoorSealComponent component, ComponentInit args)
+        private void OnComponentInit(EntityUid uid, AdvDoorSealComponent component, ComponentInit args)
         {
-            if (TryComp<ApcPowerReceiverComponent>(uid, out var apcPower) && component.OriginalLoad == 0) { component.OriginalLoad = apcPower.Load; } // Frontier
-
-            if (!component.IsOn)
-            {
-                return;
-            }
+            if (TryComp<ApcPowerReceiverComponent>(uid, out var apcPower) && component.OriginalLoad == 0) { component.OriginalLoad = apcPower.Load; }
 
             if (CanEnable(uid, component))
             {
                 EnableAirtightness(uid, component);
+            } else {
+                DisableAirtightness(uid, component);
             }
         }
 
