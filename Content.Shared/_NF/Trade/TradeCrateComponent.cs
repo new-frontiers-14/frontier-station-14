@@ -1,7 +1,6 @@
 using System.Threading;
 using Content.Shared.Cargo;
 using Robust.Shared.GameStates;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Shared._NF.Trade;
 
@@ -26,7 +25,7 @@ public sealed partial class TradeCrateComponent : Component
     /// <summary>
     /// If non-zero, this crate will be an express delivery.
     /// </summary>
-    [DataField(serverOnly: true, customTypeSerializer: typeof(TimeOffsetSerializer))]
+    [DataField(serverOnly: true)]
     public TimeSpan ExpressDeliveryDuration = TimeSpan.Zero;
 
     /// <summary>
