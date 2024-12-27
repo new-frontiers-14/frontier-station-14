@@ -3,6 +3,7 @@ using Content.Server.Audio;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Shuttles.Components;
+using Content.Server.Shuttles.Events;
 using Content.Server.Doors.Systems;
 using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
@@ -15,6 +16,7 @@ using Content.Shared.Shuttles.Components;
 using Content.Shared.Temperature;
 using Content.Shared.Doors;
 using Content.Shared.Doors.Components;
+
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Content.Shared.Localizations;
@@ -32,7 +34,7 @@ namespace Content.Server.Shuttles.Systems
         {
             SubscribeLocalEvent<AdvDoorSealComponent, PowerChangedEvent>(OnPowerChange);
             SubscribeLocalEvent<AdvDoorSealComponent, AnchorStateChangedEvent>(OnAnchorChange);
-            //SubscribeLocalEvent<ShuttleComponent, TileChangedEvent>(OnShuttleTileChange);
+            SubscribeLocalEvent<AdvDoorSealComponent, UpdateSpacedEvent>(OnTileChange);
             SubscribeLocalEvent<AdvDoorSealComponent, ComponentInit>(OnComponentInit);
         }
 
@@ -43,48 +45,22 @@ namespace Content.Server.Shuttles.Systems
             if (CanEnable(uid, component))
             {
                 EnableAirtightness(uid, component);
-            } else {
+            }
+            else
+            {
                 DisableAirtightness(uid, component);
             }
         }
 
-
-        private void OnShuttleTileChange(EntityUid uid, ShuttleComponent component, ref TileChangedEvent args)
+        private void OnTileChange(EntityUid uid, AdvDoorSealComponent component, ref UpdateSpacedEvent args)
         {
-            // If the old tile was space but the new one isn't then disable all adjacent thrusters
-            if (args.NewTile.IsSpace(_tileDefManager) || !args.OldTile.IsSpace(_tileDefManager))
-                return;
-
-            var tilePos = args.NewTile.GridIndices;
-            var grid = Comp<MapGridComponent>(uid);
-            var xformQuery = GetEntityQuery<TransformComponent>();
-            var dockQuery = GetEntityQuery<AdvDoorSealComponent>();
-
-            for (var x = -1; x <= 1; x++)
+            if (CanEnable(uid, component))
             {
-                for (var y = -1; y <= 1; y++)
-                {
-                    if (x != 0 && y != 0)
-                        continue;
-
-                    var checkPos = tilePos + new Vector2i(x, y);
-                    var enumerator = _mapSystem.GetAnchoredEntitiesEnumerator(uid, grid, checkPos);
-
-                    while (enumerator.MoveNext(out var ent))
-                    {
-                        if (!dockQuery.TryGetComponent(ent.Value, out var dock))
-                            continue;
-
-                        // Work out if the dock is facing this direction
-                        var xform = xformQuery.GetComponent(ent.Value);
-                        var direction = xform.LocalRotation.ToWorldVec();
-
-                        if (new Vector2i((int)direction.X, (int)direction.Y) != new Vector2i(x, y))
-                            continue;
-
-                        DisableAirtightness(ent.Value, dock, xform.GridUid);
-                    }
-                }
+                EnableAirtightness(uid, component);
+            }
+            else
+            {
+                DisableAirtightness(uid, component);
             }
         }
 
