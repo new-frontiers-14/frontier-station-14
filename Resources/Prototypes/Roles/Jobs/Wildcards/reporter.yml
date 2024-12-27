@@ -3,12 +3,15 @@
   name: job-name-reporter
   description: job-description-reporter
   playTimeTracker: JobReporter
+  setPreference: false # Frontier
   startingGear: ReporterGear
   icon: "JobIconReporter"
   supervisors: job-supervisors-hop
-  access:
-  - Service
-  - Maintenance
+#  access: # Frontier
+#  - Service # Frontier
+#  - Maintenance # Frontier
+  accessGroups: # Frontier
+  - GeneralAccess # Frontier
 
 - type: startingGear
   id: ReporterGear
