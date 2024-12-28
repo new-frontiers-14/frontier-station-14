@@ -66,7 +66,7 @@ public sealed class EngraveableSystem : EntitySystem
                             return;
 
                         ent.Comp.EngravedMessage = message;
-                        _popup.PopupEntity(Loc.GetString(ent.Comp.EngraveSuccessMessage, ("object", ent)),
+                        _popup.PopupEntity(Loc.GetString(ent.Comp.EngraveSuccessMessage, ("object", ent)), // Frontier: add object argument
                             actor.PlayerSession.AttachedEntity.Value,
                             actor.PlayerSession,
                             PopupType.Medium);
