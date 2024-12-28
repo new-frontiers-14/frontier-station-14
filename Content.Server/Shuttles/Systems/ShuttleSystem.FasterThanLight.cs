@@ -637,7 +637,7 @@ public sealed partial class ShuttleSystem
             {
                 if (!_statusQuery.TryGetComponent(child, out var status))
                     continue;
-
+                
                 if (HasComp<FTLKnockdownImmuneComponent>(child)) // Frontier: NPC knockdown immunity
                     continue; // Frontier: NPC knockdown immunity
 
