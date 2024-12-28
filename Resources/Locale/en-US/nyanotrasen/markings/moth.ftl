@@ -97,6 +97,7 @@ marking-MothRArmClassicMoonfly = Moth Right Arm (Moonfly, Classic)
 marking-MothLLegClassicMoonfly = Moth Left Leg (Moonfly, Classic)
 marking-MothRLegClassicMoonfly = Moth Right Leg (Moonfly, Classic)
 
+# Frontier: Oakworm < Oak Worm
 marking-MothHeadClassicOakworm = Moth Head (Oak Worm, Classic)
 marking-MothChestClassicOakworm = Moth Chest (Oak Worm, Classic)
 marking-MothLArmClassicOakworm = Moth Left Arm (Oak Worm, Classic)
