@@ -7,6 +7,7 @@ using Content.Server.Stack;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Containers.ItemSlots;
+using Content.Shared.Destructible;
 using Content.Shared.FixedPoint;
 using Content.Shared.Interaction;
 using Content.Shared.Kitchen;
@@ -125,6 +126,9 @@ namespace Content.Server.Kitchen.EntitySystems
                     {
                         if (solution.Volume > containerSolution.AvailableVolume)
                             continue;
+
+                        var dev = new DestructionEventArgs();
+                        RaiseLocalEvent(item, dev);
 
                         QueueDel(item);
                     }

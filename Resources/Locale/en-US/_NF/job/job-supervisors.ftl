@@ -1,9 +1,9 @@
-job-supervisors-sr = the station representative
-job-supervisors-sheriff = the sheriff
-job-supervisors-bailiff = the bailiff
-job-supervisors-sergeant = the sergeant
-job-supervisors-cadet = all higher ranking nfsd personnel
-job-supervisors-prisoner = all nfsd personnel
-job-supervisors-nfsd = deputies, the bailiff, and the sheriff
-job-supervisors-pirate = the first mate and captain
+job-supervisors-sr = the Station Representative
+job-supervisors-sheriff = the Sheriff
+job-supervisors-bailiff = the Bailiff
+job-supervisors-sergeant = the Sergeant
+job-supervisors-cadet = all higher ranking NFSD personnel
+job-supervisors-prisoner = all NFSD personnel
+job-supervisors-nfsd = Deputies, the Bailiff, and the Sheriff
+job-supervisors-pirate = the First Mate and Captain
 job-supervisors-nobody = nobody

@@ -27,14 +27,13 @@
 - type: gameMap
   id: Chauffeur
   mapName: 'NC Chauffeur'
-  mapPath: /Maps/_NF/Shuttles/pts.yml
+  mapPath: /Maps/_NF/Shuttles/Sr/chauffeur.yml
   minPlayers: 0
   stations:
     Chauffeur:
       stationProto: StandardFrontierVessel
       components:
-        - type: StationNameSetup
-          mapNameTemplate: 'Chauffeur {1}'
-          nameGenerator:
-            !type:NanotrasenNameGenerator
-            prefixCreator: '14'
+      - type: StationNameSetup
+        mapNameTemplate: 'Chauffeur {1}'
+        nameGenerator: !type:NanotrasenNameGenerator
+          prefixCreator: '14'

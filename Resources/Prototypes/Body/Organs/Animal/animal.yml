@@ -61,6 +61,9 @@
         reagents:
         - ReagentId: UncookedAnimalProteins
           Quantity: 5
+  - type: Item
+    size: Small
+    heldPrefix: lungs
 
 - type: entity
   id: OrganAnimalStomach
@@ -87,6 +90,9 @@
     groups:
     - id: Food
     - id: Drink
+  - type: Item
+    size: Small
+    heldPrefix: stomach
 
 - type: entity
   id: OrganMouseStomach
@@ -98,6 +104,9 @@
     solutions:
       stomach:
         maxVol: 30
+  - type: Item
+    size: Small
+    heldPrefix: stomach
 
 - type: entity
   id: OrganAnimalLiver
@@ -114,6 +123,9 @@
     groups:
     - id: Alcohol
       rateModifier: 0.1
+  - type: Item
+    size: Small
+    heldPrefix: liver
 
 - type: entity
   id: OrganAnimalHeart
@@ -132,6 +144,9 @@
     - id: Cryogenic # Frontier
     - id: Poison
     - id: Narcotic
+  - type: Item
+    size: Small
+    heldPrefix: heart
 
 - type: entity
   id: OrganAnimalKidneys
@@ -148,3 +163,6 @@
     maxReagents: 5
     metabolizerTypes: [ Animal ]
     removeEmpty: true
+  - type: Item
+    size: Small
+    heldPrefix: kidneys

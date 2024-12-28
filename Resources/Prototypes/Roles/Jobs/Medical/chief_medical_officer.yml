@@ -9,22 +9,29 @@
   requirements:
     - !type:OverallPlaytimeRequirement
       time: 144000 #40 hrs
-    - !type:AgeRequirement
-      requiredAge: 21
   weight: 10
   startingGear: CMOGear
   icon: "JobIconChiefMedicalOfficer"
-#  requireAdminNotify: true
-  supervisors: job-supervisors-hire # Frontier
-#  canBeAntag: false
+  supervisors: job-supervisors-captain
+  canBeAntag: false
+  ## Frontier: commented everything below out
+  # access:
+  # - Medical
+  # - Command
+  # - Maintenance
+  # - Chemistry
+  # - ChiefMedicalOfficer
+  # - Brig
+  # - Cryogenics
+  # special:
+  # - !type:AddImplantSpecial
+  #   implants: [ MindShieldImplant ]
+  # - !type:AddComponentSpecial
+  #   components:
+  #     - type: CommandStaff
+  ## Frontier: commented everything above out
   accessGroups: # Frontier
   - GeneralAccess # Frontier
-#  special:
-#  - !type:AddImplantSpecial
-#    implants: [ MindShieldImplant ]
-#  - !type:AddComponentSpecial
-#    components:
-#      - type: CommandStaff
 
 - type: startingGear
   id: CMOGear

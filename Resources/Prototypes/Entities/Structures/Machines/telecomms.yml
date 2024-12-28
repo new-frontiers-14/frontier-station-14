@@ -73,7 +73,8 @@
 - type: entity
   parent: TelecomServer
   id: TelecomServerFilled
-  suffix: Filled, DO NOT MAP # Frontier - Added DO NOT MAP
+  suffix: Filled All
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: ContainerFill
     containers:
@@ -84,15 +85,14 @@
       - EncryptionKeyMedical
       - EncryptionKeyScience
       - EncryptionKeySecurity
-      - EncryptionKeyNfsd
       - EncryptionKeyService
       - EncryptionKeyCommand
-      - EncryptionKeyTraffic # Frontier - Add Traffic channel
 
 - type: entity
   parent: TelecomServer
   id: TelecomServerFilledCommon
   suffix: Common
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: ContainerFill
     containers:
@@ -103,6 +103,7 @@
   parent: TelecomServer
   id: TelecomServerFilledCargo
   suffix: Cargo
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: ContainerFill
     containers:
@@ -113,6 +114,7 @@
   parent: TelecomServer
   id: TelecomServerFilledEngineering
   suffix: Engineering
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: ContainerFill
     containers:
@@ -123,6 +125,7 @@
   parent: TelecomServer
   id: TelecomServerFilledMedical
   suffix: Medical
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: ContainerFill
     containers:
@@ -133,26 +136,29 @@
   parent: TelecomServer
   id: TelecomServerFilledScience
   suffix: Science
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: ContainerFill
     containers:
       key_slots:
       - EncryptionKeyScience
 
-# - type: entity #Frontier - superceded
-  # parent: TelecomServer
-  # id: TelecomServerFilledSecurity
-  # suffix: Security
-  # components:
-  # - type: ContainerFill
-    # containers:
-      # key_slots:
-      # - EncryptionKeySecurity
+- type: entity
+  parent: TelecomServer
+  id: TelecomServerFilledSecurity
+  suffix: Security
+  categories: [ HideSpawnMenu ] # Frontier
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeySecurity
 
 - type: entity
   parent: TelecomServer
   id: TelecomServerFilledService
   suffix: Service
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: ContainerFill
     containers:
@@ -163,6 +169,7 @@
   parent: TelecomServer
   id: TelecomServerFilledCommand
   suffix: Command
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: ContainerFill
     containers:

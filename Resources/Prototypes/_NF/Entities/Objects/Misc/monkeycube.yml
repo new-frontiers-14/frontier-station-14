@@ -2,7 +2,7 @@
   parent: BoxCardboard
   name: poultry cube box
   id: PoultryCubeBox
-  description: Drymate brand poultry cubes, chicken and duck. Just add water!
+  description: "A box of poultry cubes: chickens and ducks! Just add water!"
   components:
   - type: StorageFill
     contents:
@@ -18,6 +18,27 @@
     vendPrice: 800 # Meat only worth 180 at a depot, but can produce eggs and more poultry for free
 
 - type: entity
+  parent: VariantCubeBox
+  name: ruminant cube box
+  id: RuminantCubeBox
+  description: "A box of ruminant cubes: a cow, a pig and goats! Just add water!"
+  components:
+  - type: StorageFill
+    contents:
+    - id: GoatCubeWrapped
+      amount: 4
+    - id: PigCubeWrapped
+      amount: 1
+    - id: CowCubeWrapped
+      amount: 1
+  - type: Sprite
+    sprite: _NF/Objects/Misc/monkeycube.rsi
+    state: box_ruminant
+  - type: StaticPrice
+    price: 20
+    vendPrice: 2000 # Meat only worth 607 at a depot, but can produce more stuff from extra goats + milk
+
+- type: entity
   parent: MonkeyCubeWrapped
   name: chicken cube
   suffix: Wrapped
@@ -27,8 +48,6 @@
   - type: SpawnItemsOnUse
     items:
     - id: ChickenCube
-    sound:
-      path: /Audio/Effects/unwrap.ogg
   - type: Sprite
     sprite: _NF/Objects/Misc/monkeycube.rsi
     state: wrapper_chicken
@@ -43,8 +62,48 @@
   - type: SpawnItemsOnUse
     items:
     - id: DuckCube
-    sound:
-      path: /Audio/Effects/unwrap.ogg
   - type: Sprite
     sprite: _NF/Objects/Misc/monkeycube.rsi
     state: wrapper_duck
+
+- type: entity
+  parent: MonkeyCubeWrapped
+  name: goat cube
+  suffix: Wrapped
+  id: GoatCubeWrapped
+  description: Unwrap this to get a goat cube.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: GoatCube
+  - type: Sprite
+    sprite: _NF/Objects/Misc/monkeycube.rsi
+    state: wrapper_goat
+
+- type: entity
+  parent: MonkeyCubeWrapped
+  name: pig cube
+  suffix: Wrapped
+  id: PigCubeWrapped
+  description: Unwrap this to get a pig cube.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PigCube
+  - type: Sprite
+    sprite: _NF/Objects/Misc/monkeycube.rsi
+    state: wrapper_pig
+
+- type: entity
+  parent: MonkeyCubeWrapped
+  name: cow cube
+  suffix: Wrapped
+  id: CowCubeWrapped
+  description: Unwrap this to get a cow cube.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: CowCube
+  - type: Sprite
+    sprite: _NF/Objects/Misc/monkeycube.rsi
+    state: wrapper_cow

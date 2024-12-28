@@ -35,6 +35,7 @@ using Robust.Shared.Audio.Systems;
 using Content.Server.Administration.Logs; // Frontier
 using Content.Shared.Database; // Frontier
 using Content.Shared._NF.Bank.BUI; // Frontier
+using Content.Server._NF.Contraband.Systems; // Frontier
 
 namespace Content.Server.VendingMachines
 {
@@ -53,6 +54,7 @@ namespace Content.Server.VendingMachines
         [Dependency] private readonly BankSystem _bankSystem = default!; // Frontier
         [Dependency] private readonly PopupSystem _popupSystem = default!; // Frontier
         [Dependency] private readonly IAdminLogManager _adminLogger = default!; // Frontier
+        [Dependency] private readonly ContrabandTurnInSystem _contraband = default!; // Frontier
 
         private const float WallVendEjectDistanceFromWall = 1f;
 
@@ -216,6 +218,18 @@ namespace Content.Server.VendingMachines
                 return;
 
             component.CanShoot = canShoot;
+        }
+
+        /// <summary>
+        /// Sets the <see cref="VendingMachineComponent.Contraband"/> property of the vending machine.
+        /// </summary>
+        public void SetContraband(EntityUid uid, bool contraband, VendingMachineComponent? component = null)
+        {
+            if (!Resolve(uid, ref component))
+                return;
+
+            component.Contraband = contraband;
+            Dirty(uid, component);
         }
 
         public void Deny(EntityUid uid, VendingMachineComponent? vendComponent = null)
@@ -494,6 +508,8 @@ namespace Content.Server.VendingMachines
             }
 
             var ent = Spawn(vendComponent.NextItemToEject, spawnCoordinates);
+
+            _contraband.ClearContrabandValue(ent); // Frontier
 
             if (vendComponent.ThrowNextItem)
             {

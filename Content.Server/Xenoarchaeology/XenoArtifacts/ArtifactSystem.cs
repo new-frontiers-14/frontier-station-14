@@ -139,7 +139,7 @@ public sealed partial class ArtifactSystem : EntitySystem
     }
 
     // Frontier: activate and randomly disintegrate an artifact.
-    public void NFActivateArtifact(EntityUid uid, float disintegrateProb, float range)
+    public void NFActivateArtifact(EntityUid uid, float disintegrateProb, float disintegrateProbOffStationGrid, float range)
     {
         if (!TryComp<ArtifactComponent>(uid, out var artifactComp))
             return;
@@ -155,7 +155,7 @@ public sealed partial class ArtifactSystem : EntitySystem
         // Science should happen on shuttles or stations.
         if (_station.GetOwningStation(xform.GridUid) == null)
         {
-            disintegrateProb += 0.15f;
+            disintegrateProb += disintegrateProbOffStationGrid;
         }
 
         if (_random.Prob(disintegrateProb))

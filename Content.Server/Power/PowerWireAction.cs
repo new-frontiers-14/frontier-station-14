@@ -1,4 +1,5 @@
 using Content.Server.Electrocution;
+using Content.Shared.Electrocution;
 using Content.Server.Power.Components;
 using Content.Server.Wires;
 using Content.Shared.Emp; // Frontier: Upstream - #28984
@@ -110,6 +111,7 @@ public sealed partial class PowerWireAction : BaseWireAction
             && !EntityManager.TryGetComponent(used, out electrified))
             return;
 
+        _electrocutionSystem.SetElectrifiedWireCut((used, electrified), setting);
         electrified.Enabled = setting;
     }
 

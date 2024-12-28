@@ -126,7 +126,7 @@ public sealed class NFCCVars
     /// Cooldown for failed missions.
     /// </summary>
     public static readonly CVarDef<float> SalvageExpeditionFailedCooldown =
-        CVarDef.Create("salvage.expedition_failed_cooldown", 1800f, CVar.REPLICATED);
+        CVarDef.Create("salvage.expedition_failed_cooldown", 1200f, CVar.REPLICATED);
 
     /*
      * Smuggling
@@ -215,7 +215,7 @@ public sealed class NFCCVars
         CVarDef.Create("frontier.allow_multi_connect", true, CVar.CONFIDENTIAL | CVar.SERVERONLY);
 
     /*
-     * Events 
+     * Events
      */
     /// <summary>
     ///     A scale factor applied to a grid's bounds when trying to find a spot to randomly generate a crate for bluespace events.

@@ -1166,6 +1166,17 @@
     FoodPlateTin: 1
   recipeType: Oven # Frontier
 
+- type: microwaveMealRecipe
+  id: RecipePumpkinPie
+  name: pumpkin pie recipe
+  result: FoodPiePumpkin
+  time: 15
+  solids:
+    FoodDoughPie: 1
+    FoodPumpkin: 1
+    FoodPlateTin: 1
+  recipeType: Oven # Frontier
+
 #- type: microwaveMealRecipe
 #  id: RecipePlumpPie
 #  name: plump pie recipe
@@ -1948,6 +1959,72 @@
     FoodAmbrosiaVulgaris: 1
   recipeType: Assembler # Frontier
 
+# Muffins
+
+- type: microwaveMealRecipe
+  id: RecipeMuffin
+  name: muffin recipe
+  result: FoodBakedMuffin
+  time: 15
+  solids:
+    FoodPlateMuffinTin: 1
+    FoodDoughSlice: 1
+  reagents:
+    Sugar: 10
+  recipeType: Oven # Frontier
+
+- type: microwaveMealRecipe
+  id: RecipeMuffinChocolate
+  name: chocolate muffin recipe
+  result: FoodBakedMuffinChocolate
+  time: 15
+  solids:
+    FoodPlateMuffinTin: 1
+    FoodDoughSlice: 1
+    FoodSnackChocolateBar: 1
+  reagents:
+    Sugar: 10
+  recipeType: Oven # Frontier
+
+- type: microwaveMealRecipe
+  id: RecipeMuffinBerry
+  name: berry muffin recipe
+  result: FoodBakedMuffinBerry
+  time: 15
+  solids:
+    FoodPlateMuffinTin: 1
+    FoodDoughSlice: 1
+    FoodBerries: 1
+  reagents:
+    Sugar: 10
+  recipeType: Oven # Frontier
+
+- type: microwaveMealRecipe
+  id: RecipeMuffinBanana
+  name: banana muffin recipe
+  result: FoodBakedMuffinBanana
+  time: 15
+  solids:
+    FoodPlateMuffinTin: 1
+    FoodDoughSlice: 1
+    FoodBanana: 1
+  reagents:
+    Sugar: 10
+  recipeType: Oven # Frontier
+
+- type: microwaveMealRecipe
+  id: RecipeMuffinCherry
+  name: cherry muffin recipe
+  result: FoodBakedMuffinCherry
+  time: 15
+  solids:
+    FoodPlateMuffinTin: 1
+    FoodDoughSlice: 1
+    FoodCherry: 3
+  reagents:
+    Sugar: 10
+  recipeType: Oven # Frontier
+
 # NOT ACTUAL FOOD
 
 - type: microwaveMealRecipe
@@ -2208,3 +2285,4 @@
     FoodButterSlice: 1
     ShardGlass: 1
   recipeType: Oven # Frontier
+

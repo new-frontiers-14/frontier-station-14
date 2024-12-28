@@ -1,0 +1,99 @@
+
+- type: entity
+  parent: OreBase
+  id: ScrapOre
+  name: scrap chunks
+  description: Various bits of previously used machinery. Needs to be sorted or processed to use.
+  suffix: Full
+  components:
+  - type: Stack
+    stackType: ScrapOre
+  - type: Sprite
+    layers:
+    - sprite: _NF/Objects/Materials/ore.rsi
+      state: scrapore
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      RawScrap: 100
+
+# Ore vein
+- type: ore
+  id: NFOreScrap
+  oreEntity: ScrapOre3
+  minOreYield: 1
+  maxOreYield: 5
+
+# Stacks
+- type: stack
+  id: ScrapOre
+  name: scrap ore
+  icon: { sprite: /Textures/_NF/Objects/Materials/ore.rsi, state: scrapore }
+  spawn: ScrapOre1
+  maxCount: 100
+
+- type: entity
+  parent: ScrapOre
+  id: ScrapOre1
+  suffix: Single
+  components:
+  - type: Stack
+    count: 1
+
+- type: entity
+  parent: ScrapOre
+  id: ScrapOre3
+  suffix: 3
+  components:
+  - type: Stack
+    count: 3
+
+- type: entity
+  parent: ScrapOre
+  id: ScrapOre20
+  suffix: 20
+  components:
+  - type: Stack
+    count: 20
+
+- type: material
+  id: RawScrap
+  stackEntity: ScrapOre1
+  name: materials-raw-scrap
+  unit: materials-unit-chunk
+  icon: { sprite: /Textures/_NF/Objects/Materials/ore.rsi, state: scrapore }
+  color: "#FFD700"
+  price: 0.02
+
+# Spawner for lathe: yield random mats if processed in ore processor
+- type: entity
+  name: refined scrap
+  id: SpawnRandomRefinedScrap
+  parent: MarkerBasePlaceFree
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _NF/Objects/Materials/ore.rsi
+        state: scrapore
+      - sprite: _NF/Markers/general.rsi
+        state: questionmark
+        color: red
+  - type: RandomSpawner
+    prototypes:
+    - SpawnDungeonLootMaterialsBasicSingle
+    - SpawnDungeonLootMaterialsBasicSingle
+    - SpawnDungeonLootMaterialsBasicSingle
+    - SpawnDungeonLootMaterialsBasicSingle
+    - SpawnDungeonLootOresSingle
+    - SpawnDungeonLootToolsBasicEngineering
+    chance: 1.0
+    offset: 0.0
+    rarePrototypes:
+    - MaterialBananium1
+    - MaterialBones1
+    - SpawnDungeonLootMaterialsValuableSingle
+    - SpawnDungeonLootPartsEngi
+    - SpawnDungeonLootCircuitBoard
+    rareChance: 0.005

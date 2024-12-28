@@ -2,8 +2,8 @@ name: Update Contrib and Patreons in credits
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: 0 0 * * 0
+  # schedule: # Frontier
+  #   - cron: 0 0 * * 0 # Frontier
 
 jobs:
   get_credits:
@@ -34,8 +34,22 @@ jobs:
       # Uncomment this and comment the other line if you do this.
       # https://github.com/stefanzweifel/git-auto-commit-action#push-to-protected-branches
 
-      - name: Commit new credit files
-        uses: stefanzweifel/git-auto-commit-action@v4
+      #- name: Commit new credit files
+      #  uses: stefanzweifel/git-auto-commit-action@v4
+      #  with:
+      #    commit_message: Update Credits
+      #    commit_author: PJBot <pieterjan.briers+bot@gmail.com>
+
+      # Taken from DeltaV, thank you mirrorcult, deltanedas.
+      # This will make a PR
+      - name: Set current date as env variable
+        run: echo "NOW=$(date +'%Y-%m-%dT%H-%M-%S')" >> $GITHUB_ENV
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
         with:
-          commit_message: Update Credits
-          commit_author: FrontierATC <zuuswa@gmail.com>
+          commit-message: Update Credits
+          title: Update Credits
+          body: This is an automated Pull Request. This PR updates the github contributors in the credits section.
+          author: FrontierATC <zuuswa@gmail.com>
+          branch: automated/credits-${{env.NOW}}
