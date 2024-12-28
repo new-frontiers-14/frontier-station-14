@@ -12,6 +12,14 @@
   - Capital
   engine:
   - AME
+  addComponents:
+  - type: IFF
+    color: '#FFFFFFFF'
+    flags: [IsPlayerShuttle]
+  addComponents:
+  - type: IFF
+    color: '#FFFFFFFF'
+    flags: [IsPlayerShuttle]
 
 - type: gameMap
   id: Empress
@@ -28,9 +36,4 @@
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
         - type: StationJobs
-          availableJobs:
-#            PrisonGuard: [ 0, 0 ]
-#            SecurityOfficer: [ 0, 0 ]
-#            Warden: [ 0, 0 ]
-#            Brigmedic: [ 0, 0 ]
-            Chef: [ 0, 0 ]
+          availableJobs: {} # Removed the chef since we dont have a real loadout for it
