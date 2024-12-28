@@ -1,5 +1,6 @@
 - type: vessel
   id: Point
+  parent: BaseVessel
   name: SV Point
   description: Two wrecks welded together that are somehow capable of research. 
   price: 16100
@@ -12,10 +13,6 @@
   - Science
   engine:
   - Plasma
-  addComponents:
-  - type: IFF
-    color: '#FFFFFFFF'
-    flags: [IsPlayerShuttle]
 
 - type: gameMap
   id: Point

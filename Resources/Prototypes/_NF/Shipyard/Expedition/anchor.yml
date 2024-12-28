@@ -10,6 +10,7 @@
 #
 - type: vessel
   id: Anchor
+  parent: BaseVessel
   name: KC Anchor
   description: A large luxury cruiser capable of long ranged travel acrossed the sector, expedition capable.
   price: 140000 # $108432 after appraisal +30ish% (~32000)
@@ -22,10 +23,6 @@
   - Civilian
   engine:
   - AME
-  addComponents:
-  - type: IFF
-    color: '#FFFFFFFF'
-    flags: [IsPlayerShuttle]
 
 - type: gameMap
   id: Anchor

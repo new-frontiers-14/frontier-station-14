@@ -10,6 +10,7 @@
 #
 - type: vessel
   id: Menace
+  parent: BaseVesselAntag
   name: Menace
   description: 'Mail is no longer an option: you either receive it or you die.'
   price: 21000
@@ -21,10 +22,6 @@
   - Pirate
   engine:
   - Plasma
-  addComponents:
-  - type: IFF
-    color: '#FFFFFFFF'
-    flags: [IsPlayerShuttle, HideLabel]
 
 - type: gameMap
   id: Menace

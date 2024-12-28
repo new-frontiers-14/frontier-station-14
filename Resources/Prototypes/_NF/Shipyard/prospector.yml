@@ -10,6 +10,7 @@
 #
 - type: vessel
   id: Prospector
+  parent: BaseVessel
   name: NC Prospector
   description: A small mining vessel designed to assist salvage operations.
   price: 24500
@@ -21,10 +22,6 @@
   - Salvage
   engine:
   - Plasma
-  addComponents:
-  - type: IFF
-    color: '#FFFFFFFF'
-    flags: [IsPlayerShuttle]
 
 - type: gameMap
   id: Prospector

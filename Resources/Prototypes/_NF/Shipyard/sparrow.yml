@@ -10,6 +10,7 @@
 #
 - type: vessel
   id: Sparrow
+  parent: BaseVessel
   name: NR Sparrow
   description: A small research and engineering vessel.
   price: 41000 # TODO: review ship values - Whatstone
@@ -22,10 +23,6 @@
   - Engineering
   engine:
   - Plasma
-  addComponents:
-  - type: IFF
-    color: '#FFFFFFFF'
-    flags: [IsPlayerShuttle]
 
 - type: gameMap
   id: Sparrow

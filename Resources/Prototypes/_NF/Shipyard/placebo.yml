@@ -10,6 +10,7 @@
 # 
 - type: vessel
   id: Placebo
+  parent: BaseVessel
   name: NC Placebo
   description: A small psychology vessel. Named after the famous Placebo effect.
   price: 20000
@@ -21,10 +22,6 @@
   - Medical
   engine:
   - Plasma
-  addComponents:
-  - type: IFF
-    color: '#FFFFFFFF'
-    flags: [IsPlayerShuttle]
 
 - type: gameMap
   id: Placebo

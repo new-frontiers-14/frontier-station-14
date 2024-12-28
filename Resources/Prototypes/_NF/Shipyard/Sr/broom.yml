@@ -10,6 +10,7 @@
 #
 - type: vessel
   id: Broom
+  parent: BaseVessel
   name: LVHI Broom
   description: A cramped yet reliable shuttle for providing janitorial services.
   price: 13500 # ~12180$ on mapinit + 5% markup + some extra
@@ -22,10 +23,6 @@
   - Civilian
   engine:
   - Plasma
-  addComponents:
-  - type: IFF
-    color: '#FFFFFFFF'
-    flags: [IsPlayerShuttle]
 
 - type: gameMap
   id: Broom

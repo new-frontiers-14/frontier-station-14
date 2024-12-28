@@ -10,6 +10,7 @@
 #
 - type: vessel
   id: Hammer
+  parent: BaseVessel
   name: SBB Hammer
   description: A mobile engineering platform for deep-space repairs, upgrades and remodelling.
   price: 44000 # Appraises at 38257, ~15% markup
@@ -21,10 +22,6 @@
   - Engineering
   engine:
   - Plasma
-  addComponents:
-  - type: IFF
-    color: '#FFFFFFFF'
-    flags: [IsPlayerShuttle]
 
 - type: gameMap
   id: Hammer

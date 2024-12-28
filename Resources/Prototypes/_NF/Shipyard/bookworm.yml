@@ -10,6 +10,7 @@
 #
 - type: vessel
   id: Bookworm
+  parent: BaseVessel
   name: SBB Bookworm
   description: A cozy medium-size library for travellers who wish to relax with a book or perhaps a board game.
   price: 31500 # ~29476 after purchase + ~5% markup
@@ -21,10 +22,6 @@
   - Civilian
   engine:
   - Plasma
-  addComponents:
-  - type: IFF
-    color: '#FFFFFFFF'
-    flags: [IsPlayerShuttle]
 
 - type: gameMap
   id: Bookworm

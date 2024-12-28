@@ -10,6 +10,7 @@
 #
 - type: vessel
   id: Comet
+  parent: BaseVessel
   name: NT Comet
   description: A mining and construction vessel intended to help build or repair quickly.
   price: 55000
@@ -22,10 +23,6 @@
   - Engineering
   engine:
   - AME
-  addComponents:
-  - type: IFF
-    color: '#FFFFFFFF'
-    flags: [IsPlayerShuttle]
 
 - type: gameMap
   id: Comet

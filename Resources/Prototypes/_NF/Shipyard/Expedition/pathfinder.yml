@@ -10,6 +10,7 @@
 #
 - type: vessel
   id: Pathfinder
+  parent: BaseVessel
   name: KC Pathfinder
   description: Once a scout ship serving with the Nanotrasen Marine Expeditionary Forces, this now decommissioned expedition capable ship can be yours!
   price: 52920
@@ -21,10 +22,6 @@
   - Expedition
   engine:
   - AME
-  addComponents:
-  - type: IFF
-    color: '#FFFFFFFF'
-    flags: [IsPlayerShuttle]
 
 - type: gameMap
   id: Pathfinder

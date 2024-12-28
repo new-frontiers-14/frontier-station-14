@@ -10,6 +10,7 @@
 #
 - type: vessel
   id: Wendigo
+  parent: BaseVessel
   name: NSF Wendigo
   description: A light medium ship with a recommended crew of 2 to 3 officers, the Wendigo is a dedicated interdiction vessel outfitted with a powerful EMP device for tackling escaping vessels.
   price: 34500
@@ -21,10 +22,6 @@
   - Pursuit
   engine:
   - Uranium
-  addComponents:
-  - type: IFF
-    color: '#FFFFFFFF'
-    flags: [IsPlayerShuttle]
 
 - type: gameMap
   id: Wendigo

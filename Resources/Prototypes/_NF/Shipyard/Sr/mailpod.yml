@@ -10,6 +10,7 @@
 #
 - type: vessel
   id: MailPod
+  parent: BaseVessel
   name: NC Mail Pod
   description: A cramped yet reliable shuttle for delivering packages.
   price: 15000
@@ -22,10 +23,6 @@
   - Cargo
   engine:
   - Plasma
-  addComponents:
-  - type: IFF
-    color: '#FFFFFFFF'
-    flags: [IsPlayerShuttle]
 
 - type: gameMap
   id: MailPod

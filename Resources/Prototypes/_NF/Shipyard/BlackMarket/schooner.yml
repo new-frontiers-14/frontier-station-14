@@ -1,5 +1,6 @@
 - type: vessel
   id: Schooner
+  parent: BaseVesselAntag
   name: Schooner
   description: A small wooden ship with 2 central cargo bays.
   price: 60000
@@ -11,10 +12,6 @@
   - Pirate
   engine:
   - Uranium
-  addComponents:
-  - type: IFF
-    color: '#FFFFFFFF'
-    flags: [IsPlayerShuttle, HideLabel]
 
 - type: gameMap
   id: Schooner
