@@ -27,12 +27,12 @@ public sealed class EngraveableSystem : EntitySystem
     private void OnExamined(Entity<EngraveableComponent> ent, ref ExaminedEvent args)
     {
         var msg = new FormattedMessage();
-        msg.AddMarkupOrThrow(Loc.GetString(ent.Comp.EngravedMessage == string.Empty
-            ? ent.Comp.NoEngravingText
-            : ent.Comp.HasEngravingText));
-
-        if (ent.Comp.EngravedMessage != string.Empty)
-            msg.AddMarkupPermissive(Loc.GetString(ent.Comp.EngravedMessage));
+        // Frontier: don't localize the message, use args in fluent entries
+        if (ent.Comp.EngravedMessage == string.Empty)
+            msg.AddMarkupOrThrow(Loc.GetString(ent.Comp.NoEngravingText, ("object", ent)));
+        else
+            msg.AddMarkupOrThrow(Loc.GetString(ent.Comp.HasEngravingText, ("object", ent), ("message", ent.Comp.EngravedMessage)));
+        // End Frontier
 
         args.PushMessage(msg, 1);
     }
@@ -66,7 +66,7 @@ public sealed class EngraveableSystem : EntitySystem
                             return;
 
                         ent.Comp.EngravedMessage = message;
-                        _popup.PopupEntity(Loc.GetString(ent.Comp.EngraveSuccessMessage),
+                        _popup.PopupEntity(Loc.GetString(ent.Comp.EngraveSuccessMessage, ("object", ent)),
                             actor.PlayerSession.AttachedEntity.Value,
                             actor.PlayerSession,
                             PopupType.Medium);
