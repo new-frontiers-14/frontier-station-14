@@ -95,3 +95,34 @@
   - type: Icon
     sprite: _NF/Objects/Consumable/Drinks/beesknees.rsi
     state: icon
+
+# condiment cup
+
+- type: entity
+  parent: DrinkBaseCup
+  id: CondimentCup
+  name: condiment cup
+  description: A flimsy cup that can be filled with condiments.
+  components:
+  - type: Drink
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Drinks/condiment_cup.rsi
+    layers:
+      - state: icon-0
+      - map: ["enum.SolutionContainerLayers.Fill"]
+        state: icon-1
+  - type: Appearance
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    fillBaseName: icon-
+  - type: Tag
+    tags:
+    - Trash
+    - WhitelistChameleon
+    - CondimentCup
+  - type: TrashOnSolutionEmpty
+    solution: drink
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 5
