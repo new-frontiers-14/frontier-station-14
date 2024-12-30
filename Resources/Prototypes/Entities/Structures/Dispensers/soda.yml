@@ -2,8 +2,8 @@
   parent: ReagentDispenserBase
   id: SodaDispenser
   name: soda dispenser
-  suffix: Filled
   description: A beverage dispenser with a selection of soda and several other common beverages. Has a single fill slot for containers.  
+  suffix: Filled
   components:
   - type: Rotatable
   - type: Sprite
@@ -12,7 +12,7 @@
     state: soda
   - type: ReagentDispenser
     storageWhitelist:
-     tags:
+      tags:
       - DrinkBottle
     pack: SodaDispenserInventory
   - type: Transform
