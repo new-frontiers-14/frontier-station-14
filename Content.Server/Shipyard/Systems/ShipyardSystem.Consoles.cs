@@ -29,7 +29,6 @@ using Content.Server.StationRecords;
 using Content.Server.StationRecords.Systems;
 using Content.Shared.Database;
 using Content.Shared.Preferences;
-using Content.Shared.Shuttles.Components;
 using static Content.Shared.Shipyard.Components.ShuttleDeedComponent;
 using Content.Server.Shuttles.Components;
 using Content.Server.Station.Components;
@@ -38,7 +37,6 @@ using Content.Server._NF.ShuttleRecords;
 using Content.Shared.UserInterface;
 using Robust.Shared.Audio.Systems;
 using Content.Shared.Access;
-using Content.Shared.Tiles;
 using Content.Server._NF.Smuggling.Components;
 using Content.Shared._NF.ShuttleRecords;
 using Content.Server.StationEvents.Components;
@@ -203,14 +201,6 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             shuttleStation = _station.InitializeNewStation(stationProto.Stations[vessel.ID], gridUids);
             var metaData = MetaData((EntityUid)shuttleStation);
             name = metaData.EntityName;
-            _shuttle.SetIFFColor(shuttleUid, new Color
-            {
-                R = 10,
-                G = 50,
-                B = 100,
-                A = 100
-            });
-            _shuttle.AddIFFFlag(shuttleUid, IFFFlags.IsPlayerShuttle);
         }
 
         if (TryComp<AccessComponent>(targetId, out var newCap))
