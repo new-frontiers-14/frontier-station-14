@@ -266,10 +266,10 @@
   parent: BaseStationEventShortDelay
   components:
   - type: StationEvent
-    startAnnouncement: station-event-gas-leak-start-announcement
+    startAnnouncement: station-event-gas-leak-nf-start-announcement # Frontier: add nf-
     startAudio:
       path: /Audio/Announcements/attention.ogg
-    endAnnouncement: station-event-gas-leak-end-announcement
+    endAnnouncement: station-event-gas-leak-nf-end-announcement # Frontier: add nf-
     weight: 8
     earliestStart: 15 # Frontier
   - type: GasLeakRule
@@ -292,8 +292,8 @@
   - type: StationEvent
     weight: 5
     earliestStart: 15 # Frontier
-    startAnnouncement: station-event-power-grid-check-start-announcement
-    endAnnouncement: station-event-power-grid-check-end-announcement
+    startAnnouncement: station-event-power-grid-check-nf-start-announcement # Frontier: add nf-
+    endAnnouncement: station-event-power-grid-check-nf-end-announcement # Frontier: add nf-
     startAudio:
       path: /Audio/Announcements/power_off.ogg
       params:
@@ -310,8 +310,8 @@
     weight: 4
     earliestStart: 15 # Frontier
     reoccurrenceDelay: 45 # Frontier
-    startAnnouncement: station-event-solar-flare-start-announcement
-    endAnnouncement: station-event-solar-flare-end-announcement
+    startAnnouncement: station-event-solar-flare-nf-start-announcement # Frontier: add nf-
+    endAnnouncement: station-event-solar-flare-nf-end-announcement # Frontier: add nf-
     startAudio:
       path: /Audio/Announcements/attention.ogg
     duration: 120
@@ -339,7 +339,7 @@
   parent: BaseStationEventLongDelay
   components:
   - type: StationEvent
-    startAnnouncement: station-event-vent-clog-start-announcement
+    startAnnouncement: station-event-vent-clog-nf-start-announcement # Frontier: add nf-
     startAudio:
       path: /Audio/Announcements/attention.ogg
     earliestStart: 15

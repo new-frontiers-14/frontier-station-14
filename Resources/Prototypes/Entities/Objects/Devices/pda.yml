@@ -126,6 +126,8 @@
   - type: StaticPrice # Frontier
     price: 20 # Frontier: The card need to cost less then the PDA that comes with a card and a pen in it.
   - type: CargoSellBlacklist # Frontier: Liltenhead moment
+  - type: PirateBountyItem
+    id: Pda
 
 - type: entity
   parent: BasePDA
@@ -887,6 +889,7 @@
     uiKey: enum.PdaUiKey.Key
     preinstalled:
       - NotekeeperCartridge
+      - AstroNavCartridge # Frontier
 
 - type: entity
   parent: BaseSecurityPDA
