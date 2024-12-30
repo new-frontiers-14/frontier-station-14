@@ -73,7 +73,7 @@
             - material: PlasmaGlass
               amount: 1
               doAfter: 1
-        
+
         - to: TableBrass
           steps:
             - material: Brass
@@ -211,78 +211,96 @@
             - material: Cloth
               amount: 1
               doAfter: 1
-              
+
         - to: TableFancyBlack
-          steps: 
-            - tag: CarpetBlack
-              name: black carpet
-              icon:
-                sprite: Objects/Tiles/tile.rsi
-                state: carpet-black
-              
+          steps:
+            - material: FloorCarpetBlack # Frontier
+              amount: 1 # Frontier
+            # - tag: CarpetBlack # Frontier
+            #   name: black carpet # Frontier
+            #   icon: # Frontier
+            #     sprite: Objects/Tiles/tile.rsi # Frontier
+            #     state: carpet-black # Frontier
+
         - to: TableFancyBlue
-          steps: 
-            - tag: CarpetBlue
-              name: blue carpet
-              icon:
-                sprite: Objects/Tiles/tile.rsi
-                state: carpet-blue
-              
+          steps:
+            - material: FloorCarpetBlue # Frontier
+              amount: 1 # Frontier
+            # - tag: CarpetBlue # Frontier
+            #   name: blue carpet # Frontier
+            #   icon: # Frontier
+            #     sprite: Objects/Tiles/tile.rsi # Frontier
+            #     state: carpet-blue # Frontier
+
         - to: TableFancyCyan
-          steps: 
-            - tag: CarpetCyan
-              name: cyan carpet
-              icon:
-                sprite: Objects/Tiles/tile.rsi
-                state: carpet-cyan
-              
+          steps:
+            - material: FloorCarpetCyan # Frontier
+              amount: 1 # Frontier
+            # - tag: CarpetCyan # Frontier
+            #   name: cyan carpet # Frontier
+            #   icon: # Frontier
+            #     sprite: Objects/Tiles/tile.rsi # Frontier
+            #     state: carpet-cyan # Frontier
+
         - to: TableFancyGreen
-          steps: 
-            - tag: CarpetGreen
-              name: green carpet
-              icon:
-                sprite: Objects/Tiles/tile.rsi
-                state: carpet-green
-              
+          steps:
+            - material: FloorCarpetGreen # Frontier
+              amount: 1 # Frontier
+            # - tag: CarpetGreen # Frontier
+            #   name: green carpet # Frontier
+            #   icon: # Frontier
+            #     sprite: Objects/Tiles/tile.rsi # Frontier
+            #     state: carpet-green # Frontier
+
         - to: TableFancyOrange
-          steps: 
-            - tag: CarpetOrange
-              name: orange carpet
-              icon:
-                sprite: Objects/Tiles/tile.rsi
-                state: carpet-orange
-              
+          steps:
+            - material: FloorCarpetOrange # Frontier
+              amount: 1 # Frontier
+            # - tag: CarpetOrange # Frontier
+            #   name: orange carpet # Frontier
+            #   icon: # Frontier
+            #     sprite: Objects/Tiles/tile.rsi # Frontier
+            #     state: carpet-orange # Frontier
+
         - to: TableFancyPurple
-          steps: 
-            - tag: CarpetPurple
-              name: purple carpet
-              icon:
-                sprite: Objects/Tiles/tile.rsi
-                state: carpet-purple
-                
+          steps:
+            - material: FloorCarpetPurple # Frontier
+              amount: 1 # Frontier
+            # - tag: CarpetPurple # Frontier
+            #   name: purple carpet # Frontier
+            #   icon: # Frontier
+            #     sprite: Objects/Tiles/tile.rsi # Frontier
+            #     state: carpet-purple # Frontier
+
         - to: TableFancyPink
-          steps: 
-            - tag: CarpetPink
-              name: pink carpet
-              icon:
-                sprite: Objects/Tiles/tile.rsi
-                state: carpet-pink
-              
+          steps:
+            - material: FloorCarpetPink # Frontier
+              amount: 1 # Frontier
+            # - tag: CarpetPink # Frontier
+            #   name: pink carpet # Frontier
+            #   icon: # Frontier
+            #     sprite: Objects/Tiles/tile.rsi # Frontier
+            #     state: carpet-pink # Frontier
+
         - to: TableFancyRed
-          steps: 
-            - tag: CarpetRed
-              name: red carpet
-              icon:
-                sprite: Objects/Tiles/tile.rsi
-                state: carpet-red
-              
+          steps:
+            - material: FloorCarpetRed # Frontier
+              amount: 1 # Frontier
+            # - tag: CarpetRed # Frontier
+            #   name: red carpet # Frontier
+            #   icon: # Frontier
+            #     sprite: Objects/Tiles/tile.rsi # Frontier
+            #     state: carpet-red # Frontier
+
         - to: TableFancyWhite
-          steps: 
-            - tag: CarpetWhite
-              name: white carpet
-              icon:
-                sprite: Objects/Tiles/tile.rsi
-                state: carpet-white
+          steps:
+            - material: FloorCarpetWhite # Frontier
+              amount: 1 # Frontier
+            # - tag: CarpetWhite # Frontier
+            #   name: white carpet # Frontier
+            #   icon: # Frontier
+            #     sprite: Objects/Tiles/tile.rsi # Frontier
+            #     state: carpet-white # Frontier
 
     - node: TableCarpet
       entity: TableCarpet
@@ -295,7 +313,7 @@
           steps:
             - tool: Prying
               doAfter: 1
-              
+
     - node: TableFancyBlack
       entity: TableFancyBlack
       edges:
@@ -307,7 +325,7 @@
           steps:
             - tool: Prying
               doAfter: 1
-              
+
     - node: TableFancyBlue
       entity: TableFancyBlue
       edges:
@@ -319,7 +337,7 @@
           steps:
             - tool: Prying
               doAfter: 1
-              
+
     - node: TableFancyCyan
       entity: TableFancyCyan
       edges:
