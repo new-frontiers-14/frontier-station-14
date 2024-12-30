@@ -1,36 +1,41 @@
 - type: entity
   parent: ReagentDispenserBase
-  id: SodaDispenser
-  name: soda dispenser
+  id: CondimentDispenser  
+  name: condiment dispenser
   suffix: Filled
-  description: A beverage dispenser with a selection of soda and several other common beverages. Has a single fill slot for containers.  
+  description: A condiment dispenser with a single slot for a condiment cup.
   components:
   - type: Rotatable
   - type: Sprite
-    sprite: Structures/smalldispensers.rsi
+    sprite: _NF/Structures/smalldispensers.rsi
     drawdepth: SmallObjects
-    state: soda
+    state: icon
   - type: ReagentDispenser
     storageWhitelist:
      tags:
       - DrinkBottle
-    pack: SodaDispenserInventory
+    pack: CondimentDispenserInventory
   - type: Transform
     noRot: false
   - type: Machine
-    board: SodaDispenserMachineCircuitboard
+    board: CondimentDispenserCircuitboard
   - type: GuideHelp
     guides:
     - Bartender
     - Drinks
+  - type: StaticPrice
+    price: 250
+
 
 - type: entity
-  parent: SodaDispenser
-  id: SodaDispenserEmpty
+  id: CondimentDispenserEmpty
   suffix: Empty
+  parent: CondimentDispenser
   components:
   - type: ReagentDispenser
     storageWhitelist:
       tags:
       - DrinkBottle
     pack: EmptyInventory
+  - type: StaticPrice
+    price: 250
