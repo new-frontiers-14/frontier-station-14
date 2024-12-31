@@ -1,5 +1,6 @@
 using Content.Server.GameTicking.Presets;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Array;
 using Robust.Shared.Utility;
 
 namespace Content.Server._NF.GameRule;
@@ -7,12 +8,19 @@ namespace Content.Server._NF.GameRule;
 /// <summary>
 ///     Describes information for a single point of interest to be spawned in the world
 /// </summary>
-[Prototype("pointOfInterest")]
+[Prototype]
 [Serializable]
-public sealed partial class PointOfInterestPrototype : IPrototype
+public sealed partial class PointOfInterestPrototype : IPrototype, IInheritingPrototype
 {
     [IdDataField]
     public string ID { get; private set; } = default!;
+
+    [ParentDataField(typeof(AbstractPrototypeIdArraySerializer<PointOfInterestPrototype>))]
+    public string[]? Parents { get; private set; }
+
+    [NeverPushInheritance]
+    [AbstractDataField]
+    public bool Abstract { get; private set; }
 
     /// <summary>
     ///     The name of this point of interest
@@ -48,10 +56,12 @@ public sealed partial class PointOfInterestPrototype : IPrototype
     ///     Components to be added to any spawned grids.
     /// </summary>
     [DataField]
+    [AlwaysPushInheritance]
     public ComponentRegistry AddComponents { get; set; } = new();
 
     /// <summary>
     ///     What gamepresets ID this POI is allowed to spawn on.
+    ///     If left empty, all presets are allowed.
     /// </summary>
     [DataField]
     public ProtoId<GamePresetPrototype>[] SpawnGamePreset { get; private set; } = [];
