@@ -1142,12 +1142,12 @@ entities:
     - type: Transform
       pos: 4.5,4.5
       parent: 1
-- proto: BoxColoredLightBulb
+- proto: BoxAgrichem
   entities:
-  - uid: 434
+  - uid: 564
     components:
     - type: Transform
-      pos: -5.269492,2.421494
+      pos: 2.4442196,6.7073812
       parent: 1
 - proto: BoxTrashbag
   entities:
@@ -1161,7 +1161,7 @@ entities:
   - uid: 566
     components:
     - type: Transform
-      pos: 3.52073,8.5978565
+      pos: 2.5171363,6.624048
       parent: 1
 - proto: ButtonFrameCaution
   entities:
@@ -1787,20 +1787,6 @@ entities:
     components:
     - type: Transform
       pos: 4.5,1.5
-      parent: 1
-- proto: CondimentCupDispenser20
-  entities:
-  - uid: 627
-    components:
-    - type: Transform
-      pos: -1.985923,1.4784412
-      parent: 1
-- proto: CondimentDispenser
-  entities:
-  - uid: 590
-    components:
-    - type: Transform
-      pos: -2.5,1.5
       parent: 1
 - proto: CrateFreezer
   entities:
@@ -3360,14 +3346,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 4.5,8.5
       parent: 1
-- proto: Icebox
-  entities:
-  - uid: 522
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 7.5,3.5
-      parent: 1
 - proto: JukeboxWallmountShip
   entities:
   - uid: 30
@@ -3437,54 +3415,12 @@ entities:
     - type: Transform
       pos: 2.0722742,4.8468714
       parent: 1
-- proto: LightBulbCrystalBlue
-  entities:
-  - uid: 265
-    components:
-    - type: Transform
-      parent: 263
-    - type: Physics
-      canCollide: False
-  - uid: 426
-    components:
-    - type: Transform
-      parent: 425
-    - type: Physics
-      canCollide: False
-- proto: LightBulbCrystalCyan
-  entities:
-  - uid: 58
-    components:
-    - type: Transform
-      parent: 50
-    - type: Physics
-      canCollide: False
-  - uid: 437
-    components:
-    - type: Transform
-      parent: 436
-    - type: Physics
-      canCollide: False
-- proto: LightBulbCrystalOrange
-  entities:
-  - uid: 295
-    components:
-    - type: Transform
-      parent: 266
-    - type: Physics
-      canCollide: False
-  - uid: 301
-    components:
-    - type: Transform
-      parent: 300
-    - type: Physics
-      canCollide: False
 - proto: LockerBotanistFilled
   entities:
   - uid: 427
     components:
     - type: Transform
-      pos: 2.5,6.5
+      pos: 3.5,8.5
       parent: 1
 - proto: LockerWallEVAColorServiceWorkerFilled
   entities:
@@ -3529,19 +3465,12 @@ entities:
     - type: Transform
       pos: 2.71875,1.6569037
       parent: 1
-- proto: NFPosterContrabandEmsCoords
+- proto: NFPosterContrabandFsbLogo
   entities:
-  - uid: 589
+  - uid: 142
     components:
     - type: Transform
       pos: -2.5,9.5
-      parent: 1
-- proto: NFPosterContrabandFsbLogo
-  entities:
-  - uid: 564
-    components:
-    - type: Transform
-      pos: -1.5,5.5
       parent: 1
 - proto: NFPosterContrabandFsbNightlight
   entities:
@@ -3627,11 +3556,10 @@ entities:
       targetPower: 25000
 - proto: PosterLegitSMFires
   entities:
-  - uid: 340
+  - uid: 421
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -2.5,5.5
+      pos: -5.5,5.5
       parent: 1
 - proto: PosterLegitSMHardhats
   entities:
@@ -3643,11 +3571,10 @@ entities:
       parent: 1
 - proto: PosterLegitSMPoisoning
   entities:
-  - uid: 73
+  - uid: 340
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -5.5,5.5
+      pos: -2.5,5.5
       parent: 1
 - proto: Poweredlight
   entities:
@@ -3760,12 +3687,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -3.5,2.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        light_bulb: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: 58
     - type: ApcPowerReceiver
       powerLoad: 0
     - type: DamageOnInteract
@@ -3776,12 +3697,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -1.5,-3.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        light_bulb: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: 265
     - type: ApcPowerReceiver
       powerLoad: 0
     - type: DamageOnInteract
@@ -3791,12 +3706,6 @@ entities:
     - type: Transform
       pos: -3.5,0.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        light_bulb: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: 295
     - type: ApcPowerReceiver
       powerLoad: 0
     - type: DamageOnInteract
@@ -3806,12 +3715,6 @@ entities:
     - type: Transform
       pos: 4.5,0.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        light_bulb: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: 301
     - type: ApcPowerReceiver
       powerLoad: 0
     - type: DamageOnInteract
@@ -3822,12 +3725,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 2.5,-3.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        light_bulb: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: 426
     - type: ApcPowerReceiver
       powerLoad: 0
     - type: DamageOnInteract
@@ -3838,12 +3735,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 4.5,2.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        light_bulb: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: 437
     - type: ApcPowerReceiver
       powerLoad: 0
     - type: DamageOnInteract
@@ -4493,10 +4384,10 @@ entities:
       parent: 1
 - proto: TableCounterMetal
   entities:
-  - uid: 142
+  - uid: 73
     components:
     - type: Transform
-      pos: 3.5,8.5
+      pos: 2.5,6.5
       parent: 1
 - proto: TableReinforced
   entities:
