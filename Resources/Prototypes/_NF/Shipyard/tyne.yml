@@ -10,6 +10,7 @@
 # Inspired by the Tyne-Class lifeboat: https://en.wikipedia.org/wiki/Tyne-class_lifeboat
 - type: vessel
   id: Tyne
+  parent: BaseVessel
   name: SBB Tyne
   description: A small, agile lifeboat with an exterior deck and survivor cabin for search and rescue operations.
   price: 22250 #~5% markup as it's a med ship. Appraises at ~21001.
@@ -18,6 +19,8 @@
   shuttlePath: /Maps/_NF/Shuttles/tyne.yml
   class:
   - Medical
+  engine:
+  - Plasma
 
 - type: gameMap
   id: Tyne
