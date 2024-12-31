@@ -695,6 +695,12 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -8.5,-11.5
       parent: 1
+    - type: Door
+      secondsUntilStateChange: -138.36676
+      state: Opening
+    - type: DeviceLinkSource
+      lastSignals:
+        DoorStatus: True
 - proto: AirlockExternal
   entities:
   - uid: 133
@@ -2770,6 +2776,16 @@ entities:
       inletOneConcentration: 0.78
     - type: AtmosPipeColor
       color: '#0055CCFF'
+- proto: GasPassiveVent
+  entities:
+  - uid: 484
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -5.5,-13.5
+      parent: 1
+    - type: AtmosPipeColor
+      color: '#990000FF'
 - proto: GasPipeBend
   entities:
   - uid: 151
@@ -3875,14 +3891,6 @@ entities:
       - 62
     - type: AtmosPipeColor
       color: '#990000FF'
-  - uid: 484
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -5.5,-13.5
-      parent: 1
-    - type: AtmosPipeColor
-      color: '#990000FF'
   - uid: 537
     components:
     - type: Transform
@@ -4972,6 +4980,14 @@ entities:
     - type: Transform
       pos: 6.5,-11.5
       parent: 1
+- proto: ShipyardOspreyInfo
+  entities:
+  - uid: 904
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -7.484515,-13.23181
+      parent: 1
 - proto: ShuttersNormalOpen
   entities:
   - uid: 209
@@ -5447,13 +5463,6 @@ entities:
     components:
     - type: Transform
       pos: 4.5,-1.5
-      parent: 1
-- proto: ToolboxMechanicalFilled
-  entities:
-  - uid: 904
-    components:
-    - type: Transform
-      pos: -7.497818,-13.772501
       parent: 1
 - proto: TwoWayLever
   entities:
