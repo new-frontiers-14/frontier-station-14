@@ -141,3 +141,37 @@
     refineResult:
     - id: SheetGlass1
     - id: ShardCrystalGreen
+
+- type: entity
+  parent: BaseLightbulb
+  name: sodium light bulb
+  id: SodiumLightBulb
+  description: A harsh lightbulb that both alarms and depresses you.
+  components:
+  - type: LightBulb
+    bulb: Bulb
+    color: "#FFAF38"
+    lightEnergy: 4
+    lightRadius: 8
+    lightSoftness: 0.7
+  - type: Tag
+    tags:
+    - LightBulb
+    - Trash
+
+- type: entity
+  parent: BaseLightbulb
+  name: exterior light bulb
+  id: ExteriorLightBulb
+  description: A colorful light bulb with a small colored crystal inside.
+  components:
+  - type: LightBulb
+    bulb: Bulb
+    color: "#B4FCF0"
+    lightEnergy: 4.5
+    lightRadius: 8
+    lightSoftness: 0.7
+  - type: Tag
+    tags:
+    - LightBulb
+    - Trash
