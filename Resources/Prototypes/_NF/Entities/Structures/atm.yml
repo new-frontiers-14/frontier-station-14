@@ -89,6 +89,20 @@
       state: unshaded
 
 - type: entity
+  parent: [ComputerBankATMWithdraw]
+  id: ComputerWithdrawBankATMFLatpack
+  components:
+  - type: Sprite
+    netsync: false
+    noRot: true
+    sprite: _NF/Structures/Machines/atm/atm.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: icon
+    - map: ["computerLayerScreen"]
+      state: unshaded
+
+- type: entity
   suffix: Wallmount
   parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseStructureWallmount, ComputerBankATMDeposit]
   id: ComputerWallmountBankATM
