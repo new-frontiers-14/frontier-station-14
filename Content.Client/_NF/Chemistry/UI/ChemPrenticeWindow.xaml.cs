@@ -14,7 +14,7 @@ using System.Linq;
 using System.Numerics;
 using Content.Shared.FixedPoint;
 using static Robust.Client.UserInterface.Controls.BoxContainer;
-using Content.Shared._NF.Chemistry;
+using Content.Client.Chemistry.UI;
 
 namespace Content.Client._NF.Chemistry.UI
 {
@@ -25,7 +25,7 @@ namespace Content.Client._NF.Chemistry.UI
     public sealed partial class ChemPrenticeWindow : FancyWindow
     {
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-        public event Action<BaseButton.ButtonEventArgs, PrenticeReagentButton>? OnReagentButtonPressed;
+        public event Action<BaseButton.ButtonEventArgs, ReagentButton>? OnReagentButtonPressed;
         public readonly Button[] PillTypeButtons;
 
         private const string PillsRsiPath = "/Textures/Objects/Specific/Chemistry/pills.rsi";
@@ -90,9 +90,9 @@ namespace Content.Client._NF.Chemistry.UI
             //Tabs.SetTabTitle(1, Loc.GetString("chem-master-window-output-tab"));
         }
 
-        private PrenticeReagentButton MakeReagentButton(string text, ChemPrenticeReagentAmount amount, ReagentId id, bool isBuffer, string styleClass)
+        private ReagentButton MakeReagentButton(string text, ChemMasterReagentAmount amount, ReagentId id, bool isBuffer, string styleClass)
         {
-            var button = new PrenticeReagentButton(text, amount, id, isBuffer, styleClass);
+            var button = new ReagentButton(text, amount, id, isBuffer, styleClass);
             button.OnPressed += args
                 => OnReagentButtonPressed?.Invoke(args, button);
             return button;
@@ -207,13 +207,13 @@ namespace Content.Client._NF.Chemistry.UI
                             // Padding
                             new Control {HorizontalExpand = true},
 
-                            MakeReagentButton("1", ChemPrenticeReagentAmount.U1, reagent, true, StyleBase.ButtonOpenRight),
-                            MakeReagentButton("5", ChemPrenticeReagentAmount.U5, reagent, true, StyleBase.ButtonOpenBoth),
-                            MakeReagentButton("10", ChemPrenticeReagentAmount.U10, reagent, true, StyleBase.ButtonOpenBoth),
-                            MakeReagentButton("25", ChemPrenticeReagentAmount.U25, reagent, true, StyleBase.ButtonOpenBoth),
-                            MakeReagentButton("50", ChemPrenticeReagentAmount.U50, reagent, true, StyleBase.ButtonOpenBoth),
-                            MakeReagentButton("100", ChemPrenticeReagentAmount.U100, reagent, true, StyleBase.ButtonOpenBoth),
-                            MakeReagentButton(Loc.GetString("chem-master-window-buffer-all-amount"), ChemPrenticeReagentAmount.All, reagent, true, StyleBase.ButtonOpenLeft),
+                            MakeReagentButton("1", ChemMasterReagentAmount.U1, reagent, true, StyleBase.ButtonOpenRight),
+                            MakeReagentButton("5", ChemMasterReagentAmount.U5, reagent, true, StyleBase.ButtonOpenBoth),
+                            MakeReagentButton("10", ChemMasterReagentAmount.U10, reagent, true, StyleBase.ButtonOpenBoth),
+                            MakeReagentButton("25", ChemMasterReagentAmount.U25, reagent, true, StyleBase.ButtonOpenBoth),
+                            MakeReagentButton("50", ChemMasterReagentAmount.U50, reagent, true, StyleBase.ButtonOpenBoth),
+                            MakeReagentButton("100", ChemMasterReagentAmount.U100, reagent, true, StyleBase.ButtonOpenBoth),
+                            MakeReagentButton(Loc.GetString("chem-master-window-buffer-all-amount"), ChemMasterReagentAmount.All, reagent, true, StyleBase.ButtonOpenLeft),
                         }
                     });
                 }
@@ -296,20 +296,20 @@ namespace Content.Client._NF.Chemistry.UI
                         cs.Add(new Control { HorizontalExpand = true });
 
                         cs.Add(MakeReagentButton(
-                            "1", ChemPrenticeReagentAmount.U1, id, false, StyleBase.ButtonOpenRight));
+                            "1", ChemMasterReagentAmount.U1, id, false, StyleBase.ButtonOpenRight));
                         cs.Add(MakeReagentButton(
-                            "5", ChemPrenticeReagentAmount.U5, id, false, StyleBase.ButtonOpenBoth));
+                            "5", ChemMasterReagentAmount.U5, id, false, StyleBase.ButtonOpenBoth));
                         cs.Add(MakeReagentButton(
-                            "10", ChemPrenticeReagentAmount.U10, id, false, StyleBase.ButtonOpenBoth));
+                            "10", ChemMasterReagentAmount.U10, id, false, StyleBase.ButtonOpenBoth));
                         cs.Add(MakeReagentButton(
-                            "25", ChemPrenticeReagentAmount.U25, id, false, StyleBase.ButtonOpenBoth));
+                            "25", ChemMasterReagentAmount.U25, id, false, StyleBase.ButtonOpenBoth));
                         cs.Add(MakeReagentButton(
-                            "50", ChemPrenticeReagentAmount.U50, id, false, StyleBase.ButtonOpenBoth));
+                            "50", ChemMasterReagentAmount.U50, id, false, StyleBase.ButtonOpenBoth));
                         cs.Add(MakeReagentButton(
-                            "100", ChemPrenticeReagentAmount.U100, id, false, StyleBase.ButtonOpenBoth));
+                            "100", ChemMasterReagentAmount.U100, id, false, StyleBase.ButtonOpenBoth));
                         cs.Add(MakeReagentButton(
                             Loc.GetString("chem-master-window-buffer-all-amount"),
-                            ChemPrenticeReagentAmount.All, id, false, StyleBase.ButtonOpenLeft));
+                            ChemMasterReagentAmount.All, id, false, StyleBase.ButtonOpenLeft));
                     }
 
                     control.Children.Add(inner);
@@ -331,12 +331,12 @@ namespace Content.Client._NF.Chemistry.UI
         }*/
     }
 
-    public sealed class PrenticeReagentButton : Button
+    /*public sealed class ReagentButton : Button
     {
         public ChemPrenticeReagentAmount Amount { get; set; }
         public bool IsBuffer = true;
         public ReagentId Id { get; set; }
-        public PrenticeReagentButton(string text, ChemPrenticeReagentAmount amount, ReagentId id, bool isBuffer, string styleClass)
+        public ReagentButton(string text, ChemPrenticeReagentAmount amount, ReagentId id, bool isBuffer, string styleClass)
         {
             AddStyleClass(styleClass);
             Text = text;
@@ -344,5 +344,5 @@ namespace Content.Client._NF.Chemistry.UI
             Id = id;
             IsBuffer = isBuffer;
         }
-    }
+    }*/
 }

@@ -1,5 +1,6 @@
-using Content.Client._NF.Chemistry.UI;
+using Content.Client.Chemistry.UI;
 using Content.Shared._NF.Chemistry;
+using Content.Shared.Chemistry;
 using Content.Shared.Containers.ItemSlots;
 using JetBrains.Annotations;
 using Robust.Client.GameObjects;
@@ -54,7 +55,7 @@ namespace Content.Client._NF.Chemistry.UI
                 _window.PillTypeButtons[i].OnPressed += _ => SendMessage(new ChemPrenticeSetPillTypeMessage(pillType));
             }
 
-            _window.OnReagentButtonPressed += (args, button) => SendMessage(new ChemPrenticeReagentAmountButtonMessage(button.Id, button.Amount, button.IsBuffer));
+            _window.OnReagentButtonPressed += (args, button) => SendMessage(new ChemMasterReagentAmountButtonMessage(button.Id, button.Amount, button.IsBuffer));
         }
 
         /// <summary>
