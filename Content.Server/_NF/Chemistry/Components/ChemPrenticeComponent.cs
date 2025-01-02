@@ -1,5 +1,5 @@
-using Content.Server.Chemistry.EntitySystems;
-using Content.Shared.Chemistry;
+using Content.Server._NF.Chemistry.EntitySystems;
+using Content.Shared._NF.Chemistry;
 using Robust.Shared.Audio;
 
 namespace Content.Server.Chemistry.Components

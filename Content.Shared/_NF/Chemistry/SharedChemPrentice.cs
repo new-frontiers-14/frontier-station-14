@@ -1,8 +1,9 @@
+using Content.Shared.Chemistry;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.FixedPoint;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared.Chemistry
+namespace Content.Shared._NF.Chemistry
 {
     /// <summary>
     /// This class holds constants that are shared between client and server.

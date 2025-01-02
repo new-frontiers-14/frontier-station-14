@@ -2,6 +2,7 @@ using Content.Server.Chemistry.Components;
 using Content.Server.Labels;
 using Content.Server.Popups;
 using Content.Server.Storage.EntitySystems;
+using Content.Shared._NF.Chemistry;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Chemistry;
 using Content.Shared.Chemistry.Components;
@@ -20,7 +21,7 @@ using Robust.Shared.Prototypes;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
-namespace Content.Server.Chemistry.EntitySystems
+namespace Content.Server._NF.Chemistry.EntitySystems
 {
 
     /// <summary>
@@ -328,12 +329,12 @@ namespace Content.Server.Chemistry.EntitySystems
             if (!TryComp(container, out StorageComponent? storage))
                 return null;
 
-            var pills = storage.Container.ContainedEntities.Select((Func<EntityUid, (string, FixedPoint2 quantity)>)(pill =>
+            var pills = storage.Container.ContainedEntities.Select(pill =>
             {
                 _solutionContainerSystem.TryGetSolution(pill, SharedChemPrentice.PillSolutionName, out _, out var solution);
                 var quantity = solution?.Volume ?? FixedPoint2.Zero;
                 return (Name(pill), quantity);
-            })).ToList();
+            }).ToList();
 
             return new ContainerInfo(name, _storageSystem.GetCumulativeItemAreas((container.Value, storage)), storage.Grid.GetArea())
             {

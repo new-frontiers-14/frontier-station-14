@@ -1,8 +1,8 @@
 - type: entity
-  id: ChemMaster
+  id: ChemPrentice
   parent: [ BaseMachinePowered, ConstructibleMachine ]
-  name: ChemMaster 4000
-  description: An industrial grade chemical manipulator with pill and bottle production included.
+  name: ChemPrentice 2000
+  description: An chemical manipulator and seperator.
   placement:
     mode: SnapgridCenter
   components:
@@ -17,7 +17,7 @@
   - type: Icon
     sprite: Structures/Machines/mixer.rsi
     state: mixer_loaded
-  - type: ChemMaster
+  - type: ChemPrentice
     pillDosageLimit: 20
   - type: Physics
     bodyType: Static
@@ -46,12 +46,12 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: ActivatableUI
-    key: enum.ChemMasterUiKey.Key
+    key: enum.ChemPrenticeUiKey.Key
   - type: ActivatableUIRequiresPower
   - type: UserInterface
     interfaces:
-      enum.ChemMasterUiKey.Key:
-        type: ChemMasterBoundUserInterface
+      enum.ChemPrenticeUiKey.Key:
+        type: ChemPrenticeBoundUserInterface
   - type: ApcPowerReceiver
     powerLoad: 250
   - type: Appearance

@@ -1,10 +1,11 @@
-using Content.Shared.Chemistry;
+using Content.Client.Chemistry.UI;
+using Content.Shared._NF.Chemistry;
 using Content.Shared.Containers.ItemSlots;
 using JetBrains.Annotations;
 using Robust.Client.GameObjects;
 using Robust.Client.UserInterface;
 
-namespace Content.Client.Chemistry.UI
+namespace Content.Client._NF.Chemistry.UI
 {
     /// <summary>
     /// Initializes a <see cref="ChemPrenticeWindow"/> and updates it when new server messages are received.
