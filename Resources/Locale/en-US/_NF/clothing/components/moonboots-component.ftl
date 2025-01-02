@@ -1,2 +1,2 @@
-# Toggle Moonboots Verb
-toggle-moonboots-verb-get-data-text = Toggle Moonboots
+# Toggle Moon Boots Verb
+toggle-moon-boots-verb-get-data-text = Toggle Moon Boots
