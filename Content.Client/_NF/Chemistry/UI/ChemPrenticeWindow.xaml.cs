@@ -154,8 +154,8 @@ namespace Content.Client._NF.Chemistry.UI
         /// <param name="state">State data for the dispenser.</param>
         private void UpdatePanelInfo(ChemPrenticeBoundUserInterfaceState state)
         {
-            BufferTransferButton.Pressed = state.Mode == ChemPrenticeMode.Transfer;
-            BufferDiscardButton.Pressed = state.Mode == ChemPrenticeMode.Discard;
+            BufferTransferButton.Pressed = state.Mode == ChemMasterMode.Transfer;
+            BufferDiscardButton.Pressed = state.Mode == ChemMasterMode.Discard;
 
             BuildContainerUI(InputContainerInfo, state.InputContainerInfo, true);
             //BuildContainerUI(OutputContainerInfo, state.OutputContainerInfo, false);

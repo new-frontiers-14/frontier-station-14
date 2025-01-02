@@ -1,5 +1,6 @@
 using Content.Server._NF.Chemistry.EntitySystems;
 using Content.Shared._NF.Chemistry;
+using Content.Shared.Chemistry;
 using Robust.Shared.Audio;
 
 namespace Content.Server.Chemistry.Components
@@ -16,7 +17,7 @@ namespace Content.Server.Chemistry.Components
         public uint PillType = 0;
 
         [DataField("mode"), ViewVariables(VVAccess.ReadWrite)]
-        public ChemPrenticeMode Mode = ChemPrenticeMode.Transfer;
+        public ChemMasterMode Mode = ChemMasterMode.Transfer;
 
         [DataField("pillDosageLimit", required: true), ViewVariables(VVAccess.ReadWrite)]
         public uint PillDosageLimit;
