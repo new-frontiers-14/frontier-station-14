@@ -132,18 +132,22 @@
     event: !type:ToggleActionEvent
 
 - type: entity
-  parent: ClothingShoesBase
+  parent: [ClothingShoesBase, BaseToggleClothing] # Frontier
   id: ClothingShoesBootsMoon
   name: moon boots
-  description: Special anti-gravity boots developed with a speciality blend of lunar rock gel. Shipped from the Netherlands.
+  description: Special anti-gravity boots developed with a speciality blend of lunar rock gel. Shipped from the Netherlands. By clicking your heels you can turn them off! #Frontier.
   components:
   - type: Sprite
     sprite: Clothing/Shoes/Boots/moonboots.rsi
     layers:
     - state: icon
+  - type: ToggleClothing # Frontier
+    action: ActionToggleMoonBoots # Frontier
   - type: Clothing
     sprite: Clothing/Shoes/Boots/moonboots.rsi
-  - type: AntiGravityClothing
+  - type: ComponentToggler # Frontier
+    components: # Frontier
+    - type: AntiGravityClothing   # Frontier    
   - type: StaticPrice
     price: 75
   - type: Tag
