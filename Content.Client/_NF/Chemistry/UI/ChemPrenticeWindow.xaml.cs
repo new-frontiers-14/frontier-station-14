@@ -16,7 +16,7 @@ using Content.Shared.FixedPoint;
 using static Robust.Client.UserInterface.Controls.BoxContainer;
 using Content.Shared._NF.Chemistry;
 
-namespace Content.Client.Chemistry.UI
+namespace Content.Client._NF.Chemistry.UI
 {
     /// <summary>
     /// Client-side UI used to control a <see cref="SharedChemPrenticeComponent"/>

@@ -1,4 +1,4 @@
-using Content.Client.Chemistry.UI;
+using Content.Client._NF.Chemistry.UI;
 using Content.Shared._NF.Chemistry;
 using Content.Shared.Containers.ItemSlots;
 using JetBrains.Annotations;
