@@ -105,6 +105,19 @@
       - state: ertmailcarrier
 
 - type: entity
+  id: SpawnPointMedicalOperationsManager
+  parent: SpawnPointJobBase
+  name: medicaloperationsmanager
+  components:
+  - type: SpawnPoint
+    job_id: MedicalOperationsManager
+  - type: Sprite
+    sprite: _NF/Markers/jobs.rsi
+    layers:
+      - state: green
+      - state: medic
+
+- type: entity
   id: SpawnPointStationRepresentative
   parent: SpawnPointHeadOfPersonnel
   name: station representative

@@ -601,7 +601,9 @@
 
 - type: entity
   parent: [BaseStructureIndestructible, BaseStructureComputerTabletop, BaseStationAdminBankATM]
+  name: station administration console
   id: BaseComputerTabletopStationAdminBankATM
+  abstract: true
   components:
   - type: Sprite
     drawdepth: SmallObjects
@@ -620,22 +622,31 @@
       state: id_key
 
 - type: entity
-  name: station administration console
   parent: BaseComputerTabletopStationAdminBankATM
   id: ComputerTabletopStationAdminBankATMFrontier
   description: Used to transfer funds from Frontier Outpost's bank account
+  suffix: Frontier, Tabletop
   components:
   - type: StationBankATM
     account: Frontier
 
 - type: entity
-  name: station administration console
   parent: BaseComputerTabletopStationAdminBankATM
   id: ComputerTabletopStationAdminBankATMNfsd
   description: Used to transfer funds from NFSD's bank account
+  suffix: NFSD, Tabletop
   components:
   - type: StationBankATM
     account: Nfsd
+
+- type: entity
+  parent: BaseComputerTabletopStationAdminBankATM
+  id: ComputerTabletopStationAdminBankATMMedical
+  description: Used to transfer funds from Medical Dispatch's bank account
+  suffix: Medical, Tabletop
+  components:
+  - type: StationBankATM
+    account: Medical
 
 - type: entity
   parent: [BaseStructureIndestructible, BaseStructureComputerTabletop, ComputerContrabandPalletConsole]
