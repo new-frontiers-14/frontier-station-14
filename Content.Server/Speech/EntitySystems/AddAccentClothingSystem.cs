@@ -32,7 +32,7 @@ public sealed class AddAccentClothingSystem : EntitySystem
             rep.Accent = component.ReplacementPrototype!;
 
         component.IsActive = true;
-        component.Wearer = args.Wearer;
+        component.Wearer = args.Wearer; // Frontier
     }
 
     private void OnGotUnequipped(EntityUid uid, AddAccentClothingComponent component, ref ClothingGotUnequippedEvent args)
