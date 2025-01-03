@@ -200,37 +200,58 @@ entities:
       data:
         tiles:
           0,0:
-            0: 65535
-          1,0:
-            0: 65399
-          0,1:
-            0: 65535
-          0,2:
-            0: 14335
-          0,3:
-            0: 2
-          1,1:
-            0: 65535
-          1,2:
-            0: 21
-          -1,0:
-            0: 61439
-          -1,1:
-            0: 65535
-          -1,2:
-            0: 36863
-          -1,-1:
-            0: 16384
+            0: 29942
           0,-1:
-            0: 64512
+            0: 36864
+            1: 3072
+          -1,0:
+            0: 49328
+          0,1:
+            0: 30541
+          -1,1:
+            0: 58893
+          0,2:
+            0: 947
+          -1,2:
+            0: 2464
+            1: 528
+          0,3:
+            1: 2
+          1,0:
+            0: 29447
+            1: 34816
+          1,1:
+            0: 33587
+            1: 2184
+          1,2:
+            0: 1
+            1: 20
           1,-1:
-            0: 24576
+            1: 8192
+            0: 16384
+          -1,-1:
+            1: 16384
         uniqueMixes:
         - volume: 2500
           temperature: 293.15
           moles:
           - 21.824879
           - 82.10312
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+          - 0
+        - volume: 2500
+          immutable: True
+          moles:
+          - 0
+          - 0
           - 0
           - 0
           - 0
@@ -1252,22 +1273,18 @@ entities:
       parent: 2
 - proto: Thruster
   entities:
+  - uid: 132
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 5.5,0.5
+      parent: 2
   - uid: 173
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 0.5,-0.5
       parent: 2
-  - uid: 174
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 5.5,0.5
-      parent: 2
-    - type: Thruster
-      enabled: False
-    - type: ApcPowerReceiver
-      powerLoad: 1
   - uid: 175
     components:
     - type: Transform
