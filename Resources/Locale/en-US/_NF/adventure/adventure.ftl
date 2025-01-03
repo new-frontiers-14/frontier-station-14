@@ -11,8 +11,12 @@ adventure-webhook-top-loss = lost a total of {$amount}.
 
 adventure-webhook-ledger-start = Ledger Summary
 
-adventure-title = New Frontier Adventure Mode
-adventure-description = Join a ship crew or buy your own and explore, research, salvage, or haul your way to riches!
+nf-adventure-title = Adventure
+nf-adventure-description = Join a ship crew or buy your own and explore, research, salvage, or haul your way to riches!
+
+nf-pirate-title = Pirates
+nf-pirate-description = A gang of pirates is on the loose! Take care out in space and try not to get plundered!
+
 currency = Spesos
 
 shipyard-rules-default1 =
