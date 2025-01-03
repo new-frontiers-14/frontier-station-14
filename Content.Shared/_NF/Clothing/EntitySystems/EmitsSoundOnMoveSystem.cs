@@ -10,7 +10,7 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Timing;
 
-namespace Content.Shared._NF.Clothing.Systems;
+namespace Content.Shared._NF.Clothing.EntitySystems;
 
 public sealed class EmitsSoundOnMoveSystem : EntitySystem
 {
