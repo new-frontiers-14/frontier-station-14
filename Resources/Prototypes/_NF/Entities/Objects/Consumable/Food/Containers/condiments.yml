@@ -78,3 +78,23 @@
     state: squeeze-bottle-mustard
   - type: Icon
     state: squeeze-bottle-mustard
+
+- type: entity
+  parent: BaseFoodCondimentSqueezeBottle
+  id: FoodCondimentSqueezeBottleClear
+  name: clear squeeze bottle
+  description: When it comes to squeeze bottles this is the clear choice.
+  components:
+  - type: Sprite
+    layers:
+      - state: squeeze-bottle-clear
+      - state: squeeze-bottle-clear1
+        map: [ "enum.SolutionContainerLayers.Fill" ]
+        visible: false
+    state: squeeze-bottle-clear
+  - type: Icon
+    state: squeeze-bottle-clear
+  - type: Appearance
+  - type: SolutionContainerVisuals
+    maxFillLevels: 6
+    fillBaseName: squeeze-bottle-clear
