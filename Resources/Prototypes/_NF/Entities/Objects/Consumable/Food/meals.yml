@@ -361,3 +361,29 @@
   - type: Tag
     tags:
     - Fruit
+
+- type: entity
+  name: cheese sandwich
+  parent: FoodBagelBase
+  id: FoodMealCheeseSandwich
+  description: The slice of cheese is the thin line between you and just eating bread.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - bread
+      - cheesy
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/Baked/bread.rsi
+    state: cheesesandwich
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 25
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: Vitamin
+          Quantity: 5
+  - type: Tag
+    tags:
+    - Meat
