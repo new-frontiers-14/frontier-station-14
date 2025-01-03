@@ -97,32 +97,14 @@
     state: icon
 
 # condiment cup
-
 - type: entity
-  parent: DrinkBaseCup
+  parent: DrinkWaterCup
   id: CondimentCup
   name: condiment cup
   description: A flimsy cup that can be filled with condiments. Warranty void if filled with other things.
   components:
-  - type: Drink
   - type: Sprite
     sprite: _NF/Objects/Consumable/Drinks/condiment_cup.rsi
-    layers:
-      - state: icon-0
-      - map: ["enum.SolutionContainerLayers.Fill"]
-        state: icon-1
-  - type: Appearance
-  - type: SolutionContainerVisuals
-    maxFillLevels: 1
-    fillBaseName: icon-
-  - type: Tag
-    tags:
-    - Trash
-    - WhitelistChameleon
-    - CondimentCup
-  - type: TrashOnSolutionEmpty
-    solution: drink
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 5
+  - type: Clothing
+    sprite: _NF/Clothing/Head/Hats/condiment_cup.rsi
+  - type: CondimentCup
