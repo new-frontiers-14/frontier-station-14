@@ -38,4 +38,48 @@
     icon:
       sprite: Nyanotrasen/Objects/Specific/Mail/mail.rsi
       state: icon
-    readonly: true # Frontier
+
+# - type: entity
+#   parent: NFBasePDACartridge
+#   id: StockTradingCartridge
+#   name: StockTrading cartridge
+#   description: A cartridge that tracks the intergalactic stock market.
+#   components:
+#   - type: Sprite
+#     sprite: DeltaV/Objects/Devices/cartridge.rsi
+#     state: cart-stonk
+#   - type: Icon
+#     sprite: DeltaV/Objects/Devices/cartridge.rsi
+#     state: cart-mail
+#   - type: UIFragment
+#     ui: !type:StockTradingUi
+#   - type: StockTradingCartridge
+#   - type: Cartridge
+#     programName: stock-trading-program-name
+#     icon:
+#       sprite: DeltaV/Misc/program_icons.rsi
+#       state: stock_trading
+#   - type: BankClient
+#   - type: AccessReader # This is so that we can restrict who can buy stocks
+#     access: [["Orders"]]
+
+- type: entity
+  parent: NFBasePDACartridge
+  id: NanoChatCartridge
+  name: NanoChat cartridge
+  description: Lets you message other people!
+  components:
+  - type: Sprite
+    sprite: DeltaV/Objects/Devices/cartridge.rsi
+    state: cart-chat
+  - type: UIFragment
+    ui: !type:NanoChatUi
+  - type: NanoChatCartridge
+  - type: Cartridge
+    programName: nano-chat-program-name
+    icon:
+      sprite: DeltaV/Misc/program_icons.rsi
+      state: nanochat
+  - type: ActiveRadio
+    channels:
+    - Common
