@@ -564,8 +564,10 @@
       state: medical
     - type: MachineBoard
       prototype: ChemMaster
-      requirements: # Frontier
-        Capacitor: 1 # Frontier stackRequirements<requirements
+      requirements: # Frontier: stackRequirements<requirements
+        # Capacitor: 1 # Frontier
+        Manipulator: 2 # Frontier
+        MatterBin: 2 # Frontier
       stackRequirements:
         Glass: 1
         Cable: 1
