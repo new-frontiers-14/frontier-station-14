@@ -24,7 +24,7 @@ public sealed class AddAccentClothingSystem : EntitySystem
             return;
 
         // add accent to the user
-        var accentComponent = (Component)_componentFactory.GetComponent(componentType);
+        var accentComponent = (Component) _componentFactory.GetComponent(componentType);
         AddComp(args.Wearer, accentComponent);
 
         // snowflake case for replacement accent
