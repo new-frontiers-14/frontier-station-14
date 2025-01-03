@@ -1,5 +1,6 @@
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers; // Frontier
+using Content.Server.Cargo.Systems; // Frontier
 using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
 using Content.Server.Ghost.Components;
@@ -93,6 +94,7 @@ namespace Content.Server.Ghost
             SubscribeLocalEvent<GhostComponent, BooActionEvent>(OnActionPerform);
             SubscribeLocalEvent<GhostComponent, ToggleGhostHearingActionEvent>(OnGhostHearingAction);
             SubscribeLocalEvent<GhostComponent, InsertIntoEntityStorageAttemptEvent>(OnEntityStorageInsertAttempt);
+            SubscribeLocalEvent<GhostComponent, PriceCalculationEvent>(OnPriceCalculation); // Frontier
 
             SubscribeLocalEvent<RoundEndTextAppendEvent>(_ => MakeVisible(true));
             SubscribeLocalEvent<ToggleGhostVisibilityToAllEvent>(OnToggleGhostVisibilityToAll);
@@ -592,6 +594,14 @@ namespace Content.Server.Ghost
 
             return true;
         }
+
+        // Frontier: worthless ghosts
+        private void OnPriceCalculation(Entity<GhostComponent> ent, ref PriceCalculationEvent args)
+        {
+            args.Price = 0;
+            args.Handled = true;
+        }
+        // End Frontier
     }
 
     public sealed class GhostAttemptHandleEvent(MindComponent mind, bool canReturnGlobal) : HandledEntityEventArgs
