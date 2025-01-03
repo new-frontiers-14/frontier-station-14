@@ -13,25 +13,13 @@ tilemap:
 entities:
 - proto: ""
   entities:
-  - uid: 1
-    components:
-    - type: MetaData
-      name: Map Entity
-    - type: Transform
-    - type: Map
-      mapPaused: True
-    - type: PhysicsMap
-    - type: GridTree
-    - type: MovedGrids
-    - type: Broadphase
-    - type: OccluderTree
   - uid: 2
     components:
     - type: MetaData
       name: Tide
     - type: Transform
       pos: -2.3024244,-6.0853996
-      parent: 1
+      parent: invalid
     - type: MapGrid
       chunks:
         0,0:
@@ -722,6 +710,13 @@ entities:
     - type: Transform
       pos: 3.5,4.5
       parent: 2
+- proto: FuelPlasma
+  entities:
+  - uid: 83
+    components:
+    - type: Transform
+      pos: -1.4788256,4.4430637
+      parent: 2
 - proto: GasPassiveVent
   entities:
   - uid: 85
@@ -1003,13 +998,6 @@ entities:
     - type: Transform
       pos: -1.5,4.5
       parent: 2
-- proto: MaintenanceWeaponSpawner
-  entities:
-  - uid: 132
-    components:
-    - type: Transform
-      pos: 0.5,4.5
-      parent: 2
 - proto: Mattress
   entities:
   - uid: 133
@@ -1053,10 +1041,10 @@ entities:
       parent: 2
 - proto: PortableGeneratorPacman
   entities:
-  - uid: 139
+  - uid: 1
     components:
     - type: Transform
-      pos: -0.5,3.5
+      pos: 0.5,4.5
       parent: 2
 - proto: PosterContrabandGreyTide
   entities:
@@ -1120,18 +1108,6 @@ entities:
     - type: Transform
       pos: 7.5,6.5
       parent: 2
-- proto: RandomSpawner100
-  entities:
-  - uid: 83
-    components:
-    - type: Transform
-      pos: 2.5,1.5
-      parent: 2
-  - uid: 137
-    components:
-    - type: Transform
-      pos: -1.5,7.5
-      parent: 2
 - proto: ShardGlass
   entities:
   - uid: 151
@@ -1159,13 +1135,6 @@ entities:
     components:
     - type: Transform
       pos: -0.4028381,10.563259
-      parent: 2
-- proto: SheetPlasma10
-  entities:
-  - uid: 157
-    components:
-    - type: Transform
-      pos: -1.4558418,4.5276914
       parent: 2
 - proto: SheetSteel1
   entities:
