@@ -252,15 +252,6 @@
 
 - type: entity
   parent: ExosuitFabricatorFlatpack
-  id: ScienceTechFabFlatpack
-  name: science techfab flatpack
-  description: A flatpack used for constructing a science techfab.
-  components:
-  - type: Flatpack
-    entity: ScienceTechFab
-
-- type: entity
-  parent: ExosuitFabricatorFlatpack
   id: MachineArtifactCrusherFlatpack
   name: artifact crusher flatpack
   description: A flatpack used for constructing an artifact crusher.
@@ -370,11 +361,13 @@
 - type: entity
   parent: UniformPrinterFlatpack
   id: HydroponicsSoilNutritionFlatpack
-  name: crate with fertile soil
-  description: A crate with fertile soil used for constructing a soil bed for growing.
+  name: crate of fertile soil
+  description: A crate of fertile soil used for constructing a soil bed for growing. Spread it around with a shovel.
   components:
   - type: Flatpack
     entity: HydroponicsSoilNutrition
+    qualityNeeded: Digging
+    unpackSound: /Audio/Items/shovel_dig.ogg
   - type: Sprite
     layers:
     - state: soil
@@ -382,11 +375,13 @@
 - type: entity
   parent: UniformPrinterFlatpack
   id: HydroponicsSoilEmptyFlatpack
-  name: crate with soil
-  description: A crate with soil used for constructing a soil bed for growing.
+  name: crate of soil
+  description: A crate of soil used for constructing a soil bed for growing. Spread it around with a shovel.
   components:
   - type: Flatpack
     entity: HydroponicsSoilEmpty
+    qualityNeeded: Digging
+    unpackSound: /Audio/Items/shovel_dig.ogg
   - type: Sprite
     layers:
     - state: soil
@@ -669,9 +664,12 @@
   components:
   - type: Flatpack
     entity: AirlockShuttle
+  - type: Sprite
+    layers:
+    - state: command_airlock_directional
 
 - type: entity
-  parent: AirlockFlatpack
+  parent: AirlockShuttleFlatpack
   id: AirlockGlassShuttleFlatpack
   name: docking glass airlock flatpack
   description: A flatpack used for constructing a glass docking airlock.
