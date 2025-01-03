@@ -19,11 +19,11 @@ entities:
     components:
     - type: MetaData
       name: Bocakillo
-    - type: BecomesStation
-      id: Bocakillo
     - type: Transform
       pos: -0.4375,-1.703125
       parent: invalid
+    - type: BecomesStation
+      id: Bocakillo
     - type: MapGrid
       chunks:
         0,0:
@@ -450,15 +450,6 @@ entities:
     - type: Transform
       pos: -2.5,0.5
       parent: 2
-- proto: BoxBodyBag
-  entities:
-  - uid: 192
-    components:
-    - type: Transform
-      parent: 191
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: ButtonFrameCaution
   entities:
   - uid: 213
@@ -810,39 +801,6 @@ entities:
     - type: Transform
       pos: -0.5,12.5
       parent: 2
-- proto: ClosetWall
-  entities:
-  - uid: 191
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 3.5,1.5
-      parent: 2
-    - type: EntityStorage
-      air:
-        volume: 200
-        immutable: False
-        temperature: 293.14923
-        moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-    - type: ContainerContainer
-      containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 192
 - proto: ComputerIFF
   entities:
   - uid: 195
@@ -1261,38 +1219,20 @@ entities:
       parent: 2
 - proto: LockerWallMaterialsFuelPlasmaFilled
   entities:
-  - uid: 188
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -1.5,6.5
-      parent: 2
-- proto: LockerWallMedicalFilled
-  entities:
-  - uid: 216
+  - uid: 191
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 1.5,5.5
       parent: 2
-    - type: EntityStorage
-      air:
-        volume: 200
-        immutable: False
-        temperature: 293.14923
-        moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+- proto: LockerWallMedicalFilled
+  entities:
+  - uid: 188
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 3.5,1.5
+      parent: 2
 - proto: PirateFlag
   entities:
   - uid: 79
