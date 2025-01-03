@@ -1,14 +1,16 @@
 using Content.Shared.Alert;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
+using Content.Shared._NF.Clothing.EntitySystems;
 
-namespace Content.Shared.Clothing.Components;
+namespace Content.Shared._NF.Clothing.Components;
 
 /// <summary>
 /// This is used for clothing that makes an entity weightless when worn.
 /// </summary>
 [RegisterComponent, NetworkedComponent]
-public sealed partial class NFAntiGravityClothingComponent : Component
+[Access(typeof(SharedNFMoonBootsSystem))]
+public sealed partial class NFMoonBootsComponent : Component
 {
     [DataField]
     public ProtoId<AlertPrototype> MoonBootsAlert = "MoonBoots";

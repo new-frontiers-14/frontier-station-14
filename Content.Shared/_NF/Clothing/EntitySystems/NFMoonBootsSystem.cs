@@ -1,4 +1,3 @@
-using Content.Shared.Clothing.Components;
 using Content.Shared.Gravity;
 using Content.Shared.Inventory;
 using Content.Shared.Item.ItemToggle.Components;
@@ -6,11 +5,13 @@ using Content.Shared.Alert;
 using Content.Shared.Item;
 using Content.Shared.Item.ItemToggle;
 using Robust.Shared.Containers;
-using Content.Shared.Atmos.Components;
+using Content.Shared.Clothing.EntitySystems;
+using Content.Shared._NF.Clothing.Components;
+using Content.Shared.Clothing;
 
-namespace Content.Shared.Clothing.EntitySystems;
+namespace Content.Shared._NF.Clothing.EntitySystems;
 
-public sealed class NFAntiGravityClothingSystem : EntitySystem
+public sealed class SharedNFMoonBootsSystem : EntitySystem
 {
     [Dependency] private readonly AlertsSystem _alerts = default!;
     [Dependency] private readonly ClothingSystem _clothing = default!;
@@ -23,17 +24,17 @@ public sealed class NFAntiGravityClothingSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<NFAntiGravityClothingComponent, ItemToggledEvent>(OnToggled);
-        SubscribeLocalEvent<NFAntiGravityClothingComponent, ClothingGotEquippedEvent>(OnGotEquipped);
-        SubscribeLocalEvent<NFAntiGravityClothingComponent, ClothingGotUnequippedEvent>(OnGotUnequipped);
-        SubscribeLocalEvent<NFAntiGravityClothingComponent, IsWeightlessEvent>(OnIsWeightless);
-        SubscribeLocalEvent<NFAntiGravityClothingComponent, InventoryRelayedEvent<IsWeightlessEvent>>(OnIsWeightless);
+        SubscribeLocalEvent<NFMoonBootsComponent, ItemToggledEvent>(OnToggled);
+        SubscribeLocalEvent<NFMoonBootsComponent, ClothingGotEquippedEvent>(OnGotEquipped);
+        SubscribeLocalEvent<NFMoonBootsComponent, ClothingGotUnequippedEvent>(OnGotUnequipped);
+        SubscribeLocalEvent<NFMoonBootsComponent, IsWeightlessEvent>(OnIsWeightless);
+        SubscribeLocalEvent<NFMoonBootsComponent, InventoryRelayedEvent<IsWeightlessEvent>>(OnIsWeightless);
     }
 
-    private void OnToggled(Entity<NFAntiGravityClothingComponent> ent, ref ItemToggledEvent args)
+    private void OnToggled(Entity<NFMoonBootsComponent> ent, ref ItemToggledEvent args)
     {
         var (uid, comp) = ent;
-        // only stick to the floor if being worn in the correct slot
+        // only works if being worn in the correct slot
         if (_container.TryGetContainingContainer((uid, null, null), out var container) &&
             _inventory.TryGetSlotEntity(container.Owner, comp.Slot, out var worn)
             && uid == worn)
@@ -46,17 +47,17 @@ public sealed class NFAntiGravityClothingSystem : EntitySystem
         _clothing.SetEquippedPrefix(ent, prefix);
     }
 
-    private void OnGotUnequipped(Entity<NFAntiGravityClothingComponent> ent, ref ClothingGotUnequippedEvent args)
+    private void OnGotUnequipped(Entity<NFMoonBootsComponent> ent, ref ClothingGotUnequippedEvent args)
     {
         UpdateMoonbootEffects(args.Wearer, ent, false);
     }
 
-    private void OnGotEquipped(Entity<NFAntiGravityClothingComponent> ent, ref ClothingGotEquippedEvent args)
+    private void OnGotEquipped(Entity<NFMoonBootsComponent> ent, ref ClothingGotEquippedEvent args)
     {
         UpdateMoonbootEffects(args.Wearer, ent, _toggle.IsActivated(ent.Owner));
     }
 
-    public void UpdateMoonbootEffects(EntityUid user, Entity<NFAntiGravityClothingComponent> ent, bool state)
+    public void UpdateMoonbootEffects(EntityUid user, Entity<NFMoonBootsComponent> ent, bool state)
     {
         if (state)
             _alerts.ShowAlert(user, ent.Comp.MoonBootsAlert);
@@ -64,7 +65,7 @@ public sealed class NFAntiGravityClothingSystem : EntitySystem
             _alerts.ClearAlert(user, ent.Comp.MoonBootsAlert);
     }
 
-    private void OnIsWeightless(Entity<NFAntiGravityClothingComponent> ent, ref IsWeightlessEvent args)
+    private void OnIsWeightless(Entity<NFMoonBootsComponent> ent, ref IsWeightlessEvent args)
     {
         if (args.Handled || !_toggle.IsActivated(ent.Owner))
             return;
@@ -73,7 +74,7 @@ public sealed class NFAntiGravityClothingSystem : EntitySystem
         args.IsWeightless = true;
     }
 
-    private void OnIsWeightless(Entity<NFAntiGravityClothingComponent> ent, ref InventoryRelayedEvent<IsWeightlessEvent> args)
+    private void OnIsWeightless(Entity<NFMoonBootsComponent> ent, ref InventoryRelayedEvent<IsWeightlessEvent> args)
     {
         OnIsWeightless(ent, ref args.Args);
     }
