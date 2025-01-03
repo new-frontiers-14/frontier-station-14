@@ -13,14 +13,8 @@ namespace Content.Server.Chemistry.Components
     [Access(typeof(ChemPrenticeSystem))]
     public sealed partial class ChemPrenticeComponent : Component
     {
-        [DataField("pillType"), ViewVariables(VVAccess.ReadWrite)]
-        public uint PillType = 0;
-
         [DataField("mode"), ViewVariables(VVAccess.ReadWrite)]
         public ChemMasterMode Mode = ChemMasterMode.Transfer;
-
-        [DataField("pillDosageLimit", required: true), ViewVariables(VVAccess.ReadWrite)]
-        public uint PillDosageLimit;
 
         [DataField("clickSound"), ViewVariables(VVAccess.ReadWrite)]
         public SoundSpecifier ClickSound = new SoundPathSpecifier("/Audio/Machines/machine_switch.ogg");

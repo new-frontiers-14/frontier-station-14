@@ -2,7 +2,7 @@
                 xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                 xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
-                MinSize="620 670"
+                MinSize="512 256"
                 Title="{Loc 'chem-master-bound-user-interface-title'}">
     <BoxContainer Orientation="Vertical" HorizontalExpand="True" Margin="5" SeparationOverride="10">
         <!-- Input container info -->
@@ -12,12 +12,12 @@
             <Button MinSize="80 0" Name="InputEjectButton" Access="Public" Text="{Loc 'chem-master-window-eject-button'}" />
         </BoxContainer>
 
-        <PanelContainer VerticalExpand="True" MinSize="0 200">
+        <PanelContainer VerticalExpand="True" MinSize="0 100">
             <PanelContainer.PanelOverride>
                 <gfx:StyleBoxFlat BackgroundColor="#1B1E1B" />
             </PanelContainer.PanelOverride>
 
-            <ScrollContainer HorizontalExpand="True" MinSize="0 200">
+            <ScrollContainer HorizontalExpand="True" MinSize="0 100">
                 <!-- Initially empty, when server sends state data this will have container contents and fill volume.-->
                 <BoxContainer Name="InputContainerInfo" Orientation="Vertical" Margin="4" HorizontalExpand="True">
                     <Label Text="{Loc 'chem-master-window-no-container-loaded-text'}" />
@@ -37,12 +37,12 @@
         </BoxContainer>
 
         <!-- Buffer info -->
-        <PanelContainer VerticalExpand="True" MinSize="0 200">
+        <PanelContainer VerticalExpand="True" MinSize="0 150">
             <PanelContainer.PanelOverride>
                 <gfx:StyleBoxFlat BackgroundColor="#1B1E1B" />
             </PanelContainer.PanelOverride>
 
-            <ScrollContainer HorizontalExpand="True" MinSize="0 200">
+            <ScrollContainer HorizontalExpand="True" MinSize="0 150">
                 <!-- Buffer reagent list -->
                 <BoxContainer Name="BufferInfo" Orientation="Vertical" Margin="4" HorizontalExpand="True">
                     <Label Text="{Loc 'chem-master-window-buffer-empty-text'}" />

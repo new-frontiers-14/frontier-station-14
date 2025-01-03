@@ -36,24 +36,10 @@ namespace Content.Client._NF.Chemistry.UI
             // Setup static button actions.
             _window.InputEjectButton.OnPressed += _ => SendMessage(
                 new ItemSlotButtonPressedEvent(SharedChemMaster.InputSlotName));
-            //_window.OutputEjectButton.OnPressed += _ => SendMessage(
-            //    new ItemSlotButtonPressedEvent(SharedChemPrentice.OutputSlotName));
             _window.BufferTransferButton.OnPressed += _ => SendMessage(
                 new ChemMasterSetModeMessage(ChemMasterMode.Transfer));
             _window.BufferDiscardButton.OnPressed += _ => SendMessage(
                 new ChemMasterSetModeMessage(ChemMasterMode.Discard));
-            //_window.CreatePillButton.OnPressed += _ => SendMessage(
-            //    new ChemPrenticeCreatePillsMessage(
-            //        (uint) _window.PillDosage.Value, (uint) _window.PillNumber.Value, _window.LabelLine));
-            //_window.CreateBottleButton.OnPressed += _ => SendMessage(
-            //    new ChemPrenticeOutputToBottleMessage(
-            //        (uint) _window.BottleDosage.Value, _window.LabelLine));
-
-            /*for (uint i = 0; i < _window.PillTypeButtons.Length; i++)
-            {
-                var pillType = i;
-                _window.PillTypeButtons[i].OnPressed += _ => SendMessage(new ChemPrenticeSetPillTypeMessage(pillType));
-            }*/
 
             _window.OnReagentButtonPressed += (args, button) => SendMessage(new ChemMasterReagentAmountButtonMessage(button.Id, button.Amount, button.IsBuffer));
         }

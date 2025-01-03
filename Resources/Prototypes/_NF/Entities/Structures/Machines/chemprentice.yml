@@ -1,6 +1,6 @@
 - type: entity
   id: ChemPrentice
-  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  parent: [ BaseMachinePowered, SmallConstructibleMachine ]
   name: ChemPrentice 2000
   description: An chemical manipulator and seperator.
   placement:
@@ -18,7 +18,6 @@
     sprite: Structures/Machines/mixer.rsi
     state: mixer_loaded
   - type: ChemPrentice
-    pillDosageLimit: 20
   - type: Physics
     bodyType: Static
   - type: Fixtures
@@ -27,11 +26,10 @@
         shape:
           !type:PhysShapeAabb
           bounds: "-0.25,-0.4,0.25,0.4"
-        density: 190
         mask:
-        - MachineMask
+        - TabletopMachineMask
         layer:
-        - MachineLayer
+        - TabletopMachineLayer
   - type: Destructible
     thresholds:
     - trigger:
@@ -68,7 +66,6 @@
   - type: ContainerContainer
     containers:
       beakerSlot: !type:ContainerSlot
-      outputSlot: !type:ContainerSlot
       machine_board: !type:Container
       machine_parts: !type:Container
   - type: ItemSlots
@@ -77,18 +74,12 @@
         whitelist:
           components:
           - FitsInDispenser
-      outputSlot:
-        whitelistFailPopup: chem-master-component-cannot-put-entity-message
-        whitelist:
-          tags:
-          - Bottle
-          - PillCanister
   - type: SolutionContainerManager
     solutions:
-      buffer: {}
+      buffer: {maxVol: 500}
   - type: DumpableSolution
     solution: buffer
-    unlimited: true
+    unlimited: false
   - type: GuideHelp
     guides:
     - Chemicals

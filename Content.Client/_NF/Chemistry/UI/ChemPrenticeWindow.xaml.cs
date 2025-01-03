@@ -15,6 +15,7 @@ using System.Numerics;
 using Content.Shared.FixedPoint;
 using static Robust.Client.UserInterface.Controls.BoxContainer;
 using Content.Client.Chemistry.UI;
+using Content.Client.Info;
 
 namespace Content.Client._NF.Chemistry.UI
 {
@@ -26,9 +27,6 @@ namespace Content.Client._NF.Chemistry.UI
     {
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
         public event Action<BaseButton.ButtonEventArgs, ReagentButton>? OnReagentButtonPressed;
-        public readonly Button[] PillTypeButtons;
-
-        private const string PillsRsiPath = "/Textures/Objects/Specific/Chemistry/pills.rsi";
 
         /// <summary>
         /// Create and initialize the chem master UI client-side. Creates the basic layout,
@@ -38,56 +36,6 @@ namespace Content.Client._NF.Chemistry.UI
         {
             RobustXamlLoader.Load(this);
             IoCManager.InjectDependencies(this);
-
-            // Pill type selection buttons, in total there are 20 pills.
-            // Pill rsi file should have states named as pill1, pill2, and so on.
-            var resourcePath = new ResPath(PillsRsiPath);
-            var pillTypeGroup = new ButtonGroup();
-            PillTypeButtons = new Button[20];
-            for (uint i = 0; i < PillTypeButtons.Length; i++)
-            {
-                // For every button decide which stylebase to have
-                // Every row has 10 buttons
-                String styleBase = StyleBase.ButtonOpenBoth;
-                uint modulo = i % 10;
-                if (i > 0 && modulo == 0)
-                    styleBase = StyleBase.ButtonOpenRight;
-                else if (i > 0 && modulo == 9)
-                    styleBase = StyleBase.ButtonOpenLeft;
-                else if (i == 0)
-                    styleBase = StyleBase.ButtonOpenRight;
-
-                // Generate buttons
-                PillTypeButtons[i] = new Button
-                {
-                    Access = AccessLevel.Public,
-                    StyleClasses = { styleBase },
-                    MaxSize = new Vector2(42, 28),
-                    Group = pillTypeGroup
-                };
-
-                // Generate buttons textures
-                var specifier = new SpriteSpecifier.Rsi(resourcePath, "pill" + (i + 1));
-                TextureRect pillTypeTexture = new TextureRect
-                {
-                    Texture = specifier.Frame0(),
-                    TextureScale = new Vector2(1.75f, 1.75f),
-                    Stretch = TextureRect.StretchMode.KeepCentered,
-                };
-
-                PillTypeButtons[i].AddChild(pillTypeTexture);
-                //Grid.AddChild(PillTypeButtons[i]);
-            }
-
-            //PillDosage.InitDefaultButtons();
-            //PillNumber.InitDefaultButtons();
-            //BottleDosage.InitDefaultButtons();
-
-            // Ensure label length is within the character limit.
-            //LabelLineEdit.IsValid = s => s.Length <= SharedChemPrentice.LabelMaxLength;
-
-            //Tabs.SetTabTitle(0, Loc.GetString("chem-master-window-input-tab"));
-            //Tabs.SetTabTitle(1, Loc.GetString("chem-master-window-output-tab"));
         }
 
         private ReagentButton MakeReagentButton(string text, ChemMasterReagentAmount amount, ReagentId id, bool isBuffer, string styleClass)
@@ -105,33 +53,12 @@ namespace Content.Client._NF.Chemistry.UI
         public void UpdateState(BoundUserInterfaceState state)
         {
             var castState = (ChemPrenticeBoundUserInterfaceState)state;
-            //if (castState.UpdateLabel)
-            //    LabelLine = GenerateLabel(castState);
             UpdatePanelInfo(castState);
-
-            var output = castState.OutputContainerInfo;
 
             //BufferCurrentVolume.Text = $" {castState.BufferCurrentVolume?.Int() ?? 0}u";
 
             InputEjectButton.Disabled = castState.InputContainerInfo is null;
-            //OutputEjectButton.Disabled = output is null;
-            //CreateBottleButton.Disabled = output?.Reagents == null;
-            //CreatePillButton.Disabled = output?.Entities == null;
 
-            var remainingCapacity = output is null ? 0 : (output.MaxVolume - output.CurrentVolume).Int();
-            var holdsReagents = output?.Reagents != null;
-            var pillNumberMax = holdsReagents ? 0 : remainingCapacity;
-            var bottleAmountMax = holdsReagents ? remainingCapacity : 0;
-
-            PillTypeButtons[castState.SelectedPillType].Pressed = true;
-            //PillNumber.IsValid = x => x >= 0 && x <= pillNumberMax;
-            //PillDosage.IsValid = x => x > 0 && x <= castState.PillDosageLimit;
-            //BottleDosage.IsValid = x => x >= 0 && x <= bottleAmountMax;
-
-            //if (PillNumber.Value > pillNumberMax)
-            //    PillNumber.Value = pillNumberMax;
-            //if (BottleDosage.Value > bottleAmountMax)
-            //    BottleDosage.Value = bottleAmountMax;
         }
 
         /// <summary>
@@ -158,7 +85,6 @@ namespace Content.Client._NF.Chemistry.UI
             BufferDiscardButton.Pressed = state.Mode == ChemMasterMode.Discard;
 
             BuildContainerUI(InputContainerInfo, state.InputContainerInfo, true);
-            //BuildContainerUI(OutputContainerInfo, state.OutputContainerInfo, false);
 
             BufferInfo.Children.Clear();
 
@@ -179,7 +105,7 @@ namespace Content.Client._NF.Chemistry.UI
             bufferHBox.AddChild(bufferLabel);
             var bufferVol = new Label
             {
-                Text = $"{state.BufferCurrentVolume}u",
+                Text = $"{state.BufferCurrentVolume}/{state.BufferMaxVolume}",
                 StyleClasses = { StyleNano.StyleClassLabelSecondaryColor }
             };
             bufferHBox.AddChild(bufferVol);
@@ -317,32 +243,5 @@ namespace Content.Client._NF.Chemistry.UI
 
             }
         }
-
-        /*public String LabelLine
-        {
-            get
-            {
-                return LabelLineEdit.Text;
-            }
-            set
-            {
-                LabelLineEdit.Text = value;
-            }
-        }*/
     }
-
-    /*public sealed class ReagentButton : Button
-    {
-        public ChemPrenticeReagentAmount Amount { get; set; }
-        public bool IsBuffer = true;
-        public ReagentId Id { get; set; }
-        public ReagentButton(string text, ChemPrenticeReagentAmount amount, ReagentId id, bool isBuffer, string styleClass)
-        {
-            AddStyleClass(styleClass);
-            Text = text;
-            Amount = amount;
-            Id = id;
-            IsBuffer = isBuffer;
-        }
-    }*/
 }
