@@ -132,33 +132,20 @@
     event: !type:ToggleActionEvent
 
 - type: entity
-  parent: [ClothingShoesBase, BaseToggleClothing] # Frontier: Added BaseToggleClothing
+  parent: ClothingShoesBase
   id: ClothingShoesBootsMoon
   name: moon boots
-  description: Special anti-gravity boots developed with a speciality blend of lunar rock gel. Shipped from the Netherlands. By clicking your heels you can turn them off! #Frontier.
+  description: Special anti-gravity boots developed with a speciality blend of lunar rock gel. Shipped from the Netherlands.
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: Sprite
-    sprite: _NF/Clothing/Shoes/Boots/moonboots.rsi # Frontier: Moved to _NF
+    sprite: Clothing/Shoes/Boots/moonboots.rsi
     layers:
     - state: icon
-      map: [ "enum.ToggleVisuals.Layer" ] # Frontier
   - type: Clothing
-    sprite: _NF/Clothing/Shoes/Boots/moonboots.rsi # Frontier: Moved to _NF
-  - type: ComponentToggler # Frontier
-    components: # Frontier
-    - type: AntiGravityClothing # Frontier    
+    sprite: Clothing/Shoes/Boots/moonboots.rsi
+  - type: AntiGravityClothing
   - type: StaticPrice
     price: 75
   - type: Tag
     tags: [ ]
-  - type: ToggleClothing # Frontier
-    action: ActionToggleMoonBoots # Frontier
-  - type: ToggleVerb
-    text: toggle-moon-boots-verb-get-data-text
-  - type: Appearance
-  - type: GenericVisualizer # Frontier
-    visuals: # Frontier
-      enum.ToggleVisuals.Toggled: # Frontier
-        enum.ToggleVisuals.Layer: # Frontier
-          True: {state: icon-on} # Frontier
-          False: {state: icon} # Frontier
