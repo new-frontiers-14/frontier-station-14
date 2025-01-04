@@ -151,12 +151,20 @@
   components:
   - type: StorageFill
     contents:
-      - id: ColoredLightTubeRed
-        amount: 4
-      - id: ColoredLightTubeFrostyBlue
-        amount: 4
-      - id: ColoredLightTubeBlackLight
-        amount: 4
+      - id: LightTubeCrystalCyan
+        amount: 2
+      - id: LightTubeCrystalBlue
+        amount: 2
+      - id: LightTubeCrystalRed
+        amount: 2
+      - id: LightTubeCrystalPink
+        amount: 2
+      - id: LightTubeCrystalOrange
+        amount: 2
+      - id: LightTubeCrystalRed
+        amount: 2
+      - id: LightTubeCrystalGreen
+        amount: 2
   - type: Sprite
     layers:
       - state: box
@@ -168,9 +176,6 @@
     whitelist:
       components:
       - LightBulb
-  - type: Tag
-    tags:
-      - DroneUsable
 
 - type: entity
   name: colored bulbs box
@@ -198,6 +203,7 @@
       - state: light
         color: "cyan"
   - type: Storage
+    maxItemSize: Small
     grid:
     - 0,0,5,3
     whitelist:
