@@ -28,8 +28,10 @@
 - type: loadoutGroup
   id: DeputyNeck
   name: loadout-group-contractor-neck
-  minLimit: 0
+  hidden: true # No point in showing this, it gets auto-selected.
   loadouts:
+  - DeputyClothingNeckBadgeDeputy
+  fallbacks:
   - DeputyClothingNeckBadgeDeputy
 
 - type: loadoutGroup
