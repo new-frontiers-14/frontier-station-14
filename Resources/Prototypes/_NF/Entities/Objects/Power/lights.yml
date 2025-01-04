@@ -1,14 +1,20 @@
 - type: entity
   parent: BaseLightTube
-  name: black light tube
-  id: ColoredLightTubeBlackLight
-  description: A colorful light tube. These emit "black light".
+  name: black crystal light tube
+  id: LightTubeCrystalBlack
+  description: A high power high energy bulb which has a small colored crystal inside.
   components:
   - type: LightBulb
     color: "#5D0CED"
-    lightEnergy: 0.8
-    lightRadius: 10
-    lightSoftness: 1
+    lightEnergy: 3
+    lightRadius: 8
+    lightSoftness: 0.5
+    BurningTemperature: 350
+    PowerUse: 60
+  - type: ToolRefinable
+    refineResult:
+    - id: SheetGlass1
+#    - id: ShardCrystalBlack
 
 - type: entity
   parent: LightBulb
