@@ -75,7 +75,7 @@
       state: unshaded
 
 - type: entity
-  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerBankATMWithdraw]
+  parent: ComputerBankATMWithdraw
   id: ComputerWithdrawBankATM
   components:
   - type: Sprite
@@ -87,10 +87,12 @@
       state: icon
     - map: ["computerLayerScreen"]
       state: unshaded
+  - type: Computer
+    board: ComputerWithdrawBankATMComputerCircuitboard
 
 - type: entity
   suffix: Wallmount
-  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseStructureWallmount, ComputerBankATMDeposit]
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseStructureComputerWallmount, ComputerBankATMDeposit]
   id: ComputerWallmountBankATM
   components:
   - type: Sprite
@@ -104,7 +106,7 @@
 
 - type: entity
   suffix: Wallmount
-  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, BaseStructureWallmount, ComputerBankATMWithdraw]
+  parent: [BaseStructureComputerWallmount, ComputerBankATMWithdraw]
   id: ComputerWallmountWithdrawBankATM
   components:
   - type: Sprite
@@ -115,6 +117,8 @@
         state: icon
       - map: ["computerLayerScreen"]
         state: unshaded
+  - type: Computer
+    board: ComputerWithdrawBankATMComputerCircuitboard
 
 - type: entity
   suffix: BlackMarket
@@ -143,7 +147,7 @@
 
 - type: entity
   suffix: Wallmount, BlackMarket
-  parent: [BaseStructureDisableToolUse, BaseStructureDestructible, BaseStructureWallmount, ComputerBankATMDeposit]
+  parent: [BaseStructureDisableToolUse, BaseStructureDestructible, BaseStructureComputerWallmount, ComputerBankATMDeposit]
   id: ComputerWallmountBlackMarketBankATM
   description: Has some sketchy looking modifications and a sticker that says DEPOSIT FEE 30%
   components:
