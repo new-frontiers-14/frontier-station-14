@@ -4,22 +4,23 @@ using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using Content.Server._NF.Bank;
+using Content.Server._NF.GameRule.Components;
 using Content.Server._NF.GameTicking.Events;
-using Content.Shared.GameTicking.Components;
-using Robust.Shared.Prototypes;
 using Content.Server.Cargo.Components;
 using Content.Server.GameTicking;
+using Content.Server.GameTicking.Presets;
 using Content.Server.GameTicking.Rules;
-using Content.Shared._NF.CCVar; // Frontier
-using Robust.Shared.Configuration;
 using Content.Shared._NF.Bank;
-using Content.Server._NF.GameRule.Components;
-using Content.Server._NF.Bank;
-using Robust.Shared.Player;
-using Robust.Shared.Network;
+using Content.Shared._NF.CCVar;
 using Content.Shared.GameTicking;
-using Robust.Shared.Enums;
+using Content.Shared.GameTicking.Components;
 using Robust.Server.Player;
+using Robust.Shared.Configuration;
+using Robust.Shared.Enums;
+using Robust.Shared.Network;
+using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server._NF.GameRule;
 
@@ -28,13 +29,16 @@ namespace Content.Server._NF.GameRule;
 /// </summary>
 public sealed class NFAdventureRuleSystem : GameRuleSystem<NFAdventureRuleComponent>
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IConfigurationManager _configurationManager = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private readonly IPlayerManager _player = default!;
+    [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly BankSystem _bank = default!;
+    [Dependency] private readonly GameTicker _ticker = default!;
     [Dependency] private readonly PointOfInterestSystem _poi = default!;
 
     private readonly HttpClient _httpClient = new();
+
+    private readonly ProtoId<GamePresetPrototype> _fallbackPresetID = "NFPirates";
 
     public sealed class PlayerRoundBankInformation
     {
@@ -68,7 +72,7 @@ public sealed class NFAdventureRuleSystem : GameRuleSystem<NFAdventureRuleCompon
         SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnPlayerSpawningEvent);
         SubscribeLocalEvent<PlayerDetachedEvent>(OnPlayerDetachedEvent);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
-        _playerManager.PlayerStatusChanged += PlayerManagerOnPlayerStatusChanged;
+        _player.PlayerStatusChanged += PlayerManagerOnPlayerStatusChanged;
     }
 
     protected override void AppendRoundEndText(EntityUid uid, NFAdventureRuleComponent component, GameRuleComponent gameRule, ref RoundEndTextAppendEvent ev)
@@ -196,8 +200,14 @@ public sealed class NFAdventureRuleSystem : GameRuleSystem<NFAdventureRuleCompon
         List<PointOfInterestPrototype> optionalProtos = new();
         Dictionary<string, List<PointOfInterestPrototype>> remainingUniqueProtosBySpawnGroup = new();
 
-        foreach (var location in _prototypeManager.EnumeratePrototypes<PointOfInterestPrototype>())
+        var currentPreset = _ticker.CurrentPreset?.ID ?? _fallbackPresetID;
+
+        foreach (var location in _proto.EnumeratePrototypes<PointOfInterestPrototype>())
         {
+            // Check if any preset is accepted (empty) or if current preset is supported.
+            if (location.SpawnGamePreset.Length > 0 && !location.SpawnGamePreset.Contains(currentPreset))
+                continue;
+
             if (location.SpawnGroup == "CargoDepot")
                 depotProtos.Add(location);
             else if (location.SpawnGroup == "MarketStation")
@@ -228,7 +238,7 @@ public sealed class NFAdventureRuleSystem : GameRuleSystem<NFAdventureRuleCompon
     private async Task ReportRound(string message, int color = 0x77DDE7)
     {
         Logger.InfoS("discord", message);
-        string webhookUrl = _configurationManager.GetCVar(NFCCVars.DiscordLeaderboardWebhook);
+        string webhookUrl = _cfg.GetCVar(NFCCVars.DiscordLeaderboardWebhook);
         if (webhookUrl == string.Empty)
             return;
 
@@ -249,7 +259,7 @@ public sealed class NFAdventureRuleSystem : GameRuleSystem<NFAdventureRuleCompon
 
     private async Task ReportLedger(int color = 0xBF863F)
     {
-        string webhookUrl = _configurationManager.GetCVar(NFCCVars.DiscordLeaderboardWebhook);
+        string webhookUrl = _cfg.GetCVar(NFCCVars.DiscordLeaderboardWebhook);
         if (webhookUrl == string.Empty)
             return;
 
