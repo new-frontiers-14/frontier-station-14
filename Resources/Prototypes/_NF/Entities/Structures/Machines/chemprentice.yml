@@ -7,16 +7,17 @@
     mode: SnapgridCenter
   components:
   - type: Sprite
-    sprite: Structures/Machines/mixer.rsi
+    sprite: _NF/Structures/Machines/chemprentice.rsi
+    drawdepth: SmallObjects
     snapCardinals: true
     layers:
-    - state: mixer_empty
-    - state: mixer_screens
-      shader: unshaded
+    - state: prentice_empty
+      map: ["BeakerInserted"]
+    - state: prentice_unlit
       map: ["enum.PowerDeviceVisualLayers.Powered"]
   - type: Icon
-    sprite: Structures/Machines/mixer.rsi
-    state: mixer_loaded
+    sprite: _NF/Structures/Machines/chemprentice.rsi
+    state: prentice_full
   - type: ChemPrentice
   - type: Physics
     bodyType: Static
@@ -59,6 +60,10 @@
         enum.PowerDeviceVisualLayers.Powered:
           True: { visible: true }
           False: { visible: false }
+      enum.ChemMasterVisualState.BeakerInserted:
+        BeakerInserted:
+          True: {state: "prentice_full"}
+          False: {state: "prentice_empty"}
   # Machine / Construction stuff
   - type: WiresPanel
   - type: Machine
@@ -76,7 +81,7 @@
           - FitsInDispenser
   - type: SolutionContainerManager
     solutions:
-      buffer: {maxVol: 500}
+      buffer: {maxVol: 500, canReact: false}
   - type: DumpableSolution
     solution: buffer
     unlimited: false

@@ -11,6 +11,7 @@ using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Database;
 using Content.Shared.FixedPoint;
+using Content.Shared.Kitchen;
 using Content.Shared.Storage;
 using JetBrains.Annotations;
 using Robust.Server.Audio;
@@ -33,6 +34,7 @@ namespace Content.Server._NF.Chemistry.EntitySystems
     {
         [Dependency] private readonly PopupSystem _popupSystem = default!;
         [Dependency] private readonly AudioSystem _audioSystem = default!;
+        [Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!;
         [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
         [Dependency] private readonly ItemSlotsSystem _itemSlotsSystem = default!;
         [Dependency] private readonly UserInterfaceSystem _userInterfaceSystem = default!;
@@ -59,18 +61,20 @@ namespace Content.Server._NF.Chemistry.EntitySystems
 
         private void UpdateUiState(Entity<ChemPrenticeComponent> ent, bool updateLabel = false)
         {
-            var (owner, ChemPrentice) = ent;
+            var (owner, chemPrentice) = ent;
             if (!_solutionContainerSystem.TryGetSolution(owner, SharedChemMaster.BufferSolutionName, out _, out var bufferSolution))
+            {
                 return;
+            }
             var inputContainer = _itemSlotsSystem.GetItemOrNull(owner, SharedChemMaster.InputSlotName);
-            var outputContainer = _itemSlotsSystem.GetItemOrNull(owner, SharedChemMaster.OutputSlotName);
+            _appearanceSystem.SetData(owner, ChemMasterVisualState.BeakerInserted, inputContainer.HasValue);
 
             var bufferReagents = bufferSolution.Contents;
             var bufferCurrentVolume = bufferSolution.Volume;
             var bufferMaxVolume = bufferSolution.MaxVolume;
 
             var state = new ChemPrenticeBoundUserInterfaceState(
-                ChemPrentice.Mode, BuildInputContainerInfo(inputContainer),
+                chemPrentice.Mode, BuildInputContainerInfo(inputContainer),
                 bufferReagents, bufferCurrentVolume, bufferMaxVolume);
 
             _userInterfaceSystem.SetUiState(owner, ChemPrenticeUiKey.Key, state);
