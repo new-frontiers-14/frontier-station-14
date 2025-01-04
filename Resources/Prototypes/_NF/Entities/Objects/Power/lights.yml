@@ -1,19 +1,62 @@
 - type: entity
-  parent: BaseLightbulb
+  parent: BaseLightTube
+  name: blue light tube
+  description: A colorful light tube. These emit a blue hue.
+  id: ColoredBlueLightTube
+  components:
+  - type: LightBulb
+    color: "#B4FCF0"
+    lightEnergy: 3
+    lightRadius: 12
+    lightSoftness: 0.5
+
+- type: entity
+  parent: BaseLightTube
+  name: red light tube
+  description: A colorful light tube. These emit a red hue.
+  id: ColoredLightTubeRed
+  components:
+  - type: LightBulb
+    color: "#FF6666"
+    lightEnergy: 0.8
+    lightRadius: 10
+    lightSoftness: 0.5
+
+- type: entity
+  parent: BaseLightTube
+  name: frosty blue light tube
+  description: A colorful light tube. These emit a frosty blue hue.
+  id: ColoredLightTubeFrostyBlue
+  components:
+  - type: LightBulb
+    color: "#00FFFF"
+    lightEnergy: 0.8
+    lightRadius: 10
+    lightSoftness: 1
+    
+- type: entity
+  parent: BaseLightTube
+  name: black light tube
+  id: ColoredLightTubeBlackLight
+  description: A colorful light tube. These emit "black light".
+  components:
+  - type: LightBulb
+    color: "#5D0CED"
+    lightEnergy: 0.8
+    lightRadius: 10
+    lightSoftness: 1
+
+- type: entity
+  parent: LightBulb
   name: cyan crystal light bulb
   id: LightBulbCrystalCyan
   description: A colorful light bulb with a small colored crystal inside.
   components:
   - type: LightBulb
-    bulb: Bulb
     color: "#47f8ff"
     lightEnergy: 1.0
     lightRadius: 6
     lightSoftness: 1.1
-  - type: Tag
-    tags:
-    - LightBulb
-    - Trash
   - type: Construction
     graph: CyanLight
     node: icon
@@ -23,21 +66,16 @@
     - id: ShardCrystalCyan
 
 - type: entity
-  parent: BaseLightbulb
+  parent: LightBulb
   name: blue crystal light bulb
   id: LightBulbCrystalBlue
   description: A colorful light bulb with a small colored crystal inside.
   components:
   - type: LightBulb
-    bulb: Bulb
     color: "#39a1ff"
     lightEnergy: 1.0
     lightRadius: 6
     lightSoftness: 1.1
-  - type: Tag
-    tags:
-    - LightBulb
-    - Trash
   - type: Construction
     graph: BlueLight
     node: icon
@@ -47,21 +85,16 @@
     - id: ShardCrystalBlue
 
 - type: entity
-  parent: BaseLightbulb
+  parent: LightBulb
   name: pink crystal light bulb
   id: LightBulbCrystalPink
   description: A colorful light bulb with a small colored crystal inside.
   components:
   - type: LightBulb
-    bulb: Bulb
     color: "#ff66cc"
     lightEnergy: 1.0
     lightRadius: 6
     lightSoftness: 1.1
-  - type: Tag
-    tags:
-    - LightBulb
-    - Trash
   - type: Construction
     graph: PinkLight
     node: icon
@@ -71,21 +104,16 @@
     - id: ShardCrystalPink
 
 - type: entity
-  parent: BaseLightbulb
+  parent: LightBulb
   name: orange crystal light bulb
   id: LightBulbCrystalOrange
   description: A colorful light bulb with a small colored crystal inside.
   components:
   - type: LightBulb
-    bulb: Bulb
     color: "#ff8227"
     lightEnergy: 1.0
     lightRadius: 6
     lightSoftness: 1.1
-  - type: Tag
-    tags:
-    - LightBulb
-    - Trash
   - type: Construction
     graph: OrangeLight
     node: icon
@@ -95,21 +123,16 @@
     - id: ShardCrystalOrange
 
 - type: entity
-  parent: BaseLightbulb
+  parent: LightBulb
   name: red crystal light bulb
   id: LightBulbCrystalRed
   description: A colorful light bulb with a small colored crystal inside.
   components:
   - type: LightBulb
-    bulb: Bulb
     color: "#fb4747"
     lightEnergy: 1.0
     lightRadius: 6
     lightSoftness: 1.1
-  - type: Tag
-    tags:
-    - LightBulb
-    - Trash
   - type: Construction
     graph: RedLight
     node: icon
@@ -119,21 +142,16 @@
     - id: ShardCrystalRed
 
 - type: entity
-  parent: BaseLightbulb
+  parent: LightBulb
   name: green crystal light bulb
   id: LightBulbCrystalGreen
   description: A colorful light bulb with a small colored crystal inside.
   components:
   - type: LightBulb
-    bulb: Bulb
     color: "#52ff39"
     lightEnergy: 1.0
     lightRadius: 6
     lightSoftness: 1.1
-  - type: Tag
-    tags:
-    - LightBulb
-    - Trash
   - type: Construction
     graph: GreenLight
     node: icon
@@ -143,35 +161,25 @@
     - id: ShardCrystalGreen
 
 - type: entity
-  parent: BaseLightbulb
+  parent: LightBulb
   name: sodium light bulb
   id: SodiumLightBulb
   description: A harsh lightbulb that both alarms and depresses you.
   components:
   - type: LightBulb
-    bulb: Bulb
     color: "#FFAF38"
     lightEnergy: 4
     lightRadius: 8
     lightSoftness: 0.7
-  - type: Tag
-    tags:
-    - LightBulb
-    - Trash
 
 - type: entity
-  parent: BaseLightbulb
+  parent: LightBulb
   name: exterior light bulb
   id: ExteriorLightBulb
   description: A colorful light bulb with a small colored crystal inside.
   components:
   - type: LightBulb
-    bulb: Bulb
     color: "#B4FCF0"
     lightEnergy: 4.5
     lightRadius: 8
     lightSoftness: 0.7
-  - type: Tag
-    tags:
-    - LightBulb
-    - Trash
