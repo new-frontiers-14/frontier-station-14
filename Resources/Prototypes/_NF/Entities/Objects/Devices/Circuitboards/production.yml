@@ -1,0 +1,19 @@
+- type: entity
+  id: ChemPrenticeMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: ChemPrentice 2000 machine board
+  description: A machine printed circuit board for a ChemPrentice 2000.
+  components:
+    - type: Sprite
+      state: medical
+    - type: MachineBoard
+      prototype: ChemPrentice
+      requirements: 
+        Capacitor: 1 
+      stackRequirements:
+        Glass: 1
+        Cable: 1
+      tagRequirements:
+        GlassBeaker:
+          amount: 1
+          defaultPrototype: Beaker
