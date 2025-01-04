@@ -64,6 +64,28 @@
     state: squeeze-bottle-mustard
   - type: Icon
     state: squeeze-bottle-mustard
+  - type: Label
+    currentLabel: reagent-name-mustard
+  - type: CondimentMustard
+
+- type: entity
+  parent: BaseFoodCondimentSqueezeBottle
+  id: FoodCondimentSqueezeBottleClear
+  description: When it comes to squeeze bottles this is the clear choice.
+  components:
+  - type: Sprite
+    layers:
+      - state: squeeze-bottle-clear
+      - state: squeeze-bottle-clear1
+        map: [ "enum.SolutionContainerLayers.Fill" ]
+        visible: false
+    state: squeeze-bottle-clear
+  - type: Icon
+    state: squeeze-bottle-clear
+  - type: Appearance
+  - type: SolutionContainerVisuals
+    maxFillLevels: 6
+    fillBaseName: squeeze-bottle-clear
 
 - type: entity
   parent: [DrinkBottleVisualsAll, DrinkBottleGlassBaseFull]
@@ -71,13 +93,6 @@
   name: soy sauce bottle
   description: Used to season dishes to umami perfection. With extra sodium!
   components:
-  - type: Appearance
-  - type: GenericVisualizer
-    visuals:
-      enum.OpenableVisuals.Opened:
-        enum.OpenableVisuals.Layer:
-          True: {state: "icon_open"}
-          False: {state: "icon_empty"}
   - type: Item
     size: Small
   - type: SolutionContainerManager
@@ -97,6 +112,12 @@
     state: icon
   - type: Openable
     closeable: true
+    layers:
+      - state: icon
+        map: ["enum.OpenableVisuals.Layer"]
+      - state: fill-1
+        map: ["enum.SolutionContainerLayers.Fill"]
+        visible: false
   - type: SolutionContainerVisuals
     maxFillLevels: 5
     fillBaseName: fill-
