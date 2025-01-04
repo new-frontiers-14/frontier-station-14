@@ -1,0 +1,33 @@
+# Author Info
+# GitHub: emrekmek (https://github.com/emrekmek)
+# Discord: emrekmek
+
+# Maintainer Info
+# GitHub: emrekmek (https://github.com/emrekmek)
+# Discord: emrekmek
+
+# Notes:
+# 
+- type: pointOfInterest
+  id: ClubSingulo
+  parent: BasePOI
+  name: "Club Singulo"
+  minimumDistance: 1200
+  maximumDistance: 2900
+  spawnGamePreset: [ NFAdventure, NFPirate ]
+  spawnGroup: RestStop
+  gridPath: /Maps/_NF/POI/nightclub.yml
+  addComponents:
+  - type: StationTransit
+
+- type: gameMap
+  id: ClubSingulo
+  mapName: "Club Singulo"
+  mapPath: /Maps/_NF/POI/nightclub.yml
+  minPlayers: 0
+  stations:
+    ClubSingulo:
+      stationProto: DeadDropFrontierOutpost
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: "Club Singulo"
