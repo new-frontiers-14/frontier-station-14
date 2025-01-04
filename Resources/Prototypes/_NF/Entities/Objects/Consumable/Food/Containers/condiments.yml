@@ -28,16 +28,9 @@
     sprite: _NF/Objects/Consumable/Food/condiments.rsi
   - type: Icon
     sprite: _NF/Objects/Consumable/Food/condiments.rsi
-  # - type: EmitSoundOnActivate
-    # sound:
-      # collection: squeezeBottleUseSounds
-      # params:
-        # variation: 0.125
-  # - type: EmitSoundOnLand
-    # sound:
-      # collection: squeezeBottleUseSounds
-      # params:
-        # variation: 0.125
+  - type: CondimentSqueezeBottle
+  - type: FitsInDispenser
+    solution: food
 
 - type: entity
   parent: BaseFoodCondimentSqueezeBottle
