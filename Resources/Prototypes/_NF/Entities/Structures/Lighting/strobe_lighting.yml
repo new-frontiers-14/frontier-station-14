@@ -1,11 +1,8 @@
 - type: entity
-  name: strobe
   parent: PoweredStrobeLightEmpty
   id: PoweredStrobeIncandescent
   suffix: Incandescent
   components:
-  - type: Sprite
-    state: base
   - type: PointLight
     enabled: true
     color: "#FFD1A3" # 4000K color temp
@@ -16,20 +13,16 @@
     hasLampOnSpawn: LightBulb
 
 - type: entity
-  name: strobe
   parent: PoweredStrobeLightEmpty
   id: PoweredStrobeLed
   suffix: LED
   components:
-  - type: Sprite
-    state: base
   - type: PointLight
     enabled: true
   - type: PoweredLight
     hasLampOnSpawn: LedLightBulb
 
 - type: entity
-  name: light strobe
   parent: PoweredStrobeLightEmpty
   id: PoweredStrobeService
   suffix: Service
@@ -40,7 +33,6 @@
     hasLampOnSpawn: ServiceLightBulb
 
 - type: entity
-  name: light strobe
   parent: PoweredStrobeLightEmpty
   id: PoweredStrobeSodium
   suffix: Sodium
@@ -51,7 +43,6 @@
     hasLampOnSpawn: SodiumLightBulb
 
 - type: entity
-  name: light strobe
   parent: PoweredStrobeLightEmpty
   id: PoweredStrobeExterior
   suffix: Exterior
@@ -62,7 +53,6 @@
     hasLampOnSpawn: ExteriorLightBulb
 
 - type: entity
-  name: light strobe
   parent: PoweredStrobeLightEmpty
   id: PoweredStrobeCyan
   suffix: Cyan
@@ -73,7 +63,6 @@
     hasLampOnSpawn: LightBulbCrystalCyan
 
 - type: entity
-  name: light strobe
   parent: PoweredStrobeLightEmpty
   id: PoweredStrobeBlue
   suffix: Blue
@@ -84,7 +73,6 @@
     hasLampOnSpawn: LightBulbCrystalBlue
 
 - type: entity
-  name: light strobe
   parent: PoweredStrobeLightEmpty
   id: PoweredStrobePink
   suffix: Pink
@@ -95,7 +83,6 @@
     hasLampOnSpawn: LightBulbCrystalPink
 
 - type: entity
-  name: light strobe
   parent: PoweredStrobeLightEmpty
   id: PoweredStrobeOrange
   suffix: Orange
@@ -106,7 +93,6 @@
     hasLampOnSpawn: LightBulbCrystalOrange
 
 - type: entity
-  name: light strobe
   parent: PoweredStrobeLightEmpty
   id: PoweredStrobeRed
   suffix: Red
@@ -117,7 +103,6 @@
     hasLampOnSpawn: LightBulbCrystalRed
       
 - type: entity
-  name: light strobe
   parent: PoweredStrobeLightEmpty
   id: PoweredStrobeGreen
   suffix: Green
