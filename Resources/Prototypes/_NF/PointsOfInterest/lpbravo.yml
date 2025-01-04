@@ -10,10 +10,10 @@
 # just a little loot n shoot POI. Pretty much the second POI to even exist
 - type: pointOfInterest
   id: LPBravo
+  parent: BasePOI
   name: 'Listening Point Bravo'
   minimumDistance: 4000
   maximumDistance: 6000
-  spawnGamePreset: [ NFAdventure, NFPirate ]
   spawnGroup: SyndicateFOB
   gridPath: /Maps/_NF/POI/lpbravo.yml
   hideWarp: true
@@ -21,9 +21,7 @@
   - type: IFF
     color: "#C83737"
     flags: [HideLabel, Hide]
-  - type: Shuttle
-    angularDamping: 999999
-    linearDamping: 999999
+    readOnly: false
   - type: SyndicateFOB # For pinpointer
 
 - type: gameMap
