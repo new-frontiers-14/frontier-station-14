@@ -2,6 +2,7 @@
 guide-entry-nf14 = Frontier Guide
 guide-entry-bank = NT Galactic Bank
 guide-entry-piloting = Piloting
+guide-entry-startinggear = Starting Equipment
 guide-entry-hiring = Hiring Crew
 guide-entry-expeditions = Expeditions
 guide-entry-shipyard = Shipyard
@@ -41,6 +42,7 @@ guide-entry-shipyard-brigand = Brigand
 guide-entry-shipyard-bulker = Bulker
 guide-entry-shipyard-camper = Camper
 guide-entry-shipyard-ceres = Ceres
+guide-entry-shipyard-charon = Charon
 guide-entry-shipyard-chisel = Chisel
 guide-entry-shipyard-comet = Comet
 guide-entry-shipyard-construct = Construct
@@ -71,6 +73,7 @@ guide-entry-shipyard-sparrow = Sparrow
 guide-entry-shipyard-skipper = Skipper
 guide-entry-shipyard-spirit = Spirit
 guide-entry-shipyard-stasis = Stasis
+guide-entry-shipyard-tide = Tide
 guide-entry-shipyard-vagabond = Vagabond
 
 # Rules entries
