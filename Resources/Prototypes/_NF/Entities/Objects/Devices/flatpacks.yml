@@ -252,15 +252,6 @@
 
 - type: entity
   parent: ExosuitFabricatorFlatpack
-  id: ScienceTechFabFlatpack
-  name: science techfab flatpack
-  description: A flatpack used for constructing a science techfab.
-  components:
-  - type: Flatpack
-    entity: ScienceTechFab
-
-- type: entity
-  parent: ExosuitFabricatorFlatpack
   id: MachineArtifactCrusherFlatpack
   name: artifact crusher flatpack
   description: A flatpack used for constructing an artifact crusher.
@@ -394,6 +385,15 @@
   - type: Sprite
     layers:
     - state: soil
+
+- type: entity
+  parent: UniformPrinterFlatpack
+  id: ComputerWithdrawBankATMFlatpack
+  name: withdraw only atm flatpack
+  description: A flatpack used for constructing an atm. Best not to think about it.
+  components:
+  - type: Flatpack
+    entity: ComputerWithdrawBankATM
 
 # Medical
 - type: entity
