@@ -11,6 +11,7 @@
 
 - type: vessel
   id: Chauffeur
+  parent: BaseVessel
   name: NC Chauffeur
   description: A small transport shuttle with space for 4 passengers. Comes with the latest audio entertainment technology.
   price: 17500 # $14325 after appraisal + ~$1200 (~5% markup) - TODO: fix this value, getting tests to pass - Whatstone
@@ -27,14 +28,13 @@
 - type: gameMap
   id: Chauffeur
   mapName: 'NC Chauffeur'
-  mapPath: /Maps/_NF/Shuttles/pts.yml
+  mapPath: /Maps/_NF/Shuttles/Sr/chauffeur.yml
   minPlayers: 0
   stations:
     Chauffeur:
       stationProto: StandardFrontierVessel
       components:
-        - type: StationNameSetup
-          mapNameTemplate: 'Chauffeur {1}'
-          nameGenerator:
-            !type:NanotrasenNameGenerator
-            prefixCreator: '14'
+      - type: StationNameSetup
+        mapNameTemplate: 'Chauffeur {1}'
+        nameGenerator: !type:NanotrasenNameGenerator
+          prefixCreator: '14'
