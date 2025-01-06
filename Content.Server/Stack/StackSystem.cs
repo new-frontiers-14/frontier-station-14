@@ -15,6 +15,7 @@ namespace Content.Server.Stack
     public sealed class StackSystem : SharedStackSystem
     {
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+        [Dependency] private readonly SharedUserInterfaceSystem _ui = default!; // Cherry-picked from space-station-14#32938 courtesy of Ilya246
 
         public static readonly int[] DefaultSplitAmounts = { 1, 5, 10, 20, 50, 100, 500, 1000, 5000, 10000 };
 
@@ -170,16 +171,33 @@ namespace Content.Server.Stack
             if (!args.CanAccess || !args.CanInteract || args.Hands == null || stack.Count == 1)
                 return;
 
+            // Frontier: cherry-picked from ss14#32938, moved up top
+            var priority = 1;
+            if (_ui.HasUi(uid, StackCustomSplitUiKey.Key)) // Frontier: check for interface
+            {
+                AlternativeVerb custom = new()
+                {
+                    Text = Loc.GetString("comp-stack-split-custom"),
+                    Category = VerbCategory.Split,
+                    Act = () =>
+                    {
+                        _ui.OpenUi(uid, StackCustomSplitUiKey.Key, args.User);
+                    },
+                    Priority = priority--
+                };
+                args.Verbs.Add(custom);
+            }
+            // End Frontier: cherry-picked from ss14#32938, moved up top
+
             AlternativeVerb halve = new()
             {
                 Text = Loc.GetString("comp-stack-split-halve"),
                 Category = VerbCategory.Split,
                 Act = () => UserSplit(uid, args.User, stack.Count / 2, stack),
-                Priority = 1
+                Priority = priority-- // Frontier: 1<priority--
             };
             args.Verbs.Add(halve);
 
-            var priority = 0;
             foreach (var amount in DefaultSplitAmounts)
             {
                 if (amount >= stack.Count)
@@ -199,6 +217,20 @@ namespace Content.Server.Stack
                 args.Verbs.Add(verb);
             }
         }
+
+        // Cherry-picked from ss14#32938 courtesy of Ilya246
+        protected override void OnCustomSplitMessage(Entity<StackComponent> ent, ref StackCustomSplitAmountMessage message)
+        {
+            var (uid, comp) = ent;
+
+            // digital ghosts shouldn't be allowed to split stacks
+            if (!(message.Actor is { Valid: true } user))
+                return;
+
+            var amount = message.Amount;
+            UserSplit(uid, user, amount, comp);
+        }
+        // End cherry-pick from ss14#32938 courtesy of Ilya246
 
         private void UserSplit(EntityUid uid, EntityUid userUid, int amount,
             StackComponent? stack = null,
