@@ -3,7 +3,7 @@ using Content.Server.Administration.Logs;
 using Content.Shared.Materials;
 using Content.Shared.Popups;
 using Content.Shared.Stacks;
-using Content.Server.Storage.Components; //Frontier
+using Content.Server.Storage.Components; // Frontier
 using Content.Server.Power.Components;
 using Content.Server.Stack;
 using Content.Shared.ActionBlocker;
