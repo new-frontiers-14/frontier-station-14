@@ -102,7 +102,7 @@ public sealed partial class SalvageSystem
         data.NextOffer = _timing.CurTime + mission.Duration + TimeSpan.FromSeconds(1);
 
         // Frontier  change - disable coordinate disks for expedition missions
-        //_labelSystem.Label(cdUid, GetFTLName(_prototypeManager.Index<DatasetPrototype>("names_borer"), missionparams.Seed));
+        //_labelSystem.Label(cdUid, GetFTLName(_prototypeManager.Index<LocalizedDatasetPrototype>("NamesBorer"), missionparams.Seed));
         //_audio.PlayPvs(component.PrintSound, uid);
 
         UpdateConsoles(station.Value, data); // Frontier: add station
@@ -120,7 +120,7 @@ public sealed partial class SalvageSystem
         {
             PlayDenySound(entity, component);
             _popupSystem.PopupEntity(Loc.GetString("salvage-expedition-shuttle-not-found"), entity, PopupType.MediumCaution);
-            UpdateConsoles(station.Value, data);
+            UpdateConsoles((station.Value, data));
             return;
         }
 
