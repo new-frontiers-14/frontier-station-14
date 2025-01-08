@@ -20,7 +20,7 @@
   - type: ScatteringGrenade
 
 - type: entity
-  parent: [ScatteringGrenadeBase, BaseRestrictedContraband]
+  parent: [ScatteringGrenadeBase, BaseC2ContrabandUnredeemable, RecyclableItemSteelMedium] # Frontier: BaseRestrictedContraband<BaseC2ContrabandUnredeemable added RecyclableItemSteelMedium
   id: ClusterBang
   name: clusterbang
   description: Can be used only with flashbangs. Explodes several times.
@@ -72,7 +72,7 @@
       path: "/Audio/Machines/door_lock_off.ogg"
 
 - type: entity
-  parent: [ScatteringGrenadeBase, BaseSyndicateContraband]
+  parent: [ScatteringGrenadeBase, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   id: ClusterGrenade
   name: clustergrenade
   description: Why use one grenade when you can use three at once!
@@ -98,7 +98,7 @@
       path: "/Audio/Machines/door_lock_off.ogg"
 
 - type: entity
-  parent: [ScatteringGrenadeBase, BaseSyndicateContraband]
+  parent: [ScatteringGrenadeBase, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   id: ClusterBananaPeel
   name: cluster banana peel
   description: Splits into 6 explosive banana peels after throwing, guaranteed fun!
@@ -125,6 +125,7 @@
   name: slipocalypse clustersoap
   description: Spreads small pieces of syndicate soap over an area upon landing on the floor.
   components:
+  - type: WeaponCaseInsertable # Frontier
   - type: Sprite
     sprite: Objects/Specific/Janitorial/soap.rsi
     layers:
