@@ -1,0 +1,31 @@
+
+- type: vessel
+  id: Kruiser
+  name: NC Круизер-ТМ
+  description: Среднегабаритный торговый шаттл. Рекомендованный размер команды 2-4 человека.
+  price: 110000 # 13.5% markup (+2350 from init)
+  category: Medium
+  group: Shipyard
+  shuttlePath: /Maps/Corvax/Shuttles/Service/Kruiser.yml
+  class:
+  - Kitchen
+
+- type: gameMap
+  id: Kruiser
+  mapName: 'NC Круизер-ТМ'
+  mapPath: /Maps/Corvax/Shuttles/Service/Kruiser.yml
+  minPlayers: 0
+  stations:
+    Kruiser:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Круизер-ТМ {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]

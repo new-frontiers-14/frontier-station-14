@@ -1,0 +1,31 @@
+- type: vessel
+  id: pod
+  name: NT Под
+  description: Шаттл построенный по типу каркаса, он всё же не так плох как кажется...
+  price: 15000
+  category: Small
+  group: Scrap
+  shuttlePath: /Maps/Corvax/Shuttles/Scrap/pod.yml
+  guidebookPage: Null
+  class:
+  - Scrapyard
+
+- type: gameMap
+  id: pod
+  mapName: 'NT Под'
+  mapPath: /Maps/Corvax/Shuttles/Scrap/pod.yml
+  minPlayers: 0
+  stations:
+    pod:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: ' Под {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]

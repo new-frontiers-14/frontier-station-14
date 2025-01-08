@@ -1,0 +1,29 @@
+- type: pointOfInterest
+  id: Epsilon
+  name: Ретранслятор Эпсилон
+  minimumDistance: 4500
+  maximumDistance: 6500
+  gridPath: /Maps/Corvax/POI/Epsilon.yml
+  addComponents:
+  - type: IFF
+    color: "#850d09"
+    flags: [HideLabel]
+    readOnly: true
+  - type: Shuttle
+    angularDamping: 999999
+    linearDamping: 999999
+
+- type: gameMap
+  id: Epsilon
+  mapName: Ретранслятор Эпсилон
+  mapPath: /Maps/Corvax/POI/Epsilon.yml
+  minPlayers: 0
+  stations:
+    Epsilon:
+      stationProto: StandardFrontierOutpost
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Ретранслятор Эпсилон'
+        - type: StationJobs
+          availableJobs: {}
+        - type: StationDeadDropHintExempt

@@ -1,0 +1,28 @@
+- type: pointOfInterest
+  id: Bar
+  name: "Бар Мерсена"
+  minimumDistance: 3500
+  maximumDistance: 5000
+  gridPath: /Maps/Corvax/POI/Bar.yml
+  addComponents:
+  - type: IFF
+    color: "#5a137d"
+    readOnly: true
+  - type: Shuttle
+    angularDamping: 999999
+    linearDamping: 999999
+
+- type: gameMap
+  id: Bar
+  mapName: 'Бар Мерсена'
+  mapPath: /Maps/Corvax/POI/Bar.yml
+  minPlayers: 0
+  stations:
+    Bar:
+      stationProto: StandardFrontierOutpost
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Бар Мерсена'
+        - type: StationJobs
+          availableJobs: {}
+        - type: StationDeadDropHintExempt

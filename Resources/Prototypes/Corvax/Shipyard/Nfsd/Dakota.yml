@@ -1,0 +1,26 @@
+- type: vessel
+  id: Dakota
+  name: NSF Дакота
+  description: Шаттл перехватчик Дакота. Рекомендуемый состав команды 1-2 человека.
+  price: 21500
+  group: Security
+  category: Small
+  access: Security
+  mapchecker_group_override: Security
+  shuttlePath: /Maps/Corvax/Shuttles/Nfsd/Dakota.yml
+- type: gameMap
+  id: Dakota
+  mapName: 'NSF Дакота'
+  mapPath: /Maps/Corvax/Shuttles/Nfsd/Dakota.yml
+  minPlayers: 0
+  stations:
+    Dakota:
+      stationProto: StandardFrontierSecurityVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Дакота {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs: {}

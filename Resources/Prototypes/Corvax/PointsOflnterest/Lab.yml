@@ -1,0 +1,29 @@
+- type: pointOfInterest
+  id: Lab
+  name: Лаборатория 
+  minimumDistance: 3500
+  maximumDistance: 4500
+  gridPath: /Maps/Corvax/POI/Lab.yml
+  addComponents:
+  - type: IFF
+    color: "#9d1bde"
+    flags: [HideLabel]
+    readOnly: true
+  - type: Shuttle
+    angularDamping: 999999
+    linearDamping: 999999
+
+- type: gameMap
+  id: Lab
+  mapName: Лаборатория
+  mapPath: /Maps/Corvax/POI/Lab.yml
+  minPlayers: 0
+  stations:
+    Lab:
+      stationProto: StandardFrontierOutpost
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Лаборатория'
+        - type: StationJobs
+          availableJobs: {}
+        - type: StationDeadDropHintExempt

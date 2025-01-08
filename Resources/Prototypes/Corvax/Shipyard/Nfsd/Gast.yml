@@ -1,0 +1,26 @@
+- type: vessel
+  id: Gast
+  name: NSF Гаст
+  description: Шаттл перехватчик гаст. Рекомендуемый состав команды 2-3 человека.
+  price: 41000
+  group: Security
+  category: Small
+  access: Security
+  mapchecker_group_override: Security
+  shuttlePath: /Maps/Corvax/Shuttles/Nfsd/Gast.yml
+- type: gameMap
+  id: Gast
+  mapName: 'NSF Гаст'
+  mapPath: /Maps/Corvax/Shuttles/Nfsd/Gast.yml
+  minPlayers: 0
+  stations:
+    Gast:
+      stationProto: StandardFrontierSecurityVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Гаст {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs: {}
