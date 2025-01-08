@@ -1,0 +1,30 @@
+- type: vessel
+  id: konserva
+  name: NMS Консерва
+  description: Малогабаритный медицинский шаттл. Рекомендованный состав команды 1-2 человек.
+  price: 23500 #меньше не поставлю, ибо нефиг
+  category: Small
+  group: Shipyard
+  shuttlePath: /Maps/Corvax/Shuttles/Medical/konserv.yml
+  class:
+  - Medical
+
+- type: gameMap
+  id: konserva
+  mapName: 'NMS Консерва'
+  mapPath: /Maps/Corvax/Shuttles/Medical/konserv.yml
+  minPlayers: 0
+  stations:
+    konserva:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Консерва {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]

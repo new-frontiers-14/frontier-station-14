@@ -1,0 +1,26 @@
+- type: vessel
+  id: Orion
+  name: NSF Орион
+  description: Крупногабаритный патрульный шаттл ДСБФ. Рекомендованный состав команды 4-8 человек.
+  price: 165000 
+  category: Large
+  group: Security
+  access: Bailiff
+  shuttlePath: /Maps/Corvax/Shuttles/Nfsd/Orion.yml
+  guidebookPage: Null
+  class:
+  - Capital
+- type: gameMap
+  id: Orion
+  mapName: 'NSF Орион'
+  mapPath: /Maps/Corvax/Shuttles/Nfsd/Orion.yml
+  minPlayers: 0
+  stations:
+    Orion:
+      stationProto: StandardFrontierSecurityVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Орион {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'

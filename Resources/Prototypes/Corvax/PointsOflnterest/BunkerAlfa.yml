@@ -1,0 +1,29 @@
+- type: pointOfInterest
+  id: Bunkeralfa
+  name: Бункер Альфа 
+  minimumDistance: 6000
+  maximumDistance: 9000
+  gridPath: /Maps/Corvax/POI/Bunkeralfa.yml
+  addComponents:
+  - type: IFF
+    color: "#850d09"
+    flags: [HideLabel]
+    readOnly: true
+  - type: Shuttle
+    angularDamping: 999999
+    linearDamping: 999999
+
+- type: gameMap
+  id: Bunkeralfa
+  mapName: Бункер Альфа
+  mapPath: /Maps/Corvax/POI/Bunkeralfa.yml
+  minPlayers: 0
+  stations:
+    Bunkeralfa:
+      stationProto: StandardFrontierOutpost
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Бункер Альфа'
+        - type: StationJobs
+          availableJobs: {}
+        - type: StationDeadDropHintExempt

@@ -1,0 +1,31 @@
+
+- type: vessel
+  id: Buksir
+  name: NC Буксир
+  description: Среднегабаритный грузовой шаттл. Рекомендованный размер команды 2-4 человека.
+  price: 51000
+  category: Medium
+  group: Shipyard
+  shuttlePath: /Maps/Corvax/Shuttles/Service/Buksir.yml
+  class:
+  - Kitchen
+
+- type: gameMap
+  id: Buksir
+  mapName: 'NC Буксир'
+  mapPath: /Maps/Corvax/Shuttles/Service/Buksir.yml
+  minPlayers: 0
+  stations:
+    Buksir:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Буксир {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]

@@ -1,0 +1,31 @@
+- type: vessel
+  id: Normandya
+  name: NT Нормандия
+  description: Шаттл построенный по типу Обломка, Это всё же лучше чем ничего.
+  price: 37500
+  category: Small
+  group: Scrap
+  shuttlePath: /Maps/Corvax/Shuttles/Scrap/Normandya.yml
+  guidebookPage: Null
+  class:
+  - Scrapyard
+
+- type: gameMap
+  id: Normandya
+  mapName: 'NT Нормандия'
+  mapPath: /Maps/Corvax/Shuttles/Scrap/Normandya.yml
+  minPlayers: 0
+  stations:
+    Normandya:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: ' Нормандия {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]
