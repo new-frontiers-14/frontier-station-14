@@ -6,7 +6,10 @@
   components:
   - type: Pda
     id: PrisonerIDCard
-    state: pda-clear
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String pda-clear
   - type: Icon
     state: pda-clear
 
