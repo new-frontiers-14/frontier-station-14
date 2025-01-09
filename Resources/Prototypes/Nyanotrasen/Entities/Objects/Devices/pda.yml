@@ -21,7 +21,10 @@
   components:
   - type: Pda
     id: ValetNFIDCard # Frontier: ValetIDCard<ValetNFIDCard
-    state: pda-valet
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String pda-valet
   - type: PdaBorderColor
     borderColor: "#860000"
     accentVColor: "#F2F2F2"
@@ -49,7 +52,10 @@
   components:
   - type: Pda
     id: PrisonGuardIDCard
-    state: pda-security
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String pda-security
   - type: PdaBorderColor
     borderColor: "#A32D26"
     accentVColor: "#DFDFDF"
