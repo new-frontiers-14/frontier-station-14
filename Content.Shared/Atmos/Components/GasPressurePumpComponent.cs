@@ -22,4 +22,10 @@ public sealed partial class GasPressurePumpComponent : Component
     /// </summary>
     [DataField]
     public float MaxTargetPressure = Atmospherics.MaxOutputPressure;
+
+    /// <summary>
+    /// Frontier - Start the pump with the map.
+    /// </summary>
+    [DataField]
+    public bool StartOnMapInit { get; set; }
 }

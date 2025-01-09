@@ -34,6 +34,7 @@ public abstract class SharedGasPressurePumpSystem : EntitySystem
 
         SubscribeLocalEvent<GasPressurePumpComponent, AtmosDeviceDisabledEvent>(OnPumpLeaveAtmosphere);
         SubscribeLocalEvent<GasPressurePumpComponent, ExaminedEvent>(OnExamined);
+        SubscribeLocalEvent<GasPressurePumpComponent, MapInitEvent>(OnMapInit); // Frontier
     }
 
     private void OnExamined(EntityUid uid, GasPressurePumpComponent pump, ExaminedEvent args)
@@ -48,6 +49,15 @@ public abstract class SharedGasPressurePumpSystem : EntitySystem
         {
             args.PushMarkup(str);
         }
+    }
+
+    private void OnMapInit(EntityUid uid, GasPressurePumpComponent pump, MapInitEvent args) // Frontier - Init on map
+    {
+        if (pump.StartOnMapInit)
+        {
+            pump.Enabled = true;
+        }
+        UpdateAppearance(uid, pump);
     }
 
     private void OnInit(EntityUid uid, GasPressurePumpComponent pump, ComponentInit args)
