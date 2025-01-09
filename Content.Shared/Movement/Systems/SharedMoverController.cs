@@ -498,7 +498,7 @@ public abstract partial class SharedMoverController : VirtualController
                 TryComp<FootstepModifierComponent>(outerClothing, out var outerModifier))
             {
                 sound = outerModifier.FootstepSoundCollection;
-                return true;
+                return sound != null;
             }
             // End Frontier
 

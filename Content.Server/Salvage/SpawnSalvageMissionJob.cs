@@ -207,7 +207,7 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
         // On Frontier, we cant share our locations it breaks ftl in a bad bad way
         // Don't want consoles to have the incorrect name until refreshed.
         /*var ftlUid = _entManager.CreateEntityUninitialized("FTLPoint", new EntityCoordinates(mapUid, grid.TileSizeHalfVector));
-        _metaData.SetEntityName(ftlUid, SharedSalvageSystem.GetFTLName(_prototypeManager.Index<DatasetPrototype>("names_borer"), _missionParams.Seed));
+        _metaData.SetEntityName(ftlUid, SharedSalvageSystem.GetFTLName(_prototypeManager.Index<DatasetPrototype>("NamesBorer"), _missionParams.Seed));
         _entManager.InitializeAndStartEntity(ftlUid);*/
 
         // so we just gunna yeet them there instead why not. they chose this life.

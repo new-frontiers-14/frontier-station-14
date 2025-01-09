@@ -120,7 +120,7 @@ public sealed partial class SalvageSystem
         {
             PlayDenySound(entity, component);
             _popupSystem.PopupEntity(Loc.GetString("salvage-expedition-shuttle-not-found"), entity, PopupType.MediumCaution);
-            UpdateConsoles((station.Value, data));
+            UpdateConsoles(station.Value, data);
             return;
         }
 
