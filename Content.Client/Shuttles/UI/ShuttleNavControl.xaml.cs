@@ -249,16 +249,12 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
                 shouldDrawIFF &= ShowIFFShuttles;
             }
 
-<<<<<<< HEAD
-            shouldDrawIFF = NfCheckShouldDrawIffRangeCondition(shouldDrawIFF, gridBody, matty); // Frontier code
+            shouldDrawIFF = NfCheckShouldDrawIffRangeCondition(shouldDrawIFF, gridBody, curGridToView); // Frontier code
 
             if (shouldDrawIFF)
             {
-                var gridCentre = Vector2.Transform(gridBody.LocalCenter, matty);
-                gridCentre.Y = -gridCentre.Y;
-=======
                 var gridCentre = Vector2.Transform(gridBody.LocalCenter, curGridToView);
->>>>>>> e0163fb022d0b9f554f3f5b84c61a003da6ae447
+                gridCentre.Y = -gridCentre.Y;
 
                 // Frontier: IFF drawing functions
                 // The actual position in the UI. We offset the matrix position to render it off by half its width
@@ -294,28 +290,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
 
                 var distance = gridCentre.Length();
 
-<<<<<<< HEAD
                 if (!isOutsideRadarCircle || isDistantPOI || isMouseOver)
-=======
-                var mapCoords = _transform.GetWorldPosition(gUid);
-                var coordsText = $"({mapCoords.X:0.0}, {mapCoords.Y:0.0})";
-
-                // yes 1.0 scale is intended here.
-                var labelDimensions = handle.GetDimensions(Font, labelText, 1f);
-                var coordsDimensions = handle.GetDimensions(Font, coordsText, 0.7f);
-
-                // y-offset the control to always render below the grid (vertically)
-                var yOffset = Math.Max(gridBounds.Height, gridBounds.Width) * MinimapScale / 1.8f;
-
-                // The actual position in the UI.
-                var gridScaledPosition = gridCentre - new Vector2(0, -yOffset);
-
-                // Normalize the grid position if it exceeds the viewport bounds
-                // normalizing it instead of clamping it preserves the direction of the vector and prevents corner-hugging
-                var gridOffset = gridScaledPosition / PixelSize - new Vector2(0.5f, 0.5f);
-                var offsetMax = Math.Max(Math.Abs(gridOffset.X), Math.Abs(gridOffset.Y)) * 2f;
-                if (offsetMax > 1)
->>>>>>> e0163fb022d0b9f554f3f5b84c61a003da6ae447
                 {
                     // Shows decimal when distance is < 50m, otherwise pointless to show it.
                     var displayedDistance = distance < 50f ? $"{distance:0.0}" : distance < 1000 ? $"{distance:0}" : $"{distance / 1000:0.0}k";
@@ -426,7 +401,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
             foreach (var state in docks)
             {
                 var position = state.Coordinates.Position;
-                var uiPosition = Vector2.Transform(position, matrix);
+                var uiPosition = Vector2.Transform(position, gridToView);
 
                 if (uiPosition.Length() > (WorldRange * 2f) - DockScale)
                     continue;
