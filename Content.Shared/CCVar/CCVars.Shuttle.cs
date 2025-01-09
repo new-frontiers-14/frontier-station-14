@@ -29,7 +29,7 @@ public sealed partial class CCVars
     ///     Whether the arrivals shuttle is enabled.
     /// </summary>
     public static readonly CVarDef<bool> ArrivalsShuttles =
-        CVarDef.Create("shuttle.arrivals", true, CVar.SERVERONLY);
+        CVarDef.Create("shuttle.arrivals", false, CVar.SERVERONLY); // Frontier: false
 
     /// <summary>
     ///     The map to use for the arrivals station.
@@ -66,7 +66,7 @@ public sealed partial class CCVars
     ///     Whether to automatically spawn escape shuttles.
     /// </summary>
     public static readonly CVarDef<bool> GridFill =
-        CVarDef.Create("shuttle.grid_fill", true, CVar.SERVERONLY);
+        CVarDef.Create("shuttle.grid_fill", false, CVar.SERVERONLY); // Frontier: false
 
     /// <summary>
     ///     Whether to automatically preloading grids by GridPreloaderSystem
@@ -121,7 +121,7 @@ public sealed partial class CCVars
     ///     How long the emergency shuttle remains docked with the station, in seconds.
     /// </summary>
     public static readonly CVarDef<float> EmergencyShuttleDockTime =
-        CVarDef.Create("shuttle.emergency_dock_time", 180f, CVar.SERVERONLY);
+        CVarDef.Create("shuttle.emergency_dock_time", 300f, CVar.SERVERONLY); // Frontier: 180f<300f
 
     /// <summary>
     ///     If the emergency shuttle can't dock at a priority port, the dock time will be multiplied with this value.
@@ -146,19 +146,19 @@ public sealed partial class CCVars
     ///     Actual minimum travel time cannot be less than <see cref="ShuttleSystem.DefaultArrivalTime"/>
     /// </summary>
     public static readonly CVarDef<float> EmergencyShuttleMinTransitTime =
-        CVarDef.Create("shuttle.emergency_transit_time_min", 60f, CVar.SERVERONLY);
+        CVarDef.Create("shuttle.emergency_transit_time_min", 300f, CVar.SERVERONLY); // Frontier: 60f<300f
 
     /// <summary>
     ///     The maximum time for the emergency shuttle to arrive at centcomm.
     /// </summary>
     public static readonly CVarDef<float> EmergencyShuttleMaxTransitTime =
-        CVarDef.Create("shuttle.emergency_transit_time_max", 180f, CVar.SERVERONLY);
+        CVarDef.Create("shuttle.emergency_transit_time_max", 600f, CVar.SERVERONLY); // Frontier: 180f<600f
 
     /// <summary>
     ///     Whether the emergency shuttle is enabled or should the round just end.
     /// </summary>
     public static readonly CVarDef<bool> EmergencyShuttleEnabled =
-        CVarDef.Create("shuttle.emergency", true, CVar.SERVERONLY);
+        CVarDef.Create("shuttle.emergency", false, CVar.SERVERONLY); // Frontier: false
 
     /// <summary>
     ///     The percentage of time passed from the initial call to when the shuttle can no longer be recalled.
@@ -171,7 +171,7 @@ public sealed partial class CCVars
     ///     Time in minutes after round start to auto-call the shuttle. Set to zero to disable.
     /// </summary>
     public static readonly CVarDef<int> EmergencyShuttleAutoCallTime =
-        CVarDef.Create("shuttle.auto_call_time", 90, CVar.SERVERONLY);
+        CVarDef.Create("shuttle.auto_call_time", 360, CVar.SERVERONLY); // Frontier: 90<360
 
     /// <summary>
     ///     Time in minutes after the round was extended (by recalling the shuttle) to call

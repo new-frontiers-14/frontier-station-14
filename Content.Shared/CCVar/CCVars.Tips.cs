@@ -14,7 +14,7 @@ public sealed partial class CCVars
     ///     The dataset prototype to use when selecting a random tip.
     /// </summary>
     public static readonly CVarDef<string> TipsDataset =
-        CVarDef.Create("tips.dataset", "Tips");
+        CVarDef.Create("tips.dataset", "NFTips"); // Frontier: Tips<NFTips
 
     /// <summary>
     ///     The number of seconds between each tip being displayed when the round is not actively going
