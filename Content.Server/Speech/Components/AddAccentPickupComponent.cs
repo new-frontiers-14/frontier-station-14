@@ -4,7 +4,7 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototy
 namespace Content.Server._NF.Speech.Components;
 
 /// <summary>
-///     Applies accent to user while they pick up entity.
+///     Applies accent to user while they hold the entity.
 /// </summary>
 [RegisterComponent]
 public sealed partial class AddAccentPickupComponent : Component

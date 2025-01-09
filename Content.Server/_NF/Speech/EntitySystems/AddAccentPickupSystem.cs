@@ -2,7 +2,7 @@ using Content.Server._NF.Speech.Components;
 using Content.Server.Speech.Components;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Item;
-using Content.Shared.Verbs; // Frontier
+using Content.Shared.Verbs;
 
 namespace Content.Server._NF.Speech.EntitySystems;
 
@@ -34,12 +34,12 @@ public sealed class AddAccentPickupSystem : EntitySystem
             rep.Accent = component.ReplacementPrototype!;
 
         component.IsActive = true;
-        component.Holder = args.User; // Frontier
+        component.Holder = args.User;
     }
 
     private void OnDropped(EntityUid uid, AddAccentPickupComponent component, DroppedEvent args)
     {
-        component.Holder = new EntityUid(0); // null out the component wearer entry to prevent alt verb interactions when no longer worn. Frontier
+        component.Holder = new EntityUid(0); // null out the component wearer entry to prevent alt verb interactions when no longer worn.
         if (!component.IsActive)
             return;
 
@@ -53,7 +53,6 @@ public sealed class AddAccentPickupSystem : EntitySystem
         component.IsActive = false;
     }
 
-    // Frontier Start
     /// <summary>
     ///     Adds an alt verb allowing for the accent to be toggled easily.
     /// </summary>
@@ -102,5 +101,4 @@ public sealed class AddAccentPickupSystem : EntitySystem
             component.IsActive = true;
         }
     }
-    // Frontier End
 }
