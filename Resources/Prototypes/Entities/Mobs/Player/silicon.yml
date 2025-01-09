@@ -256,7 +256,7 @@
 
 - type: entity
   id: AntimovCircuitBoard
-  parent: [BaseElectronics, BaseSyndicateContraband]
+  parent: [BaseElectronics, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
   name: law board (Antimov)
   description: An electronics board containing the Antimov lawset.
   components:
@@ -378,7 +378,7 @@
     unlistedNumber: true
     requiresPower: false
   - type: Holopad
-  - type: StationAiWhitelist  
+  - type: StationAiWhitelist
   - type: UserInterface
     interfaces:
         enum.HolopadUiKey.AiRequestWindow:
