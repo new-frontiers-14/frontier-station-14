@@ -4706,13 +4706,6 @@ entities:
     - type: Transform
       pos: -4.5,-2.5
       parent: 1
-- proto: DefaultStationBeaconCMORoom
-  entities:
-  - uid: 1196
-    components:
-    - type: Transform
-      pos: 8.5,-8.5
-      parent: 1
 - proto: DefaultStationBeaconDisposals
   entities:
   - uid: 1548
@@ -4727,17 +4720,24 @@ entities:
     - type: Transform
       pos: -3.5,-12.5
       parent: 1
-- proto: DefaultStationBeaconFrontierDock
+- proto: DefaultStationBeaconFrontierLobby
   entities:
-  - uid: 301
+  - uid: 289
     components:
     - type: Transform
       pos: 2.5,-17.5
       parent: 1
-  - uid: 727
+  - uid: 897
     components:
     - type: Transform
       pos: 2.5,12.5
+      parent: 1
+- proto: DefaultStationBeaconFrontierMOMOffice
+  entities:
+  - uid: 1196
+    components:
+    - type: Transform
+      pos: 8.5,-8.5
       parent: 1
 - proto: DefaultStationBeaconFrontierVend
   entities:
@@ -9209,6 +9209,11 @@ entities:
     - type: Transform
       pos: -7.5,-5.5
       parent: 1
+  - uid: 301
+    components:
+    - type: Transform
+      pos: -2.5,-11.5
+      parent: 1
   - uid: 320
     components:
     - type: Transform
@@ -9317,6 +9322,11 @@ entities:
     components:
     - type: Transform
       pos: -5.5,-24.5
+      parent: 1
+  - uid: 727
+    components:
+    - type: Transform
+      pos: -4.5,-11.5
       parent: 1
   - uid: 978
     components:
@@ -10112,13 +10122,6 @@ entities:
     - type: Transform
       pos: 7.323324,-5.377597
       parent: 1
-- proto: PowerCellRecharger
-  entities:
-  - uid: 543
-    components:
-    - type: Transform
-      pos: -4.5,8.5
-      parent: 1
 - proto: Poweredlight
   entities:
   - uid: 212
@@ -10662,6 +10665,11 @@ entities:
     - type: Transform
       pos: 10.5,-10.5
       parent: 1
+  - uid: 931
+    components:
+    - type: Transform
+      pos: -4.5,-11.5
+      parent: 1
   - uid: 1286
     components:
     - type: Transform
@@ -10677,6 +10685,11 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 5.5,-5.5
+      parent: 1
+  - uid: 1331
+    components:
+    - type: Transform
+      pos: -2.5,-11.5
       parent: 1
   - uid: 1402
     components:
@@ -11307,6 +11320,13 @@ entities:
         749:
         - On: Forward
         - Off: Off
+- proto: SignAtmos
+  entities:
+  - uid: 1336
+    components:
+    - type: Transform
+      pos: -3.5,-11.5
+      parent: 1
 - proto: SignBar
   entities:
   - uid: 735
@@ -12842,12 +12862,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -3.5,-11.5
       parent: 1
-  - uid: 289
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -4.5,-11.5
-      parent: 1
   - uid: 291
     components:
     - type: Transform
@@ -13280,12 +13294,6 @@ entities:
     - type: Transform
       pos: 11.5,-4.5
       parent: 1
-  - uid: 897
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -2.5,-11.5
-      parent: 1
   - uid: 1030
     components:
     - type: Transform
@@ -13342,6 +13350,11 @@ entities:
       parent: 1
 - proto: WeaponCapacitorRecharger
   entities:
+  - uid: 543
+    components:
+    - type: Transform
+      pos: -4.5,8.5
+      parent: 1
   - uid: 1518
     components:
     - type: Transform
