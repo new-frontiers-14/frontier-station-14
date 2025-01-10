@@ -11,7 +11,7 @@
        !type:String
        pda
   - type: Sprite
-    sprite: Objects/Devices/pda.rsi
+    sprite: _NF/Objects/Devices/pda.rsi # Frontier
     layers:
     - map: [ "enum.PdaVisualLayers.Base" ]
       state: "pda"
@@ -24,7 +24,7 @@
       shader: "unshaded"
       visible: false
   - type: Icon
-    sprite: Objects/Devices/pda.rsi
+    sprite: _NF/Objects/Devices/pda.rsi # Frontier
     state: pda
   - type: Pda
     paiSlot:
@@ -1433,7 +1433,7 @@
 - type: entity
   parent: BasePDA
   id: ChameleonPDA
-  name: passenger PDA
+  name: contractor PDA # Frontier passenger<contractor
   description: Why isn't it gray?
   suffix: Chameleon
   components:
@@ -1444,7 +1444,7 @@
     - DoorBumpOpener
   - type: ChameleonClothing
     slot: [idcard]
-    default: PassengerPDA
+    default: ContractorPDA # Frontier PassengerPDA<ContractorPDA
     requireTag: WhitelistChameleonPDA
   - type: UserInterface
     interfaces:
