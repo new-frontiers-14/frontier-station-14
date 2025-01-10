@@ -19,7 +19,7 @@ namespace Content.IntegrationTests.Tests.Round;
 public sealed class JobTest
 {
     private static readonly ProtoId<JobPrototype> Passenger = "Contractor"; // Frontier: use job prototypes that exist
-    private static readonly ProtoId<JobPrototype> Engineer = "Pilot"; // Frontier
+    private static readonly ProtoId<JobPrototype> Engineer = "Prisoner"; // Frontier
     private static readonly ProtoId<JobPrototype> Captain = "StationRepresentative"; // Frontier
 
     private static string _map = "JobTestMap";
