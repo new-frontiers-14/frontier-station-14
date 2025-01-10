@@ -443,6 +443,9 @@ namespace Content.IntegrationTests.Tests
                 "BiomeSelection", // Whaddya know, requires config.
                 "ActivatableUI", // Requires enum key
 
+                "ActivatableUI", // Frontier: Requires enum key
+                "AlertLevel", // Frontier: requires alert set
+
                 // For testing
                 "AdventureRuleComponent",
                 "AnchorableStorage",
@@ -533,7 +536,6 @@ namespace Content.IntegrationTests.Tests
                 "TallWhitelist",
                 "TradeCrate",
                 "VehicleHorn",
-
                 "M_Emp"
             };
 

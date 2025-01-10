@@ -18,6 +18,8 @@ using Content.Shared._NC.Radio; // Nuclear-14
 using Robust.Server.GameObjects; // Nuclear-14
 using Robust.Shared.Prototypes;
 using Content.Shared.Access.Systems; // Frontier
+using Content.Shared.Verbs; //Frontier
+using Robust.Shared.Utility; //Frontier
 
 namespace Content.Server.Radio.EntitySystems;
 
@@ -51,6 +53,7 @@ public sealed class RadioDeviceSystem : EntitySystem
         SubscribeLocalEvent<RadioMicrophoneComponent, ListenEvent>(OnListen);
         SubscribeLocalEvent<RadioMicrophoneComponent, ListenAttemptEvent>(OnAttemptListen);
         SubscribeLocalEvent<RadioMicrophoneComponent, PowerChangedEvent>(OnPowerChanged);
+        SubscribeLocalEvent<RadioMicrophoneComponent, GetVerbsEvent<AlternativeVerb>>(OnGetAltVerbs); // Frontier
 
         SubscribeLocalEvent<RadioSpeakerComponent, ComponentInit>(OnSpeakerInit);
         SubscribeLocalEvent<RadioSpeakerComponent, ActivateInWorldEvent>(OnActivateSpeaker);
@@ -365,6 +368,44 @@ public sealed class RadioDeviceSystem : EntitySystem
 
     #endregion
     // Nuclear-14-End
+
+    // Frontier Start
+    /// <summary>
+    ///     Adds an alt verb allowing for the mic to be toggled easily.
+    /// </summary>
+    private void OnGetAltVerbs(EntityUid uid, RadioMicrophoneComponent microphone, GetVerbsEvent<AlternativeVerb> args)
+    {
+        if (!args.CanInteract || !args.CanAccess)
+            return;
+
+        AlternativeVerb verb = new()
+        {
+            Text = Loc.GetString("handheld-radio-component-toggle"),
+            Icon = new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/VerbIcons/settings.svg.192dpi.png")),
+            Act = () => ToggleRadioOrIntercomMic(uid, microphone, args.User)
+        };
+        args.Verbs.Add(verb);
+    }
+
+    /// <summary>
+    ///     A mic toggle for both radios and intercoms.
+    /// </summary>
+    private void ToggleRadioOrIntercomMic(EntityUid uid, RadioMicrophoneComponent microphone, EntityUid user)
+    {
+        if (!_access.IsAllowed(user, uid))
+            return;
+        if (microphone.PowerRequired && !this.IsPowered(uid, EntityManager))
+            return;
+
+        ToggleRadioMicrophone(uid, user, false, microphone);
+        if (TryComp<IntercomComponent>(uid, out var intercom))
+        {
+            intercom.MicrophoneEnabled = microphone.Enabled;
+            Dirty<IntercomComponent>((uid, intercom));
+        }
+    }
+    // Frontier End
+
 
     // Frontier: init intercom with map
     private void OnMapInit(EntityUid uid, IntercomComponent ent, MapInitEvent args)
