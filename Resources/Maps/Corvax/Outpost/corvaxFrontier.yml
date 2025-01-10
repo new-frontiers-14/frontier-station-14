@@ -53,7 +53,7 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 0.57384396,0.5624933
-      parent: invalid
+      parent: 7487
     - type: MapGrid
       chunks:
         0,0:
@@ -5992,6 +5992,18 @@ entities:
     - type: ContainedSolution
       containerName: food
       container: 7411
+  - uid: 7487
+    components:
+    - type: MetaData
+      name: Map Entity
+    - type: Transform
+    - type: Map
+      mapPaused: True
+    - type: PhysicsMap
+    - type: GridTree
+    - type: MovedGrids
+    - type: Broadphase
+    - type: OccluderTree
 - proto: ActionBibleSummon
   entities:
   - uid: 5
@@ -6613,7 +6625,7 @@ entities:
       pos: -8.5,17.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -3399.3044
+      secondsUntilStateChange: -3551.7766
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -7084,7 +7096,7 @@ entities:
       pos: 38.5,-20.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -82308.62
+      secondsUntilStateChange: -82461.086
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -7095,7 +7107,7 @@ entities:
       pos: 38.5,-19.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -82308.83
+      secondsUntilStateChange: -82461.3
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -7106,7 +7118,7 @@ entities:
       pos: 38.5,-18.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -82309.06
+      secondsUntilStateChange: -82461.53
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -7162,7 +7174,7 @@ entities:
       pos: 22.5,52.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -81724.13
+      secondsUntilStateChange: -81876.6
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -7173,7 +7185,7 @@ entities:
       pos: 23.5,52.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -81723.45
+      secondsUntilStateChange: -81875.92
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -7184,7 +7196,7 @@ entities:
       pos: 24.5,52.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -81723.97
+      secondsUntilStateChange: -81876.44
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -23881,7 +23893,7 @@ entities:
       pos: -1.5,-5.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -2105.072
+      secondsUntilStateChange: -2257.5442
       state: Closing
     - type: DeviceNetwork
       deviceLists:
@@ -25451,7 +25463,7 @@ entities:
       pos: 5.5,-5.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -1238.773
+      secondsUntilStateChange: -1391.2451
       state: Closing
     - type: DeviceNetwork
       deviceLists:
@@ -39762,7 +39774,7 @@ entities:
       pos: 17.5,22.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -173988.38
+      secondsUntilStateChange: -174140.84
       state: Opening
   - uid: 4983
     components:
@@ -39770,7 +39782,7 @@ entities:
       pos: 19.5,22.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -173988.75
+      secondsUntilStateChange: -174141.22
       state: Opening
   - uid: 4984
     components:
@@ -39783,7 +39795,7 @@ entities:
       pos: 20.5,18.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -173989.47
+      secondsUntilStateChange: -174141.94
       state: Opening
   - uid: 4986
     components:
@@ -39791,7 +39803,7 @@ entities:
       pos: 12.5,22.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -175454.44
+      secondsUntilStateChange: -175606.9
       state: Opening
   - uid: 4987
     components:
@@ -39799,7 +39811,7 @@ entities:
       pos: 14.5,22.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -175453.98
+      secondsUntilStateChange: -175606.45
       state: Opening
   - uid: 4989
     components:
@@ -45936,6 +45948,14 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -31.5,-4.5
+      parent: 1
+- proto: StationAdminBankATMFrontier
+  entities:
+  - uid: 7488
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 2.5,-7.5
       parent: 1
 - proto: StationMap
   entities:
@@ -52614,7 +52634,7 @@ entities:
       lastSignals:
         DoorStatus: True
     - type: Door
-      secondsUntilStateChange: -117768.64
+      secondsUntilStateChange: -117921.11
       state: Opening
   - uid: 7074
     components:
