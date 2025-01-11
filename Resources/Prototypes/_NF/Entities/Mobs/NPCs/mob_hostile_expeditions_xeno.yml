@@ -86,10 +86,10 @@
     speechVerb: LargeMob
   - type: Perishable #Ummmm the acid kills a lot of the bacteria or something
     molsPerSecondPerUnitMass: 0.0005
-  - type: Body
+  - type: Body # Needed for meat spike
     prototype: Animal
   - type: TriggerOnBeingGibbed
-  - type: GibOnTrigger
+  - type: GibOnTrigger # Needed to remove organs from body definition
     deleteItems: true
     deleteOrgans: true
     gib: false
