@@ -497,6 +497,10 @@
     idleState: icon
     runningState: icon
     staticRecipes:
+      - PowerCageRechargerCircuitboard
+      - PowerCageHigh
+      - PowerCageMedium
+      - PowerCageSmall
       - BoxLethalshot
       - BoxShotgunPractice
       - BoxShotgunSlug
@@ -562,42 +566,40 @@
       - HoloprojectorNfsd
       - ClothingBackpackElectropack
     dynamicRecipes:
-      - BoxShotgunIncendiary
-      - BoxShotgunUranium
+    #Maintainer request that uranium/incendiary rounds removed, shuttle guns moved to uplink
+     # - BoxShotgunIncendiary
+     # - BoxShotgunUranium
       - BoxShellTranquilizer
       - ExplosivePayload
       - FlashPayload
       - GrenadeBlast
       - GrenadeEMP
       - GrenadeFlash
-      - MagazineBoxLightRifleIncendiary
-      - MagazineBoxLightRifleUranium
-      - MagazineBoxMagnumIncendiary
-      - MagazineBoxMagnumUranium
-      - MagazineBoxPistolIncendiary
-      - MagazineBoxPistolUranium
-      - MagazineBoxRifleIncendiary
-      - MagazineBoxRifleUranium
+     # - MagazineBoxLightRifleIncendiary
+     # - MagazineBoxLightRifleUranium
+     # - MagazineBoxMagnumIncendiary
+     # - MagazineBoxMagnumUranium
+     # - MagazineBoxPistolIncendiary
+     # - MagazineBoxPistolUranium
+     # - MagazineBoxRifleIncendiary
+     # - MagazineBoxRifleUranium
       - MagazineGrenadeEmpty
-      - MagazineLightRifleIncendiary
-      - MagazineLightRifleUranium
-      - MagazinePistolIncendiary
-      - MagazinePistolUranium
-      - MagazineRifleIncendiary
-      - MagazineRifleUranium
-      - MagazineShotgunIncendiary
+     # - MagazineLightRifleIncendiary
+     # - MagazineLightRifleUranium
+     # - MagazinePistolIncendiary
+     # - MagazinePistolUranium
+     # - MagazineRifleIncendiary
+     # - MagazineRifleUranium
+     # - MagazineShotgunIncendiary
       - PortableRecharger
-      - PowerCageHigh
-      - PowerCageMedium
-      - PowerCageSmall
-      - ShuttleGunDusterCircuitboard
-      - ShuttleGunFriendshipCircuitboard
-      - ShuttleGunPerforatorCircuitboard
-      - ShuttleGunSvalinnMachineGunCircuitboard
+     # - ShuttleGunDusterCircuitboard
+     # - ShuttleGunFriendshipCircuitboard
+     # - ShuttleGunPerforatorCircuitboard
+     # - ShuttleGunSvalinnMachineGunCircuitboard
       - Signaller
       - SignalTrigger
-      - SpeedLoaderMagnumIncendiary
-      - SpeedLoaderMagnumUranium
+     # - SpeedLoaderMagnumIncendiary
+     # - SpeedLoaderMagnumUranium
       - TelescopicShield
       - TimerTrigger
       - Truncheon
@@ -607,8 +609,8 @@
       - WeaponLaserCannon
       - WeaponLaserCarbine
       - WeaponXrayCannon
-      - SpeedLoaderRifleHeavyIncendiary
-      - SpeedLoaderRifleHeavyUranium
+     # - SpeedLoaderRifleHeavyIncendiary
+     # - SpeedLoaderRifleHeavyUranium
 
 - type: entity
   id: MercenaryTechFab
@@ -832,6 +834,24 @@
       - MagazineBoxPistolRubber
       - MagazineBoxRifleRubber
       - MagazineShotgunBeanbag
+  - type: EmagLatheRecipes
+    emagStaticRecipes:
+      - MagazineBoxLightRifleIncendiary
+      - MagazineBoxLightRifleUranium
+      - MagazineBoxMagnumIncendiary
+      - MagazineBoxMagnumUranium
+      - MagazineBoxPistolIncendiary
+      - MagazineBoxPistolUranium
+      - MagazineBoxRifleIncendiary
+      - MagazineBoxRifleUranium
+      - MagazineGrenadeEmpty
+      - MagazineLightRifleIncendiary
+      - MagazineLightRifleUranium
+      - MagazinePistolIncendiary
+      - MagazinePistolUranium
+      - MagazineRifleIncendiary
+      - MagazineRifleUranium
+      - MagazineShotgunIncendiary
 
 - type: entity
   id: MercenaryTechFabHacked
