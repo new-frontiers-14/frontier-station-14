@@ -110,7 +110,7 @@
     sprite: _NF/Structures/Machines/VendingMachines/expeditionaryflatpackvend.rsi
 
 - type: entity
-  parent: [BaseStructureDisableAnchoring, VendingMachine]
+  parent: [BaseStructureDisableAnchoring, StorePresetUplink, VendingMachine]
   id: VendingMachineSyndieContraband
   name: ContraVend
   description: Wanted across multiple sectors!
@@ -148,6 +148,15 @@
     radius: 1.5
     energy: 1.3
     color: "#ad2c2b"
+  - type: UserInterface
+    interfaces:
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+  - type: ActivatableUI
+    key: enum.StoreUiKey.Key
+  - type: Store
+    balance:
+      Telecrystal: 0
   - type: AccessReader
     access: [["NuclearOperative"], ["SyndicateAgent"]]
 
