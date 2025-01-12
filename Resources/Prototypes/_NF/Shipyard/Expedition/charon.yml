@@ -10,8 +10,9 @@
 #
 - type: vessel
   id: Charon
-  name: EIS Charon
-  description: Originally built as a roll-on, roll-off transport for heavy terraforming equipment. Since its obsolescence and appearance on the secondary market, the Charon has become a favorite of upfitters for the broad possibilities afforded by its open equipment bay. A product of Endurance Industrial Shipyards.
+  parent: BaseVessel
+  name: EIS Харон
+  description: Среднегабаритный экспедиционный шаттл. Рекомендуемый состав команды 2-5 человек.
   # Sell value @ exped shipyard 70408, 15% markup and a little rounding gives us...
   price: 81000
   # 24x33 tiles
@@ -23,10 +24,12 @@
   guidebookPage: ShipyardCharon
   class:
   - Expedition
-  
+  engine:
+  - AME
+
 - type: gameMap
   id: Charon
-  mapName: 'Charon'
+  mapName: 'Харон'
   mapPath: /Maps/_NF/Shuttles/Expedition/charon.yml
   minPlayers: 0
   stations: 
@@ -34,7 +37,7 @@
       stationProto: StandardFrontierExpeditionVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Charon {1}'
+          mapNameTemplate: 'Харон {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

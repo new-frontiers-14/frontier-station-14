@@ -1,7 +1,8 @@
 - type: vessel
   id: Paladin
-  name: NSF Paladin
-  description: A small security assault craft designed for space combat equipped with an EXP-2100g mounted grenade launcher.
+  parent: BaseVessel
+  name: NSF Паладин
+  description: Малогабаритный шаттл ДСБФ для команды из 2 человек.
   price: 34220
   category: Small
   group: Security
@@ -10,10 +11,12 @@
   guidebookPage: Null
   class:
   - Fighter
+  engine:
+  - APU
 
 - type: gameMap
   id: Paladin
-  mapName: 'NSF Paladin'
+  mapName: 'NSF Паладин'
   mapPath: /Maps/_NF/Shuttles/Nfsd/paladin.yml
   minPlayers: 0
   stations:
@@ -21,7 +24,7 @@
       stationProto: StandardFrontierSecurityVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Paladin {1}'
+          mapNameTemplate: 'Паладин {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

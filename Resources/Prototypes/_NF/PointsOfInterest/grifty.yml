@@ -10,18 +10,12 @@
 # Down at your local saloon
 - type: pointOfInterest
   id: Grifty
+  parent: BasePOI
   name: "Заправка Зекинса"
   minimumDistance: 3250
   maximumDistance: 5600
   spawnGroup: Scrapyard
   gridPath: /Maps/_NF/POI/grifty.yml
-  addComponents:
-  - type: IFF
-    color: "#ffa600"
-    readOnly: true
-  - type: Shuttle
-    angularDamping: 999999
-    linearDamping: 999999
 
 - type: gameMap
   id: Grifty

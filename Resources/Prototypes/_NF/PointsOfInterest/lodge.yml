@@ -10,6 +10,7 @@
 # Provides higher end expeditionary ships and a space for vets to spawn in away from potential frontier shenanigans
 - type: pointOfInterest
   id: Lodge
+  parent: BasePOI
   name: 'Экспедиционная База'
   minimumDistance: 1650
   maximumDistance: 3400
@@ -18,10 +19,6 @@
   addComponents:
   - type: IFF
     color: "#3737C8"
-    readOnly: true
-  - type: Shuttle
-    angularDamping: 999999
-    linearDamping: 999999
   - type: StationTransit
 
 - type: gameMap

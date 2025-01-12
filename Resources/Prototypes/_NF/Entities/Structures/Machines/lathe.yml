@@ -17,98 +17,6 @@
 
 - type: entity
   parent: [ BlueprintReceiverBase, BaseLatheLube ]
-  id: ScienceTechFab
-  name: science techfab
-  description: Prints equipment for use by the epistemics department.
-  components:
-  - type: Sprite
-    netsync: false
-    sprite: Structures/Machines/techfab.rsi
-    layers:
-    - state: icon
-      map: ["enum.LatheVisualLayers.IsRunning"]
-    - state: sci
-    - state: unlit
-      shader: unshaded
-      map: ["enum.PowerDeviceVisualLayers.Powered"]
-    - state: inserting
-      map: ["enum.MaterialStorageVisualLayers.Inserting"]
-    - state: panel
-      map: ["enum.WiresVisualLayers.MaintenancePanel"]
-  - type: Machine
-    board: ScienceTechFabCircuitboard
-  - type: Lathe
-    idleState: icon
-    runningState: icon
-    staticRecipes:
-    # Shared lathe recipes
-    ## Basic tools
-      - Wirecutter
-      - Screwdriver
-      - Welder
-      - Wrench
-      - CrowbarGreen
-      - Multitool
-      - FlashlightLantern
-      - AppraisalTool
-      - HandLabeler
-      - Signaller
-      - ClothingMaskWeldingGas
-    ## Basic storage
-      - ToolboxArtisticNF
-      - ToolboxElectricalNF
-      - ToolboxMechanicalNF
-      - ToolboxEmergencyNF
-    ## Basic parts
-      - CableStack
-      - LightTube
-      - LedLightTube
-      - SodiumLightTube
-      - ExteriorLightTube
-      - LightBulb
-      - LedLightBulb
-      - ConveyorBeltAssembly
-      - PowerCellSmall
-      - PowerCellMedium
-    ## Basic electronics
-      - SignalTimerElectronics
-      - CellRechargerCircuitboard
-      - BorgChargerCircuitboard
-      - WeaponCapacitorRechargerCircuitboard
-      - AirTank
-    # Science techfab
-    ## Tools
-      - NodeScanner
-    dynamicRecipes:
-    # Shared lathe recipes
-    ## Advanced tools
-      - WelderExperimental
-      - JawsOfLife
-      - PowerDrill
-      - JetpackVoid
-      - PowerCellHigh
-      #- PowerCellHyperNF
-      - PowerCellMicroreactor
-      - BluespaceBeaker
-      - VialBluespace
-      - CryostasisBeaker
-      - ClothingBackpackHolding
-      - ClothingBackpackSatchelHolding
-      - ClothingBackpackDuffelHolding
-      - ClothingBackpackMessengerHolding
-      - ChemicalPayload
-      - Bucket
-      - MopItem
-      - SprayBottle
-      - FireExtinguisher
-      - CableStack
-      - CableMVStack
-      - CableHVStack
-      - ClothingOuterHardsuitBasic
-      - ClothingOuterHardsuitRd
-
-- type: entity
-  parent: [ BlueprintReceiverBase, BaseLatheLube ]
   id: ServiceTechFab
   name: service techfab
   description: Prints equipment for service staff.
@@ -166,8 +74,11 @@
       - LedLightTube
       - SodiumLightTube
       - ExteriorLightTube
+      - LightTubeCrystalBlack
       - LightBulb
       - LedLightBulb
+      - SodiumLightBulb
+      - ExteriorLightBulb
       - ConveyorBeltAssembly
       - PowerCellSmall
       - PowerCellMedium
@@ -207,6 +118,7 @@
       - DrinkMug
       - DrinkMugMetal
       - DrinkGlass
+      - DrinkIceBucketEmpty
       - KitchenKnife
       - ButchCleaver
       - ServiceRollingPin
@@ -226,6 +138,9 @@
       - FoodPlateSmallPlastic
       - NapkinDrum
       - Napkin
+      - CondimentCupDispenser
+      - CondimentCup
+      - FoodCondimentSqueezeBottleClear
     ## EVA
       - ClothingOuterEVASuitHydro
       - ClothingOuterEVASuitJanitor
@@ -268,6 +183,8 @@
       - SyringeBluespace
       - PlantBagOfHolding
       - PlantAnalyzer
+      - JanicartFlatpack
+      - FireExtinguisherBluespace # DeltaV
   - type: EmagLatheRecipes
     emagStaticRecipes:
       - NFHappyHonkNukieEmpty
@@ -325,6 +242,8 @@
       - ExteriorLightTube
       - LightBulb
       - LedLightBulb
+      - SodiumLightBulb
+      - ExteriorLightBulb
       - ConveyorBeltAssembly
       - PowerCellSmall
       - PowerCellMedium
@@ -345,6 +264,7 @@
       - WelderIndustrial
       - WelderIndustrialAdvanced
       - HolofanProjector
+      - FireExtinguisher
     ## Parts
       - MicroManipulatorStockPart
       - MatterBinStockPart
@@ -419,7 +339,6 @@
       - MiningDrill
       - MiningDrillDiamond
       - SprayBottle
-      - FireExtinguisher
       - ShipyardRCD
       - ShipyardRCDAmmo
       - SignallerAdvanced
@@ -428,6 +347,7 @@
       - ClothingOuterHardsuitEngineering
       - ClothingOuterHardsuitEngineeringWhite
       - ConstructionBagOfHolding
+      - FireExtinguisherBluespace # DeltaV
 
 - type: entity
   parent: [ BlueprintReceiverBase, BaseLatheLube ]
@@ -481,6 +401,8 @@
       - ExteriorLightTube
       - LightBulb
       - LedLightBulb
+      - SodiumLightBulb
+      - ExteriorLightBulb
       - ConveyorBeltAssembly
       - PowerCellSmall
       - PowerCellMedium
@@ -614,6 +536,13 @@
       - TargetHuman
       - TargetSyndicate
       - WeaponDisablerPractice
+      - SpeedLoaderRifleHeavyRubber
+      - SpeedLoaderMagnumRubber
+      - MagazineRifleRubber
+      - MagazineShotgunBeanbag
+      - MagazineShotgunSlug
+      - MagazinePistolRubber
+      - MagazineLightRifleRubber
 #      - WeaponFlareGunSecurity
       - WeaponLaserCarbinePractice
       - Zipties
@@ -732,6 +661,8 @@
       - ExteriorLightTube
       - LightBulb
       - LedLightBulb
+      - SodiumLightBulb
+      - ExteriorLightBulb
       - ConveyorBeltAssembly
       - PowerCellSmall
       - PowerCellMedium
@@ -795,11 +726,19 @@
       - MagazineBoxRifle
       - CrossbowBolt
       - CrossbowBoltBroadhead
+      - BoxBeanbag
+      - BoxShotgunSlug
+      - MagazineBoxLightRifleRubber
+      - MagazineBoxMagnumRubber
+      - MagazineBoxPistolRubber
+      - MagazineBoxRifleRubber
     ## Mags / Speedloaders / Clips
       - MagazineNovaliteC1Empty
       - MagazineNovaliteC1
+      - MagazineNovaliteC1Rubber
       - MagazineLightRifleLowCapacityEmpty
       - MagazineLightRifleLowCapacity
+      - MagazineLightRifleLowCapacityRubber
       - MagazineLightRifle
       - MagazineLightRifleEmpty
       - MagazineRifle
@@ -808,6 +747,13 @@
       - MagazinePistolEmpty
       - SpeedLoaderRifleHeavy
       - SpeedLoaderRifleHeavyEmpty
+      - SpeedLoaderRifleHeavyRubber
+      - SpeedLoaderMagnumRubber
+      - MagazineRifleRubber
+      - MagazineShotgunSlug
+      - MagazinePistolRubber
+      - MagazineLightRifleRubber
+      - MagazineShotgunBeanbag
     dynamicRecipes:
     # Shared lathe recipes
     ## Advanced tools
@@ -949,6 +895,8 @@
       - ExteriorLightTube
       - LightBulb
       - LedLightBulb
+      - SodiumLightBulb
+      - ExteriorLightBulb
       - ConveyorBeltAssembly
       - PowerCellSmall
       - PowerCellMedium
@@ -959,10 +907,6 @@
       - WeaponCapacitorRechargerCircuitboard
       - AirTank
     # Mercenary techfab
-    ## Utility
-      - ColoredLightTubeRedNF
-      - ColoredLightTubeBlackLightNF
-      - ColoredLightTubeFrostyBlueNF
     ## Clothing / Armor
       - RiotShield
       - ClothingHandsMercenaryGlovesCombat
@@ -1207,6 +1151,8 @@
       - NFPlushieEngineerRecipe
       - PlushieJesterRecipe
       - PlushieJanitorRecipe
+      - PlushieYarrMothRecipe
+      - PlushieMailVulpRecipe
       - PlushieNukeRecipe
       - PlushieRGBeeRecipe
       - BalloonCorgiRecipe
@@ -1316,6 +1262,7 @@
     unlitIdleState: unshaded
     unlitRunningState: building-unshaded
     defaultProductionAmount: 10
+    productValueModifier: null
     staticRecipes:
     - SmeltScrap
     - ScrapPartRodMetal1

@@ -11,22 +11,16 @@
 # Based on the McCargo built by Dvir01 (https://github.com/dvir001) and ruined with drunken pride by Tych0.
 - type: pointOfInterest
   id: McHobo
+  parent: BasePOI
   name: Заброшенный МакХобольдс
   minimumDistance: 3250
   maximumDistance: 5600
   spawnGroup: Scrapyard
   gridPath: /Maps/_NF/POI/mchobo.yml
-  addComponents:
-  - type: IFF
-    color: "#ffa600"
-    readOnly: true
-  - type: Shuttle
-    angularDamping: 999999
-    linearDamping: 999999
 
 - type: gameMap
   id: McHobo
-  mapName: "Derelict McCargo"
+  mapName: "Заброшенный МакХобольдс"
   mapPath: /Maps/_NF/POI/mchobo.yml
   minPlayers: 0
   stations:
@@ -34,4 +28,4 @@
       stationProto: DeadDropRecordsFrontierOutpost
       components:
         - type: StationNameSetup
-          mapNameTemplate: "Derelict McCargo"
+          mapNameTemplate: "Заброшенный МакХобольдс"

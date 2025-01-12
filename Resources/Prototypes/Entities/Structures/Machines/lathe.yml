@@ -157,6 +157,8 @@
       - ExteriorLightTube
       - LightBulb
       - LedLightBulb
+      - SodiumLightBulb # Frontier
+      - ExteriorLightBulb #Frontier
       - Bucket
       - DrinkMug
       - DrinkMugMetal
@@ -211,6 +213,7 @@
       - FreezerElectronics
       - BoxDispenserFlare # Frontier
       - Durathread # Frontier
+      - FoodCondimentSqueezeBottleClear # Frontier
   - type: EmagLatheRecipes
     emagStaticRecipes:
       - BoxLethalshot
@@ -354,7 +357,7 @@
       - SynthesizerInstrument
       - RPED
       - ClothingShoesBootsMagSci
-      - ClothingShoesBootsMoon
+      - NFClothingShoesBootsMoon # Frontier ClothingShoesBootsMoon<NFClothingShoesBootsMoon
       - ClothingShoesBootsSpeed
       - NodeScanner
       - HolofanProjector
@@ -382,9 +385,10 @@
       - FauxTileAstroIce
       - FauxTileAstroSnow
       - OreBagOfHolding
-      - PlantBagOfHolding #DeltaV
       - DeviceQuantumSpinInverter
-      - UtilityBeltChiefEngineer
+      - PlantBagOfHolding # DeltaV
+      - FireExtinguisherBluespace # DeltaV
+      - UtilityBeltChiefEngineer # Frontier
       - JetpackVoid # Frontier
       - ClothingShoesBootsMagAdv # Frontier
       - ClothingOuterHardsuitAtmos # Frontier
@@ -406,6 +410,7 @@
       - ConstructionBagOfHolding # Frontier
       - ServiceSelectiveDropper # Frontier
       - PlantAnalyzer # Frontier
+      - JanicartFlatpack # Frontier
   - type: EmagLatheRecipes
     emagDynamicRecipes:
       - BoxBeanbag
@@ -526,6 +531,7 @@
     - SalvageTechFabCircuitboardNF # Frontier
     - NFScrapProcessorCircuitboard # Frontier
     - BlueprintLithographMachineCircuitboard # Frontier
+    - CondimentDispenserCircuitboard # Frontier
     dynamicRecipes:
       - ThermomachineFreezerMachineCircuitBoard
       - HellfireFreezerMachineCircuitBoard
@@ -1062,6 +1068,7 @@
       - PowerCellSmall # Frontier
       - BlankMediPen # Frontier
       - MedicalAppraisalTool # Frontier
+      - HandheldCrewMonitor # Frontier
     dynamicRecipes:
       - ChemicalPayload
       - CryostasisBeaker
@@ -1262,8 +1269,8 @@
       - FloorTileItemArcadeBlue # Frontier
       - FloorTileItemArcadeBlue2 # Frontier
       - FloorTileItemArcadeRed # Frontier
-#  - type: EmagLatheRecipes # Frontier
-#    emagStaticRecipes: # Frontier
+  - type: EmagLatheRecipes
+    emagStaticRecipes:
 #      - ClothingHeadHatCentcomcap # Frontier
 #      - ClothingHeadHatCentcom # Frontier
 #      - ClothingUniformJumpsuitCentcomAgent # Frontier
@@ -1271,21 +1278,21 @@
 #      - ClothingUniformJumpskirtCentcomFormalDress # Frontier
 #      - ClothingUniformJumpsuitCentcomOfficer # Frontier
 #      - ClothingUniformJumpsuitCentcomOfficial # Frontier
-#      - ClothingHeadHatSyndieMAA # Frontier
-#      - ClothingHeadHatSyndie # Frontier
-#      - ClothingUniformJumpsuitOperative # Frontier
-#      - ClothingUniformJumpskirtOperative # Frontier
-#      - ClothingUniformJumpsuitSyndieFormal # Frontier
-#      - ClothingUniformJumpskirtSyndieFormalDress # Frontier
-#      - ClothingHeadPyjamaSyndicateBlack # Frontier
-#      - ClothingUniformJumpsuitPyjamaSyndicateBlack # Frontier
-#      - ClothingHeadPyjamaSyndicatePink # Frontier
-#      - ClothingUniformJumpsuitPyjamaSyndicatePink # Frontier
-#      - ClothingHeadPyjamaSyndicateRed # Frontier
-#      - ClothingUniformJumpsuitPyjamaSyndicateRed # Frontier
+      - ClothingHeadHatSyndieMAA
+      - ClothingHeadHatSyndie
+      - ClothingUniformJumpsuitOperative
+      - ClothingUniformJumpskirtOperative
+      - ClothingUniformJumpsuitSyndieFormal
+      - ClothingUniformJumpskirtSyndieFormalDress
+      - ClothingHeadPyjamaSyndicateBlack
+      - ClothingUniformJumpsuitPyjamaSyndicateBlack
+      - ClothingHeadPyjamaSyndicatePink
+      - ClothingUniformJumpsuitPyjamaSyndicatePink
+      - ClothingHeadPyjamaSyndicateRed
+      - ClothingUniformJumpsuitPyjamaSyndicateRed
 #      - ClothingOuterWinterCentcom # Frontier
-#      - ClothingOuterWinterSyndie # Frontier
-#      - ClothingOuterWinterSyndieCap # Frontier
+      - ClothingOuterWinterSyndie
+      - ClothingOuterWinterSyndieCap
   - type: MaterialStorage
     whitelist:
       tags:
@@ -1412,6 +1419,7 @@
       idleState: icon
       runningState: building
       defaultProductionAmount: 10
+      productValueModifier: null # Frontier
       staticRecipes:
         - SheetSteel
         - SheetGlass1
@@ -1425,6 +1433,8 @@
         - MaterialBananium1
         - MaterialDiamond
         - BluespaceCrystal #Nyano - Summary: Bluespace Crystals can be created here.
+    - type: PlaceableSurface # DeltaV: Allow ore bags to dump into it directly
+      isPlaceable: false # but not place on it if you just click it with a random item
 
 - type: entity
   parent: OreProcessor

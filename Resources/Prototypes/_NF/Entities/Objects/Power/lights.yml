@@ -1,0 +1,155 @@
+- type: entity
+  parent: BaseLightTube
+  name: black crystal light tube
+  id: LightTubeCrystalBlack
+  description: A high power high energy bulb which has a small colored crystal inside.
+  components:
+  - type: LightBulb
+    color: "#5D0CED"
+    lightEnergy: 3
+    lightRadius: 8
+    lightSoftness: 0.5
+    BurningTemperature: 350
+    PowerUse: 60
+  - type: ToolRefinable
+    refineResult:
+    - id: SheetGlass1
+#    - id: ShardCrystalBlack
+
+- type: entity
+  parent: LightBulb
+  name: cyan crystal light bulb
+  id: LightBulbCrystalCyan
+  description: A colorful light bulb with a small colored crystal inside.
+  components:
+  - type: LightBulb
+    color: "#47f8ff"
+    lightEnergy: 1.0
+    lightRadius: 6
+    lightSoftness: 1.1
+  - type: Construction
+    graph: CyanLight
+    node: icon
+  - type: ToolRefinable
+    refineResult:
+    - id: SheetGlass1
+    - id: ShardCrystalCyan
+
+- type: entity
+  parent: LightBulb
+  name: blue crystal light bulb
+  id: LightBulbCrystalBlue
+  description: A colorful light bulb with a small colored crystal inside.
+  components:
+  - type: LightBulb
+    color: "#39a1ff"
+    lightEnergy: 1.0
+    lightRadius: 6
+    lightSoftness: 1.1
+  - type: Construction
+    graph: BlueLight
+    node: icon
+  - type: ToolRefinable
+    refineResult:
+    - id: SheetGlass1
+    - id: ShardCrystalBlue
+
+- type: entity
+  parent: LightBulb
+  name: pink crystal light bulb
+  id: LightBulbCrystalPink
+  description: A colorful light bulb with a small colored crystal inside.
+  components:
+  - type: LightBulb
+    color: "#ff66cc"
+    lightEnergy: 1.0
+    lightRadius: 6
+    lightSoftness: 1.1
+  - type: Construction
+    graph: PinkLight
+    node: icon
+  - type: ToolRefinable
+    refineResult:
+    - id: SheetGlass1
+    - id: ShardCrystalPink
+
+- type: entity
+  parent: LightBulb
+  name: orange crystal light bulb
+  id: LightBulbCrystalOrange
+  description: A colorful light bulb with a small colored crystal inside.
+  components:
+  - type: LightBulb
+    color: "#ff8227"
+    lightEnergy: 1.0
+    lightRadius: 6
+    lightSoftness: 1.1
+  - type: Construction
+    graph: OrangeLight
+    node: icon
+  - type: ToolRefinable
+    refineResult:
+    - id: SheetGlass1
+    - id: ShardCrystalOrange
+
+- type: entity
+  parent: LightBulb
+  name: red crystal light bulb
+  id: LightBulbCrystalRed
+  description: A colorful light bulb with a small colored crystal inside.
+  components:
+  - type: LightBulb
+    color: "#fb4747"
+    lightEnergy: 1.0
+    lightRadius: 6
+    lightSoftness: 1.1
+  - type: Construction
+    graph: RedLight
+    node: icon
+  - type: ToolRefinable
+    refineResult:
+    - id: SheetGlass1
+    - id: ShardCrystalRed
+
+- type: entity
+  parent: LightBulb
+  name: green crystal light bulb
+  id: LightBulbCrystalGreen
+  description: A colorful light bulb with a small colored crystal inside.
+  components:
+  - type: LightBulb
+    color: "#52ff39"
+    lightEnergy: 1.0
+    lightRadius: 6
+    lightSoftness: 1.1
+  - type: Construction
+    graph: GreenLight
+    node: icon
+  - type: ToolRefinable
+    refineResult:
+    - id: SheetGlass1
+    - id: ShardCrystalGreen
+
+- type: entity
+  parent: LightBulb
+  name: sodium light bulb
+  id: SodiumLightBulb
+  description: A harsh lightbulb that both alarms and depresses you.
+  components:
+  - type: LightBulb
+    color: "#FFAF38"
+    lightEnergy: 4
+    lightRadius: 8
+    lightSoftness: 0.7
+
+- type: entity
+  parent: LightBulb
+  name: exterior light bulb
+  id: ExteriorLightBulb
+  description: A colorful light bulb with a small colored crystal inside.
+  components:
+  - type: LightBulb
+    color: "#B4FCF0"
+    lightEnergy: 4.5
+    lightRadius: 8
+    lightSoftness: 0.7

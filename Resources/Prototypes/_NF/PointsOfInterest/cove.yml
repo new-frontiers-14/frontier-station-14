@@ -10,9 +10,11 @@
 # Byarr
 - type: pointOfInterest
   id: Cove
-  name: Пиратская Бухта
+  parent: BasePOI
+  name: Пиратская Гавань
   minimumDistance: 10000
   maximumDistance: 15000
+  spawnGamePreset: [ NFPirate ]
   spawnGroup: Required
   gridPath: /Maps/_NF/POI/cove.yml
   hideWarp: true
@@ -20,13 +22,11 @@
   - type: IFF
     color: "#C83737"
     flags: [HideLabel]
-  - type: Shuttle
-    angularDamping: 999999
-    linearDamping: 999999
+    readOnly: false
 
 - type: gameMap
   id: Cove
-  mapName: 'Пиратская Бухта'
+  mapName: 'Пиратская Гавань'
   mapPath: /Maps/Corvax/POI/cove.yml #CorvaxFrontier
   minPlayers: 0
   stations:
@@ -34,7 +34,7 @@
       stationProto: RecordsFrontierOutpost
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Пиратская Бухта'
+          mapNameTemplate: 'Пиратская Гавань'
         - type: ExtraStationInformation
           iconPath: /Textures/_NF/Interface/Pirate/piratelogo.png
           stationSubtext: 'frontier-lobby-pirate-subtext'

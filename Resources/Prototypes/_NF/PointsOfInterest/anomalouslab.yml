@@ -10,23 +10,17 @@
 # The local Science lab
 - type: pointOfInterest
   id: AnomalousLab
-  name: 'Аномальная Лаборатория'
+  parent: BasePOI
+  name: 'Лаборатория Аномалистики'
   minimumDistance: 2100
   maximumDistance: 3800
   IFFColor: "#ffa600" #yellorange for nuetral civillian
   spawnGroup: ScienceLab
   gridPath: /Maps/_NF/POI/anomalouslab.yml
-  addComponents:
-  - type: IFF
-    color: "#ffa600"
-    readOnly: true
-  - type: Shuttle
-    angularDamping: 999999
-    linearDamping: 999999
 
 - type: gameMap
   id: AnomalousLab
-  mapName: 'Аномальная Лаборатория'
+  mapName: 'Лаборатория Аномалистики'
   mapPath: /Maps/_NF/POI/anomalouslab.yml
   minPlayers: 0
   stations:
@@ -34,7 +28,7 @@
       stationProto: StandardFrontierOutpost
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Аномальная Лаборатория'
+          mapNameTemplate: 'Лаборатория Аномалистики'
         - type: StationJobs
           availableJobs: {}
         - type: StationDeadDropHintExempt

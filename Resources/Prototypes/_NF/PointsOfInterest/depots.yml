@@ -10,6 +10,7 @@
 # Basic Cargo Depot selling point for economy and great wealth
 - type: pointOfInterest
   id: CargoDepot
+  parent: BasePOI
   name: Грузовое Депо
   minimumDistance: 4500
   maximumDistance: 6000
@@ -18,15 +19,12 @@
   addComponents:
   - type: IFF
     color: "#37C837"
-    readOnly: true
-  - type: Shuttle
-    angularDamping: 999999
-    linearDamping: 999999
   - type: ProtectedGrid
     preventArtifactTriggers: true
 
 - type: pointOfInterest
   id: CargoDepotAlt
+  parent: BasePOI
   name: Грузовое Депо
   minimumDistance: 4500
   maximumDistance: 6000
@@ -35,10 +33,6 @@
   addComponents:
   - type: IFF
     color: "#37C837"
-    readOnly: true
-  - type: Shuttle
-    angularDamping: 999999
-    linearDamping: 999999
   - type: ProtectedGrid
     preventArtifactTriggers: true
 

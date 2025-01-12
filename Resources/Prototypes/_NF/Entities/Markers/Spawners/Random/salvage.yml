@@ -1,5 +1,6 @@
 # Frontier
 
+# region Elemental Spawners
 - type: entity
   name: andesite elemental spawner
   id: AndesiteElementalSpawner
@@ -251,10 +252,263 @@
         - AsteroidRockUraniumCrabNF
 
 - type: entity
+  name: Cobblebrick Elemental Spawner
+  id: CobblebrickElementalSpawner
+  parent: MarkerBase
+  suffix: 45
+  components:
+    - type: Sprite
+      layers:
+        - state: red
+        - sprite: /Textures/Mobs/Elemental/orecrab.rsi
+          state: uranium_crab
+    - type: RandomSpawner
+      rarePrototypes:
+      - NFWallCobblebrickBananiumGolem
+      - NFWallCobblebrickCoalGolem
+      - NFWallCobblebrickGoldGolem
+      - NFWallCobblebrickIronGolem
+      - NFWallCobblebrickPlasmaGolem
+      - NFWallCobblebrickQuartzGolem
+      - NFWallCobblebrickSaltGolem
+      - NFWallCobblebrickSilverGolem
+      - NFWallCobblebrickUraniumGolem
+      rareChance: 0.1
+      prototypes:
+        - NFWallCobblebrickBananiumCrab
+        - NFWallCobblebrickCoalCrab
+        - NFWallCobblebrickGoldCrab
+        - NFWallCobblebrickTinCrab
+        - NFWallCobblebrickPlasmaCrab
+        - NFWallCobblebrickQuartzCrab
+        - NFWallCobblebrickSaltCrab
+        - NFWallCobblebrickSilverCrab
+        - NFWallCobblebrickUraniumCrab
+      chance: 0.45
+      offset: 0.2
+
+- type: entity
+  name: Ice Elemental Spawner
+  id: IceElementalSpawner
+  parent: MarkerBase
+  suffix: 45
+  components:
+    - type: Sprite
+      layers:
+        - state: red
+        - sprite: /Textures/Mobs/Elemental/orecrab.rsi
+          state: uranium_crab
+    - type: RandomSpawner
+      rarePrototypes:
+      - NFWallIceBananiumGolem
+      - NFWallIceCoalGolem
+      - NFWallIceGoldGolem
+      - NFWallIceIronGolem
+      - NFWallIcePlasmaGolem
+      - NFWallIceQuartzGolem
+      - NFWallIceSaltGolem
+      - NFWallIceSilverGolem
+      - NFWallIceUraniumGolem
+      rareChance: 0.1
+      prototypes:
+        - NFWallIceBananiumCrab
+        - NFWallIceCoalCrab
+        - NFWallIceGoldCrab
+        - NFWallIceTinCrab
+        - NFWallIcePlasmaCrab
+        - NFWallIceQuartzCrab
+        - NFWallIceSaltCrab
+        - NFWallIceSilverCrab
+        - NFWallIceUraniumCrab
+      chance: 0.45
+      offset: 0.2
+
+- type: entity
+  name: Andesite Cobblebrick Elemental Spawner
+  id: AndesiteCobblebrickElementalSpawner
+  parent: MarkerBase
+  suffix: 45
+  components:
+    - type: Sprite
+      layers:
+        - state: red
+        - sprite: /Textures/Mobs/Elemental/orecrab.rsi
+          state: uranium_crab
+    - type: RandomSpawner
+      rarePrototypes:
+      - NFWallAndesiteCobblebrickBananiumGolem
+      - NFWallAndesiteCobblebrickCoalGolem
+      - NFWallAndesiteCobblebrickGoldGolem
+      - NFWallAndesiteCobblebrickIronGolem
+      - NFWallAndesiteCobblebrickPlasmaGolem
+      - NFWallAndesiteCobblebrickQuartzGolem
+      - NFWallAndesiteCobblebrickSaltGolem
+      - NFWallAndesiteCobblebrickSilverGolem
+      - NFWallAndesiteCobblebrickUraniumGolem
+      rareChance: 0.1
+      prototypes:
+        - NFWallAndesiteCobblebrickBananiumCrab
+        - NFWallAndesiteCobblebrickCoalCrab
+        - NFWallAndesiteCobblebrickGoldCrab
+        - NFWallAndesiteCobblebrickTinCrab
+        - NFWallAndesiteCobblebrickPlasmaCrab
+        - NFWallAndesiteCobblebrickQuartzCrab
+        - NFWallAndesiteCobblebrickSaltCrab
+        - NFWallAndesiteCobblebrickSilverCrab
+        - NFWallAndesiteCobblebrickUraniumCrab
+      chance: 0.45
+      offset: 0.2
+
+- type: entity
+  name: Basalt Cobblebrick Elemental Spawner
+  id: BasaltCobblebrickElementalSpawner
+  parent: MarkerBase
+  suffix: 45
+  components:
+    - type: Sprite
+      layers:
+        - state: red
+        - sprite: /Textures/Mobs/Elemental/orecrab.rsi
+          state: uranium_crab
+    - type: RandomSpawner
+      rarePrototypes:
+      - NFWallBasaltCobblebrickBananiumGolem
+      - NFWallBasaltCobblebrickCoalGolem
+      - NFWallBasaltCobblebrickGoldGolem
+      - NFWallBasaltCobblebrickIronGolem
+      - NFWallBasaltCobblebrickPlasmaGolem
+      - NFWallBasaltCobblebrickQuartzGolem
+      - NFWallBasaltCobblebrickSaltGolem
+      - NFWallBasaltCobblebrickSilverGolem
+      - NFWallBasaltCobblebrickUraniumGolem
+      rareChance: 0.1
+      prototypes:
+        - NFWallBasaltCobblebrickBananiumCrab
+        - NFWallBasaltCobblebrickCoalCrab
+        - NFWallBasaltCobblebrickGoldCrab
+        - NFWallBasaltCobblebrickTinCrab
+        - NFWallBasaltCobblebrickPlasmaCrab
+        - NFWallBasaltCobblebrickQuartzCrab
+        - NFWallBasaltCobblebrickSaltCrab
+        - NFWallBasaltCobblebrickSilverCrab
+        - NFWallBasaltCobblebrickUraniumCrab
+      chance: 0.45
+      offset: 0.2
+
+- type: entity
+  name: Sandstone Cobblebrick Elemental Spawner
+  id: SandstoneCobblebrickElementalSpawner
+  parent: MarkerBase
+  suffix: 45
+  components:
+    - type: Sprite
+      layers:
+        - state: red
+        - sprite: /Textures/Mobs/Elemental/orecrab.rsi
+          state: uranium_crab
+    - type: RandomSpawner
+      rarePrototypes:
+      - NFWallSandstoneBananiumGolem
+      - NFWallSandstoneCoalGolem
+      - NFWallSandstoneGoldGolem
+      - NFWallSandstoneIronGolem
+      - NFWallSandstonePlasmaGolem
+      - NFWallSandstoneQuartzGolem
+      - NFWallSandstoneSaltGolem
+      - NFWallSandstoneSilverGolem
+      - NFWallSandstoneUraniumGolem
+      rareChance: 0.1
+      prototypes:
+        - NFWallSandstoneBananiumCrab
+        - NFWallSandstoneCoalCrab
+        - NFWallSandstoneGoldCrab
+        - NFWallSandstoneTinCrab
+        - NFWallSandstonePlasmaCrab
+        - NFWallSandstoneQuartzCrab
+        - NFWallSandstoneSaltCrab
+        - NFWallSandstoneSilverCrab
+        - NFWallSandstoneUraniumCrab
+      chance: 0.45
+      offset: 0.2
+
+- type: entity
+  name: Chromite Cobblebrick Elemental Spawner
+  id: ChromiteCobblebrickElementalSpawner
+  parent: MarkerBase
+  suffix: 45
+  components:
+    - type: Sprite
+      layers:
+        - state: red
+        - sprite: /Textures/Mobs/Elemental/orecrab.rsi
+          state: uranium_crab
+    - type: RandomSpawner
+      rarePrototypes:
+      - NFWallChromiteCobblebrickBananiumGolem
+      - NFWallChromiteCobblebrickCoalGolem
+      - NFWallChromiteCobblebrickGoldGolem
+      - NFWallChromiteCobblebrickIronGolem
+      - NFWallChromiteCobblebrickPlasmaGolem
+      - NFWallChromiteCobblebrickQuartzGolem
+      - NFWallChromiteCobblebrickSaltGolem
+      - NFWallChromiteCobblebrickSilverGolem
+      - NFWallChromiteCobblebrickUraniumGolem
+      rareChance: 0.1
+      prototypes:
+        - NFWallChromiteCobblebrickBananiumCrab
+        - NFWallChromiteCobblebrickCoalCrab
+        - NFWallChromiteCobblebrickGoldCrab
+        - NFWallChromiteCobblebrickTinCrab
+        - NFWallChromiteCobblebrickPlasmaCrab
+        - NFWallChromiteCobblebrickQuartzCrab
+        - NFWallChromiteCobblebrickSaltCrab
+        - NFWallChromiteCobblebrickSilverCrab
+        - NFWallChromiteCobblebrickUraniumCrab
+      chance: 0.45
+      offset: 0.2
+
+- type: entity
+  name: Necropolis Elemental Spawner
+  id: NecropolisElementalSpawner
+  parent: MarkerBase
+  suffix: 45
+  components:
+    - type: Sprite
+      layers:
+        - state: red
+        - sprite: /Textures/Mobs/Elemental/orecrab.rsi
+          state: uranium_crab
+    - type: RandomSpawner
+      rarePrototypes:
+      - NFWallNecropolisBananiumGolem
+      - NFWallNecropolisCoalGolem
+      - NFWallNecropolisGoldGolem
+      - NFWallNecropolisIronGolem
+      - NFWallNecropolisPlasmaGolem
+      - NFWallNecropolisQuartzGolem
+      - NFWallNecropolisSaltGolem
+      - NFWallNecropolisSilverGolem
+      - NFWallNecropolisUraniumGolem
+      rareChance: 0.1
+      prototypes:
+        - NFWallNecropolisBananiumCrab
+        - NFWallNecropolisCoalCrab
+        - NFWallNecropolisGoldCrab
+        - NFWallNecropolisTinCrab
+        - NFWallNecropolisPlasmaCrab
+        - NFWallNecropolisQuartzCrab
+        - NFWallNecropolisSaltCrab
+        - NFWallNecropolisSilverCrab
+        - NFWallNecropolisUraniumCrab
+      chance: 0.45
+      offset: 0.2
+# endregion Elemental Spawners
+
+# region Scrap Spawners
+- type: entity
   name: asteroid scrap bot spawner
   id: AsteroidScrapBotSpawner
   parent: MarkerBase
-  suffix: 45
   components:
   - type: Sprite
     layers:
@@ -324,7 +578,9 @@
     - WallRockScrapPileBot
     chance: 0.45
     offset: 0.2
+# endregion Scrap Spawners
 
+# region Wreck/Expedition Spawners
 - type: entity
   name: Salvage Material Crate Spawner
   id: NFSalvageMaterialCrateSpawner
@@ -333,29 +589,26 @@
   - type: RandomSpawner
     prototypes:
     - NFCrateSalvageAssortedGoodies
+    - NFCrateSalvageAssortedGoodies
+    - NFCrateSalvageAssortedGoodies
     - NFCrateSalvageAssortedGoodiesPlastic
+    - NFCrateSalvageAssortedGoodiesPlastic
+    - NFCrateSalvageAssortedGoodiesTrashCart
     chance: 0.95
     rarePrototypes:
+    - CrateTradeSecureNormalFilled
+    - CrateTradeSecureHighFilled
     - CrateSalvageEquipment
-    - CrateServiceJanitorialSupplies
-    - CrateEmergencyInternals
-    - CrateServiceSmokeables
     - CrateTrashCartFilled
-    - CrateServiceReplacementLights
-    - CrateServiceBureaucracy
-    - CrateEmergencyFire
-    - CrateEmergencyInflatablewall
-    - CrateHydroponicsTools
-    - CrateHydroponicsSeeds
-    - CrateHydroponicsSeedsMedicinal
-    - CrateHydroponicsSeedsExotic
-    rareChance: 0.1
+    - CrateArtifactContainer
+    rareChance: 0.03
     offset: 0.0
 
 - type: entity
   name: salvage tank spawner
-  id: SalvageTankSpawner
+  id: SalvageTankSpawnerHighCapacity
   parent: MarkerBase
+  suffix: High Capacity, 95%
   components:
   - type: Sprite
     layers:
@@ -364,15 +617,9 @@
       state: fueltank
   - type: RandomSpawner
     prototypes:
-    - WaterTankFull
-    - WeldingFuelTankFull
-#    - WaterCooler
-    chance: 0.95
-    rarePrototypes:
-    - WeldingFuelTankHighCapacity
+#    - WeldingFuelTankHighCapacity
     - WaterTankHighCapacity
-    rareChance: 0.05
-    offset: 0.0
+    chance: 0.95
 
 - type: entity
   name: salvage locker spawner
@@ -430,13 +677,9 @@
     - Table
     - Rack
 #    - Dresser # WardrobeMixedFilled
-    - WardrobeMixedFilled
-#    - Bookshelf # BookshelfFilled
+    - NFWardrobeMixedFilled
     - BookshelfFilled
     - Bed
-    - SuitStorageSalv
-    - Floodlight
-    - PottedPlantRandomPlastic
     chance: 0.95
     rarePrototypes:
     - MedicalBed
@@ -447,6 +690,10 @@
     - ComfyChair
     - ChairWood
     - ChairFolding
+    - ComputerBroken
+    - MachineFrameDestroyed
+    - VehicleJanicartDestroyed
+    - PottedPlantRandomPlastic
     rareChance: 0.1
     offset: 0.0
 
@@ -489,6 +736,9 @@
     - SuitStorageAtmos
     - SuitStorageSalv
     chance: 0.95
+    rarePrototypes:
+    - SuitStorageBase
+    rareChance: 0.05
     offset: 0.0
 
 - type: entity
@@ -597,3 +847,113 @@
 #    - SpawnMobPurpleSnake # Why are they xeno
     rareChance: 0.2
     offset: 0.0
+
+- type: entity
+  id: NFSalvageChemicalBarrelSpawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: _NF/Objects/Storage/Barrels/grey.rsi
+      state: icon
+  - type: RandomSpawner
+    prototypes: # Filled versions
+    - ChemicalBarrelCarbon
+    - ChemicalBarrelIodine
+    - ChemicalBarrelFluorine
+    - ChemicalBarrelChlorine
+    - ChemicalBarrelAluminium
+    - ChemicalBarrelPhosphorus
+    - ChemicalBarrelSulfur
+    - ChemicalBarrelSilicon
+    - ChemicalBarrelHydrogen
+    - ChemicalBarrelLithium
+    - ChemicalBarrelSodium
+    - ChemicalBarrelPotassium
+    - ChemicalBarrelRadium
+    - ChemicalBarrelIron
+    - ChemicalBarrelCopper
+    - ChemicalBarrelGold
+    - ChemicalBarrelMercury
+    - ChemicalBarrelSilver
+    - ChemicalBarrelEthanol
+    - ChemicalBarrelSugar
+    - ChemicalBarrelNitrogen
+    - ChemicalBarrelOxygen
+    chance: 0.95
+    offset: 0.1 # Little offset, it's free-standing
+
+- type: entity
+  id: NFSalvageServiceBarrelSpawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: _NF/Objects/Storage/Barrels/grey.rsi
+      state: icon
+  - type: RandomSpawner
+    prototypes: # Filled versions
+    - ChemicalBarrelOil
+    - ChemicalBarrelDiethylamine
+    - ChemicalBarrelMustard
+    - ChemicalBarrelKetchup
+    - ChemicalBarrelMayo
+    - ChemicalBarrelCornoil
+    - ChemicalBarrelOliveoil
+    - ChemicalBarrelSpaceLube
+    - ChemicalBarrelSpaceCleaner
+    chance: 0.95
+    offset: 0.1 # Little offset, it's free-standing
+
+- type: entity
+  id: NFSalvageDrinkableBarrelSpawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: _NF/Objects/Storage/Barrels/red.rsi
+      state: icon
+  - type: RandomSpawner
+    prototypes: # Filled versions
+    - ChemicalBarrelWater
+    rarePrototypes:
+    - ChemicalBarrelAbsinthe
+    - ChemicalBarrelAle
+    - ChemicalBarrelBeer
+    - ChemicalBarrelCoffeeLiqueur
+    - ChemicalBarrelCognac
+    - ChemicalBarrelGin
+    - ChemicalBarrelMead
+    - ChemicalBarrelRum
+    - ChemicalBarrelTequila
+    - ChemicalBarrelVermouth
+    - ChemicalBarrelVodka
+    - ChemicalBarrelWhiskey
+    - ChemicalBarrelWine
+    rareChance: 0.5
+    chance: 0.95
+    offset: 0.1 # Little offset, it's free-standing
+
+- type: entity
+  id: NFSalvageEmptyBarrelSpawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: _NF/Objects/Storage/Barrels/red.rsi
+      state: icon
+  - type: RandomSpawner
+    prototypes:
+    - MetalBarrelGrey
+    - MetalBarrelBlue
+    - MetalBarrelRed
+    - MetalBarrelYellow
+    - MetalBarrelGreen
+    - MetalBarrelWhite
+    - MetalBarrelBlack
+    - ChemicalBarrelExplosiveEmpty
+    offset: 0.1 # Little offset, it's free-standing

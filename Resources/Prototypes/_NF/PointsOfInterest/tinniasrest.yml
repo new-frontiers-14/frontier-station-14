@@ -10,23 +10,18 @@
 # Down at your local saloon
 - type: pointOfInterest
   id: Tinnia
+  parent: BasePOI
   name: "Ресторан Тринньки"
   minimumDistance: 1200
   maximumDistance: 2900
   spawnGroup: RestStop
   gridPath: /Maps/_NF/POI/tinnia.yml
   addComponents:
-  - type: IFF
-    color: "#ffa600"
-    readOnly: true
-  - type: Shuttle
-    angularDamping: 999999
-    linearDamping: 999999
   - type: StationTransit
 
 - type: gameMap
   id: Tinnia
-  mapName: "Tinnia's Rest"
+  mapName: "Ресторан Тринньки"
   mapPath: /Maps/_NF/POI/tinnia.yml
   minPlayers: 0
   stations:
@@ -34,4 +29,4 @@
       stationProto: DeadDropFrontierOutpost
       components:
         - type: StationNameSetup
-          mapNameTemplate: "Tinnia's Rest"
+          mapNameTemplate: "Ресторан Тринньки"
