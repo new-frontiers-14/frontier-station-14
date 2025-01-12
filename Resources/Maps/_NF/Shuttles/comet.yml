@@ -2048,6 +2048,18 @@ entities:
     - type: Transform
       pos: -0.25350183,-15.26015
       parent: 1
+- proto: ClothingBeltSalvageWebbingFilledNF
+  entities:
+  - uid: 61
+    components:
+    - type: Transform
+      pos: -0.5459864,-2.430433
+      parent: 1
+  - uid: 178
+    components:
+    - type: Transform
+      pos: -1.4834864,-2.4825163
+      parent: 1
 - proto: ClothingHeadHatBeret
   entities:
   - uid: 52
@@ -2060,7 +2072,14 @@ entities:
   - uid: 677
     components:
     - type: Transform
-      pos: -2.6592479,0.49791443
+      pos: 2.4755363,-6.5590262
+      parent: 1
+- proto: ClothingShoesBootsMag
+  entities:
+  - uid: 681
+    components:
+    - type: Transform
+      pos: -1.0208334,-2.4089558
       parent: 1
 - proto: ComputerTabletopShuttle
   entities:
@@ -2075,13 +2094,6 @@ entities:
     components:
     - type: Transform
       pos: -0.5,2.5
-      parent: 1
-- proto: ConstructionBag
-  entities:
-  - uid: 233
-    components:
-    - type: Transform
-      pos: -0.61395144,6.5341043
       parent: 1
 - proto: ConveyorBelt
   entities:
@@ -2157,44 +2169,13 @@ entities:
       rot: 3.141592653589793 rad
       pos: -1.5,15.5
       parent: 1
-- proto: CrateEngineeringCableBulk
-  entities:
-  - uid: 168
-    components:
-    - type: Transform
-      pos: 0.5,9.5
-      parent: 1
-- proto: CrateMaterialsBasicFilled
-  entities:
-  - uid: 364
-    components:
-    - type: Transform
-      pos: 0.5,4.5
-      parent: 1
-    - type: EntityStorage
-      air:
-        volume: 200
-        immutable: False
-        temperature: 293.14923
-        moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
 - proto: DefibrillatorCabinetFilled
   entities:
   - uid: 676
     components:
     - type: Transform
-      pos: -2.5,-2.5
+      rot: -1.5707963267948966 rad
+      pos: 4.5,6.5
       parent: 1
 - proto: DrinkBeerGrowler
   entities:
@@ -3392,29 +3373,39 @@ entities:
     - type: Transform
       pos: 1.5,-1.5
       parent: 1
+- proto: LockerMaterialsBasicFilled
+  entities:
+  - uid: 60
+    components:
+    - type: Transform
+      pos: 0.24288094,4.5146613
+      parent: 1
 - proto: LockerQuarterMasterFilledHardsuit
   entities:
-  - uid: 265
+  - uid: 480
     components:
     - type: Transform
-      pos: -0.26663214,-2.4799037
+      pos: -2.5,0.5
       parent: 1
-- proto: LockerSalvageSpecialistFilledHardsuit
+- proto: LockerWallEVAColorSalvageFilled
   entities:
-  - uid: 17
+  - uid: 364
     components:
     - type: Transform
-      pos: -1.7687699,-2.465424
+      rot: 3.141592653589793 rad
+      pos: -0.5,-6.5
       parent: 1
-  - uid: 59
+  - uid: 651
     components:
     - type: Transform
-      pos: -1.2641401,-2.465424
+      rot: -1.5707963267948966 rad
+      pos: 3.5,-5.5
       parent: 1
-  - uid: 61
+  - uid: 680
     components:
     - type: Transform
-      pos: -0.7687698,-2.465424
+      rot: 3.141592653589793 rad
+      pos: 1.5,-6.5
       parent: 1
 - proto: LockerWallMaterialsFuelUraniumFilled2
   entities:
@@ -3422,6 +3413,21 @@ entities:
     components:
     - type: Transform
       pos: -0.5,-12.5
+      parent: 1
+- proto: LockerWallMaterialsFuelWeldingFilled
+  entities:
+  - uid: 59
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -3.5,6.5
+      parent: 1
+- proto: LockerWeldingSuppliesFilled
+  entities:
+  - uid: 679
+    components:
+    - type: Transform
+      pos: 0.7316866,4.504245
       parent: 1
 - proto: MachineFlatpacker
   entities:
@@ -3492,6 +3498,18 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
+- proto: OreBag
+  entities:
+  - uid: 17
+    components:
+    - type: Transform
+      pos: -0.8186021,6.540732
+      parent: 1
+  - uid: 668
+    components:
+    - type: Transform
+      pos: -0.4436021,6.509482
+      parent: 1
 - proto: OreBox
   entities:
   - uid: 255
@@ -3575,13 +3593,6 @@ entities:
     - type: Transform
       pos: -0.5,-7.5
       parent: 1
-- proto: PosterLegitSafetyMothSSD
-  entities:
-  - uid: 178
-    components:
-    - type: Transform
-      pos: 1.5,-6.5
-      parent: 1
 - proto: PosterLegitSMFires
   entities:
   - uid: 158
@@ -3594,7 +3605,8 @@ entities:
   - uid: 531
     components:
     - type: Transform
-      pos: -0.5,-6.5
+      rot: 1.5707963267948966 rad
+      pos: 3.5,-6.5
       parent: 1
 - proto: PosterLegitWorkForAFuture
   entities:
@@ -3778,12 +3790,6 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 1.5,-8.5
-      parent: 1
-  - uid: 651
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -2.5,0.5
       parent: 1
 - proto: RailingCorner
   entities:
@@ -4050,17 +4056,18 @@ entities:
       parent: 1
 - proto: ShelfMetal
   entities:
-  - uid: 60
+  - uid: 281
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -2.5,-5.5
       parent: 1
-  - uid: 480
+- proto: ShelfWallFreezerWhite
+  entities:
+  - uid: 678
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 3.5,-5.5
+      pos: -2.5,-2.5
       parent: 1
 - proto: ShuttersNormalOpen
   entities:
@@ -4582,6 +4589,11 @@ entities:
     - type: Transform
       pos: 1.5,-0.5
       parent: 1
+  - uid: 168
+    components:
+    - type: Transform
+      pos: -0.5,-2.5
+      parent: 1
   - uid: 203
     components:
     - type: Transform
@@ -4591,6 +4603,12 @@ entities:
     components:
     - type: Transform
       pos: -0.5,6.5
+      parent: 1
+  - uid: 265
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 3.5,0.5
       parent: 1
   - uid: 306
     components:
@@ -4607,10 +4625,10 @@ entities:
     - type: Transform
       pos: 2.5,6.5
       parent: 1
-  - uid: 668
+  - uid: 669
     components:
     - type: Transform
-      pos: 2.5,0.5
+      pos: -1.5,-2.5
       parent: 1
 - proto: TableFolding
   entities:
@@ -5200,10 +5218,11 @@ entities:
       parent: 1
 - proto: WeaponCapacitorRecharger
   entities:
-  - uid: 669
+  - uid: 233
     components:
     - type: Transform
-      pos: 2.5,0.5
+      rot: -1.5707963267948966 rad
+      pos: 3.5,0.5
       parent: 1
 - proto: WeaponGrapplingGun
   entities:
@@ -5215,14 +5234,7 @@ entities:
   - uid: 500
     components:
     - type: Transform
-      pos: -1.4681182,6.5236874
-      parent: 1
-- proto: WeldingFuelTankFull
-  entities:
-  - uid: 281
-    components:
-    - type: Transform
-      pos: 0.5,10.5
+      pos: -1.479199,6.508094
       parent: 1
 - proto: Wrench
   entities:
