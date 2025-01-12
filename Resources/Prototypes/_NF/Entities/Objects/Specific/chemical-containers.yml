@@ -4,6 +4,8 @@
   id: ReinforcedJug
   description: The sterile plastic of this jug has been reinforced with a metallic shell allowing it to contain an impressive amount of liquid.
   components:
+    - type: SolutionContainerVisuals
+      inHandsMaxFillLevels: 4
     - type: SolutionContainerManager
       solutions:
         beaker:
@@ -44,8 +46,6 @@
       price: 30 # Consistent with BaseBeakerMetallic
     - type: Destructible # Hacky - takes damage, but shouldn't be destructible
       thresholds: []
-    - type: MultiHandedItem
-    - type: ItemSlots
     - type: GenericVisualizer
       visuals:
         enum.OpenableVisuals.Opened:
