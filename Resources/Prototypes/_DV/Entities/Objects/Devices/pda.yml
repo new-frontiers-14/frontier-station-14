@@ -8,26 +8,17 @@
   name: mail carrier PDA # Frontier: courier PDA<mail carrier PDA
   description: Smells like unopened letters.
   components:
-  - type: Sprite
-    sprite: _NF/Objects/Devices/pda.rsi # Frontier - _DV/Objects/Devices/pda.rsi<_NF/Objects/Devices/pda.rsi
-    layers:
-    - map: [ "enum.PdaVisualLayers.Base" ]
-    - state: "light_overlay"
-      map: [ "enum.PdaVisualLayers.Flashlight" ]
-      shader: "unshaded"
-      visible: false
-    - state: "id_overlay"
-      map: [ "enum.PdaVisualLayers.IdLight" ]
-      shader: "unshaded"
-      visible: false
   - type: Pda
     id: CourierIDCard
-    state: pda-mailcarrier
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-mailcarrier
   - type: PdaBorderColor
     borderColor: "#e39751"
     accentVColor: "#050c4d"
   - type: Icon
-    sprite: _NF/Objects/Devices/pda.rsi # Frontier - _DV/Objects/Devices/pda.rsi<_NF/Objects/Devices/pda.rsi
     state: pda-mailcarrier
   # - type: CartridgeLoader # DeltaV - Courier Performance # Frontier - pushed to cartridge loadouts
     # preinstalled:

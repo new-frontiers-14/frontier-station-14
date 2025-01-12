@@ -6,7 +6,11 @@
   components:
   - type: Pda
     id: PrisonerIDCard
-    state: pda-clear
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-clear
   - type: Icon
     state: pda-clear
 
@@ -18,24 +22,15 @@
   components:
   - type: Pda
     id: ValetNFIDCard # Frontier: ValetIDCard<ValetNFIDCard
-    state: pda-valet
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-valet
   - type: PdaBorderColor
     borderColor: "#860000"
     accentVColor: "#F2F2F2"
-  - type: Sprite
-    sprite: _NF/Objects/Devices/pda.rsi
-    layers:
-    - map: [ "enum.PdaVisualLayers.Base" ]
-    - state: "light_overlay"
-      map: [ "enum.PdaVisualLayers.Flashlight" ]
-      shader: "unshaded"
-      visible: false
-    - state: "id_overlay"
-      map: [ "enum.PdaVisualLayers.IdLight" ]
-      shader: "unshaded"
-      visible: false
   - type: Icon
-    sprite: _NF/Objects/Devices/pda.rsi
     state: pda-valet
 
 - type: entity
@@ -46,10 +41,13 @@
   components:
   - type: Pda
     id: PrisonGuardIDCard
-    state: pda-security
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-security
   - type: PdaBorderColor
     borderColor: "#A32D26"
     accentVColor: "#DFDFDF"
 #  - type: Icon
-#    sprite: _NF/Objects/Devices/pda.rsi
 #    state: pda-guard

@@ -69,7 +69,7 @@ public interface IBluespaceSpawnGroup
     /// A dataset to pick a random name from.
     /// </summary>
 
-    public ProtoId<DatasetPrototype>? NameDataset { get; }
+    public ProtoId<LocalizedDatasetPrototype>? NameDataset { get; }
 
     /// <summary>
     /// The type of name the dataset holds.
@@ -130,7 +130,7 @@ public sealed class BluespaceDungeonSpawnGroup : IBluespaceSpawnGroup
     public List<LocId> NameLoc { get; } = new();
 
     /// <inheritdoc />
-    public ProtoId<DatasetPrototype>? NameDataset { get; }
+    public ProtoId<LocalizedDatasetPrototype>? NameDataset { get; }
 
     /// <inheritdoc />
     public BluespaceDatasetNameType NameDatasetType { get; set; } = BluespaceDatasetNameType.FTL;
@@ -165,7 +165,7 @@ public sealed class BluespaceGridSpawnGroup : IBluespaceSpawnGroup
     /// <inheritdoc />
     public float MaximumDistance { get; }
     public List<LocId> NameLoc { get; } = new();
-    public ProtoId<DatasetPrototype>? NameDataset { get; }
+    public ProtoId<LocalizedDatasetPrototype>? NameDataset { get; }
 
     /// <inheritdoc />
     public BluespaceDatasetNameType NameDatasetType { get; set; } = BluespaceDatasetNameType.FTL;
