@@ -1,20 +1,21 @@
+using Content.Shared._NF.Chemistry;
 using Content.Shared.Chemistry;
 using Content.Shared.Containers.ItemSlots;
 using JetBrains.Annotations;
 using Robust.Client.UserInterface;
 
-namespace Content.Client.Chemistry.UI
+namespace Content.Client._NF.Chemistry.UI
 {
     /// <summary>
-    /// Initializes a <see cref="ChemMasterWindow"/> and updates it when new server messages are received.
+    /// Initializes a <see cref="ChemPrenticeWindow"/> and updates it when new server messages are received.
     /// </summary>
     [UsedImplicitly]
-    public sealed class ChemMasterBoundUserInterface : BoundUserInterface
+    public sealed class ChemPrenticeBoundUserInterface : BoundUserInterface
     {
         [ViewVariables]
-        private ChemMasterWindow? _window;
+        private ChemPrenticeWindow? _window;
 
-        public ChemMasterBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
+        public ChemPrenticeBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
         {
         }
 
@@ -27,30 +28,16 @@ namespace Content.Client.Chemistry.UI
             base.Open();
 
             // Setup window layout/elements
-            _window = this.CreateWindow<ChemMasterWindow>();
+            _window = this.CreateWindow<ChemPrenticeWindow>();
             _window.Title = EntMan.GetComponent<MetaDataComponent>(Owner).EntityName;
 
             // Setup static button actions.
             _window.InputEjectButton.OnPressed += _ => SendMessage(
                 new ItemSlotButtonPressedEvent(SharedChemMaster.InputSlotName));
-            _window.OutputEjectButton.OnPressed += _ => SendMessage(
-                new ItemSlotButtonPressedEvent(SharedChemMaster.OutputSlotName));
             _window.BufferTransferButton.OnPressed += _ => SendMessage(
                 new ChemMasterSetModeMessage(ChemMasterMode.Transfer));
             _window.BufferDiscardButton.OnPressed += _ => SendMessage(
                 new ChemMasterSetModeMessage(ChemMasterMode.Discard));
-            _window.CreatePillButton.OnPressed += _ => SendMessage(
-                new ChemMasterCreatePillsMessage(
-                    (uint) _window.PillDosage.Value, (uint) _window.PillNumber.Value, _window.LabelLine));
-            _window.CreateBottleButton.OnPressed += _ => SendMessage(
-                new ChemMasterOutputToBottleMessage(
-                    (uint) _window.BottleDosage.Value, _window.LabelLine));
-
-            for (uint i = 0; i < _window.PillTypeButtons.Length; i++)
-            {
-                var pillType = i;
-                _window.PillTypeButtons[i].OnPressed += _ => SendMessage(new ChemMasterSetPillTypeMessage(pillType));
-            }
 
             _window.OnReagentButtonPressed += (args, button) => SendMessage(new ChemMasterReagentAmountButtonMessage(button.Id, button.Amount, button.IsBuffer));
         }
@@ -59,14 +46,14 @@ namespace Content.Client.Chemistry.UI
         /// Update the ui each time new state data is sent from the server.
         /// </summary>
         /// <param name="state">
-        /// Data of the <see cref="ChemMasterBoundUserInterfaceState"/> that this ui represents.
+        /// Data of the <see cref="ChemPrenticeBoundUserInterfaceState"/> that this ui represents.
         /// Sent from the server.
         /// </param>
         protected override void UpdateState(BoundUserInterfaceState state)
         {
             base.UpdateState(state);
 
-            var castState = (ChemMasterBoundUserInterfaceState) state;
+            var castState = (ChemPrenticeBoundUserInterfaceState)state;
 
             _window?.UpdateState(castState); // Update window state
         }
