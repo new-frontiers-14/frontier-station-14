@@ -51,3 +51,36 @@
   id: WeaponRevolverDeckardExpeditionGrifty
   categories: [ HideSpawnMenu ]
   name: Customer Service Resolver
+
+- type: entity
+  parent: BaseWeaponRevolver
+  name: The Arbitrator
+  id: WeaponRevolverarbitrator
+  description: S.E.S.W.C has revamped this classic for the modern age! Civilian-grade, supports .45 mag, .35 auto, and .410 shells 
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Revolvers/arbitrator.rsi
+    state: icon
+  - type: Clothing
+    sprite: _NF/Objects/Weapons/Guns/Revolvers/arbitrator.rsi
+    quickEquip: false
+    slots:
+    - Belt
+  - type: Gun
+    fireRate: 2
+  - type: RevolverAmmoProvider
+    proto: null
+    capacity: 4
+    chambers: [ null, null, null, null ]
+    ammoSlots: [ null, null, null, null ]
+    soundEject:
+      path: /Audio/Weapons/Guns/MagOut/revolver_magout.ogg
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/revolver_magin.ogg
+    whitelist:
+      tags:
+      - CartridgePistol
+      - Shell410Shotgun
+      - CartridgeMagnum
+      - SpeedLoaderMagnum
+      - SpeedLoaderPistol
