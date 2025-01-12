@@ -1,4 +1,4 @@
-using Content.Server.Chemistry.EntitySystems;
+using Content.Server.Chemistry.Systems;
 using Content.Shared.Chemistry;
 using Robust.Shared.Audio;
 
@@ -12,16 +12,16 @@ namespace Content.Server.Chemistry.Components
     [Access(typeof(ChemMasterSystem))]
     public sealed partial class ChemMasterComponent : Component
     {
-        [DataField("pillType"), ViewVariables(VVAccess.ReadWrite)]
+        [DataField]
         public uint PillType = 0;
 
-        [DataField("mode"), ViewVariables(VVAccess.ReadWrite)]
+        [DataField]
         public ChemMasterMode Mode = ChemMasterMode.Transfer;
 
         [DataField("pillDosageLimit", required: true), ViewVariables(VVAccess.ReadWrite)]
         public uint PillDosageLimit;
 
-        [DataField("clickSound"), ViewVariables(VVAccess.ReadWrite)]
+        [DataField]
         public SoundSpecifier ClickSound = new SoundPathSpecifier("/Audio/Machines/machine_switch.ogg");
     }
 }
