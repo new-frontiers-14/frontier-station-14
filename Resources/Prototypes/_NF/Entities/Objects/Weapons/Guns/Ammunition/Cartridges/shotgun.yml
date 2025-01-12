@@ -1,0 +1,17 @@
+- type: entity
+  id: Shell410Shotgun
+  name: shell (.410)
+  parent: ShellShotgun
+  components:
+  - type: Tag
+    tags:
+    - Cartridge
+    - Shell410Shotgun
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Casings/410shells.rsi
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: SpentAmmoVisuals
+  - type: CartridgeAmmo
+    proto: Pellet410ShotgunSpread
