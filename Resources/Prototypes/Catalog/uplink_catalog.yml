@@ -1835,15 +1835,15 @@
   productEntity: GatfruitSeeds
   discountCategory: usualDiscounts
   discountDownTo:
-    Telecrystal: 3
+    Telecrystal: 5 # Frontier: 3<5
   cost:
-    Telecrystal: 6
+    Telecrystal: 10 # Frontier: 6<10 (all the time in the world)
   categories:
-  - UplinkJob
-  conditions:
-  - !type:BuyerJobCondition
-    whitelist:
-    - Botanist
+  - UplinkWeaponry # Frontier: UplinkJob<UplinkWeaponry
+  # conditions: # Frontier: 
+  # - !type:BuyerJobCondition
+  #   whitelist:
+  #   - Botanist
 
 - type: listing
   id: uplinkRiggedBoxingGlovesPassenger
@@ -1856,28 +1856,28 @@
   cost:
     Telecrystal: 6
   categories:
-    - UplinkJob
-  conditions:
-    - !type:BuyerJobCondition
-      whitelist:
-        - Passenger
+    - UplinkWeaponry # Frontier: UplinkJob<UplinkWeaponry
+  # conditions: # Frontier: no passengers
+  #   - !type:BuyerJobCondition
+  #     whitelist:
+  #       - Passenger
 
-- type: listing
-  id: uplinkRiggedBoxingGlovesBoxer
-  name: uplink-rigged-boxing-gloves-name
-  description: uplink-rigged-boxing-gloves-desc
-  productEntity: ClothingHandsGlovesBoxingRigged
-  discountCategory: usualDiscounts
-  discountDownTo:
-    Telecrystal: 2
-  cost:
-    Telecrystal: 4
-  categories:
-    - UplinkJob
-  conditions:
-    - !type:BuyerJobCondition
-      whitelist:
-        - Boxer
+# - type: listing # Frontier: duped versus above
+#   id: uplinkRiggedBoxingGlovesBoxer
+#   name: uplink-rigged-boxing-gloves-name
+#   description: uplink-rigged-boxing-gloves-desc
+#   productEntity: ClothingHandsGlovesBoxingRigged
+#   discountCategory: usualDiscounts
+#   discountDownTo:
+#     Telecrystal: 2
+#   cost:
+#     Telecrystal: 4
+#   categories:
+#     - UplinkJob
+#   conditions:
+#     - !type:BuyerJobCondition
+#       whitelist:
+#         - Boxer
 
 # - type: listing # Frontier
   # id: uplinkNecronomicon
@@ -1928,47 +1928,47 @@
   cost:
     Telecrystal: 9
   categories:
-  - UplinkJob
-  conditions:
-  - !type:BuyerJobCondition
-    whitelist:
-    - Mime
-    - Clown
+  - UplinkWeaponry # Frontier: UplinkJob<UplinkWeaponry
+  # conditions: # Frontier: no mimes or clowns
+  # - !type:BuyerJobCondition
+  #   whitelist:
+  #   - Mime
+  #   - Clown
 
-- type: listing
-  id: uplinkBananaPeelExplosive
-  name: uplink-banana-peel-explosive-name
-  description: uplink-banana-peel-explosive-desc
-  icon: { sprite: Objects/Specific/Hydroponics/banana.rsi, state: peel }
-  productEntity: TrashBananaPeelExplosiveUnarmed
-  discountCategory: rareDiscounts
-  discountDownTo:
-    Telecrystal: 1
-  cost:
-    Telecrystal: 2
-  categories:
-  - UplinkJob
-  conditions:
-  - !type:BuyerJobCondition
-    whitelist:
-    - Clown
+# - type: listing # Frontier: no fun allowed
+#   id: uplinkBananaPeelExplosive
+#   name: uplink-banana-peel-explosive-name
+#   description: uplink-banana-peel-explosive-desc
+#   icon: { sprite: Objects/Specific/Hydroponics/banana.rsi, state: peel }
+#   productEntity: TrashBananaPeelExplosiveUnarmed
+#   discountCategory: rareDiscounts
+#   discountDownTo:
+#     Telecrystal: 1
+#   cost:
+#     Telecrystal: 2
+#   categories:
+#   - UplinkJob
+#   conditions: 
+#   - !type:BuyerJobCondition
+#     whitelist:
+#     - Clown
 
-- type: listing
-  id: UplinkClusterBananaPeel
-  name: uplink-cluster-banana-peel-name
-  description: uplink-cluster-banana-peel-desc
-  productEntity: ClusterBananaPeel
-  discountCategory: rareDiscounts
-  discountDownTo:
-    Telecrystal: 3
-  cost:
-    Telecrystal: 6
-  categories:
-  - UplinkJob
-  conditions:
-  - !type:BuyerJobCondition
-    whitelist:
-    - Clown
+# - type: listing # Frontier: no fun allowed
+#   id: UplinkClusterBananaPeel
+#   name: uplink-cluster-banana-peel-name
+#   description: uplink-cluster-banana-peel-desc
+#   productEntity: ClusterBananaPeel
+#   discountCategory: rareDiscounts
+#   discountDownTo:
+#     Telecrystal: 3
+#   cost:
+#     Telecrystal: 6
+#   categories:
+#   - UplinkJob
+#   conditions:
+#   - !type:BuyerJobCondition
+#     whitelist:
+#     - Clown
 
 - type: listing
   id: UplinkHoloclownKit
@@ -1978,35 +1978,35 @@
   productEntity: BoxHoloclown
   discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 6
+    Telecrystal: 8 # Frontier: 6<8 (holoparasite parity)
   cost:
-    Telecrystal: 12
+    Telecrystal: 14 # Frontier: 12<14 (holoparasite parity)
   categories:
-  - UplinkJob
-  conditions:
-  - !type:BuyerJobCondition
-    whitelist:
-    - Clown
+  - UplinkAllies # Frontier: UplinkJob<UplinkAllies
+  # conditions: # Frontier: no clowns
+  # - !type:BuyerJobCondition
+  #   whitelist:
+  #   - Clown
 
-- type: listing
-  id: uplinkHotPotato
-  name: uplink-hot-potato-name
-  description: uplink-hot-potato-desc
-  discountCategory: usualDiscounts
-  discountDownTo:
-    Telecrystal: 2
-  productEntity: HotPotato
-  cost:
-    Telecrystal: 4
-  categories:
-  - UplinkJob
-  conditions:
-  - !type:BuyerJobCondition
-    whitelist:
-    - Chef
-    - Botanist
-    - Clown
-    - Mime
+# - type: listing # Frontier: seems griefy
+#   id: uplinkHotPotato
+#   name: uplink-hot-potato-name
+#   description: uplink-hot-potato-desc
+#   discountCategory: usualDiscounts
+#   discountDownTo:
+#     Telecrystal: 2
+#   productEntity: HotPotato
+#   cost:
+#     Telecrystal: 4
+#   categories:
+#   - UplinkJob
+#   conditions:
+#   - !type:BuyerJobCondition
+#     whitelist:
+#     - Chef
+#     - Botanist
+#     - Clown
+#     - Mime
 
 - type: listing
   id: UplinkChimpUpgradeKit
@@ -2019,53 +2019,53 @@
   cost:
     Telecrystal: 4
   categories:
-  - UplinkJob
-  conditions:
-    - !type:BuyerDepartmentCondition
-      whitelist:
-      - Science
+  - UplinkWeaponry # Frontier: UplinkJob<UplinkWeaponry
+  # conditions: # Frontier: we don't have departments
+  #   - !type:BuyerDepartmentCondition
+  #     whitelist:
+  #     - Science
 
-- type: listing
-  id: uplinkProximityMine
-  name: uplink-proximity-mine-name
-  description: uplink-proximity-mine-desc
-  productEntity: WetFloorSignMineExplosive
-  discountCategory: rareDiscounts
-  discountDownTo:
-    Telecrystal: 2
-  cost:
-    Telecrystal: 5 # was 4, with my buff made it 5 to be closer to minibomb -panzer
-  categories:
-  - UplinkJob
-  conditions:
-  - !type:BuyerJobCondition
-    whitelist:
-    - Janitor
-  - !type:BuyerWhitelistCondition
-    blacklist:
-      components:
-      - SurplusBundle
+# - type: listing # Frontier: griefy
+#   id: uplinkProximityMine
+#   name: uplink-proximity-mine-name
+#   description: uplink-proximity-mine-desc
+#   productEntity: WetFloorSignMineExplosive
+#   discountCategory: rareDiscounts
+#   discountDownTo:
+#     Telecrystal: 2
+#   cost:
+#     Telecrystal: 5 # was 4, with my buff made it 5 to be closer to minibomb -panzer
+#   categories:
+#   - UplinkJob
+#   conditions:
+#   - !type:BuyerJobCondition
+#     whitelist:
+#     - Janitor
+#   - !type:BuyerWhitelistCondition
+#     blacklist:
+#       components:
+#       - SurplusBundle
 
-- type: listing
-  id: UplinkSyndicateSpongeBox
-  name: uplink-syndicate-sponge-box-name
-  description: uplink-syndicate-sponge-box-desc
-  icon: { sprite:  Objects/Misc/monkeycube.rsi, state: box}
-  discountCategory: rareDiscounts
-  discountDownTo:
-    Telecrystal: 4
-  productEntity: SyndicateSpongeBox
-  cost:
-    Telecrystal: 7
-  categories:
-  - UplinkJob
-  conditions:
-  - !type:BuyerJobCondition # We can't use BuyerDepartmentCondition here since Zookeeper and Chef can also get this
-    whitelist:
-    - Zookeeper
-    - Scientist
-    - ResearchDirector
-    - Chef
+# - type: listing # Frontier: no ghost role spam please
+#   id: UplinkSyndicateSpongeBox
+#   name: uplink-syndicate-sponge-box-name
+#   description: uplink-syndicate-sponge-box-desc
+#   icon: { sprite:  Objects/Misc/monkeycube.rsi, state: box}
+#   discountCategory: rareDiscounts
+#   discountDownTo:
+#     Telecrystal: 4
+#   productEntity: SyndicateSpongeBox
+#   cost:
+#     Telecrystal: 7
+#   categories:
+#   - UplinkJob
+#   conditions:
+#   - !type:BuyerJobCondition # We can't use BuyerDepartmentCondition here since Zookeeper and Chef can also get this
+#     whitelist:
+#     - Zookeeper
+#     - Scientist
+#     - ResearchDirector
+#     - Chef
 
 - type: listing
   id: UplinkCaneBlade
@@ -2079,11 +2079,11 @@
   cost:
     Telecrystal: 5
   categories:
-  - UplinkJob
+  - UplinkWeaponry # Frontier: UplinkJob<UplinkWeaponry
   conditions:
-  - !type:BuyerJobCondition
-    whitelist:
-    - Librarian
+  # - !type:BuyerJobCondition # Frontier: no librarians
+  #   whitelist:
+  #   - Librarian
   - !type:BuyerWhitelistCondition
     blacklist:
       components:
@@ -2098,9 +2098,9 @@
   cost:
     Telecrystal: 6
   categories:
-  - UplinkJob
-  conditions:
-  - !type:BuyerJobCondition
-    whitelist:
-    - Chef
-    - Mime
+  - UplinkWeaponry # Frontier: UplinkJob<UplinkWeaponry
+  # conditions: # Frontier: no chefs or mimes
+  # - !type:BuyerJobCondition
+  #   whitelist:
+  #   - Chef
+  #   - Mime
