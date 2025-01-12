@@ -19,7 +19,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Random;
 using Content.Server._NF.SectorServices; // Frontier
-using Content.Shared._NF.Trade.Components; // Frontier
+using Content.Shared._NF.Trade; // Frontier
 using Content.Shared.Whitelist; // Frontier
 
 namespace Content.Server.Cargo.Systems;
@@ -50,7 +50,6 @@ public sealed partial class CargoSystem : SharedCargoSystem
 
     private EntityQuery<TransformComponent> _xformQuery;
     private EntityQuery<CargoSellBlacklistComponent> _blacklistQuery;
-    private EntityQuery<TradeCrateComponent> _tradeCrateQuery;
     private EntityQuery<MobStateComponent> _mobQuery;
     private EntityQuery<TradeStationComponent> _tradeQuery;
 
@@ -64,7 +63,6 @@ public sealed partial class CargoSystem : SharedCargoSystem
 
         _xformQuery = GetEntityQuery<TransformComponent>();
         _blacklistQuery = GetEntityQuery<CargoSellBlacklistComponent>();
-        _tradeCrateQuery = GetEntityQuery<TradeCrateComponent>();
         _mobQuery = GetEntityQuery<MobStateComponent>();
         _tradeQuery = GetEntityQuery<TradeStationComponent>();
 
@@ -74,6 +72,7 @@ public sealed partial class CargoSystem : SharedCargoSystem
         InitializeBounty();
         // Frontier: add specific initialization calls here.
         InitializePirateBounty();
+        InitializeTradeCrates();
         // End Frontier
     }
 
