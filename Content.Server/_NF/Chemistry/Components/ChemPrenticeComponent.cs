@@ -1,9 +1,8 @@
-using Content.Server._NF.Chemistry.EntitySystems;
-using Content.Shared._NF.Chemistry;
+using Content.Server._NF.Chemistry.Systems;
 using Content.Shared.Chemistry;
 using Robust.Shared.Audio;
 
-namespace Content.Server.Chemistry.Components
+namespace Content.Server._NF.Chemistry.Components
 {
     /// <summary>
     /// An industrial grade chemical manipulator with pill and bottle production included.
@@ -13,10 +12,10 @@ namespace Content.Server.Chemistry.Components
     [Access(typeof(ChemPrenticeSystem))]
     public sealed partial class ChemPrenticeComponent : Component
     {
-        [DataField("mode"), ViewVariables(VVAccess.ReadWrite)]
+        [DataField]
         public ChemMasterMode Mode = ChemMasterMode.Transfer;
 
-        [DataField("clickSound"), ViewVariables(VVAccess.ReadWrite)]
+        [DataField]
         public SoundSpecifier ClickSound = new SoundPathSpecifier("/Audio/Machines/machine_switch.ogg");
     }
 }
