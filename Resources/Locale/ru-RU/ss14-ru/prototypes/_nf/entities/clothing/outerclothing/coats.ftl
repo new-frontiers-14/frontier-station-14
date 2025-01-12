@@ -28,5 +28,3 @@ ent-ClothingOuterCoatArcadiaTrenchOpened = зенитный плащ Аркад�
 ent-ClothingUniformJumpsuitMilitaryArcadiaTac = тактический комбинезон от Аркадиа
     .desc = Тактический комбинезон производства Arcadia Industries.
 
-
-

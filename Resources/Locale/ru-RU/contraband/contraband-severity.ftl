@@ -1,6 +1,6 @@
-﻿contraband-examine-text-Minor = [color=yellow]Этот предмет считается мелкой контрабандой.[/color]
+contraband-examine-text-Minor = [color=yellow]Этот предмет считается мелкой контрабандой.[/color]
 contraband-examine-text-Restricted = [color=yellow]Этот товар имеет ведомственное ограничение.[/color]
-contraband-examine-text-Restricted-department = [color=yellow]Этот товар доступен только для {$departments} и может считаться контрабандой.[/color]
+contraband-examine-text-Restricted-department = [color=yellow]Этот товар доступен только для { $departments } и может считаться контрабандой.[/color]
 contraband-examine-text-Major = [color=red]Этот товар считается крупной контрабандой.[/color]
 contraband-examine-text-GrandTheft = [color=red]Этот предмет является очень ценной добычей для агентов Синдиката![/color]
 contraband-examine-text-Syndicate = [color=crimson]Этот предмет является крайне незаконной контрабандой Синдиката![/color]

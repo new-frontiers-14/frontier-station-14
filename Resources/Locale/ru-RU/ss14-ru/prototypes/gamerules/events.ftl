@@ -1,4 +1,3 @@
-
 ent-AnomalySpawn = { ent-BaseStationEventShortDelay }
     .desc = { ent-BaseStationEventShortDelay.desc }
 ent-BluespaceArtifact = { ent-BaseStationEventShortDelay }

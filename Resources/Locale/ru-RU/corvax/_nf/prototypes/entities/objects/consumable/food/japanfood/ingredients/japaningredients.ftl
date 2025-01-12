@@ -1,4 +1,4 @@
-ent-RawDoughDangoBall =  сырой шарик данго
+ent-RawDoughDangoBall = сырой шарик данго
     .desc = Слепленный шарик из рисового теста.
 ent-BoiledDoughDangoBall = отваренный шарик данго
     .desc = Отваренный шарик данго, готовый к приготовлению главного блюда.

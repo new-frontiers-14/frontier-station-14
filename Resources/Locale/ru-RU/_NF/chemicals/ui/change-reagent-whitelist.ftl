@@ -1,6 +1,5 @@
 ### Loc for change reagent whitelist bui
 
-
 ## Title
 
 ui-change-reagent-whitelist-title = Фильтр реагентов

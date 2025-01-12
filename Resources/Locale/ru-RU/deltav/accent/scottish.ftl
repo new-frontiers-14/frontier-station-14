@@ -3,7 +3,6 @@
 # https://en.wikipedia.org/wiki/Scottish_English
 # https://www.cs.stir.ac.uk/~kjt/general/scots.html
 
-
 # Русский постапокалиптический шотландский акцент
 
 accent-scottish-words-1 = девушка
