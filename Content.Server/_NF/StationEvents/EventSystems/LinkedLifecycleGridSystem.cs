@@ -1,13 +1,14 @@
 using System.Numerics;
 using Content.Server.StationEvents.Components;
-using Content.Shared.Buckle.Components;
 using Content.Shared.Humanoid;
 using Content.Shared.Mech.Components;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mobs.Components;
+using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared.Vehicle.Components;
 using Robust.Shared.Map;
+using Robust.Shared.Player;
 
 namespace Content.Server.StationEvents.Events;
 
@@ -102,6 +103,20 @@ public sealed class LinkedLifecycleGridSystem : EntitySystem
                 continue;
 
             var (targetUid, targetXform) = GetParentToReparent(mobUid, xform);
+
+            reparentEntities.Add(((targetUid, targetXform), targetXform.MapUid!.Value, _transform.GetWorldPosition(targetXform)));
+        }
+
+        // Get silicon
+        var borgQuery = AllEntityQuery<BorgChassisComponent, ActorComponent, TransformComponent>();
+        while (borgQuery.MoveNext(out var borgUid, out _, out _, out var xform))
+        {
+            handledEntities.Add(borgUid);
+
+            if (xform.GridUid == null || xform.MapUid == null || xform.GridUid != grid)
+                continue;
+
+            var (targetUid, targetXform) = GetParentToReparent(borgUid, xform);
 
             reparentEntities.Add(((targetUid, targetXform), targetXform.MapUid!.Value, _transform.GetWorldPosition(targetXform)));
         }
