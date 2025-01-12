@@ -1,14 +1,13 @@
-﻿using Content.Shared._NF.Market;
+﻿using Content.Shared._NF.CrateMachine;
+using Content.Shared._NF.CrateMachine.Components;
 using Robust.Client.Animations;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Shared.Audio.Systems;
-using static Content.Shared._NF.Market.Components.CrateMachineComponent;
-using CrateMachineComponent = Content.Shared._NF.Market.Components.CrateMachineComponent;
 
-namespace Content.Client._NF.Market.Systems;
+namespace Content.Client._NF.CrateMachine;
 
-public sealed class MarketSystem : SharedMarketSystem
+public sealed class CrateMachineSystem: SharedCrateMachineSystem
 {
     [Dependency] private readonly AppearanceSystem _appearanceSystem = default!;
     [Dependency] private readonly AnimationPlayerSystem _animationSystem = default!;
@@ -37,19 +36,19 @@ public sealed class MarketSystem : SharedMarketSystem
     /// </summary>
     private void UpdateState(EntityUid uid, CrateMachineComponent component, SpriteComponent sprite, AppearanceComponent appearance)
     {
-        if (!_appearanceSystem.TryGetData<CrateMachineVisualState>(uid, CrateMachineVisuals.VisualState, out var state, appearance))
+        if (!_appearanceSystem.TryGetData<CrateMachineComponent.CrateMachineVisualState>(uid, CrateMachineComponent.CrateMachineVisuals.VisualState, out var state, appearance))
         {
             return;
         }
 
         sprite.LayerSetVisible(CrateMachineVisualLayers.Base, true);
-        sprite.LayerSetVisible(CrateMachineVisualLayers.Closed, state == CrateMachineVisualState.Closed);
-        sprite.LayerSetVisible(CrateMachineVisualLayers.Opening, state == CrateMachineVisualState.Opening);
-        sprite.LayerSetVisible(CrateMachineVisualLayers.Closing, state == CrateMachineVisualState.Closing);
-        sprite.LayerSetVisible(CrateMachineVisualLayers.Open, state == CrateMachineVisualState.Open);
-        sprite.LayerSetVisible(CrateMachineVisualLayers.Crate, state == CrateMachineVisualState.Opening);
+        sprite.LayerSetVisible(CrateMachineVisualLayers.Closed, state == CrateMachineComponent.CrateMachineVisualState.Closed);
+        sprite.LayerSetVisible(CrateMachineVisualLayers.Opening, state == CrateMachineComponent.CrateMachineVisualState.Opening);
+        sprite.LayerSetVisible(CrateMachineVisualLayers.Closing, state == CrateMachineComponent.CrateMachineVisualState.Closing);
+        sprite.LayerSetVisible(CrateMachineVisualLayers.Open, state == CrateMachineComponent.CrateMachineVisualState.Open);
+        sprite.LayerSetVisible(CrateMachineVisualLayers.Crate, state == CrateMachineComponent.CrateMachineVisualState.Opening);
 
-        if (state == CrateMachineVisualState.Opening && !_animationSystem.HasRunningAnimation(uid, AnimationKey))
+        if (state == CrateMachineComponent.CrateMachineVisualState.Opening && !_animationSystem.HasRunningAnimation(uid, AnimationKey))
         {
             var openingState = sprite.LayerMapTryGet(CrateMachineVisualLayers.Opening, out var flushLayer)
                 ? sprite.LayerGetState(flushLayer)
@@ -92,7 +91,7 @@ public sealed class MarketSystem : SharedMarketSystem
 
             _animationSystem.Play(uid, anim, AnimationKey);
         }
-        else if (state == CrateMachineVisualState.Closing && !_animationSystem.HasRunningAnimation(uid, AnimationKey))
+        else if (state == CrateMachineComponent.CrateMachineVisualState.Closing && !_animationSystem.HasRunningAnimation(uid, AnimationKey))
         {
             var closingState = sprite.LayerMapTryGet(CrateMachineVisualLayers.Closing, out var flushLayer)
                 ? sprite.LayerGetState(flushLayer)
