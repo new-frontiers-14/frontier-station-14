@@ -109,6 +109,19 @@
 
 - type: entity
   parent: WeaponCaseShort
+  id: WeaponCaseShortLucky
+  suffix: Dungeon, Lucky 37
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponRevolverLucky
+      amount: 1
+    - id: SpeedLoaderMagnum
+      amount: 2
+
+- type: entity
+  parent: WeaponCaseShort
   id: WeaponCaseShortRevolverPirate
   suffix: Dungeon, Pirate Revolver
   categories: [ HideSpawnMenu ]
@@ -339,6 +352,19 @@
     - id: WeaponRifleSVT
       amount: 1
     - id: MagazineLightRifleLowCapacity
+      amount: 2
+
+- type: entity
+  parent: WeaponCaseLong
+  id: WeaponCaseLongSniperCeremonial
+  suffix: Dungeon, Ceremonial rifle
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponSniperCeremonial
+      amount: 1
+    - id: MagazineBoxLightRifle
       amount: 2
 
 # Energy
