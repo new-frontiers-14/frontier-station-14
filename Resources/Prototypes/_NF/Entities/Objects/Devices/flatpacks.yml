@@ -252,15 +252,6 @@
 
 - type: entity
   parent: ExosuitFabricatorFlatpack
-  id: ScienceTechFabFlatpack
-  name: science techfab flatpack
-  description: A flatpack used for constructing a science techfab.
-  components:
-  - type: Flatpack
-    entity: ScienceTechFab
-
-- type: entity
-  parent: ExosuitFabricatorFlatpack
   id: MachineArtifactCrusherFlatpack
   name: artifact crusher flatpack
   description: A flatpack used for constructing an artifact crusher.
@@ -370,11 +361,13 @@
 - type: entity
   parent: UniformPrinterFlatpack
   id: HydroponicsSoilNutritionFlatpack
-  name: crate with fertile soil
-  description: A crate with fertile soil used for constructing a soil bed for growing.
+  name: crate of fertile soil
+  description: A crate of fertile soil used for constructing a soil bed for growing. Spread it around with a shovel.
   components:
   - type: Flatpack
     entity: HydroponicsSoilNutrition
+    qualityNeeded: Digging
+    unpackSound: /Audio/Items/shovel_dig.ogg
   - type: Sprite
     layers:
     - state: soil
@@ -382,14 +375,25 @@
 - type: entity
   parent: UniformPrinterFlatpack
   id: HydroponicsSoilEmptyFlatpack
-  name: crate with soil
-  description: A crate with soil used for constructing a soil bed for growing.
+  name: crate of soil
+  description: A crate of soil used for constructing a soil bed for growing. Spread it around with a shovel.
   components:
   - type: Flatpack
     entity: HydroponicsSoilEmpty
+    qualityNeeded: Digging
+    unpackSound: /Audio/Items/shovel_dig.ogg
   - type: Sprite
     layers:
     - state: soil
+
+- type: entity
+  parent: UniformPrinterFlatpack
+  id: ComputerWithdrawBankATMFlatpack
+  name: withdraw only atm flatpack
+  description: A flatpack used for constructing an atm. Best not to think about it.
+  components:
+  - type: Flatpack
+    entity: ComputerWithdrawBankATM
 
 # Medical
 - type: entity
@@ -494,8 +498,8 @@
 - type: entity
   parent: BaseNFFlatpack
   id: ShuttleGunKineticFlatpack
-  name: PTK-800 "Matter Dematerializer" flatpack
-  description: A flatpack used for constructing a PTK-800 "Matter Dematerializer".
+  name: PTK-1500e "Matter Dematerializer" flatpack
+  description: A flatpack used for constructing a PTK-1500e "Matter Dematerializer".
   components:
   - type: Flatpack
     entity: ShuttleGunKinetic
@@ -669,9 +673,12 @@
   components:
   - type: Flatpack
     entity: AirlockShuttle
+  - type: Sprite
+    layers:
+    - state: command_airlock_directional
 
 - type: entity
-  parent: AirlockFlatpack
+  parent: AirlockShuttleFlatpack
   id: AirlockGlassShuttleFlatpack
   name: docking glass airlock flatpack
   description: A flatpack used for constructing a glass docking airlock.
@@ -878,6 +885,17 @@
     entity: VehicleHoverbikeSyndicateKey
   - type: StaticPrice
     price: 750
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: JanicartFlatpack
+  name: janicart flatpack
+  description: A flatpack used for constructing a Janicart. Keys already slotted in the ignition. Mop sold separately.
+  components:
+  - type: Flatpack
+    entity: NFVehicleJanicartKey
+  - type: StaticPrice
+    price: 375 # 1.25 * base value of input materials
 
 # Vendomats
 - type: entity
