@@ -121,15 +121,3 @@
     access:
     - Brig # odd, but potentially restricts cadets in lieu of a security guard-only access level
 
-
-
-- type: entity
-  parent: BaseShipVoucher
-  id: CargoVoucher
-  name: Cargo Crate Voucher
-  description: Allows for purchasing and selling of cargo containers.
-  components:
-  - type: CargoVoucher
-    destroyOnEmpty: false
-    access:
-    - Maintenance # An access every ID card starts with
