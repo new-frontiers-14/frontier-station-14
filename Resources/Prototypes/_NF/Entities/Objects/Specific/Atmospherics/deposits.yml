@@ -1,0 +1,104 @@
+# TODO move all of this to tiles once tile smoothing is supported
+- type: entity
+  id: BaseGasDeposit
+  name: gas deposit
+  description: Solidified deposits of an element, normally a gas at room temperature, can be drilled, heated and piped out.
+  abstract: true
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: Clickable
+  - type: Physics
+    bodyType: Static
+    canCollide: False
+  - type: Fixtures
+  - type: RandomGasDeposit
+  - type: Sprite
+    drawdepth: FloorTiles
+    sprite: _NF/Objects/Specific/Atmospherics/deposit.rsi
+    layers:
+    - state: deposit
+
+- type: entity
+  parent: BaseGasDeposit
+  id: OxygenGasDeposit
+  components:
+  - type: RandomGasDeposit
+    depositPrototype: MostlyOxygen
+  - type: Sprite
+    color: "#DDDDEE"
+
+- type: entity
+  parent: BaseGasDeposit
+  id: NitrogenGasDeposit
+  components:
+  - type: RandomGasDeposit
+    depositPrototype: MostlyNitrogen
+  - type: Sprite
+    color: "#FFCCCC"
+
+- type: entity
+  parent: BaseGasDeposit
+  id: CarbonDioxideGasDeposit
+  components:
+  - type: RandomGasDeposit
+    depositPrototype: MostlyCarbonDioxide
+  - type: Sprite
+    color: "#CCCCCC"
+
+- type: entity
+  parent: BaseGasDeposit
+  id: PlasmaGasDeposit
+  components:
+  - type: RandomGasDeposit
+    depositPrototype: MostlyPlasma
+  - type: Sprite
+    color: "#FFCCFF"
+
+- type: entity
+  parent: BaseGasDeposit
+  id: AmmoniaGasDeposit
+  components:
+  - type: RandomGasDeposit
+    depositPrototype: MostlyAmmonia
+  - type: Sprite
+    color: "#FFFFCC"
+
+- type: entity
+  parent: BaseGasDeposit
+  id: WaterVaporGasDeposit
+  components:
+  - type: RandomGasDeposit
+    depositPrototype: MostlyWaterVapor
+  - type: Sprite
+    color: "#DDEEEE"
+
+- type: entity
+  parent: BaseGasDeposit
+  id: NitrousOxideGasDeposit
+  components:
+  - type: RandomGasDeposit
+    depositPrototype: MostlyNitrousOxide
+  - type: Sprite
+    color: "#EEDDDD"
+
+- type: entity
+  parent: BaseGasDeposit
+  id: AirGasDeposit
+  components:
+  - type: RandomGasDeposit
+    depositPrototype: AirLike
+
+# Debug item for detecting gas deposits
+- type: entity
+  parent: PinpointerSyndicateNuclear
+  id: PinpointerGasDeposit
+  name: gas deposit pinpointer
+  description: Pointing to the nearest gas deposit.
+  suffix: DEBUG
+  components:
+  - type: Pinpointer
+    component: RandomGasDeposit
+    targetName: RandomGasDeposit
