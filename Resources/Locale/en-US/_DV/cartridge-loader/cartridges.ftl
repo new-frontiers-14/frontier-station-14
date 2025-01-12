@@ -145,6 +145,7 @@ crime-assist-crimepunishment-terrorism = 30 Minutes /// Max Punishment: Capital 
 crime-assist-crimepunishment-grandsabotage = 30 Minutes /// Max Punishment: Capital Punishment 
 crime-assist-crimepunishment-grandtheft = 30 Minutes /// Max Punishment: Capital Punishment 
 crime-assist-crimepunishment-murder = Extended Confinement /// Max Punishment: Capital Punishment 
+
 mail-metrics-program-name = MailMetrics
 mail-metrics-header = Income from Mail Deliveries
 mail-metrics-opened = Earnings (Opened)
