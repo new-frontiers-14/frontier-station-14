@@ -89,6 +89,12 @@ namespace Content.Shared.Chemistry
         Discard,
     }
 
+    [Serializable, NetSerializable]
+    public enum ChemMasterVisualState : byte //Frontier
+    {
+        BeakerInserted
+    }
+
     public enum ChemMasterReagentAmount
     {
         U1 = 1,

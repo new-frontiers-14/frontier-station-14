@@ -1,25 +1,24 @@
 - type: entity
-  id: ChemMaster
-  parent: [ BaseMachinePowered, ConstructibleMachine ]
-  name: ChemMaster 4000
-  description: An industrial grade chemical manipulator with pill and bottle production included.
+  id: ChemPrentice
+  parent: [ BaseMachinePowered, SmallConstructibleMachine ]
+  name: ChemPrentice 2000
+  description: An chemical manipulator and seperator.
   placement:
     mode: SnapgridCenter
   components:
   - type: Sprite
-    sprite: Structures/Machines/mixer.rsi
+    sprite: _NF/Structures/Machines/chemprentice.rsi
+    drawdepth: SmallObjects
     snapCardinals: true
     layers:
-    - state: mixer_empty
-      map: ["BeakerInserted"] #Frontier
-    - state: mixer_screens
-      shader: unshaded
+    - state: prentice_empty
+      map: ["BeakerInserted"]
+    - state: prentice_unlit
       map: ["enum.PowerDeviceVisualLayers.Powered"]
   - type: Icon
-    sprite: Structures/Machines/mixer.rsi
-    state: mixer_loaded
-  - type: ChemMaster
-    pillDosageLimit: 20
+    sprite: _NF/Structures/Machines/chemprentice.rsi
+    state: prentice_full
+  - type: ChemPrentice
   - type: Physics
     bodyType: Static
   - type: Fixtures
@@ -28,17 +27,18 @@
         shape:
           !type:PhysShapeAabb
           bounds: "-0.25,-0.4,0.25,0.4"
-        density: 190
         mask:
-        - MachineMask
+        - TabletopMachineMask
         layer:
-        - MachineLayer
+        - TabletopMachineLayer
   - type: Destructible
     thresholds:
     - trigger:
         !type:DamageTrigger
         damage: 50
       behaviors:
+      - !type:SpillBehavior
+        solution: buffer
       - !type:PlaySoundBehavior
         sound:
           collection: MetalGlassBreak
@@ -47,12 +47,12 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: ActivatableUI
-    key: enum.ChemMasterUiKey.Key
+    key: enum.ChemPrenticeUiKey.Key
   - type: ActivatableUIRequiresPower
   - type: UserInterface
     interfaces:
-      enum.ChemMasterUiKey.Key:
-        type: ChemMasterBoundUserInterface
+      enum.ChemPrenticeUiKey.Key:
+        type: ChemPrenticeBoundUserInterface
   - type: ApcPowerReceiver
     powerLoad: 250
   - type: Appearance
@@ -62,18 +62,17 @@
         enum.PowerDeviceVisualLayers.Powered:
           True: { visible: true }
           False: { visible: false }
-      enum.ChemMasterVisualState.BeakerInserted: #Frontier
-        BeakerInserted: #Frontier
-          True: {state: "mixer_loaded"} #Frontier
-          False: {state: "mixer_empty"} #Frontier
+      enum.ChemMasterVisualState.BeakerInserted:
+        BeakerInserted:
+          True: {state: "prentice_full"}
+          False: {state: "prentice_empty"}
   # Machine / Construction stuff
   - type: WiresPanel
   - type: Machine
-    board: ChemMasterMachineCircuitboard
+    board: ChemPrenticeMachineCircuitboard
   - type: ContainerContainer
     containers:
       beakerSlot: !type:ContainerSlot
-      outputSlot: !type:ContainerSlot
       machine_board: !type:Container
       machine_parts: !type:Container
   - type: ItemSlots
@@ -82,18 +81,14 @@
         whitelist:
           components:
           - FitsInDispenser
-      outputSlot:
-        whitelistFailPopup: chem-master-component-cannot-put-entity-message
-        whitelist:
           tags:
           - Bottle
-          - PillCanister
   - type: SolutionContainerManager
     solutions:
-      buffer: {}
+      buffer: {maxVol: 500, canReact: false}
   - type: DumpableSolution
     solution: buffer
-    unlimited: true
+    unlimited: false
   - type: GuideHelp
     guides:
     - Chemicals
