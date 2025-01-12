@@ -39,7 +39,7 @@
 
 #Mercenary Helmet
 - type: entity
-  parent: [ ClothingHeadHelmetBase, BaseC1Contraband ] # Frontier: BaseRestrictedContraband<BaseC1Contraband
+  parent: [ ClothingHeadHelmetBase, BaseC1Contraband ] # Frontier: BaseMajorContraband <BaseC1Contraband
   id: ClothingHeadHelmetMercenary # Frontier - Name fix
   name: mercenary helmet
   description: The combat helmet is commonly used by mercenaries, is strong, light and smells like gunpowder and the jungle.
@@ -452,6 +452,7 @@
     delay: 1.0
   - type: ToggleClothing
     action: ActionToggleJusticeHelm
+    mustEquip: false
   - type: ItemTogglePointLight
   - type: ToggleableLightVisuals
     clothingVisuals:
