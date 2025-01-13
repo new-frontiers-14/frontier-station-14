@@ -14,7 +14,7 @@ public sealed partial class CargoSystem
 
     private void OnShipmentGetPriceEvent(Entity<ShipmentPriceComponent> entity, ref PriceCalculationEvent ev)
     {
-        if (!TryComp<TransformComponent>(entity, out var xform))
+        if (!TryComp(entity, out TransformComponent? xform))
         {
             return; //how do we not have a transform?
         }
@@ -24,22 +24,13 @@ public sealed partial class CargoSystem
             var shuttleDocks = _docking.GetDocks((EntityUid)currentShuttle); //check we're docked to a destination grid
             foreach (var shuttleDock in shuttleDocks)
             {
-                if (shuttleDock.Comp.DockedWith != null)
+                // If the ship we're on is docked with a dock that is on a grid that is tagged, add bonus price and break.
+                if (shuttleDock.Comp.DockedWith != null && TryComp<TransformComponent>(shuttleDock.Comp.DockedWith, out var dock) && HasComp<ShipmentRecieveComponent>(dock.GridUid))
                 {
-                    if (TryComp<TransformComponent>(shuttleDock.Comp.DockedWith, out var dock))
-                    {
-                        if (HasComp<ShipmentRecieveComponent>(dock.GridUid))
-                        {
-                            ev.Price = entity.Comp.BonusPrice;
-                            break;
-                        }
-                    }
-
+                    ev.Price = entity.Comp.BonusPrice;
+                    break;
                 }
             }
-
         }
-
     }
-
 }
