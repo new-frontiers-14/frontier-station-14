@@ -10,6 +10,7 @@
 #
 - type: vessel
   id: Charon
+  parent: BaseVessel
   name: EIS Charon
   description: Originally built as a roll-on, roll-off transport for heavy terraforming equipment. Since its obsolescence and appearance on the secondary market, the Charon has become a favorite of upfitters for the broad possibilities afforded by its open equipment bay. A product of Endurance Industrial Shipyards.
   # Sell value @ exped shipyard 70408, 15% markup and a little rounding gives us...
@@ -23,7 +24,9 @@
   guidebookPage: ShipyardCharon
   class:
   - Expedition
-  
+  engine:
+  - AME
+
 - type: gameMap
   id: Charon
   mapName: 'Charon'

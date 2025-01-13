@@ -1,16 +1,16 @@
 using System.Linq;
 using System.Numerics;
+using Content.Server.Maps;
+using Content.Server.Station.Systems;
+using Content.Server.GameTicking;
+using Content.Shared._NF.CCVar;
+using Content.Shared.GameTicking;
 using Robust.Server.GameObjects;
 using Robust.Server.Maps;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
-using Content.Server.Maps;
-using Content.Server.Station.Systems;
-using Content.Server.GameTicking;
-using Content.Shared._NF.CCVar;
-using Content.Shared.GameTicking;
 
 namespace Content.Server._NF.GameRule;
 
@@ -20,14 +20,14 @@ namespace Content.Server._NF.GameRule;
 //[Access(typeof(NfAdventureRuleSystem))]
 public sealed class PointOfInterestSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IConfigurationManager _configurationManager = default!;
+    [Dependency] private readonly GameTicker _ticker = default!;
     [Dependency] private readonly MapLoaderSystem _map = default!;
     [Dependency] private readonly MetaDataSystem _meta = default!;
-    [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly StationRenameWarpsSystems _renameWarps = default!;
-    [Dependency] private readonly GameTicker _ticker = default!;
+    [Dependency] private readonly StationSystem _station = default!;
 
     private List<Vector2> _stationCoords = new();
 
@@ -55,7 +55,7 @@ public sealed class PointOfInterestSystem : EntitySystem
         //by the number of depots set in our corresponding cvar
 
         depotStations = new List<EntityUid>();
-        var depotCount = _configurationManager.GetCVar(NFCCVars.CargoDepots);
+        var depotCount = _cfg.GetCVar(NFCCVars.CargoDepots);
         var rotation = 2 * Math.PI / depotCount;
         var rotationOffset = _random.NextAngle() / depotCount;
 
@@ -68,7 +68,8 @@ public sealed class PointOfInterestSystem : EntitySystem
         {
             var proto = _random.Pick(depotPrototypes);
 
-            if (!proto.SpawnGamePreset.Contains(currentPreset))
+            // Safety check: ensure selected POIs are either fine in any preset or accepts this current one.
+            if (proto.SpawnGamePreset.Length > 0 && !proto.SpawnGamePreset.Contains(currentPreset))
                 continue;
 
             Vector2i offset = new Vector2i((int) _random.Next(proto.MinimumDistance, proto.MaximumDistance), 0);
@@ -96,7 +97,7 @@ public sealed class PointOfInterestSystem : EntitySystem
         //ideal world
 
         marketStations = new List<EntityUid>();
-        var marketCount = _configurationManager.GetCVar(NFCCVars.MarketStations);
+        var marketCount = _cfg.GetCVar(NFCCVars.MarketStations);
         _random.Shuffle(marketPrototypes);
         int marketsAdded = 0;
 
@@ -106,7 +107,8 @@ public sealed class PointOfInterestSystem : EntitySystem
 
         foreach (var proto in marketPrototypes)
         {
-            if (!proto.SpawnGamePreset.Contains(currentPreset))
+            // Safety check: ensure selected POIs are either fine in any preset or accepts this current one.
+            if (proto.SpawnGamePreset.Length > 0 && !proto.SpawnGamePreset.Contains(currentPreset))
                 continue;
 
             if (marketsAdded >= marketCount)
@@ -130,7 +132,7 @@ public sealed class PointOfInterestSystem : EntitySystem
         //and most RP places. This will essentially put them all into a pool to pull from, and still does not use the RNG function.
 
         optionalStations = new List<EntityUid>();
-        var optionalCount = _configurationManager.GetCVar(NFCCVars.OptionalStations);
+        var optionalCount = _cfg.GetCVar(NFCCVars.OptionalStations);
         _random.Shuffle(optionalPrototypes);
         int optionalsAdded = 0;
 
@@ -140,7 +142,8 @@ public sealed class PointOfInterestSystem : EntitySystem
 
         foreach (var proto in optionalPrototypes)
         {
-            if (!proto.SpawnGamePreset.Contains(currentPreset))
+            // Safety check: ensure selected POIs are either fine in any preset or accepts this current one.
+            if (proto.SpawnGamePreset.Length > 0 && !proto.SpawnGamePreset.Contains(currentPreset))
                 continue;
 
             if (optionalsAdded >= optionalCount)
@@ -171,7 +174,8 @@ public sealed class PointOfInterestSystem : EntitySystem
 
         foreach (var proto in requiredPrototypes)
         {
-            if (!proto.SpawnGamePreset.Contains(currentPreset))
+            // Safety check: ensure selected POIs are either fine in any preset or accepts this current one.
+            if (proto.SpawnGamePreset.Length > 0 && !proto.SpawnGamePreset.Contains(currentPreset))
                 continue;
 
             var offset = GetRandomPOICoord(proto.MinimumDistance, proto.MaximumDistance);
@@ -205,7 +209,8 @@ public sealed class PointOfInterestSystem : EntitySystem
             _random.Shuffle(prototypeList);
             foreach (var proto in prototypeList)
             {
-                if (!proto.SpawnGamePreset.Contains(currentPreset))
+                // Safety check: ensure selected POIs are either fine in any preset or accepts this current one.
+                if (proto.SpawnGamePreset.Length > 0 && !proto.SpawnGamePreset.Contains(currentPreset))
                     continue;
 
                 var chance = _random.NextFloat(0, 1);
@@ -238,7 +243,7 @@ public sealed class PointOfInterestSystem : EntitySystem
             string stationName = string.IsNullOrEmpty(overrideName) ? proto.Name : overrideName;
 
             EntityUid? stationUid = null;
-            if (_prototypeManager.TryIndex<GameMapPrototype>(proto.ID, out var stationProto))
+            if (_proto.TryIndex<GameMapPrototype>(proto.ID, out var stationProto))
             {
                 stationUid = _station.InitializeNewStation(stationProto.Stations[proto.ID], mapUids, stationName);
             }
@@ -270,8 +275,8 @@ public sealed class PointOfInterestSystem : EntitySystem
 
     private Vector2 GetRandomPOICoord(float unscaledMinRange, float unscaledMaxRange)
     {
-        int numRetries = int.Max(_configurationManager.GetCVar(NFCCVars.POIPlacementRetries), 0);
-        float minDistance = float.Max(_configurationManager.GetCVar(NFCCVars.MinPOIDistance), 0); // Constant at the end to avoid NaN weirdness
+        int numRetries = int.Max(_cfg.GetCVar(NFCCVars.POIPlacementRetries), 0);
+        float minDistance = float.Max(_cfg.GetCVar(NFCCVars.MinPOIDistance), 0); // Constant at the end to avoid NaN weirdness
 
         Vector2 coords = _random.NextVector2(unscaledMinRange, unscaledMaxRange);
         for (int i = 0; i < numRetries; i++)
