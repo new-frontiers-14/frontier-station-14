@@ -79,7 +79,7 @@ public sealed partial class DockingScreen : BoxContainer
 
         var shuttleNent = _entManager.GetNetEntity(shuttle.Value);
 
-        if (!GetOurDocks(shuttleNent, out var shuttleDocks) || shuttleDocks == null)
+        if (!GetOurDocksRecursive(shuttleNent, out var shuttleDocks) || shuttleDocks == null)
             return;
 
         var dockText = new StringBuilder();
