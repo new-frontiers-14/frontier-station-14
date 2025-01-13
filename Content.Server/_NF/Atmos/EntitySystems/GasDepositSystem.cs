@@ -108,12 +108,12 @@ public sealed class GasDepositSystem : EntitySystem
 
         args.PushMarkup(Loc.GetString("gas-deposit-drill-system-examined",
                 ("statusColor", "lightblue"),
-                ("rate", extractor.TargetPressure)));
+                ("pressure", extractor.TargetPressure)));
         if (extractor.DepositEntity != null)
         {
             args.PushMarkup(Loc.GetString("gas-deposit-drill-system-examined-amount",
                     ("statusColor", "lightblue"),
-                    ("rate", extractor.DepositEntity.Value.Comp.Deposit.TotalMoles)));
+                    ("value", extractor.DepositEntity.Value.Comp.Deposit.TotalMoles)));
         }
     }
 
