@@ -1,6 +1,6 @@
 - type: entity
   name: Vulcan
-  parent: [BaseWeaponRifle, BaseGunWieldable]
+  parent: [BaseWeaponRifle, BaseGunWieldable, BaseC1Contraband] # Frontier: add BaseC1Contraband
   id: WeaponRifleVulcan
   description: One of the heaviest small arms to grace Security's armory, this rifle is a modern take on a classic, informally dubbed the "Right Arm of the Free World". Uses .30 rifle ammo.
   components:
@@ -59,7 +59,7 @@
 
 - type: entity
   name: ceremonial rifle
-  parent: [BaseWeaponSniper, BaseGunWieldable, BaseC2ExpeditionContraband] # Frontier: add BaseGunWieldable
+  parent: [BaseWeaponSniper, BaseGunWieldable, BaseC1Contraband] # Frontier: add BaseGunWieldable, BaseC1Contraband
   id: WeaponSniperCeremonial
   description: A ceremonial variant of the Mark 1 Rifle, in tasteful blue and white. Uses .30 rifle ammo.
   components:
@@ -84,7 +84,7 @@
 
 - type: entity
   name: CAWS-25 Jackdaw
-  parent: [BaseWeaponRifle, BaseGunWieldable, BaseC3Contraband]
+  parent: [BaseWeaponRifle, BaseGunWieldable, BaseC3Contraband] # Frontier: add BaseC3Contraband
   id: WeaponRifleJackdaw
   description: The beginning of the end is heralded by the song of a Jackdaw. Uses .25 caseless ammo.
   components:
