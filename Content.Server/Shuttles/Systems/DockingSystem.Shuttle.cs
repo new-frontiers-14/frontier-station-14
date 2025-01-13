@@ -1,6 +1,7 @@
 using System.Linq;
 using System.Numerics;
 using Content.Server.Shuttles.Components;
+using Content.Server._NF.Shuttles.Components; // Frontier
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics;
@@ -358,4 +359,36 @@ public sealed partial class DockingSystem
 
         return _dockingSet.ToList();
     }
+
+    // Frontier Start
+    // Recursively create a list of all docks on the target grid and all other grids docked to that grid, if those grids have the DockPassthroughComponent
+    public List<Entity<DockingComponent>> GetDocksRecursive(EntityUid uid)
+    {
+        HashSet<EntityUid> checkedGrids = [];
+        Queue<EntityUid> gridsToCheck = new();
+
+        HashSet<Entity<DockingComponent>> fullDockingSet = new();
+
+        gridsToCheck.Enqueue(uid);
+
+        while (gridsToCheck.Count > 0)
+        {
+            var grid = gridsToCheck.Dequeue();
+            checkedGrids.Add(grid);
+            var docks = GetDocks(grid);
+            foreach (var dock in docks)
+            {
+                if (dock.Comp.DockedWith != null &&
+                    TryComp<TransformComponent>(dock.Comp.DockedWith, out var otherDock) &&
+                    HasComp<DockPassthroughComponent>(otherDock.GridUid) &&
+                    !checkedGrids.Contains((EntityUid)otherDock.GridUid))
+                {
+                    gridsToCheck.Enqueue((EntityUid)otherDock.GridUid); // Only add it to the queue if it hasn't already been checked
+                }
+            }
+            fullDockingSet.UnionWith(docks);
+        }
+        return fullDockingSet.ToList();
+    }
+    // Frontier End
 }
