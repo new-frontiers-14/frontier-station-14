@@ -79,7 +79,7 @@ public sealed partial class DockingScreen : BoxContainer
 
         var shuttleNent = _entManager.GetNetEntity(shuttle.Value);
 
-        if (!GetOurDocksRecursive(shuttleNent, out var shuttleDocks) || shuttleDocks == null)
+        if (!Docks.TryGetValue(shuttleNent, out var shuttleDocks) || shuttleDocks.Count <= 0)
             return;
 
         var dockText = new StringBuilder();
@@ -187,54 +187,4 @@ public sealed partial class DockingScreen : BoxContainer
     {
         DockingControl.SetViewedDock(state);
     }
-    // Frontier Start
-    private bool GetOurDocks(NetEntity shuttleNent, out List<DockingPortState>? ShuttleDocks)
-    {
-        if (!Docks.TryGetValue(shuttleNent, out var shuttleDocks) || shuttleDocks.Count <= 0)
-        {
-            ShuttleDocks = null;
-            return false;
-        }
-        ShuttleDocks = shuttleDocks;
-        return true;
-    }
-    // Recursively create a list of all docks on the target grid and all other grids docked to that grid, if those grids have the DockPassthroughComponent
-
-
-    private bool GetOurDocksRecursive(NetEntity shuttleNent, out List<DockingPortState>? ShuttleDocks)
-    {
-        HashSet<DockingPortState> shuttleDocks = [];
-        HashSet<NetEntity> checkedGrids = [];
-        Queue<NetEntity> gridsToCheck = new();
-
-        gridsToCheck.Enqueue(shuttleNent);
-        while (gridsToCheck.Count > 0)
-        {
-            var grid = gridsToCheck.Dequeue();
-            checkedGrids.Add(grid);
-            if (!GetOurDocks(grid, out var docks) || docks == null)
-            {
-                continue;
-            }
-            foreach (var dock in docks)
-            {
-                if (dock.GridDockedWith != null &&
-                    !checkedGrids.Contains((NetEntity)dock.GridDockedWith))
-                {
-                    gridsToCheck.Enqueue((NetEntity)dock.GridDockedWith); // Only add it to the queue if it hasn't already been checked
-                }
-            }
-            shuttleDocks.UnionWith(docks);
-        }
-        ShuttleDocks = shuttleDocks.ToList();
-        if (ShuttleDocks.Count <= 0)
-        {
-            return false;
-        }
-        return true;
-    }
-
-    // Frontier End
-
-
 }
