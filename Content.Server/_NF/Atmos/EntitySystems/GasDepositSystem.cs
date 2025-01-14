@@ -71,6 +71,7 @@ public sealed class GasDepositSystem : EntitySystem
         SubscribeLocalEvent<RandomGasDepositComponent, ComponentInit>(OnDepositInit);
 
         SubscribeLocalEvent<GasDepositExtractorComponent, ComponentInit>(OnExtractorInit);
+        SubscribeLocalEvent<GasDepositExtractorComponent, BoundUIOpenedEvent>(OnExtractorUiOpened);
         SubscribeLocalEvent<GasDepositExtractorComponent, PowerChangedEvent>(OnPowerChanged);
         SubscribeLocalEvent<GasDepositExtractorComponent, ExaminedEvent>(OnExamined);
         SubscribeLocalEvent<GasDepositExtractorComponent, AnchorAttemptEvent>(OnAnchorAttempt);
@@ -91,9 +92,14 @@ public sealed class GasDepositSystem : EntitySystem
 
     }
 
-    private void OnExtractorInit(EntityUid uid, GasDepositExtractorComponent pump, ComponentInit args)
+    private void OnExtractorInit(EntityUid uid, GasDepositExtractorComponent extractor, ComponentInit args)
     {
-        UpdateAppearance(uid, pump);
+        UpdateAppearance(uid, extractor);
+    }
+
+    private void OnExtractorUiOpened(EntityUid uid, GasDepositExtractorComponent extractor, BoundUIOpenedEvent args)
+    {
+        DirtyUI(uid, extractor);
     }
 
     private void OnPowerChanged(EntityUid uid, GasDepositExtractorComponent component, ref PowerChangedEvent args)
