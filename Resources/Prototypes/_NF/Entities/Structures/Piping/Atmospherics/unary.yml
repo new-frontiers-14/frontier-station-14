@@ -86,8 +86,9 @@
 
 - type: entity
   parent: [ BaseStructureIndestructible, BaseStructureDisableToolUse, BaseGaslock ]
-  id: GasSalePoint
-  name: gas sale point
+  id: GasSalePort
+  name: gas sale port
+  suffix: Dockable
   description: Gas piped into here can be sold using the linked console. Bluespace linked to massive storage vaults off-site.
   components:
   - type: NodeContainer
@@ -101,17 +102,18 @@
   - type: WiredNetworkConnection
   - type: Sprite
     sprite: _NF/Structures/Piping/Atmospherics/salepoint.rsi
-    snapCardinals: true
-    granularLayersRendering: true
     layers:
       - state: base
       - state: base-unlit
         shader: unshaded
+      - state: struts
       - state: docked-unlit
         shader: unshaded
       - state: on-unlit
         shader: unshaded
         map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+      - state: pipe
+        map: [ "enum.PipeVisualLayers.Pipe" ]
   # - type: GenericVisualizer # TODO: fill this in
   - type: ApcPowerReceiver
     load: 1000
@@ -141,10 +143,34 @@
         ents: []
 
 - type: entity
+  parent: GasSalePort
+  id: GasSalePoint
+  name: gas sale point
+  suffix: Internal
+  components:
+  - type: NodeContainer
+    nodes:
+      inlet:
+        !type:PipeNode
+        nodeGroupID: Pipe
+        pipeDirection: South
+  - type: Sprite
+    sprite: _NF/Structures/Piping/Atmospherics/salepoint.rsi
+    layers:
+      - state: base
+      - state: base-unlit
+        shader: unshaded
+      - state: on-unlit
+        shader: unshaded
+        map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+      - state: pipe
+        map: [ "enum.PipeVisualLayers.Pipe" ]
+
+- type: entity
   parent: [ BaseStructureIndestructible, BaseStructureDisableToolUse, BaseComputer ]
   id: GasSaleConsole
   name: gas sale console
-  description: Sells gas pumped into a linked gas sale point.
+  description: Sells gas pumped into a linked gas sale port/point.
   components:
   - type: GasSaleConsole
   - type: ActivatableUI

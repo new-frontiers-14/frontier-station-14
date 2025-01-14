@@ -32,10 +32,9 @@
 - type: entity
   parent: BaseStructure
   id: BaseGaslock
+  abstract: true
   name: gaslock
   components:
-  - type: Anchorable
-  - type: Rotatable
   - type: Docking
     radarColor: darkcyan
     highlightedRadarColor: cyan
@@ -87,8 +86,8 @@
 
 - type: entity
   parent: BaseGaslock
-  id: BasePumpGaslock
-  suffix: Docking
+  id: BasePressurePumpGaslock
+  abstract: true
   name: external gaslock
   description: Connects gas pipes on separate ships or stations together to allow gas transfer. Both sides must be docked and pumping in the same direction to accept flow.
   components:
@@ -139,9 +138,8 @@
       - ForceNoFixRotations
 
 - type: entity
-  parent: BasePumpGaslock
+  parent: BasePressurePumpGaslock
   id: Gaslock
-  suffix: Airtight
   placement:
     mode: SnapgridCenter
   components:
@@ -158,8 +156,7 @@
       shader: unshaded
       map: ["docked-unlit"]
       visible: false
-    - sprite: Structures/Piping/Atmospherics/pipe.rsi
-      state: pipeStraight
+    - state: pipeStraight
       map: [ "enum.PipeVisualLayers.Pipe" ]
     - state: pumpPressure
     - state: pumpPressureOnOut
@@ -191,14 +188,15 @@
     mode: NoSprite
 
 - type: entity
-  parent: BasePumpGaslock
+  parent: BasePressurePumpGaslock
   id: GaslockFrame
-  suffix: Docking
   name: portable gaslock
   description: Pumps gas through. Accepts docking, but cannot dock. Both sides must be docked and pumping in the same direction for gas to flow.
   placement:
     mode: SnapgridCenter
   components:
+  - type: Anchorable
+  - type: Rotatable
   - type: Sprite
     sprite: _NF/Structures/Piping/Atmospherics/portable_gaslock.rsi
     drawdepth: Doors
@@ -208,8 +206,7 @@
       shader: unshaded
       map: ["docked-unlit"]
       visible: false
-    - sprite: Structures/Piping/Atmospherics/pipe.rsi
-      state: pipeStraight
+    - state: pipeStraight
       map: [ "enum.PipeVisualLayers.Pipe" ]
     - state: pumpPressure
     - state: pumpPressureOnOut
