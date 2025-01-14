@@ -2,12 +2,14 @@
 
 namespace Content.Shared.Atmos.Piping.Binary.Components
 {
+    // Frontier: byte enum, add bidirectional key, key values
     [Serializable, NetSerializable]
-    public enum GasPressurePumpUiKey
+    public enum GasPressurePumpUiKey : byte
     {
-        Key,
-        BidiKey, // Frontier: bidirectional pumps
+        Key = 0,
+        BidiKey = 1,
     }
+    // End Frontier
 
     [Serializable, NetSerializable]
     public sealed class GasPressurePumpBoundUserInterfaceState : BoundUserInterfaceState

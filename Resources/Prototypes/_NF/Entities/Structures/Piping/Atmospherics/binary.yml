@@ -98,10 +98,7 @@
     ports:
       - DockStatus
   - type: Wires
-    layoutId: Docking
-  # - type: Construction
-  #   graph: AirlockShuttle
-  #   node: airlock
+    layoutId: Docking # TODO: rework these
   - type: ApcPowerReceiver
     powerLoad: 500
   - type: ExtensionCableReceiver
@@ -122,7 +119,7 @@
   - type: UserInterface
     interfaces:
         enum.GasPressurePumpUiKey.BidiKey:
-          type: BidiGasPressurePumpBoundUserInterface
+          type: GasPressureBidiPumpBoundUserInterface
   - type: ActivatableUI
     key: enum.GasPressurePumpUiKey.BidiKey
   - type: DockablePump
@@ -135,6 +132,11 @@
     sound:
       path: /Audio/Ambience/Objects/gas_pump.ogg
   - type: PipeAppearance
+  - type: Tag
+    tags:
+      - Unstackable
+      - Pipe
+      - ForceNoFixRotations
 
 - type: entity
   parent: BasePumpGaslock
@@ -149,7 +151,6 @@
   - type: Occluder
   - type: Sprite
     sprite: _NF/Structures/Piping/Atmospherics/gaslock.rsi
-    # granularLayersRendering: true
     drawdepth: Doors
     layers:
     - state: closed
@@ -182,50 +183,27 @@
           False: { state: pumpPressureOnOut }
   - type: StaticPrice
     price: 350
-  - type: Tag
-    tags:
-      - Unstackable
-      - Pipe
-      - ForceNoFixRotations
   - type: BlockWeather
   - type: PlacementReplacement
-    key: walls
+    key: walls # For construction if this eventually supports it.
   - type: IconSmooth
     key: walls
     mode: NoSprite
-  - type: PaintableAirlock
-    group: External
-    department: null
-
-- type: entity
-  parent: Gaslock
-  id: GaslockReversed
-  suffix: Airtight, Reversed
-  description: Connects gas tanks on separate ships or stations together to allow gas transfer. Both stages must be set up to accept flow.
-  components:
-  - type: GasPressurePump
-    inlet: outlet
-    outlet: inlet
-  - type: DockablePump
-    pumpingInwards: true
 
 - type: entity
   parent: BasePumpGaslock
   id: GaslockFrame
   suffix: Docking
-  name: gas staging port
-  description: Connects gas pipes on separate ships or stations together to allow gas transfer. Both sides must be docked and pumping in the same direction to accept flow.
+  name: portable gaslock
+  description: Pumps gas through. Accepts docking, but cannot dock. Both sides must be docked and pumping in the same direction for gas to flow.
   placement:
     mode: SnapgridCenter
   components:
   - type: Sprite
-    sprite: _NF/Structures/Piping/Atmospherics/gaslock.rsi
-    # granularLayersRendering: true
+    sprite: _NF/Structures/Piping/Atmospherics/portable_gaslock.rsi
     drawdepth: Doors
     layers:
-    - sprite: Structures/Walls/solid.rsi
-      state: wall_girder
-    - state: frame_struts
+    - state: base
     - state: closed_unlit
       shader: unshaded
       map: ["docked-unlit"]
@@ -255,23 +233,24 @@
           False: { state: pumpPressureOnOut }
   - type: StaticPrice
     price: 100
-  - type: Tag
-    tags:
-      - Unstackable
-      - Pipe
-      - ForceNoFixRotations
   - type: Docking
     receiveOnly: true
   - type: DeviceNetwork
-    prefix: device-address-prefix-staging-port
-
-- type: entity
-  parent: GaslockFrame
-  id: GaslockFrameReversed
-  suffix: Docking, Reversed
-  components:
-  - type: GasPressurePump
-    inlet: outlet
-    outlet: inlet
-  - type: DockablePump
-    pumpingInwards: true
+    prefix: device-address-prefix-portable-gaslock
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.49,0.25,0.25" # narrow enough to fit through doors when pulled
+        density: 100
+        mask:
+          - FullTileMask
+        layer:
+          - AirlockLayer
+      docking:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.2
+          position: "0,-0.5"
+        hard: false

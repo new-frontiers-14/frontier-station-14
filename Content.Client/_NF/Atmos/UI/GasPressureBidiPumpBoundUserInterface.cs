@@ -1,4 +1,4 @@
-﻿using Content.Shared._NF.Atmos.Piping.Binary.Components;
+﻿using Content.Shared._NF.Atmos.Piping.Binary.Messages;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Piping.Binary.Components;
 using Content.Shared.Localizations;
@@ -8,18 +8,18 @@ using Robust.Client.UserInterface;
 namespace Content.Client._NF.Atmos.UI
 {
     /// <summary>
-    /// Initializes a <see cref="BidiGasPressurePumpWindow"/> and updates it when new server messages are received.
+    /// Initializes a <see cref="GasPressureBidiPumpWindow"/> and updates it when new server messages are received.
     /// </summary>
     [UsedImplicitly]
-    public sealed class BidiGasPressurePumpBoundUserInterface : BoundUserInterface
+    public sealed class GasPressureBidiPumpBoundUserInterface : BoundUserInterface
     {
         [ViewVariables]
         private const float MaxPressure = Atmospherics.MaxOutputPressure;
 
         [ViewVariables]
-        private BidiGasPressurePumpWindow? _window;
+        private GasPressureBidiPumpWindow? _window;
 
-        public BidiGasPressurePumpBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
+        public GasPressureBidiPumpBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
         {
         }
 
@@ -27,7 +27,7 @@ namespace Content.Client._NF.Atmos.UI
         {
             base.Open();
 
-            _window = this.CreateWindow<BidiGasPressurePumpWindow>();
+            _window = this.CreateWindow<GasPressureBidiPumpWindow>();
 
             _window.ToggleStatusButtonPressed += OnToggleStatusButtonPressed;
             _window.ToggleDirectionButtonPressed += OnToggleDirectionButtonPressed;

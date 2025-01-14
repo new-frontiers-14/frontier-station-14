@@ -1,6 +1,6 @@
 using Content.Client._NF.Atmos.UI;
 using Content.Shared._NF.Atmos.BUIStates;
-using Content.Shared._NF.Atmos.Piping.Binary.Components;
+using Content.Shared._NF.Atmos.Piping.Binary.Messages;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Piping.Binary.Components;
 using Content.Shared.Localizations;

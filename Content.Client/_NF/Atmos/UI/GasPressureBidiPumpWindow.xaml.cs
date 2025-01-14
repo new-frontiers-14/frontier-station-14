@@ -10,7 +10,7 @@ namespace Content.Client._NF.Atmos.UI;
 /// Client-side UI used to control a bidirectional gas pressure pump.
 /// </summary>
 [GenerateTypedNameReferences]
-public sealed partial class BidiGasPressurePumpWindow : DefaultWindow
+public sealed partial class GasPressureBidiPumpWindow : DefaultWindow
 {
     public bool PumpStatus = true;
     public bool PumpInwards = false;
@@ -19,7 +19,7 @@ public sealed partial class BidiGasPressurePumpWindow : DefaultWindow
     public event Action? ToggleDirectionButtonPressed;
     public event Action<string>? PumpOutputPressureChanged;
 
-    public BidiGasPressurePumpWindow()
+    public GasPressureBidiPumpWindow()
     {
         RobustXamlLoader.Load(this);
 

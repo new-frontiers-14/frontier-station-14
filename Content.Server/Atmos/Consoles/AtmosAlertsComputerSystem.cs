@@ -22,7 +22,7 @@ using Content.Server.Atmos.Piping.Binary.EntitySystems; // Frontier
 using Content.Server.NodeContainer.EntitySystems; // Frontier
 using Content.Server.NodeContainer.Nodes; // Frontier
 using Content.Shared._NF.Atmos.BUI; // Frontier
-using Content.Shared._NF.Atmos.Piping.Binary.Components; // Frontier
+using Content.Shared._NF.Atmos.Piping.Binary.Messages; // Frontier
 using Content.Shared.Atmos.Piping.Binary.Components; // Frontier
 using Content.Shared.Shuttles.Events; // Frontier
 using Content.Server.Shuttles.Systems;

@@ -17,7 +17,7 @@ using Content.Shared.Power;
 using JetBrains.Annotations;
 using Robust.Server.GameObjects;
 using Robust.Shared.Player;
-using Content.Shared._NF.Atmos.Piping.Binary.Components; // Frontier
+using Content.Shared._NF.Atmos.Piping.Binary.Messages; // Frontier
 
 namespace Content.Server.Atmos.Piping.Binary.EntitySystems
 {
@@ -110,7 +110,7 @@ namespace Content.Server.Atmos.Piping.Binary.EntitySystems
             UpdateAppearance(uid, pump);
 
             DirtyUI(uid, pump);
-            _userInterfaceSystem.CloseUi(uid, GasPressurePumpUiKey.Key);
+            _userInterfaceSystem.CloseUi(uid, pump.UiKey); // Frontier: GasPressurePumpUiKey.Key<pump.UiKey
         }
 
         private void OnPumpActivate(EntityUid uid, GasPressurePumpComponent pump, ActivateInWorldEvent args)
@@ -123,7 +123,7 @@ namespace Content.Server.Atmos.Piping.Binary.EntitySystems
 
             if (Transform(uid).Anchored)
             {
-                _userInterfaceSystem.OpenUi(uid, GasPressurePumpUiKey.Key, actor.PlayerSession);
+                _userInterfaceSystem.OpenUi(uid, pump.UiKey, actor.PlayerSession); // Frontier: GasPressurePumpUiKey.Key<pump.UiKey
                 DirtyUI(uid, pump);
             }
             else
