@@ -91,6 +91,8 @@
   suffix: Internal
   description: Gas piped into here can be sold using the linked console. Bluespace linked to massive storage vaults off-site.
   components:
+  - type: Transform
+    noRot: false
   - type: NodeContainer
     nodes:
       inlet:
@@ -111,13 +113,12 @@
         map: [ "enum.PowerDeviceVisualLayers.Powered" ]
       - state: pipe
         map: [ "enum.PipeVisualLayers.Pipe" ]
-  # - type: GenericVisualizer # TODO: fill this in
   - type: ApcPowerReceiver
     load: 1000
   - type: Machine
     board: Null # FIXME
   - type: GasSalePoint
-  - type: CargoSellBlacklist # just in case
+  - type: CargoSellBlacklist
   - type: DeviceLinkSink
     ports:
       - GasSalePointReceiver
@@ -160,6 +161,7 @@
       - state: struts
       - state: docked-unlit
         shader: unshaded
+        visible: false
         map: [ "docked-unlit" ]
       - state: on-unlit
         shader: unshaded
