@@ -114,14 +114,14 @@ public sealed partial class GaslockConsoleSystem : EntitySystem
     {
         // TODO: NEED TO MAKE SURE THIS UPDATES ON ANCHORING CHANGES!
         var result = new Dictionary<NetEntity, List<GaslockPortState>>();
-        var query = AllEntityQuery<DockingComponent, DockablePumpComponent, TransformComponent, MetaDataComponent>();
+        var query = AllEntityQuery<DockingComponent, DockablePipeComponent, TransformComponent, MetaDataComponent>();
 
         while (query.MoveNext(out var uid, out var dock, out _, out var xform, out var metadata))
         {
             if (xform.ParentUid != xform.GridUid)
                 continue;
 
-            // I don't think we want volume pumps, but if we support other types, this may need to handle them separately.
+            // Note: PressurePump not checked in the entity query to allow for extension to multiple pump types.
             if (!TryComp(uid, out GasPressurePumpComponent? pump))
                 continue;
 

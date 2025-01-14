@@ -1,7 +1,7 @@
 namespace Content.Server._NF.Atmos.Components;
 
 [RegisterComponent]
-public sealed partial class DockablePumpComponent : Component
+public sealed partial class DockablePipeComponent : Component
 {
     /// <summary>
     /// The name of the node that is available to dock.
@@ -14,10 +14,4 @@ public sealed partial class DockablePumpComponent : Component
     /// </summary>
     [DataField]
     public string InternalNodeName;
-
-    /// <summary>
-    /// If true, the pump will be pumping inwards (dock node to internal node).
-    /// </summary>
-    [DataField]
-    public bool PumpingInwards;
 }

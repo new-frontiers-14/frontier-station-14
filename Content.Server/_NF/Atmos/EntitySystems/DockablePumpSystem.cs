@@ -10,7 +10,7 @@ using Robust.Server.GameObjects;
 
 namespace Content.Server._NF.Atmos.EntitySystems;
 
-public sealed partial class DockablePumpSystem : EntitySystem
+public sealed partial class DockablePipeSystem : EntitySystem
 {
     [Dependency] private readonly NodeContainerSystem _nodeContainer = default!;
     [Dependency] private readonly NodeGroupSystem _nodeGroup = default!;
@@ -21,11 +21,11 @@ public sealed partial class DockablePumpSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<DockablePumpComponent, DockEvent>(OnDock);
-        SubscribeLocalEvent<DockablePumpComponent, UndockEvent>(OnUndock);
+        SubscribeLocalEvent<DockablePipeComponent, DockEvent>(OnDock);
+        SubscribeLocalEvent<DockablePipeComponent, UndockEvent>(OnUndock);
     }
 
-    private void OnDock(EntityUid uid, DockablePumpComponent component, ref DockEvent args)
+    private void OnDock(EntityUid uid, DockablePipeComponent component, ref DockEvent args)
     {
         // Reflood node?
         if (string.IsNullOrEmpty(component.DockNodeName) ||
@@ -34,10 +34,10 @@ public sealed partial class DockablePumpSystem : EntitySystem
             return;
 
         _nodeGroup.QueueReflood(dockablePipe);
-        _appearance.SetData(uid, DockablePumpVisuals.Docked, true);
+        _appearance.SetData(uid, DockablePipeVisuals.Docked, true);
     }
 
-    private void OnUndock(EntityUid uid, DockablePumpComponent component, ref UndockEvent args)
+    private void OnUndock(EntityUid uid, DockablePipeComponent component, ref UndockEvent args)
     {
         // Clean up node?
         if (string.IsNullOrEmpty(component.DockNodeName) ||
@@ -47,6 +47,6 @@ public sealed partial class DockablePumpSystem : EntitySystem
 
         _nodeGroup.QueueNodeRemove(dockablePipe);
         dockablePipe.Air.Clear();
-        _appearance.SetData(uid, DockablePumpVisuals.Docked, false);
+        _appearance.SetData(uid, DockablePipeVisuals.Docked, false);
     }
 }

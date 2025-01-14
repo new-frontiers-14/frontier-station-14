@@ -160,11 +160,21 @@
       - state: struts
       - state: docked-unlit
         shader: unshaded
+        map: [ "docked-unlit" ]
       - state: on-unlit
         shader: unshaded
         map: [ "enum.PowerDeviceVisualLayers.Powered" ]
       - state: pipe
         map: [ "enum.PipeVisualLayers.Pipe" ]
+  - type: DockablePipe
+    dockNodeName: inlet
+    internalNodeName: inlet
+  - type: GenericVisualizer
+    visuals:
+      enum.DockablePipeVisuals.Docked:
+        docked-unlit:
+          True: { visible: true }
+          False: { visible: false }
 
 - type: entity
   parent: [ BaseStructureIndestructible, BaseStructureDisableToolUse, BaseComputer ]

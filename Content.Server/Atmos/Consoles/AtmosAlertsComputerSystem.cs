@@ -465,7 +465,7 @@ public sealed class AtmosAlertsComputerSystem : SharedAtmosAlertsComputerSystem
         }
 
         var gasData = new Dictionary<Gas, (float, float)>();
-        if (TryComp<DockablePumpComponent>(focusDevice.Value, out var dockablePump) &&
+        if (TryComp<DockablePipeComponent>(focusDevice.Value, out var dockablePump) &&
         _nodeContainer.TryGetNode(focusDevice.Value, dockablePump.InternalNodeName, out PipeNode? port))
         {
             if (port.Air.TotalMoles > 1e-8)
@@ -496,7 +496,7 @@ public sealed class AtmosAlertsComputerSystem : SharedAtmosAlertsComputerSystem
     private void OnUndockRequestMessage(EntityUid gridUid, AtmosAlertsComputerComponent comp, UndockRequestMessage args)
     {
         var dockUid = GetEntity(args.DockEntity);
-        if (!HasComp<DockablePumpComponent>(dockUid) ||
+        if (!HasComp<DockablePipeComponent>(dockUid) ||
             !TryComp<DockingComponent>(dockUid, out var dockComp))
             return;
         _docking.Undock((dockUid, dockComp));
