@@ -7,7 +7,7 @@ using Content.Shared.Mind.Components;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared.Vehicle.Components;
-using Content.Shared.Movement.Pulling.Components; // Frontier
+using Content.Shared.Movement.Pulling.Components;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
 
@@ -142,7 +142,6 @@ public sealed class LinkedLifecycleGridSystem : EntitySystem
             reparentEntities.Add(((targetUid, targetXform), targetXform.MapUid!.Value, _transform.GetWorldPosition(targetXform)));
         }
 
-        // Frontier
         // Get things dragged by players
         var pullableQuery = AllEntityQuery<PullableComponent, TransformComponent>();
         while (pullableQuery.MoveNext(out var pullableUid, out var pullable, out var xform))
@@ -161,7 +160,6 @@ public sealed class LinkedLifecycleGridSystem : EntitySystem
 
             reparentEntities.Add(((targetUid, targetXform), targetXform.MapUid!.Value, _transform.GetWorldPosition(targetXform)));
         }
-        // End Frontier
 
         return reparentEntities;
     }
