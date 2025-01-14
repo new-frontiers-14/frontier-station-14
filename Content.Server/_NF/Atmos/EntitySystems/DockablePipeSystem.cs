@@ -1,6 +1,4 @@
 using Content.Server._NF.Atmos.Components;
-using Content.Server.Atmos.EntitySystems;
-using Content.Server.Atmos.Piping.Binary.Components;
 using Content.Server.NodeContainer;
 using Content.Server.NodeContainer.EntitySystems;
 using Content.Server.NodeContainer.Nodes;
@@ -15,7 +13,6 @@ public sealed partial class DockablePipeSystem : EntitySystem
     [Dependency] private readonly NodeContainerSystem _nodeContainer = default!;
     [Dependency] private readonly NodeGroupSystem _nodeGroup = default!;
     [Dependency] private readonly AppearanceSystem _appearance = default!;
-
 
     public override void Initialize()
     {
