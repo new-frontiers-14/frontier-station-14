@@ -196,9 +196,9 @@ public sealed class GasDepositSystem : EntitySystem
 
         var targetPressure = float.Clamp(extractor.TargetPressure, 0, extractor.MaxOutputPressure);
 
-        // How many moles could we theoretically spawn. Cap by pressure and amount.
-        var allowableMoles = float.Max(0,
-            (targetPressure - net.Air.Pressure) * net.Air.Volume / (extractor.OutputTemperature * Atmospherics.R));
+        // How many moles could we theoretically spawn. Cap by pressure, amount, and extractor limit.
+        var allowableMoles = (targetPressure - net.Air.Pressure) * net.Air.Volume / (extractor.OutputTemperature * Atmospherics.R);
+        allowableMoles = float.Min(allowableMoles, extractor.ExtractionRate * args.dt);
 
         if (allowableMoles < Atmospherics.GasMinMoles)
         {
@@ -309,7 +309,6 @@ public sealed class GasDepositSystem : EntitySystem
             || !_nodeContainer.TryGetNode(uid, component.InletPipePortName, out PipeNode? port)
             || port.NodeGroup is not PipeNet { NodeCount: > 1 } net)
         {
-            _ambientSound.SetAmbience(uid, false);
             return;
         }
 

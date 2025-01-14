@@ -72,17 +72,7 @@
   - type: PipeRestrictOverlap
   - type: AtmosUnsafeUnanchor
   - type: AtmosPipeColor
-  - type: AtmosAlertsDevice
-    group: Gaslock
-  - type: AtmosAlarmable
   - type: StationAiWhitelist
-  - type: DeviceNetwork
-    deviceNetId: AtmosDevices
-    receiveFrequencyId: AtmosMonitor
-    transmitFrequencyId: AtmosMonitor
-    sendBroadcastAttemptEvent: true
-    examinableAddress: true
-    prefix: device-address-prefix-gaslock
 
 - type: entity
   parent: BaseGaslock
@@ -136,6 +126,16 @@
       - Unstackable
       - Pipe
       - ForceNoFixRotations
+  - type: AtmosAlertsDevice
+    group: Gaslock
+  - type: AtmosAlarmable
+  - type: DeviceNetwork
+    deviceNetId: AtmosDevices
+    receiveFrequencyId: AtmosMonitor
+    transmitFrequencyId: AtmosMonitor
+    sendBroadcastAttemptEvent: true
+    examinableAddress: true
+    prefix: device-address-prefix-gaslock
 
 - type: entity
   parent: BasePressurePumpGaslock

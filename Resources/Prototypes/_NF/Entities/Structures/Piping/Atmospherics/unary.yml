@@ -81,20 +81,20 @@
   - type: Machine
     board: Null # FIXME
   - type: GasDepositExtractor
-    extractionRate: 20
+    extractionRate: 50 # 50 mol/s => 20 kmol in ~6.6 min
     port: outlet
 
 - type: entity
-  parent: [ BaseStructureIndestructible, BaseStructureDisableToolUse, BaseGaslock ]
-  id: GasSalePort
-  name: gas sale port
-  suffix: Dockable
+  parent: [ BaseStructureIndestructible, BaseStructureDisableToolUse ]
+  id: GasSalePoint
+  name: gas sale point
+  suffix: Internal
   description: Gas piped into here can be sold using the linked console. Bluespace linked to massive storage vaults off-site.
   components:
   - type: NodeContainer
     nodes:
       inlet:
-        !type:DockablePipeNode
+        !type:PipeNode
         nodeGroupID: Pipe
         pipeDirection: South
   - type: DeviceNetwork
@@ -105,9 +105,6 @@
     layers:
       - state: base
       - state: base-unlit
-        shader: unshaded
-      - state: struts
-      - state: docked-unlit
         shader: unshaded
       - state: on-unlit
         shader: unshaded
@@ -143,15 +140,15 @@
         ents: []
 
 - type: entity
-  parent: GasSalePort
-  id: GasSalePoint
-  name: gas sale point
-  suffix: Internal
+  parent: [ GasSalePoint, BaseGaslock ]
+  id: GasSalePort
+  name: gas sale port
+  suffix: Dockable
   components:
   - type: NodeContainer
     nodes:
       inlet:
-        !type:PipeNode
+        !type:DockablePipeNode
         nodeGroupID: Pipe
         pipeDirection: South
   - type: Sprite
@@ -159,6 +156,9 @@
     layers:
       - state: base
       - state: base-unlit
+        shader: unshaded
+      - state: struts
+      - state: docked-unlit
         shader: unshaded
       - state: on-unlit
         shader: unshaded
