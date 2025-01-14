@@ -23,6 +23,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Utility;
 using Content.Shared.UserInterface;
 using Content.Shared.Access.Systems; // Frontier
+using Content.Shared.Construction.Components; // Frontier
 
 namespace Content.Server.Shuttles.Systems;
 
@@ -228,6 +229,11 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         {
             if (xform.ParentUid != xform.GridUid)
                 continue;
+
+            // Frontier: skip unanchored docks (e.g. portable gaslocks)
+            if (HasComp<AnchorableComponent>(uid) && !xform.Anchored)
+                continue;
+            // End Frontier
 
             var gridDocks = result.GetOrNew(GetNetEntity(xform.GridUid.Value));
 

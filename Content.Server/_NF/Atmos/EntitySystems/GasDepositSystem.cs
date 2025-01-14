@@ -68,9 +68,9 @@ public sealed class GasDepositSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<RandomGasDepositComponent, ComponentInit>(OnDepositInit);
+        SubscribeLocalEvent<RandomGasDepositComponent, MapInitEvent>(OnDepositMapInit);
 
-        SubscribeLocalEvent<GasDepositExtractorComponent, ComponentInit>(OnExtractorInit);
+        SubscribeLocalEvent<GasDepositExtractorComponent, MapInitEvent>(OnExtractorMapInit);
         SubscribeLocalEvent<GasDepositExtractorComponent, BoundUIOpenedEvent>(OnExtractorUiOpened);
         SubscribeLocalEvent<GasDepositExtractorComponent, PowerChangedEvent>(OnPowerChanged);
         SubscribeLocalEvent<GasDepositExtractorComponent, ExaminedEvent>(OnExamined);
@@ -89,10 +89,9 @@ public sealed class GasDepositSystem : EntitySystem
         SubscribeLocalEvent<GasSaleConsoleComponent, BoundUIOpenedEvent>(OnConsoleUiOpened);
         SubscribeLocalEvent<GasSaleConsoleComponent, GasSaleSellMessage>(OnSaleRequest);
         SubscribeLocalEvent<GasSaleConsoleComponent, SignalReceivedEvent>(OnConsoleSignalReceived);
-
     }
 
-    private void OnExtractorInit(EntityUid uid, GasDepositExtractorComponent extractor, ComponentInit args)
+    private void OnExtractorMapInit(EntityUid uid, GasDepositExtractorComponent extractor, MapInitEvent args)
     {
         UpdateAppearance(uid, extractor);
     }
@@ -163,7 +162,7 @@ public sealed class GasDepositSystem : EntitySystem
             component.DepositEntity = null;
     }
 
-    public void OnDepositInit(EntityUid uid, RandomGasDepositComponent component, ComponentInit args)
+    public void OnDepositMapInit(EntityUid uid, RandomGasDepositComponent component, MapInitEvent args)
     {
         if (!_prototype.TryIndex(component.DepositPrototype, out var depositPrototype))
         {
