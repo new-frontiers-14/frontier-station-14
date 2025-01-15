@@ -45,7 +45,7 @@ public sealed partial class GasDepositExtractorComponent : Component
     [DataField("port")]
     public string PortName { get; set; } = "port";
 
-    // Storing the last
+    // Storing the last known extraction state.
     [ViewVariables]
     public GasDepositExtractorState LastState { get; set; } = GasDepositExtractorState.Off;
 }

@@ -1,11 +1,10 @@
+using System.Numerics;
 using Content.Server._NF.Atmos.Components;
 using Content.Server.Administration.Logs;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Atmos.Piping.Components;
 using Content.Server.Audio;
-using Content.Server.DeviceLinking.Events;
 using Content.Server.DeviceLinking.Systems;
-using Content.Server.DeviceNetwork;
 using Content.Server.NodeContainer.EntitySystems;
 using Content.Server.NodeContainer.NodeGroups;
 using Content.Server.NodeContainer.Nodes;
@@ -20,11 +19,13 @@ using Content.Shared.Atmos.Piping.Binary.Components;
 using Content.Shared.Bank.Components;
 using Content.Shared.Construction.Components;
 using Content.Shared.Database;
-using Content.Shared.DeviceNetwork;
 using Content.Shared.Examine;
 using Content.Shared.Interaction;
 using Content.Shared.Power;
+using Content.Shared.Stacks;
+using Robust.Server.Audio;
 using Robust.Server.GameObjects;
+using Robust.Shared.Audio;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -47,21 +48,16 @@ public sealed class GasDepositSystem : EntitySystem
     [Dependency] private readonly AppearanceSystem _appearance = default!;
     [Dependency] private readonly DeviceLinkSystem _deviceLink = default!;
     [Dependency] private readonly StackSystem _stack = default!;
+    [Dependency] private readonly TransformSystem _transform = default!;
+    [Dependency] private readonly AudioSystem _audio = default!;
 
+    // The fraction that a deposit's volume should be depleted to before it is considered "low volume".
     private const float LowMoleCoefficient = 0.25f;
+    // The maximum distance to check for nearby gas sale points when selling gas.
+    private const double DefaultMaxSalePointDistance = 8.0;
 
-    // Surveillance camera data. This generally should contain nothing
-    // except for the subnet that this camera is on -
-    // this is because of the fact that the PacketEvent already
-    // contains the sender UID, and that this will always be targeted
-    // towards the sender that pinged the camera.
-    public const string GasSaleQueryCommand = "gas_sale_query";
-    public const string GasSaleQueryResponse = "gas_sale_contents";
-    public const string GasSaleSellCommand = "gas_sale_sell";
-    public const string GasSaleSellResponse = "gas_sale_value";
+    private static readonly SoundPathSpecifier ApproveSound = new("/Audio/Effects/Cargo/ping.ogg");
 
-    public const string GasSaleQueryData = "gas_sale_contents_data";
-    public const string GasSaleSellData = "gas_sale_value_data";
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -82,13 +78,11 @@ public sealed class GasDepositSystem : EntitySystem
         SubscribeLocalEvent<GasDepositExtractorComponent, GasPressurePumpChangeOutputPressureMessage>(OnOutputPressureChangeMessage);
         SubscribeLocalEvent<GasDepositExtractorComponent, GasPressurePumpToggleStatusMessage>(OnToggleStatusMessage);
 
-        SubscribeLocalEvent<GasSalePointComponent, MapInitEvent>(OnSalePointMapInit);
         SubscribeLocalEvent<GasSalePointComponent, AtmosDeviceUpdateEvent>(OnSalePointUpdate);
 
-        SubscribeLocalEvent<GasSaleConsoleComponent, MapInitEvent>(OnSaleConsoleMapInit);
         SubscribeLocalEvent<GasSaleConsoleComponent, BoundUIOpenedEvent>(OnConsoleUiOpened);
-        SubscribeLocalEvent<GasSaleConsoleComponent, GasSaleSellMessage>(OnSaleRequest);
-        SubscribeLocalEvent<GasSaleConsoleComponent, SignalReceivedEvent>(OnConsoleSignalReceived);
+        SubscribeLocalEvent<GasSaleConsoleComponent, GasSaleSellMessage>(OnConsoleSell);
+        SubscribeLocalEvent<GasSaleConsoleComponent, GasSaleRefreshMessage>(OnConsoleRefresh);
     }
 
     private void OnExtractorMapInit(EntityUid uid, GasDepositExtractorComponent extractor, MapInitEvent args)
@@ -293,20 +287,6 @@ public sealed class GasDepositSystem : EntitySystem
             _appearance.SetData(uid, GasDepositExtractorVisuals.State, extractor.LastState, appearance);
     }
 
-    private void OnSaleConsoleMapInit(EntityUid uid, GasSaleConsoleComponent component, MapInitEvent args)
-    {
-        // Console: sends commands, receives responses.
-        _deviceLink.EnsureSourcePorts(uid, component.CommandPortName);
-        _deviceLink.EnsureSinkPorts(uid, component.ResponsePortName);
-    }
-
-    private void OnSalePointMapInit(EntityUid uid, GasSalePointComponent component, MapInitEvent args)
-    {
-        // Gas point: receives commands, sends responses.
-        _deviceLink.EnsureSourcePorts(uid, component.ResponsePortName);
-        _deviceLink.EnsureSinkPorts(uid, component.CommandPortName);
-    }
-
     // Atmos update: take any gas from the connecting network and push it into the pump.
     private void OnSalePointUpdate(EntityUid uid, GasSalePointComponent component, ref AtmosDeviceUpdateEvent args)
     {
@@ -321,96 +301,99 @@ public sealed class GasDepositSystem : EntitySystem
         {
             _atmosphere.Merge(component.GasStorage, net.Air);
             net.Air.Clear();
-            SendSalePointContents(uid, component);
-        }
-    }
-
-    private void OnSaleRequest(EntityUid uid, GasSaleConsoleComponent component, GasSaleSellMessage args)
-    {
-        if (TryComp<ApcPowerReceiverComponent>(uid, out var power) && !power.Powered)
-            return;
-
-        NetworkPayload payload = new NetworkPayload()
-        {
-            { DeviceNetworkConstants.Command, GasSaleSellCommand }
-        };
-
-        _deviceLink.InvokePort(uid, component.CommandPortName, payload);
-    }
-
-    private void SendSalePointContents(EntityUid uid, GasSalePointComponent component)
-    {
-        var payload = new NetworkPayload()
-        {
-            { DeviceNetworkConstants.Command, GasSaleQueryResponse },
-            { GasSaleQueryData, component.GasStorage }
-        };
-        _deviceLink.InvokePort(uid, component.ResponsePortName, payload);
-    }
-
-    private void OnConsoleSignalReceived(EntityUid uid, GasSaleConsoleComponent component, ref SignalReceivedEvent args)
-    {
-        var payload = args.Data;
-        if (payload == null || !payload.ContainsKey(DeviceNetworkConstants.Command))
-            return;
-
-        var command = payload[DeviceNetworkConstants.Command];
-        switch (command)
-        {
-            case GasSaleQueryResponse:
-                // Add contents to UI
-                if (!payload.TryGetValue(GasSaleQueryData, out GasMixture? mixture)
-                    || mixture == null)
-                    return;
-                component.LastKnownMixture = mixture;
-                break;
-            case GasSaleSellResponse:
-                if (!payload.TryGetValue(GasSaleSellData, out int? saleValue)
-                    || saleValue == null
-                    || saleValue.Value <= 0)
-                    return;
-                _stack.SpawnMultiple(component.Currency, saleValue.Value, Transform(uid).Coordinates);
-                UpdateConsoleInterface(uid, component, new GasMixture());
-                component.LastKnownMixture = new();
-                break;
-        }
-    }
-
-    private void OnSalePointSignalReceived(EntityUid uid, GasSalePointComponent component, ref SignalReceivedEvent args)
-    {
-        var payload = args.Data;
-        if (payload == null || !payload.ContainsKey(DeviceNetworkConstants.Command))
-            return;
-
-        var command = payload[DeviceNetworkConstants.Command];
-        switch (command)
-        {
-            case GasSaleQueryCommand:
-                SendSalePointContents(uid, component);
-                break;
-            case GasSaleSellCommand:
-                var salePayload = new NetworkPayload()
-                {
-                    { DeviceNetworkConstants.Command, GasSaleSellResponse },
-                    { GasSaleSellData, (int)_atmosphere.GetPrice(component.GasStorage) }
-                };
-                _deviceLink.InvokePort(uid, component.ResponsePortName, salePayload);
-                component.GasStorage.Clear();
-                break;
         }
     }
 
     private void OnConsoleUiOpened(EntityUid uid, GasSaleConsoleComponent component, BoundUIOpenedEvent args)
     {
-        UpdateConsoleInterface(uid, component, component.LastKnownMixture);
+        UpdateConsoleInterface(uid, component);
     }
 
-    private void UpdateConsoleInterface(EntityUid uid, GasSaleConsoleComponent component, GasMixture mixture)
+    private void OnConsoleRefresh(EntityUid uid, GasSaleConsoleComponent component, GasSaleRefreshMessage args)
     {
-        float marketMod = 1.0f;
-        if (TryComp<MarketModifierComponent>(uid, out var mod))
-            marketMod = mod.Mod;
+        UpdateConsoleInterface(uid, component);
+    }
 
-        _ui.SetUiState(uid, GasSaleConsoleUiKey.Key, new GasSaleConsoleBoundUserInterfaceState((int)(_atmosphere.GetPrice(mixture) * marketMod), mixture, mixture.TotalMoles > 0));
+    private void OnConsoleSell(EntityUid uid, GasSaleConsoleComponent component, GasSaleSellMessage args)
+    {
+        var xform = Transform(uid);
+        if (xform.GridUid is not EntityUid gridUid)
+        {
+            _ui.SetUiState(uid, GasSaleConsoleUiKey.Key,
+            new GasSaleConsoleBoundUserInterfaceState(0, new GasMixture(), false));
+            return;
+        }
+
+        var mixture = new GasMixture();
+        foreach (var salePoint in GetNearbySalePoints(uid, gridUid))
+        {
+            _atmosphere.Merge(mixture, salePoint.Comp.GasStorage);
+            salePoint.Comp.GasStorage.Clear();
+        }
+
+        var amount = _atmosphere.GetPrice(mixture);
+        if (TryComp<MarketModifierComponent>(uid, out var priceMod))
+            amount *= priceMod.Mod;
+
+        var stackPrototype = _prototype.Index<StackPrototype>(component.CashType);
+        _stack.Spawn((int) amount, stackPrototype, xform.Coordinates);
+        _audio.PlayPvs(ApproveSound, uid);
+        _ui.SetUiState(uid, GasSaleConsoleUiKey.Key,
+            new GasSaleConsoleBoundUserInterfaceState((int) 0, new GasMixture(), false));
+    }
+
+    private void UpdateConsoleInterface(EntityUid uid, GasSaleConsoleComponent component)
+    {
+        if (Transform(uid).GridUid is not EntityUid gridUid)
+        {
+            _ui.SetUiState(uid, GasSaleConsoleUiKey.Key,
+            new GasSaleConsoleBoundUserInterfaceState(0, new GasMixture(), false));
+            return;
+        }
+
+        GetNearbyMixtures(uid, gridUid, out var mixture, out var amount);
+        if (TryComp<MarketModifierComponent>(uid, out var priceMod))
+            amount *= priceMod.Mod;
+
+        _ui.SetUiState(uid, GasSaleConsoleUiKey.Key,
+            new GasSaleConsoleBoundUserInterfaceState((int) amount, mixture, mixture.TotalMoles > 0));
+    }
+
+    private void GetNearbyMixtures(EntityUid consoleUid, EntityUid gridUid, out GasMixture mixture, out double value)
+    {
+        mixture = new GasMixture();
+
+        foreach (var salePoint in GetNearbySalePoints(consoleUid, gridUid))
+            _atmosphere.Merge(mixture, salePoint.Comp.GasStorage);
+
+        value = _atmosphere.GetPrice(mixture);
+    }
+
+    private List<Entity<GasSalePointComponent>> GetNearbySalePoints(EntityUid consoleUid, EntityUid gridUid)
+    {
+        List<Entity<GasSalePointComponent>> ret = new();
+
+        var query = AllEntityQuery<GasSalePointComponent, TransformComponent>();
+
+        var consolePosition = Transform(consoleUid).Coordinates.Position;
+        var maxSalePointDistance = DefaultMaxSalePointDistance;
+
+        // Get the mapped checking distance from the console
+        if (TryComp<GasSaleConsoleComponent>(consoleUid, out var cargoShuttleComponent))
+            maxSalePointDistance = cargoShuttleComponent.SellPointDistance;
+
+        while (query.MoveNext(out var uid, out var comp, out var compXform))
+        {
+            if (compXform.ParentUid != gridUid
+                || !compXform.Anchored
+                || Vector2.Distance(consolePosition, compXform.Coordinates.Position) > maxSalePointDistance)
+            {
+                continue;
+            }
+
+            ret.Add((uid, comp));
+        }
+
+        return ret;
     }
 }

@@ -30,14 +30,14 @@
         pipeDirection: South
   - type: Transform
     noRot: false
-  - type: DeviceNetwork
+  - type: DeviceNetwork # still needed?
     deviceNetId: AtmosDevices
     receiveFrequencyId: AtmosMonitor
     transmitFrequencyId: AtmosMonitor
     sendBroadcastAttemptEvent: true
     examinableAddress: true
     prefix: device-address-prefix-gas-drill
-  - type: WiredNetworkConnection
+  - type: WiredNetworkConnection # still needed?
   - type: PowerSwitch
   - type: StationAiWhitelist
   - type: Sprite
@@ -101,7 +101,7 @@
         pipeDirection: South
   - type: DeviceNetwork
     prefix: device-address-prefix-sale-point
-  - type: WiredNetworkConnection
+  - type: WiredNetworkConnection # still needed?
   - type: Sprite
     sprite: _NF/Structures/Piping/Atmospherics/salepoint.rsi
     layers:
@@ -119,12 +119,6 @@
     board: Null # FIXME
   - type: GasSalePoint
   - type: CargoSellBlacklist
-  - type: DeviceLinkSink
-    ports:
-      - GasSalePointReceiver
-  - type: DeviceLinkSource
-    ports:
-      - GasSalePointSender
   - type: ContainerContainer
     containers:
       board: !type:Container
@@ -139,6 +133,7 @@
         showEnts: False
         occludes: True
         ents: []
+  - type: AtmosDevice
 
 - type: entity
   parent: [ GasSalePoint, BaseGaslock ]
@@ -197,9 +192,3 @@
     board: Null # FIXME
   - type: MarketModifier
     mod: 1
-  - type: DeviceLinkSink
-    ports:
-      - GasSaleConsoleReceiver
-  - type: DeviceLinkSource
-    ports:
-      - GasSaleConsoleSender
