@@ -1,0 +1,36 @@
+﻿- type: entity
+  id: StationAnchorMini
+  parent: [StationAnchor, BaseMachinePowered, ConstructibleMachine]
+  name: mini station anchor
+  placement:
+    mode: AlignTileAny
+  components:
+  - type: PowerCharge
+    activePower: 500
+  - type: ApcPowerReceiver
+    powerLoad: 500
+  - type: StaticPrice
+    price: 300
+  - type: Machine
+    board: StationAnchorMiniCircuitboard
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.4"
+        density: 3125
+        mask:
+        - LargeMobMask
+        layer:
+        - WallLayer
+  - type: Sprite
+    scale: 0.5, 0.5
+
+- type: entity
+  parent: StationAnchorMini
+  id: StationAnchorMiniOff
+  suffix: Off
+  components:
+  - type: StationAnchor
+    switchedOn: false
