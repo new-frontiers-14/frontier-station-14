@@ -1,5 +1,5 @@
 ﻿- type: entity
-  id: StationAnchorMini
+  id: MiniStationAnchor
   parent: [StationAnchor, BaseMachinePowered, ConstructibleMachine]
   name: mini station anchor
   placement:
@@ -12,7 +12,7 @@
   - type: StaticPrice
     price: 300
   - type: Machine
-    board: StationAnchorMiniCircuitboard
+    board: MiniStationAnchorCircuitboard
   - type: Fixtures
     fixtures:
       fix1:
@@ -28,8 +28,8 @@
     scale: 0.5, 0.5
 
 - type: entity
-  parent: StationAnchorMini
-  id: StationAnchorMiniOff
+  parent: MiniStationAnchor
+  id: MiniStationAnchorOff
   suffix: Off
   components:
   - type: StationAnchor
