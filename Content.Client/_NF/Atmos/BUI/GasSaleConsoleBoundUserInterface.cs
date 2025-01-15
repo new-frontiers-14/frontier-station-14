@@ -19,7 +19,13 @@ public sealed class GasSaleConsoleBoundUserInterface : BoundUserInterface
         base.Open();
 
         _menu = this.CreateWindow<GasSaleMenu>();
+        _menu.RefreshRequested += OnRefresh;
         _menu.SellRequested += OnSell;
+    }
+
+    private void OnRefresh()
+    {
+        SendMessage(new GasSaleRefreshMessage());
     }
 
     private void OnSell()
