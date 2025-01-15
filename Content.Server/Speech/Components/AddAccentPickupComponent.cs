@@ -30,6 +30,5 @@ public sealed partial class AddAccentPickupComponent : Component
     /// <summary>
     ///     Who is currently holding the item?
     /// </summary>
-    [DataField("holder")]
-    public EntityUid Holder = new(0); // Frontier
+    public EntityUid Holder; // Frontier
 }
