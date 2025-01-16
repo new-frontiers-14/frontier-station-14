@@ -88,7 +88,7 @@ public sealed class LocalityLoaderSystem : BaseWorldSystem
             }
 
             // Do not delete the grid, it is being deleted.
-            _linkedLifecycleGrid.UnparentPlayersFromGrid(entity, false);
+            _linkedLifecycleGrid.UnparentPlayersFromGrid(grid: entity, deleteGrid: false, ignoreLifeStage: true);
         }
     }
     // Frontier
