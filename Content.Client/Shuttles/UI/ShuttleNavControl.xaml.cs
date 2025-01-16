@@ -398,22 +398,24 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
 
             // Frontier: draw dock labels (done last to appear on top of all docks, still fights with other grids)
             var labeled = new HashSet<string>(); // Frontier
+            var maxDistance = MathF.Sqrt(WorldRange * WorldRange + WorldRange * WorldRange);
             foreach (var state in docks)
             {
+                if (state.LabelName == null || labeled.Contains(state.LabelName))
+                    continue;
+
                 var position = state.Coordinates.Position;
                 var uiPosition = Vector2.Transform(position, gridToView);
 
-                if (uiPosition.Length() > (WorldRange * 2f) - DockScale)
+                if (uiPosition.X < 0 || uiPosition.X > Width)
                     continue;
 
-                if (state.LabelName != null && !labeled.Contains(state.LabelName))
-                {
-                    var uiPositionNegY = new Vector2(uiPosition.X, -uiPosition.Y);
-                    var labelPosition = ScalePosition(uiPositionNegY) / UIScale;
-                    labeled.Add(state.LabelName);
-                    var labelDimensions = handle.GetDimensions(Font, state.LabelName, 1.0f);
-                    handle.DrawString(Font, (labelPosition - labelDimensions / 2) * UIScale, state.LabelName, UIScale * 1.0f, _dockLabelColor);
-                }
+                if (uiPosition.Y < 0 || uiPosition.Y > Height)
+                    continue;
+
+                labeled.Add(state.LabelName);
+                var labelDimensions = handle.GetDimensions(Font, state.LabelName, 1.0f);
+                handle.DrawString(Font, (uiPosition / UIScale - labelDimensions / 2) * UIScale, state.LabelName, UIScale * 1.0f, _dockLabelColor);
             }
             // End Frontier
         }
