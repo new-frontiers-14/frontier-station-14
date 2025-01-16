@@ -10,6 +10,7 @@
 #
 - type: vessel
   id: Phoenix
+  parent: BaseVessel
   name: NR Phoenix
   description: A research and salvage vessel designed for deep space exploration.
   price: 64000 # TODO - fix this value, getting tests to pass - Whatstone
@@ -32,13 +33,12 @@
     Phoenix:
       stationProto: StandardFrontierVessel
       components:
-        - type: StationNameSetup
-          mapNameTemplate: 'Phoenix {1}'
-          nameGenerator:
-            !type:NanotrasenNameGenerator
-            prefixCreator: '14'
-        - type: StationJobs
-          availableJobs:
-            Contractor: [ 0, 0 ]
-            Pilot: [ 0, 0 ]
-            Mercenary: [ 0, 0 ]
+      - type: StationNameSetup
+        mapNameTemplate: 'Phoenix {1}'
+        nameGenerator: !type:NanotrasenNameGenerator
+          prefixCreator: '14'
+      - type: StationJobs
+        availableJobs:
+          Contractor: [ 0, 0 ]
+          Pilot: [ 0, 0 ]
+          Mercenary: [ 0, 0 ]

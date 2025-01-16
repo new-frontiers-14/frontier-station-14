@@ -9,3 +9,7 @@ flavor-complex-greed = like greed
 flavor-complex-blast = like jungle warfare
 flavor-complex-torpedo = like convoy raiding
 flavor-complex-bees = like buzzing and honey
+flavor-complex-wassail = warm and comforting
+flavor-complex-fine-noodles = like fine noodles
+flavor-complex-rich-broth = rich broth
+flavor-complex-tangy = tangy
