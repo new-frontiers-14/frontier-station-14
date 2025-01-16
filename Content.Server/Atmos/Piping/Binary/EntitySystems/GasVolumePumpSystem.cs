@@ -157,7 +157,7 @@ namespace Content.Server.Atmos.Piping.Binary.EntitySystems
             }
             else
             {
-                _popup.PopupCursor(Loc.GetString("comp-gas-pump-ui-needs-anchor"), args.User);
+                _popup.PopupCursor(Loc.GetString("ui-needs-anchor"), args.User); // Frontier: comp-gas-pump-ui-needs-anchor<ui-needs-anchor
             }
 
             args.Handled = true;
