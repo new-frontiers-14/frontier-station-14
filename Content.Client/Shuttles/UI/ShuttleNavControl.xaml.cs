@@ -398,7 +398,6 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
 
             // Frontier: draw dock labels (done last to appear on top of all docks, still fights with other grids)
             var labeled = new HashSet<string>(); // Frontier
-            var maxDistance = MathF.Sqrt(WorldRange * WorldRange + WorldRange * WorldRange);
             foreach (var state in docks)
             {
                 if (state.LabelName == null || labeled.Contains(state.LabelName))
