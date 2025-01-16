@@ -397,7 +397,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
             }
 
             // Frontier: draw dock labels (done last to appear on top of all docks, still fights with other grids)
-            var labeled = new HashSet<string>(); // Frontier
+            var labeled = new HashSet<string>();
             foreach (var state in docks)
             {
                 if (state.LabelName == null || labeled.Contains(state.LabelName))
@@ -406,10 +406,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
                 var position = state.Coordinates.Position;
                 var uiPosition = Vector2.Transform(position, gridToView);
 
-                if (uiPosition.X < 0 || uiPosition.X > Width)
-                    continue;
-
-                if (uiPosition.Y < 0 || uiPosition.Y > Height)
+                if (!viewBounds.Contains(uiPosition))
                     continue;
 
                 labeled.Add(state.LabelName);
