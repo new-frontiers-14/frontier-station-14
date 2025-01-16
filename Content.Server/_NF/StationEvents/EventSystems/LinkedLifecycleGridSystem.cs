@@ -1,13 +1,14 @@
 using System.Numerics;
 using Content.Server.StationEvents.Components;
-using Content.Shared.Buckle.Components;
 using Content.Shared.Humanoid;
 using Content.Shared.Mech.Components;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mobs.Components;
+using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared.Vehicle.Components;
 using Robust.Shared.Map;
+using Robust.Shared.Player;
 
 namespace Content.Server.StationEvents.Events;
 
@@ -106,6 +107,20 @@ public sealed class LinkedLifecycleGridSystem : EntitySystem
             reparentEntities.Add(((targetUid, targetXform), targetXform.MapUid!.Value, _transform.GetWorldPosition(targetXform)));
         }
 
+        // Get silicon
+        var borgQuery = AllEntityQuery<BorgChassisComponent, ActorComponent, TransformComponent>();
+        while (borgQuery.MoveNext(out var borgUid, out _, out _, out var xform))
+        {
+            handledEntities.Add(borgUid);
+
+            if (xform.GridUid == null || xform.MapUid == null || xform.GridUid != grid)
+                continue;
+
+            var (targetUid, targetXform) = GetParentToReparent(borgUid, xform);
+
+            reparentEntities.Add(((targetUid, targetXform), targetXform.MapUid!.Value, _transform.GetWorldPosition(targetXform)));
+        }
+
         // Get occupied MindContainers
         var mindQuery = AllEntityQuery<MindContainerComponent, TransformComponent>();
         while (mindQuery.MoveNext(out var mobUid, out var mindContainer, out var xform))
@@ -130,9 +145,9 @@ public sealed class LinkedLifecycleGridSystem : EntitySystem
     }
 
     // Deletes a grid, reparenting every humanoid and player character that's on it.
-    public void UnparentPlayersFromGrid(EntityUid grid, bool deleteGrid)
+    public void UnparentPlayersFromGrid(EntityUid grid, bool deleteGrid, bool ignoreLifeStage = false)
     {
-        if (MetaData(grid).EntityLifeStage >= EntityLifeStage.Terminating)
+        if (!ignoreLifeStage && MetaData(grid).EntityLifeStage >= EntityLifeStage.Terminating)
             return;
 
         var reparentEntities = GetEntitiesToReparent(grid);
