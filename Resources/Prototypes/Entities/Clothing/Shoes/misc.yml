@@ -89,7 +89,7 @@
   parent: [ClothingShoesBase, PowerCellSlotSmallItem, BaseToggleClothing]
   id: ClothingShoesBootsSpeed
   name: speed boots
-  description: High-tech boots woven with quantum fibers, able to convert electricity into pure speed!
+  description: High-tech boots with interwoven bluespace fibers, able to convert electricity into pure speed! # DeltaV illegal ops
   components:
   - type: Sprite
     sprite: Clothing/Shoes/Boots/speedboots.rsi
@@ -101,8 +101,8 @@
   - type: ToggleClothing
     action: ActionToggleSpeedBoots
   - type: ClothingSpeedModifier
-    walkModifier: 1.15 # Frontier 1.5<1.15
-    sprintModifier: 1.15 # Frontier 1.5<1.15
+    walkModifier: 1.7 # DeltaV
+    sprintModifier: 1.7 # DeltaV
   - type: Appearance
   - type: GenericVisualizer
     visuals:
@@ -113,7 +113,7 @@
   - type: StaticPrice
     price: 500
   - type: PowerCellDraw
-    drawRate: 4
+    drawRate: 30 # DeltaV 4>30, you have to turn off micro reactor at somepoint
   - type: ToggleCellDraw
   - type: ItemSlots
     slots:
@@ -136,6 +136,7 @@
   id: ClothingShoesBootsMoon
   name: moon boots
   description: Special anti-gravity boots developed with a speciality blend of lunar rock gel. Shipped from the Netherlands.
+  categories: [ HideSpawnMenu ] # Frontier
   components:
   - type: Sprite
     sprite: Clothing/Shoes/Boots/moonboots.rsi
