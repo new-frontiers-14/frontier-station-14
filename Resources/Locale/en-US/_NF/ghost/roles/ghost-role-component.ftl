@@ -69,4 +69,4 @@ ghost-role-information-dungeon-boss-rules = You are a [color=red][bold]Team Anta
                                         - [color=red]DO NOT[/color] destroy or hide valuable loot in the dungeon.
                                         - [color=red]DO NOT[/color] leave the planet.
 
-nf-ghost-role-information-derelict-cyborg-description = You are a cyborg that's been stranded on a wreck for years, and exposed to ion storms in that time.
+nf-ghost-role-information-derelict-cyborg-description = You are a cyborg that's been stranded on a wreck for years, exposed to countless ion storms.
