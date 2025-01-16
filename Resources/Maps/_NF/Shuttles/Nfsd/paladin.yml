@@ -20,6 +20,8 @@ entities:
     components:
     - type: MetaData
       name: Paladin
+    - type: BecomesStation
+      id: Paladin
     - type: Transform
       pos: -0.4917612,-0.4486041
       parent: invalid
@@ -187,8 +189,6 @@ entities:
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
-    - type: BecomesStation
-      id: Hospitaller
 - proto: AirCanister
   entities:
   - uid: 120
@@ -1012,7 +1012,7 @@ entities:
         - Pressed: Toggle
         67:
         - Pressed: Toggle
-- proto: LockerNfsdSilverDetectiveFilled
+- proto: LockerNfsdSilver
   entities:
   - uid: 116
     components:

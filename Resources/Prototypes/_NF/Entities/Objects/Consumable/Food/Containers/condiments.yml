@@ -2,7 +2,7 @@
   parent: BaseFoodCondiment
   id: BaseFoodCondimentSqueezeBottle
   abstract: true
-  name: condiment squeeze bottle
+  name: squeeze bottle
   description: A thin plastic container used to store condiments.
   components:
   - type: Drink
@@ -10,7 +10,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 30
+        maxVol: 50
   - type: RefillableSolution
     solution: food
   - type: Spillable
@@ -19,7 +19,7 @@
     playTransferSound: true
     canChangeTransferAmount: true
     minTransferAmount: 5
-    maxTransferAmount: 30
+    maxTransferAmount: 50
   - type: Appearance
   - type: PhysicalComposition
     materialComposition:
@@ -28,53 +28,97 @@
     sprite: _NF/Objects/Consumable/Food/condiments.rsi
   - type: Icon
     sprite: _NF/Objects/Consumable/Food/condiments.rsi
-  # - type: EmitSoundOnActivate
-    # sound:
-      # collection: squeezeBottleUseSounds
-      # params:
-        # variation: 0.125
-  # - type: EmitSoundOnLand
-    # sound:
-      # collection: squeezeBottleUseSounds
-      # params:
-        # variation: 0.125
+  - type: CondimentSqueezeBottle
+  - type: FitsInDispenser
+    solution: food
 
 - type: entity
   parent: BaseFoodCondimentSqueezeBottle
   id: FoodCondimentSqueezeBottleKetchup
-  name: ketchup squeeze bottle
-  description: You feel more American already.
   components:
   - type: SolutionContainerManager
     solutions:
       food:
         reagents:
         - ReagentId: Ketchup
-          Quantity: 30
-  - type: Tag
-    tags:
-      - Ketchup
+          Quantity: 50
   - type: Sprite
     state: squeeze-bottle-ketchup
   - type: Icon
     state: squeeze-bottle-ketchup
+  - type: Label
+    currentLabel: reagent-name-ketchup
+  - type: CondimentKetchup
 
 - type: entity
   parent: BaseFoodCondimentSqueezeBottle
   id: FoodCondimentSqueezeBottleMustard
-  name: mustard squeeze bottle
-  description: You feel more American already.
   components:
   - type: SolutionContainerManager
     solutions:
       food:
         reagents:
         - ReagentId: Mustard
-          Quantity: 30
-  - type: Tag
-    tags:
-      - Mustard
+          Quantity: 50
   - type: Sprite
     state: squeeze-bottle-mustard
   - type: Icon
     state: squeeze-bottle-mustard
+  - type: Label
+    currentLabel: reagent-name-mustard
+  - type: CondimentMustard
+
+- type: entity
+  parent: BaseFoodCondimentSqueezeBottle
+  id: FoodCondimentSqueezeBottleClear
+  description: When it comes to squeeze bottles this is the clear choice.
+  components:
+  - type: Sprite
+    layers:
+      - state: squeeze-bottle-clear
+      - state: squeeze-bottle-clear1
+        map: [ "enum.SolutionContainerLayers.Fill" ]
+        visible: false
+    state: squeeze-bottle-clear
+  - type: Icon
+    state: squeeze-bottle-clear
+  - type: Appearance
+  - type: SolutionContainerVisuals
+    maxFillLevels: 6
+    fillBaseName: squeeze-bottle-clear
+
+- type: entity
+  parent: [DrinkBottleVisualsAll, DrinkBottleGlassBaseFull]
+  id: FoodCondimentBottleSoysauce
+  name: soy sauce bottle
+  description: Used to season dishes to umami perfection. With extra sodium!
+  components:
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.OpenableVisuals.Opened:
+        enum.OpenableVisuals.Layer:
+          True: {state: "icon_open"}
+          False: {state: "icon_empty"}
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: Soysauce
+          Quantity: 30
+  - type: SolutionTransfer
+    playTransferSound: false
+    canChangeTransferAmount: true
+    minTransferAmount: 1
+    maxTransferAmount: 5
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/soysauce.rsi
+    state: icon
+  - type: Openable
+    closeable: true
+  - type: SolutionContainerVisuals
+    maxFillLevels: 5
+    fillBaseName: fill-

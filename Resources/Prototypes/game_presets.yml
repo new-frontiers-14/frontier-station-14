@@ -91,7 +91,7 @@
   showInVote: false #4boring4vote
   description: greenshift-description
   rules:
-  - SpaceTrafficControlFriendlyEventScheduler 
+  - SpaceTrafficControlFriendlyEventScheduler
   - BasicRoundstartVariation
 
 - type: gamePreset
@@ -100,7 +100,7 @@
     - secret
     - sekrit
   name: secret-title
-  showInVote: true
+  showInVote: false # Frontier: true < false
   description: secret-description
   rules:
     - Secret
@@ -126,7 +126,7 @@
   showInVote: false #Admin Use
   description: secret-description
   rules:
-  - SpaceTrafficControlFriendlyEventScheduler 
+  - SpaceTrafficControlFriendlyEventScheduler
   - BasicRoundstartVariation
 
 - type: gamePreset
@@ -164,7 +164,7 @@
   name: death-match-title
   description: death-match-description
   maxPlayers: 15
-  showInVote: true
+  showInVote: false # Frontier: true < false
   supportedMaps: DeathMatchMapPool
   rules:
     - DeathMatch31

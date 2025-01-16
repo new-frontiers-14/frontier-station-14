@@ -2,7 +2,11 @@
   id: NFBaseDebris
   abstract: true
   components:
-    - type: OwnedDebris
-    - type: LocalityLoader
-    - type: GCAbleObject
-      queue: SpaceDebris
+  - type: OwnedDebris
+  - type: LocalityLoader
+  - type: GCAbleObject
+    queue: SpaceDebris
+  - type: LinkedLifecycleGridParent
+  - type: ProtectedGrid
+    preventArtifactTriggers: true
+  - type: PreventPilot
