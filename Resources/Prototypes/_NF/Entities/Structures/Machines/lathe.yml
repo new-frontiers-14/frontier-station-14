@@ -74,8 +74,11 @@
       - LedLightTube
       - SodiumLightTube
       - ExteriorLightTube
+      - LightTubeCrystalBlack
       - LightBulb
       - LedLightBulb
+      - SodiumLightBulb
+      - ExteriorLightBulb
       - ConveyorBeltAssembly
       - PowerCellSmall
       - PowerCellMedium
@@ -115,6 +118,7 @@
       - DrinkMug
       - DrinkMugMetal
       - DrinkGlass
+      - DrinkIceBucketEmpty
       - KitchenKnife
       - ButchCleaver
       - ServiceRollingPin
@@ -134,6 +138,9 @@
       - FoodPlateSmallPlastic
       - NapkinDrum
       - Napkin
+      - CondimentCupDispenser
+      - CondimentCup
+      - FoodCondimentSqueezeBottleClear
     ## EVA
       - ClothingOuterEVASuitHydro
       - ClothingOuterEVASuitJanitor
@@ -177,6 +184,7 @@
       - PlantBagOfHolding
       - PlantAnalyzer
       - JanicartFlatpack
+      - FireExtinguisherBluespace # DeltaV
   - type: EmagLatheRecipes
     emagStaticRecipes:
       - NFHappyHonkNukieEmpty
@@ -234,6 +242,8 @@
       - ExteriorLightTube
       - LightBulb
       - LedLightBulb
+      - SodiumLightBulb
+      - ExteriorLightBulb
       - ConveyorBeltAssembly
       - PowerCellSmall
       - PowerCellMedium
@@ -254,6 +264,7 @@
       - WelderIndustrial
       - WelderIndustrialAdvanced
       - HolofanProjector
+      - FireExtinguisher
     ## Parts
       - MicroManipulatorStockPart
       - MatterBinStockPart
@@ -328,7 +339,6 @@
       - MiningDrill
       - MiningDrillDiamond
       - SprayBottle
-      - FireExtinguisher
       - ShipyardRCD
       - ShipyardRCDAmmo
       - SignallerAdvanced
@@ -337,6 +347,7 @@
       - ClothingOuterHardsuitEngineering
       - ClothingOuterHardsuitEngineeringWhite
       - ConstructionBagOfHolding
+      - FireExtinguisherBluespace # DeltaV
 
 - type: entity
   parent: [ BlueprintReceiverBase, BaseLatheLube ]
@@ -390,6 +401,8 @@
       - ExteriorLightTube
       - LightBulb
       - LedLightBulb
+      - SodiumLightBulb
+      - ExteriorLightBulb
       - ConveyorBeltAssembly
       - PowerCellSmall
       - PowerCellMedium
@@ -462,8 +475,8 @@
 - type: entity
   id: NfsdTechFab
   parent: [ BlueprintReceiverBase, SecurityTechFab ]
-  name: nfsd techfab
-  description: Prints equipment for use by nfsd.
+  name: NFSD techfab
+  description: Prints equipment for use by NFSD.
   components:
   - type: Sprite
     sprite: _NF/Structures/Machines/techfab.rsi
@@ -523,6 +536,13 @@
       - TargetHuman
       - TargetSyndicate
       - WeaponDisablerPractice
+      - SpeedLoaderRifleHeavyRubber
+      - SpeedLoaderMagnumRubber
+      - MagazineRifleRubber
+      - MagazineShotgunBeanbag
+      - MagazineShotgunSlug
+      - MagazinePistolRubber
+      - MagazineLightRifleRubber
 #      - WeaponFlareGunSecurity
       - WeaponLaserCarbinePractice
       - Zipties
@@ -641,6 +661,8 @@
       - ExteriorLightTube
       - LightBulb
       - LedLightBulb
+      - SodiumLightBulb
+      - ExteriorLightBulb
       - ConveyorBeltAssembly
       - PowerCellSmall
       - PowerCellMedium
@@ -704,11 +726,19 @@
       - MagazineBoxRifle
       - CrossbowBolt
       - CrossbowBoltBroadhead
+      - BoxBeanbag
+      - BoxShotgunSlug
+      - MagazineBoxLightRifleRubber
+      - MagazineBoxMagnumRubber
+      - MagazineBoxPistolRubber
+      - MagazineBoxRifleRubber
     ## Mags / Speedloaders / Clips
       - MagazineNovaliteC1Empty
       - MagazineNovaliteC1
+      - MagazineNovaliteC1Rubber
       - MagazineLightRifleLowCapacityEmpty
       - MagazineLightRifleLowCapacity
+      - MagazineLightRifleLowCapacityRubber
       - MagazineLightRifle
       - MagazineLightRifleEmpty
       - MagazineRifle
@@ -717,6 +747,13 @@
       - MagazinePistolEmpty
       - SpeedLoaderRifleHeavy
       - SpeedLoaderRifleHeavyEmpty
+      - SpeedLoaderRifleHeavyRubber
+      - SpeedLoaderMagnumRubber
+      - MagazineRifleRubber
+      - MagazineShotgunSlug
+      - MagazinePistolRubber
+      - MagazineLightRifleRubber
+      - MagazineShotgunBeanbag
     dynamicRecipes:
     # Shared lathe recipes
     ## Advanced tools
@@ -858,6 +895,8 @@
       - ExteriorLightTube
       - LightBulb
       - LedLightBulb
+      - SodiumLightBulb
+      - ExteriorLightBulb
       - ConveyorBeltAssembly
       - PowerCellSmall
       - PowerCellMedium
@@ -868,10 +907,6 @@
       - WeaponCapacitorRechargerCircuitboard
       - AirTank
     # Mercenary techfab
-    ## Utility
-      - ColoredLightTubeRedNF
-      - ColoredLightTubeBlackLightNF
-      - ColoredLightTubeFrostyBlueNF
     ## Clothing / Armor
       - RiotShield
       - ClothingHandsMercenaryGlovesCombat

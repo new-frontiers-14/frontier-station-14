@@ -24,8 +24,8 @@
 - type: entity
   parent: BaseNFFlatpack
   id: EngineeringTechFabFlatpack
-  name: engineering tech fab flatpack
-  description: A flatpack used for constructing an engineering tech fab.
+  name: engineering techfab flatpack
+  description: A flatpack used for constructing an engineering techfab.
   components:
   - type: Flatpack
     entity: EngineeringTechFab
@@ -302,8 +302,8 @@
 - type: entity
   parent: UniformPrinterFlatpack
   id: ServiceTechFabFlatpack
-  name: service tech fab flatpack
-  description: A flatpack used for constructing a service tech fab.
+  name: service techfab flatpack
+  description: A flatpack used for constructing a service techfab.
   components:
   - type: Flatpack
     entity: ServiceTechFab
@@ -386,12 +386,21 @@
     layers:
     - state: soil
 
+- type: entity
+  parent: UniformPrinterFlatpack
+  id: ComputerWithdrawBankATMFlatpack
+  name: withdraw only atm flatpack
+  description: A flatpack used for constructing an atm. Best not to think about it.
+  components:
+  - type: Flatpack
+    entity: ComputerWithdrawBankATM
+
 # Medical
 - type: entity
   parent: BaseNFFlatpack
   id: MedicalTechFabFlatpack
-  name: medical tech fab flatpack
-  description: A flatpack used for constructing a medical tech fab.
+  name: medical techfab flatpack
+  description: A flatpack used for constructing a medical techfab.
   components:
   - type: Flatpack
     entity: MedicalTechFab
@@ -796,8 +805,8 @@
 - type: entity
   parent: TubaInstrumentFlatpack
   id: DawInstrumentFlatpack
-  name: daw flatpack
-  description: A flatpack containing a daw.
+  name: DAW flatpack
+  description: A flatpack containing a digital audio workstation.
   components:
   - type: Flatpack
     entity: DawInstrument
@@ -807,8 +816,8 @@
 - type: entity
   parent: UniformPrinterFlatpack
   id: NfsdTechFabFlatpack
-  name: nfsd tech fab flatpack
-  description: A flatpack used for constructing a nfsd tech fab.
+  name: NFSD techfab flatpack
+  description: A flatpack used for constructing an NFSD techfab.
   components:
   - type: Flatpack
     entity: NfsdTechFab
@@ -858,7 +867,7 @@
 - type: entity
   parent: HoverbikeFlatpack
   id: HoverbikeNfsdFlatpack
-  name: nfsd hoverbike flatpack
+  name: NFSD hoverbike flatpack
   description: A flatpack used for constructing a hoverbike. Keys already slotted in the ignition.
   components:
   - type: Flatpack
