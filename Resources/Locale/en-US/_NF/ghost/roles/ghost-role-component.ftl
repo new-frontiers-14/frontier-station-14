@@ -25,6 +25,9 @@ ghost-role-information-cult-cat-rules = You are a [color=red][bold]Free Agent[/b
 ghost-role-information-cappy-name = Cappy
 ghost-role-information-cappy-description = Stop resisting! Certified in lethal-force and defensive tactics.
 
+ghost-role-information-elcapo-name = El Capo
+ghost-role-information-elcapo-description = Found himself in jail after years of cat crimes.
+
 ghost-role-information-crispy-name = Crispy
 ghost-role-information-crispy-description = Mistakes were made.
 

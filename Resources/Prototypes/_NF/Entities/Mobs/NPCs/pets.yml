@@ -158,6 +158,32 @@
   - type: SouthernAccent
 
 - type: entity
+  name: El Capo
+  parent: [NFMobPet, MobBingusGhost]
+  id: MobCatElCapo
+  description:
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _NF/Mobs/Pets/cat.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: crimecat
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: cavecat
+  - type: GhostRole
+    name: ghost-role-information-elcapo-name
+    description: ghost-role-information-elcapo-description
+    rules: ghost-role-information-nonantagonist-rules
+  - type: RandomMetadata
+    nameSegments: [names_cat_elcapo]
+  - type: NpcFactionMember
+    factions:
+      - Cat
+
+- type: entity
   name: Clugg
   parent: [NFMobPet, MobCatCaracalGhost]
   id: MobCatClugg
