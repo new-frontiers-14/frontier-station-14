@@ -11,16 +11,16 @@
     state: plushie_jester
   - type: EmitSoundOnUse
     sound:
-      path: /Audio/_NF/Items/Toys/wehhelp.ogg
+      path: /Audio/Items/Toys/hew.ogg
   - type: EmitSoundOnLand
     sound:
-      path: /Audio/_NF/Items/Toys/wehhelp.ogg
+      path: /Audio/Items/Toys/hew.ogg
   - type: EmitSoundOnActivate
     sound:
-      path: /Audio/_NF/Items/Toys/wehhelp.ogg
+      path: /Audio/Items/Toys/hew.ogg
   - type: MeleeWeapon
     soundHit:
-      path: /Audio/_NF/Items/Toys/wehhelp.ogg
+      path: /Audio/Items/Toys/hew.ogg
   - type: StinkyTrait
 
 - type: entity
@@ -401,16 +401,16 @@
   components:
   - type: EmitSoundOnUse
     sound:
-      path: /Audio/DeltaV/Voice/Vulpkanin/dog_bark1.ogg
+      path: /Audio/_DV/Voice/Vulpkanin/dog_bark1.ogg
   - type: EmitSoundOnLand
     sound:
-      path: /Audio/DeltaV/Voice/Vulpkanin/dog_bark1.ogg
+      path: /Audio/_DV/Voice/Vulpkanin/dog_bark1.ogg
   - type: EmitSoundOnActivate
     sound:
-      path: /Audio/DeltaV/Voice/Vulpkanin/dog_bark1.ogg
+      path: /Audio/_DV/Voice/Vulpkanin/dog_bark1.ogg
   - type: MeleeWeapon
     soundHit:
-      path: /Audio/DeltaV/Voice/Vulpkanin/dog_bark1.ogg
+      path: /Audio/_DV/Voice/Vulpkanin/dog_bark1.ogg
 
 - type: entity
   parent: BasePlushieVulp
@@ -419,6 +419,26 @@
   - type: Sprite
     sprite: _NF/Objects/Fun/toys.rsi
     state: plushie_vulp
+
+- type: entity
+  parent: BasePlushieVulp
+  id: PlushieMailVulp
+  name: mail vulp plushie
+  description: Smells minty and reminds you of unopened mail. You should check your mail!
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/toys.rsi
+    state: plushie_mailvulp
+
+- type: entity
+  parent: BasePlushieMoff
+  id: PlushieYarrMoth
+  name: yarr moth plushie
+  description: It's dastardly and has a dashing cloak. It chitters when you squeeze it!
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Fun/toys.rsi
+    state: plushie_yarrmoth
 
 - type: entity
   parent: BasePlushieVulp

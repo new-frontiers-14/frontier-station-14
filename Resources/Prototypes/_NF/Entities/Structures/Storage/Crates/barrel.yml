@@ -1,0 +1,1271 @@
+- type: entity
+  parent: StorageTank
+  id: BaseBarrel
+  name: metal barrel
+  description: A metal barrel. It can be filled with liquid.
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Storage/Barrels/grey.rsi
+    layers:
+    - state: icon
+    - state: icon_open
+      map: ["enum.OpenableVisuals.Layer"]
+      visible: false
+    - state: paper
+      map: ["enum.PaperLabelVisuals.Layer"]
+      visible: false
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        maxVol: 1000
+  - type: ExaminableSolution
+    solution: tank
+  - type: UserInterface
+    interfaces:
+      enum.TransferAmountUiKey.Key:
+        type: TransferAmountBoundUserInterface
+  - type: DrawableSolution
+    solution: tank
+  - type: InjectableSolution
+    solution: tank
+  - type: Spillable
+    solution: tank
+    spillDelay: 10
+  - type: DumpableSolution
+    solution: tank
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.2,-0.3,0.2,0.4"
+        density: 200
+        mask:
+        - SmallMobMask #this is so they can go under plastic flaps
+        layer:
+        - MachineLayer
+  - type: Transform
+    noRot: false
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: GenericVisualizer
+    visuals:
+      enum.OpenableVisuals.Opened:
+        enum.OpenableVisuals.Layer:
+          True: { visible: true }
+          False: { visible: false }
+      enum.PaperLabelVisuals.HasLabel:
+        enum.PaperLabelVisuals.Layer:
+          True: { visible: true }
+          False: { visible: false }
+      enum.PaperLabelVisuals.LabelType:
+        enum.PaperLabelVisuals.Layer:
+          Paper: { state: paper }
+          Bounty: { state: paper }
+          CaptainsPaper: { state: paper }
+          Invoice: { state: paper }
+  - type: Appearance
+  - type: PaperLabel
+    labelSlot:
+      insertVerbText: Attach Label
+      ejectVerbText: Remove Label
+      whitelist:
+        components:
+        - Paper
+  - type: ItemSlots
+  - type: ContainerContainer
+    containers:
+      paper_label: !type:ContainerSlot
+  - type: Openable
+    sound:
+      collection: valveSqueak
+    closeable: true
+    closeSound:
+      collection: valveSqueak
+  - type: Sealable
+  - type: StaticPrice
+    price: 1000
+
+- type: entity
+  id: MetalBarrelGrey
+  parent: BaseBarrel
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Storage/Barrels/grey.rsi
+
+- type: entity
+  id: MetalBarrelBlue
+  parent: BaseBarrel
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Storage/Barrels/blue.rsi
+
+- type: entity
+  id: MetalBarrelRed
+  parent: BaseBarrel
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Storage/Barrels/red.rsi
+
+- type: entity
+  id: MetalBarrelYellow
+  parent: BaseBarrel
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Storage/Barrels/yellow.rsi
+
+- type: entity
+  id: MetalBarrelGreen
+  parent: BaseBarrel
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Storage/Barrels/green.rsi
+
+- type: entity
+  id: MetalBarrelWhite
+  parent: BaseBarrel
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Storage/Barrels/white.rsi
+
+- type: entity
+  id: MetalBarrelBlack
+  parent: BaseBarrel
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Storage/Barrels/black.rsi
+
+- type: entity
+  id: ChemicalBarrelExplosiveEmpty
+  parent: MetalBarrelRed
+  name: explosive barrel
+  suffix: Empty
+  description: The ancient and mysterious symbol on the front is believed to have once meant 'Use me as cover!' in days of yore.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Storage/Barrels/red.rsi
+    layers:
+    - state: icon
+    - state: icon_open
+      map: ["enum.OpenableVisuals.Layer"]
+      visible: false
+    - state: metal_explosive_label
+    - state: paper
+      map: ["enum.PaperLabelVisuals.Layer"]
+      visible: false
+
+- type: entity
+  id: ChemicalBarrelExplosiveFilled
+  parent: ChemicalBarrelExplosiveEmpty
+  suffix: Filled
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+          - ReagentId: WeldingFuel
+            Quantity: 1000
+  - type: DamageOnToolInteract
+    tools: Welding
+    weldingDamage:
+      types:
+        Heat: 10
+  - type: PacifismDangerousAttack
+  - type: Explosive # This is dumb since you can refill it with water and it will still explode, so be it.
+    explosionType: Default
+    totalIntensity: 60
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelWeldingFuel
+
+- type: entity
+  id: LabelWeldingFuel
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-welding-fuel
+
+- type: entity
+  parent: MetalBarrelBlack
+  id: ChemicalBarrelCarbon
+  suffix: Carbon
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+          - ReagentId: Carbon
+            Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelCarbon
+
+- type: entity
+  id: LabelCarbon
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-carbon
+
+- type: entity
+  parent: MetalBarrelRed
+  id: ChemicalBarrelIodine
+  suffix: Iodine
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+          - ReagentId: Iodine
+            Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelIodine
+
+- type: entity
+  id: LabelIodine
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-iodine
+
+- type: entity
+  parent: MetalBarrelBlue
+  id: ChemicalBarrelFluorine
+  suffix: Fluorine
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+          - ReagentId: Fluorine
+            Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelFluorine
+
+- type: entity
+  id: LabelFluorine
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-fluorine
+
+- type: entity
+  parent: MetalBarrelGreen
+  id: ChemicalBarrelChlorine
+  suffix: Chlorine
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+          - ReagentId: Chlorine
+            Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelChlorine
+
+- type: entity
+  id: LabelChlorine
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-chlorine
+
+- type: entity
+  parent: MetalBarrelWhite
+  id: ChemicalBarrelAluminium
+  suffix: Aluminium
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+          - ReagentId: Aluminium
+            Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelAluminium
+
+- type: entity
+  id: LabelAluminium
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-aluminium
+
+- type: entity
+  parent: MetalBarrelRed
+  id: ChemicalBarrelPhosphorus
+  suffix: Phosphorus
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+          - ReagentId: Phosphorus
+            Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelPhosphorus
+
+- type: entity
+  id: LabelPhosphorus
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-phosphorus
+
+- type: entity
+  parent: MetalBarrelYellow
+  id: ChemicalBarrelSulfur
+  suffix: Sulfur
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+          - ReagentId: Sulfur
+            Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelSulfur
+
+- type: entity
+  id: LabelSulfur
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-sulfur
+
+- type: entity
+  parent: MetalBarrelBlack
+  id: ChemicalBarrelSilicon
+  suffix: Silicon
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+          - ReagentId: Silicon
+            Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelSilicon
+
+- type: entity
+  id: LabelSilicon
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-silicon
+
+- type: entity
+  parent: MetalBarrelWhite
+  id: ChemicalBarrelHydrogen
+  suffix: Hydrogen
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+          - ReagentId: Hydrogen
+            Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelHydrogen
+
+- type: entity
+  id: LabelHydrogen
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-hydrogen
+
+- type: entity
+  parent: MetalBarrelGrey
+  id: ChemicalBarrelLithium
+  suffix: Lithium
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+          - ReagentId: Lithium
+            Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelLithium
+
+- type: entity
+  id: LabelLithium
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-lithium
+
+- type: entity
+  parent: MetalBarrelGrey
+  id: ChemicalBarrelSodium
+  suffix: Sodium
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+          - ReagentId: Sodium
+            Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelSodium
+
+- type: entity
+  id: LabelSodium
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-sodium
+
+- type: entity
+  parent: MetalBarrelYellow
+  id: ChemicalBarrelPotassium
+  suffix: Potassium
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+          - ReagentId: Potassium
+            Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelPotassium
+
+- type: entity
+  id: LabelPotassium
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-potassium
+
+- type: entity
+  parent: MetalBarrelGreen
+  id: ChemicalBarrelRadium
+  suffix: Radium
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+          - ReagentId: Radium
+            Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelRadium
+
+- type: entity
+  id: LabelRadium
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-radium
+
+- type: entity
+  parent: MetalBarrelGrey
+  id: ChemicalBarrelIron
+  suffix: Iron
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+          - ReagentId: Iron
+            Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelIron
+
+- type: entity
+  id: LabelIron
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-iron
+
+- type: entity
+  parent: MetalBarrelRed
+  id: ChemicalBarrelCopper
+  suffix: Copper
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+          - ReagentId: Copper
+            Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelCopper
+
+- type: entity
+  id: LabelCopper
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-copper
+
+- type: entity
+  parent: MetalBarrelYellow
+  id: ChemicalBarrelGold
+  suffix: Gold
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+          - ReagentId: Gold
+            Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelGold
+
+- type: entity
+  id: LabelGold
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-gold
+
+- type: entity
+  parent: MetalBarrelGrey
+  id: ChemicalBarrelMercury
+  suffix: Mercury
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+          - ReagentId: Mercury
+            Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelMercury
+
+- type: entity
+  id: LabelMercury
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-mercury
+
+- type: entity
+  parent: MetalBarrelWhite
+  id: ChemicalBarrelSilver
+  suffix: Silver
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+          - ReagentId: Silver
+            Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelSilver
+
+- type: entity
+  id: LabelSilver
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-silver
+
+- type: entity
+  parent: MetalBarrelBlue
+  id: ChemicalBarrelEthanol
+  suffix: Ethanol
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+          - ReagentId: Ethanol
+            Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelEthanol
+
+- type: entity
+  id: LabelEthanol
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-ethanol
+
+- type: entity
+  parent: MetalBarrelWhite
+  id: ChemicalBarrelSugar
+  suffix: Sugar
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+          - ReagentId: Sugar
+            Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelSugar
+
+- type: entity
+  id: LabelSugar
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-sugar
+
+- type: entity
+  parent: MetalBarrelRed
+  id: ChemicalBarrelNitrogen
+  suffix: Nitrogen
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+          - ReagentId: Nitrogen
+            Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelNitrogen
+
+- type: entity
+  id: LabelNitrogen
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-nitrogen
+
+- type: entity
+  parent: MetalBarrelBlue
+  id: ChemicalBarrelOxygen
+  suffix: Oxygen
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+          - ReagentId: Oxygen
+            Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelOxygen
+
+- type: entity
+  id: LabelOxygen
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-oxygen
+
+- type: entity
+  parent: MetalBarrelBlack
+  id: ChemicalBarrelOil
+  suffix: Oil
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+          - ReagentId: Oil
+            Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelOil
+
+- type: entity
+  id: LabelOil
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-oil
+
+- type: entity
+  parent: MetalBarrelGreen
+  id: ChemicalBarrelDiethylamine
+  suffix: Diethylamine
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+          - ReagentId: Diethylamine
+            Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelDiethylamine
+
+- type: entity
+  id: LabelDiethylamine
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-diethylamine
+
+- type: entity
+  parent: MetalBarrelYellow
+  id: ChemicalBarrelMustard
+  suffix: Mustard
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+          - ReagentId: Mustard
+            Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelMustard
+
+- type: entity
+  id: LabelMustard
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-mustard
+
+- type: entity
+  parent: MetalBarrelRed
+  id: ChemicalBarrelKetchup
+  suffix: Ketchup
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+          - ReagentId: Ketchup
+            Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelKetchup
+
+- type: entity
+  id: LabelKetchup
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-ketchup
+
+- type: entity
+  parent: MetalBarrelWhite
+  id: ChemicalBarrelMayo
+  suffix: Mayo
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+          - ReagentId: Mayo
+            Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelMayo
+
+- type: entity
+  id: LabelMayo
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-mayo
+
+- type: entity
+  parent: MetalBarrelYellow
+  id: ChemicalBarrelCornoil
+  suffix: Cornoil
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+          - ReagentId: Cornoil
+            Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelCornoil
+
+- type: entity
+  id: LabelCornoil
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-cornoil
+
+- type: entity
+  parent: MetalBarrelGreen
+  id: ChemicalBarrelOliveoil
+  suffix: Olive Oil
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+          - ReagentId: OilOlive
+            Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelOilOlive
+
+- type: entity
+  id: LabelOilOlive
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-oil-olive
+
+- type: entity
+  parent: MetalBarrelGreen
+  id: ChemicalBarrelSpaceLube
+  suffix: Space Lube
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+          - ReagentId: SpaceLube
+            Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelSpaceLube
+
+- type: entity
+  id: LabelSpaceLube
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-space-lube
+
+- type: entity
+  parent: MetalBarrelBlue
+  id: ChemicalBarrelSpaceCleaner
+  suffix: Space Cleaner
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+          - ReagentId: SpaceCleaner
+            Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelSpaceCleaner
+
+- type: entity
+  id: LabelSpaceCleaner
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-space-cleaner
+
+- type: entity
+  parent: MetalBarrelBlue
+  id: ChemicalBarrelWater
+  suffix: Water
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+          - ReagentId: Water
+            Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelWater
+
+- type: entity
+  id: LabelWater
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-water
+
+- type: entity
+  parent: MetalBarrelYellow
+  id: ChemicalBarrelWhiskey
+  suffix: Whiskey
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+          - ReagentId: Whiskey
+            Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelWhiskey
+
+- type: entity
+  id: LabelWhiskey
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-whiskey
+
+- type: entity
+  parent: MetalBarrelWhite
+  id: ChemicalBarrelVodka
+  suffix: Vodka
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+          - ReagentId: Vodka
+            Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelVodka
+
+- type: entity
+  id: LabelVodka
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-vodka
+
+- type: entity
+  parent: MetalBarrelGreen
+  id: ChemicalBarrelTequila
+  suffix: Tequila
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+          - ReagentId: Tequila
+            Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelTequila
+
+- type: entity
+  id: LabelTequila
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-tequila
+
+- type: entity
+  parent: MetalBarrelRed
+  id: ChemicalBarrelRum
+  suffix: Rum
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+          - ReagentId: Rum
+            Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelRum
+
+- type: entity
+  id: LabelRum
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-rum
+
+- type: entity
+  parent: MetalBarrelBlue
+  id: ChemicalBarrelGin
+  suffix: Gin
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+          - ReagentId: Gin
+            Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelGin
+
+- type: entity
+  id: LabelGin
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-gin
+
+- type: entity
+  parent: MetalBarrelRed
+  id: ChemicalBarrelCoffeeLiqueur
+  suffix: Coffee Liqeueur
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+          - ReagentId: CoffeeLiqueur
+            Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelCoffeeLiqueur
+
+- type: entity
+  id: LabelCoffeeLiqueur
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-coffeeliqueur
+
+- type: entity
+  parent: MetalBarrelGreen
+  id: ChemicalBarrelAbsinthe
+  suffix: Absinthe
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+          - ReagentId: Absinthe
+            Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelAbsinthe
+
+- type: entity
+  id: LabelAbsinthe
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-absinthe
+
+- type: entity
+  parent: MetalBarrelRed
+  id: ChemicalBarrelAle
+  suffix: Ale
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+          - ReagentId: Ale
+            Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelAle
+
+- type: entity
+  id: LabelAle
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-ale
+
+- type: entity
+  parent: MetalBarrelGreen
+  id: ChemicalBarrelVermouth
+  suffix: Vermouth
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+          - ReagentId: Vermouth
+            Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelVermouth
+
+- type: entity
+  id: LabelVermouth
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-vermouth
+
+- type: entity
+  parent: MetalBarrelRed
+  id: ChemicalBarrelWine
+  suffix: Wine
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+          - ReagentId: Wine
+            Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelWine
+
+- type: entity
+  id: LabelWine
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-wine
+
+- type: entity
+  parent: MetalBarrelGrey
+  id: ChemicalBarrelBeer
+  suffix: Beer
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+          - ReagentId: Beer
+            Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelBeer
+
+- type: entity
+  id: LabelBeer
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-beer
+
+- type: entity
+  parent: MetalBarrelBlack
+  id: ChemicalBarrelCognac
+  suffix: Cognac
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+          - ReagentId: Cognac
+            Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelCognac
+
+- type: entity
+  id: LabelCognac
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-cognac
+
+- type: entity
+  parent: MetalBarrelYellow
+  id: ChemicalBarrelMead
+  suffix: Mead
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+          - ReagentId: Mead
+            Quantity: 1000
+  - type: ContainerFill
+    containers:
+      paper_label:
+      - LabelMead
+
+- type: entity
+  id: LabelMead
+  parent: Paper
+  categories: [HideSpawnMenu]
+  components:
+  - type: Paper
+    content: reagent-label-mead
+
