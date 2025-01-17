@@ -13,7 +13,6 @@ frontier-lobby-frontier-description = Awaken from cryosleep here to:
    - Socialize with other pioneers
  Some of the roles on this station are whitelist-only and require an application in the discord to be accepted.
 
-frontier-lobby-nfsd-subtext = The center of operations for the Sheriffs department.
 frontier-lobby-exped-subtext = Where seasoned mercenaries gather.
 frontier-lobby-exped-description = This is base camp for mercenaries and alike. Here you can:
    - Start a mercenary crew
@@ -21,6 +20,7 @@ frontier-lobby-exped-description = This is base camp for mercenaries and alike. 
    - Purchase weapons and gear
    - Purchase expedition-ready ships
    - Socialize with other mercenaries - or not.
+
 frontier-lobby-medical-subtext = The medical dispatch hub and retrieval logistics center.
 frontier-lobby-medical-description = Frontier's medical dispatch hub. Here you can:
    - Start or find a medical response crew
@@ -28,14 +28,16 @@ frontier-lobby-medical-description = Frontier's medical dispatch hub. Here you c
    - Purchase medical specialist ships
    - Drop off medical bounties  
  Some of the roles on this station are whitelist-only and require an application in the discord to be accepted.
-frontier-lobby-nfsd-description = The New Frontier Security Department is the center of operations for the Sheriffs department. Here you can:
+
+frontier-lobby-nfsd-subtext = The center of operations for the Sheriffs department.
+frontier-lobby-nfsd-description = The New Frontier Sheriff's Department is the center of operations for the Sheriffs department. Here you can:
    - Join the Sheriffs department
    - Apply for a bounty hunting license
    - Report crimes
+
 frontier-lobby-pirate-subtext = Where "X" marks the spot and rum never runs dry.
 frontier-lobby-pirate-description = This is the ultimate hideout where scallywags and pirates gather. Here you can:
    - Start a pirate crew
    - Find a crew to join
    - Socialize with other pirates
  The roles on this station are whitelist-only and require an application in the discord to be accepted.
-
