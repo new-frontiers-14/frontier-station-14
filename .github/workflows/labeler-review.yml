@@ -17,7 +17,7 @@ jobs:
       with:
         username: ${{ github.actor }}
         team: "content-maintainers,junior-maintainers"
-        GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }} # Frontier LABELER_PAT<BOT_TOKEN
+        GITHUB_TOKEN: ${{ secrets.GH_PAT }} # Frontier LABELER_PAT<GH_PAT
     - if: ${{ steps.checkUserMember.outputs.isTeamMember == 'true' }}
       uses: actions-ecosystem/action-add-labels@v1
       with:
