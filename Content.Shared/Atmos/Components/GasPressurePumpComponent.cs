@@ -1,4 +1,5 @@
 using Robust.Shared.GameStates;
+using Content.Shared.Atmos.Piping.Binary.Components; // Frontier
 
 namespace Content.Shared.Atmos.Components;
 
@@ -44,6 +45,6 @@ public sealed partial class GasPressurePumpComponent : Component
     /// <summary>
     /// Frontier - if true, the pump is currently pumping inwards
     /// </summary>
-    [DataField]
+    [DataField, AutoNetworkedField]
     public bool PumpingInwards { get; set; }
 }

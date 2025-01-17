@@ -22,7 +22,6 @@ using Content.Shared.Database;
 using Content.Shared.Examine;
 using Content.Shared.Interaction;
 using Content.Shared.Power;
-using Content.Shared.Stacks;
 using Robust.Server.Audio;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
@@ -85,43 +84,43 @@ public sealed class GasDepositSystem : EntitySystem
         SubscribeLocalEvent<GasSaleConsoleComponent, GasSaleRefreshMessage>(OnConsoleRefresh);
     }
 
-    private void OnExtractorMapInit(EntityUid uid, GasDepositExtractorComponent extractor, MapInitEvent args)
+    private void OnExtractorMapInit(Entity<GasDepositExtractorComponent> extractor, ref MapInitEvent args)
     {
-        UpdateAppearance(uid, extractor);
+        UpdateAppearance(extractor);
     }
 
-    private void OnExtractorUiOpened(EntityUid uid, GasDepositExtractorComponent extractor, BoundUIOpenedEvent args)
+    private void OnExtractorUiOpened(Entity<GasDepositExtractorComponent> extractor, ref BoundUIOpenedEvent args)
     {
-        DirtyUI(uid, extractor);
+        Dirty(extractor);
     }
 
-    private void OnPowerChanged(EntityUid uid, GasDepositExtractorComponent component, ref PowerChangedEvent args)
+    private void OnPowerChanged(Entity<GasDepositExtractorComponent> extractor, ref PowerChangedEvent args)
     {
-        UpdateAppearance(uid, component);
+        UpdateAppearance(extractor);
     }
 
-    private void OnExamined(EntityUid uid, GasDepositExtractorComponent extractor, ExaminedEvent args)
+    private void OnExamined(Entity<GasDepositExtractorComponent> extractor, ref ExaminedEvent args)
     {
-        if (!EntityManager.GetComponent<TransformComponent>(uid).Anchored || !args.IsInDetailsRange)
+        if (!Transform(extractor).Anchored || !args.IsInDetailsRange)
             return;
 
         args.PushMarkup(Loc.GetString("gas-deposit-drill-system-examined",
                 ("statusColor", "lightblue"),
-                ("pressure", extractor.TargetPressure)));
-        if (extractor.DepositEntity != null)
+                ("pressure", extractor.Comp.TargetPressure)));
+        if (TryComp(extractor.Comp.DepositEntity, out RandomGasDepositComponent? deposit))
         {
             args.PushMarkup(Loc.GetString("gas-deposit-drill-system-examined-amount",
                     ("statusColor", "lightblue"),
-                    ("value", extractor.DepositEntity.Value.Comp.Deposit.TotalMoles)));
+                    ("value", deposit.Deposit.TotalMoles)));
         }
     }
 
-    public void OnAnchorAttempt(EntityUid uid, GasDepositExtractorComponent component, AnchorAttemptEvent args)
+    public void OnAnchorAttempt(Entity<GasDepositExtractorComponent> extractor, ref AnchorAttemptEvent args)
     {
         if (args.Cancelled)
             return;
 
-        if (!TryComp(uid, out TransformComponent? xform)
+        if (!TryComp(extractor, out TransformComponent? xform)
             || xform.GridUid is not { Valid: true } grid
             || !TryComp(grid, out MapGridComponent? gridComp))
         {
@@ -135,30 +134,30 @@ public sealed class GasDepositSystem : EntitySystem
         while (enumerator.MoveNext(out var otherEnt))
         {
             // Don't match yourself.
-            if (otherEnt == uid)
+            if (otherEnt == extractor)
                 continue;
 
             // Is another storage entity is already anchored here?
-            if (TryComp<RandomGasDepositComponent>(otherEnt, out var deposit))
+            if (HasComp<RandomGasDepositComponent>(otherEnt))
             {
-                component.DepositEntity = (otherEnt.Value, deposit);
+                extractor.Comp.DepositEntity = otherEnt.Value;
                 return;
             }
         }
 
-        _popup.PopupEntity(Loc.GetString("gas-deposit-drill-no-resources"), uid);
+        _popup.PopupEntity(Loc.GetString("gas-deposit-drill-no-resources"), extractor);
         args.Cancel();
     }
 
-    public void OnAnchorChanged(EntityUid uid, GasDepositExtractorComponent component, AnchorStateChangedEvent args)
+    public void OnAnchorChanged(Entity<GasDepositExtractorComponent> extractor, ref AnchorStateChangedEvent args)
     {
         if (!args.Anchored)
-            component.DepositEntity = null;
+            extractor.Comp.DepositEntity = null;
     }
 
-    public void OnDepositMapInit(EntityUid uid, RandomGasDepositComponent component, MapInitEvent args)
+    public void OnDepositMapInit(Entity<RandomGasDepositComponent> deposit, ref MapInitEvent args)
     {
-        if (!_prototype.TryIndex(component.DepositPrototype, out var depositPrototype))
+        if (!_prototype.TryIndex(deposit.Comp.DepositPrototype, out var depositPrototype))
         {
             if (!_prototype.TryGetRandom<GasDepositPrototype>(_random, out var randomPrototype))
                 return;
@@ -167,65 +166,64 @@ public sealed class GasDepositSystem : EntitySystem
         for (int i = 0; i < (depositPrototype?.Gases?.Length ?? 0) && i < Atmospherics.TotalNumberOfGases; i++)
         {
             var gasRange = depositPrototype!.Gases[i];
-            component.Deposit.SetMoles(i, gasRange[0] + _random.NextFloat() * (gasRange[1] - gasRange[0]));
+            deposit.Comp.Deposit.SetMoles(i, gasRange[0] + _random.NextFloat() * (gasRange[1] - gasRange[0]));
         }
-        component.LowMoles = component.Deposit.TotalMoles * LowMoleCoefficient;
+        deposit.Comp.LowMoles = deposit.Comp.Deposit.TotalMoles * LowMoleCoefficient;
     }
 
-    private void OnExtractorUpdate(EntityUid uid, GasDepositExtractorComponent extractor, ref AtmosDeviceUpdateEvent args)
+    private void OnExtractorUpdate(Entity<GasDepositExtractorComponent> extractor, ref AtmosDeviceUpdateEvent args)
     {
-        if (!extractor.Enabled
-            || extractor.DepositEntity == null
-            || TryComp<ApcPowerReceiverComponent>(uid, out var power) && !power.Powered
-            || !_nodeContainer.TryGetNode(uid, extractor.PortName, out PipeNode? port)
+        if (!extractor.Comp.Enabled
+            || !TryComp(extractor.Comp.DepositEntity, out RandomGasDepositComponent? depositComp)
+            || TryComp<ApcPowerReceiverComponent>(extractor, out var power) && !power.Powered
+            || !_nodeContainer.TryGetNode(extractor.Owner, extractor.Comp.PortName, out PipeNode? port)
             || port.NodeGroup is not PipeNet { NodeCount: > 1 } net)
         {
-            _ambientSound.SetAmbience(uid, false);
-            SetDepositState(uid, GasDepositExtractorState.Off, extractor);
+            _ambientSound.SetAmbience(extractor, false);
+            SetDepositState(extractor, GasDepositExtractorState.Off);
             return;
         }
 
-        var depositComp = extractor.DepositEntity.Value.Comp;
         if (depositComp.Deposit.TotalMoles < Atmospherics.GasMinMoles)
         {
-            _ambientSound.SetAmbience(uid, false);
-            SetDepositState(uid, GasDepositExtractorState.Empty, extractor);
+            _ambientSound.SetAmbience(extractor, false);
+            SetDepositState(extractor, GasDepositExtractorState.Empty);
             return;
         }
 
-        var targetPressure = float.Clamp(extractor.TargetPressure, 0, extractor.MaxOutputPressure);
+        var targetPressure = float.Clamp(extractor.Comp.TargetPressure, 0, extractor.Comp.MaxTargetPressure);
 
         // How many moles could we theoretically spawn. Cap by pressure, amount, and extractor limit.
-        var allowableMoles = (targetPressure - net.Air.Pressure) * net.Air.Volume / (extractor.OutputTemperature * Atmospherics.R);
-        allowableMoles = float.Min(allowableMoles, extractor.ExtractionRate * args.dt);
+        var allowableMoles = (targetPressure - net.Air.Pressure) * net.Air.Volume / (extractor.Comp.OutputTemperature * Atmospherics.R);
+        allowableMoles = float.Min(allowableMoles, extractor.Comp.ExtractionRate * args.dt);
 
         if (allowableMoles < Atmospherics.GasMinMoles)
         {
-            _ambientSound.SetAmbience(uid, false);
-            SetDepositState(uid, GasDepositExtractorState.Blocked, extractor);
+            _ambientSound.SetAmbience(extractor, false);
+            SetDepositState(extractor, GasDepositExtractorState.Blocked);
             return;
         }
 
         var removed = depositComp.Deposit.Remove(allowableMoles);
-        removed.Temperature = extractor.OutputTemperature;
+        removed.Temperature = extractor.Comp.OutputTemperature;
         _atmosphere.Merge(net.Air, removed);
 
-        _ambientSound.SetAmbience(uid, true);
+        _ambientSound.SetAmbience(extractor, true);
         if (depositComp.Deposit.TotalMoles <= depositComp.LowMoles)
-            SetDepositState(uid, GasDepositExtractorState.Low, extractor);
+            SetDepositState(extractor, GasDepositExtractorState.Low);
         else
-            SetDepositState(uid, GasDepositExtractorState.On, extractor);
+            SetDepositState(extractor, GasDepositExtractorState.On);
     }
 
-    private void OnToggleStatusMessage(EntityUid uid, GasDepositExtractorComponent extractor, GasPressurePumpToggleStatusMessage args)
+    private void OnToggleStatusMessage(Entity<GasDepositExtractorComponent> extractor, ref GasPressurePumpToggleStatusMessage args)
     {
-        extractor.Enabled = args.Enabled;
+        extractor.Comp.Enabled = args.Enabled;
         _adminLog.Add(LogType.AtmosPowerChanged, LogImpact.Low,
-            $"{ToPrettyString(args.Actor):player} set the power on {ToPrettyString(uid):device} to {args.Enabled}");
-        DirtyUI(uid, extractor);
+            $"{ToPrettyString(args.Actor):player} set the power on {ToPrettyString(extractor):device} to {args.Enabled}");
+        Dirty(extractor);
     }
 
-    private void OnPumpActivate(EntityUid uid, GasDepositExtractorComponent pump, ActivateInWorldEvent args)
+    private void OnPumpActivate(Entity<GasDepositExtractorComponent> extractor, ref ActivateInWorldEvent args)
     {
         if (args.Handled || !args.Complex)
             return;
@@ -233,65 +231,53 @@ public sealed class GasDepositSystem : EntitySystem
         if (!TryComp(args.User, out ActorComponent? actor))
             return;
 
-        if (Transform(uid).Anchored)
+        if (Transform(extractor).Anchored)
         {
-            _ui.OpenUi(uid, GasPressurePumpUiKey.Key, actor.PlayerSession);
-            DirtyUI(uid, pump);
+            _ui.OpenUi(extractor.Owner, GasPressurePumpUiKey.Key, actor.PlayerSession);
+            Dirty(extractor);
         }
         else
         {
-            _popup.PopupCursor(Loc.GetString("gas-deposit-drill-ui-needs-anchor"), args.User);
+            _popup.PopupCursor(Loc.GetString("ui-needs-anchor"), args.User);
         }
 
         args.Handled = true;
     }
 
-    private void OnOutputPressureChangeMessage(EntityUid uid, GasDepositExtractorComponent extractor, GasPressurePumpChangeOutputPressureMessage args)
+    private void OnOutputPressureChangeMessage(Entity<GasDepositExtractorComponent> extractor, ref GasPressurePumpChangeOutputPressureMessage args)
     {
-        extractor.TargetPressure = Math.Clamp(args.Pressure, 0f, Atmospherics.MaxOutputPressure);
+        extractor.Comp.TargetPressure = Math.Clamp(args.Pressure, 0f, Atmospherics.MaxOutputPressure);
         _adminLog.Add(LogType.AtmosPressureChanged, LogImpact.Low,
-            $"{ToPrettyString(args.Actor):player} set the pressure on {ToPrettyString(uid):device} to {args.Pressure}kPa");
-        DirtyUI(uid, extractor);
+            $"{ToPrettyString(args.Actor):player} set the pressure on {ToPrettyString(extractor):device} to {args.Pressure}kPa");
+        Dirty(extractor);
     }
 
-    private void DirtyUI(EntityUid uid, GasDepositExtractorComponent? extractor)
+    private void SetDepositState(Entity<GasDepositExtractorComponent> extractor, GasDepositExtractorState newState)
     {
-        if (!Resolve(uid, ref extractor))
-            return;
-
-        _ui.SetUiState(uid, GasPressurePumpUiKey.Key,
-            new GasPressurePumpBoundUserInterfaceState(EntityManager.GetComponent<MetaDataComponent>(uid).EntityName, extractor.TargetPressure, extractor.Enabled));
-    }
-
-    private void SetDepositState(EntityUid uid, GasDepositExtractorState newState, GasDepositExtractorComponent? extractor = null)
-    {
-        if (!Resolve(uid, ref extractor, false))
-            return;
-
-        if (newState != extractor.LastState)
+        if (newState != extractor.Comp.LastState)
         {
-            extractor.LastState = newState;
-            UpdateAppearance(uid, extractor);
+            extractor.Comp.LastState = newState;
+            UpdateAppearance(extractor);
         }
     }
 
-    private void UpdateAppearance(EntityUid uid, GasDepositExtractorComponent? extractor = null, AppearanceComponent? appearance = null)
+    private void UpdateAppearance(Entity<GasDepositExtractorComponent> extractor, AppearanceComponent? appearance = null)
     {
-        if (!Resolve(uid, ref extractor, ref appearance, false))
+        if (!Resolve(extractor, ref appearance, false))
             return;
 
-        bool pumpOn = extractor.Enabled && (!TryComp<ApcPowerReceiverComponent>(uid, out var power) || power.Powered);
+        bool pumpOn = extractor.Comp.Enabled && (!TryComp<ApcPowerReceiverComponent>(extractor, out var power) || power.Powered);
         if (!pumpOn)
-            _appearance.SetData(uid, GasDepositExtractorVisuals.State, GasDepositExtractorState.Off, appearance);
+            _appearance.SetData(extractor, GasDepositExtractorVisuals.State, GasDepositExtractorState.Off, appearance);
         else
-            _appearance.SetData(uid, GasDepositExtractorVisuals.State, extractor.LastState, appearance);
+            _appearance.SetData(extractor, GasDepositExtractorVisuals.State, extractor.Comp.LastState, appearance);
     }
 
     // Atmos update: take any gas from the connecting network and push it into the pump.
-    private void OnSalePointUpdate(EntityUid uid, GasSalePointComponent component, ref AtmosDeviceUpdateEvent args)
+    private void OnSalePointUpdate(Entity<GasSalePointComponent> salePoint, ref AtmosDeviceUpdateEvent args)
     {
-        if (TryComp<ApcPowerReceiverComponent>(uid, out var power) && !power.Powered
-            || !_nodeContainer.TryGetNode(uid, component.InletPipePortName, out PipeNode? port)
+        if (TryComp<ApcPowerReceiverComponent>(salePoint, out var power) && !power.Powered
+            || !_nodeContainer.TryGetNode(salePoint.Owner, salePoint.Comp.InletPipePortName, out PipeNode? port)
             || port.NodeGroup is not PipeNet { NodeCount: > 1 } net)
         {
             return;
@@ -299,64 +285,64 @@ public sealed class GasDepositSystem : EntitySystem
 
         if (net.Air.TotalMoles > 0)
         {
-            _atmosphere.Merge(component.GasStorage, net.Air);
+            _atmosphere.Merge(salePoint.Comp.GasStorage, net.Air);
             net.Air.Clear();
         }
     }
 
-    private void OnConsoleUiOpened(EntityUid uid, GasSaleConsoleComponent component, BoundUIOpenedEvent args)
+    private void OnConsoleUiOpened(Entity<GasSaleConsoleComponent> saleConsole, ref BoundUIOpenedEvent args)
     {
-        UpdateConsoleInterface(uid, component);
+        UpdateConsoleInterface(saleConsole);
     }
 
-    private void OnConsoleRefresh(EntityUid uid, GasSaleConsoleComponent component, GasSaleRefreshMessage args)
+    private void OnConsoleRefresh(Entity<GasSaleConsoleComponent> saleConsole, ref GasSaleRefreshMessage args)
     {
-        UpdateConsoleInterface(uid, component);
+        UpdateConsoleInterface(saleConsole);
     }
 
-    private void OnConsoleSell(EntityUid uid, GasSaleConsoleComponent component, GasSaleSellMessage args)
+    private void OnConsoleSell(Entity<GasSaleConsoleComponent> saleConsole, ref GasSaleSellMessage args)
     {
-        var xform = Transform(uid);
+        var xform = Transform(saleConsole);
         if (xform.GridUid is not EntityUid gridUid)
         {
-            _ui.SetUiState(uid, GasSaleConsoleUiKey.Key,
+            _ui.SetUiState(saleConsole.Owner, GasSaleConsoleUiKey.Key,
             new GasSaleConsoleBoundUserInterfaceState(0, new GasMixture(), false));
             return;
         }
 
         var mixture = new GasMixture();
-        foreach (var salePoint in GetNearbySalePoints(uid, gridUid))
+        foreach (var salePoint in GetNearbySalePoints(saleConsole, gridUid))
         {
             _atmosphere.Merge(mixture, salePoint.Comp.GasStorage);
             salePoint.Comp.GasStorage.Clear();
         }
 
         var amount = _atmosphere.GetPrice(mixture);
-        if (TryComp<MarketModifierComponent>(uid, out var priceMod))
+        if (TryComp<MarketModifierComponent>(saleConsole, out var priceMod))
             amount *= priceMod.Mod;
 
-        var stackPrototype = _prototype.Index<StackPrototype>(component.CashType);
-        _stack.Spawn((int) amount, stackPrototype, xform.Coordinates);
-        _audio.PlayPvs(ApproveSound, uid);
-        _ui.SetUiState(uid, GasSaleConsoleUiKey.Key,
-            new GasSaleConsoleBoundUserInterfaceState((int) 0, new GasMixture(), false));
+        var stackPrototype = _prototype.Index(saleConsole.Comp.CashType);
+        _stack.Spawn((int)amount, stackPrototype, xform.Coordinates);
+        _audio.PlayPvs(ApproveSound, saleConsole);
+        _ui.SetUiState(saleConsole.Owner, GasSaleConsoleUiKey.Key,
+            new GasSaleConsoleBoundUserInterfaceState(0, new GasMixture(), false));
     }
 
-    private void UpdateConsoleInterface(EntityUid uid, GasSaleConsoleComponent component)
+    private void UpdateConsoleInterface(Entity<GasSaleConsoleComponent> saleConsole)
     {
-        if (Transform(uid).GridUid is not EntityUid gridUid)
+        if (Transform(saleConsole).GridUid is not EntityUid gridUid)
         {
-            _ui.SetUiState(uid, GasSaleConsoleUiKey.Key,
+            _ui.SetUiState(saleConsole.Owner, GasSaleConsoleUiKey.Key,
             new GasSaleConsoleBoundUserInterfaceState(0, new GasMixture(), false));
             return;
         }
 
-        GetNearbyMixtures(uid, gridUid, out var mixture, out var amount);
-        if (TryComp<MarketModifierComponent>(uid, out var priceMod))
+        GetNearbyMixtures(saleConsole, gridUid, out var mixture, out var amount);
+        if (TryComp<MarketModifierComponent>(saleConsole, out var priceMod))
             amount *= priceMod.Mod;
 
-        _ui.SetUiState(uid, GasSaleConsoleUiKey.Key,
-            new GasSaleConsoleBoundUserInterfaceState((int) amount, mixture, mixture.TotalMoles > 0));
+        _ui.SetUiState(saleConsole.Owner, GasSaleConsoleUiKey.Key,
+            new GasSaleConsoleBoundUserInterfaceState((int)amount, mixture, mixture.TotalMoles > 0));
     }
 
     private void GetNearbyMixtures(EntityUid consoleUid, EntityUid gridUid, out GasMixture mixture, out double value)

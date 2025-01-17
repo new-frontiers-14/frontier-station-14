@@ -32,7 +32,7 @@ public abstract class SharedGasPressurePumpSystem : EntitySystem
 
         SubscribeLocalEvent<GasPressurePumpComponent, GasPressurePumpChangeOutputPressureMessage>(OnOutputPressureChangeMessage);
         SubscribeLocalEvent<GasPressurePumpComponent, GasPressurePumpToggleStatusMessage>(OnToggleStatusMessage);
-        SubscribeLocalEvent<GasPressurePumpComponent, GasPressurePumpChangePumpDirectionMessage>(OnToggleStatusMessage); // Frontier
+        SubscribeLocalEvent<GasPressurePumpComponent, GasPressurePumpChangePumpDirectionMessage>(OnPumpSetDirectionMessage); // Frontier
 
         SubscribeLocalEvent<GasPressurePumpComponent, AtmosDeviceDisabledEvent>(OnPumpLeaveAtmosphere);
         SubscribeLocalEvent<GasPressurePumpComponent, ExaminedEvent>(OnExamined);
@@ -72,7 +72,7 @@ public abstract class SharedGasPressurePumpSystem : EntitySystem
         UpdateAppearance(uid, component);
     }
 
-    private void UpdateAppearance(EntityUid uid, GasPressurePumpComponent? pump = null, AppearanceComponent? appearance = null)
+    protected void UpdateAppearance(EntityUid uid, GasPressurePumpComponent? pump = null, AppearanceComponent? appearance = null) // Frontier: private<protected
     {
         if (!Resolve(uid, ref pump, ref appearance, false))
             return;
@@ -120,7 +120,7 @@ public abstract class SharedGasPressurePumpSystem : EntitySystem
         pump.PumpingInwards = args.Inwards;
         _adminLogger.Add(LogType.AtmosDirectionChanged, LogImpact.Medium,
             $"{ToPrettyString(args.Actor):player} set the direction on {ToPrettyString(uid):device} to {(args.Inwards ? "in" : "out")}");
-        DirtyUI(uid, pump);
+        Dirty(uid, pump);
         UpdateAppearance(uid, pump);
     }
     // End Frontier

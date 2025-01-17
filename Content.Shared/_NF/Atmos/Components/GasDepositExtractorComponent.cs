@@ -1,15 +1,16 @@
 using Content.Shared._NF.Atmos.Visuals;
 using Content.Shared.Atmos;
+using Robust.Shared.GameStates;
 
 namespace Content.Server._NF.Atmos.Components;
 
-[RegisterComponent]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class GasDepositExtractorComponent : Component
 {
     /// <summary>
     /// Whether or not the extractor is on and extracting gas.
     /// </summary>
-    [DataField]
+    [DataField, AutoNetworkedField]
     public bool Enabled;
 
     /// <summary>
@@ -22,9 +23,9 @@ public sealed partial class GasDepositExtractorComponent : Component
     /// The maximum pressure output, in kPa.
     /// </summary>
     [DataField]
-    public float MaxOutputPressure = Atmospherics.MaxOutputPressure;
+    public float MaxTargetPressure = Atmospherics.MaxOutputPressure;
 
-    [DataField]
+    [DataField, AutoNetworkedField]
     public float TargetPressure = Atmospherics.OneAtmosphere;
 
     /// <summary>
@@ -40,7 +41,7 @@ public sealed partial class GasDepositExtractorComponent : Component
     /// Should abstract into a general GasDepositComponent later.
     /// </remarks>
     [DataField]
-    public Entity<RandomGasDepositComponent>? DepositEntity;
+    public EntityUid? DepositEntity;
 
     [DataField("port")]
     public string PortName { get; set; } = "port";

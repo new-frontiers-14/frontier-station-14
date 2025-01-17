@@ -508,10 +508,7 @@ public sealed class AtmosAlertsComputerSystem : SharedAtmosAlertsComputerSystem
         var pumpUid = GetEntity(args.Pump);
         if (!TryComp<GasPressurePumpComponent>(pumpUid, out var pumpComp) || !pumpComp.SettableDirection)
             return;
-        GasPressurePumpChangePumpDirectionMessage msg = new(args.Inwards);
-        msg.Entity = args.Pump;
-        msg.Actor = args.Actor;
-        _pressurePump.OnPumpSetDirectionMessage(pumpUid, pumpComp, msg);
+        _pressurePump.SetPumpDirection((pumpUid, pumpComp), args.Inwards, args.Actor);
     }
 
     private void OnPumpPressureMessage(EntityUid gridUid, AtmosAlertsComputerComponent comp, RemoteGasPressurePumpChangeOutputPressureMessage args)
@@ -519,10 +516,7 @@ public sealed class AtmosAlertsComputerSystem : SharedAtmosAlertsComputerSystem
         var pumpUid = GetEntity(args.Pump);
         if (!TryComp<GasPressurePumpComponent>(pumpUid, out var pumpComp))
             return;
-        GasPressurePumpChangeOutputPressureMessage msg = new(args.Pressure);
-        msg.Entity = args.Pump;
-        msg.Actor = args.Actor;
-        _pressurePump.OnOutputPressureChangeMessage(pumpUid, pumpComp, msg);
+        _pressurePump.SetPumpPressure((pumpUid, pumpComp), args.Pressure, args.Actor);
     }
 
     private void OnPumpStatusMessage(EntityUid gridUid, AtmosAlertsComputerComponent comp, RemoteGasPressurePumpToggleStatusMessage args)
@@ -530,10 +524,7 @@ public sealed class AtmosAlertsComputerSystem : SharedAtmosAlertsComputerSystem
         var pumpUid = GetEntity(args.Pump);
         if (!TryComp<GasPressurePumpComponent>(pumpUid, out var pumpComp))
             return;
-        GasPressurePumpToggleStatusMessage msg = new(args.Enabled);
-        msg.Entity = args.Pump;
-        msg.Actor = args.Actor;
-        _pressurePump.OnToggleStatusMessage(pumpUid, pumpComp, msg);
+        _pressurePump.SetPumpStatus((pumpUid, pumpComp), args.Enabled, args.Actor);
     }
     // End Frontier
 }

@@ -1,7 +1,8 @@
 ﻿using Content.Shared._NF.Atmos.Piping.Binary.Messages;
 using Content.Shared.Atmos;
+using Content.Shared.Atmos.Components;
 using Content.Shared.Atmos.Piping.Binary.Components;
-using Content.Shared.Localizations;
+using Content.Shared.IdentityManagement;
 using JetBrains.Annotations;
 using Robust.Client.UserInterface;
 
@@ -32,6 +33,7 @@ namespace Content.Client._NF.Atmos.UI
             _window.ToggleStatusButtonPressed += OnToggleStatusButtonPressed;
             _window.ToggleDirectionButtonPressed += OnToggleDirectionButtonPressed;
             _window.PumpOutputPressureChanged += OnPumpOutputPressurePressed;
+            Update();
         }
 
         private void OnToggleStatusButtonPressed()
@@ -46,28 +48,29 @@ namespace Content.Client._NF.Atmos.UI
             SendMessage(new GasPressurePumpChangePumpDirectionMessage(_window.PumpInwards));
         }
 
-        private void OnPumpOutputPressurePressed(string value)
+        private void OnPumpOutputPressurePressed(float value)
         {
-            var pressure = UserInputParser.TryFloat(value, out var parsed) ? parsed : 0f;
-            if (pressure > MaxPressure) pressure = MaxPressure;
-
-            SendMessage(new GasPressurePumpChangeOutputPressureMessage(pressure));
+            SendMessage(new GasPressurePumpChangeOutputPressureMessage(value));
         }
 
         /// <summary>
         /// Update the UI state based on server-sent info
         /// </summary>
         /// <param name="state"></param>
-        protected override void UpdateState(BoundUserInterfaceState state)
+        protected void Update()
         {
-            base.UpdateState(state);
-            if (_window == null || state is not GasPressurePumpBoundUserInterfaceState cast)
+            if (_window == null)
                 return;
 
-            _window.Title = cast.PumpLabel;
-            _window.SetPumpStatus(cast.Enabled);
-            _window.SetOutputPressure(cast.OutputPressure);
-            _window.SetPumpDirection(cast.Inward);
+            _window.Title = Identity.Name(Owner, EntMan);
+
+            if (!EntMan.TryGetComponent(Owner, out GasPressurePumpComponent? pump))
+                return;
+
+            _window.SetPumpStatus(pump.Enabled);
+            _window.MaxPressure = pump.MaxTargetPressure;
+            _window.SetOutputPressure(pump.TargetPressure);
+            _window.SetPumpDirection(pump.PumpingInwards);
         }
     }
 }

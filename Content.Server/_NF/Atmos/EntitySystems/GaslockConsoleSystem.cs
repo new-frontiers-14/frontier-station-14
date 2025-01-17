@@ -1,15 +1,13 @@
+using Content.Server._NF.Atmos.Components;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
-using Content.Shared.Shuttles.Components;
-using Content.Shared.Shuttles.Systems;
+using Content.Shared._NF.Atmos.BUIStates;
+using Content.Shared._NF.Atmos.Components;
+using Content.Shared.Atmos.Components;
 using Content.Shared.Power;
+using Content.Shared.UserInterface;
 using Robust.Server.GameObjects;
 using Robust.Shared.Utility;
-using Content.Shared.UserInterface;
-using Content.Shared._NF.Atmos.BUIStates;
-using Content.Server._NF.Atmos.Components;
-using Content.Server.Atmos.Piping.Binary.Components;
-using Content.Shared._NF.Atmos.Components; // Frontier
 
 namespace Content.Server._NF.Atmos.Systems;
 
