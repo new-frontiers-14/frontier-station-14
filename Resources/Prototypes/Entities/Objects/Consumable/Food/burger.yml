@@ -31,10 +31,10 @@
   id: FoodBreadBunBottom
   parent: FoodBreadSliceBase
   name: bottom bun
-  description: It's time to start building the burger tower. 
+  description: It's time to start building the burger tower.
   components:
   - type: Item
-    size: Normal #patch until there is an adequate resizing system in place 
+    size: Normal #patch until there is an adequate resizing system in place
   - type: Food
   - type: Sprite
     drawdepth: Mobs
@@ -83,7 +83,7 @@
   - type: FoodSequenceElement
     entries:
       Burger: BunTopBurger
-  
+
 # Base
 
 - type: entity
@@ -715,7 +715,7 @@
   description: An elusive rib shaped burger with limited availability across the galaxy. Not as good as you remember it.
   components:
   - type: Food
-    trash: 
+    trash:
     - FoodKebabSkewer
   - type: FlavorProfile
     flavors:
@@ -788,6 +788,209 @@
     solutions:
       food:
         maxVol: 25
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Protein
+          Quantity: 6
+        - ReagentId: Vitamin
+          Quantity: 3
+        - ReagentId: Flavorol
+          Quantity: 5
+  - type: Tag
+    tags:
+    - Meat
+
+- type: entity
+  name: red pretty burger
+  parent: FoodBurgerBase
+  id: PrettyBurgerRed
+  description: It's so pretty... red?
+  components:
+  - type: FlavorProfile
+    flavors:
+      - bun
+      - meaty
+  - type: Sprite
+    state: plainred
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Protein
+          Quantity: 6
+        - ReagentId: Vitamin
+          Quantity: 3
+        - ReagentId: Flavorol
+          Quantity: 5
+  - type: Tag
+    tags:
+    - Meat
+
+- type: entity
+  name: orange pretty burger
+  parent: FoodBurgerBase
+  id: PrettyBurgerOrange
+  description: It's so pretty... orange?
+  components:
+  - type: FlavorProfile
+    flavors:
+      - bun
+      - meaty
+  - type: Sprite
+    state: plainorange
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Protein
+          Quantity: 6
+        - ReagentId: Vitamin
+          Quantity: 3
+        - ReagentId: Flavorol
+          Quantity: 5
+  - type: Tag
+    tags:
+    - Meat
+
+- type: entity
+  name: yellow pretty burger
+  parent: FoodBurgerBase
+  id: PrettyBurgerYellow
+  description: It's so pretty... yellow?
+  components:
+  - type: FlavorProfile
+    flavors:
+      - bun
+      - meaty
+  - type: Sprite
+    state: plainyellow
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Protein
+          Quantity: 6
+        - ReagentId: Vitamin
+          Quantity: 3
+        - ReagentId: Flavorol
+          Quantity: 5
+  - type: Tag
+    tags:
+    - Meat
+
+- type: entity
+  name: green pretty burger
+  parent: FoodBurgerBase
+  id: PrettyBurgerGreen
+  description: It's so pretty... green?
+  components:
+  - type: FlavorProfile
+    flavors:
+      - bun
+      - meaty
+  - type: Sprite
+    state: plaingreen
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Protein
+          Quantity: 6
+        - ReagentId: Vitamin
+          Quantity: 3
+        - ReagentId: Flavorol
+          Quantity: 5
+  - type: Tag
+    tags:
+    - Meat
+
+- type: entity
+  name: blue pretty burger
+  parent: FoodBurgerBase
+  id: PrettyBurgerBlue
+  description: It's so pretty... blue?
+  components:
+  - type: FlavorProfile
+    flavors:
+      - bun
+      - meaty
+  - type: Sprite
+    state: plainblue
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Protein
+          Quantity: 6
+        - ReagentId: Vitamin
+          Quantity: 3
+        - ReagentId: Flavorol
+          Quantity: 5
+  - type: Tag
+    tags:
+    - Meat
+
+- type: entity
+  name: purple pretty burger
+  parent: FoodBurgerBase
+  id: PrettyBurgerPurple
+  description: It's so pretty... purple?
+  components:
+  - type: FlavorProfile
+    flavors:
+      - bun
+      - meaty
+  - type: Sprite
+    state: plainpurple
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Protein
+          Quantity: 6
+        - ReagentId: Vitamin
+          Quantity: 3
+        - ReagentId: Flavorol
+          Quantity: 5
+  - type: Tag
+    tags:
+    - Meat
+
+- type: entity
+  name: black and white pretty burger
+  parent: FoodBurgerBase
+  id: PrettyBurgerBnW
+  description: It's so pretty... colorless?
+  components:
+  - type: FlavorProfile
+    flavors:
+      - bun
+      - meaty
+  - type: Sprite
+    state: plainbnw
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
         reagents:
         - ReagentId: Nutriment
           Quantity: 2
@@ -1033,4 +1236,4 @@
   - type: Tag
     tags:
     - Meat
-    
+
