@@ -1,4 +1,4 @@
-﻿- type: constructionGraph
+- type: constructionGraph
   id: HudMedSec
   start: start
   graph:
@@ -27,17 +27,8 @@
                 sprite: _NF/Objects/Devices/communication.rsi # Frontier
                 state: base # Frontier
               doAfter: 5
-            - tag: CapacitorStockPart
-              name: capacitor
-              icon:
-                sprite: _NF/Objects/Misc/stock_parts.rsi # Frontier
-                state: capacitor
-              doAfter: 5
-            - tag: CapacitorStockPart
-              name: capacitor
-              icon:
-                sprite: _NF/Objects/Misc/stock_parts.rsi # Frontier
-                state: capacitor
+            - material: Capacitor
+              amount: 2
               doAfter: 5
     - node: medsecHud
       entity: ClothingEyesHudMedSec
