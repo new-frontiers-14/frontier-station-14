@@ -17,7 +17,7 @@
   - type: BluespaceErrorRule
     groups:
       grid: !type:GridSpawnGroup
-        nameDataset: names_scrap
+        nameDataset: NamesScrap
         nameDatasetType: Nanotrasen # they're shuttles
         minCount: 2
         maxCount: 3
@@ -26,6 +26,10 @@
         addComponents:
         - type: IFF
           color: "#AAAAAA"
+        - type: LinkedLifecycleGridParent
+        - type: ProtectedGrid
+          preventArtifactTriggers: true
+        - type: PreventPilot
         paths:
         - /Maps/_NF/Shuttles/Scrap/bison.yml
 #        - /Maps/_NF/Shuttles/Scrap/canister.yml # Too small

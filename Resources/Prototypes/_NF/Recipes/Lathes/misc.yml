@@ -132,17 +132,23 @@
   result: ClothingNeckIFFPurple
   parent: NFWearableIFFRecipe
 
-- type: latheRecipe
-  id: ColoredLightTubeRedNF
-  result: ColoredLightTubeRed
+- type: latheRecipe # Remove this ones we have a black crystal
+  id: LightTubeCrystalBlack
+  result: LightTubeCrystalBlack
   parent: NFBaseLightTubeRecipe
 
 - type: latheRecipe
-  id: ColoredLightTubeBlackLightNF
-  result: ColoredLightTubeBlackLight
-  parent: NFBaseLightTubeRecipe
+  id: JanicartFlatpack
+  result: JanicartFlatpack
+  materials:
+    Steel: 2000
+    Glass: 1000
+    Plastic: 800
+    Uranium: 250
 
 - type: latheRecipe
-  id: ColoredLightTubeFrostyBlueNF
-  result: ColoredLightTubeFrostyBlue
-  parent: NFBaseLightTubeRecipe
+  id: NFClothingShoesBootsMoon
+  result: NFClothingShoesBootsMoon
+  completetime: 2
+  materials:
+    Steel: 600
