@@ -21,7 +21,7 @@ frontier-lobby-exped-description = This is base camp for mercenaries and alike. 
    - Purchase weapons and gear
    - Purchase expedition-ready ships
    - Socialize with other mercenaries - or not.
-frontier-lobby-nfsd-description = The New Frontier Security Department is the center of operations for the Sheriffs department. Here you can:
+frontier-lobby-nfsd-description = The New Frontier Sheriff's Department is the center of operations for the Sheriffs department. Here you can:
    - Join the Sheriffs department
    - Apply for a bounty hunting license
    - Report crimes
