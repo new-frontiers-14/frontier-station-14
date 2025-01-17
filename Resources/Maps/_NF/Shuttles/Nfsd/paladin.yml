@@ -274,6 +274,11 @@ entities:
     - type: Transform
       pos: -2.5,2.5
       parent: 1
+  - uid: 160
+    components:
+    - type: Transform
+      pos: 1.5,5.5
+      parent: 1
   - uid: 171
     components:
     - type: Transform
@@ -302,8 +307,7 @@ entities:
   - uid: 176
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 1.5,5.5
+      pos: 2.5,-4.5
       parent: 1
   - uid: 177
     components:
@@ -349,6 +353,11 @@ entities:
     components:
     - type: Transform
       pos: -2.5,-4.5
+      parent: 1
+  - uid: 192
+    components:
+    - type: Transform
+      pos: -1.5,-4.5
       parent: 1
 - proto: ButtonFrameCaution
   entities:
@@ -652,12 +661,6 @@ entities:
       parent: 1
 - proto: ChairPilotSeat
   entities:
-  - uid: 63
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 2.5,2.5
-      parent: 1
   - uid: 134
     components:
     - type: Transform
@@ -1147,14 +1150,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -1.5,5.5
       parent: 1
-- proto: RailingCorner
-  entities:
-  - uid: 160
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 2.5,2.5
-      parent: 1
 - proto: RemoteSignaller
   entities:
   - uid: 170
@@ -1202,6 +1197,12 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -0.5,-2.5
+      parent: 1
+  - uid: 63
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 2.5,2.5
       parent: 1
   - uid: 191
     components:
@@ -1426,7 +1427,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: -1.5,-0.5
       parent: 1
-- proto: WarpPointShip
+- proto: WarpPoint
   entities:
   - uid: 188
     components:
