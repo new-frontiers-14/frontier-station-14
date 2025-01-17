@@ -93,13 +93,13 @@ public sealed partial class CrateMachineSystem: SharedCrateMachineSystem
             return;
 
         if (component.OpeningTimeRemaining > 0)
-            _appearanceSystem.SetData(uid, CrateMachineComponent.CrateMachineVisuals.VisualState, CrateMachineComponent.CrateMachineVisualState.Opening);
+            _appearanceSystem.SetData(uid, CrateMachineVisuals.VisualState, CrateMachineVisualState.Opening);
         else if (component.ClosingTimeRemaining > 0)
-            _appearanceSystem.SetData(uid, CrateMachineComponent.CrateMachineVisuals.VisualState, CrateMachineComponent.CrateMachineVisualState.Closing);
+            _appearanceSystem.SetData(uid, CrateMachineVisuals.VisualState, CrateMachineVisualState.Closing);
         else if (!component.DidTakeCrate)
-            _appearanceSystem.SetData(uid, CrateMachineComponent.CrateMachineVisuals.VisualState, CrateMachineComponent.CrateMachineVisualState.Open);
+            _appearanceSystem.SetData(uid, CrateMachineVisuals.VisualState, CrateMachineVisualState.Open);
         else
-            _appearanceSystem.SetData(uid, CrateMachineComponent.CrateMachineVisuals.VisualState, CrateMachineComponent.CrateMachineVisualState.Closed);
+            _appearanceSystem.SetData(uid, CrateMachineVisuals.VisualState, CrateMachineVisualState.Closed);
     }
 
     /// <summary>

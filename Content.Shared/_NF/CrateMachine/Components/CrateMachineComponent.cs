@@ -1,7 +1,6 @@
 ﻿using Content.Shared._NF.CrateMachine.Interfaces;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
-using Robust.Shared.Serialization;
 
 namespace Content.Shared._NF.CrateMachine.Components;
 
@@ -93,21 +92,6 @@ public sealed partial class CrateMachineComponent: Component
     /// </summary>
     [DataField]
     public string ClosedSpriteState = "opening";
-
-    [Serializable, NetSerializable]
-    public enum CrateMachineVisuals : byte
-    {
-        VisualState,
-    }
-
-    [Serializable, NetSerializable]
-    public enum CrateMachineVisualState : byte
-    {
-        Open,
-        Closed,
-        Opening,
-        Closing,
-    }
 
     #endregion
 }
