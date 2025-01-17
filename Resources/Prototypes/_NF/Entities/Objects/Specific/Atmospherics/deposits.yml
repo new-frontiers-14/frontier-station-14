@@ -23,7 +23,7 @@
 
 - type: entity
   parent: BaseGasDeposit
-  id: OxygenGasDeposit
+  id: GasDepositOxygen
   suffix: Oxygen
   components:
   - type: RandomGasDeposit
@@ -33,7 +33,7 @@
 
 - type: entity
   parent: BaseGasDeposit
-  id: NitrogenGasDeposit
+  id: GasDepositNitrogen
   suffix: Nitrogen
   components:
   - type: RandomGasDeposit
@@ -43,7 +43,7 @@
 
 - type: entity
   parent: BaseGasDeposit
-  id: CarbonDioxideGasDeposit
+  id: GasDepositCarbonDioxide
   suffix: Carbon Dioxide
   components:
   - type: RandomGasDeposit
@@ -53,7 +53,7 @@
 
 - type: entity
   parent: BaseGasDeposit
-  id: PlasmaGasDeposit
+  id: GasDepositPlasma
   suffix: Plasma
   components:
   - type: RandomGasDeposit
@@ -63,7 +63,7 @@
 
 - type: entity
   parent: BaseGasDeposit
-  id: AmmoniaGasDeposit
+  id: GasDepositAmmonia
   suffix: Ammonia
   components:
   - type: RandomGasDeposit
@@ -73,7 +73,7 @@
 
 - type: entity
   parent: BaseGasDeposit
-  id: WaterVaporGasDeposit
+  id: GasDepositWaterVapor
   suffix: Water Vapor
   components:
   - type: RandomGasDeposit
@@ -83,7 +83,7 @@
 
 - type: entity
   parent: BaseGasDeposit
-  id: NitrousOxideGasDeposit
+  id: GasDepositNitrousOxide
   suffix: Nitrous Oxide
   components:
   - type: RandomGasDeposit
@@ -93,11 +93,31 @@
 
 - type: entity
   parent: BaseGasDeposit
-  id: AirGasDeposit
+  id: GasDepositAir
   suffix: Air-like
   components:
   - type: RandomGasDeposit
     depositPrototype: AirLike
+
+- type: entity
+  parent: BaseGasDeposit
+  id: GasDepositMuddleEven
+  suffix: Muddled, Even
+  components:
+  - type: RandomGasDeposit
+    depositPrototype: MuddleEven
+  - type: Sprite
+    color: "#DDEEDD"
+
+- type: entity
+  parent: BaseGasDeposit
+  id: GasDepositMuddlePlasma
+  suffix: Muddled, Plasma-heavy
+  components:
+  - type: RandomGasDeposit
+    depositPrototype: MuddlePlasma
+  - type: Sprite
+    color: "#F0DDF0"
 
 # Debug item for detecting gas deposits
 - type: entity
