@@ -1747,6 +1747,8 @@ entities:
       - 1815
       - 1865
       - 1864
+      - 815
+      - 2729
   - uid: 2109
     components:
     - type: Transform
@@ -2333,16 +2335,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -8.5,6.5
       parent: 1
-  - uid: 515
-    components:
-    - type: MetaData
-      name: Cadet training
-    - type: Transform
-      pos: 14.5,14.5
-      parent: 1
-    - type: Door
-      secondsUntilStateChange: -22286.512
-      state: Opening
   - uid: 711
     components:
     - type: Transform
@@ -2353,6 +2345,13 @@ entities:
     components:
     - type: Transform
       pos: 2.5,1.5
+      parent: 1
+  - uid: 2730
+    components:
+    - type: MetaData
+      name: Cadet training
+    - type: Transform
+      pos: 14.5,14.5
       parent: 1
 - proto: AirlockNfsdLawyerLocked
   entities:
@@ -2385,7 +2384,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 8.5,17.5
       parent: 1
-  - uid: 815
+  - uid: 515
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
@@ -7693,6 +7692,8 @@ entities:
       - 2170
       - 1865
       - 1864
+      - 2729
+      - 2691
   - uid: 2214
     components:
     - type: Transform
@@ -8181,6 +8182,17 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 850
+      - 2213
+  - uid: 2729
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 16.5,11.5
+      parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 850
+      - 2213
 - proto: FloorDrain
   entities:
   - uid: 2721
@@ -9748,11 +9760,11 @@ entities:
   - uid: 1804
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 14.5,12.5
+      rot: -1.5707963267948966 rad
+      pos: 16.5,11.5
       parent: 1
     - type: AtmosPipeColor
-      color: '#0055CCFF'
+      color: '#990000FF'
   - uid: 1805
     components:
     - type: Transform
@@ -9789,10 +9801,10 @@ entities:
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
-      pos: 16.5,11.5
+      pos: 15.5,12.5
       parent: 1
     - type: AtmosPipeColor
-      color: '#990000FF'
+      color: '#0055CCFF'
   - uid: 1823
     components:
     - type: Transform
@@ -11025,6 +11037,22 @@ entities:
       parent: 1
     - type: AtmosPipeColor
       color: '#990000FF'
+  - uid: 2727
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 16.5,12.5
+      parent: 1
+    - type: AtmosPipeColor
+      color: '#0055CCFF'
+  - uid: 2728
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 17.5,12.5
+      parent: 1
+    - type: AtmosPipeColor
+      color: '#0055CCFF'
 - proto: GasPipeTJunction
   entities:
   - uid: 86
@@ -11040,6 +11068,14 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 14.5,21.5
+      parent: 1
+    - type: AtmosPipeColor
+      color: '#0055CCFF'
+  - uid: 890
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 14.5,12.5
       parent: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
@@ -11283,6 +11319,17 @@ entities:
     components:
     - type: Transform
       pos: 18.5,8.5
+      parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 850
+    - type: AtmosPipeColor
+      color: '#0055CCFF'
+  - uid: 815
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 18.5,12.5
       parent: 1
     - type: DeviceNetwork
       deviceLists:
