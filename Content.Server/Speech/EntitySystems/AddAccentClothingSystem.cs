@@ -51,7 +51,7 @@ public sealed class AddAccentClothingSystem : EntitySystem
         component.IsActive = false;
     }
 
-    // Frontier Start
+    // Frontier: togglable accents
     /// <summary>
     ///     Adds an alt verb allowing for the accent to be toggled easily.
     /// </summary>
@@ -100,5 +100,5 @@ public sealed class AddAccentClothingSystem : EntitySystem
             component.IsActive = true;
         }
     }
-    // Frontier End
+    // End Frontier: togglable accents
 }
