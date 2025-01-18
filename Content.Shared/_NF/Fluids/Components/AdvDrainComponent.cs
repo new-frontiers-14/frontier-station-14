@@ -39,19 +39,19 @@ public sealed partial class AdvDrainComponent : Component
     /// This will stay fixed to 1 second no matter what DrainFrequency is.
     /// </summary>
     [DataField]
-    public float UnitsPerSecond = 6f;
+    public float UnitsPerSecond = 20f;
 
     /// <summary>
     /// How many units are ejected from the buffer per second.
     /// </summary>
     [DataField]
-    public float UnitsDestroyedPerSecond = 6f;
+    public float UnitsDestroyedPerSecond = 20f;
 
     /// <summary>
-    /// Threshold of remaining volume to being destroying from the buffer
+    /// Threshold of volume to begin destroying from the buffer. The effective capacity of the drain.
     /// </summary>
     [DataField]
-    public float UnitsDestroyedThreshold = 6f;
+    public float UnitsDestroyedThreshold = 2000f;
 
     /// <summary>
     /// How many (unobstructed) tiles away the drain will
