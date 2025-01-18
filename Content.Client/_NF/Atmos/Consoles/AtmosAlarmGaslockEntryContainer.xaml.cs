@@ -11,7 +11,7 @@ using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Map;
 using System.Linq;
 
-namespace Content.Client.Atmos.Consoles;
+namespace Content.Client._NF.Atmos.Consoles;
 
 [GenerateTypedNameReferences]
 public sealed partial class AtmosAlarmGaslockEntryContainer : BoxContainer

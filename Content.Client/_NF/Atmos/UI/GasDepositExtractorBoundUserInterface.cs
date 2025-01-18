@@ -1,13 +1,11 @@
+using Content.Client.Atmos.UI;
 using Content.Server._NF.Atmos.Components;
-using Content.Shared.Atmos;
-using Content.Shared.Atmos.Components;
 using Content.Shared.Atmos.Piping.Binary.Components;
 using Content.Shared.IdentityManagement;
-using Content.Shared.Localizations;
 using JetBrains.Annotations;
 using Robust.Client.UserInterface;
 
-namespace Content.Client.Atmos.UI;
+namespace Content.Client._NF.Atmos.UI;
 
 /// <summary>
 /// Initializes a <see cref="GasPressurePumpWindow"/> and updates it when new server messages are received.

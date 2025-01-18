@@ -39,8 +39,13 @@ public sealed partial class GasSaleMenu : FancyWindow
     {
         Gases.Children.Clear();
         GasAmounts.Children.Clear();
+        bool hasGas = false;
         for (int i = 0; i < Atmospherics.TotalNumberOfGases; i++)
         {
+            var gasAmount = mixture.GetMoles(i);
+            if (gasAmount <= 0)
+                continue;
+
             Label gasLabel = new();
             if (i < GasStrings.Length)
                 gasLabel.Text = Loc.GetString(GasStrings[i]);
@@ -49,9 +54,16 @@ public sealed partial class GasSaleMenu : FancyWindow
             Gases.Children.Add(gasLabel);
 
             Label amountLabel = new();
-            amountLabel.Text = Loc.GetString("gas-sale-menu-quantity", ("value", mixture.GetMoles(i)));
+            amountLabel.Text = Loc.GetString("gas-sale-menu-quantity", ("value", gasAmount));
             amountLabel.HorizontalAlignment = HAlignment.Right;
             GasAmounts.Children.Add(amountLabel);
+            hasGas = true;
+        }
+        if (!hasGas)
+        {
+            Label noGasLabel = new();
+            noGasLabel.Text = Loc.GetString("gas-sale-menu-no-gases");
+            Gases.Children.Add(noGasLabel);
         }
         AppraisalLabel.Text = BankSystemExtensions.ToSpesoString(appraisal);
     }
