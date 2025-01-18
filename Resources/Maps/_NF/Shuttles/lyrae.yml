@@ -25,7 +25,7 @@ entities:
       name: Lyrae
     - type: Transform
       pos: 6.660883,-12.527287
-      parent: invalid
+      parent: 565
     - type: MapGrid
       chunks:
         0,0:
@@ -85,11 +85,13 @@ entities:
             id: BotGreyscale
           decals:
             147: 3,-4
+            200: 4,-5
         - node:
             color: '#FF0000FF'
             id: BotGreyscale
           decals:
             146: 4,-5
+            199: 3,-4
         - node:
             color: '#FFFFFFFF'
             id: Box
@@ -667,6 +669,18 @@ entities:
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: NavMap
+  - uid: 565
+    components:
+    - type: MetaData
+      name: Map Entity
+    - type: Transform
+    - type: Map
+      mapPaused: True
+    - type: PhysicsMap
+    - type: GridTree
+    - type: MovedGrids
+    - type: Broadphase
+    - type: OccluderTree
 - proto: AirAlarm
   entities:
   - uid: 63
@@ -2205,19 +2219,6 @@ entities:
     - type: Transform
       pos: -1.5,1.5
       parent: 2
-    - type: ContainerContainer
-      containers:
-        board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        bank-ATM-cashSlot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-    - type: Physics
-      canCollide: False
-    - type: ItemSlots
 - proto: CrateArtifactContainer
   entities:
   - uid: 511
@@ -2419,8 +2420,8 @@ entities:
       pos: 3.5,-4.5
       parent: 2
     - type: GasMixer
-      inletTwoConcentration: 0.21
-      inletOneConcentration: 0.79
+      inletTwoConcentration: 0.78
+      inletOneConcentration: 0.22
     - type: AtmosPipeColor
       color: '#0055CCFF'
 - proto: GasPassiveVent
@@ -3618,16 +3619,6 @@ entities:
     - type: Transform
       pos: 5.362302,2.1461782
       parent: 2
-- proto: OxygenCanister
-  entities:
-  - uid: 648
-    components:
-    - type: Transform
-      anchored: True
-      pos: 4.5,-4.5
-      parent: 2
-    - type: Physics
-      bodyType: Static
 - proto: NitrogenCanister
   entities:
   - uid: 673
@@ -3635,6 +3626,16 @@ entities:
     - type: Transform
       anchored: True
       pos: 3.5,-3.5
+      parent: 2
+    - type: Physics
+      bodyType: Static
+- proto: OxygenCanister
+  entities:
+  - uid: 648
+    components:
+    - type: Transform
+      anchored: True
+      pos: 4.5,-4.5
       parent: 2
     - type: Physics
       bodyType: Static
@@ -5107,7 +5108,7 @@ entities:
     - type: Transform
       pos: -10.5,12.5
       parent: 2
-- proto: WarpPointShip
+- proto: WarpPoint
   entities:
   - uid: 479
     components:
