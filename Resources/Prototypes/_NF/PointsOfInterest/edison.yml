@@ -8,29 +8,29 @@
 
 # Notes:
 #
-# - type: pointOfInterest
-  # id: Edison
-  # parent: BasePOI
-  # name: 'Edison Power Plant'
-  # minimumDistance: 3650
-  # maximumDistance: 6400
-  # spawnGroup: Required
-  # gridPath: /Maps/_NF/POI/edison.yml
-  # addComponents:
-  # - type: IFF
-    # color: "#3737C8"
+- type: pointOfInterest
+  id: Edison
+  parent: BasePOI
+  name: 'Edison Power Plant'
+  minimumDistance: 2650
+  maximumDistance: 5400
+  spawnGroup: Required
+  gridPath: /Maps/_NF/POI/edison.yml
+  addComponents:
+  - type: IFF
+    color: "#3737F8"
 
-# - type: gameMap
-  # id: Edison
-  # mapName: 'Edison Power Plant'
-  # mapPath: /Maps/_NF/POI/edison.yml
-  # minPlayers: 0
-  # stations:
-    # Edison:
-      # stationProto: RecordsFrontierOutpost
-      # components:
-        # - type: StationNameSetup
-          # mapNameTemplate: 'Edison Power Plant'
+- type: gameMap
+  id: Edison
+  mapName: 'Edison Power Plant'
+  mapPath: /Maps/_NF/POI/edison.yml
+  minPlayers: 0
+  stations:
+    Edison:
+      stationProto: RecordsFrontierOutpost
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Edison Power Plant'
         # - type: StationJobs
           # availableJobs:
             # Pilot: [ 0, 0 ]
