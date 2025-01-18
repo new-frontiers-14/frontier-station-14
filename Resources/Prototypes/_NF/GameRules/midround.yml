@@ -1,0 +1,26 @@
+- type: entity
+  parent: BaseGameRule
+  id: NFPirate
+  components:
+  - type: NFPirateRule
+  - type: AntagSelection
+    agentName: nf-pirate-round-end-agent-name
+    definitions:
+    - prefRoles: [ NFPirate ]
+      max: 999
+      playerRatio: 1
+      lateJoinAdditional: true
+      allowNonHumans: true
+      multiAntagSetting: NotExclusive
+      startingGear: NFPirateBaseGear
+      components:
+      - type: MailDisabled
+      - type: SpecialSectorStationRecord
+        recordGeneration: FalseRecord
+      - type: NpcFactionMember
+        factions:
+        - NFPirate
+      mindRoles:
+      - MindRoleNFPirate
+      briefing:
+        sound: "/Audio/Misc/thief_greeting.ogg"
