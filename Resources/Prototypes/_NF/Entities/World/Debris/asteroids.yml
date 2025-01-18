@@ -1,5 +1,5 @@
 ﻿# Asteroid types & loot tables
-# region Asteroid Table
+# region Rock Table
 - type: entity
   id: NFBaseAsteroidDebris
   parent: NFBaseDebris
@@ -26,7 +26,35 @@
     - type: IFF
       flags: HideLabel
       color: "#d67e27"
-# endregion Asteroid Table
+    - type: RandomEntityPopulator
+      entries: &gasDeposits
+      - params:
+          prob: 0.5
+          min: 0
+          max: 2
+          canBeAirSealed: true
+        entries:
+        - id: GasDepositOxygen
+          orGroup: deposit
+        - id: GasDepositNitrogen
+          orGroup: deposit
+        - id: GasDepositCarbonDioxide
+          orGroup: deposit
+        - id: GasDepositPlasma
+          orGroup: deposit
+        - id: GasDepositAmmonia
+          orGroup: deposit
+        - id: GasDepositWaterVapor
+          orGroup: deposit
+        - id: GasDepositNitrousOxide
+          orGroup: deposit
+        - id: GasDepositAir
+          orGroup: deposit
+        - id: GasDepositMuddleEven
+          orGroup: deposit
+        - id: GasDepositMuddlePlasma
+          orGroup: deposit
+# endregion Rock Table
 
 # region Snow Table
 - type: entity
@@ -52,6 +80,8 @@
             prob: 0.0002
     - type: IFF
       color: "#d6fffc"
+    - type: RandomEntityPopulator
+      entries: *gasDeposits
 # endregion Snow Table
 
 # region Andesite Table
@@ -78,6 +108,8 @@
             prob: 0.0003
     - type: IFF
       color: "#95c280"
+    - type: RandomEntityPopulator
+      entries: *gasDeposits
 # endregion Andesite Table
 
 # region Basalt Table
@@ -104,6 +136,8 @@
             prob: 0.0002
     - type: IFF
       color: "#b5b5b5"
+    - type: RandomEntityPopulator
+      entries: *gasDeposits
 # endregion Basalt Table
 
 # region Sand Table
@@ -130,6 +164,8 @@
             prob: 0.0002
     - type: IFF
       color: "#cad17b"
+    - type: RandomEntityPopulator
+      entries: *gasDeposits
 # endregion Sand Table
 
 # region Chromite Table
@@ -156,6 +192,8 @@
             prob: 0.0002
     - type: IFF
       color: "#8178cc"
+    - type: RandomEntityPopulator
+      entries: *gasDeposits
 # endregion Chromite Table
 
 # region AsteroidRock Table
@@ -182,6 +220,8 @@
             prob: 0.0002
     - type: IFF
       color: "#BF8C5C"
+    - type: RandomEntityPopulator
+      entries: *gasDeposits
 # endregion AsteroidRock Table
 
 # region Scrap Table
