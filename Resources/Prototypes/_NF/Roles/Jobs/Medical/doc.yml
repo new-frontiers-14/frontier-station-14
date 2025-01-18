@@ -1,15 +1,15 @@
 - type: job
-  id: MedicalOperationsManager
-  name: job-name-mom
-  description: job-description-mom
-  playTimeTracker: JobMedicalOperationsManager
+  id: DirectorofCare
+  name: job-name-doc
+  description: job-description-doc
+  playTimeTracker: JobDirectorofCare
   requirements:
     - !type:OverallPlaytimeRequirement
       time: 0 # 72000 # 20 hrs
   whitelisted: true
-  startingGear: MomGear
+  startingGear: DocGear
   alwaysUseSpawner: true
-  icon: "JobIconMom"
+  icon: "JobIconDoc"
   requireAdminNotify: true
   supervisors: job-supervisors-centcom
   weight: 170
@@ -28,11 +28,11 @@
     prototype: FrontierBirthdayGift
 
 - type: startingGear
-  id: MomGear
+  id: DocGear
   equipment:
     pocket1: WeaponDisabler
     pocket2: MedicalAppraisalTool
   storage:
     back:
-    - RubberStampMom
+    - RubberStampDoc
     - BoxFolderMedicalDoctor

@@ -450,13 +450,13 @@
 
 - type: entity
   parent: BaseSecurityPDA
-  id: MomPDA
-  name: medical operations manager PDA
+  id: DocPDA
+  name: director of care PDA
   description: It smells like disinfectant.
   components:
   - type: Pda
-    id: MomIDCard
-    state: pda-mom
+    id: DocIDCard
+    state: pda-doc
     penSlot:
       startingItem: PenCentcom
       priority: -1
@@ -480,7 +480,7 @@
       visible: false
   - type: Icon
     sprite: _NF/Objects/Devices/pda.rsi
-    state: pda-mom
+    state: pda-doc
   - type: CartridgeLoader
     preinstalled:
     - CrewManifestCartridge
