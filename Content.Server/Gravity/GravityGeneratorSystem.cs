@@ -1,7 +1,11 @@
 using Content.Server.Emp; // Frontier: Upstream - #28984
+using Content.Server.Popups;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
+using Content.Shared.Construction.Components; // Frontier
 using Content.Shared.Gravity;
+using Content.Shared.Tools.Components; // Frontier
+using Content.Shared.Popups; // Frontier
 
 namespace Content.Server.Gravity;
 
@@ -9,6 +13,8 @@ public sealed class GravityGeneratorSystem : EntitySystem
 {
     [Dependency] private readonly GravitySystem _gravitySystem = default!;
     [Dependency] private readonly SharedPointLightSystem _lights = default!;
+
+    [Dependency] private readonly PopupSystem _popupSystem = default!; // Frontier
 
     public override void Initialize()
     {
@@ -18,7 +24,7 @@ public sealed class GravityGeneratorSystem : EntitySystem
         SubscribeLocalEvent<GravityGeneratorComponent, ChargedMachineActivatedEvent>(OnActivated);
         SubscribeLocalEvent<GravityGeneratorComponent, ChargedMachineDeactivatedEvent>(OnDeactivated);
         // SubscribeLocalEvent<GravityGeneratorComponent, EmpPulseEvent>(OnEmpPulse); // Frontier: Upstream - #28984
-        SubscribeLocalEvent<GravityGeneratorComponent, UnanchorAttemptEvent>(OnUnanchorAttempt);
+        SubscribeLocalEvent<GravityGeneratorComponent, UnanchorAttemptEvent>(OnUnanchorAttempt); // Frontier
         SubscribeLocalEvent<GravityGeneratorComponent, ToolUseAttemptEvent>(OnToolUseAttempt); // Frontier
     }
 
@@ -66,11 +72,11 @@ public sealed class GravityGeneratorSystem : EntitySystem
     /// </summary>
     private void OnUnanchorAttempt(Entity<GravityGeneratorComponent> ent, ref UnanchorAttemptEvent args)
     {
-        if (!ent.Comp.SwitchedOn)
+        if (!ent.Comp.GravityActive)
             return;
 
         _popupSystem.PopupEntity(
-            Loc.GetString("station-anchor-unanchoring-failed"),
+            Loc.GetString("gravity-generator-unanchoring-failed"),
             ent,
             args.User,
             PopupType.Medium);
@@ -83,7 +89,7 @@ public sealed class GravityGeneratorSystem : EntitySystem
     /// </summary>
     private void OnToolUseAttempt(Entity<GravityGeneratorComponent> ent, ref ToolUseAttemptEvent args)
     {
-        if (!ent.Comp.SwitchedOn)
+        if (!ent.Comp.GravityActive)
             return;
 
         foreach (var quality in args.Qualities)
@@ -92,7 +98,7 @@ public sealed class GravityGeneratorSystem : EntitySystem
             if (quality == "Prying")
             {
                 _popupSystem.PopupEntity(
-                    Loc.GetString("station-anchor-unanchoring-failed"),
+                    Loc.GetString("gravity-generator-unanchoring-failed"),
                      ent,
                      args.User,
                      PopupType.Medium);
