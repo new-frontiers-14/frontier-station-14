@@ -1,4 +1,4 @@
-namespace Content.Shared.Item;
+namespace Content.Shared._NF.Item;
 
 /// <summary>
 ///     Raised directed at entity being picked up when someone picks it up sucessfully
