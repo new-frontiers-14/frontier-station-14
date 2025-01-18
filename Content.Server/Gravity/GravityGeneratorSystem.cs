@@ -18,6 +18,8 @@ public sealed class GravityGeneratorSystem : EntitySystem
         SubscribeLocalEvent<GravityGeneratorComponent, ChargedMachineActivatedEvent>(OnActivated);
         SubscribeLocalEvent<GravityGeneratorComponent, ChargedMachineDeactivatedEvent>(OnDeactivated);
         // SubscribeLocalEvent<GravityGeneratorComponent, EmpPulseEvent>(OnEmpPulse); // Frontier: Upstream - #28984
+        SubscribeLocalEvent<GravityGeneratorComponent, UnanchorAttemptEvent>(OnUnanchorAttempt);
+        SubscribeLocalEvent<GravityGeneratorComponent, ToolUseAttemptEvent>(OnToolUseAttempt); // Frontier
     }
 
     public override void Update(float frameTime)
@@ -56,6 +58,48 @@ public sealed class GravityGeneratorSystem : EntitySystem
         if (TryComp(xform.ParentUid, out GravityComponent? gravity))
         {
             _gravitySystem.RefreshGravity(xform.ParentUid, gravity);
+        }
+    }
+
+    /// <summary>
+    /// Frontier: Prevent unanchoring when anchor is active
+    /// </summary>
+    private void OnUnanchorAttempt(Entity<GravityGeneratorComponent> ent, ref UnanchorAttemptEvent args)
+    {
+        if (!ent.Comp.SwitchedOn)
+            return;
+
+        _popupSystem.PopupEntity(
+            Loc.GetString("station-anchor-unanchoring-failed"),
+            ent,
+            args.User,
+            PopupType.Medium);
+
+        args.Cancel();
+    }
+
+    /// <summary>
+    /// Frontier: Prevent disassembly when anchor is active
+    /// </summary>
+    private void OnToolUseAttempt(Entity<GravityGeneratorComponent> ent, ref ToolUseAttemptEvent args)
+    {
+        if (!ent.Comp.SwitchedOn)
+            return;
+
+        foreach (var quality in args.Qualities)
+        {
+            // prevent reconstruct
+            if (quality == "Prying")
+            {
+                _popupSystem.PopupEntity(
+                    Loc.GetString("station-anchor-unanchoring-failed"),
+                     ent,
+                     args.User,
+                     PopupType.Medium);
+
+                args.Cancel();
+                return;
+            }
         }
     }
 

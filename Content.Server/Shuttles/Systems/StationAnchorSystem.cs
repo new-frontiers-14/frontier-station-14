@@ -1,8 +1,9 @@
-﻿using Content.Server.Popups;
+using Content.Server.Popups;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Shuttles.Components;
 using Content.Shared.Construction.Components;
 using Content.Shared.Popups;
+using Content.Shared.Tools.Components; // Frontier
 
 namespace Content.Server.Shuttles.Systems;
 
@@ -21,6 +22,8 @@ public sealed class StationAnchorSystem : EntitySystem
         SubscribeLocalEvent<StationAnchorComponent, ChargedMachineDeactivatedEvent>(OnDeactivated);
 
         SubscribeLocalEvent<StationAnchorComponent, MapInitEvent>(OnMapInit);
+
+        SubscribeLocalEvent<StationAnchorComponent, ToolUseAttemptEvent>(OnToolUseAttempt); // Frontier
     }
 
     private void OnMapInit(Entity<StationAnchorComponent> ent, ref MapInitEvent args)
@@ -56,6 +59,31 @@ public sealed class StationAnchorSystem : EntitySystem
             PopupType.Medium);
 
         args.Cancel();
+    }
+
+    /// <summary>
+    /// Frontier: Prevent disassembly when anchor is active
+    /// </summary>
+    private void OnToolUseAttempt(Entity<StationAnchorComponent> ent, ref ToolUseAttemptEvent args)
+    {
+        if (!ent.Comp.SwitchedOn)
+            return;
+
+        foreach (var quality in args.Qualities)
+        {
+            // prevent reconstruct
+            if (quality == "Prying")
+            {
+                _popupSystem.PopupEntity(
+                    Loc.GetString("station-anchor-unanchoring-failed"),
+                     ent,
+                     args.User,
+                     PopupType.Medium);
+
+                args.Cancel();
+                return;
+            }
+        }
     }
 
     private void OnAnchorStationChange(Entity<StationAnchorComponent> ent, ref AnchorStateChangedEvent args)
