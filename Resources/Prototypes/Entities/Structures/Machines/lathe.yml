@@ -502,6 +502,8 @@
     - OreProcessorMachineCircuitboard
     - ElectrolysisUnitMachineCircuitboard
     - CentrifugeMachineCircuitboard
+    # - ChemDispenserMachineCircuitboard # Frontier
+    # - ChemMasterMachineCircuitboard # Frontier
     - CondenserMachineCircuitBoard
     - HotplateMachineCircuitboard
     - UniformPrinterMachineCircuitboard
@@ -530,8 +532,6 @@
       - CryoPodMachineCircuitboard
       - VaccinatorMachineCircuitboard
       - DiagnoserMachineCircuitboard
-      - ChemMasterMachineCircuitboard
-      - ChemDispenserMachineCircuitboard
       - BiomassReclaimerMachineCircuitboard
       - BiogeneratorMachineCircuitboard # Frontier BiofabricatorMachineCircuitboard<BiogeneratorMachineCircuitboard
       - SurveillanceCameraRouterCircuitboard
@@ -547,17 +547,13 @@
       - TurboItemRechargerCircuitboard
       - AutolatheHyperConvectionMachineCircuitboard
       - ProtolatheHyperConvectionMachineCircuitboard
-      - ReagentGrinderMachineCircuitboard
-      - HotplateMachineCircuitboard
-      - MicrowaveMachineCircuitboard
-      - ElectricGrillMachineCircuitboard
       - CircuitImprinterHyperConvectionMachineCircuitboard
       - FatExtractorMachineCircuitboard
       - FlatpackerMachineCircuitboard
       - SheetifierMachineCircuitboard
       - ShuttleConsoleCircuitboard
       - RadarConsoleCircuitboard
-      # - TechDiskComputerCircuitboard # Frontier: no tech disks
+      # - TechDiskComputerCircuitboard # Frontier
       - DawInstrumentMachineCircuitboard
       - CloningConsoleComputerCircuitboard
       - StasisBedMachineCircuitboard
@@ -579,7 +575,6 @@
       - ThrusterMachineCircuitboard
       - GyroscopeMachineCircuitboard
       - MiniGravityGeneratorCircuitboard
-      - MiniStationAnchorCircuitboard # Frontier
       - ShuttleGunKineticCircuitboard
       - GasRecyclerMachineCircuitboard
       - SeedExtractorMachineCircuitboard
@@ -591,8 +586,6 @@
       - APECircuitboard
       - ArtifactAnalyzerMachineCircuitboard
       - ArtifactCrusherMachineCircuitboard
-      - BoozeDispenserMachineCircuitboard
-      - SodaDispenserMachineCircuitboard
       - TelecomServerCircuitboard
       - MassMediaCircuitboard
       - ReagentGrinderIndustrialMachineCircuitboard
@@ -603,7 +596,6 @@
       - FireAlarmElectronics # Nyano
       - FirelockElectronics # Nyano
       - IntercomElectronics # Nyano
-      - MailingUnitElectronics # Nyano
       - StationMapElectronics # Nyano
       - DeepFryerMachineCircuitboard # Nyano
       - SmallThrusterMachineCircuitboard # Frontier
@@ -611,12 +603,22 @@
       - MedicalAssemblerMachineCircuitboard # Frontier
       - KitchenAssemblerMachineCircuitboard # Frontier
       - ElectricRangeMachineCircuitboard # Frontier
+      - ChemDispenserMachineCircuitboard # Frontier
+      - ChemMasterMachineCircuitboard # Frontier
+      - ReagentGrinderMachineCircuitboard # Frontier
+      - HotplateMachineCircuitboard # Frontier
+      - MicrowaveMachineCircuitboard # Frontier
+      - ElectricGrillMachineCircuitboard # Frontier
+      - BoozeDispenserMachineCircuitboard # Frontier
+      - SodaDispenserMachineCircuitboard # Frontier
+      - MiniStationAnchorCircuitboard # Frontier
   - type: EmagLatheRecipes
     emagDynamicRecipes:
-      - ShuttleGunDusterCircuitboard
-      - ShuttleGunFriendshipCircuitboard
-      - ShuttleGunPerforatorCircuitboard
-      - ShuttleGunSvalinnMachineGunCircuitboard
+      # - ShuttleGunDusterCircuitboard # Frontier
+      # - ShuttleGunFriendshipCircuitboard # Frontier
+      # - ShuttleGunPerforatorCircuitboard # Frontier
+      # - ShuttleGunSvalinnMachineGunCircuitboard # Frontier
+      - ShuttleGunKineticCircuitboard # Frontier
   - type: MaterialStorage
     whitelist:
       tags:

@@ -1,3 +1,49 @@
+# Tier 1
+
+- type: technology
+  id: FoodService
+  name: research-technology-food-service
+  icon:
+    sprite: Structures/Machines/juicer.rsi
+    state: juicer1
+  discipline: CivilianServices
+  tier: 1
+  cost: 7500
+  recipeUnlocks:
+  - MicrowaveMachineCircuitboard
+  - ReagentGrinderMachineCircuitboard
+  - ElectricGrillMachineCircuitboard
+  - BoozeDispenserMachineCircuitboard
+  - SodaDispenserMachineCircuitboard
+
+# Tier 2
+
+- type: technology
+  id: ChemicalDispensary
+  name: research-technology-chemical-dispensary
+  icon:
+    sprite: Structures/dispensers.rsi
+    state: industrial-working
+  discipline: CivilianServices
+  tier: 2
+  cost: 10000
+  recipeUnlocks:
+  - ChemMasterMachineCircuitboard
+  - ChemDispenserMachineCircuitboard
+
+- type: technology
+  id: IndustrialMedicine
+  name: research-technology-industrial-medicine
+  icon:
+    sprite: _NF/Structures/Machines/medical_assembler.rsi
+    state: icon
+  discipline: CivilianServices
+  tier: 2
+  cost: 5000
+  recipeUnlocks:
+  - MedicalAssemblerMachineCircuitboard
+  - HotplateMachineCircuitboard
+
 # Tier 3
 
 - type: technology
@@ -11,18 +57,6 @@
   cost: 15000
   recipeUnlocks:
   - JetpackVoid
-
-- type: technology
-  id: IndustrialMedicine
-  name: research-technology-industrial-medicine
-  icon:
-    sprite: _NF/Structures/Machines/medical_assembler.rsi
-    state: icon
-  discipline: CivilianServices
-  tier: 2
-  cost: 5000
-  recipeUnlocks:
-  - MedicalAssemblerMachineCircuitboard
 
 - type: technology
   id: AdvancedFoodService
