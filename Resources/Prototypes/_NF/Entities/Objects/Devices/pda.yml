@@ -464,18 +464,11 @@
   - type: PdaBorderColor
     borderColor: "#789876"
     accentHColor: "#447987"
-  - type: Sprite
-    sprite: _NF/Objects/Devices/pda.rsi
-    layers:
-    - map: [ "enum.PdaVisualLayers.Base" ]
-    - state: "light_overlay"
-      map: [ "enum.PdaVisualLayers.Flashlight" ]
-      shader: "unshaded"
-      visible: false
-    - state: "id_overlay"
-      map: [ "enum.PdaVisualLayers.IdLight" ]
-      shader: "unshaded"
-      visible: false
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-doc
   - type: Icon
     sprite: _NF/Objects/Devices/pda.rsi
     state: pda-doc
