@@ -172,23 +172,3 @@
         docked-unlit:
           True: { visible: true }
           False: { visible: false }
-
-- type: entity
-  parent: [ BaseStructureIndestructible, BaseStructureDisableToolUse, BaseComputer ]
-  id: GasSaleConsole
-  name: gas sale console
-  description: Sells gas pumped into a linked gas sale port/point.
-  components:
-  - type: GasSaleConsole
-  - type: ActivatableUI
-    key: enum.GasSaleConsoleUiKey.Key
-  - type: UserInterface
-    interfaces:
-      enum.GasSaleConsoleUiKey.Key:
-        type: GasSaleConsoleBoundUserInterface
-      enum.WiresUiKey.Key:
-        type: WiresBoundUserInterface
-  - type: Computer
-    board: Null # FIXME
-  - type: MarketModifier
-    mod: 1
