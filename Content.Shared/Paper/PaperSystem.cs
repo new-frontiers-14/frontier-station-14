@@ -12,7 +12,8 @@ using static Content.Shared.Paper.PaperComponent;
 using Content.Shared.Timing; // Frontier
 using Content.Shared.Access.Systems; // Frontier
 using Content.Shared.Verbs; // Frontier
-using Content.Shared.Ghost; // Frontier
+using Content.Shared.Ghost;
+using Content.Shared.Mobs; // Frontier
 
 namespace Content.Shared.Paper;
 
@@ -134,7 +135,8 @@ public sealed class PaperSystem : EntitySystem
     private void OnInteractUsing(Entity<PaperComponent> entity, ref InteractUsingEvent args)
     {
         // only allow editing if there are no stamps or when using a cyberpen
-        var editable = entity.Comp.StampedBy.Count == 0 || _tagSystem.HasTag(args.Used, "WriteIgnoreStamps");
+        var editable = entity.Comp.StampedBy.Count == 0 || _tagSystem.HasTag(args.Used, "WriteIgnoreStamps")
+                       || _tagSystem.HasTag(args.Used, "NFWriteIgnoreUnprotectedStamps") && !_tagSystem.HasTag(entity, "NFPaperStampProtected"); // Frontier: protected stamps
         if (_tagSystem.HasTag(args.Used, "Write") && editable)
         {
             if (entity.Comp.EditingDisabled)
@@ -184,9 +186,15 @@ public sealed class PaperSystem : EntitySystem
 
                 _audio.PlayPredicted(stampComp.Sound, entity, args.User);
 
-                UpdateUserInterface(entity);
+                // Frontier: stamp delay and protection
+                DelayStamp(args.Used);
 
-                DelayStamp(args.Used); // Frontier: prevent stamp spam
+                // Note: mode is not changed here, anyone with an open paper may still save changes.
+                if (stampComp.Protected)
+                    _tagSystem.AddTag(entity, "NFPaperStampProtected");
+                // End Frontier
+
+                UpdateUserInterface(entity);
             } // Frontier: added an indent level
         }
     }
