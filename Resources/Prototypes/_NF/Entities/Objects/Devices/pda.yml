@@ -448,14 +448,14 @@
         pda-janitor
 
 - type: entity
-  parent: BaseSecurityPDA
+  parent: CMOPDA
   id: DocPDA
   name: director of care PDA
   description: It smells like disinfectant.
   components:
   - type: Pda
     id: DocIDCard
-    state: pda-doc
+    state: medic
     penSlot:
       startingItem: PenCentcom
       priority: -1
