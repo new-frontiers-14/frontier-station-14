@@ -22,7 +22,7 @@ frontier-lobby-exped-description = This is base camp for mercenaries and alike. 
    - Purchase expedition-ready ships
    - Socialize with other mercenaries - or not.
 
-frontier-lobby-medical-subtext = The medical dispatch hub and retrieval logistics center.
+frontier-lobby-medical-subtext = The medical dispatch hub and search and rescue center.
 frontier-lobby-medical-description = Frontier's medical dispatch hub. Here you can:
    - Start or find a medical response crew
    - Socialize with other medics
