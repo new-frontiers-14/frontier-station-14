@@ -453,4 +453,5 @@ public enum LogType
     /// An admin spawns a refund for a player.
     /// </summary>
     AdminRefund = 203,
+    AtmosDirectionChanged = 204,
 }
