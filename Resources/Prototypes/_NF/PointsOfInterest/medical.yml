@@ -10,19 +10,15 @@
 # Medical ship garage, medical manager base and medical bounty staging area.
 - type: pointOfInterest
   id: Medical
+  parent: BasePOI
   name: 'Medical Dispatch'
   minimumDistance: 1650
   maximumDistance: 3400
-  spawnGamePreset: [ NFAdventure, NFPirate ]
   spawnGroup: Required
   gridPath: /Maps/_NF/POI/medical.yml
   addComponents:
   - type: IFF
     color: "#00b7eb"
-    readOnly: true
-  - type: Shuttle
-    angularDamping: 999999
-    linearDamping: 999999
   - type: StationTransit
 
 - type: gameMap
