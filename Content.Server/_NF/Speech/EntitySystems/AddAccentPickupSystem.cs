@@ -39,7 +39,7 @@ public sealed class AddAccentPickupSystem : EntitySystem
 
     private void OnDropped(EntityUid uid, AddAccentPickupComponent component, DroppedEvent args)
     {
-        component.Holder = new EntityUid(0); // null out the component wearer entry to prevent alt verb interactions when no longer worn.
+        component.Holder = EntityUid.Invalid; // prevent alt verb
         if (!component.IsActive)
             return;
 

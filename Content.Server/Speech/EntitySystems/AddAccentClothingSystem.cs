@@ -37,7 +37,7 @@ public sealed class AddAccentClothingSystem : EntitySystem
 
     private void OnGotUnequipped(EntityUid uid, AddAccentClothingComponent component, ref ClothingGotUnequippedEvent args)
     {
-        component.Wearer = new EntityUid(0); // null out the component wearer entry to prevent alt verb interactions when no longer worn. Frontier
+        component.Wearer = EntityUid.Invalid; // Frontier: prevent alt verb
         if (!component.IsActive)
             return;
 
