@@ -15,6 +15,7 @@ using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Client._NF.Atmos.Consoles; // Frontier
 
 namespace Content.Client.Atmos.Consoles;
 
