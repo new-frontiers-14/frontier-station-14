@@ -236,3 +236,26 @@
       state: shipyard_sr
     - map: ["computerLayerKeys"]
       state: telesci_key
+- type: entity
+  id: ComputerShipyardCargo
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerShipyardBase]
+  name: cargo container console
+  description: Used to buy cargo containers
+  components:
+  - type: ActivatableUI
+    key: enum.ShipyardConsoleUiKey.Cargo
+  - type: UserInterface
+    interfaces:
+      enum.ShipyardConsoleUiKey.Cargo:
+        type: ShipyardConsoleBoundUserInterface
+  - type: Sprite
+    sprite: _NF/Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: shipyard
+    - map: ["computerLayerKeys"]
+      state: telesci_key

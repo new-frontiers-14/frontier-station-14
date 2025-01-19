@@ -124,12 +124,19 @@
 
 
 - type: entity
-  parent: BaseShipVoucher
+  parent: BaseItem
   id: CargoVoucher
-  name: Cargo Crate Voucher
-  description: Allows for purchasing and selling of cargo containers.
+  name: Cargo Voucher
+  description: Used to buy cargo containers from a cargo container console
   components:
-  - type: CargoVoucher
+  - type: Sprite
+    sprite: _NF/Objects/Misc/shipyard_voucher.rsi
+  - type: Item
+    size: Small
+    heldPrefix: default
+    storedRotation: -90
+  - type: StaticPrice
+    price: 10000
+  - type: ShipyardVoucher
     destroyOnEmpty: false
-    access:
-    - Maintenance # An access every ID card starts with
+    consoleType: Cargo
