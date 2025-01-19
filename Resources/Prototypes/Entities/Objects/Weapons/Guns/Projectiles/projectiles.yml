@@ -5,7 +5,7 @@
   - type: TimedDespawn
     lifetime: 0.4
   - type: Sprite
-    drawdepth: Effects
+    drawdepth: BelowMobs
     layers:
     - shader: unshaded
       map: ["enum.EffectLayers.Unshaded"]
@@ -1057,6 +1057,7 @@
     count: 3 #bit stronger than a disabler if you hit your shots you goober, still not a 2 hit stun though
     spread: 9
 
+
 # Frontier projectiles
 # The game wont allow them to sit under _NF.
 # TODO: redefine the flybyfixture anchor locally; it probably will.
@@ -1093,8 +1094,8 @@
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
     layers:
-      - state: emp_projectile
-        shader: unshaded
+    - state: emp_projectile
+      shader: unshaded
   - type: EmpOnTrigger
     range: 0.3
     energyConsumption: 2700000
@@ -1115,7 +1116,7 @@
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Projectiles/projectiles2.rsi
     layers:
-      - state: frag-emp
+    - state: frag-emp
   - type: EmpOnTrigger
     range: 4
     energyConsumption: 2700000
@@ -1130,8 +1131,8 @@
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
     layers:
-      - state: emp_projectile
-        shader: unshaded
+    - state: emp_projectile
+      shader: unshaded
   - type: Ammo
     muzzleFlash: null
   - type: Physics
@@ -1165,9 +1166,9 @@
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Projectiles/projectiles2.rsi
     layers:
-      - state: ball-emp
-      - state: ball-emp-unlit
-        shader: unshaded
+    - state: ball-emp
+    - state: ball-emp-unlit
+      shader: unshaded
   - type: PointLight
     radius: 1
     color: cyan

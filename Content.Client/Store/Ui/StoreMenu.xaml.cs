@@ -64,7 +64,10 @@ public sealed partial class StoreMenu : DefaultWindow
         foreach (var type in currency)
         {
             if (type.Value.CanWithdraw && type.Value.Cash != null && type.Key.Item2 > 0)
+            {
                 disabled = false;
+                break;
+            }
         }
 
         WithdrawButton.Disabled = disabled;
