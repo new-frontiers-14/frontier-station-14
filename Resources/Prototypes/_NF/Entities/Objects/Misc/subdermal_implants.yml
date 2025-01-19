@@ -107,3 +107,44 @@
   - type: SubdermalImplant
     permanent: true
   - type: BibleUserImplant
+
+- type: entity
+  parent: BaseSubdermalImplant
+  id: RedLightImplant
+  name: light implant (red)
+  description: This implant emits light from the user's skin on activation.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SubdermalImplant
+    implantAction: ActionToggleLight
+    permanent: true
+  - type: PointLight
+    enabled: false
+    radius: 2.5
+    softness: 5
+    mask: /Textures/Effects/LightMasks/cone.png
+    autoRot: true
+    color: "#ff0000"
+  - type: UnpoweredFlashlight
+  - type: Tag
+    tags:
+    - SubdermalImplant
+    - HideContextMenu
+    - Flashlight
+
+- type: entity
+  parent: BaseSubdermalImplant
+  id: DissonantWhispersImplant
+  name: dissonant whispers implant
+  description: This implant allows user to emmit dissonant whispers.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SubdermalImplant
+    implantAction: ActionActivateDissonantWhispersImplant
+    permanent: true
+  - type: TriggerImplantAction
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/_NF/Effects/bloodcult/whispers.ogg
+      params:
+        variation: 0.125

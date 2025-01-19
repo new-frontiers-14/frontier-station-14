@@ -183,6 +183,148 @@
           params:
             volume: -3
 
+# Enhanced version of the vanilla Janicart that adds a bucket and mop slot.
+- type: entity
+  id: NFVehicleJanicart
+  parent: VehicleJanicart
+  components:
+  - type: ItemSlots
+    slots:
+      key_slot:
+        name: vehicle-slot-component-slot-name-keys
+        whitelist:
+          requireAll: true
+          tags:
+          - VehicleKey
+          - JanicartKeys
+        insertSound:
+          path: /Audio/Effects/Vehicle/vehiclestartup.ogg
+          params:
+            volume: -3
+        priority: 10
+      mop_slot: &mopSlot
+        name: janitorial-trolley-slot-component-slot-name-mop
+        whitelist:
+          tags:
+            - Mop
+        insertOnInteract: false # or it conflicts with bucket logic
+        priority: 9 # Higher than bucket slot
+      plunger_slot: &plungerSlot
+        name: janitorial-trolley-slot-component-slot-name-plunger
+        whitelist:
+          tags:
+            - Plunger
+        priority: 8
+      wetfloorsign_slot4: &wetFloorSignSlot
+        name: janitorial-trolley-slot-component-slot-name-sign
+        whitelist:
+          tags:
+            - WetFloorSign
+        priority: 7
+      wetfloorsign_slot3: *wetFloorSignSlot
+      wetfloorsign_slot2: *wetFloorSignSlot
+      wetfloorsign_slot1: *wetFloorSignSlot
+      lightreplacer_slot: &lightReplacerSlot
+        name: janitorial-trolley-slot-component-slot-name-lightreplacer
+        whitelist:
+          components:
+            - LightReplacer
+        priority: 6
+      spraybottle_slot: &sprayBottleSlot
+        name: janitorial-trolley-slot-component-slot-name-spray
+        whitelist:
+          tags:
+            - Spray
+        insertOnInteract: false # or it conflicts with bucket logic
+        priority: 5 # Higher than bucket slot
+      bucket_slot: &bucketSlot
+        name: janitorial-trolley-slot-component-slot-name-bucket
+        whitelist:
+          tags:
+            - Bucket
+        insertOnInteract: false # or it also conflicts with bucket logic
+        priority: 4 # Higher than trash bag slot
+      trashbag_slot: &trashBagSlot
+        name: janitorial-trolley-slot-component-slot-name-trashbag
+        whitelist:
+          tags:
+            - TrashBag
+        priority: 3 # Higher than drinking priority
+  - type: ItemMapper
+    mapLayers:
+      storage:
+        whitelist:
+          tags:
+            - TrashBag
+    sprite: Objects/Vehicles/janicart.rsi
+  - type: Appearance
+  - type: Spillable
+    solution: bucket
+    spillDelay: 3.0
+    spillWhenThrown: false
+  - type: SolutionContainerManager
+    solutions:
+      bucket:
+        maxVol: 800
+  - type: DrainableSolution
+    solution: bucket
+  - type: RefillableSolution
+    solution: bucket
+  - type: ExaminableSolution
+    solution: bucket
+  - type: Tag
+    tags:
+      - Wringer
+  - type: Drink
+    solution: bucket
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: []
+      mop_slot: !type:ContainerSlot {}
+      plunger_slot: !type:ContainerSlot {}
+      wetfloorsign_slot4: !type:ContainerSlot {}
+      wetfloorsign_slot3: !type:ContainerSlot {}
+      wetfloorsign_slot2: !type:ContainerSlot {}
+      wetfloorsign_slot1: !type:ContainerSlot {}
+      lightreplacer_slot: !type:ContainerSlot {}
+      spraybottle_slot: !type:ContainerSlot {}
+      bucket_slot: !type:ContainerSlot {}
+      trashbag_slot: !type:ContainerSlot {}
+  - type: StaticPrice
+    price: 375 # Same as flatpack
+
+- type: entity
+  parent: NFVehicleJanicart
+  id: NFVehicleJanicartKey
+  suffix: With key
+  components:
+  - type: ItemSlots
+    slots:
+      key_slot:
+        name: vehicle-slot-component-slot-name-keys
+        whitelist:
+          requireAll: true
+          tags:
+          - VehicleKey
+          - JanicartKeys
+        startingItem: VehicleKeyJanicart
+        insertSound:
+          path: /Audio/Effects/Vehicle/vehiclestartup.ogg
+          params:
+            volume: -3
+        priority: 9
+      mop_slot: *mopSlot
+      plunger_slot: *plungerSlot
+      wetfloorsign_slot4: *wetFloorSignSlot
+      wetfloorsign_slot3: *wetFloorSignSlot
+      wetfloorsign_slot2: *wetFloorSignSlot
+      wetfloorsign_slot1: *wetFloorSignSlot
+      lightreplacer_slot: *lightReplacerSlot
+      spraybottle_slot: *sprayBottleSlot
+      bucket_slot: *bucketSlot
+      trashbag_slot: *trashBagSlot
+
 # Mail carrier
 - type: entity
   parent: VehicleSkeletonMotorcycleNF
@@ -275,7 +417,7 @@
   - VehicleHoverbikeMailcarrier
   - BaseC2ContrabandUnredeemable
   id: VehicleHoverbikeNfsd
-  name: nfsd hoverbike
+  name: NFSD hoverbike
   description: An NFSD issued turbine with bike handles. Very safe.
   components:
   - type: Vehicle
