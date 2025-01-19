@@ -11,6 +11,27 @@
   - ChiefMedicalOfficerJumpskirt
 
 - type: loadoutGroup
+  id: DocGloves
+  name: loadout-group-contractor-gloves
+  minLimit: 0
+  loadouts:
+  - NitrileGloves
+  - LatexGloves
+
+- type: loadoutGroup
+  id: DocBackpack
+  name: loadout-group-contractor-backpack
+  loadouts:
+  - DocClothingBackpackMedical
+  - DocClothingBackpackDuffelMedical
+  - DocClothingBackpackSatchelMedical
+  - DocClothingBackpackMessengerMedical
+  subgroups:
+  - ContractorBackpack
+  fallback:
+  - DocClothingBackpackMedical
+
+- type: loadoutGroup
   id: DocHead
   name: loadout-group-contractor-head
   minLimit: 0
@@ -24,37 +45,35 @@
   id: DocEars
   name: loadout-group-contractor-ears
   hidden: true # No point in showing this, it gets auto-selected.
-  minLimit: 1
-  maxLimit: 1
   loadouts:
-  - DocClothingHeadsetCommand
+  - DocClothingHeadsetDoc
   fallbacks:
-  - DocClothingHeadsetCommand
+  - DocClothingHeadsetDoc
 
 - type: loadoutGroup
   id: DocNeck
   name: loadout-group-contractor-neck
   minLimit: 0
   loadouts:
-  - ChiefMedicalOfficerCloak
+  - DocClothingCloakCmo
+  - DocClothingNeckMantleCMO
 
 - type: loadoutGroup
   id: DocPDA
   name: loadout-group-contractor-id
   hidden: true # No point in showing this, it gets auto-selected.
   loadouts:
-  - MedicDocPDA
+  - DocDocPDA
   fallbacks:
-  - MedicDocPDA
+  - DocDocPDA
 
 - type: loadoutGroup
   id: DocShoes
   name: loadout-group-contractor-shoes
   loadouts:
-  - MercenaryClothingShoesBootsMercenary
-  - MercenaryClothingShoesBootsJack
-  - MercenaryClothingShoesBootsCombat
+  - DocClothingShoesColorWhite
+  - StcClothingShoesBootsLaceup # reused purposefully
   subgroups:
-  - PilotShoes
+  - ContractorShoes
   fallbacks:
-  - MercenaryClothingShoesBootsMercenary
+  - DocClothingShoesColorWhite
