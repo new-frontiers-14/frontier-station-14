@@ -1,0 +1,22 @@
+- type: entity
+  name: long-range holopad
+  description: "An experimental floor-mounted device for projecting holographic images via bluespace."
+  parent: Holopad
+  id: NFHolopadShip
+  suffix: Ship
+  components:
+  - type: Telephone
+    ringTone: /Audio/Machines/double_ring.ogg #change me to something funny
+    listeningRange: 3
+    speakerVolume: Speak
+    transmissionRange: Map
+    compatibleRanges:
+    - Grid
+    - Map
+    - Unlimited
+    ignoreTelephonesOnSameGrid: true
+  - type: Holopad
+    hologramProtoId: HolopadHologram
+    useStationName: true
+  - type: AccessReader
+    access: [ [ "HeadOfSecurity" ] ]
