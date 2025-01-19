@@ -239,7 +239,8 @@ uplink-chemistry-kit-desc = A starter kit for the aspiring chemist, includes two
 uplink-knives-kit-name = Throwing Knives Kit
 uplink-knives-kit-desc = A set of 4 syndicate branded throwing knives, perfect for embedding into the body of your victims. Capable of ignoring armor entirely when thrown.
 
-uplink-meds-bundle-name = Interdyne Medical Bundle
+#Imp Rename
+uplink-meds-bundle-name = Syndicate Medical Bundle
 uplink-meds-bundle-desc = An assortment of autoinjectors and premium medical equipment to cover for every possible situation. Contains an elite compact defibrillator that can be used as a weapon.
 
 # Frontier: L6<LMG-6
