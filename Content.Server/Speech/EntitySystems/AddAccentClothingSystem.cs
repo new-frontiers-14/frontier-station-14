@@ -74,10 +74,7 @@ public sealed class AddAccentClothingSystem : EntitySystem
         {
             // try to remove the accent if it's enabled
             var componentType = _componentFactory.GetRegistration(component.Accent).Type;
-            if (EntityManager.HasComponent(component.Wearer, componentType))
-            {
-                EntityManager.RemoveComponent(component.Wearer, componentType);
-            }
+            RemComp(component.Wearer, componentType);
             component.IsActive = false;
             // we don't wipe out wearer in this case
         }

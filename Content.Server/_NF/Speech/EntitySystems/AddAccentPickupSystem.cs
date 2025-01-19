@@ -13,12 +13,12 @@ public sealed class AddAccentPickupSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<AddAccentPickupComponent, GettingPickedUpEvent>(OnPickup);
+        SubscribeLocalEvent<AddAccentPickupComponent, PickedUpEvent>(OnPickup);
         SubscribeLocalEvent<AddAccentPickupComponent, DroppedEvent>(OnDropped);
         SubscribeLocalEvent<AddAccentPickupComponent, GetVerbsEvent<AlternativeVerb>>(OnGetAltVerbs);
     }
 
-    private void OnPickup(EntityUid uid, AddAccentPickupComponent component, ref GettingPickedUpEvent args)
+    private void OnPickup(EntityUid uid, AddAccentPickupComponent component, ref PickedUpEvent args)
     {
         // does the user already has this accent?
         var componentType = _componentFactory.GetRegistration(component.Accent).Type;
@@ -26,7 +26,7 @@ public sealed class AddAccentPickupSystem : EntitySystem
             return;
 
         // add accent to the user
-        var accentComponent = (Component) _componentFactory.GetComponent(componentType);
+        var accentComponent = (Component)_componentFactory.GetComponent(componentType);
         AddComp(args.User, accentComponent);
 
         // snowflake case for replacement accent
@@ -45,10 +45,7 @@ public sealed class AddAccentPickupSystem : EntitySystem
 
         // try to remove accent
         var componentType = _componentFactory.GetRegistration(component.Accent).Type;
-        if (EntityManager.HasComponent(args.User, componentType))
-        {
-            EntityManager.RemoveComponent(args.User, componentType);
-        }
+        RemComp(args.User, componentType);
 
         component.IsActive = false;
     }
@@ -71,14 +68,11 @@ public sealed class AddAccentPickupSystem : EntitySystem
 
     private void ToggleAccent(EntityUid uid, AddAccentPickupComponent component)
     {
+        var componentType = _componentFactory.GetRegistration(component.Accent).Type;
         if (component.IsActive)
         {
             // try to remove the accent if it's enabled
-            var componentType = _componentFactory.GetRegistration(component.Accent).Type;
-            if (EntityManager.HasComponent(component.Holder, componentType))
-            {
-                EntityManager.RemoveComponent(component.Holder, componentType);
-            }
+            RemComp(component.Holder, componentType);
             component.IsActive = false;
             // we don't wipe out Holder in this case
         }
@@ -86,7 +80,6 @@ public sealed class AddAccentPickupSystem : EntitySystem
         {
             // try to add the accent as if we are equipping this item again
             // does the user already has this accent?
-            var componentType = _componentFactory.GetRegistration(component.Accent).Type;
             if (HasComp(component.Holder, componentType))
                 return;
 
