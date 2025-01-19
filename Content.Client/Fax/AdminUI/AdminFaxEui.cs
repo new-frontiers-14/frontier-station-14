@@ -16,7 +16,7 @@ public sealed class AdminFaxEui : BaseEui
         _window.OnClose += () => SendMessage(new AdminFaxEuiMsg.Close());
         _window.OnFollowFax += entity => SendMessage(new AdminFaxEuiMsg.Follow(entity));
         _window.OnMessageSend += args => SendMessage(new AdminFaxEuiMsg.Send(args.entity, args.title,
-                    args.stampedBy, args.message, args.stampSprite, args.stampColor, args.locked));
+                    args.stampedBy, args.message, args.stampSprite, args.stampColor, args.locked, args.stampProtected)); // Frontier
     }
 
     public override void Opened()
