@@ -8,6 +8,8 @@ using Content.Shared.Atmos.Components;
 using Content.Shared.Atmos.EntitySystems;
 using Content.Shared.Audio;
 using JetBrains.Annotations;
+using Content.Server.Administration.Logs; // Frontier
+using Content.Shared.Database; // Frontier
 
 namespace Content.Server.Atmos.Piping.Binary.EntitySystems;
 
@@ -17,6 +19,7 @@ public sealed class GasPressurePumpSystem : SharedGasPressurePumpSystem
     [Dependency] private readonly AtmosphereSystem _atmosphereSystem = default!;
     [Dependency] private readonly SharedAmbientSoundSystem _ambientSoundSystem = default!;
     [Dependency] private readonly NodeContainerSystem _nodeContainer = default!;
+    [Dependency] private readonly IAdminLogManager _adminLogger = default!; // Frontier
 
     public override void Initialize()
     {
@@ -54,4 +57,39 @@ public sealed class GasPressurePumpSystem : SharedGasPressurePumpSystem
             _ambientSoundSystem.SetAmbience(uid, removed.TotalMoles > 0f);
         }
     }
+
+    // Frontier: server-side pump accessors
+    public void SetPumpDirection(Entity<GasPressurePumpComponent> pump, bool inwards, EntityUid actor)
+    {
+        if (!pump.Comp.SettableDirection || pump.Comp.PumpingInwards == inwards)
+            return;
+
+        var temp = pump.Comp.OutletName;
+        pump.Comp.OutletName = pump.Comp.InletName;
+        pump.Comp.InletName = temp;
+
+        pump.Comp.PumpingInwards = inwards;
+        _adminLogger.Add(LogType.AtmosDirectionChanged, LogImpact.Medium,
+            $"{ToPrettyString(actor):player} set the direction on {ToPrettyString(pump.Owner):device} to {(inwards ? "in" : "out")}");
+        Dirty(pump.Owner, pump.Comp);
+        UpdateAppearance(pump.Owner, pump.Comp);
+    }
+
+    public void SetPumpPressure(Entity<GasPressurePumpComponent> pump, float pressure, EntityUid actor)
+    {
+        pump.Comp.TargetPressure = Math.Clamp(pressure, 0f, Atmospherics.MaxOutputPressure);
+        _adminLogger.Add(LogType.AtmosPressureChanged, LogImpact.Medium,
+            $"{ToPrettyString(actor):player} set the pressure on {ToPrettyString(pump.Owner):device} to {pressure}kPa");
+        Dirty(pump.Owner, pump.Comp);
+    }
+
+    public void SetPumpStatus(Entity<GasPressurePumpComponent> pump, bool enabled, EntityUid actor)
+    {
+        pump.Comp.Enabled = enabled;
+        _adminLogger.Add(LogType.AtmosPowerChanged, LogImpact.Medium,
+            $"{ToPrettyString(actor):player} set the power on {ToPrettyString(pump.Owner):device} to {enabled}");
+        Dirty(pump.Owner, pump.Comp);
+        UpdateAppearance(pump.Owner, pump.Comp);
+    }
+    // End Frontier: server-side pump accessors
 }

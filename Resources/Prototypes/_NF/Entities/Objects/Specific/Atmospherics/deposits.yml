@@ -1,0 +1,132 @@
+# TODO move all of this to tiles once tile smoothing is supported
+- type: entity
+  id: BaseGasDeposit
+  name: gas deposit
+  description: Solidified deposits of an element, normally a gas at room temperature, can be drilled, heated and piped out.
+  abstract: true
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: Clickable
+  - type: Physics
+    bodyType: Static
+    canCollide: False
+  - type: Fixtures
+  - type: RandomGasDeposit
+  - type: Sprite
+    drawdepth: FloorTiles
+    sprite: _NF/Objects/Specific/Atmospherics/deposit.rsi
+    layers:
+    - state: deposit
+
+- type: entity
+  parent: BaseGasDeposit
+  id: GasDepositOxygen
+  suffix: Oxygen
+  components:
+  - type: RandomGasDeposit
+    depositPrototype: MostlyOxygen
+  - type: Sprite
+    color: "#DDDDEE"
+
+- type: entity
+  parent: BaseGasDeposit
+  id: GasDepositNitrogen
+  suffix: Nitrogen
+  components:
+  - type: RandomGasDeposit
+    depositPrototype: MostlyNitrogen
+  - type: Sprite
+    color: "#FFCCCC"
+
+- type: entity
+  parent: BaseGasDeposit
+  id: GasDepositCarbonDioxide
+  suffix: Carbon Dioxide
+  components:
+  - type: RandomGasDeposit
+    depositPrototype: MostlyCarbonDioxide
+  - type: Sprite
+    color: "#CCCCCC"
+
+- type: entity
+  parent: BaseGasDeposit
+  id: GasDepositPlasma
+  suffix: Plasma
+  components:
+  - type: RandomGasDeposit
+    depositPrototype: MostlyPlasma
+  - type: Sprite
+    color: "#FFCCFF"
+
+- type: entity
+  parent: BaseGasDeposit
+  id: GasDepositAmmonia
+  suffix: Ammonia
+  components:
+  - type: RandomGasDeposit
+    depositPrototype: MostlyAmmonia
+  - type: Sprite
+    color: "#FFFFCC"
+
+- type: entity
+  parent: BaseGasDeposit
+  id: GasDepositWaterVapor
+  suffix: Water Vapor
+  components:
+  - type: RandomGasDeposit
+    depositPrototype: MostlyWaterVapor
+  - type: Sprite
+    color: "#DDEEEE"
+
+- type: entity
+  parent: BaseGasDeposit
+  id: GasDepositNitrousOxide
+  suffix: Nitrous Oxide
+  components:
+  - type: RandomGasDeposit
+    depositPrototype: MostlyNitrousOxide
+  - type: Sprite
+    color: "#EEDDDD"
+
+- type: entity
+  parent: BaseGasDeposit
+  id: GasDepositAir
+  suffix: Air-like
+  components:
+  - type: RandomGasDeposit
+    depositPrototype: AirLike
+
+- type: entity
+  parent: BaseGasDeposit
+  id: GasDepositMuddleEven
+  suffix: Muddled, Even
+  components:
+  - type: RandomGasDeposit
+    depositPrototype: MuddleEven
+  - type: Sprite
+    color: "#DDEEDD"
+
+- type: entity
+  parent: BaseGasDeposit
+  id: GasDepositMuddlePlasma
+  suffix: Muddled, Plasma-heavy
+  components:
+  - type: RandomGasDeposit
+    depositPrototype: MuddlePlasma
+  - type: Sprite
+    color: "#F0DDF0"
+
+# Debug item for detecting gas deposits
+- type: entity
+  parent: PinpointerSyndicateNuclear
+  id: PinpointerGasDeposit
+  name: gas deposit pinpointer
+  description: Pointing to the nearest gas deposit.
+  suffix: DEBUG
+  components:
+  - type: Pinpointer
+    component: RandomGasDeposit
+    targetName: RandomGasDeposit
