@@ -265,7 +265,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
                 // The actual position in the UI. We offset the matrix position to render it off by half its width
                 // plus by the offset.
                 //var uiPosition = ScalePosition(gridCentre) / UIScale;
-                var uiPosition = Vector2.Transform(gridBody.LocalCenter, curGridToView);
+                var uiPosition = Vector2.Transform(gridBody.LocalCenter, curGridToView) / UIScale;
 
                 // Confines the UI position within the viewport.
                 var uiXCentre = (int) Width / 2;
@@ -387,7 +387,8 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
                     continue;
                 }
 
-                var color = Color.ToSrgb(Color.Magenta);
+                //var color = Color.ToSrgb(Color.Magenta); // Frontier
+                var color = Color.ToSrgb(state.HighlightedRadarColor); // Frontier
 
                 var verts = new[]
                 {
