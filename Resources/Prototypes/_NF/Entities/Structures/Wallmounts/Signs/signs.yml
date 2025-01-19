@@ -100,8 +100,8 @@
 - type: entity
   parent: NFBaseSign
   id: SignNfsdArmoury
-  name: armoury sign
-  description: A sign that marks the area beyond as an NFSD armoury.
+  name: armory sign
+  description: A sign that marks the area beyond as an NFSD armory.
   components:
   - type: Sprite
     state: armoury
@@ -213,3 +213,11 @@
   components:
   - type: Sprite
     state: ems2
+
+- type: entity
+  parent: [NFBaseSign, SignInterrogation]
+  id: SignNfsdInterrogation
+  name: interrogation sign
+  components:
+  - type: Sprite
+    state: interrogation

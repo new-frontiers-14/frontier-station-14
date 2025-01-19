@@ -15,6 +15,7 @@ using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Client._NF.Atmos.Consoles; // Frontier
 
 namespace Content.Client.Atmos.Consoles;
 
@@ -30,6 +31,7 @@ public sealed partial class AtmosAlertsComputerWindow : FancyWindow
 
     private AtmosAlertsComputerEntry[]? _airAlarms = null;
     private AtmosAlertsComputerEntry[]? _fireAlarms = null;
+    private AtmosAlertsComputerEntry[]? _gaslocks = null; // Frontier
     private IEnumerable<AtmosAlertsComputerEntry>? _allAlarms = null;
 
     private IEnumerable<AtmosAlertsComputerEntry>? _activeAlarms = null;
@@ -37,6 +39,13 @@ public sealed partial class AtmosAlertsComputerWindow : FancyWindow
 
     public event Action<NetEntity?>? SendFocusChangeMessageAction;
     public event Action<NetEntity, bool>? SendDeviceSilencedMessageAction;
+
+    // Frontier: gaslock actions
+    public event Action<NetEntity, bool>? SendGaslockChangeDirectionMessageAction;
+    public event Action<NetEntity, float>? SendGaslockPressureChangeMessageAction;
+    public event Action<NetEntity, bool>? SendGaslockChangeEnabledAction;
+    public event Action<NetEntity>? SendGaslockUndockAction;
+    // End Frontier: gaslock actions
 
     private bool _autoScrollActive = false;
     private bool _autoScrollAwaitsUpdate = false;
@@ -77,7 +86,7 @@ public sealed partial class AtmosAlertsComputerWindow : FancyWindow
         {
             NavMap.MapUid = xform.GridUid;
 
-            // Assign station name      
+            // Assign station name
             if (_entManager.TryGetComponent<MetaDataComponent>(xform.GridUid, out var stationMetaData))
                 stationName = stationMetaData.EntityName;
 
@@ -103,6 +112,7 @@ public sealed partial class AtmosAlertsComputerWindow : FancyWindow
         MasterTabContainer.SetTabTitle(0, Loc.GetString("atmos-alerts-window-tab-no-alerts"));
         MasterTabContainer.SetTabTitle(1, Loc.GetString("atmos-alerts-window-tab-air-alarms"));
         MasterTabContainer.SetTabTitle(2, Loc.GetString("atmos-alerts-window-tab-fire-alarms"));
+        MasterTabContainer.SetTabTitle(3, Loc.GetString("atmos-alerts-window-tab-gaslocks")); // Frontier
 
         // Set UI toggles
         ShowInactiveAlarms.OnToggled += _ => OnShowAlarmsToggled(ShowInactiveAlarms, AtmosAlarmType.Invalid);
@@ -113,6 +123,12 @@ public sealed partial class AtmosAlertsComputerWindow : FancyWindow
         // Set atmos monitoring message action
         SendFocusChangeMessageAction += userInterface.SendFocusChangeMessage;
         SendDeviceSilencedMessageAction += userInterface.SendDeviceSilencedMessage;
+
+        // Frontier: set gaslock message actions
+        SendGaslockChangeDirectionMessageAction += userInterface.SendGaslockChangeDirectionMessage;
+        SendGaslockPressureChangeMessageAction += userInterface.SendGaslockPressureChangeMessage;
+        SendGaslockChangeEnabledAction += userInterface.SendGaslockChangeEnabled;
+        SendGaslockUndockAction += userInterface.SendGaslockUndock;
     }
 
     #region Toggle handling
@@ -162,7 +178,7 @@ public sealed partial class AtmosAlertsComputerWindow : FancyWindow
 
     #endregion
 
-    public void UpdateUI(EntityCoordinates? consoleCoords, AtmosAlertsComputerEntry[] airAlarms, AtmosAlertsComputerEntry[] fireAlarms, AtmosAlertsFocusDeviceData? focusData)
+    public void UpdateUI(EntityCoordinates? consoleCoords, AtmosAlertsComputerEntry[] airAlarms, AtmosAlertsComputerEntry[] fireAlarms, AtmosAlertsFocusDeviceData? focusData, AtmosAlertsComputerEntry[] gaslocks, AtmosAlertsFocusGaslockData? focusGaslockData) // Frontier: add gaslocks, gaslock data
     {
         if (_owner == null)
             return;
@@ -179,7 +195,9 @@ public sealed partial class AtmosAlertsComputerWindow : FancyWindow
         // Retain alarm data for use inbetween updates
         _airAlarms = airAlarms;
         _fireAlarms = fireAlarms;
+        _gaslocks = gaslocks; // Frontier
         _allAlarms = airAlarms.Concat(fireAlarms);
+        _allAlarms = airAlarms.Concat(gaslocks); // Frontier
 
         var silenced = console.SilencedDevices;
 
@@ -245,6 +263,11 @@ public sealed partial class AtmosAlertsComputerWindow : FancyWindow
         while (FireAlarmsTable.ChildCount > fireAlarms.Length)
             FireAlarmsTable.RemoveChild(FireAlarmsTable.GetChild(FireAlarmsTable.ChildCount - 1));
 
+        // Frontier: gaslocks
+        while (GaslocksTable.ChildCount > gaslocks.Length)
+            GaslocksTable.RemoveChild(GaslocksTable.GetChild(GaslocksTable.ChildCount - 1));
+        // End Frontier
+
         // Update all entries in each table
         for (int index = 0; index < _activeAlarms.Count(); index++)
         {
@@ -263,6 +286,14 @@ public sealed partial class AtmosAlertsComputerWindow : FancyWindow
             var entry = fireAlarms.ElementAt(index);
             UpdateUIEntry(entry, index, FireAlarmsTable, console, focusData);
         }
+
+        // Frontier: gaslocks
+        for (int index = 0; index < gaslocks.Count(); index++)
+        {
+            var entry = gaslocks.ElementAt(index);
+            UpdateGaslockUIEntry(entry, index, GaslocksTable, console, focusGaslockData);
+        }
+        // End Frontier
 
         // If no alerts are active, display a message
         if (MasterTabContainer.CurrentTab == 0 && activeAlarmCount == 0)
@@ -391,6 +422,7 @@ public sealed partial class AtmosAlertsComputerWindow : FancyWindow
                 UpdateConsoleTable(console, AlertsTable, _trackedEntity);
                 UpdateConsoleTable(console, AirAlarmsTable, _trackedEntity);
                 UpdateConsoleTable(console, FireAlarmsTable, _trackedEntity);
+                UpdateConsoleTable(console, GaslocksTable, _trackedEntity); // Frontier
             };
 
             // On toggling the silence check box
@@ -424,20 +456,92 @@ public sealed partial class AtmosAlertsComputerWindow : FancyWindow
         entryContainer.SilenceAlarmProgressBar.Visible = (table == AlertsTable && _deviceSilencingProgress.ContainsKey(entry.NetEntity));
     }
 
+    // Frontier: separate UpdateUI function for gaslocks
+    private void UpdateGaslockUIEntry(AtmosAlertsComputerEntry entry, int index, Control table, AtmosAlertsComputerComponent console, AtmosAlertsFocusGaslockData? focusData = null)
+    {
+        // Make new UI entry if required
+        if (index >= table.ChildCount)
+        {
+            var newEntryContainer = new AtmosAlarmGaslockEntryContainer(entry.NetEntity, _entManager.GetCoordinates(entry.Coordinates));
+
+            newEntryContainer.SendChangeDirectionMessageAction += SendGaslockChangeDirectionMessageAction;
+            newEntryContainer.SendPressureChangeAction += SendGaslockPressureChangeMessageAction;
+            newEntryContainer.SendChangeEnabledAction += SendGaslockChangeEnabledAction;
+            newEntryContainer.SendUndockAction += SendGaslockUndockAction;
+
+            // On click
+            newEntryContainer.FocusButton.OnButtonUp += args =>
+            {
+                if (_trackedEntity == newEntryContainer.NetEntity)
+                {
+                    _trackedEntity = null;
+                }
+
+                else
+                {
+                    _trackedEntity = newEntryContainer.NetEntity;
+
+                    if (newEntryContainer.Coordinates != null)
+                        NavMap.CenterToCoordinates(newEntryContainer.Coordinates.Value);
+                }
+
+                // Send message to console that the focus has changed
+                SendFocusChangeMessageAction?.Invoke(_trackedEntity);
+
+                // Update affected UI elements across all tables
+                UpdateConsoleTable(console, AlertsTable, _trackedEntity);
+                UpdateConsoleTable(console, AirAlarmsTable, _trackedEntity);
+                UpdateConsoleTable(console, FireAlarmsTable, _trackedEntity);
+                UpdateConsoleTable(console, GaslocksTable, _trackedEntity); // Frontier
+            };
+
+            // Add the entry to the current table
+            table.AddChild(newEntryContainer);
+        }
+
+        // Update values and UI elements
+        var tableChild = table.GetChild(index);
+
+        if (tableChild is not AtmosAlarmGaslockEntryContainer)
+        {
+            table.RemoveChild(tableChild);
+            UpdateGaslockUIEntry(entry, index, table, console, focusData);
+
+            return;
+        }
+
+        var entryContainer = (AtmosAlarmGaslockEntryContainer)tableChild;
+
+        entryContainer.UpdateEntry(entry, entry.NetEntity == _trackedEntity, focusData);
+    }
+    // End Frontier: separate UpdateUI function for gaslocks
+
     private void UpdateConsoleTable(AtmosAlertsComputerComponent console, Control table, NetEntity? currTrackedEntity)
     {
         foreach (var tableChild in table.Children)
         {
-            if (tableChild is not AtmosAlarmEntryContainer)
-                continue;
+            // Frontier: multiple type checks
+            if (tableChild is AtmosAlarmEntryContainer)
+            {
+                var entryContainer = (AtmosAlarmEntryContainer)tableChild;
 
-            var entryContainer = (AtmosAlarmEntryContainer)tableChild;
+                if (entryContainer.NetEntity != currTrackedEntity)
+                    entryContainer.RemoveAsFocus();
 
-            if (entryContainer.NetEntity != currTrackedEntity)
-                entryContainer.RemoveAsFocus();
+                else if (entryContainer.NetEntity == currTrackedEntity)
+                    entryContainer.SetAsFocus();
+            }
+            else if (tableChild is AtmosAlarmGaslockEntryContainer)
+            {
+                var entryContainer = (AtmosAlarmGaslockEntryContainer)tableChild;
 
-            else if (entryContainer.NetEntity == currTrackedEntity)
-                entryContainer.SetAsFocus();
+                if (entryContainer.NetEntity != currTrackedEntity)
+                    entryContainer.RemoveAsFocus();
+
+                else if (entryContainer.NetEntity == currTrackedEntity)
+                    entryContainer.SetAsFocus();
+            }
+            // End Frontier
         }
     }
 
@@ -464,6 +568,8 @@ public sealed partial class AtmosAlertsComputerWindow : FancyWindow
                         MasterTabContainer.CurrentTab = 1; break;
                     case AtmosAlertsComputerGroup.FireAlarm:
                         MasterTabContainer.CurrentTab = 2; break;
+                    case AtmosAlertsComputerGroup.Gaslock: // Frontier
+                        MasterTabContainer.CurrentTab = 3; break; // Frontier
                 }
             }
 
@@ -565,11 +671,14 @@ public sealed partial class AtmosAlertsComputerWindow : FancyWindow
 
         foreach (var control in container.Children)
         {
-            if (control == null || control is not AtmosAlarmEntryContainer)
+            if (control == null) // Frontier: move type checks down
                 continue;
 
-            if (((AtmosAlarmEntryContainer)control).NetEntity == _trackedEntity)
+            if (control is AtmosAlarmEntryContainer && ((AtmosAlarmEntryContainer)control).NetEntity == _trackedEntity) // Frontier: add type check
                 return true;
+
+            if (control is AtmosAlarmGaslockEntryContainer && ((AtmosAlarmGaslockEntryContainer)control).NetEntity == _trackedEntity) // Frontier
+                return true; // Frontier
 
             nextScrollPosition += control.Height;
         }
