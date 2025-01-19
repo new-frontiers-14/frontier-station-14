@@ -84,7 +84,7 @@ public sealed class NFCCVars
     /// The number of Optional Points Of Interest to spawn in every round
     /// </summary>
     public static readonly CVarDef<int> OptionalStations =
-        CVarDef.Create("nf14.worldgen.optional_stations", 8, CVar.SERVERONLY);
+        CVarDef.Create("nf14.worldgen.optional_stations", 6, CVar.SERVERONLY);
 
     /// <summary>
     /// The multiplier to add to distance spawning calculations for a smidge of server setting variance

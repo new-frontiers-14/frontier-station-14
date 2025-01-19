@@ -124,12 +124,11 @@
 - type: entity
   parent: ClothingHeadsetCMO
   id: ClothingHeadsetDoc
-  name: doc headset
-  description: Letting the DoC know what's up.
+  name: doc's headset
+  description: Letting the DoC know what's up. Takes encryption keys.
   components:
   - type: ContainerFill
     containers:
       key_slots:
-      - EncryptionKeyMedical
-      - EncryptionKeyCommand
-      - EncryptionKeyCommon
+      - EncryptionKeyDoc
+      - EncryptionKeyCentCom
