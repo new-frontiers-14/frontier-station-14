@@ -1,0 +1,48 @@
+- type: entity
+  id: TestPalette
+  parent: BaseStructure
+  suffix: barrel
+  name: shipping palette
+  description: A load of cargo to be delivered.
+  components:
+    - type: Sprite
+      sprite: _NF\Structures\Shipping\shippingboxes.rsi
+      state: box1
+      noRot: true
+    #- type: Anchorable
+    #  delay: 2
+    - type: Physics
+      bodyType: Static
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.5
+          density: 60
+          mask:
+            - MachineMask
+          layer:
+            - MidImpassable
+            - LowImpassable
+            - BulletImpassable
+            - Opaque #??
+    - type: Damageable
+      damageContainer: StructuralInorganic
+      damageModifierSet: Steel
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 200
+          behaviors:
+            - !type:PlaySoundBehavior
+              sound:
+                collection: GlassBreak
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                ShardCrystalGreen:
+                  min: 1
+                  max: 1
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
