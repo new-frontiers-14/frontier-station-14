@@ -1,12 +1,17 @@
 - type: entity
-  id: TestPalette
+  id: ShippingBox1
   parent: BaseStructure
-  suffix: barrel
-  name: shipping palette
+  #suffix: container
+  name: shipping container
   description: A load of cargo to be delivered.
+#  placement:
+#    mode: AlignTileAny
   components:
+    #- type: SpriteFade
     - type: Sprite
-      sprite: _NF\Structures\Shipping\shippingboxes.rsi
+      sprite: _NF/Structures/Shipping/shippingboxes.rsi
+      offset: 0,.5
+      drawdepth: Mobs
       state: box1
       noRot: true
     #- type: Anchorable
@@ -17,8 +22,8 @@
       fixtures:
         fix1:
           shape:
-            !type:PhysShapeCircle
-            radius: 0.5
+            !type:PhysShapeAabb
+            bounds: "-.5,-.5,.5,.5"
           density: 60
           mask:
             - MachineMask
@@ -27,22 +32,50 @@
             - LowImpassable
             - BulletImpassable
             - Opaque #??
-    - type: Damageable
-      damageContainer: StructuralInorganic
-      damageModifierSet: Steel
-    - type: Destructible
-      thresholds:
-        - trigger:
-            !type:DamageTrigger
-            damage: 200
-          behaviors:
-            - !type:PlaySoundBehavior
-              sound:
-                collection: GlassBreak
-            - !type:SpawnEntitiesBehavior
-              spawn:
-                ShardCrystalGreen:
-                  min: 1
-                  max: 1
-            - !type:DoActsBehavior
-              acts: [ "Destruction" ]
+#    - type: Damageable
+#      damageContainer: StructuralInorganic
+#      damageModifierSet: Steel
+#    - type: Destructible
+#      thresholds:
+#        - trigger:
+#            !type:DamageTrigger
+#            damage: 200
+#          behaviors:
+#            - !type:PlaySoundBehavior
+#              sound:
+#                collection: GlassBreak
+#            - !type:SpawnEntitiesBehavior
+#              spawn:
+#                ShardCrystalGreen:
+#                  min: 1
+#                  max: 1
+#            - !type:DoActsBehavior
+#              acts: [ "Destruction" ]
+
+- type: entity
+  id: BarrelPallet
+  parent: BaseStructure
+  name: shipping pallete
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - sprite: _NF/Structures/Shipping/shippingpallet.rsi
+      state: base
+      offset: 0,.5
+    - sprite: _NF/Structures/Shipping/shippingbarrels.rsi
+      state: red
+      offset: -0.25,0.3125 #top left, options are  -0.25,0.3125  and  -0.21875,0.3125
+    - sprite: _NF/Structures/Shipping/shippingbarrels.rsi
+      state: black
+      offset: 0.25,0.3125 #top right, options are  0.25,0.3125  and  0.21875,0.3125
+    - sprite: _NF/Structures/Shipping/shippingbarrels.rsi
+      state: green
+      offset: -0.25,-0.03125 #bottom left, options are  -0.25,0  and  -0.25,-0.03125
+    - sprite: _NF/Structures/Shipping/shippingbarrels.rsi
+      state: white
+      offset: 0.25,0 #bottom right, options are  0.25,0  and  0.25,-0.03125
+    - sprite: _NF/Structures/Shipping/shippingpallet.rsi
+      state: barrel_straps
+      offset: 0,.5
+    noRot: true
