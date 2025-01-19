@@ -1,49 +1,19 @@
 - type: entity
   parent: [ClothingShoesBootsMag, ClothingShoesBootsCombat]
-  id: ClothingShoesBootsMagCombat
-  name: combat magboots
-  description: Combat magnetic boots, often used during extravehicular activity to ensure the user remains safely attached to the vehicle.
+  id: ClothingShoesBootsMagSecurity
+  name: security magboots
+  description: Security magnetic boots, often used during extravehicular activity to ensure the user remains safely attached to the vehicle.
   components:
   - type: Sprite
-    sprite: _NF/Clothing/Shoes/Boots/magboots-combat.rsi
+    sprite: _NF/Clothing/Shoes/Boots/magboots-security.rsi
     state: icon
   - type: Clothing
-    sprite: _NF/Clothing/Shoes/Boots/magboots-combat.rsi
+    sprite: _NF/Clothing/Shoes/Boots/magboots-security.rsi
   - type: Magboots
-    magbootsAlert: MagbootsCombat
-  - type: ClothingSpeedModifier
-    walkModifier: 0.95
-    sprintModifier: 0.9
+    magbootsAlert: MagbootsSecurity
 
 - type: entity
-  parent: ClothingShoesBootsMagCombat
-  id: ClothingShoesBootsMagNfsd
-  name: NFSD magboots
-  components:
-  - type: Sprite
-    sprite: _NF/Clothing/Shoes/Boots/magboots-nfsd.rsi
-    state: icon
-  - type: Clothing
-    sprite: _NF/Clothing/Shoes/Boots/magboots-nfsd.rsi
-  - type: Magboots
-    magbootsAlert: MagbootsNfsd
-
-- type: entity
-  parent: [BaseC3PirateContraband, ClothingShoesBootsMagCombat]
-  id: ClothingShoesBootsMagPirate
-  name: pirate magboots
-  description: Pirate magnetic boots, often used during extravehicular activity to ensure the user remains safely attached to the vehicle.
-  components:
-  - type: Sprite
-    sprite: _NF/Clothing/Shoes/Boots/magboots-pirate.rsi
-    state: icon
-  - type: Clothing
-    sprite: _NF/Clothing/Shoes/Boots/magboots-pirate.rsi
-  - type: Magboots
-    magbootsAlert: MagbootsPirate
-
-- type: entity
-  parent: ClothingShoesBootsMagCombat
+  parent: ClothingShoesBootsMagSecurity
   id: ClothingShoesBootsMagMercenary
   name: mercenary magboots
   description: Mercenary magnetic boots, often used during extravehicular activity to ensure the user remains safely attached to the vehicle.
@@ -70,3 +40,33 @@
   - type: Magboots
     magbootsAlert: MagbootsGaloshes
   - type: NoSlip
+
+- type: entity
+  parent: ClothingShoesBootsMagSecurity
+  id: ClothingShoesBootsMagNfsd
+  name: NFSD magboots
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Shoes/Boots/magboots-nfsd.rsi
+    state: icon
+  - type: Clothing
+    sprite: _NF/Clothing/Shoes/Boots/magboots-nfsd.rsi
+  - type: Magboots
+    magbootsAlert: MagbootsNfsd
+  - type: ClothingSpeedModifier
+    walkModifier: 0.95
+    sprintModifier: 0.9
+
+- type: entity
+  parent: [BaseC3PirateContraband, ClothingShoesBootsMagNfsd]
+  id: ClothingShoesBootsMagPirate
+  name: pirate magboots
+  description: Pirate magnetic boots, often used during extravehicular activity to ensure the user remains safely attached to the vehicle.
+  components:
+  - type: Sprite
+    sprite: _NF/Clothing/Shoes/Boots/magboots-pirate.rsi
+    state: icon
+  - type: Clothing
+    sprite: _NF/Clothing/Shoes/Boots/magboots-pirate.rsi
+  - type: Magboots
+    magbootsAlert: MagbootsPirate
