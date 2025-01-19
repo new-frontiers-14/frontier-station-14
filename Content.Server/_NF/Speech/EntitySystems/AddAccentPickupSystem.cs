@@ -1,7 +1,7 @@
 using Content.Server._NF.Speech.Components;
 using Content.Server.Speech.Components;
 using Content.Shared.Interaction.Events;
-using Content.Shared.Item;
+using Content.Shared._NF.Item;
 using Content.Shared.Verbs;
 
 namespace Content.Server._NF.Speech.EntitySystems;
