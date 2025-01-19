@@ -41,7 +41,7 @@ namespace Content.Shared.Chemistry
     }
 
     [Serializable, NetSerializable]
-    public enum ChemMasterVisualState : byte //Frontier
+    public enum ChemMasterVisualState : byte // Frontier
     {
         BeakerInserted
     }
