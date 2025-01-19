@@ -23,16 +23,13 @@
 - type: loadoutGroup
   id: DocEars
   name: loadout-group-contractor-ears
+  hidden: true # No point in showing this, it gets auto-selected.
   minLimit: 1
   maxLimit: 1
   loadouts:
-  - StationRepClothingHeadsetAltCentComCommon
-  subgroups:
-  - MercenaryEars
-  - PilotEars
-  - ContractorEars
+  - DocClothingHeadsetCommand
   fallbacks:
-  - StationRepClothingHeadsetAltCentComCommon
+  - DocClothingHeadsetCommand
 
 - type: loadoutGroup
   id: DocNeck
