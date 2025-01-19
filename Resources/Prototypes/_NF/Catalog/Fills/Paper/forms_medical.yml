@@ -38,8 +38,8 @@
   components:
   - type: Paper
     content: |2
-      [color=#52B4E9]◥[bold]N[/bold]◣ [bold]Medical Contractor Standards[/bold][/color]
-      [color=#52B4E9]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
+      [color=#2EA5E6]◥[bold]N[/bold]◣ [bold]Medical Contractor Standards[/bold][/color]
+      [color=#2EA5E6]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
       [head=2]Medical Patient Record[/head]
 
       [head=3]Patient Information[/head]
@@ -55,21 +55,35 @@
 
       [head=3]Sustained Injuries[/head]
           [bold]Brute Injuries:[/bold]
-          \[  ] Blunt     \[  ] Slash     \[  ] Piercing
+          Blunt: 0
+          Slash: 0
+          Piercing: 0
 
           [bold]Burn Injuries:[/bold]
-          \[  ] Heat     \[  ] Shock     \[  ] Cold     \[  ] Caustic
+          Heat: 0
+          Shock: 0
+          Cold: 0
+          Caustic: 0
 
           [bold]Toxin Injuries:[/bold]
-          \[  ] Poison     \[  ] Radiation
+          Poison: 0
+          Radiation: 0
+
+          [bold]Genetic Injuries:[/bold]
+          Cellular: 0
 
           [bold]Asphyxiation Injuries:[/bold]
-          \[  ] Bloodloss     \[  ] Airloss
+          Bloodloss: 0
+          Airloss: 0
 
       [head=3]Administered Treatment[/head]
           [bold]Applied Topicals:[/bold]
-          \[  ] Bruise pack     \[  ] Ointment     \[  ] Gauze     \[  ] Blood pack
-          \[  ] Sutures     \[  ] Regenerative mesh
+          Bruise packs: 0
+          Ointment tubes: 0
+          Gauze: 0
+          Blood packs: 0
+          Sutures: 0
+          Regenerative mesh: 0
 
           [bold]Injected Chemicals:[/bold]
           [bullet/] Chemical, dosage: XX u
@@ -116,8 +130,8 @@
   components:
   - type: Paper
     content: |2
-      [color=#52B4E9]◥[bold]N[/bold]◣ [bold]Medical Contractor Standards[/bold][/color]
-      [color=#52B4E9]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
+      [color=#2EA5E6]◥[bold]N[/bold]◣ [bold]Medical Contractor Standards[/bold][/color]
+      [color=#2EA5E6]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
       [head=2]Health Insurance Contract[/head]
 
       [head=3]Policy Holder Information[/head]
@@ -150,8 +164,8 @@
   components:
   - type: Paper
     content: |2
-      [color=#52B4E9]◥[bold]N[/bold]◣ [bold]Medical Contractor Standards[/bold][/color]
-      [color=#52B4E9]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
+      [color=#2EA5E6]◥[bold]N[/bold]◣ [bold]Medical Contractor Standards[/bold][/color]
+      [color=#2EA5E6]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
       [head=2]Medical Service Invoice[/head]
 
       [head=3]Patient Information[/head]
@@ -183,31 +197,30 @@
             
 - type: entity
   id: PaperWrittenMedicalFormReceiptInvoice
-  name: medical invoice
+  name: medical dispatch payment
   categories: [ HideSpawnMenu ]
   parent: Paper
   components:
   - type: Paper
     content: |2
-      [color=#52B4E9]◥[bold]N[/bold]◣ [bold]Director of Care Payroll[/bold][/color]
-      [color=#52B4E9]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
-      [head=2]Medical Invoice[/head]
+      [color=#33ccff]◥[bold]N[/bold]◣ [bold]Director of Care Payroll[/bold][/color]
+      [color=#33ccff]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
+      [head=2]Medical Dispatch Payment[/head]
+
       [head=3]Contractor Information[/head]
             [bold]Name:[/bold] 
             [bold]Species:[/bold] 
             [bold]Occupation:[/bold] 
 
-      [head=3]Service Provided[/head]
-          \[  ] Medical Bounty Delivery:
-          \[  ] Material Delivery:
-          \[  ] Service:
-          \[  ] Other:
+      [head=3]Description of Services Provided[/head]
 
-      [head=3]Relevant Description[/head]
-
-
-      ____________
-      $XXX,XXX - Grand Total
+      [head=3]Service Value[/head]
+          Medical Bounty Delivery: $0
+          Material Delivery: $0
+          Medical Services: $0
+          Other: $0
+      
+      [bold]Total Value: $XXX,XXX[/bold]
       
       [color=#AAAAAA]This Form is void without the signature and stamp of the Director of Care. This form does not constitute a contract. Compensation for services provided is at the discretion of the Director of Care.[/color]
 
@@ -219,13 +232,13 @@
   components:
   - type: Paper
     content: |2
-      [color=#52B4E9]◥[bold]N[/bold]◣ [bold]Director of Care Payroll[/bold][/color]
-      [color=#52B4E9]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
+      [color=#33ccff]◥[bold]N[/bold]◣ [bold]Director of Care Payroll[/bold][/color]
+      [color=#33ccff]‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾[/color]
       [head=2]Medical Release Form[/head]
 
       [head=3]Patient Information[/head]
             [bold]Name:[/bold] 
-            [bold]Species:[/bold]             
+            [bold]Species:[/bold] 
             [bold]Occupation:[/bold] 
 
       [head=3]Responder Information[/head]
@@ -237,7 +250,7 @@
 
 
 
-      [head=3]Relevant Description[/head]
+      [head=3]Notes[/head]
       
 
 
@@ -245,4 +258,4 @@
 
 
 
-      [color=#AAAAAA]This Form is void without the signature and stamp of the Director of Care. This form does not constitute a contract. Compensation for services provided is at the discretion of the Director of Care.[/color]
+      [color=#AAAAAA]This Form is only acknowledged with the signature and stamp of the Director of Care. This form does not constitute a contract. Compensation for services provided is at the discretion of the Director of Care.[/color]
