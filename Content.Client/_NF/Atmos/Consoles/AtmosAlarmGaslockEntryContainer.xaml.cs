@@ -158,7 +158,7 @@ public sealed partial class AtmosAlarmGaslockEntryContainer : BoxContainer
         // Update other present gases
         GasGridContainer.RemoveAllChildren();
 
-        var gasData = focusData.Value.GasData.Where(g => g.Key != Gas.Oxygen);
+        var gasData = focusData.Value.GasData;
 
         if (!gasData.Any())
         {

@@ -120,8 +120,7 @@ public sealed class GasDepositSystem : SharedGasDepositSystem
         if (!ent.Comp.Enabled
             || !TryComp(ent.Comp.DepositEntity, out RandomGasDepositComponent? depositComp)
             || TryComp<ApcPowerReceiverComponent>(ent, out var power) && !power.Powered
-            || !_nodeContainer.TryGetNode(ent.Owner, ent.Comp.PortName, out PipeNode? port)
-            || port.NodeGroup is not PipeNet { NodeCount: > 1 } net)
+            || !_nodeContainer.TryGetNode(ent.Owner, ent.Comp.PortName, out PipeNode? port))
         {
             _ambientSound.SetAmbience(ent, false);
             SetDepositState(ent, GasDepositExtractorState.Off);
@@ -132,6 +131,14 @@ public sealed class GasDepositSystem : SharedGasDepositSystem
         {
             _ambientSound.SetAmbience(ent, false);
             SetDepositState(ent, GasDepositExtractorState.Empty);
+            return;
+        }
+
+        // Nowhere to pipe gas, say it's blocked.
+        if (port.NodeGroup is not PipeNet { NodeCount: > 1 } net)
+        {
+            _ambientSound.SetAmbience(ent, false);
+            SetDepositState(ent, GasDepositExtractorState.Blocked);
             return;
         }
 

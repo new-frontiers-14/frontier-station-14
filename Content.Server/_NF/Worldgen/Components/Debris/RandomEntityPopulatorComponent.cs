@@ -42,12 +42,15 @@ public sealed partial class RandomEntityParameters
     public int Min = 1;
 
     /// <summary>
-    /// The minimum number of this entity to spawn.
+    /// The maximum number of this entity to spawn.
     /// Actual number is generated in a uniform range.
     /// </summary>
     [DataField]
     public int Max = 1;
 
+    /// <summary>
+    /// If true, this entity set will be spawned when air sealed (e.g. under a wall).
+    /// </summary>
     [DataField]
     public bool CanBeAirSealed;
 
