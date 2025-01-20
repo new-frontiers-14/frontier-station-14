@@ -7,5 +7,4 @@ namespace Content.Server.Station.Components;
 [RegisterComponent]
 public sealed partial class StationRenameHolopadsComponent : Component
 {
-
 }
