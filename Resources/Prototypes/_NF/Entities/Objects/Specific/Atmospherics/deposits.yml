@@ -134,7 +134,7 @@
 - type: entity
   id: DepositLocatorUnpowered
   parent: BaseItem
-  name: deposit scanner
+  name: deposit locator
   description: A scanner that checks the nearby area for gas deposits.
   suffix: Unpowered
   components:
@@ -169,3 +169,23 @@
       params:
         maxDistance: 1
         volume: -8
+
+- type: entity
+  id: DepositLocator
+  parent: [ DepositLocatorUnpowered, PowerCellSlotSmallItem ]
+  suffix: Powered
+  components:
+  - type: PowerCellDraw
+    drawRate: 1
+    useRate: 0
+  - type: ToggleCellDraw
+
+- type: entity
+  id: DepositLocatorEmpty
+  parent: DepositLocator
+  suffix: Empty
+  components:
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
