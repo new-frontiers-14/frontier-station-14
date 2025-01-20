@@ -35,3 +35,19 @@
     - Gauze10Lingering
     - Bloodpack10Lingering
     - SyringeBluespace
+
+- type: entity
+  id: BorgModuleJetpack
+  parent: [ BaseBorgModule, BaseProviderBorgModule ]
+  name: jetpack cyborg module
+  description: A piece of tech that gives cyborgs new abilities. Needs to be loaded by a cyborg before you can refill the jetpack. Refill by putting the Module inside a Canister.
+  components:
+  - type: Sprite
+    layers:
+    - state: generic
+    - state: icon-jetpack
+      sprite: _NF/Objects/Specific/Robotics/borgmodule.rsi
+  - type: BorgJetpack
+  - type: ItemBorgModule
+    items:
+    - JetpackBlueFilled

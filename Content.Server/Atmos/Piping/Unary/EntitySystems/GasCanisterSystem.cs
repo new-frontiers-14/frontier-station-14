@@ -9,6 +9,7 @@ using Content.Server.NodeContainer.EntitySystems;
 using Content.Server.NodeContainer.NodeGroups;
 using Content.Server.NodeContainer.Nodes;
 using Content.Server.Popups;
+using Content.Server.Silicon.Components.Borgs;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Piping.Binary.Components;
 using Content.Shared.Containers.ItemSlots;
@@ -91,6 +92,10 @@ public sealed class GasCanisterSystem : EntitySystem
         if (canister.GasTankSlot.Item != null)
         {
             var tank = canister.GasTankSlot.Item.Value;
+            if (TryComp<BorgJetpackComponent>(tank, out var jetpack) && jetpack.JetpackUid.HasValue)
+            {
+                tank = jetpack.JetpackUid.Value;
+            }
             var tankComponent = Comp<GasTankComponent>(tank);
             tankLabel = Name(tank);
             tankPressure = tankComponent.Air.Pressure;
@@ -153,7 +158,7 @@ public sealed class GasCanisterSystem : EntitySystem
         if (!_nodeContainer.TryGetNode(nodeContainer, canister.PortName, out PortablePipeNode? portNode))
             return;
 
-        if (portNode.NodeGroup is PipeNet {NodeCount: > 1} net)
+        if (portNode.NodeGroup is PipeNet { NodeCount: > 1 } net)
         {
             MixContainerWithPipeNet(canister.Air, net.Air);
         }
@@ -163,7 +168,12 @@ public sealed class GasCanisterSystem : EntitySystem
         {
             if (canister.GasTankSlot.Item != null)
             {
-                var gasTank = Comp<GasTankComponent>(canister.GasTankSlot.Item.Value);
+                var tank = canister.GasTankSlot.Item;
+                if (TryComp<BorgJetpackComponent>(tank, out var jetpack) && jetpack.JetpackUid.HasValue)
+                {
+                    tank = jetpack.JetpackUid.Value;
+                }
+                var gasTank = Comp<GasTankComponent>(tank.Value);
                 _atmos.ReleaseGasTo(canister.Air, gasTank.Air, canister.ReleasePressure);
             }
             else
@@ -236,7 +246,19 @@ public sealed class GasCanisterSystem : EntitySystem
         if (args.Slot.ID != component.ContainerName || args.User == null)
             return;
 
-        if (!TryComp<GasTankComponent>(args.Item, out var gasTank) || gasTank.IsValveOpen)
+        var tank = args.Item;
+
+        if (TryComp<BorgJetpackComponent>(tank, out var jetpack))
+        {
+            if (!jetpack.JetpackUid.HasValue)
+            {
+                args.Cancelled = true;
+                return;
+            }
+            tank = jetpack.JetpackUid.Value;
+        }
+
+        if (!TryComp<GasTankComponent>(tank, out var gasTank) || gasTank.IsValveOpen)
         {
             args.Cancelled = true;
             return;

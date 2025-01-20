@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Server.Silicon.Components.Borgs;
 using Content.Shared.Hands.Components;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Silicons.Borgs.Components;
@@ -61,7 +62,7 @@ public sealed partial class BorgSystem
 
         if (_actions.AddAction(chassis, ref component.ModuleSwapActionEntity, out var action, component.ModuleSwapActionId, uid))
         {
-            if(TryComp<BorgModuleIconComponent>(uid, out var moduleIconComp))
+            if (TryComp<BorgModuleIconComponent>(uid, out var moduleIconComp))
             {
                 action.Icon = moduleIconComp.Icon;
             };
@@ -197,6 +198,10 @@ public sealed partial class BorgSystem
             if (!component.ItemsCreated)
             {
                 item = Spawn(itemProto, xform.Coordinates);
+                if (TryComp<BorgJetpackComponent>(uid, out var module))
+                {
+                    module.JetpackUid = item;
+                }
             }
             else
             {
