@@ -1,9 +1,12 @@
+using Content.Shared._NF.Atmos.Prototypes;
+using Content.Shared._NF.Atmos.Systems;
 using Content.Shared.Atmos;
+using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
-namespace Content.Server._NF.Atmos.Components;
+namespace Content.Shared._NF.Atmos.Components;
 
-[RegisterComponent]
+[RegisterComponent, NetworkedComponent, Access(typeof(SharedGasDepositSystem))]
 public sealed partial class RandomGasDepositComponent : Component
 {
     /// <summary>
@@ -16,7 +19,7 @@ public sealed partial class RandomGasDepositComponent : Component
     /// <summary>
     /// Gases left in the deposit.
     /// </summary>
-    [ViewVariables]
+    [DataField]
     public GasMixture Deposit = new();
 
     /// <summary>

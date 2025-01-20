@@ -28,22 +28,22 @@ public sealed partial class GaslockObject : PanelContainer
 
     public void AddDock(GaslockPortState state, ShuttleGaslockControl dockControl)
     {
-        var viewButton = new Button()
+        var viewButton = new Button
         {
             Text = Loc.GetString("shuttle-console-view"),
         };
 
-        viewButton.OnPressed += args =>
+        viewButton.OnPressed += _ =>
         {
             dockControl.SetViewedDock(state);
         };
 
-        var container = new BoxContainer()
+        var container = new BoxContainer
         {
             Orientation = BoxContainer.LayoutOrientation.Vertical,
             Children =
             {
-                new Label()
+                new Label
                 {
                     Text = state.Name,
                     HorizontalAlignment = HAlignment.Center,
