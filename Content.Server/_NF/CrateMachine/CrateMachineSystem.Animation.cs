@@ -1,6 +1,5 @@
 ﻿using Content.Server.Power.Components;
 using Content.Shared._NF.CrateMachine;
-using Content.Shared._NF.CrateMachine.Interfaces;
 using AppearanceSystem = Robust.Server.GameObjects.AppearanceSystem;
 using CrateMachineComponent = Content.Shared._NF.CrateMachine.Components.CrateMachineComponent;
 
@@ -9,7 +8,6 @@ namespace Content.Server._NF.CrateMachine;
 /// <summary>
 /// Handles starting the opening animation.
 /// Updates the time remaining on the component.
-/// Notifies <see cref="ICrateMachineDelegate"/>.
 /// </summary>
 public sealed partial class CrateMachineSystem: SharedCrateMachineSystem
 {
@@ -51,7 +49,7 @@ public sealed partial class CrateMachineSystem: SharedCrateMachineSystem
         if (comp.OpeningTimeRemaining <= 0)
         {
             comp.DidTakeCrate = false;
-            comp.Delegate?.OnCrateMachineOpened(uid, comp);
+            RaiseLocalEvent(uid, new CrateMachineOpenedEvent(uid));
         }
 
         // Update at the end so the closing animation can start automatically.
@@ -70,12 +68,6 @@ public sealed partial class CrateMachineSystem: SharedCrateMachineSystem
         {
             comp.DidTakeCrate = true;
             comp.ClosingTimeRemaining = comp.ClosingTime;
-            comp.Delegate?.OnCrateTaken(uid, comp);
-        }
-
-        if (comp.ClosingTimeRemaining <= 0)
-        {
-            comp.Delegate?.OnCrateMachineClosed(uid, comp);
         }
 
         comp.ClosingTimeRemaining -= frameTime;
@@ -107,10 +99,8 @@ public sealed partial class CrateMachineSystem: SharedCrateMachineSystem
     /// </summary>
     /// <param name="crateMachineUid">The Uid of the crate machine</param>
     /// <param name="component">The crate machine component</param>
-    /// <param name="delegate">The delegate to call when the animation finishes</param>
-    public void OpenFor(EntityUid crateMachineUid, CrateMachineComponent component, ICrateMachineDelegate @delegate)
+    public void OpenFor(EntityUid crateMachineUid, CrateMachineComponent component)
     {
-        component.Delegate = @delegate;
         component.OpeningTimeRemaining = component.OpeningTime;
         UpdateVisualState(crateMachineUid, component);
     }

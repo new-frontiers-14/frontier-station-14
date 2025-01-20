@@ -1,25 +1,24 @@
 ﻿using Content.Server._NF.CrateMachine;
 using Content.Server._NF.Market.Components;
 using Content.Server._NF.Market.Extensions;
-using Content.Shared._NF.CrateMachine.Interfaces;
 using Content.Shared._NF.Market;
 using Content.Shared._NF.Market.Components;
 using Content.Shared._NF.Market.Events;
 using Content.Shared.Bank.Components;
 using Robust.Shared.Audio;
-using Robust.Shared.Map;
 using Robust.Shared.Player;
 using CrateMachineComponent = Content.Shared._NF.CrateMachine.Components.CrateMachineComponent;
 
 namespace Content.Server._NF.Market.Systems;
 
-public sealed partial class MarketSystem: ICrateMachineDelegate
+public sealed partial class MarketSystem
 {
     [Dependency] private readonly CrateMachineSystem _crateMachine = default!;
 
     private void InitializeCrateMachine()
     {
         SubscribeLocalEvent<MarketConsoleComponent, MarketPurchaseMessage>(OnMarketConsolePurchaseCrateMessage);
+        SubscribeLocalEvent<CrateMachineComponent, CrateMachineOpenedEvent>(OnCrateMachineOpened);
     }
 
     private void OnMarketConsolePurchaseCrateMessage(EntityUid consoleUid,
@@ -89,7 +88,7 @@ public sealed partial class MarketSystem: ICrateMachineDelegate
 
         itemSpawner.ItemsToSpawn = consoleComponent.CartDataList;
         consoleComponent.CartDataList = [];
-        _crateMachine.OpenFor(crateMachineUid, component, this);
+        _crateMachine.OpenFor(crateMachineUid, component);
     }
 
     private void SpawnCrateItems(List<MarketData> spawnList, EntityUid targetCrate)
@@ -113,7 +112,7 @@ public sealed partial class MarketSystem: ICrateMachineDelegate
         }
     }
 
-    public void OnCrateMachineOpened(EntityUid uid, CrateMachineComponent component)
+    public void OnCrateMachineOpened(EntityUid uid, CrateMachineComponent component, CrateMachineOpenedEvent args)
     {
         if (!TryComp<MarketItemSpawnerComponent>(uid, out var itemSpawner))
             return;

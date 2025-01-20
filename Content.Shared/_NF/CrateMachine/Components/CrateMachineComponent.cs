@@ -1,5 +1,4 @@
-﻿using Content.Shared._NF.CrateMachine.Interfaces;
-using Robust.Shared.Audio;
+﻿using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 
 namespace Content.Shared._NF.CrateMachine.Components;
@@ -14,13 +13,6 @@ public sealed partial class CrateMachineComponent: Component
     /// </summary>
     [NonSerialized]
     public bool DidTakeCrate = true;
-
-    /// <summary>
-    /// This delegate will be called during various stages of the crate machine's operation
-    /// so to provide a way to do something at those times.
-    /// </summary>
-    [NonSerialized]
-    public ICrateMachineDelegate? Delegate;
 
     /// <summary>
     /// Sounds played when the door is opening and crate coming out.

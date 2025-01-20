@@ -2,7 +2,6 @@
 using System.Linq;
 using Content.Server.Storage.EntitySystems;
 using Content.Shared._NF.CrateMachine.Components;
-using Content.Shared._NF.CrateMachine.Interfaces;
 using Content.Shared.Maps;
 using Robust.Shared.Map;
 
