@@ -57,7 +57,7 @@ public sealed class GasDepositSystem : SharedGasDepositSystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<RandomGasDepositComponent, MapInitEvent>(OnDepositMapInit);
+        SubscribeLocalEvent<RandomGasDepositComponent, MapInitEvent>(OnRandomDepositMapInit);
 
         SubscribeLocalEvent<GasDepositExtractorComponent, MapInitEvent>(OnExtractorMapInit);
         SubscribeLocalEvent<GasDepositExtractorComponent, BoundUIOpenedEvent>(OnExtractorUiOpened);
@@ -97,8 +97,9 @@ public sealed class GasDepositSystem : SharedGasDepositSystem
             ent.Comp.DepositEntity = null;
     }
 
-    public void OnDepositMapInit(Entity<RandomGasDepositComponent> ent, ref MapInitEvent args)
+    public void OnRandomDepositMapInit(Entity<RandomGasDepositComponent> ent, ref MapInitEvent args)
     {
+        EnsureComp<GasDepositComponent>(ent, out var deposit);
         if (!_prototype.TryIndex(ent.Comp.DepositPrototype, out var depositPrototype))
         {
             if (!_prototype.TryGetRandom<GasDepositPrototype>(_random, out var randomPrototype))
@@ -109,16 +110,16 @@ public sealed class GasDepositSystem : SharedGasDepositSystem
         for (var i = 0; i < depositPrototype.Gases.Length && i < Atmospherics.TotalNumberOfGases; i++)
         {
             var gasRange = depositPrototype.Gases[i];
-            ent.Comp.Deposit.SetMoles(i, gasRange[0] + _random.NextFloat() * (gasRange[1] - gasRange[0]));
+            deposit.Deposit.SetMoles(i, gasRange[0] + _random.NextFloat() * (gasRange[1] - gasRange[0]));
         }
 
-        ent.Comp.LowMoles = ent.Comp.Deposit.TotalMoles * LowMoleCoefficient;
+        deposit.LowMoles = deposit.Deposit.TotalMoles * LowMoleCoefficient;
     }
 
     private void OnExtractorUpdate(Entity<GasDepositExtractorComponent> ent, ref AtmosDeviceUpdateEvent args)
     {
         if (!ent.Comp.Enabled
-            || !TryComp(ent.Comp.DepositEntity, out RandomGasDepositComponent? depositComp)
+            || !TryComp(ent.Comp.DepositEntity, out GasDepositComponent? depositComp)
             || TryComp<ApcPowerReceiverComponent>(ent, out var power) && !power.Powered
             || !_nodeContainer.TryGetNode(ent.Owner, ent.Comp.PortName, out PipeNode? port))
         {

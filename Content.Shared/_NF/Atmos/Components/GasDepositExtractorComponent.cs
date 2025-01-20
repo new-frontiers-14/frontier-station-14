@@ -39,9 +39,6 @@ public sealed partial class GasDepositExtractorComponent : Component
     /// <summary>
     /// The entity to be extracted from.
     /// </summary>
-    /// <remarks>
-    /// Should abstract into a general GasDepositComponent later.
-    /// </remarks>
     [DataField]
     public EntityUid? DepositEntity;
 

@@ -33,7 +33,7 @@ public abstract class SharedGasDepositSystem : EntitySystem
         args.PushMarkup(Loc.GetString("gas-deposit-drill-system-examined",
             ("statusColor", "lightblue"),
             ("pressure", ent.Comp.TargetPressure)));
-        if (TryComp(ent.Comp.DepositEntity, out RandomGasDepositComponent? deposit))
+        if (TryComp(ent.Comp.DepositEntity, out GasDepositComponent? deposit))
         {
             args.PushMarkup(Loc.GetString("gas-deposit-drill-system-examined-amount",
                 ("statusColor", "lightblue"),
@@ -64,7 +64,7 @@ public abstract class SharedGasDepositSystem : EntitySystem
                 continue;
 
             // Is another storage entity is already anchored here?
-            if (!HasComp<RandomGasDepositComponent>(otherEnt))
+            if (!HasComp<GasDepositComponent>(otherEnt))
                 continue;
 
             ent.Comp.DepositEntity = otherEnt.Value;
