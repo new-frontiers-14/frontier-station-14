@@ -1289,6 +1289,22 @@ public abstract class SharedStorageSystem : EntitySystem
         return GetCumulativeItemAreas(uid) < uid.Comp.Grid.GetArea() || HasSpaceInStacks(uid);
     }
 
+    /// FRONTIER
+    /// <summary>
+    /// Returns true if there is enough space to fit an item based on slot counts and item stack size.
+    /// </summary>
+    public bool HasSlotSpaceFor(Entity<StorageComponent?> uid, Entity<ItemComponent?> itemEnt)
+    {
+        if (!Resolve(uid, ref uid.Comp) || !Resolve(itemEnt, ref itemEnt.Comp))
+            return false;
+
+        // If the amount of spaces that's left in the bag is less than the size of the item, return false.
+        var itemSpacesNeeded = ItemSystem.GetItemShape((itemEnt, itemEnt.Comp)).GetArea();
+        var availableSpaces = uid.Comp.Grid.GetArea() - GetCumulativeItemAreas(uid);
+
+        return availableSpaces >= itemSpacesNeeded || HasSpaceInStacks(uid);
+    }
+
     private bool HasSpaceInStacks(Entity<StorageComponent?> uid, string? stackType = null)
     {
         if (!Resolve(uid, ref uid.Comp))
