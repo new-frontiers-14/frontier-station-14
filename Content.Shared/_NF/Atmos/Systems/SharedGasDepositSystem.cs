@@ -71,7 +71,7 @@ public abstract class SharedGasDepositSystem : EntitySystem
             return;
         }
 
-        _popup.PopupEntity(Loc.GetString("gas-deposit-drill-no-resources"), ent);
+        _popup.PopupPredicted(Loc.GetString("gas-deposit-drill-no-resources"), ent, args.User);
         args.Cancel();
     }
 
