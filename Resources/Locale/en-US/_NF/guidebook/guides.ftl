@@ -2,6 +2,7 @@
 guide-entry-nf14 = Frontier Guide
 guide-entry-bank = NT Galactic Bank
 guide-entry-piloting = Piloting
+guide-entry-startinggear = Starting Equipment
 guide-entry-hiring = Hiring Crew
 guide-entry-expeditions = Expeditions
 guide-entry-shipyard = Shipyard
@@ -12,6 +13,7 @@ guide-entry-nfsd-smuggling = Smuggling
 
 # Medical entries
 guide-entry-medical-bounties = Medical Bounties
+guide-entry-medical-doc = Director of Care
 
 # Reference entries
 guide-entry-medicalrecipes = Medical Recipes
@@ -72,6 +74,7 @@ guide-entry-shipyard-sparrow = Sparrow
 guide-entry-shipyard-skipper = Skipper
 guide-entry-shipyard-spirit = Spirit
 guide-entry-shipyard-stasis = Stasis
+guide-entry-shipyard-tide = Tide
 guide-entry-shipyard-vagabond = Vagabond
 
 # Rules entries

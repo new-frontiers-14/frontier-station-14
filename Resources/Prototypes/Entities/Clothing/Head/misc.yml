@@ -78,13 +78,13 @@
 - type: entity
   parent: ClothingHeadBase
   id: ClothingHeadHatPwig
-  name: pwig
-  description: To be honest, those look ridiculous.
+  name: powdered wig # Frontier: pwig < powdered wig
+  description: A foppish article, fit for but the most conspicuous of dandies. # Frontier: "To be honest, those look ridiculous."
   components:
   - type: Sprite
-    sprite: Clothing/Head/Misc/pwig.rsi
+    sprite: _NF/Clothing/Head/Misc/pwig.rsi # Frontier: add _NF prefix
   - type: Clothing
-    sprite: Clothing/Head/Misc/pwig.rsi
+    sprite: _NF/Clothing/Head/Misc/pwig.rsi # Frontier: add _NF prefix
 
 - type: entity
   parent: ClothingHeadBase
@@ -176,7 +176,7 @@
   id: ClothingHeadHatCatEars
   name: cat ears
   description: "NYAH!"
-  # suffix: DO NOT MAP - Frontier
+  suffix: DO NOT MAP
   components:
   - type: Tag
     tags: [] # ignore "WhitelistChameleon" tag
