@@ -173,8 +173,8 @@ public sealed class IonStormSystem : EntitySystem
         var verb = Pick(Verbs);
         var number = Pick(NumberBase) + " " + Pick(NumberMod);
         var area = Pick(Areas);
-        var feeling = Pick(Feelings);
-        var feelingPlural = Pick(FeelingsPlural);
+        var feeling = Pick(FeelingsPlural); // Frontier: Feelings < FeelingsPlural (not plural subjects, "with an S")
+        var feelingPlural = Pick(Feelings); // Frontier: FeelingsPlural < Feelings (not plural subjects, "S")
         var must = Pick(Musts);
         var require = Pick(Requires);
         var action = Pick(Actions);
