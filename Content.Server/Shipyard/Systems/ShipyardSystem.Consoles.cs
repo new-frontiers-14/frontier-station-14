@@ -216,10 +216,10 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         var deedID = EnsureComp<ShuttleDeedComponent>(targetId);
 
         var shuttleOwner = Name(player).Trim();
-        AssignShuttleDeedProperties(deedID, shuttleUid, name, shuttleOwner, voucherUsed);
+        AssignShuttleDeedProperties(deedID, shuttleUid, name, shuttleOwner, !hasValue); // replace voucherUsed with hasValue for this, so resale has some value.
 
         var deedShuttle = EnsureComp<ShuttleDeedComponent>(shuttleUid);
-        AssignShuttleDeedProperties(deedShuttle, shuttleUid, name, shuttleOwner, voucherUsed);
+        AssignShuttleDeedProperties(deedShuttle, shuttleUid, name, shuttleOwner, !hasValue); // replace voucherUsed with hasValue for this, so resale has some value.
 
         if (!voucherUsed)
         {
@@ -305,7 +305,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             );
         }
 
-        RefreshState(shipyardConsoleUid, bank.Balance, true, name, sellValue, targetId, (ShipyardConsoleUiKey)args.UiKey, voucherUsed);
+        RefreshState(shipyardConsoleUid, bank.Balance, true, name, sellValue, targetId, (ShipyardConsoleUiKey)args.UiKey, !hasValue);
     }
 
     private void TryParseShuttleName(ShuttleDeedComponent deed, string name)
@@ -480,7 +480,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             }
         }
 
-        var voucherUsed = HasComp<ShipyardVoucherComponent>(targetId);
+        var voucherUsed = TryComp<ShipyardVoucherComponent>(targetId, out var voucher) && voucher.NoValue is true;
 
         int sellValue = 0;
         if (deed?.ShuttleUid != null)
@@ -572,7 +572,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
                 }
             }
 
-            var voucherUsed = HasComp<ShipyardVoucherComponent>(targetId);
+            var voucherUsed = TryComp<ShipyardVoucherComponent>(targetId, out var voucher) && voucher.NoValue is true;
 
             int sellValue = 0;
             if (deed?.ShuttleUid != null)
