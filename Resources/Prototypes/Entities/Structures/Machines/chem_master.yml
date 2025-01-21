@@ -11,6 +11,7 @@
     snapCardinals: true
     layers:
     - state: mixer_empty
+      map: ["BeakerInserted"] # Frontier
     - state: mixer_screens
       shader: unshaded
       map: ["enum.PowerDeviceVisualLayers.Powered"]
@@ -61,6 +62,10 @@
         enum.PowerDeviceVisualLayers.Powered:
           True: { visible: true }
           False: { visible: false }
+      enum.ChemMasterVisualState.BeakerInserted: # Frontier
+        BeakerInserted: # Frontier
+          True: {state: "mixer_loaded"} # Frontier
+          False: {state: "mixer_empty"} # Frontier
   # Machine / Construction stuff
   - type: WiresPanel
   - type: Machine
