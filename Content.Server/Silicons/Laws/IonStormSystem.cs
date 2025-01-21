@@ -203,8 +203,8 @@ public sealed class IonStormSystem : EntitySystem
             0 => (Loc.GetString("ion-storm-you"), false),
             1 => (Loc.GetString("ion-storm-the-station"), true),
             2 => (Loc.GetString("ion-storm-the-crew"), true),
-            3 => (Loc.GetString("ion-storm-the-job", ("job", crew2)), true), // Frontier: false<true
-            _ => (area, false) // THE SINGULARITY REQUIRES THE HAPPY CLOWNS // Frontier: true<false
+            3 => (Loc.GetString("ion-storm-the-job", ("job", crew2)), false),
+            _ => (area, true) // THE SINGULARITY REQUIRES THE HAPPY CLOWNS
         };
         var jobChange = _robustRandom.Next(0, 3) switch
         {
