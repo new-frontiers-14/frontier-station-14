@@ -88,8 +88,10 @@ public sealed class LinkedLifecycleGridSystem : EntitySystem
         return (uid, xform);
     }
 
-    // Returns a list of entities to reparent on a grid.
-    // Useful if you need to do your own bookkeeping.
+    /// <summary>
+    /// Returns a list of entities to reparent on a grid.
+    /// Useful if you need to do your own bookkeeping.
+    /// </summary>
     public List<(Entity<TransformComponent> Entity, EntityUid MapUid, Vector2 MapPosition)> GetEntitiesToReparent(EntityUid grid)
     {
         List<(Entity<TransformComponent> Entity, EntityUid MapUid, Vector2 MapPosition)> reparentEntities = new();
@@ -108,7 +110,7 @@ public sealed class LinkedLifecycleGridSystem : EntitySystem
 
             reparentEntities.Add(((targetUid, targetXform), targetXform.MapUid!.Value, _transform.GetWorldPosition(targetXform)));
 
-            HandledPulledEntity(targetUid, ref reparentEntities);
+            HandlePulledEntity(targetUid, ref reparentEntities);
         }
 
         // Get silicon
@@ -124,7 +126,7 @@ public sealed class LinkedLifecycleGridSystem : EntitySystem
 
             reparentEntities.Add(((targetUid, targetXform), targetXform.MapUid!.Value, _transform.GetWorldPosition(targetXform)));
 
-            HandledPulledEntity(targetUid, ref reparentEntities);
+            HandlePulledEntity(targetUid, ref reparentEntities);
         }
 
         // Get occupied MindContainers (non-humanoids, pets, etc.)
@@ -146,13 +148,16 @@ public sealed class LinkedLifecycleGridSystem : EntitySystem
 
             reparentEntities.Add(((targetUid, targetXform), targetXform.MapUid!.Value, _transform.GetWorldPosition(targetXform)));
 
-            HandledPulledEntity(targetUid, ref reparentEntities);
+            HandlePulledEntity(targetUid, ref reparentEntities);
         }
 
         return reparentEntities;
     }
 
-    private void HandledPulledEntity(Entity<PullerComponent?> entity, ref List<(Entity<TransformComponent> Entity, EntityUid MapUid, Vector2 MapPosition)> listToReparent)
+    /// <summary>
+    /// Tries to get what the passed entity is pulling, if anything, and adds it to the passed list.
+    /// </summary>
+    private void HandlePulledEntity(Entity<PullerComponent?> entity, ref List<(Entity<TransformComponent> Entity, EntityUid MapUid, Vector2 MapPosition)> listToReparent)
     {
         if (!Resolve(entity, ref entity.Comp))
             return;
