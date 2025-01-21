@@ -90,16 +90,16 @@ public sealed class LinkedLifecycleGridSystem : EntitySystem
 
     // Returns a list of entities to reparent on a grid.
     // Useful if you need to do your own bookkeeping.
-    public List<(Entity<TransformComponent> Entity, EntityUid MapUid, Vector2 LocalPosition)> GetEntitiesToReparent(EntityUid grid)
+    public List<(Entity<TransformComponent> Entity, EntityUid MapUid, Vector2 MapPosition)> GetEntitiesToReparent(EntityUid grid)
     {
-        List<(Entity<TransformComponent> Entity, EntityUid MapUid, Vector2 LocalPosition)> reparentEntities = new();
-        HashSet<EntityUid> handledEntities = new();
+        List<(Entity<TransformComponent> Entity, EntityUid MapUid, Vector2 MapPosition)> reparentEntities = new();
+        HashSet<EntityUid> handledMindContainers = new();
 
         // Get player characters
         var mobQuery = AllEntityQuery<HumanoidAppearanceComponent, BankAccountComponent, TransformComponent>();
         while (mobQuery.MoveNext(out var mobUid, out _, out _, out var xform))
         {
-            handledEntities.Add(mobUid);
+            handledMindContainers.Add(mobUid);
 
             if (xform.GridUid == null || xform.MapUid == null || xform.GridUid != grid)
                 continue;
@@ -107,13 +107,15 @@ public sealed class LinkedLifecycleGridSystem : EntitySystem
             var (targetUid, targetXform) = GetParentToReparent(mobUid, xform);
 
             reparentEntities.Add(((targetUid, targetXform), targetXform.MapUid!.Value, _transform.GetWorldPosition(targetXform)));
+
+            HandledPulledEntity(targetUid, ref reparentEntities);
         }
 
         // Get silicon
         var borgQuery = AllEntityQuery<BorgChassisComponent, ActorComponent, TransformComponent>();
         while (borgQuery.MoveNext(out var borgUid, out _, out _, out var xform))
         {
-            handledEntities.Add(borgUid);
+            handledMindContainers.Add(borgUid);
 
             if (xform.GridUid == null || xform.MapUid == null || xform.GridUid != grid)
                 continue;
@@ -121,48 +123,50 @@ public sealed class LinkedLifecycleGridSystem : EntitySystem
             var (targetUid, targetXform) = GetParentToReparent(borgUid, xform);
 
             reparentEntities.Add(((targetUid, targetXform), targetXform.MapUid!.Value, _transform.GetWorldPosition(targetXform)));
+
+            HandledPulledEntity(targetUid, ref reparentEntities);
         }
 
-        // Get occupied MindContainers
+        // Get occupied MindContainers (non-humanoids, pets, etc.)
         var mindQuery = AllEntityQuery<MindContainerComponent, TransformComponent>();
         while (mindQuery.MoveNext(out var mobUid, out var mindContainer, out var xform))
         {
             if (xform.GridUid == null || xform.MapUid == null || xform.GridUid != grid)
                 continue;
 
-            // Not player-controlled, nothing to lose
+            // Not player-controlled, little to lose
             if (_mind.GetMind(mobUid, mindContainer) == null)
                 continue;
 
-            // Already handled
-            if (handledEntities.Contains(mobUid))
+            // All humans and borgs should have mind containers - if we've handled them already, no need.
+            if (handledMindContainers.Contains(mobUid))
                 continue;
 
             var (targetUid, targetXform) = GetParentToReparent(mobUid, xform);
 
             reparentEntities.Add(((targetUid, targetXform), targetXform.MapUid!.Value, _transform.GetWorldPosition(targetXform)));
-        }
 
-        // Get things dragged by players
-        var pullableQuery = AllEntityQuery<PullableComponent, TransformComponent>();
-        while (pullableQuery.MoveNext(out var pullableUid, out var pullable, out var xform))
-        {
-            if (xform.GridUid == null || xform.MapUid == null || xform.GridUid != grid)
-                continue;
-
-            if (pullable.Puller == null)
-                continue;
-
-            // Already handled
-            if (handledEntities.Contains(pullableUid))
-                continue;
-
-            var (targetUid, targetXform) = GetParentToReparent(pullableUid, xform);
-
-            reparentEntities.Add(((targetUid, targetXform), targetXform.MapUid!.Value, _transform.GetWorldPosition(targetXform)));
+            HandledPulledEntity(targetUid, ref reparentEntities);
         }
 
         return reparentEntities;
+    }
+
+    private void HandledPulledEntity(Entity<PullerComponent?> entity, ref List<(Entity<TransformComponent> Entity, EntityUid MapUid, Vector2 MapPosition)> listToReparent)
+    {
+        if (!Resolve(entity, ref entity.Comp))
+            return;
+
+        if (entity.Comp.Pulling is not EntityUid pulled)
+            return;
+
+        var pulledXform = Transform(pulled);
+
+        if (pulledXform.MapUid is not EntityUid pulledMapUid)
+            return;
+
+        // Note: this entry may be duplicated.
+        listToReparent.Add(((pulled, pulledXform), pulledMapUid, _transform.GetWorldPosition(pulledXform)));
     }
 
     // Deletes a grid, reparenting every humanoid and player character that's on it.
@@ -175,6 +179,10 @@ public sealed class LinkedLifecycleGridSystem : EntitySystem
 
         foreach (var target in reparentEntities)
         {
+            // If the item has already been moved to nullspace, skip it.
+            if (Transform(target.Entity).MapID == MapId.Nullspace)
+                continue;
+
             // Move the target and all of its children (for bikes, mechs, etc.)
             _transform.DetachEntity(target.Entity.Owner, target.Entity.Comp);
         }
@@ -185,7 +193,11 @@ public sealed class LinkedLifecycleGridSystem : EntitySystem
 
         foreach (var target in reparentEntities)
         {
-            _transform.SetCoordinates(target.Entity.Owner, new EntityCoordinates(target.MapUid, target.LocalPosition));
+            // If the item has already been moved out of nullspace, skip it.
+            if (Transform(target.Entity).MapID != MapId.Nullspace)
+                continue;
+
+            _transform.SetCoordinates(target.Entity.Owner, new EntityCoordinates(target.MapUid, target.MapPosition));
         }
     }
 }
