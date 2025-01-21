@@ -2,12 +2,12 @@ using System.Numerics;
 using Content.Shared.Atmos;
 using Robust.Shared.Prototypes;
 
-namespace Content.Server._NF.Atmos;
+namespace Content.Shared._NF.Atmos.Prototypes;
 
-[Prototype("gasDeposit")]
+[Prototype]
 public sealed partial class GasDepositPrototype : IPrototype
 {
-    [ViewVariables]
+    /// <inheritdoc/>
     [IdDataField]
     public string ID { get; private set; } = default!;
 
