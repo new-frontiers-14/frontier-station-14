@@ -1,0 +1,79 @@
+- type: loadoutGroup
+  id: DocJumpsuit
+  name: loadout-group-contractor-jumpsuit
+  loadouts:
+  - ChiefMedicalOfficerJumpsuit
+  - ChiefMedicalOfficerJumpskirt
+  - ChiefMedicalOfficerTurtleneckJumpsuit
+  - ChiefMedicalOfficerTurtleneckJumpskirt
+  fallbacks:
+  - ChiefMedicalOfficerJumpsuit
+  - ChiefMedicalOfficerJumpskirt
+
+- type: loadoutGroup
+  id: DocGloves
+  name: loadout-group-contractor-gloves
+  minLimit: 0
+  loadouts:
+  - NitrileGloves
+  - LatexGloves
+
+- type: loadoutGroup
+  id: DocBackpack
+  name: loadout-group-contractor-backpack
+  loadouts:
+  - DocClothingBackpackMedical
+  - DocClothingBackpackDuffelMedical
+  - DocClothingBackpackSatchelMedical
+  - DocClothingBackpackMessengerMedical
+  subgroups:
+  - ContractorBackpack
+  fallbacks:
+  - DocClothingBackpackMedical
+
+- type: loadoutGroup
+  id: DocHead
+  name: loadout-group-contractor-head
+  minLimit: 0
+  loadouts:
+  - ChiefMedicalOfficerBeret
+  - CMOMedicalHeadMirror
+  subgroups:
+  - ContractorHead
+
+- type: loadoutGroup
+  id: DocEars
+  name: loadout-group-contractor-ears
+  hidden: true # No point in showing this, it gets auto-selected.
+  loadouts:
+  - DocClothingHeadsetDoc
+  fallbacks:
+  - DocClothingHeadsetDoc
+
+- type: loadoutGroup
+  id: DocNeck
+  name: loadout-group-contractor-neck
+  minLimit: 0
+  loadouts:
+  - DocClothingCloakCmo
+  - DocClothingNeckMantleCMO
+
+- type: loadoutGroup
+  id: DocPDA
+  name: loadout-group-contractor-id
+  hidden: true # No point in showing this, it gets auto-selected.
+  loadouts:
+  - DocDocPDA
+  fallbacks:
+  - DocDocPDA
+
+- type: loadoutGroup
+  id: DocShoes
+  name: loadout-group-contractor-shoes
+  loadouts:
+  - DocClothingShoesColorWhite
+  - StcClothingShoesBootsLaceup # reused purposefully
+  subgroups:
+  - ContractorShoes
+  fallbacks:
+  - DocClothingShoesColorWhite

@@ -1,5 +1,4 @@
 ﻿using Content.Shared._NF.Atmos.Piping.Binary.Messages;
-using Content.Shared.Atmos;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Atmos.Piping.Binary.Components;
 using Content.Shared.IdentityManagement;
@@ -12,17 +11,11 @@ namespace Content.Client._NF.Atmos.UI
     /// Initializes a <see cref="GasPressureBidiPumpWindow"/> and updates it when new server messages are received.
     /// </summary>
     [UsedImplicitly]
-    public sealed class GasPressureBidiPumpBoundUserInterface : BoundUserInterface
+    public sealed class GasPressureBidiPumpBoundUserInterface(EntityUid owner, Enum uiKey)
+        : BoundUserInterface(owner, uiKey)
     {
         [ViewVariables]
-        private const float MaxPressure = Atmospherics.MaxOutputPressure;
-
-        [ViewVariables]
         private GasPressureBidiPumpWindow? _window;
-
-        public GasPressureBidiPumpBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
-        {
-        }
 
         protected override void Open()
         {
@@ -38,13 +31,17 @@ namespace Content.Client._NF.Atmos.UI
 
         private void OnToggleStatusButtonPressed()
         {
-            if (_window is null) return;
+            if (_window is null)
+                return;
+
             SendMessage(new GasPressurePumpToggleStatusMessage(_window.PumpStatus));
         }
 
         private void OnToggleDirectionButtonPressed()
         {
-            if (_window is null) return;
+            if (_window is null)
+                return;
+
             SendMessage(new GasPressurePumpChangePumpDirectionMessage(_window.PumpInwards));
         }
 
@@ -56,8 +53,7 @@ namespace Content.Client._NF.Atmos.UI
         /// <summary>
         /// Update the UI state based on server-sent info
         /// </summary>
-        /// <param name="state"></param>
-        protected void Update()
+        public override void Update()
         {
             if (_window == null)
                 return;
