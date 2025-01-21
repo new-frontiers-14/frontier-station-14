@@ -122,7 +122,7 @@
     - Brig # odd, but potentially restricts cadets in lieu of a security guard-only access level
 
 - type: entity
-  parent: ShipVoucherCargoShipment
+  parent: BaseShipVoucher
   id: ShipVoucherCargoShipment
   name: cargo shipment docket
   description: Allows for one cargo shipment purchase from the Cargo Shipyard. Destroyed on sale.
@@ -132,6 +132,6 @@
     - state: blue
     - state: voucherstationguard
   - type: ShipyardVoucher
-    access:
-    - Cargo
+    destroyOnEmpty: true
+    consoleType: Shipyard
     noValue: false
