@@ -14,6 +14,7 @@
     bodyType: Static
     canCollide: False
   - type: Fixtures
+  - type: GasDeposit
   - type: RandomGasDeposit
   - type: Sprite
     drawdepth: FloorTiles
@@ -128,5 +129,64 @@
   suffix: DEBUG
   components:
   - type: Pinpointer
-    component: RandomGasDeposit
-    targetName: RandomGasDeposit
+    component: GasDeposit
+    targetName: GasDeposit
+
+- type: entity
+  id: GasDepositLocatorUnpowered
+  parent: BaseItem
+  name: gas deposit locator
+  description: A scanner that checks the nearby area for gas deposits.
+  suffix: Unpowered
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Specific/Atmospherics/locator.rsi
+    layers:
+      - state: icon
+      - state: screen
+        shader: unshaded
+        visible: false
+        map: ["enum.ToggleVisuals.Layer"]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleVisuals.Toggled:
+        enum.ToggleVisuals.Layer:
+          True: { visible: true }
+          False: { visible: false }
+  - type: ItemToggle
+  - type: ProximityBeeper
+  - type: ProximityDetector
+    range: 20
+    criteria:
+      components:
+      - GasDeposit
+  - type: Beeper
+    isMuted: true
+    minBeepInterval: 0.15
+    maxBeepInterval: 1.00
+    beepSound:
+      path: "/Audio/Items/locator_beep.ogg"
+      params:
+        maxDistance: 1
+        volume: -8
+
+- type: entity
+  id: GasDepositLocator
+  parent: [ GasDepositLocatorUnpowered, PowerCellSlotSmallItem ]
+  suffix: Powered
+  components:
+  - type: PowerCellDraw
+    drawRate: 1
+    useRate: 0
+  - type: ToggleCellDraw
+
+- type: entity
+  id: GasDepositLocatorEmpty
+  parent: GasDepositLocator
+  suffix: Empty
+  components:
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default

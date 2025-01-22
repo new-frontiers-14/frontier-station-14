@@ -118,3 +118,17 @@
   parent: [ClothingHeadsetCommon, ClothingHeadsetService]
   id: ClothingHeadsetServiceCommon
   categories: [ HideSpawnMenu ]
+
+#doc headset
+
+- type: entity
+  parent: ClothingHeadsetCMO
+  id: ClothingHeadsetDoc
+  name: doc's headset
+  description: Letting the DoC know what's up. Takes encryption keys.
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyDoc
+      - EncryptionKeyCentCom

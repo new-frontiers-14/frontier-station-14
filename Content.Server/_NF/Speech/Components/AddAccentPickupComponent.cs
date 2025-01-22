@@ -4,7 +4,7 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototy
 namespace Content.Server._NF.Speech.Components;
 
 /// <summary>
-///     Applies accent to user while they wear entity as a clothing.
+///     Applies accent to user while they hold the entity.
 /// </summary>
 [RegisterComponent]
 public sealed partial class AddAccentPickupComponent : Component
@@ -23,7 +23,12 @@ public sealed partial class AddAccentPickupComponent : Component
     public string? ReplacementPrototype;
 
     /// <summary>
-    ///     Is that clothing is worn and affecting someones accent?
+    ///     Is the entity held and affecting someones accent?
     /// </summary>
     public bool IsActive = false;
+
+    /// <summary>
+    ///     Who is currently holding the item?
+    /// </summary>
+    public EntityUid Holder; // Frontier
 }

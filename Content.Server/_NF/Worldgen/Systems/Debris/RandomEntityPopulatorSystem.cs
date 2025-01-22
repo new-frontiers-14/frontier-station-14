@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Worldgen.Components.Debris;
 using Robust.Server.GameObjects;
@@ -22,24 +23,24 @@ public sealed class RandomEntityPopulatorSystem : BaseWorldSystem
         SubscribeLocalEvent<RandomEntityPopulatorComponent, LocalStructureLoadedEvent>(OnFloorPlanBuilt);
     }
 
-    private void OnFloorPlanBuilt(EntityUid uid, RandomEntityPopulatorComponent component, LocalStructureLoadedEvent args)
+    private void OnFloorPlanBuilt(Entity<RandomEntityPopulatorComponent> ent, ref LocalStructureLoadedEvent args)
     {
-        if (!TryComp<MapGridComponent>(uid, out var mapGrid))
+        if (!TryComp<MapGridComponent>(ent, out var mapGrid))
             return;
 
         var placeables = new List<string?>(4);
         List<Vector2i>? validTileIndices = null;
         // For each entity populator in the set, select a number between min and max
-        foreach (var (paramSet, cache) in component.Caches)
+        foreach (var (paramSet, cache) in ent.Comp.Caches)
         {
             if (!_random.Prob(paramSet.Prob))
                 continue;
 
             var numToGenerate = _random.Next(paramSet.Min, paramSet.Max + 1);
-            for (int i = 0; i < numToGenerate; i++)
+            for (var i = 0; i < numToGenerate; i++)
             {
                 // Then find a spot (if we can) - on any failure, assume the asteroid is full and move onto the next one, which may have different parameters
-                if (!SelectRandomTile(uid, mapGrid, paramSet.CanBeAirSealed, ref validTileIndices, out var coords))
+                if (!SelectRandomTile(ent, mapGrid, paramSet.CanBeAirSealed, ref validTileIndices, out var coords))
                     break;
 
                 cache.GetSpawns(_random, ref placeables);
@@ -65,15 +66,11 @@ public sealed class RandomEntityPopulatorSystem : BaseWorldSystem
 
         if (tileIndices == null)
         {
-            var tileIterator = _map.GetAllTiles(gridUid, mapComp, ignoreEmpty: true);
-            tileIndices = new List<Vector2i>();
-            foreach (var tile in tileIterator)
-            {
-                tileIndices.Add(tile.GridIndices);
-            }
+            var tileIterator = _map.GetAllTiles(gridUid, mapComp, true);
+            tileIndices = tileIterator.Select(tile => tile.GridIndices).ToList();
         }
 
-        bool found = false;
+        var found = false;
         for (var i = 0; i < 10; i++)
         {
             if (tileIndices.Count <= 0)
@@ -81,9 +78,7 @@ public sealed class RandomEntityPopulatorSystem : BaseWorldSystem
 
             var idx = _random.Next(tileIndices.Count);
             if (!canBeAirSealed && _atmosphere.IsTileAirBlocked(gridUid, tileIndices[idx], mapGridComp: mapComp))
-            {
                 continue;
-            }
 
             found = true;
             targetCoords = _map.GridTileToLocal(gridUid, mapComp, tileIndices[idx]);

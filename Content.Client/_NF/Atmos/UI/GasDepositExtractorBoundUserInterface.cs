@@ -1,7 +1,7 @@
 using Content.Client.Atmos.UI;
-using Content.Server._NF.Atmos.Components;
 using Content.Shared.Atmos.Piping.Binary.Components;
 using Content.Shared.IdentityManagement;
+using Content.Shared._NF.Atmos.Components;
 using JetBrains.Annotations;
 using Robust.Client.UserInterface;
 
@@ -11,14 +11,11 @@ namespace Content.Client._NF.Atmos.UI;
 /// Initializes a <see cref="GasPressurePumpWindow"/> and updates it when new server messages are received.
 /// </summary>
 [UsedImplicitly]
-public sealed class GasDepositExtractorBoundUserInterface : BoundUserInterface
+public sealed class GasDepositExtractorBoundUserInterface(EntityUid owner, Enum uiKey)
+    : BoundUserInterface(owner, uiKey)
 {
     [ViewVariables]
     private GasPressurePumpWindow? _window;
-
-    public GasDepositExtractorBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
-    {
-    }
 
     protected override void Open()
     {
@@ -31,7 +28,7 @@ public sealed class GasDepositExtractorBoundUserInterface : BoundUserInterface
         Update();
     }
 
-    public void Update()
+    public override void Update()
     {
         if (_window == null)
             return;
@@ -48,7 +45,9 @@ public sealed class GasDepositExtractorBoundUserInterface : BoundUserInterface
 
     private void OnToggleStatusButtonPressed()
     {
-        if (_window is null) return;
+        if (_window is null)
+            return;
+
         SendPredictedMessage(new GasPressurePumpToggleStatusMessage(_window.PumpStatus));
     }
 
