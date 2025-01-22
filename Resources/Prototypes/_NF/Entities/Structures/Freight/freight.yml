@@ -1,0 +1,657 @@
+- type: entity
+  id: FreightBox1
+  parent: BaseStructure
+  #suffix: container
+  name: freight container
+  description: A load of cargo to be delivered.
+#  placement:
+#    mode: AlignTileAny
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: ShipmentPrice
+      bonusPrice: 2000
+    - type: StaticPrice
+      price: 10000
+    - type: Sprite
+      layers:
+      - sprite: _NF/Structures/Freight/freight_boxes.rsi
+        offset: 0,.5
+        state: box1
+      drawdepth: Mobs
+      noRot: true
+
+#barrel pallets
+- type: entity
+  id: BarrelPallet1
+  parent: FreightBox1
+  name: freight pallet
+  suffix: Barrel
+  components:
+  - type: ShipmentPrice
+    bonusPrice: 1000
+  - type: StaticPrice
+    price: 5000
+  - type: Sprite
+    layers:
+    - sprite: _NF/Structures/Freight/freight_pallet.rsi
+      state: base
+      offset: 0,.5
+    - sprite: _NF/Structures/Freight/freight_barrels.rsi
+      state: red
+      offset: -0.25,0.3125 #top left, options are  -0.25,0.3125  and  -0.21875,0.3125
+      map: [ "topLeft" ]
+    - sprite: _NF/Structures/Freight/freight_barrels.rsi
+      state: black
+      offset: 0.25,0.3125 #top right, options are  0.25,0.3125  and  0.21875,0.3125
+      map: [ "topRight" ]
+    - sprite: _NF/Structures/Freight/freight_barrels.rsi
+      state: green
+      offset: -0.25,-0.03125 #bottom left, options are  -0.25,0  and  -0.25,-0.03125
+      map: [ "bottomLeft" ]
+    - sprite: _NF/Structures/Freight/freight_barrels.rsi
+      state: white
+      offset: 0.25,0 #bottom right, options are  0.25,0  and  0.25,-0.03125
+      map: [ "bottomRight" ]
+    - sprite: _NF/Structures/Freight/freight_pallet.rsi
+      state: barrel_straps
+      offset: 0,.5
+  - type: RandomSprite
+    available:
+    - topLeft:
+        black: ""
+        blue: ""
+        gray: ""
+        green: ""
+        red: ""
+        white: ""
+        yellow: ""
+      topRight:
+        black: ""
+        blue: ""
+        gray: ""
+        green: ""
+        red: ""
+        white: ""
+        yellow: ""
+      bottomLeft:
+        black: ""
+        blue: ""
+        gray: ""
+        green: ""
+        red: ""
+        white: ""
+        yellow: ""
+      bottomRight:
+        black: ""
+        blue: ""
+        gray: ""
+        green: ""
+        red: ""
+        white: ""
+        yellow: ""
+
+#crate pallets
+- type: entity
+  id: CratePallet1
+  parent: FreightBox1
+  name: freight pallet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ShipmentPrice
+    bonusPrice: 1000
+  - type: StaticPrice
+    price: 5000
+  - type: Sprite
+    layers:
+    - sprite: _NF/Structures/Freight/freight_pallet.rsi
+      state: base
+      offset: 0,.5
+    - sprite: Structures/Storage/Crates/electrical.rsi
+      state: icon
+      offset: 0,0.65625
+    - sprite: Structures/Storage/Crates/engineering.rsi
+      state: icon
+      offset: 0,-0.03125
+    - sprite: Structures/Storage/Crates/chemcrate_secure.rsi
+      state: icon
+      offset: 0,0.34375
+    - sprite: _NF/Structures/Freight/freight_pallet.rsi
+      state: crate_straps
+      offset: 0,.5
+
+
+- type: entity
+  id: CratePallet2
+  parent: CratePallet1
+  name: freight pallet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - sprite: _NF/Structures/Freight/freight_pallet.rsi
+      state: base
+      offset: 0,.5
+    - sprite: Structures/Storage/Crates/chemcrate_secure.rsi
+      state: icon
+      offset: 0,0.65625
+    - sprite: Structures/Storage/Crates/medicalcrate_secure.rsi
+      state: icon
+      offset: 0,-0.03125
+    - sprite: Structures/Storage/Crates/scicrate_secure.rsi
+      state: icon
+      offset: 0,0.34375
+    - sprite: _NF/Structures/Freight/freight_pallet.rsi
+      state: crate_straps
+      offset: 0,.5
+
+- type: entity
+  id: CratePallet3
+  parent: CratePallet1
+  name: freight pallet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - sprite: _NF/Structures/Freight/freight_pallet.rsi
+      state: base
+      offset: 0,.5
+    - sprite: Structures/Storage/Crates/o2.rsi
+      state: icon
+      offset: 0,0.65625
+    - sprite: Structures/Storage/Crates/scicrate_secure.rsi
+      state: icon
+      offset: 0,-0.03125
+    - sprite: Structures/Storage/Crates/hydro_secure.rsi
+      state: icon
+      offset: 0,0.34375
+    - sprite: _NF/Structures/Freight/freight_pallet.rsi
+      state: crate_straps
+      offset: 0,.5
+
+- type: entity
+  id: CratePallet4
+  parent: CratePallet1
+  name: freight pallet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - sprite: _NF/Structures/Freight/freight_pallet.rsi
+      state: base
+      offset: 0,.5
+    - sprite: Structures/Storage/Crates/plasma.rsi
+      state: icon
+      offset: 0,0.65625
+    - sprite: Structures/Storage/Crates/plasma.rsi
+      state: icon
+      offset: 0,-0.03125
+    - sprite: Structures/Storage/Crates/engineering.rsi
+      state: icon
+      offset: 0,0.34375
+    - sprite: _NF/Structures/Freight/freight_pallet.rsi
+      state: crate_straps
+      offset: 0,.5
+
+- type: entity
+  id: CratePallet5
+  parent: CratePallet1
+  name: freight pallet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - sprite: _NF/Structures/Freight/freight_pallet.rsi
+      state: base
+      offset: 0,.5
+    - sprite: Structures/Storage/Crates/radiation.rsi
+      state: icon
+      offset: 0,0.65625
+    - sprite: Structures/Storage/Crates/plasma.rsi
+      state: icon
+      offset: 0,-0.03125
+    - sprite: Structures/Storage/Crates/hydroponics.rsi
+      state: icon
+      offset: 0,0.34375
+    - sprite: _NF/Structures/Freight/freight_pallet.rsi
+      state: crate_straps
+      offset: 0,.5
+
+- type: entity
+  id: CratePallet6
+  parent: CratePallet1
+  name: freight pallet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - sprite: _NF/Structures/Freight/freight_pallet.rsi
+      state: base
+      offset: 0,.5
+    - sprite: Structures/Storage/Crates/medical.rsi
+      state: icon
+      offset: 0,0.65625
+    - sprite: Structures/Storage/Crates/radiation.rsi
+      state: icon
+      offset: 0,-0.03125
+    - sprite: Structures/Storage/Crates/hydro_secure.rsi
+      state: icon
+      offset: 0,0.34375
+    - sprite: _NF/Structures/Freight/freight_pallet.rsi
+      state: crate_straps
+      offset: 0,.5
+
+- type: entity
+  id: CratePallet7
+  parent: CratePallet1
+  name: freight pallet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - sprite: _NF/Structures/Freight/freight_pallet.rsi
+      state: base
+      offset: 0,.5
+    - sprite: Structures/Storage/Crates/o2.rsi
+      state: icon
+      offset: 0,0.65625
+    - sprite: Structures/Storage/Crates/chemcrate_secure.rsi
+      state: icon
+      offset: 0,-0.03125
+    - sprite: Structures/Storage/Crates/chemcrate_secure.rsi
+      state: icon
+      offset: 0,0.34375
+    - sprite: _NF/Structures/Freight/freight_pallet.rsi
+      state: crate_straps
+      offset: 0,.5
+
+- type: entity
+  id: CratePallet8
+  parent: CratePallet1
+  name: freight pallet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - sprite: _NF/Structures/Freight/freight_pallet.rsi
+      state: base
+      offset: 0,.5
+    - sprite: Structures/Storage/Crates/electrical.rsi
+      state: icon
+      offset: 0,0.65625
+    - sprite: Structures/Storage/Crates/surgery.rsi
+      state: icon
+      offset: 0,-0.03125
+    - sprite: Structures/Storage/Crates/hydroponics.rsi
+      state: icon
+      offset: 0,0.34375
+    - sprite: _NF/Structures/Freight/freight_pallet.rsi
+      state: crate_straps
+      offset: 0,.5
+
+- type: entity
+  id: CratePallet9
+  parent: CratePallet1
+  name: freight pallet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - sprite: _NF/Structures/Freight/freight_pallet.rsi
+      state: base
+      offset: 0,.5
+    - sprite: Structures/Storage/Crates/scicrate_secure.rsi
+      state: icon
+      offset: 0,0.65625
+    - sprite: Structures/Storage/Crates/generic.rsi
+      state: icon
+      offset: 0,-0.03125
+    - sprite: Structures/Storage/Crates/plastic.rsi
+      state: icon
+      offset: 0,0.34375
+    - sprite: _NF/Structures/Freight/freight_pallet.rsi
+      state: crate_straps
+      offset: 0,.5
+
+- type: entity
+  id: CratePallet10
+  parent: CratePallet1
+  name: freight pallet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - sprite: _NF/Structures/Freight/freight_pallet.rsi
+      state: base
+      offset: 0,.5
+    - sprite: Structures/Storage/Crates/plastic.rsi
+      state: icon
+      offset: 0,0.65625
+    - sprite: Structures/Storage/Crates/radiation.rsi
+      state: icon
+      offset: 0,-0.03125
+    - sprite: Structures/Storage/Crates/engineering.rsi
+      state: icon
+      offset: 0,0.34375
+    - sprite: _NF/Structures/Freight/freight_pallet.rsi
+      state: crate_straps
+      offset: 0,.5
+
+- type: entity
+  id: CratePallet11
+  parent: CratePallet1
+  name: freight pallet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - sprite: _NF/Structures/Freight/freight_pallet.rsi
+      state: base
+      offset: 0,.5
+    - sprite: Structures/Storage/Crates/generic.rsi
+      state: icon
+      offset: 0,0.65625
+    - sprite: Structures/Storage/Crates/hydroponics.rsi
+      state: icon
+      offset: 0,-0.03125
+    - sprite: Structures/Storage/Crates/plastic.rsi
+      state: icon
+      offset: 0,0.34375
+    - sprite: _NF/Structures/Freight/freight_pallet.rsi
+      state: crate_straps
+      offset: 0,.5
+
+- type: entity
+  id: CratePallet12
+  parent: CratePallet1
+  name: freight pallet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - sprite: _NF/Structures/Freight/freight_pallet.rsi
+      state: base
+      offset: 0,.5
+    - sprite: Structures/Storage/Crates/scicrate_secure.rsi
+      state: icon
+      offset: 0,0.65625
+    - sprite: Structures/Storage/Crates/generic.rsi
+      state: icon
+      offset: 0,-0.03125
+    - sprite: Structures/Storage/Crates/medicalcrate_secure.rsi
+      state: icon
+      offset: 0,0.34375
+    - sprite: _NF/Structures/Freight/freight_pallet.rsi
+      state: crate_straps
+      offset: 0,.5
+
+- type: entity
+  id: CratePallet13
+  parent: CratePallet1
+  name: freight pallet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - sprite: _NF/Structures/Freight/freight_pallet.rsi
+      state: base
+      offset: 0,.5
+    - sprite: Structures/Storage/Crates/chemcrate_secure.rsi
+      state: icon
+      offset: 0,0.65625
+    - sprite: Structures/Storage/Crates/generic.rsi
+      state: icon
+      offset: 0,-0.03125
+    - sprite: Structures/Storage/Crates/engineering.rsi
+      state: icon
+      offset: 0,0.34375
+    - sprite: _NF/Structures/Freight/freight_pallet.rsi
+      state: crate_straps
+      offset: 0,.5
+
+- type: entity
+  id: CratePallet14
+  parent: CratePallet1
+  name: freight pallet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - sprite: _NF/Structures/Freight/freight_pallet.rsi
+      state: base
+      offset: 0,.5
+    - sprite: Structures/Storage/Crates/surgery.rsi
+      state: icon
+      offset: 0,0.65625
+    - sprite: Structures/Storage/Crates/o2.rsi
+      state: icon
+      offset: 0,-0.03125
+    - sprite: Structures/Storage/Crates/engineering.rsi
+      state: icon
+      offset: 0,0.34375
+    - sprite: _NF/Structures/Freight/freight_pallet.rsi
+      state: crate_straps
+      offset: 0,.5
+
+- type: entity
+  id: CratePallet15
+  parent: CratePallet1
+  name: freight pallet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - sprite: _NF/Structures/Freight/freight_pallet.rsi
+      state: base
+      offset: 0,.5
+    - sprite: Structures/Storage/Crates/medical.rsi
+      state: icon
+      offset: 0,0.65625
+    - sprite: Structures/Storage/Crates/scicrate_secure.rsi
+      state: icon
+      offset: 0,-0.03125
+    - sprite: Structures/Storage/Crates/hydro_secure.rsi
+      state: icon
+      offset: 0,0.34375
+    - sprite: _NF/Structures/Freight/freight_pallet.rsi
+      state: crate_straps
+      offset: 0,.5
+
+- type: entity
+  id: CratePallet16
+  parent: CratePallet1
+  name: freight pallet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - sprite: _NF/Structures/Freight/freight_pallet.rsi
+      state: base
+      offset: 0,.5
+    - sprite: Structures/Storage/Crates/surgery.rsi
+      state: icon
+      offset: 0,0.65625
+    - sprite: Structures/Storage/Crates/science.rsi
+      state: icon
+      offset: 0,-0.03125
+    - sprite: Structures/Storage/Crates/scicrate_secure.rsi
+      state: icon
+      offset: 0,0.34375
+    - sprite: _NF/Structures/Freight/freight_pallet.rsi
+      state: crate_straps
+      offset: 0,.5
+
+- type: entity
+  id: CratePallet17
+  parent: CratePallet1
+  name: freight pallet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - sprite: _NF/Structures/Freight/freight_pallet.rsi
+      state: base
+      offset: 0,.5
+    - sprite: Structures/Storage/Crates/medical.rsi
+      state: icon
+      offset: 0,0.65625
+    - sprite: Structures/Storage/Crates/plastic.rsi
+      state: icon
+      offset: 0,-0.03125
+    - sprite: Structures/Storage/Crates/scicrate_secure.rsi
+      state: icon
+      offset: 0,0.34375
+    - sprite: _NF/Structures/Freight/freight_pallet.rsi
+      state: crate_straps
+      offset: 0,.5
+
+- type: entity
+  id: CratePallet18
+  parent: CratePallet1
+  name: freight pallet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - sprite: _NF/Structures/Freight/freight_pallet.rsi
+      state: base
+      offset: 0,.5
+    - sprite: Structures/Storage/Crates/engineering.rsi
+      state: icon
+      offset: 0,0.65625
+    - sprite: Structures/Storage/Crates/privatecrate_secure.rsi
+      state: icon
+      offset: 0,-0.03125
+    - sprite: Structures/Storage/Crates/generic.rsi
+      state: icon
+      offset: 0,0.34375
+    - sprite: _NF/Structures/Freight/freight_pallet.rsi
+      state: crate_straps
+      offset: 0,.5
+
+- type: entity
+  id: CratePallet19
+  parent: CratePallet1
+  name: freight pallet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - sprite: _NF/Structures/Freight/freight_pallet.rsi
+      state: base
+      offset: 0,.5
+    - sprite: Structures/Storage/Crates/privatecrate_secure.rsi
+      state: icon
+      offset: 0,0.65625
+    - sprite: Structures/Storage/Crates/scicrate_secure.rsi
+      state: icon
+      offset: 0,-0.03125
+    - sprite: Structures/Storage/Crates/hydro_secure.rsi
+      state: icon
+      offset: 0,0.34375
+    - sprite: _NF/Structures/Freight/freight_pallet.rsi
+      state: crate_straps
+      offset: 0,.5
+
+- type: entity
+  id: CratePallet20
+  parent: CratePallet1
+  name: freight pallet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - sprite: _NF/Structures/Freight/freight_pallet.rsi
+      state: base
+      offset: 0,.5
+    - sprite: Structures/Storage/Crates/engineering.rsi
+      state: icon
+      offset: 0,0.65625
+    - sprite: Structures/Storage/Crates/medical.rsi
+      state: icon
+      offset: 0,-0.03125
+    - sprite: Structures/Storage/Crates/radiation.rsi
+      state: icon
+      offset: 0,0.34375
+    - sprite: _NF/Structures/Freight/freight_pallet.rsi
+      state: crate_straps
+      offset: 0,.5
+
+- type: entity
+  id: CratePallet21
+  parent: CratePallet1
+  name: freight pallet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - sprite: _NF/Structures/Freight/freight_pallet.rsi
+      state: base
+      offset: 0,.5
+    - sprite: Structures/Storage/Crates/radiation.rsi
+      state: icon
+      offset: 0,0.65625
+    - sprite: Structures/Storage/Crates/engicrate_secure.rsi
+      state: icon
+      offset: 0,-0.03125
+    - sprite: Structures/Storage/Crates/electrical.rsi
+      state: icon
+      offset: 0,0.34375
+    - sprite: _NF/Structures/Freight/freight_pallet.rsi
+      state: crate_straps
+      offset: 0,.5
+
+
+
+#spawner
+- type: entity
+  parent: MarkerBase
+  id: RandomCrateFreightT1
+  name: random t1 crate freight spawner
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - sprite: _NF/Structures/Freight/freight_pallet.rsi
+        state: base
+  - type: RandomSpawner
+    offset: 0
+    prototypes:
+      - CratePallet1
+      - CratePallet2
+      - CratePallet3
+      - CratePallet4
+      - CratePallet5
+      - CratePallet6
+      - CratePallet7
+      - CratePallet8
+      - CratePallet9
+      - CratePallet10
+      - CratePallet11
+      - CratePallet12
+      - CratePallet13
+      - CratePallet14
+      - CratePallet15
+      - CratePallet16
+      - CratePallet17
+      - CratePallet18
+      - CratePallet19
+      - CratePallet20
+      - CratePallet21
+    chance: 1
+
+- type: entity
+  parent: MarkerBase
+  id: RandomFreightT1
+  name: random t1 freight spawner
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - sprite: _NF/Structures/Freight/freight_pallet.rsi
+        state: base
+  - type: RandomSpawner
+    offset: 0
+    prototypes:
+      - BarrelPallet1
+      - RandomCrateFreightT1
+    chance: 1
