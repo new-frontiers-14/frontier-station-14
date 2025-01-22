@@ -140,6 +140,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         // Keep track of whether or not a voucher was used.
         // TODO: voucher purchase should be done in a separate function.
         bool voucherUsed = false;
+        bool hasValue = false;
         if (voucher is not null)
         {
             if (voucher!.RedemptionsLeft <= 0)
@@ -161,7 +162,8 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             voucher.RedemptionsLeft--;
             voucherUsed = true;
         }
-        else
+        // not using an else here because the voucher might still require a purchase cost
+        if (voucher is null || voucher.NoValue is false)
         {
             if (bank.Balance <= vessel.Price)
             {
@@ -176,6 +178,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
                 PlayDenySound(player, shipyardConsoleUid, component);
                 return;
             }
+            hasValue = true;
         }
 
 
@@ -213,10 +216,10 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         var deedID = EnsureComp<ShuttleDeedComponent>(targetId);
 
         var shuttleOwner = Name(player).Trim();
-        AssignShuttleDeedProperties(deedID, shuttleUid, name, shuttleOwner, voucherUsed);
+        AssignShuttleDeedProperties(deedID, shuttleUid, name, shuttleOwner, !hasValue); // replace voucherUsed with hasValue for this, so resale has some value.
 
         var deedShuttle = EnsureComp<ShuttleDeedComponent>(shuttleUid);
-        AssignShuttleDeedProperties(deedShuttle, shuttleUid, name, shuttleOwner, voucherUsed);
+        AssignShuttleDeedProperties(deedShuttle, shuttleUid, name, shuttleOwner, !hasValue); // replace voucherUsed with hasValue for this, so resale has some value.
 
         if (!voucherUsed)
         {
@@ -267,7 +270,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         EnsureComp<LinkedLifecycleGridParentComponent>(shuttleUid);
 
         var sellValue = 0;
-        if (!voucherUsed)
+        if (hasValue)
         {
             if (TryComp<ShuttleDeedComponent>(targetId, out var deed))
                 sellValue = (int)_pricing.AppraiseGrid((EntityUid)(deed?.ShuttleUid!));
@@ -281,7 +284,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             SendPurchaseMessage(shipyardConsoleUid, player, name, secretChannel, secret: true);
 
         PlayConfirmSound(player, shipyardConsoleUid, component);
-        if (voucherUsed)
+        if (voucherUsed && !hasValue)
             _adminLogger.Add(LogType.ShipYardUsage, LogImpact.Low, $"{ToPrettyString(player):actor} used {ToPrettyString(targetId)} to purchase shuttle {ToPrettyString(shuttleUid)} with a voucher via {ToPrettyString(component.Owner)}");
         else
             _adminLogger.Add(LogType.ShipYardUsage, LogImpact.Low, $"{ToPrettyString(player):actor} used {ToPrettyString(targetId)} to purchase shuttle {ToPrettyString(shuttleUid)} for {vessel.Price} credits via {ToPrettyString(component.Owner)}");
@@ -296,13 +299,13 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
                     suffix: deedShuttle.ShuttleNameSuffix ?? "",
                     ownerName: shuttleOwner,
                     entityUid: _entityManager.GetNetEntity(shuttleUid),
-                    purchasedWithVoucher: voucherUsed,
+                    purchasedWithVoucher: !hasValue, // replace voucherUsed with hasValue for this, so resale has some value.
                     purchasePrice: (uint)vessel.Price
                 )
             );
         }
 
-        RefreshState(shipyardConsoleUid, bank.Balance, true, name, sellValue, targetId, (ShipyardConsoleUiKey)args.UiKey, voucherUsed);
+        RefreshState(shipyardConsoleUid, bank.Balance, true, name, sellValue, targetId, (ShipyardConsoleUiKey)args.UiKey, !hasValue);
     }
 
     private void TryParseShuttleName(ShuttleDeedComponent deed, string name)
@@ -477,7 +480,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             }
         }
 
-        var voucherUsed = HasComp<ShipyardVoucherComponent>(targetId);
+        var voucherUsed = TryComp<ShipyardVoucherComponent>(targetId, out var voucher) && voucher.NoValue is true;
 
         int sellValue = 0;
         if (deed?.ShuttleUid != null)
@@ -569,11 +572,11 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
                 }
             }
 
-            var voucherUsed = HasComp<ShipyardVoucherComponent>(targetId);
+            var voucherUsed = TryComp<ShipyardVoucherComponent>(targetId, out var voucher) && voucher.NoValue is true;
 
             int sellValue = 0;
             if (deed?.ShuttleUid != null)
-                sellValue = (int) _pricing.AppraiseGrid(deed.ShuttleUid.Value);
+                sellValue = (int)_pricing.AppraiseGrid(deed.ShuttleUid.Value);
 
             sellValue -= CalculateTotalSalesTax(component, sellValue);
 
@@ -795,7 +798,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         if (xform.GridUid == null)
             return;
 
-        if (!TryComp<ShuttleDeedComponent>(xform.GridUid.Value, out var shuttleDeed) || !TryComp<ShuttleComponent>(xform.GridUid.Value, out var shuttle) || !HasComp<TransformComponent>(xform.GridUid.Value) || shuttle == null  || ShipyardMap == null)
+        if (!TryComp<ShuttleDeedComponent>(xform.GridUid.Value, out var shuttleDeed) || !TryComp<ShuttleComponent>(xform.GridUid.Value, out var shuttle) || !HasComp<TransformComponent>(xform.GridUid.Value) || shuttle == null || ShipyardMap == null)
             return;
 
         var output = Regex.Replace($"{shuttleDeed.ShuttleOwner}", @"\s*\([^()]*\)", ""); // Removes content inside parentheses along with parentheses and a preceding space

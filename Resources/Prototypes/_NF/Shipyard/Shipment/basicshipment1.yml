@@ -1,0 +1,42 @@
+# Author Info
+# GitHub: todo
+# Discord: ???
+
+# Maintainer Info
+# GitHub: ???
+# Discord: ???
+
+# Shuttle Notes:
+#
+- type: vessel
+  id: BasicShipment1
+  #parent: BaseVessel #Todo: abstract shipment container parent
+  name: Shipment
+  description: A delivery to trade.
+  price: 4500
+  category: Small
+  group: Cargo
+  access: Cargo
+  shuttlePath: /Maps/_NF/Shuttles/Shipment/basicshipment1.yml
+  guidebookPage: Null
+  addComponents:
+  - type: IFF
+    color: '#C0C0C0'
+    flags: [IsPlayerShuttle, HideLabel]
+
+- type: gameMap
+  id: BasicShipment1
+  mapName: 'BasicShipment1'
+  mapPath: /Maps/_NF/Shuttles/Shipment/basicshipment1.yml
+  minPlayers: 0
+  stations:
+    BasicShipment1:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Shipment {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs: {}

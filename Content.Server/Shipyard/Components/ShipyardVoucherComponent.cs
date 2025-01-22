@@ -34,4 +34,11 @@ public sealed partial class ShipyardVoucherComponent : Component
     /// </summary>
     [DataField(required: true)]
     public ShipyardConsoleUiKey ConsoleType;
+
+    // Frontier
+    /// <summary>
+    ///  Whether this voucher allows for free purchase/sale or if it still costs money to purchase. Useful for allowing multiple ships without multiple IDs.
+    /// </summary>
+    [DataField]
+    public bool NoValue = true;
 }
