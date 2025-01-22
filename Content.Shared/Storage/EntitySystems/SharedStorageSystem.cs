@@ -130,7 +130,6 @@ public abstract class SharedStorageSystem : EntitySystem
         SubscribeAllEvent<StorageInteractWithItemEvent>(OnInteractWithItem);
         SubscribeAllEvent<StorageSetItemLocationEvent>(OnSetItemLocation);
         SubscribeAllEvent<StorageInsertItemIntoLocationEvent>(OnInsertItemIntoLocation);
-        SubscribeAllEvent<StorageRemoveItemEvent>(OnRemoveItem);
         SubscribeAllEvent<StorageSaveItemLocationEvent>(OnSaveItemLocation);
 
         SubscribeLocalEvent<StorageComponent, GotReclaimedEvent>(OnReclaimed);
@@ -362,7 +361,7 @@ public abstract class SharedStorageSystem : EntitySystem
     /// <returns>true if inserted, false otherwise</returns>
     private void OnInteractUsing(EntityUid uid, StorageComponent storageComp, InteractUsingEvent args)
     {
-        if (args.Handled || !CanInteract(args.User, (uid, storageComp), storageComp.ClickInsert, false))
+        if (args.Handled || !storageComp.ClickInsert || !CanInteract(args.User, (uid, storageComp), silent: false))
             return;
 
         var attemptEv = new StorageInteractUsingAttemptEvent();
@@ -382,7 +381,7 @@ public abstract class SharedStorageSystem : EntitySystem
     /// </summary>
     private void OnActivate(EntityUid uid, StorageComponent storageComp, ActivateInWorldEvent args)
     {
-        if (args.Handled || !args.Complex || !CanInteract(args.User, (uid, storageComp), storageComp.ClickInsert))
+        if (args.Handled || !args.Complex || !storageComp.OpenOnActivate || !CanInteract(args.User, (uid, storageComp)))
             return;
 
         // Toggle
@@ -638,19 +637,6 @@ public abstract class SharedStorageSystem : EntitySystem
             $"{ToPrettyString(player):player} is updating the location of {ToPrettyString(item):item} within {ToPrettyString(storage):storage}");
 
         TrySetItemStorageLocation(item!, storage!, msg.Location);
-    }
-
-    private void OnRemoveItem(StorageRemoveItemEvent msg, EntitySessionEventArgs args)
-    {
-        if (!ValidateInput(args, msg.StorageEnt, msg.ItemEnt, out var player, out var storage, out var item))
-            return;
-
-        _adminLog.Add(
-            LogType.Storage,
-            LogImpact.Low,
-            $"{ToPrettyString(player):player} is removing {ToPrettyString(item):item} from {ToPrettyString(storage):storage}");
-        TransformSystem.DropNextTo(item.Owner, player.Owner);
-        Audio.PlayPredicted(storage.Comp.StorageRemoveSound, storage, player, _audioParams);
     }
 
     private void OnInsertItemIntoLocation(StorageInsertItemIntoLocationEvent msg, EntitySessionEventArgs args)
@@ -1301,6 +1287,22 @@ public abstract class SharedStorageSystem : EntitySystem
             return false;
 
         return GetCumulativeItemAreas(uid) < uid.Comp.Grid.GetArea() || HasSpaceInStacks(uid);
+    }
+
+    /// FRONTIER
+    /// <summary>
+    /// Returns true if there is enough space to fit an item based on slot counts and item stack size.
+    /// </summary>
+    public bool HasSlotSpaceFor(Entity<StorageComponent?> uid, Entity<ItemComponent?> itemEnt)
+    {
+        if (!Resolve(uid, ref uid.Comp) || !Resolve(itemEnt, ref itemEnt.Comp))
+            return false;
+
+        // If the amount of spaces that's left in the bag is less than the size of the item, return false.
+        var itemSpacesNeeded = ItemSystem.GetItemShape((itemEnt, itemEnt.Comp)).GetArea();
+        var availableSpaces = uid.Comp.Grid.GetArea() - GetCumulativeItemAreas(uid);
+
+        return availableSpaces >= itemSpacesNeeded || HasSpaceInStacks(uid);
     }
 
     private bool HasSpaceInStacks(Entity<StorageComponent?> uid, string? stackType = null)

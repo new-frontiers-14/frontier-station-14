@@ -28,16 +28,9 @@
     sprite: _NF/Objects/Consumable/Food/condiments.rsi
   - type: Icon
     sprite: _NF/Objects/Consumable/Food/condiments.rsi
-  # - type: EmitSoundOnActivate
-    # sound:
-      # collection: squeezeBottleUseSounds
-      # params:
-        # variation: 0.125
-  # - type: EmitSoundOnLand
-    # sound:
-      # collection: squeezeBottleUseSounds
-      # params:
-        # variation: 0.125
+  - type: CondimentSqueezeBottle
+  - type: FitsInDispenser
+    solution: food
 
 - type: entity
   parent: BaseFoodCondimentSqueezeBottle
@@ -93,3 +86,39 @@
   - type: SolutionContainerVisuals
     maxFillLevels: 6
     fillBaseName: squeeze-bottle-clear
+
+- type: entity
+  parent: [DrinkBottleVisualsAll, DrinkBottleGlassBaseFull]
+  id: FoodCondimentBottleSoysauce
+  name: soy sauce bottle
+  description: Used to season dishes to umami perfection. With extra sodium!
+  components:
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.OpenableVisuals.Opened:
+        enum.OpenableVisuals.Layer:
+          True: {state: "icon_open"}
+          False: {state: "icon_empty"}
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: Soysauce
+          Quantity: 30
+  - type: SolutionTransfer
+    playTransferSound: false
+    canChangeTransferAmount: true
+    minTransferAmount: 1
+    maxTransferAmount: 5
+  - type: Sprite
+    sprite: _NF/Objects/Consumable/Food/soysauce.rsi
+    state: icon
+  - type: Openable
+    closeable: true
+  - type: SolutionContainerVisuals
+    maxFillLevels: 5
+    fillBaseName: fill-

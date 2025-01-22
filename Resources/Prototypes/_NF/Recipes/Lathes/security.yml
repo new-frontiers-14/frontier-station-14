@@ -30,12 +30,27 @@
   materials:
     Steel: 245 # 20 [Steel per empty mag] + 15 [bullets] * 15 [Steel per bullet]
 
+- type: latheRecipe # novalite rubber mag
+  id: MagazineNovaliteC1Rubber
+  parent: BaseAmmoRecipe
+  result: MagazineNovaliteC1Rubber
+  materials:
+    Steel: 82 #33% of 245 in steel
+    Plastic: 163 #66% of 245
+
 - type: latheRecipe # gestio mag empty
   id: MagazineLightRifleLowCapacityEmpty
   parent: BaseEmptyAmmoRecipe
   result: MagazineLightRifleLowCapacityEmpty
   materials:
     Steel: 20
+- type: latheRecipe # Gestio small rubber mag
+  id: MagazineLightRifleLowCapacityRubber
+  parent: BaseAmmoRecipe
+  result: MagazineLightRifleLowCapacityRubber
+  materials:
+    Steel: 82 #33% of cost in steel
+    Plastic: 163 #66% of 245
 
 - type: latheRecipe # gestio mag
   id: MagazineLightRifleLowCapacity
@@ -57,6 +72,14 @@
   result: SpeedLoaderRifleHeavy
   materials:
     Steel: 140 # 25 [Steel per empty mag] + 8 [bullets] * 15 [Steel per bullet]
+
+- type: latheRecipe
+  id: SpeedLoaderRifleHeavyRubber #Argenti rubber loader
+  parent: BaseAmmoRecipe
+  result: SpeedLoaderRifleHeavyRubber
+  materials:
+    Steel: 47 #33% of cost in Steel
+    Plastic: 93 #66% of cost in Plastic
 
 - type: latheRecipe
   id: SpeedLoaderRifleHeavyPractice
@@ -83,6 +106,14 @@
     Plastic: 120 # 8 [bullets] * 15 [Plastic per bullet]
 
 - type: latheRecipe
+  id: MagazinePistolRubber
+  parent: BaseAmmoRecipe
+  result: MagazinePistolRubber
+  materials:
+    Steel: 100 #50% of box cost
+    Plastic: 200 #50% of box cost
+
+- type: latheRecipe
   id: MagazineBoxLightRifleRubber
   parent: BaseAmmoRecipe
   result: MagazineBoxLightRifleRubber
@@ -91,12 +122,28 @@
     Plastic: 600
 
 - type: latheRecipe
+  id: MagazineLightRifleRubber
+  parent: BaseAmmoRecipe
+  result: MagazineLightRifleRubber
+  materials:
+    Steel: 150 #50% of ammo box
+    Plastic: 300 #50% of ammo box
+
+- type: latheRecipe
   id: MagazineBoxMagnumRubber
   parent: BaseAmmoRecipe
   result: MagazineBoxMagnumRubber
   materials:
     Steel: 80
     Plastic: 160
+
+- type: latheRecipe
+  id: SpeedLoaderMagnumRubber
+  parent: BaseAmmoRecipe
+  result: SpeedLoaderMagnumRubber
+  materials:
+    Steel: 40 #50% of ammo box
+    Plastic: 80 #50% of ammo box
 
 - type: latheRecipe
   id: MagazineBoxPistolRubber
@@ -113,6 +160,13 @@
   materials:
     Steel: 250
     Plastic: 500
+- type: latheRecipe
+  id: MagazineRifleRubber
+  parent: BaseAmmoRecipe
+  result: MagazineRifleRubber
+  materials:
+    Steel: 125 #50% of ammo box
+    Plastic: 250 #50% of ammo box
 
 - type: latheRecipe
   id: ShellTranquilizer # Removed upstream
@@ -124,6 +178,16 @@
     Glass: 5
     Plasma: 10
     Silver: 5
+
+- type: latheRecipe
+  id: WeaponPistolPollock
+  result: WeaponPistolPollock
+  category: Weapons
+  completetime: 3
+  materials:
+    Steel: 1000
+    Plastic: 1200
+    Plasteel: 1200
 
 - type: latheRecipe
   id: ClothingEyesHudNfsd

@@ -74,8 +74,11 @@
       - LedLightTube
       - SodiumLightTube
       - ExteriorLightTube
+      - LightTubeCrystalBlack
       - LightBulb
       - LedLightBulb
+      - SodiumLightBulb
+      - ExteriorLightBulb
       - ConveyorBeltAssembly
       - PowerCellSmall
       - PowerCellMedium
@@ -115,6 +118,7 @@
       - DrinkMug
       - DrinkMugMetal
       - DrinkGlass
+      - DrinkIceBucketEmpty
       - KitchenKnife
       - ButchCleaver
       - ServiceRollingPin
@@ -134,6 +138,8 @@
       - FoodPlateSmallPlastic
       - NapkinDrum
       - Napkin
+      - CondimentCupDispenser
+      - CondimentCup
       - FoodCondimentSqueezeBottleClear
     ## EVA
       - ClothingOuterEVASuitHydro
@@ -236,6 +242,8 @@
       - ExteriorLightTube
       - LightBulb
       - LedLightBulb
+      - SodiumLightBulb
+      - ExteriorLightBulb
       - ConveyorBeltAssembly
       - PowerCellSmall
       - PowerCellMedium
@@ -257,6 +265,7 @@
       - WelderIndustrialAdvanced
       - HolofanProjector
       - FireExtinguisher
+      - GasDepositLocator
     ## Parts
       - MicroManipulatorStockPart
       - MatterBinStockPart
@@ -288,6 +297,7 @@
       - ThrusterMachineCircuitboard
       - GyroscopeMachineCircuitboard
       - MiniGravityGeneratorCircuitboard
+      - MiniStationAnchorCircuitboard
     ## Clothing
       - UtilityBelt
       - ConstructionBag
@@ -393,6 +403,8 @@
       - ExteriorLightTube
       - LightBulb
       - LedLightBulb
+      - SodiumLightBulb
+      - ExteriorLightBulb
       - ConveyorBeltAssembly
       - PowerCellSmall
       - PowerCellMedium
@@ -465,8 +477,8 @@
 - type: entity
   id: NfsdTechFab
   parent: [ BlueprintReceiverBase, SecurityTechFab ]
-  name: nfsd techfab
-  description: Prints equipment for use by nfsd.
+  name: NFSD techfab
+  description: Prints equipment for use by NFSD.
   components:
   - type: Sprite
     sprite: _NF/Structures/Machines/techfab.rsi
@@ -526,6 +538,13 @@
       - TargetHuman
       - TargetSyndicate
       - WeaponDisablerPractice
+      - SpeedLoaderRifleHeavyRubber
+      - SpeedLoaderMagnumRubber
+      - MagazineRifleRubber
+      - MagazineShotgunBeanbag
+      - MagazineShotgunSlug
+      - MagazinePistolRubber
+      - MagazineLightRifleRubber
 #      - WeaponFlareGunSecurity
       - WeaponLaserCarbinePractice
       - Zipties
@@ -544,15 +563,33 @@
       - ContrabandAppraisalTool
       - HoloprojectorNfsd
       - ClothingBackpackElectropack
+      - PowerCageRechargerCircuitboard
+      - PowerCageHigh
+      - PowerCageMedium
+      - PowerCageSmall 
     dynamicRecipes:
-      - BoxShotgunIncendiary
-      - BoxShotgunUranium
       - BoxShellTranquilizer
       - ExplosivePayload
       - FlashPayload
       - GrenadeBlast
       - GrenadeEMP
       - GrenadeFlash
+      - PortableRecharger
+      - Signaller
+      - SignalTrigger
+      - TelescopicShield
+      - TimerTrigger
+      - Truncheon
+      - VoiceTrigger
+      - WeaponAdvancedLaser
+      - WeaponDisablerSMG
+      - WeaponLaserCannon
+      - WeaponLaserCarbine
+      - WeaponXrayCannon
+  - type: EmagLatheRecipes
+    emagStaticRecipes:
+      - BoxShotgunIncendiary
+      - BoxShotgunUranium
       - MagazineBoxLightRifleIncendiary
       - MagazineBoxLightRifleUranium
       - MagazineBoxMagnumIncendiary
@@ -569,27 +606,8 @@
       - MagazineRifleIncendiary
       - MagazineRifleUranium
       - MagazineShotgunIncendiary
-      - PortableRecharger
-      - PowerCageHigh
-      - PowerCageMedium
-      - PowerCageSmall
-      - ShuttleGunDusterCircuitboard
-      - ShuttleGunFriendshipCircuitboard
-      - ShuttleGunPerforatorCircuitboard
-      - ShuttleGunSvalinnMachineGunCircuitboard
-      - Signaller
-      - SignalTrigger
       - SpeedLoaderMagnumIncendiary
       - SpeedLoaderMagnumUranium
-      - TelescopicShield
-      - TimerTrigger
-      - Truncheon
-      - VoiceTrigger
-      - WeaponAdvancedLaser
-      - WeaponDisablerSMG
-      - WeaponLaserCannon
-      - WeaponLaserCarbine
-      - WeaponXrayCannon
       - SpeedLoaderRifleHeavyIncendiary
       - SpeedLoaderRifleHeavyUranium
 
@@ -644,6 +662,8 @@
       - ExteriorLightTube
       - LightBulb
       - LedLightBulb
+      - SodiumLightBulb
+      - ExteriorLightBulb
       - ConveyorBeltAssembly
       - PowerCellSmall
       - PowerCellMedium
@@ -700,6 +720,7 @@
       - WeaponRifleGestio
       - BaseBallBatNF
       - CrossbowModern
+      - WeaponPistolPollock
     ## Ammo boxes
       - BoxLethalshot
       - MagazineBoxLightRifle
@@ -707,11 +728,19 @@
       - MagazineBoxRifle
       - CrossbowBolt
       - CrossbowBoltBroadhead
+      - BoxBeanbag
+      - BoxShotgunSlug
+      - MagazineBoxLightRifleRubber
+      - MagazineBoxMagnumRubber
+      - MagazineBoxPistolRubber
+      - MagazineBoxRifleRubber
     ## Mags / Speedloaders / Clips
       - MagazineNovaliteC1Empty
       - MagazineNovaliteC1
+      - MagazineNovaliteC1Rubber
       - MagazineLightRifleLowCapacityEmpty
       - MagazineLightRifleLowCapacity
+      - MagazineLightRifleLowCapacityRubber
       - MagazineLightRifle
       - MagazineLightRifleEmpty
       - MagazineRifle
@@ -720,6 +749,13 @@
       - MagazinePistolEmpty
       - SpeedLoaderRifleHeavy
       - SpeedLoaderRifleHeavyEmpty
+      - SpeedLoaderRifleHeavyRubber
+      - SpeedLoaderMagnumRubber
+      - MagazineRifleRubber
+      - MagazineShotgunSlug
+      - MagazinePistolRubber
+      - MagazineLightRifleRubber
+      - MagazineShotgunBeanbag
     dynamicRecipes:
     # Shared lathe recipes
     ## Advanced tools
@@ -789,7 +825,9 @@
       - WeaponAntiqueLaserNF # After the changes made to windows shouldn't be that much of an issue now if it's widely available
       - WeaponLaserCarbine
       - WeaponDisabler
-    ## Mags / Speedloaders / Clips
+      - WeaponDisablerSMG
+      - WeaponLaserCannon
+      - WeaponXrayCannon
     ## Ammo boxes
       - BoxBeanbag
       - BoxShellTranquilizer
@@ -798,6 +836,30 @@
       - MagazineBoxPistolRubber
       - MagazineBoxRifleRubber
       - MagazineShotgunBeanbag
+  - type: EmagLatheRecipes
+    emagStaticRecipes:
+      - BoxShotgunIncendiary
+      - BoxShotgunUranium
+      - MagazineBoxLightRifleIncendiary
+      - MagazineBoxLightRifleUranium
+      - MagazineBoxMagnumIncendiary
+      - MagazineBoxMagnumUranium
+      - MagazineBoxPistolIncendiary
+      - MagazineBoxPistolUranium
+      - MagazineBoxRifleIncendiary
+      - MagazineBoxRifleUranium
+      - MagazineGrenadeEmpty
+      - MagazineLightRifleIncendiary
+      - MagazineLightRifleUranium
+      - MagazinePistolIncendiary
+      - MagazinePistolUranium
+      - MagazineRifleIncendiary
+      - MagazineRifleUranium
+      - MagazineShotgunIncendiary
+      - SpeedLoaderMagnumIncendiary
+      - SpeedLoaderMagnumUranium
+      - SpeedLoaderRifleHeavyIncendiary
+      - SpeedLoaderRifleHeavyUranium
 
 - type: entity
   id: MercenaryTechFabHacked
@@ -861,6 +923,8 @@
       - ExteriorLightTube
       - LightBulb
       - LedLightBulb
+      - SodiumLightBulb
+      - ExteriorLightBulb
       - ConveyorBeltAssembly
       - PowerCellSmall
       - PowerCellMedium
@@ -871,10 +935,6 @@
       - WeaponCapacitorRechargerCircuitboard
       - AirTank
     # Mercenary techfab
-    ## Utility
-      - ColoredLightTubeRedNF
-      - ColoredLightTubeBlackLightNF
-      - ColoredLightTubeFrostyBlueNF
     ## Clothing / Armor
       - RiotShield
       - ClothingHandsMercenaryGlovesCombat
