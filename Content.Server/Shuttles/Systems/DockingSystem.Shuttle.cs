@@ -64,7 +64,7 @@ public sealed partial class DockingSystem
         }
 
         // Frontier: check dock types
-        if (shuttleDock.DockType & gridDock.DockType == DockType.None)
+        if ((shuttleDock.DockType & gridDock.DockType) == DockType.None)
             return false;
         // End Frontier
 
@@ -131,12 +131,13 @@ public sealed partial class DockingSystem
     public DockingConfig? GetDockingConfigAt(EntityUid shuttleUid,
         EntityUid targetGrid,
         EntityCoordinates coordinates,
-        Angle angle)
+        Angle angle,
+        DockType dockType = DockType.Airlock) // Frontier
     {
         var gridDocks = GetDocks(targetGrid);
         var shuttleDocks = GetDocks(shuttleUid);
 
-        var configs = GetDockingConfigs(shuttleUid, targetGrid, shuttleDocks, gridDocks);
+        var configs = GetDockingConfigs(shuttleUid, targetGrid, shuttleDocks, gridDocks, dockType); // Frontier: add dockType
 
         foreach (var config in configs)
         {
