@@ -2400,8 +2400,8 @@ entities:
       - 1987
       - 1988
       - 1989
-      - 2423
-      - 2363
+      - 1859
+      - 1782
       - 1982
       - 1981
       - 1863
@@ -2414,24 +2414,28 @@ entities:
       parent: 1
     - type: DeviceList
       devices:
-      - 1818
-      - 2227
-      - 2000
-      - 1993
-      - 1819
-      - 1783
-      - 1351
-      - 1282
-      - 1106
-      - 667
-      - 245
-      - 1566
-      - 437
-      - 1345
+      - 2229
       - 584
       - 173
-      - 992
+      - 1993
+      - 1250
+      - 1345
+      - 437
+      - 245
+      - 1566
+      - 1818
+      - 1106
+      - 667
+      - 17
+      - 1351
+      - 1282
+      - 1046
+      - 109
+      - 1783
+      - 1819
+      - 2227
       - 1274
+      - 992
     - type: DeviceLinkSource
       linkedPorts:
         1799:
@@ -2625,8 +2629,6 @@ entities:
       parent: 1
     - type: DeviceList
       devices:
-      - 2423
-      - 2363
       - 2293
       - 1990
       - 637
@@ -2998,8 +3000,7 @@ entities:
   - uid: 1818
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -0.5,-23.5
+      pos: 6.5,-22.5
       parent: 1
     - type: DeviceNetwork
       deviceLists:
@@ -3046,13 +3047,27 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 1069
-- proto: AltarFrameNF
+- proto: AltarSpawner
   entities:
   - uid: 20
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -3.5,-7.5
+      parent: 1
+- proto: AlwaysPoweredLightExterior
+  entities:
+  - uid: 103
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -3.5,11.5
+      parent: 1
+  - uid: 847
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 2.5,11.5
       parent: 1
 - proto: AmeController
   entities:
@@ -6761,28 +6776,6 @@ entities:
       parent: 1
 - proto: ClosetWallO2N2FilledRandom
   entities:
-  - uid: 586
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -14.5,-23.5
-      parent: 1
-  - uid: 1066
-    components:
-    - type: Transform
-      pos: 6.5,10.5
-      parent: 1
-  - uid: 1454
-    components:
-    - type: Transform
-      pos: -7.5,10.5
-      parent: 1
-  - uid: 1830
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 13.5,-23.5
-      parent: 1
   - uid: 1867
     components:
     - type: Transform
@@ -6792,20 +6785,6 @@ entities:
     components:
     - type: Transform
       pos: -14.5,-12.5
-      parent: 1
-- proto: ClothingBeltSalvageWebbingFilledNF
-  entities:
-  - uid: 1319
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -10.661428,-15.494832
-      parent: 1
-  - uid: 2404
-    components:
-    - type: Transform
-      rot: 12.566370614359172 rad
-      pos: -10.654884,-15.617268
       parent: 1
 - proto: Cobweb1
   entities:
@@ -6977,20 +6956,6 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 9.5,-1.5
-      parent: 1
-- proto: ConstructionBag
-  entities:
-  - uid: 435
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -10.1977825,-15.492271
-      parent: 1
-  - uid: 893
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -10.203095,-15.640665
       parent: 1
 - proto: ConveyorBelt
   entities:
@@ -7690,9 +7655,9 @@ entities:
     - type: Transform
       pos: 2.5,9.5
       parent: 1
-- proto: Dresser
+- proto: DresserChiefMedicalOfficerFilled
   entities:
-  - uid: 539
+  - uid: 586
     components:
     - type: Transform
       pos: -1.5,-27.5
@@ -7963,25 +7928,23 @@ entities:
       parent: 1
 - proto: FirelockEdge
   entities:
-  - uid: 2363
+  - uid: 1782
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 0.5,-14.5
+      rot: -1.5707963267948966 rad
+      pos: 1.5,-14.5
       parent: 1
     - type: DeviceNetwork
       deviceLists:
-      - 2174
       - 3
-  - uid: 2423
+  - uid: 1859
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 0.5,-15.5
+      rot: -1.5707963267948966 rad
+      pos: 1.5,-15.5
       parent: 1
     - type: DeviceNetwork
       deviceLists:
-      - 2174
       - 3
 - proto: FirelockGlass
   entities:
@@ -7991,12 +7954,18 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -2.5,-24.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 53
   - uid: 109
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -6.5,-20.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 53
   - uid: 338
     components:
     - type: Transform
@@ -8043,6 +8012,9 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -6.5,-23.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 53
   - uid: 1154
     components:
     - type: Transform
@@ -8055,6 +8027,9 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 5.5,-23.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 53
   - uid: 1429
     components:
     - type: Transform
@@ -8186,7 +8161,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 1995
-      - 53
   - uid: 2227
     components:
     - type: Transform
@@ -8202,6 +8176,9 @@ entities:
     - type: Transform
       pos: 3.5,-18.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 53
   - uid: 2291
     components:
     - type: Transform
@@ -12535,6 +12512,13 @@ entities:
     - type: Transform
       pos: 2.5693202,-7.7283306
       parent: 1
+- proto: HolopadLongRange
+  entities:
+  - uid: 1066
+    components:
+    - type: Transform
+      pos: -13.5,5.5
+      parent: 1
 - proto: HospitalCurtainsOpen
   entities:
   - uid: 322
@@ -12654,6 +12638,13 @@ entities:
     - type: Transform
       pos: 7.5,-3.5
       parent: 1
+- proto: LockerChiefMedicalOfficerFilledHardsuit
+  entities:
+  - uid: 1026
+    components:
+    - type: Transform
+      pos: -1.5,-25.5
+      parent: 1
 - proto: LockerJanitorFilled
   entities:
   - uid: 701
@@ -12691,6 +12682,18 @@ entities:
     components:
     - type: Transform
       pos: 1.5,5.5
+      parent: 1
+- proto: LockerSalvageSpecialistFilled
+  entities:
+  - uid: 539
+    components:
+    - type: Transform
+      pos: -10.258607,-15.488743
+      parent: 1
+  - uid: 893
+    components:
+    - type: Transform
+      pos: -10.77944,-15.488743
       parent: 1
 - proto: LockerWallColorChemistryFilled
   entities:
@@ -12759,6 +12762,12 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -5.5,-16.5
+      parent: 1
+  - uid: 883
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 1.5,-5.5
       parent: 1
 - proto: LockerWallMaterialsFuelAmeJarFilled
   entities:
@@ -13405,20 +13414,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -4.5,-1.5
       parent: 1
-- proto: PoweredLEDLightPostSmall
-  entities:
-  - uid: 883
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 2.5,11.5
-      parent: 1
-  - uid: 887
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -3.5,11.5
-      parent: 1
 - proto: Poweredlight
   entities:
   - uid: 12
@@ -13527,12 +13522,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -3.5,8.5
       parent: 1
-  - uid: 1662
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 12.5,4.5
-      parent: 1
   - uid: 1712
     components:
     - type: Transform
@@ -13618,6 +13607,11 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 0.5,-2.5
       parent: 1
+  - uid: 678
+    components:
+    - type: Transform
+      pos: 7.5,3.5
+      parent: 1
   - uid: 1018
     components:
     - type: Transform
@@ -13634,12 +13628,6 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 3.5,-1.5
-      parent: 1
-  - uid: 1026
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 8.5,2.5
       parent: 1
   - uid: 1027
     components:
@@ -13787,6 +13775,12 @@ entities:
       parent: 1
 - proto: PoweredSmallLight
   entities:
+  - uid: 435
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 12.5,4.5
+      parent: 1
   - uid: 583
     components:
     - type: Transform
@@ -13876,13 +13870,6 @@ entities:
     components:
     - type: Transform
       pos: 10.5,2.5
-      parent: 1
-- proto: Rack
-  entities:
-  - uid: 678
-    components:
-    - type: Transform
-      pos: -10.5,-15.5
       parent: 1
 - proto: Railing
   entities:
@@ -15400,11 +15387,10 @@ entities:
       parent: 1
 - proto: SignChem
   entities:
-  - uid: 103
+  - uid: 887
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 1.5,-5.5
+      pos: 1.5,-8.5
       parent: 1
   - uid: 1422
     components:
@@ -15560,6 +15546,12 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 7.5,-5.5
+      parent: 1
+  - uid: 1763
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 5.5,-5.5
       parent: 1
 - proto: SMESBasic
   entities:
@@ -16476,13 +16468,6 @@ entities:
     components:
     - type: Transform
       pos: -4.5,-19.5
-      parent: 1
-- proto: VendingMachineChemicals
-  entities:
-  - uid: 847
-    components:
-    - type: Transform
-      pos: 5.5,-5.5
       parent: 1
 - proto: VendingMachineMedical
   entities:
