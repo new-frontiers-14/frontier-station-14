@@ -85,7 +85,6 @@ public sealed class HolopadSystem : SharedHolopadSystem
         SubscribeLocalEvent<HolopadComponent, EntRemovedFromContainerMessage>(OnAiRemove);
 
         SubscribeLocalEvent<HolopadComponent, MapInitEvent>(OnHolopadMapInit); // Frontier
-        SubscribeLocalEvent<HolopadComponent, AnchorStateChangedEvent>(OnHolopadAnchorStateChanged); // Frontier
     }
 
     #region: Holopad UI bound user interface messages
@@ -822,13 +821,6 @@ public sealed class HolopadSystem : SharedHolopadSystem
         if (entity.Comp.UseStationName)
             _renameHolopads.SyncHolopad(entity);
     }
-
-    private void OnHolopadAnchorStateChanged(Entity<HolopadComponent> entity, ref AnchorStateChangedEvent args)
-    {
-        if (args.Anchored && entity.Comp.UseStationName)
-            _renameHolopads.SyncHolopad(entity);
-    }
-
     # endregion
     // End Frontier
 }

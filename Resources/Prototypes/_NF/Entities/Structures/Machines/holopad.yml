@@ -6,6 +6,11 @@
   - type: Telephone
     ringTone: /Audio/Machines/double_ring.ogg # change me to something funny
     listeningRange: 4
+    compatibleRanges:
+    - Grid
+    - Map
+    - Unlimited
+    ignoreTelephonesOnSameGrid: false
   - type: Holopad
     useStationName: true
   - type: AccessReader
@@ -20,12 +25,6 @@
   suffix: POI
   abstract: true
   components:
-  - type: Telephone
-    compatibleRanges:
-    - Grid
-    - Map
-    - Unlimited
-    ignoreTelephonesOnSameGrid: false
   - type: Holopad
     useStationName: false
 
