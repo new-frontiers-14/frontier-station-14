@@ -37,19 +37,19 @@
       state: base
       offset: 0,.5
     - sprite: _NF/Structures/Freight/freight_barrels.rsi
-      state: red
+      state: steel
       offset: -0.25,0.3125 #top left, options are  -0.25,0.3125  and  -0.21875,0.3125
       map: [ "topLeft" ]
     - sprite: _NF/Structures/Freight/freight_barrels.rsi
-      state: black
+      state: steel
       offset: 0.25,0.3125 #top right, options are  0.25,0.3125  and  0.21875,0.3125
       map: [ "topRight" ]
     - sprite: _NF/Structures/Freight/freight_barrels.rsi
-      state: green
+      state: steel
       offset: -0.25,-0.03125 #bottom left, options are  -0.25,0  and  -0.25,-0.03125
       map: [ "bottomLeft" ]
     - sprite: _NF/Structures/Freight/freight_barrels.rsi
-      state: white
+      state: steel
       offset: 0.25,0 #bottom right, options are  0.25,0  and  0.25,-0.03125
       map: [ "bottomRight" ]
     - sprite: _NF/Structures/Freight/freight_pallet.rsi
@@ -57,7 +57,8 @@
       offset: 0,.5
   - type: RandomSprite
     available:
-    - topLeft:
+    #no weighting possible, so I have to get REAL messy to weight towards steel barrels. Only one random section is applied, and each one does not randomize one of the barrels
+    - topRight:
         black: ""
         blue: ""
         gray: ""
@@ -65,14 +66,7 @@
         red: ""
         white: ""
         yellow: ""
-      topRight:
-        black: ""
-        blue: ""
-        gray: ""
-        green: ""
-        red: ""
-        white: ""
-        yellow: ""
+        steel: ""
       bottomLeft:
         black: ""
         blue: ""
@@ -81,6 +75,7 @@
         red: ""
         white: ""
         yellow: ""
+        steel: ""
       bottomRight:
         black: ""
         blue: ""
@@ -89,6 +84,124 @@
         red: ""
         white: ""
         yellow: ""
+        steel: ""
+    - topLeft: #new selection
+        black: ""
+        blue: ""
+        gray: ""
+        green: ""
+        red: ""
+        white: ""
+        yellow: ""
+        steel: ""
+      bottomLeft:
+        black: ""
+        blue: ""
+        gray: ""
+        green: ""
+        red: ""
+        white: ""
+        yellow: ""
+        steel: ""
+      bottomRight:
+        black: ""
+        blue: ""
+        gray: ""
+        green: ""
+        red: ""
+        white: ""
+        yellow: ""
+        steel: ""
+    - topLeft: #new selection
+        black: ""
+        blue: ""
+        gray: ""
+        green: ""
+        red: ""
+        white: ""
+        yellow: ""
+        steel: ""
+      topRight:
+        black: ""
+        blue: ""
+        gray: ""
+        green: ""
+        red: ""
+        white: ""
+        yellow: ""
+        steel: ""
+      bottomRight:
+        black: ""
+        blue: ""
+        gray: ""
+        green: ""
+        red: ""
+        white: ""
+        yellow: ""
+        steel: ""
+    - topLeft: #new selection
+        black: ""
+        blue: ""
+        gray: ""
+        green: ""
+        red: ""
+        white: ""
+        yellow: ""
+        steel: ""
+      topRight:
+        black: ""
+        blue: ""
+        gray: ""
+        green: ""
+        red: ""
+        white: ""
+        yellow: ""
+        steel: ""
+      bottomLeft:
+        black: ""
+        blue: ""
+        gray: ""
+        green: ""
+        red: ""
+        white: ""
+        yellow: ""
+        steel: ""
+    - bottomLeft: #new selection
+        black: ""
+        blue: ""
+        gray: ""
+        green: ""
+        red: ""
+        white: ""
+        yellow: ""
+        steel: ""
+      bottomRight:
+        black: ""
+        blue: ""
+        gray: ""
+        green: ""
+        red: ""
+        white: ""
+        yellow: ""
+        steel: ""
+    - topLeft: #new selection
+        black: ""
+        blue: ""
+        gray: ""
+        green: ""
+        red: ""
+        white: ""
+        yellow: ""
+        steel: ""
+      topRight:
+        black: ""
+        blue: ""
+        gray: ""
+        green: ""
+        red: ""
+        white: ""
+        yellow: ""
+        steel: ""
 
 #crate pallets
 - type: entity
@@ -131,13 +244,13 @@
     - sprite: _NF/Structures/Freight/freight_pallet.rsi
       state: base
       offset: 0,.5
-    - sprite: Structures/Storage/Crates/chemcrate_secure.rsi
+    - sprite: Structures/Storage/Crates/privatecrate_secure.rsi
       state: icon
       offset: 0,0.65625
-    - sprite: Structures/Storage/Crates/medicalcrate_secure.rsi
+    - sprite: Structures/Storage/Crates/hydro_secure.rsi
       state: icon
       offset: 0,-0.03125
-    - sprite: Structures/Storage/Crates/scicrate_secure.rsi
+    - sprite: Structures/Storage/Crates/chemcrate_secure.rsi
       state: icon
       offset: 0,0.34375
     - sprite: _NF/Structures/Freight/freight_pallet.rsi
@@ -155,13 +268,13 @@
     - sprite: _NF/Structures/Freight/freight_pallet.rsi
       state: base
       offset: 0,.5
-    - sprite: Structures/Storage/Crates/o2.rsi
+    - sprite: Structures/Storage/Crates/generic.rsi
       state: icon
       offset: 0,0.65625
-    - sprite: Structures/Storage/Crates/scicrate_secure.rsi
+    - sprite: Structures/Storage/Crates/generic.rsi
       state: icon
       offset: 0,-0.03125
-    - sprite: Structures/Storage/Crates/hydro_secure.rsi
+    - sprite: Structures/Storage/Crates/generic.rsi
       state: icon
       offset: 0,0.34375
     - sprite: _NF/Structures/Freight/freight_pallet.rsi
@@ -179,13 +292,13 @@
     - sprite: _NF/Structures/Freight/freight_pallet.rsi
       state: base
       offset: 0,.5
-    - sprite: Structures/Storage/Crates/plasma.rsi
+    - sprite: Structures/Storage/Crates/medicalcrate_secure.rsi
       state: icon
       offset: 0,0.65625
-    - sprite: Structures/Storage/Crates/plasma.rsi
+    - sprite: Structures/Storage/Crates/generic.rsi
       state: icon
       offset: 0,-0.03125
-    - sprite: Structures/Storage/Crates/engineering.rsi
+    - sprite: Structures/Storage/Crates/generic.rsi
       state: icon
       offset: 0,0.34375
     - sprite: _NF/Structures/Freight/freight_pallet.rsi
@@ -203,13 +316,13 @@
     - sprite: _NF/Structures/Freight/freight_pallet.rsi
       state: base
       offset: 0,.5
-    - sprite: Structures/Storage/Crates/radiation.rsi
+    - sprite: Structures/Storage/Crates/privatecrate_secure.rsi
       state: icon
       offset: 0,0.65625
-    - sprite: Structures/Storage/Crates/plasma.rsi
+    - sprite: Structures/Storage/Crates/generic.rsi
       state: icon
       offset: 0,-0.03125
-    - sprite: Structures/Storage/Crates/hydroponics.rsi
+    - sprite: Structures/Storage/Crates/science.rsi
       state: icon
       offset: 0,0.34375
     - sprite: _NF/Structures/Freight/freight_pallet.rsi
@@ -227,13 +340,13 @@
     - sprite: _NF/Structures/Freight/freight_pallet.rsi
       state: base
       offset: 0,.5
-    - sprite: Structures/Storage/Crates/medical.rsi
+    - sprite: Structures/Storage/Crates/generic.rsi
       state: icon
       offset: 0,0.65625
-    - sprite: Structures/Storage/Crates/radiation.rsi
+    - sprite: Structures/Storage/Crates/engineering.rsi
       state: icon
       offset: 0,-0.03125
-    - sprite: Structures/Storage/Crates/hydro_secure.rsi
+    - sprite: Structures/Storage/Crates/medical.rsi
       state: icon
       offset: 0,0.34375
     - sprite: _NF/Structures/Freight/freight_pallet.rsi
@@ -251,13 +364,13 @@
     - sprite: _NF/Structures/Freight/freight_pallet.rsi
       state: base
       offset: 0,.5
-    - sprite: Structures/Storage/Crates/o2.rsi
+    - sprite: Structures/Storage/Crates/science.rsi
       state: icon
       offset: 0,0.65625
-    - sprite: Structures/Storage/Crates/chemcrate_secure.rsi
+    - sprite: Structures/Storage/Crates/engicrate_secure.rsi
       state: icon
       offset: 0,-0.03125
-    - sprite: Structures/Storage/Crates/chemcrate_secure.rsi
+    - sprite: Structures/Storage/Crates/generic.rsi
       state: icon
       offset: 0,0.34375
     - sprite: _NF/Structures/Freight/freight_pallet.rsi
@@ -275,13 +388,13 @@
     - sprite: _NF/Structures/Freight/freight_pallet.rsi
       state: base
       offset: 0,.5
-    - sprite: Structures/Storage/Crates/electrical.rsi
+    - sprite: Structures/Storage/Crates/privatecrate_secure.rsi
       state: icon
       offset: 0,0.65625
-    - sprite: Structures/Storage/Crates/surgery.rsi
+    - sprite: Structures/Storage/Crates/hydro_secure.rsi
       state: icon
       offset: 0,-0.03125
-    - sprite: Structures/Storage/Crates/hydroponics.rsi
+    - sprite: Structures/Storage/Crates/privatecrate_secure.rsi
       state: icon
       offset: 0,0.34375
     - sprite: _NF/Structures/Freight/freight_pallet.rsi
@@ -299,13 +412,13 @@
     - sprite: _NF/Structures/Freight/freight_pallet.rsi
       state: base
       offset: 0,.5
-    - sprite: Structures/Storage/Crates/scicrate_secure.rsi
-      state: icon
-      offset: 0,0.65625
     - sprite: Structures/Storage/Crates/generic.rsi
       state: icon
+      offset: 0,0.65625
+    - sprite: Structures/Storage/Crates/chemcrate_secure.rsi
+      state: icon
       offset: 0,-0.03125
-    - sprite: Structures/Storage/Crates/plastic.rsi
+    - sprite: Structures/Storage/Crates/hydro_secure.rsi
       state: icon
       offset: 0,0.34375
     - sprite: _NF/Structures/Freight/freight_pallet.rsi
@@ -323,13 +436,13 @@
     - sprite: _NF/Structures/Freight/freight_pallet.rsi
       state: base
       offset: 0,.5
-    - sprite: Structures/Storage/Crates/plastic.rsi
+    - sprite: Structures/Storage/Crates/generic.rsi
       state: icon
       offset: 0,0.65625
-    - sprite: Structures/Storage/Crates/radiation.rsi
+    - sprite: Structures/Storage/Crates/generic.rsi
       state: icon
       offset: 0,-0.03125
-    - sprite: Structures/Storage/Crates/engineering.rsi
+    - sprite: Structures/Storage/Crates/generic.rsi
       state: icon
       offset: 0,0.34375
     - sprite: _NF/Structures/Freight/freight_pallet.rsi
@@ -350,10 +463,10 @@
     - sprite: Structures/Storage/Crates/generic.rsi
       state: icon
       offset: 0,0.65625
-    - sprite: Structures/Storage/Crates/hydroponics.rsi
+    - sprite: Structures/Storage/Crates/generic.rsi
       state: icon
       offset: 0,-0.03125
-    - sprite: Structures/Storage/Crates/plastic.rsi
+    - sprite: Structures/Storage/Crates/generic.rsi
       state: icon
       offset: 0,0.34375
     - sprite: _NF/Structures/Freight/freight_pallet.rsi
@@ -371,7 +484,7 @@
     - sprite: _NF/Structures/Freight/freight_pallet.rsi
       state: base
       offset: 0,.5
-    - sprite: Structures/Storage/Crates/scicrate_secure.rsi
+    - sprite: Structures/Storage/Crates/generic.rsi
       state: icon
       offset: 0,0.65625
     - sprite: Structures/Storage/Crates/generic.rsi
@@ -395,13 +508,13 @@
     - sprite: _NF/Structures/Freight/freight_pallet.rsi
       state: base
       offset: 0,.5
-    - sprite: Structures/Storage/Crates/chemcrate_secure.rsi
+    - sprite: Structures/Storage/Crates/generic.rsi
       state: icon
       offset: 0,0.65625
     - sprite: Structures/Storage/Crates/generic.rsi
       state: icon
       offset: 0,-0.03125
-    - sprite: Structures/Storage/Crates/engineering.rsi
+    - sprite: Structures/Storage/Crates/medicalcrate_secure.rsi
       state: icon
       offset: 0,0.34375
     - sprite: _NF/Structures/Freight/freight_pallet.rsi
@@ -419,13 +532,13 @@
     - sprite: _NF/Structures/Freight/freight_pallet.rsi
       state: base
       offset: 0,.5
-    - sprite: Structures/Storage/Crates/surgery.rsi
+    - sprite: Structures/Storage/Crates/generic.rsi
       state: icon
       offset: 0,0.65625
-    - sprite: Structures/Storage/Crates/o2.rsi
+    - sprite: Structures/Storage/Crates/generic.rsi
       state: icon
       offset: 0,-0.03125
-    - sprite: Structures/Storage/Crates/engineering.rsi
+    - sprite: Structures/Storage/Crates/privatecrate_secure.rsi
       state: icon
       offset: 0,0.34375
     - sprite: _NF/Structures/Freight/freight_pallet.rsi
@@ -443,13 +556,13 @@
     - sprite: _NF/Structures/Freight/freight_pallet.rsi
       state: base
       offset: 0,.5
-    - sprite: Structures/Storage/Crates/medical.rsi
+    - sprite: Structures/Storage/Crates/engineering.rsi
       state: icon
       offset: 0,0.65625
-    - sprite: Structures/Storage/Crates/scicrate_secure.rsi
+    - sprite: Structures/Storage/Crates/generic.rsi
       state: icon
       offset: 0,-0.03125
-    - sprite: Structures/Storage/Crates/hydro_secure.rsi
+    - sprite: Structures/Storage/Crates/hydroponics.rsi
       state: icon
       offset: 0,0.34375
     - sprite: _NF/Structures/Freight/freight_pallet.rsi
@@ -467,10 +580,10 @@
     - sprite: _NF/Structures/Freight/freight_pallet.rsi
       state: base
       offset: 0,.5
-    - sprite: Structures/Storage/Crates/surgery.rsi
+    - sprite: Structures/Storage/Crates/generic.rsi
       state: icon
       offset: 0,0.65625
-    - sprite: Structures/Storage/Crates/science.rsi
+    - sprite: Structures/Storage/Crates/generic.rsi
       state: icon
       offset: 0,-0.03125
     - sprite: Structures/Storage/Crates/scicrate_secure.rsi
@@ -491,13 +604,13 @@
     - sprite: _NF/Structures/Freight/freight_pallet.rsi
       state: base
       offset: 0,.5
-    - sprite: Structures/Storage/Crates/medical.rsi
+    - sprite: Structures/Storage/Crates/generic.rsi
       state: icon
       offset: 0,0.65625
-    - sprite: Structures/Storage/Crates/plastic.rsi
+    - sprite: Structures/Storage/Crates/generic.rsi
       state: icon
       offset: 0,-0.03125
-    - sprite: Structures/Storage/Crates/scicrate_secure.rsi
+    - sprite: Structures/Storage/Crates/generic.rsi
       state: icon
       offset: 0,0.34375
     - sprite: _NF/Structures/Freight/freight_pallet.rsi
@@ -515,13 +628,13 @@
     - sprite: _NF/Structures/Freight/freight_pallet.rsi
       state: base
       offset: 0,.5
-    - sprite: Structures/Storage/Crates/engineering.rsi
+    - sprite: Structures/Storage/Crates/hydro_secure.rsi
       state: icon
       offset: 0,0.65625
-    - sprite: Structures/Storage/Crates/privatecrate_secure.rsi
+    - sprite: Structures/Storage/Crates/generic.rsi
       state: icon
       offset: 0,-0.03125
-    - sprite: Structures/Storage/Crates/generic.rsi
+    - sprite: Structures/Storage/Crates/hydro_secure.rsi
       state: icon
       offset: 0,0.34375
     - sprite: _NF/Structures/Freight/freight_pallet.rsi
@@ -539,13 +652,13 @@
     - sprite: _NF/Structures/Freight/freight_pallet.rsi
       state: base
       offset: 0,.5
-    - sprite: Structures/Storage/Crates/privatecrate_secure.rsi
+    - sprite: Structures/Storage/Crates/generic.rsi
       state: icon
       offset: 0,0.65625
-    - sprite: Structures/Storage/Crates/scicrate_secure.rsi
+    - sprite: Structures/Storage/Crates/plasma.rsi
       state: icon
       offset: 0,-0.03125
-    - sprite: Structures/Storage/Crates/hydro_secure.rsi
+    - sprite: Structures/Storage/Crates/science.rsi
       state: icon
       offset: 0,0.34375
     - sprite: _NF/Structures/Freight/freight_pallet.rsi
@@ -563,13 +676,13 @@
     - sprite: _NF/Structures/Freight/freight_pallet.rsi
       state: base
       offset: 0,.5
-    - sprite: Structures/Storage/Crates/engineering.rsi
+    - sprite: Structures/Storage/Crates/secure.rsi
       state: icon
       offset: 0,0.65625
-    - sprite: Structures/Storage/Crates/medical.rsi
+    - sprite: Structures/Storage/Crates/generic.rsi
       state: icon
       offset: 0,-0.03125
-    - sprite: Structures/Storage/Crates/radiation.rsi
+    - sprite: Structures/Storage/Crates/generic.rsi
       state: icon
       offset: 0,0.34375
     - sprite: _NF/Structures/Freight/freight_pallet.rsi
@@ -587,19 +700,18 @@
     - sprite: _NF/Structures/Freight/freight_pallet.rsi
       state: base
       offset: 0,.5
-    - sprite: Structures/Storage/Crates/radiation.rsi
+    - sprite: Structures/Storage/Crates/hydro_secure.rsi
       state: icon
       offset: 0,0.65625
-    - sprite: Structures/Storage/Crates/engicrate_secure.rsi
+    - sprite: Structures/Storage/Crates/generic.rsi
       state: icon
       offset: 0,-0.03125
-    - sprite: Structures/Storage/Crates/electrical.rsi
+    - sprite: Structures/Storage/Crates/generic.rsi
       state: icon
       offset: 0,0.34375
     - sprite: _NF/Structures/Freight/freight_pallet.rsi
       state: crate_straps
       offset: 0,.5
-
 
 
 #spawner
