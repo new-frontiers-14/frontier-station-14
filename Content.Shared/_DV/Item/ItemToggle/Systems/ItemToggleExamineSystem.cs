@@ -1,8 +1,8 @@
-using Content.Shared.DeltaV.Item.ItemToggle.Components;
+using Content.Shared._DV.Item.ItemToggle.Components;
 using Content.Shared.Examine;
 using Content.Shared.Item.ItemToggle;
 
-namespace Content.Shared.DeltaV.Item.ItemToggle.Systems;
+namespace Content.Shared._DV.Item.ItemToggle.Systems;
 
 public sealed class ItemToggleExamineSystem : EntitySystem
 {

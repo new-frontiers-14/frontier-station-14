@@ -1,7 +1,7 @@
-using Content.Shared.DeltaV.Item.ItemToggle.Systems;
+using Content.Shared._DV.Item.ItemToggle.Systems;
 using Robust.Shared.GameStates;
 
-namespace Content.Shared.DeltaV.Item.ItemToggle.Components;
+namespace Content.Shared._DV.Item.ItemToggle.Components;
 
 /// <summary>
 /// Adds examine text when the item is on or off.
