@@ -1,16 +1,15 @@
+using Content.Server.Labels;
 using Content.Server.Station.Components;
 using Content.Server.Station.Events;
 using Content.Server.Station.Systems;
 using Content.Shared.Holopad;
-using Content.Shared.Labels.Components;
-using Content.Shared.NameModifier.EntitySystems;
 
 namespace Content.Server._NF.Station.Systems;
 
 public sealed class StationRenameHolopadsSystem : EntitySystem
 {
     [Dependency] private readonly StationSystem _stationSystem = default!;
-    [Dependency] private readonly NameModifierSystem _nameMod = default!; // TODO: use LabelSystem directly instead of this.
+    [Dependency] private readonly LabelSystem _label = default!; // TODO: use LabelSystem directly instead of this.
 
     public override void Initialize()
     {
@@ -48,7 +47,6 @@ public sealed class StationRenameHolopadsSystem : EntitySystem
         padStationUid ??= _stationSystem.GetOwningStation(holopad);
         if (padStationUid == null)
         {
-            RemComp<LabelComponent>(holopad); // No idea where we are, any name is probably inaccurate.
             return;
         }
 
@@ -66,10 +64,6 @@ public sealed class StationRenameHolopadsSystem : EntitySystem
             padName += " " + holopad.Comp.StationNameSuffix;
         }
 
-        // FIXME: this should use NameModifiers, LabelSystem.Label(), and work regardless of PreventLabelTag.
-        var padLabel = EnsureComp<LabelComponent>(holopad);
-        padLabel.CurrentLabel = padName;
-        _nameMod.RefreshNameModifiers(holopad.Owner);
-        Dirty(holopad, padLabel);
+        _label.Label(holopad, padName);
     }
 }
