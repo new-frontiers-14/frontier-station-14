@@ -46,4 +46,17 @@
     maxCharges: 1
     icon: { sprite: _DV/Objects/Specific/Species/chitinid.rsi, state: chitzite }
     useDelay: 300
-    event: !type:ChitziteActionEvent
+    event: !type:CoughItemActionEvent
+
+- type: entity
+  id: ActionHairball
+  name: Cough Up Hairball
+  description: Purge some of your chemstream, and gain a cool hairball to throw at people.
+  components:
+  - type: InstantAction
+    charges: 1
+    icon:
+      sprite: Nyanotrasen/Objects/Specific/Species/felinid.rsi
+      state: icon
+    useDelay: 30
+    event: !type:CoughItemActionEvent
