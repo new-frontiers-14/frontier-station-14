@@ -94,9 +94,11 @@ marking-MothFireflyOverlay-mothfirefly1 = Firefly Overlay
 marking-MothFirefly = Wings (Firefly)
 marking-MothFirefly-mothfirefly2 = Firefly Wings
 marking-MothBee = Wings (Bumblebee)
-marking-MothBee-bee1 = Outer stripes
+# Frontier: stripes < Stripes
+marking-MothBee-bee1 = Outer Stripes
 marking-MothBee-bee2 = Wings
-marking-MothBee-bee3 = Inner stripe
+# Frontier: stripe < Stripe
+marking-MothBee-bee3 = Inner Stripe
 marking-MothBeetleTail = Beetle Wings (Junebug)
 marking-MothBeetleTail-beetle1 = Outline
 marking-MothBeetleTail-beetle2 = Wings
@@ -126,7 +128,8 @@ marking-bubble = Bubbles
 marking-bubble-bubble = Bubbles
 marking-fishbowl = Fishbowl
 marking-fishbowl-fishbowl1 = Fish
-marking-fishbowl-fishbowl2 = Fish bubbles
+# Frontier: bubbles < Bubbles
+marking-fishbowl-fishbowl2 = Fish Bubbles
 marking-FadingStars = Fading Starlight
 marking-FadingStars-fadingstars1 = Brightest
 marking-FadingStars-fadingstars2 = Middling
