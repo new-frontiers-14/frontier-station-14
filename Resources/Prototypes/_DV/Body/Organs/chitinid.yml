@@ -1,0 +1,33 @@
+- type: entity
+  id: OrganChitinidStomach
+  parent: [OrganAnimalStomach, OrganHumanStomach]
+  name: stomach
+  description: "Gross. This is hard to stomach."
+  components:
+  - type: Organ # Shitmed Change
+    slotId: stomach # Shitmed Change
+  - type: Sprite
+    state: stomach
+  - type: Item
+    size: Small
+    heldPrefix: stomach
+  - type: SolutionContainerManager
+    solutions:
+      stomach:
+        maxVol: 50
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 5
+  - type: Stomach
+  # The stomach metabolizes stuff like foods and drinks.
+  # TODO: Have it work off of the ent's solution container, and move this
+  # to intestines instead.
+  - type: Metabolizer
+    # mm yummy
+    maxReagents: 3
+    metabolizerTypes: [Human]
+    groups:
+    - id: Food
+    - id: Drink
