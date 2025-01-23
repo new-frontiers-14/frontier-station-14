@@ -1,3 +1,5 @@
+using System.Globalization;
+using System.Linq;
 using Content.Client.Stylesheets;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Components;
@@ -9,7 +11,6 @@ using Robust.Client.ResourceManagement;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Map;
-using System.Linq;
 
 namespace Content.Client._NF.Atmos.Consoles;
 
@@ -27,11 +28,11 @@ public sealed partial class AtmosAlarmGaslockEntryContainer : BoxContainer
     public event Action<NetEntity, bool>? SendChangeEnabledAction;
     public event Action<NetEntity>? SendUndockAction;
 
-    private bool _lastDirectionInwards = false;
-    private bool _lastEnabled = false;
-    private bool _lastDocked = false;
+    private bool _lastDirectionInwards;
+    private bool _lastEnabled;
+    private bool _lastDocked;
 
-    private Dictionary<Gas, string> _gasShorthands = new Dictionary<Gas, string>()
+    private readonly Dictionary<Gas, string> _gasShorthands = new()
     {
         [Gas.Ammonia] = "NH₃",
         [Gas.CarbonDioxide] = "CO₂",
@@ -66,33 +67,33 @@ public sealed partial class AtmosAlarmGaslockEntryContainer : BoxContainer
 
     public void TrySendDirectionChangeAction()
     {
-        if (SendChangeDirectionMessageAction == null)
-            return;
-        SendChangeDirectionMessageAction(NetEntity, !_lastDirectionInwards);
+        SendChangeDirectionMessageAction?.Invoke(NetEntity, !_lastDirectionInwards);
     }
 
     public void TrySendPressureChangeAction()
     {
         if (SendPressureChangeAction == null)
             return;
+
         if (!float.TryParse(PressureInput.Text, out var result))
             return;
+
         SendPressureChangeAction(NetEntity, result);
     }
 
     public void TrySendEnableChangeAction()
     {
-        if (SendChangeEnabledAction == null)
-            return;
-        SendChangeEnabledAction(NetEntity, !_lastEnabled);
+        SendChangeEnabledAction?.Invoke(NetEntity, !_lastEnabled);
     }
 
     public void TrySendUndockAction()
     {
         if (SendUndockAction == null)
             return;
+
         if (!_lastDocked)
             return;
+
         SendUndockAction(NetEntity);
     }
 
@@ -102,13 +103,16 @@ public sealed partial class AtmosAlarmGaslockEntryContainer : BoxContainer
         Coordinates = _entManager.GetCoordinates(entry.Coordinates);
 
         // Load fonts
-        var normalFont = new VectorFont(_cache.GetResource<FontResource>("/Fonts/NotoSansDisplay/NotoSansDisplay-Regular.ttf"), 11);
+        var normalFont =
+            new VectorFont(_cache.GetResource<FontResource>("/Fonts/NotoSansDisplay/NotoSansDisplay-Regular.ttf"), 11);
 
         AlarmStateLabel.Text = Loc.GetString("atmos-alerts-window-normal-state");
         AlarmStateLabel.FontColorOverride = StyleNano.GoodGreenFore;
 
         // Update alarm name
-        AlarmNameLabel.Text = Loc.GetString("atmos-alerts-window-alarm-label", ("name", entry.EntityName), ("address", entry.Address));
+        AlarmNameLabel.Text = Loc.GetString("atmos-alerts-window-alarm-label",
+            ("name", entry.EntityName),
+            ("address", entry.Address));
 
         // Focus updates
         FocusContainer.Visible = isFocus;
@@ -127,71 +131,77 @@ public sealed partial class AtmosAlarmGaslockEntryContainer : BoxContainer
         }
         // End Frontier
 
-        if (isFocus && entry.Group == AtmosAlertsComputerGroup.Gaslock)
+        if (!isFocus || entry.Group != AtmosAlertsComputerGroup.Gaslock)
+            return;
+
+        MainDataContainer.Visible = entry.AlarmState != AtmosAlarmType.Invalid;
+        NoDataLabel.Visible = entry.AlarmState == AtmosAlarmType.Invalid;
+
+        if (focusData == null)
+            return;
+
+        DirectionLabel.Text = Loc.GetString(focusData.Value.PumpingInwards
+            ? "atmos-alerts-window-direction-inwards"
+            : "atmos-alerts-window-direction-outwards");
+
+        // Update pressure (if user is not editing text)
+        if (!PressureInput.HasKeyboardFocus())
+            PressureInput.Text = focusData.Value.Pressure.ToString(CultureInfo.InvariantCulture);
+        EnabledLabel.Text = Loc.GetString(focusData.Value.Enabled
+            ? "atmos-alerts-window-enabled-on"
+            : "atmos-alerts-window-enabled-off");
+        DockedLabel.Text = Loc.GetString(focusData.Value.DockedEntity == NetEntity.Invalid
+            ? "atmos-alerts-window-docked-off"
+            : "atmos-alerts-window-docked-on");
+        DockedLabel.Disabled = focusData.Value.DockedEntity == NetEntity.Invalid;
+
+        // Update other present gases
+        GasGridContainer.RemoveAllChildren();
+
+        var gasData = focusData.Value.GasData;
+
+        if (!gasData.Any())
         {
-            MainDataContainer.Visible = (entry.AlarmState != AtmosAlarmType.Invalid);
-            NoDataLabel.Visible = (entry.AlarmState == AtmosAlarmType.Invalid);
-
-            if (focusData != null)
+            // No other gases
+            var gasLabel = new Label
             {
-                DirectionLabel.Text = Loc.GetString(focusData.Value.PumpingInwards ? "atmos-alerts-window-direction-inwards" : "atmos-alerts-window-direction-outwards");
+                Text = Loc.GetString("atmos-alerts-window-other-gases-value-nil"),
+                FontOverride = normalFont,
+                FontColorOverride = StyleNano.DisabledFore,
+                HorizontalAlignment = HAlignment.Center,
+                VerticalAlignment = VAlignment.Center,
+                HorizontalExpand = true,
+                Margin = new Thickness(0, 2, 0, 0),
+                SetHeight = 24f,
+            };
 
-                // Update pressure (if user is not editing text)
-                if (!PressureInput.HasKeyboardFocus())
-                    PressureInput.Text = focusData.Value.Pressure.ToString();
-                EnabledLabel.Text = Loc.GetString(focusData.Value.Enabled ? "atmos-alerts-window-enabled-on" : "atmos-alerts-window-enabled-off");
-                DockedLabel.Text = Loc.GetString(focusData.Value.DockedEntity == NetEntity.Invalid ? "atmos-alerts-window-docked-off" : "atmos-alerts-window-docked-on");
-                DockedLabel.Disabled = focusData.Value.DockedEntity == NetEntity.Invalid;
+            GasGridContainer.AddChild(gasLabel);
+        }
 
-                // Update other present gases
-                GasGridContainer.RemoveAllChildren();
+        else
+        {
+            // Add an entry for each gas
+            foreach (var (gas, (_, percent)) in gasData)
+            {
+                FixedPoint2 gasPercent = percent * 100f;
 
-                var gasData = focusData.Value.GasData.Where(g => g.Key != Gas.Oxygen);
+                var gasShorthand = _gasShorthands.GetValueOrDefault(gas, "X");
 
-                if (gasData.Count() == 0)
+                var gasLabel = new Label
                 {
-                    // No other gases
-                    var gasLabel = new Label()
-                    {
-                        Text = Loc.GetString("atmos-alerts-window-other-gases-value-nil"),
-                        FontOverride = normalFont,
-                        FontColorOverride = StyleNano.DisabledFore,
-                        HorizontalAlignment = HAlignment.Center,
-                        VerticalAlignment = VAlignment.Center,
-                        HorizontalExpand = true,
-                        Margin = new Thickness(0, 2, 0, 0),
-                        SetHeight = 24f,
-                    };
+                    Text = Loc.GetString("atmos-alerts-window-other-gases-value",
+                        ("shorthand", gasShorthand),
+                        ("value", gasPercent)),
+                    FontOverride = normalFont,
+                    FontColorOverride = StyleNano.GoodGreenFore,
+                    HorizontalAlignment = HAlignment.Center,
+                    VerticalAlignment = VAlignment.Center,
+                    HorizontalExpand = true,
+                    Margin = new Thickness(0, 2, 0, 0),
+                    SetHeight = 24f,
+                };
 
-                    GasGridContainer.AddChild(gasLabel);
-                }
-
-                else
-                {
-                    // Add an entry for each gas
-                    foreach ((var gas, (var mol, var percent)) in gasData)
-                    {
-                        var gasPercent = (FixedPoint2)0f;
-                        gasPercent = percent * 100f;
-
-                        if (!_gasShorthands.TryGetValue(gas, out var gasShorthand))
-                            gasShorthand = "X";
-
-                        var gasLabel = new Label()
-                        {
-                            Text = Loc.GetString("atmos-alerts-window-other-gases-value", ("shorthand", gasShorthand), ("value", gasPercent)),
-                            FontOverride = normalFont,
-                            FontColorOverride = StyleNano.GoodGreenFore,
-                            HorizontalAlignment = HAlignment.Center,
-                            VerticalAlignment = VAlignment.Center,
-                            HorizontalExpand = true,
-                            Margin = new Thickness(0, 2, 0, 0),
-                            SetHeight = 24f,
-                        };
-
-                        GasGridContainer.AddChild(gasLabel);
-                    }
-                }
+                GasGridContainer.AddChild(gasLabel);
             }
         }
     }

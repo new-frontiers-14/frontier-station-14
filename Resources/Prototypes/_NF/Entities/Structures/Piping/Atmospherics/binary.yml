@@ -188,13 +188,15 @@
     mode: NoSprite
 
 - type: entity
-  parent: BasePressurePumpGaslock
+  parent: [BaseStructureDynamic, BasePressurePumpGaslock]
   id: GaslockFrame
   name: portable gaslock
   description: Pumps gas through. Accepts docking, but cannot dock. Both sides must be docked and pumping in the same direction for gas to flow.
   placement:
     mode: SnapgridCenter
   components:
+  - type: Transform
+    anchored: false
   - type: Anchorable
   - type: Rotatable
   - type: Sprite
