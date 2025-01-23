@@ -20,3 +20,6 @@ flavor-complex-relish = like dill and vinegar
 flavor-complex-sourcream = like sour milk
 flavor-complex-tartar = dill and fish
 flavor-complex-thousandisland = like creamy, sweet, tangy, and salty
+flavor-complex-fine-noodles = like fine noodles
+flavor-complex-rich-broth = rich broth
+flavor-complex-tangy = tangy
