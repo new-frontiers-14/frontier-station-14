@@ -681,9 +681,14 @@
     prototype: SMESAdvancedEmpty
     requirements:
         Capacitor: 2 # Frontier stackRequirements<requirements
-        PowerCell: 8 # Frontier componentRequirements<requirements || 4 < 8
+        PowerCell: 8 # Frontier componentRequirements<requirements || Frontier 4 < 8
     stackRequirements:
       CableHV: 20
+  # Frontier: Temporarily commenting this out
+  # componentRequirements:
+  #     PowerCell:
+  #       amount: 4
+  #       defaultPrototype: PowerCellMedium
 
 - type: entity
   id: CellRechargerCircuitboard
