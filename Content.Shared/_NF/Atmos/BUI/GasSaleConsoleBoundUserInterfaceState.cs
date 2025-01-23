@@ -4,29 +4,23 @@ using Robust.Shared.Serialization;
 namespace Content.Shared._NF.Atmos.BUI;
 
 [NetSerializable, Serializable]
-public sealed class GasSaleConsoleBoundUserInterfaceState : BoundUserInterfaceState
+public sealed class GasSaleConsoleBoundUserInterfaceState(int appraisal, GasMixture mixture, bool enabled)
+    : BoundUserInterfaceState
 {
     /// <summary>
     /// Estimated appraisal value of the gas mixture.
     /// </summary>
-    public int Appraisal;
+    public int Appraisal = appraisal;
 
     /// <summary>
     /// The mixture in the linked sale entity.
     /// </summary>
-    public GasMixture Mixture;
+    public GasMixture Mixture = mixture;
 
     /// <summary>
     /// Whether or not the buttons on the interface are enabled.
     /// </summary>
-    public bool Enabled;
-
-    public GasSaleConsoleBoundUserInterfaceState(int appraisal, GasMixture mixture, bool enabled)
-    {
-        Appraisal = appraisal;
-        Mixture = mixture;
-        Enabled = enabled;
-    }
+    public bool Enabled = enabled;
 }
 
 [Serializable, NetSerializable]
