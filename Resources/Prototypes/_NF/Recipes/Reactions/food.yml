@@ -1,0 +1,164 @@
+# Condiments # Frountier
+
+- type: reaction
+  id: CookingAstrotame
+  reactants:
+    Chlorine:
+      amount: 3
+    Sugar:
+      amount: 1
+  products:
+    Astrotame: 3
+
+- type: reaction
+  id: CookingBechamel
+  reactants:
+    Butter:
+      amount: 1
+    Flour:
+      amount: 5
+    Milk:
+      amount: 10
+  products:
+    Bechamel: 15
+
+- type: reaction
+  minTemp: 320
+  id: CookingBlackPepper
+  reactants:
+    CapsaicinOil:
+      amount: 1
+    Ash:
+      amount: 1
+  products:
+    Blackpepper: 2
+
+- type: reaction
+  minTemp: 320
+  id: CookingCargoSauce
+  reactants:
+    Ketchunaise:
+      amount: 1
+    Mustard:
+      amount: 1
+  products:
+    CargoSauce: 2
+
+- type: reaction
+  id: CookingHoneyBBQ
+  reactants:
+    Honey:
+      amount: 1
+    BBQsauce: 
+      amount: 1
+  products:
+    HoneyBBQ: 2
+
+- type: reaction
+  id: CookingHorseradishSauce
+  reactants:
+    Mayo:
+      amount: 2
+    Vinegar:
+      amount: 1
+    Relish:
+      amount: 2
+  products:
+    HorseradishSauce: 5
+
+- type: reaction
+  id: CookingBuffaloSauce
+  reactants:
+    Hotsauce:
+      amount: 1
+    CapsaicinOil:
+      amount: 1
+  products:
+    BuffaloSauce: 2
+
+- type: reaction
+  minTemp: 350
+  id: CookingLizardSauce
+  reactants:
+    BuffaloSauce:
+      amount: 1
+    Radium:
+      amount: 1
+  products:
+    LizardSauce: 2
+
+- type: reaction
+  id: CookingMint
+  reactants:
+    Frostoil:
+      amount: 1
+    Astrotame:
+      amount: 1
+  products:
+    Mint: 2
+
+- type: reaction
+  minTemp: 340
+  id: CookingNukeSauce
+  reactants:
+    Mint:
+      amount: 1
+    LizardSauce:
+      amount: 1
+  products:
+    NukeSauce: 3
+
+- type: reaction
+  id: CookingPeppermint
+  reactants:
+    Mint:
+      amount: 1
+    Blackpepper:
+      amount: 1
+  products:
+    Peppermint: 2
+
+- type: reaction
+  id: CookingRelish
+  reactants:
+    Saline: # change to pickle juice at some point
+      amount: 1
+    Sugar:
+      amount: 3
+    Vinegar:
+      amount: 1
+  products:
+    Relish: 5
+
+- type: reaction
+  id: CookingSourCream
+  reactants:
+    Milk:
+      amount: 2
+    SulfuricAcid:  
+      amount: 1  
+      catalyst: true
+  products:
+    SourCream: 2
+
+- type: reaction
+  id: CookingTartar
+  reactants:
+    Relish:
+      amount: 2
+    SourCream:
+      amount: 2
+    Vinegar:
+      amount: 1 
+  products:
+    Tartar: 5
+
+- type: reaction
+  id: CookingThousandIsland
+  reactants:
+    Relish:
+      amount: 2
+    CargoSauce:
+      amount: 1
+  products:
+    ThousandIsland: 3
