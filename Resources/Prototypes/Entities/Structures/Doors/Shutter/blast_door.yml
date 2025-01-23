@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   id: BlastDoor
   parent: BaseShutter
   name: blast door
@@ -31,6 +31,8 @@
   - type: ContainerFill
     containers:
       board: [ DoorElectronics ]
+  - type: Airtight
+    noAirWhenFullyAirBlocked: false
   - type: Construction
     graph: BlastDoor
     node: blastdoor
