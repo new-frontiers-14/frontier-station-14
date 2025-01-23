@@ -268,6 +268,23 @@
   - type: PresetIdCard
     name: Yip Yip
 
+- type: entity
+  parent: IDCardStandard
+  id: DocIDCard
+  name: director of care ID card
+  components:
+  - type: PresetIdCard
+    job: DirectorOfCare
+  - type: Sprite
+    sprite: _NF/Objects/Misc/id_cards.rsi
+    layers:
+    - state: silver
+    - state: idmedicdoc
+  - type: Clothing
+    sprite: _NF/Objects/Misc/id_cards.rsi
+  - type: Item
+    heldPrefix: medic #temporary to OBSERVE
+
 # Cats
 - type: entity
   parent: CourierIDCard

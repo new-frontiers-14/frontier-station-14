@@ -31,7 +31,6 @@ public sealed partial class AtmosAlertsComputerWindow : FancyWindow
 
     private AtmosAlertsComputerEntry[]? _airAlarms = null;
     private AtmosAlertsComputerEntry[]? _fireAlarms = null;
-    private AtmosAlertsComputerEntry[]? _gaslocks = null; // Frontier
     private IEnumerable<AtmosAlertsComputerEntry>? _allAlarms = null;
 
     private IEnumerable<AtmosAlertsComputerEntry>? _activeAlarms = null;
@@ -195,7 +194,6 @@ public sealed partial class AtmosAlertsComputerWindow : FancyWindow
         // Retain alarm data for use inbetween updates
         _airAlarms = airAlarms;
         _fireAlarms = fireAlarms;
-        _gaslocks = gaslocks; // Frontier
         _allAlarms = airAlarms.Concat(fireAlarms);
         _allAlarms = airAlarms.Concat(gaslocks); // Frontier
 
@@ -288,7 +286,7 @@ public sealed partial class AtmosAlertsComputerWindow : FancyWindow
         }
 
         // Frontier: gaslocks
-        for (int index = 0; index < gaslocks.Count(); index++)
+        for (var index = 0; index < gaslocks.Length; index++)
         {
             var entry = gaslocks.ElementAt(index);
             UpdateGaslockUIEntry(entry, index, GaslocksTable, console, focusGaslockData);
@@ -470,7 +468,7 @@ public sealed partial class AtmosAlertsComputerWindow : FancyWindow
             newEntryContainer.SendUndockAction += SendGaslockUndockAction;
 
             // On click
-            newEntryContainer.FocusButton.OnButtonUp += args =>
+            newEntryContainer.FocusButton.OnButtonUp += _ =>
             {
                 if (_trackedEntity == newEntryContainer.NetEntity)
                 {
@@ -502,15 +500,13 @@ public sealed partial class AtmosAlertsComputerWindow : FancyWindow
         // Update values and UI elements
         var tableChild = table.GetChild(index);
 
-        if (tableChild is not AtmosAlarmGaslockEntryContainer)
+        if (tableChild is not AtmosAlarmGaslockEntryContainer entryContainer)
         {
             table.RemoveChild(tableChild);
             UpdateGaslockUIEntry(entry, index, table, console, focusData);
 
             return;
         }
-
-        var entryContainer = (AtmosAlarmGaslockEntryContainer)tableChild;
 
         entryContainer.UpdateEntry(entry, entry.NetEntity == _trackedEntity, focusData);
     }
@@ -520,26 +516,27 @@ public sealed partial class AtmosAlertsComputerWindow : FancyWindow
     {
         foreach (var tableChild in table.Children)
         {
-            // Frontier: multiple type checks
-            if (tableChild is AtmosAlarmEntryContainer)
+            switch (tableChild)
             {
-                var entryContainer = (AtmosAlarmEntryContainer)tableChild;
+                // Frontier: multiple type checks
+                case AtmosAlarmEntryContainer entry:
+                {
+                    if (entry.NetEntity != currTrackedEntity)
+                        entry.RemoveAsFocus();
 
-                if (entryContainer.NetEntity != currTrackedEntity)
-                    entryContainer.RemoveAsFocus();
+                    else if (entry.NetEntity == currTrackedEntity)
+                        entry.SetAsFocus();
+                    break;
+                }
+                case AtmosAlarmGaslockEntryContainer gaslockEntry:
+                {
+                    if (gaslockEntry.NetEntity != currTrackedEntity)
+                        gaslockEntry.RemoveAsFocus();
 
-                else if (entryContainer.NetEntity == currTrackedEntity)
-                    entryContainer.SetAsFocus();
-            }
-            else if (tableChild is AtmosAlarmGaslockEntryContainer)
-            {
-                var entryContainer = (AtmosAlarmGaslockEntryContainer)tableChild;
-
-                if (entryContainer.NetEntity != currTrackedEntity)
-                    entryContainer.RemoveAsFocus();
-
-                else if (entryContainer.NetEntity == currTrackedEntity)
-                    entryContainer.SetAsFocus();
+                    else if (gaslockEntry.NetEntity == currTrackedEntity)
+                        gaslockEntry.SetAsFocus();
+                    break;
+                }
             }
             // End Frontier
         }
@@ -671,14 +668,13 @@ public sealed partial class AtmosAlertsComputerWindow : FancyWindow
 
         foreach (var control in container.Children)
         {
-            if (control == null) // Frontier: move type checks down
-                continue;
-
-            if (control is AtmosAlarmEntryContainer && ((AtmosAlarmEntryContainer)control).NetEntity == _trackedEntity) // Frontier: add type check
+            // Frontier - Move type checks down
+            if (control is AtmosAlarmEntryContainer entry && entry.NetEntity == _trackedEntity)
                 return true;
 
-            if (control is AtmosAlarmGaslockEntryContainer && ((AtmosAlarmGaslockEntryContainer)control).NetEntity == _trackedEntity) // Frontier
-                return true; // Frontier
+            // Frontier - Add gaslock check
+            if (control is AtmosAlarmGaslockEntryContainer gaslockEntry && gaslockEntry.NetEntity == _trackedEntity)
+                return true;
 
             nextScrollPosition += control.Height;
         }
