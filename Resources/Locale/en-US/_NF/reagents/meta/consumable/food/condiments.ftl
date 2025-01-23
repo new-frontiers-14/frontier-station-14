@@ -16,7 +16,7 @@ reagent-name-lizardsauce = Lizard Sauce
 reagent-desc-lizardsauce = for a lizard who thinks hotsauce is a cool, refreshing beverage
 
 reagent-name-mint = Mint
-reagent-desc-mint = extracted mint oil, supposidly
+reagent-desc-mint = extracted mint oil, supposedly
 
 reagent-name-nukesauce = Nuke Sauce
 reagent-desc-nukesauce = so this is what cold fusion is
