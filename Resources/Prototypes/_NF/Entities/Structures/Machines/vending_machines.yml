@@ -684,6 +684,33 @@
     energy: 1.6
     color: "#4b93ad"
 
+- type: entity
+  parent: [BaseStructureDisableAnchoring, VendingMachine]
+  id: VendingMachineCargo
+  name: CargoVend
+  description: A one stop shop for space truckers.
+  components:
+  - type: VendingMachine
+    pack: CargoVendInventory
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    # ejectState: eject-unshaded  No sprite, see chefvend/dinnerware/BODA/etc for expamples
+  - type: Sprite
+    sprite: _NF/Structures/Machines/VendingMachines/astrovend.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#4b93ad"
+
 # POI versions of upstream machines
 
 - type: entity
