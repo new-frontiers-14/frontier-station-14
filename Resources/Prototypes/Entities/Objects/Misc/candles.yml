@@ -33,7 +33,7 @@
       alwaysCombustible: true
       canExtinguish: true
       firestacksOnIgnite: 3.0
-      firestackFade: -0.001 #-0.01<-0.001 frountier still dims, but is slower and gives a better idea when the candle will die
+      firestackFade: -0.001 #-0.01<-0.001 frontier 
       damage:
         types:
           Heat: 0.1
@@ -55,7 +55,7 @@
       thresholds:
       - trigger:
           !type:DamageTrigger
-          damage: 1000 #100<1000 frountier 5 mins to 50, ish
+          damage: 1000 #100<1000 frontier
         behaviors:
         - !type:DoActsBehavior
           acts: [ "Destruction" ]
