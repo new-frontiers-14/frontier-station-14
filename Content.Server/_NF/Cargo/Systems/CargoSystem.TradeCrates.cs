@@ -86,6 +86,8 @@ public sealed partial class CargoSystem
         ev.PushMarkup(ent.Comp.ExpressDeliveryTime >= _timing.CurTime ?
             Loc.GetString("trade-crate-priority-active") :
             Loc.GetString("trade-crate-priority-inactive"));
+
+        ev.PushMarkup(Loc.GetString("trade-crate-priority-time", ("time", ent.Comp.ExpressDeliveryTime.Value.ToString(@"hh\:mm\:ss"))));
     }
 
     private void DisableTradeCratePriority(EntityUid uid)
