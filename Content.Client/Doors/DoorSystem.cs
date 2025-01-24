@@ -4,6 +4,7 @@ using Robust.Client.Animations;
 using Robust.Client.GameObjects;
 using Robust.Client.ResourceManagement;
 using Robust.Shared.Serialization.TypeSerializers.Implementations;
+using Content.Shared._NF.NFSprayPainter.Prototypes; // Frontier
 
 namespace Content.Client.Doors;
 
@@ -75,17 +76,30 @@ public sealed class DoorSystem : SharedDoorSystem
         if(!AppearanceSystem.TryGetData<DoorState>(uid, DoorVisuals.State, out var state, args.Component))
             state = DoorState.Closed;
 
-        if (AppearanceSystem.TryGetData<string>(uid, DoorVisuals.BaseRSI, out var baseRsi, args.Component))
+        // Frontier: Rework Spray painter start
+        //if (AppearanceSystem.TryGetData<string>(uid, DoorVisuals.BaseRSI, out var baseRsi, args.Component))
+        //{
+        //    if (!_resourceCache.TryGetResource<RSIResource>(SpriteSpecifierSerializer.TextureRoot / baseRsi, out var res))
+        //    {
+        //        Log.Error("Unable to load RSI '{0}'. Trace:\n{1}", baseRsi, Environment.StackTrace);
+        //    }
+        //    foreach (var layer in args.Sprite.AllLayers)
+        //    {
+        //        layer.Rsi = res?.RSI;
+        //    }
+        //}
+
+        if (AppearanceSystem.TryGetData<string>(uid, NFPaintableVisuals.BaseRSI, out var prototype, args.Component))
         {
-            if (!_resourceCache.TryGetResource<RSIResource>(SpriteSpecifierSerializer.TextureRoot / baseRsi, out var res))
-            {
-                Log.Error("Unable to load RSI '{0}'. Trace:\n{1}", baseRsi, Environment.StackTrace);
-            }
-            foreach (var layer in args.Sprite.AllLayers)
-            {
-                layer.Rsi = res?.RSI;
-            }
+            var proto = Spawn(prototype);
+
+            if (TryComp<SpriteComponent>(proto, out var sprite))
+                foreach (var layer in args.Sprite.AllLayers)
+                    layer.Rsi = sprite.BaseRSI;
+
+            Del(proto);
         }
+        // Frontier: Rework Spray painter end
 
         TryComp<AnimationPlayerComponent>(uid, out var animPlayer);
         if (_animationSystem.HasRunningAnimation(uid, animPlayer, DoorComponent.AnimationKey))
