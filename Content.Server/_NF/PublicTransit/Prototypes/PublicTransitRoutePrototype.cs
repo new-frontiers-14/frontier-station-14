@@ -37,17 +37,17 @@ public sealed partial class PublicTransitRoutePrototype : IPrototype
     /// The string to use as a dock tag.
     /// </summary>
     [DataField]
-    public string? DockTag;
+    public string? DockTag { get; private set; } = null;
 
     /// <summary>
     /// The 
     /// </summary>
     [DataField]
-    public EntProtoId? SignEntity;
+    public EntProtoId? SignEntity { get; private set; } = null;
 
     /// <summary>
     /// The bus type to spawn on this route.
     /// </summary>
     [DataField(required: true)]
-    public ProtoId<VesselPrototype> BusVessel = default!;
+    public ProtoId<VesselPrototype> BusVessel { get; private set; } = default!;
 }

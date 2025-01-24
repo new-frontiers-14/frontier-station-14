@@ -4,7 +4,7 @@ using Robust.Shared.Prototypes;
 namespace Content.Server._NF.PublicTransit.Components;
 
 /// <summary>
-/// Added to a station that is stopped at by public transit.
+/// Added to a grid that is stopped at by public transit.
 /// </summary>
 [RegisterComponent, Access(typeof(PublicTransitSystem))]
 public sealed partial class StationTransitComponent : Component
