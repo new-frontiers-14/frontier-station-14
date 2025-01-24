@@ -185,6 +185,23 @@ entities:
     - type: Transform
       pos: -1.5,-3.5
       parent: 1
+- proto: BarrelPallet1
+  entities:
+  - uid: 20
+    components:
+    - type: Transform
+      pos: 0.5,2.5
+      parent: 1
+  - uid: 21
+    components:
+    - type: Transform
+      pos: -0.5,2.5
+      parent: 1
+  - uid: 57
+    components:
+    - type: Transform
+      pos: 1.5,2.5
+      parent: 1
 - proto: CableApcExtension
   entities:
   - uid: 7
@@ -322,6 +339,78 @@ entities:
     - type: Transform
       pos: -0.5,-3.5
       parent: 1
+- proto: PoweredSmallLight
+  entities:
+  - uid: 61
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 1.5,1.5
+      parent: 1
+- proto: RandomCrateFreightT1
+  entities:
+  - uid: 42
+    components:
+    - type: Transform
+      pos: 1.5,-2.5
+      parent: 1
+  - uid: 45
+    components:
+    - type: Transform
+      pos: 0.5,-2.5
+      parent: 1
+  - uid: 47
+    components:
+    - type: Transform
+      pos: -0.5,-2.5
+      parent: 1
+- proto: RandomFreightT1
+  entities:
+  - uid: 11
+    components:
+    - type: Transform
+      pos: 1.5,-0.5
+      parent: 1
+  - uid: 17
+    components:
+    - type: Transform
+      pos: 0.5,1.5
+      parent: 1
+  - uid: 22
+    components:
+    - type: Transform
+      pos: 0.5,-0.5
+      parent: 1
+  - uid: 24
+    components:
+    - type: Transform
+      pos: 1.5,1.5
+      parent: 1
+  - uid: 30
+    components:
+    - type: Transform
+      pos: -0.5,1.5
+      parent: 1
+  - uid: 33
+    components:
+    - type: Transform
+      pos: -0.5,-1.5
+      parent: 1
+  - uid: 41
+    components:
+    - type: Transform
+      pos: -0.5,-0.5
+      parent: 1
+  - uid: 44
+    components:
+    - type: Transform
+      pos: 1.5,-1.5
+      parent: 1
+  - uid: 53
+    components:
+    - type: Transform
+      pos: 0.5,-1.5
+      parent: 1
 - proto: SignElectricalMed
   entities:
   - uid: 59
@@ -338,158 +427,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -1.5,-1.5
       parent: 1
-- proto: TelecomServer
-  entities:
-  - uid: 11
-    components:
-    - type: Transform
-      anchored: False
-      pos: 0.5,-1.5
-      parent: 1
-    - type: Physics
-      bodyType: Dynamic
-    - type: ShipmentPrice
-      bonusPrice: 10000
-  - uid: 17
-    components:
-    - type: Transform
-      anchored: False
-      pos: -0.5,-1.5
-      parent: 1
-    - type: Physics
-      bodyType: Dynamic
-    - type: ShipmentPrice
-      bonusPrice: 10000
-  - uid: 20
-    components:
-    - type: Transform
-      anchored: False
-      pos: 0.5,2.5
-      parent: 1
-    - type: Physics
-      bodyType: Dynamic
-    - type: ShipmentPrice
-      bonusPrice: 10000
-  - uid: 21
-    components:
-    - type: Transform
-      anchored: False
-      pos: -0.5,2.5
-      parent: 1
-    - type: Physics
-      bodyType: Dynamic
-    - type: ShipmentPrice
-      bonusPrice: 10000
-  - uid: 22
-    components:
-    - type: Transform
-      anchored: False
-      pos: 1.5,-0.5
-      parent: 1
-    - type: Physics
-      bodyType: Dynamic
-    - type: ShipmentPrice
-      bonusPrice: 10000
-  - uid: 24
-    components:
-    - type: Transform
-      anchored: False
-      pos: -0.5,-0.5
-      parent: 1
-    - type: Physics
-      bodyType: Dynamic
-    - type: ShipmentPrice
-      bonusPrice: 10000
-  - uid: 30
-    components:
-    - type: Transform
-      anchored: False
-      pos: -0.5,-2.5
-      parent: 1
-    - type: Physics
-      bodyType: Dynamic
-    - type: ShipmentPrice
-      bonusPrice: 10000
-  - uid: 33
-    components:
-    - type: Transform
-      anchored: False
-      pos: 1.5,-1.5
-      parent: 1
-    - type: Physics
-      bodyType: Dynamic
-    - type: ShipmentPrice
-      bonusPrice: 10000
-  - uid: 41
-    components:
-    - type: Transform
-      anchored: False
-      pos: 1.5,-2.5
-      parent: 1
-    - type: Physics
-      bodyType: Dynamic
-    - type: ShipmentPrice
-      bonusPrice: 10000
-  - uid: 42
-    components:
-    - type: Transform
-      anchored: False
-      pos: 1.5,1.5
-      parent: 1
-    - type: Physics
-      bodyType: Dynamic
-    - type: ShipmentPrice
-      bonusPrice: 10000
-  - uid: 44
-    components:
-    - type: Transform
-      anchored: False
-      pos: 0.5,-2.5
-      parent: 1
-    - type: Physics
-      bodyType: Dynamic
-    - type: ShipmentPrice
-      bonusPrice: 10000
-  - uid: 45
-    components:
-    - type: Transform
-      anchored: False
-      pos: 0.5,1.5
-      parent: 1
-    - type: Physics
-      bodyType: Dynamic
-    - type: ShipmentPrice
-      bonusPrice: 10000
-  - uid: 47
-    components:
-    - type: Transform
-      anchored: False
-      pos: -0.5,1.5
-      parent: 1
-    - type: Physics
-      bodyType: Dynamic
-    - type: ShipmentPrice
-      bonusPrice: 10000
-  - uid: 53
-    components:
-    - type: Transform
-      anchored: False
-      pos: 0.5,-0.5
-      parent: 1
-    - type: Physics
-      bodyType: Dynamic
-    - type: ShipmentPrice
-      bonusPrice: 10000
-  - uid: 57
-    components:
-    - type: Transform
-      anchored: False
-      pos: 1.5,2.5
-      parent: 1
-    - type: Physics
-      bodyType: Dynamic
-    - type: ShipmentPrice
-      bonusPrice: 10000
 - proto: WallSolid
   entities:
   - uid: 6

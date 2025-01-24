@@ -28,7 +28,7 @@
   suffix: Barrel
   components:
   - type: ShipmentPrice
-    bonusPrice: 1000
+    bonusPrice: 1500
   - type: StaticPrice
     price: 5000
   - type: Sprite
@@ -211,7 +211,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: ShipmentPrice
-    bonusPrice: 1000
+    bonusPrice: 1500
   - type: StaticPrice
     price: 5000
   - type: Sprite
@@ -722,9 +722,12 @@
   components:
   - type: Sprite
     layers:
-      - state: red
       - sprite: _NF/Structures/Freight/freight_pallet.rsi
         state: base
+        offset: 0,.5
+      - sprite: Structures/Storage/Crates/generic.rsi
+        state: icon
+      - state: red
   - type: RandomSpawner
     offset: 0
     prototypes:
@@ -758,9 +761,10 @@
   components:
   - type: Sprite
     layers:
-      - state: red
       - sprite: _NF/Structures/Freight/freight_pallet.rsi
         state: base
+        offset: 0,.5
+      - state: red
   - type: RandomSpawner
     offset: 0
     prototypes:
