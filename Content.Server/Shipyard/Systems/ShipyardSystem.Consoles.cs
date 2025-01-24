@@ -159,7 +159,6 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
                 PlayDenySound(player, shipyardConsoleUid, component);
                 return;
             }
-            voucher.RedemptionsLeft--;
             voucherUsed = true;
         }
         // not using an else here because the voucher might still require a purchase cost
@@ -193,6 +192,14 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             PlayDenySound(player, shipyardConsoleUid, component);
             return;
         }
+
+        // Defer decrementing voucher redemptions to after successfully purchasing the shuttle.
+        if (voucherUsed)
+        {
+            voucher!.RedemptionsLeft--;
+        }
+
+
         EntityUid? shuttleStation = null;
         // setting up any stations if we have a matching game map prototype to allow late joins directly onto the vessel
         if (_prototypeManager.TryIndex<GameMapPrototype>(vessel.ID, out var stationProto))
