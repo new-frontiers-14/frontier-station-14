@@ -79,6 +79,7 @@ public abstract class SharedGasPressurePumpSystem : EntitySystem
 
         var pumpOn = pump.Enabled && _receiver.IsPowered(uid);
         Appearance.SetData(uid, PumpVisuals.Enabled, pumpOn, appearance);
+        Appearance.SetData(uid, PumpVisuals.PumpingInwards, pump.PumpingInwards, appearance); // Frontier
     }
 
     private void OnToggleStatusMessage(EntityUid uid, GasPressurePumpComponent pump, GasPressurePumpToggleStatusMessage args)
